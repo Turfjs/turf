@@ -1,0 +1,25 @@
+{
+  "name": "geo.js",
+  "version": "0.0.1",
+  "description": "a node.js library for performing gis operations",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha test/*"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/morganherlocker/geo.js.git"
+  },
+  "keywords": [
+    "gis",
+    "geo.js",
+    "geospatial",
+    "geography",
+    "map"
+  ],
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/morganherlocker/geo.js/issues"
+  }
+}
