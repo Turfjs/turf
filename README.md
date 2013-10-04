@@ -61,6 +61,7 @@ a node.js library for performing gis operations
     })
 
 **combine**
+
     var p1 = {
         "type": "Point",
         "coordinates": [
