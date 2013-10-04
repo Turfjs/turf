@@ -26,6 +26,7 @@ a node.js library for performing gis operations
 - style
 - union
 - erase
+- smooth
 
 - - -
 
