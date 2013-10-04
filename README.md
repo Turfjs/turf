@@ -1,7 +1,7 @@
 geo.js
 ======
 
-a node.js library for performing gis operations
+a node.js library for performing geospatial operations with geojson
 
 - - -
 
@@ -10,10 +10,10 @@ a node.js library for performing gis operations
 - load
 - extent
 - center
+- combine
 
 **Planned Features**
 
-- add features
 - buffer
 - contour
 - convert
