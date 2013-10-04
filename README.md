@@ -57,4 +57,8 @@ a node.js library for performing gis operations
       })
     })
 
-    
+
+***Development***
+
+**Run Tests**
+cd tests & mocha .
