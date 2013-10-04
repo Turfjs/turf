@@ -1,6 +1,7 @@
 module.exports = {
   add: require('./lib/add'),
   buffer: require('./lib/buffer'),
+  center: require('./lib/center'),
   contour: require('./lib/contour'),
   convert: require('./lib/convert'),
   distance: require('./lib/distance'),
@@ -14,3 +15,4 @@ module.exports = {
   style: require('./lib/style'),
   union: require('./lib/union')
 }
+
