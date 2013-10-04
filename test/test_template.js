@@ -1,4 +1,4 @@
-var g = require('../lib/feature')
+var g = require('../lib/op_template')
 
 describe('feature', function(){
   describe('#index', function(){
