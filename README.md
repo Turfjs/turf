@@ -3,7 +3,7 @@ geo.js
 
 a node.js library for performing gis operations
 
-
+- - -
 
 **Current Features**
 
@@ -26,6 +26,8 @@ a node.js library for performing gis operations
 - style
 - union
 - erase
+
+- - -
 
 ***Examples:***
 
@@ -57,6 +59,7 @@ a node.js library for performing gis operations
       })
     })
 
+- - -
 
 ***Development***
 
