@@ -12,9 +12,12 @@ a node.js library for performing geospatial operations with geojson
 - center
 - combine
 
+**In Progress**
+- buffer (working on a Point; Lines and Polygons coming soon)
+
 **Planned Features**
 
-- buffer
+
 - contour
 - convert
 - distance
@@ -81,6 +84,19 @@ a node.js library for performing geospatial operations with geojson
         if(err) throw err
         console.log(combined)
       })
+
+**buffer**
+
+    var p = {
+      "type": "Point",
+      "coordinates": [
+        0,
+        0.05
+      ]
+    }
+    g.buffer(p, 10, function(err, buffered){
+      console.log(buffered)
+    })
 
 - - -
 
