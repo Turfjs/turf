@@ -1,10 +1,19 @@
-var g = require('../lib/buffer')
+var g = require('../index'), fs = require('fs')
 
 describe('buffer', function(){
   describe('#index', function(){
-    xit('should ', function(done){
-        throw new Error('not implemented')
-      done()
+    it('should ', function(done){
+      var p = {
+        "type": "Point",
+        "coordinates": [
+          0,
+          5
+        ]
+      }
+      g.buffer(p, 20, function(err, buffered){
+        fs.writeFileSync('../test/test.json',JSON.stringify(buffered))
+        done()
+      })
     })
   })
 }) 
