@@ -4,7 +4,8 @@ var g = require('../index'),
 describe('load', function(){
   describe('#index', function(){
     it('should load a geojson file ok', function(done){
-      g.load('../test/testFiles/FeatureCollection.json', function(layer){
+      g.load('../test/testFiles/FeatureCollection.json', function(err, layer){
+        if(err) throw err
         layer.should.be.ok
         done()
       })

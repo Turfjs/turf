@@ -7,11 +7,11 @@ describe('buffer', function(){
         "type": "Point",
         "coordinates": [
           0,
-          5
+          0.05
         ]
       }
-      g.buffer(p, 20, function(err, buffered){
-        fs.writeFileSync('../test/test.geojson',JSON.stringify(buffered))
+      g.buffer(p, .5, function(err, buffered){
+        fs.writeFileSync('./testOut/test.geojson',JSON.stringify(buffered))
         done()
       })
     })
