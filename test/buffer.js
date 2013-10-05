@@ -10,8 +10,8 @@ describe('buffer', function(){
           0.05
         ]
       }
-      g.buffer(p, .5, function(err, buffered){
-        fs.writeFileSync('./testOut/test.geojson',JSON.stringify(buffered))
+      g.buffer(p, 10, function(err, buffered){
+        //fs.writeFileSync('./testOut/test.geojson',JSON.stringify(buffered))
         done()
       })
     })
