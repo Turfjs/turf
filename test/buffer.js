@@ -11,7 +11,7 @@ describe('buffer', function(){
         ]
       }
       g.buffer(p, 20, function(err, buffered){
-        fs.writeFileSync('../test/test.json',JSON.stringify(buffered))
+        fs.writeFileSync('../test/test.geojson',JSON.stringify(buffered))
         done()
       })
     })
