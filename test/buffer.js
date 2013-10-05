@@ -2,7 +2,7 @@ var g = require('../index'), fs = require('fs')
 
 describe('buffer', function(){
   describe('#index', function(){
-    it('should ', function(done){
+    it('should buffer a Point', function(done){
       var p = {
         "type": "Point",
         "coordinates": [
