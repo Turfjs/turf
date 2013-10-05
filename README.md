@@ -13,7 +13,7 @@ a node.js library for performing geospatial operations with geojson
 - combine
 
 **In Progress**
-- buffer (working on a Point; Lines and Polygons coming soon)
+- buffer (works on a Point; Lines and Polygons coming soon)
 
 **Planned Features**
 
@@ -95,6 +95,7 @@ a node.js library for performing geospatial operations with geojson
       ]
     }
     g.buffer(p, 10, function(err, buffered){
+      if(err) throw err
       console.log(buffered)
     })
 
