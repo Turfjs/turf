@@ -14,16 +14,12 @@ a node.js library for performing geospatial operations with geojson
 - center
 - combine
 - distance
-
-**In Progress**
 - buffer (works on a Point; Lines and Polygons coming soon)
 
 **Planned Features**
 
-
 - contour
 - convert
-
 - filter
 - intersect
 - quantile
