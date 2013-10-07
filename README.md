@@ -17,16 +17,17 @@ a node.js library for performing geospatial operations with geojson
 - center
 - combine
 - distance
-- buffer (works on a Point; Lines and Polygons coming soon)
+- buffer
 
 **Planned Features**
 
 Additional feature requests welcomed and encouraged. To request a feature, please add a [github issue](https://github.com/morganherlocker/geo.js/issues) with a description.
 
+- tin
+- tag
 - centroid
 - area
 - contour
-- convert
 - filter
 - intersect
 - quantile
