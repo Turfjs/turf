@@ -1,6 +1,6 @@
 {
   "name": "geo.js",
-  "version": "0.0.11",
+  "version": "0.0.13",
   "description": "a node.js library for performing geospatial operations with geojson",
   "main": "index.js",
   "scripts": {
@@ -23,5 +23,8 @@
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/morganherlocker/geo.js/issues"
-  }
+  },
+  "dependencies": [
+    "lodash"
+  ]
 }
