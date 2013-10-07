@@ -7,7 +7,7 @@ a node.js library for performing geospatial operations with geojson
 
 - - -
 
-**Current Features**
+**Features**
 
 - load
 - point
