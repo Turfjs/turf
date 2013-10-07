@@ -13,6 +13,7 @@ a node.js library for performing geospatial operations with geojson
 - extent
 - center
 - combine
+- distance
 
 **In Progress**
 - buffer (works on a Point; Lines and Polygons coming soon)
@@ -22,7 +23,7 @@ a node.js library for performing geospatial operations with geojson
 
 - contour
 - convert
-- distance
+
 - filter
 - intersect
 - quantile
@@ -99,6 +100,21 @@ a node.js library for performing geospatial operations with geojson
     g.buffer(p, 10, function(err, buffered){
       if(err) throw err
       console.log(buffered)
+    })
+
+**distance**
+
+    var point1 = { "type": "Feature",
+      "geometry": {"type": "Point", "coordinates": [-75.343, 39.984]}
+    }
+
+    var point2 = { "type": "Feature",
+      "geometry": {"type": "Point", "coordinates": [-75.534, 39.123]}
+    }
+    
+    g.distance(point1, point2, 'miles', function(err, distance){
+      if(err) throw err
+      console.log(distance)
     })
 
 - - -
