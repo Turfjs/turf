@@ -100,8 +100,6 @@ Calculates the extent of all features and returns a bounding box.
 
 Calculates the absolute center point of all features.
 
-the center of the bounding box around a geometry or set of geometries.
-
     var g = require('geo')
     g.load('path/to/file/example.json', function(layer, err){
       if(err) throw err
