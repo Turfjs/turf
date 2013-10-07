@@ -12,6 +12,7 @@ describe('buffer', function(){
       }
       g.buffer(p, 10, function(err, buffered){
         //fs.writeFileSync('./testOut/test.geojson',JSON.stringify(buffered))
+        if(err) throw err
         done()
       })
     })

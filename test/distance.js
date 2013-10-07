@@ -1,10 +1,12 @@
-var g = require('../lib/distance')
+var g = require('../index')
 
 describe('distance', function(){
   describe('#index', function(){
-    xit('should ', function(done){
-      throw new Error('not implemented')
-      done()
+    it('should return the distance between two points', function(done){
+      g.distance([], 'miles', function(err, distance){
+        if(err) throw err
+        done()
+      })
     })
   })
 }) 

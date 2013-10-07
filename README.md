@@ -3,6 +3,8 @@ geo.js
 
 a node.js library for performing geospatial operations with geojson
 
+    npm install geo.js
+
 - - -
 
 **Current Features**

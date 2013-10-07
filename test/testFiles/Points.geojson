@@ -1,0 +1,26 @@
+  { 
+    "type": "FeatureCollection",
+    "features": [
+      { "type": "Feature",
+        "geometry": {"type": "Point", "coordinates": [-75.343, 39.984]},
+        "properties": { 
+          "name": "Location A",
+          "category": "Store"
+        }
+      },
+      { "type": "Feature",
+        "geometry": {"type": "Point", "coordinates": [-75.833, 39.284]},
+        "properties": { 
+          "name": "Location B",
+          "category": "House"
+        }
+      },
+      { "type": "Feature",
+        "geometry": {"type": "Point", "coordinates": [ -75.534, 39.123]},
+        "properties": { 
+          "name": "Location C",
+          "category": "Office"
+        }
+      }
+    ]
+  }
