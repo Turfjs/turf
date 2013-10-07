@@ -21,6 +21,9 @@ a node.js library for performing geospatial operations with geojson
 
 **Planned Features**
 
+Additional feature requests welcomed and encouraged. To request a feature, please add a [github issue](https://github.com/morganherlocker/geo.js/issues) with a description.
+
+- centroid
 - area
 - contour
 - convert
@@ -40,6 +43,8 @@ a node.js library for performing geospatial operations with geojson
 
 **load**
 
+Loads a feature collection or geometry from a file.
+
     var g = require('geo')
     g.load('path/to/file/example.json', function(layer, err){
       if(err) throw err
@@ -47,6 +52,8 @@ a node.js library for performing geospatial operations with geojson
     })
 
 **point**
+
+Creates a point feature based on an x and a y coordinate. Properties can be added optionally.
 
     var g = require('geo')
     var point1 = g.point(-75.343, 39.984)
@@ -56,6 +63,8 @@ a node.js library for performing geospatial operations with geojson
 
 **linestring**
 
+Creates a linestring feature based on a coordinate array. Properties can be added optionally.
+
     var g = require('geo')
     var linestring1 = g.point([[102.0, -10.0], [103.0, 1.0], [104.0, 0.0], [130.0, 4.0]])
     var linestring2 = g.point([[102.0, -10.0], [103.0, 1.0], [104.0, 0.0], [130.0, 4.0]], 
@@ -64,6 +73,8 @@ a node.js library for performing geospatial operations with geojson
     console.log(linestring2)
 
 **polygon**
+
+Creates a polygon feature based on a coordinate array. Properties can be added optionally.
 
     var g = require('geo')
     var polygon1 = g.point([[[20.0,0.0],[101.0,0.0],[101.0,1.0],[100.0,1.0],[100.0,0.0]]])
@@ -75,6 +86,8 @@ a node.js library for performing geospatial operations with geojson
 
 **extent**
 
+Calculates the extent of all features and returns a bounding box.
+
     var g = require('geo')
     g.load('path/to/file/example.json', function(layer, err){
       if(err) throw err
@@ -85,6 +98,10 @@ a node.js library for performing geospatial operations with geojson
 
 **center**
 
+Calculates the absolute center point of all features.
+
+the center of the bounding box around a geometry or set of geometries.
+
     var g = require('geo')
     g.load('path/to/file/example.json', function(layer, err){
       if(err) throw err
@@ -94,6 +111,8 @@ a node.js library for performing geospatial operations with geojson
     })
 
 **combine**
+
+Combines an array of point, linestring, or polygon features into multipoint, multilinestring, or multipolygon features
 
     var p1 = {
         "type": "Point",
@@ -116,6 +135,8 @@ a node.js library for performing geospatial operations with geojson
 
 **buffer**
 
+Buffers a point feature to a given radius.
+
     var p = {
       "type": "Point",
       "coordinates": [
@@ -129,6 +150,8 @@ a node.js library for performing geospatial operations with geojson
     })
 
 **distance**
+
+Calculates the distance between two point features.
 
     var point1 = { 
       "type": "Feature",
