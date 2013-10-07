@@ -18,6 +18,7 @@ a node.js library for performing geospatial operations with geojson
 - combine
 - distance
 - buffer
+- nearest
 
 **Planned Features**
 
