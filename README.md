@@ -100,11 +100,15 @@ a node.js library for performing geospatial operations with geojson
 
 **distance**
 
-    var point1 = { "type": "Feature",
+    var point1 = 
+    { 
+      "type": "Feature",
       "geometry": {"type": "Point", "coordinates": [-75.343, 39.984]}
     }
 
-    var point2 = { "type": "Feature",
+    var point2 = 
+    { 
+      "type": "Feature",
       "geometry": {"type": "Point", "coordinates": [-75.534, 39.123]}
     }
     
