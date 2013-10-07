@@ -165,6 +165,57 @@ Calculates the distance between two point features.
       console.log(distance)
     })
 
+**nearest**
+
+Returns the neares point feature.
+    
+    var inPoint = { 
+      "type": "Feature",
+      "geometry": {"type": "Point", "coordinates": [-75.4, 39.4]},
+      "properties": { 
+        "name": "Location A",
+        "category": "Store"
+      }
+    }
+    var inFeatures = { 
+      "type": "FeatureCollection",
+      "features": [
+        { "type": "Feature",
+          "geometry": {"type": "Point", "coordinates": [-75.343, 39.984]},
+          "properties": { 
+            "name": "Location A",
+            "category": "Store"
+          }
+        },
+        { "type": "Feature",
+          "geometry": {"type": "Point", "coordinates": [-75.833, 39.284]},
+          "properties": { 
+            "name": "Location B",
+            "category": "House"
+          }
+        },
+        { "type": "Feature",
+          "geometry": {"type": "Point", "coordinates": [ -75.534, 39.123]},
+          "properties": { 
+            "name": "Location C",
+            "category": "Office"
+          }
+        }
+      ]
+    }
+    g.nearest(inPoint, inFeatures, function(err, outPoint){
+      if(err) throw err
+      var nearest = { 
+        "type": "Feature",
+        "geometry": {"type": "Point", "coordinates": [ -75.33, 39.44]},
+        "properties": { 
+          "name": "Location C",
+          "category": "Office"
+        }
+      }
+    })
+
+
 - - -
 
 ***Development***
