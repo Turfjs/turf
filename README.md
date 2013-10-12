@@ -241,3 +241,19 @@ Takes a set of points and the name of a z-value property and creates a tin (Tria
 
 **Run Tests**
 mocha test/*
+
+
+***Credits***
+
+This library is built and maintained by @morganherlocker. If you would like to contribute, please do! :)
+
+I have taken a "picasso" approach to building this library, borrowing from existing code when available and modifying it to meet coding styles and standards of geo.js. Here is a list of places I have pulled ideas and/or code from (all open source or public domain, as far as I know):
+
+https://github.com/ironwallaby/delaunay
+https://github.com/jasondavies/conrec.js
+Q: http://stackoverflow.com/questions/839899/how-do-i-calculate-a-point-on-a-circles-circumference A: http://stackoverflow.com/a/839931/461015
+http://en.wikipedia.org/wiki/Haversine_formula
+http://en.wikipedia.org/wiki/Ramer-Douglas-Peucker_algorithm
+https://github.com/mbloch/mapshaper
+http://en.wikipedia.org/wiki/Delaunay_triangulation
+http://svn.osgeo.org/grass/grass/branches/releasebranch_6_4/vector/v.overlay/main.c
