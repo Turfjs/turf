@@ -17,7 +17,7 @@ module.exports = {
   reclass: require('./lib/reclass'),
   remove: require('./lib/remove'),
   style: require('./lib/style'),
-  triangulate: require('./lib/tin'),
+  tin: require('./lib/tin'),
   union: require('./lib/union')
 }
 

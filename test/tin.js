@@ -1,10 +1,20 @@
-var g = require('../index')
+var g = require('../index'),
+  should = require('should'),
+  fs = require('fs')
 
 describe('tin', function(){
   describe('#index', function(){
     it('should create a TIN from a set of points', function(done){
-      
-      done()
+      g.load('../test/testFiles/Points3.geojson', function(err, points){
+        g.tin(points, function(err, tin){
+          if(err) throw err
+          tin.should.be.ok
+          tin.features[0].geometry.type.should.equal('Polygon')
+          tin.features[0].geometry.coordinates.should.be.ok
+          fs.writeFileSync('./testOut/test.geojson',JSON.stringify(tin))
+          done()  
+        })
+      })
     })
   })
 }) 

@@ -1,4 +1,5 @@
-var g = require('../index')
+var g = require('../index'),
+  should = require('should')
 
 describe('feature', function(){
   describe('#index', function(){
