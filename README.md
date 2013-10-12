@@ -251,10 +251,7 @@ I have taken a "picasso" approach to building this library, borrowing from exist
 
 https://github.com/ironwallaby/delaunay
 https://github.com/jasondavies/conrec.js
-
-Q: http://stackoverflow.com/questions/839899/how-do-i-calculate-a-point-on-a-circles-circumference 
-
-A: http://stackoverflow.com/a/839931/461015
+http://stackoverflow.com/a/839931/461015
 http://en.wikipedia.org/wiki/Haversine_formula
 http://en.wikipedia.org/wiki/Ramer-Douglas-Peucker_algorithm
 https://github.com/mbloch/mapshaper
