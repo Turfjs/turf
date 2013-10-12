@@ -3,7 +3,7 @@ geo.js
 
 a node.js library for performing geospatial operations with geojson
 
-Please note that this api is still a bit unstable. I expect most of the core stuff to be nailed down in the next couple weeks though.
+Please note that this api is still a bit unstable. I expect most of the core stuff to be nailed down in the next couple weeks though. If you notice any bugs, please submit an issue.
 
     npm install geo.js
 
@@ -21,12 +21,12 @@ Please note that this api is still a bit unstable. I expect most of the core stu
 - distance
 - buffer
 - nearest
+- tin
 
 **Planned Features**
 
 Additional feature requests welcomed and encouraged. To request a feature, please add a [github issue](https://github.com/morganherlocker/geo.js/issues) with a description.
 
-- tin
 - tag
 - centroid
 - area
@@ -115,7 +115,8 @@ Calculates the absolute center point of all features.
 **combine**
 
 Combines an array of point, linestring, or polygon features into multipoint, multilinestring, or multipolygon features
-
+    
+    var g = require('geo')
     var p1 = {
         "type": "Point",
         "coordinates": [
@@ -139,6 +140,7 @@ Combines an array of point, linestring, or polygon features into multipoint, mul
 
 Buffers a point feature to a given radius.
 
+    var g = require('geo')
     var p = {
       "type": "Point",
       "coordinates": [
@@ -155,6 +157,7 @@ Buffers a point feature to a given radius.
 
 Calculates the distance between two point features.
 
+    var g = require('geo')
     var point1 = { 
       "type": "Feature",
       "geometry": {"type": "Point", "coordinates": [-75.343, 39.984]}
@@ -171,7 +174,8 @@ Calculates the distance between two point features.
 **nearest**
 
 Returns the neares point feature.
-    
+
+    var g = require('geo')    
     var inPoint = { 
       "type": "Feature",
       "geometry": {"type": "Point", "coordinates": [-75.4, 39.4]},
@@ -218,6 +222,18 @@ Returns the neares point feature.
       }
     })
 
+**tin**
+
+Takes a set of points and the name of a z-value property and creates a tin (Triangulated Irregular Network). These are often used for developing elevation contour maps or stepped heat visualizations.
+
+    var g = require('geo')
+    var z = 'elevation'
+    g.load('/path/to/pointsfeatures/Points3.geojson', function(err, points){
+      g.tin(points, function(err, z, tin){
+        if(err) throw err
+        console.log(tin)
+      })
+    })
 
 - - -
 
