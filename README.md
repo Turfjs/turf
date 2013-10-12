@@ -242,6 +242,7 @@ Takes a set of points and the name of a z-value property and creates a tin (Tria
 **Run Tests**
 mocha test/*
 
+- - -
 
 ***Credits***
 
