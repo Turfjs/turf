@@ -3,7 +3,7 @@ geo.js
 
 a node.js library for performing geospatial operations with geojson
 
-Please note that this api is still a bit unstable. I expect most of the core stuff to be nailed down in the next couple weeks though. If you notice any bugs, please submit an issue.
+*Please note that this api is still a bit unstable. I expect most of the core stuff to be nailed down in the next couple weeks though. If you notice any bugs, please submit an issue.*
 
     npm install geo.js
 
@@ -28,6 +28,8 @@ Please note that this api is still a bit unstable. I expect most of the core stu
 
 Additional feature requests welcomed and encouraged. To request a feature, please add a [github issue](https://github.com/morganherlocker/geo.js/issues) with a description.
 
+- tinpoint
+- pointInPolygon
 - tag
 - centroid
 - area
