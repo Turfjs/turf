@@ -22,6 +22,7 @@ Please note that this api is still a bit unstable. I expect most of the core stu
 - buffer
 - nearest
 - tin
+- grid
 
 **Planned Features**
 
@@ -233,6 +234,14 @@ Takes a set of points and the name of a z-value property and creates a tin (Tria
         if(err) throw err
         console.log(tin)
       })
+    })
+
+**grid**
+
+Takes a bounding box and a cell depth and outputs a feature collection of points in a grid.
+
+    g.grid([0,0,10,10], 5, function(err, grid){
+      console.log(grid)
     })
 
 - - -

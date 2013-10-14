@@ -11,7 +11,7 @@ describe('tin', function(){
           tin.should.be.ok
           tin.features[0].geometry.type.should.equal('Polygon')
           tin.features[0].geometry.coordinates.should.be.ok
-          fs.writeFileSync('./testOut/test.geojson',JSON.stringify(tin))
+          fs.writeFileSync('./testOut/tin.geojson',JSON.stringify(tin))
           done()  
         })
       })

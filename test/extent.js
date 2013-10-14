@@ -34,7 +34,7 @@ describe('extent', function(){
         if(err) throw err
         g.extent(layer, function(extent){
           extent.should.be.ok
-          extent[0].should.equal(20)
+          extent[0].should.equal(100)
           extent[1].should.equal(0)
           extent[2].should.equal(101)
           extent[3].should.equal(1)
