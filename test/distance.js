@@ -1,4 +1,5 @@
-var g = require('../index')
+var g = require('../index'),
+  should = require('should')
 
 describe('distance', function(){
   describe('#index', function(){
@@ -9,6 +10,8 @@ describe('distance', function(){
           if(err) throw err
           g.distance(point1, point2, 'miles', function(err, distance){
             if(err) throw err
+            distance.should.be.ok
+            distance.should.not.equal(0)
             done()
           })
         })

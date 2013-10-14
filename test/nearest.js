@@ -14,7 +14,8 @@ describe('nearest', function(){
               "geometry": {"type": "Point", "coordinates": [ -75.33, 39.44]},
               "properties": { 
                 "name": "Location C",
-                "category": "Office"
+                "category": "Office",
+                "elevation": 76
               }
             }
             _.isEqual(outPoint, nearest).should.be.true

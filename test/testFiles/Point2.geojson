@@ -1,4 +1,5 @@
-{ "type": "Feature",
+{ 
+  "type": "Feature",
   "geometry": {"type": "Point", "coordinates": [-75.534, 39.123]},
   "properties": { 
     "name": "Location A",
