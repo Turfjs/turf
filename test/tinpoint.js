@@ -1,1 +1,1 @@
-http://math.stackexchange.com/questions/28043/finding-the-z-value-on-a-plane-with-x-y-values
+//http://math.stackexchange.com/questions/28043/finding-the-z-value-on-a-plane-with-x-y-values

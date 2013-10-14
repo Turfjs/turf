@@ -4,7 +4,7 @@ var g = require('../index'),
 
 describe('grid', function(){
   it('should create a 100x100 grid as a Point FeatureCollection', function(done){
-    g.grid([0,0,10,10], 5, function(err, grid){
+    g.grid([0,0,10,10], 100, function(err, grid){
       if(err) throw err
       grid.should.be.ok
       grid.type.should.equal('FeatureCollection')

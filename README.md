@@ -240,6 +240,7 @@ Takes a set of points and the name of a z-value property and creates a tin (Tria
 
 Takes a bounding box and a cell depth and outputs a feature collection of points in a grid.
 
+    var g = require('geo')
     g.grid([0,0,10,10], 5, function(err, grid){
       console.log(grid)
     })
