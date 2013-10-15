@@ -27,7 +27,7 @@ a node.js library for performing geospatial operations with geojson
 Additional feature requests welcomed and encouraged. To request a feature, please add a [github issue](https://github.com/morganherlocker/geo.js/issues) with a description.
 
 - tinpoint
-- pointInPolygon
+- inside
 - tag
 - centroid
 - area
@@ -51,7 +51,7 @@ Additional feature requests welcomed and encouraged. To request a feature, pleas
 Loads a feature collection or geometry from a file.
 
     var g = require('geo')
-    g.load('path/to/file/example.json', function(layer, err){
+    g.load('path/to/file/example.geojson', function(layer, err){
       if(err) throw err
       console.log(layer)
     })
@@ -94,9 +94,9 @@ Creates a polygon feature based on a coordinate array. Properties can be added o
 Calculates the extent of all features and returns a bounding box.
 
     var g = require('geo')
-    g.load('path/to/file/example.json', function(layer, err){
+    g.load('path/to/file/example.geojson', function(err, features){
       if(err) throw err
-      g.extent(layer, function(extent){
+      g.extent(features, function(extent){
         console.log(extent)
       })
     })
@@ -118,38 +118,20 @@ Calculates the absolute center point of all features.
 Combines an array of point, linestring, or polygon features into multipoint, multilinestring, or multipolygon features
     
     var g = require('geo')
-    var p1 = {
-        "type": "Point",
-        "coordinates": [
-          50,
-          51
-        ]
-      }
-      var p2 = {
-        "type": "Point",
-        "coordinates": [
-          100,
-          101
-        ]
-      }
-      g.combine([p1, p2], function(err, combined){
-        if(err) throw err
-        console.log(combined)
-      })
+    var pt1 = g.point(50, 1)
+    var pt2 = g.point(100, 101)
+    g.combine([pt1, pt2], function(err, combined){
+      if(err) throw err
+      console.log(combined)
+    })
 
 **buffer**
 
 Buffers a point feature to a given radius.
 
     var g = require('geo')
-    var p = {
-      "type": "Point",
-      "coordinates": [
-        0,
-        0.05
-      ]
-    }
-    g.buffer(p, 10, function(err, buffered){
+    var pt = g.point(0, 0.5)
+    g.buffer(pt, 10, function(err, buffered){
       if(err) throw err
       console.log(buffered)
     })
