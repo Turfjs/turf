@@ -13,6 +13,7 @@ a node.js library for performing geospatial operations with geojson
 - point
 - linestring
 - polygon
+- featurecollection
 - extent
 - center
 - combine
@@ -141,14 +142,8 @@ Buffers a point feature to a given radius.
 Calculates the distance between two point features.
 
     var g = require('geo')
-    var point1 = { 
-      "type": "Feature",
-      "geometry": {"type": "Point", "coordinates": [-75.343, 39.984]}
-    }
-    var point2 = { 
-      "type": "Feature",
-      "geometry": {"type": "Point", "coordinates": [-75.534, 39.123]}
-    }
+    var point1 = g.point(-75.343, 39.984)
+    var point2 = g.point(-75.534, 39.123)
     g.distance(point1, point2, 'miles', function(err, distance){
       if(err) throw err
       console.log(distance)

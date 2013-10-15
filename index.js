@@ -5,6 +5,7 @@ module.exports = {
   contour: require('./lib/contour'),
   distance: require('./lib/distance'),
   extent: require('./lib/extent'),
+  featurecollection: require('./lib/featurecollection'),
   filter: require('./lib/filter'),
   grid: require('./lib/grid'),
   join: require('./lib/join'),
