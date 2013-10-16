@@ -94,133 +94,151 @@ Creates a polygon feature based on a coordinate array. Properties can be added o
 
 Calculates the extent of all features and returns a bounding box.
 
-    var g = require('geo')
-    g.load('path/to/file/example.geojson', function(err, features){
-      if(err) throw err
-      g.extent(features, function(extent){
-        console.log(extent)
-      })
-    })
+```javascript
+var g = require('geo')
+g.load('path/to/file/example.geojson', function(err, features){
+  if(err) throw err
+  g.extent(features, function(extent){
+    console.log(extent)
+  })
+})
+```
 
 **center**
 
 Calculates the absolute center point of all features.
 
-    var g = require('geo')
-    g.load('path/to/file/example.json', function(layer, err){
-      if(err) throw err
-      g.center(layer, function(center){
-        console.log(center)
-      })
-    })
+```javascript
+var g = require('geo')
+g.load('path/to/file/example.json', function(layer, err){
+  if(err) throw err
+  g.center(layer, function(center){
+    console.log(center)
+  })
+})
+```
 
 **combine**
 
 Combines an array of point, linestring, or polygon features into multipoint, multilinestring, or multipolygon features
     
-    var g = require('geo')
-    var pt1 = g.point(50, 1)
-    var pt2 = g.point(100, 101)
-    g.combine([pt1, pt2], function(err, combined){
-      if(err) throw err
-      console.log(combined)
-    })
+```javascript
+var g = require('geo')
+var pt1 = g.point(50, 1)
+var pt2 = g.point(100, 101)
+g.combine([pt1, pt2], function(err, combined){
+  if(err) throw err
+  console.log(combined)
+})
+```
 
 **buffer**
 
 Buffers a point feature to a given radius.
 
-    var g = require('geo')
-    var pt = g.point(0, 0.5)
-    g.buffer(pt, 10, function(err, buffered){
-      if(err) throw err
-      console.log(buffered)
-    })
+
+```javascript
+var g = require('geo')
+var pt = g.point(0, 0.5)
+g.buffer(pt, 10, function(err, buffered){
+  if(err) throw err
+  console.log(buffered)
+})
+```
 
 **distance**
 
 Calculates the distance between two point features.
 
-    var g = require('geo')
-    var point1 = g.point(-75.343, 39.984)
-    var point2 = g.point(-75.534, 39.123)
-    g.distance(point1, point2, 'miles', function(err, distance){
-      if(err) throw err
-      console.log(distance)
-    })
+```javascript
+var g = require('geo')
+var point1 = g.point(-75.343, 39.984)
+var point2 = g.point(-75.534, 39.123)
+g.distance(point1, point2, 'miles', function(err, distance){
+  if(err) throw err
+  console.log(distance)
+})
+```
 
 **nearest**
 
 Returns the neares point feature.
 
-    var g = require('geo')    
-    var inPoint = { 
-      "type": "Feature",
-      "geometry": {"type": "Point", "coordinates": [-75.4, 39.4]},
+```javascript
+var g = require('geo')    
+var inPoint = { 
+  "type": "Feature",
+  "geometry": {"type": "Point", "coordinates": [-75.4, 39.4]},
+  "properties": { 
+    "name": "Location A",
+    "category": "Store"
+  }
+}
+
+var inFeatures = { 
+  "type": "FeatureCollection",
+  "features": [
+    { "type": "Feature",
+      "geometry": {"type": "Point", "coordinates": [-75.343, 39.984]},
       "properties": { 
         "name": "Location A",
         "category": "Store"
       }
-    }
-    var inFeatures = { 
-      "type": "FeatureCollection",
-      "features": [
-        { "type": "Feature",
-          "geometry": {"type": "Point", "coordinates": [-75.343, 39.984]},
-          "properties": { 
-            "name": "Location A",
-            "category": "Store"
-          }
-        },
-        { "type": "Feature",
-          "geometry": {"type": "Point", "coordinates": [-75.833, 39.284]},
-          "properties": { 
-            "name": "Location B",
-            "category": "House"
-          }
-        },
-        { "type": "Feature",
-          "geometry": {"type": "Point", "coordinates": [ -75.534, 39.123]},
-          "properties": { 
-            "name": "Location C",
-            "category": "Office"
-          }
-        }
-      ]
-    }
-    g.nearest(inPoint, inFeatures, function(err, outPoint){
-      if(err) throw err
-      var nearest = { 
-        "type": "Feature",
-        "geometry": {"type": "Point", "coordinates": [ -75.33, 39.44]},
-        "properties": { 
-          "name": "Location C",
-          "category": "Office"
-        }
+    },
+    { "type": "Feature",
+      "geometry": {"type": "Point", "coordinates": [-75.833, 39.284]},
+      "properties": { 
+        "name": "Location B",
+        "category": "House"
       }
-    })
+    },
+    { "type": "Feature",
+      "geometry": {"type": "Point", "coordinates": [ -75.534, 39.123]},
+      "properties": { 
+        "name": "Location C",
+        "category": "Office"
+      }
+    }
+  ]
+}
+g.nearest(inPoint, inFeatures, function(err, outPoint){
+  if(err) throw err
+  var nearest = { 
+    "type": "Feature",
+    "geometry": {"type": "Point", "coordinates": [ -75.33, 39.44]},
+    "properties": { 
+      "name": "Location C",
+      "category": "Office"
+    }
+  }
+})
+```
 
 **tin**
 
 Takes a set of points and the name of a z-value property and creates a tin (Triangulated Irregular Network). These are often used for developing elevation contour maps or stepped heat visualizations.
 
-    var g = require('geo')
-    var z = 'elevation'
-    g.load('/path/to/pointsfeatures/Points3.geojson', function(err, points){
-      g.tin(points, function(err, z, tin){
-        if(err) throw err
-        console.log(tin)
-      })
-    })
+```javascript
+var g = require('geo')
+var z = 'elevation'
+g.load('/path/to/pointsfeatures/Points3.geojson', function(err, points){
+  g.tin(points, function(err, z, tin){
+    if(err) throw err
+    console.log(tin)
+  })
+})
+```
 
 **grid**
 
 Takes a bounding box and a cell depth and outputs a feature collection of points in a grid.
 
-    var g = require('geo')
-    g.grid([0,0,10,10], 5, function(err, grid){
-      console.log(grid)
-    })
+```
+var g = require('geo')
+g.grid([0,0,10,10], 5, function(err, grid){
+  console.log(grid)
+})
+```
 
 - - -
 
