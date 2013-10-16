@@ -252,3 +252,7 @@ https://github.com/mbloch/mapshaper
 http://en.wikipedia.org/wiki/Delaunay_triangulation
 
 http://svn.osgeo.org/grass/grass/branches/releasebranch_6_4/vector/v.overlay/main.c
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/morganherlocker/geo.js/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
