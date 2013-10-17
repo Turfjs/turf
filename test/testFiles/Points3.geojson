@@ -2,19 +2,19 @@
     "type": "FeatureCollection",
     "features": [
       { "type": "Feature",
-        "geometry": {"type": "Point", "coordinates": [-75.343, 39.984]},
-        "properties": { 
-          "name": "Location A",
-          "category": "Store",
-          "elevation": 20
-        }
-      },
-      { "type": "Feature",
         "geometry": {"type": "Point", "coordinates": [-75.833, 39.284]},
         "properties": { 
           "name": "Location B",
           "category": "House",
           "elevation": 25
+        }
+      },
+      { "type": "Feature",
+        "geometry": {"type": "Point", "coordinates": [-75.6, 39.984]},
+        "properties": { 
+          "name": "Location A",
+          "category": "Store",
+          "elevation": 23
         }
       },
       { "type": "Feature",
