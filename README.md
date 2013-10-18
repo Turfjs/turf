@@ -52,7 +52,7 @@ Additional feature requests welcomed and encouraged. To request a feature, pleas
 Loads a feature collection or geometry from a file.
 
 ```javascript
-var g = require('geo')
+var g = require('geo.js')
 g.load('path/to/file/example.geojson', function(layer, err){
   if(err) throw err
   console.log(layer)
@@ -64,7 +64,7 @@ g.load('path/to/file/example.geojson', function(layer, err){
 Creates a point feature based on an x and a y coordinate. Properties can be added optionally.
 
 ```javascript
-var g = require('geo')
+var g = require('geo.js')
 var point1 = g.point(-75.343, 39.984)
 var point2 = g.point(-75.343, 39.984, {name: 'point 1', population: 5000})
 console.log(point1)
@@ -76,7 +76,7 @@ console.log(point2)
 Creates a linestring feature based on a coordinate array. Properties can be added optionally.
 
 ```javascript
-var g = require('geo')
+var g = require('geo.js')
 var linestring1 = g.point([[102.0, -10.0], [103.0, 1.0], [104.0, 0.0], [130.0, 4.0]])
 var linestring2 = g.point([[102.0, -10.0], [103.0, 1.0], [104.0, 0.0], [130.0, 4.0]], 
   {name: 'line 1', distance: 145})
@@ -89,7 +89,7 @@ console.log(linestring2)
 Creates a polygon feature based on a coordinate array. Properties can be added optionally.
 
 ```javascript
-var g = require('geo')
+var g = require('geo.js')
 var polygon1 = g.point([[[20.0,0.0],[101.0,0.0],[101.0,1.0],[100.0,1.0],[100.0,0.0]]])
 var polygon2 = g.point([[[20.0,0.0],[101.0,0.0],[101.0,1.0],[100.0,1.0],[100.0,0.0]]], 
   {name: 'line 1', distance: 145})
@@ -103,7 +103,7 @@ console.log(polygon2)
 Calculates the extent of all features and returns a bounding box.
 
 ```javascript
-var g = require('geo')
+var g = require('geo.js')
 g.load('path/to/file/example.geojson', function(err, features){
   if(err) throw err
   g.extent(features, function(extent){
@@ -117,7 +117,7 @@ g.load('path/to/file/example.geojson', function(err, features){
 Calculates the absolute center point of all features.
 
 ```javascript
-var g = require('geo')
+var g = require('geo.js')
 g.load('path/to/file/example.json', function(layer, err){
   if(err) throw err
   g.center(layer, function(center){
@@ -131,7 +131,7 @@ g.load('path/to/file/example.json', function(layer, err){
 Combines an array of point, linestring, or polygon features into multipoint, multilinestring, or multipolygon features
     
 ```javascript
-var g = require('geo')
+var g = require('geo.js')
 var pt1 = g.point(50, 1)
 var pt2 = g.point(100, 101)
 g.combine([pt1, pt2], function(err, combined){
@@ -146,7 +146,7 @@ Buffers a point feature to a given radius. Lines and Polygons support coming soo
 
 
 ```javascript
-var g = require('geo')
+var g = require('geo.js')
 var pt = g.point(0, 0.5)
 g.buffer(pt, 10, function(err, buffered){
   if(err) throw err
@@ -159,7 +159,7 @@ g.buffer(pt, 10, function(err, buffered){
 Calculates the distance between two point features.
 
 ```javascript
-var g = require('geo')
+var g = require('geo.js')
 var point1 = g.point(-75.343, 39.984)
 var point2 = g.point(-75.534, 39.123)
 g.distance(point1, point2, 'miles', function(err, distance){
@@ -173,7 +173,7 @@ g.distance(point1, point2, 'miles', function(err, distance){
 Returns the neares point feature.
 
 ```javascript
-var g = require('geo')    
+var g = require('geo.js')    
 var inPoint = { 
   "type": "Feature",
   "geometry": {"type": "Point", "coordinates": [-75.4, 39.4]},
@@ -227,7 +227,7 @@ g.nearest(inPoint, inFeatures, function(err, outPoint){
 Takes a set of points and the name of a z-value property and creates a tin (Triangulated Irregular Network). These are often used for developing elevation contour maps or stepped heat visualizations.
 
 ```javascript
-var g = require('geo')
+var g = require('geo.js')
 var z = 'elevation'
 g.load('/path/to/pointsfeatures/Points3.geojson', function(err, points){
   g.tin(points, function(err, z, tin){
@@ -242,7 +242,7 @@ g.load('/path/to/pointsfeatures/Points3.geojson', function(err, points){
 Takes a bounding box and a cell depth and outputs a feature collection of points in a grid.
 
 ```javascript
-var g = require('geo')
+var g = require('geo.js')
 g.grid([0,0,10,10], 5, function(err, grid){
   console.log(grid)
 })
@@ -253,7 +253,7 @@ g.grid([0,0,10,10], 5, function(err, grid){
 Takes a trianglular plane and calculates the z value for a point on the plane.
 
 ```javascript
-var g = require('geo')
+var g = require('geo.js')
 var point = g.point(-75.3221, 39.529)
 // triangle is a polygon with "a", "b", and "c" values representing the values of the coordinates in order.
 var triangle = {
