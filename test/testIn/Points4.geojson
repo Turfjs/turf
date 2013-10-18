@@ -1,0 +1,1307 @@
+{
+    "type": "FeatureCollection", 
+    "bbox": [
+        -97.73948, 
+        30.26511, 
+        -76.98258, 
+        38.94076
+    ], 
+    "features": [
+        {
+            "geometry": {
+                "type": "Point", 
+                "coordinates": [
+                    -77.00829, 
+                    38.90375
+                ]
+            }, 
+            "type": "Feature", 
+            "properties": {
+                "Date": "6/24/13", 
+                "Cost": "$0.00 ", 
+                "Departure": "L St NE 24, 20002 Washington", 
+                "Time": "12:30 PM"
+            }
+        }, 
+        {
+            "geometry": {
+                "type": "Point", 
+                "coordinates": [
+                    -77.00854, 
+                    38.89954
+                ]
+            }, 
+            "type": "Feature", 
+            "properties": {
+                "Date": "6/24/13", 
+                "Cost": "$10.87 ", 
+                "Departure": "G Pl NE 23, 20002 Washington", 
+                "Time": "12:04 PM"
+            }
+        }, 
+        {
+            "geometry": {
+                "type": "Point", 
+                "coordinates": [
+                    -76.98647, 
+                    38.931
+                ]
+            }, 
+            "type": "Feature", 
+            "properties": {
+                "Date": "6/19/13", 
+                "Cost": "$2.51 ", 
+                "Departure": "Kearney St NE 1366, 20017 Washington", 
+                "Time": "11:09 AM"
+            }
+        }, 
+        {
+            "geometry": {
+                "type": "Point", 
+                "coordinates": [
+                    -76.98262, 
+                    38.92901
+                ]
+            }, 
+            "type": "Feature", 
+            "properties": {
+                "Date": "6/15/13", 
+                "Cost": "$5.02 ", 
+                "Departure": "Irving St NE 1522, 20017 Washington", 
+                "Time": "8:57 AM"
+            }
+        }, 
+        {
+            "geometry": {
+                "type": "Point", 
+                "coordinates": [
+                    -76.98421, 
+                    38.92981
+                ]
+            }, 
+            "type": "Feature", 
+            "properties": {
+                "Date": "6/14/13", 
+                "Cost": "$2.09 ", 
+                "Departure": "15th St NE 3158, 20017 Washington", 
+                "Time": "8:15 AM"
+            }
+        }, 
+        {
+            "geometry": {
+                "type": "Point", 
+                "coordinates": [
+                    -76.99361, 
+                    38.93163
+                ]
+            }, 
+            "type": "Feature", 
+            "properties": {
+                "Date": "6/13/13", 
+                "Cost": "$1.25 ", 
+                "Departure": "9th St NE 3421, 20017 Washington", 
+                "Time": "5:56 PM"
+            }
+        }, 
+        {
+            "geometry": {
+                "type": "Point", 
+                "coordinates": [
+                    -76.98702, 
+                    38.93177
+                ]
+            }, 
+            "type": "Feature", 
+            "properties": {
+                "Date": "6/13/13", 
+                "Cost": "$3.34 ", 
+                "Departure": "Lawrence St NE 1348, 20017 Washington", 
+                "Time": "8:12 AM"
+            }
+        }, 
+        {
+            "geometry": {
+                "type": "Point", 
+                "coordinates": [
+                    -76.99794, 
+                    38.94076
+                ]
+            }, 
+            "type": "Feature", 
+            "properties": {
+                "Date": "6/12/13", 
+                "Cost": "$7.11 ", 
+                "Departure": "John F McCormack Rd NE 3528, 20017 Washington", 
+                "Time": "5:54 PM"
+            }
+        }, 
+        {
+            "geometry": {
+                "type": "Point", 
+                "coordinates": [
+                    -76.9826, 
+                    38.92901
+                ]
+            }, 
+            "type": "Feature", 
+            "properties": {
+                "Date": "6/7/13", 
+                "Cost": "$2.51 ", 
+                "Departure": "Irving St NE 1530, 20017 Washington", 
+                "Time": "8:26 AM"
+            }
+        }, 
+        {
+            "geometry": {
+                "type": "Point", 
+                "coordinates": [
+                    -76.98518, 
+                    38.92987
+                ]
+            }, 
+            "type": "Feature", 
+            "properties": {
+                "Date": "6/5/13", 
+                "Cost": "$2.09 ", 
+                "Departure": "Jackson St NE 1448, 20017 Washington", 
+                "Time": "8:33 AM"
+            }
+        }, 
+        {
+            "geometry": {
+                "type": "Point", 
+                "coordinates": [
+                    -76.99284, 
+                    38.93467
+                ]
+            }, 
+            "type": "Feature", 
+            "properties": {
+                "Date": "6/3/13", 
+                "Cost": "$4.18 ", 
+                "Departure": "10th St NE 3658, 20017 Washington", 
+                "Time": "5:46 PM"
+            }
+        }, 
+        {
+            "geometry": {
+                "type": "Point", 
+                "coordinates": [
+                    -77.01707, 
+                    38.90253
+                ]
+            }, 
+            "type": "Feature", 
+            "properties": {
+                "Date": "6/3/13", 
+                "Cost": "$4.18 ", 
+                "Departure": "K St NW 419, 20001 Washington", 
+                "Time": "1:04 PM"
+            }
+        }, 
+        {
+            "geometry": {
+                "type": "Point", 
+                "coordinates": [
+                    -77.01171, 
+                    38.90566
+                ]
+            }, 
+            "type": "Feature", 
+            "properties": {
+                "Date": "6/3/13", 
+                "Cost": "$7.11 ", 
+                "Departure": "M St NW 89, 20001 Washington", 
+                "Time": "12:12 PM"
+            }
+        }, 
+        {
+            "geometry": {
+                "type": "Point", 
+                "coordinates": [
+                    -76.98482, 
+                    38.93109
+                ]
+            }, 
+            "type": "Feature", 
+            "properties": {
+                "Date": "5/17/13", 
+                "Cost": "$2.09 ", 
+                "Departure": "Kearney St NE 1422, 20017 Washington", 
+                "Time": "8:46 AM"
+            }
+        }, 
+        {
+            "geometry": {
+                "type": "Point", 
+                "coordinates": [
+                    -76.98421, 
+                    38.92982
+                ]
+            }, 
+            "type": "Feature", 
+            "properties": {
+                "Date": "5/10/13", 
+                "Cost": "$2.51 ", 
+                "Departure": "15th St NE 3164, 20017 Washington", 
+                "Time": "8:04 AM"
+            }
+        }, 
+        {
+            "geometry": {
+                "type": "Point", 
+                "coordinates": [
+                    -76.98421, 
+                    38.92982
+                ]
+            }, 
+            "type": "Feature", 
+            "properties": {
+                "Date": "5/9/13", 
+                "Cost": "$0.00 ", 
+                "Departure": "15th St NE 3164, 20017 Washington", 
+                "Time": "6:10 PM"
+            }
+        }, 
+        {
+            "geometry": {
+                "type": "Point", 
+                "coordinates": [
+                    -76.99493, 
+                    38.9313
+                ]
+            }, 
+            "type": "Feature", 
+            "properties": {
+                "Date": "5/9/13", 
+                "Cost": "$5.02 ", 
+                "Departure": "8th St NE 3357, 20017 Washington", 
+                "Time": "5:58 PM"
+            }
+        }, 
+        {
+            "geometry": {
+                "type": "Point", 
+                "coordinates": [
+                    -76.98531, 
+                    38.93086
+                ]
+            }, 
+            "type": "Feature", 
+            "properties": {
+                "Date": "5/9/13", 
+                "Cost": "$2.09 ", 
+                "Departure": "Kearney St NE 1420, 20017 Washington", 
+                "Time": "8:28 AM"
+            }
+        }, 
+        {
+            "geometry": {
+                "type": "Point", 
+                "coordinates": [
+                    -76.98993, 
+                    38.92765
+                ]
+            }, 
+            "type": "Feature", 
+            "properties": {
+                "Date": "5/8/13", 
+                "Cost": "$1.67 ", 
+                "Departure": "Hamlin St NE 1226, 20017 Washington", 
+                "Time": "8:02 AM"
+            }
+        }, 
+        {
+            "geometry": {
+                "type": "Point", 
+                "coordinates": [
+                    -76.99125, 
+                    38.93353
+                ]
+            }, 
+            "type": "Feature", 
+            "properties": {
+                "Date": "5/7/13", 
+                "Cost": "$2.09 ", 
+                "Departure": "Newton St NE 1114, 20017 Washington", 
+                "Time": "5:45 PM"
+            }
+        }, 
+        {
+            "geometry": {
+                "type": "Point", 
+                "coordinates": [
+                    -76.99794, 
+                    38.94076
+                ]
+            }, 
+            "type": "Feature", 
+            "properties": {
+                "Date": "5/1/13", 
+                "Cost": "$4.18 ", 
+                "Departure": "John F McCormack Rd NE 3588, 20017 Washington", 
+                "Time": "5:51 PM"
+            }
+        }, 
+        {
+            "geometry": {
+                "type": "Point", 
+                "coordinates": [
+                    -76.99794, 
+                    38.94076
+                ]
+            }, 
+            "type": "Feature", 
+            "properties": {
+                "Date": "4/30/13", 
+                "Cost": "$5.85 ", 
+                "Departure": "John F McCormack Rd NE 3518, 20017 Washington", 
+                "Time": "5:24 PM"
+            }
+        }, 
+        {
+            "geometry": {
+                "type": "Point", 
+                "coordinates": [
+                    -76.98647, 
+                    38.931
+                ]
+            }, 
+            "type": "Feature", 
+            "properties": {
+                "Date": "4/30/13", 
+                "Cost": "$2.09 ", 
+                "Departure": "Kearney St NE 1366, 20017 Washington", 
+                "Time": "8:12 AM"
+            }
+        }, 
+        {
+            "geometry": {
+                "type": "Point", 
+                "coordinates": [
+                    -76.99509, 
+                    38.93137
+                ]
+            }, 
+            "type": "Feature", 
+            "properties": {
+                "Date": "4/29/13", 
+                "Cost": "$2.09 ", 
+                "Departure": "Lawrence St NE 767, 20017 Washington", 
+                "Time": "5:47 PM"
+            }
+        }, 
+        {
+            "geometry": {
+                "type": "Point", 
+                "coordinates": [
+                    -76.99377, 
+                    38.93375
+                ]
+            }, 
+            "type": "Feature", 
+            "properties": {
+                "Date": "4/19/13", 
+                "Cost": "$2.51 ", 
+                "Departure": "9th St NE, 20017 Washington", 
+                "Time": "3:56 PM"
+            }
+        }, 
+        {
+            "geometry": {
+                "type": "Point", 
+                "coordinates": [
+                    -76.98421, 
+                    38.92982
+                ]
+            }, 
+            "type": "Feature", 
+            "properties": {
+                "Date": "4/19/13", 
+                "Cost": "$2.51 ", 
+                "Departure": "15th St NE 3164, 20017 Washington", 
+                "Time": "8:04 AM"
+            }
+        }, 
+        {
+            "geometry": {
+                "type": "Point", 
+                "coordinates": [
+                    -76.98421, 
+                    38.92982
+                ]
+            }, 
+            "type": "Feature", 
+            "properties": {
+                "Date": "4/18/13", 
+                "Cost": "$10.87 ", 
+                "Departure": "15th St NE 3164, 20017 Washington", 
+                "Time": "10:57 AM"
+            }
+        }, 
+        {
+            "geometry": {
+                "type": "Point", 
+                "coordinates": [
+                    -76.99124, 
+                    38.93353
+                ]
+            }, 
+            "type": "Feature", 
+            "properties": {
+                "Date": "4/17/13", 
+                "Cost": "$4.18 ", 
+                "Departure": "Newton St NE 1120, 20017 Washington", 
+                "Time": "1:53 PM"
+            }
+        }, 
+        {
+            "geometry": {
+                "type": "Point", 
+                "coordinates": [
+                    -76.98421, 
+                    38.92981
+                ]
+            }, 
+            "type": "Feature", 
+            "properties": {
+                "Date": "4/17/13", 
+                "Cost": "$2.51 ", 
+                "Departure": "15th St NE 3160, 20017 Washington", 
+                "Time": "8:06 AM"
+            }
+        }, 
+        {
+            "geometry": {
+                "type": "Point", 
+                "coordinates": [
+                    -76.99268, 
+                    38.93523
+                ]
+            }, 
+            "type": "Feature", 
+            "properties": {
+                "Date": "4/16/13", 
+                "Cost": "$2.51 ", 
+                "Departure": "Bunker Hill Rd NE 1036, 20017 Washington", 
+                "Time": "5:56 PM"
+            }
+        }, 
+        {
+            "geometry": {
+                "type": "Point", 
+                "coordinates": [
+                    -76.98421, 
+                    38.92982
+                ]
+            }, 
+            "type": "Feature", 
+            "properties": {
+                "Date": "4/16/13", 
+                "Cost": "$2.09 ", 
+                "Departure": "15th St NE 3164, 20017 Washington", 
+                "Time": "7:58 AM"
+            }
+        }, 
+        {
+            "geometry": {
+                "type": "Point", 
+                "coordinates": [
+                    -76.99103, 
+                    38.9362
+                ]
+            }, 
+            "type": "Feature", 
+            "properties": {
+                "Date": "4/15/13", 
+                "Cost": "$2.09 ", 
+                "Departure": "Perry St NE 1144, 20017 Washington", 
+                "Time": "5:55 PM"
+            }
+        }, 
+        {
+            "geometry": {
+                "type": "Point", 
+                "coordinates": [
+                    -76.98671, 
+                    38.93178
+                ]
+            }, 
+            "type": "Feature", 
+            "properties": {
+                "Date": "4/15/13", 
+                "Cost": "$1.67 ", 
+                "Departure": "Lawrence St NE 1370, 20017 Washington", 
+                "Time": "8:50 AM"
+            }
+        }, 
+        {
+            "geometry": {
+                "type": "Point", 
+                "coordinates": [
+                    -76.98421, 
+                    38.92982
+                ]
+            }, 
+            "type": "Feature", 
+            "properties": {
+                "Date": "4/12/13", 
+                "Cost": "$1.67 ", 
+                "Departure": "15th St NE 3164, 20017 Washington", 
+                "Time": "8:12 AM"
+            }
+        }, 
+        {
+            "geometry": {
+                "type": "Point", 
+                "coordinates": [
+                    -76.99001, 
+                    38.93551
+                ]
+            }, 
+            "type": "Feature", 
+            "properties": {
+                "Date": "4/11/13", 
+                "Cost": "$2.51 ", 
+                "Departure": "Oakview Ter NE 3732, 20017 Washington", 
+                "Time": "6:10 PM"
+            }
+        }, 
+        {
+            "geometry": {
+                "type": "Point", 
+                "coordinates": [
+                    -76.9861, 
+                    38.9297
+                ]
+            }, 
+            "type": "Feature", 
+            "properties": {
+                "Date": "4/11/13", 
+                "Cost": "$2.09 ", 
+                "Departure": "14th St NE 3139, 20017 Washington", 
+                "Time": "8:11 AM"
+            }
+        }, 
+        {
+            "geometry": {
+                "type": "Point", 
+                "coordinates": [
+                    -76.9909, 
+                    38.9312
+                ]
+            }, 
+            "type": "Feature", 
+            "properties": {
+                "Date": "3/28/13", 
+                "Cost": "$2.09 ", 
+                "Departure": "12th St NE 3364, 20017 Washington", 
+                "Time": "5:49 PM"
+            }
+        }, 
+        {
+            "geometry": {
+                "type": "Point", 
+                "coordinates": [
+                    -76.9861, 
+                    38.92921
+                ]
+            }, 
+            "type": "Feature", 
+            "properties": {
+                "Date": "3/26/13", 
+                "Cost": "$1.67 ", 
+                "Departure": "14th St NE 3138, 20017 Washington", 
+                "Time": "8:39 AM"
+            }
+        }, 
+        {
+            "geometry": {
+                "type": "Point", 
+                "coordinates": [
+                    -76.98421, 
+                    38.92981
+                ]
+            }, 
+            "type": "Feature", 
+            "properties": {
+                "Date": "3/19/13", 
+                "Cost": "$5.85 ", 
+                "Departure": "15th St NE 3160, 20017 Washington", 
+                "Time": "6:22 PM"
+            }
+        }, 
+        {
+            "geometry": {
+                "type": "Point", 
+                "coordinates": [
+                    -76.99136, 
+                    38.93452
+                ]
+            }, 
+            "type": "Feature", 
+            "properties": {
+                "Date": "3/19/13", 
+                "Cost": "$4.18 ", 
+                "Departure": "Otis St NE 1076, 20017 Washington", 
+                "Time": "5:54 PM"
+            }
+        }, 
+        {
+            "geometry": {
+                "type": "Point", 
+                "coordinates": [
+                    -76.98421, 
+                    38.92981
+                ]
+            }, 
+            "type": "Feature", 
+            "properties": {
+                "Date": "3/19/13", 
+                "Cost": "$1.67 ", 
+                "Departure": "15th St NE 3160, 20017 Washington", 
+                "Time": "8:06 AM"
+            }
+        }, 
+        {
+            "geometry": {
+                "type": "Point", 
+                "coordinates": [
+                    -76.99253, 
+                    38.93107
+                ]
+            }, 
+            "type": "Feature", 
+            "properties": {
+                "Date": "3/18/13", 
+                "Cost": "$1.67 ", 
+                "Departure": "10th St NE 3320, 20017 Washington", 
+                "Time": "6:13 PM"
+            }
+        }, 
+        {
+            "geometry": {
+                "type": "Point", 
+                "coordinates": [
+                    -76.99387, 
+                    38.93194
+                ]
+            }, 
+            "type": "Feature", 
+            "properties": {
+                "Date": "3/15/13", 
+                "Cost": "$1.67 ", 
+                "Departure": "9th St NE 3416, 20017 Washington", 
+                "Time": "5:58 PM"
+            }
+        }, 
+        {
+            "geometry": {
+                "type": "Point", 
+                "coordinates": [
+                    -77.02255, 
+                    38.90208
+                ]
+            }, 
+            "type": "Feature", 
+            "properties": {
+                "Date": "3/14/13", 
+                "Cost": "$10.03 ", 
+                "Departure": "K St NW 766, 20001 Washington", 
+                "Time": "5:31 PM"
+            }
+        }, 
+        {
+            "geometry": {
+                "type": "Point", 
+                "coordinates": [
+                    -76.99377, 
+                    38.93375
+                ]
+            }, 
+            "type": "Feature", 
+            "properties": {
+                "Date": "3/13/13", 
+                "Cost": "$2.09 ", 
+                "Departure": "9th St NE, 20017 Washington", 
+                "Time": "5:44 PM"
+            }
+        }, 
+        {
+            "geometry": {
+                "type": "Point", 
+                "coordinates": [
+                    -76.98522, 
+                    38.92987
+                ]
+            }, 
+            "type": "Feature", 
+            "properties": {
+                "Date": "3/13/13", 
+                "Cost": "$2.51 ", 
+                "Departure": "Jackson St NE 1440, 20017 Washington", 
+                "Time": "8:46 AM"
+            }
+        },  
+        {
+            "geometry": {
+                "type": "Point", 
+                "coordinates": [
+                    -76.9937, 
+                    38.93234
+                ]
+            }, 
+            "type": "Feature", 
+            "properties": {
+                "Date": "3/7/13", 
+                "Cost": "$1.67 ", 
+                "Departure": "9th St NE 3478, 20017 Washington", 
+                "Time": "6:04 PM"
+            }
+        }, 
+        {
+            "geometry": {
+                "type": "Point", 
+                "coordinates": [
+                    -76.9861, 
+                    38.92917
+                ]
+            }, 
+            "type": "Feature", 
+            "properties": {
+                "Date": "3/7/13", 
+                "Cost": "$2.09 ", 
+                "Departure": "14th St NE 3134, 20017 Washington", 
+                "Time": "8:43 AM"
+            }
+        }, 
+        {
+            "geometry": {
+                "type": "Point", 
+                "coordinates": [
+                    -76.99365, 
+                    38.93214
+                ]
+            }, 
+            "type": "Feature", 
+            "properties": {
+                "Date": "3/5/13", 
+                "Cost": "$1.67 ", 
+                "Departure": "9th St NE 3473, 20017 Washington", 
+                "Time": "6:05 PM"
+            }
+        }, 
+        {
+            "geometry": {
+                "type": "Point", 
+                "coordinates": [
+                    -76.98421, 
+                    38.92982
+                ]
+            }, 
+            "type": "Feature", 
+            "properties": {
+                "Date": "3/5/13", 
+                "Cost": "$1.67 ", 
+                "Departure": "15th St NE 3164, 20017 Washington", 
+                "Time": "8:09 AM"
+            }
+        }, 
+        {
+            "geometry": {
+                "type": "Point", 
+                "coordinates": [
+                    -76.99794, 
+                    38.94076
+                ]
+            }, 
+            "type": "Feature", 
+            "properties": {
+                "Date": "3/4/13", 
+                "Cost": "$3.34 ", 
+                "Departure": "John F McCormack Rd NE 3524, 20017 Washington", 
+                "Time": "5:45 PM"
+            }
+        }, 
+        {
+            "geometry": {
+                "type": "Point", 
+                "coordinates": [
+                    -76.98512, 
+                    38.92987
+                ]
+            }, 
+            "type": "Feature", 
+            "properties": {
+                "Date": "2/27/13", 
+                "Cost": "$6.27 ", 
+                "Departure": "Jackson St NE 1452, 20017 Washington", 
+                "Time": "12:55 PM"
+            }
+        }, 
+        {
+            "geometry": {
+                "type": "Point", 
+                "coordinates": [
+                    -76.99048, 
+                    38.92929
+                ]
+            }, 
+            "type": "Feature", 
+            "properties": {
+                "Date": "2/26/13", 
+                "Cost": "$1.25 ", 
+                "Departure": "12th St NE 3121, 20017 Washington", 
+                "Time": "5:18 PM"
+            }
+        }, 
+        {
+            "geometry": {
+                "type": "Point", 
+                "coordinates": [
+                    -76.98531, 
+                    38.93086
+                ]
+            }, 
+            "type": "Feature", 
+            "properties": {
+                "Date": "2/25/13", 
+                "Cost": "$1.67 ", 
+                "Departure": "Kearney St NE 1420, 20017 Washington", 
+                "Time": "8:06 AM"
+            }
+        }, 
+        {
+            "geometry": {
+                "type": "Point", 
+                "coordinates": [
+                    -76.98926, 
+                    38.93093
+                ]
+            }, 
+            "type": "Feature", 
+            "properties": {
+                "Date": "2/22/13", 
+                "Cost": "$1.67 ", 
+                "Departure": "Kearney St NE 1250, 20017 Washington", 
+                "Time": "8:32 AM"
+            }
+        }, 
+        {
+            "geometry": {
+                "type": "Point", 
+                "coordinates": [
+                    -76.99141, 
+                    38.93449
+                ]
+            }, 
+            "type": "Feature", 
+            "properties": {
+                "Date": "2/21/13", 
+                "Cost": "$2.09 ", 
+                "Departure": "Otis St NE 1065, 20017 Washington", 
+                "Time": "5:51 PM"
+            }
+        }, 
+        {
+            "geometry": {
+                "type": "Point", 
+                "coordinates": [
+                    -76.99263, 
+                    38.93234
+                ]
+            }, 
+            "type": "Feature", 
+            "properties": {
+                "Date": "2/20/13", 
+                "Cost": "$1.67 ", 
+                "Departure": "10th St NE 3468, 20017 Washington", 
+                "Time": "6:04 PM"
+            }
+        }, 
+        {
+            "geometry": {
+                "type": "Point", 
+                "coordinates": [
+                    -76.98534, 
+                    38.92986
+                ]
+            }, 
+            "type": "Feature", 
+            "properties": {
+                "Date": "2/20/13", 
+                "Cost": "$2.09 ", 
+                "Departure": "Jackson St NE 1420, 20017 Washington", 
+                "Time": "7:54 AM"
+            }
+        }, 
+        {
+            "geometry": {
+                "type": "Point", 
+                "coordinates": [
+                    -76.99269, 
+                    38.93306
+                ]
+            }, 
+            "type": "Feature", 
+            "properties": {
+                "Date": "2/19/13", 
+                "Cost": "$2.09 ", 
+                "Departure": "10th St NE 3560, 20017 Washington", 
+                "Time": "5:58 PM"
+            }
+        }, 
+        {
+            "geometry": {
+                "type": "Point", 
+                "coordinates": [
+                    -76.9861, 
+                    38.92974
+                ]
+            }, 
+            "type": "Feature", 
+            "properties": {
+                "Date": "2/19/13", 
+                "Cost": "$1.67 ", 
+                "Departure": "14th St NE 3159, 20017 Washington", 
+                "Time": "8:13 AM"
+            }
+        }, 
+        {
+            "geometry": {
+                "type": "Point", 
+                "coordinates": [
+                    -76.9937, 
+                    38.93232
+                ]
+            }, 
+            "type": "Feature", 
+            "properties": {
+                "Date": "2/15/13", 
+                "Cost": "$5.43 ", 
+                "Departure": "9th St NE 3468, 20017 Washington", 
+                "Time": "5:59 PM"
+            }
+        }, 
+        {
+            "geometry": {
+                "type": "Point", 
+                "coordinates": [
+                    -76.98421, 
+                    38.92981
+                ]
+            }, 
+            "type": "Feature", 
+            "properties": {
+                "Date": "2/15/13", 
+                "Cost": "$2.09 ", 
+                "Departure": "15th St NE 3158, 20017 Washington", 
+                "Time": "8:13 AM"
+            }
+        }, 
+        {
+            "geometry": {
+                "type": "Point", 
+                "coordinates": [
+                    -76.99365, 
+                    38.9321
+                ]
+            }, 
+            "type": "Feature", 
+            "properties": {
+                "Date": "2/14/13", 
+                "Cost": "$2.09 ", 
+                "Departure": "9th St NE 3469, 20017 Washington", 
+                "Time": "6:03 PM"
+            }
+        }, 
+        {
+            "geometry": {
+                "type": "Point", 
+                "coordinates": [
+                    -76.98421, 
+                    38.92982
+                ]
+            }, 
+            "type": "Feature", 
+            "properties": {
+                "Date": "2/14/13", 
+                "Cost": "$2.93 ", 
+                "Departure": "15th St NE 3164, 20017 Washington", 
+                "Time": "7:59 AM"
+            }
+        }, 
+        {
+            "geometry": {
+                "type": "Point", 
+                "coordinates": [
+                    -76.99444, 
+                    38.92174
+                ]
+            }, 
+            "type": "Feature", 
+            "properties": {
+                "Date": "2/13/13", 
+                "Cost": "$2.09 ", 
+                "Departure": "Rhode Island Ave NE 827, 20018 Washington", 
+                "Time": "8:17 PM"
+            }
+        }, 
+        {
+            "geometry": {
+                "type": "Point", 
+                "coordinates": [
+                    -76.98421, 
+                    38.92981
+                ]
+            }, 
+            "type": "Feature", 
+            "properties": {
+                "Date": "2/13/13", 
+                "Cost": "$1.67 ", 
+                "Departure": "15th St NE 3158, 20017 Washington", 
+                "Time": "8:29 AM"
+            }
+        }, 
+        {
+            "geometry": {
+                "type": "Point", 
+                "coordinates": [
+                    -76.98421, 
+                    38.92981
+                ]
+            }, 
+            "type": "Feature", 
+            "properties": {
+                "Date": "2/12/13", 
+                "Cost": "$4.60 ", 
+                "Departure": "15th St NE 3158, 20017 Washington", 
+                "Time": "8:04 PM"
+            }
+        }, 
+        {
+            "geometry": {
+                "type": "Point", 
+                "coordinates": [
+                    -76.98258, 
+                    38.92901
+                ]
+            }, 
+            "type": "Feature", 
+            "properties": {
+                "Date": "2/12/13", 
+                "Cost": "$1.25 ", 
+                "Departure": "Irving St NE 1536, 20017 Washington", 
+                "Time": "7:52 PM"
+            }
+        }, 
+        {
+            "geometry": {
+                "type": "Point", 
+                "coordinates": [
+                    -76.98621, 
+                    38.92784
+                ]
+            }, 
+            "type": "Feature", 
+            "properties": {
+                "Date": "2/10/13", 
+                "Cost": "$10.87 ", 
+                "Departure": "Hamlin St NE 1352, 20017 Washington", 
+                "Time": "12:15 PM"
+            }
+        }, 
+        {
+            "geometry": {
+                "type": "Point", 
+                "coordinates": [
+                    -76.99266, 
+                    38.9327
+                ]
+            }, 
+            "type": "Feature", 
+            "properties": {
+                "Date": "2/8/13", 
+                "Cost": "$4.18 ", 
+                "Departure": "10th St NE 3524, 20017 Washington", 
+                "Time": "6:04 PM"
+            }
+        }, 
+        {
+            "geometry": {
+                "type": "Point", 
+                "coordinates": [
+                    -76.98421, 
+                    38.92982
+                ]
+            }, 
+            "type": "Feature", 
+            "properties": {
+                "Date": "2/8/13", 
+                "Cost": "$2.09 ", 
+                "Departure": "15th St NE 3164, 20017 Washington", 
+                "Time": "8:23 AM"
+            }
+        }, 
+        {
+            "geometry": {
+                "type": "Point", 
+                "coordinates": [
+                    -76.99285, 
+                    38.9347
+                ]
+            }, 
+            "type": "Feature", 
+            "properties": {
+                "Date": "2/7/13", 
+                "Cost": "$2.09 ", 
+                "Departure": "10th St NE 3662, 20017 Washington", 
+                "Time": "5:59 PM"
+            }
+        }, 
+        {
+            "geometry": {
+                "type": "Point", 
+                "coordinates": [
+                    -76.99616, 
+                    38.93034
+                ]
+            }, 
+            "type": "Feature", 
+            "properties": {
+                "Date": "2/6/13", 
+                "Cost": "$5.02 ", 
+                "Departure": "7th St NE 3279, 20017 Washington", 
+                "Time": "5:46 PM"
+            }
+        }, 
+        {
+            "geometry": {
+                "type": "Point", 
+                "coordinates": [
+                    -76.98421, 
+                    38.92981
+                ]
+            }, 
+            "type": "Feature", 
+            "properties": {
+                "Date": "2/6/13", 
+                "Cost": "$2.51 ", 
+                "Departure": "15th St NE 3160, 20017 Washington", 
+                "Time": "8:04 AM"
+            }
+        }, 
+        {
+            "geometry": {
+                "type": "Point", 
+                "coordinates": [
+                    -76.99143, 
+                    38.93253
+                ]
+            }, 
+            "type": "Feature", 
+            "properties": {
+                "Date": "2/5/13", 
+                "Cost": "$1.67 ", 
+                "Departure": "Monroe St NE 1042, 20017 Washington", 
+                "Time": "6:01 PM"
+            }
+        }, 
+        {
+            "geometry": {
+                "type": "Point", 
+                "coordinates": [
+                    -76.98421, 
+                    38.92982
+                ]
+            }, 
+            "type": "Feature", 
+            "properties": {
+                "Date": "2/5/13", 
+                "Cost": "$2.93 ", 
+                "Departure": "15th St NE 3164, 20017 Washington", 
+                "Time": "8:09 AM"
+            }
+        }, 
+        {
+            "geometry": {
+                "type": "Point", 
+                "coordinates": [
+                    -76.9937, 
+                    38.93231
+                ]
+            }, 
+            "type": "Feature", 
+            "properties": {
+                "Date": "2/4/13", 
+                "Cost": "$2.09 ", 
+                "Departure": "9th St NE 3464, 20017 Washington", 
+                "Time": "6:14 PM"
+            }
+        }, 
+        {
+            "geometry": {
+                "type": "Point", 
+                "coordinates": [
+                    -76.98404, 
+                    38.9277
+                ]
+            }, 
+            "type": "Feature", 
+            "properties": {
+                "Date": "2/4/13", 
+                "Cost": "$2.09 ", 
+                "Departure": "15th St NE 2938, 20017 Washington", 
+                "Time": "8:05 AM"
+            }
+        }, 
+        {
+            "geometry": {
+                "type": "Point", 
+                "coordinates": [
+                    -76.99334, 
+                    38.93241
+                ]
+            }, 
+            "type": "Feature", 
+            "properties": {
+                "Date": "2/1/13", 
+                "Cost": "$2.93 ", 
+                "Departure": "Monroe St NE 929, 20017 Washington", 
+                "Time": "6:02 PM"
+            }
+        }, 
+        {
+            "geometry": {
+                "type": "Point", 
+                "coordinates": [
+                    -76.98421, 
+                    38.92983
+                ]
+            }, 
+            "type": "Feature", 
+            "properties": {
+                "Date": "2/1/13", 
+                "Cost": "$2.51 ", 
+                "Departure": "15th St NE 3168, 20017 Washington", 
+                "Time": "9:02 AM"
+            }
+        }, 
+        {
+            "geometry": {
+                "type": "Point", 
+                "coordinates": [
+                    -76.9933, 
+                    38.93241
+                ]
+            }, 
+            "type": "Feature", 
+            "properties": {
+                "Date": "1/31/13", 
+                "Cost": "$2.51 ", 
+                "Departure": "Monroe St NE 933, 20017 Washington", 
+                "Time": "6:09 PM"
+            }
+        }
+    ]
+}
