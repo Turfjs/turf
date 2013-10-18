@@ -1,6 +1,6 @@
 var g = require('../index'),
     should = require('should'),
-    _ = require('underscore')
+    _ = require('lodash')
 
 describe('center', function(){
   it('should return the proper center for a FeatureCollection', function(done){

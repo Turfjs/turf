@@ -1,5 +1,5 @@
 var g = require('../index'),
-  _ = require('underscore')
+  _ = require('lodash')
 
 describe('combine', function(){
   describe('#index', function(){
