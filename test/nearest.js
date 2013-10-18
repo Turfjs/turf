@@ -3,24 +3,22 @@ var g = require('../index'),
   should = require('should')
 
 describe('nearest', function(){
-  describe('#index', function(){
-    it('should should return the nearest point', function(done){
-      g.load('../test/testFiles/Point1.geojson', function(err, inPoint){
-        g.load('../test/testFiles/Points3.geojson', function(err, inFeatures){
-          g.nearest(inPoint, inFeatures, function(err, outPoint){
-            if(err) throw err
-            var nearest = { 
-              "type": "Feature",
-              "geometry": {"type": "Point", "coordinates": [ -75.33, 39.44]},
-              "properties": { 
-                "name": "Location C",
-                "category": "Office",
-                "elevation": 76
-              }
+  it('should should return the nearest point', function(done){
+    g.load('../test/testIn/Point1.geojson', function(err, inPoint){
+      g.load('../test/testIn/Points3.geojson', function(err, inFeatures){
+        g.nearest(inPoint, inFeatures, function(err, outPoint){
+          if(err) throw err
+          var nearest = { 
+            "type": "Feature",
+            "geometry": {"type": "Point", "coordinates": [ -75.33, 39.44]},
+            "properties": { 
+              "name": "Location C",
+              "category": "Office",
+              "elevation": 76
             }
-            _.isEqual(outPoint, nearest).should.be.true
-            done()
-          })
+          }
+          _.isEqual(outPoint, nearest).should.be.true
+          done()
         })
       })
     })

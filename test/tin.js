@@ -4,7 +4,7 @@ var g = require('../index'),
 
 describe('tin', function(){
   it('should create a TIN from a set of points', function(done){
-    g.load('../test/testFiles/Points3.geojson', function(err, points){
+    g.load('../test/testIn/Points3.geojson', function(err, points){
       g.tin(points, 'elevation', function(err, tin){
         if(err) throw err
         tin.should.be.ok
@@ -15,4 +15,4 @@ describe('tin', function(){
       })
     })
   })
-}) 
+})
