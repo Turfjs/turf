@@ -22,12 +22,12 @@ a node.js library for performing geospatial operations with geojson
 - nearest
 - tin
 - grid
+- planepoint
 
 **Planned Features**
 
 Additional feature requests welcomed and encouraged. To request a feature, please add a [github issue](https://github.com/morganherlocker/geo.js/issues) with a description.
 
-- planepoint
 - inside
 - tag
 - centroid
@@ -245,6 +245,32 @@ Takes a bounding box and a cell depth and outputs a feature collection of points
 var g = require('geo')
 g.grid([0,0,10,10], 5, function(err, grid){
   console.log(grid)
+})
+```
+
+**planepoint**
+
+Takes a trianglular plane and calculates the z value for a point on the plane.
+
+```javascript
+var g = require('geo')
+var point = g.point(-75.3221, 39.529)
+// triangle is a polygon with "a", "b", and "c" values representing the values of the coordinates in order.
+var triangle = {
+  "type": "Feature",
+  "geometry": {
+    "type": "Polygon",
+    "coordinates": [[[-75.1221,39.57],[-75.58,39.18],[-75.97,39.86]]]
+  },
+  "properties": {
+    "a": 11,
+    "b": 122,
+    "c": 44
+  }
+}
+g.planepoint(point, triangle, function(err, zValue){
+  if(err) throw err
+  console.log(zValue)
 })
 ```
 

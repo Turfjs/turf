@@ -13,6 +13,7 @@ module.exports = {
   linestring: require('./lib/linestring'),
   load: require('./lib/load'),
   nearest: require('./lib/nearest'),
+  planepoint: require('./lib/planepoint'),
   point: require('./lib/point'),
   polygon: require('./lib/polygon'),
   quantile: require('./lib/quantile'),
