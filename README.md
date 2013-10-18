@@ -77,8 +77,8 @@ Creates a linestring feature based on a coordinate array. Properties can be adde
 
 ```javascript
 var g = require('geo.js')
-var linestring1 = g.point([[102.0, -10.0], [103.0, 1.0], [104.0, 0.0], [130.0, 4.0]])
-var linestring2 = g.point([[102.0, -10.0], [103.0, 1.0], [104.0, 0.0], [130.0, 4.0]], 
+var linestring1 = g.linestring([[102.0, -10.0], [103.0, 1.0], [104.0, 0.0], [130.0, 4.0]])
+var linestring2 = g.linestring([[102.0, -10.0], [103.0, 1.0], [104.0, 0.0], [130.0, 4.0]], 
   {name: 'line 1', distance: 145})
 console.log(linestring1)
 console.log(linestring2)
