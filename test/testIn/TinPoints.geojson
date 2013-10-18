@@ -1,0 +1,67 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": 
+        [
+          -75.1221,
+          39.57
+        ]
+      },
+      "properties": {
+        "name": "Location A",
+        "category": "Store"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": 
+        [
+          -75.58,
+          39.18
+        ]
+      },
+      "properties": {
+        "name": "Location A",
+        "category": "Store"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": 
+        [
+          -75.97,
+          39.86
+        ]
+      },
+      "properties": {
+        "name": "Location A",
+        "category": "Store"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": 
+        [
+          -75.5221,
+          39.47
+        ]
+      },
+      "properties": {
+        "name": "Location A",
+        "category": "Store"
+      }
+    }
+  ]
+}
+
+
