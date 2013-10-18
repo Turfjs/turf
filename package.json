@@ -1,6 +1,6 @@
 {
   "name": "geo.js",
-  "version": "0.0.20",
+  "version": "0.0.21",
   "description": "a node.js library for performing geospatial operations with geojson",
   "main": "index.js",
   "scripts": {
@@ -13,11 +13,22 @@
   "keywords": [
     "gis",
     "geo",
-    "geo.js",
     "geospatial",
     "geography",
     "geometry",
-    "map"
+    "map",
+    "contour",
+    "tin",
+    "extent",
+    "geojson",
+    "grid",
+    "polygon",
+    "line",
+    "point",
+    "area",
+    "analysis",
+    "statistics",
+    "stats"
   ],
   "author": "",
   "license": "MIT",
