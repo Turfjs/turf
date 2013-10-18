@@ -51,43 +51,51 @@ Additional feature requests welcomed and encouraged. To request a feature, pleas
 
 Loads a feature collection or geometry from a file.
 
-    var g = require('geo')
-    g.load('path/to/file/example.geojson', function(layer, err){
-      if(err) throw err
-      console.log(layer)
-    })
+```javascript
+var g = require('geo')
+g.load('path/to/file/example.geojson', function(layer, err){
+  if(err) throw err
+  console.log(layer)
+})
+```
 
 **point**
 
 Creates a point feature based on an x and a y coordinate. Properties can be added optionally.
 
-    var g = require('geo')
-    var point1 = g.point(-75.343, 39.984)
-    var point2 = g.point(-75.343, 39.984, {name: 'point 1', population: 5000})
-    console.log(point1)
-    console.log(point2)
+```javascript
+var g = require('geo')
+var point1 = g.point(-75.343, 39.984)
+var point2 = g.point(-75.343, 39.984, {name: 'point 1', population: 5000})
+console.log(point1)
+console.log(point2)
+```
 
 **linestring**
 
 Creates a linestring feature based on a coordinate array. Properties can be added optionally.
 
-    var g = require('geo')
-    var linestring1 = g.point([[102.0, -10.0], [103.0, 1.0], [104.0, 0.0], [130.0, 4.0]])
-    var linestring2 = g.point([[102.0, -10.0], [103.0, 1.0], [104.0, 0.0], [130.0, 4.0]], 
-      {name: 'line 1', distance: 145})
-    console.log(linestring1)
-    console.log(linestring2)
+```javascript
+var g = require('geo')
+var linestring1 = g.point([[102.0, -10.0], [103.0, 1.0], [104.0, 0.0], [130.0, 4.0]])
+var linestring2 = g.point([[102.0, -10.0], [103.0, 1.0], [104.0, 0.0], [130.0, 4.0]], 
+  {name: 'line 1', distance: 145})
+console.log(linestring1)
+console.log(linestring2)
+```
 
 **polygon**
 
 Creates a polygon feature based on a coordinate array. Properties can be added optionally.
 
-    var g = require('geo')
-    var polygon1 = g.point([[[20.0,0.0],[101.0,0.0],[101.0,1.0],[100.0,1.0],[100.0,0.0]]])
-    var polygon2 = g.point([[[20.0,0.0],[101.0,0.0],[101.0,1.0],[100.0,1.0],[100.0,0.0]]], 
-      {name: 'line 1', distance: 145})
-    console.log(polygon1)
-    console.log(polygon2)
+```javascript
+var g = require('geo')
+var polygon1 = g.point([[[20.0,0.0],[101.0,0.0],[101.0,1.0],[100.0,1.0],[100.0,0.0]]])
+var polygon2 = g.point([[[20.0,0.0],[101.0,0.0],[101.0,1.0],[100.0,1.0],[100.0,0.0]]], 
+  {name: 'line 1', distance: 145})
+console.log(polygon1)
+console.log(polygon2)
+```
 
 
 **extent**
@@ -233,7 +241,7 @@ g.load('/path/to/pointsfeatures/Points3.geojson', function(err, points){
 
 Takes a bounding box and a cell depth and outputs a feature collection of points in a grid.
 
-```
+```javascript
 var g = require('geo')
 g.grid([0,0,10,10], 5, function(err, grid){
   console.log(grid)
