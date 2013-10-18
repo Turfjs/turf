@@ -134,7 +134,7 @@ g.combine([pt1, pt2], function(err, combined){
 
 **buffer**
 
-Buffers a point feature to a given radius.
+Buffers a point feature to a given radius. Lines and Polygons support coming soon.
 
 
 ```javascript
