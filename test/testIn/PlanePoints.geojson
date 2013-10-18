@@ -12,8 +12,7 @@
         ]
       },
       "properties": {
-        "name": "Location A",
-        "category": "Store"
+        "a": 11
       }
     },
     {
@@ -27,8 +26,7 @@
         ]
       },
       "properties": {
-        "name": "Location A",
-        "category": "Store"
+        "b": 122
       }
     },
     {
@@ -57,8 +55,7 @@
         ]
       },
       "properties": {
-        "name": "Location A",
-        "category": "Store"
+        "c": 44
       }
     }
   ]
