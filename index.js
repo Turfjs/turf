@@ -8,6 +8,7 @@ module.exports = {
   featurecollection: require('./lib/featurecollection'),
   filter: require('./lib/filter'),
   grid: require('./lib/grid'),
+  inside: require('./lib/inside'),
   join: require('./lib/join'),
   intersect: require('./lib/intersect'),
   linestring: require('./lib/linestring'),

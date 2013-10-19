@@ -279,7 +279,11 @@ g.planepoint(point, triangle, function(err, zValue){
 ***Development***
 
 **Run Tests**
-mocha test/*
+
+```shell
+cd test 
+mocha .
+```
 
 - - -
 
