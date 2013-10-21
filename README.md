@@ -23,12 +23,12 @@ a node.js library for performing geospatial operations with geojson
 - tin
 - grid
 - planepoint
+- inside
 
 **Planned Features**
 
 Additional feature requests welcomed and encouraged. To request a feature, please add a [github issue](https://github.com/morganherlocker/geo.js/issues) with a description.
 
-- inside
 - tag
 - centroid
 - area
@@ -137,6 +137,19 @@ var pt2 = g.point(100, 101)
 g.combine([pt1, pt2], function(err, combined){
   if(err) throw err
   console.log(combined)
+})
+```
+
+**inside**
+
+Checks to see if a point is inside of a polygon. The polygon can be convex or concave.
+
+```javascript
+var poly = g.polygon([[[0,0], [50, 50], [0,100], [100,100], [100,0]]])
+var pt = g.point(75, 75)
+g.inside(pt, poly, function(err, isInside){
+  if(err) throw err
+  console.log(isInside) // true
 })
 ```
 
