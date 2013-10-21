@@ -309,6 +309,12 @@ http://en.wikipedia.org/wiki/Delaunay_triangulation
 
 http://svn.osgeo.org/grass/grass/branches/releasebranch_6_4/vector/v.overlay/main.c
 
+http://www.ecse.rpi.edu/Homepages/wrf/Research/Short_Notes/pnpoly.html
+
+http://en.wikipedia.org/wiki/Even%E2%80%93odd_rule
+
+modified from: https://github.com/substack/point-in-polygon/blob/master/index.js
+
 
 [![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/morganherlocker/geo.js/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
 
