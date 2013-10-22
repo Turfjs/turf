@@ -9,6 +9,18 @@ describe('grid', function(){
       grid.should.be.ok
       grid.type.should.equal('FeatureCollection')
       grid.features[0].geometry.type.should.equal('Point')
+      //fs.writeFileSync('./testOut/grid.geojson',JSON.stringify(grid))
+      done()
+    })
+  })
+  it('should work properly with a negative start value', function(done){
+    g.grid([-20,-20,20,20], 10, function(err, grid){
+      if(err) throw err
+      grid.should.be.ok
+      grid.type.should.equal('FeatureCollection')
+      grid.features[0].geometry.type.should.equal('Point')
+      grid.features[0].geometry.coordinates[0].should.equal(-20)
+      grid.features[0].geometry.coordinates[0].should.equal(-20)
       fs.writeFileSync('./testOut/grid.geojson',JSON.stringify(grid))
       done()
     })
