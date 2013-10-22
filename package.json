@@ -1,6 +1,6 @@
 {
   "name": "geo.js",
-  "version": "0.0.29",
+  "version": "0.0.30",
   "description": "a node.js library for performing geospatial operations with geojson",
   "main": "index.js",
   "scripts": {
@@ -13,7 +13,7 @@
   "keywords": [
     "gis",
     "geo",
-    ,"geojs"
+    "geojs",
     "geospatial",
     "geography",
     "geometry",
