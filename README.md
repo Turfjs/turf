@@ -326,7 +326,7 @@ http://www.ecse.rpi.edu/Homepages/wrf/Research/Short_Notes/pnpoly.html
 
 http://en.wikipedia.org/wiki/Even%E2%80%93odd_rule
 
-modified from: https://github.com/substack/point-in-polygon/blob/master/index.js
+https://github.com/substack/point-in-polygon/blob/master/index.js
 
 
 [![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/morganherlocker/geo.js/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
