@@ -144,6 +144,22 @@
           "category": "Office",
           "elevation": 3
         }
+      },
+      { "type": "Feature",
+        "geometry": {"type": "Point", "coordinates": [ -75, 40]},
+        "properties": { 
+          "name": "Location C",
+          "category": "Office",
+          "elevation": 33
+        }
+      },
+      { "type": "Feature",
+        "geometry": {"type": "Point", "coordinates": [ -76, 38]},
+        "properties": { 
+          "name": "Location C",
+          "category": "Office",
+          "elevation": 14
+        }
       }
       
 
