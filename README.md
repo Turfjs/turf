@@ -291,8 +291,8 @@ g.planepoint(point, triangle, function(err, zValue){
 
 Takes a set of points with z values and generates contour polygons.
 
-![Points](/img/points.tiff "Points")
-![Contours](/img/contours.tiff "Contours")
+![Points](/img/points.jpg "Points")
+![Contours](/img/contours.jpg "Contours")
 
 - - -
 
