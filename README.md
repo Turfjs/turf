@@ -289,10 +289,17 @@ g.planepoint(point, triangle, function(err, zValue){
 
 **contour**
 
-Takes a set of points with z values and generates contour polygons.
+Takes a FeatureCollection of points with z values and an array of value breaks and generates contour polygons.
 
-![Points](/img/points.jpg "Points")
-![Contours](/img/contours.jpg "Contours")
+```javascript
+g.load('../path/to/points.geojson', function(err, points){
+  g.contour(points, 'elevation', [.1, 22, 45, 55, 65, 85,  95, 105, 120, 180], function(err, contours){
+    if(err) throw err
+    contours.should.be.ok
+    done()
+  })
+})
+```
 
 - - -
 
