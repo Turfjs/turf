@@ -78,7 +78,7 @@
         "properties": { 
           "name": "Location A",
           "category": "Store",
-          "elevation": 44
+          "elevation": 99
         }
       },
       { "type": "Feature",
@@ -94,7 +94,7 @@
         "properties": { 
           "name": "Location C",
           "category": "Office",
-          "elevation": 160
+          "elevation": 41
         }
       },
       { "type": "Feature",
@@ -102,7 +102,7 @@
         "properties": { 
           "name": "Location A",
           "category": "Store",
-          "elevation": 122
+          "elevation": 52
         }
       },
       { "type": "Feature",
@@ -110,7 +110,7 @@
         "properties": { 
           "name": "Location B",
           "category": "House",
-          "elevation": 44
+          "elevation": 143
         }
       },
       { "type": "Feature",

@@ -24,6 +24,7 @@ a node.js library for performing geospatial operations with geojson
 - grid
 - planepoint
 - inside
+- contour
 
 **Planned Features**
 
@@ -32,7 +33,6 @@ Additional feature requests welcomed and encouraged. To request a feature, pleas
 - tag
 - centroid
 - area
-- contour
 - filter
 - intersect
 - quantile
@@ -286,6 +286,13 @@ g.planepoint(point, triangle, function(err, zValue){
   console.log(zValue)
 })
 ```
+
+**contour**
+
+Takes a set of points with z values and generates contour polygons.
+
+![Points](/img/points.tiff "Points")
+![Contours](/img/contours.tiff "Contours")
 
 - - -
 
