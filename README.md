@@ -3,6 +3,8 @@ geo.js
 
 a node.js library for performing geospatial operations with geojson
 
+*note: This module is under active development and is in a pre-release form. The first official release is planned mid November 2013.  Most features are pretty stable, but expect some changes periodically up until then.*
+
     npm install geo.js
 
 - - -
@@ -38,7 +40,6 @@ Additional feature requests welcomed and encouraged. To request a feature, pleas
 - quantile
 - reclass
 - remove
-- style
 - union
 - erase
 - smooth
