@@ -169,7 +169,7 @@ g.buffer(pt, 10, function(err, buffered){
 
 **distance**
 
-Calculates the distance between two point features.
+Calculates the distance between two point features. This uses the haversine formula to account for global curvature.
 
 ```javascript
 var g = require('geo.js')
@@ -295,8 +295,7 @@ Takes a FeatureCollection of points with z values and an array of value breaks a
 g.load('../path/to/points.geojson', function(err, points){
   g.contour(points, 'elevation', [.1, 22, 45, 55, 65, 85,  95, 105, 120, 180], function(err, contours){
     if(err) throw err
-    contours.should.be.ok
-    done()
+    console.log(contours)
   })
 })
 ```
