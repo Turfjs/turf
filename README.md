@@ -18,6 +18,7 @@ a node.js library for performing geospatial operations with geojson
 - featurecollection
 - extent
 - center
+- centroid
 - explode
 - combine
 - distance
@@ -34,7 +35,6 @@ a node.js library for performing geospatial operations with geojson
 Additional feature requests welcomed and encouraged. To request a feature, please add a [github issue](https://github.com/morganherlocker/geo.js/issues) with a description.
 
 - tag
-- centroid
 - area
 - filter
 - intersect
@@ -127,6 +127,20 @@ g.load('path/to/file/example.geojson', function(layer, err){
   })
 })
 ```
+
+**centroid**
+
+Calculates the centroid of a feature or featurecollection using the geometric mean of all vertices. This lessons the effect of small islands and artifacts when calculating the centroid of a set of polygons.
+
+```javascript
+var poly = g.polygon([[[0,0], [0,10], [10,10] , [10,0]]])
+g.centroid(poly, function(err, centroid){
+  if(err) throw err
+  console.log(centroid) // a point at 5, 5
+})
+```
+
+
 
 **explode**
 
