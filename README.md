@@ -139,6 +139,7 @@ g.load('path/to/file/example.geojson', function(layer, err){
 Calculates the centroid of a feature or featurecollection using the geometric mean of all vertices. This lessons the effect of small islands and artifacts when calculating the centroid of a set of polygons.
 
 ```javascript
+var g = require('geo.js')
 var poly = g.polygon([[[0,0], [0,10], [10,10] , [10,0]]])
 g.centroid(poly, function(err, centroid){
   if(err) throw err
@@ -180,6 +181,7 @@ g.combine([pt1, pt2], function(err, combined){
 Checks to see if a point is inside of a polygon. The polygon can be convex or concave.
 
 ```javascript
+var g = require('geo.js')
 var poly = g.polygon([[[0,0], [50, 50], [0,100], [100,100], [100,0]]])
 var pt = g.point(75, 75)
 g.inside(pt, poly, function(err, isInside){
