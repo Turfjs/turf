@@ -128,6 +128,17 @@ g.load('path/to/file/example.geojson', function(layer, err){
 })
 ```
 
+**explode**
+
+Takes a feature or feature collection and return all vertices as a collection of points
+
+var g = require('geo.js')
+var poly = g.polygon([[[0,0], [0,10], [10,10] , [10,0]]])
+g.explode(poly, function(err, vertices){
+  if(err) throw err
+  console.log(vertices)
+})
+
 **combine**
 
 Combines an array of point, linestring, or polygon features into multipoint, multilinestring, or multipolygon features
