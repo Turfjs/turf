@@ -57,19 +57,21 @@ Additional feature requests welcomed and encouraged. To request a feature, pleas
 
 **load**
 
-Loads a feature collection or geometry from a file.
+Loads a Feature or FeaturCollection from a file.
 
 ```javascript
 var g = require('geo.js')
-g.load('path/to/file/example.geojson', function(layer, err){
+var geojsonFile = '/path/to/file/example.geojson'
+
+g.load(geoJsonFile, function(trees, err){
   if(err) throw err
-  console.log(layer)
+  console.log(trees)
 })
 ```
 
 **point**
 
-Creates a point feature based on an x and a y coordinate. Properties can be added optionally.
+Creates a geojson point Feature based on an x and a y coordinate. Properties can be added optionally.
 
 ```javascript
 var g = require('geo.js')
@@ -81,7 +83,7 @@ console.log(point2)
 
 **linestring**
 
-Creates a linestring feature based on a coordinate array. Properties can be added optionally.
+Creates a geojson linestring Feature based on a coordinate array. Properties can be added optionally.
 
 ```javascript
 var g = require('geo.js')
@@ -94,7 +96,7 @@ console.log(linestring2)
 
 **polygon**
 
-Creates a polygon feature based on a coordinate array. Properties can be added optionally.
+Creates a geojson polygon Feature based on a coordinate array. Properties can be added optionally.
 
 ```javascript
 var g = require('geo.js')
@@ -105,8 +107,20 @@ console.log(polygon1)
 console.log(polygon2)
 ```
 
+**featurecollection**
+
+Creates a geojson FeatureCollection based on an array of features.
 
 **extent**
+
+```javascript
+var g = require('geo.js')
+var pt1 = g.point(-75.343, 39.984, {name: 'Location A'})
+var pt2 = g.point(-75.833, 39.284, {name: 'Location B'})
+var pt3 = g.point(-75.534, 39.123, {name: 'Location C'})
+var fc = g.featurecollection([pt1, pt2, pt3])
+console.log(fc)
+```
 
 Calculates the extent of all features and returns a bounding box.
 
