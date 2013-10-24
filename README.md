@@ -33,7 +33,6 @@ a node.js library for performing geospatial operations with geojson
 
 Additional feature requests welcomed and encouraged. To request a feature, please add a [github issue](https://github.com/morganherlocker/geo.js/issues) with a description.
 
-- explode
 - tag
 - centroid
 - area
