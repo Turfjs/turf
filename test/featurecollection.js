@@ -9,7 +9,7 @@ describe('featurecollection', function(){
         p4 = g.point(10,0)
     var fc = g.featurecollection([p1,p2,p3,p4])
     fc.should.be.ok
-    fc.feature.length.should.eqaul(4)
+    fc.features.length.should.equal(4)
     done()
   })
 }) 
