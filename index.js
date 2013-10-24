@@ -4,6 +4,7 @@ module.exports = {
   combine: require('./lib/combine'),
   contour: require('./lib/contour'),
   distance: require('./lib/distance'),
+  explode: require('./lib/explode'),
   extent: require('./lib/extent'),
   featurecollection: require('./lib/featurecollection'),
   filter: require('./lib/filter'),

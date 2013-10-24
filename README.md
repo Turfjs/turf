@@ -18,6 +18,7 @@ a node.js library for performing geospatial operations with geojson
 - featurecollection
 - extent
 - center
+- explode
 - combine
 - distance
 - buffer
