@@ -38,6 +38,7 @@
     "url": "https://github.com/morganherlocker/geo.js/issues"
   },
   "dependencies": [
-    "lodash"
+    "lodash",
+    "simple-statistics"
   ]
 }
