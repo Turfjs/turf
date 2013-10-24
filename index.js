@@ -1,6 +1,7 @@
 module.exports = {
   buffer: require('./lib/buffer'),
   center: require('./lib/center'),
+  centroid: require('./lib/centroid'),
   combine: require('./lib/combine'),
   contour: require('./lib/contour'),
   distance: require('./lib/distance'),
@@ -21,7 +22,6 @@ module.exports = {
   quantile: require('./lib/quantile'),
   reclass: require('./lib/reclass'),
   remove: require('./lib/remove'),
-  style: require('./lib/style'),
   tin: require('./lib/tin'),
   union: require('./lib/union')
 }
