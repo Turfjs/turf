@@ -5,11 +5,15 @@ geo.js
 
 All features are written in a functional manner with no side effects. In nearly all cases, they accept objects created by the point, linestring, polygon, and featurecollection functions, but these are simply for convenience. Any valid geojson Feature of FeatureCollection will do.
 
----
+**Installation**
+
+```bash
+npm install geo.js
+```
+
+- - -
 
 *note: This module is under active development and is in a pre-release form. The first official release is planned mid November 2013.  Most features are pretty stable, but expect some changes periodically up until then.*
-
-    npm install geo.js
 
 - - -
 
