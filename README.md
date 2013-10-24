@@ -119,7 +119,7 @@ Calculates the absolute center point of all features.
 
 ```javascript
 var g = require('geo.js')
-g.load('path/to/file/example.json', function(layer, err){
+g.load('path/to/file/example.geojson', function(layer, err){
   if(err) throw err
   g.center(layer, function(center){
     console.log(center)
@@ -188,51 +188,16 @@ Returns the neares point feature.
 
 ```javascript
 var g = require('geo.js')    
-var inPoint = { 
-  "type": "Feature",
-  "geometry": {"type": "Point", "coordinates": [-75.4, 39.4]},
-  "properties": { 
-    "name": "Location A",
-    "category": "Store"
-  }
-}
+var inPoint = g.point(-75.4, 39.4, {name: 'Location A'})
 
-var inFeatures = { 
-  "type": "FeatureCollection",
-  "features": [
-    { "type": "Feature",
-      "geometry": {"type": "Point", "coordinates": [-75.343, 39.984]},
-      "properties": { 
-        "name": "Location A",
-        "category": "Store"
-      }
-    },
-    { "type": "Feature",
-      "geometry": {"type": "Point", "coordinates": [-75.833, 39.284]},
-      "properties": { 
-        "name": "Location B",
-        "category": "House"
-      }
-    },
-    { "type": "Feature",
-      "geometry": {"type": "Point", "coordinates": [ -75.534, 39.123]},
-      "properties": { 
-        "name": "Location C",
-        "category": "Office"
-      }
-    }
-  ]
-}
-g.nearest(inPoint, inFeatures, function(err, outPoint){
+var pt1 = g.point(-75.343, 39.984, {name: 'Location B'})
+var pt2 = g.point(-75.833, 39.284, {name: 'Location C'})
+var pt3 = g.point(-75.534, 39.123, {name: 'Location D'})
+var inFeatures = g.featurecollection([pt1, pt2, pt3])
+
+g.nearest(inPoint, inFeatures, function(err, closestPoint){
   if(err) throw err
-  var nearest = { 
-    "type": "Feature",
-    "geometry": {"type": "Point", "coordinates": [ -75.33, 39.44]},
-    "properties": { 
-      "name": "Location C",
-      "category": "Office"
-    }
-  }
+  console.log(closestPoint)
 })
 ```
 
@@ -243,8 +208,8 @@ Takes a set of points and the name of a z-value property and creates a tin (Tria
 ```javascript
 var g = require('geo.js')
 var z = 'elevation'
-g.load('/path/to/pointsfeatures/Points3.geojson', function(err, points){
-  g.tin(points, function(err, z, tin){
+g.load('/path/to/pointsfeatures/elevationPoints.geojson', function(err, points){
+  g.tin(points, 'elevation', function(err, tin){
     if(err) throw err
     console.log(tin)
   })
@@ -293,6 +258,7 @@ g.planepoint(point, triangle, function(err, zValue){
 Takes a FeatureCollection of points with z values and an array of value breaks and generates contour polygons.
 
 ```javascript
+var g = require('geo.js')
 g.load('../path/to/points.geojson', function(err, points){
   g.contour(points, 'elevation', [.1, 22, 45, 55, 65, 85,  95, 105, 120, 180], function(err, contours){
     if(err) throw err
