@@ -320,10 +320,11 @@ Takes a FeatureCollection of points with z values and an array of value breaks a
 ```javascript
 var g = require('geo.js')
 var z = 'elevation'
+var resolution = 15
 var breaks = [.1, 22, 45, 55, 65, 85,  95, 105, 120, 180]
 
 g.load('../path/to/points.geojson', function(err, points){
-  g.contour(points, z, breaks, function(err, contours){
+  g.contour(points, z, resolution, breaks, function(err, contours){
     if(err) throw err
     console.log(contours)
   })
