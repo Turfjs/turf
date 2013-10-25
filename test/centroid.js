@@ -20,7 +20,6 @@ describe('centroid', function(){
     var fc = g.featurecollection([p1,p2,p3,p4])
     g.centroid(fc, function(err, centroid){
       if(err) throw err
-      console.log(centroid)
       centroid.should.be.ok
       _.isEqual(centroid, g.point(5,5)).should.be.true
       done()

@@ -300,7 +300,8 @@ Takes a trianglular plane and calculates the z value for a point on the plane.
 ```javascript
 var g = require('geo.js')
 var point = g.point(-75.3221, 39.529)
-// triangle is a polygon with "a", "b", and "c" values representing the values of the coordinates in order.
+// triangle is a polygon with "a", "b", and "c" values representing
+// the values of the coordinates in order.
 var triangle = g.polygon(
   [[[-75.1221,39.57],[-75.58,39.18],[-75.97,39.86]]], 
   "properties": {"a": 11, "b": 122, "c": 44}
