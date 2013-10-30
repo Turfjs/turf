@@ -1,6 +1,7 @@
 turf
-![turf](/img/turf.png)
 ======
+![turf](/img/turf.png)
+
 
 ***a node.js library for performing geospatial operations with geojson***
 
