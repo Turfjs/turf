@@ -1,14 +1,11 @@
 {
-  "name": "geo.js",
-  "version": "0.0.41",
+  "name": "turf",
+  "version": "0.0.42",
   "description": "a node.js library for performing geospatial operations with geojson",
   "main": "index.js",
-  "scripts": {
-    "test": "mocha test/*"
-  },
   "repository": {
     "type": "git",
-    "url": "https://github.com/morganherlocker/geo.js.git"
+    "url": "https://github.com/morganherlocker/turf.git"
   },
   "keywords": [
     "gis",
@@ -35,10 +32,11 @@
   "author": "",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/morganherlocker/geo.js/issues"
+    "url": "https://github.com/morganherlocker/turf/issues"
   },
   "dependencies": [
     "lodash",
-    "simple-statistics"
+    "simple-statistics",
+    "should"
   ]
 }
