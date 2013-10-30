@@ -1,4 +1,4 @@
-var g = require('../index'),
+var t = require('../index'),
   should = require('should')
 
 describe('sample', function(){

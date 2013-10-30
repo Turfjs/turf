@@ -1,10 +1,10 @@
-var g = require('../index'),
+var t = require('../index'),
   should = require('should'),
   fs = require('fs')
 
 describe('grid', function(){
   it('should create a 100x100 grid as a Point FeatureCollection', function(done){
-    g.grid([0,0,10,10], 10, function(err, grid){
+    t.grid([0,0,10,10], 10, function(err, grid){
       if(err) throw err
       grid.should.be.ok
       grid.type.should.equal('FeatureCollection')
@@ -14,7 +14,7 @@ describe('grid', function(){
     })
   })
   it('should work properly with a negative start value', function(done){
-    g.grid([-20,-20,20,20], 10, function(err, grid){
+    t.grid([-20,-20,20,20], 10, function(err, grid){
       if(err) throw err
       grid.should.be.ok
       grid.type.should.equal('FeatureCollection')

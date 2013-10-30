@@ -1,12 +1,12 @@
-var g = require('../index'),
+var t = require('../index'),
   _ = require('lodash'),
   should = require('should')
 
 describe('nearest', function(){
   it('should should return the nearest point', function(done){
-    g.load('../test/testIn/Point1.geojson', function(err, inPoint){
-      g.load('../test/testIn/Points3.geojson', function(err, inFeatures){
-        g.nearest(inPoint, inFeatures, function(err, outPoint){
+    t.load('../test/testIn/Point1.geojson', function(err, inPoint){
+      t.load('../test/testIn/Points3.geojson', function(err, inFeatures){
+        t.nearest(inPoint, inFeatures, function(err, outPoint){
           if(err) throw err
           var nearest = { 
             "type": "Feature",

@@ -1,4 +1,4 @@
-var g = require('../lib/reclass')
+var t = require('../lib/reclass')
 
 describe('reclass', function(){
   xit('should ', function(done){

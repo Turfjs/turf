@@ -1,4 +1,4 @@
-var g = require('../lib/remove')
+var t = require('../lib/remove')
 
 describe('remove', function(){
   xit('should ', function(done){

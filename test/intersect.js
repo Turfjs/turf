@@ -1,4 +1,4 @@
-var g = require('../lib/intersect')
+var t = require('../lib/intersect')
 
 describe('intersect', function(){
   xit('should ', function(done){

@@ -1,4 +1,4 @@
-var g = require('../lib/smooth')
+var t = require('../lib/smooth')
 
 describe('smooth', function(){
   xit('should ', function(done){

@@ -1,4 +1,4 @@
-var g = require('../lib/quantile')
+var t = require('../lib/quantile')
 
 describe('quantile', function(){
   xit('should ', function(done){

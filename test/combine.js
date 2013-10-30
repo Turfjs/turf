@@ -1,4 +1,4 @@
-var g = require('../index'),
+var t = require('../index'),
   _ = require('lodash')
 
 describe('combine', function(){
@@ -18,7 +18,7 @@ describe('combine', function(){
       ]
     }
 
-    g.combine([p1, p2], function(err, combined){
+    t.combine([p1, p2], function(err, combined){
       if(err) throw err
       combined.should.be.ok
       combined.type.should.equal('MultiPoint')
@@ -53,7 +53,7 @@ describe('combine', function(){
         ]
       ]
     }
-    g.combine([l1, l2], function(err, combined){
+    t.combine([l1, l2], function(err, combined){
       if(err) throw err
       combined.should.be.ok
       combined.type.should.equal('MultiLineString')
@@ -108,7 +108,7 @@ describe('combine', function(){
       ]
     ]
     }
-    g.combine([p1, p2], function(err, combined){
+    t.combine([p1, p2], function(err, combined){
       if(err) throw err
       combined.should.be.ok
       combined.type.should.equal('MultiPolygon')

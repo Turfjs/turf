@@ -1,4 +1,4 @@
-var g = require('../lib/filter')
+var t = require('../lib/filter')
 
 describe('filter', function(){
   xit('should ', function(done){
