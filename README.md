@@ -319,6 +319,8 @@ g.planepoint(point, triangle, function(err, zValue){
 
 Takes a FeatureCollection of points with z values and an array of value breaks and generates contour polygons.  This is a great way to visualize interpolated density on a map.  It is often used for elevation maps, weather maps, and isocrones.  The main advantage over a heat map is that contours allow you to see definitive value boundaries, and the polygons can be used to aggregate data.  For example, you could get the 5000 ft elevation contour of a mountain and the 10000 ft elevation contour, then aggregate the number of trees in each to see how elevation affects tree survival.
 
+**note: this function currently has a bug. It will only work on square data. A fix is in progress and should be out within the week. 10/29/13**
+
 ```javascript
 var g = require('geo.js')
 var z = 'elevation'
