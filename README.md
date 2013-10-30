@@ -40,6 +40,7 @@ npm install geo.js
 
 Additional feature requests welcomed and encouraged. To request a feature, please add a [github issue](https://github.com/morganherlocker/geo.js/issues) with a description.
 
+- bisect
 - interpolate
 - tag
 - area

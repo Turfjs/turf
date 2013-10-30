@@ -1,10 +1,8 @@
 var g = require('../index')
 
 describe('area', function(){
-  describe('#index', function(){
-    xit('should ', function(done){
+  xit('should ', function(done){
 
-      done()
-    })
+    done()
   })
 }) 

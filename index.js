@@ -1,5 +1,5 @@
 module.exports = {
-  bisect: require('./lib/bisect'),
+  midpoint: require('./lib/midpoint'),
   buffer: require('./lib/buffer'),
   center: require('./lib/center'),
   centroid: require('./lib/centroid'),
