@@ -10,6 +10,12 @@ All features are written in a functional manner with no side effects. In nearly 
 npm install turf
 ```
 
+Turf can also be run in a browser. To use it, download the [minified file](https://raw.github.com/morganherlocker/turf/master/turf.js), and include it in a script tag.
+
+```html
+<script src="turf.js"></script> 
+```
+
 - - -
 
 *note: This module is under active development and is in a pre-release form. The first official release is planned mid November 2013.  Most features are pretty stable, but expect some changes periodically up until then.*
