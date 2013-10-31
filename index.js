@@ -1,4 +1,5 @@
 module.exports = {
+  square: require('./lib/square'),
   midpoint: require('./lib/midpoint'),
   buffer: require('./lib/buffer'),
   center: require('./lib/center'),
