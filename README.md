@@ -65,7 +65,7 @@ Loads a Feature or FeaturCollection from a file.
 
 ```javascript
 t = require('turf')
-teojsonFile = '/path/to/file/example.geojson'
+geojsonFile = '/path/to/file/example.geojson'
 
 t.load(geoJsonFile, function(trees, err){
   if(err) throw err
