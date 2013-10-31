@@ -10,10 +10,10 @@ All features are written in a functional manner with no side effects. In nearly 
 npm install turf
 ```
 
-Turf can also be run in a browser. To use it, download the [minified file](https://raw.github.com/morganherlocker/turf/master/turf.js), and include it in a script tag.
+Turf can also be run in a browser. To use it, download the [minified file](https://raw.github.com/morganherlocker/turf/master/turf.min.js), and include it in a script tag.
 
 ```html
-<script src="turf.js"></script> 
+<script src="turf.min.js"></script> 
 ```
 
 - - -
