@@ -1,6 +1,6 @@
 turf
 ======
-![turf](https://github.com/morganherlocker/turf/blob/master/img/turf.png)
+![turf](https://raw.github.com/morganherlocker/turf/master/img/turf.png)
 
 
 ***a node.js library for performing geospatial operations with geojson***
