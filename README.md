@@ -70,7 +70,7 @@ Additional feature requests welcomed and encouraged. To request a feature, pleas
 Loads a Feature or FeaturCollection from a file.
 
 ```javascript
-t = require('turf')
+var t = require('turf')
 geojsonFile = '/path/to/file/example.geojson'
 
 t.load(geoJsonFile, function(trees, err){
@@ -84,7 +84,7 @@ t.load(geoJsonFile, function(trees, err){
 Creates a geojson point Feature based on an x and a y coordinate. Properties can be added optionally.
 
 ```javascript
-t = require('turf')
+var t = require('turf')
 
 var point1 = t.point(-75.343, 39.984)
 var point2 = t.point(-75.343, 39.984, {name: 'point 1', population: 5000})
@@ -97,7 +97,7 @@ console.log(point2)
 Creates a geojson linestring Feature based on a coordinate array. Properties can be added optionally.
 
 ```javascript
-t = require('turf')
+var t = require('turf')
 
 var linestring1 = t.linestring([[102.0, -10.0], [103.0, 1.0], [104.0, 0.0], [130.0, 4.0]])
 var linestring2 = t.linestring([[102.0, -10.0], [103.0, 1.0], [104.0, 0.0], [130.0, 4.0]], 
@@ -111,7 +111,7 @@ console.log(linestring2)
 Creates a geojson polygon Feature based on a coordinate array. Properties can be added optionally.
 
 ```javascript
-t = require('turf')
+var t = require('turf')
 
 var polygon1 = t.point([[[20.0,0.0],[101.0,0.0],[101.0,1.0],[100.0,1.0],[100.0,0.0]]])
 var polygon2 = t.point([[[20.0,0.0],[101.0,0.0],[101.0,1.0],[100.0,1.0],[100.0,0.0]]], 
@@ -140,7 +140,7 @@ console.log(fc)
 Calculates the extent of all features and returns a bounding box.
 
 ```javascript
-t = require('turf')
+var t = require('turf')
 
 t.load('path/to/file/example.geojson', function(err, features){
   if(err) throw err
@@ -184,7 +184,7 @@ t.load('path/to/file/example.geojson', function(layer, err){
 Calculates the centroid of a polygon Feature or FeatureCollection using the geometric mean of all vertices. This lessons the effect of small islands and artifacts when calculating the centroid of a set of polygons.
 
 ```javascript
-t = require('turf')
+var t = require('turf')
 var poly = t.polygon([[[0,0], [0,10], [10,10] , [10,0]]])
 
 t.centroid(poly, function(err, centroid){
@@ -200,7 +200,7 @@ t.centroid(poly, function(err, centroid){
 Takes a Feature or FeatureCollection and return all vertices as a collection of points.
 
 ```javascript
-t = require('turf')
+var t = require('turf')
 var poly = t.polygon([[[0,0], [0,10], [10,10] , [10,0]]])
 
 t.explode(poly, function(err, vertices){
@@ -214,7 +214,7 @@ t.explode(poly, function(err, vertices){
 Combines an array of point, linestring, or polygon features into multipoint, multilinestring, or multipolygon features.
     
 ```javascript
-t = require('turf')
+var t = require('turf')
 var pt1 = t.point(50, 1)
 var pt2 = t.point(100, 101)
 
@@ -229,7 +229,7 @@ t.combine([pt1, pt2], function(err, combined){
 Checks to see if a point is inside of a polygon. The polygon can be convex or concave.
 
 ```javascript
-t = require('turf')
+var t = require('turf')
 var poly = t.polygon([[[0,0], [50, 50], [0,100], [100,100], [100,0]]])
 var pt = t.point(75, 75)
 
@@ -245,7 +245,7 @@ Buffers a point feature to a given radius. Lines and Polygons support coming soo
 
 
 ```javascript
-t = require('turf')
+var t = require('turf')
 var pt = t.point(0, 0.5)
 
 t.buffer(pt, 10, function(err, buffered){
@@ -259,7 +259,7 @@ t.buffer(pt, 10, function(err, buffered){
 Calculates the distance between two point features in degrees, radians, miles, or kilometers. This uses the haversine formula to account for global curvature.
 
 ```javascript
-t = require('turf')
+var t = require('turf')
 var point1 = t.point(-75.343, 39.984)
 var point2 = t.point(-75.534, 39.123)
 var unit = 'miles' // or 'kilometers', 'degrees', 'radians'
@@ -275,7 +275,7 @@ t.distance(point1, point2, unit, function(err, distance){
 Returns the nearest point feature.
 
 ```javascript
-t = require('turf')    
+var t = require('turf')    
 var inPoint = t.point(-75.4, 39.4, {name: 'Location A'})
 
 var pt1 = t.point(-75.343, 39.984, {name: 'Location B'})
@@ -294,7 +294,7 @@ t.nearest(inPoint, inFeatures, function(err, closestPoint){
 Takes a set of points and the name of a z-value property and creates a tin (Triangulated Irregular Network). These are often used for developing elevation contour maps or stepped heat visualizations.
 
 ```javascript
-t = require('turf')
+var t = require('turf')
 var z = 'elevation'
 
 t.load('/path/to/pointsfeatures/elevationPoints.geojson', function(err, points){
@@ -310,7 +310,7 @@ t.load('/path/to/pointsfeatures/elevationPoints.geojson', function(err, points){
 Takes a bounding box and a cell depth and outputs a feature collection of points in a grid.
 
 ```javascript
-t = require('turf')
+var t = require('turf')
 var depth = 15
 
 t.grid([0,0,10,10], depth, function(err, grid){
@@ -323,7 +323,7 @@ t.grid([0,0,10,10], depth, function(err, grid){
 Takes a trianglular plane and calculates the z value for a point on the plane.
 
 ```javascript
-t = require('turf')
+var t = require('turf')
 var point = t.point(-75.3221, 39.529)
 // triangle is a polygon with "a", "b", and "c" values representing
 // the values of the coordinates in order.
@@ -345,7 +345,7 @@ Takes a FeatureCollection of points with z values and an array of value breaks a
 **note: this function currently has a bug. It will only work on square data. A fix is in progress and should be out within the week. 10/29/13**
 
 ```javascript
-t = require('turf')
+var t = require('turf')
 var z = 'elevation'
 var resolution = 15
 var breaks = [.1, 22, 45, 55, 65, 85,  95, 105, 120, 180]
