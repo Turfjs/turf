@@ -16,4 +16,24 @@ describe('distance', function(){
       })
     })
   })
+  it('should return the distance between two points vertically oriented', function(done){
+    var point1 = t.point(0,0)
+    var point2 = t.point(0,10)
+    t.distance(point1, point2, 'degrees', function(err, distance){
+      if(err) throw err
+      distance.should.be.ok
+      distance.should.not.equal(0)
+      done()
+    })
+  })
+  it('should return the distance between two points horizontally oriented', function(done){
+    var point1 = t.point(0,0)
+    var point2 = t.point(10,0)
+    t.distance(point1, point2, 'degrees', function(err, distance){
+      if(err) throw err
+      distance.should.be.ok
+      distance.should.not.equal(0)
+      done()
+    })
+  })
 }) 

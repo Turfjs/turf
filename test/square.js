@@ -13,10 +13,11 @@ describe('square', function(){
     })
   })
   it('should return a bbox representing the smallest square that contains the input horizontal bbox', function(done){
-    var bbox = [0,0,10,15]
+    var bbox = [0,0,10,5]
     t.square(bbox, function(err, square){
       if(err) throw err
       square.should.be.ok
+      console.log(square)
       _.isEqual(square,[0, -2.5, 10, 7.5]).should.be.true
       done()
     })
