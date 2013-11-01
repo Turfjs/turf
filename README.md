@@ -179,6 +179,22 @@ t.load('path/to/file/example.geojson', function(layer, err){
 })
 ```
 
+
+**bboxPolygon**
+
+Takes a bbox and returns the equivalent polygon feature.
+
+```javascript
+var t = require('turf')
+var bbox = [0,0,10,10]
+
+t.bboxPolygon(bbox, function(err, poly){
+  if(err) throw err
+  console.log(poly)
+})
+```
+
+
 **centroid**
 
 Calculates the centroid of a polygon Feature or FeatureCollection using the geometric mean of all vertices. This lessons the effect of small islands and artifacts when calculating the centroid of a set of polygons.
