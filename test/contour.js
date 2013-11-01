@@ -7,6 +7,7 @@ describe('contour', function(){
     t.load('../test/testIn/Points3.geojson', function(err, points){
       t.contour(points, 'elevation', 15, [25, 45, 55, 65, 85,  95, 105, 120, 180], function(err, contours){
         if(err) throw err
+        fs.writeFileSync('./testOut/contours.geojson', JSON.stringify(contours))
         contours.should.be.ok
         done()
       })
