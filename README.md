@@ -42,13 +42,13 @@ Turf can also be run in a browser. To use it, download the [minified file](https
 - grid
 - planepoint
 - inside
+- midpoint
 - contour
 
 **Planned Features**
 
 Additional feature requests welcomed and encouraged. To request a feature, please add a [github issue](https://github.com/morganherlocker/turf/issues) with a description.
 
-- bisect
 - interpolate
 - tag
 - area
@@ -337,6 +337,22 @@ t.planepoint(point, triangle, function(err, zValue){
   console.log(zValue)
 })
 ```
+
+**midpoint**
+
+Takes two point features and returns the mid point.
+
+```javascript
+var pt1 = t.point(0,0)
+var pt2 = t.point(10, 0)
+
+t.midpoint(pt1, pt2, function(err, midpoint){
+  if(err) throw err
+  console.log(midpoint)
+})
+
+```
+
 
 **contour**
 
