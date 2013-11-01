@@ -30,6 +30,7 @@ Turf can also be run in a browser. To use it, download the [minified file](https
 - polygon
 - featurecollection
 - extent
+- square
 - center
 - centroid
 - explode
@@ -124,7 +125,7 @@ console.log(polygon2)
 Creates a geojson FeatureCollection based on an array of features.
 
 ```javascript
-t = require('turf')
+var t = require('turf')
 var pt1 = t.point(-75.343, 39.984, {name: 'Location A'})
 var pt2 = t.point(-75.833, 39.284, {name: 'Location B'})
 var pt3 = t.point(-75.534, 39.123, {name: 'Location C'})
@@ -149,12 +150,26 @@ t.load('path/to/file/example.geojson', function(err, features){
 })
 ```
 
+**square**
+
+Calculates the minimum square bounding box for another bounding box.
+
+```javascript
+var t = require('turf')
+var bbox = [0,0,5,10]
+t.square(bbox, function(err, square){
+  if(err) throw err
+  console.log(square) // [-2.5, 0, 7.5, 10]
+})
+```
+
+
 **center**
 
 Calculates the absolute center point of all features.
 
 ```javascript
-t = require('turf')
+var t = require('turf')
 
 t.load('path/to/file/example.geojson', function(layer, err){
   if(err) throw err
