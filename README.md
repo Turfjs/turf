@@ -32,6 +32,7 @@ Turf can also be run in a browser. To use it, download the [minified file](https
 - extent
 - square
 - center
+- bboxPolygon
 - centroid
 - explode
 - combine
