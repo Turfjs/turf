@@ -9,6 +9,7 @@ module.exports = {
   distance: require('./lib/distance'),
   explode: require('./lib/explode'),
   extent: require('./lib/extent'),
+  bboxPolygon: require('./lib/bboxPolygon'),
   featurecollection: require('./lib/featurecollection'),
   filter: require('./lib/filter'),
   grid: require('./lib/grid'),
