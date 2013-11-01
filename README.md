@@ -343,6 +343,7 @@ t.planepoint(point, triangle, function(err, zValue){
 Takes two point features and returns the mid point.
 
 ```javascript
+var t = require('turf')
 var pt1 = t.point(0,0)
 var pt2 = t.point(10, 0)
 
