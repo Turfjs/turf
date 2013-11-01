@@ -33,6 +33,7 @@ Turf can also be run in a browser. To use it, download the [minified file](https
 - square
 - center
 - bboxPolygon
+- envelope
 - centroid
 - explode
 - combine
@@ -192,6 +193,24 @@ var bbox = [0,0,10,10]
 t.bboxPolygon(bbox, function(err, poly){
   if(err) throw err
   console.log(poly)
+})
+```
+
+
+**envelope**
+
+Takes a Feature or FeatureCollection and returns a rectangular polygon feature that encompasses all vertices.
+
+```javascript
+var t = require('turf')
+var pt1 = t.point(-75.343, 39.984, {name: 'Location A'})
+var pt2 = t.point(-75.833, 39.284, {name: 'Location B'})
+var pt3 = t.point(-75.534, 39.123, {name: 'Location C'})
+var fc = t.featurecollection([pt1, pt2, pt3])
+
+t.envelope(fc, function(err, envelopePoly){
+  if(err) throw err
+  console.log(envelopePoly)
 })
 ```
 

@@ -1,4 +1,5 @@
 module.exports = {
+  envelope: require('./lib/envelope'),
   square: require('./lib/square'),
   midpoint: require('./lib/midpoint'),
   buffer: require('./lib/buffer'),
