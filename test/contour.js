@@ -9,6 +9,7 @@ describe('contour', function(){
         if(err) throw err
         fs.writeFileSync('./testOut/contours.geojson', JSON.stringify(contours))
         contours.should.be.ok
+        contours.features.should.be.ok
         done()
       })
     })
