@@ -241,13 +241,13 @@ t.buffer(pt, 10, function(err, buffered){
 
 **distance**
 
-Calculates the distance between two point features in miles or kilometers. This uses the haversine formula to account for global curvature.
+Calculates the distance between two point features in degrees, radians, miles, or kilometers. This uses the haversine formula to account for global curvature.
 
 ```javascript
 t = require('turf')
 var point1 = t.point(-75.343, 39.984)
 var point2 = t.point(-75.534, 39.123)
-var unit = 'miles' // or 'kilometers'
+var unit = 'miles' // or 'kilometers', 'degrees', 'radians'
 
 t.distance(point1, point2, unit, function(err, distance){
   if(err) throw err
