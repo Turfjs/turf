@@ -1,0 +1,2 @@
+browserify index.js > turf.js
+uglifyjs turf.js -o turf.min.js

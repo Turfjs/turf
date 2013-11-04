@@ -422,6 +422,12 @@ cd test
 mocha .
 ```
 
+**Build**
+
+```shell
+sh build
+```
+
 - - -
 
 ***Credits***

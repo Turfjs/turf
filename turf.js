@@ -1,5 +1,8 @@
 ;(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);throw new Error("Cannot find module '"+o+"'")}var f=n[o]={exports:{}};t[o][0].call(f.exports,function(e){var n=t[o][1][e];return s(n?n:e)},f,f.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 module.exports = {
+  save: require('./lib/save'),
+  envelope: require('./lib/envelope'),
+  square: require('./lib/square'),
   midpoint: require('./lib/midpoint'),
   buffer: require('./lib/buffer'),
   center: require('./lib/center'),
@@ -9,6 +12,7 @@ module.exports = {
   distance: require('./lib/distance'),
   explode: require('./lib/explode'),
   extent: require('./lib/extent'),
+  bboxPolygon: require('./lib/bboxPolygon'),
   featurecollection: require('./lib/featurecollection'),
   filter: require('./lib/filter'),
   grid: require('./lib/grid'),
@@ -28,7 +32,28 @@ module.exports = {
 }
 
 
-},{"./lib/buffer":2,"./lib/center":3,"./lib/centroid":4,"./lib/combine":5,"./lib/contour":6,"./lib/distance":7,"./lib/explode":8,"./lib/extent":9,"./lib/featurecollection":10,"./lib/filter":11,"./lib/grid":12,"./lib/inside":13,"./lib/intersect":14,"./lib/linestring":15,"./lib/load":16,"./lib/midpoint":17,"./lib/nearest":18,"./lib/planepoint":19,"./lib/point":20,"./lib/polygon":21,"./lib/quantile":22,"./lib/reclass":23,"./lib/remove":24,"./lib/tin":25,"./lib/union":26}],2:[function(require,module,exports){
+},{"./lib/bboxPolygon":2,"./lib/buffer":3,"./lib/center":4,"./lib/centroid":5,"./lib/combine":6,"./lib/contour":7,"./lib/distance":8,"./lib/envelope":9,"./lib/explode":10,"./lib/extent":11,"./lib/featurecollection":12,"./lib/filter":13,"./lib/grid":14,"./lib/inside":15,"./lib/intersect":16,"./lib/linestring":17,"./lib/load":18,"./lib/midpoint":19,"./lib/nearest":20,"./lib/planepoint":21,"./lib/point":22,"./lib/polygon":23,"./lib/quantile":24,"./lib/reclass":25,"./lib/remove":26,"./lib/save":27,"./lib/square":28,"./lib/tin":29,"./lib/union":30}],2:[function(require,module,exports){
+var t = {}
+var point = require('../lib/point'),
+    polygon = require('../lib/polygon')
+t.point = point
+t.polygon = polygon
+
+module.exports = function(bbox, done){
+  var lowLeft = t.point(bbox[0], bbox[1])
+  var topLeft = t.point(bbox[0], bbox[3])
+  var topRight = t.point(bbox[2], bbox[3])
+  var lowRight = t.point(bbox[2], bbox[1])
+
+  var poly = t.polygon([[
+    lowLeft.geometry.coordinates, 
+    lowRight.geometry.coordinates, 
+    topRight.geometry.coordinates, 
+    topLeft.geometry.coordinates
+  ]])
+  done(null, poly)
+}
+},{"../lib/point":22,"../lib/polygon":23}],3:[function(require,module,exports){
 //http://stackoverflow.com/questions/839899/how-do-i-calculate-a-point-on-a-circles-circumference
 //radians = degrees * (pi/180)
 
@@ -67,7 +92,7 @@ module.exports = function(point, radius, done){
         break
     }
 }
-},{"lodash":27}],3:[function(require,module,exports){
+},{"lodash":31}],4:[function(require,module,exports){
 var t = {}
 var extent = require('./extent')
 t.extent = extent
@@ -86,7 +111,7 @@ module.exports = function(layer, done){
     done(center)
   })
 }
-},{"./extent":9}],4:[function(require,module,exports){
+},{"./extent":11}],5:[function(require,module,exports){
 var t = {}
 var _ = require('lodash'),
     ss = require('simple-statistics')
@@ -113,7 +138,7 @@ module.exports = function(features, done){
     done(err, t.point(averageX, averageY))
   })
 }
-},{"./explode":8,"./point":20,"lodash":27,"simple-statistics":28}],5:[function(require,module,exports){
+},{"./explode":10,"./point":22,"lodash":31,"simple-statistics":32}],6:[function(require,module,exports){
 //this tool takes an array of like geometries and combines them into a single multipoint, multilinestring, or multipolygon
 var _ = require('lodash')
 
@@ -147,7 +172,7 @@ module.exports = function(geometries, done){
     break
   }
 }
-},{"lodash":27}],6:[function(require,module,exports){
+},{"lodash":31}],7:[function(require,module,exports){
 //https://github.com/jasondavies/conrec.js
 //http://stackoverflow.com/questions/263305/drawing-a-topographical-map
 var t = {}
@@ -159,7 +184,8 @@ var _ = require('lodash'),
     extent = require('./extent'),
     planepoint = require('./planepoint'),
     featurecollection = require('./featurecollection'),
-    polygon = require('./polygon')
+    polygon = require('./polygon'),
+    square = require('./square')
 t.tin = tin
 t.inside = inside
 t.grid = grid
@@ -167,73 +193,77 @@ t.extent = extent
 t.planepoint = planepoint
 t.featurecollection = featurecollection
 t.polygon = polygon
+t.square = square
 
 module.exports = function(points, z, resolution, breaks, done){
   t.tin(points, z, function(err, tinResult){
     t.extent(points, function(err, bbox){
-      t.grid(bbox, resolution, function(err, gridResult){
-        var data = []
-        _(gridResult.features).each(function(pt){
-          _(tinResult.features).each(function(triangle){
-            t.inside(pt, triangle, function(err, isInside){
-              if(isInside){
-                t.planepoint(pt, triangle, function(err, zValue){
-                  pt.properties = {elevation: zValue}
-                })
-              }
-              else {
-                //leave pt.properties null
-              }
+      t.square(bbox, function(err, bbox){
+        t.grid(bbox, resolution, function(err, gridResult){
+          var data = []
+          _(gridResult.features).each(function(pt){
+            _(tinResult.features).each(function(triangle){
+              t.inside(pt, triangle, function(err, isInside){
+                if(isInside){
+                  t.planepoint(pt, triangle, function(err, zValue){
+                    pt.properties = {}
+                    pt.properties[z] = zValue
+                  })
+                }
+                else {
+                  //leave pt.properties null
+                }
+              })
             })
           })
-        })
-        //fs.writeFileSync('../test/testOut/gridTest.geojson',JSON.stringify(gridResult))
-        //fs.writeFileSync('../test/testOut/tinTest.geojson',JSON.stringify(tinResult))
+          //fs.writeFileSync('../test/testOut/gridTest.geojson',JSON.stringify(gridResult))
+          //fs.writeFileSync('../test/testOut/tinTest.geojson',JSON.stringify(tinResult))
 
-        var depth = Math.sqrt(gridResult.features.length)
-        for (var x=0; x<depth; x++){
-          var xGroup = gridResult.features.slice(x * depth, (x + 1) * depth)
-          var xFlat = []
-          _.each(xGroup, function(verticalPoint){
-            if(verticalPoint.properties){
-              xFlat.push(verticalPoint.properties[z])
-            } else{
-              xFlat.push(0)
+          var depth = Math.sqrt(gridResult.features.length)
+          for (var x=0; x<depth; x++){
+            var xGroup = gridResult.features.slice(x * depth, (x + 1) * depth)
+            var xFlat = []
+            _.each(xGroup, function(verticalPoint){
+              if(verticalPoint.properties){
+                xFlat.push(verticalPoint.properties[z])
+              } else{
+                xFlat.push(0)
+              }
+            })
+            data.push(xFlat)
+          }
+          var interval = (bbox[2] - bbox[0]) / depth
+          var xCoordinates = []
+          var yCoordinates = []
+          for (var x=0; x<depth; x++){
+            //console.log(x * interval + bbox[0])
+            //console.log(x * interval + bbox[1])
+            xCoordinates.push(x * interval + bbox[0])
+            yCoordinates.push(x * interval + bbox[1])
+          }
+          
+          var c = new Conrec
+          c.contour(data, 0, resolution, 0, resolution, xCoordinates, yCoordinates, breaks.length, breaks)
+          var contourList = c.contourList()
+
+
+          var fc = t.featurecollection([])
+          _.each(contourList, function(c){
+            if(c.length > 2){
+              var polyCoordinates = []
+              _.each(c, function(coord){
+                polyCoordinates.push([coord.x, coord.y])
+              })
+              var poly = t.polygon([polyCoordinates])
+              poly.properties = {}
+              poly.properties[z] = c.level
+
+              fc.features.push(poly)
             }
           })
-          data.push(xFlat)
-        }
-        var interval = (bbox[2] - bbox[0]) / depth
-        var xCoordinates = []
-        var yCoordinates = []
-        for (var x=0; x<depth; x++){
-          //console.log(x * interval + bbox[0])
-          //console.log(x * interval + bbox[1])
-          xCoordinates.push(x * interval + bbox[0])
-          yCoordinates.push(x * interval + bbox[1])
-        }
-        
-        var c = new Conrec
-        c.contour(data, 0, resolution, 0, resolution, xCoordinates, yCoordinates, breaks.length, breaks)
-        var contourList = c.contourList()
-
-
-        var fc = t.featurecollection([])
-        _.each(contourList, function(c){
-          if(c.length > 2){
-            var polyCoordinates = []
-            _.each(c, function(coord){
-              polyCoordinates.push([coord.x, coord.y])
-            })
-            var poly = t.polygon([polyCoordinates])
-            poly.properties = {}
-            poly.properties[z] = c.level
-
-            fc.features.push(poly)
-          }
+          //fs.writeFileSync('../test/testOut/contour.geojson',JSON.stringify(fc))
+          done(null, fc)
         })
-        //fs.writeFileSync('../test/testOut/contour.geojson',JSON.stringify(fc))
-        done(null, fc)
       })
     })
   })
@@ -756,39 +786,66 @@ module.exports = function(points, z, resolution, breaks, done){
     }
   }
 
-},{"./extent":9,"./featurecollection":10,"./grid":12,"./inside":13,"./planepoint":19,"./polygon":21,"./tin":25,"fs":30,"lodash":27}],7:[function(require,module,exports){
+},{"./extent":11,"./featurecollection":12,"./grid":14,"./inside":15,"./planepoint":21,"./polygon":23,"./square":28,"./tin":29,"fs":34,"lodash":31}],8:[function(require,module,exports){
 //http://en.wikipedia.org/wiki/Haversine_formula
+//http://www.movable-type.co.uk/scripts/latlong.html
 // expects a feature collection of points
 
 module.exports = function(point1, point2, units, done){
   var toRad = function(degree){
     return degree * Math.PI / 180
   }
-
   var coordinates1 = point1.geometry.coordinates
   var coordinates2 = point2.geometry.coordinates
 
-  var dLat = toRad(coordinates2[1] - coordinates1[1])
-  var dLon = toRad(coordinates2[0] - coordinates2[0])
+  /*var dLat = (lat2-lat1).toRad();
+  var dLon = (lon2-lon1).toRad();
+  var lat1 = lat1.toRad();
+  var lat2 = lat2.toRad();*/
+
+  var dLat = toRad(coordinates2[0] - coordinates1[0])
+  var dLon = toRad(coordinates2[1] - coordinates1[1])
   var lat1 = toRad(coordinates1[1])
   var lat2 = toRad(coordinates2[1])
   var a = Math.sin(dLat/2) * Math.sin(dLat/2) +
           Math.sin(dLon/2) * Math.sin(dLon/2) * Math.cos(lat1) * Math.cos(lat2)
   var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a))
 
-  var R = 3960
-  switch(R){
+  var R = 0
+  switch(units){
     case 'miles':
       R = 3960
+      break
     case 'kilometers':
       R = 6373
+      break
+    case 'degrees':
+      R = 57.2957795
+      break
+    case 'radians':
+      R = 1
+      break
   }
   var distance = R * c
   done(null, distance)
 }
 
 
-},{}],8:[function(require,module,exports){
+},{}],9:[function(require,module,exports){
+var t = {}
+var extent = require('./extent'),
+    bboxPolygon = require('./bboxPolygon')
+t.bboxPolygon = bboxPolygon
+t.extent = extent
+
+module.exports = function(features, done){
+  t.extent(features, function(err, bbox){
+    t.bboxPolygon(bbox, function(err, poly){
+      done(err, poly)
+    })
+  })
+}
+},{"./bboxPolygon":2,"./extent":11}],10:[function(require,module,exports){
 var t = {}
 var _ = require('lodash'),
     featurecollection = require('./featurecollection'),
@@ -879,7 +936,7 @@ module.exports = function(features, done){
 
 
 
-},{"./featurecollection":10,"./point":20,"lodash":27}],9:[function(require,module,exports){
+},{"./featurecollection":12,"./point":22,"lodash":31}],11:[function(require,module,exports){
 _ = require('lodash')
 
 module.exports = function(layer, done){
@@ -991,7 +1048,7 @@ module.exports = function(layer, done){
     done(null, bbox)
   }
 }
-},{"lodash":27}],10:[function(require,module,exports){
+},{"lodash":31}],12:[function(require,module,exports){
 module.exports = function(features){
   var fc = {
     "type": "FeatureCollection",
@@ -1000,9 +1057,9 @@ module.exports = function(features){
 
   return fc
 }
-},{}],11:[function(require,module,exports){
+},{}],13:[function(require,module,exports){
 
-},{}],12:[function(require,module,exports){
+},{}],14:[function(require,module,exports){
 var t = {}
 var _ = require('lodash'),
   point = require('./point')
@@ -1026,7 +1083,7 @@ module.exports = function(extents, depth, done){
   }
   done(null, fc)
 }
-},{"./point":20,"lodash":27}],13:[function(require,module,exports){
+},{"./point":22,"lodash":31}],15:[function(require,module,exports){
 // http://en.wikipedia.org/wiki/Even%E2%80%93odd_rule
 // modified from: https://github.com/substack/point-in-polygon/blob/master/index.js
 // which was modified from http://www.ecse.rpi.edu/Homepages/wrf/Research/Short_Notes/pnpoly.html
@@ -1049,9 +1106,9 @@ module.exports = function(point, polygon, done){
 }
 
 
-},{}],14:[function(require,module,exports){
-module.exports=require(11)
-},{}],15:[function(require,module,exports){
+},{}],16:[function(require,module,exports){
+module.exports=require(13)
+},{}],17:[function(require,module,exports){
 module.exports = function(coordinates, properties){
   if(coordinates === null) throw new Error('No coordinates passed')
   var linestring = { 
@@ -1065,7 +1122,7 @@ module.exports = function(coordinates, properties){
   return linestring
 }
 
-},{}],16:[function(require,module,exports){
+},{}],18:[function(require,module,exports){
 var path = require('path'),
     fs = require('fs'),
     ext = '',
@@ -1080,7 +1137,7 @@ module.exports = function(file, done) {
   })  
 }
 
-},{"fs":30,"path":31}],17:[function(require,module,exports){
+},{"fs":34,"path":35}],19:[function(require,module,exports){
 // http://cs.selu.edu/~rbyrd/math/midpoint/
 // ((x1+x2)/2), ((y1+y2)/2)
 var t = {}
@@ -1104,7 +1161,7 @@ module.exports = function(point1, point2, done) {
 
   done(null, midpoint)
 }
-},{"./point":20}],18:[function(require,module,exports){
+},{"./point":22}],20:[function(require,module,exports){
 var t = {}
 var _ = require('lodash'),
  distance = require('./distance')
@@ -1140,7 +1197,7 @@ module.exports = function(targetPoint, points, done){
     done(null, nPt)
   }
 }
-},{"./distance":7,"lodash":27}],19:[function(require,module,exports){
+},{"./distance":8,"lodash":31}],21:[function(require,module,exports){
 http://stackoverflow.com/a/13916669/461015
 
 module.exports = function(point, triangle, done){
@@ -1163,7 +1220,7 @@ module.exports = function(point, triangle, done){
 
   done(null, z)
 }
-},{}],20:[function(require,module,exports){
+},{}],22:[function(require,module,exports){
 module.exports = function(x, y, properties){
   if(x === null || y === null) throw new Error('Invalid coordinates')
   var point = { 
@@ -1176,7 +1233,7 @@ module.exports = function(x, y, properties){
   }
   return point
 }
-},{}],21:[function(require,module,exports){
+},{}],23:[function(require,module,exports){
 module.exports = function(coordinates, properties){
   if(coordinates === null) throw new Error('No coordinates passed')
   var polygon = {
@@ -1196,13 +1253,67 @@ module.exports = function(coordinates, properties){
 
 
 
-},{}],22:[function(require,module,exports){
-module.exports=require(11)
-},{}],23:[function(require,module,exports){
-module.exports=require(11)
 },{}],24:[function(require,module,exports){
-module.exports=require(11)
+module.exports=require(13)
 },{}],25:[function(require,module,exports){
+module.exports=require(13)
+},{}],26:[function(require,module,exports){
+module.exports=require(13)
+},{}],27:[function(require,module,exports){
+var fs = require('fs')
+
+module.exports = function(path, features, type, done){
+  switch(type) {
+    case 'geojson':
+      fs.writeFile(path, JSON.stringify(features), function(err){
+        done(err, 1)
+      })
+      break
+  }
+  
+}
+},{"fs":34}],28:[function(require,module,exports){
+var t = {}
+var midpoint = require('../lib/midpoint'),
+    point = require('../lib/point'),
+    distance = require('../lib/distance')
+t.midpoint = midpoint
+t.point = point
+t.distance = distance
+
+module.exports = function(bbox, done) {
+  var squareBbox = [0,0,0,0]
+  var lowLeft = t.point(bbox[0], bbox[1])
+  var topLeft = t.point(bbox[0], bbox[3])
+  var topRight = t.point(bbox[2], bbox[3])
+  var lowRight = t.point(bbox[2], bbox[1])
+
+  t.distance(lowLeft, lowRight, 'miles', function(err, horizontalDistance){
+    t.distance(lowLeft, topLeft, 'miles', function(err, verticalDistance){
+      if(horizontalDistance >= verticalDistance){
+        squareBbox[0] = bbox[0]
+        squareBbox[2] = bbox[2]
+        t.midpoint(lowLeft, topLeft, function(err, verticalMidpoint){
+          squareBbox[1] = verticalMidpoint.geometry.coordinates[1] - ((bbox[2] - bbox[0]) / 2)
+          squareBbox[3] = verticalMidpoint.geometry.coordinates[1] + ((bbox[2] - bbox[0]) / 2)
+          done(err, squareBbox)
+        })
+      }
+      else {
+        squareBbox[1] = bbox[1]
+        squareBbox[3] = bbox[3]
+        t.midpoint(lowLeft, lowRight, function(err, horzontalMidpoint){
+          squareBbox[0] = horzontalMidpoint.geometry.coordinates[0] - ((bbox[3] - bbox[1]) / 2)
+          squareBbox[2] = horzontalMidpoint.geometry.coordinates[0] + ((bbox[3] - bbox[1]) / 2)
+          done(err, squareBbox)
+        })
+      }
+    })
+  })
+  //t.midpoint(t.point(bbox[0,]), bbox)
+  //squareBbox[0] = 
+}
+},{"../lib/distance":8,"../lib/midpoint":19,"../lib/point":22}],29:[function(require,module,exports){
 //http://en.wikipedia.org/wiki/Delaunay_triangulation
 //https://github.com/ironwallaby/delaunay
 var t = {}
@@ -1435,11 +1546,11 @@ function triangulate(vertices) {
     }
 }*/
 
-},{"./nearest":18,"./point":20,"./polygon":21,"lodash":27}],26:[function(require,module,exports){
+},{"./nearest":20,"./point":22,"./polygon":23,"lodash":31}],30:[function(require,module,exports){
 // look here for help http://svn.osgeo.org/grass/grass/branches/releasebranch_6_4/vector/v.overlay/main.c
 //must be array of polygons
 
-},{}],27:[function(require,module,exports){
+},{}],31:[function(require,module,exports){
 var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {};/**
  * @license
  * Lo-Dash 2.2.1 (Custom Build) <http://lodash.com/>
@@ -7801,7 +7912,7 @@ var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? 
   }
 }.call(this));
 
-},{}],28:[function(require,module,exports){
+},{}],32:[function(require,module,exports){
 // # simple-statistics
 //
 // A simple, literate statistics system. The code below uses the
@@ -8789,7 +8900,7 @@ var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? 
 
 })(this);
 
-},{}],29:[function(require,module,exports){
+},{}],33:[function(require,module,exports){
 
 
 //
@@ -9007,13 +9118,13 @@ if (typeof Object.getOwnPropertyDescriptor === 'function') {
   exports.getOwnPropertyDescriptor = valueObject;
 }
 
-},{}],30:[function(require,module,exports){
+},{}],34:[function(require,module,exports){
 
 // not implemented
 // The reason for having an empty file and not throwing is to allow
 // untraditional implementation of this module.
 
-},{}],31:[function(require,module,exports){
+},{}],35:[function(require,module,exports){
 var process=require("__browserify_process");// Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -9224,7 +9335,7 @@ exports.extname = function(path) {
   return splitPath(path)[3];
 };
 
-},{"__browserify_process":33,"_shims":29,"util":32}],32:[function(require,module,exports){
+},{"__browserify_process":37,"_shims":33,"util":36}],36:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -9769,7 +9880,7 @@ function hasOwnProperty(obj, prop) {
   return Object.prototype.hasOwnProperty.call(obj, prop);
 }
 
-},{"_shims":29}],33:[function(require,module,exports){
+},{"_shims":33}],37:[function(require,module,exports){
 // shim for using process in browser
 
 var process = module.exports = {};
