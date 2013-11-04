@@ -25,6 +25,7 @@ Turf can also be run in a browser. To use it, download the [minified file](https
 **Features**
 
 - load
+- export
 - point
 - linestring
 - polygon
