@@ -430,7 +430,7 @@ sh build
 
 **Want to Contribute?**
 
-Pull requests, feature requests, comments on issues, testing, documentation, or any other type of support is welcome and encouraged. This is a big project, and I appreciate any help I can get. Let's go build a better geospatial engine for the web! Not sure where to start? Shoot me an email at morgan.herlocker [at] gmail.com or @morganherlocker.
+Pull requests, feature requests, comments on issues, testing, documentation, or any other type of support is welcome and encouraged. This is a big project, and I appreciate any help I can get. Let's go build a better geospatial engine for the web! Not sure where to start? Shoot me an email at morgan.herlocker [at] gmail.com or [@morganherlocker](https://twitter.com/morganherlocker).
 
 - - -
 
