@@ -25,7 +25,7 @@ Turf can also be run in a browser. To use it, download the [minified file](https
 **Features**
 
 - load
-- export
+- save
 - point
 - linestring
 - polygon
@@ -83,6 +83,23 @@ t.load(geoJsonFile, function(trees, err){
   console.log(trees)
 })
 ```
+
+
+**save**
+
+Saves out a feature or feature collection. 'geojson' is currently supported.
+
+```javascript
+var path = './testOut/poly.geojson'
+var poly = t.polygon([[[0,0], [1,0], [1,1],[0,1]]])
+var type = 'geojson'
+t.save(path, poly, type, function(err, res){
+  if(err) throw err
+  console.log(res) // 1
+  done()
+})
+```
+
 
 **point**
 
