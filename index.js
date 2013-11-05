@@ -1,4 +1,5 @@
 module.exports = {
+  quantile: require('./lib/quantile'),
   save: require('./lib/save'),
   envelope: require('./lib/envelope'),
   square: require('./lib/square'),
