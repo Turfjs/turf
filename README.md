@@ -46,6 +46,7 @@ Turf can also be run in a browser. To use it, download the [minified file](https
 - planepoint
 - inside
 - midpoint
+- quantile
 - contour
 
 **Planned Features**
@@ -59,7 +60,6 @@ Additional feature requests welcomed and encouraged. To request a feature, pleas
 - area
 - filter
 - intersect
-- quantile
 - reclass
 - remove
 - union
@@ -407,6 +407,25 @@ t.midpoint(pt1, pt2, function(err, midpoint){
   console.log(midpoint)
 })
 
+```
+
+
+**quantile**
+
+Takes a set of features, a property name, and a set of percentiles and outputs a quantile array. This can be passed as a break array to the contour function.
+
+```javascript
+var t = require('turf')
+var propertyName = 'elevation'
+var percentiles = [10,30,40,60,80,90,99]
+
+t.load('./testIn/Points3.geojson', function(err, pts){
+  if(err) throw err
+  t.quantile(pts, propertyName, percentiles, function(err, quantiles){
+    if(err) throw err
+    console.log(quantiles) // [ 12, 25, 29, 52, 76, 99, 143 ]
+  })
+})
 ```
 
 
