@@ -429,6 +429,25 @@ t.load('./testIn/Points3.geojson', function(err, pts){
 ```
 
 
+**jenks**
+
+Takes a set of features, a property name, and the desired number of breaks and outputs an array of natural breaks. This classification can be used in the contour function or for theming.
+
+```javascript
+var t = require('turf')
+var propertyName = 'elevation'
+var num = 10
+
+t.load('./testIn/Points3.geojson', function(err, pts){
+  if(err) throw err
+  t.jenks(pts, 'elevation', num, function(err, breaks){
+    if(err) throw err
+    done() // [ 11, 12, 18, 25, 29, 41, 50, 55, 76, 90, 143 ]
+  })
+})
+```
+
+
 **contour**
 
 Takes a FeatureCollection of points with z values and an array of value breaks and generates contour polygons.  This is a great way to visualize interpolated density on a map.  It is often used for elevation maps, weather maps, and isocrones.  The main advantage over a heat map is that contours allow you to see definitive value boundaries, and the polygons can be used to aggregate data.  For example, you could get the 5000 ft elevation contour of a mountain and the 10000 ft elevation contour, then aggregate the number of trees in each to see how elevation affects tree survival.
