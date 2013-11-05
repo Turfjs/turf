@@ -3,13 +3,15 @@ var t = require('../index'),
   
 describe('quantile', function(){
   it('should take a set of points and an array of percentiles and return a list of quantile breaks', function(done){
+    var num = 10
+
     t.load('./testIn/Points3.geojson', function(err, pts){
       if(err) throw err
       pts.should.be.ok
-      t.quantile(pts, 'elevation', [10,30,40,60,80,90,99], function(err, quantiles){
+      t.jenks(pts, 'elevation', num, function(err, breaks){
         if(err) throw err
-        quantiles.should.be.ok
-        quantiles.length.should.equal(7)
+        breaks.should.be.ok
+        breaks.length.should.equal(11)
         done()
       })
     })

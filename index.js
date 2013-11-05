@@ -1,4 +1,5 @@
 module.exports = {
+  jenks: require('./lib/jenks'),
   quantile: require('./lib/quantile'),
   save: require('./lib/save'),
   envelope: require('./lib/envelope'),
