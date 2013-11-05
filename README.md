@@ -48,6 +48,7 @@ Turf can also be run in a browser. To use it, download the [minified file](https
 - midpoint
 - quantile
 - jenks
+- reclass
 - contour
 
 **Planned Features**
@@ -443,6 +444,26 @@ t.load('./testIn/Points3.geojson', function(err, pts){
   t.jenks(pts, 'elevation', num, function(err, breaks){
     if(err) throw err
     done() // [ 11, 12, 18, 25, 29, 41, 50, 55, 76, 90, 143 ]
+  })
+})
+```
+
+
+**reclass**
+
+Takes a feature collection, a in field, an out field, and an array of translations and outputs an identical feature collection with the out field property populated.
+
+```javascript
+var inField = 'elevation',
+    outField = 'heightIndex',
+    // 0 to 20 will map to 1, 20 to 40 will map to 2, etc.
+    translations = [[0, 20, 1], [20, 40, 2], [40, 60 , 3], [60, Infinity, 4]]
+
+t.load('./testIn/Points3.geojson', function(err, pts){
+  if(err) throw err
+  t.reclass(pts, inField, outField, translations, function(err, outPts){
+    if(err) throw err
+    console.log(outPts)
   })
 })
 ```
