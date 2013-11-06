@@ -1,0 +1,20 @@
+echo "browserifying"
+browserify index.js > turf.js
+
+echo "uglifying"
+uglifyjs turf.js -o turf.min.js
+
+echo "adding"
+git add .
+
+echo "commiting"
+git commit -a -m "release"
+
+echo "releasing"
+git push
+
+echo "versioning"
+npm version patch
+
+echo "publishing"
+npm publish
