@@ -2,19 +2,17 @@ var t = require('../index'),
     should = require('should')
 
 describe('sample', function(){
-  it('should take a feature collection and an array of translations and return a new featurecollection reclassed', function(done){
-    var inField = 'elevation',
-        outField = 'heightIndex',
-        translations = [[0, 20, 1], [20, 40, 2], [40, 60 , 3], [60, Infinity, 4]]
+  xit('should take a feature collection and a number and return a random sample of n length', function(done){
+    var num = 10
 
     t.load('./testIn/Points3.geojson', function(err, pts){
       if(err) throw err
       pts.should.be.ok
-      t.reclass(pts, inField, outField, translations, function(err, outPts){
+      t.sample(pts, num, function(err, outPts){
         if(err) throw err
         outPts.should.be.ok
-        outPts.features[0].geometry.type.should.equal('Point')
-        t.save('./testOut/reclassed.geojson', outPts, 'geojson')
+        outPts.features.length.should.equal(10)
+        t.save('./testOut/sample.geojson', outPts, 'geojson', function(){})
         done()
       })
     })

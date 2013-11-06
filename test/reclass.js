@@ -14,7 +14,7 @@ describe('reclass', function(){
         if(err) throw err
         outPts.should.be.ok
         outPts.features[0].geometry.type.should.equal('Point')
-        t.save('./testOut/reclassed.geojson', outPts, 'geojson')
+        t.save('./testOut/reclassed.geojson', outPts, 'geojson', function(){})
         done()
       })
     })

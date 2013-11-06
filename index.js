@@ -1,4 +1,5 @@
 module.exports = {
+  sample: require('./lib/sample'),
   jenks: require('./lib/jenks'),
   quantile: require('./lib/quantile'),
   save: require('./lib/save'),
