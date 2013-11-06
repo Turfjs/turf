@@ -1,2 +1,7 @@
+echo "browserifying"
 browserify index.js > turf.js
+
+echo "uglifying"
 uglifyjs turf.js -o turf.min.js
+
+echo "versioning"

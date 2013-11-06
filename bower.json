@@ -1,0 +1,21 @@
+{
+  "name": "turf",
+  "version": "0.0.52",
+  "description": "",
+  "homepage": "https://github.com/morganherlocker/turf",
+  "main": "turf.min.js",
+  "keywords": [
+    "gis",
+    "geospatial",
+    "javascript"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "img",
+    "bower_components",
+    "test",
+    "lib"
+  ]
+}
