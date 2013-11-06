@@ -490,6 +490,7 @@ t.load('../path/to/points.geojson', function(err, points){
 
 **sample**
 
+Takes a feature collection and returns N random features as a feature collection.
 
 ```javascript
 var t = require('turf')
