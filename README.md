@@ -56,6 +56,9 @@ Turf can also be run in a browser. To use it, download the [minified file](https
 
 Additional feature requests welcomed and encouraged. To request a feature, please add a [github issue](https://github.com/morganherlocker/turf/issues) with a description.
 
+- interval
+- cluster
+- size
 - bezier
 - interpolate
 - tag
@@ -66,6 +69,7 @@ Additional feature requests welcomed and encouraged. To request a feature, pleas
 - union
 - erase
 - smooth
+- simplify
 
 - - -
 
