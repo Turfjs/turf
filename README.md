@@ -50,12 +50,12 @@ Turf can also be run in a browser. To use it, download the [minified file](https
 - jenks
 - reclass
 - contour
+- sample
 
 **Planned Features**
 
 Additional feature requests welcomed and encouraged. To request a feature, please add a [github issue](https://github.com/morganherlocker/turf/issues) with a description.
 
-- sample
 - bezier
 - interpolate
 - tag
@@ -483,6 +483,23 @@ t.load('../path/to/points.geojson', function(err, points){
   t.contour(points, z, resolution, breaks, function(err, contours){
     if(err) throw err
     console.log(contours)
+  })
+})
+```
+
+
+**sample**
+
+
+```javascript
+var t = require('turf')
+var num = 10
+
+t.load('./testIn/Points3.geojson', function(err, pts){
+  if(err) throw err
+  t.sample(pts, num, function(err, outPts){
+    if(err) throw err
+    console.log(outPts)
   })
 })
 ```
