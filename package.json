@@ -29,7 +29,10 @@
     "statistics",
     "stats",
     "midpoint",
-    "plane"
+    "plane",
+    "quantile",
+    "jenks",
+    "sample"
   ],
   "author": "",
   "license": "MIT",
