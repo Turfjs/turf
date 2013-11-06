@@ -540,37 +540,13 @@ Pull requests, feature requests, comments on issues, testing, documentation, or 
 - Simplicity is the name of the game. Every feature should be a simple file in /lib with a corresponding file in /test. Reference the new module in index.js and you are done.
 - Testing is absolutely required 100% of the time. Look at the existing tests for examples.
 - This is a functional library. Ensure that your functions never have side effects, and avoid an OO style whenever possible.
-- *Always create an issue before starting a new feature. This will allow us to discuss how something is being implemented and integrated. Turned down pull requests are no fun for anyone.*
+- **Always create an issue before starting a new feature. This will allow us to discuss how something is being implemented and integrated. Turned down pull requests are no fun for anyone.**
 
 - - -
 
-***Credits***
 
-This library is built and maintained by @morganherlocker. If you would like to contribute, please do! :)
 
-I have taken a "picasso" approach to building this library, borrowing from existing code when available and modifying it to meet coding styles and standards of turf. Here is a list of places I have pulled ideas and/or code from (all open source or public domain, as far as I know):
-
-https://github.com/ironwallaby/delaunay
-
-https://github.com/jasondavies/conrec.js
-
-http://stackoverflow.com/a/839931/461015
-
-http://en.wikipedia.org/wiki/Haversine_formula
-
-http://en.wikipedia.org/wiki/Ramer-Douglas-Peucker_algorithm 
-
-https://github.com/mbloch/mapshaper
-
-http://en.wikipedia.org/wiki/Delaunay_triangulation
-
-http://svn.osgeo.org/grass/grass/branches/releasebranch_6_4/vector/v.overlay/main.c
-
-http://www.ecse.rpi.edu/Homepages/wrf/Research/Short_Notes/pnpoly.html
-
-http://en.wikipedia.org/wiki/Even%E2%80%93odd_rule
-
-https://github.com/substack/point-in-polygon/blob/master/index.js
+This library is built and maintained by [@morganherlocker](https://twitter.com/morganherlocker) :)
 
 
 [![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/morganherlocker/turf/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
