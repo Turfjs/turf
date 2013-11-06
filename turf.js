@@ -1,5 +1,6 @@
 ;(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);throw new Error("Cannot find module '"+o+"'")}var f=n[o]={exports:{}};t[o][0].call(f.exports,function(e){var n=t[o][1][e];return s(n?n:e)},f,f.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 module.exports = {
+  sample: require('./lib/sample'),
   jenks: require('./lib/jenks'),
   quantile: require('./lib/quantile'),
   save: require('./lib/save'),
@@ -34,7 +35,7 @@ module.exports = {
 }
 
 
-},{"./lib/bboxPolygon":2,"./lib/buffer":3,"./lib/center":4,"./lib/centroid":5,"./lib/combine":6,"./lib/contour":7,"./lib/distance":8,"./lib/envelope":9,"./lib/explode":10,"./lib/extent":11,"./lib/featurecollection":12,"./lib/filter":13,"./lib/grid":14,"./lib/inside":15,"./lib/intersect":16,"./lib/jenks":17,"./lib/linestring":18,"./lib/load":19,"./lib/midpoint":20,"./lib/nearest":21,"./lib/planepoint":22,"./lib/point":23,"./lib/polygon":24,"./lib/quantile":25,"./lib/reclass":26,"./lib/remove":27,"./lib/save":28,"./lib/square":29,"./lib/tin":30,"./lib/union":31}],2:[function(require,module,exports){
+},{"./lib/bboxPolygon":2,"./lib/buffer":3,"./lib/center":4,"./lib/centroid":5,"./lib/combine":6,"./lib/contour":7,"./lib/distance":8,"./lib/envelope":9,"./lib/explode":10,"./lib/extent":11,"./lib/featurecollection":12,"./lib/filter":13,"./lib/grid":14,"./lib/inside":15,"./lib/intersect":16,"./lib/jenks":17,"./lib/linestring":18,"./lib/load":19,"./lib/midpoint":20,"./lib/nearest":21,"./lib/planepoint":22,"./lib/point":23,"./lib/polygon":24,"./lib/quantile":25,"./lib/reclass":26,"./lib/remove":27,"./lib/sample":28,"./lib/save":29,"./lib/square":30,"./lib/tin":31,"./lib/union":32}],2:[function(require,module,exports){
 var t = {}
 var point = require('../lib/point'),
     polygon = require('../lib/polygon')
@@ -94,7 +95,7 @@ module.exports = function(point, radius, done){
         break
     }
 }
-},{"lodash":32}],4:[function(require,module,exports){
+},{"lodash":33}],4:[function(require,module,exports){
 var t = {}
 var extent = require('./extent')
 t.extent = extent
@@ -140,7 +141,7 @@ module.exports = function(features, done){
     done(err, t.point(averageX, averageY))
   })
 }
-},{"./explode":10,"./point":23,"lodash":32,"simple-statistics":33}],6:[function(require,module,exports){
+},{"./explode":10,"./point":23,"lodash":33,"simple-statistics":34}],6:[function(require,module,exports){
 //this tool takes an array of like geometries and combines them into a single multipoint, multilinestring, or multipolygon
 var _ = require('lodash')
 
@@ -174,7 +175,7 @@ module.exports = function(geometries, done){
     break
   }
 }
-},{"lodash":32}],7:[function(require,module,exports){
+},{"lodash":33}],7:[function(require,module,exports){
 //https://github.com/jasondavies/conrec.js
 //http://stackoverflow.com/questions/263305/drawing-a-topographical-map
 var t = {}
@@ -788,7 +789,7 @@ module.exports = function(points, z, resolution, breaks, done){
     }
   }
 
-},{"./extent":11,"./featurecollection":12,"./grid":14,"./inside":15,"./planepoint":22,"./polygon":24,"./square":29,"./tin":30,"fs":35,"lodash":32}],8:[function(require,module,exports){
+},{"./extent":11,"./featurecollection":12,"./grid":14,"./inside":15,"./planepoint":22,"./polygon":24,"./square":30,"./tin":31,"fs":36,"lodash":33}],8:[function(require,module,exports){
 //http://en.wikipedia.org/wiki/Haversine_formula
 //http://www.movable-type.co.uk/scripts/latlong.html
 // expects a feature collection of points
@@ -938,7 +939,7 @@ module.exports = function(features, done){
 
 
 
-},{"./featurecollection":12,"./point":23,"lodash":32}],11:[function(require,module,exports){
+},{"./featurecollection":12,"./point":23,"lodash":33}],11:[function(require,module,exports){
 _ = require('lodash')
 
 module.exports = function(layer, done){
@@ -1050,7 +1051,7 @@ module.exports = function(layer, done){
     done(null, bbox)
   }
 }
-},{"lodash":32}],12:[function(require,module,exports){
+},{"lodash":33}],12:[function(require,module,exports){
 module.exports = function(features){
   var fc = {
     "type": "FeatureCollection",
@@ -1085,7 +1086,7 @@ module.exports = function(extents, depth, done){
   }
   done(null, fc)
 }
-},{"./point":23,"lodash":32}],15:[function(require,module,exports){
+},{"./point":23,"lodash":33}],15:[function(require,module,exports){
 // http://en.wikipedia.org/wiki/Even%E2%80%93odd_rule
 // modified from: https://github.com/substack/point-in-polygon/blob/master/index.js
 // which was modified from http://www.ecse.rpi.edu/Homepages/wrf/Research/Short_Notes/pnpoly.html
@@ -1125,7 +1126,7 @@ module.exports = function(fc, field, num, done){
 
   done(null, breaks)
 }
-},{"lodash":32,"simple-statistics":33}],18:[function(require,module,exports){
+},{"lodash":33,"simple-statistics":34}],18:[function(require,module,exports){
 module.exports = function(coordinates, properties){
   if(coordinates === null) throw new Error('No coordinates passed')
   var linestring = { 
@@ -1154,7 +1155,7 @@ module.exports = function(file, done) {
   })  
 }
 
-},{"fs":35,"path":36}],20:[function(require,module,exports){
+},{"fs":36,"path":37}],20:[function(require,module,exports){
 // http://cs.selu.edu/~rbyrd/math/midpoint/
 // ((x1+x2)/2), ((y1+y2)/2)
 var t = {}
@@ -1214,7 +1215,7 @@ module.exports = function(targetPoint, points, done){
     done(null, nPt)
   }
 }
-},{"./distance":8,"lodash":32}],22:[function(require,module,exports){
+},{"./distance":8,"lodash":33}],22:[function(require,module,exports){
 http://stackoverflow.com/a/13916669/461015
 
 module.exports = function(point, triangle, done){
@@ -1286,7 +1287,7 @@ module.exports = function(fc, field, percentiles, done){
   })
   done(null, quantiles)
 }
-},{"lodash":32,"simple-statistics":33}],26:[function(require,module,exports){
+},{"lodash":33,"simple-statistics":34}],26:[function(require,module,exports){
 var t = {}
 var featurecollection = require('./featurecollection')
 t.featurecollection = featurecollection
@@ -1309,6 +1310,16 @@ module.exports = function(fc, inField, outField, translations, done){
 },{"./featurecollection":12}],27:[function(require,module,exports){
 module.exports=require(13)
 },{}],28:[function(require,module,exports){
+var t = {}
+var _ = require('lodash'),
+    featurecollection = require('./featurecollection')
+t.featurecollection = featurecollection
+
+module.exports = function(fc, num, done){
+  var outFC = t.featurecollection(_.sample(fc.features, num))
+  done(null, outFC)
+}
+},{"./featurecollection":12,"lodash":33}],29:[function(require,module,exports){
 var fs = require('fs')
 
 module.exports = function(path, features, type, done){
@@ -1322,7 +1333,7 @@ module.exports = function(path, features, type, done){
   }
   
 }
-},{"fs":35}],29:[function(require,module,exports){
+},{"fs":36}],30:[function(require,module,exports){
 var t = {}
 var midpoint = require('../lib/midpoint'),
     point = require('../lib/point'),
@@ -1363,7 +1374,7 @@ module.exports = function(bbox, done) {
   //t.midpoint(t.point(bbox[0,]), bbox)
   //squareBbox[0] = 
 }
-},{"../lib/distance":8,"../lib/midpoint":20,"../lib/point":23}],30:[function(require,module,exports){
+},{"../lib/distance":8,"../lib/midpoint":20,"../lib/point":23}],31:[function(require,module,exports){
 //http://en.wikipedia.org/wiki/Delaunay_triangulation
 //https://github.com/ironwallaby/delaunay
 var t = {}
@@ -1596,11 +1607,11 @@ function triangulate(vertices) {
     }
 }*/
 
-},{"./nearest":21,"./point":23,"./polygon":24,"lodash":32}],31:[function(require,module,exports){
+},{"./nearest":21,"./point":23,"./polygon":24,"lodash":33}],32:[function(require,module,exports){
 // look here for help http://svn.osgeo.org/grass/grass/branches/releasebranch_6_4/vector/v.overlay/main.c
 //must be array of polygons
 
-},{}],32:[function(require,module,exports){
+},{}],33:[function(require,module,exports){
 var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {};/**
  * @license
  * Lo-Dash 2.2.1 (Custom Build) <http://lodash.com/>
@@ -7962,7 +7973,7 @@ var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? 
   }
 }.call(this));
 
-},{}],33:[function(require,module,exports){
+},{}],34:[function(require,module,exports){
 // # simple-statistics
 //
 // A simple, literate statistics system. The code below uses the
@@ -8950,7 +8961,7 @@ var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? 
 
 })(this);
 
-},{}],34:[function(require,module,exports){
+},{}],35:[function(require,module,exports){
 
 
 //
@@ -9168,13 +9179,13 @@ if (typeof Object.getOwnPropertyDescriptor === 'function') {
   exports.getOwnPropertyDescriptor = valueObject;
 }
 
-},{}],35:[function(require,module,exports){
+},{}],36:[function(require,module,exports){
 
 // not implemented
 // The reason for having an empty file and not throwing is to allow
 // untraditional implementation of this module.
 
-},{}],36:[function(require,module,exports){
+},{}],37:[function(require,module,exports){
 var process=require("__browserify_process");// Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -9385,7 +9396,7 @@ exports.extname = function(path) {
   return splitPath(path)[3];
 };
 
-},{"__browserify_process":38,"_shims":34,"util":37}],37:[function(require,module,exports){
+},{"__browserify_process":39,"_shims":35,"util":38}],38:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -9930,7 +9941,7 @@ function hasOwnProperty(obj, prop) {
   return Object.prototype.hasOwnProperty.call(obj, prop);
 }
 
-},{"_shims":34}],38:[function(require,module,exports){
+},{"_shims":35}],39:[function(require,module,exports){
 // shim for using process in browser
 
 var process = module.exports = {};
