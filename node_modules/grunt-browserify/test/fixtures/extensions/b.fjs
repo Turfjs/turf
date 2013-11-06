@@ -1,0 +1,6 @@
+var a = require('./a.js');
+
+module.exports = function (test) {
+  return 'b.js';
+}
+

@@ -1,0 +1,3 @@
+required({
+  a: require('./a')
+});

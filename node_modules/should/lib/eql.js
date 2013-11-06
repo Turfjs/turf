@@ -1,40 +1,17 @@
 // Taken from node's assert module, because it sucks
 // and exposes next to nothing useful.
+var util = require('./util');
 
 module.exports = _deepEqual;
 
 var pSlice = Array.prototype.slice;
-
-function isBuffer(arg) {
-    return arg instanceof Buffer;
-}
-
-function isDate(d) {
-    return isObject(d) && objectToString(d) === '[object Date]';
-}
-
-function objectToString(o) {
-    return Object.prototype.toString.call(o);
-}
-
-function isObject(arg) {
-    return typeof arg === 'object' && arg !== null;
-}
-
-function isRegExp(re) {
-    return isObject(re) && objectToString(re) === '[object RegExp]';
-}
-
-function isNullOrUndefined(arg) {
-    return arg == null;
-}
 
 function _deepEqual(actual, expected) {
   // 7.1. All identical values are equivalent, as determined by ===.
   if (actual === expected) {
     return true;
 
-  } else if (isBuffer(actual) && isBuffer(expected)) {
+  } else if (util.isBuffer(actual) && util.isBuffer(expected)) {
     if (actual.length != expected.length) return false;
 
     for (var i = 0; i < actual.length; i++) {
@@ -45,13 +22,13 @@ function _deepEqual(actual, expected) {
 
   // 7.2. If the expected value is a Date object, the actual value is
   // equivalent if it is also a Date object that refers to the same time.
-  } else if (isDate(actual) && isDate(expected)) {
+  } else if (util.isDate(actual) && util.isDate(expected)) {
     return actual.getTime() === expected.getTime();
 
   // 7.3 If the expected value is a RegExp object, the actual value is
   // equivalent if it is also a RegExp object with the same source and
   // properties (`global`, `multiline`, `lastIndex`, `ignoreCase`).
-  } else if (isRegExp(actual) && isRegExp(expected)) {
+  } else if (util.isRegExp(actual) && util.isRegExp(expected)) {
     return actual.source === expected.source &&
            actual.global === expected.global &&
            actual.multiline === expected.multiline &&
@@ -60,7 +37,7 @@ function _deepEqual(actual, expected) {
 
   // 7.4. Other pairs that do not both pass typeof value == 'object',
   // equivalence is determined by ==.
-  } else if (!isObject(actual) && !isObject(expected)) {
+  } else if (!util.isObject(actual) && !util.isObject(expected)) {
     return actual == expected;
 
   // 7.5 For all other Object pairs, including Array objects, equivalence is
@@ -74,19 +51,16 @@ function _deepEqual(actual, expected) {
   }
 }
 
-function isArguments (object) {
-  return objectToString(object) === '[object Arguments]';
-}
 
 function objEquiv (a, b) {
-  if (isNullOrUndefined(a) || isNullOrUndefined(b))
+  if (util.isNullOrUndefined(a) || util.isNullOrUndefined(b))
     return false;
   // an identical 'prototype' property.
   if (a.prototype !== b.prototype) return false;
   //~~~I've managed to break Object.keys through screwy arguments passing.
   //   Converting to array solves the problem.
-  if (isArguments(a)) {
-    if (!isArguments(b)) {
+  if (util.isArguments(a)) {
+    if (!util.isArguments(b)) {
       return false;
     }
     a = pSlice.call(a);
