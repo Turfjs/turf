@@ -1,5 +1,7 @@
-echo "browserifying"
+echo "browserifying.."
 browserify index.js > turf.js
 
-echo "uglifying"
+echo "uglifying.."
 uglifyjs turf.js -o turf.min.js
+
+echo "..complete"
