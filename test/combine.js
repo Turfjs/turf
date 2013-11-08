@@ -18,11 +18,12 @@ describe('combine', function(){
       ]
     }
 
-    t.combine([p1, p2], function(err, combined){
+    t.combine(t.featurecollection([p1, p2]), function(err, combined){
       if(err) throw err
       combined.should.be.ok
-      combined.type.should.equal('MultiPoint')
-      _.isEqual(combined.coordinates, [[50, 51], [100, 101]]).should.be.true
+      combined.geometry.type.should.equal('MultiPoint')
+      console.log(combined.geometry)
+      _.isEqual(combined.geometry.coordinates, [[50, 51], [100, 101]]).should.be.true
       done()
     })
   })
@@ -53,11 +54,11 @@ describe('combine', function(){
         ]
       ]
     }
-    t.combine([l1, l2], function(err, combined){
+    t.combine(t.featurecollection([l1, l2]), function(err, combined){
       if(err) throw err
       combined.should.be.ok
-      combined.type.should.equal('MultiLineString')
-      _.isEqual(combined.coordinates, [[[102, -10], [130, 4]], [[40, -20], [150, 18]]]).should.be.true
+      combined.geometry.type.should.equal('MultiLineString')
+      _.isEqual(combined.geometry.coordinates, [[[102, -10], [130, 4]], [[40, -20], [150, 18]]]).should.be.true
       done()
     })
   })
@@ -108,11 +109,11 @@ describe('combine', function(){
       ]
     ]
     }
-    t.combine([p1, p2], function(err, combined){
+    t.combine(t.featurecollection([p1, p2]), function(err, combined){
       if(err) throw err
       combined.should.be.ok
-      combined.type.should.equal('MultiPolygon')
-      _.isEqual(combined.coordinates, 
+      combined.geometry.type.should.equal('MultiPolygon')
+      _.isEqual(combined.geometry.coordinates, 
         [[[[20,0],[101.0,0.0],[101.0,1.0],[100.0,1.0],[100.0,0.0]]], 
         [[[30.0,0.0],[102.0,0.0],[103.0,1.0]]]]
         ).should.be.true
