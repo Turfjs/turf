@@ -278,14 +278,15 @@ t.explode(poly, function(err, vertices){
 
 **combine**
 
-Combines an array of point, linestring, or polygon features into multipoint, multilinestring, or multipolygon features.
+Combines feature collection of point, linestring, or polygon features into multipoint, multilinestring, or multipolygon features.
     
 ```javascript
 var t = require('turf')
 var pt1 = t.point(50, 1)
 var pt2 = t.point(100, 101)
+var fc = t.featurecollection([pt1, pt2])
 
-t.combine([pt1, pt2], function(err, combined){
+t.combine(fc, function(err, combined){
   if(err) throw err
   console.log(combined)
 })
