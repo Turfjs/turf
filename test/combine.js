@@ -3,20 +3,8 @@ var t = require('../index'),
 
 describe('combine', function(){
   it('should should combine two points into a MultiPoint', function(done){
-    var p1 = {
-      "type": "Point",
-      "coordinates": [
-        50,
-        51
-      ]
-    }
-    var p2 = {
-      "type": "Point",
-      "coordinates": [
-        100,
-        101
-      ]
-    }
+    var p1 = t.point(50, 51)
+    var p2 = t.point(100, 101)
 
     t.combine(t.featurecollection([p1, p2]), function(err, combined){
       if(err) throw err
