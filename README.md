@@ -315,8 +315,9 @@ Buffers a point feature to a given radius. Lines and Polygons support coming soo
 ```javascript
 var t = require('turf')
 var pt = t.point(0, 0.5)
+var unit = 'miles'
 
-t.buffer(pt, 10, function(err, buffered){
+t.buffer(pt, 10, unit, function(err, buffered){
   if(err) throw err
   console.log(buffered)
 })
