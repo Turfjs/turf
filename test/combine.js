@@ -1,5 +1,6 @@
 var t = require('../index'),
-  _ = require('lodash')
+  _ = require('lodash'),
+  should = require('should')
 
 describe('combine', function(){
   it('should should combine two points into a MultiPoint', function(done){
@@ -10,15 +11,12 @@ describe('combine', function(){
       if(err) throw err
       combined.should.be.ok
       combined.geometry.type.should.equal('MultiPoint')
-      console.log(combined.geometry)
       _.isEqual(combined.geometry.coordinates, [[50, 51], [100, 101]]).should.be.true
       done()
     })
   })
   it('should should combine two LineStrings into a MultiLineString', function(done){
-    var l1 = {
-      "type": "LineString",
-      "coordinates": [
+    var l1 = t.linestring([
         [
           102.0,
           -10.0
@@ -27,11 +25,9 @@ describe('combine', function(){
           130.0,
           4.0
         ]
-      ]
-    }
-    var l2 = {
-      "type": "LineString",
-      "coordinates": [
+      ])
+
+    var l2 = t.linestring([
         [
           40.0,
           -20.0
@@ -40,8 +36,7 @@ describe('combine', function(){
           150.0,
           18.0
         ]
-      ]
-    }
+      ])
     t.combine(t.featurecollection([l1, l2]), function(err, combined){
       if(err) throw err
       combined.should.be.ok
@@ -51,9 +46,7 @@ describe('combine', function(){
     })
   })
   it('should should combine two Polygons into a MultiPolygon', function(done){
-    var p1 = {
-      "type": "Polygon",
-      "coordinates": [
+    var p1 = t.polygon( [
       [
         [
           20.0,
@@ -76,11 +69,8 @@ describe('combine', function(){
           0.0
         ]
       ]
-    ]
-    }
-    var p2 = {
-      "type": "Polygon",
-      "coordinates": [
+    ])
+    var p2 = t.polygon([
       [
         [
           30.0,
@@ -95,8 +85,7 @@ describe('combine', function(){
           1.0
         ]
       ]
-    ]
-    }
+    ])
     t.combine(t.featurecollection([p1, p2]), function(err, combined){
       if(err) throw err
       combined.should.be.ok
