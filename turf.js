@@ -142,35 +142,45 @@ module.exports = function(features, done){
   })
 }
 },{"./explode":10,"./point":23,"lodash":33,"simple-statistics":34}],6:[function(require,module,exports){
-//this tool takes an array of like geometries and combines them into a single multipoint, multilinestring, or multipolygon
+//this tool takes a feature collection of like geometries and combines them into a single multipoint, multilinestring, or multipolygon
 var _ = require('lodash')
 
-module.exports = function(geometries, done){
-  var type = geometries[0].type
+module.exports = function(fc, done){
+  var type = fc.features[0].geometry.type
   var err
+  var geometries = _.pluck(fc.features, 'geometry')
   switch(type){
     case 'Point':
       var multiPoint = {
-        type: 'MultiPoint',
-        coordinates: []
+        type: 'Feature',
+        geometry: {
+          type: 'MultiPoint',
+          coordinates: []
+        }
       }
-      multiPoint.coordinates = _.pluck(geometries, 'coordinates')
+      multiPoint.geometry.coordinates = _.pluck(geometries, 'coordinates')
       done(err, multiPoint)
     break
     case 'LineString':
       var multiLineString = {
-        type: 'MultiLineString',
-        coordinates: []
+        type: 'Feature',
+        geometry: {
+          type: 'MultiLineString',
+          coordinates: []
+        }
       }
-      multiLineString.coordinates = _.pluck(geometries, 'coordinates')
+      multiLineString.geometry.coordinates = _.pluck(geometries, 'coordinates')
       done(err, multiLineString)
       break
     case 'Polygon':
       var multiPolygon = {
-        type: 'MultiPolygon',
-        coordinates: []
+        type: 'Feature',
+        geometry: {
+          type: 'MultiPolygon',
+          coordinates: []
+        }
       }
-      multiPolygon.coordinates = _.pluck(geometries, 'coordinates')
+      multiPolygon.geometry.coordinates = _.pluck(geometries, 'coordinates')
       done(err, multiPolygon)
     break
   }
