@@ -39,6 +39,7 @@ bower install turf
 - featurecollection
 - extent
 - square
+- size
 - center
 - bboxPolygon
 - envelope
@@ -66,7 +67,6 @@ Additional feature requests welcomed and encouraged. To request a feature, pleas
 - krige
 - interval
 - cluster
-- size
 - bezier
 - interpolate
 - tag
@@ -195,6 +195,20 @@ var bbox = [0,0,5,10]
 t.square(bbox, function(err, square){
   if(err) throw err
   console.log(square) // [-2.5, 0, 7.5, 10]
+})
+```
+
+
+**size**
+
+Takes a bbox and returns a new bbox with a size expanded or contracted by a factor of X.
+
+```javascript
+var bbox = [0, 0, 10, 10]
+
+t.size(bbox, 2, function(err, doubled){
+  if(err) throw err
+  console.log(doubled) // [-10, -10, 20, 20]
 })
 ```
 
