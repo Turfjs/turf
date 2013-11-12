@@ -1,6 +1,6 @@
 var t = require('../index'),
   should = require('should'),
-  _ = require('_')
+  _ = require('lodash')
 
 
 describe('size', function(){
