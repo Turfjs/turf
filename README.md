@@ -73,7 +73,6 @@ Additional feature requests welcomed and encouraged. To request a feature, pleas
 - area
 - filter
 - intersect
-- remove
 - union
 - erase
 - smooth
