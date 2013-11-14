@@ -310,10 +310,15 @@ t.combine(fc, function(err, combined){
 
 **remove**
 
-Removes a feature that matches a property
+Removes any features from a feature collection that matches a property.
 
 ```javascript
+var trees = t.featurecollection([t.point(1,2, {species: 'oak'}), t.point(2,1, {species: 'dogwood'}), t.point(3,1, {species: 'maple'})])
 
+t.remove(points, 'species', 'dogwood', function(err, result) {
+  if(err) throw err
+  console.log(result)
+})
 ```
 
 
