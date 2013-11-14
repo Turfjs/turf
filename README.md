@@ -127,6 +127,7 @@ console.log(point1)
 console.log(point2)
 ```
 
+
 **linestring**
 
 Creates a geojson linestring Feature based on a coordinate array. Properties can be added optionally.
@@ -141,6 +142,7 @@ console.log(linestring1)
 console.log(linestring2)
 ```
 
+
 **polygon**
 
 Creates a geojson polygon Feature based on a coordinate array. Properties can be added optionally.
@@ -154,6 +156,7 @@ var polygon2 = t.point([[[20.0,0.0],[101.0,0.0],[101.0,1.0],[100.0,1.0],[100.0,0
 console.log(polygon1)
 console.log(polygon2)
 ```
+
 
 **featurecollection**
 
@@ -184,6 +187,7 @@ t.load('path/to/file/example.geojson', function(err, features){
   })
 })
 ```
+
 
 **square**
 
@@ -291,6 +295,7 @@ t.explode(poly, function(err, vertices){
 })
 ```
 
+
 **combine**
 
 Combines feature collection of point, linestring, or polygon features into multipoint, multilinestring, or multipolygon features.
@@ -340,6 +345,7 @@ t.inside(pt, poly, function(err, isInside){
 })
 ```
 
+
 **buffer**
 
 Buffers a point feature to a given radius. Lines and Polygons support coming soon. Unit selection coming soon too (degrees, miles, km).
@@ -356,6 +362,7 @@ t.buffer(pt, 10, unit, function(err, buffered){
 })
 ```
 
+
 **distance**
 
 Calculates the distance between two point features in degrees, radians, miles, or kilometers. This uses the haversine formula to account for global curvature.
@@ -371,6 +378,7 @@ t.distance(point1, point2, unit, function(err, distance){
   console.log(distance)
 })
 ```
+
 
 **nearest**
 
@@ -391,6 +399,7 @@ t.nearest(inPoint, inFeatures, function(err, closestPoint){
 })
 ```
 
+
 **tin**
 
 Takes a set of points and the name of a z-value property and creates a tin (Triangulated Irregular Network). These are often used for developing elevation contour maps or stepped heat visualizations.
@@ -407,6 +416,7 @@ t.load('/path/to/pointsfeatures/elevationPoints.geojson', function(err, points){
 })
 ```
 
+
 **grid**
 
 Takes a bounding box and a cell depth and outputs a feature collection of points in a grid.
@@ -419,6 +429,7 @@ t.grid([0,0,10,10], depth, function(err, grid){
   console.log(grid) // 15x15 grid of points in a FeatureCollection
 })
 ```
+
 
 **planepoint**
 
@@ -439,6 +450,7 @@ t.planepoint(point, triangle, function(err, zValue){
   console.log(zValue)
 })
 ```
+
 
 **midpoint**
 
