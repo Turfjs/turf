@@ -46,6 +46,7 @@ bower install turf
 - centroid
 - explode
 - combine
+- remove
 - distance
 - buffer
 - nearest
@@ -305,6 +306,16 @@ t.combine(fc, function(err, combined){
   console.log(combined)
 })
 ```
+
+
+**remove**
+
+Removes a feature that matches a property
+
+```javascript
+
+```
+
 
 **inside**
 
