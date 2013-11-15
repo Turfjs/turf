@@ -71,7 +71,6 @@ Additional feature requests welcomed and encouraged. To request a feature, pleas
 - cluster
 - bezier
 - interpolate
-
 - area
 - filter
 - intersect
