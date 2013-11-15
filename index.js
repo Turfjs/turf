@@ -1,4 +1,5 @@
 module.exports = {
+  topo: require('./lib/topo'),
   bezier: require('./lib/bezier'),
   tag: require('./lib/tag'),
   size: require('./lib/size'),
