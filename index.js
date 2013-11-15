@@ -1,4 +1,5 @@
 module.exports = {
+  bezier: require('./lib/bezier'),
   tag: require('./lib/tag'),
   size: require('./lib/size'),
   sample: require('./lib/sample'),
