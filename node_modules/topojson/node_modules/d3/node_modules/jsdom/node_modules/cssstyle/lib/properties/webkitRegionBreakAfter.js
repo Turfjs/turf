@@ -1,0 +1,11 @@
+'use strict';
+
+module.exports = {
+    set: function (v) {
+        this.setProperty('-webkit-region-break-after', v);
+    },
+    get: function () {
+        return this.getPropertyValue('-webkit-region-break-after');
+    },
+    enumerable: true
+};

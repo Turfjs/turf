@@ -1,0 +1,14 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {"type": "Feature", "properties": {}, "geometry": {"type": "Point", "coordinates": [1, 2]}},
+    {"type": "Feature", "properties": {}, "geometry": null},
+    {"type": "Feature", "properties": {}, "geometry": {"type": "Point", "coordinates": [5, 6]}},
+    {"type": "Feature", "properties": {}, "geometry": null},
+    {"type": "Feature", "properties": {}, "geometry": null},
+    {"type": "Feature", "properties": {}, "geometry": {"type": "Point", "coordinates": [11, 12]}},
+    {"type": "Feature", "properties": {}, "geometry": {"type": "Point", "coordinates": [13, 14]}},
+    {"type": "Feature", "properties": {}, "geometry": null},
+    {"type": "Feature", "properties": {}, "geometry": {"type": "Point", "coordinates": [17, 18]}}
+  ]
+}

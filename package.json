@@ -42,7 +42,8 @@
   "dependencies": [
     "lodash",
     "simple-statistics",
-    "should"
+    "should",
+    "topojson"
   ],
   "devDependencies": {
     "grunt-cli": "~0.1.9",

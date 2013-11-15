@@ -1,0 +1,8 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {"type": "Feature","properties": {"date": "20130102"},"geometry": {"type": "Point", "coordinates": [1, 2]}},
+    {"type": "Feature","properties": {"date": "20130202"},"geometry": {"type": "Point", "coordinates": [3, 4]}},
+    {"type": "Feature","properties": {"date": "20130103"},"geometry": {"type": "Point", "coordinates": [7, 8]}}
+  ]
+}
