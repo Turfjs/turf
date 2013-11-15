@@ -1,6 +1,7 @@
 !function(e){"object"==typeof exports?module.exports=e():"function"==typeof define&&define.amd?define(e):"undefined"!=typeof window?window.t=e():"undefined"!=typeof global?global.t=e():"undefined"!=typeof self&&(self.t=e())}(function(){var define,module,exports;
 return (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);throw new Error("Cannot find module '"+o+"'")}var f=n[o]={exports:{}};t[o][0].call(f.exports,function(e){var n=t[o][1][e];return s(n?n:e)},f,f.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 module.exports = {
+  bezier: require('./lib/bezier'),
   tag: require('./lib/tag'),
   size: require('./lib/size'),
   sample: require('./lib/sample'),
@@ -38,7 +39,7 @@ module.exports = {
 }
 
 
-},{"./lib/bboxPolygon":2,"./lib/buffer":3,"./lib/center":4,"./lib/centroid":5,"./lib/combine":6,"./lib/contour":7,"./lib/distance":8,"./lib/envelope":9,"./lib/explode":10,"./lib/extent":11,"./lib/featurecollection":12,"./lib/filter":13,"./lib/grid":14,"./lib/inside":15,"./lib/intersect":16,"./lib/jenks":17,"./lib/linestring":18,"./lib/load":19,"./lib/midpoint":20,"./lib/nearest":21,"./lib/planepoint":22,"./lib/point":23,"./lib/polygon":24,"./lib/quantile":25,"./lib/reclass":26,"./lib/remove":27,"./lib/sample":28,"./lib/save":29,"./lib/size":30,"./lib/square":31,"./lib/tag":32,"./lib/tin":33,"./lib/union":34}],2:[function(require,module,exports){
+},{"./lib/bboxPolygon":2,"./lib/bezier":3,"./lib/buffer":4,"./lib/center":5,"./lib/centroid":6,"./lib/combine":7,"./lib/contour":8,"./lib/distance":9,"./lib/envelope":10,"./lib/explode":11,"./lib/extent":12,"./lib/featurecollection":13,"./lib/filter":14,"./lib/grid":15,"./lib/inside":16,"./lib/intersect":17,"./lib/jenks":18,"./lib/linestring":19,"./lib/load":20,"./lib/midpoint":21,"./lib/nearest":22,"./lib/planepoint":23,"./lib/point":24,"./lib/polygon":25,"./lib/quantile":26,"./lib/reclass":27,"./lib/remove":28,"./lib/sample":29,"./lib/save":30,"./lib/size":31,"./lib/square":32,"./lib/tag":33,"./lib/tin":34,"./lib/union":35}],2:[function(require,module,exports){
 var t = {}
 var point = require('../lib/point'),
     polygon = require('../lib/polygon')
@@ -59,7 +60,232 @@ module.exports = function(bbox, done){
   ]])
   done(null, poly)
 }
-},{"../lib/point":23,"../lib/polygon":24}],3:[function(require,module,exports){
+},{"../lib/point":24,"../lib/polygon":25}],3:[function(require,module,exports){
+// code modded from here:
+//https://github.com/leszekr/bezier-spline-js/blob/master/bezier-spline.js
+var t = {}
+var _ = require('lodash')
+t.linestring = require('./linestring')
+
+module.exports = function(line, resolution, done){
+  var lineOut = t.linestring([])
+  lineOut.properties = line.properties
+  pts = []
+  _.each(line.geometry.coordinates, function(pt){
+    pts.push({x: pt[0], y: pt[1]})
+  })
+
+  var spline = new Spline({
+    points: pts,
+    duration: 15000,
+    //sharpness: how_curvy,
+    //stepLength: distance_between_points_to_cache
+  });
+  for(var i=0; i<spline.duration; i+=10){
+    var pos = spline.pos(i); //bezier(i/max,p1, c1, c2, p2);
+    if(Math.floor(i/100)%2==0) lineOut.geometry.coordinates.push([pos.x, pos.y]);
+    //else ctx.moveTo(pos.x, pos.y);
+  }
+  done(null, lineOut)
+}
+
+
+ /**
+   * BezierSpline 
+   * http://leszekr.github.com/
+   *
+   * @copyright
+   * Copyright (C) 2012 Leszek Rybicki.
+   *
+   * @license
+   * This file is part of BezierSpline
+   * 
+   * BezierSpline is free software: you can redistribute it and/or modify
+   * it under the terms of the GNU Lesser General Public License as published by
+   * the Free Software Foundation, either version 3 of the License, or
+   * (at your option) any later version.
+   * 
+   * BezierSpline is distributed in the hope that it will be useful,
+   * but WITHOUT ANY WARRANTY; without even the implied warranty of
+   * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+   * GNU General Public License for more details.
+   * 
+   * You should have received a copy of the GNU General Public License
+   * along with BezierSpline.  If not, see <http://www.gnu.org/copyleft/lesser.html>.
+   */
+
+
+  /*
+  Usage:
+
+    var spline = new Spline({
+      points: array_of_control_points,
+      duration: time_in_miliseconds,
+      sharpness: how_curvy,
+      stepLength: distance_between_points_to_cache
+    });
+
+  */
+  Spline = function(options){
+    this.points = options.points || [];
+    this.duration = options.duration || 10000;
+    this.sharpness = options.sharpness || 0.85;
+    this.centers = [];
+    this.controls = [];
+    this.stepLength = options.stepLength || 60;
+    this.length = this.points.length;
+    this.delay = 0;
+    // this is to ensure compatibility with the 2d version
+    for(var i=0; i<this.length; i++) this.points[i].z = this.points[i].z || 0;
+    for(var i=0; i<this.length-1; i++){
+      var p1 = this.points[i];
+      var p2 = this.points[i+1];
+      this.centers.push({x:(p1.x+p2.x)/2, y:(p1.y+p2.y)/2, z:(p1.z+p2.z)/2});
+    }
+    this.controls.push([this.points[0],this.points[0]]);
+    for(var i=0; i<this.centers.length-1; i++){
+      var p1 = this.centers[i];
+      var p2 = this.centers[i+1];
+      var dx = this.points[i+1].x-(this.centers[i].x+this.centers[i+1].x)/2;
+      var dy = this.points[i+1].y-(this.centers[i].y+this.centers[i+1].y)/2;
+      var dz = this.points[i+1].z-(this.centers[i].y+this.centers[i+1].z)/2;
+      this.controls.push([{
+        x:(1.0-this.sharpness)*this.points[i+1].x+this.sharpness*(this.centers[i].x+dx),
+        y:(1.0-this.sharpness)*this.points[i+1].y+this.sharpness*(this.centers[i].y+dy),
+        z:(1.0-this.sharpness)*this.points[i+1].z+this.sharpness*(this.centers[i].z+dz)},
+      {
+        x:(1.0-this.sharpness)*this.points[i+1].x+this.sharpness*(this.centers[i+1].x+dx),
+        y:(1.0-this.sharpness)*this.points[i+1].y+this.sharpness*(this.centers[i+1].y+dy),
+        z:(1.0-this.sharpness)*this.points[i+1].z+this.sharpness*(this.centers[i+1].z+dz)}]);
+    }
+    this.controls.push([this.points[this.length-1],this.points[this.length-1]]);
+    this.steps = this.cacheSteps(this.stepLength);
+    return this;
+  }
+
+  /*
+    Caches an array of equidistant (more or less) points on the curve.
+  */
+  Spline.prototype.cacheSteps = function(mindist){
+    var steps = [];
+    var laststep = this.pos(0);
+    steps.push(0);
+    for(var t=0; t<this.duration; t+=10){
+      var step = this.pos(t);
+      var dist = Math.sqrt((step.x-laststep.x)*(step.x-laststep.x)+(step.y-laststep.y)*(step.y-laststep.y)+(step.z-laststep.z)*(step.z-laststep.z));
+      if(dist>mindist){
+        steps.push(t);
+        laststep = step;
+      }
+    }
+    return steps;
+  }
+
+  /*
+    returns angle and speed in the given point in the curve
+  */
+  Spline.prototype.vector = function(t){
+    var p1 = this.pos(t+10);
+    var p2 = this.pos(t-10);
+    return {
+      angle:180*Math.atan2(p1.y-p2.y, p1.x-p2.x)/3.14,
+      speed:Math.sqrt((p2.x-p1.x)*(p2.x-p1.x)+(p2.y-p1.y)*(p2.y-p1.y)+(p2.z-p1.z)*(p2.z-p1.z))
+    }
+  }
+
+  /*
+    Draws the control points
+  */
+  Spline.prototype.drawControlPoints = function(ctx, color){
+    ctx.fillStyle = color||"#f60";
+    ctx.strokeStyle = "#fff";
+    ctx.lineWidth = 2; 
+    for(var i=0; i<this.length; i++){
+      var p = this.points[i];
+      var c1 = this.controls[i][0];
+      var c2 = this.controls[i][1];
+
+      ctx.beginPath();
+      ctx.moveTo(c1.x,c1.y);
+      ctx.lineTo(p.x,p.y);
+      ctx.lineTo(c2.x,c2.y);
+      ctx.stroke();
+            
+      ctx.beginPath();
+      ctx.arc(c1.x, c1.y, 3, 0, 2 * Math.PI, false);
+      ctx.fill();
+      ctx.stroke();
+      
+      /*ctx.beginPath();
+      ctx.arc(this.centers[i].x, this.centers[i].y, 5, 0, 2 * Math.PI, false);
+      ctx.fill();
+      ctx.stroke();*/
+      
+      ctx.beginPath();
+      ctx.arc(c2.x, c2.y, 3, 0, 2 * Math.PI, false);
+      ctx.fill();
+      ctx.stroke();
+      
+
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, 7, 0, 2 * Math.PI, false);
+      ctx.fill();
+      ctx.stroke();
+    }
+    return this;
+  }
+
+  /*
+    Gets the position of the point, given time.
+
+    WARNING: The speed is not constant. The time it takes between control points is constant.
+
+    For constant speed, use Spline.steps[i];
+  */
+  Spline.prototype.pos = function(time){
+
+    function bezier(t, p1, c1, c2, p2){
+      var B = function(t) { 
+        var t2=t*t, t3=t2*t;
+        return [(t3),(3*t2*(1-t)),(3*t*(1-t)*(1-t)),((1-t)*(1-t)*(1-t))]
+      }
+      var b = B(t)
+      var pos = {
+        x : p2.x * b[0] + c2.x * b[1] +c1.x * b[2] + p1.x * b[3],
+        y : p2.y * b[0] + c2.y * b[1] +c1.y * b[2] + p1.y * b[3],
+        z : p2.z * b[0] + c2.z * b[1] +c1.z * b[2] + p1.z * b[3]
+      }
+      return pos; 
+    }
+    var t = time-this.delay;
+    if(t<0) t=0;
+    if(t>this.duration) t=this.duration-1;
+    //t = t-this.delay;
+    var t2 = (t)/this.duration;
+    if(t2>=1) return this.points[this.length-1];
+
+    var n = Math.floor((this.points.length-1)*t2);
+    var t1 = (this.length-1)*t2-n;
+    return bezier(t1,this.points[n],this.controls[n][1],this.controls[n+1][0],this.points[n+1]);
+  }
+
+  /*
+    Draws the line
+  */
+  Spline.prototype.draw = function(ctx,color){
+    ctx.strokeStyle = color || "#7e5e38"; // line color
+    ctx.lineWidth = 14;
+    ctx.beginPath();
+    var pos;
+    for(var i=0; i<this.duration; i+=10){
+      pos = this.pos(i); //bezier(i/max,p1, c1, c2, p2);
+      if(Math.floor(i/100)%2==0) ctx.lineTo(pos.x, pos.y);
+      else ctx.moveTo(pos.x, pos.y);
+    }
+    ctx.stroke();
+    return this;
+  }
+},{"./linestring":19,"lodash":36}],4:[function(require,module,exports){
 //http://stackoverflow.com/questions/839899/how-do-i-calculate-a-point-on-a-circles-circumference
 //radians = degrees * (pi/180)
 
@@ -109,7 +335,7 @@ module.exports = function(point, radius, units, done){
         break
     }
 }
-},{"lodash":35}],4:[function(require,module,exports){
+},{"lodash":36}],5:[function(require,module,exports){
 var t = {}
 var extent = require('./extent')
 t.extent = extent
@@ -128,7 +354,7 @@ module.exports = function(layer, done){
     done(center)
   })
 }
-},{"./extent":11}],5:[function(require,module,exports){
+},{"./extent":12}],6:[function(require,module,exports){
 var t = {}
 var _ = require('lodash'),
     ss = require('simple-statistics')
@@ -155,7 +381,7 @@ module.exports = function(features, done){
     done(err, t.point(averageX, averageY))
   })
 }
-},{"./explode":10,"./point":23,"lodash":35,"simple-statistics":36}],6:[function(require,module,exports){
+},{"./explode":11,"./point":24,"lodash":36,"simple-statistics":37}],7:[function(require,module,exports){
 //this tool takes a feature collection of like geometries and combines them into a single multipoint, multilinestring, or multipolygon
 var _ = require('lodash')
 
@@ -199,7 +425,7 @@ module.exports = function(fc, done){
     break
   }
 }
-},{"lodash":35}],7:[function(require,module,exports){
+},{"lodash":36}],8:[function(require,module,exports){
 //https://github.com/jasondavies/conrec.js
 //http://stackoverflow.com/questions/263305/drawing-a-topographical-map
 var t = {}
@@ -810,7 +1036,7 @@ module.exports = function(points, z, resolution, breaks, done){
     }
   }
 
-},{"./extent":11,"./featurecollection":12,"./grid":14,"./inside":15,"./planepoint":22,"./polygon":24,"./square":31,"./tin":33,"fs":38,"lodash":35}],8:[function(require,module,exports){
+},{"./extent":12,"./featurecollection":13,"./grid":15,"./inside":16,"./planepoint":23,"./polygon":25,"./square":32,"./tin":34,"fs":39,"lodash":36}],9:[function(require,module,exports){
 //http://en.wikipedia.org/wiki/Haversine_formula
 //http://www.movable-type.co.uk/scripts/latlong.html
 // expects a feature collection of points
@@ -855,7 +1081,7 @@ module.exports = function(point1, point2, units, done){
 }
 
 
-},{}],9:[function(require,module,exports){
+},{}],10:[function(require,module,exports){
 var t = {}
 var extent = require('./extent'),
     bboxPolygon = require('./bboxPolygon')
@@ -869,7 +1095,7 @@ module.exports = function(features, done){
     })
   })
 }
-},{"./bboxPolygon":2,"./extent":11}],10:[function(require,module,exports){
+},{"./bboxPolygon":2,"./extent":12}],11:[function(require,module,exports){
 var t = {}
 var _ = require('lodash'),
     featurecollection = require('./featurecollection'),
@@ -960,7 +1186,7 @@ module.exports = function(features, done){
 
 
 
-},{"./featurecollection":12,"./point":23,"lodash":35}],11:[function(require,module,exports){
+},{"./featurecollection":13,"./point":24,"lodash":36}],12:[function(require,module,exports){
 _ = require('lodash')
 
 module.exports = function(layer, done){
@@ -1072,7 +1298,7 @@ module.exports = function(layer, done){
     done(null, bbox)
   }
 }
-},{"lodash":35}],12:[function(require,module,exports){
+},{"lodash":36}],13:[function(require,module,exports){
 module.exports = function(features){
   var fc = {
     "type": "FeatureCollection",
@@ -1081,9 +1307,9 @@ module.exports = function(features){
 
   return fc
 }
-},{}],13:[function(require,module,exports){
-
 },{}],14:[function(require,module,exports){
+
+},{}],15:[function(require,module,exports){
 var t = {}
 var _ = require('lodash'),
   point = require('./point')
@@ -1107,7 +1333,7 @@ module.exports = function(extents, depth, done){
   }
   done(null, fc)
 }
-},{"./point":23,"lodash":35}],15:[function(require,module,exports){
+},{"./point":24,"lodash":36}],16:[function(require,module,exports){
 // http://en.wikipedia.org/wiki/Even%E2%80%93odd_rule
 // modified from: https://github.com/substack/point-in-polygon/blob/master/index.js
 // which was modified from http://www.ecse.rpi.edu/Homepages/wrf/Research/Short_Notes/pnpoly.html
@@ -1130,9 +1356,9 @@ module.exports = function(point, polygon, done){
 }
 
 
-},{}],16:[function(require,module,exports){
-module.exports=require(13)
 },{}],17:[function(require,module,exports){
+module.exports=require(14)
+},{}],18:[function(require,module,exports){
 var ss = require('simple-statistics'),
     _ = require('lodash')
 
@@ -1147,7 +1373,7 @@ module.exports = function(fc, field, num, done){
 
   done(null, breaks)
 }
-},{"lodash":35,"simple-statistics":36}],18:[function(require,module,exports){
+},{"lodash":36,"simple-statistics":37}],19:[function(require,module,exports){
 module.exports = function(coordinates, properties){
   if(coordinates === null) throw new Error('No coordinates passed')
   var linestring = { 
@@ -1161,7 +1387,7 @@ module.exports = function(coordinates, properties){
   return linestring
 }
 
-},{}],19:[function(require,module,exports){
+},{}],20:[function(require,module,exports){
 var path = require('path'),
     fs = require('fs'),
     ext = '',
@@ -1176,7 +1402,7 @@ module.exports = function(file, done) {
   })  
 }
 
-},{"fs":38,"path":39}],20:[function(require,module,exports){
+},{"fs":39,"path":40}],21:[function(require,module,exports){
 // http://cs.selu.edu/~rbyrd/math/midpoint/
 // ((x1+x2)/2), ((y1+y2)/2)
 var t = {}
@@ -1200,7 +1426,7 @@ module.exports = function(point1, point2, done) {
 
   done(null, midpoint)
 }
-},{"./point":23}],21:[function(require,module,exports){
+},{"./point":24}],22:[function(require,module,exports){
 var t = {}
 var _ = require('lodash'),
  distance = require('./distance')
@@ -1236,7 +1462,7 @@ module.exports = function(targetPoint, points, done){
     done(null, nPt)
   }
 }
-},{"./distance":8,"lodash":35}],22:[function(require,module,exports){
+},{"./distance":9,"lodash":36}],23:[function(require,module,exports){
 http://stackoverflow.com/a/13916669/461015
 
 module.exports = function(point, triangle, done){
@@ -1259,7 +1485,7 @@ module.exports = function(point, triangle, done){
 
   done(null, z)
 }
-},{}],23:[function(require,module,exports){
+},{}],24:[function(require,module,exports){
 module.exports = function(x, y, properties){
   if(x === null || y === null) throw new Error('Invalid coordinates')
   var point = { 
@@ -1272,7 +1498,7 @@ module.exports = function(x, y, properties){
   }
   return point
 }
-},{}],24:[function(require,module,exports){
+},{}],25:[function(require,module,exports){
 module.exports = function(coordinates, properties){
   if(coordinates === null) throw new Error('No coordinates passed')
   var polygon = {
@@ -1292,7 +1518,7 @@ module.exports = function(coordinates, properties){
 
 
 
-},{}],25:[function(require,module,exports){
+},{}],26:[function(require,module,exports){
 var ss = require('simple-statistics'),
     _ = require('lodash')
 
@@ -1308,7 +1534,7 @@ module.exports = function(fc, field, percentiles, done){
   })
   done(null, quantiles)
 }
-},{"lodash":35,"simple-statistics":36}],26:[function(require,module,exports){
+},{"lodash":36,"simple-statistics":37}],27:[function(require,module,exports){
 var t = {}
 var featurecollection = require('./featurecollection')
 t.featurecollection = featurecollection
@@ -1328,7 +1554,7 @@ module.exports = function(fc, inField, outField, translations, done){
   })
   done(null, reclassed)
 }
-},{"./featurecollection":12}],27:[function(require,module,exports){
+},{"./featurecollection":13}],28:[function(require,module,exports){
 var t = {}
 var featurecollection = require('./featurecollection')
 t.featurecollection = featurecollection
@@ -1342,7 +1568,7 @@ module.exports = function(collection, key, val, done) {
   }
   done(null, newFC)
 }
-},{"./featurecollection":12}],28:[function(require,module,exports){
+},{"./featurecollection":13}],29:[function(require,module,exports){
 var t = {}
 var _ = require('lodash'),
     featurecollection = require('./featurecollection')
@@ -1352,7 +1578,7 @@ module.exports = function(fc, num, done){
   var outFC = t.featurecollection(_.sample(fc.features, num))
   done(null, outFC)
 }
-},{"./featurecollection":12,"lodash":35}],29:[function(require,module,exports){
+},{"./featurecollection":13,"lodash":36}],30:[function(require,module,exports){
 var fs = require('fs')
 
 module.exports = function(path, features, type, done){
@@ -1366,7 +1592,7 @@ module.exports = function(path, features, type, done){
   }
   
 }
-},{"fs":38}],30:[function(require,module,exports){
+},{"fs":39}],31:[function(require,module,exports){
 module.exports = function(bbox, factor, done){
   var lowX = (((bbox[2] - bbox[0]) / 2) * factor) + bbox[0]
   var lowY = (((bbox[3] - bbox[1]) / 2) * factor) + bbox[1]
@@ -1376,7 +1602,7 @@ module.exports = function(bbox, factor, done){
   var sized = [lowX, lowY, highX, highY]
   done(null, sized)
 }
-},{}],31:[function(require,module,exports){
+},{}],32:[function(require,module,exports){
 var t = {}
 var midpoint = require('../lib/midpoint'),
     point = require('../lib/point'),
@@ -1417,7 +1643,7 @@ module.exports = function(bbox, done) {
   //t.midpoint(t.point(bbox[0,]), bbox)
   //squareBbox[0] = 
 }
-},{"../lib/distance":8,"../lib/midpoint":20,"../lib/point":23}],32:[function(require,module,exports){
+},{"../lib/distance":9,"../lib/midpoint":21,"../lib/point":24}],33:[function(require,module,exports){
 var t = {}
   var _ = require('lodash')
 t.inside = require('./inside')
@@ -1442,7 +1668,7 @@ module.exports = function(points, polygons, field, done){
   })
   done(null, points)
 }
-},{"./inside":15,"lodash":35}],33:[function(require,module,exports){
+},{"./inside":16,"lodash":36}],34:[function(require,module,exports){
 //http://en.wikipedia.org/wiki/Delaunay_triangulation
 //https://github.com/ironwallaby/delaunay
 var t = {}
@@ -1675,11 +1901,11 @@ function triangulate(vertices) {
     }
 }*/
 
-},{"./nearest":21,"./point":23,"./polygon":24,"lodash":35}],34:[function(require,module,exports){
+},{"./nearest":22,"./point":24,"./polygon":25,"lodash":36}],35:[function(require,module,exports){
 // look here for help http://svn.osgeo.org/grass/grass/branches/releasebranch_6_4/vector/v.overlay/main.c
 //must be array of polygons
 
-},{}],35:[function(require,module,exports){
+},{}],36:[function(require,module,exports){
 var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {};/**
  * @license
  * Lo-Dash 2.2.1 (Custom Build) <http://lodash.com/>
@@ -8041,7 +8267,7 @@ var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? 
   }
 }.call(this));
 
-},{}],36:[function(require,module,exports){
+},{}],37:[function(require,module,exports){
 // # simple-statistics
 //
 // A simple, literate statistics system. The code below uses the
@@ -9029,7 +9255,7 @@ var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? 
 
 })(this);
 
-},{}],37:[function(require,module,exports){
+},{}],38:[function(require,module,exports){
 
 
 //
@@ -9247,13 +9473,13 @@ if (typeof Object.getOwnPropertyDescriptor === 'function') {
   exports.getOwnPropertyDescriptor = valueObject;
 }
 
-},{}],38:[function(require,module,exports){
+},{}],39:[function(require,module,exports){
 
 // not implemented
 // The reason for having an empty file and not throwing is to allow
 // untraditional implementation of this module.
 
-},{}],39:[function(require,module,exports){
+},{}],40:[function(require,module,exports){
 var process=require("__browserify_process");// Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -9464,7 +9690,7 @@ exports.extname = function(path) {
   return splitPath(path)[3];
 };
 
-},{"__browserify_process":41,"_shims":37,"util":40}],40:[function(require,module,exports){
+},{"__browserify_process":42,"_shims":38,"util":41}],41:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -10009,7 +10235,7 @@ function hasOwnProperty(obj, prop) {
   return Object.prototype.hasOwnProperty.call(obj, prop);
 }
 
-},{"_shims":37}],41:[function(require,module,exports){
+},{"_shims":38}],42:[function(require,module,exports){
 // shim for using process in browser
 
 var process = module.exports = {};

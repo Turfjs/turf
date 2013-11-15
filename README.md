@@ -61,6 +61,7 @@ bower install turf
 - contour
 - sample
 - tag
+- bezier
 
 **Planned Features**
 
@@ -580,6 +581,39 @@ t.load('./testIn/tagPoints.geojson', function(err, points){
 })
 ```
 
+
+**bezier**
+
+Takes a linestring and outputs a curved version of the line.
+
+```javascript
+var t = require('turf')
+var resolution = 5000
+var intensity = .85
+var lineIn = t.linestring([
+      [
+        -80.08724212646484,
+        32.77428536643231
+      ],
+      [
+        -80.03746032714844,
+        32.84007757059952
+      ],
+      [
+        -80.01548767089844,
+        32.74512501406368
+      ],
+      [
+        -79.95368957519531,
+        32.850461360442424
+      ]
+    ])
+
+t.bezier(lineIn, 5000, .85, function(err, lineOut){
+  if(err) throw err
+  console.log(lineOut)
+})
+```
 
 - - -
 
