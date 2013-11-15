@@ -60,6 +60,7 @@ bower install turf
 - reclass
 - contour
 - sample
+- tag
 
 **Planned Features**
 
@@ -70,7 +71,7 @@ Additional feature requests welcomed and encouraged. To request a feature, pleas
 - cluster
 - bezier
 - interpolate
-- tag
+
 - area
 - filter
 - intersect
@@ -562,6 +563,24 @@ t.load('./testIn/Points3.geojson', function(err, pts){
   })
 })
 ```
+
+
+**tag**
+
+Performs a spatial join on a set of points from a set of polygons.
+
+```javascript
+var t = require('turf')
+
+t.load('./testIn/tagPoints.geojson', function(err, points){
+  t.load('./testIn/tagPolygons.geojson', function(err, polygons){
+    t.tag(points, polygons, 'polyID', function(err, taggedPoints){
+      console.log(taggedPoints)
+    })
+  })
+})
+```
+
 
 - - -
 
