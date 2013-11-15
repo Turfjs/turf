@@ -8,8 +8,9 @@ describe('bezier', function(){
       if(err) throw err
       t.bezier(lineIn, 5000, function(err, lineOut){
         if(err) throw err
-        lineout.should.be.ok
-        lineOut.features.should.be.ok
+        lineOut.should.be.ok
+        lineOut.geometry.coordinates.should.be.ok
+        fs.writeFileSync('./testOut/bezier.geojson', JSON.stringify(lineOut))
         done()        
       })
     })
