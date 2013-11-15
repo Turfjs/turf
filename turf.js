@@ -67,7 +67,7 @@ var t = {}
 var _ = require('lodash')
 t.linestring = require('./linestring')
 
-module.exports = function(line, resolution, done){
+module.exports = function(line, resolution, intensity, done){
   var lineOut = t.linestring([])
   lineOut.properties = line.properties
   pts = []
@@ -77,8 +77,8 @@ module.exports = function(line, resolution, done){
 
   var spline = new Spline({
     points: pts,
-    duration: 15000,
-    //sharpness: how_curvy,
+    duration: resolution,
+    sharpness: intensity,
     //stepLength: distance_between_points_to_cache
   });
   for(var i=0; i<spline.duration; i+=10){
