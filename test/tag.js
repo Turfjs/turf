@@ -1,5 +1,6 @@
 var t = require('../index'),
-  should = require('should')
+  should = require('should'),
+  fs = require('fs')
 
 describe('tag', function(){
   it('should tag a point layer with a property from a polygon layer', function(done){
@@ -11,6 +12,7 @@ describe('tag', function(){
           if(err) throw err
           taggedPoints.should.be.ok
           taggedPoints.features.should.be.ok
+          fs.writeFileSync('./testOut/taggedPoints.geojson', JSON.stringify(taggedPoints))
           done()
         })
       })

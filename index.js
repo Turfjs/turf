@@ -1,4 +1,5 @@
 module.exports = {
+  tag: require('./lib/tag'),
   size: require('./lib/size'),
   sample: require('./lib/sample'),
   jenks: require('./lib/jenks'),
