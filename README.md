@@ -70,7 +70,6 @@ Additional feature requests welcomed and encouraged. To request a feature, pleas
 - krige
 - interval
 - cluster
-- bezier
 - interpolate
 - area
 - filter
