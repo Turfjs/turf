@@ -330,6 +330,28 @@ t.remove(points, 'species', 'dogwood', function(err, result) {
 ```
 
 
+**filter**
+
+Keeps any features from a feature collection that match a property value.
+
+```javascript
+var t = require('turf')
+var trees = t.featurecollection([
+  t.point(1,2, {species: 'oak'}),
+  t.point(2,1, {species: 'birch'}), 
+  t.point(3,1, {species: 'oak'}),
+  t.point(2,2, {species: 'redwood'}), 
+  t.point(2,3, {species: 'maple'}), 
+  t.point(4,2, {species: 'oak'})
+  ])
+
+t.filter(trees, 'species', 'oak', function(err, oaks){
+  if(err) throw err
+  console.log(oaks)
+})
+```
+
+
 **inside**
 
 Checks to see if a point is inside of a polygon. The polygon can be convex or concave.
