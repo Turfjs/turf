@@ -47,6 +47,7 @@ bower install turf
 - explode
 - combine
 - remove
+- filter
 - distance
 - buffer
 - nearest
@@ -72,7 +73,6 @@ Additional feature requests welcomed and encouraged. To request a feature, pleas
 - cluster
 - interpolate
 - area
-- filter
 - intersect
 - union
 - erase
