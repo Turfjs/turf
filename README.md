@@ -195,7 +195,8 @@ Calculates the minimum square bounding box for another bounding box.
 
 ```javascript
 var t = require('turf')
-var bbox = [0,0,5,10]
+var bbox = [0,0,5,10]]
+
 t.square(bbox, function(err, square){
   if(err) throw err
   console.log(square) // [-2.5, 0, 7.5, 10]
@@ -534,6 +535,7 @@ t.load('./testIn/Points3.geojson', function(err, pts){
 Takes a feature collection, a in field, an out field, and an array of translations and outputs an identical feature collection with the out field property populated.
 
 ```javascript
+var t = require('turf')
 var inField = 'elevation',
     outField = 'heightIndex',
     // 0 to 20 will map to 1, 20 to 40 will map to 2, etc.
