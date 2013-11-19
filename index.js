@@ -1,4 +1,6 @@
 module.exports = {
+  sum: require('./lib/sum'),
+  average: require('./lib/average'),
   topo: require('./lib/topo'),
   bezier: require('./lib/bezier'),
   tag: require('./lib/tag'),
