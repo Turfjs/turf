@@ -18,9 +18,9 @@ describe('average', function(){
       averaged.should.be.ok
       averaged.features.should.be.ok
       averaged.features[0].geometry.type.should.equal('polygon')
-      averaged.features[0].properties.population_sum.should.equal(400)
-      averaged.features[1].properties.population_sum.should.equal(200)
+      averaged.features[0].properties.population_avg.should.equal(400)
+      averaged.features[1].properties.population_avg.should.equal(200)
       done()
     })
   })
-}) 
+})
