@@ -21,7 +21,7 @@ describe('topo', function(){
     t.topo(fc, function(err, topoPolys){
       if(err) throw err
       topoPolys.should.be.ok
-      //fs.writeFileSync('./testOut/topo.topojson', JSON.stringify(topoPolys))
+      fs.writeFileSync('./testOut/topo.topojson', JSON.stringify(topoPolys))
       done()
     })
   })
