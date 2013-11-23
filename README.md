@@ -103,7 +103,7 @@ t.load(geoJsonFile, function(trees, err){
 
 **save**
 
-Saves out a feature or feature collection. 'geojson' is currently supported.
+Saves out a feature or feature collection. 'geojson' and 'topojson' are currently supported.
 
 ```javascript
 var path = './testOut/poly.geojson'
