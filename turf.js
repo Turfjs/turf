@@ -43,8 +43,17 @@ module.exports = {
 
 
 },{"./lib/average":2,"./lib/bboxPolygon":3,"./lib/bezier":4,"./lib/buffer":5,"./lib/center":6,"./lib/centroid":7,"./lib/combine":8,"./lib/contour":9,"./lib/distance":10,"./lib/envelope":11,"./lib/explode":12,"./lib/extent":13,"./lib/featurecollection":14,"./lib/filter":15,"./lib/grid":16,"./lib/inside":17,"./lib/intersect":18,"./lib/jenks":19,"./lib/linestring":20,"./lib/load":21,"./lib/midpoint":22,"./lib/nearest":23,"./lib/planepoint":24,"./lib/point":25,"./lib/polygon":26,"./lib/quantile":27,"./lib/reclass":28,"./lib/remove":29,"./lib/sample":30,"./lib/save":31,"./lib/size":32,"./lib/square":33,"./lib/sum":34,"./lib/tag":35,"./lib/tin":36,"./lib/topo":37,"./lib/union":38}],2:[function(require,module,exports){
+var t = {}
+var _ = require('lodash')
+t.tag = require('./tag')
 
-},{}],3:[function(require,module,exports){
+module.exports = function(polyFC, PtFC, field, outField, polyID, done){
+  t.tag(ptFC, polyFC, polyID, function(err, taggedPts){
+    
+  })
+  done(new Error('not implemented'))
+}
+},{"./tag":35,"lodash":39}],3:[function(require,module,exports){
 var t = {}
 var point = require('../lib/point'),
     polygon = require('../lib/polygon')
@@ -1374,7 +1383,7 @@ module.exports = function(point, polygon, done){
 
 
 },{}],18:[function(require,module,exports){
-module.exports=require(2)
+
 },{}],19:[function(require,module,exports){
 var ss = require('simple-statistics'),
     _ = require('lodash')
@@ -1598,7 +1607,9 @@ module.exports = function(fc, num, done){
   done(null, outFC)
 }
 },{"./featurecollection":14,"lodash":39}],31:[function(require,module,exports){
+var t = {}
 var fs = require('fs')
+t.topo = require('./topo')
 
 module.exports = function(path, features, type, done){
   if(!type) type = 'geojson'
@@ -1607,11 +1618,18 @@ module.exports = function(path, features, type, done){
       fs.writeFile(path, JSON.stringify(features), function(err){
         done(err, 1)
       })
-      break      
+      break
+      
+    case 'topojson':
+      t.topo(features, function(err, topology){
+        fs.writeFile(path, JSON.stringify(features), function(err){
+          done(err, 1)
+        })
+      })
+      break
   }
-  
 }
-},{"fs":69}],32:[function(require,module,exports){
+},{"./topo":37,"fs":69}],32:[function(require,module,exports){
 module.exports = function(bbox, factor, done){
   var lowX = (((bbox[2] - bbox[0]) / 2) * factor) + bbox[0]
   var lowY = (((bbox[3] - bbox[1]) / 2) * factor) + bbox[1]
@@ -1663,8 +1681,12 @@ module.exports = function(bbox, done) {
   //squareBbox[0] = 
 }
 },{"../lib/distance":10,"../lib/midpoint":22,"../lib/point":25}],34:[function(require,module,exports){
-module.exports=require(2)
-},{}],35:[function(require,module,exports){
+var _ = require('lodash')
+
+module.exports = function(polyFC, ptFC, field, outField, done){
+  done(new Error('not implemented'))
+}
+},{"lodash":39}],35:[function(require,module,exports){
 var t = {}
   var _ = require('lodash')
 t.inside = require('./inside')
@@ -1926,7 +1948,7 @@ function triangulate(vertices) {
 var topojson = require('topojson')
 
 module.exports = function(geojson, done){
-  var topology = topojson.topology(geojson)
+  var topology = topojson.topology({geojson: geojson})
   done(null, topology)
 }
 },{"topojson":41}],38:[function(require,module,exports){

@@ -13,7 +13,7 @@ describe('average', function(){
     var pt5 = t.point(19,7, {population: 300})
     var ptFC = t.featurecollection([pt1, pt2, pt3, pt4, pt5])
 
-    t.average(polyFC, ptFC, 'population', function(err, averaged){
+    t.average(polyFC, ptFC, 'population', 'pop_avg', function(err, averaged){
       if(err) throw err
       averaged.should.be.ok
       averaged.features.should.be.ok

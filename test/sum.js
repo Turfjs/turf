@@ -13,7 +13,7 @@ describe('sum', function(){
     var pt5 = t.point(19,7, {population: 100})
     var ptFC = t.featurecollection([pt1, pt2, pt3, pt4, pt5])
 
-    t.sum(polyFC, ptFC, 'population', function(err, summed){
+    t.sum(polyFC, ptFC, 'population', 'pop_sum', function(err, summed){
       if(err) throw err
       summed.should.be.ok
       summed.features.should.be.ok
