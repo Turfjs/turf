@@ -92,9 +92,9 @@ Loads a Feature or FeaturCollection from a file.
 
 ```javascript
 var t = require('turf')
-geojsonFile = '/path/to/file/example.geojson'
+geojsonFile = '/path/to/file/tress.geojson'
 
-t.load(geoJsonFile, function(trees, err){
+t.load(geoJsonFile, function(err, trees){
   if(err) throw err
   console.log(trees)
 })
