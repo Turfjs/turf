@@ -14,16 +14,16 @@ Pull requests, feature requests, comments on issues, testing, documentation, or 
 - This is a functional library. Ensure that your functions never have side effects.
 - **Always create an issue before starting a new feature. This will allow us to discuss how something is being implemented and integrated. Turned down pull requests are no fun for anyone.**
 
-### Development
+## Development
 
-## Run Tests
+### Run Tests
 
 ```shell
 cd test 
 mocha .
 ```
 
-## Build
+### Build
 
 ```shell
 sh build
