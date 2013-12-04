@@ -1,4 +1,5 @@
 module.exports = {
+  simplify: require('./lib/simplify'),
   sum: require('./lib/sum'),
   average: require('./lib/average'),
   topo: require('./lib/topo'),
