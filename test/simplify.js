@@ -7,7 +7,7 @@ describe('simplify', function(){
     t.load('./testOut/contours.geojson', function(err, polys){
       if(err) throw err
       polys.should.be.ok
-      t.simplify(polys, function(err, simplified){
+      t.simplify(polys, 50, 0, function(err, simplified){
         if(err) throw err
         simplified.should.be.ok
         fs.writeFileSync('./testOut/simplified.geojson', JSON.stringify(simplified))
