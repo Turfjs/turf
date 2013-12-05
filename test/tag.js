@@ -8,7 +8,7 @@ describe('tag', function(){
       if(err) throw err
       t.load('./testIn/tagPolygons.geojson', function(err, polygons){
         if(err) throw err
-        t.tag(points, polygons, 'polyID', function(err, taggedPoints){
+        t.tag(points, polygons, 'polyID', 'containingPolyID', function(err, taggedPoints){
           if(err) throw err
           taggedPoints.should.be.ok
           taggedPoints.features.should.be.ok
@@ -18,4 +18,4 @@ describe('tag', function(){
       })
     })
   })
-}) 
+})
