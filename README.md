@@ -63,6 +63,7 @@ bower install turf
 - sample
 - tag
 - bezier
+- simplify
 
 **Planned Features**
 
@@ -80,7 +81,6 @@ Additional feature requests welcomed and encouraged. To request a feature, pleas
 - union
 - erase
 - smooth
-- simplify
 
 - - -
 
@@ -638,6 +638,24 @@ var lineIn = t.linestring([
 t.bezier(lineIn, 5000, .85, function(err, lineOut){
   if(err) throw err
   console.log(lineOut)
+})
+```
+
+
+**simplify**
+
+Takes a feature collection of polygons or linestrings and returns a simplified version, preserving topology of shared boundaries.
+
+```javascript
+var t = require('turf')
+var quantization = 50
+var minimumArea = 0
+
+t.load('./path/to/complex.geojson', function(err, polys){
+  t.simplify(polys, quantization, minimumArea, function(err, simplified){
+    if(err) throw err
+    console.log(simplified)
+  })
 })
 ```
 
