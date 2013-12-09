@@ -1,4 +1,5 @@
 module.exports = {
+  switch: require('./lib/switch')
   simplify: require('./lib/simplify'),
   sum: require('./lib/sum'),
   average: require('./lib/average'),
