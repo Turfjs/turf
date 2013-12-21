@@ -1,4 +1,5 @@
 module.exports = {
+  aggregate: require('./lib/aggregate'),
   flip: require('./lib/flip'),
   simplify: require('./lib/simplify'),
   sum: require('./lib/sum'),
