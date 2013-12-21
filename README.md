@@ -783,7 +783,7 @@ t.max(polyFC, ptFC, 'population', 'pop_max', function(err, maxPolys){
 
 ###aggregate
 
-Takes a set of polygons, a set of points, and an array of aggregations, then perform them. Sum and average are currently supported.
+Takes a set of polygons, a set of points, and an array of aggregations, then perform them. Sum, average, min, and max are  supported.
 
 ```javascript
 var t = require('turf')
@@ -807,6 +807,16 @@ var aggregations = [
     aggregation: 'average',
     inField: 'population',
     outField: 'pop_avg'
+  },
+  {
+    aggregation: 'min',
+    inField: 'population',
+    outField: 'pop_min'
+  },
+  {
+    aggregation: 'max',
+    inField: 'population',
+    outField: 'pop_max'
   }
 ]
 
