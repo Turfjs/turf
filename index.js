@@ -1,4 +1,6 @@
 module.exports = {
+  min: require('./lib/min'),
+  max: require('./lib/max'),
   aggregate: require('./lib/aggregate'),
   flip: require('./lib/flip'),
   simplify: require('./lib/simplify'),

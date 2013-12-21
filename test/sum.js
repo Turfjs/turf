@@ -22,4 +22,4 @@ describe('sum', function(){
       done()
     })
   })
-}) 
+})
