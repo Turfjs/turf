@@ -214,6 +214,11 @@
               </a>
             
               
+              <a class="source" href="test_template.html">
+                test_template.js
+              </a>
+            
+              
               <a class="source" href="tin.html">
                 tin.js
               </a>
@@ -251,14 +256,21 @@
               
             </div>
             
-            <div class="content"><div class='highlight'><pre>module.exports = <span class="function"><span class="keyword">function</span><span class="params">(features)</span>{</span>
-  <span class="keyword">var</span> fc = {
-    <span class="string">"type"</span>: <span class="string">"FeatureCollection"</span>,
-    <span class="string">"features"</span>: features
-  }
+            <div class="content"><div class='highlight'><pre><span class="keyword">var</span> t = require(<span class="string">'../index'</span>),
+  should = require(<span class="string">'should'</span>)
 
-  <span class="keyword">return</span> fc
-}</pre></div></div>
+describe(<span class="string">'featurecollection'</span>, <span class="function"><span class="keyword">function</span><span class="params">()</span>{</span>
+  it(<span class="string">'should return a feature collection'</span>, <span class="function"><span class="keyword">function</span><span class="params">(done)</span>{</span>
+    <span class="keyword">var</span> p1 = t.point(<span class="number">0</span>,<span class="number">0</span>),
+        p2 = t.point(<span class="number">0</span>,<span class="number">10</span>),
+        p3 = t.point(<span class="number">10</span>,<span class="number">10</span>),
+        p4 = t.point(<span class="number">10</span>,<span class="number">0</span>)
+    <span class="keyword">var</span> fc = t.featurecollection([p1,p2,p3,p4])
+    fc.should.be.ok
+    fc.features.length.should.equal(<span class="number">4</span>)
+    done()
+  })
+})</pre></div></div>
             
         </li>
         

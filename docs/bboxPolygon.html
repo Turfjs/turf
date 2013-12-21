@@ -214,6 +214,11 @@
               </a>
             
               
+              <a class="source" href="test_template.html">
+                test_template.js
+              </a>
+            
+              
               <a class="source" href="tin.html">
                 tin.js
               </a>
@@ -251,26 +256,20 @@
               
             </div>
             
-            <div class="content"><div class='highlight'><pre><span class="keyword">var</span> t = {}
-<span class="keyword">var</span> point = require(<span class="string">'../lib/point'</span>),
-    polygon = require(<span class="string">'../lib/polygon'</span>)
-t.point = point
-t.polygon = polygon
+            <div class="content"><div class='highlight'><pre><span class="keyword">var</span> t = require(<span class="string">'../index'</span>),
+  should = require(<span class="string">'should'</span>)
 
-module.exports = <span class="function"><span class="keyword">function</span><span class="params">(bbox, done)</span>{</span>
-  <span class="keyword">var</span> lowLeft = t.point(bbox[<span class="number">0</span>], bbox[<span class="number">1</span>])
-  <span class="keyword">var</span> topLeft = t.point(bbox[<span class="number">0</span>], bbox[<span class="number">3</span>])
-  <span class="keyword">var</span> topRight = t.point(bbox[<span class="number">2</span>], bbox[<span class="number">3</span>])
-  <span class="keyword">var</span> lowRight = t.point(bbox[<span class="number">2</span>], bbox[<span class="number">1</span>])
-
-  <span class="keyword">var</span> poly = t.polygon([[
-    lowLeft.geometry.coordinates, 
-    lowRight.geometry.coordinates, 
-    topRight.geometry.coordinates, 
-    topLeft.geometry.coordinates
-  ]])
-  done(<span class="literal">null</span>, poly)
-}</pre></div></div>
+describe(<span class="string">'bboxPolygon'</span>, <span class="function"><span class="keyword">function</span><span class="params">()</span>{</span>
+  it(<span class="string">'should take a bbox and return the equivalent polygon feature'</span>, <span class="function"><span class="keyword">function</span><span class="params">(done)</span>{</span>
+    t.bboxPolygon([<span class="number">0</span>,<span class="number">0</span>,<span class="number">10</span>,<span class="number">10</span>], <span class="function"><span class="keyword">function</span><span class="params">(err, poly)</span>{</span>
+      <span class="keyword">if</span>(err) <span class="keyword">throw</span> err
+      poly.should.be.ok
+      poly.geometry.type.should.equal(<span class="string">'Polygon'</span>)
+      poly.geometry.coordinates.should.be.ok
+      done()
+    })
+  })
+})</pre></div></div>
             
         </li>
         

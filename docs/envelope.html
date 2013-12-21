@@ -214,6 +214,11 @@
               </a>
             
               
+              <a class="source" href="test_template.html">
+                test_template.js
+              </a>
+            
+              
               <a class="source" href="tin.html">
                 tin.js
               </a>
@@ -251,19 +256,22 @@
               
             </div>
             
-            <div class="content"><div class='highlight'><pre><span class="keyword">var</span> t = {}
-<span class="keyword">var</span> extent = require(<span class="string">'./extent'</span>),
-    bboxPolygon = require(<span class="string">'./bboxPolygon'</span>)
-t.bboxPolygon = bboxPolygon
-t.extent = extent
+            <div class="content"><div class='highlight'><pre><span class="keyword">var</span> t = require(<span class="string">'../index'</span>),
+  should = require(<span class="string">'should'</span>)
 
-module.exports = <span class="function"><span class="keyword">function</span><span class="params">(features, done)</span>{</span>
-  t.extent(features, <span class="function"><span class="keyword">function</span><span class="params">(err, bbox)</span>{</span>
-    t.bboxPolygon(bbox, <span class="function"><span class="keyword">function</span><span class="params">(err, poly)</span>{</span>
-      done(err, poly)
+describe(<span class="string">'envelope'</span>, <span class="function"><span class="keyword">function</span><span class="params">()</span>{</span>
+  it(<span class="string">'should return a polygon that represents the bbox around a feature or feature collection.'</span>, <span class="function"><span class="keyword">function</span><span class="params">(done)</span>{</span>
+    t.load(<span class="string">'../test/testIn/FeatureCollection.geojson'</span>, <span class="function"><span class="keyword">function</span><span class="params">(err, features)</span>{</span>
+      t.envelope(features, <span class="function"><span class="keyword">function</span><span class="params">(err, poly)</span>{</span>
+        <span class="keyword">if</span>(err) <span class="keyword">throw</span> err
+        poly.should.be.ok
+        poly.geometry.type.should.equal(<span class="string">'Polygon'</span>)
+        poly.geometry.coordinates.should.be.ok
+        done()
+      })
     })
   })
-}</pre></div></div>
+})</pre></div></div>
             
         </li>
         

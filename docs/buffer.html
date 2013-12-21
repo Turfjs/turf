@@ -214,6 +214,11 @@
               </a>
             
               
+              <a class="source" href="test_template.html">
+                test_template.js
+              </a>
+            
+              
               <a class="source" href="tin.html">
                 tin.js
               </a>
@@ -248,57 +253,22 @@
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-1">&#182;</a>
               </div>
-              <p><a href="http://stackoverflow.com/questions/839899/how-do-i-calculate-a-point-on-a-circles-circumference">http://stackoverflow.com/questions/839899/how-do-i-calculate-a-point-on-a-circles-circumference</a>
-radians = degrees * (pi/180)</p>
-
+              
             </div>
             
-            <div class="content"><div class='highlight'><pre><span class="keyword">var</span> _ = require(<span class="string">'lodash'</span>)
+            <div class="content"><div class='highlight'><pre><span class="keyword">var</span> t = require(<span class="string">'../index'</span>), fs = require(<span class="string">'fs'</span>)
 
-module.exports = <span class="function"><span class="keyword">function</span><span class="params">(point, radius, units, done)</span>{</span>
-  <span class="keyword">var</span> geometry = point.geometry
-  <span class="keyword">var</span> type = geometry.type
-  <span class="keyword">var</span> polygon = {
-    <span class="string">"type"</span>: <span class="string">"Feature"</span>,
-    <span class="string">"geometry"</span>: {
-      <span class="string">"type"</span>: <span class="string">"Polygon"</span>,
-      <span class="string">"coordinates"</span>: []
-    }
-  }
-
-  <span class="keyword">switch</span>(units){
-    <span class="keyword">case</span> <span class="string">'miles'</span>:
-      radius = radius / <span class="number">69.047</span>
-      <span class="keyword">break</span>
-    <span class="keyword">case</span> <span class="string">'kilometers'</span>:
-      radius = radius / <span class="number">111.12</span>
-      <span class="keyword">break</span>
-    <span class="keyword">case</span> <span class="string">'degrees'</span>:
-      <span class="keyword">break</span>
-  }
-
-  <span class="keyword">switch</span>(type){
-      <span class="keyword">case</span> <span class="string">'Point'</span>:
-        <span class="keyword">var</span> coordinates = []
-        <span class="keyword">var</span> x = geometry.coordinates[<span class="number">0</span>]
-        <span class="keyword">var</span> y = geometry.coordinates[<span class="number">1</span>]
-        <span class="keyword">var</span> range = _.range(-<span class="number">180</span>, <span class="number">180</span>, <span class="number">1</span>)
-        <span class="keyword">for</span>(<span class="keyword">var</span> i <span class="keyword">in</span> _.range(<span class="number">0</span>, <span class="number">360</span>)){
-          <span class="keyword">var</span> xC = x + radius * Math.cos(range[i] * (Math.PI / <span class="number">180</span>))
-          <span class="keyword">var</span> yC = y + radius * Math.sin(range[i] * (Math.PI / <span class="number">180</span>))
-          coordinates.push([xC, yC])
-        }
-        polygon.geometry.coordinates = [coordinates]
-        done(<span class="literal">null</span>, polygon)
-        <span class="keyword">break</span>
-      <span class="keyword">case</span> <span class="string">'LineString'</span>:
-        done(<span class="keyword">new</span> Error(<span class="string">'LineString not implemented'</span>))
-        <span class="keyword">break</span>
-      <span class="keyword">case</span> <span class="string">'Polygon'</span>:
-        done(<span class="keyword">new</span> Error(<span class="string">'Polygon not implemented'</span>))
-        <span class="keyword">break</span>
-    }
-}</pre></div></div>
+describe(<span class="string">'buffer'</span>, <span class="function"><span class="keyword">function</span><span class="params">()</span>{</span>
+  it(<span class="string">'should buffer a Point'</span>, <span class="function"><span class="keyword">function</span><span class="params">(done)</span>{</span>
+    t.load(<span class="string">'../test/testIn/Point1.geojson'</span>, <span class="function"><span class="keyword">function</span><span class="params">(err, pt)</span>{</span>
+      t.buffer(pt, <span class="number">10</span>, <span class="string">'miles'</span>, <span class="function"><span class="keyword">function</span><span class="params">(err, buffered)</span>{</span>
+        fs.writeFileSync(<span class="string">'./testOut/buffered.geojson'</span>,JSON.stringify(buffered))
+        <span class="keyword">if</span>(err) <span class="keyword">throw</span> err
+        done()
+      })
+    })
+  })
+})</pre></div></div>
             
         </li>
         

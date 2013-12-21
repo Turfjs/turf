@@ -214,6 +214,11 @@
               </a>
             
               
+              <a class="source" href="test_template.html">
+                test_template.js
+              </a>
+            
+              
               <a class="source" href="tin.html">
                 tin.js
               </a>
@@ -251,24 +256,22 @@
               
             </div>
             
-            <div class="content"><div class='highlight'><pre><span class="keyword">var</span> t = {}
-<span class="keyword">var</span> extent = require(<span class="string">'./extent'</span>)
-t.extent = extent
+            <div class="content"><div class='highlight'><pre><span class="keyword">var</span> t = require(<span class="string">'../index'</span>),
+    should = require(<span class="string">'should'</span>),
+    _ = require(<span class="string">'lodash'</span>)
 
-module.exports = <span class="function"><span class="keyword">function</span><span class="params">(layer, done)</span>{</span>
-  t.extent(layer, <span class="function"><span class="keyword">function</span><span class="params">(err, extent)</span>{</span>
-    <span class="keyword">var</span> x = (extent[<span class="number">0</span>] +extent[<span class="number">2</span>])/<span class="number">2</span>
-    <span class="keyword">var</span> y = (extent[<span class="number">1</span>] + extent[<span class="number">3</span>])/<span class="number">2</span>
-    <span class="keyword">var</span> center = {
-      <span class="string">"type"</span>: <span class="string">"Feature"</span>,
-      <span class="string">"geometry"</span>: {
-        <span class="string">"type"</span>: <span class="string">"Point"</span>,
-        <span class="string">"coordinates"</span>: [x, y]
-      }
-    }
-    done(center)
+describe(<span class="string">'center'</span>, <span class="function"><span class="keyword">function</span><span class="params">()</span>{</span>
+  it(<span class="string">'should return the proper center for a FeatureCollection'</span>, <span class="function"><span class="keyword">function</span><span class="params">(done)</span>{</span>
+    t.load(<span class="string">'../test/testIn/FeatureCollection.geojson'</span>, <span class="function"><span class="keyword">function</span><span class="params">(err, layer)</span>{</span>
+      <span class="keyword">if</span>(err) <span class="keyword">throw</span> err
+      t.center(layer, <span class="function"><span class="keyword">function</span><span class="params">(center)</span>{</span>
+        center.should.be.ok
+        _.isEqual(center.geometry.coordinates, [<span class="number">75</span>, -<span class="number">3</span>]).should.be.<span class="literal">true</span>
+        done()
+      })
+    })
   })
-}</pre></div></div>
+})</pre></div></div>
             
         </li>
         

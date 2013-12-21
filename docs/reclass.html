@@ -214,6 +214,11 @@
               </a>
             
               
+              <a class="source" href="test_template.html">
+                test_template.js
+              </a>
+            
+              
               <a class="source" href="tin.html">
                 tin.js
               </a>
@@ -251,25 +256,28 @@
               
             </div>
             
-            <div class="content"><div class='highlight'><pre><span class="keyword">var</span> t = {}
-<span class="keyword">var</span> featurecollection = require(<span class="string">'./featurecollection'</span>)
-t.featurecollection = featurecollection
+            <div class="content"><div class='highlight'><pre><span class="keyword">var</span> t = require(<span class="string">'../index'</span>),
+    should = require(<span class="string">'should'</span>)
 
-module.exports = <span class="function"><span class="keyword">function</span><span class="params">(fc, inField, outField, translations, done)</span>{</span>
-  <span class="keyword">var</span> reclassed = t.featurecollection([])
-  _.each(fc.features, <span class="function"><span class="keyword">function</span><span class="params">(feature)</span>{</span>
-    <span class="keyword">var</span> reclassedFeature
-    <span class="keyword">var</span> found = <span class="literal">false</span>
-    <span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; translations.length; i++){
-      <span class="keyword">if</span>(feature.properties[inField] &gt;= translations[i][<span class="number">0</span>] &amp;&amp; feature.properties[inField] &lt;= translations[i][<span class="number">1</span>]) {
-        reclassedFeature = _.clone(feature, <span class="literal">true</span>)
-        reclassedFeature.properties[outField] = translations[i][<span class="number">2</span>]
-      }
-    }
-    reclassed.features.push(reclassedFeature)
+describe(<span class="string">'reclass'</span>, <span class="function"><span class="keyword">function</span><span class="params">()</span>{</span>
+  it(<span class="string">'should take a feature collection and an array of translations and return a new featurecollection reclassed'</span>, <span class="function"><span class="keyword">function</span><span class="params">(done)</span>{</span>
+    <span class="keyword">var</span> inField = <span class="string">'elevation'</span>,
+        outField = <span class="string">'heightIndex'</span>,
+        translations = [[<span class="number">0</span>, <span class="number">20</span>, <span class="number">1</span>], [<span class="number">20</span>, <span class="number">40</span>, <span class="number">2</span>], [<span class="number">40</span>, <span class="number">60</span> , <span class="number">3</span>], [<span class="number">60</span>, <span class="literal">Infinity</span>, <span class="number">4</span>]]
+
+    t.load(<span class="string">'./testIn/Points3.geojson'</span>, <span class="function"><span class="keyword">function</span><span class="params">(err, pts)</span>{</span>
+      <span class="keyword">if</span>(err) <span class="keyword">throw</span> err
+      pts.should.be.ok
+      t.reclass(pts, inField, outField, translations, <span class="function"><span class="keyword">function</span><span class="params">(err, outPts)</span>{</span>
+        <span class="keyword">if</span>(err) <span class="keyword">throw</span> err
+        outPts.should.be.ok
+        outPts.features[<span class="number">0</span>].geometry.type.should.equal(<span class="string">'Point'</span>)
+        t.save(<span class="string">'./testOut/reclassed.geojson'</span>, outPts, <span class="string">'geojson'</span>, <span class="function"><span class="keyword">function</span><span class="params">()</span>{</span>})
+        done()
+      })
+    })
   })
-  done(<span class="literal">null</span>, reclassed)
-}</pre></div></div>
+})</pre></div></div>
             
         </li>
         

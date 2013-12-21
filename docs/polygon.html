@@ -214,6 +214,11 @@
               </a>
             
               
+              <a class="source" href="test_template.html">
+                test_template.js
+              </a>
+            
+              
               <a class="source" href="tin.html">
                 tin.js
               </a>
@@ -251,19 +256,15 @@
               
             </div>
             
-            <div class="content"><div class='highlight'><pre>module.exports = <span class="function"><span class="keyword">function</span><span class="params">(coordinates, properties)</span>{</span>
-  <span class="keyword">if</span>(coordinates === <span class="literal">null</span>) <span class="keyword">throw</span> <span class="keyword">new</span> Error(<span class="string">'No coordinates passed'</span>)
-  <span class="keyword">var</span> polygon = {
-    <span class="string">"type"</span>: <span class="string">"Feature"</span>,
-    <span class="string">"geometry"</span>: {
-      <span class="string">"type"</span>: <span class="string">"Polygon"</span>,
-      <span class="string">"coordinates"</span>: coordinates
-    },
-    <span class="string">"properties"</span>: properties
-  }
-  
-  <span class="keyword">return</span> polygon
-}</pre></div></div>
+            <div class="content"><div class='highlight'><pre><span class="keyword">var</span> t = require(<span class="string">'../index'</span>)
+
+describe(<span class="string">'polygon'</span>, <span class="function"><span class="keyword">function</span><span class="params">()</span>{</span>
+  it(<span class="string">'should create a polygon'</span>, <span class="function"><span class="keyword">function</span><span class="params">(done)</span>{</span>
+    <span class="keyword">var</span> pt = t.point(<span class="number">0</span>, <span class="number">1</span>, {name: <span class="string">'test point'</span>})
+    pt.should.be.ok
+    done()
+  })
+})</pre></div></div>
             
         </li>
         

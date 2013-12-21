@@ -214,6 +214,11 @@
               </a>
             
               
+              <a class="source" href="test_template.html">
+                test_template.js
+              </a>
+            
+              
               <a class="source" href="tin.html">
                 tin.js
               </a>
@@ -251,29 +256,47 @@
               
             </div>
             
-            <div class="content"><div class='highlight'><pre><span class="keyword">var</span> t = {}
-<span class="keyword">var</span> _ = require(<span class="string">'lodash'</span>),
-  point = require(<span class="string">'./point'</span>)
-t.point = point
+            <div class="content"><div class='highlight'><pre><span class="keyword">var</span> t = require(<span class="string">'../index'</span>),
+  should = require(<span class="string">'should'</span>),
+  fs = require(<span class="string">'fs'</span>)
 
-module.exports = <span class="function"><span class="keyword">function</span><span class="params">(extents, depth, done)</span>{</span>
-  <span class="keyword">var</span> xmin = extents[<span class="number">0</span>]
-  <span class="keyword">var</span> ymin = extents[<span class="number">1</span>]
-  <span class="keyword">var</span> xmax = extents[<span class="number">2</span>]
-  <span class="keyword">var</span> ymax = extents[<span class="number">3</span>]
-  <span class="keyword">var</span> interval = (xmax - xmin) / depth
-  <span class="keyword">var</span> coords = []
-  <span class="keyword">var</span> fc = {
-    type: <span class="string">'FeatureCollection'</span>,
-    features: []
-  }
-  <span class="keyword">for</span> (<span class="keyword">var</span> x=<span class="number">0</span>; x&lt;=depth; x++){
-    <span class="keyword">for</span> (<span class="keyword">var</span> y=<span class="number">0</span>;y&lt;=depth; y++){
-      fc.features.push(t.point((x * interval) + xmin, (y * interval) + ymin))
-    }
-  }
-  done(<span class="literal">null</span>, fc)
-}</pre></div></div>
+describe(<span class="string">'grid'</span>, <span class="function"><span class="keyword">function</span><span class="params">()</span>{</span>
+  it(<span class="string">'should create a 100x100 grid as a Point FeatureCollection'</span>, <span class="function"><span class="keyword">function</span><span class="params">(done)</span>{</span>
+    t.grid([<span class="number">0</span>,<span class="number">0</span>,<span class="number">10</span>,<span class="number">10</span>], <span class="number">10</span>, <span class="function"><span class="keyword">function</span><span class="params">(err, grid)</span>{</span>
+      <span class="keyword">if</span>(err) <span class="keyword">throw</span> err
+      grid.should.be.ok
+      grid.type.should.equal(<span class="string">'FeatureCollection'</span>)
+      grid.features[<span class="number">0</span>].geometry.type.should.equal(<span class="string">'Point'</span>)</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-2">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-2">&#182;</a>
+              </div>
+              <p>fs.writeFileSync(&#39;./testOut/grid.geojson&#39;,JSON.stringify(grid))</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>      done()
+    })
+  })
+  it(<span class="string">'should work properly with a negative start value'</span>, <span class="function"><span class="keyword">function</span><span class="params">(done)</span>{</span>
+    t.grid([-<span class="number">20</span>,-<span class="number">20</span>,<span class="number">20</span>,<span class="number">20</span>], <span class="number">10</span>, <span class="function"><span class="keyword">function</span><span class="params">(err, grid)</span>{</span>
+      <span class="keyword">if</span>(err) <span class="keyword">throw</span> err
+      grid.should.be.ok
+      grid.type.should.equal(<span class="string">'FeatureCollection'</span>)
+      grid.features[<span class="number">0</span>].geometry.type.should.equal(<span class="string">'Point'</span>)
+      grid.features[<span class="number">0</span>].geometry.coordinates[<span class="number">0</span>].should.equal(-<span class="number">20</span>)
+      grid.features[<span class="number">0</span>].geometry.coordinates[<span class="number">0</span>].should.equal(-<span class="number">20</span>)
+      fs.writeFileSync(<span class="string">'./testOut/grid.geojson'</span>,JSON.stringify(grid))
+      done()
+    })
+  })
+})</pre></div></div>
             
         </li>
         

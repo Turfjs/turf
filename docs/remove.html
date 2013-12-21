@@ -214,6 +214,11 @@
               </a>
             
               
+              <a class="source" href="test_template.html">
+                test_template.js
+              </a>
+            
+              
               <a class="source" href="tin.html">
                 tin.js
               </a>
@@ -251,19 +256,19 @@
               
             </div>
             
-            <div class="content"><div class='highlight'><pre><span class="keyword">var</span> t = {}
-<span class="keyword">var</span> featurecollection = require(<span class="string">'./featurecollection'</span>)
-t.featurecollection = featurecollection
+            <div class="content"><div class='highlight'><pre><span class="keyword">var</span> t = require(<span class="string">'../index'</span>)
+  , should = require(<span class="string">'should'</span>);
 
-module.exports = <span class="function"><span class="keyword">function</span><span class="params">(collection, key, val, done)</span> {</span>
-  <span class="keyword">var</span> newFC = t.featurecollection([]);
-  <span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; collection.features.length; i++) {
-    <span class="keyword">if</span>(collection.features[i].properties[key] != val) {
-      newFC.features.push(collection.features[i])
-    }
-  }
-  done(<span class="literal">null</span>, newFC)
-}</pre></div></div>
+describe(<span class="string">'remove'</span>, <span class="function"><span class="keyword">function</span><span class="params">()</span>{</span>
+  it(<span class="string">'should return 3'</span>, <span class="function"><span class="keyword">function</span><span class="params">(done)</span>{</span>
+    <span class="keyword">var</span> points = t.featurecollection([t.point(<span class="number">1</span>,<span class="number">2</span>, {team: <span class="string">'Red Sox'</span>}), t.point(<span class="number">2</span>,<span class="number">1</span>, {team: <span class="string">'Yankees'</span>}), t.point(<span class="number">3</span>,<span class="number">1</span>, {team: <span class="string">'Nationals'</span>}), t.point(<span class="number">2</span>,<span class="number">2</span>, {team: <span class="string">'Yankees'</span>}), t.point(<span class="number">2</span>,<span class="number">3</span>, {team: <span class="string">'Red Sox'</span>}), t.point(<span class="number">4</span>,<span class="number">2</span>, {team: <span class="string">'Yankees'</span>})])
+    t.remove(points, <span class="string">'team'</span>, <span class="string">'Yankees'</span>, <span class="function"><span class="keyword">function</span><span class="params">(err, newCol)</span> {</span>
+      <span class="keyword">if</span>(err) <span class="keyword">throw</span> err
+      newCol.features.length.should.equal(<span class="number">3</span>)
+      done()
+    })
+  })
+})</pre></div></div>
             
         </li>
         

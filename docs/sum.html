@@ -214,6 +214,11 @@
               </a>
             
               
+              <a class="source" href="test_template.html">
+                test_template.js
+              </a>
+            
+              
               <a class="source" href="tin.html">
                 tin.js
               </a>
@@ -251,11 +256,31 @@
               
             </div>
             
-            <div class="content"><div class='highlight'><pre><span class="keyword">var</span> _ = require(<span class="string">'lodash'</span>)
+            <div class="content"><div class='highlight'><pre><span class="keyword">var</span> t = require(<span class="string">'../index'</span>),
+  should = require(<span class="string">'should'</span>)
 
-module.exports = <span class="function"><span class="keyword">function</span><span class="params">(polyFC, ptFC, field, outField, done)</span>{</span>
-  done(<span class="keyword">new</span> Error(<span class="string">'not implemented'</span>))
-}</pre></div></div>
+describe(<span class="string">'sum'</span>, <span class="function"><span class="keyword">function</span><span class="params">()</span>{</span>
+  it(<span class="string">'should create a sum of field for all points within a set of polygons'</span>, <span class="function"><span class="keyword">function</span><span class="params">(done)</span>{</span>
+    <span class="keyword">var</span> poly1 = t.polygon([[[<span class="number">0</span>,<span class="number">0</span>],[<span class="number">10</span>,<span class="number">0</span>],[<span class="number">10</span>,<span class="number">10</span>],[<span class="number">0</span>,<span class="number">10</span>]]])
+    <span class="keyword">var</span> poly2 = t.polygon([[[<span class="number">10</span>,<span class="number">0</span>],[<span class="number">20</span>,<span class="number">10</span>],[<span class="number">20</span>,<span class="number">20</span>], [<span class="number">20</span>,<span class="number">0</span>]]])
+    <span class="keyword">var</span> polyFC = t.featurecollection([poly1, poly2])
+    <span class="keyword">var</span> pt1 = t.point(<span class="number">1</span>,<span class="number">1</span>, {population: <span class="number">500</span>})
+    <span class="keyword">var</span> pt2 = t.point(<span class="number">1</span>,<span class="number">3</span>, {population: <span class="number">400</span>})
+    <span class="keyword">var</span> pt3 = t.point(<span class="number">14</span>,<span class="number">2</span>, {population: <span class="number">600</span>})
+    <span class="keyword">var</span> pt4 = t.point(<span class="number">13</span>,<span class="number">1</span>, {population: <span class="number">500</span>})
+    <span class="keyword">var</span> pt5 = t.point(<span class="number">19</span>,<span class="number">7</span>, {population: <span class="number">200</span>})
+    <span class="keyword">var</span> ptFC = t.featurecollection([pt1, pt2, pt3, pt4, pt5])
+
+    t.sum(polyFC, ptFC, <span class="string">'population'</span>, <span class="string">'population_sum'</span>, <span class="function"><span class="keyword">function</span><span class="params">(err, summed)</span>{</span>
+      <span class="keyword">if</span>(err) <span class="keyword">throw</span> err
+      summed.should.be.ok
+      summed.features.should.be.ok
+      summed.features[<span class="number">0</span>].properties.population_sum.should.equal(<span class="number">900</span>)
+      summed.features[<span class="number">1</span>].properties.population_sum.should.equal(<span class="number">1300</span>)
+      done()
+    })
+  })
+})</pre></div></div>
             
         </li>
         

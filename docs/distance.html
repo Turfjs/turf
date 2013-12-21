@@ -214,6 +214,11 @@
               </a>
             
               
+              <a class="source" href="test_template.html">
+                test_template.js
+              </a>
+            
+              
               <a class="source" href="tin.html">
                 tin.js
               </a>
@@ -248,50 +253,48 @@
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-1">&#182;</a>
               </div>
-              <p><a href="http://en.wikipedia.org/wiki/Haversine_formula">http://en.wikipedia.org/wiki/Haversine_formula</a>
-<a href="http://www.movable-type.co.uk/scripts/latlong.html">http://www.movable-type.co.uk/scripts/latlong.html</a>
-expects a feature collection of points</p>
-
+              
             </div>
             
-            <div class="content"><div class='highlight'><pre>module.exports = <span class="function"><span class="keyword">function</span><span class="params">(point1, point2, units, done)</span>{</span>
-  <span class="keyword">var</span> toRad = <span class="function"><span class="keyword">function</span><span class="params">(degree)</span>{</span>
-    <span class="keyword">return</span> degree * Math.PI / <span class="number">180</span>
-  }
-  <span class="keyword">var</span> coordinates1 = point1.geometry.coordinates
-  <span class="keyword">var</span> coordinates2 = point2.geometry.coordinates
+            <div class="content"><div class='highlight'><pre><span class="keyword">var</span> t = require(<span class="string">'../index'</span>),
+  should = require(<span class="string">'should'</span>)
 
-  <span class="comment">/*var dLat = (lat2-lat1).toRad();
-  var dLon = (lon2-lon1).toRad();
-  var lat1 = lat1.toRad();
-  var lat2 = lat2.toRad();*/</span>
-
-  <span class="keyword">var</span> dLat = toRad(coordinates2[<span class="number">0</span>] - coordinates1[<span class="number">0</span>])
-  <span class="keyword">var</span> dLon = toRad(coordinates2[<span class="number">1</span>] - coordinates1[<span class="number">1</span>])
-  <span class="keyword">var</span> lat1 = toRad(coordinates1[<span class="number">1</span>])
-  <span class="keyword">var</span> lat2 = toRad(coordinates2[<span class="number">1</span>])
-  <span class="keyword">var</span> a = Math.sin(dLat/<span class="number">2</span>) * Math.sin(dLat/<span class="number">2</span>) +
-          Math.sin(dLon/<span class="number">2</span>) * Math.sin(dLon/<span class="number">2</span>) * Math.cos(lat1) * Math.cos(lat2)
-  <span class="keyword">var</span> c = <span class="number">2</span> * Math.atan2(Math.sqrt(a), Math.sqrt(<span class="number">1</span>-a))
-
-  <span class="keyword">var</span> R = <span class="number">0</span>
-  <span class="keyword">switch</span>(units){
-    <span class="keyword">case</span> <span class="string">'miles'</span>:
-      R = <span class="number">3960</span>
-      <span class="keyword">break</span>
-    <span class="keyword">case</span> <span class="string">'kilometers'</span>:
-      R = <span class="number">6373</span>
-      <span class="keyword">break</span>
-    <span class="keyword">case</span> <span class="string">'degrees'</span>:
-      R = <span class="number">57.2957795</span>
-      <span class="keyword">break</span>
-    <span class="keyword">case</span> <span class="string">'radians'</span>:
-      R = <span class="number">1</span>
-      <span class="keyword">break</span>
-  }
-  <span class="keyword">var</span> distance = R * c
-  done(<span class="literal">null</span>, distance)
-}</pre></div></div>
+describe(<span class="string">'distance'</span>, <span class="function"><span class="keyword">function</span><span class="params">()</span>{</span>
+  it(<span class="string">'should return the distance between two points'</span>, <span class="function"><span class="keyword">function</span><span class="params">(done)</span>{</span>
+    t.load(<span class="string">'../test/testIn/Point1.geojson'</span>, <span class="function"><span class="keyword">function</span><span class="params">(err, point1)</span>{</span>
+      <span class="keyword">if</span>(err) <span class="keyword">throw</span> err
+      t.load(<span class="string">'../test/testIn/Point2.geojson'</span>, <span class="function"><span class="keyword">function</span><span class="params">(err, point2)</span>{</span>
+        <span class="keyword">if</span>(err) <span class="keyword">throw</span> err
+        t.distance(point1, point2, <span class="string">'miles'</span>, <span class="function"><span class="keyword">function</span><span class="params">(err, distance)</span>{</span>
+          <span class="keyword">if</span>(err) <span class="keyword">throw</span> err
+          distance.should.be.ok
+          distance.should.not.equal(<span class="number">0</span>)
+          done()
+        })
+      })
+    })
+  })
+  it(<span class="string">'should return the distance between two points vertically oriented'</span>, <span class="function"><span class="keyword">function</span><span class="params">(done)</span>{</span>
+    <span class="keyword">var</span> point1 = t.point(<span class="number">0</span>,<span class="number">0</span>)
+    <span class="keyword">var</span> point2 = t.point(<span class="number">0</span>,<span class="number">10</span>)
+    t.distance(point1, point2, <span class="string">'degrees'</span>, <span class="function"><span class="keyword">function</span><span class="params">(err, distance)</span>{</span>
+      <span class="keyword">if</span>(err) <span class="keyword">throw</span> err
+      distance.should.be.ok
+      distance.should.not.equal(<span class="number">0</span>)
+      done()
+    })
+  })
+  it(<span class="string">'should return the distance between two points horizontally oriented'</span>, <span class="function"><span class="keyword">function</span><span class="params">(done)</span>{</span>
+    <span class="keyword">var</span> point1 = t.point(<span class="number">0</span>,<span class="number">0</span>)
+    <span class="keyword">var</span> point2 = t.point(<span class="number">10</span>,<span class="number">0</span>)
+    t.distance(point1, point2, <span class="string">'degrees'</span>, <span class="function"><span class="keyword">function</span><span class="params">(err, distance)</span>{</span>
+      <span class="keyword">if</span>(err) <span class="keyword">throw</span> err
+      distance.should.be.ok
+      distance.should.not.equal(<span class="number">0</span>)
+      done()
+    })
+  })
+})</pre></div></div>
             
         </li>
         

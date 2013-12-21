@@ -214,6 +214,11 @@
               </a>
             
               
+              <a class="source" href="test_template.html">
+                test_template.js
+              </a>
+            
+              
               <a class="source" href="tin.html">
                 tin.js
               </a>
@@ -251,28 +256,21 @@
               
             </div>
             
-            <div class="content"><div class='highlight'><pre><span class="keyword">var</span> t = {}
-<span class="keyword">var</span> fs = require(<span class="string">'fs'</span>)
-t.topo = require(<span class="string">'./topo'</span>)
+            <div class="content"><div class='highlight'><pre><span class="keyword">var</span> t = require(<span class="string">'../index'</span>),
+  should = require(<span class="string">'should'</span>)
 
-module.exports = <span class="function"><span class="keyword">function</span><span class="params">(path, features, type, done)</span>{</span>
-  <span class="keyword">if</span>(!type) type = <span class="string">'geojson'</span>
-  <span class="keyword">switch</span>(type) {
-    <span class="keyword">case</span> <span class="string">'geojson'</span>:
-      fs.writeFile(path, JSON.stringify(features), <span class="function"><span class="keyword">function</span><span class="params">(err)</span>{</span>
-        done(err, <span class="number">1</span>)
-      })
-      <span class="keyword">break</span>
-      
-    <span class="keyword">case</span> <span class="string">'topojson'</span>:
-      t.topo(features, <span class="function"><span class="keyword">function</span><span class="params">(err, topology)</span>{</span>
-        fs.writeFile(path, JSON.stringify(features), <span class="function"><span class="keyword">function</span><span class="params">(err)</span>{</span>
-          done(err, <span class="number">1</span>)
-        })
-      })
-      <span class="keyword">break</span>
-  }
-}</pre></div></div>
+describe(<span class="string">'save'</span>, <span class="function"><span class="keyword">function</span><span class="params">()</span>{</span>
+  it(<span class="string">'should save out a feature to geojson.'</span>, <span class="function"><span class="keyword">function</span><span class="params">(done)</span>{</span>
+    <span class="keyword">var</span> path = <span class="string">'./testOut/poly.geojson'</span>
+    <span class="keyword">var</span> poly = t.polygon([[[<span class="number">0</span>,<span class="number">0</span>], [<span class="number">1</span>,<span class="number">0</span>], [<span class="number">1</span>,<span class="number">1</span>],[<span class="number">0</span>,<span class="number">1</span>]]])
+    <span class="keyword">var</span> type = <span class="string">'geojson'</span>
+    t.save(path, poly, type, <span class="function"><span class="keyword">function</span><span class="params">(err, res)</span>{</span>
+      <span class="keyword">if</span>(err) <span class="keyword">throw</span> err
+      res.should.be.ok
+      done()
+    })
+  })
+})</pre></div></div>
             
         </li>
         

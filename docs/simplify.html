@@ -214,6 +214,11 @@
               </a>
             
               
+              <a class="source" href="test_template.html">
+                test_template.js
+              </a>
+            
+              
               <a class="source" href="tin.html">
                 tin.js
               </a>
@@ -248,39 +253,63 @@
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-1">&#182;</a>
               </div>
-              <p>use topojson.simplify to simplify points to a given tolerence then convert back to geojson</p>
-
-            </div>
-            
-            <div class="content"><div class='highlight'><pre><span class="keyword">var</span> topojson = require(<span class="string">'topojson'</span>)
-
-module.exports = <span class="function"><span class="keyword">function</span><span class="params">(fc, quantization, minimumArea, done)</span>{</span>
-  <span class="keyword">var</span> options = {
-    <span class="string">"quantization"</span> : quantization,
-    <span class="string">"minimum-area"</span> : minimumArea,
-    <span class="string">"property-transform"</span>: <span class="function"><span class="keyword">function</span><span class="params">(properties, key, value)</span> {</span></pre></div></div>
-            
-        </li>
-        
-        
-        <li id="section-2">
-            <div class="annotation">
               
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-2">&#182;</a>
-              </div>
-              <p>keeps all</p>
-
             </div>
             
-            <div class="content"><div class='highlight'><pre>      properties[key] = value;
-      <span class="keyword">return</span> <span class="literal">true</span>;
-    }
-  }
-  <span class="keyword">var</span> topo = topojson.topology({name:fc}, options)
-  topojson.simplify(topo, options)
-  done(<span class="literal">null</span>, topojson.feature(topo, topo.objects.name))
-}</pre></div></div>
+            <div class="content"><div class='highlight'><pre><span class="keyword">var</span> t = require(<span class="string">'../index'</span>),
+  should = require(<span class="string">'should'</span>),
+  fs = require(<span class="string">'fs'</span>)
+
+describe(<span class="string">'simplify'</span>, <span class="function"><span class="keyword">function</span><span class="params">()</span>{</span>
+  it(<span class="string">'should simplify a featurecollection of complex polygon'</span>, <span class="function"><span class="keyword">function</span><span class="params">(done)</span>{</span>
+    t.load(<span class="string">'./testIn/complexPolygons.geojson'</span>, <span class="function"><span class="keyword">function</span><span class="params">(err, geo)</span>{</span>
+      <span class="keyword">if</span>(err) <span class="keyword">throw</span> err
+      geo.should.be.ok
+      t.simplify(geo, <span class="number">50</span>, <span class="number">0</span>, <span class="function"><span class="keyword">function</span><span class="params">(err, simplified)</span>{</span>
+        <span class="keyword">if</span>(err) <span class="keyword">throw</span> err
+        simplified.should.be.ok
+        fs.writeFileSync(<span class="string">'./testOut/simplifiedPolygons.geojson'</span>, JSON.stringify(simplified))
+        done()
+      })
+    })
+  })
+  it(<span class="string">'should simplify a featurecollection of complex linestrings'</span>, <span class="function"><span class="keyword">function</span><span class="params">(done)</span>{</span>
+    t.load(<span class="string">'./testIn/complexLines.geojson'</span>, <span class="function"><span class="keyword">function</span><span class="params">(err, geo)</span>{</span>
+      <span class="keyword">if</span>(err) <span class="keyword">throw</span> err
+      geo.should.be.ok
+      t.simplify(geo, <span class="number">50</span>, <span class="number">0</span>, <span class="function"><span class="keyword">function</span><span class="params">(err, simplified)</span>{</span>
+        <span class="keyword">if</span>(err) <span class="keyword">throw</span> err
+        simplified.should.be.ok
+        fs.writeFileSync(<span class="string">'./testOut/simplifiedLines.geojson'</span>, JSON.stringify(simplified))
+        done()
+      })
+    })
+  })
+  it(<span class="string">'should simplify a complex polygon'</span>, <span class="function"><span class="keyword">function</span><span class="params">(done)</span>{</span>
+    t.load(<span class="string">'./testIn/complexPolygon.geojson'</span>, <span class="function"><span class="keyword">function</span><span class="params">(err, geo)</span>{</span>
+      <span class="keyword">if</span>(err) <span class="keyword">throw</span> err
+      geo.should.be.ok
+      t.simplify(geo, <span class="number">50</span>, <span class="number">0</span>, <span class="function"><span class="keyword">function</span><span class="params">(err, simplified)</span>{</span>
+        <span class="keyword">if</span>(err) <span class="keyword">throw</span> err
+        simplified.should.be.ok
+        fs.writeFileSync(<span class="string">'./testOut/simplifiedPolygon.geojson'</span>, JSON.stringify(simplified))
+        done()
+      })
+    })
+  })
+  it(<span class="string">'should simplify a complex linestring'</span>, <span class="function"><span class="keyword">function</span><span class="params">(done)</span>{</span>
+    t.load(<span class="string">'./testIn/complexLine.geojson'</span>, <span class="function"><span class="keyword">function</span><span class="params">(err, geo)</span>{</span>
+      <span class="keyword">if</span>(err) <span class="keyword">throw</span> err
+      geo.should.be.ok
+      t.simplify(geo, <span class="number">50</span>, <span class="number">0</span>, <span class="function"><span class="keyword">function</span><span class="params">(err, simplified)</span>{</span>
+        <span class="keyword">if</span>(err) <span class="keyword">throw</span> err
+        simplified.should.be.ok
+        fs.writeFileSync(<span class="string">'./testOut/simplifiedLine.geojson'</span>, JSON.stringify(simplified))
+        done()
+      })
+    })
+  })
+})</pre></div></div>
             
         </li>
         

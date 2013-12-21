@@ -214,6 +214,11 @@
               </a>
             
               
+              <a class="source" href="test_template.html">
+                test_template.js
+              </a>
+            
+              
               <a class="source" href="tin.html">
                 tin.js
               </a>
@@ -251,19 +256,20 @@
               
             </div>
             
-            <div class="content"><div class='highlight'><pre><span class="keyword">var</span> _ = require(<span class="string">'lodash'</span>)
-<span class="keyword">var</span> t = {}
-t.featurecollection = require(<span class="string">'./featurecollection'</span>)
+            <div class="content"><div class='highlight'><pre><span class="keyword">var</span> t = require(<span class="string">'../index'</span>),
+    should = require(<span class="string">'should'</span>)
 
-module.exports = <span class="function"><span class="keyword">function</span><span class="params">(fc, field, value, done)</span>{</span>
-  <span class="keyword">var</span> newFC = t.featurecollection([]);
-  <span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; fc.features.length; i++) {
-    <span class="keyword">if</span>(fc.features[i].properties[field] === value) {
-      newFC.features.push(fc.features[i])
-    }
-  }
-  done(<span class="literal">null</span>, newFC)
-}</pre></div></div>
+describe(<span class="string">'filter'</span>, <span class="function"><span class="keyword">function</span><span class="params">()</span>{</span>
+  it(<span class="string">'should '</span>, <span class="function"><span class="keyword">function</span><span class="params">(done)</span>{</span>
+    <span class="keyword">var</span> trees = t.featurecollection([t.point(<span class="number">1</span>,<span class="number">2</span>, {species: <span class="string">'oak'</span>}), t.point(<span class="number">2</span>,<span class="number">1</span>, {species: <span class="string">'birch'</span>}), t.point(<span class="number">3</span>,<span class="number">1</span>, {species: <span class="string">'oak'</span>}), t.point(<span class="number">2</span>,<span class="number">2</span>, {species: <span class="string">'redwood'</span>}), t.point(<span class="number">2</span>,<span class="number">3</span>, {species: <span class="string">'maple'</span>}), t.point(<span class="number">4</span>,<span class="number">2</span>, {species: <span class="string">'oak'</span>})])
+    t.filter(trees, <span class="string">'species'</span>, <span class="string">'oak'</span>, <span class="function"><span class="keyword">function</span><span class="params">(err, oaks)</span>{</span>
+      <span class="keyword">if</span>(err) <span class="keyword">throw</span> err
+      oaks.should.be.ok
+      oaks.features.length.should.equal(<span class="number">3</span>)
+      done()
+    })
+  })
+})</pre></div></div>
             
         </li>
         

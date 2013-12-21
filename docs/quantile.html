@@ -214,6 +214,11 @@
               </a>
             
               
+              <a class="source" href="test_template.html">
+                test_template.js
+              </a>
+            
+              
               <a class="source" href="tin.html">
                 tin.js
               </a>
@@ -251,21 +256,23 @@
               
             </div>
             
-            <div class="content"><div class='highlight'><pre><span class="keyword">var</span> ss = require(<span class="string">'simple-statistics'</span>),
-    _ = require(<span class="string">'lodash'</span>)
-
-module.exports = <span class="function"><span class="keyword">function</span><span class="params">(fc, field, percentiles, done)</span>{</span>
-  <span class="keyword">var</span> vals = []
-  <span class="keyword">var</span> quantiles = []
-
-  _.each(fc.features, <span class="function"><span class="keyword">function</span><span class="params">(feature)</span>{</span>
-    vals.push(feature.properties[field])
+            <div class="content"><div class='highlight'><pre><span class="keyword">var</span> t = require(<span class="string">'../index'</span>), 
+    should = require(<span class="string">'should'</span>)
+  
+describe(<span class="string">'quantile'</span>, <span class="function"><span class="keyword">function</span><span class="params">()</span>{</span>
+  it(<span class="string">'should take a set of points and an array of percentiles and return a list of quantile breaks'</span>, <span class="function"><span class="keyword">function</span><span class="params">(done)</span>{</span>
+    t.load(<span class="string">'./testIn/Points3.geojson'</span>, <span class="function"><span class="keyword">function</span><span class="params">(err, pts)</span>{</span>
+      <span class="keyword">if</span>(err) <span class="keyword">throw</span> err
+      pts.should.be.ok
+      t.quantile(pts, <span class="string">'elevation'</span>, [<span class="number">10</span>,<span class="number">30</span>,<span class="number">40</span>,<span class="number">60</span>,<span class="number">80</span>,<span class="number">90</span>,<span class="number">99</span>], <span class="function"><span class="keyword">function</span><span class="params">(err, quantiles)</span>{</span>
+        <span class="keyword">if</span>(err) <span class="keyword">throw</span> err
+        quantiles.should.be.ok
+        quantiles.length.should.equal(<span class="number">7</span>)
+        done()
+      })
+    })
   })
-  _.each(percentiles, <span class="function"><span class="keyword">function</span><span class="params">(percentile)</span>{</span>
-    quantiles.push(ss.quantile(vals, percentile * <span class="number">.01</span>))
-  })
-  done(<span class="literal">null</span>, quantiles)
-}</pre></div></div>
+})</pre></div></div>
             
         </li>
         

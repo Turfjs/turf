@@ -214,6 +214,11 @@
               </a>
             
               
+              <a class="source" href="test_template.html">
+                test_template.js
+              </a>
+            
+              
               <a class="source" href="tin.html">
                 tin.js
               </a>
@@ -248,9 +253,21 @@
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-1">&#182;</a>
               </div>
-              <p><a href="http://www.mathopenref.com/coordpolygonarea2.html">http://www.mathopenref.com/coordpolygonarea2.html</a></p>
-
+              
             </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="keyword">var</span> t = require(<span class="string">'../index'</span>)
+
+describe(<span class="string">'area'</span>, <span class="function"><span class="keyword">function</span><span class="params">()</span>{</span>
+  xit(<span class="string">'should return the area of a polygon'</span>, <span class="function"><span class="keyword">function</span><span class="params">(done)</span>{</span>
+    <span class="keyword">var</span> poly = t.poly([[[<span class="number">0</span>,<span class="number">0</span>],[<span class="number">0</span>,<span class="number">10</span>],[<span class="number">10</span>,<span class="number">10</span>],<span class="number">10</span>,<span class="number">0</span>]])
+    t.area(poly, <span class="function"><span class="keyword">function</span><span class="params">(err, areaResult)</span>{</span>
+      <span class="keyword">if</span>(err) <span class="keyword">throw</span> err
+      areaResult.should.be.ok
+      done()
+    })
+  })
+})</pre></div></div>
             
         </li>
         

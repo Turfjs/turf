@@ -214,6 +214,11 @@
               </a>
             
               
+              <a class="source" href="test_template.html">
+                test_template.js
+              </a>
+            
+              
               <a class="source" href="tin.html">
                 tin.js
               </a>
@@ -248,32 +253,80 @@
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-1">&#182;</a>
               </div>
-              <p><a href="http://cs.selu.edu/~rbyrd/math/midpoint/">http://cs.selu.edu/~rbyrd/math/midpoint/</a>
-((x1+x2)/2), ((y1+y2)/2)</p>
-
+              
             </div>
             
-            <div class="content"><div class='highlight'><pre><span class="keyword">var</span> t = {}
-<span class="keyword">var</span> point = require(<span class="string">'./point'</span>)
-t.point = point
+            <div class="content"><div class='highlight'><pre><span class="keyword">var</span> t = require(<span class="string">'../index'</span>),
+  should = require(<span class="string">'should'</span>)
 
-module.exports = <span class="function"><span class="keyword">function</span><span class="params">(point1, point2, done)</span> {</span>
-  <span class="keyword">if</span>(point1 === <span class="literal">null</span> || point2 === <span class="literal">null</span> || point1 &amp;&amp; point2 === <span class="literal">null</span>) <span class="keyword">throw</span> <span class="keyword">new</span> Error(<span class="string">'Less than two points passed.'</span>)
-
-  <span class="keyword">var</span> x1 = point1.geometry.coordinates[<span class="number">0</span>];
-  <span class="keyword">var</span> x2 = point2.geometry.coordinates[<span class="number">0</span>];
-  <span class="keyword">var</span> y1 = point1.geometry.coordinates[<span class="number">1</span>];
-  <span class="keyword">var</span> y2 = point2.geometry.coordinates[<span class="number">1</span>];
-
-  <span class="keyword">var</span> x3 = x1 + x2;
-  <span class="keyword">var</span> midX = x3/<span class="number">2</span>;
-  <span class="keyword">var</span> y3 = y1 + y2;
-  <span class="keyword">var</span> midY = y3/<span class="number">2</span>;
-
-  <span class="keyword">var</span> midpoint = t.point(midX, midY);
-
-  done(<span class="literal">null</span>, midpoint)
-}</pre></div></div>
+describe(<span class="string">'midpoint'</span>, <span class="function"><span class="keyword">function</span><span class="params">()</span>{</span>
+  it(<span class="string">'should return the halfway point of a horizontal line starting off 0,0'</span>, <span class="function"><span class="keyword">function</span><span class="params">(done)</span>{</span>
+    <span class="keyword">var</span> line = t.linestring([[<span class="number">0</span>,<span class="number">0</span>], [<span class="number">10</span>,<span class="number">0</span>]])
+    <span class="keyword">var</span> pt1 = t.point(<span class="number">0</span>,<span class="number">0</span>)
+    <span class="keyword">var</span> pt2 = t.point(<span class="number">10</span>, <span class="number">0</span>)
+    <span class="keyword">var</span> expectedMidPoint = t.point(<span class="number">5</span>, <span class="number">0</span>)
+    t.midpoint(pt1, pt2, <span class="function"><span class="keyword">function</span><span class="params">(err, midpoint)</span>{</span>
+      <span class="keyword">if</span>(err) <span class="keyword">throw</span> err
+      _.isEqual(midpoint, expectedMidPoint).should.be.<span class="literal">true</span>
+      done()
+    })
+  })
+  it(<span class="string">'should return the halfway point of a vertical line starting off 0,0'</span>, <span class="function"><span class="keyword">function</span><span class="params">(done)</span>{</span>
+    <span class="keyword">var</span> line = t.linestring([[<span class="number">0</span>,<span class="number">0</span>], [<span class="number">0</span>,<span class="number">10</span>]])
+    <span class="keyword">var</span> pt1 = t.point(<span class="number">0</span>,<span class="number">0</span>)
+    <span class="keyword">var</span> pt2 = t.point(<span class="number">0</span>,<span class="number">10</span>)
+    <span class="keyword">var</span> expectedMidPoint = t.point(<span class="number">0</span>, <span class="number">5</span>)
+    t.midpoint(pt1, pt2, <span class="function"><span class="keyword">function</span><span class="params">(err, midpoint)</span>{</span>
+      <span class="keyword">if</span>(err) <span class="keyword">throw</span> err
+      _.isEqual(midpoint, expectedMidPoint).should.be.<span class="literal">true</span>
+      done()
+    })
+  })
+  it(<span class="string">'should return the halfway point of a vertical line starting off 1,1'</span>, <span class="function"><span class="keyword">function</span><span class="params">(done)</span>{</span>
+    <span class="keyword">var</span> line = t.linestring([[<span class="number">1</span>,<span class="number">1</span>], [<span class="number">1</span>,<span class="number">11</span>]])
+    <span class="keyword">var</span> pt1 = t.point(<span class="number">1</span>,<span class="number">1</span>)
+    <span class="keyword">var</span> pt2 = t.point(<span class="number">1</span>, <span class="number">11</span>)
+    <span class="keyword">var</span> expectedMidPoint = t.point(<span class="number">1</span>, <span class="number">6</span>)
+    t.midpoint(pt1, pt2, <span class="function"><span class="keyword">function</span><span class="params">(err, midpoint)</span>{</span>
+      <span class="keyword">if</span>(err) <span class="keyword">throw</span> err
+      _.isEqual(midpoint, expectedMidPoint).should.be.<span class="literal">true</span>
+      done()
+    })
+  })
+  it(<span class="string">'should return the halfway point of a horizontal line starting off 1,1'</span>, <span class="function"><span class="keyword">function</span><span class="params">(done)</span>{</span>
+    <span class="keyword">var</span> line = t.linestring([[<span class="number">1</span>,<span class="number">1</span>], [<span class="number">11</span>,<span class="number">1</span>]])
+    <span class="keyword">var</span> pt1 = t.point(<span class="number">1</span>,<span class="number">1</span>)
+    <span class="keyword">var</span> pt2 = t.point(<span class="number">11</span>,<span class="number">1</span>)
+    <span class="keyword">var</span> expectedMidPoint = t.point(<span class="number">6</span>, <span class="number">1</span>)
+    t.midpoint(pt1, pt2, <span class="function"><span class="keyword">function</span><span class="params">(err, midpoint)</span>{</span>
+      <span class="keyword">if</span>(err) <span class="keyword">throw</span> err
+      _.isEqual(midpoint, expectedMidPoint).should.be.<span class="literal">true</span>
+      done()
+    })
+  })
+  it(<span class="string">'should return the halfway point of a diagonal line starting off 0,0'</span>, <span class="function"><span class="keyword">function</span><span class="params">(done)</span>{</span>
+    <span class="keyword">var</span> line = t.linestring([[<span class="number">0</span>,<span class="number">0</span>], [<span class="number">10</span>,<span class="number">10</span>]])
+    <span class="keyword">var</span> pt1 = t.point(<span class="number">0</span>,<span class="number">0</span>)
+    <span class="keyword">var</span> pt2 = t.point(<span class="number">10</span>,<span class="number">10</span>)
+    <span class="keyword">var</span> expectedMidPoint = t.point(<span class="number">5</span>, <span class="number">5</span>)
+    t.midpoint(pt1, pt2, <span class="function"><span class="keyword">function</span><span class="params">(err, midpoint)</span>{</span>
+      <span class="keyword">if</span>(err) <span class="keyword">throw</span> err
+      _.isEqual(midpoint, expectedMidPoint).should.be.<span class="literal">true</span>
+      done()
+    })
+  })
+  it(<span class="string">'should return the halfway point of a diagonal line starting off 1,1'</span>, <span class="function"><span class="keyword">function</span><span class="params">(done)</span>{</span>
+    <span class="keyword">var</span> line = t.linestring([[<span class="number">1</span>,<span class="number">1</span>], [<span class="number">11</span>,<span class="number">11</span>]])
+    <span class="keyword">var</span> pt1 = t.point(<span class="number">1</span>,<span class="number">1</span>)
+    <span class="keyword">var</span> pt2 = t.point(<span class="number">11</span>,<span class="number">11</span>)
+    <span class="keyword">var</span> expectedMidPoint = t.point(<span class="number">6</span>, <span class="number">6</span>)
+    t.midpoint(pt1, pt2, <span class="function"><span class="keyword">function</span><span class="params">(err, midpoint)</span>{</span>
+      <span class="keyword">if</span>(err) <span class="keyword">throw</span> err
+      _.isEqual(midpoint, expectedMidPoint).should.be.<span class="literal">true</span>
+      done()
+    })
+  })
+})</pre></div></div>
             
         </li>
         

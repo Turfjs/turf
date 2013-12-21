@@ -214,6 +214,11 @@
               </a>
             
               
+              <a class="source" href="test_template.html">
+                test_template.js
+              </a>
+            
+              
               <a class="source" href="tin.html">
                 tin.js
               </a>
@@ -248,31 +253,54 @@
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-1">&#182;</a>
               </div>
-              
+              <p><a href="http://math.stackexchange.com/questions/28043/finding-the-z-value-on-a-plane-with-x-y-values">http://math.stackexchange.com/questions/28043/finding-the-z-value-on-a-plane-with-x-y-values</a></p>
+
             </div>
             
-            <div class="content"><div class='highlight'><pre>http:<span class="comment">//stackoverflow.com/a/13916669/461015</span>
+            <div class="content"><div class='highlight'><pre><span class="keyword">var</span> t = require(<span class="string">'../index'</span>),
+    should = require(<span class="string">'should'</span>),
+    fs = require(<span class="string">'fs'</span>)
 
-module.exports = <span class="function"><span class="keyword">function</span><span class="params">(point, triangle, done)</span>{</span>
-  <span class="keyword">var</span> x = point.geometry.coordinates[<span class="number">0</span>]
-      y = point.geometry.coordinates[<span class="number">1</span>]
-      x1 = triangle.geometry.coordinates[<span class="number">0</span>][<span class="number">0</span>][<span class="number">0</span>],
-      y1 = triangle.geometry.coordinates[<span class="number">0</span>][<span class="number">0</span>][<span class="number">1</span>],
-      z1 = triangle.properties.a
-      x2 = triangle.geometry.coordinates[<span class="number">0</span>][<span class="number">1</span>][<span class="number">0</span>],
-      y2 = triangle.geometry.coordinates[<span class="number">0</span>][<span class="number">1</span>][<span class="number">1</span>],
-      z2 = triangle.properties.b
-      x3 = triangle.geometry.coordinates[<span class="number">0</span>][<span class="number">2</span>][<span class="number">0</span>],
-      y3 = triangle.geometry.coordinates[<span class="number">0</span>][<span class="number">2</span>][<span class="number">1</span>],
-      z3 = triangle.properties.c
+describe(<span class="string">'planepoint'</span>, <span class="function"><span class="keyword">function</span><span class="params">()</span>{</span>
+  it(<span class="string">'should return the z value of a point on a plane'</span>, <span class="function"><span class="keyword">function</span><span class="params">(done)</span>{</span>
+    t.load(<span class="string">'../test/testIn/Triangle.geojson'</span>, <span class="function"><span class="keyword">function</span><span class="params">(err, triangle)</span>{</span>
+      t.load(<span class="string">'../test/testIn/PlanePoint.geojson'</span>, <span class="function"><span class="keyword">function</span><span class="params">(err, point)</span>{</span>
+        t.planepoint(point, triangle, <span class="function"><span class="keyword">function</span><span class="params">(err, z)</span>{</span>
+          z.should.be.ok
+          done()
+        })
+      })
+    })
+  })
+  it(<span class="string">'should return the z value of a point on a plane'</span>, <span class="function"><span class="keyword">function</span><span class="params">(done)</span>{</span>
+    <span class="keyword">var</span> point = t.point(-<span class="number">75.3221</span>, <span class="number">39.529</span>)</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-2">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-2">&#182;</a>
+              </div>
+              <p>triangle is a polygon with &quot;a&quot;, &quot;b&quot;, and &quot;c&quot; values representing
+the values of the coordinates in order.</p>
 
-  <span class="keyword">var</span> z = (z3 * (x-x1) * (y-y2) + z1 * (x-x2) * (y-y3) + z2 * (x-x3) * (y-y1) 
-      - z2 * (x-x1) * (y-y3) - z3 * (x-x2) * (y-y1) - z1 * (x-x3) * (y-y2)) / 
-      ((x-x1) * (y-y2) + (x-x2) * (y-y3) +(x-x3) * (y-y1) -   
-       (x-x1) * (y-y3) - (x-x2) * (y-y1) - (x-x3) * (y-y2))
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    <span class="keyword">var</span> triangle = t.polygon(
+        [[[-<span class="number">75.1221</span>,<span class="number">39.57</span>],[-<span class="number">75.58</span>,<span class="number">39.18</span>],[-<span class="number">75.97</span>,<span class="number">39.86</span>]]], 
+        {<span class="string">"a"</span>: <span class="number">11</span>, <span class="string">"b"</span>: <span class="number">122</span>, <span class="string">"c"</span>: <span class="number">44</span>}
+      )
 
-  done(<span class="literal">null</span>, z)
-}</pre></div></div>
+    t.planepoint(point, triangle, <span class="function"><span class="keyword">function</span><span class="params">(err, zValue)</span>{</span>
+      <span class="keyword">if</span>(err) <span class="keyword">throw</span> err
+      zValue.should.be.ok
+      done()
+    })
+  })
+})</pre></div></div>
             
         </li>
         

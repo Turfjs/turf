@@ -214,6 +214,11 @@
               </a>
             
               
+              <a class="source" href="test_template.html">
+                test_template.js
+              </a>
+            
+              
               <a class="source" href="tin.html">
                 tin.js
               </a>
@@ -251,15 +256,26 @@
               
             </div>
             
-            <div class="content"><div class='highlight'><pre><span class="keyword">var</span> t = {}
-<span class="keyword">var</span> _ = require(<span class="string">'lodash'</span>),
-    featurecollection = require(<span class="string">'./featurecollection'</span>)
-t.featurecollection = featurecollection
+            <div class="content"><div class='highlight'><pre><span class="keyword">var</span> t = require(<span class="string">'../index'</span>),
+    should = require(<span class="string">'should'</span>)
 
-module.exports = <span class="function"><span class="keyword">function</span><span class="params">(fc, num, done)</span>{</span>
-  <span class="keyword">var</span> outFC = t.featurecollection(_.sample(fc.features, num))
-  done(<span class="literal">null</span>, outFC)
-}</pre></div></div>
+describe(<span class="string">'sample'</span>, <span class="function"><span class="keyword">function</span><span class="params">()</span>{</span>
+  xit(<span class="string">'should take a feature collection and a number and return a random sample of n length'</span>, <span class="function"><span class="keyword">function</span><span class="params">(done)</span>{</span>
+    <span class="keyword">var</span> num = <span class="number">10</span>
+
+    t.load(<span class="string">'./testIn/Points3.geojson'</span>, <span class="function"><span class="keyword">function</span><span class="params">(err, pts)</span>{</span>
+      <span class="keyword">if</span>(err) <span class="keyword">throw</span> err
+      pts.should.be.ok
+      t.sample(pts, num, <span class="function"><span class="keyword">function</span><span class="params">(err, outPts)</span>{</span>
+        <span class="keyword">if</span>(err) <span class="keyword">throw</span> err
+        outPts.should.be.ok
+        outPts.features.length.should.equal(<span class="number">10</span>)
+        t.save(<span class="string">'./testOut/sample.geojson'</span>, outPts, <span class="string">'geojson'</span>, <span class="function"><span class="keyword">function</span><span class="params">()</span>{</span>})
+        done()
+      })
+    })
+  })
+})</pre></div></div>
             
         </li>
         

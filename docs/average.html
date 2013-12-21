@@ -214,6 +214,11 @@
               </a>
             
               
+              <a class="source" href="test_template.html">
+                test_template.js
+              </a>
+            
+              
               <a class="source" href="tin.html">
                 tin.js
               </a>
@@ -251,34 +256,32 @@
               
             </div>
             
-            <div class="content"><div class='highlight'><pre><span class="keyword">var</span> t = {}
-<span class="keyword">var</span> _ = require(<span class="string">'lodash'</span>),
-    ss = require(<span class="string">'simple-statistics'</span>)
-t.inside = require(<span class="string">'./inside'</span>)
+            <div class="content"><div class='highlight'><pre><span class="keyword">var</span> t = require(<span class="string">'../index'</span>),
+  should = require(<span class="string">'should'</span>)
 
-module.exports = <span class="function"><span class="keyword">function</span><span class="params">(polyFC, ptFC, inField, outField, done)</span>{</span>
-  _.each(polyFC.features, <span class="function"><span class="keyword">function</span><span class="params">(poly)</span>{</span>
-    <span class="keyword">if</span>(!poly.properties){
-      poly.properties = {}
-    }
-    <span class="keyword">var</span> values = []
-    _.each(ptFC.features, <span class="function"><span class="keyword">function</span><span class="params">(pt)</span>{</span>
-      t.inside(pt, poly, <span class="function"><span class="keyword">function</span><span class="params">(err, isInside)</span>{</span>
-        console.log(pt.geometry.coordinates)
-        console.log(poly.geometry.coordinates)
-        console.log(isInside)
-        <span class="keyword">if</span>(isInside){
-          values.push(pt.properties[inField])
-        }
-      })
+describe(<span class="string">'average'</span>, <span class="function"><span class="keyword">function</span><span class="params">()</span>{</span>
+  it(<span class="string">'should create an average of field for all points within a set of polygons'</span>, <span class="function"><span class="keyword">function</span><span class="params">(done)</span>{</span>
+    <span class="keyword">var</span> poly1 = t.polygon([[[<span class="number">0</span>,<span class="number">0</span>],[<span class="number">10</span>,<span class="number">0</span>],[<span class="number">10</span>,<span class="number">10</span>], [<span class="number">0</span>,<span class="number">10</span>]]])
+    <span class="keyword">var</span> poly2 = t.polygon([[[<span class="number">10</span>,<span class="number">0</span>],[<span class="number">20</span>,<span class="number">10</span>],[<span class="number">20</span>,<span class="number">20</span>], [<span class="number">20</span>,<span class="number">0</span>]]])
+    <span class="keyword">var</span> polyFC = t.featurecollection([poly1, poly2])
+    <span class="keyword">var</span> pt1 = t.point(<span class="number">5</span>,<span class="number">5</span>, {population: <span class="number">200</span>})
+    <span class="keyword">var</span> pt2 = t.point(<span class="number">1</span>,<span class="number">3</span>, {population: <span class="number">600</span>})
+    <span class="keyword">var</span> pt3 = t.point(<span class="number">14</span>,<span class="number">2</span>, {population: <span class="number">100</span>})
+    <span class="keyword">var</span> pt4 = t.point(<span class="number">13</span>,<span class="number">1</span>, {population: <span class="number">200</span>})
+    <span class="keyword">var</span> pt5 = t.point(<span class="number">19</span>,<span class="number">7</span>, {population: <span class="number">300</span>})
+    <span class="keyword">var</span> ptFC = t.featurecollection([pt1, pt2, pt3, pt4, pt5])
+
+    t.average(polyFC, ptFC, <span class="string">'population'</span>, <span class="string">'pop_avg'</span>, <span class="function"><span class="keyword">function</span><span class="params">(err, averaged)</span>{</span>
+      <span class="keyword">if</span>(err) <span class="keyword">throw</span> err
+      averaged.should.be.ok
+      averaged.features.should.be.ok
+      averaged.features[<span class="number">0</span>].geometry.type.should.equal(<span class="string">'Polygon'</span>)
+      averaged.features[<span class="number">0</span>].properties.pop_avg.should.equal(<span class="number">400</span>)
+      averaged.features[<span class="number">1</span>].properties.pop_avg.should.equal(<span class="number">200</span>)
+      done()
     })
-    console.log(values)
-    console.log(ss.average(values))
-    poly.properties[outField] = ss.average(values)
   })
-
-  done(<span class="literal">null</span>, polyFC)
-}</pre></div></div>
+})</pre></div></div>
             
         </li>
         

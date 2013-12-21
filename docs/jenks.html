@@ -214,6 +214,11 @@
               </a>
             
               
+              <a class="source" href="test_template.html">
+                test_template.js
+              </a>
+            
+              
               <a class="source" href="tin.html">
                 tin.js
               </a>
@@ -251,22 +256,25 @@
               
             </div>
             
-            <div class="content"><div class='highlight'><pre><span class="keyword">var</span> ss = require(<span class="string">'simple-statistics'</span>),
-    _ = require(<span class="string">'lodash'</span>)
+            <div class="content"><div class='highlight'><pre><span class="keyword">var</span> t = require(<span class="string">'../index'</span>), 
+    should = require(<span class="string">'should'</span>)
+  
+describe(<span class="string">'quantile'</span>, <span class="function"><span class="keyword">function</span><span class="params">()</span>{</span>
+  it(<span class="string">'should take a set of points and an array of percentiles and return a list of quantile breaks'</span>, <span class="function"><span class="keyword">function</span><span class="params">(done)</span>{</span>
+    <span class="keyword">var</span> num = <span class="number">10</span>
 
-module.exports = <span class="function"><span class="keyword">function</span><span class="params">(fc, field, num, done)</span>{</span>
-  <span class="keyword">var</span> vals = []
-  <span class="keyword">var</span> breaks = []
-
-  _.each(fc.features, <span class="function"><span class="keyword">function</span><span class="params">(feature)</span>{</span>
-    <span class="keyword">if</span>(!(feature.properties[field]===<span class="literal">undefined</span>)){
-      vals.push(feature.properties[field])
-    }
+    t.load(<span class="string">'./testIn/Points3.geojson'</span>, <span class="function"><span class="keyword">function</span><span class="params">(err, pts)</span>{</span>
+      <span class="keyword">if</span>(err) <span class="keyword">throw</span> err
+      pts.should.be.ok
+      t.jenks(pts, <span class="string">'elevation'</span>, num, <span class="function"><span class="keyword">function</span><span class="params">(err, breaks)</span>{</span>
+        <span class="keyword">if</span>(err) <span class="keyword">throw</span> err
+        breaks.should.be.ok
+        breaks.length.should.equal(<span class="number">11</span>)
+        done()
+      })
+    })
   })
-  breaks = ss.jenks(vals, num)
-
-  done(<span class="literal">null</span>, breaks)
-}</pre></div></div>
+})</pre></div></div>
             
         </li>
         

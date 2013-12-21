@@ -214,6 +214,11 @@
               </a>
             
               
+              <a class="source" href="test_template.html">
+                test_template.js
+              </a>
+            
+              
               <a class="source" href="tin.html">
                 tin.js
               </a>
@@ -251,9 +256,15 @@
               
             </div>
             
-            <div class="content"><div class='highlight'><pre>module.exports = <span class="function"><span class="keyword">function</span><span class="params">(fc, done)</span>{</span>
-  
-}</pre></div></div>
+            <div class="content"><div class='highlight'><pre><span class="keyword">var</span> t = require(<span class="string">'../index'</span>),
+  should = require(<span class="string">'should'</span>)
+
+describe(<span class="string">'switch'</span>, <span class="function"><span class="keyword">function</span><span class="params">()</span>{</span>
+  xit(<span class="string">'should flip the x and ys of all coordinates'</span>, <span class="function"><span class="keyword">function</span><span class="params">(done)</span>{</span>
+
+    done()
+  })
+})</pre></div></div>
             
         </li>
         

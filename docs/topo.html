@@ -214,6 +214,11 @@
               </a>
             
               
+              <a class="source" href="test_template.html">
+                test_template.js
+              </a>
+            
+              
               <a class="source" href="tin.html">
                 tin.js
               </a>
@@ -251,12 +256,34 @@
               
             </div>
             
-            <div class="content"><div class='highlight'><pre><span class="keyword">var</span> topojson = require(<span class="string">'topojson'</span>)
+            <div class="content"><div class='highlight'><pre><span class="keyword">var</span> t = require(<span class="string">'../index'</span>),
+  should = require(<span class="string">'should'</span>),
+  fs = require(<span class="string">'fs'</span>)
 
-module.exports = <span class="function"><span class="keyword">function</span><span class="params">(geojson, done)</span>{</span>
-  <span class="keyword">var</span> topology = topojson.topology({geojson: geojson})
-  done(<span class="literal">null</span>, topology)
-}</pre></div></div>
+describe(<span class="string">'topo'</span>, <span class="function"><span class="keyword">function</span><span class="params">()</span>{</span>
+  it(<span class="string">'should take geojson and output topojson'</span>, <span class="function"><span class="keyword">function</span><span class="params">(done)</span>{</span>
+    t.load(<span class="string">'./testOut/contours.geojson'</span>, <span class="function"><span class="keyword">function</span><span class="params">(err, polys)</span>{</span>
+      <span class="keyword">if</span>(err) <span class="keyword">throw</span> err
+      t.topo(polys, <span class="function"><span class="keyword">function</span><span class="params">(err, topoPolys)</span>{</span>
+        <span class="keyword">if</span>(err) <span class="keyword">throw</span> err
+        topoPolys.should.be.ok
+        fs.writeFileSync(<span class="string">'./testOut/topo.topojson'</span>, JSON.stringify(topoPolys))
+        done()
+      })
+    })
+  })
+  it(<span class="string">'should take geojson and output topojson with shared arcs'</span>, <span class="function"><span class="keyword">function</span><span class="params">(done)</span>{</span>
+    <span class="keyword">var</span> poly1 = t.polygon([[[<span class="number">0</span>,<span class="number">0</span>], [<span class="number">0</span>,<span class="number">10</span>], [<span class="number">10</span>,<span class="number">10</span>]]])
+    <span class="keyword">var</span> poly2 = t.polygon([[[<span class="number">0</span>,<span class="number">0</span>], [<span class="number">0</span>,<span class="number">10</span>], [-<span class="number">10</span>,-<span class="number">10</span>]]])
+    <span class="keyword">var</span> fc = t.featurecollection([poly1, poly2])
+    t.topo(fc, <span class="function"><span class="keyword">function</span><span class="params">(err, topoPolys)</span>{</span>
+      <span class="keyword">if</span>(err) <span class="keyword">throw</span> err
+      topoPolys.should.be.ok
+      fs.writeFileSync(<span class="string">'./testOut/topo.topojson'</span>, JSON.stringify(topoPolys))
+      done()
+    })
+  })
+})</pre></div></div>
             
         </li>
         

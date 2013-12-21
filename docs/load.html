@@ -214,6 +214,11 @@
               </a>
             
               
+              <a class="source" href="test_template.html">
+                test_template.js
+              </a>
+            
+              
               <a class="source" href="tin.html">
                 tin.js
               </a>
@@ -251,19 +256,18 @@
               
             </div>
             
-            <div class="content"><div class='highlight'><pre><span class="keyword">var</span> path = require(<span class="string">'path'</span>),
-    fs = require(<span class="string">'fs'</span>),
-    ext = <span class="string">''</span>,
-    layer
+            <div class="content"><div class='highlight'><pre><span class="keyword">var</span> t = require(<span class="string">'../index'</span>),
+    should = require(<span class="string">'should'</span>)
 
-module.exports = <span class="function"><span class="keyword">function</span><span class="params">(file, done)</span> {</span>
-  ext = path.extname(file);
-  fs.readFile(file, <span class="function"><span class="keyword">function</span><span class="params">(err, res)</span>{</span>
-    <span class="keyword">if</span> (err) done(err)
-    layer = JSON.parse(res)
-    done(<span class="literal">null</span>, layer)
-  })  
-}</pre></div></div>
+describe(<span class="string">'load'</span>, <span class="function"><span class="keyword">function</span><span class="params">()</span>{</span>
+  it(<span class="string">'should load a geojson file ok'</span>, <span class="function"><span class="keyword">function</span><span class="params">(done)</span>{</span>
+    t.load(<span class="string">'../test/testIn/FeatureCollection.geojson'</span>, <span class="function"><span class="keyword">function</span><span class="params">(err, layer)</span>{</span>
+      <span class="keyword">if</span>(err) <span class="keyword">throw</span> err
+      layer.should.be.ok
+      done()
+    })
+  })
+})</pre></div></div>
             
         </li>
         

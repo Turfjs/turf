@@ -214,6 +214,11 @@
               </a>
             
               
+              <a class="source" href="test_template.html">
+                test_template.js
+              </a>
+            
+              
               <a class="source" href="tin.html">
                 tin.js
               </a>
@@ -248,28 +253,50 @@
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-1">&#182;</a>
               </div>
-              <p><a href="http://en.wikipedia.org/wiki/Even%E2%80%93odd_rule">http://en.wikipedia.org/wiki/Even%E2%80%93odd_rule</a>
-modified from: <a href="https://github.com/substack/point-in-polygon/blob/master/index.js">https://github.com/substack/point-in-polygon/blob/master/index.js</a>
-which was modified from <a href="http://www.ecse.rpi.edu/Homepages/wrf/Research/Short_Notes/pnpoly.html">http://www.ecse.rpi.edu/Homepages/wrf/Research/Short_Notes/pnpoly.html</a></p>
-
+              
             </div>
             
-            <div class="content"><div class='highlight'><pre>module.exports = <span class="function"><span class="keyword">function</span><span class="params">(point, polygon, done)</span>{</span>
-  <span class="keyword">var</span> x = point.geometry.coordinates[<span class="number">0</span>]
-  <span class="keyword">var</span> y = point.geometry.coordinates[<span class="number">1</span>]
-  <span class="keyword">var</span> vs = polygon.geometry.coordinates[<span class="number">0</span>]
+            <div class="content"><div class='highlight'><pre><span class="keyword">var</span> t = require(<span class="string">'../index'</span>),
+    should = require(<span class="string">'should'</span>)
 
-  <span class="keyword">var</span> isInside = <span class="literal">false</span>;
-  <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>, j = vs.length - <span class="number">1</span>; i &lt; vs.length; j = i++) {
-    <span class="keyword">var</span> xi = vs[i][<span class="number">0</span>], yi = vs[i][<span class="number">1</span>];
-    <span class="keyword">var</span> xj = vs[j][<span class="number">0</span>], yj = vs[j][<span class="number">1</span>];
-    
-    <span class="keyword">var</span> intersect = ((yi &gt; y) != (yj &gt; y))
-        &amp;&amp; (x &lt; (xj - xi) * (y - yi) / (yj - yi) + xi);
-    <span class="keyword">if</span> (intersect) isInside = !isInside;
-  }
-  done(<span class="literal">null</span>, isInside)
-}</pre></div></div>
+describe(<span class="string">'inside'</span>, <span class="function"><span class="keyword">function</span><span class="params">()</span>{</span>
+  it(<span class="string">'should return true if the point is inside the polygon'</span>, <span class="function"><span class="keyword">function</span><span class="params">(done)</span>{</span>
+    <span class="keyword">var</span> poly = t.polygon([[[<span class="number">0</span>,<span class="number">0</span>], [<span class="number">0</span>,<span class="number">100</span>], [<span class="number">100</span>,<span class="number">100</span>], [<span class="number">100</span>,<span class="number">0</span>]]])
+    <span class="keyword">var</span> pt = t.point(<span class="number">50</span>, <span class="number">50</span>)
+    t.inside(pt, poly, <span class="function"><span class="keyword">function</span><span class="params">(err, inside)</span>{</span>
+      <span class="keyword">if</span>(err) <span class="keyword">throw</span> err
+      inside.should.be.<span class="literal">true</span>
+      done()
+    })
+  })
+  it(<span class="string">'should return false if the point is outside the polygon'</span>, <span class="function"><span class="keyword">function</span><span class="params">(done)</span>{</span>
+    <span class="keyword">var</span> poly = t.polygon([[[<span class="number">0</span>,<span class="number">0</span>], [<span class="number">0</span>,<span class="number">100</span>], [<span class="number">100</span>,<span class="number">100</span>], [<span class="number">100</span>,<span class="number">0</span>]]])
+    <span class="keyword">var</span> pt = t.point(<span class="number">140</span>, <span class="number">150</span>)
+    t.inside(pt, poly, <span class="function"><span class="keyword">function</span><span class="params">(err, inside)</span>{</span>
+      <span class="keyword">if</span>(err) <span class="keyword">throw</span> err
+      inside.should.be.<span class="literal">false</span>
+      done()
+    })
+  })
+  it(<span class="string">'should return false if the point is in a concave polygon'</span>, <span class="function"><span class="keyword">function</span><span class="params">(done)</span>{</span>
+    <span class="keyword">var</span> poly = t.polygon([[[<span class="number">0</span>,<span class="number">0</span>], [<span class="number">50</span>, <span class="number">50</span>], [<span class="number">0</span>,<span class="number">100</span>], [<span class="number">100</span>,<span class="number">100</span>], [<span class="number">100</span>,<span class="number">0</span>]]])
+    <span class="keyword">var</span> pt = t.point(<span class="number">75</span>, <span class="number">75</span>)
+    t.inside(pt, poly, <span class="function"><span class="keyword">function</span><span class="params">(err, inside)</span>{</span>
+      <span class="keyword">if</span>(err) <span class="keyword">throw</span> err
+      inside.should.be.<span class="literal">true</span>
+      done()
+    })
+  })
+  it(<span class="string">'should return false if the point is in the "cave" of a concave polygon'</span>, <span class="function"><span class="keyword">function</span><span class="params">(done)</span>{</span>
+    <span class="keyword">var</span> poly = t.polygon([[[<span class="number">0</span>,<span class="number">0</span>], [<span class="number">50</span>, <span class="number">50</span>], [<span class="number">0</span>,<span class="number">100</span>], [<span class="number">100</span>,<span class="number">100</span>], [<span class="number">100</span>,<span class="number">0</span>]]])
+    <span class="keyword">var</span> pt = t.point(<span class="number">25</span>, <span class="number">50</span>)
+    t.inside(pt, poly, <span class="function"><span class="keyword">function</span><span class="params">(err, inside)</span>{</span>
+      <span class="keyword">if</span>(err) <span class="keyword">throw</span> err
+      inside.should.be.<span class="literal">false</span>
+      done()
+    })
+  })
+})</pre></div></div>
             
         </li>
         

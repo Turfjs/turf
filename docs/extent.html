@@ -214,6 +214,11 @@
               </a>
             
               
+              <a class="source" href="test_template.html">
+                test_template.js
+              </a>
+            
+              
               <a class="source" href="tin.html">
                 tin.js
               </a>
@@ -251,117 +256,89 @@
               
             </div>
             
-            <div class="content"><div class='highlight'><pre>_ = require(<span class="string">'lodash'</span>)
+            <div class="content"><div class='highlight'><pre><span class="keyword">var</span> t = require(<span class="string">'../index'</span>),
+    should = require(<span class="string">'should'</span>)
 
-module.exports = <span class="function"><span class="keyword">function</span><span class="params">(layer, done)</span>{</span>
-  <span class="keyword">var</span> xmin = <span class="literal">Infinity</span>,
-      ymin = <span class="literal">Infinity</span>,
-      xmax = -<span class="literal">Infinity</span>,
-      ymax = -<span class="literal">Infinity</span>
-  <span class="keyword">if</span>(layer.type === <span class="string">'FeatureCollection'</span>){
-    <span class="keyword">for</span>(<span class="keyword">var</span> i <span class="keyword">in</span> layer.features){
-      <span class="keyword">var</span> coordinates 
-      <span class="keyword">switch</span>(layer.features[i].geometry.type){
-        <span class="keyword">case</span> <span class="string">'Point'</span>:
-          coordinates = [layer.features[i].geometry.coordinates]
-          <span class="keyword">break</span>
-        <span class="keyword">case</span> <span class="string">'LineString'</span>:
-          coordinates = layer.features[i].geometry.coordinates
-          <span class="keyword">break</span>
-        <span class="keyword">case</span> <span class="string">'Polygon'</span>:
-          coordinates = layer.features[i].geometry.coordinates
-          coordinates = _.flatten(coordinates, <span class="literal">true</span>)
-          <span class="keyword">break</span>
-        <span class="keyword">case</span> <span class="string">'MultiPoint'</span>:
-          coordinates = layer.features[i].geometry.coordinates
-          <span class="keyword">break</span>
-        <span class="keyword">case</span> <span class="string">'MultiLineString'</span>:
-          coordinates = layer.features[i].geometry.coordinates
-          coordinates = _.flatten(coordinates, <span class="literal">true</span>)
-          <span class="keyword">break</span>
-        <span class="keyword">case</span> <span class="string">'MultiPolygon'</span>:
-          coordinates = layer.features[i].geometry.coordinates
-          coordinates = _.flatten(coordinates, <span class="literal">true</span>)
-          coordinates = _.flatten(coordinates, <span class="literal">true</span>)
-          <span class="keyword">break</span>
-      }
-      <span class="keyword">if</span>(!layer.features[i].geometry &amp;&amp; layer.features[i].properties){
-        <span class="keyword">throw</span> <span class="keyword">new</span> Error(<span class="string">'Unknown Geometry Type'</span>)
-      }
-      
-      <span class="keyword">for</span>(<span class="keyword">var</span> n <span class="keyword">in</span> coordinates){
-        <span class="keyword">if</span>(xmin &gt; coordinates[n][<span class="number">0</span>]){
-          xmin = coordinates[n][<span class="number">0</span>]
-        }
-        <span class="keyword">if</span>(ymin &gt; coordinates[n][<span class="number">1</span>]){
-          ymin = coordinates[n][<span class="number">1</span>]
-        }
-        <span class="keyword">if</span>(xmax &lt; coordinates[n][<span class="number">0</span>]){
-          xmax = coordinates[n][<span class="number">0</span>]
-        }
-        <span class="keyword">if</span>(ymax &lt; coordinates[n][<span class="number">1</span>]){
-          ymax = coordinates[n][<span class="number">1</span>]
-        }
-      }
-    }
-    <span class="keyword">var</span> bbox = [xmin, ymin, xmax, ymax]
-    done(<span class="literal">null</span>, bbox)
-  }
-  <span class="keyword">else</span>{
-    <span class="keyword">var</span> coordinates 
-    <span class="keyword">var</span> geometry
-    <span class="keyword">if</span>(layer.type === <span class="string">'Feature'</span>){
-      geometry = layer.geometry
-    }
-    <span class="keyword">else</span>{
-      geometry = layer
-    }
-    <span class="keyword">switch</span>(geometry.type){
-      <span class="keyword">case</span> <span class="string">'Point'</span>:
-        coordinates = [geometry.coordinates]
-        <span class="keyword">break</span>
-      <span class="keyword">case</span> <span class="string">'LineString'</span>:
-        coordinates = geometry.coordinates
-        <span class="keyword">break</span>
-      <span class="keyword">case</span> <span class="string">'Polygon'</span>:
-        coordinates = geometry.coordinates
-        coordinates = _.flatten(coordinates, <span class="literal">true</span>)
-        <span class="keyword">break</span>
-      <span class="keyword">case</span> <span class="string">'MultiPoint'</span>:
-        coordinates = geometry.coordinates
-        <span class="keyword">break</span>
-      <span class="keyword">case</span> <span class="string">'MultiLineString'</span>:
-        coordinates = geometry.coordinates
-        coordinates = _.flatten(coordinates, <span class="literal">true</span>)
-        <span class="keyword">break</span>
-      <span class="keyword">case</span> <span class="string">'MultiPolygon'</span>:
-        coordinates = geometry.coordinates
-        coordinates = _.flatten(coordinates, <span class="literal">true</span>)
-        coordinates = _.flatten(coordinates, <span class="literal">true</span>)
-        <span class="keyword">break</span>
-    }
-    <span class="keyword">if</span>(!geometry){
-      <span class="keyword">throw</span> <span class="keyword">new</span> Error(<span class="string">'No Geometry Found'</span>)
-    }
-    
-    <span class="keyword">for</span>(<span class="keyword">var</span> n <span class="keyword">in</span> coordinates){
-      <span class="keyword">if</span>(xmin &gt; coordinates[n][<span class="number">0</span>]){
-        xmin = coordinates[n][<span class="number">0</span>]
-      }
-      <span class="keyword">if</span>(ymin &gt; coordinates[n][<span class="number">1</span>]){
-        ymin = coordinates[n][<span class="number">1</span>]
-      }
-      <span class="keyword">if</span>(xmax &lt; coordinates[n][<span class="number">0</span>]){
-        xmax = coordinates[n][<span class="number">0</span>]
-      }
-      <span class="keyword">if</span>(ymax &lt; coordinates[n][<span class="number">1</span>]){
-        ymax = coordinates[n][<span class="number">1</span>]
-      }
-    }
-    <span class="keyword">var</span> bbox = [xmin, ymin, xmax, ymax]
-    done(<span class="literal">null</span>, bbox)
-  }
-}</pre></div></div>
+describe(<span class="string">'extent'</span>, <span class="function"><span class="keyword">function</span><span class="params">()</span>{</span>
+  it(<span class="string">'should return the proper extent for a FeatureCollection'</span>, <span class="function"><span class="keyword">function</span><span class="params">(done)</span>{</span>
+    t.load(<span class="string">'../test/testIn/FeatureCollection.geojson'</span>, <span class="function"><span class="keyword">function</span><span class="params">(err, layer)</span>{</span>
+      <span class="keyword">if</span>(err) <span class="keyword">throw</span> err
+      t.extent(layer, <span class="function"><span class="keyword">function</span><span class="params">(err, extent)</span>{</span>
+        extent.should.be.ok
+        extent[<span class="number">0</span>].should.equal(<span class="number">20</span>)
+        extent[<span class="number">1</span>].should.equal(-<span class="number">10</span>)
+        extent[<span class="number">2</span>].should.equal(<span class="number">130</span>)
+        extent[<span class="number">3</span>].should.equal(<span class="number">4</span>)
+        done()
+      })
+    })
+  })
+  it(<span class="string">'should return the proper extent for a Point'</span>, <span class="function"><span class="keyword">function</span><span class="params">(done)</span>{</span>
+    t.load(<span class="string">'../test/testIn/Point.geojson'</span>, <span class="function"><span class="keyword">function</span><span class="params">(err, layer)</span>{</span>
+      <span class="keyword">if</span>(err) <span class="keyword">throw</span> err
+      t.extent(layer, <span class="function"><span class="keyword">function</span><span class="params">(err, extent)</span>{</span>
+        extent.should.be.ok
+        extent[<span class="number">0</span>].should.equal(<span class="number">102</span>)
+        extent[<span class="number">1</span>].should.equal(<span class="number">0.5</span>)
+        extent[<span class="number">2</span>].should.equal(<span class="number">102</span>)
+        extent[<span class="number">3</span>].should.equal(<span class="number">0.5</span>)
+        done()
+      })
+    })
+  })
+  it(<span class="string">'should return the proper extent for a Polygon'</span>, <span class="function"><span class="keyword">function</span><span class="params">(done)</span>{</span>
+    t.load(<span class="string">'../test/testIn/Polygon.geojson'</span>, <span class="function"><span class="keyword">function</span><span class="params">(err, layer)</span>{</span>
+      <span class="keyword">if</span>(err) <span class="keyword">throw</span> err
+      t.extent(layer, <span class="function"><span class="keyword">function</span><span class="params">(err, extent)</span>{</span>
+        extent.should.be.ok
+        extent[<span class="number">0</span>].should.equal(<span class="number">100</span>)
+        extent[<span class="number">1</span>].should.equal(<span class="number">0</span>)
+        extent[<span class="number">2</span>].should.equal(<span class="number">101</span>)
+        extent[<span class="number">3</span>].should.equal(<span class="number">1</span>)
+        done()
+      })
+    })
+  })
+  it(<span class="string">'should return the proper extent for a LineString'</span>, <span class="function"><span class="keyword">function</span><span class="params">(done)</span>{</span>
+    t.load(<span class="string">'../test/testIn/LineString.geojson'</span>, <span class="function"><span class="keyword">function</span><span class="params">(err, layer)</span>{</span>
+      <span class="keyword">if</span>(err) <span class="keyword">throw</span> err
+      t.extent(layer, <span class="function"><span class="keyword">function</span><span class="params">(err, extent)</span>{</span>
+        extent.should.be.ok
+        extent[<span class="number">0</span>].should.equal(<span class="number">102</span>)
+        extent[<span class="number">1</span>].should.equal(-<span class="number">10</span>)
+        extent[<span class="number">2</span>].should.equal(<span class="number">130</span>)
+        extent[<span class="number">3</span>].should.equal(<span class="number">4</span>)
+        done()
+      })
+    })
+  })
+  it(<span class="string">'should return the proper extent for a MultiLineString'</span>, <span class="function"><span class="keyword">function</span><span class="params">(done)</span>{</span>
+    t.load(<span class="string">'../test/testIn/MultiLineString.geojson'</span>, <span class="function"><span class="keyword">function</span><span class="params">(err, layer)</span>{</span>
+      <span class="keyword">if</span>(err) <span class="keyword">throw</span> err
+      t.extent(layer, <span class="function"><span class="keyword">function</span><span class="params">(err, extent)</span>{</span>
+        extent.should.be.ok
+        extent[<span class="number">0</span>].should.equal(<span class="number">100</span>)
+        extent[<span class="number">1</span>].should.equal(<span class="number">0</span>)
+        extent[<span class="number">2</span>].should.equal(<span class="number">103</span>)
+        extent[<span class="number">3</span>].should.equal(<span class="number">3</span>)
+        done()
+      })
+    })
+  })
+  it(<span class="string">'should return the proper extent for a MultiPolygon'</span>, <span class="function"><span class="keyword">function</span><span class="params">(done)</span>{</span>
+    t.load(<span class="string">'../test/testIn/MultiPolygon.geojson'</span>, <span class="function"><span class="keyword">function</span><span class="params">(err, layer)</span>{</span>
+      <span class="keyword">if</span>(err) <span class="keyword">throw</span> err
+      t.extent(layer, <span class="function"><span class="keyword">function</span><span class="params">(err, extent)</span>{</span>
+        extent.should.be.ok
+        extent[<span class="number">0</span>].should.equal(<span class="number">100</span>)
+        extent[<span class="number">1</span>].should.equal(<span class="number">0</span>)
+        extent[<span class="number">2</span>].should.equal(<span class="number">103</span>)
+        extent[<span class="number">3</span>].should.equal(<span class="number">3</span>)
+        done()
+      })
+    })
+  })
+})</pre></div></div>
             
         </li>
         

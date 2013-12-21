@@ -214,6 +214,11 @@
               </a>
             
               
+              <a class="source" href="test_template.html">
+                test_template.js
+              </a>
+            
+              
               <a class="source" href="tin.html">
                 tin.js
               </a>
@@ -251,32 +256,34 @@
               
             </div>
             
-            <div class="content"><div class='highlight'><pre><span class="keyword">var</span> t = {}
-<span class="keyword">var</span> _ = require(<span class="string">'lodash'</span>),
-    ss = require(<span class="string">'simple-statistics'</span>)
-    explode = require(<span class="string">'./explode'</span>),
-    point = require(<span class="string">'./point'</span>),
-t.explode = explode
-t.point = point
+            <div class="content"><div class='highlight'><pre><span class="keyword">var</span> t = require(<span class="string">'../index'</span>),
+  should = require(<span class="string">'should'</span>),
+  _ = require(<span class="string">'lodash'</span>)
 
-module.exports = <span class="function"><span class="keyword">function</span><span class="params">(features, done)</span>{</span>
-  t.explode(features, <span class="function"><span class="keyword">function</span><span class="params">(err, vertices)</span>{</span>
-    <span class="keyword">var</span> averageX, 
-        averageY, 
-        xs = [], 
-        ys = []
-    
-    _.each(vertices.features, <span class="function"><span class="keyword">function</span><span class="params">(v)</span>{</span>
-      xs.push(v.geometry.coordinates[<span class="number">0</span>])
-      ys.push(v.geometry.coordinates[<span class="number">1</span>])
+describe(<span class="string">'centroid'</span>, <span class="function"><span class="keyword">function</span><span class="params">()</span>{</span>
+  it(<span class="string">'should return the correct centroid for a square polygon'</span>, <span class="function"><span class="keyword">function</span><span class="params">(done)</span>{</span>
+    <span class="keyword">var</span> poly = t.polygon([[[<span class="number">0</span>,<span class="number">0</span>], [<span class="number">0</span>,<span class="number">10</span>], [<span class="number">10</span>,<span class="number">10</span>] , [<span class="number">10</span>,<span class="number">0</span>]]])
+    t.centroid(poly, <span class="function"><span class="keyword">function</span><span class="params">(err, centroid)</span>{</span>
+      <span class="keyword">if</span>(err) <span class="keyword">throw</span> err
+      centroid.should.be.ok
+      _.isEqual(centroid, t.point(<span class="number">5</span>,<span class="number">5</span>)).should.be.<span class="literal">true</span>
+      done()
     })
-
-    averageX = ss.mean(xs)
-    averageY = ss.mean(ys)
-
-    done(err, t.point(averageX, averageY))
   })
-}</pre></div></div>
+  it(<span class="string">'should return the correct centroid for a featurecollection'</span>, <span class="function"><span class="keyword">function</span><span class="params">(done)</span>{</span>
+    <span class="keyword">var</span> p1 = t.point(<span class="number">0</span>,<span class="number">0</span>),
+        p2 = t.point(<span class="number">0</span>,<span class="number">10</span>),
+        p3 = t.point(<span class="number">10</span>,<span class="number">10</span>),
+        p4 = t.point(<span class="number">10</span>,<span class="number">0</span>)
+    <span class="keyword">var</span> fc = t.featurecollection([p1,p2,p3,p4])
+    t.centroid(fc, <span class="function"><span class="keyword">function</span><span class="params">(err, centroid)</span>{</span>
+      <span class="keyword">if</span>(err) <span class="keyword">throw</span> err
+      centroid.should.be.ok
+      _.isEqual(centroid, t.point(<span class="number">5</span>,<span class="number">5</span>)).should.be.<span class="literal">true</span>
+      done()
+    })
+  })
+})</pre></div></div>
             
         </li>
         

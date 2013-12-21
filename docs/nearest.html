@@ -214,6 +214,11 @@
               </a>
             
               
+              <a class="source" href="test_template.html">
+                test_template.js
+              </a>
+            
+              
               <a class="source" href="tin.html">
                 tin.js
               </a>
@@ -251,41 +256,32 @@
               
             </div>
             
-            <div class="content"><div class='highlight'><pre><span class="keyword">var</span> t = {}
-<span class="keyword">var</span> _ = require(<span class="string">'lodash'</span>),
- distance = require(<span class="string">'./distance'</span>)
-t.distance = distance
+            <div class="content"><div class='highlight'><pre><span class="keyword">var</span> t = require(<span class="string">'../index'</span>),
+  _ = require(<span class="string">'lodash'</span>),
+  should = require(<span class="string">'should'</span>)
 
-module.exports = <span class="function"><span class="keyword">function</span><span class="params">(targetPoint, points, done)</span>{</span>
-  <span class="keyword">var</span> nearestPoint
-  <span class="keyword">var</span> count = <span class="number">0</span>
-  <span class="keyword">var</span> dist = <span class="literal">Infinity</span>
-  _.forEach(points.features, <span class="function"><span class="keyword">function</span><span class="params">(pt)</span>{</span>
-    <span class="keyword">if</span>(!nearestPoint){
-      nearestPoint = pt
-      t.distance(targetPoint, pt, <span class="string">'miles'</span>, <span class="function"><span class="keyword">function</span><span class="params">(err, dist)</span>{</span>
-        nearestPoint.properties.distance = dist 
+describe(<span class="string">'nearest'</span>, <span class="function"><span class="keyword">function</span><span class="params">()</span>{</span>
+  it(<span class="string">'should should return the nearest point'</span>, <span class="function"><span class="keyword">function</span><span class="params">(done)</span>{</span>
+    t.load(<span class="string">'../test/testIn/Point1.geojson'</span>, <span class="function"><span class="keyword">function</span><span class="params">(err, inPoint)</span>{</span>
+      t.load(<span class="string">'../test/testIn/Points3.geojson'</span>, <span class="function"><span class="keyword">function</span><span class="params">(err, inFeatures)</span>{</span>
+        t.nearest(inPoint, inFeatures, <span class="function"><span class="keyword">function</span><span class="params">(err, outPoint)</span>{</span>
+          <span class="keyword">if</span>(err) <span class="keyword">throw</span> err
+          <span class="keyword">var</span> nearest = { 
+            <span class="string">"type"</span>: <span class="string">"Feature"</span>,
+            <span class="string">"geometry"</span>: {<span class="string">"type"</span>: <span class="string">"Point"</span>, <span class="string">"coordinates"</span>: [ -<span class="number">75.33</span>, <span class="number">39.44</span>]},
+            <span class="string">"properties"</span>: { 
+              <span class="string">"name"</span>: <span class="string">"Location C"</span>,
+              <span class="string">"category"</span>: <span class="string">"Office"</span>,
+              <span class="string">"elevation"</span>: <span class="number">76</span>
+            }
+          }
+          _.isEqual(outPoint, nearest).should.be.<span class="literal">true</span>
+          done()
+        })
       })
-    }
-    <span class="keyword">else</span>{
-      t.distance(targetPoint, pt, <span class="string">'miles'</span>, <span class="function"><span class="keyword">function</span><span class="params">(err, dist)</span>{</span>
-        <span class="keyword">if</span>(dist &lt; nearestPoint.properties.distance){
-          nearestPoint = pt
-          nearestPoint.properties.distance = dist
-        }
-        <span class="keyword">if</span>(points.features.length === count + <span class="number">1</span>){
-          complete(nearestPoint)
-        }
-      })
-    }
-    count++
+    })
   })
-
-  <span class="function"><span class="keyword">function</span> <span class="title">complete</span><span class="params">(nPt)</span>{</span>
-    <span class="keyword">delete</span> nPt.properties.distance
-    done(<span class="literal">null</span>, nPt)
-  }
-}</pre></div></div>
+})</pre></div></div>
             
         </li>
         

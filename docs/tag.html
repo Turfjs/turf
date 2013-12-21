@@ -214,6 +214,11 @@
               </a>
             
               
+              <a class="source" href="test_template.html">
+                test_template.js
+              </a>
+            
+              
               <a class="source" href="tin.html">
                 tin.js
               </a>
@@ -251,31 +256,27 @@
               
             </div>
             
-            <div class="content"><div class='highlight'><pre><span class="keyword">var</span> t = {}
-  <span class="keyword">var</span> _ = require(<span class="string">'lodash'</span>)
-t.inside = require(<span class="string">'./inside'</span>)
+            <div class="content"><div class='highlight'><pre><span class="keyword">var</span> t = require(<span class="string">'../index'</span>),
+  should = require(<span class="string">'should'</span>),
+  fs = require(<span class="string">'fs'</span>)
 
-module.exports = <span class="function"><span class="keyword">function</span><span class="params">(points, polygons, field, outField, done)</span>{</span>
-  _.each(points.features, <span class="function"><span class="keyword">function</span><span class="params">(pt)</span>{</span>
-    <span class="keyword">if</span>(!pt.properties){
-      pt.properties = {}
-    }
-    _.each(polygons.features, <span class="function"><span class="keyword">function</span><span class="params">(poly)</span>{</span>
-      <span class="keyword">if</span>(!pt.properties[outField]){
-        t.inside(pt, poly, <span class="function"><span class="keyword">function</span><span class="params">(err, isInside)</span>{</span>
-          <span class="keyword">if</span>(isInside){
-            console.log(<span class="string">'in'</span>)
-            pt.properties[outField] = poly.properties[field]
-          }
-          <span class="keyword">else</span>{
-            pt.properties[outField] = <span class="literal">null</span>
-          }
+describe(<span class="string">'tag'</span>, <span class="function"><span class="keyword">function</span><span class="params">()</span>{</span>
+  it(<span class="string">'should tag a point layer with a property from a polygon layer'</span>, <span class="function"><span class="keyword">function</span><span class="params">(done)</span>{</span>
+    t.load(<span class="string">'./testIn/tagPoints.geojson'</span>, <span class="function"><span class="keyword">function</span><span class="params">(err, points)</span>{</span>
+      <span class="keyword">if</span>(err) <span class="keyword">throw</span> err
+      t.load(<span class="string">'./testIn/tagPolygons.geojson'</span>, <span class="function"><span class="keyword">function</span><span class="params">(err, polygons)</span>{</span>
+        <span class="keyword">if</span>(err) <span class="keyword">throw</span> err
+        t.tag(points, polygons, <span class="string">'polyID'</span>, <span class="string">'containingPolyID'</span>, <span class="function"><span class="keyword">function</span><span class="params">(err, taggedPoints)</span>{</span>
+          <span class="keyword">if</span>(err) <span class="keyword">throw</span> err
+          taggedPoints.should.be.ok
+          taggedPoints.features.should.be.ok
+          fs.writeFileSync(<span class="string">'./testOut/taggedPoints.geojson'</span>, JSON.stringify(taggedPoints))
+          done()
         })
-      }
+      })
     })
   })
-  done(<span class="literal">null</span>, points)
-}</pre></div></div>
+})</pre></div></div>
             
         </li>
         

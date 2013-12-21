@@ -214,6 +214,11 @@
               </a>
             
               
+              <a class="source" href="test_template.html">
+                test_template.js
+              </a>
+            
+              
               <a class="source" href="tin.html">
                 tin.js
               </a>
@@ -248,52 +253,109 @@
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-1">&#182;</a>
               </div>
-              <p>this tool takes a feature collection of like geometries and combines them into a single multipoint, multilinestring, or multipolygon</p>
-
+              
             </div>
             
-            <div class="content"><div class='highlight'><pre><span class="keyword">var</span> _ = require(<span class="string">'lodash'</span>)
+            <div class="content"><div class='highlight'><pre><span class="keyword">var</span> t = require(<span class="string">'../index'</span>),
+  _ = require(<span class="string">'lodash'</span>),
+  should = require(<span class="string">'should'</span>)
 
-module.exports = <span class="function"><span class="keyword">function</span><span class="params">(fc, done)</span>{</span>
-  <span class="keyword">var</span> type = fc.features[<span class="number">0</span>].geometry.type
-  <span class="keyword">var</span> err
-  <span class="keyword">var</span> geometries = _.pluck(fc.features, <span class="string">'geometry'</span>)
-  <span class="keyword">switch</span>(type){
-    <span class="keyword">case</span> <span class="string">'Point'</span>:
-      <span class="keyword">var</span> multiPoint = {
-        type: <span class="string">'Feature'</span>,
-        geometry: {
-          type: <span class="string">'MultiPoint'</span>,
-          coordinates: []
-        }
-      }
-      multiPoint.geometry.coordinates = _.pluck(geometries, <span class="string">'coordinates'</span>)
-      done(err, multiPoint)
-    <span class="keyword">break</span>
-    <span class="keyword">case</span> <span class="string">'LineString'</span>:
-      <span class="keyword">var</span> multiLineString = {
-        type: <span class="string">'Feature'</span>,
-        geometry: {
-          type: <span class="string">'MultiLineString'</span>,
-          coordinates: []
-        }
-      }
-      multiLineString.geometry.coordinates = _.pluck(geometries, <span class="string">'coordinates'</span>)
-      done(err, multiLineString)
-      <span class="keyword">break</span>
-    <span class="keyword">case</span> <span class="string">'Polygon'</span>:
-      <span class="keyword">var</span> multiPolygon = {
-        type: <span class="string">'Feature'</span>,
-        geometry: {
-          type: <span class="string">'MultiPolygon'</span>,
-          coordinates: []
-        }
-      }
-      multiPolygon.geometry.coordinates = _.pluck(geometries, <span class="string">'coordinates'</span>)
-      done(err, multiPolygon)
-    <span class="keyword">break</span>
-  }
-}</pre></div></div>
+describe(<span class="string">'combine'</span>, <span class="function"><span class="keyword">function</span><span class="params">()</span>{</span>
+  it(<span class="string">'should should combine two points into a MultiPoint'</span>, <span class="function"><span class="keyword">function</span><span class="params">(done)</span>{</span>
+    <span class="keyword">var</span> p1 = t.point(<span class="number">50</span>, <span class="number">51</span>)
+    <span class="keyword">var</span> p2 = t.point(<span class="number">100</span>, <span class="number">101</span>)
+
+    t.combine(t.featurecollection([p1, p2]), <span class="function"><span class="keyword">function</span><span class="params">(err, combined)</span>{</span>
+      <span class="keyword">if</span>(err) <span class="keyword">throw</span> err
+      combined.should.be.ok
+      combined.geometry.type.should.equal(<span class="string">'MultiPoint'</span>)
+      _.isEqual(combined.geometry.coordinates, [[<span class="number">50</span>, <span class="number">51</span>], [<span class="number">100</span>, <span class="number">101</span>]]).should.be.<span class="literal">true</span>
+      done()
+    })
+  })
+  it(<span class="string">'should should combine two LineStrings into a MultiLineString'</span>, <span class="function"><span class="keyword">function</span><span class="params">(done)</span>{</span>
+    <span class="keyword">var</span> l1 = t.linestring([
+        [
+          <span class="number">102.0</span>,
+          -<span class="number">10.0</span>
+        ],
+        [
+          <span class="number">130.0</span>,
+          <span class="number">4.0</span>
+        ]
+      ])
+
+    <span class="keyword">var</span> l2 = t.linestring([
+        [
+          <span class="number">40.0</span>,
+          -<span class="number">20.0</span>
+        ],
+        [
+          <span class="number">150.0</span>,
+          <span class="number">18.0</span>
+        ]
+      ])
+    t.combine(t.featurecollection([l1, l2]), <span class="function"><span class="keyword">function</span><span class="params">(err, combined)</span>{</span>
+      <span class="keyword">if</span>(err) <span class="keyword">throw</span> err
+      combined.should.be.ok
+      combined.geometry.type.should.equal(<span class="string">'MultiLineString'</span>)
+      _.isEqual(combined.geometry.coordinates, [[[<span class="number">102</span>, -<span class="number">10</span>], [<span class="number">130</span>, <span class="number">4</span>]], [[<span class="number">40</span>, -<span class="number">20</span>], [<span class="number">150</span>, <span class="number">18</span>]]]).should.be.<span class="literal">true</span>
+      done()
+    })
+  })
+  it(<span class="string">'should should combine two Polygons into a MultiPolygon'</span>, <span class="function"><span class="keyword">function</span><span class="params">(done)</span>{</span>
+    <span class="keyword">var</span> p1 = t.polygon( [
+      [
+        [
+          <span class="number">20.0</span>,
+          <span class="number">0.0</span>
+        ],
+        [
+          <span class="number">101.0</span>,
+          <span class="number">0.0</span>
+        ],
+        [
+          <span class="number">101.0</span>,
+          <span class="number">1.0</span>
+        ],
+        [
+          <span class="number">100.0</span>,
+          <span class="number">1.0</span>
+        ],
+        [
+          <span class="number">100.0</span>,
+          <span class="number">0.0</span>
+        ]
+      ]
+    ])
+    <span class="keyword">var</span> p2 = t.polygon([
+      [
+        [
+          <span class="number">30.0</span>,
+          <span class="number">0.0</span>
+        ],
+        [
+          <span class="number">102.0</span>,
+          <span class="number">0.0</span>
+        ],
+        [
+          <span class="number">103.0</span>,
+          <span class="number">1.0</span>
+        ]
+      ]
+    ])
+    t.combine(t.featurecollection([p1, p2]), <span class="function"><span class="keyword">function</span><span class="params">(err, combined)</span>{</span>
+      <span class="keyword">if</span>(err) <span class="keyword">throw</span> err
+      combined.should.be.ok
+      combined.geometry.type.should.equal(<span class="string">'MultiPolygon'</span>)
+      _.isEqual(combined.geometry.coordinates, 
+        [[[[<span class="number">20</span>,<span class="number">0</span>],[<span class="number">101.0</span>,<span class="number">0.0</span>],[<span class="number">101.0</span>,<span class="number">1.0</span>],[<span class="number">100.0</span>,<span class="number">1.0</span>],[<span class="number">100.0</span>,<span class="number">0.0</span>]]], 
+        [[[<span class="number">30.0</span>,<span class="number">0.0</span>],[<span class="number">102.0</span>,<span class="number">0.0</span>],[<span class="number">103.0</span>,<span class="number">1.0</span>]]]]
+        ).should.be.<span class="literal">true</span>
+      done()
+    })
+  })
+})</pre></div></div>
             
         </li>
         

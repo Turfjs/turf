@@ -214,6 +214,11 @@
               </a>
             
               
+              <a class="source" href="test_template.html">
+                test_template.js
+              </a>
+            
+              
               <a class="source" href="tin.html">
                 tin.js
               </a>
@@ -251,18 +256,18 @@
               
             </div>
             
-            <div class="content"><div class='highlight'><pre>module.exports = <span class="function"><span class="keyword">function</span><span class="params">(coordinates, properties)</span>{</span>
-  <span class="keyword">if</span>(coordinates === <span class="literal">null</span>) <span class="keyword">throw</span> <span class="keyword">new</span> Error(<span class="string">'No coordinates passed'</span>)
-  <span class="keyword">var</span> linestring = { 
-    <span class="string">"type"</span>: <span class="string">"Feature"</span>,
-    <span class="string">"geometry"</span>: {
-      <span class="string">"type"</span>: <span class="string">"LineString"</span>,
-      <span class="string">"coordinates"</span>: coordinates
-    },
-    <span class="string">"properties"</span>: properties
-  }
-  <span class="keyword">return</span> linestring
-}</pre></div></div>
+            <div class="content"><div class='highlight'><pre><span class="keyword">var</span> t = require(<span class="string">'../index'</span>),
+    should = require(<span class="string">'should'</span>)
+
+describe(<span class="string">'linestring'</span>, <span class="function"><span class="keyword">function</span><span class="params">()</span>{</span>
+  it(<span class="string">'should return a linestring'</span>, <span class="function"><span class="keyword">function</span><span class="params">(done)</span>{</span>
+    <span class="keyword">var</span> line = t.linestring([[<span class="number">0</span>,<span class="number">0</span>], [<span class="number">1</span>,<span class="number">1</span>]])
+    line.should.be.ok
+    line.geometry.coordinates.should.be.ok
+    line.geometry.type.should.equal(<span class="string">'LineString'</span>)
+    done()
+  })
+})</pre></div></div>
             
         </li>
         

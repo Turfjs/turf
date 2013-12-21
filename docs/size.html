@@ -214,6 +214,11 @@
               </a>
             
               
+              <a class="source" href="test_template.html">
+                test_template.js
+              </a>
+            
+              
               <a class="source" href="tin.html">
                 tin.js
               </a>
@@ -251,15 +256,53 @@
               
             </div>
             
-            <div class="content"><div class='highlight'><pre>module.exports = <span class="function"><span class="keyword">function</span><span class="params">(bbox, factor, done)</span>{</span>
-  <span class="keyword">var</span> lowX = (((bbox[<span class="number">2</span>] - bbox[<span class="number">0</span>]) / <span class="number">2</span>) * factor) + bbox[<span class="number">0</span>]
-  <span class="keyword">var</span> lowY = (((bbox[<span class="number">3</span>] - bbox[<span class="number">1</span>]) / <span class="number">2</span>) * factor) + bbox[<span class="number">1</span>]
-  <span class="keyword">var</span> highX = (((bbox[<span class="number">2</span>] - bbox[<span class="number">0</span>]) / <span class="number">2</span>) * factor) + bbox[<span class="number">2</span>]
-  <span class="keyword">var</span> highY = (((bbox[<span class="number">3</span>] - bbox[<span class="number">1</span>]) / <span class="number">2</span>) * factor) + bbox[<span class="number">3</span>]
+            <div class="content"><div class='highlight'><pre><span class="keyword">var</span> t = require(<span class="string">'../index'</span>),
+  should = require(<span class="string">'should'</span>),
+  _ = require(<span class="string">'lodash'</span>)
 
-  <span class="keyword">var</span> sized = [lowX, lowY, highX, highY]
-  done(<span class="literal">null</span>, sized)
-}</pre></div></div>
+
+describe(<span class="string">'size'</span>, <span class="function"><span class="keyword">function</span><span class="params">()</span>{</span>
+  it(<span class="string">'should double the size of a bbox at 0,0'</span>, <span class="function"><span class="keyword">function</span><span class="params">(done)</span>{</span>
+    <span class="keyword">var</span> bbox = [<span class="number">0</span>, <span class="number">0</span>, <span class="number">10</span>, <span class="number">10</span>]
+
+    t.size(bbox, <span class="number">2</span>, <span class="function"><span class="keyword">function</span><span class="params">(err, doubled)</span>{</span>
+      <span class="keyword">if</span>(err) <span class="keyword">throw</span> err
+      doubled.should.be.ok
+      _.isEqual(doubled, [-<span class="number">10</span>, -<span class="number">10</span>, <span class="number">20</span>, <span class="number">20</span>])
+      done()
+    })
+  })
+  it(<span class="string">'should double the size of a bbox at -10,-10'</span>, <span class="function"><span class="keyword">function</span><span class="params">(done)</span>{</span>
+    <span class="keyword">var</span> bbox = [-<span class="number">10</span>, -<span class="number">10</span>, <span class="number">0</span>, <span class="number">0</span>]
+
+    t.size(bbox, <span class="number">2</span>, <span class="function"><span class="keyword">function</span><span class="params">(err, doubled)</span>{</span>
+      <span class="keyword">if</span>(err) <span class="keyword">throw</span> err
+      doubled.should.be.ok
+      _.isEqual(doubled, [-<span class="number">20</span>, -<span class="number">20</span>, <span class="number">10</span>, <span class="number">10</span>])
+      done()
+    })
+  })
+  it(<span class="string">'should expand the size of a bbox by 50%'</span>, <span class="function"><span class="keyword">function</span><span class="params">(done)</span>{</span>
+    <span class="keyword">var</span> bbox = [<span class="number">0</span>, <span class="number">0</span>, <span class="number">10</span>, <span class="number">10</span>]
+
+    t.size(bbox, <span class="number">2</span>, <span class="function"><span class="keyword">function</span><span class="params">(err, doubled)</span>{</span>
+      <span class="keyword">if</span>(err) <span class="keyword">throw</span> err
+      doubled.should.be.ok
+      _.isEqual(doubled, [-<span class="number">5</span>, -<span class="number">5</span>, <span class="number">15</span>, <span class="number">15</span>])
+      done()
+    })
+  })
+  it(<span class="string">'should shrink a bbox by 50%'</span>, <span class="function"><span class="keyword">function</span><span class="params">(done)</span>{</span>
+    <span class="keyword">var</span> bbox = [<span class="number">0</span>, <span class="number">0</span>, <span class="number">10</span>, <span class="number">10</span>]
+
+    t.size(bbox, <span class="number">2</span>, <span class="function"><span class="keyword">function</span><span class="params">(err, doubled)</span>{</span>
+      <span class="keyword">if</span>(err) <span class="keyword">throw</span> err
+      doubled.should.be.ok
+      _.isEqual(doubled, [<span class="number">.25</span>, <span class="number">.25</span>, <span class="number">7.5</span>, <span class="number">7.5</span>])
+      done()
+    })
+  })
+})</pre></div></div>
             
         </li>
         
