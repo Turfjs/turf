@@ -43,6 +43,7 @@ bower install turf
 - [bboxPolygon](#bboxPolygon)
 - [envelope](#envelope)
 - [centroid](#centroid)
+- [flip](#flip)
 - [explode](#explode)
 - [combine](#combine)
 - [remove](#remove)
@@ -280,6 +281,21 @@ var poly = t.polygon([[[0,0], [0,10], [10,10] , [10,0]]])
 t.centroid(poly, function(err, centroid){
   if(err) throw err
   console.log(centroid) // a point at 5, 5
+})
+```
+
+
+###flip
+
+Takes a point, linestring, polygon, or featurecollection, and flips all of its coordinates from [x, y] to [y, x].
+
+```javascript
+var t = require('turf')
+
+var poly = t.polygon([[[1,0], [1,0], [1,2]], [[.2,.2], [.3,.3],[.1,.2]]])
+t.flip(poly, function(err, flipped){
+  if(err) throw err
+  console.log(flipped)
 })
 ```
 
