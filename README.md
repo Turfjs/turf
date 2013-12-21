@@ -26,75 +26,41 @@ bower install turf
 
 ##Features
 
-[load](#load)
-
-[save](#save)
-
-[point](#point)
-
-[linestring](#linestring)
-
-[polygon](#polygon)
-
-[featurecollection](#featurecollection)
-
-[extent](#extent)
-
-[square](#square)
-
-[size](#size)
-
-[center](#center)
-
-[bboxPolygon](#bboxPolygon)
-
-[envelope](#envelope)
-
-[centroid](#centroid)
-
-[explode](#explode)
-
-[combine](#combine)
-
-[remove](#remove)
-
-[filter](#filter)
-
-[distance](#distance)
-
-[buffer](#buffer)
-
-[nearest](#nearest)
-
-[tin](#tin)
-
-[grid](#grid)
-
-[planepoint](#planepoint)
-
-[inside](#inside)
-
-[midpoint](#midpoint)
-
-[quantile](#quantile)
-
-[jenks](#jenks)
-
-[reclass](#reclass)
-
-[contour](#contour)
-
-[sample](#sample)
-
-[tag](#tag)
-
-[bezier](#bezier)
-
-[simplify](#simplify)
-
-[average](#average)
-
-[sum](#sum)
+- [load](#load)
+- [save](#save)
+- [point](#point)
+- [linestring](#linestring)
+- [polygon](#polygon)
+- [featurecollection](#featurecollection)
+- [extent](#extent)
+- [square](#square)
+- [size](#size)
+- [center](#center)
+- [bboxPolygon](#bboxPolygon)
+- [envelope](#envelope)
+- [centroid](#centroid)
+- [explode](#explode)
+- [combine](#combine)
+- [remove](#remove)
+- [filter](#filter)
+- [distance](#distance)
+- [buffer](#buffer)
+- [nearest](#nearest)
+- [tin](#tin)
+- [grid](#grid)
+- [planepoint](#planepoint)
+- [inside](#inside)
+- [midpoint](#midpoint)
+- [quantile](#quantile)
+- [jenks](#jenks)
+- [reclass](#reclass)
+- [contour](#contour)
+- [sample](#sample)
+- [tag](#tag)
+- [bezier](#bezier)
+- [simplify](#simplify)
+- [average](#average)
+- [sum](#sum)
 
 **Planned Features**
 
