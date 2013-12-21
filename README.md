@@ -28,73 +28,73 @@ bower install turf
 
 [load](#load)
 
-[save](https://github.com/morganherlocker/turf/edit/master/README.md#save)
+[save](#save)
 
-[point](https://github.com/morganherlocker/turf/edit/master/README.md#point)
+[point](#point)
 
-[linestring](https://github.com/morganherlocker/turf/edit/master/README.md#linestring)
+[linestring](#linestring)
 
-[polygon](https://github.com/morganherlocker/turf/edit/master/README.md#polygon)
+[polygon](#polygon)
 
-[featurecollection](https://github.com/morganherlocker/turf/edit/master/README.md#featurecollection)
+[featurecollection](#featurecollection)
 
-[extent](https://github.com/morganherlocker/turf/edit/master/README.md#extent)
+[extent](#extent)
 
-[square](https://github.com/morganherlocker/turf/edit/master/README.md#square)
+[square](#square)
 
-[size](https://github.com/morganherlocker/turf/edit/master/README.md#size)
+[size](#size)
 
-[center](https://github.com/morganherlocker/turf/edit/master/README.md#center)
+[center](#center)
 
-[bboxPolygon](https://github.com/morganherlocker/turf/edit/master/README.md#bboxPolygon)
+[bboxPolygon](#bboxPolygon)
 
-[envelope](https://github.com/morganherlocker/turf/edit/master/README.md#envelope)
+[envelope](#envelope)
 
-[centroid](https://github.com/morganherlocker/turf/edit/master/README.md#centroid)
+[centroid](#centroid)
 
-[explode](https://github.com/morganherlocker/turf/edit/master/README.md#explode)
+[explode](#explode)
 
-[combine](https://github.com/morganherlocker/turf/edit/master/README.md#combine)
+[combine](#combine)
 
-[remove](https://github.com/morganherlocker/turf/edit/master/README.md#remove)
+[remove](#remove)
 
-[filter](https://github.com/morganherlocker/turf/edit/master/README.md#filter)
+[filter](#filter)
 
-[distance](https://github.com/morganherlocker/turf/edit/master/README.md#distance)
+[distance](#distance)
 
-[buffer](https://github.com/morganherlocker/turf/edit/master/README.md#buffer)
+[buffer](#buffer)
 
-[nearest](https://github.com/morganherlocker/turf/edit/master/README.md#nearest)
+[nearest](#nearest)
 
-[tin](https://github.com/morganherlocker/turf/edit/master/README.md#tin)
+[tin](#tin)
 
-[grid](https://github.com/morganherlocker/turf/edit/master/README.md#grid)
+[grid](#grid)
 
-[planepoint](https://github.com/morganherlocker/turf/edit/master/README.md#planepoint)
+[planepoint](#planepoint)
 
-[inside](https://github.com/morganherlocker/turf/edit/master/README.md#inside)
+[inside](#inside)
 
-[midpoint](https://github.com/morganherlocker/turf/edit/master/README.md#midpoint)
+[midpoint](#midpoint)
 
-[quantile](https://github.com/morganherlocker/turf/edit/master/README.md#quantile)
+[quantile](#quantile)
 
-[jenks](https://github.com/morganherlocker/turf/edit/master/README.md#jenks)
+[jenks](#jenks)
 
-[reclass](https://github.com/morganherlocker/turf/edit/master/README.md#reclass)
+[reclass](#reclass)
 
-[contour](https://github.com/morganherlocker/turf/edit/master/README.md#contour)
+[contour](#contour)
 
-[sample](https://github.com/morganherlocker/turf/edit/master/README.md#sample)
+[sample](#sample)
 
-[tag](https://github.com/morganherlocker/turf/edit/master/README.md#tag)
+[tag](#tag)
 
-[bezier](https://github.com/morganherlocker/turf/edit/master/README.md#bezier)
+[bezier](#bezier)
 
-[simplify](https://github.com/morganherlocker/turf/edit/master/README.md#simplify)
+[simplify](#simplify)
 
-[average](https://github.com/morganherlocker/turf/edit/master/README.md#average)
+[average](#average)
 
-[sum](https://github.com/morganherlocker/turf/edit/master/README.md#sum)
+[sum](#sum)
 
 **Planned Features**
 
