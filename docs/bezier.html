@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <title>bezier.js</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+  <link rel="stylesheet" media="all" href="docco.css" />
+</head>
+<body>
+  <div id="container">
+    <div id="background"></div>
+    
+      <ul id="jump_to">
+        <li>
+          <a class="large" href="javascript:void(0);">Jump To &hellip;</a>
+          <a class="small" href="javascript:void(0);">+</a>
+          <div id="jump_wrapper">
+          <div id="jump_page">
+            
+              
+              <a class="source" href="area.html">
+                area.js
+              </a>
+            
+              
+              <a class="source" href="average.html">
+                average.js
+              </a>
+            
+              
+              <a class="source" href="bboxPolygon.html">
+                bboxPolygon.js
+              </a>
+            
+              
+              <a class="source" href="bezier.html">
+                bezier.js
+              </a>
+            
+              
+              <a class="source" href="buffer.html">
+                buffer.js
+              </a>
+            
+              
+              <a class="source" href="center.html">
+                center.js
+              </a>
+            
+              
+              <a class="source" href="centroid.html">
+                centroid.js
+              </a>
+            
+              
+              <a class="source" href="combine.html">
+                combine.js
+              </a>
+            
+              
+              <a class="source" href="contour.html">
+                contour.js
+              </a>
+            
+              
+              <a class="source" href="distance.html">
+                distance.js
+              </a>
+            
+              
+              <a class="source" href="envelope.html">
+                envelope.js
+              </a>
+            
+              
+              <a class="source" href="erase.html">
+                erase.js
+              </a>
+            
+              
+              <a class="source" href="explode.html">
+                explode.js
+              </a>
+            
+              
+              <a class="source" href="extent.html">
+                extent.js
+              </a>
+            
+              
+              <a class="source" href="featurecollection.html">
+                featurecollection.js
+              </a>
+            
+              
+              <a class="source" href="filter.html">
+                filter.js
+              </a>
+            
+              
+              <a class="source" href="flip.html">
+                flip.js
+              </a>
+            
+              
+              <a class="source" href="grid.html">
+                grid.js
+              </a>
+            
+              
+              <a class="source" href="inside.html">
+                inside.js
+              </a>
+            
+              
+              <a class="source" href="intersect.html">
+                intersect.js
+              </a>
+            
+              
+              <a class="source" href="jenks.html">
+                jenks.js
+              </a>
+            
+              
+              <a class="source" href="linestring.html">
+                linestring.js
+              </a>
+            
+              
+              <a class="source" href="load.html">
+                load.js
+              </a>
+            
+              
+              <a class="source" href="midpoint.html">
+                midpoint.js
+              </a>
+            
+              
+              <a class="source" href="nearest.html">
+                nearest.js
+              </a>
+            
+              
+              <a class="source" href="planepoint.html">
+                planepoint.js
+              </a>
+            
+              
+              <a class="source" href="point.html">
+                point.js
+              </a>
+            
+              
+              <a class="source" href="polygon.html">
+                polygon.js
+              </a>
+            
+              
+              <a class="source" href="quantile.html">
+                quantile.js
+              </a>
+            
+              
+              <a class="source" href="reclass.html">
+                reclass.js
+              </a>
+            
+              
+              <a class="source" href="remove.html">
+                remove.js
+              </a>
+            
+              
+              <a class="source" href="sample.html">
+                sample.js
+              </a>
+            
+              
+              <a class="source" href="save.html">
+                save.js
+              </a>
+            
+              
+              <a class="source" href="simplify.html">
+                simplify.js
+              </a>
+            
+              
+              <a class="source" href="size.html">
+                size.js
+              </a>
+            
+              
+              <a class="source" href="smooth.html">
+                smooth.js
+              </a>
+            
+              
+              <a class="source" href="square.html">
+                square.js
+              </a>
+            
+              
+              <a class="source" href="sum.html">
+                sum.js
+              </a>
+            
+              
+              <a class="source" href="tag.html">
+                tag.js
+              </a>
+            
+              
+              <a class="source" href="tin.html">
+                tin.js
+              </a>
+            
+              
+              <a class="source" href="topo.html">
+                topo.js
+              </a>
+            
+              
+              <a class="source" href="union.html">
+                union.js
+              </a>
+            
+          </div>
+        </li>
+      </ul>
+    
+    <ul class="sections">
+        
+          <li id="title">
+              <div class="annotation">
+                  <h1>bezier.js</h1>
+              </div>
+          </li>
+        
+        
+        
+        <li id="section-1">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-1">&#182;</a>
+              </div>
+              <p>code modded from here:
+<a href="https://github.com/leszekr/bezier-spline-js/blob/master/bezier-spline.js">https://github.com/leszekr/bezier-spline-js/blob/master/bezier-spline.js</a></p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="keyword">var</span> t = {}
+<span class="keyword">var</span> _ = require(<span class="string">'lodash'</span>)
+t.linestring = require(<span class="string">'./linestring'</span>)
+
+module.exports = <span class="function"><span class="keyword">function</span><span class="params">(line, resolution, intensity, done)</span>{</span>
+  <span class="keyword">var</span> lineOut = t.linestring([])
+  lineOut.properties = line.properties
+  pts = []
+  _.each(line.geometry.coordinates, <span class="function"><span class="keyword">function</span><span class="params">(pt)</span>{</span>
+    pts.push({x: pt[<span class="number">0</span>], y: pt[<span class="number">1</span>]})
+  })
+
+  <span class="keyword">var</span> spline = <span class="keyword">new</span> Spline({
+    points: pts,
+    duration: resolution,
+    sharpness: intensity,</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-2">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-2">&#182;</a>
+              </div>
+              <p>stepLength: distance_between_points_to_cache</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  });
+  <span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>; i&lt;spline.duration; i+=<span class="number">10</span>){
+    <span class="keyword">var</span> pos = spline.pos(i); <span class="comment">//bezier(i/max,p1, c1, c2, p2);</span>
+    <span class="keyword">if</span>(Math.floor(i/<span class="number">100</span>)%<span class="number">2</span>==<span class="number">0</span>) lineOut.geometry.coordinates.push([pos.x, pos.y]);</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-3">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-3">&#182;</a>
+              </div>
+              <p>else ctx.moveTo(pos.x, pos.y);</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  }
+  done(<span class="literal">null</span>, lineOut)
+}
+
+
+ <span class="comment">/**
+   * BezierSpline 
+   * http://leszekr.github.com/
+   *
+   * @copyright
+   * Copyright (C) 2012 Leszek Rybicki.
+   *
+   * @license
+   * This file is part of BezierSpline
+   * 
+   * BezierSpline is free software: you can redistribute it and/or modify
+   * it under the terms of the GNU Lesser General Public License as published by
+   * the Free Software Foundation, either version 3 of the License, or
+   * (at your option) any later version.
+   * 
+   * BezierSpline is distributed in the hope that it will be useful,
+   * but WITHOUT ANY WARRANTY; without even the implied warranty of
+   * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+   * GNU General Public License for more details.
+   * 
+   * You should have received a copy of the GNU General Public License
+   * along with BezierSpline.  If not, see &lt;http://www.gnu.org/copyleft/lesser.html&gt;.
+   */</span>
+
+
+  <span class="comment">/*
+  Usage:
+
+    var spline = new Spline({
+      points: array_of_control_points,
+      duration: time_in_miliseconds,
+      sharpness: how_curvy,
+      stepLength: distance_between_points_to_cache
+    });
+
+  */</span>
+  Spline = <span class="function"><span class="keyword">function</span><span class="params">(options)</span>{</span>
+    <span class="keyword">this</span>.points = options.points || [];
+    <span class="keyword">this</span>.duration = options.duration || <span class="number">10000</span>;
+    <span class="keyword">this</span>.sharpness = options.sharpness || <span class="number">0.85</span>;
+    <span class="keyword">this</span>.centers = [];
+    <span class="keyword">this</span>.controls = [];
+    <span class="keyword">this</span>.stepLength = options.stepLength || <span class="number">60</span>;
+    <span class="keyword">this</span>.length = <span class="keyword">this</span>.points.length;
+    <span class="keyword">this</span>.delay = <span class="number">0</span>;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-4">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-4">&#182;</a>
+              </div>
+              <p>this is to ensure compatibility with the 2d version</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    <span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>; i&lt;<span class="keyword">this</span>.length; i++) <span class="keyword">this</span>.points[i].z = <span class="keyword">this</span>.points[i].z || <span class="number">0</span>;
+    <span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>; i&lt;<span class="keyword">this</span>.length-<span class="number">1</span>; i++){
+      <span class="keyword">var</span> p1 = <span class="keyword">this</span>.points[i];
+      <span class="keyword">var</span> p2 = <span class="keyword">this</span>.points[i+<span class="number">1</span>];
+      <span class="keyword">this</span>.centers.push({x:(p1.x+p2.x)/<span class="number">2</span>, y:(p1.y+p2.y)/<span class="number">2</span>, z:(p1.z+p2.z)/<span class="number">2</span>});
+    }
+    <span class="keyword">this</span>.controls.push([<span class="keyword">this</span>.points[<span class="number">0</span>],<span class="keyword">this</span>.points[<span class="number">0</span>]]);
+    <span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>; i&lt;<span class="keyword">this</span>.centers.length-<span class="number">1</span>; i++){
+      <span class="keyword">var</span> p1 = <span class="keyword">this</span>.centers[i];
+      <span class="keyword">var</span> p2 = <span class="keyword">this</span>.centers[i+<span class="number">1</span>];
+      <span class="keyword">var</span> dx = <span class="keyword">this</span>.points[i+<span class="number">1</span>].x-(<span class="keyword">this</span>.centers[i].x+<span class="keyword">this</span>.centers[i+<span class="number">1</span>].x)/<span class="number">2</span>;
+      <span class="keyword">var</span> dy = <span class="keyword">this</span>.points[i+<span class="number">1</span>].y-(<span class="keyword">this</span>.centers[i].y+<span class="keyword">this</span>.centers[i+<span class="number">1</span>].y)/<span class="number">2</span>;
+      <span class="keyword">var</span> dz = <span class="keyword">this</span>.points[i+<span class="number">1</span>].z-(<span class="keyword">this</span>.centers[i].y+<span class="keyword">this</span>.centers[i+<span class="number">1</span>].z)/<span class="number">2</span>;
+      <span class="keyword">this</span>.controls.push([{
+        x:(<span class="number">1.0</span>-<span class="keyword">this</span>.sharpness)*<span class="keyword">this</span>.points[i+<span class="number">1</span>].x+<span class="keyword">this</span>.sharpness*(<span class="keyword">this</span>.centers[i].x+dx),
+        y:(<span class="number">1.0</span>-<span class="keyword">this</span>.sharpness)*<span class="keyword">this</span>.points[i+<span class="number">1</span>].y+<span class="keyword">this</span>.sharpness*(<span class="keyword">this</span>.centers[i].y+dy),
+        z:(<span class="number">1.0</span>-<span class="keyword">this</span>.sharpness)*<span class="keyword">this</span>.points[i+<span class="number">1</span>].z+<span class="keyword">this</span>.sharpness*(<span class="keyword">this</span>.centers[i].z+dz)},
+      {
+        x:(<span class="number">1.0</span>-<span class="keyword">this</span>.sharpness)*<span class="keyword">this</span>.points[i+<span class="number">1</span>].x+<span class="keyword">this</span>.sharpness*(<span class="keyword">this</span>.centers[i+<span class="number">1</span>].x+dx),
+        y:(<span class="number">1.0</span>-<span class="keyword">this</span>.sharpness)*<span class="keyword">this</span>.points[i+<span class="number">1</span>].y+<span class="keyword">this</span>.sharpness*(<span class="keyword">this</span>.centers[i+<span class="number">1</span>].y+dy),
+        z:(<span class="number">1.0</span>-<span class="keyword">this</span>.sharpness)*<span class="keyword">this</span>.points[i+<span class="number">1</span>].z+<span class="keyword">this</span>.sharpness*(<span class="keyword">this</span>.centers[i+<span class="number">1</span>].z+dz)}]);
+    }
+    <span class="keyword">this</span>.controls.push([<span class="keyword">this</span>.points[<span class="keyword">this</span>.length-<span class="number">1</span>],<span class="keyword">this</span>.points[<span class="keyword">this</span>.length-<span class="number">1</span>]]);
+    <span class="keyword">this</span>.steps = <span class="keyword">this</span>.cacheSteps(<span class="keyword">this</span>.stepLength);
+    <span class="keyword">return</span> <span class="keyword">this</span>;
+  }
+
+  <span class="comment">/*
+    Caches an array of equidistant (more or less) points on the curve.
+  */</span>
+  Spline.prototype.cacheSteps = <span class="function"><span class="keyword">function</span><span class="params">(mindist)</span>{</span>
+    <span class="keyword">var</span> steps = [];
+    <span class="keyword">var</span> laststep = <span class="keyword">this</span>.pos(<span class="number">0</span>);
+    steps.push(<span class="number">0</span>);
+    <span class="keyword">for</span>(<span class="keyword">var</span> t=<span class="number">0</span>; t&lt;<span class="keyword">this</span>.duration; t+=<span class="number">10</span>){
+      <span class="keyword">var</span> step = <span class="keyword">this</span>.pos(t);
+      <span class="keyword">var</span> dist = Math.sqrt((step.x-laststep.x)*(step.x-laststep.x)+(step.y-laststep.y)*(step.y-laststep.y)+(step.z-laststep.z)*(step.z-laststep.z));
+      <span class="keyword">if</span>(dist&gt;mindist){
+        steps.push(t);
+        laststep = step;
+      }
+    }
+    <span class="keyword">return</span> steps;
+  }
+
+  <span class="comment">/*
+    returns angle and speed in the given point in the curve
+  */</span>
+  Spline.prototype.vector = <span class="function"><span class="keyword">function</span><span class="params">(t)</span>{</span>
+    <span class="keyword">var</span> p1 = <span class="keyword">this</span>.pos(t+<span class="number">10</span>);
+    <span class="keyword">var</span> p2 = <span class="keyword">this</span>.pos(t-<span class="number">10</span>);
+    <span class="keyword">return</span> {
+      angle:<span class="number">180</span>*Math.atan2(p1.y-p2.y, p1.x-p2.x)/<span class="number">3.14</span>,
+      speed:Math.sqrt((p2.x-p1.x)*(p2.x-p1.x)+(p2.y-p1.y)*(p2.y-p1.y)+(p2.z-p1.z)*(p2.z-p1.z))
+    }
+  }
+
+  <span class="comment">/*
+    Draws the control points
+  */</span>
+  Spline.prototype.drawControlPoints = <span class="function"><span class="keyword">function</span><span class="params">(ctx, color)</span>{</span>
+    ctx.fillStyle = color||<span class="string">"#f60"</span>;
+    ctx.strokeStyle = <span class="string">"#fff"</span>;
+    ctx.lineWidth = <span class="number">2</span>; 
+    <span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>; i&lt;<span class="keyword">this</span>.length; i++){
+      <span class="keyword">var</span> p = <span class="keyword">this</span>.points[i];
+      <span class="keyword">var</span> c1 = <span class="keyword">this</span>.controls[i][<span class="number">0</span>];
+      <span class="keyword">var</span> c2 = <span class="keyword">this</span>.controls[i][<span class="number">1</span>];
+
+      ctx.beginPath();
+      ctx.moveTo(c1.x,c1.y);
+      ctx.lineTo(p.x,p.y);
+      ctx.lineTo(c2.x,c2.y);
+      ctx.stroke();
+            
+      ctx.beginPath();
+      ctx.arc(c1.x, c1.y, <span class="number">3</span>, <span class="number">0</span>, <span class="number">2</span> * Math.PI, <span class="literal">false</span>);
+      ctx.fill();
+      ctx.stroke();
+      
+      <span class="comment">/*ctx.beginPath();
+      ctx.arc(this.centers[i].x, this.centers[i].y, 5, 0, 2 * Math.PI, false);
+      ctx.fill();
+      ctx.stroke();*/</span>
+      
+      ctx.beginPath();
+      ctx.arc(c2.x, c2.y, <span class="number">3</span>, <span class="number">0</span>, <span class="number">2</span> * Math.PI, <span class="literal">false</span>);
+      ctx.fill();
+      ctx.stroke();
+      
+
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, <span class="number">7</span>, <span class="number">0</span>, <span class="number">2</span> * Math.PI, <span class="literal">false</span>);
+      ctx.fill();
+      ctx.stroke();
+    }
+    <span class="keyword">return</span> <span class="keyword">this</span>;
+  }
+
+  <span class="comment">/*
+    Gets the position of the point, given time.
+
+    WARNING: The speed is not constant. The time it takes between control points is constant.
+
+    For constant speed, use Spline.steps[i];
+  */</span>
+  Spline.prototype.pos = <span class="function"><span class="keyword">function</span><span class="params">(time)</span>{</span>
+
+    <span class="function"><span class="keyword">function</span> <span class="title">bezier</span><span class="params">(t, p1, c1, c2, p2)</span>{</span>
+      <span class="keyword">var</span> B = <span class="function"><span class="keyword">function</span><span class="params">(t)</span> {</span> 
+        <span class="keyword">var</span> t2=t*t, t3=t2*t;
+        <span class="keyword">return</span> [(t3),(<span class="number">3</span>*t2*(<span class="number">1</span>-t)),(<span class="number">3</span>*t*(<span class="number">1</span>-t)*(<span class="number">1</span>-t)),((<span class="number">1</span>-t)*(<span class="number">1</span>-t)*(<span class="number">1</span>-t))]
+      }
+      <span class="keyword">var</span> b = B(t)
+      <span class="keyword">var</span> pos = {
+        x : p2.x * b[<span class="number">0</span>] + c2.x * b[<span class="number">1</span>] +c1.x * b[<span class="number">2</span>] + p1.x * b[<span class="number">3</span>],
+        y : p2.y * b[<span class="number">0</span>] + c2.y * b[<span class="number">1</span>] +c1.y * b[<span class="number">2</span>] + p1.y * b[<span class="number">3</span>],
+        z : p2.z * b[<span class="number">0</span>] + c2.z * b[<span class="number">1</span>] +c1.z * b[<span class="number">2</span>] + p1.z * b[<span class="number">3</span>]
+      }
+      <span class="keyword">return</span> pos; 
+    }
+    <span class="keyword">var</span> t = time-<span class="keyword">this</span>.delay;
+    <span class="keyword">if</span>(t&lt;<span class="number">0</span>) t=<span class="number">0</span>;
+    <span class="keyword">if</span>(t&gt;<span class="keyword">this</span>.duration) t=<span class="keyword">this</span>.duration-<span class="number">1</span>;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-5">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-5">&#182;</a>
+              </div>
+              <p>t = t-this.delay;</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    <span class="keyword">var</span> t2 = (t)/<span class="keyword">this</span>.duration;
+    <span class="keyword">if</span>(t2&gt;=<span class="number">1</span>) <span class="keyword">return</span> <span class="keyword">this</span>.points[<span class="keyword">this</span>.length-<span class="number">1</span>];
+
+    <span class="keyword">var</span> n = Math.floor((<span class="keyword">this</span>.points.length-<span class="number">1</span>)*t2);
+    <span class="keyword">var</span> t1 = (<span class="keyword">this</span>.length-<span class="number">1</span>)*t2-n;
+    <span class="keyword">return</span> bezier(t1,<span class="keyword">this</span>.points[n],<span class="keyword">this</span>.controls[n][<span class="number">1</span>],<span class="keyword">this</span>.controls[n+<span class="number">1</span>][<span class="number">0</span>],<span class="keyword">this</span>.points[n+<span class="number">1</span>]);
+  }
+
+  <span class="comment">/*
+    Draws the line
+  */</span>
+  Spline.prototype.draw = <span class="function"><span class="keyword">function</span><span class="params">(ctx,color)</span>{</span>
+    ctx.strokeStyle = color || <span class="string">"#7e5e38"</span>; <span class="comment">// line color</span>
+    ctx.lineWidth = <span class="number">14</span>;
+    ctx.beginPath();
+    <span class="keyword">var</span> pos;
+    <span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>; i&lt;<span class="keyword">this</span>.duration; i+=<span class="number">10</span>){
+      pos = <span class="keyword">this</span>.pos(i); <span class="comment">//bezier(i/max,p1, c1, c2, p2);</span>
+      <span class="keyword">if</span>(Math.floor(i/<span class="number">100</span>)%<span class="number">2</span>==<span class="number">0</span>) ctx.lineTo(pos.x, pos.y);
+      <span class="keyword">else</span> ctx.moveTo(pos.x, pos.y);
+    }
+    ctx.stroke();
+    <span class="keyword">return</span> <span class="keyword">this</span>;
+  }</pre></div></div>
+            
+        </li>
+        
+    </ul>
+  </div>
+</body>
+</html>

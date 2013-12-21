@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <title>tin.js</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+  <link rel="stylesheet" media="all" href="docco.css" />
+</head>
+<body>
+  <div id="container">
+    <div id="background"></div>
+    
+      <ul id="jump_to">
+        <li>
+          <a class="large" href="javascript:void(0);">Jump To &hellip;</a>
+          <a class="small" href="javascript:void(0);">+</a>
+          <div id="jump_wrapper">
+          <div id="jump_page">
+            
+              
+              <a class="source" href="area.html">
+                area.js
+              </a>
+            
+              
+              <a class="source" href="average.html">
+                average.js
+              </a>
+            
+              
+              <a class="source" href="bboxPolygon.html">
+                bboxPolygon.js
+              </a>
+            
+              
+              <a class="source" href="bezier.html">
+                bezier.js
+              </a>
+            
+              
+              <a class="source" href="buffer.html">
+                buffer.js
+              </a>
+            
+              
+              <a class="source" href="center.html">
+                center.js
+              </a>
+            
+              
+              <a class="source" href="centroid.html">
+                centroid.js
+              </a>
+            
+              
+              <a class="source" href="combine.html">
+                combine.js
+              </a>
+            
+              
+              <a class="source" href="contour.html">
+                contour.js
+              </a>
+            
+              
+              <a class="source" href="distance.html">
+                distance.js
+              </a>
+            
+              
+              <a class="source" href="envelope.html">
+                envelope.js
+              </a>
+            
+              
+              <a class="source" href="erase.html">
+                erase.js
+              </a>
+            
+              
+              <a class="source" href="explode.html">
+                explode.js
+              </a>
+            
+              
+              <a class="source" href="extent.html">
+                extent.js
+              </a>
+            
+              
+              <a class="source" href="featurecollection.html">
+                featurecollection.js
+              </a>
+            
+              
+              <a class="source" href="filter.html">
+                filter.js
+              </a>
+            
+              
+              <a class="source" href="flip.html">
+                flip.js
+              </a>
+            
+              
+              <a class="source" href="grid.html">
+                grid.js
+              </a>
+            
+              
+              <a class="source" href="inside.html">
+                inside.js
+              </a>
+            
+              
+              <a class="source" href="intersect.html">
+                intersect.js
+              </a>
+            
+              
+              <a class="source" href="jenks.html">
+                jenks.js
+              </a>
+            
+              
+              <a class="source" href="linestring.html">
+                linestring.js
+              </a>
+            
+              
+              <a class="source" href="load.html">
+                load.js
+              </a>
+            
+              
+              <a class="source" href="midpoint.html">
+                midpoint.js
+              </a>
+            
+              
+              <a class="source" href="nearest.html">
+                nearest.js
+              </a>
+            
+              
+              <a class="source" href="planepoint.html">
+                planepoint.js
+              </a>
+            
+              
+              <a class="source" href="point.html">
+                point.js
+              </a>
+            
+              
+              <a class="source" href="polygon.html">
+                polygon.js
+              </a>
+            
+              
+              <a class="source" href="quantile.html">
+                quantile.js
+              </a>
+            
+              
+              <a class="source" href="reclass.html">
+                reclass.js
+              </a>
+            
+              
+              <a class="source" href="remove.html">
+                remove.js
+              </a>
+            
+              
+              <a class="source" href="sample.html">
+                sample.js
+              </a>
+            
+              
+              <a class="source" href="save.html">
+                save.js
+              </a>
+            
+              
+              <a class="source" href="simplify.html">
+                simplify.js
+              </a>
+            
+              
+              <a class="source" href="size.html">
+                size.js
+              </a>
+            
+              
+              <a class="source" href="smooth.html">
+                smooth.js
+              </a>
+            
+              
+              <a class="source" href="square.html">
+                square.js
+              </a>
+            
+              
+              <a class="source" href="sum.html">
+                sum.js
+              </a>
+            
+              
+              <a class="source" href="tag.html">
+                tag.js
+              </a>
+            
+              
+              <a class="source" href="tin.html">
+                tin.js
+              </a>
+            
+              
+              <a class="source" href="topo.html">
+                topo.js
+              </a>
+            
+              
+              <a class="source" href="union.html">
+                union.js
+              </a>
+            
+          </div>
+        </li>
+      </ul>
+    
+    <ul class="sections">
+        
+          <li id="title">
+              <div class="annotation">
+                  <h1>tin.js</h1>
+              </div>
+          </li>
+        
+        
+        
+        <li id="section-1">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-1">&#182;</a>
+              </div>
+              <p><a href="http://en.wikipedia.org/wiki/Delaunay_triangulation">http://en.wikipedia.org/wiki/Delaunay_triangulation</a>
+<a href="https://github.com/ironwallaby/delaunay">https://github.com/ironwallaby/delaunay</a></p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="keyword">var</span> t = {}
+<span class="keyword">var</span> _ = require(<span class="string">'lodash'</span>),
+  polygon = require(<span class="string">'./polygon'</span>),
+  nearest = require(<span class="string">'./nearest'</span>),
+  point = require(<span class="string">'./point'</span>)
+t.polygon = polygon
+t.nearest = nearest
+t.point = point
+
+module.exports = <span class="function"><span class="keyword">function</span><span class="params">(points, z, done)</span>{</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-2">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-2">&#182;</a>
+              </div>
+              <p>break down points</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  <span class="keyword">var</span> vertices = []
+  _(points.features).each(<span class="function"><span class="keyword">function</span><span class="params">(p)</span>{</span>
+    vertices.push({x:p.geometry.coordinates[<span class="number">0</span>], y:p.geometry.coordinates[<span class="number">1</span>]})
+  })
+
+  <span class="keyword">var</span> triangulated = triangulate(vertices)
+  <span class="keyword">var</span> triangles = {
+    type: <span class="string">'FeatureCollection'</span>,
+    features: []
+  }
+  _(triangulated).each(<span class="function"><span class="keyword">function</span><span class="params">(triangle)</span>{</span>
+    <span class="keyword">var</span> coords = [[[triangle.a.x, triangle.a.y], [triangle.b.x, triangle.b.y], [triangle.c.x, triangle.c.y]]]
+    <span class="keyword">var</span> poly = t.polygon(coords, {a: <span class="literal">null</span>, b: <span class="literal">null</span>, c: <span class="literal">null</span>})
+    
+    triangles.features.push(poly)
+  })</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-3">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-3">&#182;</a>
+              </div>
+              <p>add values from vertices</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  _.each(triangles.features, <span class="function"><span class="keyword">function</span><span class="params">(tri)</span>{</span>
+    <span class="keyword">var</span> coordinateNumber = <span class="number">1</span>
+    _.each(tri.geometry.coordinates[<span class="number">0</span>], <span class="function"><span class="keyword">function</span><span class="params">(c)</span>{</span>
+      t.nearest(t.point(c[<span class="number">0</span>], c[<span class="number">1</span>]), points, <span class="function"><span class="keyword">function</span><span class="params">(err, closest)</span>{</span>        
+        <span class="keyword">if</span>(coordinateNumber === <span class="number">1</span>){
+          tri.properties.a = closest.properties[z]
+        }
+        <span class="keyword">else</span> <span class="keyword">if</span>(coordinateNumber === <span class="number">2</span>){
+          tri.properties.b = closest.properties[z]
+        }
+        <span class="keyword">else</span> <span class="keyword">if</span>(coordinateNumber === <span class="number">3</span>){
+          tri.properties.c = closest.properties[z]
+        }
+        coordinateNumber++
+      })
+    })
+  })
+  done(<span class="literal">null</span>, triangles)
+}
+
+<span class="function"><span class="keyword">function</span> <span class="title">Triangle</span><span class="params">(a, b, c)</span> {</span>
+  <span class="keyword">this</span>.a = a
+  <span class="keyword">this</span>.b = b
+  <span class="keyword">this</span>.c = c
+
+  <span class="keyword">var</span> A = b.x - a.x,
+      B = b.y - a.y,
+      C = c.x - a.x,
+      D = c.y - a.y,
+      E = A * (a.x + b.x) + B * (a.y + b.y),
+      F = C * (a.x + c.x) + D * (a.y + c.y),
+      G = <span class="number">2</span> * (A * (c.y - b.y) - B * (c.x - b.x)),
+      minx, miny, dx, dy
+
+  <span class="comment">/* If the points of the triangle are collinear, then just find the
+   * extremes and use the midpoint as the center of the circumcircle. */</span>
+  <span class="keyword">if</span>(Math.abs(G) &lt; <span class="number">0.000001</span>) {
+    minx = Math.min(a.x, b.x, c.x)
+    miny = Math.min(a.y, b.y, c.y)
+    dx   = (Math.max(a.x, b.x, c.x) - minx) * <span class="number">0.5</span>
+    dy   = (Math.max(a.y, b.y, c.y) - miny) * <span class="number">0.5</span>
+
+    <span class="keyword">this</span>.x = minx + dx
+    <span class="keyword">this</span>.y = miny + dy
+    <span class="keyword">this</span>.r = dx * dx + dy * dy
+  }
+
+  <span class="keyword">else</span> {
+    <span class="keyword">this</span>.x = (D*E - B*F) / G
+    <span class="keyword">this</span>.y = (A*F - C*E) / G
+    dx = <span class="keyword">this</span>.x - a.x
+    dy = <span class="keyword">this</span>.y - a.y
+    <span class="keyword">this</span>.r = dx * dx + dy * dy
+  }
+}
+
+Triangle.prototype.draw = <span class="function"><span class="keyword">function</span><span class="params">(ctx)</span> {</span>
+  ctx.beginPath()
+  ctx.moveTo(<span class="keyword">this</span>.a.x, <span class="keyword">this</span>.a.y)
+  ctx.lineTo(<span class="keyword">this</span>.b.x, <span class="keyword">this</span>.b.y)
+  ctx.lineTo(<span class="keyword">this</span>.c.x, <span class="keyword">this</span>.c.y)
+  ctx.closePath()
+  ctx.stroke()
+}
+
+<span class="function"><span class="keyword">function</span> <span class="title">byX</span><span class="params">(a, b)</span> {</span>
+  <span class="keyword">return</span> b.x - a.x
+}
+
+<span class="function"><span class="keyword">function</span> <span class="title">dedup</span><span class="params">(edges)</span> {</span>
+  <span class="keyword">var</span> j = edges.length,
+      a, b, i, m, n
+
+  outer: <span class="keyword">while</span>(j) {
+    b = edges[--j]
+    a = edges[--j]
+    i = j
+    <span class="keyword">while</span>(i) {
+      n = edges[--i]
+      m = edges[--i]
+      <span class="keyword">if</span>((a === m &amp;&amp; b === n) || (a === n &amp;&amp; b === m)) {
+        edges.splice(j, <span class="number">2</span>)
+        edges.splice(i, <span class="number">2</span>)
+        j -= <span class="number">2</span>
+        <span class="keyword">continue</span> outer
+      }
+    }
+  }
+}
+
+<span class="function"><span class="keyword">function</span> <span class="title">triangulate</span><span class="params">(vertices)</span> {</span>
+  <span class="comment">/* Bail if there aren't enough vertices to form any triangles. */</span>
+  <span class="keyword">if</span>(vertices.length &lt; <span class="number">3</span>)
+    <span class="keyword">return</span> []
+
+  <span class="comment">/* Ensure the vertex array is in order of descending X coordinate
+   * (which is needed to ensure a subquadratic runtime), and then find
+   * the bounding box around the points. */</span>
+  vertices.sort(byX)
+
+  <span class="keyword">var</span> i    = vertices.length - <span class="number">1</span>,
+      xmin = vertices[i].x,
+      xmax = vertices[<span class="number">0</span>].x,
+      ymin = vertices[i].y,
+      ymax = ymin
+
+  <span class="keyword">while</span>(i--) {
+    <span class="keyword">if</span>(vertices[i].y &lt; ymin) ymin = vertices[i].y
+    <span class="keyword">if</span>(vertices[i].y &gt; ymax) ymax = vertices[i].y
+  }
+
+  <span class="comment">/* Find a supertriangle, which is a triangle that surrounds all the
+   * vertices. This is used like something of a sentinel value to remove
+   * cases in the main algorithm, and is removed before we return any
+   * results.
+   *
+   * Once found, put it in the "open" list. (The "open" list is for
+   * triangles who may still need to be considered; the "closed" list is
+   * for triangles which do not.) */</span>
+  <span class="keyword">var</span> dx     = xmax - xmin,
+      dy     = ymax - ymin,
+      dmax   = (dx &gt; dy) ? dx : dy,
+      xmid   = (xmax + xmin) * <span class="number">0.5</span>,
+      ymid   = (ymax + ymin) * <span class="number">0.5</span>,
+      open   = [
+        <span class="keyword">new</span> Triangle(
+          {x: xmid - <span class="number">20</span> * dmax, y: ymid -      dmax, __sentinel: <span class="literal">true</span>},
+          {x: xmid            , y: ymid + <span class="number">20</span> * dmax, __sentinel: <span class="literal">true</span>},
+          {x: xmid + <span class="number">20</span> * dmax, y: ymid -      dmax, __sentinel: <span class="literal">true</span>}
+        )
+      ],
+      closed = [],
+      edges = [],
+      j, a, b
+
+  <span class="comment">/* Incrementally add each vertex to the mesh. */</span>
+  i = vertices.length
+  <span class="keyword">while</span>(i--) {
+    <span class="comment">/* For each open triangle, check to see if the current point is
+     * inside it's circumcircle. If it is, remove the triangle and add
+     * it's edges to an edge list. */</span>
+    edges.length = <span class="number">0</span>
+    j = open.length
+    <span class="keyword">while</span>(j--) {
+      <span class="comment">/* If this point is to the right of this triangle's circumcircle,
+       * then this triangle should never get checked again. Remove it
+       * from the open list, add it to the closed list, and skip. */</span>
+      dx = vertices[i].x - open[j].x
+      <span class="keyword">if</span>(dx &gt; <span class="number">0</span> &amp;&amp; dx * dx &gt; open[j].r) {
+        closed.push(open[j])
+        open.splice(j, <span class="number">1</span>)
+        <span class="keyword">continue</span>
+      }
+
+      <span class="comment">/* If not, skip this triangle. */</span>
+      dy = vertices[i].y - open[j].y
+      <span class="keyword">if</span>(dx * dx + dy * dy &gt; open[j].r)
+        <span class="keyword">continue</span>
+
+      <span class="comment">/* Remove the triangle and add it's edges to the edge list. */</span>
+      edges.push(
+        open[j].a, open[j].b,
+        open[j].b, open[j].c,
+        open[j].c, open[j].a
+      )
+      open.splice(j, <span class="number">1</span>)
+    }
+
+    <span class="comment">/* Remove any doubled edges. */</span>
+    dedup(edges)
+
+    <span class="comment">/* Add a new triangle for each edge. */</span>
+    j = edges.length
+    <span class="keyword">while</span>(j) {
+      b = edges[--j]
+      a = edges[--j]
+      open.push(<span class="keyword">new</span> Triangle(a, b, vertices[i]))
+    }
+  }
+
+  <span class="comment">/* Copy any remaining open triangles to the closed list, and then
+   * remove any triangles that share a vertex with the supertriangle. */</span>
+  Array.prototype.push.apply(closed, open)
+
+  i = closed.length
+  <span class="keyword">while</span>(i--)
+    <span class="keyword">if</span>(closed[i].a.__sentinel ||
+       closed[i].b.__sentinel ||
+       closed[i].c.__sentinel)
+      closed.splice(i, <span class="number">1</span>)
+
+  <span class="comment">/* Yay, we're done! */</span>
+  <span class="keyword">return</span> closed
+}
+
+<span class="comment">/*if (typeof module !== 'undefined') {
+    module.exports = {
+        Triangle: Triangle,
+        triangulate: triangulate
+    }
+}*/</span></pre></div></div>
+            
+        </li>
+        
+    </ul>
+  </div>
+</body>
+</html>
