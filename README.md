@@ -6,6 +6,10 @@ turf
 
 All features are written in a functional manner with no side effects. In nearly all cases, they accept objects created by the point, linestring, polygon, and featurecollection functions, but these are simply for convenience. Any valid geojson Feature of FeatureCollection will do.
 
+- - -
+
+##Installation
+
 ```bash
 npm install turf
 ```
