@@ -26,41 +26,41 @@ bower install turf
 
 **Features**
 
-- load
-- save
-- point
-- linestring
-- polygon
-- featurecollection
-- extent
-- square
-- size
-- center
-- bboxPolygon
-- envelope
-- centroid
-- explode
-- combine
-- remove
-- filter
-- distance
-- buffer
-- nearest
-- tin
-- grid
-- planepoint
-- inside
-- midpoint
-- quantile
-- jenks
-- reclass
-- contour
-- sample
-- tag
-- bezier
-- simplify
-- average
-- sum
+[load](https://github.com/morganherlocker/turf/edit/master/README.md#load)
+[save](https://github.com/morganherlocker/turf/edit/master/README.md#save)
+[point](https://github.com/morganherlocker/turf/edit/master/README.md#point)
+[linestring](https://github.com/morganherlocker/turf/edit/master/README.md#linestring)
+[polygon](https://github.com/morganherlocker/turf/edit/master/README.md#polygon)
+[featurecollection](https://github.com/morganherlocker/turf/edit/master/README.md#featurecollection)
+[extent](https://github.com/morganherlocker/turf/edit/master/README.md#extent)
+[square](https://github.com/morganherlocker/turf/edit/master/README.md#square)
+[size](https://github.com/morganherlocker/turf/edit/master/README.md#size)
+[center](https://github.com/morganherlocker/turf/edit/master/README.md#center)
+[bboxPolygon](https://github.com/morganherlocker/turf/edit/master/README.md#bboxPolygon)
+[envelope](https://github.com/morganherlocker/turf/edit/master/README.md#envelope)
+[centroid](https://github.com/morganherlocker/turf/edit/master/README.md#centroid)
+[explode](https://github.com/morganherlocker/turf/edit/master/README.md#explode)
+[combine](https://github.com/morganherlocker/turf/edit/master/README.md#combine)
+[remove](https://github.com/morganherlocker/turf/edit/master/README.md#remove)
+[filter](https://github.com/morganherlocker/turf/edit/master/README.md#filter)
+[distance](https://github.com/morganherlocker/turf/edit/master/README.md#distance)
+[buffer](https://github.com/morganherlocker/turf/edit/master/README.md#buffer)
+[nearest](https://github.com/morganherlocker/turf/edit/master/README.md#nearest)
+[tin](https://github.com/morganherlocker/turf/edit/master/README.md#tin)
+[grid](https://github.com/morganherlocker/turf/edit/master/README.md#grid)
+[planepoint](https://github.com/morganherlocker/turf/edit/master/README.md#planepoint)
+[inside](https://github.com/morganherlocker/turf/edit/master/README.md#inside)
+[midpoint](https://github.com/morganherlocker/turf/edit/master/README.md#midpoint)
+[quantile](https://github.com/morganherlocker/turf/edit/master/README.md#quantile)
+[jenks](https://github.com/morganherlocker/turf/edit/master/README.md#jenks)
+[reclass](https://github.com/morganherlocker/turf/edit/master/README.md#reclass)
+[contour](https://github.com/morganherlocker/turf/edit/master/README.md#contour)
+[sample](https://github.com/morganherlocker/turf/edit/master/README.md#sample)
+[tag](https://github.com/morganherlocker/turf/edit/master/README.md#tag)
+[bezier](https://github.com/morganherlocker/turf/edit/master/README.md#bezier)
+[simplify](https://github.com/morganherlocker/turf/edit/master/README.md#simplify)
+[average](https://github.com/morganherlocker/turf/edit/master/README.md#average)
+[sum](https://github.com/morganherlocker/turf/edit/master/README.md#sum)
 
 **Planned Features**
 
@@ -79,9 +79,9 @@ Additional feature requests welcomed and encouraged. To request a feature, pleas
 
 - - -
 
-***Examples:***
+##Examples:
 
-**load**
+###load
 
 Loads a Feature or FeaturCollection from a file.
 
