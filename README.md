@@ -746,11 +746,11 @@ var pt4 = t.point(13,1, {population: 500})
 var pt5 = t.point(19,7, {population: 200})
 var ptFC = t.featurecollection([pt1, pt2, pt3, pt4, pt5])
 
-t.min(polyFC, ptFC, 'population', 'pop_sum', function(err, minPolys){
+t.min(polyFC, ptFC, 'population', 'pop_min', function(err, minPolys){
   if(err) throw err
 
-  console.log(minPolys.features[0].properties.pop_min) // 500
-  console.log(minPolys.features[1].properties.pop_min) // 600
+  console.log(minPolys.features[0].properties.pop_min) // 400
+  console.log(minPolys.features[1].properties.pop_min) // 200
 })
 ```
 
@@ -772,11 +772,11 @@ var pt4 = t.point(13,1, {population: 500})
 var pt5 = t.point(19,7, {population: 200})
 var ptFC = t.featurecollection([pt1, pt2, pt3, pt4, pt5])
 
-t.min(polyFC, ptFC, 'population', 'pop_sum', function(err, minPolys){
+t.max(polyFC, ptFC, 'population', 'pop_max', function(err, maxPolys){
   if(err) throw err
 
-  console.log(minPolys.features[0].properties.pop_min) // 500
-  console.log(minPolys.features[1].properties.pop_min) // 600
+  console.log(maxPolys.features[0].properties.pop_max) // 500
+  console.log(maxPolys.features[1].properties.pop_max) // 600
 })
 ```
 
