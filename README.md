@@ -24,9 +24,9 @@ bower install turf
 
 - - -
 
-**Features**
+##Features
 
-[load](https://github.com/morganherlocker/turf/edit/master/README.md#load)
+[load](#load)
 
 [save](https://github.com/morganherlocker/turf/edit/master/README.md#save)
 
