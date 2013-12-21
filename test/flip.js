@@ -39,7 +39,17 @@ describe('flip', function(){
     })
   })
   it('should flip the x and ys of a featurecollection', function(done){
-    
-    done()
+    var pt1 = t.point(1,0)
+    var pt2 = t.point(1,0)
+    var fc = t.featurecollection([pt1, pt2])
+    t.flip(pt, function(err, flipped){
+      if(err) throw err
+      flipped.should.be.ok
+      flipped.features[0].geometry.coordinates[0].should.equal(0)
+      flipped.features[0].geometry.coordinates[1].should.equal(1)
+      flipped.features[1].geometry.coordinates[0].should.equal(0)
+      flipped.features[1].geometry.coordinates[1].should.equal(1)
+      done()
+    })
   })
 }) 
