@@ -6,7 +6,7 @@
         "properties": { 
           "name": "Location B",
           "category": "House",
-          "elevation": 25
+          "elevation": -5
         }
       },
       { "type": "Feature",
@@ -14,7 +14,7 @@
         "properties": { 
           "name": "Location A",
           "category": "Store",
-          "elevation": 23
+          "elevation": -3
         }
       },
       { "type": "Feature",
@@ -22,7 +22,7 @@
         "properties": { 
           "name": "Location C",
           "category": "Office",
-          "elevation": 29
+          "elevation": 0
         }
       },
       { "type": "Feature",
@@ -30,7 +30,7 @@
         "properties": { 
           "name": "Location A",
           "category": "Store",
-          "elevation": 12
+          "elevation": 4
         }
       },
       { "type": "Feature",
@@ -46,7 +46,7 @@
         "properties": { 
           "name": "Location C",
           "category": "Office",
-          "elevation": 49
+          "elevation": 21
         }
       },
       { "type": "Feature",
@@ -54,7 +54,7 @@
         "properties": { 
           "name": "Location A",
           "category": "Store",
-          "elevation": 50
+          "elevation": 6
         }
       },
       { "type": "Feature",
@@ -62,7 +62,7 @@
         "properties": { 
           "name": "Location B",
           "category": "House",
-          "elevation": 90
+          "elevation": -12
         }
       },
       { "type": "Feature",
@@ -70,7 +70,7 @@
         "properties": { 
           "name": "Location C",
           "category": "Office",
-          "elevation": 22
+          "elevation": 15
         }
       },
       { "type": "Feature",
@@ -78,7 +78,7 @@
         "properties": { 
           "name": "Location A",
           "category": "Store",
-          "elevation": 99
+          "elevation": 18
         }
       },
       { "type": "Feature",
@@ -86,7 +86,7 @@
         "properties": { 
           "name": "Location B",
           "category": "House",
-          "elevation": 55
+          "elevation": 22
         }
       },
       { "type": "Feature",
@@ -94,7 +94,7 @@
         "properties": { 
           "name": "Location C",
           "category": "Office",
-          "elevation": 41
+          "elevation": -17
         }
       },
       { "type": "Feature",
@@ -102,7 +102,7 @@
         "properties": { 
           "name": "Location A",
           "category": "Store",
-          "elevation": 52
+          "elevation": 18
         }
       },
       { "type": "Feature",
@@ -110,7 +110,7 @@
         "properties": { 
           "name": "Location B",
           "category": "House",
-          "elevation": 143
+          "elevation": 5
         }
       },
       { "type": "Feature",
@@ -118,7 +118,7 @@
         "properties": { 
           "name": "Location C",
           "category": "Office",
-          "elevation": 76
+          "elevation": 4
         }
       },
       { "type": "Feature",
@@ -126,7 +126,7 @@
         "properties": { 
           "name": "Location C",
           "category": "Office",
-          "elevation": 18
+          "elevation": 0
         }
       },
       { "type": "Feature",
@@ -134,7 +134,7 @@
         "properties": { 
           "name": "Location C",
           "category": "Office",
-          "elevation": 52
+          "elevation": 6
         }
       }
     ]
