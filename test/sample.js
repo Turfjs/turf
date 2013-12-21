@@ -2,7 +2,7 @@ var t = require('../index'),
     should = require('should')
 
 describe('sample', function(){
-  xit('should take a feature collection and a number and return a random sample of n length', function(done){
+  it('should take a feature collection and a number and return a random sample of n length', function(done){
     var num = 10
 
     t.load('./testIn/Points3.geojson', function(err, pts){
