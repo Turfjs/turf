@@ -600,7 +600,7 @@ var t = require('turf')
 
 t.load('./testIn/tagPoints.geojson', function(err, points){
   t.load('./testIn/tagPolygons.geojson', function(err, polygons){
-    t.tag(points, polygons, 'polyID', function(err, taggedPoints){
+    t.tag(points, polygons, 'polyID', 'containingPolyID', function(err, taggedPoints){
       console.log(taggedPoints)
     })
   })
