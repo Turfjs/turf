@@ -1352,7 +1352,7 @@ module.exports = function(fc, field, value, done){
 }
 },{"./featurecollection":14,"lodash":41}],16:[function(require,module,exports){
 module.exports = function(fc, done){
-  
+  done(null, null)
 }
 },{}],17:[function(require,module,exports){
 var t = {}
