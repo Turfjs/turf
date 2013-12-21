@@ -22,11 +22,6 @@ It can also be installed using bower:
 bower install turf
 ```
 
-
-- - -
-
-*note: This module is under active development and is in a pre-release form. The first official release is planned mid November 2013.  Most features are pretty stable, but expect some changes periodically up until then.*
-
 - - -
 
 **Features**
