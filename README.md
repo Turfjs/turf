@@ -96,7 +96,7 @@ t.load(geoJsonFile, function(err, trees){
 ```
 
 
-**save**
+###save
 
 Saves out a feature or feature collection. 'geojson' and 'topojson' are currently supported.
 
@@ -112,7 +112,7 @@ t.save(path, poly, type, function(err, res){
 ```
 
 
-**point**
+###point
 
 Creates a geojson point Feature based on an x and a y coordinate. Properties can be added optionally.
 
@@ -126,7 +126,7 @@ console.log(point2)
 ```
 
 
-**linestring**
+###linestring
 
 Creates a geojson linestring Feature based on a coordinate array. Properties can be added optionally.
 
@@ -141,7 +141,7 @@ console.log(linestring2)
 ```
 
 
-**polygon**
+###polygon
 
 Creates a geojson polygon Feature based on a coordinate array. Properties can be added optionally.
 
@@ -156,7 +156,7 @@ console.log(polygon2)
 ```
 
 
-**featurecollection**
+###featurecollection
 
 Creates a geojson FeatureCollection based on an array of features.
 
@@ -171,7 +171,7 @@ console.log(fc)
 ```
 
 
-**extent**
+###extent
 
 Calculates the extent of all features and returns a bounding box.
 
@@ -187,7 +187,7 @@ t.load('path/to/file/example.geojson', function(err, features){
 ```
 
 
-**square**
+###square
 
 Calculates the minimum square bounding box for another bounding box.
 
@@ -202,7 +202,7 @@ t.square(bbox, function(err, square){
 ```
 
 
-**size**
+###size
 
 Takes a bbox and returns a new bbox with a size expanded or contracted by a factor of X.
 
@@ -216,7 +216,7 @@ t.size(bbox, 2, function(err, doubled){
 ```
 
 
-**center**
+###center
 
 Calculates the absolute center point of all features.
 
@@ -232,7 +232,7 @@ t.load('path/to/file/example.geojson', function(layer, err){
 ```
 
 
-**bboxPolygon**
+###bboxPolygon
 
 Takes a bbox and returns the equivalent polygon feature.
 
@@ -247,7 +247,7 @@ t.bboxPolygon(bbox, function(err, poly){
 ```
 
 
-**envelope**
+###envelope
 
 Takes a Feature or FeatureCollection and returns a rectangular polygon feature that encompasses all vertices.
 
@@ -265,7 +265,7 @@ t.envelope(fc, function(err, envelopePoly){
 ```
 
 
-**centroid**
+###centroid
 
 Calculates the centroid of a polygon Feature or FeatureCollection using the geometric mean of all vertices. This lessons the effect of small islands and artifacts when calculating the centroid of a set of polygons.
 
@@ -280,7 +280,7 @@ t.centroid(poly, function(err, centroid){
 ```
 
 
-**explode**
+###explode
 
 Takes a Feature or FeatureCollection and return all vertices as a collection of points.
 
@@ -295,7 +295,7 @@ t.explode(poly, function(err, vertices){
 ```
 
 
-**combine**
+###combine
 
 Combines feature collection of point, linestring, or polygon features into multipoint, multilinestring, or multipolygon features.
     
@@ -312,7 +312,7 @@ t.combine(fc, function(err, combined){
 ```
 
 
-**remove**
+###remove
 
 Removes any features from a feature collection that match a property value.
 
@@ -329,7 +329,7 @@ t.remove(points, 'species', 'dogwood', function(err, result) {
 ```
 
 
-**filter**
+###filter
 
 Keeps any features from a feature collection that match a property value.
 
@@ -351,7 +351,7 @@ t.filter(trees, 'species', 'oak', function(err, oaks){
 ```
 
 
-**inside**
+###inside
 
 Checks to see if a point is inside of a polygon. The polygon can be convex or concave.
 
@@ -367,7 +367,7 @@ t.inside(pt, poly, function(err, isInside){
 ```
 
 
-**buffer**
+###buffer
 
 Buffers a point feature to a given radius. Lines and Polygons support coming soon. Unit selection coming soon too (degrees, miles, km).
 
@@ -384,7 +384,7 @@ t.buffer(pt, 10, unit, function(err, buffered){
 ```
 
 
-**distance**
+###distance
 
 Calculates the distance between two point features in degrees, radians, miles, or kilometers. This uses the haversine formula to account for global curvature.
 
@@ -401,7 +401,7 @@ t.distance(point1, point2, unit, function(err, distance){
 ```
 
 
-**nearest**
+###nearest
 
 Returns the nearest point feature.
 
@@ -421,7 +421,7 @@ t.nearest(inPoint, inFeatures, function(err, closestPoint){
 ```
 
 
-**tin**
+###tin
 
 Takes a set of points and the name of a z-value property and creates a tin (Triangulated Irregular Network). These are often used for developing elevation contour maps or stepped heat visualizations.
 
@@ -438,7 +438,7 @@ t.load('/path/to/pointsfeatures/elevationPoints.geojson', function(err, points){
 ```
 
 
-**grid**
+###grid
 
 Takes a bounding box and a cell depth and outputs a feature collection of points in a grid.
 
@@ -452,7 +452,7 @@ t.grid([0,0,10,10], depth, function(err, grid){
 ```
 
 
-**planepoint**
+###planepoint
 
 Takes a trianglular plane and calculates the z value for a point on the plane.
 
@@ -473,7 +473,7 @@ t.planepoint(point, triangle, function(err, zValue){
 ```
 
 
-**midpoint**
+###midpoint
 
 Takes two point features and returns the mid point.
 
@@ -490,7 +490,7 @@ t.midpoint(pt1, pt2, function(err, midpoint){
 ```
 
 
-**quantile**
+###quantile
 
 Takes a set of features, a property name, and a set of percentiles and outputs a quantile array. This can be passed as a break array to the contour function.
 
@@ -509,7 +509,7 @@ t.load('./testIn/Points3.geojson', function(err, pts){
 ```
 
 
-**jenks**
+###jenks
 
 Takes a set of features, a property name, and the desired number of breaks and outputs an array of natural breaks. This classification can be used in the contour function or for theming.
 
@@ -528,7 +528,7 @@ t.load('./testIn/Points3.geojson', function(err, pts){
 ```
 
 
-**reclass**
+###reclass
 
 Takes a feature collection, a in field, an out field, and an array of translations and outputs an identical feature collection with the out field property populated.
 
@@ -549,7 +549,7 @@ t.load('./testIn/Points3.geojson', function(err, pts){
 ```
 
 
-**contour**
+###contour
 
 Takes a FeatureCollection of points with z values and an array of value breaks and generates contour polygons.  This is a great way to visualize interpolated density on a map.  It is often used for elevation maps, weather maps, and isocrones.  The main advantage over a heat map is that contours allow you to see definitive value boundaries, and the polygons can be used to aggregate data.  For example, you could get the 5000 ft elevation contour of a mountain and the 10000 ft elevation contour, then aggregate the number of trees in each to see how elevation affects tree survival.
 
@@ -568,7 +568,7 @@ t.load('../path/to/points.geojson', function(err, points){
 ```
 
 
-**sample**
+###sample
 
 Takes a feature collection and returns N random features as a feature collection.
 
@@ -586,7 +586,7 @@ t.load('./testIn/Points3.geojson', function(err, pts){
 ```
 
 
-**tag**
+###tag
 
 Performs a spatial join on a set of points from a set of polygons.
 
@@ -603,7 +603,7 @@ t.load('./testIn/tagPoints.geojson', function(err, points){
 ```
 
 
-**bezier**
+###bezier
 
 Takes a linestring and outputs a curved version of the line.
 
@@ -637,7 +637,7 @@ t.bezier(lineIn, 5000, .85, function(err, lineOut){
 ```
 
 
-**simplify**
+###simplify
 
 Takes a feature collection of polygons or linestrings and returns a simplified version, preserving topology of shared boundaries.
 
@@ -655,7 +655,7 @@ t.load('./path/to/complex.geojson', function(err, polys){
 ```
 
 
-**average**
+###average
 
 Calculates the average value of a field for points within a set of polygons.
 
@@ -681,7 +681,7 @@ t.average(polyFC, ptFC, 'population', 'pop_avg', function(err, averaged){
 ```
 
 
-**sum**
+###sum
 
 Calculates the sum value of a field for points within a set of polygons.
 
