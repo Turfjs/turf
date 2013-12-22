@@ -751,11 +751,11 @@ var pt4 = t.point(13,1, {population: 500})
 var pt5 = t.point(19,7, {population: 200})
 var ptFC = t.featurecollection([pt1, pt2, pt3, pt4, pt5])
 
-t.sum(polyFC, ptFC, 'population', 'pop_sum', function(err, averaged){
+t.sum(polyFC, ptFC, 'population', 'pop_sum', function(err, summed){
   if(err) throw err
 
-  console.log(averaged.features[0].properties.pop_sum) // 900
-  console.log(averaged.features[1].properties.pop_sum) // 1300
+  console.log(summed.features[0].properties.pop_sum) // 900
+  console.log(summed.features[1].properties.pop_sum) // 1300
 })
 ```
 
