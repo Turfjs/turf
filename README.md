@@ -70,7 +70,7 @@ bower install turf
 - [max](#max)
 - [aggregate](#aggregate)
 - [union](#union)
-- [intersection](#intersection)
+- [intersect](#intersect)
 
 **Planned Features**
 
@@ -81,8 +81,6 @@ Additional feature requests welcomed and encouraged. To request a feature, pleas
 - cluster
 - interpolate
 - area
-- intersect
-- union
 - erase
 - smooth
 
