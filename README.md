@@ -840,6 +840,11 @@ var aggregations = [
     outField: 'pop_avg'
   },
   {
+    aggregation: 'median',
+    inField: 'population',
+    outField: 'pop_median'
+  },
+  {
     aggregation: 'min',
     inField: 'population',
     outField: 'pop_min'
