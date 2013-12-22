@@ -69,6 +69,8 @@ bower install turf
 - [min](#min)
 - [max](#max)
 - [aggregate](#aggregate)
+- [union](#union)
+- [intersection](#intersection)
 
 **Planned Features**
 
@@ -823,6 +825,42 @@ var aggregations = [
 t.aggregate(polyFC, ptFC, aggregations, function(err, polys){
   if(err) throw err
   console.log(polys)
+})
+```
+
+
+###union
+
+Calculates the union of two polygon features or feature collections.
+
+```javascript
+var t = require('turf')
+
+t.load(__dirname + '/testIn/Intersect1.geojson', function(err, polys1){
+  t.load(__dirname + '/testIn/Intersect2.geojson', function(err, polys2){
+    t.union(polys1, polys2, function(err, unioned){
+      if(err) throw err
+      console.log(unioned)
+    })
+  })
+})
+```
+
+
+###intersect
+
+Calculates the intersection of two polygon features or feature collections.
+
+```javascript
+var t = require('turf')
+
+t.load(__dirname + '/testIn/Intersect1.geojson', function(err, polys1){
+  t.load(__dirname + '/testIn/Intersect2.geojson', function(err, polys2){
+    t.intersect(polys1, polys2, function(err, intersected){
+      if(err) throw err
+      console.log(intersected)
+    })
+  })
 })
 ```
 
