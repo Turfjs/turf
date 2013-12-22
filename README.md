@@ -725,7 +725,7 @@ var pt4 = t.point(13,1, {population: 200})
 var pt5 = t.point(19,7, {population: 300})
 var ptFC = t.featurecollection([pt1, pt2, pt3, pt4, pt5])
 
-t.median(polyFC, ptFC, 'population', 'pop_avg', function(err, medianed){
+t.median(polyFC, ptFC, 'population', 'pop_median', function(err, medianed){
   if(err) throw err
 
   console.log(medianed.features[0].properties.pop_median) // 400
