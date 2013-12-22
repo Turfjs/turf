@@ -1,4 +1,5 @@
 module.exports = {
+  median: require('./lib/median'),
   min: require('./lib/min'),
   max: require('./lib/max'),
   aggregate: require('./lib/aggregate'),
