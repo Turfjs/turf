@@ -1,0 +1,34 @@
+<run>
+<precisionModel type="FLOATING"/>
+
+<case>
+<desc>A/A-6-18: a polygon overlapping a very skinny polygon [dim(2){A.A.Int = B.A.Int}, dim(1){A.A.Bdy.V-EP = B.A.Bdy.NV-EP}, dim(0){A.A.Bdy.CP = B.A.Bdy.CP}, dim(0){A.A.Bdy.NV = B.A.Bdy.NV}]</desc>
+  <a>
+    POLYGON(
+      (100 100, 100 200, 200 200, 200 100, 100 100))
+  </a>
+  <b>
+    POLYGON(
+      (100 100, 1000000000000000 110, 1000000000000000 100, 100 100))
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="212111212">true</op>
+  </test>
+</case>
+
+<case>
+<desc>A/A-6-24: a polygon overlapping a very skinny polygon [dim(2){A.A.Int = B.A.Int}, dim(1){A.A.Bdy.V-EP = B.A.Bdy.NV-NV}, dim(0){A.A.Bdy.NV = B.A.Bdy.NV}]</desc>
+  <a>
+    POLYGON(
+      (120 100, 120 200, 200 200, 200 100, 120 100))
+  </a>
+  <b>
+    POLYGON(
+      (100 100, 1000000000000000 110, 1000000000000000 100, 100 100))
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="212111212">true</op>
+  </test>
+</case>
+
+</run>

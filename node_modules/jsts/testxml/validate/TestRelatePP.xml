@@ -1,0 +1,173 @@
+<run>
+<precisionModel type="FLOATING"/>
+
+<case>
+<desc>P/P: same point [dim(0){A.P.Int = B.P.Int}]</desc>
+  <a>
+    POINT(20 20)
+  </a>
+  <b>
+    POINT(20 20)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="0FFFFFFF2">true</op>
+  </test>
+</case>
+
+<case>
+<desc>P/P: different point [dim(0){A.P.Int = B.P.Ext}]</desc>
+  <a>
+    POINT(20 20)
+  </a>
+  <b>
+    POINT(40 60)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="FF0FFF0F2">true</op>
+  </test>
+</case>
+
+<case>
+<desc>P/mP: different points [dim(0){A.P.Int = B.3P.Ext}]</desc>
+  <a>
+    POINT(40 40)
+  </a>
+  <b>
+    MULTIPOINT((20 20), (80 80), (20 120))
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="FF0FFF0F2">true</op>
+  </test>
+</case>
+
+<case>
+<desc>P/mP: point A within one of B points [dim(0){A.P.Int = B.3P1.Int}]</desc>
+  <a>
+    POINT(20 20)
+  </a>
+  <b>
+    MULTIPOINT((20 20), (80 80), (20 120))
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="0FFFFF0F2">true</op>
+  </test>
+</case>
+
+<case>
+<desc>mP/mP-1-1: same points [dim(0){A.3P1.Int = B.3P1.Int}, dim(0){A.3P2.Int = B.3P2.Int}, dim(0){A.3P3.Int = B.3P3.Int}]</desc>
+  <a>
+    MULTIPOINT((40 40), (80 60), (120 100))
+  </a>
+  <b>
+    MULTIPOINT((40 40), (80 60), (120 100))
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="0FFFFFFF2">true</op>
+  </test>
+</case>
+
+<case>
+<desc>mP/mP-1-2: same but different sequence of points [dim(0){A.3P1.Int = B.3P1.Int}, dim(0){A.3P1.Int = B.3P3.Int}, dim(0){A.3P3.Int = B.3P2.Int}]</desc>
+  <a>
+    MULTIPOINT((40 40), (80 60), (120 100))
+  </a>
+  <b>
+    MULTIPOINT((40 40), (120 100), (80 60))
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="0FFFFFFF2">true</op>
+  </test>
+</case>
+
+<case>
+<desc>mP/mP-2: different points [dim(0){A.4P.Int = B.4P.Ext}]</desc>
+  <a>
+    MULTIPOINT((40 40), (60 100), (100 60), (120 120))
+  </a>
+  <b>
+    MULTIPOINT((20 120), (60 60), (100 100), (140 40))
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="FF0FFF0F2">true</op>
+  </test>
+</case>
+
+<case>
+<desc>mP/mP-5-1: same points [dim(0){A.4P.Int = B.4P.Int}]</desc>
+  <a>
+    MULTIPOINT((20 20), (80 70), (140 120), (200 170))
+  </a>
+  <b>
+    MULTIPOINT((20 20), (80 70), (140 120), (200 170))
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="0FFFFFFF2">true</op>
+  </test>
+</case>
+
+<case>
+<desc>mP/mP-5-2: same points but different sequence [dim(0){A.4P.Int = B.4P.Int}]</desc>
+  <a>
+    MULTIPOINT((20 20), (140 120), (80 70), (200 170))
+  </a>
+  <b>
+    MULTIPOINT((80 70), (20 20), (200 170), (140 120))
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="0FFFFFFF2">true</op>
+  </test>
+</case>
+
+<case>
+<desc>mP/mP-5-3: some points same [dim(0){A.4P2.Int = B.2P1.Int}, dim(0){A.4P3.Int = B.2P2.Int}]</desc>
+  <a>
+    MULTIPOINT((20 20), (80 70), (140 120), (200 170))
+  </a>
+  <b>
+    MULTIPOINT((80 70), (140 120))
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="0F0FFFFF2">true</op>
+  </test>
+</case>
+
+<case>
+<desc>mP/mP-5-4: some points same, in a different sequence [dim(0){A.4P1.Int = B.2P2.Int}, dim(0){A.4P4.Int = B.2P1.Int}]</desc>
+  <a>
+    MULTIPOINT((80 70), (20 200), (200 170), (140 120))
+  </a>
+  <b>
+    MULTIPOINT((140 120), (80 70))
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="0F0FFFFF2">true</op>
+  </test>
+</case>
+
+<case>
+<desc>mP/mP-6-1: some points same, some different [dim(0){A.4P4.Int = B.3P2.Int}]</desc>
+  <a>
+    MULTIPOINT((80 70), (20 20), (200 170), (140 120))
+  </a>
+  <b>
+    MULTIPOINT((80 170), (140 120), (200 80))
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="0F0FFF0F2">true</op>
+  </test>
+</case>
+
+<case>
+<desc>mP/mP-6-2: dim(0){A.4P1.Int = B.4P4.Int}, dim(0){A.4P4.Int = B.4P2.Int}</desc>
+  <a>
+    MULTIPOINT((80 70), (20 20), (200 170), (140 120))
+  </a>
+  <b>
+    MULTIPOINT((80 170), (140 120), (200 80), (80 70))
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="0F0FFF0F2">true</op>
+  </test>
+</case>
+
+</run>

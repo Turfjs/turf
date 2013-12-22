@@ -1,0 +1,19 @@
+<run>
+  <precisionModel scale="1.0" offsetx="0.0" offsety="0.0"/>
+
+<case>
+  <desc>PP - Point just off line. Causes non-robust algorithms to fail.</desc>
+  <a>
+    LINESTRING(-123456789 -40, 381039468754763 123456789)
+  </a>
+  <b>
+    POINT(0 0)
+  </b>
+<test>
+  <op name="intersects" arg1="A" arg2="B">
+    false
+  </op>
+</test>
+</case>
+
+</run>

@@ -1,0 +1,59 @@
+<run>
+  <precisionModel scale="1.0" offsetx="0.0" offsety="0.0"/>
+
+<case>
+  <desc>LA - line and sliver intersecting, dimensional collapse</desc>
+  <a>
+    POLYGON(
+      (95 9, 81 414, 87 414, 95 9))
+  </a>
+  <b>
+    LINESTRING(93 13, 96 13)
+  </b>
+<test>
+  <op name="getboundary" arg1="A">
+    LINESTRING(95 9, 81 414, 87 414, 95 9)
+  </op>
+</test>
+<test>
+  <op name="convexhull" arg1="A">
+    POLYGON(
+      (95 9, 81 414, 87 414, 95 9))
+  </op>
+</test>
+<test>
+  <op name="intersection" arg1="A" arg2="B">
+    POINT(95 13)
+  </op>
+</test>
+<test>
+  <op name="union" arg1="A" arg2="B">
+    GEOMETRYCOLLECTION(
+      LINESTRING(95 9, 95 13), 
+      POLYGON(
+        (95 13, 81 414, 87 414, 95 13)), 
+      LINESTRING(93 13, 95 13), 
+      LINESTRING(95 13, 96 13))
+  </op>
+</test>
+<test>
+  <op name="difference" arg1="A" arg2="B">
+    GEOMETRYCOLLECTION(
+      LINESTRING(95 9, 95 13), 
+      POLYGON(
+        (95 13, 81 414, 87 414, 95 13)))
+  </op>
+</test>
+<test>
+  <op name="symdifference" arg1="A" arg2="B">
+    GEOMETRYCOLLECTION(
+      LINESTRING(95 9, 95 13), 
+      POLYGON(
+        (95 13, 81 414, 87 414, 95 13)), 
+      LINESTRING(93 13, 95 13), 
+      LINESTRING(95 13, 96 13))
+  </op>
+</test>
+</case>
+
+</run>

@@ -1,0 +1,150 @@
+<run>
+  <desc>Tests for Geometry.union() method (unary union)</desc>
+  <precisionModel scale="1.0" offsetx="0.0" offsety="0.0"/>
+
+<case>
+  <desc>P - point (showing merging of identical points)</desc>
+  <a>
+    MULTIPOINT((10 10), (0 0), (10 10))
+  </a>
+<test>
+  <op name="union" arg1="A">
+    MULTIPOINT((10 10), (0 0))
+  </op>
+</test>
+</case>
+
+<case>
+  <desc>P - point (showing merging of identical points)</desc>
+  <a>
+    MULTIPOINT((10 10), (0 0), (10 10), (10 10), (10 10), (5 5), (5 5))
+  </a>
+<test>
+  <op name="union" arg1="A">
+    MULTIPOINT((10 10), (5 5), (0 0))
+  </op>
+</test>
+</case>
+
+<case>
+  <desc>mL - multiLineString (showing noding)</desc>
+  <a>
+    MULTILINESTRING((0 0, 10 10), (0 10, 10 0))
+  </a>
+<test>
+  <op name="union" arg1="A">
+    MULTILINESTRING ((0 0, 5 5),   (5 5, 10 10),   (0 10, 5 5),   (5 5, 10 0))
+  </op>
+</test>
+</case>
+
+<case>
+  <desc>GC - shows handling linear rings and linestrings</desc>
+  <a>    GEOMETRYCOLLECTION (LINEARRING (0 0, 0 70, 80 70, 80 0, 0 0), 
+  LINESTRING (30 110, 30 30, 100 30))
+  </a>
+  <test>
+    <op name="union" arg1="A">
+    MULTILINESTRING ((0 0, 0 70, 30 70), 
+  (30 70, 80 70, 80 30), 
+  (80 30, 80 0, 0 0), 
+  (30 110, 30 70), 
+  (30 70, 30 30, 80 30), 
+  (80 30, 100 30))
+    </op>
+  </test>
+</case>
+
+<case>
+  <desc>mL - multiLineString (showing noding and dissolving)</desc>
+  <a>    MULTILINESTRING((0 0, 10 10), (5 5, 15 15))
+  </a>
+  <test>
+    <op name="union" arg1="A">
+    MULTILINESTRING ((0 0, 5 5),   (5 5, 10 10),   (10 10, 15 15))
+    </op>
+  </test>
+</case>
+
+<case>
+  <desc>mP - multiPolygon (invalid)</desc>
+  <a>    MULTIPOLYGON (((0 0, 0 100, 100 100, 100 0, 0 0)), 
+  ((70 160, 70 70, 160 70, 160 160, 70 160)))
+  </a>
+  <test>
+    <op name="union" arg1="A">
+    POLYGON ((0 0, 0 100, 70 100, 70 160, 160 160, 160 70, 100 70, 100 0, 0 0))
+    </op>
+  </test>
+</case>
+
+<case>
+  <desc>GC - geometry collection (homo)</desc>
+  <a>    GEOMETRYCOLLECTION (POLYGON ((0 0, 0 100, 100 100, 100 0, 0 0)), 
+  POLYGON ((70 160, 70 70, 160 70, 160 160, 70 160)))
+  </a>
+  <test>
+    <op name="union" arg1="A">
+    POLYGON ((0 0, 0 100, 70 100, 70 160, 160 160, 160 70, 100 70, 100 0, 0 0))
+    </op>
+  </test>
+</case>
+
+<case>
+  <desc>GC - geometry collection (hetero LA)</desc>
+  <a>    GEOMETRYCOLLECTION (POLYGON ((0 0, 0 100, 100 100, 100 0, 0 0)), 
+  POLYGON ((70 160, 70 70, 160 70, 160 160, 70 160)), 
+  LINESTRING (40 70, 40 160))
+  </a>
+  <test>
+    <op name="union" arg1="A">
+    GEOMETRYCOLLECTION (LINESTRING (40 100, 40 160), 
+  POLYGON ((0 0, 0 100, 40 100, 70 100, 70 160, 160 160, 160 70, 100 70, 100 0, 0 0)))
+    </op>
+  </test>
+</case>
+
+<case>
+  <desc>GC - geometry collection (hetero PL)</desc>
+  <a>    GEOMETRYCOLLECTION (LINESTRING (40 60, 120 110), 
+  POINT (120 110), 
+  POINT (40 60))
+  </a>
+  <test>
+    <op name="union" arg1="A">
+    	LINESTRING (40 60, 120 110)
+    </op>
+  </test>
+</case>
+
+<case>
+  <desc>GC - geometry collection (hetero PL)</desc>
+  <a>    GEOMETRYCOLLECTION (LINESTRING (40 60, 120 110), 
+  POINT (120 110), 
+  POINT (40 60), 
+  POINT (100 70), 
+  POINT (80 50))
+  </a>
+  <test>
+    <op name="union" arg1="A">
+    	GEOMETRYCOLLECTION (POINT (80 50), POINT (100 70), LINESTRING (40 60, 120 110))
+    </op>
+  </test>
+</case>
+
+<case>
+  <desc>mP - multipolygon (invalid) with topology collapse</desc>
+  <a>    MULTIPOLYGON (((0 0, 150 0, 150 1, 0 0)), 
+  ((180 0, 20 0, 20 100, 180 100, 180 0)))
+  </a>
+  <test>
+    <op name="union" arg1="A">
+    	GEOMETRYCOLLECTION (LINESTRING (0 0, 20 0), 
+  POLYGON ((150 0, 20 0, 20 100, 180 100, 180 0, 150 0)))
+    </op>
+  </test>
+</case>
+
+
+
+</run>

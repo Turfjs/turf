@@ -1,0 +1,53 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>Buffer example</title>
+  <link rel="stylesheet" href="http://www.openlayers.org/api/theme/default/style.css" type="text/css" />
+  
+  <script src="http://www.openlayers.org/api/OpenLayers.js"></script>
+
+  <script type="text/javascript" src="../lib/javascript.util.js"></script>
+  <script type="text/javascript" src="../lib/jsts.js"></script>
+  <script type="text/javascript" src="https://raw.github.com/olooney/attache-array-js/master/attache.array.min.js"></script>
+
+<script type="text/javascript">
+  function init() {
+    var reader = new jsts.io.WKTReader();
+
+    var input = reader.read('POLYGON ((80 300, 280 300, 280 80, 80 80, 80 300), (260 280, 180 200, 100 280, 100 100, 260 100, 260 280))');	
+    //var input = reader.read('POLYGON ((-69 -90, -69 -90, -69 -90, -69 -90, -69 -90, -69 -90, -69 -90, -69 -90, -69 -90, -69 -90, -69 -90, -69 -90))');
+    
+    var buffer = input.buffer(20);
+    
+    var parser = new jsts.io.OpenLayersParser();
+    input = parser.write(input);
+    buffer = parser.write(buffer);
+    
+    var map = new OpenLayers.Map('map', {
+      maxExtent: new OpenLayers.Bounds(0, 0, 300, 300),
+      //maxResolution: 100,
+      units: 'm',
+      controls: [new OpenLayers.Control.MousePosition(), new OpenLayers.Control.Navigation()]
+    });
+    
+    var layer = new OpenLayers.Layer.Vector('test', {
+      isBaseLayer: true
+    });
+    map.addLayer(layer);
+    
+    var feature1 = new OpenLayers.Feature.Vector(buffer, null, { fillColor: 'blue'});
+    layer.addFeatures([feature1]);
+    var feature2 = new OpenLayers.Feature.Vector(input, null, { fillColor: 'red'});
+    layer.addFeatures([feature2]);
+    
+    map.zoomToMaxExtent();
+    
+  }
+</script>
+</head>
+<body onload="init()">
+	Input geometry is buffered by 20 units (input is red result is blue).<br />
+	<div id="map" style="width:500px;height:500px;"></div>
+</body>
+</html>

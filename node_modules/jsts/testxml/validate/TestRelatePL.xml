@@ -1,0 +1,1283 @@
+<run>
+<precisionModel type="FLOATING"/>
+
+<case>
+<desc>P/L-2: a point and a line disjoint [dim(0){A.P.Int = B.L.Ext}]</desc>
+  <a>
+    POINT(110 200)
+  </a>
+  <b>
+    LINESTRING(90 80, 160 150, 300 150, 340 150, 340 240)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="FF0FFF102">true</op>
+  </test>
+</case>
+
+<case>
+<desc>P/L-3-1: a point touching the start point of a line  [dim(0){A.P.Int = B.L.Bdy.SP}]</desc>
+  <a>
+    POINT(90 80)
+  </a>
+  <b>
+    LINESTRING(90 80, 160 150, 300 150, 340 150, 340 240)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="F0FFFF102">true</op>
+  </test>
+</case>
+
+<case>
+<desc>P/L-3-2: a point touching the end point of a line [dim(0){A.P.Int = B.L.Bdy.EP}]</desc>
+  <a>
+    POINT(340 240)
+  </a>
+  <b>
+    LINESTRING(90 80, 160 150, 300 150, 340 150, 340 240)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="F0FFFF102">true</op>
+  </test>
+</case>
+
+<case>
+<desc>P/L-5-1: a point on the line at a non-vertex [dim(0){A.P.Int = B.L.Int.NV}]</desc>
+  <a>
+    POINT(230 150)
+  </a>
+  <b>
+    LINESTRING(90 80, 160 150, 300 150, 340 150, 340 240)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="0FFFFF102">true</op>
+  </test>
+</case>
+
+<case>
+<desc>P/L-5-2: a point on the line at a vertex [dim(0){A.P.Int = B.L.Int.V}]</desc>
+  <a>
+    POINT(160 150)
+  </a>
+  <b>
+    LINESTRING(90 80, 160 150, 300 150, 340 150, 340 240)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="0FFFFF102">true</op>
+  </test>
+</case>
+
+<case>
+<desc>P/LR-2-1: a point outside a LinearRing [dim(0){A.P.Int = B.LR.Ext}]</desc>
+  <a>
+    POINT(90 150)
+  </a>
+  <b>
+    LINESTRING(150 150, 20 20, 280 20, 150 150)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="FF0FFF1F2">true</op>
+  </test>
+</case>
+
+<case>
+<desc>P/LR-2-2: a point inside a LinearRing  [dim(0){A.P.Int = B.LR.Ext}]</desc>
+  <a>
+    POINT(150 80)
+  </a>
+  <b>
+    LINESTRING(150 150, 20 20, 280 20, 150 150)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="FF0FFF1F2">true</op>
+  </test>
+</case>
+
+<case>
+<desc>P/LR-5-1: a point on the closing point of a LinearRing [dim(0){A.P.Int = B.LR.Int.CP}]</desc>
+  <a>
+    POINT(150 150)
+  </a>
+  <b>
+    LINESTRING(150 150, 20 20, 280 20, 150 150)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="0FFFFF1F2">true</op>
+  </test>
+</case>
+
+<case>
+<desc>P/LR-5-2: a point on a LinearRing at a non-vertex [dim(0){A.P.Int = B.L.Int.NV}]</desc>
+  <a>
+    POINT(100 20)
+  </a>
+  <b>
+    LINESTRING(150 150, 20 20, 280 20, 150 150)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="0FFFFF1F2">true</op>
+  </test>
+</case>
+
+<case>
+<desc>P/LR-5-3: a point on a LinearRing at a vertex [dim(0){A.P.Int = B.L.Int.V}]</desc>
+  <a>
+    POINT(20 20)
+  </a>
+  <b>
+    LINESTRING(150 150, 20 20, 280 20, 150 150)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="0FFFFF1F2">true</op>
+  </test>
+</case>
+
+<case>
+<desc>P/nsL.1-3-1: a point on a non-simple LineString's end point [dim(0){A.P.Int = B.nsL.Bdy.EP}]</desc>
+  <a>
+    POINT(220 220)
+  </a>
+  <b>
+    LINESTRING(110 110, 220 20, 20 20, 110 110, 220 220)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="F0FFFF102">true</op>
+  </test>
+</case>
+
+<case>
+<desc>P/nsL.1-5-1: a point on a non-simple LineString's start point with crossing line segments [dim(0){A.P.Int = B.nsL.Bdy.SPx}]</desc>
+  <a>
+    POINT(110 110)
+  </a>
+  <b>
+    LINESTRING(110 110, 220 20, 20 20, 110 110, 220 220)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="F0FFFF102">true</op>
+  </test>
+</case>
+
+<case>
+<desc>P/nsL.1-5-2: a point a non-simple LineString's start point with crossing line segments [dim(0){A.P.Int = B.nsL.Bdy.SPx}]</desc>
+  <a>
+    POINT(110 110)
+  </a>
+  <b>
+    LINESTRING(110 110, 220 20, 20 20, 220 220)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="F0FFFF102">true</op>
+  </test>
+</case>
+
+<case>
+<desc>P/nsL.1-5-3: a point on a non-simple LineString's interior at a non-vertex [dim(0){A.P.Int = B.nsL.Int.NV}]</desc>
+  <a>
+    POINT(110 20)
+  </a>
+  <b>
+    LINESTRING(110 110, 220 20, 20 20, 220 220)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="0FFFFF102">true</op>
+  </test>
+</case>
+
+<case>
+<desc>P/nsL.1-5-4: a point on a non-simple LineString's interior at a vertex [dim(0){A.P.Int = B.nsL.Int.V}]</desc>
+  <a>
+    POINT(220 20)
+  </a>
+  <b>
+    LINESTRING(110 110, 220 20, 20 20, 220 220)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="0FFFFF102">true</op>
+  </test>
+</case>
+
+<case>
+<desc>P/nsL.2-5-2: a point on a non-simple LineString's interior at a vertex [dim(0){A.P.Int = B.nsL.Int.NV}]</desc>
+  <a>
+    POINT(110 20)
+  </a>
+  <b>
+    LINESTRING(220 220, 20 20, 220 20, 110 110)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="0FFFFF102">true</op>
+  </test>
+</case>
+
+<case>
+<desc>P/nsL.2-5-3: a point on a non-simple LineString's interior at a vertex [dim(0){A.P.Int = B.nsL.Int.V}]</desc>
+  <a>
+    POINT(20 20)
+  </a>
+  <b>
+    LINESTRING(220 220, 20 20, 220 20, 110 110)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="0FFFFF102">true</op>
+  </test>
+</case>
+
+<case>
+<desc>P/nsL.2-5-4: a point on a non-simple LineString's interior at a vertex with crossing line segments [dim(0){A.P.Int = B.nsL.Int.Vx}]</desc>
+  <a>
+    POINT(20 110)
+  </a>
+  <b>
+    LINESTRING(20 200, 20 20, 110 20, 20 110, 110 200)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="0FFFFF102">true</op>
+  </test>
+</case>
+
+<case>
+<desc>P/nsL.3-3-1: a point on a non-simple LineString's start point [dim(0){A.P.Int = B.nsL.Bdy.SP}]</desc>
+  <a>
+    POINT(20 200)
+  </a>
+  <b>
+    LINESTRING(20 200, 200 20, 20 20, 200 200)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="F0FFFF102">true</op>
+  </test>
+</case>
+
+<case>
+<desc>P/nsL.3-5-1: a point on a non-simple LineString's interior at a non-vertex with overlapping line segments [dim(0){A.P.Int = B.nsL.Int.NVo}]</desc>
+  <a>
+    POINT(110 110)
+  </a>
+  <b>
+    LINESTRING(20 200, 200 20, 140 20, 140 80, 80 140, 20 140)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="0FFFFF102">true</op>
+  </test>
+</case>
+
+<case>
+<desc>P/nsL.3-5-2: a point on a non-simple LineString's interior at a non-vertex with crossing line segments [dim(0){A.P.Int = B.nsL.Int.NVx}]</desc>
+  <a>
+    POINT(110 110)
+  </a>
+  <b>
+    LINESTRING(20 200, 200 20, 20 20, 200 200)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="0FFFFF102">true</op>
+  </test>
+</case>
+
+<case>
+<desc>P/nsL.3-5-3: a point on a non-simple LineString's interior at a vertex with both crossing and overlapping line segments [dim(0){A.P.Int = B.nsL.Int.Vb}]</desc>
+  <a>
+    POINT(80 140)
+  </a>
+  <b>
+    LINESTRING(20 200, 110 110, 200 20, 140 20, 140 80, 110 110, 80 140, 20 140)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="0FFFFF102">true</op>
+  </test>
+</case>
+
+<case>
+<desc>P/nsL.3-5-4: a point on a non-simple LineString's interior at a two-vertex point with overlapping line segments [dim(0){A.P.Int = B.nsL.Int.Vo}]</desc>
+  <a>
+    POINT(110 110)
+  </a>
+  <b>
+    LINESTRING(20 200, 110 110, 200 20, 140 20, 140 80, 110 110, 80 140, 20 140)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="0FFFFF102">true</op>
+  </test>
+</case>
+
+<case>
+<desc>P/nsL.3-5-5: a point on a non-simple LineString's interior at a vertex with overlapping line segments [dim(0){A.P.Int = B.nsL.Int.Vo}]</desc>
+  <a>
+    POINT(110 110)
+  </a>
+  <b>
+    LINESTRING(20 200, 200 20, 140 20, 140 80, 110 110, 80 140, 20 140)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="0FFFFF102">true</op>
+  </test>
+</case>
+
+<case>
+<desc>P/nsL.3-5-6: a point on a non-simple LineString's interior at a two-vertex point with crossing line segments [dim(0){A.P.Int = B.nsL.Int.Vx}]</desc>
+  <a>
+    POINT(110 110)
+  </a>
+  <b>
+    LINESTRING(20 200, 110 110, 200 20, 20 20, 110 110, 200 200)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="0FFFFF102">true</op>
+  </test>
+</case>
+
+<case>
+<desc>P/nsL.3-5-7: a point on a non-simple LineString's interior at a vertex with crossing line segments [dim(0){A.P.Int = B.nsL.Int.Vx}]</desc>
+  <a>
+    POINT(110 110)
+  </a>
+  <b>
+    LINESTRING(20 200, 200 20, 20 20, 110 110, 200 200)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="0FFFFF102">true</op>
+  </test>
+</case>
+
+<case>
+<desc>P/nsL.3-5-8: a point on a non-simple LineString's interior at a two-vertex point with crossing line segments [dim(0){A.P.Int = B.nsL.Int.Vx}]</desc>
+  <a>
+    POINT(110 110)
+  </a>
+  <b>
+    LINESTRING(20 200, 110 110, 20 20, 200 20, 110 110, 200 200)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="0FFFFF102">true</op>
+  </test>
+</case>
+
+<case>
+<desc>P/nsL.4-3-1: a point on a non-simple LineString's start point with crossing and overlapping line segments [dim(0){A.P.Int = B.nsL.Bdy.SPb}]</desc>
+  <a>
+    POINT(110 110)
+  </a>
+  <b>
+    LINESTRING(110 110, 110 200, 20 200, 110 110, 200 20, 140 20, 140 80, 110 110, 80 140, 
+    20 140)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="F0FFFF102">true</op>
+  </test>
+</case>
+
+<case>
+<desc>P/nsL.4-3-2: a point on a non-simple LineString's start point with crossing and overlapping line segments [dim(0){A.P.Int = B.nsL.Bdy.SPb}]</desc>
+  <a>
+    POINT(110 110)
+  </a>
+  <b>
+    LINESTRING(110 110, 110 200, 20 200, 200 20, 140 20, 140 80, 110 110, 80 140, 20 140)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="F0FFFF102">true</op>
+  </test>
+</case>
+
+<case>
+<desc>P/nsL.4-3-3:a point on a non-simple LineString's start point with crossing and overlapping line segments [dim(0){A.P.Int = B.nsL.Bdy.SPb}]</desc>
+  <a>
+    POINT(110 110)
+  </a>
+  <b>
+    LINESTRING(110 110, 110 200, 20 200, 200 20, 140 20, 140 80, 80 140, 20 140)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="F0FFFF102">true</op>
+  </test>
+</case>
+
+<case>
+<desc>P/nsL.4-3-4: a point on a non-simple LineString's start point with crossing line segments [dim(0){A.P.Int = B.nsL.Bdy.SPx}]</desc>
+  <a>
+    POINT(110 110)
+  </a>
+  <b>
+    LINESTRING(110 110, 110 200, 20 200, 110 110, 200 20, 20 20, 110 110, 200 200)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="F0FFFF102">true</op>
+  </test>
+</case>
+
+<case>
+<desc>P/nsL.4-3-5: a point on a non-simple LineString's start point with crossing line segments [dim(0){A.P.Int = B.nsL.Bdy.SPx}]</desc>
+  <a>
+    POINT(110 110)
+  </a>
+  <b>
+    LINESTRING(110 110, 110 200, 20 200, 200 20, 20 20, 110 110, 200 200)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="F0FFFF102">true</op>
+  </test>
+</case>
+
+<case>
+<desc>P/nsL.4-3-6: a point on a non-simple LineString's start point with crossing line segments [dim(0){A.P.Int = B.nsL.Bdy.SPx}]</desc>
+  <a>
+    POINT(110 110)
+  </a>
+  <b>
+    LINESTRING(110 110, 110 200, 20 200, 200 20, 20 20, 200 200)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="F0FFFF102">true</op>
+  </test>
+</case>
+
+<case>
+<desc>P/nsL.4-3-7: a point on a non-simple LineString's start point with crossing line segments [dim(0){A.P.Int = B.nsL.Bdy.SPx}]</desc>
+  <a>
+    POINT(110 110)
+  </a>
+  <b>
+    LINESTRING(110 110, 110 200, 20 200, 110 110, 20 20, 200 20, 110 110, 200 200)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="F0FFFF102">true</op>
+  </test>
+</case>
+
+<case>
+<desc>P/nsL.4-3-8: a point on a non-simple LineString's start point with crossing line segments [dim(0){A.P.Int = B.nsL.Bdy.SPx}]</desc>
+  <a>
+    POINT(110 110)
+  </a>
+  <b>
+    LINESTRING(110 110, 110 200, 20 200, 200 20, 200 110, 110 110, 200 200)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="F0FFFF102">true</op>
+  </test>
+</case>
+
+<case>
+<desc>P/nsL.5-3-1: a point on a non-simple LineString's end point with crossing line segments [dim(0){A.P.Int = B.nsL.Bdy.EPx}]</desc>
+  <a>
+    POINT(110 110)
+  </a>
+  <b>
+    LINESTRING(200 200, 110 110, 20 20, 200 20, 110 110, 20 200, 110 200, 110 110)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="F0FFFF102">true</op>
+  </test>
+</case>
+
+<case>
+<desc>P/nsL.5-3-2: a point on a non-simple LineString's end point with crossing line segments [dim(0){A.P.Int = B.nsL.Bdy.EPx}]</desc>
+  <a>
+    POINT(110 110)
+  </a>
+  <b>
+    LINESTRING(200 200, 20 20, 200 20, 110 110, 20 200, 110 200, 110 110)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="F0FFFF102">true</op>
+  </test>
+</case>
+
+<case>
+<desc>P/nsL.5-3-3: a point on a non-simple LineString's end point with crossing line segments [dim(0){A.P.Int = B.nsL.Bdy.EPx}]</desc>
+  <a>
+    POINT(110 110)
+  </a>
+  <b>
+    LINESTRING(200 200, 20 20, 200 20, 20 200, 110 200, 110 110)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="F0FFFF102">true</op>
+  </test>
+</case>
+
+<case>
+<desc>P/nsL.5-3-4: a point on a non-simple LineString's end point with crossing line segments [dim(0){A.P.Int = B.nsL.Bdy.EPx}]</desc>
+  <a>
+    POINT(110 110)
+  </a>
+  <b>
+    LINESTRING(200 200, 110 110, 200 20, 20 20, 110 110, 20 200, 110 200, 110 110)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="F0FFFF102">true</op>
+  </test>
+</case>
+
+<case>
+<desc>P/nsL.5-3-5: a point on a non-simple LineString's end point with crossing line segments [dim(0){A.P.Int = B.nsL.Bdy.EPx}]</desc>
+  <a>
+    POINT(110 110)
+  </a>
+  <b>
+    LINESTRING(200 200, 20 20, 20 110, 110 110, 20 200, 110 200, 110 110)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="F0FFFF102">true</op>
+  </test>
+</case>
+
+<case>
+<desc>P/nsL.6-3-1: a point on a non-simple LineString's start point with crossing line segments [dim(0){A.P.Int = B.nsL.Bdy.SPx}]</desc>
+  <a>
+    POINT(110 160)
+  </a>
+  <b>
+    LINESTRING(110 160, 200 250, 110 250, 110 160, 110 110, 110 20, 20 20, 110 110)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="F0FFFF102">true</op>
+  </test>
+</case>
+
+<case>
+<desc>P/nsL.6-3-2: a point on a non-simple LineString's start point with crossing line segments [dim(0){A.P.Int = B.nsL.Bdy.SPx}]</desc>
+  <a>
+    POINT(110 160)
+  </a>
+  <b>
+    LINESTRING(110 160, 200 250, 110 250, 110 110, 110 20, 20 20, 110 110)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="F0FFFF102">true</op>
+  </test>
+</case>
+
+<case>
+<desc>P/nsL.6-3-3: a point on a non-simple LineString's end point with crossing line segments [dim(0){A.P.Int = B.nsL.Bdy.EPx}]</desc>
+  <a>
+    POINT(110 110)
+  </a>
+  <b>
+    LINESTRING(110 160, 200 250, 110 250, 110 160, 110 110, 110 20, 20 20, 110 110)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="F0FFFF102">true</op>
+  </test>
+</case>
+
+<case>
+<desc>P/nsL.6-3-4: a point on a non-simple LineString's end point with crossing line segments [dim(0){A.P.Int = B.nsL.Bdy.EPx}]</desc>
+  <a>
+    POINT(110 110)
+  </a>
+  <b>
+    LINESTRING(110 160, 200 250, 110 250, 110 160, 110 20, 20 20, 110 110)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="F0FFFF102">true</op>
+  </test>
+</case>
+
+<case>
+<desc>P/nsL.7-5-1: a point on a closed non-simple LineString's closing point with crossing line segments [dim(0){A.P.Int = B.nsL.Int.CPx}]</desc>
+  <a>
+    POINT(110 110)
+  </a>
+  <b>
+    LINESTRING(110 110, 200 200, 110 200, 110 110, 110 20, 20 20, 110 110)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="0FFFFF1F2">true</op>
+  </test>
+</case>
+
+<case>
+<desc>P/nsL.7-5-2: a point on a closed non-simple LineString's closing point with crossing line segments [dim(0){A.P.Int = B.nsL.Int.CPx}]</desc>
+  <a>
+    POINT(110 110)
+  </a>
+  <b>
+    LINESTRING(110 110, 200 200, 110 200, 110 20, 20 20, 110 110)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="0FFFFF1F2">true</op>
+  </test>
+</case>
+
+<case>
+<desc>P/nsL.7-5-3: a point on a closed non-simple LineString's interior at a non-vertex [dim(0){A.P.Int = B.nsL.Int.NV}]</desc>
+  <a>
+    POINT(140 200)
+  </a>
+  <b>
+    LINESTRING(110 110, 200 200, 110 200, 110 110, 110 20, 20 20, 110 110)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="0FFFFF1F2">true</op>
+  </test>
+</case>
+
+<case>
+<desc>P/nsL.7-5-4: a point on a closed non-simple LineString's interior at a vertex [dim(0){A.P.Int = B.nsL.Int.V}]</desc>
+  <a>
+    POINT(110 200)
+  </a>
+  <b>
+    LINESTRING(110 110, 200 200, 110 200, 110 110, 110 20, 20 20, 110 110)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="0FFFFF1F2">true</op>
+  </test>
+</case>
+
+<case>
+<desc>P/nsL.8-5-1: a point on a closed non-simple LineString's closing point with crossing line segments [dim(0){A.P.Int = B.nsL.Int.CPx}]</desc>
+  <a>
+    POINT(110 110)
+  </a>
+  <b>
+    LINESTRING(110 110, 200 200, 110 200, 110 110, 110 20, 200 20, 110 110)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="0FFFFF1F2">true</op>
+  </test>
+</case>
+
+<case>
+<desc>P/nsL.8-5-2: a point on the interior (at a non-vertex) of a closed non-simple LineString [dim(0){A.P.Int = B.nsL.Int.NV}]</desc>
+  <a>
+    POINT(140 200)
+  </a>
+  <b>
+    LINESTRING(110 110, 200 200, 110 200, 110 110, 110 20, 200 20, 110 110)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="0FFFFF1F2">true</op>
+  </test>
+</case>
+
+<case>
+<desc>P/nsL.8-5-3: a point on a closed non-simple LineString's interior at a vertex [dim(0){A.P.Int = B.nsL.Int.V}]</desc>
+  <a>
+    POINT(110 200)
+  </a>
+  <b>
+    LINESTRING(110 110, 200 200, 110 200, 110 110, 110 20, 200 20, 110 110)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="0FFFFF1F2">true</op>
+  </test>
+</case>
+
+<case>
+<desc>P/nsL.9-3-1: a point on a non-simple LineString's start point with crossing line segments [dim(0){A.P.Int = B.nsL.Bdy.SPx}]</desc>
+  <a>
+    POINT(90 130)
+  </a>
+  <b>
+    LINESTRING(90 130, 20 130, 20 200, 90 130, 200 20, 20 20, 200 200)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="F0FFFF102">true</op>
+  </test>
+</case>
+
+<case>
+<desc>P/nsL.9-5-1: a point on a non-simple LineString's interior at a non-vertex with crossing line segments [dim(0){A.P.Int = B.nsL.Int.NVx}]</desc>
+  <a>
+    POINT(110 110)
+  </a>
+  <b>
+    LINESTRING(90 130, 20 130, 20 200, 90 130, 200 20, 20 20, 200 200)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="0FFFFF102">true</op>
+  </test>
+</case>
+
+<case>
+<desc>P/nsL.10-3-1: a point on a non-simple LineString's start point with crossing line segments [dim(0){A.P.Int = B.nsL.Bdy.SPx}]</desc>
+  <a>
+    POINT(90 130)
+  </a>
+  <b>
+    LINESTRING(90 130, 20 130, 20 200, 200 20, 20 20, 200 200)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="F0FFFF102">true</op>
+  </test>
+</case>
+
+<case>
+<desc>P/nsL.10-5-1: a point on a non-simple LineString's interior at a non-vertex with crossing line segments [dim(0){A.P.Int = B.nsL.Int.NVx}]</desc>
+  <a>
+    POINT(110 110)
+  </a>
+  <b>
+    LINESTRING(90 130, 20 130, 20 200, 200 20, 20 20, 200 200)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="0FFFFF102">true</op>
+  </test>
+</case>
+
+<case>
+<desc>P/nsL.11-3-1: a point on a closed non-simple LineString's end point with crossing line segments [dim(0){A.P.Int = B.nsL.Bdy.EPx}]</desc>
+  <a>
+    POINT(90 130)
+  </a>
+  <b>
+    LINESTRING(200 200, 20 20, 200 20, 90 130, 20 200, 20 130, 90 130)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="F0FFFF102">true</op>
+  </test>
+</case>
+
+<case>
+<desc>P/nsL.11-5-1: a point on a closed non-simple LineString's interior at a non-vertex with crossing line segments [dim(0){A.P.Int = B.nsL.Int.NVx}]</desc>
+  <a>
+    POINT(110 110)
+  </a>
+  <b>
+    LINESTRING(200 200, 20 20, 200 20, 90 130, 20 200, 20 130, 90 130)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="0FFFFF102">true</op>
+  </test>
+</case>
+
+<case>
+<desc>P/nsL.12-3-1: a point on a closed non-simple LineString's end point with crossing line segments [dim(0){A.P.Int = B.nsL.Bdy.SPx}]</desc>
+  <a>
+    POINT(90 130)
+  </a>
+  <b>
+    LINESTRING(200 200, 20 20, 200 20, 20 200, 20 130, 90 130)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="F0FFFF102">true</op>
+  </test>
+</case>
+
+<case>
+<desc>P/nsL.12-5-1: a point on a closed non-simple LineString's interior at a non-vertex with crossing line segments [dim(0){A.P.Int = B.nsL.Int.NVx}]</desc>
+  <a>
+    POINT(110 110)
+  </a>
+  <b>
+    LINESTRING(200 200, 20 20, 200 20, 20 200, 20 130, 90 130)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="0FFFFF102">true</op>
+  </test>
+</case>
+
+<case>
+<desc>P/nsL.13-5-1: a point on a closed non-simple LineString's closing point with crossing line segments [dim(0){A.P.Int = B.nsL.Int.CPx}]</desc>
+  <a>
+    POINT(110 110)
+  </a>
+  <b>
+    LINESTRING(110 110, 20 130, 20 200, 110 110, 200 20, 20 20, 110 110, 200 200, 200 130, 
+    110 110)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="0FFFFF1F2">true</op>
+  </test>
+</case>
+
+<case>
+<desc>P/nsL.13-5-2: a point on a closed non-simple LineString's closing point with crossing line segments [dim(0){A.P.Int = B.nsL.Int.CPx}]</desc>
+  <a>
+    POINT(110 110)
+  </a>
+  <b>
+    LINESTRING(110 110, 20 130, 20 200, 200 20, 20 20, 200 200, 200 130, 110 110)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="0FFFFF1F2">true</op>
+  </test>
+</case>
+
+<case>
+<desc>P/nsL.14-5-1: a point on a closed non-simple LineString's closing point with crossing line segments [dim(0){A.P.Int = B.nsL.Int.CPx}]</desc>
+  <a>
+    POINT(110 110)
+  </a>
+  <b>
+    LINESTRING(110 110, 80 200, 20 200, 110 110, 200 20, 20 20, 110 110, 200 200, 140 200, 
+    110 110)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="0FFFFF1F2">true</op>
+  </test>
+</case>
+
+<case>
+<desc>P/nsL.14-5-2: a point on a closed non-simple LineString's closing point with crossing line segments [dim(0){A.P.Int = B.nsL.Int.CPx}]</desc>
+  <a>
+    POINT(110 110)
+  </a>
+  <b>
+    LINESTRING(110 110, 80 200, 20 200, 200 20, 20 20, 200 200, 140 200, 110 110)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="0FFFFF1F2">true</op>
+  </test>
+</case>
+
+<case>
+<desc>P/nsL.15-5-1: a point on a closed non-simple LineString's interior at a non-vertex with crossing line segments [dim(0){A.P.Int = B.nsL.Int.NVx}]</desc>
+  <a>
+    POINT(110 110)
+  </a>
+  <b>
+    LINESTRING(200 200, 20 20, 200 20, 20 200, 200 200)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="0FFFFF1F2">true</op>
+  </test>
+</case>
+
+<case>
+<desc>P/nsL.15-5-2: a point on a closed non-simple LineString's interior at a vertex with crossing line segments [dim(0){A.P.Int = B.nsL.Int.Vx}]</desc>
+  <a>
+    POINT(110 110)
+  </a>
+  <b>
+    LINESTRING(200 200, 110 110, 20 20, 200 20, 110 110, 20 200, 200 200)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="0FFFFF1F2">true</op>
+  </test>
+</case>
+
+<case>
+<desc>P/nsL.15-5-3: a point on a closed non-simple LineString's interior at a vertex with crossing line segments [dim(0){A.P.Int = B.nsL.Int.Vx}]</desc>
+  <a>
+    POINT(110 110)
+  </a>
+  <b>
+    LINESTRING(200 200, 110 110, 200 20, 20 20, 110 110, 20 200, 200 200)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="0FFFFF1F2">true</op>
+  </test>
+</case>
+
+<case>
+<desc>P/nsL.16-5-1: a point on a closed non-simple LineString's closing point with crossing line segments [dim(0){A.P.Int = B.nsL.Int.CPx}]</desc>
+  <a>
+    POINT(90 130)
+  </a>
+  <b>
+    LINESTRING(90 130, 20 130, 20 200, 90 130, 110 110, 200 20, 20 20, 110 110, 200 200, 
+    90 130)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="0FFFFF1F2">true</op>
+  </test>
+</case>
+
+<case>
+<desc>P/nsL.16-5-2: a point on a closed non-simple LineString's closing point with crossing line segments [dim(0){A.P.Int = B.nsL.Int.CPx}]</desc>
+  <a>
+    POINT(90 130)
+  </a>
+  <b>
+    LINESTRING(90 130, 20 130, 20 200, 110 110, 200 20, 20 20, 110 110, 200 200, 90 130)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="0FFFFF1F2">true</op>
+  </test>
+</case>
+
+<case>
+<desc>P/nsL.17-5-1: a point on a closed non-simple LineString's closing point with crossing line segments [dim(0){A.P.Int = B.nsL.Int.CPx}]</desc>
+  <a>
+    POINT(90 130)
+  </a>
+  <b>
+    LINESTRING(90 130, 90 200, 20 200, 90 130, 110 110, 200 20, 20 20, 110 110, 200 200, 
+    90 130)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="0FFFFF1F2">true</op>
+  </test>
+</case>
+
+<case>
+<desc>P/nsL.17-5-2: a point on a closed non-simple LineString's closing point with crossing line segments [dim(0){A.P.Int = B.nsL.Int.CPx}]</desc>
+  <a>
+    POINT(90 130)
+  </a>
+  <b>
+    LINESTRING(90 130, 90 200, 20 200, 200 20, 20 20, 200 200, 90 130)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="0FFFFF1F2">true</op>
+  </test>
+</case>
+
+<case>
+<desc>P/nsL.17-5-3: a point on a closed non-simple LineString's closing point with crossing line segments [dim(0){A.P.Int = B.nsL.Int.CPx}]</desc>
+  <a>
+    POINT(90 130)
+  </a>
+  <b>
+    LINESTRING(90 130, 90 200, 20 200, 110 110, 200 20, 20 20, 110 110, 200 200, 90 130)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="0FFFFF1F2">true</op>
+  </test>
+</case>
+
+<case>
+<desc>P/nsL.17-5-4: a point on a closed non-simple LineString's closing point with crossing line segments [dim(0){A.P.Int = B.nsL.Int.CPx}]</desc>
+  <a>
+    POINT(90 130)
+  </a>
+  <b>
+    LINESTRING(90 130, 90 200, 20 200, 200 20, 20 20, 200 200, 90 130)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="0FFFFF1F2">true</op>
+  </test>
+</case>
+
+<case>
+<desc>P/nsL.17-5-5: a point on a closed non-simple LineString's interior at a non-vertex with crossing line segments [dim(0){A.P.Int = B.nsL.Int.NVx}]</desc>
+  <a>
+    POINT(110 110)
+  </a>
+  <b>
+    LINESTRING(90 130, 90 200, 20 200, 200 20, 20 20, 200 200, 90 130)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="0FFFFF1F2">true</op>
+  </test>
+</case>
+
+<case>
+<desc>P/nsL.18-5-1: a point on a non-simple LineString's start point with both crossing and overlapping line segments [dim(0){A.P.Int = B.nsL.Bdy.SPb)}]</desc>
+  <a>
+    POINT(110 200)
+  </a>
+  <b>
+    LINESTRING(110 200, 110 110, 20 20, 200 20, 110 110, 110 200, 200 200)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="F0FFFF102">true</op>
+  </test>
+</case>
+
+<case>
+<desc>P/nsL.18-5-2: a point on a non-simple LineString's interior at a non-vertex with overlapping line segments [dim(0){A.P.Int = B.nsL.Int.NVo}]</desc>
+  <a>
+    POINT(110 150)
+  </a>
+  <b>
+    LINESTRING(110 200, 110 110, 20 20, 200 20, 110 110, 110 200, 200 200)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="0FFFFF102">true</op>
+  </test>
+</case>
+
+<case>
+<desc>P/nsL.18-5-3: a point on a non-simple LineString's interior at a vertex with both crossing and overlapping line segments [dim(0){A.P.Int = B.nsL.Int.Vb}]</desc>
+  <a>
+    POINT(110 110)
+  </a>
+  <b>
+    LINESTRING(110 200, 110 110, 20 20, 200 20, 110 110, 110 200, 200 200)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="0FFFFF102">true</op>
+  </test>
+</case>
+
+<case>
+<desc>P/nsL.19-5-1: a point on a non-simple LineString's closing point with overlapping line segments [dim(0){A.P.Int = B.nsL.Int.CPo}]</desc>
+  <a>
+    POINT(110 200)
+  </a>
+  <b>
+    LINESTRING(110 200, 110 110, 20 20, 200 20, 110 110, 110 200)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="0FFFFF1F2">true</op>
+  </test>
+</case>
+
+<case>
+<desc>P/nsL.19-5-2: a point on a non-simple LineString's interior at a non-vertex overlapping line segments [dim(0){A.P.Int = B.nsL.Int.NVo}]</desc>
+  <a>
+    POINT(110 150)
+  </a>
+  <b>
+    LINESTRING(110 200, 110 110, 20 20, 200 20, 110 110, 110 200)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="0FFFFF1F2">true</op>
+  </test>
+</case>
+
+<case>
+<desc>P/nsL.19-5-3: a point on a non-simple LineString interior at a vertex with both crossing and overlapping line segments [dim(0){A.P.Int = B.nsL.Int.Vb}]</desc>
+  <a>
+    POINT(110 110)
+  </a>
+  <b>
+    LINESTRING(110 200, 110 110, 20 20, 200 20, 110 110, 110 200)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="0FFFFF1F2">true</op>
+  </test>
+</case>
+
+<case>
+<desc>P/nsL.20-5-1: a point on a non-simple LineString's interior at a non-vertex with overlapping line segments [dim(0){A.P.Int = B.nsL.Int.NVo}]</desc>
+  <a>
+    POINT(110 150)
+  </a>
+  <b>
+    LINESTRING(20 200, 110 200, 110 110, 20 20, 200 20, 110 110, 110 200, 200 200)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="0FFFFF102">true</op>
+  </test>
+</case>
+
+<case>
+<desc>P/nsL.20-5-2: a point on a non-simple LineString's interior at a vertex with both crossing and overlapping line segments [dim(0){A.P.Int = B.nsL.Int.Vb}]</desc>
+  <a>
+    POINT(110 110)
+  </a>
+  <b>
+    LINESTRING(20 200, 110 200, 110 110, 20 20, 200 20, 110 110, 110 200, 200 200)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="0FFFFF102">true</op>
+  </test>
+</case>
+
+<case>
+<desc>P/nsl.20-5-3: a point on a non-simple LineString's interior at a vertex with both crossing and overlapping line segments [dim(0){A.P.Int = B.nsL.Int.Vb}]</desc>
+  <a>
+    POINT(110 200)
+  </a>
+  <b>
+    LINESTRING(20 200, 110 200, 110 110, 20 20, 200 20, 110 110, 110 200, 200 200)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="0FFFFF102">true</op>
+  </test>
+</case>
+
+<case>
+<desc>mP/L-2-1: MultiPoint and a line disjoint (points on one side of the line) [dim(0){A.3P.Int = B.L.Ext}]</desc>
+  <a>
+    MULTIPOINT((50 250), (90 220), (130 190))
+  </a>
+  <b>
+    LINESTRING(90 80, 160 150, 300 150, 340 150, 340 240)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="FF0FFF102">true</op>
+  </test>
+</case>
+
+<case>
+<desc>mP/L-2-2: MultiPoint and a line disjoint (points over the line but no intersection) [dim(0){A.3P.Int = B.L.Ext}]</desc>
+  <a>
+    MULTIPOINT((180 180), (230 130), (280 80))
+  </a>
+  <b>
+    LINESTRING(90 80, 160 150, 300 150, 340 150, 340 240)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="FF0FFF102">true</op>
+  </test>
+</case>
+
+<case>
+<desc>mP/L-3-1: one of the points intersecting the start point of a line [dim(0){A.3P2.Int = B.L.Bdy.SP}]</desc>
+  <a>
+    MULTIPOINT((50 120), (90 80), (130 40))
+  </a>
+  <b>
+    LINESTRING(90 80, 160 150, 300 150, 340 150, 340 240)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="F00FFF102">true</op>
+  </test>
+</case>
+
+<case>
+<desc>mP/L-3-2: one of the points intersecting the end point of a line [dim(0){A.3P2 = B.L.Bdy.EP}]</desc>
+  <a>
+    MULTIPOINT((300 280), (340 240), (380 200))
+  </a>
+  <b>
+    LINESTRING(90 80, 160 150, 300 150, 340 150, 340 240)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="F00FFF102">true</op>
+  </test>
+</case>
+
+<case>
+<desc>mP/L-4-1: one of the points intersecting the interior of a line at a non-vertex (points on one side of the line) [dim(0){A.3P1.Int = B.L.Int.NV]</desc>
+  <a>
+    MULTIPOINT((230 150), (260 120), (290 90))
+  </a>
+  <b>
+    LINESTRING(90 80, 160 150, 300 150, 340 150, 340 240)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="0F0FFF102">true</op>
+  </test>
+</case>
+
+<case>
+<desc>mP/L-4-2: one of the points intersecting the interior of a line at a non-vertex (points over the line) [dim(0){A.3P2.Int = B.L.Int.NV]</desc>
+  <a>
+    MULTIPOINT((200 190), (240 150), (270 110))
+  </a>
+  <b>
+    LINESTRING(90 80, 160 150, 300 150, 340 150, 340 240)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="0F0FFF102">true</op>
+  </test>
+</case>
+
+<case>
+<desc>mP/L-4-3: one of the points intersecting the interior of a line at a vertex (points on one side of the line) [dim(0){A.3P1.Int = B.L.Int.V]</desc>
+  <a>
+    MULTIPOINT((160 150), (190 120), (220 90))
+  </a>
+  <b>
+    LINESTRING(90 80, 160 150, 300 150, 340 150, 340 240)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="0F0FFF102">true</op>
+  </test>
+</case>
+
+<case>
+<desc>mP/L-4-4: one of the points intersecting the interior of a line at a vertex (points over the line) [dim(0){A.3P2.Int = B.L.Int.V]</desc>
+  <a>
+    MULTIPOINT((120 190), (160 150), (200 110))
+  </a>
+  <b>
+    LINESTRING(90 80, 160 150, 300 150, 340 150, 340 240)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="0F0FFF102">true</op>
+  </test>
+</case>
+
+<case>
+<desc>mP/L-5-1: all the points on a line [dim(0){A.3P1.Int = B.L.Bdy.SP}, dim(0){A.3P2.Int = B.L.Int.V}, dim(0){A.3P3.Int = B.Bdy.EP}]</desc>
+  <a>
+    MULTIPOINT((90 80), (160 150), (340 240))
+  </a>
+  <b>
+    LINESTRING(90 80, 160 150, 300 150, 340 150, 340 240)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="00FFFF1F2">true</op>
+  </test>
+</case>
+
+<case>
+<desc>mP/L-5-2: all the points on a line [dim(0){A.3P1.Int = B.L.Bdy.SP}, dim(0){A.3P2.Int = B.L.Int.V}, dim(0){A.3P3.Int = B.Int.V}]</desc>
+  <a>
+    MULTIPOINT((90 80), (160 150), (300 150))
+  </a>
+  <b>
+    LINESTRING(90 80, 160 150, 300 150, 340 150, 340 240)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="00FFFF102">true</op>
+  </test>
+</case>
+
+<case>
+<desc>mP/L-5-3: all the points on a line [dim(0){A.3P1.Int = B.L.Bdy.SP}, dim(0){A.3P2.Int = B.L.Int.V}, dim(0){A.3P3.Int = B.Int.NV}]</desc>
+  <a>
+    MULTIPOINT((90 80), (160 150), (240 150))
+  </a>
+  <b>
+    LINESTRING(90 80, 160 150, 300 150, 340 150, 340 240)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="00FFFF102">true</op>
+  </test>
+</case>
+
+<case>
+<desc>mP/L-5-4: all the points on a line [dim(0){A.3P1.Int = B.L.Bdy.SP}, dim(0){A.3P2.Int = B.L.Int.NV}, dim(0){A.3P3.Int = B.Int.NV}]</desc>
+  <a>
+    MULTIPOINT((90 80), (130 120), (210 150))
+  </a>
+  <b>
+    LINESTRING(90 80, 160 150, 300 150, 340 150, 340 240)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="00FFFF102">true</op>
+  </test>
+</case>
+
+<case>
+<desc>mP/L-5-5: all the points on a line [dim(0){A.3P1.Int = B.L.Int.NV}, dim(0){A.3P2.Int = B.L.Int.NV}, dim(0){A.3P3.Int = B.Int.NV}]</desc>
+  <a>
+    MULTIPOINT((130 120), (210 150), (340 200))
+  </a>
+  <b>
+    LINESTRING(90 80, 160 150, 300 150, 340 150, 340 240)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="0FFFFF102">true</op>
+  </test>
+</case>
+
+<case>
+<desc>mP/L-5-6: all the points on a line [dim(0){A.3P1.Int = B.L.Int.V}, dim(0){A.3P2.Int = B.L.Int.V}, dim(0){A.3P3.Int = B.Int.NV}]</desc>
+  <a>
+    MULTIPOINT((160 150), (240 150), (340 210))
+  </a>
+  <b>
+    LINESTRING(90 80, 160 150, 300 150, 340 150, 340 240)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="0FFFFF102">true</op>
+  </test>
+</case>
+
+<case>
+<desc>mP/L-5-7: all the points on a line [dim(0){A.3P1.Int = B.L.Int.V}, dim(0){A.3P2.Int = B.L.Int.V}, dim(0){A.3P3.Int = B.Int.V}]</desc>
+  <a>
+    MULTIPOINT((160 150), (300 150), (340 150))
+  </a>
+  <b>
+    LINESTRING(90 80, 160 150, 300 150, 340 150, 340 240)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="0FFFFF102">true</op>
+  </test>
+</case>
+
+<case>
+<desc>mP/L-5-8: all the points on a line [dim(0){A.3P1.Int = B.L.Int.V}, dim(0){A.3P2.Int = B.L.Int.NV}, dim(0){A.3P3.Int = B.Bdy.EP}]</desc>
+  <a>
+    MULTIPOINT((160 150), (240 150), (340 240))
+  </a>
+  <b>
+    LINESTRING(90 80, 160 150, 300 150, 340 150, 340 240)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="00FFFF102">true</op>
+  </test>
+</case>
+
+</run>

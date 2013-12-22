@@ -1,0 +1,28 @@
+<run>
+  <precisionModel scale="1.0" offsetx="0.0" offsety="0.0"/>
+
+<case>
+  <desc>LL - narrow V</desc>
+  <a>
+    LINESTRING(0 10, 620 10, 0 11)
+  </a>
+  <b>
+    LINESTRING(400 60, 400 10)
+  </b>
+<test>
+  <op name="intersection" arg1="A" arg2="B">
+    POINT(400 10)
+  </op>
+</test>
+<test>
+  <op name="union" arg1="A" arg2="B">
+    MULTILINESTRING(
+      (0 10, 400 10), 
+      (400 10, 620 10, 400 10), 
+      (400 10, 0 11), 
+      (400 60, 400 10))
+  </op>
+</test>
+</case>
+
+</run>

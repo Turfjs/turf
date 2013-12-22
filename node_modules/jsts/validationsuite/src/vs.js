@@ -1,0 +1,6 @@
+/**
+ * namespace
+ */
+jsts.vs = {
+    
+};

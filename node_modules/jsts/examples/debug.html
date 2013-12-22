@@ -1,0 +1,259 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>Temp debug used for development purposes</title>
+  <link rel="stylesheet" href="../OpenLayers-2.11/theme/default/style.css" type="text/css" />
+  
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
+  <script src="http://www.openlayers.org/api/OpenLayers.js" type="text/javascript"></script>
+
+  <script type="text/javascript" src="../lib/javascript.util.js"></script>
+
+  <script type="text/javascript" src="../src/jsts.js"></script>
+  <script type="text/javascript" src="../src/jsts/util/AssertionFailedException.js"></script>
+  <script type="text/javascript" src="../src/jsts/util/Assert.js"></script>
+  <script type="text/javascript" src="../src/jsts/geom/CoordinateArrays.js"></script>
+  <script type="text/javascript" src="../src/jsts/geom/CoordinateFilter.js"></script>
+  <script type="text/javascript" src="../src/jsts/util/UniqueCoordinateArrayFilter.js"></script>
+  <script type="text/javascript" src="../src/jsts/geom/CoordinateList.js"></script>
+  <script type="text/javascript" src="../src/jsts/geom/Dimension.js"></script>
+  <script type="text/javascript" src="../src/jsts/geom/Location.js"></script>
+  <script type="text/javascript" src="../src/jsts/geom/Geometry.js"></script>
+  <script type="text/javascript" src="../src/jsts/geom/GeometryCollection.js"></script>
+  <script type="text/javascript" src="../src/jsts/geom/GeometryFilter.js"></script>
+  <script type="text/javascript" src="../src/jsts/geom/GeometryComponentFilter.js"></script>
+  <script type="text/javascript" src="../src/jsts/geom/IntersectionMatrix.js"></script>
+  <script type="text/javascript" src="../src/jsts/geom/Coordinate.js"></script>
+  <script type="text/javascript" src="../src/jsts/geom/Envelope.js"></script>
+  <script type="text/javascript" src="../src/jsts/geom/GeometryFactory.js"></script>
+  <script type="text/javascript" src="../src/jsts/geom/LineString.js"></script>
+  <script type="text/javascript" src="../src/jsts/geom/MultiLineString.js"></script>
+  <script type="text/javascript" src="../src/jsts/geom/LinearRing.js"></script>
+  <script type="text/javascript" src="../src/jsts/geom/LineSegment.js"></script>
+  <script type="text/javascript" src="../src/jsts/geom/Point.js"></script>
+  <script type="text/javascript" src="../src/jsts/geom/MultiPoint.js"></script>
+  <script type="text/javascript" src="../src/jsts/geom/Polygon.js"></script>
+  <script type="text/javascript" src="../src/jsts/geom/MultiPolygon.js"></script>
+  <script type="text/javascript" src="../src/jsts/geom/PrecisionModel.js"></script>
+  <script type="text/javascript" src="../src/jsts/geom/Triangle.js"></script>
+  <script type="text/javascript" src="../src/jsts/geom/util/GeometryCombiner.js"></script>
+  <script type="text/javascript" src="../src/jsts/geom/util/GeometryExtracter.js"></script>
+  <script type="text/javascript" src="../src/jsts/geom/util/GeometryTransformer.js"></script>
+  <script type="text/javascript" src="../src/jsts/geom/util/LinearComponentExtracter.js"></script>
+  <script type="text/javascript" src="../src/jsts/geom/util/PointExtracter.js"></script>
+  <script type="text/javascript" src="../src/jsts/geom/util/PolygonExtracter.js"></script>
+  <script type="text/javascript" src="../src/jsts/algorithm/BoundaryNodeRule.js"></script>
+  <script type="text/javascript" src="../src/jsts/algorithm/CentralEndpointIntersector.js"></script>
+  <script type="text/javascript" src="../src/jsts/algorithm/CentroidArea.js"></script>
+  <script type="text/javascript" src="../src/jsts/algorithm/CentroidLine.js"></script>
+  <script type="text/javascript" src="../src/jsts/algorithm/CentroidPoint.js"></script>
+  <script type="text/javascript" src="../src/jsts/algorithm/CGAlgorithms.js"></script>
+  <script type="text/javascript" src="../src/jsts/algorithm/ConvexHull.js"></script>
+  <script type="text/javascript" src="../src/jsts/algorithm/HCoordinate.js"></script>
+  <script type="text/javascript" src="../src/jsts/algorithm/LineIntersector.js"></script>
+  <script type="text/javascript" src="../src/jsts/algorithm/PointLocator.js"></script>
+  <script type="text/javascript" src="../src/jsts/algorithm/RayCrossingCounter.js"></script>
+  <script type="text/javascript" src="../src/jsts/algorithm/RobustDeterminant.js"></script>
+  <script type="text/javascript" src="../src/jsts/algorithm/RobustLineIntersector.js"></script>
+  <script type="text/javascript" src="../src/jsts/algorithm/locate/SimplePointInAreaLocator.js"></script>
+  <script type="text/javascript" src="../src/jsts/planargraph/GraphComponent.js"></script>
+  <script type="text/javascript" src="../src/jsts/planargraph/Edge.js"></script>
+  <script type="text/javascript" src="../src/jsts/planargraph/DirectedEdge.js"></script>
+  <script type="text/javascript" src="../src/jsts/planargraph/DirectedEdgeStar.js"></script>
+  <script type="text/javascript" src="../src/jsts/planargraph/Node.js"></script>
+  <script type="text/javascript" src="../src/jsts/planargraph/NodeMap.js"></script>
+  <script type="text/javascript" src="../src/jsts/planargraph/PlanarGraph.js"></script>
+  <script type="text/javascript" src="../src/jsts/index/ArrayListVisitor.js"></script>
+  <script type="text/javascript" src="../src/jsts/index/DoubleBits.js"></script>
+  <script type="text/javascript" src="../src/jsts/index/IntervalSize.js"></script>
+  <script type="text/javascript" src="../src/jsts/index/ItemVisitor.js"></script>
+  <script type="text/javascript" src="../src/jsts/index/SpatialIndex.js"></script>
+  <script type="text/javascript" src="../src/jsts/index/chain/MonotoneChain.js"></script>
+  <script type="text/javascript" src="../src/jsts/index/chain/MonotoneChainBuilder.js"></script>
+  <script type="text/javascript" src="../src/jsts/index/chain/MonotoneChainOverlapAction.js"></script>
+  <script type="text/javascript" src="../src/jsts/index/chain/MonotoneChainSelectAction.js"></script>
+  
+  <!--This script-tag is included here because MCPointInRing.MCSelected requires MonotoneChainSelectAction -->
+  <script type="text/javascript" src="../src/jsts/algorithm/MCPointInRing.js"></script>
+  
+  <script type="text/javascript" src="../src/jsts/index/kdtree/KdNode.js"></script>
+  <script type="text/javascript" src="../src/jsts/index/kdtree/KdTree.js"></script>
+  <script type="text/javascript" src="../src/jsts/index/quadtree/Key.js"></script>
+  <script type="text/javascript" src="../src/jsts/index/quadtree/NodeBase.js"></script>
+  <script type="text/javascript" src="../src/jsts/index/quadtree/Node.js"></script>
+  <script type="text/javascript" src="../src/jsts/index/quadtree/Quadtree.js"></script>
+  <script type="text/javascript" src="../src/jsts/index/quadtree/Root.js"></script>
+  <script type="text/javascript" src="../src/jsts/index/strtree/Boundable.js"></script>
+  <script type="text/javascript" src="../src/jsts/index/strtree/AbstractNode.js"></script>
+  <script type="text/javascript" src="../src/jsts/index/strtree/AbstractSTRtree.js"></script>
+  <script type="text/javascript" src="../src/jsts/index/strtree/Interval.js"></script>
+  <script type="text/javascript" src="../src/jsts/index/strtree/ItemBoundable.js"></script>
+  <script type="text/javascript" src="../src/jsts/index/strtree/SIRtree.js"></script>
+  <script type="text/javascript" src="../src/jsts/index/strtree/STRtree.js"></script>
+  <script type="text/javascript" src="../src/jsts/index/bintree/Interval.js"></script>
+  <script type="text/javascript" src="../src/jsts/index/bintree/NodeBase.js"></script>
+  <script type="text/javascript" src="../src/jsts/index/bintree/Key.js"></script>
+  <script type="text/javascript" src="../src/jsts/index/bintree/Node.js"></script>
+  <script type="text/javascript" src="../src/jsts/index/bintree/Root.js"></script>
+  <script type="text/javascript" src="../src/jsts/index/bintree/Bintree.js"></script>
+  <script type="text/javascript" src="../src/jsts/noding/SegmentIntersector.js"></script>
+  <script type="text/javascript" src="../src/jsts/noding/InteriorIntersectionFinder.js"></script>
+  <script type="text/javascript" src="../src/jsts/noding/IntersectionAdder.js"></script>
+  <script type="text/javascript" src="../src/jsts/noding/IntersectionFinderAdder.js"></script>
+  <script type="text/javascript" src="../src/jsts/noding/SegmentString.js"></script>
+  <script type="text/javascript" src="../src/jsts/noding/BasicSegmentString.js"></script>
+  <script type="text/javascript" src="../src/jsts/noding/NodableSegmentString.js"></script>
+  <script type="text/javascript" src="../src/jsts/noding/NodedSegmentString.js"></script>
+  <script type="text/javascript" src="../src/jsts/noding/Noder.js"></script>
+  <script type="text/javascript" src="../src/jsts/noding/NodingValidator.js"></script>
+  <script type="text/javascript" src="../src/jsts/noding/SinglePassNoder.js"></script>
+  <script type="text/javascript" src="../src/jsts/noding/MCIndexNoder.js"></script>
+  <script type="text/javascript" src="../src/jsts/noding/FastNodingValidator.js"></script>
+  <script type="text/javascript" src="../src/jsts/noding/Octant.js"></script>
+  <script type="text/javascript" src="../src/jsts/noding/OrientedCoordinateArray.js"></script>
+  <script type="text/javascript" src="../src/jsts/noding/ScaledNoder.js"></script>
+  <script type="text/javascript" src="../src/jsts/noding/SegmentNode.js"></script>
+  <script type="text/javascript" src="../src/jsts/noding/SegmentNodeList.js"></script>
+  <script type="text/javascript" src="../src/jsts/noding/SegmentPointComparator.js"></script>
+  <script type="text/javascript" src="../src/jsts/noding/snapround/HotPixel.js"></script>
+  <script type="text/javascript" src="../src/jsts/noding/snapround/MCIndexPointSnapper.js"></script>
+  <script type="text/javascript" src="../src/jsts/noding/snapround/MCIndexSnapRounder.js"></script>
+  <script type="text/javascript" src="../src/jsts/geomgraph/Position.js"></script>
+  <script type="text/javascript" src="../src/jsts/geomgraph/Depth.js"></script>
+  <script type="text/javascript" src="../src/jsts/geomgraph/GraphComponent.js"></script>
+  <script type="text/javascript" src="../src/jsts/geomgraph/Node.js"></script>
+  <script type="text/javascript" src="../src/jsts/geomgraph/NodeFactory.js"></script>
+  <script type="text/javascript" src="../src/jsts/geomgraph/NodeMap.js"></script>
+  <script type="text/javascript" src="../src/jsts/geomgraph/Edge.js"></script>
+  <script type="text/javascript" src="../src/jsts/geomgraph/EdgeEnd.js"></script>
+  <script type="text/javascript" src="../src/jsts/geomgraph/DirectedEdge.js"></script>
+  <script type="text/javascript" src="../src/jsts/geomgraph/EdgeEndStar.js"></script>
+  <script type="text/javascript" src="../src/jsts/geomgraph/DirectedEdgeStar.js"></script>
+  <script type="text/javascript" src="../src/jsts/geomgraph/EdgeRing.js"></script>
+  <script type="text/javascript" src="../src/jsts/geomgraph/EdgeIntersection.js"></script>
+  <script type="text/javascript" src="../src/jsts/geomgraph/EdgeIntersectionList.js"></script>
+  <script type="text/javascript" src="../src/jsts/geomgraph/EdgeList.js"></script>
+  <script type="text/javascript" src="../src/jsts/geomgraph/EdgeNodingValidator.js"></script>
+  <script type="text/javascript" src="../src/jsts/geomgraph/PlanarGraph.js"></script>
+  <script type="text/javascript" src="../src/jsts/geomgraph/GeometryGraph.js"></script>
+  <script type="text/javascript" src="../src/jsts/geomgraph/Label.js"></script>
+  <script type="text/javascript" src="../src/jsts/geomgraph/Quadrant.js"></script>
+  <script type="text/javascript" src="../src/jsts/geomgraph/TopologyLocation.js"></script>
+  <script type="text/javascript" src="../src/jsts/geomgraph/index/EdgeSetIntersector.js"></script>
+  <script type="text/javascript" src="../src/jsts/geomgraph/index/SegmentIntersector.js"></script>
+  <script type="text/javascript" src="../src/jsts/geomgraph/index/SimpleEdgeSetIntersector.js"></script>
+  <script type="text/javascript" src="../src/jsts/geomgraph/index/SimpleMCSweepLineIntersector.js"></script>
+  <script type="text/javascript" src="../src/jsts/io/OpenLayersParser.js"></script>
+  <script type="text/javascript" src="../src/jsts/io/WKTParser.js"></script>
+  <script type="text/javascript" src="../src/jsts/io/WKTReader.js"></script>
+  <script type="text/javascript" src="../src/jsts/io/WKTWriter.js"></script>
+  <script type="text/javascript" src="../src/jsts/operation/BoundaryOp.js"></script>
+  <script type="text/javascript" src="../src/jsts/operation/GeometryGraphOperation.js"></script>
+  <script type="text/javascript" src="../src/jsts/operation/IsSimpleOp.js"></script>
+  <script type="text/javascript" src="../src/jsts/operation/buffer/BufferBuilder.js"></script>
+  <script type="text/javascript" src="../src/jsts/operation/buffer/BufferInputLineSimplifier.js"></script>
+  <script type="text/javascript" src="../src/jsts/operation/buffer/BufferOp.js"></script>
+  <script type="text/javascript" src="../src/jsts/operation/buffer/BufferParameters.js"></script>
+  <script type="text/javascript" src="../src/jsts/operation/buffer/BufferSubgraph.js"></script>
+  <script type="text/javascript" src="../src/jsts/operation/buffer/OffsetCurveBuilder.js"></script>
+  <script type="text/javascript" src="../src/jsts/operation/buffer/OffsetCurveSetBuilder.js"></script>
+  <script type="text/javascript" src="../src/jsts/operation/buffer/OffsetSegmentGenerator.js"></script>
+  <script type="text/javascript" src="../src/jsts/operation/buffer/OffsetSegmentString.js"></script>
+  <script type="text/javascript" src="../src/jsts/operation/buffer/RightmostEdgeFinder.js"></script>
+  <script type="text/javascript" src="../src/jsts/operation/buffer/SubgraphDepthLocater.js"></script>
+  <script type="text/javascript" src="../src/jsts/operation/distance/ConnectedElementLocationFilter.js"></script>
+  <script type="text/javascript" src="../src/jsts/operation/distance/DistanceOp.js"></script>
+  <script type="text/javascript" src="../src/jsts/operation/distance/GeometryLocation.js"></script>
+  <script type="text/javascript" src="../src/jsts/operation/overlay/LineBuilder.js"></script>
+  <script type="text/javascript" src="../src/jsts/operation/overlay/OverlayNodeFactory.js"></script>
+  <script type="text/javascript" src="../src/jsts/operation/overlay/PolygonBuilder.js"></script>
+  <script type="text/javascript" src="../src/jsts/operation/overlay/MaximalEdgeRing.js"></script>
+  <script type="text/javascript" src="../src/jsts/operation/overlay/MinimalEdgeRing.js"></script>
+  <script type="text/javascript" src="../src/jsts/operation/overlay/LineBuilder.js"></script>
+  <script type="text/javascript" src="../src/jsts/operation/overlay/PointBuilder.js"></script>
+  <script type="text/javascript" src="../src/jsts/operation/overlay/OverlayOp.js"></script>
+  <script type="text/javascript" src="../src/jsts/operation/overlay/snap/LineStringSnapper.js"></script>
+  <script type="text/javascript" src="../src/jsts/operation/overlay/snap/GeometrySnapper.js"></script>
+  <script type="text/javascript" src="../src/jsts/operation/overlay/snap/SnapOverlayOp.js"></script>
+  <script type="text/javascript" src="../src/jsts/operation/overlay/snap/SnapIfNeededOverlayOp.js"></script>
+  <script type="text/javascript" src="../src/jsts/operation/polygonize/EdgeRing.js"></script>
+  <script type="text/javascript" src="../src/jsts/operation/polygonize/PolygonizeDirectedEdge.js"></script>
+  <script type="text/javascript" src="../src/jsts/operation/polygonize/PolygonizeEdge.js"></script>
+  <script type="text/javascript" src="../src/jsts/operation/polygonize/PolygonizeGraph.js"></script>
+  <script type="text/javascript" src="../src/jsts/operation/polygonize/Polygonizer.js"></script>
+  <script type="text/javascript" src="../src/jsts/operation/relate/EdgeEndBuilder.js"></script>
+  <script type="text/javascript" src="../src/jsts/operation/relate/EdgeEndBundle.js"></script>
+  <script type="text/javascript" src="../src/jsts/operation/relate/EdgeEndBundleStar.js"></script>
+  <script type="text/javascript" src="../src/jsts/operation/relate/RelateComputer.js"></script>
+  <script type="text/javascript" src="../src/jsts/operation/relate/RelateNode.js"></script>
+  <script type="text/javascript" src="../src/jsts/operation/relate/RelateNodeFactory.js"></script>
+  <script type="text/javascript" src="../src/jsts/operation/relate/RelateNodeGraph.js"></script>
+  <script type="text/javascript" src="../src/jsts/operation/relate/RelateOp.js"></script>
+  <script type="text/javascript" src="../src/jsts/operation/union/CascadedPolygonUnion.js"></script>
+  <script type="text/javascript" src="../src/jsts/operation/union/PointGeometryUnion.js"></script>
+  <script type="text/javascript" src="../src/jsts/operation/union/UnaryUnionOp.js"></script>
+  <script type="text/javascript" src="../src/jsts/operation/union/UnionInteracting.js"></script>
+  <script type="text/javascript" src="../src/jsts/operation/valid/IsValidOp.js"></script>	
+  <script type="text/javascript" src="../src/jsts/operation/valid/TopologyValidationError.js"></script>
+  <script type="text/javascript" src="../src/jsts/operation/valid/ConsistentAreaTester.js"></script>
+  <script type="text/javascript" src="../src/jsts/operation/valid/IndexedNestedRingTester.js"></script>	
+  <script type="text/javascript" src="../src/jsts/operation/valid/ConnectedInteriorTester.js"></script>	  
+  <script type="text/javascript" src="../src/jsts/simplify/LineSegmentIndex.js"></script>
+  <script type="text/javascript" src="../src/jsts/triangulate/DelaunayTriangulationBuilder.js"></script>
+  <script type="text/javascript" src="../src/jsts/triangulate/VoronoiDiagramBuilder.js"></script>
+  <script type="text/javascript" src="../src/jsts/triangulate/IncrementalDelaunayTriangulator.js"></script>
+  <script type="text/javascript" src="../src/jsts/triangulate/quadedge/LastFoundQuadEdgeLocator.js"></script>
+  <script type="text/javascript" src="../src/jsts/triangulate/quadedge/QuadEdge.js"></script>
+  <script type="text/javascript" src="../src/jsts/triangulate/quadedge/QuadEdgeSubdivision.js"></script>
+  <script type="text/javascript" src="../src/jsts/triangulate/quadedge/TrianglePredicate.js"></script>
+  <script type="text/javascript" src="../src/jsts/triangulate/quadedge/Vertex.js"></script>
+  <script type="text/javascript" src="https://raw.github.com/olooney/attache-array-js/master/attache.array.min.js"></script>
+<script type="text/javascript">
+  function init() {
+    var reader = new jsts.io.WKTReader();
+    var factory = new jsts.geom.GeometryFactory();
+    
+    /*var input = reader.read('POLYGON((9.2999999999997 40.07,9.3899999999997 40.13,9.4600000000002 40.2,9.5199999999996 40.29,9.5500000000002 40.38,9.5600000000004 40.47,9.5500000000002 40.56,9.5100000000003 40.65,7.23 44.53,7.17 44.61,7.09 44.68,6.99 44.734,6.88 44.77,6.76 44.79,6.641 44.804,6.5205 44.79,6.4 44.77,6.3 44.734,6.2 44.67,6.12 44.6,6.07 44.52,2.96 38.88,4.28 45.15,4.29 45.24,4.2705 45.33,4.22 45.414,4.15 45.49,4.07 45.554,3.96 45.6,-4 48.56,4.3105 48.65,4.44 48.664,4.5605 48.69,4.67 48.734,4.76 48.79,4.84 48.86,4.89 48.93,4.92 49.01,6.18 55.43,7.74 49,7.7705 48.92,7.83 48.84,7.91 48.77,8.02 48.72,8.14 48.68,8.26 48.65,15.4 47.94,15.52 47.93,15.63 47.94,15.75 47.97,15.85 48,15.94 48.054,16.01 48.11,16.07 48.18,16.11 48.25,16.12 48.33,16.44 52.21,24.71 38.554,11.09 39.79,10.97 39.79,10.84 39.77,10.72 39.734,10.61 39.68,10.52 39.61,10.46 39.52,10.41 39.43,10.39 39.33,10.4 39.234,10.46 38.97,10.08 39.64,10.02 39.734,9.9299999999997 39.804,9.8200000000002 39.86,9.7099999999998 39.914,9.5799999999999 39.93,9.1100000000004 39.97,9.2999999999997 40.07),(16.01 46.85,16.01 46.94,15.97 47.02,15.92 47.1,15.84 47.17,15.74 47.234,15.63 47.27,15.5 47.29,15.371 47.304,15.25 47.29,15.13 47.26,9.4899999999999 45.51,9.3899999999997 45.47,9.2999999999997 45.414,9.2199999999999 45.35,9.1699999999998 45.28,9.1299999999999 45.2,9.1209999999999 45.12,9.1299999999999 45.03,9.9600000000003 41.28,10 41.19,10.05 41.1,10.13 41.03,10.23 40.96,10.34 40.92,10.47 40.89,10.59 40.88,10.72 40.89,10.84 40.92,10.951 40.97,15.52 43.4,15.611 43.46,15.68 43.52,15.73 43.59,15.77 43.67,15.791 43.75,16.01 46.85))');
+    var buffer = input.buffer(20);
+    buffer.normalize();
+    console.log(buffer.toString());
+    
+    var a = reader.read('LINESTRING(30 150,250 150)');
+    var b = reader.read('LINESTRING(120 240,120 20,20 20,120 170)');
+    
+    var polygonizer = new jsts.operation.polygonize.Polygonizer();
+    var union = a.union(b);
+    polygonizer.add(union);
+    
+    var polygons = polygonizer.getPolygons();
+    console.log(polygons.toArray().toString());
+    
+    var polygonizer2 = new jsts.operation.polygonize.Polygonizer();
+    var union2 = a.union(b);
+    polygonizer2.add(union2);
+    
+    var polygons2 = polygonizer2.getPolygons();
+    console.log(polygons2.toArray().toString());
+    
+    var polygon1 = reader.read('POLYGON((441247.3240664 4306743.5596666,441102.33615925 4306743.5596666,441044.34099638 4306724.2279456,440981.51290328 4306675.8986432,440947.68239161 4306603.4046896,440933.1836009 4306526.0778058,440928.35067066 4306332.7605963,440947.68239161 4306265.0995729,440976.67997304 4306216.7702706,441039.50806615 4306144.276317,441092.67029877 4306105.6128751,441179.66304306 4306062.1165029,441377.81318285 4306013.7872005,441435.80834571 4306013.7872005,441532.46695048 4306033.1189215,441624.29262501 4306091.1140844,441672.6219274 4306163.6080379,441691.95364835 4306226.436131,441711.28536931 4306308.5959451,441711.28536931 4306381.0898987,441658.12313668 4306526.0778058,441585.6291831 4306608.2376199,441426.14248523 4306719.3950154,441368.14732237 4306733.8938061,441334.3168107 4306733.8938061,441247.3240664 4306743.5596666))');
+    var polygon2 = reader.read('POLYGON((441334.3168107 4306024.396071759,441225.3899983887 4306050.963586963,441232.82527569 4306062.1165029,441334.3168107 4306054.598611478,441334.3168107 4306024.396071759))');
+    var intersection = polygon1.intersection(polygon2);
+    console.log(intersection.toString());*/
+    
+    var line = reader.read('LINESTRING (0 0, 0 10)');
+    var point = reader.read('POINT (0 5)');
+    
+    var snapper = new jsts.operation.overlay.snap.LineStringSnapper(line, 1E-6);
+    var newPoints = snapper.snapTo([point.coordinate]);
+    var snappedGeom = factory.createLineString(newPoints);
+    
+    // should be 'LINESTRING (0 0, 0 5, 0 10)'
+    console.log(snappedGeom);
+  }
+</script>
+</head>
+<body onload="init()">
+	<div id="map" style="width:500px;height:500px;"></div>
+</body>
+</html>

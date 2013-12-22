@@ -1,0 +1,57 @@
+<run>
+  <precisionModel scale="1.0" offsetx="0.0" offsety="0.0"/>
+
+<case>
+  <desc>P - single point</desc>
+  <a>    POINT(10 10)  </a>
+<test><op name="getInteriorPoint" arg1="A" >    POINT(10 10)   </op></test>
+</case>
+
+<case>
+  <desc>P - single point</desc>
+  <a>    MULTIPOINT ((60 300), (200 200), (240 240), (200 300), (40 140), (80 240), (140 240), (100 160), (140 200), (60 200))
+	</a>
+<test><op name="getInteriorPoint" arg1="A" >    POINT (140 240)   </op></test>
+</case>
+
+<case>
+  <desc>L - linestring with single segment</desc>
+  <a>    LINESTRING (0 0, 7 14)
+	</a>
+<test><op name="getInteriorPoint" arg1="A" >   POINT (7 14)   </op></test>
+</case>
+
+<case>
+  <desc>L - linestring with multiple segments </desc>
+  <a>    LINESTRING (0 0, 3 15, 6 2, 11 14, 16 5, 16 18, 2 22)
+	</a>
+<test><op name="getInteriorPoint" arg1="A" >   POINT (11 14)  </op></test>
+</case>
+
+<case>
+  <desc>mL - complex linestrings</desc>
+  <a>    MULTILINESTRING ((60 240, 140 300, 180 200, 40 140, 100 100, 120 220), 
+  (240 80, 260 160, 200 240, 180 340, 280 340, 240 180, 180 140, 40 200, 140 260))
+	</a>
+<test><op name="getInteriorPoint" arg1="A" >    POINT (180 200)   </op></test>
+</case>
+
+<case>
+  <desc>A - box</desc>
+  <a>    POLYGON ((0 0, 0 10, 10 10, 10 0, 0 0))
+	</a>
+<test><op name="getInteriorPoint" arg1="A" >    POINT (5 5)   </op></test>
+</case>
+
+<case>
+  <desc>mA - polygons with holes</desc>
+  <a>    MULTIPOLYGON (((60 320, 240 340, 260 100, 20 60, 120 180, 60 320), 
+  (200 280, 140 260, 180 160, 240 140, 200 280)), 
+  ((380 280, 300 260, 340 100, 440 80, 380 280), 
+    (380 220, 340 200, 400 100, 380 220)))
+	</a>
+<test><op name="getInteriorPoint" arg1="A" >    POINT (138 200)  </op></test>
+</case>
+
+
+</run>

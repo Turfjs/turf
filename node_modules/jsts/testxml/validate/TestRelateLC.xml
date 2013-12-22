@@ -1,0 +1,37 @@
+<run>
+<precisionModel type="FLOATING"/>
+
+<case>
+<desc>LC - topographically equal with no boundary</desc>
+  <a>
+    LINESTRING(0 0, 0 50, 50 50, 50 0, 0 0)
+  </a>
+  <b>
+    MULTILINESTRING(
+      (0 0, 0 50), 
+      (0 50, 50 50), 
+      (50 50, 50 0), 
+      (50 0, 0 0))
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="1FFFFFFF2">true</op>
+  </test>
+</case>
+
+<case>
+<desc>LC - equal with boundary intersection</desc>
+  <a>
+    LINESTRING(0 0, 60 0, 60 60, 60 0, 120 0)
+  </a>
+  <b>
+    MULTILINESTRING(
+      (0 0, 60 0), 
+      (60 0, 120 0), 
+      (60 0, 60 60))
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="10FF0FFF2">true</op>
+  </test>
+</case>
+
+</run>

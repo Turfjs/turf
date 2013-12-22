@@ -1,0 +1,57 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>Overlay example</title>
+  <script src="http://www.openlayers.org/api/OpenLayers.js"></script>
+
+  <script type="text/javascript" src="../lib/javascript.util.js"></script>
+  <script type="text/javascript" src="../lib/jsts.js"></script>
+  <script type="text/javascript" src="https://raw.github.com/olooney/attache-array-js/master/attache.array.min.js"></script>
+<script type="text/javascript">
+  function init() {
+    var reader = new jsts.io.WKTReader();
+
+    var a = reader.read('POLYGON((10 10, 100 10, 100 100, 10 100, 10 10))');
+    var b = reader.read('POLYGON((50 50, 200 50, 200 200, 50 200, 50 50))');
+
+    var union = a.union(b);
+    var intersection = a.intersection(b);
+    
+    var parser = new jsts.io.OpenLayersParser();
+    a = parser.write(a);
+    b = parser.write(b);
+    union = parser.write(union);
+    intersection = parser.write(intersection);
+    
+    var map = new OpenLayers.Map('map', {
+      maxExtent: new OpenLayers.Bounds(0, 0, 200, 200),
+      maxResolution: 100,
+      units: 'm',
+      controls: [new OpenLayers.Control.MousePosition(), new OpenLayers.Control.Navigation()]
+    });
+    
+    var layer = new OpenLayers.Layer.Vector('test', {
+      isBaseLayer: true
+    });
+    map.addLayer(layer);
+    
+    var feature1 = new OpenLayers.Feature.Vector(a, null, { fillColor: 'blue'});
+    layer.addFeatures([feature1]);
+    var feature2 = new OpenLayers.Feature.Vector(b, null, { fillColor: 'red'});
+    layer.addFeatures([feature2]);
+    var feature3 = new OpenLayers.Feature.Vector(union, null, { strokeColor: 'green', fillOpacity: 0});
+    layer.addFeatures([feature3]);
+    var feature4 = new OpenLayers.Feature.Vector(intersection, null, { strokeColor: 'yellow', fillOpacity: 0});
+    layer.addFeatures([feature4]);
+    
+    map.zoomToMaxExtent();
+    
+  }
+</script>
+</head>
+<body onload="init()">
+  Input polygons (blue and red) have union outlined by green and intersection outlined by yellow.
+  <div id="map" style="width:500px;height:500px;"></div>
+</body>
+</html>
