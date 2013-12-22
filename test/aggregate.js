@@ -22,6 +22,21 @@ describe('aggregate', function(){
         aggregation: 'average',
         inField: 'population',
         outField: 'pop_avg'
+      },
+      {
+        aggregation: 'median',
+        inField: 'population',
+        outField: 'pop_median'
+      },
+      {
+        aggregation: 'min',
+        inField: 'population',
+        outField: 'pop_min'
+      },
+      {
+        aggregation: 'max',
+        inField: 'population',
+        outField: 'pop_max'
       }
     ]
 
