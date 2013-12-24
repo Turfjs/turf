@@ -1,6 +1,7 @@
 !function(e){"object"==typeof exports?module.exports=e():"function"==typeof define&&define.amd?define(e):"undefined"!=typeof window?window.t=e():"undefined"!=typeof global?global.t=e():"undefined"!=typeof self&&(self.t=e())}(function(){var define,module,exports;
 return (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);throw new Error("Cannot find module '"+o+"'")}var f=n[o]={exports:{}};t[o][0].call(f.exports,function(e){var n=t[o][1][e];return s(n?n:e)},f,f.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 module.exports = {
+  variance: require('./lib/variance'),
   deviation: require('./lib/deviation'),
   median: require('./lib/median'),
   min: require('./lib/min'),
@@ -49,7 +50,7 @@ module.exports = {
 }
 
 
-},{"./lib/aggregate":2,"./lib/average":3,"./lib/bboxPolygon":4,"./lib/bezier":5,"./lib/buffer":6,"./lib/center":7,"./lib/centroid":8,"./lib/combine":9,"./lib/contour":10,"./lib/deviation":11,"./lib/distance":12,"./lib/envelope":13,"./lib/explode":14,"./lib/extent":15,"./lib/featurecollection":16,"./lib/filter":17,"./lib/flip":18,"./lib/grid":19,"./lib/inside":20,"./lib/intersect":21,"./lib/jenks":22,"./lib/linestring":23,"./lib/load":24,"./lib/max":25,"./lib/median":26,"./lib/midpoint":27,"./lib/min":28,"./lib/nearest":29,"./lib/planepoint":30,"./lib/point":31,"./lib/polygon":32,"./lib/quantile":33,"./lib/reclass":34,"./lib/remove":35,"./lib/sample":36,"./lib/save":37,"./lib/simplify":38,"./lib/size":39,"./lib/square":40,"./lib/sum":41,"./lib/tag":42,"./lib/tin":43,"./lib/topo":44,"./lib/union":45}],2:[function(require,module,exports){
+},{"./lib/aggregate":2,"./lib/average":3,"./lib/bboxPolygon":4,"./lib/bezier":5,"./lib/buffer":6,"./lib/center":7,"./lib/centroid":8,"./lib/combine":9,"./lib/contour":10,"./lib/deviation":11,"./lib/distance":12,"./lib/envelope":13,"./lib/explode":14,"./lib/extent":15,"./lib/featurecollection":16,"./lib/filter":17,"./lib/flip":18,"./lib/grid":19,"./lib/inside":20,"./lib/intersect":21,"./lib/jenks":22,"./lib/linestring":23,"./lib/load":24,"./lib/max":25,"./lib/median":26,"./lib/midpoint":27,"./lib/min":28,"./lib/nearest":29,"./lib/planepoint":30,"./lib/point":31,"./lib/polygon":32,"./lib/quantile":33,"./lib/reclass":34,"./lib/remove":35,"./lib/sample":36,"./lib/save":37,"./lib/simplify":38,"./lib/size":39,"./lib/square":40,"./lib/sum":41,"./lib/tag":42,"./lib/tin":43,"./lib/topo":44,"./lib/union":45,"./lib/variance":46}],2:[function(require,module,exports){
 var _ = require('lodash')
 var t = {}
 t.average = require('./average')
@@ -58,6 +59,7 @@ t.median = require('./median')
 t.min = require('./min')
 t.max = require('./max')
 t.deviation = require('./deviation')
+t.variance = require('./variance')
 
 module.exports = function(polygons, points, aggregations, done){
   _.each(aggregations, function(agg){
@@ -92,13 +94,18 @@ module.exports = function(polygons, points, aggregations, done){
           polygons = deviated
         })
         break
+      case 'variance':
+        t.variance(polygons, points, agg.inField, agg.outField, function(err, varianced){
+          polygons = varianced
+        })
+        break
       default:
         done(new Error('"'+agg.aggregation +'" is not a recognized aggregation operation.'))
     }
   })
   done(null, polygons)
 }
-},{"./average":3,"./deviation":11,"./max":25,"./median":26,"./min":28,"./sum":41,"lodash":68}],3:[function(require,module,exports){
+},{"./average":3,"./deviation":11,"./max":25,"./median":26,"./min":28,"./sum":41,"./variance":46,"lodash":69}],3:[function(require,module,exports){
 var t = {}
 var _ = require('lodash'),
     ss = require('simple-statistics')
@@ -122,7 +129,7 @@ module.exports = function(polyFC, ptFC, inField, outField, done){
 
   done(null, polyFC)
 }
-},{"./inside":20,"lodash":68,"simple-statistics":69}],4:[function(require,module,exports){
+},{"./inside":20,"lodash":69,"simple-statistics":70}],4:[function(require,module,exports){
 var t = {}
 var point = require('../lib/point'),
     polygon = require('../lib/polygon')
@@ -368,7 +375,7 @@ module.exports = function(line, resolution, intensity, done){
     ctx.stroke();
     return this;
   }
-},{"./linestring":23,"lodash":68}],6:[function(require,module,exports){
+},{"./linestring":23,"lodash":69}],6:[function(require,module,exports){
 //http://stackoverflow.com/questions/839899/how-do-i-calculate-a-point-on-a-circles-circumference
 //radians = degrees * (pi/180)
 
@@ -418,7 +425,7 @@ module.exports = function(point, radius, units, done){
         break
     }
 }
-},{"lodash":68}],7:[function(require,module,exports){
+},{"lodash":69}],7:[function(require,module,exports){
 var t = {}
 var extent = require('./extent')
 t.extent = extent
@@ -464,7 +471,7 @@ module.exports = function(features, done){
     done(err, t.point(averageX, averageY))
   })
 }
-},{"./explode":14,"./point":31,"lodash":68,"simple-statistics":69}],9:[function(require,module,exports){
+},{"./explode":14,"./point":31,"lodash":69,"simple-statistics":70}],9:[function(require,module,exports){
 //this tool takes a feature collection of like geometries and combines them into a single multipoint, multilinestring, or multipolygon
 var _ = require('lodash')
 
@@ -508,7 +515,7 @@ module.exports = function(fc, done){
     break
   }
 }
-},{"lodash":68}],10:[function(require,module,exports){
+},{"lodash":69}],10:[function(require,module,exports){
 //https://github.com/jasondavies/conrec.js
 //http://stackoverflow.com/questions/263305/drawing-a-topographical-map
 var t = {}
@@ -1119,7 +1126,7 @@ module.exports = function(points, z, resolution, breaks, done){
     }
   }
 
-},{"./extent":15,"./featurecollection":16,"./grid":19,"./inside":20,"./planepoint":30,"./polygon":32,"./square":40,"./tin":43,"fs":98,"lodash":68}],11:[function(require,module,exports){
+},{"./extent":15,"./featurecollection":16,"./grid":19,"./inside":20,"./planepoint":30,"./polygon":32,"./square":40,"./tin":43,"fs":99,"lodash":69}],11:[function(require,module,exports){
 var t = {}
 var _ = require('lodash'),
     ss = require('simple-statistics')
@@ -1142,7 +1149,7 @@ module.exports = function(polyFC, ptFC, inField, outField, done){
   })
   done(null, polyFC)
 }
-},{"./inside":20,"lodash":68,"simple-statistics":69}],12:[function(require,module,exports){
+},{"./inside":20,"lodash":69,"simple-statistics":70}],12:[function(require,module,exports){
 //http://en.wikipedia.org/wiki/Haversine_formula
 //http://www.movable-type.co.uk/scripts/latlong.html
 // expects a feature collection of points
@@ -1292,7 +1299,7 @@ module.exports = function(features, done){
 
 
 
-},{"./featurecollection":16,"./point":31,"lodash":68}],15:[function(require,module,exports){
+},{"./featurecollection":16,"./point":31,"lodash":69}],15:[function(require,module,exports){
 _ = require('lodash')
 
 module.exports = function(layer, done){
@@ -1404,7 +1411,7 @@ module.exports = function(layer, done){
     done(null, bbox)
   }
 }
-},{"lodash":68}],16:[function(require,module,exports){
+},{"lodash":69}],16:[function(require,module,exports){
 module.exports = function(features){
   var fc = {
     "type": "FeatureCollection",
@@ -1427,7 +1434,7 @@ module.exports = function(fc, field, value, done){
   }
   done(null, newFC)
 }
-},{"./featurecollection":16,"lodash":68}],18:[function(require,module,exports){
+},{"./featurecollection":16,"lodash":69}],18:[function(require,module,exports){
 var t = {}
 t.featurecollection = require('./featurecollection')
 
@@ -1514,7 +1521,7 @@ module.exports = function(extents, depth, done){
   }
   done(null, fc)
 }
-},{"./point":31,"lodash":68}],20:[function(require,module,exports){
+},{"./point":31,"lodash":69}],20:[function(require,module,exports){
 // http://en.wikipedia.org/wiki/Even%E2%80%93odd_rule
 // modified from: https://github.com/substack/point-in-polygon/blob/master/index.js
 // which was modified from http://www.ecse.rpi.edu/Homepages/wrf/Research/Short_Notes/pnpoly.html
@@ -1553,7 +1560,7 @@ module.exports = function(polys1, polys2, done){
   intersection = t.featurecollection([intersection])
   done(null, intersection)
 }
-},{"./featurecollection":16,"jsts":46}],22:[function(require,module,exports){
+},{"./featurecollection":16,"jsts":47}],22:[function(require,module,exports){
 var ss = require('simple-statistics'),
     _ = require('lodash')
 
@@ -1570,7 +1577,7 @@ module.exports = function(fc, field, num, done){
 
   done(null, breaks)
 }
-},{"lodash":68,"simple-statistics":69}],23:[function(require,module,exports){
+},{"lodash":69,"simple-statistics":70}],23:[function(require,module,exports){
 module.exports = function(coordinates, properties){
   if(coordinates === null) throw new Error('No coordinates passed')
   var linestring = { 
@@ -1599,7 +1606,7 @@ module.exports = function(file, done) {
   })  
 }
 
-},{"fs":98,"path":99}],25:[function(require,module,exports){
+},{"fs":99,"path":100}],25:[function(require,module,exports){
 var t = {}
 var _ = require('lodash'),
     ss = require('simple-statistics')
@@ -1622,7 +1629,7 @@ module.exports = function(polyFC, ptFC, inField, outField, done){
   })
   done(null, polyFC)
 }
-},{"./inside":20,"lodash":68,"simple-statistics":69}],26:[function(require,module,exports){
+},{"./inside":20,"lodash":69,"simple-statistics":70}],26:[function(require,module,exports){
 var t = {}
 var _ = require('lodash'),
     ss = require('simple-statistics')
@@ -1645,7 +1652,7 @@ module.exports = function(polyFC, ptFC, inField, outField, done){
   })
   done(null, polyFC)
 }
-},{"./inside":20,"lodash":68,"simple-statistics":69}],27:[function(require,module,exports){
+},{"./inside":20,"lodash":69,"simple-statistics":70}],27:[function(require,module,exports){
 // http://cs.selu.edu/~rbyrd/math/midpoint/
 // ((x1+x2)/2), ((y1+y2)/2)
 var t = {}
@@ -1692,7 +1699,7 @@ module.exports = function(polyFC, ptFC, inField, outField, done){
   })
   done(null, polyFC)
 }
-},{"./inside":20,"lodash":68,"simple-statistics":69}],29:[function(require,module,exports){
+},{"./inside":20,"lodash":69,"simple-statistics":70}],29:[function(require,module,exports){
 var t = {}
 var _ = require('lodash'),
  distance = require('./distance')
@@ -1728,7 +1735,7 @@ module.exports = function(targetPoint, points, done){
     done(null, nPt)
   }
 }
-},{"./distance":12,"lodash":68}],30:[function(require,module,exports){
+},{"./distance":12,"lodash":69}],30:[function(require,module,exports){
 http://stackoverflow.com/a/13916669/461015
 
 module.exports = function(point, triangle, done){
@@ -1800,7 +1807,7 @@ module.exports = function(fc, field, percentiles, done){
   })
   done(null, quantiles)
 }
-},{"lodash":68,"simple-statistics":69}],34:[function(require,module,exports){
+},{"lodash":69,"simple-statistics":70}],34:[function(require,module,exports){
 var t = {}
 var featurecollection = require('./featurecollection')
 t.featurecollection = featurecollection
@@ -1844,7 +1851,7 @@ module.exports = function(fc, num, done){
   var outFC = t.featurecollection(_.sample(fc.features, num))
   done(null, outFC)
 }
-},{"./featurecollection":16,"lodash":68}],37:[function(require,module,exports){
+},{"./featurecollection":16,"lodash":69}],37:[function(require,module,exports){
 var t = {}
 var fs = require('fs')
 t.topo = require('./topo')
@@ -1867,7 +1874,7 @@ module.exports = function(path, features, type, done){
       break
   }
 }
-},{"./topo":44,"fs":98}],38:[function(require,module,exports){
+},{"./topo":44,"fs":99}],38:[function(require,module,exports){
 // use topojson.simplify to simplify points to a given tolerence then convert back to geojson
 var topojson = require('topojson')
 
@@ -1885,7 +1892,7 @@ module.exports = function(fc, quantization, minimumArea, done){
   topojson.simplify(topo, options)
   done(null, topojson.feature(topo, topo.objects.name))
 }
-},{"topojson":70}],39:[function(require,module,exports){
+},{"topojson":71}],39:[function(require,module,exports){
 module.exports = function(bbox, factor, done){
   var lowX = (((bbox[2] - bbox[0]) / 2) * factor) + bbox[0]
   var lowY = (((bbox[3] - bbox[1]) / 2) * factor) + bbox[1]
@@ -1959,7 +1966,7 @@ module.exports = function(polyFC, ptFC, inField, outField, done){
   })
   done(null, polyFC)
 }
-},{"./inside":20,"lodash":68,"simple-statistics":69}],42:[function(require,module,exports){
+},{"./inside":20,"lodash":69,"simple-statistics":70}],42:[function(require,module,exports){
 var t = {}
   var _ = require('lodash')
 t.inside = require('./inside')
@@ -1984,7 +1991,7 @@ module.exports = function(points, polygons, field, outField, done){
   })
   done(null, points)
 }
-},{"./inside":20,"lodash":68}],43:[function(require,module,exports){
+},{"./inside":20,"lodash":69}],43:[function(require,module,exports){
 //http://en.wikipedia.org/wiki/Delaunay_triangulation
 //https://github.com/ironwallaby/delaunay
 var t = {}
@@ -2217,14 +2224,14 @@ function triangulate(vertices) {
     }
 }*/
 
-},{"./nearest":29,"./point":31,"./polygon":32,"lodash":68}],44:[function(require,module,exports){
+},{"./nearest":29,"./point":31,"./polygon":32,"lodash":69}],44:[function(require,module,exports){
 var topojson = require('topojson')
 
 module.exports = function(geojson, done){
   var topology = topojson.topology({geojson: geojson})
   done(null, topology)
 }
-},{"topojson":70}],45:[function(require,module,exports){
+},{"topojson":71}],45:[function(require,module,exports){
 // look here for help http://svn.osgeo.org/grass/grass/branches/releasebranch_6_4/vector/v.overlay/main.c
 //must be array of polygons
 
@@ -2244,14 +2251,37 @@ module.exports = function(polys1, polys2, done){
   union = t.featurecollection([union])
   done(null, union)
 }
-},{"./featurecollection":16,"jsts":46}],46:[function(require,module,exports){
+},{"./featurecollection":16,"jsts":47}],46:[function(require,module,exports){
+var t = {}
+var _ = require('lodash'),
+    ss = require('simple-statistics')
+t.inside = require('./inside')
+
+module.exports = function(polyFC, ptFC, inField, outField, done){
+  _.each(polyFC.features, function(poly){
+    if(!poly.properties){
+      poly.properties = {}
+    }
+    var values = []
+    _.each(ptFC.features, function(pt){
+      t.inside(pt, poly, function(err, isInside){
+        if(isInside){
+          values.push(pt.properties[inField])
+        }
+      })
+    })
+    poly.properties[outField] = ss.variance(values)
+  })
+  done(null, polyFC)
+}
+},{"./inside":20,"lodash":69,"simple-statistics":70}],47:[function(require,module,exports){
 'use strict';
 GLOBAL.javascript = {};
 GLOBAL.javascript.util = require('javascript.util');
 var jsts = require('./lib/jsts');
 module.exports = jsts
 
-},{"./lib/jsts":47,"javascript.util":48}],47:[function(require,module,exports){
+},{"./lib/jsts":48,"javascript.util":49}],48:[function(require,module,exports){
 /* The JSTS Topology Suite is a collection of JavaScript classes that
 implement the fundamental operations required to validate a given
 geo-spatial data set to a known topological specification.
@@ -3829,10 +3859,10 @@ boundaryCount++;var newLoc=jsts.geomgraph.GeometryGraph.determineBoundary(this.b
 return;if(loc===Location.BOUNDARY&&this.useBoundaryDeterminationRule)
 this.insertBoundaryPoint(argIndex,coord);else
 this.insertPoint(argIndex,coord,loc);};jsts.geomgraph.GeometryGraph.prototype.getInvalidPoint=function(){return this.invalidPoint;};})();
-},{}],48:[function(require,module,exports){
+},{}],49:[function(require,module,exports){
 module.exports = require('./src');
 
-},{"./src":67}],49:[function(require,module,exports){
+},{"./src":68}],50:[function(require,module,exports){
 /**
  * @requires List.js
  */
@@ -3997,7 +4027,7 @@ ArrayList.Iterator.prototype.remove = function() {
 
 module.exports = ArrayList;
 
-},{"./Collection":51,"./IndexOutOfBoundsException":55,"./List":57,"./NoSuchElementException":59,"./OperationNotSupported":60}],50:[function(require,module,exports){
+},{"./Collection":52,"./IndexOutOfBoundsException":56,"./List":58,"./NoSuchElementException":60,"./OperationNotSupported":61}],51:[function(require,module,exports){
 /**
  * @see http://download.oracle.com/javase/6/docs/api/java/util/Arrays.html
  *
@@ -4055,7 +4085,7 @@ Arrays.asList = function(array) {
 
 module.exports = Arrays;
 
-},{}],51:[function(require,module,exports){
+},{}],52:[function(require,module,exports){
 /**
  * @requires Iterator.js
  */
@@ -4130,7 +4160,7 @@ Collection.prototype.remove = function(o) {};
 
 module.exports = Collection;
 
-},{"./Iterator":56}],52:[function(require,module,exports){
+},{"./Iterator":57}],53:[function(require,module,exports){
 /**
  * @param {string=}
  *          message Optional message.
@@ -4149,7 +4179,7 @@ EmptyStackException.prototype.name = 'EmptyStackException';
 
 module.exports = EmptyStackException;
 
-},{}],53:[function(require,module,exports){
+},{}],54:[function(require,module,exports){
 /**
  * @requires Map.js
  * @requires ArrayList.js
@@ -4213,7 +4243,7 @@ HashMap.prototype.size = function() {
 
 module.exports = HashMap;
 
-},{"./ArrayList":49,"./Map":58}],54:[function(require,module,exports){
+},{"./ArrayList":50,"./Map":59}],55:[function(require,module,exports){
 /**
  * @requires Set.js
  */
@@ -4374,7 +4404,7 @@ HashSet.Iterator.prototype.remove = function() {
 
 module.exports = HashSet;
 
-},{"./Collection":51,"./NoSuchElementException":59,"./OperationNotSupported":60,"./Set":61}],55:[function(require,module,exports){
+},{"./Collection":52,"./NoSuchElementException":60,"./OperationNotSupported":61,"./Set":62}],56:[function(require,module,exports){
 /**
  * @param {string=}
  *          message Optional message.
@@ -4393,7 +4423,7 @@ IndexOutOfBoundsException.prototype.name = 'IndexOutOfBoundsException';
 
 module.exports = IndexOutOfBoundsException;
 
-},{}],56:[function(require,module,exports){
+},{}],57:[function(require,module,exports){
 /**
  * @see http://download.oracle.com/javase/6/docs/api/java/util/Iterator.html
  * @interface
@@ -4422,7 +4452,7 @@ Iterator.prototype.remove = function() {};
 
 module.exports = Iterator;
 
-},{}],57:[function(require,module,exports){
+},{}],58:[function(require,module,exports){
 /**
  * @requires Collection.js
  */
@@ -4456,7 +4486,7 @@ List.prototype.isEmpty = function() {};
 
 module.exports = List;
 
-},{"./Collection":51}],58:[function(require,module,exports){
+},{"./Collection":52}],59:[function(require,module,exports){
 /**
  * @see http://download.oracle.com/javase/6/docs/api/java/util/Map.html
  *
@@ -4502,7 +4532,7 @@ Map.prototype.values = function() {};
 
 module.exports = Map;
 
-},{}],59:[function(require,module,exports){
+},{}],60:[function(require,module,exports){
 /**
  * @param {string=}
  *          message Optional message.
@@ -4521,7 +4551,7 @@ NoSuchElementException.prototype.name = 'NoSuchElementException';
 
 module.exports = NoSuchElementException;
 
-},{}],60:[function(require,module,exports){
+},{}],61:[function(require,module,exports){
 /**
  * @param {string=}
  *          message Optional message.
@@ -4540,7 +4570,7 @@ OperationNotSupported.prototype.name = 'OperationNotSupported';
 
 module.exports = OperationNotSupported;
 
-},{}],61:[function(require,module,exports){
+},{}],62:[function(require,module,exports){
 /**
  * @requires Collection.js
  */
@@ -4568,7 +4598,7 @@ Set.prototype.contains = function(o) {};
 
 module.exports = Set;
 
-},{"./Collection":51}],62:[function(require,module,exports){
+},{"./Collection":52}],63:[function(require,module,exports){
 /**
  * @requires Map.js
  */
@@ -4585,7 +4615,7 @@ SortedMap.prototype = new Map;
 
 module.exports = SortedMap;
 
-},{"./Map":58}],63:[function(require,module,exports){
+},{"./Map":59}],64:[function(require,module,exports){
 /**
  * @requires Set.js
  */
@@ -4602,7 +4632,7 @@ SortedSet.prototype = new Set;
 
 module.exports = SortedSet;
 
-},{"./Set":61}],64:[function(require,module,exports){
+},{"./Set":62}],65:[function(require,module,exports){
 /**
  * @requires List.js
  */
@@ -4720,7 +4750,7 @@ Stack.prototype.toArray = function() {
 
 module.exports = Stack;
 
-},{"./EmptyStackException":52,"./List":57}],65:[function(require,module,exports){
+},{"./EmptyStackException":53,"./List":58}],66:[function(require,module,exports){
 /**
  * @requires SortedMap.js
  * @requires ArrayList.js
@@ -4813,7 +4843,7 @@ TreeMap.prototype.size = function() {
 
 module.exports = TreeMap;
 
-},{"./ArrayList":49,"./Map":58,"./SortedMap":62}],66:[function(require,module,exports){
+},{"./ArrayList":50,"./Map":59,"./SortedMap":63}],67:[function(require,module,exports){
 /**
  * @requires SortedSet.js
  */
@@ -4981,7 +5011,7 @@ TreeSet.Iterator.prototype.remove = function() {
 
 module.exports = TreeSet;
 
-},{"./Collection":51,"./NoSuchElementException":59,"./OperationNotSupported":60,"./SortedSet":63}],67:[function(require,module,exports){
+},{"./Collection":52,"./NoSuchElementException":60,"./OperationNotSupported":61,"./SortedSet":64}],68:[function(require,module,exports){
 module.exports.ArrayList = require('./ArrayList');
 module.exports.Arrays = require('./Arrays');
 module.exports.Collection = require('./Collection');
@@ -4997,7 +5027,7 @@ module.exports.Stack = require('./Stack');
 module.exports.TreeMap = require('./TreeMap');
 module.exports.TreeSet = require('./TreeSet');
 
-},{"./ArrayList":49,"./Arrays":50,"./Collection":51,"./HashMap":53,"./HashSet":54,"./Iterator":56,"./List":57,"./Map":58,"./Set":61,"./SortedMap":62,"./SortedSet":63,"./Stack":64,"./TreeMap":65,"./TreeSet":66}],68:[function(require,module,exports){
+},{"./ArrayList":50,"./Arrays":51,"./Collection":52,"./HashMap":54,"./HashSet":55,"./Iterator":57,"./List":58,"./Map":59,"./Set":62,"./SortedMap":63,"./SortedSet":64,"./Stack":65,"./TreeMap":66,"./TreeSet":67}],69:[function(require,module,exports){
 var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {};/**
  * @license
  * Lo-Dash 2.2.1 (Custom Build) <http://lodash.com/>
@@ -11359,7 +11389,7 @@ var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? 
   }
 }.call(this));
 
-},{}],69:[function(require,module,exports){
+},{}],70:[function(require,module,exports){
 // # simple-statistics
 //
 // A simple, literate statistics system. The code below uses the
@@ -12347,7 +12377,7 @@ var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? 
 
 })(this);
 
-},{}],70:[function(require,module,exports){
+},{}],71:[function(require,module,exports){
 var __dirname="/node_modules/topojson";var fs = require("fs");
 
 var topojson = module.exports = new Function("topojson", "return " + fs.readFileSync(__dirname + "/topojson.js", "utf8"))();
@@ -12358,7 +12388,7 @@ topojson.filter = require("./lib/topojson/filter");
 topojson.prune = require("./lib/topojson/prune");
 topojson.bind = require("./lib/topojson/bind");
 
-},{"./lib/topojson/bind":71,"./lib/topojson/clockwise":74,"./lib/topojson/filter":78,"./lib/topojson/prune":81,"./lib/topojson/simplify":83,"./lib/topojson/topology":86,"fs":98}],71:[function(require,module,exports){
+},{"./lib/topojson/bind":72,"./lib/topojson/clockwise":75,"./lib/topojson/filter":79,"./lib/topojson/prune":82,"./lib/topojson/simplify":84,"./lib/topojson/topology":87,"fs":99}],72:[function(require,module,exports){
 var type = require("./type"),
     topojson = require("../../");
 
@@ -12388,7 +12418,7 @@ module.exports = function(topology, propertiesById) {
 
 function noop() {}
 
-},{"../../":70,"./type":96}],72:[function(require,module,exports){
+},{"../../":71,"./type":97}],73:[function(require,module,exports){
 
 // Computes the bounding box of the specified hash of GeoJSON objects.
 module.exports = function(objects) {
@@ -12435,7 +12465,7 @@ module.exports = function(objects) {
   return [x0, y0, x1, y1];
 };
 
-},{}],73:[function(require,module,exports){
+},{}],74:[function(require,module,exports){
 exports.name = "cartesian";
 exports.formatDistance = formatDistance;
 exports.ringArea = ringArea;
@@ -12469,7 +12499,7 @@ function distance(x0, y0, x1, y1) {
   return Math.sqrt(dx * dx + dy * dy);
 }
 
-},{}],74:[function(require,module,exports){
+},{}],75:[function(require,module,exports){
 var type = require("./type"),
     systems = require("./coordinate-systems"),
     topojson = require("../../");
@@ -12542,7 +12572,7 @@ function clockwiseTopology(topology, options) {
 
 function noop() {}
 
-},{"../../":70,"./coordinate-systems":76,"./type":96}],75:[function(require,module,exports){
+},{"../../":71,"./coordinate-systems":77,"./type":97}],76:[function(require,module,exports){
 // Given a hash of GeoJSON objects and an id function, invokes the id function
 // to compute a new id for each object that is a feature. The function is passed
 // the feature and is expected to return the new feature id, or null if the
@@ -12572,13 +12602,13 @@ module.exports = function(objects, id) {
   return objects;
 };
 
-},{}],76:[function(require,module,exports){
+},{}],77:[function(require,module,exports){
 module.exports = {
   cartesian: require("./cartesian"),
   spherical: require("./spherical")
 };
 
-},{"./cartesian":73,"./spherical":84}],77:[function(require,module,exports){
+},{"./cartesian":74,"./spherical":85}],78:[function(require,module,exports){
 // Given a TopoJSON topology in absolute (quantized) coordinates,
 // converts to fixed-point delta encoding.
 // This is a destructive operation that modifies the given topology!
@@ -12609,7 +12639,7 @@ module.exports = function(topology) {
   return topology;
 };
 
-},{}],78:[function(require,module,exports){
+},{}],79:[function(require,module,exports){
 var type = require("./type"),
     prune = require("./prune"),
     clockwise = require("./clockwise"),
@@ -12680,7 +12710,7 @@ module.exports = function(topology, options) {
 
 function noop() {}
 
-},{"../../":70,"./clockwise":74,"./coordinate-systems":76,"./prune":81,"./type":96}],79:[function(require,module,exports){
+},{"../../":71,"./clockwise":75,"./coordinate-systems":77,"./prune":82,"./type":97}],80:[function(require,module,exports){
 // Given a hash of GeoJSON objects, replaces Features with geometry objects.
 // This is a destructive operation that modifies the input objects!
 module.exports = function(objects) {
@@ -12799,7 +12829,7 @@ module.exports = function(objects) {
   return objects;
 };
 
-},{}],80:[function(require,module,exports){
+},{}],81:[function(require,module,exports){
 module.exports = function(objects, filter) {
 
   function prefilterGeometry(geometry) {
@@ -12855,7 +12885,7 @@ module.exports = function(objects, filter) {
   return objects;
 };
 
-},{}],81:[function(require,module,exports){
+},{}],82:[function(require,module,exports){
 module.exports = function(topology, options) {
   var verbose = false,
       objects = topology.objects,
@@ -12929,7 +12959,7 @@ module.exports = function(topology, options) {
 
 function noop() {}
 
-},{}],82:[function(require,module,exports){
+},{}],83:[function(require,module,exports){
 module.exports = function(objects, bbox, Q) {
   var x0 = isFinite(bbox[0]) ? bbox[0] : 0,
       y0 = isFinite(bbox[1]) ? bbox[1] : 0,
@@ -13016,7 +13046,7 @@ module.exports = function(objects, bbox, Q) {
   };
 };
 
-},{}],83:[function(require,module,exports){
+},{}],84:[function(require,module,exports){
 var topojson = require("../../"),
     systems = require("./coordinate-systems");
 
@@ -13100,7 +13130,7 @@ module.exports = function(topology, options) {
   return topology;
 };
 
-},{"../../":70,"./coordinate-systems":76}],84:[function(require,module,exports){
+},{"../../":71,"./coordinate-systems":77}],85:[function(require,module,exports){
 var π = Math.PI,
     π_4 = π / 4,
     radians = π / 180;
@@ -13182,7 +13212,7 @@ function haversin(x) {
   return (x = Math.sin(x / 2)) * x;
 }
 
-},{}],85:[function(require,module,exports){
+},{}],86:[function(require,module,exports){
 var type = require("./type");
 
 module.exports = function(objects, transform) {
@@ -13358,7 +13388,7 @@ module.exports = function(objects, transform) {
   }
 };
 
-},{"./type":96}],86:[function(require,module,exports){
+},{"./type":97}],87:[function(require,module,exports){
 var type = require("./type"),
     stitch = require("./stitch"),
     systems = require("./coordinate-systems"),
@@ -13460,7 +13490,7 @@ module.exports = function(objects, options) {
   return topology;
 };
 
-},{"./bounds":72,"./compute-id":75,"./coordinate-systems":76,"./delta":77,"./geomify":79,"./prefilter":80,"./quantize":82,"./stitch":85,"./topology/index":91,"./transform-properties":95,"./type":96}],87:[function(require,module,exports){
+},{"./bounds":73,"./compute-id":76,"./coordinate-systems":77,"./delta":78,"./geomify":80,"./prefilter":81,"./quantize":83,"./stitch":86,"./topology/index":92,"./transform-properties":96,"./type":97}],88:[function(require,module,exports){
 var join = require("./join");
 
 // Given an extracted (pre-)topology, cuts (or rotates) arcs so that all shared
@@ -13522,7 +13552,7 @@ function reverse(array, start, end) {
   }
 }
 
-},{"./join":92}],88:[function(require,module,exports){
+},{"./join":93}],89:[function(require,module,exports){
 var join = require("./join"),
     hashtable = require("./hashtable"),
     hashPoint = require("./point-hash"),
@@ -13708,7 +13738,7 @@ module.exports = function(topology) {
   return topology;
 };
 
-},{"./hashtable":90,"./join":92,"./point-equal":93,"./point-hash":94}],89:[function(require,module,exports){
+},{"./hashtable":91,"./join":93,"./point-equal":94,"./point-hash":95}],90:[function(require,module,exports){
 // Extracts the lines and rings from the specified hash of geometry objects.
 //
 // Returns an object with three properties:
@@ -13775,7 +13805,7 @@ module.exports = function(objects) {
   };
 };
 
-},{}],90:[function(require,module,exports){
+},{}],91:[function(require,module,exports){
 module.exports = function(size, hash, equal) {
   var hashtable = new Array(size = 1 << Math.ceil(Math.log(size) / Math.LN2)),
       mask = size - 1,
@@ -13846,7 +13876,7 @@ module.exports = function(size, hash, equal) {
   };
 };
 
-},{}],91:[function(require,module,exports){
+},{}],92:[function(require,module,exports){
 var hashtable = require("./hashtable"),
     extract = require("./extract"),
     cut = require("./cut"),
@@ -13916,7 +13946,7 @@ function equalArc(arcA, arcB) {
   return ia === ib && ja === jb;
 }
 
-},{"./cut":87,"./dedup":88,"./extract":89,"./hashtable":90}],92:[function(require,module,exports){
+},{"./cut":88,"./dedup":89,"./extract":90,"./hashtable":91}],93:[function(require,module,exports){
 var hashtable = require("./hashtable"),
     hashPoint = require("./point-hash"),
     equalPoint = require("./point-equal");
@@ -13991,12 +14021,12 @@ module.exports = function(topology) {
   return junctionByPoint;
 };
 
-},{"./hashtable":90,"./point-equal":93,"./point-hash":94}],93:[function(require,module,exports){
+},{"./hashtable":91,"./point-equal":94,"./point-hash":95}],94:[function(require,module,exports){
 module.exports = function(pointA, pointB) {
   return pointA[0] === pointB[0] && pointA[1] === pointB[1];
 };
 
-},{}],94:[function(require,module,exports){
+},{}],95:[function(require,module,exports){
 // TODO if quantized, use simpler Int32 hashing?
 
 var hashBuffer = new ArrayBuffer(8),
@@ -14016,7 +14046,7 @@ module.exports = function(point) {
   return h < 0 ? ~h : h;
 };
 
-},{}],95:[function(require,module,exports){
+},{}],96:[function(require,module,exports){
 // Given a hash of GeoJSON objects, transforms any properties on features using
 // the specified transform function. The function is invoked for each existing
 // property on the current feature, being passed the new properties hash, the
@@ -14061,7 +14091,7 @@ module.exports = function(objects, propertyTransform) {
   return objects;
 };
 
-},{}],96:[function(require,module,exports){
+},{}],97:[function(require,module,exports){
 module.exports = function(types) {
   for (var type in typeDefaults) {
     if (!(type in types)) {
@@ -14155,7 +14185,7 @@ var typeObjects = {
   FeatureCollection: 1
 };
 
-},{}],97:[function(require,module,exports){
+},{}],98:[function(require,module,exports){
 
 
 //
@@ -14373,13 +14403,13 @@ if (typeof Object.getOwnPropertyDescriptor === 'function') {
   exports.getOwnPropertyDescriptor = valueObject;
 }
 
-},{}],98:[function(require,module,exports){
+},{}],99:[function(require,module,exports){
 
 // not implemented
 // The reason for having an empty file and not throwing is to allow
 // untraditional implementation of this module.
 
-},{}],99:[function(require,module,exports){
+},{}],100:[function(require,module,exports){
 var process=require("__browserify_process");// Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -14590,7 +14620,7 @@ exports.extname = function(path) {
   return splitPath(path)[3];
 };
 
-},{"__browserify_process":101,"_shims":97,"util":100}],100:[function(require,module,exports){
+},{"__browserify_process":102,"_shims":98,"util":101}],101:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -15135,7 +15165,7 @@ function hasOwnProperty(obj, prop) {
   return Object.prototype.hasOwnProperty.call(obj, prop);
 }
 
-},{"_shims":97}],101:[function(require,module,exports){
+},{"_shims":98}],102:[function(require,module,exports){
 // shim for using process in browser
 
 var process = module.exports = {};
