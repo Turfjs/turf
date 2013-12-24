@@ -1,8 +1,8 @@
 var t = require('../index'),
   should = require('should')
 
-describe('deviation', function(){
-  it('should create a standard deviation of field for all points within a set of polygons', function(done){
+describe('variance', function(){
+  it('should create a variance value of field for all points within a set of polygons', function(done){
     var poly1 = t.polygon([[[0,0],[10,0],[10,10],[0,10]]])
     var poly2 = t.polygon([[[10,0],[20,10],[20,20], [20,0]]])
     var polyFC = t.featurecollection([poly1, poly2])
@@ -18,8 +18,8 @@ describe('deviation', function(){
       variancePolys.should.be.ok
       variancePolys.features.should.be.ok
       variancePolys.features[0].properties.population_variance.should.be.ok
-      console.log(variancePolys.features[0].properties.population_variance)
-      console.log(variancePolys.features[1].properties.population_variance)
+      //console.log(variancePolys.features[0].properties.population_variance)
+      //console.log(variancePolys.features[1].properties.population_variance)
       done()
     })
   })
