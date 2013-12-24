@@ -70,6 +70,7 @@ bower install turf
 - [min](#min)
 - [max](#max)
 - [deviation](#deviation)
+- [variance](#variance)
 - [aggregate](#aggregate)
 - [union](#union)
 - [intersect](#intersect)
