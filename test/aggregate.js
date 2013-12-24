@@ -37,6 +37,11 @@ describe('aggregate', function(){
         aggregation: 'max',
         inField: 'population',
         outField: 'pop_max'
+      },
+      {
+        aggregation: 'deviation',
+        inField: 'population',
+        outField: 'pop_deviation'
       }
     ]
 
@@ -48,6 +53,12 @@ describe('aggregate', function(){
       polys.features[1].properties.pop_sum.should.equal(600)
       polys.features[0].properties.pop_avg.should.equal(400)
       polys.features[1].properties.pop_avg.should.equal(200)
+      polys.features[0].properties.pop_median.should.equal(400)
+      polys.features[1].properties.pop_median.should.equal(200)
+      polys.features[0].properties.pop_min.should.equal(200)
+      polys.features[1].properties.pop_min.should.equal(100)
+      polys.features[0].properties.pop_max.should.equal(400)
+      polys.features[1].properties.pop_max.should.equal(200)
       done()
     })
   })
