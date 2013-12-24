@@ -42,15 +42,11 @@
   "dependencies": [
     "lodash",
     "simple-statistics",
-    "should",
-    "topojson"
+    "topojson",
+    "jsts"
   ],
-  "devDependencies": {
-    "grunt-cli": "~0.1.9",
-    "grunt": "~0.4.1",
-    "grunt-contrib-jshint": "~0.6.0",
-    "browserify": ">=2.35.0",
-    "grunt-browserify": "~1.2.8",
-    "grunt-contrib-uglify": "~0.2.4"
-  }
+  "devDependencies": [
+    "mocha",
+    "should"
+  ]
 }
