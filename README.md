@@ -842,7 +842,7 @@ t.deviation(polyFC, ptFC, 'population', 'pop_deviation', function(err, deviated)
 
 ###aggregate
 
-Takes a set of polygons, a set of points, and an array of aggregations, then perform them. Sum, average, min, and max are  supported.
+Takes a set of polygons, a set of points, and an array of aggregations, then perform them. Sum, average, min, max, and deviation are  supported.
 
 ```javascript
 var t = require('turf')
