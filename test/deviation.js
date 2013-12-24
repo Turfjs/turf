@@ -18,8 +18,6 @@ describe('deviation', function(){
       deviated.should.be.ok
       deviated.features.should.be.ok
       deviated.features[0].properties.population_deviation.should.be.ok
-      //console.log(deviated.features[0].properties.population_deviation)
-      //console.log(deviated.features[1].properties.population_deviation)
       done()
     })
   })

@@ -57,8 +57,10 @@ describe('aggregate', function(){
       polys.features[1].properties.pop_median.should.equal(200)
       polys.features[0].properties.pop_min.should.equal(200)
       polys.features[1].properties.pop_min.should.equal(100)
-      polys.features[0].properties.pop_max.should.equal(400)
-      polys.features[1].properties.pop_max.should.equal(200)
+      polys.features[0].properties.pop_max.should.equal(600)
+      polys.features[1].properties.pop_max.should.equal(300)
+      polys.features[0].properties.pop_deviation.should.be.ok
+      polys.features[1].properties.pop_deviation.should.be.ok
       done()
     })
   })
