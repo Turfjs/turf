@@ -42,6 +42,11 @@ describe('aggregate', function(){
         aggregation: 'deviation',
         inField: 'population',
         outField: 'pop_deviation'
+      },
+      {
+        aggregation: 'variance',
+        inField: 'population',
+        outField: 'pop_variance'
       }
     ]
 
@@ -61,6 +66,8 @@ describe('aggregate', function(){
       polys.features[1].properties.pop_max.should.equal(300)
       polys.features[0].properties.pop_deviation.should.be.ok
       polys.features[1].properties.pop_deviation.should.be.ok
+      polys.features[0].properties.pop_variance.should.be.ok
+      polys.features[1].properties.pop_variance.should.be.ok
       done()
     })
   })
