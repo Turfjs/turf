@@ -1,8 +1,8 @@
 var t = require('../index'),
   should = require('should')
 
-describe('sum', function(){
-  it('should create a sum of field for all points within a set of polygons', function(done){
+describe('deviation', function(){
+  it('should create a standard deviation of field for all points within a set of polygons', function(done){
     var poly1 = t.polygon([[[0,0],[10,0],[10,10],[0,10]]])
     var poly2 = t.polygon([[[10,0],[20,10],[20,20], [20,0]]])
     var polyFC = t.featurecollection([poly1, poly2])
@@ -13,10 +13,13 @@ describe('sum', function(){
     var pt5 = t.point(19,7, {population: 200})
     var ptFC = t.featurecollection([pt1, pt2, pt3, pt4, pt5])
 
-    t.deviation(polyFC, ptFC, 'population', 'population_sum', function(err, deviated){
+    t.deviation(polyFC, ptFC, 'population', 'population_deviation', function(err, deviated){
       if(err) throw err
       deviated.should.be.ok
       deviated.features.should.be.ok
+      deviated.features[0].properties.population_deviation.should.be.ok
+      //console.log(deviated.features[0].properties.population_deviation)
+      //console.log(deviated.features[1].properties.population_deviation)
       done()
     })
   })
