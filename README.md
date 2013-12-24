@@ -881,6 +881,11 @@ var aggregations = [
     aggregation: 'max',
     inField: 'population',
     outField: 'pop_max'
+  },
+  {
+    aggregation: 'deviation',
+    inField: 'population',
+    outField: 'pop_deviation'
   }
 ]
 
