@@ -19,6 +19,7 @@ describe('deviation', function(){
       variancePolys.features.should.be.ok
       variancePolys.features[0].properties.population_variance.should.be.ok
       console.log(variancePolys.features[0].properties.population_variance)
+      console.log(variancePolys.features[1].properties.population_variance)
       done()
     })
   })

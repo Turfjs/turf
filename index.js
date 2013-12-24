@@ -1,4 +1,5 @@
 module.exports = {
+  variance: require('./lib/variance'),
   deviation: require('./lib/deviation'),
   median: require('./lib/median'),
   min: require('./lib/min'),
