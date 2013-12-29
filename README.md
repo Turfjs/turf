@@ -82,9 +82,7 @@ Additional feature requests welcomed and encouraged. To request a feature, pleas
 - concave
 - clockwise
 - krige
-- deviation
 - cluster
-- interval
 - interval
 - cluster
 - interpolate
