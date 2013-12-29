@@ -30,40 +30,47 @@ bower install turf
 
 ##Features
 
+####geometry
 - [load](#load)
 - [save](#save)
 - [point](#point)
 - [linestring](#linestring)
 - [polygon](#polygon)
 - [featurecollection](#featurecollection)
+
+####joins
+- [inside](#inside)
+- [tag](#tag)
+
+####data
+- [remove](#remove)
+- [filter](#filter)
+- [sample](#sample)
+
+####measurement
+- [distance](#distance)
+- [nearest](#nearest)
+- [bboxPolygon](#bboxPolygon)
+- [envelope](#envelope)
 - [extent](#extent)
 - [square](#square)
 - [size](#size)
 - [center](#center)
-- [bboxPolygon](#bboxPolygon)
-- [envelope](#envelope)
 - [centroid](#centroid)
-- [flip](#flip)
-- [explode](#explode)
-- [combine](#combine)
-- [remove](#remove)
-- [filter](#filter)
-- [distance](#distance)
-- [buffer](#buffer)
-- [nearest](#nearest)
+- [midpoint](#midpoint)
+
+####interpolation
 - [tin](#tin)
 - [grid](#grid)
 - [planepoint](#planepoint)
-- [inside](#inside)
-- [midpoint](#midpoint)
+- [contour](#contour)
+
+####classification
 - [quantile](#quantile)
 - [jenks](#jenks)
 - [reclass](#reclass)
-- [contour](#contour)
-- [sample](#sample)
-- [tag](#tag)
-- [bezier](#bezier)
-- [simplify](#simplify)
+
+####aggregation
 - [average](#average)
 - [median](#median)
 - [sum](#sum)
@@ -72,9 +79,19 @@ bower install turf
 - [deviation](#deviation)
 - [variance](#variance)
 - [aggregate](#aggregate)
+
+####transformation
+- [buffer](#buffer)
+- [bezier](#bezier)
+- [simplify](#simplify)
 - [union](#union)
 - [intersect](#intersect)
 - [erase](#erase)
+
+####misc
+- [flip](#flip)
+- [explode](#explode)
+- [combine](#combine)
 
 **Planned Features**
 
