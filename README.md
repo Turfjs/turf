@@ -74,6 +74,7 @@ bower install turf
 - [aggregate](#aggregate)
 - [union](#union)
 - [intersect](#intersect)
+- [erase](#erase)
 
 **Planned Features**
 
@@ -87,7 +88,6 @@ Additional feature requests welcomed and encouraged. To request a feature, pleas
 - cluster
 - interpolate
 - area
-- erase
 - smooth
 
 - - -
@@ -956,6 +956,24 @@ t.load(__dirname + '/testIn/Intersect1.geojson', function(err, polys1){
     t.intersect(polys1, polys2, function(err, intersected){
       if(err) throw err
       console.log(intersected)
+    })
+  })
+})
+```
+
+
+###erase
+
+Calculates polygon 1 minus polygon 2.
+
+```javascript
+var t = require('turf')
+
+t.load(__dirname + '/testIn/Intersect1.geojson', function(err, polys1){
+  t.load(__dirname + '/testIn/Intersect2.geojson', function(err, polys2){
+    t.erase(polys1, polys2, function(err, erased){
+      if(err) throw err
+      console.log(erased)
     })
   })
 })
