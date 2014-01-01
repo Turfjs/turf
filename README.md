@@ -414,7 +414,7 @@ t.inside(pt, poly, function(err, isInside){
 
 ###buffer
 
-Buffers a point feature to a given radius. Lines and Polygons support coming soon. Unit selection coming soon too (degrees, miles, km).
+Buffers a point, linestring, or polygon feature to a given radius. Units supported are miles, kilometers, and degrees.
 
 
 ```javascript
