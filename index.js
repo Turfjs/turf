@@ -1,4 +1,5 @@
 module.exports = {
+  count: require('./lib/count'),
   erase: require('./lib/erase'),
   variance: require('./lib/variance'),
   deviation: require('./lib/deviation'),

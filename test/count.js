@@ -1,8 +1,8 @@
 var t = require('../index'),
   should = require('should')
 
-describe('sum', function(){
-  it('should create a sum of field for all points within a set of polygons', function(done){
+describe('count', function(){
+  it('should create a count of field for all points within a set of polygons', function(done){
     var poly1 = t.polygon([[[0,0],[10,0],[10,10],[0,10]]])
     var poly2 = t.polygon([[[10,0],[20,10],[20,20], [20,0]]])
     var polyFC = t.featurecollection([poly1, poly2])
@@ -13,12 +13,12 @@ describe('sum', function(){
     var pt5 = t.point(19,7, {population: 200})
     var ptFC = t.featurecollection([pt1, pt2, pt3, pt4, pt5])
 
-    t.sum(polyFC, ptFC, 'population', 'population_sum', function(err, summed){
+    t.count(polyFC, ptFC, 'population', 'population_count', function(err, counted){
       if(err) throw err
-      summed.should.be.ok
-      summed.features.should.be.ok
-      summed.features[0].properties.population_sum.should.equal(2)
-      summed.features[1].properties.population_sum.should.equal(3)
+      counted.should.be.ok
+      counted.features.should.be.ok
+      counted.features[0].properties.population_count.should.equal(2)
+      counted.features[1].properties.population_count.should.equal(3)
       done()
     })
   })
