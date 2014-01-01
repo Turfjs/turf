@@ -13,7 +13,7 @@ describe('count', function(){
     var pt5 = t.point(19,7, {population: 200})
     var ptFC = t.featurecollection([pt1, pt2, pt3, pt4, pt5])
 
-    t.count(polyFC, ptFC, 'population', 'population_count', function(err, counted){
+    t.count(polyFC, ptFC, 'point_count', function(err, counted){
       if(err) throw err
       counted.should.be.ok
       counted.features.should.be.ok

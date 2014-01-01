@@ -47,6 +47,11 @@ describe('aggregate', function(){
         aggregation: 'variance',
         inField: 'population',
         outField: 'pop_variance'
+      },
+      {
+        aggregation: 'count',
+        inField: '*',
+        outField: 'point_count'
       }
     ]
 
