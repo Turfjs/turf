@@ -380,19 +380,15 @@ module.exports = function(line, resolution, intensity, done){
 //http://stackoverflow.com/questions/839899/how-do-i-calculate-a-point-on-a-circles-circumference
 //radians = degrees * (pi/180)
 
-var _ = require('lodash')
+// https://github.com/bjornharrtell/jsts/blob/master/examples/buffer.html
 
-module.exports = function(point, radius, units, done){
-  var geometry = point.geometry
-  var type = geometry.type
-  var polygon = {
-    "type": "Feature",
-    "geometry": {
-      "type": "Polygon",
-      "coordinates": []
-    }
-  }
+var _ = require('lodash'),
+    jsts = require('jsts')
+var t = {}
+t.featurecollection = require('./featurecollection')
+t.polygon = require('./polygon')
 
+module.exports = function(feature, radius, units, union, done){
   switch(units){
     case 'miles':
       radius = radius / 69.047
@@ -403,30 +399,17 @@ module.exports = function(point, radius, units, done){
     case 'degrees':
       break
   }
+  
+  var reader = new jsts.io.GeoJSONReader()
+  var geom = reader.read(JSON.stringify(feature.geometry))
+  var buffered = geom.buffer(radius);
+  var parser = new jsts.io.GeoJSONParser()
+  buffered = parser.write(buffered)
 
-  switch(type){
-      case 'Point':
-        var coordinates = []
-        var x = geometry.coordinates[0]
-        var y = geometry.coordinates[1]
-        var range = _.range(-180, 180, 1)
-        for(var i in _.range(0, 360)){
-          var xC = x + radius * Math.cos(range[i] * (Math.PI / 180))
-          var yC = y + radius * Math.sin(range[i] * (Math.PI / 180))
-          coordinates.push([xC, yC])
-        }
-        polygon.geometry.coordinates = [coordinates]
-        done(null, polygon)
-        break
-      case 'LineString':
-        done(new Error('LineString not implemented'))
-        break
-      case 'Polygon':
-        done(new Error('Polygon not implemented'))
-        break
-    }
+  buffered = t.featurecollection([t.polygon(buffered.coordinates)])
+  done(null, buffered)
 }
-},{"lodash":70}],7:[function(require,module,exports){
+},{"./featurecollection":17,"./polygon":33,"jsts":48,"lodash":70}],7:[function(require,module,exports){
 var t = {}
 var extent = require('./extent')
 t.extent = extent
@@ -1803,7 +1786,10 @@ module.exports = function(coordinates, properties){
     },
     "properties": properties
   }
-  
+  if(!polygon.properties){
+    polygon.properties = {}
+  }
+
   return polygon
 }
 
