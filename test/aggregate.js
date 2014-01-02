@@ -50,7 +50,7 @@ describe('aggregate', function(){
       },
       {
         aggregation: 'count',
-        inField: '*',
+        inField: '',
         outField: 'point_count'
       }
     ]

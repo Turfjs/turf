@@ -911,7 +911,7 @@ t.variance(polyFC, ptFC, 'population', 'pop_variance', function(err, varianced){
 
 ###aggregate
 
-Takes a set of polygons, a set of points, and an array of aggregations, then perform them. Sum, average, min, max, and deviation are  supported.
+Takes a set of polygons, a set of points, and an array of aggregations, then perform them. Sum, average, count, min, max, and deviation are  supported.
 
 ```javascript
 var t = require('turf')
@@ -960,6 +960,11 @@ var aggregations = [
     aggregation: 'variance',
     inField: 'population',
     outField: 'pop_variance'
+  },
+  {
+    aggregation: 'count',
+    inField: '',
+    outField: 'point_count'
   }
 ]
 
