@@ -103,7 +103,7 @@ module.exports = function(polygons, points, aggregations, done){
         })
         break
       case 'count':
-        t.count(polygons, points, agg.inField, agg.outField, function(err, counted){
+        t.count(polygons, points, agg.outField, function(err, counted){
           polygons = counted
         })
         break
@@ -1122,7 +1122,7 @@ var t = {}
 var _ = require('lodash')
 t.inside = require('./inside')
 
-module.exports = function(polyFC, ptFC, inField, outField, done){
+module.exports = function(polyFC, ptFC, outField, done){
   _.each(polyFC.features, function(poly){
     if(!poly.properties){
       poly.properties = {}
@@ -1131,7 +1131,7 @@ module.exports = function(polyFC, ptFC, inField, outField, done){
     _.each(ptFC.features, function(pt){
       t.inside(pt, poly, function(err, isInside){
         if(isInside){
-          values.push(pt.properties[inField])
+          values.push(1)
         }
       })
     })
