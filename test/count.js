@@ -17,8 +17,8 @@ describe('count', function(){
       if(err) throw err
       counted.should.be.ok
       counted.features.should.be.ok
-      counted.features[0].properties.population_count.should.equal(2)
-      counted.features[1].properties.population_count.should.equal(3)
+      counted.features[0].properties.point_count.should.equal(2)
+      counted.features[1].properties.point_count.should.equal(3)
       done()
     })
   })
