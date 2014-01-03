@@ -1,4 +1,5 @@
 module.exports = {
+  concave: require('./lib/concave'),
   count: require('./lib/count'),
   erase: require('./lib/erase'),
   variance: require('./lib/variance'),
