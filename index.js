@@ -1,4 +1,5 @@
 module.exports = {
+  within: require('./lib/within'),
   concave: require('./lib/concave'),
   count: require('./lib/count'),
   erase: require('./lib/erase'),
