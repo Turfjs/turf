@@ -5,7 +5,7 @@ Pull requests, feature requests, comments on issues, testing, documentation, or 
 **A few notes before diving in:**
 
 - The focus of the project is on building a core geospatial engine. Vendor specific stuff belongs in a seperate module.
-- Geojson is the primary format. Topojson can be used as intermediate format. 
+- Geojson is the primary format. Topojson can be used as an intermediate format. 
 - No pull requests will be accepted that provide only style changes.
 - Never add an external dependency unless you absolutely have to. Even then, please ask first, because there may be a work around.
 - Do not make calls to web services. 
