@@ -1,4 +1,5 @@
 module.exports = {
+  donuts: require('./lib/donuts'),
   within: require('./lib/within'),
   concave: require('./lib/concave'),
   count: require('./lib/count'),
@@ -50,4 +51,3 @@ module.exports = {
   tin: require('./lib/tin'),
   union: require('./lib/union')
 }
-
