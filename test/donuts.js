@@ -13,7 +13,7 @@ describe('donuts', function(){
         donuts.should.be.ok
         donuts.features.should.be.ok
         donuts.features[0].should.be.ok
-        console.log(donuts.features)
+        //console.log(donuts.features)
         done()
       })
     })
