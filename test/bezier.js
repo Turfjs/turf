@@ -10,7 +10,7 @@ describe('bezier', function(){
         if(err) throw err
         lineOut.should.be.ok
         lineOut.geometry.coordinates.should.be.ok
-        fs.writeFileSync('./testOut/bezier.geojson', JSON.stringify(lineOut))
+        //fs.writeFileSync('./testOut/bezier.geojson', JSON.stringify(lineOut))
         done()        
       })
     })

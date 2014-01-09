@@ -10,7 +10,7 @@ describe('simplify', function(){
       t.simplify(geo, 50, 0, function(err, simplified){
         if(err) throw err
         simplified.should.be.ok
-        fs.writeFileSync('./testOut/simplifiedPolygons.geojson', JSON.stringify(simplified))
+        //fs.writeFileSync('./testOut/simplifiedPolygons.geojson', JSON.stringify(simplified))
         done()
       })
     })
@@ -22,7 +22,7 @@ describe('simplify', function(){
       t.simplify(geo, 50, 0, function(err, simplified){
         if(err) throw err
         simplified.should.be.ok
-        fs.writeFileSync('./testOut/simplifiedLines.geojson', JSON.stringify(simplified))
+        //fs.writeFileSync('./testOut/simplifiedLines.geojson', JSON.stringify(simplified))
         done()
       })
     })
@@ -34,7 +34,7 @@ describe('simplify', function(){
       t.simplify(geo, 50, 0, function(err, simplified){
         if(err) throw err
         simplified.should.be.ok
-        fs.writeFileSync('./testOut/simplifiedPolygon.geojson', JSON.stringify(simplified))
+        //fs.writeFileSync('./testOut/simplifiedPolygon.geojson', JSON.stringify(simplified))
         done()
       })
     })
@@ -46,7 +46,7 @@ describe('simplify', function(){
       t.simplify(geo, 50, 0, function(err, simplified){
         if(err) throw err
         simplified.should.be.ok
-        fs.writeFileSync('./testOut/simplifiedLine.geojson', JSON.stringify(simplified))
+        //fs.writeFileSync('./testOut/simplifiedLine.geojson', JSON.stringify(simplified))
         done()
       })
     })
