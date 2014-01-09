@@ -1,7 +1,21 @@
 var t = require('../index'),
   should = require('should')
 
-describe('count', function(){
+describe('within', function(){
+  it('should return all points that are within a set of polygons', function(done){
+    var poly = t.polygon([[[0,0], [0,100], [100,100], [100,0]]])
+    var pt = t.point(50, 50)
+    var polyFC = t.featurecollection([poly])
+    var ptFC = t.featurecollection([pt])
+
+    t.within(ptFC, polyFC, function(err, counted){
+      if(err) throw err
+      counted.should.be.ok
+      counted.features.should.be.ok
+      counted.features.length.should.equal(1)
+      done()
+    })
+  })
   it('should return all points that are within a set of polygons', function(done){
     var poly = t.polygon([[[10,0],[20,10],[20,20], [20,0]]])
     var polyFC = t.featurecollection([poly])
@@ -12,7 +26,7 @@ describe('count', function(){
     var pt5 = t.point(19,7, {population: 200})
     var ptFC = t.featurecollection([pt1, pt2, pt3, pt4, pt5])
 
-    t.within(polyFC, ptFC, function(err, counted){
+    t.within(ptFC, polyFC, function(err, counted){
       if(err) throw err
       counted.should.be.ok
       counted.features.should.be.ok
@@ -30,7 +44,7 @@ describe('count', function(){
     var pt5 = t.point(19,7, {population: 200})
     var ptFC = t.featurecollection([pt1, pt2, pt3, pt4, pt5])
 
-    t.within(polyFC, ptFC, function(err, counted){
+    t.within(ptFC, polyFC, function(err, counted){
       if(err) throw err
       counted.should.be.ok
       counted.features.should.be.ok
@@ -49,7 +63,7 @@ describe('count', function(){
     var pt5 = t.point(19,7, {population: 200})
     var ptFC = t.featurecollection([pt1, pt2, pt3, pt4, pt5])
 
-    t.within(polyFC, ptFC, function(err, counted){
+    t.within(ptFC, polyFC, function(err, counted){
       if(err) throw err
       counted.should.be.ok
       counted.features.should.be.ok
