@@ -7,7 +7,7 @@ describe('contour', function(){
     t.load('../test/testIn/elevation1.geojson', function(err, points){
       t.contour(points, 'elevation', 15, [25, 45, 55, 65, 85,  95, 105, 120, 180], function(err, contours){
         if(err) throw err
-        //fs.writeFileSync('./testOut/contours1.geojson', JSON.stringify(contours))
+        fs.writeFileSync('./testOut/contours1.geojson', JSON.stringify(contours))
         contours.should.be.ok
         contours.features.should.be.ok
         done()
@@ -65,7 +65,7 @@ describe('contour', function(){
     t.load(__dirname+'/testIn/holeContourPoints.geojson', function(err, points){
       t.contour(points, 'elevation', 15, [5, 15, 40, 80, 90, 110], function(err, contours){
         if(err) throw err
-        //fs.writeFileSync('./testOut/contoursHoles.geojson', JSON.stringify(contours))
+        fs.writeFileSync('./testOut/contoursHoles.geojson', JSON.stringify(contours))
         contours.should.be.ok
         contours.features.should.be.ok
         done()
