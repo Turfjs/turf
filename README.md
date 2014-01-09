@@ -421,17 +421,17 @@ Returns a feature collection of points representing all points that fall withing
 ```javascript
 var t = require('turf')
 var poly = t.polygon([[[10,0],[20,10],[20,20], [20,0]]])
-    var polyFC = t.featurecollection([poly])
-    var pt1 = t.point(1,1, {population: 500})
-    var pt2 = t.point(1,3, {population: 400})
-    var pt3 = t.point(14,2, {population: 600})
-    var pt4 = t.point(13,1, {population: 500})
-    var pt5 = t.point(19,7, {population: 200})
-    var ptFC = t.featurecollection([pt1, pt2, pt3, pt4, pt5])
+var polyFC = t.featurecollection([poly])
+var pt1 = t.point(1,1, {population: 500})
+var pt2 = t.point(1,3, {population: 400})
+var pt3 = t.point(14,2, {population: 600})
+var pt4 = t.point(13,1, {population: 500})
+var pt5 = t.point(19,7, {population: 200})
+var ptFC = t.featurecollection([pt1, pt2, pt3, pt4, pt5])
 
-    t.within(ptFC, polyFC, function(err, ptsWithin){
-      console.log(ptsWithin) // feature collection with 3 pts
-    })
+t.within(ptFC, polyFC, function(err, ptsWithin){
+  console.log(ptsWithin) // feature collection with 3 pts
+})
 ```
 
 
