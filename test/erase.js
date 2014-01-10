@@ -35,4 +35,16 @@ describe('erase', function(){
       })
     })
   })
+  it('should return polygon 1 minus polygon 2 with 1 having a shared edge', function(done){
+    t.load(__dirname + '/testIn/eraseOutside.geojson', function(err, polys1){
+      t.load(__dirname + '/testIn/eraseInside.geojson', function(err, polys2){
+        t.erase(polys1, polys1, function(err, erased){
+          if(err) throw err
+          erased.should.be.ok
+          fs.writeFileSync(__dirname + '/testOut/erase3.geojson', JSON.stringify(erased))
+          done()
+        })
+      })
+    })
+  })
 }) 
