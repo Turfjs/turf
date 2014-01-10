@@ -9,7 +9,7 @@ describe('donuts', function(){
       if(err) throw err
       t.donuts(donutsIn, function(err, donuts){
         if(err) throw err
-        //fs.writeFileSync('./testOut/donuts.geojson', JSON.stringify(donuts))
+        fs.writeFileSync('./testOut/donuts.geojson', JSON.stringify(donuts))
         donuts.should.be.ok
         donuts.features.should.be.ok
         donuts.features[0].should.be.ok
