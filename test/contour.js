@@ -14,7 +14,7 @@ describe('contour', function(){
       })
     })
   })
-  it('should take a set of points with z values and output a set of contour polygons with jenks breaks', function(done){
+  /*it('should take a set of points with z values and output a set of contour polygons with jenks breaks', function(done){
     t.load('../test/testIn/elevation1.geojson', function(err, points){
       t.jenks(points, 'elevation', 5, function(err, breaks){
         if(err) throw err
@@ -71,5 +71,5 @@ describe('contour', function(){
         done()
       })
     })
-  })
+  })*/
 })
