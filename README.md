@@ -89,6 +89,7 @@ bower install turf
 - [union](#union)
 - [intersect](#intersect)
 - [erase](#erase)
+- [donuts](#donuts)
 
 ####misc
 - [flip](#flip)
@@ -1035,7 +1036,7 @@ t.load(__dirname + '/testIn/Intersect1.geojson', function(err, polys1){
 
 ###erase
 
-Calculates polygon 1 minus polygon 2.
+Returns polygon 1 minus polygon 2.
 
 ```javascript
 var t = require('turf')
@@ -1046,6 +1047,23 @@ t.load(__dirname + '/testIn/Intersect1.geojson', function(err, polys1){
       if(err) throw err
       console.log(erased)
     })
+  })
+})
+```
+
+
+###donuts
+
+Takes a set of overlapping polygons and returns non overlapping donuts.
+
+```javascript
+var t = require('turf')
+
+t.load('../path/to/donutsIn.geojson', function(err, donutsIn){
+  if(err) throw err
+  t.donuts(donutsIn, function(err, donuts){
+    if(err) throw err
+    console.log(donuts)
   })
 })
 ```
