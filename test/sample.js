@@ -12,7 +12,7 @@ describe('sample', function(){
         if(err) throw err
         outPts.should.be.ok
         outPts.features.length.should.equal(10)
-        t.save('./testOut/sample.geojson', outPts, 'geojson', function(){})
+        //t.save('./testOut/sample.geojson', outPts, 'geojson', function(){})
         done()
       })
     })
