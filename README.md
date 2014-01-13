@@ -1073,7 +1073,3 @@ t.load('../path/to/donutsIn.geojson', function(err, donutsIn){
 
 
 This library is built and maintained by [@morganherlocker](https://twitter.com/morganherlocker) :)
-
-
-[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/morganherlocker/turf/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
-
