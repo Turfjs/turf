@@ -1,6 +1,8 @@
 !function(e){"object"==typeof exports?module.exports=e():"function"==typeof define&&define.amd?define(e):"undefined"!=typeof window?window.t=e():"undefined"!=typeof global?global.t=e():"undefined"!=typeof self&&(self.t=e())}(function(){var define,module,exports;
 return (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);throw new Error("Cannot find module '"+o+"'")}var f=n[o]={exports:{}};t[o][0].call(f.exports,function(e){var n=t[o][1][e];return s(n?n:e)},f,f.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 module.exports = {
+  merge: require('./lib/merge'),
+  convex: require('./lib/convex'),
   donuts: require('./lib/donuts'),
   within: require('./lib/within'),
   concave: require('./lib/concave'),
@@ -53,7 +55,7 @@ module.exports = {
   tin: require('./lib/tin'),
   union: require('./lib/union')
 }
-},{"./lib/aggregate":2,"./lib/average":3,"./lib/bboxPolygon":4,"./lib/bezier":5,"./lib/buffer":6,"./lib/center":7,"./lib/centroid":8,"./lib/combine":9,"./lib/concave":10,"./lib/contour":11,"./lib/count":12,"./lib/deviation":13,"./lib/distance":14,"./lib/donuts":15,"./lib/envelope":16,"./lib/erase":17,"./lib/explode":18,"./lib/extent":19,"./lib/featurecollection":20,"./lib/filter":21,"./lib/flip":22,"./lib/grid":23,"./lib/inside":24,"./lib/intersect":25,"./lib/jenks":26,"./lib/linestring":27,"./lib/load":28,"./lib/max":29,"./lib/median":30,"./lib/midpoint":31,"./lib/min":32,"./lib/nearest":33,"./lib/planepoint":34,"./lib/point":35,"./lib/polygon":36,"./lib/quantile":37,"./lib/reclass":38,"./lib/remove":39,"./lib/sample":40,"./lib/save":41,"./lib/simplify":42,"./lib/size":43,"./lib/square":44,"./lib/sum":45,"./lib/tag":46,"./lib/tin":47,"./lib/topo":48,"./lib/union":49,"./lib/variance":50,"./lib/within":51}],2:[function(require,module,exports){
+},{"./lib/aggregate":2,"./lib/average":3,"./lib/bboxPolygon":4,"./lib/bezier":5,"./lib/buffer":6,"./lib/center":7,"./lib/centroid":8,"./lib/combine":9,"./lib/concave":10,"./lib/contour":11,"./lib/convex":12,"./lib/count":13,"./lib/deviation":14,"./lib/distance":15,"./lib/donuts":16,"./lib/envelope":17,"./lib/erase":18,"./lib/explode":19,"./lib/extent":20,"./lib/featurecollection":21,"./lib/filter":22,"./lib/flip":23,"./lib/grid":24,"./lib/inside":25,"./lib/intersect":26,"./lib/jenks":27,"./lib/linestring":28,"./lib/load":29,"./lib/max":30,"./lib/median":31,"./lib/merge":32,"./lib/midpoint":33,"./lib/min":34,"./lib/nearest":35,"./lib/planepoint":36,"./lib/point":37,"./lib/polygon":38,"./lib/quantile":39,"./lib/reclass":40,"./lib/remove":41,"./lib/sample":42,"./lib/save":43,"./lib/simplify":44,"./lib/size":45,"./lib/square":46,"./lib/sum":47,"./lib/tag":48,"./lib/tin":49,"./lib/topo":50,"./lib/union":51,"./lib/variance":52,"./lib/within":53}],2:[function(require,module,exports){
 var _ = require('lodash')
 var t = {}
 t.average = require('./average')
@@ -114,7 +116,7 @@ module.exports = function(polygons, points, aggregations, done){
   })
   done(null, polygons)
 }
-},{"./average":3,"./count":12,"./deviation":13,"./max":29,"./median":30,"./min":32,"./sum":45,"./variance":50,"lodash":74}],3:[function(require,module,exports){
+},{"./average":3,"./count":13,"./deviation":14,"./max":30,"./median":31,"./min":34,"./sum":47,"./variance":52,"lodash":77}],3:[function(require,module,exports){
 var t = {}
 var _ = require('lodash'),
     ss = require('simple-statistics')
@@ -138,7 +140,7 @@ module.exports = function(polyFC, ptFC, inField, outField, done){
 
   done(null, polyFC)
 }
-},{"./inside":24,"lodash":74,"simple-statistics":75}],4:[function(require,module,exports){
+},{"./inside":25,"lodash":77,"simple-statistics":78}],4:[function(require,module,exports){
 var t = {}
 var point = require('../lib/point'),
     polygon = require('../lib/polygon')
@@ -159,7 +161,7 @@ module.exports = function(bbox, done){
   ]])
   done(null, poly)
 }
-},{"../lib/point":35,"../lib/polygon":36}],5:[function(require,module,exports){
+},{"../lib/point":37,"../lib/polygon":38}],5:[function(require,module,exports){
 // code modded from here:
 //https://github.com/leszekr/bezier-spline-js/blob/master/bezier-spline.js
 var t = {}
@@ -384,7 +386,7 @@ module.exports = function(line, resolution, intensity, done){
     ctx.stroke();
     return this;
   }
-},{"./linestring":27,"lodash":74}],6:[function(require,module,exports){
+},{"./linestring":28,"lodash":77}],6:[function(require,module,exports){
 //http://stackoverflow.com/questions/839899/how-do-i-calculate-a-point-on-a-circles-circumference
 //radians = degrees * (pi/180)
 
@@ -417,7 +419,7 @@ module.exports = function(feature, radius, units, union, done){
   buffered = t.featurecollection([t.polygon(buffered.coordinates)])
   done(null, buffered)
 }
-},{"./featurecollection":20,"./polygon":36,"jsts":52,"lodash":74}],7:[function(require,module,exports){
+},{"./featurecollection":21,"./polygon":38,"jsts":55,"lodash":77}],7:[function(require,module,exports){
 var t = {}
 var extent = require('./extent')
 t.extent = extent
@@ -436,7 +438,7 @@ module.exports = function(layer, done){
     done(center)
   })
 }
-},{"./extent":19}],8:[function(require,module,exports){
+},{"./extent":20}],8:[function(require,module,exports){
 var t = {}
 var _ = require('lodash'),
     ss = require('simple-statistics')
@@ -463,7 +465,7 @@ module.exports = function(features, done){
     done(err, t.point(averageX, averageY))
   })
 }
-},{"./explode":18,"./point":35,"lodash":74,"simple-statistics":75}],9:[function(require,module,exports){
+},{"./explode":19,"./point":37,"lodash":77,"simple-statistics":78}],9:[function(require,module,exports){
 //this tool takes a feature collection of like geometries and combines them into a single multipoint, multilinestring, or multipolygon
 var _ = require('lodash')
 
@@ -507,7 +509,7 @@ module.exports = function(fc, done){
     break
   }
 }
-},{"lodash":74}],10:[function(require,module,exports){
+},{"lodash":77}],10:[function(require,module,exports){
 //http://en.wikipedia.org/wiki/Delaunay_triangulation
 //https://github.com/ironwallaby/delaunay
 var t = {}
@@ -733,7 +735,7 @@ function triangulate(vertices) {
   return closed
 }
 
-},{"./nearest":33,"./point":35,"./polygon":36,"lodash":74}],11:[function(require,module,exports){
+},{"./nearest":35,"./point":37,"./polygon":38,"lodash":77}],11:[function(require,module,exports){
 //https://github.com/jasondavies/conrec.js
 //http://stackoverflow.com/questions/263305/drawing-a-topographical-map
 var _ = require('lodash'),
@@ -1344,7 +1346,20 @@ module.exports = function(points, z, resolution, breaks, done){
     }
   }
 
-},{"./donuts":15,"./extent":19,"./featurecollection":20,"./grid":23,"./inside":24,"./planepoint":34,"./polygon":36,"./square":44,"./tin":47,"fs":104,"lodash":74}],12:[function(require,module,exports){
+},{"./donuts":16,"./extent":20,"./featurecollection":21,"./grid":24,"./inside":25,"./planepoint":36,"./polygon":38,"./square":46,"./tin":49,"fs":107,"lodash":77}],12:[function(require,module,exports){
+// 1. run tin on points
+// 2. merge the tin
+//var topojson = require('')
+var t = {}
+t.tin = require('./tin')
+t.topo
+
+module.exports = function(points, done){
+  t.tin(points, function(err, tinPolys){
+    
+  })
+}
+},{"./tin":49}],13:[function(require,module,exports){
 var t = {}
 var _ = require('lodash')
 t.inside = require('./inside')
@@ -1366,7 +1381,7 @@ module.exports = function(polyFC, ptFC, outField, done){
   })
   done(null, polyFC)
 }
-},{"./inside":24,"lodash":74}],13:[function(require,module,exports){
+},{"./inside":25,"lodash":77}],14:[function(require,module,exports){
 var t = {}
 var _ = require('lodash'),
     ss = require('simple-statistics')
@@ -1389,7 +1404,7 @@ module.exports = function(polyFC, ptFC, inField, outField, done){
   })
   done(null, polyFC)
 }
-},{"./inside":24,"lodash":74,"simple-statistics":75}],14:[function(require,module,exports){
+},{"./inside":25,"lodash":77,"simple-statistics":78}],15:[function(require,module,exports){
 //http://en.wikipedia.org/wiki/Haversine_formula
 //http://www.movable-type.co.uk/scripts/latlong.html
 // expects a feature collection of points
@@ -1434,7 +1449,7 @@ module.exports = function(point1, point2, units, done){
 }
 
 
-},{}],15:[function(require,module,exports){
+},{}],16:[function(require,module,exports){
 /* 
 takes a collection of polygons and returns a collection of donuts.
 
@@ -1487,7 +1502,7 @@ function contained(poly1, poly2, done){
     done(isInside)
   })
 }
-},{"./erase":17,"./featurecollection":20,"./inside":24,"./point":35,"lodash":74}],16:[function(require,module,exports){
+},{"./erase":18,"./featurecollection":21,"./inside":25,"./point":37,"lodash":77}],17:[function(require,module,exports){
 var t = {}
 var extent = require('./extent'),
     bboxPolygon = require('./bboxPolygon')
@@ -1501,7 +1516,7 @@ module.exports = function(features, done){
     })
   })
 }
-},{"./bboxPolygon":4,"./extent":19}],17:[function(require,module,exports){
+},{"./bboxPolygon":4,"./extent":20}],18:[function(require,module,exports){
 // look here for help http://svn.osgeo.org/grass/grass/branches/releasebranch_6_4/vector/v.overlay/main.c
 //must be array of polygons
 
@@ -1539,7 +1554,7 @@ function correctRings(poly){
   })
   return poly
 }
-},{"./featurecollection":20,"jsts":52,"lodash":74}],18:[function(require,module,exports){
+},{"./featurecollection":21,"jsts":55,"lodash":77}],19:[function(require,module,exports){
 var t = {}
 var _ = require('lodash'),
     featurecollection = require('./featurecollection'),
@@ -1630,7 +1645,7 @@ module.exports = function(features, done){
 
 
 
-},{"./featurecollection":20,"./point":35,"lodash":74}],19:[function(require,module,exports){
+},{"./featurecollection":21,"./point":37,"lodash":77}],20:[function(require,module,exports){
 _ = require('lodash')
 
 module.exports = function(layer, done){
@@ -1742,7 +1757,7 @@ module.exports = function(layer, done){
     done(null, bbox)
   }
 }
-},{"lodash":74}],20:[function(require,module,exports){
+},{"lodash":77}],21:[function(require,module,exports){
 module.exports = function(features){
   var fc = {
     "type": "FeatureCollection",
@@ -1751,7 +1766,7 @@ module.exports = function(features){
 
   return fc
 }
-},{}],21:[function(require,module,exports){
+},{}],22:[function(require,module,exports){
 var _ = require('lodash')
 var t = {}
 t.featurecollection = require('./featurecollection')
@@ -1765,7 +1780,7 @@ module.exports = function(fc, field, value, done){
   }
   done(null, newFC)
 }
-},{"./featurecollection":20,"lodash":74}],22:[function(require,module,exports){
+},{"./featurecollection":21,"lodash":77}],23:[function(require,module,exports){
 var t = {}
 t.featurecollection = require('./featurecollection')
 
@@ -1828,7 +1843,7 @@ var flipCoordinate = function(coordinates){
   y = coordinates[1]
   return([y, x])
 }
-},{"./featurecollection":20}],23:[function(require,module,exports){
+},{"./featurecollection":21}],24:[function(require,module,exports){
 var t = {}
 var _ = require('lodash'),
   point = require('./point')
@@ -1852,7 +1867,7 @@ module.exports = function(extents, depth, done){
   }
   done(null, fc)
 }
-},{"./point":35,"lodash":74}],24:[function(require,module,exports){
+},{"./point":37,"lodash":77}],25:[function(require,module,exports){
 // http://en.wikipedia.org/wiki/Even%E2%80%93odd_rule
 // modified from: https://github.com/substack/point-in-polygon/blob/master/index.js
 // which was modified from http://www.ecse.rpi.edu/Homepages/wrf/Research/Short_Notes/pnpoly.html
@@ -1875,7 +1890,7 @@ module.exports = function(point, polygon, done){
 }
 
 
-},{}],25:[function(require,module,exports){
+},{}],26:[function(require,module,exports){
 // depend on jsts for now https://github.com/bjornharrtell/jsts/blob/master/examples/overlay.html
 var jsts = require('jsts')
 var t = {}
@@ -1891,7 +1906,7 @@ module.exports = function(polys1, polys2, done){
   intersection = t.featurecollection([intersection])
   done(null, intersection)
 }
-},{"./featurecollection":20,"jsts":52}],26:[function(require,module,exports){
+},{"./featurecollection":21,"jsts":55}],27:[function(require,module,exports){
 var ss = require('simple-statistics'),
     _ = require('lodash')
 
@@ -1908,7 +1923,7 @@ module.exports = function(fc, field, num, done){
 
   done(null, breaks)
 }
-},{"lodash":74,"simple-statistics":75}],27:[function(require,module,exports){
+},{"lodash":77,"simple-statistics":78}],28:[function(require,module,exports){
 module.exports = function(coordinates, properties){
   if(coordinates === null) throw new Error('No coordinates passed')
   var linestring = { 
@@ -1922,7 +1937,7 @@ module.exports = function(coordinates, properties){
   return linestring
 }
 
-},{}],28:[function(require,module,exports){
+},{}],29:[function(require,module,exports){
 var path = require('path'),
     fs = require('fs'),
     ext = '',
@@ -1937,7 +1952,7 @@ module.exports = function(file, done) {
   })  
 }
 
-},{"fs":104,"path":105}],29:[function(require,module,exports){
+},{"fs":107,"path":108}],30:[function(require,module,exports){
 var t = {}
 var _ = require('lodash'),
     ss = require('simple-statistics')
@@ -1960,7 +1975,7 @@ module.exports = function(polyFC, ptFC, inField, outField, done){
   })
   done(null, polyFC)
 }
-},{"./inside":24,"lodash":74,"simple-statistics":75}],30:[function(require,module,exports){
+},{"./inside":25,"lodash":77,"simple-statistics":78}],31:[function(require,module,exports){
 var t = {}
 var _ = require('lodash'),
     ss = require('simple-statistics')
@@ -1983,7 +1998,30 @@ module.exports = function(polyFC, ptFC, inField, outField, done){
   })
   done(null, polyFC)
 }
-},{"./inside":24,"lodash":74,"simple-statistics":75}],31:[function(require,module,exports){
+},{"./inside":25,"lodash":77,"simple-statistics":78}],32:[function(require,module,exports){
+// 1. run tin on points
+// 2. merge the tin
+//var topojson = require('')
+var async = require('async'),
+    _ = require('lodash')
+var t = {}
+t.union = require('./union')
+
+module.exports = function(polygons, done){
+  var merged = _.cloneDeep(polygons.features[0])
+  async.eachSeries(polygons.features, 
+    function(poly, cb){
+      t.union(merged, poly, function(err, mergedPolys){
+        merged = mergedPolys
+        cb()
+      })
+    },
+    function(){
+      done(null, merged)
+    }
+  )
+}
+},{"./union":51,"async":54,"lodash":77}],33:[function(require,module,exports){
 // http://cs.selu.edu/~rbyrd/math/midpoint/
 // ((x1+x2)/2), ((y1+y2)/2)
 var t = {}
@@ -2007,7 +2045,7 @@ module.exports = function(point1, point2, done) {
 
   done(null, midpoint)
 }
-},{"./point":35}],32:[function(require,module,exports){
+},{"./point":37}],34:[function(require,module,exports){
 var t = {}
 var _ = require('lodash'),
     ss = require('simple-statistics')
@@ -2030,7 +2068,7 @@ module.exports = function(polyFC, ptFC, inField, outField, done){
   })
   done(null, polyFC)
 }
-},{"./inside":24,"lodash":74,"simple-statistics":75}],33:[function(require,module,exports){
+},{"./inside":25,"lodash":77,"simple-statistics":78}],35:[function(require,module,exports){
 var t = {}
 var _ = require('lodash'),
  distance = require('./distance')
@@ -2066,7 +2104,7 @@ module.exports = function(targetPoint, points, done){
     done(null, nPt)
   }
 }
-},{"./distance":14,"lodash":74}],34:[function(require,module,exports){
+},{"./distance":15,"lodash":77}],36:[function(require,module,exports){
 http://stackoverflow.com/a/13916669/461015
 
 module.exports = function(point, triangle, done){
@@ -2089,7 +2127,7 @@ module.exports = function(point, triangle, done){
 
   done(null, z)
 }
-},{}],35:[function(require,module,exports){
+},{}],37:[function(require,module,exports){
 module.exports = function(x, y, properties){
   if(x === null || y === null) throw new Error('Invalid coordinates')
   var point = { 
@@ -2102,7 +2140,7 @@ module.exports = function(x, y, properties){
   }
   return point
 }
-},{}],36:[function(require,module,exports){
+},{}],38:[function(require,module,exports){
 module.exports = function(coordinates, properties){
   if(coordinates === null) throw new Error('No coordinates passed')
   var polygon = {
@@ -2125,7 +2163,7 @@ module.exports = function(coordinates, properties){
 
 
 
-},{}],37:[function(require,module,exports){
+},{}],39:[function(require,module,exports){
 var ss = require('simple-statistics'),
     _ = require('lodash')
 
@@ -2141,7 +2179,7 @@ module.exports = function(fc, field, percentiles, done){
   })
   done(null, quantiles)
 }
-},{"lodash":74,"simple-statistics":75}],38:[function(require,module,exports){
+},{"lodash":77,"simple-statistics":78}],40:[function(require,module,exports){
 var t = {}
 var featurecollection = require('./featurecollection')
 t.featurecollection = featurecollection
@@ -2161,7 +2199,7 @@ module.exports = function(fc, inField, outField, translations, done){
   })
   done(null, reclassed)
 }
-},{"./featurecollection":20}],39:[function(require,module,exports){
+},{"./featurecollection":21}],41:[function(require,module,exports){
 var t = {}
 var featurecollection = require('./featurecollection')
 t.featurecollection = featurecollection
@@ -2175,7 +2213,7 @@ module.exports = function(collection, key, val, done) {
   }
   done(null, newFC)
 }
-},{"./featurecollection":20}],40:[function(require,module,exports){
+},{"./featurecollection":21}],42:[function(require,module,exports){
 var t = {}
 var _ = require('lodash'),
     featurecollection = require('./featurecollection')
@@ -2185,7 +2223,7 @@ module.exports = function(fc, num, done){
   var outFC = t.featurecollection(_.sample(fc.features, num))
   done(null, outFC)
 }
-},{"./featurecollection":20,"lodash":74}],41:[function(require,module,exports){
+},{"./featurecollection":21,"lodash":77}],43:[function(require,module,exports){
 var t = {}
 var fs = require('fs')
 t.topo = require('./topo')
@@ -2208,7 +2246,7 @@ module.exports = function(path, features, type, done){
       break
   }
 }
-},{"./topo":48,"fs":104}],42:[function(require,module,exports){
+},{"./topo":50,"fs":107}],44:[function(require,module,exports){
 // use topojson.simplify to simplify points to a given tolerence then convert back to geojson
 var topojson = require('topojson')
 
@@ -2226,7 +2264,7 @@ module.exports = function(fc, quantization, minimumArea, done){
   topojson.simplify(topo, options)
   done(null, topojson.feature(topo, topo.objects.name))
 }
-},{"topojson":76}],43:[function(require,module,exports){
+},{"topojson":79}],45:[function(require,module,exports){
 module.exports = function(bbox, factor, done){
   var lowX = (((bbox[2] - bbox[0]) / 2) * factor) + bbox[0]
   var lowY = (((bbox[3] - bbox[1]) / 2) * factor) + bbox[1]
@@ -2236,7 +2274,7 @@ module.exports = function(bbox, factor, done){
   var sized = [lowX, lowY, highX, highY]
   done(null, sized)
 }
-},{}],44:[function(require,module,exports){
+},{}],46:[function(require,module,exports){
 var t = {}
 var midpoint = require('../lib/midpoint'),
     point = require('../lib/point'),
@@ -2277,7 +2315,7 @@ module.exports = function(bbox, done) {
   //t.midpoint(t.point(bbox[0,]), bbox)
   //squareBbox[0] = 
 }
-},{"../lib/distance":14,"../lib/midpoint":31,"../lib/point":35}],45:[function(require,module,exports){
+},{"../lib/distance":15,"../lib/midpoint":33,"../lib/point":37}],47:[function(require,module,exports){
 var t = {}
 var _ = require('lodash'),
     ss = require('simple-statistics')
@@ -2300,7 +2338,7 @@ module.exports = function(polyFC, ptFC, inField, outField, done){
   })
   done(null, polyFC)
 }
-},{"./inside":24,"lodash":74,"simple-statistics":75}],46:[function(require,module,exports){
+},{"./inside":25,"lodash":77,"simple-statistics":78}],48:[function(require,module,exports){
 var t = {}
   var _ = require('lodash')
 t.inside = require('./inside')
@@ -2325,7 +2363,7 @@ module.exports = function(points, polygons, field, outField, done){
   })
   done(null, points)
 }
-},{"./inside":24,"lodash":74}],47:[function(require,module,exports){
+},{"./inside":25,"lodash":77}],49:[function(require,module,exports){
 //http://en.wikipedia.org/wiki/Delaunay_triangulation
 //https://github.com/ironwallaby/delaunay
 var t = {}
@@ -2558,14 +2596,14 @@ function triangulate(vertices) {
     }
 }*/
 
-},{"./nearest":33,"./point":35,"./polygon":36,"lodash":74}],48:[function(require,module,exports){
+},{"./nearest":35,"./point":37,"./polygon":38,"lodash":77}],50:[function(require,module,exports){
 var topojson = require('topojson')
 
 module.exports = function(geojson, done){
   var topology = topojson.topology({geojson: geojson})
   done(null, topology)
 }
-},{"topojson":76}],49:[function(require,module,exports){
+},{"topojson":79}],51:[function(require,module,exports){
 // look here for help http://svn.osgeo.org/grass/grass/branches/releasebranch_6_4/vector/v.overlay/main.c
 //must be array of polygons
 
@@ -2575,17 +2613,21 @@ var jsts = require('jsts')
 var t = {}
 t.featurecollection = require('./featurecollection')
 
-module.exports = function(polys1, polys2, done){
+module.exports = function(poly1, poly2, done){
   var reader = new jsts.io.GeoJSONReader()
-  var a = reader.read(JSON.stringify(polys1.features[0].geometry))
-  var b = reader.read(JSON.stringify(polys2.features[0].geometry))
+  var a = reader.read(JSON.stringify(poly1.geometry))
+  var b = reader.read(JSON.stringify(poly2.geometry))
   var union = a.union(b);
   var parser = new jsts.io.GeoJSONParser()
   union = parser.write(union)
-  union = t.featurecollection([union])
+  union = {
+    type: 'Feature',
+    geometry: union,
+    properties: poly1.properties
+  }
   done(null, union)
 }
-},{"./featurecollection":20,"jsts":52}],50:[function(require,module,exports){
+},{"./featurecollection":21,"jsts":55}],52:[function(require,module,exports){
 var t = {}
 var _ = require('lodash'),
     ss = require('simple-statistics')
@@ -2608,7 +2650,7 @@ module.exports = function(polyFC, ptFC, inField, outField, done){
   })
   done(null, polyFC)
 }
-},{"./inside":24,"lodash":74,"simple-statistics":75}],51:[function(require,module,exports){
+},{"./inside":25,"lodash":77,"simple-statistics":78}],53:[function(require,module,exports){
 var t = {}
 var _ = require('lodash')
 t.inside = require('./inside')
@@ -2627,14 +2669,971 @@ module.exports = function(ptFC, polyFC, done){
   })
   done(null, pointsWithin)
 }
-},{"./featurecollection":20,"./inside":24,"lodash":74}],52:[function(require,module,exports){
+},{"./featurecollection":21,"./inside":25,"lodash":77}],54:[function(require,module,exports){
+var process=require("__browserify_process");/*global setImmediate: false, setTimeout: false, console: false */
+(function () {
+
+    var async = {};
+
+    // global on the server, window in the browser
+    var root, previous_async;
+
+    root = this;
+    if (root != null) {
+      previous_async = root.async;
+    }
+
+    async.noConflict = function () {
+        root.async = previous_async;
+        return async;
+    };
+
+    function only_once(fn) {
+        var called = false;
+        return function() {
+            if (called) throw new Error("Callback was already called.");
+            called = true;
+            fn.apply(root, arguments);
+        }
+    }
+
+    //// cross-browser compatiblity functions ////
+
+    var _each = function (arr, iterator) {
+        if (arr.forEach) {
+            return arr.forEach(iterator);
+        }
+        for (var i = 0; i < arr.length; i += 1) {
+            iterator(arr[i], i, arr);
+        }
+    };
+
+    var _map = function (arr, iterator) {
+        if (arr.map) {
+            return arr.map(iterator);
+        }
+        var results = [];
+        _each(arr, function (x, i, a) {
+            results.push(iterator(x, i, a));
+        });
+        return results;
+    };
+
+    var _reduce = function (arr, iterator, memo) {
+        if (arr.reduce) {
+            return arr.reduce(iterator, memo);
+        }
+        _each(arr, function (x, i, a) {
+            memo = iterator(memo, x, i, a);
+        });
+        return memo;
+    };
+
+    var _keys = function (obj) {
+        if (Object.keys) {
+            return Object.keys(obj);
+        }
+        var keys = [];
+        for (var k in obj) {
+            if (obj.hasOwnProperty(k)) {
+                keys.push(k);
+            }
+        }
+        return keys;
+    };
+
+    //// exported async module functions ////
+
+    //// nextTick implementation with browser-compatible fallback ////
+    if (typeof process === 'undefined' || !(process.nextTick)) {
+        if (typeof setImmediate === 'function') {
+            async.nextTick = function (fn) {
+                // not a direct alias for IE10 compatibility
+                setImmediate(fn);
+            };
+            async.setImmediate = async.nextTick;
+        }
+        else {
+            async.nextTick = function (fn) {
+                setTimeout(fn, 0);
+            };
+            async.setImmediate = async.nextTick;
+        }
+    }
+    else {
+        async.nextTick = process.nextTick;
+        if (typeof setImmediate !== 'undefined') {
+            async.setImmediate = setImmediate;
+        }
+        else {
+            async.setImmediate = async.nextTick;
+        }
+    }
+
+    async.each = function (arr, iterator, callback) {
+        callback = callback || function () {};
+        if (!arr.length) {
+            return callback();
+        }
+        var completed = 0;
+        _each(arr, function (x) {
+            iterator(x, only_once(function (err) {
+                if (err) {
+                    callback(err);
+                    callback = function () {};
+                }
+                else {
+                    completed += 1;
+                    if (completed >= arr.length) {
+                        callback(null);
+                    }
+                }
+            }));
+        });
+    };
+    async.forEach = async.each;
+
+    async.eachSeries = function (arr, iterator, callback) {
+        callback = callback || function () {};
+        if (!arr.length) {
+            return callback();
+        }
+        var completed = 0;
+        var iterate = function () {
+            iterator(arr[completed], function (err) {
+                if (err) {
+                    callback(err);
+                    callback = function () {};
+                }
+                else {
+                    completed += 1;
+                    if (completed >= arr.length) {
+                        callback(null);
+                    }
+                    else {
+                        iterate();
+                    }
+                }
+            });
+        };
+        iterate();
+    };
+    async.forEachSeries = async.eachSeries;
+
+    async.eachLimit = function (arr, limit, iterator, callback) {
+        var fn = _eachLimit(limit);
+        fn.apply(null, [arr, iterator, callback]);
+    };
+    async.forEachLimit = async.eachLimit;
+
+    var _eachLimit = function (limit) {
+
+        return function (arr, iterator, callback) {
+            callback = callback || function () {};
+            if (!arr.length || limit <= 0) {
+                return callback();
+            }
+            var completed = 0;
+            var started = 0;
+            var running = 0;
+
+            (function replenish () {
+                if (completed >= arr.length) {
+                    return callback();
+                }
+
+                while (running < limit && started < arr.length) {
+                    started += 1;
+                    running += 1;
+                    iterator(arr[started - 1], function (err) {
+                        if (err) {
+                            callback(err);
+                            callback = function () {};
+                        }
+                        else {
+                            completed += 1;
+                            running -= 1;
+                            if (completed >= arr.length) {
+                                callback();
+                            }
+                            else {
+                                replenish();
+                            }
+                        }
+                    });
+                }
+            })();
+        };
+    };
+
+
+    var doParallel = function (fn) {
+        return function () {
+            var args = Array.prototype.slice.call(arguments);
+            return fn.apply(null, [async.each].concat(args));
+        };
+    };
+    var doParallelLimit = function(limit, fn) {
+        return function () {
+            var args = Array.prototype.slice.call(arguments);
+            return fn.apply(null, [_eachLimit(limit)].concat(args));
+        };
+    };
+    var doSeries = function (fn) {
+        return function () {
+            var args = Array.prototype.slice.call(arguments);
+            return fn.apply(null, [async.eachSeries].concat(args));
+        };
+    };
+
+
+    var _asyncMap = function (eachfn, arr, iterator, callback) {
+        var results = [];
+        arr = _map(arr, function (x, i) {
+            return {index: i, value: x};
+        });
+        eachfn(arr, function (x, callback) {
+            iterator(x.value, function (err, v) {
+                results[x.index] = v;
+                callback(err);
+            });
+        }, function (err) {
+            callback(err, results);
+        });
+    };
+    async.map = doParallel(_asyncMap);
+    async.mapSeries = doSeries(_asyncMap);
+    async.mapLimit = function (arr, limit, iterator, callback) {
+        return _mapLimit(limit)(arr, iterator, callback);
+    };
+
+    var _mapLimit = function(limit) {
+        return doParallelLimit(limit, _asyncMap);
+    };
+
+    // reduce only has a series version, as doing reduce in parallel won't
+    // work in many situations.
+    async.reduce = function (arr, memo, iterator, callback) {
+        async.eachSeries(arr, function (x, callback) {
+            iterator(memo, x, function (err, v) {
+                memo = v;
+                callback(err);
+            });
+        }, function (err) {
+            callback(err, memo);
+        });
+    };
+    // inject alias
+    async.inject = async.reduce;
+    // foldl alias
+    async.foldl = async.reduce;
+
+    async.reduceRight = function (arr, memo, iterator, callback) {
+        var reversed = _map(arr, function (x) {
+            return x;
+        }).reverse();
+        async.reduce(reversed, memo, iterator, callback);
+    };
+    // foldr alias
+    async.foldr = async.reduceRight;
+
+    var _filter = function (eachfn, arr, iterator, callback) {
+        var results = [];
+        arr = _map(arr, function (x, i) {
+            return {index: i, value: x};
+        });
+        eachfn(arr, function (x, callback) {
+            iterator(x.value, function (v) {
+                if (v) {
+                    results.push(x);
+                }
+                callback();
+            });
+        }, function (err) {
+            callback(_map(results.sort(function (a, b) {
+                return a.index - b.index;
+            }), function (x) {
+                return x.value;
+            }));
+        });
+    };
+    async.filter = doParallel(_filter);
+    async.filterSeries = doSeries(_filter);
+    // select alias
+    async.select = async.filter;
+    async.selectSeries = async.filterSeries;
+
+    var _reject = function (eachfn, arr, iterator, callback) {
+        var results = [];
+        arr = _map(arr, function (x, i) {
+            return {index: i, value: x};
+        });
+        eachfn(arr, function (x, callback) {
+            iterator(x.value, function (v) {
+                if (!v) {
+                    results.push(x);
+                }
+                callback();
+            });
+        }, function (err) {
+            callback(_map(results.sort(function (a, b) {
+                return a.index - b.index;
+            }), function (x) {
+                return x.value;
+            }));
+        });
+    };
+    async.reject = doParallel(_reject);
+    async.rejectSeries = doSeries(_reject);
+
+    var _detect = function (eachfn, arr, iterator, main_callback) {
+        eachfn(arr, function (x, callback) {
+            iterator(x, function (result) {
+                if (result) {
+                    main_callback(x);
+                    main_callback = function () {};
+                }
+                else {
+                    callback();
+                }
+            });
+        }, function (err) {
+            main_callback();
+        });
+    };
+    async.detect = doParallel(_detect);
+    async.detectSeries = doSeries(_detect);
+
+    async.some = function (arr, iterator, main_callback) {
+        async.each(arr, function (x, callback) {
+            iterator(x, function (v) {
+                if (v) {
+                    main_callback(true);
+                    main_callback = function () {};
+                }
+                callback();
+            });
+        }, function (err) {
+            main_callback(false);
+        });
+    };
+    // any alias
+    async.any = async.some;
+
+    async.every = function (arr, iterator, main_callback) {
+        async.each(arr, function (x, callback) {
+            iterator(x, function (v) {
+                if (!v) {
+                    main_callback(false);
+                    main_callback = function () {};
+                }
+                callback();
+            });
+        }, function (err) {
+            main_callback(true);
+        });
+    };
+    // all alias
+    async.all = async.every;
+
+    async.sortBy = function (arr, iterator, callback) {
+        async.map(arr, function (x, callback) {
+            iterator(x, function (err, criteria) {
+                if (err) {
+                    callback(err);
+                }
+                else {
+                    callback(null, {value: x, criteria: criteria});
+                }
+            });
+        }, function (err, results) {
+            if (err) {
+                return callback(err);
+            }
+            else {
+                var fn = function (left, right) {
+                    var a = left.criteria, b = right.criteria;
+                    return a < b ? -1 : a > b ? 1 : 0;
+                };
+                callback(null, _map(results.sort(fn), function (x) {
+                    return x.value;
+                }));
+            }
+        });
+    };
+
+    async.auto = function (tasks, callback) {
+        callback = callback || function () {};
+        var keys = _keys(tasks);
+        if (!keys.length) {
+            return callback(null);
+        }
+
+        var results = {};
+
+        var listeners = [];
+        var addListener = function (fn) {
+            listeners.unshift(fn);
+        };
+        var removeListener = function (fn) {
+            for (var i = 0; i < listeners.length; i += 1) {
+                if (listeners[i] === fn) {
+                    listeners.splice(i, 1);
+                    return;
+                }
+            }
+        };
+        var taskComplete = function () {
+            _each(listeners.slice(0), function (fn) {
+                fn();
+            });
+        };
+
+        addListener(function () {
+            if (_keys(results).length === keys.length) {
+                callback(null, results);
+                callback = function () {};
+            }
+        });
+
+        _each(keys, function (k) {
+            var task = (tasks[k] instanceof Function) ? [tasks[k]]: tasks[k];
+            var taskCallback = function (err) {
+                var args = Array.prototype.slice.call(arguments, 1);
+                if (args.length <= 1) {
+                    args = args[0];
+                }
+                if (err) {
+                    var safeResults = {};
+                    _each(_keys(results), function(rkey) {
+                        safeResults[rkey] = results[rkey];
+                    });
+                    safeResults[k] = args;
+                    callback(err, safeResults);
+                    // stop subsequent errors hitting callback multiple times
+                    callback = function () {};
+                }
+                else {
+                    results[k] = args;
+                    async.setImmediate(taskComplete);
+                }
+            };
+            var requires = task.slice(0, Math.abs(task.length - 1)) || [];
+            var ready = function () {
+                return _reduce(requires, function (a, x) {
+                    return (a && results.hasOwnProperty(x));
+                }, true) && !results.hasOwnProperty(k);
+            };
+            if (ready()) {
+                task[task.length - 1](taskCallback, results);
+            }
+            else {
+                var listener = function () {
+                    if (ready()) {
+                        removeListener(listener);
+                        task[task.length - 1](taskCallback, results);
+                    }
+                };
+                addListener(listener);
+            }
+        });
+    };
+
+    async.waterfall = function (tasks, callback) {
+        callback = callback || function () {};
+        if (tasks.constructor !== Array) {
+          var err = new Error('First argument to waterfall must be an array of functions');
+          return callback(err);
+        }
+        if (!tasks.length) {
+            return callback();
+        }
+        var wrapIterator = function (iterator) {
+            return function (err) {
+                if (err) {
+                    callback.apply(null, arguments);
+                    callback = function () {};
+                }
+                else {
+                    var args = Array.prototype.slice.call(arguments, 1);
+                    var next = iterator.next();
+                    if (next) {
+                        args.push(wrapIterator(next));
+                    }
+                    else {
+                        args.push(callback);
+                    }
+                    async.setImmediate(function () {
+                        iterator.apply(null, args);
+                    });
+                }
+            };
+        };
+        wrapIterator(async.iterator(tasks))();
+    };
+
+    var _parallel = function(eachfn, tasks, callback) {
+        callback = callback || function () {};
+        if (tasks.constructor === Array) {
+            eachfn.map(tasks, function (fn, callback) {
+                if (fn) {
+                    fn(function (err) {
+                        var args = Array.prototype.slice.call(arguments, 1);
+                        if (args.length <= 1) {
+                            args = args[0];
+                        }
+                        callback.call(null, err, args);
+                    });
+                }
+            }, callback);
+        }
+        else {
+            var results = {};
+            eachfn.each(_keys(tasks), function (k, callback) {
+                tasks[k](function (err) {
+                    var args = Array.prototype.slice.call(arguments, 1);
+                    if (args.length <= 1) {
+                        args = args[0];
+                    }
+                    results[k] = args;
+                    callback(err);
+                });
+            }, function (err) {
+                callback(err, results);
+            });
+        }
+    };
+
+    async.parallel = function (tasks, callback) {
+        _parallel({ map: async.map, each: async.each }, tasks, callback);
+    };
+
+    async.parallelLimit = function(tasks, limit, callback) {
+        _parallel({ map: _mapLimit(limit), each: _eachLimit(limit) }, tasks, callback);
+    };
+
+    async.series = function (tasks, callback) {
+        callback = callback || function () {};
+        if (tasks.constructor === Array) {
+            async.mapSeries(tasks, function (fn, callback) {
+                if (fn) {
+                    fn(function (err) {
+                        var args = Array.prototype.slice.call(arguments, 1);
+                        if (args.length <= 1) {
+                            args = args[0];
+                        }
+                        callback.call(null, err, args);
+                    });
+                }
+            }, callback);
+        }
+        else {
+            var results = {};
+            async.eachSeries(_keys(tasks), function (k, callback) {
+                tasks[k](function (err) {
+                    var args = Array.prototype.slice.call(arguments, 1);
+                    if (args.length <= 1) {
+                        args = args[0];
+                    }
+                    results[k] = args;
+                    callback(err);
+                });
+            }, function (err) {
+                callback(err, results);
+            });
+        }
+    };
+
+    async.iterator = function (tasks) {
+        var makeCallback = function (index) {
+            var fn = function () {
+                if (tasks.length) {
+                    tasks[index].apply(null, arguments);
+                }
+                return fn.next();
+            };
+            fn.next = function () {
+                return (index < tasks.length - 1) ? makeCallback(index + 1): null;
+            };
+            return fn;
+        };
+        return makeCallback(0);
+    };
+
+    async.apply = function (fn) {
+        var args = Array.prototype.slice.call(arguments, 1);
+        return function () {
+            return fn.apply(
+                null, args.concat(Array.prototype.slice.call(arguments))
+            );
+        };
+    };
+
+    var _concat = function (eachfn, arr, fn, callback) {
+        var r = [];
+        eachfn(arr, function (x, cb) {
+            fn(x, function (err, y) {
+                r = r.concat(y || []);
+                cb(err);
+            });
+        }, function (err) {
+            callback(err, r);
+        });
+    };
+    async.concat = doParallel(_concat);
+    async.concatSeries = doSeries(_concat);
+
+    async.whilst = function (test, iterator, callback) {
+        if (test()) {
+            iterator(function (err) {
+                if (err) {
+                    return callback(err);
+                }
+                async.whilst(test, iterator, callback);
+            });
+        }
+        else {
+            callback();
+        }
+    };
+
+    async.doWhilst = function (iterator, test, callback) {
+        iterator(function (err) {
+            if (err) {
+                return callback(err);
+            }
+            if (test()) {
+                async.doWhilst(iterator, test, callback);
+            }
+            else {
+                callback();
+            }
+        });
+    };
+
+    async.until = function (test, iterator, callback) {
+        if (!test()) {
+            iterator(function (err) {
+                if (err) {
+                    return callback(err);
+                }
+                async.until(test, iterator, callback);
+            });
+        }
+        else {
+            callback();
+        }
+    };
+
+    async.doUntil = function (iterator, test, callback) {
+        iterator(function (err) {
+            if (err) {
+                return callback(err);
+            }
+            if (!test()) {
+                async.doUntil(iterator, test, callback);
+            }
+            else {
+                callback();
+            }
+        });
+    };
+
+    async.queue = function (worker, concurrency) {
+        if (concurrency === undefined) {
+            concurrency = 1;
+        }
+        function _insert(q, data, pos, callback) {
+          if(data.constructor !== Array) {
+              data = [data];
+          }
+          _each(data, function(task) {
+              var item = {
+                  data: task,
+                  callback: typeof callback === 'function' ? callback : null
+              };
+
+              if (pos) {
+                q.tasks.unshift(item);
+              } else {
+                q.tasks.push(item);
+              }
+
+              if (q.saturated && q.tasks.length === concurrency) {
+                  q.saturated();
+              }
+              async.setImmediate(q.process);
+          });
+        }
+
+        var workers = 0;
+        var q = {
+            tasks: [],
+            concurrency: concurrency,
+            saturated: null,
+            empty: null,
+            drain: null,
+            push: function (data, callback) {
+              _insert(q, data, false, callback);
+            },
+            unshift: function (data, callback) {
+              _insert(q, data, true, callback);
+            },
+            process: function () {
+                if (workers < q.concurrency && q.tasks.length) {
+                    var task = q.tasks.shift();
+                    if (q.empty && q.tasks.length === 0) {
+                        q.empty();
+                    }
+                    workers += 1;
+                    var next = function () {
+                        workers -= 1;
+                        if (task.callback) {
+                            task.callback.apply(task, arguments);
+                        }
+                        if (q.drain && q.tasks.length + workers === 0) {
+                            q.drain();
+                        }
+                        q.process();
+                    };
+                    var cb = only_once(next);
+                    worker(task.data, cb);
+                }
+            },
+            length: function () {
+                return q.tasks.length;
+            },
+            running: function () {
+                return workers;
+            }
+        };
+        return q;
+    };
+
+    async.cargo = function (worker, payload) {
+        var working     = false,
+            tasks       = [];
+
+        var cargo = {
+            tasks: tasks,
+            payload: payload,
+            saturated: null,
+            empty: null,
+            drain: null,
+            push: function (data, callback) {
+                if(data.constructor !== Array) {
+                    data = [data];
+                }
+                _each(data, function(task) {
+                    tasks.push({
+                        data: task,
+                        callback: typeof callback === 'function' ? callback : null
+                    });
+                    if (cargo.saturated && tasks.length === payload) {
+                        cargo.saturated();
+                    }
+                });
+                async.setImmediate(cargo.process);
+            },
+            process: function process() {
+                if (working) return;
+                if (tasks.length === 0) {
+                    if(cargo.drain) cargo.drain();
+                    return;
+                }
+
+                var ts = typeof payload === 'number'
+                            ? tasks.splice(0, payload)
+                            : tasks.splice(0);
+
+                var ds = _map(ts, function (task) {
+                    return task.data;
+                });
+
+                if(cargo.empty) cargo.empty();
+                working = true;
+                worker(ds, function () {
+                    working = false;
+
+                    var args = arguments;
+                    _each(ts, function (data) {
+                        if (data.callback) {
+                            data.callback.apply(null, args);
+                        }
+                    });
+
+                    process();
+                });
+            },
+            length: function () {
+                return tasks.length;
+            },
+            running: function () {
+                return working;
+            }
+        };
+        return cargo;
+    };
+
+    var _console_fn = function (name) {
+        return function (fn) {
+            var args = Array.prototype.slice.call(arguments, 1);
+            fn.apply(null, args.concat([function (err) {
+                var args = Array.prototype.slice.call(arguments, 1);
+                if (typeof console !== 'undefined') {
+                    if (err) {
+                        if (console.error) {
+                            console.error(err);
+                        }
+                    }
+                    else if (console[name]) {
+                        _each(args, function (x) {
+                            console[name](x);
+                        });
+                    }
+                }
+            }]));
+        };
+    };
+    async.log = _console_fn('log');
+    async.dir = _console_fn('dir');
+    /*async.info = _console_fn('info');
+    async.warn = _console_fn('warn');
+    async.error = _console_fn('error');*/
+
+    async.memoize = function (fn, hasher) {
+        var memo = {};
+        var queues = {};
+        hasher = hasher || function (x) {
+            return x;
+        };
+        var memoized = function () {
+            var args = Array.prototype.slice.call(arguments);
+            var callback = args.pop();
+            var key = hasher.apply(null, args);
+            if (key in memo) {
+                callback.apply(null, memo[key]);
+            }
+            else if (key in queues) {
+                queues[key].push(callback);
+            }
+            else {
+                queues[key] = [callback];
+                fn.apply(null, args.concat([function () {
+                    memo[key] = arguments;
+                    var q = queues[key];
+                    delete queues[key];
+                    for (var i = 0, l = q.length; i < l; i++) {
+                      q[i].apply(null, arguments);
+                    }
+                }]));
+            }
+        };
+        memoized.memo = memo;
+        memoized.unmemoized = fn;
+        return memoized;
+    };
+
+    async.unmemoize = function (fn) {
+      return function () {
+        return (fn.unmemoized || fn).apply(null, arguments);
+      };
+    };
+
+    async.times = function (count, iterator, callback) {
+        var counter = [];
+        for (var i = 0; i < count; i++) {
+            counter.push(i);
+        }
+        return async.map(counter, iterator, callback);
+    };
+
+    async.timesSeries = function (count, iterator, callback) {
+        var counter = [];
+        for (var i = 0; i < count; i++) {
+            counter.push(i);
+        }
+        return async.mapSeries(counter, iterator, callback);
+    };
+
+    async.compose = function (/* functions... */) {
+        var fns = Array.prototype.reverse.call(arguments);
+        return function () {
+            var that = this;
+            var args = Array.prototype.slice.call(arguments);
+            var callback = args.pop();
+            async.reduce(fns, args, function (newargs, fn, cb) {
+                fn.apply(that, newargs.concat([function () {
+                    var err = arguments[0];
+                    var nextargs = Array.prototype.slice.call(arguments, 1);
+                    cb(err, nextargs);
+                }]))
+            },
+            function (err, results) {
+                callback.apply(that, [err].concat(results));
+            });
+        };
+    };
+
+    var _applyEach = function (eachfn, fns /*args...*/) {
+        var go = function () {
+            var that = this;
+            var args = Array.prototype.slice.call(arguments);
+            var callback = args.pop();
+            return eachfn(fns, function (fn, cb) {
+                fn.apply(that, args.concat([cb]));
+            },
+            callback);
+        };
+        if (arguments.length > 2) {
+            var args = Array.prototype.slice.call(arguments, 2);
+            return go.apply(this, args);
+        }
+        else {
+            return go;
+        }
+    };
+    async.applyEach = doParallel(_applyEach);
+    async.applyEachSeries = doSeries(_applyEach);
+
+    async.forever = function (fn, callback) {
+        function next(err) {
+            if (err) {
+                if (callback) {
+                    return callback(err);
+                }
+                throw err;
+            }
+            fn(next);
+        }
+        next();
+    };
+
+    // AMD / RequireJS
+    if (typeof define !== 'undefined' && define.amd) {
+        define([], function () {
+            return async;
+        });
+    }
+    // Node.js
+    else if (typeof module !== 'undefined' && module.exports) {
+        module.exports = async;
+    }
+    // included directly via <script> tag
+    else {
+        root.async = async;
+    }
+
+}());
+
+},{"__browserify_process":110}],55:[function(require,module,exports){
 'use strict';
 GLOBAL.javascript = {};
 GLOBAL.javascript.util = require('javascript.util');
 var jsts = require('./lib/jsts');
 module.exports = jsts
 
-},{"./lib/jsts":53,"javascript.util":54}],53:[function(require,module,exports){
+},{"./lib/jsts":56,"javascript.util":57}],56:[function(require,module,exports){
 /* The JSTS Topology Suite is a collection of JavaScript classes that
 implement the fundamental operations required to validate a given
 geo-spatial data set to a known topological specification.
@@ -4212,10 +5211,10 @@ boundaryCount++;var newLoc=jsts.geomgraph.GeometryGraph.determineBoundary(this.b
 return;if(loc===Location.BOUNDARY&&this.useBoundaryDeterminationRule)
 this.insertBoundaryPoint(argIndex,coord);else
 this.insertPoint(argIndex,coord,loc);};jsts.geomgraph.GeometryGraph.prototype.getInvalidPoint=function(){return this.invalidPoint;};})();
-},{}],54:[function(require,module,exports){
+},{}],57:[function(require,module,exports){
 module.exports = require('./src');
 
-},{"./src":73}],55:[function(require,module,exports){
+},{"./src":76}],58:[function(require,module,exports){
 /**
  * @requires List.js
  */
@@ -4380,7 +5379,7 @@ ArrayList.Iterator.prototype.remove = function() {
 
 module.exports = ArrayList;
 
-},{"./Collection":57,"./IndexOutOfBoundsException":61,"./List":63,"./NoSuchElementException":65,"./OperationNotSupported":66}],56:[function(require,module,exports){
+},{"./Collection":60,"./IndexOutOfBoundsException":64,"./List":66,"./NoSuchElementException":68,"./OperationNotSupported":69}],59:[function(require,module,exports){
 /**
  * @see http://download.oracle.com/javase/6/docs/api/java/util/Arrays.html
  *
@@ -4438,7 +5437,7 @@ Arrays.asList = function(array) {
 
 module.exports = Arrays;
 
-},{}],57:[function(require,module,exports){
+},{}],60:[function(require,module,exports){
 /**
  * @requires Iterator.js
  */
@@ -4513,7 +5512,7 @@ Collection.prototype.remove = function(o) {};
 
 module.exports = Collection;
 
-},{"./Iterator":62}],58:[function(require,module,exports){
+},{"./Iterator":65}],61:[function(require,module,exports){
 /**
  * @param {string=}
  *          message Optional message.
@@ -4532,7 +5531,7 @@ EmptyStackException.prototype.name = 'EmptyStackException';
 
 module.exports = EmptyStackException;
 
-},{}],59:[function(require,module,exports){
+},{}],62:[function(require,module,exports){
 /**
  * @requires Map.js
  * @requires ArrayList.js
@@ -4596,7 +5595,7 @@ HashMap.prototype.size = function() {
 
 module.exports = HashMap;
 
-},{"./ArrayList":55,"./Map":64}],60:[function(require,module,exports){
+},{"./ArrayList":58,"./Map":67}],63:[function(require,module,exports){
 /**
  * @requires Set.js
  */
@@ -4757,7 +5756,7 @@ HashSet.Iterator.prototype.remove = function() {
 
 module.exports = HashSet;
 
-},{"./Collection":57,"./NoSuchElementException":65,"./OperationNotSupported":66,"./Set":67}],61:[function(require,module,exports){
+},{"./Collection":60,"./NoSuchElementException":68,"./OperationNotSupported":69,"./Set":70}],64:[function(require,module,exports){
 /**
  * @param {string=}
  *          message Optional message.
@@ -4776,7 +5775,7 @@ IndexOutOfBoundsException.prototype.name = 'IndexOutOfBoundsException';
 
 module.exports = IndexOutOfBoundsException;
 
-},{}],62:[function(require,module,exports){
+},{}],65:[function(require,module,exports){
 /**
  * @see http://download.oracle.com/javase/6/docs/api/java/util/Iterator.html
  * @interface
@@ -4805,7 +5804,7 @@ Iterator.prototype.remove = function() {};
 
 module.exports = Iterator;
 
-},{}],63:[function(require,module,exports){
+},{}],66:[function(require,module,exports){
 /**
  * @requires Collection.js
  */
@@ -4839,7 +5838,7 @@ List.prototype.isEmpty = function() {};
 
 module.exports = List;
 
-},{"./Collection":57}],64:[function(require,module,exports){
+},{"./Collection":60}],67:[function(require,module,exports){
 /**
  * @see http://download.oracle.com/javase/6/docs/api/java/util/Map.html
  *
@@ -4885,7 +5884,7 @@ Map.prototype.values = function() {};
 
 module.exports = Map;
 
-},{}],65:[function(require,module,exports){
+},{}],68:[function(require,module,exports){
 /**
  * @param {string=}
  *          message Optional message.
@@ -4904,7 +5903,7 @@ NoSuchElementException.prototype.name = 'NoSuchElementException';
 
 module.exports = NoSuchElementException;
 
-},{}],66:[function(require,module,exports){
+},{}],69:[function(require,module,exports){
 /**
  * @param {string=}
  *          message Optional message.
@@ -4923,7 +5922,7 @@ OperationNotSupported.prototype.name = 'OperationNotSupported';
 
 module.exports = OperationNotSupported;
 
-},{}],67:[function(require,module,exports){
+},{}],70:[function(require,module,exports){
 /**
  * @requires Collection.js
  */
@@ -4951,7 +5950,7 @@ Set.prototype.contains = function(o) {};
 
 module.exports = Set;
 
-},{"./Collection":57}],68:[function(require,module,exports){
+},{"./Collection":60}],71:[function(require,module,exports){
 /**
  * @requires Map.js
  */
@@ -4968,7 +5967,7 @@ SortedMap.prototype = new Map;
 
 module.exports = SortedMap;
 
-},{"./Map":64}],69:[function(require,module,exports){
+},{"./Map":67}],72:[function(require,module,exports){
 /**
  * @requires Set.js
  */
@@ -4985,7 +5984,7 @@ SortedSet.prototype = new Set;
 
 module.exports = SortedSet;
 
-},{"./Set":67}],70:[function(require,module,exports){
+},{"./Set":70}],73:[function(require,module,exports){
 /**
  * @requires List.js
  */
@@ -5103,7 +6102,7 @@ Stack.prototype.toArray = function() {
 
 module.exports = Stack;
 
-},{"./EmptyStackException":58,"./List":63}],71:[function(require,module,exports){
+},{"./EmptyStackException":61,"./List":66}],74:[function(require,module,exports){
 /**
  * @requires SortedMap.js
  * @requires ArrayList.js
@@ -5196,7 +6195,7 @@ TreeMap.prototype.size = function() {
 
 module.exports = TreeMap;
 
-},{"./ArrayList":55,"./Map":64,"./SortedMap":68}],72:[function(require,module,exports){
+},{"./ArrayList":58,"./Map":67,"./SortedMap":71}],75:[function(require,module,exports){
 /**
  * @requires SortedSet.js
  */
@@ -5364,7 +6363,7 @@ TreeSet.Iterator.prototype.remove = function() {
 
 module.exports = TreeSet;
 
-},{"./Collection":57,"./NoSuchElementException":65,"./OperationNotSupported":66,"./SortedSet":69}],73:[function(require,module,exports){
+},{"./Collection":60,"./NoSuchElementException":68,"./OperationNotSupported":69,"./SortedSet":72}],76:[function(require,module,exports){
 module.exports.ArrayList = require('./ArrayList');
 module.exports.Arrays = require('./Arrays');
 module.exports.Collection = require('./Collection');
@@ -5380,7 +6379,7 @@ module.exports.Stack = require('./Stack');
 module.exports.TreeMap = require('./TreeMap');
 module.exports.TreeSet = require('./TreeSet');
 
-},{"./ArrayList":55,"./Arrays":56,"./Collection":57,"./HashMap":59,"./HashSet":60,"./Iterator":62,"./List":63,"./Map":64,"./Set":67,"./SortedMap":68,"./SortedSet":69,"./Stack":70,"./TreeMap":71,"./TreeSet":72}],74:[function(require,module,exports){
+},{"./ArrayList":58,"./Arrays":59,"./Collection":60,"./HashMap":62,"./HashSet":63,"./Iterator":65,"./List":66,"./Map":67,"./Set":70,"./SortedMap":71,"./SortedSet":72,"./Stack":73,"./TreeMap":74,"./TreeSet":75}],77:[function(require,module,exports){
 var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {};/**
  * @license
  * Lo-Dash 2.2.1 (Custom Build) <http://lodash.com/>
@@ -11742,7 +12741,7 @@ var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? 
   }
 }.call(this));
 
-},{}],75:[function(require,module,exports){
+},{}],78:[function(require,module,exports){
 // # simple-statistics
 //
 // A simple, literate statistics system. The code below uses the
@@ -12730,7 +13729,7 @@ var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? 
 
 })(this);
 
-},{}],76:[function(require,module,exports){
+},{}],79:[function(require,module,exports){
 var __dirname="/node_modules/topojson";var fs = require("fs");
 
 var topojson = module.exports = new Function("topojson", "return " + fs.readFileSync(__dirname + "/topojson.js", "utf8"))();
@@ -12741,7 +13740,7 @@ topojson.filter = require("./lib/topojson/filter");
 topojson.prune = require("./lib/topojson/prune");
 topojson.bind = require("./lib/topojson/bind");
 
-},{"./lib/topojson/bind":77,"./lib/topojson/clockwise":80,"./lib/topojson/filter":84,"./lib/topojson/prune":87,"./lib/topojson/simplify":89,"./lib/topojson/topology":92,"fs":104}],77:[function(require,module,exports){
+},{"./lib/topojson/bind":80,"./lib/topojson/clockwise":83,"./lib/topojson/filter":87,"./lib/topojson/prune":90,"./lib/topojson/simplify":92,"./lib/topojson/topology":95,"fs":107}],80:[function(require,module,exports){
 var type = require("./type"),
     topojson = require("../../");
 
@@ -12771,7 +13770,7 @@ module.exports = function(topology, propertiesById) {
 
 function noop() {}
 
-},{"../../":76,"./type":102}],78:[function(require,module,exports){
+},{"../../":79,"./type":105}],81:[function(require,module,exports){
 
 // Computes the bounding box of the specified hash of GeoJSON objects.
 module.exports = function(objects) {
@@ -12818,7 +13817,7 @@ module.exports = function(objects) {
   return [x0, y0, x1, y1];
 };
 
-},{}],79:[function(require,module,exports){
+},{}],82:[function(require,module,exports){
 exports.name = "cartesian";
 exports.formatDistance = formatDistance;
 exports.ringArea = ringArea;
@@ -12852,7 +13851,7 @@ function distance(x0, y0, x1, y1) {
   return Math.sqrt(dx * dx + dy * dy);
 }
 
-},{}],80:[function(require,module,exports){
+},{}],83:[function(require,module,exports){
 var type = require("./type"),
     systems = require("./coordinate-systems"),
     topojson = require("../../");
@@ -12925,7 +13924,7 @@ function clockwiseTopology(topology, options) {
 
 function noop() {}
 
-},{"../../":76,"./coordinate-systems":82,"./type":102}],81:[function(require,module,exports){
+},{"../../":79,"./coordinate-systems":85,"./type":105}],84:[function(require,module,exports){
 // Given a hash of GeoJSON objects and an id function, invokes the id function
 // to compute a new id for each object that is a feature. The function is passed
 // the feature and is expected to return the new feature id, or null if the
@@ -12955,13 +13954,13 @@ module.exports = function(objects, id) {
   return objects;
 };
 
-},{}],82:[function(require,module,exports){
+},{}],85:[function(require,module,exports){
 module.exports = {
   cartesian: require("./cartesian"),
   spherical: require("./spherical")
 };
 
-},{"./cartesian":79,"./spherical":90}],83:[function(require,module,exports){
+},{"./cartesian":82,"./spherical":93}],86:[function(require,module,exports){
 // Given a TopoJSON topology in absolute (quantized) coordinates,
 // converts to fixed-point delta encoding.
 // This is a destructive operation that modifies the given topology!
@@ -12992,7 +13991,7 @@ module.exports = function(topology) {
   return topology;
 };
 
-},{}],84:[function(require,module,exports){
+},{}],87:[function(require,module,exports){
 var type = require("./type"),
     prune = require("./prune"),
     clockwise = require("./clockwise"),
@@ -13063,7 +14062,7 @@ module.exports = function(topology, options) {
 
 function noop() {}
 
-},{"../../":76,"./clockwise":80,"./coordinate-systems":82,"./prune":87,"./type":102}],85:[function(require,module,exports){
+},{"../../":79,"./clockwise":83,"./coordinate-systems":85,"./prune":90,"./type":105}],88:[function(require,module,exports){
 // Given a hash of GeoJSON objects, replaces Features with geometry objects.
 // This is a destructive operation that modifies the input objects!
 module.exports = function(objects) {
@@ -13182,7 +14181,7 @@ module.exports = function(objects) {
   return objects;
 };
 
-},{}],86:[function(require,module,exports){
+},{}],89:[function(require,module,exports){
 module.exports = function(objects, filter) {
 
   function prefilterGeometry(geometry) {
@@ -13238,7 +14237,7 @@ module.exports = function(objects, filter) {
   return objects;
 };
 
-},{}],87:[function(require,module,exports){
+},{}],90:[function(require,module,exports){
 module.exports = function(topology, options) {
   var verbose = false,
       objects = topology.objects,
@@ -13312,7 +14311,7 @@ module.exports = function(topology, options) {
 
 function noop() {}
 
-},{}],88:[function(require,module,exports){
+},{}],91:[function(require,module,exports){
 module.exports = function(objects, bbox, Q) {
   var x0 = isFinite(bbox[0]) ? bbox[0] : 0,
       y0 = isFinite(bbox[1]) ? bbox[1] : 0,
@@ -13399,7 +14398,7 @@ module.exports = function(objects, bbox, Q) {
   };
 };
 
-},{}],89:[function(require,module,exports){
+},{}],92:[function(require,module,exports){
 var topojson = require("../../"),
     systems = require("./coordinate-systems");
 
@@ -13483,7 +14482,7 @@ module.exports = function(topology, options) {
   return topology;
 };
 
-},{"../../":76,"./coordinate-systems":82}],90:[function(require,module,exports){
+},{"../../":79,"./coordinate-systems":85}],93:[function(require,module,exports){
 var π = Math.PI,
     π_4 = π / 4,
     radians = π / 180;
@@ -13565,7 +14564,7 @@ function haversin(x) {
   return (x = Math.sin(x / 2)) * x;
 }
 
-},{}],91:[function(require,module,exports){
+},{}],94:[function(require,module,exports){
 var type = require("./type");
 
 module.exports = function(objects, transform) {
@@ -13741,7 +14740,7 @@ module.exports = function(objects, transform) {
   }
 };
 
-},{"./type":102}],92:[function(require,module,exports){
+},{"./type":105}],95:[function(require,module,exports){
 var type = require("./type"),
     stitch = require("./stitch"),
     systems = require("./coordinate-systems"),
@@ -13843,7 +14842,7 @@ module.exports = function(objects, options) {
   return topology;
 };
 
-},{"./bounds":78,"./compute-id":81,"./coordinate-systems":82,"./delta":83,"./geomify":85,"./prefilter":86,"./quantize":88,"./stitch":91,"./topology/index":97,"./transform-properties":101,"./type":102}],93:[function(require,module,exports){
+},{"./bounds":81,"./compute-id":84,"./coordinate-systems":85,"./delta":86,"./geomify":88,"./prefilter":89,"./quantize":91,"./stitch":94,"./topology/index":100,"./transform-properties":104,"./type":105}],96:[function(require,module,exports){
 var join = require("./join");
 
 // Given an extracted (pre-)topology, cuts (or rotates) arcs so that all shared
@@ -13905,7 +14904,7 @@ function reverse(array, start, end) {
   }
 }
 
-},{"./join":98}],94:[function(require,module,exports){
+},{"./join":101}],97:[function(require,module,exports){
 var join = require("./join"),
     hashtable = require("./hashtable"),
     hashPoint = require("./point-hash"),
@@ -14091,7 +15090,7 @@ module.exports = function(topology) {
   return topology;
 };
 
-},{"./hashtable":96,"./join":98,"./point-equal":99,"./point-hash":100}],95:[function(require,module,exports){
+},{"./hashtable":99,"./join":101,"./point-equal":102,"./point-hash":103}],98:[function(require,module,exports){
 // Extracts the lines and rings from the specified hash of geometry objects.
 //
 // Returns an object with three properties:
@@ -14158,7 +15157,7 @@ module.exports = function(objects) {
   };
 };
 
-},{}],96:[function(require,module,exports){
+},{}],99:[function(require,module,exports){
 module.exports = function(size, hash, equal) {
   var hashtable = new Array(size = 1 << Math.ceil(Math.log(size) / Math.LN2)),
       mask = size - 1,
@@ -14229,7 +15228,7 @@ module.exports = function(size, hash, equal) {
   };
 };
 
-},{}],97:[function(require,module,exports){
+},{}],100:[function(require,module,exports){
 var hashtable = require("./hashtable"),
     extract = require("./extract"),
     cut = require("./cut"),
@@ -14299,7 +15298,7 @@ function equalArc(arcA, arcB) {
   return ia === ib && ja === jb;
 }
 
-},{"./cut":93,"./dedup":94,"./extract":95,"./hashtable":96}],98:[function(require,module,exports){
+},{"./cut":96,"./dedup":97,"./extract":98,"./hashtable":99}],101:[function(require,module,exports){
 var hashtable = require("./hashtable"),
     hashPoint = require("./point-hash"),
     equalPoint = require("./point-equal");
@@ -14374,12 +15373,12 @@ module.exports = function(topology) {
   return junctionByPoint;
 };
 
-},{"./hashtable":96,"./point-equal":99,"./point-hash":100}],99:[function(require,module,exports){
+},{"./hashtable":99,"./point-equal":102,"./point-hash":103}],102:[function(require,module,exports){
 module.exports = function(pointA, pointB) {
   return pointA[0] === pointB[0] && pointA[1] === pointB[1];
 };
 
-},{}],100:[function(require,module,exports){
+},{}],103:[function(require,module,exports){
 // TODO if quantized, use simpler Int32 hashing?
 
 var hashBuffer = new ArrayBuffer(8),
@@ -14399,7 +15398,7 @@ module.exports = function(point) {
   return h < 0 ? ~h : h;
 };
 
-},{}],101:[function(require,module,exports){
+},{}],104:[function(require,module,exports){
 // Given a hash of GeoJSON objects, transforms any properties on features using
 // the specified transform function. The function is invoked for each existing
 // property on the current feature, being passed the new properties hash, the
@@ -14444,7 +15443,7 @@ module.exports = function(objects, propertyTransform) {
   return objects;
 };
 
-},{}],102:[function(require,module,exports){
+},{}],105:[function(require,module,exports){
 module.exports = function(types) {
   for (var type in typeDefaults) {
     if (!(type in types)) {
@@ -14538,7 +15537,7 @@ var typeObjects = {
   FeatureCollection: 1
 };
 
-},{}],103:[function(require,module,exports){
+},{}],106:[function(require,module,exports){
 
 
 //
@@ -14756,13 +15755,13 @@ if (typeof Object.getOwnPropertyDescriptor === 'function') {
   exports.getOwnPropertyDescriptor = valueObject;
 }
 
-},{}],104:[function(require,module,exports){
+},{}],107:[function(require,module,exports){
 
 // not implemented
 // The reason for having an empty file and not throwing is to allow
 // untraditional implementation of this module.
 
-},{}],105:[function(require,module,exports){
+},{}],108:[function(require,module,exports){
 var process=require("__browserify_process");// Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -14973,7 +15972,7 @@ exports.extname = function(path) {
   return splitPath(path)[3];
 };
 
-},{"__browserify_process":107,"_shims":103,"util":106}],106:[function(require,module,exports){
+},{"__browserify_process":110,"_shims":106,"util":109}],109:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -15518,7 +16517,7 @@ function hasOwnProperty(obj, prop) {
   return Object.prototype.hasOwnProperty.call(obj, prop);
 }
 
-},{"_shims":103}],107:[function(require,module,exports){
+},{"_shims":106}],110:[function(require,module,exports){
 // shim for using process in browser
 
 var process = module.exports = {};
