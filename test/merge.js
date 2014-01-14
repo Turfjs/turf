@@ -7,7 +7,7 @@ describe('merge', function(){
     t.load('../test/testIn/mergeIn.geojson', function(err, polygons){
       t.merge(polygons, function(err, mergeOut){
         if(err) throw err
-        fs.writeFileSync('./testOut/merge.geojson', JSON.stringify(mergeOut))
+        //fs.writeFileSync('./testOut/merge.geojson', JSON.stringify(mergeOut))
         mergeOut.should.be.ok
         done()
       })
