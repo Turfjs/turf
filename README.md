@@ -1033,7 +1033,6 @@ t.load(__dirname + '/testIn/mergeIn.geojson', function(err, polys){
 ```
 
 
-
 ###intersect
 
 Calculates the intersection of two polygon features or feature collections.
