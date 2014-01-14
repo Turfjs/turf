@@ -1,4 +1,5 @@
 module.exports = {
+  merge: require('./lib/merge'),
   convex: require('./lib/convex'),
   donuts: require('./lib/donuts'),
   within: require('./lib/within'),
