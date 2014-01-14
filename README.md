@@ -87,6 +87,7 @@ bower install turf
 - [bezier](#bezier)
 - [simplify](#simplify)
 - [union](#union)
+- [merge](#merge)
 - [intersect](#intersect)
 - [erase](#erase)
 - [donuts](#donuts)
@@ -1014,6 +1015,23 @@ t.load(__dirname + '/testIn/Intersect1.geojson', function(err, polys1){
   })
 })
 ```
+
+
+###merge
+
+Takes a feature collection of polygons and outputs a single merged polygon feature.
+
+```javascript
+var t = require('turf')
+
+t.load(__dirname + '/testIn/mergeIn.geojson', function(err, polys){
+  t.merge(polys, function(err, merged){
+    if(err) throw err
+    console.log(unioned)
+  })
+})
+```
+
 
 
 ###intersect
