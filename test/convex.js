@@ -15,4 +15,16 @@ describe('convex', function(){
       })
     })
   })
+  it('should take a set of points and return a convex hull polygon', function(done){
+    t.load('../test/testIn/convexIn2.geojson', function(err, points){
+      t.convex(points, function(err, hull){
+        if(err) throw err
+        fs.writeFileSync('./testOut/convex2.geojson', JSON.stringify(hull))
+        hull.should.be.ok
+        console.log(hull)
+        //hull.features.should.be.ok
+        done()
+      })
+    })
+  })
 })
