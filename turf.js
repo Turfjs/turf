@@ -397,6 +397,7 @@ var _ = require('lodash'),
 var t = {}
 t.featurecollection = require('./featurecollection')
 t.polygon = require('./polygon')
+t.combine = require('./combine')
 
 module.exports = function(feature, radius, units, union, done){
   switch(units){
@@ -410,6 +411,17 @@ module.exports = function(feature, radius, units, union, done){
       break
   }
   
+  if(feature.type === 'FeatureCollection'){
+    t.combine(feature, function(err, multi){
+      bufferOp(multi, radius, done)
+    })
+  }
+  else{
+    bufferOp(feature, radius, done)
+  }
+}
+
+var bufferOp = function(feature, radius, done){
   var reader = new jsts.io.GeoJSONReader()
   var geom = reader.read(JSON.stringify(feature.geometry))
   var buffered = geom.buffer(radius);
@@ -419,7 +431,9 @@ module.exports = function(feature, radius, units, union, done){
   buffered = t.featurecollection([t.polygon(buffered.coordinates)])
   done(null, buffered)
 }
-},{"./featurecollection":21,"./polygon":38,"jsts":55,"lodash":77}],7:[function(require,module,exports){
+
+
+},{"./combine":9,"./featurecollection":21,"./polygon":38,"jsts":55,"lodash":77}],7:[function(require,module,exports){
 var t = {}
 var extent = require('./extent')
 t.extent = extent
@@ -1352,14 +1366,24 @@ module.exports = function(points, z, resolution, breaks, done){
 //var topojson = require('')
 var t = {}
 t.tin = require('./tin')
-t.topo
+t.merge = require('./merge')
+t.buffer = require('./buffer')
 
 module.exports = function(points, done){
-  t.tin(points, function(err, tinPolys){
-    
+  t.tin(points, null, function(err, tinPolys){
+    if(err) done(err)
+    //console.log(tinPolys)
+    t.buffer(tinPolys, .0001, 'miles', function(err, bufferPolys){
+      console.log(bufferPolys)
+      t.merge(bufferPolys, function(err, mergePolys){
+        if(err) done(err)
+        console.log(JSON.stringify(mergePolys, null, 2))
+        done(null, mergePolys)
+      })
+    })
   })
 }
-},{"./tin":49}],13:[function(require,module,exports){
+},{"./buffer":6,"./merge":32,"./tin":49}],13:[function(require,module,exports){
 var t = {}
 var _ = require('lodash')
 t.inside = require('./inside')
@@ -2393,24 +2417,26 @@ module.exports = function(points, z, done){
     
     triangles.features.push(poly)
   })
-  // add values from vertices
-  _.each(triangles.features, function(tri){
-    var coordinateNumber = 1
-    _.each(tri.geometry.coordinates[0], function(c){
-      t.nearest(t.point(c[0], c[1]), points, function(err, closest){        
-        if(coordinateNumber === 1){
-          tri.properties.a = closest.properties[z]
-        }
-        else if(coordinateNumber === 2){
-          tri.properties.b = closest.properties[z]
-        }
-        else if(coordinateNumber === 3){
-          tri.properties.c = closest.properties[z]
-        }
-        coordinateNumber++
+  if(z){
+    // add values from vertices
+    _.each(triangles.features, function(tri){
+      var coordinateNumber = 1
+      _.each(tri.geometry.coordinates[0], function(c){
+        t.nearest(t.point(c[0], c[1]), points, function(err, closest){        
+          if(coordinateNumber === 1){
+            tri.properties.a = closest.properties[z]
+          }
+          else if(coordinateNumber === 2){
+            tri.properties.b = closest.properties[z]
+          }
+          else if(coordinateNumber === 3){
+            tri.properties.c = closest.properties[z]
+          }
+          coordinateNumber++
+        })
       })
     })
-  })
+  }
   done(null, triangles)
 }
 
