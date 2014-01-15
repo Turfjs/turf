@@ -92,6 +92,7 @@ bower install turf
 - [erase](#erase)
 - [donuts](#donuts)
 - [convex](#convex)
+- [concave](#concave)
 
 ####misc
 - [flip](#flip)
@@ -1097,6 +1098,23 @@ t.load('../test/testIn/convexIn.geojson', function(err, points){
   t.convex(points, function(err, hull){
     if(err) throw err
     fs.writeFileSync('./testOut/convex.geojson', JSON.stringify(hull))
+    console.log(hull)
+  })
+})
+```
+
+
+###concave
+
+Takes a set of points and returns a concave hull polygon.
+
+```javascript
+var t = require('turf')
+var maxEdge = 2.5
+
+t.load('../test/testIn/concaveIn.geojson', function(err, points){
+  t.concave(points, maxEdge, function(err, hull){
+    if(err) throw err
     console.log(hull)
   })
 })
