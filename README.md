@@ -91,6 +91,7 @@ bower install turf
 - [intersect](#intersect)
 - [erase](#erase)
 - [donuts](#donuts)
+- [convex](#convex)
 
 ####misc
 - [flip](#flip)
@@ -107,7 +108,6 @@ Additional feature requests welcomed and encouraged. To request a feature, pleas
 - cluster
 - interval
 - cluster
-- interpolate
 - area
 - smooth
 
@@ -1081,6 +1081,23 @@ t.load('../path/to/donutsIn.geojson', function(err, donutsIn){
   t.donuts(donutsIn, function(err, donuts){
     if(err) throw err
     console.log(donuts)
+  })
+})
+```
+
+
+###convex
+
+Takes a set of points and returns a convex hull polygon.
+
+```javascript
+var t = require('turf')
+
+t.load('../test/testIn/convexIn.geojson', function(err, points){
+  t.convex(points, function(err, hull){
+    if(err) throw err
+    fs.writeFileSync('./testOut/convex.geojson', JSON.stringify(hull))
+    console.log(hull)
   })
 })
 ```
