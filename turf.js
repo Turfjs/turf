@@ -393,7 +393,8 @@ module.exports = function(line, resolution, intensity, done){
 // https://github.com/bjornharrtell/jsts/blob/master/examples/buffer.html
 
 var _ = require('lodash'),
-    jsts = require('jsts')
+    jsts = require('jsts'),
+    fs = require('fs')
 var t = {}
 t.featurecollection = require('./featurecollection')
 t.polygon = require('./polygon')
@@ -413,6 +414,8 @@ module.exports = function(feature, radius, units, done){
   
   if(feature.type === 'FeatureCollection'){
     t.combine(feature, function(err, multi){
+      multi.properties = {}
+      fs.writeFileSync('./testOut/preBufferConvex.geojson', JSON.stringify(multi))
       bufferOp(multi, radius, done)
     })
   }
@@ -441,9 +444,7 @@ var bufferOp = function(feature, radius, done){
     done(null, buffered)
   }
 }
-
-
-},{"./combine":9,"./featurecollection":21,"./polygon":38,"jsts":55,"lodash":77}],7:[function(require,module,exports){
+},{"./combine":9,"./featurecollection":21,"./polygon":38,"fs":107,"jsts":55,"lodash":77}],7:[function(require,module,exports){
 var t = {}
 var extent = require('./extent')
 t.extent = extent
@@ -1374,6 +1375,7 @@ module.exports = function(points, z, resolution, breaks, done){
 // 1. run tin on points
 // 2. merge the tin
 //var topojson = require('')
+var fs = require('fs')
 var t = {}
 t.tin = require('./tin')
 t.merge = require('./merge')
@@ -1383,8 +1385,10 @@ module.exports = function(points, done){
   t.tin(points, null, function(err, tinPolys){
     if(err) done(err)
     //console.log(tinPolys)
-    t.buffer(tinPolys, .0001, 'miles', function(err, bufferPolys){
+    fs.writeFileSync('./testOut/tinConvex.geojson', JSON.stringify(tinPolys))
+    t.buffer(tinPolys, .05, 'miles', function(err, bufferPolys){
       console.log(bufferPolys)
+      fs.writeFileSync('./testOut/bufferConvex.geojson', JSON.stringify(bufferPolys))
       t.merge(bufferPolys, function(err, mergePolys){
         if(err) done(err)
         console.log(JSON.stringify(mergePolys, null, 2))
@@ -1393,7 +1397,7 @@ module.exports = function(points, done){
     })
   })
 }
-},{"./buffer":6,"./merge":32,"./tin":49}],13:[function(require,module,exports){
+},{"./buffer":6,"./merge":32,"./tin":49,"fs":107}],13:[function(require,module,exports){
 var t = {}
 var _ = require('lodash')
 t.inside = require('./inside')
@@ -2447,7 +2451,21 @@ module.exports = function(points, z, done){
       })
     })
   }
+
+  _.each(triangles.features, function(tri){
+    tri = correctRings(tri)
+  })
   done(null, triangles)
+}
+
+function correctRings(poly){
+  _.each(poly.geometry.coordinates, function(ring){
+    var isWrapped =_.isEqual(ring[0], ring.slice(-1)[0])
+    if(!isWrapped){
+      ring.push(ring[0])
+    }
+  })
+  return poly
 }
 
 function Triangle(a, b, c) {
