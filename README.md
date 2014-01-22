@@ -103,7 +103,6 @@ bower install turf
 
 Additional feature requests welcomed and encouraged. To request a feature, please add a [github issue](https://github.com/morganherlocker/turf/issues) with a description.
 
-- concave
 - clockwise
 - krige
 - cluster
