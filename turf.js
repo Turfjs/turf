@@ -426,9 +426,7 @@ module.exports = function(feature, radius, units, done){
 var bufferOp = function(feature, radius, done){
   var reader = new jsts.io.GeoJSONReader()
   var geom = reader.read(JSON.stringify(feature.geometry))
-  console.log('aaaaaaaa')
   var buffered = geom.buffer(radius);
-  console.log('bbbbbbbb')
   var parser = new jsts.io.GeoJSONParser()
   buffered = parser.write(buffered)
   if(buffered.type === 'MultiPolygon'){
@@ -552,21 +550,16 @@ t.distance = require('./distance')
 t.point = require('./point')
 
 module.exports = function(points, maxEdge, done){
-  console.log(points.features.length)
   t.tin(points, null, function(err, tinPolys){
     if(err) done(err)
     filterTriangles(tinPolys.features, maxEdge, function(filteredPolys){
       tinPolys.features = filteredPolys
       fs.writeFileSync('./testOut/filteredConvcave.geojson', JSON.stringify(tinPolys))
-      console.log('**************************************')
       t.buffer(tinPolys, 1, 'miles', function(err, bufferPolys){
         if(err) done(err)
-        console.log('**************************************')
-        console.log(bufferPolys)
         fs.writeFileSync('./testOut/bufferConvcave.geojson', JSON.stringify(bufferPolys))
         t.merge(bufferPolys, function(err, mergePolys){
           if(err) done(err)
-          console.log(JSON.stringify(mergePolys, null, 2))
           done(null, mergePolys)
         })
       })
@@ -584,7 +577,6 @@ var filterTriangles = function(triangles, maxEdge, cb){
       t.distance(pt1, pt2, 'miles', function(err, dist1){
         t.distance(pt2, pt3, 'miles', function(err, dist2){
           t.distance(pt1, pt3, 'miles', function(err, dist3){
-            //console.log(dist1+' '+dist2+' '+dist3)
             if(dist1 <= maxEdge && dist2 <= maxEdge && dist3 <= maxEdge){
               filteredTriangles.push(triangle)
             }
@@ -594,7 +586,6 @@ var filterTriangles = function(triangles, maxEdge, cb){
       })
     },
     function(err){
-      console.log('tri complete')
       cb(filteredTriangles)
     }
   )
@@ -1223,14 +1214,9 @@ t.buffer = require('./buffer')
 module.exports = function(points, done){
   t.tin(points, null, function(err, tinPolys){
     if(err) done(err)
-    //console.log(tinPolys)
-    fs.writeFileSync('./testOut/tinConvex.geojson', JSON.stringify(tinPolys))
     t.buffer(tinPolys, .05, 'miles', function(err, bufferPolys){
-      console.log(bufferPolys)
-      fs.writeFileSync('./testOut/bufferConvex.geojson', JSON.stringify(bufferPolys))
       t.merge(bufferPolys, function(err, mergePolys){
         if(err) done(err)
-        console.log(JSON.stringify(mergePolys, null, 2))
         done(null, mergePolys)
       })
     })
