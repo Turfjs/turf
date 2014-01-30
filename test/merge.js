@@ -23,4 +23,14 @@ describe('merge', function(){
       })
     })
   })
+  xit('should take a set of polygons for all countries and create a set of continents', function(done){
+    t.load('../test/testIn/countries.geojson', function(err, polygons){
+      t.merge(polygons, function(err, mergeOut){
+        if(err) throw err
+        fs.writeFileSync('./testOut/world.geojson', JSON.stringify(mergeOut))
+        mergeOut.should.be.ok
+        done()
+      })
+    })
+  })
 })
