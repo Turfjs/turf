@@ -540,8 +540,7 @@ module.exports = function(fc, done){
 // 4. buffer the results slightly
 // 5. merge the results
 
-var fs = require('fs'),
-    async = require('async')
+var async = require('async')
 var t = {}
 t.tin = require('./tin')
 t.merge = require('./merge')
@@ -554,10 +553,8 @@ module.exports = function(points, maxEdge, done){
     if(err) done(err)
     filterTriangles(tinPolys.features, maxEdge, function(filteredPolys){
       tinPolys.features = filteredPolys
-      fs.writeFileSync('./testOut/filteredConvcave.geojson', JSON.stringify(tinPolys))
       t.buffer(tinPolys, 1, 'miles', function(err, bufferPolys){
         if(err) done(err)
-        fs.writeFileSync('./testOut/bufferConvcave.geojson', JSON.stringify(bufferPolys))
         t.merge(bufferPolys, function(err, mergePolys){
           if(err) done(err)
           done(null, mergePolys)
@@ -590,7 +587,7 @@ var filterTriangles = function(triangles, maxEdge, cb){
     }
   )
 }
-},{"./buffer":6,"./distance":15,"./merge":32,"./point":37,"./tin":49,"async":54,"fs":107}],11:[function(require,module,exports){
+},{"./buffer":6,"./distance":15,"./merge":32,"./point":37,"./tin":49,"async":54}],11:[function(require,module,exports){
 //https://github.com/jasondavies/conrec.js
 //http://stackoverflow.com/questions/263305/drawing-a-topographical-map
 var _ = require('lodash'),
@@ -604,7 +601,6 @@ t.planepoint = require('./planepoint')
 t.featurecollection = require('./featurecollection')
 t.polygon = require('./polygon')
 t.square = require('./square')
-//t.erase = require('./erase')
 t.donuts = require('./donuts')
 
 module.exports = function(points, z, resolution, breaks, done){
@@ -628,8 +624,6 @@ module.exports = function(points, z, resolution, breaks, done){
               })
             })
           })
-          //fs.writeFileSync('../test/testOut/gridTest.geojson',JSON.stringify(gridResult))
-          //fs.writeFileSync('../test/testOut/tinTest.geojson',JSON.stringify(tinResult))
 
           var depth = Math.sqrt(gridResult.features.length)
           for (var x=0; x<depth; x++){
@@ -655,8 +649,6 @@ module.exports = function(points, z, resolution, breaks, done){
           var c = new Conrec
           c.contour(data, 0, resolution, 0, resolution, xCoordinates, yCoordinates, breaks.length, breaks)
           var contourList = c.contourList()
-          //fs.writeFileSync(__dirname+'/../test/testOut/contourList.json', JSON.stringify(contourList))
-
 
           var fc = t.featurecollection([])
           _.each(contourList, function(c){
@@ -672,11 +664,9 @@ module.exports = function(points, z, resolution, breaks, done){
               fc.features.push(poly)
             }
           })
-          //fs.writeFileSync(__dirname+'/../test/testOut/contourList.json', JSON.stringify(fc))
 
           // perform donuts function before returning if donuts option is true
           t.donuts(fc, function(err, donutPolys){
-            //console.log(JSON.stringify(contourList))
             done(null, donutPolys)
           })          
         })
@@ -1335,9 +1325,6 @@ module.exports = function(polyFC, done){
       contained(poly1, poly2, function(isContained){
         if(!_.isEqual(poly1, poly2) && isContained){
           if(!_.isEqual(poly1.properties, poly2.properties)){
-            //console.log('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
-            //console.log(JSON.stringify(poly1))
-            //console.log(JSON.stringify(poly2))
             t.erase(poly1, poly2, function(err, erased){
               var duplicate = _.some(donuts.features, erased)
               if(!duplicate && erased.geometry.type != 'GeometryCollection'){
@@ -1355,7 +1342,6 @@ module.exports = function(polyFC, done){
       })
     })
   })
-
   done(null, donuts)
 }
 
@@ -1397,14 +1383,11 @@ module.exports = function(poly1, poly2, done){
   var reader = new jsts.io.GeoJSONReader()
   var a = reader.read(JSON.stringify(poly1.geometry))
   var b = reader.read(JSON.stringify(poly2.geometry))
-  //console.log('aaaaaaaaa')
   var erased = a.difference(b);
-  //console.log('bbbbbbbbb')
   var parser = new jsts.io.GeoJSONParser()
   erased = parser.write(erased)
   
   poly1.geometry = erased
-  //console.log(poly1)
   done(null, poly1)
 }
 
