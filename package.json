@@ -43,7 +43,8 @@
     "lodash",
     "simple-statistics",
     "topojson",
-    "jsts"
+    "jsts",
+    "async"
   ],
   "devDependencies": [
     "mocha",
