@@ -5,8 +5,8 @@ var t = require('../index'),
 
 describe('planepoint', function(){
   it('should return the z value of a point on a plane', function(done){
-    t.load('../test/testIn/Triangle.geojson', function(err, triangle){
-      t.load('../test/testIn/PlanePoint.geojson', function(err, point){
+    t.load(__dirname+'/testIn/Triangle.geojson', function(err, triangle){
+      t.load(__dirname+'/testIn/PlanePoint.geojson', function(err, point){
         t.planepoint(point, triangle, function(err, z){
           z.should.be.ok
           done()

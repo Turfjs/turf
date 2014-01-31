@@ -4,8 +4,8 @@ var t = require('../index'),
 
 describe('nearest', function(){
   it('should should return the nearest point', function(done){
-    t.load('../test/testIn/Point1.geojson', function(err, inPoint){
-      t.load('../test/testIn/Points3.geojson', function(err, inFeatures){
+    t.load(__dirname+'/testIn/Point1.geojson', function(err, inPoint){
+      t.load(__dirname+'/testIn/Points3.geojson', function(err, inFeatures){
         t.nearest(inPoint, inFeatures, function(err, outPoint){
           if(err) throw err
           var nearest = { 
