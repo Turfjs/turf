@@ -4,7 +4,7 @@ var t = require('../index'),
 
 describe('contour', function(){
   it('should take a set of points with z values and output a set of contour polygons', function(done){
-    t.load('../test/testIn/elevation1.geojson', function(err, points){
+    t.load(__dirname+'/testIn/elevation1.geojson', function(err, points){
       t.contour(points, 'elevation', 15, [25, 45, 55, 65, 85,  95, 105, 120, 180], false, function(err, contours){
         if(err) throw err
         fs.writeFileSync('./testOut/contours1.geojson', JSON.stringify(contours))
@@ -15,7 +15,7 @@ describe('contour', function(){
     })
   })
   it('should take a set of points with z values and output a set of contour polygons with jenks breaks', function(done){
-    t.load('../test/testIn/elevation1.geojson', function(err, points){
+    t.load(__dirname+'/testIn/elevation1.geojson', function(err, points){
       t.jenks(points, 'elevation', 5, function(err, breaks){
         if(err) throw err
         t.contour(points, 'elevation', 15, breaks, false, function(err, contours){
@@ -29,7 +29,7 @@ describe('contour', function(){
     })
   })
   it('should take a set of points with decimal z values and output a set of contour polygons', function(done){
-    t.load('../test/testIn/elevation2.geojson', function(err, points){
+    t.load(__dirname+'/testIn/elevation2.geojson', function(err, points){
       t.contour(points, 'elevation', 15, [-2000,-20, -5, -1, 0, 2, 5, 10, 20, 30, 500 ], false, function(err, contours){
         if(err) throw err
         fs.writeFileSync('./testOut/contours3.geojson', JSON.stringify(contours))
@@ -40,7 +40,7 @@ describe('contour', function(){
     })
   })
   it('should take a set of points with negative z values and output a set of contour polygons', function(done){
-    t.load('../test/testIn/elevation3.geojson', function(err, points){
+    t.load(__dirname+'/testIn/elevation3.geojson', function(err, points){
       t.contour(points, 'elevation', 15, [25, 45, 55, 65, 85,  95, 105, 120, 180], false, function(err, contours){
         if(err) throw err
         fs.writeFileSync('./testOut/contours4.geojson', JSON.stringify(contours))

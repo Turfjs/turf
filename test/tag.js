@@ -4,15 +4,15 @@ var t = require('../index'),
 
 describe('tag', function(){
   it('should tag a point layer with a property from a polygon layer', function(done){
-    t.load('./testIn/tagPoints.geojson', function(err, points){
+    t.load(__dirname+'/testIn/tagPoints.geojson', function(err, points){
       if(err) throw err
-      t.load('./testIn/tagPolygons.geojson', function(err, polygons){
+      t.load(__dirname+'/testIn/tagPolygons.geojson', function(err, polygons){
         if(err) throw err
         t.tag(points, polygons, 'polyID', 'containingPolyID', function(err, taggedPoints){
           if(err) throw err
           taggedPoints.should.be.ok
           taggedPoints.features.should.be.ok
-          fs.writeFileSync('./testOut/taggedPoints.geojson', JSON.stringify(taggedPoints))
+          //fs.writeFileSync('./testOut/taggedPoints.geojson', JSON.stringify(taggedPoints))
           done()
         })
       })

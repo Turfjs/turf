@@ -4,12 +4,12 @@ var t = require('../index'),
 
 describe('topo', function(){
   it('should take geojson and output topojson', function(done){
-    t.load('./testOut/contours.geojson', function(err, polys){
+    t.load(__dirname+'/testOut/contours.geojson', function(err, polys){
       if(err) throw err
       t.topo(polys, function(err, topoPolys){
         if(err) throw err
         topoPolys.should.be.ok
-        fs.writeFileSync('./testOut/topo.topojson', JSON.stringify(topoPolys))
+        //fs.writeFileSync('./testOut/topo.topojson', JSON.stringify(topoPolys))
         done()
       })
     })
@@ -21,7 +21,7 @@ describe('topo', function(){
     t.topo(fc, function(err, topoPolys){
       if(err) throw err
       topoPolys.should.be.ok
-      fs.writeFileSync('./testOut/topo.topojson', JSON.stringify(topoPolys))
+      //fs.writeFileSync('./testOut/topo.topojson', JSON.stringify(topoPolys))
       done()
     })
   })

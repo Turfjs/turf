@@ -3,6 +3,9 @@
   "version": "0.0.111",
   "description": "a node.js library for performing geospatial operations with geojson",
   "main": "index.js",
+  "scripts": {
+    "test": "mocha ./test/*"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/morganherlocker/turf.git"
