@@ -4,7 +4,7 @@ var t = require('../index'),
 
 describe('simplify', function(){
   it('should simplify a featurecollection of complex polygon', function(done){
-    t.load('./testIn/complexPolygons.geojson', function(err, geo){
+    t.load(__dirname+'/testIn/complexPolygons.geojson', function(err, geo){
       if(err) throw err
       geo.should.be.ok
       t.simplify(geo, 50, 0, function(err, simplified){
@@ -16,7 +16,7 @@ describe('simplify', function(){
     })
   })
   it('should simplify a featurecollection of complex linestrings', function(done){
-    t.load('./testIn/complexLines.geojson', function(err, geo){
+    t.load(__dirname+'/testIn/complexLines.geojson', function(err, geo){
       if(err) throw err
       geo.should.be.ok
       t.simplify(geo, 50, 0, function(err, simplified){
@@ -28,7 +28,7 @@ describe('simplify', function(){
     })
   })
   it('should simplify a complex polygon', function(done){
-    t.load('./testIn/complexPolygon.geojson', function(err, geo){
+    t.load(__dirname+'/testIn/complexPolygon.geojson', function(err, geo){
       if(err) throw err
       geo.should.be.ok
       t.simplify(geo, 50, 0, function(err, simplified){
@@ -40,7 +40,7 @@ describe('simplify', function(){
     })
   })
   it('should simplify a complex linestring', function(done){
-    t.load('./testIn/complexLine.geojson', function(err, geo){
+    t.load(__dirname+'/testIn/complexLine.geojson', function(err, geo){
       if(err) throw err
       geo.should.be.ok
       t.simplify(geo, 50, 0, function(err, simplified){
