@@ -626,9 +626,10 @@ var t = require('turf')
 var z = 'elevation'
 var resolution = 15
 var breaks = [.1, 22, 45, 55, 65, 85,  95, 105, 120, 180]
+var donuts = false
 
 t.load('../path/to/points.geojson', function(err, points){
-  t.contour(points, z, resolution, breaks, function(err, contours){
+  t.contour(points, z, resolution, breaks, donuts, function(err, contours){
     if(err) throw err
     console.log(contours)
   })
