@@ -3,7 +3,7 @@ var t = require('../index'),
 
 describe('envelope', function(){
   it('should return a polygon that represents the bbox around a feature or feature collection.', function(done){
-    t.load('../test/testIn/FeatureCollection.geojson', function(err, features){
+    t.load(__dirname+'/testIn/FeatureCollection.geojson', function(err, features){
       t.envelope(features, function(err, poly){
         if(err) throw err
         poly.should.be.ok

@@ -9,7 +9,7 @@ describe('concave', function(){
     t.load(__dirname+'/testIn/concaveIn2.geojson', function(err, points){
       t.concave(points, maxEdge, function(err, hull){
         if(err) throw err
-        fs.writeFileSync('./testOut/concave.geojson', JSON.stringify(hull))
+        //fs.writeFileSync('./testOut/concave.geojson', JSON.stringify(hull))
         hull.should.be.ok
         done()
       })

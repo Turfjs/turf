@@ -21,7 +21,7 @@ describe('grid', function(){
       grid.features[0].geometry.type.should.equal('Point')
       grid.features[0].geometry.coordinates[0].should.equal(-20)
       grid.features[0].geometry.coordinates[0].should.equal(-20)
-      fs.writeFileSync('./testOut/grid.geojson',JSON.stringify(grid))
+      //fs.writeFileSync('./testOut/grid.geojson',JSON.stringify(grid))
       done()
     })
   })

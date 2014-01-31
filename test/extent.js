@@ -3,7 +3,7 @@ var t = require('../index'),
 
 describe('extent', function(){
   it('should return the proper extent for a FeatureCollection', function(done){
-    t.load('../test/testIn/FeatureCollection.geojson', function(err, layer){
+    t.load(__dirname+'/testIn/FeatureCollection.geojson', function(err, layer){
       if(err) throw err
       t.extent(layer, function(err, extent){
         extent.should.be.ok
@@ -16,7 +16,7 @@ describe('extent', function(){
     })
   })
   it('should return the proper extent for a Point', function(done){
-    t.load('../test/testIn/Point.geojson', function(err, layer){
+    t.load(__dirname+'/testIn/Point.geojson', function(err, layer){
       if(err) throw err
       t.extent(layer, function(err, extent){
         extent.should.be.ok
@@ -29,7 +29,7 @@ describe('extent', function(){
     })
   })
   it('should return the proper extent for a Polygon', function(done){
-    t.load('../test/testIn/Polygon.geojson', function(err, layer){
+    t.load(__dirname+'/testIn/Polygon.geojson', function(err, layer){
       if(err) throw err
       t.extent(layer, function(err, extent){
         extent.should.be.ok
@@ -42,7 +42,7 @@ describe('extent', function(){
     })
   })
   it('should return the proper extent for a LineString', function(done){
-    t.load('../test/testIn/LineString.geojson', function(err, layer){
+    t.load(__dirname+'/testIn/LineString.geojson', function(err, layer){
       if(err) throw err
       t.extent(layer, function(err, extent){
         extent.should.be.ok
@@ -55,7 +55,7 @@ describe('extent', function(){
     })
   })
   it('should return the proper extent for a MultiLineString', function(done){
-    t.load('../test/testIn/MultiLineString.geojson', function(err, layer){
+    t.load(__dirname+'/testIn/MultiLineString.geojson', function(err, layer){
       if(err) throw err
       t.extent(layer, function(err, extent){
         extent.should.be.ok
@@ -68,7 +68,7 @@ describe('extent', function(){
     })
   })
   it('should return the proper extent for a MultiPolygon', function(done){
-    t.load('../test/testIn/MultiPolygon.geojson', function(err, layer){
+    t.load(__dirname+'/testIn/MultiPolygon.geojson', function(err, layer){
       if(err) throw err
       t.extent(layer, function(err, extent){
         extent.should.be.ok
