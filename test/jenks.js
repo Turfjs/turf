@@ -1,7 +1,7 @@
 var t = require('../index'), 
     should = require('should')
   
-describe('quantile', function(){
+describe('jenks', function(){
   it('should take a set of points and an array of percentiles and return a list of quantile breaks', function(done){
     var num = 10
 

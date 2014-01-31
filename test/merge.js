@@ -17,7 +17,7 @@ describe('merge', function(){
     t.load(__dirname+'/testIn/mergeIn2.geojson', function(err, polygons){
       t.merge(polygons, function(err, mergeOut){
         if(err) throw err
-        fs.writeFileSync('./testOut/merge2.geojson', JSON.stringify(mergeOut))
+        //fs.writeFileSync('./testOut/merge2.geojson', JSON.stringify(mergeOut))
         mergeOut.should.be.ok
         done()
       })
@@ -27,7 +27,7 @@ describe('merge', function(){
     t.load(__dirname+'/testIn/countries_simp.geojson', function(err, polygons){
       t.merge(polygons, function(err, mergeOut){
         if(err) throw err
-        fs.writeFileSync('./testOut/world.geojson', JSON.stringify(mergeOut))
+        //fs.writeFileSync('./testOut/world.geojson', JSON.stringify(mergeOut))
         mergeOut.should.be.ok
         done()
       })
