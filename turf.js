@@ -1857,10 +1857,15 @@ module.exports = function(polygons, done){
   var merged = _.cloneDeep(polygons.features[0])
   async.eachSeries(polygons.features, 
     function(poly, cb){
-      t.union(merged, poly, function(err, mergedPolys){
-        merged = mergedPolys
+      if(poly.geometry){
+        t.union(merged, poly, function(err, mergedPolys){
+          merged = mergedPolys
+          cb()
+        })
+      }
+      else {
         cb()
-      })
+      }
     },
     function(){
       done(null, merged)
