@@ -50,7 +50,7 @@ describe('contour', function(){
       })
     })
   })
-  xit('should take a set of points lopsided edges and output a set of contour polygons', function(done){
+  it('should take a set of points lopsided edges and output a set of contour polygons', function(done){
     t.load(__dirname+'/testIn/openContourPoints.geojson', function(err, points){
       t.contour(points, 'elevation', 15, [5, 15, 40, 80, 90, 110], false, function(err, contours){
         if(err) throw err
@@ -63,9 +63,9 @@ describe('contour', function(){
   })
   it('should take a set of points with internal valleys and output a set of contour polygons', function(done){
     t.load(__dirname+'/testIn/holeContourPoints.geojson', function(err, points){
-      t.contour(points, 'elevation', 15, [5, 15, 40, 80, 90, 110], false, function(err, contours){
+      t.contour(points, 'elevation', 15, [5, 15, 40, 80, 90, 110], true, function(err, contours){
         if(err) throw err
-        //fs.writeFileSync('./testOut/contoursHoles.geojson', JSON.stringify(contours))
+        fs.writeFileSync(__dirname+'/testOut/contoursHoles.geojson', JSON.stringify(contours))
         contours.should.be.ok
         contours.features.should.be.ok
         done()
