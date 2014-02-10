@@ -1,6 +1,6 @@
 var t = require('../index'),
-  should = require('should'),
-  fs = require('fs')
+    should = require('should'),
+    fs = require('fs')
 
 describe('merge', function(){
   it('should take a set of polygons and merge them into a single polygon', function(done){
