@@ -31,11 +31,11 @@ describe('donuts', function(){
     })
   })
   it('should take a set of polygons and return a set of donuts with a shared edge', function(done){
-    t.load(__dirname+'/testIn/donutsIn3.geojson', function(err, donutsIn){
+    t.load(__dirname+'/testIn/donutHoles.geojson', function(err, donutsIn){
       if(err) throw err
       t.donuts(donutsIn, function(err, donuts){
         if(err) throw err
-        //fs.writeFileSync('./testOut/donuts3.geojson', JSON.stringify(donuts))
+        fs.writeFileSync(__dirname+'/testOut/donuts3.geojson', JSON.stringify(donuts))
         donuts.should.be.ok
         donuts.features.should.be.ok
         donuts.features[0].should.be.ok
