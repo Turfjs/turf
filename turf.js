@@ -589,7 +589,8 @@ var filterTriangles = function(triangles, maxEdge, cb){
 },{"./buffer":6,"./distance":15,"./merge":32,"./point":37,"./tin":49,"async":54}],11:[function(require,module,exports){
 //https://github.com/jasondavies/conrec.js
 //http://stackoverflow.com/questions/263305/drawing-a-topographical-map
-var _ = require('lodash')
+var _ = require('lodash'),
+    async = require('async')
 var t = {}
 t.tin = require('./tin')
 t.inside = require('./inside')
@@ -600,6 +601,7 @@ t.featurecollection = require('./featurecollection')
 t.polygon = require('./polygon')
 t.square = require('./square')
 t.donuts = require('./donuts')
+t.merge = require('./merge')
 
 module.exports = function(points, z, resolution, breaks, donuts, done){
   t.tin(points, z, function(err, tinResult){
@@ -663,9 +665,28 @@ module.exports = function(points, z, resolution, breaks, donuts, done){
             }
           })
 
-          // perform donuts function before returning if donuts option is true
+          // perform donuts function and dissolves rings before returning if donuts option is true
           if(donuts){
             t.donuts(fc, function(err, donutPolys){
+              var zGroups = []
+              _.each(donutPolys.features, function(ring){
+                var found = false
+                _.each(zGroups, function(group){
+                  if(group.z === ring.properties[z]){
+                    found = true
+                    group.rings.push(ring)
+                  }
+                })
+                if(!found){
+                  zGroups.push({z: ring.properties[z], rings: [ring]})
+                }
+              })
+              donutPolys.features = []
+              _.each(zGroups, function(group){
+                t.merge(t.featurecollection(group.rings), function(err, multiRing){
+                  donutPolys.features.push(multiRing)
+                })
+              })
               done(null, donutPolys)
             })         
           }
@@ -1194,7 +1215,7 @@ module.exports = function(points, z, resolution, breaks, donuts, done){
     }
   }
 
-},{"./donuts":16,"./extent":20,"./featurecollection":21,"./grid":24,"./inside":25,"./planepoint":36,"./polygon":38,"./square":46,"./tin":49,"lodash":77}],12:[function(require,module,exports){
+},{"./donuts":16,"./extent":20,"./featurecollection":21,"./grid":24,"./inside":25,"./merge":32,"./planepoint":36,"./polygon":38,"./square":46,"./tin":49,"async":54,"lodash":77}],12:[function(require,module,exports){
 // 1. run tin on points
 // 2. merge the tin
 //var topojson = require('')
@@ -1319,6 +1340,7 @@ t.featurecollection = require('./featurecollection')
 t.erase = require('./erase')
 t.point = require('./point')
 t.inside = require('./inside')
+t.union = require('./union')
 
 module.exports = function(polyFC, done){
   donuts = t.featurecollection([])
@@ -1340,6 +1362,11 @@ module.exports = function(polyFC, done){
           if(!duplicate){
             donuts.features.push(poly1)
           }
+          else{
+            //t.union(poly1, poly2, function(err, unioned){
+            //  donuts.features.push(unioned)
+            //})
+          }
         }
       })
     })
@@ -1353,7 +1380,7 @@ function contained(poly1, poly2, done){
     done(isInside)
   })
 }
-},{"./erase":18,"./featurecollection":21,"./inside":25,"./point":37,"lodash":77}],17:[function(require,module,exports){
+},{"./erase":18,"./featurecollection":21,"./inside":25,"./point":37,"./union":51,"lodash":77}],17:[function(require,module,exports){
 var t = {}
 var extent = require('./extent'),
     bboxPolygon = require('./bboxPolygon')
