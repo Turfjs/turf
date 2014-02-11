@@ -1801,10 +1801,8 @@ t.planepoint = _dereq_('./planepoint')
 t.featurecollection = _dereq_('./featurecollection')
 t.linestring = _dereq_('./linestring')
 t.square = _dereq_('./square')
-t.donuts = _dereq_('./donuts')
-t.merge = _dereq_('./merge')
 
-module.exports = function(points, z, resolution, breaks, donuts, done){
+module.exports = function(points, z, resolution, breaks, done){
   t.tin(points, z, function(err, tinResult){
     t.extent(points, function(err, bbox){
       t.square(bbox, function(err, bbox){
@@ -2388,7 +2386,7 @@ module.exports = function(points, z, resolution, breaks, donuts, done){
     }
   }
 
-},{"./donuts":16,"./extent":20,"./featurecollection":21,"./grid":24,"./inside":25,"./linestring":30,"./merge":34,"./planepoint":38,"./square":48,"./tin":51,"async":56,"lodash":82}],29:[function(_dereq_,module,exports){
+},{"./extent":20,"./featurecollection":21,"./grid":24,"./inside":25,"./linestring":30,"./planepoint":38,"./square":48,"./tin":51,"async":56,"lodash":82}],29:[function(_dereq_,module,exports){
 var ss = _dereq_('simple-statistics'),
     _ = _dereq_('lodash')
 
