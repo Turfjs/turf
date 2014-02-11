@@ -1,4 +1,6 @@
 module.exports = {
+  isolines: require('./lib/isolines'),
+  isobands: require('./lib/isobands'),
   merge: require('./lib/merge'),
   convex: require('./lib/convex'),
   donuts: require('./lib/donuts'),
