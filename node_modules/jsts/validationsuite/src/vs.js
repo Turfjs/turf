@@ -1,6 +1,0 @@
-/**
- * namespace
- */
-jsts.vs = {
-    
-};

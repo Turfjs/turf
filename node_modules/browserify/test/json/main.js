@@ -1,1 +1,0 @@
-ex(require('./beep.json'));

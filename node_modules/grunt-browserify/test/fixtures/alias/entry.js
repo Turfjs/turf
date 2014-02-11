@@ -1,3 +1,0 @@
-required({
-	alias: require('alias'),
-});

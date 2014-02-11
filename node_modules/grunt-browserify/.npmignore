@@ -1,7 +1,0 @@
-/node_modules/
-/examples/**/node_modules
-*.DS_Store
-.idea/
-tmp/
-npm-debug.log
-
