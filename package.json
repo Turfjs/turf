@@ -42,15 +42,17 @@
   "bugs": {
     "url": "https://github.com/morganherlocker/turf/issues"
   },
-  "dependencies": [
-    "lodash",
-    "simple-statistics",
-    "topojson",
-    "jsts",
-    "async"
-  ],
-  "devDependencies": [
-    "mocha",
-    "should"
-  ]
+  "dependencies": {
+    "simple-statistics": "~0.7.0",
+    "lodash": "~2.4.1",
+    "topojson": "~1.4.6",
+    "async": "~0.2.10",
+    "jsts": "~0.13.2"
+  },
+  "devDependencies": {
+    "should": "~3.1.2",
+    "mocha": "~1.17.1",
+    "browserify": "~3.28.1",
+    "uglify-js": "~2.4.12"
+  }
 }

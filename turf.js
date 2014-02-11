@@ -1,71 +1,70 @@
-!function(e){"object"==typeof exports?module.exports=e():"function"==typeof define&&define.amd?define(e):"undefined"!=typeof window?window.t=e():"undefined"!=typeof global?global.t=e():"undefined"!=typeof self&&(self.t=e())}(function(){var define,module,exports;
-return (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);throw new Error("Cannot find module '"+o+"'")}var f=n[o]={exports:{}};t[o][0].call(f.exports,function(e){var n=t[o][1][e];return s(n?n:e)},f,f.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
+!function(e){if("object"==typeof exports)module.exports=e();else if("function"==typeof define&&define.amd)define(e);else{var f;"undefined"!=typeof window?f=window:"undefined"!=typeof global?f=global:"undefined"!=typeof self&&(f=self),f.t=e()}}(function(){var define,module,exports;return (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);throw new Error("Cannot find module '"+o+"'")}var f=n[o]={exports:{}};t[o][0].call(f.exports,function(e){var n=t[o][1][e];return s(n?n:e)},f,f.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(_dereq_,module,exports){
 module.exports = {
-  merge: require('./lib/merge'),
-  convex: require('./lib/convex'),
-  donuts: require('./lib/donuts'),
-  within: require('./lib/within'),
-  concave: require('./lib/concave'),
-  count: require('./lib/count'),
-  erase: require('./lib/erase'),
-  variance: require('./lib/variance'),
-  deviation: require('./lib/deviation'),
-  median: require('./lib/median'),
-  min: require('./lib/min'),
-  max: require('./lib/max'),
-  aggregate: require('./lib/aggregate'),
-  flip: require('./lib/flip'),
-  simplify: require('./lib/simplify'),
-  sum: require('./lib/sum'),
-  average: require('./lib/average'),
-  topo: require('./lib/topo'),
-  bezier: require('./lib/bezier'),
-  tag: require('./lib/tag'),
-  size: require('./lib/size'),
-  sample: require('./lib/sample'),
-  jenks: require('./lib/jenks'),
-  quantile: require('./lib/quantile'),
-  save: require('./lib/save'),
-  envelope: require('./lib/envelope'),
-  square: require('./lib/square'),
-  midpoint: require('./lib/midpoint'),
-  buffer: require('./lib/buffer'),
-  center: require('./lib/center'),
-  centroid: require('./lib/centroid'),
-  combine: require('./lib/combine'),
-  contour: require('./lib/contour'),
-  distance: require('./lib/distance'),
-  explode: require('./lib/explode'),
-  extent: require('./lib/extent'),
-  bboxPolygon: require('./lib/bboxPolygon'),
-  featurecollection: require('./lib/featurecollection'),
-  filter: require('./lib/filter'),
-  grid: require('./lib/grid'),
-  inside: require('./lib/inside'),
-  intersect: require('./lib/intersect'),
-  linestring: require('./lib/linestring'),
-  load: require('./lib/load'),
-  nearest: require('./lib/nearest'),
-  planepoint: require('./lib/planepoint'),
-  point: require('./lib/point'),
-  polygon: require('./lib/polygon'),
-  quantile: require('./lib/quantile'),
-  reclass: require('./lib/reclass'),
-  remove: require('./lib/remove'),
-  tin: require('./lib/tin'),
-  union: require('./lib/union')
+  merge: _dereq_('./lib/merge'),
+  convex: _dereq_('./lib/convex'),
+  donuts: _dereq_('./lib/donuts'),
+  within: _dereq_('./lib/within'),
+  concave: _dereq_('./lib/concave'),
+  count: _dereq_('./lib/count'),
+  erase: _dereq_('./lib/erase'),
+  variance: _dereq_('./lib/variance'),
+  deviation: _dereq_('./lib/deviation'),
+  median: _dereq_('./lib/median'),
+  min: _dereq_('./lib/min'),
+  max: _dereq_('./lib/max'),
+  aggregate: _dereq_('./lib/aggregate'),
+  flip: _dereq_('./lib/flip'),
+  simplify: _dereq_('./lib/simplify'),
+  sum: _dereq_('./lib/sum'),
+  average: _dereq_('./lib/average'),
+  topo: _dereq_('./lib/topo'),
+  bezier: _dereq_('./lib/bezier'),
+  tag: _dereq_('./lib/tag'),
+  size: _dereq_('./lib/size'),
+  sample: _dereq_('./lib/sample'),
+  jenks: _dereq_('./lib/jenks'),
+  quantile: _dereq_('./lib/quantile'),
+  save: _dereq_('./lib/save'),
+  envelope: _dereq_('./lib/envelope'),
+  square: _dereq_('./lib/square'),
+  midpoint: _dereq_('./lib/midpoint'),
+  buffer: _dereq_('./lib/buffer'),
+  center: _dereq_('./lib/center'),
+  centroid: _dereq_('./lib/centroid'),
+  combine: _dereq_('./lib/combine'),
+  contour: _dereq_('./lib/contour'),
+  distance: _dereq_('./lib/distance'),
+  explode: _dereq_('./lib/explode'),
+  extent: _dereq_('./lib/extent'),
+  bboxPolygon: _dereq_('./lib/bboxPolygon'),
+  featurecollection: _dereq_('./lib/featurecollection'),
+  filter: _dereq_('./lib/filter'),
+  grid: _dereq_('./lib/grid'),
+  inside: _dereq_('./lib/inside'),
+  intersect: _dereq_('./lib/intersect'),
+  linestring: _dereq_('./lib/linestring'),
+  load: _dereq_('./lib/load'),
+  nearest: _dereq_('./lib/nearest'),
+  planepoint: _dereq_('./lib/planepoint'),
+  point: _dereq_('./lib/point'),
+  polygon: _dereq_('./lib/polygon'),
+  quantile: _dereq_('./lib/quantile'),
+  reclass: _dereq_('./lib/reclass'),
+  remove: _dereq_('./lib/remove'),
+  tin: _dereq_('./lib/tin'),
+  union: _dereq_('./lib/union')
 }
-},{"./lib/aggregate":2,"./lib/average":3,"./lib/bboxPolygon":4,"./lib/bezier":5,"./lib/buffer":6,"./lib/center":7,"./lib/centroid":8,"./lib/combine":9,"./lib/concave":10,"./lib/contour":11,"./lib/convex":12,"./lib/count":13,"./lib/deviation":14,"./lib/distance":15,"./lib/donuts":16,"./lib/envelope":17,"./lib/erase":18,"./lib/explode":19,"./lib/extent":20,"./lib/featurecollection":21,"./lib/filter":22,"./lib/flip":23,"./lib/grid":24,"./lib/inside":25,"./lib/intersect":26,"./lib/jenks":27,"./lib/linestring":28,"./lib/load":29,"./lib/max":30,"./lib/median":31,"./lib/merge":32,"./lib/midpoint":33,"./lib/min":34,"./lib/nearest":35,"./lib/planepoint":36,"./lib/point":37,"./lib/polygon":38,"./lib/quantile":39,"./lib/reclass":40,"./lib/remove":41,"./lib/sample":42,"./lib/save":43,"./lib/simplify":44,"./lib/size":45,"./lib/square":46,"./lib/sum":47,"./lib/tag":48,"./lib/tin":49,"./lib/topo":50,"./lib/union":51,"./lib/variance":52,"./lib/within":53}],2:[function(require,module,exports){
-var _ = require('lodash')
+},{"./lib/aggregate":2,"./lib/average":3,"./lib/bboxPolygon":4,"./lib/bezier":5,"./lib/buffer":6,"./lib/center":7,"./lib/centroid":8,"./lib/combine":9,"./lib/concave":10,"./lib/contour":11,"./lib/convex":12,"./lib/count":13,"./lib/deviation":14,"./lib/distance":15,"./lib/donuts":16,"./lib/envelope":17,"./lib/erase":18,"./lib/explode":19,"./lib/extent":20,"./lib/featurecollection":21,"./lib/filter":22,"./lib/flip":23,"./lib/grid":24,"./lib/inside":25,"./lib/intersect":26,"./lib/jenks":27,"./lib/linestring":28,"./lib/load":29,"./lib/max":30,"./lib/median":31,"./lib/merge":32,"./lib/midpoint":33,"./lib/min":34,"./lib/nearest":35,"./lib/planepoint":36,"./lib/point":37,"./lib/polygon":38,"./lib/quantile":39,"./lib/reclass":40,"./lib/remove":41,"./lib/sample":42,"./lib/save":43,"./lib/simplify":44,"./lib/size":45,"./lib/square":46,"./lib/sum":47,"./lib/tag":48,"./lib/tin":49,"./lib/topo":50,"./lib/union":51,"./lib/variance":52,"./lib/within":53}],2:[function(_dereq_,module,exports){
+var _ = _dereq_('lodash')
 var t = {}
-t.average = require('./average')
-t.sum = require('./sum')
-t.median = require('./median')
-t.min = require('./min')
-t.max = require('./max')
-t.deviation = require('./deviation')
-t.variance = require('./variance')
-t.count = require('./count')
+t.average = _dereq_('./average')
+t.sum = _dereq_('./sum')
+t.median = _dereq_('./median')
+t.min = _dereq_('./min')
+t.max = _dereq_('./max')
+t.deviation = _dereq_('./deviation')
+t.variance = _dereq_('./variance')
+t.count = _dereq_('./count')
 
 module.exports = function(polygons, points, aggregations, done){
   _.each(aggregations, function(agg){
@@ -116,11 +115,11 @@ module.exports = function(polygons, points, aggregations, done){
   })
   done(null, polygons)
 }
-},{"./average":3,"./count":13,"./deviation":14,"./max":30,"./median":31,"./min":34,"./sum":47,"./variance":52,"lodash":77}],3:[function(require,module,exports){
+},{"./average":3,"./count":13,"./deviation":14,"./max":30,"./median":31,"./min":34,"./sum":47,"./variance":52,"lodash":80}],3:[function(_dereq_,module,exports){
 var t = {}
-var _ = require('lodash'),
-    ss = require('simple-statistics')
-t.inside = require('./inside')
+var _ = _dereq_('lodash'),
+    ss = _dereq_('simple-statistics')
+t.inside = _dereq_('./inside')
 
 module.exports = function(polyFC, ptFC, inField, outField, done){
   _.each(polyFC.features, function(poly){
@@ -140,10 +139,10 @@ module.exports = function(polyFC, ptFC, inField, outField, done){
 
   done(null, polyFC)
 }
-},{"./inside":25,"lodash":77,"simple-statistics":78}],4:[function(require,module,exports){
+},{"./inside":25,"lodash":80,"simple-statistics":81}],4:[function(_dereq_,module,exports){
 var t = {}
-var point = require('../lib/point'),
-    polygon = require('../lib/polygon')
+var point = _dereq_('../lib/point'),
+    polygon = _dereq_('../lib/polygon')
 t.point = point
 t.polygon = polygon
 
@@ -161,12 +160,12 @@ module.exports = function(bbox, done){
   ]])
   done(null, poly)
 }
-},{"../lib/point":37,"../lib/polygon":38}],5:[function(require,module,exports){
+},{"../lib/point":37,"../lib/polygon":38}],5:[function(_dereq_,module,exports){
 // code modded from here:
 //https://github.com/leszekr/bezier-spline-js/blob/master/bezier-spline.js
 var t = {}
-var _ = require('lodash')
-t.linestring = require('./linestring')
+var _ = _dereq_('lodash')
+t.linestring = _dereq_('./linestring')
 
 module.exports = function(line, resolution, intensity, done){
   var lineOut = t.linestring([])
@@ -386,18 +385,18 @@ module.exports = function(line, resolution, intensity, done){
     ctx.stroke();
     return this;
   }
-},{"./linestring":28,"lodash":77}],6:[function(require,module,exports){
+},{"./linestring":28,"lodash":80}],6:[function(_dereq_,module,exports){
 //http://stackoverflow.com/questions/839899/how-do-i-calculate-a-point-on-a-circles-circumference
 //radians = degrees * (pi/180)
 
 // https://github.com/bjornharrtell/jsts/blob/master/examples/buffer.html
 
-var _ = require('lodash'),
-    jsts = require('jsts')
+var _ = _dereq_('lodash'),
+    jsts = _dereq_('jsts')
 var t = {}
-t.featurecollection = require('./featurecollection')
-t.polygon = require('./polygon')
-t.combine = require('./combine')
+t.featurecollection = _dereq_('./featurecollection')
+t.polygon = _dereq_('./polygon')
+t.combine = _dereq_('./combine')
 
 module.exports = function(feature, radius, units, done){
   switch(units){
@@ -442,9 +441,9 @@ var bufferOp = function(feature, radius, done){
     done(null, buffered)
   }
 }
-},{"./combine":9,"./featurecollection":21,"./polygon":38,"jsts":55,"lodash":77}],7:[function(require,module,exports){
+},{"./combine":9,"./featurecollection":21,"./polygon":38,"jsts":58,"lodash":80}],7:[function(_dereq_,module,exports){
 var t = {}
-var extent = require('./extent')
+var extent = _dereq_('./extent')
 t.extent = extent
 
 module.exports = function(layer, done){
@@ -461,12 +460,12 @@ module.exports = function(layer, done){
     done(center)
   })
 }
-},{"./extent":20}],8:[function(require,module,exports){
+},{"./extent":20}],8:[function(_dereq_,module,exports){
 var t = {}
-var _ = require('lodash'),
-    ss = require('simple-statistics')
-    explode = require('./explode'),
-    point = require('./point'),
+var _ = _dereq_('lodash'),
+    ss = _dereq_('simple-statistics')
+    explode = _dereq_('./explode'),
+    point = _dereq_('./point'),
 t.explode = explode
 t.point = point
 
@@ -488,9 +487,9 @@ module.exports = function(features, done){
     done(err, t.point(averageX, averageY))
   })
 }
-},{"./explode":19,"./point":37,"lodash":77,"simple-statistics":78}],9:[function(require,module,exports){
+},{"./explode":19,"./point":37,"lodash":80,"simple-statistics":81}],9:[function(_dereq_,module,exports){
 //this tool takes a feature collection of like geometries and combines them into a single multipoint, multilinestring, or multipolygon
-var _ = require('lodash')
+var _ = _dereq_('lodash')
 
 module.exports = function(fc, done){
   var type = fc.features[0].geometry.type
@@ -532,20 +531,20 @@ module.exports = function(fc, done){
     break
   }
 }
-},{"lodash":77}],10:[function(require,module,exports){
+},{"lodash":80}],10:[function(_dereq_,module,exports){
 // 1. run tin on points
 // 2. calculate lenth of all edges and area of all triangles
 // 3. remove triangles that fail the max length test
 // 4. buffer the results slightly
 // 5. merge the results
 
-var async = require('async')
+var async = _dereq_('async')
 var t = {}
-t.tin = require('./tin')
-t.merge = require('./merge')
-t.buffer = require('./buffer')
-t.distance = require('./distance')
-t.point = require('./point')
+t.tin = _dereq_('./tin')
+t.merge = _dereq_('./merge')
+t.buffer = _dereq_('./buffer')
+t.distance = _dereq_('./distance')
+t.point = _dereq_('./point')
 
 module.exports = function(points, maxEdge, done){
   t.tin(points, null, function(err, tinPolys){
@@ -586,9 +585,10 @@ var filterTriangles = function(triangles, maxEdge, cb){
     }
   )
 }
-},{"./buffer":6,"./distance":15,"./merge":32,"./point":37,"./tin":49,"async":54}],11:[function(require,module,exports){
+},{"./buffer":6,"./distance":15,"./merge":32,"./point":37,"./tin":49,"async":54}],11:[function(_dereq_,module,exports){
 //https://github.com/jasondavies/conrec.js
 //http://stackoverflow.com/questions/263305/drawing-a-topographical-map
+<<<<<<< HEAD
 var _ = require('lodash'),
     async = require('async')
 var t = {}
@@ -602,6 +602,21 @@ t.polygon = require('./polygon')
 t.square = require('./square')
 t.donuts = require('./donuts')
 t.merge = require('./merge')
+=======
+var _ = _dereq_('lodash'),
+    async = _dereq_('async')
+var t = {}
+t.tin = _dereq_('./tin')
+t.inside = _dereq_('./inside')
+t.grid = _dereq_('./grid')
+t.extent = _dereq_('./extent')
+t.planepoint = _dereq_('./planepoint')
+t.featurecollection = _dereq_('./featurecollection')
+t.polygon = _dereq_('./polygon')
+t.square = _dereq_('./square')
+t.donuts = _dereq_('./donuts')
+t.merge = _dereq_('./merge')
+>>>>>>> 7638176a39302083733fd99740ca10aff89ae9cc
 
 module.exports = function(points, z, resolution, breaks, donuts, done){
   t.tin(points, z, function(err, tinResult){
@@ -682,8 +697,18 @@ module.exports = function(points, z, resolution, breaks, donuts, done){
                 }
               })
               donutPolys.features = []
+<<<<<<< HEAD
               _.each(zGroups, function(group){
                 t.merge(t.featurecollection(group.rings), function(err, multiRing){
+=======
+              console.log(zGroups)
+              _.each(zGroups, function(group){
+                t.merge(t.featurecollection(group.rings), function(err, multiRing){
+                  console.log(multiRing.properties[z])
+                  if(multiRing.properties.z === 80){
+                    console.log(multiRing)
+                  }
+>>>>>>> 7638176a39302083733fd99740ca10aff89ae9cc
                   donutPolys.features.push(multiRing)
                 })
               })
@@ -1215,14 +1240,18 @@ module.exports = function(points, z, resolution, breaks, donuts, done){
     }
   }
 
+<<<<<<< HEAD
 },{"./donuts":16,"./extent":20,"./featurecollection":21,"./grid":24,"./inside":25,"./merge":32,"./planepoint":36,"./polygon":38,"./square":46,"./tin":49,"async":54,"lodash":77}],12:[function(require,module,exports){
+=======
+},{"./donuts":16,"./extent":20,"./featurecollection":21,"./grid":24,"./inside":25,"./merge":32,"./planepoint":36,"./polygon":38,"./square":46,"./tin":49,"async":54,"lodash":80}],12:[function(_dereq_,module,exports){
+>>>>>>> 7638176a39302083733fd99740ca10aff89ae9cc
 // 1. run tin on points
 // 2. merge the tin
 //var topojson = require('')
 var t = {}
-t.tin = require('./tin')
-t.merge = require('./merge')
-t.buffer = require('./buffer')
+t.tin = _dereq_('./tin')
+t.merge = _dereq_('./merge')
+t.buffer = _dereq_('./buffer')
 
 module.exports = function(points, done){
   t.tin(points, null, function(err, tinPolys){
@@ -1235,10 +1264,10 @@ module.exports = function(points, done){
     })
   })
 }
-},{"./buffer":6,"./merge":32,"./tin":49}],13:[function(require,module,exports){
+},{"./buffer":6,"./merge":32,"./tin":49}],13:[function(_dereq_,module,exports){
 var t = {}
-var _ = require('lodash')
-t.inside = require('./inside')
+var _ = _dereq_('lodash')
+t.inside = _dereq_('./inside')
 
 module.exports = function(polyFC, ptFC, outField, done){
   _.each(polyFC.features, function(poly){
@@ -1257,11 +1286,11 @@ module.exports = function(polyFC, ptFC, outField, done){
   })
   done(null, polyFC)
 }
-},{"./inside":25,"lodash":77}],14:[function(require,module,exports){
+},{"./inside":25,"lodash":80}],14:[function(_dereq_,module,exports){
 var t = {}
-var _ = require('lodash'),
-    ss = require('simple-statistics')
-t.inside = require('./inside')
+var _ = _dereq_('lodash'),
+    ss = _dereq_('simple-statistics')
+t.inside = _dereq_('./inside')
 
 module.exports = function(polyFC, ptFC, inField, outField, done){
   _.each(polyFC.features, function(poly){
@@ -1280,7 +1309,7 @@ module.exports = function(polyFC, ptFC, inField, outField, done){
   })
   done(null, polyFC)
 }
-},{"./inside":25,"lodash":77,"simple-statistics":78}],15:[function(require,module,exports){
+},{"./inside":25,"lodash":80,"simple-statistics":81}],15:[function(_dereq_,module,exports){
 //http://en.wikipedia.org/wiki/Haversine_formula
 //http://www.movable-type.co.uk/scripts/latlong.html
 // expects a feature collection of points
@@ -1325,7 +1354,7 @@ module.exports = function(point1, point2, units, done){
 }
 
 
-},{}],16:[function(require,module,exports){
+},{}],16:[function(_dereq_,module,exports){
 /* 
 takes a collection of polygons and returns a collection of donuts.
 
@@ -1334,13 +1363,21 @@ takes a collection of polygons and returns a collection of donuts.
     poly1 = poly1.erase(poly2)
 */
 
-var _ = require('lodash')
+var _ = _dereq_('lodash')
 var t = {}
+<<<<<<< HEAD
 t.featurecollection = require('./featurecollection')
 t.erase = require('./erase')
 t.point = require('./point')
 t.inside = require('./inside')
 t.union = require('./union')
+=======
+t.featurecollection = _dereq_('./featurecollection')
+t.erase = _dereq_('./erase')
+t.point = _dereq_('./point')
+t.inside = _dereq_('./inside')
+t.union = _dereq_('./union')
+>>>>>>> 7638176a39302083733fd99740ca10aff89ae9cc
 
 module.exports = function(polyFC, done){
   donuts = t.featurecollection([])
@@ -1380,10 +1417,14 @@ function contained(poly1, poly2, done){
     done(isInside)
   })
 }
+<<<<<<< HEAD
 },{"./erase":18,"./featurecollection":21,"./inside":25,"./point":37,"./union":51,"lodash":77}],17:[function(require,module,exports){
+=======
+},{"./erase":18,"./featurecollection":21,"./inside":25,"./point":37,"./union":51,"lodash":80}],17:[function(_dereq_,module,exports){
+>>>>>>> 7638176a39302083733fd99740ca10aff89ae9cc
 var t = {}
-var extent = require('./extent'),
-    bboxPolygon = require('./bboxPolygon')
+var extent = _dereq_('./extent'),
+    bboxPolygon = _dereq_('./bboxPolygon')
 t.bboxPolygon = bboxPolygon
 t.extent = extent
 
@@ -1394,16 +1435,16 @@ module.exports = function(features, done){
     })
   })
 }
-},{"./bboxPolygon":4,"./extent":20}],18:[function(require,module,exports){
+},{"./bboxPolygon":4,"./extent":20}],18:[function(_dereq_,module,exports){
 // look here for help http://svn.osgeo.org/grass/grass/branches/releasebranch_6_4/vector/v.overlay/main.c
 //must be array of polygons
 
 // depend on jsts for now https://github.com/bjornharrtell/jsts/blob/master/examples/overlay.html
 
-var jsts = require('jsts'),
-    _ = require('lodash')
+var jsts = _dereq_('jsts'),
+    _ = _dereq_('lodash')
 var t = {}
-t.featurecollection = require('./featurecollection')
+t.featurecollection = _dereq_('./featurecollection')
 
 module.exports = function(poly1, poly2, done){
   poly1 = correctRings(poly1)
@@ -1429,11 +1470,11 @@ function correctRings(poly){
   })
   return poly
 }
-},{"./featurecollection":21,"jsts":55,"lodash":77}],19:[function(require,module,exports){
+},{"./featurecollection":21,"jsts":58,"lodash":80}],19:[function(_dereq_,module,exports){
 var t = {}
-var _ = require('lodash'),
-    featurecollection = require('./featurecollection'),
-    point = require('./point')
+var _ = _dereq_('lodash'),
+    featurecollection = _dereq_('./featurecollection'),
+    point = _dereq_('./point')
 t.featurecollection = featurecollection
 t.point = point
 
@@ -1520,8 +1561,8 @@ module.exports = function(features, done){
 
 
 
-},{"./featurecollection":21,"./point":37,"lodash":77}],20:[function(require,module,exports){
-_ = require('lodash')
+},{"./featurecollection":21,"./point":37,"lodash":80}],20:[function(_dereq_,module,exports){
+_ = _dereq_('lodash')
 
 module.exports = function(layer, done){
   var xmin = Infinity,
@@ -1632,7 +1673,7 @@ module.exports = function(layer, done){
     done(null, bbox)
   }
 }
-},{"lodash":77}],21:[function(require,module,exports){
+},{"lodash":80}],21:[function(_dereq_,module,exports){
 module.exports = function(features){
   var fc = {
     "type": "FeatureCollection",
@@ -1641,10 +1682,10 @@ module.exports = function(features){
 
   return fc
 }
-},{}],22:[function(require,module,exports){
-var _ = require('lodash')
+},{}],22:[function(_dereq_,module,exports){
+var _ = _dereq_('lodash')
 var t = {}
-t.featurecollection = require('./featurecollection')
+t.featurecollection = _dereq_('./featurecollection')
 
 module.exports = function(fc, field, value, done){
   var newFC = t.featurecollection([]);
@@ -1655,9 +1696,9 @@ module.exports = function(fc, field, value, done){
   }
   done(null, newFC)
 }
-},{"./featurecollection":21,"lodash":77}],23:[function(require,module,exports){
+},{"./featurecollection":21,"lodash":80}],23:[function(_dereq_,module,exports){
 var t = {}
-t.featurecollection = require('./featurecollection')
+t.featurecollection = _dereq_('./featurecollection')
 
 module.exports = function(fc, done){
   if(fc.type === 'Feature'){
@@ -1718,10 +1759,10 @@ var flipCoordinate = function(coordinates){
   y = coordinates[1]
   return([y, x])
 }
-},{"./featurecollection":21}],24:[function(require,module,exports){
+},{"./featurecollection":21}],24:[function(_dereq_,module,exports){
 var t = {}
-var _ = require('lodash'),
-  point = require('./point')
+var _ = _dereq_('lodash'),
+  point = _dereq_('./point')
 t.point = point
 
 module.exports = function(extents, depth, done){
@@ -1742,7 +1783,7 @@ module.exports = function(extents, depth, done){
   }
   done(null, fc)
 }
-},{"./point":37,"lodash":77}],25:[function(require,module,exports){
+},{"./point":37,"lodash":80}],25:[function(_dereq_,module,exports){
 // http://en.wikipedia.org/wiki/Even%E2%80%93odd_rule
 // modified from: https://github.com/substack/point-in-polygon/blob/master/index.js
 // which was modified from http://www.ecse.rpi.edu/Homepages/wrf/Research/Short_Notes/pnpoly.html
@@ -1765,11 +1806,11 @@ module.exports = function(point, polygon, done){
 }
 
 
-},{}],26:[function(require,module,exports){
+},{}],26:[function(_dereq_,module,exports){
 // depend on jsts for now https://github.com/bjornharrtell/jsts/blob/master/examples/overlay.html
-var jsts = require('jsts')
+var jsts = _dereq_('jsts')
 var t = {}
-t.featurecollection = require('./featurecollection')
+t.featurecollection = _dereq_('./featurecollection')
 
 module.exports = function(polys1, polys2, done){
   var reader = new jsts.io.GeoJSONReader()
@@ -1781,9 +1822,9 @@ module.exports = function(polys1, polys2, done){
   intersection = t.featurecollection([intersection])
   done(null, intersection)
 }
-},{"./featurecollection":21,"jsts":55}],27:[function(require,module,exports){
-var ss = require('simple-statistics'),
-    _ = require('lodash')
+},{"./featurecollection":21,"jsts":58}],27:[function(_dereq_,module,exports){
+var ss = _dereq_('simple-statistics'),
+    _ = _dereq_('lodash')
 
 module.exports = function(fc, field, num, done){
   var vals = []
@@ -1798,7 +1839,7 @@ module.exports = function(fc, field, num, done){
 
   done(null, breaks)
 }
-},{"lodash":77,"simple-statistics":78}],28:[function(require,module,exports){
+},{"lodash":80,"simple-statistics":81}],28:[function(_dereq_,module,exports){
 module.exports = function(coordinates, properties){
   if(coordinates === null) throw new Error('No coordinates passed')
   var linestring = { 
@@ -1812,9 +1853,9 @@ module.exports = function(coordinates, properties){
   return linestring
 }
 
-},{}],29:[function(require,module,exports){
-var path = require('path'),
-    fs = require('fs'),
+},{}],29:[function(_dereq_,module,exports){
+var path = _dereq_('path'),
+    fs = _dereq_('fs'),
     layer
 
 module.exports = function(file, done) {
@@ -1825,11 +1866,11 @@ module.exports = function(file, done) {
   })  
 }
 
-},{"fs":107,"path":108}],30:[function(require,module,exports){
+},{"fs":55,"path":57}],30:[function(_dereq_,module,exports){
 var t = {}
-var _ = require('lodash'),
-    ss = require('simple-statistics')
-t.inside = require('./inside')
+var _ = _dereq_('lodash'),
+    ss = _dereq_('simple-statistics')
+t.inside = _dereq_('./inside')
 
 module.exports = function(polyFC, ptFC, inField, outField, done){
   _.each(polyFC.features, function(poly){
@@ -1848,11 +1889,11 @@ module.exports = function(polyFC, ptFC, inField, outField, done){
   })
   done(null, polyFC)
 }
-},{"./inside":25,"lodash":77,"simple-statistics":78}],31:[function(require,module,exports){
+},{"./inside":25,"lodash":80,"simple-statistics":81}],31:[function(_dereq_,module,exports){
 var t = {}
-var _ = require('lodash'),
-    ss = require('simple-statistics')
-t.inside = require('./inside')
+var _ = _dereq_('lodash'),
+    ss = _dereq_('simple-statistics')
+t.inside = _dereq_('./inside')
 
 module.exports = function(polyFC, ptFC, inField, outField, done){
   _.each(polyFC.features, function(poly){
@@ -1871,14 +1912,14 @@ module.exports = function(polyFC, ptFC, inField, outField, done){
   })
   done(null, polyFC)
 }
-},{"./inside":25,"lodash":77,"simple-statistics":78}],32:[function(require,module,exports){
+},{"./inside":25,"lodash":80,"simple-statistics":81}],32:[function(_dereq_,module,exports){
 // 1. run tin on points
 // 2. merge the tin
 //var topojson = require('')
-var async = require('async'),
-    _ = require('lodash')
+var async = _dereq_('async'),
+    _ = _dereq_('lodash')
 var t = {}
-t.union = require('./union')
+t.union = _dereq_('./union')
 
 module.exports = function(polygons, done){
   var merged = _.cloneDeep(polygons.features[0])
@@ -1899,11 +1940,11 @@ module.exports = function(polygons, done){
     }
   )
 }
-},{"./union":51,"async":54,"lodash":77}],33:[function(require,module,exports){
+},{"./union":51,"async":54,"lodash":80}],33:[function(_dereq_,module,exports){
 // http://cs.selu.edu/~rbyrd/math/midpoint/
 // ((x1+x2)/2), ((y1+y2)/2)
 var t = {}
-var point = require('./point')
+var point = _dereq_('./point')
 t.point = point
 
 module.exports = function(point1, point2, done) {
@@ -1923,11 +1964,11 @@ module.exports = function(point1, point2, done) {
 
   done(null, midpoint)
 }
-},{"./point":37}],34:[function(require,module,exports){
+},{"./point":37}],34:[function(_dereq_,module,exports){
 var t = {}
-var _ = require('lodash'),
-    ss = require('simple-statistics')
-t.inside = require('./inside')
+var _ = _dereq_('lodash'),
+    ss = _dereq_('simple-statistics')
+t.inside = _dereq_('./inside')
 
 module.exports = function(polyFC, ptFC, inField, outField, done){
   _.each(polyFC.features, function(poly){
@@ -1946,10 +1987,10 @@ module.exports = function(polyFC, ptFC, inField, outField, done){
   })
   done(null, polyFC)
 }
-},{"./inside":25,"lodash":77,"simple-statistics":78}],35:[function(require,module,exports){
+},{"./inside":25,"lodash":80,"simple-statistics":81}],35:[function(_dereq_,module,exports){
 var t = {}
-var _ = require('lodash'),
- distance = require('./distance')
+var _ = _dereq_('lodash'),
+ distance = _dereq_('./distance')
 t.distance = distance
 
 module.exports = function(targetPoint, points, done){
@@ -1982,7 +2023,7 @@ module.exports = function(targetPoint, points, done){
     done(null, nPt)
   }
 }
-},{"./distance":15,"lodash":77}],36:[function(require,module,exports){
+},{"./distance":15,"lodash":80}],36:[function(_dereq_,module,exports){
 http://stackoverflow.com/a/13916669/461015
 
 module.exports = function(point, triangle, done){
@@ -2005,7 +2046,7 @@ module.exports = function(point, triangle, done){
 
   done(null, z)
 }
-},{}],37:[function(require,module,exports){
+},{}],37:[function(_dereq_,module,exports){
 module.exports = function(x, y, properties){
   if(x === null || y === null) throw new Error('Invalid coordinates')
   var point = { 
@@ -2018,7 +2059,7 @@ module.exports = function(x, y, properties){
   }
   return point
 }
-},{}],38:[function(require,module,exports){
+},{}],38:[function(_dereq_,module,exports){
 module.exports = function(coordinates, properties){
   if(coordinates === null) throw new Error('No coordinates passed')
   var polygon = {
@@ -2041,9 +2082,9 @@ module.exports = function(coordinates, properties){
 
 
 
-},{}],39:[function(require,module,exports){
-var ss = require('simple-statistics'),
-    _ = require('lodash')
+},{}],39:[function(_dereq_,module,exports){
+var ss = _dereq_('simple-statistics'),
+    _ = _dereq_('lodash')
 
 module.exports = function(fc, field, percentiles, done){
   var vals = []
@@ -2057,9 +2098,9 @@ module.exports = function(fc, field, percentiles, done){
   })
   done(null, quantiles)
 }
-},{"lodash":77,"simple-statistics":78}],40:[function(require,module,exports){
+},{"lodash":80,"simple-statistics":81}],40:[function(_dereq_,module,exports){
 var t = {}
-var featurecollection = require('./featurecollection')
+var featurecollection = _dereq_('./featurecollection')
 t.featurecollection = featurecollection
 
 module.exports = function(fc, inField, outField, translations, done){
@@ -2077,9 +2118,9 @@ module.exports = function(fc, inField, outField, translations, done){
   })
   done(null, reclassed)
 }
-},{"./featurecollection":21}],41:[function(require,module,exports){
+},{"./featurecollection":21}],41:[function(_dereq_,module,exports){
 var t = {}
-var featurecollection = require('./featurecollection')
+var featurecollection = _dereq_('./featurecollection')
 t.featurecollection = featurecollection
 
 module.exports = function(collection, key, val, done) {
@@ -2091,20 +2132,20 @@ module.exports = function(collection, key, val, done) {
   }
   done(null, newFC)
 }
-},{"./featurecollection":21}],42:[function(require,module,exports){
+},{"./featurecollection":21}],42:[function(_dereq_,module,exports){
 var t = {}
-var _ = require('lodash'),
-    featurecollection = require('./featurecollection')
+var _ = _dereq_('lodash'),
+    featurecollection = _dereq_('./featurecollection')
 t.featurecollection = featurecollection
 
 module.exports = function(fc, num, done){
   var outFC = t.featurecollection(_.sample(fc.features, num))
   done(null, outFC)
 }
-},{"./featurecollection":21,"lodash":77}],43:[function(require,module,exports){
+},{"./featurecollection":21,"lodash":80}],43:[function(_dereq_,module,exports){
 var t = {}
-var fs = require('fs')
-t.topo = require('./topo')
+var fs = _dereq_('fs')
+t.topo = _dereq_('./topo')
 
 module.exports = function(path, features, type, done){
   if(!type) type = 'geojson'
@@ -2124,9 +2165,9 @@ module.exports = function(path, features, type, done){
       break
   }
 }
-},{"./topo":50,"fs":107}],44:[function(require,module,exports){
+},{"./topo":50,"fs":55}],44:[function(_dereq_,module,exports){
 // use topojson.simplify to simplify points to a given tolerence then convert back to geojson
-var topojson = require('topojson')
+var topojson = _dereq_('topojson')
 
 module.exports = function(fc, quantization, minimumArea, done){
   var options = {
@@ -2142,7 +2183,7 @@ module.exports = function(fc, quantization, minimumArea, done){
   topojson.simplify(topo, options)
   done(null, topojson.feature(topo, topo.objects.name))
 }
-},{"topojson":79}],45:[function(require,module,exports){
+},{"topojson":82}],45:[function(_dereq_,module,exports){
 module.exports = function(bbox, factor, done){
   var lowX = (((bbox[2] - bbox[0]) / 2) * factor) + bbox[0]
   var lowY = (((bbox[3] - bbox[1]) / 2) * factor) + bbox[1]
@@ -2152,11 +2193,11 @@ module.exports = function(bbox, factor, done){
   var sized = [lowX, lowY, highX, highY]
   done(null, sized)
 }
-},{}],46:[function(require,module,exports){
+},{}],46:[function(_dereq_,module,exports){
 var t = {}
-var midpoint = require('../lib/midpoint'),
-    point = require('../lib/point'),
-    distance = require('../lib/distance')
+var midpoint = _dereq_('../lib/midpoint'),
+    point = _dereq_('../lib/point'),
+    distance = _dereq_('../lib/distance')
 t.midpoint = midpoint
 t.point = point
 t.distance = distance
@@ -2193,11 +2234,11 @@ module.exports = function(bbox, done) {
   //t.midpoint(t.point(bbox[0,]), bbox)
   //squareBbox[0] = 
 }
-},{"../lib/distance":15,"../lib/midpoint":33,"../lib/point":37}],47:[function(require,module,exports){
+},{"../lib/distance":15,"../lib/midpoint":33,"../lib/point":37}],47:[function(_dereq_,module,exports){
 var t = {}
-var _ = require('lodash'),
-    ss = require('simple-statistics')
-t.inside = require('./inside')
+var _ = _dereq_('lodash'),
+    ss = _dereq_('simple-statistics')
+t.inside = _dereq_('./inside')
 
 module.exports = function(polyFC, ptFC, inField, outField, done){
   _.each(polyFC.features, function(poly){
@@ -2216,10 +2257,10 @@ module.exports = function(polyFC, ptFC, inField, outField, done){
   })
   done(null, polyFC)
 }
-},{"./inside":25,"lodash":77,"simple-statistics":78}],48:[function(require,module,exports){
+},{"./inside":25,"lodash":80,"simple-statistics":81}],48:[function(_dereq_,module,exports){
 var t = {}
-  var _ = require('lodash')
-t.inside = require('./inside')
+  var _ = _dereq_('lodash')
+t.inside = _dereq_('./inside')
 
 module.exports = function(points, polygons, field, outField, done){
   _.each(points.features, function(pt){
@@ -2241,14 +2282,14 @@ module.exports = function(points, polygons, field, outField, done){
   })
   done(null, points)
 }
-},{"./inside":25,"lodash":77}],49:[function(require,module,exports){
+},{"./inside":25,"lodash":80}],49:[function(_dereq_,module,exports){
 //http://en.wikipedia.org/wiki/Delaunay_triangulation
 //https://github.com/ironwallaby/delaunay
 var t = {}
-var _ = require('lodash'),
-  polygon = require('./polygon'),
-  nearest = require('./nearest'),
-  point = require('./point')
+var _ = _dereq_('lodash'),
+  polygon = _dereq_('./polygon'),
+  nearest = _dereq_('./nearest'),
+  point = _dereq_('./point')
 t.polygon = polygon
 t.nearest = nearest
 t.point = point
@@ -2490,22 +2531,22 @@ function triangulate(vertices) {
     }
 }*/
 
-},{"./nearest":35,"./point":37,"./polygon":38,"lodash":77}],50:[function(require,module,exports){
-var topojson = require('topojson')
+},{"./nearest":35,"./point":37,"./polygon":38,"lodash":80}],50:[function(_dereq_,module,exports){
+var topojson = _dereq_('topojson')
 
 module.exports = function(geojson, done){
   var topology = topojson.topology({geojson: geojson})
   done(null, topology)
 }
-},{"topojson":79}],51:[function(require,module,exports){
+},{"topojson":82}],51:[function(_dereq_,module,exports){
 // look here for help http://svn.osgeo.org/grass/grass/branches/releasebranch_6_4/vector/v.overlay/main.c
 //must be array of polygons
 
 // depend on jsts for now https://github.com/bjornharrtell/jsts/blob/master/examples/overlay.html
 
-var jsts = require('jsts')
+var jsts = _dereq_('jsts')
 var t = {}
-t.featurecollection = require('./featurecollection')
+t.featurecollection = _dereq_('./featurecollection')
 
 module.exports = function(poly1, poly2, done){
   var reader = new jsts.io.GeoJSONReader()
@@ -2521,11 +2562,11 @@ module.exports = function(poly1, poly2, done){
   }
   done(null, union)
 }
-},{"./featurecollection":21,"jsts":55}],52:[function(require,module,exports){
+},{"./featurecollection":21,"jsts":58}],52:[function(_dereq_,module,exports){
 var t = {}
-var _ = require('lodash'),
-    ss = require('simple-statistics')
-t.inside = require('./inside')
+var _ = _dereq_('lodash'),
+    ss = _dereq_('simple-statistics')
+t.inside = _dereq_('./inside')
 
 module.exports = function(polyFC, ptFC, inField, outField, done){
   _.each(polyFC.features, function(poly){
@@ -2544,11 +2585,11 @@ module.exports = function(polyFC, ptFC, inField, outField, done){
   })
   done(null, polyFC)
 }
-},{"./inside":25,"lodash":77,"simple-statistics":78}],53:[function(require,module,exports){
+},{"./inside":25,"lodash":80,"simple-statistics":81}],53:[function(_dereq_,module,exports){
 var t = {}
-var _ = require('lodash')
-t.inside = require('./inside')
-t.featurecollection = require('./featurecollection')
+var _ = _dereq_('lodash')
+t.inside = _dereq_('./inside')
+t.featurecollection = _dereq_('./featurecollection')
 
 module.exports = function(ptFC, polyFC, done){
   pointsWithin = t.featurecollection([])
@@ -2563,8 +2604,8 @@ module.exports = function(ptFC, polyFC, done){
   })
   done(null, pointsWithin)
 }
-},{"./featurecollection":21,"./inside":25,"lodash":77}],54:[function(require,module,exports){
-var process=require("__browserify_process");/*global setImmediate: false, setTimeout: false, console: false */
+},{"./featurecollection":21,"./inside":25,"lodash":80}],54:[function(_dereq_,module,exports){
+(function (process){/*global setImmediate: false, setTimeout: false, console: false */
 (function () {
 
     var async = {};
@@ -2657,7 +2698,10 @@ var process=require("__browserify_process");/*global setImmediate: false, setTim
     else {
         async.nextTick = process.nextTick;
         if (typeof setImmediate !== 'undefined') {
-            async.setImmediate = setImmediate;
+            async.setImmediate = function (fn) {
+              // not a direct alias for IE10 compatibility
+              setImmediate(fn);
+            };
         }
         else {
             async.setImmediate = async.nextTick;
@@ -3519,15 +3563,298 @@ var process=require("__browserify_process");/*global setImmediate: false, setTim
     }
 
 }());
+}).call(this,_dereq_("/Users/tmcw/src/turf/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"))
+},{"/Users/tmcw/src/turf/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":56}],55:[function(_dereq_,module,exports){
 
-},{"__browserify_process":110}],55:[function(require,module,exports){
+},{}],56:[function(_dereq_,module,exports){
+// shim for using process in browser
+
+var process = module.exports = {};
+
+process.nextTick = (function () {
+    var canSetImmediate = typeof window !== 'undefined'
+    && window.setImmediate;
+    var canPost = typeof window !== 'undefined'
+    && window.postMessage && window.addEventListener
+    ;
+
+    if (canSetImmediate) {
+        return function (f) { return window.setImmediate(f) };
+    }
+
+    if (canPost) {
+        var queue = [];
+        window.addEventListener('message', function (ev) {
+            var source = ev.source;
+            if ((source === window || source === null) && ev.data === 'process-tick') {
+                ev.stopPropagation();
+                if (queue.length > 0) {
+                    var fn = queue.shift();
+                    fn();
+                }
+            }
+        }, true);
+
+        return function nextTick(fn) {
+            queue.push(fn);
+            window.postMessage('process-tick', '*');
+        };
+    }
+
+    return function nextTick(fn) {
+        setTimeout(fn, 0);
+    };
+})();
+
+process.title = 'browser';
+process.browser = true;
+process.env = {};
+process.argv = [];
+
+process.binding = function (name) {
+    throw new Error('process.binding is not supported');
+}
+
+// TODO(shtylman)
+process.cwd = function () { return '/' };
+process.chdir = function (dir) {
+    throw new Error('process.chdir is not supported');
+};
+
+},{}],57:[function(_dereq_,module,exports){
+(function (process){// Copyright Joyent, Inc. and other Node contributors.
+//
+// Permission is hereby granted, free of charge, to any person obtaining a
+// copy of this software and associated documentation files (the
+// "Software"), to deal in the Software without restriction, including
+// without limitation the rights to use, copy, modify, merge, publish,
+// distribute, sublicense, and/or sell copies of the Software, and to permit
+// persons to whom the Software is furnished to do so, subject to the
+// following conditions:
+//
+// The above copyright notice and this permission notice shall be included
+// in all copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+// OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN
+// NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
+// OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
+// USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+// resolves . and .. elements in a path array with directory names there
+// must be no slashes, empty elements, or device names (c:\) in the array
+// (so also no leading and trailing slashes - it does not distinguish
+// relative and absolute paths)
+function normalizeArray(parts, allowAboveRoot) {
+  // if the path tries to go above the root, `up` ends up > 0
+  var up = 0;
+  for (var i = parts.length - 1; i >= 0; i--) {
+    var last = parts[i];
+    if (last === '.') {
+      parts.splice(i, 1);
+    } else if (last === '..') {
+      parts.splice(i, 1);
+      up++;
+    } else if (up) {
+      parts.splice(i, 1);
+      up--;
+    }
+  }
+
+  // if the path is allowed to go above the root, restore leading ..s
+  if (allowAboveRoot) {
+    for (; up--; up) {
+      parts.unshift('..');
+    }
+  }
+
+  return parts;
+}
+
+// Split a filename into [root, dir, basename, ext], unix version
+// 'root' is just a slash, or nothing.
+var splitPathRe =
+    /^(\/?|)([\s\S]*?)((?:\.{1,2}|[^\/]+?|)(\.[^.\/]*|))(?:[\/]*)$/;
+var splitPath = function(filename) {
+  return splitPathRe.exec(filename).slice(1);
+};
+
+// path.resolve([from ...], to)
+// posix version
+exports.resolve = function() {
+  var resolvedPath = '',
+      resolvedAbsolute = false;
+
+  for (var i = arguments.length - 1; i >= -1 && !resolvedAbsolute; i--) {
+    var path = (i >= 0) ? arguments[i] : process.cwd();
+
+    // Skip empty and invalid entries
+    if (typeof path !== 'string') {
+      throw new TypeError('Arguments to path.resolve must be strings');
+    } else if (!path) {
+      continue;
+    }
+
+    resolvedPath = path + '/' + resolvedPath;
+    resolvedAbsolute = path.charAt(0) === '/';
+  }
+
+  // At this point the path should be resolved to a full absolute path, but
+  // handle relative paths to be safe (might happen when process.cwd() fails)
+
+  // Normalize the path
+  resolvedPath = normalizeArray(filter(resolvedPath.split('/'), function(p) {
+    return !!p;
+  }), !resolvedAbsolute).join('/');
+
+  return ((resolvedAbsolute ? '/' : '') + resolvedPath) || '.';
+};
+
+// path.normalize(path)
+// posix version
+exports.normalize = function(path) {
+  var isAbsolute = exports.isAbsolute(path),
+      trailingSlash = substr(path, -1) === '/';
+
+  // Normalize the path
+  path = normalizeArray(filter(path.split('/'), function(p) {
+    return !!p;
+  }), !isAbsolute).join('/');
+
+  if (!path && !isAbsolute) {
+    path = '.';
+  }
+  if (path && trailingSlash) {
+    path += '/';
+  }
+
+  return (isAbsolute ? '/' : '') + path;
+};
+
+// posix version
+exports.isAbsolute = function(path) {
+  return path.charAt(0) === '/';
+};
+
+// posix version
+exports.join = function() {
+  var paths = Array.prototype.slice.call(arguments, 0);
+  return exports.normalize(filter(paths, function(p, index) {
+    if (typeof p !== 'string') {
+      throw new TypeError('Arguments to path.join must be strings');
+    }
+    return p;
+  }).join('/'));
+};
+
+
+// path.relative(from, to)
+// posix version
+exports.relative = function(from, to) {
+  from = exports.resolve(from).substr(1);
+  to = exports.resolve(to).substr(1);
+
+  function trim(arr) {
+    var start = 0;
+    for (; start < arr.length; start++) {
+      if (arr[start] !== '') break;
+    }
+
+    var end = arr.length - 1;
+    for (; end >= 0; end--) {
+      if (arr[end] !== '') break;
+    }
+
+    if (start > end) return [];
+    return arr.slice(start, end - start + 1);
+  }
+
+  var fromParts = trim(from.split('/'));
+  var toParts = trim(to.split('/'));
+
+  var length = Math.min(fromParts.length, toParts.length);
+  var samePartsLength = length;
+  for (var i = 0; i < length; i++) {
+    if (fromParts[i] !== toParts[i]) {
+      samePartsLength = i;
+      break;
+    }
+  }
+
+  var outputParts = [];
+  for (var i = samePartsLength; i < fromParts.length; i++) {
+    outputParts.push('..');
+  }
+
+  outputParts = outputParts.concat(toParts.slice(samePartsLength));
+
+  return outputParts.join('/');
+};
+
+exports.sep = '/';
+exports.delimiter = ':';
+
+exports.dirname = function(path) {
+  var result = splitPath(path),
+      root = result[0],
+      dir = result[1];
+
+  if (!root && !dir) {
+    // No dirname whatsoever
+    return '.';
+  }
+
+  if (dir) {
+    // It has a dirname, strip trailing slash
+    dir = dir.substr(0, dir.length - 1);
+  }
+
+  return root + dir;
+};
+
+
+exports.basename = function(path, ext) {
+  var f = splitPath(path)[2];
+  // TODO: make this comparison case-insensitive on windows?
+  if (ext && f.substr(-1 * ext.length) === ext) {
+    f = f.substr(0, f.length - ext.length);
+  }
+  return f;
+};
+
+
+exports.extname = function(path) {
+  return splitPath(path)[3];
+};
+
+function filter (xs, f) {
+    if (xs.filter) return xs.filter(f);
+    var res = [];
+    for (var i = 0; i < xs.length; i++) {
+        if (f(xs[i], i, xs)) res.push(xs[i]);
+    }
+    return res;
+}
+
+// String.prototype.substr - negative index don't work in IE8
+var substr = 'ab'.substr(-1) === 'b'
+    ? function (str, start, len) { return str.substr(start, len) }
+    : function (str, start, len) {
+        if (start < 0) start = str.length + start;
+        return str.substr(start, len);
+    }
+;
+}).call(this,_dereq_("/Users/tmcw/src/turf/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"))
+},{"/Users/tmcw/src/turf/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":56}],58:[function(_dereq_,module,exports){
 'use strict';
 GLOBAL.javascript = {};
-GLOBAL.javascript.util = require('javascript.util');
-var jsts = require('./lib/jsts');
+GLOBAL.javascript.util = _dereq_('javascript.util');
+var jsts = _dereq_('./lib/jsts');
 module.exports = jsts
 
-},{"./lib/jsts":56,"javascript.util":57}],56:[function(require,module,exports){
+},{"./lib/jsts":59,"javascript.util":60}],59:[function(_dereq_,module,exports){
 /* The JSTS Topology Suite is a collection of JavaScript classes that
 implement the fundamental operations required to validate a given
 geo-spatial data set to a known topological specification.
@@ -5105,19 +5432,19 @@ boundaryCount++;var newLoc=jsts.geomgraph.GeometryGraph.determineBoundary(this.b
 return;if(loc===Location.BOUNDARY&&this.useBoundaryDeterminationRule)
 this.insertBoundaryPoint(argIndex,coord);else
 this.insertPoint(argIndex,coord,loc);};jsts.geomgraph.GeometryGraph.prototype.getInvalidPoint=function(){return this.invalidPoint;};})();
-},{}],57:[function(require,module,exports){
-module.exports = require('./src');
+},{}],60:[function(_dereq_,module,exports){
+module.exports = _dereq_('./src');
 
-},{"./src":76}],58:[function(require,module,exports){
+},{"./src":79}],61:[function(_dereq_,module,exports){
 /**
  * @requires List.js
  */
 
-var Collection = require('./Collection');
-var List = require('./List');
-var IndexOutOfBoundsException = require('./IndexOutOfBoundsException');
-var NoSuchElementException = require('./NoSuchElementException');
-var OperationNotSupported = require('./OperationNotSupported');
+var Collection = _dereq_('./Collection');
+var List = _dereq_('./List');
+var IndexOutOfBoundsException = _dereq_('./IndexOutOfBoundsException');
+var NoSuchElementException = _dereq_('./NoSuchElementException');
+var OperationNotSupported = _dereq_('./OperationNotSupported');
 
 /**
  * @see http://download.oracle.com/javase/6/docs/api/java/util/ArrayList.html
@@ -5273,7 +5600,7 @@ ArrayList.Iterator.prototype.remove = function() {
 
 module.exports = ArrayList;
 
-},{"./Collection":60,"./IndexOutOfBoundsException":64,"./List":66,"./NoSuchElementException":68,"./OperationNotSupported":69}],59:[function(require,module,exports){
+},{"./Collection":63,"./IndexOutOfBoundsException":67,"./List":69,"./NoSuchElementException":71,"./OperationNotSupported":72}],62:[function(_dereq_,module,exports){
 /**
  * @see http://download.oracle.com/javase/6/docs/api/java/util/Arrays.html
  *
@@ -5331,12 +5658,12 @@ Arrays.asList = function(array) {
 
 module.exports = Arrays;
 
-},{}],60:[function(require,module,exports){
+},{}],63:[function(_dereq_,module,exports){
 /**
  * @requires Iterator.js
  */
 
-var Iterator = require('./Iterator');
+var Iterator = _dereq_('./Iterator');
 
 /**
  * @see http://download.oracle.com/javase/6/docs/api/java/util/Collection.html
@@ -5406,7 +5733,7 @@ Collection.prototype.remove = function(o) {};
 
 module.exports = Collection;
 
-},{"./Iterator":65}],61:[function(require,module,exports){
+},{"./Iterator":68}],64:[function(_dereq_,module,exports){
 /**
  * @param {string=}
  *          message Optional message.
@@ -5425,14 +5752,14 @@ EmptyStackException.prototype.name = 'EmptyStackException';
 
 module.exports = EmptyStackException;
 
-},{}],62:[function(require,module,exports){
+},{}],65:[function(_dereq_,module,exports){
 /**
  * @requires Map.js
  * @requires ArrayList.js
  */
 
-var Map = require('./Map');
-var ArrayList = require('./ArrayList');
+var Map = _dereq_('./Map');
+var ArrayList = _dereq_('./ArrayList');
 
 /**
  * @see http://download.oracle.com/javase/6/docs/api/java/util/HashMap.html
@@ -5489,14 +5816,14 @@ HashMap.prototype.size = function() {
 
 module.exports = HashMap;
 
-},{"./ArrayList":58,"./Map":67}],63:[function(require,module,exports){
+},{"./ArrayList":61,"./Map":70}],66:[function(_dereq_,module,exports){
 /**
  * @requires Set.js
  */
-var Collection = require('./Collection');
-var Set = require('./Set');
-var OperationNotSupported = require('./OperationNotSupported');
-var NoSuchElementException = require('./NoSuchElementException');
+var Collection = _dereq_('./Collection');
+var Set = _dereq_('./Set');
+var OperationNotSupported = _dereq_('./OperationNotSupported');
+var NoSuchElementException = _dereq_('./NoSuchElementException');
 
 
 /**
@@ -5650,7 +5977,7 @@ HashSet.Iterator.prototype.remove = function() {
 
 module.exports = HashSet;
 
-},{"./Collection":60,"./NoSuchElementException":68,"./OperationNotSupported":69,"./Set":70}],64:[function(require,module,exports){
+},{"./Collection":63,"./NoSuchElementException":71,"./OperationNotSupported":72,"./Set":73}],67:[function(_dereq_,module,exports){
 /**
  * @param {string=}
  *          message Optional message.
@@ -5669,7 +5996,7 @@ IndexOutOfBoundsException.prototype.name = 'IndexOutOfBoundsException';
 
 module.exports = IndexOutOfBoundsException;
 
-},{}],65:[function(require,module,exports){
+},{}],68:[function(_dereq_,module,exports){
 /**
  * @see http://download.oracle.com/javase/6/docs/api/java/util/Iterator.html
  * @interface
@@ -5698,12 +6025,12 @@ Iterator.prototype.remove = function() {};
 
 module.exports = Iterator;
 
-},{}],66:[function(require,module,exports){
+},{}],69:[function(_dereq_,module,exports){
 /**
  * @requires Collection.js
  */
 
-var Collection = require('./Collection');
+var Collection = _dereq_('./Collection');
 
 /**
  * @see http://download.oracle.com/javase/6/docs/api/java/util/List.html
@@ -5732,7 +6059,7 @@ List.prototype.isEmpty = function() {};
 
 module.exports = List;
 
-},{"./Collection":60}],67:[function(require,module,exports){
+},{"./Collection":63}],70:[function(_dereq_,module,exports){
 /**
  * @see http://download.oracle.com/javase/6/docs/api/java/util/Map.html
  *
@@ -5778,7 +6105,7 @@ Map.prototype.values = function() {};
 
 module.exports = Map;
 
-},{}],68:[function(require,module,exports){
+},{}],71:[function(_dereq_,module,exports){
 /**
  * @param {string=}
  *          message Optional message.
@@ -5797,7 +6124,7 @@ NoSuchElementException.prototype.name = 'NoSuchElementException';
 
 module.exports = NoSuchElementException;
 
-},{}],69:[function(require,module,exports){
+},{}],72:[function(_dereq_,module,exports){
 /**
  * @param {string=}
  *          message Optional message.
@@ -5816,11 +6143,11 @@ OperationNotSupported.prototype.name = 'OperationNotSupported';
 
 module.exports = OperationNotSupported;
 
-},{}],70:[function(require,module,exports){
+},{}],73:[function(_dereq_,module,exports){
 /**
  * @requires Collection.js
  */
-var Collection = require('./Collection');
+var Collection = _dereq_('./Collection');
 
 /**
  * @see http://download.oracle.com/javase/6/docs/api/java/util/Set.html
@@ -5844,11 +6171,11 @@ Set.prototype.contains = function(o) {};
 
 module.exports = Set;
 
-},{"./Collection":60}],71:[function(require,module,exports){
+},{"./Collection":63}],74:[function(_dereq_,module,exports){
 /**
  * @requires Map.js
  */
-var Map = require('./Map');
+var Map = _dereq_('./Map');
 
 /**
  * @see http://download.oracle.com/javase/6/docs/api/java/util/SortedMap.html
@@ -5861,11 +6188,11 @@ SortedMap.prototype = new Map;
 
 module.exports = SortedMap;
 
-},{"./Map":67}],72:[function(require,module,exports){
+},{"./Map":70}],75:[function(_dereq_,module,exports){
 /**
  * @requires Set.js
  */
-var Set = require('./Set');
+var Set = _dereq_('./Set');
 
 /**
  * @see http://download.oracle.com/javase/6/docs/api/java/util/SortedSet.html
@@ -5878,12 +6205,12 @@ SortedSet.prototype = new Set;
 
 module.exports = SortedSet;
 
-},{"./Set":70}],73:[function(require,module,exports){
+},{"./Set":73}],76:[function(_dereq_,module,exports){
 /**
  * @requires List.js
  */
-var List = require('./List');
-var EmptyStackException = require('./EmptyStackException');
+var List = _dereq_('./List');
+var EmptyStackException = _dereq_('./EmptyStackException');
 
 /**
  * @see http://download.oracle.com/javase/6/docs/api/java/util/Stack.html
@@ -5996,14 +6323,14 @@ Stack.prototype.toArray = function() {
 
 module.exports = Stack;
 
-},{"./EmptyStackException":61,"./List":66}],74:[function(require,module,exports){
+},{"./EmptyStackException":64,"./List":69}],77:[function(_dereq_,module,exports){
 /**
  * @requires SortedMap.js
  * @requires ArrayList.js
  */
-var Map = require('./Map');
-var SortedMap = require('./SortedMap');
-var ArrayList = require('./ArrayList');
+var Map = _dereq_('./Map');
+var SortedMap = _dereq_('./SortedMap');
+var ArrayList = _dereq_('./ArrayList');
 
 /**
  * @see http://download.oracle.com/javase/6/docs/api/java/util/TreeMap.html
@@ -6089,14 +6416,14 @@ TreeMap.prototype.size = function() {
 
 module.exports = TreeMap;
 
-},{"./ArrayList":58,"./Map":67,"./SortedMap":71}],75:[function(require,module,exports){
+},{"./ArrayList":61,"./Map":70,"./SortedMap":74}],78:[function(_dereq_,module,exports){
 /**
  * @requires SortedSet.js
  */
-var Collection = require('./Collection');
-var SortedSet = require('./SortedSet');
-var OperationNotSupported = require('./OperationNotSupported');
-var NoSuchElementException = require('./NoSuchElementException');
+var Collection = _dereq_('./Collection');
+var SortedSet = _dereq_('./SortedSet');
+var OperationNotSupported = _dereq_('./OperationNotSupported');
+var NoSuchElementException = _dereq_('./NoSuchElementException');
 
 /**
  * @see http://download.oracle.com/javase/6/docs/api/java/util/TreeSet.html
@@ -6257,26 +6584,26 @@ TreeSet.Iterator.prototype.remove = function() {
 
 module.exports = TreeSet;
 
-},{"./Collection":60,"./NoSuchElementException":68,"./OperationNotSupported":69,"./SortedSet":72}],76:[function(require,module,exports){
-module.exports.ArrayList = require('./ArrayList');
-module.exports.Arrays = require('./Arrays');
-module.exports.Collection = require('./Collection');
-module.exports.HashMap = require('./HashMap');
-module.exports.Iterator = require('./Iterator');
-module.exports.List = require('./List');
-module.exports.Map = require('./Map');
-module.exports.Set = require('./Set');
-module.exports.HashSet = require('./HashSet');
-module.exports.SortedMap = require('./SortedMap');
-module.exports.SortedSet = require('./SortedSet');
-module.exports.Stack = require('./Stack');
-module.exports.TreeMap = require('./TreeMap');
-module.exports.TreeSet = require('./TreeSet');
+},{"./Collection":63,"./NoSuchElementException":71,"./OperationNotSupported":72,"./SortedSet":75}],79:[function(_dereq_,module,exports){
+module.exports.ArrayList = _dereq_('./ArrayList');
+module.exports.Arrays = _dereq_('./Arrays');
+module.exports.Collection = _dereq_('./Collection');
+module.exports.HashMap = _dereq_('./HashMap');
+module.exports.Iterator = _dereq_('./Iterator');
+module.exports.List = _dereq_('./List');
+module.exports.Map = _dereq_('./Map');
+module.exports.Set = _dereq_('./Set');
+module.exports.HashSet = _dereq_('./HashSet');
+module.exports.SortedMap = _dereq_('./SortedMap');
+module.exports.SortedSet = _dereq_('./SortedSet');
+module.exports.Stack = _dereq_('./Stack');
+module.exports.TreeMap = _dereq_('./TreeMap');
+module.exports.TreeSet = _dereq_('./TreeSet');
 
-},{"./ArrayList":58,"./Arrays":59,"./Collection":60,"./HashMap":62,"./HashSet":63,"./Iterator":65,"./List":66,"./Map":67,"./Set":70,"./SortedMap":71,"./SortedSet":72,"./Stack":73,"./TreeMap":74,"./TreeSet":75}],77:[function(require,module,exports){
-var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {};/**
+},{"./ArrayList":61,"./Arrays":62,"./Collection":63,"./HashMap":65,"./HashSet":66,"./Iterator":68,"./List":69,"./Map":70,"./Set":73,"./SortedMap":74,"./SortedSet":75,"./Stack":76,"./TreeMap":77,"./TreeSet":78}],80:[function(_dereq_,module,exports){
+(function (global){/**
  * @license
- * Lo-Dash 2.2.1 (Custom Build) <http://lodash.com/>
+ * Lo-Dash 2.4.1 (Custom Build) <http://lodash.com/>
  * Build: `lodash modern -o ./dist/lodash.js`
  * Copyright 2012-2013 The Dojo Foundation <http://dojofoundation.org/>
  * Based on Underscore.js 1.5.2 <http://underscorejs.org/LICENSE>
@@ -6323,7 +6650,7 @@ var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? 
 
   /**
    * Used to match ES6 template delimiters
-   * http://people.mozilla.org/~jorendorff/es6-draft.html#sec-7.8.6
+   * http://people.mozilla.org/~jorendorff/es6-draft.html#sec-literals-string-literals
    */
   var reEsTemplate = /\$\{([^\\}]*(?:\\.[^\\}]*)*)\}/g;
 
@@ -6331,7 +6658,7 @@ var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? 
   var reFlags = /\w*$/;
 
   /** Used to detected named functions */
-  var reFuncName = /^function[ \n\r\t]+\w/;
+  var reFuncName = /^\s*function[ \n\r\t]+\w/;
 
   /** Used to match "interpolate" template delimiters */
   var reInterpolate = /<%=([\s\S]+?)%>/g;
@@ -6352,7 +6679,7 @@ var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? 
   var contextProps = [
     'Array', 'Boolean', 'Date', 'Function', 'Math', 'Number', 'Object',
     'RegExp', 'String', '_', 'attachEvent', 'clearTimeout', 'isFinite', 'isNaN',
-    'parseInt', 'setImmediate', 'setTimeout'
+    'parseInt', 'setTimeout'
   ];
 
   /** Used to make template sourceURLs easier to identify */
@@ -6532,22 +6859,29 @@ var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? 
    */
   function compareAscending(a, b) {
     var ac = a.criteria,
-        bc = b.criteria;
+        bc = b.criteria,
+        index = -1,
+        length = ac.length;
 
-    // ensure a stable sort in V8 and other engines
-    // http://code.google.com/p/v8/issues/detail?id=90
-    if (ac !== bc) {
-      if (ac > bc || typeof ac == 'undefined') {
-        return 1;
-      }
-      if (ac < bc || typeof bc == 'undefined') {
-        return -1;
+    while (++index < length) {
+      var value = ac[index],
+          other = bc[index];
+
+      if (value !== other) {
+        if (value > other || typeof value == 'undefined') {
+          return 1;
+        }
+        if (value < other || typeof other == 'undefined') {
+          return -1;
+        }
       }
     }
-    // The JS engine embedded in Adobe applications like InDesign has a buggy
-    // `Array#sort` implementation that causes it, under certain circumstances,
-    // to return the same value for `a` and `b`.
-    // See https://github.com/jashkenas/underscore/pull/1247
+    // Fixes an `Array#sort` bug in the JS engine embedded in Adobe applications
+    // that causes it, under certain circumstances, to return the same value for
+    // `a` and `b`. See https://github.com/jashkenas/underscore/pull/1247
+    //
+    // This also ensures a stable sort in V8 and other engines.
+    // See http://code.google.com/p/v8/issues/detail?id=90
     return a.index - b.index;
   }
 
@@ -6627,15 +6961,6 @@ var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? 
       'undefined': false,
       'value': null
     };
-  }
-
-  /**
-   * A no-operation function.
-   *
-   * @private
-   */
-  function noop() {
-    // no operation performed
   }
 
   /**
@@ -6740,11 +7065,14 @@ var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? 
     /** Used to restore the original `_` reference in `noConflict` */
     var oldDash = context._;
 
+    /** Used to resolve the internal [[Class]] of values */
+    var toString = objectProto.toString;
+
     /** Used to detect if a method is native */
     var reNative = RegExp('^' +
-      String(objectProto.valueOf)
+      String(toString)
         .replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
-        .replace(/valueOf|for [^\]]+/g, '.+?') + '$'
+        .replace(/toString| for [^\]]+/g, '.*?') + '$'
     );
 
     /** Native method shortcuts */
@@ -6752,41 +7080,34 @@ var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? 
         clearTimeout = context.clearTimeout,
         floor = Math.floor,
         fnToString = Function.prototype.toString,
-        getPrototypeOf = reNative.test(getPrototypeOf = Object.getPrototypeOf) && getPrototypeOf,
+        getPrototypeOf = isNative(getPrototypeOf = Object.getPrototypeOf) && getPrototypeOf,
         hasOwnProperty = objectProto.hasOwnProperty,
-        now = reNative.test(now = Date.now) && now || function() { return +new Date; },
         push = arrayRef.push,
-        setImmediate = context.setImmediate,
         setTimeout = context.setTimeout,
         splice = arrayRef.splice,
-        toString = objectProto.toString,
         unshift = arrayRef.unshift;
 
+    /** Used to set meta data on functions */
     var defineProperty = (function() {
+      // IE 8 only accepts DOM elements
       try {
         var o = {},
-            func = reNative.test(func = Object.defineProperty) && func,
+            func = isNative(func = Object.defineProperty) && func,
             result = func(o, o, o) && func;
       } catch(e) { }
       return result;
     }());
 
     /* Native method shortcuts for methods with the same name as other `lodash` methods */
-    var nativeBind = reNative.test(nativeBind = toString.bind) && nativeBind,
-        nativeCreate = reNative.test(nativeCreate = Object.create) && nativeCreate,
-        nativeIsArray = reNative.test(nativeIsArray = Array.isArray) && nativeIsArray,
+    var nativeCreate = isNative(nativeCreate = Object.create) && nativeCreate,
+        nativeIsArray = isNative(nativeIsArray = Array.isArray) && nativeIsArray,
         nativeIsFinite = context.isFinite,
         nativeIsNaN = context.isNaN,
-        nativeKeys = reNative.test(nativeKeys = Object.keys) && nativeKeys,
+        nativeKeys = isNative(nativeKeys = Object.keys) && nativeKeys,
         nativeMax = Math.max,
         nativeMin = Math.min,
         nativeParseInt = context.parseInt,
-        nativeRandom = Math.random,
-        nativeSlice = arrayRef.slice;
-
-    /** Detect various environments */
-    var isIeOpera = reNative.test(context.attachEvent),
-        isV8 = nativeBind && !/\n|true/.test(nativeBind + isIeOpera);
+        nativeRandom = Math.random;
 
     /** Used to lookup a built-in constructor by [[Class]] */
     var ctorByClass = {};
@@ -6814,15 +7135,16 @@ var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? 
      *
      * The chainable wrapper functions are:
      * `after`, `assign`, `bind`, `bindAll`, `bindKey`, `chain`, `compact`,
-     * `compose`, `concat`, `countBy`, `createCallback`, `curry`, `debounce`,
-     * `defaults`, `defer`, `delay`, `difference`, `filter`, `flatten`, `forEach`,
-     * `forEachRight`, `forIn`, `forInRight`, `forOwn`, `forOwnRight`, `functions`,
-     * `groupBy`, `indexBy`, `initial`, `intersection`, `invert`, `invoke`, `keys`,
-     * `map`, `max`, `memoize`, `merge`, `min`, `object`, `omit`, `once`, `pairs`,
-     * `partial`, `partialRight`, `pick`, `pluck`, `pull`, `push`, `range`, `reject`,
-     * `remove`, `rest`, `reverse`, `shuffle`, `slice`, `sort`, `sortBy`, `splice`,
-     * `tap`, `throttle`, `times`, `toArray`, `transform`, `union`, `uniq`, `unshift`,
-     * `unzip`, `values`, `where`, `without`, `wrap`, and `zip`
+     * `compose`, `concat`, `countBy`, `create`, `createCallback`, `curry`,
+     * `debounce`, `defaults`, `defer`, `delay`, `difference`, `filter`, `flatten`,
+     * `forEach`, `forEachRight`, `forIn`, `forInRight`, `forOwn`, `forOwnRight`,
+     * `functions`, `groupBy`, `indexBy`, `initial`, `intersection`, `invert`,
+     * `invoke`, `keys`, `map`, `max`, `memoize`, `merge`, `min`, `object`, `omit`,
+     * `once`, `pairs`, `partial`, `partialRight`, `pick`, `pluck`, `pull`, `push`,
+     * `range`, `reject`, `remove`, `rest`, `reverse`, `shuffle`, `slice`, `sort`,
+     * `sortBy`, `splice`, `tap`, `throttle`, `times`, `toArray`, `transform`,
+     * `union`, `uniq`, `unshift`, `unzip`, `values`, `where`, `without`, `wrap`,
+     * and `zip`
      *
      * The non-chainable wrapper functions are:
      * `clone`, `cloneDeep`, `contains`, `escape`, `every`, `find`, `findIndex`,
@@ -6897,21 +7219,13 @@ var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? 
     var support = lodash.support = {};
 
     /**
-     * Detect if `Function#bind` exists and is inferred to be fast (all but V8).
-     *
-     * @memberOf _.support
-     * @type boolean
-     */
-    support.fastBind = nativeBind && !isV8;
-
-    /**
      * Detect if functions can be decompiled by `Function#toString`
      * (all but PS3 and older Opera mobile browsers & avoided in Windows 8 apps).
      *
      * @memberOf _.support
      * @type boolean
      */
-    support.funcDecomp = !reNative.test(context.WinRTError) && reThis.test(runInContext);
+    support.funcDecomp = !isNative(context.WinRTError) && reThis.test(runInContext);
 
     /**
      * Detect if `Function#name` is supported (all but IE).
@@ -6985,18 +7299,55 @@ var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? 
     /*--------------------------------------------------------------------------*/
 
     /**
+     * The base implementation of `_.bind` that creates the bound function and
+     * sets its meta data.
+     *
+     * @private
+     * @param {Array} bindData The bind data array.
+     * @returns {Function} Returns the new bound function.
+     */
+    function baseBind(bindData) {
+      var func = bindData[0],
+          partialArgs = bindData[2],
+          thisArg = bindData[4];
+
+      function bound() {
+        // `Function#bind` spec
+        // http://es5.github.io/#x15.3.4.5
+        if (partialArgs) {
+          // avoid `arguments` object deoptimizations by using `slice` instead
+          // of `Array.prototype.slice.call` and not assigning `arguments` to a
+          // variable as a ternary expression
+          var args = slice(partialArgs);
+          push.apply(args, arguments);
+        }
+        // mimic the constructor's `return` behavior
+        // http://es5.github.io/#x13.2.2
+        if (this instanceof bound) {
+          // ensure `new bound` is an instance of `func`
+          var thisBinding = baseCreate(func.prototype),
+              result = func.apply(thisBinding, args || arguments);
+          return isObject(result) ? result : thisBinding;
+        }
+        return func.apply(thisArg, args || arguments);
+      }
+      setBindData(bound, bindData);
+      return bound;
+    }
+
+    /**
      * The base implementation of `_.clone` without argument juggling or support
      * for `thisArg` binding.
      *
      * @private
      * @param {*} value The value to clone.
-     * @param {boolean} [deep=false] Specify a deep clone.
+     * @param {boolean} [isDeep=false] Specify a deep clone.
      * @param {Function} [callback] The function to customize cloning values.
      * @param {Array} [stackA=[]] Tracks traversed source objects.
      * @param {Array} [stackB=[]] Associates clones with source counterparts.
      * @returns {*} Returns the cloned value.
      */
-    function baseClone(value, deep, callback, stackA, stackB) {
+    function baseClone(value, isDeep, callback, stackA, stackB) {
       if (callback) {
         var result = callback(value);
         if (typeof result != 'undefined') {
@@ -7029,7 +7380,7 @@ var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? 
         return value;
       }
       var isArr = isArray(value);
-      if (deep) {
+      if (isDeep) {
         // check for circular references and return corresponding clone
         var initedStack = !stackA;
         stackA || (stackA = getArray());
@@ -7056,7 +7407,7 @@ var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? 
         }
       }
       // exit for shallow clone
-      if (!deep) {
+      if (!isDeep) {
         return result;
       }
       // add the source value to the stack of traversed objects
@@ -7066,7 +7417,7 @@ var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? 
 
       // recursively populate clone (susceptible to call stack limits)
       (isArr ? forEach : forOwn)(value, function(objValue, key) {
-        result[key] = baseClone(objValue, deep, callback, stackA, stackB);
+        result[key] = baseClone(objValue, isDeep, callback, stackA, stackB);
       });
 
       if (initedStack) {
@@ -7074,6 +7425,32 @@ var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? 
         releaseArray(stackB);
       }
       return result;
+    }
+
+    /**
+     * The base implementation of `_.create` without support for assigning
+     * properties to the created object.
+     *
+     * @private
+     * @param {Object} prototype The object to inherit from.
+     * @returns {Object} Returns the new object.
+     */
+    function baseCreate(prototype, properties) {
+      return isObject(prototype) ? nativeCreate(prototype) : {};
+    }
+    // fallback for browsers without `Object.create`
+    if (!nativeCreate) {
+      baseCreate = (function() {
+        function Object() {}
+        return function(prototype) {
+          if (isObject(prototype)) {
+            Object.prototype = prototype;
+            var result = new Object;
+            Object.prototype = null;
+          }
+          return result || context.Object();
+        };
+      }());
     }
 
     /**
@@ -7090,24 +7467,30 @@ var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? 
       if (typeof func != 'function') {
         return identity;
       }
-      // exit early if there is no `thisArg`
-      if (typeof thisArg == 'undefined') {
+      // exit early for no `thisArg` or already bound by `Function#bind`
+      if (typeof thisArg == 'undefined' || !('prototype' in func)) {
         return func;
       }
-      var bindData = func.__bindData__ || (support.funcNames && !func.name);
+      var bindData = func.__bindData__;
       if (typeof bindData == 'undefined') {
-        var source = reThis && fnToString.call(func);
-        if (!support.funcNames && source && !reFuncName.test(source)) {
-          bindData = true;
+        if (support.funcNames) {
+          bindData = !func.name;
         }
-        if (support.funcNames || !bindData) {
-          // checks if `func` references the `this` keyword and stores the result
-          bindData = !support.funcDecomp || reThis.test(source);
-          setBindData(func, bindData);
+        bindData = bindData || !support.funcDecomp;
+        if (!bindData) {
+          var source = fnToString.call(func);
+          if (!support.funcNames) {
+            bindData = !reFuncName.test(source);
+          }
+          if (!bindData) {
+            // checks if `func` references the `this` keyword and stores the result
+            bindData = reThis.test(source);
+            setBindData(func, bindData);
+          }
         }
       }
       // exit early if there are no `this` references or `func` is bound
-      if (bindData !== true && (bindData && bindData[1] & 1)) {
+      if (bindData === false || (bindData !== true && bindData[1] & 1)) {
         return func;
       }
       switch (argCount) {
@@ -7128,17 +7511,107 @@ var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? 
     }
 
     /**
+     * The base implementation of `createWrapper` that creates the wrapper and
+     * sets its meta data.
+     *
+     * @private
+     * @param {Array} bindData The bind data array.
+     * @returns {Function} Returns the new function.
+     */
+    function baseCreateWrapper(bindData) {
+      var func = bindData[0],
+          bitmask = bindData[1],
+          partialArgs = bindData[2],
+          partialRightArgs = bindData[3],
+          thisArg = bindData[4],
+          arity = bindData[5];
+
+      var isBind = bitmask & 1,
+          isBindKey = bitmask & 2,
+          isCurry = bitmask & 4,
+          isCurryBound = bitmask & 8,
+          key = func;
+
+      function bound() {
+        var thisBinding = isBind ? thisArg : this;
+        if (partialArgs) {
+          var args = slice(partialArgs);
+          push.apply(args, arguments);
+        }
+        if (partialRightArgs || isCurry) {
+          args || (args = slice(arguments));
+          if (partialRightArgs) {
+            push.apply(args, partialRightArgs);
+          }
+          if (isCurry && args.length < arity) {
+            bitmask |= 16 & ~32;
+            return baseCreateWrapper([func, (isCurryBound ? bitmask : bitmask & ~3), args, null, thisArg, arity]);
+          }
+        }
+        args || (args = arguments);
+        if (isBindKey) {
+          func = thisBinding[key];
+        }
+        if (this instanceof bound) {
+          thisBinding = baseCreate(func.prototype);
+          var result = func.apply(thisBinding, args);
+          return isObject(result) ? result : thisBinding;
+        }
+        return func.apply(thisBinding, args);
+      }
+      setBindData(bound, bindData);
+      return bound;
+    }
+
+    /**
+     * The base implementation of `_.difference` that accepts a single array
+     * of values to exclude.
+     *
+     * @private
+     * @param {Array} array The array to process.
+     * @param {Array} [values] The array of values to exclude.
+     * @returns {Array} Returns a new array of filtered values.
+     */
+    function baseDifference(array, values) {
+      var index = -1,
+          indexOf = getIndexOf(),
+          length = array ? array.length : 0,
+          isLarge = length >= largeArraySize && indexOf === baseIndexOf,
+          result = [];
+
+      if (isLarge) {
+        var cache = createCache(values);
+        if (cache) {
+          indexOf = cacheIndexOf;
+          values = cache;
+        } else {
+          isLarge = false;
+        }
+      }
+      while (++index < length) {
+        var value = array[index];
+        if (indexOf(values, value) < 0) {
+          result.push(value);
+        }
+      }
+      if (isLarge) {
+        releaseObject(values);
+      }
+      return result;
+    }
+
+    /**
      * The base implementation of `_.flatten` without support for callback
      * shorthands or `thisArg` binding.
      *
      * @private
      * @param {Array} array The array to flatten.
      * @param {boolean} [isShallow=false] A flag to restrict flattening to a single level.
-     * @param {boolean} [isArgArrays=false] A flag to restrict flattening to arrays and `arguments` objects.
+     * @param {boolean} [isStrict=false] A flag to restrict flattening to arrays and `arguments` objects.
      * @param {number} [fromIndex=0] The index to start from.
      * @returns {Array} Returns a new flattened array.
      */
-    function baseFlatten(array, isShallow, isArgArrays, fromIndex) {
+    function baseFlatten(array, isShallow, isStrict, fromIndex) {
       var index = (fromIndex || 0) - 1,
           length = array ? array.length : 0,
           result = [];
@@ -7150,7 +7623,7 @@ var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? 
             && (isArray(value) || isArguments(value))) {
           // recursively flatten arrays (susceptible to call stack limits)
           if (!isShallow) {
-            value = baseFlatten(value, isShallow, isArgArrays);
+            value = baseFlatten(value, isShallow, isStrict);
           }
           var valIndex = -1,
               valLength = value.length,
@@ -7160,7 +7633,7 @@ var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? 
           while (++valIndex < valLength) {
             result[resIndex++] = value[valIndex];
           }
-        } else if (!isArgArrays) {
+        } else if (!isStrict) {
           result.push(value);
         }
       }
@@ -7243,8 +7716,11 @@ var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? 
       var isArr = className == arrayClass;
       if (!isArr) {
         // unwrap any `lodash` wrapped values
-        if (hasOwnProperty.call(a, '__wrapped__ ') || hasOwnProperty.call(b, '__wrapped__')) {
-          return baseIsEqual(a.__wrapped__ || a, b.__wrapped__ || b, callback, isWhere, stackA, stackB);
+        var aWrapped = hasOwnProperty.call(a, '__wrapped__'),
+            bWrapped = hasOwnProperty.call(b, '__wrapped__');
+
+        if (aWrapped || bWrapped) {
+          return baseIsEqual(aWrapped ? a.__wrapped__ : a, bWrapped ? b.__wrapped__ : b, callback, isWhere, stackA, stackB);
         }
         // exit for functions and DOM nodes
         if (className != objectClass) {
@@ -7255,10 +7731,10 @@ var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? 
             ctorB = b.constructor;
 
         // non `Object` object instances with different constructors are not equal
-        if (ctorA != ctorB && !(
-              isFunction(ctorA) && ctorA instanceof ctorA &&
-              isFunction(ctorB) && ctorB instanceof ctorB
-            )) {
+        if (ctorA != ctorB &&
+              !(isFunction(ctorA) && ctorA instanceof ctorA && isFunction(ctorB) && ctorB instanceof ctorB) &&
+              ('constructor' in a && 'constructor' in b)
+            ) {
           return false;
         }
       }
@@ -7284,51 +7760,54 @@ var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? 
 
       // recursively compare objects and arrays (susceptible to call stack limits)
       if (isArr) {
+        // compare lengths to determine if a deep comparison is necessary
         length = a.length;
         size = b.length;
+        result = size == length;
 
-        // compare lengths to determine if a deep comparison is necessary
-        result = size == a.length;
-        if (!result && !isWhere) {
-          return result;
-        }
-        // deep compare the contents, ignoring non-numeric properties
-        while (size--) {
-          var index = length,
-              value = b[size];
+        if (result || isWhere) {
+          // deep compare the contents, ignoring non-numeric properties
+          while (size--) {
+            var index = length,
+                value = b[size];
 
-          if (isWhere) {
-            while (index--) {
-              if ((result = baseIsEqual(a[index], value, callback, isWhere, stackA, stackB))) {
-                break;
+            if (isWhere) {
+              while (index--) {
+                if ((result = baseIsEqual(a[index], value, callback, isWhere, stackA, stackB))) {
+                  break;
+                }
               }
+            } else if (!(result = baseIsEqual(a[size], value, callback, isWhere, stackA, stackB))) {
+              break;
             }
-          } else if (!(result = baseIsEqual(a[size], value, callback, isWhere, stackA, stackB))) {
-            break;
           }
         }
-        return result;
       }
-      // deep compare objects using `forIn`, instead of `forOwn`, to avoid `Object.keys`
-      // which, in this case, is more costly
-      forIn(b, function(value, key, b) {
-        if (hasOwnProperty.call(b, key)) {
-          // count the number of properties.
-          size++;
-          // deep compare each property value.
-          return (result = hasOwnProperty.call(a, key) && baseIsEqual(a[key], value, callback, isWhere, stackA, stackB));
-        }
-      });
-
-      if (result && !isWhere) {
-        // ensure both objects have the same number of properties
-        forIn(a, function(value, key, a) {
-          if (hasOwnProperty.call(a, key)) {
-            // `size` will be `-1` if `a` has more properties than `b`
-            return (result = --size > -1);
+      else {
+        // deep compare objects using `forIn`, instead of `forOwn`, to avoid `Object.keys`
+        // which, in this case, is more costly
+        forIn(b, function(value, key, b) {
+          if (hasOwnProperty.call(b, key)) {
+            // count the number of properties.
+            size++;
+            // deep compare each property value.
+            return (result = hasOwnProperty.call(a, key) && baseIsEqual(a[key], value, callback, isWhere, stackA, stackB));
           }
         });
+
+        if (result && !isWhere) {
+          // ensure both objects have the same number of properties
+          forIn(a, function(value, key, a) {
+            if (hasOwnProperty.call(a, key)) {
+              // `size` will be `-1` if `a` has more properties than `b`
+              return (result = --size > -1);
+            }
+          });
+        }
       }
+      stackA.pop();
+      stackB.pop();
+
       if (initedStack) {
         releaseArray(stackA);
         releaseArray(stackB);
@@ -7402,6 +7881,19 @@ var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? 
     }
 
     /**
+     * The base implementation of `_.random` without argument juggling or support
+     * for returning floating-point numbers.
+     *
+     * @private
+     * @param {number} min The minimum possible value.
+     * @param {number} max The maximum possible value.
+     * @returns {number} Returns a random number.
+     */
+    function baseRandom(min, max) {
+      return min + floor(nativeRandom() * (max - min + 1));
+    }
+
+    /**
      * The base implementation of `_.uniq` without support for callback shorthands
      * or `thisArg` binding.
      *
@@ -7422,13 +7914,8 @@ var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? 
 
       if (isLarge) {
         var cache = createCache(seen);
-        if (cache) {
-          indexOf = cacheIndexOf;
-          seen = cache;
-        } else {
-          isLarge = false;
-          seen = callback ? seen : (releaseArray(seen), result);
-        }
+        indexOf = cacheIndexOf;
+        seen = cache;
       }
       while (++index < length) {
         var value = array[index],
@@ -7505,16 +7992,15 @@ var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? 
      *  provided to the new function.
      * @param {*} [thisArg] The `this` binding of `func`.
      * @param {number} [arity] The arity of `func`.
-     * @returns {Function} Returns the new bound function.
+     * @returns {Function} Returns the new function.
      */
-    function createBound(func, bitmask, partialArgs, partialRightArgs, thisArg, arity) {
+    function createWrapper(func, bitmask, partialArgs, partialRightArgs, thisArg, arity) {
       var isBind = bitmask & 1,
           isBindKey = bitmask & 2,
           isCurry = bitmask & 4,
           isCurryBound = bitmask & 8,
           isPartial = bitmask & 16,
-          isPartialRight = bitmask & 32,
-          key = func;
+          isPartialRight = bitmask & 32;
 
       if (!isBindKey && !isFunction(func)) {
         throw new TypeError;
@@ -7528,96 +8014,42 @@ var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? 
         isPartialRight = partialRightArgs = false;
       }
       var bindData = func && func.__bindData__;
-      if (bindData) {
+      if (bindData && bindData !== true) {
+        // clone `bindData`
+        bindData = slice(bindData);
+        if (bindData[2]) {
+          bindData[2] = slice(bindData[2]);
+        }
+        if (bindData[3]) {
+          bindData[3] = slice(bindData[3]);
+        }
+        // set `thisBinding` is not previously bound
         if (isBind && !(bindData[1] & 1)) {
           bindData[4] = thisArg;
         }
+        // set if previously bound but not currently (subsequent curried functions)
         if (!isBind && bindData[1] & 1) {
           bitmask |= 8;
         }
+        // set curried arity if not yet set
         if (isCurry && !(bindData[1] & 4)) {
           bindData[5] = arity;
         }
+        // append partial left arguments
         if (isPartial) {
           push.apply(bindData[2] || (bindData[2] = []), partialArgs);
         }
+        // append partial right arguments
         if (isPartialRight) {
-          push.apply(bindData[3] || (bindData[3] = []), partialRightArgs);
+          unshift.apply(bindData[3] || (bindData[3] = []), partialRightArgs);
         }
+        // merge flags
         bindData[1] |= bitmask;
-        return createBound.apply(null, bindData);
+        return createWrapper.apply(null, bindData);
       }
-      // use `Function#bind` if it exists and is fast
-      // (in V8 `Function#bind` is slower except when partially applied)
-      if (isBind && !(isBindKey || isCurry || isPartialRight) &&
-          (support.fastBind || (nativeBind && isPartial))) {
-        if (isPartial) {
-          var args = [thisArg];
-          push.apply(args, partialArgs);
-        }
-        var bound = isPartial
-          ? nativeBind.apply(func, args)
-          : nativeBind.call(func, thisArg);
-      }
-      else {
-        bound = function() {
-          // `Function#bind` spec
-          // http://es5.github.io/#x15.3.4.5
-          var args = arguments,
-              thisBinding = isBind ? thisArg : this;
-
-          if (isCurry || isPartial || isPartialRight) {
-            args = nativeSlice.call(args);
-            if (isPartial) {
-              unshift.apply(args, partialArgs);
-            }
-            if (isPartialRight) {
-              push.apply(args, partialRightArgs);
-            }
-            if (isCurry && args.length < arity) {
-              bitmask |= 16 & ~32;
-              return createBound(func, (isCurryBound ? bitmask : bitmask & ~3), args, null, thisArg, arity);
-            }
-          }
-          if (isBindKey) {
-            func = thisBinding[key];
-          }
-          if (this instanceof bound) {
-            // ensure `new bound` is an instance of `func`
-            thisBinding = createObject(func.prototype);
-
-            // mimic the constructor's `return` behavior
-            // http://es5.github.io/#x13.2.2
-            var result = func.apply(thisBinding, args);
-            return isObject(result) ? result : thisBinding;
-          }
-          return func.apply(thisBinding, args);
-        };
-      }
-      setBindData(bound, nativeSlice.call(arguments));
-      return bound;
-    }
-
-    /**
-     * Creates a new object with the specified `prototype`.
-     *
-     * @private
-     * @param {Object} prototype The prototype object.
-     * @returns {Object} Returns the new object.
-     */
-    function createObject(prototype) {
-      return isObject(prototype) ? nativeCreate(prototype) : {};
-    }
-    // fallback for browsers without `Object.create`
-    if (!nativeCreate) {
-      createObject = function(prototype) {
-        if (isObject(prototype)) {
-          noop.prototype = prototype;
-          var result = new noop;
-          noop.prototype = null;
-        }
-        return result || {};
-      };
+      // fast path for `_.bind`
+      var creater = (bitmask == 1 || bitmask === 17) ? baseBind : baseCreateWrapper;
+      return creater([func, bitmask, partialArgs, partialRightArgs, thisArg, arity]);
     }
 
     /**
@@ -7645,11 +8077,22 @@ var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? 
     }
 
     /**
+     * Checks if `value` is a native function.
+     *
+     * @private
+     * @param {*} value The value to check.
+     * @returns {boolean} Returns `true` if the `value` is a native function, else `false`.
+     */
+    function isNative(value) {
+      return typeof value == 'function' && reNative.test(value);
+    }
+
+    /**
      * Sets `this` binding data on a given function.
      *
      * @private
      * @param {Function} func The function to set data on.
-     * @param {*} value The value to set.
+     * @param {Array} value The data array to set.
      */
     var setBindData = !defineProperty ? noop : function(func, value) {
       descriptor.value = value;
@@ -7825,16 +8268,16 @@ var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? 
      * @returns {Object} Returns the destination object.
      * @example
      *
-     * _.assign({ 'name': 'moe' }, { 'age': 40 });
-     * // => { 'name': 'moe', 'age': 40 }
+     * _.assign({ 'name': 'fred' }, { 'employer': 'slate' });
+     * // => { 'name': 'fred', 'employer': 'slate' }
      *
      * var defaults = _.partialRight(_.assign, function(a, b) {
      *   return typeof a == 'undefined' ? b : a;
      * });
      *
-     * var food = { 'name': 'apple' };
-     * defaults(food, { 'name': 'banana', 'type': 'fruit' });
-     * // => { 'name': 'apple', 'type': 'fruit' }
+     * var object = { 'name': 'barney' };
+     * defaults(object, { 'name': 'fred', 'employer': 'slate' });
+     * // => { 'name': 'barney', 'employer': 'slate' }
      */
     var assign = function(object, source, guard) {
       var index, iterable = object, result = iterable;
@@ -7864,7 +8307,7 @@ var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? 
     };
 
     /**
-     * Creates a clone of `value`. If `deep` is `true` nested objects will also
+     * Creates a clone of `value`. If `isDeep` is `true` nested objects will also
      * be cloned, otherwise they will be assigned by reference. If a callback
      * is provided it will be executed to produce the cloned values. If the
      * callback returns `undefined` cloning will be handled by the method instead.
@@ -7874,23 +8317,23 @@ var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? 
      * @memberOf _
      * @category Objects
      * @param {*} value The value to clone.
-     * @param {boolean} [deep=false] Specify a deep clone.
+     * @param {boolean} [isDeep=false] Specify a deep clone.
      * @param {Function} [callback] The function to customize cloning values.
      * @param {*} [thisArg] The `this` binding of `callback`.
      * @returns {*} Returns the cloned value.
      * @example
      *
-     * var stooges = [
-     *   { 'name': 'moe', 'age': 40 },
-     *   { 'name': 'larry', 'age': 50 }
+     * var characters = [
+     *   { 'name': 'barney', 'age': 36 },
+     *   { 'name': 'fred',   'age': 40 }
      * ];
      *
-     * var shallow = _.clone(stooges);
-     * shallow[0] === stooges[0];
+     * var shallow = _.clone(characters);
+     * shallow[0] === characters[0];
      * // => true
      *
-     * var deep = _.clone(stooges, true);
-     * deep[0] === stooges[0];
+     * var deep = _.clone(characters, true);
+     * deep[0] === characters[0];
      * // => false
      *
      * _.mixin({
@@ -7903,15 +8346,15 @@ var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? 
      * clone.childNodes.length;
      * // => 0
      */
-    function clone(value, deep, callback, thisArg) {
+    function clone(value, isDeep, callback, thisArg) {
       // allows working with "Collections" methods without using their `index`
-      // and `collection` arguments for `deep` and `callback`
-      if (typeof deep != 'boolean' && deep != null) {
+      // and `collection` arguments for `isDeep` and `callback`
+      if (typeof isDeep != 'boolean' && isDeep != null) {
         thisArg = callback;
-        callback = deep;
-        deep = false;
+        callback = isDeep;
+        isDeep = false;
       }
-      return baseClone(value, deep, typeof callback == 'function' && baseCreateCallback(callback, thisArg, 1));
+      return baseClone(value, isDeep, typeof callback == 'function' && baseCreateCallback(callback, thisArg, 1));
     }
 
     /**
@@ -7934,13 +8377,13 @@ var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? 
      * @returns {*} Returns the deep cloned value.
      * @example
      *
-     * var stooges = [
-     *   { 'name': 'moe', 'age': 40 },
-     *   { 'name': 'larry', 'age': 50 }
+     * var characters = [
+     *   { 'name': 'barney', 'age': 36 },
+     *   { 'name': 'fred',   'age': 40 }
      * ];
      *
-     * var deep = _.cloneDeep(stooges);
-     * deep[0] === stooges[0];
+     * var deep = _.cloneDeep(characters);
+     * deep[0] === characters[0];
      * // => false
      *
      * var view = {
@@ -7960,6 +8403,42 @@ var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? 
     }
 
     /**
+     * Creates an object that inherits from the given `prototype` object. If a
+     * `properties` object is provided its own enumerable properties are assigned
+     * to the created object.
+     *
+     * @static
+     * @memberOf _
+     * @category Objects
+     * @param {Object} prototype The object to inherit from.
+     * @param {Object} [properties] The properties to assign to the object.
+     * @returns {Object} Returns the new object.
+     * @example
+     *
+     * function Shape() {
+     *   this.x = 0;
+     *   this.y = 0;
+     * }
+     *
+     * function Circle() {
+     *   Shape.call(this);
+     * }
+     *
+     * Circle.prototype = _.create(Shape.prototype, { 'constructor': Circle });
+     *
+     * var circle = new Circle;
+     * circle instanceof Circle;
+     * // => true
+     *
+     * circle instanceof Shape;
+     * // => true
+     */
+    function create(prototype, properties) {
+      var result = baseCreate(prototype);
+      return properties ? assign(result, properties) : result;
+    }
+
+    /**
      * Assigns own enumerable properties of source object(s) to the destination
      * object for all destination properties that resolve to `undefined`. Once a
      * property is set, additional defaults of the same property will be ignored.
@@ -7975,9 +8454,9 @@ var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? 
      * @returns {Object} Returns the destination object.
      * @example
      *
-     * var food = { 'name': 'apple' };
-     * _.defaults(food, { 'name': 'banana', 'type': 'fruit' });
-     * // => { 'name': 'apple', 'type': 'fruit' }
+     * var object = { 'name': 'barney' };
+     * _.defaults(object, { 'name': 'fred', 'employer': 'slate' });
+     * // => { 'name': 'barney', 'employer': 'slate' }
      */
     var defaults = function(object, source, guard) {
       var index, iterable = object, result = iterable;
@@ -8005,6 +8484,13 @@ var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? 
      * This method is like `_.findIndex` except that it returns the key of the
      * first element that passes the callback check, instead of the element itself.
      *
+     * If a property name is provided for `callback` the created "_.pluck" style
+     * callback will return the property value of the given element.
+     *
+     * If an object is provided for `callback` the created "_.where" style callback
+     * will return `true` for elements that have the properties of the given object,
+     * else `false`.
+     *
      * @static
      * @memberOf _
      * @category Objects
@@ -8016,10 +8502,24 @@ var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? 
      * @returns {string|undefined} Returns the key of the found element, else `undefined`.
      * @example
      *
-     * _.findKey({ 'a': 1, 'b': 2, 'c': 3, 'd': 4 }, function(num) {
-     *   return num % 2 == 0;
+     * var characters = {
+     *   'barney': {  'age': 36, 'blocked': false },
+     *   'fred': {    'age': 40, 'blocked': true },
+     *   'pebbles': { 'age': 1,  'blocked': false }
+     * };
+     *
+     * _.findKey(characters, function(chr) {
+     *   return chr.age < 40;
      * });
-     * // => 'b' (property order is not guaranteed across environments)
+     * // => 'barney' (property order is not guaranteed across environments)
+     *
+     * // using "_.where" callback shorthand
+     * _.findKey(characters, { 'age': 1 });
+     * // => 'pebbles'
+     *
+     * // using "_.pluck" callback shorthand
+     * _.findKey(characters, 'blocked');
+     * // => 'fred'
      */
     function findKey(object, callback, thisArg) {
       var result;
@@ -8037,6 +8537,13 @@ var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? 
      * This method is like `_.findKey` except that it iterates over elements
      * of a `collection` in the opposite order.
      *
+     * If a property name is provided for `callback` the created "_.pluck" style
+     * callback will return the property value of the given element.
+     *
+     * If an object is provided for `callback` the created "_.where" style callback
+     * will return `true` for elements that have the properties of the given object,
+     * else `false`.
+     *
      * @static
      * @memberOf _
      * @category Objects
@@ -8048,10 +8555,24 @@ var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? 
      * @returns {string|undefined} Returns the key of the found element, else `undefined`.
      * @example
      *
-     * _.findLastKey({ 'a': 1, 'b': 2, 'c': 3, 'd': 4 }, function(num) {
-     *   return num % 2 == 1;
+     * var characters = {
+     *   'barney': {  'age': 36, 'blocked': true },
+     *   'fred': {    'age': 40, 'blocked': false },
+     *   'pebbles': { 'age': 1,  'blocked': true }
+     * };
+     *
+     * _.findLastKey(characters, function(chr) {
+     *   return chr.age < 40;
      * });
-     * // => returns `c`, assuming `_.findKey` returns `a`
+     * // => returns `pebbles`, assuming `_.findKey` returns `barney`
+     *
+     * // using "_.where" callback shorthand
+     * _.findLastKey(characters, { 'age': 40 });
+     * // => 'fred'
+     *
+     * // using "_.pluck" callback shorthand
+     * _.findLastKey(characters, 'blocked');
+     * // => 'pebbles'
      */
     function findLastKey(object, callback, thisArg) {
       var result;
@@ -8081,18 +8602,20 @@ var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? 
      * @returns {Object} Returns `object`.
      * @example
      *
-     * function Dog(name) {
-     *   this.name = name;
+     * function Shape() {
+     *   this.x = 0;
+     *   this.y = 0;
      * }
      *
-     * Dog.prototype.bark = function() {
-     *   console.log('Woof, woof!');
+     * Shape.prototype.move = function(x, y) {
+     *   this.x += x;
+     *   this.y += y;
      * };
      *
-     * _.forIn(new Dog('Dagny'), function(value, key) {
+     * _.forIn(new Shape, function(value, key) {
      *   console.log(key);
      * });
-     * // => logs 'bark' and 'name' (property order is not guaranteed across environments)
+     * // => logs 'x', 'y', and 'move' (property order is not guaranteed across environments)
      */
     var forIn = function(collection, callback, thisArg) {
       var index, iterable = collection, result = iterable;
@@ -8118,18 +8641,20 @@ var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? 
      * @returns {Object} Returns `object`.
      * @example
      *
-     * function Dog(name) {
-     *   this.name = name;
+     * function Shape() {
+     *   this.x = 0;
+     *   this.y = 0;
      * }
      *
-     * Dog.prototype.bark = function() {
-     *   console.log('Woof, woof!');
+     * Shape.prototype.move = function(x, y) {
+     *   this.x += x;
+     *   this.y += y;
      * };
      *
-     * _.forInRight(new Dog('Dagny'), function(value, key) {
+     * _.forInRight(new Shape, function(value, key) {
      *   console.log(key);
      * });
-     * // => logs 'name' and 'bark' assuming `_.forIn ` logs 'bark' and 'name'
+     * // => logs 'move', 'y', and 'x' assuming `_.forIn ` logs 'x', 'y', and 'move'
      */
     function forInRight(object, callback, thisArg) {
       var pairs = [];
@@ -8243,22 +8768,22 @@ var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? 
     }
 
     /**
-     * Checks if the specified object `property` exists and is a direct property,
+     * Checks if the specified property name exists as a direct property of `object`,
      * instead of an inherited property.
      *
      * @static
      * @memberOf _
      * @category Objects
-     * @param {Object} object The object to check.
-     * @param {string} property The property to check for.
+     * @param {Object} object The object to inspect.
+     * @param {string} key The name of the property to check.
      * @returns {boolean} Returns `true` if key is a direct property, else `false`.
      * @example
      *
      * _.has({ 'a': 1, 'b': 2, 'c': 3 }, 'b');
      * // => true
      */
-    function has(object, property) {
-      return object ? hasOwnProperty.call(object, property) : false;
+    function has(object, key) {
+      return object ? hasOwnProperty.call(object, key) : false;
     }
 
     /**
@@ -8271,8 +8796,8 @@ var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? 
      * @returns {Object} Returns the created inverted object.
      * @example
      *
-     *  _.invert({ 'first': 'moe', 'second': 'larry' });
-     * // => { 'moe': 'first', 'larry': 'second' }
+     * _.invert({ 'first': 'fred', 'second': 'barney' });
+     * // => { 'fred': 'first', 'barney': 'second' }
      */
     function invert(object) {
       var index = -1,
@@ -8301,7 +8826,8 @@ var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? 
      * // => false
      */
     function isBoolean(value) {
-      return value === true || value === false || toString.call(value) == boolClass;
+      return value === true || value === false ||
+        value && typeof value == 'object' && toString.call(value) == boolClass || false;
     }
 
     /**
@@ -8318,7 +8844,7 @@ var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? 
      * // => true
      */
     function isDate(value) {
-      return value ? (typeof value == 'object' && toString.call(value) == dateClass) : false;
+      return value && typeof value == 'object' && toString.call(value) == dateClass || false;
     }
 
     /**
@@ -8335,7 +8861,7 @@ var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? 
      * // => true
      */
     function isElement(value) {
-      return value ? value.nodeType === 1 : false;
+      return value && value.nodeType === 1 || false;
     }
 
     /**
@@ -8394,13 +8920,13 @@ var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? 
      * @returns {boolean} Returns `true` if the values are equivalent, else `false`.
      * @example
      *
-     * var moe = { 'name': 'moe', 'age': 40 };
-     * var copy = { 'name': 'moe', 'age': 40 };
+     * var object = { 'name': 'fred' };
+     * var copy = { 'name': 'fred' };
      *
-     * moe == copy;
+     * object == copy;
      * // => false
      *
-     * _.isEqual(moe, copy);
+     * _.isEqual(object, copy);
      * // => true
      *
      * var words = ['hello', 'goodbye'];
@@ -8563,7 +9089,8 @@ var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? 
      * // => true
      */
     function isNumber(value) {
-      return typeof value == 'number' || toString.call(value) == numberClass;
+      return typeof value == 'number' ||
+        value && typeof value == 'object' && toString.call(value) == numberClass || false;
     }
 
     /**
@@ -8576,26 +9103,26 @@ var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? 
      * @returns {boolean} Returns `true` if `value` is a plain object, else `false`.
      * @example
      *
-     * function Stooge(name, age) {
-     *   this.name = name;
-     *   this.age = age;
+     * function Shape() {
+     *   this.x = 0;
+     *   this.y = 0;
      * }
      *
-     * _.isPlainObject(new Stooge('moe', 40));
+     * _.isPlainObject(new Shape);
      * // => false
      *
      * _.isPlainObject([1, 2, 3]);
      * // => false
      *
-     * _.isPlainObject({ 'name': 'moe', 'age': 40 });
+     * _.isPlainObject({ 'x': 0, 'y': 0 });
      * // => true
      */
-    var isPlainObject = function(value) {
+    var isPlainObject = !getPrototypeOf ? shimIsPlainObject : function(value) {
       if (!(value && toString.call(value) == objectClass)) {
         return false;
       }
       var valueOf = value.valueOf,
-          objProto = typeof valueOf == 'function' && (objProto = getPrototypeOf(valueOf)) && getPrototypeOf(objProto);
+          objProto = isNative(valueOf) && (objProto = getPrototypeOf(valueOf)) && getPrototypeOf(objProto);
 
       return objProto
         ? (value == objProto || getPrototypeOf(value) == objProto)
@@ -8612,11 +9139,11 @@ var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? 
      * @returns {boolean} Returns `true` if the `value` is a regular expression, else `false`.
      * @example
      *
-     * _.isRegExp(/moe/);
+     * _.isRegExp(/fred/);
      * // => true
      */
     function isRegExp(value) {
-      return value ? (typeof value == 'object' && toString.call(value) == regexpClass) : false;
+      return value && typeof value == 'object' && toString.call(value) == regexpClass || false;
     }
 
     /**
@@ -8629,11 +9156,12 @@ var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? 
      * @returns {boolean} Returns `true` if the `value` is a string, else `false`.
      * @example
      *
-     * _.isString('moe');
+     * _.isString('fred');
      * // => true
      */
     function isString(value) {
-      return typeof value == 'string' || toString.call(value) == stringClass;
+      return typeof value == 'string' ||
+        value && typeof value == 'object' && toString.call(value) == stringClass || false;
     }
 
     /**
@@ -8651,6 +9179,52 @@ var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? 
      */
     function isUndefined(value) {
       return typeof value == 'undefined';
+    }
+
+    /**
+     * Creates an object with the same keys as `object` and values generated by
+     * running each own enumerable property of `object` through the callback.
+     * The callback is bound to `thisArg` and invoked with three arguments;
+     * (value, key, object).
+     *
+     * If a property name is provided for `callback` the created "_.pluck" style
+     * callback will return the property value of the given element.
+     *
+     * If an object is provided for `callback` the created "_.where" style callback
+     * will return `true` for elements that have the properties of the given object,
+     * else `false`.
+     *
+     * @static
+     * @memberOf _
+     * @category Objects
+     * @param {Object} object The object to iterate over.
+     * @param {Function|Object|string} [callback=identity] The function called
+     *  per iteration. If a property name or object is provided it will be used
+     *  to create a "_.pluck" or "_.where" style callback, respectively.
+     * @param {*} [thisArg] The `this` binding of `callback`.
+     * @returns {Array} Returns a new object with values of the results of each `callback` execution.
+     * @example
+     *
+     * _.mapValues({ 'a': 1, 'b': 2, 'c': 3} , function(num) { return num * 3; });
+     * // => { 'a': 3, 'b': 6, 'c': 9 }
+     *
+     * var characters = {
+     *   'fred': { 'name': 'fred', 'age': 40 },
+     *   'pebbles': { 'name': 'pebbles', 'age': 1 }
+     * };
+     *
+     * // using "_.pluck" callback shorthand
+     * _.mapValues(characters, 'age');
+     * // => { 'fred': 40, 'pebbles': 1 }
+     */
+    function mapValues(object, callback, thisArg) {
+      var result = {};
+      callback = lodash.createCallback(callback, thisArg, 3);
+
+      forOwn(object, function(value, key, object) {
+        result[key] = callback(value, key, object);
+      });
+      return result;
     }
 
     /**
@@ -8673,21 +9247,21 @@ var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? 
      * @example
      *
      * var names = {
-     *   'stooges': [
-     *     { 'name': 'moe' },
-     *     { 'name': 'larry' }
+     *   'characters': [
+     *     { 'name': 'barney' },
+     *     { 'name': 'fred' }
      *   ]
      * };
      *
      * var ages = {
-     *   'stooges': [
-     *     { 'age': 40 },
-     *     { 'age': 50 }
+     *   'characters': [
+     *     { 'age': 36 },
+     *     { 'age': 40 }
      *   ]
      * };
      *
      * _.merge(names, ages);
-     * // => { 'stooges': [{ 'name': 'moe', 'age': 40 }, { 'name': 'larry', 'age': 50 }] }
+     * // => { 'characters': [{ 'name': 'barney', 'age': 36 }, { 'name': 'fred', 'age': 40 }] }
      *
      * var food = {
      *   'fruits': ['apple'],
@@ -8721,7 +9295,7 @@ var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? 
       } else if (length > 2 && typeof args[length - 1] == 'function') {
         callback = args[--length];
       }
-      var sources = nativeSlice.call(arguments, 1, length),
+      var sources = slice(arguments, 1, length),
           index = -1,
           stackA = getArray(),
           stackB = getArray();
@@ -8752,32 +9326,38 @@ var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? 
      * @returns {Object} Returns an object without the omitted properties.
      * @example
      *
-     * _.omit({ 'name': 'moe', 'age': 40 }, 'age');
-     * // => { 'name': 'moe' }
+     * _.omit({ 'name': 'fred', 'age': 40 }, 'age');
+     * // => { 'name': 'fred' }
      *
-     * _.omit({ 'name': 'moe', 'age': 40 }, function(value) {
+     * _.omit({ 'name': 'fred', 'age': 40 }, function(value) {
      *   return typeof value == 'number';
      * });
-     * // => { 'name': 'moe' }
+     * // => { 'name': 'fred' }
      */
     function omit(object, callback, thisArg) {
-      var indexOf = getIndexOf(),
-          isFunc = typeof callback == 'function',
-          result = {};
+      var result = {};
+      if (typeof callback != 'function') {
+        var props = [];
+        forIn(object, function(value, key) {
+          props.push(key);
+        });
+        props = baseDifference(props, baseFlatten(arguments, true, false, 1));
 
-      if (isFunc) {
-        callback = lodash.createCallback(callback, thisArg, 3);
-      } else {
-        var props = baseFlatten(arguments, true, false, 1);
-      }
-      forIn(object, function(value, key, object) {
-        if (isFunc
-              ? !callback(value, key, object)
-              : indexOf(props, key) < 0
-            ) {
-          result[key] = value;
+        var index = -1,
+            length = props.length;
+
+        while (++index < length) {
+          var key = props[index];
+          result[key] = object[key];
         }
-      });
+      } else {
+        callback = lodash.createCallback(callback, thisArg, 3);
+        forIn(object, function(value, key, object) {
+          if (!callback(value, key, object)) {
+            result[key] = value;
+          }
+        });
+      }
       return result;
     }
 
@@ -8792,8 +9372,8 @@ var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? 
      * @returns {Array} Returns new array of key-value pairs.
      * @example
      *
-     * _.pairs({ 'moe': 30, 'larry': 40 });
-     * // => [['moe', 30], ['larry', 40]] (property order is not guaranteed across environments)
+     * _.pairs({ 'barney': 36, 'fred': 40 });
+     * // => [['barney', 36], ['fred', 40]] (property order is not guaranteed across environments)
      */
     function pairs(object) {
       var index = -1,
@@ -8827,13 +9407,13 @@ var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? 
      * @returns {Object} Returns an object composed of the picked properties.
      * @example
      *
-     * _.pick({ 'name': 'moe', '_userid': 'moe1' }, 'name');
-     * // => { 'name': 'moe' }
+     * _.pick({ 'name': 'fred', '_userid': 'fred1' }, 'name');
+     * // => { 'name': 'fred' }
      *
-     * _.pick({ 'name': 'moe', '_userid': 'moe1' }, function(value, key) {
+     * _.pick({ 'name': 'fred', '_userid': 'fred1' }, function(value, key) {
      *   return key.charAt(0) != '_';
      * });
-     * // => { 'name': 'moe' }
+     * // => { 'name': 'fred' }
      */
     function pick(object, callback, thisArg) {
       var result = {};
@@ -8861,16 +9441,16 @@ var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? 
 
     /**
      * An alternative to `_.reduce` this method transforms `object` to a new
-     * `accumulator` object which is the result of running each of its elements
-     * through a callback, with each callback execution potentially mutating
-     * the `accumulator` object. The callback is bound to `thisArg` and invoked
-     * with four arguments; (accumulator, value, key, object). Callbacks may exit
-     * iteration early by explicitly returning `false`.
+     * `accumulator` object which is the result of running each of its own
+     * enumerable properties through a callback, with each callback execution
+     * potentially mutating the `accumulator` object. The callback is bound to
+     * `thisArg` and invoked with four arguments; (accumulator, value, key, object).
+     * Callbacks may exit iteration early by explicitly returning `false`.
      *
      * @static
      * @memberOf _
      * @category Objects
-     * @param {Array|Object} collection The collection to iterate over.
+     * @param {Array|Object} object The object to iterate over.
      * @param {Function} [callback=identity] The function called per iteration.
      * @param {*} [accumulator] The custom accumulator value.
      * @param {*} [thisArg] The `this` binding of `callback`.
@@ -8892,8 +9472,6 @@ var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? 
      */
     function transform(object, callback, accumulator, thisArg) {
       var isArr = isArray(object);
-      callback = baseCreateCallback(callback, thisArg, 4);
-
       if (accumulator == null) {
         if (isArr) {
           accumulator = [];
@@ -8901,12 +9479,15 @@ var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? 
           var ctor = object && object.constructor,
               proto = ctor && ctor.prototype;
 
-          accumulator = createObject(proto);
+          accumulator = baseCreate(proto);
         }
       }
-      (isArr ? forEach : forOwn)(object, function(value, index, object) {
-        return callback(accumulator, value, index, object);
-      });
+      if (callback) {
+        callback = lodash.createCallback(callback, thisArg, 4);
+        (isArr ? forEach : forOwn)(object, function(value, index, object) {
+          return callback(accumulator, value, index, object);
+        });
+      }
       return accumulator;
     }
 
@@ -8955,8 +9536,8 @@ var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? 
      * _.at(['a', 'b', 'c', 'd', 'e'], [0, 2, 4]);
      * // => ['a', 'c', 'e']
      *
-     * _.at(['moe', 'larry', 'curly'], 0, 2);
-     * // => ['moe', 'curly']
+     * _.at(['fred', 'barney', 'pebbles'], 0, 2);
+     * // => ['fred', 'pebbles']
      */
     function at(collection) {
       var args = arguments,
@@ -8992,10 +9573,10 @@ var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? 
      * _.contains([1, 2, 3], 1, 2);
      * // => false
      *
-     * _.contains({ 'name': 'moe', 'age': 40 }, 'moe');
+     * _.contains({ 'name': 'fred', 'age': 40 }, 'fred');
      * // => true
      *
-     * _.contains('curly', 'ur');
+     * _.contains('pebbles', 'eb');
      * // => true
      */
     function contains(collection, target, fromIndex) {
@@ -9082,20 +9663,20 @@ var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? 
      *  else `false`.
      * @example
      *
-     * _.every([true, 1, null, 'yes'], Boolean);
+     * _.every([true, 1, null, 'yes']);
      * // => false
      *
-     * var stooges = [
-     *   { 'name': 'moe', 'age': 40 },
-     *   { 'name': 'larry', 'age': 50 }
+     * var characters = [
+     *   { 'name': 'barney', 'age': 36 },
+     *   { 'name': 'fred',   'age': 40 }
      * ];
      *
      * // using "_.pluck" callback shorthand
-     * _.every(stooges, 'age');
+     * _.every(characters, 'age');
      * // => true
      *
      * // using "_.where" callback shorthand
-     * _.every(stooges, { 'age': 50 });
+     * _.every(characters, { 'age': 36 });
      * // => false
      */
     function every(collection, callback, thisArg) {
@@ -9146,18 +9727,18 @@ var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? 
      * var evens = _.filter([1, 2, 3, 4, 5, 6], function(num) { return num % 2 == 0; });
      * // => [2, 4, 6]
      *
-     * var food = [
-     *   { 'name': 'apple',  'organic': false, 'type': 'fruit' },
-     *   { 'name': 'carrot', 'organic': true,  'type': 'vegetable' }
+     * var characters = [
+     *   { 'name': 'barney', 'age': 36, 'blocked': false },
+     *   { 'name': 'fred',   'age': 40, 'blocked': true }
      * ];
      *
      * // using "_.pluck" callback shorthand
-     * _.filter(food, 'organic');
-     * // => [{ 'name': 'carrot', 'organic': true, 'type': 'vegetable' }]
+     * _.filter(characters, 'blocked');
+     * // => [{ 'name': 'fred', 'age': 40, 'blocked': true }]
      *
      * // using "_.where" callback shorthand
-     * _.filter(food, { 'type': 'fruit' });
-     * // => [{ 'name': 'apple', 'organic': false, 'type': 'fruit' }]
+     * _.filter(characters, { 'age': 36 });
+     * // => [{ 'name': 'barney', 'age': 36, 'blocked': false }]
      */
     function filter(collection, callback, thisArg) {
       var result = [];
@@ -9207,24 +9788,24 @@ var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? 
      * @returns {*} Returns the found element, else `undefined`.
      * @example
      *
-     * _.find([1, 2, 3, 4], function(num) {
-     *   return num % 2 == 0;
-     * });
-     * // => 2
-     *
-     * var food = [
-     *   { 'name': 'apple',  'organic': false, 'type': 'fruit' },
-     *   { 'name': 'banana', 'organic': true,  'type': 'fruit' },
-     *   { 'name': 'beet',   'organic': false, 'type': 'vegetable' }
+     * var characters = [
+     *   { 'name': 'barney',  'age': 36, 'blocked': false },
+     *   { 'name': 'fred',    'age': 40, 'blocked': true },
+     *   { 'name': 'pebbles', 'age': 1,  'blocked': false }
      * ];
      *
+     * _.find(characters, function(chr) {
+     *   return chr.age < 40;
+     * });
+     * // => { 'name': 'barney', 'age': 36, 'blocked': false }
+     *
      * // using "_.where" callback shorthand
-     * _.find(food, { 'type': 'vegetable' });
-     * // => { 'name': 'beet', 'organic': false, 'type': 'vegetable' }
+     * _.find(characters, { 'age': 1 });
+     * // =>  { 'name': 'pebbles', 'age': 1, 'blocked': false }
      *
      * // using "_.pluck" callback shorthand
-     * _.find(food, 'organic');
-     * // => { 'name': 'banana', 'organic': true, 'type': 'fruit' }
+     * _.find(characters, 'blocked');
+     * // => { 'name': 'fred', 'age': 40, 'blocked': true }
      */
     function find(collection, callback, thisArg) {
       callback = lodash.createCallback(callback, thisArg, 3);
@@ -9288,6 +9869,10 @@ var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? 
      * element. The callback is bound to `thisArg` and invoked with three arguments;
      * (value, index|key, collection). Callbacks may exit iteration early by
      * explicitly returning `false`.
+     *
+     * Note: As with other "Collections" methods, objects with a `length` property
+     * are iterated like arrays. To avoid this behavior `_.forIn` or `_.forOwn`
+     * may be used for object iteration.
      *
      * @static
      * @memberOf _
@@ -9434,7 +10019,7 @@ var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? 
      * _.indexBy(keys, function(key) { return String.fromCharCode(key.code); });
      * // => { 'a': { 'dir': 'left', 'code': 97 }, 'd': { 'dir': 'right', 'code': 100 } }
      *
-     * _.indexBy(stooges, function(key) { this.fromCharCode(key.code); }, String);
+     * _.indexBy(characters, function(key) { this.fromCharCode(key.code); }, String);
      * // => { 'a': { 'dir': 'left', 'code': 97 }, 'd': { 'dir': 'right', 'code': 100 } }
      */
     var indexBy = createAggregator(function(result, value, key) {
@@ -9464,7 +10049,7 @@ var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? 
      * // => [['1', '2', '3'], ['4', '5', '6']]
      */
     function invoke(collection, methodName) {
-      var args = nativeSlice.call(arguments, 2),
+      var args = slice(arguments, 2),
           index = -1,
           isFunc = typeof methodName == 'function',
           length = collection ? collection.length : 0,
@@ -9506,14 +10091,14 @@ var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? 
      * _.map({ 'one': 1, 'two': 2, 'three': 3 }, function(num) { return num * 3; });
      * // => [3, 6, 9] (property order is not guaranteed across environments)
      *
-     * var stooges = [
-     *   { 'name': 'moe', 'age': 40 },
-     *   { 'name': 'larry', 'age': 50 }
+     * var characters = [
+     *   { 'name': 'barney', 'age': 36 },
+     *   { 'name': 'fred',   'age': 40 }
      * ];
      *
      * // using "_.pluck" callback shorthand
-     * _.map(stooges, 'name');
-     * // => ['moe', 'larry']
+     * _.map(characters, 'name');
+     * // => ['barney', 'fred']
      */
     function map(collection, callback, thisArg) {
       var index = -1,
@@ -9562,23 +10147,28 @@ var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? 
      * _.max([4, 2, 8, 6]);
      * // => 8
      *
-     * var stooges = [
-     *   { 'name': 'moe', 'age': 40 },
-     *   { 'name': 'larry', 'age': 50 }
+     * var characters = [
+     *   { 'name': 'barney', 'age': 36 },
+     *   { 'name': 'fred',   'age': 40 }
      * ];
      *
-     * _.max(stooges, function(stooge) { return stooge.age; });
-     * // => { 'name': 'larry', 'age': 50 };
+     * _.max(characters, function(chr) { return chr.age; });
+     * // => { 'name': 'fred', 'age': 40 };
      *
      * // using "_.pluck" callback shorthand
-     * _.max(stooges, 'age');
-     * // => { 'name': 'larry', 'age': 50 };
+     * _.max(characters, 'age');
+     * // => { 'name': 'fred', 'age': 40 };
      */
     function max(collection, callback, thisArg) {
       var computed = -Infinity,
           result = computed;
 
-      if (!callback && isArray(collection)) {
+      // allows working with functions like `_.map` without using
+      // their `index` argument as a callback
+      if (typeof callback != 'function' && thisArg && thisArg[callback] === collection) {
+        callback = null;
+      }
+      if (callback == null && isArray(collection)) {
         var index = -1,
             length = collection.length;
 
@@ -9589,7 +10179,7 @@ var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? 
           }
         }
       } else {
-        callback = (!callback && isString(collection))
+        callback = (callback == null && isString(collection))
           ? charAtCallback
           : lodash.createCallback(callback, thisArg, 3);
 
@@ -9632,23 +10222,28 @@ var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? 
      * _.min([4, 2, 8, 6]);
      * // => 2
      *
-     * var stooges = [
-     *   { 'name': 'moe', 'age': 40 },
-     *   { 'name': 'larry', 'age': 50 }
+     * var characters = [
+     *   { 'name': 'barney', 'age': 36 },
+     *   { 'name': 'fred',   'age': 40 }
      * ];
      *
-     * _.min(stooges, function(stooge) { return stooge.age; });
-     * // => { 'name': 'moe', 'age': 40 };
+     * _.min(characters, function(chr) { return chr.age; });
+     * // => { 'name': 'barney', 'age': 36 };
      *
      * // using "_.pluck" callback shorthand
-     * _.min(stooges, 'age');
-     * // => { 'name': 'moe', 'age': 40 };
+     * _.min(characters, 'age');
+     * // => { 'name': 'barney', 'age': 36 };
      */
     function min(collection, callback, thisArg) {
       var computed = Infinity,
           result = computed;
 
-      if (!callback && isArray(collection)) {
+      // allows working with functions like `_.map` without using
+      // their `index` argument as a callback
+      if (typeof callback != 'function' && thisArg && thisArg[callback] === collection) {
+        callback = null;
+      }
+      if (callback == null && isArray(collection)) {
         var index = -1,
             length = collection.length;
 
@@ -9659,7 +10254,7 @@ var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? 
           }
         }
       } else {
-        callback = (!callback && isString(collection))
+        callback = (callback == null && isString(collection))
           ? charAtCallback
           : lodash.createCallback(callback, thisArg, 3);
 
@@ -9675,37 +10270,26 @@ var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? 
     }
 
     /**
-     * Retrieves the value of a specified property from all elements in the `collection`.
+     * Retrieves the value of a specified property from all elements in the collection.
      *
      * @static
      * @memberOf _
      * @type Function
      * @category Collections
      * @param {Array|Object|string} collection The collection to iterate over.
-     * @param {string} property The property to pluck.
+     * @param {string} property The name of the property to pluck.
      * @returns {Array} Returns a new array of property values.
      * @example
      *
-     * var stooges = [
-     *   { 'name': 'moe', 'age': 40 },
-     *   { 'name': 'larry', 'age': 50 }
+     * var characters = [
+     *   { 'name': 'barney', 'age': 36 },
+     *   { 'name': 'fred',   'age': 40 }
      * ];
      *
-     * _.pluck(stooges, 'name');
-     * // => ['moe', 'larry']
+     * _.pluck(characters, 'name');
+     * // => ['barney', 'fred']
      */
-    function pluck(collection, property) {
-      var index = -1,
-          length = collection ? collection.length : 0;
-
-      if (typeof length == 'number') {
-        var result = Array(length);
-        while (++index < length) {
-          result[index] = collection[index][property];
-        }
-      }
-      return result || map(collection, property);
-    }
+    var pluck = map;
 
     /**
      * Reduces a collection to a value which is the accumulated result of running
@@ -9740,7 +10324,7 @@ var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? 
     function reduce(collection, callback, accumulator, thisArg) {
       if (!collection) return accumulator;
       var noaccum = arguments.length < 3;
-      callback = baseCreateCallback(callback, thisArg, 4);
+      callback = lodash.createCallback(callback, thisArg, 4);
 
       var index = -1,
           length = collection.length;
@@ -9783,7 +10367,7 @@ var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? 
      */
     function reduceRight(collection, callback, accumulator, thisArg) {
       var noaccum = arguments.length < 3;
-      callback = baseCreateCallback(callback, thisArg, 4);
+      callback = lodash.createCallback(callback, thisArg, 4);
       forEachRight(collection, function(value, index, collection) {
         accumulator = noaccum
           ? (noaccum = false, value)
@@ -9817,18 +10401,18 @@ var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? 
      * var odds = _.reject([1, 2, 3, 4, 5, 6], function(num) { return num % 2 == 0; });
      * // => [1, 3, 5]
      *
-     * var food = [
-     *   { 'name': 'apple',  'organic': false, 'type': 'fruit' },
-     *   { 'name': 'carrot', 'organic': true,  'type': 'vegetable' }
+     * var characters = [
+     *   { 'name': 'barney', 'age': 36, 'blocked': false },
+     *   { 'name': 'fred',   'age': 40, 'blocked': true }
      * ];
      *
      * // using "_.pluck" callback shorthand
-     * _.reject(food, 'organic');
-     * // => [{ 'name': 'apple', 'organic': false, 'type': 'fruit' }]
+     * _.reject(characters, 'blocked');
+     * // => [{ 'name': 'barney', 'age': 36, 'blocked': false }]
      *
      * // using "_.where" callback shorthand
-     * _.reject(food, { 'type': 'fruit' });
-     * // => [{ 'name': 'carrot', 'organic': true, 'type': 'vegetable' }]
+     * _.reject(characters, { 'age': 36 });
+     * // => [{ 'name': 'fred', 'age': 40, 'blocked': true }]
      */
     function reject(collection, callback, thisArg) {
       callback = lodash.createCallback(callback, thisArg, 3);
@@ -9845,8 +10429,8 @@ var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? 
      * @category Collections
      * @param {Array|Object|string} collection The collection to sample.
      * @param {number} [n] The number of elements to sample.
-     * @param- {Object} [guard] Allows working with functions, like `_.map`,
-     *  without using their `key` and `object` arguments as sources.
+     * @param- {Object} [guard] Allows working with functions like `_.map`
+     *  without using their `index` arguments as `n`.
      * @returns {Array} Returns the random sample(s) of `collection`.
      * @example
      *
@@ -9857,12 +10441,11 @@ var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? 
      * // => [3, 1]
      */
     function sample(collection, n, guard) {
-      var length = collection ? collection.length : 0;
-      if (typeof length != 'number') {
+      if (collection && typeof collection.length != 'number') {
         collection = values(collection);
       }
       if (n == null || guard) {
-        return collection ? collection[random(length - 1)] : undefined;
+        return collection ? collection[baseRandom(0, collection.length - 1)] : undefined;
       }
       var result = shuffle(collection);
       result.length = nativeMin(nativeMax(0, n), result.length);
@@ -9889,7 +10472,7 @@ var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? 
           result = Array(typeof length == 'number' ? length : 0);
 
       forEach(collection, function(value) {
-        var rand = random(++index);
+        var rand = baseRandom(0, ++index);
         result[index] = result[rand];
         result[rand] = value;
       });
@@ -9913,8 +10496,8 @@ var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? 
      * _.size({ 'one': 1, 'two': 2, 'three': 3 });
      * // => 3
      *
-     * _.size('curly');
-     * // => 5
+     * _.size('pebbles');
+     * // => 7
      */
     function size(collection) {
       var length = collection ? collection.length : 0;
@@ -9950,17 +10533,17 @@ var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? 
      * _.some([null, 0, 'yes', false], Boolean);
      * // => true
      *
-     * var food = [
-     *   { 'name': 'apple',  'organic': false, 'type': 'fruit' },
-     *   { 'name': 'carrot', 'organic': true,  'type': 'vegetable' }
+     * var characters = [
+     *   { 'name': 'barney', 'age': 36, 'blocked': false },
+     *   { 'name': 'fred',   'age': 40, 'blocked': true }
      * ];
      *
      * // using "_.pluck" callback shorthand
-     * _.some(food, 'organic');
+     * _.some(characters, 'blocked');
      * // => true
      *
      * // using "_.where" callback shorthand
-     * _.some(food, { 'type': 'meat' });
+     * _.some(characters, { 'age': 1 });
      * // => false
      */
     function some(collection, callback, thisArg) {
@@ -9994,6 +10577,9 @@ var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? 
      * If a property name is provided for `callback` the created "_.pluck" style
      * callback will return the property value of the given element.
      *
+     * If an array of property names is provided for `callback` the collection
+     * will be sorted by each property value.
+     *
      * If an object is provided for `callback` the created "_.where" style callback
      * will return `true` for elements that have the properties of the given object,
      * else `false`.
@@ -10002,7 +10588,7 @@ var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? 
      * @memberOf _
      * @category Collections
      * @param {Array|Object|string} collection The collection to iterate over.
-     * @param {Function|Object|string} [callback=identity] The function called
+     * @param {Array|Function|Object|string} [callback=identity] The function called
      *  per iteration. If a property name or object is provided it will be used
      *  to create a "_.pluck" or "_.where" style callback, respectively.
      * @param {*} [thisArg] The `this` binding of `callback`.
@@ -10015,19 +10601,37 @@ var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? 
      * _.sortBy([1, 2, 3], function(num) { return this.sin(num); }, Math);
      * // => [3, 1, 2]
      *
+     * var characters = [
+     *   { 'name': 'barney',  'age': 36 },
+     *   { 'name': 'fred',    'age': 40 },
+     *   { 'name': 'barney',  'age': 26 },
+     *   { 'name': 'fred',    'age': 30 }
+     * ];
+     *
      * // using "_.pluck" callback shorthand
-     * _.sortBy(['banana', 'strawberry', 'apple'], 'length');
-     * // => ['apple', 'banana', 'strawberry']
+     * _.map(_.sortBy(characters, 'age'), _.values);
+     * // => [['barney', 26], ['fred', 30], ['barney', 36], ['fred', 40]]
+     *
+     * // sorting by multiple properties
+     * _.map(_.sortBy(characters, ['name', 'age']), _.values);
+     * // = > [['barney', 26], ['barney', 36], ['fred', 30], ['fred', 40]]
      */
     function sortBy(collection, callback, thisArg) {
       var index = -1,
+          isArr = isArray(callback),
           length = collection ? collection.length : 0,
           result = Array(typeof length == 'number' ? length : 0);
 
-      callback = lodash.createCallback(callback, thisArg, 3);
+      if (!isArr) {
+        callback = lodash.createCallback(callback, thisArg, 3);
+      }
       forEach(collection, function(value, key, collection) {
         var object = result[++index] = getObject();
-        object.criteria = callback(value, key, collection);
+        if (isArr) {
+          object.criteria = map(callback, function(key) { return value[key]; });
+        } else {
+          (object.criteria = getArray())[0] = callback(value, key, collection);
+        }
         object.index = index;
         object.value = value;
       });
@@ -10037,6 +10641,9 @@ var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? 
       while (length--) {
         var object = result[length];
         result[length] = object.value;
+        if (!isArr) {
+          releaseArray(object.criteria);
+        }
         releaseObject(object);
       }
       return result;
@@ -10072,20 +10679,20 @@ var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? 
      * @type Function
      * @category Collections
      * @param {Array|Object|string} collection The collection to iterate over.
-     * @param {Object} properties The object of property values to filter by.
+     * @param {Object} props The object of property values to filter by.
      * @returns {Array} Returns a new array of elements that have the given properties.
      * @example
      *
-     * var stooges = [
-     *   { 'name': 'curly', 'age': 30, 'quotes': ['Oh, a wise guy, eh?', 'Poifect!'] },
-     *   { 'name': 'moe', 'age': 40, 'quotes': ['Spread out!', 'You knucklehead!'] }
+     * var characters = [
+     *   { 'name': 'barney', 'age': 36, 'pets': ['hoppy'] },
+     *   { 'name': 'fred',   'age': 40, 'pets': ['baby puss', 'dino'] }
      * ];
      *
-     * _.where(stooges, { 'age': 40 });
-     * // => [{ 'name': 'moe', 'age': 40, 'quotes': ['Spread out!', 'You knucklehead!'] }]
+     * _.where(characters, { 'age': 36 });
+     * // => [{ 'name': 'barney', 'age': 36, 'pets': ['hoppy'] }]
      *
-     * _.where(stooges, { 'quotes': ['Poifect!'] });
-     * // => [{ 'name': 'curly', 'age': 30, 'quotes': ['Oh, a wise guy, eh?', 'Poifect!'] }]
+     * _.where(characters, { 'pets': ['dino'] });
+     * // => [{ 'name': 'fred', 'age': 40, 'pets': ['baby puss', 'dino'] }]
      */
     var where = filter;
 
@@ -10127,7 +10734,7 @@ var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? 
      * @memberOf _
      * @category Arrays
      * @param {Array} array The array to process.
-     * @param {...Array} [array] The arrays of values to exclude.
+     * @param {...Array} [values] The arrays of values to exclude.
      * @returns {Array} Returns a new array of filtered values.
      * @example
      *
@@ -10135,38 +10742,19 @@ var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? 
      * // => [1, 3, 4]
      */
     function difference(array) {
-      var index = -1,
-          indexOf = getIndexOf(),
-          length = array ? array.length : 0,
-          seen = baseFlatten(arguments, true, true, 1),
-          result = [];
-
-      var isLarge = length >= largeArraySize && indexOf === baseIndexOf;
-
-      if (isLarge) {
-        var cache = createCache(seen);
-        if (cache) {
-          indexOf = cacheIndexOf;
-          seen = cache;
-        } else {
-          isLarge = false;
-        }
-      }
-      while (++index < length) {
-        var value = array[index];
-        if (indexOf(seen, value) < 0) {
-          result.push(value);
-        }
-      }
-      if (isLarge) {
-        releaseObject(seen);
-      }
-      return result;
+      return baseDifference(array, baseFlatten(arguments, true, true, 1));
     }
 
     /**
      * This method is like `_.find` except that it returns the index of the first
      * element that passes the callback check, instead of the element itself.
+     *
+     * If a property name is provided for `callback` the created "_.pluck" style
+     * callback will return the property value of the given element.
+     *
+     * If an object is provided for `callback` the created "_.where" style callback
+     * will return `true` for elements that have the properties of the given object,
+     * else `false`.
      *
      * @static
      * @memberOf _
@@ -10179,9 +10767,23 @@ var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? 
      * @returns {number} Returns the index of the found element, else `-1`.
      * @example
      *
-     * _.findIndex(['apple', 'banana', 'beet'], function(food) {
-     *   return /^b/.test(food);
+     * var characters = [
+     *   { 'name': 'barney',  'age': 36, 'blocked': false },
+     *   { 'name': 'fred',    'age': 40, 'blocked': true },
+     *   { 'name': 'pebbles', 'age': 1,  'blocked': false }
+     * ];
+     *
+     * _.findIndex(characters, function(chr) {
+     *   return chr.age < 20;
      * });
+     * // => 2
+     *
+     * // using "_.where" callback shorthand
+     * _.findIndex(characters, { 'age': 36 });
+     * // => 0
+     *
+     * // using "_.pluck" callback shorthand
+     * _.findIndex(characters, 'blocked');
      * // => 1
      */
     function findIndex(array, callback, thisArg) {
@@ -10201,6 +10803,13 @@ var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? 
      * This method is like `_.findIndex` except that it iterates over elements
      * of a `collection` from right to left.
      *
+     * If a property name is provided for `callback` the created "_.pluck" style
+     * callback will return the property value of the given element.
+     *
+     * If an object is provided for `callback` the created "_.where" style callback
+     * will return `true` for elements that have the properties of the given object,
+     * else `false`.
+     *
      * @static
      * @memberOf _
      * @category Arrays
@@ -10212,9 +10821,23 @@ var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? 
      * @returns {number} Returns the index of the found element, else `-1`.
      * @example
      *
-     * _.findLastIndex(['apple', 'banana', 'beet'], function(food) {
-     *   return /^b/.test(food);
+     * var characters = [
+     *   { 'name': 'barney',  'age': 36, 'blocked': true },
+     *   { 'name': 'fred',    'age': 40, 'blocked': false },
+     *   { 'name': 'pebbles', 'age': 1,  'blocked': true }
+     * ];
+     *
+     * _.findLastIndex(characters, function(chr) {
+     *   return chr.age > 30;
      * });
+     * // => 1
+     *
+     * // using "_.where" callback shorthand
+     * _.findLastIndex(characters, { 'age': 36 });
+     * // => 0
+     *
+     * // using "_.pluck" callback shorthand
+     * _.findLastIndex(characters, 'blocked');
      * // => 2
      */
     function findLastIndex(array, callback, thisArg) {
@@ -10265,24 +10888,19 @@ var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? 
      * });
      * // => [1, 2]
      *
-     * var food = [
-     *   { 'name': 'banana', 'organic': true },
-     *   { 'name': 'beet',   'organic': false },
+     * var characters = [
+     *   { 'name': 'barney',  'blocked': true,  'employer': 'slate' },
+     *   { 'name': 'fred',    'blocked': false, 'employer': 'slate' },
+     *   { 'name': 'pebbles', 'blocked': true,  'employer': 'na' }
      * ];
      *
      * // using "_.pluck" callback shorthand
-     * _.first(food, 'organic');
-     * // => [{ 'name': 'banana', 'organic': true }]
-     *
-     * var food = [
-     *   { 'name': 'apple',  'type': 'fruit' },
-     *   { 'name': 'banana', 'type': 'fruit' },
-     *   { 'name': 'beet',   'type': 'vegetable' }
-     * ];
+     * _.first(characters, 'blocked');
+     * // => [{ 'name': 'barney', 'blocked': true, 'employer': 'slate' }]
      *
      * // using "_.where" callback shorthand
-     * _.first(food, { 'type': 'fruit' });
-     * // => [{ 'name': 'apple', 'type': 'fruit' }, { 'name': 'banana', 'type': 'fruit' }]
+     * _.pluck(_.first(characters, { 'employer': 'slate' }), 'name');
+     * // => ['barney', 'fred']
      */
     function first(array, callback, thisArg) {
       var n = 0,
@@ -10335,20 +10953,20 @@ var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? 
      * _.flatten([1, [2], [3, [[4]]]], true);
      * // => [1, 2, 3, [[4]]];
      *
-     * var stooges = [
-     *   { 'name': 'curly', 'quotes': ['Oh, a wise guy, eh?', 'Poifect!'] },
-     *   { 'name': 'moe', 'quotes': ['Spread out!', 'You knucklehead!'] }
+     * var characters = [
+     *   { 'name': 'barney', 'age': 30, 'pets': ['hoppy'] },
+     *   { 'name': 'fred',   'age': 40, 'pets': ['baby puss', 'dino'] }
      * ];
      *
      * // using "_.pluck" callback shorthand
-     * _.flatten(stooges, 'quotes');
-     * // => ['Oh, a wise guy, eh?', 'Poifect!', 'Spread out!', 'You knucklehead!']
+     * _.flatten(characters, 'pets');
+     * // => ['hoppy', 'baby puss', 'dino']
      */
     function flatten(array, isShallow, callback, thisArg) {
       // juggle arguments
       if (typeof isShallow != 'boolean' && isShallow != null) {
         thisArg = callback;
-        callback = !(thisArg && thisArg[isShallow] === array) ? isShallow : null;
+        callback = (typeof isShallow != 'function' && thisArg && thisArg[isShallow] === array) ? null : isShallow;
         isShallow = false;
       }
       if (callback != null) {
@@ -10428,24 +11046,19 @@ var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? 
      * });
      * // => [1]
      *
-     * var food = [
-     *   { 'name': 'beet',   'organic': false },
-     *   { 'name': 'carrot', 'organic': true }
+     * var characters = [
+     *   { 'name': 'barney',  'blocked': false, 'employer': 'slate' },
+     *   { 'name': 'fred',    'blocked': true,  'employer': 'slate' },
+     *   { 'name': 'pebbles', 'blocked': true,  'employer': 'na' }
      * ];
      *
      * // using "_.pluck" callback shorthand
-     * _.initial(food, 'organic');
-     * // => [{ 'name': 'beet',   'organic': false }]
-     *
-     * var food = [
-     *   { 'name': 'banana', 'type': 'fruit' },
-     *   { 'name': 'beet',   'type': 'vegetable' },
-     *   { 'name': 'carrot', 'type': 'vegetable' }
-     * ];
+     * _.initial(characters, 'blocked');
+     * // => [{ 'name': 'barney',  'blocked': false, 'employer': 'slate' }]
      *
      * // using "_.where" callback shorthand
-     * _.initial(food, { 'type': 'vegetable' });
-     * // => [{ 'name': 'banana', 'type': 'fruit' }]
+     * _.pluck(_.initial(characters, { 'employer': 'na' }), 'name');
+     * // => ['barney', 'fred']
      */
     function initial(array, callback, thisArg) {
       var n = 0,
@@ -10471,29 +11084,34 @@ var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? 
      * @memberOf _
      * @category Arrays
      * @param {...Array} [array] The arrays to inspect.
-     * @returns {Array} Returns an array of composite values.
+     * @returns {Array} Returns an array of shared values.
      * @example
      *
-     * _.intersection([1, 2, 3], [101, 2, 1, 10], [2, 1]);
+     * _.intersection([1, 2, 3], [5, 2, 1, 4], [2, 1]);
      * // => [1, 2]
      */
-    function intersection(array) {
-      var args = arguments,
-          argsLength = args.length,
+    function intersection() {
+      var args = [],
           argsIndex = -1,
+          argsLength = arguments.length,
           caches = getArray(),
-          index = -1,
           indexOf = getIndexOf(),
-          length = array ? array.length : 0,
-          result = [],
+          trustIndexOf = indexOf === baseIndexOf,
           seen = getArray();
 
       while (++argsIndex < argsLength) {
-        var value = args[argsIndex];
-        caches[argsIndex] = indexOf === baseIndexOf &&
-          (value ? value.length : 0) >= largeArraySize &&
-          createCache(argsIndex ? args[argsIndex] : seen);
+        var value = arguments[argsIndex];
+        if (isArray(value) || isArguments(value)) {
+          args.push(value);
+          caches.push(trustIndexOf && value.length >= largeArraySize &&
+            createCache(argsIndex ? args[argsIndex] : seen));
+        }
       }
+      var array = args[0],
+          index = -1,
+          length = array ? array.length : 0,
+          result = [];
+
       outer:
       while (++index < length) {
         var cache = caches[0];
@@ -10558,24 +11176,19 @@ var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? 
      * });
      * // => [2, 3]
      *
-     * var food = [
-     *   { 'name': 'beet',   'organic': false },
-     *   { 'name': 'carrot', 'organic': true }
+     * var characters = [
+     *   { 'name': 'barney',  'blocked': false, 'employer': 'slate' },
+     *   { 'name': 'fred',    'blocked': true,  'employer': 'slate' },
+     *   { 'name': 'pebbles', 'blocked': true,  'employer': 'na' }
      * ];
      *
      * // using "_.pluck" callback shorthand
-     * _.last(food, 'organic');
-     * // => [{ 'name': 'carrot', 'organic': true }]
-     *
-     * var food = [
-     *   { 'name': 'banana', 'type': 'fruit' },
-     *   { 'name': 'beet',   'type': 'vegetable' },
-     *   { 'name': 'carrot', 'type': 'vegetable' }
-     * ];
+     * _.pluck(_.last(characters, 'blocked'), 'name');
+     * // => ['fred', 'pebbles']
      *
      * // using "_.where" callback shorthand
-     * _.last(food, { 'type': 'vegetable' });
-     * // => [{ 'name': 'beet', 'type': 'vegetable' }, { 'name': 'carrot', 'type': 'vegetable' }]
+     * _.last(characters, { 'employer': 'na' });
+     * // => [{ 'name': 'pebbles', 'blocked': true, 'employer': 'na' }]
      */
     function last(array, callback, thisArg) {
       var n = 0,
@@ -10600,6 +11213,13 @@ var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? 
      * Gets the index at which the last occurrence of `value` is found using strict
      * equality for comparisons, i.e. `===`. If `fromIndex` is negative, it is used
      * as the offset from the end of the collection.
+     *
+     * If a property name is provided for `callback` the created "_.pluck" style
+     * callback will return the property value of the given element.
+     *
+     * If an object is provided for `callback` the created "_.where" style callback
+     * will return `true` for elements that have the properties of the given object,
+     * else `false`.
      *
      * @static
      * @memberOf _
@@ -10679,17 +11299,17 @@ var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? 
      * @returns {Array} Returns a new range array.
      * @example
      *
-     * _.range(10);
-     * // => [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+     * _.range(4);
+     * // => [0, 1, 2, 3]
      *
-     * _.range(1, 11);
-     * // => [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+     * _.range(1, 5);
+     * // => [1, 2, 3, 4]
      *
-     * _.range(0, 30, 5);
-     * // => [0, 5, 10, 15, 20, 25]
+     * _.range(0, 20, 5);
+     * // => [0, 5, 10, 15]
      *
-     * _.range(0, -10, -1);
-     * // => [0, -1, -2, -3, -4, -5, -6, -7, -8, -9]
+     * _.range(0, -4, -1);
+     * // => [0, -1, -2, -3]
      *
      * _.range(1, 4, 0);
      * // => [1, 1, 1]
@@ -10705,7 +11325,7 @@ var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? 
         end = start;
         start = 0;
       }
-      // use `Array(length)` so engines, like Chakra and V8, avoid slower modes
+      // use `Array(length)` so engines like Chakra and V8 avoid slower modes
       // http://youtu.be/XAqIpGU8ZZk#t=17m25s
       var index = -1,
           length = nativeMax(0, ceil((end - start) / (step || 1))),
@@ -10805,24 +11425,19 @@ var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? 
      * });
      * // => [3]
      *
-     * var food = [
-     *   { 'name': 'banana', 'organic': true },
-     *   { 'name': 'beet',   'organic': false },
+     * var characters = [
+     *   { 'name': 'barney',  'blocked': true,  'employer': 'slate' },
+     *   { 'name': 'fred',    'blocked': false,  'employer': 'slate' },
+     *   { 'name': 'pebbles', 'blocked': true, 'employer': 'na' }
      * ];
      *
      * // using "_.pluck" callback shorthand
-     * _.rest(food, 'organic');
-     * // => [{ 'name': 'beet', 'organic': false }]
-     *
-     * var food = [
-     *   { 'name': 'apple',  'type': 'fruit' },
-     *   { 'name': 'banana', 'type': 'fruit' },
-     *   { 'name': 'beet',   'type': 'vegetable' }
-     * ];
+     * _.pluck(_.rest(characters, 'blocked'), 'name');
+     * // => ['fred', 'pebbles']
      *
      * // using "_.where" callback shorthand
-     * _.rest(food, { 'type': 'fruit' });
-     * // => [{ 'name': 'beet', 'type': 'vegetable' }]
+     * _.rest(characters, { 'employer': 'slate' });
+     * // => [{ 'name': 'pebbles', 'blocked': true, 'employer': 'na' }]
      */
     function rest(array, callback, thisArg) {
       if (typeof callback != 'number' && callback != null) {
@@ -10913,13 +11528,13 @@ var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? 
      * @memberOf _
      * @category Arrays
      * @param {...Array} [array] The arrays to inspect.
-     * @returns {Array} Returns an array of composite values.
+     * @returns {Array} Returns an array of combined values.
      * @example
      *
-     * _.union([1, 2, 3], [101, 2, 1, 10], [2, 1]);
-     * // => [1, 2, 3, 101, 10]
+     * _.union([1, 2, 3], [5, 2, 1, 4], [2, 1]);
+     * // => [1, 2, 3, 5, 4]
      */
-    function union(array) {
+    function union() {
       return baseUniq(baseFlatten(arguments, true, true));
     }
 
@@ -10971,7 +11586,7 @@ var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? 
       // juggle arguments
       if (typeof isSorted != 'boolean' && isSorted != null) {
         thisArg = callback;
-        callback = !(thisArg && thisArg[isSorted] === array) ? isSorted : null;
+        callback = (typeof isSorted != 'function' && thisArg && thisArg[isSorted] === array) ? null : isSorted;
         isSorted = false;
       }
       if (callback != null) {
@@ -10996,7 +11611,39 @@ var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? 
      * // => [2, 3, 4]
      */
     function without(array) {
-      return difference(array, nativeSlice.call(arguments, 1));
+      return baseDifference(array, slice(arguments, 1));
+    }
+
+    /**
+     * Creates an array that is the symmetric difference of the provided arrays.
+     * See http://en.wikipedia.org/wiki/Symmetric_difference.
+     *
+     * @static
+     * @memberOf _
+     * @category Arrays
+     * @param {...Array} [array] The arrays to inspect.
+     * @returns {Array} Returns an array of values.
+     * @example
+     *
+     * _.xor([1, 2, 3], [5, 2, 1, 4]);
+     * // => [3, 5, 4]
+     *
+     * _.xor([1, 2, 5], [2, 3, 5], [3, 4, 5]);
+     * // => [1, 4, 5]
+     */
+    function xor() {
+      var index = -1,
+          length = arguments.length;
+
+      while (++index < length) {
+        var array = arguments[index];
+        if (isArray(array) || isArguments(array)) {
+          var result = result
+            ? baseUniq(baseDifference(result, array).concat(baseDifference(array, result)))
+            : array;
+        }
+      }
+      return result || [];
     }
 
     /**
@@ -11012,8 +11659,8 @@ var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? 
      * @returns {Array} Returns a new array of grouped elements.
      * @example
      *
-     * _.zip(['moe', 'larry'], [30, 40], [true, false]);
-     * // => [['moe', 30, true], ['larry', 40, false]]
+     * _.zip(['fred', 'barney'], [30, 40], [true, false]);
+     * // => [['fred', 30, true], ['barney', 40, false]]
      */
     function zip() {
       var array = arguments.length > 1 ? arguments : arguments[0],
@@ -11042,14 +11689,17 @@ var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? 
      *  corresponding values.
      * @example
      *
-     * _.zipObject(['moe', 'larry'], [30, 40]);
-     * // => { 'moe': 30, 'larry': 40 }
+     * _.zipObject(['fred', 'barney'], [30, 40]);
+     * // => { 'fred': 30, 'barney': 40 }
      */
     function zipObject(keys, values) {
       var index = -1,
           length = keys ? keys.length : 0,
           result = {};
 
+      if (!values && length && !isArray(keys[0])) {
+        values = [];
+      }
       while (++index < length) {
         var key = keys[index];
         if (values) {
@@ -11116,14 +11766,14 @@ var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? 
      *   return greeting + ' ' + this.name;
      * };
      *
-     * func = _.bind(func, { 'name': 'moe' }, 'hi');
+     * func = _.bind(func, { 'name': 'fred' }, 'hi');
      * func();
-     * // => 'hi moe'
+     * // => 'hi fred'
      */
     function bind(func, thisArg) {
       return arguments.length > 2
-        ? createBound(func, 17, nativeSlice.call(arguments, 2), null, thisArg)
-        : createBound(func, 1, null, null, thisArg);
+        ? createWrapper(func, 17, slice(arguments, 2), null, thisArg)
+        : createWrapper(func, 1, null, null, thisArg);
     }
 
     /**
@@ -11142,8 +11792,8 @@ var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? 
      * @example
      *
      * var view = {
-     *  'label': 'docs',
-     *  'onClick': function() { console.log('clicked ' + this.label); }
+     *   'label': 'docs',
+     *   'onClick': function() { console.log('clicked ' + this.label); }
      * };
      *
      * _.bindAll(view);
@@ -11157,7 +11807,7 @@ var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? 
 
       while (++index < length) {
         var key = funcs[index];
-        object[key] = createBound(object[key], 1, null, null, object);
+        object[key] = createWrapper(object[key], 1, null, null, object);
       }
       return object;
     }
@@ -11179,7 +11829,7 @@ var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? 
      * @example
      *
      * var object = {
-     *   'name': 'moe',
+     *   'name': 'fred',
      *   'greet': function(greeting) {
      *     return greeting + ' ' + this.name;
      *   }
@@ -11187,19 +11837,19 @@ var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? 
      *
      * var func = _.bindKey(object, 'greet', 'hi');
      * func();
-     * // => 'hi moe'
+     * // => 'hi fred'
      *
      * object.greet = function(greeting) {
-     *   return greeting + ', ' + this.name + '!';
+     *   return greeting + 'ya ' + this.name + '!';
      * };
      *
      * func();
-     * // => 'hi, moe!'
+     * // => 'hiya fred!'
      */
     function bindKey(object, key) {
       return arguments.length > 2
-        ? createBound(key, 19, nativeSlice.call(arguments, 2), null, object)
-        : createBound(key, 3, null, null, object);
+        ? createWrapper(key, 19, slice(arguments, 2), null, object)
+        : createWrapper(key, 3, null, null, object);
     }
 
     /**
@@ -11216,7 +11866,7 @@ var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? 
      * @example
      *
      * var realNameMap = {
-     *   'curly': 'jerome'
+     *   'pebbles': 'penelope'
      * };
      *
      * var format = function(name) {
@@ -11229,8 +11879,8 @@ var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? 
      * };
      *
      * var welcome = _.compose(greet, format);
-     * welcome('curly');
-     * // => 'Hiya Jerome!'
+     * welcome('pebbles');
+     * // => 'Hiya Penelope!'
      */
     function compose() {
       var funcs = arguments,
@@ -11249,74 +11899,6 @@ var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? 
           args = [funcs[length].apply(this, args)];
         }
         return args[0];
-      };
-    }
-
-    /**
-     * Produces a callback bound to an optional `thisArg`. If `func` is a property
-     * name the created callback will return the property value for a given element.
-     * If `func` is an object the created callback will return `true` for elements
-     * that contain the equivalent object properties, otherwise it will return `false`.
-     *
-     * @static
-     * @memberOf _
-     * @category Functions
-     * @param {*} [func=identity] The value to convert to a callback.
-     * @param {*} [thisArg] The `this` binding of the created callback.
-     * @param {number} [argCount] The number of arguments the callback accepts.
-     * @returns {Function} Returns a callback function.
-     * @example
-     *
-     * var stooges = [
-     *   { 'name': 'moe', 'age': 40 },
-     *   { 'name': 'larry', 'age': 50 }
-     * ];
-     *
-     * // wrap to create custom callback shorthands
-     * _.createCallback = _.wrap(_.createCallback, function(func, callback, thisArg) {
-     *   var match = /^(.+?)__([gl]t)(.+)$/.exec(callback);
-     *   return !match ? func(callback, thisArg) : function(object) {
-     *     return match[2] == 'gt' ? object[match[1]] > match[3] : object[match[1]] < match[3];
-     *   };
-     * });
-     *
-     * _.filter(stooges, 'age__gt45');
-     * // => [{ 'name': 'larry', 'age': 50 }]
-     */
-    function createCallback(func, thisArg, argCount) {
-      var type = typeof func;
-      if (func == null || type == 'function') {
-        return baseCreateCallback(func, thisArg, argCount);
-      }
-      // handle "_.pluck" style callback shorthands
-      if (type != 'object') {
-        return function(object) {
-          return object[func];
-        };
-      }
-      var props = keys(func),
-          key = props[0],
-          a = func[key];
-
-      // handle "_.where" style callback shorthands
-      if (props.length == 1 && a === a && !isObject(a)) {
-        // fast path the common case of providing an object with a single
-        // property containing a primitive value
-        return function(object) {
-          var b = object[key];
-          return a === b && (a !== 0 || (1 / a == 1 / b));
-        };
-      }
-      return function(object) {
-        var length = props.length,
-            result = false;
-
-        while (length--) {
-          if (!(result = baseIsEqual(object[props[length]], func[props[length]], null, true))) {
-            break;
-          }
-        }
-        return result;
       };
     }
 
@@ -11350,7 +11932,7 @@ var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? 
      */
     function curry(func, arity) {
       arity = typeof arity == 'number' ? arity : (+arity || func.length);
-      return createBound(func, 4, null, null, null, arity);
+      return createWrapper(func, 4, null, null, null, arity);
     }
 
     /**
@@ -11427,6 +12009,9 @@ var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? 
           if (isCalled) {
             lastCalled = now();
             result = func.apply(thisArg, args);
+            if (!timeoutId && !maxTimeoutId) {
+              args = thisArg = null;
+            }
           }
         } else {
           timeoutId = setTimeout(delayed, remaining);
@@ -11441,6 +12026,9 @@ var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? 
         if (trailing || (maxWait !== wait)) {
           lastCalled = now();
           result = func.apply(thisArg, args);
+          if (!timeoutId && !maxTimeoutId) {
+            args = thisArg = null;
+          }
         }
       };
 
@@ -11456,8 +12044,10 @@ var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? 
           if (!maxTimeoutId && !leading) {
             lastCalled = stamp;
           }
-          var remaining = maxWait - (stamp - lastCalled);
-          if (remaining <= 0) {
+          var remaining = maxWait - (stamp - lastCalled),
+              isCalled = remaining <= 0;
+
+          if (isCalled) {
             if (maxTimeoutId) {
               maxTimeoutId = clearTimeout(maxTimeoutId);
             }
@@ -11468,11 +12058,18 @@ var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? 
             maxTimeoutId = setTimeout(maxDelayed, remaining);
           }
         }
-        if (!timeoutId && wait !== maxWait) {
+        if (isCalled && timeoutId) {
+          timeoutId = clearTimeout(timeoutId);
+        }
+        else if (!timeoutId && wait !== maxWait) {
           timeoutId = setTimeout(delayed, wait);
         }
         if (leadingCall) {
+          isCalled = true;
           result = func.apply(thisArg, args);
+        }
+        if (isCalled && !timeoutId && !maxTimeoutId) {
+          args = thisArg = null;
         }
         return result;
       };
@@ -11490,24 +12087,15 @@ var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? 
      * @returns {number} Returns the timer id.
      * @example
      *
-     * _.defer(function() { console.log('deferred'); });
-     * // returns from the function before 'deferred' is logged
+     * _.defer(function(text) { console.log(text); }, 'deferred');
+     * // logs 'deferred' after one or more milliseconds
      */
     function defer(func) {
       if (!isFunction(func)) {
         throw new TypeError;
       }
-      var args = nativeSlice.call(arguments, 1);
+      var args = slice(arguments, 1);
       return setTimeout(function() { func.apply(undefined, args); }, 1);
-    }
-    // use `setImmediate` if available in Node.js
-    if (isV8 && moduleExports && typeof setImmediate == 'function') {
-      defer = function(func) {
-        if (!isFunction(func)) {
-          throw new TypeError;
-        }
-        return setImmediate.apply(context, arguments);
-      };
     }
 
     /**
@@ -11523,15 +12111,14 @@ var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? 
      * @returns {number} Returns the timer id.
      * @example
      *
-     * var log = _.bind(console.log, console);
-     * _.delay(log, 1000, 'logged later');
-     * // => 'logged later' (Appears after one second.)
+     * _.delay(function(text) { console.log(text); }, 1000, 'later');
+     * // => logs 'later' after one second
      */
     function delay(func, wait) {
       if (!isFunction(func)) {
         throw new TypeError;
       }
-      var args = nativeSlice.call(arguments, 2);
+      var args = slice(arguments, 2);
       return setTimeout(function() { func.apply(undefined, args); }, wait);
     }
 
@@ -11555,19 +12142,22 @@ var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? 
      *   return n < 2 ? n : fibonacci(n - 1) + fibonacci(n - 2);
      * });
      *
+     * fibonacci(9)
+     * // => 34
+     *
      * var data = {
-     *   'moe': { 'name': 'moe', 'age': 40 },
-     *   'curly': { 'name': 'curly', 'age': 60 }
+     *   'fred': { 'name': 'fred', 'age': 40 },
+     *   'pebbles': { 'name': 'pebbles', 'age': 1 }
      * };
      *
      * // modifying the result cache
-     * var stooge = _.memoize(function(name) { return data[name]; }, _.identity);
-     * stooge('curly');
-     * // => { 'name': 'curly', 'age': 60 }
+     * var get = _.memoize(function(name) { return data[name]; }, _.identity);
+     * get('pebbles');
+     * // => { 'name': 'pebbles', 'age': 1 }
      *
-     * stooge.cache.curly.name = 'jerome';
-     * stooge('curly');
-     * // => { 'name': 'jerome', 'age': 60 }
+     * get.cache.pebbles.name = 'penelope';
+     * get('pebbles');
+     * // => { 'name': 'penelope', 'age': 1 }
      */
     function memoize(func, resolver) {
       if (!isFunction(func)) {
@@ -11637,11 +12227,11 @@ var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? 
      *
      * var greet = function(greeting, name) { return greeting + ' ' + name; };
      * var hi = _.partial(greet, 'hi');
-     * hi('moe');
-     * // => 'hi moe'
+     * hi('fred');
+     * // => 'hi fred'
      */
     function partial(func) {
-      return createBound(func, 16, nativeSlice.call(arguments, 1));
+      return createWrapper(func, 16, slice(arguments, 1));
     }
 
     /**
@@ -11672,7 +12262,7 @@ var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? 
      * // => { '_': _, 'jq': $ }
      */
     function partialRight(func) {
-      return createBound(func, 32, null, nativeSlice.call(arguments, 1));
+      return createWrapper(func, 32, null, slice(arguments, 1));
     }
 
     /**
@@ -11723,8 +12313,7 @@ var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? 
       debounceOptions.maxWait = wait;
       debounceOptions.trailing = trailing;
 
-      var result = debounce(func, wait, debounceOptions);
-      return result;
+      return debounce(func, wait, debounceOptions);
     }
 
     /**
@@ -11741,25 +12330,105 @@ var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? 
      * @returns {Function} Returns the new function.
      * @example
      *
-     * var hello = function(name) { return 'hello ' + name; };
-     * hello = _.wrap(hello, function(func) {
-     *   return 'before, ' + func('moe') + ', after';
+     * var p = _.wrap(_.escape, function(func, text) {
+     *   return '<p>' + func(text) + '</p>';
      * });
-     * hello();
-     * // => 'before, hello moe, after'
+     *
+     * p('Fred, Wilma, & Pebbles');
+     * // => '<p>Fred, Wilma, &amp; Pebbles</p>'
      */
     function wrap(value, wrapper) {
-      if (!isFunction(wrapper)) {
-        throw new TypeError;
-      }
-      return function() {
-        var args = [value];
-        push.apply(args, arguments);
-        return wrapper.apply(this, args);
-      };
+      return createWrapper(wrapper, 16, [value]);
     }
 
     /*--------------------------------------------------------------------------*/
+
+    /**
+     * Creates a function that returns `value`.
+     *
+     * @static
+     * @memberOf _
+     * @category Utilities
+     * @param {*} value The value to return from the new function.
+     * @returns {Function} Returns the new function.
+     * @example
+     *
+     * var object = { 'name': 'fred' };
+     * var getter = _.constant(object);
+     * getter() === object;
+     * // => true
+     */
+    function constant(value) {
+      return function() {
+        return value;
+      };
+    }
+
+    /**
+     * Produces a callback bound to an optional `thisArg`. If `func` is a property
+     * name the created callback will return the property value for a given element.
+     * If `func` is an object the created callback will return `true` for elements
+     * that contain the equivalent object properties, otherwise it will return `false`.
+     *
+     * @static
+     * @memberOf _
+     * @category Utilities
+     * @param {*} [func=identity] The value to convert to a callback.
+     * @param {*} [thisArg] The `this` binding of the created callback.
+     * @param {number} [argCount] The number of arguments the callback accepts.
+     * @returns {Function} Returns a callback function.
+     * @example
+     *
+     * var characters = [
+     *   { 'name': 'barney', 'age': 36 },
+     *   { 'name': 'fred',   'age': 40 }
+     * ];
+     *
+     * // wrap to create custom callback shorthands
+     * _.createCallback = _.wrap(_.createCallback, function(func, callback, thisArg) {
+     *   var match = /^(.+?)__([gl]t)(.+)$/.exec(callback);
+     *   return !match ? func(callback, thisArg) : function(object) {
+     *     return match[2] == 'gt' ? object[match[1]] > match[3] : object[match[1]] < match[3];
+     *   };
+     * });
+     *
+     * _.filter(characters, 'age__gt38');
+     * // => [{ 'name': 'fred', 'age': 40 }]
+     */
+    function createCallback(func, thisArg, argCount) {
+      var type = typeof func;
+      if (func == null || type == 'function') {
+        return baseCreateCallback(func, thisArg, argCount);
+      }
+      // handle "_.pluck" style callback shorthands
+      if (type != 'object') {
+        return property(func);
+      }
+      var props = keys(func),
+          key = props[0],
+          a = func[key];
+
+      // handle "_.where" style callback shorthands
+      if (props.length == 1 && a === a && !isObject(a)) {
+        // fast path the common case of providing an object with a single
+        // property containing a primitive value
+        return function(object) {
+          var b = object[key];
+          return a === b && (a !== 0 || (1 / a == 1 / b));
+        };
+      }
+      return function(object) {
+        var length = props.length,
+            result = false;
+
+        while (length--) {
+          if (!(result = baseIsEqual(object[props[length]], func[props[length]], null, true))) {
+            break;
+          }
+        }
+        return result;
+      };
+    }
 
     /**
      * Converts the characters `&`, `<`, `>`, `"`, and `'` in `string` to their
@@ -11772,8 +12441,8 @@ var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? 
      * @returns {string} Returns the escaped string.
      * @example
      *
-     * _.escape('Moe, Larry & Curly');
-     * // => 'Moe, Larry &amp; Curly'
+     * _.escape('Fred, Wilma, & Pebbles');
+     * // => 'Fred, Wilma, &amp; Pebbles'
      */
     function escape(string) {
       return string == null ? '' : String(string).replace(reUnescapedHtml, escapeHtmlChar);
@@ -11789,8 +12458,8 @@ var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? 
      * @returns {*} Returns `value`.
      * @example
      *
-     * var moe = { 'name': 'moe' };
-     * moe === _.identity(moe);
+     * var object = { 'name': 'fred' };
+     * _.identity(object) === object;
      * // => true
      */
     function identity(value) {
@@ -11798,51 +12467,71 @@ var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? 
     }
 
     /**
-     * Adds function properties of a source object to the `lodash` function and
-     * chainable wrapper.
+     * Adds function properties of a source object to the destination object.
+     * If `object` is a function methods will be added to its prototype as well.
      *
      * @static
      * @memberOf _
      * @category Utilities
-     * @param {Object} object The object of function properties to add to `lodash`.
-     * @param {Object} object The object of function properties to add to `lodash`.
+     * @param {Function|Object} [object=lodash] object The destination object.
+     * @param {Object} source The object of functions to add.
+     * @param {Object} [options] The options object.
+     * @param {boolean} [options.chain=true] Specify whether the functions added are chainable.
      * @example
      *
-     * _.mixin({
-     *   'capitalize': function(string) {
-     *     return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
-     *   }
-     * });
+     * function capitalize(string) {
+     *   return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
+     * }
      *
-     * _.capitalize('moe');
-     * // => 'Moe'
+     * _.mixin({ 'capitalize': capitalize });
+     * _.capitalize('fred');
+     * // => 'Fred'
      *
-     * _('moe').capitalize();
-     * // => 'Moe'
+     * _('fred').capitalize().value();
+     * // => 'Fred'
+     *
+     * _.mixin({ 'capitalize': capitalize }, { 'chain': false });
+     * _('fred').capitalize();
+     * // => 'Fred'
      */
-    function mixin(object, source) {
-      var ctor = object,
-          isFunc = !source || isFunction(ctor);
+    function mixin(object, source, options) {
+      var chain = true,
+          methodNames = source && functions(source);
 
-      if (!source) {
+      if (!source || (!options && !methodNames.length)) {
+        if (options == null) {
+          options = source;
+        }
         ctor = lodashWrapper;
         source = object;
         object = lodash;
+        methodNames = functions(source);
       }
-      forEach(functions(source), function(methodName) {
+      if (options === false) {
+        chain = false;
+      } else if (isObject(options) && 'chain' in options) {
+        chain = options.chain;
+      }
+      var ctor = object,
+          isFunc = isFunction(ctor);
+
+      forEach(methodNames, function(methodName) {
         var func = object[methodName] = source[methodName];
         if (isFunc) {
           ctor.prototype[methodName] = function() {
-            var value = this.__wrapped__,
+            var chainAll = this.__chain__,
+                value = this.__wrapped__,
                 args = [value];
 
             push.apply(args, arguments);
             var result = func.apply(object, args);
-            if (value && typeof value == 'object' && value === result) {
-              return this;
+            if (chain || chainAll) {
+              if (value === result && isObject(result)) {
+                return this;
+              }
+              result = new ctor(result);
+              result.__chain__ = chainAll;
             }
-            result = new ctor(result);
-            result.__chain__ = this.__chain__;
             return result;
           };
         }
@@ -11867,6 +12556,39 @@ var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? 
     }
 
     /**
+     * A no-operation function.
+     *
+     * @static
+     * @memberOf _
+     * @category Utilities
+     * @example
+     *
+     * var object = { 'name': 'fred' };
+     * _.noop(object) === undefined;
+     * // => true
+     */
+    function noop() {
+      // no operation performed
+    }
+
+    /**
+     * Gets the number of milliseconds that have elapsed since the Unix epoch
+     * (1 January 1970 00:00:00 UTC).
+     *
+     * @static
+     * @memberOf _
+     * @category Utilities
+     * @example
+     *
+     * var stamp = _.now();
+     * _.defer(function() { console.log(_.now() - stamp); });
+     * // => logs the number of milliseconds it took for the deferred function to be called
+     */
+    var now = isNative(now = Date.now) && now || function() {
+      return new Date().getTime();
+    };
+
+    /**
      * Converts the given value into an integer of the specified radix.
      * If `radix` is `undefined` or `0` a `radix` of `10` is used unless the
      * `value` is a hexadecimal, in which case a `radix` of `16` is used.
@@ -11886,9 +12608,39 @@ var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? 
      * // => 8
      */
     var parseInt = nativeParseInt(whitespace + '08') == 8 ? nativeParseInt : function(value, radix) {
-      // Firefox and Opera still follow the ES3 specified implementation of `parseInt`
+      // Firefox < 21 and Opera < 15 follow the ES3 specified implementation of `parseInt`
       return nativeParseInt(isString(value) ? value.replace(reLeadingSpacesAndZeros, '') : value, radix || 0);
     };
+
+    /**
+     * Creates a "_.pluck" style function, which returns the `key` value of a
+     * given object.
+     *
+     * @static
+     * @memberOf _
+     * @category Utilities
+     * @param {string} key The name of the property to retrieve.
+     * @returns {Function} Returns the new function.
+     * @example
+     *
+     * var characters = [
+     *   { 'name': 'fred',   'age': 40 },
+     *   { 'name': 'barney', 'age': 36 }
+     * ];
+     *
+     * var getName = _.property('name');
+     *
+     * _.map(characters, getName);
+     * // => ['barney', 'fred']
+     *
+     * _.sortBy(characters, getName);
+     * // => [{ 'name': 'barney', 'age': 36 }, { 'name': 'fred',   'age': 40 }]
+     */
+    function property(key) {
+      return function(object) {
+        return object[key];
+      };
+    }
 
     /**
      * Produces a random number between `min` and `max` (inclusive). If only one
@@ -11941,14 +12693,15 @@ var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? 
       } else {
         max = +max || 0;
       }
-      var rand = nativeRandom();
-      return (floating || min % 1 || max % 1)
-        ? nativeMin(min + (rand * (max - min + parseFloat('1e-' + ((rand +'').length - 1)))), max)
-        : min + floor(rand * (max - min + 1));
+      if (floating || min % 1 || max % 1) {
+        var rand = nativeRandom();
+        return nativeMin(min + (rand * (max - min + parseFloat('1e-' + ((rand +'').length - 1)))), max);
+      }
+      return baseRandom(min, max);
     }
 
     /**
-     * Resolves the value of `property` on `object`. If `property` is a function
+     * Resolves the value of property `key` on `object`. If `key` is a function
      * it will be invoked with the `this` binding of `object` and its result returned,
      * else the property value is returned. If `object` is falsey then `undefined`
      * is returned.
@@ -11957,7 +12710,7 @@ var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? 
      * @memberOf _
      * @category Utilities
      * @param {Object} object The object to inspect.
-     * @param {string} property The property to get the value of.
+     * @param {string} key The name of the property to resolve.
      * @returns {*} Returns the resolved value.
      * @example
      *
@@ -11974,10 +12727,10 @@ var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? 
      * _.result(object, 'stuff');
      * // => 'nonsense'
      */
-    function result(object, property) {
+    function result(object, key) {
       if (object) {
-        var value = object[property];
-        return isFunction(value) ? object[property]() : value;
+        var value = object[key];
+        return isFunction(value) ? object[key]() : value;
       }
     }
 
@@ -11989,7 +12742,7 @@ var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? 
      * debugging. See http://www.html5rocks.com/en/tutorials/developertools/sourcemaps/#toc-sourceurl
      *
      * For more information on precompiling templates see:
-     * http://lodash.com/#custom-builds
+     * http://lodash.com/custom-builds
      *
      * For more information on Chrome extension sandboxes see:
      * http://developer.chrome.com/stable/extensions/sandboxingEval.html
@@ -12012,8 +12765,8 @@ var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? 
      *
      * // using the "interpolate" delimiter to create a compiled template
      * var compiled = _.template('hello <%= name %>');
-     * compiled({ 'name': 'moe' });
-     * // => 'hello moe'
+     * compiled({ 'name': 'fred' });
+     * // => 'hello fred'
      *
      * // using the "escape" delimiter to escape HTML in data property values
      * _.template('<b><%- value %></b>', { 'value': '<script>' });
@@ -12021,16 +12774,16 @@ var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? 
      *
      * // using the "evaluate" delimiter to generate HTML
      * var list = '<% _.forEach(people, function(name) { %><li><%- name %></li><% }); %>';
-     * _.template(list, { 'people': ['moe', 'larry'] });
-     * // => '<li>moe</li><li>larry</li>'
+     * _.template(list, { 'people': ['fred', 'barney'] });
+     * // => '<li>fred</li><li>barney</li>'
      *
      * // using the ES6 delimiter as an alternative to the default "interpolate" delimiter
-     * _.template('hello ${ name }', { 'name': 'curly' });
-     * // => 'hello curly'
+     * _.template('hello ${ name }', { 'name': 'pebbles' });
+     * // => 'hello pebbles'
      *
      * // using the internal `print` function in "evaluate" delimiters
-     * _.template('<% print("hello " + name); %>!', { 'name': 'larry' });
-     * // => 'hello larry!'
+     * _.template('<% print("hello " + name); %>!', { 'name': 'barney' });
+     * // => 'hello barney!'
      *
      * // using a custom template delimiters
      * _.templateSettings = {
@@ -12041,9 +12794,9 @@ var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? 
      * // => 'hello mustache!'
      *
      * // using the `imports` option to import jQuery
-     * var list = '<% $.each(people, function(name) { %><li><%- name %></li><% }); %>';
-     * _.template(list, { 'people': ['moe', 'larry'] }, { 'imports': { '$': jQuery } });
-     * // => '<li>moe</li><li>larry</li>'
+     * var list = '<% jq.each(people, function(name) { %><li><%- name %></li><% }); %>';
+     * _.template(list, { 'people': ['fred', 'barney'] }, { 'imports': { 'jq': jQuery } });
+     * // => '<li>fred</li><li>barney</li>'
      *
      * // using the `sourceURL` option to specify a custom sourceURL for the template
      * var compiled = _.template('hello <%= name %>', null, { 'sourceURL': '/basic/greeting.jst' });
@@ -12073,7 +12826,7 @@ var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? 
       // and Laura Doktorova's doT.js
       // https://github.com/olado/doT
       var settings = lodash.templateSettings;
-      text || (text = '');
+      text = String(text || '');
 
       // avoid missing dependencies when `iteratorTemplate` is not defined
       options = defaults({}, options, settings);
@@ -12214,8 +12967,8 @@ var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? 
      * @returns {string} Returns the unescaped string.
      * @example
      *
-     * _.unescape('Moe, Larry &amp; Curly');
-     * // => 'Moe, Larry & Curly'
+     * _.unescape('Fred, Barney &amp; Pebbles');
+     * // => 'Fred, Barney & Pebbles'
      */
     function unescape(string) {
       return string == null ? '' : String(string).replace(reEscapedHtml, unescapeHtmlChar);
@@ -12255,18 +13008,18 @@ var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? 
      * @returns {Object} Returns the wrapper object.
      * @example
      *
-     * var stooges = [
-     *   { 'name': 'moe', 'age': 40 },
-     *   { 'name': 'larry', 'age': 50 },
-     *   { 'name': 'curly', 'age': 60 }
+     * var characters = [
+     *   { 'name': 'barney',  'age': 36 },
+     *   { 'name': 'fred',    'age': 40 },
+     *   { 'name': 'pebbles', 'age': 1 }
      * ];
      *
-     * var youngest = _.chain(stooges)
+     * var youngest = _.chain(characters)
      *     .sortBy('age')
-     *     .map(function(stooge) { return stooge.name + ' is ' + stooge.age; })
+     *     .map(function(chr) { return chr.name + ' is ' + chr.age; })
      *     .first()
      *     .value();
-     * // => 'moe is 40'
+     * // => 'pebbles is 1'
      */
     function chain(value) {
       value = new lodashWrapper(value);
@@ -12289,12 +13042,10 @@ var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? 
      * @example
      *
      * _([1, 2, 3, 4])
-     *  .filter(function(num) { return num % 2 == 0; })
-     *  .tap(function(array) { console.log(array); })
-     *  .map(function(num) { return num * num; })
+     *  .tap(function(array) { array.pop(); })
+     *  .reverse()
      *  .value();
-     * // => // [2, 4] (logged)
-     * // => [4, 16]
+     * // => [3, 2, 1]
      */
     function tap(value, interceptor) {
       interceptor(value);
@@ -12310,21 +13061,21 @@ var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? 
      * @returns {*} Returns the wrapper object.
      * @example
      *
-     * var stooges = [
-     *   { 'name': 'moe', 'age': 40 },
-     *   { 'name': 'larry', 'age': 50 }
+     * var characters = [
+     *   { 'name': 'barney', 'age': 36 },
+     *   { 'name': 'fred',   'age': 40 }
      * ];
      *
      * // without explicit chaining
-     * _(stooges).first();
-     * // => { 'name': 'moe', 'age': 40 }
+     * _(characters).first();
+     * // => { 'name': 'barney', 'age': 36 }
      *
      * // with explicit chaining
-     * _(stooges).chain()
+     * _(characters).chain()
      *   .first()
      *   .pick('age')
-     *   .value()
-     * // => { 'age': 40 }
+     *   .value();
+     * // => { 'age': 36 }
      */
     function wrapperChain() {
       this.__chain__ = true;
@@ -12376,7 +13127,9 @@ var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? 
     lodash.chain = chain;
     lodash.compact = compact;
     lodash.compose = compose;
+    lodash.constant = constant;
     lodash.countBy = countBy;
+    lodash.create = create;
     lodash.createCallback = createCallback;
     lodash.curry = curry;
     lodash.debounce = debounce;
@@ -12401,6 +13154,7 @@ var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? 
     lodash.invoke = invoke;
     lodash.keys = keys;
     lodash.map = map;
+    lodash.mapValues = mapValues;
     lodash.max = max;
     lodash.memoize = memoize;
     lodash.merge = merge;
@@ -12412,6 +13166,7 @@ var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? 
     lodash.partialRight = partialRight;
     lodash.pick = pick;
     lodash.pluck = pluck;
+    lodash.property = property;
     lodash.pull = pull;
     lodash.range = range;
     lodash.reject = reject;
@@ -12430,6 +13185,7 @@ var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? 
     lodash.where = where;
     lodash.without = without;
     lodash.wrap = wrap;
+    lodash.xor = xor;
     lodash.zip = zip;
     lodash.zipObject = zipObject;
 
@@ -12486,6 +13242,8 @@ var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? 
     lodash.lastIndexOf = lastIndexOf;
     lodash.mixin = mixin;
     lodash.noConflict = noConflict;
+    lodash.noop = noop;
+    lodash.now = now;
     lodash.parseInt = parseInt;
     lodash.random = random;
     lodash.reduce = reduce;
@@ -12509,20 +13267,15 @@ var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? 
     lodash.include = contains;
     lodash.inject = reduce;
 
-    forOwn(lodash, function(func, methodName) {
-      if (!lodash.prototype[methodName]) {
-        lodash.prototype[methodName] = function() {
-          var args = [this.__wrapped__],
-              chainAll = this.__chain__;
-
-          push.apply(args, arguments);
-          var result = func.apply(lodash, args);
-          return chainAll
-            ? new lodashWrapper(result, chainAll)
-            : result;
-        };
-      }
-    });
+    mixin(function() {
+      var source = {}
+      forOwn(lodash, function(func, methodName) {
+        if (!lodash.prototype[methodName]) {
+          source[methodName] = func;
+        }
+      });
+      return source;
+    }(), false);
 
     /*--------------------------------------------------------------------------*/
 
@@ -12558,7 +13311,7 @@ var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? 
      * @memberOf _
      * @type string
      */
-    lodash.VERSION = '2.2.1';
+    lodash.VERSION = '2.4.1';
 
     // add "Chaining" functions to the wrapper
     lodash.prototype.chain = wrapperChain;
@@ -12579,7 +13332,7 @@ var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? 
       };
     });
 
-    // add `Array` functions that return the wrapped value
+    // add `Array` functions that return the existing wrapped value
     forEach(['push', 'reverse', 'sort', 'unshift'], function(methodName) {
       var func = arrayRef[methodName];
       lodash.prototype[methodName] = function() {
@@ -12604,12 +13357,11 @@ var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? 
   // expose Lo-Dash
   var _ = runInContext();
 
-  // some AMD build optimizers, like r.js, check for condition patterns like the following:
+  // some AMD build optimizers like r.js check for condition patterns like the following:
   if (typeof define == 'function' && typeof define.amd == 'object' && define.amd) {
     // Expose Lo-Dash to the global object even when an AMD loader is present in
-    // case Lo-Dash was injected by a third-party script and not intended to be
-    // loaded as a module. The global assignment can be reverted in the Lo-Dash
-    // module by its `noConflict()` method.
+    // case Lo-Dash is loaded with a RequireJS shim config.
+    // See http://requirejs.org/docs/api.html#config-shim
     root._ = _;
 
     // define as an anonymous module so, through path mapping, it can be
@@ -12634,8 +13386,8 @@ var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? 
     root._ = _;
   }
 }.call(this));
-
-},{}],78:[function(require,module,exports){
+}).call(this,typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
+},{}],81:[function(_dereq_,module,exports){
 // # simple-statistics
 //
 // A simple, literate statistics system. The code below uses the
@@ -12676,9 +13428,13 @@ var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? 
         linreg.mb = function() {
             var m, b;
 
+            // Store data length in a local variable to reduce
+            // repeated object property lookups
+            var data_length = data.length;
+
             //if there's only one point, arbitrarily choose a slope of 0
             //and a y-intercept of whatever the y of the initial point is
-            if (data.length == 1) {
+            if (data_length === 1) {
                 m = 0;
                 b = data[0][1];
             } else {
@@ -12687,25 +13443,33 @@ var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? 
                 var sum_x = 0, sum_y = 0,
                     sum_xx = 0, sum_xy = 0;
 
+                // Use local variables to grab point values 
+                // with minimal object property lookups
+                var point, x, y;
+
                 // Gather the sum of all x values, the sum of all
                 // y values, and the sum of x^2 and (x*y) for each
                 // value.
                 //
                 // In math notation, these would be SS_x, SS_y, SS_xx, and SS_xy
-                for (var i = 0; i < data.length; i++) {
-                    sum_x += data[i][0];
-                    sum_y += data[i][1];
+                for (var i = 0; i < data_length; i++) {
+                    point = data[i];
+                    x = point[0];
+                    y = point[1];
 
-                    sum_xx += data[i][0] * data[i][0];
-                    sum_xy += data[i][0] * data[i][1];
+                    sum_x += x;
+                    sum_y += y;
+
+                    sum_xx += x * x;
+                    sum_xy += x * y;
                 }
 
                 // `m` is the slope of the regression line
-                m = ((data.length * sum_xy) - (sum_x * sum_y)) /
-                    ((data.length * sum_xx) - (sum_x * sum_x));
+                m = ((data_length * sum_xy) - (sum_x * sum_y)) /
+                    ((data_length * sum_xx) - (sum_x * sum_x));
 
                 // `b` is the y-intercept of the line.
-                b = (sum_y / data.length) - ((m * sum_x) / data.length);
+                b = (sum_y / data_length) - ((m * sum_x) / data_length);
             }
 
             // Return both values as an object.
@@ -12903,7 +13667,7 @@ var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? 
     // a mean function that is more useful for numbers in different
     // ranges.
     //
-    // this is the nth root of the input numbers multipled by each other
+    // this is the nth root of the input numbers multiplied by each other
     //
     // This runs on `O(n)`, linear time in respect to the array
     function geometric_mean(x) {
@@ -12922,6 +13686,32 @@ var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? 
         }
 
         return Math.pow(value, 1 / x.length);
+    }
+
+
+    // # harmonic mean
+    //
+    // a mean function typically used to find the average of rates
+    //
+    // this is the reciprocal of the arithmetic mean of the reciprocals
+    // of the input numbers
+    //
+    // This runs on `O(n)`, linear time in respect to the array
+    function harmonic_mean(x) {
+        // The mean of no numbers is null
+        if (x.length === 0) return null;
+
+        var reciprocal_sum = 0;
+
+        for (var i = 0; i < x.length; i++) {
+            // the harmonic mean is only valid for positive numbers
+            if (x[i] <= 0) return null;
+
+            reciprocal_sum += 1 / x[i];
+        }
+
+        // divide n by the the reciprocal sum
+        return x.length / reciprocal_sum;
     }
 
 
@@ -13182,6 +13972,48 @@ var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? 
       return (sample_mean - x) / (sd / rootN);
     }
 
+    // # [2-sample t-test](http://en.wikipedia.org/wiki/Student's_t-test)
+    //
+    // This is to compute two sample t-test.
+    // Tests whether "mean(X)-mean(Y) = difference", (
+    // in the most common case, we often have `difference == 0` to test if two samples
+    // are likely to be taken from populations with the same mean value) with
+    // no prior knowledge on stdandard deviations of both samples
+    // other than the fact that they have the same standard deviation.
+    //
+    // Usually the results here are used to look up a
+    // [p-value](http://en.wikipedia.org/wiki/P-value), which, for
+    // a certain level of significance, will let you determine that the
+    // null hypothesis can or cannot be rejected.
+    //
+    // `diff` can be omitted if it equals 0.
+    //
+    // [This is used to confirm or deny](http://www.monarchlab.org/Lab/Research/Stats/2SampleT.aspx)
+    // a null hypothesis that the two populations that have been sampled into
+    // `sample_x` and `sample_y` are equal to each other.
+    //
+    // Depends on `sample_variance()` and `mean()`
+    function t_test_two_sample(sample_x, sample_y, difference) {
+        var n = sample_x.length,
+            m = sample_y.length;
+
+        // If either sample doesn't actually have any values, we can't
+        // compute this at all, so we return `null`.
+        if (!n || !m) return null ;
+
+        // default difference (mu) is zero
+        if (!difference) difference = 0;
+
+        var meanX = mean(sample_x),
+            meanY = mean(sample_y);
+
+        var weightedVariance = ((n - 1) * sample_variance(sample_x) +
+            (m - 1) * sample_variance(sample_y)) / (n + m - 2);
+
+        return (meanX - meanY - difference) /
+            Math.sqrt(weightedVariance * (1 / n + 1 / m));
+    }
+
     // # quantile
     // This is a population quantile, since we assume to know the entire
     // dataset in this library. Thus I'm trying to follow the
@@ -13189,39 +14021,55 @@ var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? 
     // algorithm from wikipedia.
     //
     // Sample is a one-dimensional array of numbers,
-    // and p is a decimal number from 0 to 1. In terms of a k/q
-    // quantile, p = k/q - it's just dealing with fractions or dealing
+    // and p is either a decimal number from 0 to 1 or an array of decimal
+    // numbers from 0 to 1.
+    // In terms of a k/q quantile, p = k/q - it's just dealing with fractions or dealing
     // with decimal values.
+    // When p is an array, the result of the function is also an array containing the appropriate
+    // quantiles in input order
     function quantile(sample, p) {
 
         // We can't derive quantiles from an empty list
         if (sample.length === 0) return null;
 
-        // invalid bounds. Microsoft Excel accepts 0 and 1, but
-        // we won't.
-        if (p >= 1 || p <= 0) return null;
-
         // Sort a copy of the array. We'll need a sorted array to index
         // the values in sorted order.
         var sorted = sample.slice().sort(function (a, b) { return a - b; });
 
-        // Find a potential index in the list. In Wikipedia's terms, this
-        // is I<sub>p</sub>.
-        var idx = (sorted.length) * p;
+        if (p.length) {
+            // Initialize the result array
+            var results = [];
+            // For each requested quantile
+            for (var i = 0; i < p.length; i++) {
+                results[i] = quantile_sorted(sorted, p[i]);
+            }
+            return results;
+        } else {
+            return quantile_sorted(sorted, p);
+        }
+    }
 
-        // If this isn't an integer, we'll round up to the next value in
-        // the list.
-        if (idx % 1 !== 0) {
-            return sorted[Math.ceil(idx) - 1];
+    function quantile_sorted(sample, p) {
+        var idx = (sample.length) * p;
+        if (p < 0 || p > 1) {
+            return null;
+        } else if (p === 1) {
+            // If p is 1, directly return the last element
+            return sample[sample.length - 1];
+        } else if (p === 0) {
+           // If p is 0, directly return the first element
+           return sample[0];
+        } else if (idx % 1 !== 0) {
+           // If p is not integer, return the next element in array
+            return sample[Math.ceil(idx) - 1];
         } else if (sample.length % 2 === 0) {
-            // If the list has even-length and we had an integer in the
-            // first place, we'll take the average of this number
+            // If the list has even-length, we'll take the average of this number
             // and the next value, if there is one
-            return (sorted[idx - 1] + sorted[idx]) / 2;
+            return (sample[idx - 1] + sample[idx]) / 2;
         } else {
             // Finally, in the simple case of an integer value
             // with an odd-length list, return the sample value at the index.
-            return sorted[idx];
+            return sample[idx];
         }
     }
 
@@ -13230,8 +14078,8 @@ var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? 
     // A measure of statistical dispersion, or how scattered, spread, or
     // concentrated a distribution is. It's computed as the difference betwen
     // the third quartile and first quartile.
-    function iqr(sample){
-	    // We can't derive quantiles from an empty list
+    function iqr(sample) {
+        // We can't derive quantiles from an empty list
         if (sample.length === 0) return null;
 
         // Interquartile range is the span between the upper quartile,
@@ -13514,7 +14362,7 @@ var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? 
             // due to floating-point arithmetic, values in the table with
             // 4 significant figures can nevertheless end up as repeating
             // fractions when they're computed here.
-            return (1 - standard_normal_table[index]).toFixed(4);
+            return +(1 - standard_normal_table[index]).toFixed(4);
         }
     }
 
@@ -13548,7 +14396,9 @@ var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? 
         // only methods which work on basic arrays in a single step
         // are supported
         var arrayMethods = ['median', 'standard_deviation', 'sum',
-            'mean', 'min', 'max', 'quantile', 'geometric_mean'];
+            'sample_skewness',
+            'mean', 'min', 'max', 'quantile', 'geometric_mean',
+            'harmonic_mean'];
 
         // create a closure with a method name so that a reference
         // like `arrayMethods[i]` doesn't follow the loop increment
@@ -13590,6 +14440,7 @@ var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? 
     ss.max = max;
     ss.sum = sum;
     ss.quantile = quantile;
+    ss.quantile_sorted = quantile_sorted;
     ss.iqr = iqr;
     ss.mad = mad;
 
@@ -13600,8 +14451,10 @@ var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? 
     ss.sample_skewness = sample_skewness;
 
     ss.geometric_mean = geometric_mean;
+    ss.harmonic_mean = harmonic_mean;
     ss.variance = variance;
     ss.t_test = t_test;
+    ss.t_test_two_sample = t_test_two_sample;
 
     // jenks
     ss.jenksMatrices = jenksMatrices;
@@ -13623,20 +14476,18 @@ var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? 
 
 })(this);
 
-},{}],79:[function(require,module,exports){
-var __dirname="/node_modules/topojson";var fs = require("fs");
+},{}],82:[function(_dereq_,module,exports){
+var topojson = module.exports = _dereq_("./topojson");
+topojson.topology = _dereq_("./lib/topojson/topology");
+topojson.simplify = _dereq_("./lib/topojson/simplify");
+topojson.clockwise = _dereq_("./lib/topojson/clockwise");
+topojson.filter = _dereq_("./lib/topojson/filter");
+topojson.prune = _dereq_("./lib/topojson/prune");
+topojson.bind = _dereq_("./lib/topojson/bind");
 
-var topojson = module.exports = new Function("topojson", "return " + fs.readFileSync(__dirname + "/topojson.js", "utf8"))();
-topojson.topology = require("./lib/topojson/topology");
-topojson.simplify = require("./lib/topojson/simplify");
-topojson.clockwise = require("./lib/topojson/clockwise");
-topojson.filter = require("./lib/topojson/filter");
-topojson.prune = require("./lib/topojson/prune");
-topojson.bind = require("./lib/topojson/bind");
-
-},{"./lib/topojson/bind":80,"./lib/topojson/clockwise":83,"./lib/topojson/filter":87,"./lib/topojson/prune":90,"./lib/topojson/simplify":92,"./lib/topojson/topology":95,"fs":107}],80:[function(require,module,exports){
-var type = require("./type"),
-    topojson = require("../../");
+},{"./lib/topojson/bind":83,"./lib/topojson/clockwise":86,"./lib/topojson/filter":90,"./lib/topojson/prune":93,"./lib/topojson/simplify":95,"./lib/topojson/topology":98,"./topojson":109}],83:[function(_dereq_,module,exports){
+var type = _dereq_("./type"),
+    topojson = _dereq_("../../");
 
 module.exports = function(topology, propertiesById) {
   var bind = type({
@@ -13664,7 +14515,7 @@ module.exports = function(topology, propertiesById) {
 
 function noop() {}
 
-},{"../../":79,"./type":105}],81:[function(require,module,exports){
+},{"../../":82,"./type":108}],84:[function(_dereq_,module,exports){
 
 // Computes the bounding box of the specified hash of GeoJSON objects.
 module.exports = function(objects) {
@@ -13711,7 +14562,7 @@ module.exports = function(objects) {
   return [x0, y0, x1, y1];
 };
 
-},{}],82:[function(require,module,exports){
+},{}],85:[function(_dereq_,module,exports){
 exports.name = "cartesian";
 exports.formatDistance = formatDistance;
 exports.ringArea = ringArea;
@@ -13745,10 +14596,10 @@ function distance(x0, y0, x1, y1) {
   return Math.sqrt(dx * dx + dy * dy);
 }
 
-},{}],83:[function(require,module,exports){
-var type = require("./type"),
-    systems = require("./coordinate-systems"),
-    topojson = require("../../");
+},{}],86:[function(_dereq_,module,exports){
+var type = _dereq_("./type"),
+    systems = _dereq_("./coordinate-systems"),
+    topojson = _dereq_("../../");
 
 module.exports = function(object, options) {
   if (object.type === "Topology") clockwiseTopology(object, options);
@@ -13761,6 +14612,8 @@ function clockwiseGeometry(object, options) {
   if (options)
     "coordinate-system" in options && (system = systems[options["coordinate-system"]]);
 
+  var clockwisePolygon = clockwisePolygonSystem(system.ringArea, reverse);
+
   type({
     LineString: noop,
     MultiLineString: noop,
@@ -13770,12 +14623,7 @@ function clockwiseGeometry(object, options) {
     MultiPolygon: function(multiPolygon) { multiPolygon.coordinates.forEach(clockwisePolygon); }
   }).object(object);
 
-  function clockwisePolygon(rings) {
-    if (rings.length && system.ringArea(r = rings[0]) < 0) r.reverse();
-    for (var i = 1, n = rings.length, r; i < n; ++i) {
-      if (system.ringArea(r = rings[i]) > 0) r.reverse();
-    }
-  }
+  function reverse(array) { array.reverse(); }
 }
 
 function clockwiseTopology(topology, options) {
@@ -13783,6 +14631,8 @@ function clockwiseTopology(topology, options) {
 
   if (options)
     "coordinate-system" in options && (system = systems[options["coordinate-system"]]);
+
+  var clockwisePolygon = clockwisePolygonSystem(ringArea, reverse);
 
   var clockwise = type({
     LineString: noop,
@@ -13797,13 +14647,6 @@ function clockwiseTopology(topology, options) {
     clockwise.object(topology.objects[key]);
   }
 
-  function clockwisePolygon(rings) {
-    if (rings.length && ringArea(r = rings[0]) < 0) reverse(r);
-    for (var i = 1, n = rings.length, r; i < n; ++i) {
-      if (ringArea(r = rings[i]) > 0) reverse(r);
-    }
-  }
-
   function ringArea(ring) {
     return system.ringArea(topojson.feature(topology, {type: "Polygon", arcs: [ring]}).geometry.coordinates[0]);
   }
@@ -13816,9 +14659,35 @@ function clockwiseTopology(topology, options) {
   }
 };
 
+function clockwisePolygonSystem(ringArea, reverse) {
+  return function(rings) {
+    if (!(n = rings.length)) return;
+    var n,
+        areas = new Array(n),
+        max = -Infinity,
+        best,
+        area,
+        t;
+    // Find the largest absolute ring area; this should be the exterior ring.
+    for (var i = 0; i < n; ++i) {
+      var area = Math.abs(areas[i] = ringArea(rings[i]));
+      if (area > max) max = area, best = i;
+    }
+    // Ensure the largest ring appears first.
+    if (best) {
+      t = rings[best], rings[best] = rings[0], rings[0] = t;
+      t = areas[best], areas[best] = areas[0], areas[0] = t;
+    }
+    if (areas[0] < 0) reverse(rings[0]);
+    for (var i = 1; i < n; ++i) {
+      if (areas[i] > 0) reverse(rings[i]);
+    }
+  };
+}
+
 function noop() {}
 
-},{"../../":79,"./coordinate-systems":85,"./type":105}],84:[function(require,module,exports){
+},{"../../":82,"./coordinate-systems":88,"./type":108}],87:[function(_dereq_,module,exports){
 // Given a hash of GeoJSON objects and an id function, invokes the id function
 // to compute a new id for each object that is a feature. The function is passed
 // the feature and is expected to return the new feature id, or null if the
@@ -13848,13 +14717,13 @@ module.exports = function(objects, id) {
   return objects;
 };
 
-},{}],85:[function(require,module,exports){
+},{}],88:[function(_dereq_,module,exports){
 module.exports = {
-  cartesian: require("./cartesian"),
-  spherical: require("./spherical")
+  cartesian: _dereq_("./cartesian"),
+  spherical: _dereq_("./spherical")
 };
 
-},{"./cartesian":82,"./spherical":93}],86:[function(require,module,exports){
+},{"./cartesian":85,"./spherical":96}],89:[function(_dereq_,module,exports){
 // Given a TopoJSON topology in absolute (quantized) coordinates,
 // converts to fixed-point delta encoding.
 // This is a destructive operation that modifies the given topology!
@@ -13885,12 +14754,12 @@ module.exports = function(topology) {
   return topology;
 };
 
-},{}],87:[function(require,module,exports){
-var type = require("./type"),
-    prune = require("./prune"),
-    clockwise = require("./clockwise"),
-    systems = require("./coordinate-systems"),
-    topojson = require("../../");
+},{}],90:[function(_dereq_,module,exports){
+var type = _dereq_("./type"),
+    prune = _dereq_("./prune"),
+    clockwise = _dereq_("./clockwise"),
+    systems = _dereq_("./coordinate-systems"),
+    topojson = _dereq_("../../");
 
 module.exports = function(topology, options) {
   var system = null,
@@ -13956,7 +14825,7 @@ module.exports = function(topology, options) {
 
 function noop() {}
 
-},{"../../":79,"./clockwise":83,"./coordinate-systems":85,"./prune":90,"./type":105}],88:[function(require,module,exports){
+},{"../../":82,"./clockwise":86,"./coordinate-systems":88,"./prune":93,"./type":108}],91:[function(_dereq_,module,exports){
 // Given a hash of GeoJSON objects, replaces Features with geometry objects.
 // This is a destructive operation that modifies the input objects!
 module.exports = function(objects) {
@@ -14075,7 +14944,7 @@ module.exports = function(objects) {
   return objects;
 };
 
-},{}],89:[function(require,module,exports){
+},{}],92:[function(_dereq_,module,exports){
 module.exports = function(objects, filter) {
 
   function prefilterGeometry(geometry) {
@@ -14131,7 +15000,7 @@ module.exports = function(objects, filter) {
   return objects;
 };
 
-},{}],90:[function(require,module,exports){
+},{}],93:[function(_dereq_,module,exports){
 module.exports = function(topology, options) {
   var verbose = false,
       objects = topology.objects,
@@ -14205,7 +15074,7 @@ module.exports = function(topology, options) {
 
 function noop() {}
 
-},{}],91:[function(require,module,exports){
+},{}],94:[function(_dereq_,module,exports){
 module.exports = function(objects, bbox, Q) {
   var x0 = isFinite(bbox[0]) ? bbox[0] : 0,
       y0 = isFinite(bbox[1]) ? bbox[1] : 0,
@@ -14292,9 +15161,9 @@ module.exports = function(objects, bbox, Q) {
   };
 };
 
-},{}],92:[function(require,module,exports){
-var topojson = require("../../"),
-    systems = require("./coordinate-systems");
+},{}],95:[function(_dereq_,module,exports){
+var topojson = _dereq_("../../"),
+    systems = _dereq_("./coordinate-systems");
 
 module.exports = function(topology, options) {
   var minimumArea = 0,
@@ -14376,7 +15245,7 @@ module.exports = function(topology, options) {
   return topology;
 };
 
-},{"../../":79,"./coordinate-systems":85}],93:[function(require,module,exports){
+},{"../../":82,"./coordinate-systems":88}],96:[function(_dereq_,module,exports){
 var π = Math.PI,
     π_4 = π / 4,
     radians = π / 180;
@@ -14458,8 +15327,8 @@ function haversin(x) {
   return (x = Math.sin(x / 2)) * x;
 }
 
-},{}],94:[function(require,module,exports){
-var type = require("./type");
+},{}],97:[function(_dereq_,module,exports){
+var type = _dereq_("./type");
 
 module.exports = function(objects, transform) {
   var ε = 1e-2,
@@ -14634,18 +15503,18 @@ module.exports = function(objects, transform) {
   }
 };
 
-},{"./type":105}],95:[function(require,module,exports){
-var type = require("./type"),
-    stitch = require("./stitch"),
-    systems = require("./coordinate-systems"),
-    topologize = require("./topology/index"),
-    delta = require("./delta"),
-    geomify = require("./geomify"),
-    prefilter = require("./prefilter"),
-    quantize = require("./quantize"),
-    bounds = require("./bounds"),
-    computeId = require("./compute-id"),
-    transformProperties = require("./transform-properties");
+},{"./type":108}],98:[function(_dereq_,module,exports){
+var type = _dereq_("./type"),
+    stitch = _dereq_("./stitch"),
+    systems = _dereq_("./coordinate-systems"),
+    topologize = _dereq_("./topology/index"),
+    delta = _dereq_("./delta"),
+    geomify = _dereq_("./geomify"),
+    prefilter = _dereq_("./prefilter"),
+    quantize = _dereq_("./quantize"),
+    bounds = _dereq_("./bounds"),
+    computeId = _dereq_("./compute-id"),
+    transformProperties = _dereq_("./transform-properties");
 
 var ε = 1e-6;
 
@@ -14736,8 +15605,8 @@ module.exports = function(objects, options) {
   return topology;
 };
 
-},{"./bounds":81,"./compute-id":84,"./coordinate-systems":85,"./delta":86,"./geomify":88,"./prefilter":89,"./quantize":91,"./stitch":94,"./topology/index":100,"./transform-properties":104,"./type":105}],96:[function(require,module,exports){
-var join = require("./join");
+},{"./bounds":84,"./compute-id":87,"./coordinate-systems":88,"./delta":89,"./geomify":91,"./prefilter":92,"./quantize":94,"./stitch":97,"./topology/index":103,"./transform-properties":107,"./type":108}],99:[function(_dereq_,module,exports){
+var join = _dereq_("./join");
 
 // Given an extracted (pre-)topology, cuts (or rotates) arcs so that all shared
 // point sequences are identified. The topology can then be subsequently deduped
@@ -14798,11 +15667,11 @@ function reverse(array, start, end) {
   }
 }
 
-},{"./join":101}],97:[function(require,module,exports){
-var join = require("./join"),
-    hashtable = require("./hashtable"),
-    hashPoint = require("./point-hash"),
-    equalPoint = require("./point-equal");
+},{"./join":104}],100:[function(_dereq_,module,exports){
+var join = _dereq_("./join"),
+    hashtable = _dereq_("./hashtable"),
+    hashPoint = _dereq_("./point-hash"),
+    equalPoint = _dereq_("./point-equal");
 
 // Given a cut topology, combines duplicate arcs.
 module.exports = function(topology) {
@@ -14984,7 +15853,7 @@ module.exports = function(topology) {
   return topology;
 };
 
-},{"./hashtable":99,"./join":101,"./point-equal":102,"./point-hash":103}],98:[function(require,module,exports){
+},{"./hashtable":102,"./join":104,"./point-equal":105,"./point-hash":106}],101:[function(_dereq_,module,exports){
 // Extracts the lines and rings from the specified hash of geometry objects.
 //
 // Returns an object with three properties:
@@ -15051,7 +15920,7 @@ module.exports = function(objects) {
   };
 };
 
-},{}],99:[function(require,module,exports){
+},{}],102:[function(_dereq_,module,exports){
 module.exports = function(size, hash, equal) {
   var hashtable = new Array(size = 1 << Math.ceil(Math.log(size) / Math.LN2)),
       mask = size - 1,
@@ -15122,11 +15991,11 @@ module.exports = function(size, hash, equal) {
   };
 };
 
-},{}],100:[function(require,module,exports){
-var hashtable = require("./hashtable"),
-    extract = require("./extract"),
-    cut = require("./cut"),
-    dedup = require("./dedup");
+},{}],103:[function(_dereq_,module,exports){
+var hashtable = _dereq_("./hashtable"),
+    extract = _dereq_("./extract"),
+    cut = _dereq_("./cut"),
+    dedup = _dereq_("./dedup");
 
 // Constructs the TopoJSON Topology for the specified hash of geometries.
 // Each object in the specified hash must be a GeoJSON object,
@@ -15192,10 +16061,10 @@ function equalArc(arcA, arcB) {
   return ia === ib && ja === jb;
 }
 
-},{"./cut":96,"./dedup":97,"./extract":98,"./hashtable":99}],101:[function(require,module,exports){
-var hashtable = require("./hashtable"),
-    hashPoint = require("./point-hash"),
-    equalPoint = require("./point-equal");
+},{"./cut":99,"./dedup":100,"./extract":101,"./hashtable":102}],104:[function(_dereq_,module,exports){
+var hashtable = _dereq_("./hashtable"),
+    hashPoint = _dereq_("./point-hash"),
+    equalPoint = _dereq_("./point-equal");
 
 // Given an extracted (pre-)topology, identifies all of the junctions. These are
 // the points at which arcs (lines or rings) will need to be cut so that each
@@ -15267,12 +16136,12 @@ module.exports = function(topology) {
   return junctionByPoint;
 };
 
-},{"./hashtable":99,"./point-equal":102,"./point-hash":103}],102:[function(require,module,exports){
+},{"./hashtable":102,"./point-equal":105,"./point-hash":106}],105:[function(_dereq_,module,exports){
 module.exports = function(pointA, pointB) {
   return pointA[0] === pointB[0] && pointA[1] === pointB[1];
 };
 
-},{}],103:[function(require,module,exports){
+},{}],106:[function(_dereq_,module,exports){
 // TODO if quantized, use simpler Int32 hashing?
 
 var hashBuffer = new ArrayBuffer(8),
@@ -15292,7 +16161,7 @@ module.exports = function(point) {
   return h < 0 ? ~h : h;
 };
 
-},{}],104:[function(require,module,exports){
+},{}],107:[function(_dereq_,module,exports){
 // Given a hash of GeoJSON objects, transforms any properties on features using
 // the specified transform function. The function is invoked for each existing
 // property on the current feature, being passed the new properties hash, the
@@ -15337,7 +16206,7 @@ module.exports = function(objects, propertyTransform) {
   return objects;
 };
 
-},{}],105:[function(require,module,exports){
+},{}],108:[function(_dereq_,module,exports){
 module.exports = function(types) {
   for (var type in typeDefaults) {
     if (!(type in types)) {
@@ -15431,1041 +16300,466 @@ var typeObjects = {
   FeatureCollection: 1
 };
 
-},{}],106:[function(require,module,exports){
+},{}],109:[function(_dereq_,module,exports){
+!function() {
+  var topojson = {
+    version: "1.4.6",
+    mesh: mesh,
+    feature: featureOrCollection,
+    neighbors: neighbors,
+    presimplify: presimplify
+  };
 
+  function merge(topology, arcs) {
+    var fragmentByStart = {},
+        fragmentByEnd = {};
 
-//
-// The shims in this file are not fully implemented shims for the ES5
-// features, but do work for the particular usecases there is in
-// the other modules.
-//
+    arcs.forEach(function(i) {
+      var e = ends(i),
+          start = e[0],
+          end = e[1],
+          f, g;
 
-var toString = Object.prototype.toString;
-var hasOwnProperty = Object.prototype.hasOwnProperty;
-
-// Array.isArray is supported in IE9
-function isArray(xs) {
-  return toString.call(xs) === '[object Array]';
-}
-exports.isArray = typeof Array.isArray === 'function' ? Array.isArray : isArray;
-
-// Array.prototype.indexOf is supported in IE9
-exports.indexOf = function indexOf(xs, x) {
-  if (xs.indexOf) return xs.indexOf(x);
-  for (var i = 0; i < xs.length; i++) {
-    if (x === xs[i]) return i;
-  }
-  return -1;
-};
-
-// Array.prototype.filter is supported in IE9
-exports.filter = function filter(xs, fn) {
-  if (xs.filter) return xs.filter(fn);
-  var res = [];
-  for (var i = 0; i < xs.length; i++) {
-    if (fn(xs[i], i, xs)) res.push(xs[i]);
-  }
-  return res;
-};
-
-// Array.prototype.forEach is supported in IE9
-exports.forEach = function forEach(xs, fn, self) {
-  if (xs.forEach) return xs.forEach(fn, self);
-  for (var i = 0; i < xs.length; i++) {
-    fn.call(self, xs[i], i, xs);
-  }
-};
-
-// Array.prototype.map is supported in IE9
-exports.map = function map(xs, fn) {
-  if (xs.map) return xs.map(fn);
-  var out = new Array(xs.length);
-  for (var i = 0; i < xs.length; i++) {
-    out[i] = fn(xs[i], i, xs);
-  }
-  return out;
-};
-
-// Array.prototype.reduce is supported in IE9
-exports.reduce = function reduce(array, callback, opt_initialValue) {
-  if (array.reduce) return array.reduce(callback, opt_initialValue);
-  var value, isValueSet = false;
-
-  if (2 < arguments.length) {
-    value = opt_initialValue;
-    isValueSet = true;
-  }
-  for (var i = 0, l = array.length; l > i; ++i) {
-    if (array.hasOwnProperty(i)) {
-      if (isValueSet) {
-        value = callback(value, array[i], i, array);
+      if (f = fragmentByEnd[start]) {
+        delete fragmentByEnd[f.end];
+        f.push(i);
+        f.end = end;
+        if (g = fragmentByStart[end]) {
+          delete fragmentByStart[g.start];
+          var fg = g === f ? f : f.concat(g);
+          fragmentByStart[fg.start = f.start] = fragmentByEnd[fg.end = g.end] = fg;
+        } else if (g = fragmentByEnd[end]) {
+          delete fragmentByStart[g.start];
+          delete fragmentByEnd[g.end];
+          var fg = f.concat(g.map(function(i) { return ~i; }).reverse());
+          fragmentByStart[fg.start = f.start] = fragmentByEnd[fg.end = g.start] = fg;
+        } else {
+          fragmentByStart[f.start] = fragmentByEnd[f.end] = f;
+        }
+      } else if (f = fragmentByStart[end]) {
+        delete fragmentByStart[f.start];
+        f.unshift(i);
+        f.start = start;
+        if (g = fragmentByEnd[start]) {
+          delete fragmentByEnd[g.end];
+          var gf = g === f ? f : g.concat(f);
+          fragmentByStart[gf.start = g.start] = fragmentByEnd[gf.end = f.end] = gf;
+        } else if (g = fragmentByStart[start]) {
+          delete fragmentByStart[g.start];
+          delete fragmentByEnd[g.end];
+          var gf = g.map(function(i) { return ~i; }).reverse().concat(f);
+          fragmentByStart[gf.start = g.end] = fragmentByEnd[gf.end = f.end] = gf;
+        } else {
+          fragmentByStart[f.start] = fragmentByEnd[f.end] = f;
+        }
+      } else if (f = fragmentByStart[start]) {
+        delete fragmentByStart[f.start];
+        f.unshift(~i);
+        f.start = end;
+        if (g = fragmentByEnd[end]) {
+          delete fragmentByEnd[g.end];
+          var gf = g === f ? f : g.concat(f);
+          fragmentByStart[gf.start = g.start] = fragmentByEnd[gf.end = f.end] = gf;
+        } else if (g = fragmentByStart[end]) {
+          delete fragmentByStart[g.start];
+          delete fragmentByEnd[g.end];
+          var gf = g.map(function(i) { return ~i; }).reverse().concat(f);
+          fragmentByStart[gf.start = g.end] = fragmentByEnd[gf.end = f.end] = gf;
+        } else {
+          fragmentByStart[f.start] = fragmentByEnd[f.end] = f;
+        }
+      } else if (f = fragmentByEnd[end]) {
+        delete fragmentByEnd[f.end];
+        f.push(~i);
+        f.end = start;
+        if (g = fragmentByEnd[start]) {
+          delete fragmentByStart[g.start];
+          var fg = g === f ? f : f.concat(g);
+          fragmentByStart[fg.start = f.start] = fragmentByEnd[fg.end = g.end] = fg;
+        } else if (g = fragmentByStart[start]) {
+          delete fragmentByStart[g.start];
+          delete fragmentByEnd[g.end];
+          var fg = f.concat(g.map(function(i) { return ~i; }).reverse());
+          fragmentByStart[fg.start = f.start] = fragmentByEnd[fg.end = g.start] = fg;
+        } else {
+          fragmentByStart[f.start] = fragmentByEnd[f.end] = f;
+        }
+      } else {
+        f = [i];
+        fragmentByStart[f.start = start] = fragmentByEnd[f.end = end] = f;
       }
-      else {
-        value = array[i];
-        isValueSet = true;
+    });
+
+    function ends(i) {
+      var arc = topology.arcs[i], p0 = arc[0], p1 = [0, 0];
+      arc.forEach(function(dp) { p1[0] += dp[0], p1[1] += dp[1]; });
+      return [p0, p1];
+    }
+
+    var fragments = [];
+    for (var k in fragmentByEnd) fragments.push(fragmentByEnd[k]);
+    return fragments;
+  }
+
+  function mesh(topology, o, filter) {
+    var arcs = [];
+
+    if (arguments.length > 1) {
+      var geomsByArc = [],
+          geom;
+
+      function arc(i) {
+        if (i < 0) i = ~i;
+        (geomsByArc[i] || (geomsByArc[i] = [])).push(geom);
       }
+
+      function line(arcs) {
+        arcs.forEach(arc);
+      }
+
+      function polygon(arcs) {
+        arcs.forEach(line);
+      }
+
+      function geometry(o) {
+        if (o.type === "GeometryCollection") o.geometries.forEach(geometry);
+        else if (o.type in geometryType) {
+          geom = o;
+          geometryType[o.type](o.arcs);
+        }
+      }
+
+      var geometryType = {
+        LineString: line,
+        MultiLineString: polygon,
+        Polygon: polygon,
+        MultiPolygon: function(arcs) { arcs.forEach(polygon); }
+      };
+
+      geometry(o);
+
+      geomsByArc.forEach(arguments.length < 3
+          ? function(geoms, i) { arcs.push(i); }
+          : function(geoms, i) { if (filter(geoms[0], geoms[geoms.length - 1])) arcs.push(i); });
+    } else {
+      for (var i = 0, n = topology.arcs.length; i < n; ++i) arcs.push(i);
     }
+
+    return object(topology, {type: "MultiLineString", arcs: merge(topology, arcs)});
   }
 
-  return value;
-};
-
-// String.prototype.substr - negative index don't work in IE8
-if ('ab'.substr(-1) !== 'b') {
-  exports.substr = function (str, start, length) {
-    // did we get a negative start, calculate how much it is from the beginning of the string
-    if (start < 0) start = str.length + start;
-
-    // call the original function
-    return str.substr(start, length);
-  };
-} else {
-  exports.substr = function (str, start, length) {
-    return str.substr(start, length);
-  };
-}
-
-// String.prototype.trim is supported in IE9
-exports.trim = function (str) {
-  if (str.trim) return str.trim();
-  return str.replace(/^\s+|\s+$/g, '');
-};
-
-// Function.prototype.bind is supported in IE9
-exports.bind = function () {
-  var args = Array.prototype.slice.call(arguments);
-  var fn = args.shift();
-  if (fn.bind) return fn.bind.apply(fn, args);
-  var self = args.shift();
-  return function () {
-    fn.apply(self, args.concat([Array.prototype.slice.call(arguments)]));
-  };
-};
-
-// Object.create is supported in IE9
-function create(prototype, properties) {
-  var object;
-  if (prototype === null) {
-    object = { '__proto__' : null };
+  function featureOrCollection(topology, o) {
+    return o.type === "GeometryCollection" ? {
+      type: "FeatureCollection",
+      features: o.geometries.map(function(o) { return feature(topology, o); })
+    } : feature(topology, o);
   }
-  else {
-    if (typeof prototype !== 'object') {
-      throw new TypeError(
-        'typeof prototype[' + (typeof prototype) + '] != \'object\''
-      );
+
+  function feature(topology, o) {
+    var f = {
+      type: "Feature",
+      id: o.id,
+      properties: o.properties || {},
+      geometry: object(topology, o)
+    };
+    if (o.id == null) delete f.id;
+    return f;
+  }
+
+  function object(topology, o) {
+    var absolute = transformAbsolute(topology.transform),
+        arcs = topology.arcs;
+
+    function arc(i, points) {
+      if (points.length) points.pop();
+      for (var a = arcs[i < 0 ? ~i : i], k = 0, n = a.length, p; k < n; ++k) {
+        points.push(p = a[k].slice());
+        absolute(p, k);
+      }
+      if (i < 0) reverse(points, n);
     }
-    var Type = function () {};
-    Type.prototype = prototype;
-    object = new Type();
-    object.__proto__ = prototype;
-  }
-  if (typeof properties !== 'undefined' && Object.defineProperties) {
-    Object.defineProperties(object, properties);
-  }
-  return object;
-}
-exports.create = typeof Object.create === 'function' ? Object.create : create;
 
-// Object.keys and Object.getOwnPropertyNames is supported in IE9 however
-// they do show a description and number property on Error objects
-function notObject(object) {
-  return ((typeof object != "object" && typeof object != "function") || object === null);
-}
-
-function keysShim(object) {
-  if (notObject(object)) {
-    throw new TypeError("Object.keys called on a non-object");
-  }
-
-  var result = [];
-  for (var name in object) {
-    if (hasOwnProperty.call(object, name)) {
-      result.push(name);
+    function point(p) {
+      p = p.slice();
+      absolute(p, 0);
+      return p;
     }
+
+    function line(arcs) {
+      var points = [];
+      for (var i = 0, n = arcs.length; i < n; ++i) arc(arcs[i], points);
+      if (points.length < 2) points.push(points[0].slice());
+      return points;
+    }
+
+    function ring(arcs) {
+      var points = line(arcs);
+      while (points.length < 4) points.push(points[0].slice());
+      return points;
+    }
+
+    function polygon(arcs) {
+      return arcs.map(ring);
+    }
+
+    function geometry(o) {
+      var t = o.type;
+      return t === "GeometryCollection" ? {type: t, geometries: o.geometries.map(geometry)}
+          : t in geometryType ? {type: t, coordinates: geometryType[t](o)}
+          : null;
+    }
+
+    var geometryType = {
+      Point: function(o) { return point(o.coordinates); },
+      MultiPoint: function(o) { return o.coordinates.map(point); },
+      LineString: function(o) { return line(o.arcs); },
+      MultiLineString: function(o) { return o.arcs.map(line); },
+      Polygon: function(o) { return polygon(o.arcs); },
+      MultiPolygon: function(o) { return o.arcs.map(polygon); }
+    };
+
+    return geometry(o);
   }
-  return result;
-}
 
-// getOwnPropertyNames is almost the same as Object.keys one key feature
-//  is that it returns hidden properties, since that can't be implemented,
-//  this feature gets reduced so it just shows the length property on arrays
-function propertyShim(object) {
-  if (notObject(object)) {
-    throw new TypeError("Object.getOwnPropertyNames called on a non-object");
+  function reverse(array, n) {
+    var t, j = array.length, i = j - n; while (i < --j) t = array[i], array[i++] = array[j], array[j] = t;
   }
 
-  var result = keysShim(object);
-  if (exports.isArray(object) && exports.indexOf(object, 'length') === -1) {
-    result.push('length');
+  function bisect(a, x) {
+    var lo = 0, hi = a.length;
+    while (lo < hi) {
+      var mid = lo + hi >>> 1;
+      if (a[mid] < x) lo = mid + 1;
+      else hi = mid;
+    }
+    return lo;
   }
-  return result;
-}
 
-var keys = typeof Object.keys === 'function' ? Object.keys : keysShim;
-var getOwnPropertyNames = typeof Object.getOwnPropertyNames === 'function' ?
-  Object.getOwnPropertyNames : propertyShim;
+  function neighbors(objects) {
+    var indexesByArc = {}, // arc index -> array of object indexes
+        neighbors = objects.map(function() { return []; });
 
-if (new Error().hasOwnProperty('description')) {
-  var ERROR_PROPERTY_FILTER = function (obj, array) {
-    if (toString.call(obj) === '[object Error]') {
-      array = exports.filter(array, function (name) {
-        return name !== 'description' && name !== 'number' && name !== 'message';
+    function line(arcs, i) {
+      arcs.forEach(function(a) {
+        if (a < 0) a = ~a;
+        var o = indexesByArc[a];
+        if (o) o.push(i);
+        else indexesByArc[a] = [i];
       });
     }
-    return array;
-  };
 
-  exports.keys = function (object) {
-    return ERROR_PROPERTY_FILTER(object, keys(object));
-  };
-  exports.getOwnPropertyNames = function (object) {
-    return ERROR_PROPERTY_FILTER(object, getOwnPropertyNames(object));
-  };
-} else {
-  exports.keys = keys;
-  exports.getOwnPropertyNames = getOwnPropertyNames;
-}
+    function polygon(arcs, i) {
+      arcs.forEach(function(arc) { line(arc, i); });
+    }
 
-// Object.getOwnPropertyDescriptor - supported in IE8 but only on dom elements
-function valueObject(value, key) {
-  return { value: value[key] };
-}
+    function geometry(o, i) {
+      if (o.type === "GeometryCollection") o.geometries.forEach(function(o) { geometry(o, i); });
+      else if (o.type in geometryType) geometryType[o.type](o.arcs, i);
+    }
 
-if (typeof Object.getOwnPropertyDescriptor === 'function') {
-  try {
-    Object.getOwnPropertyDescriptor({'a': 1}, 'a');
-    exports.getOwnPropertyDescriptor = Object.getOwnPropertyDescriptor;
-  } catch (e) {
-    // IE8 dom element issue - use a try catch and default to valueObject
-    exports.getOwnPropertyDescriptor = function (value, key) {
-      try {
-        return Object.getOwnPropertyDescriptor(value, key);
-      } catch (e) {
-        return valueObject(value, key);
-      }
+    var geometryType = {
+      LineString: line,
+      MultiLineString: polygon,
+      Polygon: polygon,
+      MultiPolygon: function(arcs, i) { arcs.forEach(function(arc) { polygon(arc, i); }); }
     };
-  }
-} else {
-  exports.getOwnPropertyDescriptor = valueObject;
-}
 
-},{}],107:[function(require,module,exports){
+    objects.forEach(geometry);
 
-// not implemented
-// The reason for having an empty file and not throwing is to allow
-// untraditional implementation of this module.
-
-},{}],108:[function(require,module,exports){
-var process=require("__browserify_process");// Copyright Joyent, Inc. and other Node contributors.
-//
-// Permission is hereby granted, free of charge, to any person obtaining a
-// copy of this software and associated documentation files (the
-// "Software"), to deal in the Software without restriction, including
-// without limitation the rights to use, copy, modify, merge, publish,
-// distribute, sublicense, and/or sell copies of the Software, and to permit
-// persons to whom the Software is furnished to do so, subject to the
-// following conditions:
-//
-// The above copyright notice and this permission notice shall be included
-// in all copies or substantial portions of the Software.
-//
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
-// OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN
-// NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
-// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
-// OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
-// USE OR OTHER DEALINGS IN THE SOFTWARE.
-
-var util = require('util');
-var shims = require('_shims');
-
-// resolves . and .. elements in a path array with directory names there
-// must be no slashes, empty elements, or device names (c:\) in the array
-// (so also no leading and trailing slashes - it does not distinguish
-// relative and absolute paths)
-function normalizeArray(parts, allowAboveRoot) {
-  // if the path tries to go above the root, `up` ends up > 0
-  var up = 0;
-  for (var i = parts.length - 1; i >= 0; i--) {
-    var last = parts[i];
-    if (last === '.') {
-      parts.splice(i, 1);
-    } else if (last === '..') {
-      parts.splice(i, 1);
-      up++;
-    } else if (up) {
-      parts.splice(i, 1);
-      up--;
-    }
-  }
-
-  // if the path is allowed to go above the root, restore leading ..s
-  if (allowAboveRoot) {
-    for (; up--; up) {
-      parts.unshift('..');
-    }
-  }
-
-  return parts;
-}
-
-// Split a filename into [root, dir, basename, ext], unix version
-// 'root' is just a slash, or nothing.
-var splitPathRe =
-    /^(\/?|)([\s\S]*?)((?:\.{1,2}|[^\/]+?|)(\.[^.\/]*|))(?:[\/]*)$/;
-var splitPath = function(filename) {
-  return splitPathRe.exec(filename).slice(1);
-};
-
-// path.resolve([from ...], to)
-// posix version
-exports.resolve = function() {
-  var resolvedPath = '',
-      resolvedAbsolute = false;
-
-  for (var i = arguments.length - 1; i >= -1 && !resolvedAbsolute; i--) {
-    var path = (i >= 0) ? arguments[i] : process.cwd();
-
-    // Skip empty and invalid entries
-    if (!util.isString(path)) {
-      throw new TypeError('Arguments to path.resolve must be strings');
-    } else if (!path) {
-      continue;
-    }
-
-    resolvedPath = path + '/' + resolvedPath;
-    resolvedAbsolute = path.charAt(0) === '/';
-  }
-
-  // At this point the path should be resolved to a full absolute path, but
-  // handle relative paths to be safe (might happen when process.cwd() fails)
-
-  // Normalize the path
-  resolvedPath = normalizeArray(shims.filter(resolvedPath.split('/'), function(p) {
-    return !!p;
-  }), !resolvedAbsolute).join('/');
-
-  return ((resolvedAbsolute ? '/' : '') + resolvedPath) || '.';
-};
-
-// path.normalize(path)
-// posix version
-exports.normalize = function(path) {
-  var isAbsolute = exports.isAbsolute(path),
-      trailingSlash = shims.substr(path, -1) === '/';
-
-  // Normalize the path
-  path = normalizeArray(shims.filter(path.split('/'), function(p) {
-    return !!p;
-  }), !isAbsolute).join('/');
-
-  if (!path && !isAbsolute) {
-    path = '.';
-  }
-  if (path && trailingSlash) {
-    path += '/';
-  }
-
-  return (isAbsolute ? '/' : '') + path;
-};
-
-// posix version
-exports.isAbsolute = function(path) {
-  return path.charAt(0) === '/';
-};
-
-// posix version
-exports.join = function() {
-  var paths = Array.prototype.slice.call(arguments, 0);
-  return exports.normalize(shims.filter(paths, function(p, index) {
-    if (!util.isString(p)) {
-      throw new TypeError('Arguments to path.join must be strings');
-    }
-    return p;
-  }).join('/'));
-};
-
-
-// path.relative(from, to)
-// posix version
-exports.relative = function(from, to) {
-  from = exports.resolve(from).substr(1);
-  to = exports.resolve(to).substr(1);
-
-  function trim(arr) {
-    var start = 0;
-    for (; start < arr.length; start++) {
-      if (arr[start] !== '') break;
-    }
-
-    var end = arr.length - 1;
-    for (; end >= 0; end--) {
-      if (arr[end] !== '') break;
-    }
-
-    if (start > end) return [];
-    return arr.slice(start, end - start + 1);
-  }
-
-  var fromParts = trim(from.split('/'));
-  var toParts = trim(to.split('/'));
-
-  var length = Math.min(fromParts.length, toParts.length);
-  var samePartsLength = length;
-  for (var i = 0; i < length; i++) {
-    if (fromParts[i] !== toParts[i]) {
-      samePartsLength = i;
-      break;
-    }
-  }
-
-  var outputParts = [];
-  for (var i = samePartsLength; i < fromParts.length; i++) {
-    outputParts.push('..');
-  }
-
-  outputParts = outputParts.concat(toParts.slice(samePartsLength));
-
-  return outputParts.join('/');
-};
-
-exports.sep = '/';
-exports.delimiter = ':';
-
-exports.dirname = function(path) {
-  var result = splitPath(path),
-      root = result[0],
-      dir = result[1];
-
-  if (!root && !dir) {
-    // No dirname whatsoever
-    return '.';
-  }
-
-  if (dir) {
-    // It has a dirname, strip trailing slash
-    dir = dir.substr(0, dir.length - 1);
-  }
-
-  return root + dir;
-};
-
-
-exports.basename = function(path, ext) {
-  var f = splitPath(path)[2];
-  // TODO: make this comparison case-insensitive on windows?
-  if (ext && f.substr(-1 * ext.length) === ext) {
-    f = f.substr(0, f.length - ext.length);
-  }
-  return f;
-};
-
-
-exports.extname = function(path) {
-  return splitPath(path)[3];
-};
-
-},{"__browserify_process":110,"_shims":106,"util":109}],109:[function(require,module,exports){
-// Copyright Joyent, Inc. and other Node contributors.
-//
-// Permission is hereby granted, free of charge, to any person obtaining a
-// copy of this software and associated documentation files (the
-// "Software"), to deal in the Software without restriction, including
-// without limitation the rights to use, copy, modify, merge, publish,
-// distribute, sublicense, and/or sell copies of the Software, and to permit
-// persons to whom the Software is furnished to do so, subject to the
-// following conditions:
-//
-// The above copyright notice and this permission notice shall be included
-// in all copies or substantial portions of the Software.
-//
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
-// OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN
-// NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
-// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
-// OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
-// USE OR OTHER DEALINGS IN THE SOFTWARE.
-
-var shims = require('_shims');
-
-var formatRegExp = /%[sdj%]/g;
-exports.format = function(f) {
-  if (!isString(f)) {
-    var objects = [];
-    for (var i = 0; i < arguments.length; i++) {
-      objects.push(inspect(arguments[i]));
-    }
-    return objects.join(' ');
-  }
-
-  var i = 1;
-  var args = arguments;
-  var len = args.length;
-  var str = String(f).replace(formatRegExp, function(x) {
-    if (x === '%%') return '%';
-    if (i >= len) return x;
-    switch (x) {
-      case '%s': return String(args[i++]);
-      case '%d': return Number(args[i++]);
-      case '%j':
-        try {
-          return JSON.stringify(args[i++]);
-        } catch (_) {
-          return '[Circular]';
+    for (var i in indexesByArc) {
+      for (var indexes = indexesByArc[i], m = indexes.length, j = 0; j < m; ++j) {
+        for (var k = j + 1; k < m; ++k) {
+          var ij = indexes[j], ik = indexes[k], n;
+          if ((n = neighbors[ij])[i = bisect(n, ik)] !== ik) n.splice(i, 0, ik);
+          if ((n = neighbors[ik])[i = bisect(n, ij)] !== ij) n.splice(i, 0, ij);
         }
-      default:
-        return x;
+      }
     }
-  });
-  for (var x = args[i]; i < len; x = args[++i]) {
-    if (isNull(x) || !isObject(x)) {
-      str += ' ' + x;
-    } else {
-      str += ' ' + inspect(x);
-    }
-  }
-  return str;
-};
 
-/**
- * Echos the value of a value. Trys to print the value out
- * in the best way possible given the different types.
- *
- * @param {Object} obj The object to print out.
- * @param {Object} opts Optional options object that alters the output.
- */
-/* legacy: obj, showHidden, depth, colors*/
-function inspect(obj, opts) {
-  // default options
-  var ctx = {
-    seen: [],
-    stylize: stylizeNoColor
-  };
-  // legacy...
-  if (arguments.length >= 3) ctx.depth = arguments[2];
-  if (arguments.length >= 4) ctx.colors = arguments[3];
-  if (isBoolean(opts)) {
-    // legacy...
-    ctx.showHidden = opts;
-  } else if (opts) {
-    // got an "options" object
-    exports._extend(ctx, opts);
-  }
-  // set default options
-  if (isUndefined(ctx.showHidden)) ctx.showHidden = false;
-  if (isUndefined(ctx.depth)) ctx.depth = 2;
-  if (isUndefined(ctx.colors)) ctx.colors = false;
-  if (isUndefined(ctx.customInspect)) ctx.customInspect = true;
-  if (ctx.colors) ctx.stylize = stylizeWithColor;
-  return formatValue(ctx, obj, ctx.depth);
-}
-exports.inspect = inspect;
-
-
-// http://en.wikipedia.org/wiki/ANSI_escape_code#graphics
-inspect.colors = {
-  'bold' : [1, 22],
-  'italic' : [3, 23],
-  'underline' : [4, 24],
-  'inverse' : [7, 27],
-  'white' : [37, 39],
-  'grey' : [90, 39],
-  'black' : [30, 39],
-  'blue' : [34, 39],
-  'cyan' : [36, 39],
-  'green' : [32, 39],
-  'magenta' : [35, 39],
-  'red' : [31, 39],
-  'yellow' : [33, 39]
-};
-
-// Don't use 'blue' not visible on cmd.exe
-inspect.styles = {
-  'special': 'cyan',
-  'number': 'yellow',
-  'boolean': 'yellow',
-  'undefined': 'grey',
-  'null': 'bold',
-  'string': 'green',
-  'date': 'magenta',
-  // "name": intentionally not styling
-  'regexp': 'red'
-};
-
-
-function stylizeWithColor(str, styleType) {
-  var style = inspect.styles[styleType];
-
-  if (style) {
-    return '\u001b[' + inspect.colors[style][0] + 'm' + str +
-           '\u001b[' + inspect.colors[style][1] + 'm';
-  } else {
-    return str;
-  }
-}
-
-
-function stylizeNoColor(str, styleType) {
-  return str;
-}
-
-
-function arrayToHash(array) {
-  var hash = {};
-
-  shims.forEach(array, function(val, idx) {
-    hash[val] = true;
-  });
-
-  return hash;
-}
-
-
-function formatValue(ctx, value, recurseTimes) {
-  // Provide a hook for user-specified inspect functions.
-  // Check that value is an object with an inspect function on it
-  if (ctx.customInspect &&
-      value &&
-      isFunction(value.inspect) &&
-      // Filter out the util module, it's inspect function is special
-      value.inspect !== exports.inspect &&
-      // Also filter out any prototype objects using the circular check.
-      !(value.constructor && value.constructor.prototype === value)) {
-    var ret = value.inspect(recurseTimes);
-    if (!isString(ret)) {
-      ret = formatValue(ctx, ret, recurseTimes);
-    }
-    return ret;
+    return neighbors;
   }
 
-  // Primitive types cannot have properties
-  var primitive = formatPrimitive(ctx, value);
-  if (primitive) {
-    return primitive;
-  }
+  function presimplify(topology, triangleArea) {
+    var absolute = transformAbsolute(topology.transform),
+        relative = transformRelative(topology.transform),
+        heap = minHeap(compareArea),
+        maxArea = 0,
+        triangle;
 
-  // Look up the keys of the object.
-  var keys = shims.keys(value);
-  var visibleKeys = arrayToHash(keys);
+    if (!triangleArea) triangleArea = cartesianArea;
 
-  if (ctx.showHidden) {
-    keys = shims.getOwnPropertyNames(value);
-  }
+    topology.arcs.forEach(function(arc) {
+      var triangles = [];
 
-  // Some type of object without properties can be shortcutted.
-  if (keys.length === 0) {
-    if (isFunction(value)) {
-      var name = value.name ? ': ' + value.name : '';
-      return ctx.stylize('[Function' + name + ']', 'special');
-    }
-    if (isRegExp(value)) {
-      return ctx.stylize(RegExp.prototype.toString.call(value), 'regexp');
-    }
-    if (isDate(value)) {
-      return ctx.stylize(Date.prototype.toString.call(value), 'date');
-    }
-    if (isError(value)) {
-      return formatError(value);
-    }
-  }
+      arc.forEach(absolute);
 
-  var base = '', array = false, braces = ['{', '}'];
+      for (var i = 1, n = arc.length - 1; i < n; ++i) {
+        triangle = arc.slice(i - 1, i + 2);
+        triangle[1][2] = triangleArea(triangle);
+        triangles.push(triangle);
+        heap.push(triangle);
+      }
 
-  // Make Array say that they are Array
-  if (isArray(value)) {
-    array = true;
-    braces = ['[', ']'];
-  }
+      // Always keep the arc endpoints!
+      arc[0][2] = arc[n][2] = Infinity;
 
-  // Make functions say that they are functions
-  if (isFunction(value)) {
-    var n = value.name ? ': ' + value.name : '';
-    base = ' [Function' + n + ']';
-  }
-
-  // Make RegExps say that they are RegExps
-  if (isRegExp(value)) {
-    base = ' ' + RegExp.prototype.toString.call(value);
-  }
-
-  // Make dates with properties first say the date
-  if (isDate(value)) {
-    base = ' ' + Date.prototype.toUTCString.call(value);
-  }
-
-  // Make error with message first say the error
-  if (isError(value)) {
-    base = ' ' + formatError(value);
-  }
-
-  if (keys.length === 0 && (!array || value.length == 0)) {
-    return braces[0] + base + braces[1];
-  }
-
-  if (recurseTimes < 0) {
-    if (isRegExp(value)) {
-      return ctx.stylize(RegExp.prototype.toString.call(value), 'regexp');
-    } else {
-      return ctx.stylize('[Object]', 'special');
-    }
-  }
-
-  ctx.seen.push(value);
-
-  var output;
-  if (array) {
-    output = formatArray(ctx, value, recurseTimes, visibleKeys, keys);
-  } else {
-    output = keys.map(function(key) {
-      return formatProperty(ctx, value, recurseTimes, visibleKeys, key, array);
+      for (var i = 0, n = triangles.length; i < n; ++i) {
+        triangle = triangles[i];
+        triangle.previous = triangles[i - 1];
+        triangle.next = triangles[i + 1];
+      }
     });
-  }
 
-  ctx.seen.pop();
+    while (triangle = heap.pop()) {
+      var previous = triangle.previous,
+          next = triangle.next;
 
-  return reduceToSingleString(output, base, braces);
-}
+      // If the area of the current point is less than that of the previous point
+      // to be eliminated, use the latter's area instead. This ensures that the
+      // current point cannot be eliminated without eliminating previously-
+      // eliminated points.
+      if (triangle[1][2] < maxArea) triangle[1][2] = maxArea;
+      else maxArea = triangle[1][2];
 
-
-function formatPrimitive(ctx, value) {
-  if (isUndefined(value))
-    return ctx.stylize('undefined', 'undefined');
-  if (isString(value)) {
-    var simple = '\'' + JSON.stringify(value).replace(/^"|"$/g, '')
-                                             .replace(/'/g, "\\'")
-                                             .replace(/\\"/g, '"') + '\'';
-    return ctx.stylize(simple, 'string');
-  }
-  if (isNumber(value))
-    return ctx.stylize('' + value, 'number');
-  if (isBoolean(value))
-    return ctx.stylize('' + value, 'boolean');
-  // For some reason typeof null is "object", so special case here.
-  if (isNull(value))
-    return ctx.stylize('null', 'null');
-}
-
-
-function formatError(value) {
-  return '[' + Error.prototype.toString.call(value) + ']';
-}
-
-
-function formatArray(ctx, value, recurseTimes, visibleKeys, keys) {
-  var output = [];
-  for (var i = 0, l = value.length; i < l; ++i) {
-    if (hasOwnProperty(value, String(i))) {
-      output.push(formatProperty(ctx, value, recurseTimes, visibleKeys,
-          String(i), true));
-    } else {
-      output.push('');
-    }
-  }
-
-  shims.forEach(keys, function(key) {
-    if (!key.match(/^\d+$/)) {
-      output.push(formatProperty(ctx, value, recurseTimes, visibleKeys,
-          key, true));
-    }
-  });
-  return output;
-}
-
-
-function formatProperty(ctx, value, recurseTimes, visibleKeys, key, array) {
-  var name, str, desc;
-  desc = shims.getOwnPropertyDescriptor(value, key) || { value: value[key] };
-  if (desc.get) {
-    if (desc.set) {
-      str = ctx.stylize('[Getter/Setter]', 'special');
-    } else {
-      str = ctx.stylize('[Getter]', 'special');
-    }
-  } else {
-    if (desc.set) {
-      str = ctx.stylize('[Setter]', 'special');
-    }
-  }
-
-  if (!hasOwnProperty(visibleKeys, key)) {
-    name = '[' + key + ']';
-  }
-  if (!str) {
-    if (shims.indexOf(ctx.seen, desc.value) < 0) {
-      if (isNull(recurseTimes)) {
-        str = formatValue(ctx, desc.value, null);
-      } else {
-        str = formatValue(ctx, desc.value, recurseTimes - 1);
+      if (previous) {
+        previous.next = next;
+        previous[2] = triangle[2];
+        update(previous);
       }
-      if (str.indexOf('\n') > -1) {
-        if (array) {
-          str = str.split('\n').map(function(line) {
-            return '  ' + line;
-          }).join('\n').substr(2);
-        } else {
-          str = '\n' + str.split('\n').map(function(line) {
-            return '   ' + line;
-          }).join('\n');
-        }
+
+      if (next) {
+        next.previous = previous;
+        next[0] = triangle[0];
+        update(next);
       }
-    } else {
-      str = ctx.stylize('[Circular]', 'special');
     }
-  }
-  if (isUndefined(name)) {
-    if (array && key.match(/^\d+$/)) {
-      return str;
+
+    topology.arcs.forEach(function(arc) {
+      arc.forEach(relative);
+    });
+
+    function update(triangle) {
+      heap.remove(triangle);
+      triangle[1][2] = triangleArea(triangle);
+      heap.push(triangle);
     }
-    name = JSON.stringify('' + key);
-    if (name.match(/^"([a-zA-Z_][a-zA-Z_0-9]*)"$/)) {
-      name = name.substr(1, name.length - 2);
-      name = ctx.stylize(name, 'name');
-    } else {
-      name = name.replace(/'/g, "\\'")
-                 .replace(/\\"/g, '"')
-                 .replace(/(^"|"$)/g, "'");
-      name = ctx.stylize(name, 'string');
-    }
-  }
 
-  return name + ': ' + str;
-}
+    return topology;
+  };
 
-
-function reduceToSingleString(output, base, braces) {
-  var numLinesEst = 0;
-  var length = shims.reduce(output, function(prev, cur) {
-    numLinesEst++;
-    if (cur.indexOf('\n') >= 0) numLinesEst++;
-    return prev + cur.replace(/\u001b\[\d\d?m/g, '').length + 1;
-  }, 0);
-
-  if (length > 60) {
-    return braces[0] +
-           (base === '' ? '' : base + '\n ') +
-           ' ' +
-           output.join(',\n  ') +
-           ' ' +
-           braces[1];
+  function cartesianArea(triangle) {
+    return Math.abs(
+      (triangle[0][0] - triangle[2][0]) * (triangle[1][1] - triangle[0][1])
+      - (triangle[0][0] - triangle[1][0]) * (triangle[2][1] - triangle[0][1])
+    );
   }
 
-  return braces[0] + base + ' ' + output.join(', ') + ' ' + braces[1];
-}
-
-
-// NOTE: These type checking functions intentionally don't use `instanceof`
-// because it is fragile and can be easily faked with `Object.create()`.
-function isArray(ar) {
-  return shims.isArray(ar);
-}
-exports.isArray = isArray;
-
-function isBoolean(arg) {
-  return typeof arg === 'boolean';
-}
-exports.isBoolean = isBoolean;
-
-function isNull(arg) {
-  return arg === null;
-}
-exports.isNull = isNull;
-
-function isNullOrUndefined(arg) {
-  return arg == null;
-}
-exports.isNullOrUndefined = isNullOrUndefined;
-
-function isNumber(arg) {
-  return typeof arg === 'number';
-}
-exports.isNumber = isNumber;
-
-function isString(arg) {
-  return typeof arg === 'string';
-}
-exports.isString = isString;
-
-function isSymbol(arg) {
-  return typeof arg === 'symbol';
-}
-exports.isSymbol = isSymbol;
-
-function isUndefined(arg) {
-  return arg === void 0;
-}
-exports.isUndefined = isUndefined;
-
-function isRegExp(re) {
-  return isObject(re) && objectToString(re) === '[object RegExp]';
-}
-exports.isRegExp = isRegExp;
-
-function isObject(arg) {
-  return typeof arg === 'object' && arg;
-}
-exports.isObject = isObject;
-
-function isDate(d) {
-  return isObject(d) && objectToString(d) === '[object Date]';
-}
-exports.isDate = isDate;
-
-function isError(e) {
-  return isObject(e) && objectToString(e) === '[object Error]';
-}
-exports.isError = isError;
-
-function isFunction(arg) {
-  return typeof arg === 'function';
-}
-exports.isFunction = isFunction;
-
-function isPrimitive(arg) {
-  return arg === null ||
-         typeof arg === 'boolean' ||
-         typeof arg === 'number' ||
-         typeof arg === 'string' ||
-         typeof arg === 'symbol' ||  // ES6 symbol
-         typeof arg === 'undefined';
-}
-exports.isPrimitive = isPrimitive;
-
-function isBuffer(arg) {
-  return arg && typeof arg === 'object'
-    && typeof arg.copy === 'function'
-    && typeof arg.fill === 'function'
-    && typeof arg.binarySlice === 'function'
-  ;
-}
-exports.isBuffer = isBuffer;
-
-function objectToString(o) {
-  return Object.prototype.toString.call(o);
-}
-
-
-function pad(n) {
-  return n < 10 ? '0' + n.toString(10) : n.toString(10);
-}
-
-
-var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep',
-              'Oct', 'Nov', 'Dec'];
-
-// 26 Feb 16:19:34
-function timestamp() {
-  var d = new Date();
-  var time = [pad(d.getHours()),
-              pad(d.getMinutes()),
-              pad(d.getSeconds())].join(':');
-  return [d.getDate(), months[d.getMonth()], time].join(' ');
-}
-
-
-// log is just a thin wrapper to console.log that prepends a timestamp
-exports.log = function() {
-  console.log('%s - %s', timestamp(), exports.format.apply(exports, arguments));
-};
-
-
-/**
- * Inherit the prototype methods from one constructor into another.
- *
- * The Function.prototype.inherits from lang.js rewritten as a standalone
- * function (not on Function.prototype). NOTE: If this file is to be loaded
- * during bootstrapping this function needs to be rewritten using some native
- * functions as prototype setup using normal JavaScript does not work as
- * expected during bootstrapping (see mirror.js in r114903).
- *
- * @param {function} ctor Constructor function which needs to inherit the
- *     prototype.
- * @param {function} superCtor Constructor function to inherit prototype from.
- */
-exports.inherits = function(ctor, superCtor) {
-  ctor.super_ = superCtor;
-  ctor.prototype = shims.create(superCtor.prototype, {
-    constructor: {
-      value: ctor,
-      enumerable: false,
-      writable: true,
-      configurable: true
-    }
-  });
-};
-
-exports._extend = function(origin, add) {
-  // Don't do anything if add isn't an object
-  if (!add || !isObject(add)) return origin;
-
-  var keys = shims.keys(add);
-  var i = keys.length;
-  while (i--) {
-    origin[keys[i]] = add[keys[i]];
+  function compareArea(a, b) {
+    return a[1][2] - b[1][2];
   }
-  return origin;
-};
 
-function hasOwnProperty(obj, prop) {
-  return Object.prototype.hasOwnProperty.call(obj, prop);
-}
+  function minHeap(compare) {
+    var heap = {},
+        array = [];
 
-},{"_shims":106}],110:[function(require,module,exports){
-// shim for using process in browser
-
-var process = module.exports = {};
-
-process.nextTick = (function () {
-    var canSetImmediate = typeof window !== 'undefined'
-    && window.setImmediate;
-    var canPost = typeof window !== 'undefined'
-    && window.postMessage && window.addEventListener
-    ;
-
-    if (canSetImmediate) {
-        return function (f) { return window.setImmediate(f) };
-    }
-
-    if (canPost) {
-        var queue = [];
-        window.addEventListener('message', function (ev) {
-            if (ev.source === window && ev.data === 'process-tick') {
-                ev.stopPropagation();
-                if (queue.length > 0) {
-                    var fn = queue.shift();
-                    fn();
-                }
-            }
-        }, true);
-
-        return function nextTick(fn) {
-            queue.push(fn);
-            window.postMessage('process-tick', '*');
-        };
-    }
-
-    return function nextTick(fn) {
-        setTimeout(fn, 0);
+    heap.push = function() {
+      for (var i = 0, n = arguments.length; i < n; ++i) {
+        var object = arguments[i];
+        up(object.index = array.push(object) - 1);
+      }
+      return array.length;
     };
-})();
 
-process.title = 'browser';
-process.browser = true;
-process.env = {};
-process.argv = [];
+    heap.pop = function() {
+      var removed = array[0],
+          object = array.pop();
+      if (array.length) {
+        array[object.index = 0] = object;
+        down(0);
+      }
+      return removed;
+    };
 
-process.binding = function (name) {
-    throw new Error('process.binding is not supported');
-}
+    heap.remove = function(removed) {
+      var i = removed.index,
+          object = array.pop();
+      if (i !== array.length) {
+        array[object.index = i] = object;
+        (compare(object, removed) < 0 ? up : down)(i);
+      }
+      return i;
+    };
 
-// TODO(shtylman)
-process.cwd = function () { return '/' };
-process.chdir = function (dir) {
-    throw new Error('process.chdir is not supported');
-};
+    function up(i) {
+      var object = array[i];
+      while (i > 0) {
+        var up = ((i + 1) >> 1) - 1,
+            parent = array[up];
+        if (compare(object, parent) >= 0) break;
+        array[parent.index = i] = parent;
+        array[object.index = i = up] = object;
+      }
+    }
+
+    function down(i) {
+      var object = array[i];
+      while (true) {
+        var right = (i + 1) << 1,
+            left = right - 1,
+            down = i,
+            child = array[down];
+        if (left < array.length && compare(array[left], child) < 0) child = array[down = left];
+        if (right < array.length && compare(array[right], child) < 0) child = array[down = right];
+        if (down === i) break;
+        array[child.index = i] = child;
+        array[object.index = i = down] = object;
+      }
+    }
+
+    return heap;
+  }
+
+  function transformAbsolute(transform) {
+    if (!transform) return noop;
+    var x0,
+        y0,
+        kx = transform.scale[0],
+        ky = transform.scale[1],
+        dx = transform.translate[0],
+        dy = transform.translate[1];
+    return function(point, i) {
+      if (!i) x0 = y0 = 0;
+      point[0] = (x0 += point[0]) * kx + dx;
+      point[1] = (y0 += point[1]) * ky + dy;
+    };
+  }
+
+  function transformRelative(transform) {
+    if (!transform) return noop;
+    var x0,
+        y0,
+        kx = transform.scale[0],
+        ky = transform.scale[1],
+        dx = transform.translate[0],
+        dy = transform.translate[1];
+    return function(point, i) {
+      if (!i) x0 = y0 = 0;
+      var x1 = (point[0] - dx) / kx | 0,
+          y1 = (point[1] - dy) / ky | 0;
+      point[0] = x1 - x0;
+      point[1] = y1 - y0;
+      x0 = x1;
+      y0 = y1;
+    };
+  }
+
+  function noop() {}
+
+  if (typeof define === "function" && define.amd) define(topojson);
+  else if (typeof module === "object" && module.exports) module.exports = topojson;
+  else this.topojson = topojson;
+}();
 
 },{}]},{},[1])
 (1)
 });
-;
