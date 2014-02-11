@@ -1,0 +1,1162 @@
+<run>
+<precisionModel type="FLOATING"/>
+
+<case>
+<desc>L/A-3-1: a line touching the closing point of a polygon [dim(0){A.L.Bdy.SP = B.oBdy.CP}]</desc>
+  <a>
+    LINESTRING(150 150, 40 230)
+  </a>
+  <b>
+    POLYGON(
+      (150 150, 410 150, 280 20, 20 20, 150 150))
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="FF1F00212">true</op>
+  </test>
+</case>
+
+<case>
+<desc>L/A-3-2: the start and end points of a LineString touching the boundary (at non-vertices) of a polygon [dim(0){A.L.Bdy.SP = B.oBdy.NV}, dim(0){A.L.Bdy.EP = B.oBdy.NV}]</desc>
+  <a>
+    LINESTRING(40 40, 50 130, 130 130)
+  </a>
+  <b>
+    POLYGON(
+      (150 150, 410 150, 280 20, 20 20, 150 150))
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="FF1F0F212">true</op>
+  </test>
+</case>
+
+<case>
+<desc>L/A-3-3: the end point of a line touching the closing point of a polygon [dim(0){A.L.Bdy.EP = B.oBdy.CP}]</desc>
+  <a>
+    LINESTRING(40 230, 150 150)
+  </a>
+  <b>
+    POLYGON(
+      (150 150, 410 150, 280 20, 20 20, 150 150))
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="FF1F00212">true</op>
+  </test>
+</case>
+
+<case>
+<desc>L/A-3-4: an entire LineString touching the boundary (at non-vertices) of a polygon [dim(1){A.L.Int.SP-EP = B.oBdy.NV-NV}]</desc>
+  <a>
+    LINESTRING(210 150, 330 150)
+  </a>
+  <b>
+    POLYGON(
+      (150 150, 410 150, 280 20, 20 20, 150 150))
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="F1FF0F212">true</op>
+  </test>
+</case>
+
+<case>
+<desc>L/A-3-5: the start portion of a LineString touching the boundary (at non-vertices) of a polygon [dim(1){A.L.Int.SP-V = B.oBdy.NV-NV}]</desc>
+  <a>
+    LINESTRING(200 150, 310 150, 360 220)
+  </a>
+  <b>
+    POLYGON(
+      (150 150, 410 150, 280 20, 20 20, 150 150))
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="F11F00212">true</op>
+  </test>
+</case>
+
+<case>
+<desc>L/A-3-6: the start portion and the end point of a LineString touching the boundary of a polygon [dim(1){A.L.Int.SP-V = B.oBdy.NV-NV}, dim(0){A.L.Bdy.EP = B.A.oBdy.V}]</desc>
+  <a>
+    LINESTRING(180 150, 250 150, 230 250, 370 250, 410 150)
+  </a>
+  <b>
+    POLYGON(
+      (150 150, 410 150, 280 20, 20 20, 150 150))
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="F11F0F212">true</op>
+  </test>
+</case>
+
+<case>
+<desc>L/A-3-7: the middle portion of a LineString touching the boundary (at non-vertices) of a polygon [dim(1){A.L.Int.V-V = B.oBdy.NV-NV}]</desc>
+  <a>
+    LINESTRING(210 210, 220 150, 320 150, 370 210)
+  </a>
+  <b>
+    POLYGON(
+      (150 150, 410 150, 280 20, 20 20, 150 150))
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="F11FF0212">true</op>
+  </test>
+</case>
+
+<case>
+<desc>L/A-4-1: a line at non-vertex crossing non-vertex boundary of polygon [dim(0){A.L.Int.NV = B.A.oBdy.NV}, dim(1){A.L.Int.NV-EP = B.A.Int}]</desc>
+  <a>
+    LINESTRING(20 60, 150 60)
+  </a>
+  <b>
+    POLYGON(
+      (150 150, 410 150, 280 20, 20 20, 150 150))
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="1010F0212">true</op>
+  </test>
+</case>
+
+<case>
+<desc>L/A-4-2: a line at non-vertex crossing non-vertex boundaries of polygon twice [dim(0){A.L.Int.NV = B.A.oBdy.NV}, dim(1){A.L.Int.NV-NV = B.A.Int}]</desc>
+  <a>
+    LINESTRING(60 90, 310 180)
+  </a>
+  <b>
+    POLYGON(
+      (150 150, 410 150, 280 20, 20 20, 150 150))
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="101FF0212">true</op>
+  </test>
+</case>
+
+<case>
+<desc>L/A-4-3: a line at non-vertex crossing vertex boundary of polygon [dim(0){A.L.Int.NV = B.A.oBdy.V}, dim(1){A.L.Int.NV-EP = B.A.Int}]</desc>
+  <a>
+    LINESTRING(90 210, 210 90)
+  </a>
+  <b>
+    POLYGON(
+      (150 150, 410 150, 280 20, 20 20, 150 150))
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="1010F0212">true</op>
+  </test>
+</case>
+
+<case>
+<desc>L/A-4-4: a line at non-vertex crossing vertex boundaries of polygon twice [dim(0){A.L.Int.NV = B.A.oBdy.V}, dim(1){A.L.Int.NV-NV = B.A.Int}, dim(0){A.L.Int.NV = B.A.oBdy.CP}]</desc>
+  <a>
+    LINESTRING(290 10, 130 170)
+  </a>
+  <b>
+    POLYGON(
+      (150 150, 410 150, 280 20, 20 20, 150 150))
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="101FF0212">true</op>
+  </test>
+</case>
+
+<case>
+<desc>L/A-4-5: a line at vertex crossing non-vertex boundary of polygon [dim(0){A.L.Int.V = B.A.oBdy.NV}, dim(1){A.L.Int.V-EP = B.A.Int}]</desc>
+  <a>
+    LINESTRING(30 100, 100 100, 180 100)
+  </a>
+  <b>
+    POLYGON(
+      (150 150, 410 150, 280 20, 20 20, 150 150))
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="1010F0212">true</op>
+  </test>
+</case>
+
+<case>
+<desc>L/A-4-6: a line at vertex crossing non-vertex boundaries of polygon twice [dim(0){A.L.Int.V = B.A.oBdy.NV}, dim(1){A.L.Int.V-V = B.A.Int}]</desc>
+  <a>
+    LINESTRING(20 100, 100 100, 360 100, 410 100)
+  </a>
+  <b>
+    POLYGON(
+      (150 150, 410 150, 280 20, 20 20, 150 150))
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="101FF0212">true</op>
+  </test>
+</case>
+
+<case>
+<desc>L/A-4-7: a line at vertex crossing vertex boundary of polygon [dim(0){A.L.Int.V = B.A.oBdy.V}, dim(1){A.L.Int.V-EP = B.A.Int}]</desc>
+  <a>
+    LINESTRING(90 210, 150 150, 210 90)
+  </a>
+  <b>
+    POLYGON(
+      (150 150, 410 150, 280 20, 20 20, 150 150))
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="1010F0212">true</op>
+  </test>
+</case>
+
+<case>
+<desc>L/A-5-1: an entire line within a polygon [dim(1){A.L.Int.SP-EP = B.A.Int}]</desc>
+  <a>
+    LINESTRING(180 90, 280 120)
+  </a>
+  <b>
+    POLYGON(
+      (150 150, 410 150, 280 20, 20 20, 150 150))
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="1FF0FF212">true</op>
+  </test>
+</case>
+
+<case>
+<desc>L/A-5-2: a line within a polygon but the line's both ends touching the boundary of the polygon [dim(1){A.L.Int.SP-EP = B.A.Int}, dim(0){A.L.Bdy.SP = B.oBdy.NV}, dim(0){A.L.Bdy.EP = B.oBdy.NV}]</desc>
+  <a>
+    LINESTRING(70 70, 80 20)
+  </a>
+  <b>
+    POLYGON(
+      (150 150, 410 150, 280 20, 20 20, 150 150))
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="1FFF0F212">true</op>
+  </test>
+</case>
+
+<case>
+<desc>L/A-5-3: a line within a polygon but the line's start point touching the boundary of the polygon [dim(1){A.L.Int.SP-EP = B.A.Int}, dim(0){A.L.Bdy.SP = B.oBdy.NV}]</desc>
+  <a>
+    LINESTRING(130 20, 150 60)
+  </a>
+  <b>
+    POLYGON(
+      (150 150, 410 150, 280 20, 20 20, 150 150))
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="1FF00F212">true</op>
+  </test>
+</case>
+
+<case>
+<desc>L/A-5-4: a line within a polygon but the line's start point and middle portion touching the boundary of the polygon [dim(1){A.L.Int.SP-V = B.A.Int}, dim(1){A.L.Int.V-V = B.oBdy.NV-NV}, dim(1){A.L.Int.V-EP = B.A.Int}, dim(0){A.L.Bdy.SP = B.A.oBdy.NV}]</desc>
+  <a>
+    LINESTRING(70 70, 80 20, 140 20, 150 60)
+  </a>
+  <b>
+    POLYGON(
+      (150 150, 410 150, 280 20, 20 20, 150 150))
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="11F00F212">true</op>
+  </test>
+</case>
+
+<case>
+<desc>L/A-5-5: a line within a polygon but the line's middle portion touching the boundary of the polygon [dim(1){A.L.Int.SP-V = B.A.Int}, dim(1){A.L.Int.V-V = B.A.oBdy.NV-NV}, dim(1){A.L.Int.V-EP = B.A.Int}]</desc>
+  <a>
+    LINESTRING(170 50, 170 20, 240 20, 260 60)
+  </a>
+  <b>
+    POLYGON(
+      (150 150, 410 150, 280 20, 20 20, 150 150))
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="11F0FF212">true</op>
+  </test>
+</case>
+
+<case>
+<desc>L/Ah-2-1: a line outside a polygon [dim(1){A.L.Int.SP-EP = B.A.Ext}]</desc>
+  <a>
+    LINESTRING(50 100, 140 190, 280 190)
+  </a>
+  <b>
+    POLYGON(
+      (150 150, 410 150, 280 20, 20 20, 150 150), 
+      (170 120, 330 120, 260 50, 100 50, 170 120))
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="FF1FF0212">true</op>
+  </test>
+</case>
+
+<case>
+<desc>L/Ah-2-2: a line inside a polygon's hole [dim(1){A.L.Int.SP-EP = B.A.Ext.h}]</desc>
+  <a>
+    LINESTRING(140 60, 180 100, 290 100)
+  </a>
+  <b>
+    POLYGON(
+      (150 150, 410 150, 280 20, 20 20, 150 150), 
+      (170 120, 330 120, 260 50, 100 50, 170 120))
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="FF1FF0212">true</op>
+  </test>
+</case>
+
+<case>
+<desc>L/Ah-3-1: the start point of a line touching the inner boundary of a polygon [dim(0){A.L.Bdy.SP = B.A.iBdy.CP}, dim(1){A.L.Int.SP-EP = B.A.Ext.h}]</desc>
+  <a>
+    LINESTRING(170 120, 210 80, 270 80)
+  </a>
+  <b>
+    POLYGON(
+      (150 150, 410 150, 280 20, 20 20, 150 150), 
+      (170 120, 330 120, 260 50, 100 50, 170 120))
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="FF1F00212">true</op>
+  </test>
+</case>
+
+<case>
+<desc>L/Ah-3-2: both ends of a line touching the inner boundary of a polygon [dim(0){A.L.Bdy.SP = B.A.iBdy.CP}, dim(1){A.L.Int.SP-EP = B.A.Ext.h}, dim(0){A.L.Bdy.SP = B.A.iBdy.CP}]</desc>
+  <a>
+    LINESTRING(170 120, 260 50)
+  </a>
+  <b>
+    POLYGON(
+      (150 150, 410 150, 280 20, 20 20, 150 150), 
+      (170 120, 330 120, 260 50, 100 50, 170 120))
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="FF1F0F212">true</op>
+  </test>
+</case>
+
+<case>
+<desc>L/Ah-3-1: both ends of a line touching the inner boundary of a polygon [dim(0){A.L.Int.NV = B.A.Bdy.TP}]</desc>
+  <a>
+    LINESTRING(190 90, 190 270)
+  </a>
+  <b>
+    POLYGON(
+      (190 190, 360 20, 20 20, 190 190), 
+      (190 190, 280 50, 100 50, 190 190))
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="F01FF0212">true</op>
+  </test>
+</case>
+
+<case>
+<desc>L/Ah-3-2: a line at a non-vertex crossing the boundary of a polygon where the closing point of the hole touches the shell at a non-vertex [dim(0){A.L.Int.NV = B.A.Bdy.TP}]</desc>
+  <a>
+    LINESTRING(60 160, 150 70)
+  </a>
+  <b>
+    POLYGON(
+      (190 190, 360 20, 20 20, 190 190), 
+      (110 110, 250 100, 140 30, 110 110))
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="F01FF0212">true</op>
+  </test>
+</case>
+
+<case>
+<desc>L/Ah-3-3: a line at a non-vertex crossing the boundary of a polygon where the hole at a vertex touches the shell at a non-vertex [dim(0){A.L.Int.NV = B.A.Bdy.TP}]</desc>
+  <a>
+    LINESTRING(60 160, 150 70)
+  </a>
+  <b>
+    POLYGON(
+      (190 190, 20 20, 360 20, 190 190), 
+      (250 100, 110 110, 140 30, 250 100))
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="F01FF0212">true</op>
+  </test>
+</case>
+
+<case>
+<desc>L/Ah-3-4: a line at a non-vertex crossing the boundary of a polygon where the hole at a vertex touches the shell at a vertex [dim(0){A.L.Int.NV = B.A.Bdy.TP}]</desc>
+  <a>
+    LINESTRING(60 160, 150 70)
+  </a>
+  <b>
+    POLYGON(
+      (190 190, 20 20, 360 20, 190 190), 
+      (250 100, 110 110, 140 30, 250 100))
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="F01FF0212">true</op>
+  </test>
+</case>
+
+<case>
+<desc>L/Ah-3-5: a line crossing polygon boundary where the closing point of the hole touches the shell at a vertex [dim(0){A.L.Int.V = B.A.Bdy.TP}]</desc>
+  <a>
+    LINESTRING(190 90, 190 190, 190 270)
+  </a>
+  <b>
+    POLYGON(
+      (190 190, 360 20, 20 20, 190 190), 
+      (190 190, 280 50, 100 50, 190 190))
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="F01FF0212">true</op>
+  </test>
+</case>
+
+<case>
+<desc>L/Ah-3-6: a line at a vertex crossing the boundary of a polygon where closing point of the hole touches the shell at a non-vertex [dim(0){A.L.Int.V = B.A.Bdy.TP}]</desc>
+  <a>
+    LINESTRING(60 160, 110 110, 150 70)
+  </a>
+  <b>
+    POLYGON(
+      (190 190, 360 20, 20 20, 190 190), 
+      (110 110, 250 100, 140 30, 110 110))
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="F01FF0212">true</op>
+  </test>
+</case>
+
+<case>
+<desc>L/Ah-3-7: a line at a vertex crossing the boundary of a polygon where the hole at a vertex touches the shell at a non-vertex [dim(0){A.L.Int.V = B.A.Bdy.TP}]</desc>
+  <a>
+    LINESTRING(60 160, 110 110, 150 70)
+  </a>
+  <b>
+    POLYGON(
+      (190 190, 20 20, 360 20, 190 190), 
+      (250 100, 110 110, 140 30, 250 100))
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="F01FF0212">true</op>
+  </test>
+</case>
+
+<case>
+<desc>L/Ah-3-8: a line at a non-vertex crossing the boundary of a polygon where the hole at a vertex touches the shell at a vertex [dim(0){A.L.Int.V = B.A.Bdy.TP}]</desc>
+  <a>
+    LINESTRING(60 160, 110 110, 150 70)
+  </a>
+  <b>
+    POLYGON(
+      (190 190, 110 110, 20 20, 360 20, 190 190), 
+      (250 100, 110 110, 140 30, 250 100))
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="F01FF0212">true</op>
+  </test>
+</case>
+
+<case>
+<desc>L/A2h-3-1: the start point a line touching the closing points of two connected holes in a polygon [dim(0){A.L.Int.SP = B.A.iBdy.TP}]</desc>
+  <a>
+    LINESTRING(130 110, 180 110, 190 60)
+  </a>
+  <b>
+    POLYGON(
+      (20 200, 240 200, 240 20, 20 20, 20 200), 
+      (130 110, 60 180, 60 40, 130 110), 
+      (130 110, 200 40, 200 180, 130 110))
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="FF1F00212">true</op>
+  </test>
+</case>
+
+<case>
+<desc>L/A2h-3-2: the interior (at a non-vertex) of a line touching the closing points of two connected holes in a polygon [dim(0){A.L.Int.NV = B.A.iBdy.TP}]</desc>
+  <a>
+    LINESTRING(80 110, 180 110)
+  </a>
+  <b>
+    POLYGON(
+      (20 200, 240 200, 240 20, 20 20, 20 200), 
+      (130 110, 60 180, 60 40, 130 110), 
+      (130 110, 200 40, 200 180, 130 110))
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="F01FF0212">true</op>
+  </test>
+</case>
+
+<case>
+<desc>L/A2h-3-3: the interior (at a non-vertex) of a line touching the closing point and at a vertex of two connected holes in a polygon [dim(0){A.L.Int.NV = B.A.iBdy1.TP}]</desc>
+  <a>
+    LINESTRING(80 110, 180 110)
+  </a>
+  <b>
+    POLYGON(
+      (20 200, 20 20, 240 20, 240 200, 20 200), 
+      (60 180, 130 110, 60 40, 60 180), 
+      (130 110, 200 40, 200 180, 130 110))
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="F01FF0212">true</op>
+  </test>
+</case>
+
+<case>
+<desc>L/A2h-3-4: the interior (at a non-vertex) of a line touching the closing point and at a non-vertex of two connected holes in a polygon [dim(0){A.L.Int.NV = B.A.iBdy.TP}]</desc>
+  <a>
+    LINESTRING(80 110, 170 110)
+  </a>
+  <b>
+    POLYGON(
+      (20 200, 20 20, 240 20, 240 200, 20 200), 
+      (130 110, 60 40, 60 180, 130 110), 
+      (130 180, 130 40, 200 110, 130 180))
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="F01FF0212">true</op>
+  </test>
+</case>
+
+<case>
+<desc>L/A2h-3-5: the start point a line touching the closing point and a non-vertex of two connected holes in a polygon [dim(0){A.L.Int.V = B.A.iBdy.TP}]</desc>
+  <a>
+    LINESTRING(80 110, 130 110, 170 110)
+  </a>
+  <b>
+    POLYGON(
+      (20 200, 20 20, 240 20, 240 200, 20 200), 
+      (130 110, 60 40, 60 180, 130 110), 
+      (130 180, 130 40, 200 110, 130 180))
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="F01FF0212">true</op>
+  </test>
+</case>
+
+<case>
+<desc>L/A2h-3-6: the interior (at a vertex) of a line touching the closing points of two connected holes in a polygon [dim(0){A.L.Int.V = B.A.iBdy.TP}]</desc>
+  <a>
+    LINESTRING(80 110, 130 110, 180 110)
+  </a>
+  <b>
+    POLYGON(
+      (20 200, 240 200, 240 20, 20 20, 20 200), 
+      (130 110, 60 180, 60 40, 130 110), 
+      (130 110, 200 40, 200 180, 130 110))
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="F01FF0212">true</op>
+  </test>
+</case>
+
+<case>
+<desc>L/A2h-3-7: the interior (at a vertex) of a line touching the closing point and at a vertex of two connected holes in a polygon [dim(0){A.L.Int.V = B.A.iBdy1.TP}]</desc>
+  <a>
+    LINESTRING(80 110, 130 110, 180 110)
+  </a>
+  <b>
+    POLYGON(
+      (20 200, 20 20, 240 20, 240 200, 20 200), 
+      (60 180, 130 110, 60 40, 60 180), 
+      (130 110, 200 40, 200 180, 130 110))
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="F01FF0212">true</op>
+  </test>
+</case>
+
+<case>
+<desc>L/A2h-3-8: the interior (at a vertex) of a line touching the closing point and at a non-vertex of two connected holes in a polygon [dim(0){A.L.Int.V = B.A.iBdy.TP}]</desc>
+  <a>
+    LINESTRING(80 110, 130 110, 170 110)
+  </a>
+  <b>
+    POLYGON(
+      (20 200, 20 20, 240 20, 240 200, 20 200), 
+      (130 110, 60 40, 60 180, 130 110), 
+      (130 180, 130 40, 200 110, 130 180))
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="F01FF0212">true</op>
+  </test>
+</case>
+
+<case>
+<desc>L/mA-4-1: a line intersecting the interior and exterior of MultiPolygon [dim(1){A.L.Int.SP-NV = B.2A1.Int}, dim (1){A.L.Int.NV-EP = B.2A2.Int}]</desc>
+  <a>
+    LINESTRING(160 70, 320 230)
+  </a>
+  <b>
+    MULTIPOLYGON(
+      (
+        (140 110, 260 110, 170 20, 50 20, 140 110)), 
+      (
+        (300 270, 420 270, 340 190, 220 190, 300 270)))
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="1010FF212">true</op>
+  </test>
+</case>
+
+<case>
+<desc>L/mA-4-2: a line intersecting the interior and exterior of MultiPolygon [dim(1){A.L.Int.SP-V = B.2A1.Int}, dim (1){A.L.Int.V-EP = B.2A2.Int}]</desc>
+  <a>
+    LINESTRING(160 70, 200 110, 280 190, 320 230)
+  </a>
+  <b>
+    MULTIPOLYGON(
+      (
+        (140 110, 260 110, 170 20, 50 20, 140 110)), 
+      (
+        (300 270, 420 270, 340 190, 220 190, 300 270)))
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="1010FF212">true</op>
+  </test>
+</case>
+
+<case>
+<desc>L/mA-5-1: a line within two connected polygons [dim(1){A.L.Int = B.2A.Int}, dim(0){A.L.Int.NV = B.2A.Bdy.TP]</desc>
+  <a>
+    LINESTRING(70 50, 70 150)
+  </a>
+  <b>
+    MULTIPOLYGON(
+      (
+        (0 0, 0 100, 140 100, 140 0, 0 0)), 
+      (
+        (20 170, 70 100, 130 170, 20 170)))
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="10F0FF212">true</op>
+  </test>
+</case>
+
+<case>
+<desc>RL/A-3-1: a LinearRing touching a polygon's closing point [dim(0){A.RL.Int.CP = B.A.Bdy.CP}]</desc>
+  <a>
+    LINESTRING(110 110, 20 200, 200 200, 110 110)
+  </a>
+  <b>
+    POLYGON(
+      (20 20, 200 20, 110 110, 20 20))
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="F01FFF212">true</op>
+  </test>
+</case>
+
+<case>
+<desc>RL/A-3-2: a LinearRing touching a polygon's boundary at a non-vertex [dim(0){A.RL.Int.CP = B.A.Bdy.NV}]</desc>
+  <a>
+    LINESTRING(150 70, 160 110, 200 60, 150 70)
+  </a>
+  <b>
+    POLYGON(
+      (20 20, 200 20, 110 110, 20 20))
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="F01FFF212">true</op>
+  </test>
+</case>
+
+<case>
+<desc>RL/A-3-3: a LinearRing touching a polygon's boundary at a non-vertex [dim(0){A.RL.Int.CP = B.A.iBdy.NV}]</desc>
+  <a>
+    LINESTRING(80 60, 120 40, 120 70, 80 60)
+  </a>
+  <b>
+    POLYGON(
+      (110 110, 200 20, 20 20, 110 110), 
+      (110 90, 50 30, 170 30, 110 90))
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="F01FFF212">true</op>
+  </test>
+</case>
+
+<case>
+<desc>RL/A-3-4: a LinearRing on the boundary of a polygon [dim(1){A.RL.Int.SP-EP = B.A.Bdy.SP-EP}]</desc>
+  <a>
+    LINESTRING(20 20, 200 20, 110 110, 20 20)
+  </a>
+  <b>
+    POLYGON(
+      (20 20, 200 20, 110 110, 20 20))
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="F1FFFF2F2">true</op>
+  </test>
+</case>
+
+<case>
+<desc>RL/A-3-5: a LinearRing on the inner boundary of a polygon [dim(1){A.RL.Int.SP-EP = B.A.iBdy.SP-EP}]</desc>
+  <a>
+    LINESTRING(110 90, 170 30, 50 30, 110 90)
+  </a>
+  <b>
+    POLYGON(
+      (110 110, 200 20, 20 20, 110 110), 
+      (110 90, 50 30, 170 30, 110 90))
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="F1FFFF212">true</op>
+  </test>
+</case>
+
+<case>
+<desc>RL/A-3-6: a LinearRing on the inner boundary of a polygon [dim(1){A.RL.Int.SP-V = B.A.oBdy.SP-NV}]</desc>
+  <a>
+    LINESTRING(110 110, 170 50, 170 110, 110 110)
+  </a>
+  <b>
+    POLYGON(
+      (110 110, 200 20, 20 20, 110 110), 
+      (110 90, 50 30, 170 30, 110 90))
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="F11FFF212">true</op>
+  </test>
+</case>
+
+<case>
+<desc>RL/A-3-7: a LinearRing on the inner boundary of a polygon [dim(1){A.RL.Int.SP-V = B.A.iBdy.SP-NV}]</desc>
+  <a>
+    LINESTRING(110 90, 70 50, 130 50, 110 90)
+  </a>
+  <b>
+    POLYGON(
+      (110 110, 200 20, 20 20, 110 110), 
+      (110 90, 50 30, 170 30, 110 90))
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="F11FFF212">true</op>
+  </test>
+</case>
+
+<case>
+<desc>RL/A-4-1: a LinearRing crossing a polygon [dim(1){A.RL.Int.CP-NV = B.A.Int}, dim(0){A.L.Int.NV = B.A.Bdy.NV}]</desc>
+  <a>
+    LINESTRING(110 60, 20 150, 200 150, 110 60)
+  </a>
+  <b>
+    POLYGON(
+      (20 20, 200 20, 110 110, 20 20))
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="101FFF212">true</op>
+  </test>
+</case>
+
+<case>
+<desc>RL/A-4-2: a LinearRing crossing a polygon with a hole [dim(1){A.RL.Int.NV-NV = B.A.Int}, dim(0){A.RL.Int.NV = B.A.oBdy.CP}, dim(0){A.RL.Int.NV = B.A.iBdy.CP}, dim(0){A.RL.Int.NV = B.A.oBdy.NV}, dim(0){A.RL.Int.NV = B.A.iBdy.NV}]</desc>
+  <a>
+    LINESTRING(110 130, 110 70, 200 100, 110 130)
+  </a>
+  <b>
+    POLYGON(
+      (110 110, 200 20, 20 20, 110 110), 
+      (110 90, 50 30, 170 30, 110 90))
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="101FFF212">true</op>
+  </test>
+</case>
+
+<case>
+<desc>RL/A-5-1: a LinearRing within a polygon [dim(1){A.RL.Int.SP-EP = B.A.Int}]</desc>
+  <a>
+    LINESTRING(110 90, 160 40, 60 40, 110 90)
+  </a>
+  <b>
+    POLYGON(
+      (20 20, 200 20, 110 110, 20 20))
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="1FFFFF212">true</op>
+  </test>
+</case>
+
+<case>
+<desc>RL/A-5-2: a LinearRing within a polygon with a hole [dim(1){A.RL.Int.SP-EP = B.A.Int}]</desc>
+  <a>
+    LINESTRING(110 100, 40 30, 180 30, 110 100)
+  </a>
+  <b>
+    POLYGON(
+      (110 110, 200 20, 20 20, 110 110), 
+      (110 90, 60 40, 160 40, 110 90))
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="1FFFFF212">true</op>
+  </test>
+</case>
+
+<case>
+<desc>RL/A-5-3: a LinearRing within a polygon with a hole [dim(1){A.RL.Int.SP-EP = B.A.Int}, dim(0){A.L.Int.CP = B.A.oBdy.CP}]</desc>
+  <a>
+    LINESTRING(110 110, 180 30, 40 30, 110 110)
+  </a>
+  <b>
+    POLYGON(
+      (110 110, 200 20, 20 20, 110 110), 
+      (110 90, 60 40, 160 40, 110 90))
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="10FFFF212">true</op>
+  </test>
+</case>
+
+<case>
+<desc>RL/A-5-4: a LinearRing within a polygon with a hole [dim(1){A.RL.Int.SP-EP = B.A.Int}, dim(0){A.RL.Int.CP = B.A.iBdy.CP}]</desc>
+  <a>
+    LINESTRING(110 90, 180 30, 40 30, 110 90)
+  </a>
+  <b>
+    POLYGON(
+      (110 110, 200 20, 20 20, 110 110), 
+      (110 90, 60 40, 160 40, 110 90))
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="10FFFF212">true</op>
+  </test>
+</case>
+
+<case>
+<desc>RL/A-5-5: a LinearRing within a polygon with a hole [dim(1){A.RL.Int.SP-EP = B.A.Int}, dim(1){A.RL.Int.SP-NV = B.A.Bdy.iBdy.SP-V}]</desc>
+  <a>
+    LINESTRING(110 90, 50 30, 180 30, 110 90)
+  </a>
+  <b>
+    POLYGON(
+      (110 110, 200 20, 20 20, 110 110), 
+      (110 90, 60 40, 160 40, 110 90))
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="11FFFF212">true</op>
+  </test>
+</case>
+
+<case>
+<desc>nsL/A-3-1: a non-simple LineString touching a polygon [dim(0){A.nsL.Bdy.SP = B.A.Bdy.CP}]</desc>
+  <a>
+    LINESTRING(110 110, 200 200, 200 110, 110 200)
+  </a>
+  <b>
+    POLYGON(
+      (110 110, 200 20, 20 20, 110 110))
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="FF1F00212">true</op>
+  </test>
+</case>
+
+<case>
+<desc>nsL/A-3-2: a non-simple LineString touching a polygon [dim(0){A.nsL.Bdy.SPb = B.A.Bdy.CP}]</desc>
+  <a>
+    LINESTRING(110 110, 200 200, 110 110, 20 200, 20 110, 200 110)
+  </a>
+  <b>
+    POLYGON(
+      (110 110, 200 20, 20 20, 110 110))
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="FF1F00212">true</op>
+  </test>
+</case>
+
+<case>
+<desc>nsL/A-3-3: a non-simple LineString touching a polygon [dim(0){A.nsL.Bdy.SPo = B.A.Bdy.CP}]</desc>
+  <a>
+    LINESTRING(110 110, 20 110, 200 110, 50 110, 110 170)
+  </a>
+  <b>
+    POLYGON(
+      (110 110, 200 20, 20 20, 110 110))
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="FF1F00212">true</op>
+  </test>
+</case>
+
+<case>
+<desc>nsL/A-3-4: a non-simple LineString touching a polygon [dim(0){A.nsL.Bdy.SPx = B.A.Bdy.CP}]</desc>
+  <a>
+    LINESTRING(110 110, 20 200, 110 200, 110 110, 200 200)
+  </a>
+  <b>
+    POLYGON(
+      (110 110, 200 20, 20 20, 110 110))
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="FF1F00212">true</op>
+  </test>
+</case>
+
+<case>
+<desc>nsL/A-3-5: a non-simple LineString touching a polygon [dim(1){A.nsL.Int.SPb-Vo = B.A.Bdy.SP-NV}]</desc>
+  <a>
+    LINESTRING(110 110, 170 50, 20 200, 20 110, 200 110)
+  </a>
+  <b>
+    POLYGON(
+      (110 110, 200 20, 20 20, 110 110))
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="F11F00212">true</op>
+  </test>
+</case>
+
+<case>
+<desc>nsL/A-4-1: a non-simple LineString crossing a polygon [dim(1){A.nsL.Int.V-V-NV = B.A.Int}, dim(1){A.nsL.SPx-V = B.A.Bdy.SP-NV}]</desc>
+  <a>
+    LINESTRING(110 110, 180 40, 110 40, 110 180)
+  </a>
+  <b>
+    POLYGON(
+      (110 110, 200 20, 20 20, 110 110))
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="111F00212">true</op>
+  </test>
+</case>
+
+<case>
+<desc>nsL/A-5-1: a non-simple LineString within a polygon [dim(1){A.nsL.Int.SPx-EP = B.A.Int}]</desc>
+  <a>
+    LINESTRING(110 60, 50 30, 170 30, 90 70)
+  </a>
+  <b>
+    POLYGON(
+      (110 110, 200 20, 20 20, 110 110))
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="1FF0FF212">true</op>
+  </test>
+</case>
+
+<case>
+<desc>nsL/A-5-2: a non-simple LineString within a polygon [dim(1){A.nsL.Int.SPx-EP = B.A.Int}, dim(1){A.nsL.Int.SPx-V = B.A.Bdy.SP-NV}]</desc>
+  <a>
+    LINESTRING(110 110, 180 40, 110 40, 110 110, 70 40)
+  </a>
+  <b>
+    POLYGON(
+      (110 110, 200 20, 20 20, 110 110))
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="11F00F212">true</op>
+  </test>
+</case>
+
+<case>
+<desc>nsL/Ah: the self-crossing point of a non-simple LineString touching the closing point of the inner boundary of a polygon [dim(0){A.nsL.Int.V = B.A.iBdy.CP}]</desc>
+  <a>
+    LINESTRING(230 70, 170 120, 190 60, 140 60, 170 120, 270 90)
+  </a>
+  <b>
+    POLYGON(
+      (150 150, 410 150, 280 20, 20 20, 150 150), 
+      (170 120, 330 120, 260 50, 100 50, 170 120))
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="F01FF0212">true</op>
+  </test>
+</case>
+
+<case>
+<desc>mL/A-3-1: MultiLineString touching a polygon's closing point [dim(0){A.mL.Bdy.SPb = B.A.Bdy.CP}]</desc>
+  <a>
+    MULTILINESTRING(
+      (20 110, 200 110), 
+      (200 200, 110 110, 20 210, 110 110))
+  </a>
+  <b>
+    POLYGON(
+      (110 110, 200 20, 20 20, 110 110))
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="FF1F00212">true</op>
+  </test>
+</case>
+
+<case>
+<desc>mL/A-3-2: MultiLineString touching a polygon's closing point [dim(0){A.mL.Bdy.SPo = B.A.Bdy.CP}]</desc>
+  <a>
+    MULTILINESTRING(
+      (20 110, 200 110), 
+      (60 180, 60 110, 160 110, 110 110))
+  </a>
+  <b>
+    POLYGON(
+      (110 110, 200 20, 20 20, 110 110))
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="FF1F00212">true</op>
+  </test>
+</case>
+
+<case>
+<desc>mL/A-3-3: MultiLineString touching a polygon's closing point [dim(0){A.mL.Bdy.SPx = B.A.Bdy.CP}]</desc>
+  <a>
+    MULTILINESTRING(
+      (20 110, 200 110), 
+      (200 200, 110 110, 20 200, 110 200, 110 110))
+  </a>
+  <b>
+    POLYGON(
+      (110 110, 200 20, 20 20, 110 110))
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="FF1F00212">true</op>
+  </test>
+</case>
+
+<case>
+<desc>mL/A-4-1: MultiLineString crossing a polygon [dim(1){A.mL.Int.SP-NVb = B.A.Int}, dim(0){A.mL.Int.NVb = B.A.Bdy.CP}]</desc>
+  <a>
+    MULTILINESTRING(
+      (20 110, 200 110), 
+      (110 50, 110 170, 110 70, 110 150, 200 150))
+  </a>
+  <b>
+    POLYGON(
+      (110 110, 200 20, 20 20, 110 110))
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="1010F0212">true</op>
+  </test>
+</case>
+
+<case>
+<desc>mL/A-4-2: MultiLineString crossing a polygon [dim(1){A.mL.Int.SP-NVo = B.A.Int}, dim(0){A.mL.Int.NVo = B.A.Bdy.CP}]</desc>
+  <a>
+    MULTILINESTRING(
+      (20 110, 200 110), 
+      (50 110, 170 110, 110 170, 110 50, 110 170, 110 50))
+  </a>
+  <b>
+    POLYGON(
+      (110 110, 200 20, 20 20, 110 110))
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="1010F0212">true</op>
+  </test>
+</case>
+
+<case>
+<desc>mL/A-4-3: MultiLineString crossing a polygon [dim(1){A.mL.Int.SP-NVx = B.A.Int}, dim(0){A.mL.Int.NVx = B.A.Bdy.CP}]</desc>
+  <a>
+    MULTILINESTRING(
+      (20 110, 200 110), 
+      (110 60, 110 160, 200 160))
+  </a>
+  <b>
+    POLYGON(
+      (110 110, 200 20, 20 20, 110 110))
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="1010F0212">true</op>
+  </test>
+</case>
+
+<case>
+<desc>mL/A-4-4: MultiLineString crossing a polygon [dim(1){A.mL.Int.Vb-Vb = B.A.Int}, dim(0){A.mL.Int.Vb = B.A.oBdy.CP}, dim(0){A.mL.Int.Vb = B.A.iBdy.CP}]</desc>
+  <a>
+    MULTILINESTRING(
+      (20 110, 200 110), 
+      (110 60, 110 160, 200 160))
+  </a>
+  <b>
+    POLYGON(
+      (110 110, 200 20, 20 20, 110 110))
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="1010F0212">true</op>
+  </test>
+</case>
+
+<case>
+<desc>mL/A-5-1: MultiLineString within a polygon [dim(1){A.mL.Int.SP-EP = B.A.Int}]</desc>
+  <a>
+    MULTILINESTRING(
+      (110 100, 40 30, 180 30), 
+      (170 30, 110 90, 50 30))
+  </a>
+  <b>
+    POLYGON(
+      (110 110, 200 20, 20 20, 110 110))
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="1FF0FF212">true</op>
+  </test>
+</case>
+
+<case>
+<desc>mL/A-5-2: MultiLineString within a polygon [dim(1){A.mL.Int.SP-EP = B.A.Int}]</desc>
+  <a>
+    MULTILINESTRING(
+      (110 110, 60 40, 70 20, 150 20, 170 40), 
+      (180 30, 40 30, 110 80))
+  </a>
+  <b>
+    POLYGON(
+      (110 110, 200 20, 20 20, 110 110))
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="11F00F212">true</op>
+  </test>
+</case>
+
+<case>
+<desc>mL/mA-3-1: MultiLineString within a MultiPolygon [dim(0){A.mL.Bdy.SPb = B.mA.Bdy.TP}]</desc>
+  <a>
+    MULTILINESTRING(
+      (20 110, 200 110, 200 160), 
+      (110 110, 200 110, 200 70, 20 150))
+  </a>
+  <b>
+    MULTIPOLYGON(
+      (
+        (110 110, 20 20, 200 20, 110 110)), 
+      (
+        (110 110, 20 200, 200 200, 110 110)))
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="FF1F00212">true</op>
+  </test>
+</case>
+
+<case>
+<desc>mL/mA-3-2: MultiLineString within a MultiPolygon [dim(0){A.mL.Bdy.SPo = B.mA.Bdy.TP}]</desc>
+  <a>
+    MULTILINESTRING(
+      (20 160, 70 110, 150 110, 200 160), 
+      (110 110, 20 110, 50 80, 70 110, 200 110))
+  </a>
+  <b>
+    MULTIPOLYGON(
+      (
+        (110 110, 20 20, 200 20, 110 110)), 
+      (
+        (110 110, 20 200, 200 200, 110 110)))
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="FF1F00212">true</op>
+  </test>
+</case>
+
+<case>
+<desc>mL/mA-3-3: MultiLineString within a MultiPolygon [dim(0){A.mL.Bdy.SPx = B.mA.Bdy.TP}]</desc>
+  <a>
+    MULTILINESTRING(
+      (20 110, 200 110), 
+      (110 110, 20 170, 20 130, 200 90))
+  </a>
+  <b>
+    MULTIPOLYGON(
+      (
+        (110 110, 20 20, 200 20, 110 110)), 
+      (
+        (110 110, 20 200, 200 200, 110 110)))
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="FF1F00212">true</op>
+  </test>
+</case>
+
+</run>

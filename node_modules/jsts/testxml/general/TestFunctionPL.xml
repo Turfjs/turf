@@ -1,0 +1,286 @@
+<run>
+  <precisionModel scale="1.0" offsetx="0.0" offsety="0.0"/>
+
+<case>
+  <desc>mPL - points in I and E of line</desc>
+  <a>
+    MULTIPOINT((40 90), (20 20), (70 70))
+  </a>
+  <b>
+    LINESTRING(20 20, 100 100)
+  </b>
+<test>
+  <op name="intersection" arg1="A" arg2="B">
+    MULTIPOINT((20 20), (70 70))
+  </op>
+</test>
+<test>
+  <op name="union" arg1="A" arg2="B">
+    GEOMETRYCOLLECTION(
+      POINT(40 90), 
+      LINESTRING(20 20, 100 100))
+  </op>
+</test>
+<test>
+  <op name="difference" arg1="A" arg2="B">
+    POINT(40 90)
+  </op>
+</test>
+<test>
+  <op name="symdifference" arg1="A" arg2="B">
+    GEOMETRYCOLLECTION(
+      POINT(40 90), 
+      LINESTRING(20 20, 100 100))
+  </op>
+</test>
+</case>
+
+<case>
+  <desc>mPL - points in I and E of line, line self-intersecting</desc>
+  <a>
+    MULTIPOINT((40 90), (20 20), (70 70))
+  </a>
+  <b>
+    LINESTRING(20 20, 110 110, 170 50, 130 10, 70 70)
+  </b>
+<test>
+  <op name="intersection" arg1="A" arg2="B">
+    MULTIPOINT((20 20), (70 70))
+  </op>
+</test>
+<test>
+  <op name="union" arg1="A" arg2="B">
+    GEOMETRYCOLLECTION(
+      POINT(40 90), 
+      LINESTRING(20 20, 70 70), 
+      LINESTRING(70 70, 110 110, 170 50, 130 10, 70 70))
+  </op>
+</test>
+<test>
+  <op name="difference" arg1="A" arg2="B">
+    POINT(40 90)
+  </op>
+</test>
+<test>
+  <op name="symdifference" arg1="A" arg2="B">
+    GEOMETRYCOLLECTION(
+      POINT(40 90), 
+      LINESTRING(20 20, 70 70), 
+      LINESTRING(70 70, 110 110, 170 50, 130 10, 70 70))
+  </op>
+</test>
+</case>
+
+<case>
+  <desc>mPmL - points in I, B and E of lines, lines overlap, points overlap</desc>
+  <a>
+    MULTILINESTRING(
+      (100 320, 100 220), 
+      (100 180, 200 180), 
+      (220 180, 220 320), 
+      (220 320, 160 320), 
+      (100 320, 100 220), 
+      (100 180, 200 180), 
+      (220 180, 220 320), 
+      (220 320, 160 320), 
+      (100 220, 100 320))
+  </a>
+  <b>
+    MULTIPOINT ((100 320), (100 260), (100 220), (100 200), (100 180), (120 180), (200 180), (220 180), (220 260), (220 320), (200 320), (160 320), (140 320), (120 320), (100 320), (100 260), (100 220), (100 200), (100 180), (120 180), (200 180), (220 180), (220 260), (220 320), (200 320), (160 320), (140 320), (120 320))  </b>
+<test>
+  <op name="getboundary" arg1="A">
+    MULTIPOINT((100 220), (100 320))
+  </op>
+</test>
+<test>
+  <op name="convexhull" arg1="A">
+    POLYGON(
+      (100 180, 100 320, 220 320, 220 180, 100 180))
+  </op>
+</test>
+<test>
+  <op name="intersection" arg1="A" arg2="B">
+    MULTIPOINT ((100 180), (100 220), (100 260), (100 320), (120 180), (160 320), (200 180), (200 320), (220 180), (220 260), (220 320))
+  </op>
+</test>
+<test>
+  <op name="union" arg1="A" arg2="B">
+    GEOMETRYCOLLECTION(
+      POINT(100 200), 
+      POINT(120 320), 
+      POINT(140 320), 
+      LINESTRING(100 320, 100 220), 
+      LINESTRING(100 180, 200 180), 
+      LINESTRING(220 180, 220 320), 
+      LINESTRING(220 320, 160 320))
+  </op>
+</test>
+<test>
+  <op name="difference" arg1="A" arg2="B">
+    MULTILINESTRING(
+      (100 320, 100 220), 
+      (100 180, 200 180), 
+      (220 180, 220 320), 
+      (220 320, 160 320))
+  </op>
+</test>
+<test>
+  <op name="symdifference" arg1="A" arg2="B">
+    GEOMETRYCOLLECTION(
+      POINT(100 200), 
+      POINT(120 320), 
+      POINT(140 320), 
+      LINESTRING(100 320, 100 220), 
+      LINESTRING(100 180, 200 180), 
+      LINESTRING(220 180, 220 320), 
+      LINESTRING(220 320, 160 320))
+  </op>
+</test>
+</case>
+
+<case>
+  <desc>mPmL - points in I, B and E of lines, lines overlap, points overlap, x &lt;0, y &lt; 0</desc>
+  <a>
+    MULTILINESTRING(
+      (-500 -140, -500 -280, -320 -280, -320 -140, -500 -140, -500 -340), 
+      (-500 -140, -320 -140, -500 -140, -320 -140, -500 -140))
+  </a>
+  <b>
+    MULTIPOINT ((-560 -180), (-420 -180), (-500 -220), (-500 -340), (-500 -280), (-500 -140), (-320 -140), (-420 -140), (-320 -180), (-280 -140), (-320 -120), (-560 -180), (-420 -180), (-500 -220), (-500 -340), (-500 -280), (-500 -140), (-320 -140), (-420 -140), (-320 -180), (-280 -140), (-320 -120))
+  </b>
+<test>
+  <op name="getboundary" arg1="A">
+    MULTIPOINT((-500 -340), (-500 -140))
+  </op>
+</test>
+<test>
+  <op name="convexhull" arg1="A">
+    POLYGON(
+      (-500 -340, -500 -140, -320 -140, -320 -280, -500 -340))
+  </op>
+</test>
+<test>
+  <op name="intersection" arg1="A" arg2="B">
+    MULTIPOINT((-500 -340), (-500 -280), (-500 -220), (-500 -140), (-420 -140), (-320 -180), (-320 -140))
+  </op>
+</test>
+<test>
+  <op name="union" arg1="A" arg2="B">
+    GEOMETRYCOLLECTION(
+      POINT(-560 -180), 
+      POINT(-420 -180), 
+      POINT(-320 -120), 
+      POINT(-280 -140), 
+      LINESTRING(-500 -140, -500 -280), 
+      LINESTRING(-500 -280, -320 -280, -320 -140), 
+      LINESTRING(-320 -140, -500 -140), 
+      LINESTRING(-500 -280, -500 -340))
+  </op>
+</test>
+<test>
+  <op name="difference" arg1="A" arg2="B">
+    MULTILINESTRING(
+      (-500 -140, -500 -280), 
+      (-500 -280, -320 -280, -320 -140), 
+      (-320 -140, -500 -140), 
+      (-500 -280, -500 -340))
+  </op>
+</test>
+<test>
+  <op name="symdifference" arg1="A" arg2="B">
+    GEOMETRYCOLLECTION(
+      POINT(-560 -180), 
+      POINT(-420 -180), 
+      POINT(-320 -120), 
+      POINT(-280 -140), 
+      LINESTRING(-500 -140, -500 -280), 
+      LINESTRING(-500 -280, -320 -280, -320 -140), 
+      LINESTRING(-320 -140, -500 -140), 
+      LINESTRING(-500 -280, -500 -340))
+  </op>
+</test>
+</case>
+
+<case>
+  <desc>mL - lines intersect at 1 point</desc>
+  <a>
+    MULTILINESTRING(
+      (180 100, 140 280, 240 140, 220 120, 140 280), 
+      (140 280, 100 400, 80 380, 140 280, 40 380, 20 360, 140 280))
+  </a>
+<test>
+  <op name="getboundary" arg1="A">
+    MULTIPOINT((180 100), (140 280))
+  </op>
+</test>
+</case>
+
+<case>
+  <desc>mPmL - points in I, B and E of lines, lines overlap, points overlap</desc>
+  <a>
+    MULTILINESTRING(
+      (100 320, 100 220), 
+      (100 180, 200 180), 
+      (220 180, 220 320), 
+      (220 320, 160 320), 
+      (100 320, 100 220), 
+      (100 180, 200 180), 
+      (220 180, 220 320), 
+      (220 320, 160 320), 
+      (100 220, 100 320))
+  </a>
+  <b>
+    MULTIPOINT ((100 320), (100 260), (100 220), (100 200), (100 180), (120 180), (200 180), (220 180), (220 260), (220 320), (200 320), (160 320), (140 320), (120 320), (100 320), (100 260), (100 220), (100 200), (100 180), (120 180), (200 180), (220 180), (220 260), (220 320), (200 320), (160 320), (140 320), (120 320))
+  </b>
+<test>
+  <op name="getboundary" arg1="A">
+    MULTIPOINT((100 220), (100 320))
+  </op>
+</test>
+<test>
+  <op name="convexhull" arg1="A">
+    POLYGON(
+      (100 180, 100 320, 220 320, 220 180, 100 180))
+  </op>
+</test>
+<test>
+  <op name="intersection" arg1="A" arg2="B">
+    MULTIPOINT ((100 180), (100 220), (100 260), (100 320), (120 180), (160 320), (200 180), (200 320), (220 180), (220 260), (220 320))
+  </op>
+</test>
+<test>
+  <op name="union" arg1="A" arg2="B">
+    GEOMETRYCOLLECTION(
+      POINT(100 200), 
+      POINT(120 320), 
+      POINT(140 320), 
+      LINESTRING(100 320, 100 220), 
+      LINESTRING(100 180, 200 180), 
+      LINESTRING(220 180, 220 320), 
+      LINESTRING(220 320, 160 320))
+  </op>
+</test>
+<test>
+  <op name="difference" arg1="A" arg2="B">
+    MULTILINESTRING(
+      (100 320, 100 220), 
+      (100 180, 200 180), 
+      (220 180, 220 320), 
+      (220 320, 160 320))
+  </op>
+</test>
+<test>
+  <op name="symdifference" arg1="A" arg2="B">
+    GEOMETRYCOLLECTION(
+      POINT(100 200), 
+      POINT(120 320), 
+      POINT(140 320), 
+      LINESTRING(100 320, 100 220), 
+      LINESTRING(100 180, 200 180), 
+      LINESTRING(220 180, 220 320), 
+      LINESTRING(220 320, 160 320))
+  </op>
+</test>
+</case>
+
+</run>

@@ -1,5 +1,7 @@
 !function(e){if("object"==typeof exports)module.exports=e();else if("function"==typeof define&&define.amd)define(e);else{var f;"undefined"!=typeof window?f=window:"undefined"!=typeof global?f=global:"undefined"!=typeof self&&(f=self),f.t=e()}}(function(){var define,module,exports;return (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);throw new Error("Cannot find module '"+o+"'")}var f=n[o]={exports:{}};t[o][0].call(f.exports,function(e){var n=t[o][1][e];return s(n?n:e)},f,f.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(_dereq_,module,exports){
 module.exports = {
+  isolines: _dereq_('./lib/isolines'),
+  isobands: _dereq_('./lib/isobands'),
   merge: _dereq_('./lib/merge'),
   convex: _dereq_('./lib/convex'),
   donuts: _dereq_('./lib/donuts'),
@@ -54,7 +56,7 @@ module.exports = {
   tin: _dereq_('./lib/tin'),
   union: _dereq_('./lib/union')
 }
-},{"./lib/aggregate":2,"./lib/average":3,"./lib/bboxPolygon":4,"./lib/bezier":5,"./lib/buffer":6,"./lib/center":7,"./lib/centroid":8,"./lib/combine":9,"./lib/concave":10,"./lib/contour":11,"./lib/convex":12,"./lib/count":13,"./lib/deviation":14,"./lib/distance":15,"./lib/donuts":16,"./lib/envelope":17,"./lib/erase":18,"./lib/explode":19,"./lib/extent":20,"./lib/featurecollection":21,"./lib/filter":22,"./lib/flip":23,"./lib/grid":24,"./lib/inside":25,"./lib/intersect":26,"./lib/jenks":27,"./lib/linestring":28,"./lib/load":29,"./lib/max":30,"./lib/median":31,"./lib/merge":32,"./lib/midpoint":33,"./lib/min":34,"./lib/nearest":35,"./lib/planepoint":36,"./lib/point":37,"./lib/polygon":38,"./lib/quantile":39,"./lib/reclass":40,"./lib/remove":41,"./lib/sample":42,"./lib/save":43,"./lib/simplify":44,"./lib/size":45,"./lib/square":46,"./lib/sum":47,"./lib/tag":48,"./lib/tin":49,"./lib/topo":50,"./lib/union":51,"./lib/variance":52,"./lib/within":53}],2:[function(_dereq_,module,exports){
+},{"./lib/aggregate":2,"./lib/average":3,"./lib/bboxPolygon":4,"./lib/bezier":5,"./lib/buffer":6,"./lib/center":7,"./lib/centroid":8,"./lib/combine":9,"./lib/concave":10,"./lib/contour":11,"./lib/convex":12,"./lib/count":13,"./lib/deviation":14,"./lib/distance":15,"./lib/donuts":16,"./lib/envelope":17,"./lib/erase":18,"./lib/explode":19,"./lib/extent":20,"./lib/featurecollection":21,"./lib/filter":22,"./lib/flip":23,"./lib/grid":24,"./lib/inside":25,"./lib/intersect":26,"./lib/isobands":27,"./lib/isolines":28,"./lib/jenks":29,"./lib/linestring":30,"./lib/load":31,"./lib/max":32,"./lib/median":33,"./lib/merge":34,"./lib/midpoint":35,"./lib/min":36,"./lib/nearest":37,"./lib/planepoint":38,"./lib/point":39,"./lib/polygon":40,"./lib/quantile":41,"./lib/reclass":42,"./lib/remove":43,"./lib/sample":44,"./lib/save":45,"./lib/simplify":46,"./lib/size":47,"./lib/square":48,"./lib/sum":49,"./lib/tag":50,"./lib/tin":51,"./lib/topo":52,"./lib/union":53,"./lib/variance":54,"./lib/within":55}],2:[function(_dereq_,module,exports){
 var _ = _dereq_('lodash')
 var t = {}
 t.average = _dereq_('./average')
@@ -115,7 +117,7 @@ module.exports = function(polygons, points, aggregations, done){
   })
   done(null, polygons)
 }
-},{"./average":3,"./count":13,"./deviation":14,"./max":30,"./median":31,"./min":34,"./sum":47,"./variance":52,"lodash":80}],3:[function(_dereq_,module,exports){
+},{"./average":3,"./count":13,"./deviation":14,"./max":32,"./median":33,"./min":36,"./sum":49,"./variance":54,"lodash":82}],3:[function(_dereq_,module,exports){
 var t = {}
 var _ = _dereq_('lodash'),
     ss = _dereq_('simple-statistics')
@@ -139,7 +141,7 @@ module.exports = function(polyFC, ptFC, inField, outField, done){
 
   done(null, polyFC)
 }
-},{"./inside":25,"lodash":80,"simple-statistics":81}],4:[function(_dereq_,module,exports){
+},{"./inside":25,"lodash":82,"simple-statistics":83}],4:[function(_dereq_,module,exports){
 var t = {}
 var point = _dereq_('../lib/point'),
     polygon = _dereq_('../lib/polygon')
@@ -160,7 +162,7 @@ module.exports = function(bbox, done){
   ]])
   done(null, poly)
 }
-},{"../lib/point":37,"../lib/polygon":38}],5:[function(_dereq_,module,exports){
+},{"../lib/point":39,"../lib/polygon":40}],5:[function(_dereq_,module,exports){
 // code modded from here:
 //https://github.com/leszekr/bezier-spline-js/blob/master/bezier-spline.js
 var t = {}
@@ -385,7 +387,7 @@ module.exports = function(line, resolution, intensity, done){
     ctx.stroke();
     return this;
   }
-},{"./linestring":28,"lodash":80}],6:[function(_dereq_,module,exports){
+},{"./linestring":30,"lodash":82}],6:[function(_dereq_,module,exports){
 //http://stackoverflow.com/questions/839899/how-do-i-calculate-a-point-on-a-circles-circumference
 //radians = degrees * (pi/180)
 
@@ -441,7 +443,7 @@ var bufferOp = function(feature, radius, done){
     done(null, buffered)
   }
 }
-},{"./combine":9,"./featurecollection":21,"./polygon":38,"jsts":58,"lodash":80}],7:[function(_dereq_,module,exports){
+},{"./combine":9,"./featurecollection":21,"./polygon":40,"jsts":60,"lodash":82}],7:[function(_dereq_,module,exports){
 var t = {}
 var extent = _dereq_('./extent')
 t.extent = extent
@@ -487,7 +489,7 @@ module.exports = function(features, done){
     done(err, t.point(averageX, averageY))
   })
 }
-},{"./explode":19,"./point":37,"lodash":80,"simple-statistics":81}],9:[function(_dereq_,module,exports){
+},{"./explode":19,"./point":39,"lodash":82,"simple-statistics":83}],9:[function(_dereq_,module,exports){
 //this tool takes a feature collection of like geometries and combines them into a single multipoint, multilinestring, or multipolygon
 var _ = _dereq_('lodash')
 
@@ -531,7 +533,7 @@ module.exports = function(fc, done){
     break
   }
 }
-},{"lodash":80}],10:[function(_dereq_,module,exports){
+},{"lodash":82}],10:[function(_dereq_,module,exports){
 // 1. run tin on points
 // 2. calculate lenth of all edges and area of all triangles
 // 3. remove triangles that fail the max length test
@@ -585,24 +587,9 @@ var filterTriangles = function(triangles, maxEdge, cb){
     }
   )
 }
-},{"./buffer":6,"./distance":15,"./merge":32,"./point":37,"./tin":49,"async":54}],11:[function(_dereq_,module,exports){
+},{"./buffer":6,"./distance":15,"./merge":34,"./point":39,"./tin":51,"async":56}],11:[function(_dereq_,module,exports){
 //https://github.com/jasondavies/conrec.js
 //http://stackoverflow.com/questions/263305/drawing-a-topographical-map
-<<<<<<< HEAD
-var _ = require('lodash'),
-    async = require('async')
-var t = {}
-t.tin = require('./tin')
-t.inside = require('./inside')
-t.grid = require('./grid')
-t.extent = require('./extent')
-t.planepoint = require('./planepoint')
-t.featurecollection = require('./featurecollection')
-t.polygon = require('./polygon')
-t.square = require('./square')
-t.donuts = require('./donuts')
-t.merge = require('./merge')
-=======
 var _ = _dereq_('lodash'),
     async = _dereq_('async')
 var t = {}
@@ -616,7 +603,6 @@ t.polygon = _dereq_('./polygon')
 t.square = _dereq_('./square')
 t.donuts = _dereq_('./donuts')
 t.merge = _dereq_('./merge')
->>>>>>> 7638176a39302083733fd99740ca10aff89ae9cc
 
 module.exports = function(points, z, resolution, breaks, donuts, done){
   t.tin(points, z, function(err, tinResult){
@@ -697,18 +683,8 @@ module.exports = function(points, z, resolution, breaks, donuts, done){
                 }
               })
               donutPolys.features = []
-<<<<<<< HEAD
               _.each(zGroups, function(group){
                 t.merge(t.featurecollection(group.rings), function(err, multiRing){
-=======
-              console.log(zGroups)
-              _.each(zGroups, function(group){
-                t.merge(t.featurecollection(group.rings), function(err, multiRing){
-                  console.log(multiRing.properties[z])
-                  if(multiRing.properties.z === 80){
-                    console.log(multiRing)
-                  }
->>>>>>> 7638176a39302083733fd99740ca10aff89ae9cc
                   donutPolys.features.push(multiRing)
                 })
               })
@@ -1240,11 +1216,7 @@ module.exports = function(points, z, resolution, breaks, donuts, done){
     }
   }
 
-<<<<<<< HEAD
-},{"./donuts":16,"./extent":20,"./featurecollection":21,"./grid":24,"./inside":25,"./merge":32,"./planepoint":36,"./polygon":38,"./square":46,"./tin":49,"async":54,"lodash":77}],12:[function(require,module,exports){
-=======
-},{"./donuts":16,"./extent":20,"./featurecollection":21,"./grid":24,"./inside":25,"./merge":32,"./planepoint":36,"./polygon":38,"./square":46,"./tin":49,"async":54,"lodash":80}],12:[function(_dereq_,module,exports){
->>>>>>> 7638176a39302083733fd99740ca10aff89ae9cc
+},{"./donuts":16,"./extent":20,"./featurecollection":21,"./grid":24,"./inside":25,"./merge":34,"./planepoint":38,"./polygon":40,"./square":48,"./tin":51,"async":56,"lodash":82}],12:[function(_dereq_,module,exports){
 // 1. run tin on points
 // 2. merge the tin
 //var topojson = require('')
@@ -1264,7 +1236,7 @@ module.exports = function(points, done){
     })
   })
 }
-},{"./buffer":6,"./merge":32,"./tin":49}],13:[function(_dereq_,module,exports){
+},{"./buffer":6,"./merge":34,"./tin":51}],13:[function(_dereq_,module,exports){
 var t = {}
 var _ = _dereq_('lodash')
 t.inside = _dereq_('./inside')
@@ -1286,7 +1258,7 @@ module.exports = function(polyFC, ptFC, outField, done){
   })
   done(null, polyFC)
 }
-},{"./inside":25,"lodash":80}],14:[function(_dereq_,module,exports){
+},{"./inside":25,"lodash":82}],14:[function(_dereq_,module,exports){
 var t = {}
 var _ = _dereq_('lodash'),
     ss = _dereq_('simple-statistics')
@@ -1309,7 +1281,7 @@ module.exports = function(polyFC, ptFC, inField, outField, done){
   })
   done(null, polyFC)
 }
-},{"./inside":25,"lodash":80,"simple-statistics":81}],15:[function(_dereq_,module,exports){
+},{"./inside":25,"lodash":82,"simple-statistics":83}],15:[function(_dereq_,module,exports){
 //http://en.wikipedia.org/wiki/Haversine_formula
 //http://www.movable-type.co.uk/scripts/latlong.html
 // expects a feature collection of points
@@ -1365,19 +1337,11 @@ takes a collection of polygons and returns a collection of donuts.
 
 var _ = _dereq_('lodash')
 var t = {}
-<<<<<<< HEAD
-t.featurecollection = require('./featurecollection')
-t.erase = require('./erase')
-t.point = require('./point')
-t.inside = require('./inside')
-t.union = require('./union')
-=======
 t.featurecollection = _dereq_('./featurecollection')
 t.erase = _dereq_('./erase')
 t.point = _dereq_('./point')
 t.inside = _dereq_('./inside')
 t.union = _dereq_('./union')
->>>>>>> 7638176a39302083733fd99740ca10aff89ae9cc
 
 module.exports = function(polyFC, done){
   donuts = t.featurecollection([])
@@ -1417,11 +1381,7 @@ function contained(poly1, poly2, done){
     done(isInside)
   })
 }
-<<<<<<< HEAD
-},{"./erase":18,"./featurecollection":21,"./inside":25,"./point":37,"./union":51,"lodash":77}],17:[function(require,module,exports){
-=======
-},{"./erase":18,"./featurecollection":21,"./inside":25,"./point":37,"./union":51,"lodash":80}],17:[function(_dereq_,module,exports){
->>>>>>> 7638176a39302083733fd99740ca10aff89ae9cc
+},{"./erase":18,"./featurecollection":21,"./inside":25,"./point":39,"./union":53,"lodash":82}],17:[function(_dereq_,module,exports){
 var t = {}
 var extent = _dereq_('./extent'),
     bboxPolygon = _dereq_('./bboxPolygon')
@@ -1470,7 +1430,7 @@ function correctRings(poly){
   })
   return poly
 }
-},{"./featurecollection":21,"jsts":58,"lodash":80}],19:[function(_dereq_,module,exports){
+},{"./featurecollection":21,"jsts":60,"lodash":82}],19:[function(_dereq_,module,exports){
 var t = {}
 var _ = _dereq_('lodash'),
     featurecollection = _dereq_('./featurecollection'),
@@ -1561,7 +1521,7 @@ module.exports = function(features, done){
 
 
 
-},{"./featurecollection":21,"./point":37,"lodash":80}],20:[function(_dereq_,module,exports){
+},{"./featurecollection":21,"./point":39,"lodash":82}],20:[function(_dereq_,module,exports){
 _ = _dereq_('lodash')
 
 module.exports = function(layer, done){
@@ -1673,7 +1633,7 @@ module.exports = function(layer, done){
     done(null, bbox)
   }
 }
-},{"lodash":80}],21:[function(_dereq_,module,exports){
+},{"lodash":82}],21:[function(_dereq_,module,exports){
 module.exports = function(features){
   var fc = {
     "type": "FeatureCollection",
@@ -1696,7 +1656,7 @@ module.exports = function(fc, field, value, done){
   }
   done(null, newFC)
 }
-},{"./featurecollection":21,"lodash":80}],23:[function(_dereq_,module,exports){
+},{"./featurecollection":21,"lodash":82}],23:[function(_dereq_,module,exports){
 var t = {}
 t.featurecollection = _dereq_('./featurecollection')
 
@@ -1783,7 +1743,7 @@ module.exports = function(extents, depth, done){
   }
   done(null, fc)
 }
-},{"./point":37,"lodash":80}],25:[function(_dereq_,module,exports){
+},{"./point":39,"lodash":82}],25:[function(_dereq_,module,exports){
 // http://en.wikipedia.org/wiki/Even%E2%80%93odd_rule
 // modified from: https://github.com/substack/point-in-polygon/blob/master/index.js
 // which was modified from http://www.ecse.rpi.edu/Homepages/wrf/Research/Short_Notes/pnpoly.html
@@ -1822,7 +1782,613 @@ module.exports = function(polys1, polys2, done){
   intersection = t.featurecollection([intersection])
   done(null, intersection)
 }
-},{"./featurecollection":21,"jsts":58}],27:[function(_dereq_,module,exports){
+},{"./featurecollection":21,"jsts":60}],27:[function(_dereq_,module,exports){
+
+module.exports = function(){
+  
+}
+},{}],28:[function(_dereq_,module,exports){
+//https://github.com/jasondavies/conrec.js
+//http://stackoverflow.com/questions/263305/drawing-a-topographical-map
+var _ = _dereq_('lodash'),
+    async = _dereq_('async')
+var t = {}
+t.tin = _dereq_('./tin')
+t.inside = _dereq_('./inside')
+t.grid = _dereq_('./grid')
+t.extent = _dereq_('./extent')
+t.planepoint = _dereq_('./planepoint')
+t.featurecollection = _dereq_('./featurecollection')
+t.linestring = _dereq_('./linestring')
+t.square = _dereq_('./square')
+t.donuts = _dereq_('./donuts')
+t.merge = _dereq_('./merge')
+
+module.exports = function(points, z, resolution, breaks, donuts, done){
+  t.tin(points, z, function(err, tinResult){
+    t.extent(points, function(err, bbox){
+      t.square(bbox, function(err, bbox){
+        t.grid(bbox, resolution, function(err, gridResult){
+          var data = []
+          _(gridResult.features).each(function(pt){
+            _(tinResult.features).each(function(triangle){
+              t.inside(pt, triangle, function(err, isInside){
+                if(isInside){
+                  t.planepoint(pt, triangle, function(err, zValue){
+                    pt.properties = {}
+                    pt.properties[z] = zValue
+                  })
+                }
+                else {
+                  //leave pt.properties null
+                }
+              })
+            })
+          })
+
+          var depth = Math.sqrt(gridResult.features.length)
+          for (var x=0; x<depth; x++){
+            var xGroup = gridResult.features.slice(x * depth, (x + 1) * depth)
+            var xFlat = []
+            _.each(xGroup, function(verticalPoint){
+              if(verticalPoint.properties){
+                xFlat.push(verticalPoint.properties[z])
+              } else{
+                xFlat.push(0)
+              }
+            })
+            data.push(xFlat)
+          }
+          var interval = (bbox[2] - bbox[0]) / depth
+          var xCoordinates = []
+          var yCoordinates = []
+          for (var x=0; x<depth; x++){
+            xCoordinates.push(x * interval + bbox[0])
+            yCoordinates.push(x * interval + bbox[1])
+          }
+          
+          var c = new Conrec
+          c.contour(data, 0, resolution, 0, resolution, xCoordinates, yCoordinates, breaks.length, breaks)
+          var contourList = c.contourList()
+
+          var fc = t.featurecollection([])
+          _.each(contourList, function(c){
+            if(c.length > 2){
+              var polyCoordinates = []
+              _.each(c, function(coord){
+                polyCoordinates.push([coord.x, coord.y])
+              })
+              var poly = t.linestring(polyCoordinates)
+              poly.properties = {}
+              poly.properties[z] = c.level
+
+              fc.features.push(poly)
+            }
+          })
+          done(null, fc)
+        })
+      })
+    })
+  })
+}
+
+
+/**
+ * Copyright (c) 2010, Jason Davies.
+ *
+ * All rights reserved.  This code is based on Bradley White's Java version,
+ * which is in turn based on Nicholas Yue's C++ version, which in turn is based
+ * on Paul D. Bourke's original Fortran version.  See below for the respective
+ * copyright notices.
+ *
+ * See http://local.wasp.uwa.edu.au/~pbourke/papers/conrec/ for the original
+ * paper by Paul D. Bourke.
+ *
+ * The vector conversion code is based on http://apptree.net/conrec.htm by
+ * Graham Cox.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions are met:
+ *     * Redistributions of source code must retain the above copyright
+ *       notice, this list of conditions and the following disclaimer.
+ *     * Redistributions in binary form must reproduce the above copyright
+ *       notice, this list of conditions and the following disclaimer in the
+ *       documentation and/or other materials provided with the distribution.
+ *     * Neither the name of the <organization> nor the
+ *       names of its contributors may be used to endorse or promote products
+ *       derived from this software without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ * ARE DISCLAIMED. IN NO EVENT SHALL <COPYRIGHT HOLDER> BE LIABLE FOR ANY
+ * DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+ * (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+ * LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+ * ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+ * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
+ * THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ */
+
+/*
+ * Copyright (c) 1996-1997 Nicholas Yue
+ *
+ * This software is copyrighted by Nicholas Yue. This code is based on Paul D.
+ * Bourke's CONREC.F routine.
+ *
+ * The authors hereby grant permission to use, copy, and distribute this
+ * software and its documentation for any purpose, provided that existing
+ * copyright notices are retained in all copies and that this notice is
+ * included verbatim in any distributions. Additionally, the authors grant
+ * permission to modify this software and its documentation for any purpose,
+ * provided that such modifications are not distributed without the explicit
+ * consent of the authors and that existing copyright notices are retained in
+ * all copies. Some of the algorithms implemented by this software are
+ * patented, observe all applicable patent law.
+ *
+ * IN NO EVENT SHALL THE AUTHORS OR DISTRIBUTORS BE LIABLE TO ANY PARTY FOR
+ * DIRECT, INDIRECT, SPECIAL, INCIDENTAL, OR CONSEQUENTIAL DAMAGES ARISING OUT
+ * OF THE USE OF THIS SOFTWARE, ITS DOCUMENTATION, OR ANY DERIVATIVES THEREOF,
+ * EVEN IF THE AUTHORS HAVE BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ *
+ * THE AUTHORS AND DISTRIBUTORS SPECIFICALLY DISCLAIM ANY WARRANTIES,
+ * INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE, AND NON-INFRINGEMENT.  THIS SOFTWARE IS
+ * PROVIDED ON AN "AS IS" BASIS, AND THE AUTHORS AND DISTRIBUTORS HAVE NO
+ * OBLIGATION TO PROVIDE MAINTENANCE, SUPPORT, UPDATES, ENHANCEMENTS, OR
+ * MODIFICATIONS.
+ */
+
+
+  exports.Conrec = Conrec;
+
+  var EPSILON = 1e-10;
+
+  function pointsEqual(a, b) {
+    var x = a.x - b.x, y = a.y - b.y;
+    return x * x + y * y < EPSILON;
+  }
+
+  function reverseList(list) {
+    var pp = list.head;
+
+    while (pp) {
+      // swap prev/next pointers
+      var temp = pp.next;
+      pp.next = pp.prev;
+      pp.prev = temp;
+
+      // continue through the list
+      pp = temp;
+    }
+
+    // swap head/tail pointers
+    var temp = list.head;
+    list.head = list.tail;
+    list.tail = temp;
+  }
+
+  function ContourBuilder(level) {
+    this.level = level;
+    this.s = null;
+    this.count = 0;
+  }
+  ContourBuilder.prototype.remove_seq = function(list) {
+    // if list is the first item, static ptr s is updated
+    if (list.prev) {
+      list.prev.next = list.next;
+    } else {
+      this.s = list.next;
+    }
+
+    if (list.next) {
+      list.next.prev = list.prev;
+    }
+    --this.count;
+  }
+  ContourBuilder.prototype.addSegment = function(a, b) {
+    var ss = this.s;
+    var ma = null;
+    var mb = null;
+    var prependA = false;
+    var prependB = false;
+
+    while (ss) {
+      if (ma == null) {
+        // no match for a yet
+        if (pointsEqual(a, ss.head.p)) {
+          ma = ss;
+          prependA = true;
+        } else if (pointsEqual(a, ss.tail.p)) {
+          ma = ss;
+        }
+      }
+      if (mb == null) {
+        // no match for b yet
+        if (pointsEqual(b, ss.head.p)) {
+          mb = ss;
+          prependB = true;
+        } else if (pointsEqual(b, ss.tail.p)) {
+          mb = ss;
+        }
+      }
+      // if we matched both no need to continue searching
+      if (mb != null && ma != null) {
+        break;
+      } else {
+        ss = ss.next;
+      }
+    }
+
+    // c is the case selector based on which of ma and/or mb are set
+    var c = ((ma != null) ? 1 : 0) | ((mb != null) ? 2 : 0);
+
+    switch(c) {
+      case 0:   // both unmatched, add as new sequence
+        var aa = {p: a, prev: null};
+        var bb = {p: b, next: null};
+        aa.next = bb;
+        bb.prev = aa;
+
+        // create sequence element and push onto head of main list. The order
+        // of items in this list is unimportant
+        ma = {head: aa, tail: bb, next: this.s, prev: null, closed: false};
+        if (this.s) {
+          this.s.prev = ma;
+        }
+        this.s = ma;
+
+        ++this.count;    // not essential - tracks number of unmerged sequences
+      break;
+
+      case 1:   // a matched, b did not - thus b extends sequence ma
+        var pp = {p: b};
+
+        if (prependA) {
+          pp.next = ma.head;
+          pp.prev = null;
+          ma.head.prev = pp;
+          ma.head = pp;
+        } else {
+          pp.next = null;
+          pp.prev = ma.tail;
+          ma.tail.next = pp;
+          ma.tail = pp;
+        }
+      break;
+
+      case 2:   // b matched, a did not - thus a extends sequence mb
+        var pp = {p: a};
+
+        if (prependB) {
+          pp.next = mb.head;
+          pp.prev = null;
+          mb.head.prev = pp;
+          mb.head = pp;
+        } else {
+          pp.next = null;
+          pp.prev = mb.tail;
+          mb.tail.next = pp;
+          mb.tail = pp;
+        }
+      break;
+
+      case 3:   // both matched, can merge sequences
+        // if the sequences are the same, do nothing, as we are simply closing this path (could set a flag)
+
+        if (ma === mb) {
+          var pp = {p: ma.tail.p, next: ma.head, prev: null};
+          ma.head.prev = pp;
+          ma.head = pp;
+          ma.closed = true;
+          break;
+        }
+
+        // there are 4 ways the sequence pair can be joined. The current setting of prependA and
+        // prependB will tell us which type of join is needed. For head/head and tail/tail joins
+        // one sequence needs to be reversed
+        switch((prependA ? 1 : 0) | (prependB ? 2 : 0)) {
+          case 0:   // tail-tail
+            // reverse ma and append to mb
+            reverseList(ma);
+            // fall through to head/tail case
+          case 1:   // head-tail
+            // ma is appended to mb and ma discarded
+            mb.tail.next = ma.head;
+            ma.head.prev = mb.tail;
+            mb.tail = ma.tail;
+
+            //discard ma sequence record
+            this.remove_seq(ma);
+          break;
+
+          case 3:   // head-head
+            // reverse ma and append mb to it
+            reverseList(ma);
+            // fall through to tail/head case
+          case 2:   // tail-head
+            // mb is appended to ma and mb is discarded
+            ma.tail.next = mb.head;
+            mb.head.prev = ma.tail;
+            ma.tail = mb.tail;
+
+            //discard mb sequence record
+            this.remove_seq(mb);
+        break;
+      }
+    }
+  }
+
+  /**
+   * Implements CONREC.
+   *
+   * @param {function} drawContour function for drawing contour.  Defaults to a
+   *                               custom "contour builder", which populates the
+   *                               contours property.
+   */
+  function Conrec(drawContour) {
+    if (!drawContour) {
+      var c = this;
+      c.contours = {};
+      /**
+       * drawContour - interface for implementing the user supplied method to
+       * render the countours.
+       *
+       * Draws a line between the start and end coordinates.
+       *
+       * @param startX    - start coordinate for X
+       * @param startY    - start coordinate for Y
+       * @param endX      - end coordinate for X
+       * @param endY      - end coordinate for Y
+       * @param contourLevel - Contour level for line.
+       */
+      this.drawContour = function(startX, startY, endX, endY, contourLevel, k) {
+        var cb = c.contours[k];
+        if (!cb) {
+          cb = c.contours[k] = new ContourBuilder(contourLevel);
+        }
+        cb.addSegment({x: startX, y: startY}, {x: endX, y: endY});
+      }
+      this.contourList = function() {
+        var l = [];
+        var a = c.contours;
+        for (var k in a) {
+          var s = a[k].s;
+          var level = a[k].level;
+          while (s) {
+            var h = s.head;
+            var l2 = [];
+            l2.level = level;
+            l2.k = k;
+            while (h && h.p) {
+              l2.push(h.p);
+              h = h.next;
+            }
+            l.push(l2);
+            s = s.next;
+          }
+        }
+        l.sort(function(a, b) { return a.k - b.k });
+        return l;
+      }
+    } else {
+      this.drawContour = drawContour;
+    }
+    this.h  = new Array(5);
+    this.sh = new Array(5);
+    this.xh = new Array(5);
+    this.yh = new Array(5);
+  }
+
+  /**
+   * contour is a contouring subroutine for rectangularily spaced data
+   *
+   * It emits calls to a line drawing subroutine supplied by the user which
+   * draws a contour map corresponding to real*4data on a randomly spaced
+   * rectangular grid. The coordinates emitted are in the same units given in
+   * the x() and y() arrays.
+   *
+   * Any number of contour levels may be specified but they must be in order of
+   * increasing value.
+   *
+   *
+   * @param {number[][]} d - matrix of data to contour
+   * @param {number} ilb,iub,jlb,jub - index bounds of data matrix
+   *
+   *             The following two, one dimensional arrays (x and y) contain
+   *             the horizontal and vertical coordinates of each sample points.
+   * @param {number[]} x  - data matrix column coordinates
+   * @param {number[]} y  - data matrix row coordinates
+   * @param {number} nc   - number of contour levels
+   * @param {number[]} z  - contour levels in increasing order.
+   */
+  Conrec.prototype.contour = function(d, ilb, iub, jlb, jub, x, y, nc, z) {
+    var h = this.h, sh = this.sh, xh = this.xh, yh = this.yh;
+    var drawContour = this.drawContour;
+    this.contours = {};
+
+    /** private */
+    var xsect = function(p1, p2){
+      return (h[p2]*xh[p1]-h[p1]*xh[p2])/(h[p2]-h[p1]);
+    }
+
+    var ysect = function(p1, p2){
+      return (h[p2]*yh[p1]-h[p1]*yh[p2])/(h[p2]-h[p1]);
+    }
+    var m1;
+    var m2;
+    var m3;
+    var case_value;
+    var dmin;
+    var dmax;
+    var x1 = 0.0;
+    var x2 = 0.0;
+    var y1 = 0.0;
+    var y2 = 0.0;
+
+    // The indexing of im and jm should be noted as it has to start from zero
+    // unlike the fortran counter part
+    var im = [0, 1, 1, 0];
+    var jm = [0, 0, 1, 1];
+
+    // Note that castab is arranged differently from the FORTRAN code because
+    // Fortran and C/C++ arrays are transposed of each other, in this case
+    // it is more tricky as castab is in 3 dimensions
+    var castab = [
+      [
+        [0, 0, 8], [0, 2, 5], [7, 6, 9]
+      ],
+      [
+        [0, 3, 4], [1, 3, 1], [4, 3, 0]
+      ],
+      [
+        [9, 6, 7], [5, 2, 0], [8, 0, 0]
+      ]
+    ];
+
+    for (var j=(jub-1);j>=jlb;j--) {
+      for (var i=ilb;i<=iub-1;i++) {
+        var temp1, temp2;
+        temp1 = Math.min(d[i][j],d[i][j+1]);
+        temp2 = Math.min(d[i+1][j],d[i+1][j+1]);
+        dmin  = Math.min(temp1,temp2);
+        temp1 = Math.max(d[i][j],d[i][j+1]);
+        temp2 = Math.max(d[i+1][j],d[i+1][j+1]);
+        dmax  = Math.max(temp1,temp2);
+
+        if (dmax>=z[0]&&dmin<=z[nc-1]) {
+          for (var k=0;k<nc;k++) {
+            if (z[k]>=dmin&&z[k]<=dmax) {
+              for (var m=4;m>=0;m--) {
+                if (m>0) {
+                  // The indexing of im and jm should be noted as it has to
+                  // start from zero
+                  h[m] = d[i+im[m-1]][j+jm[m-1]]-z[k];
+                  xh[m] = x[i+im[m-1]];
+                  yh[m] = y[j+jm[m-1]];
+                } else {
+                  h[0] = 0.25*(h[1]+h[2]+h[3]+h[4]);
+                  xh[0]=0.5*(x[i]+x[i+1]);
+                  yh[0]=0.5*(y[j]+y[j+1]);
+                }
+                if (h[m]>EPSILON) {
+                  sh[m] = 1;
+                } else if (h[m]<-EPSILON) {
+                  sh[m] = -1;
+                } else
+                  sh[m] = 0;
+              }
+              //
+              // Note: at this stage the relative heights of the corners and the
+              // centre are in the h array, and the corresponding coordinates are
+              // in the xh and yh arrays. The centre of the box is indexed by 0
+              // and the 4 corners by 1 to 4 as shown below.
+              // Each triangle is then indexed by the parameter m, and the 3
+              // vertices of each triangle are indexed by parameters m1,m2,and
+              // m3.
+              // It is assumed that the centre of the box is always vertex 2
+              // though this isimportant only when all 3 vertices lie exactly on
+              // the same contour level, in which case only the side of the box
+              // is drawn.
+              //
+              //
+              //      vertex 4 +-------------------+ vertex 3
+              //               | \               / |
+              //               |   \    m-3    /   |
+              //               |     \       /     |
+              //               |       \   /       |
+              //               |  m=2    X   m=2   |       the centre is vertex 0
+              //               |       /   \       |
+              //               |     /       \     |
+              //               |   /    m=1    \   |
+              //               | /               \ |
+              //      vertex 1 +-------------------+ vertex 2
+              //
+              //
+              //
+              //               Scan each triangle in the box
+              //
+              for (m=1;m<=4;m++) {
+                m1 = m;
+                m2 = 0;
+                if (m!=4) {
+                    m3 = m+1;
+                } else {
+                    m3 = 1;
+                }
+                case_value = castab[sh[m1]+1][sh[m2]+1][sh[m3]+1];
+                if (case_value!=0) {
+                  switch (case_value) {
+                    case 1: // Line between vertices 1 and 2
+                      x1=xh[m1];
+                      y1=yh[m1];
+                      x2=xh[m2];
+                      y2=yh[m2];
+                      break;
+                    case 2: // Line between vertices 2 and 3
+                      x1=xh[m2];
+                      y1=yh[m2];
+                      x2=xh[m3];
+                      y2=yh[m3];
+                      break;
+                    case 3: // Line between vertices 3 and 1
+                      x1=xh[m3];
+                      y1=yh[m3];
+                      x2=xh[m1];
+                      y2=yh[m1];
+                      break;
+                    case 4: // Line between vertex 1 and side 2-3
+                      x1=xh[m1];
+                      y1=yh[m1];
+                      x2=xsect(m2,m3);
+                      y2=ysect(m2,m3);
+                      break;
+                    case 5: // Line between vertex 2 and side 3-1
+                      x1=xh[m2];
+                      y1=yh[m2];
+                      x2=xsect(m3,m1);
+                      y2=ysect(m3,m1);
+                      break;
+                    case 6: //  Line between vertex 3 and side 1-2
+                      x1=xh[m3];
+                      y1=yh[m3];
+                      x2=xsect(m1,m2);
+                      y2=ysect(m1,m2);
+                      break;
+                    case 7: // Line between sides 1-2 and 2-3
+                      x1=xsect(m1,m2);
+                      y1=ysect(m1,m2);
+                      x2=xsect(m2,m3);
+                      y2=ysect(m2,m3);
+                      break;
+                    case 8: // Line between sides 2-3 and 3-1
+                      x1=xsect(m2,m3);
+                      y1=ysect(m2,m3);
+                      x2=xsect(m3,m1);
+                      y2=ysect(m3,m1);
+                      break;
+                    case 9: // Line between sides 3-1 and 1-2
+                      x1=xsect(m3,m1);
+                      y1=ysect(m3,m1);
+                      x2=xsect(m1,m2);
+                      y2=ysect(m1,m2);
+                      break;
+                    default:
+                      break;
+                  }
+                  // Put your processing code here and comment out the printf
+                  //printf("%f %f %f %f %f\n",x1,y1,x2,y2,z[k]);
+                  drawContour(x1,y1,x2,y2,z[k],k);
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+},{"./donuts":16,"./extent":20,"./featurecollection":21,"./grid":24,"./inside":25,"./linestring":30,"./merge":34,"./planepoint":38,"./square":48,"./tin":51,"async":56,"lodash":82}],29:[function(_dereq_,module,exports){
 var ss = _dereq_('simple-statistics'),
     _ = _dereq_('lodash')
 
@@ -1839,7 +2405,7 @@ module.exports = function(fc, field, num, done){
 
   done(null, breaks)
 }
-},{"lodash":80,"simple-statistics":81}],28:[function(_dereq_,module,exports){
+},{"lodash":82,"simple-statistics":83}],30:[function(_dereq_,module,exports){
 module.exports = function(coordinates, properties){
   if(coordinates === null) throw new Error('No coordinates passed')
   var linestring = { 
@@ -1853,7 +2419,7 @@ module.exports = function(coordinates, properties){
   return linestring
 }
 
-},{}],29:[function(_dereq_,module,exports){
+},{}],31:[function(_dereq_,module,exports){
 var path = _dereq_('path'),
     fs = _dereq_('fs'),
     layer
@@ -1866,7 +2432,7 @@ module.exports = function(file, done) {
   })  
 }
 
-},{"fs":55,"path":57}],30:[function(_dereq_,module,exports){
+},{"fs":57,"path":59}],32:[function(_dereq_,module,exports){
 var t = {}
 var _ = _dereq_('lodash'),
     ss = _dereq_('simple-statistics')
@@ -1889,7 +2455,7 @@ module.exports = function(polyFC, ptFC, inField, outField, done){
   })
   done(null, polyFC)
 }
-},{"./inside":25,"lodash":80,"simple-statistics":81}],31:[function(_dereq_,module,exports){
+},{"./inside":25,"lodash":82,"simple-statistics":83}],33:[function(_dereq_,module,exports){
 var t = {}
 var _ = _dereq_('lodash'),
     ss = _dereq_('simple-statistics')
@@ -1912,7 +2478,7 @@ module.exports = function(polyFC, ptFC, inField, outField, done){
   })
   done(null, polyFC)
 }
-},{"./inside":25,"lodash":80,"simple-statistics":81}],32:[function(_dereq_,module,exports){
+},{"./inside":25,"lodash":82,"simple-statistics":83}],34:[function(_dereq_,module,exports){
 // 1. run tin on points
 // 2. merge the tin
 //var topojson = require('')
@@ -1940,7 +2506,7 @@ module.exports = function(polygons, done){
     }
   )
 }
-},{"./union":51,"async":54,"lodash":80}],33:[function(_dereq_,module,exports){
+},{"./union":53,"async":56,"lodash":82}],35:[function(_dereq_,module,exports){
 // http://cs.selu.edu/~rbyrd/math/midpoint/
 // ((x1+x2)/2), ((y1+y2)/2)
 var t = {}
@@ -1964,7 +2530,7 @@ module.exports = function(point1, point2, done) {
 
   done(null, midpoint)
 }
-},{"./point":37}],34:[function(_dereq_,module,exports){
+},{"./point":39}],36:[function(_dereq_,module,exports){
 var t = {}
 var _ = _dereq_('lodash'),
     ss = _dereq_('simple-statistics')
@@ -1987,7 +2553,7 @@ module.exports = function(polyFC, ptFC, inField, outField, done){
   })
   done(null, polyFC)
 }
-},{"./inside":25,"lodash":80,"simple-statistics":81}],35:[function(_dereq_,module,exports){
+},{"./inside":25,"lodash":82,"simple-statistics":83}],37:[function(_dereq_,module,exports){
 var t = {}
 var _ = _dereq_('lodash'),
  distance = _dereq_('./distance')
@@ -2023,7 +2589,7 @@ module.exports = function(targetPoint, points, done){
     done(null, nPt)
   }
 }
-},{"./distance":15,"lodash":80}],36:[function(_dereq_,module,exports){
+},{"./distance":15,"lodash":82}],38:[function(_dereq_,module,exports){
 http://stackoverflow.com/a/13916669/461015
 
 module.exports = function(point, triangle, done){
@@ -2046,7 +2612,7 @@ module.exports = function(point, triangle, done){
 
   done(null, z)
 }
-},{}],37:[function(_dereq_,module,exports){
+},{}],39:[function(_dereq_,module,exports){
 module.exports = function(x, y, properties){
   if(x === null || y === null) throw new Error('Invalid coordinates')
   var point = { 
@@ -2059,7 +2625,7 @@ module.exports = function(x, y, properties){
   }
   return point
 }
-},{}],38:[function(_dereq_,module,exports){
+},{}],40:[function(_dereq_,module,exports){
 module.exports = function(coordinates, properties){
   if(coordinates === null) throw new Error('No coordinates passed')
   var polygon = {
@@ -2082,7 +2648,7 @@ module.exports = function(coordinates, properties){
 
 
 
-},{}],39:[function(_dereq_,module,exports){
+},{}],41:[function(_dereq_,module,exports){
 var ss = _dereq_('simple-statistics'),
     _ = _dereq_('lodash')
 
@@ -2098,7 +2664,7 @@ module.exports = function(fc, field, percentiles, done){
   })
   done(null, quantiles)
 }
-},{"lodash":80,"simple-statistics":81}],40:[function(_dereq_,module,exports){
+},{"lodash":82,"simple-statistics":83}],42:[function(_dereq_,module,exports){
 var t = {}
 var featurecollection = _dereq_('./featurecollection')
 t.featurecollection = featurecollection
@@ -2118,7 +2684,7 @@ module.exports = function(fc, inField, outField, translations, done){
   })
   done(null, reclassed)
 }
-},{"./featurecollection":21}],41:[function(_dereq_,module,exports){
+},{"./featurecollection":21}],43:[function(_dereq_,module,exports){
 var t = {}
 var featurecollection = _dereq_('./featurecollection')
 t.featurecollection = featurecollection
@@ -2132,7 +2698,7 @@ module.exports = function(collection, key, val, done) {
   }
   done(null, newFC)
 }
-},{"./featurecollection":21}],42:[function(_dereq_,module,exports){
+},{"./featurecollection":21}],44:[function(_dereq_,module,exports){
 var t = {}
 var _ = _dereq_('lodash'),
     featurecollection = _dereq_('./featurecollection')
@@ -2142,7 +2708,7 @@ module.exports = function(fc, num, done){
   var outFC = t.featurecollection(_.sample(fc.features, num))
   done(null, outFC)
 }
-},{"./featurecollection":21,"lodash":80}],43:[function(_dereq_,module,exports){
+},{"./featurecollection":21,"lodash":82}],45:[function(_dereq_,module,exports){
 var t = {}
 var fs = _dereq_('fs')
 t.topo = _dereq_('./topo')
@@ -2165,7 +2731,7 @@ module.exports = function(path, features, type, done){
       break
   }
 }
-},{"./topo":50,"fs":55}],44:[function(_dereq_,module,exports){
+},{"./topo":52,"fs":57}],46:[function(_dereq_,module,exports){
 // use topojson.simplify to simplify points to a given tolerence then convert back to geojson
 var topojson = _dereq_('topojson')
 
@@ -2183,7 +2749,7 @@ module.exports = function(fc, quantization, minimumArea, done){
   topojson.simplify(topo, options)
   done(null, topojson.feature(topo, topo.objects.name))
 }
-},{"topojson":82}],45:[function(_dereq_,module,exports){
+},{"topojson":84}],47:[function(_dereq_,module,exports){
 module.exports = function(bbox, factor, done){
   var lowX = (((bbox[2] - bbox[0]) / 2) * factor) + bbox[0]
   var lowY = (((bbox[3] - bbox[1]) / 2) * factor) + bbox[1]
@@ -2193,7 +2759,7 @@ module.exports = function(bbox, factor, done){
   var sized = [lowX, lowY, highX, highY]
   done(null, sized)
 }
-},{}],46:[function(_dereq_,module,exports){
+},{}],48:[function(_dereq_,module,exports){
 var t = {}
 var midpoint = _dereq_('../lib/midpoint'),
     point = _dereq_('../lib/point'),
@@ -2234,7 +2800,7 @@ module.exports = function(bbox, done) {
   //t.midpoint(t.point(bbox[0,]), bbox)
   //squareBbox[0] = 
 }
-},{"../lib/distance":15,"../lib/midpoint":33,"../lib/point":37}],47:[function(_dereq_,module,exports){
+},{"../lib/distance":15,"../lib/midpoint":35,"../lib/point":39}],49:[function(_dereq_,module,exports){
 var t = {}
 var _ = _dereq_('lodash'),
     ss = _dereq_('simple-statistics')
@@ -2257,7 +2823,7 @@ module.exports = function(polyFC, ptFC, inField, outField, done){
   })
   done(null, polyFC)
 }
-},{"./inside":25,"lodash":80,"simple-statistics":81}],48:[function(_dereq_,module,exports){
+},{"./inside":25,"lodash":82,"simple-statistics":83}],50:[function(_dereq_,module,exports){
 var t = {}
   var _ = _dereq_('lodash')
 t.inside = _dereq_('./inside')
@@ -2282,7 +2848,7 @@ module.exports = function(points, polygons, field, outField, done){
   })
   done(null, points)
 }
-},{"./inside":25,"lodash":80}],49:[function(_dereq_,module,exports){
+},{"./inside":25,"lodash":82}],51:[function(_dereq_,module,exports){
 //http://en.wikipedia.org/wiki/Delaunay_triangulation
 //https://github.com/ironwallaby/delaunay
 var t = {}
@@ -2531,14 +3097,14 @@ function triangulate(vertices) {
     }
 }*/
 
-},{"./nearest":35,"./point":37,"./polygon":38,"lodash":80}],50:[function(_dereq_,module,exports){
+},{"./nearest":37,"./point":39,"./polygon":40,"lodash":82}],52:[function(_dereq_,module,exports){
 var topojson = _dereq_('topojson')
 
 module.exports = function(geojson, done){
   var topology = topojson.topology({geojson: geojson})
   done(null, topology)
 }
-},{"topojson":82}],51:[function(_dereq_,module,exports){
+},{"topojson":84}],53:[function(_dereq_,module,exports){
 // look here for help http://svn.osgeo.org/grass/grass/branches/releasebranch_6_4/vector/v.overlay/main.c
 //must be array of polygons
 
@@ -2562,7 +3128,7 @@ module.exports = function(poly1, poly2, done){
   }
   done(null, union)
 }
-},{"./featurecollection":21,"jsts":58}],52:[function(_dereq_,module,exports){
+},{"./featurecollection":21,"jsts":60}],54:[function(_dereq_,module,exports){
 var t = {}
 var _ = _dereq_('lodash'),
     ss = _dereq_('simple-statistics')
@@ -2585,7 +3151,7 @@ module.exports = function(polyFC, ptFC, inField, outField, done){
   })
   done(null, polyFC)
 }
-},{"./inside":25,"lodash":80,"simple-statistics":81}],53:[function(_dereq_,module,exports){
+},{"./inside":25,"lodash":82,"simple-statistics":83}],55:[function(_dereq_,module,exports){
 var t = {}
 var _ = _dereq_('lodash')
 t.inside = _dereq_('./inside')
@@ -2604,8 +3170,9 @@ module.exports = function(ptFC, polyFC, done){
   })
   done(null, pointsWithin)
 }
-},{"./featurecollection":21,"./inside":25,"lodash":80}],54:[function(_dereq_,module,exports){
-(function (process){/*global setImmediate: false, setTimeout: false, console: false */
+},{"./featurecollection":21,"./inside":25,"lodash":82}],56:[function(_dereq_,module,exports){
+(function (process){
+/*global setImmediate: false, setTimeout: false, console: false */
 (function () {
 
     var async = {};
@@ -3563,10 +4130,11 @@ module.exports = function(ptFC, polyFC, done){
     }
 
 }());
-}).call(this,_dereq_("/Users/tmcw/src/turf/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"))
-},{"/Users/tmcw/src/turf/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":56}],55:[function(_dereq_,module,exports){
 
-},{}],56:[function(_dereq_,module,exports){
+}).call(this,_dereq_("/Users/morgan/Documents/turf/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"))
+},{"/Users/morgan/Documents/turf/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":58}],57:[function(_dereq_,module,exports){
+
+},{}],58:[function(_dereq_,module,exports){
 // shim for using process in browser
 
 var process = module.exports = {};
@@ -3621,8 +4189,9 @@ process.chdir = function (dir) {
     throw new Error('process.chdir is not supported');
 };
 
-},{}],57:[function(_dereq_,module,exports){
-(function (process){// Copyright Joyent, Inc. and other Node contributors.
+},{}],59:[function(_dereq_,module,exports){
+(function (process){
+// Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
 // copy of this software and associated documentation files (the
@@ -3846,15 +4415,16 @@ var substr = 'ab'.substr(-1) === 'b'
         return str.substr(start, len);
     }
 ;
-}).call(this,_dereq_("/Users/tmcw/src/turf/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"))
-},{"/Users/tmcw/src/turf/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":56}],58:[function(_dereq_,module,exports){
+
+}).call(this,_dereq_("/Users/morgan/Documents/turf/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"))
+},{"/Users/morgan/Documents/turf/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":58}],60:[function(_dereq_,module,exports){
 'use strict';
 GLOBAL.javascript = {};
 GLOBAL.javascript.util = _dereq_('javascript.util');
 var jsts = _dereq_('./lib/jsts');
 module.exports = jsts
 
-},{"./lib/jsts":59,"javascript.util":60}],59:[function(_dereq_,module,exports){
+},{"./lib/jsts":61,"javascript.util":62}],61:[function(_dereq_,module,exports){
 /* The JSTS Topology Suite is a collection of JavaScript classes that
 implement the fundamental operations required to validate a given
 geo-spatial data set to a known topological specification.
@@ -5432,10 +6002,10 @@ boundaryCount++;var newLoc=jsts.geomgraph.GeometryGraph.determineBoundary(this.b
 return;if(loc===Location.BOUNDARY&&this.useBoundaryDeterminationRule)
 this.insertBoundaryPoint(argIndex,coord);else
 this.insertPoint(argIndex,coord,loc);};jsts.geomgraph.GeometryGraph.prototype.getInvalidPoint=function(){return this.invalidPoint;};})();
-},{}],60:[function(_dereq_,module,exports){
+},{}],62:[function(_dereq_,module,exports){
 module.exports = _dereq_('./src');
 
-},{"./src":79}],61:[function(_dereq_,module,exports){
+},{"./src":81}],63:[function(_dereq_,module,exports){
 /**
  * @requires List.js
  */
@@ -5600,7 +6170,7 @@ ArrayList.Iterator.prototype.remove = function() {
 
 module.exports = ArrayList;
 
-},{"./Collection":63,"./IndexOutOfBoundsException":67,"./List":69,"./NoSuchElementException":71,"./OperationNotSupported":72}],62:[function(_dereq_,module,exports){
+},{"./Collection":65,"./IndexOutOfBoundsException":69,"./List":71,"./NoSuchElementException":73,"./OperationNotSupported":74}],64:[function(_dereq_,module,exports){
 /**
  * @see http://download.oracle.com/javase/6/docs/api/java/util/Arrays.html
  *
@@ -5658,7 +6228,7 @@ Arrays.asList = function(array) {
 
 module.exports = Arrays;
 
-},{}],63:[function(_dereq_,module,exports){
+},{}],65:[function(_dereq_,module,exports){
 /**
  * @requires Iterator.js
  */
@@ -5733,7 +6303,7 @@ Collection.prototype.remove = function(o) {};
 
 module.exports = Collection;
 
-},{"./Iterator":68}],64:[function(_dereq_,module,exports){
+},{"./Iterator":70}],66:[function(_dereq_,module,exports){
 /**
  * @param {string=}
  *          message Optional message.
@@ -5752,7 +6322,7 @@ EmptyStackException.prototype.name = 'EmptyStackException';
 
 module.exports = EmptyStackException;
 
-},{}],65:[function(_dereq_,module,exports){
+},{}],67:[function(_dereq_,module,exports){
 /**
  * @requires Map.js
  * @requires ArrayList.js
@@ -5816,7 +6386,7 @@ HashMap.prototype.size = function() {
 
 module.exports = HashMap;
 
-},{"./ArrayList":61,"./Map":70}],66:[function(_dereq_,module,exports){
+},{"./ArrayList":63,"./Map":72}],68:[function(_dereq_,module,exports){
 /**
  * @requires Set.js
  */
@@ -5977,7 +6547,7 @@ HashSet.Iterator.prototype.remove = function() {
 
 module.exports = HashSet;
 
-},{"./Collection":63,"./NoSuchElementException":71,"./OperationNotSupported":72,"./Set":73}],67:[function(_dereq_,module,exports){
+},{"./Collection":65,"./NoSuchElementException":73,"./OperationNotSupported":74,"./Set":75}],69:[function(_dereq_,module,exports){
 /**
  * @param {string=}
  *          message Optional message.
@@ -5996,7 +6566,7 @@ IndexOutOfBoundsException.prototype.name = 'IndexOutOfBoundsException';
 
 module.exports = IndexOutOfBoundsException;
 
-},{}],68:[function(_dereq_,module,exports){
+},{}],70:[function(_dereq_,module,exports){
 /**
  * @see http://download.oracle.com/javase/6/docs/api/java/util/Iterator.html
  * @interface
@@ -6025,7 +6595,7 @@ Iterator.prototype.remove = function() {};
 
 module.exports = Iterator;
 
-},{}],69:[function(_dereq_,module,exports){
+},{}],71:[function(_dereq_,module,exports){
 /**
  * @requires Collection.js
  */
@@ -6059,7 +6629,7 @@ List.prototype.isEmpty = function() {};
 
 module.exports = List;
 
-},{"./Collection":63}],70:[function(_dereq_,module,exports){
+},{"./Collection":65}],72:[function(_dereq_,module,exports){
 /**
  * @see http://download.oracle.com/javase/6/docs/api/java/util/Map.html
  *
@@ -6105,7 +6675,7 @@ Map.prototype.values = function() {};
 
 module.exports = Map;
 
-},{}],71:[function(_dereq_,module,exports){
+},{}],73:[function(_dereq_,module,exports){
 /**
  * @param {string=}
  *          message Optional message.
@@ -6124,7 +6694,7 @@ NoSuchElementException.prototype.name = 'NoSuchElementException';
 
 module.exports = NoSuchElementException;
 
-},{}],72:[function(_dereq_,module,exports){
+},{}],74:[function(_dereq_,module,exports){
 /**
  * @param {string=}
  *          message Optional message.
@@ -6143,7 +6713,7 @@ OperationNotSupported.prototype.name = 'OperationNotSupported';
 
 module.exports = OperationNotSupported;
 
-},{}],73:[function(_dereq_,module,exports){
+},{}],75:[function(_dereq_,module,exports){
 /**
  * @requires Collection.js
  */
@@ -6171,7 +6741,7 @@ Set.prototype.contains = function(o) {};
 
 module.exports = Set;
 
-},{"./Collection":63}],74:[function(_dereq_,module,exports){
+},{"./Collection":65}],76:[function(_dereq_,module,exports){
 /**
  * @requires Map.js
  */
@@ -6188,7 +6758,7 @@ SortedMap.prototype = new Map;
 
 module.exports = SortedMap;
 
-},{"./Map":70}],75:[function(_dereq_,module,exports){
+},{"./Map":72}],77:[function(_dereq_,module,exports){
 /**
  * @requires Set.js
  */
@@ -6205,7 +6775,7 @@ SortedSet.prototype = new Set;
 
 module.exports = SortedSet;
 
-},{"./Set":73}],76:[function(_dereq_,module,exports){
+},{"./Set":75}],78:[function(_dereq_,module,exports){
 /**
  * @requires List.js
  */
@@ -6323,7 +6893,7 @@ Stack.prototype.toArray = function() {
 
 module.exports = Stack;
 
-},{"./EmptyStackException":64,"./List":69}],77:[function(_dereq_,module,exports){
+},{"./EmptyStackException":66,"./List":71}],79:[function(_dereq_,module,exports){
 /**
  * @requires SortedMap.js
  * @requires ArrayList.js
@@ -6416,7 +6986,7 @@ TreeMap.prototype.size = function() {
 
 module.exports = TreeMap;
 
-},{"./ArrayList":61,"./Map":70,"./SortedMap":74}],78:[function(_dereq_,module,exports){
+},{"./ArrayList":63,"./Map":72,"./SortedMap":76}],80:[function(_dereq_,module,exports){
 /**
  * @requires SortedSet.js
  */
@@ -6584,7 +7154,7 @@ TreeSet.Iterator.prototype.remove = function() {
 
 module.exports = TreeSet;
 
-},{"./Collection":63,"./NoSuchElementException":71,"./OperationNotSupported":72,"./SortedSet":75}],79:[function(_dereq_,module,exports){
+},{"./Collection":65,"./NoSuchElementException":73,"./OperationNotSupported":74,"./SortedSet":77}],81:[function(_dereq_,module,exports){
 module.exports.ArrayList = _dereq_('./ArrayList');
 module.exports.Arrays = _dereq_('./Arrays');
 module.exports.Collection = _dereq_('./Collection');
@@ -6600,8 +7170,9 @@ module.exports.Stack = _dereq_('./Stack');
 module.exports.TreeMap = _dereq_('./TreeMap');
 module.exports.TreeSet = _dereq_('./TreeSet');
 
-},{"./ArrayList":61,"./Arrays":62,"./Collection":63,"./HashMap":65,"./HashSet":66,"./Iterator":68,"./List":69,"./Map":70,"./Set":73,"./SortedMap":74,"./SortedSet":75,"./Stack":76,"./TreeMap":77,"./TreeSet":78}],80:[function(_dereq_,module,exports){
-(function (global){/**
+},{"./ArrayList":63,"./Arrays":64,"./Collection":65,"./HashMap":67,"./HashSet":68,"./Iterator":70,"./List":71,"./Map":72,"./Set":75,"./SortedMap":76,"./SortedSet":77,"./Stack":78,"./TreeMap":79,"./TreeSet":80}],82:[function(_dereq_,module,exports){
+(function (global){
+/**
  * @license
  * Lo-Dash 2.4.1 (Custom Build) <http://lodash.com/>
  * Build: `lodash modern -o ./dist/lodash.js`
@@ -13386,8 +13957,9 @@ module.exports.TreeSet = _dereq_('./TreeSet');
     root._ = _;
   }
 }.call(this));
+
 }).call(this,typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}],81:[function(_dereq_,module,exports){
+},{}],83:[function(_dereq_,module,exports){
 // # simple-statistics
 //
 // A simple, literate statistics system. The code below uses the
@@ -14476,7 +15048,7 @@ module.exports.TreeSet = _dereq_('./TreeSet');
 
 })(this);
 
-},{}],82:[function(_dereq_,module,exports){
+},{}],84:[function(_dereq_,module,exports){
 var topojson = module.exports = _dereq_("./topojson");
 topojson.topology = _dereq_("./lib/topojson/topology");
 topojson.simplify = _dereq_("./lib/topojson/simplify");
@@ -14485,7 +15057,7 @@ topojson.filter = _dereq_("./lib/topojson/filter");
 topojson.prune = _dereq_("./lib/topojson/prune");
 topojson.bind = _dereq_("./lib/topojson/bind");
 
-},{"./lib/topojson/bind":83,"./lib/topojson/clockwise":86,"./lib/topojson/filter":90,"./lib/topojson/prune":93,"./lib/topojson/simplify":95,"./lib/topojson/topology":98,"./topojson":109}],83:[function(_dereq_,module,exports){
+},{"./lib/topojson/bind":85,"./lib/topojson/clockwise":88,"./lib/topojson/filter":92,"./lib/topojson/prune":95,"./lib/topojson/simplify":97,"./lib/topojson/topology":100,"./topojson":111}],85:[function(_dereq_,module,exports){
 var type = _dereq_("./type"),
     topojson = _dereq_("../../");
 
@@ -14515,7 +15087,7 @@ module.exports = function(topology, propertiesById) {
 
 function noop() {}
 
-},{"../../":82,"./type":108}],84:[function(_dereq_,module,exports){
+},{"../../":84,"./type":110}],86:[function(_dereq_,module,exports){
 
 // Computes the bounding box of the specified hash of GeoJSON objects.
 module.exports = function(objects) {
@@ -14562,7 +15134,7 @@ module.exports = function(objects) {
   return [x0, y0, x1, y1];
 };
 
-},{}],85:[function(_dereq_,module,exports){
+},{}],87:[function(_dereq_,module,exports){
 exports.name = "cartesian";
 exports.formatDistance = formatDistance;
 exports.ringArea = ringArea;
@@ -14596,7 +15168,7 @@ function distance(x0, y0, x1, y1) {
   return Math.sqrt(dx * dx + dy * dy);
 }
 
-},{}],86:[function(_dereq_,module,exports){
+},{}],88:[function(_dereq_,module,exports){
 var type = _dereq_("./type"),
     systems = _dereq_("./coordinate-systems"),
     topojson = _dereq_("../../");
@@ -14687,7 +15259,7 @@ function clockwisePolygonSystem(ringArea, reverse) {
 
 function noop() {}
 
-},{"../../":82,"./coordinate-systems":88,"./type":108}],87:[function(_dereq_,module,exports){
+},{"../../":84,"./coordinate-systems":90,"./type":110}],89:[function(_dereq_,module,exports){
 // Given a hash of GeoJSON objects and an id function, invokes the id function
 // to compute a new id for each object that is a feature. The function is passed
 // the feature and is expected to return the new feature id, or null if the
@@ -14717,13 +15289,13 @@ module.exports = function(objects, id) {
   return objects;
 };
 
-},{}],88:[function(_dereq_,module,exports){
+},{}],90:[function(_dereq_,module,exports){
 module.exports = {
   cartesian: _dereq_("./cartesian"),
   spherical: _dereq_("./spherical")
 };
 
-},{"./cartesian":85,"./spherical":96}],89:[function(_dereq_,module,exports){
+},{"./cartesian":87,"./spherical":98}],91:[function(_dereq_,module,exports){
 // Given a TopoJSON topology in absolute (quantized) coordinates,
 // converts to fixed-point delta encoding.
 // This is a destructive operation that modifies the given topology!
@@ -14754,7 +15326,7 @@ module.exports = function(topology) {
   return topology;
 };
 
-},{}],90:[function(_dereq_,module,exports){
+},{}],92:[function(_dereq_,module,exports){
 var type = _dereq_("./type"),
     prune = _dereq_("./prune"),
     clockwise = _dereq_("./clockwise"),
@@ -14825,7 +15397,7 @@ module.exports = function(topology, options) {
 
 function noop() {}
 
-},{"../../":82,"./clockwise":86,"./coordinate-systems":88,"./prune":93,"./type":108}],91:[function(_dereq_,module,exports){
+},{"../../":84,"./clockwise":88,"./coordinate-systems":90,"./prune":95,"./type":110}],93:[function(_dereq_,module,exports){
 // Given a hash of GeoJSON objects, replaces Features with geometry objects.
 // This is a destructive operation that modifies the input objects!
 module.exports = function(objects) {
@@ -14944,7 +15516,7 @@ module.exports = function(objects) {
   return objects;
 };
 
-},{}],92:[function(_dereq_,module,exports){
+},{}],94:[function(_dereq_,module,exports){
 module.exports = function(objects, filter) {
 
   function prefilterGeometry(geometry) {
@@ -15000,7 +15572,7 @@ module.exports = function(objects, filter) {
   return objects;
 };
 
-},{}],93:[function(_dereq_,module,exports){
+},{}],95:[function(_dereq_,module,exports){
 module.exports = function(topology, options) {
   var verbose = false,
       objects = topology.objects,
@@ -15074,7 +15646,7 @@ module.exports = function(topology, options) {
 
 function noop() {}
 
-},{}],94:[function(_dereq_,module,exports){
+},{}],96:[function(_dereq_,module,exports){
 module.exports = function(objects, bbox, Q) {
   var x0 = isFinite(bbox[0]) ? bbox[0] : 0,
       y0 = isFinite(bbox[1]) ? bbox[1] : 0,
@@ -15161,7 +15733,7 @@ module.exports = function(objects, bbox, Q) {
   };
 };
 
-},{}],95:[function(_dereq_,module,exports){
+},{}],97:[function(_dereq_,module,exports){
 var topojson = _dereq_("../../"),
     systems = _dereq_("./coordinate-systems");
 
@@ -15245,7 +15817,7 @@ module.exports = function(topology, options) {
   return topology;
 };
 
-},{"../../":82,"./coordinate-systems":88}],96:[function(_dereq_,module,exports){
+},{"../../":84,"./coordinate-systems":90}],98:[function(_dereq_,module,exports){
 var π = Math.PI,
     π_4 = π / 4,
     radians = π / 180;
@@ -15327,7 +15899,7 @@ function haversin(x) {
   return (x = Math.sin(x / 2)) * x;
 }
 
-},{}],97:[function(_dereq_,module,exports){
+},{}],99:[function(_dereq_,module,exports){
 var type = _dereq_("./type");
 
 module.exports = function(objects, transform) {
@@ -15503,7 +16075,7 @@ module.exports = function(objects, transform) {
   }
 };
 
-},{"./type":108}],98:[function(_dereq_,module,exports){
+},{"./type":110}],100:[function(_dereq_,module,exports){
 var type = _dereq_("./type"),
     stitch = _dereq_("./stitch"),
     systems = _dereq_("./coordinate-systems"),
@@ -15605,7 +16177,7 @@ module.exports = function(objects, options) {
   return topology;
 };
 
-},{"./bounds":84,"./compute-id":87,"./coordinate-systems":88,"./delta":89,"./geomify":91,"./prefilter":92,"./quantize":94,"./stitch":97,"./topology/index":103,"./transform-properties":107,"./type":108}],99:[function(_dereq_,module,exports){
+},{"./bounds":86,"./compute-id":89,"./coordinate-systems":90,"./delta":91,"./geomify":93,"./prefilter":94,"./quantize":96,"./stitch":99,"./topology/index":105,"./transform-properties":109,"./type":110}],101:[function(_dereq_,module,exports){
 var join = _dereq_("./join");
 
 // Given an extracted (pre-)topology, cuts (or rotates) arcs so that all shared
@@ -15667,7 +16239,7 @@ function reverse(array, start, end) {
   }
 }
 
-},{"./join":104}],100:[function(_dereq_,module,exports){
+},{"./join":106}],102:[function(_dereq_,module,exports){
 var join = _dereq_("./join"),
     hashtable = _dereq_("./hashtable"),
     hashPoint = _dereq_("./point-hash"),
@@ -15853,7 +16425,7 @@ module.exports = function(topology) {
   return topology;
 };
 
-},{"./hashtable":102,"./join":104,"./point-equal":105,"./point-hash":106}],101:[function(_dereq_,module,exports){
+},{"./hashtable":104,"./join":106,"./point-equal":107,"./point-hash":108}],103:[function(_dereq_,module,exports){
 // Extracts the lines and rings from the specified hash of geometry objects.
 //
 // Returns an object with three properties:
@@ -15920,7 +16492,7 @@ module.exports = function(objects) {
   };
 };
 
-},{}],102:[function(_dereq_,module,exports){
+},{}],104:[function(_dereq_,module,exports){
 module.exports = function(size, hash, equal) {
   var hashtable = new Array(size = 1 << Math.ceil(Math.log(size) / Math.LN2)),
       mask = size - 1,
@@ -15991,7 +16563,7 @@ module.exports = function(size, hash, equal) {
   };
 };
 
-},{}],103:[function(_dereq_,module,exports){
+},{}],105:[function(_dereq_,module,exports){
 var hashtable = _dereq_("./hashtable"),
     extract = _dereq_("./extract"),
     cut = _dereq_("./cut"),
@@ -16061,7 +16633,7 @@ function equalArc(arcA, arcB) {
   return ia === ib && ja === jb;
 }
 
-},{"./cut":99,"./dedup":100,"./extract":101,"./hashtable":102}],104:[function(_dereq_,module,exports){
+},{"./cut":101,"./dedup":102,"./extract":103,"./hashtable":104}],106:[function(_dereq_,module,exports){
 var hashtable = _dereq_("./hashtable"),
     hashPoint = _dereq_("./point-hash"),
     equalPoint = _dereq_("./point-equal");
@@ -16136,12 +16708,12 @@ module.exports = function(topology) {
   return junctionByPoint;
 };
 
-},{"./hashtable":102,"./point-equal":105,"./point-hash":106}],105:[function(_dereq_,module,exports){
+},{"./hashtable":104,"./point-equal":107,"./point-hash":108}],107:[function(_dereq_,module,exports){
 module.exports = function(pointA, pointB) {
   return pointA[0] === pointB[0] && pointA[1] === pointB[1];
 };
 
-},{}],106:[function(_dereq_,module,exports){
+},{}],108:[function(_dereq_,module,exports){
 // TODO if quantized, use simpler Int32 hashing?
 
 var hashBuffer = new ArrayBuffer(8),
@@ -16161,7 +16733,7 @@ module.exports = function(point) {
   return h < 0 ? ~h : h;
 };
 
-},{}],107:[function(_dereq_,module,exports){
+},{}],109:[function(_dereq_,module,exports){
 // Given a hash of GeoJSON objects, transforms any properties on features using
 // the specified transform function. The function is invoked for each existing
 // property on the current feature, being passed the new properties hash, the
@@ -16206,7 +16778,7 @@ module.exports = function(objects, propertyTransform) {
   return objects;
 };
 
-},{}],108:[function(_dereq_,module,exports){
+},{}],110:[function(_dereq_,module,exports){
 module.exports = function(types) {
   for (var type in typeDefaults) {
     if (!(type in types)) {
@@ -16300,7 +16872,7 @@ var typeObjects = {
   FeatureCollection: 1
 };
 
-},{}],109:[function(_dereq_,module,exports){
+},{}],111:[function(_dereq_,module,exports){
 !function() {
   var topojson = {
     version: "1.4.6",

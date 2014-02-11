@@ -1,0 +1,828 @@
+<run>
+  <precisionModel scale="1.0" offsetx="0.0" offsety="0.0"/>
+
+<case>
+  <desc>AA - sliver triangle, cut by polygon</desc>
+  <a>
+    POLYGON(
+      (10 10, 100 10, 10 11, 10 10))
+  </a>
+  <b>
+    POLYGON(
+      (90 0, 200 0, 200 200, 90 200, 90 0))
+  </b>
+<test>
+  <op name="relate" arg3="212101212" arg1="A" arg2="B">
+    true
+  </op>
+</test>
+<test>
+  <op name="intersection" arg1="A" arg2="B">
+    LINESTRING(90 10, 100 10)
+  </op>
+</test>
+<test>
+  <op name="union" arg1="A" arg2="B">
+    MULTIPOLYGON(
+      (
+        (90 10, 10 10, 10 11, 90 10)), 
+      (
+        (90 10, 90 200, 200 200, 200 0, 90 0, 90 10)))
+  </op>
+</test>
+<test>
+  <op name="difference" arg1="A" arg2="B">
+    POLYGON(
+      (90 10, 10 10, 10 11, 90 10))
+  </op>
+</test>
+<test>
+  <op name="symdifference" arg1="A" arg2="B">
+    MULTIPOLYGON(
+      (
+        (90 10, 10 10, 10 11, 90 10)), 
+      (
+        (90 10, 90 200, 200 200, 200 0, 90 0, 90 10)))
+  </op>
+</test>
+</case>
+
+<case>
+  <desc>AA - polygon with outward sliver, cut by polygon</desc>
+  <a>
+    POLYGON(
+      (100 10, 10 10, 90 11, 90 20, 100 20, 100 10))
+  </a>
+  <b>
+    POLYGON(
+      (20 20, 0 20, 0 0, 20 0, 20 20))
+  </b>
+<test>
+  <op name="relate" arg3="212101212" arg1="A" arg2="B">
+    true
+  </op>
+</test>
+<test>
+  <op name="intersection" arg1="A" arg2="B">
+    LINESTRING(20 10, 10 10)
+  </op>
+</test>
+</case>
+
+<case>
+  <desc>AA - narrow wedge in polygon</desc>
+  <a>
+    POLYGON((10 10, 50 10, 50 50, 10 50, 10 31, 49 30, 10 30, 10 10))
+  </a>
+  <b>
+    POLYGON((60 40, 40 40, 40 20, 60 20, 60 40))
+  </b>
+<test>
+  <op name="relate" arg3="212101212" arg1="A" arg2="B">
+    true
+  </op>
+</test>
+<test>
+  <op name="intersection" arg1="A" arg2="B">
+    POLYGON(
+      (50 40, 50 20, 40 20, 40 30, 40 40, 50 40))
+  </op>
+</test>
+<test>
+  <op name="union" arg1="A" arg2="B">
+    POLYGON(
+      (50 20, 50 10, 10 10, 10 30, 40 30, 10 31, 10 50, 50 50, 50 40, 
+      60 40, 60 20, 50 20))
+  </op>
+</test>
+<test>
+  <op name="difference" arg1="A" arg2="B">
+    MULTIPOLYGON(
+      (
+        (50 20, 50 10, 10 10, 10 30, 40 30, 40 20, 50 20)), 
+      (
+        (40 30, 10 31, 10 50, 50 50, 50 40, 40 40, 40 30)))
+  </op>
+</test>
+<test>
+  <op name="symdifference" arg1="A" arg2="B">
+    MULTIPOLYGON(
+      (
+        (50 20, 50 10, 10 10, 10 30, 40 30, 40 20, 50 20)), 
+      (
+        (50 20, 50 40, 60 40, 60 20, 50 20)), 
+      (
+        (40 30, 10 31, 10 50, 50 50, 50 40, 40 40, 40 30)))
+  </op>
+</test>
+</case>
+
+<case>
+  <desc>AA - hole close to shell</desc>
+  <a>
+    POLYGON(
+      (10 100, 10 10, 100 10, 100 100, 10 100), 
+      (90 90, 11 90, 10 10, 90 11, 90 90))
+  </a>
+  <b>
+    POLYGON(
+      (0 30, 0 0, 30 0, 30 30, 0 30))
+  </b>
+<test>
+  <op name="relate" arg3="212101212" arg1="A" arg2="B">
+    true
+  </op>
+</test>
+<test>
+  <op name="intersection" arg1="A" arg2="B">
+    MULTILINESTRING(
+      (10 30, 10 10), 
+      (10 10, 30 10))
+  </op>
+</test>
+<test>
+  <op name="union" arg1="A" arg2="B">
+    MULTIPOLYGON(
+      (
+        (10 30, 10 100, 100 100, 100 10, 30 10, 90 11, 90 90, 11 90, 10 30)), 
+      (
+        (30 10, 30 0, 0 0, 0 30, 10 30, 30 30, 30 10)))
+  </op>
+</test>
+<test>
+  <op name="difference" arg1="A" arg2="B">
+    POLYGON(
+      (10 30, 10 100, 100 100, 100 10, 30 10, 90 11, 90 90, 11 90, 10 30))
+  </op>
+</test>
+<test>
+  <op name="symdifference" arg1="A" arg2="B">
+    MULTIPOLYGON(
+      (
+        (10 30, 10 100, 100 100, 100 10, 30 10, 90 11, 90 90, 11 90, 10 30)), 
+      (
+        (30 10, 30 0, 0 0, 0 30, 10 30, 30 30, 30 10)))
+  </op>
+</test>
+</case>
+
+<case>
+  <desc>mAA - shells close together</desc>
+  <a>
+    MULTIPOLYGON(
+      (
+        (0 0, 100 0, 100 20, 0 20, 0 0)), 
+      (
+        (0 40, 0 21, 100 20, 100 40, 0 40)))
+  </a>
+  <b>
+    POLYGON(
+      (110 30, 90 30, 90 10, 110 10, 110 30))
+  </b>
+<test>
+  <op name="relate" arg3="212101212" arg1="A" arg2="B">
+    true
+  </op>
+</test>
+<test>
+  <op name="intersection" arg1="A" arg2="B">
+    GEOMETRYCOLLECTION(
+      LINESTRING(100 20, 90 20), 
+      POLYGON(
+        (100 20, 100 10, 90 10, 90 20, 90 30, 100 30, 100 20)))
+  </op>
+</test>
+<test>
+  <op name="union" arg1="A" arg2="B">
+    POLYGON(
+      (100 10, 100 0, 0 0, 0 20, 90 20, 0 21, 0 40, 100 40, 100 30, 
+      110 30, 110 10, 100 10))
+  </op>
+</test>
+<test>
+  <op name="difference" arg1="A" arg2="B">
+    MULTIPOLYGON(
+      (
+        (100 10, 100 0, 0 0, 0 20, 90 20, 90 10, 100 10)), 
+      (
+        (90 20, 0 21, 0 40, 100 40, 100 30, 90 30, 90 20)))
+  </op>
+</test>
+<test>
+  <op name="symdifference" arg1="A" arg2="B">
+    MULTIPOLYGON(
+      (
+        (100 10, 100 0, 0 0, 0 20, 90 20, 90 10, 100 10)), 
+      (
+        (100 10, 100 20, 100 30, 110 30, 110 10, 100 10)), 
+      (
+        (90 20, 0 21, 0 40, 100 40, 100 30, 90 30, 90 20)))
+  </op>
+</test>
+</case>
+
+<case>
+  <desc>AA - A sliver triangle cutting all the way across B</desc>
+  <a>
+    POLYGON(
+      (100 10, 0 10, 100 11, 100 10))
+  </a>
+  <b>
+    POLYGON(
+      (20 20, 0 20, 0 0, 20 0, 20 20))
+  </b>
+<test>
+  <op name="relate" arg3="212101212" arg1="A" arg2="B">
+    true
+  </op>
+</test>
+<test>
+  <op name="intersection" arg1="A" arg2="B">
+    LINESTRING(20 10, 0 10)
+  </op>
+</test>
+<test>
+  <op name="union" arg1="A" arg2="B">
+    MULTIPOLYGON(
+      (
+        (100 10, 20 10, 100 11, 100 10)), 
+      (
+        (0 10, 0 20, 20 20, 20 10, 20 0, 0 0, 0 10)))
+  </op>
+</test>
+<test>
+  <op name="difference" arg1="A" arg2="B">
+    POLYGON(
+      (100 10, 20 10, 100 11, 100 10))
+  </op>
+</test>
+<test>
+  <op name="symdifference" arg1="A" arg2="B">
+    MULTIPOLYGON(
+      (
+        (100 10, 20 10, 100 11, 100 10)), 
+      (
+        (0 10, 0 20, 20 20, 20 10, 20 0, 0 0, 0 10)))
+  </op>
+</test>
+</case>
+
+<case>
+  <desc>AA - A polygon with sliver cutting all the way across B</desc>
+  <a>
+    POLYGON(
+      (100 10, 0 10, 90 11, 90 20, 100 20, 100 10))
+  </a>
+  <b>
+    POLYGON(
+      (20 20, 0 20, 0 0, 20 0, 20 20))
+  </b>
+<test>
+  <op name="relate" arg3="212101212" arg1="A" arg2="B">
+    true
+  </op>
+</test>
+<test>
+  <op name="intersection" arg1="A" arg2="B">
+    LINESTRING(20 10, 0 10)
+  </op>
+</test>
+<test>
+  <op name="union" arg1="A" arg2="B">
+    MULTIPOLYGON(
+      (
+        (100 10, 20 10, 90 11, 90 20, 100 20, 100 10)), 
+      (
+        (0 10, 0 20, 20 20, 20 10, 20 0, 0 0, 0 10)))
+  </op>
+</test>
+</case>
+
+<case>
+  <desc>AA - hole close to shell, B coincident with A</desc>
+  <a>
+    POLYGON(
+      (10 100, 10 10, 100 10, 100 100, 10 100), 
+      (90 90, 11 90, 10 10, 90 11, 90 90))
+  </a>
+  <b>
+    POLYGON(
+      (10 30, 10 0, 30 10, 30 30, 10 30))
+  </b>
+<test>
+  <op name="relate" arg3="212111212" arg1="A" arg2="B">
+    true
+  </op>
+</test>
+<test>
+  <op name="intersection" arg1="A" arg2="B">
+    MULTILINESTRING(
+      (10 30, 10 10), 
+      (10 10, 30 10))
+  </op>
+</test>
+<test>
+  <op name="union" arg1="A" arg2="B">
+    MULTIPOLYGON(
+      (
+        (10 30, 10 100, 100 100, 100 10, 30 10, 90 11, 90 90, 11 90, 10 30)), 
+      (
+        (10 10, 10 30, 30 30, 30 10, 10 0, 10 10)))
+  </op>
+</test>
+<test>
+  <op name="difference" arg1="A" arg2="B">
+    POLYGON(
+      (10 30, 10 100, 100 100, 100 10, 30 10, 90 11, 90 90, 11 90, 10 30))
+  </op>
+</test>
+<test>
+  <op name="symdifference" arg1="A" arg2="B">
+    MULTIPOLYGON(
+      (
+        (10 30, 10 100, 100 100, 100 10, 30 10, 90 11, 90 90, 11 90, 10 30)), 
+      (
+        (10 10, 10 30, 30 30, 30 10, 10 0, 10 10)))
+  </op>
+</test>
+</case>
+
+<case>
+  <desc>AA - A hole close to shell, B coincident with A</desc>
+  <a>
+    POLYGON(
+      (10 100, 10 10, 100 10, 100 100, 10 100), 
+      (90 90, 11 90, 10 10, 90 11, 90 90))
+  </a>
+  <b>
+    POLYGON(
+      (10 30, 10 10, 30 10, 30 30, 10 30))
+  </b>
+<test>
+  <op name="relate" arg3="212111212" arg1="A" arg2="B">
+    true
+  </op>
+</test>
+<test>
+  <op name="intersection" arg1="A" arg2="B">
+    MULTILINESTRING(
+      (10 30, 10 10), 
+      (10 10, 30 10))
+  </op>
+</test>
+<test>
+  <op name="union" arg1="A" arg2="B">
+    MULTIPOLYGON(
+      (
+        (10 30, 10 100, 100 100, 100 10, 30 10, 90 11, 90 90, 11 90, 10 30)), 
+      (
+        (10 10, 10 30, 30 30, 30 10, 10 10)))
+  </op>
+</test>
+<test>
+  <op name="difference" arg1="A" arg2="B">
+    POLYGON(
+      (10 30, 10 100, 100 100, 100 10, 30 10, 90 11, 90 90, 11 90, 10 30))
+  </op>
+</test>
+<test>
+  <op name="symdifference" arg1="A" arg2="B">
+    MULTIPOLYGON(
+      (
+        (10 30, 10 100, 100 100, 100 10, 30 10, 90 11, 90 90, 11 90, 10 30)), 
+      (
+        (10 10, 10 30, 30 30, 30 10, 10 10)))
+  </op>
+</test>
+</case>
+
+<case>
+  <desc>AA - B hole close to shell, A coincident with B</desc>
+  <a>
+    POLYGON(
+      (10 30, 10 10, 30 10, 30 30, 10 30))
+  </a>
+  <b>
+    POLYGON(
+      (10 100, 10 10, 100 10, 100 100, 10 100), 
+      (90 90, 11 90, 10 10, 90 11, 90 90))
+  </b>
+<test>
+  <op name="relate" arg3="212111212" arg1="A" arg2="B">
+    true
+  </op>
+</test>
+<test>
+  <op name="intersection" arg1="A" arg2="B">
+    MULTILINESTRING(
+      (10 30, 10 10), 
+      (10 10, 30 10))
+  </op>
+</test>
+<test>
+  <op name="union" arg1="A" arg2="B">
+    MULTIPOLYGON(
+      (
+        (10 30, 10 100, 100 100, 100 10, 30 10, 90 11, 90 90, 11 90, 10 30)), 
+      (
+        (10 10, 10 30, 30 30, 30 10, 10 10)))
+  </op>
+</test>
+<test>
+  <op name="difference" arg1="A" arg2="B">
+    POLYGON(
+      (10 10, 10 30, 30 30, 30 10, 10 10))
+  </op>
+</test>
+<test>
+  <op name="symdifference" arg1="A" arg2="B">
+    MULTIPOLYGON(
+      (
+        (10 30, 10 100, 100 100, 100 10, 30 10, 90 11, 90 90, 11 90, 10 30)), 
+      (
+        (10 10, 10 30, 30 30, 30 10, 10 10)))
+  </op>
+</test>
+</case>
+
+<case>
+  <desc>AA - B sliver crossing A triangle in line segment with length &lt; 1</desc>
+  <a>
+    POLYGON(
+      (0 0, 200 0, 0 198, 0 0))
+  </a>
+  <b>
+    POLYGON(
+      (280 60, 139 60, 280 70, 280 60))
+  </b>
+<test>
+  <op name="relate" arg3="212101212" arg1="A" arg2="B">
+    true
+  </op>
+</test>
+<test>
+  <op name="intersection" arg1="A" arg2="B">
+    POINT(139 60)
+  </op>
+</test>
+<test>
+  <op name="union" arg1="A" arg2="B">
+    MULTIPOLYGON(
+      (
+        (139 60, 200 0, 0 0, 0 198, 139 60)), 
+      (
+        (280 60, 139 60, 280 70, 280 60)))
+  </op>
+</test>
+<test>
+  <op name="difference" arg1="A" arg2="B">
+    POLYGON(
+      (139 60, 200 0, 0 0, 0 198, 139 60))
+  </op>
+</test>
+<test>
+  <op name="symdifference" arg1="A" arg2="B">
+    MULTIPOLYGON(
+      (
+        (139 60, 200 0, 0 0, 0 198, 139 60)), 
+      (
+        (280 60, 139 60, 280 70, 280 60)))
+  </op>
+</test>
+</case>
+
+<case>
+  <desc>AA - sliver triangles, at angle to each other</desc>
+  <a>
+    POLYGON(
+      (0 0, 140 10, 0 20, 0 0))
+  </a>
+  <b>
+    POLYGON(
+      (280 0, 139 10, 280 1, 280 0))
+  </b>
+<test>
+  <op name="intersection" arg1="A" arg2="B">
+    LINESTRING(140 10, 139 10)
+  </op>
+</test>
+</case>
+
+<case>
+  <desc>AA - sliver triangle with multiple intersecting boxes</desc>
+  <a>
+    MULTIPOLYGON(
+      (
+        (1 4, 1 1, 2 1, 2 4, 1 4)), 
+      (
+        (3 4, 3 1, 4 1, 4 4, 3 4)), 
+      (
+        (5 4, 5 1, 6 1, 6 4, 5 4)), 
+      (
+        (7 4, 7 1, 8 1, 8 4, 7 4)), 
+      (
+        (9 4, 9 1, 10 1, 10 4, 9 4)))
+  </a>
+  <b>
+    POLYGON(
+      (0 2, 11 3, 11 2, 0 2))
+  </b>
+<test>
+  <op name="convexhull" arg1="A">
+    POLYGON(
+      (1 1, 1 4, 10 4, 10 1, 1 1))
+  </op>
+</test>
+<test>
+  <op name="intersection" arg1="A" arg2="B">
+    GEOMETRYCOLLECTION(
+      LINESTRING(1 2, 2 2), 
+      LINESTRING(3 2, 4 2), 
+      POLYGON(
+        (6 3, 6 2, 5 2, 6 3)), 
+      POLYGON(
+        (7 2, 7 3, 8 3, 8 2, 7 2)), 
+      POLYGON(
+        (9 2, 9 3, 10 3, 10 2, 9 2)))
+  </op>
+</test>
+<test>
+  <op name="union" arg1="A" arg2="B">
+GEOMETRYCOLLECTION(
+  LINESTRING(0 2, 1 2), 
+  LINESTRING(2 2, 3 2), 
+  LINESTRING(4 2, 5 2), 
+  POLYGON(
+    (1 2, 1 4, 2 4, 2 2, 2 1, 1 1, 1 2)), 
+  POLYGON(
+    (3 2, 3 4, 4 4, 4 2, 4 1, 3 1, 3 2)), 
+  POLYGON(
+    (5 2, 5 4, 6 4, 6 3, 7 3, 7 4, 8 4, 8 3, 9 3, 
+    9 4, 10 4, 10 3, 11 3, 11 2, 10 2, 10 1, 9 1, 9 2, 8 2, 
+    8 1, 7 1, 7 2, 6 2, 6 1, 5 1, 5 2)))  </op>
+</test>
+<test>
+  <op name="difference" arg1="A" arg2="B">
+    MULTIPOLYGON(
+      (
+        (1 2, 1 4, 2 4, 2 2, 2 1, 1 1, 1 2)), 
+      (
+        (3 2, 3 4, 4 4, 4 2, 4 1, 3 1, 3 2)), 
+      (
+        (5 2, 5 4, 6 4, 6 3, 5 2)), 
+      (
+        (6 2, 6 1, 5 1, 5 2, 6 2)), 
+      (
+        (7 3, 7 4, 8 4, 8 3, 7 3)), 
+      (
+        (8 2, 8 1, 7 1, 7 2, 8 2)), 
+      (
+        (9 3, 9 4, 10 4, 10 3, 9 3)), 
+      (
+        (10 2, 10 1, 9 1, 9 2, 10 2)))
+  </op>
+</test>
+<test>
+  <op name="symdifference" arg1="A" arg2="B">
+GEOMETRYCOLLECTION(
+  LINESTRING(0 2, 1 2), 
+  LINESTRING(2 2, 3 2), 
+  LINESTRING(4 2, 5 2), 
+  POLYGON(
+    (1 2, 1 4, 2 4, 2 2, 2 1, 1 1, 1 2)), 
+  POLYGON(
+    (3 2, 3 4, 4 4, 4 2, 4 1, 3 1, 3 2)), 
+  POLYGON(
+    (5 2, 5 4, 6 4, 6 3, 5 2)), 
+  POLYGON(
+    (6 2, 6 1, 5 1, 5 2, 6 2)), 
+  POLYGON(
+    (6 2, 6 3, 7 3, 7 2, 6 2)), 
+  POLYGON(
+    (7 3, 7 4, 8 4, 8 3, 7 3)), 
+  POLYGON(
+    (8 2, 8 1, 7 1, 7 2, 8 2)), 
+  POLYGON(
+    (8 2, 8 3, 9 3, 9 2, 8 2)), 
+  POLYGON(
+    (9 3, 9 4, 10 4, 10 3, 9 3)), 
+  POLYGON(
+    (10 2, 10 1, 9 1, 9 2, 10 2)), 
+  POLYGON(
+    (10 2, 10 3, 11 3, 11 2, 10 2)))
+  </op>
+</test>
+</case>
+
+<case>
+  <desc>AA - Polygon with hole with outward sliver, cut by polygon</desc>
+  <a>
+    POLYGON(
+      (20 40, 20 200, 180 200, 180 40, 20 40), 
+      (180 120, 120 120, 120 160, 60 120, 120 80, 120 119, 180 120))
+  </a>
+  <b>
+    POLYGON(
+      (200 160, 160 160, 160 80, 200 80, 200 160))
+  </b>
+<test>
+  <op name="convexhull" arg1="A">
+    POLYGON(
+      (20 40, 20 200, 180 200, 180 40, 20 40))
+  </op>
+</test>
+<test>
+  <op name="intersection" arg1="A" arg2="B">
+    GEOMETRYCOLLECTION(
+      LINESTRING(180 120, 160 120), 
+      POLYGON(
+        (180 160, 180 120, 180 80, 160 80, 160 120, 160 160, 180 160)))
+  </op>
+</test>
+<test>
+  <op name="union" arg1="A" arg2="B">
+    POLYGON(
+      (20 40, 20 200, 180 200, 180 160, 200 160, 200 80, 180 80, 180 40, 20 40), 
+      (160 120, 120 120, 120 160, 60 120, 120 80, 120 119, 160 120))
+  </op>
+</test>
+<test>
+  <op name="difference" arg1="A" arg2="B">
+    POLYGON(
+      (20 40, 20 200, 180 200, 180 160, 160 160, 160 120, 160 80, 180 80, 180 40, 
+      20 40), 
+      (160 120, 120 120, 120 160, 60 120, 120 80, 120 119, 160 120))
+  </op>
+</test>
+<test>
+  <op name="symdifference" arg1="A" arg2="B">
+    MULTIPOLYGON(
+      (
+        (20 40, 20 200, 180 200, 180 160, 160 160, 160 120, 160 80, 180 80, 180 40, 
+        20 40), 
+        (160 120, 120 120, 120 160, 60 120, 120 80, 120 119, 160 120)), 
+      (
+        (180 120, 180 160, 200 160, 200 80, 180 80, 180 120)))
+  </op>
+</test>
+</case>
+
+<case>
+  <desc>AA - Polygon with hole with outward sliver, cut by line</desc>
+  <a>
+    POLYGON(
+      (20 40, 20 200, 180 200, 180 40, 20 40), 
+      (180 120, 120 120, 120 160, 60 120, 120 80, 120 119, 180 120))
+  </a>
+  <b>
+    LINESTRING(160 140, 160 100)
+  </b>
+<test>
+  <op name="convexhull" arg1="A">
+    POLYGON(
+      (20 40, 20 200, 180 200, 180 40, 20 40))
+  </op>
+</test>
+<test>
+  <op name="intersection" arg1="A" arg2="B">
+    MULTILINESTRING(
+      (160 140, 160 120), 
+      (160 120, 160 100))
+  </op>
+</test>
+<test>
+  <op name="union" arg1="A" arg2="B">
+    POLYGON(
+      (20 40, 20 200, 180 200, 180 120, 180 40, 20 40), 
+      (160 120, 120 120, 120 160, 60 120, 120 80, 120 119, 160 120))
+  </op>
+</test>
+<test>
+  <op name="difference" arg1="A" arg2="B">
+    POLYGON(
+      (20 40, 20 200, 180 200, 180 120, 180 40, 20 40), 
+      (160 120, 120 120, 120 160, 60 120, 120 80, 120 119, 160 120))
+  </op>
+</test>
+<test>
+  <op name="symdifference" arg1="A" arg2="B">
+    POLYGON(
+      (20 40, 20 200, 180 200, 180 120, 180 40, 20 40), 
+      (160 120, 120 120, 120 160, 60 120, 120 80, 120 119, 160 120))
+  </op>
+</test>
+</case>
+
+<case>
+  <desc>AA - Polygon with inward sliver touching hole, cut by polygon</desc>
+  <a>
+    POLYGON(
+      (20 40, 20 200, 180 200, 180 120, 140 120, 180 119, 180 40, 20 40), 
+      (140 160, 80 120, 140 80, 140 160))
+  </a>
+  <b>
+    POLYGON(
+      (200 160, 150 160, 150 80, 200 80, 200 160))
+  </b>
+<test>
+  <op name="convexhull" arg1="A">
+    POLYGON(
+      (20 40, 20 200, 180 200, 180 40, 20 40))
+  </op>
+</test>
+<test>
+  <op name="intersection" arg1="A" arg2="B">
+    MULTIPOLYGON(
+      (
+        (180 160, 180 120, 150 120, 150 160, 180 160)), 
+      (
+        (150 120, 180 119, 180 80, 150 80, 150 120)))
+  </op>
+</test>
+<test>
+  <op name="union" arg1="A" arg2="B">
+    POLYGON(
+      (20 40, 20 200, 180 200, 180 160, 200 160, 200 80, 180 80, 180 40, 20 40), 
+      (140 160, 80 120, 140 80, 140 120, 140 160))
+  </op>
+</test>
+<test>
+  <op name="difference" arg1="A" arg2="B">
+    POLYGON(
+      (20 40, 20 200, 180 200, 180 160, 150 160, 150 120, 150 80, 180 80, 180 40, 
+      20 40), 
+      (140 160, 80 120, 140 80, 140 120, 140 160))
+  </op>
+</test>
+<test>
+  <op name="symdifference" arg1="A" arg2="B">
+    MULTIPOLYGON(
+      (
+        (20 40, 20 200, 180 200, 180 160, 150 160, 150 120, 150 80, 180 80, 180 40, 
+        20 40), 
+        (140 160, 80 120, 140 80, 140 120, 140 160)), 
+      (
+        (150 120, 180 120, 180 160, 200 160, 200 80, 180 80, 180 119, 150 120)))
+  </op>
+</test>
+</case>
+
+<case>
+  <desc>AA - intersecting slivers, dimensional collapse</desc>
+  <a>
+    POLYGON(
+      (83 33, 62 402, 68 402, 83 33))
+  </a>
+  <b>
+    POLYGON(
+      (78 39, 574 76, 576 60, 78 39))
+  </b>
+<test>
+  <op name="getboundary" arg1="A">
+    LINESTRING(83 33, 62 402, 68 402, 83 33)
+  </op>
+</test>
+<test>
+  <op name="convexhull" arg1="A">
+    POLYGON(
+      (83 33, 62 402, 68 402, 83 33))
+  </op>
+</test>
+<test>
+  <op name="intersection" arg1="A" arg2="B">
+    POINT(83 39)
+  </op>
+</test>
+<test>
+  <op name="union" arg1="A" arg2="B">
+    GEOMETRYCOLLECTION(
+      LINESTRING(78 39, 83 39), 
+      LINESTRING(83 33, 83 39), 
+      POLYGON(
+        (83 39, 62 402, 68 402, 83 39)), 
+      POLYGON(
+        (83 39, 574 76, 576 60, 83 39)))
+  </op>
+</test>
+<test>
+  <op name="difference" arg1="A" arg2="B">
+    GEOMETRYCOLLECTION(
+      LINESTRING(83 33, 83 39), 
+      POLYGON(
+        (83 39, 62 402, 68 402, 83 39)))
+  </op>
+</test>
+<test>
+  <op name="symdifference" arg1="A" arg2="B">
+    GEOMETRYCOLLECTION(
+      LINESTRING(78 39, 83 39), 
+      LINESTRING(83 33, 83 39), 
+      POLYGON(
+        (83 39, 62 402, 68 402, 83 39)), 
+      POLYGON(
+        (83 39, 574 76, 576 60, 83 39)))
+  </op>
+</test>
+</case>
+
+</run>

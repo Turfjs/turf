@@ -1,0 +1,68 @@
+2012-12-21: Version 0.13.2
+
+        0.13.1 causes ReferenceError under node (#115)
+
+2012-09-28: Version 0.13.1
+
+        Fixes for BufferOperation (#113)
+        TypeError: geomList.iterator is not a function in GeometryCombiner (#111)
+        Fix vertex (#110)
+        Fixed offsetcurve (#109)
+        CoordinateList implementation is broken in IE8 (#108)
+        Envelope's clone method mixes up coordinates (#107)
+        Envelope getArea fails with 'getWidth is not defined' (#106)
+
+2012-09-04: Version 0.13.0
+
+        Support node.js
+
+2012-07-02: Version 0.12.1
+
+        Fix for IE8 (#101 and #102)
+        Tested with OpenLayers 2.12
+        Upgrade Jasmine
+
+2012-04-19: Version 0.12.0
+
+        Ported robust overlay operation
+        Implemented Polygonizer
+        Implemented GeoJSON reader/writer
+        getArea returns 0 for Multipolygon (#95)
+
+2012-01-09: Version 0.11.1
+
+        Cannot convert to OpenLayers point (#94)
+        Buffer failure (#93)
+        ConvexHull failure (#92)
+        Certain buffers not covered by tests fails (#90)
+
+2011-12-24: Version 0.11.0
+        
+        jsts.triangulate.VoronoiDiagramBuilder test failure (#86)
+        Some buffer test fails (#84)
+        Include WKT parser into JSTS (#81)
+        Rewrite code for running JTS tests (#80)
+        Remove hard dependency on OpenLayers (#79)
+        Bintree index port (#76)
+        LineStringSnapper port (#75)
+        IsValidOp port (#71)
+        Buffering fails on complex cases that requires precision reduction (#66)
+
+2011-10-07: Version 0.10.0
+
+        FunctionLA LA - A and B simple union fails (#65)
+        Port fixed precision (#64)
+        Polygon intersection fails (#63)
+        Polygon.precisionModel === undefined (#60)
+        Port normalize operation
+        Port errors causing union of touching polygons to fail are fixed
+        Ports of DelaunayTriangulationBuilder and VoronoiDiagramBuilder are now functional
+        Based on OpenLayers 2.11 release version
+
+2011-08-20: Version 0.9.1
+
+        OpenLayers compatibility is broken (#57)
+
+2011-08-16: Version 0.9.0
+
+        Initial release

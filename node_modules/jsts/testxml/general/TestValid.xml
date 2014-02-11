@@ -1,0 +1,724 @@
+<run>
+   <precisionModel scale="1.0" offsetx="0.0" offsety="0.0"/>
+
+   <case>
+      <desc>L - linear-ring bowtie</desc>
+      <a>LINEARRING(0 0, 100 100, 100 0, 0 100, 0 0)</a>
+      <test>
+         <op name="isValid" arg1="A">false</op>
+      </test>
+   </case>
+
+   <case>
+      <desc>L - linestring bowtie</desc>
+      <a>LINESTRING(0 0, 100 100, 100 0, 0 100, 0 0)</a>
+      <test>
+         <op name="isValid" arg1="A">true</op>
+      </test>
+   </case>
+
+   <case>
+      <desc>P - point</desc>
+      <a>
+    POINT(10 10)
+  </a>
+      <test>         <op name="isValid" arg1="A">    true  </op>      </test>
+   </case>
+
+   <case>
+      <desc>P - empty point</desc>
+      <a>
+    POINT EMPTY
+  </a>
+      <test>         <op name="isValid" arg1="A">    true  </op>      </test>
+   </case>
+
+   <case>
+      <desc>P - point with invalid X ordinate</desc>
+      <a>
+    POINT(NaN 10)
+  </a>
+      <test>         <op name="isValid" arg1="A">    false  </op>      </test>
+   </case>
+
+   <case>
+      <desc>P - point with invalid Y ordinate</desc>
+      <a>
+    POINT(10 NaN)
+  </a>
+      <test>         <op name="isValid" arg1="A">    false  </op>      </test>
+   </case>
+
+   <case>
+      <desc>mP - no repeated points</desc>
+      <a>
+    MULTIPOINT((10 10), (20 20), (30 30))
+  </a>
+      <test>
+         <op name="isValid" arg1="A">    true  </op>
+      </test>
+   </case>
+
+   <case>
+      <desc>P - repeated points</desc>
+      <a>
+    MULTIPOINT((10 10), (20 20), (30 30), (10 10))
+  </a>
+      <test>
+         <op name="isValid" arg1="A">    true  </op>
+      </test>
+   </case>
+
+   <case>
+      <desc>L - no repeated points</desc>
+      <a>
+LINESTRING (40 180, 120 120, 140 200, 200 140, 240 200)
+  </a>
+      <test>
+         <op name="isValid" arg1="A">    true  </op>
+      </test>
+   </case>
+
+   <case>
+      <desc>L - invalid ordinate</desc>
+      <a>
+LINESTRING (40 180, 120 120, 140 200, 200 140, NaN 200)
+  </a>
+      <test>
+         <op name="isValid" arg1="A">    false  </op>
+      </test>
+   </case>
+
+   <case>
+      <desc>L - repeated points</desc>
+      <a>
+LINESTRING (40 180, 120 120, 140 200, 140 200, 200 140, 240 200)
+  </a>
+      <test>
+         <op name="isValid" arg1="A">    true  </op>
+      </test>
+   </case>
+
+   <case>
+      <desc>L - linestring with two identical points </desc>
+      <a>LINESTRING(0 0, 0 0)</a>
+      <test>
+         <op name="isValid" arg1="A">      false      </op>
+      </test>
+   </case>
+   
+   <case>
+      <desc>mL - MultiLinestring with two identical points in first component</desc>
+      <a>MULTILINESTRING((1 1, 0 0), (0 0, 0 0))</a>
+      <test>
+         <op name="isValid" arg1="A">      false      </op>
+      </test>
+   </case>
+
+   <case>
+      <desc>mL - MultiLinestring with two identical points in second component</desc>
+      <a>MULTILINESTRING((1 1, 0 0), (0 0, 0 0))</a>
+      <test>
+         <op name="isValid" arg1="A">      false      </op>
+      </test>
+   </case>
+
+   <case>
+      <desc>A - zero-area polygon </desc>
+      <a>POLYGON ((0 0, 0 0, 0 0, 0 0, 0 0))</a>
+      <test>
+         <op name="isValid" arg1="A"> false </op>
+      </test>
+   </case>
+
+   <case>
+      <desc>A - polygon with too few points </desc>
+      <a>POLYGON ((0 0, 10 0, 20 0, 0 0, 0 0))</a>
+      <test>
+         <op name="isValid" arg1="A"> false </op>
+      </test>
+   </case>
+
+   <case>
+      <desc>A - polygon with invalid point </desc>
+      <a>POLYGON ((0 0, 10 NaN, 20 0, 0 10, 0 0))</a>
+      <test>
+         <op name="isValid" arg1="A"> false </op>
+      </test>
+   </case>
+
+   <case>
+      <desc>A - polygon with repeated point </desc>
+      <a>POLYGON ((107 246, 107 246, 250 285, 294 137, 151 90, 15 125, 157 174, 107 246))</a>
+      <test>
+         <op name="isValid" arg1="A"> true </op>
+      </test>
+   </case>
+
+   <case>
+      <desc>A - polygon with degenerate hole ring (A-B-A) </desc>
+      <a>POLYGON ((0 0, 0 240, 260 240, 260 0, 0 0), 
+  (220 200, 40 200, 40 20, 40 200, 220 200, 220 200))</a>
+      <test>
+         <op name="isValid" arg1="A"> false </op>
+      </test>
+   </case>
+
+   <case>
+      <desc>mA - multipolygon with component with too few points </desc>
+      <a>MULTIPOLYGON ( ((100 20, 180 20, 180 100, 100 100, 100 20)),
+((20 100, 100 100, 100 180, 20 180, 20 100)),
+((100 180, 180 180, 180 260, 100 260, 100 180)),
+((180 100, 180 180, 180 180, 180 100)))</a>
+      <test>
+         <op name="isValid" arg1="A"> false </op>
+      </test>
+   </case>
+
+   <case>
+      <desc>A - polygon self-intersects at non-vertex</desc>
+      <a>POLYGON ((0 40, 0 0, 40 40, 40 0, 0 40))</a>
+      <test>
+         <op name="isValid" arg1="A"> false </op>
+      </test>
+   </case>
+   <case>
+      <desc>A - polygon self-intersects at vertex</desc>
+      <a>MULTIPOLYGON ( ((0 40, 20 20, 40 0, 40 40, 20 20, 0 0, 0 40)) ) </a>
+      <test>
+         <op name="isValid" arg1="A"> false </op>
+      </test>
+   </case>
+   <case>
+      <desc>A - polygon self-intersects at vertex/non-vertex</desc>
+      <a>POLYGON ((0 40, 20 20, 40 0, 40 40, 0 0, 0 40))</a>
+      <test>
+         <op name="isValid" arg1="A">false</op>
+      </test>
+   </case>
+   <case>
+      <desc>A - hole self-intersects at non-vertex</desc>
+      <a>POLYGON ((-10 50, 50 50, 50 -10, -10 -10, -10 50), (0 40, 0 0, 40 40, 40 0, 0 40))</a>
+      <test>
+         <op name="isValid" arg1="A">false</op>
+      </test>
+   </case>
+   <case>
+      <desc>A - polygon self-intersects at vertex</desc>
+      <a>POLYGON ((-10 50, 50 50, 50 -10, -10 -10, -10 50), (0 40, 20 20, 40 0, 40 40, 20 20, 0 0, 0 40))</a>
+      <test>
+         <op name="isValid" arg1="A">false</op>
+      </test>
+   </case>
+   <case>
+      <desc>A - polygon self-intersects at vertex/non-vertex</desc>
+      <a>POLYGON ((-10 50, 50 50, 50 -10, -10 -10, -10 50), (0 40, 20 20, 40 0, 40 40, 0 0, 0 40))</a>
+      <test>
+         <op name="isValid" arg1="A">false</op>
+      </test>
+   </case>
+   <case>
+      <desc>A - Valid doughnut</desc>
+      <a>POLYGON ((0 60, 0 0, 60 0, 60 60, 0 60), (20 40, 20 20, 40 20, 40 40, 20 40))</a>
+      <test>
+         <op name="isValid" arg1="A">true</op>
+      </test>
+   </case>
+   <case>
+      <desc>A - shell has repeated points</desc>
+      <a>POLYGON ((0 60, 0 0, 0 0, 60 0, 60 60, 0 60), (20 40, 20 20, 40 20, 40 40, 20 40))</a>
+      <test>
+         <op name="isValid" arg1="A">true</op>
+      </test>
+   </case>
+
+   <case>
+      <desc>A - shell touches hole without crossing it (valid)</desc>
+      <a>POLYGON ((0 60, 0 0, 60 0, 60 60, 0 60), (20 40, 20 20, 60 20, 20 40))</a>
+      <test>
+         <op name="isValid" arg1="A">true</op>
+      </test>
+   </case>
+   <case>
+      <desc>A - shell touches hole without crossing it, but does so twice (invalid)</desc>
+      <a>POLYGON ((0 60, 0 0, 60 0, 60 60, 0 60), (0 40, 20 20, 60 20, 0 40))</a>
+      <test>
+         <op name="isValid" arg1="A">false</op>
+      </test>
+   </case>
+   <case>
+      <desc>A - hole touches hole without crossing it (valid)</desc>
+      <a>POLYGON ((0 120, 0 0, 140 0, 140 120, 0 120), (100 100, 100 20, 120 20, 120 100, 100 100), (20 100, 20 40, 100 40, 20 100))</a>
+      <test>
+         <op name="isValid" arg1="A">true</op>
+      </test>
+   </case>
+   <case>
+      <desc>A - holel touches hole without crossing it, but does so twice (invalid)</desc>
+      <a>POLYGON ((0 120, 0 0, 140 0, 140 120, 0 120), 
+		(100 100, 100 20, 120 20, 120 100, 100 100), 
+		(20 100, 20 40, 100 40, 80 60, 100 80, 20 100))</a>
+      <test>
+         <op name="isValid" arg1="A">false</op>
+      </test>
+   </case>
+   <case>
+      <desc>A - hole touches hole without crossing it, but does so at an infinite number of points (invalid)</desc>
+      <a>POLYGON ((0 120, 0 0, 140 0, 140 120, 0 120), 
+		(100 100, 100 20, 120 20, 120 100, 100 100), 
+		(20 100, 20 40, 100 40, 100 80, 20 100))</a>
+      <test>
+         <op name="isValid" arg1="A">false</op>
+      </test>
+   </case>
+   <case>
+      <desc>A - spike (invalid)</desc>
+      <a>POLYGON ((0 60, 0 0, 60 0, 60 20, 100 20, 60 20, 60 60, 0 60))</a>
+      <test>
+         <op name="isValid" arg1="A">false</op>
+      </test>
+   </case>
+   <case>
+      <desc>A - puncture (invalid)</desc>
+      <a>POLYGON ((0 60, 0 0, 60 0, 60 20, 20 20, 60 20, 60 60, 0 60))</a>
+      <test>
+         <op name="isValid" arg1="A">false</op>
+      </test>
+   </case>
+   <case>
+      <desc>A - hole within a hole (invalid)</desc>
+      <a>POLYGON ((0 140, 0 0, 180 0, 180 140, 0 140), (20 20, 160 20, 160 120, 20 120, 20 20), (40 100, 40 40, 140 40, 140 100, 40 100))</a>
+      <test>
+         <op name="isValid" arg1="A">false</op>
+      </test>
+   </case>
+   <case>
+      <desc>A - empty shell and holes (valid)</desc>
+      <a>POLYGON (EMPTY, EMPTY, EMPTY)</a>
+      <test>
+         <op name="isValid" arg1="A">true</op>
+      </test>
+   </case>
+
+   <case>
+      <desc>A - hole overlapping shell at non-vertex</desc>
+      <a>
+POLYGON ((60 280, 260 180, 60 80, 60 280), 
+  (140 80, 120 180, 200 180, 140 80))
+  </a>
+      <test>
+         <op name="isValid" arg1="A">
+    false
+  </op>
+      </test>
+   </case>
+
+   <case>
+      <desc>A - shell self-overlaps </desc>
+      <a>
+POLYGON ((60 340, 60 100, 340 100, 340 280, 340 200, 340 340, 60 340))
+  </a>
+      <test>
+         <op name="isValid" arg1="A">    false  </op>
+      </test>
+   </case>
+
+   <case>
+      <desc>A - hole with repeated points</desc>
+      <a>
+POLYGON ((40 260, 40 60, 120 60, 180 160, 240 60, 300 60, 300 260, 40 260), 
+  (70 230, 80 230, 80 220, 80 220, 70 230))  </a>
+      <test>
+         <op name="isValid" arg1="A">
+    true
+  </op>
+      </test>
+   </case>
+   <case>
+      <desc>A - hole outside but adjacent to shell</desc>
+      <a>
+POLYGON ((40 260, 40 60, 120 60, 180 160, 240 60, 300 60, 300 260, 40 260), 
+  (180 160, 240 60, 120 60, 180 160))  </a>
+      <test>
+         <op name="isValid" arg1="A">
+    false
+  </op>
+      </test>
+   </case>
+
+   <case>
+      <desc>A - hole touches shell at two points</desc>
+      <a>
+POLYGON ((240 260, 40 260, 40 80, 240 80, 240 260), 
+  (140 180, 40 180, 140 260, 140 180))
+  </a>
+      <test>
+         <op name="isValid" arg1="A">
+    false
+  </op>
+      </test>
+   </case>
+
+   <case>
+      <desc>A - hole touches shell at one non-vertex point</desc>
+      <a>
+POLYGON ((240 260, 40 260, 40 80, 240 80, 240 260), 
+  (140 180, 40 180, 140 240, 140 180))
+  </a>
+      <test>
+         <op name="isValid" arg1="A">    true  </op>
+      </test>
+   </case>
+
+   <case>
+      <desc>A - hole touches shell at one vertex point</desc>
+      <a>
+POLYGON ((240 260, 40 260, 40 80, 240 80, 240 260), 
+  (140 180, 40 260, 140 240, 140 180))
+  </a>
+      <test>
+         <op name="isValid" arg1="A">    true  </op>
+      </test>
+   </case>
+
+   <case>
+      <desc>A - hole outside shell</desc>
+      <a>
+POLYGON ((20 180, 20 20, 140 20, 140 180, 20 180), 
+  (160 120, 180 100, 160 80, 160 120))  
+</a>
+      <test>
+         <op name="isValid" arg1="A">
+    false
+  </op>
+      </test>
+   </case>
+
+   <case>
+      <desc>A - hole identical to shell</desc>
+      <a>
+POLYGON ((20 180, 20 20, 140 20, 140 180, 20 180), 
+  (20 180, 20 20, 140 20, 140 180, 20 180))  
+</a>
+      <test>
+         <op name="isValid" arg1="A">
+    false
+  </op>
+      </test>
+   </case>
+
+   <case>
+      <desc>A - hole identical to shell</desc>
+      <a>
+POLYGON ((20 180, 20 20, 140 20, 140 180, 20 180), 
+  (20 180, 20 20, 140 20, 140 180, 20 180))  
+</a>
+      <test>
+         <op name="isValid" arg1="A">
+    false
+  </op>
+      </test>
+   </case>
+
+   <case>
+      <desc>A - hole self-intersects </desc>
+      <a>
+POLYGON ((380 340, 40 340, 40 20, 380 20, 380 340), 
+  (120 300, 300 280, 320 200, 160 140, 200 80, 320 120, 320 200, 360 60, 120 40, 120 300))
+	</a>
+      <test>
+         <op name="isValid" arg1="A">      false      </op>
+      </test>
+   </case>
+
+   <case>
+      <desc>A - holes overlap, first point is identical </desc>
+      <a>
+POLYGON ((20 320, 260 320, 260 20, 20 20, 20 320), 
+  (140 280, 80 100, 200 100, 140 280), 
+  (140 280, 40 80, 240 80, 140 280))
+	</a>
+      <test>
+         <op name="isValid" arg1="A">      false      </op>
+      </test>
+   </case>
+
+   <case>
+      <desc>A - holes do not overlap, first point is identical </desc>
+      <a>
+POLYGON ((20 320, 240 320, 240 40, 20 40, 20 320), 
+  (140 180, 60 120, 60 240, 140 180), 
+  (140 180, 200 120, 200 240, 140 180))
+	</a>
+      <test>
+         <op name="isValid" arg1="A">      true      </op>
+      </test>
+   </case>
+
+   <case>
+      <desc>A - shell self-touches at vertex </desc>
+      <a>
+POLYGON ((340 320, 340 200, 200 280, 200 80, 340 200, 340 20, 60 20, 60 340, 340 320))
+	</a>
+      <test>
+         <op name="isValid" arg1="A">      false      </op>
+      </test>
+   </case>
+
+   <case>
+      <desc>A - shell self-touches at non-vertex </desc>
+      <a>
+POLYGON ((300 320, 300 220, 260 260, 180 220, 360 220, 360 140, 120 140, 120 320, 300 320))	</a>
+      <test>
+         <op name="isValid" arg1="A">      false      </op>
+      </test>
+   </case>
+
+    <case>
+      <desc>A - chain of holes surrounds an island inside the polygon </desc>
+      <a>
+POLYGON ((40 300, 40 20, 280 20, 280 300, 40 300), 
+  (120 240, 80 180, 160 220, 120 240), 
+  (220 240, 160 220, 220 160, 220 240), 
+  (160 100, 80 180, 100 80, 160 100), 
+  (160 100, 220 160, 240 100, 160 100))	</a>
+      <test>
+         <op name="isValid" arg1="A">      false      </op>
+      </test>
+   </case>
+
+   <case>
+      <desc>A - chain of holes splits polygon in two (touching at vertices) </desc>
+      <a>
+POLYGON ((40 320, 340 320, 340 20, 40 20, 40 320), 
+  (100 120, 40 20, 180 100, 100 120), 
+  (200 200, 180 100, 240 160, 200 200), 
+  (260 260, 240 160, 300 200, 260 260), 
+  (300 300, 300 200, 340 320, 300 300))	
+	</a>
+      <test>
+         <op name="isValid" arg1="A">      false      </op>
+      </test>
+   </case>
+
+   <case>
+      <desc>A - chain of holes splits polygon in two (touching at non-vertex) </desc>
+      <a>
+POLYGON ((40 320, 340 320, 340 20, 40 20, 40 320), 
+  (100 120, 40 20, 180 100, 100 120), 
+  (200 200, 180 100, 240 160, 200 200), 
+  (260 260, 240 160, 300 200, 260 260), 
+  (300 300, 300 200, 340 260, 300 300))
+	</a>
+      <test>
+         <op name="isValid" arg1="A">      false      </op>
+      </test>
+   </case>
+
+   <case>
+      <desc>A - holes touch in one point </desc>
+      <a>
+POLYGON ((190 190, 360 20, 20 20, 190 190), 
+  (90 50, 150 110, 190 50, 90 50), 
+  (190 50, 230 110, 290 50, 190 50))
+	</a>
+      <test>
+         <op name="isValid" arg1="A">      true      </op>
+      </test>
+   </case>
+
+   <case>
+      <desc>A - holes touch in one point </desc>
+      <a>
+POLYGON ((190 190, 360 20, 20 20, 190 190), 
+  (90 50, 150 110, 190 50, 90 50), 
+  (190 50, 230 110, 290 50, 190 50))
+	</a>
+      <test>
+         <op name="isValid" arg1="A">      true      </op>
+      </test>
+   </case>
+
+   <case>
+      <desc>A - hole disconnects interiors </desc>
+      <a>
+POLYGON ((0 0, 10 10, 10 0, 0 0), 
+  (5 5, 5 0, 10 5, 5 5))
+	</a>
+      <test>
+         <op name="isValid" arg1="A">      false      </op>
+      </test>
+   </case>
+
+   <case>
+      <desc>A - touching holes do NOT disconnect (isCCW bug) </desc>
+      <a>
+POLYGON ((60 40, 60 240, 460 240, 460 40, 60 40), 
+  (260 200, 340 60, 400 120, 260 200), 
+  (260 200, 120 100, 200 60, 260 200))
+  	</a>
+      <test>
+         <op name="isValid" arg1="A">      true      </op>
+      </test>
+   </case>
+
+
+  
+  <case>
+      <desc>mA - adjacent shells (shared vertices) </desc>
+      <a>
+MULTIPOLYGON (((40 120, 140 120, 140 40, 40 40, 40 120)), 
+  ((140 120, 40 120, 40 200, 140 200, 140 120)))
+	</a>
+      <test>
+         <op name="isValid" arg1="A">
+    false
+  </op>
+      </test>
+   </case>
+
+   <case>
+      <desc>mA - adjacent shells (different vertices) </desc>
+      <a>
+MULTIPOLYGON (((40 120, 140 120, 140 40, 40 40, 40 120)), 
+  ((160 120, 60 120, 40 200, 140 200, 160 120)))
+	</a>
+      <test>
+         <op name="isValid" arg1="A">
+    false
+  </op>
+      </test>
+   </case>
+
+   <case>
+      <desc>mA - nested overlapping shells </desc>
+      <a>
+MULTIPOLYGON (((80 260, 240 260, 240 100, 80 100, 80 260)), 
+  ((120 240, 220 240, 220 140, 120 140, 120 240)))
+	</a>
+      <test>
+         <op name="isValid" arg1="A">      false      </op>
+      </test>
+   </case>
+
+   <case>
+      <desc>mA - nested non-overlapping shells </desc>
+      <a>
+MULTIPOLYGON (((60 320, 60 80, 300 80, 60 320), 
+  (80 280, 80 100, 260 100, 80 280)), 
+  ((120 160, 140 160, 140 140, 120 160)))
+	</a>
+      <test>
+         <op name="isValid" arg1="A">      true      </op>
+      </test>
+   </case>
+
+   <case>
+      <desc>mA - nested non-overlapping shells, all vertices touch </desc>
+      <a>
+MULTIPOLYGON (((20 380, 420 380, 420 20, 20 20, 20 380), 
+  (220 340, 180 240, 60 200, 180 160, 340 60, 240 220, 220 340)), 
+  ((180 240, 180 160, 240 220, 180 240)))
+	</a>
+      <test>
+         <op name="isValid" arg1="A">      true      </op>
+      </test>
+   </case>
+
+   <case>
+      <desc>mA - nested overlapping shells, all vertices touch </desc>
+      <a>
+MULTIPOLYGON (((20 380, 420 380, 420 20, 20 20, 20 380), 
+  (220 340, 180 240, 60 200, 140 100, 340 60, 300 240, 220 340)), 
+  ((60 200, 340 60, 220 340, 60 200)))
+	</a>
+      <test>
+         <op name="isValid" arg1="A">      false      </op>
+      </test>
+   </case>
+
+   <case>
+      <desc>mA - nested non-overlapping shells, all vertices touch </desc>
+      <a>
+MULTIPOLYGON (((20 380, 420 380, 420 20, 20 20, 20 380), 
+  (220 340, 80 320, 60 200, 140 100, 340 60, 300 240, 220 340)), 
+  ((60 200, 340 60, 220 340, 60 200)))
+	</a>
+      <test>
+         <op name="isValid" arg1="A">      true      </op>
+      </test>
+   </case>
+
+   <case>
+      <desc>mA - nested overlapping shells, all vertices touch </desc>
+      <a>
+MULTIPOLYGON (((20 380, 420 380, 420 20, 20 20, 20 380), 
+  (220 340, 180 240, 60 200, 200 180, 340 60, 240 220, 220 340)), 
+  ((60 200, 340 60, 220 340, 60 200)))
+	</a>
+      <test>
+         <op name="isValid" arg1="A">      false      </op>
+      </test>
+   </case>
+
+   <case>
+      <desc>mA - disconnected exterior </desc>
+      <a>
+MULTIPOLYGON (((100 20, 180 20, 180 100, 100 100, 100 20)), 
+  ((20 100, 100 100, 100 180, 20 180, 20 100)), 
+  ((100 180, 180 180, 180 260, 100 260, 100 180)), 
+  ((180 100, 260 100, 260 180, 180 180, 180 100)))
+	</a>
+      <test>
+         <op name="isValid" arg1="A">      true      </op>
+      </test>
+   </case>
+
+   <case>
+      <desc>mA - shells touch in single point </desc>
+      <a>
+MULTIPOLYGON (((110 110, 70 200, 150 200, 110 110)), 
+  ((110 110, 150 20, 70 20, 110 110)))
+	</a>
+      <test>
+         <op name="isValid" arg1="A">      true      </op>
+      </test>
+   </case>
+
+   <case>
+      <desc>mA - duplicate shells </desc>
+      <a>
+MULTIPOLYGON (((60 300, 320 220, 260 60, 60 100, 60 300)), 
+  ((60 300, 320 220, 260 60, 60 100, 60 300)))
+	</a>
+      <test>
+         <op name="isValid" arg1="A">      false      </op>
+      </test>
+   </case>
+
+   <case>
+      <desc>mA - shells are not nested but share all vertices </desc>
+      <a>
+MULTIPOLYGON (((180 60, 240 160, 300 60, 180 60)), 
+  ((80 80, 180 60, 160 140, 240 160, 360 140, 300 60, 420 100, 320 280, 120 260, 80 80)))
+	</a>
+      <test>
+         <op name="isValid" arg1="A">      true      </op>
+      </test>
+   </case>
+
+   <case>
+      <desc>mA - shell is nested inside first hole </desc>
+      <a>
+MULTIPOLYGON (((0 0, 0 8, 8 8, 8 0, 0 0), 
+  (3 3, 7 3, 7 7, 3 7, 3 3), 
+  (1 1, 2 1, 2 2, 1 2, 1 1)), 
+  ((4 4, 4 6, 6 6, 6 4, 4 4)))
+	</a>
+      <test>
+         <op name="isValid" arg1="A">      true      </op>
+      </test>
+   </case>
+
+
+</run>

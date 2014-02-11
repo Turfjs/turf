@@ -1,0 +1,177 @@
+<run>
+  <desc>Test cases for PreparedGeometry predicates using polygons as input</desc>
+  <precisionModel type="FLOATING"/>
+  <geometryOperation>com.vividsolutions.jtstest.geomop.PreparedGeometryOperation</geometryOperation>
+
+<case>
+  <desc>P/A - point equal to start point of polygon
+  </desc>
+  <a>
+      POINT (10 10)
+  </a>
+  <b>
+    POLYGON ((10 10, 60 100, 110 10, 10 10))
+  </b>
+<test>  <op name="contains"   		arg1="A" arg2="B">   false  </op> </test>
+<test>  <op name="covers"     		arg1="A" arg2="B">   false  </op> </test>
+<test>  <op name="intersects" 		arg1="A" arg2="B">   true   </op> </test>
+</case>
+
+<case>
+  <desc>mA/L
+  	A has 2 shells touching at one vertex and one non-vertex.
+  	B passes between the shells, but is wholely contained
+  </desc>
+  <a>
+    MULTIPOLYGON (((100 30, 30 110, 150 110, 100 30)), 
+      ((90 110, 30 170, 140 170, 90 110)))
+  </a>
+  <b>
+    LINESTRING (90 80, 90 150)
+  </b>
+<test>  <op name="contains"   arg1="A" arg2="B">   true   </op> </test>
+<test>  <op name="intersects" arg1="A" arg2="B">   true   </op> </test>
+</case>
+
+<case>
+  <desc>mA/L
+  	A has 2 shells touching at one vertex and one non-vertex
+  	B passes between the shells, but is NOT contained (since it is slightly offset)
+  
+  </desc>
+  <a>
+    MULTIPOLYGON (((100 30, 30 110, 150 110, 100 30)), 
+      ((90 110, 30 170, 140 170, 90 110)))
+  </a>
+  <b>
+    LINESTRING (90.1 80, 90 150)
+  </b>
+<test>  <op name="contains"   arg1="A" arg2="B">   false   </op> </test>
+<test>  <op name="intersects" arg1="A" arg2="B">   true   </op> </test>
+</case>
+
+<case>
+  <desc>mA/L - 2 disjoint shells with line crossing between them  </desc>
+  <a>
+    MULTIPOLYGON (((50 20, 10 70, 80 70, 50 20)), 
+      ((10 90, 80 90, 50 140, 10 90)))
+  </a>
+  <b>
+    LINESTRING (50 110, 50 60)
+  </b>
+<test>  <op name="contains"   arg1="A" arg2="B">   false   </op> </test>
+<test>  <op name="covers"   arg1="A" arg2="B">   false   </op> </test>
+<test>  <op name="intersects" arg1="A" arg2="B">   true   </op> </test>
+</case>
+
+<case>
+  <desc>A/L - proper intersection crossing bdy
+  </desc>
+  <a>
+    POLYGON ((10 10, 10 100, 120 110, 120 30, 10 10))
+  </a>
+  <b>
+    LINESTRING (60 60, 70 140)
+  </b>
+<test>  <op name="contains"   arg1="A" arg2="B">   false  </op> </test>
+<test>  <op name="intersects" arg1="A" arg2="B">   true   </op> </test>
+</case>
+
+<case>
+  <desc>A/L - non-proper intersection crossing bdy
+  </desc>
+  <a>
+    POLYGON ((10 10, 60 100, 110 10, 10 10))
+  </a>
+  <b>
+    LINESTRING (60 60, 60 140)
+  </b>
+<test>  <op name="contains"   arg1="A" arg2="B">   false  </op> </test>
+<test>  <op name="covers"     arg1="A" arg2="B">   false  </op> </test>
+<test>  <op name="intersects" arg1="A" arg2="B">   true   </op> </test>
+</case>
+
+<case>
+  <desc>A/L - wholely contained
+  </desc>
+  <a> POLYGON ((10 10, 60 100, 110 10, 10 10)) 
+    </a>
+  <b> LINESTRING (50 30, 70 60)
+    </b>
+<test>  <op name="contains"   arg1="A" arg2="B">   true  </op> </test>
+<test>  <op name="covers"     arg1="A" arg2="B">   true  </op> </test>
+<test>  <op name="intersects" arg1="A" arg2="B">   true   </op> </test>
+</case>
+
+<case>
+  <desc>A/L - contained but touching bdy at interior point
+  </desc>
+  <a>
+    POLYGON ((10 10, 60 100, 110 10, 10 10))
+  </a>
+  <b>
+    LINESTRING (60 10, 70 60)
+  </b>
+<test>  <op name="contains"   arg1="A" arg2="B">   true  </op> </test>
+<test>  <op name="covers"     arg1="A" arg2="B">   true  </op> </test>
+<test>  <op name="intersects" arg1="A" arg2="B">   true   </op> </test>
+</case>
+
+<case>
+  <desc>A/L - line in bdy - covered but not contained
+  </desc>
+  <a>
+    POLYGON ((10 10, 60 100, 110 10, 10 10))
+  </a>
+  <b>
+    LINESTRING (30 10, 90 10)
+  </b>
+<test>  <op name="contains"   arg1="A" arg2="B">   false  </op> </test>
+<test>  <op name="covers"     arg1="A" arg2="B">   true  </op> </test>
+<test>  <op name="intersects" arg1="A" arg2="B">   true   </op> </test>
+</case>
+
+<case>
+  <desc>A/A - two equal polygons
+  </desc>
+  <a>
+      POLYGON((20 20, 20 100, 120 100, 140 20, 20 20)) 
+  </a>
+  <b>
+    POLYGON((20 20, 20 100, 120 100, 140 20, 20 20)) 
+  </b>
+<test>  <op name="contains"   		arg1="A" arg2="B">   true  </op> </test>
+<test>  <op name="covers"     		arg1="A" arg2="B">   true  </op> </test>
+<test>  <op name="intersects" 		arg1="A" arg2="B">   true   </op> </test>
+</case>
+
+<case>
+  <desc>A/L - line with repeated points
+  </desc>
+  <a>
+      POLYGON((20 20, 20 100, 120 100, 140 20, 20 20)) 
+  </a>
+  <b>
+    LINESTRING (10 60, 50 60, 60 30, 60 30, 90 80, 90 80, 160 70) 
+  </b>
+<test>  <op name="contains"   		arg1="A" arg2="B">   false  </op> </test>
+<test>  <op name="covers"     		arg1="A" arg2="B">   false  </op> </test>
+<test>  <op name="intersects" 		arg1="A" arg2="B">   true   </op> </test>
+</case>
+
+<case>
+  <desc>A/L - polygon and line with repeated points
+  </desc>
+  <a>
+      POLYGON((20 20, 20 100, 120 100, 120 100, 120 100, 140 20, 140 20, 140 20, 20 20)) 
+  </a>
+  <b>
+    LINESTRING (10 60, 50 60, 60 30, 60 30, 90 80, 90 80, 160 70) 
+  </b>
+<test>  <op name="contains"   		arg1="A" arg2="B">   false  </op> </test>
+<test>  <op name="covers"     		arg1="A" arg2="B">   false  </op> </test>
+<test>  <op name="intersects" 		arg1="A" arg2="B">   true   </op> </test>
+</case>
+
+
+</run>

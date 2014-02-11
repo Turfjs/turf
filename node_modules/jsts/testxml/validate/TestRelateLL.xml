@@ -1,0 +1,1948 @@
+<run>
+<precisionModel type="FLOATING"/>
+
+<case>
+<desc>L/L.1-3-1: touching at the start points of two lines [dim(0){A.L.Bdy.SP = B.L.Bdy.SP}]</desc>
+  <a>
+    LINESTRING(40 40, 120 120)
+  </a>
+  <b>
+    LINESTRING(40 40, 60 120)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="FF1F00102">true</op>
+  </test>
+</case>
+
+<case>
+<desc>L/L.1-3-2: start point of one line touching end point of another line [dim(0){A.L.Bdy.SP = B.L.Bdy.EP}]</desc>
+  <a>
+    LINESTRING(40 40, 120 120)
+  </a>
+  <b>
+    LINESTRING(60 240, 40 40)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="FF1F00102">true</op>
+  </test>
+</case>
+
+<case>
+<desc>L/L.1-3-3: start point of a line touching the interior of another line at a non-vertex [dim(0){A.L.Bdy.SP = B.L.Int.NV}]</desc>
+  <a>
+    LINESTRING(40 40, 180 180)
+  </a>
+  <b>
+    LINESTRING(120 120, 20 200)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="F01FF0102">true</op>
+  </test>
+</case>
+
+<case>
+<desc>L/L.1-3-4: touching at the end points of two lines [dim(0){A.L.Bdy.EP = B.L.Bdy.EP}]</desc>
+  <a>
+    LINESTRING(40 40, 120 120)
+  </a>
+  <b>
+    LINESTRING(60 240, 120 120)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="FF1F00102">true</op>
+  </test>
+</case>
+
+<case>
+<desc>L/L.1-3-5: end point of a line touching the interior of another line at a non-vertex [dim(0){A.L.Bdy.EP = B.L.Int.NV}]</desc>
+  <a>
+    LINESTRING(40 40, 180 180)
+  </a>
+  <b>
+    LINESTRING(20 180, 140 140)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="F01FF0102">true</op>
+  </test>
+</case>
+
+<case>
+<desc>L/L.1-4-1: two lines crossing at non-vertex [dim(0){A.L.Int.NV = B.L.Int.NV}]</desc>
+  <a>
+    LINESTRING(40 40, 120 120)
+  </a>
+  <b>
+    LINESTRING(40 120, 120 40)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="0F1FF0102">true</op>
+  </test>
+</case>
+
+<case>
+<desc>L/L.1-1-1: equal pointwise [dim(1){A.L.Int.SP-EP = B.L.Int.SP-EP}]</desc>
+  <a>
+    LINESTRING(40 40, 100 100)
+  </a>
+  <b>
+    LINESTRING(40 40, 100 100)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="1FFF0FFF2">true</op>
+  </test>
+</case>
+
+<case>
+<desc>L/L.1-1-2: equal lines but points in reverse sequence [dim(1){A.L.Int.SP-EP = B.L.Int.EP-SP}]</desc>
+  <a>
+    LINESTRING(40 40, 100 100)
+  </a>
+  <b>
+    LINESTRING(100 100, 40 40)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="1FFF0FFF2">true</op>
+  </test>
+</case>
+
+<case>
+<desc>L/L.1-2-1: dim(1){A.L.Int.SP-EP = B.L.Ext}</desc>
+  <a>
+    LINESTRING(40 40, 120 120)
+  </a>
+  <b>
+    LINESTRING(40 120, 120 160)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="FF1FF0102">true</op>
+  </test>
+</case>
+
+<case>
+<desc>L/L.1-5-1: line A containing line B [dim(1){A.L.Int.SP-EP = B.L.Int.SP-EP}]</desc>
+  <a>
+    LINESTRING(20 20, 180 180)
+  </a>
+  <b>
+    LINESTRING(20 20, 180 180)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="1FFF0FFF2">true</op>
+  </test>
+</case>
+
+<case>
+<desc>L/L.1-5-2: line B is part of line A [dim(1){A.L.Int.SP-NV) = B.L.Int.SP-EP}]</desc>
+  <a>
+    LINESTRING(20 20, 180 180)
+  </a>
+  <b>
+    LINESTRING(20 20, 110 110)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="101F00FF2">true</op>
+  </test>
+</case>
+
+<case>
+<desc>L/L.1-5-3: Line B is part of line A (in the middle portion) [dim(1){A.L.Int.NV-NV = B.L.Int.SP-EP}]</desc>
+  <a>
+    LINESTRING(20 20, 180 180)
+  </a>
+  <b>
+    LINESTRING(50 50, 140 140)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="101FF0FF2">true</op>
+  </test>
+</case>
+
+<case>
+<desc>L/L.1-6-1: start portions of two lines overlapping [dim(1){A.L.Int.SP-NV = B.L.Int.SP-NV]</desc>
+  <a>
+    LINESTRING(180 180, 40 40)
+  </a>
+  <b>
+    LINESTRING(120 120, 260 260)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="1010F0102">true</op>
+  </test>
+</case>
+
+<case>
+<desc>L/L.1-6-2: end portions of two lines overlapping [dim(1){A.L.Int.NV-EP = B.L.Int.NV-EP]</desc>
+  <a>
+    LINESTRING(40 40, 180 180)
+  </a>
+  <b>
+    LINESTRING(260 260, 120 120)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="1010F0102">true</op>
+  </test>
+</case>
+
+<case>
+<desc>L/L.1-6-3: end portion of line A overlapping the start portion of line B [dim(1){A.L.Int.NV-EP = B.L.Int.SP-NV]</desc>
+  <a>
+    LINESTRING(40 40, 180 180)
+  </a>
+  <b>
+    LINESTRING(120 120, 260 260)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="1010F0102">true</op>
+  </test>
+</case>
+
+<case>
+<desc>L/L.2-3-1: two LineStrings touching at start points [dim(0){A.L.Bdy.SP = B.L.Bdy.SP}]</desc>
+  <a>
+    LINESTRING(40 40, 100 100, 200 120, 80 240)
+  </a>
+  <b>
+    LINESTRING(40 40, 20 100, 40 160, 20 200)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="FF1F00102">true</op>
+  </test>
+</case>
+
+<case>
+<desc>L/L.2-3-2: start point of LineStrings A touching the end point of LineString B [dim(0){A.L.Bdy.SP = B.L.Bdy.EP}]</desc>
+  <a>
+    LINESTRING(40 40, 100 100, 200 120, 80 240)
+  </a>
+  <b>
+    LINESTRING(20 200, 40 160, 20 100, 40 40)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="FF1F00102">true</op>
+  </test>
+</case>
+
+<case>
+<desc>L/L.2-3-3: two LineStrings touching at end points [dim(0){A.L.Bdy.EP = B.L.Bdy.EP}]</desc>
+  <a>
+    LINESTRING(80 240, 200 120, 100 100, 40 40)
+  </a>
+  <b>
+    LINESTRING(20 200, 40 160, 20 100, 40 40)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="FF1F00102">true</op>
+  </test>
+</case>
+
+<case>
+<desc>L/L.2-3-4: both the start and end points of LineString A touching the interior of LineString B at two vertices  [dim(0){A.L.Bdy.SP = B.L.Int.V}, dim(0){A.L.Bdy.EP = B.L.Int.V}]</desc>
+  <a>
+    LINESTRING(60 60, 60 230, 140 230, 250 160)
+  </a>
+  <b>
+    LINESTRING(20 20, 60 60, 250 160, 310 230)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="FF10FF102">true</op>
+  </test>
+</case>
+
+<case>
+<desc>L/L.2-3-5: both the start and end points of LineString A touching the interior of LineString B at two non-vertices  [dim(0){A.L.Bdy.SP = B.L.Int.NV}, dim(0){A.L.Bdy.EP = B.L.Int.NV}]</desc>
+  <a>
+    LINESTRING(60 60, 60 230, 140 230, 250 160)
+  </a>
+  <b>
+    LINESTRING(20 20, 110 110, 200 110, 320 230)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="FF10FF102">true</op>
+  </test>
+</case>
+
+<case>
+<desc>L/L.2-3-6: the start and end points of two LineStrings touching each other [dim(0){A.L.Bdy.SP = B.L.Bdy.SP}, dim(0){A.L.Bdy.EP = B.L.Bdy.EP}]</desc>
+  <a>
+    LINESTRING(60 110, 60 250, 360 210)
+  </a>
+  <b>
+    LINESTRING(60 110, 110 160, 250 160, 310 160, 360 210)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="FF1F0F1F2">true</op>
+  </test>
+</case>
+
+<case>
+<desc>L/L.2-3-7: the start and end points of two LineStrings touching each other [dim(0){A.L.Bdy.SP = B.L.Bdy.EP}, dim(0){A.L.Bdy.EP = B.L.Bdy.SP}]</desc>
+  <a>
+    LINESTRING(60 110, 60 250, 360 210)
+  </a>
+  <b>
+    LINESTRING(360 210, 310 160, 110 160, 60 110)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="FF1F0F1F2">true</op>
+  </test>
+</case>
+
+<case>
+<desc>L/L.2-3-8: start point of LineString B touching LineString A at a non-vertex [dim(0){A.L.Int.NV = B.L.Bdy.SP}]</desc>
+  <a>
+    LINESTRING(40 40, 100 100, 200 120, 80 240)
+  </a>
+  <b>
+    LINESTRING(160 160, 240 240)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="F01FF0102">true</op>
+  </test>
+</case>
+
+<case>
+<desc>L/L.2-3-9: end point of LineString B touching LineString A at a non-vertex [dim(0){A.L.Int.NV = B.L.Bdy.EP}]</desc>
+  <a>
+    LINESTRING(40 40, 100 100, 200 120, 80 240)
+  </a>
+  <b>
+    LINESTRING(240 240, 160 160)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="F01FF0102">true</op>
+  </test>
+</case>
+
+<case>
+<desc>L/L.2-3-10: both the start and end points of LineString B touching the interior of LineString A at two non-vertices  [dim(0){A.L.Int.NV = B.L.Bdy.SP}, dim(0){A.L.Int.NV = B.L.Bdy.EP}]</desc>
+  <a>
+    LINESTRING(60 60, 60 230, 140 230, 250 160)
+  </a>
+  <b>
+    LINESTRING(60 150, 110 100, 170 100, 110 230)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="F01FF01F2">true</op>
+  </test>
+</case>
+
+<case>
+<desc>L/L.2-3-11: the start point of LineString B touching the interior of LineString A at a non-vertex and the end point of LineString A touching the interior of LineString B at a vertex  [dim(0){A.L.Int.NV = B.L.Bdy.SP}, dim(0){A.L.Bdy.EP = B.L.Int.V}]</desc>
+  <a>
+    LINESTRING(60 60, 60 230, 140 230, 250 160)
+  </a>
+  <b>
+    LINESTRING(60 110, 110 160, 250 160, 310 160, 360 210)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="F010F0102">true</op>
+  </test>
+</case>
+
+<case>
+<desc>L/L.2-3-12: start point of LineString B touching LineString A at a vertex [dim(0){A.L.Int.V = B.L.Bdy.SP}]</desc>
+  <a>
+    LINESTRING(40 40, 100 100, 200 120, 80 240)
+  </a>
+  <b>
+    LINESTRING(200 120, 200 190, 150 240, 200 240)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="F01FF0102">true</op>
+  </test>
+</case>
+
+<case>
+<desc>L/L.2-3-13: end point of LineString B touching LineString A at a vertex [dim(0){A.L.Int.V = B.L.Bdy.EP}]</desc>
+  <a>
+    LINESTRING(40 40, 100 100, 200 120, 80 240)
+  </a>
+  <b>
+    LINESTRING(200 240, 150 240, 200 200, 200 120)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="F01FF0102">true</op>
+  </test>
+</case>
+
+<case>
+<desc>L/L.2-3-14: both the start and end points of LineString B touching the interior of LineString A at two vertices  [dim(0){A.L.Int.V = B.L.Bdy.SP}, dim(0){A.L.Int.V = B.L.Bdy.EP}]</desc>
+  <a>
+    LINESTRING(60 60, 60 230, 140 230, 250 160)
+  </a>
+  <b>
+    LINESTRING(60 230, 80 140, 120 140, 140 230)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="F01FF01F2">true</op>
+  </test>
+</case>
+
+<case>
+<desc>L/L.2-4-1: two LineStrings crossing at two points [dim(0){A.L.Bdy.SP = B.L.Bdy.SP}, dim(0){A.L.Int.V = B.L.Int.V}]</desc>
+  <a>
+    LINESTRING(60 110, 200 110, 250 160, 300 210)
+  </a>
+  <b>
+    LINESTRING(60 110, 110 160, 250 160, 310 160, 360 210)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="0F1F00102">true</op>
+  </test>
+</case>
+
+<case>
+<desc>L/L.2-4-2: two LineStrings crossing at two points [dim(0){A.L.Bdy.SP = B.L.Int.SP}, dim(0){A.L.Int.V = B.L.Int.V}, dim(0){A.L.Bdy.EP = B.L.Int.EP}]</desc>
+  <a>
+    LINESTRING(60 110, 200 110, 250 160, 300 210, 360 210)
+  </a>
+  <b>
+    LINESTRING(60 110, 110 160, 250 160, 310 160, 360 210)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="0F1F0F1F2">true</op>
+  </test>
+</case>
+
+<case>
+<desc>L/L.2-4-3: two LineStrings crossing on one side [dim(0){A.L.Bdy.SP = B.L.Bdy.SP}, dim(0){A.L.Int.V = B.L.Int.V}]</desc>
+  <a>
+    LINESTRING(60 110, 220 110, 250 160, 280 110)
+  </a>
+  <b>
+    LINESTRING(60 110, 110 160, 250 160, 310 160, 360 210)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="0F1F00102">true</op>
+  </test>
+</case>
+
+<case>
+<desc>L/L.2-4-4: two LineStrings crossing on one side [dim(0){A.L.Bdy.SP = B.L.Int.SP}, dim(0){A.L.Int.V = B.L.Int.NV}, dim(0){A.L.Bdy.EP = B.L.Int.EP}]</desc>
+  <a>
+    LINESTRING(60 110, 150 110, 200 160, 250 110, 360 110, 360 210)
+  </a>
+  <b>
+    LINESTRING(60 110, 110 160, 250 160, 310 160, 360 210)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="0F1F0F1F2">true</op>
+  </test>
+</case>
+
+<case>
+<desc>L/L.2-4-5: two LineStrings crossing at two points [dim(0){A.L.Bdy.SP = B.L.Int.NV}, dim(0){A.L.Int.V = B.L.Int.V}]</desc>
+  <a>
+    LINESTRING(130 160, 160 110, 220 110, 250 160, 250 210)
+  </a>
+  <b>
+    LINESTRING(60 110, 110 160, 250 160, 310 160, 360 210)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="0F10F0102">true</op>
+  </test>
+</case>
+
+<case>
+<desc>L/L.2-4-6: two LineStrings crossing at two points [dim(0){A.L.Bdy.SP = B.L.Int.NV}, dim(0){A.L.Int.NV = B.L.Int.NV}]</desc>
+  <a>
+    LINESTRING(130 160, 160 110, 190 110, 230 210)
+  </a>
+  <b>
+    LINESTRING(60 110, 110 160, 250 160, 310 160, 360 210)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="0F10F0102">true</op>
+  </test>
+</case>
+
+<case>
+<desc>L/L.2-4-7: two LineStrings crossing at two points [dim(0){A.L.Bdy.SP = B.L.Int.NV}, dim(0){A.L.Int.V = B.L.Int.NV}, dim(0){A.L.Bdy.SP = B.L.Bdy.EP}]</desc>
+  <a>
+    LINESTRING(130 160, 160 110, 200 110, 230 160, 260 210, 360 210)
+  </a>
+  <b>
+    LINESTRING(60 110, 110 160, 250 160, 310 160, 360 210)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="0F100F102">true</op>
+  </test>
+</case>
+
+<case>
+<desc>L/L.2-4-8: two LineStrings crossing at two points [dim(0){A.L.Bdy.SP = B.L.Int.NV}, dim(0){A.L.Int.V = B.L.Int.NV}, dim(0){A.L.Int.V = B.L.Bdy.EP}]</desc>
+  <a>
+    LINESTRING(130 160, 160 110, 200 110, 230 160, 260 210, 360 210, 380 210)
+  </a>
+  <b>
+    LINESTRING(60 110, 110 160, 250 160, 310 160, 360 210)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="0010F0102">true</op>
+  </test>
+</case>
+
+<case>
+<desc>L/L.2-4-9: two LineStrings crossing at three points [dim(0){A.L.Bdy.SP = B.L.Int.NV}, dim(0){A.L.Int.V = B.L.Int.NV}, dim(0){A.L.Int.NV = B.L.Bdy.EP}]</desc>
+  <a>
+    LINESTRING(130 160, 160 110, 200 110, 230 160, 260 210, 380 210)
+  </a>
+  <b>
+    LINESTRING(60 110, 110 160, 250 160, 310 160, 360 210)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="0010F0102">true</op>
+  </test>
+</case>
+
+<case>
+<desc>L/L.2-4-10: two LineStrings crossing at two points [dim(0){A.L.Bdy.SP = B.L.Int.V}, dim(0){A.L.Int.V = B.L.Int.V}]</desc>
+  <a>
+    LINESTRING(110 160, 160 110, 200 110, 250 160, 250 210)
+  </a>
+  <b>
+    LINESTRING(60 110, 110 160, 250 160, 310 160, 360 210)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="0F10F0102">true</op>
+  </test>
+</case>
+
+<case>
+<desc>L/L.2-4-11: two LineStrings crossing on one side [dim(0){A.L.Bdy.SP = B.L.Int.V}, dim(0){A.L.Int.V = B.L.Int.V}]</desc>
+  <a>
+    LINESTRING(110 160, 180 110, 250 160, 320 110)
+  </a>
+  <b>
+    LINESTRING(60 110, 110 160, 250 160, 310 160, 360 210)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="0F10F0102">true</op>
+  </test>
+</case>
+
+<case>
+<desc>L/L.2-4-12: two LineStrings crossing on one side [dim(0){A.L.Bdy.SP = B.L.Int.NV}, dim(0){A.L.Int.V = B.L.Int.NV}]</desc>
+  <a>
+    LINESTRING(140 160, 180 80, 220 160, 250 80)
+  </a>
+  <b>
+    LINESTRING(60 110, 110 160, 250 160, 310 160, 360 210)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="0F10F0102">true</op>
+  </test>
+</case>
+
+<case>
+<desc>L/L.2-4-13: two LineStrings crossing at a vertex for one of the LineStrings [dim(0){A.L.Int.V = B.L.Int.NV}]</desc>
+  <a>
+    LINESTRING(40 40, 100 100, 200 120, 130 190)
+  </a>
+  <b>
+    LINESTRING(20 130, 70 130, 160 40)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="0F1FF0102">true</op>
+  </test>
+</case>
+
+<case>
+<desc>L/L.2-4-14: two LineStrings crossing at non-vertices for both of the LineStrings [dim(0){A.L.Int.NV = B.L.Int.NV}]</desc>
+  <a>
+    LINESTRING(40 40, 100 100, 200 120, 130 190)
+  </a>
+  <b>
+    LINESTRING(40 160, 40 100, 110 40, 170 40)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="0F1FF0102">true</op>
+  </test>
+</case>
+
+<case>
+<desc>L/L.2-4-15: two LineStrings crossing on one side [dim(0){A.L.Int.V = B.L.Int.NV}, dim(0){A.L.Int.V = B.L.Int.NV}]</desc>
+  <a>
+    LINESTRING(130 110, 180 160, 230 110, 280 160, 330 110)
+  </a>
+  <b>
+    LINESTRING(60 110, 110 160, 250 160, 310 160, 360 210)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="0F1FF0102">true</op>
+  </test>
+</case>
+
+<case>
+<desc>L/L.2-4-16: two LineStrings crossing at vertices for both LineString  [dim(0){A.L.Int.V = B.L.Int.V}]</desc>
+  <a>
+    LINESTRING(40 40, 100 100, 200 120, 130 190)
+  </a>
+  <b>
+    LINESTRING(30 140, 80 140, 100 100, 200 30)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="0F1FF0102">true</op>
+  </test>
+</case>
+
+<case>
+<desc>L/L.2-4-17: two LineStrings crossing on one side [dim(0){A.L.Int.V = B.L.Int.V}, dim(0){A.L.Int.V = B.L.Int.V}]</desc>
+  <a>
+    LINESTRING(110 110, 110 160, 180 110, 250 160, 250 110)
+  </a>
+  <b>
+    LINESTRING(60 110, 110 160, 250 160, 310 160, 360 210)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="0F1FF0102">true</op>
+  </test>
+</case>
+
+<case>
+<desc>L/L.2-4-18: multiple crossings [dim(0){A.L.Int.V = B.L.Int.V}, dim(0){A.L.Int.NV = B.L.Int.NV}]</desc>
+  <a>
+    LINESTRING(20 20, 80 80, 160 80, 240 80, 300 140)
+  </a>
+  <b>
+    LINESTRING(20 60, 60 60, 60 140, 80 80, 100 20, 140 140, 180 20, 200 80, 220 20, 
+    240 80, 300 80, 270 110, 200 110)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="0F1FF0102">true</op>
+  </test>
+</case>
+
+<case>
+<desc>L/L.2-4-19: spiky LineStrings with multiple crossing [dim(0){A.L.Int.V = B.L.Int.V}]</desc>
+  <a>
+    LINESTRING(20 20, 230 20, 20 30, 170 30, 20 40, 230 40, 20 50, 230 60, 60 60, 
+    230 70, 20 70, 180 80, 60 80, 230 90, 20 90, 230 100, 30 100, 210 110, 20 110, 
+    80 120, 20 130, 170 130, 90 120, 230 130, 170 140, 230 140, 80 150, 160 140, 20 140, 
+    70 150, 20 150, 230 160, 80 160, 230 170, 20 160, 180 170, 20 170, 230 180, 20 180, 
+    40 190, 230 190, 20 200, 230 200)
+  </a>
+  <b>
+    LINESTRING(30 210, 30 60, 40 210, 40 30, 50 190, 50 20, 60 160, 60 50, 70 220, 
+    70 50, 80 20, 80 210, 90 50, 90 150, 100 30, 100 210, 110 20, 110 190, 120 50, 
+    120 180, 130 210, 120 20, 140 210, 130 50, 150 210, 130 20, 160 210, 140 30, 170 210, 
+    150 20, 180 210, 160 20, 190 210, 180 80, 170 50, 170 20, 180 70, 180 20, 190 190, 
+    190 30, 200 210, 200 30, 210 210, 210 20, 220 150, 220 20)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="001FF0102">true</op>
+  </test>
+</case>
+
+<case>
+<desc>L/L.2-1-1: two equal LineStrings with equal pointwise [dim(1){A.L.Int.SP-EP = B.L.Int.SP-EP}]</desc>
+  <a>
+    LINESTRING(40 40, 100 100, 200 120, 80 240)
+  </a>
+  <b>
+    LINESTRING(40 40, 100 100, 200 120, 80 240)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="1FFF0FFF2">true</op>
+  </test>
+</case>
+
+<case>
+<desc>L/L.2-1-2: two equal LineStrings with points in reverse sequence [dim(1){A.L.Int.SP-EP = B.L.Int.EP-SP}]</desc>
+  <a>
+    LINESTRING(40 40, 100 100, 200 120, 80 240)
+  </a>
+  <b>
+    LINESTRING(80 240, 200 120, 100 100, 40 40)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="1FFF0FFF2">true</op>
+  </test>
+</case>
+
+<case>
+<desc>L/L.2-1-3: two equal LineStrings with different number of points [dim(1){A.L.Int.SP-EP = B.L.Int.EP-SP}]</desc>
+  <a>
+    LINESTRING(40 40, 100 100, 200 120, 80 240)
+  </a>
+  <b>
+    LINESTRING(80 240, 120 200, 200 120, 100 100, 80 80, 40 40)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="1FFF0FFF2">true</op>
+  </test>
+</case>
+
+<case>
+<desc>L/L.2-2-1: disjoint [dim(1){A.L.Int.SP-EP = B.L.Ext}]</desc>
+  <a>
+    LINESTRING(40 40, 100 100, 200 120, 80 240)
+  </a>
+  <b>
+    LINESTRING(260 210, 240 130, 280 120, 260 40)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="FF1FF0102">true</op>
+  </test>
+</case>
+
+<case>
+<desc>L/L.2-2-2: wrapping around but still disjoint [dim(1){A.L.Int.SP-EP = B.L.Ext}]</desc>
+  <a>
+    LINESTRING(100 20, 20 20, 20 160, 210 160, 210 20, 110 20, 50 120, 120 150, 200 150)
+  </a>
+  <b>
+    LINESTRING(140 130, 100 110, 120 60, 170 60)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="FF1FF0102">true</op>
+  </test>
+</case>
+
+<case>
+<desc>L/L.2-5-1: LineString A containing LineString B, same pointwise [dim(1){A.L.Int.SP-EP = B.L.Int.SP-EP}]</desc>
+  <a>
+    LINESTRING(60 110, 110 160, 250 160, 310 160, 360 210)
+  </a>
+  <b>
+    LINESTRING(60 110, 110 160, 250 160, 310 160, 360 210)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="1FFF0FFF2">true</op>
+  </test>
+</case>
+
+<case>
+<desc>L/L.2-5-2: LineString A containing LineString B, LineString A with less points [dim(1){A.L.Int.SP-V = B.L.Int.SP-EP}]</desc>
+  <a>
+    LINESTRING(60 110, 110 160, 310 160, 360 210)
+  </a>
+  <b>
+    LINESTRING(60 110, 110 160, 250 160, 310 160, 360 210)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="1FFF0FFF2">true</op>
+  </test>
+</case>
+
+<case>
+<desc>L/L.2-5-3: LineString A containing LineString B [dim(1){A.L.Int.SP-V = B.L.Int.SP-EP}]</desc>
+  <a>
+    LINESTRING(60 110, 110 160, 250 160, 310 160, 360 210)
+  </a>
+  <b>
+    LINESTRING(60 110, 110 160, 250 160)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="101F00FF2">true</op>
+  </test>
+</case>
+
+<case>
+<desc>L/L.2-5-4: LineString A containing LineString B [dim(1){A.L.Int.NV-NV = B.L.Int.SP-EP}]</desc>
+  <a>
+    LINESTRING(60 110, 110 160, 250 160, 310 160, 360 210)
+  </a>
+  <b>
+    LINESTRING(110 160, 310 160, 340 190)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="101FF0FF2">true</op>
+  </test>
+</case>
+
+<case>
+<desc>L/L.2-5-5: LineString A containing LineString B [dim(1){A.L.Int.V-NV = B.L.Int.SP-EP}]</desc>
+  <a>
+    LINESTRING(60 110, 110 160, 250 160, 310 160, 360 210)
+  </a>
+  <b>
+    LINESTRING(140 160, 250 160, 310 160, 340 190)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="101FF0FF2">true</op>
+  </test>
+</case>
+
+<case>
+<desc>L/L.2-5-6: LineString A containing LineString B [dim(1){A.L.Int.V-V = B.L.Int.SP-EP}]</desc>
+  <a>
+    LINESTRING(60 110, 110 160, 250 160, 310 160, 360 210)
+  </a>
+  <b>
+    LINESTRING(110 160, 250 160, 310 160)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="101FF0FF2">true</op>
+  </test>
+</case>
+
+<case>
+<desc>L/L.2-6-1: start portions of two LineStrings overlapping [dim(1){A.L.Int.SP-V = B.L.Int.SP-V}]</desc>
+  <a>
+    LINESTRING(40 40, 100 100, 200 120, 80 240)
+  </a>
+  <b>
+    LINESTRING(200 120, 100 100, 40 40, 140 80, 200 40)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="1010F0102">true</op>
+  </test>
+</case>
+
+<case>
+<desc>L/L.2-6-2: start portion of LineString A overlapping end portion of LineString B, intersecting at the middle of LineString A [dim(1){A.L.Int.SP-V = B.L.Int.V-EP}]</desc>
+  <a>
+    LINESTRING(40 40, 100 100, 200 120, 80 240)
+  </a>
+  <b>
+    LINESTRING(280 240, 240 140, 200 120, 100 100, 40 40)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="1F1F00102">true</op>
+  </test>
+</case>
+
+<case>
+<desc>L/L.2-6-3: start portion of LineString A overlapping end portion of LineString B, intersecting at the middle of LineString A [dim(1){A.L.Int.SP-V = B.L.Int.NV-EP}]</desc>
+  <a>
+    LINESTRING(40 40, 100 100, 200 120, 80 240)
+  </a>
+  <b>
+    LINESTRING(80 190, 140 140, 40 40)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="1F1F00102">true</op>
+  </test>
+</case>
+
+<case>
+<desc>L/L.2-6-4: end portions of two LineStrings overlapping [dim(1){A.L.Int.NV-EP = B.L.Int.V-EP}]</desc>
+  <a>
+    LINESTRING(40 40, 100 100, 200 120, 80 240)
+  </a>
+  <b>
+    LINESTRING(240 200, 200 260, 80 240, 140 180)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="1010F0102">true</op>
+  </test>
+</case>
+
+<case>
+<desc>L/L.2-6-5: end portion of LineString A overlapping start portion of LineString B [dim(1){A.L.Int.NV-EP = B.L.Int.SP-V}]</desc>
+  <a>
+    LINESTRING(40 40, 100 100, 200 120, 80 240)
+  </a>
+  <b>
+    LINESTRING(140 180, 80 240, 200 260, 240 200)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="1010F0102">true</op>
+  </test>
+</case>
+
+<case>
+<desc>L/L.2-6-6: end portion of LineString A overlapping end portion of LineString B, intersecting at the middle of LineString A [dim(1){A.L.Int.V-EP = B.L.Int.V-EP}]</desc>
+  <a>
+    LINESTRING(40 40, 100 100, 200 120, 80 240)
+  </a>
+  <b>
+    LINESTRING(280 240, 240 140, 200 120, 80 240)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="1F1F00102">true</op>
+  </test>
+</case>
+
+<case>
+<desc>L/L.2-6-7: middle portions of two LineStrings overlapping [dim(1){A.L.Int.V-NV = B.L.Int.NV-V}]</desc>
+  <a>
+    LINESTRING(20 20, 80 80, 160 80, 240 80, 300 140)
+  </a>
+  <b>
+    LINESTRING(20 80, 120 80, 200 80, 260 20)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="1F1FF0102">true</op>
+  </test>
+</case>
+
+<case>
+<desc>L/L.2-6-8: middle portion of LineString A overlapping start portion of LineString B [dim(1){A.L.Int.V-V = B.L.Int.SP-V}]</desc>
+  <a>
+    LINESTRING(40 40, 100 100, 200 120, 80 240)
+  </a>
+  <b>
+    LINESTRING(100 100, 200 120, 240 140, 280 240)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="101FF0102">true</op>
+  </test>
+</case>
+
+<case>
+<desc>L/L.2-6-9: middle portion of LineString A overlapping end portion of LineString B [dim(1){A.L.Int.V-V = B.L.Int.V-EP}]</desc>
+  <a>
+    LINESTRING(40 40, 100 100, 200 120, 80 240)
+  </a>
+  <b>
+    LINESTRING(280 240, 240 140, 200 120, 100 100)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="101FF0102">true</op>
+  </test>
+</case>
+
+<case>
+<desc>L/L.2-6-10: middle portions of two LineStrings overlapping [dim(1){A.L.Int.V-V = B.L.Int.V-V}]</desc>
+  <a>
+    LINESTRING(20 20, 80 80, 160 80, 240 80, 300 140)
+  </a>
+  <b>
+    LINESTRING(80 20, 80 80, 240 80, 300 20)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="1F1FF0102">true</op>
+  </test>
+</case>
+
+<case>
+<desc>L/L.2-6-11: middle portions of two LineStrings overlapping, multiple intersects [dim(1){A.L.Int.V-V = B.L.Int.V-NV}, dim(1){A.L.Int.V-V = B.L.Int.V-NV}, dim(1){A.L.Int.V-V = B.L.Int.V-NV}]</desc>
+  <a>
+    LINESTRING(20 20, 80 80, 160 80, 240 80, 300 140)
+  </a>
+  <b>
+    LINESTRING(20 80, 80 80, 120 80, 140 140, 160 80, 200 80, 220 20, 240 80, 270 110, 
+    300 80)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="1F1FF0102">true</op>
+  </test>
+</case>
+
+<case>
+<desc>L/LR-3-1: a LineString touching a LinearRing [dim(0){A.L.Bdy.SP = B.LR.Int.CP}]</desc>
+  <a>
+    LINESTRING(100 100, 20 180, 180 180)
+  </a>
+  <b>
+    LINESTRING(100 100, 180 20, 20 20, 100 100)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="FF10F01F2">true</op>
+  </test>
+</case>
+
+<case>
+<desc>L/LR-4-1: a LineString crossing a LinearRing [dim(0){A.L.Int.NV = B.LR.Int.CP}]</desc>
+  <a>
+    LINESTRING(20 100, 180 100, 100 180)
+  </a>
+  <b>
+    LINESTRING(100 100, 180 20, 20 20, 100 100)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="0F1FF01F2">true</op>
+  </test>
+</case>
+
+<case>
+<desc>L/LR-4-2: a LineString crossing a LinearRing [dim(0){A.L.Int.NV = B.LR.Int.CP}]</desc>
+  <a>
+    LINESTRING(100 40, 100 160, 180 160)
+  </a>
+  <b>
+    LINESTRING(100 100, 180 20, 20 20, 100 100)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="0F1FF01F2">true</op>
+  </test>
+</case>
+
+<case>
+<desc>L/LR-4-3: a LineString crossing a LinearRing [dim(0){A.L.Int.V = B.LR.Int.CP}]</desc>
+  <a>
+    LINESTRING(20 100, 100 100, 180 100, 100 180)
+  </a>
+  <b>
+    LINESTRING(100 100, 180 20, 20 20, 100 100)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="0F1FF01F2">true</op>
+  </test>
+</case>
+
+<case>
+<desc>L/LR-5-1: a LineString within a LinearRing [dim(1){A.L.Int.SP-EP = B.LR.Int.SP-NV}]</desc>
+  <a>
+    LINESTRING(100 100, 160 40)
+  </a>
+  <b>
+    LINESTRING(100 100, 180 20, 20 20, 100 100)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="1FF0FF1F2">true</op>
+  </test>
+</case>
+
+<case>
+<desc>L/LR-5-2: a LineString within a LinearRing [dim(1){A.L.Int.SP-EP = B.LR.Int.SP-NV}]</desc>
+  <a>
+    LINESTRING(100 100, 180 20)
+  </a>
+  <b>
+    LINESTRING(100 100, 180 20, 20 20, 100 100)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="1FF0FF1F2">true</op>
+  </test>
+</case>
+
+<case>
+<desc>L/LR-5-3: a LineString within a LinearRing [dim(1){A.L.Int.SP-V-EP = B.LR.Int.NV-CP-NV}]</desc>
+  <a>
+    LINESTRING(60 60, 100 100, 140 60)
+  </a>
+  <b>
+    LINESTRING(100 100, 180 20, 20 20, 100 100)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="1FF0FF1F2">true</op>
+  </test>
+</case>
+
+<case>
+<desc>L/LR-6-1: a LineString crossing a LinearRing [dim(1){A.L.Int.SP-NV = B.LR.Int.SP-V}]</desc>
+  <a>
+    LINESTRING(100 100, 190 10, 190 100)
+  </a>
+  <b>
+    LINESTRING(100 100, 180 20, 20 20, 100 100)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="1F10F01F2">true</op>
+  </test>
+</case>
+
+<case>
+<desc>L/LR-6-2: a LineString crossing a LinearRing [dim(1){A.L.Int.SP-V = B.LR.Int.SP-NV}]</desc>
+  <a>
+    LINESTRING(100 100, 160 40, 160 100)
+  </a>
+  <b>
+    LINESTRING(100 100, 180 20, 20 20, 100 100)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="1F10F01F2">true</op>
+  </test>
+</case>
+
+<case>
+<desc>L/LR-6-3: a LineString crossing a LinearRing [dim(1){A.L.Int.NV-V = B.LR.Int.SP-NV}]</desc>
+  <a>
+    LINESTRING(60 140, 160 40, 160 140)
+  </a>
+  <b>
+    LINESTRING(100 100, 180 20, 20 20, 100 100)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="1F1FF01F2">true</op>
+  </test>
+</case>
+
+<case>
+<desc>L/nsL: A line's interior at a non-vertex intersecting a non-simple linestring's end point with both crossing and overlapping line segments [dim(0){A.L.Int.NV = B.nsL.Bdy.EPb}]</desc>
+  <a>
+    LINESTRING(20 20, 140 140)
+  </a>
+  <b>
+    LINESTRING(80 80, 20 80, 140 80, 80 20, 80 140)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="F01FF0102">true</op>
+  </test>
+</case>
+
+<case>
+<desc>L/nsL: A line's interior at a non-vertex intersecting a non-simple linestring's end point with overlapping line segments [dim(0){A.L.Int.NV = B.nsL.Bdy.EPo}]</desc>
+  <a>
+    LINESTRING(20 20, 140 140)
+  </a>
+  <b>
+    LINESTRING(80 80, 20 80, 140 80)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="F01FF0102">true</op>
+  </test>
+</case>
+
+<case>
+<desc>L/nsL: A line's interior at a non-vertex intersecting a non-simple linestring's end point with crossing line segments [dim(0){A.L.Int.NV = B.nsL.Bdy.EPx}]</desc>
+  <a>
+    LINESTRING(20 20, 140 140)
+  </a>
+  <b>
+    LINESTRING(80 80, 140 80, 80 20, 80 140)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="F01FF0102">true</op>
+  </test>
+</case>
+
+<case>
+<desc>L/nsL: A line's interior at a non-vertex intersecting a non-simple linestring's closing point with both crossing and overlapping line segments [dim(0){A.L.Int.NV = B.nsL.Int.CPb}]</desc>
+  <a>
+    LINESTRING(20 20, 140 140)
+  </a>
+  <b>
+    LINESTRING(80 80, 20 80, 140 80, 80 20, 80 80)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="0F1FF01F2">true</op>
+  </test>
+</case>
+
+<case>
+<desc>L/nsL: A line's interior at a non-vertex intersecting a non-simple linestring's closing point with overlapping line segments [dim(0){A.L.Int.NV = B.nsL.Int.CPo}]</desc>
+  <a>
+    LINESTRING(20 20, 140 140)
+  </a>
+  <b>
+    LINESTRING(80 80, 20 80, 140 80, 80 80)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="0F1FF01F2">true</op>
+  </test>
+</case>
+
+<case>
+<desc>L/nsL: A line's interior at a non-vertex intersecting a non-simple linestring's closing point with crossing line segments [dim(0){A.L.Int.NV = B.nsL.Int.CPx}]</desc>
+  <a>
+    LINESTRING(20 20, 140 140)
+  </a>
+  <b>
+    LINESTRING(80 80, 20 80, 20 140, 140 20, 80 20, 80 80)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="0F1FF01F2">true</op>
+  </test>
+</case>
+
+<case>
+<desc>L/nsL: A line's interior at a non-vertex intersecting a non-simple linestring's interior at a non-vertex [dim(0){A.L.Int.NV = B.nsL.Int.NV}]</desc>
+  <a>
+    LINESTRING(20 20, 140 140)
+  </a>
+  <b>
+    LINESTRING(20 140, 140 20, 100 20, 100 80)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="0F1FF0102">true</op>
+  </test>
+</case>
+
+<case>
+<desc>L/nsL: A line's interior at a non-vertex intersecting a non-simple linestring's interior at a non-vertex with both crossing and overlapping line segments [dim(0){A.L.Int.NV = B.nsL.Int.NVb}]</desc>
+  <a>
+    LINESTRING(20 20, 140 140)
+  </a>
+  <b>
+    LINESTRING(140 80, 20 80, 120 80, 80 20, 80 140)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="0F1FF0102">true</op>
+  </test>
+</case>
+
+<case>
+<desc>L/nsL: A line's interior at a non-vertex intersecting a non-simple linestring's interior at a non-vertex with overlapping line segments [dim(0){A.L.Int.NV = B.nsL.Int.NVo}]</desc>
+  <a>
+    LINESTRING(20 20, 140 140)
+  </a>
+  <b>
+    LINESTRING(140 80, 20 80, 140 80)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="0F1FF01F2">true</op>
+  </test>
+</case>
+
+<case>
+<desc>L/nsL: A line's interior at a non-vertex intersecting a non-simple linestring's interior at a non-vertex with crossing line segments [dim(0){A.L.Int.NV = B.nsL.Int.NVx}]</desc>
+  <a>
+    LINESTRING(20 20, 140 140)
+  </a>
+  <b>
+    LINESTRING(140 80, 20 80, 80 140, 80 20)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="0F1FF0102">true</op>
+  </test>
+</case>
+
+<case>
+<desc>L/nsL: A line's interior at a non-vertex intersecting a non-simple linestring's interior at a vertex [dim(0){A.L.Int.NV = B.nsL.Int.V}]</desc>
+  <a>
+    LINESTRING(20 20, 140 140)
+  </a>
+  <b>
+    LINESTRING(140 80, 80 80, 20 80, 50 140, 50 60)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="0F1FF0102">true</op>
+  </test>
+</case>
+
+<case>
+<desc>L/nsL: A line's interior at a non-vertex intersecting a non-simple linestring's interior at a vertex with both crossing and overlapping line segments [dim(0){A.L.Int.NV = B.nsL.Int.Vb}]</desc>
+  <a>
+    LINESTRING(20 20, 140 140)
+  </a>
+  <b>
+    LINESTRING(140 80, 20 80, 120 80, 80 20, 80 80, 80 140)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="0F1FF0102">true</op>
+  </test>
+</case>
+
+<case>
+<desc>L/nsL: A line's interior at a non-vertex intersecting a non-simple linestring's interior at a vertex with overlapping line segments [dim(0){A.L.Int.NV = B.nsL.Int.Vo}]</desc>
+  <a>
+    LINESTRING(20 20, 140 140)
+  </a>
+  <b>
+    LINESTRING(140 80, 20 80, 80 80, 140 80)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="0F1FF01F2">true</op>
+  </test>
+</case>
+
+<case>
+<desc>L/nsL: A line's interior at a non-vertex intersecting a non-simple linestring's interior at a vertex with crossing line segments [dim(0){A.L.Int.NV = B.nsL.Int.Vx}]</desc>
+  <a>
+    LINESTRING(20 20, 140 140)
+  </a>
+  <b>
+    LINESTRING(140 80, 20 80, 80 140, 80 80, 80 20)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="0F1FF0102">true</op>
+  </test>
+</case>
+
+<case>
+<desc>L/nsL.1-3-1: start point of a LineString touching the self-intersecting point of a non-simple LineString [dim(0){A.L.Bdy.SP = B.nsL.Bdy.EPx}]</desc>
+  <a>
+    LINESTRING(130 150, 220 150, 220 240)
+  </a>
+  <b>
+    LINESTRING(130 240, 130 150, 220 20, 50 20, 130 150)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="FF1F00102">true</op>
+  </test>
+</case>
+
+<case>
+<desc>L/nsL.1-3-2: the interior of a LineString touching the self-intersecting point of a non-simple LineString [dim(0){A.L.Int.V = B.nsL.Bdy.EPx}]</desc>
+  <a>
+    LINESTRING(30 150, 130 150, 250 150)
+  </a>
+  <b>
+    LINESTRING(130 240, 130 150, 220 20, 50 20, 130 150)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="F01FF0102">true</op>
+  </test>
+</case>
+
+<case>
+<desc>L/nsL.1-3-3: the interior of a LineString touching the self-intersecting point of a non-simple LineString [dim(0){A.L.Int.NV = B.nsL.Bdy.EPx}]</desc>
+  <a>
+    LINESTRING(30 150, 250 150)
+  </a>
+  <b>
+    LINESTRING(130 240, 130 150, 220 20, 50 20, 130 150)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="F01FF0102">true</op>
+  </test>
+</case>
+
+<case>
+<desc>L/nsL.1-3-4: the interior of a LineString touching the self-intersecting point of a non-simple LineString [dim(0){A.L.Int.V = B.nsL.Bdy.EPx}]</desc>
+  <a>
+    LINESTRING(30 150, 130 150, 250 150)
+  </a>
+  <b>
+    LINESTRING(130 240, 130 20, 30 20, 130 150)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="F01FF0102">true</op>
+  </test>
+</case>
+
+<case>
+<desc>L/nsL.1-4: a Line crossing a non-simple LineString at non-vertices [dim(0){A.L.Int.NV = B.nsL.Int.NV}]</desc>
+  <a>
+    LINESTRING(30 150, 250 150)
+  </a>
+  <b>
+    LINESTRING(120 240, 120 20, 20 20, 120 170)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="0F1FF0102">true</op>
+  </test>
+</case>
+
+<case>
+<desc>nsL.5/L-3-1: switching the geometries for case L/nsL.5-3-1 [dim(0){A.nsL.Bdy.EPx = B.L.Bdy.SP}]</desc>
+  <a>
+    LINESTRING(200 200, 20 20, 200 20, 110 110, 20 200, 110 200, 110 110)
+  </a>
+  <b>
+    LINESTRING(110 110, 200 110)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="FF1F00102">true</op>
+  </test>
+</case>
+
+<case>
+<desc>L/nsL.5-3-2: the start point of a line touching the self-intersecting and self-crossing point of a non-simple LineString [dim(0){A.L.Bdy.SP = B.nsL.Bdy.EPx}]</desc>
+  <a>
+    LINESTRING(110 110, 200 110)
+  </a>
+  <b>
+    LINESTRING(200 200, 20 20, 200 20, 110 110, 20 200, 110 200, 110 110)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="FF1F00102">true</op>
+  </test>
+</case>
+
+<case>
+<desc>L/nsL.5-3-3: the interior of a line touching the self-intersecting and self-crossing point of a non-simple LineString [dim(0){A.L.Int.NV = B.nsL.Bdy.EPx}]</desc>
+  <a>
+    LINESTRING(20 110, 200 110)
+  </a>
+  <b>
+    LINESTRING(200 200, 20 20, 200 20, 110 110, 20 200, 110 200, 110 110)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="F01FF0102">true</op>
+  </test>
+</case>
+
+<case>
+<desc>nsL.5/L-3-4 touches dim(0){A.nsL.Bdy.EPx = B.L.Int.NV}</desc>
+  <a>
+    LINESTRING(200 200, 20 20, 200 20, 110 110, 20 200, 110 200, 110 110)
+  </a>
+  <b>
+    LINESTRING(20 110, 200 110)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="FF10F0102">true</op>
+  </test>
+</case>
+
+<case>
+<desc>L/nsL.10-6-1: the middle portion of a line overlapping from the self-intersecting to the self-crossing a non-simple LineString [dim(1){A.L.Int.V-V = B.nsL.Int.EPx-NVx}]</desc>
+  <a>
+    LINESTRING(90 200, 90 130, 110 110, 150 200)
+  </a>
+  <b>
+    LINESTRING(200 200, 20 20, 200 20, 20 200, 20 130, 90 130)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="101FF0102">true</op>
+  </test>
+</case>
+
+<case>
+<desc>L/nsL.10-6-2: the middle portion of a line overlapping from the self-intersecting to the self-crossing a non-simple LineString [dim(1){A.L.Int.V-V = B.nsL.Int.NVx-EPx}]</desc>
+  <a>
+    LINESTRING(200 110, 110 110, 90 130, 90 200)
+  </a>
+  <b>
+    LINESTRING(200 200, 20 20, 200 20, 20 200, 20 130, 90 130)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="101FF0102">true</op>
+  </test>
+</case>
+
+<case>
+<desc>L/mL-3-1: a line's end point touching a non-vertex with crossing line segments of a MultiLineString [dim(0){A.L.Bdy.SP = B.mL.Int.NVx]</desc>
+  <a>
+    LINESTRING(80 80, 150 80, 210 80)
+  </a>
+  <b>
+    MULTILINESTRING(
+      (20 20, 140 140), 
+      (20 140, 140 20))
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="FF10F0102">true</op>
+  </test>
+</case>
+
+<case>
+<desc>LR/LR-1-1: two equal LinearRings, pointwise [dim(1){A.LR.Int.SP-EP = B.LR.Int.SP-EP}, dim(0){A.LR.Int.CP = B.LR.Int.CP}]</desc>
+  <a>
+    LINESTRING(40 80, 160 200, 260 20, 40 80)
+  </a>
+  <b>
+    LINESTRING(40 80, 160 200, 260 20, 40 80)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="1FFFFFFF2">true</op>
+  </test>
+</case>
+
+<case>
+<desc>LR/LR-1-2: two equal LinearRings with points in reverse sequence [dim(1){A.LR.Int.SP-EP = B.LR.Int.EP-SP}, dim(0){A.LR.Int.CP = B.LR.Int.CP}]</desc>
+  <a>
+    LINESTRING(40 80, 160 200, 260 20, 40 80)
+  </a>
+  <b>
+    LINESTRING(40 80, 260 20, 160 200, 40 80)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="1FFFFFFF2">true</op>
+  </test>
+</case>
+
+<case>
+<desc>LR/LR-1-3: two equal LinearRings with points in different sequence [dim(1){A.LR.Int.SP-EP = B.LR.Int.SP-EP}, dim(0){A.LR.Int.CP = B.LR.Int.V}, dim(0){A.LR.Int.V = B.LR.Int.CP}]</desc>
+  <a>
+    LINESTRING(40 80, 160 200, 260 20, 40 80)
+  </a>
+  <b>
+    LINESTRING(260 20, 40 80, 160 200, 260 20)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="1FFFFFFF2">true</op>
+  </test>
+</case>
+
+<case>
+<desc>LR/LR-1-4: two equal LinearRings with different number of points [dim(1){A.LR.Int.SP-EP = B.LR.Int.SP-EP}, dim(0){A.LR.Int.CP = B.LR.Int.V}, dim(0){A.LR.Int.NV = B.LR.Int.CP}]</desc>
+  <a>
+    LINESTRING(40 80, 160 200, 260 20, 40 80)
+  </a>
+  <b>
+    LINESTRING(100 140, 160 200, 260 20, 40 80, 100 140)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="1FFFFFFF2">true</op>
+  </test>
+</case>
+
+<case>
+<desc>LR/LR-4-1: two LinearRings crossing at closing points [dim(0){A.LR.Int.CP = B.LR.Int.CP}]</desc>
+  <a>
+    LINESTRING(100 100, 180 20, 20 20, 100 100)
+  </a>
+  <b>
+    LINESTRING(100 100, 180 180, 20 180, 100 100)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="0F1FFF1F2">true</op>
+  </test>
+</case>
+
+<case>
+<desc>LR/LR-4-2: two LinearRings crossing at two points [dim(0){A.LR.Int.CP = B.LR.Int.CP}, dim(0){A.LR.Int.V = B.LR.Int.V},]</desc>
+  <a>
+    LINESTRING(40 150, 40 40, 150 40, 150 150, 40 150)
+  </a>
+  <b>
+    LINESTRING(40 150, 150 40, 170 20, 170 190, 40 150)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="0F1FFF1F2">true</op>
+  </test>
+</case>
+
+<case>
+<desc>LR/LR-4-3: two LinearRings crossing at the closing and a non-vertex [dim(0){A.LR.Int.CP = B.LR.Int.NV}]</desc>
+  <a>
+    LINESTRING(100 100, 180 20, 20 20, 100 100)
+  </a>
+  <b>
+    LINESTRING(180 100, 20 100, 100 180, 180 100)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="0F1FFF1F2">true</op>
+  </test>
+</case>
+
+<case>
+<desc>LR/LR-4-4: two LinearRings crossing at the closing and a vertex [dim(0){A.LR.Int.CP = B.LR.Int.V}]</desc>
+  <a>
+    LINESTRING(100 100, 180 20, 20 20, 100 100)
+  </a>
+  <b>
+    LINESTRING(180 180, 100 100, 20 180, 180 180)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="0F1FFF1F2">true</op>
+  </test>
+</case>
+
+<case>
+<desc>LR/LR-4-5: two LinearRings crossing at a vertex and a non-vertex [dim(0){A.LR.Int.V = B.LR.Int.NV}]</desc>
+  <a>
+    LINESTRING(20 180, 100 100, 20 20, 20 180)
+  </a>
+  <b>
+    LINESTRING(100 20, 100 180, 180 100, 100 20)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="0F1FFF1F2">true</op>
+  </test>
+</case>
+
+<case>
+<desc>LR/LR-4-6: two LinearRings crossing at two points [dim(0){A.LR.Int.V = B.LR.Int.NV}, dim(0){A.LR.Int.V = B.LR.Int.NV},]</desc>
+  <a>
+    LINESTRING(40 150, 40 40, 150 40, 150 150, 40 150)
+  </a>
+  <b>
+    LINESTRING(170 20, 20 170, 170 170, 170 20)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="0F1FFF1F2">true</op>
+  </test>
+</case>
+
+<case>
+<desc>LR/LR-6-1: two LinearRings overlapping [dim(1){A.LR.Int.CP-V = B.LR.Int.CP-V}]</desc>
+  <a>
+    LINESTRING(40 150, 40 40, 150 40, 150 150, 40 150)
+  </a>
+  <b>
+    LINESTRING(40 150, 150 150, 90 210, 40 150)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="1F1FFF1F2">true</op>
+  </test>
+</case>
+
+<case>
+<desc>LR/LR-6-2: two LinearRings overlapping [dim(1){A.LR.Int.CP-V = B.LR.Int.NV-NV}]</desc>
+  <a>
+    LINESTRING(40 150, 40 40, 150 40, 150 150, 40 150)
+  </a>
+  <b>
+    LINESTRING(20 150, 170 150, 90 230, 20 150)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="1F1FFF1F2">true</op>
+  </test>
+</case>
+
+<case>
+<desc>LR/LR-6-3: two LinearRings overlapping [dim(1){A.LR.Int.(V-V-V-EP) = B.LR.Int.(NV-V-V-SP)}]</desc>
+  <a>
+    LINESTRING(40 150, 40 40, 150 40, 150 150, 40 150)
+  </a>
+  <b>
+    LINESTRING(40 150, 150 150, 150 40, 20 40, 20 150, 40 150)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="1F1FFF1F2">true</op>
+  </test>
+</case>
+
+<case>
+<desc>LR/nsL-3-1: a LinearRing touching a non-simple LineString [dim(0){A.nsL.Int.CP = B.nsL.Bdy.SPb}]</desc>
+  <a>
+    LINESTRING(110 110, 200 20, 20 20, 110 110)
+  </a>
+  <b>
+    LINESTRING(110 110, 200 200, 110 110, 20 200, 20 110, 200 110)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="F01FFF102">true</op>
+  </test>
+</case>
+
+<case>
+<desc>LR/nsL-3-1: a LinearRing touching a non-simple LineString [dim(0){A.nsL.Int.CP = B.nsL.Bdy.SPo}]</desc>
+  <a>
+    LINESTRING(110 110, 200 20, 20 20, 110 110)
+  </a>
+  <b>
+    LINESTRING(110 110, 20 110, 200 110, 50 110, 110 170)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="F01FFF102">true</op>
+  </test>
+</case>
+
+<case>
+<desc>LR/nsL-3-1: a LinearRing touching a non-simple LineString [dim(0){A.nsL.Int.CP = B.nsL.Bdy.SPx}]</desc>
+  <a>
+    LINESTRING(110 110, 200 20, 20 20, 110 110)
+  </a>
+  <b>
+    LINESTRING(110 110, 20 200, 110 200, 110 110, 200 200)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="F01FFF102">true</op>
+  </test>
+</case>
+
+<case>
+<desc>LR/nsL-6-1: a LinearRing and a non-simple LineString overlapping [dim(1){A.nsL.Int.SP-V = B.nsL.Int.NVx-SP}]</desc>
+  <a>
+    LINESTRING(110 110, 200 20, 20 20, 110 110)
+  </a>
+  <b>
+    LINESTRING(200 20, 20 200, 200 200, 110 110, 110 40)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="101FFF102">true</op>
+  </test>
+</case>
+
+<case>
+<desc>LR/nsL-6-2: a LinearRing and a non-simple LineString overlapping [dim(1){A.nsL.Int.SP-V = B.nsL.Int.NVx-SP}, dim(1){A.nsL.Int.V-EP = B.nsL.Int.EP-NVx}]</desc>
+  <a>
+    LINESTRING(110 110, 200 20, 20 20, 110 110)
+  </a>
+  <b>
+    LINESTRING(200 20, 20 200, 200 200, 20 20)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="101FFF1F2">true</op>
+  </test>
+</case>
+
+<case>
+<desc>nsL/nsL-4-1: non-simple LineStrings crossing at closing points [dim(0){A.nsL.Int.CP = B.nsL.Int.CP}]</desc>
+  <a>
+    LINESTRING(110 110, 20 110, 110 20, 20 20, 110 110)
+  </a>
+  <b>
+    LINESTRING(110 110, 200 200, 110 200, 200 110, 110 110)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="0F1FFF1F2">true</op>
+  </test>
+</case>
+
+<case>
+<desc>nsL/nsL-4-2: non-simple LineStrings crossing at two points without vertices [dim(0){A.nsL.Int.NV = B.nsL.Int.NV}]</desc>
+  <a>
+    LINESTRING(20 120, 120 120, 20 20, 120 20, 20 120)
+  </a>
+  <b>
+    LINESTRING(170 100, 70 100, 170 170, 70 170, 170 100)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="0F1FFF1F2">true</op>
+  </test>
+</case>
+
+<case>
+<desc>nsL/nsL-4-3: non-simple LineStrings crossing at a point [dim(0){A.nsL.Int.NV = B.nsL.Int.V}]</desc>
+  <a>
+    LINESTRING(20 110, 110 110, 20 20, 110 20, 20 110)
+  </a>
+  <b>
+    LINESTRING(110 160, 70 110, 60 160, 20 130, 110 160)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="0F1FFF1F2">true</op>
+  </test>
+</case>
+
+<case>
+<desc>nsL/nsL-4-4: non-simple LineStrings crossing at self-crossing points [dim(0){A.nsL.Int.NVx = B.nsL.Int.NVx}]</desc>
+  <a>
+    LINESTRING(20 200, 200 200, 20 20, 200 20, 20 200)
+  </a>
+  <b>
+    LINESTRING(20 110, 200 110, 200 160, 20 60, 20 110)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="0F1FFF1F2">true</op>
+  </test>
+</case>
+
+<case>
+<desc>nsL/nsL-4-5: non-simple LineStrings crossing at vertices [dim(0){A.nsL.Int.V = B.nsL.Int.V}]</desc>
+  <a>
+    LINESTRING(20 110, 110 110, 20 20, 110 20, 20 110)
+  </a>
+  <b>
+    LINESTRING(200 200, 110 110, 200 110, 110 200, 200 200)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="0F1FFF1F2">true</op>
+  </test>
+</case>
+
+<case>
+<desc>nsL/nsL-4-6: non-simple LineStrings crossing at two points with vertices [dim(0){A.nsL.Int.V = B.nsL.Int.V}]</desc>
+  <a>
+    LINESTRING(20 120, 120 120, 20 20, 120 20, 20 120)
+  </a>
+  <b>
+    LINESTRING(220 120, 120 20, 220 20, 120 120, 220 120)
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="0F1FFF1F2">true</op>
+  </test>
+</case>
+
+<case>
+<desc>mL/mL-1: MultiLineString [dim(1){A.mL.Int.SP-EP = B.mL.Int.SP-EP}]</desc>
+  <a>
+    MULTILINESTRING(
+      (70 20, 20 90, 70 170), 
+      (70 170, 120 90, 70 20))
+  </a>
+  <b>
+    MULTILINESTRING(
+      (70 20, 20 90, 70 170), 
+      (70 170, 120 90, 70 20))
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="1FFFFFFF2">true</op>
+  </test>
+</case>
+
+<case>
+<desc>mL/mL-1-1: non-simple MultiLineString  [dim(1){A.mL.Int.SP-EP = B.mL.Int.SP-EP}]</desc>
+  <a>
+    MULTILINESTRING(
+      (20 20, 90 20, 170 20), 
+      (90 20, 90 80, 90 140))
+  </a>
+  <b>
+    MULTILINESTRING(
+      (20 20, 90 20, 170 20), 
+      (90 20, 90 80, 90 140))
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="1FFF0FFF2">true</op>
+  </test>
+</case>
+
+<case>
+<desc>mL/mL-1-2: equal non-simple MultiLineString with different sequence of lines and points [dim(1){A.mL.Int.SP-EP = B.mL.Int.EP-SP}]</desc>
+  <a>
+    MULTILINESTRING(
+      (20 20, 90 20, 170 20), 
+      (90 20, 90 80, 90 140))
+  </a>
+  <b>
+    MULTILINESTRING(
+      (90 140, 90 60, 90 20), 
+      (170 20, 130 20, 20 20))
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="1FFF0FFF2">true</op>
+  </test>
+</case>
+
+<case>
+<desc>mL/mL-3-1: non-simple MultiLineStrings touching at boundaries [dim(0){A.mL.Bdy.SPx = B.mL.Bdy.SPb}]</desc>
+  <a>
+    MULTILINESTRING(
+      (20 20, 90 20, 170 20), 
+      (90 20, 90 80, 90 140))
+  </a>
+  <b>
+    MULTILINESTRING(
+      (90 20, 170 100, 170 140), 
+      (170 60, 90 20, 20 60), 
+      (130 100, 130 60, 90 20, 50 90))
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="FF1F00102">true</op>
+  </test>
+</case>
+
+<case>
+<desc>mL/mL-3-2: non-simple MultiLineStrings touching at boundaries [dim(0){A.mL.Bdy.SPx = B.mL.Bdy.SPo}]</desc>
+  <a>
+    MULTILINESTRING(
+      (20 20, 90 20, 170 20), 
+      (90 20, 90 80, 90 140))
+  </a>
+  <b>
+    MULTILINESTRING(
+      (90 20, 170 100, 170 140), 
+      (130 140, 130 60, 90 20, 20 90, 90 20, 130 60, 170 60))
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="FF1F00102">true</op>
+  </test>
+</case>
+
+<case>
+<desc>mL/mL-3-3: non-simple MultiLineStrings touching at boundaries [dim(0){A.mL.Bdy.SPx = B.mL.Bdy.SPx}]</desc>
+  <a>
+    MULTILINESTRING(
+      (20 20, 90 20, 170 20), 
+      (90 20, 90 80, 90 140))
+  </a>
+  <b>
+    MULTILINESTRING(
+      (90 20, 170 100, 170 140), 
+      (170 60, 90 20, 20 60))
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="FF1F00102">true</op>
+  </test>
+</case>
+
+<case>
+<desc>mL/mL-3-4: non-simple MultiLineStrings touching at boundaries [dim(0){A.mL.Bdy.SPx = B.mL.Bdy.SPx}]</desc>
+  <a>
+    MULTILINESTRING(
+      (20 20, 90 20, 170 20), 
+      (90 20, 90 80, 90 140))
+  </a>
+  <b>
+    MULTILINESTRING(
+      (90 20, 170 100, 170 140), 
+      (170 60, 90 20, 20 60), 
+      (130 100, 90 20))
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="FF10F0102">true</op>
+  </test>
+</case>
+
+<case>
+<desc>mL/mL-3-5: non-simple MultiLineStrings touching at boundaries [dim(0){A.mL.Bdy.SPx = B.mL.Bdy.SPx}]</desc>
+  <a>
+    MULTILINESTRING(
+      (20 20, 90 20, 170 20), 
+      (90 20, 90 80, 90 140))
+  </a>
+  <b>
+    MULTILINESTRING(
+      (90 20, 170 100, 170 140), 
+      (170 60, 90 20, 20 60), 
+      (120 100, 170 100, 90 20))
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="FF10F0102">true</op>
+  </test>
+</case>
+
+<case>
+<desc>mL/mL-3-6: non-simple MultiLineStrings touching at boundaries [dim(0){A.mL.Bdy.SPx = B.mL.Int.SPb}]</desc>
+  <a>
+    MULTILINESTRING(
+      (20 20, 90 20, 170 20), 
+      (90 20, 90 80, 90 140))
+  </a>
+  <b>
+    MULTILINESTRING(
+      (90 20, 170 100, 170 140), 
+      (170 60, 90 20, 20 60), 
+      (120 100, 170 100, 90 20))
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="FF10F0102">true</op>
+  </test>
+</case>
+
+<case>
+<desc>mL/mL-3-7: non-simple MultiLineStrings touching at boundaries [dim(0){A.mL.Bdy.SPx = B.mL.Int.SPo}]</desc>
+  <a>
+    MULTILINESTRING(
+      (20 20, 90 20, 170 20), 
+      (90 20, 90 80, 90 140))
+  </a>
+  <b>
+    MULTILINESTRING(
+      (90 20, 170 100, 170 140), 
+      (130 140, 130 60, 90 20, 20 90, 90 20))
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="FF10F0102">true</op>
+  </test>
+</case>
+
+<case>
+<desc>mL/mL-3-8: non-simple MultiLineStrings touching at boundaries [dim(0){A.mL.Bdy.SPx = B.mL.Int.SPx}]</desc>
+  <a>
+    MULTILINESTRING(
+      (20 20, 90 20, 170 20), 
+      (90 20, 90 80, 90 140))
+  </a>
+  <b>
+    MULTILINESTRING(
+      (90 20, 170 100, 170 140), 
+      (170 60, 90 20, 20 60, 20 140, 90 20))
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="FF10F0102">true</op>
+  </test>
+</case>
+
+<case>
+<desc>mL/mL-4-1: non-simple MultiLineStrings crossing [dim(0){A.mL.Int.Vx = B.mL.Int.Vb}]</desc>
+  <a>
+    MULTILINESTRING(
+      (20 20, 90 90, 20 160), 
+      (90 160, 90 20))
+  </a>
+  <b>
+    MULTILINESTRING(
+      (160 160, 90 90, 160 20), 
+      (160 120, 120 120, 90 90, 160 60))
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="0F1FF0102">true</op>
+  </test>
+</case>
+
+<case>
+<desc>mL/mL-4-2: non-simple MultiLineStrings crossing [dim(0){A.mL.Int.Vx = B.mL.Int.Vo}]</desc>
+  <a>
+    MULTILINESTRING(
+      (20 20, 90 90, 20 160), 
+      (90 160, 90 20))
+  </a>
+  <b>
+    MULTILINESTRING(
+      (160 160, 90 90, 160 20), 
+      (160 120, 120 120, 90 90, 120 60, 160 60))
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="0F1FF0102">true</op>
+  </test>
+</case>
+
+<case>
+<desc>mL/mL-4-3: non-simple MultiLineStrings crossing [dim(0){A.mL.Int.Vx = B.mL.Int.Vx}]</desc>
+  <a>
+    MULTILINESTRING(
+      (20 20, 90 90, 20 160), 
+      (90 160, 90 20))
+  </a>
+  <b>
+    MULTILINESTRING(
+      (160 160, 90 90, 160 20), 
+      (160 120, 90 90, 160 60))
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="0F1FF0102">true</op>
+  </test>
+</case>
+
+</run>

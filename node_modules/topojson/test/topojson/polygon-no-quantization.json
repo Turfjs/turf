@@ -1,0 +1,14 @@
+{
+  "type": "Topology",
+  "objects": {
+    "polygon": {
+      "type": "Polygon",
+      "arcs": [
+        [0]
+      ]
+    }
+  },
+  "arcs": [
+    [[0, 0], [0, 10], [10, 10], [10, 0], [0, 0]]
+  ]
+}

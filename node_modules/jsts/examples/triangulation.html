@@ -1,0 +1,60 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>Triangulation example</title>
+  <script src="http://www.openlayers.org/api/OpenLayers.js"></script>
+
+  <script type="text/javascript" src="../lib/javascript.util.js"></script>
+  <script type="text/javascript" src="../lib/jsts.js"></script>
+  <script type="text/javascript" src="https://raw.github.com/olooney/attache-array-js/master/attache.array.min.js"></script>
+<script type="text/javascript">
+  function init() {
+    var geomFact = new jsts.geom.GeometryFactory();
+
+    var points = new Array(20);
+    for (var i=0; i<points.length; i++) {
+        points[i] = new jsts.geom.Coordinate((360 * Math.random()) - 180, (180 * Math.random()) - 90);
+    }
+    var input = geomFact.createMultiPoint(points);
+    
+    var builder = new jsts.triangulate.DelaunayTriangulationBuilder();
+    builder.setSites(input);
+    var delaunayResult = builder.getTriangles(geomFact);
+    
+    builder = new jsts.triangulate.VoronoiDiagramBuilder();
+    builder.setSites(input);
+    var voronoiResult = builder.getDiagram(geomFact);    
+
+    var parser = new jsts.io.OpenLayersParser();
+    input = parser.write(input);
+    delaunayResult = parser.write(delaunayResult);
+    voronoiResult = parser.write(voronoiResult);
+
+    var map = new OpenLayers.Map('map', {
+      maxExtent: new OpenLayers.Bounds(-180, -180, 180, 180),
+      maxResolution: 100,
+      units: 'm',
+      controls: [new OpenLayers.Control.MousePosition(), new OpenLayers.Control.Navigation()]
+    });
+    
+    var layer = new OpenLayers.Layer.Vector('test', {
+      isBaseLayer: true
+    });
+
+    var sites = new OpenLayers.Feature.Vector(input, null);
+    var delaunay = new OpenLayers.Feature.Vector(delaunayResult,null,{fillOpacity:0,strokeColor:'#FF0000'});
+    var voronoi = new OpenLayers.Feature.Vector(voronoiResult,null,{fillOpacity:0,strokeColor:'#00FF00'});
+    layer.addFeatures([delaunay, voronoi, sites]);
+    
+    map.addLayer(layer);
+    map.zoomToExtent(delaunay.geometry.getBounds());
+  }
+</script>
+</head>
+<body onload="init()">
+En example of delaunay-triangulation (red) and voronoi diagram generation (green) using 20 random points. <br/>
+Reloading the page results in a new set of points.
+	<div id="map" style="width:500px;height:500px;"></div>
+</body>
+</html>

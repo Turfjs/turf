@@ -1,0 +1,4 @@
+javascript.util contributors:
+
+Björn Harrtell
+Steven Looman

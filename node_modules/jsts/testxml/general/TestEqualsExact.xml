@@ -1,0 +1,157 @@
+<run>
+<description> 
+Tests of exact equality and exact equality with normalization
+</description>
+
+<case>
+  <desc>P - point</desc>
+  <a>    POINT(10 10)  </a>
+  <b>    POINT(10 10)  </b>
+<test><op name="equalsExact" arg1="A" arg2="B">    true  </op></test>
+</case>
+
+<case>
+  <desc>P - point</desc>
+  <a>    POINT(10 10)  </a>
+  <b>    POINT(10 11)  </b>
+<test><op name="equalsExact" arg1="A" arg2="B">    false  </op></test>
+</case>
+
+<case>
+  <desc>mP - MultiPoint</desc>
+  <a>    MULTIPOINT((10 10), (20 20))  </a>
+  <b>    MULTIPOINT((10 10), (20 20))  </b>
+<test><op name="equalsExact" arg1="A" arg2="B">    true  </op></test>
+</case>
+
+<case>
+  <desc>mP - MultiPoint, permuted</desc>
+  <a>    MULTIPOINT((10 10), (20 20))  </a>
+  <b>    MULTIPOINT((20 20), (10 10))  </b>
+<test><op name="equalsExact" arg1="A" arg2="B">    false  </op></test>
+<test><op name="equalsNorm"  arg1="A" arg2="B">    true  </op></test>
+</case>
+
+<case>
+  <desc>mP - MultiPoint empty</desc>
+  <a>    MULTIPOINT EMPTY </a>
+  <b>    MULTIPOINT EMPTY </b>
+<test><op name="equalsExact" arg1="A" arg2="B">    true  </op></test>
+</case>
+
+<!-- =========================================================== -->
+
+<case>
+  <desc>L - Line</desc>
+  <a>    LINESTRING(10 10, 20 20, 30 30)  </a>
+  <b>    LINESTRING(10 10, 20 20, 30 30)  </b>
+<test><op name="equalsExact" arg1="A" arg2="B">    true  </op></test>
+</case>
+
+<case>
+  <desc>L - Line, permuted</desc>
+  <a>    LINESTRING(10 10, 20 20, 30 30)  </a>
+  <b>    LINESTRING(30 30, 20 20, 10 10)  </b>
+<test><op name="equalsExact" arg1="A" arg2="B">    false  </op></test>
+<test><op name="equalsNorm"  arg1="A" arg2="B">    true  </op></test>
+</case>
+
+<case>
+  <desc>L - closed</desc>
+  <a>    LINESTRING(10 10, 20 20, 20 10, 10 10)  </a>
+  <b>    LINESTRING(10 10, 20 20, 20 10, 10 10)  </b>
+<test><op name="equalsExact" arg1="A" arg2="B">    true  </op></test>
+</case>
+
+<case>
+  <desc>L - empty</desc>
+  <a>    LINESTRING EMPTY  </a>
+  <b>    LINESTRING EMPTY  </b>
+<test><op name="equalsExact" arg1="A" arg2="B">    true  </op></test>
+</case>
+
+<case>
+  <desc>mL - 2 lines with common endpoint</desc>
+  <a> MULTILINESTRING(
+      (10 10, 20 20), 
+      (20 20, 30 30)) </a>
+  <b> MULTILINESTRING(
+      (10 10, 20 20), 
+      (20 20, 30 30)) </b>
+<test><op name="equalsExact" arg1="A" arg2="B">    true  </op></test>
+</case>
+
+<case>
+  <desc>mL - 2 lines with common endpoint, permuted</desc>
+  <a> MULTILINESTRING(
+      (10 10, 20 20), 
+      (20 20, 30 30)) </a>
+  <b> MULTILINESTRING(
+      (30 30, 20 20),
+      (10 10, 20 20)) </b>
+<test><op name="equalsExact" arg1="A" arg2="B">    false  </op></test>
+<test><op name="equalsNorm"  arg1="A" arg2="B">    true  </op></test>
+</case>
+
+<!-- =========================================================== -->
+
+<case>
+  <desc>A - polygon with no holes</desc>
+  <a>  POLYGON((40 60, 420 60, 420 320, 40 320, 40 60))  </a>
+  <b>  POLYGON((40 60, 420 60, 420 320, 40 320, 40 60))  </b>
+<test><op name="equalsExact" arg1="A" arg2="B">    true  </op></test>
+</case>
+
+<case>
+  <desc>A - polygon with no holes, permuted</desc>
+  <a>  POLYGON((40 60, 420 60, 420 320, 40 320, 40 60))  </a>
+  <b>  POLYGON((420 60, 420 320, 40 320, 40 60, 420 60))  </b>
+<test><op name="equalsExact" arg1="A" arg2="B">    false  </op></test>
+<test><op name="equalsNorm"  arg1="A" arg2="B">    true  </op></test>
+</case>
+
+<case>
+  <desc>A - polygon with 1 hole</desc>
+  <a>
+    POLYGON(
+      (40 60, 420 60, 420 320, 40 320, 40 60), 
+      (200 140, 160 220, 260 200, 200 140))
+  </a>
+  <b>
+    POLYGON(
+      (40 60, 420 60, 420 320, 40 320, 40 60), 
+      (200 140, 160 220, 260 200, 200 140))
+  </b>
+<test><op name="equalsExact" arg1="A" arg2="B">    true  </op></test>
+</case>
+
+<case>
+  <desc>A - empty</desc>
+  <a>    POLYGON EMPTY  </a>
+  <b>    POLYGON EMPTY  </b>
+<test><op name="equalsExact" arg1="A" arg2="B">    true  </op></test>
+</case>
+
+<case>
+  <desc>mA</desc>
+  <a>    MULTIPOLYGON (((50 100, 100 100, 100 50, 50 50, 50 100)), ((150 100, 200 100, 200 50, 150 50, 150 100)))  </a>
+  <b>    MULTIPOLYGON (((50 100, 100 100, 100 50, 50 50, 50 100)), ((150 100, 200 100, 200 50, 150 50, 150 100)))  </b>
+<test><op name="equalsExact" arg1="A" arg2="B">    true  </op></test>
+</case>
+
+<case>
+  <desc>mA - permuted</desc>
+  <a>    MULTIPOLYGON (((50 100, 100 100, 100 50, 50 50, 50 100)), ((150 100, 200 100, 200 50, 150 50, 150 100)))  </a>
+  <b>    MULTIPOLYGON (((150 100, 200 100, 200 50, 150 50, 150 100)), ((50 100, 100 100, 100 50, 50 50, 50 100)))  </b>
+<test><op name="equalsExact" arg1="A" arg2="B">    false  </op></test>
+<test><op name="equalsNorm"  arg1="A" arg2="B">    true  </op></test>
+</case>
+
+<case>
+  <desc>mA - empty</desc>
+  <a>    MULTIPOLYGON EMPTY  </a>
+  <b>    MULTIPOLYGON EMPTY  </b>
+<test><op name="equalsExact" arg1="A" arg2="B">    true  </op></test>
+</case>
+
+</run>

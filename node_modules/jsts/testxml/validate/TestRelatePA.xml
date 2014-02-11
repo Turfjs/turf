@@ -1,0 +1,608 @@
+<run>
+<precisionModel type="FLOATING"/>
+
+<case>
+<desc>P/A-2-1: a point outside a polygon [dim(0){A.P.Int = B.A.Ext}]</desc>
+  <a>
+    POINT(20 20)
+  </a>
+  <b>
+    POLYGON(
+      (60 120, 60 40, 160 40, 160 120, 60 120))
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="FF0FFF212">true</op>
+  </test>
+</case>
+
+<case>
+<desc>P/A-2-2: a point outside a convex polygon [dim(0){A.P.Int = B.A.Ext}]</desc>
+  <a>
+    POINT(70 170)
+  </a>
+  <b>
+    POLYGON(
+      (110 230, 80 160, 20 160, 20 20, 200 20, 200 160, 140 160, 110 230))
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="FF0FFF212">true</op>
+  </test>
+</case>
+
+<case>
+<desc>P/A-2-3: a point outside a concave polygon [dim(0){A.P.Int = B.A.Ext}]</desc>
+  <a>
+    POINT(110 130)
+  </a>
+  <b>
+    POLYGON(
+      (20 160, 80 160, 110 100, 140 160, 200 160, 200 20, 20 20, 20 160))
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="FF0FFF212">true</op>
+  </test>
+</case>
+
+<case>
+<desc>P/A-2-4: dim(0){A.P.Int = B.A.Ext}</desc>
+  <a>
+    POINT(100 70)
+  </a>
+  <b>
+    POLYGON(
+      (20 150, 100 150, 40 50, 170 50, 110 150, 190 150, 190 20, 20 20, 20 150))
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="FF0FFF212">true</op>
+  </test>
+</case>
+
+<case>
+<desc>P/A-2-5: a point outside a concave polygon [dim(0){A.P.Int = B.A.Ext}]</desc>
+  <a>
+    POINT(100 70)
+  </a>
+  <b>
+    POLYGON(
+      (20 150, 90 150, 40 50, 160 50, 110 150, 180 150, 180 20, 20 20, 20 150))
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="FF0FFF212">true</op>
+  </test>
+</case>
+
+<case>
+<desc>P/A-3-1: a point on the closing point of a polygon [dim(0){A.P.Int = B.A.Bdy.CP}]</desc>
+  <a>
+    POINT(60 120)
+  </a>
+  <b>
+    POLYGON(
+      (60 120, 60 40, 160 40, 160 120, 60 120))
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="F0FFFF212">true</op>
+  </test>
+</case>
+
+<case>
+<desc>P/A-3-2: a point on the boudary of a polygon at a non-vertex [dim(0){A.P.Int = B.A.Bdy.NV}]</desc>
+  <a>
+    POINT(110 120)
+  </a>
+  <b>
+    POLYGON(
+      (60 120, 60 40, 160 40, 160 120, 60 120))
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="F0FFFF212">true</op>
+  </test>
+</case>
+
+<case>
+<desc>P/A-3-3: a point on the boundary of a polygon at a vertex [dim(0){A.P.Int = B.A.Bdy.V]</desc>
+  <a>
+    POINT(160 120)
+  </a>
+  <b>
+    POLYGON(
+      (60 120, 60 40, 160 40, 160 120, 60 120))
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="F0FFFF212">true</op>
+  </test>
+</case>
+
+<case>
+<desc>P/A-5: a point on the interior of a polygon [dim(0){A.P.Int = B.A.Int}]</desc>
+  <a>
+    POINT(100 80)
+  </a>
+  <b>
+    POLYGON(
+      (60 120, 60 40, 160 40, 160 120, 60 120))
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="0FFFFF212">true</op>
+  </test>
+</case>
+
+<case>
+<desc>P/Ah-2-1: a point outside of polygon with a hole [dim(0){A.P.Int = B.A.Ext}]</desc>
+  <a>
+    POINT(60 160)
+  </a>
+  <b>
+    POLYGON(
+      (190 190, 360 20, 20 20, 190 190), 
+      (280 50, 100 50, 190 140, 280 50))
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="FF0FFF212">true</op>
+  </test>
+</case>
+
+<case>
+<desc>P/Ah-2-2: a point inside the hole of the polygon [dim(0){A.P.Int = B.A.Ext.h}]</desc>
+  <a>
+    POINT(190 90)
+  </a>
+  <b>
+    POLYGON(
+      (190 190, 360 20, 20 20, 190 190), 
+      (280 50, 100 50, 190 140, 280 50))
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="FF0FFF212">true</op>
+  </test>
+</case>
+
+<case>
+<desc>P/Ah-3-1: a point on the closing point of the outer boundary of a polygon with a hole [dim(0){A.P.Int = B.A.oBdy.CP}]</desc>
+  <a>
+    POINT(190 190)
+  </a>
+  <b>
+    POLYGON(
+      (190 190, 360 20, 20 20, 190 190), 
+      (280 50, 100 50, 190 140, 280 50))
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="F0FFFF212">true</op>
+  </test>
+</case>
+
+<case>
+<desc>P/Ah-3-2: a point on the outer boundary of a polygon at a vertex [dim(0){A.P.Int = B.A.oBdy.V}]</desc>
+  <a>
+    POINT(360 20)
+  </a>
+  <b>
+    POLYGON(
+      (190 190, 360 20, 20 20, 190 190), 
+      (280 50, 100 50, 190 140, 280 50))
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="F0FFFF212">true</op>
+  </test>
+</case>
+
+<case>
+<desc>P/Ah-3-3: a point on the outer boundary of a polygon at a non-vertex [dim(0){A.P.Int = B.A.oBdy.NV}]</desc>
+  <a>
+    POINT(130 130)
+  </a>
+  <b>
+    POLYGON(
+      (190 190, 360 20, 20 20, 190 190), 
+      (280 50, 100 50, 190 140, 280 50))
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="F0FFFF212">true</op>
+  </test>
+</case>
+
+<case>
+<desc>P/Ah-3-4: a point on the closing point of the inner boundary of a polygon [dim(0){A.P.Int = B.A.iBdy.CP}]</desc>
+  <a>
+    POINT(280 50)
+  </a>
+  <b>
+    POLYGON(
+      (190 190, 360 20, 20 20, 190 190), 
+      (280 50, 100 50, 190 140, 280 50))
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="F0FFFF212">true</op>
+  </test>
+</case>
+
+<case>
+<desc>P/Ah-3-5: a point on the inner boundary of a polygon at a non-vertex [dim(0){A.P.Int = B.A.iBdy.NV}]</desc>
+  <a>
+    POINT(150 100)
+  </a>
+  <b>
+    POLYGON(
+      (190 190, 360 20, 20 20, 190 190), 
+      (280 50, 100 50, 190 140, 280 50))
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="F0FFFF212">true</op>
+  </test>
+</case>
+
+<case>
+<desc>P/Ah-3-6: a point on the inner boundary of a polygon at a vertex [dim(0){A.P.Int = B.A.iBdy.V}]</desc>
+  <a>
+    POINT(100 50)
+  </a>
+  <b>
+    POLYGON(
+      (190 190, 360 20, 20 20, 190 190), 
+      (280 50, 100 50, 190 140, 280 50))
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="F0FFFF212">true</op>
+  </test>
+</case>
+
+<case>
+<desc>P/Ah-5: a point inside the interior of a polygon with a hole [dim(0){A.P.Int = B.A.Int}]</desc>
+  <a>
+    POINT(140 120)
+  </a>
+  <b>
+    POLYGON(
+      (190 190, 360 20, 20 20, 190 190), 
+      (280 50, 100 50, 190 140, 280 50))
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="0FFFFF212">true</op>
+  </test>
+</case>
+
+<case>
+<desc>P/A2h-3-1: a point on the touching point of two holes in a polygon [dim(0){A.P.Int = B.A.iBdy.TP}]</desc>
+  <a>
+    POINT(190 50)
+  </a>
+  <b>
+    POLYGON(
+      (190 190, 360 20, 20 20, 190 190), 
+      (90 50, 150 110, 190 50, 90 50), 
+      (190 50, 230 110, 290 50, 190 50))
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="F0FFFF212">true</op>
+  </test>
+</case>
+
+<case>
+<desc>P/A2h-3-2: a point on the touching point of two holes in a polygon [dim(0){A.P.Int = B.A.iBdy.TP}]</desc>
+  <a>
+    POINT(180 90)
+  </a>
+  <b>
+    POLYGON(
+      (190 190, 360 20, 20 20, 190 190), 
+      (180 140, 180 40, 80 40, 180 140), 
+      (180 90, 210 140, 310 40, 230 40, 180 90))
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="F0FFFF212">true</op>
+  </test>
+</case>
+
+<case>
+<desc>mP/A-2: 3 points outside a polygon [dim(0){A.2P.Int = B.A.Ext}]</desc>
+  <a>
+    MULTIPOINT((20 80), (110 160), (20 160))
+  </a>
+  <b>
+    POLYGON(
+      (60 120, 60 40, 160 40, 160 120, 60 120))
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="FF0FFF212">true</op>
+  </test>
+</case>
+
+<case>
+<desc>mP/A-3-1: one of 3 points on the closing point of the boundary of a polygon [dim(0){A.3P1.Int = B.A.Bdy.CP}]</desc>
+  <a>
+    MULTIPOINT((20 80), (60 120), (20 160))
+  </a>
+  <b>
+    POLYGON(
+      (60 120, 60 40, 160 40, 160 120, 60 120))
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="F00FFF212">true</op>
+  </test>
+</case>
+
+<case>
+<desc>mP/A-3-2: one of 3 points on the boundary of a polygon at a non-vertex [dim(0){A.3P3 = B.A.Bdy.NV}]</desc>
+  <a>
+    MULTIPOINT((10 80), (110 170), (110 120))
+  </a>
+  <b>
+    POLYGON(
+      (60 120, 60 40, 160 40, 160 120, 60 120))
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="F00FFF212">true</op>
+  </test>
+</case>
+
+<case>
+<desc>mP/A-3-3: one of 3 points on the boundary of a polygon at a vertex [dim(0){A.3P1.Int = B.A.Bdy.V}]</desc>
+  <a>
+    MULTIPOINT((10 80), (110 170), (160 120))
+  </a>
+  <b>
+    POLYGON(
+      (60 120, 60 40, 160 40, 160 120, 60 120))
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="F00FFF212">true</op>
+  </test>
+</case>
+
+<case>
+<desc>mP/A-3-4: 3 of the 5 points on the boundary of a polygon [dim(0){A.5P2.Int = B.A.Bdy.CP}, dim(0){A.5P3.Int = B.A.Bdy.NV}, dim(0){A.5P4.Int = B.A.Bdy.V}]</desc>
+  <a>
+    MULTIPOINT((20 120), (60 120), (110 120), (160 120), (200 120))
+  </a>
+  <b>
+    POLYGON(
+      (60 120, 60 40, 160 40, 160 120, 60 120))
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="F00FFF212">true</op>
+  </test>
+</case>
+
+<case>
+<desc>mP/A-3-5: all 3 points on the boundary of a polygon [dim(0){A.3P1.Int = B.A.Bdy.CP}, dim(0){A.3P2.Int = B.A.Bdy.NV}, dim(0){A.3P3.Int = B.A.Bdy.V}]</desc>
+  <a>
+    MULTIPOINT((60 120), (110 120), (160 120))
+  </a>
+  <b>
+    POLYGON(
+      (60 120, 60 40, 160 40, 160 120, 60 120))
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="F0FFFF212">true</op>
+  </test>
+</case>
+
+<case>
+<desc>mP/A-3-6: all 4 points on the boundary of a polygon [dim(0){A.4P = B.A.Bdy}]</desc>
+  <a>
+    MULTIPOINT((60 120), (160 120), (160 40), (60 40))
+  </a>
+  <b>
+    POLYGON(
+      (60 120, 60 40, 160 40, 160 120, 60 120))
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="F0FFFF212">true</op>
+  </test>
+</case>
+
+<case>
+<desc>mP/A-4-1: 1 point outside a polygon, 1 point on the boundary and 1 point inside [dim(0){A.3P1.Int = B.A.Ext}, dim(0){A.3P2.Int = B.A.Bdy.CP}, dim(0){A.3P3.Int = B.A.Int}]</desc>
+  <a>
+    MULTIPOINT((20 150), (60 120), (110 80))
+  </a>
+  <b>
+    POLYGON(
+      (60 120, 60 40, 160 40, 160 120, 60 120))
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="000FFF212">true</op>
+  </test>
+</case>
+
+<case>
+<desc>mP/A-4-2: 1 point outside a polygon, 1 point on the boundary and 1 point inside [dim(0){A.3P1.Int = B.A.Ext}, dim(0){A.3P2.Int = B.A.Bdy.V}, dim(0){A.3P3.Int = B.A.Int}]</desc>
+  <a>
+    MULTIPOINT((110 80), (160 120), (200 160))
+  </a>
+  <b>
+    POLYGON(
+      (60 120, 60 40, 160 40, 160 120, 60 120))
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="000FFF212">true</op>
+  </test>
+</case>
+
+<case>
+<desc>mP/A-4-3: 1 point outside a polygon, 1 point on the boundary and 1 point inside [dim(0){A.3P1.Int = B.A.Ext}, dim(0){A.3P2.Int = B.A.Bdy.NV}, dim(0){A.3P3.Int = B.A.Int}]</desc>
+  <a>
+    MULTIPOINT((110 80), (110 120), (110 160))
+  </a>
+  <b>
+    POLYGON(
+      (60 120, 60 40, 160 40, 160 120, 60 120))
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="000FFF212">true</op>
+  </test>
+</case>
+
+<case>
+<desc>mP/A-4-4: 1 point outside a polygon, 1 point inside [dim(0){A.2P1.Int = B.A.Ext}, dim(0){A.2P2.Int = B.A.Int}]</desc>
+  <a>
+    MULTIPOINT((110 170), (110 80))
+  </a>
+  <b>
+    POLYGON(
+      (60 120, 60 40, 160 40, 160 120, 60 120))
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="0F0FFF212">true</op>
+  </test>
+</case>
+
+<case>
+<desc>mP/A-4-5: 1 point outside a polygon, 2 points on the boundary and 1 point inside [dim(0){A.4P1.Int = B.A.Ext}, dim(0){A.4P2.Int = B.A.Bdy.CP}, dim(0){A.4P3.Int = B.A.Bdy.V}, dim(0){A.4P4.Int = B.A.Int}]</desc>
+  <a>
+    MULTIPOINT((60 120), (160 120), (110 80), (110 170))
+  </a>
+  <b>
+    POLYGON(
+      (60 120, 60 40, 160 40, 160 120, 60 120))
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="000FFF212">true</op>
+  </test>
+</case>
+
+<case>
+<desc>mP/A-5-1: 2 points within a polygon [dim(0){A.2P.Int = B.A.Int]</desc>
+  <a>
+    MULTIPOINT((90 80), (130 80))
+  </a>
+  <b>
+    POLYGON(
+      (60 120, 60 40, 160 40, 160 120, 60 120))
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="0FFFFF212">true</op>
+  </test>
+</case>
+
+<case>
+<desc>mP/A-5-2: 1 point on the boundary and 1 point inside a polygon [dim(0){A.2P1.Int = B.A.Bdy.CP}, dim(0){A.2P2.Int = B.A.Int}]</desc>
+  <a>
+    MULTIPOINT((60 120), (160 120), (110 80))
+  </a>
+  <b>
+    POLYGON(
+      (60 120, 60 40, 160 40, 160 120, 60 120))
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="00FFFF212">true</op>
+  </test>
+</case>
+
+<case>
+<desc>mP/Ah-2-1: 3 points outside a polygon [dim(0){A.3P.Int = B.Ah.Ext}]</desc>
+  <a>
+    MULTIPOINT((40 170), (40 90), (130 170))
+  </a>
+  <b>
+    POLYGON(
+      (190 190, 360 20, 20 20, 190 190), 
+      (280 50, 100 50, 190 140, 280 50))
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="FF0FFF212">true</op>
+  </test>
+</case>
+
+<case>
+<desc>mP/Ah-2-2: 2 points outside a polygon and 1 point inside the hole of the polygon [dim(0){A.3P1.Int = B.Ah.Ext}, dim(0){A.3P2.Int = B.Ah.Ext}, dim(0){A.3P3.Int = B.Ah.Ext.h}]</desc>
+  <a>
+    MULTIPOINT((90 170), (280 170), (190 90))
+  </a>
+  <b>
+    POLYGON(
+      (190 190, 360 20, 20 20, 190 190), 
+      (280 50, 100 50, 190 140, 280 50))
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="FF0FFF212">true</op>
+  </test>
+</case>
+
+<case>
+<desc>mP/Ah-2-3: all 3 points in polygon's hole [dim(0){A.3P.Int = B.Ah.Ext.h}]</desc>
+  <a>
+    MULTIPOINT((190 110), (150 70), (230 70))
+  </a>
+  <b>
+    POLYGON(
+      (190 190, 360 20, 20 20, 190 190), 
+      (280 50, 100 50, 190 140, 280 50))
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="FF0FFF212">true</op>
+  </test>
+</case>
+
+<case>
+<desc>P/mA-3-1: a point on the touching point of two polygons [dim(0){A.P.Int = B.2A.Bdy}]</desc>
+  <a>
+    POINT(100 100)
+  </a>
+  <b>
+    MULTIPOLYGON(
+      (
+        (20 100, 20 20, 100 20, 100 100, 20 100)), 
+      (
+        (100 180, 100 100, 180 100, 180 180, 100 180)))
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="F0FFFF212">true</op>
+  </test>
+</case>
+
+<case>
+<desc>P/mA-3-2: a point on the boundary of one of the 2 polygons [dim(0){A.P.Int = B.2A1.Bdy.CP}]</desc>
+  <a>
+    POINT(20 100)
+  </a>
+  <b>
+    MULTIPOLYGON(
+      (
+        (20 100, 20 20, 100 20, 100 100, 20 100)), 
+      (
+        (100 180, 100 100, 180 100, 180 180, 100 180)))
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="F0FFFF212">true</op>
+  </test>
+</case>
+
+<case>
+<desc>P/mA-3-3: a point on the boundary of one of the 2 polygons [dim(0){A.P.Int = B.2A1.Bdy.V}]</desc>
+  <a>
+    POINT(60 100)
+  </a>
+  <b>
+    MULTIPOLYGON(
+      (
+        (20 100, 20 20, 100 20, 100 100, 20 100)), 
+      (
+        (100 180, 100 100, 180 100, 180 180, 100 180)))
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="F0FFFF212">true</op>
+  </test>
+</case>
+
+<case>
+<desc>P/mA-3-4: a point touching a polygon's boundary where the boundaries touch at a point [dim(0){A.P.Int = B.2A.Bdy.TP}]</desc>
+  <a>
+    POINT(110 110)
+  </a>
+  <b>
+    MULTIPOLYGON(
+      (
+        (110 110, 20 200, 200 200, 110 110), 
+        (110 110, 80 180, 140 180, 110 110)), 
+      (
+        (110 110, 20 20, 200 20, 110 110), 
+        (110 110, 80 40, 140 40, 110 110)))
+  </b>
+  <test>
+    <op name="relate" arg1="A" arg2="B" arg3="F0FFFF212">true</op>
+  </test>
+</case>
+
+</run>

@@ -1,0 +1,64 @@
+<run>
+  <precisionModel scale="1.0" offsetx="0.0" offsety="0.0"/>
+
+<case>
+  <desc>same point</desc>
+  <a>
+    POINT(20 20)
+  </a>
+  <b>
+    POINT(20 20)
+  </b>
+<test>
+  <op name="relate" arg3="0FFFFFFF2" arg1="A" arg2="B">
+    true
+  </op>
+</test>
+</case>
+
+<case>
+  <desc>different point</desc>
+  <a>
+    POINT(20 20)
+  </a>
+  <b>
+    POINT(20 30)
+  </b>
+<test>
+  <op name="relate" arg3="FF0FFF0F2" arg1="A" arg2="B">
+    true
+  </op>
+</test>
+</case>
+
+<case>
+  <desc>some same, some different points</desc>
+  <a>
+    MULTIPOINT((40 40), (80 60), (40 100))
+  </a>
+  <b>
+    MULTIPOINT((40 40), (80 60), (120 100))
+  </b>
+<test>
+  <op name="relate" arg3="0F0FFF0F2" arg1="A" arg2="B">
+    true
+  </op>
+</test>
+</case>
+
+<case>
+  <desc>same points</desc>
+  <a>
+    MULTIPOINT((40 40), (80 60), (120 100))
+  </a>
+  <b>
+    MULTIPOINT((40 40), (80 60), (120 100))
+  </b>
+<test>
+  <op name="relate" arg3="0FFFFFFF2" arg1="A" arg2="B">
+    true
+  </op>
+</test>
+</case>
+
+</run>
