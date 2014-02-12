@@ -638,9 +638,9 @@ t.load('../path/to/points.geojson', function(err, points){
 ```
 
 
-###contour
+###isolines
 
-Takes a FeatureCollection of points with z values and an array of value breaks and generates contour polygons.  This is a great way to visualize interpolated density on a map.  It is often used for elevation maps, weather maps, and isocrones.  The main advantage over a heat map is that contours allow you to see definitive value boundaries, and the polygons can be used to aggregate data.  For example, you could get the 5000 ft elevation contour of a mountain and the 10000 ft elevation contour, then aggregate the number of trees in each to see how elevation affects tree survival.
+Takes a FeatureCollection of points with z values and an array of value breaks and generates contour isolines. These are commonly used to create elevation maps, but can be used for general data interpolation as well.
 
 ```javascript
 var t = require('turf')
@@ -651,7 +651,7 @@ var breaks = [.1, 22, 45, 55, 65, 85,  95, 105, 120, 180]
 t.load('../path/to/points.geojson', function(err, points){
   t.isolines(points, z, resolution, breaks, function(err, contours){
     if(err) throw err
-    console.log(contours)
+    console.log(isolines)
   })
 })
 ```
