@@ -3,7 +3,7 @@ var t = require('../index'),
   fs = require('fs')
 
 describe('near', function(){
-  it('should take a set of points and return points from a second set that are within a specified distance', function(done){
+  xit('should take a set of points and return points from a second set that are within a specified distance', function(done){
 
     var distance = 1,
         units = 'miles'
