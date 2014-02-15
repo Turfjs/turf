@@ -1,4 +1,6 @@
 module.exports = {
+  area: require('./lib/area'),
+  near: require('./lib/near'),
   isolines: require('./lib/isolines'),
   isobands: require('./lib/isobands'),
   merge: require('./lib/merge'),
