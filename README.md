@@ -14,6 +14,8 @@ npm install turf
 
 Turf can also be run in a browser. To use it, download the [minified file](https://raw.github.com/morganherlocker/turf/master/turf.min.js), and include it in a script tag.
 
+**NOTE: Browser functionality is currently unstable. Please consider using turf from node.js. Work is in progress on resolving the issues.**
+
 ```html
 <script src="turf.min.js"></script> 
 ```

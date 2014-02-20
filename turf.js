@@ -1,5 +1,7 @@
 !function(e){if("object"==typeof exports)module.exports=e();else if("function"==typeof define&&define.amd)define(e);else{var f;"undefined"!=typeof window?f=window:"undefined"!=typeof global?f=global:"undefined"!=typeof self&&(f=self),f.t=e()}}(function(){var define,module,exports;return (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);throw new Error("Cannot find module '"+o+"'")}var f=n[o]={exports:{}};t[o][0].call(f.exports,function(e){var n=t[o][1][e];return s(n?n:e)},f,f.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(_dereq_,module,exports){
 module.exports = {
+  area: _dereq_('./lib/area'),
+  near: _dereq_('./lib/near'),
   isolines: _dereq_('./lib/isolines'),
   isobands: _dereq_('./lib/isobands'),
   merge: _dereq_('./lib/merge'),
@@ -56,7 +58,7 @@ module.exports = {
   tin: _dereq_('./lib/tin'),
   union: _dereq_('./lib/union')
 }
-},{"./lib/aggregate":2,"./lib/average":3,"./lib/bboxPolygon":4,"./lib/bezier":5,"./lib/buffer":6,"./lib/center":7,"./lib/centroid":8,"./lib/combine":9,"./lib/concave":10,"./lib/contour":11,"./lib/convex":12,"./lib/count":13,"./lib/deviation":14,"./lib/distance":15,"./lib/donuts":16,"./lib/envelope":17,"./lib/erase":18,"./lib/explode":19,"./lib/extent":20,"./lib/featurecollection":21,"./lib/filter":22,"./lib/flip":23,"./lib/grid":24,"./lib/inside":25,"./lib/intersect":26,"./lib/isobands":27,"./lib/isolines":28,"./lib/jenks":29,"./lib/linestring":30,"./lib/load":31,"./lib/max":32,"./lib/median":33,"./lib/merge":34,"./lib/midpoint":35,"./lib/min":36,"./lib/nearest":37,"./lib/planepoint":38,"./lib/point":39,"./lib/polygon":40,"./lib/quantile":41,"./lib/reclass":42,"./lib/remove":43,"./lib/sample":44,"./lib/save":45,"./lib/simplify":46,"./lib/size":47,"./lib/square":48,"./lib/sum":49,"./lib/tag":50,"./lib/tin":51,"./lib/topo":52,"./lib/union":53,"./lib/variance":54,"./lib/within":55}],2:[function(_dereq_,module,exports){
+},{"./lib/aggregate":2,"./lib/area":3,"./lib/average":4,"./lib/bboxPolygon":5,"./lib/bezier":6,"./lib/buffer":7,"./lib/center":8,"./lib/centroid":9,"./lib/combine":10,"./lib/concave":11,"./lib/contour":12,"./lib/convex":13,"./lib/count":14,"./lib/deviation":15,"./lib/distance":16,"./lib/donuts":17,"./lib/envelope":18,"./lib/erase":19,"./lib/explode":20,"./lib/extent":21,"./lib/featurecollection":22,"./lib/filter":23,"./lib/flip":24,"./lib/grid":25,"./lib/inside":26,"./lib/intersect":27,"./lib/isobands":28,"./lib/isolines":29,"./lib/jenks":30,"./lib/linestring":31,"./lib/load":32,"./lib/max":33,"./lib/median":34,"./lib/merge":35,"./lib/midpoint":36,"./lib/min":37,"./lib/near":38,"./lib/nearest":39,"./lib/planepoint":40,"./lib/point":41,"./lib/polygon":42,"./lib/quantile":43,"./lib/reclass":44,"./lib/remove":45,"./lib/sample":46,"./lib/save":47,"./lib/simplify":48,"./lib/size":49,"./lib/square":50,"./lib/sum":51,"./lib/tag":52,"./lib/tin":53,"./lib/topo":54,"./lib/union":55,"./lib/variance":56,"./lib/within":57}],2:[function(_dereq_,module,exports){
 var _ = _dereq_('lodash')
 var t = {}
 t.average = _dereq_('./average')
@@ -117,7 +119,31 @@ module.exports = function(polygons, points, aggregations, done){
   })
   done(null, polygons)
 }
-},{"./average":3,"./count":13,"./deviation":14,"./max":32,"./median":33,"./min":36,"./sum":49,"./variance":54,"lodash":82}],3:[function(_dereq_,module,exports){
+},{"./average":4,"./count":14,"./deviation":15,"./max":33,"./median":34,"./min":37,"./sum":51,"./variance":56,"lodash":84}],3:[function(_dereq_,module,exports){
+//http://www.mathopenref.com/coordpolygonarea2.html
+
+var _ = _dereq_('lodash')
+
+module.exports = function(feature, done){
+  //transform geometries into x & y arrays
+  //foreach ring, add the area to an accumulating area sum
+
+
+}
+
+
+function polygonArea(X, Y, numPoints) 
+{ 
+  area = 0;         // Accumulates area in the loop
+  j = numPoints-1;  // The last vertex is the 'previous' one to the first
+
+  for (i=0; i<numPoints; i++)
+    { area = area +  (X[j]+X[i]) * (Y[j]-Y[i]); 
+      j = i;  //j is previous vertex to i
+    }
+  return area/2;
+}
+},{"lodash":84}],4:[function(_dereq_,module,exports){
 var t = {}
 var _ = _dereq_('lodash'),
     ss = _dereq_('simple-statistics')
@@ -141,7 +167,7 @@ module.exports = function(polyFC, ptFC, inField, outField, done){
 
   done(null, polyFC)
 }
-},{"./inside":25,"lodash":82,"simple-statistics":83}],4:[function(_dereq_,module,exports){
+},{"./inside":26,"lodash":84,"simple-statistics":85}],5:[function(_dereq_,module,exports){
 var t = {}
 var point = _dereq_('../lib/point'),
     polygon = _dereq_('../lib/polygon')
@@ -162,7 +188,7 @@ module.exports = function(bbox, done){
   ]])
   done(null, poly)
 }
-},{"../lib/point":39,"../lib/polygon":40}],5:[function(_dereq_,module,exports){
+},{"../lib/point":41,"../lib/polygon":42}],6:[function(_dereq_,module,exports){
 // code modded from here:
 //https://github.com/leszekr/bezier-spline-js/blob/master/bezier-spline.js
 var t = {}
@@ -387,7 +413,7 @@ module.exports = function(line, resolution, intensity, done){
     ctx.stroke();
     return this;
   }
-},{"./linestring":30,"lodash":82}],6:[function(_dereq_,module,exports){
+},{"./linestring":31,"lodash":84}],7:[function(_dereq_,module,exports){
 //http://stackoverflow.com/questions/839899/how-do-i-calculate-a-point-on-a-circles-circumference
 //radians = degrees * (pi/180)
 
@@ -443,7 +469,7 @@ var bufferOp = function(feature, radius, done){
     done(null, buffered)
   }
 }
-},{"./combine":9,"./featurecollection":21,"./polygon":40,"jsts":60,"lodash":82}],7:[function(_dereq_,module,exports){
+},{"./combine":10,"./featurecollection":22,"./polygon":42,"jsts":62,"lodash":84}],8:[function(_dereq_,module,exports){
 var t = {}
 var extent = _dereq_('./extent')
 t.extent = extent
@@ -462,7 +488,7 @@ module.exports = function(layer, done){
     done(center)
   })
 }
-},{"./extent":20}],8:[function(_dereq_,module,exports){
+},{"./extent":21}],9:[function(_dereq_,module,exports){
 var t = {}
 var _ = _dereq_('lodash'),
     ss = _dereq_('simple-statistics')
@@ -489,7 +515,7 @@ module.exports = function(features, done){
     done(err, t.point(averageX, averageY))
   })
 }
-},{"./explode":19,"./point":39,"lodash":82,"simple-statistics":83}],9:[function(_dereq_,module,exports){
+},{"./explode":20,"./point":41,"lodash":84,"simple-statistics":85}],10:[function(_dereq_,module,exports){
 //this tool takes a feature collection of like geometries and combines them into a single multipoint, multilinestring, or multipolygon
 var _ = _dereq_('lodash')
 
@@ -533,7 +559,7 @@ module.exports = function(fc, done){
     break
   }
 }
-},{"lodash":82}],10:[function(_dereq_,module,exports){
+},{"lodash":84}],11:[function(_dereq_,module,exports){
 // 1. run tin on points
 // 2. calculate lenth of all edges and area of all triangles
 // 3. remove triangles that fail the max length test
@@ -587,7 +613,7 @@ var filterTriangles = function(triangles, maxEdge, cb){
     }
   )
 }
-},{"./buffer":6,"./distance":15,"./merge":34,"./point":39,"./tin":51,"async":56}],11:[function(_dereq_,module,exports){
+},{"./buffer":7,"./distance":16,"./merge":35,"./point":41,"./tin":53,"async":58}],12:[function(_dereq_,module,exports){
 //https://github.com/jasondavies/conrec.js
 //http://stackoverflow.com/questions/263305/drawing-a-topographical-map
 var _ = _dereq_('lodash'),
@@ -1216,7 +1242,7 @@ module.exports = function(points, z, resolution, breaks, donuts, done){
     }
   }
 
-},{"./donuts":16,"./extent":20,"./featurecollection":21,"./grid":24,"./inside":25,"./merge":34,"./planepoint":38,"./polygon":40,"./square":48,"./tin":51,"async":56,"lodash":82}],12:[function(_dereq_,module,exports){
+},{"./donuts":17,"./extent":21,"./featurecollection":22,"./grid":25,"./inside":26,"./merge":35,"./planepoint":40,"./polygon":42,"./square":50,"./tin":53,"async":58,"lodash":84}],13:[function(_dereq_,module,exports){
 // 1. run tin on points
 // 2. merge the tin
 //var topojson = require('')
@@ -1236,7 +1262,7 @@ module.exports = function(points, done){
     })
   })
 }
-},{"./buffer":6,"./merge":34,"./tin":51}],13:[function(_dereq_,module,exports){
+},{"./buffer":7,"./merge":35,"./tin":53}],14:[function(_dereq_,module,exports){
 var t = {}
 var _ = _dereq_('lodash')
 t.inside = _dereq_('./inside')
@@ -1258,7 +1284,7 @@ module.exports = function(polyFC, ptFC, outField, done){
   })
   done(null, polyFC)
 }
-},{"./inside":25,"lodash":82}],14:[function(_dereq_,module,exports){
+},{"./inside":26,"lodash":84}],15:[function(_dereq_,module,exports){
 var t = {}
 var _ = _dereq_('lodash'),
     ss = _dereq_('simple-statistics')
@@ -1281,7 +1307,7 @@ module.exports = function(polyFC, ptFC, inField, outField, done){
   })
   done(null, polyFC)
 }
-},{"./inside":25,"lodash":82,"simple-statistics":83}],15:[function(_dereq_,module,exports){
+},{"./inside":26,"lodash":84,"simple-statistics":85}],16:[function(_dereq_,module,exports){
 //http://en.wikipedia.org/wiki/Haversine_formula
 //http://www.movable-type.co.uk/scripts/latlong.html
 // expects a feature collection of points
@@ -1326,7 +1352,7 @@ module.exports = function(point1, point2, units, done){
 }
 
 
-},{}],16:[function(_dereq_,module,exports){
+},{}],17:[function(_dereq_,module,exports){
 /* 
 takes a collection of polygons and returns a collection of donuts.
 
@@ -1381,7 +1407,7 @@ function contained(poly1, poly2, done){
     done(isInside)
   })
 }
-},{"./erase":18,"./featurecollection":21,"./inside":25,"./point":39,"./union":53,"lodash":82}],17:[function(_dereq_,module,exports){
+},{"./erase":19,"./featurecollection":22,"./inside":26,"./point":41,"./union":55,"lodash":84}],18:[function(_dereq_,module,exports){
 var t = {}
 var extent = _dereq_('./extent'),
     bboxPolygon = _dereq_('./bboxPolygon')
@@ -1395,7 +1421,7 @@ module.exports = function(features, done){
     })
   })
 }
-},{"./bboxPolygon":4,"./extent":20}],18:[function(_dereq_,module,exports){
+},{"./bboxPolygon":5,"./extent":21}],19:[function(_dereq_,module,exports){
 // look here for help http://svn.osgeo.org/grass/grass/branches/releasebranch_6_4/vector/v.overlay/main.c
 //must be array of polygons
 
@@ -1430,7 +1456,7 @@ function correctRings(poly){
   })
   return poly
 }
-},{"./featurecollection":21,"jsts":60,"lodash":82}],19:[function(_dereq_,module,exports){
+},{"./featurecollection":22,"jsts":62,"lodash":84}],20:[function(_dereq_,module,exports){
 var t = {}
 var _ = _dereq_('lodash'),
     featurecollection = _dereq_('./featurecollection'),
@@ -1521,7 +1547,7 @@ module.exports = function(features, done){
 
 
 
-},{"./featurecollection":21,"./point":39,"lodash":82}],20:[function(_dereq_,module,exports){
+},{"./featurecollection":22,"./point":41,"lodash":84}],21:[function(_dereq_,module,exports){
 _ = _dereq_('lodash')
 
 module.exports = function(layer, done){
@@ -1633,7 +1659,7 @@ module.exports = function(layer, done){
     done(null, bbox)
   }
 }
-},{"lodash":82}],21:[function(_dereq_,module,exports){
+},{"lodash":84}],22:[function(_dereq_,module,exports){
 module.exports = function(features){
   var fc = {
     "type": "FeatureCollection",
@@ -1642,7 +1668,7 @@ module.exports = function(features){
 
   return fc
 }
-},{}],22:[function(_dereq_,module,exports){
+},{}],23:[function(_dereq_,module,exports){
 var _ = _dereq_('lodash')
 var t = {}
 t.featurecollection = _dereq_('./featurecollection')
@@ -1656,7 +1682,7 @@ module.exports = function(fc, field, value, done){
   }
   done(null, newFC)
 }
-},{"./featurecollection":21,"lodash":82}],23:[function(_dereq_,module,exports){
+},{"./featurecollection":22,"lodash":84}],24:[function(_dereq_,module,exports){
 var t = {}
 t.featurecollection = _dereq_('./featurecollection')
 
@@ -1719,7 +1745,7 @@ var flipCoordinate = function(coordinates){
   y = coordinates[1]
   return([y, x])
 }
-},{"./featurecollection":21}],24:[function(_dereq_,module,exports){
+},{"./featurecollection":22}],25:[function(_dereq_,module,exports){
 var t = {}
 var _ = _dereq_('lodash'),
   point = _dereq_('./point')
@@ -1743,7 +1769,7 @@ module.exports = function(extents, depth, done){
   }
   done(null, fc)
 }
-},{"./point":39,"lodash":82}],25:[function(_dereq_,module,exports){
+},{"./point":41,"lodash":84}],26:[function(_dereq_,module,exports){
 // http://en.wikipedia.org/wiki/Even%E2%80%93odd_rule
 // modified from: https://github.com/substack/point-in-polygon/blob/master/index.js
 // which was modified from http://www.ecse.rpi.edu/Homepages/wrf/Research/Short_Notes/pnpoly.html
@@ -1766,7 +1792,7 @@ module.exports = function(point, polygon, done){
 }
 
 
-},{}],26:[function(_dereq_,module,exports){
+},{}],27:[function(_dereq_,module,exports){
 // depend on jsts for now https://github.com/bjornharrtell/jsts/blob/master/examples/overlay.html
 var jsts = _dereq_('jsts')
 var t = {}
@@ -1782,7 +1808,7 @@ module.exports = function(polys1, polys2, done){
   intersection = t.featurecollection([intersection])
   done(null, intersection)
 }
-},{"./featurecollection":21,"jsts":60}],27:[function(_dereq_,module,exports){
+},{"./featurecollection":22,"jsts":62}],28:[function(_dereq_,module,exports){
 //https://github.com/jasondavies/conrec.js
 //http://stackoverflow.com/questions/263305/drawing-a-topographical-map
 var _ = _dereq_('lodash'),
@@ -2406,7 +2432,7 @@ module.exports = function(points, z, resolution, breaks, done){
     }
   }
 
-},{"./donuts":16,"./extent":20,"./featurecollection":21,"./grid":24,"./inside":25,"./merge":34,"./planepoint":38,"./polygon":40,"./square":48,"./tin":51,"async":56,"lodash":82}],28:[function(_dereq_,module,exports){
+},{"./donuts":17,"./extent":21,"./featurecollection":22,"./grid":25,"./inside":26,"./merge":35,"./planepoint":40,"./polygon":42,"./square":50,"./tin":53,"async":58,"lodash":84}],29:[function(_dereq_,module,exports){
 //https://github.com/jasondavies/conrec.js
 //http://stackoverflow.com/questions/263305/drawing-a-topographical-map
 var _ = _dereq_('lodash'),
@@ -3005,7 +3031,7 @@ module.exports = function(points, z, resolution, breaks, done){
     }
   }
 
-},{"./extent":20,"./featurecollection":21,"./grid":24,"./inside":25,"./linestring":30,"./planepoint":38,"./square":48,"./tin":51,"async":56,"lodash":82}],29:[function(_dereq_,module,exports){
+},{"./extent":21,"./featurecollection":22,"./grid":25,"./inside":26,"./linestring":31,"./planepoint":40,"./square":50,"./tin":53,"async":58,"lodash":84}],30:[function(_dereq_,module,exports){
 var ss = _dereq_('simple-statistics'),
     _ = _dereq_('lodash')
 
@@ -3022,7 +3048,7 @@ module.exports = function(fc, field, num, done){
 
   done(null, breaks)
 }
-},{"lodash":82,"simple-statistics":83}],30:[function(_dereq_,module,exports){
+},{"lodash":84,"simple-statistics":85}],31:[function(_dereq_,module,exports){
 module.exports = function(coordinates, properties){
   if(coordinates === null) throw new Error('No coordinates passed')
   var linestring = { 
@@ -3036,7 +3062,7 @@ module.exports = function(coordinates, properties){
   return linestring
 }
 
-},{}],31:[function(_dereq_,module,exports){
+},{}],32:[function(_dereq_,module,exports){
 var path = _dereq_('path'),
     fs = _dereq_('fs'),
     layer
@@ -3049,7 +3075,7 @@ module.exports = function(file, done) {
   })  
 }
 
-},{"fs":57,"path":59}],32:[function(_dereq_,module,exports){
+},{"fs":59,"path":61}],33:[function(_dereq_,module,exports){
 var t = {}
 var _ = _dereq_('lodash'),
     ss = _dereq_('simple-statistics')
@@ -3072,7 +3098,7 @@ module.exports = function(polyFC, ptFC, inField, outField, done){
   })
   done(null, polyFC)
 }
-},{"./inside":25,"lodash":82,"simple-statistics":83}],33:[function(_dereq_,module,exports){
+},{"./inside":26,"lodash":84,"simple-statistics":85}],34:[function(_dereq_,module,exports){
 var t = {}
 var _ = _dereq_('lodash'),
     ss = _dereq_('simple-statistics')
@@ -3095,7 +3121,7 @@ module.exports = function(polyFC, ptFC, inField, outField, done){
   })
   done(null, polyFC)
 }
-},{"./inside":25,"lodash":82,"simple-statistics":83}],34:[function(_dereq_,module,exports){
+},{"./inside":26,"lodash":84,"simple-statistics":85}],35:[function(_dereq_,module,exports){
 // 1. run tin on points
 // 2. merge the tin
 //var topojson = require('')
@@ -3123,7 +3149,7 @@ module.exports = function(polygons, done){
     }
   )
 }
-},{"./union":53,"async":56,"lodash":82}],35:[function(_dereq_,module,exports){
+},{"./union":55,"async":58,"lodash":84}],36:[function(_dereq_,module,exports){
 // http://cs.selu.edu/~rbyrd/math/midpoint/
 // ((x1+x2)/2), ((y1+y2)/2)
 var t = {}
@@ -3147,7 +3173,7 @@ module.exports = function(point1, point2, done) {
 
   done(null, midpoint)
 }
-},{"./point":39}],36:[function(_dereq_,module,exports){
+},{"./point":41}],37:[function(_dereq_,module,exports){
 var t = {}
 var _ = _dereq_('lodash'),
     ss = _dereq_('simple-statistics')
@@ -3170,7 +3196,13 @@ module.exports = function(polyFC, ptFC, inField, outField, done){
   })
   done(null, polyFC)
 }
-},{"./inside":25,"lodash":82,"simple-statistics":83}],37:[function(_dereq_,module,exports){
+},{"./inside":26,"lodash":84,"simple-statistics":85}],38:[function(_dereq_,module,exports){
+
+
+module.exports = function(inPoints, outPoints, distance, unit, done){
+
+}
+},{}],39:[function(_dereq_,module,exports){
 var t = {}
 var _ = _dereq_('lodash'),
  distance = _dereq_('./distance')
@@ -3206,7 +3238,7 @@ module.exports = function(targetPoint, points, done){
     done(null, nPt)
   }
 }
-},{"./distance":15,"lodash":82}],38:[function(_dereq_,module,exports){
+},{"./distance":16,"lodash":84}],40:[function(_dereq_,module,exports){
 http://stackoverflow.com/a/13916669/461015
 
 module.exports = function(point, triangle, done){
@@ -3229,7 +3261,7 @@ module.exports = function(point, triangle, done){
 
   done(null, z)
 }
-},{}],39:[function(_dereq_,module,exports){
+},{}],41:[function(_dereq_,module,exports){
 module.exports = function(x, y, properties){
   if(x === null || y === null) throw new Error('Invalid coordinates')
   var point = { 
@@ -3242,7 +3274,7 @@ module.exports = function(x, y, properties){
   }
   return point
 }
-},{}],40:[function(_dereq_,module,exports){
+},{}],42:[function(_dereq_,module,exports){
 module.exports = function(coordinates, properties){
   if(coordinates === null) throw new Error('No coordinates passed')
   var polygon = {
@@ -3265,7 +3297,7 @@ module.exports = function(coordinates, properties){
 
 
 
-},{}],41:[function(_dereq_,module,exports){
+},{}],43:[function(_dereq_,module,exports){
 var ss = _dereq_('simple-statistics'),
     _ = _dereq_('lodash')
 
@@ -3281,7 +3313,7 @@ module.exports = function(fc, field, percentiles, done){
   })
   done(null, quantiles)
 }
-},{"lodash":82,"simple-statistics":83}],42:[function(_dereq_,module,exports){
+},{"lodash":84,"simple-statistics":85}],44:[function(_dereq_,module,exports){
 var t = {}
 var featurecollection = _dereq_('./featurecollection')
 t.featurecollection = featurecollection
@@ -3301,7 +3333,7 @@ module.exports = function(fc, inField, outField, translations, done){
   })
   done(null, reclassed)
 }
-},{"./featurecollection":21}],43:[function(_dereq_,module,exports){
+},{"./featurecollection":22}],45:[function(_dereq_,module,exports){
 var t = {}
 var featurecollection = _dereq_('./featurecollection')
 t.featurecollection = featurecollection
@@ -3315,7 +3347,7 @@ module.exports = function(collection, key, val, done) {
   }
   done(null, newFC)
 }
-},{"./featurecollection":21}],44:[function(_dereq_,module,exports){
+},{"./featurecollection":22}],46:[function(_dereq_,module,exports){
 var t = {}
 var _ = _dereq_('lodash'),
     featurecollection = _dereq_('./featurecollection')
@@ -3325,7 +3357,7 @@ module.exports = function(fc, num, done){
   var outFC = t.featurecollection(_.sample(fc.features, num))
   done(null, outFC)
 }
-},{"./featurecollection":21,"lodash":82}],45:[function(_dereq_,module,exports){
+},{"./featurecollection":22,"lodash":84}],47:[function(_dereq_,module,exports){
 var t = {}
 var fs = _dereq_('fs')
 t.topo = _dereq_('./topo')
@@ -3348,7 +3380,7 @@ module.exports = function(path, features, type, done){
       break
   }
 }
-},{"./topo":52,"fs":57}],46:[function(_dereq_,module,exports){
+},{"./topo":54,"fs":59}],48:[function(_dereq_,module,exports){
 // use topojson.simplify to simplify points to a given tolerence then convert back to geojson
 var topojson = _dereq_('topojson')
 
@@ -3366,7 +3398,7 @@ module.exports = function(fc, quantization, minimumArea, done){
   topojson.simplify(topo, options)
   done(null, topojson.feature(topo, topo.objects.name))
 }
-},{"topojson":84}],47:[function(_dereq_,module,exports){
+},{"topojson":86}],49:[function(_dereq_,module,exports){
 module.exports = function(bbox, factor, done){
   var lowX = (((bbox[2] - bbox[0]) / 2) * factor) + bbox[0]
   var lowY = (((bbox[3] - bbox[1]) / 2) * factor) + bbox[1]
@@ -3376,7 +3408,7 @@ module.exports = function(bbox, factor, done){
   var sized = [lowX, lowY, highX, highY]
   done(null, sized)
 }
-},{}],48:[function(_dereq_,module,exports){
+},{}],50:[function(_dereq_,module,exports){
 var t = {}
 var midpoint = _dereq_('../lib/midpoint'),
     point = _dereq_('../lib/point'),
@@ -3417,7 +3449,7 @@ module.exports = function(bbox, done) {
   //t.midpoint(t.point(bbox[0,]), bbox)
   //squareBbox[0] = 
 }
-},{"../lib/distance":15,"../lib/midpoint":35,"../lib/point":39}],49:[function(_dereq_,module,exports){
+},{"../lib/distance":16,"../lib/midpoint":36,"../lib/point":41}],51:[function(_dereq_,module,exports){
 var t = {}
 var _ = _dereq_('lodash'),
     ss = _dereq_('simple-statistics')
@@ -3440,7 +3472,7 @@ module.exports = function(polyFC, ptFC, inField, outField, done){
   })
   done(null, polyFC)
 }
-},{"./inside":25,"lodash":82,"simple-statistics":83}],50:[function(_dereq_,module,exports){
+},{"./inside":26,"lodash":84,"simple-statistics":85}],52:[function(_dereq_,module,exports){
 var t = {}
   var _ = _dereq_('lodash')
 t.inside = _dereq_('./inside')
@@ -3465,7 +3497,7 @@ module.exports = function(points, polygons, field, outField, done){
   })
   done(null, points)
 }
-},{"./inside":25,"lodash":82}],51:[function(_dereq_,module,exports){
+},{"./inside":26,"lodash":84}],53:[function(_dereq_,module,exports){
 //http://en.wikipedia.org/wiki/Delaunay_triangulation
 //https://github.com/ironwallaby/delaunay
 var t = {}
@@ -3714,14 +3746,14 @@ function triangulate(vertices) {
     }
 }*/
 
-},{"./nearest":37,"./point":39,"./polygon":40,"lodash":82}],52:[function(_dereq_,module,exports){
+},{"./nearest":39,"./point":41,"./polygon":42,"lodash":84}],54:[function(_dereq_,module,exports){
 var topojson = _dereq_('topojson')
 
 module.exports = function(geojson, done){
   var topology = topojson.topology({geojson: geojson})
   done(null, topology)
 }
-},{"topojson":84}],53:[function(_dereq_,module,exports){
+},{"topojson":86}],55:[function(_dereq_,module,exports){
 // look here for help http://svn.osgeo.org/grass/grass/branches/releasebranch_6_4/vector/v.overlay/main.c
 //must be array of polygons
 
@@ -3745,7 +3777,7 @@ module.exports = function(poly1, poly2, done){
   }
   done(null, union)
 }
-},{"./featurecollection":21,"jsts":60}],54:[function(_dereq_,module,exports){
+},{"./featurecollection":22,"jsts":62}],56:[function(_dereq_,module,exports){
 var t = {}
 var _ = _dereq_('lodash'),
     ss = _dereq_('simple-statistics')
@@ -3768,7 +3800,7 @@ module.exports = function(polyFC, ptFC, inField, outField, done){
   })
   done(null, polyFC)
 }
-},{"./inside":25,"lodash":82,"simple-statistics":83}],55:[function(_dereq_,module,exports){
+},{"./inside":26,"lodash":84,"simple-statistics":85}],57:[function(_dereq_,module,exports){
 var t = {}
 var _ = _dereq_('lodash')
 t.inside = _dereq_('./inside')
@@ -3787,7 +3819,7 @@ module.exports = function(ptFC, polyFC, done){
   })
   done(null, pointsWithin)
 }
-},{"./featurecollection":21,"./inside":25,"lodash":82}],56:[function(_dereq_,module,exports){
+},{"./featurecollection":22,"./inside":26,"lodash":84}],58:[function(_dereq_,module,exports){
 (function (process){
 /*global setImmediate: false, setTimeout: false, console: false */
 (function () {
@@ -4749,9 +4781,9 @@ module.exports = function(ptFC, polyFC, done){
 }());
 
 }).call(this,_dereq_("/Users/morgan/Documents/turf/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"))
-},{"/Users/morgan/Documents/turf/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":58}],57:[function(_dereq_,module,exports){
+},{"/Users/morgan/Documents/turf/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":60}],59:[function(_dereq_,module,exports){
 
-},{}],58:[function(_dereq_,module,exports){
+},{}],60:[function(_dereq_,module,exports){
 // shim for using process in browser
 
 var process = module.exports = {};
@@ -4806,7 +4838,7 @@ process.chdir = function (dir) {
     throw new Error('process.chdir is not supported');
 };
 
-},{}],59:[function(_dereq_,module,exports){
+},{}],61:[function(_dereq_,module,exports){
 (function (process){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -5034,14 +5066,14 @@ var substr = 'ab'.substr(-1) === 'b'
 ;
 
 }).call(this,_dereq_("/Users/morgan/Documents/turf/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"))
-},{"/Users/morgan/Documents/turf/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":58}],60:[function(_dereq_,module,exports){
+},{"/Users/morgan/Documents/turf/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":60}],62:[function(_dereq_,module,exports){
 'use strict';
 GLOBAL.javascript = {};
 GLOBAL.javascript.util = _dereq_('javascript.util');
 var jsts = _dereq_('./lib/jsts');
 module.exports = jsts
 
-},{"./lib/jsts":61,"javascript.util":62}],61:[function(_dereq_,module,exports){
+},{"./lib/jsts":63,"javascript.util":64}],63:[function(_dereq_,module,exports){
 /* The JSTS Topology Suite is a collection of JavaScript classes that
 implement the fundamental operations required to validate a given
 geo-spatial data set to a known topological specification.
@@ -6619,10 +6651,10 @@ boundaryCount++;var newLoc=jsts.geomgraph.GeometryGraph.determineBoundary(this.b
 return;if(loc===Location.BOUNDARY&&this.useBoundaryDeterminationRule)
 this.insertBoundaryPoint(argIndex,coord);else
 this.insertPoint(argIndex,coord,loc);};jsts.geomgraph.GeometryGraph.prototype.getInvalidPoint=function(){return this.invalidPoint;};})();
-},{}],62:[function(_dereq_,module,exports){
+},{}],64:[function(_dereq_,module,exports){
 module.exports = _dereq_('./src');
 
-},{"./src":81}],63:[function(_dereq_,module,exports){
+},{"./src":83}],65:[function(_dereq_,module,exports){
 /**
  * @requires List.js
  */
@@ -6787,7 +6819,7 @@ ArrayList.Iterator.prototype.remove = function() {
 
 module.exports = ArrayList;
 
-},{"./Collection":65,"./IndexOutOfBoundsException":69,"./List":71,"./NoSuchElementException":73,"./OperationNotSupported":74}],64:[function(_dereq_,module,exports){
+},{"./Collection":67,"./IndexOutOfBoundsException":71,"./List":73,"./NoSuchElementException":75,"./OperationNotSupported":76}],66:[function(_dereq_,module,exports){
 /**
  * @see http://download.oracle.com/javase/6/docs/api/java/util/Arrays.html
  *
@@ -6845,7 +6877,7 @@ Arrays.asList = function(array) {
 
 module.exports = Arrays;
 
-},{}],65:[function(_dereq_,module,exports){
+},{}],67:[function(_dereq_,module,exports){
 /**
  * @requires Iterator.js
  */
@@ -6920,7 +6952,7 @@ Collection.prototype.remove = function(o) {};
 
 module.exports = Collection;
 
-},{"./Iterator":70}],66:[function(_dereq_,module,exports){
+},{"./Iterator":72}],68:[function(_dereq_,module,exports){
 /**
  * @param {string=}
  *          message Optional message.
@@ -6939,7 +6971,7 @@ EmptyStackException.prototype.name = 'EmptyStackException';
 
 module.exports = EmptyStackException;
 
-},{}],67:[function(_dereq_,module,exports){
+},{}],69:[function(_dereq_,module,exports){
 /**
  * @requires Map.js
  * @requires ArrayList.js
@@ -7003,7 +7035,7 @@ HashMap.prototype.size = function() {
 
 module.exports = HashMap;
 
-},{"./ArrayList":63,"./Map":72}],68:[function(_dereq_,module,exports){
+},{"./ArrayList":65,"./Map":74}],70:[function(_dereq_,module,exports){
 /**
  * @requires Set.js
  */
@@ -7164,7 +7196,7 @@ HashSet.Iterator.prototype.remove = function() {
 
 module.exports = HashSet;
 
-},{"./Collection":65,"./NoSuchElementException":73,"./OperationNotSupported":74,"./Set":75}],69:[function(_dereq_,module,exports){
+},{"./Collection":67,"./NoSuchElementException":75,"./OperationNotSupported":76,"./Set":77}],71:[function(_dereq_,module,exports){
 /**
  * @param {string=}
  *          message Optional message.
@@ -7183,7 +7215,7 @@ IndexOutOfBoundsException.prototype.name = 'IndexOutOfBoundsException';
 
 module.exports = IndexOutOfBoundsException;
 
-},{}],70:[function(_dereq_,module,exports){
+},{}],72:[function(_dereq_,module,exports){
 /**
  * @see http://download.oracle.com/javase/6/docs/api/java/util/Iterator.html
  * @interface
@@ -7212,7 +7244,7 @@ Iterator.prototype.remove = function() {};
 
 module.exports = Iterator;
 
-},{}],71:[function(_dereq_,module,exports){
+},{}],73:[function(_dereq_,module,exports){
 /**
  * @requires Collection.js
  */
@@ -7246,7 +7278,7 @@ List.prototype.isEmpty = function() {};
 
 module.exports = List;
 
-},{"./Collection":65}],72:[function(_dereq_,module,exports){
+},{"./Collection":67}],74:[function(_dereq_,module,exports){
 /**
  * @see http://download.oracle.com/javase/6/docs/api/java/util/Map.html
  *
@@ -7292,7 +7324,7 @@ Map.prototype.values = function() {};
 
 module.exports = Map;
 
-},{}],73:[function(_dereq_,module,exports){
+},{}],75:[function(_dereq_,module,exports){
 /**
  * @param {string=}
  *          message Optional message.
@@ -7311,7 +7343,7 @@ NoSuchElementException.prototype.name = 'NoSuchElementException';
 
 module.exports = NoSuchElementException;
 
-},{}],74:[function(_dereq_,module,exports){
+},{}],76:[function(_dereq_,module,exports){
 /**
  * @param {string=}
  *          message Optional message.
@@ -7330,7 +7362,7 @@ OperationNotSupported.prototype.name = 'OperationNotSupported';
 
 module.exports = OperationNotSupported;
 
-},{}],75:[function(_dereq_,module,exports){
+},{}],77:[function(_dereq_,module,exports){
 /**
  * @requires Collection.js
  */
@@ -7358,7 +7390,7 @@ Set.prototype.contains = function(o) {};
 
 module.exports = Set;
 
-},{"./Collection":65}],76:[function(_dereq_,module,exports){
+},{"./Collection":67}],78:[function(_dereq_,module,exports){
 /**
  * @requires Map.js
  */
@@ -7375,7 +7407,7 @@ SortedMap.prototype = new Map;
 
 module.exports = SortedMap;
 
-},{"./Map":72}],77:[function(_dereq_,module,exports){
+},{"./Map":74}],79:[function(_dereq_,module,exports){
 /**
  * @requires Set.js
  */
@@ -7392,7 +7424,7 @@ SortedSet.prototype = new Set;
 
 module.exports = SortedSet;
 
-},{"./Set":75}],78:[function(_dereq_,module,exports){
+},{"./Set":77}],80:[function(_dereq_,module,exports){
 /**
  * @requires List.js
  */
@@ -7510,7 +7542,7 @@ Stack.prototype.toArray = function() {
 
 module.exports = Stack;
 
-},{"./EmptyStackException":66,"./List":71}],79:[function(_dereq_,module,exports){
+},{"./EmptyStackException":68,"./List":73}],81:[function(_dereq_,module,exports){
 /**
  * @requires SortedMap.js
  * @requires ArrayList.js
@@ -7603,7 +7635,7 @@ TreeMap.prototype.size = function() {
 
 module.exports = TreeMap;
 
-},{"./ArrayList":63,"./Map":72,"./SortedMap":76}],80:[function(_dereq_,module,exports){
+},{"./ArrayList":65,"./Map":74,"./SortedMap":78}],82:[function(_dereq_,module,exports){
 /**
  * @requires SortedSet.js
  */
@@ -7771,7 +7803,7 @@ TreeSet.Iterator.prototype.remove = function() {
 
 module.exports = TreeSet;
 
-},{"./Collection":65,"./NoSuchElementException":73,"./OperationNotSupported":74,"./SortedSet":77}],81:[function(_dereq_,module,exports){
+},{"./Collection":67,"./NoSuchElementException":75,"./OperationNotSupported":76,"./SortedSet":79}],83:[function(_dereq_,module,exports){
 module.exports.ArrayList = _dereq_('./ArrayList');
 module.exports.Arrays = _dereq_('./Arrays');
 module.exports.Collection = _dereq_('./Collection');
@@ -7787,7 +7819,7 @@ module.exports.Stack = _dereq_('./Stack');
 module.exports.TreeMap = _dereq_('./TreeMap');
 module.exports.TreeSet = _dereq_('./TreeSet');
 
-},{"./ArrayList":63,"./Arrays":64,"./Collection":65,"./HashMap":67,"./HashSet":68,"./Iterator":70,"./List":71,"./Map":72,"./Set":75,"./SortedMap":76,"./SortedSet":77,"./Stack":78,"./TreeMap":79,"./TreeSet":80}],82:[function(_dereq_,module,exports){
+},{"./ArrayList":65,"./Arrays":66,"./Collection":67,"./HashMap":69,"./HashSet":70,"./Iterator":72,"./List":73,"./Map":74,"./Set":77,"./SortedMap":78,"./SortedSet":79,"./Stack":80,"./TreeMap":81,"./TreeSet":82}],84:[function(_dereq_,module,exports){
 (function (global){
 /**
  * @license
@@ -14576,7 +14608,7 @@ module.exports.TreeSet = _dereq_('./TreeSet');
 }.call(this));
 
 }).call(this,typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}],83:[function(_dereq_,module,exports){
+},{}],85:[function(_dereq_,module,exports){
 // # simple-statistics
 //
 // A simple, literate statistics system. The code below uses the
@@ -15665,7 +15697,7 @@ module.exports.TreeSet = _dereq_('./TreeSet');
 
 })(this);
 
-},{}],84:[function(_dereq_,module,exports){
+},{}],86:[function(_dereq_,module,exports){
 var topojson = module.exports = _dereq_("./topojson");
 topojson.topology = _dereq_("./lib/topojson/topology");
 topojson.simplify = _dereq_("./lib/topojson/simplify");
@@ -15674,7 +15706,7 @@ topojson.filter = _dereq_("./lib/topojson/filter");
 topojson.prune = _dereq_("./lib/topojson/prune");
 topojson.bind = _dereq_("./lib/topojson/bind");
 
-},{"./lib/topojson/bind":85,"./lib/topojson/clockwise":88,"./lib/topojson/filter":92,"./lib/topojson/prune":95,"./lib/topojson/simplify":97,"./lib/topojson/topology":100,"./topojson":111}],85:[function(_dereq_,module,exports){
+},{"./lib/topojson/bind":87,"./lib/topojson/clockwise":90,"./lib/topojson/filter":94,"./lib/topojson/prune":97,"./lib/topojson/simplify":99,"./lib/topojson/topology":102,"./topojson":113}],87:[function(_dereq_,module,exports){
 var type = _dereq_("./type"),
     topojson = _dereq_("../../");
 
@@ -15704,7 +15736,7 @@ module.exports = function(topology, propertiesById) {
 
 function noop() {}
 
-},{"../../":84,"./type":110}],86:[function(_dereq_,module,exports){
+},{"../../":86,"./type":112}],88:[function(_dereq_,module,exports){
 
 // Computes the bounding box of the specified hash of GeoJSON objects.
 module.exports = function(objects) {
@@ -15751,7 +15783,7 @@ module.exports = function(objects) {
   return [x0, y0, x1, y1];
 };
 
-},{}],87:[function(_dereq_,module,exports){
+},{}],89:[function(_dereq_,module,exports){
 exports.name = "cartesian";
 exports.formatDistance = formatDistance;
 exports.ringArea = ringArea;
@@ -15785,7 +15817,7 @@ function distance(x0, y0, x1, y1) {
   return Math.sqrt(dx * dx + dy * dy);
 }
 
-},{}],88:[function(_dereq_,module,exports){
+},{}],90:[function(_dereq_,module,exports){
 var type = _dereq_("./type"),
     systems = _dereq_("./coordinate-systems"),
     topojson = _dereq_("../../");
@@ -15876,7 +15908,7 @@ function clockwisePolygonSystem(ringArea, reverse) {
 
 function noop() {}
 
-},{"../../":84,"./coordinate-systems":90,"./type":110}],89:[function(_dereq_,module,exports){
+},{"../../":86,"./coordinate-systems":92,"./type":112}],91:[function(_dereq_,module,exports){
 // Given a hash of GeoJSON objects and an id function, invokes the id function
 // to compute a new id for each object that is a feature. The function is passed
 // the feature and is expected to return the new feature id, or null if the
@@ -15906,13 +15938,13 @@ module.exports = function(objects, id) {
   return objects;
 };
 
-},{}],90:[function(_dereq_,module,exports){
+},{}],92:[function(_dereq_,module,exports){
 module.exports = {
   cartesian: _dereq_("./cartesian"),
   spherical: _dereq_("./spherical")
 };
 
-},{"./cartesian":87,"./spherical":98}],91:[function(_dereq_,module,exports){
+},{"./cartesian":89,"./spherical":100}],93:[function(_dereq_,module,exports){
 // Given a TopoJSON topology in absolute (quantized) coordinates,
 // converts to fixed-point delta encoding.
 // This is a destructive operation that modifies the given topology!
@@ -15943,7 +15975,7 @@ module.exports = function(topology) {
   return topology;
 };
 
-},{}],92:[function(_dereq_,module,exports){
+},{}],94:[function(_dereq_,module,exports){
 var type = _dereq_("./type"),
     prune = _dereq_("./prune"),
     clockwise = _dereq_("./clockwise"),
@@ -16014,7 +16046,7 @@ module.exports = function(topology, options) {
 
 function noop() {}
 
-},{"../../":84,"./clockwise":88,"./coordinate-systems":90,"./prune":95,"./type":110}],93:[function(_dereq_,module,exports){
+},{"../../":86,"./clockwise":90,"./coordinate-systems":92,"./prune":97,"./type":112}],95:[function(_dereq_,module,exports){
 // Given a hash of GeoJSON objects, replaces Features with geometry objects.
 // This is a destructive operation that modifies the input objects!
 module.exports = function(objects) {
@@ -16133,7 +16165,7 @@ module.exports = function(objects) {
   return objects;
 };
 
-},{}],94:[function(_dereq_,module,exports){
+},{}],96:[function(_dereq_,module,exports){
 module.exports = function(objects, filter) {
 
   function prefilterGeometry(geometry) {
@@ -16189,7 +16221,7 @@ module.exports = function(objects, filter) {
   return objects;
 };
 
-},{}],95:[function(_dereq_,module,exports){
+},{}],97:[function(_dereq_,module,exports){
 module.exports = function(topology, options) {
   var verbose = false,
       objects = topology.objects,
@@ -16263,7 +16295,7 @@ module.exports = function(topology, options) {
 
 function noop() {}
 
-},{}],96:[function(_dereq_,module,exports){
+},{}],98:[function(_dereq_,module,exports){
 module.exports = function(objects, bbox, Q) {
   var x0 = isFinite(bbox[0]) ? bbox[0] : 0,
       y0 = isFinite(bbox[1]) ? bbox[1] : 0,
@@ -16350,7 +16382,7 @@ module.exports = function(objects, bbox, Q) {
   };
 };
 
-},{}],97:[function(_dereq_,module,exports){
+},{}],99:[function(_dereq_,module,exports){
 var topojson = _dereq_("../../"),
     systems = _dereq_("./coordinate-systems");
 
@@ -16434,7 +16466,7 @@ module.exports = function(topology, options) {
   return topology;
 };
 
-},{"../../":84,"./coordinate-systems":90}],98:[function(_dereq_,module,exports){
+},{"../../":86,"./coordinate-systems":92}],100:[function(_dereq_,module,exports){
 var π = Math.PI,
     π_4 = π / 4,
     radians = π / 180;
@@ -16516,7 +16548,7 @@ function haversin(x) {
   return (x = Math.sin(x / 2)) * x;
 }
 
-},{}],99:[function(_dereq_,module,exports){
+},{}],101:[function(_dereq_,module,exports){
 var type = _dereq_("./type");
 
 module.exports = function(objects, transform) {
@@ -16692,7 +16724,7 @@ module.exports = function(objects, transform) {
   }
 };
 
-},{"./type":110}],100:[function(_dereq_,module,exports){
+},{"./type":112}],102:[function(_dereq_,module,exports){
 var type = _dereq_("./type"),
     stitch = _dereq_("./stitch"),
     systems = _dereq_("./coordinate-systems"),
@@ -16794,7 +16826,7 @@ module.exports = function(objects, options) {
   return topology;
 };
 
-},{"./bounds":86,"./compute-id":89,"./coordinate-systems":90,"./delta":91,"./geomify":93,"./prefilter":94,"./quantize":96,"./stitch":99,"./topology/index":105,"./transform-properties":109,"./type":110}],101:[function(_dereq_,module,exports){
+},{"./bounds":88,"./compute-id":91,"./coordinate-systems":92,"./delta":93,"./geomify":95,"./prefilter":96,"./quantize":98,"./stitch":101,"./topology/index":107,"./transform-properties":111,"./type":112}],103:[function(_dereq_,module,exports){
 var join = _dereq_("./join");
 
 // Given an extracted (pre-)topology, cuts (or rotates) arcs so that all shared
@@ -16856,7 +16888,7 @@ function reverse(array, start, end) {
   }
 }
 
-},{"./join":106}],102:[function(_dereq_,module,exports){
+},{"./join":108}],104:[function(_dereq_,module,exports){
 var join = _dereq_("./join"),
     hashtable = _dereq_("./hashtable"),
     hashPoint = _dereq_("./point-hash"),
@@ -17042,7 +17074,7 @@ module.exports = function(topology) {
   return topology;
 };
 
-},{"./hashtable":104,"./join":106,"./point-equal":107,"./point-hash":108}],103:[function(_dereq_,module,exports){
+},{"./hashtable":106,"./join":108,"./point-equal":109,"./point-hash":110}],105:[function(_dereq_,module,exports){
 // Extracts the lines and rings from the specified hash of geometry objects.
 //
 // Returns an object with three properties:
@@ -17109,7 +17141,7 @@ module.exports = function(objects) {
   };
 };
 
-},{}],104:[function(_dereq_,module,exports){
+},{}],106:[function(_dereq_,module,exports){
 module.exports = function(size, hash, equal) {
   var hashtable = new Array(size = 1 << Math.ceil(Math.log(size) / Math.LN2)),
       mask = size - 1,
@@ -17180,7 +17212,7 @@ module.exports = function(size, hash, equal) {
   };
 };
 
-},{}],105:[function(_dereq_,module,exports){
+},{}],107:[function(_dereq_,module,exports){
 var hashtable = _dereq_("./hashtable"),
     extract = _dereq_("./extract"),
     cut = _dereq_("./cut"),
@@ -17250,7 +17282,7 @@ function equalArc(arcA, arcB) {
   return ia === ib && ja === jb;
 }
 
-},{"./cut":101,"./dedup":102,"./extract":103,"./hashtable":104}],106:[function(_dereq_,module,exports){
+},{"./cut":103,"./dedup":104,"./extract":105,"./hashtable":106}],108:[function(_dereq_,module,exports){
 var hashtable = _dereq_("./hashtable"),
     hashPoint = _dereq_("./point-hash"),
     equalPoint = _dereq_("./point-equal");
@@ -17325,12 +17357,12 @@ module.exports = function(topology) {
   return junctionByPoint;
 };
 
-},{"./hashtable":104,"./point-equal":107,"./point-hash":108}],107:[function(_dereq_,module,exports){
+},{"./hashtable":106,"./point-equal":109,"./point-hash":110}],109:[function(_dereq_,module,exports){
 module.exports = function(pointA, pointB) {
   return pointA[0] === pointB[0] && pointA[1] === pointB[1];
 };
 
-},{}],108:[function(_dereq_,module,exports){
+},{}],110:[function(_dereq_,module,exports){
 // TODO if quantized, use simpler Int32 hashing?
 
 var hashBuffer = new ArrayBuffer(8),
@@ -17350,7 +17382,7 @@ module.exports = function(point) {
   return h < 0 ? ~h : h;
 };
 
-},{}],109:[function(_dereq_,module,exports){
+},{}],111:[function(_dereq_,module,exports){
 // Given a hash of GeoJSON objects, transforms any properties on features using
 // the specified transform function. The function is invoked for each existing
 // property on the current feature, being passed the new properties hash, the
@@ -17395,7 +17427,7 @@ module.exports = function(objects, propertyTransform) {
   return objects;
 };
 
-},{}],110:[function(_dereq_,module,exports){
+},{}],112:[function(_dereq_,module,exports){
 module.exports = function(types) {
   for (var type in typeDefaults) {
     if (!(type in types)) {
@@ -17489,7 +17521,7 @@ var typeObjects = {
   FeatureCollection: 1
 };
 
-},{}],111:[function(_dereq_,module,exports){
+},{}],113:[function(_dereq_,module,exports){
 !function() {
   var topojson = {
     version: "1.4.6",
