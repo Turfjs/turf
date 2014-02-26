@@ -120,7 +120,7 @@ module.exports = function(polygons, points, aggregations, done){
   done(null, polygons)
 }
 },{"./average":4,"./count":14,"./deviation":15,"./max":33,"./median":34,"./min":37,"./sum":51,"./variance":56,"lodash":84}],3:[function(_dereq_,module,exports){
-//http://www.mathopenref.com/coordpolygonarea2.html
+// use this https://github.com/mapbox/geojson-area
 
 var _ = _dereq_('lodash')
 
@@ -132,17 +132,6 @@ module.exports = function(feature, done){
 }
 
 
-function polygonArea(X, Y, numPoints) 
-{ 
-  area = 0;         // Accumulates area in the loop
-  j = numPoints-1;  // The last vertex is the 'previous' one to the first
-
-  for (i=0; i<numPoints; i++)
-    { area = area +  (X[j]+X[i]) * (Y[j]-Y[i]); 
-      j = i;  //j is previous vertex to i
-    }
-  return area/2;
-}
 },{"lodash":84}],4:[function(_dereq_,module,exports){
 var t = {}
 var _ = _dereq_('lodash'),
@@ -1868,6 +1857,18 @@ module.exports = function(points, z, resolution, breaks, done){
             yCoordinates.push(x * interval + bbox[1])
           }
           
+          //change zero breaks to .01 to deal with bug in conrec algorithm
+          breaks = _.map(breaks, function(num){
+            if(num === 0){
+              return .01
+            }
+            else{
+              return num
+            }
+          })
+          //deduplicate breaks
+          breaks = _.uniq(breaks)
+
           var c = new Conrec
           c.contour(data, 0, resolution, 0, resolution, xCoordinates, yCoordinates, breaks.length, breaks)
           var contourList = c.contourList()
@@ -1904,6 +1905,10 @@ module.exports = function(points, z, resolution, breaks, done){
             })
             donutPolys.features = []
             _.each(zGroups, function(group){
+              //console.log('===================================')
+              _.each(group.rings, function(ring){
+                //console.log(ring.geometry.coordinates)
+              })
               t.merge(t.featurecollection(group.rings), function(err, multiRing){
                 donutPolys.features.push(multiRing)
               })
