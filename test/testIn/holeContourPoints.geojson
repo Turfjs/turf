@@ -134,7 +134,7 @@
     {
       "type": "Feature",
       "properties": {
-        "elevation": 10
+        "elevation": 50
       },
       "geometry": {
         "type": "Point",
