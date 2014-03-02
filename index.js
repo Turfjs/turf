@@ -1,4 +1,5 @@
 module.exports = {
+  isClockwise: require('./lib/isClockwise'),
   area: require('./lib/area'),
   near: require('./lib/near'),
   isolines: require('./lib/isolines'),
