@@ -100,6 +100,7 @@ bower install turf
 - [flip](#flip)
 - [explode](#explode)
 - [combine](#combine)
+- [isClockwise](#isClockwise)
 
 **Planned Features**
 
@@ -360,6 +361,23 @@ t.combine(fc, function(err, combined){
   if(err) throw err
   console.log(combined)
 })
+```
+
+
+###isClockwise
+
+Combines feature collection of point, linestring, or polygon features into multipoint, multilinestring, or multipolygon features.
+    
+```javascript
+var t = require('turf')
+var clockwiseRing = [[0,0],[1,1],[1,0],[0,0]]
+var counterClockwiseRing = [[0,0],[1,0],[1,1],[0,0]]
+
+var clockwise = t.isClockwise(clockwiseRing)
+var counterClockwise = t.isClockwise(counterClockwiseRing)
+
+console.log(clockwise) // true
+console.log(counterClockwise) // false
 ```
 
 
