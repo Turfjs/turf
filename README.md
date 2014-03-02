@@ -366,7 +366,7 @@ t.combine(fc, function(err, combined){
 
 ###isClockwise
 
-Combines feature collection of point, linestring, or polygon features into multipoint, multilinestring, or multipolygon features.
+Takes a ring and return true or false whether or not the ring is clockwise or counter-clockwise.
     
 ```javascript
 var t = require('turf')
