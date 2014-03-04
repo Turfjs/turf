@@ -1,5 +1,8 @@
 turf
 ======
+
+[![Build Status](https://travis-ci.org/morganherlocker/turf.png)](https://travis-ci.org/morganherlocker/turf)
+
 ![turf](https://raw.github.com/morganherlocker/turf/master/img/turf.png)
 
 ***a fast and fully featured open gis engine written in javascript***
@@ -17,7 +20,7 @@ Turf can also be run in a browser. To use it, download the [minified file](https
 **NOTE: Browser functionality is currently unstable. Please consider using turf from node.js. Work is in progress on resolving the issues.**
 
 ```html
-<script src="turf.min.js"></script> 
+<script src="turf.min.js"></script>
 ```
 
 It can also be installed using bower:
@@ -171,7 +174,7 @@ Creates a geojson linestring Feature based on a coordinate array. Properties can
 var t = require('turf')
 
 var linestring1 = t.linestring([[102.0, -10.0], [103.0, 1.0], [104.0, 0.0], [130.0, 4.0]])
-var linestring2 = t.linestring([[102.0, -10.0], [103.0, 1.0], [104.0, 0.0], [130.0, 4.0]], 
+var linestring2 = t.linestring([[102.0, -10.0], [103.0, 1.0], [104.0, 0.0], [130.0, 4.0]],
   {name: 'line 1', distance: 145})
 console.log(linestring1)
 console.log(linestring2)
@@ -186,7 +189,7 @@ Creates a geojson polygon Feature based on a coordinate array. Properties can be
 var t = require('turf')
 
 var polygon1 = t.point([[[20.0,0.0],[101.0,0.0],[101.0,1.0],[100.0,1.0],[100.0,0.0]]])
-var polygon2 = t.point([[[20.0,0.0],[101.0,0.0],[101.0,1.0],[100.0,1.0],[100.0,0.0]]], 
+var polygon2 = t.point([[[20.0,0.0],[101.0,0.0],[101.0,1.0],[100.0,1.0],[100.0,0.0]]],
   {name: 'line 1', distance: 145})
 console.log(polygon1)
 console.log(polygon2)
@@ -350,7 +353,7 @@ t.explode(poly, function(err, vertices){
 ###combine
 
 Combines feature collection of point, linestring, or polygon features into multipoint, multilinestring, or multipolygon features.
-    
+
 ```javascript
 var t = require('turf')
 var pt1 = t.point(50, 1)
@@ -367,7 +370,7 @@ t.combine(fc, function(err, combined){
 ###isClockwise
 
 Takes a ring and return true or false whether or not the ring is clockwise or counter-clockwise.
-    
+
 ```javascript
 var t = require('turf')
 var clockwiseRing = [[0,0],[1,1],[1,0],[0,0]]
@@ -387,8 +390,8 @@ Removes any features from a feature collection that match a property value.
 
 ```javascript
 var t = require('turf')
-var trees = t.featurecollection([t.point(1,2, {species: 'oak'}), 
-                                 t.point(2,1, {species: 'dogwood'}), 
+var trees = t.featurecollection([t.point(1,2, {species: 'oak'}),
+                                 t.point(2,1, {species: 'dogwood'}),
                                  t.point(3,1, {species: 'maple'})])
 
 t.remove(points, 'species', 'dogwood', function(err, result) {
@@ -406,10 +409,10 @@ Keeps any features from a feature collection that match a property value.
 var t = require('turf')
 var trees = t.featurecollection([
   t.point(1,2, {species: 'oak'}),
-  t.point(2,1, {species: 'birch'}), 
+  t.point(2,1, {species: 'birch'}),
   t.point(3,1, {species: 'oak'}),
-  t.point(2,2, {species: 'redwood'}), 
-  t.point(2,3, {species: 'maple'}), 
+  t.point(2,2, {species: 'redwood'}),
+  t.point(2,3, {species: 'maple'}),
   t.point(4,2, {species: 'oak'})
   ])
 
@@ -496,7 +499,7 @@ t.distance(point1, point2, unit, function(err, distance){
 Returns the nearest point feature.
 
 ```javascript
-var t = require('turf')    
+var t = require('turf')
 var inPoint = t.point(-75.4, 39.4, {name: 'Location A'})
 
 var pt1 = t.point(-75.343, 39.984, {name: 'Location B'})
@@ -552,7 +555,7 @@ var point = t.point(-75.3221, 39.529)
 // triangle is a polygon with "a", "b", and "c" values representing
 // the values of the coordinates in order.
 var triangle = t.polygon(
-    [[[-75.1221,39.57],[-75.58,39.18],[-75.97,39.86]]], 
+    [[[-75.1221,39.57],[-75.58,39.18],[-75.97,39.86]]],
     {"a": 11, "b": 122, "c": 44}
   )
 
