@@ -3,7 +3,19 @@ var t = require('../index'),
   fs = require('fs')
 
 describe('donuts', function(){
-
+  it('should take a set of polygons and return a set of donuts', function(done){
+    t.load(__dirname+'/testIn/donutBadRing.geojson', function(err, donutsIn){
+      if(err) throw err
+      t.donuts(donutsIn, function(err, donuts){
+        if(err) throw err
+        fs.writeFileSync(__dirname+'/testOut/donutsBadRing.geojson', JSON.stringify(donuts))
+        donuts.should.be.ok
+        donuts.features.should.be.ok
+        donuts.features[0].should.be.ok
+        done()
+      })
+    })
+  })
   it('should take a set of polygons and return a set of donuts', function(done){
     t.load(__dirname+'/testIn/donutsIn.geojson', function(err, donutsIn){
       if(err) throw err
