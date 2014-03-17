@@ -47,7 +47,8 @@
     "lodash": "~2.4.1",
     "topojson": "~1.4.6",
     "async": "~0.2.10",
-    "jsts": "~0.13.4"
+    "jsts": "~0.13.4",
+    "poly-extractor": "0.0.3"
   },
   "devDependencies": {
     "should": "~3.1.2",
