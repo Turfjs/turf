@@ -1,4 +1,4 @@
-!function(e){if("object"==typeof exports)module.exports=e();else if("function"==typeof define&&define.amd)define(e);else{var f;"undefined"!=typeof window?f=window:"undefined"!=typeof global?f=global:"undefined"!=typeof self&&(f=self),f.t=e()}}(function(){var define,module,exports;return (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);throw new Error("Cannot find module '"+o+"'")}var f=n[o]={exports:{}};t[o][0].call(f.exports,function(e){var n=t[o][1][e];return s(n?n:e)},f,f.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(_dereq_,module,exports){
+!function(e){if("object"==typeof exports)module.exports=e();else if("function"==typeof define&&define.amd)define(e);else{var f;"undefined"!=typeof window?f=window:"undefined"!=typeof global?f=global:"undefined"!=typeof self&&(f=self),f.turf=e()}}(function(){var define,module,exports;return (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);throw new Error("Cannot find module '"+o+"'")}var f=n[o]={exports:{}};t[o][0].call(f.exports,function(e){var n=t[o][1][e];return s(n?n:e)},f,f.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(_dereq_,module,exports){
 module.exports = {
   isClockwise: _dereq_('./lib/isClockwise'),
   area: _dereq_('./lib/area'),
@@ -1369,13 +1369,13 @@ module.exports = function(polyFC, done){
         if(!_.isEqual(poly1, poly2) && isContained){
           if(!_.isEqual(poly1.properties, poly2.properties)){
             t.erase(poly1, poly2, function(err, erased){
-              console.log(erased.geometry.type)
+              //console.log(erased.geometry.type)
               var duplicate = _.some(donuts.features, erased)
               if(!duplicate && erased.geometry.type != 'GeometryCollection'){
                 donuts.features.push(erased)
               }
               else if (erased.geometry.type == 'GeometryCollection'){
-                console.log('GCOLLECTION')
+                //console.log('GCOLLECTION')
               }
             })
           }
@@ -1386,9 +1386,9 @@ module.exports = function(polyFC, done){
             donuts.features.push(poly1)
           }
           else{
-            console.log('==============================\n\n')
-            console.log(poly1)
-            console.log(poly2)
+            //console.log('==============================\n\n')
+            //console.log(poly1)
+            //console.log(poly2)
             //t.union(poly1, poly2, function(err, unioned){
             //  donuts.features.push(unioned)
             //})
