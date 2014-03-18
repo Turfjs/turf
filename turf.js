@@ -157,7 +157,7 @@ module.exports = function(polyFC, ptFC, inField, outField, done){
 
   done(null, polyFC)
 }
-},{"./inside":26,"lodash":66,"simple-statistics":68}],5:[function(_dereq_,module,exports){
+},{"./inside":26,"lodash":66,"simple-statistics":67}],5:[function(_dereq_,module,exports){
 var t = {}
 var point = _dereq_('../lib/point'),
     polygon = _dereq_('../lib/polygon')
@@ -505,7 +505,7 @@ module.exports = function(features, done){
     done(err, t.point(averageX, averageY))
   })
 }
-},{"./explode":20,"./point":42,"lodash":66,"simple-statistics":68}],10:[function(_dereq_,module,exports){
+},{"./explode":20,"./point":42,"lodash":66,"simple-statistics":67}],10:[function(_dereq_,module,exports){
 //this tool takes a feature collection of like geometries and combines them into a single multipoint, multilinestring, or multipolygon
 var _ = _dereq_('lodash')
 
@@ -1297,7 +1297,7 @@ module.exports = function(polyFC, ptFC, inField, outField, done){
   })
   done(null, polyFC)
 }
-},{"./inside":26,"lodash":66,"simple-statistics":68}],16:[function(_dereq_,module,exports){
+},{"./inside":26,"lodash":66,"simple-statistics":67}],16:[function(_dereq_,module,exports){
 //http://en.wikipedia.org/wiki/Haversine_formula
 //http://www.movable-type.co.uk/scripts/latlong.html
 // expects a feature collection of points
@@ -1343,16 +1343,8 @@ module.exports = function(point1, point2, units, done){
 
 
 },{}],17:[function(_dereq_,module,exports){
-/* 
-takes a collection of polygons and returns a collection of donuts.
+var _ = _dereq_('lodash')
 
- foreach poly:
-  foreach poly:
-    poly1 = poly1.erase(poly2)
-*/
-
-var _ = _dereq_('lodash'),
-    extractor = _dereq_('poly-extractor')
 var t = {}
 t.featurecollection = _dereq_('./featurecollection')
 t.erase = _dereq_('./erase')
@@ -1360,42 +1352,40 @@ t.point = _dereq_('./point')
 t.inside = _dereq_('./inside')
 t.union = _dereq_('./union')
 
-module.exports = function(polyFC, done){
-  polyFC
+module.exports = function(fc, done){
   donuts = t.featurecollection([])
-  _.each(polyFC.features, function(poly1){
-    _.each(polyFC.features, function(poly2){
-      contained(poly1, poly2, function(isContained){
-        if(!_.isEqual(poly1, poly2) && isContained){
-          if(!_.isEqual(poly1.properties, poly2.properties)){
+  _.each(fc.features, function(poly1){
+    _.each(fc.features, function(poly2){
+      // if the polys are identical
+      if(_.isEqual(poly1, poly2)){
+        // do nothing
+      }
+      else{
+        //check to see if poly2 is inside of poly1
+        contained(poly1, poly2, function(isContained){
+          // if it is contained and has different properties, erase poly2 from poly1
+          if(isContained && !_.isEqual(poly1.properties, poly2.properties)){
+            // erase poly2 from poly1
             t.erase(poly1, poly2, function(err, erased){
-              //console.log(erased.geometry.type)
-              var duplicate = _.some(donuts.features, erased)
-              if(!duplicate && erased.geometry.type != 'GeometryCollection'){
-                donuts.features.push(erased)
-              }
-              else if (erased.geometry.type == 'GeometryCollection'){
-                //console.log('GCOLLECTION')
+              if(!_.some(donuts.features, erased)){
+                poly1 = erased
               }
             })
           }
-        }
-        else if(!_.isEqual(poly1, poly2)){
-          var duplicate = _.some(donuts.features, poly1)
-          if(!duplicate){
-            donuts.features.push(poly1)
+          // if it is contained and has the same properties, merge poly1 and poly2
+          if(isContained && _.isEqual(poly1.properties, poly2.properties)){
+            // merge poly1 and poly2
+            t.union(poly1, poly2, function(err, unioned){
+              if(!_.some(donuts.features, unioned)){
+                poly1 = unioned
+              }
+            })
           }
-          else{
-            //console.log('==============================\n\n')
-            //console.log(poly1)
-            //console.log(poly2)
-            //t.union(poly1, poly2, function(err, unioned){
-            //  donuts.features.push(unioned)
-            //})
-          }
-        }
-      })
+        })
+      }
     })
+    // push transformed poly1 to donuts
+    donuts.features.push(poly1)
   })
   done(null, donuts)
 }
@@ -1406,7 +1396,7 @@ function contained(poly1, poly2, done){
     done(isInside)
   })
 }
-},{"./erase":19,"./featurecollection":22,"./inside":26,"./point":42,"./union":56,"lodash":66,"poly-extractor":67}],18:[function(_dereq_,module,exports){
+},{"./erase":19,"./featurecollection":22,"./inside":26,"./point":42,"./union":56,"lodash":66}],18:[function(_dereq_,module,exports){
 var t = {}
 var extent = _dereq_('./extent'),
     bboxPolygon = _dereq_('./bboxPolygon')
@@ -3083,7 +3073,7 @@ module.exports = function(fc, field, num, done){
 
   done(null, breaks)
 }
-},{"lodash":66,"simple-statistics":68}],32:[function(_dereq_,module,exports){
+},{"lodash":66,"simple-statistics":67}],32:[function(_dereq_,module,exports){
 module.exports = function(coordinates, properties){
   if(coordinates === null) throw new Error('No coordinates passed')
   var linestring = { 
@@ -3133,7 +3123,7 @@ module.exports = function(polyFC, ptFC, inField, outField, done){
   })
   done(null, polyFC)
 }
-},{"./inside":26,"lodash":66,"simple-statistics":68}],35:[function(_dereq_,module,exports){
+},{"./inside":26,"lodash":66,"simple-statistics":67}],35:[function(_dereq_,module,exports){
 var t = {}
 var _ = _dereq_('lodash'),
     ss = _dereq_('simple-statistics')
@@ -3156,7 +3146,7 @@ module.exports = function(polyFC, ptFC, inField, outField, done){
   })
   done(null, polyFC)
 }
-},{"./inside":26,"lodash":66,"simple-statistics":68}],36:[function(_dereq_,module,exports){
+},{"./inside":26,"lodash":66,"simple-statistics":67}],36:[function(_dereq_,module,exports){
 // 1. run tin on points
 // 2. merge the tin
 //var topojson = require('')
@@ -3231,7 +3221,7 @@ module.exports = function(polyFC, ptFC, inField, outField, done){
   })
   done(null, polyFC)
 }
-},{"./inside":26,"lodash":66,"simple-statistics":68}],39:[function(_dereq_,module,exports){
+},{"./inside":26,"lodash":66,"simple-statistics":67}],39:[function(_dereq_,module,exports){
 
 
 module.exports = function(inPoints, outPoints, distance, unit, done){
@@ -3348,7 +3338,7 @@ module.exports = function(fc, field, percentiles, done){
   })
   done(null, quantiles)
 }
-},{"lodash":66,"simple-statistics":68}],45:[function(_dereq_,module,exports){
+},{"lodash":66,"simple-statistics":67}],45:[function(_dereq_,module,exports){
 var t = {}
 var featurecollection = _dereq_('./featurecollection')
 t.featurecollection = featurecollection
@@ -3433,7 +3423,7 @@ module.exports = function(fc, quantization, minimumArea, done){
   topojson.simplify(topo, options)
   done(null, topojson.feature(topo, topo.objects.name))
 }
-},{"topojson":69}],50:[function(_dereq_,module,exports){
+},{"topojson":68}],50:[function(_dereq_,module,exports){
 module.exports = function(bbox, factor, done){
   var lowX = (((bbox[2] - bbox[0]) / 2) * factor) + bbox[0]
   var lowY = (((bbox[3] - bbox[1]) / 2) * factor) + bbox[1]
@@ -3507,7 +3497,7 @@ module.exports = function(polyFC, ptFC, inField, outField, done){
   })
   done(null, polyFC)
 }
-},{"./inside":26,"lodash":66,"simple-statistics":68}],53:[function(_dereq_,module,exports){
+},{"./inside":26,"lodash":66,"simple-statistics":67}],53:[function(_dereq_,module,exports){
 var t = {}
   var _ = _dereq_('lodash')
 t.inside = _dereq_('./inside')
@@ -3788,7 +3778,7 @@ module.exports = function(geojson, done){
   var topology = topojson.topology({geojson: geojson})
   done(null, topology)
 }
-},{"topojson":69}],56:[function(_dereq_,module,exports){
+},{"topojson":68}],56:[function(_dereq_,module,exports){
 // look here for help http://svn.osgeo.org/grass/grass/branches/releasebranch_6_4/vector/v.overlay/main.c
 //must be array of polygons
 
@@ -3835,7 +3825,7 @@ module.exports = function(polyFC, ptFC, inField, outField, done){
   })
   done(null, polyFC)
 }
-},{"./inside":26,"lodash":66,"simple-statistics":68}],58:[function(_dereq_,module,exports){
+},{"./inside":26,"lodash":66,"simple-statistics":67}],58:[function(_dereq_,module,exports){
 var t = {}
 var _ = _dereq_('lodash')
 t.inside = _dereq_('./inside')
@@ -13575,60 +13565,6 @@ return false;};HashSet.Iterator.prototype.remove=function(){throw new javascript
 
 }).call(this,typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 },{}],67:[function(_dereq_,module,exports){
-module.exports = function(fc){
-  var polys = {
-    type: 'FeatureCollection'
-  }
-  polys.features = []
-  fc.features.forEach(function(feature){
-    if(feature.geometry.type === 'Polygon'){
-      polys.features.push(feature)
-    }
-    else if(feature.geometry.type === 'MultiPolygon'){
-      feature.geometry.coordinates.forEach(function(polyCoords){
-        var poly = polyTemplate()
-        poly.geometry.coordinates = polyCoords
-        poly.properties = feature.properties
-        polys.features.push(poly)
-      })
-    }
-    else if(feature.geometry.type === 'GeometryCollection'){
-      feature.geometry.geometries.forEach(function(geometry){
-        if(geometry.type === 'Polygon'){
-          var poly = polyTemplate()
-          poly.geometry = geometry
-          poly.properties = feature.properties
-          polys.features.push(poly)
-        }
-        else if(geometry.type === 'MultiPolygon'){
-          geometry.coordinates.forEach(function(polyCoords){
-            var poly = polyTemplate()
-            poly.geometry = {
-              type: 'Polygon',
-              coordinates: []
-            }
-            poly.properties = feature.properties
-            poly.geometry.coordinates = polyCoords
-            polys.features.push(poly)
-          })
-        }
-      })
-    }
-  })
-
-  return polys
-}
-function polyTemplate () {
-  return {
-    type: 'Feature',
-    properties: {},
-    geometry: {
-      type: 'Polygon',
-      coordinates: []
-    }
-  }
-}
-},{}],68:[function(_dereq_,module,exports){
 // # simple-statistics
 //
 // A simple, literate statistics system. The code below uses the
@@ -14717,7 +14653,7 @@ function polyTemplate () {
 
 })(this);
 
-},{}],69:[function(_dereq_,module,exports){
+},{}],68:[function(_dereq_,module,exports){
 var topojson = module.exports = _dereq_("./topojson");
 topojson.topology = _dereq_("./lib/topojson/topology");
 topojson.simplify = _dereq_("./lib/topojson/simplify");
@@ -14726,7 +14662,7 @@ topojson.filter = _dereq_("./lib/topojson/filter");
 topojson.prune = _dereq_("./lib/topojson/prune");
 topojson.bind = _dereq_("./lib/topojson/bind");
 
-},{"./lib/topojson/bind":70,"./lib/topojson/clockwise":73,"./lib/topojson/filter":77,"./lib/topojson/prune":80,"./lib/topojson/simplify":82,"./lib/topojson/topology":85,"./topojson":96}],70:[function(_dereq_,module,exports){
+},{"./lib/topojson/bind":69,"./lib/topojson/clockwise":72,"./lib/topojson/filter":76,"./lib/topojson/prune":79,"./lib/topojson/simplify":81,"./lib/topojson/topology":84,"./topojson":95}],69:[function(_dereq_,module,exports){
 var type = _dereq_("./type"),
     topojson = _dereq_("../../");
 
@@ -14756,7 +14692,7 @@ module.exports = function(topology, propertiesById) {
 
 function noop() {}
 
-},{"../../":69,"./type":95}],71:[function(_dereq_,module,exports){
+},{"../../":68,"./type":94}],70:[function(_dereq_,module,exports){
 
 // Computes the bounding box of the specified hash of GeoJSON objects.
 module.exports = function(objects) {
@@ -14803,7 +14739,7 @@ module.exports = function(objects) {
   return [x0, y0, x1, y1];
 };
 
-},{}],72:[function(_dereq_,module,exports){
+},{}],71:[function(_dereq_,module,exports){
 exports.name = "cartesian";
 exports.formatDistance = formatDistance;
 exports.ringArea = ringArea;
@@ -14837,7 +14773,7 @@ function distance(x0, y0, x1, y1) {
   return Math.sqrt(dx * dx + dy * dy);
 }
 
-},{}],73:[function(_dereq_,module,exports){
+},{}],72:[function(_dereq_,module,exports){
 var type = _dereq_("./type"),
     systems = _dereq_("./coordinate-systems"),
     topojson = _dereq_("../../");
@@ -14928,7 +14864,7 @@ function clockwisePolygonSystem(ringArea, reverse) {
 
 function noop() {}
 
-},{"../../":69,"./coordinate-systems":75,"./type":95}],74:[function(_dereq_,module,exports){
+},{"../../":68,"./coordinate-systems":74,"./type":94}],73:[function(_dereq_,module,exports){
 // Given a hash of GeoJSON objects and an id function, invokes the id function
 // to compute a new id for each object that is a feature. The function is passed
 // the feature and is expected to return the new feature id, or null if the
@@ -14958,13 +14894,13 @@ module.exports = function(objects, id) {
   return objects;
 };
 
-},{}],75:[function(_dereq_,module,exports){
+},{}],74:[function(_dereq_,module,exports){
 module.exports = {
   cartesian: _dereq_("./cartesian"),
   spherical: _dereq_("./spherical")
 };
 
-},{"./cartesian":72,"./spherical":83}],76:[function(_dereq_,module,exports){
+},{"./cartesian":71,"./spherical":82}],75:[function(_dereq_,module,exports){
 // Given a TopoJSON topology in absolute (quantized) coordinates,
 // converts to fixed-point delta encoding.
 // This is a destructive operation that modifies the given topology!
@@ -14995,7 +14931,7 @@ module.exports = function(topology) {
   return topology;
 };
 
-},{}],77:[function(_dereq_,module,exports){
+},{}],76:[function(_dereq_,module,exports){
 var type = _dereq_("./type"),
     prune = _dereq_("./prune"),
     clockwise = _dereq_("./clockwise"),
@@ -15066,7 +15002,7 @@ module.exports = function(topology, options) {
 
 function noop() {}
 
-},{"../../":69,"./clockwise":73,"./coordinate-systems":75,"./prune":80,"./type":95}],78:[function(_dereq_,module,exports){
+},{"../../":68,"./clockwise":72,"./coordinate-systems":74,"./prune":79,"./type":94}],77:[function(_dereq_,module,exports){
 // Given a hash of GeoJSON objects, replaces Features with geometry objects.
 // This is a destructive operation that modifies the input objects!
 module.exports = function(objects) {
@@ -15185,7 +15121,7 @@ module.exports = function(objects) {
   return objects;
 };
 
-},{}],79:[function(_dereq_,module,exports){
+},{}],78:[function(_dereq_,module,exports){
 module.exports = function(objects, filter) {
 
   function prefilterGeometry(geometry) {
@@ -15241,7 +15177,7 @@ module.exports = function(objects, filter) {
   return objects;
 };
 
-},{}],80:[function(_dereq_,module,exports){
+},{}],79:[function(_dereq_,module,exports){
 module.exports = function(topology, options) {
   var verbose = false,
       objects = topology.objects,
@@ -15315,7 +15251,7 @@ module.exports = function(topology, options) {
 
 function noop() {}
 
-},{}],81:[function(_dereq_,module,exports){
+},{}],80:[function(_dereq_,module,exports){
 module.exports = function(objects, bbox, Q) {
   var x0 = isFinite(bbox[0]) ? bbox[0] : 0,
       y0 = isFinite(bbox[1]) ? bbox[1] : 0,
@@ -15402,7 +15338,7 @@ module.exports = function(objects, bbox, Q) {
   };
 };
 
-},{}],82:[function(_dereq_,module,exports){
+},{}],81:[function(_dereq_,module,exports){
 var topojson = _dereq_("../../"),
     systems = _dereq_("./coordinate-systems");
 
@@ -15486,7 +15422,7 @@ module.exports = function(topology, options) {
   return topology;
 };
 
-},{"../../":69,"./coordinate-systems":75}],83:[function(_dereq_,module,exports){
+},{"../../":68,"./coordinate-systems":74}],82:[function(_dereq_,module,exports){
 var π = Math.PI,
     π_4 = π / 4,
     radians = π / 180;
@@ -15568,7 +15504,7 @@ function haversin(x) {
   return (x = Math.sin(x / 2)) * x;
 }
 
-},{}],84:[function(_dereq_,module,exports){
+},{}],83:[function(_dereq_,module,exports){
 var type = _dereq_("./type");
 
 module.exports = function(objects, transform) {
@@ -15744,7 +15680,7 @@ module.exports = function(objects, transform) {
   }
 };
 
-},{"./type":95}],85:[function(_dereq_,module,exports){
+},{"./type":94}],84:[function(_dereq_,module,exports){
 var type = _dereq_("./type"),
     stitch = _dereq_("./stitch"),
     systems = _dereq_("./coordinate-systems"),
@@ -15846,7 +15782,7 @@ module.exports = function(objects, options) {
   return topology;
 };
 
-},{"./bounds":71,"./compute-id":74,"./coordinate-systems":75,"./delta":76,"./geomify":78,"./prefilter":79,"./quantize":81,"./stitch":84,"./topology/index":90,"./transform-properties":94,"./type":95}],86:[function(_dereq_,module,exports){
+},{"./bounds":70,"./compute-id":73,"./coordinate-systems":74,"./delta":75,"./geomify":77,"./prefilter":78,"./quantize":80,"./stitch":83,"./topology/index":89,"./transform-properties":93,"./type":94}],85:[function(_dereq_,module,exports){
 var join = _dereq_("./join");
 
 // Given an extracted (pre-)topology, cuts (or rotates) arcs so that all shared
@@ -15908,7 +15844,7 @@ function reverse(array, start, end) {
   }
 }
 
-},{"./join":91}],87:[function(_dereq_,module,exports){
+},{"./join":90}],86:[function(_dereq_,module,exports){
 var join = _dereq_("./join"),
     hashtable = _dereq_("./hashtable"),
     hashPoint = _dereq_("./point-hash"),
@@ -16094,7 +16030,7 @@ module.exports = function(topology) {
   return topology;
 };
 
-},{"./hashtable":89,"./join":91,"./point-equal":92,"./point-hash":93}],88:[function(_dereq_,module,exports){
+},{"./hashtable":88,"./join":90,"./point-equal":91,"./point-hash":92}],87:[function(_dereq_,module,exports){
 // Extracts the lines and rings from the specified hash of geometry objects.
 //
 // Returns an object with three properties:
@@ -16161,7 +16097,7 @@ module.exports = function(objects) {
   };
 };
 
-},{}],89:[function(_dereq_,module,exports){
+},{}],88:[function(_dereq_,module,exports){
 module.exports = function(size, hash, equal) {
   var hashtable = new Array(size = 1 << Math.ceil(Math.log(size) / Math.LN2)),
       mask = size - 1,
@@ -16232,7 +16168,7 @@ module.exports = function(size, hash, equal) {
   };
 };
 
-},{}],90:[function(_dereq_,module,exports){
+},{}],89:[function(_dereq_,module,exports){
 var hashtable = _dereq_("./hashtable"),
     extract = _dereq_("./extract"),
     cut = _dereq_("./cut"),
@@ -16302,7 +16238,7 @@ function equalArc(arcA, arcB) {
   return ia === ib && ja === jb;
 }
 
-},{"./cut":86,"./dedup":87,"./extract":88,"./hashtable":89}],91:[function(_dereq_,module,exports){
+},{"./cut":85,"./dedup":86,"./extract":87,"./hashtable":88}],90:[function(_dereq_,module,exports){
 var hashtable = _dereq_("./hashtable"),
     hashPoint = _dereq_("./point-hash"),
     equalPoint = _dereq_("./point-equal");
@@ -16377,12 +16313,12 @@ module.exports = function(topology) {
   return junctionByPoint;
 };
 
-},{"./hashtable":89,"./point-equal":92,"./point-hash":93}],92:[function(_dereq_,module,exports){
+},{"./hashtable":88,"./point-equal":91,"./point-hash":92}],91:[function(_dereq_,module,exports){
 module.exports = function(pointA, pointB) {
   return pointA[0] === pointB[0] && pointA[1] === pointB[1];
 };
 
-},{}],93:[function(_dereq_,module,exports){
+},{}],92:[function(_dereq_,module,exports){
 // TODO if quantized, use simpler Int32 hashing?
 
 var hashBuffer = new ArrayBuffer(8),
@@ -16402,7 +16338,7 @@ module.exports = function(point) {
   return h < 0 ? ~h : h;
 };
 
-},{}],94:[function(_dereq_,module,exports){
+},{}],93:[function(_dereq_,module,exports){
 // Given a hash of GeoJSON objects, transforms any properties on features using
 // the specified transform function. The function is invoked for each existing
 // property on the current feature, being passed the new properties hash, the
@@ -16447,7 +16383,7 @@ module.exports = function(objects, propertyTransform) {
   return objects;
 };
 
-},{}],95:[function(_dereq_,module,exports){
+},{}],94:[function(_dereq_,module,exports){
 module.exports = function(types) {
   for (var type in typeDefaults) {
     if (!(type in types)) {
@@ -16541,7 +16477,7 @@ var typeObjects = {
   FeatureCollection: 1
 };
 
-},{}],96:[function(_dereq_,module,exports){
+},{}],95:[function(_dereq_,module,exports){
 !function() {
   var topojson = {
     version: "1.4.6",
