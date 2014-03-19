@@ -1432,8 +1432,9 @@ module.exports = function(poly1, poly2, done){
   var parser = new jsts.io.GeoJSONParser()
   erased = parser.write(erased)
   
-  poly1.geometry = erased
-  done(null, poly1)
+  var newPoly = _.cloneDeep(poly1);
+  newPoly.geometry = erased
+  done(null, newPoly)
 }
 
 function correctRings(poly){
