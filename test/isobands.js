@@ -3,7 +3,7 @@ var t = require('../index'),
   fs = require('fs')
 
 describe('isobands', function(){
-  xit('should take a set of points with z values and output a set of contour polygons', function(done){
+  it('should take a set of points with z values and output a set of contour polygons', function(done){
     t.load(__dirname+'/testIn/elevation1.geojson', function(err, points){
       t.isobands(points, 'elevation', 15, [25, 45, 55, 65, 85,  95, 105, 120, 180], function(err, contours){
         if(err) throw err
@@ -14,7 +14,7 @@ describe('isobands', function(){
       })
     })
   })
-  xit('should take a set of points with z values and output a set of contour polygons with jenks breaks', function(done){
+  it('should take a set of points with z values and output a set of contour polygons with jenks breaks', function(done){
     t.load(__dirname+'/testIn/elevation1.geojson', function(err, points){
       t.jenks(points, 'elevation', 5, function(err, breaks){
         if(err) throw err
@@ -28,7 +28,7 @@ describe('isobands', function(){
       })
     })
   })
-  xit('should take a set of points with decimal z values and output a set of contour polygons', function(done){
+  it('should take a set of points with decimal z values and output a set of contour polygons', function(done){
     t.load(__dirname+'/testIn/elevation2.geojson', function(err, points){
       t.isobands(points, 'elevation', 15, [-1, 25, 45, 55, 65, 85,  95, 105, 120, 180], function(err, contours){
         if(err) throw err
@@ -39,7 +39,7 @@ describe('isobands', function(){
       })
     })
   })
-  xit('should take a set of points with negative z values and output a set of contour polygons', function(done){
+  it('should take a set of points with negative z values and output a set of contour polygons', function(done){
     t.load(__dirname+'/testIn/elevation3.geojson', function(err, points){
       t.isobands(points, 'elevation', 15, [25, 45, 55, 65, 85,  95, 105, 120, 180], function(err, contours){
         if(err) throw err
@@ -50,7 +50,7 @@ describe('isobands', function(){
       })
     })
   })
-  xit('should take a set of points lopsided edges and output a set of contour polygons', function(done){
+  it('should take a set of points lopsided edges and output a set of contour polygons', function(done){
     t.load(__dirname+'/testIn/openContourPoints.geojson', function(err, points){
       t.isobands(points, 'elevation', 15, [85,  95, 105, 120], function(err, contours){
         if(err) throw err
@@ -69,6 +69,19 @@ describe('isobands', function(){
         contours.should.be.ok
         contours.features.should.be.ok
         done()
+      })
+    })
+  })
+  it('should take a set of points with internal valleys and output a set of contour polygons', function(done){
+    t.load(__dirname+'/testIn/openIsoIn.geojson', function(err, points){
+      t.quantile(points, 'elevation', [5,20, 60, 80, 95], function(err, breaks){
+        t.isobands(points, 'elevation', 10, breaks, function(err, contours){
+          if(err) throw err
+          fs.writeFileSync(__dirname+'/testOut/openIsoOut.geojson', JSON.stringify(contours))
+          contours.should.be.ok
+          contours.features.should.be.ok
+          done()
+        })
       })
     })
   })
