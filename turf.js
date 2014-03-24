@@ -1813,7 +1813,6 @@ module.exports = function(ring){
   return sum > 0;
 }
 },{}],29:[function(_dereq_,module,exports){
-(function (__dirname){
 //https://github.com/jasondavies/conrec.js
 //http://stackoverflow.com/questions/263305/drawing-a-topographical-map
 var _ = _dereq_('lodash'),
@@ -1835,7 +1834,6 @@ t.point = _dereq_('./point')
 module.exports = function(points, z, resolution, breaks, done){
   addEdges(points, z, resolution, function(){
     t.tin(points, z, function(err, tinResult){
-      _dereq_('fs').writeFileSync(__dirname+'/../test/testOut/tinContour.geojson', JSON.stringify(tinResult))
       t.extent(points, function(err, bbox){
         t.square(bbox, function(err, bbox){
           t.grid(bbox, resolution, function(err, gridResult){
@@ -1857,7 +1855,6 @@ module.exports = function(points, z, resolution, breaks, done){
               }
             })
 
-            _dereq_('fs').writeFileSync(__dirname+'/../test/testOut/contourGrid.geojson', JSON.stringify(gridResult))
             var depth = Math.sqrt(gridResult.features.length)
             for (var x=0; x<depth; x++){
               var xGroup = gridResult.features.slice(x * depth, (x + 1) * depth)
@@ -2514,8 +2511,7 @@ function addEdges(points, z, resolution, cb){
     }
   }
 
-}).call(this,"/lib")
-},{"./donuts":17,"./extent":21,"./featurecollection":22,"./grid":25,"./inside":26,"./merge":36,"./planepoint":41,"./point":42,"./polygon":43,"./size":50,"./square":51,"./tin":54,"async":59,"fs":60,"lodash":66}],30:[function(_dereq_,module,exports){
+},{"./donuts":17,"./extent":21,"./featurecollection":22,"./grid":25,"./inside":26,"./merge":36,"./planepoint":41,"./point":42,"./polygon":43,"./size":50,"./square":51,"./tin":54,"async":59,"lodash":66}],30:[function(_dereq_,module,exports){
 //https://github.com/jasondavies/conrec.js
 //http://stackoverflow.com/questions/263305/drawing-a-topographical-map
 var _ = _dereq_('lodash'),
