@@ -1829,113 +1829,170 @@ t.polygon = _dereq_('./polygon')
 t.square = _dereq_('./square')
 t.donuts = _dereq_('./donuts')
 t.merge = _dereq_('./merge')
+t.size = _dereq_('./size')
+t.point = _dereq_('./point')
 
 module.exports = function(points, z, resolution, breaks, done){
-  t.tin(points, z, function(err, tinResult){
-    _dereq_('fs').writeFileSync(__dirname+'/../test/testOut/tinContour.geojson', JSON.stringify(tinResult))
-    t.extent(points, function(err, bbox){
-      t.square(bbox, function(err, bbox){
-        t.grid(bbox, resolution, function(err, gridResult){
-          var data = []
-          _(gridResult.features).each(function(pt){
-            _(tinResult.features).each(function(triangle){
-              t.inside(pt, triangle, function(err, isInside){
-                if(isInside){
-                  t.planepoint(pt, triangle, function(err, zValue){
-                    pt.properties = {}
-                    pt.properties[z] = zValue
-                  })
-                }
+  addEdges(points, z, resolution, function(){
+    t.tin(points, z, function(err, tinResult){
+      _dereq_('fs').writeFileSync(__dirname+'/../test/testOut/tinContour.geojson', JSON.stringify(tinResult))
+      t.extent(points, function(err, bbox){
+        t.square(bbox, function(err, bbox){
+          t.grid(bbox, resolution, function(err, gridResult){
+            var data = []
+            _(gridResult.features).each(function(pt){
+              _(tinResult.features).each(function(triangle){
+                t.inside(pt, triangle, function(err, isInside){
+                  if(isInside){
+                    t.planepoint(pt, triangle, function(err, zValue){
+                      pt.properties = {}
+                      pt.properties[z] = zValue
+                    })
+                  }
+                })
               })
-            })
-            if(!pt.properties){
-              //console.log(pt)
-              pt.properties = {}
-              pt.properties[z] = -100
-            }
-          })
-
-          _dereq_('fs').writeFileSync(__dirname+'/../test/testOut/contourGrid.geojson', JSON.stringify(gridResult))
-          var depth = Math.sqrt(gridResult.features.length)
-          for (var x=0; x<depth; x++){
-            var xGroup = gridResult.features.slice(x * depth, (x + 1) * depth)
-            var xFlat = []
-            _.each(xGroup, function(verticalPoint){
-              if(verticalPoint.properties){
-                xFlat.push(verticalPoint.properties[z])
-              } else{
-                xFlat.push(0)
+              if(!pt.properties){
+                pt.properties = {}
+                pt.properties[z] = -100
               }
             })
-            data.push(xFlat)
-          }
-          var interval = (bbox[2] - bbox[0]) / depth
-          var xCoordinates = []
-          var yCoordinates = []
-          for (var x=0; x<depth; x++){
-            xCoordinates.push(x * interval + bbox[0])
-            yCoordinates.push(x * interval + bbox[1])
-          }
-          
-          //change zero breaks to .01 to deal with bug in conrec algorithm
-          breaks = _.map(breaks, function(num){
-            if(num === 0){
-              return .01
-            }
-            else{
-              return num
-            }
-          })
-          //deduplicate breaks
-          breaks = _.uniq(breaks)
 
-          var c = new Conrec
-          c.contour(data, 0, resolution, 0, resolution, xCoordinates, yCoordinates, breaks.length, breaks)
-          var contourList = c.contourList()
-
-          var fc = t.featurecollection([])
-          _.each(contourList, function(c){
-            if(c.length > 2){
-              var polyCoordinates = []
-              _.each(c, function(coord){
-                polyCoordinates.push([coord.x, coord.y])
+            _dereq_('fs').writeFileSync(__dirname+'/../test/testOut/contourGrid.geojson', JSON.stringify(gridResult))
+            var depth = Math.sqrt(gridResult.features.length)
+            for (var x=0; x<depth; x++){
+              var xGroup = gridResult.features.slice(x * depth, (x + 1) * depth)
+              var xFlat = []
+              _.each(xGroup, function(verticalPoint){
+                if(verticalPoint.properties){
+                  xFlat.push(verticalPoint.properties[z])
+                } else{
+                  xFlat.push(0)
+                }
               })
-              var poly = t.polygon([polyCoordinates])
-              poly.properties = {}
-              poly.properties[z] = c.level
-
-              fc.features.push(poly)
+              data.push(xFlat)
             }
-          })
+            var interval = (bbox[2] - bbox[0]) / depth
+            var xCoordinates = []
+            var yCoordinates = []
+            for (var x=0; x<depth; x++){
+              xCoordinates.push(x * interval + bbox[0])
+              yCoordinates.push(x * interval + bbox[1])
+            }
+            
+            //change zero breaks to .01 to deal with bug in conrec algorithm
+            breaks = _.map(breaks, function(num){
+              if(num === 0){
+                return .01
+              }
+              else{
+                return num
+              }
+            })
+            //deduplicate breaks
+            breaks = _.uniq(breaks)
 
-          // perform donuts function and dissolves rings before returning if donuts option is true
-          t.donuts(fc, function(err, donutPolys){
-            var zGroups = []
-            _.each(donutPolys.features, function(ring){
-              var found = false
+            var c = new Conrec
+            c.contour(data, 0, resolution, 0, resolution, xCoordinates, yCoordinates, breaks.length, breaks)
+            var contourList = c.contourList()
+
+            var fc = t.featurecollection([])
+            _.each(contourList, function(c){
+              if(c.length > 2){
+                var polyCoordinates = []
+                _.each(c, function(coord){
+                  polyCoordinates.push([coord.x, coord.y])
+                })
+                var poly = t.polygon([polyCoordinates])
+                poly.properties = {}
+                poly.properties[z] = c.level
+
+                fc.features.push(poly)
+              }
+            })
+
+            // perform donuts function and dissolves rings before returning if donuts option is true
+            t.donuts(fc, function(err, donutPolys){
+              var zGroups = []
+              _.each(donutPolys.features, function(ring){
+                var found = false
+                _.each(zGroups, function(group){
+                  if(group.z === ring.properties[z]){
+                    found = true
+                    group.rings.push(ring)
+                  }
+                })
+                if(!found){
+                  zGroups.push({z: ring.properties[z], rings: [ring]})
+                }
+              })
+              donutPolys.features = []
               _.each(zGroups, function(group){
-                if(group.z === ring.properties[z]){
-                  found = true
-                  group.rings.push(ring)
-                }
+                //console.log('===================================')
+                _.each(group.rings, function(ring){
+                  //console.log(ring.geometry.coordinates)
+                })
+                t.merge(t.featurecollection(group.rings), function(err, multiRing){
+                  donutPolys.features.push(multiRing)
+                })
               })
-              if(!found){
-                zGroups.push({z: ring.properties[z], rings: [ring]})
-              }
-            })
-            donutPolys.features = []
-            _.each(zGroups, function(group){
-              //console.log('===================================')
-              _.each(group.rings, function(ring){
-                //console.log(ring.geometry.coordinates)
-              })
-              t.merge(t.featurecollection(group.rings), function(err, multiRing){
-                donutPolys.features.push(multiRing)
-              })
-            })
-            done(null, donutPolys)
-          })         
+              done(null, donutPolys)
+            })         
+          })
         })
+      })
+    })
+  })
+}
+
+function addEdges(points, z, resolution, cb){
+  t.extent(points, function(err, bbox){
+    t.square(bbox, function(err, bbox){
+      t.size(bbox, 1.1, function(err, bbox){
+        var edgeDistance = bbox[2] - bbox[0]
+        var extendDistance = edgeDistance / resolution
+
+        var xmin = bbox[0]
+        var ymin = bbox[1]
+        var xmax = bbox[2]
+        var ymax = bbox[3]
+
+        //left
+        var left = [[xmin, ymin],[xmin, ymax]]
+        for(var i = 0; i<=resolution; i++){
+          var pt = t.point(xmin, ymin + (extendDistance * i))
+          pt.properties = {}
+          pt.properties[z] = -100
+          points.features.push(pt)
+        }
+
+        //bottom
+        var bottom = [[xmin, ymin],[xmax, ymin]]
+        for(var i = 0; i<=resolution; i++){
+          var pt = t.point(xmin + (extendDistance * i), ymin)
+          pt.properties = {}
+          pt.properties[z] = -100
+          points.features.push(pt)
+        }
+
+        //right
+        var right = [[xmax, ymin],[xmax, ymax]]
+        for(var i = 0; i<=resolution; i++){
+          var pt = t.point(xmax, ymin + (extendDistance * i))
+          pt.properties = {}
+          pt.properties[z] = -100
+          points.features.push(pt)
+        }
+
+        //top
+        var top = [[xmin, ymax],[xmax, ymax]]
+        for(var i = 0; i<=resolution; i++){
+          var pt = t.point(xmax + (extendDistance * i), ymax)
+          pt.properties = {}
+          pt.properties[z] = -100
+          points.features.push(pt)
+        }
+
+        cb(points)
       })
     })
   })
@@ -2458,7 +2515,7 @@ module.exports = function(points, z, resolution, breaks, done){
   }
 
 }).call(this,"/lib")
-},{"./donuts":17,"./extent":21,"./featurecollection":22,"./grid":25,"./inside":26,"./merge":36,"./planepoint":41,"./polygon":43,"./square":51,"./tin":54,"async":59,"fs":60,"lodash":66}],30:[function(_dereq_,module,exports){
+},{"./donuts":17,"./extent":21,"./featurecollection":22,"./grid":25,"./inside":26,"./merge":36,"./planepoint":41,"./point":42,"./polygon":43,"./size":50,"./square":51,"./tin":54,"async":59,"fs":60,"lodash":66}],30:[function(_dereq_,module,exports){
 //https://github.com/jasondavies/conrec.js
 //http://stackoverflow.com/questions/263305/drawing-a-topographical-map
 var _ = _dereq_('lodash'),
