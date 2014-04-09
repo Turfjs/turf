@@ -1309,11 +1309,6 @@ module.exports = function(point1, point2, units, done){
   var coordinates1 = point1.geometry.coordinates
   var coordinates2 = point2.geometry.coordinates
 
-  /*var dLat = (lat2-lat1).toRad();
-  var dLon = (lon2-lon1).toRad();
-  var lat1 = lat1.toRad();
-  var lat2 = lat2.toRad();*/
-
   var dLat = toRad(coordinates2[0] - coordinates1[0])
   var dLon = toRad(coordinates2[1] - coordinates1[1])
   var lat1 = toRad(coordinates1[1])
@@ -1340,8 +1335,6 @@ module.exports = function(point1, point2, units, done){
   var distance = R * c
   done(null, distance)
 }
-
-
 },{}],17:[function(_dereq_,module,exports){
 var _ = _dereq_('lodash')
 
@@ -1924,9 +1917,7 @@ module.exports = function(points, z, resolution, breaks, done){
               })
               donutPolys.features = []
               _.each(zGroups, function(group){
-                //console.log('===================================')
                 _.each(group.rings, function(ring){
-                  //console.log(ring.geometry.coordinates)
                 })
                 t.merge(t.featurecollection(group.rings), function(err, multiRing){
                   donutPolys.features.push(multiRing)
@@ -1944,7 +1935,7 @@ module.exports = function(points, z, resolution, breaks, done){
 function addEdges(points, z, resolution, cb){
   t.extent(points, function(err, bbox){
     t.square(bbox, function(err, bbox){
-      t.size(bbox, 1.1, function(err, bbox){
+      t.size(bbox, .35, function(err, bbox){
         var edgeDistance = bbox[2] - bbox[0]
         var extendDistance = edgeDistance / resolution
 
@@ -1983,12 +1974,11 @@ function addEdges(points, z, resolution, cb){
         //top
         var top = [[xmin, ymax],[xmax, ymax]]
         for(var i = 0; i<=resolution; i++){
-          var pt = t.point(xmax + (extendDistance * i), ymax)
+          var pt = t.point(xmin + (extendDistance * i), ymax)
           pt.properties = {}
           pt.properties[z] = -100
           points.features.push(pt)
         }
-
         cb(points)
       })
     })
