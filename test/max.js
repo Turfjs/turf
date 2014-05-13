@@ -13,14 +13,24 @@ describe('average', function(){
     var pt5 = t.point(19,7, {population: 300})
     var ptFC = t.featurecollection([pt1, pt2, pt3, pt4, pt5])
 
-    t.max(polyFC, ptFC, 'population', 'pop_max', function(err, averaged){
+    var syncAveraged = t.max(polyFC, ptFC, 'population', 'pop_max', function(err, averaged){
       if(err) throw err
       averaged.should.be.ok
       averaged.features.should.be.ok
       averaged.features[0].geometry.type.should.equal('Polygon')
       averaged.features[0].properties.pop_max.should.equal(600)
       averaged.features[1].properties.pop_max.should.equal(300)
-      done()
     })
+
+    if (typeof syncAveraged === 'Error') {
+      throw syncAveraged;
+    }
+
+    syncAveraged.should.be.ok;
+    syncAveraged.features.should.be.ok;
+    syncAveraged.features[0].geometry.type.should.equal('Polygon');
+    syncAveraged.features[0].properties.pop_max.should.equal(600);
+    syncAveraged.features[1].properties.pop_max.should.equal(300);
+    done();
   })
 })

@@ -11,12 +11,20 @@ describe('explode', function(){
         p4 = t.point(10,0)
     var fc = t.featurecollection([p1,p2,p3,p4])
 
-    t.explode(poly, function(err, vertices){
+    var syncVertices = t.explode(poly, function(err, vertices){
       if(err) throw err
-        vertices.should.be.ok
+      
+      vertices.should.be.ok
       _.isEqual(vertices, fc).should.be.true
-
-      done()
     })
+
+    if (typeof syncVertices === 'Error') {
+      throw syncVertices;
+    }
+
+    syncVertices.should.be.ok;
+    _.isEqual(syncVertices, fc).should.be.true;
+
+    done();
   })
 }) 

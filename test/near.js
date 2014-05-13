@@ -10,11 +10,18 @@ describe('near', function(){
 
     t.load(__dirname+'/testIn/nearIn.geojson', function(err, inPoints){
       t.load(__dirname+'/testIn/nearOut.geojson', function(err, outPoints){
-        t.near(inPoints, outPoints, distance, unit, function(err, nearByPoints){
+        var syncNearByPoints = t.near(inPoints, outPoints, distance, unit, function(err, nearByPoints){
           if(err) throw err
           nearByPoints.features.should.be.ok
-          done()
+          done();
         })
+
+        if (typeof syncNearByPoints === 'Error') {
+          throw syncNearByPoints;
+        }
+
+        syncNearByPoints.features.should.be.ok;
+        done();
       })
     })
   })

@@ -8,13 +8,20 @@ describe('tag', function(){
       if(err) throw err
       t.load(__dirname+'/testIn/tagPolygons.geojson', function(err, polygons){
         if(err) throw err
-        t.tag(points, polygons, 'polyID', 'containingPolyID', function(err, taggedPoints){
+        var syncTaggedPoints = t.tag(points, polygons, 'polyID', 'containingPolyID', function(err, taggedPoints){
           if(err) throw err
           taggedPoints.should.be.ok
           taggedPoints.features.should.be.ok
           //fs.writeFileSync('./testOut/taggedPoints.geojson', JSON.stringify(taggedPoints))
-          done()
         })
+
+        if (typeof syncTaggedPoints === 'Error') {
+          throw syncTaggedPoints;
+        }
+
+        syncTaggedPoints.should.be.ok;
+        syncTaggedPoints.features.should.be.ok;
+        done();
       })
     })
   })

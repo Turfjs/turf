@@ -5,22 +5,36 @@ var t = require('../index'),
 describe('convex', function(){
   it('should take a set of points and return a convex hull polygon', function(done){
     t.load(__dirname+'/testIn/elevation1.geojson', function(err, points){
-      t.convex(points, function(err, hull){
+      var syncHull = t.convex(points, function(err, hull){
         if(err) throw err
         //fs.writeFileSync('./testOut/convex.geojson', JSON.stringify(hull))
         hull.should.be.ok
-        done()
       })
+
+      if (typeof syncHull === 'Error') {
+        throw syncHull;
+      }
+
+      syncHull.should.be.ok;
+
+      done();
     })
   })
   it('should take a set of points and return a convex hull polygon', function(done){
     t.load(__dirname+'/testIn/convexIn2.geojson', function(err, points){
-      t.convex(points, function(err, hull){
+      var syncHull = t.convex(points, function(err, hull){
         if(err) throw err
         //fs.writeFileSync('./testOut/convex2.geojson', JSON.stringify(hull))
         hull.should.be.ok
-        done()
       })
+      
+      if (typeof syncHull === 'Error') {
+        throw syncHull;
+      }
+
+      syncHull.should.be.ok;
+
+      done();
     })
   })
 })

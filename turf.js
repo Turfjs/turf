@@ -1292,7 +1292,8 @@ module.exports = function(points, done){
     return tinPolys;
   }
 
-  mergePolys = t.merge(t.buffer(tinPolys, .05, 'miles'));
+  //mergePolys = t.merge(t.buffer(tinPolys, .05, 'miles'));
+  mergePolys = t.merge(tinPolys);
 
   if (typeof mergePolys === 'Error') {
     done(mergePolys);

@@ -7,13 +7,22 @@ describe('combine', function(){
     var p1 = t.point(50, 51)
     var p2 = t.point(100, 101)
 
-    t.combine(t.featurecollection([p1, p2]), function(err, combined){
+    var syncCombined = t.combine(t.featurecollection([p1, p2]), function(err, combined){
       if(err) throw err
       combined.should.be.ok
       combined.geometry.type.should.equal('MultiPoint')
       _.isEqual(combined.geometry.coordinates, [[50, 51], [100, 101]]).should.be.true
-      done()
     })
+
+    if (typeof syncCombined === 'Error') {
+      throw syncCombined;
+    }
+
+    syncCombined.should.be.ok;
+    syncCombined.geometry.type.should.equal('MultiPoint');
+    _.isEqual(syncCombined.geometry.coordinates, [[50, 51], [100, 101]]).should.be.true;
+
+    done();
   })
   it('should should combine two LineStrings into a MultiLineString', function(done){
     var l1 = t.linestring([
@@ -37,13 +46,22 @@ describe('combine', function(){
           18.0
         ]
       ])
-    t.combine(t.featurecollection([l1, l2]), function(err, combined){
+    var syncCombined = t.combine(t.featurecollection([l1, l2]), function(err, combined){
       if(err) throw err
       combined.should.be.ok
       combined.geometry.type.should.equal('MultiLineString')
       _.isEqual(combined.geometry.coordinates, [[[102, -10], [130, 4]], [[40, -20], [150, 18]]]).should.be.true
-      done()
     })
+
+    if (typeof syncCombined === 'Error') {
+      throw syncCombined;
+    }
+
+    syncCombined.should.be.ok;
+    syncCombined.geometry.type.should.equal('MultiLineString');
+    _.isEqual(syncCombined.geometry.coordinates, [[[102, -10], [130, 4]], [[40, -20], [150, 18]]]).should.be.true;
+      
+    done();
   })
   it('should should combine two Polygons into a MultiPolygon', function(done){
     var p1 = t.polygon( [
@@ -86,7 +104,7 @@ describe('combine', function(){
         ]
       ]
     ])
-    t.combine(t.featurecollection([p1, p2]), function(err, combined){
+    var syncCombined = t.combine(t.featurecollection([p1, p2]), function(err, combined){
       if(err) throw err
       combined.should.be.ok
       combined.geometry.type.should.equal('MultiPolygon')
@@ -94,8 +112,20 @@ describe('combine', function(){
         [[[[20,0],[101.0,0.0],[101.0,1.0],[100.0,1.0],[100.0,0.0]]], 
         [[[30.0,0.0],[102.0,0.0],[103.0,1.0]]]]
         ).should.be.true
-      done()
     })
+
+    if (typeof syncCombined === 'Error') {
+      throw syncCombined;
+    }
+
+    syncCombined.should.be.ok;
+    syncCombined.geometry.type.should.equal('MultiPolygon');
+    _.isEqual(syncCombined.geometry.coordinates, 
+      [[[[20,0],[101.0,0.0],[101.0,1.0],[100.0,1.0],[100.0,0.0]]], 
+      [[[30.0,0.0],[102.0,0.0],[103.0,1.0]]]]
+      ).should.be.true;
+
+    done();
   })
 })
 
