@@ -8,13 +8,20 @@ describe('sample', function(){
     t.load(__dirname+'/testIn/Points3.geojson', function(err, pts){
       if(err) throw err
       pts.should.be.ok
-      t.sample(pts, num, function(err, outPts){
+      var syncOutPts = t.sample(pts, num, function(err, outPts){
         if(err) throw err
         outPts.should.be.ok
         outPts.features.length.should.equal(10)
         //t.save('./testOut/sample.geojson', outPts, 'geojson', function(){})
-        done()
       })
+
+      if (typeof syncOutPts === 'Error') {
+        throw syncOutPts;
+      }
+
+      syncOutPts.should.be.ok;
+      syncOutPts.features.length.should.equal(10);
+      done();
     })
   })
 })

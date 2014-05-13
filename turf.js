@@ -72,54 +72,41 @@ t.variance = _dereq_('./variance')
 t.count = _dereq_('./count')
 
 module.exports = function(polygons, points, aggregations, done){
-  _.each(aggregations, function(agg){
-    switch(agg.aggregation){
-      case 'average':
-        t.average(polygons, points, agg.inField, agg.outField, function(err, averaged){
-          polygons = averaged
-        })
-        break
-      case 'sum':
-        t.sum(polygons, points, agg.inField, agg.outField, function(err, summed){
-          polygons = summed
-        })
-        break
-      case 'median':
-        t.median(polygons, points, agg.inField, agg.outField, function(err, medianed){
-          polygons = medianed
-        })
-        break
-      case 'min':
-        t.min(polygons, points, agg.inField, agg.outField, function(err, mined){
-          polygons = mined
-        })
-        break
-      case 'max':
-        t.max(polygons, points, agg.inField, agg.outField, function(err, maxed){
-          polygons = maxed
-        })
-        break
-      case 'deviation':
-        t.deviation(polygons, points, agg.inField, agg.outField, function(err, deviated){
-          polygons = deviated
-        })
-        break
-      case 'variance':
-        t.variance(polygons, points, agg.inField, agg.outField, function(err, varianced){
-          polygons = varianced
-        })
-        break
-      case 'count':
-        t.count(polygons, points, agg.outField, function(err, counted){
-          polygons = counted
-        })
-        break
-      default:
-        done(new Error('"'+agg.aggregation +'" is not a recognized aggregation operation.'))
+  function isAggregationOperation(operation) {
+    return operation === 'average' ||
+      operation === 'sum' ||
+      operation === 'median' ||
+      operation === 'min' ||
+      operation === 'max' ||
+      operation === 'deviation' ||
+      operation === 'variance' ||
+      operation === 'count';
+  }
+
+  done = done || function () {};
+
+  for (var i = 0, len = aggregations.length; i < len; i++) {
+    var agg = aggregations[i],
+      operation = agg.aggregation,
+      unrecognizedError;
+
+    if (isAggregationOperation(operation)) {
+      if (operation === 'count') {
+        polygons = t[operation](polygons, points, agg.outField);
+      } else {
+        polygons = t[operation](polygons, points, agg.inField, agg.outField);
+      }
+    } else {
+      unrecognizedError = new Error('"'+ operation +'" is not a recognized aggregation operation.');
+      done(err)
+      return err;
     }
-  })
+  }
+
   done(null, polygons)
+  return polygons;
 }
+
 },{"./average":4,"./count":14,"./deviation":15,"./max":34,"./median":35,"./min":38,"./sum":52,"./variance":57,"lodash":66}],3:[function(_dereq_,module,exports){
 // use this https://github.com/mapbox/geojson-area
 
@@ -140,23 +127,25 @@ var _ = _dereq_('lodash'),
 t.inside = _dereq_('./inside')
 
 module.exports = function(polyFC, ptFC, inField, outField, done){
+  done = done || function () {};
+
   _.each(polyFC.features, function(poly){
     if(!poly.properties){
       poly.properties = {}
     }
     var values = []
     _.each(ptFC.features, function(pt){
-      t.inside(pt, poly, function(err, isInside){
-        if(isInside){
-          values.push(pt.properties[inField])
-        }
-      })
+      if (t.inside(pt, poly)) {
+        values.push(pt.properties[inField]);
+      }
     })
     poly.properties[outField] = ss.average(values)
   })
 
   done(null, polyFC)
+  return polyFC;
 }
+
 },{"./inside":26,"lodash":66,"simple-statistics":67}],5:[function(_dereq_,module,exports){
 var t = {}
 var point = _dereq_('../lib/point'),
@@ -171,13 +160,18 @@ module.exports = function(bbox, done){
   var lowRight = t.point(bbox[2], bbox[1])
 
   var poly = t.polygon([[
-    lowLeft.geometry.coordinates, 
-    lowRight.geometry.coordinates, 
-    topRight.geometry.coordinates, 
+    lowLeft.geometry.coordinates,
+    lowRight.geometry.coordinates,
+    topRight.geometry.coordinates,
     topLeft.geometry.coordinates
   ]])
+
+  done = done || function () {};
+
   done(null, poly)
+  return poly;
 }
+
 },{"../lib/point":42,"../lib/polygon":43}],6:[function(_dereq_,module,exports){
 // code modded from here:
 //https://github.com/leszekr/bezier-spline-js/blob/master/bezier-spline.js
@@ -187,6 +181,9 @@ t.linestring = _dereq_('./linestring')
 
 module.exports = function(line, resolution, intensity, done){
   var lineOut = t.linestring([])
+
+  done = done || function () {};
+
   lineOut.properties = line.properties
   pts = []
   _.each(line.geometry.coordinates, function(pt){
@@ -204,12 +201,14 @@ module.exports = function(line, resolution, intensity, done){
     if(Math.floor(i/100)%2==0) lineOut.geometry.coordinates.push([pos.x, pos.y]);
     //else ctx.moveTo(pos.x, pos.y);
   }
+  
   done(null, lineOut)
+  return lineOut;
 }
 
 
  /**
-   * BezierSpline 
+   * BezierSpline
    * http://leszekr.github.com/
    *
    * @copyright
@@ -217,17 +216,17 @@ module.exports = function(line, resolution, intensity, done){
    *
    * @license
    * This file is part of BezierSpline
-   * 
+   *
    * BezierSpline is free software: you can redistribute it and/or modify
    * it under the terms of the GNU Lesser General Public License as published by
    * the Free Software Foundation, either version 3 of the License, or
    * (at your option) any later version.
-   * 
+   *
    * BezierSpline is distributed in the hope that it will be useful,
    * but WITHOUT ANY WARRANTY; without even the implied warranty of
    * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
    * GNU General Public License for more details.
-   * 
+   *
    * You should have received a copy of the GNU General Public License
    * along with BezierSpline.  If not, see <http://www.gnu.org/copyleft/lesser.html>.
    */
@@ -317,7 +316,7 @@ module.exports = function(line, resolution, intensity, done){
   Spline.prototype.drawControlPoints = function(ctx, color){
     ctx.fillStyle = color||"#f60";
     ctx.strokeStyle = "#fff";
-    ctx.lineWidth = 2; 
+    ctx.lineWidth = 2;
     for(var i=0; i<this.length; i++){
       var p = this.points[i];
       var c1 = this.controls[i][0];
@@ -328,22 +327,22 @@ module.exports = function(line, resolution, intensity, done){
       ctx.lineTo(p.x,p.y);
       ctx.lineTo(c2.x,c2.y);
       ctx.stroke();
-            
+
       ctx.beginPath();
       ctx.arc(c1.x, c1.y, 3, 0, 2 * Math.PI, false);
       ctx.fill();
       ctx.stroke();
-      
+
       /*ctx.beginPath();
       ctx.arc(this.centers[i].x, this.centers[i].y, 5, 0, 2 * Math.PI, false);
       ctx.fill();
       ctx.stroke();*/
-      
+
       ctx.beginPath();
       ctx.arc(c2.x, c2.y, 3, 0, 2 * Math.PI, false);
       ctx.fill();
       ctx.stroke();
-      
+
 
       ctx.beginPath();
       ctx.arc(p.x, p.y, 7, 0, 2 * Math.PI, false);
@@ -363,7 +362,7 @@ module.exports = function(line, resolution, intensity, done){
   Spline.prototype.pos = function(time){
 
     function bezier(t, p1, c1, c2, p2){
-      var B = function(t) { 
+      var B = function(t) {
         var t2=t*t, t3=t2*t;
         return [(t3),(3*t2*(1-t)),(3*t*(1-t)*(1-t)),((1-t)*(1-t)*(1-t))]
       }
@@ -373,7 +372,7 @@ module.exports = function(line, resolution, intensity, done){
         y : p2.y * b[0] + c2.y * b[1] +c1.y * b[2] + p1.y * b[3],
         z : p2.z * b[0] + c2.z * b[1] +c1.z * b[2] + p1.z * b[3]
       }
-      return pos; 
+      return pos;
     }
     var t = time-this.delay;
     if(t<0) t=0;
@@ -403,6 +402,7 @@ module.exports = function(line, resolution, intensity, done){
     ctx.stroke();
     return this;
   }
+
 },{"./linestring":32,"lodash":66}],7:[function(_dereq_,module,exports){
 //http://stackoverflow.com/questions/839899/how-do-i-calculate-a-point-on-a-circles-circumference
 //radians = degrees * (pi/180)
@@ -417,6 +417,10 @@ t.polygon = _dereq_('./polygon')
 t.combine = _dereq_('./combine')
 
 module.exports = function(feature, radius, units, done){
+  var buffered;
+
+  done = done || function () {};
+
   switch(units){
     case 'miles':
       radius = radius / 69.047
@@ -427,24 +431,31 @@ module.exports = function(feature, radius, units, done){
     case 'degrees':
       break
   }
-  
+
   if(feature.type === 'FeatureCollection'){
-    t.combine(feature, function(err, multi){
-      multi.properties = {}
-      bufferOp(multi, radius, done)
-    })
+    var multi = t.combine(feature);
+    multi.properties = {}
+
+    buffered = bufferOp(multi, radius);
+
+    done(null, buffered);
+    return buffered;
   }
   else{
-    bufferOp(feature, radius, done)
+    buffered = bufferOp(feature, radius);
+    
+    done(null, buffered);
+    return buffered;
   }
 }
 
-var bufferOp = function(feature, radius, done){
+var bufferOp = function(feature, radius){
   var reader = new jsts.io.GeoJSONReader()
   var geom = reader.read(JSON.stringify(feature.geometry))
   var buffered = geom.buffer(radius);
   var parser = new jsts.io.GeoJSONParser()
   buffered = parser.write(buffered)
+
   if(buffered.type === 'MultiPolygon'){
     buffered = {
       type: 'Feature',
@@ -452,32 +463,37 @@ var bufferOp = function(feature, radius, done){
       properties: {}
     }
     buffered = t.featurecollection([buffered])
-    done(null, buffered)
   }
   else{
     buffered = t.featurecollection([t.polygon(buffered.coordinates)])
-    done(null, buffered)
   }
+
+  return buffered;
 }
+
 },{"./combine":10,"./featurecollection":22,"./polygon":43,"jsts":63,"lodash":66}],8:[function(_dereq_,module,exports){
 var t = {}
 var extent = _dereq_('./extent')
 t.extent = extent
 
 module.exports = function(layer, done){
-  t.extent(layer, function(err, extent){
-    var x = (extent[0] +extent[2])/2
-    var y = (extent[1] + extent[3])/2
-    var center = {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [x, y]
-      }
+  var extent = t.extent(layer);
+  var x = (extent[0] +extent[2])/2
+  var y = (extent[1] + extent[3])/2
+  var center = {
+    "type": "Feature",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [x, y]
     }
-    done(center)
-  })
+  }
+
+  done = done || function () {};
+
+  done(center)
+  return center;
 }
+
 },{"./extent":21}],9:[function(_dereq_,module,exports){
 var t = {}
 var _ = _dereq_('lodash'),
@@ -488,23 +504,34 @@ t.explode = explode
 t.point = point
 
 module.exports = function(features, done){
-  t.explode(features, function(err, vertices){
-    var averageX, 
-        averageY, 
-        xs = [], 
-        ys = []
-    
-    _.each(vertices.features, function(v){
-      xs.push(v.geometry.coordinates[0])
-      ys.push(v.geometry.coordinates[1])
-    })
+  var vertices = t.explode(features);
+  var averageX,
+    averageY,
+    xs = [],
+    ys = [],
+    centroid
 
-    averageX = ss.mean(xs)
-    averageY = ss.mean(ys)
+  done = done || function () {};
 
-    done(err, t.point(averageX, averageY))
+  if (typeof vertices === 'Error') {
+    done(vertices);
+    return vertices;
+  }
+
+  _.each(vertices.features, function(v){
+    xs.push(v.geometry.coordinates[0])
+    ys.push(v.geometry.coordinates[1])
   })
+
+  averageX = ss.mean(xs)
+  averageY = ss.mean(ys)
+
+  centroid = t.point(averageX, averageY);
+
+  done(null, centroid)
+  return centroid;
 }
+
 },{"./explode":20,"./point":42,"lodash":66,"simple-statistics":67}],10:[function(_dereq_,module,exports){
 //this tool takes a feature collection of like geometries and combines them into a single multipoint, multilinestring, or multipolygon
 var _ = _dereq_('lodash')
@@ -513,6 +540,9 @@ module.exports = function(fc, done){
   var type = fc.features[0].geometry.type
   var err
   var geometries = _.pluck(fc.features, 'geometry')
+
+  done = done || function () {};
+
   switch(type){
     case 'Point':
       var multiPoint = {
@@ -524,6 +554,7 @@ module.exports = function(fc, done){
       }
       multiPoint.geometry.coordinates = _.pluck(geometries, 'coordinates')
       done(err, multiPoint)
+      return multiPoint;
     break
     case 'LineString':
       var multiLineString = {
@@ -535,6 +566,7 @@ module.exports = function(fc, done){
       }
       multiLineString.geometry.coordinates = _.pluck(geometries, 'coordinates')
       done(err, multiLineString)
+      return multiLineString;
       break
     case 'Polygon':
       var multiPolygon = {
@@ -546,9 +578,11 @@ module.exports = function(fc, done){
       }
       multiPolygon.geometry.coordinates = _.pluck(geometries, 'coordinates')
       done(err, multiPolygon)
+      return multiPolygon;
     break
   }
 }
+
 },{"lodash":66}],11:[function(_dereq_,module,exports){
 // 1. run tin on points
 // 2. calculate lenth of all edges and area of all triangles
@@ -565,44 +599,60 @@ t.distance = _dereq_('./distance')
 t.point = _dereq_('./point')
 
 module.exports = function(points, maxEdge, done){
-  t.tin(points, null, function(err, tinPolys){
-    if(err) done(err)
-    filterTriangles(tinPolys.features, maxEdge, function(filteredPolys){
-      tinPolys.features = filteredPolys
-      t.buffer(tinPolys, 1, 'miles', function(err, bufferPolys){
-        if(err) done(err)
-        t.merge(bufferPolys, function(err, mergePolys){
-          if(err) done(err)
-          done(null, mergePolys)
-        })
-      })
-    })
-  })
+  var tinPolys,
+    filteredPolys,
+    bufferPolys,
+    mergePolys;
+
+  done = done || function () {};
+
+  tinPolys = t.tin(points, null);
+
+  if (typeof tinPolys === 'Error') {
+    done(err)
+    return tinPolys;
+  }
+
+  filteredPolys = filterTriangles(tinPolys.features, maxEdge)
+  tinPolys.features = filteredPolys
+
+  bufferPolys = t.buffer(tinPolys, 1, 'miles')
+
+  if (typeof bufferPolys === 'Error') {
+    done(err);
+    return bufferPolys;
+  }
+
+  mergePolys = t.merge(bufferPolys);
+
+  if (typeof mergePolys === 'Error') {
+    done(err);
+    return mergePolys;
+  }
+
+  done(null, mergePolys)
+  return mergePolys;
 }
 
 var filterTriangles = function(triangles, maxEdge, cb){
   filteredTriangles = []
-  async.each(triangles, 
-    function(triangle, asyncCB){
-      var pt1 = t.point(triangle.geometry.coordinates[0][0][0], triangle.geometry.coordinates[0][0][1])
-      var pt2 = t.point(triangle.geometry.coordinates[0][1][0], triangle.geometry.coordinates[0][1][1])
-      var pt3 = t.point(triangle.geometry.coordinates[0][2][0], triangle.geometry.coordinates[0][2][1])
-      t.distance(pt1, pt2, 'miles', function(err, dist1){
-        t.distance(pt2, pt3, 'miles', function(err, dist2){
-          t.distance(pt1, pt3, 'miles', function(err, dist3){
-            if(dist1 <= maxEdge && dist2 <= maxEdge && dist3 <= maxEdge){
-              filteredTriangles.push(triangle)
-            }
-            asyncCB()
-          })
-        })
-      })
-    },
-    function(err){
-      cb(filteredTriangles)
+
+  _.each(triangles, function (triangle) {
+    var pt1 = t.point(triangle.geometry.coordinates[0][0][0], triangle.geometry.coordinates[0][0][1])
+    var pt2 = t.point(triangle.geometry.coordinates[0][1][0], triangle.geometry.coordinates[0][1][1])
+    var pt3 = t.point(triangle.geometry.coordinates[0][2][0], triangle.geometry.coordinates[0][2][1])
+    var dist1 = t.distance(pt1, pt2, 'miles');
+    var dist2 = t.distance(pt2, pt3, 'miles');
+    var dist3 = t.distance(pt1, pt3, 'miles');
+
+    if(dist1 <= maxEdge && dist2 <= maxEdge && dist3 <= maxEdge){
+      filteredTriangles.push(triangle)
     }
-  )
+  })
+
+  return filteredTriangles;
 }
+
 },{"./buffer":7,"./distance":16,"./merge":36,"./point":42,"./tin":54,"async":59}],12:[function(_dereq_,module,exports){
 //https://github.com/jasondavies/conrec.js
 //http://stackoverflow.com/questions/263305/drawing-a-topographical-map
@@ -621,99 +671,89 @@ t.donuts = _dereq_('./donuts')
 t.merge = _dereq_('./merge')
 
 module.exports = function(points, z, resolution, breaks, donuts, done){
-  t.tin(points, z, function(err, tinResult){
-    t.extent(points, function(err, bbox){
-      t.square(bbox, function(err, bbox){
-        t.grid(bbox, resolution, function(err, gridResult){
-          var data = []
-          _(gridResult.features).each(function(pt){
-            _(tinResult.features).each(function(triangle){
-              t.inside(pt, triangle, function(err, isInside){
-                if(isInside){
-                  t.planepoint(pt, triangle, function(err, zValue){
-                    pt.properties = {}
-                    pt.properties[z] = zValue
-                  })
-                }
-                else {
-                  //leave pt.properties null
-                }
-              })
-            })
-          })
+  var tinResult = t.tin(points, z),
+    gridResult = t.grid(t.square(t.extent(points))),
+    data = [];
 
-          var depth = Math.sqrt(gridResult.features.length)
-          for (var x=0; x<depth; x++){
-            var xGroup = gridResult.features.slice(x * depth, (x + 1) * depth)
-            var xFlat = []
-            _.each(xGroup, function(verticalPoint){
-              if(verticalPoint.properties){
-                xFlat.push(verticalPoint.properties[z])
-              } else{
-                xFlat.push(0)
-              }
-            })
-            data.push(xFlat)
-          }
-          var interval = (bbox[2] - bbox[0]) / depth
-          var xCoordinates = []
-          var yCoordinates = []
-          for (var x=0; x<depth; x++){
-            xCoordinates.push(x * interval + bbox[0])
-            yCoordinates.push(x * interval + bbox[1])
-          }
-          
-          var c = new Conrec
-          c.contour(data, 0, resolution, 0, resolution, xCoordinates, yCoordinates, breaks.length, breaks)
-          var contourList = c.contourList()
+  done = done || function () {};
 
-          var fc = t.featurecollection([])
-          _.each(contourList, function(c){
-            if(c.length > 2){
-              var polyCoordinates = []
-              _.each(c, function(coord){
-                polyCoordinates.push([coord.x, coord.y])
-              })
-              var poly = t.polygon([polyCoordinates])
-              poly.properties = {}
-              poly.properties[z] = c.level
-
-              fc.features.push(poly)
-            }
-          })
-
-          // perform donuts function and dissolves rings before returning if donuts option is true
-          if(donuts){
-            t.donuts(fc, function(err, donutPolys){
-              var zGroups = []
-              _.each(donutPolys.features, function(ring){
-                var found = false
-                _.each(zGroups, function(group){
-                  if(group.z === ring.properties[z]){
-                    found = true
-                    group.rings.push(ring)
-                  }
-                })
-                if(!found){
-                  zGroups.push({z: ring.properties[z], rings: [ring]})
-                }
-              })
-              donutPolys.features = []
-              _.each(zGroups, function(group){
-                t.merge(t.featurecollection(group.rings), function(err, multiRing){
-                  donutPolys.features.push(multiRing)
-                })
-              })
-              done(null, donutPolys)
-            })         
-          }
-          else {
-            done(null, fc)
-          }
-        })
-      })
+  _(gridResult.features).each(function(pt){
+    _(tinResult.features).each(function(triangle){
+      if (t.inside(pt, triangle)) {
+        pt.properties = {}
+        pt.properties[z] = t.planepoint(pt, triangle);
+      }
     })
   })
+
+  var depth = Math.sqrt(gridResult.features.length)
+  for (var x=0; x<depth; x++){
+    var xGroup = gridResult.features.slice(x * depth, (x + 1) * depth)
+    var xFlat = []
+    _.each(xGroup, function(verticalPoint){
+      if(verticalPoint.properties){
+        xFlat.push(verticalPoint.properties[z])
+      } else{
+        xFlat.push(0)
+      }
+    })
+    data.push(xFlat)
+  }
+  var interval = (bbox[2] - bbox[0]) / depth
+  var xCoordinates = []
+  var yCoordinates = []
+  for (var x=0; x<depth; x++){
+    xCoordinates.push(x * interval + bbox[0])
+    yCoordinates.push(x * interval + bbox[1])
+  }
+
+  var c = new Conrec
+  c.contour(data, 0, resolution, 0, resolution, xCoordinates, yCoordinates, breaks.length, breaks)
+  var contourList = c.contourList()
+
+  var fc = t.featurecollection([])
+  _.each(contourList, function(c){
+    if(c.length > 2){
+      var polyCoordinates = []
+      _.each(c, function(coord){
+        polyCoordinates.push([coord.x, coord.y])
+      })
+      var poly = t.polygon([polyCoordinates])
+      poly.properties = {}
+      poly.properties[z] = c.level
+
+      fc.features.push(poly)
+    }
+  })
+
+  // perform donuts function and dissolves rings before returning if donuts option is true
+  if(donuts){
+    var donutPolys = t.donuts(fc);
+    var zGroups = []
+    _.each(donutPolys.features, function(ring){
+      var found = false
+      _.each(zGroups, function(group){
+        if(group.z === ring.properties[z]){
+          found = true
+          group.rings.push(ring)
+        }
+      })
+      if(!found){
+        zGroups.push({z: ring.properties[z], rings: [ring]})
+      }
+    })
+    donutPolys.features = []
+    _.each(zGroups, function(group){
+      donutPolys.features.push(t.merge(t.featurecollection(group.rings)))
+    })
+    done(null, donutPolys)
+    return donutPolys;
+  }
+  else {
+    done(null, fc)
+    return fc;
+  }
+
 }
 
 
@@ -1242,38 +1282,54 @@ t.merge = _dereq_('./merge')
 t.buffer = _dereq_('./buffer')
 
 module.exports = function(points, done){
-  t.tin(points, null, function(err, tinPolys){
-    if(err) done(err)
-    t.buffer(tinPolys, .05, 'miles', function(err, bufferPolys){
-      t.merge(bufferPolys, function(err, mergePolys){
-        if(err) done(err)
-        done(null, mergePolys)
-      })
-    })
-  })
+  var tinPolys = t.tin(points, null),
+    mergePolys;
+
+  done = done || function () {};
+
+  if (typeof tinPolys === 'Error') {
+    done(tinPolys);
+    return tinPolys;
+  }
+
+  //mergePolys = t.merge(t.buffer(tinPolys, .05, 'miles'));
+  mergePolys = t.merge(tinPolys);
+
+  if (typeof mergePolys === 'Error') {
+    done(mergePolys);
+  } else {
+    done(null, mergePolys);
+  }
+
+  return mergePolys;
 }
+
 },{"./buffer":7,"./merge":36,"./tin":54}],14:[function(_dereq_,module,exports){
 var t = {}
 var _ = _dereq_('lodash')
 t.inside = _dereq_('./inside')
 
 module.exports = function(polyFC, ptFC, outField, done){
+
+  done = done || function () {};
+
   _.each(polyFC.features, function(poly){
     if(!poly.properties){
       poly.properties = {}
     }
     var values = []
     _.each(ptFC.features, function(pt){
-      t.inside(pt, poly, function(err, isInside){
-        if(isInside){
-          values.push(1)
-        }
-      })
+      if (t.inside(pt, poly)) {
+        values.push(1)
+      }
     })
     poly.properties[outField] = values.length
   })
+
   done(null, polyFC)
+  return polyFC;
 }
+
 },{"./inside":26,"lodash":66}],15:[function(_dereq_,module,exports){
 var t = {}
 var _ = _dereq_('lodash'),
@@ -1281,22 +1337,26 @@ var _ = _dereq_('lodash'),
 t.inside = _dereq_('./inside')
 
 module.exports = function(polyFC, ptFC, inField, outField, done){
+
+  done = done || function () {};
+
   _.each(polyFC.features, function(poly){
     if(!poly.properties){
       poly.properties = {}
     }
     var values = []
     _.each(ptFC.features, function(pt){
-      t.inside(pt, poly, function(err, isInside){
-        if(isInside){
-          values.push(pt.properties[inField])
-        }
-      })
+      if (t.inside(pt, poly)) {
+        values.push(pt.properties[inField])
+      }
     })
     poly.properties[outField] = ss.standard_deviation(values)
   })
+
   done(null, polyFC)
+  return polyFC;
 }
+
 },{"./inside":26,"lodash":66,"simple-statistics":67}],16:[function(_dereq_,module,exports){
 //http://en.wikipedia.org/wiki/Haversine_formula
 //http://www.movable-type.co.uk/scripts/latlong.html
@@ -1318,6 +1378,9 @@ module.exports = function(point1, point2, units, done){
   var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a))
 
   var R = 0
+
+  done = done || function () {};
+
   switch(units){
     case 'miles':
       R = 3960
@@ -1334,7 +1397,9 @@ module.exports = function(point1, point2, units, done){
   }
   var distance = R * c
   done(null, distance)
+  return distance;
 }
+
 },{}],17:[function(_dereq_,module,exports){
 var _ = _dereq_('lodash')
 
@@ -1346,6 +1411,8 @@ t.inside = _dereq_('./inside')
 t.union = _dereq_('./union')
 
 module.exports = function(fc, done){
+  done = done || function () {};
+
   donuts = t.featurecollection([])
   _.each(fc.features, function(poly1){
     _.each(fc.features, function(poly2){
@@ -1355,40 +1422,39 @@ module.exports = function(fc, done){
       }
       else{
         //check to see if poly2 is inside of poly1
-        contained(poly1, poly2, function(isContained){
-          // if it is contained and has different properties, erase poly2 from poly1
-          if(isContained && !_.isEqual(poly1.properties, poly2.properties)){
-            // erase poly2 from poly1
-            t.erase(poly1, poly2, function(err, erased){
-              if(!_.some(donuts.features, erased)){
-                poly1 = erased
-              }
-            })
+        var isContained = contained(poly1, poly2);
+
+        // if it is contained and has different properties, erase poly2 from poly1
+        if(isContained && !_.isEqual(poly1.properties, poly2.properties)){
+          // erase poly2 from poly1
+          var erased = t.erase(poly1, poly2);
+          if(!_.some(donuts.features, erased)){
+            poly1 = erased
           }
-          // if it is contained and has the same properties, merge poly1 and poly2
-          if(isContained && _.isEqual(poly1.properties, poly2.properties)){
-            // merge poly1 and poly2
-            t.union(poly1, poly2, function(err, unioned){
-              if(!_.some(donuts.features, unioned)){
-                poly1 = unioned
-              }
-            })
+        }
+        // if it is contained and has the same properties, merge poly1 and poly2
+        if(isContained && _.isEqual(poly1.properties, poly2.properties)){
+          // merge poly1 and poly2
+          var unioned = t.union(poly1, poly2);
+          if(!_.some(donuts.features, unioned)){
+            poly1 = unioned
           }
-        })
+        }
       }
     })
     // push transformed poly1 to donuts
     donuts.features.push(poly1)
   })
   done(null, donuts)
+  return donuts;
 }
 
-function contained(poly1, poly2, done){
+function contained(poly1, poly2){
   var sampleVertex = t.point(poly2.geometry.coordinates[0][0][0], poly2.geometry.coordinates[0][0][1])
-  t.inside(sampleVertex, poly1, function(err, isInside){
-    done(isInside)
-  })
+
+  return t.inside(sampleVertex, poly1);
 }
+
 },{"./erase":19,"./featurecollection":22,"./inside":26,"./point":42,"./union":56,"lodash":66}],18:[function(_dereq_,module,exports){
 var t = {}
 var extent = _dereq_('./extent'),
@@ -1397,12 +1463,17 @@ t.bboxPolygon = bboxPolygon
 t.extent = extent
 
 module.exports = function(features, done){
-  t.extent(features, function(err, bbox){
-    t.bboxPolygon(bbox, function(err, poly){
-      done(err, poly)
-    })
-  })
+  var poly = t.bboxPolygon(t.extent(features));
+
+  if (typeof poly === 'Error') {
+    done(poly);
+  } else {
+    done(null, poly);
+  }
+
+  return poly;
 }
+
 },{"./bboxPolygon":5,"./extent":21}],19:[function(_dereq_,module,exports){
 // look here for help http://svn.osgeo.org/grass/grass/branches/releasebranch_6_4/vector/v.overlay/main.c
 //must be array of polygons
@@ -1424,10 +1495,14 @@ module.exports = function(poly1, poly2, done){
   var erased = a.difference(b);
   var parser = new jsts.io.GeoJSONParser()
   erased = parser.write(erased)
-  
+
   var newPoly = _.cloneDeep(poly1);
   newPoly.geometry = erased
+
+  done = done || function () {};
+
   done(null, newPoly)
+  return newPoly;
 }
 
 function correctRings(poly){
@@ -1439,6 +1514,7 @@ function correctRings(poly){
   })
   return poly
 }
+
 },{"./featurecollection":22,"jsts":63,"lodash":66}],20:[function(_dereq_,module,exports){
 var t = {}
 var _ = _dereq_('lodash'),
@@ -1449,6 +1525,9 @@ t.point = point
 
 module.exports = function(features, done){
   var coordinates = []
+
+  done = done || function () {};
+
   if(features.type === 'FeatureCollection'){
     for(var i in features.features){
       switch(features.features[i].geometry.type){
@@ -1522,13 +1601,8 @@ module.exports = function(features, done){
     fc.features.push(t.point(c[0], c[1]))
   })
   done(null, fc)
+  return fc;
 }
-
-
-
-
-
-
 
 },{"./featurecollection":22,"./point":42,"lodash":66}],21:[function(_dereq_,module,exports){
 _ = _dereq_('lodash')
@@ -1538,9 +1612,12 @@ module.exports = function(layer, done){
       ymin = Infinity,
       xmax = -Infinity,
       ymax = -Infinity
+
+  done = done || function () {};
+
   if(layer.type === 'FeatureCollection'){
     for(var i in layer.features){
-      var coordinates 
+      var coordinates
       switch(layer.features[i].geometry.type){
         case 'Point':
           coordinates = [layer.features[i].geometry.coordinates]
@@ -1568,7 +1645,7 @@ module.exports = function(layer, done){
       if(!layer.features[i].geometry && layer.features[i].properties){
         throw new Error('Unknown Geometry Type')
       }
-      
+
       for(var n in coordinates){
         if(xmin > coordinates[n][0]){
           xmin = coordinates[n][0]
@@ -1586,9 +1663,10 @@ module.exports = function(layer, done){
     }
     var bbox = [xmin, ymin, xmax, ymax]
     done(null, bbox)
+    return bbox;
   }
   else{
-    var coordinates 
+    var coordinates
     var geometry
     if(layer.type === 'Feature'){
       geometry = layer.geometry
@@ -1623,7 +1701,7 @@ module.exports = function(layer, done){
     if(!geometry){
       throw new Error('No Geometry Found')
     }
-    
+
     for(var n in coordinates){
       if(xmin > coordinates[n][0]){
         xmin = coordinates[n][0]
@@ -1640,8 +1718,10 @@ module.exports = function(layer, done){
     }
     var bbox = [xmin, ymin, xmax, ymax]
     done(null, bbox)
+    return bbox;
   }
 }
+
 },{"lodash":66}],22:[function(_dereq_,module,exports){
 module.exports = function(features){
   var fc = {
@@ -1658,23 +1738,32 @@ t.featurecollection = _dereq_('./featurecollection')
 
 module.exports = function(fc, field, value, done){
   var newFC = t.featurecollection([]);
+
+  done = done || function () {};
+
   for(var i = 0; i < fc.features.length; i++) {
     if(fc.features[i].properties[field] === value) {
       newFC.features.push(fc.features[i])
     }
   }
+
   done(null, newFC)
+  return newFC;
 }
+
 },{"./featurecollection":22,"lodash":66}],24:[function(_dereq_,module,exports){
 var t = {}
 t.featurecollection = _dereq_('./featurecollection')
 
 module.exports = function(fc, done){
+  done = done || function () {};
+
   if(fc.type === 'Feature'){
     switch(fc.geometry.type){
       case 'Point':
         fc.geometry.coordinates = flipCoordinate(fc.geometry.coordinates)
         done(null, fc)
+        return fc;
         break
       case 'LineString':
         _.each(fc.geometry.coordinates, function(coordinates, i){
@@ -1682,6 +1771,7 @@ module.exports = function(fc, done){
           fc.geometry.coordinates[i] = coordinates
         })
         done(null, fc)
+        return fc;
         break
       case 'Polygon':
         _.each(fc.geometry.coordinates, function(ring, i){
@@ -1691,6 +1781,7 @@ module.exports = function(fc, done){
           })
         })
         done(null, fc)
+        return fc;
         break
     }
   }
@@ -1717,9 +1808,12 @@ module.exports = function(fc, done){
       }
     })
     done(null, fc)
+    return fc;
   }
   else {
-    done(new Error('Unknown geometry type'), null)
+    var err = new Error('Unknown geometry type');
+    done(err, null)
+    return err;
   }
 }
 
@@ -1728,6 +1822,7 @@ var flipCoordinate = function(coordinates){
   y = coordinates[1]
   return([y, x])
 }
+
 },{"./featurecollection":22}],25:[function(_dereq_,module,exports){
 var t = {}
 var _ = _dereq_('lodash'),
@@ -1745,13 +1840,18 @@ module.exports = function(extents, depth, done){
     type: 'FeatureCollection',
     features: []
   }
+
+  done = done || function () {};
+
   for (var x=0; x<=depth; x++){
     for (var y=0;y<=depth; y++){
       fc.features.push(t.point((x * interval) + xmin, (y * interval) + ymin))
     }
   }
   done(null, fc)
+  return fc;
 }
+
 },{"./point":42,"lodash":66}],26:[function(_dereq_,module,exports){
 // http://en.wikipedia.org/wiki/Even%E2%80%93odd_rule
 // modified from: https://github.com/substack/point-in-polygon/blob/master/index.js
@@ -1763,17 +1863,20 @@ module.exports = function(point, polygon, done){
   var vs = polygon.geometry.coordinates[0]
 
   var isInside = false;
+
+  done = done || function () {};
+
   for (var i = 0, j = vs.length - 1; i < vs.length; j = i++) {
     var xi = vs[i][0], yi = vs[i][1];
     var xj = vs[j][0], yj = vs[j][1];
-    
+
     var intersect = ((yi > y) != (yj > y))
         && (x < (xj - xi) * (y - yi) / (yj - yi) + xi);
     if (intersect) isInside = !isInside;
   }
   done(null, isInside)
+  return isInside;
 }
-
 
 },{}],27:[function(_dereq_,module,exports){
 // depend on jsts for now https://github.com/bjornharrtell/jsts/blob/master/examples/overlay.html
@@ -1787,10 +1890,15 @@ module.exports = function(polys1, polys2, done){
   var b = reader.read(JSON.stringify(polys2.features[0].geometry))
   var intersection = a.intersection(b)
   var parser = new jsts.io.GeoJSONParser()
+
+  done = done || function () {};
+
   intersection = parser.write(intersection)
   intersection = t.featurecollection([intersection])
   done(null, intersection)
+  return intersection;
 }
+
 },{"./featurecollection":22,"jsts":63}],28:[function(_dereq_,module,exports){
 module.exports = function(ring){
   var sum = 0;
@@ -1825,164 +1933,179 @@ t.size = _dereq_('./size')
 t.point = _dereq_('./point')
 
 module.exports = function(points, z, resolution, breaks, done){
-  addEdges(points, z, resolution, function(){
-    t.tin(points, z, function(err, tinResult){
-      t.extent(points, function(err, bbox){
-        t.square(bbox, function(err, bbox){
-          t.grid(bbox, resolution, function(err, gridResult){
-            var data = []
-            _(gridResult.features).each(function(pt){
-              _(tinResult.features).each(function(triangle){
-                t.inside(pt, triangle, function(err, isInside){
-                  if(isInside){
-                    t.planepoint(pt, triangle, function(err, zValue){
-                      pt.properties = {}
-                      pt.properties[z] = zValue
-                    })
-                  }
-                })
-              })
-              if(!pt.properties){
-                pt.properties = {}
-                pt.properties[z] = -100
-              }
-            })
+  var addEdgesResult = addEdges(points, z, resolution);
 
-            var depth = Math.sqrt(gridResult.features.length)
-            for (var x=0; x<depth; x++){
-              var xGroup = gridResult.features.slice(x * depth, (x + 1) * depth)
-              var xFlat = []
-              _.each(xGroup, function(verticalPoint){
-                if(verticalPoint.properties){
-                  xFlat.push(verticalPoint.properties[z])
-                } else{
-                  xFlat.push(0)
-                }
-              })
-              data.push(xFlat)
-            }
-            var interval = (bbox[2] - bbox[0]) / depth
-            var xCoordinates = []
-            var yCoordinates = []
-            for (var x=0; x<depth; x++){
-              xCoordinates.push(x * interval + bbox[0])
-              yCoordinates.push(x * interval + bbox[1])
-            }
-            
-            //change zero breaks to .01 to deal with bug in conrec algorithm
-            breaks = _.map(breaks, function(num){
-              if(num === 0){
-                return .01
-              }
-              else{
-                return num
-              }
-            })
-            //deduplicate breaks
-            breaks = _.uniq(breaks)
+  done = done || function () {};
 
-            var c = new Conrec
-            c.contour(data, 0, resolution, 0, resolution, xCoordinates, yCoordinates, breaks.length, breaks)
-            var contourList = c.contourList()
+  if (typeof addEdgesResult === 'Error') {
+    done(addEdgesResult);
+    return addEdgesResult;
+  }
 
-            var fc = t.featurecollection([])
-            _.each(contourList, function(c){
-              if(c.length > 2){
-                var polyCoordinates = []
-                _.each(c, function(coord){
-                  polyCoordinates.push([coord.x, coord.y])
-                })
-                var poly = t.polygon([polyCoordinates])
-                poly.properties = {}
-                poly.properties[z] = c.level
+  // TODO: should do error checking here
+  var tinResult = t.tin(points, z),
+    extentBBox = t.extent(points),
+    squareBBox = t.square(extentBBox),
+    gridResult = t.grid(squareBBox, resolution),
+    data = [];
 
-                fc.features.push(poly)
-              }
-            })
-
-            // perform donuts function and dissolves rings before returning if donuts option is true
-            t.donuts(fc, function(err, donutPolys){
-              var zGroups = []
-              _.each(donutPolys.features, function(ring){
-                var found = false
-                _.each(zGroups, function(group){
-                  if(group.z === ring.properties[z]){
-                    found = true
-                    group.rings.push(ring)
-                  }
-                })
-                if(!found){
-                  zGroups.push({z: ring.properties[z], rings: [ring]})
-                }
-              })
-              donutPolys.features = []
-              _.each(zGroups, function(group){
-                _.each(group.rings, function(ring){
-                })
-                t.merge(t.featurecollection(group.rings), function(err, multiRing){
-                  donutPolys.features.push(multiRing)
-                })
-              })
-              done(null, donutPolys)
-            })         
-          })
-        })
-      })
+  _(gridResult.features).each(function(pt){
+    _(tinResult.features).each(function(triangle){
+      if (t.inside(pt, triangle)) {
+        pt.properties = {}
+        pt.properties[z] = t.planepoint(pt, triangle);
+      }
     })
+    if(!pt.properties){
+      pt.properties = {}
+      pt.properties[z] = -100
+    }
   })
+
+  var depth = Math.sqrt(gridResult.features.length)
+  for (var x=0; x<depth; x++){
+    var xGroup = gridResult.features.slice(x * depth, (x + 1) * depth)
+    var xFlat = []
+    _.each(xGroup, function(verticalPoint){
+      if(verticalPoint.properties){
+        xFlat.push(verticalPoint.properties[z])
+      } else{
+        xFlat.push(0)
+      }
+    })
+    data.push(xFlat)
+  }
+  var interval = (squareBBox[2] - squareBBox[0]) / depth
+  var xCoordinates = []
+  var yCoordinates = []
+  for (var x=0; x<depth; x++){
+    xCoordinates.push(x * interval + squareBBox[0])
+    yCoordinates.push(x * interval + squareBBox[1])
+  }
+
+  //change zero breaks to .01 to deal with bug in conrec algorithm
+  breaks = _.map(breaks, function(num){
+    if(num === 0){
+      return .01
+    }
+    else{
+      return num
+    }
+  })
+  //deduplicate breaks
+  breaks = _.uniq(breaks)
+
+  var c = new Conrec
+  c.contour(data, 0, resolution, 0, resolution, xCoordinates, yCoordinates, breaks.length, breaks)
+  var contourList = c.contourList()
+
+  var fc = t.featurecollection([])
+  _.each(contourList, function(c){
+    if(c.length > 2){
+      var polyCoordinates = []
+      _.each(c, function(coord){
+        polyCoordinates.push([coord.x, coord.y])
+      })
+      var poly = t.polygon([polyCoordinates])
+      poly.properties = {}
+      poly.properties[z] = c.level
+
+      fc.features.push(poly)
+    }
+  })
+
+  // perform donuts function and dissolves rings before returning if donuts option is true
+  var donutPolys = t.donuts(fc);
+  var zGroups = []
+  _.each(donutPolys.features, function(ring){
+    var found = false
+    _.each(zGroups, function(group){
+      if(group.z === ring.properties[z]){
+        found = true
+        group.rings.push(ring)
+      }
+    })
+    if(!found){
+      zGroups.push({z: ring.properties[z], rings: [ring]})
+    }
+  })
+  donutPolys.features = []
+  _.each(zGroups, function(group){
+    _.each(group.rings, function(ring){
+    })
+    donutPolys.features.push(t.merge(t.featurecollection(group.rings)))
+  })
+
+  done(null, donutPolys)
+  return donutPolys;
 }
 
-function addEdges(points, z, resolution, cb){
-  t.extent(points, function(err, bbox){
-    t.square(bbox, function(err, bbox){
-      t.size(bbox, .35, function(err, bbox){
-        var edgeDistance = bbox[2] - bbox[0]
-        var extendDistance = edgeDistance / resolution
+function addEdges(points, z, resolution){
+  var extentBBox = t.extent(points),
+    squareBBox,
+    sizeResult;
 
-        var xmin = bbox[0]
-        var ymin = bbox[1]
-        var xmax = bbox[2]
-        var ymax = bbox[3]
+  if (typeof extentBBox === 'Error') {
+    return extentBBox;
+  }
 
-        //left
-        var left = [[xmin, ymin],[xmin, ymax]]
-        for(var i = 0; i<=resolution; i++){
-          var pt = t.point(xmin, ymin + (extendDistance * i))
-          pt.properties = {}
-          pt.properties[z] = -100
-          points.features.push(pt)
-        }
+  squareBBox = t.square(extentBBox);
 
-        //bottom
-        var bottom = [[xmin, ymin],[xmax, ymin]]
-        for(var i = 0; i<=resolution; i++){
-          var pt = t.point(xmin + (extendDistance * i), ymin)
-          pt.properties = {}
-          pt.properties[z] = -100
-          points.features.push(pt)
-        }
+  if (typeof squareBBox === 'Error') {
+    return squareBBox;
+  }
 
-        //right
-        var right = [[xmax, ymin],[xmax, ymax]]
-        for(var i = 0; i<=resolution; i++){
-          var pt = t.point(xmax, ymin + (extendDistance * i))
-          pt.properties = {}
-          pt.properties[z] = -100
-          points.features.push(pt)
-        }
+  sizeBBox = t.size(squareBBox, 0.35)
 
-        //top
-        var top = [[xmin, ymax],[xmax, ymax]]
-        for(var i = 0; i<=resolution; i++){
-          var pt = t.point(xmin + (extendDistance * i), ymax)
-          pt.properties = {}
-          pt.properties[z] = -100
-          points.features.push(pt)
-        }
-        cb(points)
-      })
-    })
-  })
+  if (typeof sizeBBox === 'Error') {
+    return sizeBBox;
+  }
+
+  var edgeDistance = sizeBBox[2] - sizeBBox[0]
+  var extendDistance = edgeDistance / resolution
+
+  var xmin = sizeBBox[0]
+  var ymin = sizeBBox[1]
+  var xmax = sizeBBox[2]
+  var ymax = sizeBBox[3]
+
+  //left
+  var left = [[xmin, ymin],[xmin, ymax]]
+  for(var i = 0; i<=resolution; i++){
+    var pt = t.point(xmin, ymin + (extendDistance * i))
+    pt.properties = {}
+    pt.properties[z] = -100
+    points.features.push(pt)
+  }
+
+  //bottom
+  var bottom = [[xmin, ymin],[xmax, ymin]]
+  for(var i = 0; i<=resolution; i++){
+    var pt = t.point(xmin + (extendDistance * i), ymin)
+    pt.properties = {}
+    pt.properties[z] = -100
+    points.features.push(pt)
+  }
+
+  //right
+  var right = [[xmax, ymin],[xmax, ymax]]
+  for(var i = 0; i<=resolution; i++){
+    var pt = t.point(xmax, ymin + (extendDistance * i))
+    pt.properties = {}
+    pt.properties[z] = -100
+    points.features.push(pt)
+  }
+
+  //top
+  var top = [[xmin, ymax],[xmax, ymax]]
+  for(var i = 0; i<=resolution; i++){
+    var pt = t.point(xmin + (extendDistance * i), ymax)
+    pt.properties = {}
+    pt.properties[z] = -100
+    points.features.push(pt)
+  }
+
+  return points
 }
 
 
@@ -2517,71 +2640,66 @@ t.linestring = _dereq_('./linestring')
 t.square = _dereq_('./square')
 
 module.exports = function(points, z, resolution, breaks, done){
-  t.tin(points, z, function(err, tinResult){
-    t.extent(points, function(err, bbox){
-      t.square(bbox, function(err, bbox){
-        t.grid(bbox, resolution, function(err, gridResult){
-          var data = []
-          _(gridResult.features).each(function(pt){
-            _(tinResult.features).each(function(triangle){
-              t.inside(pt, triangle, function(err, isInside){
-                if(isInside){
-                  t.planepoint(pt, triangle, function(err, zValue){
-                    pt.properties = {}
-                    pt.properties[z] = zValue
-                  })
-                }
-                else {
-                  //leave pt.properties null
-                }
-              })
-            })
-          })
+  // TODO: should do error checking here
+  var tinResult = t.tin(points, z),
+    extentBBox = t.extent(points),
+    squareBBox = t.square(extentBBox),
+    gridResult = t.grid(squareBBox, resolution),
+    data = [];
 
-          var depth = Math.sqrt(gridResult.features.length)
-          for (var x=0; x<depth; x++){
-            var xGroup = gridResult.features.slice(x * depth, (x + 1) * depth)
-            var xFlat = []
-            _.each(xGroup, function(verticalPoint){
-              if(verticalPoint.properties){
-                xFlat.push(verticalPoint.properties[z])
-              } else{
-                xFlat.push(0)
-              }
-            })
-            data.push(xFlat)
-          }
-          var interval = (bbox[2] - bbox[0]) / depth
-          var xCoordinates = []
-          var yCoordinates = []
-          for (var x=0; x<depth; x++){
-            xCoordinates.push(x * interval + bbox[0])
-            yCoordinates.push(x * interval + bbox[1])
-          }
-          
-          var c = new Conrec
-          c.contour(data, 0, resolution, 0, resolution, xCoordinates, yCoordinates, breaks.length, breaks)
-          var contourList = c.contourList()
+  done = done || function () {};
 
-          var fc = t.featurecollection([])
-          _.each(contourList, function(c){
-            if(c.length > 2){
-              var polyCoordinates = []
-              _.each(c, function(coord){
-                polyCoordinates.push([coord.x, coord.y])
-              })
-              var poly = t.linestring(polyCoordinates)
-              poly.properties = {}
-              poly.properties[z] = c.level
-
-              fc.features.push(poly)
-            }
-          })
-          done(null, fc)
-        })
-      })
+  _(gridResult.features).each(function(pt){
+    _(tinResult.features).each(function(triangle){
+      if (t.inside(pt, triangle)) {
+        pt.properties = {}
+        pt.properties[z] = t.planepoint(pt, triangle);
+      }
     })
   })
+
+  var depth = Math.sqrt(gridResult.features.length)
+  for (var x=0; x<depth; x++){
+    var xGroup = gridResult.features.slice(x * depth, (x + 1) * depth)
+    var xFlat = []
+    _.each(xGroup, function(verticalPoint){
+      if(verticalPoint.properties){
+        xFlat.push(verticalPoint.properties[z])
+      } else{
+        xFlat.push(0)
+      }
+    })
+    data.push(xFlat)
+  }
+  var interval = (squareBBox[2] - squareBBox[0]) / depth
+  var xCoordinates = []
+  var yCoordinates = []
+  for (var x=0; x<depth; x++){
+    xCoordinates.push(x * interval + squareBBox[0])
+    yCoordinates.push(x * interval + squareBBox[1])
+  }
+
+  var c = new Conrec
+  c.contour(data, 0, resolution, 0, resolution, xCoordinates, yCoordinates, breaks.length, breaks)
+  var contourList = c.contourList()
+
+  var fc = t.featurecollection([])
+  _.each(contourList, function(c){
+    if(c.length > 2){
+      var polyCoordinates = []
+      _.each(c, function(coord){
+        polyCoordinates.push([coord.x, coord.y])
+      })
+      var poly = t.linestring(polyCoordinates)
+      poly.properties = {}
+      poly.properties[z] = c.level
+
+      fc.features.push(poly)
+    }
+  })
+
+  done(null, fc)
+  return fc;
 }
 
 
@@ -3108,6 +3226,8 @@ module.exports = function(fc, field, num, done){
   var vals = []
   var breaks = []
 
+  done = done || function () {};
+
   _.each(fc.features, function(feature){
     if(!(feature.properties[field]===undefined)){
       vals.push(feature.properties[field])
@@ -3116,7 +3236,9 @@ module.exports = function(fc, field, num, done){
   breaks = ss.jenks(vals, num)
 
   done(null, breaks)
+  return breaks;
 }
+
 },{"lodash":66,"simple-statistics":67}],32:[function(_dereq_,module,exports){
 module.exports = function(coordinates, properties){
   if(coordinates === null) throw new Error('No coordinates passed')
@@ -3151,22 +3273,24 @@ var _ = _dereq_('lodash'),
 t.inside = _dereq_('./inside')
 
 module.exports = function(polyFC, ptFC, inField, outField, done){
+  done = done || function () {};
+
   _.each(polyFC.features, function(poly){
     if(!poly.properties){
       poly.properties = {}
     }
     var values = []
     _.each(ptFC.features, function(pt){
-      t.inside(pt, poly, function(err, isInside){
-        if(isInside){
-          values.push(pt.properties[inField])
-        }
-      })
+      if (t.inside(pt, poly)) {
+        values.push(pt.properties[inField]);
+      }
     })
     poly.properties[outField] = ss.max(values)
   })
   done(null, polyFC)
+  return polyFC;
 }
+
 },{"./inside":26,"lodash":66,"simple-statistics":67}],35:[function(_dereq_,module,exports){
 var t = {}
 var _ = _dereq_('lodash'),
@@ -3174,51 +3298,52 @@ var _ = _dereq_('lodash'),
 t.inside = _dereq_('./inside')
 
 module.exports = function(polyFC, ptFC, inField, outField, done){
+  done = done || function () {};
+
   _.each(polyFC.features, function(poly){
     if(!poly.properties){
       poly.properties = {}
     }
     var values = []
     _.each(ptFC.features, function(pt){
-      t.inside(pt, poly, function(err, isInside){
-        if(isInside){
-          values.push(pt.properties[inField])
-        }
-      })
+      if (t.inside(pt, poly)) {
+        values.push(pt.properties[inField])
+      }
     })
     poly.properties[outField] = ss.median(values)
   })
   done(null, polyFC)
+  return polyFC;
 }
+
 },{"./inside":26,"lodash":66,"simple-statistics":67}],36:[function(_dereq_,module,exports){
 // 1. run tin on points
 // 2. merge the tin
 //var topojson = require('')
-var async = _dereq_('async'),
-    _ = _dereq_('lodash')
+var _ = _dereq_('lodash')
 var t = {}
 t.union = _dereq_('./union')
 
 module.exports = function(polygons, done){
-  var merged = _.cloneDeep(polygons.features[0])
-  async.eachSeries(polygons.features, 
-    function(poly, cb){
-      if(poly.geometry){
-        t.union(merged, poly, function(err, mergedPolys){
-          merged = mergedPolys
-          cb()
-        })
-      }
-      else {
-        cb()
-      }
-    },
-    function(){
-      done(null, merged)
+
+  var merged = _.cloneDeep(polygons.features[0]),
+    features = polygons.features;
+
+  done = done || function () {};
+
+  for (var i = 0, len = features.length; i < len; i++) {
+    var poly = features[i];
+
+    if(poly.geometry){
+      merged = t.union(merged, poly);
     }
-  )
+  }
+
+  done(null, merged);
+  return merged;
 }
-},{"./union":56,"async":59,"lodash":66}],37:[function(_dereq_,module,exports){
+
+},{"./union":56,"lodash":66}],37:[function(_dereq_,module,exports){
 // http://cs.selu.edu/~rbyrd/math/midpoint/
 // ((x1+x2)/2), ((y1+y2)/2)
 var t = {}
@@ -3240,8 +3365,12 @@ module.exports = function(point1, point2, done) {
 
   var midpoint = t.point(midX, midY);
 
+  done = done || function () {};
+
   done(null, midpoint)
+  return midpoint;
 }
+
 },{"./point":42}],38:[function(_dereq_,module,exports){
 var t = {}
 var _ = _dereq_('lodash'),
@@ -3249,22 +3378,25 @@ var _ = _dereq_('lodash'),
 t.inside = _dereq_('./inside')
 
 module.exports = function(polyFC, ptFC, inField, outField, done){
+  done = done || function () {};
+
   _.each(polyFC.features, function(poly){
     if(!poly.properties){
       poly.properties = {}
     }
     var values = []
     _.each(ptFC.features, function(pt){
-      t.inside(pt, poly, function(err, isInside){
-        if(isInside){
-          values.push(pt.properties[inField])
-        }
-      })
+      if (t.inside(pt, poly)) {
+        values.push(pt.properties[inField])
+      }
     })
     poly.properties[outField] = ss.min(values)
   })
+  
   done(null, polyFC)
+  return polyFC;
 }
+
 },{"./inside":26,"lodash":66,"simple-statistics":67}],39:[function(_dereq_,module,exports){
 
 
@@ -3281,32 +3413,36 @@ module.exports = function(targetPoint, points, done){
   var nearestPoint
   var count = 0
   var dist = Infinity
-  _.forEach(points.features, function(pt){
-    if(!nearestPoint){
-      nearestPoint = pt
-      t.distance(targetPoint, pt, 'miles', function(err, dist){
-        nearestPoint.properties.distance = dist 
-      })
-    }
-    else{
-      t.distance(targetPoint, pt, 'miles', function(err, dist){
-        if(dist < nearestPoint.properties.distance){
-          nearestPoint = pt
-          nearestPoint.properties.distance = dist
-        }
-        if(points.features.length === count + 1){
-          complete(nearestPoint)
-        }
-      })
-    }
-    count++
-  })
 
   function complete(nPt){
     delete nPt.properties.distance
     done(null, nPt)
   }
+
+  done = done || function () {};
+
+  _.forEach(points.features, function(pt){
+    if(!nearestPoint){
+      nearestPoint = pt
+      nearestPoint.properties.distance = t.distance(targetPoint, pt, 'miles');
+    }
+    else{
+      dist = t.distance(targetPoint, pt, 'miles');
+
+      if(dist < nearestPoint.properties.distance){
+        nearestPoint = pt
+        nearestPoint.properties.distance = dist
+      }
+      if(points.features.length === count + 1){
+        complete(nearestPoint)
+      }
+    }
+    count++
+  })
+
+  return nearestPoint;
 }
+
 },{"./distance":16,"lodash":66}],41:[function(_dereq_,module,exports){
 http://stackoverflow.com/a/13916669/461015
 
@@ -3323,13 +3459,18 @@ module.exports = function(point, triangle, done){
       y3 = triangle.geometry.coordinates[0][2][1],
       z3 = triangle.properties.c
 
-  var z = (z3 * (x-x1) * (y-y2) + z1 * (x-x2) * (y-y3) + z2 * (x-x3) * (y-y1) 
-      - z2 * (x-x1) * (y-y3) - z3 * (x-x2) * (y-y1) - z1 * (x-x3) * (y-y2)) / 
-      ((x-x1) * (y-y2) + (x-x2) * (y-y3) +(x-x3) * (y-y1) -   
+  var z = (z3 * (x-x1) * (y-y2) + z1 * (x-x2) * (y-y3) + z2 * (x-x3) * (y-y1)
+      - z2 * (x-x1) * (y-y3) - z3 * (x-x2) * (y-y1) - z1 * (x-x3) * (y-y2)) /
+      ((x-x1) * (y-y2) + (x-x2) * (y-y3) +(x-x3) * (y-y1) -
        (x-x1) * (y-y3) - (x-x2) * (y-y1) - (x-x3) * (y-y2))
 
+  done = done || function () {};
+
   done(null, z)
+
+  return z;
 }
+
 },{}],42:[function(_dereq_,module,exports){
 module.exports = function(x, y, properties){
   if(x === null || y === null) throw new Error('Invalid coordinates')
@@ -3374,14 +3515,19 @@ module.exports = function(fc, field, percentiles, done){
   var vals = []
   var quantiles = []
 
+  done = done || function () {};
+
   _.each(fc.features, function(feature){
     vals.push(feature.properties[field])
   })
   _.each(percentiles, function(percentile){
     quantiles.push(ss.quantile(vals, percentile * .01))
   })
+  
   done(null, quantiles)
+  return quantiles;
 }
+
 },{"lodash":66,"simple-statistics":67}],45:[function(_dereq_,module,exports){
 var t = {}
 var featurecollection = _dereq_('./featurecollection')
@@ -3389,6 +3535,9 @@ t.featurecollection = featurecollection
 
 module.exports = function(fc, inField, outField, translations, done){
   var reclassed = t.featurecollection([])
+
+  done = done || function () {};
+
   _.each(fc.features, function(feature){
     var reclassedFeature
     var found = false
@@ -3400,8 +3549,11 @@ module.exports = function(fc, inField, outField, translations, done){
     }
     reclassed.features.push(reclassedFeature)
   })
+
   done(null, reclassed)
+  return reclassed;
 }
+
 },{"./featurecollection":22}],46:[function(_dereq_,module,exports){
 var t = {}
 var featurecollection = _dereq_('./featurecollection')
@@ -3409,13 +3561,19 @@ t.featurecollection = featurecollection
 
 module.exports = function(collection, key, val, done) {
   var newFC = t.featurecollection([]);
+
+  done = done || function () {};
+
   for(var i = 0; i < collection.features.length; i++) {
     if(collection.features[i].properties[key] != val) {
       newFC.features.push(collection.features[i])
     }
   }
+  
   done(null, newFC)
+  return newFC;
 }
+
 },{"./featurecollection":22}],47:[function(_dereq_,module,exports){
 var t = {}
 var _ = _dereq_('lodash'),
@@ -3424,8 +3582,13 @@ t.featurecollection = featurecollection
 
 module.exports = function(fc, num, done){
   var outFC = t.featurecollection(_.sample(fc.features, num))
+
+  done = done || function () {};
+
   done(null, outFC)
+  return outFC;
 }
+
 },{"./featurecollection":22,"lodash":66}],48:[function(_dereq_,module,exports){
 var t = {}
 var fs = _dereq_('fs')
@@ -3464,9 +3627,17 @@ module.exports = function(fc, quantization, minimumArea, done){
     }
   }
   var topo = topojson.topology({name:fc}, options)
+
+  done = done || function () {};
+
   topojson.simplify(topo, options)
-  done(null, topojson.feature(topo, topo.objects.name))
+
+  var simplifiedFeature = topojson.feature(topo, topo.objects.name)
+
+  done(null, simplifiedFeature)
+  return simplifiedFeature;
 }
+
 },{"topojson":68}],50:[function(_dereq_,module,exports){
 module.exports = function(bbox, factor, done){
   var xDistance = ((bbox[2] - bbox[0]) / 2) * factor
@@ -3478,8 +3649,13 @@ module.exports = function(bbox, factor, done){
   var highY = yDistance + bbox[3]
 
   var sized = [lowX, lowY, highX, highY]
+
+  done = done || function () {};
+
   done(null, sized)
+  return sized;
 }
+
 },{}],51:[function(_dereq_,module,exports){
 var t = {}
 var midpoint = _dereq_('../lib/midpoint'),
@@ -3495,32 +3671,38 @@ module.exports = function(bbox, done) {
   var topLeft = t.point(bbox[0], bbox[3])
   var topRight = t.point(bbox[2], bbox[3])
   var lowRight = t.point(bbox[2], bbox[1])
+  var horizontalDistance = t.distance(lowLeft, lowRight, 'miles');
+  var verticalDistance = t.distance(lowLeft, topLeft, 'miles');
+  var verticalMidpoint
+  var horizontalMidpoint
 
-  t.distance(lowLeft, lowRight, 'miles', function(err, horizontalDistance){
-    t.distance(lowLeft, topLeft, 'miles', function(err, verticalDistance){
-      if(horizontalDistance >= verticalDistance){
-        squareBbox[0] = bbox[0]
-        squareBbox[2] = bbox[2]
-        t.midpoint(lowLeft, topLeft, function(err, verticalMidpoint){
-          squareBbox[1] = verticalMidpoint.geometry.coordinates[1] - ((bbox[2] - bbox[0]) / 2)
-          squareBbox[3] = verticalMidpoint.geometry.coordinates[1] + ((bbox[2] - bbox[0]) / 2)
-          done(err, squareBbox)
-        })
-      }
-      else {
-        squareBbox[1] = bbox[1]
-        squareBbox[3] = bbox[3]
-        t.midpoint(lowLeft, lowRight, function(err, horzontalMidpoint){
-          squareBbox[0] = horzontalMidpoint.geometry.coordinates[0] - ((bbox[3] - bbox[1]) / 2)
-          squareBbox[2] = horzontalMidpoint.geometry.coordinates[0] + ((bbox[3] - bbox[1]) / 2)
-          done(err, squareBbox)
-        })
-      }
-    })
-  })
+  done = done || function () {};
+
+  if(horizontalDistance >= verticalDistance){
+    squareBbox[0] = bbox[0]
+    squareBbox[2] = bbox[2]
+
+    verticalMidpoint = t.midpoint(lowLeft, topLeft);
+
+    squareBbox[1] = verticalMidpoint.geometry.coordinates[1] - ((bbox[2] - bbox[0]) / 2)
+    squareBbox[3] = verticalMidpoint.geometry.coordinates[1] + ((bbox[2] - bbox[0]) / 2)
+  }
+  else {
+    squareBbox[1] = bbox[1]
+    squareBbox[3] = bbox[3]
+
+    horizontalMidpoint = t.midpoint(lowLeft, lowRight);
+
+    squareBbox[0] = horizontalMidpoint.geometry.coordinates[0] - ((bbox[3] - bbox[1]) / 2)
+    squareBbox[2] = horizontalMidpoint.geometry.coordinates[0] + ((bbox[3] - bbox[1]) / 2)
+  }
+
+  done(null, squareBbox)
+  return squareBbox;
   //t.midpoint(t.point(bbox[0,]), bbox)
-  //squareBbox[0] = 
+  //squareBbox[0] =
 }
+
 },{"../lib/distance":16,"../lib/midpoint":37,"../lib/point":42}],52:[function(_dereq_,module,exports){
 var t = {}
 var _ = _dereq_('lodash'),
@@ -3528,47 +3710,52 @@ var _ = _dereq_('lodash'),
 t.inside = _dereq_('./inside')
 
 module.exports = function(polyFC, ptFC, inField, outField, done){
+  done = done || function () {};
+
   _.each(polyFC.features, function(poly){
     if(!poly.properties){
       poly.properties = {}
     }
     var values = []
     _.each(ptFC.features, function(pt){
-      t.inside(pt, poly, function(err, isInside){
-        if(isInside){
-          values.push(pt.properties[inField])
-        }
-      })
+      if (t.inside(pt, poly)) {
+        values.push(pt.properties[inField])
+      }
     })
     poly.properties[outField] = ss.sum(values)
   })
-  done(null, polyFC)
+  
+  done(null, polyFC);
+  return polyFC;
 }
+
 },{"./inside":26,"lodash":66,"simple-statistics":67}],53:[function(_dereq_,module,exports){
 var t = {}
   var _ = _dereq_('lodash')
 t.inside = _dereq_('./inside')
 
 module.exports = function(points, polygons, field, outField, done){
+  done = done || function () {};
+
   _.each(points.features, function(pt){
     if(!pt.properties){
       pt.properties = {}
     }
     _.each(polygons.features, function(poly){
       if(!pt.properties[outField]){
-        t.inside(pt, poly, function(err, isInside){
-          if(isInside){
-            pt.properties[outField] = poly.properties[field]
-          }
-          else{
-            pt.properties[outField] = null
-          }
-        })
+        if (t.inside(pt, poly)) {
+          pt.properties[outField] = poly.properties[field]
+        } else {
+          pt.properties[outField] = null
+        }
       }
     })
   })
+  
   done(null, points)
+  return points;
 }
+
 },{"./inside":26,"lodash":66}],54:[function(_dereq_,module,exports){
 //http://en.wikipedia.org/wiki/Delaunay_triangulation
 //https://github.com/ironwallaby/delaunay
@@ -3593,10 +3780,13 @@ module.exports = function(points, z, done){
     type: 'FeatureCollection',
     features: []
   }
+
+  done = done || function () {};
+
   _(triangulated).each(function(triangle){
     var coords = [[[triangle.a.x, triangle.a.y], [triangle.b.x, triangle.b.y], [triangle.c.x, triangle.c.y]]]
     var poly = t.polygon(coords, {a: null, b: null, c: null})
-    
+
     triangles.features.push(poly)
   })
   if(z){
@@ -3604,18 +3794,18 @@ module.exports = function(points, z, done){
     _.each(triangles.features, function(tri){
       var coordinateNumber = 1
       _.each(tri.geometry.coordinates[0], function(c){
-        t.nearest(t.point(c[0], c[1]), points, function(err, closest){        
-          if(coordinateNumber === 1){
-            tri.properties.a = closest.properties[z]
-          }
-          else if(coordinateNumber === 2){
-            tri.properties.b = closest.properties[z]
-          }
-          else if(coordinateNumber === 3){
-            tri.properties.c = closest.properties[z]
-          }
-          coordinateNumber++
-        })
+        var closest = t.nearest(t.point(c[0], c[1]), points);
+
+        if(coordinateNumber === 1){
+          tri.properties.a = closest.properties[z]
+        }
+        else if(coordinateNumber === 2){
+          tri.properties.b = closest.properties[z]
+        }
+        else if(coordinateNumber === 3){
+          tri.properties.c = closest.properties[z]
+        }
+        coordinateNumber++
       })
     })
   }
@@ -3623,7 +3813,9 @@ module.exports = function(points, z, done){
   _.each(triangles.features, function(tri){
     tri = correctRings(tri)
   })
+  
   done(null, triangles)
+  return triangles;
 }
 
 function correctRings(poly){
@@ -3823,8 +4015,14 @@ var topojson = _dereq_('topojson')
 
 module.exports = function(geojson, done){
   var topology = topojson.topology({geojson: geojson})
+
+  done = done || function () {};
+
   done(null, topology)
+
+  return topology;
 }
+
 },{"topojson":68}],56:[function(_dereq_,module,exports){
 // look here for help http://svn.osgeo.org/grass/grass/branches/releasebranch_6_4/vector/v.overlay/main.c
 //must be array of polygons
@@ -3841,14 +4039,20 @@ module.exports = function(poly1, poly2, done){
   var b = reader.read(JSON.stringify(poly2.geometry))
   var union = a.union(b);
   var parser = new jsts.io.GeoJSONParser()
+
+  done = done || function () {};
+
   union = parser.write(union)
   union = {
     type: 'Feature',
     geometry: union,
     properties: poly1.properties
   }
+  
   done(null, union)
+  return union;
 }
+
 },{"./featurecollection":22,"jsts":63}],57:[function(_dereq_,module,exports){
 var t = {}
 var _ = _dereq_('lodash'),
@@ -3856,22 +4060,25 @@ var _ = _dereq_('lodash'),
 t.inside = _dereq_('./inside')
 
 module.exports = function(polyFC, ptFC, inField, outField, done){
+  done = done || function () {};
+
   _.each(polyFC.features, function(poly){
     if(!poly.properties){
       poly.properties = {}
     }
     var values = []
     _.each(ptFC.features, function(pt){
-      t.inside(pt, poly, function(err, isInside){
-        if(isInside){
-          values.push(pt.properties[inField])
-        }
-      })
+      if (t.inside(pt, poly)) {
+        values.push(pt.properties[inField])
+      }
     })
     poly.properties[outField] = ss.variance(values)
   })
+
   done(null, polyFC)
+  return polyFC;
 }
+
 },{"./inside":26,"lodash":66,"simple-statistics":67}],58:[function(_dereq_,module,exports){
 var t = {}
 var _ = _dereq_('lodash')
@@ -3879,18 +4086,22 @@ t.inside = _dereq_('./inside')
 t.featurecollection = _dereq_('./featurecollection')
 
 module.exports = function(ptFC, polyFC, done){
-  pointsWithin = t.featurecollection([])
+  var pointsWithin = t.featurecollection([])
+
+  done = done || function () {};
+
   _.each(polyFC.features, function(poly){
     _.each(ptFC.features, function(pt){
-      t.inside(pt, poly, function(err, isInside){
-        if(isInside){
-          pointsWithin.features.push(pt)
-        }
-      })
+      if (t.inside(pt, poly)) {
+        pointsWithin.features.push(pt)
+      }
     })
   })
+  
   done(null, pointsWithin)
+  return pointsWithin;
 }
+
 },{"./featurecollection":22,"./inside":26,"lodash":66}],59:[function(_dereq_,module,exports){
 (function (process){
 /*global setImmediate: false, setTimeout: false, console: false */
@@ -4852,8 +5063,8 @@ module.exports = function(ptFC, polyFC, done){
 
 }());
 
-}).call(this,_dereq_("/Users/morgan/Documents/turf/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"))
-},{"/Users/morgan/Documents/turf/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":61}],60:[function(_dereq_,module,exports){
+}).call(this,_dereq_("/Users/adamdrago/Documents/Git/turf/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"))
+},{"/Users/adamdrago/Documents/Git/turf/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":61}],60:[function(_dereq_,module,exports){
 
 },{}],61:[function(_dereq_,module,exports){
 // shim for using process in browser
@@ -5137,8 +5348,8 @@ var substr = 'ab'.substr(-1) === 'b'
     }
 ;
 
-}).call(this,_dereq_("/Users/morgan/Documents/turf/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"))
-},{"/Users/morgan/Documents/turf/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":61}],63:[function(_dereq_,module,exports){
+}).call(this,_dereq_("/Users/adamdrago/Documents/Git/turf/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"))
+},{"/Users/adamdrago/Documents/Git/turf/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":61}],63:[function(_dereq_,module,exports){
 (function (global){
 'use strict';
 global.javascript = {};
@@ -15005,18 +15216,16 @@ module.exports = function(topology, options) {
     Point: noop,
     MultiPoint: noop,
     Polygon: function(polygon) {
-      polygon.arcs = polygon.arcs.filter(ringArea);
-      if (!polygon.arcs.length) {
+      polygon.arcs = filterPolygon(polygon.arcs);
+      if (!polygon.arcs || !polygon.arcs.length) {
         polygon.type = null;
         delete polygon.arcs;
       }
     },
     MultiPolygon: function(multiPolygon) {
-      multiPolygon.arcs = multiPolygon.arcs.map(function(polygon) {
-        return polygon.filter(ringArea);
-      }).filter(function(polygon) {
-        return polygon.length;
-      });
+      multiPolygon.arcs = multiPolygon.arcs
+          .map(filterPolygon)
+          .filter(function(polygon) { return polygon && polygon.length; });
       if (!multiPolygon.arcs.length) {
         multiPolygon.type = null;
         delete multiPolygon.arcs;
@@ -15038,12 +15247,22 @@ module.exports = function(topology, options) {
 
   prune(topology, options);
 
+  function filterPolygon(arcs) {
+    return arcs.length && filterExteriorRing(arcs[0]) // if the exterior is small, ignore any holes
+        ? [arcs.shift()].concat(arcs.filter(filterInteriorRing))
+        : null;
+  }
+
+  function filterExteriorRing(ring) {
+    return system.absoluteArea(ringArea(ring)) >= minimumArea;
+  }
+
+  function filterInteriorRing(ring) {
+    return system.absoluteArea(-ringArea(ring)) >= minimumArea;
+  }
+
   function ringArea(ring) {
-    var topopolygon = {type: "Polygon", arcs: [ring]},
-        geopolygon = topojson.feature(topology, topopolygon),
-        exterior = geopolygon.geometry.coordinates[0],
-        exteriorArea = system.absoluteArea(system.ringArea(exterior));
-    return exteriorArea >= minimumArea;
+    return system.ringArea(topojson.feature(topology, {type: "Polygon", arcs: [ring]}).geometry.coordinates[0]);
   }
 };
 
@@ -15409,7 +15628,7 @@ module.exports = function(topology, options) {
     var areas = [];
     topology.arcs.forEach(function(arc) {
       arc.forEach(function(point) {
-        areas.push(point[2]);
+        if (isFinite(point[2])) areas.push(point[2]); // ignore endpoints
       });
     });
     options["minimum-area"] = minimumArea = N ? areas.sort(function(a, b) { return b - a; })[Math.ceil((N - 1) * retainProportion)] : 0;
@@ -16527,7 +16746,7 @@ var typeObjects = {
 },{}],95:[function(_dereq_,module,exports){
 !function() {
   var topojson = {
-    version: "1.4.6",
+    version: "1.4.9",
     mesh: mesh,
     feature: featureOrCollection,
     neighbors: neighbors,

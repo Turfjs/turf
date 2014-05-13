@@ -6,12 +6,19 @@ describe('quantile', function(){
     t.load(__dirname+'/testIn/Points3.geojson', function(err, pts){
       if(err) throw err
       pts.should.be.ok
-      t.quantile(pts, 'elevation', [10,30,40,60,80,90,99], function(err, quantiles){
+      var syncQuantiles = t.quantile(pts, 'elevation', [10,30,40,60,80,90,99], function(err, quantiles){
         if(err) throw err
         quantiles.should.be.ok
         quantiles.length.should.equal(7)
-        done()
       })
+
+      if (typeof syncQuantiles === 'Error') {
+        throw syncQuantiles;
+      }
+
+      syncQuantiles.should.be.ok;
+      syncQuantiles.length.should.equal(7);
+      done();
     })
   })
 })

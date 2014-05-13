@@ -13,14 +13,23 @@ describe('variance', function(){
     var pt5 = t.point(19,7, {population: 200})
     var ptFC = t.featurecollection([pt1, pt2, pt3, pt4, pt5])
 
-    t.variance(polyFC, ptFC, 'population', 'population_variance', function(err, variancePolys){
+    var syncVariancePolys = t.variance(polyFC, ptFC, 'population', 'population_variance', function(err, variancePolys){
       if(err) throw err
       variancePolys.should.be.ok
       variancePolys.features.should.be.ok
       variancePolys.features[0].properties.population_variance.should.be.ok
       //console.log(variancePolys.features[0].properties.population_variance)
       //console.log(variancePolys.features[1].properties.population_variance)
-      done()
     })
+
+    if (typeof syncVariancePolys === 'Error') {
+      throw syncVariancePolys;
+    }
+
+    syncVariancePolys.should.be.ok;
+    syncVariancePolys.features.should.be.ok;
+    syncVariancePolys.features[0].properties.population_variance.should.be.ok;
+
+    done();
   })
 })

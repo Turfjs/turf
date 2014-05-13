@@ -8,13 +8,22 @@ describe('within', function(){
     var polyFC = t.featurecollection([poly])
     var ptFC = t.featurecollection([pt])
 
-    t.within(ptFC, polyFC, function(err, counted){
+    var syncCounted = t.within(ptFC, polyFC, function(err, counted){
       if(err) throw err
       counted.should.be.ok
       counted.features.should.be.ok
       counted.features.length.should.equal(1)
-      done()
     })
+
+    if (typeof syncCounted === 'Error') {
+      throw syncCounted;
+    }
+
+    syncCounted.should.be.ok;
+    syncCounted.features.should.be.ok;
+    syncCounted.features.length.should.equal(1);
+
+    done();
   })
   it('should return all points that are within a set of polygons', function(done){
     var poly = t.polygon([[[10,0],[20,10],[20,20], [20,0]]])
@@ -26,13 +35,22 @@ describe('within', function(){
     var pt5 = t.point(19,7, {population: 200})
     var ptFC = t.featurecollection([pt1, pt2, pt3, pt4, pt5])
 
-    t.within(ptFC, polyFC, function(err, counted){
+    var syncCounted = t.within(ptFC, polyFC, function(err, counted){
       if(err) throw err
       counted.should.be.ok
       counted.features.should.be.ok
       counted.features.length.should.equal(3)
-      done()
     })
+
+    if (typeof syncCounted === 'Error') {
+      throw syncCounted;
+    }
+
+    syncCounted.should.be.ok;
+    syncCounted.features.should.be.ok;
+    syncCounted.features.length.should.equal(3);
+
+    done();
   })
   it('should return all points that are within a set of polygons', function(done){
     var poly = t.polygon([[[0,0],[10,0],[10,10],[0,10]]])
@@ -44,13 +62,22 @@ describe('within', function(){
     var pt5 = t.point(19,7, {population: 200})
     var ptFC = t.featurecollection([pt1, pt2, pt3, pt4, pt5])
 
-    t.within(ptFC, polyFC, function(err, counted){
+    var syncCounted = t.within(ptFC, polyFC, function(err, counted){
       if(err) throw err
       counted.should.be.ok
       counted.features.should.be.ok
       counted.features.length.should.equal(2)
-      done()
     })
+
+    if (typeof syncCounted === 'Error') {
+      throw syncCounted;
+    }
+
+    syncCounted.should.be.ok;
+    syncCounted.features.should.be.ok;
+    syncCounted.features.length.should.equal(2);
+
+    done();
   })
   it('should return all points that are within a set of polygons', function(done){
     var poly1 = t.polygon([[[0,0],[10,0],[10,10],[0,10]]])
@@ -63,12 +90,21 @@ describe('within', function(){
     var pt5 = t.point(19,7, {population: 200})
     var ptFC = t.featurecollection([pt1, pt2, pt3, pt4, pt5])
 
-    t.within(ptFC, polyFC, function(err, counted){
+    var syncCounted = t.within(ptFC, polyFC, function(err, counted){
       if(err) throw err
       counted.should.be.ok
       counted.features.should.be.ok
       counted.features.length.should.equal(5)
-      done()
     })
+
+    if (typeof syncCounted === 'Error') {
+      throw syncCounted;
+    }
+
+    syncCounted.should.be.ok;
+    syncCounted.features.should.be.ok;
+    syncCounted.features.length.should.equal(5);
+
+    done();
   })
 })

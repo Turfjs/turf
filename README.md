@@ -1,7 +1,7 @@
 turf
 ======
 
-[![Build Status](https://travis-ci.org/morganherlocker/turf.png)](https://travis-ci.org/morganherlocker/turf)
+[![Build Status](https://travis-ci.org/atdrago/turf.png)](https://travis-ci.org/atdrago/turf)
 
 ![turf](https://raw.github.com/morganherlocker/turf/master/img/turf.png)
 

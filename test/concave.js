@@ -7,12 +7,18 @@ describe('concave', function(){
     var maxEdge = 2.5
 
     t.load(__dirname+'/testIn/concaveIn2.geojson', function(err, points){
-      t.concave(points, maxEdge, function(err, hull){
+      var syncHull = t.concave(points, maxEdge, function(err, hull){
         if(err) throw err
         //fs.writeFileSync('./testOut/concave.geojson', JSON.stringify(hull))
         hull.should.be.ok
-        done()
       })
+
+      if (typeof syncHull === 'Error') {
+        throw syncHull;
+      }
+
+      syncHull.should.be.ok;
+      done();
     })
   })
 })

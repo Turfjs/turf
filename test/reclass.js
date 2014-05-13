@@ -10,13 +10,21 @@ describe('reclass', function(){
     t.load(__dirname+'/testIn/Points3.geojson', function(err, pts){
       if(err) throw err
       pts.should.be.ok
-      t.reclass(pts, inField, outField, translations, function(err, outPts){
+      var syncOutPts = t.reclass(pts, inField, outField, translations, function(err, outPts){
         if(err) throw err
         outPts.should.be.ok
         outPts.features[0].geometry.type.should.equal('Point')
         t.save(__dirname+'/testOut/reclassed.geojson', outPts, 'geojson', function(){})
-        done()
       })
+
+      if (typeof syncOutPts === 'Error') {
+        throw syncOutPts;
+      }
+
+      syncOutPts.should.be.ok;
+      syncOutPts.features[0].geometry.type.should.equal('Point');
+
+      done();
     })
   })
 })

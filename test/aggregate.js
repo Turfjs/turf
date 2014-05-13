@@ -55,7 +55,7 @@ describe('aggregate', function(){
       }
     ]
 
-    t.aggregate(polyFC, ptFC, aggregations, function(err, polys){
+    var syncPolys = t.aggregate(polyFC, ptFC, aggregations, function(err, polys){
       if(err) throw err
       polys.should.be.ok
       polys.features.should.be.ok
@@ -73,7 +73,29 @@ describe('aggregate', function(){
       polys.features[1].properties.pop_deviation.should.be.ok
       polys.features[0].properties.pop_variance.should.be.ok
       polys.features[1].properties.pop_variance.should.be.ok
-      done()
     })
+
+    if (typeof syncPolys === 'Error') {
+      throw syncPolys;
+    }
+
+    syncPolys.should.be.ok;
+    syncPolys.features.should.be.ok;
+    syncPolys.features[0].properties.pop_sum.should.equal(800);
+    syncPolys.features[1].properties.pop_sum.should.equal(600);
+    syncPolys.features[0].properties.pop_avg.should.equal(400);
+    syncPolys.features[1].properties.pop_avg.should.equal(200);
+    syncPolys.features[0].properties.pop_median.should.equal(400);
+    syncPolys.features[1].properties.pop_median.should.equal(200);
+    syncPolys.features[0].properties.pop_min.should.equal(200);
+    syncPolys.features[1].properties.pop_min.should.equal(100);
+    syncPolys.features[0].properties.pop_max.should.equal(600);
+    syncPolys.features[1].properties.pop_max.should.equal(300);
+    syncPolys.features[0].properties.pop_deviation.should.be.ok;
+    syncPolys.features[1].properties.pop_deviation.should.be.ok;
+    syncPolys.features[0].properties.pop_variance.should.be.ok;
+    syncPolys.features[1].properties.pop_variance.should.be.ok;
+
+    done();
   })
-}) 
+})
