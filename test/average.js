@@ -13,14 +13,25 @@ describe('average', function(){
     var pt5 = t.point(19,7, {population: 300})
     var ptFC = t.featurecollection([pt1, pt2, pt3, pt4, pt5])
 
-    t.average(polyFC, ptFC, 'population', 'pop_avg', function(err, averaged){
+    var syncAveraged = t.average(polyFC, ptFC, 'population', 'pop_avg', function(err, averaged){
       if(err) throw err
       averaged.should.be.ok
       averaged.features.should.be.ok
       averaged.features[0].geometry.type.should.equal('Polygon')
       averaged.features[0].properties.pop_avg.should.equal(400)
       averaged.features[1].properties.pop_avg.should.equal(200)
-      done()
     })
+
+    if (typeof syncAveraged === 'Error') {
+      throw syncAveraged;
+    }
+
+    syncAveraged.should.be.ok;
+    syncAveraged.features.should.be.ok;
+    syncAveraged.features[0].geometry.type.should.equal('Polygon');
+    syncAveraged.features[0].properties.pop_avg.should.equal(400);
+    syncAveraged.features[1].properties.pop_avg.should.equal(200);
+
+    done();
   })
 })

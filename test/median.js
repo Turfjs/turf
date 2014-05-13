@@ -13,13 +13,22 @@ describe('sum', function(){
     var pt5 = t.point(19,7, {population: 200})
     var ptFC = t.featurecollection([pt1, pt2, pt3, pt4, pt5])
 
-    t.median(polyFC, ptFC, 'population', 'population_median', function(err, medianed){
+    var syncMedianed = t.median(polyFC, ptFC, 'population', 'population_median', function(err, medianed){
       if(err) throw err
       medianed.should.be.ok
       medianed.features.should.be.ok
       medianed.features[0].properties.population_median.should.equal(450)
       medianed.features[1].properties.population_median.should.equal(500)
-      done()
     })
+
+    if (typeof syncMedianed === 'Error') {
+      throw syncMedianed;
+    }
+
+    syncMedianed.should.be.ok;
+    syncMedianed.features.should.be.ok;
+    syncMedianed.features[0].properties.population_median.should.equal(450);
+    syncMedianed.features[1].properties.population_median.should.equal(500);
+    done();
   })
 })

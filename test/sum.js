@@ -13,13 +13,22 @@ describe('sum', function(){
     var pt5 = t.point(19,7, {population: 200})
     var ptFC = t.featurecollection([pt1, pt2, pt3, pt4, pt5])
 
-    t.sum(polyFC, ptFC, 'population', 'population_sum', function(err, summed){
+    var syncSummed = t.sum(polyFC, ptFC, 'population', 'population_sum', function(err, summed){
       if(err) throw err
       summed.should.be.ok
       summed.features.should.be.ok
       summed.features[0].properties.population_sum.should.equal(900)
       summed.features[1].properties.population_sum.should.equal(1300)
-      done()
     })
+
+    if (typeof syncSummed === 'Error') {
+      throw syncSummed;
+    }
+
+    syncSummed.should.be.ok;
+    syncSummed.features.should.be.ok;
+    syncSummed.features[0].properties.population_sum.should.equal(900);
+    syncSummed.features[1].properties.population_sum.should.equal(1300);
+    done();
   })
 })

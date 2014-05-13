@@ -8,12 +8,19 @@ describe('jenks', function(){
     t.load(__dirname+'/testIn/Points3.geojson', function(err, pts){
       if(err) throw err
       pts.should.be.ok
-      t.jenks(pts, 'elevation', num, function(err, breaks){
+      var syncBreaks = t.jenks(pts, 'elevation', num, function(err, breaks){
         if(err) throw err
         breaks.should.be.ok
         breaks.length.should.equal(11)
-        done()
       })
+
+      if (typeof syncBreaks === 'Error') {
+        throw syncBreaks;
+      }
+
+      syncBreaks.should.be.ok;
+      syncBreaks.length.should.equal(11);
+      done();
     })
   })
 })

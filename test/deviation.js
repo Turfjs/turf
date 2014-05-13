@@ -13,12 +13,21 @@ describe('deviation', function(){
     var pt5 = t.point(19,7, {population: 200})
     var ptFC = t.featurecollection([pt1, pt2, pt3, pt4, pt5])
 
-    t.deviation(polyFC, ptFC, 'population', 'population_deviation', function(err, deviated){
+    var syncDeviated = t.deviation(polyFC, ptFC, 'population', 'population_deviation', function(err, deviated){
       if(err) throw err
       deviated.should.be.ok
       deviated.features.should.be.ok
       deviated.features[0].properties.population_deviation.should.be.ok
-      done()
     })
+
+    if (typeof syncDeviated === 'Error') {
+      throw syncDeviated;
+    }
+
+    syncDeviated.should.be.ok;
+    syncDeviated.features.should.be.ok;
+    syncDeviated.features[0].properties.population_deviation.should.be.ok;
+    done();
+
   })
 })

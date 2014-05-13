@@ -7,10 +7,16 @@ describe('planepoint', function(){
   it('should return the z value of a point on a plane', function(done){
     t.load(__dirname+'/testIn/Triangle.geojson', function(err, triangle){
       t.load(__dirname+'/testIn/PlanePoint.geojson', function(err, point){
-        t.planepoint(point, triangle, function(err, z){
+        var syncZ = t.planepoint(point, triangle, function(err, z){
           z.should.be.ok
-          done()
         })
+
+        if (typeof syncZ === 'Error') {
+          throw syncZ;
+        }
+
+        syncZ.should.be.ok;
+        done();
       })
     })
   })
@@ -23,10 +29,16 @@ describe('planepoint', function(){
         {"a": 11, "b": 122, "c": 44}
       )
 
-    t.planepoint(point, triangle, function(err, zValue){
+    var syncZValue = t.planepoint(point, triangle, function(err, zValue){
       if(err) throw err
       zValue.should.be.ok
-      done()
     })
+
+    if (typeof syncZValue === 'Error') {
+      throw syncZValue;
+    }
+
+    syncZValue.should.be.ok;
+    done();
   })
 })
