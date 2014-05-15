@@ -17,7 +17,7 @@ describe('reclass', function(){
         t.save(__dirname+'/testOut/reclassed.geojson', outPts, 'geojson', function(){})
       })
 
-      if (typeof syncOutPts === 'Error') {
+      if (syncOutPts instanceof Error) {
         throw syncOutPts;
       }
 

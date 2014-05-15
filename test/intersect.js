@@ -12,7 +12,7 @@ describe('intersect', function(){
           fs.writeFileSync(__dirname + '/testOut/intersected1.geojson', JSON.stringify(intersected))
         })
 
-        if (typeof syncIntersected === 'Error') {
+        if (syncIntersected instanceof Error) {
           throw syncIntersected;
         }
 
@@ -30,7 +30,7 @@ describe('intersect', function(){
           fs.writeFileSync(__dirname + '/testOut/intersected2.geojson', JSON.stringify(intersected))
         })
 
-        if (typeof syncIntersected === 'Error') {
+        if (syncIntersected instanceof Error) {
           throw syncIntersected;
         }
 

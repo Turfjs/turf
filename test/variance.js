@@ -22,7 +22,7 @@ describe('variance', function(){
       //console.log(variancePolys.features[1].properties.population_variance)
     })
 
-    if (typeof syncVariancePolys === 'Error') {
+    if (syncVariancePolys instanceof Error) {
       throw syncVariancePolys;
     }
 

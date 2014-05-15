@@ -13,7 +13,7 @@ describe('concave', function(){
         hull.should.be.ok
       })
 
-      if (typeof syncHull === 'Error') {
+      if (syncHull instanceof Error) {
         throw syncHull;
       }
 

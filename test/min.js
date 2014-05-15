@@ -22,7 +22,7 @@ describe('min', function(){
       averaged.features[1].properties.pop_min.should.equal(100)
     })
 
-    if (typeof syncAveraged === 'Error') {
+    if (syncAveraged instanceof Error) {
       throw syncAveraged;
     }
 

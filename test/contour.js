@@ -12,7 +12,7 @@ describe('contour', function(){
         contours.features.should.be.ok
       })
 
-      if (typeof syncContour === 'Error') {
+      if (syncContour instanceof Error) {
         throw syncContour;
       }
 
@@ -34,13 +34,13 @@ describe('contour', function(){
         })
       })
 
-      if (typeof syncBreaks === 'Error') {
+      if (syncBreaks instanceof Error) {
         throw syncBreaks;
       }
 
       var syncContours = t.contour(points, 'elevation', 15, syncBreaks, false);
 
-      if (typeof syncContours === 'Error') {
+      if (syncContours instanceof Error) {
         throw syncContours;
       }
 
@@ -59,7 +59,7 @@ describe('contour', function(){
         contours.features.should.be.ok
       })
 
-      if (typeof syncContours === 'Error') {
+      if (syncContours instanceof Error) {
         throw syncContours;
       }
 
@@ -77,7 +77,7 @@ describe('contour', function(){
         contours.features.should.be.ok
       })
 
-      if (typeof syncContours === 'Error') {
+      if (syncContours instanceof Error) {
         throw syncContours;
       }
 
@@ -95,7 +95,7 @@ describe('contour', function(){
         contours.features.should.be.ok
       })
 
-      if (typeof syncContours === 'Error') {
+      if (syncContours instanceof Error) {
         throw syncContours;
       }
 
@@ -113,7 +113,7 @@ describe('contour', function(){
         contours.features.should.be.ok
       })
 
-      if (typeof syncContours === 'Error') {
+      if (syncContours instanceof Error) {
         throw syncContours;
       }
 

@@ -12,7 +12,7 @@ describe('midpoint', function(){
       _.isEqual(midpoint, expectedMidPoint).should.be.true
     })
 
-    if (typeof syncMidpoint === 'Error') {
+    if (syncMidpoint instanceof Error) {
       throw syncMidpoint;
     }
 
@@ -30,7 +30,7 @@ describe('midpoint', function(){
       _.isEqual(midpoint, expectedMidPoint).should.be.true
     })
 
-    if (typeof syncMidpoint === 'Error') {
+    if (syncMidpoint instanceof Error) {
       throw syncMidpoint;
     }
 
@@ -48,7 +48,7 @@ describe('midpoint', function(){
       _.isEqual(midpoint, expectedMidPoint).should.be.true
     })
 
-    if (typeof syncMidpoint === 'Error') {
+    if (syncMidpoint instanceof Error) {
       throw syncMidpoint;
     }
     
@@ -66,7 +66,7 @@ describe('midpoint', function(){
       _.isEqual(midpoint, expectedMidPoint).should.be.true
     })
 
-    if (typeof syncMidpoint === 'Error') {
+    if (syncMidpoint instanceof Error) {
       throw syncMidpoint;
     }
     
@@ -84,7 +84,7 @@ describe('midpoint', function(){
       _.isEqual(midpoint, expectedMidPoint).should.be.true
     })
 
-    if (typeof syncMidpoint === 'Error') {
+    if (syncMidpoint instanceof Error) {
       throw syncMidpoint;
     }
     
@@ -102,7 +102,7 @@ describe('midpoint', function(){
       _.isEqual(midpoint, expectedMidPoint).should.be.true
     })
 
-    if (typeof syncMidpoint === 'Error') {
+    if (syncMidpoint instanceof Error) {
       throw syncMidpoint;
     }
     

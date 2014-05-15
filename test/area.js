@@ -8,7 +8,7 @@ describe('area', function(){
       areaResult.should.be.ok
     })
     
-    if (typeof syncAreaResult === 'Error') {
+    if (syncAreaResult instanceof Error) {
     	throw syncAreaResult;
     }
 

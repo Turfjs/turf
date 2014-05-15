@@ -11,7 +11,7 @@ describe('square', function(){
       _.isEqual(square,[-2.5, 0, 7.5, 10]).should.be.true
     })
 
-    if (typeof syncSquare === 'Error') {
+    if (syncSquare instanceof Error) {
       throw syncSquare;
     }
 
@@ -27,7 +27,7 @@ describe('square', function(){
       _.isEqual(square,[0, -2.5, 10, 7.5]).should.be.true
     })
 
-    if (typeof syncSquare === 'Error') {
+    if (syncSquare instanceof Error) {
       throw syncSquare;
     }
 

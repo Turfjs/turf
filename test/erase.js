@@ -12,7 +12,7 @@ describe('erase', function(){
           fs.writeFileSync(__dirname + '/testOut/erased1.geojson', JSON.stringify(erased))
         })
 
-        if (typeof syncErased === 'Error') {
+        if (syncErased instanceof Error) {
           throw syncErased;
         }
 
@@ -30,7 +30,7 @@ describe('erase', function(){
         fs.writeFileSync(__dirname + '/testOut/erase2.geojson', JSON.stringify(erased))
       })
 
-      if (typeof syncErased === 'Error') {
+      if (syncErased instanceof Error) {
         throw syncErased;
       }
 
@@ -47,7 +47,7 @@ describe('erase', function(){
         fs.writeFileSync(__dirname + '/testOut/erase3.geojson', JSON.stringify(erased))
       })
 
-      if (typeof syncErased === 'Error') {
+      if (syncErased instanceof Error) {
         throw syncErased;
       }
 
@@ -65,7 +65,7 @@ describe('erase', function(){
           fs.writeFileSync(__dirname + '/testOut/erase3.geojson', JSON.stringify(erased))
         })
 
-        if (typeof syncErased === 'Error') {
+        if (syncErased instanceof Error) {
           throw syncErased;
         }
           

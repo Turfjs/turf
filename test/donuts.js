@@ -14,7 +14,7 @@ describe('donuts', function(){
         donuts.features[0].should.be.ok
       })
 
-      if (typeof syncDonuts === 'Error') {
+      if (syncDonuts instanceof Error) {
         throw syncDonuts;
       }
 
@@ -36,7 +36,7 @@ describe('donuts', function(){
         donuts.features[0].should.be.ok
       })
 
-      if (typeof syncDonuts === 'Error') {
+      if (syncDonuts instanceof Error) {
         throw syncDonuts;
       }
 
@@ -58,7 +58,7 @@ describe('donuts', function(){
         donuts.features[0].should.be.ok
       })
 
-      if (typeof syncDonuts === 'Error') {
+      if (syncDonuts instanceof Error) {
         throw syncDonuts;
       }
 
@@ -80,7 +80,7 @@ describe('donuts', function(){
         donuts.features[0].should.be.ok
       })
 
-      if (typeof syncDonuts === 'Error') {
+      if (syncDonuts instanceof Error) {
         throw syncDonuts;
       }
 

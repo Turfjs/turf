@@ -12,7 +12,7 @@ describe('quantile', function(){
         quantiles.length.should.equal(7)
       })
 
-      if (typeof syncQuantiles === 'Error') {
+      if (syncQuantiles instanceof Error) {
         throw syncQuantiles;
       }
 

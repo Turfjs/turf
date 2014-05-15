@@ -10,7 +10,7 @@ describe('bboxPolygon', function(){
       poly.geometry.coordinates.should.be.ok
     })
 
-    if (typeof syncPoly === 'Error') {
+    if (syncPoly instanceof Error) {
       throw syncPoly;
     }
 

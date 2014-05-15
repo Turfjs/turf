@@ -11,7 +11,7 @@ describe('centroid', function(){
       _.isEqual(centroid, t.point(5,5)).should.be.true
     })
 
-    if (typeof syncCentroid === 'Error') {
+    if (syncCentroid instanceof Error) {
       throw syncCentroid;
     }
 
@@ -32,7 +32,7 @@ describe('centroid', function(){
       _.isEqual(centroid, t.point(5,5)).should.be.true
     })
 
-    if (typeof syncCentroid === 'Error') {
+    if (syncCentroid instanceof Error) {
       throw syncCentroid;
     }
 

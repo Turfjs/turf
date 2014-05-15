@@ -14,7 +14,7 @@ describe('combine', function(){
       _.isEqual(combined.geometry.coordinates, [[50, 51], [100, 101]]).should.be.true
     })
 
-    if (typeof syncCombined === 'Error') {
+    if (syncCombined instanceof Error) {
       throw syncCombined;
     }
 
@@ -53,7 +53,7 @@ describe('combine', function(){
       _.isEqual(combined.geometry.coordinates, [[[102, -10], [130, 4]], [[40, -20], [150, 18]]]).should.be.true
     })
 
-    if (typeof syncCombined === 'Error') {
+    if (syncCombined instanceof Error) {
       throw syncCombined;
     }
 
@@ -114,7 +114,7 @@ describe('combine', function(){
         ).should.be.true
     })
 
-    if (typeof syncCombined === 'Error') {
+    if (syncCombined instanceof Error) {
       throw syncCombined;
     }
 

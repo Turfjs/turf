@@ -13,7 +13,7 @@ describe('size', function(){
       _.isEqual(doubled, [-10, -10, 20, 20])
     })
 
-    if (typeof syncDoubled === 'Error') {
+    if (syncDoubled instanceof Error) {
       throw syncDoubled;
     }
 
@@ -31,7 +31,7 @@ describe('size', function(){
       _.isEqual(doubled, [-20, -20, 10, 10])
     })
 
-    if (typeof syncDoubled === 'Error') {
+    if (syncDoubled instanceof Error) {
       throw syncDoubled;
     }
 
@@ -49,7 +49,7 @@ describe('size', function(){
       _.isEqual(doubled, [-5, -5, 15, 15])
     })
 
-    if (typeof syncDoubled === 'Error') {
+    if (syncDoubled instanceof Error) {
       throw syncDoubled;
     }
 
@@ -67,7 +67,7 @@ describe('size', function(){
       _.isEqual(doubled, [.25, .25, 7.5, 7.5])
     })
 
-    if (typeof syncDoubled === 'Error') {
+    if (syncDoubled instanceof Error) {
       throw syncDoubled;
     }
 
