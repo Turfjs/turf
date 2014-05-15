@@ -12,7 +12,7 @@ describe('topo', function(){
         //fs.writeFileSync('./testOut/topo.topojson', JSON.stringify(topoPolys))
       })
 
-      if (typeof syncTopoPolys === 'Error') {
+      if (syncTopoPolys instanceof Error) {
         throw syncTopoPolys;
       }
 
@@ -30,7 +30,7 @@ describe('topo', function(){
       //fs.writeFileSync('./testOut/topo.topojson', JSON.stringify(topoPolys))
     })
 
-    if (typeof syncTopoPolys === 'Error') {
+    if (syncTopoPolys instanceof Error) {
       throw syncTopoPolys;
     }
 

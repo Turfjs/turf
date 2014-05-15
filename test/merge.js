@@ -11,7 +11,7 @@ describe('merge', function(){
         mergeOut.should.be.ok
       })
 
-      if (typeof syncMergeOut === 'Error') {
+      if (syncMergeOut instanceof Error) {
         throw syncMergeOut;
       }
 
@@ -27,7 +27,7 @@ describe('merge', function(){
         mergeOut.should.be.ok
       })
 
-      if (typeof syncMergeOut === 'Error') {
+      if (syncMergeOut instanceof Error) {
         throw syncMergeOut;
       }
 
@@ -43,7 +43,7 @@ describe('merge', function(){
         mergeOut.should.be.ok
       })
 
-      if (typeof syncMergeOut === 'Error') {
+      if (syncMergeOut instanceof Error) {
         throw syncMergeOut;
       }
 

@@ -16,7 +16,7 @@ describe('near', function(){
           done();
         })
 
-        if (typeof syncNearByPoints === 'Error') {
+        if (syncNearByPoints instanceof Error) {
           throw syncNearByPoints;
         }
 

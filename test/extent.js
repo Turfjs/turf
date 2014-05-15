@@ -13,7 +13,7 @@ describe('extent', function(){
         extent[3].should.equal(4)
       })
 
-      if (typeof syncExtent === 'Error') {
+      if (syncExtent instanceof Error) {
         throw syncExtent;
       }
 
@@ -37,7 +37,7 @@ describe('extent', function(){
         extent[3].should.equal(0.5)
       })
 
-      if (typeof syncExtent === 'Error') {
+      if (syncExtent instanceof Error) {
         throw syncExtent;
       }
 
@@ -61,7 +61,7 @@ describe('extent', function(){
         extent[3].should.equal(1)
       })
 
-      if (typeof syncExtent === 'Error') {
+      if (syncExtent instanceof Error) {
         throw syncExtent;
       }
 
@@ -85,7 +85,7 @@ describe('extent', function(){
         extent[3].should.equal(4)
       })
 
-      if (typeof syncExtent === 'Error') {
+      if (syncExtent instanceof Error) {
         throw syncExtent;
       }
 
@@ -109,7 +109,7 @@ describe('extent', function(){
         extent[3].should.equal(3)
       })
 
-      if (typeof syncExtent === 'Error') {
+      if (syncExtent instanceof Error) {
         throw syncExtent;
       }
 
@@ -133,7 +133,7 @@ describe('extent', function(){
         extent[3].should.equal(3)
       })
 
-      if (typeof syncExtent === 'Error') {
+      if (syncExtent instanceof Error) {
         throw syncExtent;
       }
 

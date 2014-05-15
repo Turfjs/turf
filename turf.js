@@ -513,7 +513,7 @@ module.exports = function(features, done){
 
   done = done || function () {};
 
-  if (typeof vertices === 'Error') {
+  if (vertices instanceof Error) {
     done(vertices);
     return vertices;
   }
@@ -608,7 +608,7 @@ module.exports = function(points, maxEdge, done){
 
   tinPolys = t.tin(points, null);
 
-  if (typeof tinPolys === 'Error') {
+  if (tinPolys instanceof Error) {
     done(err)
     return tinPolys;
   }
@@ -618,14 +618,14 @@ module.exports = function(points, maxEdge, done){
 
   bufferPolys = t.buffer(tinPolys, 1, 'miles')
 
-  if (typeof bufferPolys === 'Error') {
+  if (bufferPolys instanceof Error) {
     done(err);
     return bufferPolys;
   }
 
   mergePolys = t.merge(bufferPolys);
 
-  if (typeof mergePolys === 'Error') {
+  if (mergePolys instanceof Error) {
     done(err);
     return mergePolys;
   }
@@ -1287,7 +1287,7 @@ module.exports = function(points, done){
 
   done = done || function () {};
 
-  if (typeof tinPolys === 'Error') {
+  if (tinPolys instanceof Error) {
     done(tinPolys);
     return tinPolys;
   }
@@ -1295,7 +1295,7 @@ module.exports = function(points, done){
   //mergePolys = t.merge(t.buffer(tinPolys, .05, 'miles'));
   mergePolys = t.merge(tinPolys);
 
-  if (typeof mergePolys === 'Error') {
+  if (mergePolys instanceof Error) {
     done(mergePolys);
   } else {
     done(null, mergePolys);
@@ -1465,7 +1465,7 @@ t.extent = extent
 module.exports = function(features, done){
   var poly = t.bboxPolygon(t.extent(features));
 
-  if (typeof poly === 'Error') {
+  if (poly instanceof Error) {
     done(poly);
   } else {
     done(null, poly);
@@ -1937,7 +1937,7 @@ module.exports = function(points, z, resolution, breaks, done){
 
   done = done || function () {};
 
-  if (typeof addEdgesResult === 'Error') {
+  if (addEdgesResult instanceof Error) {
     done(addEdgesResult);
     return addEdgesResult;
   }
@@ -2045,19 +2045,19 @@ function addEdges(points, z, resolution){
     squareBBox,
     sizeResult;
 
-  if (typeof extentBBox === 'Error') {
+  if (extentBBox instanceof Error) {
     return extentBBox;
   }
 
   squareBBox = t.square(extentBBox);
 
-  if (typeof squareBBox === 'Error') {
+  if (squareBBox instanceof Error) {
     return squareBBox;
   }
 
   sizeBBox = t.size(squareBBox, 0.35)
 
-  if (typeof sizeBBox === 'Error') {
+  if (sizeBBox instanceof Error) {
     return sizeBBox;
   }
 

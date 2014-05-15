@@ -12,7 +12,7 @@ describe('union', function(){
           fs.writeFileSync(__dirname + '/testOut/unioned.geojson', JSON.stringify(unioned))
         })
 
-        if (typeof syncUnioned === 'Error') {
+        if (syncUnioned instanceof Error) {
           throw syncUnioned;
         }
 

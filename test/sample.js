@@ -15,7 +15,7 @@ describe('sample', function(){
         //t.save('./testOut/sample.geojson', outPts, 'geojson', function(){})
       })
 
-      if (typeof syncOutPts === 'Error') {
+      if (syncOutPts instanceof Error) {
         throw syncOutPts;
       }
 

@@ -10,7 +10,7 @@ describe('inside', function(){
       inside.should.be.true
     })
 
-    if (typeof syncInside === 'Error') {
+    if (syncInside instanceof Error) {
       throw syncInside;
     }
 
@@ -25,7 +25,7 @@ describe('inside', function(){
       inside.should.be.false
     })
 
-    if (typeof syncInside === 'Error') {
+    if (syncInside instanceof Error) {
       throw syncInside;
     }
 
@@ -40,7 +40,7 @@ describe('inside', function(){
       inside.should.be.true
     })
 
-    if (typeof syncInside === 'Error') {
+    if (syncInside instanceof Error) {
       throw syncInside;
     }
 
@@ -55,7 +55,7 @@ describe('inside', function(){
       inside.should.be.false
     })
 
-    if (typeof syncInside === 'Error') {
+    if (syncInside instanceof Error) {
       throw syncInside;
     }
 

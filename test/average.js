@@ -22,7 +22,7 @@ describe('average', function(){
       averaged.features[1].properties.pop_avg.should.equal(200)
     })
 
-    if (typeof syncAveraged === 'Error') {
+    if (syncAveraged instanceof Error) {
       throw syncAveraged;
     }
 

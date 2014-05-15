@@ -9,7 +9,7 @@ describe('remove', function(){
       newCol.features.length.should.equal(3)
     })
 
-    if (typeof syncNewCol === 'Error') {
+    if (syncNewCol instanceof Error) {
   		throw syncNewCol;
   	}
 

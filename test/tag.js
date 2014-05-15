@@ -15,7 +15,7 @@ describe('tag', function(){
           //fs.writeFileSync('./testOut/taggedPoints.geojson', JSON.stringify(taggedPoints))
         })
 
-        if (typeof syncTaggedPoints === 'Error') {
+        if (syncTaggedPoints instanceof Error) {
           throw syncTaggedPoints;
         }
 

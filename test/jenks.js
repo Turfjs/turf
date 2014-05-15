@@ -14,7 +14,7 @@ describe('jenks', function(){
         breaks.length.should.equal(11)
       })
 
-      if (typeof syncBreaks === 'Error') {
+      if (syncBreaks instanceof Error) {
         throw syncBreaks;
       }
 

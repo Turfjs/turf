@@ -11,7 +11,7 @@ describe('flip', function(){
       flipped.geometry.coordinates[1].should.equal(1)
     })
 
-    if (typeof syncFlipped === 'Error') {
+    if (syncFlipped instanceof Error) {
       throw syncFlipped;
     }
 
@@ -32,7 +32,7 @@ describe('flip', function(){
       flipped.geometry.coordinates[1][1].should.equal(1)
     })
 
-    if (typeof syncFlipped === 'Error') {
+    if (syncFlipped instanceof Error) {
       throw syncFlipped;
     }
 
@@ -59,7 +59,7 @@ describe('flip', function(){
       flipped.geometry.coordinates[1][2][1].should.equal(.1)
     })
 
-    if (typeof syncFlipped === 'Error') {
+    if (syncFlipped instanceof Error) {
       throw syncFlipped;
     }
 
@@ -88,7 +88,7 @@ describe('flip', function(){
       flipped.features[1].geometry.coordinates[1].should.equal(1)
     })
 
-    if (typeof syncFlipped === 'Error') {
+    if (syncFlipped instanceof Error) {
       throw syncFlipped;
     }
 

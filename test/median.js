@@ -21,7 +21,7 @@ describe('sum', function(){
       medianed.features[1].properties.population_median.should.equal(500)
     })
 
-    if (typeof syncMedianed === 'Error') {
+    if (syncMedianed instanceof Error) {
       throw syncMedianed;
     }
 

@@ -13,7 +13,7 @@ describe('distance', function(){
           distance.should.not.equal(0)
         })
 
-        if (typeof syncDistance === 'Error') {
+        if (syncDistance instanceof Error) {
           throw syncDistance;
         }
 
@@ -33,7 +33,7 @@ describe('distance', function(){
       distance.should.not.equal(0)
     })
 
-    if (typeof syncDistance === 'Error') {
+    if (syncDistance instanceof Error) {
       throw syncDistance;
     }
 
@@ -51,7 +51,7 @@ describe('distance', function(){
       distance.should.not.equal(0)
     })
 
-    if (typeof syncDistance === 'Error') {
+    if (syncDistance instanceof Error) {
       throw syncDistance;
     }
 

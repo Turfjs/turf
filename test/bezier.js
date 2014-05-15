@@ -13,7 +13,7 @@ describe('bezier', function(){
         //fs.writeFileSync('./testOut/bezier.geojson', JSON.stringify(lineOut))
       })
 
-      if (typeof syncLineOut === 'Error') {
+      if (syncLineOut instanceof Error) {
         throw syncLineOut;
       }
 

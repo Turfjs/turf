@@ -21,7 +21,7 @@ describe('count', function(){
       counted.features[1].properties.point_count.should.equal(3)
     });
 
-    if (typeof syncCounted === 'Error') {
+    if (syncCounted instanceof Error) {
       throw syncCounted;
     }
 

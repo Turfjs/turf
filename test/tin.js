@@ -13,7 +13,7 @@ describe('tin', function(){
         //fs.writeFileSync('./testOut/tin.geojson',JSON.stringify(tin))
       })
 
-      if (typeof syncTin === 'Error') {
+      if (syncTin instanceof Error) {
         throw syncTin;
       }
 
@@ -34,7 +34,7 @@ describe('tin', function(){
         //fs.writeFileSync('./testOut/tin2.geojson',JSON.stringify(tin))
       })
 
-      if (typeof syncTin === 'Error') {
+      if (syncTin instanceof Error) {
         throw syncTin;
       }
 

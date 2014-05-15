@@ -10,7 +10,7 @@ describe('filter', function(){
       oaks.features.length.should.equal(3)
     })
 
-    if (typeof syncOaks === 'Error') {
+    if (syncOaks instanceof Error) {
       throw syncOaks;
     }
 
