@@ -1465,6 +1465,8 @@ t.extent = extent
 module.exports = function(features, done){
   var poly = t.bboxPolygon(t.extent(features));
 
+  done = done || function () {};
+
   if (poly instanceof Error) {
     done(poly);
   } else {
@@ -3699,10 +3701,7 @@ module.exports = function(bbox, done) {
 
   done(null, squareBbox)
   return squareBbox;
-  //t.midpoint(t.point(bbox[0,]), bbox)
-  //squareBbox[0] =
 }
-
 },{"../lib/distance":16,"../lib/midpoint":37,"../lib/point":42}],52:[function(_dereq_,module,exports){
 var t = {}
 var _ = _dereq_('lodash'),
@@ -5063,8 +5062,8 @@ module.exports = function(ptFC, polyFC, done){
 
 }());
 
-}).call(this,_dereq_("/Users/adamdrago/Documents/Git/turf/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"))
-},{"/Users/adamdrago/Documents/Git/turf/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":61}],60:[function(_dereq_,module,exports){
+}).call(this,_dereq_("m:\\development\\github repositories\\turf\\node_modules\\browserify\\node_modules\\insert-module-globals\\node_modules\\process\\browser.js"))
+},{"m:\\development\\github repositories\\turf\\node_modules\\browserify\\node_modules\\insert-module-globals\\node_modules\\process\\browser.js":61}],60:[function(_dereq_,module,exports){
 
 },{}],61:[function(_dereq_,module,exports){
 // shim for using process in browser
@@ -5348,8 +5347,8 @@ var substr = 'ab'.substr(-1) === 'b'
     }
 ;
 
-}).call(this,_dereq_("/Users/adamdrago/Documents/Git/turf/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"))
-},{"/Users/adamdrago/Documents/Git/turf/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":61}],63:[function(_dereq_,module,exports){
+}).call(this,_dereq_("m:\\development\\github repositories\\turf\\node_modules\\browserify\\node_modules\\insert-module-globals\\node_modules\\process\\browser.js"))
+},{"m:\\development\\github repositories\\turf\\node_modules\\browserify\\node_modules\\insert-module-globals\\node_modules\\process\\browser.js":61}],63:[function(_dereq_,module,exports){
 (function (global){
 'use strict';
 global.javascript = {};
