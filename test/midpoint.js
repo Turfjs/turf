@@ -1,3 +1,4 @@
+var _ = require('lodash')
 var t = require('../index'),
   should = require('should')
 
