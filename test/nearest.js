@@ -21,7 +21,7 @@ describe('nearest', function(){
           _.isEqual(outPoint, nearest).should.be.true
         })
 
-        if (typeof syncOutPoint === 'Error') {
+        if (syncOutPoint instanceof Error) {
           throw syncOutPoint;
         }
 

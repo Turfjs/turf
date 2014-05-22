@@ -21,7 +21,7 @@ describe('sum', function(){
       summed.features[1].properties.population_sum.should.equal(1300)
     })
 
-    if (typeof syncSummed === 'Error') {
+    if (syncSummed instanceof Error) {
       throw syncSummed;
     }
 

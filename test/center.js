@@ -11,7 +11,7 @@ describe('center', function(){
         _.isEqual(center.geometry.coordinates, [75, -3]).should.be.true
       })
 
-      if (typeof syncCenter === 'Error') {
+      if (syncCenter instanceof Error) {
         throw syncCenter;
       }
 

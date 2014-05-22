@@ -22,7 +22,7 @@ describe('average', function(){
       averaged.features[1].properties.pop_max.should.equal(300)
     })
 
-    if (typeof syncAveraged === 'Error') {
+    if (syncAveraged instanceof Error) {
       throw syncAveraged;
     }
 

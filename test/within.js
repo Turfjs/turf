@@ -15,7 +15,7 @@ describe('within', function(){
       counted.features.length.should.equal(1)
     })
 
-    if (typeof syncCounted === 'Error') {
+    if (syncCounted instanceof Error) {
       throw syncCounted;
     }
 
@@ -42,7 +42,7 @@ describe('within', function(){
       counted.features.length.should.equal(3)
     })
 
-    if (typeof syncCounted === 'Error') {
+    if (syncCounted instanceof Error) {
       throw syncCounted;
     }
 
@@ -69,7 +69,7 @@ describe('within', function(){
       counted.features.length.should.equal(2)
     })
 
-    if (typeof syncCounted === 'Error') {
+    if (syncCounted instanceof Error) {
       throw syncCounted;
     }
 
@@ -97,7 +97,7 @@ describe('within', function(){
       counted.features.length.should.equal(5)
     })
 
-    if (typeof syncCounted === 'Error') {
+    if (syncCounted instanceof Error) {
       throw syncCounted;
     }
 

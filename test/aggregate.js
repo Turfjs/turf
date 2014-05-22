@@ -75,7 +75,7 @@ describe('aggregate', function(){
       polys.features[1].properties.pop_variance.should.be.ok
     })
 
-    if (typeof syncPolys === 'Error') {
+    if (syncPolys instanceof Error) {
       throw syncPolys;
     }
 

@@ -18,7 +18,7 @@ describe('explode', function(){
       _.isEqual(vertices, fc).should.be.true
     })
 
-    if (typeof syncVertices === 'Error') {
+    if (syncVertices instanceof Error) {
       throw syncVertices;
     }
 

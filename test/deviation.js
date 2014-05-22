@@ -20,7 +20,7 @@ describe('deviation', function(){
       deviated.features[0].properties.population_deviation.should.be.ok
     })
 
-    if (typeof syncDeviated === 'Error') {
+    if (syncDeviated instanceof Error) {
       throw syncDeviated;
     }
 

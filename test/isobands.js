@@ -12,7 +12,7 @@ describe('isobands', function(){
         contours.features.should.be.ok
       })
 
-      if (typeof syncContours === 'Error') {
+      if (syncContours instanceof Error) {
         throw syncContours;
       }
 
@@ -34,13 +34,13 @@ describe('isobands', function(){
         })
       })
 
-      if (typeof syncBreaks === 'Error') {
+      if (syncBreaks instanceof Error) {
         throw syncBreaks;
       }
 
       var syncContours = t.isobands(points, 'elevation', 15, syncBreaks);
 
-      if (typeof syncContours === 'Error') {
+      if (syncContours instanceof Error) {
         throw syncContours;
       }
 
@@ -59,7 +59,7 @@ describe('isobands', function(){
         contours.features.should.be.ok
       })
 
-      if (typeof syncContours === 'Error') {
+      if (syncContours instanceof Error) {
         throw syncContours;
       }
 
@@ -78,7 +78,7 @@ describe('isobands', function(){
         contours.features.should.be.ok
       })
 
-      if (typeof syncContours === 'Error') {
+      if (syncContours instanceof Error) {
         throw syncContours;
       }
 
@@ -97,7 +97,7 @@ describe('isobands', function(){
         contours.features.should.be.ok
       })
 
-      if (typeof syncContours === 'Error') {
+      if (syncContours instanceof Error) {
         throw syncContours;
       }
 
@@ -116,7 +116,7 @@ describe('isobands', function(){
         contours.features.should.be.ok
       })
 
-      if (typeof syncContours === 'Error') {
+      if (syncContours instanceof Error) {
         throw syncContours;
       }
 
@@ -136,7 +136,7 @@ describe('isobands', function(){
           contours.features.should.be.ok
         })
 
-        if (typeof syncContours === 'Error') {
+        if (syncContours instanceof Error) {
           throw syncContours;
         }
 

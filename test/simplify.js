@@ -13,7 +13,7 @@ describe('simplify', function(){
         //fs.writeFileSync('./testOut/simplifiedPolygons.geojson', JSON.stringify(simplified))
       })
 
-      if (typeof syncSimplified === 'Error') {
+      if (syncSimplified instanceof Error) {
         throw syncSimplified;
       }
 
@@ -32,7 +32,7 @@ describe('simplify', function(){
         //fs.writeFileSync('./testOut/simplifiedLines.geojson', JSON.stringify(simplified))
       })
 
-      if (typeof syncSimplified === 'Error') {
+      if (syncSimplified instanceof Error) {
         throw syncSimplified;
       }
 
@@ -51,7 +51,7 @@ describe('simplify', function(){
         //fs.writeFileSync('./testOut/simplifiedPolygon.geojson', JSON.stringify(simplified))
       })
 
-      if (typeof syncSimplified === 'Error') {
+      if (syncSimplified instanceof Error) {
         throw syncSimplified;
       }
 
@@ -70,7 +70,7 @@ describe('simplify', function(){
         //fs.writeFileSync('./testOut/simplifiedLine.geojson', JSON.stringify(simplified))
       })
 
-      if (typeof syncSimplified === 'Error') {
+      if (syncSimplified instanceof Error) {
         throw syncSimplified;
       }
 

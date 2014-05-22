@@ -9,7 +9,7 @@ describe('buffer', function(){
         if(err) throw err
       })
 
-      if (typeof syncBuffered === 'Error') {
+      if (syncBuffered instanceof Error) {
         throw syncBuffered;
       }
 
@@ -23,7 +23,7 @@ describe('buffer', function(){
         if(err) throw err
       })
 
-      if (typeof syncBuffered === 'Error') {
+      if (syncBuffered instanceof Error) {
         throw syncBuffered;
       }
 
@@ -37,7 +37,7 @@ describe('buffer', function(){
         if(err) throw err
       })
 
-      if (typeof syncBuffered === 'Error') {
+      if (syncBuffered instanceof Error) {
         throw syncBuffered;
       }
 
@@ -51,7 +51,7 @@ describe('buffer', function(){
         if(err) throw err
       })
 
-      if (typeof syncBuffered === 'Error') {
+      if (syncBuffered instanceof Error) {
         throw syncBuffered;
       }
 
@@ -65,7 +65,7 @@ describe('buffer', function(){
         if(err) throw err
       })
 
-      if (typeof syncBuffered === 'Error') {
+      if (syncBuffered instanceof Error) {
         throw syncBuffered;
       }
 

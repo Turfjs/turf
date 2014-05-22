@@ -12,7 +12,7 @@ describe('grid', function(){
       //fs.writeFileSync('./testOut/grid.geojson',JSON.stringify(grid))
     })
 
-    if (typeof syncGrid === 'Error') {
+    if (syncGrid instanceof Error) {
       throw syncGrid;
     }
 
@@ -32,7 +32,7 @@ describe('grid', function(){
       //fs.writeFileSync('./testOut/grid.geojson',JSON.stringify(grid))
     })
 
-    if (typeof syncGrid === 'Error') {
+    if (syncGrid instanceof Error) {
       throw syncGrid;
     }
 

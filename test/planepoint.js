@@ -11,7 +11,7 @@ describe('planepoint', function(){
           z.should.be.ok
         })
 
-        if (typeof syncZ === 'Error') {
+        if (syncZ instanceof Error) {
           throw syncZ;
         }
 
@@ -34,7 +34,7 @@ describe('planepoint', function(){
       zValue.should.be.ok
     })
 
-    if (typeof syncZValue === 'Error') {
+    if (syncZValue instanceof Error) {
       throw syncZValue;
     }
 

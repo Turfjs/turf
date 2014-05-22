@@ -12,7 +12,7 @@ describe('isolines', function(){
         contours.features.should.be.ok
       })
 
-      if (typeof syncContours === 'Error') {
+      if (syncContours instanceof Error) {
         throw syncContours;
       }
 
@@ -33,13 +33,13 @@ describe('isolines', function(){
         })
       })
 
-      if (typeof syncBreaks === 'Error') {
+      if (syncBreaks instanceof Error) {
         throw syncBreaks;
       }
 
       var syncContours = t.isolines(points, 'elevation', 15, syncBreaks);
 
-      if (typeof syncContours === 'Error') {
+      if (syncContours instanceof Error) {
         throw syncContours;
       }
 
@@ -57,7 +57,7 @@ describe('isolines', function(){
         contours.features.should.be.ok
       })
 
-      if (typeof syncContours === 'Error') {
+      if (syncContours instanceof Error) {
         throw syncContours;
       }
 
@@ -75,7 +75,7 @@ describe('isolines', function(){
         contours.features.should.be.ok
       })
 
-      if (typeof syncContours === 'Error') {
+      if (syncContours instanceof Error) {
         throw syncContours;
       }
 
@@ -93,7 +93,7 @@ describe('isolines', function(){
         contours.features.should.be.ok
       })
 
-      if (typeof syncContours === 'Error') {
+      if (syncContours instanceof Error) {
         throw syncContours;
       }
 
@@ -111,7 +111,7 @@ describe('isolines', function(){
         contours.features.should.be.ok
       })
       
-      if (typeof syncContours === 'Error') {
+      if (syncContours instanceof Error) {
         throw syncContours;
       }
 
