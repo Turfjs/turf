@@ -53,5 +53,5 @@ module.exports = {
   reclass: require('turf-reclass'),
   remove: require('turf-remove'),
   tin: require('turf-tin'),
-  union: require('./lib/union')
+  union: require('turf-union')
 }
