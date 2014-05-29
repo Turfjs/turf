@@ -93,7 +93,8 @@
     "turf-simplify": "0.0.0",
     "turf-bezier": "0.0.0",
     "turf-intersect": "0.0.0",
-    "turf-union": "0.0.0"
+    "turf-union": "0.0.0",
+    "turf-merge": "0.0.0"
   },
   "devDependencies": {
     "should": "~3.1.2",
