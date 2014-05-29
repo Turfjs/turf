@@ -43,11 +43,6 @@
     "url": "https://github.com/morganherlocker/turf/issues"
   },
   "dependencies": {
-    "simple-statistics": "~0.7.0",
-    "lodash": "~2.4.1",
-    "topojson": "~1.4.6",
-    "async": "~0.2.10",
-    "jsts": "~0.13.4",
     "poly-extractor": "0.0.3",
     "turf-average": "0.0.1",
     "turf-quantile": "0.0.2",
