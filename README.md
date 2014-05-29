@@ -1089,7 +1089,7 @@ var t = require('turf')
 t.load(__dirname + '/testIn/mergeIn.geojson', function(err, polys){
   t.merge(polys, function(err, merged){
     if(err) throw err
-    console.log(unioned)
+    console.log(merged)
   })
 })
 ```
