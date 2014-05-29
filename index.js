@@ -2,7 +2,7 @@ module.exports = {
   isClockwise: require('./lib/isClockwise.js'),
   area: require('./lib/area'),
   near: require('./lib/near'),
-  isolines: require('./lib/isolines'),
+  isolines: require('turf-isolines'),
   isobands: require('turf-isobands'),
   merge: require('./lib/merge'),
   convex: require('./lib/convex'),
