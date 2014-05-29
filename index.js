@@ -6,7 +6,7 @@ module.exports = {
   convex: require('./lib/convex'),
   donuts: require('turf-donuts'),
   within: require('turf-within'),
-  concave: require('./lib/concave'),
+  concave: require('turf-concave'),
   count: require('turf-count'),
   erase: require('turf-erase'),
   variance: require('turf-variance'),
