@@ -87,7 +87,8 @@
     "turf-tin": "0.0.1",
     "turf-inside": "~0.1.1",
     "turf-featurecollection": "~0.1.0",
-    "turf-isolines": "0.0.2"
+    "turf-isolines": "0.0.2",
+    "turf-is-clockwise": "0.0.1"
   },
   "devDependencies": {
     "should": "~3.1.2",

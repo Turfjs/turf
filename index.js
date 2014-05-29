@@ -1,5 +1,5 @@
 module.exports = {
-  isClockwise: require('./lib/isClockwise.js'),
+  isClockwise: require('turf-is-clockwise'),
   area: require('./lib/area'),
   near: require('./lib/near'),
   isolines: require('turf-isolines'),
