@@ -21,7 +21,6 @@ module.exports = {
   simplify: require('./lib/simplify'),
   sum: require('turf-sum'),
   average: require('turf-average'),
-  topo: require('./lib/topo'),
   bezier: require('./lib/bezier'),
   tag: require('turf-tag'),
   size: require('turf-size'),
