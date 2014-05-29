@@ -40,7 +40,7 @@ module.exports = {
   distance: require('turf-distance'),
   explode: require('turf-explode'),
   extent: require('turf-extent'),
-  bboxPolygon: require('./lib/bboxPolygon'),
+  bboxPolygon: require('turf-bbox-polygon'),
   featurecollection: require('turf-featurecollection'),
   filter: require('turf-filter'),
   grid: require('turf-grid'),
