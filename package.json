@@ -98,7 +98,8 @@
     "turf-erase": "0.0.0",
     "turf-donuts": "0.0.0",
     "turf-concave": "0.0.0",
-    "turf-convex": "0.0.0"
+    "turf-convex": "0.0.0",
+    "turf-buffer": "0.0.1"
   },
   "devDependencies": {
     "should": "~3.1.2",
