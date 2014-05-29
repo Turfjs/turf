@@ -95,7 +95,8 @@
     "turf-intersect": "0.0.0",
     "turf-union": "0.0.0",
     "turf-merge": "0.0.0",
-    "turf-erase": "0.0.0"
+    "turf-erase": "0.0.0",
+    "turf-donuts": "0.0.0"
   },
   "devDependencies": {
     "should": "~3.1.2",
