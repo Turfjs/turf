@@ -18,7 +18,7 @@ module.exports = {
   max: require('turf-max'),
   aggregate: require('turf-aggregate'),
   flip: require('turf-flip'),
-  simplify: require('./lib/simplify'),
+  simplify: require('turf-simplify'),
   sum: require('turf-sum'),
   average: require('turf-average'),
   bezier: require('./lib/bezier'),
