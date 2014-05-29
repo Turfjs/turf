@@ -43,7 +43,7 @@ module.exports = {
   filter: require('turf-filter'),
   grid: require('turf-grid'),
   inside: require('turf-inside'),
-  intersect: require('./lib/intersect'),
+  intersect: require('turf-intersect'),
   linestring: require('turf-linestring'),
   load: require('./lib/load'),
   nearest: require('turf-nearest'),
