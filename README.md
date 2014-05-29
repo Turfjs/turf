@@ -1,9 +1,8 @@
-turf
+![turf](https://raw.githubusercontent.com/Turfjs/turf/9a1d5e8d99564d4080f1e2bf1517ed41d18012fa/logo.png)
 ======
 
 [![Build Status](https://travis-ci.org/atdrago/turf.png)](https://travis-ci.org/atdrago/turf)
 
-![turf](https://raw.github.com/morganherlocker/turf/master/img/turf.png)
 
 ***a fast and fully featured open gis engine written in javascript***
 
