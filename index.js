@@ -9,7 +9,7 @@ module.exports = {
   within: require('turf-within'),
   concave: require('./lib/concave'),
   count: require('turf-count'),
-  erase: require('./lib/erase'),
+  erase: require('turf-erase'),
   variance: require('turf-variance'),
   deviation: require('turf-deviation'),
   median: require('turf-median'),
