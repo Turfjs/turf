@@ -1,6 +1,5 @@
 module.exports = {
   isClockwise: require('turf-is-clockwise'),
-  near: require('./lib/near'),
   isolines: require('turf-isolines'),
   isobands: require('turf-isobands'),
   merge: require('turf-merge'),
@@ -26,7 +25,6 @@ module.exports = {
   sample: require('turf-sample'),
   jenks: require('turf-jenks'),
   quantile: require('turf-quantile'),
-  save: require('./lib/save'),
   envelope: require('turf-envelope'),
   square: require('turf-square'),
   midpoint: require('turf-midpoint'),
@@ -45,7 +43,6 @@ module.exports = {
   inside: require('turf-inside'),
   intersect: require('turf-intersect'),
   linestring: require('turf-linestring'),
-  load: require('./lib/load'),
   nearest: require('turf-nearest'),
   planepoint: require('turf-planepoint'),
   point: require('turf-point'),
