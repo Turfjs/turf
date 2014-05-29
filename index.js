@@ -1,6 +1,5 @@
 module.exports = {
   isClockwise: require('turf-is-clockwise'),
-  area: require('./lib/area'),
   near: require('./lib/near'),
   isolines: require('turf-isolines'),
   isobands: require('turf-isobands'),
@@ -21,7 +20,7 @@ module.exports = {
   simplify: require('turf-simplify'),
   sum: require('turf-sum'),
   average: require('turf-average'),
-  bezier: require('./lib/bezier'),
+  bezier: require('turf-bezier'),
   tag: require('turf-tag'),
   size: require('turf-size'),
   sample: require('turf-sample'),
