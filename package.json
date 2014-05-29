@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/morganherlocker/turf.git"
+    "url": "https://github.com/turfjs/turf.git"
   },
   "keywords": [
     "gis",
