@@ -3,7 +3,7 @@ module.exports = {
   isolines: require('turf-isolines'),
   isobands: require('turf-isobands'),
   merge: require('turf-merge'),
-  convex: require('./lib/convex'),
+  convex: require('turf-convex'),
   donuts: require('turf-donuts'),
   within: require('turf-within'),
   concave: require('turf-concave'),
