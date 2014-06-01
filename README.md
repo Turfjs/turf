@@ -26,7 +26,7 @@ Download the [minified file](https://raw.github.com/morganherlocker/turf/master/
 
 **Browserify:**
 
-All of Turf's functions can also be installed as seperate modules. This allows you to use tools like [browserify](http://browserify.org/) to install only the code you need. It also allows you to mix and match modules as needed. This is the recommended usage patter for most production environments. For example, to install the *point* and *buffer* modules use:
+All of Turf's functions can also be installed as seperate modules. This works well with tools like [browserify](http://browserify.org/) where you only want to install only the code you need. It also allows you to mix and match modules as needed. This is the recommended usage patter for most production environments. For example, to install the *point* and *buffer* modules use:
 
 ```sh
 npm install turf-point
