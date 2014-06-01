@@ -4,28 +4,33 @@
 [![Build Status](https://travis-ci.org/atdrago/turf.png)](https://travis-ci.org/atdrago/turf)
 
 
-***a fast and fully featured open gis engine written in javascript***
+***A modular GIS engine written in JavaScript***
 
 - - -
 
 ##Installation
 
+**In Node.js:**
+
 ```bash
 npm install turf
 ```
 
-Turf can also be run in a browser. To use it, download the [minified file](https://raw.github.com/morganherlocker/turf/master/turf.min.js), and include it in a script tag.
+**In browser:**
 
-**NOTE: Browser functionality is currently unstable. Please consider using turf from node.js. Work is in progress on resolving the issues.**
+Download the [minified file](https://raw.github.com/morganherlocker/turf/master/turf.min.js), and include it in a script tag. This will expose a global variable named "turf".
 
 ```html
 <script src="turf.min.js"></script>
 ```
 
-It can also be installed using bower:
+**Browserify:**
 
-```bash
-bower install turf
+All of Turf's functions can also be installed as seperate modules. This allows you to use tools like [browserify](http://browserify.org/) to install only the code you need. It also allows you to mix and match modules as needed. This is the recommended usage patter for most production environments. For example, to install the *point* and *buffer* modules use:
+
+```sh
+npm install turf-point
+npm install turf-buffer
 ```
 
 - - -
