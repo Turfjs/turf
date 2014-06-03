@@ -1,1 +1,0 @@
-{"type":"Topology","objects":{"geojson":{"type":"GeometryCollection","geometries":[{"type":"Polygon","arcs":[[0,1]]},{"type":"Polygon","arcs":[[0,2]]}]}},"arcs":[[[5000,5000],[0,4999]],[[5000,9999],[4999,0],[-4999,-4999]],[[5000,9999],[-5000,-9999],[5000,5000]]],"bbox":[-10,-10,10,10],"transform":{"scale":[0.002000200020002,0.002000200020002],"translate":[-10,-10]}}
