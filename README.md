@@ -1,7 +1,7 @@
 ![turf](https://raw.githubusercontent.com/Turfjs/turf/9a1d5e8d99564d4080f1e2bf1517ed41d18012fa/logo.png)
 ======
 
-[![Build Status](https://travis-ci.org/atdrago/turf.png)](https://travis-ci.org/atdrago/turf)
+[![Build Status](https://travis-ci.org/Turfjs/turf.svg?branch=master)](https://travis-ci.org/Turfjs/turf)
 
 
 ***A modular GIS engine written in JavaScript***
@@ -38,10 +38,14 @@ npm install turf-buffer
 ##Features
 
 ####geometry
-- [point](https://github.com/Turfjs/turf-point)
-- [linestring](https://github.com/Turfjs/turf-linestring)
-- [polygon](https://github.com/Turfjs/turf-polygon)
-- [featurecollection](https://github.com/Turfjs/turf-featurecollection)
+
+[![Build Status](https://travis-ci.org/Turfjs/turf-point.svg?branch=master)](https://travis-ci.org/Turfjs/turf-point) [point](https://github.com/Turfjs/turf-point)
+
+[![Build Status](https://travis-ci.org/Turfjs/turf-linestring.svg?branch=master)](https://travis-ci.org/Turfjs/turf-linestring) [linestring](https://github.com/Turfjs/turf-linestring)
+
+[![Build Status](https://travis-ci.org/Turfjs/turf-polygon.svg?branch=master)](https://travis-ci.org/Turfjs/turf-polygon) [polygon](https://github.com/Turfjs/turf-polygon)
+
+[![Build Status](https://travis-ci.org/Turfjs/turf-featurecollection.svg?branch=master)](https://travis-ci.org/Turfjs/turf-featurecollection) [featurecollection](https://github.com/Turfjs/turf-featurecollection)
 
 ####joins
 - [inside](https://github.com/Turfjs/turf-inside)
