@@ -93,7 +93,7 @@
     "turf-tin": "0.0.2",
     "turf-union": "0.0.0",
     "turf-variance": "0.0.2",
-    "turf-within": "^0.1.1",
+    "turf-within": "^0.1.1"
   },
   "devDependencies": {
     "browserify": "~4.1.8",
