@@ -101,16 +101,10 @@ npm install turf-buffer
 - [concave](https://github.com/Turfjs/turf-concave)
 
 ####misc
-<<<<<<< HEAD
 - [flip](https://github.com/Turfjs/turf-flip)
 - [explode](https://github.com/Turfjs/turf-explode)
 - [combine](https://github.com/Turfjs/turf-combine)
 - [isClockwise](https://github.com/Turfjs/turf-isClockwise)
-=======
-- [flip](#flip)
-- [explode](#explode)
-- [combine](#combine)
-- [isClockwise](#isClockwise)
 
 ---
 
