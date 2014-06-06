@@ -92,7 +92,7 @@ npm install turf-buffer
 
 [![Build Status](https://travis-ci.org/Turfjs/turf-isolines.svg?branch=master)](https://travis-ci.org/Turfjs/turf-isolines) [isolines](https://github.com/Turfjs/turf-isolines)
 
-[![Build Status](https://travis-ci.org/Turfjs/turf-isobands.svg?branch=master)](https://travis-ci.org/Turfjs/turf-isobands) [isobands](https://github.com/Turfjs/turf-isolines)
+[![Build Status](https://travis-ci.org/Turfjs/turf-isobands.svg?branch=master)](https://travis-ci.org/Turfjs/turf-isobands) [isobands](https://github.com/Turfjs/turf-isobands)
 
 ####classification
 [![Build Status](https://travis-ci.org/Turfjs/turf-quantile.svg?branch=master)](https://travis-ci.org/Turfjs/turf-quantile) [quantile](https://github.com/Turfjs/turf-quantile)
