@@ -149,7 +149,3 @@ npm install turf-buffer
 [![Build Status](https://travis-ci.org/Turfjs/turf-combine.svg?branch=master)](https://travis-ci.org/Turfjs/turf-combine) [combine](https://github.com/Turfjs/turf-combine)
 
 [![Build Status](https://travis-ci.org/Turfjs/turf-isClockwise.svg?branch=master)](https://travis-ci.org/Turfjs/turf-isClockwise) [isClockwise](https://github.com/Turfjs/turf-isClockwise)
-
----
-
-Created by [@morganherlocker](https://twitter.com/morganherlocker) :)
