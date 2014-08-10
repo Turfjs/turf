@@ -54,6 +54,7 @@
     "turf-concave": "0.0.1",
     "turf-convex": "0.0.1",
     "turf-count": "0.0.4",
+    "turf-destination": "0.0.5",
     "turf-deviation": "0.0.2",
     "turf-distance": "^0.1.2",
     "turf-donuts": "0.0.2",
