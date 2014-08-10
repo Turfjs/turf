@@ -46,6 +46,7 @@
     "turf-aggregate": "0.0.3",
     "turf-average": "0.0.2",
     "turf-bbox-polygon": "^0.1.1",
+    "turf-bearing": "0.0.2",
     "turf-bezier": "0.0.0",
     "turf-buffer": "0.0.2",
     "turf-center": "^0.1.0",
