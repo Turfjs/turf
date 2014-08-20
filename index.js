@@ -49,5 +49,7 @@ module.exports = {
   reclass: require('turf-reclass'),
   remove: require('turf-remove'),
   tin: require('turf-tin'),
-  union: require('turf-union')
+  union: require('turf-union'),
+  bearing: require('turf-bearing'),
+  destination: require('turf-destination')
 }

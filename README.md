@@ -83,6 +83,10 @@ npm install turf-buffer
 
 [![Build Status](https://travis-ci.org/Turfjs/turf-midpoint.svg?branch=master)](https://travis-ci.org/Turfjs/turf-midpoint) [midpoint](https://github.com/Turfjs/turf-midpoint)
 
+[![Build Status](https://travis-ci.org/Turfjs/turf-bearing.svg?branch=master)](https://travis-ci.org/Turfjs/turf-bearing) [bearing](https://github.com/Turfjs/turf-bearing)
+
+[![Build Status](https://travis-ci.org/Turfjs/turf-destination.svg?branch=master)](https://travis-ci.org/Turfjs/turf-destination) [destination](https://github.com/Turfjs/turf-destination)
+
 ####interpolation
 [![Build Status](https://travis-ci.org/Turfjs/turf-tin.svg?branch=master)](https://travis-ci.org/Turfjs/turf-tin) [tin](https://github.com/Turfjs/turf-tin)
 
@@ -149,7 +153,3 @@ npm install turf-buffer
 [![Build Status](https://travis-ci.org/Turfjs/turf-combine.svg?branch=master)](https://travis-ci.org/Turfjs/turf-combine) [combine](https://github.com/Turfjs/turf-combine)
 
 [![Build Status](https://travis-ci.org/Turfjs/turf-isClockwise.svg?branch=master)](https://travis-ci.org/Turfjs/turf-isClockwise) [isClockwise](https://github.com/Turfjs/turf-isClockwise)
-
----
-
-Created by [@morganherlocker](https://twitter.com/morganherlocker) :)
