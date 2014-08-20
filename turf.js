@@ -1,90 +1,1457 @@
-!function(e){if("object"==typeof exports)module.exports=e();else if("function"==typeof define&&define.amd)define(e);else{var f;"undefined"!=typeof window?f=window:"undefined"!=typeof global?f=global:"undefined"!=typeof self&&(f=self),f.turf=e()}}(function(){var define,module,exports;return (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);throw new Error("Cannot find module '"+o+"'")}var f=n[o]={exports:{}};t[o][0].call(f.exports,function(e){var n=t[o][1][e];return s(n?n:e)},f,f.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(_dereq_,module,exports){
+!function(e){if("object"==typeof exports&&"undefined"!=typeof module)module.exports=e();else if("function"==typeof define&&define.amd)define([],e);else{var f;"undefined"!=typeof window?f=window:"undefined"!=typeof global?f=global:"undefined"!=typeof self&&(f=self),f.turf=e()}}(function(){var define,module,exports;return (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 module.exports = {
-  isClockwise: _dereq_('./lib/isClockwise'),
-  area: _dereq_('./lib/area'),
-  near: _dereq_('./lib/near'),
-  isolines: _dereq_('./lib/isolines'),
-  isobands: _dereq_('./lib/isobands'),
-  merge: _dereq_('./lib/merge'),
-  convex: _dereq_('./lib/convex'),
-  donuts: _dereq_('./lib/donuts'),
-  within: _dereq_('./lib/within'),
-  concave: _dereq_('./lib/concave'),
-  count: _dereq_('./lib/count'),
-  erase: _dereq_('./lib/erase'),
-  variance: _dereq_('./lib/variance'),
-  deviation: _dereq_('./lib/deviation'),
-  median: _dereq_('./lib/median'),
-  min: _dereq_('./lib/min'),
-  max: _dereq_('./lib/max'),
-  aggregate: _dereq_('./lib/aggregate'),
-  flip: _dereq_('./lib/flip'),
-  simplify: _dereq_('./lib/simplify'),
-  sum: _dereq_('./lib/sum'),
-  average: _dereq_('./lib/average'),
-  topo: _dereq_('./lib/topo'),
-  bezier: _dereq_('./lib/bezier'),
-  tag: _dereq_('./lib/tag'),
-  size: _dereq_('./lib/size'),
-  sample: _dereq_('./lib/sample'),
-  jenks: _dereq_('./lib/jenks'),
-  quantile: _dereq_('./lib/quantile'),
-  save: _dereq_('./lib/save'),
-  envelope: _dereq_('./lib/envelope'),
-  square: _dereq_('./lib/square'),
-  midpoint: _dereq_('./lib/midpoint'),
-  buffer: _dereq_('./lib/buffer'),
-  center: _dereq_('./lib/center'),
-  centroid: _dereq_('./lib/centroid'),
-  combine: _dereq_('./lib/combine'),
-  contour: _dereq_('./lib/contour'),
-  distance: _dereq_('./lib/distance'),
-  explode: _dereq_('./lib/explode'),
-  extent: _dereq_('./lib/extent'),
-  bboxPolygon: _dereq_('./lib/bboxPolygon'),
-  featurecollection: _dereq_('./lib/featurecollection'),
-  filter: _dereq_('./lib/filter'),
-  grid: _dereq_('./lib/grid'),
-  inside: _dereq_('./lib/inside'),
-  intersect: _dereq_('./lib/intersect'),
-  linestring: _dereq_('./lib/linestring'),
-  load: _dereq_('./lib/load'),
-  nearest: _dereq_('./lib/nearest'),
-  planepoint: _dereq_('./lib/planepoint'),
-  point: _dereq_('./lib/point'),
-  polygon: _dereq_('./lib/polygon'),
-  quantile: _dereq_('./lib/quantile'),
-  reclass: _dereq_('./lib/reclass'),
-  remove: _dereq_('./lib/remove'),
-  tin: _dereq_('./lib/tin'),
-  union: _dereq_('./lib/union')
+  isClockwise: require('turf-is-clockwise'),
+  isolines: require('turf-isolines'),
+  isobands: require('turf-isobands'),
+  merge: require('turf-merge'),
+  convex: require('turf-convex'),
+  donuts: require('turf-donuts'),
+  within: require('turf-within'),
+  concave: require('turf-concave'),
+  count: require('turf-count'),
+  erase: require('turf-erase'),
+  variance: require('turf-variance'),
+  deviation: require('turf-deviation'),
+  median: require('turf-median'),
+  min: require('turf-min'),
+  max: require('turf-max'),
+  aggregate: require('turf-aggregate'),
+  flip: require('turf-flip'),
+  simplify: require('turf-simplify'),
+  sum: require('turf-sum'),
+  average: require('turf-average'),
+  bezier: require('turf-bezier'),
+  tag: require('turf-tag'),
+  size: require('turf-size'),
+  sample: require('turf-sample'),
+  jenks: require('turf-jenks'),
+  quantile: require('turf-quantile'),
+  envelope: require('turf-envelope'),
+  square: require('turf-square'),
+  midpoint: require('turf-midpoint'),
+  buffer: require('turf-buffer'),
+  center: require('turf-center'),
+  centroid: require('turf-centroid'),
+  combine: require('turf-combine'),
+  distance: require('turf-distance'),
+  explode: require('turf-explode'),
+  extent: require('turf-extent'),
+  bboxPolygon: require('turf-bbox-polygon'),
+  featurecollection: require('turf-featurecollection'),
+  filter: require('turf-filter'),
+  grid: require('turf-grid'),
+  inside: require('turf-inside'),
+  intersect: require('turf-intersect'),
+  linestring: require('turf-linestring'),
+  nearest: require('turf-nearest'),
+  planepoint: require('turf-planepoint'),
+  point: require('turf-point'),
+  polygon: require('turf-polygon'),
+  reclass: require('turf-reclass'),
+  remove: require('turf-remove'),
+  tin: require('turf-tin'),
+  union: require('turf-union')
 }
-},{"./lib/aggregate":2,"./lib/area":3,"./lib/average":4,"./lib/bboxPolygon":5,"./lib/bezier":6,"./lib/buffer":7,"./lib/center":8,"./lib/centroid":9,"./lib/combine":10,"./lib/concave":11,"./lib/contour":12,"./lib/convex":13,"./lib/count":14,"./lib/deviation":15,"./lib/distance":16,"./lib/donuts":17,"./lib/envelope":18,"./lib/erase":19,"./lib/explode":20,"./lib/extent":21,"./lib/featurecollection":22,"./lib/filter":23,"./lib/flip":24,"./lib/grid":25,"./lib/inside":26,"./lib/intersect":27,"./lib/isClockwise":28,"./lib/isobands":29,"./lib/isolines":30,"./lib/jenks":31,"./lib/linestring":32,"./lib/load":33,"./lib/max":34,"./lib/median":35,"./lib/merge":36,"./lib/midpoint":37,"./lib/min":38,"./lib/near":39,"./lib/nearest":40,"./lib/planepoint":41,"./lib/point":42,"./lib/polygon":43,"./lib/quantile":44,"./lib/reclass":45,"./lib/remove":46,"./lib/sample":47,"./lib/save":48,"./lib/simplify":49,"./lib/size":50,"./lib/square":51,"./lib/sum":52,"./lib/tag":53,"./lib/tin":54,"./lib/topo":55,"./lib/union":56,"./lib/variance":57,"./lib/within":58}],2:[function(_dereq_,module,exports){
-var _ = _dereq_('lodash')
-var t = {}
-t.average = _dereq_('./average')
-t.sum = _dereq_('./sum')
-t.median = _dereq_('./median')
-t.min = _dereq_('./min')
-t.max = _dereq_('./max')
-t.deviation = _dereq_('./deviation')
-t.variance = _dereq_('./variance')
-t.count = _dereq_('./count')
 
-module.exports = function(polygons, points, aggregations, done){
-  function isAggregationOperation(operation) {
-    return operation === 'average' ||
-      operation === 'sum' ||
-      operation === 'median' ||
-      operation === 'min' ||
-      operation === 'max' ||
-      operation === 'deviation' ||
-      operation === 'variance' ||
-      operation === 'count';
+},{"turf-aggregate":5,"turf-average":21,"turf-bbox-polygon":23,"turf-bezier":24,"turf-buffer":25,"turf-center":30,"turf-centroid":31,"turf-combine":32,"turf-concave":33,"turf-convex":35,"turf-count":36,"turf-deviation":37,"turf-distance":39,"turf-donuts":40,"turf-envelope":42,"turf-erase":43,"turf-explode":47,"turf-extent":49,"turf-featurecollection":51,"turf-filter":52,"turf-flip":53,"turf-grid":54,"turf-inside":55,"turf-intersect":56,"turf-is-clockwise":60,"turf-isobands":61,"turf-isolines":62,"turf-jenks":63,"turf-linestring":65,"turf-max":66,"turf-median":68,"turf-merge":70,"turf-midpoint":72,"turf-min":73,"turf-nearest":75,"turf-planepoint":76,"turf-point":77,"turf-polygon":78,"turf-quantile":79,"turf-reclass":81,"turf-remove":82,"turf-sample":83,"turf-simplify":84,"turf-size":115,"turf-square":116,"turf-sum":117,"turf-tag":119,"turf-tin":120,"turf-union":121,"turf-variance":125,"turf-within":127}],2:[function(require,module,exports){
+/*!
+ * The buffer module from node.js, for the browser.
+ *
+ * @author   Feross Aboukhadijeh <feross@feross.org> <http://feross.org>
+ * @license  MIT
+ */
+
+var base64 = require('base64-js')
+var ieee754 = require('ieee754')
+
+exports.Buffer = Buffer
+exports.SlowBuffer = Buffer
+exports.INSPECT_MAX_BYTES = 50
+Buffer.poolSize = 8192
+
+/**
+ * If `TYPED_ARRAY_SUPPORT`:
+ *   === true    Use Uint8Array implementation (fastest)
+ *   === false   Use Object implementation (most compatible, even IE6)
+ *
+ * Browsers that support typed arrays are IE 10+, Firefox 4+, Chrome 7+, Safari 5.1+,
+ * Opera 11.6+, iOS 4.2+.
+ *
+ * Note:
+ *
+ * - Implementation must support adding new properties to `Uint8Array` instances.
+ *   Firefox 4-29 lacked support, fixed in Firefox 30+.
+ *   See: https://bugzilla.mozilla.org/show_bug.cgi?id=695438.
+ *
+ *  - Chrome 9-10 is missing the `TypedArray.prototype.subarray` function.
+ *
+ *  - IE10 has a broken `TypedArray.prototype.subarray` function which returns arrays of
+ *    incorrect length in some situations.
+ *
+ * We detect these buggy browsers and set `TYPED_ARRAY_SUPPORT` to `false` so they will
+ * get the Object implementation, which is slower but will work correctly.
+ */
+var TYPED_ARRAY_SUPPORT = (function () {
+  try {
+    var buf = new ArrayBuffer(0)
+    var arr = new Uint8Array(buf)
+    arr.foo = function () { return 42 }
+    return 42 === arr.foo() && // typed array instances can be augmented
+        typeof arr.subarray === 'function' && // chrome 9-10 lack `subarray`
+        new Uint8Array(1).subarray(1, 1).byteLength === 0 // ie10 has broken `subarray`
+  } catch (e) {
+    return false
+  }
+})()
+
+/**
+ * Class: Buffer
+ * =============
+ *
+ * The Buffer constructor returns instances of `Uint8Array` that are augmented
+ * with function properties for all the node `Buffer` API functions. We use
+ * `Uint8Array` so that square bracket notation works as expected -- it returns
+ * a single octet.
+ *
+ * By augmenting the instances, we can avoid modifying the `Uint8Array`
+ * prototype.
+ */
+function Buffer (subject, encoding, noZero) {
+  if (!(this instanceof Buffer))
+    return new Buffer(subject, encoding, noZero)
+
+  var type = typeof subject
+
+  // Find the length
+  var length
+  if (type === 'number')
+    length = subject > 0 ? subject >>> 0 : 0
+  else if (type === 'string') {
+    if (encoding === 'base64')
+      subject = base64clean(subject)
+    length = Buffer.byteLength(subject, encoding)
+  } else if (type === 'object' && subject !== null) { // assume object is array-like
+    if (subject.type === 'Buffer' && isArray(subject.data))
+      subject = subject.data
+    length = +subject.length > 0 ? Math.floor(+subject.length) : 0
+  } else
+    throw new Error('First argument needs to be a number, array or string.')
+
+  var buf
+  if (TYPED_ARRAY_SUPPORT) {
+    // Preferred: Return an augmented `Uint8Array` instance for best performance
+    buf = Buffer._augment(new Uint8Array(length))
+  } else {
+    // Fallback: Return THIS instance of Buffer (created by `new`)
+    buf = this
+    buf.length = length
+    buf._isBuffer = true
   }
 
-  done = done || function () {};
+  var i
+  if (TYPED_ARRAY_SUPPORT && typeof subject.byteLength === 'number') {
+    // Speed optimization -- use set if we're copying from a typed array
+    buf._set(subject)
+  } else if (isArrayish(subject)) {
+    // Treat array-ish objects as a byte array
+    if (Buffer.isBuffer(subject)) {
+      for (i = 0; i < length; i++)
+        buf[i] = subject.readUInt8(i)
+    } else {
+      for (i = 0; i < length; i++)
+        buf[i] = ((subject[i] % 256) + 256) % 256
+    }
+  } else if (type === 'string') {
+    buf.write(subject, 0, encoding)
+  } else if (type === 'number' && !TYPED_ARRAY_SUPPORT && !noZero) {
+    for (i = 0; i < length; i++) {
+      buf[i] = 0
+    }
+  }
 
+  return buf
+}
+
+// STATIC METHODS
+// ==============
+
+Buffer.isEncoding = function (encoding) {
+  switch (String(encoding).toLowerCase()) {
+    case 'hex':
+    case 'utf8':
+    case 'utf-8':
+    case 'ascii':
+    case 'binary':
+    case 'base64':
+    case 'raw':
+    case 'ucs2':
+    case 'ucs-2':
+    case 'utf16le':
+    case 'utf-16le':
+      return true
+    default:
+      return false
+  }
+}
+
+Buffer.isBuffer = function (b) {
+  return !!(b != null && b._isBuffer)
+}
+
+Buffer.byteLength = function (str, encoding) {
+  var ret
+  str = str.toString()
+  switch (encoding || 'utf8') {
+    case 'hex':
+      ret = str.length / 2
+      break
+    case 'utf8':
+    case 'utf-8':
+      ret = utf8ToBytes(str).length
+      break
+    case 'ascii':
+    case 'binary':
+    case 'raw':
+      ret = str.length
+      break
+    case 'base64':
+      ret = base64ToBytes(str).length
+      break
+    case 'ucs2':
+    case 'ucs-2':
+    case 'utf16le':
+    case 'utf-16le':
+      ret = str.length * 2
+      break
+    default:
+      throw new Error('Unknown encoding')
+  }
+  return ret
+}
+
+Buffer.concat = function (list, totalLength) {
+  assert(isArray(list), 'Usage: Buffer.concat(list[, length])')
+
+  if (list.length === 0) {
+    return new Buffer(0)
+  } else if (list.length === 1) {
+    return list[0]
+  }
+
+  var i
+  if (totalLength === undefined) {
+    totalLength = 0
+    for (i = 0; i < list.length; i++) {
+      totalLength += list[i].length
+    }
+  }
+
+  var buf = new Buffer(totalLength)
+  var pos = 0
+  for (i = 0; i < list.length; i++) {
+    var item = list[i]
+    item.copy(buf, pos)
+    pos += item.length
+  }
+  return buf
+}
+
+Buffer.compare = function (a, b) {
+  assert(Buffer.isBuffer(a) && Buffer.isBuffer(b), 'Arguments must be Buffers')
+  var x = a.length
+  var y = b.length
+  for (var i = 0, len = Math.min(x, y); i < len && a[i] === b[i]; i++) {}
+  if (i !== len) {
+    x = a[i]
+    y = b[i]
+  }
+  if (x < y) {
+    return -1
+  }
+  if (y < x) {
+    return 1
+  }
+  return 0
+}
+
+// BUFFER INSTANCE METHODS
+// =======================
+
+function hexWrite (buf, string, offset, length) {
+  offset = Number(offset) || 0
+  var remaining = buf.length - offset
+  if (!length) {
+    length = remaining
+  } else {
+    length = Number(length)
+    if (length > remaining) {
+      length = remaining
+    }
+  }
+
+  // must be an even number of digits
+  var strLen = string.length
+  assert(strLen % 2 === 0, 'Invalid hex string')
+
+  if (length > strLen / 2) {
+    length = strLen / 2
+  }
+  for (var i = 0; i < length; i++) {
+    var byte = parseInt(string.substr(i * 2, 2), 16)
+    assert(!isNaN(byte), 'Invalid hex string')
+    buf[offset + i] = byte
+  }
+  return i
+}
+
+function utf8Write (buf, string, offset, length) {
+  var charsWritten = blitBuffer(utf8ToBytes(string), buf, offset, length)
+  return charsWritten
+}
+
+function asciiWrite (buf, string, offset, length) {
+  var charsWritten = blitBuffer(asciiToBytes(string), buf, offset, length)
+  return charsWritten
+}
+
+function binaryWrite (buf, string, offset, length) {
+  return asciiWrite(buf, string, offset, length)
+}
+
+function base64Write (buf, string, offset, length) {
+  var charsWritten = blitBuffer(base64ToBytes(string), buf, offset, length)
+  return charsWritten
+}
+
+function utf16leWrite (buf, string, offset, length) {
+  var charsWritten = blitBuffer(utf16leToBytes(string), buf, offset, length)
+  return charsWritten
+}
+
+Buffer.prototype.write = function (string, offset, length, encoding) {
+  // Support both (string, offset, length, encoding)
+  // and the legacy (string, encoding, offset, length)
+  if (isFinite(offset)) {
+    if (!isFinite(length)) {
+      encoding = length
+      length = undefined
+    }
+  } else {  // legacy
+    var swap = encoding
+    encoding = offset
+    offset = length
+    length = swap
+  }
+
+  offset = Number(offset) || 0
+  var remaining = this.length - offset
+  if (!length) {
+    length = remaining
+  } else {
+    length = Number(length)
+    if (length > remaining) {
+      length = remaining
+    }
+  }
+  encoding = String(encoding || 'utf8').toLowerCase()
+
+  var ret
+  switch (encoding) {
+    case 'hex':
+      ret = hexWrite(this, string, offset, length)
+      break
+    case 'utf8':
+    case 'utf-8':
+      ret = utf8Write(this, string, offset, length)
+      break
+    case 'ascii':
+      ret = asciiWrite(this, string, offset, length)
+      break
+    case 'binary':
+      ret = binaryWrite(this, string, offset, length)
+      break
+    case 'base64':
+      ret = base64Write(this, string, offset, length)
+      break
+    case 'ucs2':
+    case 'ucs-2':
+    case 'utf16le':
+    case 'utf-16le':
+      ret = utf16leWrite(this, string, offset, length)
+      break
+    default:
+      throw new Error('Unknown encoding')
+  }
+  return ret
+}
+
+Buffer.prototype.toString = function (encoding, start, end) {
+  var self = this
+
+  encoding = String(encoding || 'utf8').toLowerCase()
+  start = Number(start) || 0
+  end = (end === undefined) ? self.length : Number(end)
+
+  // Fastpath empty strings
+  if (end === start)
+    return ''
+
+  var ret
+  switch (encoding) {
+    case 'hex':
+      ret = hexSlice(self, start, end)
+      break
+    case 'utf8':
+    case 'utf-8':
+      ret = utf8Slice(self, start, end)
+      break
+    case 'ascii':
+      ret = asciiSlice(self, start, end)
+      break
+    case 'binary':
+      ret = binarySlice(self, start, end)
+      break
+    case 'base64':
+      ret = base64Slice(self, start, end)
+      break
+    case 'ucs2':
+    case 'ucs-2':
+    case 'utf16le':
+    case 'utf-16le':
+      ret = utf16leSlice(self, start, end)
+      break
+    default:
+      throw new Error('Unknown encoding')
+  }
+  return ret
+}
+
+Buffer.prototype.toJSON = function () {
+  return {
+    type: 'Buffer',
+    data: Array.prototype.slice.call(this._arr || this, 0)
+  }
+}
+
+Buffer.prototype.equals = function (b) {
+  assert(Buffer.isBuffer(b), 'Argument must be a Buffer')
+  return Buffer.compare(this, b) === 0
+}
+
+Buffer.prototype.compare = function (b) {
+  assert(Buffer.isBuffer(b), 'Argument must be a Buffer')
+  return Buffer.compare(this, b)
+}
+
+// copy(targetBuffer, targetStart=0, sourceStart=0, sourceEnd=buffer.length)
+Buffer.prototype.copy = function (target, target_start, start, end) {
+  var source = this
+
+  if (!start) start = 0
+  if (!end && end !== 0) end = this.length
+  if (!target_start) target_start = 0
+
+  // Copy 0 bytes; we're done
+  if (end === start) return
+  if (target.length === 0 || source.length === 0) return
+
+  // Fatal error conditions
+  assert(end >= start, 'sourceEnd < sourceStart')
+  assert(target_start >= 0 && target_start < target.length,
+      'targetStart out of bounds')
+  assert(start >= 0 && start < source.length, 'sourceStart out of bounds')
+  assert(end >= 0 && end <= source.length, 'sourceEnd out of bounds')
+
+  // Are we oob?
+  if (end > this.length)
+    end = this.length
+  if (target.length - target_start < end - start)
+    end = target.length - target_start + start
+
+  var len = end - start
+
+  if (len < 100 || !TYPED_ARRAY_SUPPORT) {
+    for (var i = 0; i < len; i++) {
+      target[i + target_start] = this[i + start]
+    }
+  } else {
+    target._set(this.subarray(start, start + len), target_start)
+  }
+}
+
+function base64Slice (buf, start, end) {
+  if (start === 0 && end === buf.length) {
+    return base64.fromByteArray(buf)
+  } else {
+    return base64.fromByteArray(buf.slice(start, end))
+  }
+}
+
+function utf8Slice (buf, start, end) {
+  var res = ''
+  var tmp = ''
+  end = Math.min(buf.length, end)
+
+  for (var i = start; i < end; i++) {
+    if (buf[i] <= 0x7F) {
+      res += decodeUtf8Char(tmp) + String.fromCharCode(buf[i])
+      tmp = ''
+    } else {
+      tmp += '%' + buf[i].toString(16)
+    }
+  }
+
+  return res + decodeUtf8Char(tmp)
+}
+
+function asciiSlice (buf, start, end) {
+  var ret = ''
+  end = Math.min(buf.length, end)
+
+  for (var i = start; i < end; i++) {
+    ret += String.fromCharCode(buf[i])
+  }
+  return ret
+}
+
+function binarySlice (buf, start, end) {
+  return asciiSlice(buf, start, end)
+}
+
+function hexSlice (buf, start, end) {
+  var len = buf.length
+
+  if (!start || start < 0) start = 0
+  if (!end || end < 0 || end > len) end = len
+
+  var out = ''
+  for (var i = start; i < end; i++) {
+    out += toHex(buf[i])
+  }
+  return out
+}
+
+function utf16leSlice (buf, start, end) {
+  var bytes = buf.slice(start, end)
+  var res = ''
+  for (var i = 0; i < bytes.length; i += 2) {
+    res += String.fromCharCode(bytes[i] + bytes[i + 1] * 256)
+  }
+  return res
+}
+
+Buffer.prototype.slice = function (start, end) {
+  var len = this.length
+  start = ~~start
+  end = end === undefined ? len : ~~end
+
+  if (start < 0) {
+    start += len;
+    if (start < 0)
+      start = 0
+  } else if (start > len) {
+    start = len
+  }
+
+  if (end < 0) {
+    end += len
+    if (end < 0)
+      end = 0
+  } else if (end > len) {
+    end = len
+  }
+
+  if (end < start)
+    end = start
+
+  if (TYPED_ARRAY_SUPPORT) {
+    return Buffer._augment(this.subarray(start, end))
+  } else {
+    var sliceLen = end - start
+    var newBuf = new Buffer(sliceLen, undefined, true)
+    for (var i = 0; i < sliceLen; i++) {
+      newBuf[i] = this[i + start]
+    }
+    return newBuf
+  }
+}
+
+// `get` will be removed in Node 0.13+
+Buffer.prototype.get = function (offset) {
+  console.log('.get() is deprecated. Access using array indexes instead.')
+  return this.readUInt8(offset)
+}
+
+// `set` will be removed in Node 0.13+
+Buffer.prototype.set = function (v, offset) {
+  console.log('.set() is deprecated. Access using array indexes instead.')
+  return this.writeUInt8(v, offset)
+}
+
+Buffer.prototype.readUInt8 = function (offset, noAssert) {
+  if (!noAssert) {
+    assert(offset !== undefined && offset !== null, 'missing offset')
+    assert(offset < this.length, 'Trying to read beyond buffer length')
+  }
+
+  if (offset >= this.length)
+    return
+
+  return this[offset]
+}
+
+function readUInt16 (buf, offset, littleEndian, noAssert) {
+  if (!noAssert) {
+    assert(typeof littleEndian === 'boolean', 'missing or invalid endian')
+    assert(offset !== undefined && offset !== null, 'missing offset')
+    assert(offset + 1 < buf.length, 'Trying to read beyond buffer length')
+  }
+
+  var len = buf.length
+  if (offset >= len)
+    return
+
+  var val
+  if (littleEndian) {
+    val = buf[offset]
+    if (offset + 1 < len)
+      val |= buf[offset + 1] << 8
+  } else {
+    val = buf[offset] << 8
+    if (offset + 1 < len)
+      val |= buf[offset + 1]
+  }
+  return val
+}
+
+Buffer.prototype.readUInt16LE = function (offset, noAssert) {
+  return readUInt16(this, offset, true, noAssert)
+}
+
+Buffer.prototype.readUInt16BE = function (offset, noAssert) {
+  return readUInt16(this, offset, false, noAssert)
+}
+
+function readUInt32 (buf, offset, littleEndian, noAssert) {
+  if (!noAssert) {
+    assert(typeof littleEndian === 'boolean', 'missing or invalid endian')
+    assert(offset !== undefined && offset !== null, 'missing offset')
+    assert(offset + 3 < buf.length, 'Trying to read beyond buffer length')
+  }
+
+  var len = buf.length
+  if (offset >= len)
+    return
+
+  var val
+  if (littleEndian) {
+    if (offset + 2 < len)
+      val = buf[offset + 2] << 16
+    if (offset + 1 < len)
+      val |= buf[offset + 1] << 8
+    val |= buf[offset]
+    if (offset + 3 < len)
+      val = val + (buf[offset + 3] << 24 >>> 0)
+  } else {
+    if (offset + 1 < len)
+      val = buf[offset + 1] << 16
+    if (offset + 2 < len)
+      val |= buf[offset + 2] << 8
+    if (offset + 3 < len)
+      val |= buf[offset + 3]
+    val = val + (buf[offset] << 24 >>> 0)
+  }
+  return val
+}
+
+Buffer.prototype.readUInt32LE = function (offset, noAssert) {
+  return readUInt32(this, offset, true, noAssert)
+}
+
+Buffer.prototype.readUInt32BE = function (offset, noAssert) {
+  return readUInt32(this, offset, false, noAssert)
+}
+
+Buffer.prototype.readInt8 = function (offset, noAssert) {
+  if (!noAssert) {
+    assert(offset !== undefined && offset !== null,
+        'missing offset')
+    assert(offset < this.length, 'Trying to read beyond buffer length')
+  }
+
+  if (offset >= this.length)
+    return
+
+  var neg = this[offset] & 0x80
+  if (neg)
+    return (0xff - this[offset] + 1) * -1
+  else
+    return this[offset]
+}
+
+function readInt16 (buf, offset, littleEndian, noAssert) {
+  if (!noAssert) {
+    assert(typeof littleEndian === 'boolean', 'missing or invalid endian')
+    assert(offset !== undefined && offset !== null, 'missing offset')
+    assert(offset + 1 < buf.length, 'Trying to read beyond buffer length')
+  }
+
+  var len = buf.length
+  if (offset >= len)
+    return
+
+  var val = readUInt16(buf, offset, littleEndian, true)
+  var neg = val & 0x8000
+  if (neg)
+    return (0xffff - val + 1) * -1
+  else
+    return val
+}
+
+Buffer.prototype.readInt16LE = function (offset, noAssert) {
+  return readInt16(this, offset, true, noAssert)
+}
+
+Buffer.prototype.readInt16BE = function (offset, noAssert) {
+  return readInt16(this, offset, false, noAssert)
+}
+
+function readInt32 (buf, offset, littleEndian, noAssert) {
+  if (!noAssert) {
+    assert(typeof littleEndian === 'boolean', 'missing or invalid endian')
+    assert(offset !== undefined && offset !== null, 'missing offset')
+    assert(offset + 3 < buf.length, 'Trying to read beyond buffer length')
+  }
+
+  var len = buf.length
+  if (offset >= len)
+    return
+
+  var val = readUInt32(buf, offset, littleEndian, true)
+  var neg = val & 0x80000000
+  if (neg)
+    return (0xffffffff - val + 1) * -1
+  else
+    return val
+}
+
+Buffer.prototype.readInt32LE = function (offset, noAssert) {
+  return readInt32(this, offset, true, noAssert)
+}
+
+Buffer.prototype.readInt32BE = function (offset, noAssert) {
+  return readInt32(this, offset, false, noAssert)
+}
+
+function readFloat (buf, offset, littleEndian, noAssert) {
+  if (!noAssert) {
+    assert(typeof littleEndian === 'boolean', 'missing or invalid endian')
+    assert(offset + 3 < buf.length, 'Trying to read beyond buffer length')
+  }
+
+  return ieee754.read(buf, offset, littleEndian, 23, 4)
+}
+
+Buffer.prototype.readFloatLE = function (offset, noAssert) {
+  return readFloat(this, offset, true, noAssert)
+}
+
+Buffer.prototype.readFloatBE = function (offset, noAssert) {
+  return readFloat(this, offset, false, noAssert)
+}
+
+function readDouble (buf, offset, littleEndian, noAssert) {
+  if (!noAssert) {
+    assert(typeof littleEndian === 'boolean', 'missing or invalid endian')
+    assert(offset + 7 < buf.length, 'Trying to read beyond buffer length')
+  }
+
+  return ieee754.read(buf, offset, littleEndian, 52, 8)
+}
+
+Buffer.prototype.readDoubleLE = function (offset, noAssert) {
+  return readDouble(this, offset, true, noAssert)
+}
+
+Buffer.prototype.readDoubleBE = function (offset, noAssert) {
+  return readDouble(this, offset, false, noAssert)
+}
+
+Buffer.prototype.writeUInt8 = function (value, offset, noAssert) {
+  if (!noAssert) {
+    assert(value !== undefined && value !== null, 'missing value')
+    assert(offset !== undefined && offset !== null, 'missing offset')
+    assert(offset < this.length, 'trying to write beyond buffer length')
+    verifuint(value, 0xff)
+  }
+
+  if (offset >= this.length) return
+
+  this[offset] = value
+  return offset + 1
+}
+
+function writeUInt16 (buf, value, offset, littleEndian, noAssert) {
+  if (!noAssert) {
+    assert(value !== undefined && value !== null, 'missing value')
+    assert(typeof littleEndian === 'boolean', 'missing or invalid endian')
+    assert(offset !== undefined && offset !== null, 'missing offset')
+    assert(offset + 1 < buf.length, 'trying to write beyond buffer length')
+    verifuint(value, 0xffff)
+  }
+
+  var len = buf.length
+  if (offset >= len)
+    return
+
+  for (var i = 0, j = Math.min(len - offset, 2); i < j; i++) {
+    buf[offset + i] =
+        (value & (0xff << (8 * (littleEndian ? i : 1 - i)))) >>>
+            (littleEndian ? i : 1 - i) * 8
+  }
+  return offset + 2
+}
+
+Buffer.prototype.writeUInt16LE = function (value, offset, noAssert) {
+  return writeUInt16(this, value, offset, true, noAssert)
+}
+
+Buffer.prototype.writeUInt16BE = function (value, offset, noAssert) {
+  return writeUInt16(this, value, offset, false, noAssert)
+}
+
+function writeUInt32 (buf, value, offset, littleEndian, noAssert) {
+  if (!noAssert) {
+    assert(value !== undefined && value !== null, 'missing value')
+    assert(typeof littleEndian === 'boolean', 'missing or invalid endian')
+    assert(offset !== undefined && offset !== null, 'missing offset')
+    assert(offset + 3 < buf.length, 'trying to write beyond buffer length')
+    verifuint(value, 0xffffffff)
+  }
+
+  var len = buf.length
+  if (offset >= len)
+    return
+
+  for (var i = 0, j = Math.min(len - offset, 4); i < j; i++) {
+    buf[offset + i] =
+        (value >>> (littleEndian ? i : 3 - i) * 8) & 0xff
+  }
+  return offset + 4
+}
+
+Buffer.prototype.writeUInt32LE = function (value, offset, noAssert) {
+  return writeUInt32(this, value, offset, true, noAssert)
+}
+
+Buffer.prototype.writeUInt32BE = function (value, offset, noAssert) {
+  return writeUInt32(this, value, offset, false, noAssert)
+}
+
+Buffer.prototype.writeInt8 = function (value, offset, noAssert) {
+  if (!noAssert) {
+    assert(value !== undefined && value !== null, 'missing value')
+    assert(offset !== undefined && offset !== null, 'missing offset')
+    assert(offset < this.length, 'Trying to write beyond buffer length')
+    verifsint(value, 0x7f, -0x80)
+  }
+
+  if (offset >= this.length)
+    return
+
+  if (value >= 0)
+    this.writeUInt8(value, offset, noAssert)
+  else
+    this.writeUInt8(0xff + value + 1, offset, noAssert)
+  return offset + 1
+}
+
+function writeInt16 (buf, value, offset, littleEndian, noAssert) {
+  if (!noAssert) {
+    assert(value !== undefined && value !== null, 'missing value')
+    assert(typeof littleEndian === 'boolean', 'missing or invalid endian')
+    assert(offset !== undefined && offset !== null, 'missing offset')
+    assert(offset + 1 < buf.length, 'Trying to write beyond buffer length')
+    verifsint(value, 0x7fff, -0x8000)
+  }
+
+  var len = buf.length
+  if (offset >= len)
+    return
+
+  if (value >= 0)
+    writeUInt16(buf, value, offset, littleEndian, noAssert)
+  else
+    writeUInt16(buf, 0xffff + value + 1, offset, littleEndian, noAssert)
+  return offset + 2
+}
+
+Buffer.prototype.writeInt16LE = function (value, offset, noAssert) {
+  return writeInt16(this, value, offset, true, noAssert)
+}
+
+Buffer.prototype.writeInt16BE = function (value, offset, noAssert) {
+  return writeInt16(this, value, offset, false, noAssert)
+}
+
+function writeInt32 (buf, value, offset, littleEndian, noAssert) {
+  if (!noAssert) {
+    assert(value !== undefined && value !== null, 'missing value')
+    assert(typeof littleEndian === 'boolean', 'missing or invalid endian')
+    assert(offset !== undefined && offset !== null, 'missing offset')
+    assert(offset + 3 < buf.length, 'Trying to write beyond buffer length')
+    verifsint(value, 0x7fffffff, -0x80000000)
+  }
+
+  var len = buf.length
+  if (offset >= len)
+    return
+
+  if (value >= 0)
+    writeUInt32(buf, value, offset, littleEndian, noAssert)
+  else
+    writeUInt32(buf, 0xffffffff + value + 1, offset, littleEndian, noAssert)
+  return offset + 4
+}
+
+Buffer.prototype.writeInt32LE = function (value, offset, noAssert) {
+  return writeInt32(this, value, offset, true, noAssert)
+}
+
+Buffer.prototype.writeInt32BE = function (value, offset, noAssert) {
+  return writeInt32(this, value, offset, false, noAssert)
+}
+
+function writeFloat (buf, value, offset, littleEndian, noAssert) {
+  if (!noAssert) {
+    assert(value !== undefined && value !== null, 'missing value')
+    assert(typeof littleEndian === 'boolean', 'missing or invalid endian')
+    assert(offset !== undefined && offset !== null, 'missing offset')
+    assert(offset + 3 < buf.length, 'Trying to write beyond buffer length')
+    verifIEEE754(value, 3.4028234663852886e+38, -3.4028234663852886e+38)
+  }
+
+  var len = buf.length
+  if (offset >= len)
+    return
+
+  ieee754.write(buf, value, offset, littleEndian, 23, 4)
+  return offset + 4
+}
+
+Buffer.prototype.writeFloatLE = function (value, offset, noAssert) {
+  return writeFloat(this, value, offset, true, noAssert)
+}
+
+Buffer.prototype.writeFloatBE = function (value, offset, noAssert) {
+  return writeFloat(this, value, offset, false, noAssert)
+}
+
+function writeDouble (buf, value, offset, littleEndian, noAssert) {
+  if (!noAssert) {
+    assert(value !== undefined && value !== null, 'missing value')
+    assert(typeof littleEndian === 'boolean', 'missing or invalid endian')
+    assert(offset !== undefined && offset !== null, 'missing offset')
+    assert(offset + 7 < buf.length,
+        'Trying to write beyond buffer length')
+    verifIEEE754(value, 1.7976931348623157E+308, -1.7976931348623157E+308)
+  }
+
+  var len = buf.length
+  if (offset >= len)
+    return
+
+  ieee754.write(buf, value, offset, littleEndian, 52, 8)
+  return offset + 8
+}
+
+Buffer.prototype.writeDoubleLE = function (value, offset, noAssert) {
+  return writeDouble(this, value, offset, true, noAssert)
+}
+
+Buffer.prototype.writeDoubleBE = function (value, offset, noAssert) {
+  return writeDouble(this, value, offset, false, noAssert)
+}
+
+// fill(value, start=0, end=buffer.length)
+Buffer.prototype.fill = function (value, start, end) {
+  if (!value) value = 0
+  if (!start) start = 0
+  if (!end) end = this.length
+
+  assert(end >= start, 'end < start')
+
+  // Fill 0 bytes; we're done
+  if (end === start) return
+  if (this.length === 0) return
+
+  assert(start >= 0 && start < this.length, 'start out of bounds')
+  assert(end >= 0 && end <= this.length, 'end out of bounds')
+
+  var i
+  if (typeof value === 'number') {
+    for (i = start; i < end; i++) {
+      this[i] = value
+    }
+  } else {
+    var bytes = utf8ToBytes(value.toString())
+    var len = bytes.length
+    for (i = start; i < end; i++) {
+      this[i] = bytes[i % len]
+    }
+  }
+
+  return this
+}
+
+Buffer.prototype.inspect = function () {
+  var out = []
+  var len = this.length
+  for (var i = 0; i < len; i++) {
+    out[i] = toHex(this[i])
+    if (i === exports.INSPECT_MAX_BYTES) {
+      out[i + 1] = '...'
+      break
+    }
+  }
+  return '<Buffer ' + out.join(' ') + '>'
+}
+
+/**
+ * Creates a new `ArrayBuffer` with the *copied* memory of the buffer instance.
+ * Added in Node 0.12. Only available in browsers that support ArrayBuffer.
+ */
+Buffer.prototype.toArrayBuffer = function () {
+  if (typeof Uint8Array !== 'undefined') {
+    if (TYPED_ARRAY_SUPPORT) {
+      return (new Buffer(this)).buffer
+    } else {
+      var buf = new Uint8Array(this.length)
+      for (var i = 0, len = buf.length; i < len; i += 1) {
+        buf[i] = this[i]
+      }
+      return buf.buffer
+    }
+  } else {
+    throw new Error('Buffer.toArrayBuffer not supported in this browser')
+  }
+}
+
+// HELPER FUNCTIONS
+// ================
+
+var BP = Buffer.prototype
+
+/**
+ * Augment a Uint8Array *instance* (not the Uint8Array class!) with Buffer methods
+ */
+Buffer._augment = function (arr) {
+  arr._isBuffer = true
+
+  // save reference to original Uint8Array get/set methods before overwriting
+  arr._get = arr.get
+  arr._set = arr.set
+
+  // deprecated, will be removed in node 0.13+
+  arr.get = BP.get
+  arr.set = BP.set
+
+  arr.write = BP.write
+  arr.toString = BP.toString
+  arr.toLocaleString = BP.toString
+  arr.toJSON = BP.toJSON
+  arr.equals = BP.equals
+  arr.compare = BP.compare
+  arr.copy = BP.copy
+  arr.slice = BP.slice
+  arr.readUInt8 = BP.readUInt8
+  arr.readUInt16LE = BP.readUInt16LE
+  arr.readUInt16BE = BP.readUInt16BE
+  arr.readUInt32LE = BP.readUInt32LE
+  arr.readUInt32BE = BP.readUInt32BE
+  arr.readInt8 = BP.readInt8
+  arr.readInt16LE = BP.readInt16LE
+  arr.readInt16BE = BP.readInt16BE
+  arr.readInt32LE = BP.readInt32LE
+  arr.readInt32BE = BP.readInt32BE
+  arr.readFloatLE = BP.readFloatLE
+  arr.readFloatBE = BP.readFloatBE
+  arr.readDoubleLE = BP.readDoubleLE
+  arr.readDoubleBE = BP.readDoubleBE
+  arr.writeUInt8 = BP.writeUInt8
+  arr.writeUInt16LE = BP.writeUInt16LE
+  arr.writeUInt16BE = BP.writeUInt16BE
+  arr.writeUInt32LE = BP.writeUInt32LE
+  arr.writeUInt32BE = BP.writeUInt32BE
+  arr.writeInt8 = BP.writeInt8
+  arr.writeInt16LE = BP.writeInt16LE
+  arr.writeInt16BE = BP.writeInt16BE
+  arr.writeInt32LE = BP.writeInt32LE
+  arr.writeInt32BE = BP.writeInt32BE
+  arr.writeFloatLE = BP.writeFloatLE
+  arr.writeFloatBE = BP.writeFloatBE
+  arr.writeDoubleLE = BP.writeDoubleLE
+  arr.writeDoubleBE = BP.writeDoubleBE
+  arr.fill = BP.fill
+  arr.inspect = BP.inspect
+  arr.toArrayBuffer = BP.toArrayBuffer
+
+  return arr
+}
+
+var INVALID_BASE64_RE = /[^+\/0-9A-z]/g
+
+function base64clean (str) {
+  // Node strips out invalid characters like \n and \t from the string, base64-js does not
+  str = stringtrim(str).replace(INVALID_BASE64_RE, '')
+  // Node allows for non-padded base64 strings (missing trailing ===), base64-js does not
+  while (str.length % 4 !== 0) {
+    str = str + '='
+  }
+  return str
+}
+
+function stringtrim (str) {
+  if (str.trim) return str.trim()
+  return str.replace(/^\s+|\s+$/g, '')
+}
+
+function isArray (subject) {
+  return (Array.isArray || function (subject) {
+    return Object.prototype.toString.call(subject) === '[object Array]'
+  })(subject)
+}
+
+function isArrayish (subject) {
+  return isArray(subject) || Buffer.isBuffer(subject) ||
+      subject && typeof subject === 'object' &&
+      typeof subject.length === 'number'
+}
+
+function toHex (n) {
+  if (n < 16) return '0' + n.toString(16)
+  return n.toString(16)
+}
+
+function utf8ToBytes (str) {
+  var byteArray = []
+  for (var i = 0; i < str.length; i++) {
+    var b = str.charCodeAt(i)
+    if (b <= 0x7F) {
+      byteArray.push(b)
+    } else {
+      var start = i
+      if (b >= 0xD800 && b <= 0xDFFF) i++
+      var h = encodeURIComponent(str.slice(start, i+1)).substr(1).split('%')
+      for (var j = 0; j < h.length; j++) {
+        byteArray.push(parseInt(h[j], 16))
+      }
+    }
+  }
+  return byteArray
+}
+
+function asciiToBytes (str) {
+  var byteArray = []
+  for (var i = 0; i < str.length; i++) {
+    // Node's code seems to be doing this and not & 0x7F..
+    byteArray.push(str.charCodeAt(i) & 0xFF)
+  }
+  return byteArray
+}
+
+function utf16leToBytes (str) {
+  var c, hi, lo
+  var byteArray = []
+  for (var i = 0; i < str.length; i++) {
+    c = str.charCodeAt(i)
+    hi = c >> 8
+    lo = c % 256
+    byteArray.push(lo)
+    byteArray.push(hi)
+  }
+
+  return byteArray
+}
+
+function base64ToBytes (str) {
+  return base64.toByteArray(str)
+}
+
+function blitBuffer (src, dst, offset, length) {
+  for (var i = 0; i < length; i++) {
+    if ((i + offset >= dst.length) || (i >= src.length))
+      break
+    dst[i + offset] = src[i]
+  }
+  return i
+}
+
+function decodeUtf8Char (str) {
+  try {
+    return decodeURIComponent(str)
+  } catch (err) {
+    return String.fromCharCode(0xFFFD) // UTF 8 invalid char
+  }
+}
+
+/*
+ * We have to make sure that the value is a valid integer. This means that it
+ * is non-negative. It has no fractional component and that it does not
+ * exceed the maximum allowed value.
+ */
+function verifuint (value, max) {
+  assert(typeof value === 'number', 'cannot write a non-number as a number')
+  assert(value >= 0, 'specified a negative value for writing an unsigned value')
+  assert(value <= max, 'value is larger than maximum value for type')
+  assert(Math.floor(value) === value, 'value has a fractional component')
+}
+
+function verifsint (value, max, min) {
+  assert(typeof value === 'number', 'cannot write a non-number as a number')
+  assert(value <= max, 'value larger than maximum allowed value')
+  assert(value >= min, 'value smaller than minimum allowed value')
+  assert(Math.floor(value) === value, 'value has a fractional component')
+}
+
+function verifIEEE754 (value, max, min) {
+  assert(typeof value === 'number', 'cannot write a non-number as a number')
+  assert(value <= max, 'value larger than maximum allowed value')
+  assert(value >= min, 'value smaller than minimum allowed value')
+}
+
+function assert (test, message) {
+  if (!test) throw new Error(message || 'Failed assertion')
+}
+
+},{"base64-js":3,"ieee754":4}],3:[function(require,module,exports){
+var lookup = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/';
+
+;(function (exports) {
+	'use strict';
+
+  var Arr = (typeof Uint8Array !== 'undefined')
+    ? Uint8Array
+    : Array
+
+	var PLUS   = '+'.charCodeAt(0)
+	var SLASH  = '/'.charCodeAt(0)
+	var NUMBER = '0'.charCodeAt(0)
+	var LOWER  = 'a'.charCodeAt(0)
+	var UPPER  = 'A'.charCodeAt(0)
+
+	function decode (elt) {
+		var code = elt.charCodeAt(0)
+		if (code === PLUS)
+			return 62 // '+'
+		if (code === SLASH)
+			return 63 // '/'
+		if (code < NUMBER)
+			return -1 //no match
+		if (code < NUMBER + 10)
+			return code - NUMBER + 26 + 26
+		if (code < UPPER + 26)
+			return code - UPPER
+		if (code < LOWER + 26)
+			return code - LOWER + 26
+	}
+
+	function b64ToByteArray (b64) {
+		var i, j, l, tmp, placeHolders, arr
+
+		if (b64.length % 4 > 0) {
+			throw new Error('Invalid string. Length must be a multiple of 4')
+		}
+
+		// the number of equal signs (place holders)
+		// if there are two placeholders, than the two characters before it
+		// represent one byte
+		// if there is only one, then the three characters before it represent 2 bytes
+		// this is just a cheap hack to not do indexOf twice
+		var len = b64.length
+		placeHolders = '=' === b64.charAt(len - 2) ? 2 : '=' === b64.charAt(len - 1) ? 1 : 0
+
+		// base64 is 4/3 + up to two characters of the original data
+		arr = new Arr(b64.length * 3 / 4 - placeHolders)
+
+		// if there are placeholders, only get up to the last complete 4 chars
+		l = placeHolders > 0 ? b64.length - 4 : b64.length
+
+		var L = 0
+
+		function push (v) {
+			arr[L++] = v
+		}
+
+		for (i = 0, j = 0; i < l; i += 4, j += 3) {
+			tmp = (decode(b64.charAt(i)) << 18) | (decode(b64.charAt(i + 1)) << 12) | (decode(b64.charAt(i + 2)) << 6) | decode(b64.charAt(i + 3))
+			push((tmp & 0xFF0000) >> 16)
+			push((tmp & 0xFF00) >> 8)
+			push(tmp & 0xFF)
+		}
+
+		if (placeHolders === 2) {
+			tmp = (decode(b64.charAt(i)) << 2) | (decode(b64.charAt(i + 1)) >> 4)
+			push(tmp & 0xFF)
+		} else if (placeHolders === 1) {
+			tmp = (decode(b64.charAt(i)) << 10) | (decode(b64.charAt(i + 1)) << 4) | (decode(b64.charAt(i + 2)) >> 2)
+			push((tmp >> 8) & 0xFF)
+			push(tmp & 0xFF)
+		}
+
+		return arr
+	}
+
+	function uint8ToBase64 (uint8) {
+		var i,
+			extraBytes = uint8.length % 3, // if we have 1 byte left, pad 2 bytes
+			output = "",
+			temp, length
+
+		function encode (num) {
+			return lookup.charAt(num)
+		}
+
+		function tripletToBase64 (num) {
+			return encode(num >> 18 & 0x3F) + encode(num >> 12 & 0x3F) + encode(num >> 6 & 0x3F) + encode(num & 0x3F)
+		}
+
+		// go through the array every three bytes, we'll deal with trailing stuff later
+		for (i = 0, length = uint8.length - extraBytes; i < length; i += 3) {
+			temp = (uint8[i] << 16) + (uint8[i + 1] << 8) + (uint8[i + 2])
+			output += tripletToBase64(temp)
+		}
+
+		// pad the end with zeros, but make sure to not forget the extra bytes
+		switch (extraBytes) {
+			case 1:
+				temp = uint8[uint8.length - 1]
+				output += encode(temp >> 2)
+				output += encode((temp << 4) & 0x3F)
+				output += '=='
+				break
+			case 2:
+				temp = (uint8[uint8.length - 2] << 8) + (uint8[uint8.length - 1])
+				output += encode(temp >> 10)
+				output += encode((temp >> 4) & 0x3F)
+				output += encode((temp << 2) & 0x3F)
+				output += '='
+				break
+		}
+
+		return output
+	}
+
+	exports.toByteArray = b64ToByteArray
+	exports.fromByteArray = uint8ToBase64
+}(typeof exports === 'undefined' ? (this.base64js = {}) : exports))
+
+},{}],4:[function(require,module,exports){
+exports.read = function(buffer, offset, isLE, mLen, nBytes) {
+  var e, m,
+      eLen = nBytes * 8 - mLen - 1,
+      eMax = (1 << eLen) - 1,
+      eBias = eMax >> 1,
+      nBits = -7,
+      i = isLE ? (nBytes - 1) : 0,
+      d = isLE ? -1 : 1,
+      s = buffer[offset + i];
+
+  i += d;
+
+  e = s & ((1 << (-nBits)) - 1);
+  s >>= (-nBits);
+  nBits += eLen;
+  for (; nBits > 0; e = e * 256 + buffer[offset + i], i += d, nBits -= 8);
+
+  m = e & ((1 << (-nBits)) - 1);
+  e >>= (-nBits);
+  nBits += mLen;
+  for (; nBits > 0; m = m * 256 + buffer[offset + i], i += d, nBits -= 8);
+
+  if (e === 0) {
+    e = 1 - eBias;
+  } else if (e === eMax) {
+    return m ? NaN : ((s ? -1 : 1) * Infinity);
+  } else {
+    m = m + Math.pow(2, mLen);
+    e = e - eBias;
+  }
+  return (s ? -1 : 1) * m * Math.pow(2, e - mLen);
+};
+
+exports.write = function(buffer, value, offset, isLE, mLen, nBytes) {
+  var e, m, c,
+      eLen = nBytes * 8 - mLen - 1,
+      eMax = (1 << eLen) - 1,
+      eBias = eMax >> 1,
+      rt = (mLen === 23 ? Math.pow(2, -24) - Math.pow(2, -77) : 0),
+      i = isLE ? 0 : (nBytes - 1),
+      d = isLE ? 1 : -1,
+      s = value < 0 || (value === 0 && 1 / value < 0) ? 1 : 0;
+
+  value = Math.abs(value);
+
+  if (isNaN(value) || value === Infinity) {
+    m = isNaN(value) ? 1 : 0;
+    e = eMax;
+  } else {
+    e = Math.floor(Math.log(value) / Math.LN2);
+    if (value * (c = Math.pow(2, -e)) < 1) {
+      e--;
+      c *= 2;
+    }
+    if (e + eBias >= 1) {
+      value += rt / c;
+    } else {
+      value += rt * Math.pow(2, 1 - eBias);
+    }
+    if (value * c >= 2) {
+      e++;
+      c /= 2;
+    }
+
+    if (e + eBias >= eMax) {
+      m = 0;
+      e = eMax;
+    } else if (e + eBias >= 1) {
+      m = (value * c - 1) * Math.pow(2, mLen);
+      e = e + eBias;
+    } else {
+      m = value * Math.pow(2, eBias - 1) * Math.pow(2, mLen);
+      e = 0;
+    }
+  }
+
+  for (; mLen >= 8; buffer[offset + i] = m & 0xff, i += d, m /= 256, mLen -= 8);
+
+  e = (e << mLen) | m;
+  eLen += mLen;
+  for (; eLen > 0; buffer[offset + i] = e & 0xff, i += d, e /= 256, eLen -= 8);
+
+  buffer[offset + i - d] |= s * 128;
+};
+
+},{}],5:[function(require,module,exports){
+var average = require('turf-average')
+var sum = require('turf-sum')
+var median = require('turf-median')
+var min = require('turf-min')
+var max = require('turf-max')
+var deviation = require('turf-deviation')
+var variance = require('turf-variance')
+var count = require('turf-count')
+var turf = {}
+turf.average = average
+turf.sum = sum
+turf.median = median
+turf.min = min
+turf.max = max
+turf.deviation = deviation
+turf.variance = variance
+turf.count = count
+
+module.exports = function(polygons, points, aggregations){
   for (var i = 0, len = aggregations.length; i < len; i++) {
     var agg = aggregations[i],
       operation = agg.aggregation,
@@ -92,102 +1459,1661 @@ module.exports = function(polygons, points, aggregations, done){
 
     if (isAggregationOperation(operation)) {
       if (operation === 'count') {
-        polygons = t[operation](polygons, points, agg.outField);
+        polygons = turf[operation](polygons, points, agg.outField);
       } else {
-        polygons = t[operation](polygons, points, agg.inField, agg.outField);
+        polygons = turf[operation](polygons, points, agg.inField, agg.outField);
       }
     } else {
       unrecognizedError = new Error('"'+ operation +'" is not a recognized aggregation operation.');
-      done(err)
       return err;
     }
   }
 
-  done(null, polygons)
   return polygons;
 }
 
-},{"./average":4,"./count":14,"./deviation":15,"./max":34,"./median":35,"./min":38,"./sum":52,"./variance":57,"lodash":66}],3:[function(_dereq_,module,exports){
-// use this https://github.com/mapbox/geojson-area
-
-var _ = _dereq_('lodash')
-
-module.exports = function(feature, done){
-  //transform geometries into x & y arrays
-  //foreach ring, add the area to an accumulating area sum
-
-
+function isAggregationOperation(operation) {
+  return operation === 'average' ||
+    operation === 'sum' ||
+    operation === 'median' ||
+    operation === 'min' ||
+    operation === 'max' ||
+    operation === 'deviation' ||
+    operation === 'variance' ||
+    operation === 'count';
 }
-
-
-},{"lodash":66}],4:[function(_dereq_,module,exports){
-var t = {}
-var _ = _dereq_('lodash'),
-    ss = _dereq_('simple-statistics')
-t.inside = _dereq_('./inside')
+},{"turf-average":6,"turf-count":8,"turf-deviation":9,"turf-max":11,"turf-median":13,"turf-min":15,"turf-sum":17,"turf-variance":19}],6:[function(require,module,exports){
+var ss = require('simple-statistics')
+var inside = require('turf-inside')
 
 module.exports = function(polyFC, ptFC, inField, outField, done){
-  done = done || function () {};
-
-  _.each(polyFC.features, function(poly){
+  polyFC.features.forEach(function(poly){
     if(!poly.properties){
       poly.properties = {}
     }
     var values = []
-    _.each(ptFC.features, function(pt){
-      if (t.inside(pt, poly)) {
+    ptFC.features.forEach(function(pt){
+      if (inside(pt, poly)) {
         values.push(pt.properties[inField]);
       }
     })
     poly.properties[outField] = ss.average(values)
   })
 
-  done(null, polyFC)
   return polyFC;
 }
 
-},{"./inside":26,"lodash":66,"simple-statistics":67}],5:[function(_dereq_,module,exports){
-var t = {}
-var point = _dereq_('../lib/point'),
-    polygon = _dereq_('../lib/polygon')
-t.point = point
-t.polygon = polygon
+},{"simple-statistics":7,"turf-inside":55}],7:[function(require,module,exports){
+/* global module */
+// # simple-statistics
+//
+// A simple, literate statistics system. The code below uses the
+// [Javascript module pattern](http://www.adequatelygood.com/2010/3/JavaScript-Module-Pattern-In-Depth),
+// eventually assigning `simple-statistics` to `ss` in browsers or the
+// `exports` object for node.js
+(function() {
+    var ss = {};
 
-module.exports = function(bbox, done){
-  var lowLeft = t.point(bbox[0], bbox[1])
-  var topLeft = t.point(bbox[0], bbox[3])
-  var topRight = t.point(bbox[2], bbox[3])
-  var lowRight = t.point(bbox[2], bbox[1])
+    if (typeof module !== 'undefined') {
+        // Assign the `ss` object to exports, so that you can require
+        // it in [node.js](http://nodejs.org/)
+        module.exports = ss;
+    } else {
+        // Otherwise, in a browser, we assign `ss` to the window object,
+        // so you can simply refer to it as `ss`.
+        this.ss = ss;
+    }
 
-  var poly = t.polygon([[
-    lowLeft.geometry.coordinates,
-    lowRight.geometry.coordinates,
-    topRight.geometry.coordinates,
-    topLeft.geometry.coordinates
-  ]])
+    // # [Linear Regression](http://en.wikipedia.org/wiki/Linear_regression)
+    //
+    // [Simple linear regression](http://en.wikipedia.org/wiki/Simple_linear_regression)
+    // is a simple way to find a fitted line
+    // between a set of coordinates.
+    function linear_regression() {
+        var linreg = {},
+            data = [];
 
-  done = done || function () {};
+        // Assign data to the model. Data is assumed to be an array.
+        linreg.data = function(x) {
+            if (!arguments.length) return data;
+            data = x.slice();
+            return linreg;
+        };
 
-  done(null, poly)
-  return poly;
+        // Calculate the slope and y-intercept of the regression line
+        // by calculating the least sum of squares
+        linreg.mb = function() {
+            var m, b;
+
+            // Store data length in a local variable to reduce
+            // repeated object property lookups
+            var data_length = data.length;
+
+            //if there's only one point, arbitrarily choose a slope of 0
+            //and a y-intercept of whatever the y of the initial point is
+            if (data_length === 1) {
+                m = 0;
+                b = data[0][1];
+            } else {
+                // Initialize our sums and scope the `m` and `b`
+                // variables that define the line.
+                var sum_x = 0, sum_y = 0,
+                    sum_xx = 0, sum_xy = 0;
+
+                // Use local variables to grab point values
+                // with minimal object property lookups
+                var point, x, y;
+
+                // Gather the sum of all x values, the sum of all
+                // y values, and the sum of x^2 and (x*y) for each
+                // value.
+                //
+                // In math notation, these would be SS_x, SS_y, SS_xx, and SS_xy
+                for (var i = 0; i < data_length; i++) {
+                    point = data[i];
+                    x = point[0];
+                    y = point[1];
+
+                    sum_x += x;
+                    sum_y += y;
+
+                    sum_xx += x * x;
+                    sum_xy += x * y;
+                }
+
+                // `m` is the slope of the regression line
+                m = ((data_length * sum_xy) - (sum_x * sum_y)) /
+                    ((data_length * sum_xx) - (sum_x * sum_x));
+
+                // `b` is the y-intercept of the line.
+                b = (sum_y / data_length) - ((m * sum_x) / data_length);
+            }
+
+            // Return both values as an object.
+            return { m: m, b: b };
+        };
+
+        // a shortcut for simply getting the slope of the regression line
+        linreg.m = function() {
+            return linreg.mb().m;
+        };
+
+        // a shortcut for simply getting the y-intercept of the regression
+        // line.
+        linreg.b = function() {
+            return linreg.mb().b;
+        };
+
+        // ## Fitting The Regression Line
+        //
+        // This is called after `.data()` and returns the
+        // equation `y = f(x)` which gives the position
+        // of the regression line at each point in `x`.
+        linreg.line = function() {
+
+            // Get the slope, `m`, and y-intercept, `b`, of the line.
+            var mb = linreg.mb(),
+                m = mb.m,
+                b = mb.b;
+
+            // Return a function that computes a `y` value for each
+            // x value it is given, based on the values of `b` and `a`
+            // that we just computed.
+            return function(x) {
+                return b + (m * x);
+            };
+        };
+
+        return linreg;
+    }
+
+    // # [R Squared](http://en.wikipedia.org/wiki/Coefficient_of_determination)
+    //
+    // The r-squared value of data compared with a function `f`
+    // is the sum of the squared differences between the prediction
+    // and the actual value.
+    function r_squared(data, f) {
+        if (data.length < 2) return 1;
+
+        // Compute the average y value for the actual
+        // data set in order to compute the
+        // _total sum of squares_
+        var sum = 0, average;
+        for (var i = 0; i < data.length; i++) {
+            sum += data[i][1];
+        }
+        average = sum / data.length;
+
+        // Compute the total sum of squares - the
+        // squared difference between each point
+        // and the average of all points.
+        var sum_of_squares = 0;
+        for (var j = 0; j < data.length; j++) {
+            sum_of_squares += Math.pow(average - data[j][1], 2);
+        }
+
+        // Finally estimate the error: the squared
+        // difference between the estimate and the actual data
+        // value at each point.
+        var err = 0;
+        for (var k = 0; k < data.length; k++) {
+            err += Math.pow(data[k][1] - f(data[k][0]), 2);
+        }
+
+        // As the error grows larger, its ratio to the
+        // sum of squares increases and the r squared
+        // value grows lower.
+        return 1 - (err / sum_of_squares);
+    }
+
+
+    // # [Bayesian Classifier](http://en.wikipedia.org/wiki/Naive_Bayes_classifier)
+    //
+    // This is a naïve bayesian classifier that takes
+    // singly-nested objects.
+    function bayesian() {
+        // The `bayes_model` object is what will be exposed
+        // by this closure, with all of its extended methods, and will
+        // have access to all scope variables, like `total_count`.
+        var bayes_model = {},
+            // The number of items that are currently
+            // classified in the model
+            total_count = 0,
+            // Every item classified in the model
+            data = {};
+
+        // ## Train
+        // Train the classifier with a new item, which has a single
+        // dimension of Javascript literal keys and values.
+        bayes_model.train = function(item, category) {
+            // If the data object doesn't have any values
+            // for this category, create a new object for it.
+            if (!data[category]) data[category] = {};
+
+            // Iterate through each key in the item.
+            for (var k in item) {
+                var v = item[k];
+                // Initialize the nested object `data[category][k][item[k]]`
+                // with an object of keys that equal 0.
+                if (data[category][k] === undefined) data[category][k] = {};
+                if (data[category][k][v] === undefined) data[category][k][v] = 0;
+
+                // And increment the key for this key/value combination.
+                data[category][k][item[k]]++;
+            }
+            // Increment the number of items classified
+            total_count++;
+        };
+
+        // ## Score
+        // Generate a score of how well this item matches all
+        // possible categories based on its attributes
+        bayes_model.score = function(item) {
+            // Initialize an empty array of odds per category.
+            var odds = {}, category;
+            // Iterate through each key in the item,
+            // then iterate through each category that has been used
+            // in previous calls to `.train()`
+            for (var k in item) {
+                var v = item[k];
+                for (category in data) {
+                    // Create an empty object for storing key - value combinations
+                    // for this category.
+                    if (odds[category] === undefined) odds[category] = {};
+
+                    // If this item doesn't even have a property, it counts for nothing,
+                    // but if it does have the property that we're looking for from
+                    // the item to categorize, it counts based on how popular it is
+                    // versus the whole population.
+                    if (data[category][k]) {
+                        odds[category][k + '_' + v] = (data[category][k][v] || 0) / total_count;
+                    } else {
+                        odds[category][k + '_' + v] = 0;
+                    }
+                }
+            }
+
+            // Set up a new object that will contain sums of these odds by category
+            var odds_sums = {};
+
+            for (category in odds) {
+                // Tally all of the odds for each category-combination pair -
+                // the non-existence of a category does not add anything to the
+                // score.
+                for (var combination in odds[category]) {
+                    if (odds_sums[category] === undefined) odds_sums[category] = 0;
+                    odds_sums[category] += odds[category][combination];
+                }
+            }
+
+            return odds_sums;
+        };
+
+        // Return the completed model.
+        return bayes_model;
+    }
+
+    // # sum
+    //
+    // is simply the result of adding all numbers
+    // together, starting from zero.
+    //
+    // This runs on `O(n)`, linear time in respect to the array
+    function sum(x) {
+        var value = 0;
+        for (var i = 0; i < x.length; i++) {
+            value += x[i];
+        }
+        return value;
+    }
+
+    // # mean
+    //
+    // is the sum over the number of values
+    //
+    // This runs on `O(n)`, linear time in respect to the array
+    function mean(x) {
+        // The mean of no numbers is null
+        if (x.length === 0) return null;
+
+        return sum(x) / x.length;
+    }
+
+    // # geometric mean
+    //
+    // a mean function that is more useful for numbers in different
+    // ranges.
+    //
+    // this is the nth root of the input numbers multiplied by each other
+    //
+    // This runs on `O(n)`, linear time in respect to the array
+    function geometric_mean(x) {
+        // The mean of no numbers is null
+        if (x.length === 0) return null;
+
+        // the starting value.
+        var value = 1;
+
+        for (var i = 0; i < x.length; i++) {
+            // the geometric mean is only valid for positive numbers
+            if (x[i] <= 0) return null;
+
+            // repeatedly multiply the value by each number
+            value *= x[i];
+        }
+
+        return Math.pow(value, 1 / x.length);
+    }
+
+
+    // # harmonic mean
+    //
+    // a mean function typically used to find the average of rates
+    //
+    // this is the reciprocal of the arithmetic mean of the reciprocals
+    // of the input numbers
+    //
+    // This runs on `O(n)`, linear time in respect to the array
+    function harmonic_mean(x) {
+        // The mean of no numbers is null
+        if (x.length === 0) return null;
+
+        var reciprocal_sum = 0;
+
+        for (var i = 0; i < x.length; i++) {
+            // the harmonic mean is only valid for positive numbers
+            if (x[i] <= 0) return null;
+
+            reciprocal_sum += 1 / x[i];
+        }
+
+        // divide n by the the reciprocal sum
+        return x.length / reciprocal_sum;
+    }
+
+
+    // # min
+    //
+    // This is simply the minimum number in the set.
+    //
+    // This runs on `O(n)`, linear time in respect to the array
+    function min(x) {
+        var value;
+        for (var i = 0; i < x.length; i++) {
+            // On the first iteration of this loop, min is
+            // undefined and is thus made the minimum element in the array
+            if (x[i] < value || value === undefined) value = x[i];
+        }
+        return value;
+    }
+
+    // # max
+    //
+    // This is simply the maximum number in the set.
+    //
+    // This runs on `O(n)`, linear time in respect to the array
+    function max(x) {
+        var value;
+        for (var i = 0; i < x.length; i++) {
+            // On the first iteration of this loop, max is
+            // undefined and is thus made the maximum element in the array
+            if (x[i] > value || value === undefined) value = x[i];
+        }
+        return value;
+    }
+
+    // # [variance](http://en.wikipedia.org/wiki/Variance)
+    //
+    // is the sum of squared deviations from the mean
+    //
+    // depends on `mean()`
+    function variance(x) {
+        // The variance of no numbers is null
+        if (x.length === 0) return null;
+
+        var mean_value = mean(x),
+            deviations = [];
+
+        // Make a list of squared deviations from the mean.
+        for (var i = 0; i < x.length; i++) {
+            deviations.push(Math.pow(x[i] - mean_value, 2));
+        }
+
+        // Find the mean value of that list
+        return mean(deviations);
+    }
+
+    // # [standard deviation](http://en.wikipedia.org/wiki/Standard_deviation)
+    //
+    // is just the square root of the variance.
+    //
+    // depends on `variance()`
+    function standard_deviation(x) {
+        // The standard deviation of no numbers is null
+        if (x.length === 0) return null;
+
+        return Math.sqrt(variance(x));
+    }
+
+    // The sum of deviations to the Nth power.
+    // When n=2 it's the sum of squared deviations.
+    // When n=3 it's the sum of cubed deviations.
+    //
+    // depends on `mean()`
+    function sum_nth_power_deviations(x, n) {
+        var mean_value = mean(x),
+            sum = 0;
+
+        for (var i = 0; i < x.length; i++) {
+            sum += Math.pow(x[i] - mean_value, n);
+        }
+
+        return sum;
+    }
+
+    // # [variance](http://en.wikipedia.org/wiki/Variance)
+    //
+    // is the sum of squared deviations from the mean
+    //
+    // depends on `sum_nth_power_deviations`
+    function sample_variance(x) {
+        // The variance of no numbers is null
+        if (x.length <= 1) return null;
+
+        var sum_squared_deviations_value = sum_nth_power_deviations(x, 2);
+
+        // Find the mean value of that list
+        return sum_squared_deviations_value / (x.length - 1);
+    }
+
+    // # [standard deviation](http://en.wikipedia.org/wiki/Standard_deviation)
+    //
+    // is just the square root of the variance.
+    //
+    // depends on `sample_variance()`
+    function sample_standard_deviation(x) {
+        // The standard deviation of no numbers is null
+        if (x.length <= 1) return null;
+
+        return Math.sqrt(sample_variance(x));
+    }
+
+    // # [covariance](http://en.wikipedia.org/wiki/Covariance)
+    //
+    // sample covariance of two datasets:
+    // how much do the two datasets move together?
+    // x and y are two datasets, represented as arrays of numbers.
+    //
+    // depends on `mean()`
+    function sample_covariance(x, y) {
+
+        // The two datasets must have the same length which must be more than 1
+        if (x.length <= 1 || x.length != y.length){
+            return null;
+        }
+
+        // determine the mean of each dataset so that we can judge each
+        // value of the dataset fairly as the difference from the mean. this
+        // way, if one dataset is [1, 2, 3] and [2, 3, 4], their covariance
+        // does not suffer because of the difference in absolute values
+        var xmean = mean(x),
+            ymean = mean(y),
+            sum = 0;
+
+        // for each pair of values, the covariance increases when their
+        // difference from the mean is associated - if both are well above
+        // or if both are well below
+        // the mean, the covariance increases significantly.
+        for (var i = 0; i < x.length; i++){
+            sum += (x[i] - xmean) * (y[i] - ymean);
+        }
+
+        // the covariance is weighted by the length of the datasets.
+        return sum / (x.length - 1);
+    }
+
+    // # [correlation](http://en.wikipedia.org/wiki/Correlation_and_dependence)
+    //
+    // Gets a measure of how correlated two datasets are, between -1 and 1
+    //
+    // depends on `sample_standard_deviation()` and `sample_covariance()`
+    function sample_correlation(x, y) {
+        var cov = sample_covariance(x, y),
+            xstd = sample_standard_deviation(x),
+            ystd = sample_standard_deviation(y);
+
+        if (cov === null || xstd === null || ystd === null) {
+            return null;
+        }
+
+        return cov / xstd / ystd;
+    }
+
+    // # [median](http://en.wikipedia.org/wiki/Median)
+    //
+    // The middle number of a list. This is often a good indicator of 'the middle'
+    // when there are outliers that skew the `mean()` value.
+    function median(x) {
+        // The median of an empty list is null
+        if (x.length === 0) return null;
+
+        // Sorting the array makes it easy to find the center, but
+        // use `.slice()` to ensure the original array `x` is not modified
+        var sorted = x.slice().sort(function (a, b) { return a - b; });
+
+        // If the length of the list is odd, it's the central number
+        if (sorted.length % 2 === 1) {
+            return sorted[(sorted.length - 1) / 2];
+        // Otherwise, the median is the average of the two numbers
+        // at the center of the list
+        } else {
+            var a = sorted[(sorted.length / 2) - 1];
+            var b = sorted[(sorted.length / 2)];
+            return (a + b) / 2;
+        }
+    }
+
+    // # [mode](http://bit.ly/W5K4Yt)
+    //
+    // The mode is the number that appears in a list the highest number of times.
+    // There can be multiple modes in a list: in the event of a tie, this
+    // algorithm will return the most recently seen mode.
+    //
+    // This implementation is inspired by [science.js](https://github.com/jasondavies/science.js/blob/master/src/stats/mode.js)
+    //
+    // This runs on `O(n)`, linear time in respect to the array
+    function mode(x) {
+
+        // Handle edge cases:
+        // The median of an empty list is null
+        if (x.length === 0) return null;
+        else if (x.length === 1) return x[0];
+
+        // Sorting the array lets us iterate through it below and be sure
+        // that every time we see a new number it's new and we'll never
+        // see the same number twice
+        var sorted = x.slice().sort(function (a, b) { return a - b; });
+
+        // This assumes it is dealing with an array of size > 1, since size
+        // 0 and 1 are handled immediately. Hence it starts at index 1 in the
+        // array.
+        var last = sorted[0],
+            // store the mode as we find new modes
+            value,
+            // store how many times we've seen the mode
+            max_seen = 0,
+            // how many times the current candidate for the mode
+            // has been seen
+            seen_this = 1;
+
+        // end at sorted.length + 1 to fix the case in which the mode is
+        // the highest number that occurs in the sequence. the last iteration
+        // compares sorted[i], which is undefined, to the highest number
+        // in the series
+        for (var i = 1; i < sorted.length + 1; i++) {
+            // we're seeing a new number pass by
+            if (sorted[i] !== last) {
+                // the last number is the new mode since we saw it more
+                // often than the old one
+                if (seen_this > max_seen) {
+                    max_seen = seen_this;
+                    value = last;
+                }
+                seen_this = 1;
+                last = sorted[i];
+            // if this isn't a new number, it's one more occurrence of
+            // the potential mode
+            } else { seen_this++; }
+        }
+        return value;
+    }
+
+    // # [t-test](http://en.wikipedia.org/wiki/Student's_t-test)
+    //
+    // This is to compute a one-sample t-test, comparing the mean
+    // of a sample to a known value, x.
+    //
+    // in this case, we're trying to determine whether the
+    // population mean is equal to the value that we know, which is `x`
+    // here. usually the results here are used to look up a
+    // [p-value](http://en.wikipedia.org/wiki/P-value), which, for
+    // a certain level of significance, will let you determine that the
+    // null hypothesis can or cannot be rejected.
+    //
+    // Depends on `standard_deviation()` and `mean()`
+    function t_test(sample, x) {
+        // The mean of the sample
+        var sample_mean = mean(sample);
+
+        // The standard deviation of the sample
+        var sd = standard_deviation(sample);
+
+        // Square root the length of the sample
+        var rootN = Math.sqrt(sample.length);
+
+        // Compute the known value against the sample,
+        // returning the t value
+        return (sample_mean - x) / (sd / rootN);
+    }
+
+    // # [2-sample t-test](http://en.wikipedia.org/wiki/Student's_t-test)
+    //
+    // This is to compute two sample t-test.
+    // Tests whether "mean(X)-mean(Y) = difference", (
+    // in the most common case, we often have `difference == 0` to test if two samples
+    // are likely to be taken from populations with the same mean value) with
+    // no prior knowledge on standard deviations of both samples
+    // other than the fact that they have the same standard deviation.
+    //
+    // Usually the results here are used to look up a
+    // [p-value](http://en.wikipedia.org/wiki/P-value), which, for
+    // a certain level of significance, will let you determine that the
+    // null hypothesis can or cannot be rejected.
+    //
+    // `diff` can be omitted if it equals 0.
+    //
+    // [This is used to confirm or deny](http://www.monarchlab.org/Lab/Research/Stats/2SampleT.aspx)
+    // a null hypothesis that the two populations that have been sampled into
+    // `sample_x` and `sample_y` are equal to each other.
+    //
+    // Depends on `sample_variance()` and `mean()`
+    function t_test_two_sample(sample_x, sample_y, difference) {
+        var n = sample_x.length,
+            m = sample_y.length;
+
+        // If either sample doesn't actually have any values, we can't
+        // compute this at all, so we return `null`.
+        if (!n || !m) return null ;
+
+        // default difference (mu) is zero
+        if (!difference) difference = 0;
+
+        var meanX = mean(sample_x),
+            meanY = mean(sample_y);
+
+        var weightedVariance = ((n - 1) * sample_variance(sample_x) +
+            (m - 1) * sample_variance(sample_y)) / (n + m - 2);
+
+        return (meanX - meanY - difference) /
+            Math.sqrt(weightedVariance * (1 / n + 1 / m));
+    }
+
+    // # quantile
+    //
+    // This is a population quantile, since we assume to know the entire
+    // dataset in this library. Thus I'm trying to follow the
+    // [Quantiles of a Population](http://en.wikipedia.org/wiki/Quantile#Quantiles_of_a_population)
+    // algorithm from wikipedia.
+    //
+    // Sample is a one-dimensional array of numbers,
+    // and p is either a decimal number from 0 to 1 or an array of decimal
+    // numbers from 0 to 1.
+    // In terms of a k/q quantile, p = k/q - it's just dealing with fractions or dealing
+    // with decimal values.
+    // When p is an array, the result of the function is also an array containing the appropriate
+    // quantiles in input order
+    function quantile(sample, p) {
+
+        // We can't derive quantiles from an empty list
+        if (sample.length === 0) return null;
+
+        // Sort a copy of the array. We'll need a sorted array to index
+        // the values in sorted order.
+        var sorted = sample.slice().sort(function (a, b) { return a - b; });
+
+        if (p.length) {
+            // Initialize the result array
+            var results = [];
+            // For each requested quantile
+            for (var i = 0; i < p.length; i++) {
+                results[i] = quantile_sorted(sorted, p[i]);
+            }
+            return results;
+        } else {
+            return quantile_sorted(sorted, p);
+        }
+    }
+
+    // # quantile
+    //
+    // This is the internal implementation of quantiles: when you know
+    // that the order is sorted, you don't need to re-sort it, and the computations
+    // are much faster.
+    function quantile_sorted(sample, p) {
+        var idx = (sample.length) * p;
+        if (p < 0 || p > 1) {
+            return null;
+        } else if (p === 1) {
+            // If p is 1, directly return the last element
+            return sample[sample.length - 1];
+        } else if (p === 0) {
+            // If p is 0, directly return the first element
+            return sample[0];
+        } else if (idx % 1 !== 0) {
+            // If p is not integer, return the next element in array
+            return sample[Math.ceil(idx) - 1];
+        } else if (sample.length % 2 === 0) {
+            // If the list has even-length, we'll take the average of this number
+            // and the next value, if there is one
+            return (sample[idx - 1] + sample[idx]) / 2;
+        } else {
+            // Finally, in the simple case of an integer value
+            // with an odd-length list, return the sample value at the index.
+            return sample[idx];
+        }
+    }
+
+    // # [Interquartile range](http://en.wikipedia.org/wiki/Interquartile_range)
+    //
+    // A measure of statistical dispersion, or how scattered, spread, or
+    // concentrated a distribution is. It's computed as the difference between
+    // the third quartile and first quartile.
+    function iqr(sample) {
+        // We can't derive quantiles from an empty list
+        if (sample.length === 0) return null;
+
+        // Interquartile range is the span between the upper quartile,
+        // at `0.75`, and lower quartile, `0.25`
+        return quantile(sample, 0.75) - quantile(sample, 0.25);
+    }
+
+    // # [Median Absolute Deviation](http://en.wikipedia.org/wiki/Median_absolute_deviation)
+    //
+    // The Median Absolute Deviation (MAD) is a robust measure of statistical
+    // dispersion. It is more resilient to outliers than the standard deviation.
+    function mad(x) {
+        // The mad of nothing is null
+        if (!x || x.length === 0) return null;
+
+        var median_value = median(x),
+            median_absolute_deviations = [];
+
+        // Make a list of absolute deviations from the median
+        for (var i = 0; i < x.length; i++) {
+            median_absolute_deviations.push(Math.abs(x[i] - median_value));
+        }
+
+        // Find the median value of that list
+        return median(median_absolute_deviations);
+    }
+
+    // ## Compute Matrices for Jenks
+    //
+    // Compute the matrices required for Jenks breaks. These matrices
+    // can be used for any classing of data with `classes <= n_classes`
+    function jenksMatrices(data, n_classes) {
+
+        // in the original implementation, these matrices are referred to
+        // as `LC` and `OP`
+        //
+        // * lower_class_limits (LC): optimal lower class limits
+        // * variance_combinations (OP): optimal variance combinations for all classes
+        var lower_class_limits = [],
+            variance_combinations = [],
+            // loop counters
+            i, j,
+            // the variance, as computed at each step in the calculation
+            variance = 0;
+
+        // Initialize and fill each matrix with zeroes
+        for (i = 0; i < data.length + 1; i++) {
+            var tmp1 = [], tmp2 = [];
+            // despite these arrays having the same values, we need
+            // to keep them separate so that changing one does not change
+            // the other
+            for (j = 0; j < n_classes + 1; j++) {
+                tmp1.push(0);
+                tmp2.push(0);
+            }
+            lower_class_limits.push(tmp1);
+            variance_combinations.push(tmp2);
+        }
+
+        for (i = 1; i < n_classes + 1; i++) {
+            lower_class_limits[1][i] = 1;
+            variance_combinations[1][i] = 0;
+            // in the original implementation, 9999999 is used but
+            // since Javascript has `Infinity`, we use that.
+            for (j = 2; j < data.length + 1; j++) {
+                variance_combinations[j][i] = Infinity;
+            }
+        }
+
+        for (var l = 2; l < data.length + 1; l++) {
+
+            // `SZ` originally. this is the sum of the values seen thus
+            // far when calculating variance.
+            var sum = 0,
+                // `ZSQ` originally. the sum of squares of values seen
+                // thus far
+                sum_squares = 0,
+                // `WT` originally. This is the number of
+                w = 0,
+                // `IV` originally
+                i4 = 0;
+
+            // in several instances, you could say `Math.pow(x, 2)`
+            // instead of `x * x`, but this is slower in some browsers
+            // introduces an unnecessary concept.
+            for (var m = 1; m < l + 1; m++) {
+
+                // `III` originally
+                var lower_class_limit = l - m + 1,
+                    val = data[lower_class_limit - 1];
+
+                // here we're estimating variance for each potential classing
+                // of the data, for each potential number of classes. `w`
+                // is the number of data points considered so far.
+                w++;
+
+                // increase the current sum and sum-of-squares
+                sum += val;
+                sum_squares += val * val;
+
+                // the variance at this point in the sequence is the difference
+                // between the sum of squares and the total x 2, over the number
+                // of samples.
+                variance = sum_squares - (sum * sum) / w;
+
+                i4 = lower_class_limit - 1;
+
+                if (i4 !== 0) {
+                    for (j = 2; j < n_classes + 1; j++) {
+                        // if adding this element to an existing class
+                        // will increase its variance beyond the limit, break
+                        // the class at this point, setting the `lower_class_limit`
+                        // at this point.
+                        if (variance_combinations[l][j] >=
+                            (variance + variance_combinations[i4][j - 1])) {
+                            lower_class_limits[l][j] = lower_class_limit;
+                            variance_combinations[l][j] = variance +
+                                variance_combinations[i4][j - 1];
+                        }
+                    }
+                }
+            }
+
+            lower_class_limits[l][1] = 1;
+            variance_combinations[l][1] = variance;
+        }
+
+        // return the two matrices. for just providing breaks, only
+        // `lower_class_limits` is needed, but variances can be useful to
+        // evaluate goodness of fit.
+        return {
+            lower_class_limits: lower_class_limits,
+            variance_combinations: variance_combinations
+        };
+    }
+
+    // ## Pull Breaks Values for Jenks
+    //
+    // the second part of the jenks recipe: take the calculated matrices
+    // and derive an array of n breaks.
+    function jenksBreaks(data, lower_class_limits, n_classes) {
+
+        var k = data.length - 1,
+            kclass = [],
+            countNum = n_classes;
+
+        // the calculation of classes will never include the upper and
+        // lower bounds, so we need to explicitly set them
+        kclass[n_classes] = data[data.length - 1];
+        kclass[0] = data[0];
+
+        // the lower_class_limits matrix is used as indices into itself
+        // here: the `k` variable is reused in each iteration.
+        while (countNum > 1) {
+            kclass[countNum - 1] = data[lower_class_limits[k][countNum] - 2];
+            k = lower_class_limits[k][countNum] - 1;
+            countNum--;
+        }
+
+        return kclass;
+    }
+
+    // # [Jenks natural breaks optimization](http://en.wikipedia.org/wiki/Jenks_natural_breaks_optimization)
+    //
+    // Implementations: [1](http://danieljlewis.org/files/2010/06/Jenks.pdf) (python),
+    // [2](https://github.com/vvoovv/djeo-jenks/blob/master/main.js) (buggy),
+    // [3](https://github.com/simogeo/geostats/blob/master/lib/geostats.js#L407) (works)
+    //
+    // Depends on `jenksBreaks()` and `jenksMatrices()`
+    function jenks(data, n_classes) {
+
+        if (n_classes > data.length) return null;
+
+        // sort data in numerical order, since this is expected
+        // by the matrices function
+        data = data.slice().sort(function (a, b) { return a - b; });
+
+        // get our basic matrices
+        var matrices = jenksMatrices(data, n_classes),
+            // we only need lower class limits here
+            lower_class_limits = matrices.lower_class_limits;
+
+        // extract n_classes out of the computed matrices
+        return jenksBreaks(data, lower_class_limits, n_classes);
+
+    }
+
+    // # [Skewness](http://en.wikipedia.org/wiki/Skewness)
+    //
+    // A measure of the extent to which a probability distribution of a
+    // real-valued random variable "leans" to one side of the mean.
+    // The skewness value can be positive or negative, or even undefined.
+    //
+    // Implementation is based on the adjusted Fisher-Pearson standardized
+    // moment coefficient, which is the version found in Excel and several
+    // statistical packages including Minitab, SAS and SPSS.
+    //
+    // Depends on `sum_nth_power_deviations()` and `sample_standard_deviation`
+    function sample_skewness(x) {
+        // The skewness of less than three arguments is null
+        if (x.length < 3) return null;
+
+        var n = x.length,
+            cubed_s = Math.pow(sample_standard_deviation(x), 3),
+            sum_cubed_deviations = sum_nth_power_deviations(x, 3);
+
+        return n * sum_cubed_deviations / ((n - 1) * (n - 2) * cubed_s);
+    }
+
+    // # Standard Normal Table
+    // A standard normal table, also called the unit normal table or Z table,
+    // is a mathematical table for the values of Φ (phi), which are the values of
+    // the cumulative distribution function of the normal distribution.
+    // It is used to find the probability that a statistic is observed below,
+    // above, or between values on the standard normal distribution, and by
+    // extension, any normal distribution.
+    //
+    // The probabilities are taken from http://en.wikipedia.org/wiki/Standard_normal_table
+    // The table used is the cumulative, and not cumulative from 0 to mean
+    // (even though the latter has 5 digits precision, instead of 4).
+    var standard_normal_table = [
+        /*  z      0.00    0.01    0.02    0.03    0.04    0.05    0.06    0.07    0.08    0.09 */
+        /* 0.0 */
+        0.5000, 0.5040, 0.5080, 0.5120, 0.5160, 0.5199, 0.5239, 0.5279, 0.5319, 0.5359,
+        /* 0.1 */
+        0.5398, 0.5438, 0.5478, 0.5517, 0.5557, 0.5596, 0.5636, 0.5675, 0.5714, 0.5753,
+        /* 0.2 */
+        0.5793, 0.5832, 0.5871, 0.5910, 0.5948, 0.5987, 0.6026, 0.6064, 0.6103, 0.6141,
+        /* 0.3 */
+        0.6179, 0.6217, 0.6255, 0.6293, 0.6331, 0.6368, 0.6406, 0.6443, 0.6480, 0.6517,
+        /* 0.4 */
+        0.6554, 0.6591, 0.6628, 0.6664, 0.6700, 0.6736, 0.6772, 0.6808, 0.6844, 0.6879,
+        /* 0.5 */
+        0.6915, 0.6950, 0.6985, 0.7019, 0.7054, 0.7088, 0.7123, 0.7157, 0.7190, 0.7224,
+        /* 0.6 */
+        0.7257, 0.7291, 0.7324, 0.7357, 0.7389, 0.7422, 0.7454, 0.7486, 0.7517, 0.7549,
+        /* 0.7 */
+        0.7580, 0.7611, 0.7642, 0.7673, 0.7704, 0.7734, 0.7764, 0.7794, 0.7823, 0.7852,
+        /* 0.8 */
+        0.7881, 0.7910, 0.7939, 0.7967, 0.7995, 0.8023, 0.8051, 0.8078, 0.8106, 0.8133,
+        /* 0.9 */
+        0.8159, 0.8186, 0.8212, 0.8238, 0.8264, 0.8289, 0.8315, 0.8340, 0.8365, 0.8389,
+        /* 1.0 */
+        0.8413, 0.8438, 0.8461, 0.8485, 0.8508, 0.8531, 0.8554, 0.8577, 0.8599, 0.8621,
+        /* 1.1 */
+        0.8643, 0.8665, 0.8686, 0.8708, 0.8729, 0.8749, 0.8770, 0.8790, 0.8810, 0.8830,
+        /* 1.2 */
+        0.8849, 0.8869, 0.8888, 0.8907, 0.8925, 0.8944, 0.8962, 0.8980, 0.8997, 0.9015,
+        /* 1.3 */
+        0.9032, 0.9049, 0.9066, 0.9082, 0.9099, 0.9115, 0.9131, 0.9147, 0.9162, 0.9177,
+        /* 1.4 */
+        0.9192, 0.9207, 0.9222, 0.9236, 0.9251, 0.9265, 0.9279, 0.9292, 0.9306, 0.9319,
+        /* 1.5 */
+        0.9332, 0.9345, 0.9357, 0.9370, 0.9382, 0.9394, 0.9406, 0.9418, 0.9429, 0.9441,
+        /* 1.6 */
+        0.9452, 0.9463, 0.9474, 0.9484, 0.9495, 0.9505, 0.9515, 0.9525, 0.9535, 0.9545,
+        /* 1.7 */
+        0.9554, 0.9564, 0.9573, 0.9582, 0.9591, 0.9599, 0.9608, 0.9616, 0.9625, 0.9633,
+        /* 1.8 */
+        0.9641, 0.9649, 0.9656, 0.9664, 0.9671, 0.9678, 0.9686, 0.9693, 0.9699, 0.9706,
+        /* 1.9 */
+        0.9713, 0.9719, 0.9726, 0.9732, 0.9738, 0.9744, 0.9750, 0.9756, 0.9761, 0.9767,
+        /* 2.0 */
+        0.9772, 0.9778, 0.9783, 0.9788, 0.9793, 0.9798, 0.9803, 0.9808, 0.9812, 0.9817,
+        /* 2.1 */
+        0.9821, 0.9826, 0.9830, 0.9834, 0.9838, 0.9842, 0.9846, 0.9850, 0.9854, 0.9857,
+        /* 2.2 */
+        0.9861, 0.9864, 0.9868, 0.9871, 0.9875, 0.9878, 0.9881, 0.9884, 0.9887, 0.9890,
+        /* 2.3 */
+        0.9893, 0.9896, 0.9898, 0.9901, 0.9904, 0.9906, 0.9909, 0.9911, 0.9913, 0.9916,
+        /* 2.4 */
+        0.9918, 0.9920, 0.9922, 0.9925, 0.9927, 0.9929, 0.9931, 0.9932, 0.9934, 0.9936,
+        /* 2.5 */
+        0.9938, 0.9940, 0.9941, 0.9943, 0.9945, 0.9946, 0.9948, 0.9949, 0.9951, 0.9952,
+        /* 2.6 */
+        0.9953, 0.9955, 0.9956, 0.9957, 0.9959, 0.9960, 0.9961, 0.9962, 0.9963, 0.9964,
+        /* 2.7 */
+        0.9965, 0.9966, 0.9967, 0.9968, 0.9969, 0.9970, 0.9971, 0.9972, 0.9973, 0.9974,
+        /* 2.8 */
+        0.9974, 0.9975, 0.9976, 0.9977, 0.9977, 0.9978, 0.9979, 0.9979, 0.9980, 0.9981,
+        /* 2.9 */
+        0.9981, 0.9982, 0.9982, 0.9983, 0.9984, 0.9984, 0.9985, 0.9985, 0.9986, 0.9986,
+        /* 3.0 */
+        0.9987, 0.9987, 0.9987, 0.9988, 0.9988, 0.9989, 0.9989, 0.9989, 0.9990, 0.9990
+    ];
+
+    // # [Cumulative Standard Normal Probability](http://en.wikipedia.org/wiki/Standard_normal_table)
+    //
+    // Since probability tables cannot be
+    // printed for every normal distribution, as there are an infinite variety
+    // of normal distributions, it is common practice to convert a normal to a
+    // standard normal and then use the standard normal table to find probabilities
+    function cumulative_std_normal_probability(z) {
+
+        // Calculate the position of this value.
+        var absZ = Math.abs(z),
+            // Each row begins with a different
+            // significant digit: 0.5, 0.6, 0.7, and so on. So the row is simply
+            // this value's significant digit: 0.567 will be in row 0, so row=0,
+            // 0.643 will be in row 1, so row=10.
+            row = Math.floor(absZ * 10),
+            column = 10 * (Math.floor(absZ * 100) / 10 - Math.floor(absZ * 100 / 10)),
+            index = Math.min((row * 10) + column, standard_normal_table.length - 1);
+
+        // The index we calculate must be in the table as a positive value,
+        // but we still pay attention to whether the input is positive
+        // or negative, and flip the output value as a last step.
+        if (z >= 0) {
+            return standard_normal_table[index];
+        } else {
+            // due to floating-point arithmetic, values in the table with
+            // 4 significant figures can nevertheless end up as repeating
+            // fractions when they're computed here.
+            return +(1 - standard_normal_table[index]).toFixed(4);
+        }
+    }
+
+    // # [Z-Score, or Standard Score](http://en.wikipedia.org/wiki/Standard_score)
+    //
+    // The standard score is the number of standard deviations an observation
+    // or datum is above or below the mean. Thus, a positive standard score
+    // represents a datum above the mean, while a negative standard score
+    // represents a datum below the mean. It is a dimensionless quantity
+    // obtained by subtracting the population mean from an individual raw
+    // score and then dividing the difference by the population standard
+    // deviation.
+    //
+    // The z-score is only defined if one knows the population parameters;
+    // if one only has a sample set, then the analogous computation with
+    // sample mean and sample standard deviation yields the
+    // Student's t-statistic.
+    function z_score(x, mean, standard_deviation) {
+        return (x - mean) / standard_deviation;
+    }
+
+    // We use `ε`, epsilon, as a stopping criterion when we want to iterate
+    // until we're "close enough".
+    var epsilon = 0.0001;
+
+    // # [Factorial](https://en.wikipedia.org/wiki/Factorial)
+    //
+    // A factorial, usually written n!, is the product of all positive
+    // integers less than or equal to n. Often factorial is implemented
+    // recursively, but this iterative approach is significantly faster
+    // and simpler.
+    function factorial(n) {
+
+        // factorial is mathematically undefined for negative numbers
+        if (n < 0 ) { return null; }
+
+        // typically you'll expand the factorial function going down, like
+        // 5! = 5 * 4 * 3 * 2 * 1. This is going in the opposite direction,
+        // counting from 2 up to the number in question, and since anything
+        // multiplied by 1 is itself, the loop only needs to start at 2.
+        var accumulator = 1;
+        for (var i = 2; i <= n; i++) {
+            // for each number up to and including the number `n`, multiply
+            // the accumulator my that number.
+            accumulator *= i;
+        }
+        return accumulator;
+    }
+
+    // # Bernoulli Distribution
+    //
+    // The [Bernoulli distribution](http://en.wikipedia.org/wiki/Bernoulli_distribution)
+    // is the probability discrete
+    // distribution of a random variable which takes value 1 with success
+    // probability `p` and value 0 with failure
+    // probability `q` = 1 - `p`. It can be used, for example, to represent the
+    // toss of a coin, where "1" is defined to mean "heads" and "0" is defined
+    // to mean "tails" (or vice versa). It is
+    // a special case of a Binomial Distribution
+    // where `n` = 1.
+    function bernoulli_distribution(p) {
+        // Check that `p` is a valid probability (0 ≤ p ≤ 1)
+        if (p < 0 || p > 1 ) { return null; }
+
+        return binomial_distribution(1, p);
+    }
+
+    // # Binomial Distribution
+    //
+    // The [Binomial Distribution](http://en.wikipedia.org/wiki/Binomial_distribution) is the discrete probability
+    // distribution of the number of successes in a sequence of n independent yes/no experiments, each of which yields
+    // success with probability `probability`. Such a success/failure experiment is also called a Bernoulli experiment or
+    // Bernoulli trial; when trials = 1, the Binomial Distribution is a Bernoulli Distribution.
+    function binomial_distribution(trials, probability) {
+        // Check that `p` is a valid probability (0 ≤ p ≤ 1),
+        // that `n` is an integer, strictly positive.
+        if (probability < 0 || probability > 1 ||
+            trials <= 0 || trials % 1 !== 0) {
+            return null;
+        }
+
+        // a [probability mass function](https://en.wikipedia.org/wiki/Probability_mass_function)
+        function probability_mass(x, trials, probability) {
+            return factorial(trials) /
+                (factorial(x) * factorial(trials - x)) *
+                (Math.pow(probability, x) * Math.pow(1 - probability, trials - x));
+        }
+
+        // We initialize `x`, the random variable, and `accumulator`, an accumulator
+        // for the cumulative distribution function to 0. `distribution_functions`
+        // is the object we'll return with the `probability_of_x` and the
+        // `cumulative_probability_of_x`, as well as the calculated mean &
+        // variance. We iterate until the `cumulative_probability_of_x` is
+        // within `epsilon` of 1.0.
+        var x = 0,
+            cumulative_probability = 0,
+            cells = {};
+
+        // This algorithm iterates through each potential outcome,
+        // until the `cumulative_probability` is very close to 1, at
+        // which point we've defined the vast majority of outcomes
+        do {
+            cells[x] = probability_mass(x, trials, probability);
+            cumulative_probability += cells[x];
+            x++;
+        // when the cumulative_probability is nearly 1, we've calculated
+        // the useful range of this distribution
+        } while (cumulative_probability < 1 - epsilon);
+
+        return cells;
+    }
+
+    // # Poisson Distribution
+    //
+    // The [Poisson Distribution](http://en.wikipedia.org/wiki/Poisson_distribution)
+    // is a discrete probability distribution that expresses the probability
+    // of a given number of events occurring in a fixed interval of time
+    // and/or space if these events occur with a known average rate and
+    // independently of the time since the last event.
+    //
+    // The Poisson Distribution is characterized by the strictly positive
+    // mean arrival or occurrence rate, `λ`.
+    function poisson_distribution(lambda) {
+        // Check that lambda is strictly positive
+        if (lambda <= 0) { return null; }
+
+        // our current place in the distribution
+        var x = 0,
+            // and we keep track of the current cumulative probability, in
+            // order to know when to stop calculating chances.
+            cumulative_probability = 0,
+            // the calculated cells to be returned
+            cells = {};
+
+        // a [probability mass function](https://en.wikipedia.org/wiki/Probability_mass_function)
+        function probability_mass(x, lambda) {
+            return (Math.pow(Math.E, -lambda) * Math.pow(lambda, x)) /
+                factorial(x);
+        }
+
+        // This algorithm iterates through each potential outcome,
+        // until the `cumulative_probability` is very close to 1, at
+        // which point we've defined the vast majority of outcomes
+        do {
+            cells[x] = probability_mass(x, lambda);
+            cumulative_probability += cells[x];
+            x++;
+        // when the cumulative_probability is nearly 1, we've calculated
+        // the useful range of this distribution
+        } while (cumulative_probability < 1 - epsilon);
+
+        return cells;
+    }
+
+    // # Percentage Points of the χ2 (Chi-Squared) Distribution
+    // The [χ2 (Chi-Squared) Distribution](http://en.wikipedia.org/wiki/Chi-squared_distribution) is used in the common
+    // chi-squared tests for goodness of fit of an observed distribution to a theoretical one, the independence of two
+    // criteria of classification of qualitative data, and in confidence interval estimation for a population standard
+    // deviation of a normal distribution from a sample standard deviation.
+    //
+    // Values from Appendix 1, Table III of William W. Hines & Douglas C. Montgomery, "Probability and Statistics in
+    // Engineering and Management Science", Wiley (1980).
+    var chi_squared_distribution_table = {
+        1: { 0.995:  0.00, 0.99:  0.00, 0.975:  0.00, 0.95:  0.00, 0.9:  0.02, 0.5:  0.45, 0.1:  2.71, 0.05:  3.84, 0.025:  5.02, 0.01:  6.63, 0.005:  7.88 },
+        2: { 0.995:  0.01, 0.99:  0.02, 0.975:  0.05, 0.95:  0.10, 0.9:  0.21, 0.5:  1.39, 0.1:  4.61, 0.05:  5.99, 0.025:  7.38, 0.01:  9.21, 0.005: 10.60 },
+        3: { 0.995:  0.07, 0.99:  0.11, 0.975:  0.22, 0.95:  0.35, 0.9:  0.58, 0.5:  2.37, 0.1:  6.25, 0.05:  7.81, 0.025:  9.35, 0.01: 11.34, 0.005: 12.84 },
+        4: { 0.995:  0.21, 0.99:  0.30, 0.975:  0.48, 0.95:  0.71, 0.9:  1.06, 0.5:  3.36, 0.1:  7.78, 0.05:  9.49, 0.025: 11.14, 0.01: 13.28, 0.005: 14.86 },
+        5: { 0.995:  0.41, 0.99:  0.55, 0.975:  0.83, 0.95:  1.15, 0.9:  1.61, 0.5:  4.35, 0.1:  9.24, 0.05: 11.07, 0.025: 12.83, 0.01: 15.09, 0.005: 16.75 },
+        6: { 0.995:  0.68, 0.99:  0.87, 0.975:  1.24, 0.95:  1.64, 0.9:  2.20, 0.5:  5.35, 0.1: 10.65, 0.05: 12.59, 0.025: 14.45, 0.01: 16.81, 0.005: 18.55 },
+        7: { 0.995:  0.99, 0.99:  1.25, 0.975:  1.69, 0.95:  2.17, 0.9:  2.83, 0.5:  6.35, 0.1: 12.02, 0.05: 14.07, 0.025: 16.01, 0.01: 18.48, 0.005: 20.28 },
+        8: { 0.995:  1.34, 0.99:  1.65, 0.975:  2.18, 0.95:  2.73, 0.9:  3.49, 0.5:  7.34, 0.1: 13.36, 0.05: 15.51, 0.025: 17.53, 0.01: 20.09, 0.005: 21.96 },
+        9: { 0.995:  1.73, 0.99:  2.09, 0.975:  2.70, 0.95:  3.33, 0.9:  4.17, 0.5:  8.34, 0.1: 14.68, 0.05: 16.92, 0.025: 19.02, 0.01: 21.67, 0.005: 23.59 },
+        10: { 0.995:  2.16, 0.99:  2.56, 0.975:  3.25, 0.95:  3.94, 0.9:  4.87, 0.5:  9.34, 0.1: 15.99, 0.05: 18.31, 0.025: 20.48, 0.01: 23.21, 0.005: 25.19 },
+        11: { 0.995:  2.60, 0.99:  3.05, 0.975:  3.82, 0.95:  4.57, 0.9:  5.58, 0.5: 10.34, 0.1: 17.28, 0.05: 19.68, 0.025: 21.92, 0.01: 24.72, 0.005: 26.76 },
+        12: { 0.995:  3.07, 0.99:  3.57, 0.975:  4.40, 0.95:  5.23, 0.9:  6.30, 0.5: 11.34, 0.1: 18.55, 0.05: 21.03, 0.025: 23.34, 0.01: 26.22, 0.005: 28.30 },
+        13: { 0.995:  3.57, 0.99:  4.11, 0.975:  5.01, 0.95:  5.89, 0.9:  7.04, 0.5: 12.34, 0.1: 19.81, 0.05: 22.36, 0.025: 24.74, 0.01: 27.69, 0.005: 29.82 },
+        14: { 0.995:  4.07, 0.99:  4.66, 0.975:  5.63, 0.95:  6.57, 0.9:  7.79, 0.5: 13.34, 0.1: 21.06, 0.05: 23.68, 0.025: 26.12, 0.01: 29.14, 0.005: 31.32 },
+        15: { 0.995:  4.60, 0.99:  5.23, 0.975:  6.27, 0.95:  7.26, 0.9:  8.55, 0.5: 14.34, 0.1: 22.31, 0.05: 25.00, 0.025: 27.49, 0.01: 30.58, 0.005: 32.80 },
+        16: { 0.995:  5.14, 0.99:  5.81, 0.975:  6.91, 0.95:  7.96, 0.9:  9.31, 0.5: 15.34, 0.1: 23.54, 0.05: 26.30, 0.025: 28.85, 0.01: 32.00, 0.005: 34.27 },
+        17: { 0.995:  5.70, 0.99:  6.41, 0.975:  7.56, 0.95:  8.67, 0.9: 10.09, 0.5: 16.34, 0.1: 24.77, 0.05: 27.59, 0.025: 30.19, 0.01: 33.41, 0.005: 35.72 },
+        18: { 0.995:  6.26, 0.99:  7.01, 0.975:  8.23, 0.95:  9.39, 0.9: 10.87, 0.5: 17.34, 0.1: 25.99, 0.05: 28.87, 0.025: 31.53, 0.01: 34.81, 0.005: 37.16 },
+        19: { 0.995:  6.84, 0.99:  7.63, 0.975:  8.91, 0.95: 10.12, 0.9: 11.65, 0.5: 18.34, 0.1: 27.20, 0.05: 30.14, 0.025: 32.85, 0.01: 36.19, 0.005: 38.58 },
+        20: { 0.995:  7.43, 0.99:  8.26, 0.975:  9.59, 0.95: 10.85, 0.9: 12.44, 0.5: 19.34, 0.1: 28.41, 0.05: 31.41, 0.025: 34.17, 0.01: 37.57, 0.005: 40.00 },
+        21: { 0.995:  8.03, 0.99:  8.90, 0.975: 10.28, 0.95: 11.59, 0.9: 13.24, 0.5: 20.34, 0.1: 29.62, 0.05: 32.67, 0.025: 35.48, 0.01: 38.93, 0.005: 41.40 },
+        22: { 0.995:  8.64, 0.99:  9.54, 0.975: 10.98, 0.95: 12.34, 0.9: 14.04, 0.5: 21.34, 0.1: 30.81, 0.05: 33.92, 0.025: 36.78, 0.01: 40.29, 0.005: 42.80 },
+        23: { 0.995:  9.26, 0.99: 10.20, 0.975: 11.69, 0.95: 13.09, 0.9: 14.85, 0.5: 22.34, 0.1: 32.01, 0.05: 35.17, 0.025: 38.08, 0.01: 41.64, 0.005: 44.18 },
+        24: { 0.995:  9.89, 0.99: 10.86, 0.975: 12.40, 0.95: 13.85, 0.9: 15.66, 0.5: 23.34, 0.1: 33.20, 0.05: 36.42, 0.025: 39.36, 0.01: 42.98, 0.005: 45.56 },
+        25: { 0.995: 10.52, 0.99: 11.52, 0.975: 13.12, 0.95: 14.61, 0.9: 16.47, 0.5: 24.34, 0.1: 34.28, 0.05: 37.65, 0.025: 40.65, 0.01: 44.31, 0.005: 46.93 },
+        26: { 0.995: 11.16, 0.99: 12.20, 0.975: 13.84, 0.95: 15.38, 0.9: 17.29, 0.5: 25.34, 0.1: 35.56, 0.05: 38.89, 0.025: 41.92, 0.01: 45.64, 0.005: 48.29 },
+        27: { 0.995: 11.81, 0.99: 12.88, 0.975: 14.57, 0.95: 16.15, 0.9: 18.11, 0.5: 26.34, 0.1: 36.74, 0.05: 40.11, 0.025: 43.19, 0.01: 46.96, 0.005: 49.65 },
+        28: { 0.995: 12.46, 0.99: 13.57, 0.975: 15.31, 0.95: 16.93, 0.9: 18.94, 0.5: 27.34, 0.1: 37.92, 0.05: 41.34, 0.025: 44.46, 0.01: 48.28, 0.005: 50.99 },
+        29: { 0.995: 13.12, 0.99: 14.26, 0.975: 16.05, 0.95: 17.71, 0.9: 19.77, 0.5: 28.34, 0.1: 39.09, 0.05: 42.56, 0.025: 45.72, 0.01: 49.59, 0.005: 52.34 },
+        30: { 0.995: 13.79, 0.99: 14.95, 0.975: 16.79, 0.95: 18.49, 0.9: 20.60, 0.5: 29.34, 0.1: 40.26, 0.05: 43.77, 0.025: 46.98, 0.01: 50.89, 0.005: 53.67 },
+        40: { 0.995: 20.71, 0.99: 22.16, 0.975: 24.43, 0.95: 26.51, 0.9: 29.05, 0.5: 39.34, 0.1: 51.81, 0.05: 55.76, 0.025: 59.34, 0.01: 63.69, 0.005: 66.77 },
+        50: { 0.995: 27.99, 0.99: 29.71, 0.975: 32.36, 0.95: 34.76, 0.9: 37.69, 0.5: 49.33, 0.1: 63.17, 0.05: 67.50, 0.025: 71.42, 0.01: 76.15, 0.005: 79.49 },
+        60: { 0.995: 35.53, 0.99: 37.48, 0.975: 40.48, 0.95: 43.19, 0.9: 46.46, 0.5: 59.33, 0.1: 74.40, 0.05: 79.08, 0.025: 83.30, 0.01: 88.38, 0.005: 91.95 },
+        70: { 0.995: 43.28, 0.99: 45.44, 0.975: 48.76, 0.95: 51.74, 0.9: 55.33, 0.5: 69.33, 0.1: 85.53, 0.05: 90.53, 0.025: 95.02, 0.01: 100.42, 0.005: 104.22 },
+        80: { 0.995: 51.17, 0.99: 53.54, 0.975: 57.15, 0.95: 60.39, 0.9: 64.28, 0.5: 79.33, 0.1: 96.58, 0.05: 101.88, 0.025: 106.63, 0.01: 112.33, 0.005: 116.32 },
+        90: { 0.995: 59.20, 0.99: 61.75, 0.975: 65.65, 0.95: 69.13, 0.9: 73.29, 0.5: 89.33, 0.1: 107.57, 0.05: 113.14, 0.025: 118.14, 0.01: 124.12, 0.005: 128.30 },
+        100: { 0.995: 67.33, 0.99: 70.06, 0.975: 74.22, 0.95: 77.93, 0.9: 82.36, 0.5: 99.33, 0.1: 118.50, 0.05: 124.34, 0.025: 129.56, 0.01: 135.81, 0.005: 140.17 }
+    };
+
+    // # χ2 (Chi-Squared) Goodness-of-Fit Test
+    //
+    // The [χ2 (Chi-Squared) Goodness-of-Fit Test](http://en.wikipedia.org/wiki/Goodness_of_fit#Pearson.27s_chi-squared_test)
+    // uses a measure of goodness of fit which is the sum of differences between observed and expected outcome frequencies
+    // (that is, counts of observations), each squared and divided by the number of observations expected given the
+    // hypothesized distribution. The resulting χ2 statistic, `chi_squared`, can be compared to the chi-squared distribution
+    // to determine the goodness of fit. In order to determine the degrees of freedom of the chi-squared distribution, one
+    // takes the total number of observed frequencies and subtracts the number of estimated parameters. The test statistic
+    // follows, approximately, a chi-square distribution with (k − c) degrees of freedom where `k` is the number of non-empty
+    // cells and `c` is the number of estimated parameters for the distribution.
+    function chi_squared_goodness_of_fit(data, distribution_type, significance) {
+        // Estimate from the sample data, a weighted mean.
+        var input_mean = mean(data),
+            // Calculated value of the χ2 statistic.
+            chi_squared = 0,
+            // Degrees of freedom, calculated as (number of class intervals -
+            // number of hypothesized distribution parameters estimated - 1)
+            degrees_of_freedom,
+            // Number of hypothesized distribution parameters estimated, expected to be supplied in the distribution test.
+            // Lose one degree of freedom for estimating `lambda` from the sample data.
+            c = 1,
+            // The hypothesized distribution.
+            // Generate the hypothesized distribution.
+            hypothesized_distribution = distribution_type(input_mean),
+            observed_frequencies = [],
+            expected_frequencies = [],
+            k;
+
+        // Create an array holding a histogram from the sample data, of
+        // the form `{ value: numberOfOcurrences }`
+        for (var i = 0; i < data.length; i++) {
+            if (observed_frequencies[data[i]] === undefined) {
+                observed_frequencies[data[i]] = 0;
+            }
+            observed_frequencies[data[i]]++;
+        }
+
+        // The histogram we created might be sparse - there might be gaps
+        // between values. So we iterate through the histogram, making
+        // sure that instead of undefined, gaps have 0 values.
+        for (i = 0; i < observed_frequencies.length; i++) {
+            if (observed_frequencies[i] === undefined) {
+                observed_frequencies[i] = 0;
+            }
+        }
+
+        // Create an array holding a histogram of expected data given the
+        // sample size and hypothesized distribution.
+        for (k in hypothesized_distribution) {
+            if (k in observed_frequencies) {
+                expected_frequencies[k] = hypothesized_distribution[k] * data.length;
+            }
+        }
+
+        // Working backward through the expected frequencies, collapse classes
+        // if less than three observations are expected for a class.
+        // This transformation is applied to the observed frequencies as well.
+        for (k = expected_frequencies.length - 1; k >= 0; k--) {
+            if (expected_frequencies[k] < 3) {
+                expected_frequencies[k - 1] += expected_frequencies[k];
+                expected_frequencies.pop();
+
+                observed_frequencies[k - 1] += observed_frequencies[k];
+                observed_frequencies.pop();
+            }
+        }
+
+        // Iterate through the squared differences between observed & expected
+        // frequencies, accumulating the `chi_squared` statistic.
+        for (k = 0; k < observed_frequencies.length; k++) {
+            chi_squared += Math.pow(
+                observed_frequencies[k] - expected_frequencies[k], 2) /
+                expected_frequencies[k];
+        }
+
+        // Calculate degrees of freedom for this test and look it up in the
+        // `chi_squared_distribution_table` in order to
+        // accept or reject the goodness-of-fit of the hypothesized distribution.
+        degrees_of_freedom = observed_frequencies.length - c - 1;
+        return chi_squared_distribution_table[degrees_of_freedom][significance] < chi_squared;
+    }
+
+    // # Mixin
+    //
+    // Mixin simple_statistics to a single Array instance if provided
+    // or the Array native object if not. This is an optional
+    // feature that lets you treat simple_statistics as a native feature
+    // of Javascript.
+    function mixin(array) {
+        var support = !!(Object.defineProperty && Object.defineProperties);
+        if (!support) throw new Error('without defineProperty, simple-statistics cannot be mixed in');
+
+        // only methods which work on basic arrays in a single step
+        // are supported
+        var arrayMethods = ['median', 'standard_deviation', 'sum',
+            'sample_skewness',
+            'mean', 'min', 'max', 'quantile', 'geometric_mean',
+            'harmonic_mean'];
+
+        // create a closure with a method name so that a reference
+        // like `arrayMethods[i]` doesn't follow the loop increment
+        function wrap(method) {
+            return function() {
+                // cast any arguments into an array, since they're
+                // natively objects
+                var args = Array.prototype.slice.apply(arguments);
+                // make the first argument the array itself
+                args.unshift(this);
+                // return the result of the ss method
+                return ss[method].apply(ss, args);
+            };
+        }
+
+        // select object to extend
+        var extending;
+        if (array) {
+            // create a shallow copy of the array so that our internal
+            // operations do not change it by reference
+            extending = array.slice();
+        } else {
+            extending = Array.prototype;
+        }
+
+        // for each array function, define a function that gets
+        // the array as the first argument.
+        // We use [defineProperty](https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/Object/defineProperty)
+        // because it allows these properties to be non-enumerable:
+        // `for (var in x)` loops will not run into problems with this
+        // implementation.
+        for (var i = 0; i < arrayMethods.length; i++) {
+            Object.defineProperty(extending, arrayMethods[i], {
+                value: wrap(arrayMethods[i]),
+                configurable: true,
+                enumerable: false,
+                writable: true
+            });
+        }
+
+        return extending;
+    }
+
+    ss.linear_regression = linear_regression;
+    ss.standard_deviation = standard_deviation;
+    ss.r_squared = r_squared;
+    ss.median = median;
+    ss.mean = mean;
+    ss.mode = mode;
+    ss.min = min;
+    ss.max = max;
+    ss.sum = sum;
+    ss.quantile = quantile;
+    ss.quantile_sorted = quantile_sorted;
+    ss.iqr = iqr;
+    ss.mad = mad;
+
+    ss.sample_covariance = sample_covariance;
+    ss.sample_correlation = sample_correlation;
+    ss.sample_variance = sample_variance;
+    ss.sample_standard_deviation = sample_standard_deviation;
+    ss.sample_skewness = sample_skewness;
+
+    ss.geometric_mean = geometric_mean;
+    ss.harmonic_mean = harmonic_mean;
+    ss.variance = variance;
+    ss.t_test = t_test;
+    ss.t_test_two_sample = t_test_two_sample;
+
+    // jenks
+    ss.jenksMatrices = jenksMatrices;
+    ss.jenksBreaks = jenksBreaks;
+    ss.jenks = jenks;
+
+    ss.bayesian = bayesian;
+
+    // Distribution-related methods
+    ss.epsilon = epsilon; // We make ε available to the test suite.
+    ss.factorial = factorial;
+    ss.bernoulli_distribution = bernoulli_distribution;
+    ss.binomial_distribution = binomial_distribution;
+    ss.poisson_distribution = poisson_distribution;
+    ss.chi_squared_goodness_of_fit = chi_squared_goodness_of_fit;
+
+    // Normal distribution
+    ss.z_score = z_score;
+    ss.cumulative_std_normal_probability = cumulative_std_normal_probability;
+    ss.standard_normal_table = standard_normal_table;
+
+    // Alias this into its common name
+    ss.average = mean;
+    ss.interquartile_range = iqr;
+    ss.mixin = mixin;
+    ss.median_absolute_deviation = mad;
+
+})(this);
+
+},{}],8:[function(require,module,exports){
+var inside = require('turf-inside')
+
+module.exports = function(polyFC, ptFC, outField, done){
+  polyFC.features.forEach(function(poly){
+    if(!poly.properties){
+      poly.properties = {}
+    }
+    var values = []
+    ptFC.features.forEach(function(pt){
+      if (inside(pt, poly)) {
+        values.push(1)
+      }
+    })
+    poly.properties[outField] = values.length
+  })
+
+  return polyFC;
 }
 
-},{"../lib/point":42,"../lib/polygon":43}],6:[function(_dereq_,module,exports){
+},{"turf-inside":55}],9:[function(require,module,exports){
+var ss = require('simple-statistics')
+var inside = require('turf-inside')
+
+module.exports = function(polyFC, ptFC, inField, outField, done){
+  polyFC.features.forEach(function(poly){
+    if(!poly.properties){
+      poly.properties = {}
+    }
+    var values = []
+    ptFC.features.forEach(function(pt){
+      if (inside(pt, poly)) {
+        values.push(pt.properties[inField]);
+      }
+    })
+    poly.properties[outField] = ss.standard_deviation(values)
+  })
+
+  return polyFC;
+}
+
+},{"simple-statistics":10,"turf-inside":55}],10:[function(require,module,exports){
+module.exports=require(7)
+},{}],11:[function(require,module,exports){
+var ss = require('simple-statistics')
+var inside = require('turf-inside')
+
+module.exports = function(polyFC, ptFC, inField, outField, done){
+  polyFC.features.forEach(function(poly){
+    if(!poly.properties){
+      poly.properties = {}
+    }
+    var values = []
+    ptFC.features.forEach(function(pt){
+      if (inside(pt, poly)) {
+        values.push(pt.properties[inField]);
+      }
+    })
+    poly.properties[outField] = ss.max(values)
+  })
+
+  return polyFC;
+}
+
+},{"simple-statistics":12,"turf-inside":55}],12:[function(require,module,exports){
+module.exports=require(7)
+},{}],13:[function(require,module,exports){
+var ss = require('simple-statistics')
+var inside = require('turf-inside')
+
+module.exports = function(polyFC, ptFC, inField, outField, done){
+  polyFC.features.forEach(function(poly){
+    if(!poly.properties){
+      poly.properties = {}
+    }
+    var values = []
+    ptFC.features.forEach(function(pt){
+      if (inside(pt, poly)) {
+        values.push(pt.properties[inField]);
+      }
+    })
+    poly.properties[outField] = ss.median(values)
+  })
+
+  return polyFC;
+}
+
+},{"simple-statistics":14,"turf-inside":55}],14:[function(require,module,exports){
+module.exports=require(7)
+},{}],15:[function(require,module,exports){
+var ss = require('simple-statistics')
+var inside = require('turf-inside')
+
+module.exports = function(polyFC, ptFC, inField, outField, done){
+  polyFC.features.forEach(function(poly){
+    if(!poly.properties){
+      poly.properties = {}
+    }
+    var values = []
+    ptFC.features.forEach(function(pt){
+      if (inside(pt, poly)) {
+        values.push(pt.properties[inField]);
+      }
+    })
+    poly.properties[outField] = ss.min(values)
+  })
+
+  return polyFC;
+}
+
+},{"simple-statistics":16,"turf-inside":55}],16:[function(require,module,exports){
+module.exports=require(7)
+},{}],17:[function(require,module,exports){
+var ss = require('simple-statistics')
+var inside = require('turf-inside')
+
+module.exports = function(polyFC, ptFC, inField, outField, done){
+  polyFC.features.forEach(function(poly){
+    if(!poly.properties){
+      poly.properties = {}
+    }
+    var values = []
+    ptFC.features.forEach(function(pt){
+      if (inside(pt, poly)) {
+        values.push(pt.properties[inField]);
+      }
+    })
+    poly.properties[outField] = ss.sum(values)
+  })
+
+  return polyFC;
+}
+
+},{"simple-statistics":18,"turf-inside":55}],18:[function(require,module,exports){
+module.exports=require(7)
+},{}],19:[function(require,module,exports){
+var ss = require('simple-statistics')
+var inside = require('turf-inside')
+
+module.exports = function(polyFC, ptFC, inField, outField, done){
+  polyFC.features.forEach(function(poly){
+    if(!poly.properties){
+      poly.properties = {}
+    }
+    var values = []
+    ptFC.features.forEach(function(pt){
+      if (inside(pt, poly)) {
+        values.push(pt.properties[inField]);
+      }
+    })
+    poly.properties[outField] = ss.variance(values)
+  })
+
+  return polyFC;
+}
+},{"simple-statistics":20,"turf-inside":55}],20:[function(require,module,exports){
+module.exports=require(7)
+},{}],21:[function(require,module,exports){
+module.exports=require(6)
+},{"simple-statistics":22,"turf-inside":55}],22:[function(require,module,exports){
+module.exports=require(7)
+},{}],23:[function(require,module,exports){
+var polygon = require('turf-polygon')
+
+module.exports = function(bbox){
+  var lowLeft = [bbox[0], bbox[1]]
+  var topLeft = [bbox[0], bbox[3]]
+  var topRight = [bbox[2], bbox[3]]
+  var lowRight = [bbox[2], bbox[1]]
+
+  var poly = polygon([[
+    lowLeft,
+    lowRight,
+    topRight,
+    topLeft,
+    lowLeft
+  ]])
+  return poly
+}
+
+},{"turf-polygon":78}],24:[function(require,module,exports){
 // code modded from here:
 //https://github.com/leszekr/bezier-spline-js/blob/master/bezier-spline.js
 var t = {}
-var _ = _dereq_('lodash')
-t.linestring = _dereq_('./linestring')
+t.linestring = require('turf-linestring')
 
-module.exports = function(line, resolution, intensity, done){
+module.exports = function(line, resolution, intensity){
   var lineOut = t.linestring([])
-
-  done = done || function () {};
 
   lineOut.properties = line.properties
   pts = []
-  _.each(line.geometry.coordinates, function(pt){
-    pts.push({x: pt[0], y: pt[1]})
+  pts = line.geometry.coordinates.map(function(pt){
+    return {x: pt[0], y: pt[1]}
   })
 
   var spline = new Spline({
@@ -201,8 +3127,7 @@ module.exports = function(line, resolution, intensity, done){
     if(Math.floor(i/100)%2==0) lineOut.geometry.coordinates.push([pos.x, pos.y]);
     //else ctx.moveTo(pos.x, pos.y);
   }
-  
-  done(null, lineOut)
+
   return lineOut;
 }
 
@@ -403,18 +3328,15 @@ module.exports = function(line, resolution, intensity, done){
     return this;
   }
 
-},{"./linestring":32,"lodash":66}],7:[function(_dereq_,module,exports){
-//http://stackoverflow.com/questions/839899/how-do-i-calculate-a-point-on-a-circles-circumference
-//radians = degrees * (pi/180)
-
+},{"turf-linestring":65}],25:[function(require,module,exports){
+// http://stackoverflow.com/questions/839899/how-do-i-calculate-a-point-on-a-circles-circumference
+// radians = degrees * (pi/180)
 // https://github.com/bjornharrtell/jsts/blob/master/examples/buffer.html
 
-var _ = _dereq_('lodash'),
-    jsts = _dereq_('jsts')
-var t = {}
-t.featurecollection = _dereq_('./featurecollection')
-t.polygon = _dereq_('./polygon')
-t.combine = _dereq_('./combine')
+var featurecollection = require('turf-featurecollection')
+var polygon = require('turf-polygon')
+var combine = require('turf-combine')
+var jsts = require('jsts')
 
 module.exports = function(feature, radius, units, done){
   var buffered;
@@ -433,7 +3355,7 @@ module.exports = function(feature, radius, units, done){
   }
 
   if(feature.type === 'FeatureCollection'){
-    var multi = t.combine(feature);
+    var multi = combine(feature);
     multi.properties = {}
 
     buffered = bufferOp(multi, radius);
@@ -462,4902 +3384,24 @@ var bufferOp = function(feature, radius){
       geometry: buffered,
       properties: {}
     }
-    buffered = t.featurecollection([buffered])
+    buffered = featurecollection([buffered])
   }
   else{
-    buffered = t.featurecollection([t.polygon(buffered.coordinates)])
+    buffered = featurecollection([polygon(buffered.coordinates)])
   }
 
   return buffered;
 }
-
-},{"./combine":10,"./featurecollection":22,"./polygon":43,"jsts":63,"lodash":66}],8:[function(_dereq_,module,exports){
-var t = {}
-var extent = _dereq_('./extent')
-t.extent = extent
-
-module.exports = function(layer, done){
-  var extent = t.extent(layer);
-  var x = (extent[0] +extent[2])/2
-  var y = (extent[1] + extent[3])/2
-  var center = {
-    "type": "Feature",
-    "geometry": {
-      "type": "Point",
-      "coordinates": [x, y]
-    }
-  }
-
-  done = done || function () {};
-
-  done(center)
-  return center;
-}
-
-},{"./extent":21}],9:[function(_dereq_,module,exports){
-var t = {}
-var _ = _dereq_('lodash'),
-    ss = _dereq_('simple-statistics')
-    explode = _dereq_('./explode'),
-    point = _dereq_('./point'),
-t.explode = explode
-t.point = point
-
-module.exports = function(features, done){
-  var vertices = t.explode(features);
-  var averageX,
-    averageY,
-    xs = [],
-    ys = [],
-    centroid
-
-  done = done || function () {};
-
-  if (vertices instanceof Error) {
-    done(vertices);
-    return vertices;
-  }
-
-  _.each(vertices.features, function(v){
-    xs.push(v.geometry.coordinates[0])
-    ys.push(v.geometry.coordinates[1])
-  })
-
-  averageX = ss.mean(xs)
-  averageY = ss.mean(ys)
-
-  centroid = t.point(averageX, averageY);
-
-  done(null, centroid)
-  return centroid;
-}
-
-},{"./explode":20,"./point":42,"lodash":66,"simple-statistics":67}],10:[function(_dereq_,module,exports){
-//this tool takes a feature collection of like geometries and combines them into a single multipoint, multilinestring, or multipolygon
-var _ = _dereq_('lodash')
-
-module.exports = function(fc, done){
-  var type = fc.features[0].geometry.type
-  var err
-  var geometries = _.pluck(fc.features, 'geometry')
-
-  done = done || function () {};
-
-  switch(type){
-    case 'Point':
-      var multiPoint = {
-        type: 'Feature',
-        geometry: {
-          type: 'MultiPoint',
-          coordinates: []
-        }
-      }
-      multiPoint.geometry.coordinates = _.pluck(geometries, 'coordinates')
-      done(err, multiPoint)
-      return multiPoint;
-    break
-    case 'LineString':
-      var multiLineString = {
-        type: 'Feature',
-        geometry: {
-          type: 'MultiLineString',
-          coordinates: []
-        }
-      }
-      multiLineString.geometry.coordinates = _.pluck(geometries, 'coordinates')
-      done(err, multiLineString)
-      return multiLineString;
-      break
-    case 'Polygon':
-      var multiPolygon = {
-        type: 'Feature',
-        geometry: {
-          type: 'MultiPolygon',
-          coordinates: []
-        }
-      }
-      multiPolygon.geometry.coordinates = _.pluck(geometries, 'coordinates')
-      done(err, multiPolygon)
-      return multiPolygon;
-    break
-  }
-}
-
-},{"lodash":66}],11:[function(_dereq_,module,exports){
-// 1. run tin on points
-// 2. calculate lenth of all edges and area of all triangles
-// 3. remove triangles that fail the max length test
-// 4. buffer the results slightly
-// 5. merge the results
-
-var async = _dereq_('async')
-var t = {}
-t.tin = _dereq_('./tin')
-t.merge = _dereq_('./merge')
-t.buffer = _dereq_('./buffer')
-t.distance = _dereq_('./distance')
-t.point = _dereq_('./point')
-
-module.exports = function(points, maxEdge, done){
-  var tinPolys,
-    filteredPolys,
-    bufferPolys,
-    mergePolys;
-
-  done = done || function () {};
-
-  tinPolys = t.tin(points, null);
-
-  if (tinPolys instanceof Error) {
-    done(err)
-    return tinPolys;
-  }
-
-  filteredPolys = filterTriangles(tinPolys.features, maxEdge)
-  tinPolys.features = filteredPolys
-
-  bufferPolys = t.buffer(tinPolys, 1, 'miles')
-
-  if (bufferPolys instanceof Error) {
-    done(err);
-    return bufferPolys;
-  }
-
-  mergePolys = t.merge(bufferPolys);
-
-  if (mergePolys instanceof Error) {
-    done(err);
-    return mergePolys;
-  }
-
-  done(null, mergePolys)
-  return mergePolys;
-}
-
-var filterTriangles = function(triangles, maxEdge, cb){
-  filteredTriangles = []
-
-  _.each(triangles, function (triangle) {
-    var pt1 = t.point(triangle.geometry.coordinates[0][0][0], triangle.geometry.coordinates[0][0][1])
-    var pt2 = t.point(triangle.geometry.coordinates[0][1][0], triangle.geometry.coordinates[0][1][1])
-    var pt3 = t.point(triangle.geometry.coordinates[0][2][0], triangle.geometry.coordinates[0][2][1])
-    var dist1 = t.distance(pt1, pt2, 'miles');
-    var dist2 = t.distance(pt2, pt3, 'miles');
-    var dist3 = t.distance(pt1, pt3, 'miles');
-
-    if(dist1 <= maxEdge && dist2 <= maxEdge && dist3 <= maxEdge){
-      filteredTriangles.push(triangle)
-    }
-  })
-
-  return filteredTriangles;
-}
-
-},{"./buffer":7,"./distance":16,"./merge":36,"./point":42,"./tin":54,"async":59}],12:[function(_dereq_,module,exports){
-//https://github.com/jasondavies/conrec.js
-//http://stackoverflow.com/questions/263305/drawing-a-topographical-map
-var _ = _dereq_('lodash'),
-    async = _dereq_('async')
-var t = {}
-t.tin = _dereq_('./tin')
-t.inside = _dereq_('./inside')
-t.grid = _dereq_('./grid')
-t.extent = _dereq_('./extent')
-t.planepoint = _dereq_('./planepoint')
-t.featurecollection = _dereq_('./featurecollection')
-t.polygon = _dereq_('./polygon')
-t.square = _dereq_('./square')
-t.donuts = _dereq_('./donuts')
-t.merge = _dereq_('./merge')
-
-module.exports = function(points, z, resolution, breaks, donuts, done){
-  var tinResult = t.tin(points, z),
-    gridResult = t.grid(t.square(t.extent(points))),
-    data = [];
-
-  done = done || function () {};
-
-  _(gridResult.features).each(function(pt){
-    _(tinResult.features).each(function(triangle){
-      if (t.inside(pt, triangle)) {
-        pt.properties = {}
-        pt.properties[z] = t.planepoint(pt, triangle);
-      }
-    })
-  })
-
-  var depth = Math.sqrt(gridResult.features.length)
-  for (var x=0; x<depth; x++){
-    var xGroup = gridResult.features.slice(x * depth, (x + 1) * depth)
-    var xFlat = []
-    _.each(xGroup, function(verticalPoint){
-      if(verticalPoint.properties){
-        xFlat.push(verticalPoint.properties[z])
-      } else{
-        xFlat.push(0)
-      }
-    })
-    data.push(xFlat)
-  }
-  var interval = (bbox[2] - bbox[0]) / depth
-  var xCoordinates = []
-  var yCoordinates = []
-  for (var x=0; x<depth; x++){
-    xCoordinates.push(x * interval + bbox[0])
-    yCoordinates.push(x * interval + bbox[1])
-  }
-
-  var c = new Conrec
-  c.contour(data, 0, resolution, 0, resolution, xCoordinates, yCoordinates, breaks.length, breaks)
-  var contourList = c.contourList()
-
-  var fc = t.featurecollection([])
-  _.each(contourList, function(c){
-    if(c.length > 2){
-      var polyCoordinates = []
-      _.each(c, function(coord){
-        polyCoordinates.push([coord.x, coord.y])
-      })
-      var poly = t.polygon([polyCoordinates])
-      poly.properties = {}
-      poly.properties[z] = c.level
-
-      fc.features.push(poly)
-    }
-  })
-
-  // perform donuts function and dissolves rings before returning if donuts option is true
-  if(donuts){
-    var donutPolys = t.donuts(fc);
-    var zGroups = []
-    _.each(donutPolys.features, function(ring){
-      var found = false
-      _.each(zGroups, function(group){
-        if(group.z === ring.properties[z]){
-          found = true
-          group.rings.push(ring)
-        }
-      })
-      if(!found){
-        zGroups.push({z: ring.properties[z], rings: [ring]})
-      }
-    })
-    donutPolys.features = []
-    _.each(zGroups, function(group){
-      donutPolys.features.push(t.merge(t.featurecollection(group.rings)))
-    })
-    done(null, donutPolys)
-    return donutPolys;
-  }
-  else {
-    done(null, fc)
-    return fc;
-  }
-
-}
-
-
-/**
- * Copyright (c) 2010, Jason Davies.
- *
- * All rights reserved.  This code is based on Bradley White's Java version,
- * which is in turn based on Nicholas Yue's C++ version, which in turn is based
- * on Paul D. Bourke's original Fortran version.  See below for the respective
- * copyright notices.
- *
- * See http://local.wasp.uwa.edu.au/~pbourke/papers/conrec/ for the original
- * paper by Paul D. Bourke.
- *
- * The vector conversion code is based on http://apptree.net/conrec.htm by
- * Graham Cox.
- *
- * Redistribution and use in source and binary forms, with or without
- * modification, are permitted provided that the following conditions are met:
- *     * Redistributions of source code must retain the above copyright
- *       notice, this list of conditions and the following disclaimer.
- *     * Redistributions in binary form must reproduce the above copyright
- *       notice, this list of conditions and the following disclaimer in the
- *       documentation and/or other materials provided with the distribution.
- *     * Neither the name of the <organization> nor the
- *       names of its contributors may be used to endorse or promote products
- *       derived from this software without specific prior written permission.
- *
- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
- * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
- * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
- * ARE DISCLAIMED. IN NO EVENT SHALL <COPYRIGHT HOLDER> BE LIABLE FOR ANY
- * DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
- * (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
- * LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
- * ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
- * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
- * THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
- */
-
-/*
- * Copyright (c) 1996-1997 Nicholas Yue
- *
- * This software is copyrighted by Nicholas Yue. This code is based on Paul D.
- * Bourke's CONREC.F routine.
- *
- * The authors hereby grant permission to use, copy, and distribute this
- * software and its documentation for any purpose, provided that existing
- * copyright notices are retained in all copies and that this notice is
- * included verbatim in any distributions. Additionally, the authors grant
- * permission to modify this software and its documentation for any purpose,
- * provided that such modifications are not distributed without the explicit
- * consent of the authors and that existing copyright notices are retained in
- * all copies. Some of the algorithms implemented by this software are
- * patented, observe all applicable patent law.
- *
- * IN NO EVENT SHALL THE AUTHORS OR DISTRIBUTORS BE LIABLE TO ANY PARTY FOR
- * DIRECT, INDIRECT, SPECIAL, INCIDENTAL, OR CONSEQUENTIAL DAMAGES ARISING OUT
- * OF THE USE OF THIS SOFTWARE, ITS DOCUMENTATION, OR ANY DERIVATIVES THEREOF,
- * EVEN IF THE AUTHORS HAVE BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
- *
- * THE AUTHORS AND DISTRIBUTORS SPECIFICALLY DISCLAIM ANY WARRANTIES,
- * INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE, AND NON-INFRINGEMENT.  THIS SOFTWARE IS
- * PROVIDED ON AN "AS IS" BASIS, AND THE AUTHORS AND DISTRIBUTORS HAVE NO
- * OBLIGATION TO PROVIDE MAINTENANCE, SUPPORT, UPDATES, ENHANCEMENTS, OR
- * MODIFICATIONS.
- */
-
-
-  exports.Conrec = Conrec;
-
-  var EPSILON = 1e-10;
-
-  function pointsEqual(a, b) {
-    var x = a.x - b.x, y = a.y - b.y;
-    return x * x + y * y < EPSILON;
-  }
-
-  function reverseList(list) {
-    var pp = list.head;
-
-    while (pp) {
-      // swap prev/next pointers
-      var temp = pp.next;
-      pp.next = pp.prev;
-      pp.prev = temp;
-
-      // continue through the list
-      pp = temp;
-    }
-
-    // swap head/tail pointers
-    var temp = list.head;
-    list.head = list.tail;
-    list.tail = temp;
-  }
-
-  function ContourBuilder(level) {
-    this.level = level;
-    this.s = null;
-    this.count = 0;
-  }
-  ContourBuilder.prototype.remove_seq = function(list) {
-    // if list is the first item, static ptr s is updated
-    if (list.prev) {
-      list.prev.next = list.next;
-    } else {
-      this.s = list.next;
-    }
-
-    if (list.next) {
-      list.next.prev = list.prev;
-    }
-    --this.count;
-  }
-  ContourBuilder.prototype.addSegment = function(a, b) {
-    var ss = this.s;
-    var ma = null;
-    var mb = null;
-    var prependA = false;
-    var prependB = false;
-
-    while (ss) {
-      if (ma == null) {
-        // no match for a yet
-        if (pointsEqual(a, ss.head.p)) {
-          ma = ss;
-          prependA = true;
-        } else if (pointsEqual(a, ss.tail.p)) {
-          ma = ss;
-        }
-      }
-      if (mb == null) {
-        // no match for b yet
-        if (pointsEqual(b, ss.head.p)) {
-          mb = ss;
-          prependB = true;
-        } else if (pointsEqual(b, ss.tail.p)) {
-          mb = ss;
-        }
-      }
-      // if we matched both no need to continue searching
-      if (mb != null && ma != null) {
-        break;
-      } else {
-        ss = ss.next;
-      }
-    }
-
-    // c is the case selector based on which of ma and/or mb are set
-    var c = ((ma != null) ? 1 : 0) | ((mb != null) ? 2 : 0);
-
-    switch(c) {
-      case 0:   // both unmatched, add as new sequence
-        var aa = {p: a, prev: null};
-        var bb = {p: b, next: null};
-        aa.next = bb;
-        bb.prev = aa;
-
-        // create sequence element and push onto head of main list. The order
-        // of items in this list is unimportant
-        ma = {head: aa, tail: bb, next: this.s, prev: null, closed: false};
-        if (this.s) {
-          this.s.prev = ma;
-        }
-        this.s = ma;
-
-        ++this.count;    // not essential - tracks number of unmerged sequences
-      break;
-
-      case 1:   // a matched, b did not - thus b extends sequence ma
-        var pp = {p: b};
-
-        if (prependA) {
-          pp.next = ma.head;
-          pp.prev = null;
-          ma.head.prev = pp;
-          ma.head = pp;
-        } else {
-          pp.next = null;
-          pp.prev = ma.tail;
-          ma.tail.next = pp;
-          ma.tail = pp;
-        }
-      break;
-
-      case 2:   // b matched, a did not - thus a extends sequence mb
-        var pp = {p: a};
-
-        if (prependB) {
-          pp.next = mb.head;
-          pp.prev = null;
-          mb.head.prev = pp;
-          mb.head = pp;
-        } else {
-          pp.next = null;
-          pp.prev = mb.tail;
-          mb.tail.next = pp;
-          mb.tail = pp;
-        }
-      break;
-
-      case 3:   // both matched, can merge sequences
-        // if the sequences are the same, do nothing, as we are simply closing this path (could set a flag)
-
-        if (ma === mb) {
-          var pp = {p: ma.tail.p, next: ma.head, prev: null};
-          ma.head.prev = pp;
-          ma.head = pp;
-          ma.closed = true;
-          break;
-        }
-
-        // there are 4 ways the sequence pair can be joined. The current setting of prependA and
-        // prependB will tell us which type of join is needed. For head/head and tail/tail joins
-        // one sequence needs to be reversed
-        switch((prependA ? 1 : 0) | (prependB ? 2 : 0)) {
-          case 0:   // tail-tail
-            // reverse ma and append to mb
-            reverseList(ma);
-            // fall through to head/tail case
-          case 1:   // head-tail
-            // ma is appended to mb and ma discarded
-            mb.tail.next = ma.head;
-            ma.head.prev = mb.tail;
-            mb.tail = ma.tail;
-
-            //discard ma sequence record
-            this.remove_seq(ma);
-          break;
-
-          case 3:   // head-head
-            // reverse ma and append mb to it
-            reverseList(ma);
-            // fall through to tail/head case
-          case 2:   // tail-head
-            // mb is appended to ma and mb is discarded
-            ma.tail.next = mb.head;
-            mb.head.prev = ma.tail;
-            ma.tail = mb.tail;
-
-            //discard mb sequence record
-            this.remove_seq(mb);
-        break;
-      }
-    }
-  }
-
-  /**
-   * Implements CONREC.
-   *
-   * @param {function} drawContour function for drawing contour.  Defaults to a
-   *                               custom "contour builder", which populates the
-   *                               contours property.
-   */
-  function Conrec(drawContour) {
-    if (!drawContour) {
-      var c = this;
-      c.contours = {};
-      /**
-       * drawContour - interface for implementing the user supplied method to
-       * render the countours.
-       *
-       * Draws a line between the start and end coordinates.
-       *
-       * @param startX    - start coordinate for X
-       * @param startY    - start coordinate for Y
-       * @param endX      - end coordinate for X
-       * @param endY      - end coordinate for Y
-       * @param contourLevel - Contour level for line.
-       */
-      this.drawContour = function(startX, startY, endX, endY, contourLevel, k) {
-        var cb = c.contours[k];
-        if (!cb) {
-          cb = c.contours[k] = new ContourBuilder(contourLevel);
-        }
-        cb.addSegment({x: startX, y: startY}, {x: endX, y: endY});
-      }
-      this.contourList = function() {
-        var l = [];
-        var a = c.contours;
-        for (var k in a) {
-          var s = a[k].s;
-          var level = a[k].level;
-          while (s) {
-            var h = s.head;
-            var l2 = [];
-            l2.level = level;
-            l2.k = k;
-            while (h && h.p) {
-              l2.push(h.p);
-              h = h.next;
-            }
-            l.push(l2);
-            s = s.next;
-          }
-        }
-        l.sort(function(a, b) { return a.k - b.k });
-        return l;
-      }
-    } else {
-      this.drawContour = drawContour;
-    }
-    this.h  = new Array(5);
-    this.sh = new Array(5);
-    this.xh = new Array(5);
-    this.yh = new Array(5);
-  }
-
-  /**
-   * contour is a contouring subroutine for rectangularily spaced data
-   *
-   * It emits calls to a line drawing subroutine supplied by the user which
-   * draws a contour map corresponding to real*4data on a randomly spaced
-   * rectangular grid. The coordinates emitted are in the same units given in
-   * the x() and y() arrays.
-   *
-   * Any number of contour levels may be specified but they must be in order of
-   * increasing value.
-   *
-   *
-   * @param {number[][]} d - matrix of data to contour
-   * @param {number} ilb,iub,jlb,jub - index bounds of data matrix
-   *
-   *             The following two, one dimensional arrays (x and y) contain
-   *             the horizontal and vertical coordinates of each sample points.
-   * @param {number[]} x  - data matrix column coordinates
-   * @param {number[]} y  - data matrix row coordinates
-   * @param {number} nc   - number of contour levels
-   * @param {number[]} z  - contour levels in increasing order.
-   */
-  Conrec.prototype.contour = function(d, ilb, iub, jlb, jub, x, y, nc, z) {
-    var h = this.h, sh = this.sh, xh = this.xh, yh = this.yh;
-    var drawContour = this.drawContour;
-    this.contours = {};
-
-    /** private */
-    var xsect = function(p1, p2){
-      return (h[p2]*xh[p1]-h[p1]*xh[p2])/(h[p2]-h[p1]);
-    }
-
-    var ysect = function(p1, p2){
-      return (h[p2]*yh[p1]-h[p1]*yh[p2])/(h[p2]-h[p1]);
-    }
-    var m1;
-    var m2;
-    var m3;
-    var case_value;
-    var dmin;
-    var dmax;
-    var x1 = 0.0;
-    var x2 = 0.0;
-    var y1 = 0.0;
-    var y2 = 0.0;
-
-    // The indexing of im and jm should be noted as it has to start from zero
-    // unlike the fortran counter part
-    var im = [0, 1, 1, 0];
-    var jm = [0, 0, 1, 1];
-
-    // Note that castab is arranged differently from the FORTRAN code because
-    // Fortran and C/C++ arrays are transposed of each other, in this case
-    // it is more tricky as castab is in 3 dimensions
-    var castab = [
-      [
-        [0, 0, 8], [0, 2, 5], [7, 6, 9]
-      ],
-      [
-        [0, 3, 4], [1, 3, 1], [4, 3, 0]
-      ],
-      [
-        [9, 6, 7], [5, 2, 0], [8, 0, 0]
-      ]
-    ];
-
-    for (var j=(jub-1);j>=jlb;j--) {
-      for (var i=ilb;i<=iub-1;i++) {
-        var temp1, temp2;
-        temp1 = Math.min(d[i][j],d[i][j+1]);
-        temp2 = Math.min(d[i+1][j],d[i+1][j+1]);
-        dmin  = Math.min(temp1,temp2);
-        temp1 = Math.max(d[i][j],d[i][j+1]);
-        temp2 = Math.max(d[i+1][j],d[i+1][j+1]);
-        dmax  = Math.max(temp1,temp2);
-
-        if (dmax>=z[0]&&dmin<=z[nc-1]) {
-          for (var k=0;k<nc;k++) {
-            if (z[k]>=dmin&&z[k]<=dmax) {
-              for (var m=4;m>=0;m--) {
-                if (m>0) {
-                  // The indexing of im and jm should be noted as it has to
-                  // start from zero
-                  h[m] = d[i+im[m-1]][j+jm[m-1]]-z[k];
-                  xh[m] = x[i+im[m-1]];
-                  yh[m] = y[j+jm[m-1]];
-                } else {
-                  h[0] = 0.25*(h[1]+h[2]+h[3]+h[4]);
-                  xh[0]=0.5*(x[i]+x[i+1]);
-                  yh[0]=0.5*(y[j]+y[j+1]);
-                }
-                if (h[m]>EPSILON) {
-                  sh[m] = 1;
-                } else if (h[m]<-EPSILON) {
-                  sh[m] = -1;
-                } else
-                  sh[m] = 0;
-              }
-              //
-              // Note: at this stage the relative heights of the corners and the
-              // centre are in the h array, and the corresponding coordinates are
-              // in the xh and yh arrays. The centre of the box is indexed by 0
-              // and the 4 corners by 1 to 4 as shown below.
-              // Each triangle is then indexed by the parameter m, and the 3
-              // vertices of each triangle are indexed by parameters m1,m2,and
-              // m3.
-              // It is assumed that the centre of the box is always vertex 2
-              // though this isimportant only when all 3 vertices lie exactly on
-              // the same contour level, in which case only the side of the box
-              // is drawn.
-              //
-              //
-              //      vertex 4 +-------------------+ vertex 3
-              //               | \               / |
-              //               |   \    m-3    /   |
-              //               |     \       /     |
-              //               |       \   /       |
-              //               |  m=2    X   m=2   |       the centre is vertex 0
-              //               |       /   \       |
-              //               |     /       \     |
-              //               |   /    m=1    \   |
-              //               | /               \ |
-              //      vertex 1 +-------------------+ vertex 2
-              //
-              //
-              //
-              //               Scan each triangle in the box
-              //
-              for (m=1;m<=4;m++) {
-                m1 = m;
-                m2 = 0;
-                if (m!=4) {
-                    m3 = m+1;
-                } else {
-                    m3 = 1;
-                }
-                case_value = castab[sh[m1]+1][sh[m2]+1][sh[m3]+1];
-                if (case_value!=0) {
-                  switch (case_value) {
-                    case 1: // Line between vertices 1 and 2
-                      x1=xh[m1];
-                      y1=yh[m1];
-                      x2=xh[m2];
-                      y2=yh[m2];
-                      break;
-                    case 2: // Line between vertices 2 and 3
-                      x1=xh[m2];
-                      y1=yh[m2];
-                      x2=xh[m3];
-                      y2=yh[m3];
-                      break;
-                    case 3: // Line between vertices 3 and 1
-                      x1=xh[m3];
-                      y1=yh[m3];
-                      x2=xh[m1];
-                      y2=yh[m1];
-                      break;
-                    case 4: // Line between vertex 1 and side 2-3
-                      x1=xh[m1];
-                      y1=yh[m1];
-                      x2=xsect(m2,m3);
-                      y2=ysect(m2,m3);
-                      break;
-                    case 5: // Line between vertex 2 and side 3-1
-                      x1=xh[m2];
-                      y1=yh[m2];
-                      x2=xsect(m3,m1);
-                      y2=ysect(m3,m1);
-                      break;
-                    case 6: //  Line between vertex 3 and side 1-2
-                      x1=xh[m3];
-                      y1=yh[m3];
-                      x2=xsect(m1,m2);
-                      y2=ysect(m1,m2);
-                      break;
-                    case 7: // Line between sides 1-2 and 2-3
-                      x1=xsect(m1,m2);
-                      y1=ysect(m1,m2);
-                      x2=xsect(m2,m3);
-                      y2=ysect(m2,m3);
-                      break;
-                    case 8: // Line between sides 2-3 and 3-1
-                      x1=xsect(m2,m3);
-                      y1=ysect(m2,m3);
-                      x2=xsect(m3,m1);
-                      y2=ysect(m3,m1);
-                      break;
-                    case 9: // Line between sides 3-1 and 1-2
-                      x1=xsect(m3,m1);
-                      y1=ysect(m3,m1);
-                      x2=xsect(m1,m2);
-                      y2=ysect(m1,m2);
-                      break;
-                    default:
-                      break;
-                  }
-                  // Put your processing code here and comment out the printf
-                  //printf("%f %f %f %f %f\n",x1,y1,x2,y2,z[k]);
-                  drawContour(x1,y1,x2,y2,z[k],k);
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-
-},{"./donuts":17,"./extent":21,"./featurecollection":22,"./grid":25,"./inside":26,"./merge":36,"./planepoint":41,"./polygon":43,"./square":51,"./tin":54,"async":59,"lodash":66}],13:[function(_dereq_,module,exports){
-// 1. run tin on points
-// 2. merge the tin
-//var topojson = require('')
-var t = {}
-t.tin = _dereq_('./tin')
-t.merge = _dereq_('./merge')
-t.buffer = _dereq_('./buffer')
-
-module.exports = function(points, done){
-  var tinPolys = t.tin(points, null),
-    mergePolys;
-
-  done = done || function () {};
-
-  if (tinPolys instanceof Error) {
-    done(tinPolys);
-    return tinPolys;
-  }
-
-  //mergePolys = t.merge(t.buffer(tinPolys, .05, 'miles'));
-  mergePolys = t.merge(tinPolys);
-
-  if (mergePolys instanceof Error) {
-    done(mergePolys);
-  } else {
-    done(null, mergePolys);
-  }
-
-  return mergePolys;
-}
-
-},{"./buffer":7,"./merge":36,"./tin":54}],14:[function(_dereq_,module,exports){
-var t = {}
-var _ = _dereq_('lodash')
-t.inside = _dereq_('./inside')
-
-module.exports = function(polyFC, ptFC, outField, done){
-
-  done = done || function () {};
-
-  _.each(polyFC.features, function(poly){
-    if(!poly.properties){
-      poly.properties = {}
-    }
-    var values = []
-    _.each(ptFC.features, function(pt){
-      if (t.inside(pt, poly)) {
-        values.push(1)
-      }
-    })
-    poly.properties[outField] = values.length
-  })
-
-  done(null, polyFC)
-  return polyFC;
-}
-
-},{"./inside":26,"lodash":66}],15:[function(_dereq_,module,exports){
-var t = {}
-var _ = _dereq_('lodash'),
-    ss = _dereq_('simple-statistics')
-t.inside = _dereq_('./inside')
-
-module.exports = function(polyFC, ptFC, inField, outField, done){
-
-  done = done || function () {};
-
-  _.each(polyFC.features, function(poly){
-    if(!poly.properties){
-      poly.properties = {}
-    }
-    var values = []
-    _.each(ptFC.features, function(pt){
-      if (t.inside(pt, poly)) {
-        values.push(pt.properties[inField])
-      }
-    })
-    poly.properties[outField] = ss.standard_deviation(values)
-  })
-
-  done(null, polyFC)
-  return polyFC;
-}
-
-},{"./inside":26,"lodash":66,"simple-statistics":67}],16:[function(_dereq_,module,exports){
-//http://en.wikipedia.org/wiki/Haversine_formula
-//http://www.movable-type.co.uk/scripts/latlong.html
-// expects a feature collection of points
-
-module.exports = function(point1, point2, units, done){
-  var toRad = function(degree){
-    return degree * Math.PI / 180
-  }
-  var coordinates1 = point1.geometry.coordinates
-  var coordinates2 = point2.geometry.coordinates
-
-  var dLat = toRad(coordinates2[0] - coordinates1[0])
-  var dLon = toRad(coordinates2[1] - coordinates1[1])
-  var lat1 = toRad(coordinates1[1])
-  var lat2 = toRad(coordinates2[1])
-  var a = Math.sin(dLat/2) * Math.sin(dLat/2) +
-          Math.sin(dLon/2) * Math.sin(dLon/2) * Math.cos(lat1) * Math.cos(lat2)
-  var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a))
-
-  var R = 0
-
-  done = done || function () {};
-
-  switch(units){
-    case 'miles':
-      R = 3960
-      break
-    case 'kilometers':
-      R = 6373
-      break
-    case 'degrees':
-      R = 57.2957795
-      break
-    case 'radians':
-      R = 1
-      break
-  }
-  var distance = R * c
-  done(null, distance)
-  return distance;
-}
-
-},{}],17:[function(_dereq_,module,exports){
-var _ = _dereq_('lodash')
-
-var t = {}
-t.featurecollection = _dereq_('./featurecollection')
-t.erase = _dereq_('./erase')
-t.point = _dereq_('./point')
-t.inside = _dereq_('./inside')
-t.union = _dereq_('./union')
-
-module.exports = function(fc, done){
-  done = done || function () {};
-
-  donuts = t.featurecollection([])
-  _.each(fc.features, function(poly1){
-    _.each(fc.features, function(poly2){
-      // if the polys are identical
-      if(_.isEqual(poly1, poly2)){
-        // do nothing
-      }
-      else{
-        //check to see if poly2 is inside of poly1
-        var isContained = contained(poly1, poly2);
-
-        // if it is contained and has different properties, erase poly2 from poly1
-        if(isContained && !_.isEqual(poly1.properties, poly2.properties)){
-          // erase poly2 from poly1
-          var erased = t.erase(poly1, poly2);
-          if(!_.some(donuts.features, erased)){
-            poly1 = erased
-          }
-        }
-        // if it is contained and has the same properties, merge poly1 and poly2
-        if(isContained && _.isEqual(poly1.properties, poly2.properties)){
-          // merge poly1 and poly2
-          var unioned = t.union(poly1, poly2);
-          if(!_.some(donuts.features, unioned)){
-            poly1 = unioned
-          }
-        }
-      }
-    })
-    // push transformed poly1 to donuts
-    donuts.features.push(poly1)
-  })
-  done(null, donuts)
-  return donuts;
-}
-
-function contained(poly1, poly2){
-  var sampleVertex = t.point(poly2.geometry.coordinates[0][0][0], poly2.geometry.coordinates[0][0][1])
-
-  return t.inside(sampleVertex, poly1);
-}
-
-},{"./erase":19,"./featurecollection":22,"./inside":26,"./point":42,"./union":56,"lodash":66}],18:[function(_dereq_,module,exports){
-var t = {}
-var extent = _dereq_('./extent'),
-    bboxPolygon = _dereq_('./bboxPolygon')
-t.bboxPolygon = bboxPolygon
-t.extent = extent
-
-module.exports = function(features, done){
-  var poly = t.bboxPolygon(t.extent(features));
-
-  done = done || function () {};
-
-  if (poly instanceof Error) {
-    done(poly);
-  } else {
-    done(null, poly);
-  }
-
-  return poly;
-}
-
-},{"./bboxPolygon":5,"./extent":21}],19:[function(_dereq_,module,exports){
-// look here for help http://svn.osgeo.org/grass/grass/branches/releasebranch_6_4/vector/v.overlay/main.c
-//must be array of polygons
-
-// depend on jsts for now https://github.com/bjornharrtell/jsts/blob/master/examples/overlay.html
-
-var jsts = _dereq_('jsts'),
-    _ = _dereq_('lodash')
-var t = {}
-t.featurecollection = _dereq_('./featurecollection')
-
-module.exports = function(poly1, poly2, done){
-  poly1 = correctRings(poly1)
-  poly2 = correctRings(poly2)
-
-  var reader = new jsts.io.GeoJSONReader()
-  var a = reader.read(JSON.stringify(poly1.geometry))
-  var b = reader.read(JSON.stringify(poly2.geometry))
-  var erased = a.difference(b);
-  var parser = new jsts.io.GeoJSONParser()
-  erased = parser.write(erased)
-
-  var newPoly = _.cloneDeep(poly1);
-  newPoly.geometry = erased
-
-  done = done || function () {};
-
-  done(null, newPoly)
-  return newPoly;
-}
-
-function correctRings(poly){
-  _.each(poly.geometry.coordinates, function(ring){
-    var isWrapped =_.isEqual(ring[0], ring.slice(-1)[0])
-    if(!isWrapped){
-      ring.push(ring[0])
-    }
-  })
-  return poly
-}
-
-},{"./featurecollection":22,"jsts":63,"lodash":66}],20:[function(_dereq_,module,exports){
-var t = {}
-var _ = _dereq_('lodash'),
-    featurecollection = _dereq_('./featurecollection'),
-    point = _dereq_('./point')
-t.featurecollection = featurecollection
-t.point = point
-
-module.exports = function(features, done){
-  var coordinates = []
-
-  done = done || function () {};
-
-  if(features.type === 'FeatureCollection'){
-    for(var i in features.features){
-      switch(features.features[i].geometry.type){
-        case 'Point':
-          coordinates.push([features.features[i].geometry.coordinates])
-          break
-        case 'LineString':
-          coordinates.push(features.features[i].geometry.coordinates)
-          break
-        case 'Polygon':
-          coordinates.push(features.features[i].geometry.coordinates)
-          coordinates.push(_.flatten(coordinates, true))
-          break
-        case 'MultiPoint':
-          coordinates.push(features.features[i].geometry.coordinates)
-          break
-        case 'MultiLineString':
-          coordinates.push(features.features[i].geometry.coordinates)
-          coordinates.push(_.flatten(coordinates, true))
-          break
-        case 'MultiPolygon':
-          coordinates.push(features.features[i].geometry.coordinates)
-          coordinates.push(_.flatten(coordinates, true))
-          coordinates.push(_.flatten(coordinates, true))
-          break
-      }
-      if(!features.features[i].geometry && features.features[i].properties){
-        throw new Error('Unknown Geometry Type')
-      }
-    }
-    coordinates = _.flatten(coordinates, true)
-  }
-  else{
-    var geometry
-    if(features.type === 'Feature'){
-      geometry = features.geometry
-    }
-    else{
-      geometry = features
-    }
-    switch(geometry.type){
-      case 'Point':
-        coordinates = [geometry.coordinates]
-        break
-      case 'LineString':
-        coordinates = geometry.coordinates
-        break
-      case 'Polygon':
-        coordinates = geometry.coordinates
-        coordinates = _.flatten(coordinates, true)
-        break
-      case 'MultiPoint':
-        coordinates = geometry.coordinates
-        break
-      case 'MultiLineString':
-        coordinates = geometry.coordinates
-        coordinates = _.flatten(coordinates, true)
-        break
-      case 'MultiPolygon':
-        coordinates = geometry.coordinates
-        coordinates = _.flatten(coordinates, true)
-        coordinates = _.flatten(coordinates, true)
-        break
-    }
-    if(!geometry){
-      throw new Error('No Geometry Found')
-    }
-  }
-  var fc = t.featurecollection([])
-  _.each(coordinates, function(c){
-    fc.features.push(t.point(c[0], c[1]))
-  })
-  done(null, fc)
-  return fc;
-}
-
-},{"./featurecollection":22,"./point":42,"lodash":66}],21:[function(_dereq_,module,exports){
-_ = _dereq_('lodash')
-
-module.exports = function(layer, done){
-  var xmin = Infinity,
-      ymin = Infinity,
-      xmax = -Infinity,
-      ymax = -Infinity
-
-  done = done || function () {};
-
-  if(layer.type === 'FeatureCollection'){
-    for(var i in layer.features){
-      var coordinates
-      switch(layer.features[i].geometry.type){
-        case 'Point':
-          coordinates = [layer.features[i].geometry.coordinates]
-          break
-        case 'LineString':
-          coordinates = layer.features[i].geometry.coordinates
-          break
-        case 'Polygon':
-          coordinates = layer.features[i].geometry.coordinates
-          coordinates = _.flatten(coordinates, true)
-          break
-        case 'MultiPoint':
-          coordinates = layer.features[i].geometry.coordinates
-          break
-        case 'MultiLineString':
-          coordinates = layer.features[i].geometry.coordinates
-          coordinates = _.flatten(coordinates, true)
-          break
-        case 'MultiPolygon':
-          coordinates = layer.features[i].geometry.coordinates
-          coordinates = _.flatten(coordinates, true)
-          coordinates = _.flatten(coordinates, true)
-          break
-      }
-      if(!layer.features[i].geometry && layer.features[i].properties){
-        throw new Error('Unknown Geometry Type')
-      }
-
-      for(var n in coordinates){
-        if(xmin > coordinates[n][0]){
-          xmin = coordinates[n][0]
-        }
-        if(ymin > coordinates[n][1]){
-          ymin = coordinates[n][1]
-        }
-        if(xmax < coordinates[n][0]){
-          xmax = coordinates[n][0]
-        }
-        if(ymax < coordinates[n][1]){
-          ymax = coordinates[n][1]
-        }
-      }
-    }
-    var bbox = [xmin, ymin, xmax, ymax]
-    done(null, bbox)
-    return bbox;
-  }
-  else{
-    var coordinates
-    var geometry
-    if(layer.type === 'Feature'){
-      geometry = layer.geometry
-    }
-    else{
-      geometry = layer
-    }
-    switch(geometry.type){
-      case 'Point':
-        coordinates = [geometry.coordinates]
-        break
-      case 'LineString':
-        coordinates = geometry.coordinates
-        break
-      case 'Polygon':
-        coordinates = geometry.coordinates
-        coordinates = _.flatten(coordinates, true)
-        break
-      case 'MultiPoint':
-        coordinates = geometry.coordinates
-        break
-      case 'MultiLineString':
-        coordinates = geometry.coordinates
-        coordinates = _.flatten(coordinates, true)
-        break
-      case 'MultiPolygon':
-        coordinates = geometry.coordinates
-        coordinates = _.flatten(coordinates, true)
-        coordinates = _.flatten(coordinates, true)
-        break
-    }
-    if(!geometry){
-      throw new Error('No Geometry Found')
-    }
-
-    for(var n in coordinates){
-      if(xmin > coordinates[n][0]){
-        xmin = coordinates[n][0]
-      }
-      if(ymin > coordinates[n][1]){
-        ymin = coordinates[n][1]
-      }
-      if(xmax < coordinates[n][0]){
-        xmax = coordinates[n][0]
-      }
-      if(ymax < coordinates[n][1]){
-        ymax = coordinates[n][1]
-      }
-    }
-    var bbox = [xmin, ymin, xmax, ymax]
-    done(null, bbox)
-    return bbox;
-  }
-}
-
-},{"lodash":66}],22:[function(_dereq_,module,exports){
-module.exports = function(features){
-  var fc = {
-    "type": "FeatureCollection",
-    "features": features
-  }
-
-  return fc
-}
-},{}],23:[function(_dereq_,module,exports){
-var _ = _dereq_('lodash')
-var t = {}
-t.featurecollection = _dereq_('./featurecollection')
-
-module.exports = function(fc, field, value, done){
-  var newFC = t.featurecollection([]);
-
-  done = done || function () {};
-
-  for(var i = 0; i < fc.features.length; i++) {
-    if(fc.features[i].properties[field] === value) {
-      newFC.features.push(fc.features[i])
-    }
-  }
-
-  done(null, newFC)
-  return newFC;
-}
-
-},{"./featurecollection":22,"lodash":66}],24:[function(_dereq_,module,exports){
-var t = {}
-t.featurecollection = _dereq_('./featurecollection')
-
-module.exports = function(fc, done){
-  done = done || function () {};
-
-  if(fc.type === 'Feature'){
-    switch(fc.geometry.type){
-      case 'Point':
-        fc.geometry.coordinates = flipCoordinate(fc.geometry.coordinates)
-        done(null, fc)
-        return fc;
-        break
-      case 'LineString':
-        _.each(fc.geometry.coordinates, function(coordinates, i){
-          coordinates = flipCoordinate(coordinates)
-          fc.geometry.coordinates[i] = coordinates
-        })
-        done(null, fc)
-        return fc;
-        break
-      case 'Polygon':
-        _.each(fc.geometry.coordinates, function(ring, i){
-          _.each(ring, function(coordinates, k){
-            coordinates = flipCoordinate(coordinates)
-            fc.geometry.coordinates[i][k] = coordinates
-          })
-        })
-        done(null, fc)
-        return fc;
-        break
-    }
-  }
-  else if(fc.type === 'FeatureCollection'){
-    _.each(fc.features, function(feature){
-      switch(feature.geometry.type){
-        case 'Point':
-          feature.geometry.coordinates = flipCoordinate(feature.geometry.coordinates)
-          break
-        case 'LineString':
-          _.each(feature.geometry.coordinates, function(coordinates, i){
-            coordinates = flipCoordinate(coordinates)
-            feature.geometry.coordinates[i] = coordinates
-          })
-          break
-        case 'Polygon':
-          _.each(feature.geometry.coordinates, function(ring, i){
-            _.each(ring, function(coordinates, k){
-              coordinates = flipCoordinate(coordinates)
-              feature.geometry.coordinates[i][k] = coordinates
-            })
-          })
-          break
-      }
-    })
-    done(null, fc)
-    return fc;
-  }
-  else {
-    var err = new Error('Unknown geometry type');
-    done(err, null)
-    return err;
-  }
-}
-
-var flipCoordinate = function(coordinates){
-  x = coordinates[0]
-  y = coordinates[1]
-  return([y, x])
-}
-
-},{"./featurecollection":22}],25:[function(_dereq_,module,exports){
-var t = {}
-var _ = _dereq_('lodash'),
-  point = _dereq_('./point')
-t.point = point
-
-module.exports = function(extents, depth, done){
-  var xmin = extents[0]
-  var ymin = extents[1]
-  var xmax = extents[2]
-  var ymax = extents[3]
-  var interval = (xmax - xmin) / depth
-  var coords = []
-  var fc = {
-    type: 'FeatureCollection',
-    features: []
-  }
-
-  done = done || function () {};
-
-  for (var x=0; x<=depth; x++){
-    for (var y=0;y<=depth; y++){
-      fc.features.push(t.point((x * interval) + xmin, (y * interval) + ymin))
-    }
-  }
-  done(null, fc)
-  return fc;
-}
-
-},{"./point":42,"lodash":66}],26:[function(_dereq_,module,exports){
-// http://en.wikipedia.org/wiki/Even%E2%80%93odd_rule
-// modified from: https://github.com/substack/point-in-polygon/blob/master/index.js
-// which was modified from http://www.ecse.rpi.edu/Homepages/wrf/Research/Short_Notes/pnpoly.html
-
-module.exports = function(point, polygon, done){
-  var x = point.geometry.coordinates[0]
-  var y = point.geometry.coordinates[1]
-  var vs = polygon.geometry.coordinates[0]
-
-  var isInside = false;
-
-  done = done || function () {};
-
-  for (var i = 0, j = vs.length - 1; i < vs.length; j = i++) {
-    var xi = vs[i][0], yi = vs[i][1];
-    var xj = vs[j][0], yj = vs[j][1];
-
-    var intersect = ((yi > y) != (yj > y))
-        && (x < (xj - xi) * (y - yi) / (yj - yi) + xi);
-    if (intersect) isInside = !isInside;
-  }
-  done(null, isInside)
-  return isInside;
-}
-
-},{}],27:[function(_dereq_,module,exports){
-// depend on jsts for now https://github.com/bjornharrtell/jsts/blob/master/examples/overlay.html
-var jsts = _dereq_('jsts')
-var t = {}
-t.featurecollection = _dereq_('./featurecollection')
-
-module.exports = function(polys1, polys2, done){
-  var reader = new jsts.io.GeoJSONReader()
-  var a = reader.read(JSON.stringify(polys1.features[0].geometry))
-  var b = reader.read(JSON.stringify(polys2.features[0].geometry))
-  var intersection = a.intersection(b)
-  var parser = new jsts.io.GeoJSONParser()
-
-  done = done || function () {};
-
-  intersection = parser.write(intersection)
-  intersection = t.featurecollection([intersection])
-  done(null, intersection)
-  return intersection;
-}
-
-},{"./featurecollection":22,"jsts":63}],28:[function(_dereq_,module,exports){
-module.exports = function(ring){
-  var sum = 0;
-  var i = 1;
-  var len = ring.length;
-  var prev,cur;
-  while(i<len){
-    prev = cur||ring[0];
-    cur = ring[i];
-    sum += ((cur[0]-prev[0])*(cur[1]+prev[1]));
-    i++;
-  }
-  return sum > 0;
-}
-},{}],29:[function(_dereq_,module,exports){
-//https://github.com/jasondavies/conrec.js
-//http://stackoverflow.com/questions/263305/drawing-a-topographical-map
-var _ = _dereq_('lodash'),
-    async = _dereq_('async')
-var t = {}
-t.tin = _dereq_('./tin')
-t.inside = _dereq_('./inside')
-t.grid = _dereq_('./grid')
-t.extent = _dereq_('./extent')
-t.planepoint = _dereq_('./planepoint')
-t.featurecollection = _dereq_('./featurecollection')
-t.polygon = _dereq_('./polygon')
-t.square = _dereq_('./square')
-t.donuts = _dereq_('./donuts')
-t.merge = _dereq_('./merge')
-t.size = _dereq_('./size')
-t.point = _dereq_('./point')
-
-module.exports = function(points, z, resolution, breaks, done){
-  var addEdgesResult = addEdges(points, z, resolution);
-
-  done = done || function () {};
-
-  if (addEdgesResult instanceof Error) {
-    done(addEdgesResult);
-    return addEdgesResult;
-  }
-
-  // TODO: should do error checking here
-  var tinResult = t.tin(points, z),
-    extentBBox = t.extent(points),
-    squareBBox = t.square(extentBBox),
-    gridResult = t.grid(squareBBox, resolution),
-    data = [];
-
-  _(gridResult.features).each(function(pt){
-    _(tinResult.features).each(function(triangle){
-      if (t.inside(pt, triangle)) {
-        pt.properties = {}
-        pt.properties[z] = t.planepoint(pt, triangle);
-      }
-    })
-    if(!pt.properties){
-      pt.properties = {}
-      pt.properties[z] = -100
-    }
-  })
-
-  var depth = Math.sqrt(gridResult.features.length)
-  for (var x=0; x<depth; x++){
-    var xGroup = gridResult.features.slice(x * depth, (x + 1) * depth)
-    var xFlat = []
-    _.each(xGroup, function(verticalPoint){
-      if(verticalPoint.properties){
-        xFlat.push(verticalPoint.properties[z])
-      } else{
-        xFlat.push(0)
-      }
-    })
-    data.push(xFlat)
-  }
-  var interval = (squareBBox[2] - squareBBox[0]) / depth
-  var xCoordinates = []
-  var yCoordinates = []
-  for (var x=0; x<depth; x++){
-    xCoordinates.push(x * interval + squareBBox[0])
-    yCoordinates.push(x * interval + squareBBox[1])
-  }
-
-  //change zero breaks to .01 to deal with bug in conrec algorithm
-  breaks = _.map(breaks, function(num){
-    if(num === 0){
-      return .01
-    }
-    else{
-      return num
-    }
-  })
-  //deduplicate breaks
-  breaks = _.uniq(breaks)
-
-  var c = new Conrec
-  c.contour(data, 0, resolution, 0, resolution, xCoordinates, yCoordinates, breaks.length, breaks)
-  var contourList = c.contourList()
-
-  var fc = t.featurecollection([])
-  _.each(contourList, function(c){
-    if(c.length > 2){
-      var polyCoordinates = []
-      _.each(c, function(coord){
-        polyCoordinates.push([coord.x, coord.y])
-      })
-      var poly = t.polygon([polyCoordinates])
-      poly.properties = {}
-      poly.properties[z] = c.level
-
-      fc.features.push(poly)
-    }
-  })
-
-  // perform donuts function and dissolves rings before returning if donuts option is true
-  var donutPolys = t.donuts(fc);
-  var zGroups = []
-  _.each(donutPolys.features, function(ring){
-    var found = false
-    _.each(zGroups, function(group){
-      if(group.z === ring.properties[z]){
-        found = true
-        group.rings.push(ring)
-      }
-    })
-    if(!found){
-      zGroups.push({z: ring.properties[z], rings: [ring]})
-    }
-  })
-  donutPolys.features = []
-  _.each(zGroups, function(group){
-    _.each(group.rings, function(ring){
-    })
-    donutPolys.features.push(t.merge(t.featurecollection(group.rings)))
-  })
-
-  done(null, donutPolys)
-  return donutPolys;
-}
-
-function addEdges(points, z, resolution){
-  var extentBBox = t.extent(points),
-    squareBBox,
-    sizeResult;
-
-  if (extentBBox instanceof Error) {
-    return extentBBox;
-  }
-
-  squareBBox = t.square(extentBBox);
-
-  if (squareBBox instanceof Error) {
-    return squareBBox;
-  }
-
-  sizeBBox = t.size(squareBBox, 0.35)
-
-  if (sizeBBox instanceof Error) {
-    return sizeBBox;
-  }
-
-  var edgeDistance = sizeBBox[2] - sizeBBox[0]
-  var extendDistance = edgeDistance / resolution
-
-  var xmin = sizeBBox[0]
-  var ymin = sizeBBox[1]
-  var xmax = sizeBBox[2]
-  var ymax = sizeBBox[3]
-
-  //left
-  var left = [[xmin, ymin],[xmin, ymax]]
-  for(var i = 0; i<=resolution; i++){
-    var pt = t.point(xmin, ymin + (extendDistance * i))
-    pt.properties = {}
-    pt.properties[z] = -100
-    points.features.push(pt)
-  }
-
-  //bottom
-  var bottom = [[xmin, ymin],[xmax, ymin]]
-  for(var i = 0; i<=resolution; i++){
-    var pt = t.point(xmin + (extendDistance * i), ymin)
-    pt.properties = {}
-    pt.properties[z] = -100
-    points.features.push(pt)
-  }
-
-  //right
-  var right = [[xmax, ymin],[xmax, ymax]]
-  for(var i = 0; i<=resolution; i++){
-    var pt = t.point(xmax, ymin + (extendDistance * i))
-    pt.properties = {}
-    pt.properties[z] = -100
-    points.features.push(pt)
-  }
-
-  //top
-  var top = [[xmin, ymax],[xmax, ymax]]
-  for(var i = 0; i<=resolution; i++){
-    var pt = t.point(xmin + (extendDistance * i), ymax)
-    pt.properties = {}
-    pt.properties[z] = -100
-    points.features.push(pt)
-  }
-
-  return points
-}
-
-
-/**
- * Copyright (c) 2010, Jason Davies.
- *
- * All rights reserved.  This code is based on Bradley White's Java version,
- * which is in turn based on Nicholas Yue's C++ version, which in turn is based
- * on Paul D. Bourke's original Fortran version.  See below for the respective
- * copyright notices.
- *
- * See http://local.wasp.uwa.edu.au/~pbourke/papers/conrec/ for the original
- * paper by Paul D. Bourke.
- *
- * The vector conversion code is based on http://apptree.net/conrec.htm by
- * Graham Cox.
- *
- * Redistribution and use in source and binary forms, with or without
- * modification, are permitted provided that the following conditions are met:
- *     * Redistributions of source code must retain the above copyright
- *       notice, this list of conditions and the following disclaimer.
- *     * Redistributions in binary form must reproduce the above copyright
- *       notice, this list of conditions and the following disclaimer in the
- *       documentation and/or other materials provided with the distribution.
- *     * Neither the name of the <organization> nor the
- *       names of its contributors may be used to endorse or promote products
- *       derived from this software without specific prior written permission.
- *
- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
- * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
- * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
- * ARE DISCLAIMED. IN NO EVENT SHALL <COPYRIGHT HOLDER> BE LIABLE FOR ANY
- * DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
- * (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
- * LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
- * ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
- * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
- * THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
- */
-
-/*
- * Copyright (c) 1996-1997 Nicholas Yue
- *
- * This software is copyrighted by Nicholas Yue. This code is based on Paul D.
- * Bourke's CONREC.F routine.
- *
- * The authors hereby grant permission to use, copy, and distribute this
- * software and its documentation for any purpose, provided that existing
- * copyright notices are retained in all copies and that this notice is
- * included verbatim in any distributions. Additionally, the authors grant
- * permission to modify this software and its documentation for any purpose,
- * provided that such modifications are not distributed without the explicit
- * consent of the authors and that existing copyright notices are retained in
- * all copies. Some of the algorithms implemented by this software are
- * patented, observe all applicable patent law.
- *
- * IN NO EVENT SHALL THE AUTHORS OR DISTRIBUTORS BE LIABLE TO ANY PARTY FOR
- * DIRECT, INDIRECT, SPECIAL, INCIDENTAL, OR CONSEQUENTIAL DAMAGES ARISING OUT
- * OF THE USE OF THIS SOFTWARE, ITS DOCUMENTATION, OR ANY DERIVATIVES THEREOF,
- * EVEN IF THE AUTHORS HAVE BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
- *
- * THE AUTHORS AND DISTRIBUTORS SPECIFICALLY DISCLAIM ANY WARRANTIES,
- * INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE, AND NON-INFRINGEMENT.  THIS SOFTWARE IS
- * PROVIDED ON AN "AS IS" BASIS, AND THE AUTHORS AND DISTRIBUTORS HAVE NO
- * OBLIGATION TO PROVIDE MAINTENANCE, SUPPORT, UPDATES, ENHANCEMENTS, OR
- * MODIFICATIONS.
- */
-
-
-  exports.Conrec = Conrec;
-
-  var EPSILON = 1e-10;
-
-  function pointsEqual(a, b) {
-    var x = a.x - b.x, y = a.y - b.y;
-    return x * x + y * y < EPSILON;
-  }
-
-  function reverseList(list) {
-    var pp = list.head;
-
-    while (pp) {
-      // swap prev/next pointers
-      var temp = pp.next;
-      pp.next = pp.prev;
-      pp.prev = temp;
-
-      // continue through the list
-      pp = temp;
-    }
-
-    // swap head/tail pointers
-    var temp = list.head;
-    list.head = list.tail;
-    list.tail = temp;
-  }
-
-  function ContourBuilder(level) {
-    this.level = level;
-    this.s = null;
-    this.count = 0;
-  }
-  ContourBuilder.prototype.remove_seq = function(list) {
-    // if list is the first item, static ptr s is updated
-    if (list.prev) {
-      list.prev.next = list.next;
-    } else {
-      this.s = list.next;
-    }
-
-    if (list.next) {
-      list.next.prev = list.prev;
-    }
-    --this.count;
-  }
-  ContourBuilder.prototype.addSegment = function(a, b) {
-    var ss = this.s;
-    var ma = null;
-    var mb = null;
-    var prependA = false;
-    var prependB = false;
-
-    while (ss) {
-      if (ma == null) {
-        // no match for a yet
-        if (pointsEqual(a, ss.head.p)) {
-          ma = ss;
-          prependA = true;
-        } else if (pointsEqual(a, ss.tail.p)) {
-          ma = ss;
-        }
-      }
-      if (mb == null) {
-        // no match for b yet
-        if (pointsEqual(b, ss.head.p)) {
-          mb = ss;
-          prependB = true;
-        } else if (pointsEqual(b, ss.tail.p)) {
-          mb = ss;
-        }
-      }
-      // if we matched both no need to continue searching
-      if (mb != null && ma != null) {
-        break;
-      } else {
-        ss = ss.next;
-      }
-    }
-
-    // c is the case selector based on which of ma and/or mb are set
-    var c = ((ma != null) ? 1 : 0) | ((mb != null) ? 2 : 0);
-
-    switch(c) {
-      case 0:   // both unmatched, add as new sequence
-        var aa = {p: a, prev: null};
-        var bb = {p: b, next: null};
-        aa.next = bb;
-        bb.prev = aa;
-
-        // create sequence element and push onto head of main list. The order
-        // of items in this list is unimportant
-        ma = {head: aa, tail: bb, next: this.s, prev: null, closed: false};
-        if (this.s) {
-          this.s.prev = ma;
-        }
-        this.s = ma;
-
-        ++this.count;    // not essential - tracks number of unmerged sequences
-      break;
-
-      case 1:   // a matched, b did not - thus b extends sequence ma
-        var pp = {p: b};
-
-        if (prependA) {
-          pp.next = ma.head;
-          pp.prev = null;
-          ma.head.prev = pp;
-          ma.head = pp;
-        } else {
-          pp.next = null;
-          pp.prev = ma.tail;
-          ma.tail.next = pp;
-          ma.tail = pp;
-        }
-      break;
-
-      case 2:   // b matched, a did not - thus a extends sequence mb
-        var pp = {p: a};
-
-        if (prependB) {
-          pp.next = mb.head;
-          pp.prev = null;
-          mb.head.prev = pp;
-          mb.head = pp;
-        } else {
-          pp.next = null;
-          pp.prev = mb.tail;
-          mb.tail.next = pp;
-          mb.tail = pp;
-        }
-      break;
-
-      case 3:   // both matched, can merge sequences
-        // if the sequences are the same, do nothing, as we are simply closing this path (could set a flag)
-
-        if (ma === mb) {
-          var pp = {p: ma.tail.p, next: ma.head, prev: null};
-          ma.head.prev = pp;
-          ma.head = pp;
-          ma.closed = true;
-          break;
-        }
-
-        // there are 4 ways the sequence pair can be joined. The current setting of prependA and
-        // prependB will tell us which type of join is needed. For head/head and tail/tail joins
-        // one sequence needs to be reversed
-        switch((prependA ? 1 : 0) | (prependB ? 2 : 0)) {
-          case 0:   // tail-tail
-            // reverse ma and append to mb
-            reverseList(ma);
-            // fall through to head/tail case
-          case 1:   // head-tail
-            // ma is appended to mb and ma discarded
-            mb.tail.next = ma.head;
-            ma.head.prev = mb.tail;
-            mb.tail = ma.tail;
-
-            //discard ma sequence record
-            this.remove_seq(ma);
-          break;
-
-          case 3:   // head-head
-            // reverse ma and append mb to it
-            reverseList(ma);
-            // fall through to tail/head case
-          case 2:   // tail-head
-            // mb is appended to ma and mb is discarded
-            ma.tail.next = mb.head;
-            mb.head.prev = ma.tail;
-            ma.tail = mb.tail;
-
-            //discard mb sequence record
-            this.remove_seq(mb);
-        break;
-      }
-    }
-  }
-
-  /**
-   * Implements CONREC.
-   *
-   * @param {function} drawContour function for drawing contour.  Defaults to a
-   *                               custom "contour builder", which populates the
-   *                               contours property.
-   */
-  function Conrec(drawContour) {
-    if (!drawContour) {
-      var c = this;
-      c.contours = {};
-      /**
-       * drawContour - interface for implementing the user supplied method to
-       * render the countours.
-       *
-       * Draws a line between the start and end coordinates.
-       *
-       * @param startX    - start coordinate for X
-       * @param startY    - start coordinate for Y
-       * @param endX      - end coordinate for X
-       * @param endY      - end coordinate for Y
-       * @param contourLevel - Contour level for line.
-       */
-      this.drawContour = function(startX, startY, endX, endY, contourLevel, k) {
-        var cb = c.contours[k];
-        if (!cb) {
-          cb = c.contours[k] = new ContourBuilder(contourLevel);
-        }
-        cb.addSegment({x: startX, y: startY}, {x: endX, y: endY});
-      }
-      this.contourList = function() {
-        var l = [];
-        var a = c.contours;
-        for (var k in a) {
-          var s = a[k].s;
-          var level = a[k].level;
-          while (s) {
-            var h = s.head;
-            var l2 = [];
-            l2.level = level;
-            l2.k = k;
-            while (h && h.p) {
-              l2.push(h.p);
-              h = h.next;
-            }
-            l.push(l2);
-            s = s.next;
-          }
-        }
-        l.sort(function(a, b) { return a.k - b.k });
-        return l;
-      }
-    } else {
-      this.drawContour = drawContour;
-    }
-    this.h  = new Array(5);
-    this.sh = new Array(5);
-    this.xh = new Array(5);
-    this.yh = new Array(5);
-  }
-
-  /**
-   * contour is a contouring subroutine for rectangularily spaced data
-   *
-   * It emits calls to a line drawing subroutine supplied by the user which
-   * draws a contour map corresponding to real*4data on a randomly spaced
-   * rectangular grid. The coordinates emitted are in the same units given in
-   * the x() and y() arrays.
-   *
-   * Any number of contour levels may be specified but they must be in order of
-   * increasing value.
-   *
-   *
-   * @param {number[][]} d - matrix of data to contour
-   * @param {number} ilb,iub,jlb,jub - index bounds of data matrix
-   *
-   *             The following two, one dimensional arrays (x and y) contain
-   *             the horizontal and vertical coordinates of each sample points.
-   * @param {number[]} x  - data matrix column coordinates
-   * @param {number[]} y  - data matrix row coordinates
-   * @param {number} nc   - number of contour levels
-   * @param {number[]} z  - contour levels in increasing order.
-   */
-  Conrec.prototype.contour = function(d, ilb, iub, jlb, jub, x, y, nc, z) {
-    var h = this.h, sh = this.sh, xh = this.xh, yh = this.yh;
-    var drawContour = this.drawContour;
-    this.contours = {};
-
-    /** private */
-    var xsect = function(p1, p2){
-      return (h[p2]*xh[p1]-h[p1]*xh[p2])/(h[p2]-h[p1]);
-    }
-
-    var ysect = function(p1, p2){
-      return (h[p2]*yh[p1]-h[p1]*yh[p2])/(h[p2]-h[p1]);
-    }
-    var m1;
-    var m2;
-    var m3;
-    var case_value;
-    var dmin;
-    var dmax;
-    var x1 = 0.0;
-    var x2 = 0.0;
-    var y1 = 0.0;
-    var y2 = 0.0;
-
-    // The indexing of im and jm should be noted as it has to start from zero
-    // unlike the fortran counter part
-    var im = [0, 1, 1, 0];
-    var jm = [0, 0, 1, 1];
-
-    // Note that castab is arranged differently from the FORTRAN code because
-    // Fortran and C/C++ arrays are transposed of each other, in this case
-    // it is more tricky as castab is in 3 dimensions
-    var castab = [
-      [
-        [0, 0, 8], [0, 2, 5], [7, 6, 9]
-      ],
-      [
-        [0, 3, 4], [1, 3, 1], [4, 3, 0]
-      ],
-      [
-        [9, 6, 7], [5, 2, 0], [8, 0, 0]
-      ]
-    ];
-
-    for (var j=(jub-1);j>=jlb;j--) {
-      for (var i=ilb;i<=iub-1;i++) {
-        var temp1, temp2;
-        temp1 = Math.min(d[i][j],d[i][j+1]);
-        temp2 = Math.min(d[i+1][j],d[i+1][j+1]);
-        dmin  = Math.min(temp1,temp2);
-        temp1 = Math.max(d[i][j],d[i][j+1]);
-        temp2 = Math.max(d[i+1][j],d[i+1][j+1]);
-        dmax  = Math.max(temp1,temp2);
-
-        if (dmax>=z[0]&&dmin<=z[nc-1]) {
-          for (var k=0;k<nc;k++) {
-            if (z[k]>=dmin&&z[k]<=dmax) {
-              for (var m=4;m>=0;m--) {
-                if (m>0) {
-                  // The indexing of im and jm should be noted as it has to
-                  // start from zero
-                  h[m] = d[i+im[m-1]][j+jm[m-1]]-z[k];
-                  xh[m] = x[i+im[m-1]];
-                  yh[m] = y[j+jm[m-1]];
-                } else {
-                  h[0] = 0.25*(h[1]+h[2]+h[3]+h[4]);
-                  xh[0]=0.5*(x[i]+x[i+1]);
-                  yh[0]=0.5*(y[j]+y[j+1]);
-                }
-                if (h[m]>EPSILON) {
-                  sh[m] = 1;
-                } else if (h[m]<-EPSILON) {
-                  sh[m] = -1;
-                } else
-                  sh[m] = 0;
-              }
-              //
-              // Note: at this stage the relative heights of the corners and the
-              // centre are in the h array, and the corresponding coordinates are
-              // in the xh and yh arrays. The centre of the box is indexed by 0
-              // and the 4 corners by 1 to 4 as shown below.
-              // Each triangle is then indexed by the parameter m, and the 3
-              // vertices of each triangle are indexed by parameters m1,m2,and
-              // m3.
-              // It is assumed that the centre of the box is always vertex 2
-              // though this isimportant only when all 3 vertices lie exactly on
-              // the same contour level, in which case only the side of the box
-              // is drawn.
-              //
-              //
-              //      vertex 4 +-------------------+ vertex 3
-              //               | \               / |
-              //               |   \    m-3    /   |
-              //               |     \       /     |
-              //               |       \   /       |
-              //               |  m=2    X   m=2   |       the centre is vertex 0
-              //               |       /   \       |
-              //               |     /       \     |
-              //               |   /    m=1    \   |
-              //               | /               \ |
-              //      vertex 1 +-------------------+ vertex 2
-              //
-              //
-              //
-              //               Scan each triangle in the box
-              //
-              for (m=1;m<=4;m++) {
-                m1 = m;
-                m2 = 0;
-                if (m!=4) {
-                    m3 = m+1;
-                } else {
-                    m3 = 1;
-                }
-                case_value = castab[sh[m1]+1][sh[m2]+1][sh[m3]+1];
-                if (case_value!=0) {
-                  switch (case_value) {
-                    case 1: // Line between vertices 1 and 2
-                      x1=xh[m1];
-                      y1=yh[m1];
-                      x2=xh[m2];
-                      y2=yh[m2];
-                      break;
-                    case 2: // Line between vertices 2 and 3
-                      x1=xh[m2];
-                      y1=yh[m2];
-                      x2=xh[m3];
-                      y2=yh[m3];
-                      break;
-                    case 3: // Line between vertices 3 and 1
-                      x1=xh[m3];
-                      y1=yh[m3];
-                      x2=xh[m1];
-                      y2=yh[m1];
-                      break;
-                    case 4: // Line between vertex 1 and side 2-3
-                      x1=xh[m1];
-                      y1=yh[m1];
-                      x2=xsect(m2,m3);
-                      y2=ysect(m2,m3);
-                      break;
-                    case 5: // Line between vertex 2 and side 3-1
-                      x1=xh[m2];
-                      y1=yh[m2];
-                      x2=xsect(m3,m1);
-                      y2=ysect(m3,m1);
-                      break;
-                    case 6: //  Line between vertex 3 and side 1-2
-                      x1=xh[m3];
-                      y1=yh[m3];
-                      x2=xsect(m1,m2);
-                      y2=ysect(m1,m2);
-                      break;
-                    case 7: // Line between sides 1-2 and 2-3
-                      x1=xsect(m1,m2);
-                      y1=ysect(m1,m2);
-                      x2=xsect(m2,m3);
-                      y2=ysect(m2,m3);
-                      break;
-                    case 8: // Line between sides 2-3 and 3-1
-                      x1=xsect(m2,m3);
-                      y1=ysect(m2,m3);
-                      x2=xsect(m3,m1);
-                      y2=ysect(m3,m1);
-                      break;
-                    case 9: // Line between sides 3-1 and 1-2
-                      x1=xsect(m3,m1);
-                      y1=ysect(m3,m1);
-                      x2=xsect(m1,m2);
-                      y2=ysect(m1,m2);
-                      break;
-                    default:
-                      break;
-                  }
-                  // Put your processing code here and comment out the printf
-                  //printf("%f %f %f %f %f\n",x1,y1,x2,y2,z[k]);
-                  drawContour(x1,y1,x2,y2,z[k],k);
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-
-},{"./donuts":17,"./extent":21,"./featurecollection":22,"./grid":25,"./inside":26,"./merge":36,"./planepoint":41,"./point":42,"./polygon":43,"./size":50,"./square":51,"./tin":54,"async":59,"lodash":66}],30:[function(_dereq_,module,exports){
-//https://github.com/jasondavies/conrec.js
-//http://stackoverflow.com/questions/263305/drawing-a-topographical-map
-var _ = _dereq_('lodash'),
-    async = _dereq_('async')
-var t = {}
-t.tin = _dereq_('./tin')
-t.inside = _dereq_('./inside')
-t.grid = _dereq_('./grid')
-t.extent = _dereq_('./extent')
-t.planepoint = _dereq_('./planepoint')
-t.featurecollection = _dereq_('./featurecollection')
-t.linestring = _dereq_('./linestring')
-t.square = _dereq_('./square')
-
-module.exports = function(points, z, resolution, breaks, done){
-  // TODO: should do error checking here
-  var tinResult = t.tin(points, z),
-    extentBBox = t.extent(points),
-    squareBBox = t.square(extentBBox),
-    gridResult = t.grid(squareBBox, resolution),
-    data = [];
-
-  done = done || function () {};
-
-  _(gridResult.features).each(function(pt){
-    _(tinResult.features).each(function(triangle){
-      if (t.inside(pt, triangle)) {
-        pt.properties = {}
-        pt.properties[z] = t.planepoint(pt, triangle);
-      }
-    })
-  })
-
-  var depth = Math.sqrt(gridResult.features.length)
-  for (var x=0; x<depth; x++){
-    var xGroup = gridResult.features.slice(x * depth, (x + 1) * depth)
-    var xFlat = []
-    _.each(xGroup, function(verticalPoint){
-      if(verticalPoint.properties){
-        xFlat.push(verticalPoint.properties[z])
-      } else{
-        xFlat.push(0)
-      }
-    })
-    data.push(xFlat)
-  }
-  var interval = (squareBBox[2] - squareBBox[0]) / depth
-  var xCoordinates = []
-  var yCoordinates = []
-  for (var x=0; x<depth; x++){
-    xCoordinates.push(x * interval + squareBBox[0])
-    yCoordinates.push(x * interval + squareBBox[1])
-  }
-
-  var c = new Conrec
-  c.contour(data, 0, resolution, 0, resolution, xCoordinates, yCoordinates, breaks.length, breaks)
-  var contourList = c.contourList()
-
-  var fc = t.featurecollection([])
-  _.each(contourList, function(c){
-    if(c.length > 2){
-      var polyCoordinates = []
-      _.each(c, function(coord){
-        polyCoordinates.push([coord.x, coord.y])
-      })
-      var poly = t.linestring(polyCoordinates)
-      poly.properties = {}
-      poly.properties[z] = c.level
-
-      fc.features.push(poly)
-    }
-  })
-
-  done(null, fc)
-  return fc;
-}
-
-
-/**
- * Copyright (c) 2010, Jason Davies.
- *
- * All rights reserved.  This code is based on Bradley White's Java version,
- * which is in turn based on Nicholas Yue's C++ version, which in turn is based
- * on Paul D. Bourke's original Fortran version.  See below for the respective
- * copyright notices.
- *
- * See http://local.wasp.uwa.edu.au/~pbourke/papers/conrec/ for the original
- * paper by Paul D. Bourke.
- *
- * The vector conversion code is based on http://apptree.net/conrec.htm by
- * Graham Cox.
- *
- * Redistribution and use in source and binary forms, with or without
- * modification, are permitted provided that the following conditions are met:
- *     * Redistributions of source code must retain the above copyright
- *       notice, this list of conditions and the following disclaimer.
- *     * Redistributions in binary form must reproduce the above copyright
- *       notice, this list of conditions and the following disclaimer in the
- *       documentation and/or other materials provided with the distribution.
- *     * Neither the name of the <organization> nor the
- *       names of its contributors may be used to endorse or promote products
- *       derived from this software without specific prior written permission.
- *
- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
- * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
- * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
- * ARE DISCLAIMED. IN NO EVENT SHALL <COPYRIGHT HOLDER> BE LIABLE FOR ANY
- * DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
- * (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
- * LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
- * ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
- * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
- * THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
- */
-
-/*
- * Copyright (c) 1996-1997 Nicholas Yue
- *
- * This software is copyrighted by Nicholas Yue. This code is based on Paul D.
- * Bourke's CONREC.F routine.
- *
- * The authors hereby grant permission to use, copy, and distribute this
- * software and its documentation for any purpose, provided that existing
- * copyright notices are retained in all copies and that this notice is
- * included verbatim in any distributions. Additionally, the authors grant
- * permission to modify this software and its documentation for any purpose,
- * provided that such modifications are not distributed without the explicit
- * consent of the authors and that existing copyright notices are retained in
- * all copies. Some of the algorithms implemented by this software are
- * patented, observe all applicable patent law.
- *
- * IN NO EVENT SHALL THE AUTHORS OR DISTRIBUTORS BE LIABLE TO ANY PARTY FOR
- * DIRECT, INDIRECT, SPECIAL, INCIDENTAL, OR CONSEQUENTIAL DAMAGES ARISING OUT
- * OF THE USE OF THIS SOFTWARE, ITS DOCUMENTATION, OR ANY DERIVATIVES THEREOF,
- * EVEN IF THE AUTHORS HAVE BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
- *
- * THE AUTHORS AND DISTRIBUTORS SPECIFICALLY DISCLAIM ANY WARRANTIES,
- * INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE, AND NON-INFRINGEMENT.  THIS SOFTWARE IS
- * PROVIDED ON AN "AS IS" BASIS, AND THE AUTHORS AND DISTRIBUTORS HAVE NO
- * OBLIGATION TO PROVIDE MAINTENANCE, SUPPORT, UPDATES, ENHANCEMENTS, OR
- * MODIFICATIONS.
- */
-
-
-  exports.Conrec = Conrec;
-
-  var EPSILON = 1e-10;
-
-  function pointsEqual(a, b) {
-    var x = a.x - b.x, y = a.y - b.y;
-    return x * x + y * y < EPSILON;
-  }
-
-  function reverseList(list) {
-    var pp = list.head;
-
-    while (pp) {
-      // swap prev/next pointers
-      var temp = pp.next;
-      pp.next = pp.prev;
-      pp.prev = temp;
-
-      // continue through the list
-      pp = temp;
-    }
-
-    // swap head/tail pointers
-    var temp = list.head;
-    list.head = list.tail;
-    list.tail = temp;
-  }
-
-  function ContourBuilder(level) {
-    this.level = level;
-    this.s = null;
-    this.count = 0;
-  }
-  ContourBuilder.prototype.remove_seq = function(list) {
-    // if list is the first item, static ptr s is updated
-    if (list.prev) {
-      list.prev.next = list.next;
-    } else {
-      this.s = list.next;
-    }
-
-    if (list.next) {
-      list.next.prev = list.prev;
-    }
-    --this.count;
-  }
-  ContourBuilder.prototype.addSegment = function(a, b) {
-    var ss = this.s;
-    var ma = null;
-    var mb = null;
-    var prependA = false;
-    var prependB = false;
-
-    while (ss) {
-      if (ma == null) {
-        // no match for a yet
-        if (pointsEqual(a, ss.head.p)) {
-          ma = ss;
-          prependA = true;
-        } else if (pointsEqual(a, ss.tail.p)) {
-          ma = ss;
-        }
-      }
-      if (mb == null) {
-        // no match for b yet
-        if (pointsEqual(b, ss.head.p)) {
-          mb = ss;
-          prependB = true;
-        } else if (pointsEqual(b, ss.tail.p)) {
-          mb = ss;
-        }
-      }
-      // if we matched both no need to continue searching
-      if (mb != null && ma != null) {
-        break;
-      } else {
-        ss = ss.next;
-      }
-    }
-
-    // c is the case selector based on which of ma and/or mb are set
-    var c = ((ma != null) ? 1 : 0) | ((mb != null) ? 2 : 0);
-
-    switch(c) {
-      case 0:   // both unmatched, add as new sequence
-        var aa = {p: a, prev: null};
-        var bb = {p: b, next: null};
-        aa.next = bb;
-        bb.prev = aa;
-
-        // create sequence element and push onto head of main list. The order
-        // of items in this list is unimportant
-        ma = {head: aa, tail: bb, next: this.s, prev: null, closed: false};
-        if (this.s) {
-          this.s.prev = ma;
-        }
-        this.s = ma;
-
-        ++this.count;    // not essential - tracks number of unmerged sequences
-      break;
-
-      case 1:   // a matched, b did not - thus b extends sequence ma
-        var pp = {p: b};
-
-        if (prependA) {
-          pp.next = ma.head;
-          pp.prev = null;
-          ma.head.prev = pp;
-          ma.head = pp;
-        } else {
-          pp.next = null;
-          pp.prev = ma.tail;
-          ma.tail.next = pp;
-          ma.tail = pp;
-        }
-      break;
-
-      case 2:   // b matched, a did not - thus a extends sequence mb
-        var pp = {p: a};
-
-        if (prependB) {
-          pp.next = mb.head;
-          pp.prev = null;
-          mb.head.prev = pp;
-          mb.head = pp;
-        } else {
-          pp.next = null;
-          pp.prev = mb.tail;
-          mb.tail.next = pp;
-          mb.tail = pp;
-        }
-      break;
-
-      case 3:   // both matched, can merge sequences
-        // if the sequences are the same, do nothing, as we are simply closing this path (could set a flag)
-
-        if (ma === mb) {
-          var pp = {p: ma.tail.p, next: ma.head, prev: null};
-          ma.head.prev = pp;
-          ma.head = pp;
-          ma.closed = true;
-          break;
-        }
-
-        // there are 4 ways the sequence pair can be joined. The current setting of prependA and
-        // prependB will tell us which type of join is needed. For head/head and tail/tail joins
-        // one sequence needs to be reversed
-        switch((prependA ? 1 : 0) | (prependB ? 2 : 0)) {
-          case 0:   // tail-tail
-            // reverse ma and append to mb
-            reverseList(ma);
-            // fall through to head/tail case
-          case 1:   // head-tail
-            // ma is appended to mb and ma discarded
-            mb.tail.next = ma.head;
-            ma.head.prev = mb.tail;
-            mb.tail = ma.tail;
-
-            //discard ma sequence record
-            this.remove_seq(ma);
-          break;
-
-          case 3:   // head-head
-            // reverse ma and append mb to it
-            reverseList(ma);
-            // fall through to tail/head case
-          case 2:   // tail-head
-            // mb is appended to ma and mb is discarded
-            ma.tail.next = mb.head;
-            mb.head.prev = ma.tail;
-            ma.tail = mb.tail;
-
-            //discard mb sequence record
-            this.remove_seq(mb);
-        break;
-      }
-    }
-  }
-
-  /**
-   * Implements CONREC.
-   *
-   * @param {function} drawContour function for drawing contour.  Defaults to a
-   *                               custom "contour builder", which populates the
-   *                               contours property.
-   */
-  function Conrec(drawContour) {
-    if (!drawContour) {
-      var c = this;
-      c.contours = {};
-      /**
-       * drawContour - interface for implementing the user supplied method to
-       * render the countours.
-       *
-       * Draws a line between the start and end coordinates.
-       *
-       * @param startX    - start coordinate for X
-       * @param startY    - start coordinate for Y
-       * @param endX      - end coordinate for X
-       * @param endY      - end coordinate for Y
-       * @param contourLevel - Contour level for line.
-       */
-      this.drawContour = function(startX, startY, endX, endY, contourLevel, k) {
-        var cb = c.contours[k];
-        if (!cb) {
-          cb = c.contours[k] = new ContourBuilder(contourLevel);
-        }
-        cb.addSegment({x: startX, y: startY}, {x: endX, y: endY});
-      }
-      this.contourList = function() {
-        var l = [];
-        var a = c.contours;
-        for (var k in a) {
-          var s = a[k].s;
-          var level = a[k].level;
-          while (s) {
-            var h = s.head;
-            var l2 = [];
-            l2.level = level;
-            l2.k = k;
-            while (h && h.p) {
-              l2.push(h.p);
-              h = h.next;
-            }
-            l.push(l2);
-            s = s.next;
-          }
-        }
-        l.sort(function(a, b) { return a.k - b.k });
-        return l;
-      }
-    } else {
-      this.drawContour = drawContour;
-    }
-    this.h  = new Array(5);
-    this.sh = new Array(5);
-    this.xh = new Array(5);
-    this.yh = new Array(5);
-  }
-
-  /**
-   * contour is a contouring subroutine for rectangularily spaced data
-   *
-   * It emits calls to a line drawing subroutine supplied by the user which
-   * draws a contour map corresponding to real*4data on a randomly spaced
-   * rectangular grid. The coordinates emitted are in the same units given in
-   * the x() and y() arrays.
-   *
-   * Any number of contour levels may be specified but they must be in order of
-   * increasing value.
-   *
-   *
-   * @param {number[][]} d - matrix of data to contour
-   * @param {number} ilb,iub,jlb,jub - index bounds of data matrix
-   *
-   *             The following two, one dimensional arrays (x and y) contain
-   *             the horizontal and vertical coordinates of each sample points.
-   * @param {number[]} x  - data matrix column coordinates
-   * @param {number[]} y  - data matrix row coordinates
-   * @param {number} nc   - number of contour levels
-   * @param {number[]} z  - contour levels in increasing order.
-   */
-  Conrec.prototype.contour = function(d, ilb, iub, jlb, jub, x, y, nc, z) {
-    var h = this.h, sh = this.sh, xh = this.xh, yh = this.yh;
-    var drawContour = this.drawContour;
-    this.contours = {};
-
-    /** private */
-    var xsect = function(p1, p2){
-      return (h[p2]*xh[p1]-h[p1]*xh[p2])/(h[p2]-h[p1]);
-    }
-
-    var ysect = function(p1, p2){
-      return (h[p2]*yh[p1]-h[p1]*yh[p2])/(h[p2]-h[p1]);
-    }
-    var m1;
-    var m2;
-    var m3;
-    var case_value;
-    var dmin;
-    var dmax;
-    var x1 = 0.0;
-    var x2 = 0.0;
-    var y1 = 0.0;
-    var y2 = 0.0;
-
-    // The indexing of im and jm should be noted as it has to start from zero
-    // unlike the fortran counter part
-    var im = [0, 1, 1, 0];
-    var jm = [0, 0, 1, 1];
-
-    // Note that castab is arranged differently from the FORTRAN code because
-    // Fortran and C/C++ arrays are transposed of each other, in this case
-    // it is more tricky as castab is in 3 dimensions
-    var castab = [
-      [
-        [0, 0, 8], [0, 2, 5], [7, 6, 9]
-      ],
-      [
-        [0, 3, 4], [1, 3, 1], [4, 3, 0]
-      ],
-      [
-        [9, 6, 7], [5, 2, 0], [8, 0, 0]
-      ]
-    ];
-
-    for (var j=(jub-1);j>=jlb;j--) {
-      for (var i=ilb;i<=iub-1;i++) {
-        var temp1, temp2;
-        temp1 = Math.min(d[i][j],d[i][j+1]);
-        temp2 = Math.min(d[i+1][j],d[i+1][j+1]);
-        dmin  = Math.min(temp1,temp2);
-        temp1 = Math.max(d[i][j],d[i][j+1]);
-        temp2 = Math.max(d[i+1][j],d[i+1][j+1]);
-        dmax  = Math.max(temp1,temp2);
-
-        if (dmax>=z[0]&&dmin<=z[nc-1]) {
-          for (var k=0;k<nc;k++) {
-            if (z[k]>=dmin&&z[k]<=dmax) {
-              for (var m=4;m>=0;m--) {
-                if (m>0) {
-                  // The indexing of im and jm should be noted as it has to
-                  // start from zero
-                  h[m] = d[i+im[m-1]][j+jm[m-1]]-z[k];
-                  xh[m] = x[i+im[m-1]];
-                  yh[m] = y[j+jm[m-1]];
-                } else {
-                  h[0] = 0.25*(h[1]+h[2]+h[3]+h[4]);
-                  xh[0]=0.5*(x[i]+x[i+1]);
-                  yh[0]=0.5*(y[j]+y[j+1]);
-                }
-                if (h[m]>EPSILON) {
-                  sh[m] = 1;
-                } else if (h[m]<-EPSILON) {
-                  sh[m] = -1;
-                } else
-                  sh[m] = 0;
-              }
-              //
-              // Note: at this stage the relative heights of the corners and the
-              // centre are in the h array, and the corresponding coordinates are
-              // in the xh and yh arrays. The centre of the box is indexed by 0
-              // and the 4 corners by 1 to 4 as shown below.
-              // Each triangle is then indexed by the parameter m, and the 3
-              // vertices of each triangle are indexed by parameters m1,m2,and
-              // m3.
-              // It is assumed that the centre of the box is always vertex 2
-              // though this isimportant only when all 3 vertices lie exactly on
-              // the same contour level, in which case only the side of the box
-              // is drawn.
-              //
-              //
-              //      vertex 4 +-------------------+ vertex 3
-              //               | \               / |
-              //               |   \    m-3    /   |
-              //               |     \       /     |
-              //               |       \   /       |
-              //               |  m=2    X   m=2   |       the centre is vertex 0
-              //               |       /   \       |
-              //               |     /       \     |
-              //               |   /    m=1    \   |
-              //               | /               \ |
-              //      vertex 1 +-------------------+ vertex 2
-              //
-              //
-              //
-              //               Scan each triangle in the box
-              //
-              for (m=1;m<=4;m++) {
-                m1 = m;
-                m2 = 0;
-                if (m!=4) {
-                    m3 = m+1;
-                } else {
-                    m3 = 1;
-                }
-                case_value = castab[sh[m1]+1][sh[m2]+1][sh[m3]+1];
-                if (case_value!=0) {
-                  switch (case_value) {
-                    case 1: // Line between vertices 1 and 2
-                      x1=xh[m1];
-                      y1=yh[m1];
-                      x2=xh[m2];
-                      y2=yh[m2];
-                      break;
-                    case 2: // Line between vertices 2 and 3
-                      x1=xh[m2];
-                      y1=yh[m2];
-                      x2=xh[m3];
-                      y2=yh[m3];
-                      break;
-                    case 3: // Line between vertices 3 and 1
-                      x1=xh[m3];
-                      y1=yh[m3];
-                      x2=xh[m1];
-                      y2=yh[m1];
-                      break;
-                    case 4: // Line between vertex 1 and side 2-3
-                      x1=xh[m1];
-                      y1=yh[m1];
-                      x2=xsect(m2,m3);
-                      y2=ysect(m2,m3);
-                      break;
-                    case 5: // Line between vertex 2 and side 3-1
-                      x1=xh[m2];
-                      y1=yh[m2];
-                      x2=xsect(m3,m1);
-                      y2=ysect(m3,m1);
-                      break;
-                    case 6: //  Line between vertex 3 and side 1-2
-                      x1=xh[m3];
-                      y1=yh[m3];
-                      x2=xsect(m1,m2);
-                      y2=ysect(m1,m2);
-                      break;
-                    case 7: // Line between sides 1-2 and 2-3
-                      x1=xsect(m1,m2);
-                      y1=ysect(m1,m2);
-                      x2=xsect(m2,m3);
-                      y2=ysect(m2,m3);
-                      break;
-                    case 8: // Line between sides 2-3 and 3-1
-                      x1=xsect(m2,m3);
-                      y1=ysect(m2,m3);
-                      x2=xsect(m3,m1);
-                      y2=ysect(m3,m1);
-                      break;
-                    case 9: // Line between sides 3-1 and 1-2
-                      x1=xsect(m3,m1);
-                      y1=ysect(m3,m1);
-                      x2=xsect(m1,m2);
-                      y2=ysect(m1,m2);
-                      break;
-                    default:
-                      break;
-                  }
-                  // Put your processing code here and comment out the printf
-                  //printf("%f %f %f %f %f\n",x1,y1,x2,y2,z[k]);
-                  drawContour(x1,y1,x2,y2,z[k],k);
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-
-},{"./extent":21,"./featurecollection":22,"./grid":25,"./inside":26,"./linestring":32,"./planepoint":41,"./square":51,"./tin":54,"async":59,"lodash":66}],31:[function(_dereq_,module,exports){
-var ss = _dereq_('simple-statistics'),
-    _ = _dereq_('lodash')
-
-module.exports = function(fc, field, num, done){
-  var vals = []
-  var breaks = []
-
-  done = done || function () {};
-
-  _.each(fc.features, function(feature){
-    if(!(feature.properties[field]===undefined)){
-      vals.push(feature.properties[field])
-    }
-  })
-  breaks = ss.jenks(vals, num)
-
-  done(null, breaks)
-  return breaks;
-}
-
-},{"lodash":66,"simple-statistics":67}],32:[function(_dereq_,module,exports){
-module.exports = function(coordinates, properties){
-  if(coordinates === null) throw new Error('No coordinates passed')
-  var linestring = { 
-    "type": "Feature",
-    "geometry": {
-      "type": "LineString",
-      "coordinates": coordinates
-    },
-    "properties": properties
-  }
-  return linestring
-}
-
-},{}],33:[function(_dereq_,module,exports){
-var path = _dereq_('path'),
-    fs = _dereq_('fs'),
-    layer
-
-module.exports = function(file, done) {
-  fs.readFile(file, function(err, res){
-    if (err) done(err)
-    layer = JSON.parse(res)
-    done(null, layer)
-  })  
-}
-
-},{"fs":60,"path":62}],34:[function(_dereq_,module,exports){
-var t = {}
-var _ = _dereq_('lodash'),
-    ss = _dereq_('simple-statistics')
-t.inside = _dereq_('./inside')
-
-module.exports = function(polyFC, ptFC, inField, outField, done){
-  done = done || function () {};
-
-  _.each(polyFC.features, function(poly){
-    if(!poly.properties){
-      poly.properties = {}
-    }
-    var values = []
-    _.each(ptFC.features, function(pt){
-      if (t.inside(pt, poly)) {
-        values.push(pt.properties[inField]);
-      }
-    })
-    poly.properties[outField] = ss.max(values)
-  })
-  done(null, polyFC)
-  return polyFC;
-}
-
-},{"./inside":26,"lodash":66,"simple-statistics":67}],35:[function(_dereq_,module,exports){
-var t = {}
-var _ = _dereq_('lodash'),
-    ss = _dereq_('simple-statistics')
-t.inside = _dereq_('./inside')
-
-module.exports = function(polyFC, ptFC, inField, outField, done){
-  done = done || function () {};
-
-  _.each(polyFC.features, function(poly){
-    if(!poly.properties){
-      poly.properties = {}
-    }
-    var values = []
-    _.each(ptFC.features, function(pt){
-      if (t.inside(pt, poly)) {
-        values.push(pt.properties[inField])
-      }
-    })
-    poly.properties[outField] = ss.median(values)
-  })
-  done(null, polyFC)
-  return polyFC;
-}
-
-},{"./inside":26,"lodash":66,"simple-statistics":67}],36:[function(_dereq_,module,exports){
-// 1. run tin on points
-// 2. merge the tin
-//var topojson = require('')
-var _ = _dereq_('lodash')
-var t = {}
-t.union = _dereq_('./union')
-
-module.exports = function(polygons, done){
-
-  var merged = _.cloneDeep(polygons.features[0]),
-    features = polygons.features;
-
-  done = done || function () {};
-
-  for (var i = 0, len = features.length; i < len; i++) {
-    var poly = features[i];
-
-    if(poly.geometry){
-      merged = t.union(merged, poly);
-    }
-  }
-
-  done(null, merged);
-  return merged;
-}
-
-},{"./union":56,"lodash":66}],37:[function(_dereq_,module,exports){
-// http://cs.selu.edu/~rbyrd/math/midpoint/
-// ((x1+x2)/2), ((y1+y2)/2)
-var t = {}
-var point = _dereq_('./point')
-t.point = point
-
-module.exports = function(point1, point2, done) {
-  if(point1 === null || point2 === null || point1 && point2 === null) throw new Error('Less than two points passed.')
-
-  var x1 = point1.geometry.coordinates[0];
-  var x2 = point2.geometry.coordinates[0];
-  var y1 = point1.geometry.coordinates[1];
-  var y2 = point2.geometry.coordinates[1];
-
-  var x3 = x1 + x2;
-  var midX = x3/2;
-  var y3 = y1 + y2;
-  var midY = y3/2;
-
-  var midpoint = t.point(midX, midY);
-
-  done = done || function () {};
-
-  done(null, midpoint)
-  return midpoint;
-}
-
-},{"./point":42}],38:[function(_dereq_,module,exports){
-var t = {}
-var _ = _dereq_('lodash'),
-    ss = _dereq_('simple-statistics')
-t.inside = _dereq_('./inside')
-
-module.exports = function(polyFC, ptFC, inField, outField, done){
-  done = done || function () {};
-
-  _.each(polyFC.features, function(poly){
-    if(!poly.properties){
-      poly.properties = {}
-    }
-    var values = []
-    _.each(ptFC.features, function(pt){
-      if (t.inside(pt, poly)) {
-        values.push(pt.properties[inField])
-      }
-    })
-    poly.properties[outField] = ss.min(values)
-  })
-  
-  done(null, polyFC)
-  return polyFC;
-}
-
-},{"./inside":26,"lodash":66,"simple-statistics":67}],39:[function(_dereq_,module,exports){
-
-
-module.exports = function(inPoints, outPoints, distance, unit, done){
-
-}
-},{}],40:[function(_dereq_,module,exports){
-var t = {}
-var _ = _dereq_('lodash'),
- distance = _dereq_('./distance')
-t.distance = distance
-
-module.exports = function(targetPoint, points, done){
-  var nearestPoint
-  var count = 0
-  var dist = Infinity
-
-  function complete(nPt){
-    delete nPt.properties.distance
-    done(null, nPt)
-  }
-
-  done = done || function () {};
-
-  _.forEach(points.features, function(pt){
-    if(!nearestPoint){
-      nearestPoint = pt
-      nearestPoint.properties.distance = t.distance(targetPoint, pt, 'miles');
-    }
-    else{
-      dist = t.distance(targetPoint, pt, 'miles');
-
-      if(dist < nearestPoint.properties.distance){
-        nearestPoint = pt
-        nearestPoint.properties.distance = dist
-      }
-      if(points.features.length === count + 1){
-        complete(nearestPoint)
-      }
-    }
-    count++
-  })
-
-  return nearestPoint;
-}
-
-},{"./distance":16,"lodash":66}],41:[function(_dereq_,module,exports){
-http://stackoverflow.com/a/13916669/461015
-
-module.exports = function(point, triangle, done){
-  var x = point.geometry.coordinates[0]
-      y = point.geometry.coordinates[1]
-      x1 = triangle.geometry.coordinates[0][0][0],
-      y1 = triangle.geometry.coordinates[0][0][1],
-      z1 = triangle.properties.a
-      x2 = triangle.geometry.coordinates[0][1][0],
-      y2 = triangle.geometry.coordinates[0][1][1],
-      z2 = triangle.properties.b
-      x3 = triangle.geometry.coordinates[0][2][0],
-      y3 = triangle.geometry.coordinates[0][2][1],
-      z3 = triangle.properties.c
-
-  var z = (z3 * (x-x1) * (y-y2) + z1 * (x-x2) * (y-y3) + z2 * (x-x3) * (y-y1)
-      - z2 * (x-x1) * (y-y3) - z3 * (x-x2) * (y-y1) - z1 * (x-x3) * (y-y2)) /
-      ((x-x1) * (y-y2) + (x-x2) * (y-y3) +(x-x3) * (y-y1) -
-       (x-x1) * (y-y3) - (x-x2) * (y-y1) - (x-x3) * (y-y2))
-
-  done = done || function () {};
-
-  done(null, z)
-
-  return z;
-}
-
-},{}],42:[function(_dereq_,module,exports){
-module.exports = function(x, y, properties){
-  if(x === null || y === null) throw new Error('Invalid coordinates')
-  var point = { 
-    "type": "Feature",
-    "geometry": {
-      "type": "Point", 
-      "coordinates": [x, y]
-    },
-    "properties": properties
-  }
-  return point
-}
-},{}],43:[function(_dereq_,module,exports){
-module.exports = function(coordinates, properties){
-  if(coordinates === null) throw new Error('No coordinates passed')
-  var polygon = {
-    "type": "Feature",
-    "geometry": {
-      "type": "Polygon",
-      "coordinates": coordinates
-    },
-    "properties": properties
-  }
-  if(!polygon.properties){
-    polygon.properties = {}
-  }
-
-  return polygon
-}
-
-
-
-
-
-
-},{}],44:[function(_dereq_,module,exports){
-var ss = _dereq_('simple-statistics'),
-    _ = _dereq_('lodash')
-
-module.exports = function(fc, field, percentiles, done){
-  var vals = []
-  var quantiles = []
-
-  done = done || function () {};
-
-  _.each(fc.features, function(feature){
-    vals.push(feature.properties[field])
-  })
-  _.each(percentiles, function(percentile){
-    quantiles.push(ss.quantile(vals, percentile * .01))
-  })
-  
-  done(null, quantiles)
-  return quantiles;
-}
-
-},{"lodash":66,"simple-statistics":67}],45:[function(_dereq_,module,exports){
-var t = {}
-var featurecollection = _dereq_('./featurecollection')
-t.featurecollection = featurecollection
-
-module.exports = function(fc, inField, outField, translations, done){
-  var reclassed = t.featurecollection([])
-
-  done = done || function () {};
-
-  _.each(fc.features, function(feature){
-    var reclassedFeature
-    var found = false
-    for(var i = 0; i < translations.length; i++){
-      if(feature.properties[inField] >= translations[i][0] && feature.properties[inField] <= translations[i][1]) {
-        reclassedFeature = _.clone(feature, true)
-        reclassedFeature.properties[outField] = translations[i][2]
-      }
-    }
-    reclassed.features.push(reclassedFeature)
-  })
-
-  done(null, reclassed)
-  return reclassed;
-}
-
-},{"./featurecollection":22}],46:[function(_dereq_,module,exports){
-var t = {}
-var featurecollection = _dereq_('./featurecollection')
-t.featurecollection = featurecollection
-
-module.exports = function(collection, key, val, done) {
-  var newFC = t.featurecollection([]);
-
-  done = done || function () {};
-
-  for(var i = 0; i < collection.features.length; i++) {
-    if(collection.features[i].properties[key] != val) {
-      newFC.features.push(collection.features[i])
-    }
-  }
-  
-  done(null, newFC)
-  return newFC;
-}
-
-},{"./featurecollection":22}],47:[function(_dereq_,module,exports){
-var t = {}
-var _ = _dereq_('lodash'),
-    featurecollection = _dereq_('./featurecollection')
-t.featurecollection = featurecollection
-
-module.exports = function(fc, num, done){
-  var outFC = t.featurecollection(_.sample(fc.features, num))
-
-  done = done || function () {};
-
-  done(null, outFC)
-  return outFC;
-}
-
-},{"./featurecollection":22,"lodash":66}],48:[function(_dereq_,module,exports){
-var t = {}
-var fs = _dereq_('fs')
-t.topo = _dereq_('./topo')
-
-module.exports = function(path, features, type, done){
-  if(!type) type = 'geojson'
-  switch(type) {
-    case 'geojson':
-      fs.writeFile(path, JSON.stringify(features), function(err){
-        done(err, 1)
-      })
-      break
-      
-    case 'topojson':
-      t.topo(features, function(err, topology){
-        fs.writeFile(path, JSON.stringify(features), function(err){
-          done(err, 1)
-        })
-      })
-      break
-  }
-}
-},{"./topo":55,"fs":60}],49:[function(_dereq_,module,exports){
-// use topojson.simplify to simplify points to a given tolerence then convert back to geojson
-var topojson = _dereq_('topojson')
-
-module.exports = function(fc, quantization, minimumArea, done){
-  var options = {
-    "quantization" : quantization,
-    "minimum-area" : minimumArea,
-    "property-transform": function(properties, key, value) {
-       //keeps all
-      properties[key] = value;
-      return true;
-    }
-  }
-  var topo = topojson.topology({name:fc}, options)
-
-  done = done || function () {};
-
-  topojson.simplify(topo, options)
-
-  var simplifiedFeature = topojson.feature(topo, topo.objects.name)
-
-  done(null, simplifiedFeature)
-  return simplifiedFeature;
-}
-
-},{"topojson":68}],50:[function(_dereq_,module,exports){
-module.exports = function(bbox, factor, done){
-  var xDistance = ((bbox[2] - bbox[0]) / 2) * factor
-  var yDistance = ((bbox[3] - bbox[1]) / 2) * factor
-
-  var lowX = bbox[0] - xDistance
-  var lowY = bbox[1] - yDistance
-  var highX = xDistance + bbox[2]
-  var highY = yDistance + bbox[3]
-
-  var sized = [lowX, lowY, highX, highY]
-
-  done = done || function () {};
-
-  done(null, sized)
-  return sized;
-}
-
-},{}],51:[function(_dereq_,module,exports){
-var t = {}
-var midpoint = _dereq_('../lib/midpoint'),
-    point = _dereq_('../lib/point'),
-    distance = _dereq_('../lib/distance')
-t.midpoint = midpoint
-t.point = point
-t.distance = distance
-
-module.exports = function(bbox, done) {
-  var squareBbox = [0,0,0,0]
-  var lowLeft = t.point(bbox[0], bbox[1])
-  var topLeft = t.point(bbox[0], bbox[3])
-  var topRight = t.point(bbox[2], bbox[3])
-  var lowRight = t.point(bbox[2], bbox[1])
-  var horizontalDistance = t.distance(lowLeft, lowRight, 'miles');
-  var verticalDistance = t.distance(lowLeft, topLeft, 'miles');
-  var verticalMidpoint
-  var horizontalMidpoint
-
-  done = done || function () {};
-
-  if(horizontalDistance >= verticalDistance){
-    squareBbox[0] = bbox[0]
-    squareBbox[2] = bbox[2]
-
-    verticalMidpoint = t.midpoint(lowLeft, topLeft);
-
-    squareBbox[1] = verticalMidpoint.geometry.coordinates[1] - ((bbox[2] - bbox[0]) / 2)
-    squareBbox[3] = verticalMidpoint.geometry.coordinates[1] + ((bbox[2] - bbox[0]) / 2)
-  }
-  else {
-    squareBbox[1] = bbox[1]
-    squareBbox[3] = bbox[3]
-
-    horizontalMidpoint = t.midpoint(lowLeft, lowRight);
-
-    squareBbox[0] = horizontalMidpoint.geometry.coordinates[0] - ((bbox[3] - bbox[1]) / 2)
-    squareBbox[2] = horizontalMidpoint.geometry.coordinates[0] + ((bbox[3] - bbox[1]) / 2)
-  }
-
-  done(null, squareBbox)
-  return squareBbox;
-}
-},{"../lib/distance":16,"../lib/midpoint":37,"../lib/point":42}],52:[function(_dereq_,module,exports){
-var t = {}
-var _ = _dereq_('lodash'),
-    ss = _dereq_('simple-statistics')
-t.inside = _dereq_('./inside')
-
-module.exports = function(polyFC, ptFC, inField, outField, done){
-  done = done || function () {};
-
-  _.each(polyFC.features, function(poly){
-    if(!poly.properties){
-      poly.properties = {}
-    }
-    var values = []
-    _.each(ptFC.features, function(pt){
-      if (t.inside(pt, poly)) {
-        values.push(pt.properties[inField])
-      }
-    })
-    poly.properties[outField] = ss.sum(values)
-  })
-  
-  done(null, polyFC);
-  return polyFC;
-}
-
-},{"./inside":26,"lodash":66,"simple-statistics":67}],53:[function(_dereq_,module,exports){
-var t = {}
-  var _ = _dereq_('lodash')
-t.inside = _dereq_('./inside')
-
-module.exports = function(points, polygons, field, outField, done){
-  done = done || function () {};
-
-  _.each(points.features, function(pt){
-    if(!pt.properties){
-      pt.properties = {}
-    }
-    _.each(polygons.features, function(poly){
-      if(!pt.properties[outField]){
-        if (t.inside(pt, poly)) {
-          pt.properties[outField] = poly.properties[field]
-        } else {
-          pt.properties[outField] = null
-        }
-      }
-    })
-  })
-  
-  done(null, points)
-  return points;
-}
-
-},{"./inside":26,"lodash":66}],54:[function(_dereq_,module,exports){
-//http://en.wikipedia.org/wiki/Delaunay_triangulation
-//https://github.com/ironwallaby/delaunay
-var t = {}
-var _ = _dereq_('lodash'),
-  polygon = _dereq_('./polygon'),
-  nearest = _dereq_('./nearest'),
-  point = _dereq_('./point')
-t.polygon = polygon
-t.nearest = nearest
-t.point = point
-
-module.exports = function(points, z, done){
-  //break down points
-  var vertices = []
-  _(points.features).each(function(p){
-    vertices.push({x:p.geometry.coordinates[0], y:p.geometry.coordinates[1]})
-  })
-
-  var triangulated = triangulate(vertices)
-  var triangles = {
-    type: 'FeatureCollection',
-    features: []
-  }
-
-  done = done || function () {};
-
-  _(triangulated).each(function(triangle){
-    var coords = [[[triangle.a.x, triangle.a.y], [triangle.b.x, triangle.b.y], [triangle.c.x, triangle.c.y]]]
-    var poly = t.polygon(coords, {a: null, b: null, c: null})
-
-    triangles.features.push(poly)
-  })
-  if(z){
-    // add values from vertices
-    _.each(triangles.features, function(tri){
-      var coordinateNumber = 1
-      _.each(tri.geometry.coordinates[0], function(c){
-        var closest = t.nearest(t.point(c[0], c[1]), points);
-
-        if(coordinateNumber === 1){
-          tri.properties.a = closest.properties[z]
-        }
-        else if(coordinateNumber === 2){
-          tri.properties.b = closest.properties[z]
-        }
-        else if(coordinateNumber === 3){
-          tri.properties.c = closest.properties[z]
-        }
-        coordinateNumber++
-      })
-    })
-  }
-
-  _.each(triangles.features, function(tri){
-    tri = correctRings(tri)
-  })
-  
-  done(null, triangles)
-  return triangles;
-}
-
-function correctRings(poly){
-  _.each(poly.geometry.coordinates, function(ring){
-    var isWrapped =_.isEqual(ring[0], ring.slice(-1)[0])
-    if(!isWrapped){
-      ring.push(ring[0])
-    }
-  })
-  return poly
-}
-
-function Triangle(a, b, c) {
-  this.a = a
-  this.b = b
-  this.c = c
-
-  var A = b.x - a.x,
-      B = b.y - a.y,
-      C = c.x - a.x,
-      D = c.y - a.y,
-      E = A * (a.x + b.x) + B * (a.y + b.y),
-      F = C * (a.x + c.x) + D * (a.y + c.y),
-      G = 2 * (A * (c.y - b.y) - B * (c.x - b.x)),
-      minx, miny, dx, dy
-
-  /* If the points of the triangle are collinear, then just find the
-   * extremes and use the midpoint as the center of the circumcircle. */
-  if(Math.abs(G) < 0.000001) {
-    minx = Math.min(a.x, b.x, c.x)
-    miny = Math.min(a.y, b.y, c.y)
-    dx   = (Math.max(a.x, b.x, c.x) - minx) * 0.5
-    dy   = (Math.max(a.y, b.y, c.y) - miny) * 0.5
-
-    this.x = minx + dx
-    this.y = miny + dy
-    this.r = dx * dx + dy * dy
-  }
-
-  else {
-    this.x = (D*E - B*F) / G
-    this.y = (A*F - C*E) / G
-    dx = this.x - a.x
-    dy = this.y - a.y
-    this.r = dx * dx + dy * dy
-  }
-}
-
-Triangle.prototype.draw = function(ctx) {
-  ctx.beginPath()
-  ctx.moveTo(this.a.x, this.a.y)
-  ctx.lineTo(this.b.x, this.b.y)
-  ctx.lineTo(this.c.x, this.c.y)
-  ctx.closePath()
-  ctx.stroke()
-}
-
-function byX(a, b) {
-  return b.x - a.x
-}
-
-function dedup(edges) {
-  var j = edges.length,
-      a, b, i, m, n
-
-  outer: while(j) {
-    b = edges[--j]
-    a = edges[--j]
-    i = j
-    while(i) {
-      n = edges[--i]
-      m = edges[--i]
-      if((a === m && b === n) || (a === n && b === m)) {
-        edges.splice(j, 2)
-        edges.splice(i, 2)
-        j -= 2
-        continue outer
-      }
-    }
-  }
-}
-
-function triangulate(vertices) {
-  /* Bail if there aren't enough vertices to form any triangles. */
-  if(vertices.length < 3)
-    return []
-
-  /* Ensure the vertex array is in order of descending X coordinate
-   * (which is needed to ensure a subquadratic runtime), and then find
-   * the bounding box around the points. */
-  vertices.sort(byX)
-
-  var i    = vertices.length - 1,
-      xmin = vertices[i].x,
-      xmax = vertices[0].x,
-      ymin = vertices[i].y,
-      ymax = ymin
-
-  while(i--) {
-    if(vertices[i].y < ymin) ymin = vertices[i].y
-    if(vertices[i].y > ymax) ymax = vertices[i].y
-  }
-
-  /* Find a supertriangle, which is a triangle that surrounds all the
-   * vertices. This is used like something of a sentinel value to remove
-   * cases in the main algorithm, and is removed before we return any
-   * results.
-   *
-   * Once found, put it in the "open" list. (The "open" list is for
-   * triangles who may still need to be considered; the "closed" list is
-   * for triangles which do not.) */
-  var dx     = xmax - xmin,
-      dy     = ymax - ymin,
-      dmax   = (dx > dy) ? dx : dy,
-      xmid   = (xmax + xmin) * 0.5,
-      ymid   = (ymax + ymin) * 0.5,
-      open   = [
-        new Triangle(
-          {x: xmid - 20 * dmax, y: ymid -      dmax, __sentinel: true},
-          {x: xmid            , y: ymid + 20 * dmax, __sentinel: true},
-          {x: xmid + 20 * dmax, y: ymid -      dmax, __sentinel: true}
-        )
-      ],
-      closed = [],
-      edges = [],
-      j, a, b
-
-  /* Incrementally add each vertex to the mesh. */
-  i = vertices.length
-  while(i--) {
-    /* For each open triangle, check to see if the current point is
-     * inside it's circumcircle. If it is, remove the triangle and add
-     * it's edges to an edge list. */
-    edges.length = 0
-    j = open.length
-    while(j--) {
-      /* If this point is to the right of this triangle's circumcircle,
-       * then this triangle should never get checked again. Remove it
-       * from the open list, add it to the closed list, and skip. */
-      dx = vertices[i].x - open[j].x
-      if(dx > 0 && dx * dx > open[j].r) {
-        closed.push(open[j])
-        open.splice(j, 1)
-        continue
-      }
-
-      /* If not, skip this triangle. */
-      dy = vertices[i].y - open[j].y
-      if(dx * dx + dy * dy > open[j].r)
-        continue
-
-      /* Remove the triangle and add it's edges to the edge list. */
-      edges.push(
-        open[j].a, open[j].b,
-        open[j].b, open[j].c,
-        open[j].c, open[j].a
-      )
-      open.splice(j, 1)
-    }
-
-    /* Remove any doubled edges. */
-    dedup(edges)
-
-    /* Add a new triangle for each edge. */
-    j = edges.length
-    while(j) {
-      b = edges[--j]
-      a = edges[--j]
-      open.push(new Triangle(a, b, vertices[i]))
-    }
-  }
-
-  /* Copy any remaining open triangles to the closed list, and then
-   * remove any triangles that share a vertex with the supertriangle. */
-  Array.prototype.push.apply(closed, open)
-
-  i = closed.length
-  while(i--)
-    if(closed[i].a.__sentinel ||
-       closed[i].b.__sentinel ||
-       closed[i].c.__sentinel)
-      closed.splice(i, 1)
-
-  /* Yay, we're done! */
-  return closed
-}
-
-/*if (typeof module !== 'undefined') {
-    module.exports = {
-        Triangle: Triangle,
-        triangulate: triangulate
-    }
-}*/
-
-},{"./nearest":40,"./point":42,"./polygon":43,"lodash":66}],55:[function(_dereq_,module,exports){
-var topojson = _dereq_('topojson')
-
-module.exports = function(geojson, done){
-  var topology = topojson.topology({geojson: geojson})
-
-  done = done || function () {};
-
-  done(null, topology)
-
-  return topology;
-}
-
-},{"topojson":68}],56:[function(_dereq_,module,exports){
-// look here for help http://svn.osgeo.org/grass/grass/branches/releasebranch_6_4/vector/v.overlay/main.c
-//must be array of polygons
-
-// depend on jsts for now https://github.com/bjornharrtell/jsts/blob/master/examples/overlay.html
-
-var jsts = _dereq_('jsts')
-var t = {}
-t.featurecollection = _dereq_('./featurecollection')
-
-module.exports = function(poly1, poly2, done){
-  var reader = new jsts.io.GeoJSONReader()
-  var a = reader.read(JSON.stringify(poly1.geometry))
-  var b = reader.read(JSON.stringify(poly2.geometry))
-  var union = a.union(b);
-  var parser = new jsts.io.GeoJSONParser()
-
-  done = done || function () {};
-
-  union = parser.write(union)
-  union = {
-    type: 'Feature',
-    geometry: union,
-    properties: poly1.properties
-  }
-  
-  done(null, union)
-  return union;
-}
-
-},{"./featurecollection":22,"jsts":63}],57:[function(_dereq_,module,exports){
-var t = {}
-var _ = _dereq_('lodash'),
-    ss = _dereq_('simple-statistics')
-t.inside = _dereq_('./inside')
-
-module.exports = function(polyFC, ptFC, inField, outField, done){
-  done = done || function () {};
-
-  _.each(polyFC.features, function(poly){
-    if(!poly.properties){
-      poly.properties = {}
-    }
-    var values = []
-    _.each(ptFC.features, function(pt){
-      if (t.inside(pt, poly)) {
-        values.push(pt.properties[inField])
-      }
-    })
-    poly.properties[outField] = ss.variance(values)
-  })
-
-  done(null, polyFC)
-  return polyFC;
-}
-
-},{"./inside":26,"lodash":66,"simple-statistics":67}],58:[function(_dereq_,module,exports){
-var t = {}
-var _ = _dereq_('lodash')
-t.inside = _dereq_('./inside')
-t.featurecollection = _dereq_('./featurecollection')
-
-module.exports = function(ptFC, polyFC, done){
-  var pointsWithin = t.featurecollection([])
-
-  done = done || function () {};
-
-  _.each(polyFC.features, function(poly){
-    _.each(ptFC.features, function(pt){
-      if (t.inside(pt, poly)) {
-        pointsWithin.features.push(pt)
-      }
-    })
-  })
-  
-  done(null, pointsWithin)
-  return pointsWithin;
-}
-
-},{"./featurecollection":22,"./inside":26,"lodash":66}],59:[function(_dereq_,module,exports){
-(function (process){
-/*global setImmediate: false, setTimeout: false, console: false */
-(function () {
-
-    var async = {};
-
-    // global on the server, window in the browser
-    var root, previous_async;
-
-    root = this;
-    if (root != null) {
-      previous_async = root.async;
-    }
-
-    async.noConflict = function () {
-        root.async = previous_async;
-        return async;
-    };
-
-    function only_once(fn) {
-        var called = false;
-        return function() {
-            if (called) throw new Error("Callback was already called.");
-            called = true;
-            fn.apply(root, arguments);
-        }
-    }
-
-    //// cross-browser compatiblity functions ////
-
-    var _each = function (arr, iterator) {
-        if (arr.forEach) {
-            return arr.forEach(iterator);
-        }
-        for (var i = 0; i < arr.length; i += 1) {
-            iterator(arr[i], i, arr);
-        }
-    };
-
-    var _map = function (arr, iterator) {
-        if (arr.map) {
-            return arr.map(iterator);
-        }
-        var results = [];
-        _each(arr, function (x, i, a) {
-            results.push(iterator(x, i, a));
-        });
-        return results;
-    };
-
-    var _reduce = function (arr, iterator, memo) {
-        if (arr.reduce) {
-            return arr.reduce(iterator, memo);
-        }
-        _each(arr, function (x, i, a) {
-            memo = iterator(memo, x, i, a);
-        });
-        return memo;
-    };
-
-    var _keys = function (obj) {
-        if (Object.keys) {
-            return Object.keys(obj);
-        }
-        var keys = [];
-        for (var k in obj) {
-            if (obj.hasOwnProperty(k)) {
-                keys.push(k);
-            }
-        }
-        return keys;
-    };
-
-    //// exported async module functions ////
-
-    //// nextTick implementation with browser-compatible fallback ////
-    if (typeof process === 'undefined' || !(process.nextTick)) {
-        if (typeof setImmediate === 'function') {
-            async.nextTick = function (fn) {
-                // not a direct alias for IE10 compatibility
-                setImmediate(fn);
-            };
-            async.setImmediate = async.nextTick;
-        }
-        else {
-            async.nextTick = function (fn) {
-                setTimeout(fn, 0);
-            };
-            async.setImmediate = async.nextTick;
-        }
-    }
-    else {
-        async.nextTick = process.nextTick;
-        if (typeof setImmediate !== 'undefined') {
-            async.setImmediate = function (fn) {
-              // not a direct alias for IE10 compatibility
-              setImmediate(fn);
-            };
-        }
-        else {
-            async.setImmediate = async.nextTick;
-        }
-    }
-
-    async.each = function (arr, iterator, callback) {
-        callback = callback || function () {};
-        if (!arr.length) {
-            return callback();
-        }
-        var completed = 0;
-        _each(arr, function (x) {
-            iterator(x, only_once(function (err) {
-                if (err) {
-                    callback(err);
-                    callback = function () {};
-                }
-                else {
-                    completed += 1;
-                    if (completed >= arr.length) {
-                        callback(null);
-                    }
-                }
-            }));
-        });
-    };
-    async.forEach = async.each;
-
-    async.eachSeries = function (arr, iterator, callback) {
-        callback = callback || function () {};
-        if (!arr.length) {
-            return callback();
-        }
-        var completed = 0;
-        var iterate = function () {
-            iterator(arr[completed], function (err) {
-                if (err) {
-                    callback(err);
-                    callback = function () {};
-                }
-                else {
-                    completed += 1;
-                    if (completed >= arr.length) {
-                        callback(null);
-                    }
-                    else {
-                        iterate();
-                    }
-                }
-            });
-        };
-        iterate();
-    };
-    async.forEachSeries = async.eachSeries;
-
-    async.eachLimit = function (arr, limit, iterator, callback) {
-        var fn = _eachLimit(limit);
-        fn.apply(null, [arr, iterator, callback]);
-    };
-    async.forEachLimit = async.eachLimit;
-
-    var _eachLimit = function (limit) {
-
-        return function (arr, iterator, callback) {
-            callback = callback || function () {};
-            if (!arr.length || limit <= 0) {
-                return callback();
-            }
-            var completed = 0;
-            var started = 0;
-            var running = 0;
-
-            (function replenish () {
-                if (completed >= arr.length) {
-                    return callback();
-                }
-
-                while (running < limit && started < arr.length) {
-                    started += 1;
-                    running += 1;
-                    iterator(arr[started - 1], function (err) {
-                        if (err) {
-                            callback(err);
-                            callback = function () {};
-                        }
-                        else {
-                            completed += 1;
-                            running -= 1;
-                            if (completed >= arr.length) {
-                                callback();
-                            }
-                            else {
-                                replenish();
-                            }
-                        }
-                    });
-                }
-            })();
-        };
-    };
-
-
-    var doParallel = function (fn) {
-        return function () {
-            var args = Array.prototype.slice.call(arguments);
-            return fn.apply(null, [async.each].concat(args));
-        };
-    };
-    var doParallelLimit = function(limit, fn) {
-        return function () {
-            var args = Array.prototype.slice.call(arguments);
-            return fn.apply(null, [_eachLimit(limit)].concat(args));
-        };
-    };
-    var doSeries = function (fn) {
-        return function () {
-            var args = Array.prototype.slice.call(arguments);
-            return fn.apply(null, [async.eachSeries].concat(args));
-        };
-    };
-
-
-    var _asyncMap = function (eachfn, arr, iterator, callback) {
-        var results = [];
-        arr = _map(arr, function (x, i) {
-            return {index: i, value: x};
-        });
-        eachfn(arr, function (x, callback) {
-            iterator(x.value, function (err, v) {
-                results[x.index] = v;
-                callback(err);
-            });
-        }, function (err) {
-            callback(err, results);
-        });
-    };
-    async.map = doParallel(_asyncMap);
-    async.mapSeries = doSeries(_asyncMap);
-    async.mapLimit = function (arr, limit, iterator, callback) {
-        return _mapLimit(limit)(arr, iterator, callback);
-    };
-
-    var _mapLimit = function(limit) {
-        return doParallelLimit(limit, _asyncMap);
-    };
-
-    // reduce only has a series version, as doing reduce in parallel won't
-    // work in many situations.
-    async.reduce = function (arr, memo, iterator, callback) {
-        async.eachSeries(arr, function (x, callback) {
-            iterator(memo, x, function (err, v) {
-                memo = v;
-                callback(err);
-            });
-        }, function (err) {
-            callback(err, memo);
-        });
-    };
-    // inject alias
-    async.inject = async.reduce;
-    // foldl alias
-    async.foldl = async.reduce;
-
-    async.reduceRight = function (arr, memo, iterator, callback) {
-        var reversed = _map(arr, function (x) {
-            return x;
-        }).reverse();
-        async.reduce(reversed, memo, iterator, callback);
-    };
-    // foldr alias
-    async.foldr = async.reduceRight;
-
-    var _filter = function (eachfn, arr, iterator, callback) {
-        var results = [];
-        arr = _map(arr, function (x, i) {
-            return {index: i, value: x};
-        });
-        eachfn(arr, function (x, callback) {
-            iterator(x.value, function (v) {
-                if (v) {
-                    results.push(x);
-                }
-                callback();
-            });
-        }, function (err) {
-            callback(_map(results.sort(function (a, b) {
-                return a.index - b.index;
-            }), function (x) {
-                return x.value;
-            }));
-        });
-    };
-    async.filter = doParallel(_filter);
-    async.filterSeries = doSeries(_filter);
-    // select alias
-    async.select = async.filter;
-    async.selectSeries = async.filterSeries;
-
-    var _reject = function (eachfn, arr, iterator, callback) {
-        var results = [];
-        arr = _map(arr, function (x, i) {
-            return {index: i, value: x};
-        });
-        eachfn(arr, function (x, callback) {
-            iterator(x.value, function (v) {
-                if (!v) {
-                    results.push(x);
-                }
-                callback();
-            });
-        }, function (err) {
-            callback(_map(results.sort(function (a, b) {
-                return a.index - b.index;
-            }), function (x) {
-                return x.value;
-            }));
-        });
-    };
-    async.reject = doParallel(_reject);
-    async.rejectSeries = doSeries(_reject);
-
-    var _detect = function (eachfn, arr, iterator, main_callback) {
-        eachfn(arr, function (x, callback) {
-            iterator(x, function (result) {
-                if (result) {
-                    main_callback(x);
-                    main_callback = function () {};
-                }
-                else {
-                    callback();
-                }
-            });
-        }, function (err) {
-            main_callback();
-        });
-    };
-    async.detect = doParallel(_detect);
-    async.detectSeries = doSeries(_detect);
-
-    async.some = function (arr, iterator, main_callback) {
-        async.each(arr, function (x, callback) {
-            iterator(x, function (v) {
-                if (v) {
-                    main_callback(true);
-                    main_callback = function () {};
-                }
-                callback();
-            });
-        }, function (err) {
-            main_callback(false);
-        });
-    };
-    // any alias
-    async.any = async.some;
-
-    async.every = function (arr, iterator, main_callback) {
-        async.each(arr, function (x, callback) {
-            iterator(x, function (v) {
-                if (!v) {
-                    main_callback(false);
-                    main_callback = function () {};
-                }
-                callback();
-            });
-        }, function (err) {
-            main_callback(true);
-        });
-    };
-    // all alias
-    async.all = async.every;
-
-    async.sortBy = function (arr, iterator, callback) {
-        async.map(arr, function (x, callback) {
-            iterator(x, function (err, criteria) {
-                if (err) {
-                    callback(err);
-                }
-                else {
-                    callback(null, {value: x, criteria: criteria});
-                }
-            });
-        }, function (err, results) {
-            if (err) {
-                return callback(err);
-            }
-            else {
-                var fn = function (left, right) {
-                    var a = left.criteria, b = right.criteria;
-                    return a < b ? -1 : a > b ? 1 : 0;
-                };
-                callback(null, _map(results.sort(fn), function (x) {
-                    return x.value;
-                }));
-            }
-        });
-    };
-
-    async.auto = function (tasks, callback) {
-        callback = callback || function () {};
-        var keys = _keys(tasks);
-        if (!keys.length) {
-            return callback(null);
-        }
-
-        var results = {};
-
-        var listeners = [];
-        var addListener = function (fn) {
-            listeners.unshift(fn);
-        };
-        var removeListener = function (fn) {
-            for (var i = 0; i < listeners.length; i += 1) {
-                if (listeners[i] === fn) {
-                    listeners.splice(i, 1);
-                    return;
-                }
-            }
-        };
-        var taskComplete = function () {
-            _each(listeners.slice(0), function (fn) {
-                fn();
-            });
-        };
-
-        addListener(function () {
-            if (_keys(results).length === keys.length) {
-                callback(null, results);
-                callback = function () {};
-            }
-        });
-
-        _each(keys, function (k) {
-            var task = (tasks[k] instanceof Function) ? [tasks[k]]: tasks[k];
-            var taskCallback = function (err) {
-                var args = Array.prototype.slice.call(arguments, 1);
-                if (args.length <= 1) {
-                    args = args[0];
-                }
-                if (err) {
-                    var safeResults = {};
-                    _each(_keys(results), function(rkey) {
-                        safeResults[rkey] = results[rkey];
-                    });
-                    safeResults[k] = args;
-                    callback(err, safeResults);
-                    // stop subsequent errors hitting callback multiple times
-                    callback = function () {};
-                }
-                else {
-                    results[k] = args;
-                    async.setImmediate(taskComplete);
-                }
-            };
-            var requires = task.slice(0, Math.abs(task.length - 1)) || [];
-            var ready = function () {
-                return _reduce(requires, function (a, x) {
-                    return (a && results.hasOwnProperty(x));
-                }, true) && !results.hasOwnProperty(k);
-            };
-            if (ready()) {
-                task[task.length - 1](taskCallback, results);
-            }
-            else {
-                var listener = function () {
-                    if (ready()) {
-                        removeListener(listener);
-                        task[task.length - 1](taskCallback, results);
-                    }
-                };
-                addListener(listener);
-            }
-        });
-    };
-
-    async.waterfall = function (tasks, callback) {
-        callback = callback || function () {};
-        if (tasks.constructor !== Array) {
-          var err = new Error('First argument to waterfall must be an array of functions');
-          return callback(err);
-        }
-        if (!tasks.length) {
-            return callback();
-        }
-        var wrapIterator = function (iterator) {
-            return function (err) {
-                if (err) {
-                    callback.apply(null, arguments);
-                    callback = function () {};
-                }
-                else {
-                    var args = Array.prototype.slice.call(arguments, 1);
-                    var next = iterator.next();
-                    if (next) {
-                        args.push(wrapIterator(next));
-                    }
-                    else {
-                        args.push(callback);
-                    }
-                    async.setImmediate(function () {
-                        iterator.apply(null, args);
-                    });
-                }
-            };
-        };
-        wrapIterator(async.iterator(tasks))();
-    };
-
-    var _parallel = function(eachfn, tasks, callback) {
-        callback = callback || function () {};
-        if (tasks.constructor === Array) {
-            eachfn.map(tasks, function (fn, callback) {
-                if (fn) {
-                    fn(function (err) {
-                        var args = Array.prototype.slice.call(arguments, 1);
-                        if (args.length <= 1) {
-                            args = args[0];
-                        }
-                        callback.call(null, err, args);
-                    });
-                }
-            }, callback);
-        }
-        else {
-            var results = {};
-            eachfn.each(_keys(tasks), function (k, callback) {
-                tasks[k](function (err) {
-                    var args = Array.prototype.slice.call(arguments, 1);
-                    if (args.length <= 1) {
-                        args = args[0];
-                    }
-                    results[k] = args;
-                    callback(err);
-                });
-            }, function (err) {
-                callback(err, results);
-            });
-        }
-    };
-
-    async.parallel = function (tasks, callback) {
-        _parallel({ map: async.map, each: async.each }, tasks, callback);
-    };
-
-    async.parallelLimit = function(tasks, limit, callback) {
-        _parallel({ map: _mapLimit(limit), each: _eachLimit(limit) }, tasks, callback);
-    };
-
-    async.series = function (tasks, callback) {
-        callback = callback || function () {};
-        if (tasks.constructor === Array) {
-            async.mapSeries(tasks, function (fn, callback) {
-                if (fn) {
-                    fn(function (err) {
-                        var args = Array.prototype.slice.call(arguments, 1);
-                        if (args.length <= 1) {
-                            args = args[0];
-                        }
-                        callback.call(null, err, args);
-                    });
-                }
-            }, callback);
-        }
-        else {
-            var results = {};
-            async.eachSeries(_keys(tasks), function (k, callback) {
-                tasks[k](function (err) {
-                    var args = Array.prototype.slice.call(arguments, 1);
-                    if (args.length <= 1) {
-                        args = args[0];
-                    }
-                    results[k] = args;
-                    callback(err);
-                });
-            }, function (err) {
-                callback(err, results);
-            });
-        }
-    };
-
-    async.iterator = function (tasks) {
-        var makeCallback = function (index) {
-            var fn = function () {
-                if (tasks.length) {
-                    tasks[index].apply(null, arguments);
-                }
-                return fn.next();
-            };
-            fn.next = function () {
-                return (index < tasks.length - 1) ? makeCallback(index + 1): null;
-            };
-            return fn;
-        };
-        return makeCallback(0);
-    };
-
-    async.apply = function (fn) {
-        var args = Array.prototype.slice.call(arguments, 1);
-        return function () {
-            return fn.apply(
-                null, args.concat(Array.prototype.slice.call(arguments))
-            );
-        };
-    };
-
-    var _concat = function (eachfn, arr, fn, callback) {
-        var r = [];
-        eachfn(arr, function (x, cb) {
-            fn(x, function (err, y) {
-                r = r.concat(y || []);
-                cb(err);
-            });
-        }, function (err) {
-            callback(err, r);
-        });
-    };
-    async.concat = doParallel(_concat);
-    async.concatSeries = doSeries(_concat);
-
-    async.whilst = function (test, iterator, callback) {
-        if (test()) {
-            iterator(function (err) {
-                if (err) {
-                    return callback(err);
-                }
-                async.whilst(test, iterator, callback);
-            });
-        }
-        else {
-            callback();
-        }
-    };
-
-    async.doWhilst = function (iterator, test, callback) {
-        iterator(function (err) {
-            if (err) {
-                return callback(err);
-            }
-            if (test()) {
-                async.doWhilst(iterator, test, callback);
-            }
-            else {
-                callback();
-            }
-        });
-    };
-
-    async.until = function (test, iterator, callback) {
-        if (!test()) {
-            iterator(function (err) {
-                if (err) {
-                    return callback(err);
-                }
-                async.until(test, iterator, callback);
-            });
-        }
-        else {
-            callback();
-        }
-    };
-
-    async.doUntil = function (iterator, test, callback) {
-        iterator(function (err) {
-            if (err) {
-                return callback(err);
-            }
-            if (!test()) {
-                async.doUntil(iterator, test, callback);
-            }
-            else {
-                callback();
-            }
-        });
-    };
-
-    async.queue = function (worker, concurrency) {
-        if (concurrency === undefined) {
-            concurrency = 1;
-        }
-        function _insert(q, data, pos, callback) {
-          if(data.constructor !== Array) {
-              data = [data];
-          }
-          _each(data, function(task) {
-              var item = {
-                  data: task,
-                  callback: typeof callback === 'function' ? callback : null
-              };
-
-              if (pos) {
-                q.tasks.unshift(item);
-              } else {
-                q.tasks.push(item);
-              }
-
-              if (q.saturated && q.tasks.length === concurrency) {
-                  q.saturated();
-              }
-              async.setImmediate(q.process);
-          });
-        }
-
-        var workers = 0;
-        var q = {
-            tasks: [],
-            concurrency: concurrency,
-            saturated: null,
-            empty: null,
-            drain: null,
-            push: function (data, callback) {
-              _insert(q, data, false, callback);
-            },
-            unshift: function (data, callback) {
-              _insert(q, data, true, callback);
-            },
-            process: function () {
-                if (workers < q.concurrency && q.tasks.length) {
-                    var task = q.tasks.shift();
-                    if (q.empty && q.tasks.length === 0) {
-                        q.empty();
-                    }
-                    workers += 1;
-                    var next = function () {
-                        workers -= 1;
-                        if (task.callback) {
-                            task.callback.apply(task, arguments);
-                        }
-                        if (q.drain && q.tasks.length + workers === 0) {
-                            q.drain();
-                        }
-                        q.process();
-                    };
-                    var cb = only_once(next);
-                    worker(task.data, cb);
-                }
-            },
-            length: function () {
-                return q.tasks.length;
-            },
-            running: function () {
-                return workers;
-            }
-        };
-        return q;
-    };
-
-    async.cargo = function (worker, payload) {
-        var working     = false,
-            tasks       = [];
-
-        var cargo = {
-            tasks: tasks,
-            payload: payload,
-            saturated: null,
-            empty: null,
-            drain: null,
-            push: function (data, callback) {
-                if(data.constructor !== Array) {
-                    data = [data];
-                }
-                _each(data, function(task) {
-                    tasks.push({
-                        data: task,
-                        callback: typeof callback === 'function' ? callback : null
-                    });
-                    if (cargo.saturated && tasks.length === payload) {
-                        cargo.saturated();
-                    }
-                });
-                async.setImmediate(cargo.process);
-            },
-            process: function process() {
-                if (working) return;
-                if (tasks.length === 0) {
-                    if(cargo.drain) cargo.drain();
-                    return;
-                }
-
-                var ts = typeof payload === 'number'
-                            ? tasks.splice(0, payload)
-                            : tasks.splice(0);
-
-                var ds = _map(ts, function (task) {
-                    return task.data;
-                });
-
-                if(cargo.empty) cargo.empty();
-                working = true;
-                worker(ds, function () {
-                    working = false;
-
-                    var args = arguments;
-                    _each(ts, function (data) {
-                        if (data.callback) {
-                            data.callback.apply(null, args);
-                        }
-                    });
-
-                    process();
-                });
-            },
-            length: function () {
-                return tasks.length;
-            },
-            running: function () {
-                return working;
-            }
-        };
-        return cargo;
-    };
-
-    var _console_fn = function (name) {
-        return function (fn) {
-            var args = Array.prototype.slice.call(arguments, 1);
-            fn.apply(null, args.concat([function (err) {
-                var args = Array.prototype.slice.call(arguments, 1);
-                if (typeof console !== 'undefined') {
-                    if (err) {
-                        if (console.error) {
-                            console.error(err);
-                        }
-                    }
-                    else if (console[name]) {
-                        _each(args, function (x) {
-                            console[name](x);
-                        });
-                    }
-                }
-            }]));
-        };
-    };
-    async.log = _console_fn('log');
-    async.dir = _console_fn('dir');
-    /*async.info = _console_fn('info');
-    async.warn = _console_fn('warn');
-    async.error = _console_fn('error');*/
-
-    async.memoize = function (fn, hasher) {
-        var memo = {};
-        var queues = {};
-        hasher = hasher || function (x) {
-            return x;
-        };
-        var memoized = function () {
-            var args = Array.prototype.slice.call(arguments);
-            var callback = args.pop();
-            var key = hasher.apply(null, args);
-            if (key in memo) {
-                callback.apply(null, memo[key]);
-            }
-            else if (key in queues) {
-                queues[key].push(callback);
-            }
-            else {
-                queues[key] = [callback];
-                fn.apply(null, args.concat([function () {
-                    memo[key] = arguments;
-                    var q = queues[key];
-                    delete queues[key];
-                    for (var i = 0, l = q.length; i < l; i++) {
-                      q[i].apply(null, arguments);
-                    }
-                }]));
-            }
-        };
-        memoized.memo = memo;
-        memoized.unmemoized = fn;
-        return memoized;
-    };
-
-    async.unmemoize = function (fn) {
-      return function () {
-        return (fn.unmemoized || fn).apply(null, arguments);
-      };
-    };
-
-    async.times = function (count, iterator, callback) {
-        var counter = [];
-        for (var i = 0; i < count; i++) {
-            counter.push(i);
-        }
-        return async.map(counter, iterator, callback);
-    };
-
-    async.timesSeries = function (count, iterator, callback) {
-        var counter = [];
-        for (var i = 0; i < count; i++) {
-            counter.push(i);
-        }
-        return async.mapSeries(counter, iterator, callback);
-    };
-
-    async.compose = function (/* functions... */) {
-        var fns = Array.prototype.reverse.call(arguments);
-        return function () {
-            var that = this;
-            var args = Array.prototype.slice.call(arguments);
-            var callback = args.pop();
-            async.reduce(fns, args, function (newargs, fn, cb) {
-                fn.apply(that, newargs.concat([function () {
-                    var err = arguments[0];
-                    var nextargs = Array.prototype.slice.call(arguments, 1);
-                    cb(err, nextargs);
-                }]))
-            },
-            function (err, results) {
-                callback.apply(that, [err].concat(results));
-            });
-        };
-    };
-
-    var _applyEach = function (eachfn, fns /*args...*/) {
-        var go = function () {
-            var that = this;
-            var args = Array.prototype.slice.call(arguments);
-            var callback = args.pop();
-            return eachfn(fns, function (fn, cb) {
-                fn.apply(that, args.concat([cb]));
-            },
-            callback);
-        };
-        if (arguments.length > 2) {
-            var args = Array.prototype.slice.call(arguments, 2);
-            return go.apply(this, args);
-        }
-        else {
-            return go;
-        }
-    };
-    async.applyEach = doParallel(_applyEach);
-    async.applyEachSeries = doSeries(_applyEach);
-
-    async.forever = function (fn, callback) {
-        function next(err) {
-            if (err) {
-                if (callback) {
-                    return callback(err);
-                }
-                throw err;
-            }
-            fn(next);
-        }
-        next();
-    };
-
-    // AMD / RequireJS
-    if (typeof define !== 'undefined' && define.amd) {
-        define([], function () {
-            return async;
-        });
-    }
-    // Node.js
-    else if (typeof module !== 'undefined' && module.exports) {
-        module.exports = async;
-    }
-    // included directly via <script> tag
-    else {
-        root.async = async;
-    }
-
-}());
-
-}).call(this,_dereq_("m:\\development\\github repositories\\turf\\node_modules\\browserify\\node_modules\\insert-module-globals\\node_modules\\process\\browser.js"))
-},{"m:\\development\\github repositories\\turf\\node_modules\\browserify\\node_modules\\insert-module-globals\\node_modules\\process\\browser.js":61}],60:[function(_dereq_,module,exports){
-
-},{}],61:[function(_dereq_,module,exports){
-// shim for using process in browser
-
-var process = module.exports = {};
-
-process.nextTick = (function () {
-    var canSetImmediate = typeof window !== 'undefined'
-    && window.setImmediate;
-    var canPost = typeof window !== 'undefined'
-    && window.postMessage && window.addEventListener
-    ;
-
-    if (canSetImmediate) {
-        return function (f) { return window.setImmediate(f) };
-    }
-
-    if (canPost) {
-        var queue = [];
-        window.addEventListener('message', function (ev) {
-            var source = ev.source;
-            if ((source === window || source === null) && ev.data === 'process-tick') {
-                ev.stopPropagation();
-                if (queue.length > 0) {
-                    var fn = queue.shift();
-                    fn();
-                }
-            }
-        }, true);
-
-        return function nextTick(fn) {
-            queue.push(fn);
-            window.postMessage('process-tick', '*');
-        };
-    }
-
-    return function nextTick(fn) {
-        setTimeout(fn, 0);
-    };
-})();
-
-process.title = 'browser';
-process.browser = true;
-process.env = {};
-process.argv = [];
-
-process.binding = function (name) {
-    throw new Error('process.binding is not supported');
-}
-
-// TODO(shtylman)
-process.cwd = function () { return '/' };
-process.chdir = function (dir) {
-    throw new Error('process.chdir is not supported');
-};
-
-},{}],62:[function(_dereq_,module,exports){
-(function (process){
-// Copyright Joyent, Inc. and other Node contributors.
-//
-// Permission is hereby granted, free of charge, to any person obtaining a
-// copy of this software and associated documentation files (the
-// "Software"), to deal in the Software without restriction, including
-// without limitation the rights to use, copy, modify, merge, publish,
-// distribute, sublicense, and/or sell copies of the Software, and to permit
-// persons to whom the Software is furnished to do so, subject to the
-// following conditions:
-//
-// The above copyright notice and this permission notice shall be included
-// in all copies or substantial portions of the Software.
-//
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
-// OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN
-// NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
-// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
-// OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
-// USE OR OTHER DEALINGS IN THE SOFTWARE.
-
-// resolves . and .. elements in a path array with directory names there
-// must be no slashes, empty elements, or device names (c:\) in the array
-// (so also no leading and trailing slashes - it does not distinguish
-// relative and absolute paths)
-function normalizeArray(parts, allowAboveRoot) {
-  // if the path tries to go above the root, `up` ends up > 0
-  var up = 0;
-  for (var i = parts.length - 1; i >= 0; i--) {
-    var last = parts[i];
-    if (last === '.') {
-      parts.splice(i, 1);
-    } else if (last === '..') {
-      parts.splice(i, 1);
-      up++;
-    } else if (up) {
-      parts.splice(i, 1);
-      up--;
-    }
-  }
-
-  // if the path is allowed to go above the root, restore leading ..s
-  if (allowAboveRoot) {
-    for (; up--; up) {
-      parts.unshift('..');
-    }
-  }
-
-  return parts;
-}
-
-// Split a filename into [root, dir, basename, ext], unix version
-// 'root' is just a slash, or nothing.
-var splitPathRe =
-    /^(\/?|)([\s\S]*?)((?:\.{1,2}|[^\/]+?|)(\.[^.\/]*|))(?:[\/]*)$/;
-var splitPath = function(filename) {
-  return splitPathRe.exec(filename).slice(1);
-};
-
-// path.resolve([from ...], to)
-// posix version
-exports.resolve = function() {
-  var resolvedPath = '',
-      resolvedAbsolute = false;
-
-  for (var i = arguments.length - 1; i >= -1 && !resolvedAbsolute; i--) {
-    var path = (i >= 0) ? arguments[i] : process.cwd();
-
-    // Skip empty and invalid entries
-    if (typeof path !== 'string') {
-      throw new TypeError('Arguments to path.resolve must be strings');
-    } else if (!path) {
-      continue;
-    }
-
-    resolvedPath = path + '/' + resolvedPath;
-    resolvedAbsolute = path.charAt(0) === '/';
-  }
-
-  // At this point the path should be resolved to a full absolute path, but
-  // handle relative paths to be safe (might happen when process.cwd() fails)
-
-  // Normalize the path
-  resolvedPath = normalizeArray(filter(resolvedPath.split('/'), function(p) {
-    return !!p;
-  }), !resolvedAbsolute).join('/');
-
-  return ((resolvedAbsolute ? '/' : '') + resolvedPath) || '.';
-};
-
-// path.normalize(path)
-// posix version
-exports.normalize = function(path) {
-  var isAbsolute = exports.isAbsolute(path),
-      trailingSlash = substr(path, -1) === '/';
-
-  // Normalize the path
-  path = normalizeArray(filter(path.split('/'), function(p) {
-    return !!p;
-  }), !isAbsolute).join('/');
-
-  if (!path && !isAbsolute) {
-    path = '.';
-  }
-  if (path && trailingSlash) {
-    path += '/';
-  }
-
-  return (isAbsolute ? '/' : '') + path;
-};
-
-// posix version
-exports.isAbsolute = function(path) {
-  return path.charAt(0) === '/';
-};
-
-// posix version
-exports.join = function() {
-  var paths = Array.prototype.slice.call(arguments, 0);
-  return exports.normalize(filter(paths, function(p, index) {
-    if (typeof p !== 'string') {
-      throw new TypeError('Arguments to path.join must be strings');
-    }
-    return p;
-  }).join('/'));
-};
-
-
-// path.relative(from, to)
-// posix version
-exports.relative = function(from, to) {
-  from = exports.resolve(from).substr(1);
-  to = exports.resolve(to).substr(1);
-
-  function trim(arr) {
-    var start = 0;
-    for (; start < arr.length; start++) {
-      if (arr[start] !== '') break;
-    }
-
-    var end = arr.length - 1;
-    for (; end >= 0; end--) {
-      if (arr[end] !== '') break;
-    }
-
-    if (start > end) return [];
-    return arr.slice(start, end - start + 1);
-  }
-
-  var fromParts = trim(from.split('/'));
-  var toParts = trim(to.split('/'));
-
-  var length = Math.min(fromParts.length, toParts.length);
-  var samePartsLength = length;
-  for (var i = 0; i < length; i++) {
-    if (fromParts[i] !== toParts[i]) {
-      samePartsLength = i;
-      break;
-    }
-  }
-
-  var outputParts = [];
-  for (var i = samePartsLength; i < fromParts.length; i++) {
-    outputParts.push('..');
-  }
-
-  outputParts = outputParts.concat(toParts.slice(samePartsLength));
-
-  return outputParts.join('/');
-};
-
-exports.sep = '/';
-exports.delimiter = ':';
-
-exports.dirname = function(path) {
-  var result = splitPath(path),
-      root = result[0],
-      dir = result[1];
-
-  if (!root && !dir) {
-    // No dirname whatsoever
-    return '.';
-  }
-
-  if (dir) {
-    // It has a dirname, strip trailing slash
-    dir = dir.substr(0, dir.length - 1);
-  }
-
-  return root + dir;
-};
-
-
-exports.basename = function(path, ext) {
-  var f = splitPath(path)[2];
-  // TODO: make this comparison case-insensitive on windows?
-  if (ext && f.substr(-1 * ext.length) === ext) {
-    f = f.substr(0, f.length - ext.length);
-  }
-  return f;
-};
-
-
-exports.extname = function(path) {
-  return splitPath(path)[3];
-};
-
-function filter (xs, f) {
-    if (xs.filter) return xs.filter(f);
-    var res = [];
-    for (var i = 0; i < xs.length; i++) {
-        if (f(xs[i], i, xs)) res.push(xs[i]);
-    }
-    return res;
-}
-
-// String.prototype.substr - negative index don't work in IE8
-var substr = 'ab'.substr(-1) === 'b'
-    ? function (str, start, len) { return str.substr(start, len) }
-    : function (str, start, len) {
-        if (start < 0) start = str.length + start;
-        return str.substr(start, len);
-    }
-;
-
-}).call(this,_dereq_("m:\\development\\github repositories\\turf\\node_modules\\browserify\\node_modules\\insert-module-globals\\node_modules\\process\\browser.js"))
-},{"m:\\development\\github repositories\\turf\\node_modules\\browserify\\node_modules\\insert-module-globals\\node_modules\\process\\browser.js":61}],63:[function(_dereq_,module,exports){
+},{"jsts":26,"turf-combine":29,"turf-featurecollection":51,"turf-polygon":78}],26:[function(require,module,exports){
 (function (global){
 'use strict';
 global.javascript = {};
-global.javascript.util = _dereq_('javascript.util');
-var jsts = _dereq_('./lib/jsts');
+global.javascript.util = require('javascript.util');
+var jsts = require('./lib/jsts');
 module.exports = jsts
 
-}).call(this,typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"./lib/jsts":64,"javascript.util":65}],64:[function(_dereq_,module,exports){
+}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
+},{"./lib/jsts":27,"javascript.util":28}],27:[function(require,module,exports){
 /* The JSTS Topology Suite is a collection of JavaScript classes that
 implement the fundamental operations required to validate a given
 geo-spatial data set to a known topological specification.
@@ -6972,7 +5016,7 @@ boundaryCount++;var newLoc=jsts.geomgraph.GeometryGraph.determineBoundary(this.b
 return;if(loc===Location.BOUNDARY&&this.useBoundaryDeterminationRule)
 this.insertBoundaryPoint(argIndex,coord);else
 this.insertPoint(argIndex,coord,loc);};jsts.geomgraph.GeometryGraph.prototype.getInvalidPoint=function(){return this.invalidPoint;};})();
-},{}],65:[function(_dereq_,module,exports){
+},{}],28:[function(require,module,exports){
 /*
   javascript.util is a port of selected parts of java.util to JavaScript which
   main purpose is to ease porting Java code to JavaScript.
@@ -7032,7 +5076,541 @@ return true;};HashSet.prototype.remove=function(o){throw new OperationNotSupport
 return array;};HashSet.prototype.iterator=function(){return new HashSet.Iterator(this);};HashSet.Iterator=function(hashSet){this.hashSet=hashSet;};HashSet.Iterator.prototype.hashSet=null;HashSet.Iterator.prototype.position=0;HashSet.Iterator.prototype.next=function(){if(this.position===this.hashSet.size()){throw new NoSuchElementException();}
 return this.hashSet.array[this.position++];};HashSet.Iterator.prototype.hasNext=function(){if(this.position<this.hashSet.size()){return true;}
 return false;};HashSet.Iterator.prototype.remove=function(){throw new javascript.util.OperationNotSupported();};javascript.util.HashSet=HashSet;})();
-},{}],66:[function(_dereq_,module,exports){
+},{}],29:[function(require,module,exports){
+module.exports = function(fc){
+  var type = fc.features[0].geometry.type
+  var err
+  var geometries = fc.features.map(function(f){
+    return f.geometry
+  })
+
+  switch(type){
+    case 'Point':
+      var multiPoint = {
+        type: 'Feature',
+        geometry: {
+          type: 'MultiPoint',
+          coordinates: []
+        }
+      }
+      multiPoint.geometry.coordinates = pluckCoods(geometries)
+      return multiPoint;
+      break
+    case 'LineString':
+      var multiLineString = {
+        type: 'Feature',
+        geometry: {
+          type: 'MultiLineString',
+          coordinates: []
+        }
+      }
+      multiLineString.geometry.coordinates = pluckCoods(geometries)
+      return multiLineString;
+      break
+    case 'Polygon':
+      var multiPolygon = {
+        type: 'Feature',
+        geometry: {
+          type: 'MultiPolygon',
+          coordinates: []
+        }
+      }
+      multiPolygon.geometry.coordinates = pluckCoods(geometries)
+      return multiPolygon;
+      break
+  }
+}
+
+function pluckCoods(multi){
+  return multi.map(function(geom){
+    return geom.coordinates
+  })
+}
+},{}],30:[function(require,module,exports){
+var extent = require('turf-extent')
+
+module.exports = function(layer, done){
+  var ext = extent(layer)
+  var x = (ext[0] + ext[2])/2
+  var y = (ext[1] + ext[3])/2
+  var center = {
+    "type": "Feature",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [x, y]
+    }
+  }
+  return center
+}
+},{"turf-extent":49}],31:[function(require,module,exports){
+var explode = require('turf-explode')
+var point = require('turf-point')
+
+module.exports = function(features){
+  var vertices = explode(features).features,
+    xSum = 0,
+    ySum = 0,
+    len = vertices.length
+
+  for (var i = 0; i < len; i++) {
+    xSum += vertices[i].geometry.coordinates[0]
+    ySum += vertices[i].geometry.coordinates[1]
+  }
+
+  return point(xSum / len, ySum / len)
+}
+
+},{"turf-explode":47,"turf-point":77}],32:[function(require,module,exports){
+module.exports=require(29)
+},{}],33:[function(require,module,exports){
+// 1. run tin on points
+// 2. calculate lenth of all edges and area of all triangles
+// 3. remove triangles that fail the max length test
+// 4. buffer the results slightly
+// 5. merge the results
+var t = {}
+t.tin = require('turf-tin')
+t.merge = require('turf-merge')
+t.buffer = require('turf-buffer')
+t.distance = require('turf-distance')
+t.point = require('turf-point')
+
+module.exports = function(points, maxEdge){
+  var tinPolys,
+    filteredPolys,
+    bufferPolys,
+    mergePolys;
+
+  tinPolys = t.tin(points, null);
+
+  if (tinPolys instanceof Error) {
+    return tinPolys;
+  }
+
+  filteredPolys = filterTriangles(tinPolys.features, maxEdge)
+  tinPolys.features = filteredPolys
+
+  bufferPolys = t.buffer(tinPolys, 1, 'miles')
+
+  if (bufferPolys instanceof Error) {
+    return bufferPolys;
+  }
+
+  mergePolys = t.merge(bufferPolys);
+  return mergePolys;
+}
+
+var filterTriangles = function(triangles, maxEdge, cb){
+  return triangles.filter(function (triangle) {
+    var pt1 = t.point(triangle.geometry.coordinates[0][0][0], triangle.geometry.coordinates[0][0][1])
+    var pt2 = t.point(triangle.geometry.coordinates[0][1][0], triangle.geometry.coordinates[0][1][1])
+    var pt3 = t.point(triangle.geometry.coordinates[0][2][0], triangle.geometry.coordinates[0][2][1])
+    var dist1 = t.distance(pt1, pt2, 'miles');
+    var dist2 = t.distance(pt2, pt3, 'miles');
+    var dist3 = t.distance(pt1, pt3, 'miles');
+
+    return (dist1 <= maxEdge && dist2 <= maxEdge && dist3 <= maxEdge);
+  })
+}
+
+},{"turf-buffer":25,"turf-distance":39,"turf-merge":70,"turf-point":77,"turf-tin":34}],34:[function(require,module,exports){
+//http://en.wikipedia.org/wiki/Delaunay_triangulation
+//https://github.com/ironwallaby/delaunay
+var polygon = require('turf-polygon')
+var nearest = require('turf-nearest')
+var point = require('turf-point')
+
+module.exports = function(points, z, done){
+  //break down points
+  var vertices = []
+  points.features.forEach(function(p){
+    vertices.push({x:p.geometry.coordinates[0], y:p.geometry.coordinates[1]})
+  })
+
+  var triangulated = triangulate(vertices)
+  var triangles = {
+    type: 'FeatureCollection',
+    features: []
+  }
+
+  done = done || function () {};
+
+  triangulated.forEach(function(triangle){
+    var coords = [[[triangle.a.x, triangle.a.y], [triangle.b.x, triangle.b.y], [triangle.c.x, triangle.c.y]]]
+    var poly = polygon(coords, {a: null, b: null, c: null})
+
+    triangles.features.push(poly)
+  })
+  if(z){
+    // add values from vertices
+    triangles.features.forEach(function(tri){
+      var coordinateNumber = 1
+      tri.geometry.coordinates[0].forEach(function(c){
+        var closest = nearest(point(c[0], c[1]), points);
+
+        if(coordinateNumber === 1){
+          tri.properties.a = closest.properties[z]
+        }
+        else if(coordinateNumber === 2){
+          tri.properties.b = closest.properties[z]
+        }
+        else if(coordinateNumber === 3){
+          tri.properties.c = closest.properties[z]
+        }
+        coordinateNumber++
+      })
+    })
+  }
+
+  triangles.features.forEach(function(tri){
+    tri = correctRings(tri)
+  })
+  
+  done(null, triangles)
+  return triangles;
+}
+
+function correctRings(poly){
+  poly.geometry.coordinates.forEach(function(ring){
+    var isWrapped =  ring[0] === ring.slice(-1)[0]
+    if(!isWrapped){
+      ring.push(ring[0])
+    }
+  })
+  return poly
+}
+
+function Triangle(a, b, c) {
+  this.a = a
+  this.b = b
+  this.c = c
+
+  var A = b.x - a.x,
+      B = b.y - a.y,
+      C = c.x - a.x,
+      D = c.y - a.y,
+      E = A * (a.x + b.x) + B * (a.y + b.y),
+      F = C * (a.x + c.x) + D * (a.y + c.y),
+      G = 2 * (A * (c.y - b.y) - B * (c.x - b.x)),
+      minx, miny, dx, dy
+
+  /* If the points of the triangle are collinear, then just find the
+   * extremes and use the midpoint as the center of the circumcircle. */
+  if(Math.abs(G) < 0.000001) {
+    minx = Math.min(a.x, b.x, c.x)
+    miny = Math.min(a.y, b.y, c.y)
+    dx   = (Math.max(a.x, b.x, c.x) - minx) * 0.5
+    dy   = (Math.max(a.y, b.y, c.y) - miny) * 0.5
+
+    this.x = minx + dx
+    this.y = miny + dy
+    this.r = dx * dx + dy * dy
+  }
+
+  else {
+    this.x = (D*E - B*F) / G
+    this.y = (A*F - C*E) / G
+    dx = this.x - a.x
+    dy = this.y - a.y
+    this.r = dx * dx + dy * dy
+  }
+}
+
+Triangle.prototype.draw = function(ctx) {
+  ctx.beginPath()
+  ctx.moveTo(this.a.x, this.a.y)
+  ctx.lineTo(this.b.x, this.b.y)
+  ctx.lineTo(this.c.x, this.c.y)
+  ctx.closePath()
+  ctx.stroke()
+}
+
+function byX(a, b) {
+  return b.x - a.x
+}
+
+function dedup(edges) {
+  var j = edges.length,
+      a, b, i, m, n
+
+  outer: while(j) {
+    b = edges[--j]
+    a = edges[--j]
+    i = j
+    while(i) {
+      n = edges[--i]
+      m = edges[--i]
+      if((a === m && b === n) || (a === n && b === m)) {
+        edges.splice(j, 2)
+        edges.splice(i, 2)
+        j -= 2
+        continue outer
+      }
+    }
+  }
+}
+
+function triangulate(vertices) {
+  /* Bail if there aren't enough vertices to form any triangles. */
+  if(vertices.length < 3)
+    return []
+
+  /* Ensure the vertex array is in order of descending X coordinate
+   * (which is needed to ensure a subquadratic runtime), and then find
+   * the bounding box around the points. */
+  vertices.sort(byX)
+
+  var i    = vertices.length - 1,
+      xmin = vertices[i].x,
+      xmax = vertices[0].x,
+      ymin = vertices[i].y,
+      ymax = ymin
+
+  while(i--) {
+    if(vertices[i].y < ymin) ymin = vertices[i].y
+    if(vertices[i].y > ymax) ymax = vertices[i].y
+  }
+
+  /* Find a supertriangle, which is a triangle that surrounds all the
+   * vertices. This is used like something of a sentinel value to remove
+   * cases in the main algorithm, and is removed before we return any
+   * results.
+   *
+   * Once found, put it in the "open" list. (The "open" list is for
+   * triangles who may still need to be considered; the "closed" list is
+   * for triangles which do not.) */
+  var dx     = xmax - xmin,
+      dy     = ymax - ymin,
+      dmax   = (dx > dy) ? dx : dy,
+      xmid   = (xmax + xmin) * 0.5,
+      ymid   = (ymax + ymin) * 0.5,
+      open   = [
+        new Triangle(
+          {x: xmid - 20 * dmax, y: ymid -      dmax, __sentinel: true},
+          {x: xmid            , y: ymid + 20 * dmax, __sentinel: true},
+          {x: xmid + 20 * dmax, y: ymid -      dmax, __sentinel: true}
+        )
+      ],
+      closed = [],
+      edges = [],
+      j, a, b
+
+  /* Incrementally add each vertex to the mesh. */
+  i = vertices.length
+  while(i--) {
+    /* For each open triangle, check to see if the current point is
+     * inside it's circumcircle. If it is, remove the triangle and add
+     * it's edges to an edge list. */
+    edges.length = 0
+    j = open.length
+    while(j--) {
+      /* If this point is to the right of this triangle's circumcircle,
+       * then this triangle should never get checked again. Remove it
+       * from the open list, add it to the closed list, and skip. */
+      dx = vertices[i].x - open[j].x
+      if(dx > 0 && dx * dx > open[j].r) {
+        closed.push(open[j])
+        open.splice(j, 1)
+        continue
+      }
+
+      /* If not, skip this triangle. */
+      dy = vertices[i].y - open[j].y
+      if(dx * dx + dy * dy > open[j].r)
+        continue
+
+      /* Remove the triangle and add it's edges to the edge list. */
+      edges.push(
+        open[j].a, open[j].b,
+        open[j].b, open[j].c,
+        open[j].c, open[j].a
+      )
+      open.splice(j, 1)
+    }
+
+    /* Remove any doubled edges. */
+    dedup(edges)
+
+    /* Add a new triangle for each edge. */
+    j = edges.length
+    while(j) {
+      b = edges[--j]
+      a = edges[--j]
+      open.push(new Triangle(a, b, vertices[i]))
+    }
+  }
+
+  /* Copy any remaining open triangles to the closed list, and then
+   * remove any triangles that share a vertex with the supertriangle. */
+  Array.prototype.push.apply(closed, open)
+
+  i = closed.length
+  while(i--)
+    if(closed[i].a.__sentinel ||
+       closed[i].b.__sentinel ||
+       closed[i].c.__sentinel)
+      closed.splice(i, 1)
+
+  /* Yay, we're done! */
+  return closed
+}
+
+/*if (typeof module !== 'undefined') {
+    module.exports = {
+        Triangle: Triangle,
+        triangulate: triangulate
+    }
+}*/
+
+},{"turf-nearest":75,"turf-point":77,"turf-polygon":78}],35:[function(require,module,exports){
+// http://en.wikibooks.org/wiki/Algorithm_Implementation/Geometry/Convex_hull/Monotone_chain#JavaScript
+
+module.exports = function(fc){
+  var points = fc.features.map(function(point){
+    return point.geometry.coordinates
+  })
+
+  points.sort(function(a, b) {
+    return a[0] == b[0] ? a[1] - b[1] : a[0] - b[0]
+  })
+
+  var lower = []
+  for (var i = 0; i < points.length; i++) {
+    while (lower.length >= 2 && cross(lower[lower.length - 2], lower[lower.length - 1], points[i]) <= 0) {
+       lower.pop()
+    }
+    lower.push(points[i])
+  }
+
+  var upper = []
+  for (var i = points.length - 1; i >= 0; i--) {
+    while (upper.length >= 2 && cross(upper[upper.length - 2], upper[upper.length - 1], points[i]) <= 0) {
+       upper.pop()
+    }
+    upper.push(points[i])
+  }
+
+  upper.pop()
+  lower.pop()
+  var coords = lower.concat(upper)
+  coords.push(coords[0])
+  return {
+    type:'Feature',
+    properties: {},
+    geometry: {
+      type:'Polygon',
+      coordinates: [
+        coords
+      ]
+    } 
+  }
+}
+
+function cross(o, a, b) {
+   return (a[0] - o[0]) * (b[1] - o[1]) - (a[1] - o[1]) * (b[0] - o[0])
+}
+},{}],36:[function(require,module,exports){
+module.exports=require(8)
+},{"turf-inside":55}],37:[function(require,module,exports){
+module.exports=require(9)
+},{"simple-statistics":38,"turf-inside":55}],38:[function(require,module,exports){
+module.exports=require(7)
+},{}],39:[function(require,module,exports){
+//http://en.wikipedia.org/wiki/Haversine_formula
+//http://www.movable-type.co.uk/scripts/latlong.html
+
+module.exports = function(point1, point2, units){
+  var coordinates1 = point1.geometry.coordinates
+  var coordinates2 = point2.geometry.coordinates
+
+  var dLat = toRad(coordinates2[1] - coordinates1[1])
+  var dLon = toRad(coordinates2[0] - coordinates1[0])
+  var lat1 = toRad(coordinates1[1])
+  var lat2 = toRad(coordinates2[1])
+  var a = Math.sin(dLat/2) * Math.sin(dLat/2) +
+          Math.sin(dLon/2) * Math.sin(dLon/2) * Math.cos(lat1) * Math.cos(lat2)
+  var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a))
+
+  var R = 0
+  switch(units){
+    case 'miles':
+      R = 3960
+      break
+    case 'kilometers':
+      R = 6373
+      break
+    case 'degrees':
+      R = 57.2957795
+      break
+    case 'radians':
+      R = 1
+      break
+  }
+  var distance = R * c
+  return distance
+}
+
+function toRad(degree){
+  return degree * Math.PI / 180
+}
+
+},{}],40:[function(require,module,exports){
+var _ = require('lodash')
+
+var t = {}
+t.featurecollection = require('turf-featurecollection')
+t.erase = require('turf-erase')
+t.point = require('turf-point')
+t.inside = require('turf-inside')
+t.union = require('turf-union')
+
+module.exports = function(fc, done){
+  done = done || function () {};
+
+  donuts = t.featurecollection([])
+  _.each(fc.features, function(poly1){
+    _.each(fc.features, function(poly2){
+      // if the polys are identical
+      if(_.isEqual(poly1, poly2)){
+        // do nothing
+      }
+      else{
+        //check to see if poly2 is inside of poly1
+        var isContained = contained(poly1, poly2);
+
+        // if it is contained and has different properties, erase poly2 from poly1
+        if(isContained && !_.isEqual(poly1.properties, poly2.properties)){
+          // erase poly2 from poly1
+          var erased = t.erase(poly1, poly2);
+          if(!_.some(donuts.features, erased)){
+            poly1 = erased
+          }
+        }
+        // if it is contained and has the same properties, merge poly1 and poly2
+        if(isContained && _.isEqual(poly1.properties, poly2.properties)){
+          // merge poly1 and poly2
+          var unioned = t.union(poly1, poly2);
+          if(!_.some(donuts.features, unioned)){
+            poly1 = unioned
+          }
+        }
+      }
+    })
+    // push transformed poly1 to donuts
+    donuts.features.push(poly1)
+  })
+  done(null, donuts)
+  return donuts;
+}
+
+function contained(poly1, poly2){
+  var sampleVertex = t.point(poly2.geometry.coordinates[0][0][0], poly2.geometry.coordinates[0][0][1])
+
+  return t.inside(sampleVertex, poly1);
+}
+
+
+},{"lodash":41,"turf-erase":43,"turf-featurecollection":51,"turf-inside":55,"turf-point":77,"turf-union":121}],41:[function(require,module,exports){
 (function (global){
 /**
  * @license
@@ -13820,1136 +12398,2143 @@ return false;};HashSet.Iterator.prototype.remove=function(){throw new javascript
   }
 }.call(this));
 
-}).call(this,typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}],67:[function(_dereq_,module,exports){
-// # simple-statistics
-//
-// A simple, literate statistics system. The code below uses the
-// [Javascript module pattern](http://www.adequatelygood.com/2010/3/JavaScript-Module-Pattern-In-Depth),
-// eventually assigning `simple-statistics` to `ss` in browsers or the
-// `exports object for node.js
-(function() {
-    var ss = {};
+}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
+},{}],42:[function(require,module,exports){
+var extent = require('turf-extent')
+var bboxPolygon = require('turf-bbox-polygon')
 
-    if (typeof module !== 'undefined') {
-        // Assign the `ss` object to exports, so that you can require
-        // it in [node.js](http://nodejs.org/)
-        exports = module.exports = ss;
-    } else {
-        // Otherwise, in a browser, we assign `ss` to the window object,
-        // so you can simply refer to it as `ss`.
-        this.ss = ss;
+module.exports = function(features, done){
+  var bbox = extent(features)
+  var poly = bboxPolygon(bbox)
+  return poly
+}
+},{"turf-bbox-polygon":23,"turf-extent":49}],43:[function(require,module,exports){
+// look here for help http://svn.osgeo.org/grass/grass/branches/releasebranch_6_4/vector/v.overlay/main.c
+//must be array of polygons
+
+// depend on jsts for now https://github.com/bjornharrtell/jsts/blob/master/examples/overlay.html
+
+var jsts = require('jsts')
+
+module.exports = function(poly1, poly2, done){
+  poly1 = correctRings(poly1)
+  poly2 = correctRings(poly2)
+
+  var reader = new jsts.io.GeoJSONReader()
+  var a = reader.read(JSON.stringify(poly1.geometry))
+  var b = reader.read(JSON.stringify(poly2.geometry))
+  var erased = a.difference(b);
+  var parser = new jsts.io.GeoJSONParser()
+  erased = parser.write(erased)
+
+  poly1.geometry = erased
+
+  return poly1;
+}
+
+function correctRings(poly){
+  poly.geometry.coordinates.forEach(function(ring){
+    var isWrapped = (ring[0][0] === ring.slice(-1)[0][0] && ring[0][1] === ring.slice(-1)[0][1])
+    if(!isWrapped){
+      ring.push(ring[0])
     }
-
-    // # [Linear Regression](http://en.wikipedia.org/wiki/Linear_regression)
-    //
-    // [Simple linear regression](http://en.wikipedia.org/wiki/Simple_linear_regression)
-    // is a simple way to find a fitted line
-    // between a set of coordinates.
-    function linear_regression() {
-        var linreg = {},
-            data = [];
-
-        // Assign data to the model. Data is assumed to be an array.
-        linreg.data = function(x) {
-            if (!arguments.length) return data;
-            data = x.slice();
-            return linreg;
-        };
-
-        // Calculate the slope and y-intercept of the regression line
-        // by calculating the least sum of squares
-        linreg.mb = function() {
-            var m, b;
-
-            // Store data length in a local variable to reduce
-            // repeated object property lookups
-            var data_length = data.length;
-
-            //if there's only one point, arbitrarily choose a slope of 0
-            //and a y-intercept of whatever the y of the initial point is
-            if (data_length === 1) {
-                m = 0;
-                b = data[0][1];
-            } else {
-                // Initialize our sums and scope the `m` and `b`
-                // variables that define the line.
-                var sum_x = 0, sum_y = 0,
-                    sum_xx = 0, sum_xy = 0;
-
-                // Use local variables to grab point values 
-                // with minimal object property lookups
-                var point, x, y;
-
-                // Gather the sum of all x values, the sum of all
-                // y values, and the sum of x^2 and (x*y) for each
-                // value.
-                //
-                // In math notation, these would be SS_x, SS_y, SS_xx, and SS_xy
-                for (var i = 0; i < data_length; i++) {
-                    point = data[i];
-                    x = point[0];
-                    y = point[1];
-
-                    sum_x += x;
-                    sum_y += y;
-
-                    sum_xx += x * x;
-                    sum_xy += x * y;
-                }
-
-                // `m` is the slope of the regression line
-                m = ((data_length * sum_xy) - (sum_x * sum_y)) /
-                    ((data_length * sum_xx) - (sum_x * sum_x));
-
-                // `b` is the y-intercept of the line.
-                b = (sum_y / data_length) - ((m * sum_x) / data_length);
-            }
-
-            // Return both values as an object.
-            return { m: m, b: b };
-        };
-
-        // a shortcut for simply getting the slope of the regression line
-        linreg.m = function() {
-            return linreg.mb().m;
-        };
-
-        // a shortcut for simply getting the y-intercept of the regression
-        // line.
-        linreg.b = function() {
-            return linreg.mb().b;
-        };
-
-        // ## Fitting The Regression Line
-        //
-        // This is called after `.data()` and returns the
-        // equation `y = f(x)` which gives the position
-        // of the regression line at each point in `x`.
-        linreg.line = function() {
-
-            // Get the slope, `m`, and y-intercept, `b`, of the line.
-            var mb = linreg.mb(),
-                m = mb.m,
-                b = mb.b;
-
-            // Return a function that computes a `y` value for each
-            // x value it is given, based on the values of `b` and `a`
-            // that we just computed.
-            return function(x) {
-                return b + (m * x);
-            };
-        };
-
-        return linreg;
-    }
-
-    // # [R Squared](http://en.wikipedia.org/wiki/Coefficient_of_determination)
-    //
-    // The r-squared value of data compared with a function `f`
-    // is the sum of the squared differences between the prediction
-    // and the actual value.
-    function r_squared(data, f) {
-        if (data.length < 2) return 1;
-
-        // Compute the average y value for the actual
-        // data set in order to compute the
-        // _total sum of squares_
-        var sum = 0, average;
-        for (var i = 0; i < data.length; i++) {
-            sum += data[i][1];
-        }
-        average = sum / data.length;
-
-        // Compute the total sum of squares - the
-        // squared difference between each point
-        // and the average of all points.
-        var sum_of_squares = 0;
-        for (var j = 0; j < data.length; j++) {
-            sum_of_squares += Math.pow(average - data[j][1], 2);
-        }
-
-        // Finally estimate the error: the squared
-        // difference between the estimate and the actual data
-        // value at each point.
-        var err = 0;
-        for (var k = 0; k < data.length; k++) {
-            err += Math.pow(data[k][1] - f(data[k][0]), 2);
-        }
-
-        // As the error grows larger, it's ratio to the
-        // sum of squares increases and the r squared
-        // value grows lower.
-        return 1 - (err / sum_of_squares);
-    }
-
-
-    // # [Bayesian Classifier](http://en.wikipedia.org/wiki/Naive_Bayes_classifier)
-    //
-    // This is a naïve bayesian classifier that takes
-    // singly-nested objects.
-    function bayesian() {
-        // The `bayes_model` object is what will be exposed
-        // by this closure, with all of its extended methods, and will
-        // have access to all scope variables, like `total_count`.
-        var bayes_model = {},
-            // The number of items that are currently
-            // classified in the model
-            total_count = 0,
-            // Every item classified in the model
-            data = {};
-
-        // ## Train
-        // Train the classifier with a new item, which has a single
-        // dimension of Javascript literal keys and values.
-        bayes_model.train = function(item, category) {
-            // If the data object doesn't have any values
-            // for this category, create a new object for it.
-            if (!data[category]) data[category] = {};
-
-            // Iterate through each key in the item.
-            for (var k in item) {
-                var v = item[k];
-                // Initialize the nested object `data[category][k][item[k]]`
-                // with an object of keys that equal 0.
-                if (data[category][k] === undefined) data[category][k] = {};
-                if (data[category][k][v] === undefined) data[category][k][v] = 0;
-
-                // And increment the key for this key/value combination.
-                data[category][k][item[k]]++;
-            }
-            // Increment the number of items classified
-            total_count++;
-        };
-
-        // ## Score
-        // Generate a score of how well this item matches all
-        // possible categories based on its attributes
-        bayes_model.score = function(item) {
-            // Initialize an empty array of odds per category.
-            var odds = {}, category;
-            // Iterate through each key in the item,
-            // then iterate through each category that has been used
-            // in previous calls to `.train()`
-            for (var k in item) {
-                var v = item[k];
-                for (category in data) {
-                    // Create an empty object for storing key - value combinations
-                    // for this category.
-                    if (odds[category] === undefined) odds[category] = {};
-
-                    // If this item doesn't even have a property, it counts for nothing,
-                    // but if it does have the property that we're looking for from
-                    // the item to categorize, it counts based on how popular it is
-                    // versus the whole population.
-                    if (data[category][k]) {
-                        odds[category][k + '_' + v] = (data[category][k][v] || 0) / total_count;
-                    } else {
-                        odds[category][k + '_' + v] = 0;
-                    }
-                }
-            }
-
-            // Set up a new object that will contain sums of these odds by category
-            var odds_sums = {};
-
-            for (category in odds) {
-                // Tally all of the odds for each category-combination pair -
-                // the non-existence of a category does not add anything to the
-                // score.
-                for (var combination in odds[category]) {
-                    if (odds_sums[category] === undefined) odds_sums[category] = 0;
-                    odds_sums[category] += odds[category][combination];
-                }
-            }
-
-            return odds_sums;
-        };
-
-        // Return the completed model.
-        return bayes_model;
-    }
-
-    // # sum
-    //
-    // is simply the result of adding all numbers
-    // together, starting from zero.
-    //
-    // This runs on `O(n)`, linear time in respect to the array
-    function sum(x) {
-        var value = 0;
-        for (var i = 0; i < x.length; i++) {
-            value += x[i];
-        }
-        return value;
-    }
-
-    // # mean
-    //
-    // is the sum over the number of values
-    //
-    // This runs on `O(n)`, linear time in respect to the array
-    function mean(x) {
-        // The mean of no numbers is null
-        if (x.length === 0) return null;
-
-        return sum(x) / x.length;
-    }
-
-    // # geometric mean
-    //
-    // a mean function that is more useful for numbers in different
-    // ranges.
-    //
-    // this is the nth root of the input numbers multiplied by each other
-    //
-    // This runs on `O(n)`, linear time in respect to the array
-    function geometric_mean(x) {
-        // The mean of no numbers is null
-        if (x.length === 0) return null;
-
-        // the starting value.
-        var value = 1;
-
-        for (var i = 0; i < x.length; i++) {
-            // the geometric mean is only valid for positive numbers
-            if (x[i] <= 0) return null;
-
-            // repeatedly multiply the value by each number
-            value *= x[i];
-        }
-
-        return Math.pow(value, 1 / x.length);
-    }
-
-
-    // # harmonic mean
-    //
-    // a mean function typically used to find the average of rates
-    //
-    // this is the reciprocal of the arithmetic mean of the reciprocals
-    // of the input numbers
-    //
-    // This runs on `O(n)`, linear time in respect to the array
-    function harmonic_mean(x) {
-        // The mean of no numbers is null
-        if (x.length === 0) return null;
-
-        var reciprocal_sum = 0;
-
-        for (var i = 0; i < x.length; i++) {
-            // the harmonic mean is only valid for positive numbers
-            if (x[i] <= 0) return null;
-
-            reciprocal_sum += 1 / x[i];
-        }
-
-        // divide n by the the reciprocal sum
-        return x.length / reciprocal_sum;
-    }
-
-
-    // # min
-    //
-    // This is simply the minimum number in the set.
-    //
-    // This runs on `O(n)`, linear time in respect to the array
-    function min(x) {
-        var value;
-        for (var i = 0; i < x.length; i++) {
-            // On the first iteration of this loop, min is
-            // undefined and is thus made the minimum element in the array
-            if (x[i] < value || value === undefined) value = x[i];
-        }
-        return value;
-    }
-
-    // # max
-    //
-    // This is simply the maximum number in the set.
-    //
-    // This runs on `O(n)`, linear time in respect to the array
-    function max(x) {
-        var value;
-        for (var i = 0; i < x.length; i++) {
-            // On the first iteration of this loop, max is
-            // undefined and is thus made the maximum element in the array
-            if (x[i] > value || value === undefined) value = x[i];
-        }
-        return value;
-    }
-
-    // # [variance](http://en.wikipedia.org/wiki/Variance)
-    //
-    // is the sum of squared deviations from the mean
-    //
-    // depends on `mean()`
-    function variance(x) {
-        // The variance of no numbers is null
-        if (x.length === 0) return null;
-
-        var mean_value = mean(x),
-            deviations = [];
-
-        // Make a list of squared deviations from the mean.
-        for (var i = 0; i < x.length; i++) {
-            deviations.push(Math.pow(x[i] - mean_value, 2));
-        }
-
-        // Find the mean value of that list
-        return mean(deviations);
-    }
-
-    // # [standard deviation](http://en.wikipedia.org/wiki/Standard_deviation)
-    //
-    // is just the square root of the variance.
-    //
-    // depends on `variance()`
-    function standard_deviation(x) {
-        // The standard deviation of no numbers is null
-        if (x.length === 0) return null;
-
-        return Math.sqrt(variance(x));
-    }
-
-    // The sum of deviations to the Nth power.
-    // When n=2 it's the sum of squared deviations.
-    // When n=3 it's the sum of cubed deviations.
-    //
-    // depends on `mean()`
-    function sum_nth_power_deviations(x, n) {
-        var mean_value = mean(x),
-            sum = 0;
-
-        for (var i = 0; i < x.length; i++) {
-            sum += Math.pow(x[i] - mean_value, n);
-        }
-
-        return sum;
-    }
-
-    // # [variance](http://en.wikipedia.org/wiki/Variance)
-    //
-    // is the sum of squared deviations from the mean
-    //
-    // depends on `sum_nth_power_deviations`
-    function sample_variance(x) {
-        // The variance of no numbers is null
-        if (x.length <= 1) return null;
-
-        var sum_squared_deviations_value = sum_nth_power_deviations(x, 2);
-
-        // Find the mean value of that list
-        return sum_squared_deviations_value / (x.length - 1);
-    }
-
-    // # [standard deviation](http://en.wikipedia.org/wiki/Standard_deviation)
-    //
-    // is just the square root of the variance.
-    //
-    // depends on `sample_variance()`
-    function sample_standard_deviation(x) {
-        // The standard deviation of no numbers is null
-        if (x.length <= 1) return null;
-
-        return Math.sqrt(sample_variance(x));
-    }
-
-    // # [covariance](http://en.wikipedia.org/wiki/Covariance)
-    //
-    // sample covariance of two datasets:
-    // how much do the two datasets move together?
-    // x and y are two datasets, represented as arrays of numbers.
-    //
-    // depends on `mean()`
-    function sample_covariance(x, y) {
-
-        // The two datasets must have the same length which must be more than 1
-        if (x.length <= 1 || x.length != y.length){
-          return null;
-        }
-
-        // determine the mean of each dataset so that we can judge each
-        // value of the dataset fairly as the difference from the mean. this
-        // way, if one dataset is [1, 2, 3] and [2, 3, 4], their covariance
-        // does not suffer because of the difference in absolute values
-        var xmean = mean(x),
-            ymean = mean(y),
-            sum = 0;
-
-        // for each pair of values, the covariance increases when their
-        // difference from the mean is associated - if both are well above
-        // or if both are well below
-        // the mean, the covariance increases significantly.
-        for (var i = 0; i < x.length; i++){
-            sum += (x[i] - xmean) * (y[i] - ymean);
-        }
-
-        // the covariance is weighted by the length of the datasets.
-        return sum / (x.length - 1);
-    }
-
-    // # [correlation](http://en.wikipedia.org/wiki/Correlation_and_dependence)
-    //
-    // Gets a measure of how correlated two datasets are, between -1 and 1
-    //
-    // depends on `sample_standard_deviation()` and `sample_covariance()`
-    function sample_correlation(x, y) {
-        var cov = sample_covariance(x, y),
-            xstd = sample_standard_deviation(x),
-            ystd = sample_standard_deviation(y);
-
-        if (cov === null || xstd === null || ystd === null) {
-            return null;
-        }
-
-        return cov / xstd / ystd;
-    }
-
-    // # [median](http://en.wikipedia.org/wiki/Median)
-    //
-    // The middle number of a list. This is often a good indicator of 'the middle'
-    // when there are outliers that skew the `mean()` value.
-    function median(x) {
-        // The median of an empty list is null
-        if (x.length === 0) return null;
-
-        // Sorting the array makes it easy to find the center, but
-        // use `.slice()` to ensure the original array `x` is not modified
-        var sorted = x.slice().sort(function (a, b) { return a - b; });
-
-        // If the length of the list is odd, it's the central number
-        if (sorted.length % 2 === 1) {
-            return sorted[(sorted.length - 1) / 2];
-        // Otherwise, the median is the average of the two numbers
-        // at the center of the list
-        } else {
-            var a = sorted[(sorted.length / 2) - 1];
-            var b = sorted[(sorted.length / 2)];
-            return (a + b) / 2;
-        }
-    }
-
-    // # [mode](http://bit.ly/W5K4Yt)
-    // This implementation is inspired by [science.js](https://github.com/jasondavies/science.js/blob/master/src/stats/mode.js)
-    function mode(x) {
-
-        // Handle edge cases:
-        // The median of an empty list is null
-        if (x.length === 0) return null;
-        else if (x.length === 1) return x[0];
-
-        // Sorting the array lets us iterate through it below and be sure
-        // that every time we see a new number it's new and we'll never
-        // see the same number twice
-        var sorted = x.slice().sort(function (a, b) { return a - b; });
-
-        // This assumes it is dealing with an array of size > 1, since size
-        // 0 and 1 are handled immediately. Hence it starts at index 1 in the
-        // array.
-        var last = sorted[0],
-            // store the mode as we find new modes
-            value,
-            // store how many times we've seen the mode
-            max_seen = 0,
-            // how many times the current candidate for the mode
-            // has been seen
-            seen_this = 1;
-
-        // end at sorted.length + 1 to fix the case in which the mode is
-        // the highest number that occurs in the sequence. the last iteration
-        // compares sorted[i], which is undefined, to the highest number
-        // in the series
-        for (var i = 1; i < sorted.length + 1; i++) {
-            // we're seeing a new number pass by
-            if (sorted[i] !== last) {
-                // the last number is the new mode since we saw it more
-                // often than the old one
-                if (seen_this > max_seen) {
-                    max_seen = seen_this;
-                    seen_this = 1;
-                    value = last;
-                }
-                last = sorted[i];
-            // if this isn't a new number, it's one more occurrence of
-            // the potential mode
-            } else { seen_this++; }
-        }
-        return value;
-    }
-
-    // # [t-test](http://en.wikipedia.org/wiki/Student's_t-test)
-    //
-    // This is to compute a one-sample t-test, comparing the mean
-    // of a sample to a known value, x.
-    //
-    // in this case, we're trying to determine whether the
-    // population mean is equal to the value that we know, which is `x`
-    // here. usually the results here are used to look up a
-    // [p-value](http://en.wikipedia.org/wiki/P-value), which, for
-    // a certain level of significance, will let you determine that the
-    // null hypothesis can or cannot be rejected.
-    //
-    // Depends on `standard_deviation()` and `mean()`
-    function t_test(sample, x) {
-      // The mean of the sample
-      var sample_mean = mean(sample);
-
-      // The standard deviation of the sample
-      var sd = standard_deviation(sample);
-
-      // Square root the length of the sample
-      var rootN = Math.sqrt(sample.length);
-
-      // Compute the known value against the sample,
-      // returning the t value
-      return (sample_mean - x) / (sd / rootN);
-    }
-
-    // # [2-sample t-test](http://en.wikipedia.org/wiki/Student's_t-test)
-    //
-    // This is to compute two sample t-test.
-    // Tests whether "mean(X)-mean(Y) = difference", (
-    // in the most common case, we often have `difference == 0` to test if two samples
-    // are likely to be taken from populations with the same mean value) with
-    // no prior knowledge on stdandard deviations of both samples
-    // other than the fact that they have the same standard deviation.
-    //
-    // Usually the results here are used to look up a
-    // [p-value](http://en.wikipedia.org/wiki/P-value), which, for
-    // a certain level of significance, will let you determine that the
-    // null hypothesis can or cannot be rejected.
-    //
-    // `diff` can be omitted if it equals 0.
-    //
-    // [This is used to confirm or deny](http://www.monarchlab.org/Lab/Research/Stats/2SampleT.aspx)
-    // a null hypothesis that the two populations that have been sampled into
-    // `sample_x` and `sample_y` are equal to each other.
-    //
-    // Depends on `sample_variance()` and `mean()`
-    function t_test_two_sample(sample_x, sample_y, difference) {
-        var n = sample_x.length,
-            m = sample_y.length;
-
-        // If either sample doesn't actually have any values, we can't
-        // compute this at all, so we return `null`.
-        if (!n || !m) return null ;
-
-        // default difference (mu) is zero
-        if (!difference) difference = 0;
-
-        var meanX = mean(sample_x),
-            meanY = mean(sample_y);
-
-        var weightedVariance = ((n - 1) * sample_variance(sample_x) +
-            (m - 1) * sample_variance(sample_y)) / (n + m - 2);
-
-        return (meanX - meanY - difference) /
-            Math.sqrt(weightedVariance * (1 / n + 1 / m));
-    }
-
-    // # quantile
-    // This is a population quantile, since we assume to know the entire
-    // dataset in this library. Thus I'm trying to follow the
-    // [Quantiles of a Population](http://en.wikipedia.org/wiki/Quantile#Quantiles_of_a_population)
-    // algorithm from wikipedia.
-    //
-    // Sample is a one-dimensional array of numbers,
-    // and p is either a decimal number from 0 to 1 or an array of decimal
-    // numbers from 0 to 1.
-    // In terms of a k/q quantile, p = k/q - it's just dealing with fractions or dealing
-    // with decimal values.
-    // When p is an array, the result of the function is also an array containing the appropriate
-    // quantiles in input order
-    function quantile(sample, p) {
-
-        // We can't derive quantiles from an empty list
-        if (sample.length === 0) return null;
-
-        // Sort a copy of the array. We'll need a sorted array to index
-        // the values in sorted order.
-        var sorted = sample.slice().sort(function (a, b) { return a - b; });
-
-        if (p.length) {
-            // Initialize the result array
-            var results = [];
-            // For each requested quantile
-            for (var i = 0; i < p.length; i++) {
-                results[i] = quantile_sorted(sorted, p[i]);
-            }
-            return results;
-        } else {
-            return quantile_sorted(sorted, p);
-        }
-    }
-
-    function quantile_sorted(sample, p) {
-        var idx = (sample.length) * p;
-        if (p < 0 || p > 1) {
-            return null;
-        } else if (p === 1) {
-            // If p is 1, directly return the last element
-            return sample[sample.length - 1];
-        } else if (p === 0) {
-           // If p is 0, directly return the first element
-           return sample[0];
-        } else if (idx % 1 !== 0) {
-           // If p is not integer, return the next element in array
-            return sample[Math.ceil(idx) - 1];
-        } else if (sample.length % 2 === 0) {
-            // If the list has even-length, we'll take the average of this number
-            // and the next value, if there is one
-            return (sample[idx - 1] + sample[idx]) / 2;
-        } else {
-            // Finally, in the simple case of an integer value
-            // with an odd-length list, return the sample value at the index.
-            return sample[idx];
-        }
-    }
-
-    // # [Interquartile range](http://en.wikipedia.org/wiki/Interquartile_range)
-    //
-    // A measure of statistical dispersion, or how scattered, spread, or
-    // concentrated a distribution is. It's computed as the difference betwen
-    // the third quartile and first quartile.
-    function iqr(sample) {
-        // We can't derive quantiles from an empty list
-        if (sample.length === 0) return null;
-
-        // Interquartile range is the span between the upper quartile,
-        // at `0.75`, and lower quartile, `0.25`
-        return quantile(sample, 0.75) - quantile(sample, 0.25);
-    }
-
-    // # [Median Absolute Deviation](http://en.wikipedia.org/wiki/Median_absolute_deviation)
-    //
-    // The Median Absolute Deviation (MAD) is a robust measure of statistical
-    // dispersion. It is more resilient to outliers than the standard deviation.
-    function mad(x) {
-        // The mad of nothing is null
-        if (!x || x.length === 0) return null;
-
-        var median_value = median(x),
-            median_absolute_deviations = [];
-
-        // Make a list of absolute deviations from the median
-        for (var i = 0; i < x.length; i++) {
-            median_absolute_deviations.push(Math.abs(x[i] - median_value));
-        }
-
-        // Find the median value of that list
-        return median(median_absolute_deviations);
-    }
-
-    // ## Compute Matrices for Jenks
-    //
-    // Compute the matrices required for Jenks breaks. These matrices
-    // can be used for any classing of data with `classes <= n_classes`
-    function jenksMatrices(data, n_classes) {
-
-        // in the original implementation, these matrices are referred to
-        // as `LC` and `OP`
-        //
-        // * lower_class_limits (LC): optimal lower class limits
-        // * variance_combinations (OP): optimal variance combinations for all classes
-        var lower_class_limits = [],
-            variance_combinations = [],
-            // loop counters
-            i, j,
-            // the variance, as computed at each step in the calculation
-            variance = 0;
-
-        // Initialize and fill each matrix with zeroes
-        for (i = 0; i < data.length + 1; i++) {
-            var tmp1 = [], tmp2 = [];
-            // despite these arrays having the same values, we need
-            // to keep them separate so that changing one does not change
-            // the other
-            for (j = 0; j < n_classes + 1; j++) {
-                tmp1.push(0);
-                tmp2.push(0);
-            }
-            lower_class_limits.push(tmp1);
-            variance_combinations.push(tmp2);
-        }
-
-        for (i = 1; i < n_classes + 1; i++) {
-            lower_class_limits[1][i] = 1;
-            variance_combinations[1][i] = 0;
-            // in the original implementation, 9999999 is used but
-            // since Javascript has `Infinity`, we use that.
-            for (j = 2; j < data.length + 1; j++) {
-                variance_combinations[j][i] = Infinity;
-            }
-        }
-
-        for (var l = 2; l < data.length + 1; l++) {
-
-            // `SZ` originally. this is the sum of the values seen thus
-            // far when calculating variance.
-            var sum = 0,
-                // `ZSQ` originally. the sum of squares of values seen
-                // thus far
-                sum_squares = 0,
-                // `WT` originally. This is the number of
-                w = 0,
-                // `IV` originally
-                i4 = 0;
-
-            // in several instances, you could say `Math.pow(x, 2)`
-            // instead of `x * x`, but this is slower in some browsers
-            // introduces an unnecessary concept.
-            for (var m = 1; m < l + 1; m++) {
-
-                // `III` originally
-                var lower_class_limit = l - m + 1,
-                    val = data[lower_class_limit - 1];
-
-                // here we're estimating variance for each potential classing
-                // of the data, for each potential number of classes. `w`
-                // is the number of data points considered so far.
-                w++;
-
-                // increase the current sum and sum-of-squares
-                sum += val;
-                sum_squares += val * val;
-
-                // the variance at this point in the sequence is the difference
-                // between the sum of squares and the total x 2, over the number
-                // of samples.
-                variance = sum_squares - (sum * sum) / w;
-
-                i4 = lower_class_limit - 1;
-
-                if (i4 !== 0) {
-                    for (j = 2; j < n_classes + 1; j++) {
-                        // if adding this element to an existing class
-                        // will increase its variance beyond the limit, break
-                        // the class at this point, setting the `lower_class_limit`
-                        // at this point.
-                        if (variance_combinations[l][j] >=
-                            (variance + variance_combinations[i4][j - 1])) {
-                            lower_class_limits[l][j] = lower_class_limit;
-                            variance_combinations[l][j] = variance +
-                                variance_combinations[i4][j - 1];
-                        }
-                    }
-                }
-            }
-
-            lower_class_limits[l][1] = 1;
-            variance_combinations[l][1] = variance;
-        }
-
-        // return the two matrices. for just providing breaks, only
-        // `lower_class_limits` is needed, but variances can be useful to
-        // evaluage goodness of fit.
-        return {
-            lower_class_limits: lower_class_limits,
-            variance_combinations: variance_combinations
-        };
-    }
-
-    // ## Pull Breaks Values for Jenks
-    //
-    // the second part of the jenks recipe: take the calculated matrices
-    // and derive an array of n breaks.
-    function jenksBreaks(data, lower_class_limits, n_classes) {
-
-        var k = data.length - 1,
-            kclass = [],
-            countNum = n_classes;
-
-        // the calculation of classes will never include the upper and
-        // lower bounds, so we need to explicitly set them
-        kclass[n_classes] = data[data.length - 1];
-        kclass[0] = data[0];
-
-        // the lower_class_limits matrix is used as indexes into itself
-        // here: the `k` variable is reused in each iteration.
-        while (countNum > 1) {
-            kclass[countNum - 1] = data[lower_class_limits[k][countNum] - 2];
-            k = lower_class_limits[k][countNum] - 1;
-            countNum--;
-        }
-
-        return kclass;
-    }
-
-    // # [Jenks natural breaks optimization](http://en.wikipedia.org/wiki/Jenks_natural_breaks_optimization)
-    //
-    // Implementations: [1](http://danieljlewis.org/files/2010/06/Jenks.pdf) (python),
-    // [2](https://github.com/vvoovv/djeo-jenks/blob/master/main.js) (buggy),
-    // [3](https://github.com/simogeo/geostats/blob/master/lib/geostats.js#L407) (works)
-    //
-    // Depends on `jenksBreaks()` and `jenksMatrices()`
-    function jenks(data, n_classes) {
-
-        if (n_classes > data.length) return null;
-
-        // sort data in numerical order, since this is expected
-        // by the matrices function
-        data = data.slice().sort(function (a, b) { return a - b; });
-
-        // get our basic matrices
-        var matrices = jenksMatrices(data, n_classes),
-            // we only need lower class limits here
-            lower_class_limits = matrices.lower_class_limits;
-
-        // extract n_classes out of the computed matrices
-        return jenksBreaks(data, lower_class_limits, n_classes);
-
-    }
-
-    // # [Skewness](http://en.wikipedia.org/wiki/Skewness)
-    //
-    // A measure of the extent to which a probability distribution of a
-    // real-valued random variable "leans" to one side of the mean.
-    // The skewness value can be positive or negative, or even undefined.
-    //
-    // Implementation is based on the adjusted Fisher-Pearson standardized
-    // moment coefficient, which is the version found in Excel and several
-    // statistical packages including Minitab, SAS and SPSS.
-    //
-    // Depends on `sum_nth_power_deviations()` and `sample_standard_deviation`
-    function sample_skewness(x) {
-        // The skewness of less than three arguments is null
-        if (x.length < 3) return null;
-
-        var n = x.length,
-            cubed_s = Math.pow(sample_standard_deviation(x), 3),
-            sum_cubed_deviations = sum_nth_power_deviations(x, 3);
-
-        return n * sum_cubed_deviations / ((n - 1) * (n - 2) * cubed_s);
-    }
-
-    // # Standard Normal Table
-    // A standard normal table, also called the unit normal table or Z table,
-    // is a mathematical table for the values of Φ (phi), which are the values of
-    // the cumulative distribution function of the normal distribution.
-    // It is used to find the probability that a statistic is observed below,
-    // above, or between values on the standard normal distribution, and by
-    // extension, any normal distribution.
-    //
-    // The probabilities are taken from http://en.wikipedia.org/wiki/Standard_normal_table
-    // The table used is the cumulative, and not cumulative from 0 to mean
-    // (even though the latter has 5 digits precision, instead of 4).
-    var standard_normal_table = [
-        /*  z      0.00    0.01    0.02    0.03    0.04    0.05    0.06    0.07    0.08    0.09 */
-        /* 0.0 */ 0.5000, 0.5040, 0.5080, 0.5120, 0.5160, 0.5199, 0.5239, 0.5279, 0.5319, 0.5359,
-        /* 0.1 */ 0.5398, 0.5438, 0.5478, 0.5517, 0.5557, 0.5596, 0.5636, 0.5675, 0.5714, 0.5753,
-        /* 0.2 */ 0.5793, 0.5832, 0.5871, 0.5910, 0.5948, 0.5987, 0.6026, 0.6064, 0.6103, 0.6141,
-        /* 0.3 */ 0.6179, 0.6217, 0.6255, 0.6293, 0.6331, 0.6368, 0.6406, 0.6443, 0.6480, 0.6517,
-        /* 0.4 */ 0.6554, 0.6591, 0.6628, 0.6664, 0.6700, 0.6736, 0.6772, 0.6808, 0.6844, 0.6879,
-        /* 0.5 */ 0.6915, 0.6950, 0.6985, 0.7019, 0.7054, 0.7088, 0.7123, 0.7157, 0.7190, 0.7224,
-        /* 0.6 */ 0.7257, 0.7291, 0.7324, 0.7357, 0.7389, 0.7422, 0.7454, 0.7486, 0.7517, 0.7549,
-        /* 0.7 */ 0.7580, 0.7611, 0.7642, 0.7673, 0.7704, 0.7734, 0.7764, 0.7794, 0.7823, 0.7852,
-        /* 0.8 */ 0.7881, 0.7910, 0.7939, 0.7967, 0.7995, 0.8023, 0.8051, 0.8078, 0.8106, 0.8133,
-        /* 0.9 */ 0.8159, 0.8186, 0.8212, 0.8238, 0.8264, 0.8289, 0.8315, 0.8340, 0.8365, 0.8389,
-        /* 1.0 */ 0.8413, 0.8438, 0.8461, 0.8485, 0.8508, 0.8531, 0.8554, 0.8577, 0.8599, 0.8621,
-        /* 1.1 */ 0.8643, 0.8665, 0.8686, 0.8708, 0.8729, 0.8749, 0.8770, 0.8790, 0.8810, 0.8830,
-        /* 1.2 */ 0.8849, 0.8869, 0.8888, 0.8907, 0.8925, 0.8944, 0.8962, 0.8980, 0.8997, 0.9015,
-        /* 1.3 */ 0.9032, 0.9049, 0.9066, 0.9082, 0.9099, 0.9115, 0.9131, 0.9147, 0.9162, 0.9177,
-        /* 1.4 */ 0.9192, 0.9207, 0.9222, 0.9236, 0.9251, 0.9265, 0.9279, 0.9292, 0.9306, 0.9319,
-        /* 1.5 */ 0.9332, 0.9345, 0.9357, 0.9370, 0.9382, 0.9394, 0.9406, 0.9418, 0.9429, 0.9441,
-        /* 1.6 */ 0.9452, 0.9463, 0.9474, 0.9484, 0.9495, 0.9505, 0.9515, 0.9525, 0.9535, 0.9545,
-        /* 1.7 */ 0.9554, 0.9564, 0.9573, 0.9582, 0.9591, 0.9599, 0.9608, 0.9616, 0.9625, 0.9633,
-        /* 1.8 */ 0.9641, 0.9649, 0.9656, 0.9664, 0.9671, 0.9678, 0.9686, 0.9693, 0.9699, 0.9706,
-        /* 1.9 */ 0.9713, 0.9719, 0.9726, 0.9732, 0.9738, 0.9744, 0.9750, 0.9756, 0.9761, 0.9767,
-        /* 2.0 */ 0.9772, 0.9778, 0.9783, 0.9788, 0.9793, 0.9798, 0.9803, 0.9808, 0.9812, 0.9817,
-        /* 2.1 */ 0.9821, 0.9826, 0.9830, 0.9834, 0.9838, 0.9842, 0.9846, 0.9850, 0.9854, 0.9857,
-        /* 2.2 */ 0.9861, 0.9864, 0.9868, 0.9871, 0.9875, 0.9878, 0.9881, 0.9884, 0.9887, 0.9890,
-        /* 2.3 */ 0.9893, 0.9896, 0.9898, 0.9901, 0.9904, 0.9906, 0.9909, 0.9911, 0.9913, 0.9916,
-        /* 2.4 */ 0.9918, 0.9920, 0.9922, 0.9925, 0.9927, 0.9929, 0.9931, 0.9932, 0.9934, 0.9936,
-        /* 2.5 */ 0.9938, 0.9940, 0.9941, 0.9943, 0.9945, 0.9946, 0.9948, 0.9949, 0.9951, 0.9952,
-        /* 2.6 */ 0.9953, 0.9955, 0.9956, 0.9957, 0.9959, 0.9960, 0.9961, 0.9962, 0.9963, 0.9964,
-        /* 2.7 */ 0.9965, 0.9966, 0.9967, 0.9968, 0.9969, 0.9970, 0.9971, 0.9972, 0.9973, 0.9974,
-        /* 2.8 */ 0.9974, 0.9975, 0.9976, 0.9977, 0.9977, 0.9978, 0.9979, 0.9979, 0.9980, 0.9981,
-        /* 2.9 */ 0.9981, 0.9982, 0.9982, 0.9983, 0.9984, 0.9984, 0.9985, 0.9985, 0.9986, 0.9986,
-        /* 3.0 */ 0.9987, 0.9987, 0.9987, 0.9988, 0.9988, 0.9989, 0.9989, 0.9989, 0.9990, 0.9990
-    ];
-
-    // # [Cumulative Standard Normal Probability](http://en.wikipedia.org/wiki/Standard_normal_table)
-    //
-    // Since probability tables cannot be
-    // printed for every normal distribution, as there are an infinite variety
-    // of normal distributions, it is common practice to convert a normal to a
-    // standard normal and then use the standard normal table to find probabilities
-    function cumulative_std_normal_probability(z) {
-
-        // Calculate the position of this value.
-        var absZ = Math.abs(z),
-            // Each row begins with a different
-            // significant digit: 0.5, 0.6, 0.7, and so on. So the row is simply
-            // this value's significant digit: 0.567 will be in row 0, so row=0,
-            // 0.643 will be in row 1, so row=10.
-            row = Math.floor(absZ * 10),
-            column = 10 * (Math.floor(absZ * 100) / 10 - Math.floor(absZ * 100 / 10)),
-            index = Math.min((row * 10) + column, standard_normal_table.length - 1);
-
-        // The index we calculate must be in the table as a positive value,
-        // but we still pay attention to whether the input is postive
-        // or negative, and flip the output value as a last step.
-        if (z >= 0) {
-            return standard_normal_table[index];
-        } else {
-            // due to floating-point arithmetic, values in the table with
-            // 4 significant figures can nevertheless end up as repeating
-            // fractions when they're computed here.
-            return +(1 - standard_normal_table[index]).toFixed(4);
-        }
-    }
-
-    // # [Z-Score, or Standard Score](http://en.wikipedia.org/wiki/Standard_score)
-    //
-    // The standard score is the number of standard deviations an observation
-    // or datum is above or below the mean. Thus, a positive standard score
-    // represents a datum above the mean, while a negative standard score
-    // represents a datum below the mean. It is a dimensionless quantity
-    // obtained by subtracting the population mean from an individual raw
-    // score and then dividing the difference by the population standard
-    // deviation.
-    //
-    // The z-score is only defined if one knows the population parameters;
-    // if one only has a sample set, then the analogous computation with
-    // sample mean and sample standard deviation yields the
-    // Student's t-statistic.
-    function z_score(x, mean, standard_deviation) {
-        return (x - mean) / standard_deviation;
-    }
-
-    // # Mixin
-    //
-    // Mixin simple_statistics to the Array native object. This is an optional
-    // feature that lets you treat simple_statistics as a native feature
-    // of Javascript.
-    function mixin() {
-        var support = !!(Object.defineProperty && Object.defineProperties);
-        if (!support) throw new Error('without defineProperty, simple-statistics cannot be mixed in');
-
-        // only methods which work on basic arrays in a single step
-        // are supported
-        var arrayMethods = ['median', 'standard_deviation', 'sum',
-            'sample_skewness',
-            'mean', 'min', 'max', 'quantile', 'geometric_mean',
-            'harmonic_mean'];
-
-        // create a closure with a method name so that a reference
-        // like `arrayMethods[i]` doesn't follow the loop increment
-        function wrap(method) {
-            return function() {
-                // cast any arguments into an array, since they're
-                // natively objects
-                var args = Array.prototype.slice.apply(arguments);
-                // make the first argument the array itself
-                args.unshift(this);
-                // return the result of the ss method
-                return ss[method].apply(ss, args);
-            };
-        }
-
-        // for each array function, define a function off of the Array
-        // prototype which automatically gets the array as the first
-        // argument. We use [defineProperty](https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/Object/defineProperty)
-        // because it allows these properties to be non-enumerable:
-        // `for (var in x)` loops will not run into problems with this
-        // implementation.
-        for (var i = 0; i < arrayMethods.length; i++) {
-            Object.defineProperty(Array.prototype, arrayMethods[i], {
-                value: wrap(arrayMethods[i]),
-                configurable: true,
-                enumerable: false,
-                writable: true
-            });
-        }
-    }
-
-    ss.linear_regression = linear_regression;
-    ss.standard_deviation = standard_deviation;
-    ss.r_squared = r_squared;
-    ss.median = median;
-    ss.mean = mean;
-    ss.mode = mode;
-    ss.min = min;
-    ss.max = max;
-    ss.sum = sum;
-    ss.quantile = quantile;
-    ss.quantile_sorted = quantile_sorted;
-    ss.iqr = iqr;
-    ss.mad = mad;
-
-    ss.sample_covariance = sample_covariance;
-    ss.sample_correlation = sample_correlation;
-    ss.sample_variance = sample_variance;
-    ss.sample_standard_deviation = sample_standard_deviation;
-    ss.sample_skewness = sample_skewness;
-
-    ss.geometric_mean = geometric_mean;
-    ss.harmonic_mean = harmonic_mean;
-    ss.variance = variance;
-    ss.t_test = t_test;
-    ss.t_test_two_sample = t_test_two_sample;
-
-    // jenks
-    ss.jenksMatrices = jenksMatrices;
-    ss.jenksBreaks = jenksBreaks;
-    ss.jenks = jenks;
-
-    ss.bayesian = bayesian;
-
-    // Normal distribution
-    ss.z_score = z_score;
-    ss.cumulative_std_normal_probability = cumulative_std_normal_probability;
-    ss.standard_normal_table = standard_normal_table;
-
-    // Alias this into its common name
-    ss.average = mean;
-    ss.interquartile_range = iqr;
-    ss.mixin = mixin;
-    ss.median_absolute_deviation = mad;
-
-})(this);
-
-},{}],68:[function(_dereq_,module,exports){
-var topojson = module.exports = _dereq_("./topojson");
-topojson.topology = _dereq_("./lib/topojson/topology");
-topojson.simplify = _dereq_("./lib/topojson/simplify");
-topojson.clockwise = _dereq_("./lib/topojson/clockwise");
-topojson.filter = _dereq_("./lib/topojson/filter");
-topojson.prune = _dereq_("./lib/topojson/prune");
-topojson.bind = _dereq_("./lib/topojson/bind");
-
-},{"./lib/topojson/bind":69,"./lib/topojson/clockwise":72,"./lib/topojson/filter":76,"./lib/topojson/prune":79,"./lib/topojson/simplify":81,"./lib/topojson/topology":84,"./topojson":95}],69:[function(_dereq_,module,exports){
-var type = _dereq_("./type"),
-    topojson = _dereq_("../../");
-
-module.exports = function(topology, propertiesById) {
-  var bind = type({
-    geometry: function(geometry) {
-      var properties0 = geometry.properties,
-          properties1 = propertiesById[geometry.id];
-      if (properties1) {
-        if (properties0) for (var k in properties1) properties0[k] = properties1[k];
-        else for (var k in properties1) { geometry.properties = properties1; break; }
+  })
+  return poly
+}
+
+
+},{"jsts":44}],44:[function(require,module,exports){
+module.exports=require(26)
+},{"./lib/jsts":45,"javascript.util":46}],45:[function(require,module,exports){
+module.exports=require(27)
+},{}],46:[function(require,module,exports){
+module.exports=require(28)
+},{}],47:[function(require,module,exports){
+var flatten = require('flatten')
+var featureCollection = require('turf-featurecollection')
+var point = require('turf-point')
+
+module.exports = function(fc){
+  if(fc.type === 'FeatureCollection'){
+    for(var i in fc.features){
+      var coordinates 
+      switch(fc.features[i].geometry.type){
+        case 'Point':
+          coordinates = [fc.features[i].geometry.coordinates]
+          break
+        case 'LineString':
+          coordinates = fc.features[i].geometry.coordinates
+          break
+        case 'Polygon':
+          coordinates = fc.features[i].geometry.coordinates
+          coordinates = flatCoords(coordinates)
+          break
+        case 'MultiPoint':
+          coordinates = fc.features[i].geometry.coordinates
+          break
+        case 'MultiLineString':
+          coordinates = fc.features[i].geometry.coordinates
+          coordinates = flatCoords(coordinates)
+          break
+        case 'MultiPolygon':
+          coordinates = fc.features[i].geometry.coordinates
+          coordinates = flatCoords(coordinates)
+          break
       }
-      this.defaults.geometry.call(this, geometry);
-    },
-    LineString: noop,
-    MultiLineString: noop,
-    Point: noop,
-    MultiPoint: noop,
-    Polygon: noop,
-    MultiPolygon: noop
-  });
+      if(!fc.features[i].geometry && fc.features[i].properties){
+        return new Error('Unknown Geometry Type')
+      }
+    }
+      
+    var exploded = featureCollection([])
 
-  for (var key in topology.objects) {
-    bind.object(topology.objects[key]);
+    coordinates.forEach(function(coords){
+      exploded.features.push(point(coords[0], coords[1]))
+    })
+
+    return exploded
+  }
+  else{
+    var coordinates 
+    var geometry
+    if(fc.type === 'Feature'){
+      geometry = fc.geometry
+    }
+    else{
+      geometry = fc
+    }
+    switch(geometry.type){
+      case 'Point':
+        coordinates = [geometry.coordinates]
+        break
+      case 'LineString':
+        coordinates = geometry.coordinates
+        break
+      case 'Polygon':
+        coordinates = geometry.coordinates
+        coordinates = flatCoords(coordinates)
+        break
+      case 'MultiPoint':
+        coordinates = geometry.coordinates
+        break
+      case 'MultiLineString':
+        coordinates = geometry.coordinates
+        coordinates = flatCoords(coordinates)
+        break
+      case 'MultiPolygon':
+        coordinates = geometry.coordinates
+        coordinates = flatCoords(coordinates)
+        break
+    }
+    if(!geometry){
+      return new Error('No Geometry Found')
+    }
+
+    var exploded = featureCollection([])
+
+    coordinates.forEach(function(coords){
+      exploded.features.push(point(coords[0], coords[1]))
+    })
+
+    return exploded
+  }
+}
+
+function flatCoords(coords){
+  var newCoords = []
+  coords = flatten(coords)
+  coords.forEach(function(c, i){
+    if(i % 2 == 0) // if is even
+    newCoords.push([c, coords[i+1]])
+  })
+  return newCoords
+}
+},{"flatten":48,"turf-featurecollection":51,"turf-point":77}],48:[function(require,module,exports){
+module.exports = function flatten(list, depth) {
+  depth = (typeof depth == 'number') ? depth : Infinity;
+
+  return _flatten(list, 1);
+
+  function _flatten(list, d) {
+    return list.reduce(function (acc, item) {
+      if (Array.isArray(item) && d < depth) {
+        return acc.concat(_flatten(item, d + 1));
+      }
+      else {
+        return acc.concat(item);
+      }
+    }, []);
   }
 };
 
-function noop() {}
+},{}],49:[function(require,module,exports){
+var flatten = require('flatten')
 
-},{"../../":68,"./type":94}],70:[function(_dereq_,module,exports){
+module.exports = function(layer){
+  var xmin = Infinity,
+      ymin = Infinity,
+      xmax = -Infinity,
+      ymax = -Infinity
+  if(layer.type === 'FeatureCollection'){
+    for(var i in layer.features){
+      var coordinates 
+      switch(layer.features[i].geometry.type){
+        case 'Point':
+          coordinates = [layer.features[i].geometry.coordinates]
+          break
+        case 'LineString':
+          coordinates = layer.features[i].geometry.coordinates
+          break
+        case 'Polygon':
+          coordinates = layer.features[i].geometry.coordinates
+          coordinates = flatCoords(coordinates)
+          break
+        case 'MultiPoint':
+          coordinates = layer.features[i].geometry.coordinates
+          break
+        case 'MultiLineString':
+          coordinates = layer.features[i].geometry.coordinates
+          coordinates = flatCoords(coordinates)
+          break
+        case 'MultiPolygon':
+          coordinates = layer.features[i].geometry.coordinates
+          coordinates = flatCoords(coordinates)
+          break
+      }
+      if(!layer.features[i].geometry && layer.features[i].properties){
+        return new Error('Unknown Geometry Type')
+      }
+      
+      for(var n in coordinates){
+        if(xmin > coordinates[n][0]){
+          xmin = coordinates[n][0]
+        }
+        if(ymin > coordinates[n][1]){
+          ymin = coordinates[n][1]
+        }
+        if(xmax < coordinates[n][0]){
+          xmax = coordinates[n][0]
+        }
+        if(ymax < coordinates[n][1]){
+          ymax = coordinates[n][1]
+        }
+      }
+    }
+    var bbox = [xmin, ymin, xmax, ymax]
+    return bbox
+  }
+  else{
+    var coordinates 
+    var geometry
+    if(layer.type === 'Feature'){
+      geometry = layer.geometry
+    }
+    else{
+      geometry = layer
+    }
+    switch(geometry.type){
+      case 'Point':
+        coordinates = [geometry.coordinates]
+        break
+      case 'LineString':
+        coordinates = geometry.coordinates
+        break
+      case 'Polygon':
+        coordinates = geometry.coordinates
+        coordinates = flatCoords(coordinates)
+        break
+      case 'MultiPoint':
+        coordinates = geometry.coordinates
+        break
+      case 'MultiLineString':
+        coordinates = geometry.coordinates
+        coordinates = flatCoords(coordinates)
+        break
+      case 'MultiPolygon':
+        coordinates = geometry.coordinates
+        coordinates = flatCoords(coordinates)
+        break
+    }
+    if(!geometry){
+      return new Error('No Geometry Found')
+    }
+    
+    for(var n in coordinates){
+      if(xmin > coordinates[n][0]){
+        xmin = coordinates[n][0]
+      }
+      if(ymin > coordinates[n][1]){
+        ymin = coordinates[n][1]
+      }
+      if(xmax < coordinates[n][0]){
+        xmax = coordinates[n][0]
+      }
+      if(ymax < coordinates[n][1]){
+        ymax = coordinates[n][1]
+      }
+    }
+    var bbox = [xmin, ymin, xmax, ymax]
+    return bbox
+  }
+}
+
+function flatCoords(coords){
+  var newCoords = []
+  coords = flatten(coords)
+  coords.forEach(function(c, i){
+    if(i % 2 == 0) // if is even
+    newCoords.push([c, coords[i+1]])
+  })
+  return newCoords
+}
+},{"flatten":50}],50:[function(require,module,exports){
+module.exports=require(48)
+},{}],51:[function(require,module,exports){
+module.exports = function(features){
+  var fc = {
+    "type": "FeatureCollection",
+    "features": features
+  }
+
+  return fc
+}
+},{}],52:[function(require,module,exports){
+var featureCollection = require('turf-featurecollection')
+
+module.exports = function(collection, key, val) {
+  var newFC = featureCollection([]);
+  for(var i = 0; i < collection.features.length; i++) {
+    if(collection.features[i].properties[key] === val) {
+      newFC.features.push(collection.features[i])
+    }
+  }
+  return newFC
+}
+},{"turf-featurecollection":51}],53:[function(require,module,exports){
+module.exports = function(fc){
+  if(fc.type === 'Feature'){
+    switch(fc.geometry.type){
+      case 'Point':
+        fc.geometry.coordinates = flipCoordinate(fc.geometry.coordinates)
+        return fc;
+        break
+      case 'LineString':
+        fc.geometry.coordinates.forEach(function(coordinates, i){
+          coordinates = flipCoordinate(coordinates)
+          fc.geometry.coordinates[i] = coordinates
+        })
+        return fc;
+        break
+      case 'Polygon':
+        fc.geometry.coordinates.forEach(function(ring, i){
+          ring.forEach(function(coordinates, k){
+            coordinates = flipCoordinate(coordinates)
+            fc.geometry.coordinates[i][k] = coordinates
+          })
+        })
+        return fc;
+        break
+    }
+  }
+  else if(fc.type === 'FeatureCollection'){
+    fc.features.forEach(function(feature){
+      switch(feature.geometry.type){
+        case 'Point':
+          feature.geometry.coordinates = flipCoordinate(feature.geometry.coordinates)
+          break
+        case 'LineString':
+          feature.geometry.coordinates.forEach(function(coordinates, i){
+            coordinates = flipCoordinate(coordinates)
+            feature.geometry.coordinates[i] = coordinates
+          })
+          break
+        case 'Polygon':
+          feature.geometry.coordinates.forEach(function(ring, i){
+            ring.forEach(function(coordinates, k){
+              coordinates = flipCoordinate(coordinates)
+              feature.geometry.coordinates[i][k] = coordinates
+            })
+          })
+          break
+      }
+    })
+    return fc;
+  }
+  else {
+    var err = new Error('Unknown geometry type');
+    return err;
+  }
+}
+
+var flipCoordinate = function(coordinates){
+  return([coordinates[1], coordinates[0]])
+}
+
+},{}],54:[function(require,module,exports){
+var point = require('turf-point')
+
+module.exports = function(extents, depth, done){
+  var xmin = extents[0]
+  var ymin = extents[1]
+  var xmax = extents[2]
+  var ymax = extents[3]
+  var interval = (xmax - xmin) / depth
+  var coords = []
+  var fc = {
+    type: 'FeatureCollection',
+    features: []
+  }
+
+  done = done || function () {};
+
+  for (var x=0; x<=depth; x++){
+    for (var y=0;y<=depth; y++){
+      fc.features.push(point((x * interval) + xmin, (y * interval) + ymin))
+    }
+  }
+  done(null, fc)
+  return fc;
+}
+
+},{"turf-point":77}],55:[function(require,module,exports){
+// http://en.wikipedia.org/wiki/Even%E2%80%93odd_rule
+// modified from: https://github.com/substack/point-in-polygon/blob/master/index.js
+// which was modified from http://www.ecse.rpi.edu/Homepages/wrf/Research/Short_Notes/pnpoly.html
+
+module.exports = function(point, polygon){
+  var x = point.geometry.coordinates[0]
+  var y = point.geometry.coordinates[1]
+  var vs = polygon.geometry.coordinates[0]
+
+  var isInside = false;
+  for (var i = 0, j = vs.length - 1; i < vs.length; j = i++) {
+    var xi = vs[i][0], yi = vs[i][1];
+    var xj = vs[j][0], yj = vs[j][1];
+    
+    var intersect = ((yi > y) != (yj > y))
+        && (x < (xj - xi) * (y - yi) / (yj - yi) + xi);
+    if (intersect) isInside = !isInside;
+  }
+  return isInside
+}
+
+
+},{}],56:[function(require,module,exports){
+// depend on jsts for now https://github.com/bjornharrtell/jsts/blob/master/examples/overlay.html
+var jsts = require('jsts')
+var featurecollection = require('turf-featurecollection')
+
+module.exports = function(polys1, polys2){
+  var reader = new jsts.io.GeoJSONReader(),
+    a = reader.read(JSON.stringify(polys1.features[0].geometry)),
+    b = reader.read(JSON.stringify(polys2.features[0].geometry)),
+    intersection = a.intersection(b),
+    parser = new jsts.io.GeoJSONParser()
+
+  intersection = parser.write(intersection)
+  intersection = featurecollection([intersection])
+  return intersection;
+}
+
+},{"jsts":57,"turf-featurecollection":51}],57:[function(require,module,exports){
+module.exports=require(26)
+},{"./lib/jsts":58,"javascript.util":59}],58:[function(require,module,exports){
+module.exports=require(27)
+},{}],59:[function(require,module,exports){
+module.exports=require(28)
+},{}],60:[function(require,module,exports){
+module.exports = function(ring){
+  var sum = 0;
+  var i = 1;
+  var len = ring.length;
+  var prev,cur;
+  while(i<len){
+    prev = cur||ring[0];
+    cur = ring[i];
+    sum += ((cur[0]-prev[0])*(cur[1]+prev[1]));
+    i++;
+  }
+  return sum > 0;
+}
+},{}],61:[function(require,module,exports){
+//https://github.com/jasondavies/conrec.js
+//http://stackoverflow.com/questions/263305/drawing-a-topographical-map
+var tin = require('turf-tin')
+var inside = require('turf-inside')
+var grid = require('turf-grid')
+var extent = require('turf-extent')
+var planepoint = require('turf-planepoint')
+var featurecollection = require('turf-featurecollection')
+var linestring = require('turf-linestring')
+var polygon = require('turf-polygon')
+var point = require('turf-point')
+var square = require('turf-square')
+var size = require('turf-size')
+
+module.exports = function(points, z, resolution, breaks){
+  var addEdgesResult = addEdges(points, z, resolution);
+
+  if (typeof addEdgesResult === 'Error') {
+    done(addEdgesResult);
+    return addEdgesResult;
+  }
+
+  var tinResult = tin(points, z)
+  var extentBBox = extent(points)
+  var squareBBox = square(extentBBox)
+  var gridResult = grid(squareBBox, resolution)
+  var data = []
+
+  gridResult.features.forEach(function(pt){
+    tinResult.features.forEach(function(triangle){
+      if (inside(pt, triangle)) {
+        pt.properties = {}
+        pt.properties[z] = planepoint(pt, triangle);
+      }
+    })
+    if(!pt.properties){
+      pt.properties = {}
+      pt.properties[z] = -100
+    }
+  })
+
+  var depth = Math.sqrt(gridResult.features.length)
+  for (var x=0; x<depth; x++){
+    var xGroup = gridResult.features.slice(x * depth, (x + 1) * depth)
+    var xFlat = []
+    xGroup.forEach(function(verticalPoint){
+      if(verticalPoint.properties){
+        xFlat.push(verticalPoint.properties[z])
+      } else{
+        xFlat.push(0)
+      }
+    })
+    data.push(xFlat)
+  }
+  var interval = (squareBBox[2] - squareBBox[0]) / depth
+  var xCoordinates = []
+  var yCoordinates = []
+  for (var x=0; x<depth; x++){
+    xCoordinates.push(x * interval + squareBBox[0])
+    yCoordinates.push(x * interval + squareBBox[1])
+  }
+
+  //change zero breaks to .01 to deal with bug in conrec algorithm
+  breaks = breaks.map(function(num){
+    if(num === 0){
+      return .01
+    }
+    else{
+      return num
+    }
+  })
+  //deduplicate breaks
+  breaks = unique(breaks)
+
+  var c = new Conrec
+  c.contour(data, 0, resolution, 0, resolution, xCoordinates, yCoordinates, breaks.length, breaks)
+  var contourList = c.contourList()
+
+  var fc = featurecollection([])
+  contourList.forEach(function(c){
+    if(c.length > 2){
+      var polyCoordinates = []
+      c.forEach(function(coord){
+        polyCoordinates.push([coord.x, coord.y])
+      })
+      var poly = polygon([polyCoordinates])
+      poly.properties = {}
+      poly.properties[z] = c.level
+
+      fc.features.push(poly)
+    }
+  })
+
+  return fc;
+}
+
+function addEdges(points, z, resolution){
+  var extentBBox = extent(points),
+    squareBBox,
+    sizeResult;
+
+  if (typeof extentBBox === 'Error') {
+    return extentBBox;
+  }
+
+  squareBBox = square(extentBBox);
+
+  if (typeof squareBBox === 'Error') {
+    return squareBBox;
+  }
+
+  sizeBBox = size(squareBBox, 0.35)
+
+  if (typeof sizeBBox === 'Error') {
+    return sizeBBox;
+  }
+
+  var edgeDistance = sizeBBox[2] - sizeBBox[0]
+  var extendDistance = edgeDistance / resolution
+
+  var xmin = sizeBBox[0]
+  var ymin = sizeBBox[1]
+  var xmax = sizeBBox[2]
+  var ymax = sizeBBox[3]
+
+  //left
+  var left = [[xmin, ymin],[xmin, ymax]]
+  for(var i = 0; i<=resolution; i++){
+    var pt = point(xmin, ymin + (extendDistance * i))
+    pt.properties = {}
+    pt.properties[z] = -100
+    points.features.push(pt)
+  }
+
+  //bottom
+  var bottom = [[xmin, ymin],[xmax, ymin]]
+  for(var i = 0; i<=resolution; i++){
+    var pt = point(xmin + (extendDistance * i), ymin)
+    pt.properties = {}
+    pt.properties[z] = -100
+    points.features.push(pt)
+  }
+
+  //right
+  var right = [[xmax, ymin],[xmax, ymax]]
+  for(var i = 0; i<=resolution; i++){
+    var pt = point(xmax, ymin + (extendDistance * i))
+    pt.properties = {}
+    pt.properties[z] = -100
+    points.features.push(pt)
+  }
+
+  //top
+  var top = [[xmin, ymax],[xmax, ymax]]
+  for(var i = 0; i<=resolution; i++){
+    var pt = point(xmin + (extendDistance * i), ymax)
+    pt.properties = {}
+    pt.properties[z] = -100
+    points.features.push(pt)
+  }
+
+  return points
+}
+
+function unique(a) {
+  return a.reduce(function(p, c) {
+      if (p.indexOf(c) < 0) p.push(c);
+      return p;
+  }, []);
+}
+
+/**
+ * Copyright (c) 2010, Jason Davies.
+ *
+ * All rights reserved.  This code is based on Bradley White's Java version,
+ * which is in turn based on Nicholas Yue's C++ version, which in turn is based
+ * on Paul D. Bourke's original Fortran version.  See below for the respective
+ * copyright notices.
+ *
+ * See http://local.wasp.uwa.edu.au/~pbourke/papers/conrec/ for the original
+ * paper by Paul D. Bourke.
+ *
+ * The vector conversion code is based on http://apptree.net/conrec.htm by
+ * Graham Cox.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions are met:
+ *     * Redistributions of source code must retain the above copyright
+ *       notice, this list of conditions and the following disclaimer.
+ *     * Redistributions in binary form must reproduce the above copyright
+ *       notice, this list of conditions and the following disclaimer in the
+ *       documentation and/or other materials provided with the distribution.
+ *     * Neither the name of the <organization> nor the
+ *       names of its contributors may be used to endorse or promote products
+ *       derived from this software without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ * ARE DISCLAIMED. IN NO EVENT SHALL <COPYRIGHT HOLDER> BE LIABLE FOR ANY
+ * DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+ * (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+ * LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+ * ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+ * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
+ * THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ */
+
+/*
+ * Copyright (c) 1996-1997 Nicholas Yue
+ *
+ * This software is copyrighted by Nicholas Yue. This code is based on Paul D.
+ * Bourke's CONREC.F routine.
+ *
+ * The authors hereby grant permission to use, copy, and distribute this
+ * software and its documentation for any purpose, provided that existing
+ * copyright notices are retained in all copies and that this notice is
+ * included verbatim in any distributions. Additionally, the authors grant
+ * permission to modify this software and its documentation for any purpose,
+ * provided that such modifications are not distributed without the explicit
+ * consent of the authors and that existing copyright notices are retained in
+ * all copies. Some of the algorithms implemented by this software are
+ * patented, observe all applicable patent law.
+ *
+ * IN NO EVENT SHALL THE AUTHORS OR DISTRIBUTORS BE LIABLE TO ANY PARTY FOR
+ * DIRECT, INDIRECT, SPECIAL, INCIDENTAL, OR CONSEQUENTIAL DAMAGES ARISING OUT
+ * OF THE USE OF THIS SOFTWARE, ITS DOCUMENTATION, OR ANY DERIVATIVES THEREOF,
+ * EVEN IF THE AUTHORS HAVE BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ *
+ * THE AUTHORS AND DISTRIBUTORS SPECIFICALLY DISCLAIM ANY WARRANTIES,
+ * INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE, AND NON-INFRINGEMENT.  THIS SOFTWARE IS
+ * PROVIDED ON AN "AS IS" BASIS, AND THE AUTHORS AND DISTRIBUTORS HAVE NO
+ * OBLIGATION TO PROVIDE MAINTENANCE, SUPPORT, UPDATES, ENHANCEMENTS, OR
+ * MODIFICATIONS.
+ */
+
+
+exports.Conrec = Conrec;
+
+var EPSILON = 1e-10;
+
+function pointsEqual(a, b) {
+  var x = a.x - b.x, y = a.y - b.y;
+  return x * x + y * y < EPSILON;
+}
+
+function reverseList(list) {
+  var pp = list.head;
+
+  while (pp) {
+    // swap prev/next pointers
+    var temp = pp.next;
+    pp.next = pp.prev;
+    pp.prev = temp;
+
+    // continue through the list
+    pp = temp;
+  }
+
+  // swap head/tail pointers
+  var temp = list.head;
+  list.head = list.tail;
+  list.tail = temp;
+}
+
+function ContourBuilder(level) {
+  this.level = level;
+  this.s = null;
+  this.count = 0;
+}
+ContourBuilder.prototype.remove_seq = function(list) {
+  // if list is the first item, static ptr s is updated
+  if (list.prev) {
+    list.prev.next = list.next;
+  } else {
+    this.s = list.next;
+  }
+
+  if (list.next) {
+    list.next.prev = list.prev;
+  }
+  --this.count;
+}
+ContourBuilder.prototype.addSegment = function(a, b) {
+  var ss = this.s;
+  var ma = null;
+  var mb = null;
+  var prependA = false;
+  var prependB = false;
+
+  while (ss) {
+    if (ma == null) {
+      // no match for a yet
+      if (pointsEqual(a, ss.head.p)) {
+        ma = ss;
+        prependA = true;
+      } else if (pointsEqual(a, ss.tail.p)) {
+        ma = ss;
+      }
+    }
+    if (mb == null) {
+      // no match for b yet
+      if (pointsEqual(b, ss.head.p)) {
+        mb = ss;
+        prependB = true;
+      } else if (pointsEqual(b, ss.tail.p)) {
+        mb = ss;
+      }
+    }
+    // if we matched both no need to continue searching
+    if (mb != null && ma != null) {
+      break;
+    } else {
+      ss = ss.next;
+    }
+  }
+
+  // c is the case selector based on which of ma and/or mb are set
+  var c = ((ma != null) ? 1 : 0) | ((mb != null) ? 2 : 0);
+
+  switch(c) {
+    case 0:   // both unmatched, add as new sequence
+      var aa = {p: a, prev: null};
+      var bb = {p: b, next: null};
+      aa.next = bb;
+      bb.prev = aa;
+
+      // create sequence element and push onto head of main list. The order
+      // of items in this list is unimportant
+      ma = {head: aa, tail: bb, next: this.s, prev: null, closed: false};
+      if (this.s) {
+        this.s.prev = ma;
+      }
+      this.s = ma;
+
+      ++this.count;    // not essential - tracks number of unmerged sequences
+    break;
+
+    case 1:   // a matched, b did not - thus b extends sequence ma
+      var pp = {p: b};
+
+      if (prependA) {
+        pp.next = ma.head;
+        pp.prev = null;
+        ma.head.prev = pp;
+        ma.head = pp;
+      } else {
+        pp.next = null;
+        pp.prev = ma.tail;
+        ma.tail.next = pp;
+        ma.tail = pp;
+      }
+    break;
+
+    case 2:   // b matched, a did not - thus a extends sequence mb
+      var pp = {p: a};
+
+      if (prependB) {
+        pp.next = mb.head;
+        pp.prev = null;
+        mb.head.prev = pp;
+        mb.head = pp;
+      } else {
+        pp.next = null;
+        pp.prev = mb.tail;
+        mb.tail.next = pp;
+        mb.tail = pp;
+      }
+    break;
+
+    case 3:   // both matched, can merge sequences
+      // if the sequences are the same, do nothing, as we are simply closing this path (could set a flag)
+
+      if (ma === mb) {
+        var pp = {p: ma.tail.p, next: ma.head, prev: null};
+        ma.head.prev = pp;
+        ma.head = pp;
+        ma.closed = true;
+        break;
+      }
+
+      // there are 4 ways the sequence pair can be joined. The current setting of prependA and
+      // prependB will tell us which type of join is needed. For head/head and tail/tail joins
+      // one sequence needs to be reversed
+      switch((prependA ? 1 : 0) | (prependB ? 2 : 0)) {
+        case 0:   // tail-tail
+          // reverse ma and append to mb
+          reverseList(ma);
+          // fall through to head/tail case
+        case 1:   // head-tail
+          // ma is appended to mb and ma discarded
+          mb.tail.next = ma.head;
+          ma.head.prev = mb.tail;
+          mb.tail = ma.tail;
+
+          //discard ma sequence record
+          this.remove_seq(ma);
+        break;
+
+        case 3:   // head-head
+          // reverse ma and append mb to it
+          reverseList(ma);
+          // fall through to tail/head case
+        case 2:   // tail-head
+          // mb is appended to ma and mb is discarded
+          ma.tail.next = mb.head;
+          mb.head.prev = ma.tail;
+          ma.tail = mb.tail;
+
+          //discard mb sequence record
+          this.remove_seq(mb);
+      break;
+    }
+  }
+}
+
+/**
+ * Implements CONREC.
+ *
+ * @param {function} drawContour function for drawing contour.  Defaults to a
+ *                               custom "contour builder", which populates the
+ *                               contours property.
+ */
+function Conrec(drawContour) {
+  if (!drawContour) {
+    var c = this;
+    c.contours = {};
+    /**
+     * drawContour - interface for implementing the user supplied method to
+     * render the countours.
+     *
+     * Draws a line between the start and end coordinates.
+     *
+     * @param startX    - start coordinate for X
+     * @param startY    - start coordinate for Y
+     * @param endX      - end coordinate for X
+     * @param endY      - end coordinate for Y
+     * @param contourLevel - Contour level for line.
+     */
+    this.drawContour = function(startX, startY, endX, endY, contourLevel, k) {
+      var cb = c.contours[k];
+      if (!cb) {
+        cb = c.contours[k] = new ContourBuilder(contourLevel);
+      }
+      cb.addSegment({x: startX, y: startY}, {x: endX, y: endY});
+    }
+    this.contourList = function() {
+      var l = [];
+      var a = c.contours;
+      for (var k in a) {
+        var s = a[k].s;
+        var level = a[k].level;
+        while (s) {
+          var h = s.head;
+          var l2 = [];
+          l2.level = level;
+          l2.k = k;
+          while (h && h.p) {
+            l2.push(h.p);
+            h = h.next;
+          }
+          l.push(l2);
+          s = s.next;
+        }
+      }
+      l.sort(function(a, b) { return a.k - b.k });
+      return l;
+    }
+  } else {
+    this.drawContour = drawContour;
+  }
+  this.h  = new Array(5);
+  this.sh = new Array(5);
+  this.xh = new Array(5);
+  this.yh = new Array(5);
+}
+
+/**
+ * contour is a contouring subroutine for rectangularily spaced data
+ *
+ * It emits calls to a line drawing subroutine supplied by the user which
+ * draws a contour map corresponding to real*4data on a randomly spaced
+ * rectangular grid. The coordinates emitted are in the same units given in
+ * the x() and y() arrays.
+ *
+ * Any number of contour levels may be specified but they must be in order of
+ * increasing value.
+ *
+ *
+ * @param {number[][]} d - matrix of data to contour
+ * @param {number} ilb,iub,jlb,jub - index bounds of data matrix
+ *
+ *             The following two, one dimensional arrays (x and y) contain
+ *             the horizontal and vertical coordinates of each sample points.
+ * @param {number[]} x  - data matrix column coordinates
+ * @param {number[]} y  - data matrix row coordinates
+ * @param {number} nc   - number of contour levels
+ * @param {number[]} z  - contour levels in increasing order.
+ */
+Conrec.prototype.contour = function(d, ilb, iub, jlb, jub, x, y, nc, z) {
+  var h = this.h, sh = this.sh, xh = this.xh, yh = this.yh;
+  var drawContour = this.drawContour;
+  this.contours = {};
+
+  /** private */
+  var xsect = function(p1, p2){
+    return (h[p2]*xh[p1]-h[p1]*xh[p2])/(h[p2]-h[p1]);
+  }
+
+  var ysect = function(p1, p2){
+    return (h[p2]*yh[p1]-h[p1]*yh[p2])/(h[p2]-h[p1]);
+  }
+  var m1;
+  var m2;
+  var m3;
+  var case_value;
+  var dmin;
+  var dmax;
+  var x1 = 0.0;
+  var x2 = 0.0;
+  var y1 = 0.0;
+  var y2 = 0.0;
+
+  // The indexing of im and jm should be noted as it has to start from zero
+  // unlike the fortran counter part
+  var im = [0, 1, 1, 0];
+  var jm = [0, 0, 1, 1];
+
+  // Note that castab is arranged differently from the FORTRAN code because
+  // Fortran and C/C++ arrays are transposed of each other, in this case
+  // it is more tricky as castab is in 3 dimensions
+  var castab = [
+    [
+      [0, 0, 8], [0, 2, 5], [7, 6, 9]
+    ],
+    [
+      [0, 3, 4], [1, 3, 1], [4, 3, 0]
+    ],
+    [
+      [9, 6, 7], [5, 2, 0], [8, 0, 0]
+    ]
+  ];
+
+  for (var j=(jub-1);j>=jlb;j--) {
+    for (var i=ilb;i<=iub-1;i++) {
+      var temp1, temp2;
+      temp1 = Math.min(d[i][j],d[i][j+1]);
+      temp2 = Math.min(d[i+1][j],d[i+1][j+1]);
+      dmin  = Math.min(temp1,temp2);
+      temp1 = Math.max(d[i][j],d[i][j+1]);
+      temp2 = Math.max(d[i+1][j],d[i+1][j+1]);
+      dmax  = Math.max(temp1,temp2);
+
+      if (dmax>=z[0]&&dmin<=z[nc-1]) {
+        for (var k=0;k<nc;k++) {
+          if (z[k]>=dmin&&z[k]<=dmax) {
+            for (var m=4;m>=0;m--) {
+              if (m>0) {
+                // The indexing of im and jm should be noted as it has to
+                // start from zero
+                h[m] = d[i+im[m-1]][j+jm[m-1]]-z[k];
+                xh[m] = x[i+im[m-1]];
+                yh[m] = y[j+jm[m-1]];
+              } else {
+                h[0] = 0.25*(h[1]+h[2]+h[3]+h[4]);
+                xh[0]=0.5*(x[i]+x[i+1]);
+                yh[0]=0.5*(y[j]+y[j+1]);
+              }
+              if (h[m]>EPSILON) {
+                sh[m] = 1;
+              } else if (h[m]<-EPSILON) {
+                sh[m] = -1;
+              } else
+                sh[m] = 0;
+            }
+            //
+            // Note: at this stage the relative heights of the corners and the
+            // centre are in the h array, and the corresponding coordinates are
+            // in the xh and yh arrays. The centre of the box is indexed by 0
+            // and the 4 corners by 1 to 4 as shown below.
+            // Each triangle is then indexed by the parameter m, and the 3
+            // vertices of each triangle are indexed by parameters m1,m2,and
+            // m3.
+            // It is assumed that the centre of the box is always vertex 2
+            // though this isimportant only when all 3 vertices lie exactly on
+            // the same contour level, in which case only the side of the box
+            // is drawn.
+            //
+            //
+            //      vertex 4 +-------------------+ vertex 3
+            //               | \               / |
+            //               |   \    m-3    /   |
+            //               |     \       /     |
+            //               |       \   /       |
+            //               |  m=2    X   m=2   |       the centre is vertex 0
+            //               |       /   \       |
+            //               |     /       \     |
+            //               |   /    m=1    \   |
+            //               | /               \ |
+            //      vertex 1 +-------------------+ vertex 2
+            //
+            //
+            //
+            //               Scan each triangle in the box
+            //
+            for (m=1;m<=4;m++) {
+              m1 = m;
+              m2 = 0;
+              if (m!=4) {
+                  m3 = m+1;
+              } else {
+                  m3 = 1;
+              }
+              case_value = castab[sh[m1]+1][sh[m2]+1][sh[m3]+1];
+              if (case_value!=0) {
+                switch (case_value) {
+                  case 1: // Line between vertices 1 and 2
+                    x1=xh[m1];
+                    y1=yh[m1];
+                    x2=xh[m2];
+                    y2=yh[m2];
+                    break;
+                  case 2: // Line between vertices 2 and 3
+                    x1=xh[m2];
+                    y1=yh[m2];
+                    x2=xh[m3];
+                    y2=yh[m3];
+                    break;
+                  case 3: // Line between vertices 3 and 1
+                    x1=xh[m3];
+                    y1=yh[m3];
+                    x2=xh[m1];
+                    y2=yh[m1];
+                    break;
+                  case 4: // Line between vertex 1 and side 2-3
+                    x1=xh[m1];
+                    y1=yh[m1];
+                    x2=xsect(m2,m3);
+                    y2=ysect(m2,m3);
+                    break;
+                  case 5: // Line between vertex 2 and side 3-1
+                    x1=xh[m2];
+                    y1=yh[m2];
+                    x2=xsect(m3,m1);
+                    y2=ysect(m3,m1);
+                    break;
+                  case 6: //  Line between vertex 3 and side 1-2
+                    x1=xh[m3];
+                    y1=yh[m3];
+                    x2=xsect(m1,m2);
+                    y2=ysect(m1,m2);
+                    break;
+                  case 7: // Line between sides 1-2 and 2-3
+                    x1=xsect(m1,m2);
+                    y1=ysect(m1,m2);
+                    x2=xsect(m2,m3);
+                    y2=ysect(m2,m3);
+                    break;
+                  case 8: // Line between sides 2-3 and 3-1
+                    x1=xsect(m2,m3);
+                    y1=ysect(m2,m3);
+                    x2=xsect(m3,m1);
+                    y2=ysect(m3,m1);
+                    break;
+                  case 9: // Line between sides 3-1 and 1-2
+                    x1=xsect(m3,m1);
+                    y1=ysect(m3,m1);
+                    x2=xsect(m1,m2);
+                    y2=ysect(m1,m2);
+                    break;
+                  default:
+                    break;
+                }
+                // Put your processing code here and comment out the printf
+                //printf("%f %f %f %f %f\n",x1,y1,x2,y2,z[k]);
+                drawContour(x1,y1,x2,y2,z[k],k);
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+},{"turf-extent":49,"turf-featurecollection":51,"turf-grid":54,"turf-inside":55,"turf-linestring":65,"turf-planepoint":76,"turf-point":77,"turf-polygon":78,"turf-size":115,"turf-square":116,"turf-tin":120}],62:[function(require,module,exports){
+//https://github.com/jasondavies/conrec.js
+//http://stackoverflow.com/questions/263305/drawing-a-topographical-map
+var tin = require('turf-tin')
+var inside = require('turf-inside')
+var grid = require('turf-grid')
+var extent = require('turf-extent')
+var planepoint = require('turf-planepoint')
+var featurecollection = require('turf-featurecollection')
+var linestring = require('turf-linestring')
+var square = require('turf-square')
+
+module.exports = function(points, z, resolution, breaks, done){
+  var tinResult = tin(points, z)
+  var extentBBox = extent(points)
+  var squareBBox = square(extentBBox)
+  var gridResult = grid(squareBBox, resolution)
+  var data = [];
+
+  gridResult.features.forEach(function(pt){
+    tinResult.features.forEach(function(triangle){
+      if (inside(pt, triangle)) {
+        pt.properties = {}
+        pt.properties[z] = planepoint(pt, triangle);
+      }
+    })
+  })
+
+  var depth = Math.sqrt(gridResult.features.length)
+  for (var x=0; x<depth; x++){
+    var xGroup = gridResult.features.slice(x * depth, (x + 1) * depth)
+    var xFlat = []
+    xGroup.forEach(function(verticalPoint){
+      if(verticalPoint.properties){
+        xFlat.push(verticalPoint.properties[z])
+      } else{
+        xFlat.push(0)
+      }
+    })
+    data.push(xFlat)
+  }
+  var interval = (squareBBox[2] - squareBBox[0]) / depth
+  var xCoordinates = []
+  var yCoordinates = []
+  for (var x=0; x<depth; x++){
+    xCoordinates.push(x * interval + squareBBox[0])
+    yCoordinates.push(x * interval + squareBBox[1])
+  }
+
+  var c = new Conrec
+  c.contour(data, 0, resolution, 0, resolution, xCoordinates, yCoordinates, breaks.length, breaks)
+  var contourList = c.contourList()
+
+  var fc = featurecollection([])
+  contourList.forEach(function(c){
+    if(c.length > 2){
+      var polyCoordinates = []
+      c.forEach(function(coord){
+        polyCoordinates.push([coord.x, coord.y])
+      })
+      var poly = linestring(polyCoordinates)
+      poly.properties = {}
+      poly.properties[z] = c.level
+
+      fc.features.push(poly)
+    }
+  })
+
+  return fc;
+}
+
+
+/**
+ * Copyright (c) 2010, Jason Davies.
+ *
+ * All rights reserved.  This code is based on Bradley White's Java version,
+ * which is in turn based on Nicholas Yue's C++ version, which in turn is based
+ * on Paul D. Bourke's original Fortran version.  See below for the respective
+ * copyright notices.
+ *
+ * See http://local.wasp.uwa.edu.au/~pbourke/papers/conrec/ for the original
+ * paper by Paul D. Bourke.
+ *
+ * The vector conversion code is based on http://apptree.net/conrec.htm by
+ * Graham Cox.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions are met:
+ *     * Redistributions of source code must retain the above copyright
+ *       notice, this list of conditions and the following disclaimer.
+ *     * Redistributions in binary form must reproduce the above copyright
+ *       notice, this list of conditions and the following disclaimer in the
+ *       documentation and/or other materials provided with the distribution.
+ *     * Neither the name of the <organization> nor the
+ *       names of its contributors may be used to endorse or promote products
+ *       derived from this software without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ * ARE DISCLAIMED. IN NO EVENT SHALL <COPYRIGHT HOLDER> BE LIABLE FOR ANY
+ * DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+ * (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+ * LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+ * ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+ * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
+ * THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ */
+
+/*
+ * Copyright (c) 1996-1997 Nicholas Yue
+ *
+ * This software is copyrighted by Nicholas Yue. This code is based on Paul D.
+ * Bourke's CONREC.F routine.
+ *
+ * The authors hereby grant permission to use, copy, and distribute this
+ * software and its documentation for any purpose, provided that existing
+ * copyright notices are retained in all copies and that this notice is
+ * included verbatim in any distributions. Additionally, the authors grant
+ * permission to modify this software and its documentation for any purpose,
+ * provided that such modifications are not distributed without the explicit
+ * consent of the authors and that existing copyright notices are retained in
+ * all copies. Some of the algorithms implemented by this software are
+ * patented, observe all applicable patent law.
+ *
+ * IN NO EVENT SHALL THE AUTHORS OR DISTRIBUTORS BE LIABLE TO ANY PARTY FOR
+ * DIRECT, INDIRECT, SPECIAL, INCIDENTAL, OR CONSEQUENTIAL DAMAGES ARISING OUT
+ * OF THE USE OF THIS SOFTWARE, ITS DOCUMENTATION, OR ANY DERIVATIVES THEREOF,
+ * EVEN IF THE AUTHORS HAVE BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ *
+ * THE AUTHORS AND DISTRIBUTORS SPECIFICALLY DISCLAIM ANY WARRANTIES,
+ * INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE, AND NON-INFRINGEMENT.  THIS SOFTWARE IS
+ * PROVIDED ON AN "AS IS" BASIS, AND THE AUTHORS AND DISTRIBUTORS HAVE NO
+ * OBLIGATION TO PROVIDE MAINTENANCE, SUPPORT, UPDATES, ENHANCEMENTS, OR
+ * MODIFICATIONS.
+ */
+
+
+  exports.Conrec = Conrec;
+
+  var EPSILON = 1e-10;
+
+  function pointsEqual(a, b) {
+    var x = a.x - b.x, y = a.y - b.y;
+    return x * x + y * y < EPSILON;
+  }
+
+  function reverseList(list) {
+    var pp = list.head;
+
+    while (pp) {
+      // swap prev/next pointers
+      var temp = pp.next;
+      pp.next = pp.prev;
+      pp.prev = temp;
+
+      // continue through the list
+      pp = temp;
+    }
+
+    // swap head/tail pointers
+    var temp = list.head;
+    list.head = list.tail;
+    list.tail = temp;
+  }
+
+  function ContourBuilder(level) {
+    this.level = level;
+    this.s = null;
+    this.count = 0;
+  }
+  ContourBuilder.prototype.remove_seq = function(list) {
+    // if list is the first item, static ptr s is updated
+    if (list.prev) {
+      list.prev.next = list.next;
+    } else {
+      this.s = list.next;
+    }
+
+    if (list.next) {
+      list.next.prev = list.prev;
+    }
+    --this.count;
+  }
+  ContourBuilder.prototype.addSegment = function(a, b) {
+    var ss = this.s;
+    var ma = null;
+    var mb = null;
+    var prependA = false;
+    var prependB = false;
+
+    while (ss) {
+      if (ma == null) {
+        // no match for a yet
+        if (pointsEqual(a, ss.head.p)) {
+          ma = ss;
+          prependA = true;
+        } else if (pointsEqual(a, ss.tail.p)) {
+          ma = ss;
+        }
+      }
+      if (mb == null) {
+        // no match for b yet
+        if (pointsEqual(b, ss.head.p)) {
+          mb = ss;
+          prependB = true;
+        } else if (pointsEqual(b, ss.tail.p)) {
+          mb = ss;
+        }
+      }
+      // if we matched both no need to continue searching
+      if (mb != null && ma != null) {
+        break;
+      } else {
+        ss = ss.next;
+      }
+    }
+
+    // c is the case selector based on which of ma and/or mb are set
+    var c = ((ma != null) ? 1 : 0) | ((mb != null) ? 2 : 0);
+
+    switch(c) {
+      case 0:   // both unmatched, add as new sequence
+        var aa = {p: a, prev: null};
+        var bb = {p: b, next: null};
+        aa.next = bb;
+        bb.prev = aa;
+
+        // create sequence element and push onto head of main list. The order
+        // of items in this list is unimportant
+        ma = {head: aa, tail: bb, next: this.s, prev: null, closed: false};
+        if (this.s) {
+          this.s.prev = ma;
+        }
+        this.s = ma;
+
+        ++this.count;    // not essential - tracks number of unmerged sequences
+      break;
+
+      case 1:   // a matched, b did not - thus b extends sequence ma
+        var pp = {p: b};
+
+        if (prependA) {
+          pp.next = ma.head;
+          pp.prev = null;
+          ma.head.prev = pp;
+          ma.head = pp;
+        } else {
+          pp.next = null;
+          pp.prev = ma.tail;
+          ma.tail.next = pp;
+          ma.tail = pp;
+        }
+      break;
+
+      case 2:   // b matched, a did not - thus a extends sequence mb
+        var pp = {p: a};
+
+        if (prependB) {
+          pp.next = mb.head;
+          pp.prev = null;
+          mb.head.prev = pp;
+          mb.head = pp;
+        } else {
+          pp.next = null;
+          pp.prev = mb.tail;
+          mb.tail.next = pp;
+          mb.tail = pp;
+        }
+      break;
+
+      case 3:   // both matched, can merge sequences
+        // if the sequences are the same, do nothing, as we are simply closing this path (could set a flag)
+
+        if (ma === mb) {
+          var pp = {p: ma.tail.p, next: ma.head, prev: null};
+          ma.head.prev = pp;
+          ma.head = pp;
+          ma.closed = true;
+          break;
+        }
+
+        // there are 4 ways the sequence pair can be joined. The current setting of prependA and
+        // prependB will tell us which type of join is needed. For head/head and tail/tail joins
+        // one sequence needs to be reversed
+        switch((prependA ? 1 : 0) | (prependB ? 2 : 0)) {
+          case 0:   // tail-tail
+            // reverse ma and append to mb
+            reverseList(ma);
+            // fall through to head/tail case
+          case 1:   // head-tail
+            // ma is appended to mb and ma discarded
+            mb.tail.next = ma.head;
+            ma.head.prev = mb.tail;
+            mb.tail = ma.tail;
+
+            //discard ma sequence record
+            this.remove_seq(ma);
+          break;
+
+          case 3:   // head-head
+            // reverse ma and append mb to it
+            reverseList(ma);
+            // fall through to tail/head case
+          case 2:   // tail-head
+            // mb is appended to ma and mb is discarded
+            ma.tail.next = mb.head;
+            mb.head.prev = ma.tail;
+            ma.tail = mb.tail;
+
+            //discard mb sequence record
+            this.remove_seq(mb);
+        break;
+      }
+    }
+  }
+
+  /**
+   * Implements CONREC.
+   *
+   * @param {function} drawContour function for drawing contour.  Defaults to a
+   *                               custom "contour builder", which populates the
+   *                               contours property.
+   */
+  function Conrec(drawContour) {
+    if (!drawContour) {
+      var c = this;
+      c.contours = {};
+      /**
+       * drawContour - interface for implementing the user supplied method to
+       * render the countours.
+       *
+       * Draws a line between the start and end coordinates.
+       *
+       * @param startX    - start coordinate for X
+       * @param startY    - start coordinate for Y
+       * @param endX      - end coordinate for X
+       * @param endY      - end coordinate for Y
+       * @param contourLevel - Contour level for line.
+       */
+      this.drawContour = function(startX, startY, endX, endY, contourLevel, k) {
+        var cb = c.contours[k];
+        if (!cb) {
+          cb = c.contours[k] = new ContourBuilder(contourLevel);
+        }
+        cb.addSegment({x: startX, y: startY}, {x: endX, y: endY});
+      }
+      this.contourList = function() {
+        var l = [];
+        var a = c.contours;
+        for (var k in a) {
+          var s = a[k].s;
+          var level = a[k].level;
+          while (s) {
+            var h = s.head;
+            var l2 = [];
+            l2.level = level;
+            l2.k = k;
+            while (h && h.p) {
+              l2.push(h.p);
+              h = h.next;
+            }
+            l.push(l2);
+            s = s.next;
+          }
+        }
+        l.sort(function(a, b) { return a.k - b.k });
+        return l;
+      }
+    } else {
+      this.drawContour = drawContour;
+    }
+    this.h  = new Array(5);
+    this.sh = new Array(5);
+    this.xh = new Array(5);
+    this.yh = new Array(5);
+  }
+
+  /**
+   * contour is a contouring subroutine for rectangularily spaced data
+   *
+   * It emits calls to a line drawing subroutine supplied by the user which
+   * draws a contour map corresponding to real*4data on a randomly spaced
+   * rectangular grid. The coordinates emitted are in the same units given in
+   * the x() and y() arrays.
+   *
+   * Any number of contour levels may be specified but they must be in order of
+   * increasing value.
+   *
+   *
+   * @param {number[][]} d - matrix of data to contour
+   * @param {number} ilb,iub,jlb,jub - index bounds of data matrix
+   *
+   *             The following two, one dimensional arrays (x and y) contain
+   *             the horizontal and vertical coordinates of each sample points.
+   * @param {number[]} x  - data matrix column coordinates
+   * @param {number[]} y  - data matrix row coordinates
+   * @param {number} nc   - number of contour levels
+   * @param {number[]} z  - contour levels in increasing order.
+   */
+  Conrec.prototype.contour = function(d, ilb, iub, jlb, jub, x, y, nc, z) {
+    var h = this.h, sh = this.sh, xh = this.xh, yh = this.yh;
+    var drawContour = this.drawContour;
+    this.contours = {};
+
+    /** private */
+    var xsect = function(p1, p2){
+      return (h[p2]*xh[p1]-h[p1]*xh[p2])/(h[p2]-h[p1]);
+    }
+
+    var ysect = function(p1, p2){
+      return (h[p2]*yh[p1]-h[p1]*yh[p2])/(h[p2]-h[p1]);
+    }
+    var m1;
+    var m2;
+    var m3;
+    var case_value;
+    var dmin;
+    var dmax;
+    var x1 = 0.0;
+    var x2 = 0.0;
+    var y1 = 0.0;
+    var y2 = 0.0;
+
+    // The indexing of im and jm should be noted as it has to start from zero
+    // unlike the fortran counter part
+    var im = [0, 1, 1, 0];
+    var jm = [0, 0, 1, 1];
+
+    // Note that castab is arranged differently from the FORTRAN code because
+    // Fortran and C/C++ arrays are transposed of each other, in this case
+    // it is more tricky as castab is in 3 dimensions
+    var castab = [
+      [
+        [0, 0, 8], [0, 2, 5], [7, 6, 9]
+      ],
+      [
+        [0, 3, 4], [1, 3, 1], [4, 3, 0]
+      ],
+      [
+        [9, 6, 7], [5, 2, 0], [8, 0, 0]
+      ]
+    ];
+
+    for (var j=(jub-1);j>=jlb;j--) {
+      for (var i=ilb;i<=iub-1;i++) {
+        var temp1, temp2;
+        temp1 = Math.min(d[i][j],d[i][j+1]);
+        temp2 = Math.min(d[i+1][j],d[i+1][j+1]);
+        dmin  = Math.min(temp1,temp2);
+        temp1 = Math.max(d[i][j],d[i][j+1]);
+        temp2 = Math.max(d[i+1][j],d[i+1][j+1]);
+        dmax  = Math.max(temp1,temp2);
+
+        if (dmax>=z[0]&&dmin<=z[nc-1]) {
+          for (var k=0;k<nc;k++) {
+            if (z[k]>=dmin&&z[k]<=dmax) {
+              for (var m=4;m>=0;m--) {
+                if (m>0) {
+                  // The indexing of im and jm should be noted as it has to
+                  // start from zero
+                  h[m] = d[i+im[m-1]][j+jm[m-1]]-z[k];
+                  xh[m] = x[i+im[m-1]];
+                  yh[m] = y[j+jm[m-1]];
+                } else {
+                  h[0] = 0.25*(h[1]+h[2]+h[3]+h[4]);
+                  xh[0]=0.5*(x[i]+x[i+1]);
+                  yh[0]=0.5*(y[j]+y[j+1]);
+                }
+                if (h[m]>EPSILON) {
+                  sh[m] = 1;
+                } else if (h[m]<-EPSILON) {
+                  sh[m] = -1;
+                } else
+                  sh[m] = 0;
+              }
+              //
+              // Note: at this stage the relative heights of the corners and the
+              // centre are in the h array, and the corresponding coordinates are
+              // in the xh and yh arrays. The centre of the box is indexed by 0
+              // and the 4 corners by 1 to 4 as shown below.
+              // Each triangle is then indexed by the parameter m, and the 3
+              // vertices of each triangle are indexed by parameters m1,m2,and
+              // m3.
+              // It is assumed that the centre of the box is always vertex 2
+              // though this isimportant only when all 3 vertices lie exactly on
+              // the same contour level, in which case only the side of the box
+              // is drawn.
+              //
+              //
+              //      vertex 4 +-------------------+ vertex 3
+              //               | \               / |
+              //               |   \    m-3    /   |
+              //               |     \       /     |
+              //               |       \   /       |
+              //               |  m=2    X   m=2   |       the centre is vertex 0
+              //               |       /   \       |
+              //               |     /       \     |
+              //               |   /    m=1    \   |
+              //               | /               \ |
+              //      vertex 1 +-------------------+ vertex 2
+              //
+              //
+              //
+              //               Scan each triangle in the box
+              //
+              for (m=1;m<=4;m++) {
+                m1 = m;
+                m2 = 0;
+                if (m!=4) {
+                    m3 = m+1;
+                } else {
+                    m3 = 1;
+                }
+                case_value = castab[sh[m1]+1][sh[m2]+1][sh[m3]+1];
+                if (case_value!=0) {
+                  switch (case_value) {
+                    case 1: // Line between vertices 1 and 2
+                      x1=xh[m1];
+                      y1=yh[m1];
+                      x2=xh[m2];
+                      y2=yh[m2];
+                      break;
+                    case 2: // Line between vertices 2 and 3
+                      x1=xh[m2];
+                      y1=yh[m2];
+                      x2=xh[m3];
+                      y2=yh[m3];
+                      break;
+                    case 3: // Line between vertices 3 and 1
+                      x1=xh[m3];
+                      y1=yh[m3];
+                      x2=xh[m1];
+                      y2=yh[m1];
+                      break;
+                    case 4: // Line between vertex 1 and side 2-3
+                      x1=xh[m1];
+                      y1=yh[m1];
+                      x2=xsect(m2,m3);
+                      y2=ysect(m2,m3);
+                      break;
+                    case 5: // Line between vertex 2 and side 3-1
+                      x1=xh[m2];
+                      y1=yh[m2];
+                      x2=xsect(m3,m1);
+                      y2=ysect(m3,m1);
+                      break;
+                    case 6: //  Line between vertex 3 and side 1-2
+                      x1=xh[m3];
+                      y1=yh[m3];
+                      x2=xsect(m1,m2);
+                      y2=ysect(m1,m2);
+                      break;
+                    case 7: // Line between sides 1-2 and 2-3
+                      x1=xsect(m1,m2);
+                      y1=ysect(m1,m2);
+                      x2=xsect(m2,m3);
+                      y2=ysect(m2,m3);
+                      break;
+                    case 8: // Line between sides 2-3 and 3-1
+                      x1=xsect(m2,m3);
+                      y1=ysect(m2,m3);
+                      x2=xsect(m3,m1);
+                      y2=ysect(m3,m1);
+                      break;
+                    case 9: // Line between sides 3-1 and 1-2
+                      x1=xsect(m3,m1);
+                      y1=ysect(m3,m1);
+                      x2=xsect(m1,m2);
+                      y2=ysect(m1,m2);
+                      break;
+                    default:
+                      break;
+                  }
+                  // Put your processing code here and comment out the printf
+                  //printf("%f %f %f %f %f\n",x1,y1,x2,y2,z[k]);
+                  drawContour(x1,y1,x2,y2,z[k],k);
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+},{"turf-extent":49,"turf-featurecollection":51,"turf-grid":54,"turf-inside":55,"turf-linestring":65,"turf-planepoint":76,"turf-square":116,"turf-tin":120}],63:[function(require,module,exports){
+var ss = require('simple-statistics')
+
+module.exports = function(fc, field, num){
+  var vals = []
+  var breaks = []
+
+  fc.features.forEach(function(feature){
+    if(!(feature.properties[field]===undefined)){
+      vals.push(feature.properties[field])
+    }
+  })
+  breaks = ss.jenks(vals, num)
+
+  return breaks;
+}
+
+},{"simple-statistics":64}],64:[function(require,module,exports){
+module.exports=require(7)
+},{}],65:[function(require,module,exports){
+module.exports = function(coordinates, properties){
+  if(!coordinates) return new Error('No coordinates passed')
+  var linestring = { 
+    "type": "Feature",
+    "geometry": {
+      "type": "LineString",
+      "coordinates": coordinates
+    },
+    "properties": properties
+  }
+  return linestring
+}
+
+},{}],66:[function(require,module,exports){
+module.exports=require(11)
+},{"simple-statistics":67,"turf-inside":55}],67:[function(require,module,exports){
+module.exports=require(7)
+},{}],68:[function(require,module,exports){
+module.exports=require(13)
+},{"simple-statistics":69,"turf-inside":55}],69:[function(require,module,exports){
+module.exports=require(7)
+},{}],70:[function(require,module,exports){
+// 1. run tin on points
+// 2. merge the tin
+var clone = require('clone')
+var union = require('turf-union')
+
+module.exports = function(polygons, done){
+
+  var merged = clone(polygons.features[0]),
+    features = polygons.features;
+
+  for (var i = 0, len = features.length; i < len; i++) {
+    var poly = features[i];
+
+    if(poly.geometry){
+      merged = union(merged, poly);
+    }
+  }
+
+  return merged;
+}
+
+},{"clone":71,"turf-union":121}],71:[function(require,module,exports){
+(function (Buffer){
+'use strict';
+
+function objectToString(o) {
+  return Object.prototype.toString.call(o);
+}
+
+// shim for Node's 'util' package
+// DO NOT REMOVE THIS! It is required for compatibility with EnderJS (http://enderjs.com/).
+var util = {
+  isArray: function (ar) {
+    return Array.isArray(ar) || (typeof ar === 'object' && objectToString(ar) === '[object Array]');
+  },
+  isDate: function (d) {
+    return typeof d === 'object' && objectToString(d) === '[object Date]';
+  },
+  isRegExp: function (re) {
+    return typeof re === 'object' && objectToString(re) === '[object RegExp]';
+  },
+  getRegExpFlags: function (re) {
+    var flags = '';
+    re.global && (flags += 'g');
+    re.ignoreCase && (flags += 'i');
+    re.multiline && (flags += 'm');
+    return flags;
+  }
+};
+
+
+if (typeof module === 'object')
+  module.exports = clone;
+
+/**
+ * Clones (copies) an Object using deep copying.
+ *
+ * This function supports circular references by default, but if you are certain
+ * there are no circular references in your object, you can save some CPU time
+ * by calling clone(obj, false).
+ *
+ * Caution: if `circular` is false and `parent` contains circular references,
+ * your program may enter an infinite loop and crash.
+ *
+ * @param `parent` - the object to be cloned
+ * @param `circular` - set to true if the object to be cloned may contain
+ *    circular references. (optional - true by default)
+ * @param `depth` - set to a number if the object is only to be cloned to
+ *    a particular depth. (optional - defaults to Infinity)
+ * @param `prototype` - sets the prototype to be used when cloning an object.
+ *    (optional - defaults to parent prototype).
+*/
+
+function clone(parent, circular, depth, prototype) {
+  // maintain two arrays for circular references, where corresponding parents
+  // and children have the same index
+  var allParents = [];
+  var allChildren = [];
+
+  var useBuffer = typeof Buffer != 'undefined';
+
+  if (typeof circular == 'undefined')
+    circular = true;
+
+  if (typeof depth == 'undefined')
+    depth = Infinity;
+
+  // recurse this function so we don't reset allParents and allChildren
+  function _clone(parent, depth) {
+    // cloning null always returns null
+    if (parent === null)
+      return null;
+
+    if (depth == 0)
+      return parent;
+
+    var child;
+    if (typeof parent != 'object') {
+      return parent;
+    }
+
+    if (util.isArray(parent)) {
+      child = [];
+    } else if (util.isRegExp(parent)) {
+      child = new RegExp(parent.source, util.getRegExpFlags(parent));
+      if (parent.lastIndex) child.lastIndex = parent.lastIndex;
+    } else if (util.isDate(parent)) {
+      child = new Date(parent.getTime());
+    } else if (useBuffer && Buffer.isBuffer(parent)) {
+      child = new Buffer(parent.length);
+      parent.copy(child);
+      return child;
+    } else {
+      if (typeof prototype == 'undefined') child = Object.create(Object.getPrototypeOf(parent));
+      else child = Object.create(prototype);
+    }
+
+    if (circular) {
+      var index = allParents.indexOf(parent);
+
+      if (index != -1) {
+        return allChildren[index];
+      }
+      allParents.push(parent);
+      allChildren.push(child);
+    }
+
+    for (var i in parent) {
+      child[i] = _clone(parent[i], depth - 1);
+    }
+
+    return child;
+  }
+
+  return _clone(parent, depth);
+}
+
+/**
+ * Simple flat clone using prototype, accepts only objects, usefull for property
+ * override on FLAT configuration object (no nested props).
+ *
+ * USE WITH CAUTION! This may not behave as you wish if you do not know how this
+ * works.
+ */
+clone.clonePrototype = function(parent) {
+  if (parent === null)
+    return null;
+
+  var c = function () {};
+  c.prototype = parent;
+  return new c();
+};
+
+}).call(this,require("buffer").Buffer)
+},{"buffer":2}],72:[function(require,module,exports){
+// http://cs.selu.edu/~rbyrd/math/midpoint/
+// ((x1+x2)/2), ((y1+y2)/2)
+var point = require('turf-point')
+
+module.exports = function(point1, point2) {
+  if(point1 === null || point2 === null || point1 && point2 === null){
+    return new Error('Less than two points passed.')
+  }
+
+  var x1 = point1.geometry.coordinates[0];
+  var x2 = point2.geometry.coordinates[0];
+  var y1 = point1.geometry.coordinates[1];
+  var y2 = point2.geometry.coordinates[1];
+
+  var x3 = x1 + x2;
+  var midX = x3/2;
+  var y3 = y1 + y2;
+  var midY = y3/2;
+
+  var midpoint = point(midX, midY);
+
+  return midpoint
+}
+},{"turf-point":77}],73:[function(require,module,exports){
+module.exports=require(15)
+},{"simple-statistics":74,"turf-inside":55}],74:[function(require,module,exports){
+module.exports=require(7)
+},{}],75:[function(require,module,exports){
+distance = require('turf-distance')
+
+module.exports = function(targetPoint, points){
+  var nearestPoint
+  var count = 0
+  var dist = Infinity
+  points.features.forEach(function(pt){
+    if(!nearestPoint){
+      nearestPoint = pt
+      var dist = distance(targetPoint, pt, 'miles')
+      nearestPoint.properties.distance = dist 
+    }
+    else{
+      var dist = distance(targetPoint, pt, 'miles')
+      if(dist < nearestPoint.properties.distance){
+        nearestPoint = pt
+        nearestPoint.properties.distance = dist
+      }
+    }
+  })
+  delete nearestPoint.properties.distance
+  return nearestPoint
+}
+},{"turf-distance":39}],76:[function(require,module,exports){
+module.exports = function(point, triangle, done){
+  var x = point.geometry.coordinates[0]
+      y = point.geometry.coordinates[1]
+      x1 = triangle.geometry.coordinates[0][0][0],
+      y1 = triangle.geometry.coordinates[0][0][1],
+      z1 = triangle.properties.a
+      x2 = triangle.geometry.coordinates[0][1][0],
+      y2 = triangle.geometry.coordinates[0][1][1],
+      z2 = triangle.properties.b
+      x3 = triangle.geometry.coordinates[0][2][0],
+      y3 = triangle.geometry.coordinates[0][2][1],
+      z3 = triangle.properties.c
+
+  var z = (z3 * (x-x1) * (y-y2) + z1 * (x-x2) * (y-y3) + z2 * (x-x3) * (y-y1)
+      - z2 * (x-x1) * (y-y3) - z3 * (x-x2) * (y-y1) - z1 * (x-x3) * (y-y2)) /
+      ((x-x1) * (y-y2) + (x-x2) * (y-y3) +(x-x3) * (y-y1) -
+       (x-x1) * (y-y3) - (x-x2) * (y-y1) - (x-x3) * (y-y2))
+
+  return z;
+}
+
+},{}],77:[function(require,module,exports){
+module.exports = function(x, y, properties){
+  if(isNaN(x) || isNaN(y)) throw new Error('Invalid coordinates')
+  return {
+    type: "Feature",
+    geometry: {
+      type: "Point",
+      coordinates: [x, y]
+    },
+    properties: properties || {}
+  }
+}
+
+},{}],78:[function(require,module,exports){
+module.exports = function(coordinates, properties){
+  if(coordinates === null) return new Error('No coordinates passed')
+  var polygon = { 
+    "type": "Feature",
+    "geometry": {
+      "type": "Polygon",
+      "coordinates": coordinates
+    },
+    "properties": properties
+  }
+
+  if(!polygon.properties){
+    polygon.properties = {}
+  }
+  
+  return polygon
+}
+},{}],79:[function(require,module,exports){
+var ss = require('simple-statistics')
+
+module.exports = function(fc, field, percentiles){
+  var vals = []
+  var quantiles = []
+
+  fc.features.forEach(function(feature){
+    vals.push(feature.properties[field])
+  })
+  percentiles.forEach(function(percentile){
+    quantiles.push(ss.quantile(vals, percentile * .01))
+  })
+  
+  return quantiles
+}
+
+},{"simple-statistics":80}],80:[function(require,module,exports){
+module.exports=require(7)
+},{}],81:[function(require,module,exports){
+var featurecollection = require('turf-featurecollection')
+var reclass = require('./index.js')
+
+module.exports = function(fc, inField, outField, translations, done){
+  var reclassed = featurecollection([])
+
+  fc.features.forEach(function(feature){
+    var reclassedFeature
+    var found = false
+    for(var i = 0; i < translations.length; i++){
+      if(feature.properties[inField] >= translations[i][0] && feature.properties[inField] <= translations[i][1]) {
+        feature.properties[outField] = translations[i][2]
+      }
+    }
+    reclassed.features.push(feature)
+  })
+
+  return reclassed;
+}
+
+},{"./index.js":81,"turf-featurecollection":51}],82:[function(require,module,exports){
+var featureCollection = require('turf-featurecollection')
+
+module.exports = function(collection, key, val) {
+  var newFC = featureCollection([]);
+  for(var i = 0; i < collection.features.length; i++) {
+    if(collection.features[i].properties[key] != val) {
+      newFC.features.push(collection.features[i])
+    }
+  }
+  return newFC
+}
+},{"turf-featurecollection":51}],83:[function(require,module,exports){
+// http://stackoverflow.com/questions/11935175/sampling-a-random-subset-from-an-array
+
+featureCollection = require('turf-featurecollection')
+
+module.exports = function(fc, num){
+  var outFC = featureCollection(getRandomSubarray(fc.features, num))
+  return outFC
+}
+
+function getRandomSubarray(arr, size) {
+  var shuffled = arr.slice(0), i = arr.length, min = i - size, temp, index;
+  while (i-- > min) {
+      index = Math.floor((i + 1) * Math.random());
+      temp = shuffled[index];
+      shuffled[index] = shuffled[i];
+      shuffled[i] = temp;
+  }
+  return shuffled.slice(min);
+}
+},{"turf-featurecollection":51}],84:[function(require,module,exports){
+// use topojson.simplify to simplify points to a given tolerence then convert back to geojson
+var topojson = require('topojson')
+
+module.exports = function(fc, quantization, minimumArea){
+  var options = {
+    quantization: quantization,
+    "minimum-area": minimumArea,
+    "property-transform": function(properties, key, value) {
+       //keeps all
+      properties[key] = value;
+      return true;
+    }
+  }
+  var topo = topojson.topology({name:fc}, options)
+
+  topojson.simplify(topo, options)
+
+  return topojson.feature(topo, topo.objects.name)
+}
+
+},{"topojson":85}],85:[function(require,module,exports){
+var topojson = module.exports = require("./topojson");
+topojson.topology = require("./lib/topojson/topology");
+topojson.simplify = require("./lib/topojson/simplify");
+topojson.clockwise = require("./lib/topojson/clockwise");
+topojson.filter = require("./lib/topojson/filter");
+topojson.prune = require("./lib/topojson/prune");
+topojson.stitch = require("./lib/topojson/stitch");
+topojson.scale = require("./lib/topojson/scale");
+
+},{"./lib/topojson/clockwise":88,"./lib/topojson/filter":92,"./lib/topojson/prune":96,"./lib/topojson/scale":98,"./lib/topojson/simplify":99,"./lib/topojson/stitch":101,"./lib/topojson/topology":102,"./topojson":114}],86:[function(require,module,exports){
 
 // Computes the bounding box of the specified hash of GeoJSON objects.
 module.exports = function(objects) {
@@ -14996,7 +14581,7 @@ module.exports = function(objects) {
   return [x0, y0, x1, y1];
 };
 
-},{}],71:[function(_dereq_,module,exports){
+},{}],87:[function(require,module,exports){
 exports.name = "cartesian";
 exports.formatDistance = formatDistance;
 exports.ringArea = ringArea;
@@ -15009,13 +14594,19 @@ function formatDistance(d) {
 }
 
 function ringArea(ring) {
-  var i = 0,
+  var i = -1,
       n = ring.length,
-      area = ring[n - 1][1] * ring[0][0] - ring[n - 1][0] * ring[0][1];
+      a,
+      b = ring[n - 1],
+      area = 0;
+
   while (++i < n) {
-    area += ring[i - 1][1] * ring[i][0] - ring[i - 1][0] * ring[i][1];
+    a = b;
+    b = ring[i];
+    area += a[0] * b[1] - a[1] * b[0];
   }
-  return -area * .5; // ensure clockwise pixel areas are positive
+
+  return area * .5;
 }
 
 function triangleArea(triangle) {
@@ -15030,10 +14621,10 @@ function distance(x0, y0, x1, y1) {
   return Math.sqrt(dx * dx + dy * dy);
 }
 
-},{}],72:[function(_dereq_,module,exports){
-var type = _dereq_("./type"),
-    systems = _dereq_("./coordinate-systems"),
-    topojson = _dereq_("../../");
+},{}],88:[function(require,module,exports){
+var type = require("./type"),
+    systems = require("./coordinate-systems"),
+    topojson = require("../../topojson");
 
 module.exports = function(object, options) {
   if (object.type === "Topology") clockwiseTopology(object, options);
@@ -15121,7 +14712,7 @@ function clockwisePolygonSystem(ringArea, reverse) {
 
 function noop() {}
 
-},{"../../":68,"./coordinate-systems":74,"./type":94}],73:[function(_dereq_,module,exports){
+},{"../../topojson":114,"./coordinate-systems":90,"./type":113}],89:[function(require,module,exports){
 // Given a hash of GeoJSON objects and an id function, invokes the id function
 // to compute a new id for each object that is a feature. The function is passed
 // the feature and is expected to return the new feature id, or null if the
@@ -15151,13 +14742,13 @@ module.exports = function(objects, id) {
   return objects;
 };
 
-},{}],74:[function(_dereq_,module,exports){
+},{}],90:[function(require,module,exports){
 module.exports = {
-  cartesian: _dereq_("./cartesian"),
-  spherical: _dereq_("./spherical")
+  cartesian: require("./cartesian"),
+  spherical: require("./spherical")
 };
 
-},{"./cartesian":71,"./spherical":82}],75:[function(_dereq_,module,exports){
+},{"./cartesian":87,"./spherical":100}],91:[function(require,module,exports){
 // Given a TopoJSON topology in absolute (quantized) coordinates,
 // converts to fixed-point delta encoding.
 // This is a destructive operation that modifies the given topology!
@@ -15188,26 +14779,72 @@ module.exports = function(topology) {
   return topology;
 };
 
-},{}],76:[function(_dereq_,module,exports){
-var type = _dereq_("./type"),
-    prune = _dereq_("./prune"),
-    clockwise = _dereq_("./clockwise"),
-    systems = _dereq_("./coordinate-systems"),
-    topojson = _dereq_("../../");
+},{}],92:[function(require,module,exports){
+var type = require("./type"),
+    prune = require("./prune"),
+    clockwise = require("./clockwise"),
+    systems = require("./coordinate-systems"),
+    topojson = require("../../topojson");
 
 module.exports = function(topology, options) {
   var system = null,
       forceClockwise = true, // force exterior rings to be clockwise?
+      preserveAttached = true, // e.g., remove islands but not small counties
+      preserveRing = preserveNone,
       minimumArea;
 
   if (options)
     "coordinate-system" in options && (system = systems[options["coordinate-system"]]),
     "minimum-area" in options && (minimumArea = +options["minimum-area"]),
+    "preserve-attached" in options && (preserveAttached = !!options["preserve-attached"]),
     "force-clockwise" in options && (forceClockwise = !!options["force-clockwise"]);
 
   if (forceClockwise) clockwise(topology, options); // deprecated; for backwards-compatibility
 
   if (!(minimumArea > 0)) minimumArea = Number.MIN_VALUE;
+
+  if (preserveAttached) {
+    var uniqueRingByArc = {}, // arc index -> index of unique associated ring, or -1 if used by multiple rings
+        ringIndex = 0;
+
+    var checkAttachment = type({
+      LineString: noop,
+      MultiLineString: noop,
+      Point: noop,
+      MultiPoint: noop,
+      MultiPolygon: function(multiPolygon) {
+        var arcs = multiPolygon.arcs, i = -1, n = arcs.length;
+        while (++i < n) this.polygon(arcs[i]);
+      },
+      Polygon: function(polygon) {
+        this.polygon(polygon.arcs);
+      },
+      polygon: function(arcs) {
+        for (var i = 0, n = arcs.length; i < n; ++i, ++ringIndex) {
+          for (var ring = arcs[i], j = 0, m = ring.length; j < m; ++j) {
+            var arc = ring[j];
+            if (arc < 0) arc = ~arc;
+            var uniqueRing = uniqueRingByArc[arc];
+            if (uniqueRing >= 0 && uniqueRing !== ringIndex) uniqueRingByArc[arc] = -1;
+            else uniqueRingByArc[arc] = ringIndex;
+          }
+        }
+      }
+    });
+
+    preserveRing = function(ring) {
+      for (var j = 0, m = ring.length; j < m; ++j) {
+        var arc = ring[j];
+        if (uniqueRingByArc[arc < 0 ? ~arc : arc] < 0) {
+          return true;
+        }
+      }
+    };
+
+    for (var key in topology.objects) {
+      checkAttachment.object(topology.objects[key]);
+    }
+  }
 
   var filter = type({
     LineString: noop, // TODO remove empty lines
@@ -15253,11 +14890,11 @@ module.exports = function(topology, options) {
   }
 
   function filterExteriorRing(ring) {
-    return system.absoluteArea(ringArea(ring)) >= minimumArea;
+    return preserveRing(ring) || system.absoluteArea(ringArea(ring)) >= minimumArea;
   }
 
   function filterInteriorRing(ring) {
-    return system.absoluteArea(-ringArea(ring)) >= minimumArea;
+    return preserveRing(ring) || system.absoluteArea(-ringArea(ring)) >= minimumArea;
   }
 
   function ringArea(ring) {
@@ -15267,7 +14904,11 @@ module.exports = function(topology, options) {
 
 function noop() {}
 
-},{"../../":68,"./clockwise":72,"./coordinate-systems":74,"./prune":79,"./type":94}],77:[function(_dereq_,module,exports){
+function preserveNone() {
+  return false;
+}
+
+},{"../../topojson":114,"./clockwise":88,"./coordinate-systems":90,"./prune":96,"./type":113}],93:[function(require,module,exports){
 // Given a hash of GeoJSON objects, replaces Features with geometry objects.
 // This is a destructive operation that modifies the input objects!
 module.exports = function(objects) {
@@ -15386,63 +15027,114 @@ module.exports = function(objects) {
   return objects;
 };
 
-},{}],78:[function(_dereq_,module,exports){
-module.exports = function(objects, filter) {
+},{}],94:[function(require,module,exports){
+var quantize = require("./quantize");
 
-  function prefilterGeometry(geometry) {
-    if (!geometry) return {type: null};
-    if (prefilterGeometryType.hasOwnProperty(geometry.type)) prefilterGeometryType[geometry.type](geometry);
-    return geometry;
+module.exports = function(topology, Q0, Q1) {
+  if (Q0) {
+    if (Q1 === Q0 || !topology.bbox.every(isFinite)) return topology;
+    var k = Q1 / Q0,
+        q = quantize(0, 0, k, k);
+
+    topology.transform.scale[0] /= k;
+    topology.transform.scale[1] /= k;
+  } else {
+    var bbox = topology.bbox,
+        x0 = isFinite(bbox[0]) ? bbox[0] : 0,
+        y0 = isFinite(bbox[1]) ? bbox[1] : 0,
+        x1 = isFinite(bbox[2]) ? bbox[2] : 0,
+        y1 = isFinite(bbox[3]) ? bbox[3] : 0,
+        kx = x1 - x0 ? (Q1 - 1) / (x1 - x0) : 1,
+        ky = y1 - y0 ? (Q1 - 1) / (y1 - y0) : 1,
+        q = quantize(-x0, -y0, kx, ky);
+
+    topology.transform = q.transform;
   }
 
-  var prefilterGeometryType = {
-    GeometryCollection: function(o) {
-      var geometries = o.geometries, i = -1, n = geometries.length;
-      while (++i < n) geometries[i] = prefilterGeometry(geometries[i]);
+  function quantizeGeometry(geometry) {
+    if (geometry && quantizeGeometryType.hasOwnProperty(geometry.type)) quantizeGeometryType[geometry.type](geometry);
+  }
+
+  var quantizeGeometryType = {
+    GeometryCollection: function(o) { o.geometries.forEach(quantizeGeometry); },
+    Point: function(o) { q.point(o.coordinates); },
+    MultiPoint: function(o) { o.coordinates.forEach(q.point); }
+  };
+
+  for (var key in topology.objects) {
+    quantizeGeometry(topology.objects[key]);
+  }
+
+  // XXX shared points are bad mmkay
+  topology.arcs = topology.arcs.map(function(arc) {
+    q.line(arc = arc.map(function(point) { return point.slice(); }));
+    if (arc.length < 2) arc.push(arc[0]); // arcs must have at least two points
+    return arc;
+  });
+
+  return topology;
+};
+
+},{"./quantize":97}],95:[function(require,module,exports){
+var quantize = require("./quantize");
+
+module.exports = function(objects, bbox, Q0, Q1) {
+  if (arguments.length < 4) Q1 = Q0;
+
+  var x0 = isFinite(bbox[0]) ? bbox[0] : 0,
+      y0 = isFinite(bbox[1]) ? bbox[1] : 0,
+      x1 = isFinite(bbox[2]) ? bbox[2] : 0,
+      y1 = isFinite(bbox[3]) ? bbox[3] : 0,
+      kx = x1 - x0 ? (Q1 - 1) / (x1 - x0) * Q0 / Q1 : 1,
+      ky = y1 - y0 ? (Q1 - 1) / (y1 - y0) * Q0 / Q1 : 1,
+      q = quantize(-x0, -y0, kx, ky);
+
+  function quantizeGeometry(geometry) {
+    if (geometry && quantizeGeometryType.hasOwnProperty(geometry.type)) quantizeGeometryType[geometry.type](geometry);
+  }
+
+  var quantizeGeometryType = {
+    GeometryCollection: function(o) { o.geometries.forEach(quantizeGeometry); },
+    Point: function(o) { q.point(o.coordinates); },
+    MultiPoint: function(o) { o.coordinates.forEach(q.point); },
+    LineString: function(o) {
+      var line = o.coordinates;
+      q.line(line);
+      if (line.length < 2) line[1] = line[0]; // must have 2+
+    },
+    MultiLineString: function(o) {
+      for (var lines = o.coordinates, i = 0, n = lines.length; i < n; ++i) {
+        var line = lines[i];
+        q.line(line);
+        if (line.length < 2) line[1] = line[0]; // must have 2+
+      }
     },
     Polygon: function(o) {
-      for (var rings = o.coordinates, i = 0, N = 0, n = rings.length; i < n; ++i) {
+      for (var rings = o.coordinates, i = 0, n = rings.length; i < n; ++i) {
         var ring = rings[i];
-        if (filter(ring)) rings[N++] = ring;
-      }
-      if (!N) {
-        o.type = null;
-        delete o.coordinates;
-      } else {
-        o.coordinates.length = N;
+        q.line(ring);
+        while (ring.length < 4) ring.push(ring[0]); // must have 4+
       }
     },
     MultiPolygon: function(o) {
-      for (var polygons = o.coordinates, j = 0, M = 0, m = polygons.length; j < m; ++j) {
-        for (var rings = polygons[j], i = 0, N = 0, n = rings.length; i < n; ++i) {
-          var ring = rings[i];
-          if (filter(ring)) rings[N++] = ring;
+      for (var polygons = o.coordinates, i = 0, n = polygons.length; i < n; ++i) {
+        for (var rings = polygons[i], j = 0, m = rings.length; j < m; ++j) {
+          var ring = rings[j];
+          q.line(ring);
+          while (ring.length < 4) ring.push(ring[0]); // must have 4+
         }
-        if (N) {
-          rings.length = N;
-          polygons[M++] = rings;
-        }
-      }
-      if (!M) {
-        o.type = null;
-        delete o.coordinates;
-      } else if (M < 2) {
-        o.type = "Polygon";
-        o.coordinates = polygons[0];
-      } else {
-        polygons.length = M;
       }
     }
   };
 
   for (var key in objects) {
-    objects[key] = prefilterGeometry(objects[key]);
+    quantizeGeometry(objects[key]);
   }
 
-  return objects;
+  return q.transform;
 };
 
-},{}],79:[function(_dereq_,module,exports){
+},{"./quantize":97}],96:[function(require,module,exports){
 module.exports = function(topology, options) {
   var verbose = false,
       objects = topology.objects,
@@ -15468,15 +15160,11 @@ module.exports = function(topology, options) {
   };
 
   function pruneArcs(arcs) {
-    for (var i = 0, m = 0, n = arcs.length; i < n; ++i) {
+    for (var i = 0, n = arcs.length; i < n; ++i) {
       var oldIndex = arcs[i],
           oldReverse = oldIndex < 0 && (oldIndex = ~oldIndex, true),
-          oldArc = oldArcs[oldIndex],
           newIndex;
 
-      // Skip collapsed arc segments.
-      if (oldArc.length < 3 && !oldArc[1][0] && !oldArc[1][1]) continue;
-
       // If this is the first instance of this arc,
       // record it under its new index.
       if ((newIndex = newIndexByOldIndex[oldIndex]) == null) {
@@ -15484,20 +15172,7 @@ module.exports = function(topology, options) {
         newArcs[newIndex] = oldArcs[oldIndex];
       }
 
-      arcs[m++] = oldReverse ? ~newIndex : newIndex;
-    }
-
-    // If all were collapsed, restore the last arc to avoid collapsing the line.
-    if (!(arcs.length = m) && n) {
-
-      // If this is the first instance of this arc,
-      // record it under its new index.
-      if ((newIndex = newIndexByOldIndex[oldIndex]) == null) {
-        newIndexByOldIndex[oldIndex] = newIndex = newArcCount++;
-        newArcs[newIndex] = oldArcs[oldIndex];
-      }
-
-      arcs[0] = oldReverse ? ~newIndex : newIndex;
+      arcs[i] = oldReverse ? ~newIndex : newIndex;
     }
   }
 
@@ -15516,73 +15191,30 @@ module.exports = function(topology, options) {
 
 function noop() {}
 
-},{}],80:[function(_dereq_,module,exports){
-module.exports = function(objects, bbox, Q) {
-  var x0 = isFinite(bbox[0]) ? bbox[0] : 0,
-      y0 = isFinite(bbox[1]) ? bbox[1] : 0,
-      x1 = isFinite(bbox[2]) ? bbox[2] : 0,
-      y1 = isFinite(bbox[3]) ? bbox[3] : 0,
-      kx = x1 - x0 ? (Q - 1) / (x1 - x0) : 1,
-      ky = y1 - y0 ? (Q - 1) / (y1 - y0) : 1;
-
-  function quantizeGeometry(geometry) {
-    if (geometry && quantizeGeometryType.hasOwnProperty(geometry.type)) quantizeGeometryType[geometry.type](geometry);
-  }
-
-  var quantizeGeometryType = {
-    GeometryCollection: function(o) { o.geometries.forEach(quantizeGeometry); },
-    Point: function(o) { quantizePoint(o.coordinates); },
-    MultiPoint: function(o) { o.coordinates.forEach(quantizePoint); },
-    LineString: function(o) {
-      var line = o.coordinates;
-      quantizeLine(line);
-      if (line.length < 2) line[1] = line[0]; // must have 2+
-    },
-    MultiLineString: function(o) {
-      for (var lines = o.coordinates, i = 0, n = lines.length; i < n; ++i) {
-        var line = lines[i];
-        quantizeLine(line);
-        if (line.length < 2) line[1] = line[0]; // must have 2+
-      }
-    },
-    Polygon: function(o) {
-      for (var rings = o.coordinates, i = 0, n = rings.length; i < n; ++i) {
-        var ring = rings[i];
-        quantizeLine(ring);
-        while (ring.length < 4) ring.push(ring[0]); // must have 4+
-      }
-    },
-    MultiPolygon: function(o) {
-      for (var polygons = o.coordinates, i = 0, n = polygons.length; i < n; ++i) {
-        for (var rings = polygons[i], j = 0, m = rings.length; j < m; ++j) {
-          var ring = rings[j];
-          quantizeLine(ring);
-          while (ring.length < 4) ring.push(ring[0]); // must have 4+
-        }
-      }
-    }
-  };
+},{}],97:[function(require,module,exports){
+module.exports = function(dx, dy, kx, ky) {
 
   function quantizePoint(coordinates) {
-    coordinates[0] = Math.round((coordinates[0] - x0) * kx);
-    coordinates[1] = Math.round((coordinates[1] - y0) * ky);
+    coordinates[0] = Math.round((coordinates[0] + dx) * kx);
+    coordinates[1] = Math.round((coordinates[1] + dy) * ky);
+    return coordinates;
   }
 
   function quantizeLine(coordinates) {
     var i = 0,
         j = 1,
         n = coordinates.length,
-        pi = coordinates[0],
+        pi = quantizePoint(coordinates[0]),
         pj,
-        px = pi[0] = Math.round((pi[0] - x0) * kx),
-        py = pi[1] = Math.round((pi[1] - y0) * ky),
+        px = pi[0],
+        py = pi[1],
         x,
         y;
 
     while (++i < n) {
-      pi = coordinates[i];
-      x = Math.round((pi[0] - x0) * kx);
-      y = Math.round((pi[1] - y0) * ky);
+      pi = quantizePoint(coordinates[i]);
+      x = pi[0];
+      y = pi[1];
       if (x !== px || y !== py) { // skip coincident points
         pj = coordinates[j++];
         pj[0] = px = x;
@@ -15593,19 +15225,99 @@ module.exports = function(objects, bbox, Q) {
     coordinates.length = j;
   }
 
-  for (var key in objects) {
-    quantizeGeometry(objects[key]);
-  }
-
   return {
-    scale: [1 / kx, 1 / ky],
-    translate: [x0, y0]
+    point: quantizePoint,
+    line: quantizeLine,
+    transform: {
+      scale: [1 / kx, 1 / ky],
+      translate: [-dx, -dy]
+    }
   };
 };
 
-},{}],81:[function(_dereq_,module,exports){
-var topojson = _dereq_("../../"),
-    systems = _dereq_("./coordinate-systems");
+},{}],98:[function(require,module,exports){
+var type = require("./type");
+
+module.exports = function(topology, options) {
+  var width,
+      height,
+      margin = 0,
+      invert = true;
+
+  if (options)
+    "width" in options && (width = +options["width"]),
+    "height" in options && (height = +options["height"]),
+    "margin" in options && (margin = +options["margin"]),
+    "invert" in options && (invert = !!options["invert"]);
+
+  var bx = topology.bbox,
+      dx = bx[2] - bx[0],
+      dy = bx[3] - bx[1],
+      cx = (bx[2] + bx[0]) / 2,
+      cy = (bx[3] + bx[1]) / 2,
+      kx;
+
+  width = Math.max(0, width - margin * 2);
+  height = Math.max(0, height - margin * 2);
+
+  if (width && height) {
+    kx = Math.min(width / dx, height / dy);
+  } else if (width) {
+    kx = width / dx;
+    height = kx * dy;
+  } else {
+    kx = height / dy;
+    width = kx * dx;
+  }
+
+  var ky = invert ? -kx : kx,
+      lt = scalePoint([bx[0], bx[1]]),
+      rb = scalePoint([bx[2], bx[3]]),
+      tx;
+
+  topology.bbox = invert
+      ? [lt[0], rb[1], rb[0], lt[1]]
+      : [lt[0], lt[1], rb[0], rb[1]];
+
+  function scalePoint(point) {
+    return [
+      point[0] * kx + (width / 2 - cx * kx) + margin,
+      point[1] * ky + (height / 2 - cy * ky) + margin
+    ];
+  }
+
+  if (tx = topology.transform) {
+    tx.scale[0] *= kx;
+    tx.scale[1] *= ky;
+    tx.translate[0] = width / 2 + margin - (cx - tx.translate[0]) * kx;
+    tx.translate[1] = height / 2 + margin - (cy - tx.translate[1]) * ky;
+  } else {
+    var scale = type({
+      LineString: noop,
+      MultiLineString: noop,
+      Point: function(point) { point.coordinates = scalePoint(point.coordinates); },
+      MultiPoint: function(multipoint) { multipoint.coordinates = multipoint.coordinates.map(scalePoint); },
+      Polygon: noop,
+      MultiPolygon: noop
+    });
+
+    for (var key in topology.objects) {
+      scale.object(topology.objects[key]);
+    }
+
+    topology.arcs = topology.arcs.map(function(arc) {
+      return arc.map(scalePoint);
+    });
+  }
+
+  return topology;
+};
+
+function noop() {}
+
+},{"./type":113}],99:[function(require,module,exports){
+var topojson = require("../../topojson"),
+    systems = require("./coordinate-systems");
 
 module.exports = function(topology, options) {
   var minimumArea = 0,
@@ -15673,13 +15385,38 @@ module.exports = function(topology, options) {
     arc.length = ++j;
   });
 
-  // Remove computed area (z) for each point.
+  // Remove computed area (z) for each point, and remove coincident points.
   // This is done as a separate pass because some coordinates may be shared
   // between arcs (such as the last point and first point of a cut line).
-  topology.arcs.forEach(function(arc) {
-    var i = -1, n = arc.length;
-    while (++i < n) arc[i].length = 2;
-    M += arc.length;
+  // If the entire arc is empty, retain at least two points (per spec).
+  topology.arcs.forEach(topology.transform ? function(arc) {
+    var i = 0,
+        j = 0,
+        n = arc.length,
+        p = arc[0];
+    p.length = 2;
+    while (++i < n) {
+      p = arc[i];
+      p.length = 2;
+      if (p[0] || p[1]) arc[++j] = p;
+    }
+    M += arc.length = (j || 1) + 1;
+  } : function(arc) {
+    var i = 0,
+        j = 0,
+        n = arc.length,
+        p = arc[0],
+        x0 = p[0],
+        y0 = p[1],
+        x1,
+        y1;
+    p.length = 2;
+    while (++i < n) {
+      p = arc[i], x1 = p[0], y1 = p[1];
+      p.length = 2;
+      if (x0 !== x1 || y0 !== y1) arc[++j] = p, x0 = x1, y0 = y1;
+    }
+    M += arc.length = (j || 1) + 1;
   });
 
   if (verbose) console.warn("simplification: retained " + M + " / " + N + " points (" + Math.round((M / N) * 100) + "%)");
@@ -15687,7 +15424,7 @@ module.exports = function(topology, options) {
   return topology;
 };
 
-},{"../../":68,"./coordinate-systems":74}],82:[function(_dereq_,module,exports){
+},{"../../topojson":114,"./coordinate-systems":90}],100:[function(require,module,exports){
 var π = Math.PI,
     π_4 = π / 4,
     radians = π / 180;
@@ -15699,10 +15436,9 @@ exports.absoluteArea = absoluteArea;
 exports.triangleArea = triangleArea;
 exports.distance = haversinDistance; // XXX why two implementations?
 
-function formatDistance(radians) {
-  var km = radians * 6371;
-  return (km > 1 ? km.toFixed(3) + "km" : (km * 1000).toPrecision(3) + "m")
-      + " (" + (radians * 180 / Math.PI).toPrecision(3) + "°)";
+function formatDistance(k) {
+  var km = k * radians * 6371;
+  return (km > 1 ? km.toFixed(3) + "km" : (km * 1000).toPrecision(3) + "m") + " (" + k.toPrecision(3) + "°)";
 }
 
 function ringArea(ring) {
@@ -15769,16 +15505,15 @@ function haversin(x) {
   return (x = Math.sin(x / 2)) * x;
 }
 
-},{}],83:[function(_dereq_,module,exports){
-var type = _dereq_("./type");
+},{}],101:[function(require,module,exports){
+var type = require("./type");
 
 module.exports = function(objects, transform) {
   var ε = 1e-2,
       x0 = -180, x0e = x0 + ε,
       x1 = 180, x1e = x1 - ε,
       y0 = -90, y0e = y0 + ε,
-      y1 = 90, y1e = y1 - ε,
-      fragments = [];
+      y1 = 90, y1e = y1 - ε;
 
   if (transform) {
     var kx = transform.scale[0],
@@ -15802,14 +15537,16 @@ module.exports = function(objects, transform) {
         : [x0, y]; // antimeridian
   }
 
-  var stitch = type({
-    polygon: function(polygon) {
-      var rings = [];
+  function stitchPolygons(polygons) {
+    var fragments = [];
+
+    for (var p = 0, np = polygons.length; p < np; ++p) {
+      var polygon = polygons[p];
 
       // For each ring, detect where it crosses the antimeridian or pole.
       for (var j = 0, m = polygon.length; j < m; ++j) {
-        var ring = polygon[j],
-            fragments = [];
+        var ring = polygon[j];
+        ring.polygon = polygon;
 
         // By default, assume that this ring doesn’t need any stitching.
         fragments.push(ring);
@@ -15840,6 +15577,7 @@ module.exports = function(objects, transform) {
             // The current point is also normalized for later joining.
             if (i) {
               var fragmentBefore = ring.slice(0, i + 1);
+              fragmentBefore.polygon = polygon;
               fragmentBefore[fragmentBefore.length - 1] = normalizePoint(y);
               fragments[fragments.length - 1] = fragmentBefore;
             }
@@ -15857,87 +15595,92 @@ module.exports = function(objects, transform) {
             // Otherwise, add the remaining ring fragment and continue.
             fragments.push(ring = ring.slice(k - 1));
             ring[0] = normalizePoint(ring[0][1]);
+            ring.polygon = polygon;
             i = -1;
             n = ring.length;
           }
         }
+      }
+      polygon.length = 0;
+    }
 
-        // Now stitch the fragments back together into rings.
-        // To connect the fragments start-to-end, create a simple index by end.
-        var fragmentByStart = {},
-            fragmentByEnd = {};
+    // Now stitch the fragments back together into rings.
+    // To connect the fragments start-to-end, create a simple index by end.
+    var fragmentByStart = {},
+        fragmentByEnd = {};
 
-        // For each fragment…
-        for (var i = 0, n = fragments.length; i < n; ++i) {
-          var fragment = fragments[i],
-              start = fragment[0],
-              end = fragment[fragment.length - 1];
+    // For each fragment…
+    for (var i = 0, n = fragments.length; i < n; ++i) {
+      var fragment = fragments[i],
+          start = fragment[0],
+          end = fragment[fragment.length - 1];
 
-          // If this fragment is closed, add it as a standalone ring.
-          if (start[0] === end[0] && start[1] === end[1]) {
-            rings.push(fragment);
-            fragments[i] = null;
-            continue;
-          }
-
-          fragment.index = i;
-          fragmentByStart[start] = fragmentByEnd[end] = fragment;
-        }
-
-        // For each open fragment…
-        for (var i = 0; i < n; ++i) {
-          var fragment = fragments[i];
-          if (fragment) {
-
-            var start = fragment[0],
-                end = fragment[fragment.length - 1],
-                startFragment = fragmentByEnd[start],
-                endFragment = fragmentByStart[end];
-
-            delete fragmentByStart[start];
-            delete fragmentByEnd[end];
-
-            // If this fragment is closed, add it as a standalone ring.
-            if (start[0] === end[0] && start[1] === end[1]) {
-              rings.push(fragment);
-              continue;
-            }
-
-            if (startFragment) {
-              delete fragmentByEnd[start];
-              delete fragmentByStart[startFragment[0]];
-              startFragment.pop(); // drop the shared coordinate
-              fragments[startFragment.index] = null;
-              fragment = startFragment.concat(fragment);
-
-              if (startFragment === endFragment) {
-                // Connect both ends to this single fragment to create a ring.
-                rings.push(fragment);
-              } else {
-                fragment.index = n++;
-                fragments.push(fragmentByStart[fragment[0]] = fragmentByEnd[fragment[fragment.length - 1]] = fragment);
-              }
-            } else if (endFragment) {
-              delete fragmentByStart[end];
-              delete fragmentByEnd[endFragment[endFragment.length - 1]];
-              fragment.pop(); // drop the shared coordinate
-              fragment = fragment.concat(endFragment);
-              fragment.index = n++;
-              fragments[endFragment.index] = null;
-              fragments.push(fragmentByStart[fragment[0]] = fragmentByEnd[fragment[fragment.length - 1]] = fragment);
-            } else {
-              fragment.push(fragment[0]); // close ring
-              rings.push(fragment);
-            }
-          }
-        }
+      // If this fragment is closed, add it as a standalone ring.
+      if (start[0] === end[0] && start[1] === end[1]) {
+        fragment.polygon.push(fragment);
+        fragments[i] = null;
+        continue;
       }
 
-      // Copy the rings into the target polygon.
-      for (var i = 0, n = polygon.length = rings.length; i < n; ++i) {
-        polygon[i] = rings[i];
+      fragment.index = i;
+      fragmentByStart[start] = fragmentByEnd[end] = fragment;
+    }
+
+    // For each open fragment…
+    for (var i = 0; i < n; ++i) {
+      var fragment = fragments[i];
+      if (fragment) {
+
+        var start = fragment[0],
+            end = fragment[fragment.length - 1],
+            startFragment = fragmentByEnd[start],
+            endFragment = fragmentByStart[end];
+
+        delete fragmentByStart[start];
+        delete fragmentByEnd[end];
+
+        // If this fragment is closed, add it as a standalone ring.
+        if (start[0] === end[0] && start[1] === end[1]) {
+          fragment.polygon.push(fragment);
+          continue;
+        }
+
+        if (startFragment) {
+          delete fragmentByEnd[start];
+          delete fragmentByStart[startFragment[0]];
+          startFragment.pop(); // drop the shared coordinate
+          fragments[startFragment.index] = null;
+          fragment = startFragment.concat(fragment);
+          fragment.polygon = startFragment.polygon;
+
+          if (startFragment === endFragment) {
+            // Connect both ends to this single fragment to create a ring.
+            fragment.polygon.push(fragment);
+          } else {
+            fragment.index = n++;
+            fragments.push(fragmentByStart[fragment[0]] = fragmentByEnd[fragment[fragment.length - 1]] = fragment);
+          }
+        } else if (endFragment) {
+          delete fragmentByStart[end];
+          delete fragmentByEnd[endFragment[endFragment.length - 1]];
+          fragment.pop(); // drop the shared coordinate
+          fragment = fragment.concat(endFragment);
+          fragment.polygon = endFragment.polygon;
+          fragment.index = n++;
+          fragments[endFragment.index] = null;
+          fragments.push(fragmentByStart[fragment[0]] = fragmentByEnd[fragment[fragment.length - 1]] = fragment);
+        } else {
+          fragment.push(fragment[0]); // close ring
+          fragment.polygon.push(fragment);
+        }
       }
     }
+    // TODO remove empty polygons.
+  }
+
+  var stitch = type({
+    Polygon: function(polygon) { stitchPolygons([polygon.coordinates]); },
+    MultiPolygon: function(multiPolygon) { stitchPolygons(multiPolygon.coordinates); }
   });
 
   for (var key in objects) {
@@ -15945,23 +15688,24 @@ module.exports = function(objects, transform) {
   }
 };
 
-},{"./type":94}],84:[function(_dereq_,module,exports){
-var type = _dereq_("./type"),
-    stitch = _dereq_("./stitch"),
-    systems = _dereq_("./coordinate-systems"),
-    topologize = _dereq_("./topology/index"),
-    delta = _dereq_("./delta"),
-    geomify = _dereq_("./geomify"),
-    prefilter = _dereq_("./prefilter"),
-    quantize = _dereq_("./quantize"),
-    bounds = _dereq_("./bounds"),
-    computeId = _dereq_("./compute-id"),
-    transformProperties = _dereq_("./transform-properties");
+},{"./type":113}],102:[function(require,module,exports){
+var type = require("./type"),
+    stitch = require("./stitch"),
+    systems = require("./coordinate-systems"),
+    topologize = require("./topology/index"),
+    delta = require("./delta"),
+    geomify = require("./geomify"),
+    prequantize = require("./pre-quantize"),
+    postquantize = require("./post-quantize"),
+    bounds = require("./bounds"),
+    computeId = require("./compute-id"),
+    transformProperties = require("./transform-properties");
 
 var ε = 1e-6;
 
 module.exports = function(objects, options) {
-  var Q = 1e4, // precision of quantization
+  var Q0 = 1e4, // precision of pre-quantization
+      Q1 = 1e4, // precision of post-quantization (must be divisor of Q0)
       id = function(d) { return d.id; }, // function to compute object id
       propertyTransform = function() {}, // function to transform properties
       transform,
@@ -15975,9 +15719,14 @@ module.exports = function(objects, options) {
     "stitch-poles" in options && (stitchPoles = !!options["stitch-poles"]),
     "coordinate-system" in options && (system = systems[options["coordinate-system"]]),
     "minimum-area" in options && (minimumArea = +options["minimum-area"]),
-    "quantization" in options && (Q = +options["quantization"]),
+    "quantization" in options && (Q0 = Q1 = +options["quantization"]),
+    "pre-quantization" in options && (Q0 = +options["pre-quantization"]),
+    "post-quantization" in options && (Q1 = +options["post-quantization"]),
     "id" in options && (id = options["id"]),
     "property-transform" in options && (propertyTransform = options["property-transform"]);
+
+  if (Q0 / Q1 % 1) throw new Error("post-quantization is not a divisor of pre-quantization");
+  if (Q0 && !Q1) throw new Error("post-quantization is required when input is already quantized");
 
   // Compute the new feature id and transform properties.
   computeId(objects, id);
@@ -16014,17 +15763,11 @@ module.exports = function(objects, options) {
     console.warn("bounds: " + bbox.join(" ") + " (" + system.name + ")");
   }
 
-  // Filter rings smaller than the minimum area.
-  // This can produce a simpler topology.
-  if (minimumArea) prefilter(objects, function(ring) {
-    return system.absoluteArea(system.ringArea(ring)) >= minimumArea;
-  });
-
-  // Compute the quantization transform.
-  if (Q) {
-    transform = quantize(objects, bbox, Q);
+  // Pre-topology quantization.
+  if (Q0) {
+    transform = prequantize(objects, bbox, Q0, Q1);
     if (verbose) {
-      console.warn("quantization: " + transform.scale.map(function(degrees) { return system.formatDistance(degrees / 180 * Math.PI); }).join(" "));
+      console.warn("pre-quantization: " + transform.scale.map(function(k) { return system.formatDistance(k); }).join(" "));
     }
   }
 
@@ -16035,26 +15778,37 @@ module.exports = function(objects, options) {
 
   // Compute the topology.
   var topology = topologize(objects);
+  if (Q0) topology.transform = transform;
   topology.bbox = bbox;
-
   if (verbose) {
     console.warn("topology: " + topology.arcs.length + " arcs, " + topology.arcs.reduce(function(p, v) { return p + v.length; }, 0) + " points");
   }
 
+  // Post-topology quantization.
+  if (Q1 && Q1 !== Q0) {
+    postquantize(topology, Q0, Q1);
+    transform = topology.transform;
+    if (verbose) {
+      console.warn("post-quantization: " + transform.scale.map(function(k) { return system.formatDistance(k); }).join(" "));
+    }
+  }
+
   // Convert to delta-encoding.
-  if (Q) topology.transform = transform, delta(topology);
+  if (Q1) {
+    delta(topology);
+  }
 
   return topology;
 };
 
-},{"./bounds":70,"./compute-id":73,"./coordinate-systems":74,"./delta":75,"./geomify":77,"./prefilter":78,"./quantize":80,"./stitch":83,"./topology/index":89,"./transform-properties":93,"./type":94}],85:[function(_dereq_,module,exports){
-var join = _dereq_("./join");
+},{"./bounds":86,"./compute-id":89,"./coordinate-systems":90,"./delta":91,"./geomify":93,"./post-quantize":94,"./pre-quantize":95,"./stitch":101,"./topology/index":108,"./transform-properties":112,"./type":113}],103:[function(require,module,exports){
+var join = require("./join");
 
 // Given an extracted (pre-)topology, cuts (or rotates) arcs so that all shared
 // point sequences are identified. The topology can then be subsequently deduped
 // to remove exact duplicate arcs.
 module.exports = function(topology) {
-  var junctionByPoint = join(topology),
+  var junctions = join(topology),
       coordinates = topology.coordinates,
       lines = topology.lines,
       rings = topology.rings;
@@ -16064,7 +15818,7 @@ module.exports = function(topology) {
         lineMid = line[0],
         lineEnd = line[1];
     while (++lineMid < lineEnd) {
-      if (junctionByPoint.get(coordinates[lineMid])) {
+      if (junctions.has(coordinates[lineMid])) {
         var next = {0: lineMid, 1: line[1]};
         line[1] = lineMid;
         line = line.next = next;
@@ -16077,9 +15831,9 @@ module.exports = function(topology) {
         ringStart = ring[0],
         ringMid = ringStart,
         ringEnd = ring[1],
-        ringFixed = junctionByPoint.get(coordinates[ringStart]);
+        ringFixed = junctions.has(coordinates[ringStart]);
     while (++ringMid < ringEnd) {
-      if (junctionByPoint.get(coordinates[ringMid])) {
+      if (junctions.has(coordinates[ringMid])) {
         if (ringFixed) {
           var next = {0: ringMid, 1: ring[1]};
           ring[1] = ringMid;
@@ -16109,11 +15863,11 @@ function reverse(array, start, end) {
   }
 }
 
-},{"./join":90}],86:[function(_dereq_,module,exports){
-var join = _dereq_("./join"),
-    hashtable = _dereq_("./hashtable"),
-    hashPoint = _dereq_("./point-hash"),
-    equalPoint = _dereq_("./point-equal");
+},{"./join":109}],104:[function(require,module,exports){
+var join = require("./join"),
+    hashmap = require("./hashmap"),
+    hashPoint = require("./point-hash"),
+    equalPoint = require("./point-equal");
 
 // Given a cut topology, combines duplicate arcs.
 module.exports = function(topology) {
@@ -16125,7 +15879,7 @@ module.exports = function(topology) {
   delete topology.lines;
   delete topology.rings;
 
-  // Count the number of (non-unique) arcs to initialize the hashtable safely.
+  // Count the number of (non-unique) arcs to initialize the hashmap safely.
   for (var i = 0, n = lines.length; i < n; ++i) {
     var line = lines[i]; while (line = line.next) ++arcCount;
   }
@@ -16133,7 +15887,7 @@ module.exports = function(topology) {
     var ring = rings[i]; while (ring = ring.next) ++arcCount;
   }
 
-  var arcsByEnd = hashtable(arcCount * 2, hashPoint, equalPoint),
+  var arcsByEnd = hashmap(arcCount * 2 * 1.4, hashPoint, equalPoint),
       arcs = topology.arcs = [];
 
   for (var i = 0, n = lines.length; i < n; ++i) {
@@ -16295,7 +16049,7 @@ module.exports = function(topology) {
   return topology;
 };
 
-},{"./hashtable":88,"./join":90,"./point-equal":91,"./point-hash":92}],87:[function(_dereq_,module,exports){
+},{"./hashmap":106,"./join":109,"./point-equal":110,"./point-hash":111}],105:[function(require,module,exports){
 // Extracts the lines and rings from the specified hash of geometry objects.
 //
 // Returns an object with three properties:
@@ -16362,82 +16116,143 @@ module.exports = function(objects) {
   };
 };
 
-},{}],88:[function(_dereq_,module,exports){
-module.exports = function(size, hash, equal) {
-  var hashtable = new Array(size = 1 << Math.ceil(Math.log(size) / Math.LN2)),
+},{}],106:[function(require,module,exports){
+module.exports = function(size, hash, equal, keyType, keyEmpty, valueType) {
+  if (arguments.length === 3) {
+    keyType = valueType = Array;
+    keyEmpty = null;
+  }
+
+  var keystore = new keyType(size = 1 << Math.max(4, Math.ceil(Math.log(size) / Math.LN2))),
+      valstore = new valueType(size),
       mask = size - 1,
       free = size;
 
+  for (var i = 0; i < size; ++i) {
+    keystore[i] = keyEmpty;
+  }
+
   function set(key, value) {
     var index = hash(key) & mask,
-        match = hashtable[index],
-        cycle = !index;
-    while (match != null) {
-      if (equal(match.key, key)) return match.value = value;
-      match = hashtable[index = (index + 1) & mask];
-      if (!index && cycle++) throw new Error("full hashtable");
+        matchKey = keystore[index],
+        collisions = 0;
+    while (matchKey != keyEmpty) {
+      if (equal(matchKey, key)) return valstore[index] = value;
+      if (++collisions >= size) throw new Error("full hashmap");
+      matchKey = keystore[index = (index + 1) & mask];
     }
-    hashtable[index] = {key: key, value: value};
+    keystore[index] = key;
+    valstore[index] = value;
+    --free;
+    return value;
+  }
+
+  function maybeSet(key, value) {
+    var index = hash(key) & mask,
+        matchKey = keystore[index],
+        collisions = 0;
+    while (matchKey != keyEmpty) {
+      if (equal(matchKey, key)) return valstore[index];
+      if (++collisions >= size) throw new Error("full hashmap");
+      matchKey = keystore[index = (index + 1) & mask];
+    }
+    keystore[index] = key;
+    valstore[index] = value;
     --free;
     return value;
   }
 
   function get(key, missingValue) {
     var index = hash(key) & mask,
-        match = hashtable[index],
-        cycle = !index;
-    while (match != null) {
-      if (equal(match.key, key)) return match.value;
-      match = hashtable[index = (index + 1) & mask];
-      if (!index && cycle++) break;
+        matchKey = keystore[index],
+        collisions = 0;
+    while (matchKey != keyEmpty) {
+      if (equal(matchKey, key)) return valstore[index];
+      if (++collisions >= size) break;
+      matchKey = keystore[index = (index + 1) & mask];
     }
     return missingValue;
   }
 
-  function remove(key) {
-    var index = hash(key) & mask,
-        match = hashtable[index],
-        cycle = !index;
-    while (match != null) {
-      if (equal(match.key, key)) {
-        hashtable[index] = null;
-        match = hashtable[index = (index + 1) & mask];
-        if (match != null) { // delete and re-add
-          ++free;
-          hashtable[index] = null;
-          set(match.key, match.value);
-        }
-        ++free;
-        return true;
-      }
-      match = hashtable[index = (index + 1) & mask];
-      if (!index && cycle++) break;
-    }
-    return false;
-  }
-
   function keys() {
     var keys = [];
-    for (var i = 0, n = hashtable.length; i < n; ++i) {
-      var match = hashtable[i];
-      if (match != null) keys.push(match.key);
+    for (var i = 0, n = keystore.length; i < n; ++i) {
+      var matchKey = keystore[i];
+      if (matchKey != keyEmpty) keys.push(matchKey);
     }
     return keys;
   }
 
   return {
     set: set,
+    maybeSet: maybeSet, // set if unset
     get: get,
-    remove: remove,
     keys: keys
   };
 };
 
-},{}],89:[function(_dereq_,module,exports){
-var hashtable = _dereq_("./hashtable"),
-    extract = _dereq_("./extract"),
-    cut = _dereq_("./cut"),
-    dedup = _dereq_("./dedup");
+},{}],107:[function(require,module,exports){
+module.exports = function(size, hash, equal, type, empty) {
+  if (arguments.length === 3) {
+    type = Array;
+    empty = null;
+  }
+
+  var store = new type(size = 1 << Math.max(4, Math.ceil(Math.log(size) / Math.LN2))),
+      mask = size - 1,
+      free = size;
+
+  for (var i = 0; i < size; ++i) {
+    store[i] = empty;
+  }
+
+  function add(value) {
+    var index = hash(value) & mask,
+        match = store[index],
+        collisions = 0;
+    while (match != empty) {
+      if (equal(match, value)) return true;
+      if (++collisions >= size) throw new Error("full hashset");
+      match = store[index = (index + 1) & mask];
+    }
+    store[index] = value;
+    --free;
+    return true;
+  }
+
+  function has(value) {
+    var index = hash(value) & mask,
+        match = store[index],
+        collisions = 0;
+    while (match != empty) {
+      if (equal(match, value)) return true;
+      if (++collisions >= size) break;
+      match = store[index = (index + 1) & mask];
+    }
+    return false;
+  }
+
+  function values() {
+    var values = [];
+    for (var i = 0, n = store.length; i < n; ++i) {
+      var match = store[i];
+      if (match != empty) values.push(match);
+    }
+    return values;
+  }
+
+  return {
+    add: add,
+    has: has,
+    values: values
+  };
+};
+
+},{}],108:[function(require,module,exports){
+var hashmap = require("./hashmap"),
+    extract = require("./extract"),
+    cut = require("./cut"),
+    dedup = require("./dedup");
 
 // Constructs the TopoJSON Topology for the specified hash of geometries.
 // Each object in the specified hash must be a GeoJSON object,
@@ -16445,7 +16260,7 @@ var hashtable = _dereq_("./hashtable"),
 module.exports = function(objects) {
   var topology = dedup(cut(extract(objects))),
       coordinates = topology.coordinates,
-      indexByArc = hashtable(topology.arcs.length, hashArc, equalArc);
+      indexByArc = hashmap(topology.arcs.length * 1.4, hashArc, equalArc);
 
   objects = topology.objects; // for garbage collection
 
@@ -16503,10 +16318,11 @@ function equalArc(arcA, arcB) {
   return ia === ib && ja === jb;
 }
 
-},{"./cut":85,"./dedup":86,"./extract":87,"./hashtable":88}],90:[function(_dereq_,module,exports){
-var hashtable = _dereq_("./hashtable"),
-    hashPoint = _dereq_("./point-hash"),
-    equalPoint = _dereq_("./point-equal");
+},{"./cut":103,"./dedup":104,"./extract":105,"./hashmap":106}],109:[function(require,module,exports){
+var hashset = require("./hashset"),
+    hashmap = require("./hashmap"),
+    hashPoint = require("./point-hash"),
+    equalPoint = require("./point-equal");
 
 // Given an extracted (pre-)topology, identifies all of the junctions. These are
 // the points at which arcs (lines or rings) will need to be cut so that each
@@ -16526,92 +16342,121 @@ module.exports = function(topology) {
   var coordinates = topology.coordinates,
       lines = topology.lines,
       rings = topology.rings,
-      visitedByPoint,
-      neighborsByPoint = hashtable(coordinates.length, hashPoint, equalPoint),
-      junctionByPoint = hashtable(coordinates.length, hashPoint, equalPoint);
+      indexes = index(),
+      visitedByIndex = new Int32Array(coordinates.length),
+      leftByIndex = new Int32Array(coordinates.length),
+      rightByIndex = new Int32Array(coordinates.length),
+      junctionByIndex = new Int8Array(coordinates.length),
+      junctionCount = 0; // upper bound on number of junctions
+
+  for (var i = 0, n = coordinates.length; i < n; ++i) {
+    visitedByIndex[i] = leftByIndex[i] = rightByIndex[i] = -1;
+  }
 
   for (var i = 0, n = lines.length; i < n; ++i) {
     var line = lines[i],
         lineStart = line[0],
         lineEnd = line[1],
-        previousPoint = null,
-        currentPoint = coordinates[lineStart],
-        nextPoint = coordinates[++lineStart];
-    visitedByPoint = hashtable(lineEnd - lineStart, hashPoint, equalPoint);
-    junctionByPoint.set(currentPoint, true); // start
+        previousIndex,
+        currentIndex = indexes[lineStart],
+        nextIndex = indexes[++lineStart];
+    ++junctionCount, junctionByIndex[currentIndex] = 1; // start
     while (++lineStart <= lineEnd) {
-      sequence(previousPoint = currentPoint, currentPoint = nextPoint, nextPoint = coordinates[lineStart]);
+      sequence(i, previousIndex = currentIndex, currentIndex = nextIndex, nextIndex = indexes[lineStart]);
     }
-    junctionByPoint.set(nextPoint, true); // end
+    ++junctionCount, junctionByIndex[nextIndex] = 1; // end
+  }
+
+  for (var i = 0, n = coordinates.length; i < n; ++i) {
+    visitedByIndex[i] = -1;
   }
 
   for (var i = 0, n = rings.length; i < n; ++i) {
     var ring = rings[i],
         ringStart = ring[0] + 1,
         ringEnd = ring[1],
-        previousPoint = coordinates[ringEnd - 1],
-        currentPoint = coordinates[ringStart - 1],
-        nextPoint = coordinates[ringStart];
-    visitedByPoint = hashtable(ringEnd - ringStart + 1, hashPoint, equalPoint);
-    sequence(previousPoint, currentPoint, nextPoint);
+        previousIndex = indexes[ringEnd - 1],
+        currentIndex = indexes[ringStart - 1],
+        nextIndex = indexes[ringStart];
+    sequence(i, previousIndex, currentIndex, nextIndex);
     while (++ringStart <= ringEnd) {
-      sequence(previousPoint = currentPoint, currentPoint = nextPoint, nextPoint = coordinates[ringStart]);
+      sequence(i, previousIndex = currentIndex, currentIndex = nextIndex, nextIndex = indexes[ringStart]);
     }
   }
 
-  function sequence(previousPoint, currentPoint, nextPoint) {
-    if (visitedByPoint.get(currentPoint)) return; // ignore self-intersection
-    visitedByPoint.set(currentPoint, true);
-    var neighbors = neighborsByPoint.get(currentPoint);
-    if (neighbors) {
-      if (!(equalPoint(neighbors[0], previousPoint)
-        && equalPoint(neighbors[1], nextPoint))
-        && !(equalPoint(neighbors[0], nextPoint)
-        && equalPoint(neighbors[1], previousPoint))) {
-        junctionByPoint.set(currentPoint, true);
+  function sequence(i, previousIndex, currentIndex, nextIndex) {
+    if (visitedByIndex[currentIndex] === i) return; // ignore self-intersection
+    visitedByIndex[currentIndex] = i;
+    var leftIndex = leftByIndex[currentIndex];
+    if (leftIndex >= 0) {
+      var rightIndex = rightByIndex[currentIndex];
+      if ((leftIndex !== previousIndex || rightIndex !== nextIndex)
+        && (leftIndex !== nextIndex || rightIndex !== previousIndex)) {
+        ++junctionCount, junctionByIndex[currentIndex] = 1;
       }
     } else {
-      neighborsByPoint.set(currentPoint, [previousPoint, nextPoint]);
+      leftByIndex[currentIndex] = previousIndex;
+      rightByIndex[currentIndex] = nextIndex;
+    }
+  }
+
+  function index() {
+    var indexByPoint = hashmap(coordinates.length * 1.4, hashIndex, equalIndex, Int32Array, -1, Int32Array),
+        indexes = new Int32Array(coordinates.length);
+
+    for (var i = 0, n = coordinates.length; i < n; ++i) {
+      indexes[i] = indexByPoint.maybeSet(i, i);
+    }
+
+    return indexes;
+  }
+
+  function hashIndex(i) {
+    return hashPoint(coordinates[i]);
+  }
+
+  function equalIndex(i, j) {
+    return equalPoint(coordinates[i], coordinates[j]);
+  }
+
+  visitedByIndex = leftByIndex = rightByIndex = null;
+
+  var junctionByPoint = hashset(junctionCount * 1.4, hashPoint, equalPoint);
+
+  // Convert back to a standard hashset by point for caller convenience.
+  for (var i = 0, n = coordinates.length, j; i < n; ++i) {
+    if (junctionByIndex[j = indexes[i]]) {
+      junctionByPoint.add(coordinates[j]);
     }
   }
 
   return junctionByPoint;
 };
 
-},{"./hashtable":88,"./point-equal":91,"./point-hash":92}],91:[function(_dereq_,module,exports){
+},{"./hashmap":106,"./hashset":107,"./point-equal":110,"./point-hash":111}],110:[function(require,module,exports){
 module.exports = function(pointA, pointB) {
   return pointA[0] === pointB[0] && pointA[1] === pointB[1];
 };
 
-},{}],92:[function(_dereq_,module,exports){
+},{}],111:[function(require,module,exports){
 // TODO if quantized, use simpler Int32 hashing?
 
-var hashBuffer = new ArrayBuffer(8),
-    hashFloats = new Float64Array(hashBuffer),
-    hashInts = new Int32Array(hashBuffer);
-
-function hashFloat(x) {
-  hashFloats[0] = x;
-  x = hashInts[1] ^ hashInts[0];
-  x ^= (x >>> 20) ^ (x >>> 12);
-  x ^= (x >>> 7) ^ (x >>> 4);
-  return x;
-}
+var buffer = new ArrayBuffer(16),
+    floats = new Float64Array(buffer),
+    uints = new Uint32Array(buffer);
 
 module.exports = function(point) {
-  var h = (hashFloat(point[0]) + 31 * hashFloat(point[1])) | 0;
-  return h < 0 ? ~h : h;
+  floats[0] = point[0];
+  floats[1] = point[1];
+  var hash = uints[0] ^ uints[1];
+  hash = hash << 5 ^ hash >> 7 ^ uints[2] ^ uints[3];
+  return hash & 0x7fffffff;
 };
 
-},{}],93:[function(_dereq_,module,exports){
+},{}],112:[function(require,module,exports){
 // Given a hash of GeoJSON objects, transforms any properties on features using
-// the specified transform function. The function is invoked for each existing
-// property on the current feature, being passed the new properties hash, the
-// property name, and the property value. The function is then expected to
-// assign a new value to the given property hash if the feature is to be
-// retained and return true. Or, to skip the property, do nothing and return
-// false. If no properties are propagated to the new properties hash, the
-// properties hash will be deleted from the current feature.
+// the specified transform function. If no properties are propagated to the new
+// properties hash, the properties hash will be deleted.
 module.exports = function(objects, propertyTransform) {
   if (arguments.length < 2) propertyTransform = function() {};
 
@@ -16620,20 +16465,10 @@ module.exports = function(objects, propertyTransform) {
   }
 
   function transformFeature(feature) {
-    if (feature.properties) {
-      var properties0 = feature.properties,
-          properties1 = {},
-          empty = true;
-
-      for (var key0 in properties0) {
-        if (propertyTransform(properties1, key0, properties0[key0])) {
-          empty = false;
-        }
-      }
-
-      if (empty) delete feature.properties;
-      else feature.properties = properties1;
-    }
+    if (feature.properties == null) feature.properties = {};
+    var properties = feature.properties = propertyTransform(feature);
+    if (properties) for (var key in properties) return;
+    delete feature.properties;
   }
 
   var transformObjectType = {
@@ -16648,7 +16483,7 @@ module.exports = function(objects, propertyTransform) {
   return objects;
 };
 
-},{}],94:[function(_dereq_,module,exports){
+},{}],113:[function(require,module,exports){
 module.exports = function(types) {
   for (var type in typeDefaults) {
     if (!(type in types)) {
@@ -16742,19 +16577,33 @@ var typeObjects = {
   FeatureCollection: 1
 };
 
-},{}],95:[function(_dereq_,module,exports){
+},{}],114:[function(require,module,exports){
 !function() {
   var topojson = {
-    version: "1.4.9",
-    mesh: mesh,
+    version: "1.6.14",
+    mesh: function(topology) { return object(topology, meshArcs.apply(this, arguments)); },
+    meshArcs: meshArcs,
+    merge: function(topology) { return object(topology, mergeArcs.apply(this, arguments)); },
+    mergeArcs: mergeArcs,
     feature: featureOrCollection,
     neighbors: neighbors,
     presimplify: presimplify
   };
 
-  function merge(topology, arcs) {
-    var fragmentByStart = {},
-        fragmentByEnd = {};
+  function stitchArcs(topology, arcs) {
+    var stitchedArcs = {},
+        fragmentByStart = {},
+        fragmentByEnd = {},
+        fragments = [],
+        emptyIndex = -1;
+
+    // Stitch empty arcs first, since they may be subsumed by other arcs.
+    arcs.forEach(function(i, j) {
+      var arc = topology.arcs[i < 0 ? ~i : i], t;
+      if (arc.length < 3 && !arc[1][0] && !arc[1][1]) {
+        t = arcs[++emptyIndex], arcs[emptyIndex] = i, arcs[j] = t;
+      }
+    });
 
     arcs.forEach(function(i) {
       var e = ends(i),
@@ -16770,11 +16619,6 @@ var typeObjects = {
           delete fragmentByStart[g.start];
           var fg = g === f ? f : f.concat(g);
           fragmentByStart[fg.start = f.start] = fragmentByEnd[fg.end = g.end] = fg;
-        } else if (g = fragmentByEnd[end]) {
-          delete fragmentByStart[g.start];
-          delete fragmentByEnd[g.end];
-          var fg = f.concat(g.map(function(i) { return ~i; }).reverse());
-          fragmentByStart[fg.start = f.start] = fragmentByEnd[fg.end = g.start] = fg;
         } else {
           fragmentByStart[f.start] = fragmentByEnd[f.end] = f;
         }
@@ -16786,43 +16630,6 @@ var typeObjects = {
           delete fragmentByEnd[g.end];
           var gf = g === f ? f : g.concat(f);
           fragmentByStart[gf.start = g.start] = fragmentByEnd[gf.end = f.end] = gf;
-        } else if (g = fragmentByStart[start]) {
-          delete fragmentByStart[g.start];
-          delete fragmentByEnd[g.end];
-          var gf = g.map(function(i) { return ~i; }).reverse().concat(f);
-          fragmentByStart[gf.start = g.end] = fragmentByEnd[gf.end = f.end] = gf;
-        } else {
-          fragmentByStart[f.start] = fragmentByEnd[f.end] = f;
-        }
-      } else if (f = fragmentByStart[start]) {
-        delete fragmentByStart[f.start];
-        f.unshift(~i);
-        f.start = end;
-        if (g = fragmentByEnd[end]) {
-          delete fragmentByEnd[g.end];
-          var gf = g === f ? f : g.concat(f);
-          fragmentByStart[gf.start = g.start] = fragmentByEnd[gf.end = f.end] = gf;
-        } else if (g = fragmentByStart[end]) {
-          delete fragmentByStart[g.start];
-          delete fragmentByEnd[g.end];
-          var gf = g.map(function(i) { return ~i; }).reverse().concat(f);
-          fragmentByStart[gf.start = g.end] = fragmentByEnd[gf.end = f.end] = gf;
-        } else {
-          fragmentByStart[f.start] = fragmentByEnd[f.end] = f;
-        }
-      } else if (f = fragmentByEnd[end]) {
-        delete fragmentByEnd[f.end];
-        f.push(~i);
-        f.end = start;
-        if (g = fragmentByEnd[start]) {
-          delete fragmentByStart[g.start];
-          var fg = g === f ? f : f.concat(g);
-          fragmentByStart[fg.start = f.start] = fragmentByEnd[fg.end = g.end] = fg;
-        } else if (g = fragmentByStart[start]) {
-          delete fragmentByStart[g.start];
-          delete fragmentByEnd[g.end];
-          var fg = f.concat(g.map(function(i) { return ~i; }).reverse());
-          fragmentByStart[fg.start = f.start] = fragmentByEnd[fg.end = g.start] = fg;
         } else {
           fragmentByStart[f.start] = fragmentByEnd[f.end] = f;
         }
@@ -16833,17 +16640,31 @@ var typeObjects = {
     });
 
     function ends(i) {
-      var arc = topology.arcs[i], p0 = arc[0], p1 = [0, 0];
-      arc.forEach(function(dp) { p1[0] += dp[0], p1[1] += dp[1]; });
-      return [p0, p1];
+      var arc = topology.arcs[i < 0 ? ~i : i], p0 = arc[0], p1;
+      if (topology.transform) p1 = [0, 0], arc.forEach(function(dp) { p1[0] += dp[0], p1[1] += dp[1]; });
+      else p1 = arc[arc.length - 1];
+      return i < 0 ? [p1, p0] : [p0, p1];
     }
 
-    var fragments = [];
-    for (var k in fragmentByEnd) fragments.push(fragmentByEnd[k]);
+    function flush(fragmentByEnd, fragmentByStart) {
+      for (var k in fragmentByEnd) {
+        var f = fragmentByEnd[k];
+        delete fragmentByStart[f.start];
+        delete f.start;
+        delete f.end;
+        f.forEach(function(i) { stitchedArcs[i < 0 ? ~i : i] = 1; });
+        fragments.push(f);
+      }
+    }
+
+    flush(fragmentByEnd, fragmentByStart);
+    flush(fragmentByStart, fragmentByEnd);
+    arcs.forEach(function(i) { if (!stitchedArcs[i < 0 ? ~i : i]) fragments.push([i]); });
+
     return fragments;
   }
 
-  function mesh(topology, o, filter) {
+  function meshArcs(topology, o, filter) {
     var arcs = [];
 
     if (arguments.length > 1) {
@@ -16851,8 +16672,8 @@ var typeObjects = {
           geom;
 
       function arc(i) {
-        if (i < 0) i = ~i;
-        (geomsByArc[i] || (geomsByArc[i] = [])).push(geom);
+        var j = i < 0 ? ~i : i;
+        (geomsByArc[j] || (geomsByArc[j] = [])).push({i: i, g: geom});
       }
 
       function line(arcs) {
@@ -16865,10 +16686,7 @@ var typeObjects = {
 
       function geometry(o) {
         if (o.type === "GeometryCollection") o.geometries.forEach(geometry);
-        else if (o.type in geometryType) {
-          geom = o;
-          geometryType[o.type](o.arcs);
-        }
+        else if (o.type in geometryType) geom = o, geometryType[o.type](o.arcs);
       }
 
       var geometryType = {
@@ -16881,13 +16699,100 @@ var typeObjects = {
       geometry(o);
 
       geomsByArc.forEach(arguments.length < 3
-          ? function(geoms, i) { arcs.push(i); }
-          : function(geoms, i) { if (filter(geoms[0], geoms[geoms.length - 1])) arcs.push(i); });
+          ? function(geoms) { arcs.push(geoms[0].i); }
+          : function(geoms) { if (filter(geoms[0].g, geoms[geoms.length - 1].g)) arcs.push(geoms[0].i); });
     } else {
       for (var i = 0, n = topology.arcs.length; i < n; ++i) arcs.push(i);
     }
 
-    return object(topology, {type: "MultiLineString", arcs: merge(topology, arcs)});
+    return {type: "MultiLineString", arcs: stitchArcs(topology, arcs)};
+  }
+
+  function mergeArcs(topology, objects) {
+    var polygonsByArc = {},
+        polygons = [],
+        components = [];
+
+    objects.forEach(function(o) {
+      if (o.type === "Polygon") register(o.arcs);
+      else if (o.type === "MultiPolygon") o.arcs.forEach(register);
+    });
+
+    function register(polygon) {
+      polygon.forEach(function(ring) {
+        ring.forEach(function(arc) {
+          (polygonsByArc[arc = arc < 0 ? ~arc : arc] || (polygonsByArc[arc] = [])).push(polygon);
+        });
+      });
+      polygons.push(polygon);
+    }
+
+    function exterior(ring) {
+      return cartesianRingArea(object(topology, {type: "Polygon", arcs: [ring]}).coordinates[0]) > 0; // TODO allow spherical?
+    }
+
+    polygons.forEach(function(polygon) {
+      if (!polygon._) {
+        var component = [],
+            neighbors = [polygon];
+        polygon._ = 1;
+        components.push(component);
+        while (polygon = neighbors.pop()) {
+          component.push(polygon);
+          polygon.forEach(function(ring) {
+            ring.forEach(function(arc) {
+              polygonsByArc[arc < 0 ? ~arc : arc].forEach(function(polygon) {
+                if (!polygon._) {
+                  polygon._ = 1;
+                  neighbors.push(polygon);
+                }
+              });
+            });
+          });
+        }
+      }
+    });
+
+    polygons.forEach(function(polygon) {
+      delete polygon._;
+    });
+
+    return {
+      type: "MultiPolygon",
+      arcs: components.map(function(polygons) {
+        var arcs = [];
+
+        // Extract the exterior (unique) arcs.
+        polygons.forEach(function(polygon) {
+          polygon.forEach(function(ring) {
+            ring.forEach(function(arc) {
+              if (polygonsByArc[arc < 0 ? ~arc : arc].length < 2) {
+                arcs.push(arc);
+              }
+            });
+          });
+        });
+
+        // Stitch the arcs into one or more rings.
+        arcs = stitchArcs(topology, arcs);
+
+        // If more than one ring is returned,
+        // at most one of these rings can be the exterior;
+        // this exterior ring has the same winding order
+        // as any exterior ring in the original polygons.
+        if ((n = arcs.length) > 1) {
+          var sgn = exterior(polygons[0][0]);
+          for (var i = 0, t; i < n; ++i) {
+            if (sgn === exterior(arcs[i])) {
+              t = arcs[0], arcs[0] = arcs[i], arcs[i] = t;
+              break;
+            }
+          }
+        }
+
+        return arcs;
+      })
+    };
   }
 
   function featureOrCollection(topology, o) {
@@ -17024,11 +16929,11 @@ var typeObjects = {
   function presimplify(topology, triangleArea) {
     var absolute = transformAbsolute(topology.transform),
         relative = transformRelative(topology.transform),
-        heap = minHeap(compareArea),
+        heap = minAreaHeap(),
         maxArea = 0,
         triangle;
 
-    if (!triangleArea) triangleArea = cartesianArea;
+    if (!triangleArea) triangleArea = cartesianTriangleArea;
 
     topology.arcs.forEach(function(arc) {
       var triangles = [];
@@ -17089,72 +16994,76 @@ var typeObjects = {
     return topology;
   };
 
-  function cartesianArea(triangle) {
-    return Math.abs(
-      (triangle[0][0] - triangle[2][0]) * (triangle[1][1] - triangle[0][1])
-      - (triangle[0][0] - triangle[1][0]) * (triangle[2][1] - triangle[0][1])
-    );
+  function cartesianRingArea(ring) {
+    var i = -1,
+        n = ring.length,
+        a,
+        b = ring[n - 1],
+        area = 0;
+
+    while (++i < n) {
+      a = b;
+      b = ring[i];
+      area += a[0] * b[1] - a[1] * b[0];
+    }
+
+    return area * .5;
+  }
+
+  function cartesianTriangleArea(triangle) {
+    var a = triangle[0], b = triangle[1], c = triangle[2];
+    return Math.abs((a[0] - c[0]) * (b[1] - a[1]) - (a[0] - b[0]) * (c[1] - a[1]));
   }
 
   function compareArea(a, b) {
     return a[1][2] - b[1][2];
   }
 
-  function minHeap(compare) {
+  function minAreaHeap() {
     var heap = {},
-        array = [];
+        array = [],
+        size = 0;
 
-    heap.push = function() {
-      for (var i = 0, n = arguments.length; i < n; ++i) {
-        var object = arguments[i];
-        up(object.index = array.push(object) - 1);
-      }
-      return array.length;
+    heap.push = function(object) {
+      up(array[object._ = size] = object, size++);
+      return size;
     };
 
     heap.pop = function() {
-      var removed = array[0],
-          object = array.pop();
-      if (array.length) {
-        array[object.index = 0] = object;
-        down(0);
-      }
+      if (size <= 0) return;
+      var removed = array[0], object;
+      if (--size > 0) object = array[size], down(array[object._ = 0] = object, 0);
       return removed;
     };
 
     heap.remove = function(removed) {
-      var i = removed.index,
-          object = array.pop();
-      if (i !== array.length) {
-        array[object.index = i] = object;
-        (compare(object, removed) < 0 ? up : down)(i);
-      }
+      var i = removed._, object;
+      if (array[i] !== removed) return; // invalid request
+      if (i !== --size) object = array[size], (compareArea(object, removed) < 0 ? up : down)(array[object._ = i] = object, i);
       return i;
     };
 
-    function up(i) {
-      var object = array[i];
+    function up(object, i) {
       while (i > 0) {
-        var up = ((i + 1) >> 1) - 1,
-            parent = array[up];
-        if (compare(object, parent) >= 0) break;
-        array[parent.index = i] = parent;
-        array[object.index = i = up] = object;
+        var j = ((i + 1) >> 1) - 1,
+            parent = array[j];
+        if (compareArea(object, parent) >= 0) break;
+        array[parent._ = i] = parent;
+        array[object._ = i = j] = object;
       }
     }
 
-    function down(i) {
-      var object = array[i];
+    function down(object, i) {
       while (true) {
-        var right = (i + 1) << 1,
-            left = right - 1,
-            down = i,
-            child = array[down];
-        if (left < array.length && compare(array[left], child) < 0) child = array[down = left];
-        if (right < array.length && compare(array[right], child) < 0) child = array[down = right];
-        if (down === i) break;
-        array[child.index = i] = child;
-        array[object.index = i = down] = object;
+        var r = (i + 1) << 1,
+            l = r - 1,
+            j = i,
+            child = array[j];
+        if (l < size && compareArea(array[l], child) < 0) child = array[j = l];
+        if (r < size && compareArea(array[r], child) < 0) child = array[j = r];
+        if (j === i) break;
+        array[child._ = i] = child;
+        array[object._ = i = j] = object;
       }
     }
 
@@ -17202,6 +17111,132 @@ var typeObjects = {
   else this.topojson = topojson;
 }();
 
-},{}]},{},[1])
-(1)
+},{}],115:[function(require,module,exports){
+module.exports = function(bbox, factor){
+  var currentXDistance = (bbox[2] - bbox[0]) 
+  var currentYDistance = (bbox[3] - bbox[1])
+  var newXDistance = currentXDistance * factor
+  var newYDistance = currentYDistance * factor
+  var xChange = newXDistance - currentXDistance
+  var yChange = newYDistance - currentYDistance
+
+  var lowX = bbox[0] - (xChange / 2)
+  var lowY = bbox[1] - (yChange / 2)
+  var highX = (xChange / 2) + bbox[2]
+  var highY = (yChange / 2) + bbox[3]
+
+  var sized = [lowX, lowY, highX, highY]
+  return sized
+}
+},{}],116:[function(require,module,exports){
+var midpoint = require('turf-midpoint')
+var point = require('turf-point')
+var distance = require('turf-distance')
+
+module.exports = function(bbox){
+  var squareBbox = [0,0,0,0]
+  var lowLeft = point(bbox[0], bbox[1])
+  var topLeft = point(bbox[0], bbox[3])
+  var topRight = point(bbox[2], bbox[3])
+  var lowRight = point(bbox[2], bbox[1])
+
+  var horizontalDistance = distance(lowLeft, lowRight, 'miles')
+  var verticalDistance = distance(lowLeft, topLeft, 'miles')
+  if(horizontalDistance >= verticalDistance){
+    squareBbox[0] = bbox[0]
+    squareBbox[2] = bbox[2]
+    var verticalMidpoint = midpoint(lowLeft, topLeft)
+    squareBbox[1] = verticalMidpoint.geometry.coordinates[1] - ((bbox[2] - bbox[0]) / 2)
+    squareBbox[3] = verticalMidpoint.geometry.coordinates[1] + ((bbox[2] - bbox[0]) / 2)
+    return squareBbox
+  }
+  else {
+    squareBbox[1] = bbox[1]
+    squareBbox[3] = bbox[3]
+    var horzontalMidpoint = midpoint(lowLeft, lowRight)
+    squareBbox[0] = horzontalMidpoint.geometry.coordinates[0] - ((bbox[3] - bbox[1]) / 2)
+    squareBbox[2] = horzontalMidpoint.geometry.coordinates[0] + ((bbox[3] - bbox[1]) / 2)
+    return squareBbox
+  }
+}
+
+
+},{"turf-distance":39,"turf-midpoint":72,"turf-point":77}],117:[function(require,module,exports){
+module.exports=require(17)
+},{"simple-statistics":118,"turf-inside":55}],118:[function(require,module,exports){
+module.exports=require(7)
+},{}],119:[function(require,module,exports){
+inside = require('turf-inside')
+
+module.exports = function(points, polygons, field, outField){
+  points.features.forEach(function(pt){
+    if(!pt.properties){
+      pt.properties = {}
+    }
+    polygons.features.forEach(function(poly){
+      if(!pt.properties[outField]){
+        var isInside = inside(pt, poly)
+        if(isInside){
+          pt.properties[outField] = poly.properties[field]
+        }
+        else{
+          pt.properties[outField] = null
+        }
+      }
+    })
+  })
+  return points
+}
+},{"turf-inside":55}],120:[function(require,module,exports){
+module.exports=require(34)
+},{"turf-nearest":75,"turf-point":77,"turf-polygon":78}],121:[function(require,module,exports){
+// look here for help http://svn.osgeo.org/grass/grass/branches/releasebranch_6_4/vector/v.overlay/main.c
+//must be array of polygons
+
+// depend on jsts for now https://github.com/bjornharrtell/jsts/blob/master/examples/overlay.html
+
+var jsts = require('jsts')
+
+module.exports = function(poly1, poly2){
+  var reader = new jsts.io.GeoJSONReader()
+  var a = reader.read(JSON.stringify(poly1.geometry))
+  var b = reader.read(JSON.stringify(poly2.geometry))
+  var union = a.union(b);
+  var parser = new jsts.io.GeoJSONParser()
+
+  union = parser.write(union)
+  return {
+    type: 'Feature',
+    geometry: union,
+    properties: poly1.properties
+  }
+}
+
+},{"jsts":122}],122:[function(require,module,exports){
+module.exports=require(26)
+},{"./lib/jsts":123,"javascript.util":124}],123:[function(require,module,exports){
+module.exports=require(27)
+},{}],124:[function(require,module,exports){
+module.exports=require(28)
+},{}],125:[function(require,module,exports){
+module.exports=require(19)
+},{"simple-statistics":126,"turf-inside":55}],126:[function(require,module,exports){
+module.exports=require(7)
+},{}],127:[function(require,module,exports){
+var inside = require('turf-inside')
+var featureCollection = require('turf-featurecollection')
+
+module.exports = function(ptFC, polyFC){
+  pointsWithin = featureCollection([])
+  polyFC.features.forEach(function(poly){
+    ptFC.features.forEach(function(pt){
+      var isInside = inside(pt, poly)
+      if(isInside){
+        pointsWithin.features.push(pt)
+      }
+    })
+  })
+  return pointsWithin
+}
+},{"turf-featurecollection":51,"turf-inside":55}]},{},[1])(1)
 });
