@@ -50,10 +50,12 @@ module.exports = {
   reclass: require('turf-reclass'),
   remove: require('turf-remove'),
   tin: require('turf-tin'),
-  union: require('turf-union')
+  union: require('turf-union'),
+  bearing: require('turf-bearing'),
+  destination: require('turf-destination')
 }
 
-},{"turf-aggregate":5,"turf-average":21,"turf-bbox-polygon":23,"turf-bezier":24,"turf-buffer":25,"turf-center":30,"turf-centroid":31,"turf-combine":32,"turf-concave":33,"turf-convex":35,"turf-count":36,"turf-deviation":37,"turf-distance":39,"turf-donuts":40,"turf-envelope":42,"turf-erase":43,"turf-explode":47,"turf-extent":49,"turf-featurecollection":51,"turf-filter":52,"turf-flip":53,"turf-grid":54,"turf-inside":55,"turf-intersect":56,"turf-is-clockwise":60,"turf-isobands":61,"turf-isolines":62,"turf-jenks":63,"turf-linestring":65,"turf-max":66,"turf-median":68,"turf-merge":70,"turf-midpoint":72,"turf-min":73,"turf-nearest":75,"turf-planepoint":76,"turf-point":77,"turf-polygon":78,"turf-quantile":79,"turf-reclass":81,"turf-remove":82,"turf-sample":83,"turf-simplify":84,"turf-size":115,"turf-square":116,"turf-sum":117,"turf-tag":119,"turf-tin":120,"turf-union":121,"turf-variance":125,"turf-within":127}],2:[function(require,module,exports){
+},{"turf-aggregate":5,"turf-average":21,"turf-bbox-polygon":23,"turf-bearing":24,"turf-bezier":25,"turf-buffer":26,"turf-center":31,"turf-centroid":32,"turf-combine":33,"turf-concave":34,"turf-convex":36,"turf-count":37,"turf-destination":38,"turf-deviation":39,"turf-distance":41,"turf-donuts":42,"turf-envelope":44,"turf-erase":45,"turf-explode":49,"turf-extent":51,"turf-featurecollection":53,"turf-filter":54,"turf-flip":55,"turf-grid":56,"turf-inside":57,"turf-intersect":58,"turf-is-clockwise":62,"turf-isobands":63,"turf-isolines":64,"turf-jenks":65,"turf-linestring":67,"turf-max":68,"turf-median":70,"turf-merge":72,"turf-midpoint":74,"turf-min":75,"turf-nearest":77,"turf-planepoint":78,"turf-point":79,"turf-polygon":80,"turf-quantile":81,"turf-reclass":83,"turf-remove":84,"turf-sample":85,"turf-simplify":86,"turf-size":88,"turf-square":89,"turf-sum":90,"turf-tag":92,"turf-tin":93,"turf-union":94,"turf-variance":98,"turf-within":100}],2:[function(require,module,exports){
 /*!
  * The buffer module from node.js, for the browser.
  *
@@ -1503,7 +1505,7 @@ module.exports = function(polyFC, ptFC, inField, outField, done){
   return polyFC;
 }
 
-},{"simple-statistics":7,"turf-inside":55}],7:[function(require,module,exports){
+},{"simple-statistics":7,"turf-inside":57}],7:[function(require,module,exports){
 /* global module */
 // # simple-statistics
 //
@@ -2941,7 +2943,7 @@ module.exports = function(polyFC, ptFC, outField, done){
   return polyFC;
 }
 
-},{"turf-inside":55}],9:[function(require,module,exports){
+},{"turf-inside":57}],9:[function(require,module,exports){
 var ss = require('simple-statistics')
 var inside = require('turf-inside')
 
@@ -2962,7 +2964,7 @@ module.exports = function(polyFC, ptFC, inField, outField, done){
   return polyFC;
 }
 
-},{"simple-statistics":10,"turf-inside":55}],10:[function(require,module,exports){
+},{"simple-statistics":10,"turf-inside":57}],10:[function(require,module,exports){
 module.exports=require(7)
 },{}],11:[function(require,module,exports){
 var ss = require('simple-statistics')
@@ -2985,7 +2987,7 @@ module.exports = function(polyFC, ptFC, inField, outField, done){
   return polyFC;
 }
 
-},{"simple-statistics":12,"turf-inside":55}],12:[function(require,module,exports){
+},{"simple-statistics":12,"turf-inside":57}],12:[function(require,module,exports){
 module.exports=require(7)
 },{}],13:[function(require,module,exports){
 var ss = require('simple-statistics')
@@ -3008,7 +3010,7 @@ module.exports = function(polyFC, ptFC, inField, outField, done){
   return polyFC;
 }
 
-},{"simple-statistics":14,"turf-inside":55}],14:[function(require,module,exports){
+},{"simple-statistics":14,"turf-inside":57}],14:[function(require,module,exports){
 module.exports=require(7)
 },{}],15:[function(require,module,exports){
 var ss = require('simple-statistics')
@@ -3031,7 +3033,7 @@ module.exports = function(polyFC, ptFC, inField, outField, done){
   return polyFC;
 }
 
-},{"simple-statistics":16,"turf-inside":55}],16:[function(require,module,exports){
+},{"simple-statistics":16,"turf-inside":57}],16:[function(require,module,exports){
 module.exports=require(7)
 },{}],17:[function(require,module,exports){
 var ss = require('simple-statistics')
@@ -3054,7 +3056,7 @@ module.exports = function(polyFC, ptFC, inField, outField, done){
   return polyFC;
 }
 
-},{"simple-statistics":18,"turf-inside":55}],18:[function(require,module,exports){
+},{"simple-statistics":18,"turf-inside":57}],18:[function(require,module,exports){
 module.exports=require(7)
 },{}],19:[function(require,module,exports){
 var ss = require('simple-statistics')
@@ -3076,11 +3078,11 @@ module.exports = function(polyFC, ptFC, inField, outField, done){
 
   return polyFC;
 }
-},{"simple-statistics":20,"turf-inside":55}],20:[function(require,module,exports){
+},{"simple-statistics":20,"turf-inside":57}],20:[function(require,module,exports){
 module.exports=require(7)
 },{}],21:[function(require,module,exports){
 module.exports=require(6)
-},{"simple-statistics":22,"turf-inside":55}],22:[function(require,module,exports){
+},{"simple-statistics":22,"turf-inside":57}],22:[function(require,module,exports){
 module.exports=require(7)
 },{}],23:[function(require,module,exports){
 var polygon = require('turf-polygon')
@@ -3101,7 +3103,36 @@ module.exports = function(bbox){
   return poly
 }
 
-},{"turf-polygon":78}],24:[function(require,module,exports){
+},{"turf-polygon":80}],24:[function(require,module,exports){
+//http://en.wikipedia.org/wiki/Haversine_formula
+//http://www.movable-type.co.uk/scripts/latlong.html
+
+module.exports = function (point1, point2) {
+    var coordinates1 = point1.geometry.coordinates
+    var coordinates2 = point2.geometry.coordinates
+
+    var lon1 = toRad(coordinates1[0])
+    var lon2 = toRad(coordinates2[0])
+    var lat1 = toRad(coordinates1[1])
+    var lat2 = toRad(coordinates2[1])
+    var a = Math.sin(lon2 - lon1) * Math.cos(lat2);
+    var b = Math.cos(lat1) * Math.sin(lat2) -
+        Math.sin(lat1) * Math.cos(lat2) * Math.cos(lon2 - lon1);
+
+    var bearing = toDeg(Math.atan2(a, b));
+
+    return bearing
+}
+
+function toRad(degree) {
+    return degree * Math.PI / 180
+}
+
+function toDeg(radian) {
+    return radian * 180 / Math.PI;
+}
+
+},{}],25:[function(require,module,exports){
 // code modded from here:
 //https://github.com/leszekr/bezier-spline-js/blob/master/bezier-spline.js
 var t = {}
@@ -3328,7 +3359,7 @@ module.exports = function(line, resolution, intensity){
     return this;
   }
 
-},{"turf-linestring":65}],25:[function(require,module,exports){
+},{"turf-linestring":67}],26:[function(require,module,exports){
 // http://stackoverflow.com/questions/839899/how-do-i-calculate-a-point-on-a-circles-circumference
 // radians = degrees * (pi/180)
 // https://github.com/bjornharrtell/jsts/blob/master/examples/buffer.html
@@ -3392,7 +3423,7 @@ var bufferOp = function(feature, radius){
 
   return buffered;
 }
-},{"jsts":26,"turf-combine":29,"turf-featurecollection":51,"turf-polygon":78}],26:[function(require,module,exports){
+},{"jsts":27,"turf-combine":30,"turf-featurecollection":53,"turf-polygon":80}],27:[function(require,module,exports){
 (function (global){
 'use strict';
 global.javascript = {};
@@ -3401,7 +3432,7 @@ var jsts = require('./lib/jsts');
 module.exports = jsts
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"./lib/jsts":27,"javascript.util":28}],27:[function(require,module,exports){
+},{"./lib/jsts":28,"javascript.util":29}],28:[function(require,module,exports){
 /* The JSTS Topology Suite is a collection of JavaScript classes that
 implement the fundamental operations required to validate a given
 geo-spatial data set to a known topological specification.
@@ -5016,7 +5047,7 @@ boundaryCount++;var newLoc=jsts.geomgraph.GeometryGraph.determineBoundary(this.b
 return;if(loc===Location.BOUNDARY&&this.useBoundaryDeterminationRule)
 this.insertBoundaryPoint(argIndex,coord);else
 this.insertPoint(argIndex,coord,loc);};jsts.geomgraph.GeometryGraph.prototype.getInvalidPoint=function(){return this.invalidPoint;};})();
-},{}],28:[function(require,module,exports){
+},{}],29:[function(require,module,exports){
 /*
   javascript.util is a port of selected parts of java.util to JavaScript which
   main purpose is to ease porting Java code to JavaScript.
@@ -5076,7 +5107,7 @@ return true;};HashSet.prototype.remove=function(o){throw new OperationNotSupport
 return array;};HashSet.prototype.iterator=function(){return new HashSet.Iterator(this);};HashSet.Iterator=function(hashSet){this.hashSet=hashSet;};HashSet.Iterator.prototype.hashSet=null;HashSet.Iterator.prototype.position=0;HashSet.Iterator.prototype.next=function(){if(this.position===this.hashSet.size()){throw new NoSuchElementException();}
 return this.hashSet.array[this.position++];};HashSet.Iterator.prototype.hasNext=function(){if(this.position<this.hashSet.size()){return true;}
 return false;};HashSet.Iterator.prototype.remove=function(){throw new javascript.util.OperationNotSupported();};javascript.util.HashSet=HashSet;})();
-},{}],29:[function(require,module,exports){
+},{}],30:[function(require,module,exports){
 module.exports = function(fc){
   var type = fc.features[0].geometry.type
   var err
@@ -5126,7 +5157,7 @@ function pluckCoods(multi){
     return geom.coordinates
   })
 }
-},{}],30:[function(require,module,exports){
+},{}],31:[function(require,module,exports){
 var extent = require('turf-extent')
 
 module.exports = function(layer, done){
@@ -5142,7 +5173,7 @@ module.exports = function(layer, done){
   }
   return center
 }
-},{"turf-extent":49}],31:[function(require,module,exports){
+},{"turf-extent":51}],32:[function(require,module,exports){
 var explode = require('turf-explode')
 var point = require('turf-point')
 
@@ -5160,9 +5191,9 @@ module.exports = function(features){
   return point(xSum / len, ySum / len)
 }
 
-},{"turf-explode":47,"turf-point":77}],32:[function(require,module,exports){
-module.exports=require(29)
-},{}],33:[function(require,module,exports){
+},{"turf-explode":49,"turf-point":79}],33:[function(require,module,exports){
+module.exports=require(30)
+},{}],34:[function(require,module,exports){
 // 1. run tin on points
 // 2. calculate lenth of all edges and area of all triangles
 // 3. remove triangles that fail the max length test
@@ -5213,7 +5244,7 @@ var filterTriangles = function(triangles, maxEdge, cb){
   })
 }
 
-},{"turf-buffer":25,"turf-distance":39,"turf-merge":70,"turf-point":77,"turf-tin":34}],34:[function(require,module,exports){
+},{"turf-buffer":26,"turf-distance":41,"turf-merge":72,"turf-point":79,"turf-tin":35}],35:[function(require,module,exports){
 //http://en.wikipedia.org/wiki/Delaunay_triangulation
 //https://github.com/ironwallaby/delaunay
 var polygon = require('turf-polygon')
@@ -5462,7 +5493,7 @@ function triangulate(vertices) {
     }
 }*/
 
-},{"turf-nearest":75,"turf-point":77,"turf-polygon":78}],35:[function(require,module,exports){
+},{"turf-nearest":77,"turf-point":79,"turf-polygon":80}],36:[function(require,module,exports){
 // http://en.wikibooks.org/wiki/Algorithm_Implementation/Geometry/Convex_hull/Monotone_chain#JavaScript
 
 module.exports = function(fc){
@@ -5509,13 +5540,56 @@ module.exports = function(fc){
 function cross(o, a, b) {
    return (a[0] - o[0]) * (b[1] - o[1]) - (a[1] - o[1]) * (b[0] - o[0])
 }
-},{}],36:[function(require,module,exports){
+},{}],37:[function(require,module,exports){
 module.exports=require(8)
-},{"turf-inside":55}],37:[function(require,module,exports){
+},{"turf-inside":57}],38:[function(require,module,exports){
+//http://en.wikipedia.org/wiki/Haversine_formula
+//http://www.movable-type.co.uk/scripts/latlong.html
+var point = require('turf-point')
+
+module.exports = function (point1, distance, bearing, units) {
+    var coordinates1 = point1.geometry.coordinates
+    var longitude1 = toRad(coordinates1[0])
+    var latitude1 = toRad(coordinates1[1])
+    var bearing_rad = toRad(bearing)
+
+    var R = 0
+    switch (units) {
+    case 'miles':
+        R = 3960
+        break
+    case 'kilometers':
+        R = 6373
+        break
+    case 'degrees':
+        R = 57.2957795
+        break
+    case 'radians':
+        R = 1
+        break
+    }
+
+    var latitude2 = Math.asin(Math.sin(latitude1) * Math.cos(distance / R) +
+        Math.cos(latitude1) * Math.sin(distance / R) * Math.cos(bearing_rad));
+    var longitude2 = longitude1 + Math.atan2(Math.sin(bearing_rad) * Math.sin(distance / R) * Math.cos(latitude1),
+        Math.cos(distance / R) - Math.sin(latitude1) * Math.sin(latitude2));
+
+    return point(toDeg(longitude2), toDeg(latitude2))
+};
+
+function toRad(degree) {
+    return degree * Math.PI / 180
+}
+
+function toDeg(rad) {
+    return rad * 180 / Math.PI
+}
+
+},{"turf-point":79}],39:[function(require,module,exports){
 module.exports=require(9)
-},{"simple-statistics":38,"turf-inside":55}],38:[function(require,module,exports){
+},{"simple-statistics":40,"turf-inside":57}],40:[function(require,module,exports){
 module.exports=require(7)
-},{}],39:[function(require,module,exports){
+},{}],41:[function(require,module,exports){
 //http://en.wikipedia.org/wiki/Haversine_formula
 //http://www.movable-type.co.uk/scripts/latlong.html
 
@@ -5554,7 +5628,7 @@ function toRad(degree){
   return degree * Math.PI / 180
 }
 
-},{}],40:[function(require,module,exports){
+},{}],42:[function(require,module,exports){
 var _ = require('lodash')
 
 var t = {}
@@ -5610,7 +5684,7 @@ function contained(poly1, poly2){
 }
 
 
-},{"lodash":41,"turf-erase":43,"turf-featurecollection":51,"turf-inside":55,"turf-point":77,"turf-union":121}],41:[function(require,module,exports){
+},{"lodash":43,"turf-erase":45,"turf-featurecollection":53,"turf-inside":57,"turf-point":79,"turf-union":94}],43:[function(require,module,exports){
 (function (global){
 /**
  * @license
@@ -12399,7 +12473,7 @@ function contained(poly1, poly2){
 }.call(this));
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}],42:[function(require,module,exports){
+},{}],44:[function(require,module,exports){
 var extent = require('turf-extent')
 var bboxPolygon = require('turf-bbox-polygon')
 
@@ -12408,7 +12482,7 @@ module.exports = function(features, done){
   var poly = bboxPolygon(bbox)
   return poly
 }
-},{"turf-bbox-polygon":23,"turf-extent":49}],43:[function(require,module,exports){
+},{"turf-bbox-polygon":23,"turf-extent":51}],45:[function(require,module,exports){
 // look here for help http://svn.osgeo.org/grass/grass/branches/releasebranch_6_4/vector/v.overlay/main.c
 //must be array of polygons
 
@@ -12443,13 +12517,13 @@ function correctRings(poly){
 }
 
 
-},{"jsts":44}],44:[function(require,module,exports){
-module.exports=require(26)
-},{"./lib/jsts":45,"javascript.util":46}],45:[function(require,module,exports){
+},{"jsts":46}],46:[function(require,module,exports){
 module.exports=require(27)
-},{}],46:[function(require,module,exports){
+},{"./lib/jsts":47,"javascript.util":48}],47:[function(require,module,exports){
 module.exports=require(28)
-},{}],47:[function(require,module,exports){
+},{}],48:[function(require,module,exports){
+module.exports=require(29)
+},{}],49:[function(require,module,exports){
 var flatten = require('flatten')
 var featureCollection = require('turf-featurecollection')
 var point = require('turf-point')
@@ -12549,7 +12623,7 @@ function flatCoords(coords){
   })
   return newCoords
 }
-},{"flatten":48,"turf-featurecollection":51,"turf-point":77}],48:[function(require,module,exports){
+},{"flatten":50,"turf-featurecollection":53,"turf-point":79}],50:[function(require,module,exports){
 module.exports = function flatten(list, depth) {
   depth = (typeof depth == 'number') ? depth : Infinity;
 
@@ -12567,7 +12641,7 @@ module.exports = function flatten(list, depth) {
   }
 };
 
-},{}],49:[function(require,module,exports){
+},{}],51:[function(require,module,exports){
 var flatten = require('flatten')
 
 module.exports = function(layer){
@@ -12687,9 +12761,9 @@ function flatCoords(coords){
   })
   return newCoords
 }
-},{"flatten":50}],50:[function(require,module,exports){
-module.exports=require(48)
-},{}],51:[function(require,module,exports){
+},{"flatten":52}],52:[function(require,module,exports){
+module.exports=require(50)
+},{}],53:[function(require,module,exports){
 module.exports = function(features){
   var fc = {
     "type": "FeatureCollection",
@@ -12698,7 +12772,7 @@ module.exports = function(features){
 
   return fc
 }
-},{}],52:[function(require,module,exports){
+},{}],54:[function(require,module,exports){
 var featureCollection = require('turf-featurecollection')
 
 module.exports = function(collection, key, val) {
@@ -12710,7 +12784,7 @@ module.exports = function(collection, key, val) {
   }
   return newFC
 }
-},{"turf-featurecollection":51}],53:[function(require,module,exports){
+},{"turf-featurecollection":53}],55:[function(require,module,exports){
 module.exports = function(fc){
   if(fc.type === 'Feature'){
     switch(fc.geometry.type){
@@ -12770,7 +12844,7 @@ var flipCoordinate = function(coordinates){
   return([coordinates[1], coordinates[0]])
 }
 
-},{}],54:[function(require,module,exports){
+},{}],56:[function(require,module,exports){
 var point = require('turf-point')
 
 module.exports = function(extents, depth, done){
@@ -12796,7 +12870,7 @@ module.exports = function(extents, depth, done){
   return fc;
 }
 
-},{"turf-point":77}],55:[function(require,module,exports){
+},{"turf-point":79}],57:[function(require,module,exports){
 // http://en.wikipedia.org/wiki/Even%E2%80%93odd_rule
 // modified from: https://github.com/substack/point-in-polygon/blob/master/index.js
 // which was modified from http://www.ecse.rpi.edu/Homepages/wrf/Research/Short_Notes/pnpoly.html
@@ -12819,7 +12893,7 @@ module.exports = function(point, polygon){
 }
 
 
-},{}],56:[function(require,module,exports){
+},{}],58:[function(require,module,exports){
 // depend on jsts for now https://github.com/bjornharrtell/jsts/blob/master/examples/overlay.html
 var jsts = require('jsts')
 var featurecollection = require('turf-featurecollection')
@@ -12836,13 +12910,13 @@ module.exports = function(polys1, polys2){
   return intersection;
 }
 
-},{"jsts":57,"turf-featurecollection":51}],57:[function(require,module,exports){
-module.exports=require(26)
-},{"./lib/jsts":58,"javascript.util":59}],58:[function(require,module,exports){
+},{"jsts":59,"turf-featurecollection":53}],59:[function(require,module,exports){
 module.exports=require(27)
-},{}],59:[function(require,module,exports){
+},{"./lib/jsts":60,"javascript.util":61}],60:[function(require,module,exports){
 module.exports=require(28)
-},{}],60:[function(require,module,exports){
+},{}],61:[function(require,module,exports){
+module.exports=require(29)
+},{}],62:[function(require,module,exports){
 module.exports = function(ring){
   var sum = 0;
   var i = 1;
@@ -12856,7 +12930,7 @@ module.exports = function(ring){
   }
   return sum > 0;
 }
-},{}],61:[function(require,module,exports){
+},{}],63:[function(require,module,exports){
 //https://github.com/jasondavies/conrec.js
 //http://stackoverflow.com/questions/263305/drawing-a-topographical-map
 var tin = require('turf-tin')
@@ -13543,7 +13617,7 @@ Conrec.prototype.contour = function(d, ilb, iub, jlb, jub, x, y, nc, z) {
   }
 }
 
-},{"turf-extent":49,"turf-featurecollection":51,"turf-grid":54,"turf-inside":55,"turf-linestring":65,"turf-planepoint":76,"turf-point":77,"turf-polygon":78,"turf-size":115,"turf-square":116,"turf-tin":120}],62:[function(require,module,exports){
+},{"turf-extent":51,"turf-featurecollection":53,"turf-grid":56,"turf-inside":57,"turf-linestring":67,"turf-planepoint":78,"turf-point":79,"turf-polygon":80,"turf-size":88,"turf-square":89,"turf-tin":93}],64:[function(require,module,exports){
 //https://github.com/jasondavies/conrec.js
 //http://stackoverflow.com/questions/263305/drawing-a-topographical-map
 var tin = require('turf-tin')
@@ -14130,7 +14204,7 @@ module.exports = function(points, z, resolution, breaks, done){
     }
   }
 
-},{"turf-extent":49,"turf-featurecollection":51,"turf-grid":54,"turf-inside":55,"turf-linestring":65,"turf-planepoint":76,"turf-square":116,"turf-tin":120}],63:[function(require,module,exports){
+},{"turf-extent":51,"turf-featurecollection":53,"turf-grid":56,"turf-inside":57,"turf-linestring":67,"turf-planepoint":78,"turf-square":89,"turf-tin":93}],65:[function(require,module,exports){
 var ss = require('simple-statistics')
 
 module.exports = function(fc, field, num){
@@ -14147,9 +14221,9 @@ module.exports = function(fc, field, num){
   return breaks;
 }
 
-},{"simple-statistics":64}],64:[function(require,module,exports){
+},{"simple-statistics":66}],66:[function(require,module,exports){
 module.exports=require(7)
-},{}],65:[function(require,module,exports){
+},{}],67:[function(require,module,exports){
 module.exports = function(coordinates, properties){
   if(!coordinates) return new Error('No coordinates passed')
   var linestring = { 
@@ -14163,15 +14237,15 @@ module.exports = function(coordinates, properties){
   return linestring
 }
 
-},{}],66:[function(require,module,exports){
-module.exports=require(11)
-},{"simple-statistics":67,"turf-inside":55}],67:[function(require,module,exports){
-module.exports=require(7)
 },{}],68:[function(require,module,exports){
-module.exports=require(13)
-},{"simple-statistics":69,"turf-inside":55}],69:[function(require,module,exports){
+module.exports=require(11)
+},{"simple-statistics":69,"turf-inside":57}],69:[function(require,module,exports){
 module.exports=require(7)
 },{}],70:[function(require,module,exports){
+module.exports=require(13)
+},{"simple-statistics":71,"turf-inside":57}],71:[function(require,module,exports){
+module.exports=require(7)
+},{}],72:[function(require,module,exports){
 // 1. run tin on points
 // 2. merge the tin
 var clone = require('clone')
@@ -14193,7 +14267,7 @@ module.exports = function(polygons, done){
   return merged;
 }
 
-},{"clone":71,"turf-union":121}],71:[function(require,module,exports){
+},{"clone":73,"turf-union":94}],73:[function(require,module,exports){
 (function (Buffer){
 'use strict';
 
@@ -14326,7 +14400,7 @@ clone.clonePrototype = function(parent) {
 };
 
 }).call(this,require("buffer").Buffer)
-},{"buffer":2}],72:[function(require,module,exports){
+},{"buffer":2}],74:[function(require,module,exports){
 // http://cs.selu.edu/~rbyrd/math/midpoint/
 // ((x1+x2)/2), ((y1+y2)/2)
 var point = require('turf-point')
@@ -14350,11 +14424,11 @@ module.exports = function(point1, point2) {
 
   return midpoint
 }
-},{"turf-point":77}],73:[function(require,module,exports){
+},{"turf-point":79}],75:[function(require,module,exports){
 module.exports=require(15)
-},{"simple-statistics":74,"turf-inside":55}],74:[function(require,module,exports){
+},{"simple-statistics":76,"turf-inside":57}],76:[function(require,module,exports){
 module.exports=require(7)
-},{}],75:[function(require,module,exports){
+},{}],77:[function(require,module,exports){
 distance = require('turf-distance')
 
 module.exports = function(targetPoint, points){
@@ -14378,7 +14452,7 @@ module.exports = function(targetPoint, points){
   delete nearestPoint.properties.distance
   return nearestPoint
 }
-},{"turf-distance":39}],76:[function(require,module,exports){
+},{"turf-distance":41}],78:[function(require,module,exports){
 module.exports = function(point, triangle, done){
   var x = point.geometry.coordinates[0]
       y = point.geometry.coordinates[1]
@@ -14400,7 +14474,7 @@ module.exports = function(point, triangle, done){
   return z;
 }
 
-},{}],77:[function(require,module,exports){
+},{}],79:[function(require,module,exports){
 module.exports = function(x, y, properties){
   if(isNaN(x) || isNaN(y)) throw new Error('Invalid coordinates')
   return {
@@ -14413,7 +14487,7 @@ module.exports = function(x, y, properties){
   }
 }
 
-},{}],78:[function(require,module,exports){
+},{}],80:[function(require,module,exports){
 module.exports = function(coordinates, properties){
   if(coordinates === null) return new Error('No coordinates passed')
   var polygon = { 
@@ -14431,7 +14505,7 @@ module.exports = function(coordinates, properties){
   
   return polygon
 }
-},{}],79:[function(require,module,exports){
+},{}],81:[function(require,module,exports){
 var ss = require('simple-statistics')
 
 module.exports = function(fc, field, percentiles){
@@ -14448,9 +14522,9 @@ module.exports = function(fc, field, percentiles){
   return quantiles
 }
 
-},{"simple-statistics":80}],80:[function(require,module,exports){
+},{"simple-statistics":82}],82:[function(require,module,exports){
 module.exports=require(7)
-},{}],81:[function(require,module,exports){
+},{}],83:[function(require,module,exports){
 var featurecollection = require('turf-featurecollection')
 var reclass = require('./index.js')
 
@@ -14471,7 +14545,7 @@ module.exports = function(fc, inField, outField, translations, done){
   return reclassed;
 }
 
-},{"./index.js":81,"turf-featurecollection":51}],82:[function(require,module,exports){
+},{"./index.js":83,"turf-featurecollection":53}],84:[function(require,module,exports){
 var featureCollection = require('turf-featurecollection')
 
 module.exports = function(collection, key, val) {
@@ -14483,7 +14557,7 @@ module.exports = function(collection, key, val) {
   }
   return newFC
 }
-},{"turf-featurecollection":51}],83:[function(require,module,exports){
+},{"turf-featurecollection":53}],85:[function(require,module,exports){
 // http://stackoverflow.com/questions/11935175/sampling-a-random-subset-from-an-array
 
 featureCollection = require('turf-featurecollection')
@@ -14503,7 +14577,7 @@ function getRandomSubarray(arr, size) {
   }
   return shuffled.slice(min);
 }
-},{"turf-featurecollection":51}],84:[function(require,module,exports){
+},{"turf-featurecollection":53}],86:[function(require,module,exports){
 // use topojson.simplify to simplify points to a given tolerence then convert back to geojson
 var topojson = require('topojson')
 
@@ -14524,2063 +14598,10 @@ module.exports = function(fc, quantization, minimumArea){
   return topojson.feature(topo, topo.objects.name)
 }
 
-},{"topojson":85}],85:[function(require,module,exports){
-var topojson = module.exports = require("./topojson");
-topojson.topology = require("./lib/topojson/topology");
-topojson.simplify = require("./lib/topojson/simplify");
-topojson.clockwise = require("./lib/topojson/clockwise");
-topojson.filter = require("./lib/topojson/filter");
-topojson.prune = require("./lib/topojson/prune");
-topojson.stitch = require("./lib/topojson/stitch");
-topojson.scale = require("./lib/topojson/scale");
-
-},{"./lib/topojson/clockwise":88,"./lib/topojson/filter":92,"./lib/topojson/prune":96,"./lib/topojson/scale":98,"./lib/topojson/simplify":99,"./lib/topojson/stitch":101,"./lib/topojson/topology":102,"./topojson":114}],86:[function(require,module,exports){
-
-// Computes the bounding box of the specified hash of GeoJSON objects.
-module.exports = function(objects) {
-  var x0 = Infinity,
-      y0 = Infinity,
-      x1 = -Infinity,
-      y1 = -Infinity;
-
-  function boundGeometry(geometry) {
-    if (geometry && boundGeometryType.hasOwnProperty(geometry.type)) boundGeometryType[geometry.type](geometry);
-  }
-
-  var boundGeometryType = {
-    GeometryCollection: function(o) { o.geometries.forEach(boundGeometry); },
-    Point: function(o) { boundPoint(o.coordinates); },
-    MultiPoint: function(o) { o.coordinates.forEach(boundPoint); },
-    LineString: function(o) { boundLine(o.coordinates); },
-    MultiLineString: function(o) { o.coordinates.forEach(boundLine); },
-    Polygon: function(o) { o.coordinates.forEach(boundLine); },
-    MultiPolygon: function(o) { o.coordinates.forEach(boundMultiLine); }
-  };
-
-  function boundPoint(coordinates) {
-    var x = coordinates[0],
-        y = coordinates[1];
-    if (x < x0) x0 = x;
-    if (x > x1) x1 = x;
-    if (y < y0) y0 = y;
-    if (y > y1) y1 = y;
-  }
-
-  function boundLine(coordinates) {
-    coordinates.forEach(boundPoint);
-  }
-
-  function boundMultiLine(coordinates) {
-    coordinates.forEach(boundLine);
-  }
-
-  for (var key in objects) {
-    boundGeometry(objects[key]);
-  }
-
-  return [x0, y0, x1, y1];
-};
-
-},{}],87:[function(require,module,exports){
-exports.name = "cartesian";
-exports.formatDistance = formatDistance;
-exports.ringArea = ringArea;
-exports.absoluteArea = Math.abs;
-exports.triangleArea = triangleArea;
-exports.distance = distance;
-
-function formatDistance(d) {
-  return d.toString();
-}
-
-function ringArea(ring) {
-  var i = -1,
-      n = ring.length,
-      a,
-      b = ring[n - 1],
-      area = 0;
-
-  while (++i < n) {
-    a = b;
-    b = ring[i];
-    area += a[0] * b[1] - a[1] * b[0];
-  }
-
-  return area * .5;
-}
-
-function triangleArea(triangle) {
-  return Math.abs(
-    (triangle[0][0] - triangle[2][0]) * (triangle[1][1] - triangle[0][1])
-    - (triangle[0][0] - triangle[1][0]) * (triangle[2][1] - triangle[0][1])
-  );
-}
-
-function distance(x0, y0, x1, y1) {
-  var dx = x0 - x1, dy = y0 - y1;
-  return Math.sqrt(dx * dx + dy * dy);
-}
-
-},{}],88:[function(require,module,exports){
-var type = require("./type"),
-    systems = require("./coordinate-systems"),
-    topojson = require("../../topojson");
-
-module.exports = function(object, options) {
-  if (object.type === "Topology") clockwiseTopology(object, options);
-  else clockwiseGeometry(object, options);
-};
-
-function clockwiseGeometry(object, options) {
-  var system = null;
-
-  if (options)
-    "coordinate-system" in options && (system = systems[options["coordinate-system"]]);
-
-  var clockwisePolygon = clockwisePolygonSystem(system.ringArea, reverse);
-
-  type({
-    LineString: noop,
-    MultiLineString: noop,
-    Point: noop,
-    MultiPoint: noop,
-    Polygon: function(polygon) { clockwisePolygon(polygon.coordinates); },
-    MultiPolygon: function(multiPolygon) { multiPolygon.coordinates.forEach(clockwisePolygon); }
-  }).object(object);
-
-  function reverse(array) { array.reverse(); }
-}
-
-function clockwiseTopology(topology, options) {
-  var system = null;
-
-  if (options)
-    "coordinate-system" in options && (system = systems[options["coordinate-system"]]);
-
-  var clockwisePolygon = clockwisePolygonSystem(ringArea, reverse);
-
-  var clockwise = type({
-    LineString: noop,
-    MultiLineString: noop,
-    Point: noop,
-    MultiPoint: noop,
-    Polygon: function(polygon) { clockwisePolygon(polygon.arcs); },
-    MultiPolygon: function(multiPolygon) { multiPolygon.arcs.forEach(clockwisePolygon); }
-  });
-
-  for (var key in topology.objects) {
-    clockwise.object(topology.objects[key]);
-  }
-
-  function ringArea(ring) {
-    return system.ringArea(topojson.feature(topology, {type: "Polygon", arcs: [ring]}).geometry.coordinates[0]);
-  }
-
-  // TODO It might be slightly more compact to reverse the arc.
-  function reverse(ring) {
-    var i = -1, n = ring.length;
-    ring.reverse();
-    while (++i < n) ring[i] = ~ring[i];
-  }
-};
-
-function clockwisePolygonSystem(ringArea, reverse) {
-  return function(rings) {
-    if (!(n = rings.length)) return;
-    var n,
-        areas = new Array(n),
-        max = -Infinity,
-        best,
-        area,
-        t;
-    // Find the largest absolute ring area; this should be the exterior ring.
-    for (var i = 0; i < n; ++i) {
-      var area = Math.abs(areas[i] = ringArea(rings[i]));
-      if (area > max) max = area, best = i;
-    }
-    // Ensure the largest ring appears first.
-    if (best) {
-      t = rings[best], rings[best] = rings[0], rings[0] = t;
-      t = areas[best], areas[best] = areas[0], areas[0] = t;
-    }
-    if (areas[0] < 0) reverse(rings[0]);
-    for (var i = 1; i < n; ++i) {
-      if (areas[i] > 0) reverse(rings[i]);
-    }
-  };
-}
-
-function noop() {}
-
-},{"../../topojson":114,"./coordinate-systems":90,"./type":113}],89:[function(require,module,exports){
-// Given a hash of GeoJSON objects and an id function, invokes the id function
-// to compute a new id for each object that is a feature. The function is passed
-// the feature and is expected to return the new feature id, or null if the
-// feature should not have an id.
-module.exports = function(objects, id) {
-  if (arguments.length < 2) id = function(d) { return d.id; };
-
-  function idObject(object) {
-    if (object && idObjectType.hasOwnProperty(object.type)) idObjectType[object.type](object);
-  }
-
-  function idFeature(feature) {
-    var i = id(feature);
-    if (i == null) delete feature.id;
-    else feature.id = i;
-  }
-
-  var idObjectType = {
-    Feature: idFeature,
-    FeatureCollection: function(collection) { collection.features.forEach(idFeature); }
-  };
-
-  for (var key in objects) {
-    idObject(objects[key]);
-  }
-
-  return objects;
-};
-
-},{}],90:[function(require,module,exports){
-module.exports = {
-  cartesian: require("./cartesian"),
-  spherical: require("./spherical")
-};
-
-},{"./cartesian":87,"./spherical":100}],91:[function(require,module,exports){
-// Given a TopoJSON topology in absolute (quantized) coordinates,
-// converts to fixed-point delta encoding.
-// This is a destructive operation that modifies the given topology!
-module.exports = function(topology) {
-  var arcs = topology.arcs,
-      i = -1,
-      n = arcs.length;
-
-  while (++i < n) {
-    var arc = arcs[i],
-        j = 0,
-        m = arc.length,
-        point = arc[0],
-        x0 = point[0],
-        y0 = point[1],
-        x1,
-        y1;
-    while (++j < m) {
-      point = arc[j];
-      x1 = point[0];
-      y1 = point[1];
-      arc[j] = [x1 - x0, y1 - y0];
-      x0 = x1;
-      y0 = y1;
-    }
-  }
-
-  return topology;
-};
-
-},{}],92:[function(require,module,exports){
-var type = require("./type"),
-    prune = require("./prune"),
-    clockwise = require("./clockwise"),
-    systems = require("./coordinate-systems"),
-    topojson = require("../../topojson");
-
-module.exports = function(topology, options) {
-  var system = null,
-      forceClockwise = true, // force exterior rings to be clockwise?
-      preserveAttached = true, // e.g., remove islands but not small counties
-      preserveRing = preserveNone,
-      minimumArea;
-
-  if (options)
-    "coordinate-system" in options && (system = systems[options["coordinate-system"]]),
-    "minimum-area" in options && (minimumArea = +options["minimum-area"]),
-    "preserve-attached" in options && (preserveAttached = !!options["preserve-attached"]),
-    "force-clockwise" in options && (forceClockwise = !!options["force-clockwise"]);
-
-  if (forceClockwise) clockwise(topology, options); // deprecated; for backwards-compatibility
-
-  if (!(minimumArea > 0)) minimumArea = Number.MIN_VALUE;
-
-  if (preserveAttached) {
-    var uniqueRingByArc = {}, // arc index -> index of unique associated ring, or -1 if used by multiple rings
-        ringIndex = 0;
-
-    var checkAttachment = type({
-      LineString: noop,
-      MultiLineString: noop,
-      Point: noop,
-      MultiPoint: noop,
-      MultiPolygon: function(multiPolygon) {
-        var arcs = multiPolygon.arcs, i = -1, n = arcs.length;
-        while (++i < n) this.polygon(arcs[i]);
-      },
-      Polygon: function(polygon) {
-        this.polygon(polygon.arcs);
-      },
-      polygon: function(arcs) {
-        for (var i = 0, n = arcs.length; i < n; ++i, ++ringIndex) {
-          for (var ring = arcs[i], j = 0, m = ring.length; j < m; ++j) {
-            var arc = ring[j];
-            if (arc < 0) arc = ~arc;
-            var uniqueRing = uniqueRingByArc[arc];
-            if (uniqueRing >= 0 && uniqueRing !== ringIndex) uniqueRingByArc[arc] = -1;
-            else uniqueRingByArc[arc] = ringIndex;
-          }
-        }
-      }
-    });
-
-    preserveRing = function(ring) {
-      for (var j = 0, m = ring.length; j < m; ++j) {
-        var arc = ring[j];
-        if (uniqueRingByArc[arc < 0 ? ~arc : arc] < 0) {
-          return true;
-        }
-      }
-    };
-
-    for (var key in topology.objects) {
-      checkAttachment.object(topology.objects[key]);
-    }
-  }
-
-  var filter = type({
-    LineString: noop, // TODO remove empty lines
-    MultiLineString: noop,
-    Point: noop,
-    MultiPoint: noop,
-    Polygon: function(polygon) {
-      polygon.arcs = filterPolygon(polygon.arcs);
-      if (!polygon.arcs || !polygon.arcs.length) {
-        polygon.type = null;
-        delete polygon.arcs;
-      }
-    },
-    MultiPolygon: function(multiPolygon) {
-      multiPolygon.arcs = multiPolygon.arcs
-          .map(filterPolygon)
-          .filter(function(polygon) { return polygon && polygon.length; });
-      if (!multiPolygon.arcs.length) {
-        multiPolygon.type = null;
-        delete multiPolygon.arcs;
-      }
-    },
-    GeometryCollection: function(collection) {
-      this.defaults.GeometryCollection.call(this, collection);
-      collection.geometries = collection.geometries.filter(function(geometry) { return geometry.type != null; });
-      if (!collection.geometries.length) {
-        collection.type = null;
-        delete collection.geometries;
-      }
-    }
-  });
-
-  for (var key in topology.objects) {
-    filter.object(topology.objects[key]);
-  }
-
-  prune(topology, options);
-
-  function filterPolygon(arcs) {
-    return arcs.length && filterExteriorRing(arcs[0]) // if the exterior is small, ignore any holes
-        ? [arcs.shift()].concat(arcs.filter(filterInteriorRing))
-        : null;
-  }
-
-  function filterExteriorRing(ring) {
-    return preserveRing(ring) || system.absoluteArea(ringArea(ring)) >= minimumArea;
-  }
-
-  function filterInteriorRing(ring) {
-    return preserveRing(ring) || system.absoluteArea(-ringArea(ring)) >= minimumArea;
-  }
-
-  function ringArea(ring) {
-    return system.ringArea(topojson.feature(topology, {type: "Polygon", arcs: [ring]}).geometry.coordinates[0]);
-  }
-};
-
-function noop() {}
-
-function preserveNone() {
-  return false;
-}
-
-},{"../../topojson":114,"./clockwise":88,"./coordinate-systems":90,"./prune":96,"./type":113}],93:[function(require,module,exports){
-// Given a hash of GeoJSON objects, replaces Features with geometry objects.
-// This is a destructive operation that modifies the input objects!
-module.exports = function(objects) {
-
-  function geomifyObject(object) {
-    return (object && geomifyObjectType.hasOwnProperty(object.type)
-        ? geomifyObjectType[object.type]
-        : geomifyGeometry)(object);
-  }
-
-  function geomifyFeature(feature) {
-    var geometry = feature.geometry;
-    if (geometry == null) {
-      feature.type = null;
-    } else {
-      geomifyGeometry(geometry);
-      feature.type = geometry.type;
-      if (geometry.geometries) feature.geometries = geometry.geometries;
-      else if (geometry.coordinates) feature.coordinates = geometry.coordinates;
-    }
-    delete feature.geometry;
-    return feature;
-  }
-
-  function geomifyGeometry(geometry) {
-    if (!geometry) return {type: null};
-    if (geomifyGeometryType.hasOwnProperty(geometry.type)) geomifyGeometryType[geometry.type](geometry);
-    return geometry;
-  }
-
-  var geomifyObjectType = {
-    Feature: geomifyFeature,
-    FeatureCollection: function(collection) {
-      collection.type = "GeometryCollection";
-      collection.geometries = collection.features;
-      collection.features.forEach(geomifyFeature);
-      delete collection.features;
-      return collection;
-    }
-  };
-
-  var geomifyGeometryType = {
-    GeometryCollection: function(o) {
-      var geometries = o.geometries, i = -1, n = geometries.length;
-      while (++i < n) geometries[i] = geomifyGeometry(geometries[i]);
-    },
-    MultiPoint: function(o) {
-      if (!o.coordinates.length) {
-        o.type = null;
-        delete o.coordinates;
-      } else if (o.coordinates.length < 2) {
-        o.type = "Point";
-        o.coordinates = o.coordinates[0];
-      }
-    },
-    LineString: function(o) {
-      if (!o.coordinates.length) {
-        o.type = null;
-        delete o.coordinates;
-      }
-    },
-    MultiLineString: function(o) {
-      for (var lines = o.coordinates, i = 0, N = 0, n = lines.length; i < n; ++i) {
-        var line = lines[i];
-        if (line.length) lines[N++] = line;
-      }
-      if (!N) {
-        o.type = null;
-        delete o.coordinates;
-      } else if (N < 2) {
-        o.type = "LineString";
-        o.coordinates = lines[0];
-      } else {
-        o.coordinates.length = N;
-      }
-    },
-    Polygon: function(o) {
-      for (var rings = o.coordinates, i = 0, N = 0, n = rings.length; i < n; ++i) {
-        var ring = rings[i];
-        if (ring.length) rings[N++] = ring;
-      }
-      if (!N) {
-        o.type = null;
-        delete o.coordinates;
-      } else {
-        o.coordinates.length = N;
-      }
-    },
-    MultiPolygon: function(o) {
-      for (var polygons = o.coordinates, j = 0, M = 0, m = polygons.length; j < m; ++j) {
-        for (var rings = polygons[j], i = 0, N = 0, n = rings.length; i < n; ++i) {
-          var ring = rings[i];
-          if (ring.length) rings[N++] = ring;
-        }
-        if (N) {
-          rings.length = N;
-          polygons[M++] = rings;
-        }
-      }
-      if (!M) {
-        o.type = null;
-        delete o.coordinates;
-      } else if (M < 2) {
-        o.type = "Polygon";
-        o.coordinates = polygons[0];
-      } else {
-        polygons.length = M;
-      }
-    }
-  };
-
-  for (var key in objects) {
-    objects[key] = geomifyObject(objects[key]);
-  }
-
-  return objects;
-};
-
-},{}],94:[function(require,module,exports){
-var quantize = require("./quantize");
-
-module.exports = function(topology, Q0, Q1) {
-  if (Q0) {
-    if (Q1 === Q0 || !topology.bbox.every(isFinite)) return topology;
-    var k = Q1 / Q0,
-        q = quantize(0, 0, k, k);
-
-    topology.transform.scale[0] /= k;
-    topology.transform.scale[1] /= k;
-  } else {
-    var bbox = topology.bbox,
-        x0 = isFinite(bbox[0]) ? bbox[0] : 0,
-        y0 = isFinite(bbox[1]) ? bbox[1] : 0,
-        x1 = isFinite(bbox[2]) ? bbox[2] : 0,
-        y1 = isFinite(bbox[3]) ? bbox[3] : 0,
-        kx = x1 - x0 ? (Q1 - 1) / (x1 - x0) : 1,
-        ky = y1 - y0 ? (Q1 - 1) / (y1 - y0) : 1,
-        q = quantize(-x0, -y0, kx, ky);
-
-    topology.transform = q.transform;
-  }
-
-  function quantizeGeometry(geometry) {
-    if (geometry && quantizeGeometryType.hasOwnProperty(geometry.type)) quantizeGeometryType[geometry.type](geometry);
-  }
-
-  var quantizeGeometryType = {
-    GeometryCollection: function(o) { o.geometries.forEach(quantizeGeometry); },
-    Point: function(o) { q.point(o.coordinates); },
-    MultiPoint: function(o) { o.coordinates.forEach(q.point); }
-  };
-
-  for (var key in topology.objects) {
-    quantizeGeometry(topology.objects[key]);
-  }
-
-  // XXX shared points are bad mmkay
-  topology.arcs = topology.arcs.map(function(arc) {
-    q.line(arc = arc.map(function(point) { return point.slice(); }));
-    if (arc.length < 2) arc.push(arc[0]); // arcs must have at least two points
-    return arc;
-  });
-
-  return topology;
-};
-
-},{"./quantize":97}],95:[function(require,module,exports){
-var quantize = require("./quantize");
-
-module.exports = function(objects, bbox, Q0, Q1) {
-  if (arguments.length < 4) Q1 = Q0;
-
-  var x0 = isFinite(bbox[0]) ? bbox[0] : 0,
-      y0 = isFinite(bbox[1]) ? bbox[1] : 0,
-      x1 = isFinite(bbox[2]) ? bbox[2] : 0,
-      y1 = isFinite(bbox[3]) ? bbox[3] : 0,
-      kx = x1 - x0 ? (Q1 - 1) / (x1 - x0) * Q0 / Q1 : 1,
-      ky = y1 - y0 ? (Q1 - 1) / (y1 - y0) * Q0 / Q1 : 1,
-      q = quantize(-x0, -y0, kx, ky);
-
-  function quantizeGeometry(geometry) {
-    if (geometry && quantizeGeometryType.hasOwnProperty(geometry.type)) quantizeGeometryType[geometry.type](geometry);
-  }
-
-  var quantizeGeometryType = {
-    GeometryCollection: function(o) { o.geometries.forEach(quantizeGeometry); },
-    Point: function(o) { q.point(o.coordinates); },
-    MultiPoint: function(o) { o.coordinates.forEach(q.point); },
-    LineString: function(o) {
-      var line = o.coordinates;
-      q.line(line);
-      if (line.length < 2) line[1] = line[0]; // must have 2+
-    },
-    MultiLineString: function(o) {
-      for (var lines = o.coordinates, i = 0, n = lines.length; i < n; ++i) {
-        var line = lines[i];
-        q.line(line);
-        if (line.length < 2) line[1] = line[0]; // must have 2+
-      }
-    },
-    Polygon: function(o) {
-      for (var rings = o.coordinates, i = 0, n = rings.length; i < n; ++i) {
-        var ring = rings[i];
-        q.line(ring);
-        while (ring.length < 4) ring.push(ring[0]); // must have 4+
-      }
-    },
-    MultiPolygon: function(o) {
-      for (var polygons = o.coordinates, i = 0, n = polygons.length; i < n; ++i) {
-        for (var rings = polygons[i], j = 0, m = rings.length; j < m; ++j) {
-          var ring = rings[j];
-          q.line(ring);
-          while (ring.length < 4) ring.push(ring[0]); // must have 4+
-        }
-      }
-    }
-  };
-
-  for (var key in objects) {
-    quantizeGeometry(objects[key]);
-  }
-
-  return q.transform;
-};
-
-},{"./quantize":97}],96:[function(require,module,exports){
-module.exports = function(topology, options) {
-  var verbose = false,
-      objects = topology.objects,
-      oldArcs = topology.arcs,
-      oldArcCount = oldArcs.length,
-      newArcs = topology.arcs = [],
-      newArcCount = 0,
-      newIndexByOldIndex = new Array(oldArcs.length);
-
-  if (options)
-    "verbose" in options && (verbose = !!options["verbose"]);
-
-  function pruneGeometry(geometry) {
-    if (geometry && pruneGeometryType.hasOwnProperty(geometry.type)) pruneGeometryType[geometry.type](geometry);
-  }
-
-  var pruneGeometryType = {
-    GeometryCollection: function(o) { o.geometries.forEach(pruneGeometry); },
-    LineString: function(o) { pruneArcs(o.arcs); },
-    MultiLineString: function(o) { o.arcs.forEach(pruneArcs); },
-    Polygon: function(o) { o.arcs.forEach(pruneArcs); },
-    MultiPolygon: function(o) { o.arcs.forEach(pruneMultiArcs); }
-  };
-
-  function pruneArcs(arcs) {
-    for (var i = 0, n = arcs.length; i < n; ++i) {
-      var oldIndex = arcs[i],
-          oldReverse = oldIndex < 0 && (oldIndex = ~oldIndex, true),
-          newIndex;
-
-      // If this is the first instance of this arc,
-      // record it under its new index.
-      if ((newIndex = newIndexByOldIndex[oldIndex]) == null) {
-        newIndexByOldIndex[oldIndex] = newIndex = newArcCount++;
-        newArcs[newIndex] = oldArcs[oldIndex];
-      }
-
-      arcs[i] = oldReverse ? ~newIndex : newIndex;
-    }
-  }
-
-  function pruneMultiArcs(arcs) {
-    arcs.forEach(pruneArcs);
-  }
-
-  for (var key in objects) {
-    pruneGeometry(objects[key]);
-  }
-
-  if (verbose) console.warn("prune: retained " + newArcCount + " / " + oldArcCount + " arcs (" + Math.round(newArcCount / oldArcCount * 100) + "%)");
-
-  return topology;
-};
-
-function noop() {}
-
-},{}],97:[function(require,module,exports){
-module.exports = function(dx, dy, kx, ky) {
-
-  function quantizePoint(coordinates) {
-    coordinates[0] = Math.round((coordinates[0] + dx) * kx);
-    coordinates[1] = Math.round((coordinates[1] + dy) * ky);
-    return coordinates;
-  }
-
-  function quantizeLine(coordinates) {
-    var i = 0,
-        j = 1,
-        n = coordinates.length,
-        pi = quantizePoint(coordinates[0]),
-        pj,
-        px = pi[0],
-        py = pi[1],
-        x,
-        y;
-
-    while (++i < n) {
-      pi = quantizePoint(coordinates[i]);
-      x = pi[0];
-      y = pi[1];
-      if (x !== px || y !== py) { // skip coincident points
-        pj = coordinates[j++];
-        pj[0] = px = x;
-        pj[1] = py = y;
-      }
-    }
-
-    coordinates.length = j;
-  }
-
-  return {
-    point: quantizePoint,
-    line: quantizeLine,
-    transform: {
-      scale: [1 / kx, 1 / ky],
-      translate: [-dx, -dy]
-    }
-  };
-};
-
-},{}],98:[function(require,module,exports){
-var type = require("./type");
-
-module.exports = function(topology, options) {
-  var width,
-      height,
-      margin = 0,
-      invert = true;
-
-  if (options)
-    "width" in options && (width = +options["width"]),
-    "height" in options && (height = +options["height"]),
-    "margin" in options && (margin = +options["margin"]),
-    "invert" in options && (invert = !!options["invert"]);
-
-  var bx = topology.bbox,
-      dx = bx[2] - bx[0],
-      dy = bx[3] - bx[1],
-      cx = (bx[2] + bx[0]) / 2,
-      cy = (bx[3] + bx[1]) / 2,
-      kx;
-
-  width = Math.max(0, width - margin * 2);
-  height = Math.max(0, height - margin * 2);
-
-  if (width && height) {
-    kx = Math.min(width / dx, height / dy);
-  } else if (width) {
-    kx = width / dx;
-    height = kx * dy;
-  } else {
-    kx = height / dy;
-    width = kx * dx;
-  }
-
-  var ky = invert ? -kx : kx,
-      lt = scalePoint([bx[0], bx[1]]),
-      rb = scalePoint([bx[2], bx[3]]),
-      tx;
-
-  topology.bbox = invert
-      ? [lt[0], rb[1], rb[0], lt[1]]
-      : [lt[0], lt[1], rb[0], rb[1]];
-
-  function scalePoint(point) {
-    return [
-      point[0] * kx + (width / 2 - cx * kx) + margin,
-      point[1] * ky + (height / 2 - cy * ky) + margin
-    ];
-  }
-
-  if (tx = topology.transform) {
-    tx.scale[0] *= kx;
-    tx.scale[1] *= ky;
-    tx.translate[0] = width / 2 + margin - (cx - tx.translate[0]) * kx;
-    tx.translate[1] = height / 2 + margin - (cy - tx.translate[1]) * ky;
-  } else {
-    var scale = type({
-      LineString: noop,
-      MultiLineString: noop,
-      Point: function(point) { point.coordinates = scalePoint(point.coordinates); },
-      MultiPoint: function(multipoint) { multipoint.coordinates = multipoint.coordinates.map(scalePoint); },
-      Polygon: noop,
-      MultiPolygon: noop
-    });
-
-    for (var key in topology.objects) {
-      scale.object(topology.objects[key]);
-    }
-
-    topology.arcs = topology.arcs.map(function(arc) {
-      return arc.map(scalePoint);
-    });
-  }
-
-  return topology;
-};
-
-function noop() {}
-
-},{"./type":113}],99:[function(require,module,exports){
-var topojson = require("../../topojson"),
-    systems = require("./coordinate-systems");
-
-module.exports = function(topology, options) {
-  var minimumArea = 0,
-      retainProportion,
-      verbose = false,
-      system = null,
-      N = topology.arcs.reduce(function(p, v) { return p + v.length; }, 0),
-      M = 0;
-
-  if (options)
-    "minimum-area" in options && (minimumArea = +options["minimum-area"]),
-    "coordinate-system" in options && (system = systems[options["coordinate-system"]]),
-    "retain-proportion" in options && (retainProportion = +options["retain-proportion"]),
-    "verbose" in options && (verbose = !!options["verbose"]);
-
-  topojson.presimplify(topology, system.triangleArea);
-
-  if (retainProportion) {
-    var areas = [];
-    topology.arcs.forEach(function(arc) {
-      arc.forEach(function(point) {
-        if (isFinite(point[2])) areas.push(point[2]); // ignore endpoints
-      });
-    });
-    options["minimum-area"] = minimumArea = N ? areas.sort(function(a, b) { return b - a; })[Math.ceil((N - 1) * retainProportion)] : 0;
-    if (verbose) console.warn("simplification: effective minimum area " + minimumArea.toPrecision(3));
-  }
-
-  topology.arcs.forEach(topology.transform ? function(arc) {
-    var dx = 0,
-        dy = 0, // accumulate removed points
-        i = -1,
-        j = -1,
-        n = arc.length,
-        source,
-        target;
-
-    while (++i < n) {
-      source = arc[i];
-      if (source[2] >= minimumArea) {
-        target = arc[++j];
-        target[0] = source[0] + dx;
-        target[1] = source[1] + dy;
-        dx = dy = 0;
-      } else {
-        dx += source[0];
-        dy += source[1];
-      }
-    }
-
-    arc.length = ++j;
-  } : function(arc) {
-    var i = -1,
-        j = -1,
-        n = arc.length,
-        point;
-
-    while (++i < n) {
-      point = arc[i];
-      if (point[2] >= minimumArea) {
-        arc[++j] = point;
-      }
-    }
-
-    arc.length = ++j;
-  });
-
-  // Remove computed area (z) for each point, and remove coincident points.
-  // This is done as a separate pass because some coordinates may be shared
-  // between arcs (such as the last point and first point of a cut line).
-  // If the entire arc is empty, retain at least two points (per spec).
-  topology.arcs.forEach(topology.transform ? function(arc) {
-    var i = 0,
-        j = 0,
-        n = arc.length,
-        p = arc[0];
-    p.length = 2;
-    while (++i < n) {
-      p = arc[i];
-      p.length = 2;
-      if (p[0] || p[1]) arc[++j] = p;
-    }
-    M += arc.length = (j || 1) + 1;
-  } : function(arc) {
-    var i = 0,
-        j = 0,
-        n = arc.length,
-        p = arc[0],
-        x0 = p[0],
-        y0 = p[1],
-        x1,
-        y1;
-    p.length = 2;
-    while (++i < n) {
-      p = arc[i], x1 = p[0], y1 = p[1];
-      p.length = 2;
-      if (x0 !== x1 || y0 !== y1) arc[++j] = p, x0 = x1, y0 = y1;
-    }
-    M += arc.length = (j || 1) + 1;
-  });
-
-  if (verbose) console.warn("simplification: retained " + M + " / " + N + " points (" + Math.round((M / N) * 100) + "%)");
-
-  return topology;
-};
-
-},{"../../topojson":114,"./coordinate-systems":90}],100:[function(require,module,exports){
-var π = Math.PI,
-    π_4 = π / 4,
-    radians = π / 180;
-
-exports.name = "spherical";
-exports.formatDistance = formatDistance;
-exports.ringArea = ringArea;
-exports.absoluteArea = absoluteArea;
-exports.triangleArea = triangleArea;
-exports.distance = haversinDistance; // XXX why two implementations?
-
-function formatDistance(k) {
-  var km = k * radians * 6371;
-  return (km > 1 ? km.toFixed(3) + "km" : (km * 1000).toPrecision(3) + "m") + " (" + k.toPrecision(3) + "°)";
-}
-
-function ringArea(ring) {
-  if (!ring.length) return 0;
-  var area = 0,
-      p = ring[0],
-      λ = p[0] * radians,
-      φ = p[1] * radians / 2 + π_4,
-      λ0 = λ,
-      cosφ0 = Math.cos(φ),
-      sinφ0 = Math.sin(φ);
-
-  for (var i = 1, n = ring.length; i < n; ++i) {
-    p = ring[i], λ = p[0] * radians, φ = p[1] * radians / 2 + π_4;
-
-    // Spherical excess E for a spherical triangle with vertices: south pole,
-    // previous point, current point.  Uses a formula derived from Cagnoli’s
-    // theorem.  See Todhunter, Spherical Trig. (1871), Sec. 103, Eq. (2).
-    var dλ = λ - λ0,
-        cosφ = Math.cos(φ),
-        sinφ = Math.sin(φ),
-        k = sinφ0 * sinφ,
-        u = cosφ0 * cosφ + k * Math.cos(dλ),
-        v = k * Math.sin(dλ);
-    area += Math.atan2(v, u);
-
-    // Advance the previous point.
-    λ0 = λ, cosφ0 = cosφ, sinφ0 = sinφ;
-  }
-
-  return 2 * (area > π ? area - 2 * π : area < -π ? area + 2 * π : area);
-}
-
-function absoluteArea(a) {
-  return a < 0 ? a + 4 * π : a;
-}
-
-function triangleArea(t) {
-  var a = distance(t[0], t[1]),
-      b = distance(t[1], t[2]),
-      c = distance(t[2], t[0]),
-      s = (a + b + c) / 2;
-  return 4 * Math.atan(Math.sqrt(Math.max(0, Math.tan(s / 2) * Math.tan((s - a) / 2) * Math.tan((s - b) / 2) * Math.tan((s - c) / 2))));
-}
-
-function distance(a, b) {
-  var Δλ = (b[0] - a[0]) * radians,
-      sinΔλ = Math.sin(Δλ),
-      cosΔλ = Math.cos(Δλ),
-      sinφ0 = Math.sin(a[1] * radians),
-      cosφ0 = Math.cos(a[1] * radians),
-      sinφ1 = Math.sin(b[1] * radians),
-      cosφ1 = Math.cos(b[1] * radians),
-      _;
-  return Math.atan2(Math.sqrt((_ = cosφ1 * sinΔλ) * _ + (_ = cosφ0 * sinφ1 - sinφ0 * cosφ1 * cosΔλ) * _), sinφ0 * sinφ1 + cosφ0 * cosφ1 * cosΔλ);
-}
-
-function haversinDistance(x0, y0, x1, y1) {
-  x0 *= radians, y0 *= radians, x1 *= radians, y1 *= radians;
-  return 2 * Math.asin(Math.sqrt(haversin(y1 - y0) + Math.cos(y0) * Math.cos(y1) * haversin(x1 - x0)));
-}
-
-function haversin(x) {
-  return (x = Math.sin(x / 2)) * x;
-}
-
-},{}],101:[function(require,module,exports){
-var type = require("./type");
-
-module.exports = function(objects, transform) {
-  var ε = 1e-2,
-      x0 = -180, x0e = x0 + ε,
-      x1 = 180, x1e = x1 - ε,
-      y0 = -90, y0e = y0 + ε,
-      y1 = 90, y1e = y1 - ε;
-
-  if (transform) {
-    var kx = transform.scale[0],
-        ky = transform.scale[1],
-        dx = transform.translate[0],
-        dy = transform.translate[1];
-
-    x0 = Math.round((x0 - dx) / kx);
-    x1 = Math.round((x1 - dx) / kx);
-    y0 = Math.round((y0 - dy) / ky);
-    y1 = Math.round((y1 - dy) / ky);
-    x0e = Math.round((x0e - dx) / kx);
-    x1e = Math.round((x1e - dx) / kx);
-    y0e = Math.round((y0e - dy) / ky);
-    y1e = Math.round((y1e - dy) / ky);
-  }
-
-  function normalizePoint(y) {
-    return y <= y0e ? [0, y0] // south pole
-        : y >= y1e ? [0, y1] // north pole
-        : [x0, y]; // antimeridian
-  }
-
-  function stitchPolygons(polygons) {
-    var fragments = [];
-
-    for (var p = 0, np = polygons.length; p < np; ++p) {
-      var polygon = polygons[p];
-
-      // For each ring, detect where it crosses the antimeridian or pole.
-      for (var j = 0, m = polygon.length; j < m; ++j) {
-        var ring = polygon[j];
-        ring.polygon = polygon;
-
-        // By default, assume that this ring doesn’t need any stitching.
-        fragments.push(ring);
-
-        for (var i = 0, n = ring.length; i < n; ++i) {
-          var point = ring[i],
-              x = point[0],
-              y = point[1];
-
-          // If this is an antimeridian or polar point…
-          if (x <= x0e || x >= x1e || y <= y0e || y >= y1e) {
-
-            // Advance through any antimeridian or polar points…
-            for (var k = i + 1; k < n; ++k) {
-              var pointk = ring[k],
-                  xk = pointk[0],
-                  yk = pointk[1];
-              if (xk > x0e && xk < x1e && yk > y0e && yk < y1e) break;
-            }
-
-            // If this was just a single antimeridian or polar point,
-            // we don’t need to cut this ring into a fragment;
-            // we can just leave it as-is.
-            if (k === i + 1) continue;
-
-            // Otherwise, if this is not the first point in the ring,
-            // cut the current fragment so that it ends at the current point.
-            // The current point is also normalized for later joining.
-            if (i) {
-              var fragmentBefore = ring.slice(0, i + 1);
-              fragmentBefore.polygon = polygon;
-              fragmentBefore[fragmentBefore.length - 1] = normalizePoint(y);
-              fragments[fragments.length - 1] = fragmentBefore;
-            }
-
-            // If the ring started with an antimeridian fragment,
-            // we can ignore that fragment entirely.
-            else {
-              fragments.pop();
-            }
-
-            // If the remainder of the ring is an antimeridian fragment,
-            // move on to the next ring.
-            if (k >= n) break;
-
-            // Otherwise, add the remaining ring fragment and continue.
-            fragments.push(ring = ring.slice(k - 1));
-            ring[0] = normalizePoint(ring[0][1]);
-            ring.polygon = polygon;
-            i = -1;
-            n = ring.length;
-          }
-        }
-      }
-      polygon.length = 0;
-    }
-
-    // Now stitch the fragments back together into rings.
-    // To connect the fragments start-to-end, create a simple index by end.
-    var fragmentByStart = {},
-        fragmentByEnd = {};
-
-    // For each fragment…
-    for (var i = 0, n = fragments.length; i < n; ++i) {
-      var fragment = fragments[i],
-          start = fragment[0],
-          end = fragment[fragment.length - 1];
-
-      // If this fragment is closed, add it as a standalone ring.
-      if (start[0] === end[0] && start[1] === end[1]) {
-        fragment.polygon.push(fragment);
-        fragments[i] = null;
-        continue;
-      }
-
-      fragment.index = i;
-      fragmentByStart[start] = fragmentByEnd[end] = fragment;
-    }
-
-    // For each open fragment…
-    for (var i = 0; i < n; ++i) {
-      var fragment = fragments[i];
-      if (fragment) {
-
-        var start = fragment[0],
-            end = fragment[fragment.length - 1],
-            startFragment = fragmentByEnd[start],
-            endFragment = fragmentByStart[end];
-
-        delete fragmentByStart[start];
-        delete fragmentByEnd[end];
-
-        // If this fragment is closed, add it as a standalone ring.
-        if (start[0] === end[0] && start[1] === end[1]) {
-          fragment.polygon.push(fragment);
-          continue;
-        }
-
-        if (startFragment) {
-          delete fragmentByEnd[start];
-          delete fragmentByStart[startFragment[0]];
-          startFragment.pop(); // drop the shared coordinate
-          fragments[startFragment.index] = null;
-          fragment = startFragment.concat(fragment);
-          fragment.polygon = startFragment.polygon;
-
-          if (startFragment === endFragment) {
-            // Connect both ends to this single fragment to create a ring.
-            fragment.polygon.push(fragment);
-          } else {
-            fragment.index = n++;
-            fragments.push(fragmentByStart[fragment[0]] = fragmentByEnd[fragment[fragment.length - 1]] = fragment);
-          }
-        } else if (endFragment) {
-          delete fragmentByStart[end];
-          delete fragmentByEnd[endFragment[endFragment.length - 1]];
-          fragment.pop(); // drop the shared coordinate
-          fragment = fragment.concat(endFragment);
-          fragment.polygon = endFragment.polygon;
-          fragment.index = n++;
-          fragments[endFragment.index] = null;
-          fragments.push(fragmentByStart[fragment[0]] = fragmentByEnd[fragment[fragment.length - 1]] = fragment);
-        } else {
-          fragment.push(fragment[0]); // close ring
-          fragment.polygon.push(fragment);
-        }
-      }
-    }
-    // TODO remove empty polygons.
-  }
-
-  var stitch = type({
-    Polygon: function(polygon) { stitchPolygons([polygon.coordinates]); },
-    MultiPolygon: function(multiPolygon) { stitchPolygons(multiPolygon.coordinates); }
-  });
-
-  for (var key in objects) {
-    stitch.object(objects[key]);
-  }
-};
-
-},{"./type":113}],102:[function(require,module,exports){
-var type = require("./type"),
-    stitch = require("./stitch"),
-    systems = require("./coordinate-systems"),
-    topologize = require("./topology/index"),
-    delta = require("./delta"),
-    geomify = require("./geomify"),
-    prequantize = require("./pre-quantize"),
-    postquantize = require("./post-quantize"),
-    bounds = require("./bounds"),
-    computeId = require("./compute-id"),
-    transformProperties = require("./transform-properties");
-
-var ε = 1e-6;
-
-module.exports = function(objects, options) {
-  var Q0 = 1e4, // precision of pre-quantization
-      Q1 = 1e4, // precision of post-quantization (must be divisor of Q0)
-      id = function(d) { return d.id; }, // function to compute object id
-      propertyTransform = function() {}, // function to transform properties
-      transform,
-      minimumArea = 0,
-      stitchPoles = true,
-      verbose = false,
-      system = null;
-
-  if (options)
-    "verbose" in options && (verbose = !!options["verbose"]),
-    "stitch-poles" in options && (stitchPoles = !!options["stitch-poles"]),
-    "coordinate-system" in options && (system = systems[options["coordinate-system"]]),
-    "minimum-area" in options && (minimumArea = +options["minimum-area"]),
-    "quantization" in options && (Q0 = Q1 = +options["quantization"]),
-    "pre-quantization" in options && (Q0 = +options["pre-quantization"]),
-    "post-quantization" in options && (Q1 = +options["post-quantization"]),
-    "id" in options && (id = options["id"]),
-    "property-transform" in options && (propertyTransform = options["property-transform"]);
-
-  if (Q0 / Q1 % 1) throw new Error("post-quantization is not a divisor of pre-quantization");
-  if (Q0 && !Q1) throw new Error("post-quantization is required when input is already quantized");
-
-  // Compute the new feature id and transform properties.
-  computeId(objects, id);
-  transformProperties(objects, propertyTransform);
-
-  // Convert to geometry objects.
-  geomify(objects);
-
-  // Compute initial bounding box.
-  var bbox = bounds(objects);
-
-  // For automatic coordinate system determination, consider the bounding box.
-  var oversize = bbox[0] < -180 - ε
-      || bbox[1] < -90 - ε
-      || bbox[2] > 180 + ε
-      || bbox[3] > 90 + ε;
-  if (!system) {
-    system = systems[oversize ? "cartesian" : "spherical"];
-    if (options) options["coordinate-system"] = system.name;
-  }
-
-  if (system === systems.spherical) {
-    if (oversize) throw new Error("spherical coordinates outside of [±180°, ±90°]");
-
-    // When near the spherical coordinate limits, clamp to nice round values.
-    // This avoids quantized coordinates that are slightly outside the limits.
-    if (bbox[0] < -180 + ε) bbox[0] = -180;
-    if (bbox[1] < -90 + ε) bbox[1] = -90;
-    if (bbox[2] > 180 - ε) bbox[2] = 180;
-    if (bbox[3] > 90 - ε) bbox[3] = 90;
-  }
-
-  if (verbose) {
-    console.warn("bounds: " + bbox.join(" ") + " (" + system.name + ")");
-  }
-
-  // Pre-topology quantization.
-  if (Q0) {
-    transform = prequantize(objects, bbox, Q0, Q1);
-    if (verbose) {
-      console.warn("pre-quantization: " + transform.scale.map(function(k) { return system.formatDistance(k); }).join(" "));
-    }
-  }
-
-  // Remove any antimeridian cuts and restitch.
-  if (system === systems.spherical && stitchPoles) {
-    stitch(objects, transform);
-  }
-
-  // Compute the topology.
-  var topology = topologize(objects);
-  if (Q0) topology.transform = transform;
-  topology.bbox = bbox;
-  if (verbose) {
-    console.warn("topology: " + topology.arcs.length + " arcs, " + topology.arcs.reduce(function(p, v) { return p + v.length; }, 0) + " points");
-  }
-
-  // Post-topology quantization.
-  if (Q1 && Q1 !== Q0) {
-    postquantize(topology, Q0, Q1);
-    transform = topology.transform;
-    if (verbose) {
-      console.warn("post-quantization: " + transform.scale.map(function(k) { return system.formatDistance(k); }).join(" "));
-    }
-  }
-
-  // Convert to delta-encoding.
-  if (Q1) {
-    delta(topology);
-  }
-
-  return topology;
-};
-
-},{"./bounds":86,"./compute-id":89,"./coordinate-systems":90,"./delta":91,"./geomify":93,"./post-quantize":94,"./pre-quantize":95,"./stitch":101,"./topology/index":108,"./transform-properties":112,"./type":113}],103:[function(require,module,exports){
-var join = require("./join");
-
-// Given an extracted (pre-)topology, cuts (or rotates) arcs so that all shared
-// point sequences are identified. The topology can then be subsequently deduped
-// to remove exact duplicate arcs.
-module.exports = function(topology) {
-  var junctions = join(topology),
-      coordinates = topology.coordinates,
-      lines = topology.lines,
-      rings = topology.rings;
-
-  for (var i = 0, n = lines.length; i < n; ++i) {
-    var line = lines[i],
-        lineMid = line[0],
-        lineEnd = line[1];
-    while (++lineMid < lineEnd) {
-      if (junctions.has(coordinates[lineMid])) {
-        var next = {0: lineMid, 1: line[1]};
-        line[1] = lineMid;
-        line = line.next = next;
-      }
-    }
-  }
-
-  for (var i = 0, n = rings.length; i < n; ++i) {
-    var ring = rings[i],
-        ringStart = ring[0],
-        ringMid = ringStart,
-        ringEnd = ring[1],
-        ringFixed = junctions.has(coordinates[ringStart]);
-    while (++ringMid < ringEnd) {
-      if (junctions.has(coordinates[ringMid])) {
-        if (ringFixed) {
-          var next = {0: ringMid, 1: ring[1]};
-          ring[1] = ringMid;
-          ring = ring.next = next;
-        } else { // For the first junction, we can rotate rather than cut.
-          rotateArray(coordinates, ringStart, ringEnd, ringEnd - ringMid);
-          coordinates[ringEnd] = coordinates[ringStart];
-          ringFixed = true;
-          ringMid = ringStart; // restart; we may have skipped junctions
-        }
-      }
-    }
-  }
-
-  return topology;
-};
-
-function rotateArray(array, start, end, offset) {
-  reverse(array, start, end);
-  reverse(array, start, start + offset);
-  reverse(array, start + offset, end);
-}
-
-function reverse(array, start, end) {
-  for (var mid = start + ((end-- - start) >> 1), t; start < mid; ++start, --end) {
-    t = array[start], array[start] = array[end], array[end] = t;
-  }
-}
-
-},{"./join":109}],104:[function(require,module,exports){
-var join = require("./join"),
-    hashmap = require("./hashmap"),
-    hashPoint = require("./point-hash"),
-    equalPoint = require("./point-equal");
-
-// Given a cut topology, combines duplicate arcs.
-module.exports = function(topology) {
-  var coordinates = topology.coordinates,
-      lines = topology.lines,
-      rings = topology.rings,
-      arcCount = lines.length + rings.length;
-
-  delete topology.lines;
-  delete topology.rings;
-
-  // Count the number of (non-unique) arcs to initialize the hashmap safely.
-  for (var i = 0, n = lines.length; i < n; ++i) {
-    var line = lines[i]; while (line = line.next) ++arcCount;
-  }
-  for (var i = 0, n = rings.length; i < n; ++i) {
-    var ring = rings[i]; while (ring = ring.next) ++arcCount;
-  }
-
-  var arcsByEnd = hashmap(arcCount * 2 * 1.4, hashPoint, equalPoint),
-      arcs = topology.arcs = [];
-
-  for (var i = 0, n = lines.length; i < n; ++i) {
-    var line = lines[i];
-    do {
-      dedupLine(line);
-    } while (line = line.next);
-  }
-
-  for (var i = 0, n = rings.length; i < n; ++i) {
-    var ring = rings[i];
-    if (ring.next) { // arc is no longer closed
-      do {
-        dedupLine(ring);
-      } while (ring = ring.next);
-    } else {
-      dedupRing(ring);
-    }
-  }
-
-  function dedupLine(arc) {
-    var startPoint,
-        endPoint,
-        startArcs,
-        endArcs;
-
-    // Does this arc match an existing arc in order?
-    if (startArcs = arcsByEnd.get(startPoint = coordinates[arc[0]])) {
-      for (var i = 0, n = startArcs.length; i < n; ++i) {
-        var startArc = startArcs[i];
-        if (equalLine(startArc, arc)) {
-          arc[0] = startArc[0];
-          arc[1] = startArc[1];
-          return;
-        }
-      }
-    }
-
-    // Does this arc match an existing arc in reverse order?
-    if (endArcs = arcsByEnd.get(endPoint = coordinates[arc[1]])) {
-      for (var i = 0, n = endArcs.length; i < n; ++i) {
-        var endArc = endArcs[i];
-        if (reverseEqualLine(endArc, arc)) {
-          arc[1] = endArc[0];
-          arc[0] = endArc[1];
-          return;
-        }
-      }
-    }
-
-    if (startArcs) startArcs.push(arc); else arcsByEnd.set(startPoint, [arc]);
-    if (endArcs) endArcs.push(arc); else arcsByEnd.set(endPoint, [arc]);
-    arcs.push(arc);
-  }
-
-  function dedupRing(arc) {
-    var endPoint,
-        endArcs;
-
-    // Does this arc match an existing line in order, or reverse order?
-    // Rings are closed, so their start point and end point is the same.
-    if (endArcs = arcsByEnd.get(endPoint = coordinates[arc[0]])) {
-      for (var i = 0, n = endArcs.length; i < n; ++i) {
-        var endArc = endArcs[i];
-        if (equalRing(endArc, arc)) {
-          arc[0] = endArc[0];
-          arc[1] = endArc[1];
-          return;
-        }
-        if (reverseEqualRing(endArc, arc)) {
-          arc[0] = endArc[1];
-          arc[1] = endArc[0];
-          return;
-        }
-      }
-    }
-
-    // Otherwise, does this arc match an existing ring in order, or reverse order?
-    if (endArcs = arcsByEnd.get(endPoint = coordinates[arc[0] + findMinimumOffset(arc)])) {
-      for (var i = 0, n = endArcs.length; i < n; ++i) {
-        var endArc = endArcs[i];
-        if (equalRing(endArc, arc)) {
-          arc[0] = endArc[0];
-          arc[1] = endArc[1];
-          return;
-        }
-        if (reverseEqualRing(endArc, arc)) {
-          arc[0] = endArc[1];
-          arc[1] = endArc[0];
-          return;
-        }
-      }
-    }
-
-    if (endArcs) endArcs.push(arc); else arcsByEnd.set(endPoint, [arc]);
-    arcs.push(arc);
-  }
-
-  function equalLine(arcA, arcB) {
-    var ia = arcA[0], ib = arcB[0],
-        ja = arcA[1], jb = arcB[1];
-    if (ia - ja !== ib - jb) return false;
-    for (; ia <= ja; ++ia, ++ib) if (!equalPoint(coordinates[ia], coordinates[ib])) return false;
-    return true;
-  }
-
-  function reverseEqualLine(arcA, arcB) {
-    var ia = arcA[0], ib = arcB[0],
-        ja = arcA[1], jb = arcB[1];
-    if (ia - ja !== ib - jb) return false;
-    for (; ia <= ja; ++ia, --jb) if (!equalPoint(coordinates[ia], coordinates[jb])) return false;
-    return true;
-  }
-
-  function equalRing(arcA, arcB) {
-    var ia = arcA[0], ib = arcB[0],
-        ja = arcA[1], jb = arcB[1],
-        n = ja - ia;
-    if (n !== jb - ib) return false;
-    var ka = findMinimumOffset(arcA),
-        kb = findMinimumOffset(arcB);
-    for (var i = 0; i < n; ++i) {
-      if (!equalPoint(coordinates[ia + (i + ka) % n], coordinates[ib + (i + kb) % n])) return false;
-    }
-    return true;
-  }
-
-  function reverseEqualRing(arcA, arcB) {
-    var ia = arcA[0], ib = arcB[0],
-        ja = arcA[1], jb = arcB[1],
-        n = ja - ia;
-    if (n !== jb - ib) return false;
-    var ka = findMinimumOffset(arcA),
-        kb = n - findMinimumOffset(arcB);
-    for (var i = 0; i < n; ++i) {
-      if (!equalPoint(coordinates[ia + (i + ka) % n], coordinates[jb - (i + kb) % n])) return false;
-    }
-    return true;
-  }
-
-  // Rings are rotated to a consistent, but arbitrary, start point.
-  // This is necessary to detect when a ring and a rotated copy are dupes.
-  function findMinimumOffset(arc) {
-    var start = arc[0],
-        end = arc[1],
-        mid = start,
-        minimum = mid,
-        minimumPoint = coordinates[mid];
-    while (++mid < end) {
-      var point = coordinates[mid];
-      if (point[0] < minimumPoint[0] || point[0] === minimumPoint[0] && point[1] < minimumPoint[1]) {
-        minimum = mid;
-        minimumPoint = point;
-      }
-    }
-    return minimum - start;
-  }
-
-  return topology;
-};
-
-},{"./hashmap":106,"./join":109,"./point-equal":110,"./point-hash":111}],105:[function(require,module,exports){
-// Extracts the lines and rings from the specified hash of geometry objects.
-//
-// Returns an object with three properties:
-//
-// * coordinates - shared buffer of [x, y] coordinates
-// * lines - lines extracted from the hash, of the form [start, end]
-// * rings - rings extracted from the hash, of the form [start, end]
-//
-// For each ring or line, start and end represent inclusive indexes into the
-// coordinates buffer. For rings (and closed lines), coordinates[start] equals
-// coordinates[end].
-//
-// For each line or polygon geometry in the input hash, including nested
-// geometries as in geometry collections, the `coordinates` array is replaced
-// with an equivalent `arcs` array that, for each line (for line string
-// geometries) or ring (for polygon geometries), points to one of the above
-// lines or rings.
-module.exports = function(objects) {
-  var index = -1,
-      lines = [],
-      rings = [],
-      coordinates = [];
-
-  function extractGeometry(geometry) {
-    if (geometry && extractGeometryType.hasOwnProperty(geometry.type)) extractGeometryType[geometry.type](geometry);
-  }
-
-  var extractGeometryType = {
-    GeometryCollection: function(o) { o.geometries.forEach(extractGeometry); },
-    LineString: function(o) { o.arcs = extractLine(o.coordinates); delete o.coordinates; },
-    MultiLineString: function(o) { o.arcs = o.coordinates.map(extractLine); delete o.coordinates; },
-    Polygon: function(o) { o.arcs = o.coordinates.map(extractRing); delete o.coordinates; },
-    MultiPolygon: function(o) { o.arcs = o.coordinates.map(extractMultiRing); delete o.coordinates; }
-  };
-
-  function extractLine(line) {
-    for (var i = 0, n = line.length; i < n; ++i) coordinates[++index] = line[i];
-    var arc = {0: index - n + 1, 1: index};
-    lines.push(arc);
-    return arc;
-  }
-
-  function extractRing(ring) {
-    for (var i = 0, n = ring.length; i < n; ++i) coordinates[++index] = ring[i];
-    var arc = {0: index - n + 1, 1: index};
-    rings.push(arc);
-    return arc;
-  }
-
-  function extractMultiRing(rings) {
-    return rings.map(extractRing);
-  }
-
-  for (var key in objects) {
-    extractGeometry(objects[key]);
-  }
-
-  return {
-    type: "Topology",
-    coordinates: coordinates,
-    lines: lines,
-    rings: rings,
-    objects: objects
-  };
-};
-
-},{}],106:[function(require,module,exports){
-module.exports = function(size, hash, equal, keyType, keyEmpty, valueType) {
-  if (arguments.length === 3) {
-    keyType = valueType = Array;
-    keyEmpty = null;
-  }
-
-  var keystore = new keyType(size = 1 << Math.max(4, Math.ceil(Math.log(size) / Math.LN2))),
-      valstore = new valueType(size),
-      mask = size - 1,
-      free = size;
-
-  for (var i = 0; i < size; ++i) {
-    keystore[i] = keyEmpty;
-  }
-
-  function set(key, value) {
-    var index = hash(key) & mask,
-        matchKey = keystore[index],
-        collisions = 0;
-    while (matchKey != keyEmpty) {
-      if (equal(matchKey, key)) return valstore[index] = value;
-      if (++collisions >= size) throw new Error("full hashmap");
-      matchKey = keystore[index = (index + 1) & mask];
-    }
-    keystore[index] = key;
-    valstore[index] = value;
-    --free;
-    return value;
-  }
-
-  function maybeSet(key, value) {
-    var index = hash(key) & mask,
-        matchKey = keystore[index],
-        collisions = 0;
-    while (matchKey != keyEmpty) {
-      if (equal(matchKey, key)) return valstore[index];
-      if (++collisions >= size) throw new Error("full hashmap");
-      matchKey = keystore[index = (index + 1) & mask];
-    }
-    keystore[index] = key;
-    valstore[index] = value;
-    --free;
-    return value;
-  }
-
-  function get(key, missingValue) {
-    var index = hash(key) & mask,
-        matchKey = keystore[index],
-        collisions = 0;
-    while (matchKey != keyEmpty) {
-      if (equal(matchKey, key)) return valstore[index];
-      if (++collisions >= size) break;
-      matchKey = keystore[index = (index + 1) & mask];
-    }
-    return missingValue;
-  }
-
-  function keys() {
-    var keys = [];
-    for (var i = 0, n = keystore.length; i < n; ++i) {
-      var matchKey = keystore[i];
-      if (matchKey != keyEmpty) keys.push(matchKey);
-    }
-    return keys;
-  }
-
-  return {
-    set: set,
-    maybeSet: maybeSet, // set if unset
-    get: get,
-    keys: keys
-  };
-};
-
-},{}],107:[function(require,module,exports){
-module.exports = function(size, hash, equal, type, empty) {
-  if (arguments.length === 3) {
-    type = Array;
-    empty = null;
-  }
-
-  var store = new type(size = 1 << Math.max(4, Math.ceil(Math.log(size) / Math.LN2))),
-      mask = size - 1,
-      free = size;
-
-  for (var i = 0; i < size; ++i) {
-    store[i] = empty;
-  }
-
-  function add(value) {
-    var index = hash(value) & mask,
-        match = store[index],
-        collisions = 0;
-    while (match != empty) {
-      if (equal(match, value)) return true;
-      if (++collisions >= size) throw new Error("full hashset");
-      match = store[index = (index + 1) & mask];
-    }
-    store[index] = value;
-    --free;
-    return true;
-  }
-
-  function has(value) {
-    var index = hash(value) & mask,
-        match = store[index],
-        collisions = 0;
-    while (match != empty) {
-      if (equal(match, value)) return true;
-      if (++collisions >= size) break;
-      match = store[index = (index + 1) & mask];
-    }
-    return false;
-  }
-
-  function values() {
-    var values = [];
-    for (var i = 0, n = store.length; i < n; ++i) {
-      var match = store[i];
-      if (match != empty) values.push(match);
-    }
-    return values;
-  }
-
-  return {
-    add: add,
-    has: has,
-    values: values
-  };
-};
-
-},{}],108:[function(require,module,exports){
-var hashmap = require("./hashmap"),
-    extract = require("./extract"),
-    cut = require("./cut"),
-    dedup = require("./dedup");
-
-// Constructs the TopoJSON Topology for the specified hash of geometries.
-// Each object in the specified hash must be a GeoJSON object,
-// meaning FeatureCollection, a Feature or a geometry object.
-module.exports = function(objects) {
-  var topology = dedup(cut(extract(objects))),
-      coordinates = topology.coordinates,
-      indexByArc = hashmap(topology.arcs.length * 1.4, hashArc, equalArc);
-
-  objects = topology.objects; // for garbage collection
-
-  topology.arcs = topology.arcs.map(function(arc, i) {
-    indexByArc.set(arc, i);
-    return coordinates.slice(arc[0], arc[1] + 1);
-  });
-
-  delete topology.coordinates;
-  coordinates = null;
-
-  function indexGeometry(geometry) {
-    if (geometry && indexGeometryType.hasOwnProperty(geometry.type)) indexGeometryType[geometry.type](geometry);
-  }
-
-  var indexGeometryType = {
-    GeometryCollection: function(o) { o.geometries.forEach(indexGeometry); },
-    LineString: function(o) { o.arcs = indexArcs(o.arcs); },
-    MultiLineString: function(o) { o.arcs = o.arcs.map(indexArcs); },
-    Polygon: function(o) { o.arcs = o.arcs.map(indexArcs); },
-    MultiPolygon: function(o) { o.arcs = o.arcs.map(indexMultiArcs); }
-  };
-
-  function indexArcs(arc) {
-    var indexes = [];
-    do {
-      var index = indexByArc.get(arc);
-      indexes.push(arc[0] < arc[1] ? index : ~index);
-    } while (arc = arc.next);
-    return indexes;
-  }
-
-  function indexMultiArcs(arcs) {
-    return arcs.map(indexArcs);
-  }
-
-  for (var key in objects) {
-    indexGeometry(objects[key]);
-  }
-
-  return topology;
-};
-
-function hashArc(arc) {
-  var i = arc[0], j = arc[1], t;
-  if (j < i) t = i, i = j, j = t;
-  return i + 31 * j;
-}
-
-function equalArc(arcA, arcB) {
-  var ia = arcA[0], ja = arcA[1],
-      ib = arcB[0], jb = arcB[1], t;
-  if (ja < ia) t = ia, ia = ja, ja = t;
-  if (jb < ib) t = ib, ib = jb, jb = t;
-  return ia === ib && ja === jb;
-}
-
-},{"./cut":103,"./dedup":104,"./extract":105,"./hashmap":106}],109:[function(require,module,exports){
-var hashset = require("./hashset"),
-    hashmap = require("./hashmap"),
-    hashPoint = require("./point-hash"),
-    equalPoint = require("./point-equal");
-
-// Given an extracted (pre-)topology, identifies all of the junctions. These are
-// the points at which arcs (lines or rings) will need to be cut so that each
-// arc is represented uniquely.
-//
-// A junction is a point where at least one arc deviates from another arc going
-// through the same point. For example, consider the point B. If there is a arc
-// through ABC and another arc through CBA, then B is not a junction because in
-// both cases the adjacent point pairs are {A,C}. However, if there is an
-// additional arc ABD, then {A,D} != {A,C}, and thus B becomes a junction.
-//
-// For a closed ring ABCA, the first point A’s adjacent points are the second
-// and last point {B,C}. For a line, the first and last point are always
-// considered junctions, even if the line is closed; this ensures that a closed
-// line is never rotated.
-module.exports = function(topology) {
-  var coordinates = topology.coordinates,
-      lines = topology.lines,
-      rings = topology.rings,
-      indexes = index(),
-      visitedByIndex = new Int32Array(coordinates.length),
-      leftByIndex = new Int32Array(coordinates.length),
-      rightByIndex = new Int32Array(coordinates.length),
-      junctionByIndex = new Int8Array(coordinates.length),
-      junctionCount = 0; // upper bound on number of junctions
-
-  for (var i = 0, n = coordinates.length; i < n; ++i) {
-    visitedByIndex[i] = leftByIndex[i] = rightByIndex[i] = -1;
-  }
-
-  for (var i = 0, n = lines.length; i < n; ++i) {
-    var line = lines[i],
-        lineStart = line[0],
-        lineEnd = line[1],
-        previousIndex,
-        currentIndex = indexes[lineStart],
-        nextIndex = indexes[++lineStart];
-    ++junctionCount, junctionByIndex[currentIndex] = 1; // start
-    while (++lineStart <= lineEnd) {
-      sequence(i, previousIndex = currentIndex, currentIndex = nextIndex, nextIndex = indexes[lineStart]);
-    }
-    ++junctionCount, junctionByIndex[nextIndex] = 1; // end
-  }
-
-  for (var i = 0, n = coordinates.length; i < n; ++i) {
-    visitedByIndex[i] = -1;
-  }
-
-  for (var i = 0, n = rings.length; i < n; ++i) {
-    var ring = rings[i],
-        ringStart = ring[0] + 1,
-        ringEnd = ring[1],
-        previousIndex = indexes[ringEnd - 1],
-        currentIndex = indexes[ringStart - 1],
-        nextIndex = indexes[ringStart];
-    sequence(i, previousIndex, currentIndex, nextIndex);
-    while (++ringStart <= ringEnd) {
-      sequence(i, previousIndex = currentIndex, currentIndex = nextIndex, nextIndex = indexes[ringStart]);
-    }
-  }
-
-  function sequence(i, previousIndex, currentIndex, nextIndex) {
-    if (visitedByIndex[currentIndex] === i) return; // ignore self-intersection
-    visitedByIndex[currentIndex] = i;
-    var leftIndex = leftByIndex[currentIndex];
-    if (leftIndex >= 0) {
-      var rightIndex = rightByIndex[currentIndex];
-      if ((leftIndex !== previousIndex || rightIndex !== nextIndex)
-        && (leftIndex !== nextIndex || rightIndex !== previousIndex)) {
-        ++junctionCount, junctionByIndex[currentIndex] = 1;
-      }
-    } else {
-      leftByIndex[currentIndex] = previousIndex;
-      rightByIndex[currentIndex] = nextIndex;
-    }
-  }
-
-  function index() {
-    var indexByPoint = hashmap(coordinates.length * 1.4, hashIndex, equalIndex, Int32Array, -1, Int32Array),
-        indexes = new Int32Array(coordinates.length);
-
-    for (var i = 0, n = coordinates.length; i < n; ++i) {
-      indexes[i] = indexByPoint.maybeSet(i, i);
-    }
-
-    return indexes;
-  }
-
-  function hashIndex(i) {
-    return hashPoint(coordinates[i]);
-  }
-
-  function equalIndex(i, j) {
-    return equalPoint(coordinates[i], coordinates[j]);
-  }
-
-  visitedByIndex = leftByIndex = rightByIndex = null;
-
-  var junctionByPoint = hashset(junctionCount * 1.4, hashPoint, equalPoint);
-
-  // Convert back to a standard hashset by point for caller convenience.
-  for (var i = 0, n = coordinates.length, j; i < n; ++i) {
-    if (junctionByIndex[j = indexes[i]]) {
-      junctionByPoint.add(coordinates[j]);
-    }
-  }
-
-  return junctionByPoint;
-};
-
-},{"./hashmap":106,"./hashset":107,"./point-equal":110,"./point-hash":111}],110:[function(require,module,exports){
-module.exports = function(pointA, pointB) {
-  return pointA[0] === pointB[0] && pointA[1] === pointB[1];
-};
-
-},{}],111:[function(require,module,exports){
-// TODO if quantized, use simpler Int32 hashing?
-
-var buffer = new ArrayBuffer(16),
-    floats = new Float64Array(buffer),
-    uints = new Uint32Array(buffer);
-
-module.exports = function(point) {
-  floats[0] = point[0];
-  floats[1] = point[1];
-  var hash = uints[0] ^ uints[1];
-  hash = hash << 5 ^ hash >> 7 ^ uints[2] ^ uints[3];
-  return hash & 0x7fffffff;
-};
-
-},{}],112:[function(require,module,exports){
-// Given a hash of GeoJSON objects, transforms any properties on features using
-// the specified transform function. If no properties are propagated to the new
-// properties hash, the properties hash will be deleted.
-module.exports = function(objects, propertyTransform) {
-  if (arguments.length < 2) propertyTransform = function() {};
-
-  function transformObject(object) {
-    if (object && transformObjectType.hasOwnProperty(object.type)) transformObjectType[object.type](object);
-  }
-
-  function transformFeature(feature) {
-    if (feature.properties == null) feature.properties = {};
-    var properties = feature.properties = propertyTransform(feature);
-    if (properties) for (var key in properties) return;
-    delete feature.properties;
-  }
-
-  var transformObjectType = {
-    Feature: transformFeature,
-    FeatureCollection: function(collection) { collection.features.forEach(transformFeature); }
-  };
-
-  for (var key in objects) {
-    transformObject(objects[key]);
-  }
-
-  return objects;
-};
-
-},{}],113:[function(require,module,exports){
-module.exports = function(types) {
-  for (var type in typeDefaults) {
-    if (!(type in types)) {
-      types[type] = typeDefaults[type];
-    }
-  }
-  types.defaults = typeDefaults;
-  return types;
-};
-
-var typeDefaults = {
-
-  Feature: function(feature) {
-    if (feature.geometry) this.geometry(feature.geometry);
-  },
-
-  FeatureCollection: function(collection) {
-    var features = collection.features, i = -1, n = features.length;
-    while (++i < n) this.Feature(features[i]);
-  },
-
-  GeometryCollection: function(collection) {
-    var geometries = collection.geometries, i = -1, n = geometries.length;
-    while (++i < n) this.geometry(geometries[i]);
-  },
-
-  LineString: function(lineString) {
-    this.line(lineString.coordinates);
-  },
-
-  MultiLineString: function(multiLineString) {
-    var coordinates = multiLineString.coordinates, i = -1, n = coordinates.length;
-    while (++i < n) this.line(coordinates[i]);
-  },
-
-  MultiPoint: function(multiPoint) {
-    var coordinates = multiPoint.coordinates, i = -1, n = coordinates.length;
-    while (++i < n) this.point(coordinates[i]);
-  },
-
-  MultiPolygon: function(multiPolygon) {
-    var coordinates = multiPolygon.coordinates, i = -1, n = coordinates.length;
-    while (++i < n) this.polygon(coordinates[i]);
-  },
-
-  Point: function(point) {
-    this.point(point.coordinates);
-  },
-
-  Polygon: function(polygon) {
-    this.polygon(polygon.coordinates);
-  },
-
-  object: function(object) {
-    return object == null ? null
-        : typeObjects.hasOwnProperty(object.type) ? this[object.type](object)
-        : this.geometry(object);
-  },
-
-  geometry: function(geometry) {
-    return geometry == null ? null
-        : typeGeometries.hasOwnProperty(geometry.type) ? this[geometry.type](geometry)
-        : null;
-  },
-
-  point: function() {},
-
-  line: function(coordinates) {
-    var i = -1, n = coordinates.length;
-    while (++i < n) this.point(coordinates[i]);
-  },
-
-  polygon: function(coordinates) {
-    var i = -1, n = coordinates.length;
-    while (++i < n) this.line(coordinates[i]);
-  }
-};
-
-var typeGeometries = {
-  LineString: 1,
-  MultiLineString: 1,
-  MultiPoint: 1,
-  MultiPolygon: 1,
-  Point: 1,
-  Polygon: 1,
-  GeometryCollection: 1
-};
-
-var typeObjects = {
-  Feature: 1,
-  FeatureCollection: 1
-};
-
-},{}],114:[function(require,module,exports){
+},{"topojson":87}],87:[function(require,module,exports){
 !function() {
   var topojson = {
-    version: "1.6.14",
+    version: "1.6.18",
     mesh: function(topology) { return object(topology, meshArcs.apply(this, arguments)); },
     meshArcs: meshArcs,
     merge: function(topology) { return object(topology, mergeArcs.apply(this, arguments)); },
@@ -16929,16 +14950,23 @@ var typeObjects = {
   function presimplify(topology, triangleArea) {
     var absolute = transformAbsolute(topology.transform),
         relative = transformRelative(topology.transform),
-        heap = minAreaHeap(),
-        maxArea = 0,
-        triangle;
+        heap = minAreaHeap();
 
     if (!triangleArea) triangleArea = cartesianTriangleArea;
 
     topology.arcs.forEach(function(arc) {
-      var triangles = [];
+      var triangles = [],
+          maxArea = 0,
+          triangle;
 
-      arc.forEach(absolute);
+      // To store each point’s effective area, we create a new array rather than
+      // extending the passed-in point to workaround a Chrome/V8 bug (getting
+      // stuck in smi mode). For midpoints, the initial effective area of
+      // Infinity will be computed in the next step.
+      for (var i = 0, n = arc.length, p; i < n; ++i) {
+        p = arc[i];
+        absolute(arc[i] = [p[0], p[1], Infinity], i);
+      }
 
       for (var i = 1, n = arc.length - 1; i < n; ++i) {
         triangle = arc.slice(i - 1, i + 2);
@@ -16947,41 +14975,36 @@ var typeObjects = {
         heap.push(triangle);
       }
 
-      // Always keep the arc endpoints!
-      arc[0][2] = arc[n][2] = Infinity;
-
       for (var i = 0, n = triangles.length; i < n; ++i) {
         triangle = triangles[i];
         triangle.previous = triangles[i - 1];
         triangle.next = triangles[i + 1];
       }
-    });
 
-    while (triangle = heap.pop()) {
-      var previous = triangle.previous,
-          next = triangle.next;
+      while (triangle = heap.pop()) {
+        var previous = triangle.previous,
+            next = triangle.next;
 
-      // If the area of the current point is less than that of the previous point
-      // to be eliminated, use the latter's area instead. This ensures that the
-      // current point cannot be eliminated without eliminating previously-
-      // eliminated points.
-      if (triangle[1][2] < maxArea) triangle[1][2] = maxArea;
-      else maxArea = triangle[1][2];
+        // If the area of the current point is less than that of the previous point
+        // to be eliminated, use the latter's area instead. This ensures that the
+        // current point cannot be eliminated without eliminating previously-
+        // eliminated points.
+        if (triangle[1][2] < maxArea) triangle[1][2] = maxArea;
+        else maxArea = triangle[1][2];
 
-      if (previous) {
-        previous.next = next;
-        previous[2] = triangle[2];
-        update(previous);
+        if (previous) {
+          previous.next = next;
+          previous[2] = triangle[2];
+          update(previous);
+        }
+
+        if (next) {
+          next.previous = previous;
+          next[0] = triangle[0];
+          update(next);
+        }
       }
 
-      if (next) {
-        next.previous = previous;
-        next[0] = triangle[0];
-        update(next);
-      }
-    }
-
-    topology.arcs.forEach(function(arc) {
       arc.forEach(relative);
     });
 
@@ -17111,7 +15134,7 @@ var typeObjects = {
   else this.topojson = topojson;
 }();
 
-},{}],115:[function(require,module,exports){
+},{}],88:[function(require,module,exports){
 module.exports = function(bbox, factor){
   var currentXDistance = (bbox[2] - bbox[0]) 
   var currentYDistance = (bbox[3] - bbox[1])
@@ -17128,7 +15151,7 @@ module.exports = function(bbox, factor){
   var sized = [lowX, lowY, highX, highY]
   return sized
 }
-},{}],116:[function(require,module,exports){
+},{}],89:[function(require,module,exports){
 var midpoint = require('turf-midpoint')
 var point = require('turf-point')
 var distance = require('turf-distance')
@@ -17161,11 +15184,11 @@ module.exports = function(bbox){
 }
 
 
-},{"turf-distance":39,"turf-midpoint":72,"turf-point":77}],117:[function(require,module,exports){
+},{"turf-distance":41,"turf-midpoint":74,"turf-point":79}],90:[function(require,module,exports){
 module.exports=require(17)
-},{"simple-statistics":118,"turf-inside":55}],118:[function(require,module,exports){
+},{"simple-statistics":91,"turf-inside":57}],91:[function(require,module,exports){
 module.exports=require(7)
-},{}],119:[function(require,module,exports){
+},{}],92:[function(require,module,exports){
 inside = require('turf-inside')
 
 module.exports = function(points, polygons, field, outField){
@@ -17187,9 +15210,9 @@ module.exports = function(points, polygons, field, outField){
   })
   return points
 }
-},{"turf-inside":55}],120:[function(require,module,exports){
-module.exports=require(34)
-},{"turf-nearest":75,"turf-point":77,"turf-polygon":78}],121:[function(require,module,exports){
+},{"turf-inside":57}],93:[function(require,module,exports){
+module.exports=require(35)
+},{"turf-nearest":77,"turf-point":79,"turf-polygon":80}],94:[function(require,module,exports){
 // look here for help http://svn.osgeo.org/grass/grass/branches/releasebranch_6_4/vector/v.overlay/main.c
 //must be array of polygons
 
@@ -17212,17 +15235,17 @@ module.exports = function(poly1, poly2){
   }
 }
 
-},{"jsts":122}],122:[function(require,module,exports){
-module.exports=require(26)
-},{"./lib/jsts":123,"javascript.util":124}],123:[function(require,module,exports){
+},{"jsts":95}],95:[function(require,module,exports){
 module.exports=require(27)
-},{}],124:[function(require,module,exports){
+},{"./lib/jsts":96,"javascript.util":97}],96:[function(require,module,exports){
 module.exports=require(28)
-},{}],125:[function(require,module,exports){
+},{}],97:[function(require,module,exports){
+module.exports=require(29)
+},{}],98:[function(require,module,exports){
 module.exports=require(19)
-},{"simple-statistics":126,"turf-inside":55}],126:[function(require,module,exports){
+},{"simple-statistics":99,"turf-inside":57}],99:[function(require,module,exports){
 module.exports=require(7)
-},{}],127:[function(require,module,exports){
+},{}],100:[function(require,module,exports){
 var inside = require('turf-inside')
 var featureCollection = require('turf-featurecollection')
 
@@ -17238,5 +15261,5 @@ module.exports = function(ptFC, polyFC){
   })
   return pointsWithin
 }
-},{"turf-featurecollection":51,"turf-inside":55}]},{},[1])(1)
+},{"turf-featurecollection":53,"turf-inside":57}]},{},[1])(1)
 });
