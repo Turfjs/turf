@@ -51,5 +51,6 @@ module.exports = {
   tin: require('turf-tin'),
   union: require('turf-union'),
   bearing: require('turf-bearing'),
-  destination: require('turf-destination')
+  destination: require('turf-destination'),
+  hex: require('turf-hex')
 }

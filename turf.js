@@ -50,10 +50,13 @@ module.exports = {
   reclass: require('turf-reclass'),
   remove: require('turf-remove'),
   tin: require('turf-tin'),
-  union: require('turf-union')
+  union: require('turf-union'),
+  bearing: require('turf-bearing'),
+  destination: require('turf-destination'),
+  hex: require('turf-hex')
 }
 
-},{"turf-aggregate":5,"turf-average":21,"turf-bbox-polygon":23,"turf-bezier":24,"turf-buffer":25,"turf-center":30,"turf-centroid":31,"turf-combine":32,"turf-concave":33,"turf-convex":35,"turf-count":36,"turf-deviation":37,"turf-distance":39,"turf-donuts":40,"turf-envelope":42,"turf-erase":43,"turf-explode":47,"turf-extent":49,"turf-featurecollection":51,"turf-filter":52,"turf-flip":53,"turf-grid":54,"turf-inside":55,"turf-intersect":56,"turf-is-clockwise":60,"turf-isobands":61,"turf-isolines":62,"turf-jenks":63,"turf-linestring":65,"turf-max":66,"turf-median":68,"turf-merge":70,"turf-midpoint":72,"turf-min":73,"turf-nearest":75,"turf-planepoint":76,"turf-point":77,"turf-polygon":78,"turf-quantile":79,"turf-reclass":81,"turf-remove":82,"turf-sample":83,"turf-simplify":84,"turf-size":115,"turf-square":116,"turf-sum":117,"turf-tag":119,"turf-tin":120,"turf-union":121,"turf-variance":125,"turf-within":127}],2:[function(require,module,exports){
+},{"turf-aggregate":6,"turf-average":22,"turf-bbox-polygon":24,"turf-bearing":25,"turf-bezier":26,"turf-buffer":27,"turf-center":32,"turf-centroid":33,"turf-combine":34,"turf-concave":35,"turf-convex":37,"turf-count":38,"turf-destination":39,"turf-deviation":40,"turf-distance":42,"turf-donuts":43,"turf-envelope":45,"turf-erase":46,"turf-explode":50,"turf-extent":52,"turf-featurecollection":54,"turf-filter":55,"turf-flip":56,"turf-grid":57,"turf-hex":58,"turf-inside":59,"turf-intersect":60,"turf-is-clockwise":64,"turf-isobands":65,"turf-isolines":66,"turf-jenks":67,"turf-linestring":69,"turf-max":70,"turf-median":72,"turf-merge":74,"turf-midpoint":76,"turf-min":77,"turf-nearest":79,"turf-planepoint":80,"turf-point":81,"turf-polygon":82,"turf-quantile":83,"turf-reclass":85,"turf-remove":86,"turf-sample":87,"turf-simplify":88,"turf-size":119,"turf-square":120,"turf-sum":121,"turf-tag":123,"turf-tin":124,"turf-union":125,"turf-variance":129,"turf-within":131}],2:[function(require,module,exports){
 /*!
  * The buffer module from node.js, for the browser.
  *
@@ -63,14 +66,17 @@ module.exports = {
 
 var base64 = require('base64-js')
 var ieee754 = require('ieee754')
+var isArray = require('is-array')
 
 exports.Buffer = Buffer
 exports.SlowBuffer = Buffer
 exports.INSPECT_MAX_BYTES = 50
-Buffer.poolSize = 8192
+Buffer.poolSize = 8192 // not used by this implementation
+
+var kMaxLength = 0x3fffffff
 
 /**
- * If `TYPED_ARRAY_SUPPORT`:
+ * If `Buffer.TYPED_ARRAY_SUPPORT`:
  *   === true    Use Uint8Array implementation (fastest)
  *   === false   Use Object implementation (most compatible, even IE6)
  *
@@ -88,10 +94,10 @@ Buffer.poolSize = 8192
  *  - IE10 has a broken `TypedArray.prototype.subarray` function which returns arrays of
  *    incorrect length in some situations.
  *
- * We detect these buggy browsers and set `TYPED_ARRAY_SUPPORT` to `false` so they will
+ * We detect these buggy browsers and set `Buffer.TYPED_ARRAY_SUPPORT` to `false` so they will
  * get the Object implementation, which is slower but will work correctly.
  */
-var TYPED_ARRAY_SUPPORT = (function () {
+Buffer.TYPED_ARRAY_SUPPORT = (function () {
   try {
     var buf = new ArrayBuffer(0)
     var arr = new Uint8Array(buf)
@@ -135,10 +141,14 @@ function Buffer (subject, encoding, noZero) {
       subject = subject.data
     length = +subject.length > 0 ? Math.floor(+subject.length) : 0
   } else
-    throw new Error('First argument needs to be a number, array or string.')
+    throw new TypeError('must start with number, buffer, array or string')
+
+  if (this.length > kMaxLength)
+    throw new RangeError('Attempt to allocate Buffer larger than maximum ' +
+      'size: 0x' + kMaxLength.toString(16) + ' bytes')
 
   var buf
-  if (TYPED_ARRAY_SUPPORT) {
+  if (Buffer.TYPED_ARRAY_SUPPORT) {
     // Preferred: Return an augmented `Uint8Array` instance for best performance
     buf = Buffer._augment(new Uint8Array(length))
   } else {
@@ -149,7 +159,7 @@ function Buffer (subject, encoding, noZero) {
   }
 
   var i
-  if (TYPED_ARRAY_SUPPORT && typeof subject.byteLength === 'number') {
+  if (Buffer.TYPED_ARRAY_SUPPORT && typeof subject.byteLength === 'number') {
     // Speed optimization -- use set if we're copying from a typed array
     buf._set(subject)
   } else if (isArrayish(subject)) {
@@ -163,7 +173,7 @@ function Buffer (subject, encoding, noZero) {
     }
   } else if (type === 'string') {
     buf.write(subject, 0, encoding)
-  } else if (type === 'number' && !TYPED_ARRAY_SUPPORT && !noZero) {
+  } else if (type === 'number' && !Buffer.TYPED_ARRAY_SUPPORT && !noZero) {
     for (i = 0; i < length; i++) {
       buf[i] = 0
     }
@@ -172,8 +182,25 @@ function Buffer (subject, encoding, noZero) {
   return buf
 }
 
-// STATIC METHODS
-// ==============
+Buffer.isBuffer = function (b) {
+  return !!(b != null && b._isBuffer)
+}
+
+Buffer.compare = function (a, b) {
+  if (!Buffer.isBuffer(a) || !Buffer.isBuffer(b))
+    throw new TypeError('Arguments must be Buffers')
+
+  var x = a.length
+  var y = b.length
+  for (var i = 0, len = Math.min(x, y); i < len && a[i] === b[i]; i++) {}
+  if (i !== len) {
+    x = a[i]
+    y = b[i]
+  }
+  if (x < y) return -1
+  if (y < x) return 1
+  return 0
+}
 
 Buffer.isEncoding = function (encoding) {
   switch (String(encoding).toLowerCase()) {
@@ -194,43 +221,8 @@ Buffer.isEncoding = function (encoding) {
   }
 }
 
-Buffer.isBuffer = function (b) {
-  return !!(b != null && b._isBuffer)
-}
-
-Buffer.byteLength = function (str, encoding) {
-  var ret
-  str = str.toString()
-  switch (encoding || 'utf8') {
-    case 'hex':
-      ret = str.length / 2
-      break
-    case 'utf8':
-    case 'utf-8':
-      ret = utf8ToBytes(str).length
-      break
-    case 'ascii':
-    case 'binary':
-    case 'raw':
-      ret = str.length
-      break
-    case 'base64':
-      ret = base64ToBytes(str).length
-      break
-    case 'ucs2':
-    case 'ucs-2':
-    case 'utf16le':
-    case 'utf-16le':
-      ret = str.length * 2
-      break
-    default:
-      throw new Error('Unknown encoding')
-  }
-  return ret
-}
-
 Buffer.concat = function (list, totalLength) {
-  assert(isArray(list), 'Usage: Buffer.concat(list[, length])')
+  if (!isArray(list)) throw new TypeError('Usage: Buffer.concat(list[, length])')
 
   if (list.length === 0) {
     return new Buffer(0)
@@ -256,26 +248,118 @@ Buffer.concat = function (list, totalLength) {
   return buf
 }
 
-Buffer.compare = function (a, b) {
-  assert(Buffer.isBuffer(a) && Buffer.isBuffer(b), 'Arguments must be Buffers')
-  var x = a.length
-  var y = b.length
-  for (var i = 0, len = Math.min(x, y); i < len && a[i] === b[i]; i++) {}
-  if (i !== len) {
-    x = a[i]
-    y = b[i]
+Buffer.byteLength = function (str, encoding) {
+  var ret
+  str = str + ''
+  switch (encoding || 'utf8') {
+    case 'ascii':
+    case 'binary':
+    case 'raw':
+      ret = str.length
+      break
+    case 'ucs2':
+    case 'ucs-2':
+    case 'utf16le':
+    case 'utf-16le':
+      ret = str.length * 2
+      break
+    case 'hex':
+      ret = str.length >>> 1
+      break
+    case 'utf8':
+    case 'utf-8':
+      ret = utf8ToBytes(str).length
+      break
+    case 'base64':
+      ret = base64ToBytes(str).length
+      break
+    default:
+      ret = str.length
   }
-  if (x < y) {
-    return -1
-  }
-  if (y < x) {
-    return 1
-  }
-  return 0
+  return ret
 }
 
-// BUFFER INSTANCE METHODS
-// =======================
+// pre-set for values that may exist in the future
+Buffer.prototype.length = undefined
+Buffer.prototype.parent = undefined
+
+// toString(encoding, start=0, end=buffer.length)
+Buffer.prototype.toString = function (encoding, start, end) {
+  var loweredCase = false
+
+  start = start >>> 0
+  end = end === undefined || end === Infinity ? this.length : end >>> 0
+
+  if (!encoding) encoding = 'utf8'
+  if (start < 0) start = 0
+  if (end > this.length) end = this.length
+  if (end <= start) return ''
+
+  while (true) {
+    switch (encoding) {
+      case 'hex':
+        return hexSlice(this, start, end)
+
+      case 'utf8':
+      case 'utf-8':
+        return utf8Slice(this, start, end)
+
+      case 'ascii':
+        return asciiSlice(this, start, end)
+
+      case 'binary':
+        return binarySlice(this, start, end)
+
+      case 'base64':
+        return base64Slice(this, start, end)
+
+      case 'ucs2':
+      case 'ucs-2':
+      case 'utf16le':
+      case 'utf-16le':
+        return utf16leSlice(this, start, end)
+
+      default:
+        if (loweredCase)
+          throw new TypeError('Unknown encoding: ' + encoding)
+        encoding = (encoding + '').toLowerCase()
+        loweredCase = true
+    }
+  }
+}
+
+Buffer.prototype.equals = function (b) {
+  if(!Buffer.isBuffer(b)) throw new TypeError('Argument must be a Buffer')
+  return Buffer.compare(this, b) === 0
+}
+
+Buffer.prototype.inspect = function () {
+  var str = ''
+  var max = exports.INSPECT_MAX_BYTES
+  if (this.length > 0) {
+    str = this.toString('hex', 0, max).match(/.{2}/g).join(' ')
+    if (this.length > max)
+      str += ' ... '
+  }
+  return '<Buffer ' + str + '>'
+}
+
+Buffer.prototype.compare = function (b) {
+  if (!Buffer.isBuffer(b)) throw new TypeError('Argument must be a Buffer')
+  return Buffer.compare(this, b)
+}
+
+// `get` will be removed in Node 0.13+
+Buffer.prototype.get = function (offset) {
+  console.log('.get() is deprecated. Access using array indexes instead.')
+  return this.readUInt8(offset)
+}
+
+// `set` will be removed in Node 0.13+
+Buffer.prototype.set = function (v, offset) {
+  console.log('.set() is deprecated. Access using array indexes instead.')
+  return this.writeUInt8(v, offset)
+}
 
 function hexWrite (buf, string, offset, length) {
   offset = Number(offset) || 0
@@ -291,14 +375,14 @@ function hexWrite (buf, string, offset, length) {
 
   // must be an even number of digits
   var strLen = string.length
-  assert(strLen % 2 === 0, 'Invalid hex string')
+  if (strLen % 2 !== 0) throw new Error('Invalid hex string')
 
   if (length > strLen / 2) {
     length = strLen / 2
   }
   for (var i = 0; i < length; i++) {
     var byte = parseInt(string.substr(i * 2, 2), 16)
-    assert(!isNaN(byte), 'Invalid hex string')
+    if (isNaN(byte)) throw new Error('Invalid hex string')
     buf[offset + i] = byte
   }
   return i
@@ -380,48 +464,7 @@ Buffer.prototype.write = function (string, offset, length, encoding) {
       ret = utf16leWrite(this, string, offset, length)
       break
     default:
-      throw new Error('Unknown encoding')
-  }
-  return ret
-}
-
-Buffer.prototype.toString = function (encoding, start, end) {
-  var self = this
-
-  encoding = String(encoding || 'utf8').toLowerCase()
-  start = Number(start) || 0
-  end = (end === undefined) ? self.length : Number(end)
-
-  // Fastpath empty strings
-  if (end === start)
-    return ''
-
-  var ret
-  switch (encoding) {
-    case 'hex':
-      ret = hexSlice(self, start, end)
-      break
-    case 'utf8':
-    case 'utf-8':
-      ret = utf8Slice(self, start, end)
-      break
-    case 'ascii':
-      ret = asciiSlice(self, start, end)
-      break
-    case 'binary':
-      ret = binarySlice(self, start, end)
-      break
-    case 'base64':
-      ret = base64Slice(self, start, end)
-      break
-    case 'ucs2':
-    case 'ucs-2':
-    case 'utf16le':
-    case 'utf-16le':
-      ret = utf16leSlice(self, start, end)
-      break
-    default:
-      throw new Error('Unknown encoding')
+      throw new TypeError('Unknown encoding: ' + encoding)
   }
   return ret
 }
@@ -430,52 +473,6 @@ Buffer.prototype.toJSON = function () {
   return {
     type: 'Buffer',
     data: Array.prototype.slice.call(this._arr || this, 0)
-  }
-}
-
-Buffer.prototype.equals = function (b) {
-  assert(Buffer.isBuffer(b), 'Argument must be a Buffer')
-  return Buffer.compare(this, b) === 0
-}
-
-Buffer.prototype.compare = function (b) {
-  assert(Buffer.isBuffer(b), 'Argument must be a Buffer')
-  return Buffer.compare(this, b)
-}
-
-// copy(targetBuffer, targetStart=0, sourceStart=0, sourceEnd=buffer.length)
-Buffer.prototype.copy = function (target, target_start, start, end) {
-  var source = this
-
-  if (!start) start = 0
-  if (!end && end !== 0) end = this.length
-  if (!target_start) target_start = 0
-
-  // Copy 0 bytes; we're done
-  if (end === start) return
-  if (target.length === 0 || source.length === 0) return
-
-  // Fatal error conditions
-  assert(end >= start, 'sourceEnd < sourceStart')
-  assert(target_start >= 0 && target_start < target.length,
-      'targetStart out of bounds')
-  assert(start >= 0 && start < source.length, 'sourceStart out of bounds')
-  assert(end >= 0 && end <= source.length, 'sourceEnd out of bounds')
-
-  // Are we oob?
-  if (end > this.length)
-    end = this.length
-  if (target.length - target_start < end - start)
-    end = target.length - target_start + start
-
-  var len = end - start
-
-  if (len < 100 || !TYPED_ARRAY_SUPPORT) {
-    for (var i = 0; i < len; i++) {
-      target[i + target_start] = this[i + start]
-    }
-  } else {
-    target._set(this.subarray(start, start + len), target_start)
   }
 }
 
@@ -564,7 +561,7 @@ Buffer.prototype.slice = function (start, end) {
   if (end < start)
     end = start
 
-  if (TYPED_ARRAY_SUPPORT) {
+  if (Buffer.TYPED_ARRAY_SUPPORT) {
     return Buffer._augment(this.subarray(start, end))
   } else {
     var sliceLen = end - start
@@ -576,365 +573,275 @@ Buffer.prototype.slice = function (start, end) {
   }
 }
 
-// `get` will be removed in Node 0.13+
-Buffer.prototype.get = function (offset) {
-  console.log('.get() is deprecated. Access using array indexes instead.')
-  return this.readUInt8(offset)
-}
-
-// `set` will be removed in Node 0.13+
-Buffer.prototype.set = function (v, offset) {
-  console.log('.set() is deprecated. Access using array indexes instead.')
-  return this.writeUInt8(v, offset)
+/*
+ * Need to make sure that buffer isn't trying to write out of bounds.
+ */
+function checkOffset (offset, ext, length) {
+  if ((offset % 1) !== 0 || offset < 0)
+    throw new RangeError('offset is not uint')
+  if (offset + ext > length)
+    throw new RangeError('Trying to access beyond buffer length')
 }
 
 Buffer.prototype.readUInt8 = function (offset, noAssert) {
-  if (!noAssert) {
-    assert(offset !== undefined && offset !== null, 'missing offset')
-    assert(offset < this.length, 'Trying to read beyond buffer length')
-  }
-
-  if (offset >= this.length)
-    return
-
+  if (!noAssert)
+    checkOffset(offset, 1, this.length)
   return this[offset]
 }
 
-function readUInt16 (buf, offset, littleEndian, noAssert) {
-  if (!noAssert) {
-    assert(typeof littleEndian === 'boolean', 'missing or invalid endian')
-    assert(offset !== undefined && offset !== null, 'missing offset')
-    assert(offset + 1 < buf.length, 'Trying to read beyond buffer length')
-  }
-
-  var len = buf.length
-  if (offset >= len)
-    return
-
-  var val
-  if (littleEndian) {
-    val = buf[offset]
-    if (offset + 1 < len)
-      val |= buf[offset + 1] << 8
-  } else {
-    val = buf[offset] << 8
-    if (offset + 1 < len)
-      val |= buf[offset + 1]
-  }
-  return val
-}
-
 Buffer.prototype.readUInt16LE = function (offset, noAssert) {
-  return readUInt16(this, offset, true, noAssert)
+  if (!noAssert)
+    checkOffset(offset, 2, this.length)
+  return this[offset] | (this[offset + 1] << 8)
 }
 
 Buffer.prototype.readUInt16BE = function (offset, noAssert) {
-  return readUInt16(this, offset, false, noAssert)
-}
-
-function readUInt32 (buf, offset, littleEndian, noAssert) {
-  if (!noAssert) {
-    assert(typeof littleEndian === 'boolean', 'missing or invalid endian')
-    assert(offset !== undefined && offset !== null, 'missing offset')
-    assert(offset + 3 < buf.length, 'Trying to read beyond buffer length')
-  }
-
-  var len = buf.length
-  if (offset >= len)
-    return
-
-  var val
-  if (littleEndian) {
-    if (offset + 2 < len)
-      val = buf[offset + 2] << 16
-    if (offset + 1 < len)
-      val |= buf[offset + 1] << 8
-    val |= buf[offset]
-    if (offset + 3 < len)
-      val = val + (buf[offset + 3] << 24 >>> 0)
-  } else {
-    if (offset + 1 < len)
-      val = buf[offset + 1] << 16
-    if (offset + 2 < len)
-      val |= buf[offset + 2] << 8
-    if (offset + 3 < len)
-      val |= buf[offset + 3]
-    val = val + (buf[offset] << 24 >>> 0)
-  }
-  return val
+  if (!noAssert)
+    checkOffset(offset, 2, this.length)
+  return (this[offset] << 8) | this[offset + 1]
 }
 
 Buffer.prototype.readUInt32LE = function (offset, noAssert) {
-  return readUInt32(this, offset, true, noAssert)
+  if (!noAssert)
+    checkOffset(offset, 4, this.length)
+
+  return ((this[offset]) |
+      (this[offset + 1] << 8) |
+      (this[offset + 2] << 16)) +
+      (this[offset + 3] * 0x1000000)
 }
 
 Buffer.prototype.readUInt32BE = function (offset, noAssert) {
-  return readUInt32(this, offset, false, noAssert)
+  if (!noAssert)
+    checkOffset(offset, 4, this.length)
+
+  return (this[offset] * 0x1000000) +
+      ((this[offset + 1] << 16) |
+      (this[offset + 2] << 8) |
+      this[offset + 3])
 }
 
 Buffer.prototype.readInt8 = function (offset, noAssert) {
-  if (!noAssert) {
-    assert(offset !== undefined && offset !== null,
-        'missing offset')
-    assert(offset < this.length, 'Trying to read beyond buffer length')
-  }
-
-  if (offset >= this.length)
-    return
-
-  var neg = this[offset] & 0x80
-  if (neg)
-    return (0xff - this[offset] + 1) * -1
-  else
-    return this[offset]
-}
-
-function readInt16 (buf, offset, littleEndian, noAssert) {
-  if (!noAssert) {
-    assert(typeof littleEndian === 'boolean', 'missing or invalid endian')
-    assert(offset !== undefined && offset !== null, 'missing offset')
-    assert(offset + 1 < buf.length, 'Trying to read beyond buffer length')
-  }
-
-  var len = buf.length
-  if (offset >= len)
-    return
-
-  var val = readUInt16(buf, offset, littleEndian, true)
-  var neg = val & 0x8000
-  if (neg)
-    return (0xffff - val + 1) * -1
-  else
-    return val
+  if (!noAssert)
+    checkOffset(offset, 1, this.length)
+  if (!(this[offset] & 0x80))
+    return (this[offset])
+  return ((0xff - this[offset] + 1) * -1)
 }
 
 Buffer.prototype.readInt16LE = function (offset, noAssert) {
-  return readInt16(this, offset, true, noAssert)
+  if (!noAssert)
+    checkOffset(offset, 2, this.length)
+  var val = this[offset] | (this[offset + 1] << 8)
+  return (val & 0x8000) ? val | 0xFFFF0000 : val
 }
 
 Buffer.prototype.readInt16BE = function (offset, noAssert) {
-  return readInt16(this, offset, false, noAssert)
-}
-
-function readInt32 (buf, offset, littleEndian, noAssert) {
-  if (!noAssert) {
-    assert(typeof littleEndian === 'boolean', 'missing or invalid endian')
-    assert(offset !== undefined && offset !== null, 'missing offset')
-    assert(offset + 3 < buf.length, 'Trying to read beyond buffer length')
-  }
-
-  var len = buf.length
-  if (offset >= len)
-    return
-
-  var val = readUInt32(buf, offset, littleEndian, true)
-  var neg = val & 0x80000000
-  if (neg)
-    return (0xffffffff - val + 1) * -1
-  else
-    return val
+  if (!noAssert)
+    checkOffset(offset, 2, this.length)
+  var val = this[offset + 1] | (this[offset] << 8)
+  return (val & 0x8000) ? val | 0xFFFF0000 : val
 }
 
 Buffer.prototype.readInt32LE = function (offset, noAssert) {
-  return readInt32(this, offset, true, noAssert)
+  if (!noAssert)
+    checkOffset(offset, 4, this.length)
+
+  return (this[offset]) |
+      (this[offset + 1] << 8) |
+      (this[offset + 2] << 16) |
+      (this[offset + 3] << 24)
 }
 
 Buffer.prototype.readInt32BE = function (offset, noAssert) {
-  return readInt32(this, offset, false, noAssert)
-}
+  if (!noAssert)
+    checkOffset(offset, 4, this.length)
 
-function readFloat (buf, offset, littleEndian, noAssert) {
-  if (!noAssert) {
-    assert(typeof littleEndian === 'boolean', 'missing or invalid endian')
-    assert(offset + 3 < buf.length, 'Trying to read beyond buffer length')
-  }
-
-  return ieee754.read(buf, offset, littleEndian, 23, 4)
+  return (this[offset] << 24) |
+      (this[offset + 1] << 16) |
+      (this[offset + 2] << 8) |
+      (this[offset + 3])
 }
 
 Buffer.prototype.readFloatLE = function (offset, noAssert) {
-  return readFloat(this, offset, true, noAssert)
+  if (!noAssert)
+    checkOffset(offset, 4, this.length)
+  return ieee754.read(this, offset, true, 23, 4)
 }
 
 Buffer.prototype.readFloatBE = function (offset, noAssert) {
-  return readFloat(this, offset, false, noAssert)
-}
-
-function readDouble (buf, offset, littleEndian, noAssert) {
-  if (!noAssert) {
-    assert(typeof littleEndian === 'boolean', 'missing or invalid endian')
-    assert(offset + 7 < buf.length, 'Trying to read beyond buffer length')
-  }
-
-  return ieee754.read(buf, offset, littleEndian, 52, 8)
+  if (!noAssert)
+    checkOffset(offset, 4, this.length)
+  return ieee754.read(this, offset, false, 23, 4)
 }
 
 Buffer.prototype.readDoubleLE = function (offset, noAssert) {
-  return readDouble(this, offset, true, noAssert)
+  if (!noAssert)
+    checkOffset(offset, 8, this.length)
+  return ieee754.read(this, offset, true, 52, 8)
 }
 
 Buffer.prototype.readDoubleBE = function (offset, noAssert) {
-  return readDouble(this, offset, false, noAssert)
+  if (!noAssert)
+    checkOffset(offset, 8, this.length)
+  return ieee754.read(this, offset, false, 52, 8)
+}
+
+function checkInt (buf, value, offset, ext, max, min) {
+  if (!Buffer.isBuffer(buf)) throw new TypeError('buffer must be a Buffer instance')
+  if (value > max || value < min) throw new TypeError('value is out of bounds')
+  if (offset + ext > buf.length) throw new TypeError('index out of range')
 }
 
 Buffer.prototype.writeUInt8 = function (value, offset, noAssert) {
-  if (!noAssert) {
-    assert(value !== undefined && value !== null, 'missing value')
-    assert(offset !== undefined && offset !== null, 'missing offset')
-    assert(offset < this.length, 'trying to write beyond buffer length')
-    verifuint(value, 0xff)
-  }
-
-  if (offset >= this.length) return
-
+  value = +value
+  offset = offset >>> 0
+  if (!noAssert)
+    checkInt(this, value, offset, 1, 0xff, 0)
+  if (!Buffer.TYPED_ARRAY_SUPPORT) value = Math.floor(value)
   this[offset] = value
   return offset + 1
 }
 
-function writeUInt16 (buf, value, offset, littleEndian, noAssert) {
-  if (!noAssert) {
-    assert(value !== undefined && value !== null, 'missing value')
-    assert(typeof littleEndian === 'boolean', 'missing or invalid endian')
-    assert(offset !== undefined && offset !== null, 'missing offset')
-    assert(offset + 1 < buf.length, 'trying to write beyond buffer length')
-    verifuint(value, 0xffff)
+function objectWriteUInt16 (buf, value, offset, littleEndian) {
+  if (value < 0) value = 0xffff + value + 1
+  for (var i = 0, j = Math.min(buf.length - offset, 2); i < j; i++) {
+    buf[offset + i] = (value & (0xff << (8 * (littleEndian ? i : 1 - i)))) >>>
+      (littleEndian ? i : 1 - i) * 8
   }
-
-  var len = buf.length
-  if (offset >= len)
-    return
-
-  for (var i = 0, j = Math.min(len - offset, 2); i < j; i++) {
-    buf[offset + i] =
-        (value & (0xff << (8 * (littleEndian ? i : 1 - i)))) >>>
-            (littleEndian ? i : 1 - i) * 8
-  }
-  return offset + 2
 }
 
 Buffer.prototype.writeUInt16LE = function (value, offset, noAssert) {
-  return writeUInt16(this, value, offset, true, noAssert)
-}
-
-Buffer.prototype.writeUInt16BE = function (value, offset, noAssert) {
-  return writeUInt16(this, value, offset, false, noAssert)
-}
-
-function writeUInt32 (buf, value, offset, littleEndian, noAssert) {
-  if (!noAssert) {
-    assert(value !== undefined && value !== null, 'missing value')
-    assert(typeof littleEndian === 'boolean', 'missing or invalid endian')
-    assert(offset !== undefined && offset !== null, 'missing offset')
-    assert(offset + 3 < buf.length, 'trying to write beyond buffer length')
-    verifuint(value, 0xffffffff)
-  }
-
-  var len = buf.length
-  if (offset >= len)
-    return
-
-  for (var i = 0, j = Math.min(len - offset, 4); i < j; i++) {
-    buf[offset + i] =
-        (value >>> (littleEndian ? i : 3 - i) * 8) & 0xff
-  }
-  return offset + 4
-}
-
-Buffer.prototype.writeUInt32LE = function (value, offset, noAssert) {
-  return writeUInt32(this, value, offset, true, noAssert)
-}
-
-Buffer.prototype.writeUInt32BE = function (value, offset, noAssert) {
-  return writeUInt32(this, value, offset, false, noAssert)
-}
-
-Buffer.prototype.writeInt8 = function (value, offset, noAssert) {
-  if (!noAssert) {
-    assert(value !== undefined && value !== null, 'missing value')
-    assert(offset !== undefined && offset !== null, 'missing offset')
-    assert(offset < this.length, 'Trying to write beyond buffer length')
-    verifsint(value, 0x7f, -0x80)
-  }
-
-  if (offset >= this.length)
-    return
-
-  if (value >= 0)
-    this.writeUInt8(value, offset, noAssert)
-  else
-    this.writeUInt8(0xff + value + 1, offset, noAssert)
-  return offset + 1
-}
-
-function writeInt16 (buf, value, offset, littleEndian, noAssert) {
-  if (!noAssert) {
-    assert(value !== undefined && value !== null, 'missing value')
-    assert(typeof littleEndian === 'boolean', 'missing or invalid endian')
-    assert(offset !== undefined && offset !== null, 'missing offset')
-    assert(offset + 1 < buf.length, 'Trying to write beyond buffer length')
-    verifsint(value, 0x7fff, -0x8000)
-  }
-
-  var len = buf.length
-  if (offset >= len)
-    return
-
-  if (value >= 0)
-    writeUInt16(buf, value, offset, littleEndian, noAssert)
-  else
-    writeUInt16(buf, 0xffff + value + 1, offset, littleEndian, noAssert)
+  value = +value
+  offset = offset >>> 0
+  if (!noAssert)
+    checkInt(this, value, offset, 2, 0xffff, 0)
+  if (Buffer.TYPED_ARRAY_SUPPORT) {
+    this[offset] = value
+    this[offset + 1] = (value >>> 8)
+  } else objectWriteUInt16(this, value, offset, true)
   return offset + 2
 }
 
-Buffer.prototype.writeInt16LE = function (value, offset, noAssert) {
-  return writeInt16(this, value, offset, true, noAssert)
+Buffer.prototype.writeUInt16BE = function (value, offset, noAssert) {
+  value = +value
+  offset = offset >>> 0
+  if (!noAssert)
+    checkInt(this, value, offset, 2, 0xffff, 0)
+  if (Buffer.TYPED_ARRAY_SUPPORT) {
+    this[offset] = (value >>> 8)
+    this[offset + 1] = value
+  } else objectWriteUInt16(this, value, offset, false)
+  return offset + 2
 }
 
-Buffer.prototype.writeInt16BE = function (value, offset, noAssert) {
-  return writeInt16(this, value, offset, false, noAssert)
-}
-
-function writeInt32 (buf, value, offset, littleEndian, noAssert) {
-  if (!noAssert) {
-    assert(value !== undefined && value !== null, 'missing value')
-    assert(typeof littleEndian === 'boolean', 'missing or invalid endian')
-    assert(offset !== undefined && offset !== null, 'missing offset')
-    assert(offset + 3 < buf.length, 'Trying to write beyond buffer length')
-    verifsint(value, 0x7fffffff, -0x80000000)
+function objectWriteUInt32 (buf, value, offset, littleEndian) {
+  if (value < 0) value = 0xffffffff + value + 1
+  for (var i = 0, j = Math.min(buf.length - offset, 4); i < j; i++) {
+    buf[offset + i] = (value >>> (littleEndian ? i : 3 - i) * 8) & 0xff
   }
+}
 
-  var len = buf.length
-  if (offset >= len)
-    return
-
-  if (value >= 0)
-    writeUInt32(buf, value, offset, littleEndian, noAssert)
-  else
-    writeUInt32(buf, 0xffffffff + value + 1, offset, littleEndian, noAssert)
+Buffer.prototype.writeUInt32LE = function (value, offset, noAssert) {
+  value = +value
+  offset = offset >>> 0
+  if (!noAssert)
+    checkInt(this, value, offset, 4, 0xffffffff, 0)
+  if (Buffer.TYPED_ARRAY_SUPPORT) {
+    this[offset + 3] = (value >>> 24)
+    this[offset + 2] = (value >>> 16)
+    this[offset + 1] = (value >>> 8)
+    this[offset] = value
+  } else objectWriteUInt32(this, value, offset, true)
   return offset + 4
 }
 
+Buffer.prototype.writeUInt32BE = function (value, offset, noAssert) {
+  value = +value
+  offset = offset >>> 0
+  if (!noAssert)
+    checkInt(this, value, offset, 4, 0xffffffff, 0)
+  if (Buffer.TYPED_ARRAY_SUPPORT) {
+    this[offset] = (value >>> 24)
+    this[offset + 1] = (value >>> 16)
+    this[offset + 2] = (value >>> 8)
+    this[offset + 3] = value
+  } else objectWriteUInt32(this, value, offset, false)
+  return offset + 4
+}
+
+Buffer.prototype.writeInt8 = function (value, offset, noAssert) {
+  value = +value
+  offset = offset >>> 0
+  if (!noAssert)
+    checkInt(this, value, offset, 1, 0x7f, -0x80)
+  if (!Buffer.TYPED_ARRAY_SUPPORT) value = Math.floor(value)
+  if (value < 0) value = 0xff + value + 1
+  this[offset] = value
+  return offset + 1
+}
+
+Buffer.prototype.writeInt16LE = function (value, offset, noAssert) {
+  value = +value
+  offset = offset >>> 0
+  if (!noAssert)
+    checkInt(this, value, offset, 2, 0x7fff, -0x8000)
+  if (Buffer.TYPED_ARRAY_SUPPORT) {
+    this[offset] = value
+    this[offset + 1] = (value >>> 8)
+  } else objectWriteUInt16(this, value, offset, true)
+  return offset + 2
+}
+
+Buffer.prototype.writeInt16BE = function (value, offset, noAssert) {
+  value = +value
+  offset = offset >>> 0
+  if (!noAssert)
+    checkInt(this, value, offset, 2, 0x7fff, -0x8000)
+  if (Buffer.TYPED_ARRAY_SUPPORT) {
+    this[offset] = (value >>> 8)
+    this[offset + 1] = value
+  } else objectWriteUInt16(this, value, offset, false)
+  return offset + 2
+}
+
 Buffer.prototype.writeInt32LE = function (value, offset, noAssert) {
-  return writeInt32(this, value, offset, true, noAssert)
+  value = +value
+  offset = offset >>> 0
+  if (!noAssert)
+    checkInt(this, value, offset, 4, 0x7fffffff, -0x80000000)
+  if (Buffer.TYPED_ARRAY_SUPPORT) {
+    this[offset] = value
+    this[offset + 1] = (value >>> 8)
+    this[offset + 2] = (value >>> 16)
+    this[offset + 3] = (value >>> 24)
+  } else objectWriteUInt32(this, value, offset, true)
+  return offset + 4
 }
 
 Buffer.prototype.writeInt32BE = function (value, offset, noAssert) {
-  return writeInt32(this, value, offset, false, noAssert)
+  value = +value
+  offset = offset >>> 0
+  if (!noAssert)
+    checkInt(this, value, offset, 4, 0x7fffffff, -0x80000000)
+  if (value < 0) value = 0xffffffff + value + 1
+  if (Buffer.TYPED_ARRAY_SUPPORT) {
+    this[offset] = (value >>> 24)
+    this[offset + 1] = (value >>> 16)
+    this[offset + 2] = (value >>> 8)
+    this[offset + 3] = value
+  } else objectWriteUInt32(this, value, offset, false)
+  return offset + 4
+}
+
+function checkIEEE754 (buf, value, offset, ext, max, min) {
+  if (value > max || value < min) throw new TypeError('value is out of bounds')
+  if (offset + ext > buf.length) throw new TypeError('index out of range')
 }
 
 function writeFloat (buf, value, offset, littleEndian, noAssert) {
-  if (!noAssert) {
-    assert(value !== undefined && value !== null, 'missing value')
-    assert(typeof littleEndian === 'boolean', 'missing or invalid endian')
-    assert(offset !== undefined && offset !== null, 'missing offset')
-    assert(offset + 3 < buf.length, 'Trying to write beyond buffer length')
-    verifIEEE754(value, 3.4028234663852886e+38, -3.4028234663852886e+38)
-  }
-
-  var len = buf.length
-  if (offset >= len)
-    return
-
+  if (!noAssert)
+    checkIEEE754(buf, value, offset, 4, 3.4028234663852886e+38, -3.4028234663852886e+38)
   ieee754.write(buf, value, offset, littleEndian, 23, 4)
   return offset + 4
 }
@@ -948,19 +855,8 @@ Buffer.prototype.writeFloatBE = function (value, offset, noAssert) {
 }
 
 function writeDouble (buf, value, offset, littleEndian, noAssert) {
-  if (!noAssert) {
-    assert(value !== undefined && value !== null, 'missing value')
-    assert(typeof littleEndian === 'boolean', 'missing or invalid endian')
-    assert(offset !== undefined && offset !== null, 'missing offset')
-    assert(offset + 7 < buf.length,
-        'Trying to write beyond buffer length')
-    verifIEEE754(value, 1.7976931348623157E+308, -1.7976931348623157E+308)
-  }
-
-  var len = buf.length
-  if (offset >= len)
-    return
-
+  if (!noAssert)
+    checkIEEE754(buf, value, offset, 8, 1.7976931348623157E+308, -1.7976931348623157E+308)
   ieee754.write(buf, value, offset, littleEndian, 52, 8)
   return offset + 8
 }
@@ -973,20 +869,56 @@ Buffer.prototype.writeDoubleBE = function (value, offset, noAssert) {
   return writeDouble(this, value, offset, false, noAssert)
 }
 
+// copy(targetBuffer, targetStart=0, sourceStart=0, sourceEnd=buffer.length)
+Buffer.prototype.copy = function (target, target_start, start, end) {
+  var source = this
+
+  if (!start) start = 0
+  if (!end && end !== 0) end = this.length
+  if (!target_start) target_start = 0
+
+  // Copy 0 bytes; we're done
+  if (end === start) return
+  if (target.length === 0 || source.length === 0) return
+
+  // Fatal error conditions
+  if (end < start) throw new TypeError('sourceEnd < sourceStart')
+  if (target_start < 0 || target_start >= target.length)
+    throw new TypeError('targetStart out of bounds')
+  if (start < 0 || start >= source.length) throw new TypeError('sourceStart out of bounds')
+  if (end < 0 || end > source.length) throw new TypeError('sourceEnd out of bounds')
+
+  // Are we oob?
+  if (end > this.length)
+    end = this.length
+  if (target.length - target_start < end - start)
+    end = target.length - target_start + start
+
+  var len = end - start
+
+  if (len < 100 || !Buffer.TYPED_ARRAY_SUPPORT) {
+    for (var i = 0; i < len; i++) {
+      target[i + target_start] = this[i + start]
+    }
+  } else {
+    target._set(this.subarray(start, start + len), target_start)
+  }
+}
+
 // fill(value, start=0, end=buffer.length)
 Buffer.prototype.fill = function (value, start, end) {
   if (!value) value = 0
   if (!start) start = 0
   if (!end) end = this.length
 
-  assert(end >= start, 'end < start')
+  if (end < start) throw new TypeError('end < start')
 
   // Fill 0 bytes; we're done
   if (end === start) return
   if (this.length === 0) return
 
-  assert(start >= 0 && start < this.length, 'start out of bounds')
-  assert(end >= 0 && end <= this.length, 'end out of bounds')
+  if (start < 0 || start >= this.length) throw new TypeError('start out of bounds')
+  if (end < 0 || end > this.length) throw new TypeError('end out of bounds')
 
   var i
   if (typeof value === 'number') {
@@ -1004,26 +936,13 @@ Buffer.prototype.fill = function (value, start, end) {
   return this
 }
 
-Buffer.prototype.inspect = function () {
-  var out = []
-  var len = this.length
-  for (var i = 0; i < len; i++) {
-    out[i] = toHex(this[i])
-    if (i === exports.INSPECT_MAX_BYTES) {
-      out[i + 1] = '...'
-      break
-    }
-  }
-  return '<Buffer ' + out.join(' ') + '>'
-}
-
 /**
  * Creates a new `ArrayBuffer` with the *copied* memory of the buffer instance.
  * Added in Node 0.12. Only available in browsers that support ArrayBuffer.
  */
 Buffer.prototype.toArrayBuffer = function () {
   if (typeof Uint8Array !== 'undefined') {
-    if (TYPED_ARRAY_SUPPORT) {
+    if (Buffer.TYPED_ARRAY_SUPPORT) {
       return (new Buffer(this)).buffer
     } else {
       var buf = new Uint8Array(this.length)
@@ -1033,7 +952,7 @@ Buffer.prototype.toArrayBuffer = function () {
       return buf.buffer
     }
   } else {
-    throw new Error('Buffer.toArrayBuffer not supported in this browser')
+    throw new TypeError('Buffer.toArrayBuffer not supported in this browser')
   }
 }
 
@@ -1116,12 +1035,6 @@ function stringtrim (str) {
   return str.replace(/^\s+|\s+$/g, '')
 }
 
-function isArray (subject) {
-  return (Array.isArray || function (subject) {
-    return Object.prototype.toString.call(subject) === '[object Array]'
-  })(subject)
-}
-
 function isArrayish (subject) {
   return isArray(subject) || Buffer.isBuffer(subject) ||
       subject && typeof subject === 'object' &&
@@ -1195,36 +1108,7 @@ function decodeUtf8Char (str) {
   }
 }
 
-/*
- * We have to make sure that the value is a valid integer. This means that it
- * is non-negative. It has no fractional component and that it does not
- * exceed the maximum allowed value.
- */
-function verifuint (value, max) {
-  assert(typeof value === 'number', 'cannot write a non-number as a number')
-  assert(value >= 0, 'specified a negative value for writing an unsigned value')
-  assert(value <= max, 'value is larger than maximum value for type')
-  assert(Math.floor(value) === value, 'value has a fractional component')
-}
-
-function verifsint (value, max, min) {
-  assert(typeof value === 'number', 'cannot write a non-number as a number')
-  assert(value <= max, 'value larger than maximum allowed value')
-  assert(value >= min, 'value smaller than minimum allowed value')
-  assert(Math.floor(value) === value, 'value has a fractional component')
-}
-
-function verifIEEE754 (value, max, min) {
-  assert(typeof value === 'number', 'cannot write a non-number as a number')
-  assert(value <= max, 'value larger than maximum allowed value')
-  assert(value >= min, 'value smaller than minimum allowed value')
-}
-
-function assert (test, message) {
-  if (!test) throw new Error(message || 'Failed assertion')
-}
-
-},{"base64-js":3,"ieee754":4}],3:[function(require,module,exports){
+},{"base64-js":3,"ieee754":4,"is-array":5}],3:[function(require,module,exports){
 var lookup = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/';
 
 ;(function (exports) {
@@ -1433,6 +1317,41 @@ exports.write = function(buffer, value, offset, isLE, mLen, nBytes) {
 };
 
 },{}],5:[function(require,module,exports){
+
+/**
+ * isArray
+ */
+
+var isArray = Array.isArray;
+
+/**
+ * toString
+ */
+
+var str = Object.prototype.toString;
+
+/**
+ * Whether or not the given `val`
+ * is an array.
+ *
+ * example:
+ *
+ *        isArray([]);
+ *        // > true
+ *        isArray(arguments);
+ *        // > false
+ *        isArray('');
+ *        // > false
+ *
+ * @param {mixed} val
+ * @return {bool}
+ */
+
+module.exports = isArray || function (val) {
+  return !! val && '[object Array]' == str.call(val);
+};
+
+},{}],6:[function(require,module,exports){
 var average = require('turf-average')
 var sum = require('turf-sum')
 var median = require('turf-median')
@@ -1482,7 +1401,7 @@ function isAggregationOperation(operation) {
     operation === 'variance' ||
     operation === 'count';
 }
-},{"turf-average":6,"turf-count":8,"turf-deviation":9,"turf-max":11,"turf-median":13,"turf-min":15,"turf-sum":17,"turf-variance":19}],6:[function(require,module,exports){
+},{"turf-average":7,"turf-count":9,"turf-deviation":10,"turf-max":12,"turf-median":14,"turf-min":16,"turf-sum":18,"turf-variance":20}],7:[function(require,module,exports){
 var ss = require('simple-statistics')
 var inside = require('turf-inside')
 
@@ -1503,7 +1422,7 @@ module.exports = function(polyFC, ptFC, inField, outField, done){
   return polyFC;
 }
 
-},{"simple-statistics":7,"turf-inside":55}],7:[function(require,module,exports){
+},{"simple-statistics":8,"turf-inside":59}],8:[function(require,module,exports){
 /* global module */
 // # simple-statistics
 //
@@ -2921,7 +2840,7 @@ module.exports = function(polyFC, ptFC, inField, outField, done){
 
 })(this);
 
-},{}],8:[function(require,module,exports){
+},{}],9:[function(require,module,exports){
 var inside = require('turf-inside')
 
 module.exports = function(polyFC, ptFC, outField, done){
@@ -2941,7 +2860,7 @@ module.exports = function(polyFC, ptFC, outField, done){
   return polyFC;
 }
 
-},{"turf-inside":55}],9:[function(require,module,exports){
+},{"turf-inside":59}],10:[function(require,module,exports){
 var ss = require('simple-statistics')
 var inside = require('turf-inside')
 
@@ -2962,9 +2881,9 @@ module.exports = function(polyFC, ptFC, inField, outField, done){
   return polyFC;
 }
 
-},{"simple-statistics":10,"turf-inside":55}],10:[function(require,module,exports){
-module.exports=require(7)
-},{}],11:[function(require,module,exports){
+},{"simple-statistics":11,"turf-inside":59}],11:[function(require,module,exports){
+module.exports=require(8)
+},{"/Users/morgan/Documents/projects/turfjs/turf/node_modules/turf-aggregate/node_modules/turf-average/node_modules/simple-statistics/src/simple_statistics.js":8}],12:[function(require,module,exports){
 var ss = require('simple-statistics')
 var inside = require('turf-inside')
 
@@ -2985,9 +2904,9 @@ module.exports = function(polyFC, ptFC, inField, outField, done){
   return polyFC;
 }
 
-},{"simple-statistics":12,"turf-inside":55}],12:[function(require,module,exports){
-module.exports=require(7)
-},{}],13:[function(require,module,exports){
+},{"simple-statistics":13,"turf-inside":59}],13:[function(require,module,exports){
+module.exports=require(8)
+},{"/Users/morgan/Documents/projects/turfjs/turf/node_modules/turf-aggregate/node_modules/turf-average/node_modules/simple-statistics/src/simple_statistics.js":8}],14:[function(require,module,exports){
 var ss = require('simple-statistics')
 var inside = require('turf-inside')
 
@@ -3008,9 +2927,9 @@ module.exports = function(polyFC, ptFC, inField, outField, done){
   return polyFC;
 }
 
-},{"simple-statistics":14,"turf-inside":55}],14:[function(require,module,exports){
-module.exports=require(7)
-},{}],15:[function(require,module,exports){
+},{"simple-statistics":15,"turf-inside":59}],15:[function(require,module,exports){
+module.exports=require(8)
+},{"/Users/morgan/Documents/projects/turfjs/turf/node_modules/turf-aggregate/node_modules/turf-average/node_modules/simple-statistics/src/simple_statistics.js":8}],16:[function(require,module,exports){
 var ss = require('simple-statistics')
 var inside = require('turf-inside')
 
@@ -3031,9 +2950,9 @@ module.exports = function(polyFC, ptFC, inField, outField, done){
   return polyFC;
 }
 
-},{"simple-statistics":16,"turf-inside":55}],16:[function(require,module,exports){
-module.exports=require(7)
-},{}],17:[function(require,module,exports){
+},{"simple-statistics":17,"turf-inside":59}],17:[function(require,module,exports){
+module.exports=require(8)
+},{"/Users/morgan/Documents/projects/turfjs/turf/node_modules/turf-aggregate/node_modules/turf-average/node_modules/simple-statistics/src/simple_statistics.js":8}],18:[function(require,module,exports){
 var ss = require('simple-statistics')
 var inside = require('turf-inside')
 
@@ -3054,9 +2973,9 @@ module.exports = function(polyFC, ptFC, inField, outField, done){
   return polyFC;
 }
 
-},{"simple-statistics":18,"turf-inside":55}],18:[function(require,module,exports){
-module.exports=require(7)
-},{}],19:[function(require,module,exports){
+},{"simple-statistics":19,"turf-inside":59}],19:[function(require,module,exports){
+module.exports=require(8)
+},{"/Users/morgan/Documents/projects/turfjs/turf/node_modules/turf-aggregate/node_modules/turf-average/node_modules/simple-statistics/src/simple_statistics.js":8}],20:[function(require,module,exports){
 var ss = require('simple-statistics')
 var inside = require('turf-inside')
 
@@ -3076,13 +2995,13 @@ module.exports = function(polyFC, ptFC, inField, outField, done){
 
   return polyFC;
 }
-},{"simple-statistics":20,"turf-inside":55}],20:[function(require,module,exports){
+},{"simple-statistics":21,"turf-inside":59}],21:[function(require,module,exports){
+module.exports=require(8)
+},{"/Users/morgan/Documents/projects/turfjs/turf/node_modules/turf-aggregate/node_modules/turf-average/node_modules/simple-statistics/src/simple_statistics.js":8}],22:[function(require,module,exports){
 module.exports=require(7)
-},{}],21:[function(require,module,exports){
-module.exports=require(6)
-},{"simple-statistics":22,"turf-inside":55}],22:[function(require,module,exports){
-module.exports=require(7)
-},{}],23:[function(require,module,exports){
+},{"/Users/morgan/Documents/projects/turfjs/turf/node_modules/turf-aggregate/node_modules/turf-average/index.js":7,"simple-statistics":23,"turf-inside":59}],23:[function(require,module,exports){
+module.exports=require(8)
+},{"/Users/morgan/Documents/projects/turfjs/turf/node_modules/turf-aggregate/node_modules/turf-average/node_modules/simple-statistics/src/simple_statistics.js":8}],24:[function(require,module,exports){
 var polygon = require('turf-polygon')
 
 module.exports = function(bbox){
@@ -3101,7 +3020,36 @@ module.exports = function(bbox){
   return poly
 }
 
-},{"turf-polygon":78}],24:[function(require,module,exports){
+},{"turf-polygon":82}],25:[function(require,module,exports){
+//http://en.wikipedia.org/wiki/Haversine_formula
+//http://www.movable-type.co.uk/scripts/latlong.html
+
+module.exports = function (point1, point2) {
+    var coordinates1 = point1.geometry.coordinates
+    var coordinates2 = point2.geometry.coordinates
+
+    var lon1 = toRad(coordinates1[0])
+    var lon2 = toRad(coordinates2[0])
+    var lat1 = toRad(coordinates1[1])
+    var lat2 = toRad(coordinates2[1])
+    var a = Math.sin(lon2 - lon1) * Math.cos(lat2);
+    var b = Math.cos(lat1) * Math.sin(lat2) -
+        Math.sin(lat1) * Math.cos(lat2) * Math.cos(lon2 - lon1);
+
+    var bearing = toDeg(Math.atan2(a, b));
+
+    return bearing
+}
+
+function toRad(degree) {
+    return degree * Math.PI / 180
+}
+
+function toDeg(radian) {
+    return radian * 180 / Math.PI;
+}
+
+},{}],26:[function(require,module,exports){
 // code modded from here:
 //https://github.com/leszekr/bezier-spline-js/blob/master/bezier-spline.js
 var t = {}
@@ -3328,7 +3276,7 @@ module.exports = function(line, resolution, intensity){
     return this;
   }
 
-},{"turf-linestring":65}],25:[function(require,module,exports){
+},{"turf-linestring":69}],27:[function(require,module,exports){
 // http://stackoverflow.com/questions/839899/how-do-i-calculate-a-point-on-a-circles-circumference
 // radians = degrees * (pi/180)
 // https://github.com/bjornharrtell/jsts/blob/master/examples/buffer.html
@@ -3392,7 +3340,7 @@ var bufferOp = function(feature, radius){
 
   return buffered;
 }
-},{"jsts":26,"turf-combine":29,"turf-featurecollection":51,"turf-polygon":78}],26:[function(require,module,exports){
+},{"jsts":28,"turf-combine":31,"turf-featurecollection":54,"turf-polygon":82}],28:[function(require,module,exports){
 (function (global){
 'use strict';
 global.javascript = {};
@@ -3401,7 +3349,7 @@ var jsts = require('./lib/jsts');
 module.exports = jsts
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"./lib/jsts":27,"javascript.util":28}],27:[function(require,module,exports){
+},{"./lib/jsts":29,"javascript.util":30}],29:[function(require,module,exports){
 /* The JSTS Topology Suite is a collection of JavaScript classes that
 implement the fundamental operations required to validate a given
 geo-spatial data set to a known topological specification.
@@ -5016,7 +4964,7 @@ boundaryCount++;var newLoc=jsts.geomgraph.GeometryGraph.determineBoundary(this.b
 return;if(loc===Location.BOUNDARY&&this.useBoundaryDeterminationRule)
 this.insertBoundaryPoint(argIndex,coord);else
 this.insertPoint(argIndex,coord,loc);};jsts.geomgraph.GeometryGraph.prototype.getInvalidPoint=function(){return this.invalidPoint;};})();
-},{}],28:[function(require,module,exports){
+},{}],30:[function(require,module,exports){
 /*
   javascript.util is a port of selected parts of java.util to JavaScript which
   main purpose is to ease porting Java code to JavaScript.
@@ -5076,7 +5024,7 @@ return true;};HashSet.prototype.remove=function(o){throw new OperationNotSupport
 return array;};HashSet.prototype.iterator=function(){return new HashSet.Iterator(this);};HashSet.Iterator=function(hashSet){this.hashSet=hashSet;};HashSet.Iterator.prototype.hashSet=null;HashSet.Iterator.prototype.position=0;HashSet.Iterator.prototype.next=function(){if(this.position===this.hashSet.size()){throw new NoSuchElementException();}
 return this.hashSet.array[this.position++];};HashSet.Iterator.prototype.hasNext=function(){if(this.position<this.hashSet.size()){return true;}
 return false;};HashSet.Iterator.prototype.remove=function(){throw new javascript.util.OperationNotSupported();};javascript.util.HashSet=HashSet;})();
-},{}],29:[function(require,module,exports){
+},{}],31:[function(require,module,exports){
 module.exports = function(fc){
   var type = fc.features[0].geometry.type
   var err
@@ -5126,7 +5074,7 @@ function pluckCoods(multi){
     return geom.coordinates
   })
 }
-},{}],30:[function(require,module,exports){
+},{}],32:[function(require,module,exports){
 var extent = require('turf-extent')
 
 module.exports = function(layer, done){
@@ -5142,7 +5090,7 @@ module.exports = function(layer, done){
   }
   return center
 }
-},{"turf-extent":49}],31:[function(require,module,exports){
+},{"turf-extent":52}],33:[function(require,module,exports){
 var explode = require('turf-explode')
 var point = require('turf-point')
 
@@ -5160,9 +5108,9 @@ module.exports = function(features){
   return point(xSum / len, ySum / len)
 }
 
-},{"turf-explode":47,"turf-point":77}],32:[function(require,module,exports){
-module.exports=require(29)
-},{}],33:[function(require,module,exports){
+},{"turf-explode":50,"turf-point":81}],34:[function(require,module,exports){
+module.exports=require(31)
+},{"/Users/morgan/Documents/projects/turfjs/turf/node_modules/turf-buffer/node_modules/turf-combine/index.js":31}],35:[function(require,module,exports){
 // 1. run tin on points
 // 2. calculate lenth of all edges and area of all triangles
 // 3. remove triangles that fail the max length test
@@ -5213,7 +5161,7 @@ var filterTriangles = function(triangles, maxEdge, cb){
   })
 }
 
-},{"turf-buffer":25,"turf-distance":39,"turf-merge":70,"turf-point":77,"turf-tin":34}],34:[function(require,module,exports){
+},{"turf-buffer":27,"turf-distance":42,"turf-merge":74,"turf-point":81,"turf-tin":36}],36:[function(require,module,exports){
 //http://en.wikipedia.org/wiki/Delaunay_triangulation
 //https://github.com/ironwallaby/delaunay
 var polygon = require('turf-polygon')
@@ -5462,7 +5410,7 @@ function triangulate(vertices) {
     }
 }*/
 
-},{"turf-nearest":75,"turf-point":77,"turf-polygon":78}],35:[function(require,module,exports){
+},{"turf-nearest":79,"turf-point":81,"turf-polygon":82}],37:[function(require,module,exports){
 // http://en.wikibooks.org/wiki/Algorithm_Implementation/Geometry/Convex_hull/Monotone_chain#JavaScript
 
 module.exports = function(fc){
@@ -5509,13 +5457,56 @@ module.exports = function(fc){
 function cross(o, a, b) {
    return (a[0] - o[0]) * (b[1] - o[1]) - (a[1] - o[1]) * (b[0] - o[0])
 }
-},{}],36:[function(require,module,exports){
-module.exports=require(8)
-},{"turf-inside":55}],37:[function(require,module,exports){
+},{}],38:[function(require,module,exports){
 module.exports=require(9)
-},{"simple-statistics":38,"turf-inside":55}],38:[function(require,module,exports){
-module.exports=require(7)
-},{}],39:[function(require,module,exports){
+},{"/Users/morgan/Documents/projects/turfjs/turf/node_modules/turf-aggregate/node_modules/turf-count/index.js":9,"turf-inside":59}],39:[function(require,module,exports){
+//http://en.wikipedia.org/wiki/Haversine_formula
+//http://www.movable-type.co.uk/scripts/latlong.html
+var point = require('turf-point')
+
+module.exports = function (point1, distance, bearing, units) {
+    var coordinates1 = point1.geometry.coordinates
+    var longitude1 = toRad(coordinates1[0])
+    var latitude1 = toRad(coordinates1[1])
+    var bearing_rad = toRad(bearing)
+
+    var R = 0
+    switch (units) {
+    case 'miles':
+        R = 3960
+        break
+    case 'kilometers':
+        R = 6373
+        break
+    case 'degrees':
+        R = 57.2957795
+        break
+    case 'radians':
+        R = 1
+        break
+    }
+
+    var latitude2 = Math.asin(Math.sin(latitude1) * Math.cos(distance / R) +
+        Math.cos(latitude1) * Math.sin(distance / R) * Math.cos(bearing_rad));
+    var longitude2 = longitude1 + Math.atan2(Math.sin(bearing_rad) * Math.sin(distance / R) * Math.cos(latitude1),
+        Math.cos(distance / R) - Math.sin(latitude1) * Math.sin(latitude2));
+
+    return point(toDeg(longitude2), toDeg(latitude2))
+};
+
+function toRad(degree) {
+    return degree * Math.PI / 180
+}
+
+function toDeg(rad) {
+    return rad * 180 / Math.PI
+}
+
+},{"turf-point":81}],40:[function(require,module,exports){
+module.exports=require(10)
+},{"/Users/morgan/Documents/projects/turfjs/turf/node_modules/turf-aggregate/node_modules/turf-deviation/index.js":10,"simple-statistics":41,"turf-inside":59}],41:[function(require,module,exports){
+module.exports=require(8)
+},{"/Users/morgan/Documents/projects/turfjs/turf/node_modules/turf-aggregate/node_modules/turf-average/node_modules/simple-statistics/src/simple_statistics.js":8}],42:[function(require,module,exports){
 //http://en.wikipedia.org/wiki/Haversine_formula
 //http://www.movable-type.co.uk/scripts/latlong.html
 
@@ -5554,7 +5545,7 @@ function toRad(degree){
   return degree * Math.PI / 180
 }
 
-},{}],40:[function(require,module,exports){
+},{}],43:[function(require,module,exports){
 var _ = require('lodash')
 
 var t = {}
@@ -5610,7 +5601,7 @@ function contained(poly1, poly2){
 }
 
 
-},{"lodash":41,"turf-erase":43,"turf-featurecollection":51,"turf-inside":55,"turf-point":77,"turf-union":121}],41:[function(require,module,exports){
+},{"lodash":44,"turf-erase":46,"turf-featurecollection":54,"turf-inside":59,"turf-point":81,"turf-union":125}],44:[function(require,module,exports){
 (function (global){
 /**
  * @license
@@ -12399,7 +12390,7 @@ function contained(poly1, poly2){
 }.call(this));
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}],42:[function(require,module,exports){
+},{}],45:[function(require,module,exports){
 var extent = require('turf-extent')
 var bboxPolygon = require('turf-bbox-polygon')
 
@@ -12408,7 +12399,7 @@ module.exports = function(features, done){
   var poly = bboxPolygon(bbox)
   return poly
 }
-},{"turf-bbox-polygon":23,"turf-extent":49}],43:[function(require,module,exports){
+},{"turf-bbox-polygon":24,"turf-extent":52}],46:[function(require,module,exports){
 // look here for help http://svn.osgeo.org/grass/grass/branches/releasebranch_6_4/vector/v.overlay/main.c
 //must be array of polygons
 
@@ -12443,13 +12434,13 @@ function correctRings(poly){
 }
 
 
-},{"jsts":44}],44:[function(require,module,exports){
-module.exports=require(26)
-},{"./lib/jsts":45,"javascript.util":46}],45:[function(require,module,exports){
-module.exports=require(27)
-},{}],46:[function(require,module,exports){
+},{"jsts":47}],47:[function(require,module,exports){
 module.exports=require(28)
-},{}],47:[function(require,module,exports){
+},{"./lib/jsts":48,"/Users/morgan/Documents/projects/turfjs/turf/node_modules/turf-buffer/node_modules/jsts/index.js":28,"javascript.util":49}],48:[function(require,module,exports){
+module.exports=require(29)
+},{"/Users/morgan/Documents/projects/turfjs/turf/node_modules/turf-buffer/node_modules/jsts/lib/jsts.js":29}],49:[function(require,module,exports){
+module.exports=require(30)
+},{"/Users/morgan/Documents/projects/turfjs/turf/node_modules/turf-buffer/node_modules/jsts/node_modules/javascript.util/lib/javascript.util.js":30}],50:[function(require,module,exports){
 var flatten = require('flatten')
 var featureCollection = require('turf-featurecollection')
 var point = require('turf-point')
@@ -12549,7 +12540,7 @@ function flatCoords(coords){
   })
   return newCoords
 }
-},{"flatten":48,"turf-featurecollection":51,"turf-point":77}],48:[function(require,module,exports){
+},{"flatten":51,"turf-featurecollection":54,"turf-point":81}],51:[function(require,module,exports){
 module.exports = function flatten(list, depth) {
   depth = (typeof depth == 'number') ? depth : Infinity;
 
@@ -12567,7 +12558,7 @@ module.exports = function flatten(list, depth) {
   }
 };
 
-},{}],49:[function(require,module,exports){
+},{}],52:[function(require,module,exports){
 var flatten = require('flatten')
 
 module.exports = function(layer){
@@ -12687,9 +12678,9 @@ function flatCoords(coords){
   })
   return newCoords
 }
-},{"flatten":50}],50:[function(require,module,exports){
-module.exports=require(48)
-},{}],51:[function(require,module,exports){
+},{"flatten":53}],53:[function(require,module,exports){
+module.exports=require(51)
+},{"/Users/morgan/Documents/projects/turfjs/turf/node_modules/turf-explode/node_modules/flatten/index.js":51}],54:[function(require,module,exports){
 module.exports = function(features){
   var fc = {
     "type": "FeatureCollection",
@@ -12698,7 +12689,7 @@ module.exports = function(features){
 
   return fc
 }
-},{}],52:[function(require,module,exports){
+},{}],55:[function(require,module,exports){
 var featureCollection = require('turf-featurecollection')
 
 module.exports = function(collection, key, val) {
@@ -12710,7 +12701,7 @@ module.exports = function(collection, key, val) {
   }
   return newFC
 }
-},{"turf-featurecollection":51}],53:[function(require,module,exports){
+},{"turf-featurecollection":54}],56:[function(require,module,exports){
 module.exports = function(fc){
   if(fc.type === 'Feature'){
     switch(fc.geometry.type){
@@ -12770,7 +12761,7 @@ var flipCoordinate = function(coordinates){
   return([coordinates[1], coordinates[0]])
 }
 
-},{}],54:[function(require,module,exports){
+},{}],57:[function(require,module,exports){
 var point = require('turf-point')
 
 module.exports = function(extents, depth, done){
@@ -12796,7 +12787,76 @@ module.exports = function(extents, depth, done){
   return fc;
 }
 
-},{"turf-point":77}],55:[function(require,module,exports){
+},{"turf-point":81}],58:[function(require,module,exports){
+var polygon = require('turf-polygon');
+
+module.exports = hexgrid;
+
+//Precompute cosines and sines of angles used in hexagon creation
+// for performance gain
+var cosines = [];
+var sines = [];
+for (var i = 0; i < 6; i++) {
+  var angle = 2 * Math.PI/6 * i;
+  cosines.push(Math.cos(angle));
+  sines.push(Math.sin(angle));
+}
+
+//Center should be [x, y]
+function hexagon(center, size) {
+  var vertices = [];
+
+  for (var i = 0; i < 6; i++) {
+    var x = center[0] + size * cosines[i];
+    var y = center[1] + size * sines[i];
+
+    vertices.push([x,y]);
+  }
+
+  //first and last vertex must be the same
+  vertices.push(vertices[0]);
+
+  return polygon([vertices]);
+}
+
+//Creates a FeatureCollection of flat-topped
+// hexagons aligned in an "odd-q" vertical grid as
+// described on http://www.redblobgames.com/grids/hexagons/
+function hexgrid(extents, size, done) {
+  var xmin = extents[0];
+  var ymin = extents[1];
+  var xmax = extents[2];
+  var ymax = extents[3];
+
+  var fc = {
+    type: 'FeatureCollection',
+    features: []
+  };
+
+  var x_interval = 3/2 * size;
+  var y_interval = Math.sqrt(3) * size;
+  var x_count = (xmax - xmin) / x_interval;
+  var y_count = (ymax - ymin) / y_interval;
+
+  for (var x = 0; x <= x_count; x++) {
+    for (var y = 0; y <= y_count; y++) {
+
+      var center_x = x * x_interval + xmin;
+      var center_y = y * y_interval + ymin;
+      if (x % 2 === 1) {
+        center_y -= y_interval/2;
+      }
+      fc.features.push(hexagon([center_x, center_y], size));
+    }
+  }
+
+  done = done || function () {};
+  done(null, fc);
+
+  return fc;
+}
+
+},{"turf-polygon":82}],59:[function(require,module,exports){
 // http://en.wikipedia.org/wiki/Even%E2%80%93odd_rule
 // modified from: https://github.com/substack/point-in-polygon/blob/master/index.js
 // which was modified from http://www.ecse.rpi.edu/Homepages/wrf/Research/Short_Notes/pnpoly.html
@@ -12819,7 +12879,7 @@ module.exports = function(point, polygon){
 }
 
 
-},{}],56:[function(require,module,exports){
+},{}],60:[function(require,module,exports){
 // depend on jsts for now https://github.com/bjornharrtell/jsts/blob/master/examples/overlay.html
 var jsts = require('jsts')
 var featurecollection = require('turf-featurecollection')
@@ -12836,13 +12896,13 @@ module.exports = function(polys1, polys2){
   return intersection;
 }
 
-},{"jsts":57,"turf-featurecollection":51}],57:[function(require,module,exports){
-module.exports=require(26)
-},{"./lib/jsts":58,"javascript.util":59}],58:[function(require,module,exports){
-module.exports=require(27)
-},{}],59:[function(require,module,exports){
+},{"jsts":61,"turf-featurecollection":54}],61:[function(require,module,exports){
 module.exports=require(28)
-},{}],60:[function(require,module,exports){
+},{"./lib/jsts":62,"/Users/morgan/Documents/projects/turfjs/turf/node_modules/turf-buffer/node_modules/jsts/index.js":28,"javascript.util":63}],62:[function(require,module,exports){
+module.exports=require(29)
+},{"/Users/morgan/Documents/projects/turfjs/turf/node_modules/turf-buffer/node_modules/jsts/lib/jsts.js":29}],63:[function(require,module,exports){
+module.exports=require(30)
+},{"/Users/morgan/Documents/projects/turfjs/turf/node_modules/turf-buffer/node_modules/jsts/node_modules/javascript.util/lib/javascript.util.js":30}],64:[function(require,module,exports){
 module.exports = function(ring){
   var sum = 0;
   var i = 1;
@@ -12856,7 +12916,7 @@ module.exports = function(ring){
   }
   return sum > 0;
 }
-},{}],61:[function(require,module,exports){
+},{}],65:[function(require,module,exports){
 //https://github.com/jasondavies/conrec.js
 //http://stackoverflow.com/questions/263305/drawing-a-topographical-map
 var tin = require('turf-tin')
@@ -13543,7 +13603,7 @@ Conrec.prototype.contour = function(d, ilb, iub, jlb, jub, x, y, nc, z) {
   }
 }
 
-},{"turf-extent":49,"turf-featurecollection":51,"turf-grid":54,"turf-inside":55,"turf-linestring":65,"turf-planepoint":76,"turf-point":77,"turf-polygon":78,"turf-size":115,"turf-square":116,"turf-tin":120}],62:[function(require,module,exports){
+},{"turf-extent":52,"turf-featurecollection":54,"turf-grid":57,"turf-inside":59,"turf-linestring":69,"turf-planepoint":80,"turf-point":81,"turf-polygon":82,"turf-size":119,"turf-square":120,"turf-tin":124}],66:[function(require,module,exports){
 //https://github.com/jasondavies/conrec.js
 //http://stackoverflow.com/questions/263305/drawing-a-topographical-map
 var tin = require('turf-tin')
@@ -14130,7 +14190,7 @@ module.exports = function(points, z, resolution, breaks, done){
     }
   }
 
-},{"turf-extent":49,"turf-featurecollection":51,"turf-grid":54,"turf-inside":55,"turf-linestring":65,"turf-planepoint":76,"turf-square":116,"turf-tin":120}],63:[function(require,module,exports){
+},{"turf-extent":52,"turf-featurecollection":54,"turf-grid":57,"turf-inside":59,"turf-linestring":69,"turf-planepoint":80,"turf-square":120,"turf-tin":124}],67:[function(require,module,exports){
 var ss = require('simple-statistics')
 
 module.exports = function(fc, field, num){
@@ -14147,9 +14207,9 @@ module.exports = function(fc, field, num){
   return breaks;
 }
 
-},{"simple-statistics":64}],64:[function(require,module,exports){
-module.exports=require(7)
-},{}],65:[function(require,module,exports){
+},{"simple-statistics":68}],68:[function(require,module,exports){
+module.exports=require(8)
+},{"/Users/morgan/Documents/projects/turfjs/turf/node_modules/turf-aggregate/node_modules/turf-average/node_modules/simple-statistics/src/simple_statistics.js":8}],69:[function(require,module,exports){
 module.exports = function(coordinates, properties){
   if(!coordinates) return new Error('No coordinates passed')
   var linestring = { 
@@ -14163,15 +14223,15 @@ module.exports = function(coordinates, properties){
   return linestring
 }
 
-},{}],66:[function(require,module,exports){
-module.exports=require(11)
-},{"simple-statistics":67,"turf-inside":55}],67:[function(require,module,exports){
-module.exports=require(7)
-},{}],68:[function(require,module,exports){
-module.exports=require(13)
-},{"simple-statistics":69,"turf-inside":55}],69:[function(require,module,exports){
-module.exports=require(7)
 },{}],70:[function(require,module,exports){
+module.exports=require(12)
+},{"/Users/morgan/Documents/projects/turfjs/turf/node_modules/turf-aggregate/node_modules/turf-max/index.js":12,"simple-statistics":71,"turf-inside":59}],71:[function(require,module,exports){
+module.exports=require(8)
+},{"/Users/morgan/Documents/projects/turfjs/turf/node_modules/turf-aggregate/node_modules/turf-average/node_modules/simple-statistics/src/simple_statistics.js":8}],72:[function(require,module,exports){
+module.exports=require(14)
+},{"/Users/morgan/Documents/projects/turfjs/turf/node_modules/turf-aggregate/node_modules/turf-median/index.js":14,"simple-statistics":73,"turf-inside":59}],73:[function(require,module,exports){
+module.exports=require(8)
+},{"/Users/morgan/Documents/projects/turfjs/turf/node_modules/turf-aggregate/node_modules/turf-average/node_modules/simple-statistics/src/simple_statistics.js":8}],74:[function(require,module,exports){
 // 1. run tin on points
 // 2. merge the tin
 var clone = require('clone')
@@ -14193,7 +14253,7 @@ module.exports = function(polygons, done){
   return merged;
 }
 
-},{"clone":71,"turf-union":121}],71:[function(require,module,exports){
+},{"clone":75,"turf-union":125}],75:[function(require,module,exports){
 (function (Buffer){
 'use strict';
 
@@ -14326,7 +14386,7 @@ clone.clonePrototype = function(parent) {
 };
 
 }).call(this,require("buffer").Buffer)
-},{"buffer":2}],72:[function(require,module,exports){
+},{"buffer":2}],76:[function(require,module,exports){
 // http://cs.selu.edu/~rbyrd/math/midpoint/
 // ((x1+x2)/2), ((y1+y2)/2)
 var point = require('turf-point')
@@ -14350,11 +14410,11 @@ module.exports = function(point1, point2) {
 
   return midpoint
 }
-},{"turf-point":77}],73:[function(require,module,exports){
-module.exports=require(15)
-},{"simple-statistics":74,"turf-inside":55}],74:[function(require,module,exports){
-module.exports=require(7)
-},{}],75:[function(require,module,exports){
+},{"turf-point":81}],77:[function(require,module,exports){
+module.exports=require(16)
+},{"/Users/morgan/Documents/projects/turfjs/turf/node_modules/turf-aggregate/node_modules/turf-min/index.js":16,"simple-statistics":78,"turf-inside":59}],78:[function(require,module,exports){
+module.exports=require(8)
+},{"/Users/morgan/Documents/projects/turfjs/turf/node_modules/turf-aggregate/node_modules/turf-average/node_modules/simple-statistics/src/simple_statistics.js":8}],79:[function(require,module,exports){
 distance = require('turf-distance')
 
 module.exports = function(targetPoint, points){
@@ -14378,7 +14438,7 @@ module.exports = function(targetPoint, points){
   delete nearestPoint.properties.distance
   return nearestPoint
 }
-},{"turf-distance":39}],76:[function(require,module,exports){
+},{"turf-distance":42}],80:[function(require,module,exports){
 module.exports = function(point, triangle, done){
   var x = point.geometry.coordinates[0]
       y = point.geometry.coordinates[1]
@@ -14400,7 +14460,7 @@ module.exports = function(point, triangle, done){
   return z;
 }
 
-},{}],77:[function(require,module,exports){
+},{}],81:[function(require,module,exports){
 module.exports = function(x, y, properties){
   if(isNaN(x) || isNaN(y)) throw new Error('Invalid coordinates')
   return {
@@ -14413,7 +14473,7 @@ module.exports = function(x, y, properties){
   }
 }
 
-},{}],78:[function(require,module,exports){
+},{}],82:[function(require,module,exports){
 module.exports = function(coordinates, properties){
   if(coordinates === null) return new Error('No coordinates passed')
   var polygon = { 
@@ -14431,7 +14491,7 @@ module.exports = function(coordinates, properties){
   
   return polygon
 }
-},{}],79:[function(require,module,exports){
+},{}],83:[function(require,module,exports){
 var ss = require('simple-statistics')
 
 module.exports = function(fc, field, percentiles){
@@ -14448,9 +14508,9 @@ module.exports = function(fc, field, percentiles){
   return quantiles
 }
 
-},{"simple-statistics":80}],80:[function(require,module,exports){
-module.exports=require(7)
-},{}],81:[function(require,module,exports){
+},{"simple-statistics":84}],84:[function(require,module,exports){
+module.exports=require(8)
+},{"/Users/morgan/Documents/projects/turfjs/turf/node_modules/turf-aggregate/node_modules/turf-average/node_modules/simple-statistics/src/simple_statistics.js":8}],85:[function(require,module,exports){
 var featurecollection = require('turf-featurecollection')
 var reclass = require('./index.js')
 
@@ -14471,7 +14531,7 @@ module.exports = function(fc, inField, outField, translations, done){
   return reclassed;
 }
 
-},{"./index.js":81,"turf-featurecollection":51}],82:[function(require,module,exports){
+},{"./index.js":85,"turf-featurecollection":54}],86:[function(require,module,exports){
 var featureCollection = require('turf-featurecollection')
 
 module.exports = function(collection, key, val) {
@@ -14483,7 +14543,7 @@ module.exports = function(collection, key, val) {
   }
   return newFC
 }
-},{"turf-featurecollection":51}],83:[function(require,module,exports){
+},{"turf-featurecollection":54}],87:[function(require,module,exports){
 // http://stackoverflow.com/questions/11935175/sampling-a-random-subset-from-an-array
 
 featureCollection = require('turf-featurecollection')
@@ -14503,7 +14563,7 @@ function getRandomSubarray(arr, size) {
   }
   return shuffled.slice(min);
 }
-},{"turf-featurecollection":51}],84:[function(require,module,exports){
+},{"turf-featurecollection":54}],88:[function(require,module,exports){
 // use topojson.simplify to simplify points to a given tolerence then convert back to geojson
 var topojson = require('topojson')
 
@@ -14524,7 +14584,7 @@ module.exports = function(fc, quantization, minimumArea){
   return topojson.feature(topo, topo.objects.name)
 }
 
-},{"topojson":85}],85:[function(require,module,exports){
+},{"topojson":89}],89:[function(require,module,exports){
 var topojson = module.exports = require("./topojson");
 topojson.topology = require("./lib/topojson/topology");
 topojson.simplify = require("./lib/topojson/simplify");
@@ -14534,7 +14594,7 @@ topojson.prune = require("./lib/topojson/prune");
 topojson.stitch = require("./lib/topojson/stitch");
 topojson.scale = require("./lib/topojson/scale");
 
-},{"./lib/topojson/clockwise":88,"./lib/topojson/filter":92,"./lib/topojson/prune":96,"./lib/topojson/scale":98,"./lib/topojson/simplify":99,"./lib/topojson/stitch":101,"./lib/topojson/topology":102,"./topojson":114}],86:[function(require,module,exports){
+},{"./lib/topojson/clockwise":92,"./lib/topojson/filter":96,"./lib/topojson/prune":100,"./lib/topojson/scale":102,"./lib/topojson/simplify":103,"./lib/topojson/stitch":105,"./lib/topojson/topology":106,"./topojson":118}],90:[function(require,module,exports){
 
 // Computes the bounding box of the specified hash of GeoJSON objects.
 module.exports = function(objects) {
@@ -14581,7 +14641,7 @@ module.exports = function(objects) {
   return [x0, y0, x1, y1];
 };
 
-},{}],87:[function(require,module,exports){
+},{}],91:[function(require,module,exports){
 exports.name = "cartesian";
 exports.formatDistance = formatDistance;
 exports.ringArea = ringArea;
@@ -14621,7 +14681,7 @@ function distance(x0, y0, x1, y1) {
   return Math.sqrt(dx * dx + dy * dy);
 }
 
-},{}],88:[function(require,module,exports){
+},{}],92:[function(require,module,exports){
 var type = require("./type"),
     systems = require("./coordinate-systems"),
     topojson = require("../../topojson");
@@ -14712,7 +14772,7 @@ function clockwisePolygonSystem(ringArea, reverse) {
 
 function noop() {}
 
-},{"../../topojson":114,"./coordinate-systems":90,"./type":113}],89:[function(require,module,exports){
+},{"../../topojson":118,"./coordinate-systems":94,"./type":117}],93:[function(require,module,exports){
 // Given a hash of GeoJSON objects and an id function, invokes the id function
 // to compute a new id for each object that is a feature. The function is passed
 // the feature and is expected to return the new feature id, or null if the
@@ -14742,13 +14802,13 @@ module.exports = function(objects, id) {
   return objects;
 };
 
-},{}],90:[function(require,module,exports){
+},{}],94:[function(require,module,exports){
 module.exports = {
   cartesian: require("./cartesian"),
   spherical: require("./spherical")
 };
 
-},{"./cartesian":87,"./spherical":100}],91:[function(require,module,exports){
+},{"./cartesian":91,"./spherical":104}],95:[function(require,module,exports){
 // Given a TopoJSON topology in absolute (quantized) coordinates,
 // converts to fixed-point delta encoding.
 // This is a destructive operation that modifies the given topology!
@@ -14779,7 +14839,7 @@ module.exports = function(topology) {
   return topology;
 };
 
-},{}],92:[function(require,module,exports){
+},{}],96:[function(require,module,exports){
 var type = require("./type"),
     prune = require("./prune"),
     clockwise = require("./clockwise"),
@@ -14908,7 +14968,7 @@ function preserveNone() {
   return false;
 }
 
-},{"../../topojson":114,"./clockwise":88,"./coordinate-systems":90,"./prune":96,"./type":113}],93:[function(require,module,exports){
+},{"../../topojson":118,"./clockwise":92,"./coordinate-systems":94,"./prune":100,"./type":117}],97:[function(require,module,exports){
 // Given a hash of GeoJSON objects, replaces Features with geometry objects.
 // This is a destructive operation that modifies the input objects!
 module.exports = function(objects) {
@@ -15027,7 +15087,7 @@ module.exports = function(objects) {
   return objects;
 };
 
-},{}],94:[function(require,module,exports){
+},{}],98:[function(require,module,exports){
 var quantize = require("./quantize");
 
 module.exports = function(topology, Q0, Q1) {
@@ -15075,7 +15135,7 @@ module.exports = function(topology, Q0, Q1) {
   return topology;
 };
 
-},{"./quantize":97}],95:[function(require,module,exports){
+},{"./quantize":101}],99:[function(require,module,exports){
 var quantize = require("./quantize");
 
 module.exports = function(objects, bbox, Q0, Q1) {
@@ -15134,7 +15194,7 @@ module.exports = function(objects, bbox, Q0, Q1) {
   return q.transform;
 };
 
-},{"./quantize":97}],96:[function(require,module,exports){
+},{"./quantize":101}],100:[function(require,module,exports){
 module.exports = function(topology, options) {
   var verbose = false,
       objects = topology.objects,
@@ -15191,7 +15251,7 @@ module.exports = function(topology, options) {
 
 function noop() {}
 
-},{}],97:[function(require,module,exports){
+},{}],101:[function(require,module,exports){
 module.exports = function(dx, dy, kx, ky) {
 
   function quantizePoint(coordinates) {
@@ -15235,7 +15295,7 @@ module.exports = function(dx, dy, kx, ky) {
   };
 };
 
-},{}],98:[function(require,module,exports){
+},{}],102:[function(require,module,exports){
 var type = require("./type");
 
 module.exports = function(topology, options) {
@@ -15315,7 +15375,7 @@ module.exports = function(topology, options) {
 
 function noop() {}
 
-},{"./type":113}],99:[function(require,module,exports){
+},{"./type":117}],103:[function(require,module,exports){
 var topojson = require("../../topojson"),
     systems = require("./coordinate-systems");
 
@@ -15424,7 +15484,7 @@ module.exports = function(topology, options) {
   return topology;
 };
 
-},{"../../topojson":114,"./coordinate-systems":90}],100:[function(require,module,exports){
+},{"../../topojson":118,"./coordinate-systems":94}],104:[function(require,module,exports){
 var π = Math.PI,
     π_4 = π / 4,
     radians = π / 180;
@@ -15505,7 +15565,7 @@ function haversin(x) {
   return (x = Math.sin(x / 2)) * x;
 }
 
-},{}],101:[function(require,module,exports){
+},{}],105:[function(require,module,exports){
 var type = require("./type");
 
 module.exports = function(objects, transform) {
@@ -15688,7 +15748,7 @@ module.exports = function(objects, transform) {
   }
 };
 
-},{"./type":113}],102:[function(require,module,exports){
+},{"./type":117}],106:[function(require,module,exports){
 var type = require("./type"),
     stitch = require("./stitch"),
     systems = require("./coordinate-systems"),
@@ -15801,7 +15861,7 @@ module.exports = function(objects, options) {
   return topology;
 };
 
-},{"./bounds":86,"./compute-id":89,"./coordinate-systems":90,"./delta":91,"./geomify":93,"./post-quantize":94,"./pre-quantize":95,"./stitch":101,"./topology/index":108,"./transform-properties":112,"./type":113}],103:[function(require,module,exports){
+},{"./bounds":90,"./compute-id":93,"./coordinate-systems":94,"./delta":95,"./geomify":97,"./post-quantize":98,"./pre-quantize":99,"./stitch":105,"./topology/index":112,"./transform-properties":116,"./type":117}],107:[function(require,module,exports){
 var join = require("./join");
 
 // Given an extracted (pre-)topology, cuts (or rotates) arcs so that all shared
@@ -15863,7 +15923,7 @@ function reverse(array, start, end) {
   }
 }
 
-},{"./join":109}],104:[function(require,module,exports){
+},{"./join":113}],108:[function(require,module,exports){
 var join = require("./join"),
     hashmap = require("./hashmap"),
     hashPoint = require("./point-hash"),
@@ -16049,7 +16109,7 @@ module.exports = function(topology) {
   return topology;
 };
 
-},{"./hashmap":106,"./join":109,"./point-equal":110,"./point-hash":111}],105:[function(require,module,exports){
+},{"./hashmap":110,"./join":113,"./point-equal":114,"./point-hash":115}],109:[function(require,module,exports){
 // Extracts the lines and rings from the specified hash of geometry objects.
 //
 // Returns an object with three properties:
@@ -16116,7 +16176,7 @@ module.exports = function(objects) {
   };
 };
 
-},{}],106:[function(require,module,exports){
+},{}],110:[function(require,module,exports){
 module.exports = function(size, hash, equal, keyType, keyEmpty, valueType) {
   if (arguments.length === 3) {
     keyType = valueType = Array;
@@ -16191,7 +16251,7 @@ module.exports = function(size, hash, equal, keyType, keyEmpty, valueType) {
   };
 };
 
-},{}],107:[function(require,module,exports){
+},{}],111:[function(require,module,exports){
 module.exports = function(size, hash, equal, type, empty) {
   if (arguments.length === 3) {
     type = Array;
@@ -16248,7 +16308,7 @@ module.exports = function(size, hash, equal, type, empty) {
   };
 };
 
-},{}],108:[function(require,module,exports){
+},{}],112:[function(require,module,exports){
 var hashmap = require("./hashmap"),
     extract = require("./extract"),
     cut = require("./cut"),
@@ -16318,7 +16378,7 @@ function equalArc(arcA, arcB) {
   return ia === ib && ja === jb;
 }
 
-},{"./cut":103,"./dedup":104,"./extract":105,"./hashmap":106}],109:[function(require,module,exports){
+},{"./cut":107,"./dedup":108,"./extract":109,"./hashmap":110}],113:[function(require,module,exports){
 var hashset = require("./hashset"),
     hashmap = require("./hashmap"),
     hashPoint = require("./point-hash"),
@@ -16433,12 +16493,12 @@ module.exports = function(topology) {
   return junctionByPoint;
 };
 
-},{"./hashmap":106,"./hashset":107,"./point-equal":110,"./point-hash":111}],110:[function(require,module,exports){
+},{"./hashmap":110,"./hashset":111,"./point-equal":114,"./point-hash":115}],114:[function(require,module,exports){
 module.exports = function(pointA, pointB) {
   return pointA[0] === pointB[0] && pointA[1] === pointB[1];
 };
 
-},{}],111:[function(require,module,exports){
+},{}],115:[function(require,module,exports){
 // TODO if quantized, use simpler Int32 hashing?
 
 var buffer = new ArrayBuffer(16),
@@ -16453,7 +16513,7 @@ module.exports = function(point) {
   return hash & 0x7fffffff;
 };
 
-},{}],112:[function(require,module,exports){
+},{}],116:[function(require,module,exports){
 // Given a hash of GeoJSON objects, transforms any properties on features using
 // the specified transform function. If no properties are propagated to the new
 // properties hash, the properties hash will be deleted.
@@ -16483,7 +16543,7 @@ module.exports = function(objects, propertyTransform) {
   return objects;
 };
 
-},{}],113:[function(require,module,exports){
+},{}],117:[function(require,module,exports){
 module.exports = function(types) {
   for (var type in typeDefaults) {
     if (!(type in types)) {
@@ -16577,7 +16637,7 @@ var typeObjects = {
   FeatureCollection: 1
 };
 
-},{}],114:[function(require,module,exports){
+},{}],118:[function(require,module,exports){
 !function() {
   var topojson = {
     version: "1.6.14",
@@ -17111,7 +17171,7 @@ var typeObjects = {
   else this.topojson = topojson;
 }();
 
-},{}],115:[function(require,module,exports){
+},{}],119:[function(require,module,exports){
 module.exports = function(bbox, factor){
   var currentXDistance = (bbox[2] - bbox[0]) 
   var currentYDistance = (bbox[3] - bbox[1])
@@ -17128,7 +17188,7 @@ module.exports = function(bbox, factor){
   var sized = [lowX, lowY, highX, highY]
   return sized
 }
-},{}],116:[function(require,module,exports){
+},{}],120:[function(require,module,exports){
 var midpoint = require('turf-midpoint')
 var point = require('turf-point')
 var distance = require('turf-distance')
@@ -17161,11 +17221,11 @@ module.exports = function(bbox){
 }
 
 
-},{"turf-distance":39,"turf-midpoint":72,"turf-point":77}],117:[function(require,module,exports){
-module.exports=require(17)
-},{"simple-statistics":118,"turf-inside":55}],118:[function(require,module,exports){
-module.exports=require(7)
-},{}],119:[function(require,module,exports){
+},{"turf-distance":42,"turf-midpoint":76,"turf-point":81}],121:[function(require,module,exports){
+module.exports=require(18)
+},{"/Users/morgan/Documents/projects/turfjs/turf/node_modules/turf-aggregate/node_modules/turf-sum/index.js":18,"simple-statistics":122,"turf-inside":59}],122:[function(require,module,exports){
+module.exports=require(8)
+},{"/Users/morgan/Documents/projects/turfjs/turf/node_modules/turf-aggregate/node_modules/turf-average/node_modules/simple-statistics/src/simple_statistics.js":8}],123:[function(require,module,exports){
 inside = require('turf-inside')
 
 module.exports = function(points, polygons, field, outField){
@@ -17187,9 +17247,9 @@ module.exports = function(points, polygons, field, outField){
   })
   return points
 }
-},{"turf-inside":55}],120:[function(require,module,exports){
-module.exports=require(34)
-},{"turf-nearest":75,"turf-point":77,"turf-polygon":78}],121:[function(require,module,exports){
+},{"turf-inside":59}],124:[function(require,module,exports){
+module.exports=require(36)
+},{"/Users/morgan/Documents/projects/turfjs/turf/node_modules/turf-concave/node_modules/turf-tin/index.js":36,"turf-nearest":79,"turf-point":81,"turf-polygon":82}],125:[function(require,module,exports){
 // look here for help http://svn.osgeo.org/grass/grass/branches/releasebranch_6_4/vector/v.overlay/main.c
 //must be array of polygons
 
@@ -17212,17 +17272,17 @@ module.exports = function(poly1, poly2){
   }
 }
 
-},{"jsts":122}],122:[function(require,module,exports){
-module.exports=require(26)
-},{"./lib/jsts":123,"javascript.util":124}],123:[function(require,module,exports){
-module.exports=require(27)
-},{}],124:[function(require,module,exports){
+},{"jsts":126}],126:[function(require,module,exports){
 module.exports=require(28)
-},{}],125:[function(require,module,exports){
-module.exports=require(19)
-},{"simple-statistics":126,"turf-inside":55}],126:[function(require,module,exports){
-module.exports=require(7)
-},{}],127:[function(require,module,exports){
+},{"./lib/jsts":127,"/Users/morgan/Documents/projects/turfjs/turf/node_modules/turf-buffer/node_modules/jsts/index.js":28,"javascript.util":128}],127:[function(require,module,exports){
+module.exports=require(29)
+},{"/Users/morgan/Documents/projects/turfjs/turf/node_modules/turf-buffer/node_modules/jsts/lib/jsts.js":29}],128:[function(require,module,exports){
+module.exports=require(30)
+},{"/Users/morgan/Documents/projects/turfjs/turf/node_modules/turf-buffer/node_modules/jsts/node_modules/javascript.util/lib/javascript.util.js":30}],129:[function(require,module,exports){
+module.exports=require(20)
+},{"/Users/morgan/Documents/projects/turfjs/turf/node_modules/turf-aggregate/node_modules/turf-variance/index.js":20,"simple-statistics":130,"turf-inside":59}],130:[function(require,module,exports){
+module.exports=require(8)
+},{"/Users/morgan/Documents/projects/turfjs/turf/node_modules/turf-aggregate/node_modules/turf-average/node_modules/simple-statistics/src/simple_statistics.js":8}],131:[function(require,module,exports){
 var inside = require('turf-inside')
 var featureCollection = require('turf-featurecollection')
 
@@ -17238,5 +17298,5 @@ module.exports = function(ptFC, polyFC){
   })
   return pointsWithin
 }
-},{"turf-featurecollection":51,"turf-inside":55}]},{},[1])(1)
+},{"turf-featurecollection":54,"turf-inside":59}]},{},[1])(1)
 });

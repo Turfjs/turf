@@ -67,6 +67,7 @@
     "turf-filter": "^0.1.2",
     "turf-flip": "0.1.2",
     "turf-grid": "0.1.0",
+    "turf-hex": "^0.1.0",
     "turf-inside": "^0.1.4",
     "turf-intersect": "0.0.0",
     "turf-is-clockwise": "0.1.2",
@@ -98,7 +99,7 @@
     "turf-within": "^0.1.2"
   },
   "devDependencies": {
-    "browserify": "~5.10.0",
+    "browserify": "~5.11.2",
     "tape": "^2.14.0",
     "uglify-js": "~2.4.15"
   }
