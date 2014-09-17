@@ -92,6 +92,8 @@ npm install turf-buffer
 
 [![Build Status](https://travis-ci.org/Turfjs/turf-grid.svg?branch=master)](https://travis-ci.org/Turfjs/turf-grid) [grid](https://github.com/Turfjs/turf-grid)
 
+[![Build Status](https://travis-ci.org/Turfjs/turf-hex.svg?branch=master)](https://travis-ci.org/Turfjs/turf-hex) [hex](https://github.com/Turfjs/turf-hex)
+
 [![Build Status](https://travis-ci.org/Turfjs/turf-planepoint.svg?branch=master)](https://travis-ci.org/Turfjs/turf-planepoint) [planepoint](https://github.com/Turfjs/turf-planepoint)
 
 [![Build Status](https://travis-ci.org/Turfjs/turf-isolines.svg?branch=master)](https://travis-ci.org/Turfjs/turf-isolines) [isolines](https://github.com/Turfjs/turf-isolines)
