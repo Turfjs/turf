@@ -52,5 +52,6 @@ module.exports = {
   union: require('turf-union'),
   bearing: require('turf-bearing'),
   destination: require('turf-destination'),
-  hex: require('turf-hex')
+  hex: require('turf-hex'),
+  kinks: require('turf-kinks')
 }

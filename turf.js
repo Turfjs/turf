@@ -55,7 +55,6 @@ module.exports = {
   destination: require('turf-destination'),
   hex: require('turf-hex')
 }
-
 },{"turf-aggregate":6,"turf-average":22,"turf-bbox-polygon":24,"turf-bearing":25,"turf-bezier":26,"turf-buffer":27,"turf-center":32,"turf-centroid":33,"turf-combine":34,"turf-concave":35,"turf-convex":37,"turf-count":38,"turf-destination":39,"turf-deviation":40,"turf-distance":42,"turf-donuts":43,"turf-envelope":45,"turf-erase":46,"turf-explode":50,"turf-extent":52,"turf-featurecollection":54,"turf-filter":55,"turf-flip":56,"turf-grid":57,"turf-hex":58,"turf-inside":59,"turf-intersect":60,"turf-is-clockwise":64,"turf-isobands":65,"turf-isolines":66,"turf-jenks":67,"turf-linestring":69,"turf-max":70,"turf-median":72,"turf-merge":74,"turf-midpoint":76,"turf-min":77,"turf-nearest":79,"turf-planepoint":80,"turf-point":81,"turf-polygon":82,"turf-quantile":83,"turf-reclass":85,"turf-remove":86,"turf-sample":87,"turf-simplify":88,"turf-size":119,"turf-square":120,"turf-sum":121,"turf-tag":123,"turf-tin":124,"turf-union":125,"turf-variance":129,"turf-within":131}],2:[function(require,module,exports){
 /*!
  * The buffer module from node.js, for the browser.
