@@ -81,6 +81,8 @@ npm install turf-buffer
 
 [![Build Status](https://travis-ci.org/Turfjs/turf-centroid.svg?branch=master)](https://travis-ci.org/Turfjs/turf-centroid) [centroid](https://github.com/Turfjs/turf-centroid)
 
+[![Build Status](https://travis-ci.org/Turfjs/turf-point-on-surface.svg?branch=master)](https://travis-ci.org/Turfjs/turf-point-on-surface) [point-on-surface](https://github.com/Turfjs/turf-point-on-surface)
+
 [![Build Status](https://travis-ci.org/Turfjs/turf-midpoint.svg?branch=master)](https://travis-ci.org/Turfjs/turf-midpoint) [midpoint](https://github.com/Turfjs/turf-midpoint)
 
 [![Build Status](https://travis-ci.org/Turfjs/turf-bearing.svg?branch=master)](https://travis-ci.org/Turfjs/turf-bearing) [bearing](https://github.com/Turfjs/turf-bearing)
