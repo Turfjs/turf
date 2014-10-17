@@ -53,5 +53,6 @@ module.exports = {
   bearing: require('turf-bearing'),
   destination: require('turf-destination'),
   hex: require('turf-hex'),
-  kinks: require('turf-kinks')
+  kinks: require('turf-kinks'),
+  pointOnSurface: require('turf-point-on-surface')
 }
