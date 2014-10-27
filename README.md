@@ -4,7 +4,7 @@
 [![Build Status](https://travis-ci.org/Turfjs/turf.svg?branch=master)](https://travis-ci.org/Turfjs/turf)
 
 
-***A modular GIS engine written in JavaScript***
+***A modular geospatial engine written in JavaScript***
 
 - - -
 
