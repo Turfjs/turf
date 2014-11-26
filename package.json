@@ -60,7 +60,7 @@
     "turf-distance": "^0.1.5",
     "turf-donuts": "0.1.0",
     "turf-envelope": "~0.1.1",
-    "turf-erase": "0.1.3",
+    "turf-erase": "1.2.0",
     "turf-explode": "^0.1.3",
     "turf-extent": "^0.1.4",
     "turf-featurecollection": "~0.1.0",
@@ -69,7 +69,7 @@
     "turf-grid": "0.1.0",
     "turf-hex": "^0.1.1",
     "turf-inside": "^1.1.1",
-    "turf-intersect": "1.0.2",
+    "turf-intersect": "1.3.0",
     "turf-is-clockwise": "0.1.2",
     "turf-isobands": "0.1.1",
     "turf-isolines": "0.1.1",
@@ -101,8 +101,8 @@
     "turf-within": "^0.1.2"
   },
   "devDependencies": {
-    "browserify": "~6.2.0",
-    "tape": "^3.0.1",
+    "browserify": "~6.3.3",
+    "tape": "^3.0.3",
     "uglify-js": "~2.4.15"
   }
 }
