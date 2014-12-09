@@ -1,7 +1,0 @@
-echo "browserifying.."
-./node_modules/.bin/browserify index.js > turf.js -s turf
-
-echo "uglifying.."
-./node_modules/.bin/uglifyjs turf.js -o turf.min.js
-
-echo "..complete"
