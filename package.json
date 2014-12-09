@@ -4,7 +4,8 @@
   "description": "a node.js library for performing geospatial operations with geojson",
   "main": "index.js",
   "scripts": {
-    "test": "node test.js"
+    "test": "node test.js",
+    "build": "browserify index.js -s turf > turf.js && uglifyjs turf.js -c -m > turf.min.js"
   },
   "repository": {
     "type": "git",
