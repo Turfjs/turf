@@ -6,6 +6,8 @@
 
 ***A modular geospatial engine written in JavaScript***
 
+[turfjs.org](http://turfjs.org/)
+
 - - -
 
 ##Installation
@@ -67,7 +69,7 @@ npm install turf-buffer
 
 [![Build Status](https://travis-ci.org/Turfjs/turf-nearest.svg?branch=master)](https://travis-ci.org/Turfjs/turf-nearest) [nearest](https://github.com/Turfjs/turf-nearest)
 
-[![Build Status](https://travis-ci.org/Turfjs/turf-bboxPolygon.svg?branch=master)](https://travis-ci.org/Turfjs/turf-bboxPolygon) [bboxPolygon](https://github.com/Turfjs/turf-bboxPolygon)
+[![Build Status](https://travis-ci.org/Turfjs/turf-bbox-polygon.svg?branch=master)](https://travis-ci.org/Turfjs/turf-bbox-polygon) [bbox-polygon](https://github.com/Turfjs/turf-bbox-polygon)
 
 [![Build Status](https://travis-ci.org/Turfjs/turf-envelope.svg?branch=master)](https://travis-ci.org/Turfjs/turf-envelope) [envelope](https://github.com/Turfjs/turf-envelope)
 
@@ -143,8 +145,6 @@ npm install turf-buffer
 
 [![Build Status](https://travis-ci.org/Turfjs/turf-erase.svg?branch=master)](https://travis-ci.org/Turfjs/turf-erase) [erase](https://github.com/Turfjs/turf-erase)
 
-[![Build Status](https://travis-ci.org/Turfjs/turf-donuts.svg?branch=master)](https://travis-ci.org/Turfjs/turf-donuts) [donuts](https://github.com/Turfjs/turf-donuts)
-
 [![Build Status](https://travis-ci.org/Turfjs/turf-convex.svg?branch=master)](https://travis-ci.org/Turfjs/turf-convex) [convex](https://github.com/Turfjs/turf-convex)
 
 [![Build Status](https://travis-ci.org/Turfjs/turf-concave.svg?branch=master)](https://travis-ci.org/Turfjs/turf-concave) [concave](https://github.com/Turfjs/turf-concave)
@@ -156,6 +156,6 @@ npm install turf-buffer
 
 [![Build Status](https://travis-ci.org/Turfjs/turf-combine.svg?branch=master)](https://travis-ci.org/Turfjs/turf-combine) [combine](https://github.com/Turfjs/turf-combine)
 
-[![Build Status](https://travis-ci.org/Turfjs/turf-isClockwise.svg?branch=master)](https://travis-ci.org/Turfjs/turf-isClockwise) [isClockwise](https://github.com/Turfjs/turf-isClockwise)
+[![Build Status](https://travis-ci.org/Turfjs/turf-is-clockwise.svg?branch=master)](https://travis-ci.org/Turfjs/turf-is-clockwise) [is-clockwise](https://github.com/Turfjs/turf-is-clockwise)
 
 [![Build Status](https://travis-ci.org/Turfjs/turf-kinks.svg?branch=master)](https://travis-ci.org/Turfjs/turf-kinks) [kinks](https://github.com/Turfjs/turf-kinks)
