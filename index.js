@@ -4,7 +4,6 @@ module.exports = {
   isobands: require('turf-isobands'),
   merge: require('turf-merge'),
   convex: require('turf-convex'),
-  donuts: require('turf-donuts'),
   within: require('turf-within'),
   concave: require('turf-concave'),
   count: require('turf-count'),

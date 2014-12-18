@@ -5,7 +5,6 @@ lib-cov
 *.dat
 *.out
 *.pid
-*.gz
 
 .DS_Store
 
