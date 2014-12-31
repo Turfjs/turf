@@ -75,7 +75,7 @@
     "turf-isobands": "1.0.0",
     "turf-isolines": "1.0.0",
     "turf-jenks": "1.0.0",
-    "turf-kinks": "^1.2.1",
+    "turf-kinks": "^1.3.0",
     "turf-linestring": "^1.0.0",
     "turf-max": "1.0.0",
     "turf-median": "1.0.1",
