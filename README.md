@@ -67,6 +67,8 @@ npm install turf-buffer
 ####measurement
 [![Build Status](https://travis-ci.org/Turfjs/turf-distance.svg?branch=master)](https://travis-ci.org/Turfjs/turf-distance) [distance](https://github.com/Turfjs/turf-distance)
 
+[![Build Status](https://travis-ci.org/Turfjs/turf-area.svg?branch=master)](https://travis-ci.org/Turfjs/turf-area) [area](https://github.com/Turfjs/turf-area)
+
 [![Build Status](https://travis-ci.org/Turfjs/turf-nearest.svg?branch=master)](https://travis-ci.org/Turfjs/turf-nearest) [nearest](https://github.com/Turfjs/turf-nearest)
 
 [![Build Status](https://travis-ci.org/Turfjs/turf-bbox-polygon.svg?branch=master)](https://travis-ci.org/Turfjs/turf-bbox-polygon) [bbox-polygon](https://github.com/Turfjs/turf-bbox-polygon)

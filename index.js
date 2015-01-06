@@ -60,5 +60,6 @@ module.exports = {
   destination: require('turf-destination'),
   hex: require('turf-hex'),
   kinks: require('turf-kinks'),
-  pointOnSurface: require('turf-point-on-surface')
+  pointOnSurface: require('turf-point-on-surface'),
+  area: require('turf-area')
 };
