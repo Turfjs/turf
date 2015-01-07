@@ -6,7 +6,6 @@
  * @summary GIS For Web Maps
  */
 module.exports = {
-  isClockwise: require('turf-is-clockwise'),
   isolines: require('turf-isolines'),
   isobands: require('turf-isobands'),
   merge: require('turf-merge'),
