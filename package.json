@@ -89,6 +89,7 @@
     "turf-point-on-surface": "^1.1.0",
     "turf-polygon": "^1.0.0",
     "turf-quantile": "1.0.0",
+    "turf-random": "^1.0.0",
     "turf-reclass": "1.0.0",
     "turf-remove": "^1.0.0",
     "turf-sample": "^1.0.0",
