@@ -51,6 +51,7 @@ module.exports = {
   planepoint: require('turf-planepoint'),
   point: require('turf-point'),
   polygon: require('turf-polygon'),
+  random: require('turf-random'),
   reclass: require('turf-reclass'),
   remove: require('turf-remove'),
   tin: require('turf-tin'),
