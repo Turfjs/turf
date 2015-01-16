@@ -1,6 +1,6 @@
 {
   "name": "turf",
-  "version": "1.3.0",
+  "version": "1.3.1",
   "description": "a node.js library for performing geospatial operations with geojson",
   "main": "index.js",
   "scripts": {
@@ -89,6 +89,7 @@
     "turf-point-on-surface": "^1.1.0",
     "turf-polygon": "^1.0.0",
     "turf-quantile": "1.0.0",
+    "turf-random": "^1.0.0",
     "turf-reclass": "1.0.0",
     "turf-remove": "^1.0.0",
     "turf-sample": "^1.0.0",

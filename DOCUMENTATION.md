@@ -75,6 +75,11 @@ Example of documentation:
 
 ### Building and Testing Documentation
 
+The turf-www project exposes two useful scripts that you'll use for testing & deploying new documentation:
+
+* `npm run build` builds & rebuilds changes as necessary and runs a local web server so you can review them
+* `npm run build-production` builds the site once to get it ready to be pushed into production.
+
 To build docs, in the root of `turf-www`, run:
 
 ```sh
@@ -105,6 +110,6 @@ produced artifact _only_. Run the following in the root of `turf-www`:
 
 ```sh
 npm install
-npm run build
+npm run build-production
 ./deploy.sh
 ```
