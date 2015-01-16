@@ -85,6 +85,17 @@ $ npm run build
 This will build docs to the `/docs` directory in this website. Docs _do not use Jekyll_:
 they're just static files once baked. You can then test them in your browser.
 
+### Keeping Documentation Up to Date
+
+When you come back to edit a second time, you should make sure that you have the latest versions of everthing. To pull down updates from individual modules and build documentation, navigate to `/node_modules/turf` and run the following:
+
+```sh
+$ turf-modules-update
+$ npm run build
+```
+
+You can then see the built documentation in your browser.
+
 ## Deploying Documentation
 
 Once tested, you can push to a branch and make a pull request to the individual module from that module's directory at `node_modules/turf/turf_modules/[module name]`, as it is just a clone of the individual module.
