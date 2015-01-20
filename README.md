@@ -93,6 +93,8 @@ npm install turf-buffer
 
 [![Build Status](https://travis-ci.org/Turfjs/turf-destination.svg?branch=master)](https://travis-ci.org/Turfjs/turf-destination) [destination](https://github.com/Turfjs/turf-destination)
 
+[![Build Status](https://travis-ci.org/Turfjs/turf-along.svg?branch=master)](https://travis-ci.org/Turfjs/turf-along) [along](https://github.com/Turfjs/turf-along)
+
 ####interpolation
 [![Build Status](https://travis-ci.org/Turfjs/turf-tin.svg?branch=master)](https://travis-ci.org/Turfjs/turf-tin) [tin](https://github.com/Turfjs/turf-tin)
 
