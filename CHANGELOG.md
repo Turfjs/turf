@@ -5,3 +5,4 @@
   never be changed in place.
 * added turf-line-distance for geodesic measuring of LineStrings
 * added turf-along for calculating a the location of a Point x distance along a LineString
+* added turf-area for calculating the area of a given feature
