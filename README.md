@@ -47,7 +47,7 @@ npm install turf-buffer
 
 [![Build Status](https://travis-ci.org/Turfjs/turf-polygon.svg?branch=master)](https://travis-ci.org/Turfjs/turf-polygon) [polygon](https://github.com/Turfjs/turf-polygon)
 
-[![Build Status](https://travis-ci.org/Turfjs/turf-featureCollection.svg?branch=master)](https://travis-ci.org/Turfjs/turf-featureCollection) [featurecollection](https://github.com/Turfjs/turf-featurecollection)
+[![Build Status](https://travis-ci.org/Turfjs/turf-featurecollection.svg?branch=master)](https://travis-ci.org/Turfjs/turf-featurecollection) [featurecollection](https://github.com/Turfjs/turf-featurecollection)
 
 ####joins
 
