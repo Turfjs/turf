@@ -63,5 +63,7 @@ module.exports = {
   pointOnSurface: require('turf-point-on-surface'),
   area: require('turf-area'),
   along: require('turf-along'),
-  lineDistance: require('turf-line-distance')
+  lineDistance: require('turf-line-distance'),
+  lineSlice: require('turf-line-slice'),
+  pointOnLine: require('turf-point-on-line')
 };
