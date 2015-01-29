@@ -1,3 +1,7 @@
+# 1.3.4
+
+* fixes bug in turf-along
+
 # 1.3.3
 
 * added turf-line-slice for segmenting LineStrings with Points

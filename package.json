@@ -47,7 +47,7 @@
   },
   "dependencies": {
     "turf-aggregate": "1.0.0",
-    "turf-along": "^1.0.0",
+    "turf-along": "^1.0.1",
     "turf-area": "^1.0.0",
     "turf-average": "1.1.0",
     "turf-bbox-polygon": "^1.0.0",
