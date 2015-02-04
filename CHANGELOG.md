@@ -1,3 +1,7 @@
+# 1.3.5
+
+* harmonize turf-tin dependency tree
+
 # 1.3.4
 
 * fixes bug in turf-along
