@@ -1,3 +1,10 @@
+# 1.4.0
+
+* update all module dependencies to master
+* add support for features in turf.intersection
+* fix issues with turf.polygon coordinate wrapping inconsistencies
+* add `unit` parameter to turf.concave
+
 # 1.3.5
 
 * harmonize turf-tin dependency tree
