@@ -8,6 +8,17 @@
 - Avoid large dependencies at all costs.
 - Turf is used in a wide range of places. Make sure that your code can run in the browser (ie: don't make calls to external services, don't hit the filesystem, etc.).
 
+## Code Style
+
+To ensure code style at the `turf` module level, run
+
+```sh
+$ npm run lint
+```
+
+* Follow the [AirBNB JavaScript code style](https://github.com/airbnb/javascript).
+* Turf aims to use ES5 features where rational. We do not use ES6 features.
+
 ## Structure of a turf module
 
 ```
