@@ -12,11 +12,12 @@
   },
   "eslintConfig": {
     "rules": {
-        "quotes": [2, "single"],
+        "quotes": 0,
         "curly": 0,
         "camelcase": 0,
         "space-infix-ops": 0,
         "comma-spacing": 0,
+        "no-use-before-define": 0,
         "strict": 0
     },
     "env": {
