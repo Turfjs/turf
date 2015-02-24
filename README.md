@@ -128,8 +128,6 @@ var point2 = {
 ####interpolation
 [![Build Status](https://travis-ci.org/Turfjs/turf-tin.svg?branch=master)](https://travis-ci.org/Turfjs/turf-tin) [tin](https://github.com/Turfjs/turf-tin)
 
-[![Build Status](https://travis-ci.org/Turfjs/turf-grid.svg?branch=master)](https://travis-ci.org/Turfjs/turf-grid) [grid](https://github.com/Turfjs/turf-grid)
-
 [![Build Status](https://travis-ci.org/Turfjs/turf-hex.svg?branch=master)](https://travis-ci.org/Turfjs/turf-hex) [hex](https://github.com/Turfjs/turf-hex)
 
 [![Build Status](https://travis-ci.org/Turfjs/turf-planepoint.svg?branch=master)](https://travis-ci.org/Turfjs/turf-planepoint) [planepoint](https://github.com/Turfjs/turf-planepoint)
@@ -137,6 +135,16 @@ var point2 = {
 [![Build Status](https://travis-ci.org/Turfjs/turf-isolines.svg?branch=master)](https://travis-ci.org/Turfjs/turf-isolines) [isolines](https://github.com/Turfjs/turf-isolines)
 
 [![Build Status](https://travis-ci.org/Turfjs/turf-isobands.svg?branch=master)](https://travis-ci.org/Turfjs/turf-isobands) [isobands](https://github.com/Turfjs/turf-isobands)
+
+####grids
+
+[![Build Status](https://travis-ci.org/Turfjs/turf-point-grid.svg?branch=master)](https://travis-ci.org/Turfjs/turf-point-grid) [point-grid](https://github.com/Turfjs/turf-point-grid)
+
+[![Build Status](https://travis-ci.org/Turfjs/turf-square-grid.svg?branch=master)](https://travis-ci.org/Turfjs/turf-square-grid) [square-grid](https://github.com/Turfjs/turf-square-grid)
+
+[![Build Status](https://travis-ci.org/Turfjs/turf-hex-grid.svg?branch=master)](https://travis-ci.org/Turfjs/turf-hex-grid) [hex-grid](https://github.com/Turfjs/turf-hex-grid)
+
+[![Build Status](https://travis-ci.org/Turfjs/turf-triangle-grid.svg?branch=master)](https://travis-ci.org/Turfjs/turf-triangle-grid) [triangle-grid](https://github.com/Turfjs/turf-triangle-grid)
 
 ####classification
 [![Build Status](https://travis-ci.org/Turfjs/turf-quantile.svg?branch=master)](https://travis-ci.org/Turfjs/turf-quantile) [quantile](https://github.com/Turfjs/turf-quantile)
