@@ -7,7 +7,6 @@
  */
 module.exports = {
   isolines: require('turf-isolines'),
-  isobands: require('turf-isobands'),
   merge: require('turf-merge'),
   convex: require('turf-convex'),
   within: require('turf-within'),
@@ -43,7 +42,6 @@ module.exports = {
   bboxPolygon: require('turf-bbox-polygon'),
   featurecollection: require('turf-featurecollection'),
   filter: require('turf-filter'),
-  grid: require('turf-grid'),
   inside: require('turf-inside'),
   intersect: require('turf-intersect'),
   linestring: require('turf-linestring'),
@@ -58,12 +56,15 @@ module.exports = {
   union: require('turf-union'),
   bearing: require('turf-bearing'),
   destination: require('turf-destination'),
-  hex: require('turf-hex'),
   kinks: require('turf-kinks'),
   pointOnSurface: require('turf-point-on-surface'),
   area: require('turf-area'),
   along: require('turf-along'),
   lineDistance: require('turf-line-distance'),
   lineSlice: require('turf-line-slice'),
-  pointOnLine: require('turf-point-on-line')
+  pointOnLine: require('turf-point-on-line'),
+  pointGrid: require('turf-point-grid'),
+  squareGrid: require('turf-square-grid'),
+  triangleGrid: require('turf-triangle-grid'),
+  hexGrid: require('turf-hex-grid')
 };

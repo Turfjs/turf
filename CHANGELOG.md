@@ -1,3 +1,13 @@
+# 2.0.0
+
+* turf-grid renamed turf-point-grid (turf.grid => turf.pointGrid)
+* turf-hex renamed turf-hex-grid (turf.hex => turf.hexGrid)
+* turf-hex-grid now has a required `unit` parameter
+* remove turf-isobands; use turf-isolines instead
+* added turf-square-grid (turf.squareGrid)
+* added turf-triangle-grid (turf.triangleGrid)
+* constrain turf-point-grid to the bbox
+
 # 1.4.0
 
 * update all module dependencies to master
