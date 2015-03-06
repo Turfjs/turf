@@ -51,7 +51,7 @@ Most Turf functions work with GeoJSON features. These are are pieces of data tha
 Turf provides a few geometry functions of its own. These are nothing more than simple (and optional) wrappers that output plain old GeoJSON. For example, these two methods of creating a point are functionally equivalent:
 
 ```
-var point1 = turf.point(0,0);
+var point1 = turf.point([0, 0]);
 
 var point2 = {
   type: 'Feature',
