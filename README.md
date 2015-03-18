@@ -1,7 +1,7 @@
-![turf](https://raw.githubusercontent.com/Turfjs/turf/9a1d5e8d99564d4080f1e2bf1517ed41d18012fa/logo.png)
+![turf](https://raw.githubusercontent.com/Turfjs/turf/9a1d5e8d99564d4080f1e2bf1517ed41d18012fa/logo.png) 
 ======
 
-[![Build Status](https://travis-ci.org/Turfjs/turf.svg?branch=master)](https://travis-ci.org/Turfjs/turf) [![Gitter chat](https://badges.gitter.im/Turfjs/turf.png)](https://gitter.im/Turfjs/turf)
+ <sup>[![Version Badge](http://vb.teelaun.ch/Turfjs/turf.svg)](https://npmjs.org/package/turf)</sup> [![Build Status](https://travis-ci.org/Turfjs/turf.svg?branch=master)](https://travis-ci.org/Turfjs/turf) [![Gitter chat](https://badges.gitter.im/Turfjs/turf.png)](https://gitter.im/Turfjs/turf)
 
 
 ***A modular geospatial engine written in JavaScript***
