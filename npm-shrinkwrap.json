@@ -361,9 +361,8 @@
           "resolved": "https://registry.npmjs.org/jsts/-/jsts-0.15.0.tgz",
           "dependencies": {
             "javascript.util": {
-              "version": "0.12.7",
-              "from": "javascript.util@>=0.12.5 <0.13.0",
-              "resolved": "https://registry.npmjs.org/javascript.util/-/javascript.util-0.12.7.tgz"
+              "version": "0.12.5",
+              "resolved": "https://registry.npmjs.org/javascript.util/-/javascript.util-0.12.5.tgz"
             }
           }
         }
@@ -572,9 +571,8 @@
           "resolved": "https://registry.npmjs.org/jsts/-/jsts-0.15.0.tgz",
           "dependencies": {
             "javascript.util": {
-              "version": "0.12.7",
-              "from": "javascript.util@>=0.12.5 <0.13.0",
-              "resolved": "https://registry.npmjs.org/javascript.util/-/javascript.util-0.12.7.tgz"
+              "version": "0.12.5",
+              "resolved": "https://registry.npmjs.org/javascript.util/-/javascript.util-0.12.5.tgz"
             }
           }
         }
