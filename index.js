@@ -6,13 +6,15 @@
  * @summary GIS For Web Maps
  */
 module.exports = {
+  flatten: require('turf-flatten'),
+  normalize: require('turf-normalize'),
   isolines: require('turf-isolines'),
   merge: require('turf-merge'),
   convex: require('turf-convex'),
   within: require('turf-within'),
   concave: require('turf-concave'),
   count: require('turf-count'),
-  erase: require('turf-erase'),
+  difference: require('turf-difference'),
   variance: require('turf-variance'),
   deviation: require('turf-deviation'),
   median: require('turf-median'),
