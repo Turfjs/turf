@@ -1,8 +1,16 @@
 ![turf](https://raw.githubusercontent.com/Turfjs/turf/9a1d5e8d99564d4080f1e2bf1517ed41d18012fa/logo.png) 
 ======
 
- <sup>[![Version Badge](http://vb.teelaun.ch/Turfjs/turf.svg)](https://npmjs.org/package/turf)</sup> [![Build Status](https://travis-ci.org/Turfjs/turf.svg?branch=master)](https://travis-ci.org/Turfjs/turf) [![Gitter chat](https://badges.gitter.im/Turfjs/turf.png)](https://gitter.im/Turfjs/turf)
+[![Version Badge][npm-img]][npm-url]
+[![Build Status][travis-img]][travis-url]
+[![Gitter chat][gitter-img]][gitter-url]
 
+[npm-img]: https://img.shields.io/npm/v/turf.svg
+[npm-url]: https://www.npmjs.com/package/turf
+[travis-img]: https://travis-ci.org/Turfjs/turf.svg?branch=master
+[travis-url]: https://travis-ci.org/Turfjs/turf
+[gitter-img]: https://badges.gitter.im/Turfjs/turf.png
+[gitter-url]: https://gitter.im/Turfjs/turf
 
 ***A modular geospatial engine written in JavaScript***
 
@@ -184,7 +192,7 @@ var point2 = {
 
 [![Build Status](https://travis-ci.org/Turfjs/turf-intersect.svg?branch=master)](https://travis-ci.org/Turfjs/turf-intersect) [intersect](https://github.com/Turfjs/turf-intersect)
 
-[![Build Status](https://travis-ci.org/Turfjs/turf-erase.svg?branch=master)](https://travis-ci.org/Turfjs/turf-erase) [erase](https://github.com/Turfjs/turf-erase)
+[![Build Status](https://travis-ci.org/Turfjs/turf-difference.svg?branch=master)](https://travis-ci.org/Turfjs/turf-difference) [difference](https://github.com/Turfjs/turf-difference)
 
 [![Build Status](https://travis-ci.org/Turfjs/turf-convex.svg?branch=master)](https://travis-ci.org/Turfjs/turf-convex) [convex](https://github.com/Turfjs/turf-convex)
 
