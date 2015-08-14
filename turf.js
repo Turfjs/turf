@@ -7,13 +7,15 @@
  * @summary GIS For Web Maps
  */
 module.exports = {
+  flatten: require('turf-flatten'),
+  normalize: require('turf-normalize'),
   isolines: require('turf-isolines'),
   merge: require('turf-merge'),
   convex: require('turf-convex'),
   within: require('turf-within'),
   concave: require('turf-concave'),
   count: require('turf-count'),
-  erase: require('turf-erase'),
+  difference: require('turf-difference'),
   variance: require('turf-variance'),
   deviation: require('turf-deviation'),
   median: require('turf-median'),
@@ -70,7 +72,7 @@ module.exports = {
   hexGrid: require('turf-hex-grid')
 };
 
-},{"turf-aggregate":6,"turf-along":7,"turf-area":8,"turf-average":11,"turf-bbox-polygon":12,"turf-bearing":13,"turf-bezier":14,"turf-buffer":16,"turf-center":21,"turf-centroid":22,"turf-combine":24,"turf-concave":25,"turf-convex":26,"turf-count":56,"turf-destination":57,"turf-deviation":58,"turf-distance":60,"turf-envelope":62,"turf-erase":63,"turf-explode":68,"turf-extent":70,"turf-featurecollection":72,"turf-filter":73,"turf-flip":74,"turf-hex-grid":75,"turf-inside":76,"turf-intersect":77,"turf-isolines":83,"turf-jenks":85,"turf-kinks":87,"turf-line-distance":88,"turf-line-slice":89,"turf-linestring":90,"turf-max":91,"turf-median":92,"turf-merge":93,"turf-midpoint":95,"turf-min":96,"turf-nearest":97,"turf-planepoint":98,"turf-point":102,"turf-point-grid":99,"turf-point-on-line":100,"turf-point-on-surface":101,"turf-polygon":103,"turf-quantile":104,"turf-random":106,"turf-reclass":108,"turf-remove":109,"turf-sample":110,"turf-simplify":111,"turf-size":113,"turf-square":115,"turf-square-grid":114,"turf-sum":116,"turf-tag":117,"turf-tin":118,"turf-triangle-grid":119,"turf-union":120,"turf-variance":125,"turf-within":127}],2:[function(require,module,exports){
+},{"turf-aggregate":6,"turf-along":7,"turf-area":8,"turf-average":11,"turf-bbox-polygon":12,"turf-bearing":13,"turf-bezier":14,"turf-buffer":16,"turf-center":22,"turf-centroid":23,"turf-combine":25,"turf-concave":26,"turf-convex":27,"turf-count":57,"turf-destination":58,"turf-deviation":59,"turf-difference":61,"turf-distance":66,"turf-envelope":68,"turf-explode":69,"turf-extent":71,"turf-featurecollection":73,"turf-filter":74,"turf-flatten":75,"turf-flip":77,"turf-hex-grid":78,"turf-inside":79,"turf-intersect":80,"turf-isolines":86,"turf-jenks":88,"turf-kinks":90,"turf-line-distance":91,"turf-line-slice":92,"turf-linestring":93,"turf-max":94,"turf-median":95,"turf-merge":96,"turf-midpoint":98,"turf-min":99,"turf-nearest":100,"turf-normalize":101,"turf-planepoint":103,"turf-point":107,"turf-point-grid":104,"turf-point-on-line":105,"turf-point-on-surface":106,"turf-polygon":108,"turf-quantile":109,"turf-random":111,"turf-reclass":113,"turf-remove":114,"turf-sample":115,"turf-simplify":116,"turf-size":118,"turf-square":120,"turf-square-grid":119,"turf-sum":121,"turf-tag":122,"turf-tin":123,"turf-triangle-grid":124,"turf-union":125,"turf-variance":130,"turf-within":132}],2:[function(require,module,exports){
 /*!
  * The buffer module from node.js, for the browser.
  *
@@ -137,106 +139,192 @@ Buffer.TYPED_ARRAY_SUPPORT = (function () {
  * By augmenting the instances, we can avoid modifying the `Uint8Array`
  * prototype.
  */
-function Buffer (subject, encoding, noZero) {
-  if (!(this instanceof Buffer))
-    return new Buffer(subject, encoding, noZero)
+function Buffer (arg) {
+  if (!(this instanceof Buffer)) {
+    // Avoid going through an ArgumentsAdaptorTrampoline in the common case.
+    if (arguments.length > 1) return new Buffer(arg, arguments[1])
+    return new Buffer(arg)
+  }
 
-  var type = typeof subject
+  this.length = 0
+  this.parent = undefined
 
-  // Find the length
-  var length
-  if (type === 'number') {
-    length = +subject
-  } else if (type === 'string') {
-    length = Buffer.byteLength(subject, encoding)
-  } else if (type === 'object' && subject !== null) { // assume object is array-like
-    if (subject.type === 'Buffer' && isArray(subject.data))
-      subject = subject.data
-    length = +subject.length
-  } else {
+  // Common case.
+  if (typeof arg === 'number') {
+    return fromNumber(this, arg)
+  }
+
+  // Slightly less common case.
+  if (typeof arg === 'string') {
+    return fromString(this, arg, arguments.length > 1 ? arguments[1] : 'utf8')
+  }
+
+  // Unusual.
+  return fromObject(this, arg)
+}
+
+function fromNumber (that, length) {
+  that = allocate(that, length < 0 ? 0 : checked(length) | 0)
+  if (!Buffer.TYPED_ARRAY_SUPPORT) {
+    for (var i = 0; i < length; i++) {
+      that[i] = 0
+    }
+  }
+  return that
+}
+
+function fromString (that, string, encoding) {
+  if (typeof encoding !== 'string' || encoding === '') encoding = 'utf8'
+
+  // Assumption: byteLength() return value is always < kMaxLength.
+  var length = byteLength(string, encoding) | 0
+  that = allocate(that, length)
+
+  that.write(string, encoding)
+  return that
+}
+
+function fromObject (that, object) {
+  if (Buffer.isBuffer(object)) return fromBuffer(that, object)
+
+  if (isArray(object)) return fromArray(that, object)
+
+  if (object == null) {
     throw new TypeError('must start with number, buffer, array or string')
   }
 
-  if (length > kMaxLength)
-    throw new RangeError('Attempt to allocate Buffer larger than maximum ' +
-      'size: 0x' + kMaxLength.toString(16) + ' bytes')
-
-  if (length < 0)
-    length = 0
-  else
-    length >>>= 0 // Coerce to uint32.
-
-  var self = this
-  if (Buffer.TYPED_ARRAY_SUPPORT) {
-    // Preferred: Return an augmented `Uint8Array` instance for best performance
-    /*eslint-disable consistent-this */
-    self = Buffer._augment(new Uint8Array(length))
-    /*eslint-enable consistent-this */
-  } else {
-    // Fallback: Return THIS instance of Buffer (created by `new`)
-    self.length = length
-    self._isBuffer = true
+  if (typeof ArrayBuffer !== 'undefined' && object.buffer instanceof ArrayBuffer) {
+    return fromTypedArray(that, object)
   }
 
-  var i
-  if (Buffer.TYPED_ARRAY_SUPPORT && typeof subject.byteLength === 'number') {
-    // Speed optimization -- use set if we're copying from a typed array
-    self._set(subject)
-  } else if (isArrayish(subject)) {
-    // Treat array-ish objects as a byte array
-    if (Buffer.isBuffer(subject)) {
-      for (i = 0; i < length; i++)
-        self[i] = subject.readUInt8(i)
-    } else {
-      for (i = 0; i < length; i++)
-        self[i] = ((subject[i] % 256) + 256) % 256
-    }
-  } else if (type === 'string') {
-    self.write(subject, 0, encoding)
-  } else if (type === 'number' && !Buffer.TYPED_ARRAY_SUPPORT && !noZero) {
-    for (i = 0; i < length; i++) {
-      self[i] = 0
-    }
-  }
+  if (object.length) return fromArrayLike(that, object)
 
-  if (length > 0 && length <= Buffer.poolSize)
-    self.parent = rootParent
-
-  return self
+  return fromJsonObject(that, object)
 }
 
-function SlowBuffer (subject, encoding, noZero) {
-  if (!(this instanceof SlowBuffer))
-    return new SlowBuffer(subject, encoding, noZero)
+function fromBuffer (that, buffer) {
+  var length = checked(buffer.length) | 0
+  that = allocate(that, length)
+  buffer.copy(that, 0, 0, length)
+  return that
+}
 
-  var buf = new Buffer(subject, encoding, noZero)
+function fromArray (that, array) {
+  var length = checked(array.length) | 0
+  that = allocate(that, length)
+  for (var i = 0; i < length; i += 1) {
+    that[i] = array[i] & 255
+  }
+  return that
+}
+
+// Duplicate of fromArray() to keep fromArray() monomorphic.
+function fromTypedArray (that, array) {
+  var length = checked(array.length) | 0
+  that = allocate(that, length)
+  // Truncating the elements is probably not what people expect from typed
+  // arrays with BYTES_PER_ELEMENT > 1 but it's compatible with the behavior
+  // of the old Buffer constructor.
+  for (var i = 0; i < length; i += 1) {
+    that[i] = array[i] & 255
+  }
+  return that
+}
+
+function fromArrayLike (that, array) {
+  var length = checked(array.length) | 0
+  that = allocate(that, length)
+  for (var i = 0; i < length; i += 1) {
+    that[i] = array[i] & 255
+  }
+  return that
+}
+
+// Deserialize { type: 'Buffer', data: [1,2,3,...] } into a Buffer object.
+// Returns a zero-length buffer for inputs that don't conform to the spec.
+function fromJsonObject (that, object) {
+  var array
+  var length = 0
+
+  if (object.type === 'Buffer' && isArray(object.data)) {
+    array = object.data
+    length = checked(array.length) | 0
+  }
+  that = allocate(that, length)
+
+  for (var i = 0; i < length; i += 1) {
+    that[i] = array[i] & 255
+  }
+  return that
+}
+
+function allocate (that, length) {
+  if (Buffer.TYPED_ARRAY_SUPPORT) {
+    // Return an augmented `Uint8Array` instance, for best performance
+    that = Buffer._augment(new Uint8Array(length))
+  } else {
+    // Fallback: Return an object instance of the Buffer class
+    that.length = length
+    that._isBuffer = true
+  }
+
+  var fromPool = length !== 0 && length <= Buffer.poolSize >>> 1
+  if (fromPool) that.parent = rootParent
+
+  return that
+}
+
+function checked (length) {
+  // Note: cannot use `length < kMaxLength` here because that fails when
+  // length is NaN (which is otherwise coerced to zero.)
+  if (length >= kMaxLength) {
+    throw new RangeError('Attempt to allocate Buffer larger than maximum ' +
+                         'size: 0x' + kMaxLength.toString(16) + ' bytes')
+  }
+  return length | 0
+}
+
+function SlowBuffer (subject, encoding) {
+  if (!(this instanceof SlowBuffer)) return new SlowBuffer(subject, encoding)
+
+  var buf = new Buffer(subject, encoding)
   delete buf.parent
   return buf
 }
 
-Buffer.isBuffer = function (b) {
+Buffer.isBuffer = function isBuffer (b) {
   return !!(b != null && b._isBuffer)
 }
 
-Buffer.compare = function (a, b) {
-  if (!Buffer.isBuffer(a) || !Buffer.isBuffer(b))
+Buffer.compare = function compare (a, b) {
+  if (!Buffer.isBuffer(a) || !Buffer.isBuffer(b)) {
     throw new TypeError('Arguments must be Buffers')
+  }
 
   if (a === b) return 0
 
   var x = a.length
   var y = b.length
-  for (var i = 0, len = Math.min(x, y); i < len && a[i] === b[i]; i++) {}
+
+  var i = 0
+  var len = Math.min(x, y)
+  while (i < len) {
+    if (a[i] !== b[i]) break
+
+    ++i
+  }
+
   if (i !== len) {
     x = a[i]
     y = b[i]
   }
+
   if (x < y) return -1
   if (y < x) return 1
   return 0
 }
 
-Buffer.isEncoding = function (encoding) {
+Buffer.isEncoding = function isEncoding (encoding) {
   switch (String(encoding).toLowerCase()) {
     case 'hex':
     case 'utf8':
@@ -255,8 +343,8 @@ Buffer.isEncoding = function (encoding) {
   }
 }
 
-Buffer.concat = function (list, totalLength) {
-  if (!isArray(list)) throw new TypeError('Usage: Buffer.concat(list[, length])')
+Buffer.concat = function concat (list, length) {
+  if (!isArray(list)) throw new TypeError('list argument must be an Array of Buffers.')
 
   if (list.length === 0) {
     return new Buffer(0)
@@ -265,14 +353,14 @@ Buffer.concat = function (list, totalLength) {
   }
 
   var i
-  if (totalLength === undefined) {
-    totalLength = 0
+  if (length === undefined) {
+    length = 0
     for (i = 0; i < list.length; i++) {
-      totalLength += list[i].length
+      length += list[i].length
     }
   }
 
-  var buf = new Buffer(totalLength)
+  var buf = new Buffer(length)
   var pos = 0
   for (i = 0; i < list.length; i++) {
     var item = list[i]
@@ -282,47 +370,44 @@ Buffer.concat = function (list, totalLength) {
   return buf
 }
 
-Buffer.byteLength = function (str, encoding) {
-  var ret
-  str = str + ''
+function byteLength (string, encoding) {
+  if (typeof string !== 'string') string = String(string)
+
+  if (string.length === 0) return 0
+
   switch (encoding || 'utf8') {
     case 'ascii':
     case 'binary':
     case 'raw':
-      ret = str.length
-      break
+      return string.length
     case 'ucs2':
     case 'ucs-2':
     case 'utf16le':
     case 'utf-16le':
-      ret = str.length * 2
-      break
+      return string.length * 2
     case 'hex':
-      ret = str.length >>> 1
-      break
+      return string.length >>> 1
     case 'utf8':
     case 'utf-8':
-      ret = utf8ToBytes(str).length
-      break
+      return utf8ToBytes(string).length
     case 'base64':
-      ret = base64ToBytes(str).length
-      break
+      return base64ToBytes(string).length
     default:
-      ret = str.length
+      return string.length
   }
-  return ret
 }
+Buffer.byteLength = byteLength
 
 // pre-set for values that may exist in the future
 Buffer.prototype.length = undefined
 Buffer.prototype.parent = undefined
 
 // toString(encoding, start=0, end=buffer.length)
-Buffer.prototype.toString = function (encoding, start, end) {
+Buffer.prototype.toString = function toString (encoding, start, end) {
   var loweredCase = false
 
-  start = start >>> 0
-  end = end === undefined || end === Infinity ? this.length : end >>> 0
+  start = start | 0
+  end = end === undefined || end === Infinity ? this.length : end | 0
 
   if (!encoding) encoding = 'utf8'
   if (start < 0) start = 0
@@ -354,45 +439,84 @@ Buffer.prototype.toString = function (encoding, start, end) {
         return utf16leSlice(this, start, end)
 
       default:
-        if (loweredCase)
-          throw new TypeError('Unknown encoding: ' + encoding)
+        if (loweredCase) throw new TypeError('Unknown encoding: ' + encoding)
         encoding = (encoding + '').toLowerCase()
         loweredCase = true
     }
   }
 }
 
-Buffer.prototype.equals = function (b) {
+Buffer.prototype.equals = function equals (b) {
   if (!Buffer.isBuffer(b)) throw new TypeError('Argument must be a Buffer')
   if (this === b) return true
   return Buffer.compare(this, b) === 0
 }
 
-Buffer.prototype.inspect = function () {
+Buffer.prototype.inspect = function inspect () {
   var str = ''
   var max = exports.INSPECT_MAX_BYTES
   if (this.length > 0) {
     str = this.toString('hex', 0, max).match(/.{2}/g).join(' ')
-    if (this.length > max)
-      str += ' ... '
+    if (this.length > max) str += ' ... '
   }
   return '<Buffer ' + str + '>'
 }
 
-Buffer.prototype.compare = function (b) {
+Buffer.prototype.compare = function compare (b) {
   if (!Buffer.isBuffer(b)) throw new TypeError('Argument must be a Buffer')
   if (this === b) return 0
   return Buffer.compare(this, b)
 }
 
+Buffer.prototype.indexOf = function indexOf (val, byteOffset) {
+  if (byteOffset > 0x7fffffff) byteOffset = 0x7fffffff
+  else if (byteOffset < -0x80000000) byteOffset = -0x80000000
+  byteOffset >>= 0
+
+  if (this.length === 0) return -1
+  if (byteOffset >= this.length) return -1
+
+  // Negative offsets start from the end of the buffer
+  if (byteOffset < 0) byteOffset = Math.max(this.length + byteOffset, 0)
+
+  if (typeof val === 'string') {
+    if (val.length === 0) return -1 // special case: looking for empty string always fails
+    return String.prototype.indexOf.call(this, val, byteOffset)
+  }
+  if (Buffer.isBuffer(val)) {
+    return arrayIndexOf(this, val, byteOffset)
+  }
+  if (typeof val === 'number') {
+    if (Buffer.TYPED_ARRAY_SUPPORT && Uint8Array.prototype.indexOf === 'function') {
+      return Uint8Array.prototype.indexOf.call(this, val, byteOffset)
+    }
+    return arrayIndexOf(this, [ val ], byteOffset)
+  }
+
+  function arrayIndexOf (arr, val, byteOffset) {
+    var foundIndex = -1
+    for (var i = 0; byteOffset + i < arr.length; i++) {
+      if (arr[byteOffset + i] === val[foundIndex === -1 ? 0 : i - foundIndex]) {
+        if (foundIndex === -1) foundIndex = i
+        if (i - foundIndex + 1 === val.length) return byteOffset + foundIndex
+      } else {
+        foundIndex = -1
+      }
+    }
+    return -1
+  }
+
+  throw new TypeError('val must be string, number or Buffer')
+}
+
 // `get` will be removed in Node 0.13+
-Buffer.prototype.get = function (offset) {
+Buffer.prototype.get = function get (offset) {
   console.log('.get() is deprecated. Access using array indexes instead.')
   return this.readUInt8(offset)
 }
 
 // `set` will be removed in Node 0.13+
-Buffer.prototype.set = function (v, offset) {
+Buffer.prototype.set = function set (v, offset) {
   console.log('.set() is deprecated. Access using array indexes instead.')
   return this.writeUInt8(v, offset)
 }
@@ -417,21 +541,19 @@ function hexWrite (buf, string, offset, length) {
     length = strLen / 2
   }
   for (var i = 0; i < length; i++) {
-    var byte = parseInt(string.substr(i * 2, 2), 16)
-    if (isNaN(byte)) throw new Error('Invalid hex string')
-    buf[offset + i] = byte
+    var parsed = parseInt(string.substr(i * 2, 2), 16)
+    if (isNaN(parsed)) throw new Error('Invalid hex string')
+    buf[offset + i] = parsed
   }
   return i
 }
 
 function utf8Write (buf, string, offset, length) {
-  var charsWritten = blitBuffer(utf8ToBytes(string, buf.length - offset), buf, offset, length)
-  return charsWritten
+  return blitBuffer(utf8ToBytes(string, buf.length - offset), buf, offset, length)
 }
 
 function asciiWrite (buf, string, offset, length) {
-  var charsWritten = blitBuffer(asciiToBytes(string), buf, offset, length)
-  return charsWritten
+  return blitBuffer(asciiToBytes(string), buf, offset, length)
 }
 
 function binaryWrite (buf, string, offset, length) {
@@ -439,77 +561,86 @@ function binaryWrite (buf, string, offset, length) {
 }
 
 function base64Write (buf, string, offset, length) {
-  var charsWritten = blitBuffer(base64ToBytes(string), buf, offset, length)
-  return charsWritten
+  return blitBuffer(base64ToBytes(string), buf, offset, length)
 }
 
-function utf16leWrite (buf, string, offset, length) {
-  var charsWritten = blitBuffer(utf16leToBytes(string, buf.length - offset), buf, offset, length)
-  return charsWritten
+function ucs2Write (buf, string, offset, length) {
+  return blitBuffer(utf16leToBytes(string, buf.length - offset), buf, offset, length)
 }
 
-Buffer.prototype.write = function (string, offset, length, encoding) {
-  // Support both (string, offset, length, encoding)
-  // and the legacy (string, encoding, offset, length)
-  if (isFinite(offset)) {
-    if (!isFinite(length)) {
+Buffer.prototype.write = function write (string, offset, length, encoding) {
+  // Buffer#write(string)
+  if (offset === undefined) {
+    encoding = 'utf8'
+    length = this.length
+    offset = 0
+  // Buffer#write(string, encoding)
+  } else if (length === undefined && typeof offset === 'string') {
+    encoding = offset
+    length = this.length
+    offset = 0
+  // Buffer#write(string, offset[, length][, encoding])
+  } else if (isFinite(offset)) {
+    offset = offset | 0
+    if (isFinite(length)) {
+      length = length | 0
+      if (encoding === undefined) encoding = 'utf8'
+    } else {
       encoding = length
       length = undefined
     }
-  } else {  // legacy
+  // legacy write(string, encoding, offset, length) - remove in v0.13
+  } else {
     var swap = encoding
     encoding = offset
-    offset = length
+    offset = length | 0
     length = swap
   }
 
-  offset = Number(offset) || 0
-
-  if (length < 0 || offset < 0 || offset > this.length)
-    throw new RangeError('attempt to write outside buffer bounds')
-
   var remaining = this.length - offset
-  if (!length) {
-    length = remaining
-  } else {
-    length = Number(length)
-    if (length > remaining) {
-      length = remaining
+  if (length === undefined || length > remaining) length = remaining
+
+  if ((string.length > 0 && (length < 0 || offset < 0)) || offset > this.length) {
+    throw new RangeError('attempt to write outside buffer bounds')
+  }
+
+  if (!encoding) encoding = 'utf8'
+
+  var loweredCase = false
+  for (;;) {
+    switch (encoding) {
+      case 'hex':
+        return hexWrite(this, string, offset, length)
+
+      case 'utf8':
+      case 'utf-8':
+        return utf8Write(this, string, offset, length)
+
+      case 'ascii':
+        return asciiWrite(this, string, offset, length)
+
+      case 'binary':
+        return binaryWrite(this, string, offset, length)
+
+      case 'base64':
+        // Warning: maxLength not taken into account in base64Write
+        return base64Write(this, string, offset, length)
+
+      case 'ucs2':
+      case 'ucs-2':
+      case 'utf16le':
+      case 'utf-16le':
+        return ucs2Write(this, string, offset, length)
+
+      default:
+        if (loweredCase) throw new TypeError('Unknown encoding: ' + encoding)
+        encoding = ('' + encoding).toLowerCase()
+        loweredCase = true
     }
   }
-  encoding = String(encoding || 'utf8').toLowerCase()
-
-  var ret
-  switch (encoding) {
-    case 'hex':
-      ret = hexWrite(this, string, offset, length)
-      break
-    case 'utf8':
-    case 'utf-8':
-      ret = utf8Write(this, string, offset, length)
-      break
-    case 'ascii':
-      ret = asciiWrite(this, string, offset, length)
-      break
-    case 'binary':
-      ret = binaryWrite(this, string, offset, length)
-      break
-    case 'base64':
-      ret = base64Write(this, string, offset, length)
-      break
-    case 'ucs2':
-    case 'ucs-2':
-    case 'utf16le':
-    case 'utf-16le':
-      ret = utf16leWrite(this, string, offset, length)
-      break
-    default:
-      throw new TypeError('Unknown encoding: ' + encoding)
-  }
-  return ret
 }
 
-Buffer.prototype.toJSON = function () {
+Buffer.prototype.toJSON = function toJSON () {
   return {
     type: 'Buffer',
     data: Array.prototype.slice.call(this._arr || this, 0)
@@ -583,43 +714,39 @@ function utf16leSlice (buf, start, end) {
   return res
 }
 
-Buffer.prototype.slice = function (start, end) {
+Buffer.prototype.slice = function slice (start, end) {
   var len = this.length
   start = ~~start
   end = end === undefined ? len : ~~end
 
   if (start < 0) {
     start += len
-    if (start < 0)
-      start = 0
+    if (start < 0) start = 0
   } else if (start > len) {
     start = len
   }
 
   if (end < 0) {
     end += len
-    if (end < 0)
-      end = 0
+    if (end < 0) end = 0
   } else if (end > len) {
     end = len
   }
 
-  if (end < start)
-    end = start
+  if (end < start) end = start
 
   var newBuf
   if (Buffer.TYPED_ARRAY_SUPPORT) {
     newBuf = Buffer._augment(this.subarray(start, end))
   } else {
     var sliceLen = end - start
-    newBuf = new Buffer(sliceLen, undefined, true)
+    newBuf = new Buffer(sliceLen, undefined)
     for (var i = 0; i < sliceLen; i++) {
       newBuf[i] = this[i + start]
     }
   }
 
-  if (newBuf.length)
-    newBuf.parent = this.parent || this
+  if (newBuf.length) newBuf.parent = this.parent || this
 
   return newBuf
 }
@@ -628,62 +755,58 @@ Buffer.prototype.slice = function (start, end) {
  * Need to make sure that buffer isn't trying to write out of bounds.
  */
 function checkOffset (offset, ext, length) {
-  if ((offset % 1) !== 0 || offset < 0)
-    throw new RangeError('offset is not uint')
-  if (offset + ext > length)
-    throw new RangeError('Trying to access beyond buffer length')
+  if ((offset % 1) !== 0 || offset < 0) throw new RangeError('offset is not uint')
+  if (offset + ext > length) throw new RangeError('Trying to access beyond buffer length')
 }
 
-Buffer.prototype.readUIntLE = function (offset, byteLength, noAssert) {
-  offset = offset >>> 0
-  byteLength = byteLength >>> 0
-  if (!noAssert)
-    checkOffset(offset, byteLength, this.length)
+Buffer.prototype.readUIntLE = function readUIntLE (offset, byteLength, noAssert) {
+  offset = offset | 0
+  byteLength = byteLength | 0
+  if (!noAssert) checkOffset(offset, byteLength, this.length)
 
   var val = this[offset]
   var mul = 1
   var i = 0
-  while (++i < byteLength && (mul *= 0x100))
+  while (++i < byteLength && (mul *= 0x100)) {
     val += this[offset + i] * mul
+  }
 
   return val
 }
 
-Buffer.prototype.readUIntBE = function (offset, byteLength, noAssert) {
-  offset = offset >>> 0
-  byteLength = byteLength >>> 0
-  if (!noAssert)
+Buffer.prototype.readUIntBE = function readUIntBE (offset, byteLength, noAssert) {
+  offset = offset | 0
+  byteLength = byteLength | 0
+  if (!noAssert) {
     checkOffset(offset, byteLength, this.length)
+  }
 
   var val = this[offset + --byteLength]
   var mul = 1
-  while (byteLength > 0 && (mul *= 0x100))
+  while (byteLength > 0 && (mul *= 0x100)) {
     val += this[offset + --byteLength] * mul
+  }
 
   return val
 }
 
-Buffer.prototype.readUInt8 = function (offset, noAssert) {
-  if (!noAssert)
-    checkOffset(offset, 1, this.length)
+Buffer.prototype.readUInt8 = function readUInt8 (offset, noAssert) {
+  if (!noAssert) checkOffset(offset, 1, this.length)
   return this[offset]
 }
 
-Buffer.prototype.readUInt16LE = function (offset, noAssert) {
-  if (!noAssert)
-    checkOffset(offset, 2, this.length)
+Buffer.prototype.readUInt16LE = function readUInt16LE (offset, noAssert) {
+  if (!noAssert) checkOffset(offset, 2, this.length)
   return this[offset] | (this[offset + 1] << 8)
 }
 
-Buffer.prototype.readUInt16BE = function (offset, noAssert) {
-  if (!noAssert)
-    checkOffset(offset, 2, this.length)
+Buffer.prototype.readUInt16BE = function readUInt16BE (offset, noAssert) {
+  if (!noAssert) checkOffset(offset, 2, this.length)
   return (this[offset] << 8) | this[offset + 1]
 }
 
-Buffer.prototype.readUInt32LE = function (offset, noAssert) {
-  if (!noAssert)
-    checkOffset(offset, 4, this.length)
+Buffer.prototype.readUInt32LE = function readUInt32LE (offset, noAssert) {
+  if (!noAssert) checkOffset(offset, 4, this.length)
 
   return ((this[offset]) |
       (this[offset + 1] << 8) |
@@ -691,117 +814,104 @@ Buffer.prototype.readUInt32LE = function (offset, noAssert) {
       (this[offset + 3] * 0x1000000)
 }
 
-Buffer.prototype.readUInt32BE = function (offset, noAssert) {
-  if (!noAssert)
-    checkOffset(offset, 4, this.length)
+Buffer.prototype.readUInt32BE = function readUInt32BE (offset, noAssert) {
+  if (!noAssert) checkOffset(offset, 4, this.length)
 
   return (this[offset] * 0x1000000) +
-      ((this[offset + 1] << 16) |
-      (this[offset + 2] << 8) |
-      this[offset + 3])
+    ((this[offset + 1] << 16) |
+    (this[offset + 2] << 8) |
+    this[offset + 3])
 }
 
-Buffer.prototype.readIntLE = function (offset, byteLength, noAssert) {
-  offset = offset >>> 0
-  byteLength = byteLength >>> 0
-  if (!noAssert)
-    checkOffset(offset, byteLength, this.length)
+Buffer.prototype.readIntLE = function readIntLE (offset, byteLength, noAssert) {
+  offset = offset | 0
+  byteLength = byteLength | 0
+  if (!noAssert) checkOffset(offset, byteLength, this.length)
 
   var val = this[offset]
   var mul = 1
   var i = 0
-  while (++i < byteLength && (mul *= 0x100))
+  while (++i < byteLength && (mul *= 0x100)) {
     val += this[offset + i] * mul
+  }
   mul *= 0x80
 
-  if (val >= mul)
-    val -= Math.pow(2, 8 * byteLength)
+  if (val >= mul) val -= Math.pow(2, 8 * byteLength)
 
   return val
 }
 
-Buffer.prototype.readIntBE = function (offset, byteLength, noAssert) {
-  offset = offset >>> 0
-  byteLength = byteLength >>> 0
-  if (!noAssert)
-    checkOffset(offset, byteLength, this.length)
+Buffer.prototype.readIntBE = function readIntBE (offset, byteLength, noAssert) {
+  offset = offset | 0
+  byteLength = byteLength | 0
+  if (!noAssert) checkOffset(offset, byteLength, this.length)
 
   var i = byteLength
   var mul = 1
   var val = this[offset + --i]
-  while (i > 0 && (mul *= 0x100))
+  while (i > 0 && (mul *= 0x100)) {
     val += this[offset + --i] * mul
+  }
   mul *= 0x80
 
-  if (val >= mul)
-    val -= Math.pow(2, 8 * byteLength)
+  if (val >= mul) val -= Math.pow(2, 8 * byteLength)
 
   return val
 }
 
-Buffer.prototype.readInt8 = function (offset, noAssert) {
-  if (!noAssert)
-    checkOffset(offset, 1, this.length)
-  if (!(this[offset] & 0x80))
-    return (this[offset])
+Buffer.prototype.readInt8 = function readInt8 (offset, noAssert) {
+  if (!noAssert) checkOffset(offset, 1, this.length)
+  if (!(this[offset] & 0x80)) return (this[offset])
   return ((0xff - this[offset] + 1) * -1)
 }
 
-Buffer.prototype.readInt16LE = function (offset, noAssert) {
-  if (!noAssert)
-    checkOffset(offset, 2, this.length)
+Buffer.prototype.readInt16LE = function readInt16LE (offset, noAssert) {
+  if (!noAssert) checkOffset(offset, 2, this.length)
   var val = this[offset] | (this[offset + 1] << 8)
   return (val & 0x8000) ? val | 0xFFFF0000 : val
 }
 
-Buffer.prototype.readInt16BE = function (offset, noAssert) {
-  if (!noAssert)
-    checkOffset(offset, 2, this.length)
+Buffer.prototype.readInt16BE = function readInt16BE (offset, noAssert) {
+  if (!noAssert) checkOffset(offset, 2, this.length)
   var val = this[offset + 1] | (this[offset] << 8)
   return (val & 0x8000) ? val | 0xFFFF0000 : val
 }
 
-Buffer.prototype.readInt32LE = function (offset, noAssert) {
-  if (!noAssert)
-    checkOffset(offset, 4, this.length)
+Buffer.prototype.readInt32LE = function readInt32LE (offset, noAssert) {
+  if (!noAssert) checkOffset(offset, 4, this.length)
 
   return (this[offset]) |
-      (this[offset + 1] << 8) |
-      (this[offset + 2] << 16) |
-      (this[offset + 3] << 24)
+    (this[offset + 1] << 8) |
+    (this[offset + 2] << 16) |
+    (this[offset + 3] << 24)
 }
 
-Buffer.prototype.readInt32BE = function (offset, noAssert) {
-  if (!noAssert)
-    checkOffset(offset, 4, this.length)
+Buffer.prototype.readInt32BE = function readInt32BE (offset, noAssert) {
+  if (!noAssert) checkOffset(offset, 4, this.length)
 
   return (this[offset] << 24) |
-      (this[offset + 1] << 16) |
-      (this[offset + 2] << 8) |
-      (this[offset + 3])
+    (this[offset + 1] << 16) |
+    (this[offset + 2] << 8) |
+    (this[offset + 3])
 }
 
-Buffer.prototype.readFloatLE = function (offset, noAssert) {
-  if (!noAssert)
-    checkOffset(offset, 4, this.length)
+Buffer.prototype.readFloatLE = function readFloatLE (offset, noAssert) {
+  if (!noAssert) checkOffset(offset, 4, this.length)
   return ieee754.read(this, offset, true, 23, 4)
 }
 
-Buffer.prototype.readFloatBE = function (offset, noAssert) {
-  if (!noAssert)
-    checkOffset(offset, 4, this.length)
+Buffer.prototype.readFloatBE = function readFloatBE (offset, noAssert) {
+  if (!noAssert) checkOffset(offset, 4, this.length)
   return ieee754.read(this, offset, false, 23, 4)
 }
 
-Buffer.prototype.readDoubleLE = function (offset, noAssert) {
-  if (!noAssert)
-    checkOffset(offset, 8, this.length)
+Buffer.prototype.readDoubleLE = function readDoubleLE (offset, noAssert) {
+  if (!noAssert) checkOffset(offset, 8, this.length)
   return ieee754.read(this, offset, true, 52, 8)
 }
 
-Buffer.prototype.readDoubleBE = function (offset, noAssert) {
-  if (!noAssert)
-    checkOffset(offset, 8, this.length)
+Buffer.prototype.readDoubleBE = function readDoubleBE (offset, noAssert) {
+  if (!noAssert) checkOffset(offset, 8, this.length)
   return ieee754.read(this, offset, false, 52, 8)
 }
 
@@ -811,43 +921,42 @@ function checkInt (buf, value, offset, ext, max, min) {
   if (offset + ext > buf.length) throw new RangeError('index out of range')
 }
 
-Buffer.prototype.writeUIntLE = function (value, offset, byteLength, noAssert) {
+Buffer.prototype.writeUIntLE = function writeUIntLE (value, offset, byteLength, noAssert) {
   value = +value
-  offset = offset >>> 0
-  byteLength = byteLength >>> 0
-  if (!noAssert)
-    checkInt(this, value, offset, byteLength, Math.pow(2, 8 * byteLength), 0)
+  offset = offset | 0
+  byteLength = byteLength | 0
+  if (!noAssert) checkInt(this, value, offset, byteLength, Math.pow(2, 8 * byteLength), 0)
 
   var mul = 1
   var i = 0
   this[offset] = value & 0xFF
-  while (++i < byteLength && (mul *= 0x100))
-    this[offset + i] = (value / mul) >>> 0 & 0xFF
+  while (++i < byteLength && (mul *= 0x100)) {
+    this[offset + i] = (value / mul) & 0xFF
+  }
 
   return offset + byteLength
 }
 
-Buffer.prototype.writeUIntBE = function (value, offset, byteLength, noAssert) {
+Buffer.prototype.writeUIntBE = function writeUIntBE (value, offset, byteLength, noAssert) {
   value = +value
-  offset = offset >>> 0
-  byteLength = byteLength >>> 0
-  if (!noAssert)
-    checkInt(this, value, offset, byteLength, Math.pow(2, 8 * byteLength), 0)
+  offset = offset | 0
+  byteLength = byteLength | 0
+  if (!noAssert) checkInt(this, value, offset, byteLength, Math.pow(2, 8 * byteLength), 0)
 
   var i = byteLength - 1
   var mul = 1
   this[offset + i] = value & 0xFF
-  while (--i >= 0 && (mul *= 0x100))
-    this[offset + i] = (value / mul) >>> 0 & 0xFF
+  while (--i >= 0 && (mul *= 0x100)) {
+    this[offset + i] = (value / mul) & 0xFF
+  }
 
   return offset + byteLength
 }
 
-Buffer.prototype.writeUInt8 = function (value, offset, noAssert) {
+Buffer.prototype.writeUInt8 = function writeUInt8 (value, offset, noAssert) {
   value = +value
-  offset = offset >>> 0
-  if (!noAssert)
-    checkInt(this, value, offset, 1, 0xff, 0)
+  offset = offset | 0
+  if (!noAssert) checkInt(this, value, offset, 1, 0xff, 0)
   if (!Buffer.TYPED_ARRAY_SUPPORT) value = Math.floor(value)
   this[offset] = value
   return offset + 1
@@ -861,27 +970,29 @@ function objectWriteUInt16 (buf, value, offset, littleEndian) {
   }
 }
 
-Buffer.prototype.writeUInt16LE = function (value, offset, noAssert) {
+Buffer.prototype.writeUInt16LE = function writeUInt16LE (value, offset, noAssert) {
   value = +value
-  offset = offset >>> 0
-  if (!noAssert)
-    checkInt(this, value, offset, 2, 0xffff, 0)
+  offset = offset | 0
+  if (!noAssert) checkInt(this, value, offset, 2, 0xffff, 0)
   if (Buffer.TYPED_ARRAY_SUPPORT) {
     this[offset] = value
     this[offset + 1] = (value >>> 8)
-  } else objectWriteUInt16(this, value, offset, true)
+  } else {
+    objectWriteUInt16(this, value, offset, true)
+  }
   return offset + 2
 }
 
-Buffer.prototype.writeUInt16BE = function (value, offset, noAssert) {
+Buffer.prototype.writeUInt16BE = function writeUInt16BE (value, offset, noAssert) {
   value = +value
-  offset = offset >>> 0
-  if (!noAssert)
-    checkInt(this, value, offset, 2, 0xffff, 0)
+  offset = offset | 0
+  if (!noAssert) checkInt(this, value, offset, 2, 0xffff, 0)
   if (Buffer.TYPED_ARRAY_SUPPORT) {
     this[offset] = (value >>> 8)
     this[offset + 1] = value
-  } else objectWriteUInt16(this, value, offset, false)
+  } else {
+    objectWriteUInt16(this, value, offset, false)
+  }
   return offset + 2
 }
 
@@ -892,139 +1003,140 @@ function objectWriteUInt32 (buf, value, offset, littleEndian) {
   }
 }
 
-Buffer.prototype.writeUInt32LE = function (value, offset, noAssert) {
+Buffer.prototype.writeUInt32LE = function writeUInt32LE (value, offset, noAssert) {
   value = +value
-  offset = offset >>> 0
-  if (!noAssert)
-    checkInt(this, value, offset, 4, 0xffffffff, 0)
+  offset = offset | 0
+  if (!noAssert) checkInt(this, value, offset, 4, 0xffffffff, 0)
   if (Buffer.TYPED_ARRAY_SUPPORT) {
     this[offset + 3] = (value >>> 24)
     this[offset + 2] = (value >>> 16)
     this[offset + 1] = (value >>> 8)
     this[offset] = value
-  } else objectWriteUInt32(this, value, offset, true)
+  } else {
+    objectWriteUInt32(this, value, offset, true)
+  }
   return offset + 4
 }
 
-Buffer.prototype.writeUInt32BE = function (value, offset, noAssert) {
+Buffer.prototype.writeUInt32BE = function writeUInt32BE (value, offset, noAssert) {
   value = +value
-  offset = offset >>> 0
-  if (!noAssert)
-    checkInt(this, value, offset, 4, 0xffffffff, 0)
+  offset = offset | 0
+  if (!noAssert) checkInt(this, value, offset, 4, 0xffffffff, 0)
   if (Buffer.TYPED_ARRAY_SUPPORT) {
     this[offset] = (value >>> 24)
     this[offset + 1] = (value >>> 16)
     this[offset + 2] = (value >>> 8)
     this[offset + 3] = value
-  } else objectWriteUInt32(this, value, offset, false)
+  } else {
+    objectWriteUInt32(this, value, offset, false)
+  }
   return offset + 4
 }
 
-Buffer.prototype.writeIntLE = function (value, offset, byteLength, noAssert) {
+Buffer.prototype.writeIntLE = function writeIntLE (value, offset, byteLength, noAssert) {
   value = +value
-  offset = offset >>> 0
+  offset = offset | 0
   if (!noAssert) {
-    checkInt(this,
-             value,
-             offset,
-             byteLength,
-             Math.pow(2, 8 * byteLength - 1) - 1,
-             -Math.pow(2, 8 * byteLength - 1))
+    var limit = Math.pow(2, 8 * byteLength - 1)
+
+    checkInt(this, value, offset, byteLength, limit - 1, -limit)
   }
 
   var i = 0
   var mul = 1
   var sub = value < 0 ? 1 : 0
   this[offset] = value & 0xFF
-  while (++i < byteLength && (mul *= 0x100))
+  while (++i < byteLength && (mul *= 0x100)) {
     this[offset + i] = ((value / mul) >> 0) - sub & 0xFF
+  }
 
   return offset + byteLength
 }
 
-Buffer.prototype.writeIntBE = function (value, offset, byteLength, noAssert) {
+Buffer.prototype.writeIntBE = function writeIntBE (value, offset, byteLength, noAssert) {
   value = +value
-  offset = offset >>> 0
+  offset = offset | 0
   if (!noAssert) {
-    checkInt(this,
-             value,
-             offset,
-             byteLength,
-             Math.pow(2, 8 * byteLength - 1) - 1,
-             -Math.pow(2, 8 * byteLength - 1))
+    var limit = Math.pow(2, 8 * byteLength - 1)
+
+    checkInt(this, value, offset, byteLength, limit - 1, -limit)
   }
 
   var i = byteLength - 1
   var mul = 1
   var sub = value < 0 ? 1 : 0
   this[offset + i] = value & 0xFF
-  while (--i >= 0 && (mul *= 0x100))
+  while (--i >= 0 && (mul *= 0x100)) {
     this[offset + i] = ((value / mul) >> 0) - sub & 0xFF
+  }
 
   return offset + byteLength
 }
 
-Buffer.prototype.writeInt8 = function (value, offset, noAssert) {
+Buffer.prototype.writeInt8 = function writeInt8 (value, offset, noAssert) {
   value = +value
-  offset = offset >>> 0
-  if (!noAssert)
-    checkInt(this, value, offset, 1, 0x7f, -0x80)
+  offset = offset | 0
+  if (!noAssert) checkInt(this, value, offset, 1, 0x7f, -0x80)
   if (!Buffer.TYPED_ARRAY_SUPPORT) value = Math.floor(value)
   if (value < 0) value = 0xff + value + 1
   this[offset] = value
   return offset + 1
 }
 
-Buffer.prototype.writeInt16LE = function (value, offset, noAssert) {
+Buffer.prototype.writeInt16LE = function writeInt16LE (value, offset, noAssert) {
   value = +value
-  offset = offset >>> 0
-  if (!noAssert)
-    checkInt(this, value, offset, 2, 0x7fff, -0x8000)
+  offset = offset | 0
+  if (!noAssert) checkInt(this, value, offset, 2, 0x7fff, -0x8000)
   if (Buffer.TYPED_ARRAY_SUPPORT) {
     this[offset] = value
     this[offset + 1] = (value >>> 8)
-  } else objectWriteUInt16(this, value, offset, true)
+  } else {
+    objectWriteUInt16(this, value, offset, true)
+  }
   return offset + 2
 }
 
-Buffer.prototype.writeInt16BE = function (value, offset, noAssert) {
+Buffer.prototype.writeInt16BE = function writeInt16BE (value, offset, noAssert) {
   value = +value
-  offset = offset >>> 0
-  if (!noAssert)
-    checkInt(this, value, offset, 2, 0x7fff, -0x8000)
+  offset = offset | 0
+  if (!noAssert) checkInt(this, value, offset, 2, 0x7fff, -0x8000)
   if (Buffer.TYPED_ARRAY_SUPPORT) {
     this[offset] = (value >>> 8)
     this[offset + 1] = value
-  } else objectWriteUInt16(this, value, offset, false)
+  } else {
+    objectWriteUInt16(this, value, offset, false)
+  }
   return offset + 2
 }
 
-Buffer.prototype.writeInt32LE = function (value, offset, noAssert) {
+Buffer.prototype.writeInt32LE = function writeInt32LE (value, offset, noAssert) {
   value = +value
-  offset = offset >>> 0
-  if (!noAssert)
-    checkInt(this, value, offset, 4, 0x7fffffff, -0x80000000)
+  offset = offset | 0
+  if (!noAssert) checkInt(this, value, offset, 4, 0x7fffffff, -0x80000000)
   if (Buffer.TYPED_ARRAY_SUPPORT) {
     this[offset] = value
     this[offset + 1] = (value >>> 8)
     this[offset + 2] = (value >>> 16)
     this[offset + 3] = (value >>> 24)
-  } else objectWriteUInt32(this, value, offset, true)
+  } else {
+    objectWriteUInt32(this, value, offset, true)
+  }
   return offset + 4
 }
 
-Buffer.prototype.writeInt32BE = function (value, offset, noAssert) {
+Buffer.prototype.writeInt32BE = function writeInt32BE (value, offset, noAssert) {
   value = +value
-  offset = offset >>> 0
-  if (!noAssert)
-    checkInt(this, value, offset, 4, 0x7fffffff, -0x80000000)
+  offset = offset | 0
+  if (!noAssert) checkInt(this, value, offset, 4, 0x7fffffff, -0x80000000)
   if (value < 0) value = 0xffffffff + value + 1
   if (Buffer.TYPED_ARRAY_SUPPORT) {
     this[offset] = (value >>> 24)
     this[offset + 1] = (value >>> 16)
     this[offset + 2] = (value >>> 8)
     this[offset + 3] = value
-  } else objectWriteUInt32(this, value, offset, false)
+  } else {
+    objectWriteUInt32(this, value, offset, false)
+  }
   return offset + 4
 }
 
@@ -1035,76 +1147,77 @@ function checkIEEE754 (buf, value, offset, ext, max, min) {
 }
 
 function writeFloat (buf, value, offset, littleEndian, noAssert) {
-  if (!noAssert)
+  if (!noAssert) {
     checkIEEE754(buf, value, offset, 4, 3.4028234663852886e+38, -3.4028234663852886e+38)
+  }
   ieee754.write(buf, value, offset, littleEndian, 23, 4)
   return offset + 4
 }
 
-Buffer.prototype.writeFloatLE = function (value, offset, noAssert) {
+Buffer.prototype.writeFloatLE = function writeFloatLE (value, offset, noAssert) {
   return writeFloat(this, value, offset, true, noAssert)
 }
 
-Buffer.prototype.writeFloatBE = function (value, offset, noAssert) {
+Buffer.prototype.writeFloatBE = function writeFloatBE (value, offset, noAssert) {
   return writeFloat(this, value, offset, false, noAssert)
 }
 
 function writeDouble (buf, value, offset, littleEndian, noAssert) {
-  if (!noAssert)
+  if (!noAssert) {
     checkIEEE754(buf, value, offset, 8, 1.7976931348623157E+308, -1.7976931348623157E+308)
+  }
   ieee754.write(buf, value, offset, littleEndian, 52, 8)
   return offset + 8
 }
 
-Buffer.prototype.writeDoubleLE = function (value, offset, noAssert) {
+Buffer.prototype.writeDoubleLE = function writeDoubleLE (value, offset, noAssert) {
   return writeDouble(this, value, offset, true, noAssert)
 }
 
-Buffer.prototype.writeDoubleBE = function (value, offset, noAssert) {
+Buffer.prototype.writeDoubleBE = function writeDoubleBE (value, offset, noAssert) {
   return writeDouble(this, value, offset, false, noAssert)
 }
 
 // copy(targetBuffer, targetStart=0, sourceStart=0, sourceEnd=buffer.length)
-Buffer.prototype.copy = function (target, target_start, start, end) {
-  var self = this // source
-
+Buffer.prototype.copy = function copy (target, targetStart, start, end) {
   if (!start) start = 0
   if (!end && end !== 0) end = this.length
-  if (target_start >= target.length) target_start = target.length
-  if (!target_start) target_start = 0
+  if (targetStart >= target.length) targetStart = target.length
+  if (!targetStart) targetStart = 0
   if (end > 0 && end < start) end = start
 
   // Copy 0 bytes; we're done
   if (end === start) return 0
-  if (target.length === 0 || self.length === 0) return 0
+  if (target.length === 0 || this.length === 0) return 0
 
   // Fatal error conditions
-  if (target_start < 0)
+  if (targetStart < 0) {
     throw new RangeError('targetStart out of bounds')
-  if (start < 0 || start >= self.length) throw new RangeError('sourceStart out of bounds')
+  }
+  if (start < 0 || start >= this.length) throw new RangeError('sourceStart out of bounds')
   if (end < 0) throw new RangeError('sourceEnd out of bounds')
 
   // Are we oob?
-  if (end > this.length)
-    end = this.length
-  if (target.length - target_start < end - start)
-    end = target.length - target_start + start
+  if (end > this.length) end = this.length
+  if (target.length - targetStart < end - start) {
+    end = target.length - targetStart + start
+  }
 
   var len = end - start
 
   if (len < 1000 || !Buffer.TYPED_ARRAY_SUPPORT) {
     for (var i = 0; i < len; i++) {
-      target[i + target_start] = this[i + start]
+      target[i + targetStart] = this[i + start]
     }
   } else {
-    target._set(this.subarray(start, start + len), target_start)
+    target._set(this.subarray(start, start + len), targetStart)
   }
 
   return len
 }
 
 // fill(value, start=0, end=buffer.length)
-Buffer.prototype.fill = function (value, start, end) {
+Buffer.prototype.fill = function fill (value, start, end) {
   if (!value) value = 0
   if (!start) start = 0
   if (!end) end = this.length
@@ -1138,7 +1251,7 @@ Buffer.prototype.fill = function (value, start, end) {
  * Creates a new `ArrayBuffer` with the *copied* memory of the buffer instance.
  * Added in Node 0.12. Only available in browsers that support ArrayBuffer.
  */
-Buffer.prototype.toArrayBuffer = function () {
+Buffer.prototype.toArrayBuffer = function toArrayBuffer () {
   if (typeof Uint8Array !== 'undefined') {
     if (Buffer.TYPED_ARRAY_SUPPORT) {
       return (new Buffer(this)).buffer
@@ -1162,12 +1275,11 @@ var BP = Buffer.prototype
 /**
  * Augment a Uint8Array *instance* (not the Uint8Array class!) with Buffer methods
  */
-Buffer._augment = function (arr) {
+Buffer._augment = function _augment (arr) {
   arr.constructor = Buffer
   arr._isBuffer = true
 
-  // save reference to original Uint8Array get/set methods before overwriting
-  arr._get = arr.get
+  // save reference to original Uint8Array set method before overwriting
   arr._set = arr.set
 
   // deprecated, will be removed in node 0.13+
@@ -1180,6 +1292,7 @@ Buffer._augment = function (arr) {
   arr.toJSON = BP.toJSON
   arr.equals = BP.equals
   arr.compare = BP.compare
+  arr.indexOf = BP.indexOf
   arr.copy = BP.copy
   arr.slice = BP.slice
   arr.readUIntLE = BP.readUIntLE
@@ -1242,12 +1355,6 @@ function base64clean (str) {
 function stringtrim (str) {
   if (str.trim) return str.trim()
   return str.replace(/^\s+|\s+$/g, '')
-}
-
-function isArrayish (subject) {
-  return isArray(subject) || Buffer.isBuffer(subject) ||
-      subject && typeof subject === 'object' &&
-      typeof subject.length === 'number'
 }
 
 function toHex (n) {
@@ -1367,8 +1474,7 @@ function base64ToBytes (str) {
 
 function blitBuffer (src, dst, offset, length) {
   for (var i = 0; i < length; i++) {
-    if ((i + offset >= dst.length) || (i >= src.length))
-      break
+    if ((i + offset >= dst.length) || (i >= src.length)) break
     dst[i + offset] = src[i]
   }
   return i
@@ -1828,7 +1934,7 @@ function isAggregationOperation(operation) {
     operation === 'count';
 }
 
-},{"turf-average":11,"turf-count":56,"turf-deviation":58,"turf-max":91,"turf-median":92,"turf-min":96,"turf-sum":116,"turf-variance":125}],7:[function(require,module,exports){
+},{"turf-average":11,"turf-count":57,"turf-deviation":59,"turf-max":94,"turf-median":95,"turf-min":99,"turf-sum":121,"turf-variance":130}],7:[function(require,module,exports){
 var distance = require('turf-distance');
 var point = require('turf-point');
 var bearing = require('turf-bearing');
@@ -1894,7 +2000,7 @@ module.exports = function (line, dist, units) {
   return point(coords[coords.length - 1]);
 }
 
-},{"turf-bearing":13,"turf-destination":57,"turf-distance":60,"turf-point":102}],8:[function(require,module,exports){
+},{"turf-bearing":13,"turf-destination":58,"turf-distance":66,"turf-point":107}],8:[function(require,module,exports){
 var geometryArea = require('geojson-area').geometry;
 
 /**
@@ -2170,7 +2276,7 @@ function average(values) {
   return sum / values.length;
 }
 
-},{"turf-inside":76}],12:[function(require,module,exports){
+},{"turf-inside":79}],12:[function(require,module,exports){
 var polygon = require('turf-polygon');
 
 /**
@@ -2204,7 +2310,7 @@ module.exports = function(bbox){
   return poly;
 }
 
-},{"turf-polygon":103}],13:[function(require,module,exports){
+},{"turf-polygon":108}],13:[function(require,module,exports){
 //http://en.wikipedia.org/wiki/Haversine_formula
 //http://www.movable-type.co.uk/scripts/latlong.html
 
@@ -2344,7 +2450,7 @@ module.exports = function(line, resolution, sharpness){
   return lineOut;
 };
 
-},{"./spline.js":15,"turf-linestring":90}],15:[function(require,module,exports){
+},{"./spline.js":15,"turf-linestring":93}],15:[function(require,module,exports){
  /**
    * BezierSpline
    * http://leszekr.github.com/
@@ -2489,19 +2595,18 @@ var Spline = function(options){
 // https://github.com/bjornharrtell/jsts/blob/master/examples/buffer.html
 
 var featurecollection = require('turf-featurecollection');
-var polygon = require('turf-polygon');
-var combine = require('turf-combine');
 var jsts = require('jsts');
+var normalize = require('geojson-normalize');
 
 /**
-* Calculates a buffer for a {@link Point}, {@link LineString}, or {@link Polygon} {@link Feature}/{@link FeatureCollection} for a given radius. Units supported are miles, kilometers, and degrees.
+* Calculates a buffer for input features for a given radius. Units supported are miles, kilometers, and degrees.
 *
 * @module turf/buffer
 * @category transformation
-* @param {FeatureCollection} feature a Feature or FeatureCollection of any type
+* @param {(Feature|FeatureCollection)} feature input to be buffered
 * @param {Number} distance distance to draw the buffer
-* @param {String} unit 'miles' or 'kilometers'
-* @return {FeatureCollection} a FeatureCollection containing {@link Polygon} features representing buffers
+* @param {String} unit 'miles', 'feet', 'kilometers', 'meters', or 'degrees'
+* @return {FeatureCollection<Polygon>|FeatureCollection<MultiPolygon>|Polygon|MultiPolygon} buffered features
 *
 * @example
 * var pt = {
@@ -2515,76 +2620,104 @@ var jsts = require('jsts');
 * var unit = 'miles';
 *
 * var buffered = turf.buffer(pt, 500, unit);
-*
-* var resultFeatures = buffered.features.concat(pt);
-* var result = {
-*   "type": "FeatureCollection",
-*   "features": resultFeatures
-* };
+* var result = turf.featurecollection([buffered, pt]);
 *
 * //=result
 */
 
-module.exports = function(feature, radius, units){
-  var buffered;
+module.exports = function(feature, radius, units) {
 
-  switch(units){
+  switch (units) {
     case 'miles':
       radius = radius / 69.047;
-      break
+    break;
     case 'feet':
       radius = radius / 364568.0;
-      break
+    break;
     case 'kilometers':
       radius = radius / 111.12;
-      break
+    break;
     case 'meters':
       radius = radius / 111120.0;
-      break
+    break;
     case 'degrees':
-      break
+    break;
   }
 
-  if(feature.type === 'FeatureCollection'){
-    var multi = combine(feature);
-    multi.properties = {};
-    buffered = bufferOp(multi, radius);
-    return buffered;
-  }
-  else{
-    buffered = bufferOp(feature, radius);
-    return buffered;
-  }
-}
+  var fc = normalize(feature);
+  var buffered = normalize(featurecollection(fc.features.map(function(f) {
+    return bufferOp(f, radius);
+  })));
 
-var bufferOp = function(feature, radius){
+  if(buffered.features.length > 1) return buffered;
+  else if(buffered.features.length === 1) return buffered.features[0];
+};
+
+var bufferOp = function(feature, radius) {
   var reader = new jsts.io.GeoJSONReader();
   var geom = reader.read(JSON.stringify(feature.geometry));
   var buffered = geom.buffer(radius);
   var parser = new jsts.io.GeoJSONParser();
   buffered = parser.write(buffered);
 
-  if(buffered.type === 'MultiPolygon'){
-    buffered = {
-      type: 'Feature',
-      geometry: buffered,
-      properties: {}
-    };
-    buffered = featurecollection([buffered]);
-  }
-  else{
-    buffered = featurecollection([polygon(buffered.coordinates)]);
-  }
+  return {
+    type: 'Feature',
+    geometry: buffered,
+    properties: {}
+  };
+};
 
-  return buffered;
+},{"geojson-normalize":17,"jsts":18,"turf-featurecollection":73}],17:[function(require,module,exports){
+module.exports = normalize;
+
+var types = {
+    Point: 'geometry',
+    MultiPoint: 'geometry',
+    LineString: 'geometry',
+    MultiLineString: 'geometry',
+    Polygon: 'geometry',
+    MultiPolygon: 'geometry',
+    GeometryCollection: 'geometry',
+    Feature: 'feature',
+    FeatureCollection: 'featurecollection'
+};
+
+/**
+ * Normalize a GeoJSON feature into a FeatureCollection.
+ *
+ * @param {object} gj geojson data
+ * @returns {object} normalized geojson data
+ */
+function normalize(gj) {
+    if (!gj || !gj.type) return null;
+    var type = types[gj.type];
+    if (!type) return null;
+
+    if (type === 'geometry') {
+        return {
+            type: 'FeatureCollection',
+            features: [{
+                type: 'Feature',
+                properties: {},
+                geometry: gj
+            }]
+        };
+    } else if (type === 'feature') {
+        return {
+            type: 'FeatureCollection',
+            features: [gj]
+        };
+    } else if (type === 'featurecollection') {
+        return gj;
+    }
 }
 
-},{"jsts":17,"turf-combine":24,"turf-featurecollection":72,"turf-polygon":103}],17:[function(require,module,exports){
+},{}],18:[function(require,module,exports){
 require('javascript.util');
 var jsts = require('./lib/jsts');
 module.exports = jsts
 
-},{"./lib/jsts":18,"javascript.util":20}],18:[function(require,module,exports){
+},{"./lib/jsts":19,"javascript.util":21}],19:[function(require,module,exports){
 /* The JSTS Topology Suite is a collection of JavaScript classes that
 implement the fundamental operations required to validate a given
 geo-spatial data set to a known topological specification.
@@ -4294,7 +4427,7 @@ return true;if(this.isBoundaryPoint(li,bdyNodes[1]))
 return true;return false;}else{for(var i=bdyNodes.iterator();i.hasNext();){var node=i.next();var pt=node.getCoordinate();if(li.isIntersection(pt))
 return true;}
 return false;}};})();
-},{}],19:[function(require,module,exports){
+},{}],20:[function(require,module,exports){
 (function (global){
 /*
   javascript.util is a port of selected parts of java.util to JavaScript which
@@ -4340,10 +4473,10 @@ L.prototype.iterator=L.prototype.f;function N(a){this.l=a}f("$jscomp.scope.Itera
 r,global.javascript.util.Set=x,global.javascript.util.SortedMap=A,global.javascript.util.SortedSet=B,global.javascript.util.Stack=C,global.javascript.util.TreeMap=H,global.javascript.util.TreeSet=L);}).call(this);
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}],20:[function(require,module,exports){
+},{}],21:[function(require,module,exports){
 require('./dist/javascript.util-node.min.js');
 
-},{"./dist/javascript.util-node.min.js":19}],21:[function(require,module,exports){
+},{"./dist/javascript.util-node.min.js":20}],22:[function(require,module,exports){
 var extent = require('turf-extent'),
     point = require('turf-point');
 
@@ -4467,7 +4600,7 @@ module.exports = function(layer, done){
   return point([x, y]);
 };
 
-},{"turf-extent":70,"turf-point":102}],22:[function(require,module,exports){
+},{"turf-extent":71,"turf-point":107}],23:[function(require,module,exports){
 var each = require('turf-meta').coordEach;
 var point = require('turf-point');
 
@@ -4515,7 +4648,7 @@ module.exports = function(features){
   return point([xSum / len, ySum / len]);
 };
 
-},{"turf-meta":23,"turf-point":102}],23:[function(require,module,exports){
+},{"turf-meta":24,"turf-point":107}],24:[function(require,module,exports){
 /**
  * Lazily iterate over coordinates in any GeoJSON object, similar to
  * Array.forEach.
@@ -4655,7 +4788,7 @@ function propReduce(layer, callback, memo) {
 }
 module.exports.propReduce = propReduce;
 
-},{}],24:[function(require,module,exports){
+},{}],25:[function(require,module,exports){
 /**
  * Combines a {@link FeatureCollection} of {@link Point}, {@link LineString}, or {@link Polygon} features into {@link MultiPoint}, {@link MultiLineString}, or {@link MultiPolygon} features.
  *
@@ -4735,7 +4868,7 @@ function pluckCoods(multi){
   });
 }
 
-},{}],25:[function(require,module,exports){
+},{}],26:[function(require,module,exports){
 // 1. run tin on points
 // 2. calculate lenth of all edges and area of all triangles
 // 3. remove triangles that fail the max length test
@@ -4845,7 +4978,7 @@ module.exports = function(points, maxEdge, units) {
   return t.merge(tinPolys);
 };
 
-},{"turf-distance":60,"turf-merge":93,"turf-point":102,"turf-tin":118}],26:[function(require,module,exports){
+},{"turf-distance":66,"turf-merge":96,"turf-point":107,"turf-tin":123}],27:[function(require,module,exports){
 var each = require('turf-meta').coordEach,
     convexHull = require('convex-hull'),
     polygon = require('turf-polygon');
@@ -4934,7 +5067,7 @@ module.exports = function(fc) {
   return polygon([ring]);
 };
 
-},{"convex-hull":27,"turf-meta":55,"turf-polygon":103}],27:[function(require,module,exports){
+},{"convex-hull":28,"turf-meta":56,"turf-polygon":108}],28:[function(require,module,exports){
 "use strict"
 
 var convexHull1d = require('./lib/ch1d')
@@ -4960,7 +5093,7 @@ function convexHull(points) {
   }
   return convexHullnd(points, d)
 }
-},{"./lib/ch1d":28,"./lib/ch2d":29,"./lib/chnd":30}],28:[function(require,module,exports){
+},{"./lib/ch1d":29,"./lib/ch2d":30,"./lib/chnd":31}],29:[function(require,module,exports){
 "use strict"
 
 module.exports = convexHull1d
@@ -4984,7 +5117,7 @@ function convexHull1d(points) {
     return [[lo]]
   }
 }
-},{}],29:[function(require,module,exports){
+},{}],30:[function(require,module,exports){
 'use strict'
 
 module.exports = convexHull2D
@@ -5007,7 +5140,7 @@ function convexHull2D(points) {
   return edges
 }
 
-},{"monotone-convex-hull-2d":48}],30:[function(require,module,exports){
+},{"monotone-convex-hull-2d":49}],31:[function(require,module,exports){
 'use strict'
 
 module.exports = convexHullnD
@@ -5068,7 +5201,7 @@ function convexHullnD(points, d) {
     return invPermute(nhull, ah)
   }
 }
-},{"affine-hull":31,"incremental-convex-hull":38}],31:[function(require,module,exports){
+},{"affine-hull":32,"incremental-convex-hull":39}],32:[function(require,module,exports){
 'use strict'
 
 module.exports = affineHull
@@ -5120,7 +5253,7 @@ function affineHull(points) {
   }
   return index
 }
-},{"robust-orientation":37}],32:[function(require,module,exports){
+},{"robust-orientation":38}],33:[function(require,module,exports){
 "use strict"
 
 module.exports = fastTwoSum
@@ -5138,7 +5271,7 @@ function fastTwoSum(a, b, result) {
 	}
 	return [ar+br, x]
 }
-},{}],33:[function(require,module,exports){
+},{}],34:[function(require,module,exports){
 "use strict"
 
 var twoProduct = require("two-product")
@@ -5189,7 +5322,7 @@ function scaleLinearExpansion(e, scale) {
   g.length = count
   return g
 }
-},{"two-product":36,"two-sum":32}],34:[function(require,module,exports){
+},{"two-product":37,"two-sum":33}],35:[function(require,module,exports){
 "use strict"
 
 module.exports = robustSubtract
@@ -5346,7 +5479,7 @@ function robustSubtract(e, f) {
   g.length = count
   return g
 }
-},{}],35:[function(require,module,exports){
+},{}],36:[function(require,module,exports){
 "use strict"
 
 module.exports = linearExpansionSum
@@ -5503,7 +5636,7 @@ function linearExpansionSum(e, f) {
   g.length = count
   return g
 }
-},{}],36:[function(require,module,exports){
+},{}],37:[function(require,module,exports){
 "use strict"
 
 module.exports = twoProduct
@@ -5537,7 +5670,7 @@ function twoProduct(a, b, result) {
 
   return [ y, x ]
 }
-},{}],37:[function(require,module,exports){
+},{}],38:[function(require,module,exports){
 "use strict"
 
 var twoProduct = require("two-product")
@@ -5728,7 +5861,7 @@ function generateOrientationProc() {
 }
 
 generateOrientationProc()
-},{"robust-scale":33,"robust-subtract":34,"robust-sum":35,"two-product":36}],38:[function(require,module,exports){
+},{"robust-scale":34,"robust-subtract":35,"robust-sum":36,"two-product":37}],39:[function(require,module,exports){
 "use strict"
 
 //High level idea:
@@ -6175,19 +6308,19 @@ function incrementalConvexHull(points, randomSearch) {
   //Extract boundary cells
   return triangles.boundary()
 }
-},{"robust-orientation":44,"simplicial-complex":47}],39:[function(require,module,exports){
-arguments[4][32][0].apply(exports,arguments)
-},{"dup":32}],40:[function(require,module,exports){
+},{"robust-orientation":45,"simplicial-complex":48}],40:[function(require,module,exports){
 arguments[4][33][0].apply(exports,arguments)
-},{"dup":33,"two-product":43,"two-sum":39}],41:[function(require,module,exports){
+},{"dup":33}],41:[function(require,module,exports){
 arguments[4][34][0].apply(exports,arguments)
-},{"dup":34}],42:[function(require,module,exports){
+},{"dup":34,"two-product":44,"two-sum":40}],42:[function(require,module,exports){
 arguments[4][35][0].apply(exports,arguments)
 },{"dup":35}],43:[function(require,module,exports){
 arguments[4][36][0].apply(exports,arguments)
 },{"dup":36}],44:[function(require,module,exports){
 arguments[4][37][0].apply(exports,arguments)
-},{"dup":37,"robust-scale":40,"robust-subtract":41,"robust-sum":42,"two-product":43}],45:[function(require,module,exports){
+},{"dup":37}],45:[function(require,module,exports){
+arguments[4][38][0].apply(exports,arguments)
+},{"dup":38,"robust-scale":41,"robust-subtract":42,"robust-sum":43,"two-product":44}],46:[function(require,module,exports){
 /**
  * Bit twiddling hacks for JavaScript.
  *
@@ -6393,7 +6526,7 @@ exports.nextCombination = function(v) {
 }
 
 
-},{}],46:[function(require,module,exports){
+},{}],47:[function(require,module,exports){
 "use strict"; "use restrict";
 
 module.exports = UnionFind;
@@ -6424,11 +6557,15 @@ proto.makeSet = function() {
 }
 
 proto.find = function(x) {
+  var x0 = x
   var roots = this.roots;
   while(roots[x] !== x) {
-    var y = roots[x];
-    roots[x] = roots[y];
-    x = y;
+    x = roots[x]
+  }
+  while(roots[x0] !== x) {
+    var y = roots[x0]
+    roots[x0] = x
+    x0 = y
   }
   return x;
 }
@@ -6452,7 +6589,7 @@ proto.link = function(x, y) {
     ++ranks[xr];
   }
 }
-},{}],47:[function(require,module,exports){
+},{}],48:[function(require,module,exports){
 "use strict"; "use restrict";
 
 var bits      = require("bit-twiddle")
@@ -6796,7 +6933,7 @@ function connectedComponents(cells, vertex_count) {
 }
 exports.connectedComponents = connectedComponents
 
-},{"bit-twiddle":45,"union-find":46}],48:[function(require,module,exports){
+},{"bit-twiddle":46,"union-find":47}],49:[function(require,module,exports){
 'use strict'
 
 module.exports = monotoneConvexHull2D
@@ -6878,21 +7015,21 @@ function monotoneConvexHull2D(points) {
   //Return result
   return result
 }
-},{"robust-orientation":54}],49:[function(require,module,exports){
-arguments[4][32][0].apply(exports,arguments)
-},{"dup":32}],50:[function(require,module,exports){
+},{"robust-orientation":55}],50:[function(require,module,exports){
 arguments[4][33][0].apply(exports,arguments)
-},{"dup":33,"two-product":53,"two-sum":49}],51:[function(require,module,exports){
+},{"dup":33}],51:[function(require,module,exports){
 arguments[4][34][0].apply(exports,arguments)
-},{"dup":34}],52:[function(require,module,exports){
+},{"dup":34,"two-product":54,"two-sum":50}],52:[function(require,module,exports){
 arguments[4][35][0].apply(exports,arguments)
 },{"dup":35}],53:[function(require,module,exports){
 arguments[4][36][0].apply(exports,arguments)
 },{"dup":36}],54:[function(require,module,exports){
 arguments[4][37][0].apply(exports,arguments)
-},{"dup":37,"robust-scale":50,"robust-subtract":51,"robust-sum":52,"two-product":53}],55:[function(require,module,exports){
-arguments[4][23][0].apply(exports,arguments)
-},{"dup":23}],56:[function(require,module,exports){
+},{"dup":37}],55:[function(require,module,exports){
+arguments[4][38][0].apply(exports,arguments)
+},{"dup":38,"robust-scale":51,"robust-subtract":52,"robust-sum":53,"two-product":54}],56:[function(require,module,exports){
+arguments[4][24][0].apply(exports,arguments)
+},{"dup":24}],57:[function(require,module,exports){
 var inside = require('turf-inside');
 
 /**
@@ -6990,7 +7127,7 @@ module.exports = function(polyFC, ptFC, outField, done){
   return polyFC;
 };
 
-},{"turf-inside":76}],57:[function(require,module,exports){
+},{"turf-inside":79}],58:[function(require,module,exports){
 //http://en.wikipedia.org/wiki/Haversine_formula
 //http://www.movable-type.co.uk/scripts/latlong.html
 var point = require('turf-point');
@@ -7068,7 +7205,7 @@ function toDeg(rad) {
     return rad * 180 / Math.PI;
 }
 
-},{"turf-point":102}],58:[function(require,module,exports){
+},{"turf-point":107}],59:[function(require,module,exports){
 var ss = require('simple-statistics');
 var inside = require('turf-inside');
 
@@ -7200,7 +7337,7 @@ module.exports = function(polyFC, ptFC, inField, outField, done){
   return polyFC;
 }
 
-},{"simple-statistics":59,"turf-inside":76}],59:[function(require,module,exports){
+},{"simple-statistics":60,"turf-inside":79}],60:[function(require,module,exports){
 /* global module */
 // # simple-statistics
 //
@@ -7528,6 +7665,25 @@ module.exports = function(polyFC, ptFC, inField, outField, done){
         return x.length / reciprocal_sum;
     }
 
+    // root mean square (RMS)
+    //
+    // a mean function used as a measure of the magnitude of a set
+    // of numbers, regardless of their sign
+    //
+    // this is the square root of the mean of the squares of the 
+    // input numbers
+    //
+    // This runs on `O(n)`, linear time in respect to the array
+    function root_mean_square(x) {
+        if (x.length === 0) return null;
+
+        var sum_of_squares = 0;
+        for (var i = 0; i < x.length; i++) {
+            sum_of_squares += Math.pow(x[i], 2);
+        }
+
+        return Math.sqrt(sum_of_squares / x.length);
+    }
 
     // # min
     //
@@ -8147,19 +8303,18 @@ module.exports = function(polyFC, ptFC, inField, outField, done){
     // and derive an array of n breaks.
     function jenksBreaks(data, lower_class_limits, n_classes) {
 
-        var k = data.length - 1,
+        var k = data.length,
             kclass = [],
             countNum = n_classes;
 
-        // the calculation of classes will never include the upper and
-        // lower bounds, so we need to explicitly set them
+        // the calculation of classes will never include the upper
+        // bound, so we need to explicitly set it
         kclass[n_classes] = data[data.length - 1];
-        kclass[0] = data[0];
 
         // the lower_class_limits matrix is used as indices into itself
         // here: the `k` variable is reused in each iteration.
-        while (countNum > 1) {
-            kclass[countNum - 1] = data[lower_class_limits[k][countNum] - 2];
+        while (countNum > 0) {
+            kclass[countNum - 1] = data[lower_class_limits[k][countNum] - 1];
             k = lower_class_limits[k][countNum] - 1;
             countNum--;
         }
@@ -8291,23 +8446,50 @@ module.exports = function(polyFC, ptFC, inField, outField, done){
         0.9987, 0.9987, 0.9987, 0.9988, 0.9988, 0.9989, 0.9989, 0.9989, 0.9990, 0.9990
     ];
 
+    // # [Gaussian error function](http://en.wikipedia.org/wiki/Error_function)
+    //
+    // The error_function(x/(sd * Math.sqrt(2))) is the probability that a value in a
+    // normal distribution with standard deviation sd is within x of the mean.
+    //
+    // This function returns a numerical approximation to the exact value.
+    function error_function(x) {
+        var t = 1 / (1 + 0.5 * Math.abs(x));
+        var tau = t * Math.exp(-Math.pow(x, 2) -
+            1.26551223 +
+            1.00002368 * t +
+            0.37409196 * Math.pow(t, 2) +
+            0.09678418 * Math.pow(t, 3) -
+            0.18628806 * Math.pow(t, 4) +
+            0.27886807 * Math.pow(t, 5) -
+            1.13520398 * Math.pow(t, 6) +
+            1.48851587 * Math.pow(t, 7) -
+            0.82215223 * Math.pow(t, 8) +
+            0.17087277 * Math.pow(t, 9));
+        if (x >= 0) {
+            return 1 - tau;
+        } else {
+            return tau - 1;
+        }
+    }
+
     // # [Cumulative Standard Normal Probability](http://en.wikipedia.org/wiki/Standard_normal_table)
     //
     // Since probability tables cannot be
     // printed for every normal distribution, as there are an infinite variety
     // of normal distributions, it is common practice to convert a normal to a
-    // standard normal and then use the standard normal table to find probabilities
+    // standard normal and then use the standard normal table to find probabilities.
+    //
+    // You can use .5 + .5 * error_function(x / Math.sqrt(2)) to calculate the probability
+    // instead of looking it up in a table.
     function cumulative_std_normal_probability(z) {
 
         // Calculate the position of this value.
         var absZ = Math.abs(z),
             // Each row begins with a different
-            // significant digit: 0.5, 0.6, 0.7, and so on. So the row is simply
-            // this value's significant digit: 0.567 will be in row 0, so row=0,
-            // 0.643 will be in row 1, so row=10.
-            row = Math.floor(absZ * 10),
-            column = 10 * (Math.floor(absZ * 100) / 10 - Math.floor(absZ * 100 / 10)),
-            index = Math.min((row * 10) + column, standard_normal_table.length - 1);
+            // significant digit: 0.5, 0.6, 0.7, and so on. Each value in the table
+            // corresponds to a range of 0.01 in the input values, so the value is
+            // multiplied by 100.
+            index = Math.min(Math.round(absZ * 100), standard_normal_table.length - 1);
 
         // The index we calculate must be in the table as a positive value,
         // but we still pay attention to whether the input is positive
@@ -8618,7 +8800,7 @@ module.exports = function(polyFC, ptFC, inField, outField, done){
         var arrayMethods = ['median', 'standard_deviation', 'sum',
             'sample_skewness',
             'mean', 'min', 'max', 'quantile', 'geometric_mean',
-            'harmonic_mean'];
+            'harmonic_mean', 'root_mean_square'];
 
         // create a closure with a method name so that a reference
         // like `arrayMethods[i]` doesn't follow the loop increment
@@ -8690,6 +8872,7 @@ module.exports = function(polyFC, ptFC, inField, outField, done){
 
     ss.geometric_mean = geometric_mean;
     ss.harmonic_mean = harmonic_mean;
+    ss.root_mean_square = root_mean_square;
     ss.variance = variance;
     ss.t_test = t_test;
     ss.t_test_two_sample = t_test_two_sample;
@@ -8713,16 +8896,125 @@ module.exports = function(polyFC, ptFC, inField, outField, done){
     ss.z_score = z_score;
     ss.cumulative_std_normal_probability = cumulative_std_normal_probability;
     ss.standard_normal_table = standard_normal_table;
+    ss.error_function = error_function;
 
     // Alias this into its common name
     ss.average = mean;
     ss.interquartile_range = iqr;
     ss.mixin = mixin;
     ss.median_absolute_deviation = mad;
+    ss.rms = root_mean_square;
+    ss.erf = error_function;
 
 })(this);
 
-},{}],60:[function(require,module,exports){
+},{}],61:[function(require,module,exports){
+// depend on jsts for now https://github.com/bjornharrtell/jsts/blob/master/examples/overlay.html
+var jsts = require('jsts');
+
+/**
+ * Finds the difference between two {@link Polygon|polygons} by clipping the second
+ * polygon from the first.
+ *
+ * @module turf/difference
+ * @category transformation
+ * @param {Feature<Polygon>} poly1 input Polygon feaure
+ * @param {Feature<Polygon>} poly2 Polygon feature to difference from `poly1`
+ * @return {Feature<Polygon>} a Polygon feature showing the area of `poly1` excluding the area of `poly2`
+ * @example
+ * var poly1 = {
+ *   "type": "Feature",
+ *   "properties": {
+ *     "fill": "#0f0"
+ *   },
+ *   "geometry": {
+ *     "type": "Polygon",
+ *     "coordinates": [[
+ *       [-46.738586, -23.596711],
+ *       [-46.738586, -23.458207],
+ *       [-46.560058, -23.458207],
+ *       [-46.560058, -23.596711],
+ *       [-46.738586, -23.596711]
+ *     ]]
+ *   }
+ * };
+ * var poly2 = {
+ *   "type": "Feature",
+ *   "properties": {
+ *     "fill": "#00f"
+ *   },
+ *   "geometry": {
+ *     "type": "Polygon",
+ *     "coordinates": [[
+ *       [-46.650009, -23.631314],
+ *       [-46.650009, -23.5237],
+ *       [-46.509246, -23.5237],
+ *       [-46.509246, -23.631314],
+ *       [-46.650009, -23.631314]
+ *     ]]
+ *   }
+ * };
+ *
+ * var differenced = turf.difference(poly1, poly2);
+ * differenced.properties.fill = '#f00';
+ *
+ * var polygons = {
+ *   "type": "FeatureCollection",
+ *   "features": [poly1, poly2]
+ * };
+ *
+ * //=polygons
+ *
+ * //=differenced
+ */
+
+module.exports = function(p1, p2) {
+  var poly1 = JSON.parse(JSON.stringify(p1));
+  var poly2 = JSON.parse(JSON.stringify(p2));
+  if(poly1.type !== 'Feature') {
+    poly1 = {
+      type: 'Feature',
+      properties: {},
+      geometry: poly1
+    };
+  }
+  if(poly2.type !== 'Feature') {
+    poly2 = {
+      type: 'Feature',
+      properties: {},
+      geometry: poly2
+    };
+  }
+
+  var reader = new jsts.io.GeoJSONReader();
+  var a = reader.read(JSON.stringify(poly1.geometry));
+  var b = reader.read(JSON.stringify(poly2.geometry));
+  var differenced = a.difference(b);
+  var parser = new jsts.io.GeoJSONParser();
+  differenced = parser.write(differenced);
+
+  poly1.geometry = differenced;
+
+  if (poly1.geometry.type === 'GeometryCollection' && poly1.geometry.geometries.length === 0) {
+    return undefined;
+  } else {
+    return {
+      type: 'Feature',
+      properties: poly1.properties,
+      geometry: differenced
+    };
+  }
+};
+
+},{"jsts":62}],62:[function(require,module,exports){
+arguments[4][18][0].apply(exports,arguments)
+},{"./lib/jsts":63,"dup":18,"javascript.util":65}],63:[function(require,module,exports){
+arguments[4][19][0].apply(exports,arguments)
+},{"dup":19}],64:[function(require,module,exports){
+arguments[4][20][0].apply(exports,arguments)
+},{"dup":20}],65:[function(require,module,exports){
+arguments[4][21][0].apply(exports,arguments)
+},{"./dist/javascript.util-node.min.js":64,"dup":21}],66:[function(require,module,exports){
 var invariant = require('turf-invariant');
 //http://en.wikipedia.org/wiki/Haversine_formula
 //http://www.movable-type.co.uk/scripts/latlong.html
@@ -8813,7 +9105,7 @@ function toRad(degree) {
   return degree * Math.PI / 180;
 }
 
-},{"turf-invariant":61}],61:[function(require,module,exports){
+},{"turf-invariant":67}],67:[function(require,module,exports){
 module.exports.geojsonType = geojsonType;
 module.exports.collectionOf = collectionOf;
 module.exports.featureOf = featureOf;
@@ -8881,7 +9173,7 @@ function collectionOf(value, type, name) {
     }
 }
 
-},{}],62:[function(require,module,exports){
+},{}],68:[function(require,module,exports){
 var extent = require('turf-extent');
 var bboxPolygon = require('turf-bbox-polygon');
 
@@ -8944,113 +9236,7 @@ module.exports = function(features, done){
   return poly;
 }
 
-},{"turf-bbox-polygon":12,"turf-extent":70}],63:[function(require,module,exports){
-// depend on jsts for now https://github.com/bjornharrtell/jsts/blob/master/examples/overlay.html
-var jsts = require('jsts');
-
-/**
- * Finds the difference between two polygons by clipping the second
- * polygon from the first.
- *
- * @module turf/erase
- * @category transformation
- * @param {Polygon} poly1 input Polygon feaure
- * @param {Polygon} poly2 Polygon feature to erase from `poly1`
- * @return {Polygon} a Polygon feature showing the area of `poly1` excluding the area of `poly2`
- * @example
- * var poly1 = {
- *   "type": "Feature",
- *   "properties": {
- *     "fill": "#0f0"
- *   },
- *   "geometry": {
- *     "type": "Polygon",
- *     "coordinates": [[
- *       [-46.738586, -23.596711],
- *       [-46.738586, -23.458207],
- *       [-46.560058, -23.458207],
- *       [-46.560058, -23.596711],
- *       [-46.738586, -23.596711]
- *     ]]
- *   }
- * };
- * var poly2 = {
- *   "type": "Feature",
- *   "properties": {
- *     "fill": "#00f"
- *   },
- *   "geometry": {
- *     "type": "Polygon",
- *     "coordinates": [[
- *       [-46.650009, -23.631314],
- *       [-46.650009, -23.5237],
- *       [-46.509246, -23.5237],
- *       [-46.509246, -23.631314],
- *       [-46.650009, -23.631314]
- *     ]]
- *   }
- * };
- *
- * var erased = turf.erase(poly1, poly2);
- * erased.properties.fill = '#f00';
- *
- * var polygons = {
- *   "type": "FeatureCollection",
- *   "features": [poly1, poly2]
- * };
- *
- * //=polygons
- *
- * //=erased
- */
-
-module.exports = function(p1, p2, done){
-  var poly1 = JSON.parse(JSON.stringify(p1));
-  var poly2 = JSON.parse(JSON.stringify(p2));
-  if(poly1.type !== 'Feature') {
-    poly1 = {
-      type: 'Feature',
-      properties: {},
-      geometry: poly1
-    };
-  }
-  if(poly2.type !== 'Feature') {
-    poly2 = {
-      type: 'Feature',
-      properties: {},
-      geometry: poly2
-    };
-  }
-
-  var reader = new jsts.io.GeoJSONReader();
-  var a = reader.read(JSON.stringify(poly1.geometry));
-  var b = reader.read(JSON.stringify(poly2.geometry));
-  var erased = a.difference(b);
-  var parser = new jsts.io.GeoJSONParser();
-  erased = parser.write(erased);
-
-  poly1.geometry = erased;
-
-  if (poly1.geometry.type === 'GeometryCollection' && poly1.geometry.geometries.length === 0) {
-    return;
-  } else {
-    return {
-      type: 'Feature',
-      properties: poly1.properties,
-      geometry: erased
-    };
-  }
-};
-
-},{"jsts":64}],64:[function(require,module,exports){
-arguments[4][17][0].apply(exports,arguments)
-},{"./lib/jsts":65,"dup":17,"javascript.util":67}],65:[function(require,module,exports){
-arguments[4][18][0].apply(exports,arguments)
-},{"dup":18}],66:[function(require,module,exports){
-arguments[4][19][0].apply(exports,arguments)
-},{"dup":19}],67:[function(require,module,exports){
-arguments[4][20][0].apply(exports,arguments)
-},{"./dist/javascript.util-node.min.js":66,"dup":20}],68:[function(require,module,exports){
+},{"turf-bbox-polygon":12,"turf-extent":71}],69:[function(require,module,exports){
 var featureCollection = require('turf-featurecollection');
 var each = require('turf-meta').coordEach;
 var point = require('turf-point');
@@ -9096,9 +9282,9 @@ module.exports = function(layer) {
   return featureCollection(points);
 };
 
-},{"turf-featurecollection":72,"turf-meta":69,"turf-point":102}],69:[function(require,module,exports){
-arguments[4][23][0].apply(exports,arguments)
-},{"dup":23}],70:[function(require,module,exports){
+},{"turf-featurecollection":73,"turf-meta":70,"turf-point":107}],70:[function(require,module,exports){
+arguments[4][24][0].apply(exports,arguments)
+},{"dup":24}],71:[function(require,module,exports){
 var each = require('turf-meta').coordEach;
 
 /**
@@ -9168,9 +9354,9 @@ module.exports = function(layer) {
     return extent;
 };
 
-},{"turf-meta":71}],71:[function(require,module,exports){
-arguments[4][23][0].apply(exports,arguments)
-},{"dup":23}],72:[function(require,module,exports){
+},{"turf-meta":72}],72:[function(require,module,exports){
+arguments[4][24][0].apply(exports,arguments)
+},{"dup":24}],73:[function(require,module,exports){
 /**
  * Takes one or more {@link Feature|Features} and creates a {@link FeatureCollection}
  *
@@ -9196,7 +9382,7 @@ module.exports = function(features){
   };
 };
 
-},{}],73:[function(require,module,exports){
+},{}],74:[function(require,module,exports){
 var featureCollection = require('turf-featurecollection');
 
 /**
@@ -9289,7 +9475,79 @@ module.exports = function(collection, key, val) {
   return newFC;
 };
 
-},{"turf-featurecollection":72}],74:[function(require,module,exports){
+},{"turf-featurecollection":73}],75:[function(require,module,exports){
+var flatten = require('geojson-flatten');
+var featurecollection = require('turf-featurecollection');
+
+/**
+ * flattens any {@link GeoJSON} to a {@link FeatureCollection} using [geojson-flatten](https://github.com/mapbox/geojson-flatten).
+ *
+ * @module turf/flatten
+ * @category misc
+ * @param {geojson} input any valid {@link GeoJSON} with multi-geometry {@link Feature}s
+ * @return {flattened} a flattened {@link FeatureCollection}
+ * @example
+ * var geometry = { 
+ *   "type": "MultiPolygon",
+ *   "coordinates": [
+ *     [[[102.0, 2.0], [103.0, 2.0], [103.0, 3.0], [102.0, 3.0], [102.0, 2.0]]],
+ *      [[[100.0, 0.0], [101.0, 0.0], [101.0, 1.0], [100.0, 1.0], [100.0, 0.0]],
+ *      [[100.2, 0.2], [100.8, 0.2], [100.8, 0.8], [100.2, 0.8], [100.2, 0.2]]]
+ *    ]
+ *  };
+ *
+ * var flattened = turf.flatten(geometry);
+ *
+ * //=flattened
+ */
+
+module.exports = function (geojson) {
+  var flattened = flatten(geojson);
+  if(flattened.type === 'FeatureCollection') return flattened;
+  else return featurecollection(flatten(geojson));
+};
+},{"geojson-flatten":76,"turf-featurecollection":73}],76:[function(require,module,exports){
+module.exports = flatten;
+
+function flatten(gj, up) {
+    switch ((gj && gj.type) || null) {
+        case 'FeatureCollection':
+            gj.features = gj.features.reduce(function(mem, feature) {
+                return mem.concat(flatten(feature));
+            }, []);
+            return gj;
+        case 'Feature':
+            return flatten(gj.geometry).map(function(geom) {
+                return {
+                    type: 'Feature',
+                    properties: JSON.parse(JSON.stringify(gj.properties)),
+                    geometry: geom
+                };
+            });
+        case 'MultiPoint':
+            return gj.coordinates.map(function(_) {
+                return { type: 'Point', coordinates: _ };
+            });
+        case 'MultiPolygon':
+            return gj.coordinates.map(function(_) {
+                return { type: 'Polygon', coordinates: _ };
+            });
+        case 'MultiLineString':
+            return gj.coordinates.map(function(_) {
+                return { type: 'LineString', coordinates: _ };
+            });
+        case 'GeometryCollection':
+            return gj.geometries;
+        case 'Point':
+        case 'Polygon':
+        case 'LineString':
+            return [gj];
+        default:
+            return gj;
+    }
+}
+
+},{}],77:[function(require,module,exports){
 /**
  * Takes a {@link GeoJSON} object of any type and flips all of its coordinates
  * from `[x, y]` to `[y, x]`.
@@ -9377,7 +9635,7 @@ function flip3(coords) {
       for(var k = 0; k < coords[i][j].length; k++) coords[i][j][k].reverse();
 }
 
-},{}],75:[function(require,module,exports){
+},{}],78:[function(require,module,exports){
 var point = require('turf-point');
 var polygon = require('turf-polygon');
 var distance = require('turf-distance');
@@ -9485,7 +9743,7 @@ function hexagon(center, radius) {
   vertices.push(vertices[0]);
   return polygon([vertices]);
 }
-},{"turf-distance":60,"turf-featurecollection":72,"turf-point":102,"turf-polygon":103}],76:[function(require,module,exports){
+},{"turf-distance":66,"turf-featurecollection":73,"turf-point":107,"turf-polygon":108}],79:[function(require,module,exports){
 // http://en.wikipedia.org/wiki/Even%E2%80%93odd_rule
 // modified from: https://github.com/substack/point-in-polygon/blob/master/index.js
 // which was modified from http://www.ecse.rpi.edu/Homepages/wrf/Research/Short_Notes/pnpoly.html
@@ -9591,40 +9849,59 @@ function inRing (pt, ring) {
 }
 
 
-},{}],77:[function(require,module,exports){
+},{}],80:[function(require,module,exports){
 // depend on jsts for now https://github.com/bjornharrtell/jsts/blob/master/examples/overlay.html
 var jsts = require('jsts');
-var featurecollection = require('turf-featurecollection');
 
 /**
- * Takes two {@link Polygon} features and finds their intersection.
+ * Takes two {@link Polygon|polygons} and finds their intersection. If they share a border, returns the border; if they don't intersect, returns undefined.
  *
  * @module turf/intersect
  * @category transformation
- * @param {Polygon} poly1 the first Polygon
- * @param {Polygon} poly2 the second Polygon
- * @return {Polygon} a Polygon feature representing the area where `poly1` and `poly2` overlap
+ * @param {Feature<Polygon>} poly1 the first polygon
+ * @param {Feature<Polygon>} poly2 the second polygon
+ * @return {(Feature<Polygon>|undefined|Feature<MultiLineString>)} if `poly1` and `poly2` overlap, returns a Polygon feature representing the area they overlap; if `poly1` and `poly2` do not overlap, returns `undefined`; if `poly1` and `poly2` share a border, a MultiLineString of the locations where their borders are shared
  * @example
- * var poly1 = turf.polygon([[
- *  [-122.801742, 45.48565],
- *  [-122.801742, 45.60491],
- *  [-122.584762, 45.60491],
- *  [-122.584762, 45.48565],
- *  [-122.801742, 45.48565]
- * ]]);
- * poly1.properties.fill = '#0f0';
- * var poly2 = turf.polygon([[
- *  [-122.520217, 45.535693],
- *  [-122.64038, 45.553967],
- *  [-122.720031, 45.526554],
- *  [-122.669906, 45.507309],
- *  [-122.723464, 45.446643],
- *  [-122.532577, 45.408574],
- *  [-122.487258, 45.477466],
- *  [-122.520217, 45.535693]
- * ]]);
- * poly2.properties.fill = '#00f';
- * var polygons = turf.featurecollection([poly1, poly2]);
+ * var poly1 = {
+ *   "type": "Feature",
+ *   "properties": {
+ *     "fill": "#0f0"
+ *   },
+ *   "geometry": {
+ *     "type": "Polygon",
+ *     "coordinates": [[
+ *       [-122.801742, 45.48565],
+ *       [-122.801742, 45.60491],
+ *       [-122.584762, 45.60491],
+ *       [-122.584762, 45.48565],
+ *       [-122.801742, 45.48565]
+ *     ]]
+ *   }
+ * }
+ * var poly2 = {
+ *   "type": "Feature",
+ *   "properties": {
+ *     "fill": "#00f"
+ *   },
+ *   "geometry": {
+ *     "type": "Polygon",
+ *     "coordinates": [[
+ *       [-122.520217, 45.535693],
+ *       [-122.64038, 45.553967],
+ *       [-122.720031, 45.526554],
+ *       [-122.669906, 45.507309],
+ *       [-122.723464, 45.446643],
+ *       [-122.532577, 45.408574],
+ *       [-122.487258, 45.477466],
+ *       [-122.520217, 45.535693]
+ *     ]]
+ *   }
+ * }
+ *
+ * var polygons = {
+ *   "type": "FeatureCollection",
+ *   "features": [poly1, poly2]
+ * };
  *
  * var intersection = turf.intersect(poly1, poly2);
  *
@@ -9633,7 +9910,7 @@ var featurecollection = require('turf-featurecollection');
  * //=intersection
  */
 module.exports = function(poly1, poly2){
-  var geom1;
+  var geom1, geom2;
   if(poly1.type === 'Feature') geom1 = poly1.geometry;
   else geom1 = poly1;
   if(poly2.type === 'Feature') geom2 = poly2.geometry;
@@ -9656,15 +9933,15 @@ module.exports = function(poly1, poly2){
   }
 };
 
-},{"jsts":78,"turf-featurecollection":72}],78:[function(require,module,exports){
-arguments[4][17][0].apply(exports,arguments)
-},{"./lib/jsts":79,"dup":17,"javascript.util":81}],79:[function(require,module,exports){
+},{"jsts":81}],81:[function(require,module,exports){
 arguments[4][18][0].apply(exports,arguments)
-},{"dup":18}],80:[function(require,module,exports){
+},{"./lib/jsts":82,"dup":18,"javascript.util":84}],82:[function(require,module,exports){
 arguments[4][19][0].apply(exports,arguments)
-},{"dup":19}],81:[function(require,module,exports){
+},{"dup":19}],83:[function(require,module,exports){
 arguments[4][20][0].apply(exports,arguments)
-},{"./dist/javascript.util-node.min.js":80,"dup":20}],82:[function(require,module,exports){
+},{"dup":20}],84:[function(require,module,exports){
+arguments[4][21][0].apply(exports,arguments)
+},{"./dist/javascript.util-node.min.js":83,"dup":21}],85:[function(require,module,exports){
 /**
  * Copyright (c) 2010, Jason Davies.
  *
@@ -10180,7 +10457,7 @@ arguments[4][20][0].apply(exports,arguments)
     }
   }
 
-},{}],83:[function(require,module,exports){
+},{}],86:[function(require,module,exports){
 //https://github.com/jasondavies/conrec.js
 //http://stackoverflow.com/questions/263305/drawing-a-topographical-map
 var tin = require('turf-tin');
@@ -10281,7 +10558,7 @@ module.exports = function(points, z, resolution, breaks, done){
 
 
 
-},{"./conrec":82,"turf-extent":70,"turf-featurecollection":72,"turf-grid":84,"turf-inside":76,"turf-linestring":90,"turf-planepoint":98,"turf-square":115,"turf-tin":118}],84:[function(require,module,exports){
+},{"./conrec":85,"turf-extent":71,"turf-featurecollection":73,"turf-grid":87,"turf-inside":79,"turf-linestring":93,"turf-planepoint":103,"turf-square":120,"turf-tin":123}],87:[function(require,module,exports){
 var point = require('turf-point');
 
 /**
@@ -10320,7 +10597,7 @@ module.exports = function(extents, depth) {
   return fc;
 }
 
-},{"turf-point":102}],85:[function(require,module,exports){
+},{"turf-point":107}],88:[function(require,module,exports){
 var ss = require('simple-statistics');
 
 /**
@@ -10402,16 +10679,16 @@ module.exports = function(fc, field, num){
   return breaks;
 };
 
-},{"simple-statistics":86}],86:[function(require,module,exports){
-arguments[4][59][0].apply(exports,arguments)
-},{"dup":59}],87:[function(require,module,exports){
+},{"simple-statistics":89}],89:[function(require,module,exports){
+arguments[4][60][0].apply(exports,arguments)
+},{"dup":60}],90:[function(require,module,exports){
 /**
- * Takes a {@link Polygon} feature and returns a {@link FeatureCollection} of {@link Point} features at all self-intersections.
+ * Takes a {@link Polygon|polygon} and returns {@link Point|points} at all self-intersections.
  *
  * @module turf/kinks
  * @category misc
- * @param {Polygon} polygon a Polygon feature
- * @returns {FeatureCollection} a FeatureCollection of {@link Point} features representing self-intersections
+ * @param {Feature<Polygon>} polygon input polygon
+ * @returns {FeatureCollection<Point>} self-intersections
  * @example
  * var poly = {
  *   "type": "Feature",
@@ -10427,7 +10704,7 @@ arguments[4][59][0].apply(exports,arguments)
  *     ]]
  *   }
  * };
- * 
+ *
  * var kinks = turf.kinks(poly);
  *
  * var resultFeatures = kinks.intersections.features.concat(poly);
@@ -10439,48 +10716,56 @@ arguments[4][59][0].apply(exports,arguments)
  * //=result
  */
 
-var polygon = require('turf-polygon');
 var point = require('turf-point');
 var fc = require('turf-featurecollection');
 
 module.exports = function(polyIn) {
   var poly;
-  var results = {intersections: fc([]), fixed: null};
+  var results = {
+    intersections: fc([]),
+    fixed: null
+  };
   if (polyIn.type === 'Feature') {
     poly = polyIn.geometry;
   } else {
     poly = polyIn;
   }
-  var intersectionHash = {};
-  poly.coordinates.forEach(function(ring1){
-    poly.coordinates.forEach(function(ring2){
-      for(var i = 0; i < ring1.length-1; i++) {
-        for(var k = 0; k < ring2.length-1; k++) {
-          var intersection = lineIntersects(ring1[i][0],ring1[i][1],ring1[i+1][0],ring1[i+1][1],
-            ring2[k][0],ring2[k][1],ring2[k+1][0],ring2[k+1][1]);
-          if(intersection) {
+  poly.coordinates.forEach(function(ring1) {
+    poly.coordinates.forEach(function(ring2) {
+      for (var i = 0; i < ring1.length - 1; i++) {
+        for (var k = 0; k < ring2.length - 1; k++) {
+          // don't check adjacent sides of a given ring, since of course they intersect in a vertex.
+          if(ring1 === ring2
+          && ( Math.abs(i-k) === 1 || Math.abs(i-k) === ring1.length - 2)) {
+            continue;
+          }
+
+          var intersection = lineIntersects(ring1[i][0], ring1[i][1], ring1[i + 1][0], ring1[i + 1][1],
+            ring2[k][0], ring2[k][1], ring2[k + 1][0], ring2[k + 1][1]);
+          if (intersection) {
             results.intersections.features.push(point([intersection[0], intersection[1]]));
           }
         }
       }
-    })
-  })
+    });
+  });
   return results;
-}
+};
 
 
 // modified from http://jsfiddle.net/justin_c_rounds/Gd2S2/light/
 function lineIntersects(line1StartX, line1StartY, line1EndX, line1EndY, line2StartX, line2StartY, line2EndX, line2EndY) {
   // if the lines intersect, the result contains the x and y of the intersection (treating the lines as infinite) and booleans for whether line segment 1 or line segment 2 contain the point
-  var denominator, a, b, numerator1, numerator2, result = {
-    x: null,
-    y: null,
-    onLine1: false,
-    onLine2: false
-  };
+  var denominator, a, b, numerator1, numerator2,
+    result = {
+      x: null,
+      y: null,
+      onLine1: false,
+      onLine2: false
+    };
   denominator = ((line2EndY - line2StartY) * (line1EndX - line1StartX)) - ((line2EndX - line2StartX) * (line1EndY - line1StartY));
-  if (denominator == 0) {
-    if(result.x != null && result.y != null) {
+  if (denominator === 0) {
+    if (result.x !== null && result.y !== null) {
       return result;
     } else {
       return false;
@@ -10498,23 +10783,22 @@ function lineIntersects(line1StartX, line1StartY, line1EndX, line1EndY, line2Sta
   result.y = line1StartY + (a * (line1EndY - line1StartY));
 
   // if line1 is a segment and line2 is infinite, they intersect if:
-  if (a > 0 && a < 1) {
+  if (a >= 0 && a <= 1) {
     result.onLine1 = true;
   }
   // if line2 is a segment and line1 is infinite, they intersect if:
-  if (b > 0 && b < 1) {
+  if (b >= 0 && b <= 1) {
     result.onLine2 = true;
   }
   // if line1 and line2 are segments, they intersect if both of the above are true
-  if(result.onLine1 && result.onLine2){
+  if (result.onLine1 && result.onLine2) {
     return [result.x, result.y];
-  }
-  else {
+  } else {
     return false;
   }
 }
 
-},{"turf-featurecollection":72,"turf-point":102,"turf-polygon":103}],88:[function(require,module,exports){
+},{"turf-featurecollection":73,"turf-point":107}],91:[function(require,module,exports){
 var distance = require('turf-distance');
 var point = require('turf-point');
 
@@ -10563,7 +10847,7 @@ module.exports = function (line, units) {
   return travelled;
 }
 
-},{"turf-distance":60,"turf-point":102}],89:[function(require,module,exports){
+},{"turf-distance":66,"turf-point":107}],92:[function(require,module,exports){
 var distance = require('turf-distance');
 var point = require('turf-point');
 var linestring = require('turf-linestring');
@@ -10746,7 +11030,7 @@ function lineIntersects(line1StartX, line1StartY, line1EndX, line1EndY, line2Sta
   }
 }
 
-},{"turf-bearing":13,"turf-destination":57,"turf-distance":60,"turf-linestring":90,"turf-point":102}],90:[function(require,module,exports){
+},{"turf-bearing":13,"turf-destination":58,"turf-distance":66,"turf-linestring":93,"turf-point":107}],93:[function(require,module,exports){
 /**
  * Creates a {@link LineString} {@link Feature} based on a
  * coordinate array. Properties can be added optionally.
@@ -10789,7 +11073,7 @@ module.exports = function(coordinates, properties){
   };
 };
 
-},{}],91:[function(require,module,exports){
+},{}],94:[function(require,module,exports){
 var inside = require('turf-inside');
 
 /**
@@ -10927,7 +11211,7 @@ function max(x) {
     return value;
 }
 
-},{"turf-inside":76}],92:[function(require,module,exports){
+},{"turf-inside":79}],95:[function(require,module,exports){
 var inside = require('turf-inside');
 
 /**
@@ -11075,7 +11359,7 @@ function median(x) {
     }
 }
 
-},{"turf-inside":76}],93:[function(require,module,exports){
+},{"turf-inside":79}],96:[function(require,module,exports){
 var clone = require('clone');
 var union = require('turf-union');
 
@@ -11144,7 +11428,7 @@ module.exports = function(polygons, done){
   return merged;
 };
 
-},{"clone":94,"turf-union":120}],94:[function(require,module,exports){
+},{"clone":97,"turf-union":125}],97:[function(require,module,exports){
 (function (Buffer){
 'use strict';
 
@@ -11292,7 +11576,7 @@ clone.clonePrototype = function(parent) {
 };
 
 }).call(this,require("buffer").Buffer)
-},{"buffer":2}],95:[function(require,module,exports){
+},{"buffer":2}],98:[function(require,module,exports){
 // http://cs.selu.edu/~rbyrd/math/midpoint/
 // ((x1+x2)/2), ((y1+y2)/2)
 var point = require('turf-point');
@@ -11352,7 +11636,7 @@ module.exports = function(point1, point2) {
   return point([midX, midY]);
 };
 
-},{"turf-point":102}],96:[function(require,module,exports){
+},{"turf-point":107}],99:[function(require,module,exports){
 var inside = require('turf-inside');
 
 /**
@@ -11490,7 +11774,7 @@ function min(x) {
     return value;
 }
 
-},{"turf-inside":76}],97:[function(require,module,exports){
+},{"turf-inside":79}],100:[function(require,module,exports){
 var distance = require('turf-distance');
 
 /**
@@ -11573,7 +11857,55 @@ module.exports = function(targetPoint, points){
   return nearestPoint;
 }
 
-},{"turf-distance":60}],98:[function(require,module,exports){
+},{"turf-distance":66}],101:[function(require,module,exports){
+var normalize = require('geojson-normalize');
+
+/**
+ * Normalizes any {@link GeoJSON} to a {@link FeatureCollection} using [geojson-normalize](https://github.com/mapbox/geojson-normalize).
+ *
+ * @module turf/normalize
+ * @category misc
+ * @param {geojson} input any valid {@link GeoJSON}
+ * @return {normalized} a normalized {@link FeatureCollection}
+ * @example
+ * var geometry = {
+ *     "type": "Polygon",
+ *     "coordinates": [[
+ *       [-70.603637, -33.399918],
+ *       [-70.614624, -33.395332],
+ *       [-70.639343, -33.392466],
+ *       [-70.659942, -33.394759],
+ *       [-70.683975, -33.404504],
+ *       [-70.697021, -33.419406],
+ *       [-70.701141, -33.434306],
+ *       [-70.700454, -33.446339],
+ *       [-70.694274, -33.458369],
+ *       [-70.682601, -33.465816],
+ *       [-70.668869, -33.472117],
+ *       [-70.646209, -33.473835],
+ *       [-70.624923, -33.472117],
+ *       [-70.609817, -33.468107],
+ *       [-70.595397, -33.458369],
+ *       [-70.587158, -33.442901],
+ *       [-70.587158, -33.426283],
+ *       [-70.590591, -33.414248],
+ *       [-70.594711, -33.406224],
+ *       [-70.603637, -33.399918]
+ *     ]]
+ *   };
+ *
+ * // wraps the geometry in a Feature and places it in a FeatureCollection
+ * var normalized = turf.normalize(geometry)
+ *
+ * //=normalized
+ */
+
+module.exports = function (geojson) {
+  return normalize(geojson);
+};
+},{"geojson-normalize":102}],102:[function(require,module,exports){
+arguments[4][17][0].apply(exports,arguments)
+},{"dup":17}],103:[function(require,module,exports){
 /**
  * Takes a triangular plane as a {@link Polygon} feature
  * and a {@link Point} feature within that triangle and returns the z-value
@@ -11648,7 +11980,7 @@ module.exports = function(point, triangle){
   return z;
 };
 
-},{}],99:[function(require,module,exports){
+},{}],104:[function(require,module,exports){
 var point = require('turf-point');
 var featurecollection = require('turf-featurecollection');
 var distance = require('turf-distance');
@@ -11688,7 +12020,7 @@ module.exports = function (bbox, cell, units) {
   
   return fc;
 }
-},{"turf-distance":60,"turf-featurecollection":72,"turf-point":102}],100:[function(require,module,exports){
+},{"turf-distance":66,"turf-featurecollection":73,"turf-point":107}],105:[function(require,module,exports){
 var distance = require('turf-distance');
 var point = require('turf-point');
 var linestring = require('turf-linestring');
@@ -11853,7 +12185,7 @@ function lineIntersects(line1StartX, line1StartY, line1EndX, line1EndY, line2Sta
   }
 }
 
-},{"turf-bearing":13,"turf-destination":57,"turf-distance":60,"turf-linestring":90,"turf-point":102}],101:[function(require,module,exports){
+},{"turf-bearing":13,"turf-destination":58,"turf-distance":66,"turf-linestring":93,"turf-point":107}],106:[function(require,module,exports){
 var featureCollection = require('turf-featurecollection');
 var centroid = require('turf-center');
 var distance = require('turf-distance');
@@ -12004,7 +12336,7 @@ function pointOnSegment (x, y, x1, y1, x2, y2) {
   }
 }
 
-},{"turf-center":21,"turf-distance":60,"turf-explode":68,"turf-featurecollection":72,"turf-inside":76}],102:[function(require,module,exports){
+},{"turf-center":22,"turf-distance":66,"turf-explode":69,"turf-featurecollection":73,"turf-inside":79}],107:[function(require,module,exports){
 /**
  * Takes coordinates and properties (optional) and returns a new {@link Point} feature.
  *
@@ -12036,7 +12368,7 @@ module.exports = function(coordinates, properties) {
   };
 };
 
-},{}],103:[function(require,module,exports){
+},{}],108:[function(require,module,exports){
 /**
  * Takes an array of LinearRings and optionally an {@link Object} with properties and returns a GeoJSON {@link Polygon} feature.
  *
@@ -12091,7 +12423,7 @@ module.exports = function(coordinates, properties){
   return polygon;
 };
 
-},{}],104:[function(require,module,exports){
+},{}],109:[function(require,module,exports){
 var ss = require('simple-statistics');
 
 /**
@@ -12173,9 +12505,9 @@ module.exports = function(fc, field, percentiles){
   return quantiles;
 };
 
-},{"simple-statistics":105}],105:[function(require,module,exports){
-arguments[4][59][0].apply(exports,arguments)
-},{"dup":59}],106:[function(require,module,exports){
+},{"simple-statistics":110}],110:[function(require,module,exports){
+arguments[4][60][0].apply(exports,arguments)
+},{"dup":60}],111:[function(require,module,exports){
 var random = require('geojson-random');
 
 /**
@@ -12229,7 +12561,7 @@ module.exports = function(type, count, options) {
     }
 };
 
-},{"geojson-random":107}],107:[function(require,module,exports){
+},{"geojson-random":112}],112:[function(require,module,exports){
 module.exports = function() {
     throw new Error('call .point() or .polygon() instead');
 };
@@ -12334,7 +12666,7 @@ function collection(f) {
     };
 }
 
-},{}],108:[function(require,module,exports){
+},{}],113:[function(require,module,exports){
 var featurecollection = require('turf-featurecollection');
 var reclass = require('./index.js');
 
@@ -12431,7 +12763,7 @@ module.exports = function(fc, inField, outField, translations, done){
   return reclassed;
 };
 
-},{"./index.js":108,"turf-featurecollection":72}],109:[function(require,module,exports){
+},{"./index.js":113,"turf-featurecollection":73}],114:[function(require,module,exports){
 var featureCollection = require('turf-featurecollection');
 
 /**
@@ -12532,7 +12864,7 @@ module.exports = function(collection, key, val) {
   return newFC;
 };
 
-},{"turf-featurecollection":72}],110:[function(require,module,exports){
+},{"turf-featurecollection":73}],115:[function(require,module,exports){
 // http://stackoverflow.com/questions/11935175/sampling-a-random-subset-from-an-array
 var featureCollection = require('turf-featurecollection');
 
@@ -12569,7 +12901,7 @@ function getRandomSubarray(arr, size) {
   return shuffled.slice(min);
 }
 
-},{"turf-featurecollection":72}],111:[function(require,module,exports){
+},{"turf-featurecollection":73}],116:[function(require,module,exports){
 var simplify = require('simplify-js');
 
 /**
@@ -12662,7 +12994,7 @@ function simpleFeature (geom, properties) {
   };
 }
 
-},{"simplify-js":112}],112:[function(require,module,exports){
+},{"simplify-js":117}],117:[function(require,module,exports){
 /*
  (c) 2013, Vladimir Agafonkin
  Simplify.js, a high-performance JS polyline simplification library
@@ -12795,7 +13127,7 @@ else window.simplify = simplify;
 
 })();
 
-},{}],113:[function(require,module,exports){
+},{}],118:[function(require,module,exports){
 /**
  * Takes a bounding box and returns a new bounding box with a size expanded or contracted
  * by a factor of X.
@@ -12837,14 +13169,14 @@ module.exports = function(bbox, factor){
   return sized;
 }
 
-},{}],114:[function(require,module,exports){
+},{}],119:[function(require,module,exports){
 var featurecollection = require('turf-featurecollection');
 var point = require('turf-point');
 var polygon = require('turf-polygon');
 var distance = require('turf-distance');
 
 /**
- * Takes a bounding box and a cell depth and returns a {@link FeatureCollection} of {@link Point} features in a grid.
+ * Takes a bounding box and a cell depth and returns a {@link FeatureCollection} of {@link Polygon} features in a grid.
  *
  * @module turf/square-grid
  * @category interpolation
@@ -12888,7 +13220,8 @@ module.exports = function (bbox, cell, units) {
   
   return fc;
 }
-},{"turf-distance":60,"turf-featurecollection":72,"turf-point":102,"turf-polygon":103}],115:[function(require,module,exports){
+
+},{"turf-distance":66,"turf-featurecollection":73,"turf-point":107,"turf-polygon":108}],120:[function(require,module,exports){
 var midpoint = require('turf-midpoint');
 var point = require('turf-point');
 var distance = require('turf-distance');
@@ -12943,7 +13276,7 @@ module.exports = function(bbox){
 }
 
 
-},{"turf-distance":60,"turf-midpoint":95,"turf-point":102}],116:[function(require,module,exports){
+},{"turf-distance":66,"turf-midpoint":98,"turf-point":107}],121:[function(require,module,exports){
 var inside = require('turf-inside');
 
 /**
@@ -13079,7 +13412,7 @@ function sum(x) {
     return value;
 }
 
-},{"turf-inside":76}],117:[function(require,module,exports){
+},{"turf-inside":79}],122:[function(require,module,exports){
 var inside = require('turf-inside');
 
 /**
@@ -13137,7 +13470,7 @@ module.exports = function(points, polygons, field, outField){
   return points;
 };
 
-},{"turf-inside":76}],118:[function(require,module,exports){
+},{"turf-inside":79}],123:[function(require,module,exports){
 //http://en.wikipedia.org/wiki/Delaunay_triangulation
 //https://github.com/ironwallaby/delaunay
 var polygon = require('turf-polygon');
@@ -13380,14 +13713,14 @@ function triangulate(vertices) {
   return closed;
 }
 
-},{"turf-featurecollection":72,"turf-polygon":103}],119:[function(require,module,exports){
+},{"turf-featurecollection":73,"turf-polygon":108}],124:[function(require,module,exports){
 var featurecollection = require('turf-featurecollection');
 var point = require('turf-point');
 var polygon = require('turf-polygon');
 var distance = require('turf-distance');
 
 /**
- * Takes a bounding box and a cell depth and returns a {@link FeatureCollection} of {@link Point} features in a grid.
+ * Takes a bounding box and a cell depth and returns a {@link FeatureCollection} of {@link Polygon} features in a grid.
  *
  * @module turf/triangle-grid
  * @category interpolation
@@ -13488,7 +13821,7 @@ module.exports = function (bbox, cell, units) {
 };
 
 
-},{"turf-distance":60,"turf-featurecollection":72,"turf-point":102,"turf-polygon":103}],120:[function(require,module,exports){
+},{"turf-distance":66,"turf-featurecollection":73,"turf-point":107,"turf-polygon":108}],125:[function(require,module,exports){
 // look here for help http://svn.osgeo.org/grass/grass/branches/releasebranch_6_4/vector/v.overlay/main.c
 //must be array of polygons
 
@@ -13497,13 +13830,13 @@ module.exports = function (bbox, cell, units) {
 var jsts = require('jsts');
 
 /**
- * Takes two {@link Polygon} features and returnes a combined {@link Polygon} feature. If the input Polygon features are not contiguous, this function returns a {@link MultiPolygon} feature.
+ * Takes two {@link Polygon|polygons} and returns a combined polygon. If the input polygons are not contiguous, this function returns a {@link MultiPolygon} feature.
  *
  * @module turf/union
  * @category transformation
- * @param {Polygon} poly1 an input Polygon
- * @param {Polygon} poly2 another input Polygon
- * @return {Feature} a combined {@link Polygon} or {@link MultiPolygon} feature
+ * @param {Feature<Polygon>} poly1 input polygon
+ * @param {Feature<Polygon>} poly2 another input polygon
+ * @return {Feature<(Polygon|MultiPolygon)>} a combined {@link Polygon} or {@link MultiPolygon} feature
  * @example
  * var poly1 = {
  *   "type": "Feature",
@@ -13563,15 +13896,15 @@ module.exports = function(poly1, poly2){
   };
 }
 
-},{"jsts":121}],121:[function(require,module,exports){
-arguments[4][17][0].apply(exports,arguments)
-},{"./lib/jsts":122,"dup":17,"javascript.util":124}],122:[function(require,module,exports){
+},{"jsts":126}],126:[function(require,module,exports){
 arguments[4][18][0].apply(exports,arguments)
-},{"dup":18}],123:[function(require,module,exports){
+},{"./lib/jsts":127,"dup":18,"javascript.util":129}],127:[function(require,module,exports){
 arguments[4][19][0].apply(exports,arguments)
-},{"dup":19}],124:[function(require,module,exports){
+},{"dup":19}],128:[function(require,module,exports){
 arguments[4][20][0].apply(exports,arguments)
-},{"./dist/javascript.util-node.min.js":123,"dup":20}],125:[function(require,module,exports){
+},{"dup":20}],129:[function(require,module,exports){
+arguments[4][21][0].apply(exports,arguments)
+},{"./dist/javascript.util-node.min.js":128,"dup":21}],130:[function(require,module,exports){
 var ss = require('simple-statistics');
 var inside = require('turf-inside');
 
@@ -13700,9 +14033,9 @@ module.exports = function (polyFC, ptFC, inField, outField) {
   return polyFC;
 };
 
-},{"simple-statistics":126,"turf-inside":76}],126:[function(require,module,exports){
-arguments[4][59][0].apply(exports,arguments)
-},{"dup":59}],127:[function(require,module,exports){
+},{"simple-statistics":131,"turf-inside":79}],131:[function(require,module,exports){
+arguments[4][60][0].apply(exports,arguments)
+},{"dup":60}],132:[function(require,module,exports){
 var inside = require('turf-inside');
 var featureCollection = require('turf-featurecollection');
 
@@ -13800,5 +14133,5 @@ module.exports = function(ptFC, polyFC){
   return pointsWithin;
 };
 
-},{"turf-featurecollection":72,"turf-inside":76}]},{},[1])(1)
+},{"turf-featurecollection":73,"turf-inside":79}]},{},[1])(1)
 });
