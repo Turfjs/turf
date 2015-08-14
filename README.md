@@ -192,7 +192,7 @@ var point2 = {
 
 [![Build Status](https://travis-ci.org/Turfjs/turf-intersect.svg?branch=master)](https://travis-ci.org/Turfjs/turf-intersect) [intersect](https://github.com/Turfjs/turf-intersect)
 
-[![Build Status](https://travis-ci.org/Turfjs/turf-erase.svg?branch=master)](https://travis-ci.org/Turfjs/turf-erase) [erase](https://github.com/Turfjs/turf-erase)
+[![Build Status](https://travis-ci.org/Turfjs/turf-difference.svg?branch=master)](https://travis-ci.org/Turfjs/turf-difference) [difference](https://github.com/Turfjs/turf-difference)
 
 [![Build Status](https://travis-ci.org/Turfjs/turf-convex.svg?branch=master)](https://travis-ci.org/Turfjs/turf-convex) [convex](https://github.com/Turfjs/turf-convex)
 
