@@ -1,6 +1,5 @@
 {
   "name": "turf",
-  "version": "1.4.0",
   "description": "",
   "homepage": "https://github.com/morganherlocker/turf",
   "main": "turf.min.js",
