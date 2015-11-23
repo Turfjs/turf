@@ -30,11 +30,13 @@ npm install turf
 
 **In browser:**
 
-Download the [minified file](https://raw.github.com/morganherlocker/turf/master/turf.min.js), and include it in a script tag. This will expose a global variable named "turf".
+Download the [minified file](https://raw.github.com/morganherlocker/turf/master/turf.min.js), and include it in a script tag. This will expose a global variable named `turf`.
 
 ```html
 <script src="turf.min.js" charset="utf-8"></script>
 ```
+
+You can create light-weight turf builds with only the functions you need using the [turfjs-builder UI](https://turfjs-builder.herokuapp.com/) or using browserify as described below.
 
 **Browserify:**
 
