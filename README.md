@@ -45,7 +45,7 @@ All of Turf's functions can also be installed as separate modules. This works we
 ```sh
 npm install turf-point turf-buffer
 ```
-
+Custom browserify builds can also be automatically generated using the <a href='https://turfjs-builder.herokuapp.com/'>Turf Builder tool</a>, this will generate a single javascript file with the relevant modules for use in the browser. 
 - - -
 
 ###Data in Turf
