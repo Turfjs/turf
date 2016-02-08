@@ -68,7 +68,7 @@
     "turf-bbox-polygon": "^1.0.1",
     "turf-bearing": "1.0.1",
     "turf-bezier": "1.0.2",
-    "turf-buffer": "1.0.1",
+    "turf-buffer": "^1.0.4",
     "turf-center": "^1.0.2",
     "turf-centroid": "^1.1.2",
     "turf-combine": "1.0.2",
