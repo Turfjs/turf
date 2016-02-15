@@ -96,7 +96,6 @@
     "turf-linestring": "^1.0.2",
     "turf-max": "1.0.1",
     "turf-median": "1.0.2",
-    "turf-merge": "1.0.2",
     "turf-midpoint": "^1.0.1",
     "turf-min": "1.0.1",
     "turf-nearest": "^1.0.2",

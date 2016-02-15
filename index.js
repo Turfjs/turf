@@ -7,7 +7,6 @@
  */
 module.exports = {
   isolines: require('turf-isolines'),
-  merge: require('turf-merge'),
   convex: require('turf-convex'),
   within: require('turf-within'),
   concave: require('turf-concave'),
