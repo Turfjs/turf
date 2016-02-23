@@ -1,3 +1,28 @@
+# 3.0.0 (unreleased)
+
+* removed turf-merge
+
+## Upgrading from v2
+
+**Handling the turf-merge removal**
+
+turf-merge repeatedly called turf-union on an array of polygons. Here's
+how to implement the same thing without the special module
+
+```js
+var clone = require('clone');
+var union = require('turf-union');
+function merge(polygons) {
+  var merged = clone(polygons.features[0]), features = polygons.features;
+  for (var i = 0, len = features.length; i < len; i++) {
+    var poly = features[i];
+    if (poly.geometry) merged = union(merged, poly);
+  }
+  return merged;
+}
+```
+
+
 # 2.0.0
 
 * turf-grid renamed turf-point-grid (turf.grid => turf.pointGrid)
