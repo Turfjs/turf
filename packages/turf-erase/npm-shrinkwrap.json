@@ -1,0 +1,21 @@
+{
+  "name": "turf-difference",
+  "version": "2.0.0",
+  "dependencies": {
+    "jsts": {
+      "version": "0.15.0",
+      "from": "jsts@>=0.15.0 <0.16.0",
+      "resolved": "https://registry.npmjs.org/jsts/-/jsts-0.15.0.tgz",
+      "dependencies": {
+        "javascript.util": {
+          "version": "0.12.5",
+          "resolved": "https://registry.npmjs.org/javascript.util/-/javascript.util-0.12.5.tgz"
+        }
+      }
+    },
+    "turf-featurecollection": {
+      "version": "1.0.1",
+      "from": "turf-featurecollection@>=1.0.0 <2.0.0"
+    }
+  }
+}

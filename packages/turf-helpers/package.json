@@ -1,0 +1,38 @@
+{
+  "name": "turf-helpers",
+  "version": "1.0.0",
+  "description": "turf geometries",
+  "main": "index.js",
+  "scripts": {
+    "test": "tape test.js",
+    "doc": "dox -r < index.js | doxme --readme > README.md"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Turfjs/turf-point.git"
+  },
+  "keywords": [
+    "geo",
+    "point",
+    "turf",
+    "geojson"
+  ],
+  "author": "morganherlocker",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Turfjs/turf-point/issues"
+  },
+  "homepage": "https://github.com/Turfjs/turf-point",
+  "devDependencies": {
+    "benchmark": "^1.0.0",
+    "tape": "^3.5.0",
+    "dox": "^0.6.1",
+    "doxme": "^1.4.3"
+  },
+  "dependencies": {
+    "minimist": "^1.1.0"
+  },
+  "bin": {
+    "turf-point": "bin/point.js"
+  }
+}

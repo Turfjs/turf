@@ -1,0 +1,31 @@
+{
+  "name": "turf-point-on-line",
+  "version": "1.0.2",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "node test.js",
+    "doc": "dox -r < index.js | doxme --readme > README.md"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Turfjs/turf-point-on-line.git"
+  },
+  "author": "morganherlocker",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Turfjs/turf-point-on-line/issues"
+  },
+  "homepage": "https://github.com/Turfjs/turf-point-on-line",
+  "devDependencies": {
+    "benchmark": "^1.0.0",
+    "tape": "^3.5.0",
+    "turf-helpers": "^1.0.0"
+  },
+  "dependencies": {
+    "turf-bearing": "^1.0.0",
+    "turf-destination": "^1.2.0",
+    "turf-distance": "^1.0.0",
+    "turf-helpers": "^1.0.0"
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "name": "turf-reclass",
+  "version": "1.0.1",
+  "description": "turf reclass module",
+  "main": "index.js",
+  "scripts": {
+    "test": "tape test.js",
+    "doc": "dox -r < index.js | doxme --readme > README.md"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Turfjs/turf-reclass.git"
+  },
+  "keywords": [
+    "turf",
+    "reclass",
+    "classification",
+    "geojson"
+  ],
+  "author": "morganherlocker",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Turfjs/turf-reclass/issues"
+  },
+  "homepage": "https://github.com/Turfjs/turf-reclass",
+  "devDependencies": {
+    "benchmark": "^1.0.0",
+    "tape": "^3.5.0",
+    "dox": "^0.6.1",
+    "doxme": "^1.4.3"
+  },
+  "dependencies": {
+    "turf-helpers": "^1.0.0"
+  }
+}

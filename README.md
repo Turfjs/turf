@@ -2,13 +2,11 @@
 ======
 
 [![Version Badge][npm-img]][npm-url]
-[![Build Status][travis-img]][travis-url]
+[![Circle CI](https://circleci.com/gh/Turfjs/turf.svg?style=svg)](https://circleci.com/gh/Turfjs/turf)
 [![Gitter chat][gitter-img]][gitter-url]
 
 [npm-img]: https://img.shields.io/npm/v/turf.svg
 [npm-url]: https://www.npmjs.com/package/turf
-[travis-img]: https://travis-ci.org/Turfjs/turf.svg?branch=master
-[travis-url]: https://travis-ci.org/Turfjs/turf
 [gitter-img]: https://badges.gitter.im/Turfjs/turf.png
 [gitter-url]: https://gitter.im/Turfjs/turf
 
@@ -20,7 +18,7 @@
 
 [Turf](https://turfjs.org) is a [JavaScript library](https://en.wikipedia.org/wiki/JavaScript_library) for [spatial analysis](http://en.wikipedia.org/wiki/Spatial_analysis). It includes traditional spatial operations, helper functions for creating [GeoJSON](http://geojson.org) data, and data classification and statistics tools. Turf can be added to your website as a client-side plugin, or you can [run Turf server-side](https://www.npmjs.com/package/turf) with [Node.js](http://nodejs.org/) (see below).
 
-##Installation
+## Installation
 
 **In Node.js:**
 
@@ -48,7 +46,7 @@ npm install turf-point turf-buffer
 
 - - -
 
-###Data in Turf
+### Data in Turf
 
 Turf uses <a href='http://geojson.org/'>GeoJSON</a> for all geographic data. Turf expects the data to be standard <a href='http://en.wikipedia.org/wiki/World_Geodetic_System'>WGS84</a> longitude, latitude coordinates. Check out <a href='http://geojson.io/#id=gist:anonymous/844f013aae8354eb889c&map=12/38.8955/-77.0135'>geojson.io</a> for a tool to easily create this data.
 
@@ -72,139 +70,3 @@ var point2 = {
   properties: {}
 };
 ```
-
-- - -
-
-##Functions
-
-####geometry
-
-[![Build Status](https://travis-ci.org/Turfjs/turf-point.svg?branch=master)](https://travis-ci.org/Turfjs/turf-point) [point](https://github.com/Turfjs/turf-point)
-
-[![Build Status](https://travis-ci.org/Turfjs/turf-linestring.svg?branch=master)](https://travis-ci.org/Turfjs/turf-linestring) [linestring](https://github.com/Turfjs/turf-linestring)
-
-[![Build Status](https://travis-ci.org/Turfjs/turf-polygon.svg?branch=master)](https://travis-ci.org/Turfjs/turf-polygon) [polygon](https://github.com/Turfjs/turf-polygon)
-
-[![Build Status](https://travis-ci.org/Turfjs/turf-featurecollection.svg?branch=master)](https://travis-ci.org/Turfjs/turf-featurecollection) [featurecollection](https://github.com/Turfjs/turf-featurecollection)
-
-####joins
-
-[![Build Status](https://travis-ci.org/Turfjs/turf-inside.svg?branch=master)](https://travis-ci.org/Turfjs/turf-inside) [inside](https://github.com/Turfjs/turf-inside)
-
-[![Build Status](https://travis-ci.org/Turfjs/turf-within.svg?branch=master)](https://travis-ci.org/Turfjs/turf-within) [within](https://github.com/Turfjs/turf-within)
-
-[![Build Status](https://travis-ci.org/Turfjs/turf-tag.svg?branch=master)](https://travis-ci.org/Turfjs/turf-tag) [tag](https://github.com/Turfjs/turf-tag)
-
-####data
-[![Build Status](https://travis-ci.org/Turfjs/turf-remove.svg?branch=master)](https://travis-ci.org/Turfjs/turf-remove) [remove](https://github.com/Turfjs/turf-remove)
-
-[![Build Status](https://travis-ci.org/Turfjs/turf-filter.svg?branch=master)](https://travis-ci.org/Turfjs/turf-filter) [filter](https://github.com/Turfjs/turf-filter)
-
-[![Build Status](https://travis-ci.org/Turfjs/turf-sample.svg?branch=master)](https://travis-ci.org/Turfjs/turf-sample) [sample](https://github.com/Turfjs/turf-sample)
-
-####measurement
-[![Build Status](https://travis-ci.org/Turfjs/turf-distance.svg?branch=master)](https://travis-ci.org/Turfjs/turf-distance) [distance](https://github.com/Turfjs/turf-distance)
-
-[![Build Status](https://travis-ci.org/Turfjs/turf-area.svg?branch=master)](https://travis-ci.org/Turfjs/turf-area) [area](https://github.com/Turfjs/turf-area)
-
-[![Build Status](https://travis-ci.org/Turfjs/turf-nearest.svg?branch=master)](https://travis-ci.org/Turfjs/turf-nearest) [nearest](https://github.com/Turfjs/turf-nearest)
-
-[![Build Status](https://travis-ci.org/Turfjs/turf-bbox-polygon.svg?branch=master)](https://travis-ci.org/Turfjs/turf-bbox-polygon) [bbox-polygon](https://github.com/Turfjs/turf-bbox-polygon)
-
-[![Build Status](https://travis-ci.org/Turfjs/turf-envelope.svg?branch=master)](https://travis-ci.org/Turfjs/turf-envelope) [envelope](https://github.com/Turfjs/turf-envelope)
-
-[![Build Status](https://travis-ci.org/Turfjs/turf-extent.svg?branch=master)](https://travis-ci.org/Turfjs/turf-extent) [extent](https://github.com/Turfjs/turf-extent)
-
-[![Build Status](https://travis-ci.org/Turfjs/turf-square.svg?branch=master)](https://travis-ci.org/Turfjs/turf-square) [square](https://github.com/Turfjs/turf-square)
-
-[![Build Status](https://travis-ci.org/Turfjs/turf-size.svg?branch=master)](https://travis-ci.org/Turfjs/turf-size) [size](https://github.com/Turfjs/turf-size)
-
-[![Build Status](https://travis-ci.org/Turfjs/turf-center.svg?branch=master)](https://travis-ci.org/Turfjs/turf-center) [center](https://github.com/Turfjs/turf-center)
-
-[![Build Status](https://travis-ci.org/Turfjs/turf-centroid.svg?branch=master)](https://travis-ci.org/Turfjs/turf-centroid) [centroid](https://github.com/Turfjs/turf-centroid)
-
-[![Build Status](https://travis-ci.org/Turfjs/turf-point-on-surface.svg?branch=master)](https://travis-ci.org/Turfjs/turf-point-on-surface) [point-on-surface](https://github.com/Turfjs/turf-point-on-surface)
-
-[![Build Status](https://travis-ci.org/Turfjs/turf-midpoint.svg?branch=master)](https://travis-ci.org/Turfjs/turf-midpoint) [midpoint](https://github.com/Turfjs/turf-midpoint)
-
-[![Build Status](https://travis-ci.org/Turfjs/turf-bearing.svg?branch=master)](https://travis-ci.org/Turfjs/turf-bearing) [bearing](https://github.com/Turfjs/turf-bearing)
-
-[![Build Status](https://travis-ci.org/Turfjs/turf-destination.svg?branch=master)](https://travis-ci.org/Turfjs/turf-destination) [destination](https://github.com/Turfjs/turf-destination)
-
-[![Build Status](https://travis-ci.org/Turfjs/turf-line-distance.svg?branch=master)](https://travis-ci.org/Turfjs/turf-line-distance) [line-distance](https://github.com/Turfjs/turf-line-distance)
-
-[![Build Status](https://travis-ci.org/Turfjs/turf-along.svg?branch=master)](https://travis-ci.org/Turfjs/turf-along) [along](https://github.com/Turfjs/turf-along)
-
-####interpolation
-
-[![Build Status](https://travis-ci.org/Turfjs/turf-tin.svg?branch=master)](https://travis-ci.org/Turfjs/turf-tin) [tin](https://github.com/Turfjs/turf-tin)
-
-[![Build Status](https://travis-ci.org/Turfjs/turf-planepoint.svg?branch=master)](https://travis-ci.org/Turfjs/turf-planepoint) [planepoint](https://github.com/Turfjs/turf-planepoint)
-
-[![Build Status](https://travis-ci.org/Turfjs/turf-isolines.svg?branch=master)](https://travis-ci.org/Turfjs/turf-isolines) [isolines](https://github.com/Turfjs/turf-isolines)
-
-[![Build Status](https://travis-ci.org/Turfjs/turf-isobands.svg?branch=master)](https://travis-ci.org/Turfjs/turf-isobands) [isobands](https://github.com/Turfjs/turf-isobands)
-
-####grids
-
-[![Build Status](https://travis-ci.org/Turfjs/turf-point-grid.svg?branch=master)](https://travis-ci.org/Turfjs/turf-point-grid) [point-grid](https://github.com/Turfjs/turf-point-grid)
-
-[![Build Status](https://travis-ci.org/Turfjs/turf-square-grid.svg?branch=master)](https://travis-ci.org/Turfjs/turf-square-grid) [square-grid](https://github.com/Turfjs/turf-square-grid)
-
-[![Build Status](https://travis-ci.org/Turfjs/turf-hex-grid.svg?branch=master)](https://travis-ci.org/Turfjs/turf-hex-grid) [hex-grid](https://github.com/Turfjs/turf-hex-grid)
-
-[![Build Status](https://travis-ci.org/Turfjs/turf-triangle-grid.svg?branch=master)](https://travis-ci.org/Turfjs/turf-triangle-grid) [triangle-grid](https://github.com/Turfjs/turf-triangle-grid)
-
-####classification
-[![Build Status](https://travis-ci.org/Turfjs/turf-quantile.svg?branch=master)](https://travis-ci.org/Turfjs/turf-quantile) [quantile](https://github.com/Turfjs/turf-quantile)
-
-[![Build Status](https://travis-ci.org/Turfjs/turf-jenks.svg?branch=master)](https://travis-ci.org/Turfjs/turf-jenks) [jenks](https://github.com/Turfjs/turf-jenks)
-
-[![Build Status](https://travis-ci.org/Turfjs/turf-reclass.svg?branch=master)](https://travis-ci.org/Turfjs/turf-reclass) [reclass](https://github.com/Turfjs/turf-reclass)
-
-####aggregation
-[![Build Status](https://travis-ci.org/Turfjs/turf-average.svg?branch=master)](https://travis-ci.org/Turfjs/turf-average) [average](https://github.com/Turfjs/turf-average)
-
-[![Build Status](https://travis-ci.org/Turfjs/turf-median.svg?branch=master)](https://travis-ci.org/Turfjs/turf-median) [median](https://github.com/Turfjs/turf-median)
-
-[![Build Status](https://travis-ci.org/Turfjs/turf-sum.svg?branch=master)](https://travis-ci.org/Turfjs/turf-sum) [sum](https://github.com/Turfjs/turf-sum)
-
-[![Build Status](https://travis-ci.org/Turfjs/turf-min.svg?branch=master)](https://travis-ci.org/Turfjs/turf-min) [min](https://github.com/Turfjs/turf-min)
-
-[![Build Status](https://travis-ci.org/Turfjs/turf-max.svg?branch=master)](https://travis-ci.org/Turfjs/turf-max) [max](https://github.com/Turfjs/turf-max)
-
-[![Build Status](https://travis-ci.org/Turfjs/turf-count.svg?branch=master)](https://travis-ci.org/Turfjs/turf-count) [count](https://github.com/Turfjs/turf-count)
-
-[![Build Status](https://travis-ci.org/Turfjs/turf-deviation.svg?branch=master)](https://travis-ci.org/Turfjs/turf-deviation) [deviation](https://github.com/Turfjs/turf-deviation)
-
-[![Build Status](https://travis-ci.org/Turfjs/turf-variance.svg?branch=master)](https://travis-ci.org/Turfjs/turf-variance) [variance](https://github.com/Turfjs/turf-variance)
-
-[![Build Status](https://travis-ci.org/Turfjs/turf-aggregate.svg?branch=master)](https://travis-ci.org/Turfjs/turf-aggregate) [aggregate](https://github.com/Turfjs/turf-aggregate)
-
-####transformation
-[![Build Status](https://travis-ci.org/Turfjs/turf-buffer.svg?branch=master)](https://travis-ci.org/Turfjs/turf-buffer) [buffer](https://github.com/Turfjs/turf-buffer)
-
-[![Build Status](https://travis-ci.org/Turfjs/turf-bezier.svg?branch=master)](https://travis-ci.org/Turfjs/turf-bezier) [bezier](https://github.com/Turfjs/turf-bezier)
-
-[![Build Status](https://travis-ci.org/Turfjs/turf-simplify.svg?branch=master)](https://travis-ci.org/Turfjs/turf-simplify) [simplify](https://github.com/Turfjs/turf-simplify)
-
-[![Build Status](https://travis-ci.org/Turfjs/turf-union.svg?branch=master)](https://travis-ci.org/Turfjs/turf-union) [union](https://github.com/Turfjs/turf-union)
-
-[![Build Status](https://travis-ci.org/Turfjs/turf-intersect.svg?branch=master)](https://travis-ci.org/Turfjs/turf-intersect) [intersect](https://github.com/Turfjs/turf-intersect)
-
-[![Build Status](https://travis-ci.org/Turfjs/turf-difference.svg?branch=master)](https://travis-ci.org/Turfjs/turf-difference) [difference](https://github.com/Turfjs/turf-difference)
-
-[![Build Status](https://travis-ci.org/Turfjs/turf-convex.svg?branch=master)](https://travis-ci.org/Turfjs/turf-convex) [convex](https://github.com/Turfjs/turf-convex)
-
-[![Build Status](https://travis-ci.org/Turfjs/turf-concave.svg?branch=master)](https://travis-ci.org/Turfjs/turf-concave) [concave](https://github.com/Turfjs/turf-concave)
-
-####misc
-[![Build Status](https://travis-ci.org/Turfjs/turf-flip.svg?branch=master)](https://travis-ci.org/Turfjs/turf-flip) [flip](https://github.com/Turfjs/turf-flip)
-
-[![Build Status](https://travis-ci.org/Turfjs/turf-explode.svg?branch=master)](https://travis-ci.org/Turfjs/turf-explode) [explode](https://github.com/Turfjs/turf-explode)
-
-[![Build Status](https://travis-ci.org/Turfjs/turf-combine.svg?branch=master)](https://travis-ci.org/Turfjs/turf-combine) [combine](https://github.com/Turfjs/turf-combine)
-
-[![Build Status](https://travis-ci.org/Turfjs/turf-is-clockwise.svg?branch=master)](https://travis-ci.org/Turfjs/turf-is-clockwise) [is-clockwise](https://github.com/Turfjs/turf-is-clockwise)
-
-[![Build Status](https://travis-ci.org/Turfjs/turf-kinks.svg?branch=master)](https://travis-ci.org/Turfjs/turf-kinks) [kinks](https://github.com/Turfjs/turf-kinks)

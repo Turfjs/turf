@@ -1,0 +1,38 @@
+{
+  "name": "turf-destination",
+  "version": "1.2.1",
+  "description": "turf destination module",
+  "main": "index.js",
+  "scripts": {
+    "test": "tape test.js",
+    "doc": "dox -r < index.js | doxme --readme > README.md"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Turfjs/turf-destination.git"
+  },
+  "keywords": [
+    "turf",
+    "distance",
+    "destination",
+    "bearing",
+    "miles",
+    "km"
+  ],
+  "author": "jvrousseau",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Turfjs/turf-destination/issues"
+  },
+  "homepage": "https://github.com/Turfjs/turf-destination",
+  "devDependencies": {
+    "benchmark": "^1.0.0",
+    "tape": "^3.5.0",
+    "turf-distance": "^1.0.0",
+    "dox": "^0.6.1",
+    "doxme": "^1.4.3"
+  },
+  "dependencies": {
+    "turf-helpers": "^1.0.0"
+  }
+}

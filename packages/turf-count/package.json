@@ -1,0 +1,38 @@
+{
+  "name": "turf-count",
+  "version": "1.0.2",
+  "description": "turf count module",
+  "main": "index.js",
+  "scripts": {
+    "test": "tape test.js",
+    "doc": "dox -r < index.js | doxme --readme > README.md"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Turfjs/turf-count.git"
+  },
+  "keywords": [
+    "turf",
+    "count",
+    "features",
+    "geojson",
+    "stats"
+  ],
+  "author": "morganherlocker",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Turfjs/turf-count/issues"
+  },
+  "homepage": "https://github.com/Turfjs/turf-count",
+  "devDependencies": {
+    "benchmark": "^1.0.0",
+    "deep-freeze": "0.0.1",
+    "tape": "^3.5.0",
+    "dox": "^0.6.1",
+    "doxme": "^1.4.3",
+    "turf-helpers": "^1.0.0"
+  },
+  "dependencies": {
+    "turf-inside": "^1.1.3"
+  }
+}

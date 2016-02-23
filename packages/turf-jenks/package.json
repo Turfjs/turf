@@ -1,0 +1,36 @@
+{
+  "name": "turf-jenks",
+  "version": "1.0.1",
+  "description": "turf jenks module",
+  "main": "index.js",
+  "scripts": {
+    "test": "tape test.js",
+    "doc": "dox -r < index.js | doxme --readme > README.md"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Turfjs/turf-jenks.git"
+  },
+  "keywords": [
+    "turf",
+    "geojson",
+    "jenks",
+    "classification",
+    "geojson"
+  ],
+  "author": "morganherlocker",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Turfjs/turf-jenks/issues"
+  },
+  "homepage": "https://github.com/Turfjs/turf-jenks",
+  "devDependencies": {
+    "benchmark": "^1.0.0",
+    "tape": "^3.5.0",
+    "dox": "^0.6.1",
+    "doxme": "^1.4.3"
+  },
+  "dependencies": {
+    "simple-statistics": "^0.9.0"
+  }
+}

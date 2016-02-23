@@ -1,0 +1,45 @@
+{
+  "name": "turf-buffer",
+  "version": "1.1.0",
+  "description": "turf buffer module",
+  "main": "index.js",
+  "scripts": {
+    "test": "node ./test/test.js",
+    "doc": "dox -r < index.js | doxme --readme > README.md"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Turfjs/turf-buffer.git"
+  },
+  "keywords": [
+    "buffer",
+    "offset",
+    "polygon",
+    "linestring",
+    "point",
+    "geojson",
+    "turf"
+  ],
+  "author": "morganherlocker",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Turfjs/turf-buffer/issues"
+  },
+  "homepage": "https://github.com/Turfjs/turf-buffer",
+  "devDependencies": {
+    "benchmark": "^1.0.0",
+    "dox": "^0.7.0",
+    "doxme": "^1.8.2",
+    "glob": "^5.0.3",
+    "tape": "^3.5.0",
+    "turf-distance": "^1.0.1",
+    "turf-extent": "^1.0.4",
+    "turf-helpers": "^1.0.0"
+  },
+  "dependencies": {
+    "geojson-normalize": "0.0.0",
+    "jsts": "^0.15.0",
+    "turf-combine": "^1.0.2",
+    "turf-helpers": "^1.0.0"
+  }
+}

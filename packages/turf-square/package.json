@@ -1,0 +1,37 @@
+{
+  "name": "turf-square",
+  "version": "1.0.1",
+  "description": "turf square module",
+  "main": "index.js",
+  "scripts": {
+    "test": "node test.js",
+    "doc": "dox -r < index.js | doxme --readme > README.md"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Turfjs/turf-square.git"
+  },
+  "keywords": [
+    "turf",
+    "gis",
+    "geojson",
+    "extent"
+  ],
+  "author": "morganherlocker",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Turfjs/turf-square/issues"
+  },
+  "homepage": "https://github.com/Turfjs/turf-square",
+  "devDependencies": {
+    "benchmark": "^1.0.0",
+    "tape": "^3.5.0",
+    "dox": "^0.6.1",
+    "doxme": "^1.4.3"
+  },
+  "dependencies": {
+    "turf-distance": "^1.0.0",
+    "turf-midpoint": "^1.0.0",
+    "turf-helpers": "^1.0.0"
+  }
+}

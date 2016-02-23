@@ -1,0 +1,35 @@
+{
+  "name": "turf-buffer",
+  "version": "1.1.0",
+  "dependencies": {
+    "geojson-normalize": {
+      "version": "0.0.0",
+      "from": "geojson-normalize@0.0.0",
+      "resolved": "https://registry.npmjs.org/geojson-normalize/-/geojson-normalize-0.0.0.tgz"
+    },
+    "jsts": {
+      "version": "0.15.0",
+      "from": "jsts@>=0.15.0 <0.16.0",
+      "resolved": "https://registry.npmjs.org/jsts/-/jsts-0.15.0.tgz",
+      "dependencies": {
+        "javascript.util": {
+          "version": "0.12.5",
+          "resolved": "https://registry.npmjs.org/javascript.util/-/javascript.util-0.12.5.tgz"
+        }
+      }
+    },
+    "turf-combine": {
+      "version": "1.0.2",
+      "from": "turf-combine@>=1.0.2 <2.0.0",
+      "resolved": "https://registry.npmjs.org/turf-combine/-/turf-combine-1.0.2.tgz"
+    },
+    "turf-featurecollection": {
+      "version": "1.0.1",
+      "from": "turf-featurecollection@>=1.0.1 <2.0.0"
+    },
+    "turf-polygon": {
+      "version": "1.0.3",
+      "from": "turf-polygon@>=1.0.3 <2.0.0"
+    }
+  }
+}

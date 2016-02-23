@@ -1,0 +1,31 @@
+{
+  "name": "turf-area",
+  "version": "2.0.0",
+  "description": "calculate the area of a polygon or multipolygon feature",
+  "main": "index.js",
+  "scripts": {
+    "test": "tape test.js",
+    "doc": "dox -r < index.js | doxme --readme > README.md"
+  },
+  "keywords": [
+    "turf",
+    "area",
+    "polygon",
+    "multipolygon"
+  ],
+  "author": "Tom MacWright",
+  "license": "ISC",
+  "dependencies": {
+    "geojson-area": "^0.2.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:Turfjs/turf-area.git"
+  },
+  "devDependencies": {
+    "geojson-fixtures": "^0.6.0",
+    "tape": "^3.5.0",
+    "dox": "^0.6.1",
+    "doxme": "^1.4.3"
+  }
+}

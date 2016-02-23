@@ -1,0 +1,37 @@
+{
+  "name": "turf-envelope",
+  "version": "1.0.2",
+  "description": "turf envelope module",
+  "main": "index.js",
+  "scripts": {
+    "test": "node test.js",
+    "doc": "dox -r < index.js | doxme --readme > README.md"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Turfjs/turf-envelope.git"
+  },
+  "keywords": [
+    "turf",
+    "geojson",
+    "envelope",
+    "polygon",
+    "extent"
+  ],
+  "author": "morganherlocker",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Turfjs/turf-envelope/issues"
+  },
+  "homepage": "https://github.com/Turfjs/turf-envelope",
+  "devDependencies": {
+    "benchmark": "^1.0.0",
+    "tape": "^3.5.0",
+    "dox": "^0.6.1",
+    "doxme": "^1.4.3"
+  },
+  "dependencies": {
+    "turf-bbox-polygon": "^1.0.0",
+    "turf-extent": "^1.0.3"
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "name": "turf-flip",
+  "version": "1.0.3",
+  "description": "turf flip module",
+  "main": "index.js",
+  "scripts": {
+    "test": "tape test.js",
+    "doc": "dox -r < index.js | doxme --readme > README.md"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Turfjs/turf-flip.git"
+  },
+  "keywords": [
+    "turf",
+    "geojson",
+    "coordinate",
+    "flip"
+  ],
+  "author": "morganherlocker",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Turfjs/turf-flip/issues"
+  },
+  "homepage": "https://github.com/Turfjs/turf-flip",
+  "devDependencies": {
+    "benchmark": "^1.0.0",
+    "tape": "^3.5.0",
+    "dox": "^0.6.1",
+    "doxme": "^1.4.3",
+    "turf-helpers": "^1.0.0"
+  }
+}
