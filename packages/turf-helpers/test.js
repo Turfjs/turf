@@ -5,6 +5,7 @@ var point = geometries.point;
 var polygon = geometries.polygon;
 var lineString = geometries.lineString;
 var featureCollection = geometries.featureCollection;
+var multiLineString = geometries.multiLineString;
 
 test('point', function(t){
   var ptArray = point([5, 10], {name: 'test point'});
@@ -71,4 +72,33 @@ test('featureCollection', function(t){
   t.equal(fc.features[1].geometry.type, 'Point');
   t.equal(fc.features[1].geometry.coordinates[0], 0);
   t.equal(fc.features[1].geometry.coordinates[1], 10);
+});
+
+test('multilinestring', function(t){
+  t.deepEqual(multiLineString([[[0,0],[10,10]], [[5,0],[15,8]]]), {
+    "type": "Feature",
+    "properties": {},
+    "geometry": {
+      "type": "MultiLineString",
+      "coordinates": [[[0,0],[10,10]], [[5,0],[15,8]]]
+    }
+  }, 'takes coordinates');
+
+  t.deepEqual(multiLineString([[[0,0],[10,10]], [[5,0],[15,8]]], {test: 23}), {
+    "type": "Feature",
+    "properties": {
+      test: 23
+    },
+    "geometry": {
+      "type": "MultiLineString",
+      "coordinates": [[[0,0],[10,10]], [[5,0],[15,8]]]
+    }
+  }, 'takes properties');
+
+
+  t.throws(function(err){
+    multiLineString();
+  }, 'throws error with no coordinates');
+
+  t.end();
 });
