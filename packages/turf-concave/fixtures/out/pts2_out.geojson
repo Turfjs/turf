@@ -1,0 +1,3742 @@
+{
+  "type": "FeatureCollection",
+  "crs": {
+    "type": "name",
+    "properties": {
+      "name": "urn:ogc:def:crs:OGC:1.3:CRS84"
+    }
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "OBJECTID_1": 51,
+        "OBJECTID_2": 25,
+        "OBJECTID": 49,
+        "PRECINCT_N": 7,
+        "FACILITY_D": "Recreation Room",
+        "ACCESSIBLE": "Yes",
+        "GIS_ID": "plp_49",
+        "WEB_URL": "http://www.dcboee.org/election_info/pollplaces/",
+        "NAME": "Hardy Recreation Center",
+        "ADDRESS": "4500 Q STREET NW",
+        "ADDRESS_ID": 284929,
+        "marker-color": "#f0f",
+        "marker-size": "small"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.08498118309296,
+          38.909915833213795
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OBJECTID_1": 52,
+        "OBJECTID_2": 26,
+        "OBJECTID": 50,
+        "PRECINCT_N": 5,
+        "FACILITY_D": "Large Meeting Room",
+        "ACCESSIBLE": "Yes",
+        "GIS_ID": "plp_50",
+        "WEB_URL": "http://www.dcboee.org/election_info/pollplaces/",
+        "NAME": "Georgetown Community Library",
+        "ADDRESS": "3260 R STREET NW",
+        "ADDRESS_ID": 295142,
+        "marker-color": "#f0f",
+        "marker-size": "small"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.06600730584208,
+          38.913434229544386
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OBJECTID_1": 53,
+        "OBJECTID_2": 27,
+        "OBJECTID": 51,
+        "PRECINCT_N": 76,
+        "FACILITY_D": "Community Room",
+        "ACCESSIBLE": "Yes",
+        "GIS_ID": "plp_51",
+        "WEB_URL": "http://www.dcboee.org/election_info/pollplaces/",
+        "NAME": "Bethesda Baptist Church",
+        "ADDRESS": "1808 CAPITOL AVENUE NE",
+        "ADDRESS_ID": 155925,
+        "marker-color": "#f0f",
+        "marker-size": "small"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -76.98614224512842,
+          38.911020521048734
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OBJECTID_1": 54,
+        "OBJECTID_2": 28,
+        "OBJECTID": 52,
+        "PRECINCT_N": 15,
+        "FACILITY_D": "Community Room (Lower Level)",
+        "ACCESSIBLE": "Yes - Use side entrance on P Street",
+        "GIS_ID": "plp_52",
+        "WEB_URL": "http://www.dcboee.org/election_info/pollplaces/",
+        "NAME": "Foundry United Methodist Church",
+        "ADDRESS": "1500 16TH STREET NW",
+        "ADDRESS_ID": 243309,
+        "marker-color": "#f0f",
+        "marker-size": "small"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.03687949072273,
+          38.91003361331332
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OBJECTID_1": 55,
+        "OBJECTID_2": 29,
+        "OBJECTID": 53,
+        "PRECINCT_N": 14,
+        "FACILITY_D": "Guild Room",
+        "ACCESSIBLE": "Yes",
+        "GIS_ID": "plp_53",
+        "WEB_URL": "http://www.dcboee.org/election_info/pollplaces/",
+        "NAME": "St. Thomas' Episcopal Parish",
+        "ADDRESS": "1772 CHURCH STREET NW",
+        "ADDRESS_ID": 225918,
+        "marker-color": "#f0f",
+        "marker-size": "small"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.04104117667185,
+          38.910212212295264
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OBJECTID_1": 56,
+        "OBJECTID_2": 30,
+        "OBJECTID": 54,
+        "PRECINCT_N": 16,
+        "FACILITY_D": "Fellowship Hall",
+        "ACCESSIBLE": "Yes - Accessible entrance at the rear of the church. Use entrance on R St. side of church.",
+        "GIS_ID": "plp_54",
+        "WEB_URL": "http://www.dcboee.org/election_info/pollplaces/",
+        "NAME": "15th Street Presbyterian Church",
+        "ADDRESS": "1701 15TH STREET NW",
+        "ADDRESS_ID": 240136,
+        "marker-color": "#f0f",
+        "marker-size": "small"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.03417962817295,
+          38.91281125525813
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OBJECTID_1": 57,
+        "OBJECTID_2": 31,
+        "OBJECTID": 55,
+        "PRECINCT_N": 18,
+        "FACILITY_D": "Gymnasium",
+        "ACCESSIBLE": "Yes",
+        "GIS_ID": "plp_55",
+        "WEB_URL": "http://www.dcboee.org/election_info/pollplaces/",
+        "NAME": "Kennedy Recreation Center",
+        "ADDRESS": "1401 7TH STREET NW",
+        "ADDRESS_ID": 279127,
+        "marker-color": "#f0f",
+        "marker-size": "small"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.02153645624776,
+          38.90898977846948
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OBJECTID_1": 58,
+        "OBJECTID_2": 32,
+        "OBJECTID": 56,
+        "PRECINCT_N": 17,
+        "FACILITY_D": "Exhibit Rooms",
+        "ACCESSIBLE": "Yes",
+        "GIS_ID": "plp_56",
+        "WEB_URL": "http://www.dcboee.org/election_info/pollplaces/",
+        "NAME": "The Charles Sumner School Museum and Archives",
+        "ADDRESS": "1201 17th STREET NW\r\n1201 17TH STREET NW",
+        "ADDRESS_ID": 301200,
+        "marker-color": "#f0f",
+        "marker-size": "small"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.0382229055218,
+          38.90597733468145
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OBJECTID_1": 59,
+        "OBJECTID_2": 33,
+        "OBJECTID": 57,
+        "PRECINCT_N": 4,
+        "FACILITY_D": "Large Meeting Room (2nd Floor)",
+        "ACCESSIBLE": "Yes",
+        "GIS_ID": "plp_57",
+        "WEB_URL": "http://www.dcboee.org/election_info/pollplaces/",
+        "NAME": "West End Public Library",
+        "ADDRESS": "1101 24TH STREET NW",
+        "ADDRESS_ID": 218248,
+        "marker-color": "#f0f",
+        "marker-size": "small"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.05109790160472,
+          38.904019151364736
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OBJECTID_1": 60,
+        "OBJECTID_2": 34,
+        "OBJECTID": 58,
+        "PRECINCT_N": 77,
+        "FACILITY_D": "Community Room",
+        "ACCESSIBLE": "Yes",
+        "GIS_ID": "plp_58",
+        "WEB_URL": "http://www.dcboee.org/election_info/pollplaces/",
+        "NAME": "Delta Towers Apartments",
+        "ADDRESS": "1400 FLORIDA AVENUE NE",
+        "ADDRESS_ID": 65280,
+        "marker-color": "#f0f",
+        "marker-size": "small"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -76.98433191638077,
+          38.90055736497202
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OBJECTID_1": 61,
+        "OBJECTID_2": 35,
+        "OBJECTID": 59,
+        "PRECINCT_N": 129,
+        "FACILITY_D": "Main Lobby",
+        "ACCESSIBLE": "Yes",
+        "GIS_ID": "plp_59",
+        "WEB_URL": "http://www.dcboee.org/election_info/pollplaces/",
+        "NAME": "Martin Luther King Library",
+        "ADDRESS": "901 G STREET NW",
+        "ADDRESS_ID": 239815,
+        "marker-color": "#f0f",
+        "marker-size": "small"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.02476626008324,
+          38.89869133033745
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OBJECTID_1": 62,
+        "OBJECTID_2": 36,
+        "OBJECTID": 60,
+        "PRECINCT_N": 82,
+        "FACILITY_D": "Gymnasium",
+        "ACCESSIBLE": "Yes",
+        "GIS_ID": "plp_60",
+        "WEB_URL": "http://www.dcboee.org/election_info/pollplaces/",
+        "NAME": "Sherwood Recreation Center",
+        "ADDRESS": "640 10TH STREET NE",
+        "ADDRESS_ID": 301075,
+        "marker-color": "#f0f",
+        "marker-size": "small"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -76.99301681854216,
+          38.89854528906768
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OBJECTID_1": 63,
+        "OBJECTID_2": 37,
+        "OBJECTID": 61,
+        "PRECINCT_N": 3,
+        "FACILITY_D": "Dining Hall",
+        "ACCESSIBLE": "Yes",
+        "GIS_ID": "plp_61",
+        "WEB_URL": "http://www.dcboee.org/election_info/pollplaces/",
+        "NAME": "St. Mary's Court",
+        "ADDRESS": "725 24TH STREET NW",
+        "ADDRESS_ID": 242350,
+        "marker-color": "#f0f",
+        "marker-size": "small"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.0511477096272,
+          38.898862835793516
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OBJECTID_1": 64,
+        "OBJECTID_2": 38,
+        "OBJECTID": 62,
+        "PRECINCT_N": 1,
+        "FACILITY_D": "Gymnasium",
+        "ACCESSIBLE": "Yes",
+        "GIS_ID": "plp_62",
+        "WEB_URL": "http://www.dcboee.org/election_info/pollplaces/",
+        "NAME": "Walker-Jones EC",
+        "ADDRESS": "1125 NEW JERSEY AVENUE NW",
+        "ADDRESS_ID": 307735,
+        "marker-color": "#f0f",
+        "marker-size": "small"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.01391569234569,
+          38.90419164723351
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OBJECTID_1": 65,
+        "OBJECTID_2": 39,
+        "OBJECTID": 64,
+        "PRECINCT_N": 10,
+        "FACILITY_D": "Multi-Purpose Room",
+        "ACCESSIBLE": "Yes",
+        "GIS_ID": "plp_64",
+        "WEB_URL": "http://www.dcboee.org/election_info/pollplaces/",
+        "NAME": "Horace Mann Community Center",
+        "ADDRESS": "4430 NEWARK STREET NW",
+        "ADDRESS_ID": 294597,
+        "marker-color": "#f0f",
+        "marker-size": "small"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.08782618825647,
+          38.93429197169427
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OBJECTID_1": 66,
+        "OBJECTID_2": 40,
+        "OBJECTID": 65,
+        "PRECINCT_N": 19,
+        "FACILITY_D": "Gym/Armory",
+        "ACCESSIBLE": "Yes",
+        "GIS_ID": "plp_65",
+        "WEB_URL": "http://www.dcboee.org/election_info/pollplaces/",
+        "NAME": "Dunbar Senior High School",
+        "ADDRESS": "1301 NEW JERSEY AVENUE NW",
+        "ADDRESS_ID": 279021,
+        "marker-color": "#f0f",
+        "marker-size": "small"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.01469385531595,
+          38.90852321621873
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OBJECTID_1": 67,
+        "OBJECTID_2": 41,
+        "OBJECTID": 66,
+        "PRECINCT_N": 20,
+        "FACILITY_D": "Auditorium",
+        "ACCESSIBLE": "Yes",
+        "GIS_ID": "plp_66",
+        "WEB_URL": "http://www.dcboee.org/election_info/pollplaces/",
+        "NAME": "Washington Metropolitan High School",
+        "ADDRESS": "300 BRYANT STREET NW",
+        "ADDRESS_ID": 294475,
+        "marker-color": "#f0f",
+        "marker-size": "small"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.01555700896307,
+          38.92044129373322
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OBJECTID_1": 68,
+        "OBJECTID_2": 42,
+        "OBJECTID": 67,
+        "PRECINCT_N": 21,
+        "FACILITY_D": "Fellowship Hall",
+        "ACCESSIBLE": "Yes",
+        "GIS_ID": "plp_67",
+        "WEB_URL": "http://www.dcboee.org/election_info/pollplaces/",
+        "NAME": "Vermont Avenue Baptist Church",
+        "ADDRESS": "1630 VERMONT AVENUE NW",
+        "ADDRESS_ID": 243277,
+        "marker-color": "#f0f",
+        "marker-size": "small"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.02878122770284,
+          38.911825717245286
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OBJECTID_1": 69,
+        "OBJECTID_2": 43,
+        "OBJECTID": 68,
+        "PRECINCT_N": 22,
+        "FACILITY_D": "Auditorium",
+        "ACCESSIBLE": "Yes - Accessible entrance located on V Street.",
+        "GIS_ID": "plp_68",
+        "WEB_URL": "http://www.dcboee.org/election_info/pollplaces/",
+        "NAME": "Garnet-Patterson Middle School",
+        "ADDRESS": "2001 10TH STREET NW",
+        "ADDRESS_ID": 294533,
+        "marker-color": "#f0f",
+        "marker-size": "small"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.02574878211337,
+          38.91754477448618
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OBJECTID_1": 70,
+        "OBJECTID_2": 44,
+        "OBJECTID": 69,
+        "PRECINCT_N": 24,
+        "FACILITY_D": "Living Room",
+        "ACCESSIBLE": "Yes",
+        "GIS_ID": "plp_69",
+        "WEB_URL": "http://www.dcboee.org/election_info/pollplaces/",
+        "NAME": "Marie Reed Learning Center",
+        "ADDRESS": "2200 CHAMPLAIN STREET NW",
+        "ADDRESS_ID": 235577,
+        "marker-color": "#f0f",
+        "marker-size": "small"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.04052994742716,
+          38.91916730666654
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OBJECTID_1": 71,
+        "OBJECTID_2": 45,
+        "OBJECTID": 71,
+        "PRECINCT_N": 27,
+        "FACILITY_D": "Auditorium",
+        "ACCESSIBLE": "Yes",
+        "GIS_ID": "plp_71",
+        "WEB_URL": "http://www.dcboee.org/election_info/pollplaces/",
+        "NAME": "Eaton Elementary School",
+        "ADDRESS": "3301 LOWELL STREET NW",
+        "ADDRESS_ID": 294562,
+        "marker-color": "#f0f",
+        "marker-size": "small"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.06582113268591,
+          38.93272673882682
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OBJECTID_1": 72,
+        "OBJECTID_2": 46,
+        "OBJECTID": 72,
+        "PRECINCT_N": 29,
+        "FACILITY_D": "Community Room",
+        "ACCESSIBLE": "Yes",
+        "GIS_ID": "plp_72",
+        "WEB_URL": "http://www.dcboee.org/election_info/pollplaces/",
+        "NAME": "2nd District Police Station",
+        "ADDRESS": "3320 IDAHO AVENUE NW",
+        "ADDRESS_ID": 222229,
+        "marker-color": "#f0f",
+        "marker-size": "small"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.07483805765223,
+          38.93484583178459
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OBJECTID_1": 73,
+        "OBJECTID_2": 47,
+        "OBJECTID": 73,
+        "PRECINCT_N": 30,
+        "FACILITY_D": "Multi-Purpose Room (on Albemarle St.)",
+        "ACCESSIBLE": "Yes - Accessible entrance at side of school, nearest to Wisconsin Ave.",
+        "GIS_ID": "plp_73",
+        "WEB_URL": "http://www.dcboee.org/election_info/pollplaces/",
+        "NAME": "Janney Elementary School",
+        "ADDRESS": "4130 ALBEMARLE STREET NW",
+        "ADDRESS_ID": 285713,
+        "marker-color": "#f0f",
+        "marker-size": "small"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.08099481973196,
+          38.94755008706593
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OBJECTID_1": 74,
+        "OBJECTID_2": 48,
+        "OBJECTID": 74,
+        "PRECINCT_N": 33,
+        "FACILITY_D": "Auditorium",
+        "ACCESSIBLE": "Yes - Use rear entrance on Ellicott St.",
+        "GIS_ID": "plp_74",
+        "WEB_URL": "http://www.dcboee.org/election_info/pollplaces/",
+        "NAME": "Ben Murch Elementary School",
+        "ADDRESS": "4810 36TH STREET NW",
+        "ADDRESS_ID": 294602,
+        "marker-color": "#f0f",
+        "marker-size": "small"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.07007920338755,
+          38.95293318959661
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OBJECTID_1": 75,
+        "OBJECTID_2": 49,
+        "OBJECTID": 75,
+        "PRECINCT_N": 35,
+        "FACILITY_D": "Multi-Purpose Room",
+        "ACCESSIBLE": "Yes",
+        "GIS_ID": "plp_75",
+        "WEB_URL": "http://www.dcboee.org/election_info/pollplaces/",
+        "NAME": "H.D. Cooke Elementary School",
+        "ADDRESS": "2525 17TH STREET NW",
+        "ADDRESS_ID": 235863,
+        "marker-color": "#f0f",
+        "marker-size": "small"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.0388138280019,
+          38.92393165421797
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OBJECTID_1": 76,
+        "OBJECTID_2": 50,
+        "OBJECTID": 76,
+        "PRECINCT_N": 37,
+        "FACILITY_D": "Community Meeting Room",
+        "ACCESSIBLE": "Yes",
+        "GIS_ID": "plp_76",
+        "WEB_URL": "http://www.dcboee.org/election_info/pollplaces/",
+        "NAME": "Banneker Community Recreation Center",
+        "ADDRESS": "2500 GEORGIA AVENUE NW",
+        "ADDRESS_ID": 232292,
+        "marker-color": "#f0f",
+        "marker-size": "small"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.02257980138592,
+          38.92269760094504
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OBJECTID_1": 77,
+        "OBJECTID_2": 51,
+        "OBJECTID": 77,
+        "PRECINCT_N": 38,
+        "FACILITY_D": "Meeting Room",
+        "ACCESSIBLE": "Yes",
+        "GIS_ID": "plp_77",
+        "WEB_URL": "http://www.dcboee.org/election_info/pollplaces/",
+        "NAME": "Cesar Chavez Prep Charter Middle School",
+        "ADDRESS": "770 KENYON STREET NW",
+        "ADDRESS_ID": 285409,
+        "marker-color": "#f0f",
+        "marker-size": "small"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.0258873560347,
+          38.929619476288885
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OBJECTID_1": 78,
+        "OBJECTID_2": 52,
+        "OBJECTID": 78,
+        "PRECINCT_N": 40,
+        "FACILITY_D": "Assembly Hall",
+        "ACCESSIBLE": "Yes - Use entrance on Newton Street.",
+        "GIS_ID": "plp_78",
+        "WEB_URL": "http://www.dcboee.org/election_info/pollplaces/",
+        "NAME": "Bancroft Elementary School",
+        "ADDRESS": "1755 NEWTON STREET NW",
+        "ADDRESS_ID": 294528,
+        "marker-color": "#f0f",
+        "marker-size": "small"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.04055344980303,
+          38.93431802351106
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OBJECTID_1": 79,
+        "OBJECTID_2": 53,
+        "OBJECTID": 79,
+        "PRECINCT_N": 46,
+        "FACILITY_D": "Classroom",
+        "ACCESSIBLE": "Yes",
+        "GIS_ID": "plp_79",
+        "WEB_URL": "http://www.dcboee.org/election_info/pollplaces/",
+        "NAME": "E.L. Haynes Public Charter School @ Clark",
+        "ADDRESS": "4501 KANSAS AVENUE NW",
+        "ADDRESS_ID": 284930,
+        "marker-color": "#f0f",
+        "marker-size": "small"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.02241636991477,
+          38.94560156110601
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OBJECTID_1": 80,
+        "OBJECTID_2": 54,
+        "OBJECTID": 80,
+        "PRECINCT_N": 47,
+        "FACILITY_D": "Multi-Purpose Room",
+        "ACCESSIBLE": "Yes - Accessible ramped entrance off of alley.",
+        "GIS_ID": "plp_80",
+        "WEB_URL": "http://www.dcboee.org/election_info/pollplaces/",
+        "NAME": "Powell Elementary School",
+        "ADDRESS": "1350 UPSHUR STREET NW",
+        "ADDRESS_ID": 255302,
+        "marker-color": "#f0f",
+        "marker-size": "small"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.03122741575149,
+          38.941534009869706
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OBJECTID_1": 81,
+        "OBJECTID_2": 55,
+        "OBJECTID": 81,
+        "PRECINCT_N": 48,
+        "FACILITY_D": "Auditorium",
+        "ACCESSIBLE": "Yes - Use south entrance on 13th St.",
+        "GIS_ID": "plp_81",
+        "WEB_URL": "http://www.dcboee.org/election_info/pollplaces/",
+        "NAME": "Sharpe Health School",
+        "ADDRESS": "4300 13TH STREET NW",
+        "ADDRESS_ID": 255254,
+        "marker-color": "#f0f",
+        "marker-size": "small"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.03046833667379,
+          38.94347432515649
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OBJECTID_1": 82,
+        "OBJECTID_2": 56,
+        "OBJECTID": 82,
+        "PRECINCT_N": 49,
+        "FACILITY_D": "Science Room",
+        "ACCESSIBLE": "Yes - Accessible entrance located on Rock Creek Church Road.",
+        "GIS_ID": "plp_82",
+        "WEB_URL": "http://www.dcboee.org/election_info/pollplaces/",
+        "NAME": "Raymond Elementary School",
+        "ADDRESS": "915 SPRING ROAD NW",
+        "ADDRESS_ID": 226682,
+        "marker-color": "#f0f",
+        "marker-size": "small"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.02643265425681,
+          38.935810871763174
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OBJECTID_1": 83,
+        "OBJECTID_2": 57,
+        "OBJECTID": 83,
+        "PRECINCT_N": 51,
+        "FACILITY_D": "Gymnasium",
+        "ACCESSIBLE": "Yes - Use parking lot entrance on Northampton St.",
+        "GIS_ID": "plp_83",
+        "WEB_URL": "http://www.dcboee.org/election_info/pollplaces/",
+        "NAME": "Lafayette Elementary School",
+        "ADDRESS": "5701 BROAD BRANCH ROAD NW",
+        "ADDRESS_ID": 294611,
+        "marker-color": "#f0f",
+        "marker-size": "small"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.06803711636698,
+          38.96662722064828
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OBJECTID_1": 84,
+        "OBJECTID_2": 58,
+        "OBJECTID": 84,
+        "PRECINCT_N": 53,
+        "FACILITY_D": "Multi-Purpose Room",
+        "ACCESSIBLE": "Yes",
+        "GIS_ID": "plp_84",
+        "WEB_URL": "http://www.dcboee.org/election_info/pollplaces/",
+        "NAME": "Brightwood Elementary School",
+        "ADDRESS": "1300 NICHOLSON STREET NW",
+        "ADDRESS_ID": 294515,
+        "marker-color": "#f0f",
+        "marker-size": "small"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.03068885198864,
+          38.96053539285846
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OBJECTID_1": 85,
+        "OBJECTID_2": 59,
+        "OBJECTID": 85,
+        "PRECINCT_N": 54,
+        "FACILITY_D": "Gymnasium",
+        "ACCESSIBLE": "Yes - Use entrance located at 14th & Farragut Streets.",
+        "GIS_ID": "plp_85",
+        "WEB_URL": "http://www.dcboee.org/election_info/pollplaces/",
+        "NAME": "West Elementary School",
+        "ADDRESS": "1338 FARRAGUT STREET NW",
+        "ADDRESS_ID": 294517,
+        "marker-color": "#f0f",
+        "marker-size": "small"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.03225304983067,
+          38.951367080952416
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OBJECTID_1": 86,
+        "OBJECTID_2": 60,
+        "OBJECTID": 86,
+        "PRECINCT_N": 55,
+        "FACILITY_D": "Multi-Purpose Room",
+        "ACCESSIBLE": "Yes",
+        "GIS_ID": "plp_86",
+        "WEB_URL": "http://www.dcboee.org/election_info/pollplaces/",
+        "NAME": "Barnard Elementary School",
+        "ADDRESS": "430 DECATUR STREET NW",
+        "ADDRESS_ID": 248305,
+        "marker-color": "#f0f",
+        "marker-size": "small"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.0177770800083,
+          38.948230614415095
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OBJECTID_1": 87,
+        "OBJECTID_2": 61,
+        "OBJECTID": 87,
+        "PRECINCT_N": 56,
+        "FACILITY_D": "Multi-Purpose Room",
+        "ACCESSIBLE": "Yes",
+        "GIS_ID": "plp_87",
+        "WEB_URL": "http://www.dcboee.org/election_info/pollplaces/",
+        "NAME": "Truesdell Elementary School",
+        "ADDRESS": "800 INGRAHAM STREET NW",
+        "ADDRESS_ID": 294497,
+        "marker-color": "#f0f",
+        "marker-size": "small"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.02507157013518,
+          38.95396835809549
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OBJECTID_1": 88,
+        "OBJECTID_2": 62,
+        "OBJECTID": 88,
+        "PRECINCT_N": 57,
+        "FACILITY_D": "Multi-Purpose Room",
+        "ACCESSIBLE": "Yes",
+        "GIS_ID": "plp_88",
+        "WEB_URL": "http://www.dcboee.org/election_info/pollplaces/",
+        "NAME": "Hattie Holmes Wellness Center",
+        "ADDRESS": "324 KENNEDY STREET NW",
+        "ADDRESS_ID": 307575,
+        "marker-color": "#f0f",
+        "marker-size": "small"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.01711234814142,
+          38.956388773368296
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OBJECTID_1": 89,
+        "OBJECTID_2": 63,
+        "OBJECTID": 90,
+        "PRECINCT_N": 59,
+        "FACILITY_D": "Armory",
+        "ACCESSIBLE": "Yes",
+        "GIS_ID": "plp_90",
+        "WEB_URL": "http://www.dcboee.org/election_info/pollplaces/",
+        "NAME": "Coolidge Senior High School",
+        "ADDRESS": "6315 5TH STREET NW",
+        "ADDRESS_ID": 294615,
+        "marker-color": "#f0f",
+        "marker-size": "small"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.01957835173927,
+          38.967284239673525
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OBJECTID_1": 90,
+        "OBJECTID_2": 64,
+        "OBJECTID": 91,
+        "PRECINCT_N": 62,
+        "FACILITY_D": "Auditorium",
+        "ACCESSIBLE": "Yes - Use ramped entrance on 14th Street.",
+        "GIS_ID": "plp_91",
+        "WEB_URL": "http://www.dcboee.org/election_info/pollplaces/",
+        "NAME": "Shepherd Elementary School",
+        "ADDRESS": "7800 14TH STREET NW",
+        "ADDRESS_ID": 256319,
+        "marker-color": "#f0f",
+        "marker-size": "small"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.03399523386544,
+          38.98460295003216
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OBJECTID_1": 91,
+        "OBJECTID_2": 65,
+        "OBJECTID": 92,
+        "PRECINCT_N": 63,
+        "FACILITY_D": "Multi-Purpose Room",
+        "ACCESSIBLE": "Yes",
+        "GIS_ID": "plp_92",
+        "WEB_URL": "http://www.dcboee.org/election_info/pollplaces/",
+        "NAME": "Takoma Community Center",
+        "ADDRESS": "300 VAN BUREN STREET NW",
+        "ADDRESS_ID": 296168,
+        "marker-color": "#f0f",
+        "marker-size": "small"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.01805167618295,
+          38.96888669131412
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OBJECTID_1": 92,
+        "OBJECTID_2": 66,
+        "OBJECTID": 93,
+        "PRECINCT_N": 64,
+        "FACILITY_D": "Recreation Area",
+        "ACCESSIBLE": "Yes - Use rear entrance on 2nd St.",
+        "GIS_ID": "plp_93",
+        "WEB_URL": "http://www.dcboee.org/election_info/pollplaces/",
+        "NAME": "Rabaut - Administrative Building",
+        "ADDRESS": "100 PEABODY STREET NW",
+        "ADDRESS_ID": 277545,
+        "marker-color": "#f0f",
+        "marker-size": "small"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.01286744832365,
+          38.96216452199718
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OBJECTID_1": 93,
+        "OBJECTID_2": 67,
+        "OBJECTID": 94,
+        "PRECINCT_N": 65,
+        "FACILITY_D": "Auditorium",
+        "ACCESSIBLE": "Yes",
+        "GIS_ID": "plp_94",
+        "WEB_URL": "http://www.dcboee.org/election_info/pollplaces/",
+        "NAME": "LaSalle Elementary School",
+        "ADDRESS": "501 RIGGS ROAD NE",
+        "ADDRESS_ID": 294489,
+        "marker-color": "#f0f",
+        "marker-size": "small"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -76.99988253848109,
+          38.95997180998364
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OBJECTID_1": 94,
+        "OBJECTID_2": 68,
+        "OBJECTID": 95,
+        "PRECINCT_N": 66,
+        "FACILITY_D": "Multi-Purpose Room",
+        "ACCESSIBLE": "Yes - Accessible entrance next to parking lot on Hamilton Street.",
+        "GIS_ID": "plp_95",
+        "WEB_URL": "http://www.dcboee.org/election_info/pollplaces/",
+        "NAME": "UDC Community College @ Backus",
+        "ADDRESS": "5171 SOUTH DAKOTA AVENUE NE",
+        "ADDRESS_ID": 294607,
+        "marker-color": "#f0f",
+        "marker-size": "small"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -76.99726738315395,
+          38.95334052572905
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OBJECTID_1": 95,
+        "OBJECTID_2": 69,
+        "OBJECTID": 96,
+        "PRECINCT_N": 67,
+        "FACILITY_D": "Auditorium",
+        "ACCESSIBLE": "Yes - Accessible entrance next to the parking lot on 14th Street",
+        "GIS_ID": "plp_96",
+        "WEB_URL": "http://www.dcboee.org/election_info/pollplaces/",
+        "NAME": "Bunker Hill Elementary School",
+        "ADDRESS": "1401 MICHIGAN AVENUE NE",
+        "ADDRESS_ID": 286131,
+        "marker-color": "#f0f",
+        "marker-size": "small"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -76.98499562999821,
+          38.94201213500814
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OBJECTID_1": 96,
+        "OBJECTID_2": 70,
+        "OBJECTID": 97,
+        "PRECINCT_N": 68,
+        "FACILITY_D": "Reception Room",
+        "ACCESSIBLE": "Yes",
+        "GIS_ID": "plp_97",
+        "WEB_URL": "http://www.dcboee.org/election_info/pollplaces/",
+        "NAME": "St. Francis Hall",
+        "ADDRESS": "1340 QUINCY STREET NE",
+        "ADDRESS_ID": 66591,
+        "marker-color": "#f0f",
+        "marker-size": "small"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -76.98652958387164,
+          38.9375726751204
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OBJECTID_1": 97,
+        "OBJECTID_2": 71,
+        "OBJECTID": 98,
+        "PRECINCT_N": 69,
+        "FACILITY_D": "Multi-Purpose Room",
+        "ACCESSIBLE": "Yes",
+        "GIS_ID": "plp_98",
+        "WEB_URL": "http://www.dcboee.org/election_info/pollplaces/",
+        "NAME": "Hyde Public Charter School @ Taft",
+        "ADDRESS": "1800 PERRY STREET NE",
+        "ADDRESS_ID": 294529,
+        "marker-color": "#f0f",
+        "marker-size": "small"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -76.9785955149537,
+          38.93679614738434
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OBJECTID_1": 98,
+        "OBJECTID_2": 72,
+        "OBJECTID": 99,
+        "PRECINCT_N": 70,
+        "FACILITY_D": "Multi-Purpose Room",
+        "ACCESSIBLE": "Yes - Use entrance on Monroe Street.",
+        "GIS_ID": "plp_99",
+        "WEB_URL": "http://www.dcboee.org/election_info/pollplaces/",
+        "NAME": "Burroughs Elementary School",
+        "ADDRESS": "1820 MONROE STREET NE",
+        "ADDRESS_ID": 294530,
+        "marker-color": "#f0f",
+        "marker-size": "small"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -76.97845637039887,
+          38.933502326896445
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OBJECTID_1": 99,
+        "OBJECTID_2": 73,
+        "OBJECTID": 100,
+        "PRECINCT_N": 73,
+        "FACILITY_D": "Library (Lower Level)",
+        "ACCESSIBLE": "Yes",
+        "GIS_ID": "plp_100",
+        "WEB_URL": "http://www.dcboee.org/election_info/pollplaces/",
+        "NAME": "M.M. Bethune Day Academy @ Slowe",
+        "ADDRESS": "1404 JACKSON STREET NE",
+        "ADDRESS_ID": 294522,
+        "marker-color": "#f0f",
+        "marker-size": "small"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -76.98686462272855,
+          38.929605590082105
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OBJECTID_1": 100,
+        "OBJECTID_2": 74,
+        "OBJECTID": 101,
+        "PRECINCT_N": 74,
+        "FACILITY_D": "Multipurpose Room",
+        "ACCESSIBLE": "Yes",
+        "GIS_ID": "plp_101",
+        "WEB_URL": "http://www.dcboee.org/election_info/pollplaces/",
+        "NAME": "Shaed Elementary School",
+        "ADDRESS": "301 DOUGLAS STREET NE",
+        "ADDRESS_ID": 294477,
+        "marker-color": "#f0f",
+        "marker-size": "small"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.00253831800221,
+          38.923654687421774
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OBJECTID_1": 101,
+        "OBJECTID_2": 75,
+        "OBJECTID": 102,
+        "PRECINCT_N": 78,
+        "FACILITY_D": "Gymnasium",
+        "ACCESSIBLE": "Yes",
+        "GIS_ID": "plp_102",
+        "WEB_URL": "http://www.dcboee.org/election_info/pollplaces/",
+        "NAME": "Trinidad Recreation Center",
+        "ADDRESS": "1310 CHILDRESS STREET NE",
+        "ADDRESS_ID": 68509,
+        "marker-color": "#f0f",
+        "marker-size": "small"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -76.98273436876306,
+          38.906442359837776
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OBJECTID_1": 102,
+        "OBJECTID_2": 76,
+        "OBJECTID": 103,
+        "PRECINCT_N": 81,
+        "FACILITY_D": "Gymnasium",
+        "ACCESSIBLE": "Yes",
+        "GIS_ID": "plp_103",
+        "WEB_URL": "http://www.dcboee.org/election_info/pollplaces/",
+        "NAME": "Miner Elementary School",
+        "ADDRESS": "601 15TH STREET NE",
+        "ADDRESS_ID": 289548,
+        "marker-color": "#f0f",
+        "marker-size": "small"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -76.98290431308783,
+          38.89737568218247
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OBJECTID_1": 103,
+        "OBJECTID_2": 77,
+        "OBJECTID": 104,
+        "PRECINCT_N": 79,
+        "FACILITY_D": "Auditorium",
+        "ACCESSIBLE": "Yes",
+        "GIS_ID": "plp_104",
+        "WEB_URL": "http://www.dcboee.org/election_info/pollplaces/",
+        "NAME": "Browne Junior High School",
+        "ADDRESS": "850 26TH STREET NE",
+        "ADDRESS_ID": 294501,
+        "marker-color": "#f0f",
+        "marker-size": "small"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -76.97066705247403,
+          38.90259854900822
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OBJECTID_1": 104,
+        "OBJECTID_2": 78,
+        "OBJECTID": 105,
+        "PRECINCT_N": 83,
+        "FACILITY_D": "Multi-Purpose Room",
+        "ACCESSIBLE": "Yes - Use entrance located on 7th Street.",
+        "GIS_ID": "plp_105",
+        "WEB_URL": "http://www.dcboee.org/election_info/pollplaces/",
+        "NAME": "J.O. Wilson Elementary School",
+        "ADDRESS": "660 K STREET NE",
+        "ADDRESS_ID": 288841,
+        "marker-color": "#f0f",
+        "marker-size": "small"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -76.99658902748644,
+          38.90275766582991
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OBJECTID_1": 105,
+        "OBJECTID_2": 79,
+        "OBJECTID": 106,
+        "PRECINCT_N": 84,
+        "FACILITY_D": "Auditorium",
+        "ACCESSIBLE": "Yes",
+        "GIS_ID": "plp_106",
+        "WEB_URL": "http://www.dcboee.org/election_info/pollplaces/",
+        "NAME": "Stuart-Hobson Middle School",
+        "ADDRESS": "410 E STREET NE",
+        "ADDRESS_ID": 294483,
+        "marker-color": "#f0f",
+        "marker-size": "small"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.00000438624967,
+          38.89629737080879
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OBJECTID_1": 106,
+        "OBJECTID_2": 80,
+        "OBJECTID": 107,
+        "PRECINCT_N": 85,
+        "FACILITY_D": "Auditorium (A-Level)",
+        "ACCESSIBLE": "Yes",
+        "GIS_ID": "plp_107",
+        "WEB_URL": "http://www.dcboee.org/election_info/pollplaces/",
+        "NAME": "The Specialty Hospital of Washington",
+        "ADDRESS": "700 CONSTITUTION AVENUE NE",
+        "ADDRESS_ID": 295162,
+        "marker-color": "#f0f",
+        "marker-size": "small"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -76.99535659211247,
+          38.892321795813096
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OBJECTID_1": 107,
+        "OBJECTID_2": 81,
+        "OBJECTID": 108,
+        "PRECINCT_N": 86,
+        "FACILITY_D": "Recreation Room (lower level)",
+        "ACCESSIBLE": "Yes - Accessible - side entrance, next to the parking lot.",
+        "GIS_ID": "plp_108",
+        "WEB_URL": "http://www.dcboee.org/election_info/pollplaces/",
+        "NAME": "Eliot Junior High School",
+        "ADDRESS": "1830 CONSTITUTION AVENUE NE",
+        "ADDRESS_ID": 286499,
+        "marker-color": "#f0f",
+        "marker-size": "small"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -76.97897791343726,
+          38.8924311597663
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OBJECTID_1": 108,
+        "OBJECTID_2": 82,
+        "OBJECTID": 109,
+        "PRECINCT_N": 87,
+        "FACILITY_D": "Auditorium",
+        "ACCESSIBLE": "Yes = Use entrance at the rear of the school, next to the parking lot.",
+        "GIS_ID": "plp_109",
+        "WEB_URL": "http://www.dcboee.org/election_info/pollplaces/",
+        "NAME": "Payne Elementary School",
+        "ADDRESS": "305 15TH STREET SE",
+        "ADDRESS_ID": 294478,
+        "marker-color": "#f0f",
+        "marker-size": "small"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -76.98419490800174,
+          38.8851323144882
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OBJECTID_1": 109,
+        "OBJECTID_2": 83,
+        "OBJECTID": 110,
+        "PRECINCT_N": 89,
+        "FACILITY_D": "Multi-Purpose Room",
+        "ACCESSIBLE": "Yes",
+        "GIS_ID": "plp_110",
+        "WEB_URL": "http://www.dcboee.org/election_info/pollplaces/",
+        "NAME": "William H. Rumsey Aquatic Center",
+        "ADDRESS": "635 NORTH CAROLINA AVENUE SE",
+        "ADDRESS_ID": 295159,
+        "marker-color": "#f0f",
+        "marker-size": "small"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -76.99702870593877,
+          38.88658504665415
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OBJECTID_1": 110,
+        "OBJECTID_2": 84,
+        "OBJECTID": 111,
+        "PRECINCT_N": 91,
+        "FACILITY_D": "Multi-Purpose Room",
+        "ACCESSIBLE": "Yes",
+        "GIS_ID": "plp_111",
+        "WEB_URL": "http://www.dcboee.org/election_info/pollplaces/",
+        "NAME": "Watkins Elementary School",
+        "ADDRESS": "420 12TH STREET SE",
+        "ADDRESS_ID": 294486,
+        "marker-color": "#f0f",
+        "marker-size": "small"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -76.98999676354816,
+          38.883466674788586
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OBJECTID_1": 111,
+        "OBJECTID_2": 85,
+        "OBJECTID": 113,
+        "PRECINCT_N": 92,
+        "FACILITY_D": "Auditorium",
+        "ACCESSIBLE": "Yes",
+        "GIS_ID": "plp_113",
+        "WEB_URL": "http://www.dcboee.org/election_info/pollplaces/",
+        "NAME": "Kenilworth Elementary School",
+        "ADDRESS": "1300 44TH STREET NE",
+        "ADDRESS_ID": 294516,
+        "marker-color": "#f0f",
+        "marker-size": "small"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -76.9404849391363,
+          38.90822873259865
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OBJECTID_1": 112,
+        "OBJECTID_2": 86,
+        "OBJECTID": 114,
+        "PRECINCT_N": 93,
+        "FACILITY_D": "Multi-Purpose Room",
+        "ACCESSIBLE": "Yes - Accessible entrance at the rear of the school.",
+        "GIS_ID": "plp_114",
+        "WEB_URL": "http://www.dcboee.org/election_info/pollplaces/",
+        "NAME": "Houston Elementary School",
+        "ADDRESS": "1100 50TH PLACE NE",
+        "ADDRESS_ID": 156316,
+        "marker-color": "#f0f",
+        "marker-size": "small"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -76.9299476407989,
+          38.90541498719898
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OBJECTID_1": 113,
+        "OBJECTID_2": 87,
+        "OBJECTID": 115,
+        "PRECINCT_N": 94,
+        "FACILITY_D": "Community Room",
+        "ACCESSIBLE": "Yes",
+        "GIS_ID": "plp_115",
+        "WEB_URL": "http://www.dcboee.org/election_info/pollplaces/",
+        "NAME": "Merritt Education Center",
+        "ADDRESS": "5002 HAYES STREET NE",
+        "ADDRESS_ID": 294606,
+        "marker-color": "#f0f",
+        "marker-size": "small"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -76.93013118958962,
+          38.90023006725584
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OBJECTID_1": 114,
+        "OBJECTID_2": 88,
+        "OBJECTID": 116,
+        "PRECINCT_N": 95,
+        "FACILITY_D": "Auditorium",
+        "ACCESSIBLE": "Yes -Use entrance located at 57th & Eads Streets.",
+        "GIS_ID": "plp_116",
+        "WEB_URL": "http://www.dcboee.org/election_info/pollplaces/",
+        "NAME": "Drew Elementary School",
+        "ADDRESS": "5500 EADS STREET NE",
+        "ADDRESS_ID": 294609,
+        "marker-color": "#f0f",
+        "marker-size": "small"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -76.92270804396746,
+          38.89619288755561
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OBJECTID_1": 115,
+        "OBJECTID_2": 89,
+        "OBJECTID": 117,
+        "PRECINCT_N": 100,
+        "FACILITY_D": "Auditorium",
+        "ACCESSIBLE": "Yes",
+        "GIS_ID": "plp_117",
+        "WEB_URL": "http://www.dcboee.org/election_info/pollplaces/",
+        "NAME": "Thomas Elementary School",
+        "ADDRESS": "650 ANACOSTIA AVENUE NE",
+        "ADDRESS_ID": 294493,
+        "marker-color": "#f0f",
+        "marker-size": "small"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -76.95211090532199,
+          38.901278637588895
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OBJECTID_1": 116,
+        "OBJECTID_2": 90,
+        "OBJECTID": 118,
+        "PRECINCT_N": 98,
+        "FACILITY_D": "Multi-Purpose Room",
+        "ACCESSIBLE": "Yes - Use rear entrance of the school.",
+        "GIS_ID": "plp_118",
+        "WEB_URL": "http://www.dcboee.org/election_info/pollplaces/",
+        "NAME": "Smothers Elementary School",
+        "ADDRESS": "4400 BROOKS STREET NE",
+        "ADDRESS_ID": 294596,
+        "marker-color": "#f0f",
+        "marker-size": "small"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -76.93846863878429,
+          38.8935537018287
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OBJECTID_1": 117,
+        "OBJECTID_2": 91,
+        "OBJECTID": 120,
+        "PRECINCT_N": 103,
+        "FACILITY_D": "Auditorium",
+        "ACCESSIBLE": "Yes - Use ground level entrance.",
+        "GIS_ID": "plp_120",
+        "WEB_URL": "http://www.dcboee.org/election_info/pollplaces/",
+        "NAME": "Plummer Elementary School",
+        "ADDRESS": "4601 TEXAS AVENUE SE",
+        "ADDRESS_ID": 19536,
+        "marker-color": "#f0f",
+        "marker-size": "small"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -76.93993466984129,
+          38.8872398636938
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OBJECTID_1": 118,
+        "OBJECTID_2": 92,
+        "OBJECTID": 121,
+        "PRECINCT_N": 104,
+        "FACILITY_D": "Auditorium",
+        "ACCESSIBLE": "Yes- Use ground level entrance.",
+        "GIS_ID": "plp_121",
+        "WEB_URL": "http://www.dcboee.org/election_info/pollplaces/",
+        "NAME": "Nalle Elementary School",
+        "ADDRESS": "219 50TH STREET SE",
+        "ADDRESS_ID": 294474,
+        "marker-color": "#f0f",
+        "marker-size": "small"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -76.93079649956998,
+          38.88595408522856
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OBJECTID_1": 119,
+        "OBJECTID_2": 93,
+        "OBJECTID": 122,
+        "PRECINCT_N": 105,
+        "FACILITY_D": "Multi-Purpose Room",
+        "ACCESSIBLE": "Yes - Use entrance located on D Street.",
+        "GIS_ID": "plp_122",
+        "WEB_URL": "http://www.dcboee.org/election_info/pollplaces/",
+        "NAME": "CW Harris Elementary School",
+        "ADDRESS": "301 53RD STREET SE",
+        "ADDRESS_ID": 289801,
+        "marker-color": "#f0f",
+        "marker-size": "small"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -76.92611549373204,
+          38.88359849788337
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OBJECTID_1": 120,
+        "OBJECTID_2": 94,
+        "OBJECTID": 123,
+        "PRECINCT_N": 106,
+        "FACILITY_D": "Auditorium",
+        "ACCESSIBLE": "Yes - Accessible rear entrance, next to the parking lot.",
+        "GIS_ID": "plp_123",
+        "WEB_URL": "http://www.dcboee.org/election_info/pollplaces/",
+        "NAME": "Davis Elementary School",
+        "ADDRESS": "4430 H STREET SE",
+        "ADDRESS_ID": 294598,
+        "marker-color": "#f0f",
+        "marker-size": "small"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -76.93761630232859,
+          38.87906795106383
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OBJECTID_1": 121,
+        "OBJECTID_2": 95,
+        "OBJECTID": 124,
+        "PRECINCT_N": 107,
+        "FACILITY_D": "Gymnasium",
+        "ACCESSIBLE": "Yes",
+        "GIS_ID": "plp_124",
+        "WEB_URL": "http://www.dcboee.org/election_info/pollplaces/",
+        "NAME": "Sousa Middle School",
+        "ADDRESS": "3650 ELY PLACE SE",
+        "ADDRESS_ID": 294584,
+        "marker-color": "#f0f",
+        "marker-size": "small"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -76.95316174771769,
+          38.883908000174614
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OBJECTID_1": 122,
+        "OBJECTID_2": 96,
+        "OBJECTID": 125,
+        "PRECINCT_N": 142,
+        "FACILITY_D": "Auditorium",
+        "ACCESSIBLE": "Yes",
+        "GIS_ID": "plp_125",
+        "WEB_URL": "http://www.dcboee.org/election_info/pollplaces/",
+        "NAME": "Jefferson Junior High School",
+        "ADDRESS": "801 7TH STREET SW",
+        "ADDRESS_ID": 276812,
+        "marker-color": "#f0f",
+        "marker-size": "small"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.02291065460415,
+          38.87987059942476
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OBJECTID_1": 123,
+        "OBJECTID_2": 97,
+        "OBJECTID": 126,
+        "PRECINCT_N": 140,
+        "FACILITY_D": "Auditorium",
+        "ACCESSIBLE": "Yes",
+        "GIS_ID": "plp_126",
+        "WEB_URL": "http://www.dcboee.org/election_info/pollplaces/",
+        "NAME": "Anacostia Senior High School",
+        "ADDRESS": "1601 16TH STREET SE",
+        "ADDRESS_ID": 155922,
+        "marker-color": "#f0f",
+        "marker-size": "small"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -76.98307724829849,
+          38.870083725754895
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OBJECTID_1": 124,
+        "OBJECTID_2": 98,
+        "OBJECTID": 127,
+        "PRECINCT_N": 139,
+        "FACILITY_D": "Community Service Area",
+        "ACCESSIBLE": "Yes",
+        "GIS_ID": "plp_127",
+        "WEB_URL": "http://www.dcboee.org/election_info/pollplaces/",
+        "NAME": "Thurgood Marshall Elementary",
+        "ADDRESS": "3100 FORT LINCOLN DRIVE NE",
+        "ADDRESS_ID": 294553,
+        "marker-color": "#f0f",
+        "marker-size": "small"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -76.95763369669753,
+          38.92730594377001
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OBJECTID_1": 1,
+        "OBJECTID_2": 101,
+        "OBJECTID": 130,
+        "PRECINCT_N": 131,
+        "FACILITY_D": "Auditorium",
+        "ACCESSIBLE": "Yes",
+        "GIS_ID": "plp_130",
+        "WEB_URL": "http://www.dcboee.org/election_info/pollplaces/",
+        "NAME": "Van Ness Elementary School",
+        "ADDRESS": "1150 5TH STREET SE",
+        "ADDRESS_ID": 294508,
+        "marker-color": "#f0f",
+        "marker-size": "small"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -76.99924400222596,
+          38.87679611768769
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OBJECTID_1": 2,
+        "OBJECTID_2": 102,
+        "OBJECTID": 131,
+        "PRECINCT_N": 125,
+        "FACILITY_D": "Auditorium",
+        "ACCESSIBLE": "Yes",
+        "GIS_ID": "plp_131",
+        "WEB_URL": "http://www.dcboee.org/election_info/pollplaces/",
+        "NAME": "Hendley Elementary School",
+        "ADDRESS": "425 CHESAPEAKE STREET SE",
+        "ADDRESS_ID": 24445,
+        "marker-color": "#f0f",
+        "marker-size": "small"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -76.99918484024232,
+          38.82898558049571
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OBJECTID_1": 3,
+        "OBJECTID_2": 103,
+        "OBJECTID": 132,
+        "PRECINCT_N": 126,
+        "FACILITY_D": "Library",
+        "ACCESSIBLE": "Yes",
+        "GIS_ID": "plp_132",
+        "WEB_URL": "http://www.dcboee.org/election_info/pollplaces/",
+        "NAME": "W.B. Patterson Elementary School",
+        "ADDRESS": "4399 SOUTH CAPITOL TERRACE SW",
+        "ADDRESS_ID": 301073,
+        "marker-color": "#f0f",
+        "marker-size": "small"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.00847560019479,
+          38.8269811922012
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OBJECTID_1": 4,
+        "OBJECTID_2": 104,
+        "OBJECTID": 133,
+        "PRECINCT_N": 123,
+        "FACILITY_D": "Multi-Purpose Room",
+        "ACCESSIBLE": "Yes",
+        "GIS_ID": "plp_133",
+        "WEB_URL": "http://www.dcboee.org/election_info/pollplaces/",
+        "NAME": "Martin Luther King Elementary School",
+        "ADDRESS": "600 ALABAMA AVENUE SE",
+        "ADDRESS_ID": 294492,
+        "marker-color": "#f0f",
+        "marker-size": "small"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -76.99758318790965,
+          38.84338656586389
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OBJECTID_1": 5,
+        "OBJECTID_2": 105,
+        "OBJECTID": 135,
+        "PRECINCT_N": 121,
+        "FACILITY_D": "Auditorium",
+        "ACCESSIBLE": "Yes",
+        "GIS_ID": "plp_135",
+        "WEB_URL": "http://www.dcboee.org/election_info/pollplaces/",
+        "NAME": "National Collegiate Prep @ Draper",
+        "ADDRESS": "908 WAHLER PLACE SE",
+        "ADDRESS_ID": 294502,
+        "marker-color": "#f0f",
+        "marker-size": "small"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -76.99226881799031,
+          38.834327886510565
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OBJECTID_1": 6,
+        "OBJECTID_2": 106,
+        "OBJECTID": 136,
+        "PRECINCT_N": 120,
+        "FACILITY_D": "Meeting Room",
+        "ACCESSIBLE": "Yes - Use side Entrance",
+        "GIS_ID": "plp_136",
+        "WEB_URL": "http://www.dcboee.org/election_info/pollplaces/",
+        "NAME": "Malcolm X Elementary School",
+        "ADDRESS": "1351 ALABAMA AVENUE SE",
+        "ADDRESS_ID": 289201,
+        "marker-color": "#f0f",
+        "marker-size": "small"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -76.98621285449033,
+          38.84497362309234
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OBJECTID_1": 7,
+        "OBJECTID_2": 107,
+        "OBJECTID": 137,
+        "PRECINCT_N": 118,
+        "FACILITY_D": "Gymnasium",
+        "ACCESSIBLE": "Yes",
+        "GIS_ID": "plp_137",
+        "WEB_URL": "http://www.dcboee.org/election_info/pollplaces/",
+        "NAME": "Garnet C. Wilkinson Elementary School",
+        "ADDRESS": "2330 POMEROY ROAD SE",
+        "ADDRESS_ID": 294542,
+        "marker-color": "#f0f",
+        "marker-size": "small"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -76.98555042215126,
+          38.85684438946179
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OBJECTID_1": 8,
+        "OBJECTID_2": 108,
+        "OBJECTID": 138,
+        "PRECINCT_N": 119,
+        "FACILITY_D": "Auditorium",
+        "ACCESSIBLE": "Yes",
+        "GIS_ID": "plp_138",
+        "WEB_URL": "http://www.dcboee.org/election_info/pollplaces/",
+        "NAME": "Excel Academy PCS @ Birney",
+        "ADDRESS": "2501 MARTIN LUTHER KING JR AVENUE SE",
+        "ADDRESS_ID": 278172,
+        "marker-color": "#f0f",
+        "marker-size": "small"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -76.99535456253949,
+          38.85976175834964
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OBJECTID_1": 9,
+        "OBJECTID_2": 109,
+        "OBJECTID": 139,
+        "PRECINCT_N": 117,
+        "FACILITY_D": "Main Lobby",
+        "ACCESSIBLE": "Yes - Use ramped entrance on Stanton Road.",
+        "GIS_ID": "plp_139",
+        "WEB_URL": "http://www.dcboee.org/election_info/pollplaces/",
+        "NAME": "Douglas Community Recreation Center",
+        "ADDRESS": "1898 STANTON TERRACE SE",
+        "ADDRESS_ID": 286513,
+        "marker-color": "#f0f",
+        "marker-size": "small"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -76.97776154881154,
+          38.85263622936684
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OBJECTID_1": 10,
+        "OBJECTID_2": 110,
+        "OBJECTID": 140,
+        "PRECINCT_N": 114,
+        "FACILITY_D": "Church Hall",
+        "ACCESSIBLE": "Yes",
+        "GIS_ID": "plp_140",
+        "WEB_URL": "http://www.dcboee.org/election_info/pollplaces/",
+        "NAME": "Union Temple Baptist Church",
+        "ADDRESS": "1225 W STREET SE",
+        "ADDRESS_ID": 70732,
+        "marker-color": "#f0f",
+        "marker-size": "small"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -76.98893973743299,
+          38.864499675202886
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OBJECTID_1": 11,
+        "OBJECTID_2": 111,
+        "OBJECTID": 141,
+        "PRECINCT_N": 113,
+        "FACILITY_D": "Multi-Purpose Room",
+        "ACCESSIBLE": "Yes",
+        "GIS_ID": "plp_141",
+        "WEB_URL": "http://www.dcboee.org/election_info/pollplaces/",
+        "NAME": "Senior Wellness Center",
+        "ADDRESS": "3001 ALABAMA AVENUE SE",
+        "ADDRESS_ID": 289473,
+        "marker-color": "#f0f",
+        "marker-size": "small"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -76.96411611205536,
+          38.86050295448647
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OBJECTID_1": 12,
+        "OBJECTID_2": 112,
+        "OBJECTID": 142,
+        "PRECINCT_N": 112,
+        "FACILITY_D": "Meeting Room",
+        "ACCESSIBLE": "Yes",
+        "GIS_ID": "plp_142",
+        "WEB_URL": "http://www.dcboee.org/election_info/pollplaces/",
+        "NAME": "Anacostia Public Library",
+        "ADDRESS": "1800 GOOD HOPE ROAD SE",
+        "ADDRESS_ID": 53560,
+        "marker-color": "#f0f",
+        "marker-size": "small"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -76.97848542018258,
+          38.86589640205795
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OBJECTID_1": 13,
+        "OBJECTID_2": 113,
+        "OBJECTID": 2,
+        "PRECINCT_N": 99,
+        "FACILITY_D": "Multi-Purpose Room",
+        "ACCESSIBLE": "Yes",
+        "GIS_ID": "plp_2",
+        "WEB_URL": "http://www.dcboee.org/election_info/pollplaces/",
+        "NAME": "Smothers Elementary School",
+        "ADDRESS": "4400 BROOKS STREET NE",
+        "ADDRESS_ID": 294596,
+        "marker-color": "#f0f",
+        "marker-size": "small"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -76.93846863878429,
+          38.8935537018287
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OBJECTID_1": 14,
+        "OBJECTID_2": 114,
+        "OBJECTID": 3,
+        "PRECINCT_N": 97,
+        "FACILITY_D": "Auditorium",
+        "ACCESSIBLE": "Yes",
+        "GIS_ID": "plp_3",
+        "WEB_URL": "http://www.dcboee.org/election_info/pollplaces/",
+        "NAME": "Kelly Miller Middle School",
+        "ADDRESS": "301 49TH STREET NE",
+        "ADDRESS_ID": 294476,
+        "marker-color": "#f0f",
+        "marker-size": "small"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -76.9324561269054,
+          38.89331497492733
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OBJECTID_1": 15,
+        "OBJECTID_2": 115,
+        "OBJECTID": 4,
+        "PRECINCT_N": 130,
+        "FACILITY_D": "Multi-Purpose Room (lower level)",
+        "ACCESSIBLE": "Yes - Use west entrance.",
+        "GIS_ID": "plp_4",
+        "WEB_URL": "http://www.dcboee.org/election_info/pollplaces/",
+        "NAME": "Lutheran Church of the Reformation",
+        "ADDRESS": "212 EAST CAPITOL STREET NE",
+        "ADDRESS_ID": 286648,
+        "marker-color": "#f0f",
+        "marker-size": "small"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.00285766770992,
+          38.89011245970198
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OBJECTID_1": 16,
+        "OBJECTID_2": 116,
+        "OBJECTID": 112,
+        "PRECINCT_N": 90,
+        "FACILITY_D": "Auditorium",
+        "ACCESSIBLE": "Yes",
+        "GIS_ID": "plp_112",
+        "WEB_URL": "http://www.dcboee.org/election_info/pollplaces/",
+        "NAME": "Tyler Elementary School",
+        "ADDRESS": "1001 G STREET SE",
+        "ADDRESS_ID": 294505,
+        "marker-color": "#f0f",
+        "marker-size": "small"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -76.99204165683663,
+          38.88108402366969
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OBJECTID_1": 17,
+        "OBJECTID_2": 117,
+        "OBJECTID": 119,
+        "PRECINCT_N": 101,
+        "FACILITY_D": "Auditorium",
+        "ACCESSIBLE": "Yes",
+        "GIS_ID": "plp_119",
+        "WEB_URL": "http://www.dcboee.org/election_info/pollplaces/",
+        "NAME": "River Terrace Elementary School",
+        "ADDRESS": "420 34TH STREET NE",
+        "ADDRESS_ID": 294485,
+        "marker-color": "#f0f",
+        "marker-size": "small"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -76.95780755109128,
+          38.89542846135375
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OBJECTID_1": 18,
+        "OBJECTID_2": 118,
+        "OBJECTID": 134,
+        "PRECINCT_N": 122,
+        "FACILITY_D": "Armory",
+        "ACCESSIBLE": "Yes - Accessible entrance adjacent to parking lot.",
+        "GIS_ID": "plp_134",
+        "WEB_URL": "http://www.dcboee.org/election_info/pollplaces/",
+        "NAME": "Ballou Senior High School",
+        "ADDRESS": "3401 4TH STREET SE",
+        "ADDRESS_ID": 294567,
+        "marker-color": "#f0f",
+        "marker-size": "small"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.00097525758831,
+          38.83938233153192
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OBJECTID_1": 19,
+        "OBJECTID_2": 119,
+        "OBJECTID": 1,
+        "PRECINCT_N": 2,
+        "FACILITY_D": "Multi-Purpose Room",
+        "ACCESSIBLE": "Yes",
+        "GIS_ID": "plp_1",
+        "WEB_URL": "http://www.dcboee.org/election_info/pollplaces/",
+        "NAME": "The School Without Walls",
+        "ADDRESS": "2130 G STREET NW",
+        "ADDRESS_ID": 242528,
+        "marker-color": "#f0f",
+        "marker-size": "small"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.04818646563815,
+          38.89812378757083
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OBJECTID_1": 20,
+        "OBJECTID_2": 120,
+        "OBJECTID": 40,
+        "PRECINCT_N": 72,
+        "FACILITY_D": "Community Room (1st floor)",
+        "ACCESSIBLE": "Yes",
+        "GIS_ID": "plp_40",
+        "WEB_URL": "http://www.dcboee.org/election_info/pollplaces/",
+        "NAME": "Langdon Park Recreation Center",
+        "ADDRESS": "2901 20TH STREET NE",
+        "ADDRESS_ID": 287283,
+        "marker-color": "#f0f",
+        "marker-size": "small"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -76.97578848687645,
+          38.926822413922125
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OBJECTID_1": 21,
+        "OBJECTID_2": 121,
+        "OBJECTID": 29,
+        "PRECINCT_N": 34,
+        "FACILITY_D": "Gymnasium (lower level)",
+        "ACCESSIBLE": "Yes - Use ramped entrance.",
+        "GIS_ID": "plp_29",
+        "WEB_URL": "http://www.dcboee.org/election_info/pollplaces/",
+        "NAME": "Edmund Burke School",
+        "ADDRESS": "2955 UPTON STREET NW",
+        "ADDRESS_ID": 284536,
+        "marker-color": "#f0f",
+        "marker-size": "small"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.06162815688,
+          38.94236132772941
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OBJECTID_1": 22,
+        "OBJECTID_2": 122,
+        "OBJECTID": 30,
+        "PRECINCT_N": 45,
+        "FACILITY_D": "Community Room",
+        "ACCESSIBLE": "Yes",
+        "GIS_ID": "plp_30",
+        "WEB_URL": "http://www.dcboee.org/election_info/pollplaces/",
+        "NAME": "MPD - Regional Operation Command (North)",
+        "ADDRESS": "801 SHEPHERD STREET NW",
+        "ADDRESS_ID": 252510,
+        "marker-color": "#f0f",
+        "marker-size": "small"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.02381044771231,
+          38.940088934414405
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OBJECTID_1": 23,
+        "OBJECTID_2": 123,
+        "OBJECTID": 31,
+        "PRECINCT_N": 8,
+        "FACILITY_D": "Gymnasium",
+        "ACCESSIBLE": "Yes",
+        "GIS_ID": "plp_31",
+        "WEB_URL": "http://www.dcboee.org/election_info/pollplaces/",
+        "NAME": "Palisades Recreation Center",
+        "ADDRESS": "5100 SHERIER PLACE NW",
+        "ADDRESS_ID": 268352,
+        "marker-color": "#f0f",
+        "marker-size": "small"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.10263460574787,
+          38.92444192485095
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OBJECTID_1": 24,
+        "OBJECTID_2": 124,
+        "OBJECTID": 32,
+        "PRECINCT_N": 41,
+        "FACILITY_D": "Great Hall",
+        "ACCESSIBLE": "Yes - Use entrance on Oak Street.",
+        "GIS_ID": "plp_32",
+        "WEB_URL": "http://www.dcboee.org/election_info/pollplaces/",
+        "NAME": "Trinity AME Zion Church",
+        "ADDRESS": "3505 16TH STREET NW",
+        "ADDRESS_ID": 234593,
+        "marker-color": "#f0f",
+        "marker-size": "small"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.0360804245525,
+          38.934550552844456
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OBJECTID_1": 25,
+        "OBJECTID_2": 125,
+        "OBJECTID": 33,
+        "PRECINCT_N": 43,
+        "FACILITY_D": "Recreation Area",
+        "ACCESSIBLE": "Yes",
+        "GIS_ID": "plp_33",
+        "WEB_URL": "http://www.dcboee.org/election_info/pollplaces/",
+        "NAME": "Park View Recreation Center",
+        "ADDRESS": "693 OTIS PLACE NW",
+        "ADDRESS_ID": 295160,
+        "marker-color": "#f0f",
+        "marker-size": "small"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.02135031427919,
+          38.935002875205896
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OBJECTID_1": 26,
+        "OBJECTID_2": 126,
+        "OBJECTID": 34,
+        "PRECINCT_N": 42,
+        "FACILITY_D": "Dining Room (lower level)",
+        "ACCESSIBLE": "Yes",
+        "GIS_ID": "plp_34",
+        "WEB_URL": "http://www.dcboee.org/election_info/pollplaces/",
+        "NAME": "Mt. Rona Baptist Church",
+        "ADDRESS": "3431 13TH STREET NW",
+        "ADDRESS_ID": 230950,
+        "marker-color": "#f0f",
+        "marker-size": "small"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.0294528525794,
+          38.93224097022686
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OBJECTID_1": 27,
+        "OBJECTID_2": 1,
+        "OBJECTID": 5,
+        "PRECINCT_N": 80,
+        "FACILITY_D": "Quander Room",
+        "ACCESSIBLE": "Yes - Accessible entrance rear of Church.",
+        "GIS_ID": "plp_5",
+        "WEB_URL": "http://www.dcboee.org/election_info/pollplaces/",
+        "NAME": "St. Benedict the Moor Church",
+        "ADDRESS": "320 21ST STREET NE",
+        "ADDRESS_ID": 287504,
+        "marker-color": "#f0f",
+        "marker-size": "small"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -76.97545753568295,
+          38.894225931293576
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OBJECTID_1": 28,
+        "OBJECTID_2": 2,
+        "OBJECTID": 6,
+        "PRECINCT_N": 102,
+        "FACILITY_D": "Meeting Room",
+        "ACCESSIBLE": "Yes",
+        "GIS_ID": "plp_6",
+        "WEB_URL": "http://www.dcboee.org/election_info/pollplaces/",
+        "NAME": "Benning Public Library",
+        "ADDRESS": "3935 BENNING ROAD NE",
+        "ADDRESS_ID": 295144,
+        "marker-color": "#f0f",
+        "marker-size": "small"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -76.94775954961405,
+          38.89419424144954
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OBJECTID_1": 29,
+        "OBJECTID_2": 3,
+        "OBJECTID": 7,
+        "PRECINCT_N": 96,
+        "FACILITY_D": "Fellowship Hall",
+        "ACCESSIBLE": "Yes",
+        "GIS_ID": "plp_7",
+        "WEB_URL": "http://www.dcboee.org/election_info/pollplaces/",
+        "NAME": "Hughes Memorial United Methodist Church",
+        "ADDRESS": "25 53RD STREET NE",
+        "ADDRESS_ID": 287077,
+        "marker-color": "#f0f",
+        "marker-size": "small"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -76.92577691903026,
+          38.890534557242
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OBJECTID_1": 30,
+        "OBJECTID_2": 4,
+        "OBJECTID": 8,
+        "PRECINCT_N": 88,
+        "FACILITY_D": "Church Hall",
+        "ACCESSIBLE": "Yes",
+        "GIS_ID": "plp_8",
+        "WEB_URL": "http://www.dcboee.org/election_info/pollplaces/",
+        "NAME": "Thankful Baptist Church",
+        "ADDRESS": "1401 INDEPENDENCE AVENUE SE",
+        "ADDRESS_ID": 65107,
+        "marker-color": "#f0f",
+        "marker-size": "small"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -76.98528389471295,
+          38.88737930620289
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OBJECTID_1": 31,
+        "OBJECTID_2": 5,
+        "OBJECTID": 9,
+        "PRECINCT_N": 132,
+        "FACILITY_D": "Gymnasium",
+        "ACCESSIBLE": "Yes",
+        "GIS_ID": "plp_9",
+        "WEB_URL": "http://www.dcboee.org/election_info/pollplaces/",
+        "NAME": "DC Center for Therapeutic Recreation",
+        "ADDRESS": "3030 G STREET SE",
+        "ADDRESS_ID": 288770,
+        "marker-color": "#f0f",
+        "marker-size": "small"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -76.96320322261629,
+          38.88087157549328
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OBJECTID_1": 32,
+        "OBJECTID_2": 6,
+        "OBJECTID": 10,
+        "PRECINCT_N": 128,
+        "FACILITY_D": "Junior Church Hall",
+        "ACCESSIBLE": "Yes - Accessible entrance adjacent to parking lot.",
+        "GIS_ID": "plp_10",
+        "WEB_URL": "http://www.dcboee.org/election_info/pollplaces/",
+        "NAME": "Friendship Baptist Church",
+        "ADDRESS": "900 DELAWARE AVENUE SW",
+        "ADDRESS_ID": 276854,
+        "marker-color": "#f0f",
+        "marker-size": "small"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.01249793426904,
+          38.878918819849204
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OBJECTID_1": 33,
+        "OBJECTID_2": 7,
+        "OBJECTID": 11,
+        "PRECINCT_N": 111,
+        "FACILITY_D": "John Bailey Room",
+        "ACCESSIBLE": "Yes - Use the Center for Employment Training entrance for ground level access (2815",
+        "GIS_ID": "plp_11",
+        "WEB_URL": "http://www.dcboee.org/election_info/pollplaces/",
+        "NAME": "St. Francis Xavier Church",
+        "ADDRESS": "2800 PENNSYLVANIA AVENUE SE",
+        "ADDRESS_ID": 44697,
+        "marker-color": "#f0f",
+        "marker-size": "small"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -76.96750992279762,
+          38.872519727803635
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OBJECTID_1": 34,
+        "OBJECTID_2": 8,
+        "OBJECTID": 12,
+        "PRECINCT_N": 108,
+        "FACILITY_D": "Community Room",
+        "ACCESSIBLE": "Yes - Accessible - rear entrance, near parking lot.",
+        "GIS_ID": "plp_12",
+        "WEB_URL": "http://www.dcboee.org/election_info/pollplaces/",
+        "NAME": "Pennsylvania Avenue Baptist Church",
+        "ADDRESS": "3000 PENNSYLVANIA AVENUE SE",
+        "ADDRESS_ID": 42549,
+        "marker-color": "#f0f",
+        "marker-size": "small"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -76.96381300081566,
+          38.87112927464978
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OBJECTID_1": 35,
+        "OBJECTID_2": 9,
+        "OBJECTID": 13,
+        "PRECINCT_N": 127,
+        "FACILITY_D": "Meeting Room",
+        "ACCESSIBLE": "Yes",
+        "GIS_ID": "plp_13",
+        "WEB_URL": "http://www.dcboee.org/election_info/pollplaces/",
+        "NAME": "King Greenleaf Recreation Center",
+        "ADDRESS": "201 N STREET SW",
+        "ADDRESS_ID": 52917,
+        "marker-color": "#f0f",
+        "marker-size": "small"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.01279249959418,
+          38.87501581074506
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OBJECTID_1": 36,
+        "OBJECTID_2": 10,
+        "OBJECTID": 14,
+        "PRECINCT_N": 109,
+        "FACILITY_D": "Gymnasium",
+        "ACCESSIBLE": "Yes",
+        "GIS_ID": "plp_14",
+        "WEB_URL": "http://www.dcboee.org/election_info/pollplaces/",
+        "NAME": "Randle-Highlands Elementary School",
+        "ADDRESS": "1650 30TH STREET SE",
+        "ADDRESS_ID": 156337,
+        "marker-color": "#f0f",
+        "marker-size": "small"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -76.96435628177574,
+          38.87009140318784
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OBJECTID_1": 37,
+        "OBJECTID_2": 11,
+        "OBJECTID": 16,
+        "PRECINCT_N": 134,
+        "FACILITY_D": "Multipurpose Room",
+        "ACCESSIBLE": "Yes - Use rear entrance, adjacent to parking lot.",
+        "GIS_ID": "plp_16",
+        "WEB_URL": "http://www.dcboee.org/election_info/pollplaces/",
+        "NAME": "Allen AME Church",
+        "ADDRESS": "2498 ALABAMA AVENUE SE",
+        "ADDRESS_ID": 46843,
+        "marker-color": "#f0f",
+        "marker-size": "small"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -76.97028294121324,
+          38.856884832198325
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OBJECTID_1": 38,
+        "OBJECTID_2": 12,
+        "OBJECTID": 17,
+        "PRECINCT_N": 115,
+        "FACILITY_D": "Community Room",
+        "ACCESSIBLE": "Yes",
+        "GIS_ID": "plp_17",
+        "WEB_URL": "http://www.dcboee.org/election_info/pollplaces/",
+        "NAME": "Seventh District Police Station",
+        "ADDRESS": "2455 ALABAMA AVENUE SE",
+        "ADDRESS_ID": 278162,
+        "marker-color": "#f0f",
+        "marker-size": "small"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -76.96952139706708,
+          38.85335576413945
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OBJECTID_1": 39,
+        "OBJECTID_2": 13,
+        "OBJECTID": 18,
+        "PRECINCT_N": 116,
+        "FACILITY_D": "Fellowship Hall",
+        "ACCESSIBLE": "Yes",
+        "GIS_ID": "plp_18",
+        "WEB_URL": "http://www.dcboee.org/election_info/pollplaces/",
+        "NAME": "New Image Community Baptist Church",
+        "ADDRESS": "1839 ALABAMA AVENUE SE",
+        "ADDRESS_ID": 54816,
+        "marker-color": "#f0f",
+        "marker-size": "small"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -76.97783993032797,
+          38.84765863309889
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OBJECTID_1": 40,
+        "OBJECTID_2": 14,
+        "OBJECTID": 19,
+        "PRECINCT_N": 124,
+        "FACILITY_D": "Church Hall",
+        "ACCESSIBLE": "Yes",
+        "GIS_ID": "plp_19",
+        "WEB_URL": "http://www.dcboee.org/election_info/pollplaces/",
+        "NAME": "Convenant Baptist Church",
+        "ADDRESS": "3845 SOUTH CAPITOL STREET SW",
+        "ADDRESS_ID": 301907,
+        "marker-color": "#f0f",
+        "marker-size": "small"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.00866130403007,
+          38.83401036254331
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OBJECTID_1": 41,
+        "OBJECTID_2": 15,
+        "OBJECTID": 20,
+        "PRECINCT_N": 61,
+        "FACILITY_D": "Multi-purpose Room",
+        "ACCESSIBLE": "Yes",
+        "GIS_ID": "plp_20",
+        "WEB_URL": "http://www.dcboee.org/election_info/pollplaces/",
+        "NAME": "Fort Stevens Recreation Center",
+        "ADDRESS": "1327 VAN BUREN STREET NW",
+        "ADDRESS_ID": 290152,
+        "marker-color": "#f0f",
+        "marker-size": "small"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.03109080084555,
+          38.97026914859354
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OBJECTID_1": 42,
+        "OBJECTID_2": 16,
+        "OBJECTID": 21,
+        "PRECINCT_N": 50,
+        "FACILITY_D": "Auditorium",
+        "ACCESSIBLE": "Yes - Accessible rear entrance next to the parking lot.",
+        "GIS_ID": "plp_21",
+        "WEB_URL": "http://www.dcboee.org/election_info/pollplaces/",
+        "NAME": "Chevy Chase Community Center",
+        "ADDRESS": "5601 CONNECTICUT AVENUE NW",
+        "ADDRESS_ID": 263959,
+        "marker-color": "#f0f",
+        "marker-size": "small"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.07510861326296,
+          38.96515842127339
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OBJECTID_1": 43,
+        "OBJECTID_2": 17,
+        "OBJECTID": 22,
+        "PRECINCT_N": 52,
+        "FACILITY_D": "Roth Gymnasium Bldg.",
+        "ACCESSIBLE": "Yes - Access from parking lot.",
+        "GIS_ID": "plp_22",
+        "WEB_URL": "http://www.dcboee.org/election_info/pollplaces/",
+        "NAME": "St. John's College High School",
+        "ADDRESS": "2607 MILITARY ROAD NW",
+        "ADDRESS_ID": 259840,
+        "marker-color": "#f0f",
+        "marker-size": "small"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.05520494037229,
+          38.962417220863394
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OBJECTID_1": 44,
+        "OBJECTID_2": 18,
+        "OBJECTID": 24,
+        "PRECINCT_N": 60,
+        "FACILITY_D": "Gymnasium",
+        "ACCESSIBLE": "Yes",
+        "GIS_ID": "plp_24",
+        "WEB_URL": "http://www.dcboee.org/election_info/pollplaces/",
+        "NAME": "Church of the Nativity Youth Center",
+        "ADDRESS": "6000 GEORGIA AVENUE NW",
+        "ADDRESS_ID": 253197,
+        "marker-color": "#f0f",
+        "marker-size": "small"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.02822698508824,
+          38.96284816168917
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OBJECTID_1": 45,
+        "OBJECTID_2": 19,
+        "OBJECTID": 25,
+        "PRECINCT_N": 138,
+        "FACILITY_D": "Fellowship Hall",
+        "ACCESSIBLE": "Yes - Accessible entrance adjacent to parking lot.",
+        "GIS_ID": "plp_25",
+        "WEB_URL": "http://www.dcboee.org/election_info/pollplaces/",
+        "NAME": "Capital Memorial Adventist Church",
+        "ADDRESS": "3150 CHESAPEAKE STREET NW",
+        "ADDRESS_ID": 284592,
+        "marker-color": "#f0f",
+        "marker-size": "small"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.06396319555985,
+          38.95020322506991
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OBJECTID_1": 46,
+        "OBJECTID_2": 20,
+        "OBJECTID": 26,
+        "PRECINCT_N": 31,
+        "FACILITY_D": "Church Hall",
+        "ACCESSIBLE": "Yes - Accessible entrance located on 42nd St.",
+        "GIS_ID": "plp_26",
+        "WEB_URL": "http://www.dcboee.org/election_info/pollplaces/",
+        "NAME": "St. Columba's Episcopal Church",
+        "ADDRESS": "4201 ALBEMARLE STREET NW",
+        "ADDRESS_ID": 301545,
+        "marker-color": "#f0f",
+        "marker-size": "small"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.08244680641738,
+          38.9482176667262
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OBJECTID_1": 47,
+        "OBJECTID_2": 21,
+        "OBJECTID": 27,
+        "PRECINCT_N": 44,
+        "FACILITY_D": "Multi-Purpose Room",
+        "ACCESSIBLE": "Yes",
+        "GIS_ID": "plp_27",
+        "WEB_URL": "http://www.dcboee.org/election_info/pollplaces/",
+        "NAME": "North Capitol at Plymouth",
+        "ADDRESS": "5233 NORTH CAPTIOL STREET NE",
+        "ADDRESS_ID": 298101,
+        "marker-color": "#f0f",
+        "marker-size": "small"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.00866515707142,
+          38.95406774426341
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OBJECTID_1": 48,
+        "OBJECTID_2": 22,
+        "OBJECTID": 28,
+        "PRECINCT_N": 9,
+        "FACILITY_D": "Vestry Hall",
+        "ACCESSIBLE": "Yes",
+        "GIS_ID": "plp_28",
+        "WEB_URL": "http://www.dcboee.org/election_info/pollplaces/",
+        "NAME": "Metropolitan Memorial United Methodist Church",
+        "ADDRESS": "3401 NEBRASKA AVENUE NW",
+        "ADDRESS_ID": 298676,
+        "marker-color": "#f0f",
+        "marker-size": "small"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.08779934048464,
+          38.93495923702522
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OBJECTID_1": 49,
+        "OBJECTID_2": 23,
+        "OBJECTID": 47,
+        "PRECINCT_N": 75,
+        "FACILITY_D": "Auditorium",
+        "ACCESSIBLE": "Yes",
+        "GIS_ID": "plp_47",
+        "WEB_URL": "http://www.dcboee.org/election_info/pollplaces/",
+        "NAME": "McKinley Technology Senior High School",
+        "ADDRESS": "151 T STREET NE",
+        "ADDRESS_ID": 296345,
+        "marker-color": "#f0f",
+        "marker-size": "small"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.0041224390594,
+          38.91521978576181
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OBJECTID_1": 50,
+        "OBJECTID_2": 24,
+        "OBJECTID": 48,
+        "PRECINCT_N": 141,
+        "FACILITY_D": "North Lobby",
+        "ACCESSIBLE": "Yes",
+        "GIS_ID": "plp_48",
+        "WEB_URL": "http://www.dcboee.org/election_info/pollplaces/",
+        "NAME": "Frank D. Reeves Municipal Center",
+        "ADDRESS": "2000 14TH STREET NW",
+        "ADDRESS_ID": 239976,
+        "marker-color": "#f0f",
+        "marker-size": "small"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.03240352407649,
+          38.917444026973975
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OBJECTID_1": 125,
+        "OBJECTID_2": 99,
+        "OBJECTID": 128,
+        "PRECINCT_N": 137,
+        "FACILITY_D": "Multi-Purpose Room",
+        "ACCESSIBLE": "Yes - Accessible entrance adjacent to parking lot.",
+        "GIS_ID": "plp_128",
+        "WEB_URL": "http://www.dcboee.org/election_info/pollplaces/",
+        "NAME": "Garrison Elementary School",
+        "ADDRESS": "1200 S STREET NW",
+        "ADDRESS_ID": 294509,
+        "marker-color": "#f0f",
+        "marker-size": "small"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.02861255039201,
+          38.913900958245385
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OBJECTID_1": 126,
+        "OBJECTID_2": 100,
+        "OBJECTID": 129,
+        "PRECINCT_N": 133,
+        "FACILITY_D": "Library",
+        "ACCESSIBLE": "Yes - Accessible entrance rear of school",
+        "GIS_ID": "plp_129",
+        "WEB_URL": "http://www.dcboee.org/election_info/pollplaces/",
+        "NAME": "Orr Elementary School",
+        "ADDRESS": "2200 MINNESOTA AVENUE SE",
+        "ADDRESS_ID": 294539,
+        "marker-color": "#f0f",
+        "marker-size": "small"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -76.97448401156392,
+          38.871796823975465
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OBJECTID_1": 127,
+        "OBJECTID_2": 127,
+        "OBJECTID": 35,
+        "PRECINCT_N": 71,
+        "FACILITY_D": "Upper Fellowship Hall",
+        "ACCESSIBLE": "Yes - Accessible entrance on Bladensburg Road",
+        "GIS_ID": "plp_35",
+        "WEB_URL": "http://www.dcboee.org/election_info/pollplaces/",
+        "NAME": "Mt. Horeb Baptist Church",
+        "ADDRESS": "3015 EARL PLACE NE",
+        "ADDRESS_ID": 287380,
+        "marker-color": "#f0f",
+        "marker-size": "small"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -76.96257582780058,
+          38.92828163952405
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OBJECTID_1": 128,
+        "OBJECTID_2": 128,
+        "OBJECTID": 36,
+        "PRECINCT_N": 28,
+        "FACILITY_D": "Parish Center (near Klingle Place)",
+        "ACCESSIBLE": "Yes",
+        "GIS_ID": "plp_36",
+        "WEB_URL": "http://www.dcboee.org/election_info/pollplaces/",
+        "NAME": "Church of the Annunciation Parish",
+        "ADDRESS": "3810 MASSACHUSETTS AVENUE NW",
+        "ADDRESS_ID": 263608,
+        "marker-color": "#f0f",
+        "marker-size": "small"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.07581746959019,
+          38.93014871936168
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OBJECTID_1": 129,
+        "OBJECTID_2": 129,
+        "OBJECTID": 37,
+        "PRECINCT_N": 136,
+        "FACILITY_D": "Conference Room",
+        "ACCESSIBLE": "Yes - Use side entrance from parking lot",
+        "GIS_ID": "plp_37",
+        "WEB_URL": "http://www.dcboee.org/election_info/pollplaces/",
+        "NAME": "Leading Age",
+        "ADDRESS": "2519 CONNECTICUT AVENUE NW",
+        "ADDRESS_ID": 284405,
+        "marker-color": "#f0f",
+        "marker-size": "small"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.05081709968947,
+          38.923171900472795
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OBJECTID_1": 130,
+        "OBJECTID_2": 130,
+        "OBJECTID": 38,
+        "PRECINCT_N": 12,
+        "FACILITY_D": "Church Hall",
+        "ACCESSIBLE": "Yes",
+        "GIS_ID": "plp_38",
+        "WEB_URL": "http://www.dcboee.org/election_info/pollplaces/",
+        "NAME": "St Sophia's Greek Orthodox Cathederal Church",
+        "ADDRESS": "3600 MASSACHUSETTS AVENUE NW",
+        "ADDRESS_ID": 262638,
+        "marker-color": "#f0f",
+        "marker-size": "small"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.07117418205232,
+          38.92672469638905
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OBJECTID_1": 131,
+        "OBJECTID_2": 131,
+        "OBJECTID": 39,
+        "PRECINCT_N": 39,
+        "FACILITY_D": "Auditorium",
+        "ACCESSIBLE": "Yes",
+        "GIS_ID": "plp_39",
+        "WEB_URL": "http://www.dcboee.org/election_info/pollplaces/",
+        "NAME": "Bell Multicultural High School",
+        "ADDRESS": "3101 16th Street NW",
+        "ADDRESS_ID": 234375,
+        "marker-color": "#f0f",
+        "marker-size": "small"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.03585151879376,
+          38.929540334081075
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OBJECTID_1": 132,
+        "OBJECTID_2": 132,
+        "OBJECTID": 41,
+        "PRECINCT_N": 36,
+        "FACILITY_D": "Community Room",
+        "ACCESSIBLE": "Yes",
+        "GIS_ID": "plp_41",
+        "WEB_URL": "http://www.dcboee.org/election_info/pollplaces/",
+        "NAME": "Latin American Youth Center",
+        "ADDRESS": "1419 COLUMBIA ROAD NW",
+        "ADDRESS_ID": 234363,
+        "marker-color": "#f0f",
+        "marker-size": "small"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.03335781590764,
+          38.9277663944928
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OBJECTID_1": 133,
+        "OBJECTID_2": 133,
+        "OBJECTID": 42,
+        "PRECINCT_N": 135,
+        "FACILITY_D": "Church Hall",
+        "ACCESSIBLE": "Yes - Use ramped entrance on Rhode Island Avenue.",
+        "GIS_ID": "plp_42",
+        "WEB_URL": "http://www.dcboee.org/election_info/pollplaces/",
+        "NAME": "Mt. Bethel Baptist Church",
+        "ADDRESS": "1901 1ST STREET NW",
+        "ADDRESS_ID": 227421,
+        "marker-color": "#f0f",
+        "marker-size": "small"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.01182725241577,
+          38.916136758622
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OBJECTID_1": 134,
+        "OBJECTID_2": 134,
+        "OBJECTID": 43,
+        "PRECINCT_N": 11,
+        "FACILITY_D": "Union Hall",
+        "ACCESSIBLE": "Yes",
+        "GIS_ID": "plp_43",
+        "WEB_URL": "http://www.dcboee.org/election_info/pollplaces/",
+        "NAME": "International Union of Operating Engineer",
+        "ADDRESS": "2461 WISCONSIN AVENUE NW",
+        "ADDRESS_ID": 284395,
+        "marker-color": "#f0f",
+        "marker-size": "small"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.07250197535924,
+          38.92234916933058
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OBJECTID_1": 135,
+        "OBJECTID_2": 135,
+        "OBJECTID": 44,
+        "PRECINCT_N": 23,
+        "FACILITY_D": "Library and Computer Room",
+        "ACCESSIBLE": "Yes",
+        "GIS_ID": "plp_44",
+        "WEB_URL": "http://www.dcboee.org/election_info/pollplaces/",
+        "NAME": "Loughran Community Center",
+        "ADDRESS": "2500 14TH STREET NW",
+        "ADDRESS_ID": 234200,
+        "marker-color": "#f0f",
+        "marker-size": "small"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.03236211898793,
+          38.921998738498395
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OBJECTID_1": 136,
+        "OBJECTID_2": 136,
+        "OBJECTID": 45,
+        "PRECINCT_N": 25,
+        "FACILITY_D": "Fellowship Hall",
+        "ACCESSIBLE": "Yes",
+        "GIS_ID": "plp_45",
+        "WEB_URL": "http://www.dcboee.org/election_info/pollplaces/",
+        "NAME": "Goodwill Baptist Church",
+        "ADDRESS": "1862 KALORAMA ROAD NW",
+        "ADDRESS_ID": 235475,
+        "marker-color": "#f0f",
+        "marker-size": "small"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.04382603429792,
+          38.91931664613416
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OBJECTID_1": 137,
+        "OBJECTID_2": 137,
+        "OBJECTID": 46,
+        "PRECINCT_N": 13,
+        "FACILITY_D": "Fellowship Hall",
+        "ACCESSIBLE": "Yes",
+        "GIS_ID": "plp_46",
+        "WEB_URL": "http://www.dcboee.org/election_info/pollplaces/",
+        "NAME": "Goodwill Baptist Church",
+        "ADDRESS": "1862 KALORAMA ROAD NW",
+        "ADDRESS_ID": 235475,
+        "marker-color": "#f0f",
+        "marker-size": "small"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.04382603429792,
+          38.91931664613416
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OBJECTID_1": 138,
+        "OBJECTID_2": 138,
+        "OBJECTID": 143,
+        "PRECINCT_N": 143,
+        "FACILITY_D": "Church Hall/Meeting Room",
+        "ACCESSIBLE": "Yes",
+        "GIS_ID": "plp_143",
+        "WEB_URL": "http://www.dcboee.org/election_info/pollplaces/",
+        "NAME": "Chinese Community Church",
+        "ADDRESS": "500 I STREET NW",
+        "ADDRESS_ID": 238945,
+        "marker-color": "#f0f",
+        "marker-size": "small"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.0191335488228,
+          38.900621429714505
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OBJECTID_1": 139,
+        "OBJECTID_2": 139,
+        "OBJECTID": 15,
+        "PRECINCT_N": 110,
+        "FACILITY_D": "Multi-Purpose Room",
+        "ACCESSIBLE": "Yes",
+        "GIS_ID": "plp_15",
+        "WEB_URL": "http://www.dcboee.org/election_info/pollplaces/",
+        "NAME": "St. Timothy's Episcopal Church",
+        "ADDRESS": "3601 ALABAMA AVENUE SE",
+        "ADDRESS_ID": 33104,
+        "marker-color": "#f0f",
+        "marker-size": "small"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -76.95609228878696,
+          38.86298923901404
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OBJECTID_1": 140,
+        "OBJECTID_2": 140,
+        "OBJECTID": 23,
+        "PRECINCT_N": 32,
+        "FACILITY_D": "Fellowship Hall (1st Floor)",
+        "ACCESSIBLE": "Yes - Use Connecticut Ave. entrance",
+        "GIS_ID": "plp_23",
+        "WEB_URL": "http://www.dcboee.org/election_info/pollplaces/",
+        "NAME": "Wesley Methodist Church",
+        "ADDRESS": "5312 CONNECTICUT AVENUE NW",
+        "ADDRESS_ID": 301282,
+        "marker-color": "#f0f",
+        "marker-size": "small"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.07264987664179,
+          38.95932406644609
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OBJECTID_1": 141,
+        "OBJECTID_2": 141,
+        "OBJECTID": 63,
+        "PRECINCT_N": 6,
+        "FACILITY_D": "Gallery",
+        "ACCESSIBLE": "Yes",
+        "GIS_ID": "plp_63",
+        "WEB_URL": "http://www.dcboee.org/election_info/pollplaces/",
+        "NAME": "Duke Ellington School of the Arts",
+        "ADDRESS": "3500 R STREET NW",
+        "ADDRESS_ID": 294569,
+        "marker-color": "#f0f",
+        "marker-size": "small"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.0703075622951,
+          38.91344604442462
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OBJECTID_1": 142,
+        "OBJECTID_2": 142,
+        "OBJECTID": 70,
+        "PRECINCT_N": 26,
+        "FACILITY_D": "Gymnasium",
+        "ACCESSIBLE": "Yes - Use ramped entrance on 27th Street",
+        "GIS_ID": "plp_70",
+        "WEB_URL": "http://www.dcboee.org/election_info/pollplaces/",
+        "NAME": "Oyster Elementary School",
+        "ADDRESS": "2801 CALVERT STREET NW",
+        "ADDRESS_ID": 275944,
+        "marker-color": "#f0f",
+        "marker-size": "small"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.0572033785664,
+          38.923595492962626
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OBJECTID_1": 143,
+        "OBJECTID_2": 143,
+        "OBJECTID": 89,
+        "PRECINCT_N": 58,
+        "FACILITY_D": "Community Room.",
+        "ACCESSIBLE": "Yes - Ground level at Georgia. Avenue & Quackenbos Street.",
+        "GIS_ID": "plp_89",
+        "WEB_URL": "http://www.dcboee.org/election_info/pollplaces/",
+        "NAME": "Fourth District Police Station",
+        "ADDRESS": "6001 GEORGIA AVENUE NW",
+        "ADDRESS_ID": 243485,
+        "marker-color": "#f0f",
+        "marker-size": "small"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.02741098359434,
+          38.96312544965341
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -77.10263460574787,
+              38.92444192485095
+            ],
+            [
+              -77.08244680641738,
+              38.9482176667262
+            ],
+            [
+              -77.07510861326296,
+              38.96515842127339
+            ],
+            [
+              -77.06803711636698,
+              38.96662722064828
+            ],
+            [
+              -77.05520494037229,
+              38.962417220863394
+            ],
+            [
+              -77.03399523386544,
+              38.98460295003216
+            ],
+            [
+              -77.01805167618295,
+              38.96888669131412
+            ],
+            [
+              -76.99988253848109,
+              38.95997180998364
+            ],
+            [
+              -76.98499562999821,
+              38.94201213500814
+            ],
+            [
+              -76.95763369669753,
+              38.92730594377001
+            ],
+            [
+              -76.9404849391363,
+              38.90822873259865
+            ],
+            [
+              -76.9299476407989,
+              38.90541498719898
+            ],
+            [
+              -76.92270804396746,
+              38.89619288755561
+            ],
+            [
+              -76.92611549373204,
+              38.88359849788337
+            ],
+            [
+              -76.93761630232859,
+              38.87906795106383
+            ],
+            [
+              -76.95609228878696,
+              38.86298923901404
+            ],
+            [
+              -76.96952139706708,
+              38.85335576413945
+            ],
+            [
+              -76.99226881799031,
+              38.834327886510565
+            ],
+            [
+              -76.99918484024232,
+              38.82898558049571
+            ],
+            [
+              -77.00847560019479,
+              38.8269811922012
+            ],
+            [
+              -77.00866130403007,
+              38.83401036254331
+            ],
+            [
+              -77.00097525758831,
+              38.83938233153192
+            ],
+            [
+              -76.99535456253949,
+              38.85976175834964
+            ],
+            [
+              -77.01279249959418,
+              38.87501581074506
+            ],
+            [
+              -77.02291065460415,
+              38.87987059942476
+            ],
+            [
+              -77.04818646563815,
+              38.89812378757083
+            ],
+            [
+              -77.0511477096272,
+              38.898862835793516
+            ],
+            [
+              -77.08498118309296,
+              38.909915833213795
+            ],
+            [
+              -77.10263460574787,
+              38.92444192485095
+            ]
+          ],
+          [
+            [
+              -76.99726738315395,
+              38.95334052572905
+            ],
+            [
+              -77.00866515707142,
+              38.95406774426341
+            ],
+            [
+              -77.0177770800083,
+              38.948230614415095
+            ],
+            [
+              -77.00253831800221,
+              38.923654687421774
+            ],
+            [
+              -76.98652958387164,
+              38.9375726751204
+            ],
+            [
+              -76.99726738315395,
+              38.95334052572905
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "fill": "#00f",
+        "fill-opacity": 0.3
+      }
+    }
+  ]
+}

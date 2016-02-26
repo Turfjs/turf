@@ -1,0 +1,17 @@
+{
+  "name": "turf-intersect",
+  "version": "1.4.2",
+  "dependencies": {
+    "jsts": {
+      "version": "0.15.0",
+      "from": "jsts@>=0.15.0 <0.16.0",
+      "resolved": "https://registry.npmjs.org/jsts/-/jsts-0.15.0.tgz",
+      "dependencies": {
+        "javascript.util": {
+          "version": "0.12.5",
+          "resolved": "https://registry.npmjs.org/javascript.util/-/javascript.util-0.12.5.tgz"
+        }
+      }
+    }
+  }
+}

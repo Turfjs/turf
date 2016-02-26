@@ -1,0 +1,48 @@
+{
+  "name": "turf-hex-grid",
+  "version": "2.1.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "tape test.js",
+    "doc": "dox -r < index.js | doxme --readme > README.md"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/Turfjs/turf-hex-grid.git"
+  },
+  "keywords": [
+    "turf",
+    "grid",
+    "hexgrid",
+    "hexbin",
+    "points",
+    "geojson"
+  ],
+  "author": "morganherlocker",
+  "contributors": [
+    "jseppi",
+    "jvail",
+    "lyzidiamond",
+    "tmcw"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Turfjs/turf-hex-grid/issues"
+  },
+  "homepage": "https://github.com/Turfjs/turf-hex-grid",
+  "devDependencies": {
+    "benchmark": "^1.0.0",
+    "tape": "^3.5.0",
+    "turf-bbox-polygon": "^1.0.0",
+    "turf-explode": "^1.0.0",
+    "turf-extent": "^1.0.3",
+    "turf-inside": "^1.1.3",
+    "dox": "^0.6.1",
+    "doxme": "^1.4.3"
+  },
+  "dependencies": {
+    "turf-distance": "^1.0.1",
+    "turf-geometries": "^1.0.0"
+  }
+}

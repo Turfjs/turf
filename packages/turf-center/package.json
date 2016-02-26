@@ -1,0 +1,38 @@
+{
+  "name": "turf-center",
+  "version": "1.0.3",
+  "description": "turf center module",
+  "main": "index.js",
+  "scripts": {
+    "test": "node test.js",
+    "doc": "dox -r < index.js | doxme --readme > README.md"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Turfjs/turf-center.git"
+  },
+  "keywords": [
+    "centroid",
+    "geojson",
+    "gis",
+    "geospatial",
+    "geo",
+    "turf"
+  ],
+  "author": "morganherlocker",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Turfjs/turf-center/issues"
+  },
+  "homepage": "https://github.com/Turfjs/turf-center",
+  "devDependencies": {
+    "benchmark": "^1.0.0",
+    "tape": "^3.5.0",
+    "dox": "^0.6.1",
+    "doxme": "^1.4.3"
+  },
+  "dependencies": {
+    "turf-extent": "^1.0.3",
+    "turf-helpers": "^1.0.0"
+  }
+}

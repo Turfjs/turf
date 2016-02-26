@@ -1,0 +1,39 @@
+{
+  "name": "turf-triangle-grid",
+  "version": "1.0.1",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "benchmark": "^1.0.0",
+    "tape": "^3.5.0",
+    "turf-distance": "^1.0.1",
+    "turf-helpers": "^1.0.0"
+  },
+  "devDependencies": {
+    "benchmark": "^1.0.0",
+    "tape": "^3.5.0",
+    "turf-bbox-polygon": "^1.0.1"
+  },
+  "scripts": {
+    "test": "node test.js",
+    "doc": "dox -r < index.js | doxme --readme > README.md"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Turfjs/turf-triangle-grid.git"
+  },
+  "keywords": [
+    "turf",
+    "triangle",
+    "grid",
+    "polygons",
+    "analysis",
+    "gis"
+  ],
+  "author": "morganherlocker",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Turfjs/turf-triangle-grid/issues"
+  },
+  "homepage": "https://github.com/Turfjs/turf-triangle-grid"
+}

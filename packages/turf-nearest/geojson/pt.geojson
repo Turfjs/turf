@@ -1,0 +1,8 @@
+{ 
+  "type": "Feature",
+  "geometry": {"type": "Point", "coordinates": [-75.4, 39.4]},
+  "properties": { 
+    "name": "Location A",
+    "category": "Store"
+  }
+}

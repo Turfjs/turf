@@ -1,0 +1,35 @@
+{
+  "name": "turf-square-grid",
+  "version": "1.0.1",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "turf-distance": "^1.0.1",
+    "turf-helpers": "^1.0.0"
+  },
+  "devDependencies": {
+    "benchmark": "^1.0.0",
+    "tape": "^3.5.0"
+  },
+  "scripts": {
+    "test": "node test.js",
+    "doc": "dox -r < index.js | doxme --readme > README.md"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Turfjs/turf-square-grid.git"
+  },
+  "keywords": [
+    "turf",
+    "grid",
+    "regular",
+    "cartesian",
+    "grid"
+  ],
+  "author": "morganherlocker",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Turfjs/turf-square-grid/issues"
+  },
+  "homepage": "https://github.com/Turfjs/turf-square-grid"
+}

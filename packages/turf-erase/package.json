@@ -1,0 +1,35 @@
+{
+  "name": "turf-difference",
+  "version": "2.0.0",
+  "description": "[Turf](http://turfjs.org/) difference module",
+  "main": "index.js",
+  "scripts": {
+    "test": "tape test/*.js",
+    "doc": "dox -r < index.js | doxme --readme > README.md"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/Turfjs/turf-difference.git"
+  },
+  "keywords": [
+    "turf",
+    "gis"
+  ],
+  "author": "morganherlocker",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Turfjs/turf-difference/issues"
+  },
+  "homepage": "https://github.com/Turfjs/turf-difference",
+  "devDependencies": {
+    "benchmark": "^1.0.0",
+    "glob": "~5.0.5",
+    "tape": "~4.0.0",
+    "dox": "^0.7.1",
+    "doxme": "^1.8.2"
+  },
+  "dependencies": {
+    "jsts": "~0.15.0",
+    "turf-helpers": "^1.0.0"
+  }
+}
