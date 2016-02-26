@@ -5,8 +5,8 @@ var inside = require('turf-inside');
 var grid = require('turf-grid');
 var extent = require('turf-extent');
 var planepoint = require('turf-planepoint');
-var featurecollection = require('turf-helpers').featureCollection;
-var linestring = require('turf-helpers').lineString;
+var featurecollection = require('turf-featurecollection');
+var linestring = require('turf-linestring');
 var square = require('turf-square');
 var Conrec = require('./conrec');
 
@@ -34,7 +34,7 @@ var Conrec = require('./conrec');
  * var isolined = turf.isolines(points, 'z', 15, breaks);
  * //=isolined
  */
-module.exports = function(points, z, resolution, breaks) {
+module.exports = function (points, z, resolution, breaks) {
   var tinResult = tin(points, z);
   var extentBBox = extent(points);
   var squareBBox = square(extentBBox);
@@ -53,24 +53,25 @@ module.exports = function(points, z, resolution, breaks) {
   }
 
   var depth = Math.sqrt(gridResult.features.length);
-  for (var x=0; x<depth; x++) {
+  for (var x = 0; x < depth; x++) {
     var xGroup = gridResult.features.slice(x * depth, (x + 1) * depth);
     var xFlat = [];
-    xGroup.forEach(function(verticalPoint) {
-      if(verticalPoint.properties) {
-        xFlat.push(verticalPoint.properties[z]);
+
+    for (var g = 0; g < xGroup.length; g++) {
+      if (xGroup[g].properties) {
+        xFlat.push(xGroup[g].properties[z]);
       } else {
         xFlat.push(0);
       }
-    });
+    }
     data.push(xFlat);
   }
   var interval = (squareBBox[2] - squareBBox[0]) / depth;
   var xCoordinates = [];
   var yCoordinates = [];
-  for (var x = 0; x < depth; x++) {
-    xCoordinates.push(x * interval + squareBBox[0]);
-    yCoordinates.push(x * interval + squareBBox[1]);
+  for (var d = 0; d < depth; d++) {
+    xCoordinates.push(d * interval + squareBBox[0]);
+    yCoordinates.push(d * interval + squareBBox[1]);
   }
 
   var c = new Conrec();
@@ -78,10 +79,10 @@ module.exports = function(points, z, resolution, breaks) {
   var contourList = c.contourList();
 
   var fc = featurecollection([]);
-  contourList.forEach(function(c) {
-    if(c.length > 2) {
+  contourList.forEach(function (c) {
+    if (c.length > 2) {
       var polyCoordinates = [];
-      c.forEach(function(coord) {
+      c.forEach(function (coord) {
         polyCoordinates.push([coord.x, coord.y]);
       });
       var poly = linestring(polyCoordinates);
