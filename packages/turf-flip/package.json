@@ -1,11 +1,28 @@
 {
   "name": "turf-flip",
-  "version": "1.0.3",
+  "version": "1.1.0",
   "description": "turf flip module",
   "main": "index.js",
   "scripts": {
+    "lint": "eslint index.js test.js",
+    "pretest": "npm run lint",
     "test": "tape test.js",
     "doc": "dox -r < index.js | doxme --readme > README.md"
+  },
+  "eslintConfig": {
+    "extends": "mourner",
+    "rules": {
+      "strict": [
+        1
+      ],
+      "indent": [
+        2,
+        2,
+        {
+          "SwitchCase": 1
+        }
+      ]
+    }
   },
   "repository": {
     "type": "git",
@@ -26,8 +43,16 @@
   "devDependencies": {
     "benchmark": "^1.0.0",
     "tape": "^3.5.0",
+    "turf-featurecollection": "^1.0.0",
+    "turf-linestring": "^1.0.1",
+    "turf-point": "^2.0.0",
+    "turf-polygon": "^1.0.2",
     "dox": "^0.6.1",
     "doxme": "^1.4.3",
-    "turf-helpers": "^1.0.0"
+    "eslint": "^1.10.3",
+    "eslint-config-mourner": "^1.0.1"
+  },
+  "dependencies": {
+    "turf-meta": "^1.0.2"
   }
 }
