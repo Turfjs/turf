@@ -175,3 +175,33 @@ module.exports.multiLineString = function(coordinates, properties) {
     "properties": properties || {}
   };
 };
+
+/**
+ * Creates a {@link Feature<MultiPoint>} based on a
+ * coordinate array. Properties can be added optionally.
+ *
+ * @module turf/multipoint
+ * @category helper
+ * @param {Array<Array<Number>>} coordinates an array of Positions
+ * @param {Object=} properties an Object of key-value pairs to add as properties
+ * @returns {Feature<MultiPoint>} a MultiPoint feature
+ * @throws {Error} if no coordinates are passed
+ * @example
+ * var multiPt = turf.multipoint([[0,0],[10,10]]);
+ *
+ * //=multiPt
+ *
+ */
+module.exports.multiPoint = function(coordinates, properties) {
+  if (!coordinates) {
+    throw new Error('No coordinates passed');
+  }
+  return {
+    "type": "Feature",
+    "geometry": {
+      "type": "MultiPoint",
+      "coordinates": coordinates
+    },
+    "properties": properties || {}
+  };
+};
