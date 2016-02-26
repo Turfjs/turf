@@ -3,7 +3,7 @@
   "version": "2.0.2",
   "description": "a node.js library for performing geospatial operations with geojson",
   "scripts": {
-    "test": "lerna run test"
+    "test": "lerna bootstrap && lerna run test"
   },
   "eslintConfig": {
     "rules": {
