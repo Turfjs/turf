@@ -1,20 +1,4 @@
-var average = require('turf-average');
-var sum = require('turf-sum');
-var median = require('turf-median');
-var min = require('turf-min');
-var max = require('turf-max');
-var deviation = require('turf-deviation');
-var variance = require('turf-variance');
-var count = require('turf-count');
-var operations = {};
-operations.average = average;
-operations.sum = sum;
-operations.median = median;
-operations.min = min;
-operations.max = max;
-operations.deviation = deviation;
-operations.variance = variance;
-operations.count = count;
+var inside = require('turf-inside');
 
 /**
 * Calculates a series of aggregations for a set of {@link Point|points} within a set of {@link Polygon|polygons}. Sum, average, count, min, max, and deviation are supported.
@@ -157,40 +141,27 @@ operations.count = count;
 * ];
 *
 * var aggregated = turf.aggregate(
-*   polygons, points, aggregations);
+*   polygons, points, statsProperty);
 *
 * var result = turf.featurecollection(
 *   points.features.concat(aggregated.features));
 *
 * //=result
 */
+module.exports = function (polyFC, ptFC, inProperty, outProperty) {
+    polyFC.features.forEach(function (poly) {
+        var values = ptFC.features.filter(function (pt) {
+            return inside(pt, poly);
+        }).map(function (pt) {
+            return pt.properties[inProperty];
+        });
 
-module.exports = function (polygons, points, aggregations) {
-    for (var i = 0, len = aggregations.length; i < len; i++) {
-        var agg = aggregations[i],
-            operation = agg.aggregation;
-
-        if (isAggregationOperation(operation)) {
-            if (operation === 'count') {
-                polygons = operations[operation](polygons, points, agg.outField);
-            } else {
-                polygons = operations[operation](polygons, points, agg.inField, agg.outField);
-            }
-        } else {
-            throw new Error('"' + operation + '" is not a recognized aggregation operation.');
+        if (!poly.properties) {
+            poly.properties = {};
         }
-    }
 
-    return polygons;
+        poly.properties[outProperty] = values;
+    });
+
+    return polyFC;
 };
-
-function isAggregationOperation(operation) {
-    return operation === 'average' ||
-    operation === 'sum' ||
-    operation === 'median' ||
-    operation === 'min' ||
-    operation === 'max' ||
-    operation === 'deviation' ||
-    operation === 'variance' ||
-    operation === 'count';
-}

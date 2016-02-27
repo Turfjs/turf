@@ -1,7 +1,7 @@
 {
-  "name": "turf-sum",
-  "version": "1.0.1",
-  "description": "turf sum module",
+  "name": "turf-aggregate",
+  "version": "1.0.3",
+  "description": "turf aggregate module",
   "main": "index.js",
   "scripts": {
     "test": "tape test.js",
@@ -9,20 +9,22 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/Turfjs/turf-sum.git"
+    "url": "https://github.com/Turfjs/turf-aggregate.git"
   },
   "keywords": [
     "turf",
-    "sum",
-    "stats",
-    "geojson"
+    "aggregate",
+    "points",
+    "geojson",
+    "polygons",
+    "stats"
   ],
   "author": "morganherlocker",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/Turfjs/turf-sum/issues"
+    "url": "https://github.com/Turfjs/turf-aggregate/issues"
   },
-  "homepage": "https://github.com/Turfjs/turf-sum",
+  "homepage": "https://github.com/Turfjs/turf-aggregate",
   "devDependencies": {
     "benchmark": "^1.0.0",
     "tape": "^3.5.0",
@@ -31,6 +33,6 @@
     "turf-helpers": "^1.0.0"
   },
   "dependencies": {
-    "turf-inside": "^1.1.3"
+    "turf-inside": "^1.1.4"
   }
 }
