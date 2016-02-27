@@ -1,6 +1,5 @@
 var distance = require('turf-distance');
 var point = require('turf-helpers').point;
-var linestring = require('turf-helpers').lineString;
 var bearing = require('turf-bearing');
 var destination = require('turf-destination');
 

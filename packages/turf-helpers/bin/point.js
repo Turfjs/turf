@@ -6,8 +6,7 @@ var x, y;
 
 if (argv.h || argv.help) {
     docs();
-}
-else {
+} else {
     if (argv.x && argv.y) {
         x = parseFloat(process.argv[process.argv.indexOf('-x') + 1]);
         y = parseFloat(process.argv[process.argv.indexOf('-y') + 1]);

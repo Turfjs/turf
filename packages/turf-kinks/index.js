@@ -52,14 +52,14 @@ module.exports = function (polyIn) {
                 for (var k = 0; k < ring2.length - 1; k++) {
           // don't check adjacent sides of a given ring, since of course they intersect in a vertex.
                     if (ring1 === ring2 && (Math.abs(i - k) === 1 || Math.abs(i - k) === ring1.length - 2)) {
-                      continue;
-                  }
+                        continue;
+                    }
 
                     var intersection = lineIntersects(ring1[i][0], ring1[i][1], ring1[i + 1][0], ring1[i + 1][1],
             ring2[k][0], ring2[k][1], ring2[k + 1][0], ring2[k + 1][1]);
                     if (intersection) {
-                      results.intersections.features.push(point([intersection[0], intersection[1]]));
-                  }
+                        results.intersections.features.push(point([intersection[0], intersection[1]]));
+                    }
                 }
             }
         });

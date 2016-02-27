@@ -28,10 +28,10 @@ module.exports = function (_) {
   // ensure that we don't modify features in-place and changes to the
   // output do not change the previous feature, including changes to nested
   // properties.
-  var input = JSON.parse(JSON.stringify(_));
+    var input = JSON.parse(JSON.stringify(_));
 
-  coordEach(input, function (coord) {
-    coord.reverse();
-  });
-  return input;
+    coordEach(input, function (coord) {
+        coord.reverse();
+    });
+    return input;
 };

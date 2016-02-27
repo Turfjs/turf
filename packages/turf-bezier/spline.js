@@ -1,3 +1,5 @@
+/* eslint-disable */
+
  /**
    * BezierSpline
    * https://github.com/leszekr/bezier-spline-js
@@ -49,7 +51,11 @@ var Spline = function (options) {
     for (var i = 0; i < this.length - 1; i++) {
         var p1 = this.points[i];
         var p2 = this.points[i + 1];
-        this.centers.push({x:(p1.x + p2.x) / 2, y:(p1.y + p2.y) / 2, z:(p1.z + p2.z) / 2});
+        this.centers.push({
+            x: (p1.x + p2.x) / 2,
+            y: (p1.y + p2.y) / 2,
+            z: (p1.z + p2.z) / 2
+        });
     }
     this.controls.push([this.points[0], this.points[0]]);
     for (var i = 0; i < this.centers.length - 1; i++) {
@@ -59,13 +65,13 @@ var Spline = function (options) {
         var dy = this.points[i + 1].y - (this.centers[i].y + this.centers[i + 1].y) / 2;
         var dz = this.points[i + 1].z - (this.centers[i].y + this.centers[i + 1].z) / 2;
         this.controls.push([{
-            x:(1.0 - this.sharpness) * this.points[i + 1].x + this.sharpness * (this.centers[i].x + dx),
-            y:(1.0 - this.sharpness) * this.points[i + 1].y + this.sharpness * (this.centers[i].y + dy),
-            z:(1.0 - this.sharpness) * this.points[i + 1].z + this.sharpness * (this.centers[i].z + dz)},
+            x: (1.0 - this.sharpness) * this.points[i + 1].x + this.sharpness * (this.centers[i].x + dx),
+            y: (1.0 - this.sharpness) * this.points[i + 1].y + this.sharpness * (this.centers[i].y + dy),
+            z: (1.0 - this.sharpness) * this.points[i + 1].z + this.sharpness * (this.centers[i].z + dz)},
             {
-                x:(1.0 - this.sharpness) * this.points[i + 1].x + this.sharpness * (this.centers[i + 1].x + dx),
-                y:(1.0 - this.sharpness) * this.points[i + 1].y + this.sharpness * (this.centers[i + 1].y + dy),
-                z:(1.0 - this.sharpness) * this.points[i + 1].z + this.sharpness * (this.centers[i + 1].z + dz)}]);
+                x: (1.0 - this.sharpness) * this.points[i + 1].x + this.sharpness * (this.centers[i + 1].x + dx),
+                y: (1.0 - this.sharpness) * this.points[i + 1].y + this.sharpness * (this.centers[i + 1].y + dy),
+                z: (1.0 - this.sharpness) * this.points[i + 1].z + this.sharpness * (this.centers[i + 1].z + dz)}]);
     }
     this.controls.push([this.points[this.length - 1], this.points[this.length - 1]]);
     this.steps = this.cacheSteps(this.stepLength);

@@ -35,63 +35,63 @@ var Conrec = require('./conrec');
  * //=isolined
  */
 module.exports = function (points, z, resolution, breaks) {
-  var tinResult = tin(points, z);
-  var extentBBox = extent(points);
-  var squareBBox = square(extentBBox);
-  var gridResult = grid(squareBBox, resolution);
-  var data = [];
+    var tinResult = tin(points, z);
+    var extentBBox = extent(points);
+    var squareBBox = square(extentBBox);
+    var gridResult = grid(squareBBox, resolution);
+    var data = [];
 
-  for (var i = 0; i < gridResult.features.length; i++) {
-    var pt = gridResult.features[i];
-    for (var j = 0; j < tinResult.features.length; j++) {
-      var triangle = tinResult.features[j];
-      if (inside(pt, triangle)) {
-        pt.properties = {};
-        pt.properties[z] = planepoint(pt, triangle);
-      }
+    for (var i = 0; i < gridResult.features.length; i++) {
+        var pt = gridResult.features[i];
+        for (var j = 0; j < tinResult.features.length; j++) {
+            var triangle = tinResult.features[j];
+            if (inside(pt, triangle)) {
+                pt.properties = {};
+                pt.properties[z] = planepoint(pt, triangle);
+            }
+        }
     }
-  }
 
-  var depth = Math.sqrt(gridResult.features.length);
-  for (var x = 0; x < depth; x++) {
-    var xGroup = gridResult.features.slice(x * depth, (x + 1) * depth);
-    var xFlat = [];
+    var depth = Math.sqrt(gridResult.features.length);
+    for (var x = 0; x < depth; x++) {
+        var xGroup = gridResult.features.slice(x * depth, (x + 1) * depth);
+        var xFlat = [];
 
-    for (var g = 0; g < xGroup.length; g++) {
-      if (xGroup[g].properties) {
-        xFlat.push(xGroup[g].properties[z]);
-      } else {
-        xFlat.push(0);
-      }
+        for (var g = 0; g < xGroup.length; g++) {
+            if (xGroup[g].properties) {
+                xFlat.push(xGroup[g].properties[z]);
+            } else {
+                xFlat.push(0);
+            }
+        }
+        data.push(xFlat);
     }
-    data.push(xFlat);
-  }
-  var interval = (squareBBox[2] - squareBBox[0]) / depth;
-  var xCoordinates = [];
-  var yCoordinates = [];
-  for (var d = 0; d < depth; d++) {
-    xCoordinates.push(d * interval + squareBBox[0]);
-    yCoordinates.push(d * interval + squareBBox[1]);
-  }
-
-  var c = new Conrec();
-  c.contour(data, 0, resolution, 0, resolution, xCoordinates, yCoordinates, breaks.length, breaks);
-  var contourList = c.contourList();
-
-  var fc = featurecollection([]);
-  contourList.forEach(function (c) {
-    if (c.length > 2) {
-      var polyCoordinates = [];
-      c.forEach(function (coord) {
-        polyCoordinates.push([coord.x, coord.y]);
-      });
-      var poly = linestring(polyCoordinates);
-      poly.properties = {};
-      poly.properties[z] = c.level;
-
-      fc.features.push(poly);
+    var interval = (squareBBox[2] - squareBBox[0]) / depth;
+    var xCoordinates = [];
+    var yCoordinates = [];
+    for (var d = 0; d < depth; d++) {
+        xCoordinates.push(d * interval + squareBBox[0]);
+        yCoordinates.push(d * interval + squareBBox[1]);
     }
-  });
 
-  return fc;
+    var c = new Conrec();
+    c.contour(data, 0, resolution, 0, resolution, xCoordinates, yCoordinates, breaks.length, breaks);
+    var contourList = c.contourList();
+
+    var fc = featurecollection([]);
+    contourList.forEach(function (c) {
+        if (c.length > 2) {
+            var polyCoordinates = [];
+            c.forEach(function (coord) {
+                polyCoordinates.push([coord.x, coord.y]);
+            });
+            var poly = linestring(polyCoordinates);
+            poly.properties = {};
+            poly.properties[z] = c.level;
+
+            fc.features.push(poly);
+        }
+    });
+
+    return fc;
 };

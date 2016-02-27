@@ -31,18 +31,18 @@ module.exports = function (bbox, cell, units) {
     var xi = 0;
     var currentX = bbox[0];
     while (currentX <= bbox[2]) {
-        var yi = 0;
+        var yi = 0, cell1, cell2;
         var currentY = bbox[1];
         while (currentY <= bbox[3]) {
             if (xi % 2 === 0 && yi % 2 === 0) {
-                var cell1 = polygon([[
+                cell1 = polygon([[
             [currentX, currentY],
             [currentX, currentY + cellHeight],
             [currentX + cellWidth, currentY],
             [currentX, currentY]
                 ]]);
                 fc.features.push(cell1);
-                var cell2 = polygon([[
+                cell2 = polygon([[
             [currentX, currentY + cellHeight],
             [currentX + cellWidth, currentY + cellHeight],
             [currentX + cellWidth, currentY],
@@ -50,51 +50,51 @@ module.exports = function (bbox, cell, units) {
                 ]]);
                 fc.features.push(cell2);
             } else if (xi % 2 === 0 && yi % 2 === 1) {
-                var cell1 = polygon([[
+                cell1 = polygon([[
             [currentX, currentY],
             [currentX + cellWidth, currentY + cellHeight],
             [currentX + cellWidth, currentY],
             [currentX, currentY]
-              ]]);
+                ]]);
                 fc.features.push(cell1);
-                var cell2 = polygon([[
+                cell2 = polygon([[
             [currentX, currentY],
             [currentX, currentY + cellHeight],
             [currentX + cellWidth, currentY + cellHeight],
             [currentX, currentY]
-              ]]);
+                ]]);
                 fc.features.push(cell2);
             } else if (yi % 2 === 0 && xi % 2 === 1) {
-              var cell1 = polygon([[
+                cell1 = polygon([[
             [currentX, currentY],
             [currentX, currentY + cellHeight],
             [currentX + cellWidth, currentY + cellHeight],
             [currentX, currentY]
-            ]]);
-              fc.features.push(cell1);
-              var cell2 = polygon([[
+                ]]);
+                fc.features.push(cell1);
+                cell2 = polygon([[
             [currentX, currentY],
             [currentX + cellWidth, currentY + cellHeight],
             [currentX + cellWidth, currentY],
             [currentX, currentY]
-            ]]);
-              fc.features.push(cell2);
-          } else if (yi % 2 === 1 && xi % 2 === 1) {
-            var cell1 = polygon([[
+                ]]);
+                fc.features.push(cell2);
+            } else if (yi % 2 === 1 && xi % 2 === 1) {
+                cell1 = polygon([[
             [currentX, currentY],
             [currentX, currentY + cellHeight],
             [currentX + cellWidth, currentY],
             [currentX, currentY]
-          ]]);
-            fc.features.push(cell1);
-            var cell2 = polygon([[
+                ]]);
+                fc.features.push(cell1);
+                cell2 = polygon([[
             [currentX, currentY + cellHeight],
             [currentX + cellWidth, currentY + cellHeight],
             [currentX + cellWidth, currentY],
             [currentX, currentY + cellHeight]
-          ]]);
-            fc.features.push(cell2);
-        }
+                ]]);
+                fc.features.push(cell2);
+            }
             currentY += cellHeight;
             yi++;
         }

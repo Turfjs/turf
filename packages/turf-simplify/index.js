@@ -1,5 +1,8 @@
 var simplify = require('simplify-js');
 
+// supported GeoJSON geometries, used to check whether to wrap in simpleFeature()
+var supportedTypes = ['LineString', 'MultiLineString', 'Polygon', 'MultiPolygon'];
+
 /**
  * Takes a {@link LineString} or {@link Polygon} and returns a simplified version. Internally uses [simplify-js](http://mourner.github.io/simplify-js/) to perform simplification.
  *
@@ -73,13 +76,13 @@ module.exports = function (feature, tolerance, highQuality) {
     } else if (feature.type === 'GeometryCollection') {
         feature.geometries = feature.geometries.map(function (g) {
             if (supportedTypes.indexOf(g.type) > -1) {
-              simplified = simplifyHelper({
-                  type: 'Feature',
-                  geometry: g
-              }, tolerance, highQuality);
+                simplified = simplifyHelper({
+                    type: 'Feature',
+                    geometry: g
+                }, tolerance, highQuality);
 
-              return simplified; // GeometryCollection shouldn't have properties
-          }
+                return simplified; // GeometryCollection shouldn't have properties
+            }
             return g;
         });
 
@@ -89,8 +92,6 @@ module.exports = function (feature, tolerance, highQuality) {
     }
 };
 
-// supported GeoJSON geometries, used to check whether to wrap in simpleFeature()
-var supportedTypes = ['LineString', 'MultiLineString', 'Polygon', 'MultiPolygon'];
 
 function simplifyHelper(feature, tolerance, highQuality) {
     if (feature.geometry.type === 'LineString') {
@@ -120,13 +121,13 @@ function simplifyHelper(feature, tolerance, highQuality) {
         return poly;
     } else if (feature.geometry.type === 'MultiPolygon') {
         var multipoly = {
-          type: 'MultiPolygon',
-          coordinates: []
-      };
+            type: 'MultiPolygon',
+            coordinates: []
+        };
     // simplify each set of rings in the MultiPolygon
         feature.geometry.coordinates.forEach(function (rings) {
-          multipoly.coordinates.push(simplifyPolygon(rings, tolerance, highQuality));
-      });
+            multipoly.coordinates.push(simplifyPolygon(rings, tolerance, highQuality));
+        });
 
         return multipoly;
     } else {

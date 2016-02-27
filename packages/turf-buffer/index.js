@@ -62,7 +62,7 @@ module.exports = function (feature, radius, units) {
   else if (buffered.features.length === 1) return buffered.features[0];
 };
 
-var bufferOp = function (feature, radius) {
+function bufferOp(feature, radius) {
     var reader = new jsts.io.GeoJSONReader();
     var geom = reader.read(JSON.stringify(feature.geometry));
     var buffered = geom.buffer(radius);
@@ -74,4 +74,4 @@ var bufferOp = function (feature, radius) {
         geometry: buffered,
         properties: {}
     };
-};
+}
