@@ -32,53 +32,53 @@
  * //=combined
  */
 
-module.exports = function(fc) {
-  var type = fc.features[0].geometry.type;
-  var geometries = fc.features.map(function(f) {
-    if (f.geometry.type === 'Point' ||
+module.exports = function (fc) {
+    var type = fc.features[0].geometry.type;
+    var geometries = fc.features.map(function (f) {
+        if (f.geometry.type === 'Point' ||
       f.geometry.type === 'LineString' ||
       f.geometry.type === 'Polygon') return [f.geometry.coordinates];
-    return f.geometry.coordinates;
-  });
+        return f.geometry.coordinates;
+    });
 
-  switch (type) {
+    switch (type) {
     case 'Point':
     case 'MultiPoint':
-      return {
-        type: 'Feature',
-        properties: {},
-        geometry: {
-          type: 'MultiPoint',
-          coordinates: pluckCoords(geometries)
-        }
-      };
+        return {
+            type: 'Feature',
+            properties: {},
+            geometry: {
+                type: 'MultiPoint',
+                coordinates: pluckCoords(geometries)
+            }
+        };
     case 'LineString':
     case 'MultiLineString':
-      return {
-        type: 'Feature',
-        properties: {},
-        geometry: {
-          type: 'MultiLineString',
-          coordinates: pluckCoords(geometries)
-        }
-      };
+        return {
+            type: 'Feature',
+            properties: {},
+            geometry: {
+                type: 'MultiLineString',
+                coordinates: pluckCoords(geometries)
+            }
+        };
     case 'Polygon':
     case 'MultiPolygon':
-      return {
-        type: 'Feature',
-        properties: {},
-        geometry: {
-          type: 'MultiPolygon',
-          coordinates: pluckCoords(geometries)
-        }
-      };
+        return {
+            type: 'Feature',
+            properties: {},
+            geometry: {
+                type: 'MultiPolygon',
+                coordinates: pluckCoords(geometries)
+            }
+        };
     default:
-      return fc;
-  }
+        return fc;
+    }
 };
 
 function pluckCoords(multi) {
-  return multi.reduce(function(memo, coords) {
-    return memo.concat(coords);
-  }, []);
+    return multi.reduce(function (memo, coords) {
+        return memo.concat(coords);
+    }, []);
 }

@@ -112,19 +112,19 @@ var inside = require('turf-inside');
  * //=result
  */
 
-module.exports = function(polyFC, ptFC, inField, outField) {
-  polyFC.features.forEach(function(poly) {
-    if(!poly.properties) {
-      poly.properties = {};
-    }
-    var values = [];
-    ptFC.features.forEach(function(pt) {
-      if (inside(pt, poly)) {
-        values.push(pt.properties[inField]);
-      }
+module.exports = function (polyFC, ptFC, inField, outField) {
+    polyFC.features.forEach(function (poly) {
+        if (!poly.properties) {
+            poly.properties = {};
+        }
+        var values = [];
+        ptFC.features.forEach(function (pt) {
+            if (inside(pt, poly)) {
+                values.push(pt.properties[inField]);
+            }
+        });
+        poly.properties[outField] = ss.standard_deviation(values);
     });
-    poly.properties[outField] = ss.standard_deviation(values);
-  });
 
-  return polyFC;
+    return polyFC;
 };

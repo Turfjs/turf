@@ -35,22 +35,22 @@ var inside = require('turf-inside');
  *
  * //=tagged
  */
-module.exports = function(points, polygons, field, outField) {
-  // prevent mutations
-  points = JSON.parse(JSON.stringify(points));
-  polygons = JSON.parse(JSON.stringify(polygons));
-  points.features.forEach(function(pt) {
-    if (!pt.properties) {
-      pt.properties = {};
-    }
-    polygons.features.forEach(function(poly) {
-      if (pt.properties[outField] === undefined) {
-        var isInside = inside(pt, poly);
-        if (isInside) {
-          pt.properties[outField] = poly.properties[field];
+module.exports = function (points, polygons, field, outField) {
+    // prevent mutations
+    points = JSON.parse(JSON.stringify(points));
+    polygons = JSON.parse(JSON.stringify(polygons));
+    points.features.forEach(function (pt) {
+        if (!pt.properties) {
+            pt.properties = {};
         }
-      }
+        polygons.features.forEach(function (poly) {
+            if (pt.properties[outField] === undefined) {
+                var isInside = inside(pt, poly);
+                if (isInside) {
+                    pt.properties[outField] = poly.properties[field];
+                }
+            }
+        });
     });
-  });
-  return points;
+    return points;
 };

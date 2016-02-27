@@ -33,21 +33,21 @@ var point = require('turf-helpers').point;
  */
 
 module.exports = function (line, units) {
-  var coords;
-  if(line.type === 'Feature') coords = line.geometry.coordinates;
-  else if(line.type === 'LineString') coords = line.coordinates;
-  else throw new Error('input must be a LineString Feature or Geometry');
+    var coords;
+    if (line.type === 'Feature') coords = line.geometry.coordinates;
+    else if (line.type === 'LineString') coords = line.coordinates;
+    else throw new Error('input must be a LineString Feature or Geometry');
 
-  var travelled = 0;
-  var prevCoords = point(coords[0]);
-  var curCoords = point(coords[0]);
-  var temp;
-  for(var i = 1; i < coords.length; i++) {
-    curCoords.geometry.coordinates = coords[i];
-    travelled += distance(prevCoords, curCoords, units);
-    temp = prevCoords;
-    prevCoords = curCoords;
-    curCoords = temp;
-  }
-  return travelled;
+    var travelled = 0;
+    var prevCoords = point(coords[0]);
+    var curCoords = point(coords[0]);
+    var temp;
+    for (var i = 1; i < coords.length; i++) {
+        curCoords.geometry.coordinates = coords[i];
+        travelled += distance(prevCoords, curCoords, units);
+        temp = prevCoords;
+        prevCoords = curCoords;
+        curCoords = temp;
+    }
+    return travelled;
 };

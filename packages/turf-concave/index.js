@@ -84,23 +84,23 @@ t.point = require('turf-helpers').point;
  */
 
 
-module.exports = function(points, maxEdge, units) {
-  if (typeof maxEdge !== 'number') throw new Error('maxEdge parameter is required');
-  if (typeof units !== 'string') throw new Error('units parameter is required');
+module.exports = function (points, maxEdge, units) {
+    if (typeof maxEdge !== 'number') throw new Error('maxEdge parameter is required');
+    if (typeof units !== 'string') throw new Error('units parameter is required');
 
-  var tinPolys = t.tin(points);
-  var filteredPolys = tinPolys.features.filter(filterTriangles);
-  tinPolys.features = filteredPolys;
+    var tinPolys = t.tin(points);
+    var filteredPolys = tinPolys.features.filter(filterTriangles);
+    tinPolys.features = filteredPolys;
 
-  function filterTriangles(triangle) {
-    var pt1 = t.point(triangle.geometry.coordinates[0][0]);
-    var pt2 = t.point(triangle.geometry.coordinates[0][1]);
-    var pt3 = t.point(triangle.geometry.coordinates[0][2]);
-    var dist1 = t.distance(pt1, pt2, units);
-    var dist2 = t.distance(pt2, pt3, units);
-    var dist3 = t.distance(pt1, pt3, units);
-    return (dist1 <= maxEdge && dist2 <= maxEdge && dist3 <= maxEdge);
-  }
+    function filterTriangles(triangle) {
+        var pt1 = t.point(triangle.geometry.coordinates[0][0]);
+        var pt2 = t.point(triangle.geometry.coordinates[0][1]);
+        var pt3 = t.point(triangle.geometry.coordinates[0][2]);
+        var dist1 = t.distance(pt1, pt2, units);
+        var dist2 = t.distance(pt2, pt3, units);
+        var dist3 = t.distance(pt1, pt3, units);
+        return (dist1 <= maxEdge && dist2 <= maxEdge && dist3 <= maxEdge);
+    }
 
-  return t.merge(tinPolys);
+    return t.merge(tinPolys);
 };

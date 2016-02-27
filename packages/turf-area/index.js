@@ -46,7 +46,7 @@ var geometryArea = require('geojson-area').geometry;
  *
  * //=area
  */
-module.exports = function(_) {
+module.exports = function (_) {
     if (_.type === 'FeatureCollection') {
         for (var i = 0, sum = 0; i < _.features.length; i++) {
             if (_.features[i].geometry) {

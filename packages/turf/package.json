@@ -7,22 +7,7 @@
     "test": "echo 1",
     "build": "browserify index.js -s turf > turf.js && uglifyjs turf.js -c -m > turf.min.js;",
     "doc": "jsdoc index.js ./node_modules/turf-*/index.js",
-    "lint": "eslint --no-ignore ./node_modules/turf-*/index.js",
     "size": "browserify index.js --full-paths -s turf | uglifyjs -c -m | discify | hcat"
-  },
-  "eslintConfig": {
-    "rules": {
-      "quotes": 0,
-      "curly": 0,
-      "camelcase": 0,
-      "space-infix-ops": 0,
-      "comma-spacing": 0,
-      "no-use-before-define": 0,
-      "strict": 0
-    },
-    "env": {
-      "node": true
-    }
   },
   "repository": {
     "type": "git",
@@ -120,7 +105,6 @@
   "devDependencies": {
     "browserify": "~9.0.3",
     "disc": "^1.3.2",
-    "eslint": "^0.15.0",
     "hcat": "0.0.5",
     "jsdoc": "^3.3.0-beta1",
     "lerna": "https://github.com/kittens/lerna/archive/master.tar.gz",

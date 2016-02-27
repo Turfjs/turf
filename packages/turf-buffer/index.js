@@ -33,45 +33,45 @@ var normalize = require('geojson-normalize');
 * //=result
 */
 
-module.exports = function(feature, radius, units) {
+module.exports = function (feature, radius, units) {
 
-  switch (units) {
+    switch (units) {
     case 'miles':
-      radius = radius / 69.047;
-    break;
+        radius = radius / 69.047;
+        break;
     case 'feet':
-      radius = radius / 364568.0;
-    break;
+        radius = radius / 364568.0;
+        break;
     case 'kilometers':
-      radius = radius / 111.12;
-    break;
+        radius = radius / 111.12;
+        break;
     case 'meters':
     case 'metres':
-      radius = radius / 111120.0;
-    break;
+        radius = radius / 111120.0;
+        break;
     case 'degrees':
-    break;
-  }
+        break;
+    }
 
-  var fc = normalize(feature);
-  var buffered = normalize(featurecollection(fc.features.map(function(f) {
-    return bufferOp(f, radius);
-  })));
+    var fc = normalize(feature);
+    var buffered = normalize(featurecollection(fc.features.map(function (f) {
+        return bufferOp(f, radius);
+    })));
 
-  if(buffered.features.length > 1) return buffered;
-  else if(buffered.features.length === 1) return buffered.features[0];
+    if (buffered.features.length > 1) return buffered;
+    else if (buffered.features.length === 1) return buffered.features[0];
 };
 
-var bufferOp = function(feature, radius) {
-  var reader = new jsts.io.GeoJSONReader();
-  var geom = reader.read(JSON.stringify(feature.geometry));
-  var buffered = geom.buffer(radius);
-  var parser = new jsts.io.GeoJSONParser();
-  buffered = parser.write(buffered);
+function bufferOp(feature, radius) {
+    var reader = new jsts.io.GeoJSONReader();
+    var geom = reader.read(JSON.stringify(feature.geometry));
+    var buffered = geom.buffer(radius);
+    var parser = new jsts.io.GeoJSONParser();
+    buffered = parser.write(buffered);
 
-  return {
-    type: 'Feature',
-    geometry: buffered,
-    properties: {}
-  };
-};
+    return {
+        type: 'Feature',
+        geometry: buffered,
+        properties: {}
+    };
+}

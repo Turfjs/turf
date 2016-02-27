@@ -57,17 +57,17 @@ var jsts = require('jsts');
  *
  * //=union
  */
-module.exports = function(poly1, poly2) {
-  var reader = new jsts.io.GeoJSONReader();
-  var a = reader.read(JSON.stringify(poly1.geometry));
-  var b = reader.read(JSON.stringify(poly2.geometry));
-  var union = a.union(b);
-  var parser = new jsts.io.GeoJSONParser();
+module.exports = function (poly1, poly2) {
+    var reader = new jsts.io.GeoJSONReader();
+    var a = reader.read(JSON.stringify(poly1.geometry));
+    var b = reader.read(JSON.stringify(poly2.geometry));
+    var union = a.union(b);
+    var parser = new jsts.io.GeoJSONParser();
 
-  union = parser.write(union);
-  return {
-    type: 'Feature',
-    geometry: union,
-    properties: poly1.properties
-  };
+    union = parser.write(union);
+    return {
+        type: 'Feature',
+        geometry: union,
+        properties: poly1.properties
+    };
 };

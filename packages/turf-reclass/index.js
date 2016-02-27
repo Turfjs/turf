@@ -76,17 +76,17 @@ var featurecollection = require('turf-helpers').featureCollection;
 * //=reclassed
 *
 */
-module.exports = function(fc, inField, outField, translations) {
-  var reclassed = featurecollection([]);
+module.exports = function (fc, inField, outField, translations) {
+    var reclassed = featurecollection([]);
 
-  fc.features.forEach(function(feature) {
-    for(var i = 0; i < translations.length; i++) {
-      if(feature.properties[inField] >= translations[i][0] && feature.properties[inField] <= translations[i][1]) {
-        feature.properties[outField] = translations[i][2];
-      }
-    }
-    reclassed.features.push(feature);
-  });
+    fc.features.forEach(function (feature) {
+        for (var i = 0; i < translations.length; i++) {
+            if (feature.properties[inField] >= translations[i][0] && feature.properties[inField] <= translations[i][1]) {
+                feature.properties[outField] = translations[i][2];
+            }
+        }
+        reclassed.features.push(feature);
+    });
 
-  return reclassed;
+    return reclassed;
 };

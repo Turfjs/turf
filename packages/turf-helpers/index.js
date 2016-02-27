@@ -12,17 +12,17 @@
  *
  * //=pt1
  */
-module.exports.point = function(coordinates, properties) {
-  if (!Array.isArray(coordinates)) throw new Error('Coordinates must be an array');
-  if (coordinates.length < 2) throw new Error('Coordinates must be at least 2 numbers long');
-  return {
-    type: "Feature",
-    geometry: {
-      type: "Point",
-      coordinates: coordinates
-    },
-    properties: properties || {}
-  };
+module.exports.point = function (coordinates, properties) {
+    if (!Array.isArray(coordinates)) throw new Error('Coordinates must be an array');
+    if (coordinates.length < 2) throw new Error('Coordinates must be at least 2 numbers long');
+    return {
+        type: 'Feature',
+        geometry: {
+            type: 'Point',
+            coordinates: coordinates
+        },
+        properties: properties || {}
+    };
 };
 
 /**
@@ -47,36 +47,36 @@ module.exports.point = function(coordinates, properties) {
  *
  * //=polygon
  */
-module.exports.polygon = function(coordinates, properties) {
+module.exports.polygon = function (coordinates, properties) {
 
-  if (coordinates === null) throw new Error('No coordinates passed');
+    if (coordinates === null) throw new Error('No coordinates passed');
 
-  for (var i = 0; i < coordinates.length; i++) {
-    var ring = coordinates[i];
-    for (var j = 0; j < ring[ring.length - 1].length; j++) {
-      if (ring.length < 4) {
-        throw new Error('Each LinearRing of a Polygon must have 4 or more Positions.');
-      }
-      if (ring[ring.length - 1][j] !== ring[0][j]) {
-        throw new Error('First and last Position are not equivalent.');
-      }
+    for (var i = 0; i < coordinates.length; i++) {
+        var ring = coordinates[i];
+        for (var j = 0; j < ring[ring.length - 1].length; j++) {
+            if (ring.length < 4) {
+                throw new Error('Each LinearRing of a Polygon must have 4 or more Positions.');
+            }
+            if (ring[ring.length - 1][j] !== ring[0][j]) {
+                throw new Error('First and last Position are not equivalent.');
+            }
+        }
     }
-  }
 
-  var polygon = {
-    "type": "Feature",
-    "geometry": {
-      "type": "Polygon",
-      "coordinates": coordinates
-    },
-    "properties": properties
-  };
+    var polygon = {
+        'type': 'Feature',
+        'geometry': {
+            'type': 'Polygon',
+            'coordinates': coordinates
+        },
+        'properties': properties
+    };
 
-  if (!polygon.properties) {
-    polygon.properties = {};
-  }
+    if (!polygon.properties) {
+        polygon.properties = {};
+    }
 
-  return polygon;
+    return polygon;
 };
 
 /**
@@ -107,18 +107,18 @@ module.exports.polygon = function(coordinates, properties) {
  *
  * //=linestring2
  */
-module.exports.lineString = function(coordinates, properties) {
-  if (!coordinates) {
-      throw new Error('No coordinates passed');
-  }
-  return {
-    "type": "Feature",
-    "geometry": {
-      "type": "LineString",
-      "coordinates": coordinates
-    },
-    "properties": properties || {}
-  };
+module.exports.lineString = function (coordinates, properties) {
+    if (!coordinates) {
+        throw new Error('No coordinates passed');
+    }
+    return {
+        'type': 'Feature',
+        'geometry': {
+            'type': 'LineString',
+            'coordinates': coordinates
+        },
+        'properties': properties || {}
+    };
 };
 
 /**
@@ -139,11 +139,11 @@ module.exports.lineString = function(coordinates, properties) {
  *
  * //=fc
  */
-module.exports.featureCollection = function(features) {
-  return {
-    type: "FeatureCollection",
-    features: features
-  };
+module.exports.featureCollection = function (features) {
+    return {
+        type: 'FeatureCollection',
+        features: features
+    };
 };
 
 /**
@@ -162,18 +162,18 @@ module.exports.featureCollection = function(features) {
  * //=multiLine
  *
  */
-module.exports.multiLineString = function(coordinates, properties) {
-  if (!coordinates) {
-    throw new Error('No coordinates passed');
-  }
-  return {
-    "type": "Feature",
-    "geometry": {
-      "type": "MultiLineString",
-      "coordinates": coordinates
-    },
-    "properties": properties || {}
-  };
+module.exports.multiLineString = function (coordinates, properties) {
+    if (!coordinates) {
+        throw new Error('No coordinates passed');
+    }
+    return {
+        'type': 'Feature',
+        'geometry': {
+            'type': 'MultiLineString',
+            'coordinates': coordinates
+        },
+        'properties': properties || {}
+    };
 };
 
 /**
@@ -192,16 +192,16 @@ module.exports.multiLineString = function(coordinates, properties) {
  * //=multiPt
  *
  */
-module.exports.multiPoint = function(coordinates, properties) {
-  if (!coordinates) {
-    throw new Error('No coordinates passed');
-  }
-  return {
-    "type": "Feature",
-    "geometry": {
-      "type": "MultiPoint",
-      "coordinates": coordinates
-    },
-    "properties": properties || {}
-  };
+module.exports.multiPoint = function (coordinates, properties) {
+    if (!coordinates) {
+        throw new Error('No coordinates passed');
+    }
+    return {
+        'type': 'Feature',
+        'geometry': {
+            'type': 'MultiPoint',
+            'coordinates': coordinates
+        },
+        'properties': properties || {}
+    };
 };

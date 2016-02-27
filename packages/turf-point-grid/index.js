@@ -20,22 +20,22 @@ var distance = require('turf-distance');
  * //=grid
  */
 module.exports = function (bbox, cell, units) {
-  var fc = featurecollection([]);
-  var xFraction = cell / (distance(point([bbox[0], bbox[1]]), point([bbox[2], bbox[1]]), units));
-  var cellWidth = xFraction * (bbox[2] - bbox[0]);
-  var yFraction = cell / (distance(point([bbox[0], bbox[1]]), point([bbox[0], bbox[3]]), units));
-  var cellHeight = yFraction * (bbox[3] - bbox[1]);
+    var fc = featurecollection([]);
+    var xFraction = cell / (distance(point([bbox[0], bbox[1]]), point([bbox[2], bbox[1]]), units));
+    var cellWidth = xFraction * (bbox[2] - bbox[0]);
+    var yFraction = cell / (distance(point([bbox[0], bbox[1]]), point([bbox[0], bbox[3]]), units));
+    var cellHeight = yFraction * (bbox[3] - bbox[1]);
 
-  var currentX = bbox[0];
-  while (currentX <= bbox[2]) {
-    var currentY = bbox[1];
-    while (currentY <= bbox[3]) {
-      fc.features.push(point([currentX, currentY]));
+    var currentX = bbox[0];
+    while (currentX <= bbox[2]) {
+        var currentY = bbox[1];
+        while (currentY <= bbox[3]) {
+            fc.features.push(point([currentX, currentY]));
 
-      currentY += cellHeight;
+            currentY += cellHeight;
+        }
+        currentX += cellWidth;
     }
-    currentX += cellWidth;
-  }
 
-  return fc;
+    return fc;
 };

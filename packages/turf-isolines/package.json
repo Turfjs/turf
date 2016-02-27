@@ -4,25 +4,8 @@
   "description": "turf isolines module",
   "main": "index.js",
   "scripts": {
-    "lint": "eslint index.js test.js",
-    "pretest": "npm run lint",
     "test": "tape test.js",
     "doc": "dox -r < index.js | doxme --readme > README.md"
-  },
-  "eslintConfig": {
-    "extends": "mourner",
-    "rules": {
-      "strict": [
-        1
-      ],
-      "indent": [
-        2,
-        2,
-        {
-          "SwitchCase": 1
-        }
-      ]
-    }
   },
   "repository": {
     "type": "git",
@@ -46,8 +29,6 @@
     "benchmark": "^1.0.0",
     "dox": "^0.6.1",
     "doxme": "^1.4.3",
-    "eslint": "^1.10.3",
-    "eslint-config-mourner": "^1.0.1",
     "tape": "^3.5.0"
   },
   "dependencies": {
