@@ -100,7 +100,7 @@ function hexagon(center, rx, ry) {
         var y = center[1] + ry * sines[i];
         vertices.push([x, y]);
     }
-  //first and last vertex must be the same
+    //first and last vertex must be the same
     vertices.push(vertices[0]);
     return geometries.polygon([vertices]);
 }

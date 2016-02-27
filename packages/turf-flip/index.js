@@ -25,9 +25,9 @@ var coordEach = require('turf-meta').coordEach;
  * //=saudiArabia
  */
 module.exports = function (_) {
-  // ensure that we don't modify features in-place and changes to the
-  // output do not change the previous feature, including changes to nested
-  // properties.
+    // ensure that we don't modify features in-place and changes to the
+    // output do not change the previous feature, including changes to nested
+    // properties.
     var input = JSON.parse(JSON.stringify(_));
 
     coordEach(input, function (coord) {

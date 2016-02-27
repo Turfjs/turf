@@ -32,7 +32,7 @@ var explode = require('turf-explode');
  * //=result
  */
 module.exports = function (fc) {
-  // normalize
+    // normalize
     if (fc.type !== 'FeatureCollection') {
         if (fc.type !== 'Feature') {
             fc = {
@@ -44,10 +44,10 @@ module.exports = function (fc) {
         fc = featureCollection([fc]);
     }
 
-  //get centroid
+    //get centroid
     var cent = centroid(fc);
 
-  // check to see if centroid is on surface
+    // check to see if centroid is on surface
     var onSurface = false;
     var i = 0;
     while (!onSurface && i < fc.features.length) {

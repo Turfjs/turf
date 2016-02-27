@@ -36,7 +36,7 @@ var inside = require('turf-inside');
  * //=tagged
  */
 module.exports = function (points, polygons, field, outField) {
-  // prevent mutations
+    // prevent mutations
     points = JSON.parse(JSON.stringify(points));
     polygons = JSON.parse(JSON.stringify(polygons));
     points.features.forEach(function (pt) {

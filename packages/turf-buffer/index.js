@@ -59,7 +59,7 @@ module.exports = function (feature, radius, units) {
     })));
 
     if (buffered.features.length > 1) return buffered;
-  else if (buffered.features.length === 1) return buffered.features[0];
+    else if (buffered.features.length === 1) return buffered.features[0];
 };
 
 function bufferOp(feature, radius) {

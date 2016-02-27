@@ -35,8 +35,8 @@ var point = require('turf-helpers').point;
 module.exports = function (line, units) {
     var coords;
     if (line.type === 'Feature') coords = line.geometry.coordinates;
-  else if (line.type === 'LineString') coords = line.coordinates;
-  else throw new Error('input must be a LineString Feature or Geometry');
+    else if (line.type === 'LineString') coords = line.coordinates;
+    else throw new Error('input must be a LineString Feature or Geometry');
 
     var travelled = 0;
     var prevCoords = point(coords[0]);

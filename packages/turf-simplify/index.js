@@ -63,8 +63,8 @@ module.exports = function (feature, tolerance, highQuality) {
         feature.features = feature.features.map(function (f) {
             simplified = simplifyHelper(f, tolerance, highQuality);
 
-      // we create simpleFeature here because it doesn't apply to GeometryCollection
-      // so we can't create it at simplifyHelper()
+            // we create simpleFeature here because it doesn't apply to GeometryCollection
+            // so we can't create it at simplifyHelper()
             if (supportedTypes.indexOf(simplified.type) > -1) {
                 return simpleFeature(simplified, f.properties);
             } else {
@@ -106,7 +106,7 @@ function simplifyHelper(feature, tolerance, highQuality) {
             type: 'MultiLineString',
             coordinates: []
         };
-    // simplify each of the lines in the MultiLineString
+        // simplify each of the lines in the MultiLineString
         feature.geometry.coordinates.forEach(function (lines) {
             multiline.coordinates.push(simplifyLine(lines, tolerance, highQuality));
         });
@@ -124,14 +124,14 @@ function simplifyHelper(feature, tolerance, highQuality) {
             type: 'MultiPolygon',
             coordinates: []
         };
-    // simplify each set of rings in the MultiPolygon
+        // simplify each set of rings in the MultiPolygon
         feature.geometry.coordinates.forEach(function (rings) {
             multipoly.coordinates.push(simplifyPolygon(rings, tolerance, highQuality));
         });
 
         return multipoly;
     } else {
-    // unsupported geometry type supplied
+        // unsupported geometry type supplied
         return feature;
     }
 }
@@ -183,7 +183,7 @@ function simplifyPolygon(coordinates, tolerance, highQuality) {
         var simpleRing = simplify(pts, tolerance, highQuality).map(function (coords) {
             return [coords.x, coords.y];
         });
-    //remove 1 percent of tolerance until enough points to make a triangle
+        //remove 1 percent of tolerance until enough points to make a triangle
         while (!checkValidity(simpleRing)) {
             tolerance -= tolerance * 0.01;
             simpleRing = simplify(pts, tolerance, highQuality).map(function (coords) {

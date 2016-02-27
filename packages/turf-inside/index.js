@@ -66,17 +66,17 @@ module.exports = function (point, polygon) {
     invariant.featureOf(point, 'Point', 'inside');
     var polys = polygon.geometry.coordinates;
     var pt = [point.geometry.coordinates[0], point.geometry.coordinates[1]];
-  // normalize to multipolygon
+    // normalize to multipolygon
     if (polygon.geometry.type === 'Polygon') polys = [polys];
 
     var insidePoly = false;
     var i = 0;
     while (i < polys.length && !insidePoly) {
-    // check if it is in the outer ring first
+        // check if it is in the outer ring first
         if (inRing(pt, polys[i][0])) {
             var inHole = false;
             var k = 1;
-      // check for the point in any of the holes
+            // check for the point in any of the holes
             while (k < polys[i].length && !inHole) {
                 if (inRing(pt, polys[i][k])) {
                     inHole = true;

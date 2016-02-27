@@ -41,7 +41,7 @@ var featurecollection = require('turf-helpers').featureCollection;
  * //=tin
  */
 module.exports = function (points, z) {
-  //break down points
+    //break down points
     return featurecollection(triangulate(points.features.map(function (p) {
         var point = {
             x: p.geometry.coordinates[0],
@@ -77,8 +77,8 @@ function Triangle(a, b, c) {
         G = 2 * (A * (c.y - b.y) - B * (c.x - b.x)),
         minx, miny, dx, dy;
 
-  // If the points of the triangle are collinear, then just find the
-  // extremes and use the midpoint as the center of the circumcircle.
+    // If the points of the triangle are collinear, then just find the
+    // extremes and use the midpoint as the center of the circumcircle.
     if (Math.abs(G) < 0.000001) {
         minx = Math.min(a.x, b.x, c.x);
         miny = Math.min(a.y, b.y, c.y);
@@ -124,7 +124,7 @@ function dedup(edges) {
 }
 
 function triangulate(vertices) {
-  // Bail if there aren't enough vertices to form any triangles.
+    // Bail if there aren't enough vertices to form any triangles.
     if (vertices.length < 3)
         return [];
 
@@ -146,14 +146,14 @@ function triangulate(vertices) {
             ymax = vertices[i].y;
     }
 
-  //Find a supertriangle, which is a triangle that surrounds all the
-  //vertices. This is used like something of a sentinel value to remove
-  //cases in the main algorithm, and is removed before we return any
-  // results.
+    //Find a supertriangle, which is a triangle that surrounds all the
+    //vertices. This is used like something of a sentinel value to remove
+    //cases in the main algorithm, and is removed before we return any
+    // results.
 
-  // Once found, put it in the "open" list. (The "open" list is for
-  // triangles who may still need to be considered; the "closed" list is
-  // for triangles which do not.)
+    // Once found, put it in the "open" list. (The "open" list is for
+    // triangles who may still need to be considered; the "closed" list is
+    // for triangles which do not.)
     var dx = xmax - xmin,
         dy = ymax - ymin,
         dmax = (dx > dy) ? dx : dy,
@@ -183,15 +183,15 @@ function triangulate(vertices) {
     // Incrementally add each vertex to the mesh.
     i = vertices.length;
     while (i--) {
-    // For each open triangle, check to see if the current point is
-    // inside it's circumcircle. If it is, remove the triangle and add
-    // it's edges to an edge list.
+        // For each open triangle, check to see if the current point is
+        // inside it's circumcircle. If it is, remove the triangle and add
+        // it's edges to an edge list.
         edges.length = 0;
         j = open.length;
         while (j--) {
-      // If this point is to the right of this triangle's circumcircle,
-      // then this triangle should never get checked again. Remove it
-      // from the open list, add it to the closed list, and skip.
+            // If this point is to the right of this triangle's circumcircle,
+            // then this triangle should never get checked again. Remove it
+            // from the open list, add it to the closed list, and skip.
             dx = vertices[i].x - open[j].x;
             if (dx > 0 && dx * dx > open[j].r) {
                 closed.push(open[j]);
@@ -199,12 +199,12 @@ function triangulate(vertices) {
                 continue;
             }
 
-      // If not, skip this triangle.
+            // If not, skip this triangle.
             dy = vertices[i].y - open[j].y;
             if (dx * dx + dy * dy > open[j].r)
                 continue;
 
-      // Remove the triangle and add it's edges to the edge list.
+            // Remove the triangle and add it's edges to the edge list.
             edges.push(
         open[j].a, open[j].b,
         open[j].b, open[j].c,
@@ -213,10 +213,10 @@ function triangulate(vertices) {
             open.splice(j, 1);
         }
 
-    // Remove any doubled edges.
+        // Remove any doubled edges.
         dedup(edges);
 
-    // Add a new triangle for each edge.
+        // Add a new triangle for each edge.
         j = edges.length;
         while (j) {
             b = edges[--j];
@@ -225,8 +225,8 @@ function triangulate(vertices) {
         }
     }
 
-  // Copy any remaining open triangles to the closed list, and then
-  // remove any triangles that share a vertex with the supertriangle.
+    // Copy any remaining open triangles to the closed list, and then
+    // remove any triangles that share a vertex with the supertriangle.
     Array.prototype.push.apply(closed, open);
 
     i = closed.length;
