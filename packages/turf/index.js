@@ -20,8 +20,6 @@ module.exports = {
     tag: require('turf-tag'),
     size: require('turf-size'),
     sample: require('turf-sample'),
-    jenks: require('turf-jenks'),
-    quantile: require('turf-quantile'),
     envelope: require('turf-envelope'),
     square: require('turf-square'),
     midpoint: require('turf-midpoint'),
