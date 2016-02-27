@@ -58,21 +58,22 @@ var distance = require('turf-distance');
  *
  * //=result
  */
-module.exports = function(targetPoint, points) {
-  var nearestPoint;
-  points.features.forEach(function(pt) {
-    if(!nearestPoint) {
-      nearestPoint = pt;
-      var dist = distance(targetPoint, pt, 'miles');
-      nearestPoint.properties.distance = dist;
-    } else {
-      var dist = distance(targetPoint, pt, 'miles');
-      if(dist < nearestPoint.properties.distance) {
-        nearestPoint = pt;
-        nearestPoint.properties.distance = dist;
-      }
-    }
-  });
-  delete nearestPoint.properties.distance;
-  return nearestPoint;
+module.exports = function (targetPoint, points) {
+    var nearestPoint;
+    points.features.forEach(function (pt) {
+        var dist;
+        if (!nearestPoint) {
+            nearestPoint = pt;
+            dist = distance(targetPoint, pt, 'miles');
+            nearestPoint.properties.distance = dist;
+        } else {
+            dist = distance(targetPoint, pt, 'miles');
+            if (dist < nearestPoint.properties.distance) {
+                nearestPoint = pt;
+                nearestPoint.properties.distance = dist;
+            }
+        }
+    });
+    delete nearestPoint.properties.distance;
+    return nearestPoint;
 };

@@ -35,10 +35,10 @@ var point = require('turf-helpers').point;
  *
  * //=points
  */
-module.exports = function(layer) {
-  var points = [];
-  each(layer, function(coord) {
-    points.push(point(coord));
-  });
-  return featureCollection(points);
+module.exports = function (layer) {
+    var points = [];
+    each(layer, function (coord) {
+        points.push(point(coord));
+    });
+    return featureCollection(points);
 };

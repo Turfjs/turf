@@ -31,22 +31,22 @@ var random = require('geojson-random');
  *
  * //=polygons
  */
-module.exports = function(type, count, options) {
+module.exports = function (type, count, options) {
     options = options || {};
     count = count || 1;
     switch (type) {
-        case 'point':
-        case 'points':
-        case undefined:
-            return random.point(count, options.bbox);
-        case 'polygon':
-        case 'polygons':
-            return random.polygon(
+    case 'point':
+    case 'points':
+    case undefined:
+        return random.point(count, options.bbox);
+    case 'polygon':
+    case 'polygons':
+        return random.polygon(
                 count,
                 options.num_vertices,
                 options.max_radial_length,
                 options.bbox);
-        default:
-            throw new Error('Unknown type given: valid options are points and polygons');
+    default:
+        throw new Error('Unknown type given: valid options are points and polygons');
     }
 };

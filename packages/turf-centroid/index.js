@@ -35,12 +35,12 @@ var point = require('turf-helpers').point;
  *
  * //=result
  */
-module.exports = function(features) {
-  var xSum = 0, ySum = 0, len = 0;
-  each(features, function(coord) {
-    xSum += coord[0];
-    ySum += coord[1];
-    len++;
-  }, true);
-  return point([xSum / len, ySum / len]);
+module.exports = function (features) {
+    var xSum = 0, ySum = 0, len = 0;
+    each(features, function (coord) {
+        xSum += coord[0];
+        ySum += coord[1];
+        len++;
+    }, true);
+    return point([xSum / len, ySum / len]);
 };

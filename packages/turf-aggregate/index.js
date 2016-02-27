@@ -165,27 +165,27 @@ operations.count = count;
 * //=result
 */
 
-module.exports = function(polygons, points, aggregations) {
-  for (var i = 0, len = aggregations.length; i < len; i++) {
-    var agg = aggregations[i],
-      operation = agg.aggregation;
+module.exports = function (polygons, points, aggregations) {
+    for (var i = 0, len = aggregations.length; i < len; i++) {
+        var agg = aggregations[i],
+            operation = agg.aggregation;
 
-    if (isAggregationOperation(operation)) {
-      if (operation === 'count') {
-        polygons = operations[operation](polygons, points, agg.outField);
-      } else {
-        polygons = operations[operation](polygons, points, agg.inField, agg.outField);
-      }
-    } else {
-      throw new Error('"'+ operation +'" is not a recognized aggregation operation.');
+        if (isAggregationOperation(operation)) {
+            if (operation === 'count') {
+                polygons = operations[operation](polygons, points, agg.outField);
+            } else {
+                polygons = operations[operation](polygons, points, agg.inField, agg.outField);
+            }
+        } else {
+            throw new Error('"' + operation + '" is not a recognized aggregation operation.');
+        }
     }
-  }
 
-  return polygons;
+    return polygons;
 };
 
 function isAggregationOperation(operation) {
-  return operation === 'average' ||
+    return operation === 'average' ||
     operation === 'sum' ||
     operation === 'median' ||
     operation === 'min' ||

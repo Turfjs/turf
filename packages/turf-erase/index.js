@@ -57,40 +57,40 @@ var jsts = require('jsts');
  * //=differenced
  */
 
-module.exports = function(p1, p2) {
-  var poly1 = JSON.parse(JSON.stringify(p1));
-  var poly2 = JSON.parse(JSON.stringify(p2));
-  if(poly1.type !== 'Feature') {
-    poly1 = {
-      type: 'Feature',
-      properties: {},
-      geometry: poly1
-    };
-  }
-  if(poly2.type !== 'Feature') {
-    poly2 = {
-      type: 'Feature',
-      properties: {},
-      geometry: poly2
-    };
-  }
+module.exports = function (p1, p2) {
+    var poly1 = JSON.parse(JSON.stringify(p1));
+    var poly2 = JSON.parse(JSON.stringify(p2));
+    if (poly1.type !== 'Feature') {
+        poly1 = {
+            type: 'Feature',
+            properties: {},
+            geometry: poly1
+        };
+    }
+    if (poly2.type !== 'Feature') {
+        poly2 = {
+            type: 'Feature',
+            properties: {},
+            geometry: poly2
+        };
+    }
 
-  var reader = new jsts.io.GeoJSONReader();
-  var a = reader.read(JSON.stringify(poly1.geometry));
-  var b = reader.read(JSON.stringify(poly2.geometry));
-  var differenced = a.difference(b);
-  var parser = new jsts.io.GeoJSONParser();
-  differenced = parser.write(differenced);
+    var reader = new jsts.io.GeoJSONReader();
+    var a = reader.read(JSON.stringify(poly1.geometry));
+    var b = reader.read(JSON.stringify(poly2.geometry));
+    var differenced = a.difference(b);
+    var parser = new jsts.io.GeoJSONParser();
+    differenced = parser.write(differenced);
 
-  poly1.geometry = differenced;
+    poly1.geometry = differenced;
 
-  if (poly1.geometry.type === 'GeometryCollection' && poly1.geometry.geometries.length === 0) {
-    return undefined;
-  } else {
-    return {
-      type: 'Feature',
-      properties: poly1.properties,
-      geometry: differenced
-    };
-  }
+    if (poly1.geometry.type === 'GeometryCollection' && poly1.geometry.geometries.length === 0) {
+        return undefined;
+    } else {
+        return {
+            type: 'Feature',
+            properties: poly1.properties,
+            geometry: differenced
+        };
+    }
 };

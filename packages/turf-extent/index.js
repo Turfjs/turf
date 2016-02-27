@@ -56,13 +56,13 @@ var each = require('turf-meta').coordEach;
  *
  * //=result
  */
-module.exports = function(layer) {
+module.exports = function (layer) {
     var extent = [Infinity, Infinity, -Infinity, -Infinity];
-    each(layer, function(coord) {
-      if (extent[0] > coord[0]) extent[0] = coord[0];
-      if (extent[1] > coord[1]) extent[1] = coord[1];
-      if (extent[2] < coord[0]) extent[2] = coord[0];
-      if (extent[3] < coord[1]) extent[3] = coord[1];
+    each(layer, function (coord) {
+        if (extent[0] > coord[0]) extent[0] = coord[0];
+        if (extent[1] > coord[1]) extent[1] = coord[1];
+        if (extent[2] < coord[0]) extent[2] = coord[0];
+        if (extent[3] < coord[1]) extent[3] = coord[1];
     });
     return extent;
 };

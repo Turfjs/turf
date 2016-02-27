@@ -98,7 +98,7 @@
     this.s = null;
     this.count = 0;
   }
-  ContourBuilder.prototype.remove_seq = function(list) {
+  ContourBuilder.prototype.remove_seq = function (list) {
     // if list is the first item, static ptr s is updated
     if (list.prev) {
       list.prev.next = list.next;
@@ -110,8 +110,8 @@
       list.next.prev = list.prev;
     }
     --this.count;
-  }
-  ContourBuilder.prototype.addSegment = function(a, b) {
+  };
+  ContourBuilder.prototype.addSegment = function (a, b) {
     var ss = this.s;
     var ma = null;
     var mb = null;
@@ -148,7 +148,7 @@
     // c is the case selector based on which of ma and/or mb are set
     var c = ((ma != null) ? 1 : 0) | ((mb != null) ? 2 : 0);
 
-    switch(c) {
+    switch (c) {
       case 0:   // both unmatched, add as new sequence
         var aa = {p: a, prev: null};
         var bb = {p: b, next: null};
@@ -164,7 +164,7 @@
         this.s = ma;
 
         ++this.count;    // not essential - tracks number of unmerged sequences
-      break;
+        break;
 
       case 1:   // a matched, b did not - thus b extends sequence ma
         var pp = {p: b};
@@ -180,7 +180,7 @@
           ma.tail.next = pp;
           ma.tail = pp;
         }
-      break;
+        break;
 
       case 2:   // b matched, a did not - thus a extends sequence mb
         var pp = {p: a};
@@ -196,7 +196,7 @@
           mb.tail.next = pp;
           mb.tail = pp;
         }
-      break;
+        break;
 
       case 3:   // both matched, can merge sequences
         // if the sequences are the same, do nothing, as we are simply closing this path (could set a flag)
@@ -212,7 +212,7 @@
         // there are 4 ways the sequence pair can be joined. The current setting of prependA and
         // prependB will tell us which type of join is needed. For head/head and tail/tail joins
         // one sequence needs to be reversed
-        switch((prependA ? 1 : 0) | (prependB ? 2 : 0)) {
+        switch ((prependA ? 1 : 0) | (prependB ? 2 : 0)) {
           case 0:   // tail-tail
             // reverse ma and append to mb
             reverseList(ma);
@@ -225,7 +225,7 @@
 
             //discard ma sequence record
             this.remove_seq(ma);
-          break;
+            break;
 
           case 3:   // head-head
             // reverse ma and append mb to it
@@ -239,10 +239,10 @@
 
             //discard mb sequence record
             this.remove_seq(mb);
-        break;
-      }
+            break;
+        }
     }
-  }
+  };
 
   /**
    * Implements CONREC.
@@ -267,14 +267,14 @@
        * @param endY      - end coordinate for Y
        * @param contourLevel - Contour level for line.
        */
-      this.drawContour = function(startX, startY, endX, endY, contourLevel, k) {
+      this.drawContour = function (startX, startY, endX, endY, contourLevel, k) {
         var cb = c.contours[k];
         if (!cb) {
           cb = c.contours[k] = new ContourBuilder(contourLevel);
         }
         cb.addSegment({x: startX, y: startY}, {x: endX, y: endY});
-      }
-      this.contourList = function() {
+      };
+      this.contourList = function () {
         var l = [];
         var a = c.contours;
         for (var k in a) {
@@ -293,9 +293,9 @@
             s = s.next;
           }
         }
-        l.sort(function(a, b) { return a.k - b.k });
+        l.sort(function (a, b) { return a.k - b.k; });
         return l;
-      }
+      };
     } else {
       this.drawContour = drawContour;
     }
@@ -327,19 +327,19 @@
    * @param {number} nc   - number of contour levels
    * @param {number[]} z  - contour levels in increasing order.
    */
-  Conrec.prototype.contour = function(d, ilb, iub, jlb, jub, x, y, nc, z) {
+  Conrec.prototype.contour = function (d, ilb, iub, jlb, jub, x, y, nc, z) {
     var h = this.h, sh = this.sh, xh = this.xh, yh = this.yh;
     var drawContour = this.drawContour;
     this.contours = {};
 
     /** private */
-    var xsect = function(p1, p2){
-      return (h[p2]*xh[p1]-h[p1]*xh[p2])/(h[p2]-h[p1]);
-    }
+    var xsect = function (p1, p2) {
+      return (h[p2] * xh[p1] - h[p1] * xh[p2]) / (h[p2] - h[p1]);
+    };
 
-    var ysect = function(p1, p2){
-      return (h[p2]*yh[p1]-h[p1]*yh[p2])/(h[p2]-h[p1]);
-    }
+    var ysect = function (p1, p2) {
+      return (h[p2] * yh[p1] - h[p1] * yh[p2]) / (h[p2] - h[p1]);
+    };
     var m1;
     var m2;
     var m3;
@@ -371,34 +371,34 @@
       ]
     ];
 
-    for (var j=(jub-1);j>=jlb;j--) {
-      for (var i=ilb;i<=iub-1;i++) {
+    for (var j = (jub - 1); j >= jlb; j--) {
+      for (var i = ilb; i <= iub - 1; i++) {
         var temp1, temp2;
-        temp1 = Math.min(d[i][j],d[i][j+1]);
-        temp2 = Math.min(d[i+1][j],d[i+1][j+1]);
-        dmin  = Math.min(temp1,temp2);
-        temp1 = Math.max(d[i][j],d[i][j+1]);
-        temp2 = Math.max(d[i+1][j],d[i+1][j+1]);
-        dmax  = Math.max(temp1,temp2);
+        temp1 = Math.min(d[i][j], d[i][j + 1]);
+        temp2 = Math.min(d[i + 1][j], d[i + 1][j + 1]);
+        dmin  = Math.min(temp1, temp2);
+        temp1 = Math.max(d[i][j], d[i][j + 1]);
+        temp2 = Math.max(d[i + 1][j], d[i + 1][j + 1]);
+        dmax  = Math.max(temp1, temp2);
 
-        if (dmax>=z[0]&&dmin<=z[nc-1]) {
-          for (var k=0;k<nc;k++) {
-            if (z[k]>=dmin&&z[k]<=dmax) {
-              for (var m=4;m>=0;m--) {
-                if (m>0) {
+        if (dmax >= z[0] && dmin <= z[nc - 1]) {
+          for (var k = 0; k < nc; k++) {
+            if (z[k] >= dmin && z[k] <= dmax) {
+              for (var m = 4; m >= 0; m--) {
+                if (m > 0) {
                   // The indexing of im and jm should be noted as it has to
                   // start from zero
-                  h[m] = d[i+im[m-1]][j+jm[m-1]]-z[k];
-                  xh[m] = x[i+im[m-1]];
-                  yh[m] = y[j+jm[m-1]];
+                  h[m] = d[i + im[m - 1]][j + jm[m - 1]] - z[k];
+                  xh[m] = x[i + im[m - 1]];
+                  yh[m] = y[j + jm[m - 1]];
                 } else {
-                  h[0] = 0.25*(h[1]+h[2]+h[3]+h[4]);
-                  xh[0]=0.5*(x[i]+x[i+1]);
-                  yh[0]=0.5*(y[j]+y[j+1]);
+                  h[0] = 0.25 * (h[1] + h[2] + h[3] + h[4]);
+                  xh[0] = 0.5 * (x[i] + x[i + 1]);
+                  yh[0] = 0.5 * (y[j] + y[j + 1]);
                 }
-                if (h[m]>EPSILON) {
+                if (h[m] > EPSILON) {
                   sh[m] = 1;
-                } else if (h[m]<-EPSILON) {
+                } else if (h[m] < -EPSILON) {
                   sh[m] = -1;
                 } else
                   sh[m] = 0;
@@ -433,77 +433,77 @@
               //
               //               Scan each triangle in the box
               //
-              for (m=1;m<=4;m++) {
+              for (m = 1; m <= 4; m++) {
                 m1 = m;
                 m2 = 0;
-                if (m!=4) {
-                    m3 = m+1;
+                if (m != 4) {
+                  m3 = m + 1;
                 } else {
-                    m3 = 1;
+                  m3 = 1;
                 }
-                case_value = castab[sh[m1]+1][sh[m2]+1][sh[m3]+1];
-                if (case_value!=0) {
+                case_value = castab[sh[m1] + 1][sh[m2] + 1][sh[m3] + 1];
+                if (case_value != 0) {
                   switch (case_value) {
                     case 1: // Line between vertices 1 and 2
-                      x1=xh[m1];
-                      y1=yh[m1];
-                      x2=xh[m2];
-                      y2=yh[m2];
+                      x1 = xh[m1];
+                      y1 = yh[m1];
+                      x2 = xh[m2];
+                      y2 = yh[m2];
                       break;
                     case 2: // Line between vertices 2 and 3
-                      x1=xh[m2];
-                      y1=yh[m2];
-                      x2=xh[m3];
-                      y2=yh[m3];
+                      x1 = xh[m2];
+                      y1 = yh[m2];
+                      x2 = xh[m3];
+                      y2 = yh[m3];
                       break;
                     case 3: // Line between vertices 3 and 1
-                      x1=xh[m3];
-                      y1=yh[m3];
-                      x2=xh[m1];
-                      y2=yh[m1];
+                      x1 = xh[m3];
+                      y1 = yh[m3];
+                      x2 = xh[m1];
+                      y2 = yh[m1];
                       break;
                     case 4: // Line between vertex 1 and side 2-3
-                      x1=xh[m1];
-                      y1=yh[m1];
-                      x2=xsect(m2,m3);
-                      y2=ysect(m2,m3);
+                      x1 = xh[m1];
+                      y1 = yh[m1];
+                      x2 = xsect(m2, m3);
+                      y2 = ysect(m2, m3);
                       break;
                     case 5: // Line between vertex 2 and side 3-1
-                      x1=xh[m2];
-                      y1=yh[m2];
-                      x2=xsect(m3,m1);
-                      y2=ysect(m3,m1);
+                      x1 = xh[m2];
+                      y1 = yh[m2];
+                      x2 = xsect(m3, m1);
+                      y2 = ysect(m3, m1);
                       break;
                     case 6: //  Line between vertex 3 and side 1-2
-                      x1=xh[m3];
-                      y1=yh[m3];
-                      x2=xsect(m1,m2);
-                      y2=ysect(m1,m2);
+                      x1 = xh[m3];
+                      y1 = yh[m3];
+                      x2 = xsect(m1, m2);
+                      y2 = ysect(m1, m2);
                       break;
                     case 7: // Line between sides 1-2 and 2-3
-                      x1=xsect(m1,m2);
-                      y1=ysect(m1,m2);
-                      x2=xsect(m2,m3);
-                      y2=ysect(m2,m3);
+                      x1 = xsect(m1, m2);
+                      y1 = ysect(m1, m2);
+                      x2 = xsect(m2, m3);
+                      y2 = ysect(m2, m3);
                       break;
                     case 8: // Line between sides 2-3 and 3-1
-                      x1=xsect(m2,m3);
-                      y1=ysect(m2,m3);
-                      x2=xsect(m3,m1);
-                      y2=ysect(m3,m1);
+                      x1 = xsect(m2, m3);
+                      y1 = ysect(m2, m3);
+                      x2 = xsect(m3, m1);
+                      y2 = ysect(m3, m1);
                       break;
                     case 9: // Line between sides 3-1 and 1-2
-                      x1=xsect(m3,m1);
-                      y1=ysect(m3,m1);
-                      x2=xsect(m1,m2);
-                      y2=ysect(m1,m2);
+                      x1 = xsect(m3, m1);
+                      y1 = ysect(m3, m1);
+                      x2 = xsect(m1, m2);
+                      y2 = ysect(m1, m2);
                       break;
                     default:
                       break;
                   }
                   // Put your processing code here and comment out the printf
                   //printf("%f %f %f %f %f\n",x1,y1,x2,y2,z[k]);
-                  drawContour(x1,y1,x2,y2,z[k],k);
+                  drawContour(x1, y1, x2, y2, z[k], k);
                 }
               }
             }
@@ -511,4 +511,4 @@
         }
       }
     }
-  }
+  };

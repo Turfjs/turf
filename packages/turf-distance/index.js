@@ -44,47 +44,47 @@ var invariant = require('turf-invariant');
  *
  * //=distance
  */
-module.exports = function(point1, point2, units) {
-  invariant.featureOf(point1, 'Point', 'distance');
-  invariant.featureOf(point2, 'Point', 'distance');
-  var coordinates1 = point1.geometry.coordinates;
-  var coordinates2 = point2.geometry.coordinates;
+module.exports = function (point1, point2, units) {
+    invariant.featureOf(point1, 'Point', 'distance');
+    invariant.featureOf(point2, 'Point', 'distance');
+    var coordinates1 = point1.geometry.coordinates;
+    var coordinates2 = point2.geometry.coordinates;
 
-  var dLat = toRad(coordinates2[1] - coordinates1[1]);
-  var dLon = toRad(coordinates2[0] - coordinates1[0]);
-  var lat1 = toRad(coordinates1[1]);
-  var lat2 = toRad(coordinates2[1]);
+    var dLat = toRad(coordinates2[1] - coordinates1[1]);
+    var dLon = toRad(coordinates2[0] - coordinates1[0]);
+    var lat1 = toRad(coordinates1[1]);
+    var lat2 = toRad(coordinates2[1]);
 
-  var a = Math.pow(Math.sin(dLat/2), 2) +
-          Math.pow(Math.sin(dLon/2), 2) * Math.cos(lat1) * Math.cos(lat2);
-  var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+    var a = Math.pow(Math.sin(dLat / 2), 2) +
+          Math.pow(Math.sin(dLon / 2), 2) * Math.cos(lat1) * Math.cos(lat2);
+    var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
 
-  var R;
-  switch(units) {
+    var R;
+    switch (units) {
     case 'miles':
-      R = 3960;
-      break;
+        R = 3960;
+        break;
     case 'kilometers':
     case 'kilometres':
-      R = 6373;
-      break;
+        R = 6373;
+        break;
     case 'degrees':
-      R = 57.2957795;
-      break;
+        R = 57.2957795;
+        break;
     case 'radians':
-      R = 1;
-      break;
+        R = 1;
+        break;
     case undefined:
-      R = 6373;
-      break;
+        R = 6373;
+        break;
     default:
-      throw new Error('unknown option given to "units"');
-  }
+        throw new Error('unknown option given to "units"');
+    }
 
-  var distance = R * c;
-  return distance;
+    var distance = R * c;
+    return distance;
 };
 
 function toRad(degree) {
-  return degree * Math.PI / 180;
+    return degree * Math.PI / 180;
 }
