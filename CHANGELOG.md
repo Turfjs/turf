@@ -1,10 +1,10 @@
-# 3.0.0 (unreleased)
+# 3.0.0
 
 * removed turf-merge
 
 ## Upgrading from v2
 
-**Handling the turf-merge removal**
+**If you were using turf-merge**
 
 turf-merge repeatedly called turf-union on an array of polygons. Here's
 how to implement the same thing without the special module
@@ -22,6 +22,33 @@ function merge(polygons) {
 }
 ```
 
+**If you were using turf-sum, min, max, average, median, variance, deviation**
+
+The `turf-collect` method provides the core of these statistical methods
+and lets you bring your own statistical library, like `simple-statistics`,
+`science.js`, or others.
+
+**If you were using turf-filter, turf-remove**
+
+These modules were thin wrappers around native JavaScript methods: use
+[Array.filter](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter) instead:
+
+```js
+var filteredFeatures = features.filter(function(feature) {
+  return feature.properties.value > 10;
+});
+```
+
+**If you were using turf-jenks, turf-quantile**
+
+Use Array.map to get values, and then bring your own statistical calculation,
+like simple-statistics or science.js.
+
+```js
+var values = features.map(function(feature) {
+  return feature.properties.value;
+});
+```
 
 # 2.0.0
 
