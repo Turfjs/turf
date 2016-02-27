@@ -13,7 +13,7 @@
 To ensure code style at the `turf` module level, run
 
 ```sh
-$ npm run lint
+$ npm test
 ```
 
 * Follow the [AirBNB JavaScript code style](https://github.com/airbnb/javascript).
