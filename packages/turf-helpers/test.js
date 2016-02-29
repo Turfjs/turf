@@ -8,6 +8,8 @@ var featureCollection = geometries.featureCollection;
 var multiLineString = geometries.multiLineString;
 var multiPoint = geometries.multiPoint;
 var feature = geometries.feature;
+var multipolygon = geometries.multiPolygon;
+var geometrycollection = geometries.geometryCollection;
 
 test('point', function(t){
   var ptArray = point([5, 10], {name: 'test point'});
@@ -209,6 +211,86 @@ test('feature', function(t){
         ]
       }
     });
+
+  t.end();
+});
+
+  test('multipolygon', function(t){
+    t.deepEqual(multipolygon([[[[94,57],[78,49],[94,43],[94,57]]],[[[93,19],[63,7],[79,0],[93,19]]]]), {
+      'type': 'Feature',
+      'properties': {},
+      'geometry': {
+        'type': 'MultiPolygon',
+        'coordinates': [[[[94,57],[78,49],[94,43],[94,57]]],[[[93,19],[63,7],[79,0],[93,19]]]]
+      }
+    }, 'takes coordinates');
+
+    t.deepEqual(multipolygon([[[[94,57],[78,49],[94,43],[94,57]]],[[[93,19],[63,7],[79,0],[93,19]]]], {test: 23}), {
+      'type': 'Feature',
+      'properties': {
+        test: 23
+      },
+      'geometry': {
+        'type': 'MultiPolygon',
+        'coordinates': [[[[94,57],[78,49],[94,43],[94,57]]],[[[93,19],[63,7],[79,0],[93,19]]]]
+      }
+    }, 'takes properties');
+
+
+    t.throws(function(err){
+      multipolygon();
+    }, 'throws error with no coordinates');
+
+    t.end();
+  });
+
+test('geometrycollection', function(t){
+  var pt = { 
+    "type": "Point",
+    "coordinates": [100, 0]
+  };
+  var line = { 
+    "type": "LineString",
+    "coordinates": [ [101, 0], [102, 1] ]
+  };
+  var gc = geometrycollection([pt, line]);
+
+  t.deepEqual(gc, {
+    "type": "Feature",
+    "properties": {},
+    "geometry": { 
+      "type": "GeometryCollection",
+      "geometries": [
+        { 
+          "type": "Point",
+          "coordinates": [100, 0]
+        },
+        { 
+          "type": "LineString",
+          "coordinates": [ [101, 0], [102, 1] ]
+        }
+      ]
+    }
+  }, 'creates a GeometryCollection');
+
+  var gcWithProps = geometrycollection([pt, line], {a: 23});
+  t.deepEqual(gcWithProps, {
+    "type": "Feature",
+    "properties": {a: 23},
+    "geometry": { 
+      "type": "GeometryCollection",
+      "geometries": [
+        { 
+          "type": "Point",
+          "coordinates": [100, 0]
+        },
+        { 
+          "type": "LineString",
+          "coordinates": [ [101, 0], [102, 1] ]
+        }
+      ]
+    }
+  }, 'creates a GeometryCollection with properties');
 
   t.end();
 });

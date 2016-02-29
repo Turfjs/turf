@@ -233,3 +233,67 @@ module.exports.feature = function (geometry) {
         geometry: geometry
     };
 };
+
+/**
+ * Creates a {@link Feature<MultiPolygon>} based on a
+ * coordinate array. Properties can be added optionally.
+ *
+ * @module turf/multipolygon
+ * @category helper
+ * @param {Array<Array<Number>>} coordinates an array of Positions
+ * @param {Object=} properties an Object of key-value pairs to add as properties
+ * @returns {Feature<MultiPolygon>} a multipolygon feature
+ * @throws {Error} if no coordinates are passed
+ * @example
+ * var multiPoly = turf.multipolygon([[0,0],[10,10]]);
+ *
+ * //=multiPoly
+ *
+ */
+module.exports.multiPolygon = function(coordinates, properties) {
+    if (!coordinates) {
+        throw new Error('No coordinates passed');
+    }
+    return {
+        'type': 'Feature',
+        'geometry': {
+            'type': 'MultiPolygon',
+            'coordinates': coordinates
+        },
+        'properties': properties || {}
+    };
+};
+
+/**
+ * Creates a {@link Feature<GeometryCollection>} based on a
+ * coordinate array. Properties can be added optionally.
+ *
+ * @module turf/geometrycollection
+ * @category helper
+ * @param {Array<{Geometry}>} geometries an array of GeoJSON Geometries
+ * @param {Object=} properties an Object of key-value pairs to add as properties
+ * @returns {Feature<GeometryCollection>} a geometrycollection feature
+ * @example
+ * var pt = { 
+ *     "type": "Point",
+ *       "coordinates": [100, 0]
+ *     };
+ * var line = {
+ *     "type": "LineString",
+ *     "coordinates": [ [101, 0], [102, 1] ]
+ *   };
+ * var collection = turf.geometrycollection([[0,0],[10,10]]);
+ *
+ * //=collection
+ *
+ */
+module.exports.geometryCollection = function(geometries, properties) {
+    return {
+        'type': 'Feature',
+        'properties': properties || {},
+        'geometry': { 
+            'type': 'GeometryCollection',
+            'geometries': geometries
+        }
+    };
+};
