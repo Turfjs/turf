@@ -28,7 +28,7 @@ npm install turf
 
 **In browser:**
 
-Download the [minified file](https://raw.githubusercontent.com/Turfjs/turf/0.2.0/turf.min.js), and include it in a script tag. This will expose a global variable named `turf`.
+Download the [minified file](https://raw.githubusercontent.com/Turfjs/turf/v2.0.2/turf.min.js), and include it in a script tag. This will expose a global variable named `turf`.
 
 ```html
 <script src="turf.min.js" charset="utf-8"></script>
