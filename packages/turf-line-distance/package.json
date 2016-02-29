@@ -33,6 +33,6 @@
   },
   "dependencies": {
     "turf-distance": "^1.0.0",
-    "turf-helpers": "^1.0.0"
+    "turf-point": "^2.0.1"
   }
 }
