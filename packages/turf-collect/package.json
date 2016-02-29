@@ -1,6 +1,6 @@
 {
   "name": "turf-aggregate",
-  "version": "1.0.3",
+  "version": "3.0.0",
   "description": "turf aggregate module",
   "main": "index.js",
   "scripts": {
@@ -30,9 +30,9 @@
     "tape": "^3.5.0",
     "dox": "^0.6.1",
     "doxme": "^1.4.3",
-    "turf-helpers": "^1.0.0"
+    "turf-helpers": "^3.0.0"
   },
   "dependencies": {
-    "turf-inside": "^1.1.4"
+    "turf-inside": "^3.0.0"
   }
 }

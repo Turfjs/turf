@@ -1,6 +1,6 @@
 {
   "name": "turf-nearest",
-  "version": "1.0.2",
+  "version": "3.0.0",
   "description": "turf nearest module",
   "main": "index.js",
   "scripts": {
@@ -30,6 +30,6 @@
     "doxme": "^1.4.3"
   },
   "dependencies": {
-    "turf-distance": "^1.0.0"
+    "turf-distance": "^3.0.0"
   }
 }

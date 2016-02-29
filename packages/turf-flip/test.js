@@ -1,9 +1,9 @@
 var test = require('tape');
 var flip = require('./');
 var point = require('turf-point');
-var linestring = require('turf-linestring');
-var polygon = require('turf-polygon');
-var featurecollection = require('turf-featurecollection');
+var linestring = require('turf-helpers').lineString;
+var polygon = require('turf-helpers').polygon;
+var featurecollection = require('turf-helpers').featureCollection;
 
 test('flip', function (t) {
   // Point Geometry

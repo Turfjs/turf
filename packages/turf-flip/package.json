@@ -1,6 +1,6 @@
 {
   "name": "turf-flip",
-  "version": "1.1.0",
+  "version": "3.0.0",
   "description": "turf flip module",
   "main": "index.js",
   "scripts": {
@@ -26,14 +26,11 @@
   "devDependencies": {
     "benchmark": "^1.0.0",
     "tape": "^3.5.0",
-    "turf-featurecollection": "^1.0.0",
-    "turf-linestring": "^1.0.1",
-    "turf-point": "^2.0.0",
-    "turf-polygon": "^1.0.2",
+    "turf-helpers": "^3.0.0",
     "dox": "^0.6.1",
     "doxme": "^1.4.3"
   },
   "dependencies": {
-    "turf-meta": "^1.0.2"
+    "turf-meta": "^3.0.0"
   }
 }

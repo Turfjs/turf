@@ -1,4 +1,34 @@
 /**
+ * Wraps a GeoJSON {@link Geometry} in a GeoJSON {@link Feature}.
+ *
+ * @module turf/feature
+ * @category helper
+ * @param {Geometry} geometry input geometry
+ * @returns {FeatureCollection} a FeatureCollection of input features
+ * @example
+ * var geometry = {
+ *      "type": "Point",
+ *      "coordinates": [
+ *        67.5,
+ *        32.84267363195431
+ *      ]
+ *    }
+ *
+ * var feature = turf.feature(geometry);
+ *
+ * //=feature
+ */
+function feature(geometry, properties) {
+    return {
+        type: 'Feature',
+        properties: properties || {},
+        geometry: geometry
+    };
+}
+
+module.exports.feature = feature;
+
+/**
  * Takes coordinates and properties (optional) and returns a new {@link Point} feature.
  *
  * @module turf/point
@@ -15,14 +45,10 @@
 module.exports.point = function (coordinates, properties) {
     if (!Array.isArray(coordinates)) throw new Error('Coordinates must be an array');
     if (coordinates.length < 2) throw new Error('Coordinates must be at least 2 numbers long');
-    return {
-        type: 'Feature',
-        geometry: {
-            type: 'Point',
-            coordinates: coordinates
-        },
-        properties: properties || {}
-    };
+    return feature({
+        type: 'Point',
+        coordinates: coordinates
+    }, properties);
 };
 
 /**
@@ -49,7 +75,7 @@ module.exports.point = function (coordinates, properties) {
  */
 module.exports.polygon = function (coordinates, properties) {
 
-    if (coordinates === null) throw new Error('No coordinates passed');
+    if (!coordinates) throw new Error('No coordinates passed');
 
     for (var i = 0; i < coordinates.length; i++) {
         var ring = coordinates[i];
@@ -63,20 +89,10 @@ module.exports.polygon = function (coordinates, properties) {
         }
     }
 
-    var polygon = {
-        'type': 'Feature',
-        'geometry': {
-            'type': 'Polygon',
-            'coordinates': coordinates
-        },
-        'properties': properties
-    };
-
-    if (!polygon.properties) {
-        polygon.properties = {};
-    }
-
-    return polygon;
+    return feature({
+        'type': 'Polygon',
+        'coordinates': coordinates
+    }, properties);
 };
 
 /**
@@ -111,14 +127,10 @@ module.exports.lineString = function (coordinates, properties) {
     if (!coordinates) {
         throw new Error('No coordinates passed');
     }
-    return {
-        'type': 'Feature',
-        'geometry': {
-            'type': 'LineString',
-            'coordinates': coordinates
-        },
-        'properties': properties || {}
-    };
+    return feature({
+        'type': 'LineString',
+        'coordinates': coordinates
+    }, properties);
 };
 
 /**
@@ -166,14 +178,10 @@ module.exports.multiLineString = function (coordinates, properties) {
     if (!coordinates) {
         throw new Error('No coordinates passed');
     }
-    return {
-        'type': 'Feature',
-        'geometry': {
-            'type': 'MultiLineString',
-            'coordinates': coordinates
-        },
-        'properties': properties || {}
-    };
+    return feature({
+        'type': 'MultiLineString',
+        'coordinates': coordinates
+    }, properties);
 };
 
 /**
@@ -196,43 +204,12 @@ module.exports.multiPoint = function (coordinates, properties) {
     if (!coordinates) {
         throw new Error('No coordinates passed');
     }
-    return {
-        'type': 'Feature',
-        'geometry': {
-            'type': 'MultiPoint',
-            'coordinates': coordinates
-        },
-        'properties': properties || {}
-    };
+    return feature({
+        'type': 'MultiPoint',
+        'coordinates': coordinates
+    }, properties);
 };
 
-/**
- * Wraps a GeoJSON {@link Geometry} in a GeoJSON {@link Feature}.
- *
- * @module turf/feature
- * @category helper
- * @param {Geometry} geometry input geometry
- * @returns {FeatureCollection} a FeatureCollection of input features
- * @example
- * var geometry = {
- *      "type": "Point",
- *      "coordinates": [
- *        67.5,
- *        32.84267363195431
- *      ]
- *    }
- *
- * var feature = turf.feature(geometry);
- *
- * //=feature
- */
-module.exports.feature = function (geometry) {
-    return {
-        type: 'Feature',
-        properties: {},
-        geometry: geometry
-    };
-};
 
 /**
  * Creates a {@link Feature<MultiPolygon>} based on a
@@ -254,14 +231,10 @@ module.exports.multiPolygon = function (coordinates, properties) {
     if (!coordinates) {
         throw new Error('No coordinates passed');
     }
-    return {
-        'type': 'Feature',
-        'geometry': {
-            'type': 'MultiPolygon',
-            'coordinates': coordinates
-        },
-        'properties': properties || {}
-    };
+    return feature({
+        'type': 'MultiPolygon',
+        'coordinates': coordinates
+    }, properties);
 };
 
 /**
@@ -285,15 +258,10 @@ module.exports.multiPolygon = function (coordinates, properties) {
  * var collection = turf.geometrycollection([[0,0],[10,10]]);
  *
  * //=collection
- *
  */
 module.exports.geometryCollection = function (geometries, properties) {
-    return {
-        'type': 'Feature',
-        'properties': properties || {},
-        'geometry': {
-            'type': 'GeometryCollection',
-            'geometries': geometries
-        }
-    };
+    return feature({
+        'type': 'GeometryCollection',
+        'geometries': geometries
+    }, properties);
 };

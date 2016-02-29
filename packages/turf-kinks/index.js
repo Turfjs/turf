@@ -33,7 +33,7 @@
  */
 
 var point = require('turf-helpers').point;
-var fc = require('turf-featurecollection');
+var fc = require('turf-helpers').featureCollection;
 
 module.exports = function (polyIn) {
     var poly;

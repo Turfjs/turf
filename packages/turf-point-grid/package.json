@@ -1,6 +1,6 @@
 {
   "name": "turf-point-grid",
-  "version": "2.0.0",
+  "version": "3.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -28,10 +28,10 @@
     "dox": "^0.6.1",
     "doxme": "^1.6.0",
     "tape": "^3.5.0",
-    "turf-bbox-polygon": "^1.0.1"
+    "turf-bbox-polygon": "^3.0.0"
   },
   "dependencies": {
-    "turf-distance": "^1.0.1",
-    "turf-helpers": "^1.0.0"
+    "turf-distance": "^3.0.0",
+    "turf-helpers": "^3.0.0"
   }
 }

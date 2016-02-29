@@ -1,5 +1,4 @@
 var featurecollection = require('turf-helpers').featureCollection;
-var point = require('turf-helpers').point;
 var polygon = require('turf-helpers').polygon;
 var distance = require('turf-distance');
 
@@ -23,9 +22,9 @@ var distance = require('turf-distance');
  */
 module.exports = function (bbox, cell, units) {
     var fc = featurecollection([]);
-    var xFraction = cell / (distance(point([bbox[0], bbox[1]]), point([bbox[2], bbox[1]]), units));
+    var xFraction = cell / (distance([bbox[0], bbox[1]], [bbox[2], bbox[1]], units));
     var cellWidth = xFraction * (bbox[2] - bbox[0]);
-    var yFraction = cell / (distance(point([bbox[0], bbox[1]]), point([bbox[0], bbox[3]]), units));
+    var yFraction = cell / (distance([bbox[0], bbox[1]], [bbox[0], bbox[3]], units));
     var cellHeight = yFraction * (bbox[3] - bbox[1]);
 
     var xi = 0;

@@ -1,6 +1,6 @@
 {
   "name": "turf-center",
-  "version": "1.0.3",
+  "version": "3.0.0",
   "description": "turf center module",
   "main": "index.js",
   "scripts": {
@@ -32,7 +32,7 @@
     "doxme": "^1.4.3"
   },
   "dependencies": {
-    "turf-extent": "^1.0.3",
-    "turf-helpers": "^1.0.0"
+    "turf-extent": "^3.0.0",
+    "turf-helpers": "^3.0.0"
   }
 }
