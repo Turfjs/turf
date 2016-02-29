@@ -4,6 +4,8 @@ var convex = require('../'),
   fs = require('fs');
 
 test('convex hull', function(t){
+  t.deepEqual(convex({ type: 'FeatureCollection', features: [] }),
+    undefined, 'corner case: undefined hull');
   glob.sync(__dirname + '/fixtures/in/*.geojson').forEach(function(input) {
       var fcs = JSON.parse(fs.readFileSync(input));
       var output = convex(fcs);

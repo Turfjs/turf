@@ -78,10 +78,13 @@ module.exports = function (fc) {
     var points = [];
     each(fc, function (coord) { points.push(coord); });
     var hull = convexHull(points);
-    var ring = [];
-    for (var i = 0; i < hull.length; i++) {
-        ring.push(points[hull[i][0]]);
+    if (hull.length > 0) {
+        var ring = [];
+        for (var i = 0; i < hull.length; i++) {
+            ring.push(points[hull[i][0]]);
+        }
+        ring.push(points[hull[hull.length - 1][1]]);
+        return polygon([ring]);
     }
-    ring.push(points[hull[hull.length - 1][1]]);
-    return polygon([ring]);
+    return undefined;
 };
