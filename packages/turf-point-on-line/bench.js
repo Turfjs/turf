@@ -14,16 +14,16 @@ var pt3 = point([-112.60660171508789,45.96021963947196]);
 var suite = new Benchmark.Suite('turf-point-on-line');
 suite
   .add('turf-point-on-line#simple',function () {
-    pointOnLine(line1, pt1);
+      pointOnLine(line1, pt1);
   })
   .add('turf-point-on-line#route1',function () {
-    pointOnLine(route1, pt2);
+      pointOnLine(route1, pt2);
   })
   .add('turf-point-on-line#route2',function () {
-    pointOnLine(route2, pt3);
+      pointOnLine(route2, pt3);
   })
   .on('cycle', function (event) {
-    console.log(String(event.target));
+      console.log(String(event.target));
   })
   .on('complete', function () {
     

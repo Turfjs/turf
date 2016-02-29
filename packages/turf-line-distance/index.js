@@ -1,5 +1,6 @@
 var distance = require('turf-distance');
-var point = require('turf-helpers').point;
+var point = require('turf-point');
+
 /**
  * Takes a {@link LineString|line} and measures its length in the specified units.
  *
@@ -31,13 +32,41 @@ var point = require('turf-helpers').point;
  *
  * //=length
  */
+module.exports = function lineDistance(line, units) {
+    if (line.type === 'FeatureCollection') {
+        return line.features.reduce(function (memo, feature) {
+            return memo + lineDistance(feature, units);
+        }, 0);
+    }
 
-module.exports = function (line, units) {
-    var coords;
-    if (line.type === 'Feature') coords = line.geometry.coordinates;
-    else if (line.type === 'LineString') coords = line.coordinates;
-    else throw new Error('input must be a LineString Feature or Geometry');
+    var geometry = line.type === 'Feature' ? line.geometry : line;
+    var d, i;
 
+    if (geometry.type === 'LineString') {
+        return length(geometry.coordinates, units);
+    } else if (geometry.type === 'Polygon' || geometry.type === 'MultiLineString') {
+        d = 0;
+        for (i = 0; i < geometry.coordinates.length; i++) {
+            d += length(geometry.coordinates[i], units);
+        }
+        return d;
+    } else if (line.type === 'MultiPolygon') {
+        d = 0;
+        for (i = 0; i < geometry.coordinates.length; i++) {
+            for (var j = 0; j < geometry.coordinates[i].length; j++) {
+                d += length(geometry.coordinates[i][j], units);
+            }
+        }
+        return d;
+    } else {
+        throw new Error('input must be a LineString, MultiLineString, ' +
+            'Polygon, or MultiPolygon Feature or Geometry (or a FeatureCollection ' +
+            'containing only those types)');
+    }
+
+};
+
+function length(coords, units) {
     var travelled = 0;
     var prevCoords = point(coords[0]);
     var curCoords = point(coords[0]);
@@ -50,4 +79,5 @@ module.exports = function (line, units) {
         curCoords = temp;
     }
     return travelled;
-};
+}
+
