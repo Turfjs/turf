@@ -1,0 +1,79 @@
+{
+  "_args": [
+    [
+      "turf-invariant@^1.0.2",
+      "/Users/tmcw/src/turf/packages/turf-distance"
+    ]
+  ],
+  "_from": "turf-invariant@>=1.0.2 <2.0.0",
+  "_id": "turf-invariant@1.0.3",
+  "_inCache": true,
+  "_installable": true,
+  "_location": "/turf-invariant",
+  "_nodeVersion": "0.10.36",
+  "_npmUser": {
+    "email": "tom@macwright.org",
+    "name": "tmcw"
+  },
+  "_npmVersion": "2.3.0",
+  "_phantomChildren": {},
+  "_requested": {
+    "name": "turf-invariant",
+    "raw": "turf-invariant@^1.0.2",
+    "rawSpec": "^1.0.2",
+    "scope": null,
+    "spec": ">=1.0.2 <2.0.0",
+    "type": "range"
+  },
+  "_requiredBy": [
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/turf-invariant/-/turf-invariant-1.0.3.tgz",
+  "_shasum": "555b47b8864f78339310c8e0270cae87594fc8b0",
+  "_shrinkwrap": null,
+  "_spec": "turf-invariant@^1.0.2",
+  "_where": "/Users/tmcw/src/turf/packages/turf-distance",
+  "author": {
+    "name": "Tom MacWright"
+  },
+  "bugs": {
+    "url": "https://github.com/Turfjs/turf-invariant/issues"
+  },
+  "dependencies": {},
+  "description": "enforce expectations about inputs to turf",
+  "devDependencies": {
+    "tape": "^3.5.0"
+  },
+  "directories": {},
+  "dist": {
+    "shasum": "555b47b8864f78339310c8e0270cae87594fc8b0",
+    "tarball": "http://registry.npmjs.org/turf-invariant/-/turf-invariant-1.0.3.tgz"
+  },
+  "gitHead": "f74ee7d2ef81d264220c3aea374c6582bf3ee125",
+  "homepage": "https://github.com/Turfjs/turf-invariant",
+  "keywords": [
+    "expectations",
+    "invariant",
+    "turf"
+  ],
+  "license": "ISC",
+  "main": "index.js",
+  "maintainers": [
+    {
+      "name": "tmcw",
+      "email": "tom@macwright.org"
+    }
+  ],
+  "name": "turf-invariant",
+  "optionalDependencies": {},
+  "readme": "ERROR: No README data found!",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/Turfjs/turf-invariant.git"
+  },
+  "scripts": {
+    "doc": "dox -r < index.js | doxme --readme > README.md",
+    "test": "node test.js"
+  },
+  "version": "1.0.3"
+}
