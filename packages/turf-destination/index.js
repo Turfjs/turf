@@ -1,6 +1,6 @@
 //http://en.wikipedia.org/wiki/Haversine_formula
 //http://www.movable-type.co.uk/scripts/latlong.html
-var point = require('turf-helpers').point;
+var getCoord = require('turf-invariant').getCoord;
 
 /**
  * Takes a {@link Point} and calculates the location of a destination point given a distance in degrees, radians, miles, or kilometers; and bearing in degrees. This uses the [Haversine formula](http://en.wikipedia.org/wiki/Haversine_formula) to account for global curvature.
@@ -38,7 +38,7 @@ var point = require('turf-helpers').point;
  * //=result
  */
 module.exports = function (point1, distance, bearing, units) {
-    var coordinates1 = point1.geometry.coordinates;
+    var coordinates1 = getCoord(point1);
     var longitude1 = toRad(coordinates1[0]);
     var latitude1 = toRad(coordinates1[1]);
     var bearing_rad = toRad(bearing);

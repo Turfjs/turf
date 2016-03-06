@@ -1,4 +1,4 @@
-var invariant = require('turf-invariant');
+var getCoord = require('turf-invariant').getCoord;
 //http://en.wikipedia.org/wiki/Haversine_formula
 //http://www.movable-type.co.uk/scripts/latlong.html
 
@@ -45,11 +45,8 @@ var invariant = require('turf-invariant');
  * //=distance
  */
 module.exports = function (point1, point2, units) {
-    invariant.featureOf(point1, 'Point', 'distance');
-    invariant.featureOf(point2, 'Point', 'distance');
-    var coordinates1 = point1.geometry.coordinates;
-    var coordinates2 = point2.geometry.coordinates;
-
+    var coordinates1 = getCoord(point1);
+    var coordinates2 = getCoord(point2);
     var dLat = toRad(coordinates2[1] - coordinates1[1]);
     var dLon = toRad(coordinates2[0] - coordinates1[0]);
     var lat1 = toRad(coordinates1[1]);
@@ -59,30 +56,21 @@ module.exports = function (point1, point2, units) {
           Math.pow(Math.sin(dLon / 2), 2) * Math.cos(lat1) * Math.cos(lat2);
     var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
 
-    var R;
     switch (units) {
     case 'miles':
-        R = 3960;
-        break;
+        return c * 3960;
     case 'kilometers':
     case 'kilometres':
-        R = 6373;
-        break;
+        return c * 6373;
     case 'degrees':
-        R = 57.2957795;
-        break;
+        return c * 57.2957795;
     case 'radians':
-        R = 1;
-        break;
+        return c;
     case undefined:
-        R = 6373;
-        break;
+        return c * 6373;
     default:
         throw new Error('unknown option given to "units"');
     }
-
-    var distance = R * c;
-    return distance;
 };
 
 function toRad(degree) {

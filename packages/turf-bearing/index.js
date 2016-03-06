@@ -1,3 +1,4 @@
+var getCoord = require('turf-invariant').getCoord;
 //http://en.wikipedia.org/wiki/Haversine_formula
 //http://www.movable-type.co.uk/scripts/latlong.html
 
@@ -43,9 +44,9 @@
  *
  * //=bearing
  */
-module.exports = function (point1, point2) {
-    var coordinates1 = point1.geometry.coordinates;
-    var coordinates2 = point2.geometry.coordinates;
+module.exports = function (p1, p2) {
+    var coordinates1 = getCoord(p1);
+    var coordinates2 = getCoord(p2);
 
     var lon1 = toRad(coordinates1[0]);
     var lon2 = toRad(coordinates2[0]);

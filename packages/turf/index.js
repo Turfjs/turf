@@ -30,6 +30,7 @@ module.exports = {
     distance: require('turf-distance'),
     explode: require('turf-explode'),
     extent: require('turf-extent'),
+    tesselate: require('turf-tesselate'),
     bboxPolygon: require('turf-bbox-polygon'),
     inside: require('turf-inside'),
     intersect: require('turf-intersect'),
