@@ -65,6 +65,7 @@
     "turf-explode": "^1.0.1",
     "turf-extent": "^1.0.4",
     "turf-flip": "1.0.3",
+    "turf-tesselate": "^1.0.1",
     "turf-hex-grid": "^2.0.1",
     "turf-inside": "^1.1.4",
     "turf-intersect": "1.4.1",
