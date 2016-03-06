@@ -250,7 +250,7 @@ module.exports.feature = function (geometry) {
  * //=multiPoly
  *
  */
-module.exports.multiPolygon = function(coordinates, properties) {
+module.exports.multiPolygon = function (coordinates, properties) {
     if (!coordinates) {
         throw new Error('No coordinates passed');
     }
@@ -274,7 +274,7 @@ module.exports.multiPolygon = function(coordinates, properties) {
  * @param {Object=} properties an Object of key-value pairs to add as properties
  * @returns {Feature<GeometryCollection>} a geometrycollection feature
  * @example
- * var pt = { 
+ * var pt = {
  *     "type": "Point",
  *       "coordinates": [100, 0]
  *     };
@@ -287,11 +287,11 @@ module.exports.multiPolygon = function(coordinates, properties) {
  * //=collection
  *
  */
-module.exports.geometryCollection = function(geometries, properties) {
+module.exports.geometryCollection = function (geometries, properties) {
     return {
         'type': 'Feature',
         'properties': properties || {},
-        'geometry': { 
+        'geometry': {
             'type': 'GeometryCollection',
             'geometries': geometries
         }
