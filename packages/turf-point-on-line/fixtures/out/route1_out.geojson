@@ -19053,28 +19053,28 @@
     },
     {
       "type": "Feature",
+      "properties": {},
       "geometry": {
         "type": "Point",
         "coordinates": [
           -79.0850830078125,
           37.60117623656667
         ]
-      },
-      "properties": {}
+      }
     },
     {
       "type": "Feature",
+      "properties": {
+        "dist": 2.4998919202861694,
+        "index": 1449,
+        "marker-color": "#f0f"
+      },
       "geometry": {
         "type": "Point",
         "coordinates": [
           -79.049412,
           37.578608
         ]
-      },
-      "properties": {
-        "dist": 2.4998919202861694,
-        "index": 1449,
-        "marker-color": "#f0f"
       }
     }
   ]

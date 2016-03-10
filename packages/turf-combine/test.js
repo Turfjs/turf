@@ -1,6 +1,6 @@
 var test = require('tape'),
   point = require('turf-helpers').point,
-  multipoint = require('turf-multipoint'),
+  multipoint = require('turf-helpers').multiPoint,
   linestring = require('turf-helpers').lineString,
   multilinestring = require('turf-helpers').multiLineString,
   polygon = require('turf-helpers').polygon,

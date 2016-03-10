@@ -33,7 +33,7 @@
   },
   "dependencies": {
     "turf-extent": "^3.0.0",
-    "turf-point-grid": "^3.0.0",
+    "turf-grid": "1.0.1",
     "turf-inside": "^3.0.0",
     "turf-helpers": "^3.0.0",
     "turf-planepoint": "^3.0.0",

@@ -2,7 +2,7 @@
 //http://stackoverflow.com/questions/263305/drawing-a-topographical-map
 var tin = require('turf-tin');
 var inside = require('turf-inside');
-var grid = require('turf-point-grid');
+var grid = require('turf-grid');
 var extent = require('turf-extent');
 var planepoint = require('turf-planepoint');
 var featurecollection = require('turf-helpers').featureCollection;
