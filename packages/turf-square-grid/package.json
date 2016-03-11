@@ -12,8 +12,7 @@
     "tape": "^3.5.0"
   },
   "scripts": {
-    "test": "node test.js",
-    "doc": "dox -r < index.js | doxme --readme > README.md"
+    "test": "node test.js"
   },
   "repository": {
     "type": "git",

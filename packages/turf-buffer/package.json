@@ -4,8 +4,7 @@
   "description": "turf buffer module",
   "main": "index.js",
   "scripts": {
-    "test": "node ./test/test.js",
-    "doc": "dox -r < index.js | doxme --readme > README.md"
+    "test": "node ./test/test.js"
   },
   "repository": {
     "type": "git",
@@ -28,8 +27,6 @@
   "homepage": "https://github.com/Turfjs/turf-buffer",
   "devDependencies": {
     "benchmark": "^1.0.0",
-    "dox": "^0.7.0",
-    "doxme": "^1.8.2",
     "glob": "^5.0.3",
     "tape": "^3.5.0",
     "turf-distance": "^3.0.0",

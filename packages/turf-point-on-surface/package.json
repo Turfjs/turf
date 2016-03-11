@@ -4,8 +4,7 @@
   "description": "turf point-on-surface module",
   "main": "index.js",
   "scripts": {
-    "test": "node test.js",
-    "doc": "dox -r < index.js | doxme --readme > README.md"
+    "test": "node test.js"
   },
   "repository": {
     "type": "git",
@@ -27,9 +26,7 @@
   "homepage": "https://github.com/Turfjs/turf-point-on-surface",
   "devDependencies": {
     "tape": "^3.5.0",
-    "benchmark": "^1.0.0",
-    "dox": "^0.6.1",
-    "doxme": "^1.4.3"
+    "benchmark": "^1.0.0"
   },
   "dependencies": {
     "turf-center": "^3.0.0",

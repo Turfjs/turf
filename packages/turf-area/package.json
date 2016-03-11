@@ -4,8 +4,7 @@
   "description": "calculate the area of a polygon or multipolygon feature",
   "main": "index.js",
   "scripts": {
-    "test": "tape test.js",
-    "doc": "dox -r < index.js | doxme --readme > README.md"
+    "test": "tape test.js"
   },
   "keywords": [
     "turf",
@@ -24,8 +23,6 @@
   },
   "devDependencies": {
     "geojson-fixtures": "^0.6.0",
-    "tape": "^3.5.0",
-    "dox": "^0.6.1",
-    "doxme": "^1.4.3"
+    "tape": "^3.5.0"
   }
 }

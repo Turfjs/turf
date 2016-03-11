@@ -4,8 +4,7 @@
   "description": "enforce expectations about inputs to turf",
   "main": "index.js",
   "scripts": {
-    "test": "node test.js",
-    "doc": "dox -r < index.js | doxme --readme > README.md"
+    "test": "node test.js"
   },
   "keywords": [
     "turf",
@@ -19,8 +18,6 @@
     "url": "git@github.com:Turfjs/turf-invariant.git"
   },
   "devDependencies": {
-    "dox": "^0.6.1",
-    "doxme": "^1.4.3",
     "tape": "^3.5.0"
   },
   "dependencies": {}

@@ -4,8 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "tape test.js",
-    "doc": "dox -r < index.js | doxme --readme > README.md"
+    "test": "tape test.js"
   },
   "repository": {
     "type": "git",
@@ -37,9 +36,7 @@
     "turf-bbox-polygon": "^3.0.0",
     "turf-explode": "^3.0.0",
     "turf-extent": "^3.0.0",
-    "turf-inside": "^3.0.0",
-    "dox": "^0.6.1",
-    "doxme": "^1.4.3"
+    "turf-inside": "^3.0.0"
   },
   "dependencies": {
     "turf-distance": "^3.0.0",
