@@ -2,7 +2,6 @@ var test = require('tape');
 var fs = require('fs');
 var along = require('./');
 var featurecollection = require('turf-helpers').featureCollection;
-var point = require('turf-helpers').point;
 
 var line = JSON.parse(fs.readFileSync(__dirname + '/fixtures/dc-line.geojson'));
 

@@ -1,11 +1,10 @@
 {
   "name": "turf-tag",
-  "version": "1.0.1",
+  "version": "3.0.0",
   "description": "turf tag module",
   "main": "index.js",
   "scripts": {
-    "test": "node test.js",
-    "doc": "dox -r < index.js | doxme --readme > README.md"
+    "test": "node test.js"
   },
   "repository": {
     "type": "git",
@@ -28,12 +27,10 @@
   },
   "homepage": "https://github.com/Turfjs/turf-tag",
   "dependencies": {
-    "turf-inside": "^1.1.3"
+    "turf-inside": "^3.0.0"
   },
   "devDependencies": {
     "benchmark": "^1.0.0",
-    "tape": "^3.5.0",
-    "dox": "^0.6.1",
-    "doxme": "^1.4.3"
+    "tape": "^3.5.0"
   }
 }

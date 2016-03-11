@@ -3,6 +3,7 @@
   "features": [
     {
       "type": "Feature",
+      "properties": {},
       "geometry": {
         "type": "LineString",
         "coordinates": [
@@ -15,33 +16,32 @@
             1
           ]
         ]
-      },
-      "properties": {}
+      }
     },
     {
       "type": "Feature",
+      "properties": {},
       "geometry": {
         "type": "Point",
         "coordinates": [
           0.4,
           0.1
         ]
-      },
-      "properties": {}
+      }
     },
     {
       "type": "Feature",
+      "properties": {
+        "dist": 14.6614777252623,
+        "index": 0,
+        "marker-color": "#f0f"
+      },
       "geometry": {
         "type": "Point",
         "coordinates": [
           0.2499684140334103,
           0.2499684140334104
         ]
-      },
-      "properties": {
-        "dist": 14.6614777252623,
-        "index": 0,
-        "marker-color": "#f0f"
       }
     }
   ]

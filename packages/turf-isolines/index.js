@@ -5,8 +5,8 @@ var inside = require('turf-inside');
 var grid = require('turf-grid');
 var extent = require('turf-extent');
 var planepoint = require('turf-planepoint');
-var featurecollection = require('turf-featurecollection');
-var linestring = require('turf-linestring');
+var featurecollection = require('turf-helpers').featureCollection;
+var linestring = require('turf-helpers').lineString;
 var square = require('turf-square');
 var Conrec = require('./conrec');
 

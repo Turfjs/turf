@@ -1,11 +1,10 @@
 {
   "name": "turf-inside",
-  "version": "1.1.4",
+  "version": "3.0.0",
   "description": "turf inside module",
   "main": "index.js",
   "scripts": {
-    "test": "tape test.js",
-    "doc": "dox -r < index.js | doxme --readme > README.md"
+    "test": "tape test.js"
   },
   "repository": {
     "type": "git",
@@ -28,13 +27,11 @@
   "bin": {},
   "dependencies": {
     "minimist": "^1.1.0",
-    "turf-invariant": "^1.0.3"
+    "turf-invariant": "^3.0.0"
   },
   "devDependencies": {
     "benchmark": "^1.0.0",
     "tape": "^3.5.0",
-    "dox": "^0.6.1",
-    "doxme": "^1.4.3",
-    "turf-helpers": "^1.0.0"
+    "turf-helpers": "^3.0.0"
   }
 }

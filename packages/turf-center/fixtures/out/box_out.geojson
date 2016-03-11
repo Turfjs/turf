@@ -34,15 +34,15 @@
     },
     {
       "type": "Feature",
+      "properties": {
+        "marker-color": "#f0f"
+      },
       "geometry": {
         "type": "Point",
         "coordinates": [
           65.56640625,
           43.59448261855401
         ]
-      },
-      "properties": {
-        "marker-color": "#f0f"
       }
     }
   ]

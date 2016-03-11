@@ -1,11 +1,10 @@
 {
   "name": "turf-sample",
-  "version": "1.0.1",
+  "version": "3.0.0",
   "description": "turf sample module",
   "main": "index.js",
   "scripts": {
-    "test": "node test",
-    "doc": "dox -r < index.js | doxme --readme > README.md"
+    "test": "node test"
   },
   "repository": {
     "type": "git",
@@ -26,11 +25,9 @@
   "devDependencies": {
     "benchmark": "^1.0.0",
     "tape": "^3.5.0",
-    "dox": "^0.6.1",
-    "doxme": "^1.4.3",
-    "turf-helpers": "^1.0.0"
+    "turf-helpers": "^3.0.0"
   },
   "dependencies": {
-    "turf-helpers": "^1.0.0"
+    "turf-helpers": "^3.0.0"
   }
 }

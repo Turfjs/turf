@@ -1,0 +1,24 @@
+{
+  "name": "turf-meta",
+  "version": "3.0.0",
+  "description": "meta and functional programming helpers for turf modules",
+  "main": "index.js",
+  "scripts": {
+    "test": "tape test.js"
+  },
+  "keywords": [
+    "functional",
+    "programming",
+    "turfjs"
+  ],
+  "author": "Tom MacWright",
+  "license": "ISC",
+  "devDependencies": {
+    "tape": "^3.4.0",
+    "turf-random": "^1.0.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:Turfjs/turf-meta.git"
+  }
+}

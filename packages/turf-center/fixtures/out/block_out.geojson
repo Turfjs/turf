@@ -2074,15 +2074,15 @@
     },
     {
       "type": "Feature",
+      "properties": {
+        "marker-color": "#f0f"
+      },
       "geometry": {
         "type": "Point",
         "coordinates": [
           -114.02911397119072,
           51.050271120392566
         ]
-      },
-      "properties": {
-        "marker-color": "#f0f"
       }
     }
   ]

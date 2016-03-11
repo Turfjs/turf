@@ -1,5 +1,5 @@
 var distance = require('turf-distance');
-var point = require('turf-point');
+var point = require('turf-helpers').point;
 
 /**
  * Takes a {@link LineString|line} and measures its length in the specified units.

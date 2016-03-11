@@ -1,11 +1,10 @@
 {
   "name": "turf-difference",
-  "version": "2.0.0",
+  "version": "3.0.0",
   "description": "[Turf](http://turfjs.org/) difference module",
   "main": "index.js",
   "scripts": {
-    "test": "tape test/*.js",
-    "doc": "dox -r < index.js | doxme --readme > README.md"
+    "test": "tape test/*.js"
   },
   "repository": {
     "type": "git",
@@ -24,12 +23,10 @@
   "devDependencies": {
     "benchmark": "^1.0.0",
     "glob": "~5.0.5",
-    "tape": "~4.0.0",
-    "dox": "^0.7.1",
-    "doxme": "^1.8.2"
+    "tape": "~4.0.0"
   },
   "dependencies": {
     "jsts": "~0.15.0",
-    "turf-helpers": "^1.0.0"
+    "turf-helpers": "^3.0.0"
   }
 }

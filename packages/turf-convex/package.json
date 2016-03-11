@@ -1,14 +1,13 @@
 {
   "name": "turf-convex",
-  "version": "1.0.1",
+  "version": "3.0.0",
   "description": "",
   "main": "index.js",
   "directories": {
     "test": "test"
   },
   "scripts": {
-    "test": "tape test/*.js",
-    "doc": "dox -r < index.js | doxme --readme > README.md"
+    "test": "tape test/*.js"
   },
   "repository": {
     "type": "git",
@@ -27,13 +26,11 @@
   "devDependencies": {
     "benchmark": "^1.0.0",
     "glob": "~4.3.5",
-    "tape": "~3.5.0",
-    "dox": "^0.6.1",
-    "doxme": "^1.4.3"
+    "tape": "~3.5.0"
   },
   "dependencies": {
     "convex-hull": "^1.0.3",
-    "turf-meta": "^1.0.2",
-    "turf-helpers": "^1.0.0"
+    "turf-meta": "^3.0.0",
+    "turf-helpers": "^3.0.0"
   }
 }

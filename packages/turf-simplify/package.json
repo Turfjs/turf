@@ -1,14 +1,13 @@
 {
   "name": "turf-simplify",
-  "version": "1.0.3",
+  "version": "3.0.0",
   "description": "simplify geographic shapes",
   "main": "index.js",
   "directories": {
     "test": "test"
   },
   "scripts": {
-    "test": "tape test/*.js",
-    "doc": "dox -r < index.js | doxme --readme > README.md"
+    "test": "tape test/*.js"
   },
   "repository": {
     "type": "git",
@@ -27,9 +26,7 @@
   "homepage": "https://github.com/Turfjs/turf-simplify",
   "devDependencies": {
     "benchmark": "^1.0.0",
-    "tape": "~3.5.0",
-    "dox": "^0.6.1",
-    "doxme": "^1.4.3"
+    "tape": "~3.5.0"
   },
   "dependencies": {
     "simplify-js": "^1.2.1"

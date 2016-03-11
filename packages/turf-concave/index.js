@@ -3,11 +3,9 @@
 // 3. remove triangles that fail the max length test
 // 4. buffer the results slightly
 // 5. merge the results
-var t = {};
-t.tin = require('turf-tin');
-t.merge = require('turf-merge');
-t.distance = require('turf-distance');
-t.point = require('turf-helpers').point;
+var tin = require('turf-tin');
+var union = require('turf-union');
+var distance = require('turf-distance');
 
 /**
  * Takes a set of {@link Point|points} and returns a concave hull polygon.
@@ -88,19 +86,32 @@ module.exports = function (points, maxEdge, units) {
     if (typeof maxEdge !== 'number') throw new Error('maxEdge parameter is required');
     if (typeof units !== 'string') throw new Error('units parameter is required');
 
-    var tinPolys = t.tin(points);
+    var tinPolys = tin(points);
     var filteredPolys = tinPolys.features.filter(filterTriangles);
     tinPolys.features = filteredPolys;
 
     function filterTriangles(triangle) {
-        var pt1 = t.point(triangle.geometry.coordinates[0][0]);
-        var pt2 = t.point(triangle.geometry.coordinates[0][1]);
-        var pt3 = t.point(triangle.geometry.coordinates[0][2]);
-        var dist1 = t.distance(pt1, pt2, units);
-        var dist2 = t.distance(pt2, pt3, units);
-        var dist3 = t.distance(pt1, pt3, units);
+        var pt1 = triangle.geometry.coordinates[0][0];
+        var pt2 = triangle.geometry.coordinates[0][1];
+        var pt3 = triangle.geometry.coordinates[0][2];
+        var dist1 = distance(pt1, pt2, units);
+        var dist2 = distance(pt2, pt3, units);
+        var dist3 = distance(pt1, pt3, units);
         return (dist1 <= maxEdge && dist2 <= maxEdge && dist3 <= maxEdge);
     }
 
-    return t.merge(tinPolys);
+    return merge(tinPolys);
 };
+
+function merge(polygons) {
+    var merged = JSON.parse(JSON.stringify(polygons.features[0])),
+        features = polygons.features;
+
+    for (var i = 0, len = features.length; i < len; i++) {
+        var poly = features[i];
+        if (poly.geometry) {
+            merged = union(merged, poly);
+        }
+    }
+    return merged;
+}

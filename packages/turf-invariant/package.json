@@ -1,0 +1,24 @@
+{
+  "name": "turf-invariant",
+  "version": "3.0.0",
+  "description": "enforce expectations about inputs to turf",
+  "main": "index.js",
+  "scripts": {
+    "test": "node test.js"
+  },
+  "keywords": [
+    "turf",
+    "invariant",
+    "expectations"
+  ],
+  "author": "Tom MacWright",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:Turfjs/turf-invariant.git"
+  },
+  "devDependencies": {
+    "tape": "^3.5.0"
+  },
+  "dependencies": {}
+}

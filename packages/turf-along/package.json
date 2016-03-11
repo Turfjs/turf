@@ -1,11 +1,10 @@
 {
   "name": "turf-along",
-  "version": "1.0.3",
+  "version": "3.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "node test.js",
-    "doc": "dox -r < index.js | doxme --readme > README.md"
+    "test": "node test.js"
   },
   "repository": {
     "type": "git",
@@ -27,14 +26,12 @@
   "devDependencies": {
     "benchmark": "^1.0.0",
     "tape": "^3.5.0",
-    "dox": "^0.6.1",
-    "doxme": "^1.4.3",
-    "turf-helpers": "^1.0.0"
+    "turf-helpers": "^3.0.0"
   },
   "dependencies": {
-    "turf-bearing": "^1.0.0",
-    "turf-destination": "^1.2.0",
-    "turf-distance": "^1.0.0",
-    "turf-helpers": "^1.0.0"
+    "turf-bearing": "^3.0.0",
+    "turf-destination": "^3.0.0",
+    "turf-distance": "^3.0.0",
+    "turf-helpers": "^3.0.0"
   }
 }

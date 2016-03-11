@@ -51,12 +51,12 @@ module.exports = function (line, dist, units) {
             var overshot = dist - travelled;
             if (!overshot) return point(coords[i]);
             else {
-                var direction = bearing(point(coords[i]), point(coords[i - 1])) - 180;
-                var interpolated = destination(point(coords[i]), overshot, direction, units);
+                var direction = bearing(coords[i], coords[i - 1]) - 180;
+                var interpolated = destination(coords[i], overshot, direction, units);
                 return interpolated;
             }
         } else {
-            travelled += distance(point(coords[i]), point(coords[i + 1]), units);
+            travelled += distance(coords[i], coords[i + 1], units);
         }
     }
     return point(coords[coords.length - 1]);

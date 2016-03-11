@@ -1,11 +1,10 @@
 {
   "name": "turf-destination",
-  "version": "1.2.1",
+  "version": "3.0.0",
   "description": "turf destination module",
   "main": "index.js",
   "scripts": {
-    "test": "tape test.js",
-    "doc": "dox -r < index.js | doxme --readme > README.md"
+    "test": "tape test.js"
   },
   "repository": {
     "type": "git",
@@ -28,11 +27,10 @@
   "devDependencies": {
     "benchmark": "^1.0.0",
     "tape": "^3.5.0",
-    "turf-distance": "^1.0.0",
-    "dox": "^0.6.1",
-    "doxme": "^1.4.3"
+    "turf-distance": "^3.0.0"
   },
   "dependencies": {
-    "turf-helpers": "^1.0.0"
+    "turf-helpers": "^3.0.0",
+    "turf-invariant": "^3.0.0"
   }
 }

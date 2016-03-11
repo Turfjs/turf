@@ -1,4 +1,4 @@
-var geometries = require('turf-geometries');
+var geometries = require('turf-helpers');
 var point = geometries.point;
 var distance = require('turf-distance');
 

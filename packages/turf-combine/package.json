@@ -1,11 +1,10 @@
 {
   "name": "turf-combine",
-  "version": "1.1.0",
+  "version": "3.0.0",
   "description": "turf combine module",
   "main": "index.js",
   "scripts": {
-    "test": "tape test.js",
-    "doc": "dox -r < index.js | doxme --readme > README.md"
+    "test": "tape test.js"
   },
   "repository": {
     "type": "git",
@@ -26,12 +25,7 @@
   "homepage": "https://github.com/Turfjs/turf-combine",
   "devDependencies": {
     "benchmark": "^1.0.0",
-    "dox": "^0.6.1",
-    "doxme": "^1.4.3",
     "tape": "^3.5.0",
-    "turf-multilinestring": "^1.0.2",
-    "turf-multipoint": "^1.0.0",
-    "turf-multipolygon": "^1.0.1",
-    "turf-helpers": "^1.0.0"
+    "turf-helpers": "^3.0.0"
   }
 }

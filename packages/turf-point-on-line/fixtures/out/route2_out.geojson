@@ -15069,28 +15069,28 @@
     },
     {
       "type": "Feature",
+      "properties": {},
       "geometry": {
         "type": "Point",
         "coordinates": [
           -112.60660171508789,
           45.96021963947196
         ]
-      },
-      "properties": {}
+      }
     },
     {
       "type": "Feature",
+      "properties": {
+        "dist": 0.7825944108810942,
+        "index": 3759,
+        "marker-color": "#f0f"
+      },
       "geometry": {
         "type": "Point",
         "coordinates": [
           -112.614288,
           45.970203
         ]
-      },
-      "properties": {
-        "dist": 0.7825944108810942,
-        "index": 3759,
-        "marker-color": "#f0f"
       }
     }
   ]

@@ -164,18 +164,16 @@ function triangulate(vertices) {
                 x: xmid - 20 * dmax,
                 y: ymid - dmax,
                 __sentinel: true
-            },
-            {
+            }, {
                 x: xmid,
                 y: ymid + 20 * dmax,
                 __sentinel: true
-            },
-            {
+            }, {
                 x: xmid + 20 * dmax,
                 y: ymid - dmax,
                 __sentinel: true
             }
-    )],
+        )],
         closed = [],
         edges = [],
         j, a, b;

@@ -1,11 +1,10 @@
 {
   "name": "turf-bearing",
-  "version": "1.0.2",
+  "version": "3.0.0",
   "description": "turf bearing module",
   "main": "index.js",
   "scripts": {
-    "test": "tape test.js",
-    "doc": "dox -r < index.js | doxme --readme > README.md"
+    "test": "tape test.js"
   },
   "repository": {
     "type": "git",
@@ -21,10 +20,11 @@
     "url": "https://github.com/Turfjs/turf-bearing/issues"
   },
   "homepage": "https://github.com/Turfjs/turf-bearing",
+  "dependencies": {
+    "turf-invariant": "^3.0.0"
+  },
   "devDependencies": {
     "benchmark": "^1.0.0",
-    "tape": "^3.5.0",
-    "dox": "^0.6.1",
-    "doxme": "^1.4.3"
+    "tape": "^3.5.0"
   }
 }

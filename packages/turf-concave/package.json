@@ -1,11 +1,10 @@
 {
   "name": "turf-concave",
-  "version": "1.1.3",
+  "version": "3.0.0",
   "description": "turf concave module",
   "main": "index.js",
   "scripts": {
-    "test": "node test.js",
-    "doc": "dox -r < index.js | doxme --readme > README.md"
+    "test": "node test.js"
   },
   "repository": {
     "type": "git",
@@ -25,14 +24,12 @@
   "devDependencies": {
     "benchmark": "^1.0.0",
     "glob": "~4.3.5",
-    "tape": "~3.5.0",
-    "dox": "^0.6.1",
-    "doxme": "^1.4.3"
+    "tape": "~3.5.0"
   },
   "dependencies": {
-    "turf-tin": "^1.0.5",
-    "turf-merge": "^1.0.1",
-    "turf-distance": "^1.0.0",
-    "turf-helpers": "^1.0.0"
+    "turf-tin": "^3.0.0",
+    "turf-union": "^3.0.0",
+    "turf-distance": "^3.0.0",
+    "turf-helpers": "^3.0.0"
   }
 }
