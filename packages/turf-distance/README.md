@@ -7,7 +7,7 @@ turf distance module
 
 ### `turf.distance(from, to, [units=kilometers])`
 
-Calculates the distance between two Point|points in degress, radians,
+Calculates the distance between two Point|points in degrees, radians,
 miles, or kilometers. This uses the
 [Haversine formula](http://en.wikipedia.org/wiki/Haversine_formula)
 to account for global curvature.
