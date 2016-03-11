@@ -1,6 +1,3 @@
 machine:
   node:
     version: 5
-test:
-  pre:
-    - ./node_modules/.bin/lerna bootstrap
