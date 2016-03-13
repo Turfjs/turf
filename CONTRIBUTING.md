@@ -1,3 +1,5 @@
+### :bug: [How to report a bug](http://polite.technology/reportabug.html)
+
 ## How To Contribute
 
 - Most work happens in sub modules. These are modules prefixed with "turf-". 
