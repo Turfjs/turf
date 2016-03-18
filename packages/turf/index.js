@@ -29,7 +29,7 @@ module.exports = {
     combine: require('turf-combine'),
     distance: require('turf-distance'),
     explode: require('turf-explode'),
-    extent: require('turf-extent'),
+    bbox: require('turf-bbox'),
     tesselate: require('turf-tesselate'),
     bboxPolygon: require('turf-bbox-polygon'),
     inside: require('turf-inside'),

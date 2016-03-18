@@ -3,7 +3,7 @@ var buffer = require('../');
 var fs = require('fs');
 var glob = require('glob');
 var featurecollection = require('turf-helpers').featureCollection;
-var extent = require('turf-extent');
+var getBbox = require('turf-bbox');
 var point = require('turf-helpers').point;
 var distance = require('turf-distance');
 var normalize = require('geojson-normalize');
@@ -12,7 +12,7 @@ test('buffer', function(t){
   var fixtures = glob.sync(__dirname+'/fixtures/in/*.geojson');
   fixtures.forEach(function(path){
     var fixture = JSON.parse(fs.readFileSync(path));
-    var bbox = extent(fixture);
+    var bbox = getBbox(fixture);
     var width = distance(
       point(bbox.slice(0,2)),
       point(bbox.slice(2,5)),

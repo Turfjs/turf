@@ -29,6 +29,6 @@
   },
   "dependencies": {
     "turf-bbox-polygon": "^3.0.0",
-    "turf-extent": "^3.0.0"
+    "turf-bbox": "^3.0.0"
   }
 }

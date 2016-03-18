@@ -35,7 +35,6 @@
     "tape": "^3.5.0",
     "turf-bbox-polygon": "^3.0.0",
     "turf-explode": "^3.0.0",
-    "turf-extent": "^3.0.0",
     "turf-inside": "^3.0.0"
   },
   "dependencies": {

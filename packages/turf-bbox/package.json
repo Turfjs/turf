@@ -1,14 +1,14 @@
 {
-  "name": "turf-extent",
+  "name": "turf-bbox",
   "version": "3.0.0",
-  "description": "turf extent module",
+  "description": "turf bbox module",
   "main": "index.js",
   "scripts": {
     "test": "node test.js"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/Turfjs/turf-extent.git"
+    "url": "https://github.com/Turfjs/turf.git"
   },
   "keywords": [
     "turf",
@@ -21,9 +21,9 @@
   "author": "morganherlocker",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/Turfjs/turf-extent/issues"
+    "url": "https://github.com/Turfjs/turf/issues"
   },
-  "homepage": "https://github.com/Turfjs/turf-extent",
+  "homepage": "https://github.com/Turfjs/turf",
   "devDependencies": {
     "benchmark": "^1.0.0",
     "tape": "^3.5.0"

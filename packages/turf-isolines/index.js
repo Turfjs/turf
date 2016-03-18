@@ -3,7 +3,7 @@
 var tin = require('turf-tin');
 var inside = require('turf-inside');
 var grid = require('turf-grid');
-var extent = require('turf-extent');
+var bbox = require('turf-bbox');
 var planepoint = require('turf-planepoint');
 var featurecollection = require('turf-helpers').featureCollection;
 var linestring = require('turf-helpers').lineString;
@@ -36,8 +36,8 @@ var Conrec = require('./conrec');
  */
 module.exports = function (points, z, resolution, breaks) {
     var tinResult = tin(points, z);
-    var extentBBox = extent(points);
-    var squareBBox = square(extentBBox);
+    var bboxBBox = bbox(points);
+    var squareBBox = square(bboxBBox);
     var gridResult = grid(squareBBox, resolution);
     var data = [];
 

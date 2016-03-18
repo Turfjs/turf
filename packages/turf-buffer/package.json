@@ -30,7 +30,7 @@
     "glob": "^5.0.3",
     "tape": "^3.5.0",
     "turf-distance": "^3.0.0",
-    "turf-extent": "^3.0.0",
+    "turf-bbox": "^3.0.0",
     "turf-helpers": "^3.0.0"
   },
   "dependencies": {

@@ -62,7 +62,7 @@
     "turf-envelope": "^3.0.0",
     "turf-difference": "^3.0.0",
     "turf-explode": "^3.0.0",
-    "turf-extent": "^3.0.0",
+    "turf-bbox": "^3.0.0",
     "turf-flip": "^3.0.0",
     "turf-tesselate": "^3.0.0",
     "turf-hex-grid": "^3.0.0",

@@ -1,13 +1,13 @@
-# turf-extent
+# turf-bbox
 
-[![build status](https://secure.travis-ci.org/Turfjs/turf-extent.png)](http://travis-ci.org/Turfjs/turf-extent)
+[![build status](https://secure.travis-ci.org/Turfjs/turf-bbox.png)](http://travis-ci.org/Turfjs/turf-bbox)
 
-turf extent module
+turf bbox module
 
 
-### `turf.extent(input)`
+### `turf.bbox(input)`
 
-Takes a set of features, calculates the extent of all input features, and returns a bounding box.
+Takes a set of features, calculates the bbox of all input features, and returns a bounding box.
 
 
 ### Parameters
@@ -55,7 +55,7 @@ var input = {
   ]
 };
 
-var bbox = turf.extent(input);
+var bbox = turf.bbox(input);
 
 var bboxPolygon = turf.bboxPolygon(bbox);
 
@@ -76,7 +76,7 @@ var result = {
 Requires [nodejs](http://nodejs.org/).
 
 ```sh
-$ npm install turf-extent
+$ npm install turf-bbox
 ```
 
 ## Tests

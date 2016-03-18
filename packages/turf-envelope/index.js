@@ -1,4 +1,4 @@
-var extent = require('turf-extent');
+var bbox = require('turf-bbox');
 var bboxPolygon = require('turf-bbox-polygon');
 
 /**
@@ -55,7 +55,5 @@ var bboxPolygon = require('turf-bbox-polygon');
  */
 
 module.exports = function (features) {
-    var bbox = extent(features);
-    var poly = bboxPolygon(bbox);
-    return poly;
+    return bboxPolygon(bbox(features));
 };

@@ -1,9 +1,9 @@
 var each = require('turf-meta').coordEach;
 
 /**
- * Takes a set of features, calculates the extent of all input features, and returns a bounding box.
+ * Takes a set of features, calculates the bbox of all input features, and returns a bounding box.
  *
- * @module turf/extent
+ * @module turf/bbox
  * @category measurement
  * @param {(Feature|FeatureCollection)} input input features
  * @return {Array<number>} the bounding box of `input` given
@@ -44,7 +44,7 @@ var each = require('turf-meta').coordEach;
  *   ]
  * };
  *
- * var bbox = turf.extent(input);
+ * var bbox = turf.bbox(input);
  *
  * var bboxPolygon = turf.bboxPolygon(bbox);
  *
@@ -57,12 +57,12 @@ var each = require('turf-meta').coordEach;
  * //=result
  */
 module.exports = function (layer) {
-    var extent = [Infinity, Infinity, -Infinity, -Infinity];
+    var bbox = [Infinity, Infinity, -Infinity, -Infinity];
     each(layer, function (coord) {
-        if (extent[0] > coord[0]) extent[0] = coord[0];
-        if (extent[1] > coord[1]) extent[1] = coord[1];
-        if (extent[2] < coord[0]) extent[2] = coord[0];
-        if (extent[3] < coord[1]) extent[3] = coord[1];
+        if (bbox[0] > coord[0]) bbox[0] = coord[0];
+        if (bbox[1] > coord[1]) bbox[1] = coord[1];
+        if (bbox[2] < coord[0]) bbox[2] = coord[0];
+        if (bbox[3] < coord[1]) bbox[3] = coord[1];
     });
-    return extent;
+    return bbox;
 };
