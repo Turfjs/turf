@@ -1,4 +1,4 @@
-var test = require('tape'),
+var test = require('tap').test,
     invariant = require('./');
 
 test('invariant#geojsonType', function(t) {

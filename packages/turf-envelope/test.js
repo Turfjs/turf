@@ -1,4 +1,4 @@
-var test = require('tape');
+var test = require('tap').test;
 var envelope = require('./');
 var fc = require('./geojson/fc.js');
 

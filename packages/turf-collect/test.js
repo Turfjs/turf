@@ -1,5 +1,5 @@
 var aggregate = require('./');
-var test = require('tape');
+var test = require('tap').test;
 var polygon = require('turf-helpers').polygon;
 var point = require('turf-helpers').point;
 var featurecollection = require('turf-helpers').featureCollection;

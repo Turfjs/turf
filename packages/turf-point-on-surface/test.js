@@ -1,4 +1,4 @@
-var test = require('tape');
+var test = require('tap').test;
 var centroid = require('./');
 var fs = require('fs');
 var inside = require('turf-inside');

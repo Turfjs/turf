@@ -1,4 +1,4 @@
-var test = require('tape');
+var test = require('tap').test;
 var tesselate = require('./');
 var featurecollection = require('turf-helpers').featureCollection;
 var point = require('turf-helpers').point;

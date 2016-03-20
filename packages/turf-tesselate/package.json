@@ -4,7 +4,7 @@
   "description": "[Turf](http://turfjs.org/) tesselate module",
   "main": "index.js",
   "scripts": {
-    "test": "node test.js"
+    "test": "tap test.js"
   },
   "repository": {
     "type": "git",
@@ -28,8 +28,8 @@
   },
   "homepage": "https://github.com/Turfjs/turf-tesselate",
   "devDependencies": {
-    "tape": "^4.0.0",
-    "turf-helpers": "^3.0.0"
+    "turf-helpers": "^3.0.0",
+    "tap": "^5.7.0"
   },
   "dependencies": {
     "earcut": "^2.0.0",

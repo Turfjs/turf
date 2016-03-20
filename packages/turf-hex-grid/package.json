@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "tape test.js"
+    "test": "tap test.js"
   },
   "repository": {
     "type": "git",
@@ -32,10 +32,10 @@
   "homepage": "https://github.com/Turfjs/turf-hex-grid",
   "devDependencies": {
     "benchmark": "^1.0.0",
-    "tape": "^3.5.0",
     "turf-bbox-polygon": "^3.0.0",
     "turf-explode": "^3.0.0",
-    "turf-inside": "^3.0.0"
+    "turf-inside": "^3.0.0",
+    "tap": "^5.7.0"
   },
   "dependencies": {
     "turf-distance": "^3.0.0",

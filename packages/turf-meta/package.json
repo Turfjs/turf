@@ -4,7 +4,7 @@
   "description": "meta and functional programming helpers for turf modules",
   "main": "index.js",
   "scripts": {
-    "test": "tape test.js"
+    "test": "tap test.js"
   },
   "keywords": [
     "functional",
@@ -14,8 +14,8 @@
   "author": "Tom MacWright",
   "license": "ISC",
   "devDependencies": {
-    "tape": "^3.4.0",
-    "turf-random": "^1.0.2"
+    "turf-random": "^1.0.2",
+    "tap": "^5.7.0"
   },
   "repository": {
     "type": "git",

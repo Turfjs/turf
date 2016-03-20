@@ -3,14 +3,12 @@ lib-cov
 *.log
 *.csv
 *.dat
-*.out
 *.pid
 
 .DS_Store
 
 pids
 logs
-results
 
 npm-debug.log
 

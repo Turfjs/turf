@@ -4,7 +4,7 @@
   "description": "turf buffer module",
   "main": "index.js",
   "scripts": {
-    "test": "node ./test/test.js"
+    "test": "tap ./test/test.js"
   },
   "repository": {
     "type": "git",
@@ -28,10 +28,10 @@
   "devDependencies": {
     "benchmark": "^1.0.0",
     "glob": "^5.0.3",
-    "tape": "^3.5.0",
     "turf-distance": "^3.0.0",
     "turf-bbox": "^3.0.0",
-    "turf-helpers": "^3.0.0"
+    "turf-helpers": "^3.0.0",
+    "tap": "^5.7.0"
   },
   "dependencies": {
     "geojson-normalize": "0.0.0",

@@ -1,4 +1,4 @@
-var test = require('tape');
+var test = require('tap').test;
 var grid = require('./');
 var fs = require('fs');
 var bboxPolygon = require('turf-bbox-polygon');
@@ -52,10 +52,17 @@ test('hex-grid', function (t) {
   grid3.features.push(referencePoly(bbox3));
   grid4.features.push(referencePoly(bbox4));
 
-  fs.writeFileSync(__dirname+'/fixtures/out/grid1.geojson', JSON.stringify(grid1,null,2));
-  fs.writeFileSync(__dirname+'/fixtures/out/grid2.geojson', JSON.stringify(grid2,null,2));
-  fs.writeFileSync(__dirname+'/fixtures/out/grid3.geojson', JSON.stringify(grid3,null,2));
-  fs.writeFileSync(__dirname+'/fixtures/out/grid4.geojson', JSON.stringify(grid4,null,2));
+  if (process.env.UPDATE) {
+    fs.writeFileSync(__dirname+'/fixtures/out/grid1.geojson', JSON.stringify(grid1,null,2));
+    fs.writeFileSync(__dirname+'/fixtures/out/grid2.geojson', JSON.stringify(grid2,null,2));
+    fs.writeFileSync(__dirname+'/fixtures/out/grid3.geojson', JSON.stringify(grid3,null,2));
+    fs.writeFileSync(__dirname+'/fixtures/out/grid4.geojson', JSON.stringify(grid4,null,2));
+  }
+
+  t.deepEqual(JSON.parse(fs.readFileSync(__dirname+'/fixtures/out/grid1.geojson')), grid1);
+  t.deepEqual(JSON.parse(fs.readFileSync(__dirname+'/fixtures/out/grid2.geojson')), grid2);
+  t.deepEqual(JSON.parse(fs.readFileSync(__dirname+'/fixtures/out/grid3.geojson')), grid3);
+  t.deepEqual(JSON.parse(fs.readFileSync(__dirname+'/fixtures/out/grid4.geojson')), grid4);
 
   t.end();
 });

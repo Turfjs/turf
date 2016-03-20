@@ -1,4 +1,4 @@
-var test = require('tape');
+var test = require('tap').test;
 var random = require('./');
 
 test('random(points)', function(t){

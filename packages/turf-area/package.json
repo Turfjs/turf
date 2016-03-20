@@ -4,7 +4,7 @@
   "description": "calculate the area of a polygon or multipolygon feature",
   "main": "index.js",
   "scripts": {
-    "test": "tape test.js"
+    "test": "tap test.js"
   },
   "keywords": [
     "turf",
@@ -23,6 +23,6 @@
   },
   "devDependencies": {
     "geojson-fixtures": "^0.6.0",
-    "tape": "^3.5.0"
+    "tap": "^5.7.0"
   }
 }

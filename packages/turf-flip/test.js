@@ -1,4 +1,4 @@
-var test = require('tape');
+var test = require('tap').test;
 var flip = require('./');
 var point = require('turf-helpers').point;
 var linestring = require('turf-helpers').lineString;

@@ -4,7 +4,7 @@
   "description": "turf explode module",
   "main": "index.js",
   "scripts": {
-    "test": "node test.js"
+    "test": "tap test.js"
   },
   "repository": {
     "type": "git",
@@ -24,9 +24,9 @@
   "homepage": "https://github.com/Turfjs/turf-explode",
   "devDependencies": {
     "benchmark": "^1.0.0",
-    "tape": "^3.5.0",
     "geojson-fixtures": "^0.6.1",
-    "turf-helpers": "^3.0.0"
+    "turf-helpers": "^3.0.0",
+    "tap": "^5.7.0"
   },
   "dependencies": {
     "turf-meta": "^3.0.0",
