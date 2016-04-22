@@ -1,0 +1,32 @@
+{
+  "name": "idw-js",
+  "version": "1.0.0",
+  "description": "Today a plain IDW alg. implemented in JS. Tomorrow a Turf.js package? Maybe?",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "dependencies": {
+    "turf-centroid": "^1.1.3",
+    "turf-distance": "^1.1.0",
+    "turf-extent": "^1.0.4",
+    "turf-filter": "^1.0.1",
+    "turf-square-grid": "^1.0.1"
+  },
+  "devDependencies": {
+    "tape": "^4.5.1"
+  },
+  "scripts": {
+    "test": "node test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/miccferr/idw-js.git"
+  },
+  "author": "Michele Ferretti",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/miccferr/idw-js/issues"
+  },
+  "homepage": "https://github.com/miccferr/idw-js#readme"
+}
