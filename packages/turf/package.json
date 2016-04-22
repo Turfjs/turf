@@ -99,7 +99,7 @@
     "hcat": "0.0.5",
     "jsdoc": "^3.3.0-beta1",
     "lerna": "https://github.com/kittens/lerna/archive/master.tar.gz",
-    "tape": "^3.5.0",
-    "uglify-js": "~2.4.16"
+    "uglify-js": "~2.4.16",
+    "tap": "^5.7.0"
   }
 }

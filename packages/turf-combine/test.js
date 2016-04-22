@@ -1,4 +1,4 @@
-var test = require('tape'),
+var test = require('tap').test,
   point = require('turf-helpers').point,
   multipoint = require('turf-helpers').multiPoint,
   linestring = require('turf-helpers').lineString,

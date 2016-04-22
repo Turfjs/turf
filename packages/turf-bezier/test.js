@@ -1,5 +1,5 @@
 var bezier = require('./'),
-  test = require('tape'),
+  test = require('tap').test,
   fs = require('fs');
 
 test('bezier', function(t) {

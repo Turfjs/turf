@@ -1,4 +1,4 @@
-var test = require('tape');
+var test = require('tap').test;
 var fs = require('fs');
 var tag = require('./');
 

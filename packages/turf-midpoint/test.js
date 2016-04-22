@@ -1,4 +1,4 @@
-var test = require('tape');
+var test = require('tap').test;
 var midpoint = require('./');
 var point = require('turf-helpers').point;
 

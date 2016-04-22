@@ -1,4 +1,4 @@
-var test = require('tape');
+var test = require('tap').test;
 var inside = require('./');
 var point = require('turf-helpers').point;
 var polygon = require('turf-helpers').polygon;

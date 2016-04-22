@@ -1,5 +1,5 @@
 var concave = require('./');
-var test = require('tape');
+var test = require('tap').test;
 var fs = require('fs');
 
 var pts1 = JSON.parse(fs.readFileSync(__dirname+'/fixtures/in/pts1.geojson'));

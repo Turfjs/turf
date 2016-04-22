@@ -1,4 +1,4 @@
-var test = require('tape');
+var test = require('tap').test;
 var sample = require('./');
 var featureCollection = require('turf-helpers').featureCollection;
 var point = require('turf-helpers').point;

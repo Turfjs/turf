@@ -1,4 +1,4 @@
-var test = require('tape');
+var test = require('tap').test;
 var bearing = require('./');
 
 test('bearing', function(t){

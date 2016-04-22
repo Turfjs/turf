@@ -1,6 +1,6 @@
 // http://math.stackexchange.com/questions/28043/finding-the-z-value-on-a-plane-with-x-y-values
 // http://stackoverflow.com/a/13916669/461015
-var test = require('tape');
+var test = require('tap').test;
 var fs = require('fs');
 var planepoint = require('./');
 

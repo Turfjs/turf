@@ -1,4 +1,4 @@
-var test = require('tape');
+var test = require('tap').test;
 var fs = require('fs');
 var lineSlice = require('./');
 var point = require('turf-helpers').point;
@@ -17,10 +17,16 @@ test('turf-line-slice -- line1', function (t) {
 	sliced.properties['stroke'] = '#f0f';
 	sliced.properties['stroke-width'] = 6;
 
-	fs.writeFileSync(__dirname+ '/fixtures/out/line1_out.geojson',
-		JSON.stringify(featurecollection([
-				line1, start, stop, sliced
-			]), null, 2));
+	if (process.env.UPDATE) {
+		fs.writeFileSync(__dirname+ '/fixtures/out/line1_out.geojson',
+			JSON.stringify(featurecollection([
+					line1, start, stop, sliced
+				]), null, 2));
+	}
+
+	t.deepEqual(featurecollection([
+					line1, start, stop, sliced
+				]), JSON.parse(fs.readFileSync(__dirname + '/fixtures/out/line1_out.geojson')));
 
 	t.end();
 });
@@ -34,11 +40,16 @@ test('turf-line-slice -- line2', function (t) {
 	sliced.properties['stroke'] = '#f0f';
 	sliced.properties['stroke-width'] = 6;
 
-	fs.writeFileSync(__dirname+ '/fixtures/out/line2_out.geojson',
-		JSON.stringify(featurecollection([
-				line2, start, stop, sliced
-			]), null, 2));
+	if (process.env.UPDATE) {
+		fs.writeFileSync(__dirname+ '/fixtures/out/line2_out.geojson',
+			JSON.stringify(featurecollection([
+					line2, start, stop, sliced
+				]), null, 2));
+	}
 
+	t.deepEqual(featurecollection([
+					line2, start, stop, sliced
+				]), JSON.parse(fs.readFileSync(__dirname + '/fixtures/out/line2_out.geojson')));
 	t.end();
 });
 
@@ -51,10 +62,16 @@ test('turf-line-slice -- route1', function (t) {
 	sliced.properties['stroke'] = '#f0f';
 	sliced.properties['stroke-width'] = 6;
 
-	fs.writeFileSync(__dirname+ '/fixtures/out/route1_out.geojson',
-		JSON.stringify(featurecollection([
-				route1, start, stop, sliced
-			]), null, 2));
+	if (process.env.UPDATE) {
+		fs.writeFileSync(__dirname+ '/fixtures/out/route1_out.geojson',
+			JSON.stringify(featurecollection([
+					route1, start, stop, sliced
+				]), null, 2));
+	}
+
+	t.deepEqual(featurecollection([
+					route1, start, stop, sliced
+				]), JSON.parse(fs.readFileSync(__dirname + '/fixtures/out/route1_out.geojson')));
 
 	t.end();
 });
@@ -67,10 +84,16 @@ test('turf-line-slice -- route2', function (t) {
 	sliced.properties['stroke'] = '#f0f';
 	sliced.properties['stroke-width'] = 6;
 
-	fs.writeFileSync(__dirname+ '/fixtures/out/route2_out.geojson',
-		JSON.stringify(featurecollection([
-				route2, start, stop, sliced
-			]), null, 2));
+	if (process.env.UPDATE) {
+		fs.writeFileSync(__dirname+ '/fixtures/out/route2_out.geojson',
+			JSON.stringify(featurecollection([
+					route2, start, stop, sliced
+				]), null, 2));
+	}
+
+	t.deepEqual(featurecollection([
+					route2, start, stop, sliced
+				]), JSON.parse(fs.readFileSync(__dirname + '/fixtures/out/route2_out.geojson')));
 
 	t.end();
 });

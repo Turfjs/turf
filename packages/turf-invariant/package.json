@@ -4,7 +4,7 @@
   "description": "enforce expectations about inputs to turf",
   "main": "index.js",
   "scripts": {
-    "test": "node test.js"
+    "test": "tap test.js"
   },
   "keywords": [
     "turf",
@@ -18,7 +18,7 @@
     "url": "git@github.com:Turfjs/turf-invariant.git"
   },
   "devDependencies": {
-    "tape": "^3.5.0"
+    "tap": "^5.7.0"
   },
   "dependencies": {}
 }

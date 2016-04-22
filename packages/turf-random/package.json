@@ -4,7 +4,7 @@
   "description": "generate random features",
   "main": "index.js",
   "scripts": {
-    "test": "tape test.js"
+    "test": "tap test.js"
   },
   "repository": {
     "type": "git",
@@ -23,7 +23,7 @@
   "devDependencies": {
     "benchmark": "^1.0.0",
     "glob": "~4.3.5",
-    "tape": "~3.5.0"
+    "tap": "^5.7.0"
   },
   "dependencies": {
     "geojson-random": "^0.2.2"

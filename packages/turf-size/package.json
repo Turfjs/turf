@@ -4,7 +4,7 @@
   "description": "turf size module",
   "main": "index.js",
   "scripts": {
-    "test": "node test.js"
+    "test": "tap test.js"
   },
   "repository": {
     "type": "git",
@@ -25,6 +25,6 @@
   "homepage": "https://github.com/Turfjs/turf-size",
   "devDependencies": {
     "benchmark": "^1.0.0",
-    "tape": "^3.5.0"
+    "tap": "^5.7.0"
   }
 }

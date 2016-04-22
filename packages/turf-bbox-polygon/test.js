@@ -1,4 +1,4 @@
-var test = require('tape')
+var test = require('tap').test
 var bboxPolygon = require('./')
 
 test('bboxPolygon', function(t){

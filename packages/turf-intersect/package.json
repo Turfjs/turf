@@ -4,7 +4,7 @@
   "description": "find the intersection of spatial features",
   "main": "index.js",
   "scripts": {
-    "test": "node test/test.js"
+    "test": "tap test/test.js"
   },
   "repository": {
     "type": "git",
@@ -24,7 +24,7 @@
   "devDependencies": {
     "benchmark": "^1.0.0",
     "glob": "~4.3.5",
-    "tape": "~3.5.0"
+    "tap": "^5.7.0"
   },
   "dependencies": {
     "jsts": "~0.15.0"
