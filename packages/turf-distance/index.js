@@ -69,7 +69,7 @@ module.exports = function (point1, point2, units) {
     case 'inches':
         return c * 250905600;
     case 'yards':
-        return c * 6969600
+        return c * 6969600;
     case 'meters':
     case 'metres':
         return c * 637300;
