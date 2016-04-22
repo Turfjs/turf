@@ -47,7 +47,7 @@
     "browserify": "~9.0.3",
     "eslint": "^2.0.0",
     "eslint-config-mourner": "^2.0.0",
-    "lerna": "https://github.com/tmcw/lerna/archive/link-first.tar.gz",
+    "lerna": "2.0.0-beta.5",
     "uglify-js": "~2.4.16"
   }
 }

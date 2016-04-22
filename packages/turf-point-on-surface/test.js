@@ -26,11 +26,11 @@ test('point-on-surface -- centroid on polygon surface', function(t) {
   t.equal(typeof cent.geometry.coordinates[0], 'number');
   t.equal(typeof cent.geometry.coordinates[1], 'number');
   t.true(inside(cent, {
-      "type": "Feature",
-      "properties": {},
-      "geometry": {
-        "type": "Polygon",
-        "coordinates": [
+      type: "Feature",
+      properties: {},
+      geometry: {
+        type: "Polygon",
+        coordinates: [
           [
             [
               13.270797729492186,

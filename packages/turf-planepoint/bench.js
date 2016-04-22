@@ -4,10 +4,10 @@ var fs = require('fs');
 
 var triangle = JSON.parse(fs.readFileSync(__dirname+'/geojson/Triangle.geojson'));
 var point = {
-  "type": "Feature",
-  "geometry": {
-    "type": "Point",
-    "coordinates": [
+  type: "Feature",
+  geometry: {
+    type: "Point",
+    coordinates: [
       -75.3221,
       39.529
     ]

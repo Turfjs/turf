@@ -64,7 +64,7 @@ function referencePoly (bbox) {
   var poly = bboxPolygon(bbox);
   poly.properties = {
     'fill-opacity': 0,
-    'stroke': '#0ff'
+    stroke: '#0ff'
   };
   return poly;
 }

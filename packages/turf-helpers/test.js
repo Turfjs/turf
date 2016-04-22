@@ -80,22 +80,22 @@ test('featureCollection', function(t){
 
 test('multilinestring', function(t){
   t.deepEqual(multiLineString([[[0,0],[10,10]], [[5,0],[15,8]]]), {
-    "type": "Feature",
-    "properties": {},
-    "geometry": {
-      "type": "MultiLineString",
-      "coordinates": [[[0,0],[10,10]], [[5,0],[15,8]]]
+    type: "Feature",
+    properties: {},
+    geometry: {
+      type: "MultiLineString",
+      coordinates: [[[0,0],[10,10]], [[5,0],[15,8]]]
     }
   }, 'takes coordinates');
 
   t.deepEqual(multiLineString([[[0,0],[10,10]], [[5,0],[15,8]]], {test: 23}), {
-    "type": "Feature",
-    "properties": {
+    type: "Feature",
+    properties: {
       test: 23
     },
-    "geometry": {
-      "type": "MultiLineString",
-      "coordinates": [[[0,0],[10,10]], [[5,0],[15,8]]]
+    geometry: {
+      type: "MultiLineString",
+      coordinates: [[[0,0],[10,10]], [[5,0],[15,8]]]
     }
   }, 'takes properties');
 
@@ -110,11 +110,11 @@ test('multilinestring', function(t){
 
 test('multiPoint', function(t){
   t.deepEqual(multiPoint([[0,0],[10,10]]), {
-    "type": "Feature",
-    "properties": {},
-    "geometry": {
-      "type": "MultiPoint",
-      "coordinates": [
+    type: "Feature",
+    properties: {},
+    geometry: {
+      type: "MultiPoint",
+      coordinates: [
         [0,0],
         [10,10]
       ]
@@ -122,13 +122,13 @@ test('multiPoint', function(t){
   }, 'takes coordinates');
 
   t.deepEqual(multiPoint([[0,0],[10,10]], {test: 23}), {
-    "type": "Feature",
-    "properties": {
+    type: "Feature",
+    properties: {
       test: 23
     },
-    "geometry": {
-      "type": "MultiPoint",
-      "coordinates": [
+    geometry: {
+      type: "MultiPoint",
+      coordinates: [
         [0,0],
         [10,10]
       ]
@@ -145,15 +145,15 @@ test('multiPoint', function(t){
 
 test('feature', function(t){
   var pt = {
-      "type": "Point",
-      "coordinates": [
+      type: "Point",
+      coordinates: [
         67.5,
         32.84267363195431
       ]
     };
   var line = {
-      "type": "LineString",
-      "coordinates": [
+      type: "LineString",
+      coordinates: [
         [
           82.96875,
           58.99531118795094
@@ -169,8 +169,8 @@ test('feature', function(t){
       ]
     };
   var polygon = {
-      "type": "Polygon",
-      "coordinates": [
+      type: "Polygon",
+      coordinates: [
         [
           [
             85.78125,
@@ -201,11 +201,11 @@ test('feature', function(t){
   t.equal(feature(polygon).type, 'Feature');
   t.deepEqual(feature(pt),
     {
-      "type": "Feature",
-      "properties": {},
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
+      type: "Feature",
+      properties: {},
+      geometry: {
+        type: "Point",
+        coordinates: [
           67.5,
           32.84267363195431
         ]
@@ -217,22 +217,22 @@ test('feature', function(t){
 
   test('multipolygon', function(t){
     t.deepEqual(multipolygon([[[[94,57],[78,49],[94,43],[94,57]]],[[[93,19],[63,7],[79,0],[93,19]]]]), {
-      'type': 'Feature',
-      'properties': {},
-      'geometry': {
-        'type': 'MultiPolygon',
-        'coordinates': [[[[94,57],[78,49],[94,43],[94,57]]],[[[93,19],[63,7],[79,0],[93,19]]]]
+      type: 'Feature',
+      properties: {},
+      geometry: {
+        type: 'MultiPolygon',
+        coordinates: [[[[94,57],[78,49],[94,43],[94,57]]],[[[93,19],[63,7],[79,0],[93,19]]]]
       }
     }, 'takes coordinates');
 
     t.deepEqual(multipolygon([[[[94,57],[78,49],[94,43],[94,57]]],[[[93,19],[63,7],[79,0],[93,19]]]], {test: 23}), {
-      'type': 'Feature',
-      'properties': {
+      type: 'Feature',
+      properties: {
         test: 23
       },
-      'geometry': {
-        'type': 'MultiPolygon',
-        'coordinates': [[[[94,57],[78,49],[94,43],[94,57]]],[[[93,19],[63,7],[79,0],[93,19]]]]
+      geometry: {
+        type: 'MultiPolygon',
+        coordinates: [[[[94,57],[78,49],[94,43],[94,57]]],[[[93,19],[63,7],[79,0],[93,19]]]]
       }
     }, 'takes properties');
 
@@ -246,28 +246,28 @@ test('feature', function(t){
 
 test('geometrycollection', function(t){
   var pt = { 
-    "type": "Point",
-    "coordinates": [100, 0]
+    type: "Point",
+    coordinates: [100, 0]
   };
   var line = { 
-    "type": "LineString",
-    "coordinates": [ [101, 0], [102, 1] ]
+    type: "LineString",
+    coordinates: [ [101, 0], [102, 1] ]
   };
   var gc = geometrycollection([pt, line]);
 
   t.deepEqual(gc, {
-    "type": "Feature",
-    "properties": {},
-    "geometry": { 
-      "type": "GeometryCollection",
-      "geometries": [
+    type: "Feature",
+    properties: {},
+    geometry: { 
+      type: "GeometryCollection",
+      geometries: [
         { 
-          "type": "Point",
-          "coordinates": [100, 0]
+          type: "Point",
+          coordinates: [100, 0]
         },
         { 
-          "type": "LineString",
-          "coordinates": [ [101, 0], [102, 1] ]
+          type: "LineString",
+          coordinates: [ [101, 0], [102, 1] ]
         }
       ]
     }
@@ -275,18 +275,18 @@ test('geometrycollection', function(t){
 
   var gcWithProps = geometrycollection([pt, line], {a: 23});
   t.deepEqual(gcWithProps, {
-    "type": "Feature",
-    "properties": {a: 23},
-    "geometry": { 
-      "type": "GeometryCollection",
-      "geometries": [
+    type: "Feature",
+    properties: {a: 23},
+    geometry: { 
+      type: "GeometryCollection",
+      geometries: [
         { 
-          "type": "Point",
-          "coordinates": [100, 0]
+          type: "Point",
+          coordinates: [100, 0]
         },
         { 
-          "type": "LineString",
-          "coordinates": [ [101, 0], [102, 1] ]
+          type: "LineString",
+          coordinates: [ [101, 0], [102, 1] ]
         }
       ]
     }

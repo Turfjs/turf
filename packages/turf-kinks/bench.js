@@ -3,8 +3,8 @@ var Benchmark = require('benchmark');
 var fs = require('fs');
 
 var hourglass = {
-    "type": "Polygon",
-    "coordinates": [
+    type: "Polygon",
+    coordinates: [
       [
         [
           -12.034835815429688,
@@ -31,8 +31,8 @@ var hourglass = {
   };
 
 var triple = {
-        "type": "Polygon",
-        "coordinates": [
+        type: "Polygon",
+        coordinates: [
           [
             [
               -44.384765625,

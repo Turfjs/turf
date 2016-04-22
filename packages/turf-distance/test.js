@@ -3,12 +3,12 @@ var distance = require('./');
 
 test('distance', function(t){
   var pt1 = {
-    "type": "Feature",
-    "geometry": {"type": "Point", "coordinates": [-75.343, 39.984]}
+    type: "Feature",
+    geometry: {type: "Point", coordinates: [-75.343, 39.984]}
   };
   var pt2 = {
-    "type": "Feature",
-    "geometry": {"type": "Point", "coordinates": [-75.534, 39.123]}
+    type: "Feature",
+    geometry: {type: "Point", coordinates: [-75.534, 39.123]}
   };
 
   t.equal(distance(pt1, pt2, 'miles'), 60.37218405837491, 'miles');

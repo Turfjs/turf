@@ -3,8 +3,8 @@ var kinks = require('./');
 
 test('kinks', function(t){
   var hourglass = {
-        "type": "Polygon",
-        "coordinates": [
+        type: "Polygon",
+        coordinates: [
           [
             [
               -12.034835815429688,
@@ -35,8 +35,8 @@ test('kinks', function(t){
   t.equal(hourglassKinks.intersections.features.length, 2);
 
   var triple = {
-        "type": "Polygon",
-        "coordinates": [
+        type: "Polygon",
+        coordinates: [
           [
             [
               -44.384765625,
@@ -123,13 +123,13 @@ test('kinks', function (t) {
 
 test('kinks', function (t) {
   var feature = {
-    "type": "Feature",
-    "properties": {
-      "DN": 1
+    type: "Feature",
+    properties: {
+      DN: 1
     },
-    "geometry": {
-      "type": "Polygon",
-      "coordinates": [
+    geometry: {
+      type: "Polygon",
+      coordinates: [
         [
           [0, 0],
           [0, 1],

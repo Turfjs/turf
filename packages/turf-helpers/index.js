@@ -90,8 +90,8 @@ module.exports.polygon = function (coordinates, properties) {
     }
 
     return feature({
-        'type': 'Polygon',
-        'coordinates': coordinates
+        type: 'Polygon',
+        coordinates: coordinates
     }, properties);
 };
 
@@ -128,8 +128,8 @@ module.exports.lineString = function (coordinates, properties) {
         throw new Error('No coordinates passed');
     }
     return feature({
-        'type': 'LineString',
-        'coordinates': coordinates
+        type: 'LineString',
+        coordinates: coordinates
     }, properties);
 };
 
@@ -179,8 +179,8 @@ module.exports.multiLineString = function (coordinates, properties) {
         throw new Error('No coordinates passed');
     }
     return feature({
-        'type': 'MultiLineString',
-        'coordinates': coordinates
+        type: 'MultiLineString',
+        coordinates: coordinates
     }, properties);
 };
 
@@ -205,8 +205,8 @@ module.exports.multiPoint = function (coordinates, properties) {
         throw new Error('No coordinates passed');
     }
     return feature({
-        'type': 'MultiPoint',
-        'coordinates': coordinates
+        type: 'MultiPoint',
+        coordinates: coordinates
     }, properties);
 };
 
@@ -232,8 +232,8 @@ module.exports.multiPolygon = function (coordinates, properties) {
         throw new Error('No coordinates passed');
     }
     return feature({
-        'type': 'MultiPolygon',
-        'coordinates': coordinates
+        type: 'MultiPolygon',
+        coordinates: coordinates
     }, properties);
 };
 
@@ -261,7 +261,7 @@ module.exports.multiPolygon = function (coordinates, properties) {
  */
 module.exports.geometryCollection = function (geometries, properties) {
     return feature({
-        'type': 'GeometryCollection',
-        'geometries': geometries
+        type: 'GeometryCollection',
+        geometries: geometries
     }, properties);
 };

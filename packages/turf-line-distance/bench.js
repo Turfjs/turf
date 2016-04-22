@@ -3,11 +3,11 @@ var Benchmark = require('benchmark');
 var fs = require('fs');
 
 var line = {
-    "type": "Feature",
-    "properties": {},
-    "geometry": {
-        "type": "LineString",
-        "coordinates": [
+    type: "Feature",
+    properties: {},
+    geometry: {
+        type: "LineString",
+        coordinates: [
           [
             -77.0316696166992,
             38.878605901789236
