@@ -66,6 +66,13 @@ module.exports = function (point1, point2, units) {
         return c * 57.2957795;
     case 'radians':
         return c;
+    case 'inches':
+        return c * 250905600;
+    case 'yards':
+        return c * 6969600;
+    case 'meters':
+    case 'metres':
+        return c * 637300;
     case undefined:
         return c * 6373;
     default:
