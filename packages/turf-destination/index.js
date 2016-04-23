@@ -39,10 +39,12 @@ var point = require('turf-helpers').point;
  * //=result
  */
 module.exports = function (point1, distance, bearing, units) {
+    var degrees2radians = Math.PI / 180;
+    var radians2degrees = 180 / Math.PI;
     var coordinates1 = getCoord(point1);
-    var longitude1 = toRad(coordinates1[0]);
-    var latitude1 = toRad(coordinates1[1]);
-    var bearing_rad = toRad(bearing);
+    var longitude1 = degrees2radians * coordinates1[0];
+    var latitude1 = degrees2radians * coordinates1[1];
+    var bearing_rad = degrees2radians * bearing;
 
     var R = 0;
     switch (units) {
@@ -66,13 +68,5 @@ module.exports = function (point1, distance, bearing, units) {
     var longitude2 = longitude1 + Math.atan2(Math.sin(bearing_rad) * Math.sin(distance / R) * Math.cos(latitude1),
         Math.cos(distance / R) - Math.sin(latitude1) * Math.sin(latitude2));
 
-    return point([toDeg(longitude2), toDeg(latitude2)]);
+    return point([radians2degrees * longitude2, radians2degrees * latitude2]);
 };
-
-function toRad(degree) {
-    return degree * Math.PI / 180;
-}
-
-function toDeg(rad) {
-    return rad * 180 / Math.PI;
-}

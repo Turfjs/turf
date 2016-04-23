@@ -10,10 +10,10 @@ function getCoord(obj) {
         typeof obj[0] === 'number' &&
         typeof obj[1] === 'number') {
         return obj;
-    }
-    if (obj) {
+    } else if (obj) {
         if (obj.type === 'Feature' &&
             obj.geometry &&
+            obj.geometry.type === 'Point' &&
             Array.isArray(obj.geometry.coordinates)) {
             return obj.geometry.coordinates;
         } else if (obj.type === 'Point' &&

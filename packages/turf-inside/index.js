@@ -63,15 +63,12 @@ var invariant = require('turf-invariant');
  * //=isInside2
  */
 module.exports = function (point, polygon) {
-    invariant.featureOf(point, 'Point', 'inside');
+    var pt = invariant.getCoord(point);
     var polys = polygon.geometry.coordinates;
-    var pt = [point.geometry.coordinates[0], point.geometry.coordinates[1]];
     // normalize to multipolygon
     if (polygon.geometry.type === 'Polygon') polys = [polys];
 
-    var insidePoly = false;
-    var i = 0;
-    while (i < polys.length && !insidePoly) {
+    for (var i = 0, insidePoly = false; i < polys.length && !insidePoly; i++) {
         // check if it is in the outer ring first
         if (inRing(pt, polys[i][0])) {
             var inHole = false;
@@ -85,7 +82,6 @@ module.exports = function (point, polygon) {
             }
             if (!inHole) insidePoly = true;
         }
-        i++;
     }
     return insidePoly;
 };
