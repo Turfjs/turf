@@ -4,8 +4,6 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
-    "benchmark": "^1.0.0",
-    "tape": "^3.5.0",
     "turf-distance": "^3.0.0",
     "turf-helpers": "^3.0.0"
   },
