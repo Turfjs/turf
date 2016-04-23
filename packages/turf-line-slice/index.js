@@ -15,7 +15,7 @@ var destination = require('turf-destination');
  * @category misc
  * @param {Feature<Point>} point1 starting point
  * @param {Feature<Point>} point2 stopping point
- * @param {Feature<LineString>} line line to slice
+ * @param {Feature<LineString>|LineString} line line to slice
  * @return {Feature<LineString>} sliced line
  * @example
  * var line = {
@@ -62,7 +62,7 @@ module.exports = function (startPt, stopPt, line) {
     if (line.type === 'Feature') {
         coords = line.geometry.coordinates;
     } else if (line.type === 'LineString') {
-        coords = line.geometry.coordinates;
+        coords = line.coordinates;
     } else {
         throw new Error('input must be a LineString Feature or Geometry');
     }

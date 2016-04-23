@@ -25,6 +25,22 @@ test('turf-line-slice -- line1', function (t) {
 	t.end();
 });
 
+test('turf-line-slice -- raw geometry', function (t) {
+	var start = point([-97.79617309570312,22.254624939561698]);
+	var stop = point([-97.72750854492188,22.057641623615734]);
+
+	var sliced = lineSlice(start, stop, line1.geometry);
+	sliced.properties['stroke'] = '#f0f';
+	sliced.properties['stroke-width'] = 6;
+
+	fs.writeFileSync(__dirname+ '/fixtures/out/line1_out.geojson',
+		JSON.stringify(featurecollection([
+				line1, start, stop, sliced
+			]), null, 2));
+
+	t.end();
+});
+
 test('turf-line-slice -- line2', function (t) {
 	var start = point([0,0.1]);
 	var stop = point([.9,.8]);
