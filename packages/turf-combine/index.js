@@ -73,6 +73,7 @@ module.exports = function (fc) {
             .filter(function (key) {
                 return groups[key].coordinates.length;
             })
+            .sort()
             .map(function (key) {
                 return {
                     type: 'Feature',
