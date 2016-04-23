@@ -2,8 +2,8 @@ var concave = require('./');
 var test = require('tape');
 var fs = require('fs');
 
-var pts1 = JSON.parse(fs.readFileSync(__dirname+'/fixtures/in/pts1.geojson'));
-var pts2 = JSON.parse(fs.readFileSync(__dirname+'/fixtures/in/pts2.geojson'));
+var pts1 = JSON.parse(fs.readFileSync(__dirname+'/test/fixtures/in/pts1.geojson'));
+var pts2 = JSON.parse(fs.readFileSync(__dirname+'/test/fixtures/in/pts2.geojson'));
 
 test('concave', function(t){
   var pts1HullMiles = concave(pts1, 5.5, 'miles');
@@ -27,8 +27,8 @@ test('concave', function(t){
   pts2HullMiles.properties.fill = '#00f';
   pts2HullMiles.properties['fill-opacity'] = .3;
   pts2.features.push(pts2HullMiles);
-  fs.writeFileSync(__dirname+'/fixtures/out/pts1_out.geojson', JSON.stringify(pts1,null,2));
-  fs.writeFileSync(__dirname+'/fixtures/out/pts2_out.geojson', JSON.stringify(pts2,null,2));
+  fs.writeFileSync(__dirname+'/test/fixtures/out/pts1_out.geojson', JSON.stringify(pts1,null,2));
+  fs.writeFileSync(__dirname+'/test/fixtures/out/pts2_out.geojson', JSON.stringify(pts2,null,2));
 
   t.end();
 });

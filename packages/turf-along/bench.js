@@ -36,7 +36,7 @@ var line = {
   }
 };
 
-var route = JSON.parse(fs.readFileSync(__dirname + '/fixtures/route.geojson'));
+var route = JSON.parse(fs.readFileSync(__dirname + '/test/fixtures/route.geojson'));
 
 var suite = new Benchmark.Suite('turf-along');
 suite

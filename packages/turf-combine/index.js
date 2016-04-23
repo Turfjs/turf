@@ -1,5 +1,10 @@
+var meta = require('turf-meta');
+
 /**
- * Combines a {@link FeatureCollection} of {@link Point}, {@link LineString}, or {@link Polygon} features into {@link MultiPoint}, {@link MultiLineString}, or {@link MultiPolygon} features.
+ * Combines a {@link FeatureCollection} of {@link Point},
+ * {@link LineString}, or {@link Polygon} features
+ * into {@link MultiPoint}, {@link MultiLineString}, or
+ * {@link MultiPolygon} features.
  *
  * @module turf/combine
  * @category misc
@@ -33,52 +38,52 @@
  */
 
 module.exports = function (fc) {
-    var type = fc.features[0].geometry.type;
-    var geometries = fc.features.map(function (f) {
-        if (f.geometry.type === 'Point' ||
-      f.geometry.type === 'LineString' ||
-      f.geometry.type === 'Polygon') return [f.geometry.coordinates];
-        return f.geometry.coordinates;
+    var groups = {
+        MultiPoint: {coordinates: [], properties: []},
+        MultiLineString: {coordinates: [], properties: []},
+        MultiPolygon: {coordinates: [], properties: []}
+    };
+
+    var multiMapping = Object.keys(groups).reduce(function (memo, item) {
+        memo[item.replace('Multi', '')] = item;
+        return memo;
+    }, {});
+
+    function addToGroup(feature, key, multi) {
+        if (!multi) {
+            groups[key].coordinates.push(feature.geometry.coordinates);
+        } else {
+            groups[key].coordinates = groups[key].coordinates.concat(feature.geometry.coordinates);
+        }
+        groups[key].properties.push(feature.properties);
+    }
+
+    meta.featureEach(fc, function (feature) {
+        if (!feature.geometry) return;
+        if (groups[feature.geometry.type]) {
+            addToGroup(feature, feature.geometry.type, true);
+        } else if (multiMapping[feature.geometry.type]) {
+            addToGroup(feature, multiMapping[feature.geometry.type], false);
+        }
     });
 
-    switch (type) {
-    case 'Point':
-    case 'MultiPoint':
-        return {
-            type: 'Feature',
-            properties: {},
-            geometry: {
-                type: 'MultiPoint',
-                coordinates: pluckCoords(geometries)
-            }
-        };
-    case 'LineString':
-    case 'MultiLineString':
-        return {
-            type: 'Feature',
-            properties: {},
-            geometry: {
-                type: 'MultiLineString',
-                coordinates: pluckCoords(geometries)
-            }
-        };
-    case 'Polygon':
-    case 'MultiPolygon':
-        return {
-            type: 'Feature',
-            properties: {},
-            geometry: {
-                type: 'MultiPolygon',
-                coordinates: pluckCoords(geometries)
-            }
-        };
-    default:
-        return fc;
-    }
+    return {
+        type: 'FeatureCollection',
+        features: Object.keys(groups)
+            .filter(function (key) {
+                return groups[key].coordinates.length;
+            })
+            .map(function (key) {
+                return {
+                    type: 'Feature',
+                    properties: {
+                        collectedProperties: groups[key].properties
+                    },
+                    geometry: {
+                        type: key,
+                        coordinates: groups[key].coordinates
+                    }
+                };
+            })
+    };
 };
-
-function pluckCoords(multi) {
-    return multi.reduce(function (memo, coords) {
-        return memo.concat(coords);
-    }, []);
-}

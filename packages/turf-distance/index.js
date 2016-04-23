@@ -45,12 +45,13 @@ var getCoord = require('turf-invariant').getCoord;
  * //=distance
  */
 module.exports = function (point1, point2, units) {
+    var degrees2radians = Math.PI / 180;
     var coordinates1 = getCoord(point1);
     var coordinates2 = getCoord(point2);
-    var dLat = toRad(coordinates2[1] - coordinates1[1]);
-    var dLon = toRad(coordinates2[0] - coordinates1[0]);
-    var lat1 = toRad(coordinates1[1]);
-    var lat2 = toRad(coordinates2[1]);
+    var dLat = degrees2radians * (coordinates2[1] - coordinates1[1]);
+    var dLon = degrees2radians * (coordinates2[0] - coordinates1[0]);
+    var lat1 = degrees2radians * coordinates1[1];
+    var lat2 = degrees2radians * coordinates2[1];
 
     var a = Math.pow(Math.sin(dLat / 2), 2) +
           Math.pow(Math.sin(dLon / 2), 2) * Math.cos(lat1) * Math.cos(lat2);
@@ -72,7 +73,3 @@ module.exports = function (point1, point2, units) {
         throw new Error('unknown option given to "units"');
     }
 };
-
-function toRad(degree) {
-    return degree * Math.PI / 180;
-}

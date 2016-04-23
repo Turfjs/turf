@@ -9,7 +9,7 @@ test('bad type', function (t) {
 
   t.throws(function() {
       inside(poly, poly);
-  }, /Invalid input to inside: must be a Point, given Polygon/);
+  }, /A coordinate, feature, or point geometry is required/);
 
   t.end();
 });

@@ -2,7 +2,8 @@ var each = require('turf-meta').coordEach;
 var point = require('turf-helpers').point;
 
 /**
- * Takes one or more features and calculates the centroid using the arithmetic mean of all vertices.
+ * Takes one or more features and calculates the centroid using
+ * the mean of all vertices.
  * This lessens the effect of small islands and artifacts when calculating
  * the centroid of a set of polygons.
  *
