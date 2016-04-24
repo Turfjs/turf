@@ -53,8 +53,8 @@ module.exports = function hexgrid(bbox, cell, units, triangles) {
     var x_span = box_width / (hex_width - radius / 2);
     var x_count = Math.ceil(x_span);
     if (Math.round(x_span) === x_count) {
-      x_count++;
-  }
+        x_count++;
+    }
 
     var x_adjust = ((x_count * x_interval - radius / 2) - box_width) / 2 - radius / 2;
 
@@ -64,35 +64,35 @@ module.exports = function hexgrid(bbox, cell, units, triangles) {
 
     var hasOffsetY = y_count * hex_height - box_height > hex_height / 2;
     if (hasOffsetY) {
-      y_adjust -= hex_height / 4;
-  }
+        y_adjust -= hex_height / 4;
+    }
 
     var fc = featurecollection([]);
     for (var x = 0; x < x_count; x++) {
-      for (var y = 0; y <= y_count; y++) {
+        for (var y = 0; y <= y_count; y++) {
 
-        var isOdd = x % 2 === 1;
-        if (y === 0 && isOdd) {
-          continue;
-      }
+            var isOdd = x % 2 === 1;
+            if (y === 0 && isOdd) {
+                continue;
+            }
 
-        if (y === 0 && hasOffsetY) {
-          continue;
-      }
+            if (y === 0 && hasOffsetY) {
+                continue;
+            }
 
-        var center_x = x * x_interval + bbox[0] - x_adjust;
-        var center_y = y * y_interval + bbox[1] + y_adjust;
+            var center_x = x * x_interval + bbox[0] - x_adjust;
+            var center_y = y * y_interval + bbox[1] + y_adjust;
 
-        if (isOdd) {
-          center_y -= hex_height / 2;
-      }
-        if (triangles) {
-          fc.features.push.apply(fc.features, hexTriangles([center_x, center_y], cellWidth / 2, cellHeight / 2));
-      } else {
-          fc.features.push(hexagon([center_x, center_y], cellWidth / 2, cellHeight / 2));
-      }
+            if (isOdd) {
+                center_y -= hex_height / 2;
+            }
+            if (triangles) {
+                fc.features.push.apply(fc.features, hexTriangles([center_x, center_y], cellWidth / 2, cellHeight / 2));
+            } else {
+                fc.features.push(hexagon([center_x, center_y], cellWidth / 2, cellHeight / 2));
+            }
+        }
     }
-  }
 
     return fc;
 };
@@ -101,11 +101,11 @@ module.exports = function hexgrid(bbox, cell, units, triangles) {
 function hexagon(center, rx, ry) {
     var vertices = [];
     for (var i = 0; i < 6; i++) {
-      var x = center[0] + rx * cosines[i];
-      var y = center[1] + ry * sines[i];
-      vertices.push([x, y]);
-  }
-  //first and last vertex must be the same
+        var x = center[0] + rx * cosines[i];
+        var y = center[1] + ry * sines[i];
+        vertices.push([x, y]);
+    }
+    //first and last vertex must be the same
     vertices.push(vertices[0]);
     return polygon([vertices]);
 }
@@ -114,19 +114,18 @@ function hexagon(center, rx, ry) {
 function hexTriangles(center, rx, ry) {
     var triangles = [];
     for (var i = 0; i < 6; i++) {
-      var vertices = [];
-      vertices.push(center);
-      vertices.push([
-        center[0] + rx * cosines[i],
-        center[1] + ry * sines[i]
-    ]);
-      vertices.push([
-        center[0] + rx * cosines[(i + 1) % 6],
-        center[1] + ry * sines[(i + 1) % 6]
-    ]);
-      vertices.push(center);
-      triangles.push(polygon([vertices]));
-  }
+        var vertices = [];
+        vertices.push(center);
+        vertices.push([
+            center[0] + rx * cosines[i],
+            center[1] + ry * sines[i]
+        ]);
+        vertices.push([
+            center[0] + rx * cosines[(i + 1) % 6],
+            center[1] + ry * sines[(i + 1) % 6]
+        ]);
+        vertices.push(center);
+        triangles.push(polygon([vertices]));
+    }
     return triangles;
 }
-
