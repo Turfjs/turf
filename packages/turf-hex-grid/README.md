@@ -5,7 +5,7 @@
 
 
 
-### `turf.hex-grid(bbox, cellWidth, units)`
+### `turf.hex-grid(bbox, cellWidth, units, triangles)`
 
 Takes a bounding box and a cell size in degrees and returns a FeatureCollection of flat-topped
 hexagons (Polygon features) aligned in an "odd-q" vertical grid as
@@ -19,6 +19,7 @@ described in [Hexagonal Grids](http://www.redblobgames.com/grids/hexagons/).
 | `bbox`      | Array\.\<number\> | bounding box in [minX, minY, maxX, maxY] order          |
 | `cellWidth` | Number            | width of cell in specified units                        |
 | `units`     | String            | used in calculating cellWidth ('miles' or 'kilometers') |
+| `triangles` | Boolean           | generate hexgrid triangles instead of hexagons          |
 
 
 ### Example

@@ -30,7 +30,7 @@ module.exports = function (bbox, cell, units) {
     var xi = 0;
     var currentX = bbox[0];
     while (currentX <= bbox[2]) {
-        var yi = 0, cell1, cell2;
+        var yi = 0;
         var currentY = bbox[1];
         while (currentY <= bbox[3]) {
             if (xi % 2 === 0 && yi % 2 === 0) {

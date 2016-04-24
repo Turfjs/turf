@@ -1,10 +1,11 @@
 {
   "name": "turf-hex-grid",
-  "version": "3.0.0",
+  "version": "2.1.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "tape test.js"
+    "test": "tape test.js",
+    "doc": "dox -r < index.js | doxme --readme > README.md"
   },
   "repository": {
     "type": "git",
@@ -42,3 +43,4 @@
     "turf-helpers": "^3.0.0"
   }
 }
+
