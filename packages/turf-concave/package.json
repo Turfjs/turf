@@ -28,6 +28,6 @@
   },
   "dependencies": {
     "turf-explode": "^3.0.0",
-    "concaveman": "1.1.3"
+    "concaveman": "1.1.0"
   }
 }
