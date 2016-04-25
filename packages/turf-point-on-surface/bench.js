@@ -2,7 +2,7 @@ var centroid = require('./');
 var Benchmark = require('benchmark');
 var fs = require('fs');
 
-var fc = JSON.parse(fs.readFileSync(__dirname + '/fixtures/polygons.geojson'));
+var fc = JSON.parse(fs.readFileSync(__dirname + '/test/polygons.geojson'));
 
 var suite = new Benchmark.Suite('turf-point-on-surface');
 suite

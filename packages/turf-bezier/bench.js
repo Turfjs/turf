@@ -2,7 +2,7 @@ var bezier = require('./');
 var Benchmark = require('benchmark');
 var fs = require('fs');
 
-var line = JSON.parse(fs.readFileSync(__dirname+'/fixture/bezierIn.geojson'));
+var line = JSON.parse(fs.readFileSync(__dirname+'/test/bezierIn.geojson'));
 
 var suite = new Benchmark.Suite('turf-bezier');
 suite

@@ -5,9 +5,9 @@ var point = require('turf-helpers').point;
 var featurecollection = require('turf-helpers').featureCollection;
 var linestring = require('turf-helpers').lineString;
 
-var route1 = JSON.parse(fs.readFileSync(__dirname + '/fixtures/in/route1.geojson'));
-var route2 = JSON.parse(fs.readFileSync(__dirname + '/fixtures/in/route2.geojson'));
-var line1 = JSON.parse(fs.readFileSync(__dirname + '/fixtures/in/line1.geojson'));
+var route1 = JSON.parse(fs.readFileSync(__dirname + '/test/in/route1.geojson'));
+var route2 = JSON.parse(fs.readFileSync(__dirname + '/test/in/route2.geojson'));
+var line1 = JSON.parse(fs.readFileSync(__dirname + '/test/in/line1.geojson'));
 
 test('turf-point-on-line -- line1', function (t) {
     var pt = point([-97.79617309570312,22.254624939561698]);
@@ -17,7 +17,7 @@ test('turf-point-on-line -- line1', function (t) {
 
     t.equal(snapped.geometry.type, 'Point');
 
-    fs.writeFileSync(__dirname+ '/fixtures/out/line1_out.geojson',
+    fs.writeFileSync(__dirname+ '/test/out/line1_out.geojson',
     JSON.stringify(featurecollection([
     line1, pt, snapped
     ]), null, 2));
@@ -34,7 +34,7 @@ test('turf-point-on-line -- line2', function (t) {
 
     t.equal(snapped.geometry.type, 'Point');
 
-    fs.writeFileSync(__dirname+ '/fixtures/out/line2_out.geojson',
+    fs.writeFileSync(__dirname+ '/test/out/line2_out.geojson',
     JSON.stringify(featurecollection([
     line2, pt, snapped
     ]), null, 2));
@@ -51,7 +51,7 @@ test('turf-point-on-line -- route1', function (t) {
 
     t.equal(snapped.geometry.type, 'Point');
 
-    fs.writeFileSync(__dirname+ '/fixtures/out/route1_out.geojson',
+    fs.writeFileSync(__dirname+ '/test/out/route1_out.geojson',
     JSON.stringify(featurecollection([
     route1, pt, snapped
     ]), null, 2));
@@ -67,7 +67,7 @@ test('turf-point-on-line -- route2', function (t) {
 
     t.equal(snapped.geometry.type, 'Point');
 
-    fs.writeFileSync(__dirname+ '/fixtures/out/route2_out.geojson',
+    fs.writeFileSync(__dirname+ '/test/out/route2_out.geojson',
     JSON.stringify(featurecollection([
     route2, pt, snapped
     ]), null, 2));

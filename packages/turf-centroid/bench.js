@@ -2,8 +2,8 @@ var centroid = require('./');
 var Benchmark = require('benchmark');
 var fs = require('fs');
 
-var boxFC = JSON.parse(fs.readFileSync(__dirname+'/fixtures/in/box.geojson'));
-var blockFC = JSON.parse(fs.readFileSync(__dirname+'/fixtures/in/block.geojson'));
+var boxFC = JSON.parse(fs.readFileSync(__dirname+'/test/in/box.geojson'));
+var blockFC = JSON.parse(fs.readFileSync(__dirname+'/test/in/block.geojson'));
 
 var suite = new Benchmark.Suite('turf-centroid');
 suite

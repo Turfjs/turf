@@ -52,10 +52,10 @@ test('hex-grid', function (t) {
   grid3.features.push(referencePoly(bbox3));
   grid4.features.push(referencePoly(bbox4));
 
-  fs.writeFileSync(__dirname+'/fixtures/out/grid1.geojson', JSON.stringify(grid1,null,2));
-  fs.writeFileSync(__dirname+'/fixtures/out/grid2.geojson', JSON.stringify(grid2,null,2));
-  fs.writeFileSync(__dirname+'/fixtures/out/grid3.geojson', JSON.stringify(grid3,null,2));
-  fs.writeFileSync(__dirname+'/fixtures/out/grid4.geojson', JSON.stringify(grid4,null,2));
+  fs.writeFileSync(__dirname+'/test/out/grid1.geojson', JSON.stringify(grid1,null,2));
+  fs.writeFileSync(__dirname+'/test/out/grid2.geojson', JSON.stringify(grid2,null,2));
+  fs.writeFileSync(__dirname+'/test/out/grid3.geojson', JSON.stringify(grid3,null,2));
+  fs.writeFileSync(__dirname+'/test/out/grid4.geojson', JSON.stringify(grid4,null,2));
 
   t.end();
 });
@@ -109,10 +109,10 @@ test('hex-tri-grid', function (t) {
   grid3.features.push(referencePoly(bbox3));
   grid4.features.push(referencePoly(bbox4));
 
-  fs.writeFileSync(__dirname+'/fixtures/out/trigrid1.geojson', JSON.stringify(grid1,null,2));
-  fs.writeFileSync(__dirname+'/fixtures/out/trigrid2.geojson', JSON.stringify(grid2,null,2));
-  fs.writeFileSync(__dirname+'/fixtures/out/trigrid3.geojson', JSON.stringify(grid3,null,2));
-  fs.writeFileSync(__dirname+'/fixtures/out/trigrid4.geojson', JSON.stringify(grid4,null,2));
+  fs.writeFileSync(__dirname+'/test/out/trigrid1.geojson', JSON.stringify(grid1,null,2));
+  fs.writeFileSync(__dirname+'/test/out/trigrid2.geojson', JSON.stringify(grid2,null,2));
+  fs.writeFileSync(__dirname+'/test/out/trigrid3.geojson', JSON.stringify(grid3,null,2));
+  fs.writeFileSync(__dirname+'/test/out/trigrid4.geojson', JSON.stringify(grid4,null,2));
 
   t.end();
 });

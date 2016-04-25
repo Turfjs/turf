@@ -3,9 +3,9 @@ var Benchmark = require('benchmark');
 var fs = require('fs');
 var point = require('turf-helpers').point;
 
-var route1 = JSON.parse(fs.readFileSync(__dirname + '/fixtures/in/route1.geojson'));
-var route2 = JSON.parse(fs.readFileSync(__dirname + '/fixtures/in/route2.geojson'));
-var line1 = JSON.parse(fs.readFileSync(__dirname + '/fixtures/in/line1.geojson'));
+var route1 = JSON.parse(fs.readFileSync(__dirname + '/test/in/route1.geojson'));
+var route2 = JSON.parse(fs.readFileSync(__dirname + '/test/in/route2.geojson'));
+var line1 = JSON.parse(fs.readFileSync(__dirname + '/test/in/line1.geojson'));
 
 var pt1 = point([-97.79617309570312,22.254624939561698]);
 var pt2 = point([-79.0850830078125,37.60117623656667]);
