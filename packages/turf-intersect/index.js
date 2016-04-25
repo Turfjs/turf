@@ -67,16 +67,17 @@ module.exports = function intersect(poly1, poly2) {
     var a = reader.read(JSON.stringify(geom1));
     var b = reader.read(JSON.stringify(geom2));
     var intersection = a.intersection(b);
+
+    if (intersection.isEmpty()) {
+        return undefined;
+    }
+
     var writer = new jsts.io.GeoJSONWriter();
 
-    intersection = writer.write(intersection);
-    if (intersection.type === 'GeometryCollection' && intersection.geometries.length === 0) {
-        return undefined;
-    } else {
-        return {
-            type: 'Feature',
-            properties: {},
-            geometry: intersection
-        };
-    }
+    var geojsonGeometry = writer.write(intersection);
+    return {
+        type: 'Feature',
+        properties: {},
+        geometry: geojsonGeometry
+    };
 };
