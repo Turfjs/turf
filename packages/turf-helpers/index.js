@@ -47,7 +47,7 @@ module.exports.point = function (coordinates, properties) {
     if (coordinates.length < 2) throw new Error('Coordinates must be at least 2 numbers long');
     return feature({
         type: 'Point',
-        coordinates: coordinates
+        coordinates: coordinates.slice()
     }, properties);
 };
 

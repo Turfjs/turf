@@ -4,7 +4,7 @@
 // 4. buffer the results slightly
 // 5. merge the results
 var concaveman = require('concaveman');
-var explode = require('turf-explode');
+var coordAll = require('turf-meta').coordAll;
 
 /**
  * Takes a set of {@link Point|points} and returns a concave hull polygon.
@@ -85,10 +85,10 @@ module.exports = function (layer, maxEdge, units) {
     if (typeof maxEdge !== 'number') throw new Error('maxEdge parameter is required');
     if (typeof units !== 'string') throw new Error('units parameter is required');
 
-    var hull = concaveman(explode(layer));
+    var hull = concaveman(coordAll(layer));
 
     return {
         type: 'Polygon',
-        coordinates: hull
+        coordinates: [hull]
     };
 };

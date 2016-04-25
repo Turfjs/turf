@@ -27,7 +27,7 @@
     "tape": "~3.5.0"
   },
   "dependencies": {
-    "turf-explode": "^3.0.0",
+    "turf-meta": "^3.0.0",
     "concaveman": "1.1.0"
   }
 }

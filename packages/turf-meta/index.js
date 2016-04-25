@@ -158,3 +158,18 @@ function featureEach(layer, callback) {
     }
 }
 module.exports.featureEach = featureEach;
+
+/**
+ * Get all coordinates from any GeoJSON object, returning an array of coordinate
+ * arrays.
+ * @param {Object} layer any GeoJSON object
+ * @return {Array<Array<Number>>} coordinate position array
+ */
+function coordAll(layer) {
+    var coords = [];
+    coordEach(layer, function (coord) {
+        coords.push(coord);
+    });
+    return coords;
+}
+module.exports.coordAll = coordAll;
