@@ -2,7 +2,7 @@ var planepoint = require('./');
 var Benchmark = require('benchmark');
 var fs = require('fs');
 
-var triangle = JSON.parse(fs.readFileSync(__dirname+'/geojson/Triangle.geojson'));
+var triangle = JSON.parse(fs.readFileSync(__dirname+'/test/Triangle.geojson'));
 var point = {
   type: "Feature",
   geometry: {

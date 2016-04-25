@@ -3,7 +3,7 @@ var bezier = require('./'),
   fs = require('fs');
 
 test('bezier', function(t) {
-    var lineIn = JSON.parse(fs.readFileSync(__dirname+'/fixture/bezierIn.geojson'));
+    var lineIn = JSON.parse(fs.readFileSync(__dirname+'/test/bezierIn.geojson'));
     var syncLineOut = bezier(lineIn, 5000, .85);
     if (syncLineOut instanceof Error) throw syncLineOut;
     t.ok(syncLineOut);

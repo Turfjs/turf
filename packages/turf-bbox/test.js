@@ -3,12 +3,12 @@ var fs = require('fs');
 var extent = require('./');
 
 // test data
-var fc = require('./geojson/FeatureCollection');
-var pt  = require('./geojson/Point');
-var line = require('./geojson/LineString');
-var poly = require('./geojson/Polygon');
-var multiLine = require('./geojson/MultiLineString');
-var multiPoly = require('./geojson/MultiPolygon');
+var fc = require('./test/FeatureCollection');
+var pt  = require('./test/Point');
+var line = require('./test/LineString');
+var poly = require('./test/Polygon');
+var multiLine = require('./test/MultiLineString');
+var multiPoly = require('./test/MultiPolygon');
 
 test('extent', function(t){
   // FeatureCollection
