@@ -36,8 +36,8 @@ var line = {
     }
 };
 
-var route1 = JSON.parse(fs.readFileSync(__dirname + '/fixtures/route1.geojson'));
-var route2 = JSON.parse(fs.readFileSync(__dirname + '/fixtures/route2.geojson'));
+var route1 = JSON.parse(fs.readFileSync(__dirname + '/test/route1.geojson'));
+var route2 = JSON.parse(fs.readFileSync(__dirname + '/test/route2.geojson'));
 
 var suite = new Benchmark.Suite('turf-line-distance');
 suite

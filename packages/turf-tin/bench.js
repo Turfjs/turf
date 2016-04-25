@@ -2,7 +2,7 @@ global.tin = require('./');
 var Benchmark = require('benchmark');
 var fs = require('fs');
 
-global.points = JSON.parse(fs.readFileSync(__dirname+'/geojson/Points.geojson'));
+global.points = JSON.parse(fs.readFileSync(__dirname+'/test/Points.geojson'));
 
 var suite = new Benchmark.Suite('turf-tin');
 suite

@@ -3,12 +3,12 @@ global.bbox2 = require('./index-lazy-reduce');
 var Benchmark = require('benchmark');
 var fs = require('fs');
 
-global.fc = require('./geojson/FeatureCollection');
-global.pt  = require('./geojson/Point');
-global.line = require('./geojson/LineString');
-global.poly = require('./geojson/Polygon');
-global.multiLine = require('./geojson/MultiLineString');
-global.multiPoly = require('./geojson/MultiPolygon');
+global.fc = require('./test/FeatureCollection');
+global.pt  = require('./test/Point');
+global.line = require('./test/LineString');
+global.poly = require('./test/Polygon');
+global.multiLine = require('./test/MultiLineString');
+global.multiPoly = require('./test/MultiPolygon');
 
 var suite = new Benchmark.Suite('turf-bbox');
 suite
