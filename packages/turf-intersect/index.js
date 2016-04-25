@@ -4,7 +4,7 @@ var jsts = require('jsts');
 /**
  * Takes two {@link Polygon|polygons} and finds their intersection. If they share a border, returns the border; if they don't intersect, returns undefined.
  *
- * @module turf/intersect
+ * @name intersect
  * @category transformation
  * @param {Feature<Polygon>} poly1 the first polygon
  * @param {Feature<Polygon>} poly2 the second polygon
@@ -57,7 +57,7 @@ var jsts = require('jsts');
  *
  * //=intersection
  */
-module.exports = function (poly1, poly2) {
+module.exports = function intersect(poly1, poly2) {
     var geom1, geom2;
     if (poly1.type === 'Feature') geom1 = poly1.geometry;
     else geom1 = poly1;

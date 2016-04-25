@@ -11,7 +11,6 @@ var destination = require('turf-destination');
  *
  * This can be useful for extracting only the part of a route between waypoints.
  *
- * @module turf/line-slice
  * @category misc
  * @param {Feature<Point>} point1 starting point
  * @param {Feature<Point>} point2 stopping point
@@ -57,7 +56,7 @@ var destination = require('turf-destination');
  * //=sliced
  */
 
-module.exports = function (startPt, stopPt, line) {
+module.exports = function lineSlice(startPt, stopPt, line) {
     var coords;
     if (line.type === 'Feature') {
         coords = line.geometry.coordinates;

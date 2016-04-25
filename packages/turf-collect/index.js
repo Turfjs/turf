@@ -7,7 +7,6 @@ var inside = require('turf-inside');
  * values from those points, and adds them as an array to `outProperty` on the
  * polygon.
  *
- * @module turf/aggregate
  * @category aggregation
  * @param {FeatureCollection<Polygon>} polygons polygons with values on which to aggregate
  * @param {FeatureCollection<Point>} points points to be aggregated
@@ -152,7 +151,7 @@ var inside = require('turf-inside');
  *
  * //=result
  */
-module.exports = function (polyFC, ptFC, inProperty, outProperty) {
+module.exports = function collect(polyFC, ptFC, inProperty, outProperty) {
     polyFC.features.forEach(function (poly) {
         var values = ptFC.features.filter(function (pt) {
             return inside(pt, poly);

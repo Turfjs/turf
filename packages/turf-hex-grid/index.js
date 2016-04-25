@@ -3,12 +3,22 @@ var polygon = require('turf-helpers').polygon;
 var distance = require('turf-distance');
 var featurecollection = require('turf-helpers').featureCollection;
 
+//Precompute cosines and sines of angles used in hexagon creation
+// for performance gain
+var cosines = [];
+var sines = [];
+for (var i = 0; i < 6; i++) {
+    var angle = 2 * Math.PI / 6 * i;
+    cosines.push(Math.cos(angle));
+    sines.push(Math.sin(angle));
+}
+
 /**
  * Takes a bounding box and a cell size in degrees and returns a {@link FeatureCollection} of flat-topped
  * hexagons ({@link Polygon} features) aligned in an "odd-q" vertical grid as
  * described in [Hexagonal Grids](http://www.redblobgames.com/grids/hexagons/).
  *
- * @module turf/hex-grid
+ * @name hexGrid
  * @category interpolation
  * @param {Array<number>} bbox bounding box in [minX, minY, maxX, maxY] order
  * @param {Number} cellWidth width of cell in specified units
@@ -23,18 +33,7 @@ var featurecollection = require('turf-helpers').featureCollection;
  *
  * //=hexgrid
  */
-
-//Precompute cosines and sines of angles used in hexagon creation
-// for performance gain
-var cosines = [];
-var sines = [];
-for (var i = 0; i < 6; i++) {
-    var angle = 2 * Math.PI / 6 * i;
-    cosines.push(Math.cos(angle));
-    sines.push(Math.sin(angle));
-}
-
-module.exports = function hexgrid(bbox, cell, units, triangles) {
+module.exports = function hexGrid(bbox, cell, units, triangles) {
     var xFraction = cell / (distance(point([bbox[0], bbox[1]]), point([bbox[2], bbox[1]]), units));
     var cellWidth = xFraction * (bbox[2] - bbox[0]);
     var yFraction = cell / (distance(point([bbox[0], bbox[1]]), point([bbox[0], bbox[3]]), units));

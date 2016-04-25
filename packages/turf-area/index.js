@@ -4,7 +4,6 @@ var geometryArea = require('geojson-area').geometry;
  * Takes a one or more features and returns their area
  * in square meters.
  *
- * @module turf/area
  * @category measurement
  * @param {(Feature|FeatureCollection)} input input features
  * @return {Number} area in square meters
@@ -46,17 +45,18 @@ var geometryArea = require('geojson-area').geometry;
  *
  * //=area
  */
-module.exports = function (_) {
-    if (_.type === 'FeatureCollection') {
-        for (var i = 0, sum = 0; i < _.features.length; i++) {
-            if (_.features[i].geometry) {
-                sum += geometryArea(_.features[i].geometry);
+function area(input) {
+    if (input.type === 'FeatureCollection') {
+        for (var i = 0, sum = 0; i < input.features.length; i++) {
+            if (input.features[i].geometry) {
+                sum += geometryArea(input.features[i].geometry);
             }
         }
         return sum;
-    } else if (_.type === 'Feature') {
-        return geometryArea(_.geometry);
+    } else if (input.type === 'Feature') {
+        return geometryArea(input.geometry);
     } else {
-        return geometryArea(_);
+        return geometryArea(input);
     }
 };
+module.exports = area;
