@@ -6,6 +6,7 @@ var destination = require('turf-destination');
 /**
  * Takes a {@link Point} and a {@link LineString} and calculates the closest Point on the LineString.
  *
+ * @name pointOnLine
  * @module turf/point-on-line
  * @category misc
  * @param {Feature<LineString>} line line to snap to

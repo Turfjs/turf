@@ -249,6 +249,7 @@
   /**
    * Implements CONREC.
    *
+   * @private
    * @param {function} drawContour function for drawing contour.  Defaults to a
    *                               custom "contour builder", which populates the
    *                               contours property.
@@ -263,6 +264,7 @@
        *
        * Draws a line between the start and end coordinates.
        *
+       * @private
        * @param startX    - start coordinate for X
        * @param startY    - start coordinate for Y
        * @param endX      - end coordinate for X
@@ -334,7 +336,6 @@
       var drawContour = this.drawContour;
       this.contours = {};
 
-    /** private */
       var xsect = function (p1, p2) {
           return (h[p2] * xh[p1] - h[p1] * xh[p2]) / (h[p2] - h[p1]);
       };

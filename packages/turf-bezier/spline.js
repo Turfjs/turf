@@ -4,6 +4,7 @@
    * BezierSpline
    * https://github.com/leszekr/bezier-spline-js
    *
+   * @private
    * @copyright
    * Copyright (c) 2013 Leszek Rybicki
    *
@@ -25,18 +26,6 @@
    * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
    * SOFTWARE.
    */
-
-  /*
-  Usage:
-
-    var spline = new Spline({
-      points: array_of_control_points,
-      duration: time_in_miliseconds,
-      sharpness: how_curvy,
-      stepLength: distance_between_points_to_cache
-    });
-
-  */
 var Spline = function (options) {
     this.points = options.points || [];
     this.duration = options.duration || 10000;
