@@ -4,7 +4,7 @@ var distance = require('turf-distance');
 /**
  * Takes a bounding box and a cell depth and returns a set of {@link Point|points} in a grid.
  *
- * @module turf/point-grid
+ * @name pointGrid
  * @category interpolation
  * @param {Array<number>} extent extent in [minX, minY, maxX, maxY] order
  * @param {Number} cellWidth the distance across each cell
@@ -19,7 +19,7 @@ var distance = require('turf-distance');
  *
  * //=grid
  */
-module.exports = function (bbox, cell, units) {
+module.exports = function pointGrid(bbox, cell, units) {
     var fc = featurecollection([]);
     var xFraction = cell / (distance(point([bbox[0], bbox[1]]), point([bbox[2], bbox[1]]), units));
     var cellWidth = xFraction * (bbox[2] - bbox[0]);

@@ -11,7 +11,7 @@ var coordAll = require('turf-meta').coordAll;
  *
  * Internally, this uses [turf-tin](https://github.com/Turfjs/turf-tin) to generate geometries.
  *
- * @module turf/concave
+ * @name concave
  * @category transformation
  * @param {FeatureCollection<Point>} points input points
  * @param {Number} maxEdge the size of an edge necessary for part of the

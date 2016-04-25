@@ -8,7 +8,7 @@ var invariant = require('turf-invariant');
  * so the midpoint is guaranteed to fall on the line on an equirectangular
  * projection, but may not be halfway between the points on the globe.
  *
- * @module turf/midpoint
+ * @name midpoint
  * @category measurement
  * @param {Feature<Point>} pt1 first point
  * @param {Feature<Point>} pt2 second point

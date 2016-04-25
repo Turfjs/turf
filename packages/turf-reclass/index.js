@@ -4,7 +4,7 @@ var featurecollection = require('turf-helpers').featureCollection;
  * Takes a {@link FeatureCollection}, an input field, an output field, and
  * an array of translations and outputs an identical FeatureCollection with
  * the output field property populated.
-* @module turf/reclass
+* @name reclass
 * @category classification
 * @param {FeatureCollection} input set of input features
 * @param {String} inField the field to translate

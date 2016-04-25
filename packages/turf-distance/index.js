@@ -9,7 +9,7 @@ var radiansToDistance = require('turf-helpers').radiansToDistance;
  * [Haversine formula](http://en.wikipedia.org/wiki/Haversine_formula)
  * to account for global curvature.
  *
- * @module turf/distance
+ * @name distance
  * @category measurement
  * @param {Feature<Point>} from origin point
  * @param {Feature<Point>} to destination point

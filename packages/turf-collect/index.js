@@ -7,6 +7,7 @@ var inside = require('turf-inside');
  * values from those points, and adds them as an array to `outProperty` on the
  * polygon.
  *
+ * @name collect
  * @category aggregation
  * @param {FeatureCollection<Polygon>} polygons polygons with values on which to aggregate
  * @param {FeatureCollection<Point>} points points to be aggregated

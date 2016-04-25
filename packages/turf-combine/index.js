@@ -6,7 +6,7 @@ var meta = require('turf-meta');
  * into {@link MultiPoint}, {@link MultiLineString}, or
  * {@link MultiPolygon} features.
  *
- * @module turf/combine
+ * @name combine
  * @category misc
  * @param {FeatureCollection<(Point|LineString|Polygon)>} fc a FeatureCollection of any type
  * @return {FeatureCollection<(MultiPoint|MultiLineString|MultiPolygon)>} a FeatureCollection of corresponding type to input

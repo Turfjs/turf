@@ -4,7 +4,7 @@
  * at that point. The Polygon needs to have properties `a`, `b`, and `c`
  * that define the values at its three corners.
  *
- * @module turf/planepoint
+ * @name planepoint
  * @category interpolation
  * @param {Feature<Point>} interpolatedPoint the Point for which a z-value will be calculated
  * @param {Feature<Polygon>} triangle a Polygon feature with three vertices

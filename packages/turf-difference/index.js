@@ -5,7 +5,7 @@ var jsts = require('jsts');
  * Finds the difference between two {@link Polygon|polygons} by clipping the second
  * polygon from the first.
  *
- * @module turf/difference
+ * @name difference
  * @category transformation
  * @param {Feature<Polygon>} poly1 input Polygon feaure
  * @param {Feature<Polygon>} poly2 Polygon feature to difference from `poly1`

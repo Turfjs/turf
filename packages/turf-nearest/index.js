@@ -6,7 +6,7 @@ var distance = require('turf-distance');
  * point from the FeatureCollection closest to the reference. This calculation
  * is geodesic.
  *
- * @module turf/nearest
+ * @name nearest
  * @category classification
  * @param {Feature<Point>} point the reference point
  * @param {FeatureCollection<Point>} against input point set

@@ -9,7 +9,7 @@ var normalize = require('geojson-normalize');
 /**
 * Calculates a buffer for input features for a given radius. Units supported are miles, kilometers, and degrees.
 *
-* @module turf/buffer
+* @name buffer
 * @category transformation
 * @param {(Feature|FeatureCollection)} feature input to be buffered
 * @param {Number} distance distance to draw the buffer

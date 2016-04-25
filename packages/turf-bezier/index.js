@@ -8,7 +8,7 @@ var Spline = require('./spline.js');
  *
  * The bezier spline implementation is by [Leszek Rybicki](http://leszek.rybicki.cc/).
  *
- * @module turf/bezier
+ * @name bezier
  * @category transformation
  * @param {Feature<LineString>} line input LineString
  * @param {Number} [resolution=10000] time in milliseconds between points

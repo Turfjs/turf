@@ -1,6 +1,6 @@
 /* eslint-disable */
 
-/**
+/*
  * Copyright (c) 2010, Jason Davies.
  *
  * All rights reserved.  This code is based on Bradley White's Java version,
@@ -246,7 +246,7 @@
       }
   };
 
-  /**
+  /*
    * Implements CONREC.
    *
    * @private
@@ -309,7 +309,7 @@
       this.yh = new Array(5);
   }
 
-  /**
+  /*
    * contour is a contouring subroutine for rectangularily spaced data
    *
    * It emits calls to a line drawing subroutine supplied by the user which
