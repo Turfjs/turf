@@ -27,8 +27,5 @@
     "tape": "^3.5.0"
   },
   "dependencies": {
-  },
-  "bin": {
-    "turf-point": "bin/point.js"
   }
 }

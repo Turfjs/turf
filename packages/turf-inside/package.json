@@ -24,7 +24,6 @@
     "url": "https://github.com/Turfjs/turf-inside/issues"
   },
   "homepage": "https://github.com/Turfjs/turf-inside",
-  "bin": {},
   "dependencies": {
     "turf-invariant": "^3.0.0"
   },
