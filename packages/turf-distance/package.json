@@ -27,6 +27,7 @@
     "tape": "^3.5.0"
   },
   "dependencies": {
-    "turf-invariant": "^3.0.0"
+    "turf-invariant": "^3.0.0",
+    "turf-helpers": "^3.0.0"
   }
 }

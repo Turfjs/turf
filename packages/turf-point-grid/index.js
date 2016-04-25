@@ -8,7 +8,7 @@ var distance = require('turf-distance');
  * @category interpolation
  * @param {Array<number>} extent extent in [minX, minY, maxX, maxY] order
  * @param {Number} cellWidth the distance across each cell
- * @param {String} units used in calculating cellWidth ('miles' or 'kilometers')
+ * @param {String=kilometers} units used in calculating cellWidth
  * @return {FeatureCollection<Point>} grid of points
  * @example
  * var extent = [-70.823364, -33.553984, -70.473175, -33.302986];

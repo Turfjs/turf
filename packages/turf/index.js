@@ -18,7 +18,6 @@ module.exports = {
     simplify: require('turf-simplify'),
     bezier: require('turf-bezier'),
     tag: require('turf-tag'),
-    size: require('turf-size'),
     sample: require('turf-sample'),
     envelope: require('turf-envelope'),
     square: require('turf-square'),
