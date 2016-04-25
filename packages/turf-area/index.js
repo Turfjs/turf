@@ -58,5 +58,5 @@ function area(input) {
     } else {
         return geometryArea(input);
     }
-};
+}
 module.exports = area;

@@ -64,10 +64,10 @@ module.exports = function (feature, radius, units) {
 
 function bufferOp(feature, radius) {
     var reader = new jsts.io.GeoJSONReader();
-    var geom = reader.read(JSON.stringify(feature.geometry));
+    var geom = reader.read(feature.geometry);
     var buffered = geom.buffer(radius);
-    var parser = new jsts.io.GeoJSONParser();
-    buffered = parser.write(buffered);
+    var writer = new jsts.io.GeoJSONWriter();
+    buffered = writer.write(buffered);
 
     return {
         type: 'Feature',

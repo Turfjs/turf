@@ -79,18 +79,17 @@ module.exports = function (p1, p2) {
     var a = reader.read(JSON.stringify(poly1.geometry));
     var b = reader.read(JSON.stringify(poly2.geometry));
     var differenced = a.difference(b);
-    var parser = new jsts.io.GeoJSONParser();
-    differenced = parser.write(differenced);
+
+    if (differenced.isEmpty()) return undefined;
+
+    var writer = new jsts.io.GeoJSONWriter();
+    var geojsonGeometry = writer.write(differenced);
 
     poly1.geometry = differenced;
 
-    if (poly1.geometry.type === 'GeometryCollection' && poly1.geometry.geometries.length === 0) {
-        return undefined;
-    } else {
-        return {
-            type: 'Feature',
-            properties: poly1.properties,
-            geometry: differenced
-        };
-    }
+    return {
+        type: 'Feature',
+        properties: poly1.properties,
+        geometry: geojsonGeometry
+    };
 };

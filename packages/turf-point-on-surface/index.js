@@ -135,7 +135,7 @@ function pointOnSurface(fc) {
         }
         return closestVertex;
     }
-};
+}
 
 function pointOnSegment(x, y, x1, y1, x2, y2) {
     var ab = Math.sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1));

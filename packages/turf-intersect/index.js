@@ -67,9 +67,9 @@ module.exports = function intersect(poly1, poly2) {
     var a = reader.read(JSON.stringify(geom1));
     var b = reader.read(JSON.stringify(geom2));
     var intersection = a.intersection(b);
-    var parser = new jsts.io.GeoJSONParser();
+    var writer = new jsts.io.GeoJSONWriter();
 
-    intersection = parser.write(intersection);
+    intersection = writer.write(intersection);
     if (intersection.type === 'GeometryCollection' && intersection.geometries.length === 0) {
         return undefined;
     } else {

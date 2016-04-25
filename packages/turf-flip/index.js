@@ -28,7 +28,7 @@ module.exports = function flip(input) {
     // ensure that we don't modify features in-place and changes to the
     // output do not change the previous feature, including changes to nested
     // properties.
-    var input = JSON.parse(JSON.stringify(input));
+    input = JSON.parse(JSON.stringify(input));
 
     coordEach(input, function (coord) {
         coord.reverse();
