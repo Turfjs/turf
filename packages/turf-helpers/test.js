@@ -1,5 +1,6 @@
 var test = require('tape');
 var geometries = require('./');
+var radiansToDistance = require('./').radiansToDistance;
 
 var point = geometries.point;
 var polygon = geometries.polygon;
@@ -291,6 +292,14 @@ test('geometrycollection', function(t){
       ]
     }
   }, 'creates a GeometryCollection with properties');
+
+  t.end();
+});
+
+test('radiansToDistance', function(t){
+  t.equal(radiansToDistance(1, 'radians'), 1);
+  t.equal(radiansToDistance(1, 'kilometers'), 6373);
+  t.equal(radiansToDistance(1, 'miles'), 3960);
 
   t.end();
 });

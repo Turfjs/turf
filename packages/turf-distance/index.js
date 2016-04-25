@@ -1,4 +1,5 @@
 var getCoord = require('turf-invariant').getCoord;
+var radiansToDistance = require('turf-helpers').radiansToDistance;
 //http://en.wikipedia.org/wiki/Haversine_formula
 //http://www.movable-type.co.uk/scripts/latlong.html
 
@@ -55,28 +56,6 @@ module.exports = function (point1, point2, units) {
 
     var a = Math.pow(Math.sin(dLat / 2), 2) +
           Math.pow(Math.sin(dLon / 2), 2) * Math.cos(lat1) * Math.cos(lat2);
-    var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
 
-    switch (units) {
-    case 'miles':
-        return c * 3960;
-    case 'kilometers':
-    case 'kilometres':
-        return c * 6373;
-    case 'degrees':
-        return c * 57.2957795;
-    case 'radians':
-        return c;
-    case 'inches':
-        return c * 250905600;
-    case 'yards':
-        return c * 6969600;
-    case 'meters':
-    case 'metres':
-        return c * 637300;
-    case undefined:
-        return c * 6373;
-    default:
-        throw new Error('unknown option given to "units"');
-    }
+    return radiansToDistance(2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a)), units);
 };

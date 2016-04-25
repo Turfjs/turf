@@ -265,3 +265,46 @@ module.exports.geometryCollection = function (geometries, properties) {
         geometries: geometries
     }, properties);
 };
+
+var factors = {
+    miles: 3960,
+    nauticalmiles: 3441.145,
+    degrees: 57.2957795,
+    radians: 1,
+    inches: 250905600,
+    yards: 6969600,
+    meters: 637300,
+    metres: 637300,
+    kilometers: 6373,
+    kilometres: 6373
+};
+
+/**
+ * Convert a distance measurement from radians to a more friendly unit.
+ *
+ * @param {number} distance in radians across the sphere
+ * @param {string=kilometers} units: one of miles, nauticalmiles, degrees, radians,
+ * inches, yards, metres, meters, kilometres, kilometers.
+ */
+module.exports.radiansToDistance = function (radians, units) {
+    var factor = factors[units || 'kilometers'];
+    if (factor === undefined) {
+        throw new Error('Invalid unit');
+    }
+    return radians * factor;
+};
+
+/**
+ * Convert a distance measurement from radians to a more friendly unit.
+ *
+ * @param {number} distance in radians across the sphere
+ * @param {string=kilometers} units: one of miles, nauticalmiles, degrees, radians,
+ * inches, yards, metres, meters, kilometres, kilometers.
+ */
+module.exports.distanceToRadians = function (radians, units) {
+    var factor = factors[units || 'kilometers'];
+    if (factor === undefined) {
+        throw new Error('Invalid unit');
+    }
+    return radians / factor;
+};
