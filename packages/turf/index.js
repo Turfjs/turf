@@ -36,7 +36,6 @@ module.exports = {
     nearest: require('turf-nearest'),
     planepoint: require('turf-planepoint'),
     random: require('turf-random'),
-    reclass: require('turf-reclass'),
     tin: require('turf-tin'),
     union: require('turf-union'),
     bearing: require('turf-bearing'),
