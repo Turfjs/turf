@@ -175,8 +175,8 @@ function simplifyPolygon(coordinates, tolerance, highQuality) {
         if (
             (simpleRing[simpleRing.length - 1][0] !== simpleRing[0][0]) ||
                 (simpleRing[simpleRing.length - 1][1] !== simpleRing[0][1])) {
-                simpleRing.push(simpleRing[0]);
-            }
-            return simpleRing;
+            simpleRing.push(simpleRing[0]);
+        }
+        return simpleRing;
     });
 }
