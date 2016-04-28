@@ -12,6 +12,7 @@ test('distance', function(t){
   };
 
   t.equal(distance(pt1, pt2, 'miles'), 60.37218405837491, 'miles');
+  t.equal(distance(pt1, pt2, 'nauticalmiles'), 52.461979624130436, 'miles');
   t.equal(distance(pt1, pt2, 'kilometers'), 97.15957803131901, 'kilometers');
   t.equal(distance(pt1, pt2, 'kilometres'), 97.15957803131901, 'kilometres');
   t.equal(distance(pt1, pt2, 'radians'), 0.015245501024842149, 'radians');

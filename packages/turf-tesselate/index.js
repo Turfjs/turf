@@ -5,7 +5,7 @@ var earcut = require('earcut');
  * Tesselates a {@link Feature<Polygon>} into a {@link FeatureCollection<Polygon>} of triangles
  * using [earcut](https://github.com/mapbox/earcut).
  *
- * @module turf/tesselate
+ * @name tesselate
  * @category misc
  * @param {Feature<Polygon>} polygon the polygon to tesselate
  * @returns {FeatureCollection<Polygon>} a geometrycollection feature

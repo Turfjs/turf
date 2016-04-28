@@ -2,7 +2,7 @@ var envelope = require('./');
 var Benchmark = require('benchmark');
 var fs = require('fs');
 
-var fixture = require('./geojson/fc.js');
+var fixture = require('./test/fc.js');
 var suite = new Benchmark.Suite('turf-envelope');
 suite
   .add('turf-envelope',function () {

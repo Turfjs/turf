@@ -4,7 +4,7 @@ var fs = require('fs');
 var inside = require('turf-inside');
 
 test('point-on-surface -- closest vertex on polygons', function(t) {
-  var fc = JSON.parse(fs.readFileSync(__dirname + '/fixtures/polygons.geojson'));
+  var fc = JSON.parse(fs.readFileSync(__dirname + '/test/polygons.geojson'));
   var cent = centroid(fc);
 
   t.ok(cent, 'centroid returned');
@@ -17,7 +17,7 @@ test('point-on-surface -- closest vertex on polygons', function(t) {
 });
 
 test('point-on-surface -- centroid on polygon surface', function(t) {
-  var fc = JSON.parse(fs.readFileSync(__dirname + '/fixtures/polygon-in-center.geojson'));
+  var fc = JSON.parse(fs.readFileSync(__dirname + '/test/polygon-in-center.geojson'));
   var cent = centroid(fc);
   
   t.ok(cent, 'centroid returned');
@@ -61,7 +61,7 @@ test('point-on-surface -- centroid on polygon surface', function(t) {
 });
 
 test('point-on-surface -- closest vertex on lines', function(t) {
-  var fc = JSON.parse(fs.readFileSync(__dirname + '/fixtures/lines.geojson'));
+  var fc = JSON.parse(fs.readFileSync(__dirname + '/test/lines.geojson'));
   var cent = centroid(fc);
 
   t.ok(cent, 'centroid returned');
@@ -74,7 +74,7 @@ test('point-on-surface -- closest vertex on lines', function(t) {
 });
 
 test('point-on-surface -- closest vertex on multilinestring', function(t) {
-  var fc = JSON.parse(fs.readFileSync(__dirname + '/fixtures/multiline.geojson'));
+  var fc = JSON.parse(fs.readFileSync(__dirname + '/test/multiline.geojson'));
   var cent = centroid(fc);
 
   t.ok(cent, 'centroid returned');
@@ -87,7 +87,7 @@ test('point-on-surface -- closest vertex on multilinestring', function(t) {
 });
 
 test('point-on-surface -- multipolygon', function(t) {
-  var fc = JSON.parse(fs.readFileSync(__dirname + '/fixtures/multipolygon.geojson'));
+  var fc = JSON.parse(fs.readFileSync(__dirname + '/test/multipolygon.geojson'));
   var cent = centroid(fc);
 
   t.ok(cent, 'centroid returned');
@@ -100,7 +100,7 @@ test('point-on-surface -- multipolygon', function(t) {
 });
 
 test('point-on-surface -- multipoint', function(t) {
-  var fc = JSON.parse(fs.readFileSync(__dirname + '/fixtures/multipoint.geojson'));
+  var fc = JSON.parse(fs.readFileSync(__dirname + '/test/multipoint.geojson'));
   var cent = centroid(fc);
 
   t.ok(cent, 'centroid returned');

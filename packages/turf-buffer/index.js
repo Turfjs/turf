@@ -9,7 +9,7 @@ var normalize = require('geojson-normalize');
 /**
 * Calculates a buffer for input features for a given radius. Units supported are miles, kilometers, and degrees.
 *
-* @module turf/buffer
+* @name buffer
 * @category transformation
 * @param {(Feature|FeatureCollection)} feature input to be buffered
 * @param {Number} distance distance to draw the buffer
@@ -64,10 +64,10 @@ module.exports = function (feature, radius, units) {
 
 function bufferOp(feature, radius) {
     var reader = new jsts.io.GeoJSONReader();
-    var geom = reader.read(JSON.stringify(feature.geometry));
+    var geom = reader.read(feature.geometry);
     var buffered = geom.buffer(radius);
-    var parser = new jsts.io.GeoJSONParser();
-    buffered = parser.write(buffered);
+    var writer = new jsts.io.GeoJSONWriter();
+    buffered = writer.write(buffered);
 
     return {
         type: 'Feature',

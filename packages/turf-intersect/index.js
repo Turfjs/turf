@@ -4,7 +4,7 @@ var jsts = require('jsts');
 /**
  * Takes two {@link Polygon|polygons} and finds their intersection. If they share a border, returns the border; if they don't intersect, returns undefined.
  *
- * @module turf/intersect
+ * @name intersect
  * @category transformation
  * @param {Feature<Polygon>} poly1 the first polygon
  * @param {Feature<Polygon>} poly2 the second polygon
@@ -57,7 +57,7 @@ var jsts = require('jsts');
  *
  * //=intersection
  */
-module.exports = function (poly1, poly2) {
+module.exports = function intersect(poly1, poly2) {
     var geom1, geom2;
     if (poly1.type === 'Feature') geom1 = poly1.geometry;
     else geom1 = poly1;
@@ -67,16 +67,17 @@ module.exports = function (poly1, poly2) {
     var a = reader.read(JSON.stringify(geom1));
     var b = reader.read(JSON.stringify(geom2));
     var intersection = a.intersection(b);
-    var parser = new jsts.io.GeoJSONParser();
 
-    intersection = parser.write(intersection);
-    if (intersection.type === 'GeometryCollection' && intersection.geometries.length === 0) {
+    if (intersection.isEmpty()) {
         return undefined;
-    } else {
-        return {
-            type: 'Feature',
-            properties: {},
-            geometry: intersection
-        };
     }
+
+    var writer = new jsts.io.GeoJSONWriter();
+
+    var geojsonGeometry = writer.write(intersection);
+    return {
+        type: 'Feature',
+        properties: {},
+        geometry: geojsonGeometry
+    };
 };

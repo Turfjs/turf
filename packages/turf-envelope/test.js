@@ -1,6 +1,6 @@
 var test = require('tape');
 var envelope = require('./');
-var fc = require('./geojson/fc.js');
+var fc = require('./test/geojson/fc.json');
 
 test('envelope', function(t){
   var enveloped = envelope(fc);

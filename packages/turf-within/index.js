@@ -4,7 +4,7 @@ var featureCollection = require('turf-helpers').featureCollection;
 /**
  * Takes a set of {@link Point|points} and a set of {@link Polygon|polygons} and returns the points that fall within the polygons.
  *
- * @module turf/within
+ * @name within
  * @category joins
  * @param {FeatureCollection<Point>} points input points
  * @param {FeatureCollection<Polygon>} polygons input polygons

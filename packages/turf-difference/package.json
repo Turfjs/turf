@@ -26,7 +26,7 @@
     "tape": "~4.0.0"
   },
   "dependencies": {
-    "jsts": "~0.15.0",
+    "jsts": "1.1.1",
     "turf-helpers": "^3.0.0"
   }
 }

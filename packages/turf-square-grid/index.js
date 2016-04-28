@@ -6,7 +6,7 @@ var distance = require('turf-distance');
 /**
  * Takes a bounding box and a cell depth and returns a set of square {@link Polygon|polygons} in a grid.
  *
- * @module turf/square-grid
+ * @name squareGrid
  * @category interpolation
  * @param {Array<number>} extent extent in [minX, minY, maxX, maxY] order
  * @param {Number} cellWidth width of each cell
@@ -21,7 +21,7 @@ var distance = require('turf-distance');
  *
  * //=squareGrid
  */
-module.exports = function (bbox, cell, units) {
+module.exports = function squareGrid(bbox, cell, units) {
     var fc = featurecollection([]);
     var xFraction = cell / (distance(point([bbox[0], bbox[1]]), point([bbox[2], bbox[1]]), units));
     var cellWidth = xFraction * (bbox[2] - bbox[0]);
@@ -33,11 +33,11 @@ module.exports = function (bbox, cell, units) {
         var currentY = bbox[1];
         while (currentY <= bbox[3]) {
             var cellPoly = polygon([[
-          [currentX, currentY],
-          [currentX, currentY + cellHeight],
-          [currentX + cellWidth, currentY + cellHeight],
-          [currentX + cellWidth, currentY],
-          [currentX, currentY]
+                [currentX, currentY],
+                [currentX, currentY + cellHeight],
+                [currentX + cellWidth, currentY + cellHeight],
+                [currentX + cellWidth, currentY],
+                [currentX, currentY]
             ]]);
             fc.features.push(cellPoly);
 

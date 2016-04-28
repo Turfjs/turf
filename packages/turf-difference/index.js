@@ -5,7 +5,7 @@ var jsts = require('jsts');
  * Finds the difference between two {@link Polygon|polygons} by clipping the second
  * polygon from the first.
  *
- * @module turf/difference
+ * @name difference
  * @category transformation
  * @param {Feature<Polygon>} poly1 input Polygon feaure
  * @param {Feature<Polygon>} poly2 Polygon feature to difference from `poly1`
@@ -79,18 +79,17 @@ module.exports = function (p1, p2) {
     var a = reader.read(JSON.stringify(poly1.geometry));
     var b = reader.read(JSON.stringify(poly2.geometry));
     var differenced = a.difference(b);
-    var parser = new jsts.io.GeoJSONParser();
-    differenced = parser.write(differenced);
+
+    if (differenced.isEmpty()) return undefined;
+
+    var writer = new jsts.io.GeoJSONWriter();
+    var geojsonGeometry = writer.write(differenced);
 
     poly1.geometry = differenced;
 
-    if (poly1.geometry.type === 'GeometryCollection' && poly1.geometry.geometries.length === 0) {
-        return undefined;
-    } else {
-        return {
-            type: 'Feature',
-            properties: poly1.properties,
-            geometry: differenced
-        };
-    }
+    return {
+        type: 'Feature',
+        properties: poly1.properties,
+        geometry: geojsonGeometry
+    };
 };

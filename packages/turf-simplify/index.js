@@ -6,7 +6,7 @@ var supportedTypes = ['LineString', 'MultiLineString', 'Polygon', 'MultiPolygon'
 /**
  * Takes a {@link LineString} or {@link Polygon} and returns a simplified version. Internally uses [simplify-js](http://mourner.github.io/simplify-js/) to perform simplification.
  *
- * @module turf/simplify
+ * @name simplify
  * @category transformation
  * @param {Feature<(LineString|Polygon|MultiLineString|MultiPolygon)>|FeatureCollection|GeometryCollection} feature feature to be simplified
  * @param {Number} tolerance simplification tolerance
@@ -54,39 +54,38 @@ var supportedTypes = ['LineString', 'MultiLineString', 'Polygon', 'MultiPolygon'
  * //=simplified
  */
 module.exports = function (feature, tolerance, highQuality) {
-    var simplified;
     if (feature.type === 'Feature') {
-        simplified = simplifyHelper(feature, tolerance, highQuality);
-
-        return simpleFeature(simplified, feature.properties);
+        return simpleFeature(
+            simplifyHelper(feature, tolerance, highQuality),
+            feature.properties);
     } else if (feature.type === 'FeatureCollection') {
-        feature.features = feature.features.map(function (f) {
-            simplified = simplifyHelper(f, tolerance, highQuality);
+        return {
+            type: 'FeatureCollection',
+            features: feature.features.map(function (f) {
+                var simplified = simplifyHelper(f, tolerance, highQuality);
 
-            // we create simpleFeature here because it doesn't apply to GeometryCollection
-            // so we can't create it at simplifyHelper()
-            if (supportedTypes.indexOf(simplified.type) > -1) {
-                return simpleFeature(simplified, f.properties);
-            } else {
-                return simplified;
-            }
-        });
-
-        return feature;
+                // we create simpleFeature here because it doesn't apply to GeometryCollection
+                // so we can't create it at simplifyHelper()
+                if (supportedTypes.indexOf(simplified.type) > -1) {
+                    return simpleFeature(simplified, f.properties);
+                } else {
+                    return simplified;
+                }
+            })
+        };
     } else if (feature.type === 'GeometryCollection') {
-        feature.geometries = feature.geometries.map(function (g) {
-            if (supportedTypes.indexOf(g.type) > -1) {
-                simplified = simplifyHelper({
-                    type: 'Feature',
-                    geometry: g
-                }, tolerance, highQuality);
-
-                return simplified; // GeometryCollection shouldn't have properties
-            }
-            return g;
-        });
-
-        return feature;
+        return {
+            type: 'GeometryCollection',
+            geometries: feature.geometries.map(function (g) {
+                if (supportedTypes.indexOf(g.type) > -1) {
+                    return simplifyHelper({
+                        type: 'Feature',
+                        geometry: g
+                    }, tolerance, highQuality);
+                }
+                return g;
+            })
+        };
     } else {
         return feature;
     }
@@ -95,41 +94,29 @@ module.exports = function (feature, tolerance, highQuality) {
 
 function simplifyHelper(feature, tolerance, highQuality) {
     if (feature.geometry.type === 'LineString') {
-        var line = {
+        return {
             type: 'LineString',
             coordinates: simplifyLine(feature.geometry.coordinates, tolerance, highQuality)
         };
-
-        return line;
     } else if (feature.geometry.type === 'MultiLineString') {
-        var multiline = {
+        return {
             type: 'MultiLineString',
-            coordinates: []
+            coordinates: feature.geometry.coordinates.map(function (lines) {
+                return simplifyLine(lines, tolerance, highQuality);
+            })
         };
-        // simplify each of the lines in the MultiLineString
-        feature.geometry.coordinates.forEach(function (lines) {
-            multiline.coordinates.push(simplifyLine(lines, tolerance, highQuality));
-        });
-
-        return multiline;
     } else if (feature.geometry.type === 'Polygon') {
-        var poly = {
+        return {
             type: 'Polygon',
             coordinates: simplifyPolygon(feature.geometry.coordinates, tolerance, highQuality)
         };
-
-        return poly;
     } else if (feature.geometry.type === 'MultiPolygon') {
-        var multipoly = {
+        return {
             type: 'MultiPolygon',
-            coordinates: []
+            coordinates: feature.geometry.coordinates.map(function (rings) {
+                return simplifyPolygon(rings, tolerance, highQuality);
+            })
         };
-        // simplify each set of rings in the MultiPolygon
-        feature.geometry.coordinates.forEach(function (rings) {
-            multipoly.coordinates.push(simplifyPolygon(rings, tolerance, highQuality));
-        });
-
-        return multipoly;
     } else {
         // unsupported geometry type supplied
         return feature;
@@ -160,20 +147,15 @@ function simpleFeature(geom, properties) {
 }
 
 function simplifyLine(coordinates, tolerance, highQuality) {
-    var simplifiedCoordinates = [];
-    var pts = coordinates.map(function (coord) {
+    return simplify(coordinates.map(function (coord) {
         return {x: coord[0], y: coord[1]};
-    });
-    simplifiedCoordinates = simplify(pts, tolerance, highQuality).map(function (coords) {
+    }), tolerance, highQuality).map(function (coords) {
         return [coords.x, coords.y];
     });
-
-    return simplifiedCoordinates;
 }
 
 function simplifyPolygon(coordinates, tolerance, highQuality) {
-    var simplifiedCoordinates = [];
-    coordinates.forEach(function (ring) {
+    return coordinates.map(function (ring) {
         var pts = ring.map(function (coord) {
             return {x: coord[0], y: coord[1]};
         });
@@ -191,11 +173,10 @@ function simplifyPolygon(coordinates, tolerance, highQuality) {
             });
         }
         if (
-      (simpleRing[simpleRing.length - 1][0] !== simpleRing[0][0]) ||
-      (simpleRing[simpleRing.length - 1][1] !== simpleRing[0][1])) {
+            (simpleRing[simpleRing.length - 1][0] !== simpleRing[0][0]) ||
+                (simpleRing[simpleRing.length - 1][1] !== simpleRing[0][1])) {
             simpleRing.push(simpleRing[0]);
         }
-        simplifiedCoordinates.push(simpleRing);
+        return simpleRing;
     });
-    return simplifiedCoordinates;
 }

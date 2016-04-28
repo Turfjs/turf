@@ -3,7 +3,7 @@ var each = require('turf-meta').coordEach;
 /**
  * Takes a set of features, calculates the bbox of all input features, and returns a bounding box.
  *
- * @module turf/bbox
+ * @name bbox
  * @category measurement
  * @param {(Feature|FeatureCollection)} input input features
  * @return {Array<number>} the bounding box of `input` given

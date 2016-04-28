@@ -27,9 +27,7 @@
     "tape": "~3.5.0"
   },
   "dependencies": {
-    "turf-tin": "^3.0.0",
-    "turf-union": "^3.0.0",
-    "turf-distance": "^3.0.0",
-    "turf-helpers": "^3.0.0"
+    "turf-meta": "^3.0.0",
+    "concaveman": "1.1.0"
   }
 }

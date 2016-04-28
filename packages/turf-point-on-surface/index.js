@@ -11,9 +11,8 @@ var explode = require('turf-explode');
  * * Given a {@link LineString}, the point will be along the string
  * * Given a {@link Point}, the point will the same as the input
  *
- * @module turf/point-on-surface
  * @category measurement
- * @param {(Feature|FeatureCollection)} input any feature or set of features
+ * @param {(Feature|FeatureCollection)} fc any feature or set of features
  * @returns {Feature} a point on the surface of `input`
  * @example
  * // create a random polygon
@@ -31,7 +30,7 @@ var explode = require('turf-explode');
  *
  * //=result
  */
-module.exports = function (fc) {
+function pointOnSurface(fc) {
     // normalize
     if (fc.type !== 'FeatureCollection') {
         if (fc.type !== 'Feature') {
@@ -136,7 +135,7 @@ module.exports = function (fc) {
         }
         return closestVertex;
     }
-};
+}
 
 function pointOnSegment(x, y, x1, y1, x2, y2) {
     var ab = Math.sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1));
@@ -146,3 +145,5 @@ function pointOnSegment(x, y, x1, y1, x2, y2) {
         return true;
     }
 }
+
+module.exports = pointOnSurface;

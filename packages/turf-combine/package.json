@@ -17,6 +17,9 @@
     "multipolygon",
     "combine"
   ],
+  "dependencies": {
+    "turf-meta": "^3.0.0"
+  },
   "author": "morganherlocker",
   "license": "MIT",
   "bugs": {

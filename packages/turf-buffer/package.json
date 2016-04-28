@@ -35,7 +35,7 @@
   },
   "dependencies": {
     "geojson-normalize": "0.0.0",
-    "jsts": "^0.15.0",
+    "jsts": "1.1.1",
     "turf-combine": "^3.0.0",
     "turf-helpers": "^3.0.0"
   }

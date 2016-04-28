@@ -8,7 +8,7 @@ var jsts = require('jsts');
 /**
  * Takes two {@link Polygon|polygons} and returns a combined polygon. If the input polygons are not contiguous, this function returns a {@link MultiPolygon} feature.
  *
- * @module turf/union
+ * @name union
  * @category transformation
  * @param {Feature<Polygon>} poly1 input polygon
  * @param {Feature<Polygon>} poly2 another input polygon
@@ -62,9 +62,9 @@ module.exports = function (poly1, poly2) {
     var a = reader.read(JSON.stringify(poly1.geometry));
     var b = reader.read(JSON.stringify(poly2.geometry));
     var union = a.union(b);
-    var parser = new jsts.io.GeoJSONParser();
+    var writer = new jsts.io.GeoJSONWriter();
 
-    union = parser.write(union);
+    union = writer.write(union);
     return {
         type: 'Feature',
         geometry: union,

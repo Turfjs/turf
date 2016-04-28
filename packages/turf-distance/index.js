@@ -1,4 +1,5 @@
 var getCoord = require('turf-invariant').getCoord;
+var radiansToDistance = require('turf-helpers').radiansToDistance;
 //http://en.wikipedia.org/wiki/Haversine_formula
 //http://www.movable-type.co.uk/scripts/latlong.html
 
@@ -8,7 +9,7 @@ var getCoord = require('turf-invariant').getCoord;
  * [Haversine formula](http://en.wikipedia.org/wiki/Haversine_formula)
  * to account for global curvature.
  *
- * @module turf/distance
+ * @name distance
  * @category measurement
  * @param {Feature<Point>} from origin point
  * @param {Feature<Point>} to destination point
@@ -45,41 +46,16 @@ var getCoord = require('turf-invariant').getCoord;
  * //=distance
  */
 module.exports = function (point1, point2, units) {
+    var degrees2radians = Math.PI / 180;
     var coordinates1 = getCoord(point1);
     var coordinates2 = getCoord(point2);
-    var dLat = toRad(coordinates2[1] - coordinates1[1]);
-    var dLon = toRad(coordinates2[0] - coordinates1[0]);
-    var lat1 = toRad(coordinates1[1]);
-    var lat2 = toRad(coordinates2[1]);
+    var dLat = degrees2radians * (coordinates2[1] - coordinates1[1]);
+    var dLon = degrees2radians * (coordinates2[0] - coordinates1[0]);
+    var lat1 = degrees2radians * coordinates1[1];
+    var lat2 = degrees2radians * coordinates2[1];
 
     var a = Math.pow(Math.sin(dLat / 2), 2) +
           Math.pow(Math.sin(dLon / 2), 2) * Math.cos(lat1) * Math.cos(lat2);
-    var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
 
-    switch (units) {
-    case 'miles':
-        return c * 3960;
-    case 'kilometers':
-    case 'kilometres':
-        return c * 6373;
-    case 'degrees':
-        return c * 57.2957795;
-    case 'radians':
-        return c;
-    case 'inches':
-        return c * 250905600;
-    case 'yards':
-        return c * 6969600;
-    case 'meters':
-    case 'metres':
-        return c * 637300;
-    case undefined:
-        return c * 6373;
-    default:
-        throw new Error('unknown option given to "units"');
-    }
+    return radiansToDistance(2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a)), units);
 };
-
-function toRad(degree) {
-    return degree * Math.PI / 180;
-}

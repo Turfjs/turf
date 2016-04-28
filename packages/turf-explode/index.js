@@ -6,7 +6,7 @@ var point = require('turf-helpers').point;
  * Takes a feature or set of features and returns all positions as
  * {@link Point|points}.
  *
- * @module turf/explode
+ * @name explode
  * @category misc
  * @param {(Feature|FeatureCollection)} input input features
  * @return {FeatureCollection<point>} points representing the exploded input features

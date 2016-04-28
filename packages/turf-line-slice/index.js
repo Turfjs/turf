@@ -5,13 +5,17 @@ var bearing = require('turf-bearing');
 var destination = require('turf-destination');
 
 /**
- * Takes a {@link LineString|line}, a start {@link Point}, and a stop point and returns the line in between those points
+ * Takes a {@link LineString|line}, a start {@link Point}, and a stop point
+ * and returns a subsection of the line in-between those points.
+ * The start & stop points don't need to fall exactly on the line.
  *
- * @module turf/line-slice
+ * This can be useful for extracting only the part of a route between waypoints.
+ *
+ * @name lineSlice
  * @category misc
  * @param {Feature<Point>} point1 starting point
  * @param {Feature<Point>} point2 stopping point
- * @param {Feature<LineString>} line line to slice
+ * @param {Feature<LineString>|LineString} line line to slice
  * @return {Feature<LineString>} sliced line
  * @example
  * var line = {
@@ -53,12 +57,12 @@ var destination = require('turf-destination');
  * //=sliced
  */
 
-module.exports = function (startPt, stopPt, line) {
+module.exports = function lineSlice(startPt, stopPt, line) {
     var coords;
     if (line.type === 'Feature') {
         coords = line.geometry.coordinates;
     } else if (line.type === 'LineString') {
-        coords = line.geometry.coordinates;
+        coords = line.coordinates;
     } else {
         throw new Error('input must be a LineString Feature or Geometry');
     }

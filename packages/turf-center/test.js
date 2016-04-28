@@ -2,8 +2,8 @@ var test = require('tape');
 var center = require('./');
 var fs = require('fs');
 
-var boxFC = JSON.parse(fs.readFileSync(__dirname+'/fixtures/in/box.geojson'));
-var blockFC = JSON.parse(fs.readFileSync(__dirname+'/fixtures/in/block.geojson'));
+var boxFC = JSON.parse(fs.readFileSync(__dirname+'/test/in/box.geojson'));
+var blockFC = JSON.parse(fs.readFileSync(__dirname+'/test/in/block.geojson'));
 
 test('center', function(t){
   var boxFcCenter = center(boxFC);
@@ -18,8 +18,8 @@ test('center', function(t){
 
   boxFC.features.push(boxFcCenter);
   blockFC.features.push(blockFcCenter);
-  fs.writeFileSync(__dirname+'/fixtures/out/box_out.geojson', JSON.stringify(boxFC,null,2));
-  fs.writeFileSync(__dirname+'/fixtures/out/block_out.geojson', JSON.stringify(blockFC,null,2));
+  fs.writeFileSync(__dirname+'/test/out/box_out.geojson', JSON.stringify(boxFC,null,2));
+  fs.writeFileSync(__dirname+'/test/out/block_out.geojson', JSON.stringify(blockFC,null,2));
 
   t.end();
 });

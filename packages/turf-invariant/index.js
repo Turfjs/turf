@@ -10,10 +10,10 @@ function getCoord(obj) {
         typeof obj[0] === 'number' &&
         typeof obj[1] === 'number') {
         return obj;
-    }
-    if (obj) {
+    } else if (obj) {
         if (obj.type === 'Feature' &&
             obj.geometry &&
+            obj.geometry.type === 'Point' &&
             Array.isArray(obj.geometry.coordinates)) {
             return obj.geometry.coordinates;
         } else if (obj.type === 'Point' &&
@@ -31,7 +31,7 @@ function getCoord(obj) {
  * @param {GeoJSON} value any GeoJSON object
  * @param {string} type expected GeoJSON type
  * @param {String} name name of calling function
- * @throws Error if value is not the expected type.
+ * @throws {Error} if value is not the expected type.
  */
 function geojsonType(value, type, name) {
     if (!type || !name) throw new Error('type and name required');
@@ -49,7 +49,7 @@ function geojsonType(value, type, name) {
  * @param {Feature} feature a feature with an expected geometry type
  * @param {string} type expected GeoJSON type
  * @param {String} name name of calling function
- * @throws Error if value is not the expected type.
+ * @throws {Error} error if value is not the expected type.
  */
 function featureOf(value, type, name) {
     if (!name) throw new Error('.featureOf() requires a name');
@@ -69,7 +69,7 @@ function featureOf(value, type, name) {
  * @param {FeatureCollection} featurecollection a featurecollection for which features will be judged
  * @param {string} type expected GeoJSON type
  * @param {String} name name of calling function
- * @throws Error if value is not the expected type.
+ * @throws {Error} if value is not the expected type.
  */
 function collectionOf(value, type, name) {
     if (!name) throw new Error('.collectionOf() requires a name');

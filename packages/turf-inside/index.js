@@ -8,7 +8,7 @@ var invariant = require('turf-invariant');
  * Takes a {@link Point} and a {@link Polygon} or {@link MultiPolygon} and determines if the point resides inside the polygon. The polygon can
  * be convex or concave. The function accounts for holes.
  *
- * @module turf/inside
+ * @name inside
  * @category joins
  * @param {Feature<Point>} point input point
  * @param {Feature<(Polygon|MultiPolygon)>} polygon input polygon or multipolygon
@@ -62,16 +62,13 @@ var invariant = require('turf-invariant');
  * var isInside2 = turf.inside(pt2, poly);
  * //=isInside2
  */
-module.exports = function (point, polygon) {
-    invariant.featureOf(point, 'Point', 'inside');
+module.exports = function input(point, polygon) {
+    var pt = invariant.getCoord(point);
     var polys = polygon.geometry.coordinates;
-    var pt = [point.geometry.coordinates[0], point.geometry.coordinates[1]];
     // normalize to multipolygon
     if (polygon.geometry.type === 'Polygon') polys = [polys];
 
-    var insidePoly = false;
-    var i = 0;
-    while (i < polys.length && !insidePoly) {
+    for (var i = 0, insidePoly = false; i < polys.length && !insidePoly; i++) {
         // check if it is in the outer ring first
         if (inRing(pt, polys[i][0])) {
             var inHole = false;
@@ -85,7 +82,6 @@ module.exports = function (point, polygon) {
             }
             if (!inHole) insidePoly = true;
         }
-        i++;
     }
     return insidePoly;
 };

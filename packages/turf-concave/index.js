@@ -3,16 +3,15 @@
 // 3. remove triangles that fail the max length test
 // 4. buffer the results slightly
 // 5. merge the results
-var tin = require('turf-tin');
-var union = require('turf-union');
-var distance = require('turf-distance');
+var concaveman = require('concaveman');
+var coordAll = require('turf-meta').coordAll;
 
 /**
  * Takes a set of {@link Point|points} and returns a concave hull polygon.
  *
  * Internally, this uses [turf-tin](https://github.com/Turfjs/turf-tin) to generate geometries.
  *
- * @module turf/concave
+ * @name concave
  * @category transformation
  * @param {FeatureCollection<Point>} points input points
  * @param {Number} maxEdge the size of an edge necessary for part of the
@@ -20,6 +19,7 @@ var distance = require('turf-distance');
  * @param {String} units used for maxEdge distance (miles or kilometers)
  * @returns {Feature<Polygon>} a concave hull
  * @throws {Error} if maxEdge parameter is missing
+ * @throws {Error} if units parameter is missing
  * @example
  * var points = {
  *   "type": "FeatureCollection",
@@ -81,37 +81,14 @@ var distance = require('turf-distance');
  * //=result
  */
 
-
-module.exports = function (points, maxEdge, units) {
+module.exports = function (layer, maxEdge, units) {
     if (typeof maxEdge !== 'number') throw new Error('maxEdge parameter is required');
     if (typeof units !== 'string') throw new Error('units parameter is required');
 
-    var tinPolys = tin(points);
-    var filteredPolys = tinPolys.features.filter(filterTriangles);
-    tinPolys.features = filteredPolys;
+    var hull = concaveman(coordAll(layer));
 
-    function filterTriangles(triangle) {
-        var pt1 = triangle.geometry.coordinates[0][0];
-        var pt2 = triangle.geometry.coordinates[0][1];
-        var pt3 = triangle.geometry.coordinates[0][2];
-        var dist1 = distance(pt1, pt2, units);
-        var dist2 = distance(pt2, pt3, units);
-        var dist3 = distance(pt1, pt3, units);
-        return (dist1 <= maxEdge && dist2 <= maxEdge && dist3 <= maxEdge);
-    }
-
-    return merge(tinPolys);
+    return {
+        type: 'Polygon',
+        coordinates: [hull]
+    };
 };
-
-function merge(polygons) {
-    var merged = JSON.parse(JSON.stringify(polygons.features[0])),
-        features = polygons.features;
-
-    for (var i = 0, len = features.length; i < len; i++) {
-        var poly = features[i];
-        if (poly.geometry) {
-            merged = union(merged, poly);
-        }
-    }
-    return merged;
-}

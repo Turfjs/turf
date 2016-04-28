@@ -3,8 +3,8 @@ var fs = require('fs');
 var tag = require('./');
 
 test('tag', function(t){
-  var points = JSON.parse(fs.readFileSync(__dirname + '/geojson/tagPoints.geojson'));
-  var polygons = JSON.parse(fs.readFileSync(__dirname + '/geojson/tagPolygons.geojson'));
+  var points = JSON.parse(fs.readFileSync(__dirname + '/test/tagPoints.geojson'));
+  var polygons = JSON.parse(fs.readFileSync(__dirname + '/test/tagPolygons.geojson'));
 
   var taggedPoints = tag(points, polygons, 'polyID', 'containingPolyID');
 

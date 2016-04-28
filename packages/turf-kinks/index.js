@@ -1,7 +1,7 @@
 /**
  * Takes a {@link Polygon|polygon} and returns {@link Point|points} at all self-intersections.
  *
- * @module turf/kinks
+ * @name kinks
  * @category misc
  * @param {Feature<Polygon>} polygon input polygon
  * @returns {FeatureCollection<Point>} self-intersections

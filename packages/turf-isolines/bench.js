@@ -2,7 +2,7 @@ var isolines = require('./');
 var Benchmark = require('benchmark');
 var fs = require('fs');
 
-var points = JSON.parse(fs.readFileSync(__dirname+'/geojson/Points.geojson'));
+var points = JSON.parse(fs.readFileSync(__dirname+'/test/Points.geojson'));
 
 var suite = new Benchmark.Suite('turf-isolines');
 suite

@@ -1,6 +1,6 @@
 /* eslint-disable */
 
-/**
+/*
  * Copyright (c) 2010, Jason Davies.
  *
  * All rights reserved.  This code is based on Bradley White's Java version,
@@ -246,9 +246,10 @@
       }
   };
 
-  /**
+  /*
    * Implements CONREC.
    *
+   * @private
    * @param {function} drawContour function for drawing contour.  Defaults to a
    *                               custom "contour builder", which populates the
    *                               contours property.
@@ -263,6 +264,7 @@
        *
        * Draws a line between the start and end coordinates.
        *
+       * @private
        * @param startX    - start coordinate for X
        * @param startY    - start coordinate for Y
        * @param endX      - end coordinate for X
@@ -307,7 +309,7 @@
       this.yh = new Array(5);
   }
 
-  /**
+  /*
    * contour is a contouring subroutine for rectangularily spaced data
    *
    * It emits calls to a line drawing subroutine supplied by the user which
@@ -334,7 +336,6 @@
       var drawContour = this.drawContour;
       this.contours = {};
 
-    /** private */
       var xsect = function (p1, p2) {
           return (h[p2] * xh[p1] - h[p1] * xh[p2]) / (h[p2] - h[p1]);
       };

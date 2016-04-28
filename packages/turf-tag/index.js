@@ -3,7 +3,7 @@ var inside = require('turf-inside');
 /**
  * Takes a set of {@link Point|points} and a set of {@link Polygon|polygons} and performs a spatial join.
  *
- * @module turf/tag
+ * @name tag
  * @category joins
  * @param {FeatureCollection<Point>} points input points
  * @param {FeatureCollection<Polygon>} polygons input polygons

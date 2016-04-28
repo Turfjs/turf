@@ -3,7 +3,7 @@ var fs = require('fs');
 var along = require('./');
 var featurecollection = require('turf-helpers').featureCollection;
 
-var line = JSON.parse(fs.readFileSync(__dirname + '/fixtures/dc-line.geojson'));
+var line = JSON.parse(fs.readFileSync(__dirname + '/test/fixtures/dc-line.geojson'));
 
 test('turf-along', function (t) {
 	var pt1 = along(line, 1, 'miles');

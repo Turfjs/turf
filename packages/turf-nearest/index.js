@@ -1,9 +1,12 @@
 var distance = require('turf-distance');
 
 /**
- * Takes a reference {@link Point|point} and a set of points and returns the point from the set closest to the reference.
+ * Takes a reference {@link Point|point} and a FeatureCollection of Features
+ * with Point geometries and returns the
+ * point from the FeatureCollection closest to the reference. This calculation
+ * is geodesic.
  *
- * @module turf/nearest
+ * @name nearest
  * @category classification
  * @param {Feature<Point>} point the reference point
  * @param {FeatureCollection<Point>} against input point set
@@ -59,21 +62,13 @@ var distance = require('turf-distance');
  * //=result
  */
 module.exports = function (targetPoint, points) {
-    var nearestPoint;
-    points.features.forEach(function (pt) {
-        var dist;
-        if (!nearestPoint) {
-            nearestPoint = pt;
-            dist = distance(targetPoint, pt, 'miles');
-            nearestPoint.properties.distance = dist;
-        } else {
-            dist = distance(targetPoint, pt, 'miles');
-            if (dist < nearestPoint.properties.distance) {
-                nearestPoint = pt;
-                nearestPoint.properties.distance = dist;
-            }
+    var nearestPoint, minDist = Infinity;
+    for (var i = 0; i < points.features.length; i++) {
+        var distanceToPoint = distance(targetPoint, points.features[i], 'miles');
+        if (distanceToPoint < minDist) {
+            nearestPoint = points.features[i];
+            minDist = distanceToPoint;
         }
-    });
-    delete nearestPoint.properties.distance;
+    }
     return nearestPoint;
 };

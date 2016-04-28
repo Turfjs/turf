@@ -1,5 +1,5 @@
 /**
- * Lazily iterate over coordinates in any GeoJSON object, similar to
+ * Iterate over coordinates in any GeoJSON object, similar to
  * Array.forEach.
  *
  * @param {Object} layer any GeoJSON object
@@ -71,7 +71,7 @@ function coordEach(layer, callback, excludeWrapCoord) {
 module.exports.coordEach = coordEach;
 
 /**
- * Lazily reduce coordinates in any GeoJSON object into a single value,
+ * Reduce coordinates in any GeoJSON object into a single value,
  * similar to how Array.reduce works. However, in this case we lazily run
  * the reduction, so an array of all coordinates is unnecessary.
  *
@@ -91,7 +91,7 @@ function coordReduce(layer, callback, memo, excludeWrapCoord) {
 module.exports.coordReduce = coordReduce;
 
 /**
- * Lazily iterate over property objects in any GeoJSON object, similar to
+ * Iterate over property objects in any GeoJSON object, similar to
  * Array.forEach.
  *
  * @param {Object} layer any GeoJSON object
@@ -118,7 +118,7 @@ function propEach(layer, callback) {
 module.exports.propEach = propEach;
 
 /**
- * Lazily reduce properties in any GeoJSON object into a single value,
+ * Reduce properties in any GeoJSON object into a single value,
  * similar to how Array.reduce works. However, in this case we lazily run
  * the reduction, so an array of all properties is unnecessary.
  *
@@ -134,3 +134,42 @@ function propReduce(layer, callback, memo) {
     return memo;
 }
 module.exports.propReduce = propReduce;
+
+/**
+ * Iterate over features in any GeoJSON object, similar to
+ * Array.forEach.
+ *
+ * @param {Object} layer any GeoJSON object
+ * @param {Function} callback a method that takes (value)
+ * @example
+ * var feature = { type: 'Feature', geometry: null, properties: {} };
+ * featureEach(feature, function(feature) {
+ *   // feature == feature
+ * });
+ */
+function featureEach(layer, callback) {
+    if (layer.type === 'Feature') {
+        return callback(layer);
+    }
+    if (layer.type === 'FeatureCollection') {
+        for (var i = 0; i < layer.features.length; i++) {
+            callback(layer.features[i]);
+        }
+    }
+}
+module.exports.featureEach = featureEach;
+
+/**
+ * Get all coordinates from any GeoJSON object, returning an array of coordinate
+ * arrays.
+ * @param {Object} layer any GeoJSON object
+ * @return {Array<Array<Number>>} coordinate position array
+ */
+function coordAll(layer) {
+    var coords = [];
+    coordEach(layer, function (coord) {
+        coords.push(coord);
+    });
+    return coords;
+}
+module.exports.coordAll = coordAll;

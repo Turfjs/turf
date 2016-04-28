@@ -4,7 +4,7 @@ var coordEach = require('turf-meta').coordEach;
  * Takes input features and flips all of their coordinates
  * from `[x, y]` to `[y, x]`.
  *
- * @module turf/flip
+ * @name flip
  * @category misc
  * @param {(Feature|FeatureCollection)} input input features
  * @returns {(Feature|FeatureCollection)} a feature or set of features of the same type as `input` with flipped coordinates
@@ -24,11 +24,11 @@ var coordEach = require('turf-meta').coordEach;
  *
  * //=saudiArabia
  */
-module.exports = function (_) {
+module.exports = function flip(input) {
     // ensure that we don't modify features in-place and changes to the
     // output do not change the previous feature, including changes to nested
     // properties.
-    var input = JSON.parse(JSON.stringify(_));
+    input = JSON.parse(JSON.stringify(input));
 
     coordEach(input, function (coord) {
         coord.reverse();
