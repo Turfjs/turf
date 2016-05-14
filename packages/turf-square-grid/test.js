@@ -33,15 +33,17 @@ test('square-grid', function (t) {
   var grid3 = grid(bbox3, 2, 'miles');
   var grid4 = grid(bbox4, 50, 'miles');
 
-  t.ok(grid1.features.length);
-  t.ok(grid2.features.length);
-  t.ok(grid3.features.length);
-  t.ok(grid4.features.length);
+  if (process.env.REGEN) {
+    fs.writeFileSync(__dirname+'/test/out/grid1.geojson', JSON.stringify(grid1,null,2));
+    fs.writeFileSync(__dirname+'/test/out/grid2.geojson', JSON.stringify(grid2,null,2));
+    fs.writeFileSync(__dirname+'/test/out/grid3.geojson', JSON.stringify(grid3,null,2));
+    fs.writeFileSync(__dirname+'/test/out/grid4.geojson', JSON.stringify(grid4,null,2));
+  }
 
-  fs.writeFileSync(__dirname+'/test/out/grid1.geojson', JSON.stringify(grid1,null,2));
-  fs.writeFileSync(__dirname+'/test/out/grid2.geojson', JSON.stringify(grid2,null,2));
-  fs.writeFileSync(__dirname+'/test/out/grid3.geojson', JSON.stringify(grid3,null,2));
-  fs.writeFileSync(__dirname+'/test/out/grid4.geojson', JSON.stringify(grid4,null,2));
+  t.deepEqual(JSON.parse(fs.readFileSync(__dirname+'/test/out/grid1.geojson')), grid1, 'grid is correct');
+  t.deepEqual(JSON.parse(fs.readFileSync(__dirname+'/test/out/grid2.geojson')), grid2, 'grid is correct');
+  t.deepEqual(JSON.parse(fs.readFileSync(__dirname+'/test/out/grid3.geojson')), grid3, 'grid is correct');
+  t.deepEqual(JSON.parse(fs.readFileSync(__dirname+'/test/out/grid4.geojson')), grid4, 'grid is correct');
 
   t.end();
 });
