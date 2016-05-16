@@ -42,9 +42,7 @@
   "bugs": {
     "url": "https://github.com/Turfjs/turf/issues"
   },
-  "dependencies": {
-    "lerna": "2.0.0-beta.9"
-  },
+  "dependencies": { },
   "devDependencies": {
     "browserify": "^13.0.0",
     "eslint": "^2.0.0",
