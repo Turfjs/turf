@@ -24,7 +24,8 @@ but these modules didn't make code more expressive and they hid complexity
 where it didn't need to be hidden. Turf 3.x focuses on the core
 functionalities we need, making sure they're tested and performant.
 
-* removed turf-merge
+Removed modules: merge, sum, min, max, average, median, variance, deviation, filter, remove, jenks, quantile.
+See the upgrade guide below for replacements.
 
 **Upgrading from v2**
 
