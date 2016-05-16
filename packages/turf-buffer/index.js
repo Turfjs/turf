@@ -14,7 +14,7 @@ var normalize = require('geojson-normalize');
  * @category transformation
  * @param {(Feature|FeatureCollection)} feature input to be buffered
  * @param {Number} distance distance to draw the buffer
- * @param {String} unit 'miles', 'feet', 'kilometers', 'meters', or 'degrees'
+ * @param {String} unit any of the options supported by turf units
  * @return {FeatureCollection<Polygon>|FeatureCollection<MultiPolygon>|Polygon|MultiPolygon} buffered features
  *
  * @example
