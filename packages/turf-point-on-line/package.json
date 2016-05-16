@@ -1,6 +1,6 @@
 {
   "name": "turf-point-on-line",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -19,12 +19,12 @@
   "devDependencies": {
     "benchmark": "^1.0.0",
     "tape": "^3.5.0",
-    "turf-helpers": "^3.0.0"
+    "turf-helpers": "^3.0.1"
   },
   "dependencies": {
-    "turf-bearing": "^3.0.0",
-    "turf-destination": "^3.0.0",
-    "turf-distance": "^3.0.0",
-    "turf-helpers": "^3.0.0"
+    "turf-bearing": "^3.0.1",
+    "turf-destination": "^3.0.1",
+    "turf-distance": "^3.0.1",
+    "turf-helpers": "^3.0.1"
   }
 }

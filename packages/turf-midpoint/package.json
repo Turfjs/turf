@@ -1,6 +1,6 @@
 {
   "name": "turf-midpoint",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "description": "turf midpoint module",
   "main": "index.js",
   "scripts": {
@@ -28,6 +28,6 @@
     "tape": "^3.5.0"
   },
   "dependencies": {
-    "turf-invariant": "^3.0.0"
+    "turf-invariant": "^3.0.1"
   }
 }
