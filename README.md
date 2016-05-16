@@ -1,6 +1,8 @@
 ![turf](https://raw.githubusercontent.com/Turfjs/turf/9a1d5e8d99564d4080f1e2bf1517ed41d18012fa/logo.png) 
 ======
 
+**We just released Turf 3! Try it out**
+
 [![Version Badge][npm-img]][npm-url]
 [![Circle CI](https://circleci.com/gh/Turfjs/turf.svg?style=svg)](https://circleci.com/gh/Turfjs/turf)
 [![Gitter chat][gitter-img]][gitter-url]
