@@ -1,4 +1,4 @@
-# 3.0.0
+# 3.0.1
 
 This is a big change in Turf! 3.0.0 is a release that targets the development
 cycle of Turf, letting us work on it more and release more often.
