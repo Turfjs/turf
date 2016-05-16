@@ -327,5 +327,5 @@ module.exports.distanceToDegrees = function (distance, units) {
     if (factor === undefined) {
         throw new Error('Invalid unit');
     }
-    return (distance / factor) / 57.2958;
+    return (distance / factor) * 57.2958;
 };

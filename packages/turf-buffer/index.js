@@ -38,7 +38,7 @@ module.exports = function (feature, radius, units) {
 
     var degrees = helpers.distanceToDegrees(radius, units);
     var fc = normalize(feature);
-    var buffered = normalize(featurecollection(fc.features.map(function (f) {
+    var buffered = normalize(featureCollection(fc.features.map(function (f) {
         return bufferOp(f, degrees);
     })));
 

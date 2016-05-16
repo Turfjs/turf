@@ -16,27 +16,12 @@ test('buffer', function(t){
     var width = distance(
       point(bbox.slice(0,2)),
       point(bbox.slice(2,5)),
-      'miles'
-      );
-    if(!width) width = 1;
-    var buffed = buffer(fixture, width * 0.1, 'miles');
+      'miles');
+    if (!width) width = 1;
+    var buffered = buffer(fixture, width * 0.1, 'miles');
 
-    t.ok(buffed, fixture.type);
-    if(fixture.type === 'Feature') {
-      if(fixture.geometry.type === 'Point') t.equals(buffed.geometry.type, 'Polygon');
-      if(fixture.geometry.type === 'LineString') t.equals(buffed.geometry.type, 'Polygon');
-      if(fixture.geometry.type === 'Polygon') t.equals(buffed.geometry.type, 'Polygon');
-      if(fixture.geometry.type === 'MultiPoint') t.equals(buffed.geometry.type, 'MultiPolygon');
-      if(fixture.geometry.type === 'MultiLineString') t.equals(buffed.geometry.type, 'MultiPolygon');
-      if(fixture.geometry.type === 'MultiPolygon') t.equals(buffed.geometry.type, 'MultiPolygon');
-      if(fixture.geometry.type === 'GeometryCollection') t.equals(buffed.geometry.type, 'MultiPolygon');
-    } else {
-      t.equals(fixture.type, buffed.type);
-      t.equals(buffed.type, 'FeatureCollection');
-    }
-
-    buffed = normalize(buffed);
-    buffed.features = buffed.features.map(function(f) {
+    buffered = normalize(buffered);
+    buffered.features = buffered.features.map(function(f) {
       f.properties = {
         'fill': '#000',
         'fill-opacity': 0.3,
@@ -45,11 +30,15 @@ test('buffer', function(t){
       return f;
     });
  
-    buffed.features = buffed.features.concat(normalize(fixture).features);
-    fs.writeFileSync(
-        __dirname+'/fixtures/out/'+path.split('/')[path.split('/').length-1],
-        JSON.stringify(buffed)
-      );
+    buffered.features = buffered.features.concat(normalize(fixture).features);
+    if (process.env.REGEN) {
+      fs.writeFileSync(
+          __dirname+'/fixtures/out/'+path.split('/')[path.split('/').length-1],
+          JSON.stringify(buffered, null, 2));
+    }
+    var expected = JSON.parse(fs.readFileSync(
+        __dirname+'/fixtures/out/'+path.split('/')[path.split('/').length-1]));
+    t.deepEqual(expected, buffered);
   });
   t.end();
 });
