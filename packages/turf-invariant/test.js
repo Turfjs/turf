@@ -114,3 +114,20 @@ test('invariant#collectionOf', function(t) {
 
     t.end();
 });
+
+test('invariant#getCoord', function(t) {
+    t.deepEqual(invariant.getCoord({
+        type: 'Point',
+        coordinates: [1, 2]
+    }), [1, 2]);
+
+    t.deepEqual(invariant.getCoord({
+        type: 'Feature',
+        geometry: {
+            type: 'Point',
+            coordinates: [1, 2]
+        },
+        properties: {}
+    }), [1, 2]);
+    t.end();
+});

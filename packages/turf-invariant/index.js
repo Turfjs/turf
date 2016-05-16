@@ -17,7 +17,7 @@ function getCoord(obj) {
             Array.isArray(obj.geometry.coordinates)) {
             return obj.geometry.coordinates;
         } else if (obj.type === 'Point' &&
-            Array.isArray(obj.geometry.coordinates)) {
+            Array.isArray(obj.coordinates)) {
             return obj.coordinates;
         }
     }
