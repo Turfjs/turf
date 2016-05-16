@@ -26,7 +26,7 @@ functionalities we need, making sure they're tested and performant.
 
 * removed turf-merge
 
-## Upgrading from v2
+**Upgrading from v2**
 
 **If you were using turf-merge**
 
