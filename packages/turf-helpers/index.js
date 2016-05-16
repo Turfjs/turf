@@ -286,6 +286,7 @@ var factors = {
  * @param {number} distance in radians across the sphere
  * @param {string=kilometers} units: one of miles, nauticalmiles, degrees, radians,
  * inches, yards, metres, meters, kilometres, kilometers.
+ * @returns {number} distance
  */
 module.exports.radiansToDistance = function (radians, units) {
     var factor = factors[units || 'kilometers'];
@@ -296,17 +297,35 @@ module.exports.radiansToDistance = function (radians, units) {
 };
 
 /*
- * Convert a distance measurement from radians to a more friendly unit.
+ * Convert a distance measurement from a real-world unit into radians
  *
  * @name distanceToRadians
- * @param {number} distance in radians across the sphere
+ * @param {number} distance in real units
  * @param {string=kilometers} units: one of miles, nauticalmiles, degrees, radians,
  * inches, yards, metres, meters, kilometres, kilometers.
+ * @returns {number} radians
  */
-module.exports.distanceToRadians = function (radians, units) {
+module.exports.distanceToRadians = function (distance, units) {
     var factor = factors[units || 'kilometers'];
     if (factor === undefined) {
         throw new Error('Invalid unit');
     }
-    return radians / factor;
+    return distance / factor;
+};
+
+/*
+ * Convert a distance measurement from a real-world unit into degrees
+ *
+ * @name distanceToRadians
+ * @param {number} distance in real units
+ * @param {string=kilometers} units: one of miles, nauticalmiles, degrees, radians,
+ * inches, yards, metres, meters, kilometres, kilometers.
+ * @returns {number} degrees
+ */
+module.exports.distanceToDegrees = function (distance, units) {
+    var factor = factors[units || 'kilometers'];
+    if (factor === undefined) {
+        throw new Error('Invalid unit');
+    }
+    return (distance / factor) * 57.2958;
 };
