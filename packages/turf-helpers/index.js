@@ -273,8 +273,8 @@ var factors = {
     radians: 1,
     inches: 250905600,
     yards: 6969600,
-    meters: 637300,
-    metres: 637300,
+    meters: 6373000,
+    metres: 6373000,
     kilometers: 6373,
     kilometres: 6373
 };
