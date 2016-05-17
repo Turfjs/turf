@@ -41,7 +41,7 @@ var destination = require('turf-destination');
 module.exports = function (line, dist, units) {
     var coords;
     if (line.type === 'Feature') coords = line.geometry.coordinates;
-    else if (line.type === 'LineString') coords = line.geometry.coordinates;
+    else if (line.type === 'LineString') coords = line.coordinates;
     else throw new Error('input must be a LineString Feature or Geometry');
 
     var travelled = 0;
