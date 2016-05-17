@@ -1,6 +1,6 @@
 {
   "name": "turf",
-  "version": "3.0.3",
+  "version": "3.0.4",
   "description": "a node.js library for performing geospatial operations with geojson",
   "main": "index.js",
   "scripts": {
@@ -46,7 +46,7 @@
   },
   "dependencies": {
     "turf-collect": "^3.0.3",
-    "turf-along": "^3.0.1",
+    "turf-along": "^3.0.4",
     "turf-area": "^3.0.1",
     "turf-bbox-polygon": "^3.0.1",
     "turf-bearing": "^3.0.1",
