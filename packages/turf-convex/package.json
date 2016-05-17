@@ -1,6 +1,6 @@
 {
   "name": "turf-convex",
-  "version": "3.0.1",
+  "version": "3.0.5",
   "description": "",
   "main": "index.js",
   "directories": {
@@ -31,6 +31,6 @@
   "dependencies": {
     "convex-hull": "^1.0.3",
     "turf-meta": "^3.0.1",
-    "turf-helpers": "^3.0.1"
+    "turf-helpers": "^3.0.5"
   }
 }
