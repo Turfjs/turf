@@ -1,5 +1,5 @@
 {
-  "name": "turf-aggregate",
+  "name": "turf-collect",
   "version": "3.0.1",
   "description": "turf aggregate module",
   "main": "index.js",

@@ -45,7 +45,7 @@
     "url": "https://github.com/morganherlocker/turf/issues"
   },
   "dependencies": {
-    "turf-aggregate": "^3.0.1",
+    "turf-collect": "^3.0.1",
     "turf-along": "^3.0.1",
     "turf-area": "^3.0.1",
     "turf-bbox-polygon": "^3.0.1",
