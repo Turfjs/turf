@@ -7,13 +7,13 @@ var line = JSON.parse(fs.readFileSync(__dirname + '/test/fixtures/dc-line.geojso
 
 test('turf-along', function (t) {
 	var pt1 = along(line, 1, 'miles');
-	var pt2 = along(line, 1.2, 'miles');
+	var pt2 = along(line.geometry, 1.2, 'miles');
 	var pt3 = along(line, 1.4, 'miles');
-	var pt4 = along(line, 1.6, 'miles');
+	var pt4 = along(line.geometry, 1.6, 'miles');
 	var pt5 = along(line, 1.8, 'miles');
-	var pt6 = along(line, 2, 'miles');
+	var pt6 = along(line.geometry, 2, 'miles');
 	var pt7 = along(line, 100, 'miles');
-	var pt8 = along(line, 0, 'miles');
+	var pt8 = along(line.geometry, 0, 'miles');
     var fc = featurecollection([pt1,pt2,pt3,pt4,pt5,pt6,pt7,pt8]);
 
     fc.features.forEach(function (f) {
