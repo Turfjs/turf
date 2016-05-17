@@ -12,7 +12,7 @@ module.exports = {
     convex: require('turf-convex'),
     within: require('turf-within'),
     concave: require('turf-concave'),
-    erase: require('turf-erase'),
+    difference: require('turf-difference'),
     collect: require('turf-collect'),
     flip: require('turf-flip'),
     simplify: require('turf-simplify'),
