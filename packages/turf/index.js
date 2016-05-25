@@ -7,7 +7,6 @@
  * @module turf
  * @summary Geospatial analysis for JavaScript
  */
-
 var helpers = require('@turf/helpers');
 
 module.exports = {
@@ -49,6 +48,7 @@ module.exports = {
     along: require('@turf/along'),
     lineDistance: require('@turf/line-distance'),
     lineSlice: require('@turf/line-slice'),
+    lineSliceAlong: require('turf-line-slice-along'),
     pointOnLine: require('@turf/point-on-line'),
     pointGrid: require('@turf/point-grid'),
     squareGrid: require('@turf/square-grid'),
