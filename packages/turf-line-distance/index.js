@@ -7,7 +7,7 @@ var point = require('turf-helpers').point;
  * @name lineDistance
  * @category measurement
  * @param {Feature<LineString>} line line to measure
- * @param {String=kilometers} units can be degrees, radians, miles, or kilometers
+ * @param {String} [units=kilometers] can be degrees, radians, miles, or kilometers
  * @return {Number} length of the input line
  * @example
  * var line = {
@@ -34,7 +34,7 @@ var point = require('turf-helpers').point;
  */
 module.exports = function lineDistance(line, units) {
     if (line.type === 'FeatureCollection') {
-        return line.features.reduce(function (memo, feature) {
+        return line.features.reduce(function(memo, feature) {
             return memo + lineDistance(feature, units);
         }, 0);
     }
@@ -80,4 +80,3 @@ function length(coords, units) {
     }
     return travelled;
 }
-

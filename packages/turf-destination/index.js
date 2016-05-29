@@ -13,7 +13,7 @@ var distanceToRadians = helpers.distanceToRadians;
  * @param {Feature<Point>} start starting point
  * @param {Number} distance distance from the starting point
  * @param {Number} bearing ranging from -180 to 180
- * @param {String=kilometers} units miles, kilometers, degrees, or radians
+ * @param {String} [units=kilometers] miles, kilometers, degrees, or radians
  * @returns {Feature<Point>} destination point
  * @example
  * var point = {
@@ -40,7 +40,7 @@ var distanceToRadians = helpers.distanceToRadians;
  *
  * //=result
  */
-module.exports = function (point1, distance, bearing, units) {
+module.exports = function(point1, distance, bearing, units) {
     var degrees2radians = Math.PI / 180;
     var radians2degrees = 180 / Math.PI;
     var coordinates1 = getCoord(point1);
