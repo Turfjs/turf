@@ -40,7 +40,7 @@ var distanceToRadians = helpers.distanceToRadians;
  *
  * //=result
  */
-module.exports = function(point1, distance, bearing, units) {
+module.exports = function (point1, distance, bearing, units) {
     var degrees2radians = Math.PI / 180;
     var radians2degrees = 180 / Math.PI;
     var coordinates1 = getCoord(point1);

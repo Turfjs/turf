@@ -34,7 +34,7 @@ var point = require('turf-helpers').point;
  */
 module.exports = function lineDistance(line, units) {
     if (line.type === 'FeatureCollection') {
-        return line.features.reduce(function(memo, feature) {
+        return line.features.reduce(function (memo, feature) {
             return memo + lineDistance(feature, units);
         }, 0);
     }
