@@ -28,6 +28,9 @@
     "tape": "^3.5.0"
   },
   "dependencies": {
+    "turf-bearing": "^3.0.1",
+    "turf-destination": "^3.0.5",
+    "turf-distance": "^3.0.5",
     "turf-invariant": "^3.0.1"
   }
 }
