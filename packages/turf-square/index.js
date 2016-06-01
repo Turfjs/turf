@@ -5,7 +5,6 @@ var distance = require('turf-distance');
  * would contain the input.
  *
  * @name square
- * @category measurement
  * @param {Array<number>} bbox a bounding box
  * @return {Array<number>} a square surrounding `bbox`
  * @example

@@ -14,7 +14,6 @@ var featurecollection = require('turf-helpers').featureCollection;
  * the points that represent the corners of the triangle.
  *
  * @name tin
- * @category interpolation
  * @param {FeatureCollection<Point>} points input points
  * @param {String=} propertyName name of the property from which to pull z values
  * This is optional: if not given, then there will be no extra data added to the derived triangles.

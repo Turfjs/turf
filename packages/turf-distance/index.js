@@ -10,7 +10,6 @@ var radiansToDistance = require('turf-helpers').radiansToDistance;
  * to account for global curvature.
  *
  * @name distance
- * @category measurement
  * @param {Feature<Point>} from origin point
  * @param {Feature<Point>} to destination point
  * @param {String} [units=kilometers] can be degrees, radians, miles, or kilometers

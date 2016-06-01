@@ -9,7 +9,6 @@ var invariant = require('turf-invariant');
  * projection, but may not be halfway between the points on the globe.
  *
  * @name midpoint
- * @category measurement
  * @param {Feature<Point>} pt1 first point
  * @param {Feature<Point>} pt2 second point
  * @return {Feature<Point>} a point midway between `pt1` and `pt2`

@@ -12,7 +12,6 @@ var destination = require('turf-destination');
  * This can be useful for extracting only the part of a route between waypoints.
  *
  * @name lineSlice
- * @category misc
  * @param {Feature<Point>} point1 starting point
  * @param {Feature<Point>} point2 stopping point
  * @param {Feature<LineString>|LineString} line line to slice

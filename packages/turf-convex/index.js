@@ -11,7 +11,6 @@ var each = require('turf-meta').coordEach,
  * implements a [monotone chain hull](http://en.wikibooks.org/wiki/Algorithm_Implementation/Geometry/Convex_hull/Monotone_chain).
  *
  * @name convex
- * @category transformation
  * @param {FeatureCollection<Point>} input input points
  * @returns {Feature<Polygon>} a convex hull
  * @example

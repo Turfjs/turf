@@ -30,7 +30,7 @@ function getCoord(obj) {
  * @alias geojsonType
  * @param {GeoJSON} value any GeoJSON object
  * @param {string} type expected GeoJSON type
- * @param {String} name name of calling function
+ * @param {string} name name of calling function
  * @throws {Error} if value is not the expected type.
  */
 function geojsonType(value, type, name) {
@@ -48,7 +48,7 @@ function geojsonType(value, type, name) {
  * @alias featureOf
  * @param {Feature} feature a feature with an expected geometry type
  * @param {string} type expected GeoJSON type
- * @param {String} name name of calling function
+ * @param {string} name name of calling function
  * @throws {Error} error if value is not the expected type.
  */
 function featureOf(value, type, name) {
@@ -68,7 +68,7 @@ function featureOf(value, type, name) {
  * @alias collectionOf
  * @param {FeatureCollection} featurecollection a featurecollection for which features will be judged
  * @param {string} type expected GeoJSON type
- * @param {String} name name of calling function
+ * @param {string} name name of calling function
  * @throws {Error} if value is not the expected type.
  */
 function collectionOf(value, type, name) {

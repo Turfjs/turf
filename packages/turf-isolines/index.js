@@ -15,11 +15,10 @@ var Conrec = require('./conrec');
  * value breaks and generates [isolines](http://en.wikipedia.org/wiki/Isoline).
  *
  * @name isolines
- * @category interpolation
  * @param {FeatureCollection<Point>} points input points
- * @param {String} z the property name in `points` from which z-values will be pulled
- * @param {Number} resolution resolution of the underlying grid
- * @param {Array<Number>} breaks where to draw contours
+ * @param {string} z the property name in `points` from which z-values will be pulled
+ * @param {number} resolution resolution of the underlying grid
+ * @param {Array<number>} breaks where to draw contours
  * @returns {FeatureCollection<LineString>} isolines
  * @example
  * // create random points with random

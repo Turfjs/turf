@@ -4,11 +4,10 @@ var inside = require('turf-inside');
  * Takes a set of {@link Point|points} and a set of {@link Polygon|polygons} and performs a spatial join.
  *
  * @name tag
- * @category joins
  * @param {FeatureCollection<Point>} points input points
  * @param {FeatureCollection<Polygon>} polygons input polygons
- * @param {String} polyId property in `polygons` to add to joined Point features
- * @param {String} containingPolyId property in `points` in which to store joined property from `polygons
+ * @param {string} polyId property in `polygons` to add to joined Point features
+ * @param {string} containingPolyId property in `points` in which to store joined property from `polygons
  * @return {FeatureCollection<Point>} points with `containingPolyId` property containing values from `polyId`
  * @example
  * var bbox = [0, 0, 10, 10];

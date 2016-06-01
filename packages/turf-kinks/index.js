@@ -2,7 +2,6 @@
  * Takes a {@link Polygon|polygon} and returns {@link Point|points} at all self-intersections.
  *
  * @name kinks
- * @category misc
  * @param {Feature<Polygon>|Polygon} polygon input polygon
  * @returns {FeatureCollection<Point>} self-intersections
  * @example

@@ -6,7 +6,6 @@ var earcut = require('earcut');
  * using [earcut](https://github.com/mapbox/earcut).
  *
  * @name tesselate
- * @category misc
  * @param {Feature<Polygon>} polygon the polygon to tesselate
  * @returns {FeatureCollection<Polygon>} a geometrycollection feature
  * @example

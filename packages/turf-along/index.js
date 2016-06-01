@@ -7,9 +7,8 @@ var destination = require('turf-destination');
  * Takes a {@link LineString|line} and returns a {@link Point|point} at a specified distance along the line.
  *
  * @name along
- * @category measurement
  * @param {Feature<LineString>} line input line
- * @param {Number} distance distance along the line
+ * @param {number} distance distance along the line
  * @param {String} [units=miles] can be degrees, radians, miles, or kilometers
  * @return {Feature<Point>} Point `distance` `units` along the line
  * @example
