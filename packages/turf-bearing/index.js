@@ -6,10 +6,8 @@ var getCoord = require('turf-invariant').getCoord;
  * Takes two {@link Point|points} and finds the geographic bearing between them.
  *
  * @name bearing
- * @category measurement
  * @param {Feature<Point>} start starting Point
  * @param {Feature<Point>} end ending Point
- * @category measurement
  * @returns {Number} bearing in decimal degrees
  * @example
  * var point1 = {

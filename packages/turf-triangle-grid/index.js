@@ -6,7 +6,6 @@ var distance = require('turf-distance');
  * Takes a bounding box and a cell depth and returns a set of triangular {@link Polygon|polygons} in a grid.
  *
  * @name triangleGrid
- * @category interpolation
  * @param {Array<number>} extent extent in [minX, minY, maxX, maxY] order
  * @param {Number} cellWidth width of each cell
  * @param {String} units units to use for cellWidth

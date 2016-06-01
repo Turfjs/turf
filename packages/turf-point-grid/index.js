@@ -5,7 +5,6 @@ var distance = require('turf-distance');
  * Takes a bounding box and a cell depth and returns a set of {@link Point|points} in a grid.
  *
  * @name pointGrid
- * @category interpolation
  * @param {Array<number>} extent extent in [minX, minY, maxX, maxY] order
  * @param {Number} cellWidth the distance across each cell
  * @param {String=kilometers} units used in calculating cellWidth

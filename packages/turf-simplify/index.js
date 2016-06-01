@@ -7,7 +7,6 @@ var supportedTypes = ['LineString', 'MultiLineString', 'Polygon', 'MultiPolygon'
  * Takes a {@link LineString} or {@link Polygon} and returns a simplified version. Internally uses [simplify-js](http://mourner.github.io/simplify-js/) to perform simplification.
  *
  * @name simplify
- * @category transformation
  * @param {Feature<(LineString|Polygon|MultiLineString|MultiPolygon)>|FeatureCollection|GeometryCollection} feature feature to be simplified
  * @param {Number} tolerance simplification tolerance
  * @param {Boolean} highQuality whether or not to spend more time to create

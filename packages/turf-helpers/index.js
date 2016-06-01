@@ -2,7 +2,6 @@
  * Wraps a GeoJSON {@link Geometry} in a GeoJSON {@link Feature}.
  *
  * @name feature
- * @category helper
  * @param {Geometry} geometry input geometry
  * @returns {FeatureCollection} a FeatureCollection of input features
  * @example
@@ -32,7 +31,6 @@ module.exports.feature = feature;
  * Takes coordinates and properties (optional) and returns a new {@link Point} feature.
  *
  * @name point
- * @category helper
  * @param {Number[]} coordinates longitude, latitude position (each in decimal degrees)
  * @param {Object=} properties an Object that is used as the {@link Feature}'s
  * properties
@@ -55,7 +53,6 @@ module.exports.point = function (coordinates, properties) {
  * Takes an array of LinearRings and optionally an {@link Object} with properties and returns a {@link Polygon} feature.
  *
  * @name polygon
- * @category helper
  * @param {Array<Array<Number>>} rings an array of LinearRings
  * @param {Object=} properties a properties object
  * @returns {Feature<Polygon>} a Polygon feature
@@ -100,7 +97,6 @@ module.exports.polygon = function (coordinates, properties) {
  * coordinate array. Properties can be added optionally.
  *
  * @name lineString
- * @category helper
  * @param {Array<Array<Number>>} coordinates an array of Positions
  * @param {Object=} properties an Object of key-value pairs to add as properties
  * @returns {Feature<LineString>} a LineString feature
@@ -137,7 +133,6 @@ module.exports.lineString = function (coordinates, properties) {
  * Takes one or more {@link Feature|Features} and creates a {@link FeatureCollection}.
  *
  * @name featureCollection
- * @category helper
  * @param {Feature[]} features input features
  * @returns {FeatureCollection} a FeatureCollection of input features
  * @example
@@ -163,7 +158,6 @@ module.exports.featureCollection = function (features) {
  * coordinate array. Properties can be added optionally.
  *
  * @name multiLineString
- * @category helper
  * @param {Array<Array<Number>>} coordinates an array of Positions
  * @param {Object=} properties an Object of key-value pairs to add as properties
  * @returns {Feature<MultiLineString>} a MultiLineString feature
@@ -189,7 +183,6 @@ module.exports.multiLineString = function (coordinates, properties) {
  * coordinate array. Properties can be added optionally.
  *
  * @name multiPoint
- * @category helper
  * @param {Array<Array<Number>>} coordinates an array of Positions
  * @param {Object=} properties an Object of key-value pairs to add as properties
  * @returns {Feature<MultiPoint>} a MultiPoint feature
@@ -216,7 +209,6 @@ module.exports.multiPoint = function (coordinates, properties) {
  * coordinate array. Properties can be added optionally.
  *
  * @name multiPolygon
- * @category helper
  * @param {Array<Array<Number>>} coordinates an array of Positions
  * @param {Object=} properties an Object of key-value pairs to add as properties
  * @returns {Feature<MultiPolygon>} a multipolygon feature
@@ -242,7 +234,6 @@ module.exports.multiPolygon = function (coordinates, properties) {
  * coordinate array. Properties can be added optionally.
  *
  * @name geometryCollection
- * @category helper
  * @param {Array<{Geometry}>} geometries an array of GeoJSON Geometries
  * @param {Object=} properties an Object of key-value pairs to add as properties
  * @returns {Feature<GeometryCollection>} a geometrycollection feature

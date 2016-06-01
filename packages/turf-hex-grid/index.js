@@ -19,7 +19,6 @@ for (var i = 0; i < 6; i++) {
  * described in [Hexagonal Grids](http://www.redblobgames.com/grids/hexagons/).
  *
  * @name hexGrid
- * @category interpolation
  * @param {Array<number>} bbox bounding box in [minX, minY, maxX, maxY] order
  * @param {Number} cellWidth width of cell in specified units
  * @param {String} units used in calculating cellWidth ('miles' or 'kilometers')

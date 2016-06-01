@@ -11,7 +11,6 @@ var explode = require('turf-explode');
  * * Given a {@link LineString}, the point will be along the string
  * * Given a {@link Point}, the point will the same as the input
  *
- * @category measurement
  * @param {(Feature|FeatureCollection)} fc any feature or set of features
  * @returns {Feature} a point on the surface of `input`
  * @example
