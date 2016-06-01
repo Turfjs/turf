@@ -100,3 +100,23 @@ test('turf-point-on-line - point along line', function (t) {
 
     t.end();
 });
+
+test('turf-point-on-line - points on sides of lines', function (t) {
+    var line = linestring([[-122.45616137981413,37.72125936929241],[-122.45717525482178,37.718242366859215]]);
+    var first = line.geometry.coordinates[0].join(',');
+    var last = line.geometry.coordinates[line.geometry.coordinates.length - 1].join(',')
+    var pts = [
+        point([-122.45702505111694,37.71881098149625]),
+        point([-122.45733618736267,37.719235317933844]),
+        point([-122.45686411857605,37.72027068864082]),
+        point([-122.45652079582213,37.72063561093274])
+    ];
+
+    pts.forEach(function(pt){
+        var snapped = pointOnLine(line, pt);
+        t.notEqual(snapped.geometry.coordinates.join(','), first, 'pt did not snap to first vertex');
+        t.notEqual(snapped.geometry.coordinates.join(','), last, 'pt did not snap to last vertex');
+    });
+
+    t.end();
+});
