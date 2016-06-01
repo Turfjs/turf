@@ -12,8 +12,8 @@ var normalize = require('geojson-normalize');
  *
  * @name buffer
  * @param {(Feature|FeatureCollection)} feature input to be buffered
- * @param {Number} distance distance to draw the buffer
- * @param {String} unit any of the options supported by turf units
+ * @param {number} distance distance to draw the buffer
+ * @param {string} unit any of the options supported by turf units
  * @return {FeatureCollection<Polygon>|FeatureCollection<MultiPolygon>|Polygon|MultiPolygon} buffered features
  *
  * @example

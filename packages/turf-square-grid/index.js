@@ -8,8 +8,8 @@ var distance = require('turf-distance');
  *
  * @name squareGrid
  * @param {Array<number>} extent extent in [minX, minY, maxX, maxY] order
- * @param {Number} cellWidth width of each cell
- * @param {String} units units to use for cellWidth
+ * @param {number} cellWidth width of each cell
+ * @param {string} units units to use for cellWidth
  * @return {FeatureCollection<Polygon>} grid a grid of polygons
  * @example
  * var extent = [-77.3876953125,38.71980474264239,-76.9482421875,39.027718840211605];

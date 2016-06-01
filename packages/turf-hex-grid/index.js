@@ -20,8 +20,8 @@ for (var i = 0; i < 6; i++) {
  *
  * @name hexGrid
  * @param {Array<number>} bbox bounding box in [minX, minY, maxX, maxY] order
- * @param {Number} cellWidth width of cell in specified units
- * @param {String} units used in calculating cellWidth ('miles' or 'kilometers')
+ * @param {number} cellWidth width of cell in specified units
+ * @param {string} units used in calculating cellWidth ('miles' or 'kilometers')
  * @return {FeatureCollection<Polygon>} a hexagonal grid
  * @example
  * var bbox = [-96,31,-84,40];

@@ -6,8 +6,8 @@ var distance = require('turf-distance');
  *
  * @name pointGrid
  * @param {Array<number>} extent extent in [minX, minY, maxX, maxY] order
- * @param {Number} cellWidth the distance across each cell
- * @param {String} [units=kilometers] used in calculating cellWidth, can be degrees, radians, miles, or kilometers
+ * @param {number} cellWidth the distance across each cell
+ * @param {string} [units=kilometers] used in calculating cellWidth, can be degrees, radians, miles, or kilometers
  * @return {FeatureCollection<Point>} grid of points
  * @example
  * var extent = [-70.823364, -33.553984, -70.473175, -33.302986];

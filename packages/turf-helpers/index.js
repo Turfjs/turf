@@ -31,7 +31,7 @@ module.exports.feature = feature;
  * Takes coordinates and properties (optional) and returns a new {@link Point} feature.
  *
  * @name point
- * @param {Number[]} coordinates longitude, latitude position (each in decimal degrees)
+ * @param {number[]} coordinates longitude, latitude position (each in decimal degrees)
  * @param {Object=} properties an Object that is used as the {@link Feature}'s
  * properties
  * @returns {Feature<Point>} a Point feature
@@ -53,7 +53,7 @@ module.exports.point = function (coordinates, properties) {
  * Takes an array of LinearRings and optionally an {@link Object} with properties and returns a {@link Polygon} feature.
  *
  * @name polygon
- * @param {Array<Array<Number>>} rings an array of LinearRings
+ * @param {Array<Array<number>>} rings an array of LinearRings
  * @param {Object=} properties a properties object
  * @returns {Feature<Polygon>} a Polygon feature
  * @throws {Error} throw an error if a LinearRing of the polygon has too few positions
@@ -97,7 +97,7 @@ module.exports.polygon = function (coordinates, properties) {
  * coordinate array. Properties can be added optionally.
  *
  * @name lineString
- * @param {Array<Array<Number>>} coordinates an array of Positions
+ * @param {Array<Array<number>>} coordinates an array of Positions
  * @param {Object=} properties an Object of key-value pairs to add as properties
  * @returns {Feature<LineString>} a LineString feature
  * @throws {Error} if no coordinates are passed
@@ -158,7 +158,7 @@ module.exports.featureCollection = function (features) {
  * coordinate array. Properties can be added optionally.
  *
  * @name multiLineString
- * @param {Array<Array<Number>>} coordinates an array of Positions
+ * @param {Array<Array<number>>} coordinates an array of Positions
  * @param {Object=} properties an Object of key-value pairs to add as properties
  * @returns {Feature<MultiLineString>} a MultiLineString feature
  * @throws {Error} if no coordinates are passed
@@ -183,7 +183,7 @@ module.exports.multiLineString = function (coordinates, properties) {
  * coordinate array. Properties can be added optionally.
  *
  * @name multiPoint
- * @param {Array<Array<Number>>} coordinates an array of Positions
+ * @param {Array<Array<number>>} coordinates an array of Positions
  * @param {Object=} properties an Object of key-value pairs to add as properties
  * @returns {Feature<MultiPoint>} a MultiPoint feature
  * @throws {Error} if no coordinates are passed
@@ -209,7 +209,7 @@ module.exports.multiPoint = function (coordinates, properties) {
  * coordinate array. Properties can be added optionally.
  *
  * @name multiPolygon
- * @param {Array<Array<Number>>} coordinates an array of Positions
+ * @param {Array<Array<number>>} coordinates an array of Positions
  * @param {Object=} properties an Object of key-value pairs to add as properties
  * @returns {Feature<MultiPolygon>} a multipolygon feature
  * @throws {Error} if no coordinates are passed
