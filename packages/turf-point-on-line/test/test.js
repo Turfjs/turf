@@ -13,7 +13,7 @@ test('turf-point-on-line - first point', function (t) {
 
     var snapped = pointOnLine(line, pt);
 
-    t.equal(pt.geometry.coordinates.join(','), snapped.geometry.coordinates.join(','), 'pt on start does not move');
+    t.deepEqual(pt.geometry.coordinates, snapped.geometry.coordinates, 'pt on start does not move');
 
     t.end();
 });
@@ -30,7 +30,7 @@ test('turf-point-on-line - points behind first point', function (t) {
 
     pts.forEach(function(pt){
         var snapped = pointOnLine(line, pt);
-        t.equal(first.geometry.coordinates.join(','), snapped.geometry.coordinates.join(','), 'pt behind start moves to first vertex');
+        t.deepEqual(first.geometry.coordinates, snapped.geometry.coordinates, 'pt behind start moves to first vertex');
     });
     
     t.end();
@@ -48,7 +48,7 @@ test('turf-point-on-line - points in front of last point', function (t) {
 
     pts.forEach(function(pt){
         var snapped = pointOnLine(line, pt);
-        t.equal(last.geometry.coordinates.join(','), snapped.geometry.coordinates.join(','), 'pt behind start moves to last vertex');
+        t.deepEqual(last.geometry.coordinates, snapped.geometry.coordinates, 'pt behind start moves to last vertex');
     });
     
     t.end();
@@ -66,7 +66,7 @@ test('turf-point-on-line - points on joints', function (t) {
             return point(coord);
         }).forEach(function(pt){
             var snapped = pointOnLine(line, pt);
-            t.equal(pt.geometry.coordinates.join(','), snapped.geometry.coordinates.join(','), 'pt on joint stayed in place');
+            t.deepEqual(pt.geometry.coordinates, snapped.geometry.coordinates, 'pt on joint stayed in place');
         });
     });
     
@@ -103,8 +103,8 @@ test('turf-point-on-line - point along line', function (t) {
 
 test('turf-point-on-line - points on sides of lines', function (t) {
     var line = linestring([[-122.45616137981413,37.72125936929241],[-122.45717525482178,37.718242366859215]]);
-    var first = line.geometry.coordinates[0].join(',');
-    var last = line.geometry.coordinates[line.geometry.coordinates.length - 1].join(',')
+    var first = line.geometry.coordinates[0];
+    var last = line.geometry.coordinates[line.geometry.coordinates.length - 1];
     var pts = [
         point([-122.45702505111694,37.71881098149625]),
         point([-122.45733618736267,37.719235317933844]),
@@ -114,8 +114,8 @@ test('turf-point-on-line - points on sides of lines', function (t) {
 
     pts.forEach(function(pt){
         var snapped = pointOnLine(line, pt);
-        t.notEqual(snapped.geometry.coordinates.join(','), first, 'pt did not snap to first vertex');
-        t.notEqual(snapped.geometry.coordinates.join(','), last, 'pt did not snap to last vertex');
+        t.notDeepEqual(snapped.geometry.coordinates, first, 'pt did not snap to first vertex');
+        t.notDeepEqual(snapped.geometry.coordinates, last, 'pt did not snap to last vertex');
     });
 
     t.end();
