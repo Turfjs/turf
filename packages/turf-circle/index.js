@@ -8,7 +8,7 @@ var polygon = helpers.polygon;
  *
  * @name circle
  * @param {Feature<Point>} center center point
- * @param {number} radius radius of circle
+ * @param {number} radius radius of the circle
  * @param {number} steps number of steps
  * @param {String} [units=kilometers] miles, kilometers, degrees, or radians
  * @returns {Feature<Polygon>} circle polygon
@@ -28,7 +28,6 @@ var polygon = helpers.polygon;
  * var units = 'kilometers';
  *
  * var circle = turf.circle(center, radius, steps, units);
- * circle.properties['marker-color'] = '#f00';
  *
  * var result = {
  *   "type": "FeatureCollection",
