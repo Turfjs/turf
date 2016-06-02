@@ -1,0 +1,41 @@
+{
+  "name": "turf-circle",
+  "version": "3.0.5",
+  "description": "turf circle module",
+  "main": "index.js",
+  "scripts": {
+    "test": "tape test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Turfjs/turf-circle.git"
+  },
+  "keywords": [
+    "turf",
+    "circle",
+    "radius",
+    "polygon",
+    "miles",
+    "km"
+  ],
+  "author": {
+    "name": "Mustafa Dokumacı",
+    "email": "mustafa@foraa.com",
+    "url": "http://mustafadokumaci.com"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Turfjs/turf-circle/issues"
+  },
+  "homepage": "https://github.com/Turfjs/turf-circle",
+  "devDependencies": {
+    "benchmark": "^1.0.0",
+    "tape": "^3.5.0",
+    "turf-distance": "^3.0.5",
+    "turf-inside": "^3.0.5"
+  },
+  "dependencies": {
+    "turf-destination": "^3.0.5",
+    "turf-helpers": "^3.0.5"
+  }
+}
