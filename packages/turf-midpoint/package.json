@@ -25,6 +25,7 @@
   "homepage": "https://github.com/Turfjs/turf-midpoint",
   "devDependencies": {
     "benchmark": "^1.0.0",
+    "turf-helpers": "^3.0.5",
     "tape": "^3.5.0"
   },
   "dependencies": {

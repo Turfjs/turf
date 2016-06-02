@@ -54,6 +54,7 @@
     "turf-buffer": "^3.0.5",
     "turf-center": "^3.0.5",
     "turf-centroid": "^3.0.5",
+    "turf-circle": "^3.0.0",
     "turf-combine": "^3.0.5",
     "turf-concave": "^3.0.5",
     "turf-convex": "^3.0.5",
