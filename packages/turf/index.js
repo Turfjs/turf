@@ -53,9 +53,14 @@ module.exports = {
     hexGrid: require('turf-hex-grid')
 };
 
-var geometries = require('turf-helpers');
+var helpers = require('turf-helpers');
 
-module.exports.polygon = geometries.polygon;
-module.exports.lineString = geometries.lineString;
-module.exports.point = geometries.point;
-module.exports.featureCollection = geometries.featureCollection;
+module.exports.point = helpers.point;
+module.exports.polygon = helpers.polygon;
+module.exports.lineString = helpers.lineString;
+module.exports.multiPoint = helpers.multiPoint;
+module.exports.multiPolygon = helpers.multiPolygon;
+module.exports.multiLineString = helpers.multiLineString;
+module.exports.feature = helpers.feature;
+module.exports.featureCollection = helpers.featureCollection;
+module.exports.geometryCollection = helpers.geometryCollection;
