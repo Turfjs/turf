@@ -77,6 +77,14 @@ var values = features.map(function(feature) {
 });
 ```
 
+**If you were using turf-extent**
+
+turf-extent's name was changed to turf-bbox. It is functionally the same.
+
+```js
+turf.bbox(poly) // [minx, miny, maxx, maxy]
+```
+
 # 2.0.0
 
 * turf-grid renamed turf-point-grid (turf.grid => turf.pointGrid)
