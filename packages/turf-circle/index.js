@@ -45,5 +45,7 @@ module.exports = function (center, radius, steps, units) {
         coordinates.push(destination(center, radius, i * 360 / steps, units).geometry.coordinates);
     }
 
+    coordinates.push(coordinates[0]);
+
     return polygon([coordinates]);
 };

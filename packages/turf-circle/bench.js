@@ -12,7 +12,7 @@ var suite = new Benchmark.Suite('turf-circle');
 
 suite
     .add('turf-circle',function () {
-      circle(center, radius, steps, 'kilometers');
+        circle(center, radius, steps, 'kilometers');
     })
     .on('cycle', function (event) {
         console.log(String(event.target));

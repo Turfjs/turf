@@ -19,7 +19,7 @@
     "km"
   ],
   "author": {
-    name: "Mustafa Dokumacı",
+    "name": "Mustafa Dokumacı",
     "email": "mustafa@foraa.com",
     "url": "http://mustafadokumaci.com"
   },
@@ -31,7 +31,7 @@
   "devDependencies": {
     "benchmark": "^1.0.0",
     "tape": "^3.5.0",
-    "turf-distance": "^3.0.5"
+    "turf-distance": "^3.0.5",
     "turf-inside": "^3.0.5"
   },
   "dependencies": {
