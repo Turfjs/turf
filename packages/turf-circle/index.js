@@ -40,7 +40,7 @@ module.exports = function (center, radius, steps, units) {
     steps = steps || 64;
     var coordinates = [];
 
-    for (var i=0; i<steps; i++) {
+    for (var i = 0; i < steps; i++) {
         coordinates.push(destination(center, radius, i * 360 / steps, units).geometry.coordinates);
     }
 
