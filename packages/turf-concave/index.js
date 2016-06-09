@@ -79,9 +79,7 @@ var distance = require('turf-distance');
  *
  * //=result
  */
-
-
-module.exports = function (points, maxEdge, units) {
+function concave(points, maxEdge, units) {
     if (typeof maxEdge !== 'number') throw new Error('maxEdge parameter is required');
     if (typeof units !== 'string') throw new Error('units parameter is required');
 
@@ -100,7 +98,7 @@ module.exports = function (points, maxEdge, units) {
     }
 
     return merge(tinPolys);
-};
+}
 
 function merge(polygons) {
     var merged = JSON.parse(JSON.stringify(polygons.features[0])),
@@ -114,3 +112,5 @@ function merge(polygons) {
     }
     return merged;
 }
+
+module.exports = concave;
