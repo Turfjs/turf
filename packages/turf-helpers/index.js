@@ -53,7 +53,7 @@ module.exports.point = function (coordinates, properties) {
  * Takes an array of LinearRings and optionally an {@link Object} with properties and returns a {@link Polygon} feature.
  *
  * @name polygon
- * @param {Array<Array<number>>} rings an array of LinearRings
+ * @param {Array<Array<Array<number>>>} rings an array of LinearRings
  * @param {Object=} properties a properties object
  * @returns {Feature<Polygon>} a Polygon feature
  * @throws {Error} throw an error if a LinearRing of the polygon has too few positions
@@ -76,10 +76,10 @@ module.exports.polygon = function (coordinates, properties) {
 
     for (var i = 0; i < coordinates.length; i++) {
         var ring = coordinates[i];
+        if (ring.length < 4) {
+            throw new Error('Each LinearRing of a Polygon must have 4 or more Positions.');
+        }
         for (var j = 0; j < ring[ring.length - 1].length; j++) {
-            if (ring.length < 4) {
-                throw new Error('Each LinearRing of a Polygon must have 4 or more Positions.');
-            }
             if (ring[ring.length - 1][j] !== ring[0][j]) {
                 throw new Error('First and last Position are not equivalent.');
             }
@@ -158,12 +158,12 @@ module.exports.featureCollection = function (features) {
  * coordinate array. Properties can be added optionally.
  *
  * @name multiLineString
- * @param {Array<Array<number>>} coordinates an array of Positions
+ * @param {Array<Array<Array<number>>>} coordinates an array of LineStrings
  * @param {Object=} properties an Object of key-value pairs to add as properties
  * @returns {Feature<MultiLineString>} a MultiLineString feature
  * @throws {Error} if no coordinates are passed
  * @example
- * var multiLine = turf.multilinestring([[0,0],[10,10]]);
+ * var multiLine = turf.multiLineString([[[0,0],[10,10]]]);
  *
  * //=multiLine
  *
@@ -188,7 +188,7 @@ module.exports.multiLineString = function (coordinates, properties) {
  * @returns {Feature<MultiPoint>} a MultiPoint feature
  * @throws {Error} if no coordinates are passed
  * @example
- * var multiPt = turf.multipoint([[0,0],[10,10]]);
+ * var multiPt = turf.multiPoint([[0,0],[10,10]]);
  *
  * //=multiPt
  *
@@ -209,12 +209,12 @@ module.exports.multiPoint = function (coordinates, properties) {
  * coordinate array. Properties can be added optionally.
  *
  * @name multiPolygon
- * @param {Array<Array<number>>} coordinates an array of Positions
+ * @param {Array<Array<Array<Array<number>>>>} coordinates an array of Polygons
  * @param {Object=} properties an Object of key-value pairs to add as properties
  * @returns {Feature<MultiPolygon>} a multipolygon feature
  * @throws {Error} if no coordinates are passed
  * @example
- * var multiPoly = turf.multipolygon([[0,0],[10,10]]);
+ * var multiPoly = turf.multiPolygon([[[[0,0],[0,10],[10,10],[10,0],[0,0]]]);
  *
  * //=multiPoly
  *
