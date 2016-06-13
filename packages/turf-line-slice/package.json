@@ -1,6 +1,6 @@
 {
   "name": "turf-line-slice",
-  "version": "3.0.5",
+  "version": "3.0.7",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -28,12 +28,12 @@
   "devDependencies": {
     "benchmark": "^1.0.0",
     "tape": "^3.5.0",
-    "turf-helpers": "^3.0.5"
+    "turf-helpers": "^3.0.7"
   },
   "dependencies": {
-    "turf-bearing": "^3.0.1",
-    "turf-destination": "^3.0.5",
-    "turf-distance": "^3.0.5",
-    "turf-helpers": "^3.0.5"
+    "turf-bearing": "^3.0.7",
+    "turf-destination": "^3.0.7",
+    "turf-distance": "^3.0.7",
+    "turf-helpers": "^3.0.7"
   }
 }
