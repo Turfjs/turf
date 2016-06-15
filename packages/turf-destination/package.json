@@ -1,6 +1,6 @@
 {
   "name": "turf-destination",
-  "version": "3.0.7",
+  "version": "3.0.10",
   "description": "turf destination module",
   "main": "index.js",
   "scripts": {
@@ -27,10 +27,10 @@
   "devDependencies": {
     "benchmark": "^1.0.0",
     "tape": "^3.5.0",
-    "turf-distance": "^3.0.7"
+    "turf-distance": "^3.0.10"
   },
   "dependencies": {
-    "turf-helpers": "^3.0.7",
-    "turf-invariant": "^3.0.7"
+    "turf-helpers": "^3.0.10",
+    "turf-invariant": "^3.0.10"
   }
 }
