@@ -1,3 +1,7 @@
+# 3.0.11
+
+Fix turf-line-slice bug with vertical linestrings.
+
 # 3.0.1
 
 This is a big change in Turf! 3.0.0 is a release that targets the development
