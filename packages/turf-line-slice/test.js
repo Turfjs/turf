@@ -100,6 +100,9 @@ test('turf-line-slice -- vertical', function (t) {
 	sliced.properties['stroke'] = '#f0f';
 	sliced.properties['stroke-width'] = 6;
 
+	t.equal(sliced.geometry.coordinates.length, 2, 'no duplicated coords');
+	t.notDeepEqual(sliced.geometry.coordinates[0], sliced.geometry.coordinates[1], 'vertical slice does not collapse to 1st coord');
+
 	fs.writeFileSync(__dirname+ '/test/out/vertical_out.geojson',
 		JSON.stringify(featurecollection([
 				vertical, start, stop, sliced
