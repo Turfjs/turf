@@ -64,7 +64,7 @@ module.exports = function (target, projectile, t_velocity, p_velocity, t_bearing
 
     var t = Math.min(sol[0], sol[1]);
     if (t < 0)  {
-        t = Math.max(sol[0], sol[1])
+        t = Math.max(sol[0], sol[1]);
     }
     if (t < 0) {
         return null;
@@ -73,7 +73,7 @@ module.exports = function (target, projectile, t_velocity, p_velocity, t_bearing
     return destination(target, t_velocity * t, t_bearing, units);
 };
 
-function quad (a, b, c) {
+function quad(a, b, c) {
     if (Math.abs(a) < 1e-6) {
         if (Math.abs(b) < 1e-6) {
             return Math.abs(c) < 1e-6 ? [0, 0] : null;
