@@ -1,26 +1,17 @@
 # turf-explode
 
-[![build status](https://secure.travis-ci.org/Turfjs/turf-explode.png)](http://travis-ci.org/Turfjs/turf-explode)
-
-turf explode module
-
-
-### `turf.explode(input)`
+# explode
 
 Takes a feature or set of features and returns all positions as
-Point|points.
+[points](Point).
 
+**Parameters**
 
-### Parameters
+-   `geojson` **(Feature | FeatureCollection)** input features
 
-| parameter | type                       | description    |
-| --------- | -------------------------- | -------------- |
-| `input`   | Feature\,FeatureCollection | input features |
+**Examples**
 
-
-### Example
-
-```js
+```javascript
 var poly = {
   "type": "Feature",
   "properties": {},
@@ -45,21 +36,27 @@ var points = turf.explode(poly);
 //=points
 ```
 
+-   Throws **[Error](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error)** if it encounters an unknown geometry type
 
-**Returns** `FeatureCollection.<point>`, points representing the exploded input features
+Returns **FeatureCollection&lt;point>** points representing the exploded input features
 
-## Installation
+---
 
-Requires [nodejs](http://nodejs.org/).
+This module is part of the [Turfjs project](http://turfjs.org/), an open source
+module collection dedicated to geographic algorithms. It is maintained in the
+[Turfjs/turf](https://github.com/Turfjs/turf) repository, where you can create
+PRs and issues.
+
+### Installation
+
+Install this module individually:
 
 ```sh
 $ npm install turf-explode
 ```
 
-## Tests
+Or install the Turf module that includes it as a function:
 
 ```sh
-$ npm test
+$ npm install turf
 ```
-
-

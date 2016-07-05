@@ -1,29 +1,21 @@
 # turf-concave
 
-[![build status](https://secure.travis-ci.org/Turfjs/turf-concave.png)](http://travis-ci.org/Turfjs/turf-concave)
+# concave
 
-turf concave module
-
-
-### `turf.concave(points, maxEdge, units)`
-
-Takes a set of Point|points and returns a concave hull polygon.
+Takes a set of [points](Point) and returns a concave hull polygon.
 
 Internally, this uses [turf-tin](https://github.com/Turfjs/turf-tin) to generate geometries.
 
+**Parameters**
 
-### Parameters
+-   `points` **FeatureCollection&lt;Point>** input points
+-   `maxEdge` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** the size of an edge necessary for part of the
+    hull to become concave (in miles)
+-   `units` **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** used for maxEdge distance (miles or kilometers)
 
-| parameter | type                         | description                                                                     |
-| --------- | ---------------------------- | ------------------------------------------------------------------------------- |
-| `points`  | FeatureCollection\.\<Point\> | input points                                                                    |
-| `maxEdge` | Number                       | the size of an edge necessary for part of the hull to become concave (in miles) |
-| `units`   | String                       | used for maxEdge distance (miles or kilometers)                                 |
+**Examples**
 
-
-### Example
-
-```js
+```javascript
 var points = {
   "type": "FeatureCollection",
   "features": [
@@ -84,21 +76,28 @@ var result = {
 //=result
 ```
 
+-   Throws **[Error](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error)** if maxEdge parameter is missing
+-   Throws **[Error](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error)** if units parameter is missing
 
-**Returns** `Feature.<Polygon>`, a concave hull
+Returns **Feature&lt;Polygon>** a concave hull
 
-## Installation
+---
 
-Requires [nodejs](http://nodejs.org/).
+This module is part of the [Turfjs project](http://turfjs.org/), an open source
+module collection dedicated to geographic algorithms. It is maintained in the
+[Turfjs/turf](https://github.com/Turfjs/turf) repository, where you can create
+PRs and issues.
+
+### Installation
+
+Install this module individually:
 
 ```sh
 $ npm install turf-concave
 ```
 
-## Tests
+Or install the Turf module that includes it as a function:
 
 ```sh
-$ npm test
+$ npm install turf
 ```
-
-

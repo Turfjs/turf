@@ -1,57 +1,124 @@
 # turf-meta
 
-[![build status](https://secure.travis-ci.org/Turfjs/turf-meta.png)](http://travis-ci.org/Turfjs/turf-meta)
+# coordEach
 
-Functional helpers for Turf modules.
+Iterate over coordinates in any GeoJSON object, similar to
+Array.forEach.
 
-**Why?** Because many turf modules have a similar pattern of running some operation
-over every coordinate or property object, etc. This module unifies those patterns
-into one structure and make sure that turf is able to handle unusual structures
-(geometry roots, null geometries, geometrycollections, and so on). It's also
-quite fast - it uses monomorphic functions as much as possible and avoids copying
-data unnecessarily.
+**Parameters**
 
-## coordEach(layer, callback)
+-   `layer` **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)** any GeoJSON object
+-   `callback` **[Function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function)** a method that takes (value)
+-   `excludeWrapCoord` **\[[boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)]** whether or not to include
+    the final coordinate of LinearRings that wraps the ring in its iteration.
 
-Lazily iterate over coordinates in any GeoJSON object, similar to Array.forEach.
+**Examples**
 
-* `layer` (`Object`): any GeoJSON object
-* `callback` (`Function`): a method that takes (value)
-
-```js
+```javascript
 var point = { type: 'Point', coordinates: [0, 0] };
 coordEach(point, function(coords) {
   // coords is equal to [0, 0]
 });
 ```
 
-## coordReduce(layer, callback, memo)
+# coordReduce
 
-Lazily reduce coordinates in any GeoJSON object into a single value, similar to how Array.reduce works. However, in this case we lazily runthe reduction, so an array of all coordinates is unnecessary.
+Reduce coordinates in any GeoJSON object into a single value,
+similar to how Array.reduce works. However, in this case we lazily run
+the reduction, so an array of all coordinates is unnecessary.
 
-* `layer` (`Object`): any GeoJSON object
-* `callback` (`Function`): a method that takes (memo, value) and returns a new memo
-* `memo` (``): the starting value of memo: can be any type.
+**Parameters**
 
-## propEach(layer, callback)
+-   `layer` **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)** any GeoJSON object
+-   `callback` **[Function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function)** a method that takes (memo, value) and returns
+    a new memo
+-   `memo` **Any** the starting value of memo: can be any type.
+-   `excludeWrapCoord` **\[[boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)]** whether or not to include
+    the final coordinate of LinearRings that wraps the ring in its iteration.
 
-Lazily iterate over property objects in any GeoJSON object, similar to Array.forEach.
+Returns **Any** combined value
 
-* `layer` (`Object`): any GeoJSON object
-* `callback` (`Function`): a method that takes (value)
+# propEach
 
-```js
+Iterate over property objects in any GeoJSON object, similar to
+Array.forEach.
+
+**Parameters**
+
+-   `layer` **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)** any GeoJSON object
+-   `callback` **[Function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function)** a method that takes (value)
+
+**Examples**
+
+```javascript
 var point = { type: 'Feature', geometry: null, properties: { foo: 1 } };
 propEach(point, function(props) {
   // props is equal to { foo: 1}
 });
 ```
 
+# propReduce
 
-## propReduce(layer, callback, memo)
+Reduce properties in any GeoJSON object into a single value,
+similar to how Array.reduce works. However, in this case we lazily run
+the reduction, so an array of all properties is unnecessary.
 
-Lazily reduce properties in any GeoJSON object into a single value, similar to how Array.reduce works. However, in this case we lazily runthe reduction, so an array of all properties is unnecessary.
+**Parameters**
 
-* `layer` (`Object`): any GeoJSON object
-* `callback` (`Function`): a method that takes (memo, coord) and returns a new memo
-* `memo` (``): the starting value of memo: can be any type.
+-   `layer` **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)** any GeoJSON object
+-   `callback` **[Function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function)** a method that takes (memo, coord) and returns
+    a new memo
+-   `memo` **Any** the starting value of memo: can be any type.
+
+Returns **Any** combined value
+
+# featureEach
+
+Iterate over features in any GeoJSON object, similar to
+Array.forEach.
+
+**Parameters**
+
+-   `layer` **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)** any GeoJSON object
+-   `callback` **[Function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function)** a method that takes (value)
+
+**Examples**
+
+```javascript
+var feature = { type: 'Feature', geometry: null, properties: {} };
+featureEach(feature, function(feature) {
+  // feature == feature
+});
+```
+
+# coordAll
+
+Get all coordinates from any GeoJSON object, returning an array of coordinate
+arrays.
+
+**Parameters**
+
+-   `layer` **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)** any GeoJSON object
+
+Returns **[Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)>>** coordinate position array
+
+---
+
+This module is part of the [Turfjs project](http://turfjs.org/), an open source
+module collection dedicated to geographic algorithms. It is maintained in the
+[Turfjs/turf](https://github.com/Turfjs/turf) repository, where you can create
+PRs and issues.
+
+### Installation
+
+Install this module individually:
+
+```sh
+$ npm install turf-meta
+```
+
+Or install the Turf module that includes it as a function:
+
+```sh
+$ npm install turf
+```

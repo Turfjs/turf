@@ -1,27 +1,19 @@
 # turf-centroid
 
-[![build status](https://secure.travis-ci.org/Turfjs/turf-centroid.png)](http://travis-ci.org/Turfjs/turf-centroid)
+# centroid
 
-turf centroid module
-
-
-### `turf.centroid(features)`
-
-Takes one or more features and calculates the centroid using the arithmetic mean of all vertices.
+Takes one or more features and calculates the centroid using
+the mean of all vertices.
 This lessens the effect of small islands and artifacts when calculating
 the centroid of a set of polygons.
 
+**Parameters**
 
-### Parameters
+-   `features` **(Feature | FeatureCollection)** input features
 
-| parameter  | type                       | description    |
-| ---------- | -------------------------- | -------------- |
-| `features` | Feature\,FeatureCollection | input features |
+**Examples**
 
-
-### Example
-
-```js
+```javascript
 var poly = {
   "type": "Feature",
   "properties": {},
@@ -47,21 +39,25 @@ var result = {
 //=result
 ```
 
+Returns **Feature&lt;Point>** the centroid of the input features
 
-**Returns** `Feature.<Point>`, the centroid of the input features
+---
 
-## Installation
+This module is part of the [Turfjs project](http://turfjs.org/), an open source
+module collection dedicated to geographic algorithms. It is maintained in the
+[Turfjs/turf](https://github.com/Turfjs/turf) repository, where you can create
+PRs and issues.
 
-Requires [nodejs](http://nodejs.org/).
+### Installation
+
+Install this module individually:
 
 ```sh
 $ npm install turf-centroid
 ```
 
-## Tests
+Or install the Turf module that includes it as a function:
 
 ```sh
-$ npm test
+$ npm install turf
 ```
-
-

@@ -4,7 +4,8 @@
   "description": "a node.js library for performing geospatial operations with geojson",
   "scripts": {
     "test": "npm run lint && lerna bootstrap && lerna run test",
-    "lint": "eslint packages"
+    "lint": "eslint packages",
+    "prepublish": "./scripts/generate-readmes"
   },
   "repository": {
     "type": "git",
@@ -44,6 +45,8 @@
   },
   "devDependencies": {
     "browserify": "^13.0.0",
+    "d3-queue": "3.0.1",
+    "documentation": "4.0.0-beta5",
     "eslint": "^2.0.0",
     "eslint-config-mourner": "^2.0.0",
     "lerna": "2.0.0-beta.20",

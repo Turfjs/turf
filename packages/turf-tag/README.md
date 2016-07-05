@@ -1,28 +1,19 @@
 # turf-tag
 
-[![build status](https://secure.travis-ci.org/Turfjs/turf-tag.png)](http://travis-ci.org/Turfjs/turf-tag)
+# tag
 
-turf tag module
+Takes a set of [points](Point) and a set of [polygons](Polygon) and performs a spatial join.
 
+**Parameters**
 
-### `turf.tag(points, polygons, polyId, containingPolyId)`
+-   `points` **FeatureCollection&lt;Point>** input points
+-   `polygons` **FeatureCollection&lt;Polygon>** input polygons
+-   `field` **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** property in `polygons` to add to joined Point features
+-   `outField` **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** property in `points` in which to store joined property from \`polygons
 
-Takes a set of Point|points and a set of Polygon|polygons and performs a spatial join.
+**Examples**
 
-
-### Parameters
-
-| parameter          | type                           | description                                                           |
-| ------------------ | ------------------------------ | --------------------------------------------------------------------- |
-| `points`           | FeatureCollection\.\<Point\>   | input points                                                          |
-| `polygons`         | FeatureCollection\.\<Polygon\> | input polygons                                                        |
-| `polyId`           | String                         | property in `polygons` to add to joined Point features                |
-| `containingPolyId` | String                         | property in `points` in which to store joined property from `polygons |
-
-
-### Example
-
-```js
+```javascript
 var bbox = [0, 0, 10, 10];
 // create a triangular grid of polygons
 var triangleGrid = turf.triangleGrid(bbox, 50, 'miles');
@@ -48,21 +39,25 @@ var tagged = turf.tag(randomPoints, triangleGrid,
 //=tagged
 ```
 
+Returns **FeatureCollection&lt;Point>** points with `containingPolyId` property containing values from `polyId`
 
-**Returns** `FeatureCollection.<Point>`, points with `containingPolyId` property containing values from `polyId`
+---
 
-## Installation
+This module is part of the [Turfjs project](http://turfjs.org/), an open source
+module collection dedicated to geographic algorithms. It is maintained in the
+[Turfjs/turf](https://github.com/Turfjs/turf) repository, where you can create
+PRs and issues.
 
-Requires [nodejs](http://nodejs.org/).
+### Installation
+
+Install this module individually:
 
 ```sh
 $ npm install turf-tag
 ```
 
-## Tests
+Or install the Turf module that includes it as a function:
 
 ```sh
-$ npm test
+$ npm install turf
 ```
-
-

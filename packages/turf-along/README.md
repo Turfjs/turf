@@ -1,27 +1,18 @@
 # turf-along
 
-[![build status](https://secure.travis-ci.org/Turfjs/turf-along.png)](http://travis-ci.org/Turfjs/turf-along)
+# along
 
+Takes a [line](LineString) and returns a [point](Point) at a specified distance along the line.
 
+**Parameters**
 
+-   `line` **Feature&lt;LineString>** input line
+-   `distance` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** distance along the line
+-   `units` **\[[String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)]** can be degrees, radians, miles, or kilometers (optional, default `miles`)
 
-### `turf.along(line, distance, [units=miles])`
+**Examples**
 
-Takes a LineString|line and returns a Point|point at a specified distance along the line.
-
-
-### Parameters
-
-| parameter       | type                    | description                                               |
-| --------------- | ----------------------- | --------------------------------------------------------- |
-| `line`          | Feature\.\<LineString\> | input line                                                |
-| `distance`      | Number                  | distance along the line                                   |
-| `[units=miles]` | String                  | _optional:_ can be degrees, radians, miles, or kilometers |
-
-
-### Example
-
-```js
+```javascript
 var line = {
   "type": "Feature",
   "properties": {},
@@ -48,21 +39,25 @@ var result = {
 //=result
 ```
 
+Returns **Feature&lt;Point>** Point `distance` `units` along the line
 
-**Returns** `Feature.<Point>`, Point `distance` `units` along the line
+---
 
-## Installation
+This module is part of the [Turfjs project](http://turfjs.org/), an open source
+module collection dedicated to geographic algorithms. It is maintained in the
+[Turfjs/turf](https://github.com/Turfjs/turf) repository, where you can create
+PRs and issues.
 
-Requires [nodejs](http://nodejs.org/).
+### Installation
+
+Install this module individually:
 
 ```sh
 $ npm install turf-along
 ```
 
-## Tests
+Or install the Turf module that includes it as a function:
 
 ```sh
-$ npm test
+$ npm install turf
 ```
-
-

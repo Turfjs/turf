@@ -1,26 +1,17 @@
 # turf-intersect
 
-[![build status](https://secure.travis-ci.org/Turfjs/turf-intersect.png)](http://travis-ci.org/Turfjs/turf-intersect)
+# intersect
 
-find the intersection of spatial features
+Takes two [polygons](Polygon) and finds their intersection. If they share a border, returns the border; if they don't intersect, returns undefined.
 
+**Parameters**
 
-### `turf.intersect(poly1, poly2)`
+-   `poly1` **Feature&lt;Polygon>** the first polygon
+-   `poly2` **Feature&lt;Polygon>** the second polygon
 
-Takes two Polygon|polygons and finds their intersection. If they share a border, returns the border; if they don't intersect, returns undefined.
+**Examples**
 
-
-### Parameters
-
-| parameter | type                 | description        |
-| --------- | -------------------- | ------------------ |
-| `poly1`   | Feature\.\<Polygon\> | the first polygon  |
-| `poly2`   | Feature\.\<Polygon\> | the second polygon |
-
-
-### Example
-
-```js
+```javascript
 var poly1 = {
   "type": "Feature",
   "properties": {
@@ -69,21 +60,25 @@ var intersection = turf.intersect(poly1, poly2);
 //=intersection
 ```
 
+Returns **(Feature&lt;Polygon> | [undefined](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined) | Feature&lt;MultiLineString>)** if `poly1` and `poly2` overlap, returns a Polygon feature representing the area they overlap; if `poly1` and `poly2` do not overlap, returns `undefined`; if `poly1` and `poly2` share a border, a MultiLineString of the locations where their borders are shared
 
-**Returns** `Feature.<Polygon>,Feature.<MultiLineString>`, if `poly1` and `poly2` overlap, returns a Polygon feature representing the area they overlap; if `poly1` and `poly2` do not overlap, returns `undefined`; if `poly1` and `poly2` share a border, a MultiLineString of the locations where their borders are shared
+---
 
-## Installation
+This module is part of the [Turfjs project](http://turfjs.org/), an open source
+module collection dedicated to geographic algorithms. It is maintained in the
+[Turfjs/turf](https://github.com/Turfjs/turf) repository, where you can create
+PRs and issues.
 
-Requires [nodejs](http://nodejs.org/).
+### Installation
+
+Install this module individually:
 
 ```sh
 $ npm install turf-intersect
 ```
 
-## Tests
+Or install the Turf module that includes it as a function:
 
 ```sh
-$ npm test
+$ npm install turf
 ```
-
-

@@ -1,31 +1,22 @@
 # turf-distance
 
-[![build status](https://secure.travis-ci.org/Turfjs/turf-distance.png)](http://travis-ci.org/Turfjs/turf-distance)
+# distance
 
-turf distance module
-
-
-### `turf.distance(from, to, [units=kilometers])`
-
-Calculates the distance between two Point|points in degrees, radians,
+Calculates the distance between two [points](Point) in degrees, radians,
 miles, or kilometers. This uses the
 [Haversine formula](http://en.wikipedia.org/wiki/Haversine_formula)
 to account for global curvature.
 
+**Parameters**
 
-### Parameters
+-   `from` **Feature&lt;Point>** origin point
+-   `to` **Feature&lt;Point>** destination point
+-   `units` **\[[String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)]** can be degrees, radians, miles, or kilometers (optional, default `kilometers`)
 
-| parameter            | type               | description                                               |
-| -------------------- | ------------------ | --------------------------------------------------------- |
-| `from`               | Feature\.\<Point\> | origin point                                              |
-| `to`                 | Feature\.\<Point\> | destination point                                         |
-| `[units=kilometers]` | String             | _optional:_ can be degrees, radians, miles, or kilometers |
+**Examples**
 
-
-### Example
-
-```js
-var point1 = {
+```javascript
+var from = {
   "type": "Feature",
   "properties": {},
   "geometry": {
@@ -33,7 +24,7 @@ var point1 = {
     "coordinates": [-75.343, 39.984]
   }
 };
-var point2 = {
+var to = {
   "type": "Feature",
   "properties": {},
   "geometry": {
@@ -45,31 +36,35 @@ var units = "miles";
 
 var points = {
   "type": "FeatureCollection",
-  "features": [point1, point2]
+  "features": [from, to]
 };
 
 //=points
 
-var distance = turf.distance(point1, point2, units);
+var distance = turf.distance(from, to, units);
 
 //=distance
 ```
 
+Returns **[Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** distance between the two points
 
-**Returns** `Number`, distance between the two points
+---
 
-## Installation
+This module is part of the [Turfjs project](http://turfjs.org/), an open source
+module collection dedicated to geographic algorithms. It is maintained in the
+[Turfjs/turf](https://github.com/Turfjs/turf) repository, where you can create
+PRs and issues.
 
-Requires [nodejs](http://nodejs.org/).
+### Installation
+
+Install this module individually:
 
 ```sh
 $ npm install turf-distance
 ```
 
-## Tests
+Or install the Turf module that includes it as a function:
 
 ```sh
-$ npm test
+$ npm install turf
 ```
-
-

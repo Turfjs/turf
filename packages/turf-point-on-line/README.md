@@ -1,69 +1,71 @@
 # turf-point-on-line
 
-[![build status](https://secure.travis-ci.org/Turfjs/turf-point-on-line.png)](http://travis-ci.org/Turfjs/turf-point-on-line)
+# pointOnLine
 
+Takes a [Point](Point) and a [LineString](LineString) and calculates the closest Point on the LineString.
 
+**Parameters**
 
+-   `line` **Feature&lt;LineString>** line to snap to
+-   `point` **Feature&lt;Point>** point to snap from
 
-### `turf.point-on-line (Line, Point)`
+**Examples**
 
-Takes a Point and a LineString and calculates the closest Point on the LineString
-
-
-### Parameters
-
-| parameter | type       | description  |
-| --------- | ---------- | ------------ |
-| `Line`    | LineString | to snap to   |
-| `Point`   | Point      | to snap from |
-
-
-### Example
-
-```js
-var line = turf.linestring([
-      [
-        -77.0316696166992,
-        38.878605901789236
-      ],
-      [
-        -77.02960968017578,
-        38.88194668656296
-      ],
-      [
-        -77.02033996582031,
-        38.88408470638821
-      ],
-      [
-        -77.02566146850586,
-        38.885821800123196
-      ],
-      [
-        -77.02188491821289,
-        38.88956308852534
-      ],
-      [
-        -77.01982498168944,
-        38.89236892551996
-      ]
-    ]);
-var pt = turf.point([-77.02544689178467,38.88689075977245]);
+```javascript
+var line = {
+  "type": "Feature",
+  "properties": {},
+  "geometry": {
+    "type": "LineString",
+    "coordinates": [
+      [-77.031669, 38.878605],
+      [-77.029609, 38.881946],
+      [-77.020339, 38.884084],
+      [-77.025661, 38.885821],
+      [-77.021884, 38.889563],
+      [-77.019824, 38.892368]
+    ]
+  }
+};
+var pt = {
+  "type": "Feature",
+  "properties": {},
+  "geometry": {
+    "type": "Point",
+    "coordinates": [-77.037076, 38.884017]
+  }
+};
 
 var snapped = turf.pointOnLine(line, pt);
-//=snapped
+snapped.properties['marker-color'] = '#00f'
+
+var result = {
+  "type": "FeatureCollection",
+  "features": [line, pt, snapped]
+};
+
+//=result
 ```
 
-## Installation
+Returns **Feature&lt;Point>** closest point on the `line` to `point`
 
-Requires [nodejs](http://nodejs.org/).
+---
+
+This module is part of the [Turfjs project](http://turfjs.org/), an open source
+module collection dedicated to geographic algorithms. It is maintained in the
+[Turfjs/turf](https://github.com/Turfjs/turf) repository, where you can create
+PRs and issues.
+
+### Installation
+
+Install this module individually:
 
 ```sh
 $ npm install turf-point-on-line
 ```
 
-## Tests
+Or install the Turf module that includes it as a function:
 
 ```sh
-$ npm test
+$ npm install turf
 ```
-

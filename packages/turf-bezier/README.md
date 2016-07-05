@@ -1,31 +1,22 @@
 # turf-bezier
 
-[![build status](https://secure.travis-ci.org/Turfjs/turf-bezier.png)](http://travis-ci.org/Turfjs/turf-bezier)
+# bezier
 
-generate a bezier curve from a linestring
-
-
-### `turf.bezier(line, [resolution=10000], [sharpness=0.85])`
-
-Takes a LineString|line and returns a curved version
+Takes a [line](LineString) and returns a curved version
 by applying a [Bezier spline](http://en.wikipedia.org/wiki/B%C3%A9zier_spline)
 algorithm.
 
 The bezier spline implementation is by [Leszek Rybicki](http://leszek.rybicki.cc/).
 
+**Parameters**
 
-### Parameters
+-   `line` **Feature&lt;LineString>** input LineString
+-   `resolution` **\[[Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)]** time in milliseconds between points (optional, default `10000`)
+-   `sharpness` **\[[Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)]** a measure of how curvy the path should be between splines (optional, default `0.85`)
 
-| parameter            | type                    | description                                                           |
-| -------------------- | ----------------------- | --------------------------------------------------------------------- |
-| `line`               | Feature\.\<LineString\> | input LineString                                                      |
-| `[resolution=10000]` | Number                  | _optional:_ time in milliseconds between points                       |
-| `[sharpness=0.85]`   | Number                  | _optional:_ a measure of how curvy the path should be between splines |
+**Examples**
 
-
-### Example
-
-```js
+```javascript
 var line = {
   "type": "Feature",
   "properties": {
@@ -55,21 +46,25 @@ var result = {
 //=result
 ```
 
+Returns **Feature&lt;LineString>** curved line
 
-**Returns** `Feature.<LineString>`, curved line
+---
 
-## Installation
+This module is part of the [Turfjs project](http://turfjs.org/), an open source
+module collection dedicated to geographic algorithms. It is maintained in the
+[Turfjs/turf](https://github.com/Turfjs/turf) repository, where you can create
+PRs and issues.
 
-Requires [nodejs](http://nodejs.org/).
+### Installation
+
+Install this module individually:
 
 ```sh
 $ npm install turf-bezier
 ```
 
-## Tests
+Or install the Turf module that includes it as a function:
 
 ```sh
-$ npm test
+$ npm install turf
 ```
-
-

@@ -1,181 +1,56 @@
-# turf-aggregate
+# turf-collect
 
-[![build status](https://secure.travis-ci.org/Turfjs/turf-aggregate.png)](http://travis-ci.org/Turfjs/turf-aggregate)
+# collect
 
-turf aggregate module
+Joins attributes FeatureCollection of polygons with a FeatureCollection of
+points. Given an `inProperty` on points and an `outProperty` for polygons,
+this finds every point that lies within each polygon, collects the `inProperty`
+values from those points, and adds them as an array to `outProperty` on the
+polygon.
 
+**Parameters**
 
-### `turf.aggregate(polygons, points, aggregations)`
+-   `polygons` **FeatureCollection&lt;Polygon>** polygons with values on which to aggregate
+-   `points` **FeatureCollection&lt;Point>** points to be aggregated
+-   `inProperty` **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** property to be nested from
+-   `outProperty` **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** property to be nested into
 
-Calculates a series of aggregations for a set of Point|points within a set of Polygon|polygons. Sum, average, count, min, max, and deviation are supported.
+**Examples**
 
+```javascript
+var poly1 = polygon([[[0,0],[10,0],[10,10],[0,10],[0,0]]]);
+var poly2 = polygon([[[10,0],[20,10],[20,20],[20,0],[10,0]]]);
+var polyFC = featurecollection([poly1, poly2]);
+var pt1 = point([5,5], {population: 200});
+var pt2 = point([1,3], {population: 600});
+var pt3 = point([14,2], {population: 100});
+var pt4 = point([13,1], {population: 200});
+var pt5 = point([19,7], {population: 300});
+var ptFC = featurecollection([pt1, pt2, pt3, pt4, pt5]);
+var aggregated = aggregate(polyFC, ptFC, 'population', 'values');
 
-### Parameters
-
-| parameter      | type                           | description                                |
-| -------------- | ------------------------------ | ------------------------------------------ |
-| `polygons`     | FeatureCollection\.\<Polygon\> | polygons with values on which to aggregate |
-| `points`       | FeatureCollection\.\<Point\>   | points to be aggregated                    |
-| `aggregations` | Array                          | an array of aggregation objects            |
-
-
-### Example
-
-```js
-var polygons = {
-  "type": "FeatureCollection",
-  "features": [
-    {
-      "type": "Feature",
-      "properties": {},
-      "geometry": {
-        "type": "Polygon",
-        "coordinates": [[
-          [1.669921, 48.632908],
-          [1.669921, 49.382372],
-          [3.636474, 49.382372],
-          [3.636474, 48.632908],
-          [1.669921, 48.632908]
-        ]]
-      }
-    }, {
-      "type": "Feature",
-      "properties": {},
-      "geometry": {
-        "type": "Polygon",
-        "coordinates": [[
-          [2.230224, 47.85003],
-          [2.230224, 48.611121],
-          [4.361572, 48.611121],
-          [4.361572, 47.85003],
-          [2.230224, 47.85003]
-        ]]
-      }
-    }
-  ]
-};
-var points = {
-  "type": "FeatureCollection",
-  "features": [
-    {
-      "type": "Feature",
-      "properties": {
-        "population": 200
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [2.054443,49.138596]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "population": 600
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [3.065185,48.850258]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "population": 100
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [2.329101,48.79239]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "population": 200
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [2.614746,48.334343]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "population": 300
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [3.416748,48.056053]
-      }
-    }
-  ]
-};
-var aggregations = [
-  {
-    aggregation: 'sum',
-    inField: 'population',
-    outField: 'pop_sum'
-  },
-  {
-    aggregation: 'average',
-    inField: 'population',
-    outField: 'pop_avg'
-  },
-  {
-    aggregation: 'median',
-    inField: 'population',
-    outField: 'pop_median'
-  },
-  {
-    aggregation: 'min',
-    inField: 'population',
-    outField: 'pop_min'
-  },
-  {
-    aggregation: 'max',
-    inField: 'population',
-    outField: 'pop_max'
-  },
-  {
-    aggregation: 'deviation',
-    inField: 'population',
-    outField: 'pop_deviation'
-  },
-  {
-    aggregation: 'variance',
-    inField: 'population',
-    outField: 'pop_variance'
-  },
-  {
-    aggregation: 'count',
-    inField: '',
-    outField: 'point_count'
-  }
-];
-
-var aggregated = turf.aggregate(
-  polygons, points, aggregations);
-
-var result = turf.featurecollection(
-  points.features.concat(aggregated.features));
-
-//=result
+aggregated.features[0].properties.values // => [200, 600]);
 ```
 
+Returns **FeatureCollection&lt;Polygon>** polygons with properties listed based on `outField`
 
-**Returns** `FeatureCollection.<Polygon>`, polygons with properties listed based on `outField` values in `aggregations`
+---
 
-## Installation
+This module is part of the [Turfjs project](http://turfjs.org/), an open source
+module collection dedicated to geographic algorithms. It is maintained in the
+[Turfjs/turf](https://github.com/Turfjs/turf) repository, where you can create
+PRs and issues.
 
-Requires [nodejs](http://nodejs.org/).
+### Installation
+
+Install this module individually:
 
 ```sh
-$ npm install turf-aggregate
+$ npm install turf-collect
 ```
 
-## Tests
+Or install the Turf module that includes it as a function:
 
 ```sh
-$ npm test
+$ npm install turf
 ```
-
-

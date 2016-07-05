@@ -1,26 +1,17 @@
 # turf-flip
 
-[![build status](https://secure.travis-ci.org/Turfjs/turf-flip.png)](http://travis-ci.org/Turfjs/turf-flip)
-
-turf flip module
-
-
-### `turf.flip(input)`
+# flip
 
 Takes input features and flips all of their coordinates
 from `[x, y]` to `[y, x]`.
 
+**Parameters**
 
-### Parameters
+-   `input` **(Feature | FeatureCollection)** input features
 
-| parameter | type                       | description    |
-| --------- | -------------------------- | -------------- |
-| `input`   | Feature\,FeatureCollection | input features |
+**Examples**
 
-
-### Example
-
-```js
+```javascript
 var serbia = {
   "type": "Feature",
   "properties": {},
@@ -37,21 +28,25 @@ var saudiArabia = turf.flip(serbia);
 //=saudiArabia
 ```
 
+Returns **(Feature | FeatureCollection)** a feature or set of features of the same type as `input` with flipped coordinates
 
-**Returns** `Feature,FeatureCollection`, a feature or set of features of the same type as `input` with flipped coordinates
+---
 
-## Installation
+This module is part of the [Turfjs project](http://turfjs.org/), an open source
+module collection dedicated to geographic algorithms. It is maintained in the
+[Turfjs/turf](https://github.com/Turfjs/turf) repository, where you can create
+PRs and issues.
 
-Requires [nodejs](http://nodejs.org/).
+### Installation
+
+Install this module individually:
 
 ```sh
 $ npm install turf-flip
 ```
 
-## Tests
+Or install the Turf module that includes it as a function:
 
 ```sh
-$ npm test
+$ npm install turf
 ```
-
-

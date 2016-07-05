@@ -1,30 +1,21 @@
 # turf-hex-grid
 
-[![build status](https://secure.travis-ci.org/Turfjs/turf-hex-grid.png)](http://travis-ci.org/Turfjs/turf-hex-grid)
+# hexGrid
 
-
-
-
-### `turf.hex-grid(bbox, cellWidth, units, triangles)`
-
-Takes a bounding box and a cell size in degrees and returns a FeatureCollection of flat-topped
-hexagons (Polygon features) aligned in an "odd-q" vertical grid as
+Takes a bounding box and a cell size in degrees and returns a [FeatureCollection](FeatureCollection) of flat-topped
+hexagons ([Polygon](Polygon) features) aligned in an "odd-q" vertical grid as
 described in [Hexagonal Grids](http://www.redblobgames.com/grids/hexagons/).
 
+**Parameters**
 
-### Parameters
+-   `bbox` **[Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)>** bounding box in [minX, minY, maxX, maxY] order
+-   `cellSize` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** dimension of cell in specified units
+-   `units` **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** used in calculating cellWidth ('miles' or 'kilometers')
+-   `triangles` **[boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** whether to return as triangles instead of hexagons
 
-| parameter   | type              | description                                             |
-| ----------- | ----------------- | ------------------------------------------------------- |
-| `bbox`      | Array\.\<number\> | bounding box in [minX, minY, maxX, maxY] order          |
-| `cellWidth` | Number            | width of cell in specified units                        |
-| `units`     | String            | used in calculating cellWidth ('miles' or 'kilometers') |
-| `triangles` | Boolean           | generate hexgrid triangles instead of hexagons          |
+**Examples**
 
-
-### Example
-
-```js
+```javascript
 var bbox = [-96,31,-84,40];
 var cellWidth = 50;
 var units = 'miles';
@@ -34,21 +25,25 @@ var hexgrid = turf.hexGrid(bbox, cellWidth, units);
 //=hexgrid
 ```
 
+Returns **FeatureCollection&lt;Polygon>** a hexagonal grid
 
-**Returns** `FeatureCollection.<Polygon>`, a hexagonal grid
+---
 
-## Installation
+This module is part of the [Turfjs project](http://turfjs.org/), an open source
+module collection dedicated to geographic algorithms. It is maintained in the
+[Turfjs/turf](https://github.com/Turfjs/turf) repository, where you can create
+PRs and issues.
 
-Requires [nodejs](http://nodejs.org/).
+### Installation
+
+Install this module individually:
 
 ```sh
 $ npm install turf-hex-grid
 ```
 
-## Tests
+Or install the Turf module that includes it as a function:
 
 ```sh
-$ npm test
+$ npm install turf
 ```
-
-

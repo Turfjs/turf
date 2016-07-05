@@ -1,26 +1,17 @@
 # turf-union
 
-[![build status](https://secure.travis-ci.org/Turfjs/turf-union.png)](http://travis-ci.org/Turfjs/turf-union)
+# union
 
-find the union of geographic features
+Takes two [polygons](Polygon) and returns a combined polygon. If the input polygons are not contiguous, this function returns a [MultiPolygon](MultiPolygon) feature.
 
+**Parameters**
 
-### `turf.union(poly1, poly2)`
+-   `poly1` **Feature&lt;Polygon>** input polygon
+-   `poly2` **Feature&lt;Polygon>** another input polygon
 
-Takes two Polygon|polygons and returns a combined polygon. If the input polygons are not contiguous, this function returns a MultiPolygon feature.
+**Examples**
 
-
-### Parameters
-
-| parameter | type                 | description           |
-| --------- | -------------------- | --------------------- |
-| `poly1`   | Feature\.\<Polygon\> | input polygon         |
-| `poly2`   | Feature\.\<Polygon\> | another input polygon |
-
-
-### Example
-
-```js
+```javascript
 var poly1 = {
   "type": "Feature",
   "properties": {
@@ -65,21 +56,25 @@ var union = turf.union(poly1, poly2);
 //=union
 ```
 
+Returns **Feature&lt;(Polygon | MultiPolygon)>** a combined [Polygon](Polygon) or [MultiPolygon](MultiPolygon) feature
 
-**Returns** `Feature.<Polygon|MultiPolygon>`, a combined Polygon or MultiPolygon feature
+---
 
-## Installation
+This module is part of the [Turfjs project](http://turfjs.org/), an open source
+module collection dedicated to geographic algorithms. It is maintained in the
+[Turfjs/turf](https://github.com/Turfjs/turf) repository, where you can create
+PRs and issues.
 
-Requires [nodejs](http://nodejs.org/).
+### Installation
+
+Install this module individually:
 
 ```sh
 $ npm install turf-union
 ```
 
-## Tests
+Or install the Turf module that includes it as a function:
 
 ```sh
-$ npm test
+$ npm install turf
 ```
-
-

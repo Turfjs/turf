@@ -1,25 +1,16 @@
 # turf-envelope
 
-[![build status](https://secure.travis-ci.org/Turfjs/turf-envelope.png)](http://travis-ci.org/Turfjs/turf-envelope)
+# envelope
 
-turf envelope module
+Takes any number of features and returns a rectangular [Polygon](Polygon) that encompasses all vertices.
 
+**Parameters**
 
-### `turf.envelope(fc)`
+-   `fc` **FeatureCollection** input features
 
-Takes any number of features and returns a rectangular Polygon that encompasses all vertices.
+**Examples**
 
-
-### Parameters
-
-| parameter | type              | description    |
-| --------- | ----------------- | -------------- |
-| `fc`      | FeatureCollection | input features |
-
-
-### Example
-
-```js
+```javascript
 var fc = {
   "type": "FeatureCollection",
   "features": [
@@ -65,21 +56,25 @@ var result = {
 //=result
 ```
 
+Returns **Feature&lt;Polygon>** a rectangular Polygon feature that encompasses all vertices
 
-**Returns** `Feature.<Polygon>`, a rectangular Polygon feature that encompasses all vertices
+---
 
-## Installation
+This module is part of the [Turfjs project](http://turfjs.org/), an open source
+module collection dedicated to geographic algorithms. It is maintained in the
+[Turfjs/turf](https://github.com/Turfjs/turf) repository, where you can create
+PRs and issues.
 
-Requires [nodejs](http://nodejs.org/).
+### Installation
+
+Install this module individually:
 
 ```sh
 $ npm install turf-envelope
 ```
 
-## Tests
+Or install the Turf module that includes it as a function:
 
 ```sh
-$ npm test
+$ npm install turf
 ```
-
-

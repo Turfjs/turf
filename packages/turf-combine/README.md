@@ -1,25 +1,19 @@
 # turf-combine
 
-[![build status](https://secure.travis-ci.org/Turfjs/turf-combine.png)](http://travis-ci.org/Turfjs/turf-combine)
+# combine
 
-turf combine module
+Combines a [FeatureCollection](FeatureCollection) of [Point](Point),
+[LineString](LineString), or [Polygon](Polygon) features
+into [MultiPoint](MultiPoint), [MultiLineString](MultiLineString), or
+[MultiPolygon](MultiPolygon) features.
 
+**Parameters**
 
-### `turf.combine(fc)`
+-   `fc` **FeatureCollection&lt;(Point | LineString | Polygon)>** a FeatureCollection of any type
 
-Combines a FeatureCollection of Point, LineString, or Polygon features into MultiPoint, MultiLineString, or MultiPolygon features.
+**Examples**
 
-
-### Parameters
-
-| parameter | type                                            | description                     |
-| --------- | ----------------------------------------------- | ------------------------------- |
-| `fc`      | FeatureCollection\.\<Point|LineString|Polygon\> | a FeatureCollection of any type |
-
-
-### Example
-
-```js
+```javascript
 var fc = {
   "type": "FeatureCollection",
   "features": [
@@ -46,21 +40,25 @@ var combined = turf.combine(fc);
 //=combined
 ```
 
+Returns **FeatureCollection&lt;(MultiPoint | MultiLineString | MultiPolygon)>** a FeatureCollection of corresponding type to input
 
-**Returns** `FeatureCollection.<MultiPoint|MultiLineString|MultiPolygon>`, a FeatureCollection of corresponding type to input
+---
 
-## Installation
+This module is part of the [Turfjs project](http://turfjs.org/), an open source
+module collection dedicated to geographic algorithms. It is maintained in the
+[Turfjs/turf](https://github.com/Turfjs/turf) repository, where you can create
+PRs and issues.
 
-Requires [nodejs](http://nodejs.org/).
+### Installation
+
+Install this module individually:
 
 ```sh
 $ npm install turf-combine
 ```
 
-## Tests
+Or install the Turf module that includes it as a function:
 
 ```sh
-$ npm test
+$ npm install turf
 ```
-
-

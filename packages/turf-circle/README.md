@@ -1,28 +1,19 @@
 # turf-circle
 
-[![build status](https://secure.travis-ci.org/Turfjs/turf-circle.png)](http://travis-ci.org/Turfjs/turf-circle)
+# circle
 
-turf circle module
+Takes a [Point](Point) and calculates the circle polygon given a radius in degrees, radians, miles, or kilometers; and steps for precision.
 
+**Parameters**
 
-### `turf.circle(center, radius, steps, units)`
+-   `center` **Feature&lt;Point>** center point
+-   `radius` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** radius of the circle
+-   `steps` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** number of steps
+-   `units` **\[[String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)]** miles, kilometers, degrees, or radians (optional, default `kilometers`)
 
-Takes a Point and calculates the circle polygon given a radius in degrees, radians, miles, or kilometers; and steps for precision.
+**Examples**
 
-
-### Parameters
-
-| parameter  | type               | description                            |
-| ---------- | ------------------ | -------------------------------------- |
-| `center`   | Feature\.\<Point\> | center point                           |
-| `radius`   | Number             | radius of the circle                   |
-| `steps`    | Number             | number of steps                        |
-| `units`    | String             | miles, kilometers, degrees, or radians |
-
-
-### Example
-
-```js
+```javascript
 var center = {
   "type": "Feature",
   "properties": {
@@ -47,19 +38,25 @@ var result = {
 //=result
 ```
 
+Returns **Feature&lt;Polygon>** circle polygon
 
-**Returns** `Feature.<Polygon>`, circle polygon
+---
 
-## Installation
+This module is part of the [Turfjs project](http://turfjs.org/), an open source
+module collection dedicated to geographic algorithms. It is maintained in the
+[Turfjs/turf](https://github.com/Turfjs/turf) repository, where you can create
+PRs and issues.
 
-Requires [nodejs](http://nodejs.org/).
+### Installation
+
+Install this module individually:
 
 ```sh
 $ npm install turf-circle
 ```
 
-## Tests
+Or install the Turf module that includes it as a function:
 
 ```sh
-$ npm test
+$ npm install turf
 ```

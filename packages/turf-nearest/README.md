@@ -1,26 +1,20 @@
 # turf-nearest
 
-[![build status](https://secure.travis-ci.org/Turfjs/turf-nearest.png)](http://travis-ci.org/Turfjs/turf-nearest)
+# nearest
 
-turf nearest module
+Takes a reference [point](Point) and a FeatureCollection of Features
+with Point geometries and returns the
+point from the FeatureCollection closest to the reference. This calculation
+is geodesic.
 
+**Parameters**
 
-### `turf.nearest(point, against)`
+-   `targetPoint` **Feature&lt;Point>** the reference point
+-   `points` **FeatureCollection&lt;Point>** against input point set
 
-Takes a reference Point|point and a set of points and returns the point from the set closest to the reference.
+**Examples**
 
-
-### Parameters
-
-| parameter | type                         | description         |
-| --------- | ---------------------------- | ------------------- |
-| `point`   | Feature\.\<Point\>           | the reference point |
-| `against` | FeatureCollection\.\<Point\> | input point set     |
-
-
-### Example
-
-```js
+```javascript
 var point = {
   "type": "Feature",
   "properties": {
@@ -71,21 +65,25 @@ var result = {
 //=result
 ```
 
+Returns **Feature&lt;Point>** the closest point in the set to the reference point
 
-**Returns** `Feature.<Point>`, the closest point in the set to the reference point
+---
 
-## Installation
+This module is part of the [Turfjs project](http://turfjs.org/), an open source
+module collection dedicated to geographic algorithms. It is maintained in the
+[Turfjs/turf](https://github.com/Turfjs/turf) repository, where you can create
+PRs and issues.
 
-Requires [nodejs](http://nodejs.org/).
+### Installation
+
+Install this module individually:
 
 ```sh
 $ npm install turf-nearest
 ```
 
-## Tests
+Or install the Turf module that includes it as a function:
 
 ```sh
-$ npm test
+$ npm install turf
 ```
-
-

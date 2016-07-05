@@ -1,26 +1,17 @@
 # turf-bearing
 
-[![build status](https://secure.travis-ci.org/Turfjs/turf-bearing.png)](http://travis-ci.org/Turfjs/turf-bearing)
+# bearing
 
-turf bearing module
+Takes two [points](Point) and finds the geographic bearing between them.
 
+**Parameters**
 
-### `turf.bearing(start, end)`
+-   `start` **Feature&lt;Point>** starting Point
+-   `end` **Feature&lt;Point>** ending Point
 
-Takes two Point|points and finds the geographic bearing between them.
+**Examples**
 
-
-### Parameters
-
-| parameter | type               | description    |
-| --------- | ------------------ | -------------- |
-| `start`   | Feature\.\<Point\> | starting Point |
-| `end`     | Feature\.\<Point\> | ending Point   |
-
-
-### Example
-
-```js
+```javascript
 var point1 = {
   "type": "Feature",
   "properties": {
@@ -54,21 +45,25 @@ var bearing = turf.bearing(point1, point2);
 //=bearing
 ```
 
+Returns **[Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** bearing in decimal degrees
 
-**Returns** `Number`, bearing in decimal degrees
+---
 
-## Installation
+This module is part of the [Turfjs project](http://turfjs.org/), an open source
+module collection dedicated to geographic algorithms. It is maintained in the
+[Turfjs/turf](https://github.com/Turfjs/turf) repository, where you can create
+PRs and issues.
 
-Requires [nodejs](http://nodejs.org/).
+### Installation
+
+Install this module individually:
 
 ```sh
 $ npm install turf-bearing
 ```
 
-## Tests
+Or install the Turf module that includes it as a function:
 
 ```sh
-$ npm test
+$ npm install turf
 ```
-
-
