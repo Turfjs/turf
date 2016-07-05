@@ -11,6 +11,7 @@
   },
   "files": [
     "index.js",
+    "bower.json",
     "turf.js",
     "turf.min.js"
   ],
