@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo 1",
-    "build": "browserify index.js -s turf > turf.js && uglifyjs turf.js -c -m > turf.min.js;",
+    "build": "browserify index.js -s turf > turf.js && uglifyjs turf.js -c -m > turf.min.js",
     "size": "browserify index.js --full-paths -s turf | uglifyjs -c -m | discify | hcat"
   },
   "repository": {
