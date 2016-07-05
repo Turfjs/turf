@@ -46,6 +46,16 @@ All of Turf's functions can also be installed as separate modules. This works we
 npm install turf-point turf-buffer
 ```
 
+**Bower:**
+
+_Not recommend. Please don't use Bower. Use Browserify, Webpack, or the CDN instead._
+
+The latest Bower build is at:
+
+```
+https://npmcdn.com/turf@3.0.14/bower.zip
+```
+
 - - -
 
 ### Data in Turf
