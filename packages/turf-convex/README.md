@@ -1,30 +1,21 @@
 # turf-convex
 
-[![build status](https://secure.travis-ci.org/Turfjs/turf-convex.png)](http://travis-ci.org/Turfjs/turf-convex)
+# convex
 
-
-
-
-### `turf.convex(input)`
-
-Takes a set of Point|points and returns a
+Takes a set of [points](Point) and returns a
 [convex hull](http://en.wikipedia.org/wiki/Convex_hull) polygon.
 
 Internally this uses
 the [convex-hull](https://github.com/mikolalysenko/convex-hull) module that
 implements a [monotone chain hull](http://en.wikibooks.org/wiki/Algorithm_Implementation/Geometry/Convex_hull/Monotone_chain).
 
+**Parameters**
 
-### Parameters
+-   `featurecollection` **FeatureCollection&lt;Point>** input points
 
-| parameter | type                         | description  |
-| --------- | ---------------------------- | ------------ |
-| `input`   | FeatureCollection\.\<Point\> | input points |
+**Examples**
 
-
-### Example
-
-```js
+```javascript
 var points = {
   "type": "FeatureCollection",
   "features": [
@@ -85,21 +76,25 @@ var result = {
 //=result
 ```
 
+Returns **Feature&lt;Polygon>** a convex hull
 
-**Returns** `Feature.<Polygon>`, a convex hull
+---
 
-## Installation
+This module is part of the [Turfjs project](http://turfjs.org/), an open source
+module collection dedicated to geographic algorithms. It is maintained in the
+[Turfjs/turf](https://github.com/Turfjs/turf) repository, where you can create
+PRs and issues.
 
-Requires [nodejs](http://nodejs.org/).
+### Installation
+
+Install this module individually:
 
 ```sh
 $ npm install turf-convex
 ```
 
-## Tests
+Or install the Turf module that includes it as a function:
 
 ```sh
-$ npm test
+$ npm install turf
 ```
-
-

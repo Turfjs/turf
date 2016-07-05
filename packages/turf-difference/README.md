@@ -1,27 +1,18 @@
 # turf-difference
 
-[![build status](https://secure.travis-ci.org/Turfjs/turf-difference.png)](http://travis-ci.org/Turfjs/turf-difference)
+# difference
 
-[Turf](http://turfjs.org/) difference module
-
-
-### `turf.difference(poly1, poly2)`
-
-Finds the difference between two Polygon|polygons by clipping the second
+Finds the difference between two [polygons](Polygon) by clipping the second
 polygon from the first.
 
+**Parameters**
 
-### Parameters
+-   `poly1` **Feature&lt;Polygon>** input Polygon feaure
+-   `poly2` **Feature&lt;Polygon>** Polygon feature to difference from `poly1`
 
-| parameter | type                 | description                                |
-| --------- | -------------------- | ------------------------------------------ |
-| `poly1`   | Feature\.\<Polygon\> | input Polygon feaure                       |
-| `poly2`   | Feature\.\<Polygon\> | Polygon feature to difference from `poly1` |
+**Examples**
 
-
-### Example
-
-```js
+```javascript
 var poly1 = {
   "type": "Feature",
   "properties": {
@@ -68,21 +59,25 @@ var polygons = {
 //=differenced
 ```
 
+Returns **Feature&lt;Polygon>** a Polygon feature showing the area of `poly1` excluding the area of `poly2`
 
-**Returns** `Feature.<Polygon>`, a Polygon feature showing the area of `poly1` excluding the area of `poly2`
+---
 
-## Installation
+This module is part of the [Turfjs project](http://turfjs.org/), an open source
+module collection dedicated to geographic algorithms. It is maintained in the
+[Turfjs/turf](https://github.com/Turfjs/turf) repository, where you can create
+PRs and issues.
 
-Requires [nodejs](http://nodejs.org/).
+### Installation
+
+Install this module individually:
 
 ```sh
 $ npm install turf-difference
 ```
 
-## Tests
+Or install the Turf module that includes it as a function:
 
 ```sh
-$ npm test
+$ npm install turf
 ```
-
-

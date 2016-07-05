@@ -1,25 +1,16 @@
 # turf-center
 
-[![build status](https://secure.travis-ci.org/Turfjs/turf-center.png)](http://travis-ci.org/Turfjs/turf-center)
+# center
 
-turf center module
+Takes a [FeatureCollection](FeatureCollection) and returns the absolute center point of all features.
 
+**Parameters**
 
-### `turf.center(features)`
+-   `features` **FeatureCollection** input features
 
-Takes a FeatureCollection and returns the absolute center point of all features.
+**Examples**
 
-
-### Parameters
-
-| parameter  | type              | description    |
-| ---------- | ----------------- | -------------- |
-| `features` | FeatureCollection | input features |
-
-
-### Example
-
-```js
+```javascript
 var features = {
   "type": "FeatureCollection",
   "features": [
@@ -124,21 +115,26 @@ var result = {
 //=result
 ```
 
+Returns **Feature&lt;Point>** a Point feature at the
+absolute center point of all input features
 
-**Returns** `Feature.<Point>`, a Point feature at the absolute center point of all input features
+---
 
-## Installation
+This module is part of the [Turfjs project](http://turfjs.org/), an open source
+module collection dedicated to geographic algorithms. It is maintained in the
+[Turfjs/turf](https://github.com/Turfjs/turf) repository, where you can create
+PRs and issues.
 
-Requires [nodejs](http://nodejs.org/).
+### Installation
+
+Install this module individually:
 
 ```sh
 $ npm install turf-center
 ```
 
-## Tests
+Or install the Turf module that includes it as a function:
 
 ```sh
-$ npm test
+$ npm install turf
 ```
-
-

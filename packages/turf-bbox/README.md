@@ -1,25 +1,16 @@
 # turf-bbox
 
-[![build status](https://secure.travis-ci.org/Turfjs/turf-bbox.png)](http://travis-ci.org/Turfjs/turf-bbox)
-
-turf bbox module
-
-
-### `turf.bbox(input)`
+# bbox
 
 Takes a set of features, calculates the bbox of all input features, and returns a bounding box.
 
+**Parameters**
 
-### Parameters
+-   `geojson` **(Feature | FeatureCollection)** input features
 
-| parameter | type                       | description    |
-| --------- | -------------------------- | -------------- |
-| `input`   | Feature\,FeatureCollection | input features |
+**Examples**
 
-
-### Example
-
-```js
+```javascript
 var input = {
   "type": "FeatureCollection",
   "features": [
@@ -68,21 +59,26 @@ var result = {
 //=result
 ```
 
+Returns **[Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)>** the bounding box of `input` given
+as an array in WSEN order (west, south, east, north)
 
-**Returns** `Array.<number>`, the bounding box of `input` given as an array in WSEN order (west, south, east, north)
+---
 
-## Installation
+This module is part of the [Turfjs project](http://turfjs.org/), an open source
+module collection dedicated to geographic algorithms. It is maintained in the
+[Turfjs/turf](https://github.com/Turfjs/turf) repository, where you can create
+PRs and issues.
 
-Requires [nodejs](http://nodejs.org/).
+### Installation
+
+Install this module individually:
 
 ```sh
 $ npm install turf-bbox
 ```
 
-## Tests
+Or install the Turf module that includes it as a function:
 
 ```sh
-$ npm test
+$ npm install turf
 ```
-
-

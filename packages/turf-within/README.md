@@ -1,26 +1,17 @@
 # turf-within
 
-[![build status](https://secure.travis-ci.org/Turfjs/turf-within.png)](http://travis-ci.org/Turfjs/turf-within)
+# within
 
-turf within module
+Takes a set of [points](Point) and a set of [polygons](Polygon) and returns the points that fall within the polygons.
 
+**Parameters**
 
-### `turf.within(points, polygons)`
+-   `points` **FeatureCollection&lt;Point>** input points
+-   `polygons` **FeatureCollection&lt;Polygon>** input polygons
 
-Takes a set of Point|points and a set of Polygon|polygons and returns the points that fall within the polygons.
+**Examples**
 
-
-### Parameters
-
-| parameter  | type                           | description    |
-| ---------- | ------------------------------ | -------------- |
-| `points`   | FeatureCollection\.\<Point\>   | input points   |
-| `polygons` | FeatureCollection\.\<Polygon\> | input polygons |
-
-
-### Example
-
-```js
+```javascript
 var searchWithin = {
   "type": "FeatureCollection",
   "features": [
@@ -93,21 +84,25 @@ var ptsWithin = turf.within(points, searchWithin);
 //=ptsWithin
 ```
 
+Returns **FeatureCollection&lt;Point>** points that land within at least one polygon
 
-**Returns** `FeatureCollection.<Point>`, points that land within at least one polygon
+---
 
-## Installation
+This module is part of the [Turfjs project](http://turfjs.org/), an open source
+module collection dedicated to geographic algorithms. It is maintained in the
+[Turfjs/turf](https://github.com/Turfjs/turf) repository, where you can create
+PRs and issues.
 
-Requires [nodejs](http://nodejs.org/).
+### Installation
+
+Install this module individually:
 
 ```sh
 $ npm install turf-within
 ```
 
-## Tests
+Or install the Turf module that includes it as a function:
 
 ```sh
-$ npm test
+$ npm install turf
 ```
-
-
