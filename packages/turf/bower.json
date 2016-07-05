@@ -1,7 +1,7 @@
 {
   "name": "turf",
-  "description": "",
-  "homepage": "https://github.com/morganherlocker/turf",
+  "description": "a JavaScript library for performing geospatial operations with GeoJSON",
+  "homepage": "https://github.com/Turfjs/turf",
   "main": "turf.min.js",
   "keywords": [
     "gis",
