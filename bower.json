@@ -2,7 +2,7 @@
   "name": "turf",
   "description": "",
   "homepage": "https://github.com/morganherlocker/turf",
-  "main": "turf.min.js",
+  "main": "turf.js",
   "keywords": [
     "gis",
     "geospatial",
