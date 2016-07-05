@@ -78,9 +78,10 @@ module.exports.coordEach = coordEach;
  * @param {Object} layer any GeoJSON object
  * @param {Function} callback a method that takes (memo, value) and returns
  * a new memo
+ * @param {*} memo the starting value of memo: can be any type.
  * @param {boolean=} excludeWrapCoord whether or not to include
  * the final coordinate of LinearRings that wraps the ring in its iteration.
- * @param {*} memo the starting value of memo: can be any type.
+ * @return {*} combined value
  */
 function coordReduce(layer, callback, memo, excludeWrapCoord) {
     coordEach(layer, function (coord) {
@@ -126,6 +127,7 @@ module.exports.propEach = propEach;
  * @param {Function} callback a method that takes (memo, coord) and returns
  * a new memo
  * @param {*} memo the starting value of memo: can be any type.
+ * @return {*} combined value
  */
 function propReduce(layer, callback, memo) {
     propEach(layer, function (prop) {
@@ -149,9 +151,8 @@ module.exports.propReduce = propReduce;
  */
 function featureEach(layer, callback) {
     if (layer.type === 'Feature') {
-        return callback(layer);
-    }
-    if (layer.type === 'FeatureCollection') {
+        callback(layer);
+    } else if (layer.type === 'FeatureCollection') {
         for (var i = 0; i < layer.features.length; i++) {
             callback(layer.features[i]);
         }

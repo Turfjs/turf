@@ -3,6 +3,7 @@
  *
  * @name feature
  * @param {Geometry} geometry input geometry
+ * @param {Object} properties properties
  * @returns {FeatureCollection} a FeatureCollection of input features
  * @example
  * var geometry = {
@@ -53,7 +54,7 @@ module.exports.point = function (coordinates, properties) {
  * Takes an array of LinearRings and optionally an {@link Object} with properties and returns a {@link Polygon} feature.
  *
  * @name polygon
- * @param {Array<Array<Array<number>>>} rings an array of LinearRings
+ * @param {Array<Array<Array<number>>>} coordinates an array of LinearRings
  * @param {Object=} properties a properties object
  * @returns {Feature<Polygon>} a Polygon feature
  * @throws {Error} throw an error if a LinearRing of the polygon has too few positions

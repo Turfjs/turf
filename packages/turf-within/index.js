@@ -80,13 +80,13 @@ var featureCollection = require('turf-helpers').featureCollection;
  *
  * //=ptsWithin
  */
-module.exports = function (ptFC, polyFC) {
+module.exports = function (points, polygons) {
     var pointsWithin = featureCollection([]);
-    for (var i = 0; i < polyFC.features.length; i++) {
-        for (var j = 0; j < ptFC.features.length; j++) {
-            var isInside = inside(ptFC.features[j], polyFC.features[i]);
+    for (var i = 0; i < polygons.features.length; i++) {
+        for (var j = 0; j < points.features.length; j++) {
+            var isInside = inside(points.features[j], polygons.features[i]);
             if (isInside) {
-                pointsWithin.features.push(ptFC.features[j]);
+                pointsWithin.features.push(points.features[j]);
             }
         }
     }
