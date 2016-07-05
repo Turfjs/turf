@@ -20,8 +20,9 @@ for (var i = 0; i < 6; i++) {
  *
  * @name hexGrid
  * @param {Array<number>} bbox bounding box in [minX, minY, maxX, maxY] order
- * @param {number} cellWidth width of cell in specified units
+ * @param {number} cellSize dimension of cell in specified units
  * @param {string} units used in calculating cellWidth ('miles' or 'kilometers')
+ * @param {boolean} triangles whether to return as triangles instead of hexagons
  * @return {FeatureCollection<Polygon>} a hexagonal grid
  * @example
  * var bbox = [-96,31,-84,40];
@@ -32,10 +33,10 @@ for (var i = 0; i < 6; i++) {
  *
  * //=hexgrid
  */
-module.exports = function hexGrid(bbox, cell, units, triangles) {
-    var xFraction = cell / (distance(point([bbox[0], bbox[1]]), point([bbox[2], bbox[1]]), units));
+module.exports = function hexGrid(bbox, cellSize, units, triangles) {
+    var xFraction = cellSize / (distance(point([bbox[0], bbox[1]]), point([bbox[2], bbox[1]]), units));
     var cellWidth = xFraction * (bbox[2] - bbox[0]);
-    var yFraction = cell / (distance(point([bbox[0], bbox[1]]), point([bbox[0], bbox[3]]), units));
+    var yFraction = cellSize / (distance(point([bbox[0], bbox[1]]), point([bbox[0], bbox[3]]), units));
     var cellHeight = yFraction * (bbox[3] - bbox[1]);
     var radius = cellWidth / 2;
 

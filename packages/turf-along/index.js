@@ -1,4 +1,4 @@
-var distance = require('turf-distance');
+var measureDistance = require('turf-distance');
 var point = require('turf-helpers').point;
 var bearing = require('turf-bearing');
 var destination = require('turf-destination');
@@ -37,7 +37,7 @@ var destination = require('turf-destination');
  *
  * //=result
  */
-module.exports = function (line, dist, units) {
+module.exports = function (line, distance, units) {
     var coords;
     if (line.type === 'Feature') coords = line.geometry.coordinates;
     else if (line.type === 'LineString') coords = line.coordinates;
@@ -45,9 +45,9 @@ module.exports = function (line, dist, units) {
 
     var travelled = 0;
     for (var i = 0; i < coords.length; i++) {
-        if (dist >= travelled && i === coords.length - 1) break;
-        else if (travelled >= dist) {
-            var overshot = dist - travelled;
+        if (distance >= travelled && i === coords.length - 1) break;
+        else if (travelled >= distance) {
+            var overshot = distance - travelled;
             if (!overshot) return point(coords[i]);
             else {
                 var direction = bearing(coords[i], coords[i - 1]) - 180;
@@ -55,7 +55,7 @@ module.exports = function (line, dist, units) {
                 return interpolated;
             }
         } else {
-            travelled += distance(coords[i], coords[i + 1], units);
+            travelled += measureDistance(coords[i], coords[i + 1], units);
         }
     }
     return point(coords[coords.length - 1]);

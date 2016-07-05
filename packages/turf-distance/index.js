@@ -15,7 +15,7 @@ var radiansToDistance = require('turf-helpers').radiansToDistance;
  * @param {String} [units=kilometers] can be degrees, radians, miles, or kilometers
  * @return {Number} distance between the two points
  * @example
- * var point1 = {
+ * var from = {
  *   "type": "Feature",
  *   "properties": {},
  *   "geometry": {
@@ -23,7 +23,7 @@ var radiansToDistance = require('turf-helpers').radiansToDistance;
  *     "coordinates": [-75.343, 39.984]
  *   }
  * };
- * var point2 = {
+ * var to = {
  *   "type": "Feature",
  *   "properties": {},
  *   "geometry": {
@@ -35,19 +35,19 @@ var radiansToDistance = require('turf-helpers').radiansToDistance;
  *
  * var points = {
  *   "type": "FeatureCollection",
- *   "features": [point1, point2]
+ *   "features": [from, to]
  * };
  *
  * //=points
  *
- * var distance = turf.distance(point1, point2, units);
+ * var distance = turf.distance(from, to, units);
  *
  * //=distance
  */
-module.exports = function (point1, point2, units) {
+module.exports = function (from, to, units) {
     var degrees2radians = Math.PI / 180;
-    var coordinates1 = getCoord(point1);
-    var coordinates2 = getCoord(point2);
+    var coordinates1 = getCoord(from);
+    var coordinates2 = getCoord(to);
     var dLat = degrees2radians * (coordinates2[1] - coordinates1[1]);
     var dLon = degrees2radians * (coordinates2[0] - coordinates1[0]);
     var lat1 = degrees2radians * coordinates1[1];
