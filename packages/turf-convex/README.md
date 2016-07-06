@@ -2,7 +2,7 @@
 
 # convex
 
-Takes a set of [points](Point) and returns a
+Takes a set of [points](http://geojson.org/geojson-spec.html#point) and returns a
 [convex hull](http://en.wikipedia.org/wiki/Convex_hull) polygon.
 
 Internally this uses
@@ -11,7 +11,7 @@ implements a [monotone chain hull](http://en.wikibooks.org/wiki/Algorithm_Implem
 
 **Parameters**
 
--   `featurecollection` **FeatureCollection&lt;Point>** input points
+-   `featurecollection` **[FeatureCollection](http://geojson.org/geojson-spec.html#featurecollection)&lt;[Point](http://geojson.org/geojson-spec.html#point)>** input points
 
 **Examples**
 
@@ -76,7 +76,7 @@ var result = {
 //=result
 ```
 
-Returns **Feature&lt;Polygon>** a convex hull
+Returns **[Feature](http://geojson.org/geojson-spec.html#feature)&lt;[Polygon](http://geojson.org/geojson-spec.html#polygon)>** a convex hull
 
 ---
 

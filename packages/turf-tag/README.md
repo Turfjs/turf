@@ -2,12 +2,12 @@
 
 # tag
 
-Takes a set of [points](Point) and a set of [polygons](Polygon) and performs a spatial join.
+Takes a set of [points](http://geojson.org/geojson-spec.html#point) and a set of [polygons](http://geojson.org/geojson-spec.html#polygon) and performs a spatial join.
 
 **Parameters**
 
--   `points` **FeatureCollection&lt;Point>** input points
--   `polygons` **FeatureCollection&lt;Polygon>** input polygons
+-   `points` **[FeatureCollection](http://geojson.org/geojson-spec.html#featurecollection)&lt;[Point](http://geojson.org/geojson-spec.html#point)>** input points
+-   `polygons` **[FeatureCollection](http://geojson.org/geojson-spec.html#featurecollection)&lt;[Polygon](http://geojson.org/geojson-spec.html#polygon)>** input polygons
 -   `field` **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** property in `polygons` to add to joined Point features
 -   `outField` **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** property in `points` in which to store joined property from \`polygons
 
@@ -39,7 +39,7 @@ var tagged = turf.tag(randomPoints, triangleGrid,
 //=tagged
 ```
 
-Returns **FeatureCollection&lt;Point>** points with `containingPolyId` property containing values from `polyId`
+Returns **[FeatureCollection](http://geojson.org/geojson-spec.html#featurecollection)&lt;[Point](http://geojson.org/geojson-spec.html#point)>** points with `containingPolyId` property containing values from `polyId`
 
 ---
 

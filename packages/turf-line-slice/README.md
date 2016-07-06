@@ -2,7 +2,7 @@
 
 # lineSlice
 
-Takes a [line](LineString), a start [Point](Point), and a stop point
+Takes a [line](http://geojson.org/geojson-spec.html#linestring), a start [Point](http://geojson.org/geojson-spec.html#point), and a stop point
 and returns a subsection of the line in-between those points.
 The start & stop points don't need to fall exactly on the line.
 
@@ -10,9 +10,9 @@ This can be useful for extracting only the part of a route between waypoints.
 
 **Parameters**
 
--   `point1` **Feature&lt;Point>** starting point
--   `point2` **Feature&lt;Point>** stopping point
--   `line` **(Feature&lt;LineString> | LineString)** line to slice
+-   `point1` **[Feature](http://geojson.org/geojson-spec.html#feature)&lt;[Point](http://geojson.org/geojson-spec.html#point)>** starting point
+-   `point2` **[Feature](http://geojson.org/geojson-spec.html#feature)&lt;[Point](http://geojson.org/geojson-spec.html#point)>** stopping point
+-   `line` **([Feature](http://geojson.org/geojson-spec.html#feature)&lt;[LineString](http://geojson.org/geojson-spec.html#linestring)> | [LineString](http://geojson.org/geojson-spec.html#linestring))** line to slice
 
 **Examples**
 
@@ -56,7 +56,7 @@ var sliced = turf.lineSlice(start, stop, line);
 //=sliced
 ```
 
-Returns **Feature&lt;LineString>** sliced line
+Returns **[Feature](http://geojson.org/geojson-spec.html#feature)&lt;[LineString](http://geojson.org/geojson-spec.html#linestring)>** sliced line
 
 ---
 

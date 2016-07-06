@@ -2,11 +2,11 @@
 
 # sample
 
-Takes a [FeatureCollection](FeatureCollection) and returns a FeatureCollection with given number of [features](Feature) at random.
+Takes a [FeatureCollection](http://geojson.org/geojson-spec.html#featurecollection) and returns a FeatureCollection with given number of [features](http://geojson.org/geojson-spec.html#feature) at random.
 
 **Parameters**
 
--   `featurecollection` **FeatureCollection** set of input features
+-   `featurecollection` **[FeatureCollection](http://geojson.org/geojson-spec.html#featurecollection)** set of input features
 -   `num` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** number of features to select
 
 **Examples**
@@ -21,7 +21,7 @@ var sample = turf.sample(points, 10);
 //=sample
 ```
 
-Returns **FeatureCollection** a FeatureCollection with `n` features
+Returns **[FeatureCollection](http://geojson.org/geojson-spec.html#featurecollection)** a FeatureCollection with `n` features
 
 ---
 

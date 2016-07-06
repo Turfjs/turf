@@ -2,7 +2,7 @@
 
 # squareGrid
 
-Takes a bounding box and a cell depth and returns a set of square [polygons](Polygon) in a grid.
+Takes a bounding box and a cell depth and returns a set of square [polygons](http://geojson.org/geojson-spec.html#polygon) in a grid.
 
 **Parameters**
 
@@ -22,7 +22,7 @@ var squareGrid = turf.squareGrid(extent, cellWidth, units);
 //=squareGrid
 ```
 
-Returns **FeatureCollection&lt;Polygon>** grid a grid of polygons
+Returns **[FeatureCollection](http://geojson.org/geojson-spec.html#featurecollection)&lt;[Polygon](http://geojson.org/geojson-spec.html#polygon)>** grid a grid of polygons
 
 ---
 

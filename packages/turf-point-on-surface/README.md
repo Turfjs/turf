@@ -2,15 +2,15 @@
 
 # pointOnSurface
 
-Takes a feature and returns a [Point](Point) guaranteed to be on the surface of the feature.
+Takes a feature and returns a [Point](http://geojson.org/geojson-spec.html#point) guaranteed to be on the surface of the feature.
 
--   Given a [Polygon](Polygon), the point will be in the area of the polygon
--   Given a [LineString](LineString), the point will be along the string
--   Given a [Point](Point), the point will the same as the input
+-   Given a [Polygon](http://geojson.org/geojson-spec.html#polygon), the point will be in the area of the polygon
+-   Given a [LineString](http://geojson.org/geojson-spec.html#linestring), the point will be along the string
+-   Given a [Point](http://geojson.org/geojson-spec.html#point), the point will the same as the input
 
 **Parameters**
 
--   `fc` **(Feature | FeatureCollection)** any feature or set of features
+-   `fc` **([Feature](http://geojson.org/geojson-spec.html#feature) \| [FeatureCollection](http://geojson.org/geojson-spec.html#featurecollection))** any feature or set of features
 
 **Examples**
 
@@ -31,7 +31,7 @@ var result = {
 //=result
 ```
 
-Returns **Feature** a point on the surface of `input`
+Returns **[Feature](http://geojson.org/geojson-spec.html#feature)** a point on the surface of `input`
 
 ---
 

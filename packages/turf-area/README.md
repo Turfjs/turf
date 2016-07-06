@@ -7,7 +7,7 @@ in square meters.
 
 **Parameters**
 
--   `input` **(Feature | FeatureCollection)** input features
+-   `input` **([Feature](http://geojson.org/geojson-spec.html#feature) \| [FeatureCollection](http://geojson.org/geojson-spec.html#featurecollection))** input features
 
 **Examples**
 

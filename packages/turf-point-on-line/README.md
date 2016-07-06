@@ -2,12 +2,12 @@
 
 # pointOnLine
 
-Takes a [Point](Point) and a [LineString](LineString) and calculates the closest Point on the LineString.
+Takes a [Point](http://geojson.org/geojson-spec.html#point) and a [LineString](http://geojson.org/geojson-spec.html#linestring) and calculates the closest Point on the LineString.
 
 **Parameters**
 
--   `line` **Feature&lt;LineString>** line to snap to
--   `point` **Feature&lt;Point>** point to snap from
+-   `line` **[Feature](http://geojson.org/geojson-spec.html#feature)&lt;[LineString](http://geojson.org/geojson-spec.html#linestring)>** line to snap to
+-   `point` **[Feature](http://geojson.org/geojson-spec.html#feature)&lt;[Point](http://geojson.org/geojson-spec.html#point)>** point to snap from
 
 **Examples**
 
@@ -47,7 +47,7 @@ var result = {
 //=result
 ```
 
-Returns **Feature&lt;Point>** closest point on the `line` to `point`
+Returns **[Feature](http://geojson.org/geojson-spec.html#feature)&lt;[Point](http://geojson.org/geojson-spec.html#point)>** closest point on the `line` to `point`
 
 ---
 

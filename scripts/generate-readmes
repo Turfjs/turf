@@ -13,13 +13,28 @@ fs.readdirSync('./packages').forEach(function(dir) {
   q.defer(generateDocs, dir);
 });
 
+var geojsonPaths = {
+  GeometryCollection: 'http://geojson.org/geojson-spec.html#geometrycollection',
+  Point: 'http://geojson.org/geojson-spec.html#point',
+  MultiPoint: 'http://geojson.org/geojson-spec.html#multipoint',
+  LineString: 'http://geojson.org/geojson-spec.html#linestring',
+  MultiLineString: 'http://geojson.org/geojson-spec.html#multilinestring',
+  Polygon: 'http://geojson.org/geojson-spec.html#polygon',
+  MultiPolygon: 'http://geojson.org/geojson-spec.html#multipolygon',
+  Geometry: 'http://geojson.org/geojson-spec.html#geometry',
+  Feature: 'http://geojson.org/geojson-spec.html#feature',
+  FeatureCollection: 'http://geojson.org/geojson-spec.html#featurecollection'
+};
+
 function generateDocs(directory, callback) {
   var pkg = JSON.parse(fs.readFileSync(path.join('./packages/', directory, '/package.json')));
   var pkgMain = path.join('./packages/', directory, pkg.main);
-  documentation.build(pkgMain, {}, function(err, res) {
+  documentation.build(pkgMain, { }, function(err, res) {
     if (err) throw err;
     if (res == undefined) { console.log(directory); }
-    documentation.formats.md(res, {}, function(err, md) {
+    documentation.formats.md(res, {
+      paths: geojsonPaths
+    }, function(err, md) {
       fs.writeFileSync(
         path.join('./packages/', directory, '/README.md'),
         '# ' + pkg.name + '\n\n' + md + postfix.replace('{module}', pkg.name));

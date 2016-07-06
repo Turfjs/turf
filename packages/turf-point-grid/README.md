@@ -2,7 +2,7 @@
 
 # pointGrid
 
-Takes a bounding box and a cell depth and returns a set of [points](Point) in a grid.
+Takes a bounding box and a cell depth and returns a set of [points](http://geojson.org/geojson-spec.html#point) in a grid.
 
 **Parameters**
 
@@ -22,7 +22,7 @@ var grid = turf.pointGrid(extent, cellWidth, units);
 //=grid
 ```
 
-Returns **FeatureCollection&lt;Point>** grid of points
+Returns **[FeatureCollection](http://geojson.org/geojson-spec.html#featurecollection)&lt;[Point](http://geojson.org/geojson-spec.html#point)>** grid of points
 
 ---
 

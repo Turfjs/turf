@@ -2,13 +2,13 @@
 
 # midpoint
 
-Takes two [points](Point) and returns a point midway between them.
+Takes two [points](http://geojson.org/geojson-spec.html#point) and returns a point midway between them.
 The midpoint is calculated geodesically, meaning the curvature of the earth is taken into account.
 
 **Parameters**
 
--   `from` **Feature&lt;Point>** first point
--   `to` **Feature&lt;Point>** second point
+-   `from` **[Feature](http://geojson.org/geojson-spec.html#feature)&lt;[Point](http://geojson.org/geojson-spec.html#point)>** first point
+-   `to` **[Feature](http://geojson.org/geojson-spec.html#feature)&lt;[Point](http://geojson.org/geojson-spec.html#point)>** second point
 
 **Examples**
 
@@ -42,7 +42,7 @@ var result = {
 //=result
 ```
 
-Returns **Feature&lt;Point>** a point midway between `pt1` and `pt2`
+Returns **[Feature](http://geojson.org/geojson-spec.html#feature)&lt;[Point](http://geojson.org/geojson-spec.html#point)>** a point midway between `pt1` and `pt2`
 
 ---
 

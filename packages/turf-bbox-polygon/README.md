@@ -2,7 +2,7 @@
 
 # bboxPolygon
 
-Takes a bbox and returns an equivalent [polygon](Polygon).
+Takes a bbox and returns an equivalent [polygon](http://geojson.org/geojson-spec.html#polygon).
 
 **Parameters**
 
@@ -18,7 +18,7 @@ var poly = turf.bboxPolygon(bbox);
 //=poly
 ```
 
-Returns **Feature&lt;Polygon>** a Polygon representation of the bounding box
+Returns **[Feature](http://geojson.org/geojson-spec.html#feature)&lt;[Polygon](http://geojson.org/geojson-spec.html#polygon)>** a Polygon representation of the bounding box
 
 ---
 

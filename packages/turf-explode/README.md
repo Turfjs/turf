@@ -3,11 +3,11 @@
 # explode
 
 Takes a feature or set of features and returns all positions as
-[points](Point).
+[points](http://geojson.org/geojson-spec.html#point).
 
 **Parameters**
 
--   `geojson` **(Feature | FeatureCollection)** input features
+-   `geojson` **([Feature](http://geojson.org/geojson-spec.html#feature) \| [FeatureCollection](http://geojson.org/geojson-spec.html#featurecollection))** input features
 
 **Examples**
 
@@ -38,7 +38,7 @@ var points = turf.explode(poly);
 
 -   Throws **[Error](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error)** if it encounters an unknown geometry type
 
-Returns **FeatureCollection&lt;point>** points representing the exploded input features
+Returns **[FeatureCollection](http://geojson.org/geojson-spec.html#featurecollection)&lt;point>** points representing the exploded input features
 
 ---
 

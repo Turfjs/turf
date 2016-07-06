@@ -2,12 +2,12 @@
 
 # within
 
-Takes a set of [points](Point) and a set of [polygons](Polygon) and returns the points that fall within the polygons.
+Takes a set of [points](http://geojson.org/geojson-spec.html#point) and a set of [polygons](http://geojson.org/geojson-spec.html#polygon) and returns the points that fall within the polygons.
 
 **Parameters**
 
--   `points` **FeatureCollection&lt;Point>** input points
--   `polygons` **FeatureCollection&lt;Polygon>** input polygons
+-   `points` **[FeatureCollection](http://geojson.org/geojson-spec.html#featurecollection)&lt;[Point](http://geojson.org/geojson-spec.html#point)>** input points
+-   `polygons` **[FeatureCollection](http://geojson.org/geojson-spec.html#featurecollection)&lt;[Polygon](http://geojson.org/geojson-spec.html#polygon)>** input polygons
 
 **Examples**
 
@@ -84,7 +84,7 @@ var ptsWithin = turf.within(points, searchWithin);
 //=ptsWithin
 ```
 
-Returns **FeatureCollection&lt;Point>** points that land within at least one polygon
+Returns **[FeatureCollection](http://geojson.org/geojson-spec.html#featurecollection)&lt;[Point](http://geojson.org/geojson-spec.html#point)>** points that land within at least one polygon
 
 ---
 
