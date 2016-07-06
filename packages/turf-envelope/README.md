@@ -6,7 +6,7 @@ Takes any number of features and returns a rectangular [Polygon](http://geojson.
 
 **Parameters**
 
--   `fc` **[FeatureCollection](http://geojson.org/geojson-spec.html#featurecollection)** input features
+-   `fc` **[FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects)** input features
 
 **Examples**
 
@@ -56,7 +56,7 @@ var result = {
 //=result
 ```
 
-Returns **[Feature](http://geojson.org/geojson-spec.html#feature)&lt;[Polygon](http://geojson.org/geojson-spec.html#polygon)>** a rectangular Polygon feature that encompasses all vertices
+Returns **[Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;[Polygon](http://geojson.org/geojson-spec.html#polygon)>** a rectangular Polygon feature that encompasses all vertices
 
 ---
 

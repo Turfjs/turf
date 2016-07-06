@@ -6,8 +6,8 @@ Takes two [polygons](http://geojson.org/geojson-spec.html#polygon) and returns a
 
 **Parameters**
 
--   `poly1` **[Feature](http://geojson.org/geojson-spec.html#feature)&lt;[Polygon](http://geojson.org/geojson-spec.html#polygon)>** input polygon
--   `poly2` **[Feature](http://geojson.org/geojson-spec.html#feature)&lt;[Polygon](http://geojson.org/geojson-spec.html#polygon)>** another input polygon
+-   `poly1` **[Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;[Polygon](http://geojson.org/geojson-spec.html#polygon)>** input polygon
+-   `poly2` **[Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;[Polygon](http://geojson.org/geojson-spec.html#polygon)>** another input polygon
 
 **Examples**
 
@@ -56,7 +56,7 @@ var union = turf.union(poly1, poly2);
 //=union
 ```
 
-Returns **[Feature](http://geojson.org/geojson-spec.html#feature)&lt;([Polygon](http://geojson.org/geojson-spec.html#polygon) \| [MultiPolygon](http://geojson.org/geojson-spec.html#multipolygon))>** a combined [Polygon](http://geojson.org/geojson-spec.html#polygon) or [MultiPolygon](http://geojson.org/geojson-spec.html#multipolygon) feature
+Returns **[Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;([Polygon](http://geojson.org/geojson-spec.html#polygon) \| [MultiPolygon](http://geojson.org/geojson-spec.html#multipolygon))>** a combined [Polygon](http://geojson.org/geojson-spec.html#polygon) or [MultiPolygon](http://geojson.org/geojson-spec.html#multipolygon) feature
 
 ---
 

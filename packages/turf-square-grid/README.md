@@ -22,7 +22,7 @@ var squareGrid = turf.squareGrid(extent, cellWidth, units);
 //=squareGrid
 ```
 
-Returns **[FeatureCollection](http://geojson.org/geojson-spec.html#featurecollection)&lt;[Polygon](http://geojson.org/geojson-spec.html#polygon)>** grid a grid of polygons
+Returns **[FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects)&lt;[Polygon](http://geojson.org/geojson-spec.html#polygon)>** grid a grid of polygons
 
 ---
 

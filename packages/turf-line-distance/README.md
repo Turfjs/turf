@@ -6,7 +6,7 @@ Takes a [line](http://geojson.org/geojson-spec.html#linestring) and measures its
 
 **Parameters**
 
--   `line` **[Feature](http://geojson.org/geojson-spec.html#feature)&lt;[LineString](http://geojson.org/geojson-spec.html#linestring)>** line to measure
+-   `line` **[Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;[LineString](http://geojson.org/geojson-spec.html#linestring)>** line to measure
 -   `units` **\[[String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)]** can be degrees, radians, miles, or kilometers (optional, default `kilometers`)
 
 **Examples**

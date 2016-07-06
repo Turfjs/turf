@@ -9,8 +9,8 @@ that define the values at its three corners.
 
 **Parameters**
 
--   `point` **[Feature](http://geojson.org/geojson-spec.html#feature)&lt;[Point](http://geojson.org/geojson-spec.html#point)>** the Point for which a z-value will be calculated
--   `triangle` **[Feature](http://geojson.org/geojson-spec.html#feature)&lt;[Polygon](http://geojson.org/geojson-spec.html#polygon)>** a Polygon feature with three vertices
+-   `point` **[Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;[Point](http://geojson.org/geojson-spec.html#point)>** the Point for which a z-value will be calculated
+-   `triangle` **[Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;[Polygon](http://geojson.org/geojson-spec.html#polygon)>** a Polygon feature with three vertices
 
 **Examples**
 

@@ -13,7 +13,7 @@ the points that represent the corners of the triangle.
 
 **Parameters**
 
--   `points` **[FeatureCollection](http://geojson.org/geojson-spec.html#featurecollection)&lt;[Point](http://geojson.org/geojson-spec.html#point)>** input points
+-   `points` **[FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects)&lt;[Point](http://geojson.org/geojson-spec.html#point)>** input points
 -   `z` **\[[String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)]** name of the property from which to pull z values
     This is optional: if not given, then there will be no extra data added to the derived triangles.
 
@@ -41,7 +41,7 @@ for (var i = 0; i < tin.features.length; i++) {
 //=tin
 ```
 
-Returns **[FeatureCollection](http://geojson.org/geojson-spec.html#featurecollection)&lt;[Polygon](http://geojson.org/geojson-spec.html#polygon)>** TIN output
+Returns **[FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects)&lt;[Polygon](http://geojson.org/geojson-spec.html#polygon)>** TIN output
 
 ---
 

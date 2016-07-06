@@ -2,7 +2,7 @@
 
 # hexGrid
 
-Takes a bounding box and a cell size in degrees and returns a [FeatureCollection](http://geojson.org/geojson-spec.html#featurecollection) of flat-topped
+Takes a bounding box and a cell size in degrees and returns a [FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects) of flat-topped
 hexagons ([Polygon](http://geojson.org/geojson-spec.html#polygon) features) aligned in an "odd-q" vertical grid as
 described in [Hexagonal Grids](http://www.redblobgames.com/grids/hexagons/).
 
@@ -25,7 +25,7 @@ var hexgrid = turf.hexGrid(bbox, cellWidth, units);
 //=hexgrid
 ```
 
-Returns **[FeatureCollection](http://geojson.org/geojson-spec.html#featurecollection)&lt;[Polygon](http://geojson.org/geojson-spec.html#polygon)>** a hexagonal grid
+Returns **[FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects)&lt;[Polygon](http://geojson.org/geojson-spec.html#polygon)>** a hexagonal grid
 
 ---
 

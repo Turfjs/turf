@@ -22,7 +22,7 @@ var grid = turf.pointGrid(extent, cellWidth, units);
 //=grid
 ```
 
-Returns **[FeatureCollection](http://geojson.org/geojson-spec.html#featurecollection)&lt;[Point](http://geojson.org/geojson-spec.html#point)>** grid of points
+Returns **[FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects)&lt;[Point](http://geojson.org/geojson-spec.html#point)>** grid of points
 
 ---
 

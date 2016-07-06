@@ -9,8 +9,8 @@ is geodesic.
 
 **Parameters**
 
--   `targetPoint` **[Feature](http://geojson.org/geojson-spec.html#feature)&lt;[Point](http://geojson.org/geojson-spec.html#point)>** the reference point
--   `points` **[FeatureCollection](http://geojson.org/geojson-spec.html#featurecollection)&lt;[Point](http://geojson.org/geojson-spec.html#point)>** against input point set
+-   `targetPoint` **[Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;[Point](http://geojson.org/geojson-spec.html#point)>** the reference point
+-   `points` **[FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects)&lt;[Point](http://geojson.org/geojson-spec.html#point)>** against input point set
 
 **Examples**
 
@@ -65,7 +65,7 @@ var result = {
 //=result
 ```
 
-Returns **[Feature](http://geojson.org/geojson-spec.html#feature)&lt;[Point](http://geojson.org/geojson-spec.html#point)>** the closest point in the set to the reference point
+Returns **[Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;[Point](http://geojson.org/geojson-spec.html#point)>** the closest point in the set to the reference point
 
 ---
 

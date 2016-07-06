@@ -7,8 +7,8 @@ polygon from the first.
 
 **Parameters**
 
--   `poly1` **[Feature](http://geojson.org/geojson-spec.html#feature)&lt;[Polygon](http://geojson.org/geojson-spec.html#polygon)>** input Polygon feaure
--   `poly2` **[Feature](http://geojson.org/geojson-spec.html#feature)&lt;[Polygon](http://geojson.org/geojson-spec.html#polygon)>** Polygon feature to difference from `poly1`
+-   `poly1` **[Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;[Polygon](http://geojson.org/geojson-spec.html#polygon)>** input Polygon feaure
+-   `poly2` **[Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;[Polygon](http://geojson.org/geojson-spec.html#polygon)>** Polygon feature to difference from `poly1`
 
 **Examples**
 
@@ -59,7 +59,7 @@ var polygons = {
 //=differenced
 ```
 
-Returns **[Feature](http://geojson.org/geojson-spec.html#feature)&lt;[Polygon](http://geojson.org/geojson-spec.html#polygon)>** a Polygon feature showing the area of `poly1` excluding the area of `poly2`
+Returns **[Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;[Polygon](http://geojson.org/geojson-spec.html#polygon)>** a Polygon feature showing the area of `poly1` excluding the area of `poly2`
 
 ---
 

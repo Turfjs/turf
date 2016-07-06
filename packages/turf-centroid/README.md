@@ -9,7 +9,7 @@ the centroid of a set of polygons.
 
 **Parameters**
 
--   `features` **([Feature](http://geojson.org/geojson-spec.html#feature) \| [FeatureCollection](http://geojson.org/geojson-spec.html#featurecollection))** input features
+-   `features` **([Feature](http://geojson.org/geojson-spec.html#feature-objects) \| [FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects))** input features
 
 **Examples**
 
@@ -39,7 +39,7 @@ var result = {
 //=result
 ```
 
-Returns **[Feature](http://geojson.org/geojson-spec.html#feature)&lt;[Point](http://geojson.org/geojson-spec.html#point)>** the centroid of the input features
+Returns **[Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;[Point](http://geojson.org/geojson-spec.html#point)>** the centroid of the input features
 
 ---
 

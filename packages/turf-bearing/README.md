@@ -6,8 +6,8 @@ Takes two [points](http://geojson.org/geojson-spec.html#point) and finds the geo
 
 **Parameters**
 
--   `start` **[Feature](http://geojson.org/geojson-spec.html#feature)&lt;[Point](http://geojson.org/geojson-spec.html#point)>** starting Point
--   `end` **[Feature](http://geojson.org/geojson-spec.html#feature)&lt;[Point](http://geojson.org/geojson-spec.html#point)>** ending Point
+-   `start` **[Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;[Point](http://geojson.org/geojson-spec.html#point)>** starting Point
+-   `end` **[Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;[Point](http://geojson.org/geojson-spec.html#point)>** ending Point
 
 **Examples**
 

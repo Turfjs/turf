@@ -22,7 +22,7 @@ var triangleGrid = turf.triangleGrid(extent, cellWidth, units);
 //=triangleGrid
 ```
 
-Returns **[FeatureCollection](http://geojson.org/geojson-spec.html#featurecollection)&lt;[Polygon](http://geojson.org/geojson-spec.html#polygon)>** grid of polygons
+Returns **[FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects)&lt;[Polygon](http://geojson.org/geojson-spec.html#polygon)>** grid of polygons
 
 ---
 

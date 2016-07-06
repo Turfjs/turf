@@ -6,8 +6,8 @@ Takes a [Point](http://geojson.org/geojson-spec.html#point) and a [LineString](h
 
 **Parameters**
 
--   `line` **[Feature](http://geojson.org/geojson-spec.html#feature)&lt;[LineString](http://geojson.org/geojson-spec.html#linestring)>** line to snap to
--   `point` **[Feature](http://geojson.org/geojson-spec.html#feature)&lt;[Point](http://geojson.org/geojson-spec.html#point)>** point to snap from
+-   `line` **[Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;[LineString](http://geojson.org/geojson-spec.html#linestring)>** line to snap to
+-   `point` **[Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;[Point](http://geojson.org/geojson-spec.html#point)>** point to snap from
 
 **Examples**
 
@@ -47,7 +47,7 @@ var result = {
 //=result
 ```
 
-Returns **[Feature](http://geojson.org/geojson-spec.html#feature)&lt;[Point](http://geojson.org/geojson-spec.html#point)>** closest point on the `line` to `point`
+Returns **[Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;[Point](http://geojson.org/geojson-spec.html#point)>** closest point on the `line` to `point`
 
 ---
 

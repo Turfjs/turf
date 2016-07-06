@@ -35,7 +35,7 @@ var polygons = turf.random('polygons', 4, {
 //=polygons
 ```
 
-Returns **[FeatureCollection](http://geojson.org/geojson-spec.html#featurecollection)** generated random features
+Returns **[FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects)** generated random features
 
 ---
 

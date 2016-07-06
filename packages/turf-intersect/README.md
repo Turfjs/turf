@@ -6,8 +6,8 @@ Takes two [polygons](http://geojson.org/geojson-spec.html#polygon) and finds the
 
 **Parameters**
 
--   `poly1` **[Feature](http://geojson.org/geojson-spec.html#feature)&lt;[Polygon](http://geojson.org/geojson-spec.html#polygon)>** the first polygon
--   `poly2` **[Feature](http://geojson.org/geojson-spec.html#feature)&lt;[Polygon](http://geojson.org/geojson-spec.html#polygon)>** the second polygon
+-   `poly1` **[Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;[Polygon](http://geojson.org/geojson-spec.html#polygon)>** the first polygon
+-   `poly2` **[Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;[Polygon](http://geojson.org/geojson-spec.html#polygon)>** the second polygon
 
 **Examples**
 
@@ -60,7 +60,7 @@ var intersection = turf.intersect(poly1, poly2);
 //=intersection
 ```
 
-Returns **([Feature](http://geojson.org/geojson-spec.html#feature)&lt;[Polygon](http://geojson.org/geojson-spec.html#polygon)> | [undefined](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined) \| [Feature](http://geojson.org/geojson-spec.html#feature)&lt;[MultiLineString](http://geojson.org/geojson-spec.html#multilinestring)>)** if `poly1` and `poly2` overlap, returns a Polygon feature representing the area they overlap; if `poly1` and `poly2` do not overlap, returns `undefined`; if `poly1` and `poly2` share a border, a MultiLineString of the locations where their borders are shared
+Returns **([Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;[Polygon](http://geojson.org/geojson-spec.html#polygon)> | [undefined](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined) \| [Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;[MultiLineString](http://geojson.org/geojson-spec.html#multilinestring)>)** if `poly1` and `poly2` overlap, returns a Polygon feature representing the area they overlap; if `poly1` and `poly2` do not overlap, returns `undefined`; if `poly1` and `poly2` share a border, a MultiLineString of the locations where their borders are shared
 
 ---
 

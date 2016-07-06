@@ -6,7 +6,7 @@ Takes a [line](http://geojson.org/geojson-spec.html#linestring) and returns a [p
 
 **Parameters**
 
--   `line` **[Feature](http://geojson.org/geojson-spec.html#feature)&lt;[LineString](http://geojson.org/geojson-spec.html#linestring)>** input line
+-   `line` **[Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;[LineString](http://geojson.org/geojson-spec.html#linestring)>** input line
 -   `distance` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** distance along the line
 -   `units` **\[[String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)]** can be degrees, radians, miles, or kilometers (optional, default `miles`)
 
@@ -39,7 +39,7 @@ var result = {
 //=result
 ```
 
-Returns **[Feature](http://geojson.org/geojson-spec.html#feature)&lt;[Point](http://geojson.org/geojson-spec.html#point)>** Point `distance` `units` along the line
+Returns **[Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;[Point](http://geojson.org/geojson-spec.html#point)>** Point `distance` `units` along the line
 
 ---
 

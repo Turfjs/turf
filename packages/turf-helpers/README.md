@@ -2,7 +2,7 @@
 
 # feature
 
-Wraps a GeoJSON [Geometry](http://geojson.org/geojson-spec.html#geometry) in a GeoJSON [Feature](http://geojson.org/geojson-spec.html#feature).
+Wraps a GeoJSON [Geometry](http://geojson.org/geojson-spec.html#geometry) in a GeoJSON [Feature](http://geojson.org/geojson-spec.html#feature-objects).
 
 **Parameters**
 
@@ -25,7 +25,7 @@ var feature = turf.feature(geometry);
 //=feature
 ```
 
-Returns **[FeatureCollection](http://geojson.org/geojson-spec.html#featurecollection)** a FeatureCollection of input features
+Returns **[FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects)** a FeatureCollection of input features
 
 # point
 
@@ -34,7 +34,7 @@ Takes coordinates and properties (optional) and returns a new [Point](http://geo
 **Parameters**
 
 -   `coordinates` **[Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)>** longitude, latitude position (each in decimal degrees)
--   `properties` **\[[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)]** an Object that is used as the [Feature](http://geojson.org/geojson-spec.html#feature)'s
+-   `properties` **\[[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)]** an Object that is used as the [Feature](http://geojson.org/geojson-spec.html#feature-objects)'s
     properties
 
 **Examples**
@@ -45,7 +45,7 @@ var pt1 = turf.point([-75.343, 39.984]);
 //=pt1
 ```
 
-Returns **[Feature](http://geojson.org/geojson-spec.html#feature)&lt;[Point](http://geojson.org/geojson-spec.html#point)>** a Point feature
+Returns **[Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;[Point](http://geojson.org/geojson-spec.html#point)>** a Point feature
 
 # polygon
 
@@ -74,7 +74,7 @@ var polygon = turf.polygon([[
     or if a LinearRing of the Polygon does not have matching Positions at the
     beginning & end.
 
-Returns **[Feature](http://geojson.org/geojson-spec.html#feature)&lt;[Polygon](http://geojson.org/geojson-spec.html#polygon)>** a Polygon feature
+Returns **[Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;[Polygon](http://geojson.org/geojson-spec.html#polygon)>** a Polygon feature
 
 # lineString
 
@@ -109,15 +109,15 @@ var linestring2 = turf.lineString([
 
 -   Throws **[Error](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error)** if no coordinates are passed
 
-Returns **[Feature](http://geojson.org/geojson-spec.html#feature)&lt;[LineString](http://geojson.org/geojson-spec.html#linestring)>** a LineString feature
+Returns **[Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;[LineString](http://geojson.org/geojson-spec.html#linestring)>** a LineString feature
 
 # featureCollection
 
-Takes one or more [Features](http://geojson.org/geojson-spec.html#feature) and creates a [FeatureCollection](http://geojson.org/geojson-spec.html#featurecollection).
+Takes one or more [Features](http://geojson.org/geojson-spec.html#feature-objects) and creates a [FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects).
 
 **Parameters**
 
--   `features` **[Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[Feature](http://geojson.org/geojson-spec.html#feature)>** input features
+-   `features` **[Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[Feature](http://geojson.org/geojson-spec.html#feature-objects)>** input features
 
 **Examples**
 
@@ -133,7 +133,7 @@ var fc = turf.featureCollection(features);
 //=fc
 ```
 
-Returns **[FeatureCollection](http://geojson.org/geojson-spec.html#featurecollection)** a FeatureCollection of input features
+Returns **[FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects)** a FeatureCollection of input features
 
 # multiLineString
 
@@ -155,7 +155,7 @@ var multiLine = turf.multiLineString([[[0,0],[10,10]]]);
 
 -   Throws **[Error](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error)** if no coordinates are passed
 
-Returns **[Feature](http://geojson.org/geojson-spec.html#feature)&lt;[MultiLineString](http://geojson.org/geojson-spec.html#multilinestring)>** a MultiLineString feature
+Returns **[Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;[MultiLineString](http://geojson.org/geojson-spec.html#multilinestring)>** a MultiLineString feature
 
 # multiPoint
 
@@ -177,7 +177,7 @@ var multiPt = turf.multiPoint([[0,0],[10,10]]);
 
 -   Throws **[Error](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error)** if no coordinates are passed
 
-Returns **[Feature](http://geojson.org/geojson-spec.html#feature)&lt;[MultiPoint](http://geojson.org/geojson-spec.html#multipoint)>** a MultiPoint feature
+Returns **[Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;[MultiPoint](http://geojson.org/geojson-spec.html#multipoint)>** a MultiPoint feature
 
 # multiPolygon
 
@@ -199,7 +199,7 @@ var multiPoly = turf.multiPolygon([[[[0,0],[0,10],[10,10],[10,0],[0,0]]]);
 
 -   Throws **[Error](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error)** if no coordinates are passed
 
-Returns **[Feature](http://geojson.org/geojson-spec.html#feature)&lt;[MultiPolygon](http://geojson.org/geojson-spec.html#multipolygon)>** a multipolygon feature
+Returns **[Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;[MultiPolygon](http://geojson.org/geojson-spec.html#multipolygon)>** a multipolygon feature
 
 # geometryCollection
 
@@ -227,7 +227,7 @@ var collection = turf.geometrycollection([[0,0],[10,10]]);
 //=collection
 ```
 
-Returns **[Feature](http://geojson.org/geojson-spec.html#feature)&lt;[GeometryCollection](http://geojson.org/geojson-spec.html#geometrycollection)>** a geometrycollection feature
+Returns **[Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;[GeometryCollection](http://geojson.org/geojson-spec.html#geometrycollection)>** a geometrycollection feature
 
 ---
 

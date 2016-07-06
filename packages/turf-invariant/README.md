@@ -26,12 +26,12 @@ Enforce expectations about types of GeoJSON objects for Turf.
 
 # featureOf
 
-Enforce expectations about types of [Feature](http://geojson.org/geojson-spec.html#feature) inputs for Turf.
+Enforce expectations about types of [Feature](http://geojson.org/geojson-spec.html#feature-objects) inputs for Turf.
 Internally this uses [geojsonType](#geojsontype) to judge geometry types.
 
 **Parameters**
 
--   `feature` **[Feature](http://geojson.org/geojson-spec.html#feature)** a feature with an expected geometry type
+-   `feature` **[Feature](http://geojson.org/geojson-spec.html#feature-objects)** a feature with an expected geometry type
 -   `type` **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** expected GeoJSON type
 -   `name` **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** name of calling function
 
@@ -40,12 +40,12 @@ Internally this uses [geojsonType](#geojsontype) to judge geometry types.
 
 # collectionOf
 
-Enforce expectations about types of [FeatureCollection](http://geojson.org/geojson-spec.html#featurecollection) inputs for Turf.
+Enforce expectations about types of [FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects) inputs for Turf.
 Internally this uses [geojsonType](#geojsontype) to judge geometry types.
 
 **Parameters**
 
--   `featurecollection` **[FeatureCollection](http://geojson.org/geojson-spec.html#featurecollection)** a featurecollection for which features will be judged
+-   `featurecollection` **[FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects)** a featurecollection for which features will be judged
 -   `type` **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** expected GeoJSON type
 -   `name` **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** name of calling function
 

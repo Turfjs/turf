@@ -2,14 +2,14 @@
 
 # combine
 
-Combines a [FeatureCollection](http://geojson.org/geojson-spec.html#featurecollection) of [Point](http://geojson.org/geojson-spec.html#point),
+Combines a [FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects) of [Point](http://geojson.org/geojson-spec.html#point),
 [LineString](http://geojson.org/geojson-spec.html#linestring), or [Polygon](http://geojson.org/geojson-spec.html#polygon) features
 into [MultiPoint](http://geojson.org/geojson-spec.html#multipoint), [MultiLineString](http://geojson.org/geojson-spec.html#multilinestring), or
 [MultiPolygon](http://geojson.org/geojson-spec.html#multipolygon) features.
 
 **Parameters**
 
--   `fc` **[FeatureCollection](http://geojson.org/geojson-spec.html#featurecollection)&lt;([Point](http://geojson.org/geojson-spec.html#point) \| [LineString](http://geojson.org/geojson-spec.html#linestring) \| [Polygon](http://geojson.org/geojson-spec.html#polygon))>** a FeatureCollection of any type
+-   `fc` **[FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects)&lt;([Point](http://geojson.org/geojson-spec.html#point) \| [LineString](http://geojson.org/geojson-spec.html#linestring) \| [Polygon](http://geojson.org/geojson-spec.html#polygon))>** a FeatureCollection of any type
 
 **Examples**
 
@@ -40,7 +40,7 @@ var combined = turf.combine(fc);
 //=combined
 ```
 
-Returns **[FeatureCollection](http://geojson.org/geojson-spec.html#featurecollection)&lt;([MultiPoint](http://geojson.org/geojson-spec.html#multipoint) \| [MultiLineString](http://geojson.org/geojson-spec.html#multilinestring) \| [MultiPolygon](http://geojson.org/geojson-spec.html#multipolygon))>** a FeatureCollection of corresponding type to input
+Returns **[FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects)&lt;([MultiPoint](http://geojson.org/geojson-spec.html#multipoint) \| [MultiLineString](http://geojson.org/geojson-spec.html#multilinestring) \| [MultiPolygon](http://geojson.org/geojson-spec.html#multipolygon))>** a FeatureCollection of corresponding type to input
 
 ---
 

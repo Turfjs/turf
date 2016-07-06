@@ -7,7 +7,7 @@ using [earcut](https://github.com/mapbox/earcut).
 
 **Parameters**
 
--   `polygon` **[Feature](http://geojson.org/geojson-spec.html#feature)&lt;[Polygon](http://geojson.org/geojson-spec.html#polygon)>** the polygon to tesselate
+-   `polygon` **[Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;[Polygon](http://geojson.org/geojson-spec.html#polygon)>** the polygon to tesselate
 
 **Examples**
 
@@ -19,7 +19,7 @@ var triangles = turf.tesselate(polygon);
 //=triangles
 ```
 
-Returns **[FeatureCollection](http://geojson.org/geojson-spec.html#featurecollection)&lt;[Polygon](http://geojson.org/geojson-spec.html#polygon)>** a geometrycollection feature
+Returns **[FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects)&lt;[Polygon](http://geojson.org/geojson-spec.html#polygon)>** a geometrycollection feature
 
 ---
 

@@ -6,7 +6,7 @@ Takes a [polygon](http://geojson.org/geojson-spec.html#polygon) and returns [poi
 
 **Parameters**
 
--   `polygon` **([Feature](http://geojson.org/geojson-spec.html#feature)&lt;[Polygon](http://geojson.org/geojson-spec.html#polygon)> | [Polygon](http://geojson.org/geojson-spec.html#polygon))** input polygon
+-   `polygon` **([Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;[Polygon](http://geojson.org/geojson-spec.html#polygon)> | [Polygon](http://geojson.org/geojson-spec.html#polygon))** input polygon
 
 **Examples**
 
@@ -37,7 +37,7 @@ var result = {
 //=result
 ```
 
-Returns **[FeatureCollection](http://geojson.org/geojson-spec.html#featurecollection)&lt;[Point](http://geojson.org/geojson-spec.html#point)>** self-intersections
+Returns **[FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects)&lt;[Point](http://geojson.org/geojson-spec.html#point)>** self-intersections
 
 ---
 

@@ -6,8 +6,8 @@ Takes a set of [points](http://geojson.org/geojson-spec.html#point) and a set of
 
 **Parameters**
 
--   `points` **[FeatureCollection](http://geojson.org/geojson-spec.html#featurecollection)&lt;[Point](http://geojson.org/geojson-spec.html#point)>** input points
--   `polygons` **[FeatureCollection](http://geojson.org/geojson-spec.html#featurecollection)&lt;[Polygon](http://geojson.org/geojson-spec.html#polygon)>** input polygons
+-   `points` **[FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects)&lt;[Point](http://geojson.org/geojson-spec.html#point)>** input points
+-   `polygons` **[FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects)&lt;[Polygon](http://geojson.org/geojson-spec.html#polygon)>** input polygons
 
 **Examples**
 
@@ -84,7 +84,7 @@ var ptsWithin = turf.within(points, searchWithin);
 //=ptsWithin
 ```
 
-Returns **[FeatureCollection](http://geojson.org/geojson-spec.html#featurecollection)&lt;[Point](http://geojson.org/geojson-spec.html#point)>** points that land within at least one polygon
+Returns **[FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects)&lt;[Point](http://geojson.org/geojson-spec.html#point)>** points that land within at least one polygon
 
 ---
 

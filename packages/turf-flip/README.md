@@ -7,7 +7,7 @@ from `[x, y]` to `[y, x]`.
 
 **Parameters**
 
--   `input` **([Feature](http://geojson.org/geojson-spec.html#feature) \| [FeatureCollection](http://geojson.org/geojson-spec.html#featurecollection))** input features
+-   `input` **([Feature](http://geojson.org/geojson-spec.html#feature-objects) \| [FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects))** input features
 
 **Examples**
 
@@ -28,7 +28,7 @@ var saudiArabia = turf.flip(serbia);
 //=saudiArabia
 ```
 
-Returns **([Feature](http://geojson.org/geojson-spec.html#feature) \| [FeatureCollection](http://geojson.org/geojson-spec.html#featurecollection))** a feature or set of features of the same type as `input` with flipped coordinates
+Returns **([Feature](http://geojson.org/geojson-spec.html#feature-objects) \| [FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects))** a feature or set of features of the same type as `input` with flipped coordinates
 
 ---
 

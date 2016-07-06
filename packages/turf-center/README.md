@@ -2,11 +2,11 @@
 
 # center
 
-Takes a [FeatureCollection](http://geojson.org/geojson-spec.html#featurecollection) and returns the absolute center point of all features.
+Takes a [FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects) and returns the absolute center point of all features.
 
 **Parameters**
 
--   `features` **[FeatureCollection](http://geojson.org/geojson-spec.html#featurecollection)** input features
+-   `features` **[FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects)** input features
 
 **Examples**
 
@@ -115,7 +115,7 @@ var result = {
 //=result
 ```
 
-Returns **[Feature](http://geojson.org/geojson-spec.html#feature)&lt;[Point](http://geojson.org/geojson-spec.html#point)>** a Point feature at the
+Returns **[Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;[Point](http://geojson.org/geojson-spec.html#point)>** a Point feature at the
 absolute center point of all input features
 
 ---

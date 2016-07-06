@@ -7,8 +7,8 @@ be convex or concave. The function accounts for holes.
 
 **Parameters**
 
--   `point` **[Feature](http://geojson.org/geojson-spec.html#feature)&lt;[Point](http://geojson.org/geojson-spec.html#point)>** input point
--   `polygon` **[Feature](http://geojson.org/geojson-spec.html#feature)&lt;([Polygon](http://geojson.org/geojson-spec.html#polygon) \| [MultiPolygon](http://geojson.org/geojson-spec.html#multipolygon))>** input polygon or multipolygon
+-   `point` **[Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;[Point](http://geojson.org/geojson-spec.html#point)>** input point
+-   `polygon` **[Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;([Polygon](http://geojson.org/geojson-spec.html#polygon) \| [MultiPolygon](http://geojson.org/geojson-spec.html#multipolygon))>** input polygon or multipolygon
 
 **Examples**
 

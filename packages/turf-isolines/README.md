@@ -7,7 +7,7 @@ value breaks and generates [isolines](http://en.wikipedia.org/wiki/Isoline).
 
 **Parameters**
 
--   `points` **[FeatureCollection](http://geojson.org/geojson-spec.html#featurecollection)&lt;[Point](http://geojson.org/geojson-spec.html#point)>** input points
+-   `points` **[FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects)&lt;[Point](http://geojson.org/geojson-spec.html#point)>** input points
 -   `z` **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** the property name in `points` from which z-values will be pulled
 -   `resolution` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** resolution of the underlying grid
 -   `breaks` **[Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)>** where to draw contours
@@ -28,7 +28,7 @@ var isolined = turf.isolines(points, 'z', 15, breaks);
 //=isolined
 ```
 
-Returns **[FeatureCollection](http://geojson.org/geojson-spec.html#featurecollection)&lt;[LineString](http://geojson.org/geojson-spec.html#linestring)>** isolines
+Returns **[FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects)&lt;[LineString](http://geojson.org/geojson-spec.html#linestring)>** isolines
 
 ---
 

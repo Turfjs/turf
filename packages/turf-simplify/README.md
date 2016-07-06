@@ -6,7 +6,7 @@ Takes a [LineString](http://geojson.org/geojson-spec.html#linestring) or [Polygo
 
 **Parameters**
 
--   `feature` **([Feature](http://geojson.org/geojson-spec.html#feature)&lt;([LineString](http://geojson.org/geojson-spec.html#linestring) \| [Polygon](http://geojson.org/geojson-spec.html#polygon) \| [MultiLineString](http://geojson.org/geojson-spec.html#multilinestring) \| [MultiPolygon](http://geojson.org/geojson-spec.html#multipolygon))> | [FeatureCollection](http://geojson.org/geojson-spec.html#featurecollection) \| [GeometryCollection](http://geojson.org/geojson-spec.html#geometrycollection))** feature to be simplified
+-   `feature` **([Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;([LineString](http://geojson.org/geojson-spec.html#linestring) \| [Polygon](http://geojson.org/geojson-spec.html#polygon) \| [MultiLineString](http://geojson.org/geojson-spec.html#multilinestring) \| [MultiPolygon](http://geojson.org/geojson-spec.html#multipolygon))> | [FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects) \| [GeometryCollection](http://geojson.org/geojson-spec.html#geometrycollection))** feature to be simplified
 -   `tolerance` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** simplification tolerance
 -   `highQuality` **[boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** whether or not to spend more time to create
     a higher-quality simplification with a different algorithm
@@ -54,7 +54,7 @@ var simplified = turf.simplify(
 //=simplified
 ```
 
-Returns **([Feature](http://geojson.org/geojson-spec.html#feature)&lt;([LineString](http://geojson.org/geojson-spec.html#linestring) \| [Polygon](http://geojson.org/geojson-spec.html#polygon) \| [MultiLineString](http://geojson.org/geojson-spec.html#multilinestring) \| [MultiPolygon](http://geojson.org/geojson-spec.html#multipolygon))> | [FeatureCollection](http://geojson.org/geojson-spec.html#featurecollection) \| [GeometryCollection](http://geojson.org/geojson-spec.html#geometrycollection))** a simplified feature
+Returns **([Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;([LineString](http://geojson.org/geojson-spec.html#linestring) \| [Polygon](http://geojson.org/geojson-spec.html#polygon) \| [MultiLineString](http://geojson.org/geojson-spec.html#multilinestring) \| [MultiPolygon](http://geojson.org/geojson-spec.html#multipolygon))> | [FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects) \| [GeometryCollection](http://geojson.org/geojson-spec.html#geometrycollection))** a simplified feature
 
 ---
 

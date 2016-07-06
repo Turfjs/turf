@@ -10,7 +10,7 @@ The bezier spline implementation is by [Leszek Rybicki](http://leszek.rybicki.cc
 
 **Parameters**
 
--   `line` **[Feature](http://geojson.org/geojson-spec.html#feature)&lt;[LineString](http://geojson.org/geojson-spec.html#linestring)>** input LineString
+-   `line` **[Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;[LineString](http://geojson.org/geojson-spec.html#linestring)>** input LineString
 -   `resolution` **\[[Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)]** time in milliseconds between points (optional, default `10000`)
 -   `sharpness` **\[[Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)]** a measure of how curvy the path should be between splines (optional, default `0.85`)
 
@@ -46,7 +46,7 @@ var result = {
 //=result
 ```
 
-Returns **[Feature](http://geojson.org/geojson-spec.html#feature)&lt;[LineString](http://geojson.org/geojson-spec.html#linestring)>** curved line
+Returns **[Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;[LineString](http://geojson.org/geojson-spec.html#linestring)>** curved line
 
 ---
 

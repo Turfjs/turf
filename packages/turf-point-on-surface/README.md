@@ -10,7 +10,7 @@ Takes a feature and returns a [Point](http://geojson.org/geojson-spec.html#point
 
 **Parameters**
 
--   `fc` **([Feature](http://geojson.org/geojson-spec.html#feature) \| [FeatureCollection](http://geojson.org/geojson-spec.html#featurecollection))** any feature or set of features
+-   `fc` **([Feature](http://geojson.org/geojson-spec.html#feature-objects) \| [FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects))** any feature or set of features
 
 **Examples**
 
@@ -31,7 +31,7 @@ var result = {
 //=result
 ```
 
-Returns **[Feature](http://geojson.org/geojson-spec.html#feature)** a point on the surface of `input`
+Returns **[Feature](http://geojson.org/geojson-spec.html#feature-objects)** a point on the surface of `input`
 
 ---
 

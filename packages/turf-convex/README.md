@@ -11,7 +11,7 @@ implements a [monotone chain hull](http://en.wikibooks.org/wiki/Algorithm_Implem
 
 **Parameters**
 
--   `featurecollection` **[FeatureCollection](http://geojson.org/geojson-spec.html#featurecollection)&lt;[Point](http://geojson.org/geojson-spec.html#point)>** input points
+-   `featurecollection` **[FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects)&lt;[Point](http://geojson.org/geojson-spec.html#point)>** input points
 
 **Examples**
 
@@ -76,7 +76,7 @@ var result = {
 //=result
 ```
 
-Returns **[Feature](http://geojson.org/geojson-spec.html#feature)&lt;[Polygon](http://geojson.org/geojson-spec.html#polygon)>** a convex hull
+Returns **[Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;[Polygon](http://geojson.org/geojson-spec.html#polygon)>** a convex hull
 
 ---
 
