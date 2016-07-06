@@ -1,4 +1,4 @@
-# turf-hex-grid
+# @turf/hex-grid
 
 # hexGrid
 
@@ -39,11 +39,11 @@ PRs and issues.
 Install this module individually:
 
 ```sh
-$ npm install turf-hex-grid
+$ npm install @turf/hex-grid
 ```
 
 Or install the Turf module that includes it as a function:
 
 ```sh
-$ npm install turf
+$ npm install @turf/turf
 ```

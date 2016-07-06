@@ -1,4 +1,4 @@
-# turf-triangle-grid
+# @turf/triangle-grid
 
 # triangleGrid
 
@@ -36,11 +36,11 @@ PRs and issues.
 Install this module individually:
 
 ```sh
-$ npm install turf-triangle-grid
+$ npm install @turf/triangle-grid
 ```
 
 Or install the Turf module that includes it as a function:
 
 ```sh
-$ npm install turf
+$ npm install @turf/turf
 ```

@@ -17,5 +17,5 @@ $ npm install {module}
 Or install the Turf module that includes it as a function:
 
 ```sh
-$ npm install turf
+$ npm install @turf/turf
 ```

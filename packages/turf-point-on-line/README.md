@@ -1,4 +1,4 @@
-# turf-point-on-line
+# @turf/point-on-line
 
 # pointOnLine
 
@@ -61,11 +61,11 @@ PRs and issues.
 Install this module individually:
 
 ```sh
-$ npm install turf-point-on-line
+$ npm install @turf/point-on-line
 ```
 
 Or install the Turf module that includes it as a function:
 
 ```sh
-$ npm install turf
+$ npm install @turf/turf
 ```

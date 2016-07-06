@@ -1,4 +1,4 @@
-# turf-tesselate
+# @turf/tesselate
 
 # tesselate
 
@@ -33,11 +33,11 @@ PRs and issues.
 Install this module individually:
 
 ```sh
-$ npm install turf-tesselate
+$ npm install @turf/tesselate
 ```
 
 Or install the Turf module that includes it as a function:
 
 ```sh
-$ npm install turf
+$ npm install @turf/turf
 ```

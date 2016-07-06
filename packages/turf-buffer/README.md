@@ -1,4 +1,4 @@
-# turf-buffer
+# @turf/buffer
 
 # buffer
 
@@ -43,11 +43,11 @@ PRs and issues.
 Install this module individually:
 
 ```sh
-$ npm install turf-buffer
+$ npm install @turf/buffer
 ```
 
 Or install the Turf module that includes it as a function:
 
 ```sh
-$ npm install turf
+$ npm install @turf/turf
 ```

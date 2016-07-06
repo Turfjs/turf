@@ -1,4 +1,4 @@
-# turf-explode
+# @turf/explode
 
 # explode
 
@@ -52,11 +52,11 @@ PRs and issues.
 Install this module individually:
 
 ```sh
-$ npm install turf-explode
+$ npm install @turf/explode
 ```
 
 Or install the Turf module that includes it as a function:
 
 ```sh
-$ npm install turf
+$ npm install @turf/turf
 ```

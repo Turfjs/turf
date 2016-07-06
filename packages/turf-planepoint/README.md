@@ -1,4 +1,4 @@
-# turf-planepoint
+# @turf/planepoint
 
 # planepoint
 
@@ -71,11 +71,11 @@ PRs and issues.
 Install this module individually:
 
 ```sh
-$ npm install turf-planepoint
+$ npm install @turf/planepoint
 ```
 
 Or install the Turf module that includes it as a function:
 
 ```sh
-$ npm install turf
+$ npm install @turf/turf
 ```

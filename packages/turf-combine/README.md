@@ -1,4 +1,4 @@
-# turf-combine
+# @turf/combine
 
 # combine
 
@@ -54,11 +54,11 @@ PRs and issues.
 Install this module individually:
 
 ```sh
-$ npm install turf-combine
+$ npm install @turf/combine
 ```
 
 Or install the Turf module that includes it as a function:
 
 ```sh
-$ npm install turf
+$ npm install @turf/turf
 ```

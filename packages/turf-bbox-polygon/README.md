@@ -1,4 +1,4 @@
-# turf-bbox-polygon
+# @turf/bbox-polygon
 
 # bboxPolygon
 
@@ -32,11 +32,11 @@ PRs and issues.
 Install this module individually:
 
 ```sh
-$ npm install turf-bbox-polygon
+$ npm install @turf/bbox-polygon
 ```
 
 Or install the Turf module that includes it as a function:
 
 ```sh
-$ npm install turf
+$ npm install @turf/turf
 ```

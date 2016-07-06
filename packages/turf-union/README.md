@@ -1,4 +1,4 @@
-# turf-union
+# @turf/union
 
 # union
 
@@ -70,11 +70,11 @@ PRs and issues.
 Install this module individually:
 
 ```sh
-$ npm install turf-union
+$ npm install @turf/union
 ```
 
 Or install the Turf module that includes it as a function:
 
 ```sh
-$ npm install turf
+$ npm install @turf/turf
 ```

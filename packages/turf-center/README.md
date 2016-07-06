@@ -1,4 +1,4 @@
-# turf-center
+# @turf/center
 
 # center
 
@@ -130,11 +130,11 @@ PRs and issues.
 Install this module individually:
 
 ```sh
-$ npm install turf-center
+$ npm install @turf/center
 ```
 
 Or install the Turf module that includes it as a function:
 
 ```sh
-$ npm install turf
+$ npm install @turf/turf
 ```

@@ -1,4 +1,4 @@
-# turf-helpers
+# @turf/helpers
 
 # feature
 
@@ -241,11 +241,11 @@ PRs and issues.
 Install this module individually:
 
 ```sh
-$ npm install turf-helpers
+$ npm install @turf/helpers
 ```
 
 Or install the Turf module that includes it as a function:
 
 ```sh
-$ npm install turf
+$ npm install @turf/turf
 ```

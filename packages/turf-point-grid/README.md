@@ -1,4 +1,4 @@
-# turf-point-grid
+# @turf/point-grid
 
 # pointGrid
 
@@ -36,11 +36,11 @@ PRs and issues.
 Install this module individually:
 
 ```sh
-$ npm install turf-point-grid
+$ npm install @turf/point-grid
 ```
 
 Or install the Turf module that includes it as a function:
 
 ```sh
-$ npm install turf
+$ npm install @turf/turf
 ```

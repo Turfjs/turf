@@ -1,4 +1,4 @@
-# turf-inside
+# @turf/inside
 
 # inside
 
@@ -76,11 +76,11 @@ PRs and issues.
 Install this module individually:
 
 ```sh
-$ npm install turf-inside
+$ npm install @turf/inside
 ```
 
 Or install the Turf module that includes it as a function:
 
 ```sh
-$ npm install turf
+$ npm install @turf/turf
 ```
