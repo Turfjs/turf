@@ -1,6 +1,6 @@
 {
   "name": "@turf/concave",
-  "version": "3.0.15",
+  "version": "3.0.16",
   "description": "turf concave module",
   "main": "index.js",
   "scripts": {
@@ -27,9 +27,9 @@
     "tape": "~3.5.0"
   },
   "dependencies": {
-    "@turf/meta": "^3.0.15",
-    "@turf/tin": "^3.0.15",
-    "@turf/union": "^3.0.15",
-    "@turf/distance": "^3.0.15"
+    "@turf/meta": "^3.0.16",
+    "@turf/tin": "^3.0.16",
+    "@turf/union": "^3.0.16",
+    "@turf/distance": "^3.0.16"
   }
 }
