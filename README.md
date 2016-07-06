@@ -1,14 +1,12 @@
 ![turf](https://raw.githubusercontent.com/Turfjs/turf/9a1d5e8d99564d4080f1e2bf1517ed41d18012fa/logo.png) 
 ======
 
-**We just released Turf 3! Try it out**
-
 [![Version Badge][npm-img]][npm-url]
 [![Circle CI](https://circleci.com/gh/Turfjs/turf.svg?style=svg)](https://circleci.com/gh/Turfjs/turf)
 [![Gitter chat][gitter-img]][gitter-url]
 
-[npm-img]: https://img.shields.io/npm/v/turf.svg
-[npm-url]: https://www.npmjs.com/package/turf
+[npm-img]: https://img.shields.io/npm/v/@turf/turf.svg
+[npm-url]: https://www.npmjs.com/package/@turf/turf
 [gitter-img]: https://badges.gitter.im/Turfjs/turf.png
 [gitter-url]: https://gitter.im/Turfjs/turf
 
@@ -25,7 +23,7 @@
 **In Node.js:**
 
 ```bash
-npm install turf
+npm install @turf/turf
 ```
 
 **In browser:**
@@ -43,7 +41,7 @@ You can create light-weight turf builds with only the functions you need using t
 All of Turf's functions can also be installed as separate modules. This works well with tools like [browserify](http://browserify.org/) where you want to install only the code you need. It also allows you to mix and match modules. This is the recommended usage pattern for most production environments. For example, to install the *point* and *buffer* modules use:
 
 ```sh
-npm install turf-point turf-buffer
+npm install @turf/point @turf/buffer
 ```
 
 **Bower:**
@@ -53,7 +51,7 @@ _Not recommend. Please don't use Bower. Use Browserify, Webpack, or the CDN inst
 The latest Bower build is at:
 
 ```
-https://npmcdn.com/turf@3.0.14/bower.zip
+https://npmcdn.com/@turf/turf@3.0.16/bower.zip
 ```
 
 - - -
@@ -70,7 +68,7 @@ Most Turf functions work with GeoJSON features. These are are pieces of data tha
 
 Turf provides a few geometry functions of its own. These are nothing more than simple (and optional) wrappers that output plain old GeoJSON. For example, these two methods of creating a point are functionally equivalent:
 
-```
+```js
 var point1 = turf.point([0, 0]);
 
 var point2 = {
