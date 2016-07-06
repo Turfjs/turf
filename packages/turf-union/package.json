@@ -1,5 +1,5 @@
 {
-  "name": "turf-union",
+  "name": "@turf/union",
   "version": "3.0.12",
   "description": "find the union of geographic features",
   "main": "index.js",

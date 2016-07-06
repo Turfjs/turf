@@ -1,5 +1,5 @@
 {
-  "name": "turf-planepoint",
+  "name": "@turf/planepoint",
   "version": "3.0.12",
   "description": "turf planepoint module",
   "main": "index.js",
@@ -26,5 +26,6 @@
   "devDependencies": {
     "benchmark": "^1.0.0",
     "tape": "^3.5.0"
-  }
+  },
+  "dependencies": {}
 }

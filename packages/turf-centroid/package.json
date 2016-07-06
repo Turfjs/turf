@@ -1,5 +1,5 @@
 {
-  "name": "turf-centroid",
+  "name": "@turf/centroid",
   "version": "3.0.12",
   "description": "turf centroid module",
   "main": "index.js",
@@ -28,7 +28,7 @@
     "tape": "^3.5.0"
   },
   "dependencies": {
-    "turf-meta": "^3.0.12",
-    "turf-helpers": "^3.0.12"
+    "@turf/meta": "^3.0.12",
+    "@turf/helpers": "^3.0.12"
   }
 }

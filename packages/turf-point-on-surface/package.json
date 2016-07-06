@@ -1,5 +1,5 @@
 {
-  "name": "turf-point-on-surface",
+  "name": "@turf/point-on-surface",
   "version": "3.0.12",
   "description": "turf point-on-surface module",
   "main": "index.js",
@@ -29,10 +29,10 @@
     "benchmark": "^1.0.0"
   },
   "dependencies": {
-    "turf-center": "^3.0.12",
-    "turf-distance": "^3.0.12",
-    "turf-explode": "^3.0.12",
-    "turf-inside": "^3.0.12",
-    "turf-helpers": "^3.0.12"
+    "@turf/center": "^3.0.12",
+    "@turf/distance": "^3.0.12",
+    "@turf/explode": "^3.0.12",
+    "@turf/inside": "^3.0.12",
+    "@turf/helpers": "^3.0.12"
   }
 }

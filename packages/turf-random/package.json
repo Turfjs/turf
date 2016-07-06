@@ -1,5 +1,5 @@
 {
-  "name": "turf-random",
+  "name": "@turf/random",
   "version": "3.0.12",
   "description": "generate random features",
   "main": "index.js",

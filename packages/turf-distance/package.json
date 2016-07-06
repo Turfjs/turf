@@ -1,5 +1,5 @@
 {
-  "name": "turf-distance",
+  "name": "@turf/distance",
   "version": "3.0.12",
   "description": "turf distance module",
   "main": "index.js",
@@ -27,7 +27,7 @@
     "tape": "^3.5.0"
   },
   "dependencies": {
-    "turf-invariant": "^3.0.12",
-    "turf-helpers": "^3.0.12"
+    "@turf/invariant": "^3.0.12",
+    "@turf/helpers": "^3.0.12"
   }
 }

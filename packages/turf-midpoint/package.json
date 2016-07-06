@@ -1,5 +1,5 @@
 {
-  "name": "turf-midpoint",
+  "name": "@turf/midpoint",
   "version": "3.0.12",
   "description": "turf midpoint module",
   "main": "index.js",
@@ -25,13 +25,13 @@
   "homepage": "https://github.com/Turfjs/turf-midpoint",
   "devDependencies": {
     "benchmark": "^1.0.0",
-    "turf-helpers": "^3.0.12",
+    "@turf/helpers": "^3.0.12",
     "tape": "^3.5.0"
   },
   "dependencies": {
-    "turf-bearing": "^3.0.12",
-    "turf-destination": "^3.0.12",
-    "turf-distance": "^3.0.12",
-    "turf-invariant": "^3.0.12"
+    "@turf/bearing": "^3.0.12",
+    "@turf/destination": "^3.0.12",
+    "@turf/distance": "^3.0.12",
+    "@turf/invariant": "^3.0.12"
   }
 }

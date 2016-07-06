@@ -1,5 +1,5 @@
 {
-  "name": "turf-inside",
+  "name": "@turf/inside",
   "version": "3.0.12",
   "description": "turf inside module",
   "main": "index.js",
@@ -25,11 +25,11 @@
   },
   "homepage": "https://github.com/Turfjs/turf-inside",
   "dependencies": {
-    "turf-invariant": "^3.0.12"
+    "@turf/invariant": "^3.0.12"
   },
   "devDependencies": {
     "benchmark": "^1.0.0",
     "tape": "^3.5.0",
-    "turf-helpers": "^3.0.12"
+    "@turf/helpers": "^3.0.12"
   }
 }

@@ -1,5 +1,5 @@
 {
-  "name": "turf-helpers",
+  "name": "@turf/helpers",
   "version": "3.0.12",
   "description": "turf geometries",
   "main": "index.js",

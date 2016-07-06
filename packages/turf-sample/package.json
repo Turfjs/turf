@@ -1,5 +1,5 @@
 {
-  "name": "turf-sample",
+  "name": "@turf/sample",
   "version": "3.0.12",
   "description": "turf sample module",
   "main": "index.js",
@@ -25,9 +25,9 @@
   "devDependencies": {
     "benchmark": "^1.0.0",
     "tape": "^3.5.0",
-    "turf-helpers": "^3.0.12"
+    "@turf/helpers": "^3.0.12"
   },
   "dependencies": {
-    "turf-helpers": "^3.0.12"
+    "@turf/helpers": "^3.0.12"
   }
 }

@@ -1,5 +1,5 @@
 {
-  "name": "turf-convex",
+  "name": "@turf/convex",
   "version": "3.0.12",
   "description": "",
   "main": "index.js",
@@ -30,7 +30,7 @@
   },
   "dependencies": {
     "convex-hull": "^1.0.3",
-    "turf-meta": "^3.0.12",
-    "turf-helpers": "^3.0.12"
+    "@turf/meta": "^3.0.12",
+    "@turf/helpers": "^3.0.12"
   }
 }

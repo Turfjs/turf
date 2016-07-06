@@ -1,5 +1,5 @@
 {
-  "name": "turf-hex-grid",
+  "name": "@turf/hex-grid",
   "version": "3.0.12",
   "description": "",
   "main": "index.js",
@@ -34,12 +34,12 @@
   "devDependencies": {
     "benchmark": "^1.0.0",
     "tape": "^3.5.0",
-    "turf-bbox-polygon": "^3.0.12",
-    "turf-explode": "^3.0.12",
-    "turf-inside": "^3.0.12"
+    "@turf/bbox-polygon": "^3.0.12",
+    "@turf/explode": "^3.0.12",
+    "@turf/inside": "^3.0.12"
   },
   "dependencies": {
-    "turf-distance": "^3.0.12",
-    "turf-helpers": "^3.0.12"
+    "@turf/distance": "^3.0.12",
+    "@turf/helpers": "^3.0.12"
   }
 }

@@ -1,5 +1,5 @@
 {
-  "name": "turf-tin",
+  "name": "@turf/tin",
   "version": "3.0.12",
   "description": "turf tin module",
   "main": "index.js",
@@ -26,6 +26,6 @@
     "tape": "^3.5.0"
   },
   "dependencies": {
-    "turf-helpers": "^3.0.12"
+    "@turf/helpers": "^3.0.12"
   }
 }

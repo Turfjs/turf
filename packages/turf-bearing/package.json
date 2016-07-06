@@ -1,5 +1,5 @@
 {
-  "name": "turf-bearing",
+  "name": "@turf/bearing",
   "version": "3.0.12",
   "description": "turf bearing module",
   "main": "index.js",
@@ -21,7 +21,7 @@
   },
   "homepage": "https://github.com/Turfjs/turf-bearing",
   "dependencies": {
-    "turf-invariant": "^3.0.12"
+    "@turf/invariant": "^3.0.12"
   },
   "devDependencies": {
     "benchmark": "^1.0.0",

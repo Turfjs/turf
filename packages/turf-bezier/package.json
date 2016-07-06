@@ -1,5 +1,5 @@
 {
-  "name": "turf-bezier",
+  "name": "@turf/bezier",
   "version": "3.0.12",
   "description": "generate a bezier curve from a linestring",
   "main": "index.js",
@@ -24,7 +24,7 @@
   },
   "homepage": "https://github.com/Turfjs/turf-bezier",
   "dependencies": {
-    "turf-helpers": "^3.0.12"
+    "@turf/helpers": "^3.0.12"
   },
   "devDependencies": {
     "benchmark": "1.0.0",

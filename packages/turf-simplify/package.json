@@ -1,5 +1,5 @@
 {
-  "name": "turf-simplify",
+  "name": "@turf/simplify",
   "version": "3.0.12",
   "description": "simplify geographic shapes",
   "main": "index.js",

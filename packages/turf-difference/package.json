@@ -1,5 +1,5 @@
 {
-  "name": "turf-difference",
+  "name": "@turf/difference",
   "version": "3.0.12",
   "description": "[Turf](http://turfjs.org/) difference module",
   "main": "index.js",
@@ -27,6 +27,6 @@
   },
   "dependencies": {
     "jsts": "1.1.2",
-    "turf-helpers": "^3.0.12"
+    "@turf/helpers": "^3.0.12"
   }
 }

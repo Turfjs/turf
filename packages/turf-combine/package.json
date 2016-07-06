@@ -1,5 +1,5 @@
 {
-  "name": "turf-combine",
+  "name": "@turf/combine",
   "version": "3.0.12",
   "description": "turf combine module",
   "main": "index.js",
@@ -18,7 +18,7 @@
     "combine"
   ],
   "dependencies": {
-    "turf-meta": "^3.0.12"
+    "@turf/meta": "^3.0.12"
   },
   "author": "morganherlocker",
   "license": "MIT",
@@ -29,6 +29,6 @@
   "devDependencies": {
     "benchmark": "^1.0.0",
     "tape": "^3.5.0",
-    "turf-helpers": "^3.0.12"
+    "@turf/helpers": "^3.0.12"
   }
 }

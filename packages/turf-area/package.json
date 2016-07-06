@@ -1,5 +1,5 @@
 {
-  "name": "turf-area",
+  "name": "@turf/area",
   "version": "3.0.12",
   "description": "calculate the area of a polygon or multipolygon feature",
   "main": "index.js",

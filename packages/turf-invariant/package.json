@@ -1,5 +1,5 @@
 {
-  "name": "turf-invariant",
+  "name": "@turf/invariant",
   "version": "3.0.12",
   "description": "enforce expectations about inputs to turf",
   "main": "index.js",

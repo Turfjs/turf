@@ -1,5 +1,5 @@
 {
-  "name": "turf-intersect",
+  "name": "@turf/intersect",
   "version": "3.0.12",
   "description": "find the intersection of spatial features",
   "main": "index.js",
