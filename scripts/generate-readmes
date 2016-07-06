@@ -14,14 +14,15 @@ fs.readdirSync('./packages').forEach(function(dir) {
 });
 
 function generateDocs(directory, callback) {
-  var pkgMain = path.join('./packages/', directory, JSON.parse(fs.readFileSync(path.join('./packages/', directory, '/package.json'))).main);
+  var pkg = JSON.parse(fs.readFileSync(path.join('./packages/', directory, '/package.json')));
+  var pkgMain = path.join('./packages/', directory, pkg.main);
   documentation.build(pkgMain, {}, function(err, res) {
     if (err) throw err;
     if (res == undefined) { console.log(directory); }
     documentation.formats.md(res, {}, function(err, md) {
       fs.writeFileSync(
         path.join('./packages/', directory, '/README.md'),
-        '# ' + directory + '\n\n' + md + postfix.replace('{module}', directory));
+        '# ' + pkg.name + '\n\n' + md + postfix.replace('{module}', pkg.name));
       callback();
     });
   });
