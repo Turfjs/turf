@@ -1,8 +1,8 @@
-# turf-convex
+# @turf/convex
 
 # convex
 
-Takes a set of [points](Point) and returns a
+Takes a set of [points](http://geojson.org/geojson-spec.html#point) and returns a
 [convex hull](http://en.wikipedia.org/wiki/Convex_hull) polygon.
 
 Internally this uses
@@ -11,7 +11,7 @@ implements a [monotone chain hull](http://en.wikibooks.org/wiki/Algorithm_Implem
 
 **Parameters**
 
--   `featurecollection` **FeatureCollection&lt;Point>** input points
+-   `featurecollection` **[FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects)&lt;[Point](http://geojson.org/geojson-spec.html#point)>** input points
 
 **Examples**
 
@@ -76,7 +76,7 @@ var result = {
 //=result
 ```
 
-Returns **Feature&lt;Polygon>** a convex hull
+Returns **[Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;[Polygon](http://geojson.org/geojson-spec.html#polygon)>** a convex hull
 
 ---
 
@@ -90,11 +90,11 @@ PRs and issues.
 Install this module individually:
 
 ```sh
-$ npm install turf-convex
+$ npm install @turf/convex
 ```
 
 Or install the Turf module that includes it as a function:
 
 ```sh
-$ npm install turf
+$ npm install @turf/turf
 ```

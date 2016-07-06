@@ -1,16 +1,16 @@
-# turf-nearest
+# @turf/nearest
 
 # nearest
 
-Takes a reference [point](Point) and a FeatureCollection of Features
+Takes a reference [point](http://geojson.org/geojson-spec.html#point) and a FeatureCollection of Features
 with Point geometries and returns the
 point from the FeatureCollection closest to the reference. This calculation
 is geodesic.
 
 **Parameters**
 
--   `targetPoint` **Feature&lt;Point>** the reference point
--   `points` **FeatureCollection&lt;Point>** against input point set
+-   `targetPoint` **[Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;[Point](http://geojson.org/geojson-spec.html#point)>** the reference point
+-   `points` **[FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects)&lt;[Point](http://geojson.org/geojson-spec.html#point)>** against input point set
 
 **Examples**
 
@@ -65,7 +65,7 @@ var result = {
 //=result
 ```
 
-Returns **Feature&lt;Point>** the closest point in the set to the reference point
+Returns **[Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;[Point](http://geojson.org/geojson-spec.html#point)>** the closest point in the set to the reference point
 
 ---
 
@@ -79,11 +79,11 @@ PRs and issues.
 Install this module individually:
 
 ```sh
-$ npm install turf-nearest
+$ npm install @turf/nearest
 ```
 
 Or install the Turf module that includes it as a function:
 
 ```sh
-$ npm install turf
+$ npm install @turf/turf
 ```

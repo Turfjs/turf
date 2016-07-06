@@ -1,8 +1,8 @@
-# turf-tin
+# @turf/tin
 
 # tin
 
-Takes a set of [points](Point) and the name of a z-value property and
+Takes a set of [points](http://geojson.org/geojson-spec.html#point) and the name of a z-value property and
 creates a [Triangulated Irregular Network](http://en.wikipedia.org/wiki/Triangulated_irregular_network),
 or a TIN for short, returned as a collection of Polygons. These are often used
 for developing elevation contour maps or stepped heat visualizations.
@@ -13,7 +13,7 @@ the points that represent the corners of the triangle.
 
 **Parameters**
 
--   `points` **FeatureCollection&lt;Point>** input points
+-   `points` **[FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects)&lt;[Point](http://geojson.org/geojson-spec.html#point)>** input points
 -   `z` **\[[String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)]** name of the property from which to pull z values
     This is optional: if not given, then there will be no extra data added to the derived triangles.
 
@@ -41,7 +41,7 @@ for (var i = 0; i < tin.features.length; i++) {
 //=tin
 ```
 
-Returns **FeatureCollection&lt;Polygon>** TIN output
+Returns **[FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects)&lt;[Polygon](http://geojson.org/geojson-spec.html#polygon)>** TIN output
 
 ---
 
@@ -55,11 +55,11 @@ PRs and issues.
 Install this module individually:
 
 ```sh
-$ npm install turf-tin
+$ npm install @turf/tin
 ```
 
 Or install the Turf module that includes it as a function:
 
 ```sh
-$ npm install turf
+$ npm install @turf/turf
 ```

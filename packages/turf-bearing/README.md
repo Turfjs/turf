@@ -1,13 +1,13 @@
-# turf-bearing
+# @turf/bearing
 
 # bearing
 
-Takes two [points](Point) and finds the geographic bearing between them.
+Takes two [points](http://geojson.org/geojson-spec.html#point) and finds the geographic bearing between them.
 
 **Parameters**
 
--   `start` **Feature&lt;Point>** starting Point
--   `end` **Feature&lt;Point>** ending Point
+-   `start` **[Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;[Point](http://geojson.org/geojson-spec.html#point)>** starting Point
+-   `end` **[Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;[Point](http://geojson.org/geojson-spec.html#point)>** ending Point
 
 **Examples**
 
@@ -59,11 +59,11 @@ PRs and issues.
 Install this module individually:
 
 ```sh
-$ npm install turf-bearing
+$ npm install @turf/bearing
 ```
 
 Or install the Turf module that includes it as a function:
 
 ```sh
-$ npm install turf
+$ npm install @turf/turf
 ```

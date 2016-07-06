@@ -1,12 +1,12 @@
-# turf-kinks
+# @turf/kinks
 
 # kinks
 
-Takes a [polygon](Polygon) and returns [points](Point) at all self-intersections.
+Takes a [polygon](http://geojson.org/geojson-spec.html#polygon) and returns [points](http://geojson.org/geojson-spec.html#point) at all self-intersections.
 
 **Parameters**
 
--   `polygon` **(Feature&lt;Polygon> | Polygon)** input polygon
+-   `polygon` **([Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;[Polygon](http://geojson.org/geojson-spec.html#polygon)> | [Polygon](http://geojson.org/geojson-spec.html#polygon))** input polygon
 
 **Examples**
 
@@ -37,7 +37,7 @@ var result = {
 //=result
 ```
 
-Returns **FeatureCollection&lt;Point>** self-intersections
+Returns **[FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects)&lt;[Point](http://geojson.org/geojson-spec.html#point)>** self-intersections
 
 ---
 
@@ -51,11 +51,11 @@ PRs and issues.
 Install this module individually:
 
 ```sh
-$ npm install turf-kinks
+$ npm install @turf/kinks
 ```
 
 Or install the Turf module that includes it as a function:
 
 ```sh
-$ npm install turf
+$ npm install @turf/turf
 ```

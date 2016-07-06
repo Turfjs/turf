@@ -1,4 +1,4 @@
-# turf-area
+# @turf/area
 
 # area
 
@@ -7,7 +7,7 @@ in square meters.
 
 **Parameters**
 
--   `input` **(Feature | FeatureCollection)** input features
+-   `input` **([Feature](http://geojson.org/geojson-spec.html#feature-objects) \| [FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects))** input features
 
 **Examples**
 
@@ -64,11 +64,11 @@ PRs and issues.
 Install this module individually:
 
 ```sh
-$ npm install turf-area
+$ npm install @turf/area
 ```
 
 Or install the Turf module that includes it as a function:
 
 ```sh
-$ npm install turf
+$ npm install @turf/turf
 ```

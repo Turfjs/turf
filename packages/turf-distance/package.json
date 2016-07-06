@@ -1,6 +1,6 @@
 {
-  "name": "turf-distance",
-  "version": "3.0.12",
+  "name": "@turf/distance",
+  "version": "3.0.15",
   "description": "turf distance module",
   "main": "index.js",
   "scripts": {
@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/Turfjs/turf-distance.git"
+    "url": "git://github.com/Turfjs/turf.git"
   },
   "keywords": [
     "turf",
@@ -19,15 +19,15 @@
   "author": "morganherlocker",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/Turfjs/turf-distance/issues"
+    "url": "https://github.com/Turfjs/turf/issues"
   },
-  "homepage": "https://github.com/Turfjs/turf-distance",
+  "homepage": "https://github.com/Turfjs/turf",
   "devDependencies": {
     "benchmark": "^1.0.0",
     "tape": "^3.5.0"
   },
   "dependencies": {
-    "turf-invariant": "^3.0.12",
-    "turf-helpers": "^3.0.12"
+    "@turf/invariant": "^3.0.15",
+    "@turf/helpers": "^3.0.15"
   }
 }

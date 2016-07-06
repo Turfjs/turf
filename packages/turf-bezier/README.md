@@ -1,8 +1,8 @@
-# turf-bezier
+# @turf/bezier
 
 # bezier
 
-Takes a [line](LineString) and returns a curved version
+Takes a [line](http://geojson.org/geojson-spec.html#linestring) and returns a curved version
 by applying a [Bezier spline](http://en.wikipedia.org/wiki/B%C3%A9zier_spline)
 algorithm.
 
@@ -10,7 +10,7 @@ The bezier spline implementation is by [Leszek Rybicki](http://leszek.rybicki.cc
 
 **Parameters**
 
--   `line` **Feature&lt;LineString>** input LineString
+-   `line` **[Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;[LineString](http://geojson.org/geojson-spec.html#linestring)>** input LineString
 -   `resolution` **\[[Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)]** time in milliseconds between points (optional, default `10000`)
 -   `sharpness` **\[[Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)]** a measure of how curvy the path should be between splines (optional, default `0.85`)
 
@@ -46,7 +46,7 @@ var result = {
 //=result
 ```
 
-Returns **Feature&lt;LineString>** curved line
+Returns **[Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;[LineString](http://geojson.org/geojson-spec.html#linestring)>** curved line
 
 ---
 
@@ -60,11 +60,11 @@ PRs and issues.
 Install this module individually:
 
 ```sh
-$ npm install turf-bezier
+$ npm install @turf/bezier
 ```
 
 Or install the Turf module that includes it as a function:
 
 ```sh
-$ npm install turf
+$ npm install @turf/turf
 ```

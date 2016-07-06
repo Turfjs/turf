@@ -1,12 +1,12 @@
-# turf-helpers
+# @turf/helpers
 
 # feature
 
-Wraps a GeoJSON [Geometry](Geometry) in a GeoJSON [Feature](Feature).
+Wraps a GeoJSON [Geometry](http://geojson.org/geojson-spec.html#geometry) in a GeoJSON [Feature](http://geojson.org/geojson-spec.html#feature-objects).
 
 **Parameters**
 
--   `geometry` **Geometry** input geometry
+-   `geometry` **[Geometry](http://geojson.org/geojson-spec.html#geometry)** input geometry
 -   `properties` **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)** properties
 
 **Examples**
@@ -25,16 +25,16 @@ var feature = turf.feature(geometry);
 //=feature
 ```
 
-Returns **FeatureCollection** a FeatureCollection of input features
+Returns **[FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects)** a FeatureCollection of input features
 
 # point
 
-Takes coordinates and properties (optional) and returns a new [Point](Point) feature.
+Takes coordinates and properties (optional) and returns a new [Point](http://geojson.org/geojson-spec.html#point) feature.
 
 **Parameters**
 
 -   `coordinates` **[Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)>** longitude, latitude position (each in decimal degrees)
--   `properties` **\[[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)]** an Object that is used as the [Feature](Feature)'s
+-   `properties` **\[[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)]** an Object that is used as the [Feature](http://geojson.org/geojson-spec.html#feature-objects)'s
     properties
 
 **Examples**
@@ -45,11 +45,11 @@ var pt1 = turf.point([-75.343, 39.984]);
 //=pt1
 ```
 
-Returns **Feature&lt;Point>** a Point feature
+Returns **[Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;[Point](http://geojson.org/geojson-spec.html#point)>** a Point feature
 
 # polygon
 
-Takes an array of LinearRings and optionally an [Object](Object) with properties and returns a [Polygon](Polygon) feature.
+Takes an array of LinearRings and optionally an [Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object) with properties and returns a [Polygon](http://geojson.org/geojson-spec.html#polygon) feature.
 
 **Parameters**
 
@@ -74,11 +74,11 @@ var polygon = turf.polygon([[
     or if a LinearRing of the Polygon does not have matching Positions at the
     beginning & end.
 
-Returns **Feature&lt;Polygon>** a Polygon feature
+Returns **[Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;[Polygon](http://geojson.org/geojson-spec.html#polygon)>** a Polygon feature
 
 # lineString
 
-Creates a [LineString](LineString) based on a
+Creates a [LineString](http://geojson.org/geojson-spec.html#linestring) based on a
 coordinate array. Properties can be added optionally.
 
 **Parameters**
@@ -109,15 +109,15 @@ var linestring2 = turf.lineString([
 
 -   Throws **[Error](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error)** if no coordinates are passed
 
-Returns **Feature&lt;LineString>** a LineString feature
+Returns **[Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;[LineString](http://geojson.org/geojson-spec.html#linestring)>** a LineString feature
 
 # featureCollection
 
-Takes one or more [Features](Feature) and creates a [FeatureCollection](FeatureCollection).
+Takes one or more [Features](http://geojson.org/geojson-spec.html#feature-objects) and creates a [FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects).
 
 **Parameters**
 
--   `features` **[Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;Feature>** input features
+-   `features` **[Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[Feature](http://geojson.org/geojson-spec.html#feature-objects)>** input features
 
 **Examples**
 
@@ -133,7 +133,7 @@ var fc = turf.featureCollection(features);
 //=fc
 ```
 
-Returns **FeatureCollection** a FeatureCollection of input features
+Returns **[FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects)** a FeatureCollection of input features
 
 # multiLineString
 
@@ -155,7 +155,7 @@ var multiLine = turf.multiLineString([[[0,0],[10,10]]]);
 
 -   Throws **[Error](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error)** if no coordinates are passed
 
-Returns **Feature&lt;MultiLineString>** a MultiLineString feature
+Returns **[Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;[MultiLineString](http://geojson.org/geojson-spec.html#multilinestring)>** a MultiLineString feature
 
 # multiPoint
 
@@ -177,7 +177,7 @@ var multiPt = turf.multiPoint([[0,0],[10,10]]);
 
 -   Throws **[Error](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error)** if no coordinates are passed
 
-Returns **Feature&lt;MultiPoint>** a MultiPoint feature
+Returns **[Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;[MultiPoint](http://geojson.org/geojson-spec.html#multipoint)>** a MultiPoint feature
 
 # multiPolygon
 
@@ -199,7 +199,7 @@ var multiPoly = turf.multiPolygon([[[[0,0],[0,10],[10,10],[10,0],[0,0]]]);
 
 -   Throws **[Error](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error)** if no coordinates are passed
 
-Returns **Feature&lt;MultiPolygon>** a multipolygon feature
+Returns **[Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;[MultiPolygon](http://geojson.org/geojson-spec.html#multipolygon)>** a multipolygon feature
 
 # geometryCollection
 
@@ -227,7 +227,7 @@ var collection = turf.geometrycollection([[0,0],[10,10]]);
 //=collection
 ```
 
-Returns **Feature&lt;GeometryCollection>** a geometrycollection feature
+Returns **[Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;[GeometryCollection](http://geojson.org/geojson-spec.html#geometrycollection)>** a geometrycollection feature
 
 ---
 
@@ -241,11 +241,11 @@ PRs and issues.
 Install this module individually:
 
 ```sh
-$ npm install turf-helpers
+$ npm install @turf/helpers
 ```
 
 Or install the Turf module that includes it as a function:
 
 ```sh
-$ npm install turf
+$ npm install @turf/turf
 ```

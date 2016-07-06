@@ -1,8 +1,8 @@
-# turf-point-grid
+# @turf/point-grid
 
 # pointGrid
 
-Takes a bounding box and a cell depth and returns a set of [points](Point) in a grid.
+Takes a bounding box and a cell depth and returns a set of [points](http://geojson.org/geojson-spec.html#point) in a grid.
 
 **Parameters**
 
@@ -22,7 +22,7 @@ var grid = turf.pointGrid(extent, cellWidth, units);
 //=grid
 ```
 
-Returns **FeatureCollection&lt;Point>** grid of points
+Returns **[FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects)&lt;[Point](http://geojson.org/geojson-spec.html#point)>** grid of points
 
 ---
 
@@ -36,11 +36,11 @@ PRs and issues.
 Install this module individually:
 
 ```sh
-$ npm install turf-point-grid
+$ npm install @turf/point-grid
 ```
 
 Or install the Turf module that includes it as a function:
 
 ```sh
-$ npm install turf
+$ npm install @turf/turf
 ```

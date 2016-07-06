@@ -1,16 +1,16 @@
-# turf-distance
+# @turf/distance
 
 # distance
 
-Calculates the distance between two [points](Point) in degrees, radians,
+Calculates the distance between two [points](http://geojson.org/geojson-spec.html#point) in degrees, radians,
 miles, or kilometers. This uses the
 [Haversine formula](http://en.wikipedia.org/wiki/Haversine_formula)
 to account for global curvature.
 
 **Parameters**
 
--   `from` **Feature&lt;Point>** origin point
--   `to` **Feature&lt;Point>** destination point
+-   `from` **[Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;[Point](http://geojson.org/geojson-spec.html#point)>** origin point
+-   `to` **[Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;[Point](http://geojson.org/geojson-spec.html#point)>** destination point
 -   `units` **\[[String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)]** can be degrees, radians, miles, or kilometers (optional, default `kilometers`)
 
 **Examples**
@@ -60,11 +60,11 @@ PRs and issues.
 Install this module individually:
 
 ```sh
-$ npm install turf-distance
+$ npm install @turf/distance
 ```
 
 Or install the Turf module that includes it as a function:
 
 ```sh
-$ npm install turf
+$ npm install @turf/turf
 ```

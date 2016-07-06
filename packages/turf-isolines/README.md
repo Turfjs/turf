@@ -1,13 +1,13 @@
-# turf-isolines
+# @turf/isolines
 
 # isolines
 
-Takes [points](Point) with z-values and an array of
+Takes [points](http://geojson.org/geojson-spec.html#point) with z-values and an array of
 value breaks and generates [isolines](http://en.wikipedia.org/wiki/Isoline).
 
 **Parameters**
 
--   `points` **FeatureCollection&lt;Point>** input points
+-   `points` **[FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects)&lt;[Point](http://geojson.org/geojson-spec.html#point)>** input points
 -   `z` **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** the property name in `points` from which z-values will be pulled
 -   `resolution` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** resolution of the underlying grid
 -   `breaks` **[Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)>** where to draw contours
@@ -28,7 +28,7 @@ var isolined = turf.isolines(points, 'z', 15, breaks);
 //=isolined
 ```
 
-Returns **FeatureCollection&lt;LineString>** isolines
+Returns **[FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects)&lt;[LineString](http://geojson.org/geojson-spec.html#linestring)>** isolines
 
 ---
 
@@ -42,11 +42,11 @@ PRs and issues.
 Install this module individually:
 
 ```sh
-$ npm install turf-isolines
+$ npm install @turf/isolines
 ```
 
 Or install the Turf module that includes it as a function:
 
 ```sh
-$ npm install turf
+$ npm install @turf/turf
 ```

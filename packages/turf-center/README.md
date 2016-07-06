@@ -1,12 +1,12 @@
-# turf-center
+# @turf/center
 
 # center
 
-Takes a [FeatureCollection](FeatureCollection) and returns the absolute center point of all features.
+Takes a [FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects) and returns the absolute center point of all features.
 
 **Parameters**
 
--   `features` **FeatureCollection** input features
+-   `features` **[FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects)** input features
 
 **Examples**
 
@@ -115,7 +115,7 @@ var result = {
 //=result
 ```
 
-Returns **Feature&lt;Point>** a Point feature at the
+Returns **[Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;[Point](http://geojson.org/geojson-spec.html#point)>** a Point feature at the
 absolute center point of all input features
 
 ---
@@ -130,11 +130,11 @@ PRs and issues.
 Install this module individually:
 
 ```sh
-$ npm install turf-center
+$ npm install @turf/center
 ```
 
 Or install the Turf module that includes it as a function:
 
 ```sh
-$ npm install turf
+$ npm install @turf/turf
 ```

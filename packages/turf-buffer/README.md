@@ -1,4 +1,4 @@
-# turf-buffer
+# @turf/buffer
 
 # buffer
 
@@ -6,7 +6,7 @@ Calculates a buffer for input features for a given radius. Units supported are m
 
 **Parameters**
 
--   `feature` **(Feature | FeatureCollection)** input to be buffered
+-   `feature` **([Feature](http://geojson.org/geojson-spec.html#feature-objects) \| [FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects))** input to be buffered
 -   `distance` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** distance to draw the buffer
 -   `unit` **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** any of the options supported by turf units
 
@@ -29,7 +29,7 @@ var result = turf.featurecollection([buffered, pt]);
 //=result
 ```
 
-Returns **(FeatureCollection&lt;Polygon> | FeatureCollection&lt;MultiPolygon> | Polygon | MultiPolygon)** buffered features
+Returns **([FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects)&lt;[Polygon](http://geojson.org/geojson-spec.html#polygon)> | [FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects)&lt;[MultiPolygon](http://geojson.org/geojson-spec.html#multipolygon)> | [Polygon](http://geojson.org/geojson-spec.html#polygon) \| [MultiPolygon](http://geojson.org/geojson-spec.html#multipolygon))** buffered features
 
 ---
 
@@ -43,11 +43,11 @@ PRs and issues.
 Install this module individually:
 
 ```sh
-$ npm install turf-buffer
+$ npm install @turf/buffer
 ```
 
 Or install the Turf module that includes it as a function:
 
 ```sh
-$ npm install turf
+$ npm install @turf/turf
 ```

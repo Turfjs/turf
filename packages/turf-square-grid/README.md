@@ -1,8 +1,8 @@
-# turf-square-grid
+# @turf/square-grid
 
 # squareGrid
 
-Takes a bounding box and a cell depth and returns a set of square [polygons](Polygon) in a grid.
+Takes a bounding box and a cell depth and returns a set of square [polygons](http://geojson.org/geojson-spec.html#polygon) in a grid.
 
 **Parameters**
 
@@ -22,7 +22,7 @@ var squareGrid = turf.squareGrid(extent, cellWidth, units);
 //=squareGrid
 ```
 
-Returns **FeatureCollection&lt;Polygon>** grid a grid of polygons
+Returns **[FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects)&lt;[Polygon](http://geojson.org/geojson-spec.html#polygon)>** grid a grid of polygons
 
 ---
 
@@ -36,11 +36,11 @@ PRs and issues.
 Install this module individually:
 
 ```sh
-$ npm install turf-square-grid
+$ npm install @turf/square-grid
 ```
 
 Or install the Turf module that includes it as a function:
 
 ```sh
-$ npm install turf
+$ npm install @turf/turf
 ```

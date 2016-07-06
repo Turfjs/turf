@@ -1,12 +1,12 @@
-# turf-along
+# @turf/along
 
 # along
 
-Takes a [line](LineString) and returns a [point](Point) at a specified distance along the line.
+Takes a [line](http://geojson.org/geojson-spec.html#linestring) and returns a [point](http://geojson.org/geojson-spec.html#point) at a specified distance along the line.
 
 **Parameters**
 
--   `line` **Feature&lt;LineString>** input line
+-   `line` **[Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;[LineString](http://geojson.org/geojson-spec.html#linestring)>** input line
 -   `distance` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** distance along the line
 -   `units` **\[[String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)]** can be degrees, radians, miles, or kilometers (optional, default `miles`)
 
@@ -39,7 +39,7 @@ var result = {
 //=result
 ```
 
-Returns **Feature&lt;Point>** Point `distance` `units` along the line
+Returns **[Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;[Point](http://geojson.org/geojson-spec.html#point)>** Point `distance` `units` along the line
 
 ---
 
@@ -53,11 +53,11 @@ PRs and issues.
 Install this module individually:
 
 ```sh
-$ npm install turf-along
+$ npm install @turf/along
 ```
 
 Or install the Turf module that includes it as a function:
 
 ```sh
-$ npm install turf
+$ npm install @turf/turf
 ```

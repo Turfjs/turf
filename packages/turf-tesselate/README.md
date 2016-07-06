@@ -1,4 +1,4 @@
-# turf-tesselate
+# @turf/tesselate
 
 # tesselate
 
@@ -7,7 +7,7 @@ using [earcut](https://github.com/mapbox/earcut).
 
 **Parameters**
 
--   `polygon` **Feature&lt;Polygon>** the polygon to tesselate
+-   `polygon` **[Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;[Polygon](http://geojson.org/geojson-spec.html#polygon)>** the polygon to tesselate
 
 **Examples**
 
@@ -19,7 +19,7 @@ var triangles = turf.tesselate(polygon);
 //=triangles
 ```
 
-Returns **FeatureCollection&lt;Polygon>** a geometrycollection feature
+Returns **[FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects)&lt;[Polygon](http://geojson.org/geojson-spec.html#polygon)>** a geometrycollection feature
 
 ---
 
@@ -33,11 +33,11 @@ PRs and issues.
 Install this module individually:
 
 ```sh
-$ npm install turf-tesselate
+$ npm install @turf/tesselate
 ```
 
 Or install the Turf module that includes it as a function:
 
 ```sh
-$ npm install turf
+$ npm install @turf/turf
 ```

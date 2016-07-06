@@ -46,10 +46,10 @@
   "devDependencies": {
     "browserify": "^13.0.0",
     "d3-queue": "3.0.1",
-    "documentation": "4.0.0-beta5",
+    "documentation": "4.0.0-beta7",
     "eslint": "^2.0.0",
     "eslint-config-mourner": "^2.0.0",
-    "lerna": "2.0.0-beta.20",
+    "lerna": "2.0.0-beta.23",
     "uglify-js": "~2.4.16"
   }
 }

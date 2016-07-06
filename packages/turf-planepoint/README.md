@@ -1,16 +1,16 @@
-# turf-planepoint
+# @turf/planepoint
 
 # planepoint
 
-Takes a triangular plane as a [Polygon](Polygon)
-and a [Point](Point) within that triangle and returns the z-value
+Takes a triangular plane as a [Polygon](http://geojson.org/geojson-spec.html#polygon)
+and a [Point](http://geojson.org/geojson-spec.html#point) within that triangle and returns the z-value
 at that point. The Polygon needs to have properties `a`, `b`, and `c`
 that define the values at its three corners.
 
 **Parameters**
 
--   `point` **Feature&lt;Point>** the Point for which a z-value will be calculated
--   `triangle` **Feature&lt;Polygon>** a Polygon feature with three vertices
+-   `point` **[Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;[Point](http://geojson.org/geojson-spec.html#point)>** the Point for which a z-value will be calculated
+-   `triangle` **[Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;[Polygon](http://geojson.org/geojson-spec.html#polygon)>** a Polygon feature with three vertices
 
 **Examples**
 
@@ -71,11 +71,11 @@ PRs and issues.
 Install this module individually:
 
 ```sh
-$ npm install turf-planepoint
+$ npm install @turf/planepoint
 ```
 
 Or install the Turf module that includes it as a function:
 
 ```sh
-$ npm install turf
+$ npm install @turf/turf
 ```

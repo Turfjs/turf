@@ -1,14 +1,14 @@
-# turf-concave
+# @turf/concave
 
 # concave
 
-Takes a set of [points](Point) and returns a concave hull polygon.
+Takes a set of [points](http://geojson.org/geojson-spec.html#point) and returns a concave hull polygon.
 
 Internally, this uses [turf-tin](https://github.com/Turfjs/turf-tin) to generate geometries.
 
 **Parameters**
 
--   `points` **FeatureCollection&lt;Point>** input points
+-   `points` **[FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects)&lt;[Point](http://geojson.org/geojson-spec.html#point)>** input points
 -   `maxEdge` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** the size of an edge necessary for part of the
     hull to become concave (in miles)
 -   `units` **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** used for maxEdge distance (miles or kilometers)
@@ -79,7 +79,7 @@ var result = {
 -   Throws **[Error](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error)** if maxEdge parameter is missing
 -   Throws **[Error](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error)** if units parameter is missing
 
-Returns **Feature&lt;Polygon>** a concave hull
+Returns **[Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;[Polygon](http://geojson.org/geojson-spec.html#polygon)>** a concave hull
 
 ---
 
@@ -93,11 +93,11 @@ PRs and issues.
 Install this module individually:
 
 ```sh
-$ npm install turf-concave
+$ npm install @turf/concave
 ```
 
 Or install the Turf module that includes it as a function:
 
 ```sh
-$ npm install turf
+$ npm install @turf/turf
 ```

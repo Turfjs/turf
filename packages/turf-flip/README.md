@@ -1,4 +1,4 @@
-# turf-flip
+# @turf/flip
 
 # flip
 
@@ -7,7 +7,7 @@ from `[x, y]` to `[y, x]`.
 
 **Parameters**
 
--   `input` **(Feature | FeatureCollection)** input features
+-   `input` **([Feature](http://geojson.org/geojson-spec.html#feature-objects) \| [FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects))** input features
 
 **Examples**
 
@@ -28,7 +28,7 @@ var saudiArabia = turf.flip(serbia);
 //=saudiArabia
 ```
 
-Returns **(Feature | FeatureCollection)** a feature or set of features of the same type as `input` with flipped coordinates
+Returns **([Feature](http://geojson.org/geojson-spec.html#feature-objects) \| [FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects))** a feature or set of features of the same type as `input` with flipped coordinates
 
 ---
 
@@ -42,11 +42,11 @@ PRs and issues.
 Install this module individually:
 
 ```sh
-$ npm install turf-flip
+$ npm install @turf/flip
 ```
 
 Or install the Turf module that includes it as a function:
 
 ```sh
-$ npm install turf
+$ npm install @turf/turf
 ```

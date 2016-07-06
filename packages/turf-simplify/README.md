@@ -1,12 +1,12 @@
-# turf-simplify
+# @turf/simplify
 
 # simplify
 
-Takes a [LineString](LineString) or [Polygon](Polygon) and returns a simplified version. Internally uses [simplify-js](http://mourner.github.io/simplify-js/) to perform simplification.
+Takes a [LineString](http://geojson.org/geojson-spec.html#linestring) or [Polygon](http://geojson.org/geojson-spec.html#polygon) and returns a simplified version. Internally uses [simplify-js](http://mourner.github.io/simplify-js/) to perform simplification.
 
 **Parameters**
 
--   `feature` **(Feature&lt;(LineString | Polygon | MultiLineString | MultiPolygon)> | FeatureCollection | GeometryCollection)** feature to be simplified
+-   `feature` **([Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;([LineString](http://geojson.org/geojson-spec.html#linestring) \| [Polygon](http://geojson.org/geojson-spec.html#polygon) \| [MultiLineString](http://geojson.org/geojson-spec.html#multilinestring) \| [MultiPolygon](http://geojson.org/geojson-spec.html#multipolygon))> | [FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects) \| [GeometryCollection](http://geojson.org/geojson-spec.html#geometrycollection))** feature to be simplified
 -   `tolerance` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** simplification tolerance
 -   `highQuality` **[boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** whether or not to spend more time to create
     a higher-quality simplification with a different algorithm
@@ -54,7 +54,7 @@ var simplified = turf.simplify(
 //=simplified
 ```
 
-Returns **(Feature&lt;(LineString | Polygon | MultiLineString | MultiPolygon)> | FeatureCollection | GeometryCollection)** a simplified feature
+Returns **([Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;([LineString](http://geojson.org/geojson-spec.html#linestring) \| [Polygon](http://geojson.org/geojson-spec.html#polygon) \| [MultiLineString](http://geojson.org/geojson-spec.html#multilinestring) \| [MultiPolygon](http://geojson.org/geojson-spec.html#multipolygon))> | [FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects) \| [GeometryCollection](http://geojson.org/geojson-spec.html#geometrycollection))** a simplified feature
 
 ---
 
@@ -68,11 +68,11 @@ PRs and issues.
 Install this module individually:
 
 ```sh
-$ npm install turf-simplify
+$ npm install @turf/simplify
 ```
 
 Or install the Turf module that includes it as a function:
 
 ```sh
-$ npm install turf
+$ npm install @turf/turf
 ```

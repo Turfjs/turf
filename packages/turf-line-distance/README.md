@@ -1,12 +1,12 @@
-# turf-line-distance
+# @turf/line-distance
 
 # lineDistance
 
-Takes a [line](LineString) and measures its length in the specified units.
+Takes a [line](http://geojson.org/geojson-spec.html#linestring) and measures its length in the specified units.
 
 **Parameters**
 
--   `line` **Feature&lt;LineString>** line to measure
+-   `line` **[Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;[LineString](http://geojson.org/geojson-spec.html#linestring)>** line to measure
 -   `units` **\[[String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)]** can be degrees, radians, miles, or kilometers (optional, default `kilometers`)
 
 **Examples**
@@ -49,11 +49,11 @@ PRs and issues.
 Install this module individually:
 
 ```sh
-$ npm install turf-line-distance
+$ npm install @turf/line-distance
 ```
 
 Or install the Turf module that includes it as a function:
 
 ```sh
-$ npm install turf
+$ npm install @turf/turf
 ```

@@ -1,6 +1,6 @@
 {
-  "name": "turf-combine",
-  "version": "3.0.12",
+  "name": "@turf/combine",
+  "version": "3.0.15",
   "description": "turf combine module",
   "main": "index.js",
   "scripts": {
@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/Turfjs/turf-combine.git"
+    "url": "git://github.com/Turfjs/turf.git"
   },
   "keywords": [
     "turf",
@@ -18,17 +18,17 @@
     "combine"
   ],
   "dependencies": {
-    "turf-meta": "^3.0.12"
+    "@turf/meta": "^3.0.15"
   },
   "author": "morganherlocker",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/Turfjs/turf-combine/issues"
+    "url": "https://github.com/Turfjs/turf/issues"
   },
-  "homepage": "https://github.com/Turfjs/turf-combine",
+  "homepage": "https://github.com/Turfjs/turf",
   "devDependencies": {
     "benchmark": "^1.0.0",
     "tape": "^3.5.0",
-    "turf-helpers": "^3.0.12"
+    "@turf/helpers": "^3.0.15"
   }
 }

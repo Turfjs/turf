@@ -1,6 +1,6 @@
 {
-  "name": "turf-collect",
-  "version": "3.0.12",
+  "name": "@turf/collect",
+  "version": "3.0.15",
   "description": "turf aggregate module",
   "main": "index.js",
   "scripts": {
@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/Turfjs/turf-aggregate.git"
+    "url": "git://github.com/Turfjs/turf.git"
   },
   "keywords": [
     "turf",
@@ -21,15 +21,15 @@
   "author": "morganherlocker",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/Turfjs/turf-aggregate/issues"
+    "url": "https://github.com/Turfjs/turf/issues"
   },
-  "homepage": "https://github.com/Turfjs/turf-aggregate",
+  "homepage": "https://github.com/Turfjs/turf",
   "devDependencies": {
     "benchmark": "^1.0.0",
     "tape": "^3.5.0",
-    "turf-helpers": "^3.0.12"
+    "@turf/helpers": "^3.0.15"
   },
   "dependencies": {
-    "turf-inside": "^3.0.12"
+    "@turf/inside": "^3.0.15"
   }
 }

@@ -1,4 +1,4 @@
-# turf-collect
+# @turf/collect
 
 # collect
 
@@ -10,8 +10,8 @@ polygon.
 
 **Parameters**
 
--   `polygons` **FeatureCollection&lt;Polygon>** polygons with values on which to aggregate
--   `points` **FeatureCollection&lt;Point>** points to be aggregated
+-   `polygons` **[FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects)&lt;[Polygon](http://geojson.org/geojson-spec.html#polygon)>** polygons with values on which to aggregate
+-   `points` **[FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects)&lt;[Point](http://geojson.org/geojson-spec.html#point)>** points to be aggregated
 -   `inProperty` **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** property to be nested from
 -   `outProperty` **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** property to be nested into
 
@@ -32,7 +32,7 @@ var aggregated = aggregate(polyFC, ptFC, 'population', 'values');
 aggregated.features[0].properties.values // => [200, 600]);
 ```
 
-Returns **FeatureCollection&lt;Polygon>** polygons with properties listed based on `outField`
+Returns **[FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects)&lt;[Polygon](http://geojson.org/geojson-spec.html#polygon)>** polygons with properties listed based on `outField`
 
 ---
 
@@ -46,11 +46,11 @@ PRs and issues.
 Install this module individually:
 
 ```sh
-$ npm install turf-collect
+$ npm install @turf/collect
 ```
 
 Or install the Turf module that includes it as a function:
 
 ```sh
-$ npm install turf
+$ npm install @turf/turf
 ```

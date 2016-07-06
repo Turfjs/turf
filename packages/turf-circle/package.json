@@ -1,6 +1,6 @@
 {
-  "name": "turf-circle",
-  "version": "3.0.12",
+  "name": "@turf/circle",
+  "version": "3.0.15",
   "description": "turf circle module",
   "main": "index.js",
   "scripts": {
@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/Turfjs/turf-circle.git"
+    "url": "git://github.com/Turfjs/turf.git"
   },
   "keywords": [
     "turf",
@@ -25,17 +25,17 @@
   },
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/Turfjs/turf-circle/issues"
+    "url": "https://github.com/Turfjs/turf/issues"
   },
-  "homepage": "https://github.com/Turfjs/turf-circle",
+  "homepage": "https://github.com/Turfjs/turf",
   "devDependencies": {
     "benchmark": "^1.0.0",
     "tape": "^3.5.0",
-    "turf-distance": "^3.0.12",
-    "turf-inside": "^3.0.12"
+    "@turf/distance": "^3.0.15",
+    "@turf/inside": "^3.0.15"
   },
   "dependencies": {
-    "turf-destination": "^3.0.12",
-    "turf-helpers": "^3.0.12"
+    "@turf/destination": "^3.0.15",
+    "@turf/helpers": "^3.0.15"
   }
 }

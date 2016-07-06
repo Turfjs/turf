@@ -1,8 +1,8 @@
-# turf-triangle-grid
+# @turf/triangle-grid
 
 # triangleGrid
 
-Takes a bounding box and a cell depth and returns a set of triangular [polygons](Polygon) in a grid.
+Takes a bounding box and a cell depth and returns a set of triangular [polygons](http://geojson.org/geojson-spec.html#polygon) in a grid.
 
 **Parameters**
 
@@ -22,7 +22,7 @@ var triangleGrid = turf.triangleGrid(extent, cellWidth, units);
 //=triangleGrid
 ```
 
-Returns **FeatureCollection&lt;Polygon>** grid of polygons
+Returns **[FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects)&lt;[Polygon](http://geojson.org/geojson-spec.html#polygon)>** grid of polygons
 
 ---
 
@@ -36,11 +36,11 @@ PRs and issues.
 Install this module individually:
 
 ```sh
-$ npm install turf-triangle-grid
+$ npm install @turf/triangle-grid
 ```
 
 Or install the Turf module that includes it as a function:
 
 ```sh
-$ npm install turf
+$ npm install @turf/turf
 ```

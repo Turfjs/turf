@@ -1,4 +1,4 @@
-# turf-bbox
+# @turf/bbox
 
 # bbox
 
@@ -6,7 +6,7 @@ Takes a set of features, calculates the bbox of all input features, and returns 
 
 **Parameters**
 
--   `geojson` **(Feature | FeatureCollection)** input features
+-   `geojson` **([Feature](http://geojson.org/geojson-spec.html#feature-objects) \| [FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects))** input features
 
 **Examples**
 
@@ -74,11 +74,11 @@ PRs and issues.
 Install this module individually:
 
 ```sh
-$ npm install turf-bbox
+$ npm install @turf/bbox
 ```
 
 Or install the Turf module that includes it as a function:
 
 ```sh
-$ npm install turf
+$ npm install @turf/turf
 ```

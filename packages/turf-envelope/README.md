@@ -1,12 +1,12 @@
-# turf-envelope
+# @turf/envelope
 
 # envelope
 
-Takes any number of features and returns a rectangular [Polygon](Polygon) that encompasses all vertices.
+Takes any number of features and returns a rectangular [Polygon](http://geojson.org/geojson-spec.html#polygon) that encompasses all vertices.
 
 **Parameters**
 
--   `fc` **FeatureCollection** input features
+-   `fc` **[FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects)** input features
 
 **Examples**
 
@@ -56,7 +56,7 @@ var result = {
 //=result
 ```
 
-Returns **Feature&lt;Polygon>** a rectangular Polygon feature that encompasses all vertices
+Returns **[Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;[Polygon](http://geojson.org/geojson-spec.html#polygon)>** a rectangular Polygon feature that encompasses all vertices
 
 ---
 
@@ -70,11 +70,11 @@ PRs and issues.
 Install this module individually:
 
 ```sh
-$ npm install turf-envelope
+$ npm install @turf/envelope
 ```
 
 Or install the Turf module that includes it as a function:
 
 ```sh
-$ npm install turf
+$ npm install @turf/turf
 ```

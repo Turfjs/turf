@@ -1,4 +1,4 @@
-# turf-centroid
+# @turf/centroid
 
 # centroid
 
@@ -9,7 +9,7 @@ the centroid of a set of polygons.
 
 **Parameters**
 
--   `features` **(Feature | FeatureCollection)** input features
+-   `features` **([Feature](http://geojson.org/geojson-spec.html#feature-objects) \| [FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects))** input features
 
 **Examples**
 
@@ -39,7 +39,7 @@ var result = {
 //=result
 ```
 
-Returns **Feature&lt;Point>** the centroid of the input features
+Returns **[Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;[Point](http://geojson.org/geojson-spec.html#point)>** the centroid of the input features
 
 ---
 
@@ -53,11 +53,11 @@ PRs and issues.
 Install this module individually:
 
 ```sh
-$ npm install turf-centroid
+$ npm install @turf/centroid
 ```
 
 Or install the Turf module that includes it as a function:
 
 ```sh
-$ npm install turf
+$ npm install @turf/turf
 ```

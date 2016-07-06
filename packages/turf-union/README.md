@@ -1,13 +1,13 @@
-# turf-union
+# @turf/union
 
 # union
 
-Takes two [polygons](Polygon) and returns a combined polygon. If the input polygons are not contiguous, this function returns a [MultiPolygon](MultiPolygon) feature.
+Takes two [polygons](http://geojson.org/geojson-spec.html#polygon) and returns a combined polygon. If the input polygons are not contiguous, this function returns a [MultiPolygon](http://geojson.org/geojson-spec.html#multipolygon) feature.
 
 **Parameters**
 
--   `poly1` **Feature&lt;Polygon>** input polygon
--   `poly2` **Feature&lt;Polygon>** another input polygon
+-   `poly1` **[Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;[Polygon](http://geojson.org/geojson-spec.html#polygon)>** input polygon
+-   `poly2` **[Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;[Polygon](http://geojson.org/geojson-spec.html#polygon)>** another input polygon
 
 **Examples**
 
@@ -56,7 +56,7 @@ var union = turf.union(poly1, poly2);
 //=union
 ```
 
-Returns **Feature&lt;(Polygon | MultiPolygon)>** a combined [Polygon](Polygon) or [MultiPolygon](MultiPolygon) feature
+Returns **[Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;([Polygon](http://geojson.org/geojson-spec.html#polygon) \| [MultiPolygon](http://geojson.org/geojson-spec.html#multipolygon))>** a combined [Polygon](http://geojson.org/geojson-spec.html#polygon) or [MultiPolygon](http://geojson.org/geojson-spec.html#multipolygon) feature
 
 ---
 
@@ -70,11 +70,11 @@ PRs and issues.
 Install this module individually:
 
 ```sh
-$ npm install turf-union
+$ npm install @turf/union
 ```
 
 Or install the Turf module that includes it as a function:
 
 ```sh
-$ npm install turf
+$ npm install @turf/turf
 ```

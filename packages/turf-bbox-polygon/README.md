@@ -1,8 +1,8 @@
-# turf-bbox-polygon
+# @turf/bbox-polygon
 
 # bboxPolygon
 
-Takes a bbox and returns an equivalent [polygon](Polygon).
+Takes a bbox and returns an equivalent [polygon](http://geojson.org/geojson-spec.html#polygon).
 
 **Parameters**
 
@@ -18,7 +18,7 @@ var poly = turf.bboxPolygon(bbox);
 //=poly
 ```
 
-Returns **Feature&lt;Polygon>** a Polygon representation of the bounding box
+Returns **[Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;[Polygon](http://geojson.org/geojson-spec.html#polygon)>** a Polygon representation of the bounding box
 
 ---
 
@@ -32,11 +32,11 @@ PRs and issues.
 Install this module individually:
 
 ```sh
-$ npm install turf-bbox-polygon
+$ npm install @turf/bbox-polygon
 ```
 
 Or install the Turf module that includes it as a function:
 
 ```sh
-$ npm install turf
+$ npm install @turf/turf
 ```

@@ -1,14 +1,14 @@
-# turf-difference
+# @turf/difference
 
 # difference
 
-Finds the difference between two [polygons](Polygon) by clipping the second
+Finds the difference between two [polygons](http://geojson.org/geojson-spec.html#polygon) by clipping the second
 polygon from the first.
 
 **Parameters**
 
--   `poly1` **Feature&lt;Polygon>** input Polygon feaure
--   `poly2` **Feature&lt;Polygon>** Polygon feature to difference from `poly1`
+-   `poly1` **[Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;[Polygon](http://geojson.org/geojson-spec.html#polygon)>** input Polygon feaure
+-   `poly2` **[Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;[Polygon](http://geojson.org/geojson-spec.html#polygon)>** Polygon feature to difference from `poly1`
 
 **Examples**
 
@@ -59,7 +59,7 @@ var polygons = {
 //=differenced
 ```
 
-Returns **Feature&lt;Polygon>** a Polygon feature showing the area of `poly1` excluding the area of `poly2`
+Returns **[Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;[Polygon](http://geojson.org/geojson-spec.html#polygon)>** a Polygon feature showing the area of `poly1` excluding the area of `poly2`
 
 ---
 
@@ -73,11 +73,11 @@ PRs and issues.
 Install this module individually:
 
 ```sh
-$ npm install turf-difference
+$ npm install @turf/difference
 ```
 
 Or install the Turf module that includes it as a function:
 
 ```sh
-$ npm install turf
+$ npm install @turf/turf
 ```

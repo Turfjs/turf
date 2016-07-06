@@ -1,14 +1,14 @@
-# turf-inside
+# @turf/inside
 
 # inside
 
-Takes a [Point](Point) and a [Polygon](Polygon) or [MultiPolygon](MultiPolygon) and determines if the point resides inside the polygon. The polygon can
+Takes a [Point](http://geojson.org/geojson-spec.html#point) and a [Polygon](http://geojson.org/geojson-spec.html#polygon) or [MultiPolygon](http://geojson.org/geojson-spec.html#multipolygon) and determines if the point resides inside the polygon. The polygon can
 be convex or concave. The function accounts for holes.
 
 **Parameters**
 
--   `point` **Feature&lt;Point>** input point
--   `polygon` **Feature&lt;(Polygon | MultiPolygon)>** input polygon or multipolygon
+-   `point` **[Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;[Point](http://geojson.org/geojson-spec.html#point)>** input point
+-   `polygon` **[Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;([Polygon](http://geojson.org/geojson-spec.html#polygon) \| [MultiPolygon](http://geojson.org/geojson-spec.html#multipolygon))>** input polygon or multipolygon
 
 **Examples**
 
@@ -76,11 +76,11 @@ PRs and issues.
 Install this module individually:
 
 ```sh
-$ npm install turf-inside
+$ npm install @turf/inside
 ```
 
 Or install the Turf module that includes it as a function:
 
 ```sh
-$ npm install turf
+$ npm install @turf/turf
 ```

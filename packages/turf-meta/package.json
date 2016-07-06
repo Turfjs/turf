@@ -1,6 +1,6 @@
 {
-  "name": "turf-meta",
-  "version": "3.0.12",
+  "name": "@turf/meta",
+  "version": "3.0.15",
   "description": "meta and functional programming helpers for turf modules",
   "main": "index.js",
   "scripts": {
@@ -15,10 +15,15 @@
   "license": "ISC",
   "devDependencies": {
     "tape": "^3.4.0",
-    "turf-random": "^3.0.12"
+    "@turf/random": "^3.0.15"
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com:Turfjs/turf-meta.git"
+    "url": "git://github.com/Turfjs/turf.git"
+  },
+  "dependencies": {},
+  "homepage": "https://github.com/Turfjs/turf",
+  "bugs": {
+    "url": "https://github.com/Turfjs/turf/issues"
   }
 }

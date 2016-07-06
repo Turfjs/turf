@@ -1,9 +1,9 @@
-# turf-hex-grid
+# @turf/hex-grid
 
 # hexGrid
 
-Takes a bounding box and a cell size in degrees and returns a [FeatureCollection](FeatureCollection) of flat-topped
-hexagons ([Polygon](Polygon) features) aligned in an "odd-q" vertical grid as
+Takes a bounding box and a cell size in degrees and returns a [FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects) of flat-topped
+hexagons ([Polygon](http://geojson.org/geojson-spec.html#polygon) features) aligned in an "odd-q" vertical grid as
 described in [Hexagonal Grids](http://www.redblobgames.com/grids/hexagons/).
 
 **Parameters**
@@ -25,7 +25,7 @@ var hexgrid = turf.hexGrid(bbox, cellWidth, units);
 //=hexgrid
 ```
 
-Returns **FeatureCollection&lt;Polygon>** a hexagonal grid
+Returns **[FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects)&lt;[Polygon](http://geojson.org/geojson-spec.html#polygon)>** a hexagonal grid
 
 ---
 
@@ -39,11 +39,11 @@ PRs and issues.
 Install this module individually:
 
 ```sh
-$ npm install turf-hex-grid
+$ npm install @turf/hex-grid
 ```
 
 Or install the Turf module that includes it as a function:
 
 ```sh
-$ npm install turf
+$ npm install @turf/turf
 ```
