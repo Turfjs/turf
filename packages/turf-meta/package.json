@@ -19,7 +19,11 @@
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com:Turfjs/turf-meta.git"
+    "url": "git://github.com/Turfjs/turf.git"
   },
-  "dependencies": {}
+  "dependencies": {},
+  "homepage": "https://github.com/Turfjs/turf",
+  "bugs": {
+    "url": "https://github.com/Turfjs/turf/issues"
+  }
 }

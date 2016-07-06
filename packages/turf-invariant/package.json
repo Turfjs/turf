@@ -15,10 +15,14 @@
   "license": "ISC",
   "repository": {
     "type": "git",
-    "url": "git@github.com:Turfjs/turf-invariant.git"
+    "url": "git://github.com/Turfjs/turf.git"
   },
   "devDependencies": {
     "tape": "^3.5.0"
   },
-  "dependencies": {}
+  "dependencies": {},
+  "homepage": "https://github.com/Turfjs/turf",
+  "bugs": {
+    "url": "https://github.com/Turfjs/turf/issues"
+  }
 }

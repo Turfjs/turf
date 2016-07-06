@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/Turfjs/turf-bearing.git"
+    "url": "git://github.com/Turfjs/turf.git"
   },
   "keywords": [
     "turf",
@@ -17,9 +17,9 @@
   "author": "jvrousseau",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/Turfjs/turf-bearing/issues"
+    "url": "https://github.com/Turfjs/turf/issues"
   },
-  "homepage": "https://github.com/Turfjs/turf-bearing",
+  "homepage": "https://github.com/Turfjs/turf",
   "dependencies": {
     "@turf/invariant": "^3.0.15"
   },

@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com:Turfjs/turf-union.git"
+    "url": "git://github.com/Turfjs/turf.git"
   },
   "keywords": [
     "turf",
@@ -17,9 +17,9 @@
   "author": "Morgan Herlocker",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/Turfjs/turf-union/issues"
+    "url": "https://github.com/Turfjs/turf/issues"
   },
-  "homepage": "https://github.com/Turfjs/turf-union",
+  "homepage": "https://github.com/Turfjs/turf",
   "devDependencies": {
     "benchmark": "^1.0.0",
     "glob": "~4.3.5",

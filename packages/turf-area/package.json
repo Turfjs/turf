@@ -19,10 +19,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com:Turfjs/turf-area.git"
+    "url": "git://github.com/Turfjs/turf.git"
   },
   "devDependencies": {
     "geojson-fixtures": "^0.6.0",
     "tape": "^3.5.0"
+  },
+  "homepage": "https://github.com/Turfjs/turf",
+  "bugs": {
+    "url": "https://github.com/Turfjs/turf/issues"
   }
 }

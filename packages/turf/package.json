@@ -17,7 +17,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/turfjs/turf.git"
+    "url": "git://github.com/Turfjs/turf.git"
   },
   "keywords": [
     "gis",
@@ -49,7 +49,7 @@
   "author": "morganherlocker",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/morganherlocker/turf/issues"
+    "url": "https://github.com/Turfjs/turf/issues"
   },
   "dependencies": {
     "@turf/collect": "^3.0.15",
@@ -107,5 +107,6 @@
     "lerna": "https://github.com/kittens/lerna/archive/master.tar.gz",
     "tape": "^3.5.0",
     "uglify-js": "~2.4.16"
-  }
+  },
+  "homepage": "https://github.com/Turfjs/turf"
 }

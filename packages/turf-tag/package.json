@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/Turfjs/turf-tag.git"
+    "url": "git://github.com/Turfjs/turf.git"
   },
   "keywords": [
     "geojson",
@@ -23,9 +23,9 @@
   "author": "morganherlocker",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/Turfjs/turf-tag/issues"
+    "url": "https://github.com/Turfjs/turf/issues"
   },
-  "homepage": "https://github.com/Turfjs/turf-tag",
+  "homepage": "https://github.com/Turfjs/turf",
   "dependencies": {
     "@turf/inside": "^3.0.15"
   },
