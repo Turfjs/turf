@@ -1,6 +1,6 @@
 {
   "name": "@turf/line-distance",
-  "version": "3.0.12",
+  "version": "3.0.15",
   "description": "turf-line-distance ---",
   "main": "index.js",
   "scripts": {
@@ -29,7 +29,7 @@
     "tape": "^3.5.0"
   },
   "dependencies": {
-    "@turf/distance": "^3.0.12",
-    "@turf/helpers": "^3.0.12"
+    "@turf/distance": "^3.0.15",
+    "@turf/helpers": "^3.0.15"
   }
 }
