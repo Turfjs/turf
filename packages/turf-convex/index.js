@@ -77,7 +77,9 @@ module.exports = function (featurecollection) {
     var points = [];
     each(featurecollection, function (coord) { points.push(coord); });
     var hull = convexHull(points);
-    if (hull.length > 0) {
+
+    // Hull should have at least 3 different vertices in order to create a valid polygon
+    if (hull.length >= 3) {
         var ring = [];
         for (var i = 0; i < hull.length; i++) {
             ring.push(points[hull[i][0]]);
