@@ -36,7 +36,7 @@ var destination = require('turf-destination');
  *   }
  * };
  *
- * var snapped = turf.pointOnLine(line, pt, "miles");
+ * var snapped = turf.pointOnLine(line, pt, 'miles');
  * snapped.properties['marker-color'] = '#00f'
  *
  * var result = {
@@ -57,7 +57,7 @@ module.exports = function (line, pt, units) {
         throw new Error('input must be a LineString Feature or Geometry');
     }
 
-    return pointOnLine(pt, coords, units || "miles");
+    return pointOnLine(pt, coords, units || 'miles');
 };
 
 function pointOnLine(pt, coords, units) {
