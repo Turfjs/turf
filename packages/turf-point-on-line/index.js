@@ -9,6 +9,7 @@ var destination = require('turf-destination');
  * @name pointOnLine
  * @param {Feature<LineString>} line line to snap to
  * @param {Feature<Point>} point point to snap from
+ * @param {String} [units=miles] can be degrees, radians, miles, or kilometers
  * @return {Feature<Point>} closest point on the `line` to `point`
  * @example
  * var line = {
@@ -35,7 +36,7 @@ var destination = require('turf-destination');
  *   }
  * };
  *
- * var snapped = turf.pointOnLine(line, pt);
+ * var snapped = turf.pointOnLine(line, pt, 'miles');
  * snapped.properties['marker-color'] = '#00f'
  *
  * var result = {
@@ -46,7 +47,7 @@ var destination = require('turf-destination');
  * //=result
  */
 
-module.exports = function (line, pt) {
+module.exports = function (line, pt, units) {
     var coords;
     if (line.type === 'Feature') {
         coords = line.geometry.coordinates;
@@ -56,11 +57,10 @@ module.exports = function (line, pt) {
         throw new Error('input must be a LineString Feature or Geometry');
     }
 
-    return pointOnLine(pt, coords);
+    return pointOnLine(pt, coords, units || 'miles');
 };
 
-function pointOnLine(pt, coords) {
-    var units = 'miles';
+function pointOnLine(pt, coords, units) {
     var closestPt = point([Infinity, Infinity], {
         dist: Infinity
     });
@@ -77,14 +77,14 @@ function pointOnLine(pt, coords) {
         var perpendicularPt1 = destination(pt, heightDistance, direction + 90, units);
         var perpendicularPt2 = destination(pt, heightDistance, direction - 90, units);
         var intersect = lineIntersects(
-        perpendicularPt1.geometry.coordinates[0],
-        perpendicularPt1.geometry.coordinates[1],
-        perpendicularPt2.geometry.coordinates[0],
-        perpendicularPt2.geometry.coordinates[1],
-        start.geometry.coordinates[0],
-        start.geometry.coordinates[1],
-        stop.geometry.coordinates[0],
-        stop.geometry.coordinates[1]
+            perpendicularPt1.geometry.coordinates[0],
+            perpendicularPt1.geometry.coordinates[1],
+            perpendicularPt2.geometry.coordinates[0],
+            perpendicularPt2.geometry.coordinates[1],
+            start.geometry.coordinates[0],
+            start.geometry.coordinates[1],
+            stop.geometry.coordinates[0],
+            stop.geometry.coordinates[1]
         );
         var intersectPt;
         if (intersect) {
