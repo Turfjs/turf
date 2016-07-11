@@ -1,6 +1,6 @@
 {
   "name": "@turf/turf",
-  "version": "3.0.18",
+  "version": "3.1.0",
   "description": "a JavaScript library for performing geospatial operations with GeoJSON",
   "main": "index.js",
   "scripts": {
@@ -79,13 +79,13 @@
     "@turf/isolines": "^3.0.16",
     "@turf/kinks": "^3.0.16",
     "@turf/line-distance": "^3.0.16",
-    "@turf/line-slice": "^3.0.16",
+    "@turf/line-slice": "^3.1.0",
     "@turf/meta": "^3.0.16",
     "@turf/midpoint": "^3.0.16",
     "@turf/nearest": "^3.0.16",
     "@turf/planepoint": "^3.0.16",
     "@turf/point-grid": "^3.0.16",
-    "@turf/point-on-line": "^3.0.16",
+    "@turf/point-on-line": "^3.1.0",
     "@turf/point-on-surface": "^3.0.16",
     "@turf/random": "^3.0.16",
     "@turf/sample": "^3.0.16",
