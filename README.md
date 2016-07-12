@@ -51,7 +51,7 @@ _Not recommend. Please don't use Bower. Use Browserify, Webpack, or the CDN inst
 The latest Bower build is at:
 
 ```
-https://npmcdn.com/@turf/turf@3.0.16/bower.zip
+https://npmcdn.com/@turf/turf@3.1.1/bower.zip
 ```
 
 - - -
