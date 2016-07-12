@@ -1,6 +1,6 @@
 {
   "name": "@turf/explode",
-  "version": "3.0.16",
+  "version": "3.1.1",
   "description": "turf explode module",
   "main": "index.js",
   "scripts": {
@@ -29,7 +29,7 @@
     "@turf/helpers": "^3.0.16"
   },
   "dependencies": {
-    "@turf/meta": "^3.0.16",
+    "@turf/meta": "^3.1.1",
     "@turf/helpers": "^3.0.16"
   }
 }
