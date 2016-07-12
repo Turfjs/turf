@@ -62,6 +62,9 @@ function coordEach(layer, callback, excludeWrapCoord) {
                     for (k = 0; k < coords[j].length; k++)
                         for (l = 0; l < coords[j][k].length - wrapShrink; l++)
                             callback(coords[j][k][l]);
+            } else if (geometry.type === 'GeometryCollection') {
+                for (j = 0; j < geometry.geometries.length; j++)
+                    coordEach(geometry.geometries[j], callback, excludeWrapCoord);
             } else {
                 throw new Error('Unknown Geometry Type');
             }
