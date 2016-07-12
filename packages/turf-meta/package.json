@@ -1,6 +1,6 @@
 {
   "name": "@turf/meta",
-  "version": "3.1.1",
+  "version": "3.1.2",
   "description": "meta and functional programming helpers for turf modules",
   "main": "index.js",
   "scripts": {

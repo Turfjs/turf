@@ -1,6 +1,6 @@
 {
   "name": "@turf/hex-grid",
-  "version": "3.1.1",
+  "version": "3.1.2",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -35,7 +35,7 @@
     "benchmark": "^1.0.0",
     "tape": "^3.5.0",
     "@turf/bbox-polygon": "^3.1.1",
-    "@turf/explode": "^3.1.1",
+    "@turf/explode": "^3.1.2",
     "@turf/inside": "^3.1.1"
   },
   "dependencies": {
