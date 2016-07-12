@@ -1,4 +1,4 @@
-var inside = require('turf-inside');
+var inside = require('@turf/inside');
 
 /**
  * Joins attributes FeatureCollection of polygons with a FeatureCollection of

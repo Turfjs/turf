@@ -1,7 +1,7 @@
-var distance = require('turf-distance');
-var point = require('turf-helpers').point;
-var bearing = require('turf-bearing');
-var destination = require('turf-destination');
+var distance = require('@turf/distance');
+var point = require('@turf/helpers').point;
+var bearing = require('@turf/bearing');
+var destination = require('@turf/destination');
 
 /**
  * Takes a {@link Point} and a {@link LineString} and calculates the closest Point on the LineString.

@@ -1,7 +1,7 @@
 //http://en.wikipedia.org/wiki/Haversine_formula
 //http://www.movable-type.co.uk/scripts/latlong.html
-var getCoord = require('turf-invariant').getCoord;
-var helpers = require('turf-helpers');
+var getCoord = require('@turf/invariant').getCoord;
+var helpers = require('@turf/helpers');
 var point = helpers.point;
 var distanceToRadians = helpers.distanceToRadians;
 

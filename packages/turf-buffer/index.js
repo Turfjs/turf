@@ -2,7 +2,7 @@
 // radians = degrees * (pi/180)
 // https://github.com/bjornharrtell/jsts/blob/master/examples/buffer.html
 
-var helpers = require('turf-helpers');
+var helpers = require('@turf/helpers');
 var featureCollection = helpers.featureCollection;
 var jsts = require('jsts');
 var normalize = require('geojson-normalize');

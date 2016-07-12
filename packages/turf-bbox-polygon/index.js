@@ -1,4 +1,4 @@
-var polygon = require('turf-helpers').polygon;
+var polygon = require('@turf/helpers').polygon;
 
 /**
  * Takes a bbox and returns an equivalent {@link Polygon|polygon}.

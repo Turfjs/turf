@@ -1,5 +1,5 @@
-var inside = require('turf-inside');
-var featureCollection = require('turf-helpers').featureCollection;
+var inside = require('@turf/inside');
+var featureCollection = require('@turf/helpers').featureCollection;
 
 /**
  * Takes a set of {@link Point|points} and a set of {@link Polygon|polygons} and returns the points that fall within the polygons.

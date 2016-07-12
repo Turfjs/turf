@@ -1,6 +1,6 @@
-var bearing = require('turf-bearing');
-var destination = require('turf-destination');
-var distance = require('turf-distance');
+var bearing = require('@turf/bearing');
+var destination = require('@turf/destination');
+var distance = require('@turf/distance');
 
 /**
  * Takes two {@link Point|points} and returns a point midway between them.

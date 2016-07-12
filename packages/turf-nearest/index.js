@@ -1,4 +1,4 @@
-var distance = require('turf-distance');
+var distance = require('@turf/distance');
 
 /**
  * Takes a reference {@link Point|point} and a FeatureCollection of Features

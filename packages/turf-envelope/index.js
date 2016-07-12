@@ -1,5 +1,5 @@
-var bbox = require('turf-bbox');
-var bboxPolygon = require('turf-bbox-polygon');
+var bbox = require('@turf/bbox');
+var bboxPolygon = require('@turf/bbox-polygon');
 
 /**
  * Takes any number of features and returns a rectangular {@link Polygon} that encompasses all vertices.

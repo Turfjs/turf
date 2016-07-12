@@ -1,4 +1,4 @@
-var meta = require('turf-meta');
+var meta = require('@turf/meta');
 
 /**
  * Combines a {@link FeatureCollection} of {@link Point},

@@ -1,5 +1,5 @@
-var linestring = require('turf-helpers').lineString;
-var pointOnLine = require('turf-point-on-line');
+var linestring = require('@turf/helpers').lineString;
+var pointOnLine = require('@turf/point-on-line');
 
 /**
  * Takes a {@link LineString|line}, a start {@link Point}, and a stop point

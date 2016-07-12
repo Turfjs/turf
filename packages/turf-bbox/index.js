@@ -1,4 +1,4 @@
-var each = require('turf-meta').coordEach;
+var each = require('@turf/meta').coordEach;
 
 /**
  * Takes a set of features, calculates the bbox of all input features, and returns a bounding box.

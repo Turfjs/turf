@@ -1,4 +1,4 @@
-var linestring = require('turf-helpers').lineString;
+var linestring = require('@turf/helpers').lineString;
 var Spline = require('./spline.js');
 
 /**

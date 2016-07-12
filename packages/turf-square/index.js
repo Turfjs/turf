@@ -1,4 +1,4 @@
-var distance = require('turf-distance');
+var distance = require('@turf/distance');
 
 /**
  * Takes a bounding box and calculates the minimum square bounding box that

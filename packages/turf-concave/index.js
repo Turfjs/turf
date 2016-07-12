@@ -3,9 +3,9 @@
 // 3. remove triangles that fail the max length test
 // 4. buffer the results slightly
 // 5. merge the results
-var tin = require('turf-tin');
-var union = require('turf-union');
-var distance = require('turf-distance');
+var tin = require('@turf/tin');
+var union = require('@turf/union');
+var distance = require('@turf/distance');
 
 /**
  * Takes a set of {@link Point|points} and returns a concave hull polygon.

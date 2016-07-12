@@ -1,7 +1,7 @@
-var point = require('turf-helpers').point;
-var polygon = require('turf-helpers').polygon;
-var distance = require('turf-distance');
-var featurecollection = require('turf-helpers').featureCollection;
+var point = require('@turf/helpers').point;
+var polygon = require('@turf/helpers').polygon;
+var distance = require('@turf/distance');
+var featurecollection = require('@turf/helpers').featureCollection;
 
 //Precompute cosines and sines of angles used in hexagon creation
 // for performance gain

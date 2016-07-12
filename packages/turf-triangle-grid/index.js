@@ -1,6 +1,6 @@
-var featurecollection = require('turf-helpers').featureCollection;
-var polygon = require('turf-helpers').polygon;
-var distance = require('turf-distance');
+var featurecollection = require('@turf/helpers').featureCollection;
+var polygon = require('@turf/helpers').polygon;
+var distance = require('@turf/distance');
 
 /**
  * Takes a bounding box and a cell depth and returns a set of triangular {@link Polygon|polygons} in a grid.

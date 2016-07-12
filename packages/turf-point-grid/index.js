@@ -1,6 +1,6 @@
-var point = require('turf-helpers').point;
-var featurecollection = require('turf-helpers').featureCollection;
-var distance = require('turf-distance');
+var point = require('@turf/helpers').point;
+var featurecollection = require('@turf/helpers').featureCollection;
+var distance = require('@turf/distance');
 /**
  * Takes a bounding box and a cell depth and returns a set of {@link Point|points} in a grid.
  *

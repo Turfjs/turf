@@ -1,6 +1,6 @@
-var featureCollection = require('turf-helpers').featureCollection;
-var each = require('turf-meta').coordEach;
-var point = require('turf-helpers').point;
+var featureCollection = require('@turf/helpers').featureCollection;
+var each = require('@turf/meta').coordEach;
+var point = require('@turf/helpers').point;
 
 /**
  * Takes a feature or set of features and returns all positions as

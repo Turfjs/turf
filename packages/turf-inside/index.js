@@ -1,4 +1,4 @@
-var invariant = require('turf-invariant');
+var invariant = require('@turf/invariant');
 
 // http://en.wikipedia.org/wiki/Even%E2%80%93odd_rule
 // modified from: https://github.com/substack/point-in-polygon/blob/master/index.js

@@ -1,5 +1,5 @@
 // http://stackoverflow.com/questions/11935175/sampling-a-random-subset-from-an-array
-var featureCollection = require('turf-helpers').featureCollection;
+var featureCollection = require('@turf/helpers').featureCollection;
 
 /**
  * Takes a {@link FeatureCollection} and returns a FeatureCollection with given number of {@link Feature|features} at random.

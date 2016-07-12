@@ -1,8 +1,8 @@
 var test = require('tape');
 var within = require('./');
-var point = require('turf-helpers').point;
-var polygon = require('turf-helpers').polygon;
-var featureCollection = require('turf-helpers').featureCollection;
+var point = require('@turf/helpers').point;
+var polygon = require('@turf/helpers').polygon;
+var featureCollection = require('@turf/helpers').featureCollection;
 
 test('within', function(t){
   t.plan(4);

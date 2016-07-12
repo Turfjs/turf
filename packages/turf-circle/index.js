@@ -1,5 +1,5 @@
-var destination = require('turf-destination');
-var helpers = require('turf-helpers');
+var destination = require('@turf/destination');
+var helpers = require('@turf/helpers');
 var polygon = helpers.polygon;
 
 

@@ -1,4 +1,4 @@
-var inside = require('turf-inside');
+var inside = require('@turf/inside');
 
 /**
  * Takes a set of {@link Point|points} and a set of {@link Polygon|polygons} and performs a spatial join.

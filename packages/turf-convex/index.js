@@ -1,6 +1,6 @@
-var each = require('turf-meta').coordEach,
+var each = require('@turf/meta').coordEach,
     convexHull = require('convex-hull'),
-    polygon = require('turf-helpers').polygon;
+    polygon = require('@turf/helpers').polygon;
 
 /**
  * Takes a set of {@link Point|points} and returns a
