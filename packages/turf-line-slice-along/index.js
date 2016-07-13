@@ -14,8 +14,8 @@ var lineString = require('turf-helpers').lineString;
  * @name lineSliceAlong
  * @category misc
  * @param {Feature<LineString>} line input line
- * @param {Number} dist1 distance along the line to starting point
- * @param {Number} dist2 distance along the line to ending point
+ * @param {Number} startDist distance along the line to starting point
+ * @param {Number} stopDist distance along the line to ending point
  * @param {String} [units=kilometers] can be degrees, radians, miles, or kilometers
  * @return {Feature<LineString>} sliced line
  * @example
