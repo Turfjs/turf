@@ -6,11 +6,10 @@
 var jsts = require('jsts');
 
 /**
- * Takes two {@link Polygon|polygons} and returns a combined polygon. If the input polygons are not contiguous, this function returns a {@link MultiPolygon} feature.
+ * Takes two or more {@link Polygon|polygons} and returns a combined polygon. If the input polygons are not contiguous, this function returns a {@link MultiPolygon} feature.
  *
  * @name union
- * @param {Feature<Polygon>} poly1 input polygon
- * @param {Feature<Polygon>} poly2 another input polygon
+ * @param {...Feature<Polygon>} A polygon to combine
  * @return {Feature<(Polygon|MultiPolygon)>} a combined {@link Polygon} or {@link MultiPolygon} feature
  * @example
  * var poly1 = {
@@ -56,17 +55,20 @@ var jsts = require('jsts');
  *
  * //=union
  */
-module.exports = function (poly1, poly2) {
+module.exports = function () {
     var reader = new jsts.io.GeoJSONReader();
-    var a = reader.read(JSON.stringify(poly1.geometry));
-    var b = reader.read(JSON.stringify(poly2.geometry));
-    var union = a.union(b);
-    var writer = new jsts.io.GeoJSONWriter();
+    var result = reader.read(JSON.stringify(arguments[0].geometry));
 
-    union = writer.write(union);
+    for (var i = 1; i < arguments.length; i++) {
+        result = result.union(reader.read(JSON.stringify(arguments[i].geometry)));
+    }
+
+    var writer = new jsts.io.GeoJSONWriter();
+    result = writer.write(result);
+
     return {
         type: 'Feature',
-        geometry: union,
-        properties: poly1.properties
+        geometry: result,
+        properties: arguments[0].properties
     };
 };
