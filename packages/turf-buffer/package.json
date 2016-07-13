@@ -1,6 +1,6 @@
 {
   "name": "@turf/buffer",
-  "version": "3.2.0",
+  "version": "3.3.3",
   "description": "turf buffer module",
   "main": "index.js",
   "scripts": {
@@ -29,14 +29,14 @@
     "benchmark": "^1.0.0",
     "glob": "^5.0.3",
     "tape": "^3.5.0",
-    "@turf/distance": "^3.1.1",
-    "@turf/bbox": "^3.1.2",
-    "@turf/helpers": "^3.0.16"
+    "@turf/distance": "^3.3.3",
+    "@turf/bbox": "^3.3.3",
+    "@turf/helpers": "^3.3.3"
   },
   "dependencies": {
     "geojson-normalize": "0.0.0",
     "jsts": "1.2.0",
-    "@turf/combine": "^3.1.2",
-    "@turf/helpers": "^3.0.16"
+    "@turf/combine": "^3.3.3",
+    "@turf/helpers": "^3.3.3"
   }
 }
