@@ -1,11 +1,11 @@
 var test = require('tape');
 var pointOnLine = require('../');
-var point = require('turf-helpers').point;
-var featurecollection = require('turf-helpers').featureCollection;
-var linestring = require('turf-helpers').lineString;
-var distance = require('turf-distance');
-var lineDistance = require('turf-line-distance');
-var along = require('turf-along');
+var point = require('@turf/helpers').point;
+var featurecollection = require('@turf/helpers').featureCollection;
+var linestring = require('@turf/helpers').lineString;
+var distance = require('@turf/distance');
+var lineDistance = require('@turf/line-distance');
+var along = require('@turf/along');
 
 test('turf-point-on-line - first point', function (t) {
     var line = linestring([[-122.45717525482178,37.72003306385638],[-122.45717525482178,37.718242366859215]]);
