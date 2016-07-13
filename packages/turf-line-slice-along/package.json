@@ -1,5 +1,5 @@
 {
-  "name": "turf-line-slice-along",
+  "name": "@turf/line-slice-along",
   "version": "3.3.0",
   "description": "create line segment based on start and end distance on a given line string",
   "main": "index.js",

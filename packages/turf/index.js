@@ -48,7 +48,7 @@ module.exports = {
     along: require('@turf/along'),
     lineDistance: require('@turf/line-distance'),
     lineSlice: require('@turf/line-slice'),
-    lineSliceAlong: require('turf-line-slice-along'),
+    lineSliceAlong: require('@turf/line-slice-along'),
     pointOnLine: require('@turf/point-on-line'),
     pointGrid: require('@turf/point-grid'),
     squareGrid: require('@turf/square-grid'),
