@@ -8,6 +8,7 @@ Takes a [Point](http://geojson.org/geojson-spec.html#point) and a [LineString](h
 
 -   `line` **[Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;[LineString](http://geojson.org/geojson-spec.html#linestring)>** line to snap to
 -   `point` **[Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;[Point](http://geojson.org/geojson-spec.html#point)>** point to snap from
+-   `units` **\[[String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)]** can be degrees, radians, miles, or kilometers (optional, default `miles`)
 
 **Examples**
 
@@ -36,7 +37,7 @@ var pt = {
   }
 };
 
-var snapped = turf.pointOnLine(line, pt);
+var snapped = turf.pointOnLine(line, pt, 'miles');
 snapped.properties['marker-color'] = '#00f'
 
 var result = {

@@ -2,12 +2,11 @@
 
 # union
 
-Takes two [polygons](http://geojson.org/geojson-spec.html#polygon) and returns a combined polygon. If the input polygons are not contiguous, this function returns a [MultiPolygon](http://geojson.org/geojson-spec.html#multipolygon) feature.
+Takes two or more [polygons](http://geojson.org/geojson-spec.html#polygon) and returns a combined polygon. If the input polygons are not contiguous, this function returns a [MultiPolygon](http://geojson.org/geojson-spec.html#multipolygon) feature.
 
 **Parameters**
 
--   `poly1` **[Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;[Polygon](http://geojson.org/geojson-spec.html#polygon)>** input polygon
--   `poly2` **[Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;[Polygon](http://geojson.org/geojson-spec.html#polygon)>** another input polygon
+-   `A` **...[Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;[Polygon](http://geojson.org/geojson-spec.html#polygon)>** polygon to combine
 
 **Examples**
 

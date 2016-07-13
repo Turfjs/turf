@@ -1,29 +1,23 @@
-# turf-line-slice-along
+# @turf/line-slice-along
 
-create line segment based on start and end distance on a given line string
+# lineSliceAlong
 
-
-### `turf.lineSliceAlong(line, dist1, dist2, [units=kilometers])`
-
-Takes a LineString|line, a specified distance along the line to a start Point,
+Takes a [line](http://geojson.org/geojson-spec.html#linestring), a specified distance along the line to a start [Point](http://geojson.org/geojson-spec.html#point),
 and a specified  distance along the line to a stop point
 and returns a subsection of the line in-between those points.
 
 This can be useful for extracting only the part of a route between two distances.
 
-### Parameters
+**Parameters**
 
-| parameter            | type                    | description                                               |
-| -------------------- | ----------------------- | --------------------------------------------------------- |
-| `line`               | Feature\.\<LineString\> | input line                                                |
-| `dist1`              | Number                  | distance along the line to starting point                 |
-| `dist2`              | Number                  | distance along the line to ending point                   |
-| `[units=kilometers]` | String                  | _optional:_ can be degrees, radians, miles, or kilometers |
+-   `line` **[Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;[LineString](http://geojson.org/geojson-spec.html#linestring)>** input line
+-   `startDist` **[Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** distance along the line to starting point
+-   `stopDist` **[Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** distance along the line to ending point
+-   `units` **\[[String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)]** can be degrees, radians, miles, or kilometers (optional, default `kilometers`)
 
+**Examples**
 
-### Example
-
-```js
+```javascript
 var line = {
   "type": "Feature",
   "properties": {},
@@ -54,19 +48,25 @@ var sliced = turf.lineSliceAlong(start, stop, line, units);
 //=sliced
 ```
 
+Returns **[Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;[LineString](http://geojson.org/geojson-spec.html#linestring)>** sliced line
 
-**Returns** `Feature.<LineString>`, sliced line
+---
 
-## Installation
+This module is part of the [Turfjs project](http://turfjs.org/), an open source
+module collection dedicated to geographic algorithms. It is maintained in the
+[Turfjs/turf](https://github.com/Turfjs/turf) repository, where you can create
+PRs and issues.
 
-Requires [nodejs](http://nodejs.org/).
+### Installation
+
+Install this module individually:
 
 ```sh
-$ npm install jvrousseau/turf-line-slice-along
+$ npm install @turf/line-slice-along
 ```
 
-## Tests
+Or install the Turf module that includes it as a function:
 
 ```sh
-$ npm test
+$ npm install @turf/turf
 ```
