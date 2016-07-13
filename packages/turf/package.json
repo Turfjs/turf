@@ -80,6 +80,7 @@
     "@turf/kinks": "^3.1.1",
     "@turf/line-distance": "^3.1.1",
     "@turf/line-slice": "^3.3.1",
+    "@turf/line-slice-along": "^3.3.1",
     "@turf/meta": "^3.1.2",
     "@turf/midpoint": "^3.1.1",
     "@turf/nearest": "^3.1.1",
