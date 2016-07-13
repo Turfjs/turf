@@ -7,6 +7,9 @@
  * @module turf
  * @summary Geospatial analysis for JavaScript
  */
+
+var helpers = require('@turf/helpers');
+
 module.exports = {
     isolines: require('@turf/isolines'),
     convex: require('@turf/convex'),
@@ -50,17 +53,14 @@ module.exports = {
     pointGrid: require('@turf/point-grid'),
     squareGrid: require('@turf/square-grid'),
     triangleGrid: require('@turf/triangle-grid'),
-    hexGrid: require('@turf/hex-grid')
+    hexGrid: require('@turf/hex-grid'),
+    point: helpers.point,
+    polygon: helpers.polygon,
+    lineString: helpers.lineString,
+    multiPoint: helpers.multiPoint,
+    multiPolygon: helpers.multiPolygon,
+    multiLineString: helpers.multiLineString,
+    feature: helpers.feature,
+    featureCollection: helpers.featureCollection,
+    geometryCollection: helpers.geometryCollection
 };
-
-var helpers = require('@turf/helpers');
-
-module.exports.point = helpers.point;
-module.exports.polygon = helpers.polygon;
-module.exports.lineString = helpers.lineString;
-module.exports.multiPoint = helpers.multiPoint;
-module.exports.multiPolygon = helpers.multiPolygon;
-module.exports.multiLineString = helpers.multiLineString;
-module.exports.feature = helpers.feature;
-module.exports.featureCollection = helpers.featureCollection;
-module.exports.geometryCollection = helpers.geometryCollection;
