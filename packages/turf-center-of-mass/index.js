@@ -117,18 +117,18 @@ module.exports = function (feature) {
     // We take any point to translate all the points around 0
     var translation = points[0];
     var neutralizedPoints = [];
+    var length = points.length;
+    var sx = 0;
+    var sy = 0;
+    var sArea = 0;
+    var i, pi, pj, xi, xj, yi, yj, a;
+
     for (i = 0; i < points.length; i++) {
         neutralizedPoints.push([
             points[i][0] - translation[0],
             points[i][1] - translation[1]
         ]);
     }
-
-    var length = points.length;
-    var sx = 0;
-    var sy = 0;
-    var sArea = 0;
-    var i, pi, pj, xi, xj, yi, yj, a;
 
     for (i = 0; i < length - 1; i++) {
         // pi is the current point
@@ -153,7 +153,7 @@ module.exports = function (feature) {
     }
 
     // Shape has no area: fallback on turf.centroid
-    if (sArea == 0) {
+    if (sArea === 0) {
         return centroid(feature);
     } else {
         // Compute the signed area, and factorize 1/6A
