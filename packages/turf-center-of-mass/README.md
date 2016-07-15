@@ -3,7 +3,8 @@
 # center-of-mass
 
 Takes a [feature](http://geojson.org/geojson-spec.html#feature-objects) and returns its
-[center of mass](https://en.wikipedia.org/wiki/Center_of_mass).
+[center of mass](https://en.wikipedia.org/wiki/Center_of_mass) using this formulae:
+[Centroid of Polygon](https://en.wikipedia.org/wiki/Centroid#Centroid_of_polygon).
 
 **Parameters**
 
