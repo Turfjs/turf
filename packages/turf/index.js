@@ -26,6 +26,7 @@ module.exports = {
     midpoint: require('@turf/midpoint'),
     buffer: require('@turf/buffer'),
     center: require('@turf/center'),
+    centerOfMass: require('@turf/center-of-mass'),
     centroid: require('@turf/centroid'),
     combine: require('@turf/combine'),
     distance: require('@turf/distance'),
