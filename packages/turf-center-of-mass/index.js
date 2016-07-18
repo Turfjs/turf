@@ -10,7 +10,7 @@ var each = require('@turf/meta').coordEach,
  * and returns its [center of mass](https://en.wikipedia.org/wiki/Center_of_mass)
  * using this formula: [Centroid of Polygon](https://en.wikipedia.org/wiki/Centroid#Centroid_of_polygon).
  *
- * @name center-of-mass
+ * @name centerOfMass
  * @param {FeatureCollection|Feature} fc - the feature collection or feature
  * @returns {Feature<Point>} the center of mass
  * @example
@@ -106,7 +106,7 @@ var each = require('@turf/meta').coordEach,
  *   }
  * };
  *
- * var centerOfMass = turf.center-of-mass(feature);
+ * var centerOfMass = turf.centerOfMass(feature);
  *
  * //=centerOfMass
  */
