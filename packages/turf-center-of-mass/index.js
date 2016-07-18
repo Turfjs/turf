@@ -112,30 +112,28 @@ var each = require('@turf/meta').coordEach,
  */
 module.exports = function (fc) {
     if (fc.type === 'Feature' && fc.geometry.type === 'Polygon') {
-        var points = [];
+        var coords = [];
         each(fc, function (coord) {
-            points.push(coord);
+            coords.push(coord);
         });
 
         // First, we neutralize the feature (set it around coordinates [0,0]) to prevent rounding errors
         // We take any point to translate all the points around 0
         var centre = centroid(fc);
         var translation = centre.geometry.coordinates;
-        var neutralizedPoints = [];
-        var length = points.length;
         var sx = 0;
         var sy = 0;
         var sArea = 0;
         var i, pi, pj, xi, xj, yi, yj, a;
 
-        for (i = 0; i < length; i++) {
-            neutralizedPoints.push([
-                points[i][0] - translation[0],
-                points[i][1] - translation[1]
-            ]);
-        }
+        var neutralizedPoints = coords.map(function (point) {
+            return [
+                point[0] - translation[0],
+                point[1] - translation[1]
+            ];
+        });
 
-        for (i = 0; i < length - 1; i++) {
+        for (i = 0; i < coords.length - 1; i++) {
             // pi is the current point
             pi = neutralizedPoints[i];
             xi = pi[0];
@@ -147,7 +145,7 @@ module.exports = function (fc) {
             yj = pj[1];
 
             // a is the common factor to compute the signed area and the final coordinates
-            a = (xi * yj - xj * yi);
+            a = xi * yj - xj * yi;
 
             // sArea is the sum used to compute the signed area
             sArea += a;
