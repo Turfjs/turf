@@ -1,14 +1,17 @@
 var each = require('@turf/meta').coordEach,
     centroid = require('@turf/centroid'),
+    convex = require('@turf/convex'),
+    explode = require('@turf/explode'),
     point = require('@turf/helpers').point;
 
 /**
- * Takes a [feature](http://geojson.org/geojson-spec.html#feature-objects) and returns its
- * [center of mass](https://en.wikipedia.org/wiki/Center_of_mass) using this formulae:
- * [Centroid of Polygon](https://en.wikipedia.org/wiki/Centroid#Centroid_of_polygon)..
+ * Takes a [feature](http://geojson.org/geojson-spec.html#feature-objects)
+ * or a [featureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects)
+ * and returns its [center of mass](https://en.wikipedia.org/wiki/Center_of_mass)
+ * using this formula: [Centroid of Polygon](https://en.wikipedia.org/wiki/Centroid#Centroid_of_polygon).
  *
  * @name center-of-mass
- * @param {Feature} feature - the feature
+ * @param {FeatureCollection|Feature} fc - the feature collection or feature
  * @returns {Feature<Point>} the center of mass
  * @example
  * var feature = {
@@ -107,63 +110,76 @@ var each = require('@turf/meta').coordEach,
  *
  * //=centerOfMass
  */
-module.exports = function (feature) {
-    var points = [];
-    each(feature, function (coord) {
-        points.push(coord);
-    });
+module.exports = function (fc) {
+    if (fc.type === 'Feature' && fc.geometry.type === 'Polygon') {
+        var points = [];
+        each(fc, function (coord) {
+            points.push(coord);
+        });
 
-    // First, we neutralize the feature (set it around coordinates [0,0]) to prevent rounding errors
-    // We take any point to translate all the points around 0
-    var translation = points[0];
-    var neutralizedPoints = [];
-    var length = points.length;
-    var sx = 0;
-    var sy = 0;
-    var sArea = 0;
-    var i, pi, pj, xi, xj, yi, yj, a;
+        // First, we neutralize the feature (set it around coordinates [0,0]) to prevent rounding errors
+        // We take any point to translate all the points around 0
+        var centre = centroid(fc);
+        var translation = centre.geometry.coordinates;
+        var neutralizedPoints = [];
+        var length = points.length;
+        var sx = 0;
+        var sy = 0;
+        var sArea = 0;
+        var i, pi, pj, xi, xj, yi, yj, a;
 
-    for (i = 0; i < points.length; i++) {
-        neutralizedPoints.push([
-            points[i][0] - translation[0],
-            points[i][1] - translation[1]
-        ]);
-    }
+        for (i = 0; i < length; i++) {
+            neutralizedPoints.push([
+                points[i][0] - translation[0],
+                points[i][1] - translation[1]
+            ]);
+        }
 
-    for (i = 0; i < length - 1; i++) {
-        // pi is the current point
-        pi = neutralizedPoints[i];
-        xi = pi[0];
-        yi = pi[1];
+        for (i = 0; i < length - 1; i++) {
+            // pi is the current point
+            pi = neutralizedPoints[i];
+            xi = pi[0];
+            yi = pi[1];
 
-        // pj is the next point (pi+1)
-        pj = neutralizedPoints[i + 1];
-        xj = pj[0];
-        yj = pj[1];
+            // pj is the next point (pi+1)
+            pj = neutralizedPoints[i + 1];
+            xj = pj[0];
+            yj = pj[1];
 
-        // a is the common factor to compute the signed area and the final coordinates
-        a = (xi * yj - xj * yi);
+            // a is the common factor to compute the signed area and the final coordinates
+            a = (xi * yj - xj * yi);
 
-        // sArea is the sum used to compute the signed area
-        sArea += a;
+            // sArea is the sum used to compute the signed area
+            sArea += a;
 
-        // sx and sy are the sums used to compute the final coordinates
-        sx += (xi + xj) * a;
-        sy += (yi + yj) * a;
-    }
+            // sx and sy are the sums used to compute the final coordinates
+            sx += (xi + xj) * a;
+            sy += (yi + yj) * a;
+        }
 
-    // Shape has no area: fallback on turf.centroid
-    if (sArea === 0) {
-        return centroid(feature);
+        // Shape has no area: fallback on turf.centroid
+        if (sArea === 0) {
+            return centre;
+        } else {
+            // Compute the signed area, and factorize 1/6A
+            var area = sArea * 0.5;
+            var areaFactor = 1 / (6 * area);
+
+            // Compute the final coordinates, adding back the values that have been neutralized
+            return point([
+                translation[0] + areaFactor * sx,
+                translation[1] + areaFactor * sy
+            ]);
+        }
     } else {
-        // Compute the signed area, and factorize 1/6A
-        var area = sArea * 0.5;
-        var areaFactor = 1 / (6 * area);
+        // Not a polygon: Compute the convex hull and work with that
+        var hull = convex(explode(fc));
 
-        // Compute the final coordinates, adding back the values that have been neutralized
-        return point([
-            translation[0] + areaFactor * sx,
-            translation[1] + areaFactor * sy
-        ]);
+        if (hull) {
+            return module.exports(hull);
+        } else {
+            // Hull is empty: fallback on the centroid
+            return centroid(fc);
+        }
     }
 };
