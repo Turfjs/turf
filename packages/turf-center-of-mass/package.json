@@ -1,6 +1,6 @@
 {
   "name": "@turf/center-of-mass",
-  "version": "3.3.3",
+  "version": "3.4.0",
   "description": "Turf center of mass module",
   "main": "index.js",
   "directories": {
@@ -18,7 +18,6 @@
     "gis"
   ],
   "author": "aurelien-defossez",
-  "license": "MIT",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/Turfjs/turf/issues"

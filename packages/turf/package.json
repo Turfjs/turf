@@ -1,6 +1,6 @@
 {
   "name": "@turf/turf",
-  "version": "3.3.3",
+  "version": "3.4.0",
   "description": "a JavaScript library for performing geospatial operations with GeoJSON",
   "main": "index.js",
   "scripts": {
@@ -60,6 +60,7 @@
     "@turf/bezier": "^3.3.3",
     "@turf/buffer": "^3.3.3",
     "@turf/center": "^3.3.3",
+    "@turf/center-of-mass": "^3.4.0",
     "@turf/centroid": "^3.3.3",
     "@turf/circle": "^3.3.3",
     "@turf/combine": "^3.3.3",
