@@ -75,7 +75,12 @@ var each = require('@turf/meta').coordEach,
  */
 module.exports = function (featurecollection) {
     var points = [];
-    each(featurecollection, function (coord) { points.push(coord); });
+
+    // Remove Z in coordinates because it breaks the convexHull algorithm
+    each(featurecollection, function (coord) {
+        points.push([coord[0], coord[1]]);
+    });
+
     var hull = convexHull(points);
 
     // Hull should have at least 3 different vertices in order to create a valid polygon
