@@ -9,7 +9,8 @@ using this formula: [Centroid of Polygon](https://en.wikipedia.org/wiki/Centroid
 
 **Parameters**
 
--   `feature` **[Feature](http://geojson.org/geojson-spec.html#feature-objects)** the feature
+-   `feature` **[Feature](http://geojson.org/geojson-spec.html#feature-objects)** the feature or
+    **[FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects)** the featureCollection
 
 **Examples**
 

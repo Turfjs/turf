@@ -2,8 +2,9 @@
 
 # convex
 
-Takes a set of [points](http://geojson.org/geojson-spec.html#point) and returns a
-[convex hull](http://en.wikipedia.org/wiki/Convex_hull) polygon.
+Takes a [feature](http://geojson.org/geojson-spec.html#feature-objects)
+or a [featureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects)
+and returns a [convex hull](http://en.wikipedia.org/wiki/Convex_hull) polygon.
 
 Internally this uses
 the [convex-hull](https://github.com/mikolalysenko/convex-hull) module that
@@ -11,7 +12,8 @@ implements a [monotone chain hull](http://en.wikibooks.org/wiki/Algorithm_Implem
 
 **Parameters**
 
--   `featurecollection` **[FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects)&lt;[Point](http://geojson.org/geojson-spec.html#point)>** input points
+-   `feature` **[Feature](http://geojson.org/geojson-spec.html#feature-objects)** the feature or
+    **[FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects)** the featureCollection
 
 **Examples**
 
