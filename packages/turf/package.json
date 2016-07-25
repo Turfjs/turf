@@ -1,6 +1,6 @@
 {
   "name": "@turf/turf",
-  "version": "3.4.1",
+  "version": "3.5.0",
   "description": "a JavaScript library for performing geospatial operations with GeoJSON",
   "main": "index.js",
   "scripts": {
