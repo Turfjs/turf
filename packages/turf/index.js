@@ -23,6 +23,7 @@ module.exports = {
     sample: require('@turf/sample'),
     envelope: require('@turf/envelope'),
     square: require('@turf/square'),
+    circle: require('@turf/circle'),
     midpoint: require('@turf/midpoint'),
     buffer: require('@turf/buffer'),
     center: require('@turf/center'),
