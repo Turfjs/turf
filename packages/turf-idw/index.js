@@ -8,7 +8,7 @@ var extent = require('turf-extent');
  *
  * Takes a FeatureCollection of points with known value, a power parameter, a cell depth, a unit of measurement
  * and returns a FeatureCollection of polygons in a square-grid with an interpolated value property "IDW" for each grid cell.
- * It finds application when in need of creating a continuous surface (i.e. rainfall, temperature, chemical dispersion surface...) 
+ * It finds application when in need of creating a continuous surface (i.e. rainfall, temperature, chemical dispersion surface...)
  * from a set of spatially scattered points.
  *
  * @param  {FeatureCollection<Point>} controlPoints Sampled points with known value
