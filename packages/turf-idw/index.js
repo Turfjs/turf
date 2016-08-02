@@ -4,8 +4,6 @@ var squareGrid = require('turf-square-grid');
 var centroid = require('turf-centroid');
 var extent = require('turf-extent');
 
-Takes a FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects)&lt;[Point](http://geojson.org/geojson-spec.html#point)>  of sampled points with a property of *known value* and returns a [FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects)&lt;[Polygon](http://geojson.org/geojson-spec.html#polygon)>  [grid](http://turfjs.org/docs/#squaregrid) with an *interpolated value* for each grid cell, according to a distance-decay exponent and a cell depth parameter (in the specified unit of measurement).
-
 /**
  *
  * Takes a FeatureCollection of points with known value, a power parameter, a cell depth, a unit of measurement
