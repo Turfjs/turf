@@ -37,7 +37,7 @@ var controlPoints = JSON.parse(fs.readFileSync('./data/data.geojson'));
 var IDWSurface = IDW(controlPoints,'value', 0.5, 0.1,'kilometers');
 
 ```
-Returns a **[FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects)&lt;[Polygon](http://geojson.org/geojson-spec.html#polygon)>** grid of polygons
+Returns a **[FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects)&lt;[Polygon](http://geojson.org/geojson-spec.html#polygon)>** grid of polygons with a property field `IDW`
 
 
 ## Installation & Use

@@ -4,17 +4,21 @@ var squareGrid = require('turf-square-grid');
 var centroid = require('turf-centroid');
 var extent = require('turf-extent');
 
+Takes a FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects)&lt;[Point](http://geojson.org/geojson-spec.html#point)>  of sampled points with a property of *known value* and returns a [FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects)&lt;[Polygon](http://geojson.org/geojson-spec.html#polygon)>  [grid](http://turfjs.org/docs/#squaregrid) with an *interpolated value* for each grid cell, according to a distance-decay exponent and a cell depth parameter (in the specified unit of measurement).
+
 /**
  *
- *  Takes a set of known points, a power parameter, a cell depth, a unit of measurement
- * and returns a set of square polygons in a grid with a property IDW for each cell
+ * Takes a FeatureCollection of points with known value, a power parameter, a cell depth, a unit of measurement
+ * and returns a FeatureCollection of polygons in a square-grid with an interpolated value property "IDW" for each grid cell.
+ * It finds application when in need of creating a continuous surface (i.e. rainfall, temperature, chemical dispersion surface...) 
+ * from a set of spatially scattered points.
  *
  * @param  {FeatureCollection<Point>} controlPoints Sampled points with known value
- * @param  {String} valueField    GeoJson field containing the data value to interpolate on
- * @param  {Number} b             Exponent regulating the distance weighting
+ * @param  {String} valueField    GeoJSON field containing the known value to interpolate on
+ * @param  {Number} b             Exponent regulating the distance-decay weighting
  * @param  {Number} cellWidth     The distance across each cell
- * @param  {String} units         Used in calculating cellWidth ('miles' or 'kilometers')
- * @return {FeatureCollection<Polygon>} grid A grid of polygons where each cell has an IDW value
+ * @param  {String} units         Units to use for cellWidth ('miles' or 'kilometers')
+ * @return {FeatureCollection<Polygon>} grid A grid of polygons with a property field "IDW"
  */
 module.exports = function (controlPoints, valueField, b, cellWidth, units) {
     // check if field containing data exists..
