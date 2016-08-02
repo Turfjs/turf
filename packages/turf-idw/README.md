@@ -1,8 +1,6 @@
-# @turf/turf-idw
-
 # Inverse Distance Weighting (I.D.W.)
 
-Inverse Distance Weighting (IDW) is a type of deterministic, nonlinear  interpolation method over a known set of points.
+Inverse Distance Weighting (IDW) is a type of deterministic, nonlinear interpolation method over a set of points.
 
 ### `IDW(controlPoints, valueField, b, cellWidth, units)`
 
