@@ -1,10 +1,10 @@
-# turf-idw
-Today a plain IDW alg. implemented in JS. Tomorrow a Turf.js package? Maybe?
+# @turf/turf-idw
 
+# Inverse Distance Weighting (I.D.W.)
 
 ### `IDW(controlPoints, valueField, b, cellWidth, units)`
 
-Takes a set of known sampled points, a property containing data value, an exponent parameter, a cell depth, a unit of measurement and returns a set of square polygons in a grid with an IDW value for each cell.
+Takes a set of known sampled points, a property containing data value, an exponent parameter, a cell depth, a unit of measurement and returns a set of square polygons in a grid with an interpolated value for each gridcell.
 
 Based on the [Inverse Distance Weighting](https://en.wikipedia.org/wiki/Inverse_distance_weighting) interpolation algorithm as covered in the following (among other) resources: [1], [2].
 
@@ -51,3 +51,25 @@ $ npm test
 [1] _O’Sullivan, D., & Unwin, D. (2010). Geographic Information Analysis (2nd Edition). 432pp. Hoboken, New Jersey (USA): John Wiley & Sons, Inc._
 
 [2] _Xiao, N. (2016). GIS Algorithms, 336pp. SAGE Publications Ltd._
+
+
+---
+
+This module is part of the [Turfjs project](http://turfjs.org/), an open source
+module collection dedicated to geographic algorithms. It is maintained in the
+[Turfjs/turf](https://github.com/Turfjs/turf) repository, where you can create
+PRs and issues.
+
+### Installation
+
+Install this module individually:
+
+```sh
+$ npm install @turf/along
+```
+
+Or install the Turf module that includes it as a function:
+
+```sh
+$ npm install @turf/turf
+```
