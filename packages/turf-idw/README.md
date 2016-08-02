@@ -2,11 +2,16 @@
 
 # Inverse Distance Weighting (I.D.W.)
 
+Inverse Distance Weighting (IDW) is a type of deterministic, nonlinear  interpolation method over a known set of points.
+
 ### `IDW(controlPoints, valueField, b, cellWidth, units)`
 
-Takes a set of known sampled points, a property containing data value, an exponent parameter, a cell depth, a unit of measurement and returns a set of square polygons in a grid with an interpolated value for each gridcell.
+Takes a [FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects)&lt;[Point](http://geojson.org/geojson-spec.html#point)>  of sampled points with a property of *known value* and returns a [FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects)&lt;[Polygon](http://geojson.org/geojson-spec.html#polygon)>  [grid](http://turfjs.org/docs/#squaregrid) with an *interpolated value* for each grid cell, according to a distance-decay exponent and a cell depth parameter (in the specified unit of measurement).
 
-Based on the [Inverse Distance Weighting](https://en.wikipedia.org/wiki/Inverse_distance_weighting) interpolation algorithm as covered in the following (among other) resources: [1], [2].
+It is based on the [Inverse Distance Weighting](https://en.wikipedia.org/wiki/Inverse_distance_weighting) interpolation algorithm as covered in the following resources: [1], [2].
+
+It finds application when in need of creating a continuous surface (i.e. rainfall, temperature, chemical dispersion surface...) from a set of spatially scattered points.
+
 
 
 
@@ -14,11 +19,11 @@ Based on the [Inverse Distance Weighting](https://en.wikipedia.org/wiki/Inverse_
 
 | parameter   | type           | description                              |
 | ----------- | -------------- | ---------------------------------------- |
-| `controlPoints`    | FeatureCollection<Point> | Sampled points with known value |
-| `valueField`    | String | GeoJSON field containing the data value to interpolate on |
-| `b` | Number         | Exponent regulating the distance weighting                       |
-| `cellWidth`     | Number         | The distance across each cell               |
-| `units`        |String | Used in calculating cellWidth ('miles' or 'kilometers')|
+| `controlPoints`    | **[FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects)&lt;[Point](http://geojson.org/geojson-spec.html#point)>** | Sampled points with known value |
+| `valueField`    | **[String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** | GeoJSON field containing the known value to interpolate on |
+| `b` | **[Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)**         | Exponent regulating the distance-decay weighting                       |
+| `cellWidth`     |**[Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)**        | Width of each cell               |
+| `units`        |**[String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** |  Units to use for cellWidth ('miles' or 'kilometers')|
 
 ### Example
 
@@ -34,6 +39,8 @@ var controlPoints = JSON.parse(fs.readFileSync('./data/data.geojson'));
 var IDWSurface = IDW(controlPoints,'value', 0.5, 0.1,'kilometers');
 
 ```
+Returns a **[FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects)&lt;[Polygon](http://geojson.org/geojson-spec.html#polygon)>** grid of polygons
+
 
 ## Installation & Use
 
@@ -53,23 +60,3 @@ $ npm test
 [2] _Xiao, N. (2016). GIS Algorithms, 336pp. SAGE Publications Ltd._
 
 
----
-
-This module is part of the [Turfjs project](http://turfjs.org/), an open source
-module collection dedicated to geographic algorithms. It is maintained in the
-[Turfjs/turf](https://github.com/Turfjs/turf) repository, where you can create
-PRs and issues.
-
-### Installation
-
-Install this module individually:
-
-```sh
-$ npm install @turf/along
-```
-
-Or install the Turf module that includes it as a function:
-
-```sh
-$ npm install @turf/turf
-```
