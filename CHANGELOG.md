@@ -1,8 +1,39 @@
-# 3.0.0
+# 3.0.11
 
-* removed turf-merge
+Fix turf-line-slice bug with vertical linestrings.
 
-## Upgrading from v2
+# 3.0.1
+
+This is a big change in Turf! 3.0.0 is a release that targets the development
+cycle of Turf, letting us work on it more and release more often.
+
+**Monorepo**
+
+Turf 3.x and forward is a **monorepo** project. We publish lots of little modules
+as usual, but there's one repo - turfjs/turf - that contains all the code
+and the issues for the Turf source code. We use [lerna](https://lernajs.io/)
+to link these packages together and make sure they work.
+
+Why? We already had internal turf modules, like `turf-meta`, and development
+was harder and harder - we had a bunch of custom scripts to do releases and
+tests, and these were just written for Turf. Lerna is from the very popular
+and very well-maintained [babel](http://www.babeljs.io) project, and it
+works really well, and reduces maintainer sadness.
+
+**Simplicity**
+
+Turf grew a bunch of modules that weren't totally necessary, or were
+expressing only a line or two of JavaScript. We want to make things easier,
+but these modules didn't make code more expressive and they hid complexity
+where it didn't need to be hidden. Turf 3.x focuses on the core
+functionalities we need, making sure they're tested and performant.
+
+turf-erase has been renamed turf-difference to make its name more similar to the equivalents in other libraries.
+
+Removed modules: merge, sum, min, max, average, median, variance, deviation, filter, remove, jenks, quantile.
+See the upgrade guide below for replacements.
+
+**Upgrading from v2**
 
 **If you were using turf-merge**
 
@@ -48,6 +79,14 @@ like simple-statistics or science.js.
 var values = features.map(function(feature) {
   return feature.properties.value;
 });
+```
+
+**If you were using turf-extent**
+
+turf-extent's name was changed to turf-bbox. It is functionally the same.
+
+```js
+turf.bbox(poly) // [minx, miny, maxx, maxy]
 ```
 
 # 2.0.0

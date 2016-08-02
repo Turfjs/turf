@@ -1,26 +1,17 @@
-# turf-line-distance
+# @turf/line-distance
 
-[![build status](https://secure.travis-ci.org/Turfjs/turf-line-distance.png)](http://travis-ci.org/Turfjs/turf-line-distance)
+# lineDistance
 
-turf-line-distance ---
+Takes a [line](http://geojson.org/geojson-spec.html#linestring) and measures its length in the specified units.
 
+**Parameters**
 
-### `turf.line-distance(line, units)`
+-   `line` **[Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;[LineString](http://geojson.org/geojson-spec.html#linestring)>** line to measure
+-   `units` **\[[String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)]** can be degrees, radians, miles, or kilometers (optional, default `kilometers`)
 
-Takes a LineString|line and measures its length in the specified units.
+**Examples**
 
-
-### Parameters
-
-| parameter | type                    | description                                   |
-| --------- | ----------------------- | --------------------------------------------- |
-| `line`    | Feature\.\<LineString\> | line to measure                               |
-| `units`   | String                  | can be degrees, radians, miles, or kilometers |
-
-
-### Example
-
-```js
+```javascript
 var line = {
   "type": "Feature",
   "properties": {},
@@ -44,21 +35,25 @@ var length = turf.lineDistance(line, 'miles');
 //=length
 ```
 
+Returns **[Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** length of the input line
 
-**Returns** `Number`, length of the input line
+---
 
-## Installation
+This module is part of the [Turfjs project](http://turfjs.org/), an open source
+module collection dedicated to geographic algorithms. It is maintained in the
+[Turfjs/turf](https://github.com/Turfjs/turf) repository, where you can create
+PRs and issues.
 
-Requires [nodejs](http://nodejs.org/).
+### Installation
+
+Install this module individually:
 
 ```sh
-$ npm install turf-line-distance
+$ npm install @turf/line-distance
 ```
 
-## Tests
+Or install the Turf module that includes it as a function:
 
 ```sh
-$ npm test
+$ npm install @turf/turf
 ```
-
-

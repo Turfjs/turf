@@ -4,7 +4,6 @@ var geometryArea = require('geojson-area').geometry;
  * Takes a one or more features and returns their area
  * in square meters.
  *
- * @category measurement
  * @param {(Feature|FeatureCollection)} input input features
  * @return {Number} area in square meters
  * @example

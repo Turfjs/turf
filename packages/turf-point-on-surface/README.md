@@ -1,29 +1,20 @@
-# turf-point-on-surface
+# @turf/point-on-surface
 
-[![build status](https://secure.travis-ci.org/Turfjs/turf-point-on-surface.png)](http://travis-ci.org/Turfjs/turf-point-on-surface)
+# pointOnSurface
 
-turf point-on-surface module
+Takes a feature and returns a [Point](http://geojson.org/geojson-spec.html#point) guaranteed to be on the surface of the feature.
 
+-   Given a [Polygon](http://geojson.org/geojson-spec.html#polygon), the point will be in the area of the polygon
+-   Given a [LineString](http://geojson.org/geojson-spec.html#linestring), the point will be along the string
+-   Given a [Point](http://geojson.org/geojson-spec.html#point), the point will the same as the input
 
-### `turf.point-on-surface(input)`
+**Parameters**
 
-Takes a feature and returns a Point guaranteed to be on the surface of the feature.
+-   `fc` **([Feature](http://geojson.org/geojson-spec.html#feature-objects) \| [FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects))** any feature or set of features
 
-* Given a Polygon, the point will be in the area of the polygon
-* Given a LineString, the point will be along the string
-* Given a Point, the point will the same as the input
+**Examples**
 
-
-### Parameters
-
-| parameter | type                       | description                    |
-| --------- | -------------------------- | ------------------------------ |
-| `input`   | Feature\,FeatureCollection | any feature or set of features |
-
-
-### Example
-
-```js
+```javascript
 // create a random polygon
 var polygon = turf.random('polygon');
 
@@ -40,21 +31,25 @@ var result = {
 //=result
 ```
 
+Returns **[Feature](http://geojson.org/geojson-spec.html#feature-objects)** a point on the surface of `input`
 
-**Returns** `Feature`, a point on the surface of `input`
+---
 
-## Installation
+This module is part of the [Turfjs project](http://turfjs.org/), an open source
+module collection dedicated to geographic algorithms. It is maintained in the
+[Turfjs/turf](https://github.com/Turfjs/turf) repository, where you can create
+PRs and issues.
 
-Requires [nodejs](http://nodejs.org/).
+### Installation
+
+Install this module individually:
 
 ```sh
-$ npm install turf-point-on-surface
+$ npm install @turf/point-on-surface
 ```
 
-## Tests
+Or install the Turf module that includes it as a function:
 
 ```sh
-$ npm test
+$ npm install @turf/turf
 ```
-
-

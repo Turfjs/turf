@@ -1,29 +1,20 @@
-# turf-isolines
+# @turf/isolines
 
-[![build status](https://secure.travis-ci.org/Turfjs/turf-isolines.png)](http://travis-ci.org/Turfjs/turf-isolines)
+# isolines
 
-turf isolines module
-
-
-### `turf.isolines(points, z, resolution, breaks)`
-
-Takes Point|points with z-values and an array of
+Takes [points](http://geojson.org/geojson-spec.html#point) with z-values and an array of
 value breaks and generates [isolines](http://en.wikipedia.org/wiki/Isoline).
 
+**Parameters**
 
-### Parameters
+-   `points` **[FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects)&lt;[Point](http://geojson.org/geojson-spec.html#point)>** input points
+-   `z` **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** the property name in `points` from which z-values will be pulled
+-   `resolution` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** resolution of the underlying grid
+-   `breaks` **[Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)>** where to draw contours
 
-| parameter    | type                         | description                                                      |
-| ------------ | ---------------------------- | ---------------------------------------------------------------- |
-| `points`     | FeatureCollection\.\<Point\> | input points                                                     |
-| `z`          | String                       | the property name in `points` from which z-values will be pulled |
-| `resolution` | Number                       | resolution of the underlying grid                                |
-| `breaks`     | Array\.\<Number\>            | where to draw contours                                           |
+**Examples**
 
-
-### Example
-
-```js
+```javascript
 // create random points with random
 // z-values in their properties
 var points = turf.random('point', 100, {
@@ -37,21 +28,25 @@ var isolined = turf.isolines(points, 'z', 15, breaks);
 //=isolined
 ```
 
+Returns **[FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects)&lt;[LineString](http://geojson.org/geojson-spec.html#linestring)>** isolines
 
-**Returns** `FeatureCollection.<LineString>`, isolines
+---
 
-## Installation
+This module is part of the [Turfjs project](http://turfjs.org/), an open source
+module collection dedicated to geographic algorithms. It is maintained in the
+[Turfjs/turf](https://github.com/Turfjs/turf) repository, where you can create
+PRs and issues.
 
-Requires [nodejs](http://nodejs.org/).
+### Installation
+
+Install this module individually:
 
 ```sh
-$ npm install turf-isolines
+$ npm install @turf/isolines
 ```
 
-## Tests
+Or install the Turf module that includes it as a function:
 
 ```sh
-$ npm test
+$ npm install @turf/turf
 ```
-
-

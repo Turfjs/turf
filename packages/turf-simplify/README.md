@@ -1,27 +1,19 @@
-# turf-simplify
+# @turf/simplify
 
-[![build status](https://secure.travis-ci.org/Turfjs/turf-simplify.png)](http://travis-ci.org/Turfjs/turf-simplify)
+# simplify
 
-simplify geographic shapes
+Takes a [LineString](http://geojson.org/geojson-spec.html#linestring) or [Polygon](http://geojson.org/geojson-spec.html#polygon) and returns a simplified version. Internally uses [simplify-js](http://mourner.github.io/simplify-js/) to perform simplification.
 
+**Parameters**
 
-### `turf.simplify(feature, tolerance, highQuality)`
+-   `feature` **([Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;([LineString](http://geojson.org/geojson-spec.html#linestring) \| [Polygon](http://geojson.org/geojson-spec.html#polygon) \| [MultiLineString](http://geojson.org/geojson-spec.html#multilinestring) \| [MultiPolygon](http://geojson.org/geojson-spec.html#multipolygon))> | [FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects) \| [GeometryCollection](http://geojson.org/geojson-spec.html#geometrycollection))** feature to be simplified
+-   `tolerance` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** simplification tolerance
+-   `highQuality` **[boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** whether or not to spend more time to create
+    a higher-quality simplification with a different algorithm
 
-Takes a LineString or Polygon and returns a simplified version. Internally uses [simplify-js](http://mourner.github.io/simplify-js/) to perform simplification.
+**Examples**
 
-
-### Parameters
-
-| parameter     | type                            | description                                                                                            |
-| ------------- | ------------------------------- | ------------------------------------------------------------------------------------------------------ |
-| `feature`     | Feature\.\<LineString|Polygon\> | feature to be simplified                                                                               |
-| `tolerance`   | Number                          | simplification tolerance                                                                               |
-| `highQuality` | Boolean                         | whether or not to spend more time to create a higher-quality simplification with a different algorithm |
-
-
-### Example
-
-```js
+```javascript
 var feature = {
   "type": "Feature",
   "properties": {},
@@ -62,21 +54,25 @@ var simplified = turf.simplify(
 //=simplified
 ```
 
+Returns **([Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;([LineString](http://geojson.org/geojson-spec.html#linestring) \| [Polygon](http://geojson.org/geojson-spec.html#polygon) \| [MultiLineString](http://geojson.org/geojson-spec.html#multilinestring) \| [MultiPolygon](http://geojson.org/geojson-spec.html#multipolygon))> | [FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects) \| [GeometryCollection](http://geojson.org/geojson-spec.html#geometrycollection))** a simplified feature
 
-**Returns** `Feature.<LineString|Polygon>`, a simplified feature
+---
 
-## Installation
+This module is part of the [Turfjs project](http://turfjs.org/), an open source
+module collection dedicated to geographic algorithms. It is maintained in the
+[Turfjs/turf](https://github.com/Turfjs/turf) repository, where you can create
+PRs and issues.
 
-Requires [nodejs](http://nodejs.org/).
+### Installation
+
+Install this module individually:
 
 ```sh
-$ npm install turf-simplify
+$ npm install @turf/simplify
 ```
 
-## Tests
+Or install the Turf module that includes it as a function:
 
 ```sh
-$ npm test
+$ npm install @turf/turf
 ```
-
-

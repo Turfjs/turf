@@ -1,67 +1,74 @@
-# turf-invariant
+# @turf/invariant
 
-[![build status](https://secure.travis-ci.org/Turfjs/turf-invariant.png)](http://travis-ci.org/Turfjs/turf-invariant)
+# getCoord
 
-enforce expectations about inputs to turf
+Unwrap a coordinate from a Feature with a Point geometry, a Point
+geometry, or a single coordinate.
 
+**Parameters**
 
-### `geojsonType(value, type, name)`
+-   `obj` **Any** any value
+
+Returns **[Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)>** a coordinate
+
+# geojsonType
 
 Enforce expectations about types of GeoJSON objects for Turf.
 
+**Parameters**
 
-### Parameters
-
-| parameter | type    | description              |
-| --------- | ------- | ------------------------ |
-| `value`   | GeoJSON | any GeoJSON object       |
-| `type`    | string  | expected GeoJSON type    |
-| `name`    | String  | name of calling function |
+-   `value` **GeoJSON** any GeoJSON object
+-   `type` **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** expected GeoJSON type
+-   `name` **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** name of calling function
 
 
+-   Throws **[Error](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error)** if value is not the expected type.
 
-### `featureOf(feature, types, name)`
+# featureOf
 
-Enforce expectations about types of Feature inputs for Turf.
-Internally this uses geojsonType to judge geometry types.
+Enforce expectations about types of [Feature](http://geojson.org/geojson-spec.html#feature-objects) inputs for Turf.
+Internally this uses [geojsonType](#geojsontype) to judge geometry types.
 
+**Parameters**
 
-### Parameters
-
-| parameter | type    | description                              |
-| --------- | ------- | ---------------------------------------- |
-| `feature` | Feature | a feature with an expected geometry type |
-| `types`   | string  | expected GeoJSON type                    |
-| `name`    | String  | name of calling function                 |
+-   `feature` **[Feature](http://geojson.org/geojson-spec.html#feature-objects)** a feature with an expected geometry type
+-   `type` **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** expected GeoJSON type
+-   `name` **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** name of calling function
 
 
+-   Throws **[Error](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error)** error if value is not the expected type.
 
-### `collectionOf(featurecollection, type, name)`
+# collectionOf
 
-Enforce expectations about types of FeatureCollection inputs for Turf.
-Internally this uses geojsonType to judge geometry types.
+Enforce expectations about types of [FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects) inputs for Turf.
+Internally this uses [geojsonType](#geojsontype) to judge geometry types.
 
+**Parameters**
 
-### Parameters
-
-| parameter           | type              | description                                           |
-| ------------------- | ----------------- | ----------------------------------------------------- |
-| `featurecollection` | FeatureCollection | a featurecollection for which features will be judged |
-| `type`              | string            | expected GeoJSON type                                 |
-| `name`              | String            | name of calling function                              |
+-   `featurecollection` **[FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects)** a featurecollection for which features will be judged
+-   `type` **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** expected GeoJSON type
+-   `name` **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** name of calling function
 
 
-## Installation
+-   Throws **[Error](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error)** if value is not the expected type.
 
-Requires [nodejs](http://nodejs.org/).
+---
 
-```sh
-$ npm install turf-invariant
-```
+This module is part of the [Turfjs project](http://turfjs.org/), an open source
+module collection dedicated to geographic algorithms. It is maintained in the
+[Turfjs/turf](https://github.com/Turfjs/turf) repository, where you can create
+PRs and issues.
 
-## Tests
+### Installation
+
+Install this module individually:
 
 ```sh
-$ npm test
+$ npm install @turf/invariant
 ```
 
+Or install the Turf module that includes it as a function:
+
+```sh
+$ npm install @turf/turf
+```

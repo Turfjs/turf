@@ -1,5 +1,5 @@
-var each = require('turf-meta').coordEach;
-var point = require('turf-helpers').point;
+var each = require('@turf/meta').coordEach;
+var point = require('@turf/helpers').point;
 
 /**
  * Takes one or more features and calculates the centroid using
@@ -8,7 +8,6 @@ var point = require('turf-helpers').point;
  * the centroid of a set of polygons.
  *
  * @name centroid
- * @category measurement
  * @param {(Feature|FeatureCollection)} features input features
  * @return {Feature<Point>} the centroid of the input features
  * @example

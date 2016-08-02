@@ -12,6 +12,6 @@ test('bearing', function(t){
   };
 
   var bear = bearing(pt1, pt2);
-  t.ok(bear, 'should return a bearing');
+  t.equal(bear.toFixed(2), '-159.42', 'should return the correct bearing');
   t.end();
 });

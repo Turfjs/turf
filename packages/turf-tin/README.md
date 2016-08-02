@@ -1,13 +1,8 @@
-# turf-tin
+# @turf/tin
 
-[![build status](https://secure.travis-ci.org/Turfjs/turf-tin.png)](http://travis-ci.org/Turfjs/turf-tin)
+# tin
 
-turf tin module
-
-
-### `turf.tin(points, propertyName)`
-
-Takes a set of Point|points and the name of a z-value property and
+Takes a set of [points](http://geojson.org/geojson-spec.html#point) and the name of a z-value property and
 creates a [Triangulated Irregular Network](http://en.wikipedia.org/wiki/Triangulated_irregular_network),
 or a TIN for short, returned as a collection of Polygons. These are often used
 for developing elevation contour maps or stepped heat visualizations.
@@ -16,18 +11,15 @@ This triangulates the points, as well as adds properties called `a`, `b`,
 and `c` representing the value of the given `propertyName` at each of
 the points that represent the corners of the triangle.
 
+**Parameters**
 
-### Parameters
+-   `points` **[FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects)&lt;[Point](http://geojson.org/geojson-spec.html#point)>** input points
+-   `z` **\[[String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)]** name of the property from which to pull z values
+    This is optional: if not given, then there will be no extra data added to the derived triangles.
 
-| parameter      | type                         | description                                                                                                                                                   |
-| -------------- | ---------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `points`       | FeatureCollection\.\<Point\> | input points                                                                                                                                                  |
-| `propertyName` | String                       | _optional:_ name of the property from which to pull z values This is optional: if not given, then there will be no extra data added to the derived triangles. |
+**Examples**
 
-
-### Example
-
-```js
+```javascript
 // generate some random point data
 var points = turf.random('points', 30, {
   bbox: [50, 30, 70, 50]
@@ -49,21 +41,25 @@ for (var i = 0; i < tin.features.length; i++) {
 //=tin
 ```
 
+Returns **[FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects)&lt;[Polygon](http://geojson.org/geojson-spec.html#polygon)>** TIN output
 
-**Returns** `FeatureCollection.<Polygon>`, TIN output
+---
 
-## Installation
+This module is part of the [Turfjs project](http://turfjs.org/), an open source
+module collection dedicated to geographic algorithms. It is maintained in the
+[Turfjs/turf](https://github.com/Turfjs/turf) repository, where you can create
+PRs and issues.
 
-Requires [nodejs](http://nodejs.org/).
+### Installation
+
+Install this module individually:
 
 ```sh
-$ npm install turf-tin
+$ npm install @turf/tin
 ```
 
-## Tests
+Or install the Turf module that includes it as a function:
 
 ```sh
-$ npm test
+$ npm install @turf/turf
 ```
-
-

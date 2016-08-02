@@ -2,8 +2,7 @@
  * Takes a {@link Polygon|polygon} and returns {@link Point|points} at all self-intersections.
  *
  * @name kinks
- * @category misc
- * @param {Feature<Polygon>} polygon input polygon
+ * @param {Feature<Polygon>|Polygon} polygon input polygon
  * @returns {FeatureCollection<Point>} self-intersections
  * @example
  * var poly = {
@@ -32,14 +31,13 @@
  * //=result
  */
 
-var point = require('turf-helpers').point;
-var fc = require('turf-helpers').featureCollection;
+var point = require('@turf/helpers').point;
 
 module.exports = function (polyIn) {
     var poly;
     var results = {
-        intersections: fc([]),
-        fixed: null
+        type: 'FeatureCollection',
+        features: []
     };
     if (polyIn.type === 'Feature') {
         poly = polyIn.geometry;
@@ -56,9 +54,9 @@ module.exports = function (polyIn) {
                     }
 
                     var intersection = lineIntersects(ring1[i][0], ring1[i][1], ring1[i + 1][0], ring1[i + 1][1],
-            ring2[k][0], ring2[k][1], ring2[k + 1][0], ring2[k + 1][1]);
+                        ring2[k][0], ring2[k][1], ring2[k + 1][0], ring2[k + 1][1]);
                     if (intersection) {
-                        results.intersections.features.push(point([intersection[0], intersection[1]]));
+                        results.features.push(point([intersection[0], intersection[1]]));
                     }
                 }
             }

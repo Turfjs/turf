@@ -1,6 +1,6 @@
 var meta = require('./');
 var meta2 = require('./');
-var random = require('turf-random');
+var random = require('@turf/random');
 
 var n = 100000;
 var pnts = random('points', n).features;

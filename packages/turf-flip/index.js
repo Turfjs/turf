@@ -1,11 +1,10 @@
-var coordEach = require('turf-meta').coordEach;
+var coordEach = require('@turf/meta').coordEach;
 
 /**
  * Takes input features and flips all of their coordinates
  * from `[x, y]` to `[y, x]`.
  *
  * @name flip
- * @category misc
  * @param {(Feature|FeatureCollection)} input input features
  * @returns {(Feature|FeatureCollection)} a feature or set of features of the same type as `input` with flipped coordinates
  * @example

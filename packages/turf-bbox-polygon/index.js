@@ -1,10 +1,9 @@
-var polygon = require('turf-helpers').polygon;
+var polygon = require('@turf/helpers').polygon;
 
 /**
  * Takes a bbox and returns an equivalent {@link Polygon|polygon}.
  *
  * @name bboxPolygon
- * @category measurement
  * @param {Array<number>} bbox an Array of bounding box coordinates in the form: ```[xLow, yLow, xHigh, yHigh]```
  * @return {Feature<Polygon>} a Polygon representation of the bounding box
  * @example

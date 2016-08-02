@@ -32,7 +32,10 @@ test('kinks', function(t){
 
   var hourglassKinks = kinks(hourglass);
   t.ok(hourglassKinks, 'get self intersection from hourglass polygon');
-  t.equal(hourglassKinks.intersections.features.length, 2);
+  t.deepEqual(hourglassKinks, {
+    features: [ { geometry: { coordinates: [ -12.047632938440815, 8.885666404927512 ], type: 'Point' }, properties: {}, type: 'Feature' }, { geometry: { coordinates: [ -12.047632938440815, 8.885666404927512 ], type: 'Point' }, properties: {}, type: 'Feature' } ],
+    type: 'FeatureCollection'
+  });
 
   var triple = {
         type: "Polygon",
@@ -76,7 +79,7 @@ test('kinks', function(t){
 
   var tripleKinks = kinks(triple);
   t.ok(tripleKinks, 'get self intersection from triple intersecting polygon');
-  t.equal(tripleKinks.intersections.features.length, 6);
+  t.equal(tripleKinks.features.length, 6);
 
   t.end();
 });
@@ -115,7 +118,12 @@ test('kinks', function (t) {
   var featureKinks = kinks(feature);
 
   t.ok(featureKinks, 'get self intersection from hourglass polygon feature');
-  t.equal(featureKinks.intersections.features.length, 2);
+  t.deepEqual(featureKinks, {
+    features: [
+      { geometry: { coordinates: [ -12.047632938440815, 8.885666404927512 ], type: 'Point' }, properties: {}, type: 'Feature' },
+      { geometry: { coordinates: [ -12.047632938440815, 8.885666404927512 ], type: 'Point' }, properties: {}, type: 'Feature' } ],
+    type: 'FeatureCollection'
+  });
 
   t.end();
 });
@@ -147,7 +155,17 @@ test('kinks', function (t) {
   var featureKinks = kinks(feature);
 
   t.ok(featureKinks, 'get self-intersection when vertex hits another side');
-  t.equal(featureKinks.intersections.features.length, 4);
+  t.equal(featureKinks.features.length, 4);
+  t.deepEqual(featureKinks, {
+    type: 'FeatureCollection',
+    features: [
+      { geometry: { coordinates: [ 0.25, 0 ], type: 'Point' }, properties: {}, type: 'Feature' },
+      { geometry: { coordinates: [ 0.5, 0 ], type: 'Point' }, properties: {}, type: 'Feature' },
+      { geometry: { coordinates: [ 0.25, 0 ], type: 'Point' }, properties: {}, type: 'Feature' },
+      { geometry: { coordinates: [ 0.5, 0 ], type: 'Point' }, properties: {}, type: 'Feature' }
+    ]
+  });
+
 
   t.end();
 });

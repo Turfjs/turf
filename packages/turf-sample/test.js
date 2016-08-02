@@ -1,7 +1,7 @@
 var test = require('tape');
 var sample = require('./');
-var featureCollection = require('turf-helpers').featureCollection;
-var point = require('turf-helpers').point;
+var featureCollection = require('@turf/helpers').featureCollection;
+var point = require('@turf/helpers').point;
 
 test('remove', function(t){
   var points = featureCollection(

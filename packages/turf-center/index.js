@@ -1,11 +1,10 @@
-var bbox = require('turf-bbox'),
-    point = require('turf-helpers').point;
+var bbox = require('@turf/bbox'),
+    point = require('@turf/helpers').point;
 
 /**
  * Takes a {@link FeatureCollection} and returns the absolute center point of all features.
  *
  * @name center
- * @category measurement
  * @param {FeatureCollection} features input features
  * @return {Feature<Point>} a Point feature at the
  * absolute center point of all input features

@@ -1,7 +1,7 @@
 //http://en.wikipedia.org/wiki/Delaunay_triangulation
 //https://github.com/ironwallaby/delaunay
-var polygon = require('turf-helpers').polygon;
-var featurecollection = require('turf-helpers').featureCollection;
+var polygon = require('@turf/helpers').polygon;
+var featurecollection = require('@turf/helpers').featureCollection;
 
 /**
  * Takes a set of {@link Point|points} and the name of a z-value property and
@@ -14,9 +14,8 @@ var featurecollection = require('turf-helpers').featureCollection;
  * the points that represent the corners of the triangle.
  *
  * @name tin
- * @category interpolation
  * @param {FeatureCollection<Point>} points input points
- * @param {String=} propertyName name of the property from which to pull z values
+ * @param {String=} z name of the property from which to pull z values
  * This is optional: if not given, then there will be no extra data added to the derived triangles.
  * @return {FeatureCollection<Polygon>} TIN output
  * @example

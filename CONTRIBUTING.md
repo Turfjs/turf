@@ -35,3 +35,13 @@ turf-hello
 	|-index.js
 	|-README.md
 ```
+
+## Publishing
+
+Install lerna:
+
+    npm install -g lerna@2.0.0-beta.9
+
+Publish a test release:
+
+   lerna publish --canary

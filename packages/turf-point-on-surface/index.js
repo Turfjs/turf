@@ -1,8 +1,8 @@
-var featureCollection = require('turf-helpers').featureCollection;
-var centroid = require('turf-center');
-var distance = require('turf-distance');
-var inside = require('turf-inside');
-var explode = require('turf-explode');
+var featureCollection = require('@turf/helpers').featureCollection;
+var centroid = require('@turf/center');
+var distance = require('@turf/distance');
+var inside = require('@turf/inside');
+var explode = require('@turf/explode');
 
 /**
  * Takes a feature and returns a {@link Point} guaranteed to be on the surface of the feature.
@@ -11,7 +11,6 @@ var explode = require('turf-explode');
  * * Given a {@link LineString}, the point will be along the string
  * * Given a {@link Point}, the point will the same as the input
  *
- * @category measurement
  * @param {(Feature|FeatureCollection)} fc any feature or set of features
  * @returns {Feature} a point on the surface of `input`
  * @example

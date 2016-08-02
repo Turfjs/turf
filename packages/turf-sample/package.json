@@ -1,6 +1,6 @@
 {
-  "name": "turf-sample",
-  "version": "3.0.0",
+  "name": "@turf/sample",
+  "version": "3.3.3",
   "description": "turf sample module",
   "main": "index.js",
   "scripts": {
@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/Turfjs/turf-sample.git"
+    "url": "git://github.com/Turfjs/turf.git"
   },
   "keywords": [
     "geojson",
@@ -19,15 +19,15 @@
   "author": "morganherlocker",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/Turfjs/turf-sample/issues"
+    "url": "https://github.com/Turfjs/turf/issues"
   },
-  "homepage": "https://github.com/Turfjs/turf-sample",
+  "homepage": "https://github.com/Turfjs/turf",
   "devDependencies": {
     "benchmark": "^1.0.0",
     "tape": "^3.5.0",
-    "turf-helpers": "^3.0.0"
+    "@turf/helpers": "^3.3.3"
   },
   "dependencies": {
-    "turf-helpers": "^3.0.0"
+    "@turf/helpers": "^3.3.3"
   }
 }

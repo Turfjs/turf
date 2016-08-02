@@ -1,17 +1,14 @@
-// http://cs.selu.edu/~rbyrd/math/midpoint/
-// ((x1+x2)/2), ((y1+y2)/2)
-var invariant = require('turf-invariant');
+var bearing = require('@turf/bearing');
+var destination = require('@turf/destination');
+var distance = require('@turf/distance');
 
 /**
  * Takes two {@link Point|points} and returns a point midway between them.
- * This gives the middle point in terms of latitude and longitude averaging,
- * so the midpoint is guaranteed to fall on the line on an equirectangular
- * projection, but may not be halfway between the points on the globe.
+ * The midpoint is calculated geodesically, meaning the curvature of the earth is taken into account.
  *
  * @name midpoint
- * @category measurement
- * @param {Feature<Point>} pt1 first point
- * @param {Feature<Point>} pt2 second point
+ * @param {Feature<Point>} from first point
+ * @param {Feature<Point>} to second point
  * @return {Feature<Point>} a point midway between `pt1` and `pt2`
  * @example
  * var pt1 = {
@@ -42,14 +39,10 @@ var invariant = require('turf-invariant');
  *
  * //=result
  */
-module.exports = function (point1, point2) {
-    var coords1 = invariant.getCoord(point1);
-    var coords2 = invariant.getCoord(point2);
-    return {
-        type: 'Point',
-        coordinates: [
-            (coords1[0] + coords2[0]) / 2,
-            (coords1[1] + coords2[1]) / 2
-        ]
-    };
+module.exports = function (from, to) {
+    var dist = distance(from, to, 'miles');
+    var heading = bearing(from, to);
+    var midpoint = destination(from, dist / 2, heading, 'miles');
+
+    return midpoint;
 };

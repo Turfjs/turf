@@ -1,8 +1,8 @@
 var sample = require('./');
 var Benchmark = require('benchmark');
 var fs = require('fs');
-var featurecollection = require('turf-helpers').featureCollection;
-var point = require('turf-helpers').point;
+var featurecollection = require('@turf/helpers').featureCollection;
+var point = require('@turf/helpers').point;
 
 var points = featureCollection(
   [point(1,2, {team: 'Red Sox'}), 

@@ -1,0 +1,72 @@
+# @turf/line-slice-along
+
+# lineSliceAlong
+
+Takes a [line](http://geojson.org/geojson-spec.html#linestring), a specified distance along the line to a start [Point](http://geojson.org/geojson-spec.html#point),
+and a specified  distance along the line to a stop point
+and returns a subsection of the line in-between those points.
+
+This can be useful for extracting only the part of a route between two distances.
+
+**Parameters**
+
+-   `line` **[Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;[LineString](http://geojson.org/geojson-spec.html#linestring)>** input line
+-   `startDist` **[Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** distance along the line to starting point
+-   `stopDist` **[Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** distance along the line to ending point
+-   `units` **\[[String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)]** can be degrees, radians, miles, or kilometers (optional, default `kilometers`)
+
+**Examples**
+
+```javascript
+var line = {
+  "type": "Feature",
+  "properties": {},
+  "geometry": {
+    "type": "LineString",
+    "coordinates": [
+       [ 7.66845703125, 45.058001435398296 ],
+      [ 9.20654296875, 45.460130637921004 ],
+      [ 11.348876953125, 44.48866833139467 ],
+      [ 12.1728515625, 45.43700828867389 ],
+      [ 12.535400390625, 43.98491011404692 ],
+      [ 12.425537109375, 41.86956082699455 ],
+      [ 14.2437744140625, 40.83874913796459 ],
+      [ 14.765625, 40.681679458715635 ]
+    ]
+  }
+};
+var start = 12.5;
+
+var stop = 25;
+
+var units = 'miles';
+
+var sliced = turf.lineSliceAlong(start, stop, line, units);
+
+//=line
+
+//=sliced
+```
+
+Returns **[Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;[LineString](http://geojson.org/geojson-spec.html#linestring)>** sliced line
+
+---
+
+This module is part of the [Turfjs project](http://turfjs.org/), an open source
+module collection dedicated to geographic algorithms. It is maintained in the
+[Turfjs/turf](https://github.com/Turfjs/turf) repository, where you can create
+PRs and issues.
+
+### Installation
+
+Install this module individually:
+
+```sh
+$ npm install @turf/line-slice-along
+```
+
+Or install the Turf module that includes it as a function:
+
+```sh
+$ npm install @turf/turf
+```

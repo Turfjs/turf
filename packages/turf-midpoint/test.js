@@ -1,25 +1,72 @@
 var test = require('tape');
 var midpoint = require('./');
-var point = require('turf-helpers').point;
+var distance = require('@turf/distance');
+var point = require('@turf/helpers').point;
 
-test('midpoint', function(t){
-  var pt1 = point([0,0]);
+var units = 'miles';
+
+test('midpoint -- horizonatal equator', function(t){
+  var pt1 = point([0, 0]);
   var pt2 = point([10, 0]);
-  var expectedMidPoint = { type: 'Point', coordinates: [5, 0] };
-  var actualMidPoint = midpoint(pt1, pt2);
-  t.deepEqual(actualMidPoint, expectedMidPoint, 'should return the halfway point of a horizontal line starting off 0,0');
 
-  var pt1 = point([0,0]);
-  var pt2 = point([0,10]);
-  var expectedMidPoint = { type: 'Point', coordinates: [0, 5] };
-  var actualMidPoint = midpoint(pt1, pt2);
-  t.deepEqual(actualMidPoint, expectedMidPoint, 'should return the halfway point of a vertical line starting off 0,0');
+  var mid = midpoint(pt1, pt2);
 
-  var pt1 = point([1,1]);
-  var pt2 = point([11,11]);
-  var expectedMidPoint = { type: 'Point', coordinates: [6, 6] };
-  var actualMidPoint = midpoint(pt1, pt2);
-  t.deepEqual(actualMidPoint, expectedMidPoint, 'should return the halfway point of a diagonal line starting off 1,1');
+  t.equal(distance(pt1, mid, units), distance(pt2, mid, units))
+
+  t.end();
+});
+
+test('midpoint -- vertical from equator', function(t){
+  var pt1 = point([0, 0]);
+  var pt2 = point([0, 10]);
+
+  var mid = midpoint(pt1, pt2);
+
+  t.equal(distance(pt1, mid, units).toFixed(6), distance(pt2, mid, units).toFixed(6));
+
+  t.end();
+});
+
+test('midpoint -- vertical to equator', function(t){
+  var pt1 = point([0, 10]);
+  var pt2 = point([0, 0]);
+
+  var mid = midpoint(pt1, pt2);
+
+  t.equal(distance(pt1, mid, units).toFixed(6), distance(pt2, mid, units).toFixed(6));
+
+  t.end();
+});
+
+test('midpoint -- diagonal back over equator', function(t){
+  var pt1 = point([-1, 10]);
+  var pt2 = point([1, -1]);
+
+  var mid = midpoint(pt1, pt2);
+
+  t.equal(distance(pt1, mid, units).toFixed(6), distance(pt2, mid, units).toFixed(6));
+
+  t.end();
+});
+
+test('midpoint -- diagonal forward over equator', function(t){
+  var pt1 = point([-5, -1]);
+  var pt2 = point([5, 10]);
+
+  var mid = midpoint(pt1, pt2);
+
+  t.equal(distance(pt1, mid, units).toFixed(6), distance(pt2, mid, units).toFixed(6));
+
+  t.end();
+});
+
+test('midpoint -- long distance', function(t){
+  var pt1 = point([22.5,21.94304553343818]);
+  var pt2 = point([92.10937499999999,46.800059446787316]);
+
+  var mid = midpoint(pt1, pt2);
+
+  t.equal(distance(pt1, mid, units).toFixed(6), distance(pt2, mid, units).toFixed(6));
 
   t.end();
 });

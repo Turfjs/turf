@@ -1,25 +1,16 @@
-# turf-kinks
+# @turf/kinks
 
-[![build status](https://secure.travis-ci.org/Turfjs/turf-kinks.png)](http://travis-ci.org/Turfjs/turf-kinks)
+# kinks
 
-turf kinks module
+Takes a [polygon](http://geojson.org/geojson-spec.html#polygon) and returns [points](http://geojson.org/geojson-spec.html#point) at all self-intersections.
 
+**Parameters**
 
-### `turf.kinks(polygon)`
+-   `polygon` **([Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;[Polygon](http://geojson.org/geojson-spec.html#polygon)> | [Polygon](http://geojson.org/geojson-spec.html#polygon))** input polygon
 
-Takes a Polygon|polygon and returns Point|points at all self-intersections.
+**Examples**
 
-
-### Parameters
-
-| parameter | type                 | description   |
-| --------- | -------------------- | ------------- |
-| `polygon` | Feature\.\<Polygon\> | input polygon |
-
-
-### Example
-
-```js
+```javascript
 var poly = {
   "type": "Feature",
   "properties": {},
@@ -46,21 +37,25 @@ var result = {
 //=result
 ```
 
+Returns **[FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects)&lt;[Point](http://geojson.org/geojson-spec.html#point)>** self-intersections
 
-**Returns** `FeatureCollection.<Point>`, self-intersections
+---
 
-## Installation
+This module is part of the [Turfjs project](http://turfjs.org/), an open source
+module collection dedicated to geographic algorithms. It is maintained in the
+[Turfjs/turf](https://github.com/Turfjs/turf) repository, where you can create
+PRs and issues.
 
-Requires [nodejs](http://nodejs.org/).
+### Installation
+
+Install this module individually:
 
 ```sh
-$ npm install turf-kinks
+$ npm install @turf/kinks
 ```
 
-## Tests
+Or install the Turf module that includes it as a function:
 
 ```sh
-$ npm test
+$ npm install @turf/turf
 ```
-
-

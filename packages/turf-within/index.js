@@ -1,11 +1,10 @@
-var inside = require('turf-inside');
-var featureCollection = require('turf-helpers').featureCollection;
+var inside = require('@turf/inside');
+var featureCollection = require('@turf/helpers').featureCollection;
 
 /**
  * Takes a set of {@link Point|points} and a set of {@link Polygon|polygons} and returns the points that fall within the polygons.
  *
  * @name within
- * @category joins
  * @param {FeatureCollection<Point>} points input points
  * @param {FeatureCollection<Polygon>} polygons input polygons
  * @return {FeatureCollection<Point>} points that land within at least one polygon
@@ -81,13 +80,13 @@ var featureCollection = require('turf-helpers').featureCollection;
  *
  * //=ptsWithin
  */
-module.exports = function (ptFC, polyFC) {
+module.exports = function (points, polygons) {
     var pointsWithin = featureCollection([]);
-    for (var i = 0; i < polyFC.features.length; i++) {
-        for (var j = 0; j < ptFC.features.length; j++) {
-            var isInside = inside(ptFC.features[j], polyFC.features[i]);
+    for (var i = 0; i < polygons.features.length; i++) {
+        for (var j = 0; j < points.features.length; j++) {
+            var isInside = inside(points.features[j], polygons.features[i]);
             if (isInside) {
-                pointsWithin.features.push(ptFC.features[j]);
+                pointsWithin.features.push(points.features[j]);
             }
         }
     }

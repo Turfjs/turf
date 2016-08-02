@@ -1,14 +1,13 @@
-var featureCollection = require('turf-helpers').featureCollection;
-var each = require('turf-meta').coordEach;
-var point = require('turf-helpers').point;
+var featureCollection = require('@turf/helpers').featureCollection;
+var each = require('@turf/meta').coordEach;
+var point = require('@turf/helpers').point;
 
 /**
  * Takes a feature or set of features and returns all positions as
  * {@link Point|points}.
  *
  * @name explode
- * @category misc
- * @param {(Feature|FeatureCollection)} input input features
+ * @param {(Feature|FeatureCollection)} geojson input features
  * @return {FeatureCollection<point>} points representing the exploded input features
  * @throws {Error} if it encounters an unknown geometry type
  * @example
@@ -35,9 +34,9 @@ var point = require('turf-helpers').point;
  *
  * //=points
  */
-module.exports = function (layer) {
+module.exports = function (geojson) {
     var points = [];
-    each(layer, function (coord) {
+    each(geojson, function (coord) {
         points.push(point(coord));
     });
     return featureCollection(points);

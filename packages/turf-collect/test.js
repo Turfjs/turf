@@ -1,8 +1,8 @@
 var aggregate = require('./');
 var test = require('tape');
-var polygon = require('turf-helpers').polygon;
-var point = require('turf-helpers').point;
-var featurecollection = require('turf-helpers').featureCollection;
+var polygon = require('@turf/helpers').polygon;
+var point = require('@turf/helpers').point;
+var featurecollection = require('@turf/helpers').featureCollection;
 
 test('aggregate', function(t){
   var poly1 = polygon([[[0,0],[10,0],[10,10],[0,10],[0,0]]]);

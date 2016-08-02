@@ -1,4 +1,4 @@
-var invariant = require('turf-invariant');
+var invariant = require('@turf/invariant');
 
 // http://en.wikipedia.org/wiki/Even%E2%80%93odd_rule
 // modified from: https://github.com/substack/point-in-polygon/blob/master/index.js
@@ -9,7 +9,6 @@ var invariant = require('turf-invariant');
  * be convex or concave. The function accounts for holes.
  *
  * @name inside
- * @category joins
  * @param {Feature<Point>} point input point
  * @param {Feature<(Polygon|MultiPolygon)>} polygon input polygon or multipolygon
  * @return {Boolean} `true` if the Point is inside the Polygon; `false` if the Point is not inside the Polygon

@@ -1,11 +1,10 @@
-var each = require('turf-meta').coordEach;
+var each = require('@turf/meta').coordEach;
 
 /**
  * Takes a set of features, calculates the bbox of all input features, and returns a bounding box.
  *
  * @name bbox
- * @category measurement
- * @param {(Feature|FeatureCollection)} input input features
+ * @param {(Feature|FeatureCollection)} geojson input features
  * @return {Array<number>} the bounding box of `input` given
  * as an array in WSEN order (west, south, east, north)
  * @example
@@ -56,9 +55,9 @@ var each = require('turf-meta').coordEach;
  *
  * //=result
  */
-module.exports = function (layer) {
+module.exports = function (geojson) {
     var bbox = [Infinity, Infinity, -Infinity, -Infinity];
-    each(layer, function (coord) {
+    each(geojson, function (coord) {
         if (bbox[0] > coord[0]) bbox[0] = coord[0];
         if (bbox[1] > coord[1]) bbox[1] = coord[1];
         if (bbox[2] < coord[0]) bbox[2] = coord[0];

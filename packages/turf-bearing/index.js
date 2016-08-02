@@ -1,4 +1,4 @@
-var getCoord = require('turf-invariant').getCoord;
+var getCoord = require('@turf/invariant').getCoord;
 //http://en.wikipedia.org/wiki/Haversine_formula
 //http://www.movable-type.co.uk/scripts/latlong.html
 
@@ -6,10 +6,8 @@ var getCoord = require('turf-invariant').getCoord;
  * Takes two {@link Point|points} and finds the geographic bearing between them.
  *
  * @name bearing
- * @category measurement
  * @param {Feature<Point>} start starting Point
  * @param {Feature<Point>} end ending Point
- * @category measurement
  * @returns {Number} bearing in decimal degrees
  * @example
  * var point1 = {
@@ -44,11 +42,11 @@ var getCoord = require('turf-invariant').getCoord;
  *
  * //=bearing
  */
-module.exports = function (p1, p2) {
+module.exports = function (start, end) {
     var degrees2radians = Math.PI / 180;
     var radians2degrees = 180 / Math.PI;
-    var coordinates1 = getCoord(p1);
-    var coordinates2 = getCoord(p2);
+    var coordinates1 = getCoord(start);
+    var coordinates2 = getCoord(end);
 
     var lon1 = degrees2radians * coordinates1[0];
     var lon2 = degrees2radians * coordinates2[0];

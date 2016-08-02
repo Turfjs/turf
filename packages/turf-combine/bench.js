@@ -1,10 +1,10 @@
 var combine = require('./');
 var Benchmark = require('benchmark');
 var fs = require('fs');
-var point = require('turf-helpers').point;
-var linestring = require('turf-helpers').lineString;
-var polygon = require('turf-helpers').polygon;
-var featurecollection = require('turf-helpers').featureCollection;
+var point = require('@turf/helpers').point;
+var linestring = require('@turf/helpers').lineString;
+var polygon = require('@turf/helpers').polygon;
+var featurecollection = require('@turf/helpers').featureCollection;
 
 // MultiPoint
 var pt1 = point(50, 51)

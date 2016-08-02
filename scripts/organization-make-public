@@ -1,0 +1,3 @@
+#!/bin/bash
+
+npm access ls-packages turf:developers | jq -r 'keys | join("\n")' | parallel npm access public

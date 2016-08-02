@@ -1,27 +1,18 @@
-# turf-inside
+# @turf/inside
 
-[![build status](https://secure.travis-ci.org/Turfjs/turf-inside.png)](http://travis-ci.org/Turfjs/turf-inside)
+# inside
 
-turf inside module
-
-
-### `turf.inside(point, polygon)`
-
-Takes a Point and a Polygon or MultiPolygon and determines if the point resides inside the polygon. The polygon can
+Takes a [Point](http://geojson.org/geojson-spec.html#point) and a [Polygon](http://geojson.org/geojson-spec.html#polygon) or [MultiPolygon](http://geojson.org/geojson-spec.html#multipolygon) and determines if the point resides inside the polygon. The polygon can
 be convex or concave. The function accounts for holes.
 
+**Parameters**
 
-### Parameters
+-   `point` **[Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;[Point](http://geojson.org/geojson-spec.html#point)>** input point
+-   `polygon` **[Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;([Polygon](http://geojson.org/geojson-spec.html#polygon) \| [MultiPolygon](http://geojson.org/geojson-spec.html#multipolygon))>** input polygon or multipolygon
 
-| parameter | type                              | description                   |
-| --------- | --------------------------------- | ----------------------------- |
-| `point`   | Feature\.\<Point\>                | input point                   |
-| `polygon` | Feature\.\<Polygon|MultiPolygon\> | input polygon or multipolygon |
+**Examples**
 
-
-### Example
-
-```js
+```javascript
 var pt1 = {
   "type": "Feature",
   "properties": {
@@ -71,21 +62,25 @@ var isInside2 = turf.inside(pt2, poly);
 //=isInside2
 ```
 
+Returns **[Boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** `true` if the Point is inside the Polygon; `false` if the Point is not inside the Polygon
 
-**Returns** `Boolean`, `true` if the Point is inside the Polygon; `false` if the Point is not inside the Polygon
+---
 
-## Installation
+This module is part of the [Turfjs project](http://turfjs.org/), an open source
+module collection dedicated to geographic algorithms. It is maintained in the
+[Turfjs/turf](https://github.com/Turfjs/turf) repository, where you can create
+PRs and issues.
 
-Requires [nodejs](http://nodejs.org/).
+### Installation
+
+Install this module individually:
 
 ```sh
-$ npm install turf-inside
+$ npm install @turf/inside
 ```
 
-## Tests
+Or install the Turf module that includes it as a function:
 
 ```sh
-$ npm test
+$ npm install @turf/turf
 ```
-
-

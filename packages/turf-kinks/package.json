@@ -1,10 +1,10 @@
 {
-  "name": "turf-kinks",
-  "version": "3.0.0",
+  "name": "@turf/kinks",
+  "version": "3.3.3",
   "description": "turf kinks module",
   "main": "index.js",
   "dependencies": {
-    "turf-helpers": "^3.0.0"
+    "@turf/helpers": "^3.3.3"
   },
   "devDependencies": {
     "benchmark": "^1.0.0",
@@ -15,7 +15,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/Turfjs/turf-kinks.git"
+    "url": "git://github.com/Turfjs/turf.git"
   },
   "keywords": [
     "turf",
@@ -25,7 +25,7 @@
   "author": "morganherlocker",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/Turfjs/turf-kinks/issues"
+    "url": "https://github.com/Turfjs/turf/issues"
   },
-  "homepage": "https://github.com/Turfjs/turf-kinks"
+  "homepage": "https://github.com/Turfjs/turf"
 }

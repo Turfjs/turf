@@ -5,6 +5,7 @@ lib-cov
 *.dat
 *.out
 *.pid
+.idea/*
 
 .DS_Store
 
@@ -12,6 +13,6 @@ pids
 logs
 results
 
-npm-debug.log
+npm-debug.log*
 
 node_modules

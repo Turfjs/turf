@@ -1,0 +1,35 @@
+{
+  "name": "@turf/line-slice-along",
+  "version": "3.3.3",
+  "description": "create line segment based on start and end distance on a given line string",
+  "main": "index.js",
+  "scripts": {
+    "test": "tape test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/Turfjs/turf.git"
+  },
+  "keywords": [
+    "turf",
+    "along",
+    "line-slice"
+  ],
+  "author": "jvrousseau",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Turfjs/turf/issues"
+  },
+  "homepage": "https://github.com/Turfjs/turf",
+  "dependencies": {
+    "turf-bearing": "^3.0.1",
+    "turf-destination": "^3.0.5",
+    "turf-distance": "^3.0.5",
+    "turf-helpers": "^3.0.5"
+  },
+  "devDependencies": {
+    "benchmark": "^1.0.0",
+    "tape": "^3.5.0",
+    "turf-along": "^3.0.5"
+  }
+}

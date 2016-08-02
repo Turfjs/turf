@@ -5,8 +5,8 @@
 [![Circle CI](https://circleci.com/gh/Turfjs/turf.svg?style=svg)](https://circleci.com/gh/Turfjs/turf)
 [![Gitter chat][gitter-img]][gitter-url]
 
-[npm-img]: https://img.shields.io/npm/v/turf.svg
-[npm-url]: https://www.npmjs.com/package/turf
+[npm-img]: https://img.shields.io/npm/v/@turf/turf.svg
+[npm-url]: https://www.npmjs.com/package/@turf/turf
 [gitter-img]: https://badges.gitter.im/Turfjs/turf.png
 [gitter-url]: https://gitter.im/Turfjs/turf
 
@@ -23,12 +23,12 @@
 **In Node.js:**
 
 ```bash
-npm install turf
+npm install @turf/turf
 ```
 
 **In browser:**
 
-Download the [minified file](https://raw.githubusercontent.com/Turfjs/turf/v2.0.2/turf.min.js), and include it in a script tag. This will expose a global variable named `turf`.
+Download the [minified file](https://api.tiles.mapbox.com/mapbox.js/plugins/turf/v3.0.11/turf.min.js), and include it in a script tag. This will expose a global variable named `turf`.
 
 ```html
 <script src="turf.min.js" charset="utf-8"></script>
@@ -41,7 +41,17 @@ You can create light-weight turf builds with only the functions you need using t
 All of Turf's functions can also be installed as separate modules. This works well with tools like [browserify](http://browserify.org/) where you want to install only the code you need. It also allows you to mix and match modules. This is the recommended usage pattern for most production environments. For example, to install the *point* and *buffer* modules use:
 
 ```sh
-npm install turf-point turf-buffer
+npm install @turf/point @turf/buffer
+```
+
+**Bower:**
+
+_Not recommend. Please don't use Bower. Use Browserify, Webpack, or the CDN instead._
+
+The latest Bower build is at:
+
+```
+https://npmcdn.com/@turf/turf@3.1.1/bower.zip
 ```
 
 - - -
@@ -58,7 +68,7 @@ Most Turf functions work with GeoJSON features. These are are pieces of data tha
 
 Turf provides a few geometry functions of its own. These are nothing more than simple (and optional) wrappers that output plain old GeoJSON. For example, these two methods of creating a point are functionally equivalent:
 
-```
+```js
 var point1 = turf.point([0, 0]);
 
 var point2 = {

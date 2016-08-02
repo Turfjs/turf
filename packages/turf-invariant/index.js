@@ -2,7 +2,7 @@
  * Unwrap a coordinate from a Feature with a Point geometry, a Point
  * geometry, or a single coordinate.
  *
- * @param {*} value any value
+ * @param {*} obj any value
  * @returns {Array<number>} a coordinate
  */
 function getCoord(obj) {
@@ -17,7 +17,7 @@ function getCoord(obj) {
             Array.isArray(obj.geometry.coordinates)) {
             return obj.geometry.coordinates;
         } else if (obj.type === 'Point' &&
-            Array.isArray(obj.geometry.coordinates)) {
+            Array.isArray(obj.coordinates)) {
             return obj.coordinates;
         }
     }
@@ -30,7 +30,7 @@ function getCoord(obj) {
  * @alias geojsonType
  * @param {GeoJSON} value any GeoJSON object
  * @param {string} type expected GeoJSON type
- * @param {String} name name of calling function
+ * @param {string} name name of calling function
  * @throws {Error} if value is not the expected type.
  */
 function geojsonType(value, type, name) {
@@ -48,16 +48,16 @@ function geojsonType(value, type, name) {
  * @alias featureOf
  * @param {Feature} feature a feature with an expected geometry type
  * @param {string} type expected GeoJSON type
- * @param {String} name name of calling function
+ * @param {string} name name of calling function
  * @throws {Error} error if value is not the expected type.
  */
-function featureOf(value, type, name) {
+function featureOf(feature, type, name) {
     if (!name) throw new Error('.featureOf() requires a name');
-    if (!value || value.type !== 'Feature' || !value.geometry) {
+    if (!feature || feature.type !== 'Feature' || !feature.geometry) {
         throw new Error('Invalid input to ' + name + ', Feature with geometry required');
     }
-    if (!value.geometry || value.geometry.type !== type) {
-        throw new Error('Invalid input to ' + name + ': must be a ' + type + ', given ' + value.geometry.type);
+    if (!feature.geometry || feature.geometry.type !== type) {
+        throw new Error('Invalid input to ' + name + ': must be a ' + type + ', given ' + feature.geometry.type);
     }
 }
 
@@ -68,16 +68,16 @@ function featureOf(value, type, name) {
  * @alias collectionOf
  * @param {FeatureCollection} featurecollection a featurecollection for which features will be judged
  * @param {string} type expected GeoJSON type
- * @param {String} name name of calling function
+ * @param {string} name name of calling function
  * @throws {Error} if value is not the expected type.
  */
-function collectionOf(value, type, name) {
+function collectionOf(featurecollection, type, name) {
     if (!name) throw new Error('.collectionOf() requires a name');
-    if (!value || value.type !== 'FeatureCollection') {
+    if (!featurecollection || featurecollection.type !== 'FeatureCollection') {
         throw new Error('Invalid input to ' + name + ', FeatureCollection required');
     }
-    for (var i = 0; i < value.features.length; i++) {
-        var feature = value.features[i];
+    for (var i = 0; i < featurecollection.features.length; i++) {
+        var feature = featurecollection.features[i];
         if (!feature || feature.type !== 'Feature' || !feature.geometry) {
             throw new Error('Invalid input to ' + name + ', Feature with geometry required');
         }

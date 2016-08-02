@@ -1,5 +1,5 @@
 var test = require('tape');
-var distance = require('turf-distance');
+var distance = require('@turf/distance');
 var destination = require('./');
 
 test('destination', function(t){
@@ -11,6 +11,6 @@ test('destination', function(t){
   var bear = 180;
 
   var pt2 = destination(pt1, dist, bear, 'kilometers');
-  t.ok(pt2, 'should return a point');
+  t.deepEqual(pt2, { geometry: { coordinates: [ -75, 38.10096062273525 ], type: 'Point' }, properties: {}, type: 'Feature' }, 'returns the correct point');
   t.end();
 });

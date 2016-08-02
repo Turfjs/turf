@@ -1,25 +1,16 @@
-# turf-bbox-polygon
+# @turf/bbox-polygon
 
-[![build status](https://secure.travis-ci.org/Turfjs/turf-bboxPolygon.png)](http://travis-ci.org/Turfjs/turf-bboxPolygon)
+# bboxPolygon
 
-turf bboxPolygon module
+Takes a bbox and returns an equivalent [polygon](http://geojson.org/geojson-spec.html#polygon).
 
+**Parameters**
 
-### `turf.bbox-polygon(bbox)`
+-   `bbox` **[Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)>** an Array of bounding box coordinates in the form: `[xLow, yLow, xHigh, yHigh]`
 
-Takes a bbox and returns an equivalent Polygon|polygon.
+**Examples**
 
-
-### Parameters
-
-| parameter | type              | description                                                                        |
-| --------- | ----------------- | ---------------------------------------------------------------------------------- |
-| `bbox`    | Array\.\<number\> | an Array of bounding box coordinates in the form: ```[xLow, yLow, xHigh, yHigh]``` |
-
-
-### Example
-
-```js
+```javascript
 var bbox = [0, 0, 10, 10];
 
 var poly = turf.bboxPolygon(bbox);
@@ -27,21 +18,25 @@ var poly = turf.bboxPolygon(bbox);
 //=poly
 ```
 
+Returns **[Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;[Polygon](http://geojson.org/geojson-spec.html#polygon)>** a Polygon representation of the bounding box
 
-**Returns** `Feature.<Polygon>`, a Polygon representation of the bounding box
+---
 
-## Installation
+This module is part of the [Turfjs project](http://turfjs.org/), an open source
+module collection dedicated to geographic algorithms. It is maintained in the
+[Turfjs/turf](https://github.com/Turfjs/turf) repository, where you can create
+PRs and issues.
 
-Requires [nodejs](http://nodejs.org/).
+### Installation
+
+Install this module individually:
 
 ```sh
-$ npm install turf-bbox-polygon
+$ npm install @turf/bbox-polygon
 ```
 
-## Tests
+Or install the Turf module that includes it as a function:
 
 ```sh
-$ npm test
+$ npm install @turf/turf
 ```
-
-

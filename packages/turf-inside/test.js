@@ -1,7 +1,7 @@
 var test = require('tape');
 var inside = require('./');
-var point = require('turf-helpers').point;
-var polygon = require('turf-helpers').polygon;
+var point = require('@turf/helpers').point;
+var polygon = require('@turf/helpers').polygon;
 var fs = require('fs');
 
 test('bad type', function (t) {
