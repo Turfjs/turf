@@ -15,10 +15,11 @@ test('idw', function (t) {
   t.ok(idw3.features.length);
   t.error(idw4);
 
-  fs.writeFileSync(__dirname+'/tests/idw1.geojson', JSON.stringify(idw1,null,2));
-  fs.writeFileSync(__dirname+'/tests/idw2.geojson', JSON.stringify(idw2,null,2));
-  fs.writeFileSync(__dirname+'/tests/idw3.geojson', JSON.stringify(idw3,null,2));
-
+  if (process.env.UPDATE) {
+    fs.writeFileSync(__dirname+'/tests/idw1.geojson', JSON.stringify(idw1,null,2));
+    fs.writeFileSync(__dirname+'/tests/idw2.geojson', JSON.stringify(idw2,null,2));
+    fs.writeFileSync(__dirname+'/tests/idw3.geojson', JSON.stringify(idw3,null,2));
+  }
 
   t.end();
 });

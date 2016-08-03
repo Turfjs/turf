@@ -28,22 +28,20 @@ module.exports = function (controlPoints, valueField, b, cellWidth, units) {
       // compared to a point grid helps visualizing the output (like a raster..)
         var samplingGrid = squareGrid(bbox(controlPoints), cellWidth, units);
         var N = samplingGrid.features.length;
-        // for every sampling point..
-        var myFun = function (point, i, zw, sw) {
-            var d = distance(centroid(samplingGrid.features[i]), point, units);
-            if (d === 0) {
-                zw = point.properties[valueField];
-                return zw;
-            }
-            var w = 1.0 / Math.pow(d, b);
-            sw += w;
-            zw += w * point.properties[valueField];
-        };
         for (var i = 0; i < N; i++) {
             var zw = 0;
             var sw = 0;
             // calculate the distance from each control point to cell's centroid
-            controlPoints.features.map(myFun);
+            controlPoints.features.map(function (point, i) {
+                var d = distance(centroid(samplingGrid.features[i]), point, units);
+                if (d === 0) {
+                    zw = point.properties[valueField];
+                    return zw;
+                }
+                var w = 1.0 / Math.pow(d, b);
+                sw += w;
+                zw += w * point.properties[valueField];
+            });
             // write IDW value for each grid cell
             samplingGrid.features[i].properties.z = zw / sw;
         }
