@@ -32,16 +32,15 @@ module.exports = function (controlPoints, valueField, b, cellWidth, units) {
             var zw = 0;
             var sw = 0;
             // calculate the distance from each control point to cell's centroid
-            controlPoints.features.map(function (point, i) {
-                var d = distance(centroid(samplingGrid.features[i]), point, units);
+            for (var j = 0; j < controlPoints.length; j++) {
+                var d = distance(centroid(samplingGrid.features[j]), point, units);
                 if (d === 0) {
                     zw = point.properties[valueField];
-                    return zw;
                 }
                 var w = 1.0 / Math.pow(d, b);
                 sw += w;
-                zw += w * point.properties[valueField];
-            });
+                zw += w * controlPoints[j].properties[valueField];
+            }
             // write IDW value for each grid cell
             samplingGrid.features[i].properties.z = zw / sw;
         }
