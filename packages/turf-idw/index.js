@@ -1,8 +1,7 @@
-var filter = require('turf-filter');
-var distance = require('turf-distance');
-var squareGrid = require('turf-square-grid');
-var centroid = require('turf-centroid');
-var extent = require('turf-extent');
+var distance = require('@turf/distance');
+var squareGrid = require('@turf/square-grid');
+var centroid = require('@turf/centroid');
+var bbox = require('@turf/bbox');
 
 /**
  *
@@ -20,37 +19,33 @@ var extent = require('turf-extent');
  */
 module.exports = function (controlPoints, valueField, b, cellWidth, units) {
     // check if field containing data exists..
-    var filtered = filter(controlPoints, valueField);
-    //alternative method
-    // console.log(controlPoints.features.map(function (feat) { return valueField in feat.properties}));
-    if (filtered.features.length === 0) {
+    var filtered = controlPoints.features.filter(function (feature) {
+        return feature.properties &&
+            feature.properties.hasOwnProperty(valueField);
+    });
+    if (filtered.length !== 0) {
       // create a sample square grid
       // compared to a point grid helps visualizing the output (like a raster..)
-        var samplingGrid = squareGrid(extent(controlPoints), cellWidth, units);
+        var samplingGrid = squareGrid(bbox(controlPoints), cellWidth, units);
         var N = samplingGrid.features.length;
-        // for every sampling point..
-        var myFun = function (point, i, zw, sw) {
-            var d = distance(centroid(samplingGrid.features[i]), point, units);
-            if (d === 0) {
-                zw = point.properties[valueField];
-                return zw;
-            }
-            var w = 1.0 / Math.pow(d, b);
-            sw += w;
-            zw += w * point.properties[valueField];
-        };
         for (var i = 0; i < N; i++) {
             var zw = 0;
             var sw = 0;
             // calculate the distance from each control point to cell's centroid
-            controlPoints.features.map(myFun);
+            for (var j = 0; j < controlPoints.length; j++) {
+                var d = distance(centroid(samplingGrid.features[j]), controlPoints[j], units);
+                if (d === 0) {
+                    zw = controlPoints[j].properties[valueField];
+                }
+                var w = 1.0 / Math.pow(d, b);
+                sw += w;
+                zw += w * controlPoints[j].properties[valueField];
+            }
             // write IDW value for each grid cell
             samplingGrid.features[i].properties.z = zw / sw;
         }
         return samplingGrid;
-
     } else {
         console.log('Specified Data Field is Missing');
     }
-
 };

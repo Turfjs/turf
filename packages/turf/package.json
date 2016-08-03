@@ -83,6 +83,7 @@
     "@turf/line-slice": "^3.3.3",
     "@turf/line-slice-along": "^3.3.3",
     "@turf/meta": "^3.3.3",
+    "@turf/idw": "^3.0.0",
     "@turf/midpoint": "^3.3.3",
     "@turf/nearest": "^3.3.3",
     "@turf/planepoint": "^3.3.3",

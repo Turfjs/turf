@@ -3,6 +3,9 @@
   "features": [
     {
       "type": "Feature",
+      "properties": {
+        "z": 20.499569657559125
+      },
       "geometry": {
         "type": "Polygon",
         "coordinates": [
@@ -29,13 +32,13 @@
             ]
           ]
         ]
-      },
-      "properties": {
-        "z": 16.810015507115356
       }
     },
     {
       "type": "Feature",
+      "properties": {
+        "z": 20.499569657559125
+      },
       "geometry": {
         "type": "Polygon",
         "coordinates": [
@@ -62,13 +65,13 @@
             ]
           ]
         ]
-      },
-      "properties": {
-        "z": 18.473505425981134
       }
     },
     {
       "type": "Feature",
+      "properties": {
+        "z": 20.499569657559125
+      },
       "geometry": {
         "type": "Polygon",
         "coordinates": [
@@ -95,13 +98,13 @@
             ]
           ]
         ]
-      },
-      "properties": {
-        "z": 19.316889697462177
       }
     },
     {
       "type": "Feature",
+      "properties": {
+        "z": 20.499569657559125
+      },
       "geometry": {
         "type": "Polygon",
         "coordinates": [
@@ -128,13 +131,13 @@
             ]
           ]
         ]
-      },
-      "properties": {
-        "z": 19.97767338084117
       }
     },
     {
       "type": "Feature",
+      "properties": {
+        "z": 20.499569657559125
+      },
       "geometry": {
         "type": "Polygon",
         "coordinates": [
@@ -161,13 +164,13 @@
             ]
           ]
         ]
-      },
-      "properties": {
-        "z": 20.820468605021016
       }
     },
     {
       "type": "Feature",
+      "properties": {
+        "z": 20.499569657559125
+      },
       "geometry": {
         "type": "Polygon",
         "coordinates": [
@@ -194,13 +197,13 @@
             ]
           ]
         ]
-      },
-      "properties": {
-        "z": 21.895809439423466
       }
     },
     {
       "type": "Feature",
+      "properties": {
+        "z": 20.499569657559125
+      },
       "geometry": {
         "type": "Polygon",
         "coordinates": [
@@ -227,13 +230,13 @@
             ]
           ]
         ]
-      },
-      "properties": {
-        "z": 23.101697491085
       }
     },
     {
       "type": "Feature",
+      "properties": {
+        "z": 20.499569657559125
+      },
       "geometry": {
         "type": "Polygon",
         "coordinates": [
@@ -260,13 +263,13 @@
             ]
           ]
         ]
-      },
-      "properties": {
-        "z": 24.37260533177796
       }
     },
     {
       "type": "Feature",
+      "properties": {
+        "z": 20.499569657559125
+      },
       "geometry": {
         "type": "Polygon",
         "coordinates": [
@@ -293,13 +296,13 @@
             ]
           ]
         ]
-      },
-      "properties": {
-        "z": 25.654626800574267
       }
     },
     {
       "type": "Feature",
+      "properties": {
+        "z": 20.499569657559125
+      },
       "geometry": {
         "type": "Polygon",
         "coordinates": [
@@ -326,13 +329,13 @@
             ]
           ]
         ]
-      },
-      "properties": {
-        "z": 26.861724700664123
       }
     },
     {
       "type": "Feature",
+      "properties": {
+        "z": 20.499569657559125
+      },
       "geometry": {
         "type": "Polygon",
         "coordinates": [
@@ -359,13 +362,13 @@
             ]
           ]
         ]
-      },
-      "properties": {
-        "z": 27.89152583488245
       }
     },
     {
       "type": "Feature",
+      "properties": {
+        "z": 20.499569657559125
+      },
       "geometry": {
         "type": "Polygon",
         "coordinates": [
@@ -392,13 +395,13 @@
             ]
           ]
         ]
-      },
-      "properties": {
-        "z": 18.360700293368026
       }
     },
     {
       "type": "Feature",
+      "properties": {
+        "z": 20.499569657559125
+      },
       "geometry": {
         "type": "Polygon",
         "coordinates": [
@@ -425,13 +428,13 @@
             ]
           ]
         ]
-      },
-      "properties": {
-        "z": 18.685112009771757
       }
     },
     {
       "type": "Feature",
+      "properties": {
+        "z": 20.499569657559125
+      },
       "geometry": {
         "type": "Polygon",
         "coordinates": [
@@ -458,13 +461,13 @@
             ]
           ]
         ]
-      },
-      "properties": {
-        "z": 18.85165934354042
       }
     },
     {
       "type": "Feature",
+      "properties": {
+        "z": 20.499569657559125
+      },
       "geometry": {
         "type": "Polygon",
         "coordinates": [
@@ -491,13 +494,13 @@
             ]
           ]
         ]
-      },
-      "properties": {
-        "z": 19.056150486029537
       }
     },
     {
       "type": "Feature",
+      "properties": {
+        "z": 20.499569657559125
+      },
       "geometry": {
         "type": "Polygon",
         "coordinates": [
@@ -524,13 +527,13 @@
             ]
           ]
         ]
-      },
-      "properties": {
-        "z": 19.98784353079386
       }
     },
     {
       "type": "Feature",
+      "properties": {
+        "z": 20.499569657559125
+      },
       "geometry": {
         "type": "Polygon",
         "coordinates": [
@@ -557,13 +560,13 @@
             ]
           ]
         ]
-      },
-      "properties": {
-        "z": 21.403024748126157
       }
     },
     {
       "type": "Feature",
+      "properties": {
+        "z": 20.499569657559125
+      },
       "geometry": {
         "type": "Polygon",
         "coordinates": [
@@ -590,13 +593,13 @@
             ]
           ]
         ]
-      },
-      "properties": {
-        "z": 22.89338242974083
       }
     },
     {
       "type": "Feature",
+      "properties": {
+        "z": 20.499569657559125
+      },
       "geometry": {
         "type": "Polygon",
         "coordinates": [
@@ -623,13 +626,13 @@
             ]
           ]
         ]
-      },
-      "properties": {
-        "z": 24.45902416417733
       }
     },
     {
       "type": "Feature",
+      "properties": {
+        "z": 20.499569657559125
+      },
       "geometry": {
         "type": "Polygon",
         "coordinates": [
@@ -656,13 +659,13 @@
             ]
           ]
         ]
-      },
-      "properties": {
-        "z": 26.090462897436403
       }
     },
     {
       "type": "Feature",
+      "properties": {
+        "z": 20.499569657559125
+      },
       "geometry": {
         "type": "Polygon",
         "coordinates": [
@@ -689,13 +692,13 @@
             ]
           ]
         ]
-      },
-      "properties": {
-        "z": 27.648297730939312
       }
     },
     {
       "type": "Feature",
+      "properties": {
+        "z": 20.499569657559125
+      },
       "geometry": {
         "type": "Polygon",
         "coordinates": [
@@ -722,13 +725,13 @@
             ]
           ]
         ]
-      },
-      "properties": {
-        "z": 28.944155589777935
       }
     },
     {
       "type": "Feature",
+      "properties": {
+        "z": 20.499569657559125
+      },
       "geometry": {
         "type": "Polygon",
         "coordinates": [
@@ -755,13 +758,13 @@
             ]
           ]
         ]
-      },
-      "properties": {
-        "z": 19.112961539669307
       }
     },
     {
       "type": "Feature",
+      "properties": {
+        "z": 20.499569657559125
+      },
       "geometry": {
         "type": "Polygon",
         "coordinates": [
@@ -788,13 +791,13 @@
             ]
           ]
         ]
-      },
-      "properties": {
-        "z": 18.886139563630856
       }
     },
     {
       "type": "Feature",
+      "properties": {
+        "z": 20.499569657559125
+      },
       "geometry": {
         "type": "Polygon",
         "coordinates": [
@@ -821,13 +824,13 @@
             ]
           ]
         ]
-      },
-      "properties": {
-        "z": 18.21928901756154
       }
     },
     {
       "type": "Feature",
+      "properties": {
+        "z": 20.499569657559125
+      },
       "geometry": {
         "type": "Polygon",
         "coordinates": [
@@ -854,13 +857,13 @@
             ]
           ]
         ]
-      },
-      "properties": {
-        "z": 16.762811621411842
       }
     },
     {
       "type": "Feature",
+      "properties": {
+        "z": 20.499569657559125
+      },
       "geometry": {
         "type": "Polygon",
         "coordinates": [
@@ -887,13 +890,13 @@
             ]
           ]
         ]
-      },
-      "properties": {
-        "z": 18.677010097553154
       }
     },
     {
       "type": "Feature",
+      "properties": {
+        "z": 20.499569657559125
+      },
       "geometry": {
         "type": "Polygon",
         "coordinates": [
@@ -920,13 +923,13 @@
             ]
           ]
         ]
-      },
-      "properties": {
-        "z": 20.870812788657318
       }
     },
     {
       "type": "Feature",
+      "properties": {
+        "z": 20.499569657559125
+      },
       "geometry": {
         "type": "Polygon",
         "coordinates": [
@@ -953,13 +956,13 @@
             ]
           ]
         ]
-      },
-      "properties": {
-        "z": 22.59436010753512
       }
     },
     {
       "type": "Feature",
+      "properties": {
+        "z": 20.499569657559125
+      },
       "geometry": {
         "type": "Polygon",
         "coordinates": [
@@ -986,13 +989,13 @@
             ]
           ]
         ]
-      },
-      "properties": {
-        "z": 24.4936922507433
       }
     },
     {
       "type": "Feature",
+      "properties": {
+        "z": 20.499569657559125
+      },
       "geometry": {
         "type": "Polygon",
         "coordinates": [
@@ -1019,13 +1022,13 @@
             ]
           ]
         ]
-      },
-      "properties": {
-        "z": 26.660017803391963
       }
     },
     {
       "type": "Feature",
+      "properties": {
+        "z": 20.499569657559125
+      },
       "geometry": {
         "type": "Polygon",
         "coordinates": [
@@ -1052,13 +1055,13 @@
             ]
           ]
         ]
-      },
-      "properties": {
-        "z": 28.780656430366594
       }
     },
     {
       "type": "Feature",
+      "properties": {
+        "z": 20.499569657559125
+      },
       "geometry": {
         "type": "Polygon",
         "coordinates": [
@@ -1085,13 +1088,13 @@
             ]
           ]
         ]
-      },
-      "properties": {
-        "z": 30.489663195228182
       }
     },
     {
       "type": "Feature",
+      "properties": {
+        "z": 20.499569657559125
+      },
       "geometry": {
         "type": "Polygon",
         "coordinates": [
@@ -1118,13 +1121,13 @@
             ]
           ]
         ]
-      },
-      "properties": {
-        "z": 19.64678513644176
       }
     },
     {
       "type": "Feature",
+      "properties": {
+        "z": 20.499569657559125
+      },
       "geometry": {
         "type": "Polygon",
         "coordinates": [
@@ -1151,13 +1154,13 @@
             ]
           ]
         ]
-      },
-      "properties": {
-        "z": 19.247310737108126
       }
     },
     {
       "type": "Feature",
+      "properties": {
+        "z": 20.499569657559125
+      },
       "geometry": {
         "type": "Polygon",
         "coordinates": [
@@ -1184,13 +1187,13 @@
             ]
           ]
         ]
-      },
-      "properties": {
-        "z": 18.34362601654525
       }
     },
     {
       "type": "Feature",
+      "properties": {
+        "z": 20.499569657559125
+      },
       "geometry": {
         "type": "Polygon",
         "coordinates": [
@@ -1217,13 +1220,13 @@
             ]
           ]
         ]
-      },
-      "properties": {
-        "z": 16.11888869230707
       }
     },
     {
       "type": "Feature",
+      "properties": {
+        "z": 20.499569657559125
+      },
       "geometry": {
         "type": "Polygon",
         "coordinates": [
@@ -1250,13 +1253,13 @@
             ]
           ]
         ]
-      },
-      "properties": {
-        "z": 18.529681344737696
       }
     },
     {
       "type": "Feature",
+      "properties": {
+        "z": 20.499569657559125
+      },
       "geometry": {
         "type": "Polygon",
         "coordinates": [
@@ -1283,13 +1286,13 @@
             ]
           ]
         ]
-      },
-      "properties": {
-        "z": 20.604599279885406
       }
     },
     {
       "type": "Feature",
+      "properties": {
+        "z": 20.499569657559125
+      },
       "geometry": {
         "type": "Polygon",
         "coordinates": [
@@ -1316,13 +1319,13 @@
             ]
           ]
         ]
-      },
-      "properties": {
-        "z": 21.907906123196582
       }
     },
     {
       "type": "Feature",
+      "properties": {
+        "z": 20.499569657559125
+      },
       "geometry": {
         "type": "Polygon",
         "coordinates": [
@@ -1349,13 +1352,13 @@
             ]
           ]
         ]
-      },
-      "properties": {
-        "z": 24.26472163598338
       }
     },
     {
       "type": "Feature",
+      "properties": {
+        "z": 20.499569657559125
+      },
       "geometry": {
         "type": "Polygon",
         "coordinates": [
@@ -1382,13 +1385,13 @@
             ]
           ]
         ]
-      },
-      "properties": {
-        "z": 27.409878851100487
       }
     },
     {
       "type": "Feature",
+      "properties": {
+        "z": 20.499569657559125
+      },
       "geometry": {
         "type": "Polygon",
         "coordinates": [
@@ -1415,13 +1418,13 @@
             ]
           ]
         ]
-      },
-      "properties": {
-        "z": 30.483907449513215
       }
     },
     {
       "type": "Feature",
+      "properties": {
+        "z": 20.499569657559125
+      },
       "geometry": {
         "type": "Polygon",
         "coordinates": [
@@ -1448,13 +1451,13 @@
             ]
           ]
         ]
-      },
-      "properties": {
-        "z": 32.90713718413754
       }
     },
     {
       "type": "Feature",
+      "properties": {
+        "z": 20.499569657559125
+      },
       "geometry": {
         "type": "Polygon",
         "coordinates": [
@@ -1481,13 +1484,13 @@
             ]
           ]
         ]
-      },
-      "properties": {
-        "z": 20.174683809063797
       }
     },
     {
       "type": "Feature",
+      "properties": {
+        "z": 20.499569657559125
+      },
       "geometry": {
         "type": "Polygon",
         "coordinates": [
@@ -1514,13 +1517,13 @@
             ]
           ]
         ]
-      },
-      "properties": {
-        "z": 19.872361665803574
       }
     },
     {
       "type": "Feature",
+      "properties": {
+        "z": 20.499569657559125
+      },
       "geometry": {
         "type": "Polygon",
         "coordinates": [
@@ -1547,13 +1550,13 @@
             ]
           ]
         ]
-      },
-      "properties": {
-        "z": 19.469880860583437
       }
     },
     {
       "type": "Feature",
+      "properties": {
+        "z": 20.499569657559125
+      },
       "geometry": {
         "type": "Polygon",
         "coordinates": [
@@ -1580,13 +1583,13 @@
             ]
           ]
         ]
-      },
-      "properties": {
-        "z": 19.269455825543897
       }
     },
     {
       "type": "Feature",
+      "properties": {
+        "z": 20.499569657559125
+      },
       "geometry": {
         "type": "Polygon",
         "coordinates": [
@@ -1613,13 +1616,13 @@
             ]
           ]
         ]
-      },
-      "properties": {
-        "z": 19.967528977811334
       }
     },
     {
       "type": "Feature",
+      "properties": {
+        "z": 20.499569657559125
+      },
       "geometry": {
         "type": "Polygon",
         "coordinates": [
@@ -1646,13 +1649,13 @@
             ]
           ]
         ]
-      },
-      "properties": {
-        "z": 20.740591490262503
       }
     },
     {
       "type": "Feature",
+      "properties": {
+        "z": 20.499569657559125
+      },
       "geometry": {
         "type": "Polygon",
         "coordinates": [
@@ -1679,13 +1682,13 @@
             ]
           ]
         ]
-      },
-      "properties": {
-        "z": 18.534782430913562
       }
     },
     {
       "type": "Feature",
+      "properties": {
+        "z": 20.499569657559125
+      },
       "geometry": {
         "type": "Polygon",
         "coordinates": [
@@ -1712,13 +1715,13 @@
             ]
           ]
         ]
-      },
-      "properties": {
-        "z": 23.84018690845106
       }
     },
     {
       "type": "Feature",
+      "properties": {
+        "z": 20.499569657559125
+      },
       "geometry": {
         "type": "Polygon",
         "coordinates": [
@@ -1745,13 +1748,13 @@
             ]
           ]
         ]
-      },
-      "properties": {
-        "z": 28.532481193318585
       }
     },
     {
       "type": "Feature",
+      "properties": {
+        "z": 20.499569657559125
+      },
       "geometry": {
         "type": "Polygon",
         "coordinates": [
@@ -1778,13 +1781,13 @@
             ]
           ]
         ]
-      },
-      "properties": {
-        "z": 33.09968454933636
       }
     },
     {
       "type": "Feature",
+      "properties": {
+        "z": 20.499569657559125
+      },
       "geometry": {
         "type": "Polygon",
         "coordinates": [
@@ -1811,13 +1814,13 @@
             ]
           ]
         ]
-      },
-      "properties": {
-        "z": 37.07779479103008
       }
     },
     {
       "type": "Feature",
+      "properties": {
+        "z": 20.499569657559125
+      },
       "geometry": {
         "type": "Polygon",
         "coordinates": [
@@ -1844,13 +1847,13 @@
             ]
           ]
         ]
-      },
-      "properties": {
-        "z": 20.701724897057897
       }
     },
     {
       "type": "Feature",
+      "properties": {
+        "z": 20.499569657559125
+      },
       "geometry": {
         "type": "Polygon",
         "coordinates": [
@@ -1877,13 +1880,13 @@
             ]
           ]
         ]
-      },
-      "properties": {
-        "z": 20.54176843277757
       }
     },
     {
       "type": "Feature",
+      "properties": {
+        "z": 20.499569657559125
+      },
       "geometry": {
         "type": "Polygon",
         "coordinates": [
@@ -1910,13 +1913,13 @@
             ]
           ]
         ]
-      },
-      "properties": {
-        "z": 20.441391692709168
       }
     },
     {
       "type": "Feature",
+      "properties": {
+        "z": 20.499569657559125
+      },
       "geometry": {
         "type": "Polygon",
         "coordinates": [
@@ -1943,13 +1946,13 @@
             ]
           ]
         ]
-      },
-      "properties": {
-        "z": 20.552953723636005
       }
     },
     {
       "type": "Feature",
+      "properties": {
+        "z": 20.499569657559125
+      },
       "geometry": {
         "type": "Polygon",
         "coordinates": [
@@ -1976,13 +1979,13 @@
             ]
           ]
         ]
-      },
-      "properties": {
-        "z": 21.00532456524345
       }
     },
     {
       "type": "Feature",
+      "properties": {
+        "z": 20.499569657559125
+      },
       "geometry": {
         "type": "Polygon",
         "coordinates": [
@@ -2009,13 +2012,13 @@
             ]
           ]
         ]
-      },
-      "properties": {
-        "z": 21.616974876818308
       }
     },
     {
       "type": "Feature",
+      "properties": {
+        "z": 20.499569657559125
+      },
       "geometry": {
         "type": "Polygon",
         "coordinates": [
@@ -2042,13 +2045,13 @@
             ]
           ]
         ]
-      },
-      "properties": {
-        "z": 22.36552843371282
       }
     },
     {
       "type": "Feature",
+      "properties": {
+        "z": 20.499569657559125
+      },
       "geometry": {
         "type": "Polygon",
         "coordinates": [
@@ -2075,13 +2078,13 @@
             ]
           ]
         ]
-      },
-      "properties": {
-        "z": 25.328958980854264
       }
     },
     {
       "type": "Feature",
+      "properties": {
+        "z": 20.499569657559125
+      },
       "geometry": {
         "type": "Polygon",
         "coordinates": [
@@ -2108,13 +2111,13 @@
             ]
           ]
         ]
-      },
-      "properties": {
-        "z": 30.03621839177373
       }
     },
     {
       "type": "Feature",
+      "properties": {
+        "z": 20.499569657559125
+      },
       "geometry": {
         "type": "Polygon",
         "coordinates": [
@@ -2141,13 +2144,13 @@
             ]
           ]
         ]
-      },
-      "properties": {
-        "z": 36.45157755883081
       }
     },
     {
       "type": "Feature",
+      "properties": {
+        "z": 20.499569657559125
+      },
       "geometry": {
         "type": "Polygon",
         "coordinates": [
@@ -2174,13 +2177,13 @@
             ]
           ]
         ]
-      },
-      "properties": {
-        "z": 45.70648531987206
       }
     },
     {
       "type": "Feature",
+      "properties": {
+        "z": 20.499569657559125
+      },
       "geometry": {
         "type": "Polygon",
         "coordinates": [
@@ -2207,13 +2210,13 @@
             ]
           ]
         ]
-      },
-      "properties": {
-        "z": 21.18429221433469
       }
     },
     {
       "type": "Feature",
+      "properties": {
+        "z": 20.499569657559125
+      },
       "geometry": {
         "type": "Polygon",
         "coordinates": [
@@ -2240,13 +2243,13 @@
             ]
           ]
         ]
-      },
-      "properties": {
-        "z": 21.10918889594753
       }
     },
     {
       "type": "Feature",
+      "properties": {
+        "z": 20.499569657559125
+      },
       "geometry": {
         "type": "Polygon",
         "coordinates": [
@@ -2273,13 +2276,13 @@
             ]
           ]
         ]
-      },
-      "properties": {
-        "z": 21.105612364348104
       }
     },
     {
       "type": "Feature",
+      "properties": {
+        "z": 20.499569657559125
+      },
       "geometry": {
         "type": "Polygon",
         "coordinates": [
@@ -2306,13 +2309,13 @@
             ]
           ]
         ]
-      },
-      "properties": {
-        "z": 21.240473729770986
       }
     },
     {
       "type": "Feature",
+      "properties": {
+        "z": 20.499569657559125
+      },
       "geometry": {
         "type": "Polygon",
         "coordinates": [
@@ -2339,13 +2342,13 @@
             ]
           ]
         ]
-      },
-      "properties": {
-        "z": 21.594366026675996
       }
     },
     {
       "type": "Feature",
+      "properties": {
+        "z": 20.499569657559125
+      },
       "geometry": {
         "type": "Polygon",
         "coordinates": [
@@ -2372,13 +2375,13 @@
             ]
           ]
         ]
-      },
-      "properties": {
-        "z": 22.308814651263713
       }
     },
     {
       "type": "Feature",
+      "properties": {
+        "z": 20.499569657559125
+      },
       "geometry": {
         "type": "Polygon",
         "coordinates": [
@@ -2405,13 +2408,13 @@
             ]
           ]
         ]
-      },
-      "properties": {
-        "z": 23.753501034638756
       }
     },
     {
       "type": "Feature",
+      "properties": {
+        "z": 20.499569657559125
+      },
       "geometry": {
         "type": "Polygon",
         "coordinates": [
@@ -2438,13 +2441,13 @@
             ]
           ]
         ]
-      },
-      "properties": {
-        "z": 26.473146357454564
       }
     },
     {
       "type": "Feature",
+      "properties": {
+        "z": 20.499569657559125
+      },
       "geometry": {
         "type": "Polygon",
         "coordinates": [
@@ -2471,13 +2474,13 @@
             ]
           ]
         ]
-      },
-      "properties": {
-        "z": 30.78188495051979
       }
     },
     {
       "type": "Feature",
+      "properties": {
+        "z": 20.499569657559125
+      },
       "geometry": {
         "type": "Polygon",
         "coordinates": [
@@ -2504,13 +2507,13 @@
             ]
           ]
         ]
-      },
-      "properties": {
-        "z": 37.503272163679185
       }
     },
     {
       "type": "Feature",
+      "properties": {
+        "z": 20.499569657559125
+      },
       "geometry": {
         "type": "Polygon",
         "coordinates": [
@@ -2537,13 +2540,13 @@
             ]
           ]
         ]
-      },
-      "properties": {
-        "z": 50.63925193968551
       }
     },
     {
       "type": "Feature",
+      "properties": {
+        "z": 20.499569657559125
+      },
       "geometry": {
         "type": "Polygon",
         "coordinates": [
@@ -2570,13 +2573,13 @@
             ]
           ]
         ]
-      },
-      "properties": {
-        "z": 21.60546577029173
       }
     },
     {
       "type": "Feature",
+      "properties": {
+        "z": 20.499569657559125
+      },
       "geometry": {
         "type": "Polygon",
         "coordinates": [
@@ -2603,13 +2606,13 @@
             ]
           ]
         ]
-      },
-      "properties": {
-        "z": 21.559571745365346
       }
     },
     {
       "type": "Feature",
+      "properties": {
+        "z": 20.499569657559125
+      },
       "geometry": {
         "type": "Polygon",
         "coordinates": [
@@ -2636,13 +2639,13 @@
             ]
           ]
         ]
-      },
-      "properties": {
-        "z": 21.544928656013095
       }
     },
     {
       "type": "Feature",
+      "properties": {
+        "z": 20.499569657559125
+      },
       "geometry": {
         "type": "Polygon",
         "coordinates": [
@@ -2669,13 +2672,13 @@
             ]
           ]
         ]
-      },
-      "properties": {
-        "z": 21.561791077619624
       }
     },
     {
       "type": "Feature",
+      "properties": {
+        "z": 20.499569657559125
+      },
       "geometry": {
         "type": "Polygon",
         "coordinates": [
@@ -2702,13 +2705,13 @@
             ]
           ]
         ]
-      },
-      "properties": {
-        "z": 21.619198187353064
       }
     },
     {
       "type": "Feature",
+      "properties": {
+        "z": 20.499569657559125
+      },
       "geometry": {
         "type": "Polygon",
         "coordinates": [
@@ -2735,13 +2738,13 @@
             ]
           ]
         ]
-      },
-      "properties": {
-        "z": 21.966829789183905
       }
     },
     {
       "type": "Feature",
+      "properties": {
+        "z": 20.499569657559125
+      },
       "geometry": {
         "type": "Polygon",
         "coordinates": [
@@ -2768,13 +2771,13 @@
             ]
           ]
         ]
-      },
-      "properties": {
-        "z": 23.471284123296673
       }
     },
     {
       "type": "Feature",
+      "properties": {
+        "z": 20.499569657559125
+      },
       "geometry": {
         "type": "Polygon",
         "coordinates": [
@@ -2801,13 +2804,13 @@
             ]
           ]
         ]
-      },
-      "properties": {
-        "z": 26.303389222252537
       }
     },
     {
       "type": "Feature",
+      "properties": {
+        "z": 20.499569657559125
+      },
       "geometry": {
         "type": "Polygon",
         "coordinates": [
@@ -2834,13 +2837,13 @@
             ]
           ]
         ]
-      },
-      "properties": {
-        "z": 30.102282649940324
       }
     },
     {
       "type": "Feature",
+      "properties": {
+        "z": 20.499569657559125
+      },
       "geometry": {
         "type": "Polygon",
         "coordinates": [
@@ -2867,13 +2870,13 @@
             ]
           ]
         ]
-      },
-      "properties": {
-        "z": 34.87872106046727
       }
     },
     {
       "type": "Feature",
+      "properties": {
+        "z": 20.499569657559125
+      },
       "geometry": {
         "type": "Polygon",
         "coordinates": [
@@ -2900,13 +2903,13 @@
             ]
           ]
         ]
-      },
-      "properties": {
-        "z": 39.67351867729194
       }
     },
     {
       "type": "Feature",
+      "properties": {
+        "z": 20.499569657559125
+      },
       "geometry": {
         "type": "Polygon",
         "coordinates": [
@@ -2933,13 +2936,13 @@
             ]
           ]
         ]
-      },
-      "properties": {
-        "z": 21.976323392073112
       }
     },
     {
       "type": "Feature",
+      "properties": {
+        "z": 20.499569657559125
+      },
       "geometry": {
         "type": "Polygon",
         "coordinates": [
@@ -2966,13 +2969,13 @@
             ]
           ]
         ]
-      },
-      "properties": {
-        "z": 21.93359919257378
       }
     },
     {
       "type": "Feature",
+      "properties": {
+        "z": 20.499569657559125
+      },
       "geometry": {
         "type": "Polygon",
         "coordinates": [
@@ -2999,13 +3002,13 @@
             ]
           ]
         ]
-      },
-      "properties": {
-        "z": 21.871733949413017
       }
     },
     {
       "type": "Feature",
+      "properties": {
+        "z": 20.499569657559125
+      },
       "geometry": {
         "type": "Polygon",
         "coordinates": [
@@ -3032,13 +3035,13 @@
             ]
           ]
         ]
-      },
-      "properties": {
-        "z": 21.71308927246352
       }
     },
     {
       "type": "Feature",
+      "properties": {
+        "z": 20.499569657559125
+      },
       "geometry": {
         "type": "Polygon",
         "coordinates": [
@@ -3065,13 +3068,13 @@
             ]
           ]
         ]
-      },
-      "properties": {
-        "z": 21.21363094515566
       }
     },
     {
       "type": "Feature",
+      "properties": {
+        "z": 20.499569657559125
+      },
       "geometry": {
         "type": "Polygon",
         "coordinates": [
@@ -3098,13 +3101,13 @@
             ]
           ]
         ]
-      },
-      "properties": {
-        "z": 19.707134699045138
       }
     },
     {
       "type": "Feature",
+      "properties": {
+        "z": 20.499569657559125
+      },
       "geometry": {
         "type": "Polygon",
         "coordinates": [
@@ -3131,13 +3134,13 @@
             ]
           ]
         ]
-      },
-      "properties": {
-        "z": 21.590132846632386
       }
     },
     {
       "type": "Feature",
+      "properties": {
+        "z": 20.499569657559125
+      },
       "geometry": {
         "type": "Polygon",
         "coordinates": [
@@ -3164,13 +3167,13 @@
             ]
           ]
         ]
-      },
-      "properties": {
-        "z": 25.407883297540387
       }
     },
     {
       "type": "Feature",
+      "properties": {
+        "z": 20.499569657559125
+      },
       "geometry": {
         "type": "Polygon",
         "coordinates": [
@@ -3197,13 +3200,13 @@
             ]
           ]
         ]
-      },
-      "properties": {
-        "z": 28.80323317717345
       }
     },
     {
       "type": "Feature",
+      "properties": {
+        "z": 20.499569657559125
+      },
       "geometry": {
         "type": "Polygon",
         "coordinates": [
@@ -3230,13 +3233,13 @@
             ]
           ]
         ]
-      },
-      "properties": {
-        "z": 32.088707202032154
       }
     },
     {
       "type": "Feature",
+      "properties": {
+        "z": 20.499569657559125
+      },
       "geometry": {
         "type": "Polygon",
         "coordinates": [
@@ -3263,13 +3266,13 @@
             ]
           ]
         ]
-      },
-      "properties": {
-        "z": 34.7154144630512
       }
     },
     {
       "type": "Feature",
+      "properties": {
+        "z": 20.499569657559125
+      },
       "geometry": {
         "type": "Polygon",
         "coordinates": [
@@ -3296,13 +3299,13 @@
             ]
           ]
         ]
-      },
-      "properties": {
-        "z": 22.3181863190113
       }
     },
     {
       "type": "Feature",
+      "properties": {
+        "z": 20.499569657559125
+      },
       "geometry": {
         "type": "Polygon",
         "coordinates": [
@@ -3329,13 +3332,13 @@
             ]
           ]
         ]
-      },
-      "properties": {
-        "z": 22.283068999763355
       }
     },
     {
       "type": "Feature",
+      "properties": {
+        "z": 20.499569657559125
+      },
       "geometry": {
         "type": "Polygon",
         "coordinates": [
@@ -3362,13 +3365,13 @@
             ]
           ]
         ]
-      },
-      "properties": {
-        "z": 22.206786244012722
       }
     },
     {
       "type": "Feature",
+      "properties": {
+        "z": 20.499569657559125
+      },
       "geometry": {
         "type": "Polygon",
         "coordinates": [
@@ -3395,13 +3398,13 @@
             ]
           ]
         ]
-      },
-      "properties": {
-        "z": 21.99547511651665
       }
     },
     {
       "type": "Feature",
+      "properties": {
+        "z": 20.499569657559125
+      },
       "geometry": {
         "type": "Polygon",
         "coordinates": [
@@ -3428,13 +3431,13 @@
             ]
           ]
         ]
-      },
-      "properties": {
-        "z": 21.37935265354187
       }
     },
     {
       "type": "Feature",
+      "properties": {
+        "z": 20.499569657559125
+      },
       "geometry": {
         "type": "Polygon",
         "coordinates": [
@@ -3461,13 +3464,13 @@
             ]
           ]
         ]
-      },
-      "properties": {
-        "z": 19.64813168531422
       }
     },
     {
       "type": "Feature",
+      "properties": {
+        "z": 20.499569657559125
+      },
       "geometry": {
         "type": "Polygon",
         "coordinates": [
@@ -3494,13 +3497,13 @@
             ]
           ]
         ]
-      },
-      "properties": {
-        "z": 21.390180845549708
       }
     },
     {
       "type": "Feature",
+      "properties": {
+        "z": 20.499569657559125
+      },
       "geometry": {
         "type": "Polygon",
         "coordinates": [
@@ -3527,13 +3530,13 @@
             ]
           ]
         ]
-      },
-      "properties": {
-        "z": 24.93997539514576
       }
     },
     {
       "type": "Feature",
+      "properties": {
+        "z": 20.499569657559125
+      },
       "geometry": {
         "type": "Polygon",
         "coordinates": [
@@ -3560,13 +3563,13 @@
             ]
           ]
         ]
-      },
-      "properties": {
-        "z": 27.744368481114137
       }
     },
     {
       "type": "Feature",
+      "properties": {
+        "z": 20.499569657559125
+      },
       "geometry": {
         "type": "Polygon",
         "coordinates": [
@@ -3593,13 +3596,13 @@
             ]
           ]
         ]
-      },
-      "properties": {
-        "z": 30.143895001515038
       }
     },
     {
       "type": "Feature",
+      "properties": {
+        "z": 20.499569657559125
+      },
       "geometry": {
         "type": "Polygon",
         "coordinates": [
@@ -3626,9 +3629,6 @@
             ]
           ]
         ]
-      },
-      "properties": {
-        "z": 31.965088446230027
       }
     }
   ]
