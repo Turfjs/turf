@@ -56,6 +56,7 @@ module.exports = {
     squareGrid: require('@turf/square-grid'),
     triangleGrid: require('@turf/triangle-grid'),
     hexGrid: require('@turf/hex-grid'),
+    idw: require('@turf/idw'),
     point: helpers.point,
     polygon: helpers.polygon,
     lineString: helpers.lineString,

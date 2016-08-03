@@ -1,8 +1,7 @@
-var filter = require('turf-filter');
-var distance = require('turf-distance');
-var squareGrid = require('turf-square-grid');
-var centroid = require('turf-centroid');
-var extent = require('turf-extent');
+var distance = require('@turf/distance');
+var squareGrid = require('@turf/square-grid');
+var centroid = require('@turf/centroid');
+var bbox = require('@turf/bbox');
 
 /**
  *
@@ -20,13 +19,14 @@ var extent = require('turf-extent');
  */
 module.exports = function (controlPoints, valueField, b, cellWidth, units) {
     // check if field containing data exists..
-    var filtered = filter(controlPoints, valueField);
-    //alternative method
-    // console.log(controlPoints.features.map(function (feat) { return valueField in feat.properties}));
-    if (filtered.features.length === 0) {
+    var filtered = controlPoints.features.filter(function (feature) {
+        return feature.properties &&
+            feature.properties.hasOwnProperty(valueField);
+    });
+    if (filtered.length !== 0) {
       // create a sample square grid
       // compared to a point grid helps visualizing the output (like a raster..)
-        var samplingGrid = squareGrid(extent(controlPoints), cellWidth, units);
+        var samplingGrid = squareGrid(bbox(controlPoints), cellWidth, units);
         var N = samplingGrid.features.length;
         // for every sampling point..
         var myFun = function (point, i, zw, sw) {
@@ -48,9 +48,7 @@ module.exports = function (controlPoints, valueField, b, cellWidth, units) {
             samplingGrid.features[i].properties.z = zw / sw;
         }
         return samplingGrid;
-
     } else {
         console.log('Specified Data Field is Missing');
     }
-
 };

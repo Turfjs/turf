@@ -1,60 +1,39 @@
-# Inverse Distance Weighting (I.D.W.)
+# @turf/idw
 
-Inverse Distance Weighting (IDW) is a type of deterministic, nonlinear interpolation method over a set of points.
+# index
 
-### `IDW(controlPoints, valueField, b, cellWidth, units)`
+Takes a FeatureCollection of points with known value, a power parameter, a cell depth, a unit of measurement
+and returns a FeatureCollection of polygons in a square-grid with an interpolated value property "IDW" for each grid cell.
+It finds application when in need of creating a continuous surface (i.e. rainfall, temperature, chemical dispersion surface...)
+from a set of spatially scattered points.
 
-Takes a [FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects)&lt;[Point](http://geojson.org/geojson-spec.html#point)>  of sampled points with a property of *known value* and returns a [FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects)&lt;[Polygon](http://geojson.org/geojson-spec.html#polygon)>  [grid](http://turfjs.org/docs/#squaregrid) with an *interpolated value* for each grid cell, according to a distance-decay exponent and a cell depth parameter (in the specified unit of measurement).
+**Parameters**
 
-It is based on the [Inverse Distance Weighting](https://en.wikipedia.org/wiki/Inverse_distance_weighting) interpolation algorithm as covered in the following resources: [1], [2].
+-   `controlPoints` **[FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects)&lt;[Point](http://geojson.org/geojson-spec.html#point)>** Sampled points with known value
+-   `valueField` **[String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** GeoJSON field containing the known value to interpolate on
+-   `b` **[Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** Exponent regulating the distance-decay weighting
+-   `cellWidth` **[Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** The distance across each cell
+-   `units` **[String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** Units to use for cellWidth ('miles' or 'kilometers')
 
-It finds application when in need of creating a continuous surface (i.e. rainfall, temperature, chemical dispersion surface...) from a set of spatially scattered points.
+Returns **[FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects)&lt;[Polygon](http://geojson.org/geojson-spec.html#polygon)>** grid A grid of polygons with a property field "IDW"
 
+---
 
+This module is part of the [Turfjs project](http://turfjs.org/), an open source
+module collection dedicated to geographic algorithms. It is maintained in the
+[Turfjs/turf](https://github.com/Turfjs/turf) repository, where you can create
+PRs and issues.
 
+### Installation
 
-### Parameters
-
-| parameter   | type           | description                              |
-| ----------- | -------------- | ---------------------------------------- |
-| `controlPoints`    | **[FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects)&lt;[Point](http://geojson.org/geojson-spec.html#point)>** | Sampled points with known value |
-| `valueField`    | **[String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** | GeoJSON field containing the known value to interpolate on |
-| `b` | **[Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)**         | Exponent regulating the distance-decay weighting                       |
-| `cellWidth`     |**[Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)**        | Width of each cell               |
-| `units`        |**[String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** |  Units to use for cellWidth ('miles' or 'kilometers')|
-
-### Example
-
-```js
-// load IDW
-var IDW = require('./index.js')
-
-// load a sample of test points
-var fs = require('fs');
-var controlPoints = JSON.parse(fs.readFileSync('./data/data.geojson'));
-
-// produce an interpolated surface
-var IDWSurface = IDW(controlPoints,'value', 0.5, 0.1,'kilometers');
-
-```
-Returns a **[FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects)&lt;[Polygon](http://geojson.org/geojson-spec.html#polygon)>** grid of polygons with a property field `IDW`
-
-
-## Installation & Use
-
-Requires [nodejs](http://nodejs.org/).
-
-`Git clone` this repo, then `require` it
-
-## Tests
+Install this module individually:
 
 ```sh
-$ npm test
+$ npm install @turf/idw
 ```
 
-## Resources
-[1] _O’Sullivan, D., & Unwin, D. (2010). Geographic Information Analysis (2nd Edition). 432pp. Hoboken, New Jersey (USA): John Wiley & Sons, Inc._
+Or install the Turf module that includes it as a function:
 
-[2] _Xiao, N. (2016). GIS Algorithms, 336pp. SAGE Publications Ltd._
-
-
+```sh
+$ npm install @turf/turf
+```
