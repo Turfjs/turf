@@ -1,11 +1,11 @@
 var inside = require('@turf/inside');
 
 /**
- * Joins attributes FeatureCollection of polygons with a FeatureCollection of
- * points. Given an `inProperty` on points and an `outProperty` for polygons,
- * this finds every point that lies within each polygon, collects the `inProperty`
- * values from those points, and adds them as an array to `outProperty` on the
- * polygon.
+ * Merges a specified property from a FeatureCollection of points into a
+ * FeatureCollection of polygons. Given an `inProperty` on points and an `outProperty` 
+ * for polygons, this finds every point that lies within each polygon, collects the
+ * `inProperty` values from those points, and adds them as an array to `outProperty` 
+ * on the polygon.
  *
  * @name collect
  * @param {FeatureCollection<Polygon>} polygons polygons with values on which to aggregate
