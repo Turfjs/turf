@@ -1,6 +1,6 @@
 {
   "name": "@turf/idw",
-  "version": "1.0.0",
+  "version": "3.0.0",
   "description": "Calculate a grid with IDW - Inverse Distance Weighted - values.",
   "main": "index.js",
   "directories": {
