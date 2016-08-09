@@ -1,6 +1,6 @@
 {
   "name": "@turf/collect",
-  "version": "3.3.3",
+  "version": "3.5.1",
   "description": "turf aggregate module",
   "main": "index.js",
   "scripts": {
