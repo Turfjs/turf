@@ -2,7 +2,7 @@
 
 # area
 
-Takes a one or more features and returns their area
+Takes one or more features and returns their area
 in square meters.
 
 **Parameters**
