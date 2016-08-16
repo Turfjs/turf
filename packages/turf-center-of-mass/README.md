@@ -1,6 +1,6 @@
 # @turf/center-of-mass
 
-# center-of-mass
+# centerOfMass
 
 Takes a [feature](http://geojson.org/geojson-spec.html#feature-objects)
 or a [featureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects)
@@ -9,7 +9,7 @@ using this formula: [Centroid of Polygon](https://en.wikipedia.org/wiki/Centroid
 
 **Parameters**
 
--   `feature` **[Feature](http://geojson.org/geojson-spec.html#feature-objects)** the feature
+-   `fc` **([FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects) \| [Feature](http://geojson.org/geojson-spec.html#feature-objects))** the feature collection or feature
 
 **Examples**
 
