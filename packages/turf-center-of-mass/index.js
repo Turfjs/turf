@@ -105,7 +105,7 @@ var each = require('@turf/meta').coordEach,
  *   }
  * };
  *
- * var centerOfMass = turf.center-of-mass(feature);
+ * var centerOfMass = turf.centerOfMass(feature);
  *
  * //=centerOfMass
  */
