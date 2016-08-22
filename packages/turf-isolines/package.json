@@ -1,6 +1,6 @@
 {
   "name": "@turf/isolines",
-  "version": "3.3.3",
+  "version": "3.5.2",
   "description": "turf isolines module",
   "main": "index.js",
   "scripts": {
@@ -29,12 +29,12 @@
     "tape": "^3.5.0"
   },
   "dependencies": {
-    "@turf/bbox": "^3.3.3",
+    "@turf/bbox": "^3.5.2",
     "turf-grid": "1.0.1",
-    "@turf/inside": "^3.3.3",
-    "@turf/helpers": "^3.3.3",
-    "@turf/planepoint": "^3.3.3",
-    "@turf/square": "^3.3.3",
-    "@turf/tin": "^3.3.3"
+    "@turf/inside": "^3.5.2",
+    "@turf/helpers": "^3.5.2",
+    "@turf/planepoint": "^3.5.2",
+    "@turf/square": "^3.5.2",
+    "@turf/tin": "^3.5.2"
   }
 }

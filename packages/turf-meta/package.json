@@ -1,6 +1,6 @@
 {
   "name": "@turf/meta",
-  "version": "3.3.3",
+  "version": "3.5.2",
   "description": "meta and functional programming helpers for turf modules",
   "main": "index.js",
   "scripts": {
@@ -15,7 +15,7 @@
   "license": "ISC",
   "devDependencies": {
     "tape": "^3.4.0",
-    "@turf/random": "^3.3.3"
+    "@turf/random": "^3.5.2"
   },
   "repository": {
     "type": "git",

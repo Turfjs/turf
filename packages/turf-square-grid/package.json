@@ -1,11 +1,11 @@
 {
   "name": "@turf/square-grid",
-  "version": "3.3.3",
+  "version": "3.5.2",
   "description": "",
   "main": "index.js",
   "dependencies": {
-    "@turf/distance": "^3.3.3",
-    "@turf/helpers": "^3.3.3"
+    "@turf/distance": "^3.5.2",
+    "@turf/helpers": "^3.5.2"
   },
   "devDependencies": {
     "benchmark": "^1.0.0",
