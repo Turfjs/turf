@@ -1,6 +1,6 @@
 {
   "private": true,
-  "version": "3.0.0",
+  "version": "3.5.2",
   "description": "a node.js library for performing geospatial operations with geojson",
   "scripts": {
     "test": "npm run lint && lerna bootstrap && lerna run test",
