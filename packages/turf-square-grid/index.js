@@ -9,14 +9,14 @@ var distance = require('@turf/distance');
  * @name squareGrid
  * @param {Array<number>} bbox extent in [minX, minY, maxX, maxY] order
  * @param {number} cellSize width of each cell
- * @param {string} units units to use for cellWidth
+ * @param {string} units units to use for cellSize
  * @return {FeatureCollection<Polygon>} grid a grid of polygons
  * @example
  * var extent = [-77.3876953125,38.71980474264239,-76.9482421875,39.027718840211605];
- * var cellWidth = 10;
+ * var cellSize = 10;
  * var units = 'miles';
  *
- * var squareGrid = turf.squareGrid(extent, cellWidth, units);
+ * var squareGrid = turf.squareGrid(extent, cellSize, units);
  *
  * //=squareGrid
  */
