@@ -2,11 +2,11 @@
 var jsts = require('jsts');
 
 /**
- * Takes two {@link Polygon|polygons} and finds their intersection. If they share a border, returns the border; if they don't intersect, returns undefined.
+ * Takes two {@link Feature|feature} and finds their intersection. If they share a border, returns the border; if they don't intersect, returns undefined.
  *
  * @name intersect
- * @param {Feature<Polygon>} poly1 the first polygon
- * @param {Feature<Polygon>} poly2 the second polygon
+ * @param {Feature} feature1 the first feature
+ * @param {Feature} feature2 the second feature
  * @return {(Feature|undefined)} returns a feature representing the point(s) they share (in case of a {@link Point}  or {@link MultiPoint}), the borders they share (in case of a {@link LineString} or a {@link MultiLineString}), the area they share (in case of {@link Polygon} or {@link MultiPolygon}). If they do not share any point, returns `undefined`.
  * @example
  * var poly1 = {
@@ -56,12 +56,12 @@ var jsts = require('jsts');
  *
  * //=intersection
  */
-module.exports = function intersect(poly1, poly2) {
+module.exports = function intersect(feature1, feature2) {
     var geom1, geom2;
-    if (poly1.type === 'Feature') geom1 = poly1.geometry;
-    else geom1 = poly1;
-    if (poly2.type === 'Feature') geom2 = poly2.geometry;
-    else geom2 = poly2;
+    if (feature1.type === 'Feature') geom1 = feature1.geometry;
+    else geom1 = feature1;
+    if (feature2.type === 'Feature') geom2 = feature2.geometry;
+    else geom2 = feature2;
     var reader = new jsts.io.GeoJSONReader();
     var a = reader.read(JSON.stringify(geom1));
     var b = reader.read(JSON.stringify(geom2));
