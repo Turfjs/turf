@@ -1,4 +1,4 @@
-// depend on jsts for now https://github.com/bjornharrtell/jsts/blob/master/examples/overlay.html
+// depend on jsts for now http://bjornharrtell.github.io/jsts/
 var jsts = require('jsts');
 
 /**
