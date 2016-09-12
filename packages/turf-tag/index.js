@@ -26,13 +26,13 @@ var inside = require('@turf/inside');
  *   [-72, 35],
  *   [-81, 35]
  * ]], {pop: 1000});
- * 
+ *
  * var points = featureCollection([pt1, pt2]);
  * var polygons = featureCollection([poly1, poly2]);
- * 
+ *
  * var tagged = turf.tag(points, polygons,
  *                       'pop', 'population');
- * 
+ *
  * //=tagged
  */
 module.exports = function (points, polygons, field, outField) {
