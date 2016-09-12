@@ -23,7 +23,7 @@ var invariant = require('@turf/invariant');
  * ]]);
  *
  * var isInside = turf.inside(pt, poly);
- * 
+ *
  * //=isInside
  */
 module.exports = function input(point, polygon) {
