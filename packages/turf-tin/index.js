@@ -78,22 +78,11 @@ function Triangle(a, b, c) {
 
     // If the points of the triangle are collinear, then just find the
     // extremes and use the midpoint as the center of the circumcircle.
-    if (Math.abs(G) < 0.000001) {
-        minx = Math.min(a.x, b.x, c.x);
-        miny = Math.min(a.y, b.y, c.y);
-        dx = (Math.max(a.x, b.x, c.x) - minx) * 0.5;
-        dy = (Math.max(a.y, b.y, c.y) - miny) * 0.5;
-
-        this.x = minx + dx;
-        this.y = miny + dy;
-        this.r = dx * dx + dy * dy;
-    } else {
-        this.x = (D * E - B * F) / G;
-        this.y = (A * F - C * E) / G;
-        dx = this.x - a.x;
-        dy = this.y - a.y;
-        this.r = dx * dx + dy * dy;
-    }
+    this.x = (D * E - B * F) / G;
+    this.y = (A * F - C * E) / G;
+    dx = this.x - a.x;
+    dy = this.y - a.y;
+    this.r = dx * dx + dy * dy;
 }
 
 function byX(a, b) {
@@ -136,7 +125,15 @@ function triangulate(vertices) {
         xmin = vertices[i].x,
         xmax = vertices[0].x,
         ymin = vertices[i].y,
-        ymax = ymin;
+        ymax = ymin,
+        epsilon = 1e-12;
+
+    var a,
+        b,
+        c,
+        A,
+        B,
+        G;
 
     while (i--) {
         if (vertices[i].y < ymin)
@@ -218,7 +215,15 @@ function triangulate(vertices) {
         while (j) {
             b = edges[--j];
             a = edges[--j];
-            open.push(new Triangle(a, b, vertices[i]));
+            c = vertices[i];
+            // Avoid adding colinear triangles (which have error-prone
+            // circumcircles)
+            A = b.x - a.x;
+            B = b.y - a.y;
+            G = 2 * (A * (c.y - b.y) - B * (c.x - b.x));
+            if (Math.abs(G) > epsilon) {
+              open.push(new Triangle(a, b, c));
+            }
         }
     }
 
