@@ -74,7 +74,7 @@ function Triangle(a, b, c) {
         E = A * (a.x + b.x) + B * (a.y + b.y),
         F = C * (a.x + c.x) + D * (a.y + c.y),
         G = 2 * (A * (c.y - b.y) - B * (c.x - b.x)),
-        minx, miny, dx, dy;
+        dx, dy;
 
     // If the points of the triangle are collinear, then just find the
     // extremes and use the midpoint as the center of the circumcircle.
@@ -172,7 +172,7 @@ function triangulate(vertices) {
         )],
         closed = [],
         edges = [],
-        j, a, b;
+        j;
 
     // Incrementally add each vertex to the mesh.
     i = vertices.length;
@@ -222,7 +222,7 @@ function triangulate(vertices) {
             B = b.y - a.y;
             G = 2 * (A * (c.y - b.y) - B * (c.x - b.x));
             if (Math.abs(G) > epsilon) {
-              open.push(new Triangle(a, b, c));
+                open.push(new Triangle(a, b, c));
             }
         }
     }
