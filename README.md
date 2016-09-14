@@ -44,7 +44,7 @@ All of Turf's functions can also be installed as separate modules. This works we
 npm install @turf/point @turf/buffer
 ```
 
-**Bower:**
+**Bower [NOTE: Bower support will be dropped Jan 1st 2017]:**
 
 _Not recommend. Please don't use Bower. Use Browserify, Webpack, or the CDN instead._
 
