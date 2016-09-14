@@ -6,31 +6,32 @@ var inside = require('@turf/inside');
  * @name tag
  * @param {FeatureCollection<Point>} points input points
  * @param {FeatureCollection<Polygon>} polygons input polygons
- * @param {string} field property in `polygons` to add to joined Point features
- * @param {string} outField property in `points` in which to store joined property from `polygons
+ * @param {string} field property in `polygons` to add to joined {<Point>} features
+ * @param {string} outField property in `points` in which to store joined property from `polygons`
  * @return {FeatureCollection<Point>} points with `containingPolyId` property containing values from `polyId`
  * @example
- * var bbox = [0, 0, 10, 10];
- * // create a triangular grid of polygons
- * var triangleGrid = turf.triangleGrid(bbox, 50, 'miles');
- * triangleGrid.features.forEach(function(f) {
- *   f.properties.fill = '#' +
- *     (~~(Math.random() * 16)).toString(16) +
- *     (~~(Math.random() * 16)).toString(16) +
- *     (~~(Math.random() * 16)).toString(16);
- *   f.properties.stroke = 0;
- *   f.properties['fill-opacity'] = 1;
- * });
- * var randomPoints = turf.random('point', 30, {
- *   bbox: bbox
- * });
- * var both = turf.featurecollection(
- *   triangleGrid.features.concat(randomPoints.features));
+ * var pt1 = point([-77, 44]);
+ * var pt2 = point([-77, 38]);
+ * var poly1 = polygon([[
+ *   [-81, 41],
+ *   [-81, 47],
+ *   [-72, 47],
+ *   [-72, 41],
+ *   [-81, 41]
+ * ]], {pop: 3000});
+ * var poly2 = polygon([[
+ *   [-81, 35],
+ *   [-81, 41],
+ *   [-72, 41],
+ *   [-72, 35],
+ *   [-81, 35]
+ * ]], {pop: 1000});
  *
- * //=both
+ * var points = featureCollection([pt1, pt2]);
+ * var polygons = featureCollection([poly1, poly2]);
  *
- * var tagged = turf.tag(randomPoints, triangleGrid,
- *                       'fill', 'marker-color');
+ * var tagged = turf.tag(points, polygons,
+ *                       'pop', 'population');
  *
  * //=tagged
  */
