@@ -9,7 +9,7 @@
  */
 var helpers = require('@turf/helpers');
 
-module.exports = {
+var turf = {
     isolines: require('@turf/isolines'),
     convex: require('@turf/convex'),
     within: require('@turf/within'),
@@ -67,3 +67,8 @@ module.exports = {
     featureCollection: helpers.featureCollection,
     geometryCollection: helpers.geometryCollection
 };
+
+module.exports = turf;
+
+// Allow use of default import syntax in TypeScript
+module.exports.default = turf;
