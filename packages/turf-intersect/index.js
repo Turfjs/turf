@@ -27,11 +27,8 @@ var jsts = require('jsts');
  *   [-122.487258, 45.477466],
  *   [-122.520217, 45.535693]
  * ]]);
- * var polygons = featureCollection([poly1, poly2]);
  *
  * var intersection = turf.intersect(poly1, poly2);
- *
- * //=polygons
  *
  * //=intersection
  */
