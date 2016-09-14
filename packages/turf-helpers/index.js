@@ -32,7 +32,7 @@ module.exports.feature = feature;
  * Takes coordinates and properties (optional) and returns a new {@link Point} feature.
  *
  * @name point
- * @param {number[]} coordinates longitude, latitude position (each in decimal degrees)
+ * @param {Array<number>} coordinates longitude, latitude position (each in decimal degrees)
  * @param {Object=} properties an Object that is used as the {@link Feature}'s
  * properties
  * @returns {Feature<Point>} a Point feature
