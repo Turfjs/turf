@@ -5,55 +5,22 @@ var each = require('@turf/meta').coordEach;
  *
  * @name bbox
  * @param {(Feature|FeatureCollection)} geojson input features
- * @return {Array<number>} the bounding box of `input` given
- * as an array in WSEN order (west, south, east, north)
+ * @return {Array<number>} bbox extent in [minX, minY, maxX, maxY] order
  * @example
- * var input = {
- *   "type": "FeatureCollection",
- *   "features": [
- *     {
- *       "type": "Feature",
- *       "properties": {},
- *       "geometry": {
- *         "type": "Point",
- *         "coordinates": [114.175329, 22.2524]
- *       }
- *     }, {
- *       "type": "Feature",
- *       "properties": {},
- *       "geometry": {
- *         "type": "Point",
- *         "coordinates": [114.170007, 22.267969]
- *       }
- *     }, {
- *       "type": "Feature",
- *       "properties": {},
- *       "geometry": {
- *         "type": "Point",
- *         "coordinates": [114.200649, 22.274641]
- *       }
- *     }, {
- *       "type": "Feature",
- *       "properties": {},
- *       "geometry": {
- *         "type": "Point",
- *         "coordinates": [114.186744, 22.265745]
- *       }
- *     }
- *   ]
- * };
+ * var pt1 = point([114.175329, 22.2524])
+ * var pt2 = point([114.170007, 22.267969])
+ * var pt3 = point([114.200649, 22.274641])
+ * var pt4 = point([114.200649, 22.274641])
+ * var pt5 = point([114.186744, 22.265745])
+ * var features = featureCollection([pt1, pt2, pt3, pt4, pt5])
  *
- * var bbox = turf.bbox(input);
+ * var bbox = turf.bbox(features);
  *
  * var bboxPolygon = turf.bboxPolygon(bbox);
  *
- * var resultFeatures = input.features.concat(bboxPolygon);
- * var result = {
- *   "type": "FeatureCollection",
- *   "features": resultFeatures
- * };
- *
- * //=result
+ * //=bbox
+ * 
+ * //=bboxPolygon
  */
 module.exports = function (geojson) {
     var bbox = [Infinity, Infinity, -Infinity, -Infinity];
