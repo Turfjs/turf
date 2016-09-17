@@ -19,7 +19,7 @@ for (var i = 0; i < 6; i++) {
  * described in [Hexagonal Grids](http://www.redblobgames.com/grids/hexagons/).
  *
  * @name hexGrid
- * @param {Array<number>} bbox bounding box in [minX, minY, maxX, maxY] order
+ * @param {Array<number>} bbox extent in [minX, minY, maxX, maxY] order
  * @param {number} cellSize dimension of cell in specified units
  * @param {string} units used in calculating cellSize ('miles' or 'kilometers')
  * @param {boolean} triangles whether to return as triangles instead of hexagons
