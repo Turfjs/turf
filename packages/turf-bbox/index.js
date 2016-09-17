@@ -19,7 +19,7 @@ var each = require('@turf/meta').coordEach;
  * var bboxPolygon = turf.bboxPolygon(bbox);
  *
  * //=bbox
- * 
+ *
  * //=bboxPolygon
  */
 module.exports = function (geojson) {
