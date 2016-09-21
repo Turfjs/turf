@@ -141,6 +141,24 @@ function propReduce(layer, callback, memo) {
 module.exports.propReduce = propReduce;
 
 /**
+ * Return a list of properties and their types in a GeoJSON object.
+ *
+ * @param {Object} layer any GeoJSON object
+ * @return {Object} An object with of all properties in the GeoJSON and their type
+ */
+function propTypes (layer) {
+  opts = opts || {}
+  return propReduce(layer, function (prev, props) {
+    for (var prop in props) {
+      if (prev[prop]) continue
+      prev[prop] = typeof props[prop]
+    }
+  }, {})
+}
+
+module.exports.propTypes = propTypes
+
+/**
  * Iterate over features in any GeoJSON object, similar to
  * Array.forEach.
  *
