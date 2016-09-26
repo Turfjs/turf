@@ -8,6 +8,7 @@
  * @summary Geospatial analysis for JavaScript
  */
 var helpers = require('@turf/helpers');
+var invariant = require('@turf/invariant');
 
 var turf = {
     isolines: require('@turf/isolines'),
@@ -65,7 +66,11 @@ var turf = {
     multiLineString: helpers.multiLineString,
     feature: helpers.feature,
     featureCollection: helpers.featureCollection,
-    geometryCollection: helpers.geometryCollection
+    geometryCollection: helpers.geometryCollection,
+    getCoord: invariant.getCoord,
+    geojsonType: invariant.geojsonType,
+    featureOf: invariant.featureOf,
+    collectionOf: invariant.collectionOf
 };
 
 module.exports = turf;
