@@ -54,6 +54,14 @@ The latest Bower build is at:
 https://unpkg.com/@turf/turf@3.1.1/bower.zip
 ```
 
+**TypeScript**
+
+TypeScript 2.0 type definition was added to the [DefinitelyTyped repository](https://github.com/DefinitelyTyped/DefinitelyTyped).
+
+```bash
+npm install --save @types/turf
+```
+
 - - -
 
 ### Data in Turf
