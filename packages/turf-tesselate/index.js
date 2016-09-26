@@ -7,12 +7,12 @@ var earcut = require('earcut');
  * using [earcut](https://github.com/mapbox/earcut).
  *
  * @name tesselate
- * @param {Feature<Polygon>} polygon the polygon to tesselate
+ * @param {Feature<Polygon>} poly the polygon to tesselate
  * @returns {FeatureCollection<Polygon>} a geometrycollection feature
  * @example
- * var polygon = turf.random('polygon').features[0];
+ * var poly = turf.random('polygon').features[0];
  *
- * var triangles = turf.tesselate(polygon);
+ * var triangles = turf.tesselate(poly);
  *
  * //=triangles
  */
