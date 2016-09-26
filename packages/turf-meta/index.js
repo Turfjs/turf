@@ -2,6 +2,7 @@
  * Iterate over coordinates in any GeoJSON object, similar to
  * Array.forEach.
  *
+ * @name coordEach
  * @param {Object} layer any GeoJSON object
  * @param {Function} callback a method that takes (value)
  * @param {boolean=} excludeWrapCoord whether or not to include
@@ -78,13 +79,14 @@ module.exports.coordEach = coordEach;
  * similar to how Array.reduce works. However, in this case we lazily run
  * the reduction, so an array of all coordinates is unnecessary.
  *
+ * @name coordReduce
  * @param {Object} layer any GeoJSON object
  * @param {Function} callback a method that takes (memo, value) and returns
  * a new memo
  * @param {*} memo the starting value of memo: can be any type.
  * @param {boolean=} excludeWrapCoord whether or not to include
  * the final coordinate of LinearRings that wraps the ring in its iteration.
- * @return {*} combined value
+ * @returns {*} combined value
  */
 function coordReduce(layer, callback, memo, excludeWrapCoord) {
     coordEach(layer, function (coord) {
@@ -98,6 +100,7 @@ module.exports.coordReduce = coordReduce;
  * Iterate over property objects in any GeoJSON object, similar to
  * Array.forEach.
  *
+ * @name propEach
  * @param {Object} layer any GeoJSON object
  * @param {Function} callback a method that takes (value)
  * @example
@@ -126,11 +129,12 @@ module.exports.propEach = propEach;
  * similar to how Array.reduce works. However, in this case we lazily run
  * the reduction, so an array of all properties is unnecessary.
  *
+ * @name propReduce
  * @param {Object} layer any GeoJSON object
  * @param {Function} callback a method that takes (memo, coord) and returns
  * a new memo
  * @param {*} memo the starting value of memo: can be any type.
- * @return {*} combined value
+ * @returns {*} combined value
  */
 function propReduce(layer, callback, memo) {
     propEach(layer, function (prop) {
@@ -144,6 +148,7 @@ module.exports.propReduce = propReduce;
  * Iterate over features in any GeoJSON object, similar to
  * Array.forEach.
  *
+ * @name featureEach
  * @param {Object} layer any GeoJSON object
  * @param {Function} callback a method that takes (value)
  * @example
@@ -166,8 +171,10 @@ module.exports.featureEach = featureEach;
 /**
  * Get all coordinates from any GeoJSON object, returning an array of coordinate
  * arrays.
+ *
+ * @name coordAll
  * @param {Object} layer any GeoJSON object
- * @return {Array<Array<Number>>} coordinate position array
+ * @returns {Array<Array<Number>>} coordinate position array
  */
 function coordAll(layer) {
     var coords = [];
