@@ -59,6 +59,35 @@ The `turf-collect` method provides the core of these statistical methods
 and lets you bring your own statistical library, like `simple-statistics`,
 `science.js`, or others.
 
+For example, here's how to find the median of matched values with simple-statistics.
+Finding other statistics, like variance, mean, and so on simply use other methods
+from the statistics library.
+
+```js
+var ss = require('simple-statistics');
+var turf = require('@turf/turf');
+
+var poly1 = turf.polygon([[[0,0],[10,0],[10,10],[0,10],[0,0]]]);
+var poly2 = turf.polygon([[[10,0],[20,10],[20,20],[20,0],[10,0]]]);
+var polyFC = turf.featureCollection([poly1, poly2]);
+var pt1 = turf.point([5,5], {population: 200});
+var pt2 = turf.point([1,3], {population: 600});
+var pt3 = turf.point([14,2], {population: 100});
+var pt4 = turf.point([13,1], {population: 200});
+var pt5 = turf.point([19,7], {population: 300});
+var ptFC = turf.featureCollection([pt1, pt2, pt3, pt4, pt5]);
+
+// collects values from matching points into an array called 'values'
+var collected = turf.collect(polyFC, ptFC, 'population', 'values');
+
+// finds the median of those values.
+collected.features.forEach(function (feature) {
+  feature.properties.median = ss.median(feature.properties.values);
+});
+
+console.log(JSON.stringify(collected, null, 2));
+```
+
 **If you were using turf-filter, turf-remove**
 
 These modules were thin wrappers around native JavaScript methods: use
