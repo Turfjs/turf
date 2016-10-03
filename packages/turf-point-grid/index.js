@@ -7,14 +7,14 @@ var distance = require('@turf/distance');
  * @name pointGrid
  * @param {Array<number>} bbox extent in [minX, minY, maxX, maxY] order
  * @param {number} cellSize the distance across each cell
- * @param {string} [units=kilometers] used in calculating cellWidth, can be degrees, radians, miles, or kilometers
+ * @param {string} [units=kilometers] used in calculating cellSize, can be degrees, radians, miles, or kilometers
  * @return {FeatureCollection<Point>} grid of points
  * @example
  * var extent = [-70.823364, -33.553984, -70.473175, -33.302986];
- * var cellWidth = 3;
+ * var cellSize = 3;
  * var units = 'miles';
  *
- * var grid = turf.pointGrid(extent, cellWidth, units);
+ * var grid = turf.pointGrid(extent, cellSize, units);
  *
  * //=grid
  */

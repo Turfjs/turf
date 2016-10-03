@@ -19,17 +19,17 @@ for (var i = 0; i < 6; i++) {
  * described in [Hexagonal Grids](http://www.redblobgames.com/grids/hexagons/).
  *
  * @name hexGrid
- * @param {Array<number>} bbox bounding box in [minX, minY, maxX, maxY] order
+ * @param {Array<number>} bbox extent in [minX, minY, maxX, maxY] order
  * @param {number} cellSize dimension of cell in specified units
- * @param {string} units used in calculating cellWidth ('miles' or 'kilometers')
+ * @param {string} [units=kilometers] used in calculating cellSize, can be degrees, radians, miles, or kilometers
  * @param {boolean} triangles whether to return as triangles instead of hexagons
  * @return {FeatureCollection<Polygon>} a hexagonal grid
  * @example
  * var bbox = [-96,31,-84,40];
- * var cellWidth = 50;
+ * var cellSize = 50;
  * var units = 'miles';
  *
- * var hexgrid = turf.hexGrid(bbox, cellWidth, units);
+ * var hexgrid = turf.hexGrid(bbox, cellSize, units);
  *
  * //=hexgrid
  */

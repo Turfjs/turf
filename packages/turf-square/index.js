@@ -5,7 +5,7 @@ var distance = require('@turf/distance');
  * would contain the input.
  *
  * @name square
- * @param {Array<number>} bbox a bounding box
+ * @param {Array<number>} bbox extent in [minX, minY, maxX, maxY] order
  * @return {Array<number>} a square surrounding `bbox`
  * @example
  * var bbox = [-20,-20,-15,0];

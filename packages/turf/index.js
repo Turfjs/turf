@@ -8,8 +8,9 @@
  * @summary Geospatial analysis for JavaScript
  */
 var helpers = require('@turf/helpers');
+var invariant = require('@turf/invariant');
 
-module.exports = {
+var turf = {
     isolines: require('@turf/isolines'),
     convex: require('@turf/convex'),
     within: require('@turf/within'),
@@ -65,5 +66,14 @@ module.exports = {
     multiLineString: helpers.multiLineString,
     feature: helpers.feature,
     featureCollection: helpers.featureCollection,
-    geometryCollection: helpers.geometryCollection
+    geometryCollection: helpers.geometryCollection,
+    getCoord: invariant.getCoord,
+    geojsonType: invariant.geojsonType,
+    featureOf: invariant.featureOf,
+    collectionOf: invariant.collectionOf
 };
+
+module.exports = turf;
+
+// Allow use of default import syntax in TypeScript
+module.exports.default = turf;

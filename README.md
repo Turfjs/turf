@@ -44,14 +44,22 @@ All of Turf's functions can also be installed as separate modules. This works we
 npm install @turf/point @turf/buffer
 ```
 
-**Bower:**
+**Bower [NOTE: Bower support will be dropped Jan 1st 2017]:**
 
 _Not recommend. Please don't use Bower. Use Browserify, Webpack, or the CDN instead._
 
 The latest Bower build is at:
 
 ```
-https://npmcdn.com/@turf/turf@3.1.1/bower.zip
+https://unpkg.com/@turf/turf@3.1.1/bower.zip
+```
+
+**TypeScript**
+
+TypeScript 2.0 type definition was added to the [DefinitelyTyped repository](https://github.com/DefinitelyTyped/DefinitelyTyped).
+
+```bash
+npm install --save @types/turf
 ```
 
 - - -

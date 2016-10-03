@@ -32,7 +32,7 @@ module.exports.feature = feature;
  * Takes coordinates and properties (optional) and returns a new {@link Point} feature.
  *
  * @name point
- * @param {number[]} coordinates longitude, latitude position (each in decimal degrees)
+ * @param {Array<number>} coordinates longitude, latitude position (each in decimal degrees)
  * @param {Object=} properties an Object that is used as the {@link Feature}'s
  * properties
  * @returns {Feature<Point>} a Point feature
@@ -237,7 +237,7 @@ module.exports.multiPolygon = function (coordinates, properties) {
  * @name geometryCollection
  * @param {Array<{Geometry}>} geometries an array of GeoJSON Geometries
  * @param {Object=} properties an Object of key-value pairs to add as properties
- * @returns {Feature<GeometryCollection>} a geometrycollection feature
+ * @returns {Feature<GeometryCollection>} a GeoJSON GeometryCollection Feature
  * @example
  * var pt = {
  *     "type": "Point",
@@ -247,7 +247,7 @@ module.exports.multiPolygon = function (coordinates, properties) {
  *     "type": "LineString",
  *     "coordinates": [ [101, 0], [102, 1] ]
  *   };
- * var collection = turf.geometrycollection([[0,0],[10,10]]);
+ * var collection = turf.geometryCollection([pt, line]);
  *
  * //=collection
  */
