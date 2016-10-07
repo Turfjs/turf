@@ -135,6 +135,18 @@ module.exports.propEach = propEach;
  * a new memo
  * @param {*} memo the starting value of memo: can be any type.
  * @returns {*} combined value
+ * @example
+ * // an example of an even more advanced function that gives you the
+ * // javascript type of each property of every feature
+ * function propTypes (layer) {
+ *   opts = opts || {}
+ *   return propReduce(layer, function (prev, props) {
+ *     for (var prop in props) {
+ *       if (prev[prop]) continue
+ *       prev[prop] = typeof props[prop]
+ *     }
+ *   }, {})
+ * }
  */
 function propReduce(layer, callback, memo) {
     propEach(layer, function (prop) {
