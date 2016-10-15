@@ -2,12 +2,11 @@ var bbox = require('@turf/bbox'),
     point = require('@turf/helpers').point;
 
 /**
- * Takes a {@link FeatureCollection} and returns the absolute center point of all features.
+ * Takes a {@link Feature} or {@link FeatureCollection} and returns the absolute center point of all features.
  *
  * @name center
- * @param {FeatureCollection} features input features
- * @return {Feature<Point>} a Point feature at the
- * absolute center point of all input features
+ * @param {(Feature|FeatureCollection)} layer input features
+ * @return {Feature<Point>} a Point feature at the absolute center point of all input features
  * @example
  * var features = {
  *   "type": "FeatureCollection",
