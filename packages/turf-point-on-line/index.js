@@ -8,7 +8,7 @@ var destination = require('@turf/destination');
  *
  * @name pointOnLine
  * @param {Feature<LineString>} line line to snap to
- * @param {Feature<Point>} point point to snap from
+ * @param {Feature<Point>} pt point to snap from
  * @param {String} [units=miles] can be degrees, radians, miles, or kilometers
  * @return {Feature<Point>} closest point on the `line` to `point`
  * @example
