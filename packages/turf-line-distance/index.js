@@ -49,7 +49,7 @@ module.exports = function lineDistance(line, units) {
             d += length(geometry.coordinates[i], units);
         }
         return d;
-    } else if (line.type === 'MultiPolygon') {
+    } else if (geometry.type === 'MultiPolygon') {
         d = 0;
         for (i = 0; i < geometry.coordinates.length; i++) {
             for (var j = 0; j < geometry.coordinates[i].length; j++) {
