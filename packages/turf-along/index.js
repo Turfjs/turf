@@ -9,7 +9,7 @@ var destination = require('@turf/destination');
  * @name along
  * @param {Feature<LineString>} line input line
  * @param {number} distance distance along the line
- * @param {String} [units=miles] can be degrees, radians, miles, or kilometers
+ * @param {String} [units=kilometers] can be degrees, radians, miles, or kilometers
  * @return {Feature<Point>} Point `distance` `units` along the line
  * @example
  * var line = {

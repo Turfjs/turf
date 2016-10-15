@@ -9,7 +9,7 @@ var destination = require('@turf/destination');
  * @name pointOnLine
  * @param {Feature<LineString>} line line to snap to
  * @param {Feature<Point>} pt point to snap from
- * @param {String} [units=miles] can be degrees, radians, miles, or kilometers
+ * @param {String} [units=kilometers] can be degrees, radians, miles, or kilometers
  * @return {Feature<Point>} closest point on the `line` to `point`
  * @example
  * var line = {
@@ -57,10 +57,6 @@ module.exports = function (line, pt, units) {
         throw new Error('input must be a LineString Feature or Geometry');
     }
 
-    return pointOnLine(pt, coords, units || 'miles');
-};
-
-function pointOnLine(pt, coords, units) {
     var closestPt = point([Infinity, Infinity], {
         dist: Infinity
     });
@@ -107,7 +103,7 @@ function pointOnLine(pt, coords, units) {
     }
 
     return closestPt;
-}
+};
 
 // modified from http://jsfiddle.net/justin_c_rounds/Gd2S2/light/
 function lineIntersects(line1StartX, line1StartY, line1EndX, line1EndY, line2StartX, line2StartY, line2EndX, line2EndY) {
