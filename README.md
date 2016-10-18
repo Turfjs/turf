@@ -4,6 +4,7 @@
 [![Version Badge][npm-img]][npm-url]
 [![Circle CI](https://circleci.com/gh/Turfjs/turf.svg?style=svg)](https://circleci.com/gh/Turfjs/turf)
 [![Gitter chat][gitter-img]][gitter-url]
+[![CDNJS](https://img.shields.io/cdnjs/v/Turf.js.svg)](https://cdnjs.com/libraries/Turf.js)
 
 [npm-img]: https://img.shields.io/npm/v/@turf/turf.svg
 [npm-url]: https://www.npmjs.com/package/@turf/turf
