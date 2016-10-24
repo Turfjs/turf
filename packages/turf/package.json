@@ -100,14 +100,14 @@
     "@turf/triangle-grid": "^3.5.2",
     "@turf/union": "^3.5.2",
     "@turf/within": "^3.5.2",
-    "@turf/helpers": "^3.5.2"
+    "@turf/helpers": "^3.5.2",
+    "@turf/invariant": "^3.5.2"
   },
   "devDependencies": {
     "browserify": "~9.0.3",
     "disc": "^1.3.2",
     "hcat": "0.0.5",
     "jsdoc": "^3.3.0-beta1",
-    "lerna": "https://github.com/kittens/lerna/archive/master.tar.gz",
     "tape": "^3.5.0",
     "uglify-js": "~2.4.16"
   },
