@@ -2,7 +2,7 @@ var test = require('tape');
 var fs = require('fs');
 var path = require('path');
 var lineSliceAlong = require('./');
-var along = require('turf-along');
+var along = require('@turf/along');
 
 var line1 = JSON.parse(fs.readFileSync(path.join(__dirname, '/test/fixtures/line1.geojson')));
 var route1 = JSON.parse(fs.readFileSync(path.join(__dirname, '/test/fixtures/route1.geojson')));
