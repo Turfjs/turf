@@ -1,7 +1,7 @@
-var bearing = require('turf-bearing');
-var distance = require('turf-distance');
-var destination = require('turf-destination');
-var lineString = require('turf-helpers').lineString;
+var bearing = require('@turf/bearing');
+var distance = require('@turf/distance');
+var destination = require('@turf/destination');
+var lineString = require('@turf/helpers').lineString;
 
 
 /**

@@ -21,15 +21,15 @@
     "url": "https://github.com/Turfjs/turf/issues"
   },
   "homepage": "https://github.com/Turfjs/turf",
-  "dependencies": {
-    "turf-bearing": "^3.0.1",
-    "turf-destination": "^3.0.5",
-    "turf-distance": "^3.0.5",
-    "turf-helpers": "^3.0.5"
-  },
   "devDependencies": {
     "benchmark": "^1.0.0",
     "tape": "^3.5.0",
-    "turf-along": "^3.0.5"
+    "@turf/along": "^3.5.2"
+  },
+  "dependencies": {
+    "@turf/bearing": "^3.5.2",
+    "@turf/destination": "^3.5.2",
+    "@turf/distance": "^3.5.2",
+    "@turf/helpers": "^3.5.2"
   }
 }
