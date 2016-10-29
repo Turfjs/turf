@@ -30,7 +30,8 @@
   },
   "dependencies": {
     "@turf/bbox": "^3.5.2",
-    "turf-grid": "1.0.1",
+    "@turf/point-grid": "^3.5.2",
+    "@@turf/distance": "^3.5.2",
     "@turf/inside": "^3.5.2",
     "@turf/helpers": "^3.5.2",
     "@turf/planepoint": "^3.5.2",
