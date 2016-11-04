@@ -18,15 +18,13 @@
  *
  * //=feature
  */
-function feature(geometry, properties) {
+module.exports.feature = function (geometry, properties) {
     return {
         type: 'Feature',
         properties: properties || {},
         geometry: geometry
     };
 }
-
-module.exports.feature = feature;
 
 /**
  * Takes coordinates and properties (optional) and returns a new {@link Point} feature.
@@ -104,16 +102,16 @@ module.exports.polygon = function (coordinates, properties) {
  * @throws {Error} if no coordinates are passed
  * @example
  * var linestring1 = turf.lineString([
- *	[-21.964416, 64.148203],
- *	[-21.956176, 64.141316],
- *	[-21.93901, 64.135924],
- *	[-21.927337, 64.136673]
+ *  [-21.964416, 64.148203],
+ *  [-21.956176, 64.141316],
+ *  [-21.93901, 64.135924],
+ *  [-21.927337, 64.136673]
  * ]);
  * var linestring2 = turf.lineString([
- *	[-21.929054, 64.127985],
- *	[-21.912918, 64.134726],
- *	[-21.916007, 64.141016],
- * 	[-21.930084, 64.14446]
+ *  [-21.929054, 64.127985],
+ *  [-21.912918, 64.134726],
+ *  [-21.916007, 64.141016],
+ *   [-21.930084, 64.14446]
  * ], {name: 'line 1', distance: 145});
  *
  * //=linestring1
