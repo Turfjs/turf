@@ -4,7 +4,7 @@
   "description": "turf geometries",
   "main": "index.js",
   "scripts": {
-    "test": "tape test.js"
+    "test": "tape test.js && tsc index.d.ts"
   },
   "repository": {
     "type": "git",
@@ -23,8 +23,11 @@
   },
   "homepage": "https://github.com/Turfjs/turf",
   "devDependencies": {
+    "@types/geojson": "0.0.31",
     "benchmark": "^1.0.0",
-    "tape": "^3.5.0"
+    "tape": "^3.5.0",
+    "typescript": "^2.0.7"
   },
-  "dependencies": {}
+  "dependencies": {},
+  "types": "index.d.ts"
 }
