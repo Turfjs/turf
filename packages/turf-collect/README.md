@@ -18,18 +18,18 @@ on the polygon.
 **Examples**
 
 ```javascript
-var poly1 = polygon([[[0,0],[10,0],[10,10],[0,10],[0,0]]]);
-var poly2 = polygon([[[10,0],[20,10],[20,20],[20,0],[10,0]]]);
-var polyFC = featurecollection([poly1, poly2]);
-var pt1 = point([5,5], {population: 200});
-var pt2 = point([1,3], {population: 600});
-var pt3 = point([14,2], {population: 100});
-var pt4 = point([13,1], {population: 200});
-var pt5 = point([19,7], {population: 300});
-var ptFC = featurecollection([pt1, pt2, pt3, pt4, pt5]);
-var aggregated = aggregate(polyFC, ptFC, 'population', 'values');
+var poly1 = turf.polygon([[[0,0],[10,0],[10,10],[0,10],[0,0]]]);
+var poly2 = turf.polygon([[[10,0],[20,10],[20,20],[20,0],[10,0]]]);
+var polyFC = turf.featureCollection([poly1, poly2]);
+var pt1 = turf.point([5,5], {population: 200});
+var pt2 = turf.point([1,3], {population: 600});
+var pt3 = turf.point([14,2], {population: 100});
+var pt4 = turf.point([13,1], {population: 200});
+var pt5 = turf.point([19,7], {population: 300});
+var ptFC = turf.featureCollection([pt1, pt2, pt3, pt4, pt5]);
+var collected = turf.collect(polyFC, ptFC, 'population', 'values');
 
-aggregated.features[0].properties.values // => [200, 600]);
+collected.features[0].properties.values // => [200, 600]);
 ```
 
 Returns **[FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects)&lt;[Polygon](http://geojson.org/geojson-spec.html#polygon)>** polygons with properties listed based on `outField`

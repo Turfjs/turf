@@ -106,7 +106,7 @@ var feature = {
   }
 };
 
-var centerOfMass = turf.center-of-mass(feature);
+var centerOfMass = turf.centerOfMass(feature);
 
 //=centerOfMass
 ```

@@ -8,16 +8,16 @@ Takes a bounding box and a cell depth and returns a set of [points](http://geojs
 
 -   `bbox` **[Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)>** extent in [minX, minY, maxX, maxY] order
 -   `cellSize` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** the distance across each cell
--   `units` **\[[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)]** used in calculating cellWidth, can be degrees, radians, miles, or kilometers (optional, default `kilometers`)
+-   `units` **\[[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)]** used in calculating cellSize, can be degrees, radians, miles, or kilometers (optional, default `kilometers`)
 
 **Examples**
 
 ```javascript
 var extent = [-70.823364, -33.553984, -70.473175, -33.302986];
-var cellWidth = 3;
+var cellSize = 3;
 var units = 'miles';
 
-var grid = turf.pointGrid(extent, cellWidth, units);
+var grid = turf.pointGrid(extent, cellSize, units);
 
 //=grid
 ```

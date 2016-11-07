@@ -70,6 +70,22 @@ the reduction, so an array of all properties is unnecessary.
     a new memo
 -   `memo` **Any** the starting value of memo: can be any type.
 
+**Examples**
+
+```javascript
+// an example of an even more advanced function that gives you the
+// javascript type of each property of every feature
+function propTypes (layer) {
+  opts = opts || {}
+  return propReduce(layer, function (prev, props) {
+    for (var prop in props) {
+      if (prev[prop]) continue
+      prev[prop] = typeof props[prop]
+    }
+  }, {})
+}
+```
+
 Returns **Any** combined value
 
 # featureEach

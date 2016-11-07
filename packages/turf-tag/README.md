@@ -8,33 +8,34 @@ Takes a set of [points](http://geojson.org/geojson-spec.html#point) and a set of
 
 -   `points` **[FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects)&lt;[Point](http://geojson.org/geojson-spec.html#point)>** input points
 -   `polygons` **[FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects)&lt;[Polygon](http://geojson.org/geojson-spec.html#polygon)>** input polygons
--   `field` **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** property in `polygons` to add to joined Point features
--   `outField` **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** property in `points` in which to store joined property from \`polygons
+-   `field` **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** property in `polygons` to add to joined {<Point>} features
+-   `outField` **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** property in `points` in which to store joined property from `polygons`
 
 **Examples**
 
 ```javascript
-var bbox = [0, 0, 10, 10];
-// create a triangular grid of polygons
-var triangleGrid = turf.triangleGrid(bbox, 50, 'miles');
-triangleGrid.features.forEach(function(f) {
-  f.properties.fill = '#' +
-    (~~(Math.random() * 16)).toString(16) +
-    (~~(Math.random() * 16)).toString(16) +
-    (~~(Math.random() * 16)).toString(16);
-  f.properties.stroke = 0;
-  f.properties['fill-opacity'] = 1;
-});
-var randomPoints = turf.random('point', 30, {
-  bbox: bbox
-});
-var both = turf.featurecollection(
-  triangleGrid.features.concat(randomPoints.features));
+var pt1 = point([-77, 44]);
+var pt2 = point([-77, 38]);
+var poly1 = polygon([[
+  [-81, 41],
+  [-81, 47],
+  [-72, 47],
+  [-72, 41],
+  [-81, 41]
+]], {pop: 3000});
+var poly2 = polygon([[
+  [-81, 35],
+  [-81, 41],
+  [-72, 41],
+  [-72, 35],
+  [-81, 35]
+]], {pop: 1000});
 
-//=both
+var points = featureCollection([pt1, pt2]);
+var polygons = featureCollection([poly1, poly2]);
 
-var tagged = turf.tag(randomPoints, triangleGrid,
-                      'fill', 'marker-color');
+var tagged = turf.tag(points, polygons,
+                      'pop', 'population');
 
 //=tagged
 ```

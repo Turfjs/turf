@@ -7,8 +7,8 @@ Calculates a buffer for input features for a given radius. Units supported are m
 **Parameters**
 
 -   `feature` **([Feature](http://geojson.org/geojson-spec.html#feature-objects) \| [FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects))** input to be buffered
--   `distance` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** distance to draw the buffer
--   `unit` **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** any of the options supported by turf units
+-   `radius` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** distance to draw the buffer
+-   `units` **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** any of the options supported by turf units
 
 **Examples**
 

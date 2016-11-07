@@ -10,8 +10,8 @@ This can be useful for extracting only the part of a route between waypoints.
 
 **Parameters**
 
--   `point1` **[Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;[Point](http://geojson.org/geojson-spec.html#point)>** starting point
--   `point2` **[Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;[Point](http://geojson.org/geojson-spec.html#point)>** stopping point
+-   `startPt` **[Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;[Point](http://geojson.org/geojson-spec.html#point)>** starting point
+-   `stopPt` **[Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;[Point](http://geojson.org/geojson-spec.html#point)>** stopping point
 -   `line` **([Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;[LineString](http://geojson.org/geojson-spec.html#linestring)> | [LineString](http://geojson.org/geojson-spec.html#linestring))** line to slice
 
 **Examples**

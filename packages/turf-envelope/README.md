@@ -6,7 +6,7 @@ Takes any number of features and returns a rectangular [Polygon](http://geojson.
 
 **Parameters**
 
--   `fc` **[FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects)** input features
+-   `features` **([Feature](http://geojson.org/geojson-spec.html#feature-objects) \| [FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects))** input features
 
 **Examples**
 

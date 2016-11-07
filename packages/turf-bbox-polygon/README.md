@@ -6,7 +6,7 @@ Takes a bbox and returns an equivalent [polygon](http://geojson.org/geojson-spec
 
 **Parameters**
 
--   `bbox` **[Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)>** an Array of bounding box coordinates in the form: `[xLow, yLow, xHigh, yHigh]`
+-   `bbox` **[Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)>** extent in [minX, minY, maxX, maxY] order
 
 **Examples**
 
