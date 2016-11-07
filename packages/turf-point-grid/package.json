@@ -1,6 +1,6 @@
 {
   "name": "@turf/point-grid",
-  "version": "3.5.2",
+  "version": "3.5.3",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -25,10 +25,10 @@
   "devDependencies": {
     "benchmark": "^1.0.0",
     "tape": "^3.5.0",
-    "@turf/bbox-polygon": "^3.5.2"
+    "@turf/bbox-polygon": "^3.5.3"
   },
   "dependencies": {
-    "@turf/distance": "^3.5.2",
-    "@turf/helpers": "^3.5.2"
+    "@turf/distance": "^3.5.3",
+    "@turf/helpers": "^3.5.3"
   }
 }

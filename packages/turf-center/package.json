@@ -1,6 +1,6 @@
 {
   "name": "@turf/center",
-  "version": "3.5.2",
+  "version": "3.5.3",
   "description": "turf center module",
   "main": "index.js",
   "scripts": {
@@ -29,7 +29,7 @@
     "tape": "^3.5.0"
   },
   "dependencies": {
-    "@turf/bbox": "^3.5.2",
-    "@turf/helpers": "^3.5.2"
+    "@turf/bbox": "^3.5.3",
+    "@turf/helpers": "^3.5.3"
   }
 }
