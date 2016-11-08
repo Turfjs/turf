@@ -33,7 +33,7 @@ module.exports = function (controlPoints, valueField, b, cellWidth, units) {
             var sw = 0;
             // calculate the distance from each control point to cell's centroid
             for (var j = 0; j < controlPoints.features.length; j++) {
-                var d = distance(centroid(samplingGrid.features[j]), controlPoints.features[j], units);
+                var d = distance(centroid(samplingGrid.features[i]), controlPoints.features[j], units);
                 if (d === 0) {
                     zw = controlPoints.features[j].properties[valueField];
                 }
