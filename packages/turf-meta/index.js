@@ -114,11 +114,11 @@ function propEach(layer, callback) {
     switch (layer.type) {
     case 'FeatureCollection':
         for (i = 0; i < layer.features.length; i++) {
-            callback(layer.features[i].properties);
+            callback(layer.features[i].properties, i);
         }
         break;
     case 'Feature':
-        callback(layer.properties);
+        callback(layer.properties, 0);
         break;
     }
 }
@@ -149,8 +149,8 @@ module.exports.propEach = propEach;
  * }
  */
 function propReduce(layer, callback, memo) {
-    propEach(layer, function (prop) {
-        memo = callback(memo, prop);
+    propEach(layer, function (prop, i) {
+        memo = callback(memo, prop, i);
     });
     return memo;
 }
@@ -171,10 +171,10 @@ module.exports.propReduce = propReduce;
  */
 function featureEach(layer, callback) {
     if (layer.type === 'Feature') {
-        callback(layer);
+        callback(layer, 0);
     } else if (layer.type === 'FeatureCollection') {
         for (var i = 0; i < layer.features.length; i++) {
-            callback(layer.features[i]);
+            callback(layer.features[i], i);
         }
     }
 }
