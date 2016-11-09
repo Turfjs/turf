@@ -23,10 +23,8 @@
   },
   "homepage": "https://github.com/Turfjs/turf",
   "devDependencies": {
-    "@types/geojson": "0.0.31",
     "benchmark": "^1.0.0",
-    "tape": "^3.5.0",
-    "typescript": "^2.0.7"
+    "tape": "^3.5.0"
   },
   "dependencies": {},
   "types": "index.d.ts"
