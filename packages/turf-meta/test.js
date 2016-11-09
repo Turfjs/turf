@@ -60,8 +60,9 @@ function featureAndCollection(geometry) {
 
 collection(pointFeature).forEach(function(input) {
     test('propEach', function(t) {
-        meta.propEach(input, function(prop) {
+        meta.propEach(input, function(prop, i) {
             t.deepEqual(prop, { a: 1 });
+            t.equal(i, 0);
             t.end();
         });
     });
