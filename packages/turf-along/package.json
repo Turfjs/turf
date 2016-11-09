@@ -33,5 +33,6 @@
     "@turf/destination": "^3.5.3",
     "@turf/distance": "^3.5.3",
     "@turf/helpers": "^3.5.3"
-  }
+  },
+  "types": "index.d.ts"
 }
