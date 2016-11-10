@@ -68,6 +68,8 @@ npm install --save @types/turf
 
 Turf uses <a href='http://geojson.org/'>GeoJSON</a> for all geographic data. Turf expects the data to be standard <a href='http://en.wikipedia.org/wiki/World_Geodetic_System'>WGS84</a> longitude, latitude coordinates. Check out <a href='http://geojson.io/#id=gist:anonymous/844f013aae8354eb889c&map=12/38.8955/-77.0135'>geojson.io</a> for a tool to easily create this data.
 
+> **NOTE:** Turf expects data in (longitude, latitude) order per the GeoJSON standard.
+
 Most Turf functions work with GeoJSON features. These are are pieces of data that represent a collection of properties (ie: population, elevation, zipcode, etc.) along with a geometry. GeoJSON has several geometry types such as:
 
 * Point
@@ -77,13 +79,15 @@ Most Turf functions work with GeoJSON features. These are are pieces of data tha
 Turf provides a few geometry functions of its own. These are nothing more than simple (and optional) wrappers that output plain old GeoJSON. For example, these two methods of creating a point are functionally equivalent:
 
 ```js
-var point1 = turf.point([0, 0]);
+// Note order: longitude, latitude.
+var point1 = turf.point([-73.988214, 40.749128]);
 
 var point2 = {
   type: 'Feature',
   geometry: {
     type: 'Point',
-    coordinates: [0, 0]
+    // Note order: longitude, latitude.
+    coordinates: [-73.988214, 40.749128]
   },
   properties: {}
 };
