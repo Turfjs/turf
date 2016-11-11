@@ -140,3 +140,41 @@ test('unknown', function(t) {
     });
     t.end();
 });
+
+featureAndCollection(geometryCollection).forEach(function(input) {
+    test('geomEach#GeometryCollection', function(t) {
+        var output = [];
+        meta.geomEach(input, function(geom) {
+            output.push(geom);
+        });
+        t.deepEqual(output, geometryCollection.geometries);
+        t.end();
+    });
+});
+
+test('geomEach#bare-GeometryCollection', function(t) {
+    var output = [];
+    meta.geomEach(geometryCollection, function(geom) {
+        output.push(geom);
+    });
+    t.deepEqual(output, geometryCollection.geometries);
+    t.end();
+});
+
+test('geomEach#bare-pointGeometry', function(t) {
+    var output = [];
+    meta.geomEach(pointGeometry, function(geom) {
+        output.push(geom);
+    });
+    t.deepEqual(output, [pointGeometry]);
+    t.end();
+});
+
+test('geomEach#bare-pointFeature', function(t) {
+    var output = [];
+    meta.geomEach(pointFeature, function(geom) {
+        output.push(geom);
+    });
+    t.deepEqual(output, [pointGeometry]);
+    t.end();
+});
