@@ -1,3 +1,6 @@
 machine:
   node:
     version: 5
+dependencies:
+  post:
+    - npm -g lerna@2.0.0-beta.30
