@@ -1,6 +1,6 @@
 {
   "name": "@turf/envelope",
-  "version": "3.6.0",
+  "version": "3.6.1",
   "description": "turf envelope module",
   "main": "index.js",
   "scripts": {
@@ -28,7 +28,7 @@
     "tape": "^3.5.0"
   },
   "dependencies": {
-    "@turf/bbox-polygon": "^3.6.0",
-    "@turf/bbox": "^3.6.0"
+    "@turf/bbox-polygon": "^3.6.1",
+    "@turf/bbox": "^3.6.1"
   }
 }

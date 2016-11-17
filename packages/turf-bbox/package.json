@@ -1,6 +1,6 @@
 {
   "name": "@turf/bbox",
-  "version": "3.6.0",
+  "version": "3.6.1",
   "description": "turf bbox module",
   "main": "index.js",
   "scripts": {
@@ -29,6 +29,6 @@
     "tape": "^3.5.0"
   },
   "dependencies": {
-    "@turf/meta": "^3.6.0"
+    "@turf/meta": "^3.6.1"
   }
 }
