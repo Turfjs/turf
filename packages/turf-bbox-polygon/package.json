@@ -1,6 +1,6 @@
 {
   "name": "@turf/bbox-polygon",
-  "version": "3.5.3",
+  "version": "3.6.0",
   "description": "turf bboxPolygon module",
   "main": "index.js",
   "scripts": {
@@ -28,6 +28,6 @@
     "tape": "^3.5.0"
   },
   "dependencies": {
-    "@turf/helpers": "^3.5.3"
+    "@turf/helpers": "^3.6.0"
   }
 }
