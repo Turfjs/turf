@@ -196,3 +196,69 @@ function coordAll(layer) {
     return coords;
 }
 module.exports.coordAll = coordAll;
+
+/**
+ * Iterate over each geometry in any GeoJSON object, similar to
+ * Array.forEach.
+ *
+ * @name geomEach
+ * @param {Object} layer any GeoJSON object
+ * @param {Function} callback a method that takes (value)
+ * @example
+ * var point = {
+ *   type: 'Feature',
+ *   geometry: { type: 'Point', coordinates: [0, 0] },
+ *   properties: {}
+ * };
+ * geomEach(point, function(geom) {
+ *   // geom is the point geometry
+ * });
+ */
+function geomEach(layer, callback) {
+    var i, j, g, geometry, stopG,
+        geometryMaybeCollection,
+        isGeometryCollection,
+        isFeatureCollection = layer.type === 'FeatureCollection',
+        isFeature = layer.type === 'Feature',
+        stop = isFeatureCollection ? layer.features.length : 1;
+
+  // This logic may look a little weird. The reason why it is that way
+  // is because it's trying to be fast. GeoJSON supports multiple kinds
+  // of objects at its root: FeatureCollection, Features, Geometries.
+  // This function has the responsibility of handling all of them, and that
+  // means that some of the `for` loops you see below actually just don't apply
+  // to certain inputs. For instance, if you give this just a
+  // Point geometry, then both loops are short-circuited and all we do
+  // is gradually rename the input until it's called 'geometry'.
+  //
+  // This also aims to allocate as few resources as possible: just a
+  // few numbers and booleans, rather than any temporary arrays as would
+  // be required with the normalization approach.
+    for (i = 0; i < stop; i++) {
+
+        geometryMaybeCollection = (isFeatureCollection ? layer.features[i].geometry :
+        (isFeature ? layer.geometry : layer));
+        isGeometryCollection = geometryMaybeCollection.type === 'GeometryCollection';
+        stopG = isGeometryCollection ? geometryMaybeCollection.geometries.length : 1;
+
+        for (g = 0; g < stopG; g++) {
+            geometry = isGeometryCollection ?
+            geometryMaybeCollection.geometries[g] : geometryMaybeCollection;
+
+            if (geometry.type === 'Point' ||
+                geometry.type === 'LineString' ||
+                geometry.type === 'MultiPoint' ||
+                geometry.type === 'Polygon' ||
+                geometry.type === 'MultiLineString' ||
+                geometry.type === 'MultiPolygon') {
+                callback(geometry);
+            } else if (geometry.type === 'GeometryCollection') {
+                for (j = 0; j < geometry.geometries.length; j++)
+                    callback(geometry.geometries[j]);
+            } else {
+                throw new Error('Unknown Geometry Type');
+            }
+        }
+    }
+}
+module.exports.geomEach = geomEach;
