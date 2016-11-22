@@ -11,22 +11,22 @@ export type Units = "miles" | "nauticalmiles" | "degrees" | "radians" | "inches"
 /***
  * http://turfjs.org/docs/#feature
  */
-export function feature(geometry: GeoJSON.Feature<any>, properties?: Object): GeoJSON.Feature<any>;
+export function feature(geometry: GeoJSON.GeometryObject, properties?: any): GeoJSON.Feature<any>;
 
 /***
  * http://turfjs.org/docs/#point
  */
-export function point(coordinates: Point, properties?: Object): GeoJSON.Feature<GeoJSON.Point>;
+export function point(coordinates: Point, properties?: any): GeoJSON.Feature<GeoJSON.Point>;
 
 /***
  * http://turfjs.org/docs/#polygon
  */
-export function polygon(coordinates: Polygon, properties?: Object): GeoJSON.Feature<GeoJSON.Polygon>;
+export function polygon(coordinates: Polygon, properties?: any): GeoJSON.Feature<GeoJSON.Polygon>;
 
 /***
  * http://turfjs.org/docs/#linestring
  */
-export function lineString(coordinates: LineString, properties?: Object): GeoJSON.Feature<GeoJSON.LineString>;
+export function lineString(coordinates: LineString, properties?: any): GeoJSON.Feature<GeoJSON.LineString>;
 
 /***
  * http://turfjs.org/docs/#featurecollection
@@ -36,22 +36,22 @@ export function featureCollection(features: Array<GeoJSON.Feature<any>>): GeoJSO
 /***
  * http://turfjs.org/docs/#multilinestring
  */
-export function multiLineString(coordinates: MultiLineString, properties?: Object): GeoJSON.Feature<GeoJSON.MultiLineString>;
+export function multiLineString(coordinates: MultiLineString, properties?: any): GeoJSON.Feature<GeoJSON.MultiLineString>;
 
 /***
  * http://turfjs.org/docs/#multipoint
  */
-export function multiPoint(coordinates: MultiPoint, properties?: Object): GeoJSON.Feature<GeoJSON.MultiPoint>;
+export function multiPoint(coordinates: MultiPoint, properties?: any): GeoJSON.Feature<GeoJSON.MultiPoint>;
 
 /***
  * http://turfjs.org/docs/#multipolygon
  */
-export function multiPolygon(coordinates: MultiPolygon, properties?: Object): GeoJSON.Feature<GeoJSON.MultiPolygon>;
+export function multiPolygon(coordinates: MultiPolygon, properties?: any): GeoJSON.Feature<GeoJSON.MultiPolygon>;
 
 /***
  * http://turfjs.org/docs/#geometrycollection
  */
-export function geometryCollection(geometries: Array<GeoJSON.GeometryObject>, properties?: Object): GeoJSON.GeometryCollection;
+export function geometryCollection(geometries: Array<GeoJSON.GeometryObject>, properties?: any): GeoJSON.GeometryCollection;
 
 /***
  * http://turfjs.org/docs/
