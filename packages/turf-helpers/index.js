@@ -268,7 +268,8 @@ var factors = {
     meters: 6373000,
     metres: 6373000,
     kilometers: 6373,
-    kilometres: 6373
+    kilometres: 6373,
+    feet: 20908792.65
 };
 
 /*
