@@ -8,6 +8,5 @@ declare function circle(
     radius: number,
     steps?: number,
     units?: string): GeoJSON.Feature<GeoJSON.Polygon>;
-
 declare namespace circle { }
 export = circle;

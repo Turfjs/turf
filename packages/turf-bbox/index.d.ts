@@ -3,6 +3,6 @@
 /***
  * http://turfjs.org/docs/#bbox
  */
-declare function bbox(geojson: GeoJSON.Feature<any> | GeoJSON.FeatureCollection<any>): Array<number>;
+declare function bbox(features: GeoJSON.Feature<any> | GeoJSON.FeatureCollection<any>): Array<number>;
 declare namespace bbox { }
 export = bbox;
