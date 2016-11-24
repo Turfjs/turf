@@ -11,10 +11,10 @@ var bbox = require('@turf/bbox');
  * from a set of spatially scattered points.
  *
  * @param  {FeatureCollection<Point>} controlPoints Sampled points with known value
- * @param  {String} valueField    GeoJSON field containing the known value to interpolate on
- * @param  {Number} b             Exponent regulating the distance-decay weighting
- * @param  {Number} cellWidth     The distance across each cell
- * @param  {String} units         Units to use for cellWidth ('miles' or 'kilometers')
+ * @param  {string} valueField    GeoJSON field containing the known value to interpolate on
+ * @param  {number} b             Exponent regulating the distance-decay weighting
+ * @param  {number} cellWidth     The distance across each cell
+ * @param  {string} [units=kilometers] used in calculating cellSize, can be degrees, radians, miles, or kilometers
  * @return {FeatureCollection<Polygon>} grid A grid of polygons with a property field "IDW"
  */
 module.exports = function (controlPoints, valueField, b, cellWidth, units) {
