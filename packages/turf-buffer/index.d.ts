@@ -4,8 +4,11 @@
  * http://turfjs.org/docs/#buffer
  */
 declare function buffer(
-  features: GeoJSON.Feature<any> | GeoJSON.FeatureCollection<any>,
-  radius?: number,
-  unit?: string): GeoJSON.Feature<GeoJSON.LineString>;
-declare namespace buffer { }
+    features: buffer.Features,
+    radius?: number,
+    unit?: string): buffer.LineString;
+declare namespace buffer {
+    type Features = GeoJSON.Feature<any> | GeoJSON.FeatureCollection<any>;
+    type LineString = GeoJSON.Feature<GeoJSON.LineString>;
+}
 export = buffer;

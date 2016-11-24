@@ -3,6 +3,9 @@
 /***
  * http://turfjs.org/docs/#center
  */
-declare function centerOfMass(features: GeoJSON.Feature<any> | GeoJSON.FeatureCollection<any>): GeoJSON.Feature<GeoJSON.Point>;
-declare namespace centerOfMass { }
+declare function centerOfMass(features: centerOfMass.Features): centerOfMass.Point;
+declare namespace centerOfMass {
+    type Features = GeoJSON.Feature<any> | GeoJSON.FeatureCollection<any>;
+    type Point = GeoJSON.Feature<GeoJSON.Point>;
+}
 export = centerOfMass;

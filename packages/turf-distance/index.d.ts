@@ -4,8 +4,10 @@
  * http://turfjs.org/docs/#distance
  */
 declare function distance(
-    from: GeoJSON.Feature<GeoJSON.Point>,
-    to: GeoJSON.Feature<GeoJSON.Point>,
+    from: distance.Point,
+    to: distance.Point,
     units?: string): number;
-declare namespace distance { }
+declare namespace distance {
+    type Point = GeoJSON.Feature<GeoJSON.Point>;
+}
 export = distance;

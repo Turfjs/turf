@@ -4,9 +4,11 @@
  * http://turfjs.org/docs/#destination
  */
 declare function destination(
-    from: GeoJSON.Feature<GeoJSON.Point>,
+    from: destination.Point,
     distance: number,
     bearing: number,
-    units?: string): GeoJSON.Feature<GeoJSON.Point>;
-declare namespace destination { }
+    units?: string): destination.Point;
+declare namespace destination {
+    type Point = GeoJSON.Feature<GeoJSON.Point>;
+}
 export = destination;

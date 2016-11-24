@@ -4,8 +4,11 @@
  * http://turfjs.org/docs/#concave
  */
 declare function concave(
-    points: GeoJSON.FeatureCollection<GeoJSON.Point>,
+    points: concave.Points,
     maxEdge: number,
-    units: string): GeoJSON.Feature<GeoJSON.Polygon>;
-declare namespace concave { }
+    units: string): concave.Polygon;
+declare namespace concave {
+    type Points = GeoJSON.FeatureCollection<GeoJSON.Point>;
+    type Polygon = GeoJSON.Feature<GeoJSON.Polygon>;
+}
 export = concave;

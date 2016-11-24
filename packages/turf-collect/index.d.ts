@@ -4,9 +4,12 @@
  * http://turfjs.org/docs/#collect
  */
 declare function collect(
-  polygons: GeoJSON.FeatureCollection<GeoJSON.Polygon>,
-  points: GeoJSON.FeatureCollection<GeoJSON.Point>,
-  inProperty: string,
-  outProperty: string): GeoJSON.FeatureCollection<GeoJSON.Polygon>;
-declare namespace collect { }
+    polygons: collect.Polygons,
+    points: collect.Points,
+    inProperty: string,
+    outProperty: string): collect.Polygons;
+declare namespace collect {
+    type Polygons = GeoJSON.FeatureCollection<GeoJSON.Polygon>;
+    type Points = GeoJSON.FeatureCollection<GeoJSON.Point>;
+}
 export = collect;

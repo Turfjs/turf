@@ -3,6 +3,9 @@
 /***
  * http://turfjs.org/docs/#bbox
  */
-declare function bbox(features: GeoJSON.Feature<any> | GeoJSON.FeatureCollection<any>): Array<number>;
-declare namespace bbox { }
+declare function bbox(features: bbox.Features): bbox.BBox;
+declare namespace bbox {
+    type Features = GeoJSON.Feature<any> | GeoJSON.FeatureCollection<any>;
+    type BBox = Array<number>;
+}
 export = bbox;

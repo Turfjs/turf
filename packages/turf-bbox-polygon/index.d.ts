@@ -3,6 +3,9 @@
 /***
  * http://turfjs.org/docs/#bboxpolygon
  */
-declare function bboxPolygon(bbox: Array<number>): GeoJSON.Feature<GeoJSON.Polygon>;
-declare namespace bboxPolygon { }
+declare function bboxPolygon(bbox: bboxPolygon.BBox): bboxPolygon.Polygon;
+declare namespace bboxPolygon {
+    type Polygon = GeoJSON.Feature<GeoJSON.Polygon>;
+    type BBox = Array<number>;
+}
 export = bboxPolygon;
