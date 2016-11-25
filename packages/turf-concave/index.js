@@ -15,7 +15,7 @@ var distance = require('@turf/distance');
  * @param {FeatureCollection<Point>} points input points
  * @param {number} maxEdge the size of an edge necessary for part of the
  * hull to become concave (in miles)
- * @param {String} [units=kilometers] can be degrees, radians, miles, or kilometers
+ * @param {string} [units=kilometers] can be degrees, radians, miles, or kilometers
  * @returns {Feature<Polygon>} a concave hull
  * @throws {Error} if maxEdge parameter is missing
  * @example
