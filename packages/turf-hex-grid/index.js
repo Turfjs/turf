@@ -22,7 +22,7 @@ for (var i = 0; i < 6; i++) {
  * @param {Array<number>} bbox extent in [minX, minY, maxX, maxY] order
  * @param {number} cellSize dimension of cell in specified units
  * @param {string} [units=kilometers] used in calculating cellSize, can be degrees, radians, miles, or kilometers
- * @param {boolean} triangles whether to return as triangles instead of hexagons
+ * @param {boolean} [triangles=false] whether to return as triangles instead of hexagons
  * @return {FeatureCollection<Polygon>} a hexagonal grid
  * @example
  * var bbox = [-96,31,-84,40];
