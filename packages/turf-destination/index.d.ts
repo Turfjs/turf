@@ -10,5 +10,6 @@ declare function destination(
     units?: string): destination.Point;
 declare namespace destination {
     type Point = GeoJSON.Feature<GeoJSON.Point>;
+    type Units = "miles" | "nauticalmiles" | "degrees" | "radians" | "inches" | "yards" | "meters" | "metres" | "kilometers" | "kilometres";
 }
 export = destination;

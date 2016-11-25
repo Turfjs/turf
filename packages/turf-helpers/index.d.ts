@@ -1,12 +1,12 @@
 /// <reference types="geojson" />
 
-export type Point = Array<number>
-export type LineString = Array<Array<number>>
-export type Polygon = Array<Array<Array<number>>>
-export type MultiPoint = Array<Point>
-export type MultiLineString = Array<LineString>
-export type MultiPolygon = Array<Polygon>
-export type Units = "miles" | "nauticalmiles" | "degrees" | "radians" | "inches" | "yards" | "meters" | "metres" | "kilometers" | "kilometres"
+export type Point = Array<number>;
+export type LineString = Array<Array<number>>;
+export type Polygon = Array<Array<Array<number>>>;
+export type MultiPoint = Array<Point>;
+export type MultiLineString = Array<LineString>;
+export type MultiPolygon = Array<Polygon>;
+export type Units = "miles" | "nauticalmiles" | "degrees" | "radians" | "inches" | "yards" | "meters" | "metres" | "kilometers" | "kilometres";
 
 /***
  * http://turfjs.org/docs/#feature

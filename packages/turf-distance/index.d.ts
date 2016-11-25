@@ -9,5 +9,6 @@ declare function distance(
     units?: string): number;
 declare namespace distance {
     type Point = GeoJSON.Feature<GeoJSON.Point>;
+    type Units = "miles" | "nauticalmiles" | "degrees" | "radians" | "inches" | "yards" | "meters" | "metres" | "kilometers" | "kilometres";
 }
 export = distance;

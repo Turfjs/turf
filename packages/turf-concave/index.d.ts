@@ -10,5 +10,6 @@ declare function concave(
 declare namespace concave {
     type Points = GeoJSON.FeatureCollection<GeoJSON.Point>;
     type Polygon = GeoJSON.Feature<GeoJSON.Polygon>;
+    type Units = "miles" | "nauticalmiles" | "degrees" | "radians" | "inches" | "yards" | "meters" | "metres" | "kilometers" | "kilometres";
 }
 export = concave;
