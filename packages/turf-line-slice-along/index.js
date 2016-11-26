@@ -12,7 +12,7 @@ var lineString = require('@turf/helpers').lineString;
  * This can be useful for extracting only the part of a route between two distances.
  *
  * @name lineSliceAlong
- * @param {Feature<LineString>} line input line
+ * @param {Feature<LineString>|LineString} line input line
  * @param {number} startDist distance along the line to starting point
  * @param {number} stopDist distance along the line to ending point
  * @param {string} [units=kilometers] can be degrees, radians, miles, or kilometers
