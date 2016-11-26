@@ -15,10 +15,9 @@ var distance = require('@turf/distance');
  * @param {FeatureCollection<Point>} points input points
  * @param {number} maxEdge the size of an edge necessary for part of the
  * hull to become concave (in miles)
- * @param {string} units used for maxEdge distance (miles or kilometers)
+ * @param {string} [units=kilometers] can be degrees, radians, miles, or kilometers
  * @returns {Feature<Polygon>} a concave hull
  * @throws {Error} if maxEdge parameter is missing
- * @throws {Error} if units parameter is missing
  * @example
  * var points = {
  *   "type": "FeatureCollection",
@@ -81,7 +80,6 @@ var distance = require('@turf/distance');
  */
 function concave(points, maxEdge, units) {
     if (typeof maxEdge !== 'number') throw new Error('maxEdge parameter is required');
-    if (typeof units !== 'string') throw new Error('units parameter is required');
 
     var tinPolys = tin(points);
     var filteredPolys = tinPolys.features.filter(filterTriangles);
