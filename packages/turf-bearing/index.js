@@ -8,7 +8,7 @@ var getCoord = require('@turf/invariant').getCoord;
  * @name bearing
  * @param {Feature<Point>} start starting Point
  * @param {Feature<Point>} end ending Point
- * @returns {Number} bearing in decimal degrees
+ * @returns {number} bearing in decimal degrees
  * @example
  * var point1 = {
  *   "type": "Feature",

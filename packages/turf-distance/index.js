@@ -12,8 +12,8 @@ var radiansToDistance = require('@turf/helpers').radiansToDistance;
  * @name distance
  * @param {Feature<Point>} from origin point
  * @param {Feature<Point>} to destination point
- * @param {String} [units=kilometers] can be degrees, radians, miles, or kilometers
- * @return {Number} distance between the two points
+ * @param {string} [units=kilometers] can be degrees, radians, miles, or kilometers
+ * @return {number} distance between the two points
  * @example
  * var from = {
  *   "type": "Feature",

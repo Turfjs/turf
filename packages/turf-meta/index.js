@@ -186,7 +186,7 @@ module.exports.featureEach = featureEach;
  *
  * @name coordAll
  * @param {Object} layer any GeoJSON object
- * @returns {Array<Array<Number>>} coordinate position array
+ * @returns {Array<Array<number>>} coordinate position array
  */
 function coordAll(layer) {
     var coords = [];

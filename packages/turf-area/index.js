@@ -5,7 +5,7 @@ var geometryArea = require('geojson-area').geometry;
  * in square meters.
  *
  * @param {(Feature|FeatureCollection)} input input features
- * @return {Number} area in square meters
+ * @return {number} area in square meters
  * @example
  * var polygons = {
  *   "type": "FeatureCollection",

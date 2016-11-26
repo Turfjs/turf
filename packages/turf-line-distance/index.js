@@ -6,8 +6,8 @@ var point = require('@turf/helpers').point;
  *
  * @name lineDistance
  * @param {Feature<(LineString|Polygon)>|FeatureCollection<(LineString|Polygon)>} line line to measure
- * @param {String} [units=kilometers] can be degrees, radians, miles, or kilometers
- * @return {Number} length of the input line
+ * @param {string} [units=kilometers] can be degrees, radians, miles, or kilometers
+ * @return {number} length of the input line
  * @example
  * var line = {
  *   "type": "Feature",

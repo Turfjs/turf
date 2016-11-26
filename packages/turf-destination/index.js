@@ -12,7 +12,7 @@ var distanceToRadians = helpers.distanceToRadians;
  * @param {Feature<Point>} from starting point
  * @param {number} distance distance from the starting point
  * @param {number} bearing ranging from -180 to 180
- * @param {String} [units=kilometers] miles, kilometers, degrees, or radians
+ * @param {string} [units=kilometers] miles, kilometers, degrees, or radians
  * @returns {Feature<Point>} destination point
  * @example
  * var point = {
