@@ -1,20 +1,19 @@
 /// <reference types="geojson" />
 
-/***
+type LineStrings = GeoJSON.FeatureCollection<GeoJSON.LineString>;
+type LineString = GeoJSON.Feature<GeoJSON.LineString>;
+type MultiLineStrings = GeoJSON.FeatureCollection<GeoJSON.MultiLineString>;
+type MultiLineString = GeoJSON.Feature<GeoJSON.MultiLineString>;
+type Polygons = GeoJSON.FeatureCollection<GeoJSON.Polygon>;
+type Polygon = GeoJSON.Feature<GeoJSON.Polygon>;
+type MultiPolygons = GeoJSON.FeatureCollection<GeoJSON.MultiPolygon>;
+type MultiPolygon = GeoJSON.Feature<GeoJSON.MultiPolygon>;
+type LineStringFeatures = LineString | LineStrings | MultiLineString | MultiLineStrings | GeoJSON.LineString | GeoJSON.MultiLineString
+type PolygonFeatures = Polygon | Polygons | MultiPolygon | MultiPolygons | GeoJSON.Polygon | GeoJSON.MultiPolygon
+
+/**
  * http://turfjs.org/docs/#linedistance
  */
-declare function lineDistance(
-    features: lineDistance.Features,
-    units?: string): lineDistance.Points;
-declare namespace lineDistance {
-    type Features = LineStrings | Polygons;
-    type Points = GeoJSON.FeatureCollection<GeoJSON.Point>;
-    type LineString = GeoJSON.FeatureCollection<GeoJSON.LineString> | GeoJSON.Feature<GeoJSON.LineString> | GeoJSON.LineString;
-    type MultiLineString = GeoJSON.FeatureCollection<GeoJSON.MultiLineString> | GeoJSON.Feature<GeoJSON.MultiLineString> | GeoJSON.MultiLineString;
-    type LineStrings = LineString | MultiLineString;
-    type Polygon = GeoJSON.FeatureCollection<GeoJSON.Polygon> | GeoJSON.FeatureCollection<GeoJSON.Polygon> | GeoJSON.Polygon;
-    type MultiPolygon = GeoJSON.FeatureCollection<GeoJSON.MultiPolygon> | GeoJSON.FeatureCollection<GeoJSON.MultiPolygon> | GeoJSON.MultiPolygon;
-    type Polygons = Polygon | MultiPolygon;
-    type Units = "miles" | "nauticalmiles" | "degrees" | "radians" | "inches" | "yards" | "meters" | "metres" | "kilometers" | "kilometres";
-}
+declare function lineDistance(features: LineStringFeatures | PolygonFeatures, units?: string): number;
+declare namespace lineDistance { }
 export = lineDistance;

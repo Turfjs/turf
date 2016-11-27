@@ -1,15 +1,11 @@
 /// <reference types="geojson" />
 
-/***
+type Polygons = GeoJSON.FeatureCollection<GeoJSON.Polygon>;
+type Points = GeoJSON.FeatureCollection<GeoJSON.Point>;
+
+/**
  * http://turfjs.org/docs/#collect
  */
-declare function collect(
-    polygons: collect.Polygons,
-    points: collect.Points,
-    inProperty: string,
-    outProperty: string): collect.Polygons;
-declare namespace collect {
-    type Polygons = GeoJSON.FeatureCollection<GeoJSON.Polygon>;
-    type Points = GeoJSON.FeatureCollection<GeoJSON.Point>;
-}
+declare function collect(polygons: Polygons, points: Points, inProperty: string, outProperty: string): Polygons;
+declare namespace collect { }
 export = collect;

@@ -1,10 +1,10 @@
 /// <reference types="geojson" />
 
-/***
+type Point = GeoJSON.Feature<GeoJSON.Point>;
+
+/**
  * http://turfjs.org/docs/#bearing
  */
-declare function bearing(start: bearing.Point, end: bearing.Point): number;
-declare namespace bearing {
-    type Point = GeoJSON.Feature<GeoJSON.Point>;
-}
+declare function bearing(start: Point, end: Point): number;
+declare namespace bearing { }
 export = bearing;

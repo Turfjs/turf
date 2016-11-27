@@ -1,15 +1,10 @@
 /// <reference types="geojson" />
 
-/***
+type Point = GeoJSON.Feature<GeoJSON.Point>;
+
+/**
  * http://turfjs.org/docs/#destination
  */
-declare function destination(
-    from: destination.Point,
-    distance: number,
-    bearing: number,
-    units?: string): destination.Point;
-declare namespace destination {
-    type Point = GeoJSON.Feature<GeoJSON.Point>;
-    type Units = "miles" | "nauticalmiles" | "degrees" | "radians" | "inches" | "yards" | "meters" | "metres" | "kilometers" | "kilometres";
-}
+declare function destination(from: Point, distance: number, bearing: number, units?: string): Point;
+declare namespace destination { }
 export = destination;

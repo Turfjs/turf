@@ -1,15 +1,12 @@
 /// <reference types="geojson" />
 
-/***
+type Feature = GeoJSON.Feature<any>;
+type Features = GeoJSON.FeatureCollection<any>;
+type LineString = GeoJSON.Feature<GeoJSON.LineString>;
+
+/**
  * http://turfjs.org/docs/#buffer
  */
-declare function buffer(
-    features: buffer.Features,
-    radius?: number,
-    unit?: string): buffer.LineString;
-declare namespace buffer {
-    type Features = GeoJSON.Feature<any> | GeoJSON.FeatureCollection<any>;
-    type LineString = GeoJSON.Feature<GeoJSON.LineString>;
-    type Units = "miles" | "nauticalmiles" | "degrees" | "radians" | "inches" | "yards" | "meters" | "metres" | "kilometers" | "kilometres"
-}
+declare function buffer(features: Feature | Features, radius?: number, unit?: string): LineString;
+declare namespace buffer { }
 export = buffer;

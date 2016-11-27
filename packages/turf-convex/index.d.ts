@@ -1,11 +1,12 @@
 /// <reference types="geojson" />
 
-/***
+type Feature = GeoJSON.Feature<any>;
+type Features = GeoJSON.FeatureCollection<any>;
+type Polygon = GeoJSON.Feature<GeoJSON.Polygon>;
+
+/**
  * http://turfjs.org/docs/#convex
  */
-declare function convex(features: convex.Features): convex.Polygon;
-declare namespace convex {
-    type Features = GeoJSON.Feature<any> | GeoJSON.FeatureCollection<any>;
-    type Polygon = GeoJSON.Feature<GeoJSON.Polygon>;
-}
+declare function convex(features: Feature | Features): Polygon;
+declare namespace convex { }
 export = convex;

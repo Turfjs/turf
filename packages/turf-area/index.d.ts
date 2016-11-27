@@ -1,10 +1,11 @@
 /// <reference types="geojson" />
 
-/***
+type Feature = GeoJSON.Feature<any>;
+type Features = GeoJSON.FeatureCollection<any>;
+
+/**
  * http://turfjs.org/docs/#area
  */
-declare function area(features: area.Features): number;
-declare namespace area {
-    type Features = GeoJSON.Feature<any> | GeoJSON.FeatureCollection<any>;
-}
+declare function area(features: Feature | Features): number;
+declare namespace area { }
 export = area;

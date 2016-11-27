@@ -1,11 +1,12 @@
 /// <reference types="geojson" />
 
-/***
+type Feature = GeoJSON.Feature<any>;
+type Features = GeoJSON.FeatureCollection<any>;
+type Point = GeoJSON.Feature<GeoJSON.Point>;
+
+/**
  * http://turfjs.org/docs/#center
  */
-declare function center(features: center.Features): center.Point;
-declare namespace center {
-    type Features = GeoJSON.Feature<any> | GeoJSON.FeatureCollection<any>;
-    type Point = GeoJSON.Feature<GeoJSON.Point>;
-}
+declare function center(features: Feature | Features): Point;
+declare namespace center { }
 export = center;
