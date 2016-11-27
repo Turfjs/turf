@@ -1,4 +1,7 @@
 {
   "editor.tabSize": 4,
-  "typescript.tsdk": "./node_modules/typescript/lib"
+  "typescript.tsdk": "./node_modules/typescript/lib",
+  "files.exclude": {
+    "**/node_modules": true
+  }
 }
