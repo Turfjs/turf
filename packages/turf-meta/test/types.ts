@@ -1,4 +1,4 @@
-import * as meta from './index'
+import * as meta from '../index'
 
 const pointGeometry: GeoJSON.Point = {
     type: 'Point',
