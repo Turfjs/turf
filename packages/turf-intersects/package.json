@@ -1,0 +1,32 @@
+{
+  "name": "@turf/intersects",
+  "version": "0.1.0",
+  "description": "determine if spatial features share common space",
+  "main": "index.js",
+  "scripts": {
+    "test": "node test/test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/Turfjs/turf.git"
+  },
+  "keywords": [
+    "turf",
+    "gis",
+    "intersects"
+  ],
+  "author": "bozdoz",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Turfjs/turf/issues"
+  },
+  "homepage": "https://github.com/Turfjs/turf",
+  "devDependencies": {
+    "benchmark": "^1.0.0",
+    "glob": "~4.3.5",
+    "tape": "~3.5.0"
+  },
+  "dependencies": {
+    "jsts": "1.3.0"
+  }
+}
