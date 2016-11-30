@@ -34,5 +34,6 @@
     "@turf/convex": "^3.6.3",
     "@turf/explode": "^3.6.3",
     "@turf/helpers": "^3.6.3"
-  }
+  },
+  "types": "index.d.ts"
 }

@@ -30,5 +30,6 @@
   },
   "dependencies": {
     "simplify-js": "^1.2.1"
-  }
+  },
+  "types": "index.d.ts"
 }

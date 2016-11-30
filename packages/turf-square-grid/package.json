@@ -30,5 +30,6 @@
   "bugs": {
     "url": "https://github.com/Turfjs/turf/issues"
   },
-  "homepage": "https://github.com/Turfjs/turf"
+  "homepage": "https://github.com/Turfjs/turf",
+  "types": "index.d.ts"
 }

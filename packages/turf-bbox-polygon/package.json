@@ -29,5 +29,6 @@
   },
   "dependencies": {
     "@turf/helpers": "^3.6.3"
-  }
+  },
+  "types": "index.d.ts"
 }

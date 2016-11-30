@@ -34,5 +34,6 @@
   "dependencies": {
     "earcut": "^2.0.0",
     "@turf/helpers": "^3.6.3"
-  }
+  },
+  "types": "index.d.ts"
 }

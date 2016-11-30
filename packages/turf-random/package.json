@@ -27,5 +27,6 @@
   },
   "dependencies": {
     "geojson-random": "^0.2.2"
-  }
+  },
+  "types": "index.d.ts"
 }

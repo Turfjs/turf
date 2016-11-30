@@ -28,5 +28,6 @@
   "dependencies": {
     "jsts": "1.3.0",
     "@turf/helpers": "^3.6.3"
-  }
+  },
+  "types": "index.d.ts"
 }

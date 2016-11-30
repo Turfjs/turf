@@ -27,5 +27,6 @@
     "benchmark": "^1.0.0",
     "tape": "^3.5.0"
   },
-  "dependencies": {}
+  "dependencies": {},
+  "types": "index.d.ts"
 }

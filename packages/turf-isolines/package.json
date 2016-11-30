@@ -37,5 +37,6 @@
     "@turf/planepoint": "^3.6.3",
     "@turf/square": "^3.6.3",
     "@turf/tin": "^3.6.3"
-  }
+  },
+  "types": "index.d.ts"
 }

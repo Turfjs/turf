@@ -30,5 +30,6 @@
   },
   "dependencies": {
     "@turf/meta": "^3.6.3"
-  }
+  },
+  "types": "index.d.ts"
 }
