@@ -1,16 +1,16 @@
 {
   "name": "@turf/triangle-grid",
-  "version": "3.6.1",
+  "version": "3.6.3",
   "description": "",
   "main": "index.js",
   "dependencies": {
-    "@turf/distance": "^3.6.1",
-    "@turf/helpers": "^3.6.1"
+    "@turf/distance": "^3.6.3",
+    "@turf/helpers": "^3.6.3"
   },
   "devDependencies": {
     "benchmark": "^1.0.0",
     "tape": "^3.5.0",
-    "@turf/bbox-polygon": "^3.6.1"
+    "@turf/bbox-polygon": "^3.6.3"
   },
   "scripts": {
     "test": "node test.js"
