@@ -7,13 +7,13 @@ and experimentation.
 
 **Parameters**
 
--   `type` **\[[String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)]** type of features desired: 'points' or 'polygons' (optional, default `'point'`)
--   `count` **\[[Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)]** how many geometries should be generated. (optional, default `1`)
+-   `type` **\[[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)]** type of features desired: 'points' or 'polygons' (optional, default `'point'`)
+-   `count` **\[[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)]** how many geometries should be generated. (optional, default `1`)
 -   `options` **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)** options relevant to the feature desired. Can include:
     -   `options.bbox` **[Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)>** a bounding box inside of which geometries
         are placed. In the case of [Point](http://geojson.org/geojson-spec.html#point) features, they are guaranteed to be within this bounds,
         while [Polygon](http://geojson.org/geojson-spec.html#polygon) features have their centroid within the bounds.
-    -   `options.num_vertices` **\[[Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)]** options.vertices the number of vertices added
+    -   `options.num_vertices` **\[[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)]** options.vertices the number of vertices added
         to polygon features. (optional, default `10`)
     -   `options.max_radial_length` **\[[Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)]** the total number of decimal
         degrees longitude or latitude that a polygon can extent outwards to

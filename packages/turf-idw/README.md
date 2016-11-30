@@ -10,10 +10,10 @@ from a set of spatially scattered points.
 **Parameters**
 
 -   `controlPoints` **[FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects)&lt;[Point](http://geojson.org/geojson-spec.html#point)>** Sampled points with known value
--   `valueField` **[String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** GeoJSON field containing the known value to interpolate on
--   `b` **[Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** Exponent regulating the distance-decay weighting
--   `cellWidth` **[Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** The distance across each cell
--   `units` **[String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** Units to use for cellWidth ('miles' or 'kilometers')
+-   `valueField` **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** GeoJSON field containing the known value to interpolate on
+-   `b` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** Exponent regulating the distance-decay weighting
+-   `cellWidth` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** The distance across each cell
+-   `units` **\[[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)]** used in calculating cellSize, can be degrees, radians, miles, or kilometers (optional, default `kilometers`)
 
 Returns **[FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects)&lt;[Polygon](http://geojson.org/geojson-spec.html#polygon)>** grid A grid of polygons with a property field "IDW"
 
