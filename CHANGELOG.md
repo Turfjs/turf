@@ -1,3 +1,7 @@
+# 3.6.4
+
+Typescript definitions `index.d.ts` added to all the packages.
+
 # 3.0.11
 
 Fix turf-line-slice bug with vertical linestrings.
