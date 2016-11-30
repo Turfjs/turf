@@ -1,6 +1,6 @@
 {
   "name": "@turf/tag",
-  "version": "3.6.3",
+  "version": "3.7.0",
   "description": "turf tag module",
   "main": "index.js",
   "scripts": {
@@ -27,7 +27,7 @@
   },
   "homepage": "https://github.com/Turfjs/turf",
   "dependencies": {
-    "@turf/inside": "^3.6.3"
+    "@turf/inside": "^3.7.0"
   },
   "devDependencies": {
     "benchmark": "^1.0.0",
