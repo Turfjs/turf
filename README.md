@@ -7,7 +7,7 @@
 
 [npm-img]: https://img.shields.io/npm/v/@turf/turf.svg
 [npm-url]: https://www.npmjs.com/package/@turf/turf
-[gitter-img]: https://badges.gitter.im/Turfjs/turf.png
+[gitter-img]: https://badges.gitter.im/Turfjs/turf.svg
 [gitter-url]: https://gitter.im/Turfjs/turf
 
 ***A modular geospatial engine written in JavaScript***
