@@ -1,6 +1,6 @@
 {
   "name": "@turf/turf",
-  "version": "3.7.0",
+  "version": "3.7.1",
   "description": "a JavaScript library for performing geospatial operations with GeoJSON",
   "main": "index.js",
   "scripts": {
@@ -54,7 +54,7 @@
   "dependencies": {
     "@turf/collect": "^3.7.0",
     "@turf/along": "^3.7.0",
-    "@turf/area": "^3.6.3",
+    "@turf/area": "^3.7.1",
     "@turf/bbox-polygon": "^3.7.0",
     "@turf/bearing": "^3.7.0",
     "@turf/bezier": "^3.7.0",
