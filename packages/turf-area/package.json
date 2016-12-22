@@ -15,7 +15,7 @@
   "author": "Tom MacWright",
   "license": "ISC",
   "dependencies": {
-    "geojson-area": "^0.2.1"
+    "@mapbox/geojson-area": "^0.2.2"
   },
   "repository": {
     "type": "git",

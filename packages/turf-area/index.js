@@ -1,4 +1,4 @@
-var geometryArea = require('geojson-area').geometry;
+var geometryArea = require('@mapbox/geojson-area').geometry;
 
 /**
  * Takes one or more features and returns their area
