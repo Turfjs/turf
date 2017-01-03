@@ -5,13 +5,13 @@ var point = require('@turf/helpers').point;
 
 var units = 'miles';
 
-test('midpoint -- horizonatal equator', function(t){
+test('midpoint -- horizontal equator', function(t){
   var pt1 = point([0, 0]);
   var pt2 = point([10, 0]);
 
   var mid = midpoint(pt1, pt2);
 
-  t.equal(distance(pt1, mid, units), distance(pt2, mid, units))
+  t.equal(distance(pt1, mid, units).toFixed(6), distance(pt2, mid, units).toFixed(6));
 
   t.end();
 });
