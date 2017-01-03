@@ -34,7 +34,7 @@
     "@turf/helpers": "^3.6.3"
   },
   "dependencies": {
-    "geojson-normalize": "0.0.0",
+    "@mapbox/geojson-normalize": "0.0.1",
     "jsts": "1.3.0",
     "@turf/combine": "^3.7.0",
     "@turf/helpers": "^3.6.3"
