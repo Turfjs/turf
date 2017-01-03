@@ -43,7 +43,15 @@ export function lineString(coordinates: Position[], properties?: any): LineStrin
 /**
  * http://turfjs.org/docs/#featurecollection
  */
-export function featureCollection(features: Array<Feature>): MultiPoint;
+export const featureCollection: {
+    (features: Array<Point>): Points;
+    (features: Array<LineString>): LineStrings;
+    (features: Array<Polygon>): Polygons;
+    (features: Array<MultiPoint>): MultiPoints;
+    (features: Array<MultiLineString>): MultiLineStrings;
+    (features: Array<MultiPolygon>): MultiPolygons;
+    (features: Array<Feature>): Features;
+};
 
 /**
  * http://turfjs.org/docs/#multilinestring
@@ -68,14 +76,14 @@ export function geometryCollection(geometries: Array<GeoJSON.GeometryObject>, pr
 /**
  * http://turfjs.org/docs/
  */
-export function radiansToDistance(radians: number, units: Units): number
+export function radiansToDistance(radians: number, units?: Units): number
 
 /**
  * http://turfjs.org/docs/
  */
-export function distanceToRadians(distance: number, units: Units): number
+export function distanceToRadians(distance: number, units?: Units): number
 
 /**
  * http://turfjs.org/docs/
  */
-export function distanceToDegrees(distance: number, units: Units): number
+export function distanceToDegrees(distance: number, units?: Units): number
