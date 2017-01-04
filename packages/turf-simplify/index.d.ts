@@ -8,6 +8,7 @@ type LineStrings = GeoJSON.FeatureCollection<GeoJSON.LineString>;
 type Polygons = GeoJSON.FeatureCollection<GeoJSON.Polygon>;
 type MultiLineStrings = GeoJSON.FeatureCollection<GeoJSON.MultiLineString>;
 type MultiPolygons = GeoJSON.FeatureCollection<GeoJSON.MultiPolygon>;
+type Feature = GeoJSON.Feature<any>;
 type Features = GeoJSON.FeatureCollection<any>;
 type GeometryCollection = GeoJSON.GeometryCollection;
 
@@ -15,7 +16,7 @@ interface SimplifyStatic {
     /**
      * http://turfjs.org/docs/#simplify
      */
-    
+
     (feature: LineString, tolerance?: number, highQuality?: boolean): LineString;
     (feature: LineStrings, tolerance?: number, highQuality?: boolean): LineStrings;
     (feature: Polygon, tolerance?: number, highQuality?: boolean): Polygon;
