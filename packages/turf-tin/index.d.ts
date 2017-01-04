@@ -1,6 +1,6 @@
 /// <reference types="geojson" />
 
-type Point = GeoJSON.FeatureCollection<GeoJSON.Point>;
+type Points = GeoJSON.FeatureCollection<GeoJSON.Point>;
 type Polygons = GeoJSON.FeatureCollection<GeoJSON.Polygon>;
 
 /**
