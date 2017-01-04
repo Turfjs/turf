@@ -45,6 +45,7 @@
   },
   "devDependencies": {
     "@types/geojson": "0.0.31",
+    "@types/node": "^6.0.56",
     "browserify": "^13.0.0",
     "d3-queue": "3.0.1",
     "documentation": "4.0.0-beta7",
