@@ -1,6 +1,6 @@
 {
   "name": "@turf/turf",
-  "version": "3.7.3",
+  "version": "3.7.4",
   "description": "a JavaScript library for performing geospatial operations with GeoJSON",
   "main": "index.js",
   "scripts": {
@@ -81,7 +81,7 @@
     "@turf/kinks": "^3.7.3",
     "@turf/line-distance": "^3.7.3",
     "@turf/line-slice": "^3.7.3",
-    "@turf/line-slice-along": "^3.7.3",
+    "@turf/line-slice-along": "^3.7.4",
     "@turf/meta": "^3.7.3",
     "@turf/idw": "^3.7.3",
     "@turf/midpoint": "^3.7.3",
