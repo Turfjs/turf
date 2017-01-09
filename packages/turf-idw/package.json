@@ -1,16 +1,16 @@
 {
   "name": "@turf/idw",
-  "version": "3.7.0",
+  "version": "3.7.2",
   "description": "Calculate a grid with IDW - Inverse Distance Weighted - values.",
   "main": "index.js",
   "directories": {
     "test": "tests"
   },
   "dependencies": {
-    "@turf/centroid": "^3.7.0",
-    "@turf/distance": "^3.7.0",
+    "@turf/centroid": "^3.7.2",
+    "@turf/distance": "^3.7.2",
     "@turf/bbox": "^3.7.0",
-    "@turf/square-grid": "^3.7.0"
+    "@turf/square-grid": "^3.7.2"
   },
   "devDependencies": {
     "tape": "^4.5.1"
