@@ -15,7 +15,7 @@ var featurecollection = require('@turf/helpers').featureCollection;
  *
  * @name tin
  * @param {FeatureCollection<Point>} points input points
- * @param {String=} z name of the property from which to pull z values
+ * @param {String} [z] name of the property from which to pull z values
  * This is optional: if not given, then there will be no extra data added to the derived triangles.
  * @return {FeatureCollection<Polygon>} TIN output
  * @example

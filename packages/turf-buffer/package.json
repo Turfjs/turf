@@ -1,6 +1,6 @@
 {
   "name": "@turf/buffer",
-  "version": "3.7.0",
+  "version": "3.7.1",
   "description": "turf buffer module",
   "main": "index.js",
   "scripts": {
@@ -31,13 +31,13 @@
     "tape": "^3.5.0",
     "@turf/distance": "^3.7.0",
     "@turf/bbox": "^3.7.0",
-    "@turf/helpers": "^3.6.3"
+    "@turf/helpers": "^3.7.1"
   },
   "dependencies": {
-    "geojson-normalize": "0.0.0",
+    "@mapbox/geojson-normalize": "0.0.1",
     "jsts": "1.3.0",
     "@turf/combine": "^3.7.0",
-    "@turf/helpers": "^3.6.3"
+    "@turf/helpers": "^3.7.1"
   },
   "types": "index.d.ts"
 }

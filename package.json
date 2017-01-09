@@ -3,8 +3,9 @@
   "version": "3.0.0",
   "description": "a node.js library for performing geospatial operations with geojson",
   "scripts": {
-    "test": "npm run lint && lerna bootstrap && lerna run test",
+    "test": "npm run lint && lerna bootstrap && lerna run test && npm run types",
     "lint": "eslint packages",
+    "types": "tsc",
     "prepublish": "node ./scripts/generate-readmes"
   },
   "repository": {
@@ -45,6 +46,7 @@
   },
   "devDependencies": {
     "@types/geojson": "0.0.31",
+    "@types/node": "^6.0.56",
     "browserify": "^13.0.0",
     "d3-queue": "3.0.1",
     "documentation": "4.0.0-beta7",

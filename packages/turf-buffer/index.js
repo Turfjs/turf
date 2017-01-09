@@ -5,7 +5,7 @@
 var helpers = require('@turf/helpers');
 var featureCollection = helpers.featureCollection;
 var jsts = require('jsts');
-var normalize = require('geojson-normalize');
+var normalize = require('@mapbox/geojson-normalize');
 
 /**
  * Calculates a buffer for input features for a given radius. Units supported are miles, kilometers, and degrees.

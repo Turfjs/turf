@@ -6,7 +6,7 @@ lib-cov
 *.out
 *.pid
 .idea/*
-
+types.js
 .DS_Store
 
 pids
