@@ -1,6 +1,6 @@
 {
   "name": "@turf/explode",
-  "version": "3.7.2",
+  "version": "3.7.3",
   "description": "turf explode module",
   "main": "index.js",
   "scripts": {
@@ -26,11 +26,11 @@
     "benchmark": "^1.0.0",
     "tape": "^3.5.0",
     "geojson-fixtures": "^0.6.1",
-    "@turf/helpers": "^3.7.2"
+    "@turf/helpers": "^3.7.3"
   },
   "dependencies": {
-    "@turf/meta": "^3.7.0",
-    "@turf/helpers": "^3.7.2"
+    "@turf/meta": "^3.7.3",
+    "@turf/helpers": "^3.7.3"
   },
   "types": "index.d.ts"
 }
