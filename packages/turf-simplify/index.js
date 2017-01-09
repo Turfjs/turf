@@ -147,17 +147,9 @@ function simpleFeature(geom, properties) {
 
 function simplifyLine(coordinates, tolerance, highQuality) {
     return simplify(coordinates.map(function (coord) {
-        if (coord.len === 2){
-            return {x: coord[0], y: coord[1]};
-        } else {
-            return {x: coord[0], y: coord[1], z: coord[2]};
-        }
+        return {x: coord[0], y: coord[1]};
     }), tolerance, highQuality).map(function (coords) {
-        if (coords.len === 2){
-            return [coords.x, coords.y];
-        } else {
-            return [coords.x, coords.y, coords.z];
-        }
+        return [coords.x, coords.y, coords.z];
     });
 }
 
