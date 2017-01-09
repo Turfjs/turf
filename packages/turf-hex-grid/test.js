@@ -1,7 +1,7 @@
 var test = require('tape');
 var grid = require('./');
 var fs = require('fs');
-var bboxPolygon = require('turf-bbox-polygon');
+var bboxPolygon = require('@turf/bbox-polygon');
 
 test('hex-grid', function (t) {
   var bbox1 = [

@@ -1,159 +1,35 @@
-var inside = require('turf-inside');
+var inside = require('@turf/inside');
 
 /**
- * Joins attributes FeatureCollection of polygons with a FeatureCollection of
- * points. Given an `inProperty` on points and an `outProperty` for polygons,
- * this finds every point that lies within each polygon, collects the `inProperty`
- * values from those points, and adds them as an array to `outProperty` on the
- * polygon.
+ * Merges a specified property from a FeatureCollection of points into a
+ * FeatureCollection of polygons. Given an `inProperty` on points and an `outProperty`
+ * for polygons, this finds every point that lies within each polygon, collects the
+ * `inProperty` values from those points, and adds them as an array to `outProperty`
+ * on the polygon.
  *
  * @name collect
  * @param {FeatureCollection<Polygon>} polygons polygons with values on which to aggregate
  * @param {FeatureCollection<Point>} points points to be aggregated
- * @param {Array} aggregations an array of aggregation objects
- * @return {FeatureCollection<Polygon>} polygons with properties listed based on `outField` values in `aggregations`
+ * @param {string} inProperty property to be nested from
+ * @param {string} outProperty property to be nested into
+ * @return {FeatureCollection<Polygon>} polygons with properties listed based on `outField`
  * @example
- * var polygons = {
- *   "type": "FeatureCollection",
- *   "features": [
- *     {
- *       "type": "Feature",
- *       "properties": {},
- *       "geometry": {
- *         "type": "Polygon",
- *         "coordinates": [[
- *           [1.669921, 48.632908],
- *           [1.669921, 49.382372],
- *           [3.636474, 49.382372],
- *           [3.636474, 48.632908],
- *           [1.669921, 48.632908]
- *         ]]
- *       }
- *     }, {
- *       "type": "Feature",
- *       "properties": {},
- *       "geometry": {
- *         "type": "Polygon",
- *         "coordinates": [[
- *           [2.230224, 47.85003],
- *           [2.230224, 48.611121],
- *           [4.361572, 48.611121],
- *           [4.361572, 47.85003],
- *           [2.230224, 47.85003]
- *         ]]
- *       }
- *     }
- *   ]
- * };
- * var points = {
- *   "type": "FeatureCollection",
- *   "features": [
- *     {
- *       "type": "Feature",
- *       "properties": {
- *         "population": 200
- *       },
- *       "geometry": {
- *         "type": "Point",
- *         "coordinates": [2.054443,49.138596]
- *       }
- *     },
- *     {
- *       "type": "Feature",
- *       "properties": {
- *         "population": 600
- *       },
- *       "geometry": {
- *         "type": "Point",
- *         "coordinates": [3.065185,48.850258]
- *       }
- *     },
- *     {
- *       "type": "Feature",
- *       "properties": {
- *         "population": 100
- *       },
- *       "geometry": {
- *         "type": "Point",
- *         "coordinates": [2.329101,48.79239]
- *       }
- *     },
- *     {
- *       "type": "Feature",
- *       "properties": {
- *         "population": 200
- *       },
- *       "geometry": {
- *         "type": "Point",
- *         "coordinates": [2.614746,48.334343]
- *       }
- *     },
- *     {
- *       "type": "Feature",
- *       "properties": {
- *         "population": 300
- *       },
- *       "geometry": {
- *         "type": "Point",
- *         "coordinates": [3.416748,48.056053]
- *       }
- *     }
- *   ]
- * };
- * var aggregations = [
- *   {
- *     aggregation: 'sum',
- *     inField: 'population',
- *     outField: 'pop_sum'
- *   },
- *   {
- *     aggregation: 'average',
- *     inField: 'population',
- *     outField: 'pop_avg'
- *   },
- *   {
- *     aggregation: 'median',
- *     inField: 'population',
- *     outField: 'pop_median'
- *   },
- *   {
- *     aggregation: 'min',
- *     inField: 'population',
- *     outField: 'pop_min'
- *   },
- *   {
- *     aggregation: 'max',
- *     inField: 'population',
- *     outField: 'pop_max'
- *   },
- *   {
- *     aggregation: 'deviation',
- *     inField: 'population',
- *     outField: 'pop_deviation'
- *   },
- *   {
- *     aggregation: 'variance',
- *     inField: 'population',
- *     outField: 'pop_variance'
- *   },
- *   {
- *     aggregation: 'count',
- *     inField: '',
- *     outField: 'point_count'
- *   }
- * ];
+ * var poly1 = turf.polygon([[[0,0],[10,0],[10,10],[0,10],[0,0]]]);
+ * var poly2 = turf.polygon([[[10,0],[20,10],[20,20],[20,0],[10,0]]]);
+ * var polyFC = turf.featureCollection([poly1, poly2]);
+ * var pt1 = turf.point([5,5], {population: 200});
+ * var pt2 = turf.point([1,3], {population: 600});
+ * var pt3 = turf.point([14,2], {population: 100});
+ * var pt4 = turf.point([13,1], {population: 200});
+ * var pt5 = turf.point([19,7], {population: 300});
+ * var ptFC = turf.featureCollection([pt1, pt2, pt3, pt4, pt5]);
+ * var collected = turf.collect(polyFC, ptFC, 'population', 'values');
  *
- * var aggregated = turf.aggregate(
- *   polygons, points, statsProperty);
- *
- * var result = turf.featurecollection(
- *   points.features.concat(aggregated.features));
- *
- * //=result
+ * collected.features[0].properties.values // => [200, 600]);
  */
-module.exports = function collect(polyFC, ptFC, inProperty, outProperty) {
-    polyFC.features.forEach(function (poly) {
-        var values = ptFC.features.filter(function (pt) {
+module.exports = function collect(polygons, points, inProperty, outProperty) {
+    polygons.features.forEach(function (poly) {
+        var values = points.features.filter(function (pt) {
             return inside(pt, poly);
         }).map(function (pt) {
             return pt.properties[inProperty];
@@ -166,5 +42,5 @@ module.exports = function collect(polyFC, ptFC, inProperty, outProperty) {
         poly.properties[outProperty] = values;
     });
 
-    return polyFC;
+    return polygons;
 };

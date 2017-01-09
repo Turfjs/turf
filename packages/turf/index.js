@@ -7,60 +7,73 @@
  * @module turf
  * @summary Geospatial analysis for JavaScript
  */
-module.exports = {
-    isolines: require('turf-isolines'),
-    convex: require('turf-convex'),
-    within: require('turf-within'),
-    concave: require('turf-concave'),
-    difference: require('turf-difference'),
-    collect: require('turf-collect'),
-    flip: require('turf-flip'),
-    simplify: require('turf-simplify'),
-    bezier: require('turf-bezier'),
-    tag: require('turf-tag'),
-    sample: require('turf-sample'),
-    envelope: require('turf-envelope'),
-    square: require('turf-square'),
-    midpoint: require('turf-midpoint'),
-    buffer: require('turf-buffer'),
-    center: require('turf-center'),
-    centroid: require('turf-centroid'),
-    combine: require('turf-combine'),
-    distance: require('turf-distance'),
-    explode: require('turf-explode'),
-    bbox: require('turf-bbox'),
-    tesselate: require('turf-tesselate'),
-    bboxPolygon: require('turf-bbox-polygon'),
-    inside: require('turf-inside'),
-    intersect: require('turf-intersect'),
-    nearest: require('turf-nearest'),
-    planepoint: require('turf-planepoint'),
-    random: require('turf-random'),
-    tin: require('turf-tin'),
-    union: require('turf-union'),
-    bearing: require('turf-bearing'),
-    destination: require('turf-destination'),
-    kinks: require('turf-kinks'),
-    pointOnSurface: require('turf-point-on-surface'),
-    area: require('turf-area'),
-    along: require('turf-along'),
-    lineDistance: require('turf-line-distance'),
-    lineSlice: require('turf-line-slice'),
-    pointOnLine: require('turf-point-on-line'),
-    pointGrid: require('turf-point-grid'),
-    squareGrid: require('turf-square-grid'),
-    triangleGrid: require('turf-triangle-grid'),
-    hexGrid: require('turf-hex-grid')
+var helpers = require('@turf/helpers');
+var invariant = require('@turf/invariant');
+
+var turf = {
+    isolines: require('@turf/isolines'),
+    convex: require('@turf/convex'),
+    within: require('@turf/within'),
+    concave: require('@turf/concave'),
+    difference: require('@turf/difference'),
+    collect: require('@turf/collect'),
+    flip: require('@turf/flip'),
+    simplify: require('@turf/simplify'),
+    bezier: require('@turf/bezier'),
+    tag: require('@turf/tag'),
+    sample: require('@turf/sample'),
+    envelope: require('@turf/envelope'),
+    square: require('@turf/square'),
+    circle: require('@turf/circle'),
+    midpoint: require('@turf/midpoint'),
+    buffer: require('@turf/buffer'),
+    center: require('@turf/center'),
+    centerOfMass: require('@turf/center-of-mass'),
+    centroid: require('@turf/centroid'),
+    combine: require('@turf/combine'),
+    distance: require('@turf/distance'),
+    explode: require('@turf/explode'),
+    bbox: require('@turf/bbox'),
+    tesselate: require('@turf/tesselate'),
+    bboxPolygon: require('@turf/bbox-polygon'),
+    inside: require('@turf/inside'),
+    intersect: require('@turf/intersect'),
+    nearest: require('@turf/nearest'),
+    planepoint: require('@turf/planepoint'),
+    random: require('@turf/random'),
+    tin: require('@turf/tin'),
+    union: require('@turf/union'),
+    bearing: require('@turf/bearing'),
+    destination: require('@turf/destination'),
+    kinks: require('@turf/kinks'),
+    pointOnSurface: require('@turf/point-on-surface'),
+    area: require('@turf/area'),
+    along: require('@turf/along'),
+    lineDistance: require('@turf/line-distance'),
+    lineSlice: require('@turf/line-slice'),
+    lineSliceAlong: require('@turf/line-slice-along'),
+    pointOnLine: require('@turf/point-on-line'),
+    pointGrid: require('@turf/point-grid'),
+    squareGrid: require('@turf/square-grid'),
+    triangleGrid: require('@turf/triangle-grid'),
+    hexGrid: require('@turf/hex-grid'),
+    idw: require('@turf/idw'),
+    point: helpers.point,
+    polygon: helpers.polygon,
+    lineString: helpers.lineString,
+    multiPoint: helpers.multiPoint,
+    multiPolygon: helpers.multiPolygon,
+    multiLineString: helpers.multiLineString,
+    feature: helpers.feature,
+    featureCollection: helpers.featureCollection,
+    geometryCollection: helpers.geometryCollection,
+    getCoord: invariant.getCoord,
+    geojsonType: invariant.geojsonType,
+    featureOf: invariant.featureOf,
+    collectionOf: invariant.collectionOf
 };
 
-var helpers = require('turf-helpers');
+module.exports = turf;
 
-module.exports.point = helpers.point;
-module.exports.polygon = helpers.polygon;
-module.exports.lineString = helpers.lineString;
-module.exports.multiPoint = helpers.multiPoint;
-module.exports.multiPolygon = helpers.multiPolygon;
-module.exports.multiLineString = helpers.multiLineString;
-module.exports.feature = helpers.feature;
-module.exports.featureCollection = helpers.featureCollection;
-module.exports.geometryCollection = helpers.geometryCollection;
+// Allow use of default import syntax in TypeScript
+module.exports.default = turf;

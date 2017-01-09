@@ -1,5 +1,5 @@
 var test = require('tape');
-var distance = require('turf-distance');
+var distance = require('@turf/distance');
 var destination = require('./');
 
 test('destination', function(t){

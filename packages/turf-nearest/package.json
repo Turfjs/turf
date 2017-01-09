@@ -1,6 +1,6 @@
 {
-  "name": "turf-nearest",
-  "version": "3.0.5",
+  "name": "@turf/nearest",
+  "version": "3.7.0",
   "description": "turf nearest module",
   "main": "index.js",
   "scripts": {
@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/Turfjs/turf-nearest.git"
+    "url": "git://github.com/Turfjs/turf.git"
   },
   "keywords": [
     "turf",
@@ -19,14 +19,15 @@
   "author": "morganherlocker",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/Turfjs/turf-nearest/issues"
+    "url": "https://github.com/Turfjs/turf/issues"
   },
-  "homepage": "https://github.com/Turfjs/turf-nearest",
+  "homepage": "https://github.com/Turfjs/turf",
   "devDependencies": {
     "benchmark": "^1.0.0",
     "tape": "^3.5.0"
   },
   "dependencies": {
-    "turf-distance": "^3.0.5"
-  }
+    "@turf/distance": "^3.7.0"
+  },
+  "types": "index.d.ts"
 }

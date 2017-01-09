@@ -31,7 +31,7 @@
  * //=result
  */
 
-var point = require('turf-helpers').point;
+var point = require('@turf/helpers').point;
 
 module.exports = function (polyIn) {
     var poly;

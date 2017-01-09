@@ -3,9 +3,9 @@
 // 3. remove triangles that fail the max length test
 // 4. buffer the results slightly
 // 5. merge the results
-var tin = require('turf-tin');
-var union = require('turf-union');
-var distance = require('turf-distance');
+var tin = require('@turf/tin');
+var union = require('@turf/union');
+var distance = require('@turf/distance');
 
 /**
  * Takes a set of {@link Point|points} and returns a concave hull polygon.
@@ -15,10 +15,9 @@ var distance = require('turf-distance');
  * @param {FeatureCollection<Point>} points input points
  * @param {number} maxEdge the size of an edge necessary for part of the
  * hull to become concave (in miles)
- * @param {string} units used for maxEdge distance (miles or kilometers)
+ * @param {string} [units=kilometers] can be degrees, radians, miles, or kilometers
  * @returns {Feature<Polygon>} a concave hull
  * @throws {Error} if maxEdge parameter is missing
- * @throws {Error} if units parameter is missing
  * @example
  * var points = {
  *   "type": "FeatureCollection",
@@ -79,11 +78,8 @@ var distance = require('turf-distance');
  *
  * //=result
  */
-
-
-module.exports = function (points, maxEdge, units) {
+function concave(points, maxEdge, units) {
     if (typeof maxEdge !== 'number') throw new Error('maxEdge parameter is required');
-    if (typeof units !== 'string') throw new Error('units parameter is required');
 
     var tinPolys = tin(points);
     var filteredPolys = tinPolys.features.filter(filterTriangles);
@@ -100,7 +96,7 @@ module.exports = function (points, maxEdge, units) {
     }
 
     return merge(tinPolys);
-};
+}
 
 function merge(polygons) {
     var merged = JSON.parse(JSON.stringify(polygons.features[0])),
@@ -114,3 +110,5 @@ function merge(polygons) {
     }
     return merged;
 }
+
+module.exports = concave;

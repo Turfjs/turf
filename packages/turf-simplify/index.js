@@ -8,8 +8,8 @@ var supportedTypes = ['LineString', 'MultiLineString', 'Polygon', 'MultiPolygon'
  *
  * @name simplify
  * @param {Feature<(LineString|Polygon|MultiLineString|MultiPolygon)>|FeatureCollection|GeometryCollection} feature feature to be simplified
- * @param {number} tolerance simplification tolerance
- * @param {boolean} highQuality whether or not to spend more time to create
+ * @param {number} [tolerance=1] simplification tolerance
+ * @param {boolean} [highQuality=false] whether or not to spend more time to create
  * a higher-quality simplification with a different algorithm
  * @return {Feature<(LineString|Polygon|MultiLineString|MultiPolygon)>|FeatureCollection|GeometryCollection} a simplified feature
  * @example

@@ -6,9 +6,9 @@ var jsts = require('jsts');
  * polygon from the first.
  *
  * @name difference
- * @param {Feature<Polygon>} poly1 input Polygon feaure
- * @param {Feature<Polygon>} poly2 Polygon feature to difference from `poly1`
- * @return {Feature<Polygon>} a Polygon feature showing the area of `poly1` excluding the area of `poly2`
+ * @param {Feature<Polygon>} p1 input Polygon feature
+ * @param {Feature<Polygon>} p2 Polygon feature to difference from `p1`
+ * @return {Feature<Polygon>} a Polygon feature showing the area of `p1` excluding the area of `p2`
  * @example
  * var poly1 = {
  *   "type": "Feature",

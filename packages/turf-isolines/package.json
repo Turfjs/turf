@@ -1,6 +1,6 @@
 {
-  "name": "turf-isolines",
-  "version": "3.0.5",
+  "name": "@turf/isolines",
+  "version": "3.7.0",
   "description": "turf isolines module",
   "main": "index.js",
   "scripts": {
@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/Turfjs/turf-isolines.git"
+    "url": "git://github.com/Turfjs/turf.git"
   },
   "keywords": [
     "turf",
@@ -21,20 +21,22 @@
   "author": "morganherlocker",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/Turfjs/turf-isolines/issues"
+    "url": "https://github.com/Turfjs/turf/issues"
   },
-  "homepage": "https://github.com/Turfjs/turf-isolines",
+  "homepage": "https://github.com/Turfjs/turf",
   "devDependencies": {
     "benchmark": "^1.0.0",
     "tape": "^3.5.0"
   },
   "dependencies": {
-    "turf-bbox": "^3.0.1",
-    "turf-grid": "1.0.1",
-    "turf-inside": "^3.0.5",
-    "turf-helpers": "^3.0.5",
-    "turf-planepoint": "^3.0.1",
-    "turf-square": "^3.0.5",
-    "turf-tin": "^3.0.5"
-  }
+    "@turf/bbox": "^3.7.0",
+    "@turf/point-grid": "^3.7.0",
+    "@turf/distance": "^3.7.0",
+    "@turf/inside": "^3.7.0",
+    "@turf/helpers": "^3.6.3",
+    "@turf/planepoint": "^3.7.0",
+    "@turf/square": "^3.7.0",
+    "@turf/tin": "^3.7.0"
+  },
+  "types": "index.d.ts"
 }

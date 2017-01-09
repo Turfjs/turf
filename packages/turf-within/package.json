@@ -1,6 +1,6 @@
 {
-  "name": "turf-within",
-  "version": "3.0.5",
+  "name": "@turf/within",
+  "version": "3.7.0",
   "description": "turf within module",
   "main": "index.js",
   "scripts": {
@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/Turfjs/turf-within.git"
+    "url": "git://github.com/Turfjs/turf.git"
   },
   "keywords": [
     "geojson",
@@ -20,16 +20,17 @@
   "author": "morganherlocker",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/Turfjs/turf-within/issues"
+    "url": "https://github.com/Turfjs/turf/issues"
   },
-  "homepage": "https://github.com/Turfjs/turf-within",
+  "homepage": "https://github.com/Turfjs/turf",
   "devDependencies": {
     "benchmark": "^1.0.0",
     "tape": "^3.5.0",
-    "turf-helpers": "^3.0.5"
+    "@turf/helpers": "^3.6.3"
   },
   "dependencies": {
-    "turf-inside": "^3.0.5",
-    "turf-helpers": "^3.0.5"
-  }
+    "@turf/inside": "^3.7.0",
+    "@turf/helpers": "^3.6.3"
+  },
+  "types": "index.d.ts"
 }

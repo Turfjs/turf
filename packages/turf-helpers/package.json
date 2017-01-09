@@ -1,14 +1,14 @@
 {
-  "name": "turf-helpers",
-  "version": "3.0.5",
+  "name": "@turf/helpers",
+  "version": "3.7.1",
   "description": "turf geometries",
   "main": "index.js",
   "scripts": {
-    "test": "tape test.js"
+    "test": "tape test.js && tsc index.d.ts"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/Turfjs/turf-point.git"
+    "url": "git://github.com/Turfjs/turf.git"
   },
   "keywords": [
     "geo",
@@ -19,12 +19,13 @@
   "author": "morganherlocker",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/Turfjs/turf-point/issues"
+    "url": "https://github.com/Turfjs/turf/issues"
   },
-  "homepage": "https://github.com/Turfjs/turf-point",
+  "homepage": "https://github.com/Turfjs/turf",
   "devDependencies": {
     "benchmark": "^1.0.0",
     "tape": "^3.5.0"
   },
-  "dependencies": {}
+  "dependencies": {},
+  "types": "index.d.ts"
 }

@@ -1,11 +1,11 @@
 var test = require('tape'),
-  point = require('turf-helpers').point,
-  multipoint = require('turf-helpers').multiPoint,
-  linestring = require('turf-helpers').lineString,
-  multilinestring = require('turf-helpers').multiLineString,
-  polygon = require('turf-helpers').polygon,
-  multipolygon = require('turf-helpers').multiPolygon,
-  featurecollection = require('turf-helpers').featureCollection;
+  point = require('@turf/helpers').point,
+  multipoint = require('@turf/helpers').multiPoint,
+  linestring = require('@turf/helpers').lineString,
+  multilinestring = require('@turf/helpers').multiLineString,
+  polygon = require('@turf/helpers').polygon,
+  multipolygon = require('@turf/helpers').multiPolygon,
+  featurecollection = require('@turf/helpers').featureCollection;
 
 var combine = require('./')
 

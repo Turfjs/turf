@@ -1,11 +1,11 @@
 {
-  "name": "turf-square-grid",
-  "version": "3.0.5",
+  "name": "@turf/square-grid",
+  "version": "3.7.0",
   "description": "",
   "main": "index.js",
   "dependencies": {
-    "turf-distance": "^3.0.5",
-    "turf-helpers": "^3.0.5"
+    "@turf/distance": "^3.7.0",
+    "@turf/helpers": "^3.6.3"
   },
   "devDependencies": {
     "benchmark": "^1.0.0",
@@ -16,7 +16,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/Turfjs/turf-square-grid.git"
+    "url": "git://github.com/Turfjs/turf.git"
   },
   "keywords": [
     "turf",
@@ -28,7 +28,8 @@
   "author": "morganherlocker",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/Turfjs/turf-square-grid/issues"
+    "url": "https://github.com/Turfjs/turf/issues"
   },
-  "homepage": "https://github.com/Turfjs/turf-square-grid"
+  "homepage": "https://github.com/Turfjs/turf",
+  "types": "index.d.ts"
 }

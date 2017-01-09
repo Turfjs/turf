@@ -1,29 +1,29 @@
-var featurecollection = require('turf-helpers').featureCollection;
-var polygon = require('turf-helpers').polygon;
-var distance = require('turf-distance');
+var featurecollection = require('@turf/helpers').featureCollection;
+var polygon = require('@turf/helpers').polygon;
+var distance = require('@turf/distance');
 
 /**
  * Takes a bounding box and a cell depth and returns a set of triangular {@link Polygon|polygons} in a grid.
  *
  * @name triangleGrid
- * @param {Array<number>} extent extent in [minX, minY, maxX, maxY] order
- * @param {number} cellWidth width of each cell
- * @param {string} units units to use for cellWidth
+ * @param {Array<number>} bbox extent in [minX, minY, maxX, maxY] order
+ * @param {number} cellSize dimension of each cell
+ * @param {string} [units=kilometers] used in calculating cellSize, can be degrees, radians, miles, or kilometers
  * @return {FeatureCollection<Polygon>} grid of polygons
  * @example
- * var extent = [-77.3876953125,38.71980474264239,-76.9482421875,39.027718840211605];
- * var cellWidth = 10;
+ * var bbox = [-96,31,-84,40]
+ * var cellSize = 10;
  * var units = 'miles';
  *
- * var triangleGrid = turf.triangleGrid(extent, cellWidth, units);
+ * var triangleGrid = turf.triangleGrid(extent, cellSize, units);
  *
  * //=triangleGrid
  */
-module.exports = function (bbox, cell, units) {
+module.exports = function (bbox, cellSize, units) {
     var fc = featurecollection([]);
-    var xFraction = cell / (distance([bbox[0], bbox[1]], [bbox[2], bbox[1]], units));
+    var xFraction = cellSize / (distance([bbox[0], bbox[1]], [bbox[2], bbox[1]], units));
     var cellWidth = xFraction * (bbox[2] - bbox[0]);
-    var yFraction = cell / (distance([bbox[0], bbox[1]], [bbox[0], bbox[3]], units));
+    var yFraction = cellSize / (distance([bbox[0], bbox[1]], [bbox[0], bbox[3]], units));
     var cellHeight = yFraction * (bbox[3] - bbox[1]);
 
     var xi = 0;

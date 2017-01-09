@@ -9,6 +9,7 @@
 - GeoJSON is the lingua franca of Turf. It should be used as the data structure for anything that can be represented as geography.
 - Avoid large dependencies at all costs.
 - Turf is used in a wide range of places. Make sure that your code can run in the browser (ie: don't make calls to external services, don't hit the filesystem, etc.).
+- The `README.md` files in `packages/` are automatically generated from comments in `.js`. Please modify those comments instead of modifying the `README.md` files directly.
 
 ## Code Style
 
@@ -40,7 +41,7 @@ turf-hello
 
 Install lerna:
 
-    npm install -g lerna@2.0.0-beta.9
+    npm install -g lerna@2.0.0-beta.30
 
 Publish a test release:
 

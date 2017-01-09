@@ -1,7 +1,7 @@
-var point = require('turf-helpers').point;
-var polygon = require('turf-helpers').polygon;
-var distance = require('turf-distance');
-var featurecollection = require('turf-helpers').featureCollection;
+var point = require('@turf/helpers').point;
+var polygon = require('@turf/helpers').polygon;
+var distance = require('@turf/distance');
+var featurecollection = require('@turf/helpers').featureCollection;
 
 //Precompute cosines and sines of angles used in hexagon creation
 // for performance gain
@@ -19,23 +19,24 @@ for (var i = 0; i < 6; i++) {
  * described in [Hexagonal Grids](http://www.redblobgames.com/grids/hexagons/).
  *
  * @name hexGrid
- * @param {Array<number>} bbox bounding box in [minX, minY, maxX, maxY] order
- * @param {number} cellWidth width of cell in specified units
- * @param {string} units used in calculating cellWidth ('miles' or 'kilometers')
+ * @param {Array<number>} bbox extent in [minX, minY, maxX, maxY] order
+ * @param {number} cellSize dimension of cell in specified units
+ * @param {string} [units=kilometers] used in calculating cellSize, can be degrees, radians, miles, or kilometers
+ * @param {boolean} [triangles=false] whether to return as triangles instead of hexagons
  * @return {FeatureCollection<Polygon>} a hexagonal grid
  * @example
  * var bbox = [-96,31,-84,40];
- * var cellWidth = 50;
+ * var cellSize = 50;
  * var units = 'miles';
  *
- * var hexgrid = turf.hexGrid(bbox, cellWidth, units);
+ * var hexgrid = turf.hexGrid(bbox, cellSize, units);
  *
  * //=hexgrid
  */
-module.exports = function hexGrid(bbox, cell, units, triangles) {
-    var xFraction = cell / (distance(point([bbox[0], bbox[1]]), point([bbox[2], bbox[1]]), units));
+module.exports = function hexGrid(bbox, cellSize, units, triangles) {
+    var xFraction = cellSize / (distance(point([bbox[0], bbox[1]]), point([bbox[2], bbox[1]]), units));
     var cellWidth = xFraction * (bbox[2] - bbox[0]);
-    var yFraction = cell / (distance(point([bbox[0], bbox[1]]), point([bbox[0], bbox[3]]), units));
+    var yFraction = cellSize / (distance(point([bbox[0], bbox[1]]), point([bbox[0], bbox[3]]), units));
     var cellHeight = yFraction * (bbox[3] - bbox[1]);
     var radius = cellWidth / 2;
 

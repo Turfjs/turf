@@ -1,4 +1,4 @@
-var invariant = require('turf-invariant');
+var invariant = require('@turf/invariant');
 
 // http://en.wikipedia.org/wiki/Even%E2%80%93odd_rule
 // modified from: https://github.com/substack/point-in-polygon/blob/master/index.js
@@ -11,55 +11,20 @@ var invariant = require('turf-invariant');
  * @name inside
  * @param {Feature<Point>} point input point
  * @param {Feature<(Polygon|MultiPolygon)>} polygon input polygon or multipolygon
- * @return {Boolean} `true` if the Point is inside the Polygon; `false` if the Point is not inside the Polygon
+ * @return {boolean} `true` if the Point is inside the Polygon; `false` if the Point is not inside the Polygon
  * @example
- * var pt1 = {
- *   "type": "Feature",
- *   "properties": {
- *     "marker-color": "#f00"
- *   },
- *   "geometry": {
- *     "type": "Point",
- *     "coordinates": [-111.467285, 40.75766]
- *   }
- * };
- * var pt2 = {
- *   "type": "Feature",
- *   "properties": {
- *     "marker-color": "#0f0"
- *   },
- *   "geometry": {
- *     "type": "Point",
- *     "coordinates": [-111.873779, 40.647303]
- *   }
- * };
- * var poly = {
- *   "type": "Feature",
- *   "properties": {},
- *   "geometry": {
- *     "type": "Polygon",
- *     "coordinates": [[
- *       [-112.074279, 40.52215],
- *       [-112.074279, 40.853293],
- *       [-111.610107, 40.853293],
- *       [-111.610107, 40.52215],
- *       [-112.074279, 40.52215]
- *     ]]
- *   }
- * };
+ * var pt = point([-77, 44]);
+ * var poly = polygon([[
+ *   [-81, 41],
+ *   [-81, 47],
+ *   [-72, 47],
+ *   [-72, 41],
+ *   [-81, 41]
+ * ]]);
  *
- * var features = {
- *   "type": "FeatureCollection",
- *   "features": [pt1, pt2, poly]
- * };
+ * var isInside = turf.inside(pt, poly);
  *
- * //=features
- *
- * var isInside1 = turf.inside(pt1, poly);
- * //=isInside1
- *
- * var isInside2 = turf.inside(pt2, poly);
- * //=isInside2
+ * //=isInside
  */
 module.exports = function input(point, polygon) {
     var pt = invariant.getCoord(point);

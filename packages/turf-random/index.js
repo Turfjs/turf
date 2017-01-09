@@ -5,13 +5,13 @@ var random = require('geojson-random');
  * and experimentation.
  *
  * @name random
- * @param {String} [type='point'] type of features desired: 'points' or 'polygons'
- * @param {Number} [count=1] how many geometries should be generated.
+ * @param {string} [type='point'] type of features desired: 'points' or 'polygons'
+ * @param {number} [count=1] how many geometries should be generated.
  * @param {Object} options options relevant to the feature desired. Can include:
  * @param {Array<number>} options.bbox a bounding box inside of which geometries
  * are placed. In the case of {@link Point} features, they are guaranteed to be within this bounds,
  * while {@link Polygon} features have their centroid within the bounds.
- * @param {Number} [options.num_vertices=10] options.vertices the number of vertices added
+ * @param {number} [options.num_vertices=10] options.vertices the number of vertices added
  * to polygon features.
  * @param {Number} [options.max_radial_length=10] the total number of decimal
  * degrees longitude or latitude that a polygon can extent outwards to

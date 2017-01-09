@@ -1,13 +1,15 @@
 //https://github.com/jasondavies/conrec.js
 //http://stackoverflow.com/questions/263305/drawing-a-topographical-map
-var tin = require('turf-tin');
-var inside = require('turf-inside');
-var grid = require('turf-grid');
-var bbox = require('turf-bbox');
-var planepoint = require('turf-planepoint');
-var featurecollection = require('turf-helpers').featureCollection;
-var linestring = require('turf-helpers').lineString;
-var square = require('turf-square');
+var tin = require('@turf/tin');
+var inside = require('@turf/inside');
+var grid = require('@turf/point-grid');
+var distance = require('@turf/distance');
+var bbox = require('@turf/bbox');
+var planepoint = require('@turf/planepoint');
+var featurecollection = require('@turf/helpers').featureCollection;
+var linestring = require('@turf/helpers').lineString;
+var point = require('@turf/helpers').point;
+var square = require('@turf/square');
 var Conrec = require('./conrec');
 
 /**
@@ -37,7 +39,8 @@ module.exports = function (points, z, resolution, breaks) {
     var tinResult = tin(points, z);
     var bboxBBox = bbox(points);
     var squareBBox = square(bboxBBox);
-    var gridResult = grid(squareBBox, resolution);
+    var sizeCellGrid = distance(point([squareBBox[0], squareBBox[1]]), point([squareBBox[2], squareBBox[1]]), 'kilometers') / resolution;
+    var gridResult = grid(squareBBox, sizeCellGrid, 'kilometers');
     var data = [];
 
     for (var i = 0; i < gridResult.features.length; i++) {

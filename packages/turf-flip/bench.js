@@ -1,10 +1,10 @@
 var flip = require('./');
 var Benchmark = require('benchmark');
 var fs = require('fs');
-var point = require('turf-helpers').point;
-var linestring = require('turf-helpers').lineString;
-var polygon = require('turf-helpers').polygon;
-var featurecollection = require('turf-helpers').featureCollection;
+var point = require('@turf/helpers').point;
+var linestring = require('@turf/helpers').lineString;
+var polygon = require('@turf/helpers').polygon;
+var featurecollection = require('@turf/helpers').featureCollection;
 
 var pt = point(1,0);
 var line = linestring([[1,0], [1,0]]);

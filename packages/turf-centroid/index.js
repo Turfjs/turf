@@ -1,5 +1,5 @@
-var each = require('turf-meta').coordEach;
-var point = require('turf-helpers').point;
+var each = require('@turf/meta').coordEach;
+var point = require('@turf/helpers').point;
 
 /**
  * Takes one or more features and calculates the centroid using

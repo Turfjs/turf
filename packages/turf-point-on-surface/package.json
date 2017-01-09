@@ -1,6 +1,6 @@
 {
-  "name": "turf-point-on-surface",
-  "version": "3.0.5",
+  "name": "@turf/point-on-surface",
+  "version": "3.7.0",
   "description": "turf point-on-surface module",
   "main": "index.js",
   "scripts": {
@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/Turfjs/turf-point-on-surface.git"
+    "url": "git://github.com/Turfjs/turf.git"
   },
   "keywords": [
     "turf",
@@ -21,18 +21,19 @@
   "author": "morganherlocker",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/Turfjs/turf-point-on-surface/issues"
+    "url": "https://github.com/Turfjs/turf/issues"
   },
-  "homepage": "https://github.com/Turfjs/turf-point-on-surface",
+  "homepage": "https://github.com/Turfjs/turf",
   "devDependencies": {
     "tape": "^3.5.0",
     "benchmark": "^1.0.0"
   },
   "dependencies": {
-    "turf-center": "^3.0.5",
-    "turf-distance": "^3.0.5",
-    "turf-explode": "^3.0.5",
-    "turf-inside": "^3.0.5",
-    "turf-helpers": "^3.0.5"
-  }
+    "@turf/center": "^3.7.0",
+    "@turf/distance": "^3.7.0",
+    "@turf/explode": "^3.7.0",
+    "@turf/inside": "^3.7.0",
+    "@turf/helpers": "^3.6.3"
+  },
+  "types": "index.d.ts"
 }

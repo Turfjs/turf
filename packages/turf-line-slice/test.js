@@ -1,13 +1,14 @@
 var test = require('tape');
 var fs = require('fs');
 var lineSlice = require('./');
-var point = require('turf-helpers').point;
-var featurecollection = require('turf-helpers').featureCollection;
-var linestring = require('turf-helpers').lineString;
+var point = require('@turf/helpers').point;
+var featurecollection = require('@turf/helpers').featureCollection;
+var linestring = require('@turf/helpers').lineString;
 
 var route1 = JSON.parse(fs.readFileSync(__dirname + '/test/in/route1.geojson'));
 var route2 = JSON.parse(fs.readFileSync(__dirname + '/test/in/route2.geojson'));
 var line1 = JSON.parse(fs.readFileSync(__dirname +  '/test/in/line1.geojson'));
+var vertical = JSON.parse(fs.readFileSync(__dirname +  '/test/in/vertical.geojson'));
 
 test('turf-line-slice -- line1', function (t) {
 	var start = point([-97.79617309570312,22.254624939561698]);
@@ -86,6 +87,25 @@ test('turf-line-slice -- route2', function (t) {
 	fs.writeFileSync(__dirname+ '/test/out/route2_out.geojson',
 		JSON.stringify(featurecollection([
 				route2, start, stop, sliced
+			]), null, 2));
+
+	t.end();
+});
+
+test('turf-line-slice -- vertical', function (t) {
+	var start = point([-121.25447809696198, 38.70582415504791]);
+	var stop = point([-121.25447809696198, 38.70634324369764]);
+
+	var sliced = lineSlice(start, stop, vertical);
+	sliced.properties['stroke'] = '#f0f';
+	sliced.properties['stroke-width'] = 6;
+
+	t.equal(sliced.geometry.coordinates.length, 2, 'no duplicated coords');
+	t.notDeepEqual(sliced.geometry.coordinates[0], sliced.geometry.coordinates[1], 'vertical slice does not collapse to 1st coord');
+
+	fs.writeFileSync(__dirname+ '/test/out/vertical_out.geojson',
+		JSON.stringify(featurecollection([
+				vertical, start, stop, sliced
 			]), null, 2));
 
 	t.end();

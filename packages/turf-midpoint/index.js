@@ -1,14 +1,14 @@
-var bearing = require('turf-bearing');
-var destination = require('turf-destination');
-var distance = require('turf-distance');
+var bearing = require('@turf/bearing');
+var destination = require('@turf/destination');
+var distance = require('@turf/distance');
 
 /**
  * Takes two {@link Point|points} and returns a point midway between them.
  * The midpoint is calculated geodesically, meaning the curvature of the earth is taken into account.
  *
  * @name midpoint
- * @param {Feature<Point>} pt1 first point
- * @param {Feature<Point>} pt2 second point
+ * @param {Feature<Point>} from first point
+ * @param {Feature<Point>} to second point
  * @return {Feature<Point>} a point midway between `pt1` and `pt2`
  * @example
  * var pt1 = {
@@ -39,10 +39,10 @@ var distance = require('turf-distance');
  *
  * //=result
  */
-module.exports = function (point1, point2) {
-    var dist = distance(point1, point2, 'miles');
-    var heading = bearing(point1, point2);
-    var midpoint = destination(point1, dist / 2, heading, 'miles');
+module.exports = function (from, to) {
+    var dist = distance(from, to, 'miles');
+    var heading = bearing(from, to);
+    var midpoint = destination(from, dist / 2, heading, 'miles');
 
     return midpoint;
 };

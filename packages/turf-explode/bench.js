@@ -1,9 +1,9 @@
 global.explode = require('./');
 var Benchmark = require('benchmark');
 var fs = require('fs');
-var polygon = require('turf-helpers').polygon;
-var point = require('turf-helpers').point;
-var featurecollection = require('turf-helpers').featureCollection;
+var polygon = require('@turf/helpers').polygon;
+var point = require('@turf/helpers').point;
+var featurecollection = require('@turf/helpers').featureCollection;
 
 global.poly = polygon([[[0,0], [0,10], [10,10] , [10,0]]]);
 var p1 = point(0,0),

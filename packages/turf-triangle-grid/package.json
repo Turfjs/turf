@@ -1,23 +1,23 @@
 {
-  "name": "turf-triangle-grid",
-  "version": "3.0.5",
+  "name": "@turf/triangle-grid",
+  "version": "3.7.0",
   "description": "",
   "main": "index.js",
   "dependencies": {
-    "turf-distance": "^3.0.5",
-    "turf-helpers": "^3.0.5"
+    "@turf/distance": "^3.7.0",
+    "@turf/helpers": "^3.6.3"
   },
   "devDependencies": {
     "benchmark": "^1.0.0",
     "tape": "^3.5.0",
-    "turf-bbox-polygon": "^3.0.5"
+    "@turf/bbox-polygon": "^3.7.0"
   },
   "scripts": {
     "test": "node test.js"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/Turfjs/turf-triangle-grid.git"
+    "url": "git://github.com/Turfjs/turf.git"
   },
   "keywords": [
     "turf",
@@ -30,7 +30,8 @@
   "author": "morganherlocker",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/Turfjs/turf-triangle-grid/issues"
+    "url": "https://github.com/Turfjs/turf/issues"
   },
-  "homepage": "https://github.com/Turfjs/turf-triangle-grid"
+  "homepage": "https://github.com/Turfjs/turf",
+  "types": "index.d.ts"
 }

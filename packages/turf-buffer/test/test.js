@@ -2,11 +2,11 @@ var test = require('tape');
 var buffer = require('../');
 var fs = require('fs');
 var glob = require('glob');
-var featurecollection = require('turf-helpers').featureCollection;
-var getBbox = require('turf-bbox');
-var point = require('turf-helpers').point;
-var distance = require('turf-distance');
-var normalize = require('geojson-normalize');
+var featurecollection = require('@turf/helpers').featureCollection;
+var getBbox = require('@turf/bbox');
+var point = require('@turf/helpers').point;
+var distance = require('@turf/distance');
+var normalize = require('@mapbox/geojson-normalize');
 
 test('buffer', function(t){
   var fixtures = glob.sync(__dirname+'/fixtures/in/*.geojson');

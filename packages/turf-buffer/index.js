@@ -2,18 +2,18 @@
 // radians = degrees * (pi/180)
 // https://github.com/bjornharrtell/jsts/blob/master/examples/buffer.html
 
-var helpers = require('turf-helpers');
+var helpers = require('@turf/helpers');
 var featureCollection = helpers.featureCollection;
 var jsts = require('jsts');
-var normalize = require('geojson-normalize');
+var normalize = require('@mapbox/geojson-normalize');
 
 /**
  * Calculates a buffer for input features for a given radius. Units supported are miles, kilometers, and degrees.
  *
  * @name buffer
  * @param {(Feature|FeatureCollection)} feature input to be buffered
- * @param {number} distance distance to draw the buffer
- * @param {string} unit any of the options supported by turf units
+ * @param {number} radius distance to draw the buffer
+ * @param {string} units any of the options supported by turf units
  * @return {FeatureCollection<Polygon>|FeatureCollection<MultiPolygon>|Polygon|MultiPolygon} buffered features
  *
  * @example

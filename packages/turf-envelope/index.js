@@ -1,11 +1,11 @@
-var bbox = require('turf-bbox');
-var bboxPolygon = require('turf-bbox-polygon');
+var bbox = require('@turf/bbox');
+var bboxPolygon = require('@turf/bbox-polygon');
 
 /**
  * Takes any number of features and returns a rectangular {@link Polygon} that encompasses all vertices.
  *
  * @name envelope
- * @param {FeatureCollection} fc input features
+ * @param {(Feature|FeatureCollection)} features input features
  * @return {Feature<Polygon>} a rectangular Polygon feature that encompasses all vertices
  * @example
  * var fc = {

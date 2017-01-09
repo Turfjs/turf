@@ -1,6 +1,6 @@
 {
-  "name": "turf-buffer",
-  "version": "3.0.5",
+  "name": "@turf/buffer",
+  "version": "3.7.1",
   "description": "turf buffer module",
   "main": "index.js",
   "scripts": {
@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/Turfjs/turf-buffer.git"
+    "url": "git://github.com/Turfjs/turf.git"
   },
   "keywords": [
     "buffer",
@@ -22,21 +22,22 @@
   "author": "morganherlocker",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/Turfjs/turf-buffer/issues"
+    "url": "https://github.com/Turfjs/turf/issues"
   },
-  "homepage": "https://github.com/Turfjs/turf-buffer",
+  "homepage": "https://github.com/Turfjs/turf",
   "devDependencies": {
     "benchmark": "^1.0.0",
     "glob": "^5.0.3",
     "tape": "^3.5.0",
-    "turf-distance": "^3.0.5",
-    "turf-bbox": "^3.0.1",
-    "turf-helpers": "^3.0.5"
+    "@turf/distance": "^3.7.0",
+    "@turf/bbox": "^3.7.0",
+    "@turf/helpers": "^3.7.1"
   },
   "dependencies": {
-    "geojson-normalize": "0.0.0",
-    "jsts": "1.1.1",
-    "turf-combine": "^3.0.5",
-    "turf-helpers": "^3.0.5"
-  }
+    "@mapbox/geojson-normalize": "0.0.1",
+    "jsts": "1.3.0",
+    "@turf/combine": "^3.7.0",
+    "@turf/helpers": "^3.7.1"
+  },
+  "types": "index.d.ts"
 }

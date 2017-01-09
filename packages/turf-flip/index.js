@@ -1,4 +1,4 @@
-var coordEach = require('turf-meta').coordEach;
+var coordEach = require('@turf/meta').coordEach;
 
 /**
  * Takes input features and flips all of their coordinates

@@ -1,11 +1,11 @@
-var distance = require('turf-distance');
+var distance = require('@turf/distance');
 
 /**
  * Takes a bounding box and calculates the minimum square bounding box that
  * would contain the input.
  *
  * @name square
- * @param {Array<number>} bbox a bounding box
+ * @param {Array<number>} bbox extent in [minX, minY, maxX, maxY] order
  * @return {Array<number>} a square surrounding `bbox`
  * @example
  * var bbox = [-20,-20,-15,0];

@@ -1,6 +1,6 @@
 var test = require('tape');
-var destination = require('turf-destination');
-var inside = require('turf-inside');
+var destination = require('@turf/destination');
+var inside = require('@turf/inside');
 var circle = require('./');
 
 test('circle', function(t){

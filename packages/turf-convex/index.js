@@ -1,17 +1,18 @@
-var each = require('turf-meta').coordEach,
+var each = require('@turf/meta').coordEach,
     convexHull = require('convex-hull'),
-    polygon = require('turf-helpers').polygon;
+    polygon = require('@turf/helpers').polygon;
 
 /**
- * Takes a set of {@link Point|points} and returns a
- * [convex hull](http://en.wikipedia.org/wiki/Convex_hull) polygon.
+ * Takes a [feature](http://geojson.org/geojson-spec.html#feature-objects)
+ * or a [featureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects)
+ * and returns a [convex hull](http://en.wikipedia.org/wiki/Convex_hull) polygon.
  *
  * Internally this uses
  * the [convex-hull](https://github.com/mikolalysenko/convex-hull) module that
  * implements a [monotone chain hull](http://en.wikibooks.org/wiki/Algorithm_Implementation/Geometry/Convex_hull/Monotone_chain).
  *
  * @name convex
- * @param {FeatureCollection<Point>} input input points
+ * @param {(Feature|FeatureCollection)} feature input Feature or FeatureCollection
  * @returns {Feature<Polygon>} a convex hull
  * @example
  * var points = {
@@ -73,11 +74,18 @@ var each = require('turf-meta').coordEach,
  *
  * //=result
  */
-module.exports = function (fc) {
+module.exports = function (feature) {
     var points = [];
-    each(fc, function (coord) { points.push(coord); });
+
+    // Remove Z in coordinates because it breaks the convexHull algorithm
+    each(feature, function (coord) {
+        points.push([coord[0], coord[1]]);
+    });
+
     var hull = convexHull(points);
-    if (hull.length > 0) {
+
+    // Hull should have at least 3 different vertices in order to create a valid polygon
+    if (hull.length >= 3) {
         var ring = [];
         for (var i = 0; i < hull.length; i++) {
             ring.push(points[hull[i][0]]);

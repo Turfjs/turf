@@ -3,6 +3,7 @@
  *
  * @name feature
  * @param {Geometry} geometry input geometry
+ * @param {Object} properties properties
  * @returns {FeatureCollection} a FeatureCollection of input features
  * @example
  * var geometry = {
@@ -31,7 +32,7 @@ module.exports.feature = feature;
  * Takes coordinates and properties (optional) and returns a new {@link Point} feature.
  *
  * @name point
- * @param {number[]} coordinates longitude, latitude position (each in decimal degrees)
+ * @param {Array<number>} coordinates longitude, latitude position (each in decimal degrees)
  * @param {Object=} properties an Object that is used as the {@link Feature}'s
  * properties
  * @returns {Feature<Point>} a Point feature
@@ -53,7 +54,7 @@ module.exports.point = function (coordinates, properties) {
  * Takes an array of LinearRings and optionally an {@link Object} with properties and returns a {@link Polygon} feature.
  *
  * @name polygon
- * @param {Array<Array<number>>} rings an array of LinearRings
+ * @param {Array<Array<Array<number>>>} coordinates an array of LinearRings
  * @param {Object=} properties a properties object
  * @returns {Feature<Polygon>} a Polygon feature
  * @throws {Error} throw an error if a LinearRing of the polygon has too few positions
@@ -76,10 +77,10 @@ module.exports.polygon = function (coordinates, properties) {
 
     for (var i = 0; i < coordinates.length; i++) {
         var ring = coordinates[i];
+        if (ring.length < 4) {
+            throw new Error('Each LinearRing of a Polygon must have 4 or more Positions.');
+        }
         for (var j = 0; j < ring[ring.length - 1].length; j++) {
-            if (ring.length < 4) {
-                throw new Error('Each LinearRing of a Polygon must have 4 or more Positions.');
-            }
             if (ring[ring.length - 1][j] !== ring[0][j]) {
                 throw new Error('First and last Position are not equivalent.');
             }
@@ -158,12 +159,12 @@ module.exports.featureCollection = function (features) {
  * coordinate array. Properties can be added optionally.
  *
  * @name multiLineString
- * @param {Array<Array<number>>} coordinates an array of Positions
+ * @param {Array<Array<Array<number>>>} coordinates an array of LineStrings
  * @param {Object=} properties an Object of key-value pairs to add as properties
  * @returns {Feature<MultiLineString>} a MultiLineString feature
  * @throws {Error} if no coordinates are passed
  * @example
- * var multiLine = turf.multilinestring([[0,0],[10,10]]);
+ * var multiLine = turf.multiLineString([[[0,0],[10,10]]]);
  *
  * //=multiLine
  *
@@ -188,7 +189,7 @@ module.exports.multiLineString = function (coordinates, properties) {
  * @returns {Feature<MultiPoint>} a MultiPoint feature
  * @throws {Error} if no coordinates are passed
  * @example
- * var multiPt = turf.multipoint([[0,0],[10,10]]);
+ * var multiPt = turf.multiPoint([[0,0],[10,10]]);
  *
  * //=multiPt
  *
@@ -209,12 +210,12 @@ module.exports.multiPoint = function (coordinates, properties) {
  * coordinate array. Properties can be added optionally.
  *
  * @name multiPolygon
- * @param {Array<Array<number>>} coordinates an array of Positions
+ * @param {Array<Array<Array<Array<number>>>>} coordinates an array of Polygons
  * @param {Object=} properties an Object of key-value pairs to add as properties
  * @returns {Feature<MultiPolygon>} a multipolygon feature
  * @throws {Error} if no coordinates are passed
  * @example
- * var multiPoly = turf.multipolygon([[0,0],[10,10]]);
+ * var multiPoly = turf.multiPolygon([[[[0,0],[0,10],[10,10],[10,0],[0,0]]]);
  *
  * //=multiPoly
  *
@@ -236,7 +237,7 @@ module.exports.multiPolygon = function (coordinates, properties) {
  * @name geometryCollection
  * @param {Array<{Geometry}>} geometries an array of GeoJSON Geometries
  * @param {Object=} properties an Object of key-value pairs to add as properties
- * @returns {Feature<GeometryCollection>} a geometrycollection feature
+ * @returns {Feature<GeometryCollection>} a GeoJSON GeometryCollection Feature
  * @example
  * var pt = {
  *     "type": "Point",
@@ -246,7 +247,7 @@ module.exports.multiPolygon = function (coordinates, properties) {
  *     "type": "LineString",
  *     "coordinates": [ [101, 0], [102, 1] ]
  *   };
- * var collection = turf.geometrycollection([[0,0],[10,10]]);
+ * var collection = turf.geometryCollection([pt, line]);
  *
  * //=collection
  */
@@ -267,7 +268,8 @@ var factors = {
     meters: 6373000,
     metres: 6373000,
     kilometers: 6373,
-    kilometres: 6373
+    kilometres: 6373,
+    feet: 20908792.65
 };
 
 /*
@@ -275,7 +277,7 @@ var factors = {
  *
  * @name radiansToDistance
  * @param {number} distance in radians across the sphere
- * @param {string=kilometers} units: one of miles, nauticalmiles, degrees, radians,
+ * @param {string} [units=kilometers] can be degrees, radians, miles, or kilometers
  * inches, yards, metres, meters, kilometres, kilometers.
  * @returns {number} distance
  */
@@ -292,7 +294,7 @@ module.exports.radiansToDistance = function (radians, units) {
  *
  * @name distanceToRadians
  * @param {number} distance in real units
- * @param {string=kilometers} units: one of miles, nauticalmiles, degrees, radians,
+ * @param {string} [units=kilometers] can be degrees, radians, miles, or kilometers
  * inches, yards, metres, meters, kilometres, kilometers.
  * @returns {number} radians
  */
@@ -309,7 +311,7 @@ module.exports.distanceToRadians = function (distance, units) {
  *
  * @name distanceToRadians
  * @param {number} distance in real units
- * @param {string=kilometers} units: one of miles, nauticalmiles, degrees, radians,
+ * @param {string} [units=kilometers] can be degrees, radians, miles, or kilometers
  * inches, yards, metres, meters, kilometres, kilometers.
  * @returns {number} degrees
  */

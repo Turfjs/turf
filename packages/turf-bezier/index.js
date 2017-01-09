@@ -1,4 +1,4 @@
-var linestring = require('turf-helpers').lineString;
+var linestring = require('@turf/helpers').lineString;
 var Spline = require('./spline.js');
 
 /**
@@ -10,8 +10,8 @@ var Spline = require('./spline.js');
  *
  * @name bezier
  * @param {Feature<LineString>} line input LineString
- * @param {Number} [resolution=10000] time in milliseconds between points
- * @param {Number} [sharpness=0.85] a measure of how curvy the path should be between splines
+ * @param {number} [resolution=10000] time in milliseconds between points
+ * @param {number} [sharpness=0.85] a measure of how curvy the path should be between splines
  * @returns {Feature<LineString>} curved line
  * @example
  * var line = {

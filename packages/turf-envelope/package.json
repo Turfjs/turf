@@ -1,6 +1,6 @@
 {
-  "name": "turf-envelope",
-  "version": "3.0.5",
+  "name": "@turf/envelope",
+  "version": "3.7.0",
   "description": "turf envelope module",
   "main": "index.js",
   "scripts": {
@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/Turfjs/turf-envelope.git"
+    "url": "git://github.com/Turfjs/turf.git"
   },
   "keywords": [
     "turf",
@@ -20,15 +20,16 @@
   "author": "morganherlocker",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/Turfjs/turf-envelope/issues"
+    "url": "https://github.com/Turfjs/turf/issues"
   },
-  "homepage": "https://github.com/Turfjs/turf-envelope",
+  "homepage": "https://github.com/Turfjs/turf",
   "devDependencies": {
     "benchmark": "^1.0.0",
     "tape": "^3.5.0"
   },
   "dependencies": {
-    "turf-bbox-polygon": "^3.0.5",
-    "turf-bbox": "^3.0.1"
-  }
+    "@turf/bbox-polygon": "^3.7.0",
+    "@turf/bbox": "^3.7.0"
+  },
+  "types": "index.d.ts"
 }

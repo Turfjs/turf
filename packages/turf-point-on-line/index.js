@@ -1,14 +1,15 @@
-var distance = require('turf-distance');
-var point = require('turf-helpers').point;
-var bearing = require('turf-bearing');
-var destination = require('turf-destination');
+var distance = require('@turf/distance');
+var point = require('@turf/helpers').point;
+var bearing = require('@turf/bearing');
+var destination = require('@turf/destination');
 
 /**
  * Takes a {@link Point} and a {@link LineString} and calculates the closest Point on the LineString.
  *
  * @name pointOnLine
  * @param {Feature<LineString>} line line to snap to
- * @param {Feature<Point>} point point to snap from
+ * @param {Feature<Point>} pt point to snap from
+ * @param {string} [units=kilometers] can be degrees, radians, miles, or kilometers
  * @return {Feature<Point>} closest point on the `line` to `point`
  * @example
  * var line = {
@@ -35,7 +36,7 @@ var destination = require('turf-destination');
  *   }
  * };
  *
- * var snapped = turf.pointOnLine(line, pt);
+ * var snapped = turf.pointOnLine(line, pt, 'miles');
  * snapped.properties['marker-color'] = '#00f'
  *
  * var result = {
@@ -46,21 +47,16 @@ var destination = require('turf-destination');
  * //=result
  */
 
-module.exports = function (line, pt) {
+module.exports = function (line, pt, units) {
     var coords;
     if (line.type === 'Feature') {
         coords = line.geometry.coordinates;
     } else if (line.type === 'LineString') {
-        coords = line.geometry.coordinates;
+        coords = line.coordinates;
     } else {
         throw new Error('input must be a LineString Feature or Geometry');
     }
 
-    return pointOnLine(pt, coords);
-};
-
-function pointOnLine(pt, coords) {
-    var units = 'miles';
     var closestPt = point([Infinity, Infinity], {
         dist: Infinity
     });
@@ -77,14 +73,14 @@ function pointOnLine(pt, coords) {
         var perpendicularPt1 = destination(pt, heightDistance, direction + 90, units);
         var perpendicularPt2 = destination(pt, heightDistance, direction - 90, units);
         var intersect = lineIntersects(
-        perpendicularPt1.geometry.coordinates[0],
-        perpendicularPt1.geometry.coordinates[1],
-        perpendicularPt2.geometry.coordinates[0],
-        perpendicularPt2.geometry.coordinates[1],
-        start.geometry.coordinates[0],
-        start.geometry.coordinates[1],
-        stop.geometry.coordinates[0],
-        stop.geometry.coordinates[1]
+            perpendicularPt1.geometry.coordinates[0],
+            perpendicularPt1.geometry.coordinates[1],
+            perpendicularPt2.geometry.coordinates[0],
+            perpendicularPt2.geometry.coordinates[1],
+            start.geometry.coordinates[0],
+            start.geometry.coordinates[1],
+            stop.geometry.coordinates[0],
+            stop.geometry.coordinates[1]
         );
         var intersectPt;
         if (intersect) {
@@ -107,7 +103,7 @@ function pointOnLine(pt, coords) {
     }
 
     return closestPt;
-}
+};
 
 // modified from http://jsfiddle.net/justin_c_rounds/Gd2S2/light/
 function lineIntersects(line1StartX, line1StartY, line1EndX, line1EndY, line2StartX, line2StartY, line2EndX, line2EndY) {
