@@ -62,3 +62,21 @@ test('multipolygon with hole', function (t) {
 
   t.end();
 });
+
+test('vertex issues', function (t) {
+  var vt1 = point([ 10, 10 ]);
+  var vt2 = point([ 30, 20 ]);
+  var vt3 = point([ 50, 10 ]);
+  var poly = polygon([[
+    [ 10, 10 ],
+    [ 30, 20 ],
+    [ 50, 10 ],
+    [ 10, 10 ]
+  ]]);
+
+  t.true(inside(vt1, poly));
+  t.true(inside(vt2, poly));
+  t.true(inside(vt3, poly));
+
+  t.end();
+});
