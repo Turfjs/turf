@@ -10,6 +10,7 @@ var bbox = require('@turf/bbox');
  * It finds application when in need of creating a continuous surface (i.e. rainfall, temperature, chemical dispersion surface...)
  * from a set of spatially scattered points.
  *
+ * @name   idw
  * @param  {FeatureCollection<Point>} controlPoints Sampled points with known value
  * @param  {string} valueField    GeoJSON field containing the known value to interpolate on
  * @param  {number} b             Exponent regulating the distance-decay weighting
@@ -17,7 +18,7 @@ var bbox = require('@turf/bbox');
  * @param  {string} [units=kilometers] used in calculating cellSize, can be degrees, radians, miles, or kilometers
  * @return {FeatureCollection<Polygon>} grid A grid of polygons with a property field "IDW"
  */
-module.exports = function (controlPoints, valueField, b, cellWidth, units) {
+module.exports = function idw(controlPoints, valueField, b, cellWidth, units) {
     // check if field containing data exists..
     var filtered = controlPoints.features.filter(function (feature) {
         return feature.properties &&
