@@ -1,6 +1,6 @@
 {
   "name": "@turf/intersect",
-  "version": "3.7.1",
+  "version": "3.7.3",
   "description": "find the intersection of spatial features",
   "main": "index.js",
   "scripts": {

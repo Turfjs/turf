@@ -1,6 +1,6 @@
 {
   "name": "@turf/union",
-  "version": "3.7.0",
+  "version": "3.7.3",
   "description": "find the union of geographic features",
   "main": "index.js",
   "scripts": {

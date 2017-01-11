@@ -24,7 +24,7 @@ var lineString = require('@turf/helpers').lineString;
  *   "geometry": {
  *     "type": "LineString",
  *     "coordinates": [
-*        [ 7.66845703125, 45.058001435398296 ],
+ *       [ 7.66845703125, 45.058001435398296 ],
  *       [ 9.20654296875, 45.460130637921004 ],
  *       [ 11.348876953125, 44.48866833139467 ],
  *       [ 12.1728515625, 45.43700828867389 ],
@@ -60,7 +60,10 @@ module.exports = function lineSliceAlong(line, startDist, stopDist, units) {
         if (startDist >= travelled && i === coords.length - 1) break;
         else if (travelled > startDist && slice.length === 0) {
             overshot = startDist - travelled;
-            if (!overshot) return slice.push(coords[i]);
+            if (!overshot) {
+                slice.push(coords[i]);
+                return lineString(slice);
+            }
             direction = bearing(coords[i], coords[i - 1]) - 180;
             interpolated = destination(coords[i], overshot, direction, units);
             slice.push(interpolated.geometry.coordinates);
@@ -68,7 +71,10 @@ module.exports = function lineSliceAlong(line, startDist, stopDist, units) {
 
         if (travelled >= stopDist) {
             overshot = stopDist - travelled;
-            if (!overshot) return slice.push(coords[i]);
+            if (!overshot) {
+                slice.push(coords[i]);
+                return lineString(slice);
+            }
             direction = bearing(coords[i], coords[i - 1]) - 180;
             interpolated = destination(coords[i], overshot, direction, units);
             slice.push(interpolated.geometry.coordinates);
