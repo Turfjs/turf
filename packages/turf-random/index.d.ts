@@ -11,16 +11,14 @@ interface Options {
     max_radial_length?: number
 }
 
-interface RandomStatic {
+interface Random {
     /**
      * http://turfjs.org/docs/#random
      */
-    (type?: 'point' | 'points' | undefined, count?: number, options?: Options): Points;
+    (type?: 'point' | 'points', count?: number, options?: Options): Points;
     (type?: 'polygon' | 'polygons', count?: number, options?: Options): Polygons;
-    (type?: string, count?: number, options?: Options): Features;
-    
 }
-declare const random: RandomStatic;
+declare const random: Random;
 declare namespace random { }
 export = random;
 
