@@ -63,20 +63,99 @@ test('multipolygon with hole', function (t) {
   t.end();
 });
 
-test('vertex issues', function (t) {
-  var vt1 = point([ 10, 10 ]);
-  var vt2 = point([ 30, 20 ]);
-  var vt3 = point([ 50, 10 ]);
-  var poly = polygon([[
+test('Boundary test', function (t) {
+  var poly1 = polygon([[
     [ 10, 10 ],
     [ 30, 20 ],
     [ 50, 10 ],
+    [ 30,  0 ],
     [ 10, 10 ]
   ]]);
+  var poly2 = polygon([[
+    [ 10,  0 ],
+    [ 30, 20 ],
+    [ 50,  0 ],
+    [ 30, 10 ],
+    [ 10,  0 ]
+  ]]);
+  var poly3 = polygon([[
+    [ 10,  0 ],
+    [ 30, 20 ],
+    [ 50,  0 ],
+    [ 30, -20 ],
+    [ 10,  0 ]
+  ]]);  
+  var poly4 = polygon([[
+    [  0,  0 ],
+    [  0, 20 ],
+    [ 50, 20 ],
+    [ 50,  0 ],
+    [ 40,  0 ],
+    [ 30, 10 ],
+    [ 30,  0 ],
+    [ 20, 10 ],
+    [ 10, 10 ],
+    [ 10,  0 ],
+    [  0,  0 ]
+  ]]);
+  var poly5 = polygon([[
+    [  0, 20 ],
+    [ 20, 40 ],
+    [ 40, 20 ],
+    [ 20,  0 ],
+    [  0, 20 ]
+  ],[
+    [ 10, 20 ],
+    [ 20, 30 ],
+    [ 30, 20 ],
+    [ 20, 10 ],
+    [ 10, 20 ]
+  ]]);
 
-  t.true(inside(vt1, poly));
-  t.true(inside(vt2, poly));
-  t.true(inside(vt3, poly));
+  var tests = [
+    [poly1, point([ 10, 10 ]), true], //0
+    [poly1, point([ 30, 20 ]), true],
+    [poly1, point([ 50, 10 ]), true],
+    [poly1, point([ 30, 10 ]), true],
+    [poly1, point([  0, 10 ]), false],
+    [poly1, point([ 60, 10 ]), false],
+    [poly1, point([ 30,-10 ]), false],
+    [poly1, point([ 30, 30 ]), false],
+    [poly2, point([ 30,  0 ]), false],
+    [poly2, point([  0,  0 ]), false],
+    [poly2, point([ 60,  0 ]), false], //10
+    [poly3, point([ 30,  0 ]), true],
+    [poly3, point([  0,  0 ]), false],
+    [poly3, point([ 60,  0 ]), false],
+    [poly4, point([  0, 20 ]), true],
+    [poly4, point([ 10, 20 ]), true],
+    [poly4, point([ 50, 20 ]), true],
+    [poly4, point([  0, 10 ]), true],
+    [poly4, point([  5, 10 ]), true],
+    [poly4, point([ 25, 10 ]), true],
+    [poly4, point([ 35, 10 ]), true], //20
+    [poly4, point([  0,  0 ]), true],
+    [poly4, point([ 20,  0 ]), false],
+    [poly4, point([ 35,  0 ]), false],
+    [poly4, point([ 50,  0 ]), true],
+    [poly4, point([ 50, 10 ]), true],
+    [poly4, point([  5,  0 ]), true],
+    [poly4, point([ 10,  0 ]), true],
+    [poly5, point([ 20, 30 ]), true],
+    [poly5, point([ 25, 25 ]), true],
+    [poly5, point([ 30, 20 ]), true], //30
+    [poly5, point([ 25, 15 ]), true],
+    [poly5, point([ 20, 10 ]), true],
+    [poly5, point([ 15, 15 ]), true],
+    [poly5, point([ 10, 20 ]), true],
+    [poly5, point([ 15, 25 ]), true],
+    [poly5, point([ 20, 20 ]), false]
+  ];
+
+  for (var i=0;i<tests.length;i++) {
+    var item = tests[i];
+    t.true(inside(item[1], item[0]) == item[2], "Boundary test number " + i);
+  }
 
   t.end();
 });
