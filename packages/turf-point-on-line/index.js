@@ -10,7 +10,7 @@ var destination = require('@turf/destination');
  * @param {Feature<LineString>} line line to snap to
  * @param {Feature<Point>} pt point to snap from
  * @param {string} [units=kilometers] can be degrees, radians, miles, or kilometers
- * @return {Feature<Point>} closest point on the `line` to `point`
+ * @return {Feature<Point>} closest point on the `line` to `point`. The properties object will contain two values: `index`: closest point was found on nth line part, `dist`: distance between pt and the closest point.
  * @example
  * var line = {
  *   "type": "Feature",
