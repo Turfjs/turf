@@ -68,6 +68,8 @@ module.exports = function (line, pt, units) {
         start.properties.dist = distance(pt, start, units);
         //stop
         stop.properties.dist = distance(pt, stop, units);
+        // sectionLength
+        var sectionLength = distance(start, stop, units);
         //perpendicular
         var heightDistance = Math.max(start.properties.dist, stop.properties.dist);
         var direction = bearing(start, stop);
@@ -93,19 +95,19 @@ module.exports = function (line, pt, units) {
         if (start.properties.dist < closestPt.properties.dist) {
             closestPt = start;
             closestPt.properties.index = i;
-            closestPt.properties.location = length + distance(start, closestPt, units);
+            closestPt.properties.location = length
         }
         if (stop.properties.dist < closestPt.properties.dist) {
             closestPt = stop;
             closestPt.properties.index = i;
-            closestPt.properties.location = length + distance(start, closestPt, units);
+            closestPt.properties.location = length + sectionLength
         }
         if (intersectPt && intersectPt.properties.dist < closestPt.properties.dist) {
             closestPt = intersectPt;
             closestPt.properties.index = i;
         }
         // update length
-        length += distance(start, stop, units);
+        length += sectionLength
     }
 
     return closestPt;
