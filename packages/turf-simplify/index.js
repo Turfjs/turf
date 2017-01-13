@@ -149,7 +149,7 @@ function simplifyLine(coordinates, tolerance, highQuality) {
     return simplify(coordinates.map(function (coord) {
         return {x: coord[0], y: coord[1]};
     }), tolerance, highQuality).map(function (coords) {
-        return [coords.x, coords.y];
+        return [coords.x, coords.y, coords.z];
     });
 }
 
