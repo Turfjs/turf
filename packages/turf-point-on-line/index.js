@@ -60,7 +60,7 @@ module.exports = function (line, pt, units) {
     var closestPt = point([Infinity, Infinity], {
         dist: Infinity
     });
-    var length = 0.0
+    var length = 0.0;
     for (var i = 0; i < coords.length - 1; i++) {
         var start = point(coords[i]);
         var stop = point(coords[i + 1]);
@@ -95,19 +95,19 @@ module.exports = function (line, pt, units) {
         if (start.properties.dist < closestPt.properties.dist) {
             closestPt = start;
             closestPt.properties.index = i;
-            closestPt.properties.location = length
+            closestPt.properties.location = length;
         }
         if (stop.properties.dist < closestPt.properties.dist) {
             closestPt = stop;
             closestPt.properties.index = i;
-            closestPt.properties.location = length + sectionLength
+            closestPt.properties.location = length + sectionLength;
         }
         if (intersectPt && intersectPt.properties.dist < closestPt.properties.dist) {
             closestPt = intersectPt;
             closestPt.properties.index = i;
         }
         // update length
-        length += sectionLength
+        length += sectionLength;
     }
 
     return closestPt;
