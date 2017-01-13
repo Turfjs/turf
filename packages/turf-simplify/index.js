@@ -147,9 +147,9 @@ function simpleFeature(geom, properties) {
 
 function simplifyLine(coordinates, tolerance, highQuality) {
     return simplify(coordinates.map(function (coord) {
-        return {x: coord[0], y: coord[1]};
+        return {x: coord[0], y: coord[1], z: coord[2]};
     }), tolerance, highQuality).map(function (coords) {
-        return [coords.x, coords.y];
+        return (coords.z) ? [coords.x, coords.y, coords.z] : [coords.x, coords.y];
     });
 }
 
