@@ -3,6 +3,7 @@
 
 [![Version Badge][npm-img]][npm-url]
 [![Circle CI](https://circleci.com/gh/Turfjs/turf.svg?style=svg)](https://circleci.com/gh/Turfjs/turf)
+[![Travis CI](https://travis-ci.org/Turfjs/turf.svg?branch=master)](https://travis-ci.org/Turfjs/turf)
 [![Gitter chat][gitter-img]][gitter-url]
 
 [npm-img]: https://img.shields.io/npm/v/@turf/turf.svg
