@@ -1,4 +1,6 @@
+var turfbbox = require('@turf/bbox');
 var inside = require('@turf/inside');
+var rbush = require('rbush');
 
 /**
  * Merges a specified property from a FeatureCollection of points into a
@@ -27,17 +29,33 @@ var inside = require('@turf/inside');
  *
  * collected.features[0].properties.values // => [200, 600]);
  */
-module.exports = function collect(polygons, points, inProperty, outProperty) {
+module.exports = function (polygons, points, inProperty, outProperty) {
+    var rtree = rbush(6);
+
+    var treeItems = points.features.map(function (item) {
+        return {
+            minX: item.geometry.coordinates[0],
+            minY: item.geometry.coordinates[1],
+            maxX: item.geometry.coordinates[0],
+            maxY: item.geometry.coordinates[1],
+            property: item.properties[inProperty]
+        };
+    });
+
+    rtree.load(treeItems);
     polygons.features.forEach(function (poly) {
-        var values = points.features.filter(function (pt) {
-            return inside(pt, poly);
-        }).map(function (pt) {
-            return pt.properties[inProperty];
-        });
 
         if (!poly.properties) {
             poly.properties = {};
         }
+        var bbox = turfbbox(poly);
+        var potentialPoints = rtree.search({minX: bbox[0], minY: bbox[1], maxX: bbox[2], maxY: bbox[3]});
+        var values = [];
+        potentialPoints.forEach(function (pt) {
+            if (inside({'type': 'Point', 'coordinates': [pt.minX, pt.minY]}, poly)) {
+                values.push(pt.property);
+            }
+        });
 
         poly.properties[outProperty] = values;
     });

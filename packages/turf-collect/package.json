@@ -10,27 +10,30 @@
     "type": "git",
     "url": "git://github.com/Turfjs/turf.git"
   },
-  "keywords": [
-    "turf",
-    "aggregate",
-    "points",
-    "geojson",
-    "polygons",
-    "stats"
-  ],
-  "author": "morganherlocker",
-  "license": "MIT",
   "bugs": {
     "url": "https://github.com/Turfjs/turf/issues"
   },
+  "keywords": [
+    "aggregate",
+    "turf",
+    "geojson",
+    "points",
+    "polygons",
+    "stats"
+  ],
   "homepage": "https://github.com/Turfjs/turf",
-  "devDependencies": {
-    "benchmark": "^1.0.0",
-    "tape": "^3.5.0",
-    "@turf/helpers": "^3.7.3"
-  },
+  "author": "Morgan Herlocker",
+  "contributors": ["Rowan Winsemius"],
+  "license": "MIT",
   "dependencies": {
-    "@turf/inside": "^3.7.3"
+    "rbush": "^2.0.1",
+    "@turf/bbox": "^3.0.12",
+    "@turf/inside": "^3.0.12"
+  },
+  "devDependencies": {
+    "benchmark": "^1.0.0",   
+    "tape": "^3.6.1",
+    "@turf/helpers": "^3.7.3"    
   },
   "types": "index.d.ts"
 }
