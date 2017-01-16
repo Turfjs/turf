@@ -12,7 +12,7 @@ test('within', function(t){
   var pt = point([50, 50]);
   var polyFC = featureCollection([poly]);
   var ptFC = featureCollection([pt]);
-  
+
   var counted = within(ptFC, polyFC);
 
   t.ok(counted, 'returns a featurecollection');

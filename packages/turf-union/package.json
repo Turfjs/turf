@@ -4,7 +4,7 @@
   "description": "find the union of geographic features",
   "main": "index.js",
   "scripts": {
-    "test": "tape test/*.js"
+    "test": "tape test.js"
   },
   "repository": {
     "type": "git",

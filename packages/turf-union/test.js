@@ -1,4 +1,4 @@
-var union = require('../'),
+var union = require('./'),
   test = require('tape'),
   glob = require('glob'),
   fs = require('fs');
@@ -6,7 +6,7 @@ var union = require('../'),
 var REGEN = false;
 
 test('union', function(t){
-  glob.sync(__dirname + '/fixtures/in/*.geojson').forEach(function(input) {
+  glob.sync(__dirname + '/test/fixtures/in/*.geojson').forEach(function(input) {
       var fcs = JSON.parse(fs.readFileSync(input));
       var args = [];
       for (var i = 0; i < fcs.length; i++) {
