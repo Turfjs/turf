@@ -40,7 +40,7 @@ test('turf-point-on-line - points behind first point', function (t) {
         t.deepEqual(first.geometry.coordinates, snapped.geometry.coordinates, 'pt behind start moves to first vertex');
         t.equal(snapped.properties.location, expectedLocation[i], 'properties.location');
     });
-    
+
     t.end();
 });
 
@@ -65,7 +65,7 @@ test('turf-point-on-line - points in front of last point', function (t) {
         t.deepEqual(last.geometry.coordinates, snapped.geometry.coordinates, 'pt behind start moves to last vertex');
         t.equal(snapped.properties.location, expectedLocation[i], 'properties.location');
     });
-    
+
     t.end();
 });
 
@@ -77,7 +77,7 @@ test('turf-point-on-line - points on joints', function (t) {
     ];
     var expectedLocation = [
         [ 0, 0.16298090408353966, 0.36215983244260574 ],
-        [ 0, 435.28883447486135, 848.6494800799092, 1507.0984416570232, 1878.302169568381, 2363.378982916258, 2952.4473854390026, 3347.5942918385795, 3712.3870894188008 ],
+        [ 0, 435.28883447486135, 848.6494800799092, 1507.098441657023, 1878.3021695683806, 2363.3789829162574, 2952.4473854390017, 3347.5942918385786, 3712.3870894188 ],
         [ 0, 0.011358519828719417, 0.02132062044562163, 0.03396549327758369, 0.05703192228718658, 0.08286114111611394, 0.16123397358954772, 0.2072603600715873, 0.24376684566141119, 0.2879229927633058, 0.3206719917049851, 0.3961452220802617, 0.49199418947985657 ],
     ];
 
@@ -90,7 +90,7 @@ test('turf-point-on-line - points on joints', function (t) {
             t.equal(snapped.properties.location, expectedLocation[i][j], 'properties.location');
         });
     });
-    
+
     t.end();
 });
 
@@ -116,7 +116,7 @@ test('turf-point-on-line - points on top of line', function (t) {
         var pt = along(line, increment * i, 'miles');
         var snapped = pointOnLine(line, pt, 'miles');
         var shift = distance(pt, snapped, 'miles');
-        t.true(shift < 0.000001, 'pt did not shift far');    
+        t.true(shift < 0.000001, 'pt did not shift far');
         t.equal(snapped.properties.location, expectedLocation[i], 'properties.location');
     }
 
@@ -130,7 +130,7 @@ test('turf-point-on-line - point along line', function (t) {
     var snapped = pointOnLine(line, pt);
     var shift = distance(pt, snapped, 'miles');
 
-    t.true(shift < 0.00001, 'pt did not shift far');    
+    t.true(shift < 0.00001, 'pt did not shift far');
 
     t.end();
 });
