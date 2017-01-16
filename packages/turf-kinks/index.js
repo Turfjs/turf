@@ -2,7 +2,7 @@
  * Takes a {@link LineString|linestring}, {@link MultiLineString|multi-linestring}, {@link MultiPolygon|multi-polygon}, or {@link Polygon|polygon} and returns {@link Point|points} at all self-intersections.
  *
  * @name kinks
- * @param {Feature<LineString>|Feature<MultiLineString>|Feature<MultiPolygon>|Feature<Polygon>|LineString|MultiLineString|MultiPolygon|Polygon} feature input feature
+ * @param {Feature<LineString|MultiLineString|MultiPolygon|Polygon>} feature input feature
  * @returns {FeatureCollection<Point>} self-intersections
  * @example
  * var poly = {

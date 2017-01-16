@@ -1,11 +1,19 @@
 /// <reference types="geojson" />
 
-type Polygon = GeoJSON.Feature<GeoJSON.Polygon> | Array<Array<Array<number>>>;
+type LineString = GeoJSON.Feature<GeoJSON.LineString> | GeoJSON.LineString;
+type MultiLineString = GeoJSON.Feature<GeoJSON.MultiLineString> | GeoJSON.MultiLineString;
+type Polygon = GeoJSON.Feature<GeoJSON.Polygon> | GeoJSON.Polygon;
+type MultiPolygon = GeoJSON.Feature<GeoJSON.MultiPolygon> | GeoJSON.MultiPolygon;
 type Points = GeoJSON.FeatureCollection<GeoJSON.Point>;
 
-/**
- * http://turfjs.org/docs/#kinks
- */
-declare function kinks(polygon: Polygon): Points;
-declare namespace kinks { }
+interface Kinks {
+    /**
+     * http://turfjs.org/docs/#kinks
+     */
+    (featureIn: LineString): Points;
+    (featureIn: MultiLineString): Points;
+    (featureIn: Polygon): Points;
+    (featureIn: MultiPolygon): Points;
+}
+declare const kinks: Kinks;
 export = kinks;
