@@ -1,8 +1,8 @@
 /**
- * Takes a {@link Polygon|polygon} and returns {@link Point|points} at all self-intersections.
+ * Takes a {@link LineString|linestring}, {@link MultiLineString|multi-linestring}, {@link MultiPolygon|multi-polygon}, or {@link Polygon|polygon} and returns {@link Point|points} at all self-intersections.
  *
  * @name kinks
- * @param {Feature<Polygon>|Polygon} polygon input polygon
+ * @param {Feature<LineString>|Feature<MultiLineString>|Feature<MultiPolygon>|Feature<Polygon>|LineString|MultiLineString|MultiPolygon|Polygon} feature input feature
  * @returns {FeatureCollection<Point>} self-intersections
  * @example
  * var poly = {
@@ -33,28 +33,41 @@
 
 var point = require('@turf/helpers').point;
 
-module.exports = function (polyIn) {
-    var poly;
+module.exports = function (featureIn) {
+    var coordinates;
+    var feature;
     var results = {
         type: 'FeatureCollection',
         features: []
     };
-    if (polyIn.type === 'Feature') {
-        poly = polyIn.geometry;
+    if (featureIn.type === 'Feature') {
+        feature = featureIn.geometry;
     } else {
-        poly = polyIn;
+        feature = featureIn;
     }
-    poly.coordinates.forEach(function (ring1) {
-        poly.coordinates.forEach(function (ring2) {
-            for (var i = 0; i < ring1.length - 1; i++) {
-                for (var k = 0; k < ring2.length - 1; k++) {
-                    // don't check adjacent sides of a given ring, since of course they intersect in a vertex.
-                    if (ring1 === ring2 && (Math.abs(i - k) === 1 || Math.abs(i - k) === ring1.length - 2)) {
+    if (feature.type === 'LineString') {
+        coordinates = [feature.coordinates];
+    } else if (feature.type === 'MultiLineString') {
+        coordinates = feature.coordinates;
+    } else if (feature.type === 'MultiPolygon') {
+        coordinates = [].concat.apply([], feature.coordinates);
+    } else if (feature.type === 'Polygon') {
+        coordinates = feature.coordinates;
+    } else {
+        throw new Error('Input must be a LineString, MultiLineString, ' +
+            'Polygon, or MultiPolygon Feature or Geometry');
+    }
+    coordinates.forEach(function (segment1) {
+        coordinates.forEach(function (segment2) {
+            for (var i = 0; i < segment1.length - 1; i++) {
+                for (var k = 0; k < segment2.length - 1; k++) {
+                    // don't check adjacent sides of a given segment, since of course they intersect in a vertex.
+                    if (segment1 === segment2 && (Math.abs(i - k) === 1 || Math.abs(i - k) === segment1.length - 2)) {
                         continue;
                     }
 
-                    var intersection = lineIntersects(ring1[i][0], ring1[i][1], ring1[i + 1][0], ring1[i + 1][1],
-                        ring2[k][0], ring2[k][1], ring2[k + 1][0], ring2[k + 1][1]);
+                    var intersection = lineIntersects(segment1[i][0], segment1[i][1], segment1[i + 1][0], segment1[i + 1][1],
+                        segment2[k][0], segment2[k][1], segment2[k + 1][0], segment2[k + 1][1]);
                     if (intersection) {
                         results.features.push(point([intersection[0], intersection[1]]));
                     }
