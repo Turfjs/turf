@@ -12,7 +12,7 @@ var polygon = helpers.polygon;
  * @param {string} [units=kilometers] miles, kilometers, degrees, or radians
  * @returns {Feature<Polygon>} circle polygon
  * @example
- * var center = point([-75.343, 39.984]);
+ * var center = turf.point([-75.343, 39.984]);
  * var radius = 5;
  * var steps = 10;
  * var units = 'kilometers';
