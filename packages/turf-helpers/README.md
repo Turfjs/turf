@@ -192,7 +192,7 @@ coordinate array. Properties can be added optionally.
 **Examples**
 
 ```javascript
-var multiPoly = turf.multiPolygon([[[[0,0],[0,10],[10,10],[10,0],[0,0]]]);
+var multiPoly = turf.multiPolygon([[[[0,0],[0,10],[10,10],[10,0],[0,0]]]]);
 
 //=multiPoly
 ```

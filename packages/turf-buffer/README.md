@@ -24,7 +24,7 @@ var pt = {
 var unit = 'miles';
 
 var buffered = turf.buffer(pt, 500, unit);
-var result = turf.featurecollection([buffered, pt]);
+var result = turf.featureCollection([buffered, pt]);
 
 //=result
 ```

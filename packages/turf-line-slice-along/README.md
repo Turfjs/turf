@@ -41,7 +41,7 @@ var stop = 25;
 
 var units = 'miles';
 
-var sliced = turf.lineSliceAlong(start, stop, line, units);
+var sliced = turf.lineSliceAlong(line, start, stop, units);
 
 //=line
 
