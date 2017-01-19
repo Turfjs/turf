@@ -2,11 +2,11 @@
 
 # kinks
 
-Takes a [polygon](http://geojson.org/geojson-spec.html#polygon) and returns [points](http://geojson.org/geojson-spec.html#point) at all self-intersections.
+Takes a [linestring](http://geojson.org/geojson-spec.html#linestring), [multi-linestring](http://geojson.org/geojson-spec.html#multilinestring), [multi-polygon](http://geojson.org/geojson-spec.html#multipolygon), or [polygon](http://geojson.org/geojson-spec.html#polygon) and returns [points](http://geojson.org/geojson-spec.html#point) at all self-intersections.
 
 **Parameters**
 
--   `polygon` **([Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;[Polygon](http://geojson.org/geojson-spec.html#polygon)> | [Polygon](http://geojson.org/geojson-spec.html#polygon))** input polygon
+-   `feature` **[Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;([LineString](http://geojson.org/geojson-spec.html#linestring) \| [MultiLineString](http://geojson.org/geojson-spec.html#multilinestring) \| [MultiPolygon](http://geojson.org/geojson-spec.html#multipolygon) \| [Polygon](http://geojson.org/geojson-spec.html#polygon))>** input feature
 
 **Examples**
 
@@ -28,7 +28,7 @@ var poly = {
 
 var kinks = turf.kinks(poly);
 
-var resultFeatures = kinks.intersections.features.concat(poly);
+var resultFeatures = kinks.features.concat(poly);
 var result = {
   "type": "FeatureCollection",
   "features": resultFeatures

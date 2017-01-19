@@ -7,12 +7,12 @@ var each = require('@turf/meta').coordEach;
  * @param {(Feature|FeatureCollection)} geojson input features
  * @return {Array<number>} bbox extent in [minX, minY, maxX, maxY] order
  * @example
- * var pt1 = point([114.175329, 22.2524])
- * var pt2 = point([114.170007, 22.267969])
- * var pt3 = point([114.200649, 22.274641])
- * var pt4 = point([114.200649, 22.274641])
- * var pt5 = point([114.186744, 22.265745])
- * var features = featureCollection([pt1, pt2, pt3, pt4, pt5])
+ * var pt1 = turf.point([114.175329, 22.2524])
+ * var pt2 = turf.point([114.170007, 22.267969])
+ * var pt3 = turf.point([114.200649, 22.274641])
+ * var pt4 = turf.point([114.200649, 22.274641])
+ * var pt5 = turf.point([114.186744, 22.265745])
+ * var features = turf.featureCollection([pt1, pt2, pt3, pt4, pt5])
  *
  * var bbox = turf.bbox(features);
  *

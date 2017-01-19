@@ -41,7 +41,7 @@ var lineString = require('@turf/helpers').lineString;
  *
  * var units = 'miles';
  *
- * var sliced = turf.lineSliceAlong(start, stop, line, units);
+ * var sliced = turf.lineSliceAlong(line, start, stop, units);
  *
  * //=line
  *

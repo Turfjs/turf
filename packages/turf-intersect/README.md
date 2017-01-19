@@ -12,7 +12,7 @@ Takes two [polygons](http://geojson.org/geojson-spec.html#polygon) and finds the
 **Examples**
 
 ```javascript
-var poly1 = polygon([[
+var poly1 = turf.polygon([[
   [-122.801742, 45.48565],
   [-122.801742, 45.60491],
   [-122.584762, 45.60491],
@@ -20,7 +20,7 @@ var poly1 = polygon([[
   [-122.801742, 45.48565]
 ]]);
 
-var poly2 = polygon([[
+var poly2 = turf.polygon([[
   [-122.520217, 45.535693],
   [-122.64038, 45.553967],
   [-122.720031, 45.526554],

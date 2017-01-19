@@ -1,6 +1,6 @@
 # @turf/idw
 
-# index
+# idw
 
 Takes a FeatureCollection of points with known value, a power parameter, a cell depth, a unit of measurement
 and returns a FeatureCollection of polygons in a square-grid with an interpolated value property "IDW" for each grid cell.

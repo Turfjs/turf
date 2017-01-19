@@ -13,8 +13,8 @@ var invariant = require('@turf/invariant');
  * @param {Feature<(Polygon|MultiPolygon)>} polygon input polygon or multipolygon
  * @return {boolean} `true` if the Point is inside the Polygon; `false` if the Point is not inside the Polygon
  * @example
- * var pt = point([-77, 44]);
- * var poly = polygon([[
+ * var pt = turf.point([-77, 44]);
+ * var poly = turf.polygon([[
  *   [-81, 41],
  *   [-81, 47],
  *   [-72, 47],

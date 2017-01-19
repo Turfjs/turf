@@ -22,7 +22,7 @@
  *
  * var kinks = turf.kinks(poly);
  *
- * var resultFeatures = kinks.intersections.features.concat(poly);
+ * var resultFeatures = kinks.features.concat(poly);
  * var result = {
  *   "type": "FeatureCollection",
  *   "features": resultFeatures

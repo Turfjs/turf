@@ -15,7 +15,7 @@ var distance = require('@turf/distance');
  * var cellSize = 10;
  * var units = 'miles';
  *
- * var triangleGrid = turf.triangleGrid(extent, cellSize, units);
+ * var triangleGrid = turf.triangleGrid(bbox, cellSize, units);
  *
  * //=triangleGrid
  */

@@ -14,16 +14,16 @@ Takes a set of [points](http://geojson.org/geojson-spec.html#point) and a set of
 **Examples**
 
 ```javascript
-var pt1 = point([-77, 44]);
-var pt2 = point([-77, 38]);
-var poly1 = polygon([[
+var pt1 = turf.point([-77, 44]);
+var pt2 = turf.point([-77, 38]);
+var poly1 = turf.polygon([[
   [-81, 41],
   [-81, 47],
   [-72, 47],
   [-72, 41],
   [-81, 41]
 ]], {pop: 3000});
-var poly2 = polygon([[
+var poly2 = turf.polygon([[
   [-81, 35],
   [-81, 41],
   [-72, 41],
@@ -31,8 +31,8 @@ var poly2 = polygon([[
   [-81, 35]
 ]], {pop: 1000});
 
-var points = featureCollection([pt1, pt2]);
-var polygons = featureCollection([poly1, poly2]);
+var points = turf.featureCollection([pt1, pt2]);
+var polygons = turf.featureCollection([poly1, poly2]);
 
 var tagged = turf.tag(points, polygons,
                       'pop', 'population');

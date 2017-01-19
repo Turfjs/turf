@@ -14,7 +14,7 @@ Takes a [Point](http://geojson.org/geojson-spec.html#point) and calculates the c
 **Examples**
 
 ```javascript
-var center = point([-75.343, 39.984]);
+var center = turf.point([-75.343, 39.984]);
 var radius = 5;
 var steps = 10;
 var units = 'kilometers';

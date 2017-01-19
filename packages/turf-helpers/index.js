@@ -215,7 +215,7 @@ module.exports.multiPoint = function (coordinates, properties) {
  * @returns {Feature<MultiPolygon>} a multipolygon feature
  * @throws {Error} if no coordinates are passed
  * @example
- * var multiPoly = turf.multiPolygon([[[[0,0],[0,10],[10,10],[10,0],[0,0]]]);
+ * var multiPoly = turf.multiPolygon([[[[0,0],[0,10],[10,10],[10,0],[0,0]]]]);
  *
  * //=multiPoly
  *

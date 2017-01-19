@@ -9,7 +9,7 @@ var jsts = require('jsts');
  * @param {Feature<Polygon>} poly2 the second polygon
  * @return {(Feature|undefined)} returns a feature representing the point(s) they share (in case of a {@link Point}  or {@link MultiPoint}), the borders they share (in case of a {@link LineString} or a {@link MultiLineString}), the area they share (in case of {@link Polygon} or {@link MultiPolygon}). If they do not share any point, returns `undefined`.
  * @example
- * var poly1 = polygon([[
+ * var poly1 = turf.polygon([[
  *   [-122.801742, 45.48565],
  *   [-122.801742, 45.60491],
  *   [-122.584762, 45.60491],
@@ -17,7 +17,7 @@ var jsts = require('jsts');
  *   [-122.801742, 45.48565]
  * ]]);
  *
- * var poly2 = polygon([[
+ * var poly2 = turf.polygon([[
  *   [-122.520217, 45.535693],
  *   [-122.64038, 45.553967],
  *   [-122.720031, 45.526554],

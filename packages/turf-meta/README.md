@@ -16,7 +16,7 @@ Array.forEach.
 
 ```javascript
 var point = { type: 'Point', coordinates: [0, 0] };
-coordEach(point, function(coords) {
+turfMeta.coordEach(point, function(coords) {
   // coords is equal to [0, 0]
 });
 ```
@@ -52,7 +52,7 @@ Array.forEach.
 
 ```javascript
 var point = { type: 'Feature', geometry: null, properties: { foo: 1 } };
-propEach(point, function(props) {
+turfMeta.propEach(point, function(props) {
   // props is equal to { foo: 1}
 });
 ```
@@ -77,7 +77,7 @@ the reduction, so an array of all properties is unnecessary.
 // javascript type of each property of every feature
 function propTypes (layer) {
   opts = opts || {}
-  return propReduce(layer, function (prev, props) {
+  return turfMeta.propReduce(layer, function (prev, props) {
     for (var prop in props) {
       if (prev[prop]) continue
       prev[prop] = typeof props[prop]
@@ -102,7 +102,7 @@ Array.forEach.
 
 ```javascript
 var feature = { type: 'Feature', geometry: null, properties: {} };
-featureEach(feature, function(feature) {
+turfMeta.featureEach(feature, function(feature) {
   // feature == feature
 });
 ```
@@ -136,7 +136,7 @@ var point = {
   geometry: { type: 'Point', coordinates: [0, 0] },
   properties: {}
 };
-geomEach(point, function(geom) {
+turfMeta.geomEach(point, function(geom) {
   // geom is the point geometry
 });
 ```
