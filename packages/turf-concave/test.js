@@ -1,9 +1,29 @@
 var concave = require('./');
 var test = require('tape');
 var fs = require('fs');
+var featureCollection = require('@turf/helpers').featureCollection;
+var point = require('@turf/helpers').point;
 
 var pts1 = JSON.parse(fs.readFileSync(__dirname+'/test/fixtures/in/pts1.geojson'));
 var pts2 = JSON.parse(fs.readFileSync(__dirname+'/test/fixtures/in/pts2.geojson'));
+
+test('concave', function(t){
+
+  var ptsOnePoint = featureCollection([point([0, 0])]);
+  var ptsOnePointHull = null;
+  t.throws(function(){
+      ptsOnePointHull = concave(ptsOnePoint, 5.5, 'miles');
+  }, Error, "fails with too few points");
+  t.notOk(ptsOnePointHull, 'hull not computed with too few points');
+
+  var ptsNoPointHull = null;
+  t.throws(function(){
+      ptsNoPointHull = concave(pts1, 0, 'miles');
+  }, Error, "fails with small maxEdge");
+  t.notOk(ptsNoPointHull, 'hull not computed with small maxEdge');
+
+  t.end();
+});
 
 test('concave', function(t){
   var pts1HullMiles = concave(pts1, 5.5, 'miles');
