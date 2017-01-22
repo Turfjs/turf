@@ -17,7 +17,7 @@ var distance = require('@turf/distance');
  * hull to become concave (in miles)
  * @param {string} [units=kilometers] can be degrees, radians, miles, or kilometers
  * @returns {Feature<Polygon>} a concave hull
- * @throws {Error} if maxEdge parameter is missing
+ * @throws {Error} if maxEdge parameter is missing or unable to compute hull
  * @example
  * var points = {
  *   "type": "FeatureCollection",
@@ -84,6 +84,9 @@ function concave(points, maxEdge, units) {
     var tinPolys = tin(points);
     var filteredPolys = tinPolys.features.filter(filterTriangles);
     tinPolys.features = filteredPolys;
+    if (tinPolys.features.length < 1) {
+        throw new Error('too few polygons found to compute concave hull');
+    }
 
     function filterTriangles(triangle) {
         var pt1 = triangle.geometry.coordinates[0][0];
