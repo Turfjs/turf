@@ -85,7 +85,7 @@ function concave(points, maxEdge, units) {
     var filteredPolys = tinPolys.features.filter(filterTriangles);
     tinPolys.features = filteredPolys;
     if (tinPolys.features.length < 1) {
-        throw new Error("too few polygons found to compute concave hull");
+        throw new Error('too few polygons found to compute concave hull');
     }
 
     function filterTriangles(triangle) {

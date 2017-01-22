@@ -13,13 +13,13 @@ test('concave', function(t){
   var ptsOnePointHull = null;
   t.throws(function(){
       ptsOnePointHull = concave(ptsOnePoint, 5.5, 'miles');
-  }, Error, "fails with too few points");
+  }, Error, 'fails with too few points');
   t.notOk(ptsOnePointHull, 'hull not computed with too few points');
 
   var ptsNoPointHull = null;
   t.throws(function(){
       ptsNoPointHull = concave(pts1, 0, 'miles');
-  }, Error, "fails with small maxEdge");
+  }, Error, 'fails with small maxEdge');
   t.notOk(ptsNoPointHull, 'hull not computed with small maxEdge');
 
   t.end();
