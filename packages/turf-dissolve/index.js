@@ -11,7 +11,7 @@ var getClosest = require('get-closest');
  * @name dissolve
  * @param {FeatureCollection<Polygon>} featureCollection input feature collection to be dissolved
  * @param {string} propertyName property name on which to dissolve features
- * @return {FeatureCollection} a FeatureCollection containing the dissolved polygons
+ * @returns {FeatureCollection} a FeatureCollection containing the dissolved polygons
  * @example
  * var features = {
  * "type": "FeatureCollection",
@@ -106,8 +106,10 @@ module.exports = function (featureCollection, propertyName) {
             }
             var matchFeature = featureCollection.features[matchFeaturePosition];
 
-            if (matchFeature.properties[propertyName] !== polygon.properties[propertyName]) {
-                continue;
+            if (propertyName !== null) {
+                if (matchFeature.properties[propertyName] !== polygon.properties[propertyName]) {
+                    continue;
+                }
             }
 
             var overlapCheck = turfOverlaps(polygon, matchFeature);
