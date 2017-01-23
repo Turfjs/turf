@@ -16,6 +16,7 @@ var turf = {
     within: require('@turf/within'),
     concave: require('@turf/concave'),
     difference: require('@turf/difference'),
+    dissolve: require('@turf/dissolve'),
     collect: require('@turf/collect'),
     flip: require('@turf/flip'),
     simplify: require('@turf/simplify'),

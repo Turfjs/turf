@@ -1,0 +1,26 @@
+{
+  "name": "@turf/dissolve",
+  "version": "3.7.5",
+  "description": "Dissolves polygons based on an attribute",
+  "main": "index.js",
+  "keywords": [
+    "turf",
+    "dissolve",
+    "gis",
+    "geojson",
+    "polygon"
+  ],
+  "author": "Rowan Winsemius",
+  "license": "MIT",
+  "dependencies": {
+    "@turf/bbox": "^3.7.3",
+    "@turf/helpers": "^3.7.3",
+    "@turf/union": "^3.7.3",
+    "geojson-utils": "^1.1.0",
+    "rbush": "^2.0.1",
+    "turf-overlaps": "^1.0.3"
+  },
+  "devDependencies": {
+    "tape": "^4.6.3"
+  }
+}

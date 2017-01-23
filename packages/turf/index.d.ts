@@ -19,6 +19,7 @@ import * as convex from '@turf/convex';
 import * as within from '@turf/within';
 import * as concave from '@turf/concave';
 import * as difference from '@turf/difference';
+import * as dissolve from '@turf/dissolve';
 import * as collect from '@turf/collect';
 import * as flip from '@turf/flip';
 import * as simplify from '@turf/simplify';
@@ -68,6 +69,7 @@ export {
     within,
     concave,
     difference,
+    dissolve,
     collect,
     flip,
     simplify,
