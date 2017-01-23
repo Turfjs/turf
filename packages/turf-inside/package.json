@@ -1,6 +1,6 @@
 {
   "name": "@turf/inside",
-  "version": "3.7.3",
+  "version": "3.7.5",
   "description": "turf inside module",
   "main": "index.js",
   "scripts": {
@@ -25,12 +25,12 @@
   },
   "homepage": "https://github.com/Turfjs/turf",
   "dependencies": {
-    "@turf/invariant": "^3.7.3"
+    "@turf/invariant": "^3.7.5"
   },
   "devDependencies": {
     "benchmark": "^1.0.0",
     "tape": "^3.5.0",
-    "@turf/helpers": "^3.7.3"
+    "@turf/helpers": "^3.7.5"
   },
   "types": "index.d.ts"
 }

@@ -1,6 +1,6 @@
 {
   "name": "@turf/square",
-  "version": "3.7.3",
+  "version": "3.7.5",
   "description": "turf square module",
   "main": "index.js",
   "scripts": {
@@ -27,8 +27,8 @@
     "tape": "^3.5.0"
   },
   "dependencies": {
-    "@turf/distance": "^3.7.3",
-    "@turf/helpers": "^3.7.3"
+    "@turf/distance": "^3.7.5",
+    "@turf/helpers": "^3.7.5"
   },
   "types": "index.d.ts"
 }
