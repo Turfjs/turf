@@ -1,6 +1,6 @@
 {
   "name": "@turf/turf",
-  "version": "3.7.6",
+  "version": "3.7.7",
   "description": "a JavaScript library for performing geospatial operations with GeoJSON",
   "main": "index.js",
   "types": "index.d.ts",
@@ -14,7 +14,8 @@
     "index.js",
     "bower.json",
     "turf.js",
-    "turf.min.js"
+    "turf.min.js",
+    "index.d.ts"
   ],
   "repository": {
     "type": "git",
