@@ -54,9 +54,9 @@
     "url": "https://github.com/Turfjs/turf/issues"
   },
   "dependencies": {
-    "@turf/collect": "^3.7.5",
     "@turf/along": "^3.7.5",
     "@turf/area": "^3.7.5",
+    "@turf/bbox": "^3.7.5",
     "@turf/bbox-polygon": "^3.7.5",
     "@turf/bearing": "^3.7.5",
     "@turf/bezier": "^3.7.5",
@@ -65,27 +65,29 @@
     "@turf/center-of-mass": "^3.7.5",
     "@turf/centroid": "^3.7.5",
     "@turf/circle": "^3.7.5",
+    "@turf/collect": "^3.7.5",
     "@turf/combine": "^3.7.5",
     "@turf/concave": "^3.7.5",
     "@turf/convex": "^3.7.5",
     "@turf/destination": "^3.7.5",
+    "@turf/difference": "^3.7.5",
+    "@turf/dissolve": "^3.7.5",
     "@turf/distance": "^3.7.5",
     "@turf/envelope": "^3.7.5",
-    "@turf/difference": "^3.7.5",
     "@turf/explode": "^3.7.5",
-    "@turf/bbox": "^3.7.5",
     "@turf/flip": "^3.7.5",
-    "@turf/tesselate": "^3.7.5",
+    "@turf/helpers": "^3.7.5",
     "@turf/hex-grid": "^3.7.5",
+    "@turf/idw": "^3.7.5",
     "@turf/inside": "^3.7.5",
     "@turf/intersect": "^3.7.5",
+    "@turf/invariant": "^3.7.5",
     "@turf/isolines": "^3.7.5",
     "@turf/kinks": "^3.7.5",
     "@turf/line-distance": "^3.7.5",
     "@turf/line-slice": "^3.7.5",
     "@turf/line-slice-along": "^3.7.5",
     "@turf/meta": "^3.7.5",
-    "@turf/idw": "^3.7.5",
     "@turf/midpoint": "^3.7.5",
     "@turf/nearest": "^3.7.5",
     "@turf/planepoint": "^3.7.5",
@@ -98,12 +100,11 @@
     "@turf/square": "^3.7.5",
     "@turf/square-grid": "^3.7.5",
     "@turf/tag": "^3.7.5",
+    "@turf/tesselate": "^3.7.5",
     "@turf/tin": "^3.7.5",
     "@turf/triangle-grid": "^3.7.5",
     "@turf/union": "^3.7.5",
-    "@turf/within": "^3.7.5",
-    "@turf/helpers": "^3.7.5",
-    "@turf/invariant": "^3.7.5"
+    "@turf/within": "^3.7.5"
   },
   "devDependencies": {
     "browserify": "~9.0.3",
@@ -111,7 +112,7 @@
     "hcat": "0.0.5",
     "jsdoc": "^3.3.0-beta1",
     "tape": "^3.5.0",
-    "uglify-js": "~2.4.16"
+    "uglify-js": "^2.7.5"
   },
   "homepage": "https://github.com/Turfjs/turf"
 }
