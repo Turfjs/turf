@@ -11,7 +11,7 @@ var getClosest = require('get-closest');
  * @name dissolve
  * @param {FeatureCollection<Polygon>} featureCollection input feature collection to be dissolved
  * @param {string} [propertyName] property name on which to dissolve features
- * @returns {FeatureCollection} a FeatureCollection containing the dissolved polygons
+ * @returns {FeatureCollection<Polygon>} a FeatureCollection containing the dissolved polygons
  * @example
  * var features = {
  * "type": "FeatureCollection",
@@ -106,7 +106,7 @@ module.exports = function (featureCollection, propertyName) {
             }
             var matchFeature = featureCollection.features[matchFeaturePosition];
 
-            if (typeof propertyName !== 'undefined') {
+            if (typeof propertyName !== undefined) {
                 if (matchFeature.properties[propertyName] !== polygon.properties[propertyName]) {
                     continue;
                 }
@@ -155,7 +155,7 @@ module.exports = function (featureCollection, propertyName) {
 };
 
 function toLinestring(polygon) {
-    if (polygon === null) throw new Error('No polygon was passed');
+    if (polygon === null || polygon === undefined) throw new Error('No polygon was passed');
     polygon.geometry.type = 'LineString';
     var flat_arr = [].concat.apply([], polygon.geometry.coordinates);
     polygon.geometry.coordinates = flat_arr;

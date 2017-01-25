@@ -3,6 +3,9 @@
   "version": "3.7.5",
   "description": "Dissolves polygons based on an attribute",
   "main": "index.js",
+  "scripts": {
+    "test": "tape test.js"
+  },
   "keywords": [
     "turf",
     "dissolve",
@@ -17,6 +20,7 @@
     "@turf/helpers": "^3.7.5",
     "@turf/union": "^3.7.5",
     "geojson-utils": "^1.1.0",
+    "get-closest": "0.0.3",
     "rbush": "^2.0.1",
     "turf-overlaps": "^1.0.3"
   },
