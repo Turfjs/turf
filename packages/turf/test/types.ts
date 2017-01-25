@@ -8,6 +8,7 @@ turf.convex
 turf.within
 turf.concave
 turf.difference
+turf.dissolve
 turf.collect
 turf.flip
 turf.simplify
