@@ -1,6 +1,6 @@
 {
   "name": "@turf/dissolve",
-  "version": "3.7.5",
+  "version": "3.8.0",
   "description": "Dissolves polygons based on an attribute",
   "main": "index.js",
   "scripts": {
