@@ -4,6 +4,11 @@
     {
       "type": "Feature",
       "properties": {
+        "stroke": "#555555",
+        "stroke-width": 2,
+        "stroke-opacity": 1,
+        "fill": "#ff0000",
+        "fill-opacity": 0.5,
         "combine": "yes"
       },
       "geometry": {
@@ -41,6 +46,11 @@
     {
       "type": "Feature",
       "properties": {
+        "stroke": "#555555",
+        "stroke-width": 2,
+        "stroke-opacity": 1,
+        "fill": "#ff0000",
+        "fill-opacity": 0.5,
         "combine": "yes"
       },
       "geometry": {
@@ -74,6 +84,11 @@
     {
       "type": "Feature",
       "properties": {
+        "stroke": "#555555",
+        "stroke-width": 2,
+        "stroke-opacity": 1,
+        "fill": "#ff0000",
+        "fill-opacity": 0.5,
         "combine": "yes"
       },
       "geometry": {
@@ -81,24 +96,24 @@
         "coordinates": [
           [
             [
-              0,
-              -1
+              0.23620605468749623,
+              -0.8901516807502449
             ],
             [
-              0,
-              0
+              0.23620605468749623,
+              0.10986321392741416
             ],
             [
-              1,
-              0
+              1.2362060546874962,
+              0.10986321392741416
             ],
             [
-              1,
-              -1
+              1.2362060546874962,
+              -0.8901516807502449
             ],
             [
-              0,
-              -1
+              0.23620605468749623,
+              -0.8901516807502449
             ]
           ]
         ]
@@ -107,6 +122,11 @@
     {
       "type": "Feature",
       "properties": {
+        "stroke": "#555555",
+        "stroke-width": 2,
+        "stroke-opacity": 1,
+        "fill": "#00ff00",
+        "fill-opacity": 0.5,
         "combine": "no"
       },
       "geometry": {
@@ -140,6 +160,11 @@
     {
       "type": "Feature",
       "properties": {
+        "stroke": "#555555",
+        "stroke-width": 2,
+        "stroke-opacity": 1,
+        "fill": "#00ff00",
+        "fill-opacity": 0.5,
         "combine": "no"
       },
       "geometry": {
@@ -147,24 +172,24 @@
         "coordinates": [
           [
             [
-              0.68115234375,
-              -1.6422311515306498
+              0.851440429687502,
+              -1.647722051796948
             ],
             [
-              0.68115234375,
-              1.4555318956783565
+              0.851440429687502,
+              1.4500404973607692
             ],
             [
-              1.3458251953125,
-              1.4555318956783565
+              1.516113281250002,
+              1.4500404973607692
             ],
             [
-              1.3458251953125,
-              -1.6422311515306498
+              1.516113281250002,
+              -1.647722051796948
             ],
             [
-              0.68115234375,
-              -1.6422311515306498
+              0.851440429687502,
+              -1.647722051796948
             ]
           ]
         ]
@@ -172,7 +197,13 @@
     },
     {
       "type": "Feature",
-      "properties": {},
+      "properties": {
+        "stroke": "#555555",
+        "stroke-width": 2,
+        "stroke-opacity": 1,
+        "fill": "#ffff00",
+        "fill-opacity": 0.5
+      },
       "geometry": {
         "type": "Polygon",
         "coordinates": [

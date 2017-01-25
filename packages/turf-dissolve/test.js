@@ -16,7 +16,7 @@ test('turf-dissolve', function (t) {
 
     // With Property
     var dissolved = dissolve(polys, 'combine');
-    save(dissolve, 'polysByProperty.json')
+    save(dissolved, 'polysByProperty.json')
     t.equal(dissolved.features.length, 3);
     t.deepEqual(dissolved, require(pathOut + 'polysByProperty.json'));
 
