@@ -85,6 +85,10 @@ module.exports = function lineSliceAlong(line, startDist, stopDist, units) {
             slice.push(coords[i]);
         }
 
+        if (i === coords.length - 1) {
+            return lineString(slice);
+        }
+
         travelled += distance(coords[i], coords[i + 1], units);
     }
     return lineString(coords[coords.length - 1]);
