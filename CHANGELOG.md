@@ -56,6 +56,30 @@ function merge(polygons) {
   return merged;
 }
 ```
+An alternative method that merges pairs of features recursively.
+With large numbers of input geometries this can speed up run time by factor 10.
+Choose depending on your use case.
+
+```js
+var clone = require('clone');
+var union = require('turf-union');
+function mergeBin(polygons) {
+  var features = polygons.features;
+
+  do {
+    var merged = [], len = features.length;
+    for (var i = 0; i < len-1; i += 2) {
+      merged.push(turf.union(features[i], features[i+1]));
+    }
+    if (len % 2 !== 0) {
+      merged.push(features[len-1]);
+    }
+    features = merged;
+  } while(features.length > 1);
+
+  return features[0];
+}
+```
 
 **If you were using turf-sum, min, max, average, median, variance, deviation**
 
