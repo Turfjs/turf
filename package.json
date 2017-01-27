@@ -52,7 +52,7 @@
     "documentation": "4.0.0-beta7",
     "eslint": "^2.0.0",
     "eslint-config-mourner": "^2.0.0",
-    "lerna": "2.0.0-beta.30",
+    "lerna": "2.0.0-beta.34",
     "typescript": "^2.0.8",
     "uglify-js": "~2.4.16"
   }

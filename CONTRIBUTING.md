@@ -41,7 +41,7 @@ turf-hello
 
 Install lerna:
 
-    npm install -g lerna@2.0.0-beta.30
+    npm install -g lerna@2.0.0-beta.34
 
 Publish a test release:
 
