@@ -57,11 +57,10 @@ function merge(polygons) {
 }
 ```
 An alternative method that merges pairs of features recursively.
-With large numbers of input geometries this can speed up run time by factor 10.
+With large numbers and similar complexity of input geometries this can speed up run time by factor 10.
 Choose depending on your use case.
 
 ```js
-var clone = require('clone');
 var union = require('turf-union');
 function mergeBin(polygons) {
   var features = polygons.features;
