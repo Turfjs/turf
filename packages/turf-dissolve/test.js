@@ -13,7 +13,7 @@ var fixtures = {
 // Helper function
 function save(features, out) {
     if (process.env.REGEN) {
-        fs.writeFileSync(pathOut + out, JSON.stringify(features, null, 2));
+        fs.writeFileSync(path.join(fixtures.out, out), JSON.stringify(features, null, 2));
     };
 }
 
