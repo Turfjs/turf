@@ -2,8 +2,15 @@ var fs = require('fs');
 var dissolve = require('./index');
 var test = require('tape');
 var path = require('path');
-var pathOut = path.join(__dirname, 'test', 'fixtures', 'out');
 
+// Define fixtures
+var fixtures = {
+    polys: require(path.join(__dirname, 'test', 'fixtures', 'in', 'polys.json')),
+    out: path.join(__dirname, 'test', 'fixtures', 'out'),
+    in: path.join(__dirname, 'test', 'fixtures', 'in')
+}
+
+// Helper function
 function save(features, out) {
     if (process.env.REGEN) {
         fs.writeFileSync(pathOut + out, JSON.stringify(features, null, 2));
@@ -11,20 +18,17 @@ function save(features, out) {
 }
 
 test('turf-dissolve', function (t) {
-    // Input Fixtures
-    var polys = require('./test/fixtures/in/polys.json');
-
     // With Property
-    var dissolved = dissolve(polys, 'combine');
+    var dissolved = dissolve(fixtures.polys, 'combine');
     save(dissolved, 'polysByProperty.json')
     t.equal(dissolved.features.length, 3);
-    t.deepEqual(dissolved, require(pathOut + 'polysByProperty.json'));
+    t.deepEqual(dissolved, require(path.join(fixtures.out, 'polysByProperty.json')));
 
     // Without Property
-    var dissolved2 = dissolve(polys);
+    var dissolved2 = dissolve(fixtures.polys);
     save(dissolved2, 'polysWithoutProperty.json')
     t.equal(dissolved2.features.length, 2);
-    t.deepEqual(dissolved2, require(pathOut + 'polysWithoutProperty.json'));
+    t.deepEqual(dissolved2, require(path.join(fixtures.out, 'polysWithoutProperty.json')));
 
     t.end();
 });
