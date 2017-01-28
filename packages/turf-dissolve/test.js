@@ -2,7 +2,7 @@ var fs = require('fs');
 var dissolve = require('./index');
 var test = require('tape');
 var path = require('path');
-var pathOut = path.join(__dirname, 'test', 'fixtures', 'out/');
+var pathOut = path.join(__dirname, 'test', 'fixtures', 'out');
 
 function save(features, out) {
     if (process.env.REGEN) {
