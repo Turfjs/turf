@@ -1,0 +1,42 @@
+{
+  "name": "turf-isobands",
+  "version": "1.1.0",
+  "description": "turf isobands module",
+  "main": "index.js",
+  "scripts": {
+    "test": "tape test.js",
+    "doc": "dox -r < index.js | doxme --readme > README.md"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Turfjs/turf-isobands.git"
+  },
+  "keywords": [
+    "turf",
+    "geojson",
+    "contours",
+    "isobands",
+    "elevation",
+    "topography",
+    "filled"
+  ],
+  "author": "morganherlocker",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Turfjs/turf-isobands/issues"
+  },
+  "homepage": "https://github.com/Turfjs/turf-isobands",
+  "devDependencies": {
+    "benchmark": "^1.0.0",
+    "tape": "^3.5.0",
+    "dox": "^0.6.1",
+    "doxme": "^1.4.3"
+  },
+  "dependencies": {
+    "turf-area": "^3.0.1",
+    "turf-explode": "^3.0.5",
+    "turf-featurecollection": "^1.0.1",
+    "turf-helpers": "^3.0.10",
+    "turf-inside": "^3.0.5"
+  }
+}
