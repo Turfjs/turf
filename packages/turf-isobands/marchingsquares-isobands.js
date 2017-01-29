@@ -1,3 +1,9 @@
+/*!
+* @license GNU Affero General Public License.
+* Copyright (c) 2015, 2015 Ronny Lorenz ronny@tbi.univie.ac.at
+* https://github.com/RaumZeit/MarchingSquares.js
+*/
+
 var MarchingSquaresJS = (function (my) {
 
   var defaultSettings = {
@@ -1202,20 +1208,20 @@ var MarchingSquaresJS = (function (my) {
 
         /* resolve ambiguity via averaging */
         var flipped = 0;
-        if(     (cval == 17) /* 0101 */
-            ||  (cval == 18) /* 0102 */
-            ||  (cval == 33) /* 0201 */
-            ||  (cval == 34) /* 0202 */
-            ||  (cval == 38) /* 0212 */
-            ||  (cval == 68) /* 1010 */
-            ||  (cval == 72) /* 1020 */
-            ||  (cval == 98) /* 1202 */
-            ||  (cval == 102) /* 1212 */
-            ||  (cval == 132) /* 2010 */
-            ||  (cval == 136) /* 2020 */
-            ||  (cval == 137) /* 2021 */
-            ||  (cval == 152) /* 2120 */
-            ||  (cval == 153) /* 2121 */
+        if(     (cval === 17) /* 0101 */
+            ||  (cval === 18) /* 0102 */
+            ||  (cval === 33) /* 0201 */
+            ||  (cval === 34) /* 0202 */
+            ||  (cval === 38) /* 0212 */
+            ||  (cval === 68) /* 1010 */
+            ||  (cval === 72) /* 1020 */
+            ||  (cval === 98) /* 1202 */
+            ||  (cval === 102) /* 1212 */
+            ||  (cval === 132) /* 2010 */
+            ||  (cval === 136) /* 2020 */
+            ||  (cval === 137) /* 2021 */
+            ||  (cval === 152) /* 2120 */
+            ||  (cval === 153) /* 2121 */
         ){
           var average = (tl + tr + br + bl) / 4;
           /* set flipped state */
@@ -2502,7 +2508,7 @@ var MarchingSquaresJS = (function (my) {
                     return {p: [cell.bottomleft, 0], x: 0, y: 1, o: 0};
                   }
         case 8:   if(cval & Node2){
-                    return {p: [cell.bottomright], x: 0, y: 1, o: 1};
+                    return {p: [cell.bottomright, 0], x: 0, y: 1, o: 1};
                   } else {
                     return {p: [1, cell.righttop], x: -1, y: 0, o: 1};
                   }
