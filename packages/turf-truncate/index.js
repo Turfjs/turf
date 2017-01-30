@@ -1,4 +1,4 @@
-const deepSlice = require('deep-slice');
+var deepSlice = require('deep-slice');
 
 /**
  * Takes a GeoJSON Feature or FeatureCollection and truncates the precision of the geometry.
@@ -6,7 +6,7 @@ const deepSlice = require('deep-slice');
  * @name truncate
  * @param {Feature|FeatureCollection} layer any GeoJSON Feature or FeatureCollection
  * @param {number} [precision=6] coordinate decimal precision
- * @param {number} [coordinates] maximum number of coordinates
+ * @param {number} [coordinates=2] maximum number of coordinates (primarly used to remove z coordinates)
  * @returns {Feature|FeatureCollection} layer with truncated geometry
  * @example
  * var point = {
@@ -15,23 +15,26 @@ const deepSlice = require('deep-slice');
  *         "type": "Point",
  *         "coordinates": [
  *             70.46923055566859,
- *             58.11088890802906
+ *             58.11088890802906,
+ *             1508
  *         ]
  *     },
  *     "properties": {}
  * };
- * var pointTrunc = turf.truncate(point, 6);
+ * var pointTrunc = turf.truncate(point);
  * //= pointTrunc
  */
-module.exports = function (layer, precision = 6, coordinates) {
+module.exports = function (layer, precision, coordinates) {
+    precision = precision || 6;
+    coordinates = coordinates || 2;
+
     if (layer === undefined) { throw new Error('layer is required'); }
+
     switch (layer.type) {
     case 'FeatureCollection': {
-        const collection = [];
-        for (const feature of layer.features) {
-            collection.push(truncate(feature, precision, coordinates));
-        }
-        layer.features = collection;
+        layer.features = layer.features.map(function (feature) {
+            return truncate(feature, precision, coordinates);
+        });
         return layer;
     }
     case 'Feature':
@@ -48,8 +51,8 @@ function truncate(feature, precision, coordinates) {
 }
 
 function toFix(array, precision) {
-    return array.map(value => {
-        if (typeof (value) === 'object') { return toFix(value, precision); }
+    return array.map(function (value) {
+        if (typeof value === 'object') { return toFix(value, precision); }
         return Number(value.toFixed(precision));
     });
 }

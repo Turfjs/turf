@@ -1,9 +1,9 @@
-const test = require('tape');
-const truncate = require('./');
-const fs = require('fs');
-const path = require('path');
+var test = require('tape');
+var truncate = require('./');
+var fs = require('fs');
+var path = require('path');
 
-const directories = {
+var directories = {
   in: path.join(__dirname, 'test', 'in'),
   out: path.join(__dirname, 'test', 'out')
 }
@@ -17,18 +17,18 @@ function read (directory, filename) {
 }
 
 test('truncate', (t) => {
-  const point = read(directories.in, 'point.json');
-  const points = read(directories.in, 'points.json');
-  const pointElevation = read(directories.in, 'pointElevation.json');
-  const polygon = read(directories.in, 'polygon.json');
-  const polygons = read(directories.in, 'polygons.json');
+  var point = read(directories.in, 'point.json');
+  var points = read(directories.in, 'points.json');
+  var pointElevation = read(directories.in, 'pointElevation.json');
+  var polygon = read(directories.in, 'polygon.json');
+  var polygons = read(directories.in, 'polygons.json');
 
-  const pointTruncate = truncate(point);
-  const pointsTruncate = truncate(points);
-  const pointElevationTruncate = truncate(pointElevation, 6, true);
-  const polygonTruncate = truncate(polygon);
-  const polygonsTruncate = truncate(polygons);
-  const polygonsTruncateDecimal3 = truncate(polygons, 3);
+  var pointTruncate = truncate(point);
+  var pointsTruncate = truncate(points);
+  var pointElevationTruncate = truncate(pointElevation, 6, true);
+  var polygonTruncate = truncate(polygon);
+  var polygonsTruncate = truncate(polygons);
+  var polygonsTruncateDecimal3 = truncate(polygons, 3);
 
   if (process.env.REGEN) {
     save(directories.out, 'pointTruncate.json', pointTruncate);

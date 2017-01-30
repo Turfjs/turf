@@ -32,6 +32,6 @@
     "tape": "^3.5.0"
   },
   "dependencies": {
-    "deep-slice": "^1.0.0"
+    "deep-slice": "^1.1.2"
   }
 }
