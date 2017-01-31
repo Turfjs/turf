@@ -1,0 +1,37 @@
+{
+  "name": "@turf/truncate",
+  "version": "3.8.0",
+  "description": "turf truncate module",
+  "main": "index.js",
+  "types": "index.d.ts",
+  "scripts": {
+    "test": "node test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/Turfjs/turf.git"
+  },
+  "files": [
+    "index.js",
+    "index.d.ts"
+  ],
+  "keywords": [
+    "turf",
+    "geojson",
+    "gis",
+    "truncate"
+  ],
+  "author": "DenisCarriere",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Turfjs/turf/issues"
+  },
+  "homepage": "https://github.com/Turfjs/turf",
+  "devDependencies": {
+    "benchmark": "^1.0.0",
+    "tape": "^3.5.0"
+  },
+  "dependencies": {
+    "deep-slice": "^1.1.2"
+  }
+}
