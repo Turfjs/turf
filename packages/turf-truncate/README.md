@@ -2,7 +2,7 @@
 
 # truncate
 
-Takes a GeoJSON Feature or FeatureCollection and truncates the precision of the geometry.
+Takes a GeoJSON Feature or FeatureCollection and truncates the geometry precision for all coordinates.
 
 **Parameters**
 
