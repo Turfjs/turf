@@ -59,6 +59,7 @@ var turf = {
     triangleGrid: require('@turf/triangle-grid'),
     hexGrid: require('@turf/hex-grid'),
     idw: require('@turf/idw'),
+    truncate: require('@turf/truncate'),
     point: helpers.point,
     polygon: helpers.polygon,
     lineString: helpers.lineString,

@@ -62,6 +62,7 @@ import * as squareGrid from '@turf/square-grid';
 import * as triangleGrid from '@turf/triangle-grid';
 import * as hexGrid from '@turf/hex-grid';
 import * as idw from '@turf/idw';
+import * as truncate from '@turf/truncate';
 
 export {
     isolines,
@@ -125,4 +126,5 @@ export {
     geojsonType,
     featureOf,
     collectionOf,
+    truncate,
 };
