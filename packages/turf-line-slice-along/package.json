@@ -22,9 +22,12 @@
   },
   "homepage": "https://github.com/Turfjs/turf",
   "devDependencies": {
+    "@turf/along": "^3.7.5",
     "benchmark": "^1.0.0",
-    "tape": "^3.5.0",
-    "@turf/along": "^3.7.5"
+    "eslint": "^3.14.1",
+    "eslint-config-mourner": "^2.0.1",
+    "load-json-file": "^2.0.0",
+    "tape": "^3.5.0"
   },
   "dependencies": {
     "@turf/bearing": "^3.7.5",
