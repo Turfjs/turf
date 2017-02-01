@@ -1,6 +1,5 @@
 var test = require('tape');
 var truncate = require('./');
-var fs = require('fs');
 var path = require('path');
 var load = require('load-json-file');
 var write = require('write-json-file');
@@ -9,14 +8,6 @@ var directories = {
     in: path.join(__dirname, 'test', 'in'),
     out: path.join(__dirname, 'test', 'out')
 };
-
-// function save(directory, filename, features) {
-//     return fs.writeFileSync(path.join(directory, filename), JSON.stringify(features, null, 2));
-// }
-
-// function read(directory, filename) {
-//     return JSON.parse(fs.readFileSync(path.join(directory, filename), 'utf8'));
-// }
 
 test('truncate', (t) => {
     var point = load.sync(path.join(directories.in, 'point.json'));
