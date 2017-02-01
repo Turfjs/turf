@@ -99,7 +99,7 @@ module.exports = function (line, pt, units) {
         }
         if (stop.properties.dist < closestPt.properties.dist) {
             closestPt = stop;
-            closestPt.properties.index = i;
+            closestPt.properties.index = i + 1;
             closestPt.properties.location = length + sectionLength;
         }
         if (intersectPt && intersectPt.properties.dist < closestPt.properties.dist) {
