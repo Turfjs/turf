@@ -154,3 +154,15 @@ test('turf-point-on-line - points on sides of lines', function (t) {
 
     t.end();
 });
+
+test('turf-point-on-line - check dist and index', function(t) {
+    var line = linestring([[-92.09049224853516,41.10289743708757],[-92.19108581542969,41.07986874098993],[-92.22850799560547,41.05605531253442],[-92.23709106445312,41.00814350872298],[-92.22576141357422,40.96693739752686],[-92.15023040771484,40.93685883302701],[-92.11246490478516,40.97756533655244],[-92.06268310546874,41.03456405894359],[-92.10079193115234,41.04000226828482]]);
+    var pt = point([-92.11057662963867, 41.04064964423169]);
+    var snapped = pointOnLine(line, pt);
+
+    t.equal(snapped.properties.index, 8, 'properties.index');
+    t.equal(snapped.properties.dist, 0.8240378840589049, 'properties.dist');
+    t.deepEqual(snapped.geometry.coordinates,[-92.10079193115234, 41.04000226828482], 'coordinates');
+
+    t.end();
+});
