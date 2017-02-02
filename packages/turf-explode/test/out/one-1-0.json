@@ -3,7 +3,9 @@
 	"features": [
 		{
 			"type": "Feature",
-			"properties": {},
+			"properties": {
+				"prop0": "value0"
+			},
 			"geometry": {
 				"type": "Point",
 				"coordinates": [
@@ -14,7 +16,10 @@
 		},
 		{
 			"type": "Feature",
-			"properties": {},
+			"properties": {
+				"prop0": "value0",
+				"prop1": 0
+			},
 			"geometry": {
 				"type": "Point",
 				"coordinates": [
@@ -25,7 +30,10 @@
 		},
 		{
 			"type": "Feature",
-			"properties": {},
+			"properties": {
+				"prop0": "value0",
+				"prop1": 0
+			},
 			"geometry": {
 				"type": "Point",
 				"coordinates": [
@@ -36,7 +44,10 @@
 		},
 		{
 			"type": "Feature",
-			"properties": {},
+			"properties": {
+				"prop0": "value0",
+				"prop1": 0
+			},
 			"geometry": {
 				"type": "Point",
 				"coordinates": [
@@ -47,7 +58,10 @@
 		},
 		{
 			"type": "Feature",
-			"properties": {},
+			"properties": {
+				"prop0": "value0",
+				"prop1": 0
+			},
 			"geometry": {
 				"type": "Point",
 				"coordinates": [
@@ -58,7 +72,12 @@
 		},
 		{
 			"type": "Feature",
-			"properties": {},
+			"properties": {
+				"prop0": "value0",
+				"prop1": {
+					"this": "that"
+				}
+			},
 			"geometry": {
 				"type": "Point",
 				"coordinates": [
@@ -69,7 +88,12 @@
 		},
 		{
 			"type": "Feature",
-			"properties": {},
+			"properties": {
+				"prop0": "value0",
+				"prop1": {
+					"this": "that"
+				}
+			},
 			"geometry": {
 				"type": "Point",
 				"coordinates": [
@@ -80,7 +104,12 @@
 		},
 		{
 			"type": "Feature",
-			"properties": {},
+			"properties": {
+				"prop0": "value0",
+				"prop1": {
+					"this": "that"
+				}
+			},
 			"geometry": {
 				"type": "Point",
 				"coordinates": [
@@ -91,7 +120,12 @@
 		},
 		{
 			"type": "Feature",
-			"properties": {},
+			"properties": {
+				"prop0": "value0",
+				"prop1": {
+					"this": "that"
+				}
+			},
 			"geometry": {
 				"type": "Point",
 				"coordinates": [
@@ -102,7 +136,12 @@
 		},
 		{
 			"type": "Feature",
-			"properties": {},
+			"properties": {
+				"prop0": "value0",
+				"prop1": {
+					"this": "that"
+				}
+			},
 			"geometry": {
 				"type": "Point",
 				"coordinates": [

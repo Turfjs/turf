@@ -1,5 +1,5 @@
 var featureCollection = require('@turf/helpers').featureCollection;
-var each = require('@turf/meta').coordEach;
+var coordEach = require('@turf/meta').coordEach;
 var point = require('@turf/helpers').point;
 
 /**
@@ -36,8 +36,14 @@ var point = require('@turf/helpers').point;
  */
 module.exports = function (geojson) {
     var points = [];
-    each(geojson, function (coord) {
-        points.push(point(coord));
+    var features = [geojson];
+    if (geojson.type === 'FeatureCollection') { features = geojson.features; }
+
+    features.map(function (feature) {
+        var properties = feature.properties || {};
+        return coordEach(feature, function (coord) {
+            points.push(point(coord, properties));
+        });
     });
     return featureCollection(points);
 };
