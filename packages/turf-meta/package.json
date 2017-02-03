@@ -14,8 +14,10 @@
   "author": "Tom MacWright",
   "license": "ISC",
   "devDependencies": {
-    "tape": "^3.4.0",
-    "@turf/random": "^3.7.5"
+    "@turf/random": "^3.7.5",
+    "eslint": "^3.14.1",
+    "eslint-config-mourner": "^2.0.1",
+    "tape": "^3.4.0"
   },
   "repository": {
     "type": "git",

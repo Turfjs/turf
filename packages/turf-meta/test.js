@@ -1,6 +1,5 @@
-var test = require('tape'),
-    fs = require('fs'),
-    meta = require('./');
+var test = require('tape');
+var meta = require('./');
 
 var pointGeometry = {
     type: 'Point',
@@ -29,7 +28,7 @@ var geometryCollection = {
 
 var pointFeature = {
     type: 'Feature',
-    properties: { a: 1},
+    properties: {a: 1},
     geometry: pointGeometry
 };
 
@@ -46,7 +45,7 @@ function featureAndCollection(geometry) {
     var feature = {
         type: 'Feature',
         geometry: geometry,
-        properties: { a: 1 }
+        properties: {a: 1}
     };
 
     var featureCollection = {
@@ -58,29 +57,29 @@ function featureAndCollection(geometry) {
 }
 
 
-collection(pointFeature).forEach(function(input) {
-    test('propEach', function(t) {
-        meta.propEach(input, function(prop, i) {
-            t.deepEqual(prop, { a: 1 });
+collection(pointFeature).forEach(function (input) {
+    test('propEach', function (t) {
+        meta.propEach(input, function (prop, i) {
+            t.deepEqual(prop, {a: 1});
             t.equal(i, 0);
             t.end();
         });
     });
 });
 
-featureAndCollection(pointGeometry).forEach(function(input) {
-    test('coordEach#Point', function(t) {
-        meta.coordEach(input, function(coord) {
+featureAndCollection(pointGeometry).forEach(function (input) {
+    test('coordEach#Point', function (t) {
+        meta.coordEach(input, function (coord) {
             t.deepEqual(coord, [0, 0]);
             t.end();
         });
     });
 });
 
-featureAndCollection(lineStringGeometry).forEach(function(input) {
-    test('coordEach#LineString', function(t) {
+featureAndCollection(lineStringGeometry).forEach(function (input) {
+    test('coordEach#LineString', function (t) {
         var output = [];
-        meta.coordEach(input, function(coord) {
+        meta.coordEach(input, function (coord) {
             output.push(coord);
         });
         t.deepEqual(output, [[0, 0], [1, 1]]);
@@ -88,10 +87,10 @@ featureAndCollection(lineStringGeometry).forEach(function(input) {
     });
 });
 
-featureAndCollection(polygonGeometry).forEach(function(input) {
-    test('coordEach#Polygon', function(t) {
+featureAndCollection(polygonGeometry).forEach(function (input) {
+    test('coordEach#Polygon', function (t) {
         var output = [];
-        meta.coordEach(input, function(coord) {
+        meta.coordEach(input, function (coord) {
             output.push(coord);
         });
         t.deepEqual(output, [[0, 0], [1, 1], [0, 1], [0, 0]]);
@@ -99,10 +98,10 @@ featureAndCollection(polygonGeometry).forEach(function(input) {
     });
 });
 
-featureAndCollection(polygonGeometry).forEach(function(input) {
-    test('coordEach#Polygon excludeWrapCoord', function(t) {
+featureAndCollection(polygonGeometry).forEach(function (input) {
+    test('coordEach#Polygon excludeWrapCoord', function (t) {
         var output = [];
-        meta.coordEach(input, function(coord) {
+        meta.coordEach(input, function (coord) {
             output.push(coord);
         }, true);
         t.deepEqual(output, [[0, 0], [1, 1], [0, 1]]);
@@ -112,10 +111,10 @@ featureAndCollection(polygonGeometry).forEach(function(input) {
 
 
 
-featureAndCollection(multiPolygonGeometry).forEach(function(input) {
-    test('coordEach#MultiPolygon', function(t) {
+featureAndCollection(multiPolygonGeometry).forEach(function (input) {
+    test('coordEach#MultiPolygon', function (t) {
         var output = [];
-        meta.coordEach(input, function(coord) {
+        meta.coordEach(input, function (coord) {
             output.push(coord);
         });
         t.deepEqual(output, [[0, 0], [1, 1], [0, 1], [0, 0]]);
@@ -123,10 +122,10 @@ featureAndCollection(multiPolygonGeometry).forEach(function(input) {
     });
 });
 
-featureAndCollection(geometryCollection).forEach(function(input) {
-    test('coordEach#GeometryCollection', function(t) {
+featureAndCollection(geometryCollection).forEach(function (input) {
+    test('coordEach#GeometryCollection', function (t) {
         var output = [];
-        meta.coordEach(input, function(coord) {
+        meta.coordEach(input, function (coord) {
             output.push(coord);
         });
         t.deepEqual(output, [[0, 0], [0, 0], [1, 1]]);
@@ -134,17 +133,17 @@ featureAndCollection(geometryCollection).forEach(function(input) {
     });
 });
 
-test('unknown', function(t) {
-    t.throws(function() {
+test('unknown', function (t) {
+    t.throws(function () {
         meta.coordEach({});
     });
     t.end();
 });
 
-featureAndCollection(geometryCollection).forEach(function(input) {
-    test('geomEach#GeometryCollection', function(t) {
+featureAndCollection(geometryCollection).forEach(function (input) {
+    test('geomEach#GeometryCollection', function (t) {
         var output = [];
-        meta.geomEach(input, function(geom) {
+        meta.geomEach(input, function (geom) {
             output.push(geom);
         });
         t.deepEqual(output, geometryCollection.geometries);
@@ -152,27 +151,27 @@ featureAndCollection(geometryCollection).forEach(function(input) {
     });
 });
 
-test('geomEach#bare-GeometryCollection', function(t) {
+test('geomEach#bare-GeometryCollection', function (t) {
     var output = [];
-    meta.geomEach(geometryCollection, function(geom) {
+    meta.geomEach(geometryCollection, function (geom) {
         output.push(geom);
     });
     t.deepEqual(output, geometryCollection.geometries);
     t.end();
 });
 
-test('geomEach#bare-pointGeometry', function(t) {
+test('geomEach#bare-pointGeometry', function (t) {
     var output = [];
-    meta.geomEach(pointGeometry, function(geom) {
+    meta.geomEach(pointGeometry, function (geom) {
         output.push(geom);
     });
     t.deepEqual(output, [pointGeometry]);
     t.end();
 });
 
-test('geomEach#bare-pointFeature', function(t) {
+test('geomEach#bare-pointFeature', function (t) {
     var output = [];
-    meta.geomEach(pointFeature, function(geom) {
+    meta.geomEach(pointFeature, function (geom) {
         output.push(geom);
     });
     t.deepEqual(output, [pointGeometry]);
