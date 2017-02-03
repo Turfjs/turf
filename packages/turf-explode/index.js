@@ -37,10 +37,16 @@ var point = require('@turf/helpers').point;
  */
 module.exports = function (geojson) {
     var points = [];
-    featureEach(geojson, function (feature) {
-        coordEach(feature, function (coord) {
-            points.push(point(coord, feature.properties));
+    if (geojson.type === 'FeatureCollection') {
+        featureEach(geojson, function (feature) {
+            coordEach(feature, function (coord) {
+                points.push(point(coord, feature.properties));
+            });
         });
-    });
+    } else {
+        coordEach(geojson, function (coord) {
+            points.push(point(coord, geojson.properties));
+        });
+    }
     return featureCollection(points);
 };
