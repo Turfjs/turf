@@ -5,7 +5,7 @@ var featurecollection = require('@turf/helpers').featureCollection;
  * Flattens any {@link GeoJSON} to a {@link FeatureCollection} using [geojson-flatten](https://github.com/mapbox/geojson-flatten).
  *
  * @name flatten
- * @param {Feature} input any valid {@link GeoJSON} with multi-geometry {@link Feature}s
+ * @param {Feature} geojson any valid {@link GeoJSON} with multi-geometry {@link Feature}s
  * @return {FeatureCollection} a flattened {@link FeatureCollection}
  * @example
  * var geometry = {
