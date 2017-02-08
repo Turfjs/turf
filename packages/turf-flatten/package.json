@@ -17,7 +17,7 @@
     "gis",
     "featurecollection"
   ],
-  "author": "morganherlocker",
+  "author": "Tom MacWright",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/Turfjs/turf/issues"
