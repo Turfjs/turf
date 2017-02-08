@@ -18,7 +18,7 @@
     "gis"
   ],
   "author": "aurelien-defossez",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/Turfjs/turf/issues"
   },
