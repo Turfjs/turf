@@ -1,11 +1,21 @@
 /// <reference types="geojson" />
 
-type Feature = GeoJSON.Feature<any>;
-type Features = GeoJSON.FeatureCollection<any>;
+import {
+    Point, Points, MultiPoint, MultiPoints,
+    LineString, LineStrings, MultiLineString, MultiLineStrings,
+    Polygon, Polygons, MultiPolygon, MultiPolygons,
+    Feature, Features} from '@turf/helpers'
 
-/**
- * http://turfjs.org/docs.html#flatten
- */
-declare function flatten(features: Feature | Features);
+interface Flatten {
+    /**
+     * http://turfjs.org/docs/#flatten
+     */
+    (geojson: Point | Points | MultiPoint | MultiPoints): Points;
+    (geojson: LineString | LineStrings | MultiLineString | MultiLineStrings): LineStrings;
+    (geojson: Polygons | Polygons | MultiPolygons | MultiPolygons): Polygons;
+    (geojson: Feature | Features): Features;
+}
+
+declare const flatten: Flatten;
 declare namespace flatten { }
 export = flatten;
