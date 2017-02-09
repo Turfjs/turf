@@ -35,5 +35,6 @@
     "earcut": "^2.0.0",
     "@turf/helpers": "^3.7.5"
   },
-  "types": "index.d.ts"
+  "types": "index.d.ts",
+  "author": "Turf Authors"
 }
