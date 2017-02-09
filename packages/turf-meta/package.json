@@ -11,7 +11,7 @@
     "programming",
     "turfjs"
   ],
-  "author": "Tom MacWright",
+  "author": "Turf Authors",
   "license": "MIT",
   "devDependencies": {
     "@turf/random": "^3.7.5",

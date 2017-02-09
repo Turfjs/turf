@@ -20,7 +20,7 @@
   "dependencies": {
     "@turf/meta": "^3.7.5"
   },
-  "author": "morganherlocker",
+  "author": "Turf Authors",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/Turfjs/turf/issues"

@@ -12,7 +12,7 @@
     "polygon",
     "multipolygon"
   ],
-  "author": "Tom MacWright",
+  "author": "Turf Authors",
   "license": "MIT",
   "dependencies": {
     "@mapbox/geojson-area": "^0.2.2"

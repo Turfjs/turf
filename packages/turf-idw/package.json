@@ -22,7 +22,7 @@
     "type": "git",
     "url": "git://github.com/Turfjs/turf.git"
   },
-  "author": "Michele Ferretti",
+  "author": "Turf Authors",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/Turfjs/turf/issues"

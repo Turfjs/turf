@@ -18,11 +18,7 @@
     "miles",
     "km"
   ],
-  "author": {
-    "name": "Mustafa Dokumacı",
-    "email": "mustafa@foraa.com",
-    "url": "http://mustafadokumaci.com"
-  },
+  "author": "Turf Authors",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/Turfjs/turf/issues"

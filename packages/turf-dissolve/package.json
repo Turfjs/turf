@@ -13,7 +13,7 @@
     "geojson",
     "polygon"
   ],
-  "author": "Rowan Winsemius",
+  "author": "Turf Authors",
   "license": "MIT",
   "dependencies": {
     "@turf/bbox": "^3.7.5",
@@ -27,5 +27,13 @@
   "devDependencies": {
     "tape": "^4.6.3"
   },
-  "types": "index.d.ts"
+  "types": "index.d.ts",
+  "homepage": "https://github.com/Turfjs/turf",
+  "bugs": {
+    "url": "https://github.com/Turfjs/turf/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/Turfjs/turf.git"
+  }
 }
