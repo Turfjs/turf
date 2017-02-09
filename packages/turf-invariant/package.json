@@ -12,7 +12,7 @@
     "expectations"
   ],
   "author": "Tom MacWright",
-  "license": "ISC",
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "git://github.com/Turfjs/turf.git"
