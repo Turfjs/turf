@@ -15,7 +15,7 @@
     "gif"
   ],
   "author": "Morgan Herlocker",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/Turfjs/turf/issues"
   },

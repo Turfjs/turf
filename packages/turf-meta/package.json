@@ -12,7 +12,7 @@
     "turfjs"
   ],
   "author": "Tom MacWright",
-  "license": "ISC",
+  "license": "MIT",
   "devDependencies": {
     "@turf/random": "^3.7.5",
     "eslint": "^3.14.1",

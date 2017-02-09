@@ -13,7 +13,7 @@
     "multipolygon"
   ],
   "author": "Tom MacWright",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "@mapbox/geojson-area": "^0.2.2"
   },
