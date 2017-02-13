@@ -1,0 +1,33 @@
+{
+  "name": "@turf/flatten",
+  "version": "3.9.0",
+  "description": "Turf.js flatten module for converting multipart geometries to singlepart.",
+  "main": "index.js",
+  "scripts": {
+    "test": "node test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Turfjs/turf.git"
+  },
+  "keywords": [
+    "turf",
+    "geojson",
+    "geography",
+    "gis",
+    "featurecollection"
+  ],
+  "author": "Tom MacWright",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Turfjs/turf/issues"
+  },
+  "homepage": "https://github.com/Turfjs/turf",
+  "devDependencies": {
+    "tape": "^4.0.0"
+  },
+  "dependencies": {
+    "@turf/helpers": "^3.7.5",
+    "geojson-flatten": "^0.1.0"
+  }
+}
