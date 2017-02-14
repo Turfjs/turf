@@ -1,6 +1,6 @@
 {
   "name": "@turf/tesselate",
-  "version": "3.7.5",
+  "version": "3.10.0",
   "description": "[Turf](http://turfjs.org/) tesselate module",
   "main": "index.js",
   "scripts": {
@@ -29,11 +29,11 @@
   "homepage": "https://github.com/Turfjs/turf",
   "devDependencies": {
     "tape": "^4.0.0",
-    "@turf/helpers": "^3.7.5"
+    "@turf/helpers": "^3.10.0"
   },
   "dependencies": {
     "earcut": "^2.0.0",
-    "@turf/helpers": "^3.7.5"
+    "@turf/helpers": "^3.10.0"
   },
   "types": "index.d.ts",
   "author": "Turf Authors"
