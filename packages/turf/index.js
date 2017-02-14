@@ -60,6 +60,7 @@ var turf = {
     hexGrid: require('@turf/hex-grid'),
     idw: require('@turf/idw'),
     truncate: require('@turf/truncate'),
+    flatten: require('@turf/flatten'),
     point: helpers.point,
     polygon: helpers.polygon,
     lineString: helpers.lineString,

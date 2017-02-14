@@ -105,7 +105,8 @@
     "@turf/triangle-grid": "^3.7.5",
     "@turf/union": "^3.7.5",
     "@turf/within": "^3.7.5",
-    "@turf/truncate": "^3.9.0"
+    "@turf/truncate": "^3.9.0",
+    "@turf/flatten": "^3.9.0"
   },
   "devDependencies": {
     "browserify": "~9.0.3",

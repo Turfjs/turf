@@ -63,6 +63,7 @@ import * as triangleGrid from '@turf/triangle-grid';
 import * as hexGrid from '@turf/hex-grid';
 import * as idw from '@turf/idw';
 import * as truncate from '@turf/truncate';
+import * as flatten from '@turf/flatten';
 
 export {
     isolines,
@@ -127,4 +128,5 @@ export {
     featureOf,
     collectionOf,
     truncate,
+    flatten
 };
