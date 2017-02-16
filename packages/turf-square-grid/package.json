@@ -1,6 +1,6 @@
 {
   "name": "@turf/square-grid",
-  "version": "3.10.0",
+  "version": "3.10.2",
   "description": "",
   "main": "index.js",
   "dependencies": {
