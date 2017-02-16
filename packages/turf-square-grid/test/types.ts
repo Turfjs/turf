@@ -1,5 +1,5 @@
 import {Polygons} from '@turf/helpers'
-import * as hexGrid from '../'
+import * as squareGrid from '../'
 
 const bbox = [
     -96.6357421875,
@@ -7,4 +7,4 @@ const bbox = [
     -84.9462890625,
     40.58058466412764
 ]
-const grid: Polygons = hexGrid(bbox, 50, 'miles')
+const grid: Polygons = squareGrid(bbox, 50, 'miles')
