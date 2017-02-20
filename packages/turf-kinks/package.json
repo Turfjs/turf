@@ -1,10 +1,10 @@
 {
   "name": "@turf/kinks",
-  "version": "3.10.0",
+  "version": "3.10.3",
   "description": "turf kinks module",
   "main": "index.js",
   "dependencies": {
-    "@turf/helpers": "^3.10.0"
+    "@turf/helpers": "^3.10.3"
   },
   "devDependencies": {
     "benchmark": "^1.0.0",
