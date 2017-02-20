@@ -1,7 +1,7 @@
-import {Polygons} from '@turf/helpers'
+import {BBox, Polygons} from '@turf/helpers'
 import * as squareGrid from '../'
 
-const bbox = [
+const bbox: BBox = [
     -96.6357421875,
     31.12819929911196,
     -84.9462890625,

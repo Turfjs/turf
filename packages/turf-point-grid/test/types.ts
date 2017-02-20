@@ -1,7 +1,7 @@
-import {Points} from '@turf/helpers'
+import {BBox, Points} from '@turf/helpers'
 import * as pointGrid from '../'
 
-const bbox = [
+const bbox: BBox = [
     -96.6357421875,
     31.12819929911196,
     -84.9462890625,
