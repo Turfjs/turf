@@ -1,30 +1,15 @@
-var buffer = require('./');
 var Benchmark = require('benchmark');
-var fs = require('fs');
-
-var pt = JSON.parse(fs.readFileSync(__dirname+'/test/fixtures/in/Point.geojson'));
-var line = JSON.parse(fs.readFileSync(__dirname+'/test/fixtures/in/LineString.geojson'));
-var polygon = JSON.parse(fs.readFileSync(__dirname+'/test/fixtures/in/Polygon.geojson'));
-var fc = JSON.parse(fs.readFileSync(__dirname+'/test/fixtures/in/FeatureCollection.geojson'));
+var fixtures = require('geojson-fixtures').all;
+var buffer = require('.');
 
 var suite = new Benchmark.Suite('turf-buffer');
+
+Object.keys(fixtures).forEach(function (name) {
+    const fixture = fixtures[name];
+    suite.add('turf-buffer#' + name, function () { buffer(fixture, 10, 'miles'); });
+});
+
 suite
-  .add('turf-buffer#Point',function () {
-    buffer(pt, 10, 'miles');
-  })
-  .add('turf-buffer#LineString',function () {
-    buffer(line, 10, 'miles');
-  })
-  .add('turf-buffer#Polygon',function () {
-    buffer(polygon, 10, 'miles');
-  })
-  .add('turf-buffer#FeatureCollection',function () {
-    buffer(fc, 10, 'miles');
-  })
-  .on('cycle', function (event) {
-    console.log(String(event.target));
-  })
-  .on('complete', function () {
-    
-  })
-  .run();
+    .on('cycle', function (event) { console.log(String(event.target)); })
+    .on('complete', function () {})
+    .run();

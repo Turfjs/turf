@@ -2,7 +2,7 @@
 
 type Feature = GeoJSON.Feature<any>;
 type Features = GeoJSON.FeatureCollection<any>;
-type BBox = Array<number>;
+type BBox = [number, number, number, number];
 
 /**
  * http://turfjs.org/docs/#bbox

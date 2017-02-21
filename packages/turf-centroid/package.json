@@ -1,6 +1,6 @@
 {
   "name": "@turf/centroid",
-  "version": "3.10.0",
+  "version": "3.10.3",
   "description": "turf centroid module",
   "main": "index.js",
   "scripts": {
@@ -29,7 +29,7 @@
   },
   "dependencies": {
     "@turf/meta": "^3.10.0",
-    "@turf/helpers": "^3.10.0"
+    "@turf/helpers": "^3.10.3"
   },
   "types": "index.d.ts"
 }

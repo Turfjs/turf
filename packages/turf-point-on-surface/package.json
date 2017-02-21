@@ -1,6 +1,6 @@
 {
   "name": "@turf/point-on-surface",
-  "version": "3.10.0",
+  "version": "3.10.3",
   "description": "turf point-on-surface module",
   "main": "index.js",
   "scripts": {
@@ -29,11 +29,11 @@
     "benchmark": "^1.0.0"
   },
   "dependencies": {
-    "@turf/center": "^3.10.0",
-    "@turf/distance": "^3.10.0",
-    "@turf/explode": "^3.10.0",
-    "@turf/inside": "^3.10.0",
-    "@turf/helpers": "^3.10.0"
+    "@turf/center": "^3.10.3",
+    "@turf/distance": "^3.10.3",
+    "@turf/explode": "^3.10.3",
+    "@turf/inside": "^3.10.3",
+    "@turf/helpers": "^3.10.3"
   },
   "types": "index.d.ts"
 }
