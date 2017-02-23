@@ -38,8 +38,7 @@ test('turf-line-slice', t => {
         }
         const expected = load.sync(output + 'sliced.geojson');
 
-        t.equal(sliced.geometry.coordinates.length, expected.geometry.coordinates.length, folder + ' - coordinates');
-        t.deepEquals(sliced, expected, folder + ' - geojson');
+        t.deepEquals(sliced, expected, folder);
     }
     t.end();
 });
