@@ -1,9 +1,9 @@
 const fs = require('fs');
 const path = require('path');
 const test = require('tape');
-const unkink = require('./');
 const load = require('load-json-file');
 const write = require('write-json-file');
+const unkink = require('./');
 
 const directories = {
     in: path.join(__dirname, 'test', 'in') + path.sep,
