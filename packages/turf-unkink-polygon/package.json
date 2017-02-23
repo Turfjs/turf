@@ -8,6 +8,9 @@
     "index.d.ts"
   ],
   "dependencies": {
+    "@turf/helpers": "^3.10.3",
+    "@turf/meta": "^3.10.0",
+    "geojson-flatten": "^0.2.1",
     "simplepolygon": "^1.1.1"
   },
   "devDependencies": {

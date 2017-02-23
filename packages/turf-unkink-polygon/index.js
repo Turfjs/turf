@@ -1,11 +1,14 @@
 var simplepolygon = require('simplepolygon');
+var flatten = require('geojson-flatten');
+var featureEach = require('@turf/meta').featureEach;
+var featureCollection = require('@turf/helpers').featureCollection;
 
 /**
  * Takes a kinked polygon and returns a feature collection of polygons that have no kinks.
  * Uses [simplepolygon](https://github.com/mclaeysb/simplepolygon) internally.
  *
  * @name unkinkPolygon
- * @param {Feature<Polygon>} polygon Input
+ * @param {Feature<Polygon>} geojson Polygon input
  * @returns {FeatureCollection<Polygon>} Unkinked polygons
  * @example
  * var poly = {
@@ -20,14 +23,24 @@ var simplepolygon = require('simplepolygon');
  *
  * //=result
  */
-module.exports = function (polygon) {
-    var outPolys = simplepolygon(polygon);
-    outPolys.features.forEach(function (item) {
-        if (polygon.properties) {
-            item.properties = polygon.properties;
-        } else {
-            item.properties = {};
-        }
+module.exports = function (geojson) {
+    var results = featureCollection([]);
+
+    // Handles FeatureCollection & Feature
+    featureEach(geojson, function (feature) {
+
+        // Handle MultiPolygons as Feature or FeatureCollection
+        if (feature.geometry.type === 'MultiPolygon') { feature = featureCollection(flatten(feature)); }
+
+        // Store simple polygons in results
+        featureEach(feature, function (polygon) {
+            var simple = simplepolygon(polygon);
+
+            featureEach(simple, function (poly) {
+                poly.properties = (polygon.properties) ? polygon.properties : {};
+                results.features.push(poly);
+            });
+        });
     });
-    return outPolys;
+    return results;
 };

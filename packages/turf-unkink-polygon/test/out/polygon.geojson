@@ -3,7 +3,9 @@
 	"features": [
 		{
 			"type": "Feature",
-			"properties": {},
+			"properties": {
+				"stroke": "#ff0000"
+			},
 			"geometry": {
 				"type": "Polygon",
 				"coordinates": [

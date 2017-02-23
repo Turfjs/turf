@@ -10,16 +10,22 @@ const directories = {
     out: path.join(__dirname, 'test', 'out') + path.sep
 };
 
+const fixtures = fs.readdirSync(directories.in).map(filename => {
+    return {filename, geojson: load.sync(directories.in + filename)};
+});
+
 test('unkink-polygon', function (t) {
-    fs.readdirSync(directories.in).forEach(filename => {
-        const geojson = load.sync(directories.in + filename);
-        const unkinked = unkink(geojson);
+    for (const fixture of fixtures) {
+        // Process
+        const unkinked = unkink(fixture.geojson);
 
-        if (process.env.REGEN) { write.sync(directories.out + filename, unkinked); }
+        // Save output to GeoJSON for easy preview with GeoJSON.io
+        if (process.env.REGEN) { write.sync(directories.out + fixture.filename, unkinked); }
 
-        const expected = load.sync(directories.out + filename);
+        // Test expected results
+        const expected = load.sync(directories.out + fixture.filename);
         t.equals(unkinked.features.length, expected.features.length);
         t.deepEquals(unkinked, expected);
-    });
+    }
     t.end();
 });

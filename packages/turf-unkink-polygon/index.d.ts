@@ -1,11 +1,10 @@
 /// <reference types="geojson" />
 
-type Polygon = GeoJSON.Feature<GeoJSON.Polygon> | GeoJSON.Polygon;
-type Polygons = GeoJSON.FeatureCollection<GeoJSON.Polygon>;
+import {Polygon, Polygons, MultiPolygon, MultiPolygons} from '@turf/helpers';
 
 /**
  * http://turfjs.org/docs/#unkink-polygon
  */
-declare function unkinkPolygon(polygon: Polygon): Polygons;
+declare function unkinkPolygon(geojson: Polygon | Polygons | MultiPolygon | MultiPolygons): Polygons;
 declare namespace unkinkPolygon { }
 export = unkinkPolygon;
