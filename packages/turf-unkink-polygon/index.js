@@ -1,9 +1,11 @@
+var simplepolygon = require('simplepolygon');
+
 /**
  * Takes a kinked polygon and returns a feature collection of polygons that have no kinks.
  * Uses [simplepolygon](https://github.com/mclaeysb/simplepolygon) internally.
  *
  * @name unkinkPolygon
- * @param {Feature<Polygon>} Input polygon
+ * @param {Feature<Polygon>} polygon Input
  * @returns {FeatureCollection<Polygon>} Unkinked polygons
  * @example
  * var poly = {
@@ -18,9 +20,6 @@
  *
  * //=result
  */
-
-var simplepolygon = require('simplepolygon');
-
 module.exports = function (polygon) {
     var outPolys = simplepolygon(polygon);
     outPolys.features.forEach(function (item) {

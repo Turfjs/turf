@@ -1,53 +1,25 @@
-var test = require('tape');
-var unkink = require('./');
+const fs = require('fs');
+const path = require('path');
+const test = require('tape');
+const unkink = require('./');
+const load = require('load-json-file');
+const write = require('write-json-file');
 
-test('kinks', function (t) {
-    var poly = {
-        'type': 'Feature',
-        'geometry': {
-            'type': 'Polygon',
-            'coordinates': [[[0, 0], [2, 0], [0, 2], [2, 2], [0, 0]]]
-        }
-    };
+const directories = {
+    in: path.join(__dirname, 'test', 'in') + path.sep,
+    out: path.join(__dirname, 'test', 'out') + path.sep
+};
 
-    var legitPoly = {
-        'type': 'Feature',
-        'properties': {},
-        'geometry': {
-            'type': 'Polygon',
-            'coordinates': [[[0, 0], [2, 0], [1, 1], [0, 0]]]
-        }
-    };
+test('unkink-polygon', function (t) {
+    fs.readdirSync(directories.in).forEach(filename => {
+        const geojson = load.sync(directories.in + filename);
+        const unkinked = unkink(geojson);
 
-    var expectedOutput = {
-        'type': 'FeatureCollection',
-        'features': [
-            {
-                'type': 'Feature',
-                'properties': {},
-                'geometry': {
-                    'type': 'Polygon',
-                    'coordinates': [[[0, 0], [2, 0], [1, 1], [0, 0]]]
-                }
-            }, {
-                'type': 'Feature',
-                'properties': {},
-                'geometry': {
-                    'type': 'Polygon',
-                    'coordinates': [[[1, 1], [0, 2], [2, 2], [1, 1]]]
-                }
-            }
-        ]
-    };
-    // Test unkinging a kinked poly
-    var unkinked = unkink(poly);
-    t.equals(unkinked.features.length, 2);
-    t.deepEquals(unkinked, expectedOutput);
+        if (process.env.REGEN) { write.sync(directories.out + filename, unkinked); }
 
-    // Test unkinking an unkinkged poly - nothing should happen
-    var unkinked2 = unkink(legitPoly);
-    t.equals(unkinked2.features.length, 1);
-    t.deepEquals({'type': 'FeatureCollection', 'features': [legitPoly]}, unkinked2);
-
+        const expected = load.sync(directories.out + filename);
+        t.equals(unkinked.features.length, expected.features.length);
+        t.deepEquals(unkinked, expected);
+    });
     t.end();
 });

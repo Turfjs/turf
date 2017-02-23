@@ -7,8 +7,12 @@
     "simplepolygon": "^1.1.1"
   },
   "devDependencies": {
-    "benchmark": "^1.0.0",
-    "tape": "^3.5.0"
+    "benchmark": "^2.1.3",
+    "eslint": "^3.16.1",
+    "eslint-config-mourner": "^2.0.1",
+    "load-json-file": "^2.0.0",
+    "tape": "^3.5.0",
+    "write-json-file": "^2.0.0"
   },
   "scripts": {
     "test": "node test.js"
