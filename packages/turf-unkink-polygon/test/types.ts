@@ -1,6 +1,9 @@
 import * as path from 'path'
-import * as load from 'load-json-file'
+import * as fs from 'fs'
 import * as unkink from '../'
 
-const geojson: GeoJSON.FeatureCollection<GeoJSON.MultiPolygon> = load.sync(path.join(__dirname, 'in', 'hourglassMultiPolygon.geojson'));
-const unkinked: GeoJSON.FeatureCollection<GeoJSON.Polygon> = unkink(geojson);
+type MultiPolygons = GeoJSON.FeatureCollection<GeoJSON.MultiPolygon>
+type Polygons = GeoJSON.FeatureCollection<GeoJSON.Polygon>
+
+const geojson: MultiPolygons = JSON.parse(fs.readFileSync(path.join(__dirname, 'in', 'hourglassMultiPolygon.geojson'), 'utf8'))
+const unkinked: Polygons = unkink(geojson)
