@@ -8,7 +8,7 @@ var featureCollection = require('@turf/helpers').featureCollection;
  * Uses [simplepolygon](https://github.com/mclaeysb/simplepolygon) internally.
  *
  * @name unkinkPolygon
- * @param {Feature<Polygon>} geojson Polygon input
+ * @param {FeatureCollection|Feature<Polygon|MultiPolygon>} geojson GeoJSON Polygon or MultiPolygon
  * @returns {FeatureCollection<Polygon>} Unkinked polygons
  * @example
  * var poly = {
