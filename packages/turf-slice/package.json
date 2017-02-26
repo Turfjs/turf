@@ -1,7 +1,7 @@
 {
-  "name": "@turf/split",
-  "version": "3.7.5",
-  "description": "split a polygon based on a linestring",
+  "name": "@turf/slice",
+  "version": "3.11.0",
+  "description": "slice a polygon based on a linestring",
   "main": "index.js",
   "types": "index.d.ts",
   "files": [

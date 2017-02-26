@@ -1,25 +1,24 @@
 var slice = require('polyk').Slice;
-var featureCollection = require('@turf/helpers').featureCollection;
-var polygon = require('@turf/helpers').polygon;
+var helpers = require('@turf/helpers');
 
 /**
  * Takes a {@link Polygon} and cuts it with a {@link Linestring}. Note the linestring must be a straight line (eg made of only two points).
- * Properties from the input polygon will be retained on output polygons. Internally uses [polyK](http://polyk.ivank.net/) to perform split.
+ * Properties from the input polygon will be retained on output polygons. Internally uses [polyK](http://polyk.ivank.net/) to perform slice.
  *
  * @name slice
- * @param {Feature<Polygon>} poly - single Polygon Feature
- * @param {Feature<LineString>} line - single Polyline Feature
- * @return {FeatureCollection<Polygon>} A FeatureCollection of polygons
+ * @param {Feature<Polygon>} polygon single Polygon Feature
+ * @param {Feature<LineString>} linestring single LineString Feature
+ * @returns {FeatureCollection<Polygon>} FeatureCollection of Polygons
  * @example
  * var polygon = {
  *   "geometry": {
  *     "type": "Polygon",
  *     "coordinates": [[
- *         [0,0],
- *         [0,10],
- *         [10,10],
- *         [10,0],
- *         [0,0]
+ *         [0, 0],
+ *         [0, 10],
+ *         [10, 10],
+ *         [10, 0],
+ *         [0, 0]
  *     ]]
  *   }
  * };
@@ -31,25 +30,25 @@ var polygon = require('@turf/helpers').polygon;
  *       "type": "LineString",
  *       "coordinates": [
  *         [5, 15],
- *         [5,-15]
+ *         [5, -15]
  *       ]
  *     }
  *   }
  *
- * var split = turf.split(polygon, linestring);
+ * var sliced = turf.slice(polygon, linestring);
  *
- * //=split
+ * //=sliced
 */
-module.exports = function (poly, line) {
-    if (poly.geometry.type !== 'Polygon') {
-        return console.warn('@Turf/Split: first argument must be a polygon.');
+module.exports = function (polygon, linestring) {
+    if (polygon.geometry.type !== 'Polygon') {
+        return console.warn('@turf/slice: first argument must be a polygon.');
     }
-    if (line.geometry.type !== 'LineString' || line.geometry.coordinates.length > 2) {
-        return console.warn('@Turf/Split: second argument must be a linesting with only 2 vertices.');
+    if (linestring.geometry.type !== 'LineString' || linestring.geometry.coordinates.length > 2) {
+        return console.warn('@turf/slice: second argument must be a linesting with only 2 vertices.');
     }
-    var start = line.geometry.coordinates[0];
-    var end = line.geometry.coordinates[line.geometry.coordinates.length - 1];
-    var sliced = slice(convertToArray(poly), start[0], start[1], end[0], end[1]);
+    var start = linestring.geometry.coordinates[0];
+    var end = linestring.geometry.coordinates[linestring.geometry.coordinates.length - 1];
+    var sliced = slice(convertToArray(polygon), start[0], start[1], end[0], end[1]);
 
     return convertToGeoJSON(sliced);
 };
@@ -57,6 +56,7 @@ module.exports = function (poly, line) {
 /**
  * Convert GeoJSON Polygon to Polygon
  *
+ * @private
  * @param {Feature<Polygon>} polygon GeoJSON Feature Polygon
  * @returns {number[]} Array Polygon
  */
@@ -67,15 +67,16 @@ function convertToArray(polygon) {
 /**
  * Convert Array Polygon to FeatureCollection GeoJSON Polygon
  *
+ * @private
  * @param {number[]} array Array of coordinates [x1, y1, x2, y2...]
  * @returns {FeatureCollection<Polygon>} GeoJSON FeatureCollection Polygon
  */
 function convertToGeoJSON(array) {
-    const geojson = featureCollection([]);
+    const geojson = helpers.featureCollection([]);
     array.forEach((item) => {
         var coords = chunk(item, 2);
         coords.push(coords[0]);
-        geojson.features.push(polygon([coords]));
+        geojson.features.push(helpers.polygon([coords]));
     });
     return geojson;
 }
@@ -83,6 +84,7 @@ function convertToGeoJSON(array) {
 /**
  * Chunk
  *
+ * @private
  * @param {Array} array The array to process.
  * @param {number} [size=1] The length of each chunk
  * @returns {Array} Returns the new array of chunks.
