@@ -28,8 +28,9 @@ test('turf-slice', t => {
 
         // Slice
         const sliced = slice(polygon, linestring);
-        const results = featureCollection([linestring]);
+        const results = featureCollection([]);
         sliced.features.forEach(feature => results.features.push(feature));
+        results.features.push(linestring);
 
         // Save Results
         mkdirp.sync(path.join(directories.out, folder));

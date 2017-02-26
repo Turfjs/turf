@@ -3,26 +3,6 @@
 	"features": [
 		{
 			"type": "Feature",
-			"properties": {
-				"stroke": "#f0f",
-				"stroke-width": 6
-			},
-			"geometry": {
-				"type": "LineString",
-				"coordinates": [
-					[
-						134.208984375,
-						-4.390228926463384
-					],
-					[
-						129.0234375,
-						-43.51668853502907
-					]
-				]
-			}
-		},
-		{
-			"type": "Feature",
 			"properties": {},
 			"geometry": {
 				"type": "Polygon",
@@ -123,6 +103,26 @@
 							130.07524729205608,
 							-35.5804776903868
 						]
+					]
+				]
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {
+				"stroke": "#f0f",
+				"stroke-width": 6
+			},
+			"geometry": {
+				"type": "LineString",
+				"coordinates": [
+					[
+						134.208984375,
+						-4.390228926463384
+					],
+					[
+						129.0234375,
+						-43.51668853502907
 					]
 				]
 			}
