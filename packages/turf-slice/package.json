@@ -41,6 +41,6 @@
   },
   "dependencies": {
     "@turf/helpers": "^3.7.5",
-    "polyk": "^0.23.0"
+    "polyk": "^0.24.0"
   }
 }
