@@ -9,6 +9,7 @@
  */
 var helpers = require('@turf/helpers');
 var invariant = require('@turf/invariant');
+var meta = require('@turf/meta');
 
 var turf = {
     isolines: require('@turf/isolines'),
@@ -73,7 +74,14 @@ var turf = {
     getCoord: invariant.getCoord,
     geojsonType: invariant.geojsonType,
     featureOf: invariant.featureOf,
-    collectionOf: invariant.collectionOf
+    collectionOf: invariant.collectionOf,
+    coordEach: meta.coordEach,
+    coordReduce: meta.coordReduce,
+    propEach: meta.propEach,
+    propReduce: meta.propReduce,
+    featureEach: meta.featureEach,
+    coordAll: meta.coordAll,
+    geomEach: meta.geomEach
 };
 
 module.exports = turf;

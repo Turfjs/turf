@@ -14,6 +14,16 @@ import {
     featureOf,
     collectionOf
 } from '@turf/invariant';
+import {
+    coordEach,
+    coordReduce,
+    propEach,
+    propReduce,
+    featureEach,
+    coordAll,
+    geomEach
+} from '@turf/meta';
+
 import * as isolines from '@turf/isolines';
 import * as convex from '@turf/convex';
 import * as within from '@turf/within';
@@ -128,5 +138,12 @@ export {
     featureOf,
     collectionOf,
     truncate,
-    flatten
+    flatten,
+    coordEach,
+    coordReduce,
+    propEach,
+    propReduce,
+    featureEach,
+    coordAll,
+    geomEach
 };

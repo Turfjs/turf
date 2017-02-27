@@ -19,7 +19,7 @@ type GeometryObject = GeoJSON.GeometryObject
 
 interface MetaStatic {
     /**
-     * http://turfjs.org/docs/#coordEach
+     * http://turfjs.org/docs/#coordeach
      */
     coordEach(layer: Points | Point | MultiPoint | MultiPoints, callback: (coords: Array<number>) => void, excludeWrapCoord?: boolean): void;
     coordEach(layer: LineStrings | LineString | MultiLineString | MultiLineStrings, callback: (coords: Array<Array<number>>) => void, excludeWrapCoord?: boolean): void;
@@ -27,7 +27,7 @@ interface MetaStatic {
     coordEach(layer: GeometryCollection | GeometryObject, callback: (coords: Array<any>) => void, excludeWrapCoord?: boolean): void;
 
     /**
-     * http://turfjs.org/docs/#coordEach
+     * http://turfjs.org/docs/#coordeach
      */
     coordReduce(layer: Points | Point | MultiPoint | MultiPoints, callback: (memo: any, coords: Array<number>) => void, memo: any, excludeWrapCoord?: boolean): any;
     coordReduce(layer: LineStrings | LineString | MultiLineString | MultiLineStrings, callback: (memo: any, coords: Array<Array<number>>) => void, memo: any, excludeWrapCoord?: boolean): any;
@@ -35,12 +35,17 @@ interface MetaStatic {
     coordReduce(layer: GeometryCollection | GeometryObject, callback: (memo: any, coords: Array<any>) => void, memo: any, excludeWrapCoord?: boolean): any;
 
     /**
-     * http://turfjs.org/docs/#propEach
+     * http://turfjs.org/docs/#propeach
      */
     propEach(layer: Feature | Features, callback: (properties: any) => void): void;
 
     /**
-     * http://turfjs.org/docs/#featureEach
+     * http://turfjs.org/docs/#propreduce
+     */
+    propReduce(layer: Feature | Features, callback: (prev: any, props: any) => any, memo: any): any;
+
+    /**
+     * http://turfjs.org/docs/#featureeach
      */
     featureEach(layer: Point | Points, callback: (feature: Point) => void): void;
     featureEach(layer: LineString | LineStrings, callback: (feature: LineString) => void): void;
@@ -51,12 +56,12 @@ interface MetaStatic {
     featureEach(layer: Feature | Features, callback: (feature: Feature) => void): void;
 
     /**
-     * http://turfjs.org/docs/#coordAll
+     * http://turfjs.org/docs/#coordall
      */
     coordAll(layer: Feature | Features | GeometryCollection | GeometryObject): Array<Array<number>>
 
     /**
-     * http://turfjs.org/docs/#geomEach
+     * http://turfjs.org/docs/#geomeach
      */
     geomEach(layer: Point | Points, callback: (geom: GeoJSON.Point) => void): void;
     geomEach(layer: LineString | LineStrings, callback: (geom: GeoJSON.LineString) => void): void;
