@@ -13,7 +13,7 @@
     "index.d.ts"
   ],
   "scripts": {
-    "test": "node test.js",
+    "test": "npm run build && node test.js",
     "build": "rollup -c rollup.config.js"
   },
   "repository": {
