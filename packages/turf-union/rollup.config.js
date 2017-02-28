@@ -7,7 +7,6 @@ export default {
         nodeResolve({})
     ],
     targets: [
-        {dest: pkg['main'], format: 'cjs'},
-        {dest: pkg['browser'], format: 'umd'}
+        {dest: pkg['main'], format: 'cjs'}
     ]
 };

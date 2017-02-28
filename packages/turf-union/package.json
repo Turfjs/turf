@@ -3,12 +3,10 @@
   "version": "3.10.0",
   "description": "find the union of geographic features",
   "main": "index.js",
-  "browser": "index.browser.js",
   "jsnext:main": "index.es6.js",
   "types": "index.d.ts",
   "files": [
     "index.js",
-    "index.browser.js",
     "index.es6.js",
     "index.d.ts"
   ],
