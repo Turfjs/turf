@@ -22,25 +22,24 @@ const fixtures = fs.readdirSync(directories.in).map(folder => {
 
 test('turf-slice', t => {
     for (const {folder, polygon, linestring} of fixtures) {
+        console.log('processing:', folder);
         // Color Line
         linestring.properties['stroke'] = '#f0f';
         linestring.properties['stroke-width'] = 6;
 
         // Slice
         const sliced = slice(polygon, linestring);
-        const results = featureCollection([]);
-        sliced.features.forEach(feature => results.features.push(feature));
-        results.features.push(linestring);
+        const debug = slice(polygon, linestring, true);
 
         // Save Results
         mkdirp.sync(path.join(directories.out, folder));
         if (process.env.REGEN) {
-            write.sync(path.join(directories.out, folder, 'results.geojson'), results);
-            write.sync(path.join(directories.out, folder, 'sliced.geojson'), sliced);
+            write.sync(path.join(directories.out, folder, 'debug.geojson'), debug);
+            write.sync(path.join(directories.out, folder, 'results.geojson'), sliced);
         }
 
         // Tests
-        t.deepEquals(sliced, load.sync(path.join(directories.out, folder, 'sliced.geojson')));
+        t.deepEquals(sliced, load.sync(path.join(directories.out, folder, 'results.geojson')), folder);
     }
     t.end();
 });

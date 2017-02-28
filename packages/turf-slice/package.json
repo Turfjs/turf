@@ -1,5 +1,5 @@
 {
-  "name": "@turf/slice",
+  "name": "@turf/polygon-slice",
   "version": "3.11.0",
   "description": "slice a polygon based on a linestring",
   "main": "index.js",
@@ -41,6 +41,10 @@
   },
   "dependencies": {
     "@turf/helpers": "^3.7.5",
+    "@turf/inside": "^3.10.3",
+    "@turf/line-slice": "^3.10.3",
+    "@turf/meta": "^3.10.0",
+    "@turf/point-on-line": "^3.10.3",
     "polyk": "^0.24.0"
   }
 }
