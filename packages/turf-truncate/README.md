@@ -1,5 +1,24 @@
 # @turf/truncate
 
+# deepSlice
+
+Recursive Array.prototype.slice()
+
+**Parameters**
+
+-   `items` **[Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)** Array input
+-   `start` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** The beginning of the specified portion of the array.
+-   `end` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** The end of the specified portion of the array.
+
+**Examples**
+
+```javascript
+deepSlice([[10, 20, 30], [40, 50, 60]], 0, 2)
+//=[[10, 20], [40, 50]]
+```
+
+Returns **[Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)** Returns a section of an array.
+
 # truncate
 
 Takes a GeoJSON Feature or FeatureCollection and truncates the precision of the geometry.

@@ -1,5 +1,8 @@
 module.exports = {
   "extends": "mourner",
+  "parserOptions": {
+    "sourceType": "module"
+  },
   "rules": {
     "strict": [0],
     "camelcase": [0],

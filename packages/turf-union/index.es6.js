@@ -3,7 +3,7 @@
 
 // depend on jsts for now https://github.com/bjornharrtell/jsts/blob/master/examples/overlay.html
 
-var jsts = require('jsts');
+import * as io from 'jsts/src/org/locationtech/jts/io';
 
 /**
  * Takes two or more {@link Polygon|polygons} and returns a combined polygon. If the input polygons are not contiguous, this function returns a {@link MultiPolygon} feature.
@@ -55,15 +55,15 @@ var jsts = require('jsts');
  *
  * //=union
  */
-module.exports = function () {
-    var reader = new jsts.io.GeoJSONReader();
+export default function () {
+    var reader = new io.GeoJSONReader();
     var result = reader.read(JSON.stringify(arguments[0].geometry));
 
     for (var i = 1; i < arguments.length; i++) {
         result = result.union(reader.read(JSON.stringify(arguments[i].geometry)));
     }
 
-    var writer = new jsts.io.GeoJSONWriter();
+    var writer = new io.GeoJSONWriter();
     result = writer.write(result);
 
     return {
@@ -71,4 +71,4 @@ module.exports = function () {
         geometry: result,
         properties: arguments[0].properties
     };
-};
+}
