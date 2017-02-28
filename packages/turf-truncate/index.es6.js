@@ -61,6 +61,7 @@ function toFix(array, precision) {
  * Recursive Array.prototype.slice()
  * https://github.com/DenisCarriere/deep-slice
  *
+ * @private
  * @param {Array} items Array input
  * @param {number} start The beginning of the specified portion of the array.
  * @param {number} end The end of the specified portion of the array.
