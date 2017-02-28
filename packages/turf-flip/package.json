@@ -1,6 +1,6 @@
 {
   "name": "@turf/flip",
-  "version": "3.10.3",
+  "version": "3.10.4",
   "description": "turf flip module",
   "main": "index.js",
   "scripts": {
@@ -28,7 +28,7 @@
     "@turf/helpers": "^3.10.3"
   },
   "dependencies": {
-    "@turf/meta": "^3.10.0"
+    "@turf/meta": "^3.10.4"
   },
   "types": "index.d.ts"
 }
