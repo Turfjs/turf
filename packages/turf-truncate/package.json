@@ -12,7 +12,7 @@
   ],
   "scripts": {
     "test": "npm run rollup && node test.js",
-    "rollup": "rollup -c rollup.config.js"
+    "pretest": "rollup -c rollup.config.js"
   },
   "repository": {
     "type": "git",

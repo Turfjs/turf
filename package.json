@@ -3,7 +3,7 @@
   "version": "3.0.0",
   "description": "a node.js library for performing geospatial operations with geojson",
   "scripts": {
-    "test": "npm run lint && lerna run rollup && lerna bootstrap && lerna run test && npm run types",
+    "test": "npm run lint && lerna bootstrap && lerna run test && npm run types",
     "lint": "eslint packages",
     "types": "tsc",
     "prepublish": "node ./scripts/generate-readmes"
@@ -53,6 +53,7 @@
     "eslint": "^2.0.0",
     "eslint-config-mourner": "^2.0.0",
     "lerna": "2.0.0-beta.34",
+    "rollup": "^0.41.4",
     "typescript": "^2.2.1",
     "uglify-js": "~2.4.16"
   }
