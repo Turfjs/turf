@@ -4,7 +4,7 @@
 * https://github.com/RaumZeit/MarchingSquares.js
 */
 
-var MarchingSquaresJS = (function (my) {
+(function (global) {
 
   var defaultSettings = {
     successCallback:  null,
@@ -12,17 +12,21 @@ var MarchingSquaresJS = (function (my) {
     verbose:          false,
     polygons:         false
   };
-
+    
+  var MarchingSquaresJS = {
+    IsoBands: IsoBands
+  };
+  
   var settings = {};
-
-  /*
-    Compute isobands(s) of a scalar 2D field given a certain
-    threshold and a bandwidth by applying the Marching Squares
-    Algorithm. The function returns a list of path coordinates
-    either for individual polygons within each grid cell, or the
-    outline of connected polygons.
-  */
-  my.IsoBands = function(data, minV, bandwidth, options){
+    
+    /*
+      Compute isobands(s) of a scalar 2D field given a certain
+      threshold and a bandwidth by applying the Marching Squares
+      Algorithm. The function returns a list of path coordinates
+      either for individual polygons within each grid cell, or the
+      outline of connected polygons.
+    */
+  function IsoBands(data, minV, bandwidth, options){
     /* process options */
     options = options ? options : {};
 
@@ -39,20 +43,18 @@ var MarchingSquaresJS = (function (my) {
     if(settings.verbose)
       console.log("computing isobands for [" + minV + ":" + (minV + bandwidth) + "]");
 
-    grid = computeBandGrid(data, minV, bandwidth);
-
-    if(settings.verbose){
-      if(settings.polygons){
-        console.log("returning single polygons for each grid cell");
-      } else {
-        console.log("returning polygon paths for entire data grid");
-      }
-    }
+    var grid = computeBandGrid(data, minV, bandwidth);
 
     var ret;
     if(settings.polygons){
+      if (settings.verbose) {
+        console.log("returning single polygons for each grid cell");
+      }
       ret = BandGrid2Areas(grid);
     } else {
+      if (settings.verbose) {
+        console.log("returning polygon paths for entire data grid");
+      }
       ret = BandGrid2AreaPaths(grid);
     }
 
@@ -60,7 +62,7 @@ var MarchingSquaresJS = (function (my) {
       settings.successCallback(ret);
 
     return ret;
-  };
+  }
 
   /*
     Thats all for the public interface, below follows the actual
@@ -2048,7 +2050,7 @@ var MarchingSquaresJS = (function (my) {
 
   function BandGrid2AreaPaths(grid){
     var areas = [];
-    var area_idx = 0;
+    // var area_idx = 0;
     var rows = grid.rows;
     var cols = grid.cols;
     var currentPolygon = [];
@@ -2057,13 +2059,13 @@ var MarchingSquaresJS = (function (my) {
       for(var i = 0; i < cols; i++){
         if((typeof grid.cells[j][i] !== 'undefined') && (grid.cells[j][i].edges.length > 0)){
           /* trace back polygon path starting from this cell */
-          var o = 0,
-              x = i,
-              y = j;
+          // var o = 0,
+          //     x = i,
+          //     y = j;
 
           var cell = grid.cells[j][i];
           /* get start coordinates */
-          var cval = cell.cval;
+          // var cval = cell.cval;
 
           var prev  = getStartXY(cell),
               next  = null,
@@ -2142,8 +2144,8 @@ var MarchingSquaresJS = (function (my) {
     var p = i + d_x,
         q = j + d_y;
     var path = [];
-    var rows = grid.rows;
-    var cols = grid.cols;
+    // var rows = grid.rows;
+    // var cols = grid.cols;
     var closed = false;
 
     while(!closed){
@@ -2881,12 +2883,13 @@ var MarchingSquaresJS = (function (my) {
   function BandGrid2Areas(grid){
     var areas = [];
     var area_idx = 0;
-    var rows = grid.rows;
-    var cols = grid.cols;
+    // var rows = grid.rows;
+    // var cols = grid.cols;
 
     grid.cells.forEach(function(g, j){
       g.forEach(function(gg, i){
         if(typeof gg !== 'undefined'){
+          // bug
           var a = polygon_table[gg.cval](gg);
           if((typeof a === 'object') && isArray(a)){
             if((typeof a[0] === 'object') && isArray(a[0])){
@@ -2919,10 +2922,16 @@ var MarchingSquaresJS = (function (my) {
     return areas;
   }
 
-  if (typeof define === "function" && define.amd) define(my);
+  // if (typeof define === "function" && define.amd) {
+  //   define(MarchingSquaresJS);
+  // }
+    
+  if (typeof module !== 'undefined') {
+    module.exports = MarchingSquaresJS;
+  } else {
+    global.MarchingSquaresJS = MarchingSquaresJS;
+  }
+    
+}(this));
 
-  return my;
-}(MarchingSquaresJS || {}));
-
-module.exports = MarchingSquaresJS;
 

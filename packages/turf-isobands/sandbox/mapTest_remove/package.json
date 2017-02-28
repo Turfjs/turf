@@ -1,0 +1,18 @@
+{
+  "name": "isobandhtmltest",
+  "version": "0.0.0",
+  "private": true,
+  "description": "isobandHtmlTest",
+  "main": "server.js",
+  "dependencies": {
+    "express": "^4.13.3",
+    "@turf/area": "^3.7.0",
+    "@turf/explode": "^3.7.0",
+    "@turf/helpers": "^3.6.3",
+    "@turf/inside": "^3.7.0"
+  },
+  "scripts": {
+    "start": "node server.js",
+    "test": "echo \"no tests yet\" && exit 0"
+  }
+}

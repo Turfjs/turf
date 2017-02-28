@@ -1,0 +1,18 @@
+# Logs
+logs
+*.log
+
+# Runtime data
+pids
+*.pid
+*.seed
+
+# Coverage tools
+lib-cov
+coverage
+
+# Dependency directory
+node_modules
+
+# Generated css
+public/styles/*.css

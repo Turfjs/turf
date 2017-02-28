@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div id="isobands" style="height: 400px; width: 400px;"></div>
+<br>
+<div id="isocontour" style="height: 400px; width: 400px;"></div>
+
+<script src="d3.min.js"></script>
+<script src="drawLines.js"></script>
+<!--<script src="./marchingsquares-isocontours.js"></script>-->
+<!--<script src="./marchingsquares-isobands.js"></script>-->
+<!--<script src="./require.js"></script>-->
+
+<script>
+
+    var grid = 'ciao';
+    var  bandsZ = [0, 4.5, 9, 13.5, 18];
+//    var  bandsZ = [9,9];
+    var data = [
+        [18, 13, 10, 9, 10, 13, 18],
+        [13, 8, 5, 4, 5, 8, 13],
+        [10, 5, 2, 1, 2, 5, 10],
+        [9, 4, 1, 12, 1, 4, 9],
+        [10, 5, 2, 1, 2, 5, 10],
+        [13, 8, 5, 4, 5, 8, 13],
+        [18, 13, 10, 9, 10, 13, 18],
+        [18, 13, 10, 9, 10, 13, 18]
+    ];
+    data = d3.transpose(data);
+    var xs = d3.range(0, data[0].length);
+    var ys = d3.range(0, data.length);
+
+    var isoBands = [];
+    for (var i = 1; i < bandsZ.length; i++) {
+        var lowerBand = bandsZ[i - 1];
+        var upperBand = bandsZ[i];
+        var band = MarchingSquaresJS.IsoBands(data, lowerBand, upperBand - lowerBand, {verbose: true,polygons: false});
+//        var band = MarchingSquaresJS.IsoBands(data, lowerBand, upperBand - lowerBand);
+        isoBands.push({"coords": band, "level": i, "val": bandsZ[i]});
+    }
+
+//    var contsZ = [0, 4.5, 9, 13.5, 18];
+//    var isoContour = [];
+//    var contour = MarchingSquaresJS.IsoContours(data, contsZ[3]);
+//    isoContour.push({"coords": contour, "val": contsZ[3]});
+
+
+//    console.log('isoBands', JSON.stringify(isoBands));
+//    console.log('isoContour', JSON.stringify(isoContour));
+
+    drawLines('#isobands', isoBands, bandsZ);
+//    drawLines('#isocontour', isoContour, contsZ);
+
+    console.log('grid:', grid);
+</script>
+
+</body>
+</html>
