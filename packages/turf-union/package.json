@@ -32,7 +32,6 @@
     "benchmark": "^1.0.0",
     "glob": "~4.3.5",
     "rollup": "^0.41.4",
-    "rollup-plugin-node-resolve": "^2.0.0",
     "tape": "~3.5.0"
   },
   "dependencies": {

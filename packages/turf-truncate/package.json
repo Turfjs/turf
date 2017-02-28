@@ -12,8 +12,7 @@
   ],
   "scripts": {
     "test": "npm run build && node test.js",
-    "build": "rollup -c rollup.config.js",
-    "lint": "eslint index.es6.js"
+    "build": "rollup -c rollup.config.js"
   },
   "repository": {
     "type": "git",
@@ -34,8 +33,6 @@
   "dependencies": {},
   "devDependencies": {
     "benchmark": "^1.0.0",
-    "eslint": "^3.14.1",
-    "eslint-config-mourner": "^2.0.1",
     "load-json-file": "^2.0.0",
     "rollup": "^0.41.4",
     "tape": "^3.5.0",

@@ -2,7 +2,6 @@ const pkg = require('./package.json');
 
 export default {
     entry: 'index.es6.js',
-    targets: [
-        {dest: pkg['main'], format: 'cjs'}
-    ]
+    format: 'cjs',
+    dest: pkg['main']
 };
