@@ -2,8 +2,7 @@
 //must be array of polygons
 
 // depend on jsts for now https://github.com/bjornharrtell/jsts/blob/master/examples/overlay.html
-
-import * as io from 'jsts/src/org/locationtech/jts/io';
+import {io} from 'jsts/src/jsts';
 
 /**
  * Takes two or more {@link Polygon|polygons} and returns a combined polygon. If the input polygons are not contiguous, this function returns a {@link MultiPolygon} feature.
