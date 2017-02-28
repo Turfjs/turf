@@ -11,8 +11,8 @@
     "index.d.ts"
   ],
   "scripts": {
-    "test": "npm run build && node test.js",
-    "build": "rollup -c rollup.config.js"
+    "test": "npm run rollup && node test.js",
+    "rollup": "rollup -c rollup.config.js"
   },
   "repository": {
     "type": "git",

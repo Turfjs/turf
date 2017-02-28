@@ -26,6 +26,8 @@
     "benchmark": "^1.0.0",
     "tape": "^3.5.0"
   },
-  "dependencies": {},
+  "dependencies": {
+    "@types/geojson": "^1.0.0"
+  },
   "types": "index.d.ts"
 }
