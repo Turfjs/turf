@@ -1,6 +1,6 @@
-const pkg = require('./package.json');
+var pkg = require('./package.json');
 
-export default {
+module.exports = {
     entry: 'index.es6.js',
     format: 'cjs',
     dest: pkg['main']
