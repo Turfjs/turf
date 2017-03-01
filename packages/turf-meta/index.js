@@ -54,24 +54,24 @@ function coordEach(layer, callback, excludeWrapCoord) {
 
             if (geometry.type === 'Point') {
                 callback(coords, index);
-                index++
+                index++;
             } else if (geometry.type === 'LineString' || geometry.type === 'MultiPoint') {
                 for (j = 0; j < coords.length; j++) {
                     callback(coords[j], index);
-                    index++
+                    index++;
                 }
             } else if (geometry.type === 'Polygon' || geometry.type === 'MultiLineString') {
                 for (j = 0; j < coords.length; j++)
                     for (k = 0; k < coords[j].length - wrapShrink; k++) {
                         callback(coords[j][k], index);
-                        index++
+                        index++;
                     }
             } else if (geometry.type === 'MultiPolygon') {
                 for (j = 0; j < coords.length; j++)
                     for (k = 0; k < coords[j].length; k++)
                         for (l = 0; l < coords[j][k].length - wrapShrink; l++) {
                             callback(coords[j][k][l], index);
-                            index++
+                            index++;
                         }
             } else if (geometry.type === 'GeometryCollection') {
                 for (j = 0; j < geometry.geometries.length; j++)

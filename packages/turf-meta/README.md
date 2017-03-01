@@ -8,7 +8,7 @@ Array.forEach.
 **Parameters**
 
 -   `layer` **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)** any GeoJSON object
--   `callback` **[Function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function)** a method that takes (value)
+-   `callback` **[Function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function)** a method that takes (coords, index)
 -   `excludeWrapCoord` **\[[boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)]** whether or not to include
     the final coordinate of LinearRings that wraps the ring in its iteration.
 
@@ -16,8 +16,9 @@ Array.forEach.
 
 ```javascript
 var point = { type: 'Point', coordinates: [0, 0] };
-turfMeta.coordEach(point, function(coords) {
+turfMeta.coordEach(point, function(coords, index) {
   // coords is equal to [0, 0]
+  // index is equal to 0
 });
 ```
 
@@ -30,13 +31,12 @@ the reduction, so an array of all coordinates is unnecessary.
 **Parameters**
 
 -   `layer` **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)** any GeoJSON object
--   `callback` **[Function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function)** a method that takes (memo, value) and returns
-    a new memo
--   `memo` **Any** the starting value of memo: can be any type.
+-   `callback` **[Function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function)** a method that takes (memo, coords, index)
+-   `memo` **\[Any]** Value to use as the first argument to the first call of the callback.
 -   `excludeWrapCoord` **\[[boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)]** whether or not to include
     the final coordinate of LinearRings that wraps the ring in its iteration.
 
-Returns **Any** combined value
+Returns **Any** The value that results from the reduction.
 
 # propEach
 
