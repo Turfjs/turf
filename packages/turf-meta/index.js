@@ -171,7 +171,7 @@ module.exports.propReduce = propReduce;
  *
  * @name featureEach
  * @param {Object} layer any GeoJSON object
- * @param {Function} callback a method that takes (value)
+ * @param {Function} callback a method that takes (feature, index)
  * @example
  * var feature = { type: 'Feature', geometry: null, properties: {} };
  * turfMeta.featureEach(feature, function(feature) {
