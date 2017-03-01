@@ -84,7 +84,7 @@ module.exports = function polygonSlice(polygon, linestring, debug) {
                 startPolySegment,
                 endPolySegment,
                 startIntersect,
-                endIntersect,
+                endIntersect
             ]);
         }
         return helpers.featureCollection([polygon]);
@@ -120,7 +120,7 @@ module.exports = function polygonSlice(polygon, linestring, debug) {
             startPolySegment,
             endPolySegment,
             startIntersect,
-            endIntersect,
+            endIntersect
         ]);
     }
     return helpers.featureCollection([merged1, merged2]);
