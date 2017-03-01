@@ -21,18 +21,18 @@ interface MetaStatic {
     /**
      * http://turfjs.org/docs/#coordeach
      */
-    coordEach(layer: Points | Point | MultiPoint | MultiPoints, callback: (coords: Array<number>) => void, excludeWrapCoord?: boolean): void;
-    coordEach(layer: LineStrings | LineString | MultiLineString | MultiLineStrings, callback: (coords: Array<Array<number>>) => void, excludeWrapCoord?: boolean): void;
-    coordEach(layer: Polygons | Polygon | MultiPolygons | MultiPolygon, callback: (coords: Array<Array<Array<number>>>) => void, excludeWrapCoord?: boolean): void;
-    coordEach(layer: GeometryCollection | GeometryObject, callback: (coords: Array<any>) => void, excludeWrapCoord?: boolean): void;
+    coordEach(layer: Points | Point | MultiPoint | MultiPoints, callback: (coords: Array<number>, index: number) => void, excludeWrapCoord?: boolean): void;
+    coordEach(layer: LineStrings | LineString | MultiLineString | MultiLineStrings, callback: (coords: Array<Array<number>>, index: number) => void, excludeWrapCoord?: boolean): void;
+    coordEach(layer: Polygons | Polygon | MultiPolygons | MultiPolygon, callback: (coords: Array<Array<Array<number>>>, index: number) => void, excludeWrapCoord?: boolean): void;
+    coordEach(layer: GeometryCollection | GeometryObject, callback: (coords: Array<any>, index: number) => void, excludeWrapCoord?: boolean): void;
 
     /**
      * http://turfjs.org/docs/#coordeach
      */
-    coordReduce(layer: Points | Point | MultiPoint | MultiPoints, callback: (memo: any, coords: Array<number>) => void, memo: any, excludeWrapCoord?: boolean): any;
-    coordReduce(layer: LineStrings | LineString | MultiLineString | MultiLineStrings, callback: (memo: any, coords: Array<Array<number>>) => void, memo: any, excludeWrapCoord?: boolean): any;
-    coordReduce(layer: Polygons | Polygon | MultiPolygons | MultiPolygon, callback: (memo: any, coords: Array<Array<Array<number>>>) => void, memo: any, excludeWrapCoord?: boolean): any;
-    coordReduce(layer: GeometryCollection | GeometryObject, callback: (memo: any, coords: Array<any>) => void, memo: any, excludeWrapCoord?: boolean): any;
+    coordReduce(layer: Points | Point | MultiPoint | MultiPoints, callback: (previousValue: any, currentCoords: Array<number>, index: number) => void, initialValue: any, excludeWrapCoord?: boolean): any;
+    coordReduce(layer: LineStrings | LineString | MultiLineString | MultiLineStrings, callback: (previousValue: any, currentCoords: Array<Array<number>>, index: number) => void, initialValue: any, excludeWrapCoord?: boolean): any;
+    coordReduce(layer: Polygons | Polygon | MultiPolygons | MultiPolygon, callback: (previousValue: any, currentCoords: Array<Array<Array<number>>>, index: number) => void, initialValue: any, excludeWrapCoord?: boolean): any;
+    coordReduce(layer: GeometryCollection | GeometryObject, callback: (previousValue: any, currentCoords: Array<any>, index: number) => void, initialValue: any, excludeWrapCoord?: boolean): any;
 
     /**
      * http://turfjs.org/docs/#propeach
@@ -47,13 +47,13 @@ interface MetaStatic {
     /**
      * http://turfjs.org/docs/#featureeach
      */
-    featureEach(layer: Point | Points, callback: (feature: Point) => void): void;
-    featureEach(layer: LineString | LineStrings, callback: (feature: LineString) => void): void;
-    featureEach(layer: Polygon | Polygons, callback: (feature: Polygon) => void): void;
-    featureEach(layer: MultiPoint | MultiPoints, callback: (feature: MultiPoint) => void): void;
-    featureEach(layer: MultiLineString | MultiLineStrings, callback: (feature: MultiLineString) => void): void;
-    featureEach(layer: MultiPolygon | MultiPolygons, callback: (feature: MultiPolygon) => void): void;
-    featureEach(layer: Feature | Features, callback: (feature: Feature) => void): void;
+    featureEach(layer: Point | Points, callback: (feature: Point, index: number) => void): void;
+    featureEach(layer: LineString | LineStrings, callback: (feature: LineString, index: number) => void): void;
+    featureEach(layer: Polygon | Polygons, callback: (feature: Polygon, index: number) => void): void;
+    featureEach(layer: MultiPoint | MultiPoints, callback: (feature: MultiPoint, index: number) => void): void;
+    featureEach(layer: MultiLineString | MultiLineStrings, callback: (feature: MultiLineString, index: number) => void): void;
+    featureEach(layer: MultiPolygon | MultiPolygons, callback: (feature: MultiPolygon, index: number) => void): void;
+    featureEach(layer: Feature | Features, callback: (feature: Feature, index: number) => void): void;
 
     /**
      * http://turfjs.org/docs/#coordall
