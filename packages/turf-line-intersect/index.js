@@ -45,7 +45,5 @@
  * var points = turf.lineIntersect(line1, line2);
  * //= points
  */
-var index_es6 = function (line1, line2) {
-};
-
-module.exports = index_es6;
+export default function (line1, line2) {
+}
