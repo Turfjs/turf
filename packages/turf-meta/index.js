@@ -4,19 +4,21 @@
  *
  * @name coordEach
  * @param {Object} layer any GeoJSON object
- * @param {Function} callback a method that takes (value)
+ * @param {Function} callback a method that takes (coords, index)
  * @param {boolean=} excludeWrapCoord whether or not to include
  * the final coordinate of LinearRings that wraps the ring in its iteration.
  * @example
  * var point = { type: 'Point', coordinates: [0, 0] };
- * turfMeta.coordEach(point, function(coords) {
+ * turfMeta.coordEach(point, function(coords, index) {
  *   // coords is equal to [0, 0]
+ *   // index is equal to 0
  * });
  */
 function coordEach(layer, callback, excludeWrapCoord) {
     var i, j, k, g, l, geometry, stopG, coords,
         geometryMaybeCollection,
         wrapShrink = 0,
+        index = 0,
         isGeometryCollection,
         isFeatureCollection = layer.type === 'FeatureCollection',
         isFeature = layer.type === 'Feature',
@@ -51,18 +53,26 @@ function coordEach(layer, callback, excludeWrapCoord) {
                 1 : 0;
 
             if (geometry.type === 'Point') {
-                callback(coords);
+                callback(coords, index);
+                index++
             } else if (geometry.type === 'LineString' || geometry.type === 'MultiPoint') {
-                for (j = 0; j < coords.length; j++) callback(coords[j]);
+                for (j = 0; j < coords.length; j++) {
+                    callback(coords[j], index);
+                    index++
+                }
             } else if (geometry.type === 'Polygon' || geometry.type === 'MultiLineString') {
                 for (j = 0; j < coords.length; j++)
-                    for (k = 0; k < coords[j].length - wrapShrink; k++)
-                        callback(coords[j][k]);
+                    for (k = 0; k < coords[j].length - wrapShrink; k++) {
+                        callback(coords[j][k], index);
+                        index++
+                    }
             } else if (geometry.type === 'MultiPolygon') {
                 for (j = 0; j < coords.length; j++)
                     for (k = 0; k < coords[j].length; k++)
-                        for (l = 0; l < coords[j][k].length - wrapShrink; l++)
-                            callback(coords[j][k][l]);
+                        for (l = 0; l < coords[j][k].length - wrapShrink; l++) {
+                            callback(coords[j][k][l], index);
+                            index++
+                        }
             } else if (geometry.type === 'GeometryCollection') {
                 for (j = 0; j < geometry.geometries.length; j++)
                     coordEach(geometry.geometries[j], callback, excludeWrapCoord);
@@ -81,16 +91,15 @@ module.exports.coordEach = coordEach;
  *
  * @name coordReduce
  * @param {Object} layer any GeoJSON object
- * @param {Function} callback a method that takes (memo, value) and returns
- * a new memo
- * @param {*} memo the starting value of memo: can be any type.
+ * @param {Function} callback a method that takes (memo, coords, index)
+ * @param {*} [memo] Value to use as the first argument to the first call of the callback.
  * @param {boolean=} excludeWrapCoord whether or not to include
  * the final coordinate of LinearRings that wraps the ring in its iteration.
- * @returns {*} combined value
+ * @returns {*} The value that results from the reduction.
  */
 function coordReduce(layer, callback, memo, excludeWrapCoord) {
-    coordEach(layer, function (coord) {
-        memo = callback(memo, coord);
+    coordEach(layer, function (coords, index) {
+        memo = callback(memo, coords, index);
     }, excludeWrapCoord);
     return memo;
 }

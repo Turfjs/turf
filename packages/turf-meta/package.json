@@ -14,6 +14,7 @@
   "author": "Turf Authors",
   "license": "MIT",
   "devDependencies": {
+    "@turf/helpers": "^3.10.3",
     "@turf/random": "^3.10.0",
     "eslint": "^3.14.1",
     "eslint-config-mourner": "^2.0.1",
