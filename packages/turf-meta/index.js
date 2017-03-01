@@ -299,16 +299,3 @@ function geomEach(layer, callback) {
     }
 }
 module.exports.geomEach = geomEach;
-
-if (module.parent === null) {
-    var lineString = require('@turf/helpers').lineString;
-
-    var index = [];
-    var line = lineString([[126, -11], [129, -21], [135, -31]]);
-    coordReduce(line, function (previousCoords, currentCoords, currentIndex) {
-        index.push(currentIndex);
-        console.log(previousCoords, currentCoords);
-        return currentCoords;
-    });
-    console.log(index);
-}
