@@ -257,19 +257,19 @@ function polygonToLineString(polygon, position) {
 /**
  * Find a point that intersects two linestring
  *
- * @param {Feature<LineString>} source GeoJSON LineString - Point must be on this line (Must only have 2 segments)
- * @param {Feature<LineString>} target GeoJSON LineString (Must only have 2 segments)
+ * @param {Feature<LineString>} line1 GeoJSON LineString - Point must be on this line (Must only have 2 segments)
+ * @param {Feature<LineString>} line2 GeoJSON LineString (Must only have 2 segments)
  * @returns {Feature<Point>} intersecting GeoJSON Point
  */
-function intersects(source, target) {
-    var x1 = source.geometry.coordinates[0][0];
-    var y1 = source.geometry.coordinates[0][1];
-    var x2 = source.geometry.coordinates[1][0];
-    var y2 = source.geometry.coordinates[1][1];
-    var x3 = target.geometry.coordinates[0][0];
-    var y3 = target.geometry.coordinates[0][1];
-    var x4 = target.geometry.coordinates[1][0];
-    var y4 = target.geometry.coordinates[1][1];
+function intersects(line1, line2) {
+    var x1 = line1.geometry.coordinates[0][0];
+    var y1 = line1.geometry.coordinates[0][1];
+    var x2 = line1.geometry.coordinates[1][0];
+    var y2 = line1.geometry.coordinates[1][1];
+    var x3 = line2.geometry.coordinates[0][0];
+    var y3 = line2.geometry.coordinates[0][1];
+    var x4 = line2.geometry.coordinates[1][0];
+    var y4 = line2.geometry.coordinates[1][1];
     var denom = ((y4 - y3) * (x2 - x1)) - ((x4 - x3) * (y2 - y1));
     var numeA = ((x4 - x3) * (y1 - y3)) - ((y4 - y3) * (x1 - x3));
     var numeB = ((x2 - x1) * (y1 - y3)) - ((y2 - y1) * (x1 - x3));
