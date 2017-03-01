@@ -85,23 +85,51 @@ function coordEach(layer, callback, excludeWrapCoord) {
 module.exports.coordEach = coordEach;
 
 /**
+ * Callback for coordReduce
+ *
+ * The first time the callback function is called, the values provided as arguments depend
+ * on whether the reduce method has an initialValue argument.
+ *
+ * If an initialValue is provided to the reduce method:
+ *  - The previousValue argument is initialValue.
+ *  - The currentValue argument is the value of the first element present in the array.
+ *
+ * If an initialValue is not provided:
+ *  - The previousValue argument is the value of the first element present in the array.
+ *  - The currentValue argument is the value of the second element present in the array.
+ *
+ * @private
+ * @callback coordReduceCallback
+ * @param {*} accumulator The accumulated value previously returned in the last invocation
+ * of the callback, or initialValue, if supplied.
+ * @param {[number, number]} currentCoords The current coordinate being processed.
+ * @param {number} currentIndex The index of the current element being processed in the
+ * array.Starts at index 0, if an initialValue is provided, and at index 1 otherwise.
+ */
+
+/**
  * Reduce coordinates in any GeoJSON object into a single value,
  * similar to how Array.reduce works. However, in this case we lazily run
  * the reduction, so an array of all coordinates is unnecessary.
  *
  * @name coordReduce
  * @param {Object} layer any GeoJSON object
- * @param {Function} callback a method that takes (memo, coords, index)
- * @param {*} [memo] Value to use as the first argument to the first call of the callback.
+ * @param {coordReduceCallback} callback a method that takes (previousValue, currentCoords, currentIndex)
+ * @param {*} [initialValue] Value to use as the first argument to the first call of the callback.
  * @param {boolean=} excludeWrapCoord whether or not to include
  * the final coordinate of LinearRings that wraps the ring in its iteration.
  * @returns {*} The value that results from the reduction.
  */
-function coordReduce(layer, callback, memo, excludeWrapCoord) {
-    coordEach(layer, function (coords, index) {
-        memo = callback(memo, coords, index);
+function coordReduce(layer, callback, initialValue, excludeWrapCoord) {
+    var previousValue = initialValue;
+    coordEach(layer, function (currentCoords, currentIndex) {
+        if (currentIndex === 0 && initialValue === undefined) {
+            previousValue = currentCoords;
+        } else {
+            previousValue = callback(previousValue, currentCoords, currentIndex);
+        }
     }, excludeWrapCoord);
-    return memo;
+    return previousValue;
 }
 module.exports.coordReduce = coordReduce;
 
@@ -271,3 +299,16 @@ function geomEach(layer, callback) {
     }
 }
 module.exports.geomEach = geomEach;
+
+if (module.parent === null) {
+    var lineString = require('@turf/helpers').lineString;
+
+    var index = [];
+    var line = lineString([[126, -11], [129, -21], [135, -31]]);
+    coordReduce(line, function (previousCoords, currentCoords, currentIndex) {
+        index.push(currentIndex);
+        console.log(previousCoords, currentCoords);
+        return currentCoords;
+    });
+    console.log(index);
+}

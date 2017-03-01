@@ -31,8 +31,8 @@ the reduction, so an array of all coordinates is unnecessary.
 **Parameters**
 
 -   `layer` **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)** any GeoJSON object
--   `callback` **[Function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function)** a method that takes (memo, coords, index)
--   `memo` **\[Any]** Value to use as the first argument to the first call of the callback.
+-   `callback` **coordReduceCallback** a method that takes (previousValue, currentCoords, currentIndex)
+-   `initialValue` **\[Any]** Value to use as the first argument to the first call of the callback.
 -   `excludeWrapCoord` **\[[boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)]** whether or not to include
     the final coordinate of LinearRings that wraps the ring in its iteration.
 

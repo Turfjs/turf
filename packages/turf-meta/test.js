@@ -150,15 +150,84 @@ featureAndCollection(geometryCollection).forEach(function (input) {
     });
 });
 
-test('coordReduce', function (t) {
+test('coordReduce#initialValue', function (t) {
     var lastIndex;
     var line = lineString([[126, -11], [129, -21], [135, -31]]);
-    var sum = meta.coordReduce(line, function (memo, current, index) {
-        lastIndex = index;
-        return memo + current[0];
+    var sum = meta.coordReduce(line, function (previousValue, currentCoords, currentIndex) {
+        lastIndex = currentIndex;
+        return previousValue + currentCoords[0];
     }, 0);
     t.equal(lastIndex, 2);
     t.equal(sum, 390);
+    t.end();
+});
+
+test('Array.reduce()#initialValue', function (t) {
+    var lastIndex;
+    var line = [[126, -11], [129, -21], [135, -31]];
+    var sum = line.reduce(function (previousValue, currentCoords, currentIndex) {
+        lastIndex = currentIndex;
+        return previousValue + currentCoords[0];
+    }, 0);
+    t.equal(lastIndex, 2);
+    t.equal(sum, 390);
+    t.end();
+});
+
+test('coordReduce#previous-coordinates', function (t) {
+    var lastIndex;
+    var coords = [];
+    var line = lineString([[126, -11], [129, -21], [135, -31]]);
+    meta.coordReduce(line, function (previousCoords, currentCoords, currentIndex) {
+        lastIndex = currentIndex;
+        coords.push(currentCoords);
+        return currentCoords;
+    });
+    t.equal(lastIndex, 2);
+    t.equal(coords.length, 2);
+    t.end();
+});
+
+test('Array.reduce()#previous-coordinates', function (t) {
+    var lastIndex;
+    var coords = [];
+    var line = [[126, -11], [129, -21], [135, -31]];
+    line.reduce(function (previousCoords, currentCoords, currentIndex) {
+        lastIndex = currentIndex;
+        coords.push(currentCoords);
+        return currentCoords;
+    });
+    t.equal(lastIndex, 2);
+    t.equal(coords.length, 2);
+    t.end();
+});
+
+
+test('coordReduce#previous-coordinates+initialValue', function (t) {
+    var lastIndex;
+    var coords = [];
+    var line = lineString([[126, -11], [129, -21], [135, -31]]);
+    meta.coordReduce(line, function (previousCoords, currentCoords, currentIndex) {
+        lastIndex = currentIndex;
+        coords.push(currentCoords);
+        return currentCoords;
+    }, line.geometry.coordinates[0]);
+    t.equal(lastIndex, 2);
+    t.equal(coords.length, 3);
+    t.end();
+});
+
+test('Array.reduce()#previous-coordinates+initialValue', function (t) {
+    var lastIndex;
+    var coords = [];
+    var line = [[126, -11], [129, -21], [135, -31]];
+    line.reduce(function (previousCoords, currentCoords, currentIndex) {
+        lastIndex = currentIndex;
+        coords.push(currentCoords);
+        return currentCoords;
+    }, line[0]);
+    t.equal(lastIndex, 2);
+    t.equal(coords.length, 3);
     t.end();
 });
 
