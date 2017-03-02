@@ -76,6 +76,7 @@ import * as hexGrid from '@turf/hex-grid';
 import * as idw from '@turf/idw';
 import * as truncate from '@turf/truncate';
 import * as flatten from '@turf/flatten';
+import * as lineIntersect from '@turf/line-intersect';
 
 export {
     isolines,
@@ -147,5 +148,6 @@ export {
     propReduce,
     featureEach,
     coordAll,
-    geomEach
+    geomEach,
+    lineIntersect
 };

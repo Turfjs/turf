@@ -62,6 +62,7 @@ var turf = {
     idw: require('@turf/idw'),
     truncate: require('@turf/truncate'),
     flatten: require('@turf/flatten'),
+    lineIntersect: require('@turf/line-intersect'),
     point: helpers.point,
     polygon: helpers.polygon,
     lineString: helpers.lineString,
