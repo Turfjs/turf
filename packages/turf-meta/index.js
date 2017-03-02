@@ -47,7 +47,7 @@ function coordEach(layer, callback, excludeWrapCoord) {
     var i, j, k, g, l, geometry, stopG, coords,
         geometryMaybeCollection,
         wrapShrink = 0,
-        index = 0,
+        currentIndex = 0,
         isGeometryCollection,
         isFeatureCollection = layer.type === 'FeatureCollection',
         isFeature = layer.type === 'Feature',
@@ -82,25 +82,25 @@ function coordEach(layer, callback, excludeWrapCoord) {
                 1 : 0;
 
             if (geometry.type === 'Point') {
-                callback(coords, index);
-                index++;
+                callback(coords, currentIndex);
+                currentIndex++;
             } else if (geometry.type === 'LineString' || geometry.type === 'MultiPoint') {
                 for (j = 0; j < coords.length; j++) {
-                    callback(coords[j], index);
-                    index++;
+                    callback(coords[j], currentIndex);
+                    currentIndex++;
                 }
             } else if (geometry.type === 'Polygon' || geometry.type === 'MultiLineString') {
                 for (j = 0; j < coords.length; j++)
                     for (k = 0; k < coords[j].length - wrapShrink; k++) {
-                        callback(coords[j][k], index);
-                        index++;
+                        callback(coords[j][k], currentIndex);
+                        currentIndex++;
                     }
             } else if (geometry.type === 'MultiPolygon') {
                 for (j = 0; j < coords.length; j++)
                     for (k = 0; k < coords[j].length; k++)
                         for (l = 0; l < coords[j][k].length - wrapShrink; l++) {
-                            callback(coords[j][k][l], index);
-                            index++;
+                            callback(coords[j][k][l], currentIndex);
+                            currentIndex++;
                         }
             } else if (geometry.type === 'GeometryCollection') {
                 for (j = 0; j < geometry.geometries.length; j++)
@@ -172,6 +172,7 @@ module.exports.coordEach = coordEach;
  *   //=previousValue
  *   //=currentCoords
  *   //=currentIndex
+ *   return currentCoords;
  * });
  */
 function coordReduce(layer, callback, initialValue, excludeWrapCoord) {
@@ -360,8 +361,9 @@ module.exports.propReduce = propReduce;
  *     }
  *   ]
  * };
- * turf.featureEach(features, function (currentFeature) {
+ * turf.featureEach(features, function (currentFeature, currentIndex) {
  *   //=currentFeature
+ *   //=currentIndex
  * });
  */
 function featureEach(layer, callback) {
@@ -493,7 +495,7 @@ module.exports.coordAll = coordAll;
  *
  * @name geomEach
  * @param {Object} layer any GeoJSON object
- * @param {Function} callback a method that takes (geometry)
+ * @param {Function} callback a method that takes (currentGeometry, currentIndex)
  * @example
  * var features = {
  *   "type": "FeatureCollection",
@@ -516,14 +518,16 @@ module.exports.coordAll = coordAll;
  *     }
  *   ]
  * };
- * turf.geomEach(features, function (geometry) {
- *   //=geometry
+ * turf.geomEach(features, function (currentGeometry, currentIndex) {
+ *   //=currentGeometry
+ *   //=currentIndex
  * });
  */
 function geomEach(layer, callback) {
     var i, j, g, geometry, stopG,
         geometryMaybeCollection,
         isGeometryCollection,
+        currentIndex = 0,
         isFeatureCollection = layer.type === 'FeatureCollection',
         isFeature = layer.type === 'Feature',
         stop = isFeatureCollection ? layer.features.length : 1;
@@ -557,10 +561,13 @@ function geomEach(layer, callback) {
                 geometry.type === 'Polygon' ||
                 geometry.type === 'MultiLineString' ||
                 geometry.type === 'MultiPolygon') {
-                callback(geometry);
+                callback(geometry, currentIndex);
+                currentIndex++;
             } else if (geometry.type === 'GeometryCollection') {
-                for (j = 0; j < geometry.geometries.length; j++)
-                    callback(geometry.geometries[j]);
+                for (j = 0; j < geometry.geometries.length; j++) {
+                    callback(geometry.geometries[j], currentIndex);
+                    currentIndex++;
+                }
             } else {
                 throw new Error('Unknown Geometry Type');
             }

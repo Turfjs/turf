@@ -81,6 +81,7 @@ turf.coordReduce(features, function (previousValue, currentCoords, currentIndex)
   //=previousValue
   //=currentCoords
   //=currentIndex
+  return currentCoords;
 });
 ```
 
@@ -205,8 +206,9 @@ var features = {
     }
   ]
 };
-turf.featureEach(features, function (currentFeature) {
+turf.featureEach(features, function (currentFeature, currentIndex) {
   //=currentFeature
+  //=currentIndex
 });
 ```
 
@@ -299,7 +301,7 @@ Iterate over each geometry in any GeoJSON object, similar to Array.forEach()
 **Parameters**
 
 -   `layer` **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)** any GeoJSON object
--   `callback` **[Function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function)** a method that takes (geometry)
+-   `callback` **[Function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function)** a method that takes (currentGeometry, currentIndex)
 
 **Examples**
 
@@ -325,8 +327,9 @@ var features = {
     }
   ]
 };
-turf.geomEach(features, function (geometry) {
-  //=geometry
+turf.geomEach(features, function (currentGeometry, currentIndex) {
+  //=currentGeometry
+  //=currentIndex
 });
 ```
 
