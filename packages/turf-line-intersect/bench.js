@@ -11,13 +11,14 @@ const directories = {
     out: path.join(__dirname, 'test', 'out') + path.sep
 };
 
-const fixtures = fs.readdirSync(directories.in).map(folder => {
+let fixtures = fs.readdirSync(directories.in).map(folder => {
     return {
         folder,
         line1: load.sync(path.join(directories.in, folder, 'line1.geojson')),
         line2: load.sync(path.join(directories.in, folder, 'line2.geojson'))
     };
 });
+// fixtures = fixtures.filter(fixture => { return fixture.folder === 'simple'; });
 
 for (const {folder, line1, line2} of fixtures) {
     suite.add(folder, () => lineIntersect(line1, line2));

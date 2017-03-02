@@ -11,7 +11,7 @@ const directories = {
     out: path.join(__dirname, 'test', 'out') + path.sep
 };
 
-const fixtures = fs.readdirSync(directories.in).map(folder => {
+let fixtures = fs.readdirSync(directories.in).map(folder => {
     return {
         folder,
         line1: load.sync(path.join(directories.in, folder, 'line1.geojson')),
