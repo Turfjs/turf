@@ -77,6 +77,8 @@
 		{
 			"type": "Feature",
 			"properties": {
+				"fill": "#f00",
+				"fill-opacity": 0.3,
 				"stroke": "#f00",
 				"stroke-width": 6
 			},
@@ -97,6 +99,8 @@
 		{
 			"type": "Feature",
 			"properties": {
+				"fill": "#00f",
+				"fill-opacity": 0.3,
 				"stroke": "#00f",
 				"stroke-width": 6
 			},

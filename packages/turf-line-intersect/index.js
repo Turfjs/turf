@@ -8,12 +8,12 @@ var featureEach = require('./turf-meta').featureEach;
 var coordReduce = require('./turf-meta').coordReduce;
 
 /**
- * Takes two GeoJSON LineStrings and returns the intersecting point(s).
+ * Takes any LineString or Polygon GeoJSON and returns the intersecting point(s).
  *
  * @name lineIntersect
- * @param {FeatureCollection|Feature<LineString|MultiLineString>} line1 GeoJSON LineString Feature
- * @param {FeatureCollection|Feature<LineString|MultiLineString>} line2 GeoJSON LineString Feature
- * @returns {FeatureCollection<Point>} point(s) that intersect both lines
+ * @param {Feature<LineString|Polygon>} line1 any LineString or Polygon
+ * @param {Feature<LineString|Polygon>} line2 any LineString or Polygon
+ * @returns {FeatureCollection<Point>} point(s) that intersect both
  * @example
  * var line1 = {
  *   "type": "Feature",
@@ -63,12 +63,16 @@ function lineIntersect(line1, line2) {
 
         // Color line1 as red
         featureEach(line1, function (feature) {
+            feature.properties['fill'] = '#f00';
+            feature.properties['fill-opacity'] = 0.3;
             feature.properties['stroke'] = '#f00';
             feature.properties['stroke-width'] = 6;
             results.push(feature);
         });
         // Color line2 as blue
         featureEach(line2, function (feature) {
+            feature.properties['fill'] = '#00f';
+            feature.properties['fill-opacity'] = 0.3;
             feature.properties['stroke'] = '#00f';
             feature.properties['stroke-width'] = 6;
             results.push(feature);
@@ -147,16 +151,24 @@ function createPolygonsFromTree(tree) {
 function lineTree(line) {
     var tree = rbush();
     var load = [];
+    var multiLine = false;
     // Handle FeatureCollection (assumes they are MultiFeatures)
     featureEach(line, function (multiFeature) {
-        // Support MultiLineString
-        if (multiFeature.geometry && multiFeature.geometry.type === 'MultiLineString') {
-            multiFeature = helpers.featureCollection(flatten(multiFeature));
+        // Support no-lineString geometries
+        switch (multiFeature.geometry.type) {
+        case 'MultiLineString':
+            multiFeature = flatten(multiFeature);
+            break;
+        case 'Polygon':
+        case 'MultiPolygon':
+            multiFeature = convertPolygonToLineStrings(multiFeature);
+            break;
         }
         featureEach(multiFeature, function (feature) {
             if (feature.geometry.type !== 'LineString') {
                 throw new Error('<lineTree> geometry must be a LineString');
             }
+            if (multiLine) console.log(feature);
             coordReduce(feature, function (previous, current, index) {
                 var lineSegment = helpers.lineString([previous, current]);
                 var minX = (previous[0] < current[0]) ? previous[0] : current[0];
@@ -179,8 +191,36 @@ function lineTree(line) {
     return tree;
 }
 
+/**
+ * Converts Polygon(s) to FeatureCollection LineStrings
+ *
+ * @param {Feature<Polygon|MultiPolygon>} polygon GeoJSON Polygon
+ * @returns {FeatureCollection<LineString>} LineStrings
+ */
+function convertPolygonToLineStrings(polygon) {
+    var results = [];
+    if (polygon.geometry === 'MultiPolygon') {
+        polygon = helpers.featureCollection(flatten(polygon));
+    }
+    featureEach(polygon, function (feature) {
+        if (polygon.geometry.type !== 'Polygon') {
+            throw new Error('<convertPolygonToLineStrings> geometry must be Polygon');
+        }
+        var coordinates = feature.geometry.coordinates;
+        coordinates.forEach(function (poly) {
+            var line = helpers.lineString(poly);
+            results.push(line);
+        });
+    });
+    return helpers.featureCollection(results);
+}
+
 // if (module.parent === null) {
-//     var line1 = helpers.lineString([[126, -11], [129, -21], [135, -31]]);
-//     var line2 = helpers.lineString([[123, -18], [131, -14], [137, -10]]);
-//     lineIntersect(line1, line2, true);
+//     // var line1 = helpers.lineString([[126, -11], [129, -21], [135, -31]]);
+//     // var line2 = helpers.lineString([[123, -18], [131, -14], [137, -10]]);
+//     var poly1 = helpers.polygon([[[126, -11], [129, -21], [135, -31], [137, -17], [126, -11]]]);
+//     var poly2 = helpers.polygon([[[123, -18], [131, -14], [137, -10], [123, -18]]]);
+//     // lineIntersect(line1, line2, true);
+//     var intersects = lineIntersect(poly1, poly2);
+//     console.log(intersects);
 // }

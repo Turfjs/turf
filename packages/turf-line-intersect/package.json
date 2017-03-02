@@ -1,7 +1,7 @@
 {
   "name": "@turf/line-intersect",
   "version": "3.10.0",
-  "description": "Finds the point(s) that intersect two lines.",
+  "description": "Takes any LineString or Polygon GeoJSON and returns the intersecting point(s).",
   "main": "index.js",
   "jsnext:main": "index.es6.js",
   "types": "index.d.ts",

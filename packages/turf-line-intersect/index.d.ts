@@ -1,6 +1,15 @@
-import {Points, LineString, LineStrings, MultiLineString, MultiLineStrings} from '@turf/helpers';
+import {
+    Points,
+    LineString,
+    LineStrings,
+    MultiLineString,
+    MultiLineStrings,
+    Polygon,
+    Polygons,
+    MultiPolygon,
+    MultiPolygons} from '@turf/helpers';
 
-type Line = LineString | LineStrings | MultiLineString | MultiLineStrings
+type Line = LineString | LineStrings | MultiLineString | MultiLineStrings | Polygon | Polygons | MultiPolygon | MultiPolygon
 
 /**
  * http://turfjs.org/docs/#lineintersect
