@@ -12,15 +12,16 @@ const directories = {
 };
 
 let fixtures = fs.readdirSync(directories.in).map(folder => {
-    return {
-        folder,
-        line1: load.sync(path.join(directories.in, folder, 'line1.geojson')),
-        line2: load.sync(path.join(directories.in, folder, 'line2.geojson'))
-    };
+    const files = {folder};
+    fs.readdirSync(path.join(directories.in, folder)).forEach(filename => {
+        const name = path.parse(filename).name;
+        files[name] = load.sync(path.join(directories.in, folder, filename));
+    });
+    return files;
 });
 
 test('turf-line-intersect', t => {
-    for (const {folder, line1, line2} of fixtures) {
+    for (const {folder, line1, line2}  of fixtures) {
         // Line Intersect
         const points = lineIntersect(line1, line2);
         const debug = lineIntersect(line1, line2, true);
