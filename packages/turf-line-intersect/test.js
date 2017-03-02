@@ -21,8 +21,6 @@ const fixtures = fs.readdirSync(directories.in).map(folder => {
 
 test('turf-line-intersect', t => {
     for (const {folder, line1, line2} of fixtures) {
-        console.log('processing:', folder);
-
         // Line Intersect
         const points = lineIntersect(line1, line2);
         const debug = lineIntersect(line1, line2, true);
