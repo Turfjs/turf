@@ -1,38 +1,30 @@
-var meta = require('./');
-var meta2 = require('./');
-var random = require('@turf/random');
+const Benchmark = require('benchmark');
+const random = require('@turf/random');
+const meta = require('.');
 
-var n = 100000;
-var pnts = random('points', n).features;
-var plys = random('polygons', n).features;
-var combined = [];
+const fixtures = {
+    point: random('points'),
+    points: random('points', 1000),
+    polygon: random('polygon'),
+    polygons: random('polygons', 1000)
+};
 
-while (pnts.length && plys.length) {
-    var pt = pnts.pop();
-    var pl = plys.pop();
-    combined.push(pt);
-    combined.push({ type: 'GeometryCollection', geometries: [pt.geometry, pl.geometry] });
-    combined.push(pt.geometry);
-    combined.push({ type: 'FeatureCollection', features: [pt] });
-    combined.push(pl);
-    combined.push(pl.geometry);
-    combined.push({ type: 'FeatureCollection', features: [pl] });
-}
+const suite = new Benchmark.Suite('turf-meta');
 
-console.time('coordEach#1');
-var sum = 0;
-combined.forEach(function(c) {
-    meta.coordEach(c, function(coord) {
-        sum += coord[0];
+Object.keys(fixtures).forEach(name => {
+    const fixture = fixtures[name];
+    suite.add('coordEach#' + name, () => {
+        meta.coordEach(fixture, (coords, index) => { });
+    });
+    suite.add('coordReduce#' + name, () => {
+        meta.coordReduce(fixture, (previousValue, currentCoords, index) => { });
+    });
+    suite.add('coordAll#' + name, () => {
+        meta.coordAll(fixture);
     });
 });
-console.timeEnd('coordEach#1');
 
-console.time('coordEach#2');
-var sum = 0;
-combined.forEach(function(c) {
-    meta2.coordEach(c, function(coord) {
-        sum += coord[0];
-    });
-});
-console.timeEnd('coordEach#2');
+suite
+  .on('cycle', (event) => { console.log(String(event.target)); })
+  .on('complete', () => {})
+  .run();
