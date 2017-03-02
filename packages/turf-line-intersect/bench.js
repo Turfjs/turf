@@ -20,7 +20,7 @@ const fixtures = fs.readdirSync(directories.in).map(folder => {
 });
 
 for (const {folder, line1, line2} of fixtures) {
-    suite.add(folder, () => lineIntersect(line1, line2, true));
+    suite.add(folder, () => lineIntersect(line1, line2));
 }
 
 suite

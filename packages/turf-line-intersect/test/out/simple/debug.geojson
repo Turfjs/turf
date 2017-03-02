@@ -5,6 +5,17 @@
 			"type": "Feature",
 			"properties": {},
 			"geometry": {
+				"type": "Point",
+				"coordinates": [
+					127.79887341656925,
+					-16.331492241862822
+				]
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {},
+			"geometry": {
 				"type": "Polygon",
 				"coordinates": [
 					[

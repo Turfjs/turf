@@ -3,7 +3,7 @@
 var rbush = require('rbush');
 var helpers = require('@turf/helpers');
 var bboxPolygon = require('@turf/bbox-polygon');
-var flatten = require('geojson-flatten');
+var flatten = require('@turf/flatten');
 var featureEach = require('./turf-meta').featureEach;
 var coordReduce = require('./turf-meta').coordReduce;
 
@@ -11,8 +11,8 @@ var coordReduce = require('./turf-meta').coordReduce;
  * Takes two GeoJSON LineStrings and returns the intersecting point(s).
  *
  * @name lineIntersect
- * @param {FeatureCollection|Feature<LineString>} line1 GeoJSON LineString Feature
- * @param {FeatureCollection|Feature<LineString>} line2 GeoJSON LineString Feature
+ * @param {FeatureCollection|Feature<LineString|MultiLineString>} line1 GeoJSON LineString Feature
+ * @param {FeatureCollection|Feature<LineString|MultiLineString>} line2 GeoJSON LineString Feature
  * @returns {FeatureCollection<Point>} point(s) that intersect both lines
  * @example
  * var line1 = {
@@ -46,12 +46,21 @@ function lineIntersect(line1, line2) {
     var tree2 = lineTree(line2);
     var debug = arguments['2']; // Hidden @param {boolean} Enable debug mode
 
-    if (debug) {
-        createPolygonsFromTree(tree1).forEach(function (polygon) { results.push(polygon); });
-        createPolygonsFromTree(tree2).forEach(function (polygon) { results.push(polygon); });
-    }
+    // Iterate over intersecting RBush Trees
+    tree1.all().forEach(function (index1) {
+        var lineSegment1 = index1.lineSegment;
+        tree2.search(index1).forEach(function (index2) {
+            var lineSegment2 = index2.lineSegment;
+            var point = intersects(lineSegment1, lineSegment2);
+            if (point) results.push(point);
+        });
+    });
 
     if (debug) {
+        // Add RBush Tree as polygons
+        createPolygonsFromTree(tree1).forEach(function (polygon) { results.push(polygon); });
+        createPolygonsFromTree(tree2).forEach(function (polygon) { results.push(polygon); });
+
         // Color line1 as red
         featureEach(line1, function (feature) {
             feature.properties['stroke'] = '#f00';
@@ -137,33 +146,41 @@ function createPolygonsFromTree(tree) {
  */
 function lineTree(line) {
     var tree = rbush();
-    // Support MultiLineString
-    if (line.geometry && line.geometry.type === 'MultiLineString') {
-        line = helpers.featureCollection(flatten(line));
-    }
     var load = [];
-    featureEach(line, function (feature) {
-        coordReduce(feature, function (previous, current, index) {
-            var minX = (previous[0] < current[0]) ? previous[0] : current[0];
-            var minY = (previous[1] < current[1]) ? previous[1] : current[1];
-            var maxX = (previous[0] > current[0]) ? previous[0] : current[0];
-            var maxY = (previous[1] > current[1]) ? previous[1] : current[1];
-            load.push({
-                minX,
-                minY,
-                maxX,
-                maxY,
-                index
+    // Handle FeatureCollection (assumes they are MultiFeatures)
+    featureEach(line, function (multiFeature) {
+        // Support MultiLineString
+        if (multiFeature.geometry && multiFeature.geometry.type === 'MultiLineString') {
+            multiFeature = helpers.featureCollection(flatten(multiFeature));
+        }
+        featureEach(multiFeature, function (feature) {
+            if (feature.geometry.type !== 'LineString') {
+                throw new Error('<lineTree> geometry must be a LineString');
+            }
+            coordReduce(feature, function (previous, current, index) {
+                var lineSegment = helpers.lineString([previous, current]);
+                var minX = (previous[0] < current[0]) ? previous[0] : current[0];
+                var minY = (previous[1] < current[1]) ? previous[1] : current[1];
+                var maxX = (previous[0] > current[0]) ? previous[0] : current[0];
+                var maxY = (previous[1] > current[1]) ? previous[1] : current[1];
+                load.push({
+                    minX: minX,
+                    minY: minY,
+                    maxX: maxX,
+                    maxY: maxY,
+                    index: index,
+                    lineSegment: lineSegment
+                });
+                return current;
             });
-            return current;
         });
     });
     tree.load(load);
     return tree;
 }
 
-if (module.parent === null) {
-    var line1 = helpers.lineString([[126, -11], [129, -21], [135, -31]]);
-    var line2 = helpers.lineString([[123, -18], [131, -14], [137, -10]]);
-    lineIntersect(line1, line2, true);
-}
+// if (module.parent === null) {
+//     var line1 = helpers.lineString([[126, -11], [129, -21], [135, -31]]);
+//     var line2 = helpers.lineString([[123, -18], [131, -14], [137, -10]]);
+//     lineIntersect(line1, line2, true);
+// }
