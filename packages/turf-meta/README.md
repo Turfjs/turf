@@ -2,31 +2,48 @@
 
 # coordEach
 
-Iterate over coordinates in any GeoJSON object, similar to
-Array.forEach.
+Iterate over coordinates in any GeoJSON object, similar to Array.forEach()
 
 **Parameters**
 
 -   `layer` **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)** any GeoJSON object
--   `callback` **[Function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function)** a method that takes (coords, index)
+-   `callback` **coordEachCallback** a method that takes (currentCoords, currentIndex)
 -   `excludeWrapCoord` **\[[boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)]** whether or not to include
-    the final coordinate of LinearRings that wraps the ring in its iteration.
+    the final coordinate of LinearRings that wraps the ring in its iteration. (optional, default `false`)
 
 **Examples**
 
 ```javascript
-var point = { type: 'Point', coordinates: [0, 0] };
-turfMeta.coordEach(point, function(coords, index) {
-  // coords is equal to [0, 0]
-  // index is equal to 0
+var features = {
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {},
+      "geometry": {
+        "type": "Point",
+        "coordinates": [26, 37]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {},
+      "geometry": {
+        "type": "Point",
+        "coordinates": [36, 53]
+      }
+    }
+  ]
+};
+turf.coordEach(features, function (currentCoords, currentIndex) {
+  //=currentCoords
+  //=currentIndex
 });
 ```
 
 # coordReduce
 
-Reduce coordinates in any GeoJSON object into a single value,
-similar to how Array.reduce works. However, in this case we lazily run
-the reduction, so an array of all coordinates is unnecessary.
+Reduce coordinates in any GeoJSON object, similar to Array.reduce()
 
 **Parameters**
 
@@ -34,26 +51,77 @@ the reduction, so an array of all coordinates is unnecessary.
 -   `callback` **coordReduceCallback** a method that takes (previousValue, currentCoords, currentIndex)
 -   `initialValue` **\[Any]** Value to use as the first argument to the first call of the callback.
 -   `excludeWrapCoord` **\[[boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)]** whether or not to include
-    the final coordinate of LinearRings that wraps the ring in its iteration.
+    the final coordinate of LinearRings that wraps the ring in its iteration. (optional, default `false`)
+
+**Examples**
+
+```javascript
+var features = {
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {},
+      "geometry": {
+        "type": "Point",
+        "coordinates": [26, 37]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {},
+      "geometry": {
+        "type": "Point",
+        "coordinates": [36, 53]
+      }
+    }
+  ]
+};
+turf.coordReduce(features, function (previousValue, currentCoords, currentIndex) {
+  //=previousValue
+  //=currentCoords
+  //=currentIndex
+});
+```
 
 Returns **Any** The value that results from the reduction.
 
 # propEach
 
-Iterate over property objects in any GeoJSON object, similar to
-Array.forEach.
+Iterate over properties in any GeoJSON object, similar to Array.forEach()
 
 **Parameters**
 
 -   `layer` **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)** any GeoJSON object
--   `callback` **[Function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function)** a method that takes (value)
+-   `callback` **[Function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function)** a method that takes (currentProperties, currentIndex)
 
 **Examples**
 
 ```javascript
-var point = { type: 'Feature', geometry: null, properties: { foo: 1 } };
-turfMeta.propEach(point, function(props) {
-  // props is equal to { foo: 1}
+var features = {
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {"foo": "bar"},
+      "geometry": {
+        "type": "Point",
+        "coordinates": [26, 37]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {"hello": "world"},
+      "geometry": {
+        "type": "Point",
+        "coordinates": [36, 53]
+      }
+    }
+  ]
+};
+turf.propEach(features, function (currentProperties, currentIndex) {
+  //=currentProperties
+  //=currentIndex
 });
 ```
 
@@ -66,27 +134,42 @@ the reduction, so an array of all properties is unnecessary.
 **Parameters**
 
 -   `layer` **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)** any GeoJSON object
--   `callback` **[Function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function)** a method that takes (memo, coord) and returns
-    a new memo
--   `memo` **Any** the starting value of memo: can be any type.
+-   `callback` **propReduceCallback** a method that takes (previousValue, currentProperties, currentIndex)
+-   `initialValue` **\[Any]** Value to use as the first argument to the first call of the callback.
 
 **Examples**
 
 ```javascript
-// an example of an even more advanced function that gives you the
-// javascript type of each property of every feature
-function propTypes (layer) {
-  opts = opts || {}
-  return turfMeta.propReduce(layer, function (prev, props) {
-    for (var prop in props) {
-      if (prev[prop]) continue
-      prev[prop] = typeof props[prop]
+var features = {
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {"foo": "bar"},
+      "geometry": {
+        "type": "Point",
+        "coordinates": [26, 37]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {"hello": "world"},
+      "geometry": {
+        "type": "Point",
+        "coordinates": [36, 53]
+      }
     }
-  }, {})
-}
+  ]
+};
+turf.propReduce(features, function (previousValue, currentProperties, currentIndex) {
+  //=previousValue
+  //=currentProperties
+  //=currentIndex
+  return currentProperties
+});
 ```
 
-Returns **Any** combined value
+Returns **Any** The value that results from the reduction.
 
 # featureEach
 
@@ -96,50 +179,200 @@ Array.forEach.
 **Parameters**
 
 -   `layer` **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)** any GeoJSON object
--   `callback` **[Function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function)** a method that takes (feature, index)
+-   `callback` **featureEachCallback** a method that takes (currentFeature, currentIndex)
 
 **Examples**
 
 ```javascript
-var feature = { type: 'Feature', geometry: null, properties: {} };
-turfMeta.featureEach(feature, function(feature) {
-  // feature == feature
+var features = {
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {},
+      "geometry": {
+        "type": "Point",
+        "coordinates": [26, 37]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {},
+      "geometry": {
+        "type": "Point",
+        "coordinates": [36, 53]
+      }
+    }
+  ]
+};
+turf.featureEach(features, function (currentFeature) {
+  //=currentFeature
 });
 ```
 
-# coordAll
+# featureReduce
 
-Get all coordinates from any GeoJSON object, returning an array of coordinate
-arrays.
+Reduce features in any GeoJSON object, similar to Array.reduce().
 
 **Parameters**
 
 -   `layer` **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)** any GeoJSON object
+-   `callback` **featureReduceCallback** a method that takes (previousValue, currentFeature, currentIndex)
+-   `initialValue` **\[Any]** Value to use as the first argument to the first call of the callback.
+
+**Examples**
+
+```javascript
+var features = {
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {"foo": "bar"},
+      "geometry": {
+        "type": "Point",
+        "coordinates": [26, 37]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {"hello": "world"},
+      "geometry": {
+        "type": "Point",
+        "coordinates": [36, 53]
+      }
+    }
+  ]
+};
+turf.featureReduce(features, function (previousValue, currentFeature, currentIndex) {
+  //=previousValue
+  //=currentFeature
+  //=currentIndex
+  return currentFeature
+});
+```
+
+Returns **Any** The value that results from the reduction.
+
+# coordAll
+
+Get all coordinates from any GeoJSON object.
+
+**Parameters**
+
+-   `layer` **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)** any GeoJSON object
+
+**Examples**
+
+```javascript
+var features = {
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {},
+      "geometry": {
+        "type": "Point",
+        "coordinates": [26, 37]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {},
+      "geometry": {
+        "type": "Point",
+        "coordinates": [36, 53]
+      }
+    }
+  ]
+};
+var coords = turf.coordAll(features);
+//=coords
+```
 
 Returns **[Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)>>** coordinate position array
 
 # geomEach
 
-Iterate over each geometry in any GeoJSON object, similar to
-Array.forEach.
+Iterate over each geometry in any GeoJSON object, similar to Array.forEach()
 
 **Parameters**
 
 -   `layer` **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)** any GeoJSON object
--   `callback` **[Function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function)** a method that takes (value)
+-   `callback` **[Function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function)** a method that takes (geometry)
 
 **Examples**
 
 ```javascript
-var point = {
-  type: 'Feature',
-  geometry: { type: 'Point', coordinates: [0, 0] },
-  properties: {}
+var features = {
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {},
+      "geometry": {
+        "type": "Point",
+        "coordinates": [26, 37]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {},
+      "geometry": {
+        "type": "Point",
+        "coordinates": [36, 53]
+      }
+    }
+  ]
 };
-turfMeta.geomEach(point, function(geom) {
-  // geom is the point geometry
+turf.geomEach(features, function (geometry) {
+  //=geometry
 });
 ```
+
+# geomReduce
+
+Reduce geometry in any GeoJSON object, similar to Array.reduce().
+
+**Parameters**
+
+-   `layer` **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)** any GeoJSON object
+-   `callback` **geomReduceCallback** a method that takes (previousValue, currentGeometry, currentIndex)
+-   `initialValue` **\[Any]** Value to use as the first argument to the first call of the callback.
+
+**Examples**
+
+```javascript
+var features = {
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {"foo": "bar"},
+      "geometry": {
+        "type": "Point",
+        "coordinates": [26, 37]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {"hello": "world"},
+      "geometry": {
+        "type": "Point",
+        "coordinates": [36, 53]
+      }
+    }
+  ]
+};
+turf.geomReduce(features, function (previousValue, currentGeometry, currentIndex) {
+  //=previousValue
+  //=currentGeometry
+  //=currentIndex
+  return currentGeometry
+});
+```
+
+Returns **Any** The value that results from the reduction.
 
 <!-- This file is automatically generated. Please don't edit it directly:
 if you find an error, edit the source file (likely index.js), and re-run
