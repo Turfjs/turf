@@ -1,6 +1,6 @@
 {
   "name": "@turf/dissolve",
-  "version": "3.10.4",
+  "version": "3.10.5",
   "description": "Dissolves polygons based on an attribute",
   "main": "index.js",
   "scripts": {
@@ -16,9 +16,9 @@
   "author": "Turf Authors",
   "license": "MIT",
   "dependencies": {
-    "@turf/bbox": "^3.10.4",
-    "@turf/helpers": "^3.10.3",
-    "@turf/union": "^3.10.0",
+    "@turf/bbox": "^3.10.5",
+    "@turf/helpers": "^3.10.5",
+    "@turf/union": "^3.10.5",
     "geojson-utils": "^1.1.0",
     "get-closest": "0.0.3",
     "rbush": "^2.0.1",

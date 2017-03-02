@@ -1,6 +1,6 @@
 {
   "name": "@turf/explode",
-  "version": "3.10.4",
+  "version": "3.10.5",
   "description": "turf explode module",
   "main": "index.js",
   "scripts": {
@@ -24,7 +24,7 @@
   },
   "homepage": "https://github.com/Turfjs/turf",
   "devDependencies": {
-    "@turf/helpers": "^3.10.3",
+    "@turf/helpers": "^3.10.5",
     "benchmark": "^1.0.0",
     "eslint": "^3.14.1",
     "eslint-config-mourner": "^2.0.1",
@@ -34,8 +34,8 @@
     "write-json-file": "^2.0.0"
   },
   "dependencies": {
-    "@turf/meta": "^3.10.4",
-    "@turf/helpers": "^3.10.3"
+    "@turf/meta": "^3.10.5",
+    "@turf/helpers": "^3.10.5"
   },
   "types": "index.d.ts"
 }

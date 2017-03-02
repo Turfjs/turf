@@ -1,6 +1,6 @@
 {
   "name": "@turf/unkink-polygon",
-  "version": "3.10.4",
+  "version": "3.10.5",
   "description": "turf unkink polygon module",
   "main": "index.js",
   "files": [
@@ -8,8 +8,8 @@
     "index.d.ts"
   ],
   "dependencies": {
-    "@turf/helpers": "^3.10.3",
-    "@turf/meta": "^3.10.4",
+    "@turf/helpers": "^3.10.5",
+    "@turf/meta": "^3.10.5",
     "geojson-flatten": "^0.2.1",
     "simplepolygon": "^1.1.1"
   },
