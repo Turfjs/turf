@@ -1,11 +1,13 @@
 'use strict';
 
 var rbush = require('rbush');
-var helpers = require('@turf/helpers');
 var bboxPolygon = require('@turf/bbox-polygon');
 var flatten = require('@turf/flatten');
-var featureEach = require('./turf-meta').featureEach;
-var coordReduce = require('./turf-meta').coordReduce;
+var point = require('@turf/helpers').point;
+var featureCollection = require('@turf/helpers').featureCollection;
+var lineString = require('@turf/helpers').lineString;
+var featureEach = require('@turf/meta').featureEach;
+var coordReduce = require('@turf/meta').coordReduce;
 
 /**
  * Takes any LineString or Polygon GeoJSON and returns the intersecting point(s).
@@ -51,8 +53,8 @@ function lineIntersect(line1, line2) {
         var lineSegment1 = index1.lineSegment;
         tree2.search(index1).forEach(function (index2) {
             var lineSegment2 = index2.lineSegment;
-            var point = intersects(lineSegment1, lineSegment2);
-            if (point) results.push(point);
+            var intersect = intersects(lineSegment1, lineSegment2);
+            if (intersect) results.push(intersect);
         });
     });
 
@@ -78,7 +80,7 @@ function lineIntersect(line1, line2) {
             results.push(feature);
         });
     }
-    return helpers.featureCollection(results);
+    return featureCollection(results);
 }
 module.exports = lineIntersect;
 
@@ -122,8 +124,7 @@ function intersects(line1, line2) {
     if (uA >= 0 && uA <= 1 && uB >= 0 && uB <= 1) {
         var x = x1 + (uA * (x2 - x1));
         var y = y1 + (uA * (y2 - y1));
-        var point = helpers.point([x, y]);
-        return point;
+        return point([x, y]);
     }
     return null;
 }
@@ -171,7 +172,7 @@ function lineTree(line) {
             }
             if (multiLine) console.log(feature);
             coordReduce(feature, function (previous, current, index) {
-                var lineSegment = helpers.lineString([previous, current]);
+                var lineSegment = lineString([previous, current]);
                 var minX = (previous[0] < current[0]) ? previous[0] : current[0];
                 var minY = (previous[1] < current[1]) ? previous[1] : current[1];
                 var maxX = (previous[0] > current[0]) ? previous[0] : current[0];
@@ -202,7 +203,7 @@ function lineTree(line) {
 function convertPolygonToLineStrings(polygon) {
     var results = [];
     if (polygon.geometry === 'MultiPolygon') {
-        polygon = helpers.featureCollection(flatten(polygon));
+        polygon = featureCollection(flatten(polygon));
     }
     featureEach(polygon, function (feature) {
         if (polygon.geometry.type !== 'Polygon') {
@@ -210,19 +211,8 @@ function convertPolygonToLineStrings(polygon) {
         }
         var coordinates = feature.geometry.coordinates;
         coordinates.forEach(function (poly) {
-            var line = helpers.lineString(poly);
-            results.push(line);
+            results.push(lineString(poly));
         });
     });
-    return helpers.featureCollection(results);
+    return featureCollection(results);
 }
-
-// if (module.parent === null) {
-//     // var line1 = helpers.lineString([[126, -11], [129, -21], [135, -31]]);
-//     // var line2 = helpers.lineString([[123, -18], [131, -14], [137, -10]]);
-//     var poly1 = helpers.polygon([[[126, -11], [129, -21], [135, -31], [137, -17], [126, -11]]]);
-//     var poly2 = helpers.polygon([[[123, -18], [131, -14], [137, -10], [123, -18]]]);
-//     // lineIntersect(line1, line2, true);
-//     var intersects = lineIntersect(poly1, poly2);
-//     console.log(intersects);
-// }
