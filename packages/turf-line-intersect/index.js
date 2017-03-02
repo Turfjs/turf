@@ -11,8 +11,8 @@ var coordReduce = require('./turf-meta').coordReduce;
  * Takes any LineString or Polygon GeoJSON and returns the intersecting point(s).
  *
  * @name lineIntersect
- * @param {Feature<LineString|Polygon>} line1 any LineString or Polygon
- * @param {Feature<LineString|Polygon>} line2 any LineString or Polygon
+ * @param {FeatureCollection|Feature<LineString|MultiLineString|Polygon|MultiPolygon>} line1 any LineString or Polygon
+ * @param {FeatureCollection|Feature<LineString|MultiLineString|Polygon|MultiPolygon>} line2 any LineString or Polygon
  * @returns {FeatureCollection<Point>} point(s) that intersect both
  * @example
  * var line1 = {
@@ -85,6 +85,7 @@ module.exports = lineIntersect;
 /**
  * Find a point that intersects LineStrings with two coordinates each
  *
+ * @private
  * @param {Feature<LineString>} line1 GeoJSON LineString (Must only contain 2 coordinates)
  * @param {Feature<LineString>} line2 GeoJSON LineString (Must only contain 2 coordinates)
  * @returns {Feature<Point>} intersecting GeoJSON Point
@@ -194,6 +195,7 @@ function lineTree(line) {
 /**
  * Converts Polygon(s) to FeatureCollection LineStrings
  *
+ * @private
  * @param {Feature<Polygon|MultiPolygon>} polygon GeoJSON Polygon
  * @returns {FeatureCollection<LineString>} LineStrings
  */
