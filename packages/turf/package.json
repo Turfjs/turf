@@ -1,6 +1,6 @@
 {
   "name": "@turf/turf",
-  "version": "3.10.5",
+  "version": "3.11.1",
   "description": "a JavaScript library for performing geospatial operations with GeoJSON",
   "main": "index.js",
   "types": "index.d.ts",
@@ -106,7 +106,8 @@
     "@turf/union": "^3.10.5",
     "@turf/within": "^3.10.5",
     "@turf/truncate": "^3.10.5",
-    "@turf/flatten": "^3.10.5"
+    "@turf/flatten": "^3.10.5",
+    "@turf/line-intersect": "^3.11.0"
   },
   "devDependencies": {
     "browserify": "~9.0.3",
