@@ -13,7 +13,7 @@
  *
  * @name coordEach
  * @param {Object} layer any GeoJSON object
- * @param {coordEachCallback} callback a method that takes (currentCoords, currentIndex)
+ * @param {Function} callback a method that takes (currentCoords, currentIndex)
  * @param {boolean} [excludeWrapCoord=false] whether or not to include
  * the final coordinate of LinearRings that wraps the ring in its iteration.
  * @example
@@ -141,7 +141,7 @@ module.exports.coordEach = coordEach;
  *
  * @name coordReduce
  * @param {Object} layer any GeoJSON object
- * @param {coordReduceCallback} callback a method that takes (previousValue, currentCoords, currentIndex)
+ * @param {Function} callback a method that takes (previousValue, currentCoords, currentIndex)
  * @param {*} [initialValue] Value to use as the first argument to the first call of the callback.
  * @param {boolean} [excludeWrapCoord=false] whether or not to include
  * the final coordinate of LinearRings that wraps the ring in its iteration.
@@ -276,7 +276,7 @@ module.exports.propEach = propEach;
  *
  * @name propReduce
  * @param {Object} layer any GeoJSON object
- * @param {propReduceCallback} callback a method that takes (previousValue, currentProperties, currentIndex)
+ * @param {Function} callback a method that takes (previousValue, currentProperties, currentIndex)
  * @param {*} [initialValue] Value to use as the first argument to the first call of the callback.
  * @returns {*} The value that results from the reduction.
  * @example
@@ -337,7 +337,7 @@ module.exports.propReduce = propReduce;
  *
  * @name featureEach
  * @param {Object} layer any GeoJSON object
- * @param {featureEachCallback} callback a method that takes (currentFeature, currentIndex)
+ * @param {Function} callback a method that takes (currentFeature, currentIndex)
  * @example
  * var features = {
  *   "type": "FeatureCollection",
@@ -403,7 +403,7 @@ module.exports.featureEach = featureEach;
  *
  * @name featureReduce
  * @param {Object} layer any GeoJSON object
- * @param {featureReduceCallback} callback a method that takes (previousValue, currentFeature, currentIndex)
+ * @param {Function} callback a method that takes (previousValue, currentFeature, currentIndex)
  * @param {*} [initialValue] Value to use as the first argument to the first call of the callback.
  * @returns {*} The value that results from the reduction.
  * @example
@@ -597,7 +597,7 @@ module.exports.geomEach = geomEach;
  *
  * @name geomReduce
  * @param {Object} layer any GeoJSON object
- * @param {geomReduceCallback} callback a method that takes (previousValue, currentGeometry, currentIndex)
+ * @param {Function} callback a method that takes (previousValue, currentGeometry, currentIndex)
  * @param {*} [initialValue] Value to use as the first argument to the first call of the callback.
  * @returns {*} The value that results from the reduction.
  * @example

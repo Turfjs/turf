@@ -7,7 +7,7 @@ Iterate over coordinates in any GeoJSON object, similar to Array.forEach()
 **Parameters**
 
 -   `layer` **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)** any GeoJSON object
--   `callback` **coordEachCallback** a method that takes (currentCoords, currentIndex)
+-   `callback` **[Function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function)** a method that takes (currentCoords, currentIndex)
 -   `excludeWrapCoord` **\[[boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)]** whether or not to include
     the final coordinate of LinearRings that wraps the ring in its iteration. (optional, default `false`)
 
@@ -48,7 +48,7 @@ Reduce coordinates in any GeoJSON object, similar to Array.reduce()
 **Parameters**
 
 -   `layer` **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)** any GeoJSON object
--   `callback` **coordReduceCallback** a method that takes (previousValue, currentCoords, currentIndex)
+-   `callback` **[Function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function)** a method that takes (previousValue, currentCoords, currentIndex)
 -   `initialValue` **\[Any]** Value to use as the first argument to the first call of the callback.
 -   `excludeWrapCoord` **\[[boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)]** whether or not to include
     the final coordinate of LinearRings that wraps the ring in its iteration. (optional, default `false`)
@@ -134,7 +134,7 @@ the reduction, so an array of all properties is unnecessary.
 **Parameters**
 
 -   `layer` **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)** any GeoJSON object
--   `callback` **propReduceCallback** a method that takes (previousValue, currentProperties, currentIndex)
+-   `callback` **[Function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function)** a method that takes (previousValue, currentProperties, currentIndex)
 -   `initialValue` **\[Any]** Value to use as the first argument to the first call of the callback.
 
 **Examples**
@@ -179,7 +179,7 @@ Array.forEach.
 **Parameters**
 
 -   `layer` **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)** any GeoJSON object
--   `callback` **featureEachCallback** a method that takes (currentFeature, currentIndex)
+-   `callback` **[Function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function)** a method that takes (currentFeature, currentIndex)
 
 **Examples**
 
@@ -217,7 +217,7 @@ Reduce features in any GeoJSON object, similar to Array.reduce().
 **Parameters**
 
 -   `layer` **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)** any GeoJSON object
--   `callback` **featureReduceCallback** a method that takes (previousValue, currentFeature, currentIndex)
+-   `callback` **[Function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function)** a method that takes (previousValue, currentFeature, currentIndex)
 -   `initialValue` **\[Any]** Value to use as the first argument to the first call of the callback.
 
 **Examples**
@@ -337,7 +337,7 @@ Reduce geometry in any GeoJSON object, similar to Array.reduce().
 **Parameters**
 
 -   `layer` **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)** any GeoJSON object
--   `callback` **geomReduceCallback** a method that takes (previousValue, currentGeometry, currentIndex)
+-   `callback` **[Function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function)** a method that takes (previousValue, currentGeometry, currentIndex)
 -   `initialValue` **\[Any]** Value to use as the first argument to the first call of the callback.
 
 **Examples**
