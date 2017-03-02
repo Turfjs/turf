@@ -1,13 +1,10 @@
 'use strict';
 
-var rbush = require('rbush');
-var bboxPolygon = require('@turf/bbox-polygon');
-var flatten = require('@turf/flatten');
-var point = require('@turf/helpers').point;
-var featureCollection = require('@turf/helpers').featureCollection;
-var lineString = require('@turf/helpers').lineString;
-var featureEach = require('@turf/meta').featureEach;
-var coordReduce = require('@turf/meta').coordReduce;
+import rbush from 'rbush';
+import bboxPolygon from '@turf/bbox-polygon';
+import flatten from '@turf/flatten';
+import {point, featureCollection, lineString} from '@turf/helpers';
+import {featureEach, coordReduce} from '@turf/meta';
 
 /**
  * Takes any LineString or Polygon GeoJSON and returns the intersecting point(s).
@@ -42,7 +39,7 @@ var coordReduce = require('@turf/meta').coordReduce;
  * var points = turf.lineIntersect(line1, line2);
  * //= points
  */
-function lineIntersect(line1, line2) {
+export default function (line1, line2) {
     var results = [];
     var tree1 = lineTree(line1);
     var tree2 = lineTree(line2);
@@ -82,7 +79,6 @@ function lineIntersect(line1, line2) {
     }
     return featureCollection(results);
 }
-module.exports = lineIntersect;
 
 /**
  * Find a point that intersects LineStrings with two coordinates each
