@@ -20,8 +20,10 @@ import {
     propEach,
     propReduce,
     featureEach,
+    featureReduce,
     coordAll,
-    geomEach
+    geomEach,
+    geomReduce
 } from '@turf/meta';
 
 import * as isolines from '@turf/isolines';

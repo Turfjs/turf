@@ -80,8 +80,10 @@ var turf = {
     propEach: meta.propEach,
     propReduce: meta.propReduce,
     featureEach: meta.featureEach,
+    featureReduce: meta.featureReduce,
     coordAll: meta.coordAll,
-    geomEach: meta.geomEach
+    geomEach: meta.geomEach,
+    geomReduce: meta.geomReduce
 };
 
 module.exports = turf;
