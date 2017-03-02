@@ -1,9 +1,6 @@
-// look here for help http://svn.osgeo.org/grass/grass/branches/releasebranch_6_4/vector/v.overlay/main.c
-//must be array of polygons
+'use strict';
 
-// depend on jsts for now https://github.com/bjornharrtell/jsts/blob/master/examples/overlay.html
-
-var jsts = require('jsts');
+import * as jsts from 'jsts';
 
 /**
  * Takes two or more {@link Polygon|polygons} and returns a combined polygon. If the input polygons are not contiguous, this function returns a {@link MultiPolygon} feature.
@@ -55,7 +52,7 @@ var jsts = require('jsts');
  *
  * //=union
  */
-module.exports = function () {
+export default function () {
     var reader = new jsts.io.GeoJSONReader();
     var result = reader.read(JSON.stringify(arguments[0].geometry));
 
@@ -71,4 +68,4 @@ module.exports = function () {
         geometry: result,
         properties: arguments[0].properties
     };
-};
+}

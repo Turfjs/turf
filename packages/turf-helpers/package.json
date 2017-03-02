@@ -4,7 +4,7 @@
   "description": "turf geometries",
   "main": "index.js",
   "scripts": {
-    "test": "tape test.js && tsc index.d.ts"
+    "test": "node test.js"
   },
   "repository": {
     "type": "git",

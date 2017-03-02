@@ -1,4 +1,4 @@
-var deepSlice = require('deep-slice');
+'use strict';
 
 /**
  * Takes a GeoJSON Feature or FeatureCollection and truncates the precision of the geometry.
@@ -24,7 +24,7 @@ var deepSlice = require('deep-slice');
  * var pointTrunc = turf.truncate(point);
  * //= pointTrunc
  */
-module.exports = function (layer, precision, coordinates) {
+export default function (layer, precision, coordinates) {
     precision = precision || 6;
     coordinates = coordinates || 2;
 
@@ -42,7 +42,7 @@ module.exports = function (layer, precision, coordinates) {
     default:
         throw new Error('invalid type');
     }
-};
+}
 
 function truncate(feature, precision, coordinates) {
     if (coordinates !== undefined) { feature.geometry.coordinates = deepSlice(feature.geometry.coordinates, 0, coordinates); }
@@ -54,5 +54,27 @@ function toFix(array, precision) {
     return array.map(function (value) {
         if (typeof value === 'object') { return toFix(value, precision); }
         return Number(value.toFixed(precision));
+    });
+}
+
+/**
+ * Recursive Array.prototype.slice()
+ * https://github.com/DenisCarriere/deep-slice
+ *
+ * @private
+ * @param {Array} items Array input
+ * @param {number} start The beginning of the specified portion of the array.
+ * @param {number} end The end of the specified portion of the array.
+ * @returns {Array} Returns a section of an array.
+ * @example
+ * deepSlice([[10, 20, 30], [40, 50, 60]], 0, 2)
+ * //=[[10, 20], [40, 50]]
+ */
+function deepSlice(items, start, end) {
+    if (typeof items[0] !== 'object') {
+        return items.slice(start, end);
+    }
+    return items.map(function (item) {
+        return deepSlice(item, start, end);
     });
 }
