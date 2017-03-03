@@ -3,8 +3,13 @@
   "version": "3.10.3",
   "description": "Masks a polygon",
   "main": "index.js",
+  "types": "index.d.ts",
+  "files": [
+    "index.js",
+    "index.d.ts"
+  ],
   "scripts": {
-    "test": "tape test.js"
+    "test": "node test.js"
   },
   "repository": {
     "type": "git",
@@ -21,11 +26,11 @@
     "url": "https://github.com/Turfjs/turf/issues"
   },
   "homepage": "https://github.com/Turfjs/turf",
+  "dependencies": {},
   "devDependencies": {
     "benchmark": "^1.0.0",
     "eslint": "^3.14.1",
     "eslint-config-mourner": "^2.0.1",
     "tape": "^3.6.1"
-  },
-  "types": "index.d.ts"
+  }
 }

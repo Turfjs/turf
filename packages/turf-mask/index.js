@@ -3,9 +3,9 @@
  * if you don't pass a mask polygon then the world is used.
  *
  * @name mask
- * @param {Feature<Polygon>} The input polygon
- * @param {Feature<Polygon>} [the world] A polygon to use as a mask
- * @return {Feature<Polygon>} Masked polygon
+ * @param {Feature<Polygon>} polygon GeoJSON Polygon as input
+ * @param {Feature<Polygon>} [mask] GeoJSON Polygon (defaults to world if undefined)
+ * @return {Feature<Polygon>} Masked Polygon
  * @example
  * var poylgon = {
  *     "type": "Feature",
@@ -17,16 +17,15 @@
  *      ]
  *    }
  * }
- *
  * var masked = turf.mask(polygon);
  * //=masked
  */
-
 module.exports = function (polygon, mask) {
-    if (typeof mask != 'undefined') {
+    var world = [[180, 90], [-180, 90], [-180, -90], [180, -90], [180, 90]];
+    if (mask !== undefined) {
         polygon.geometry.coordinates.push(mask.geometry.coordinates);
     } else {
-        polygon.geometry.coordinates.push([[180, 90], [-180, 90], [-180, -90], [180, -90], [180, 90]]);
+        polygon.geometry.coordinates.push(world);
     }
     return polygon;
 };
