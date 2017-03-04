@@ -2,7 +2,7 @@ var union = require('./');
 var Benchmark = require('benchmark');
 var fs = require('fs');
 
-var fcs = JSON.parse(fs.readFileSync(__dirname+'/test/fixtures/in/Intersect1.geojson'));
+var fcs = JSON.parse(fs.readFileSync(__dirname + '/test/fixtures/in/Intersect1.geojson'));
 
 var suite = new Benchmark.Suite('turf-union');
 suite
