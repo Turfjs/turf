@@ -3,18 +3,14 @@
   "version": "3.11.2",
   "description": "Takes any LineString or Polygon GeoJSON and returns the intersecting point(s).",
   "main": "index.js",
-  "jsnext:main": "index.es6.js",
   "types": "index.d.ts",
   "files": [
     "index.js",
-    "index.es6.js",
     "index.d.ts"
   ],
   "scripts": {
     "test": "node test.js",
-    "pretest": "npm run rollup",
-    "bench": "node bench.js",
-    "rollup": "rollup -c rollup.config.js"
+    "bench": "node bench.js"
   },
   "repository": {
     "type": "git",
@@ -43,7 +39,6 @@
   "devDependencies": {
     "benchmark": "^2.1.3",
     "load-json-file": "^2.0.0",
-    "rollup": "^0.41.4",
     "tape": "^3.5.0",
     "write-json-file": "^2.0.0"
   }
