@@ -1,5 +1,3 @@
-'use strict';
-
 /**
  * Takes a GeoJSON Feature or FeatureCollection and truncates the precision of the geometry.
  *
@@ -24,7 +22,7 @@
  * var pointTrunc = turf.truncate(point);
  * //= pointTrunc
  */
-export default function (layer, precision, coordinates) {
+module.exports = function (layer, precision, coordinates) {
     precision = precision || 6;
     coordinates = coordinates || 2;
 
@@ -42,7 +40,7 @@ export default function (layer, precision, coordinates) {
     default:
         throw new Error('invalid type');
     }
-}
+};
 
 function truncate(feature, precision, coordinates) {
     if (coordinates !== undefined) { feature.geometry.coordinates = deepSlice(feature.geometry.coordinates, 0, coordinates); }
