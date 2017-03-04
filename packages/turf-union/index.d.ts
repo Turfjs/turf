@@ -16,7 +16,7 @@ interface UnionStatic {
      * http://turfjs.org/docs/#union
      */
     
-    (feature: LineString, tolerance?: number, highQuality?: boolean): LineString;
+    (...features: Polygon[]): Polygon|MultiPolygon;
 }
 declare const union: UnionStatic;
 declare namespace union { }
