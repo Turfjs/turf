@@ -3,17 +3,14 @@
   "version": "3.10.5",
   "description": "find the union of geographic features",
   "main": "index.js",
-  "jsnext:main": "index.es6.js",
   "types": "index.d.ts",
   "files": [
     "index.js",
-    "index.es6.js",
     "index.d.ts"
   ],
   "scripts": {
     "test": "node test.js",
-    "pretest": "npm run rollup",
-    "rollup": "rollup -c rollup.config.js"
+    "bench": "node bench.js"
   },
   "repository": {
     "type": "git",
@@ -32,7 +29,6 @@
   "devDependencies": {
     "benchmark": "^1.0.0",
     "glob": "~4.3.5",
-    "rollup": "^0.41.4",
     "tape": "~3.5.0"
   },
   "dependencies": {
