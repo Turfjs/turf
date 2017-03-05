@@ -19,20 +19,24 @@ let fixtures = fs.readdirSync(directories.in).map(folder => {
     });
     return files;
 });
-const include = ['basic', 'feature-collection'];
+const include = [
+    'basic',
+    'feature-collection',
+    'multipolygon'
+];
 fixtures = fixtures.filter(fixture => include.indexOf(fixture.folder) !== -1);
 
 test('turf-mask', t => {
     for (const {folder, polygon, mask} of fixtures) {
         // Line Intersect
         const masked = turfMask(polygon, mask);
-        const debug = turfMask(polygon, mask, true);
+        // const debug = turfMask(polygon, mask, true);
 
         // Save Results
         mkdirp.sync(path.join(directories.out, folder));
         if (process.env.REGEN) {
             write.sync(path.join(directories.out, folder, 'results.geojson'), masked);
-            write.sync(path.join(directories.out, folder, 'debug.geojson'), debug);
+            // write.sync(path.join(directories.out, folder, 'debug.geojson'), debug);
         }
         // Tests
         t.deepEquals(masked, load.sync(path.join(directories.out, folder, 'results.geojson')), folder);

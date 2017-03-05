@@ -65,16 +65,35 @@ function buildMask(maskOuter, maskInners, polygonOuters) {
 function separatePolygonToLines(polygon) {
     var outers = [];
     var inners = [];
-    featureEach(polygon, function (feature) {
-        var coordinates = feature.geometry.coordinates;
-        var featureOuter = coordinates[0];
-        var featureInner = coordinates.slice(1);
-        outers.push(featureOuter);
-        featureInner.forEach(function (inner) {
-            inners.push(inner);
+    featureEach(polygon, function (multiFeature) {
+        if (multiFeature.geometry.type === 'MultiPolygon') {
+            multiFeature = flattenMultiPolygon(multiFeature);
+        }
+        featureEach(multiFeature, function (feature) {
+            var coordinates = feature.geometry.coordinates;
+            var featureOuter = coordinates[0];
+            var featureInner = coordinates.slice(1);
+            outers.push(featureOuter);
+            featureInner.forEach(function (inner) {
+                inners.push(inner);
+            });
         });
     });
     return [outers, inners];
+}
+
+/**
+ * Flatten MultiPolygon
+ *
+ * @param {Feature<MultiPolygon>} multiPolygon GeoJSON Feature
+ * @returns {FeatureCollection<Polygon>} Feature Collection
+ */
+function flattenMultiPolygon(multiPolygon) {
+    var polygons = [];
+    multiPolygon.geometry.coordinates.forEach(function (coordinates) {
+        polygons.push(helpers.polygon(coordinates));
+    });
+    return helpers.featureCollection(polygons);
 }
 
 /**
