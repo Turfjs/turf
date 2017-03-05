@@ -28,13 +28,13 @@ test('turf-mask', t => {
 
         // Line Intersect
         const masked = mask(fixture.polygon, fixture.mask);
-        // const debug = mask(fixture.polygon, fixture.mask, true);
+        const debug = mask(fixture.polygon, fixture.mask, true);
 
         // Save Results
         mkdirp.sync(path.join(directories.out, folder));
         if (process.env.REGEN) {
             write.sync(path.join(directories.out, folder, 'results.geojson'), masked);
-            // write.sync(path.join(directories.out, folder, 'debug.geojson'), debug);
+            write.sync(path.join(directories.out, folder, 'debug.geojson'), debug);
         }
         // Tests
         t.deepEquals(masked, load.sync(path.join(directories.out, folder, 'results.geojson')), folder);

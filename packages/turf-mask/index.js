@@ -2,13 +2,12 @@ const helpers = require('@turf/helpers');
 const featureEach = require('@turf/meta').featureEach;
 
 /**
- * Takes a {@link Polygon|polygon} and an optional mask and returns the outside area,
- * if you don't pass a mask polygon then the world is used.
+ * Takes any type of {@link Polygon|polygon} and an optional mask and returns a {@link Polygon|polygon} exterior ring with holes.
  *
  * @name mask
- * @param {Feature<Polygon>} polygon GeoJSON Polygon as input
- * @param {Feature<Polygon>} [mask] GeoJSON Polygon (defaults to world if undefined)
- * @return {Feature<Polygon>} Masked Polygon
+ * @param {FeatureCollection|Feature<Polygon|MultiPolygon>} polygon GeoJSON Polygon used as interior rings or holes.
+ * @param {Feature<Polygon>} [mask] GeoJSON Polygon used as the exterior ring (if undefined, the world extent is used)
+ * @return {Feature<Polygon>} Masked Polygon (exterior ring with holes).
  * @example
  * var poylgon = {
  *     "type": "Feature",
@@ -25,11 +24,11 @@ const featureEach = require('@turf/meta').featureEach;
  */
 module.exports = function (polygon, mask) {
     var world = helpers.polygon([[[180, 90], [-180, 90], [-180, -90], [180, -90], [180, 90]]]);
-    mask = mask || world;
+    var result = JSON.parse(JSON.stringify(mask || world));
 
     featureEach(polygon, function (feature) {
         var coordinates = feature.geometry.coordinates;
-        mask.geometry.coordinates.push(coordinates[0]);
+        result.geometry.coordinates.push(coordinates[0]);
     });
-    return mask;
+    return result;
 };
