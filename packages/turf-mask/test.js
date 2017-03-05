@@ -1,56 +1,43 @@
-var mask = require('./');
-var test = require('tape');
-var poly = {
-    'type': 'Feature',
-    'properties': {},
-    'geometry': {
-        'type': 'Polygon',
-        'coordinates': [[[100, 0], [101, 0], [101, 1], [100, 1], [100, 0]]]
-    }
+const test = require('tape');
+const fs = require('fs');
+const path = require('path');
+const load = require('load-json-file');
+const write = require('write-json-file');
+const mkdirp = require('mkdirp');
+const mask = require('.');
+
+const directories = {
+    in: path.join(__dirname, 'test', 'in') + path.sep,
+    out: path.join(__dirname, 'test', 'out') + path.sep
 };
 
-var maskPoly = {
-    'type': 'Feature',
-    'properties': {},
-    'geometry': {
-        'type': 'Polygon',
-        'coordinates': [[100.2, 0.2], [100.8, 0.2], [100.8, 0.8], [100.2, 0.8], [100.2, 0.2]]
+let fixtures = fs.readdirSync(directories.in).map(folder => {
+    const files = {folder};
+    fs.readdirSync(path.join(directories.in, folder)).forEach(filename => {
+        const name = path.parse(filename).name;
+        files[name] = load.sync(path.join(directories.in, folder, filename));
+    });
+    return files;
+});
+var include = ['basic', 'feature-collection'];
+fixtures = fixtures.filter(fixture => include.indexOf(fixture.folder) !== -1);
+
+test('turf-mask', t => {
+    for (const fixture  of fixtures) {
+        const folder = fixture.folder;
+
+        // Line Intersect
+        const masked = mask(fixture.polygon, fixture.mask);
+        // const debug = mask(fixture.polygon, fixture.mask, true);
+
+        // Save Results
+        mkdirp.sync(path.join(directories.out, folder));
+        if (process.env.REGEN) {
+            write.sync(path.join(directories.out, folder, 'results.geojson'), masked);
+            // write.sync(path.join(directories.out, folder, 'debug.geojson'), debug);
+        }
+        // Tests
+        t.deepEquals(masked, load.sync(path.join(directories.out, folder, 'results.geojson')), folder);
     }
-};
-
-
-var maskedOutputWorld = {
-    'type': 'Feature',
-    'properties': {},
-    'geometry': {
-        'type': 'Polygon',
-        'coordinates': [
-          [[100, 0], [101, 0], [101, 1], [100, 1], [100, 0]],
-          [[180, 90], [-180, 90], [-180, -90], [180, -90], [180, 90]]
-        ]
-    }
-};
-
-var maskedOutputSpecific = {
-    'type': 'Feature',
-    'properties': {},
-    'geometry': {
-        'type': 'Polygon',
-        'coordinates': [
-          [[100, 0], [101, 0], [101, 1], [100, 1], [100, 0]],
-          [[100.2, 0.2], [100.8, 0.2], [100.8, 0.8], [100.2, 0.8], [100.2, 0.2]]
-        ]
-    }
-};
-
-test('turf collect module', function (t) {
-    var maskedWithNoMask = mask(poly);
-    t.deepEqual(maskedWithNoMask, maskedOutputWorld, 'Masks to the world');
-    // Reset the input poly by removing the mask
-    poly.geometry.coordinates.splice(1, 1);
-
-    var maskedWithInput = mask(poly, maskPoly);
-    t.deepEqual(maskedWithInput, maskedOutputSpecific, 'Masks to a specific poly');
-
     t.end();
 });

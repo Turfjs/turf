@@ -1,3 +1,6 @@
+const helpers = require('@turf/helpers');
+const featureEach = require('@turf/meta').featureEach;
+
 /**
  * Takes a {@link Polygon|polygon} and an optional mask and returns the outside area,
  * if you don't pass a mask polygon then the world is used.
@@ -21,11 +24,12 @@
  * //=masked
  */
 module.exports = function (polygon, mask) {
-    var world = [[180, 90], [-180, 90], [-180, -90], [180, -90], [180, 90]];
-    if (mask !== undefined) {
-        polygon.geometry.coordinates.push(mask.geometry.coordinates);
-    } else {
-        polygon.geometry.coordinates.push(world);
-    }
-    return polygon;
+    var world = helpers.polygon([[[180, 90], [-180, 90], [-180, -90], [180, -90], [180, 90]]]);
+    mask = mask || world;
+
+    featureEach(polygon, function (feature) {
+        var coordinates = feature.geometry.coordinates;
+        mask.geometry.coordinates.push(coordinates[0]);
+    });
+    return mask;
 };
