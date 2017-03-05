@@ -35,6 +35,6 @@
   },
   "dependencies": {
     "@turf/helpers": "^3.10.5",
-    "geojson-flatten": "^0.1.0"
+    "@turf/meta": "^3.10.5"
   }
 }
