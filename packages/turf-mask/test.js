@@ -4,7 +4,7 @@ const path = require('path');
 const load = require('load-json-file');
 const write = require('write-json-file');
 const mkdirp = require('mkdirp');
-const mask = require('.');
+const turfMask = require('.');
 
 const directories = {
     in: path.join(__dirname, 'test', 'in') + path.sep,
@@ -19,16 +19,14 @@ let fixtures = fs.readdirSync(directories.in).map(folder => {
     });
     return files;
 });
-var include = ['basic', 'feature-collection'];
+const include = ['basic', 'feature-collection'];
 fixtures = fixtures.filter(fixture => include.indexOf(fixture.folder) !== -1);
 
 test('turf-mask', t => {
-    for (const fixture  of fixtures) {
-        const folder = fixture.folder;
-
+    for (const {folder, polygon, mask} of fixtures) {
         // Line Intersect
-        const masked = mask(fixture.polygon, fixture.mask);
-        const debug = mask(fixture.polygon, fixture.mask, true);
+        const masked = turfMask(polygon, mask);
+        const debug = turfMask(polygon, mask, true);
 
         // Save Results
         mkdirp.sync(path.join(directories.out, folder));

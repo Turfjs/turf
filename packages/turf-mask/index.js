@@ -23,12 +23,69 @@ const featureEach = require('@turf/meta').featureEach;
  * //=masked
  */
 module.exports = function (polygon, mask) {
-    var world = helpers.polygon([[[180, 90], [-180, 90], [-180, -90], [180, -90], [180, 90]]]);
-    var result = JSON.parse(JSON.stringify(mask || world));
+    // Define mask
+    var maskCoordinates = createMask(mask);
+    var maskOuter = maskCoordinates[0];
+    var maskInners = maskCoordinates.slice(1);
 
+    // Define polygon
+    var separated = separatePolygonToLines(polygon);
+    var polygonOuters = separated[0];
+    var polygonInners = separated[1];
+
+    // Create masked area
+    var masked = buildMask(maskOuter, maskInners, polygonOuters, polygonInners);
+    return masked;
+};
+
+/**
+ * Build Mask
+ *
+ * @param {line} maskOuter Mask Outer
+ * @param {Array<line>} maskInners Mask Inners
+ * @param {Array<line>} polygonOuters Polygon Outers
+ * @param {Array<line>} polygonInners Polygon Inners
+ * @returns {Feature<Polygon>} Feature Polygon
+ */
+function buildMask(maskOuter, maskInners, polygonOuters) {
+    var coordinates = [maskOuter];
+    polygonOuters.forEach(function (outer) {
+        coordinates.push(outer);
+    });
+    return helpers.polygon(coordinates);
+}
+
+/**
+ * Separate Polygons to inner & outer lines
+ *
+ * @private
+ * @param {FeatureCollection|Feature<Polygon|MultiPolygon>} polygon GeoJSON Feature
+ * @returns {Array<line[], line[]>} Outer & Inner lines
+ */
+function separatePolygonToLines(polygon) {
+    var outers = [];
+    var inners = [];
     featureEach(polygon, function (feature) {
         var coordinates = feature.geometry.coordinates;
-        result.geometry.coordinates.push(coordinates[0]);
+        var featureOuter = coordinates[0];
+        var featureInner = coordinates.slice(1);
+        outers.push(featureOuter);
+        featureInner.forEach(function (inner) {
+            inners.push(inner);
+        });
     });
-    return result;
-};
+    return [outers, inners];
+}
+
+/**
+ * Create Mask Coordinates
+ *
+ * @private
+ * @param {Feature<Polygon>} [mask] default to world if undefined
+ * @returns {coordinates} mask coordinate
+ */
+function createMask(mask) {
+    var world = [[[180, 90], [-180, 90], [-180, -90], [180, -90], [180, 90]]];
+    var coordinates = mask && mask.geometry.coordinates || world;
+    return coordinates;
+}
