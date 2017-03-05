@@ -1,3 +1,4 @@
+// var geojsonFlatten = require('geojson-flatten');
 var helpers = require('@turf/helpers');
 var featureEach = require('@turf/meta').featureEach;
 var geomEach = require('@turf/meta').geomEach;
@@ -7,6 +8,7 @@ var geomEach = require('@turf/meta').geomEach;
  *
  * @name flatten
  * @param {Feature} geojson any valid {@link GeoJSON} with multi-geometry {@link Feature}s
+ * @param {*} [properties] translate properties to Feature (only applies for {@link GeometryCollection})
  * @return {FeatureCollection} a flattened {@link FeatureCollection}
  * @example
  * var geometry = {
@@ -22,8 +24,23 @@ var geomEach = require('@turf/meta').geomEach;
  *
  * //=flattened
  */
-function flatten(geojson) {
-    var type = (geojson.type === 'Feature') ? geojson.geometry.type : geojson.type;
+function flatten(geojson, properties) {
+    // Convert Geometry Object to Feature
+    switch (geojson.type) {
+    case 'FeatureCollection':
+    case 'Feature':
+    case 'GeometryCollection':
+        break;
+    default:
+        geojson = {
+            type: 'Feature',
+            properties: properties || {},
+            geometry: geojson
+        };
+    }
+
+    // Convert to FeatureCollection
+    var type = (geojson.geometry) ? geojson.geometry.type : geojson.type;
     switch (type) {
     case 'MultiPoint':
         return flattenMultiPoint(geojson);
@@ -34,13 +51,13 @@ function flatten(geojson) {
     case 'FeatureCollection':
         return flattenFeatureCollection(geojson);
     case 'GeometryCollection':
-        return flattenGeometryCollection(geojson);
+        return flattenGeometryCollection(geojson, properties);
     case 'Point':
     case 'LineString':
     case 'Polygon':
         return helpers.featureCollection([geojson]);
     }
-    // Fallback to geojson-flatten
+    // // Fallback to geojson-flatten
     // var flattened = geojsonFlatten(geojson);
     // if (flattened.type === 'FeatureCollection') return flattened;
     // else return helpers.featureCollection(geojsonFlatten(geojson));
@@ -126,22 +143,28 @@ function flattenFeatureCollection(geojson) {
  *
  * @private
  * @param {GeometryCollection<any>} geojson GeoJSON Geometry Collection
+ * @param {*} [properties] translate properties to Feature
  * @returns {FeatureCollection<any>} Feature Collection
  */
-function flattenGeometryCollection(geojson) {
+function flattenGeometryCollection(geojson, properties) {
     var features = [];
     geomEach(geojson, function (geometry) {
         switch (geometry.type) {
         case 'MultiPoint':
         case 'MultiLineString':
         case 'MultiPolygon':
-            var flattened = flatten(geometry);
+            var flattened = flatten(geometry, properties);
             featureEach(flattened, function (feature) {
                 features.push(feature);
             });
             break;
         default:
-            features.push(geometry);
+            var feature = {
+                type: 'Feature',
+                properties: properties || {},
+                geometry: geometry
+            };
+            features.push(feature);
         }
     });
     return helpers.featureCollection(features);

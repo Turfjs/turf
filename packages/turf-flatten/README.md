@@ -7,6 +7,7 @@ Flattens any [GeoJSON](GeoJSON) to a [FeatureCollection](http://geojson.org/geoj
 **Parameters**
 
 -   `geojson` **[Feature](http://geojson.org/geojson-spec.html#feature-objects)** any valid [GeoJSON](GeoJSON) with multi-geometry [Feature](http://geojson.org/geojson-spec.html#feature-objects)s
+-   `properties` **\[Any]** translate properties to Feature (only applies for [GeometryCollection](http://geojson.org/geojson-spec.html#geometrycollection))
 
 **Examples**
 
