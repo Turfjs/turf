@@ -4,7 +4,7 @@ var featureEach = require('@turf/meta').featureEach;
 var geomEach = require('@turf/meta').geomEach;
 
 /**
- * Flattens any {@link GeoJSON} to a {@link FeatureCollection} using [geojson-flatten](https://github.com/mapbox/geojson-flatten).
+ * Flattens any {@link GeoJSON} to a {@link FeatureCollection} inspired by [geojson-flatten](https://github.com/tmcw/geojson-flatten).
  *
  * @name flatten
  * @param {Feature} geojson any valid {@link GeoJSON} with multi-geometry {@link Feature}s

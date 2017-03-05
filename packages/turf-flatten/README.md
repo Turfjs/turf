@@ -2,7 +2,7 @@
 
 # flatten
 
-Flattens any [GeoJSON](GeoJSON) to a [FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects) using [geojson-flatten](https://github.com/mapbox/geojson-flatten).
+Flattens any [GeoJSON](GeoJSON) to a [FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects) inspired by [geojson-flatten](https://github.com/tmcw/geojson-flatten).
 
 **Parameters**
 
