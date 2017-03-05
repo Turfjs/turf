@@ -77,6 +77,7 @@ import * as idw from '@turf/idw';
 import * as truncate from '@turf/truncate';
 import * as flatten from '@turf/flatten';
 import * as lineIntersect from '@turf/line-intersect';
+import * as mask from '@turf/mask';
 
 export {
     isolines,
@@ -149,5 +150,6 @@ export {
     featureEach,
     coordAll,
     geomEach,
-    lineIntersect
+    lineIntersect,
+    mask
 };
