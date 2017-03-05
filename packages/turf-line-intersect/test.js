@@ -20,6 +20,11 @@ let fixtures = fs.readdirSync(directories.in).map(folder => {
     return files;
 });
 
+// const include = [
+//     'multi-linestring'
+// ];
+// fixtures = fixtures.filter(fixture => include.indexOf(fixture.folder) !== -1);
+
 test('turf-line-intersect', t => {
     for (const {folder, line1, line2}  of fixtures) {
         // Line Intersect

@@ -18,7 +18,10 @@ let fixtures = fs.readdirSync(directories.in).map(folder => {
         line2: load.sync(path.join(directories.in, folder, 'line2.geojson'))
     };
 });
-// fixtures = fixtures.filter(fixture => { return fixture.folder === 'simple'; });
+// const include = [
+//     'multi-linestring'
+// ];
+// fixtures = fixtures.filter(fixture => include.indexOf(fixture.folder) !== -1);
 
 for (const {folder, line1, line2} of fixtures) {
     suite.add(folder, () => lineIntersect(line1, line2));

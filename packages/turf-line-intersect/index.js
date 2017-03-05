@@ -158,7 +158,7 @@ function lineTree(line) {
         // Support no-lineString geometries
         switch (multiFeature.geometry.type) {
         case 'MultiLineString':
-            multiFeature = flatten(multiFeature);
+            multiFeature = flattenMultiLineString(multiFeature);
             break;
         case 'Polygon':
         case 'MultiPolygon':
@@ -190,6 +190,21 @@ function lineTree(line) {
     });
     tree.load(load);
     return tree;
+}
+
+/**
+ * Flatten MultiLineString
+ *
+ * @private
+ * @param {Feature<MultiLineString>} multiLineString GeoJSON Feature
+ * @returns {FeatureCollection<LineString>} Feature Collection
+ */
+function flattenMultiLineString(multiLineString) {
+    var lines = [];
+    multiLineString.geometry.coordinates.forEach(function (coordinates) {
+        lines.push(helpers.lineString(coordinates));
+    });
+    return helpers.featureCollection(lines);
 }
 
 /**
