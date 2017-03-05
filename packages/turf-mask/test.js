@@ -19,12 +19,12 @@ let fixtures = fs.readdirSync(directories.in).map(folder => {
     });
     return files;
 });
-const include = [
-    'basic',
-    'feature-collection',
-    'multipolygon'
-];
-fixtures = fixtures.filter(fixture => include.indexOf(fixture.folder) !== -1);
+// const include = [
+//     'basic',
+//     'feature-collection',
+//     'multipolygon'
+// ];
+// fixtures = fixtures.filter(fixture => include.indexOf(fixture.folder) !== -1);
 
 test('turf-mask', t => {
     for (const {folder, polygon, mask} of fixtures) {
