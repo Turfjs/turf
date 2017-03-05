@@ -8,7 +8,7 @@ var geomEach = require('@turf/meta').geomEach;
  *
  * @name flatten
  * @param {Feature} geojson any valid {@link GeoJSON} with multi-geometry {@link Feature}s
- * @param {*} [properties] translate properties to Feature (only applies for {@link GeometryCollection})
+ * @param {*} [properties={}] translate properties to each {@link Feature} (only applies for {@link GeometryCollection} & {@link GeometryObject})
  * @return {FeatureCollection} a flattened {@link FeatureCollection}
  * @example
  * var geometry = {
