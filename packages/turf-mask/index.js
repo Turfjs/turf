@@ -41,6 +41,7 @@ module.exports = function (polygon, mask) {
 /**
  * Build Mask
  *
+ * @private
  * @param {line} maskOuter Mask Outer
  * @param {Array<line>} maskInners Mask Inners
  * @param {Array<line>} polygonOuters Polygon Outers
@@ -85,6 +86,7 @@ function separatePolygonToLines(polygon) {
 /**
  * Flatten MultiPolygon
  *
+ * @private
  * @param {Feature<MultiPolygon>} multiPolygon GeoJSON Feature
  * @returns {FeatureCollection<Polygon>} Feature Collection
  */
