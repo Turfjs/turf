@@ -638,7 +638,7 @@ module.exports.geomEach = geomEach;
  */
 function geomReduce(layer, callback, initialValue) {
     var previousValue = initialValue;
-    featureEach(layer, function (currentGeometry, currentIndex) {
+    geomEach(layer, function (currentGeometry, currentIndex) {
         if (currentIndex === 0 && initialValue === undefined) {
             previousValue = currentGeometry;
         } else {

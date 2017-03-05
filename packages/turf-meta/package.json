@@ -3,8 +3,14 @@
   "version": "3.10.5",
   "description": "meta and functional programming helpers for turf modules",
   "main": "index.js",
+  "types": "index.d.ts",
+  "files": [
+    "index.js",
+    "index.d.ts"
+  ],
   "scripts": {
-    "test": "tape test.js"
+    "test": "node test.js",
+    "bench": "node bench.js"
   },
   "keywords": [
     "functional",
@@ -29,6 +35,5 @@
   "homepage": "https://github.com/Turfjs/turf",
   "bugs": {
     "url": "https://github.com/Turfjs/turf/issues"
-  },
-  "types": "index.d.ts"
+  }
 }
