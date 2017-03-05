@@ -18,6 +18,8 @@ let fixtures = fs.readdirSync(directories.in).map(filename => {
     };
 });
 
+// fixtures = fixtures.filter(({name}) => (name === 'MultiPolygon'));
+
 for (const {geojson, name} of fixtures) {
     suite.add(name, () => flatten(geojson));
 }

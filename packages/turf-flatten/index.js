@@ -39,7 +39,7 @@ function flatten(geojson, properties) {
         };
     }
 
-    // Convert to FeatureCollection
+    // Convert to Flattened FeatureCollection
     var type = (geojson.geometry) ? geojson.geometry.type : geojson.type;
     switch (type) {
     case 'MultiPoint':
@@ -57,7 +57,7 @@ function flatten(geojson, properties) {
     case 'Polygon':
         return helpers.featureCollection([geojson]);
     }
-    // // Fallback to geojson-flatten
+    // // Fallback to geojson-flatten original source code
     // var flattened = geojsonFlatten(geojson);
     // if (flattened.type === 'FeatureCollection') return flattened;
     // else return helpers.featureCollection(geojsonFlatten(geojson));
@@ -73,9 +73,16 @@ module.exports = flatten;
  */
 function flattenMultiPoint(geojson) {
     var points = [];
-    var coordinates = (geojson.geometry) ? geojson.geometry.coordinates : geojson.coordinates;
-    coordinates.forEach(function (coords) {
-        points.push(helpers.point(coords, geojson.properties));
+    geojson.geometry.coordinates.forEach(function (coordinates) {
+        var point = {
+            type: 'Feature',
+            properties: geojson.properties,
+            geometry: {
+                type: 'Point',
+                coordinates: coordinates
+            }
+        };
+        points.push(point);
     });
     return helpers.featureCollection(points);
 }
@@ -89,9 +96,8 @@ function flattenMultiPoint(geojson) {
  */
 function flattenMultiLineString(geojson) {
     var lines = [];
-    var coordinates = (geojson.geometry) ? geojson.geometry.coordinates : geojson.coordinates;
-    coordinates.forEach(function (coords) {
-        lines.push(helpers.lineString(coords, geojson.properties));
+    geojson.geometry.coordinates.forEach(function (coordinates) {
+        lines.push(helpers.lineString(coordinates, geojson.properties));
     });
     return helpers.featureCollection(lines);
 }
@@ -105,9 +111,8 @@ function flattenMultiLineString(geojson) {
  */
 function flattenMultiPolygon(geojson) {
     var polygons = [];
-    var coordinates = (geojson.geometry) ? geojson.geometry.coordinates : geojson.coordinates;
-    coordinates.forEach(function (coords) {
-        polygons.push(helpers.polygon(coords, geojson.properties));
+    geojson.geometry.coordinates.forEach(function (coordinates) {
+        polygons.push(helpers.polygon(coordinates, geojson.properties));
     });
     return helpers.featureCollection(polygons);
 }
