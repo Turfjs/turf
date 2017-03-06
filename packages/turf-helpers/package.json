@@ -3,8 +3,14 @@
   "version": "3.10.5",
   "description": "turf geometries",
   "main": "index.js",
+  "types": "index.d.ts",
+  "files": [
+    "index.js",
+    "index.d.ts"
+  ],
   "scripts": {
-    "test": "node test.js"
+    "test": "node test.js",
+    "bench": "node bench.js"
   },
   "repository": {
     "type": "git",
@@ -23,9 +29,8 @@
   },
   "homepage": "https://github.com/Turfjs/turf",
   "devDependencies": {
-    "benchmark": "^1.0.0",
+    "benchmark": "^2.1.3",
     "tape": "^3.5.0"
   },
-  "dependencies": {},
-  "types": "index.d.ts"
+  "dependencies": {}
 }
