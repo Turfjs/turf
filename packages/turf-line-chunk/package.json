@@ -1,0 +1,42 @@
+{
+  "name": "turf-line-chunk",
+  "version": "1.0.0",
+  "description": "Divide a linestring into chunks of a specified length",
+  "main": "index.js",
+  "types": "index.d.ts",
+  "files": [
+    "index.js",
+    "index.d.ts"
+  ],
+  "scripts": {
+    "bench": "node bench.js",
+    "test": "tape test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Turfjs/turf.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Turfjs/turf/issues"
+  },
+  "keywords": [
+    "turf",
+    "gis",
+    "geojson",
+    "linestring",
+    "line segment"
+  ],
+  "author": "Tim Channell",
+  "license": "MIT",
+  "dependencies": {
+    "@turf/along": "^3.0.0",
+    "@turf/helpers": "^3.0.0",
+    "@turf/line-distance": "^3.0.0"
+  },
+  "devDependencies": {
+    "benchmark": "^1.0.0",
+    "load-json-file": "^2.0.0",
+    "tape": "^2.1.1",
+    "write-json-file": "^2.0.0"
+  }
+}
