@@ -1,7 +1,7 @@
 {
   "name": "@turf/flatten",
   "version": "3.12.2",
-  "description": "Turf.js flatten module for converting multipart geometries to singlepart.",
+  "description": "turf flatten module",
   "main": "index.js",
   "types": "index.d.ts",
   "files": [

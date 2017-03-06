@@ -1,10 +1,16 @@
 {
   "name": "@turf/collect",
   "version": "3.10.5",
-  "description": "turf aggregate module",
+  "description": "turf collect module",
   "main": "index.js",
+  "types": "index.d.ts",
+  "files": [
+    "index.js",
+    "index.d.ts"
+  ],
   "scripts": {
-    "test": "tape test.js"
+    "test": "node test.js",
+    "bench": "node bench.js"
   },
   "repository": {
     "type": "git",
@@ -27,15 +33,14 @@
     "Rowan Winsemius"
   ],
   "license": "MIT",
-  "dependencies": {
-    "rbush": "^2.0.1",
-    "@turf/bbox": "^3.10.5",
-    "@turf/inside": "^3.10.5"
-  },
   "devDependencies": {
     "benchmark": "^1.0.0",
     "tape": "^3.6.1",
     "@turf/helpers": "^3.10.5"
   },
-  "types": "index.d.ts"
+  "dependencies": {
+    "rbush": "^2.0.1",
+    "@turf/bbox": "^3.10.5",
+    "@turf/inside": "^3.10.5"
+  }
 }

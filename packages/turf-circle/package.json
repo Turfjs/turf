@@ -3,8 +3,14 @@
   "version": "3.10.5",
   "description": "turf circle module",
   "main": "index.js",
+  "types": "index.d.ts",
+  "files": [
+    "index.js",
+    "index.d.ts"
+  ],
   "scripts": {
-    "test": "tape test.js"
+    "test": "node test.js",
+    "bench": "node bench.js"
   },
   "repository": {
     "type": "git",
@@ -33,6 +39,5 @@
   "dependencies": {
     "@turf/destination": "^3.10.5",
     "@turf/helpers": "^3.10.5"
-  },
-  "types": "index.d.ts"
+  }
 }

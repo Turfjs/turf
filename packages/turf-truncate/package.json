@@ -1,7 +1,7 @@
 {
   "name": "@turf/truncate",
   "version": "3.11.7",
-  "description": "Truncates the geometry precision for all GeoJSON coordinates.",
+  "description": "turf truncate module",
   "main": "index.js",
   "types": "index.d.ts",
   "files": [
@@ -28,11 +28,11 @@
     "url": "https://github.com/Turfjs/turf/issues"
   },
   "homepage": "https://github.com/Turfjs/turf",
-  "dependencies": {},
   "devDependencies": {
     "benchmark": "^1.0.0",
     "load-json-file": "^2.0.0",
     "tape": "^3.5.0",
     "write-json-file": "^2.0.0"
-  }
+  },
+  "dependencies": {}
 }

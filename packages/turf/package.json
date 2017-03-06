@@ -4,19 +4,19 @@
   "description": "a JavaScript library for performing geospatial operations with GeoJSON",
   "main": "index.js",
   "types": "index.d.ts",
+  "files": [
+    "index.js",
+    "index.d.ts",
+    "turf.js",
+    "turf.min.js",
+    "bower.json"
+  ],
   "scripts": {
     "test": "echo 1",
     "prepublish": "npm run build",
     "build": "browserify index.js -s turf > turf.js && uglifyjs turf.js -c -m > turf.min.js",
     "size": "browserify index.js --full-paths -s turf | uglifyjs -c -m | discify | hcat"
   },
-  "files": [
-    "index.js",
-    "bower.json",
-    "turf.js",
-    "turf.min.js",
-    "index.d.ts"
-  ],
   "repository": {
     "type": "git",
     "url": "git://github.com/Turfjs/turf.git"

@@ -1,26 +1,13 @@
 {
   "name": "@turf/unkink-polygon",
   "version": "3.10.5",
-  "description": "turf unkink polygon module",
+  "description": "turf unkink-polygon module",
   "main": "index.js",
+  "types": "index.d.ts",
   "files": [
     "index.js",
     "index.d.ts"
   ],
-  "dependencies": {
-    "@turf/helpers": "^3.10.5",
-    "@turf/meta": "^3.10.5",
-    "geojson-flatten": "^0.2.1",
-    "simplepolygon": "^1.1.1"
-  },
-  "devDependencies": {
-    "benchmark": "^2.1.3",
-    "eslint": "^3.16.1",
-    "eslint-config-mourner": "^2.0.1",
-    "load-json-file": "^2.0.0",
-    "tape": "^3.5.0",
-    "write-json-file": "^2.0.0"
-  },
   "scripts": {
     "test": "node test.js",
     "bench": "node bench.js"
@@ -42,5 +29,18 @@
     "url": "https://github.com/Turfjs/turf/issues"
   },
   "homepage": "https://github.com/Turfjs/turf",
-  "types": "index.d.ts"
+  "devDependencies": {
+    "benchmark": "^2.1.3",
+    "eslint": "^3.16.1",
+    "eslint-config-mourner": "^2.0.1",
+    "load-json-file": "^2.0.0",
+    "tape": "^3.5.0",
+    "write-json-file": "^2.0.0"
+  },
+  "dependencies": {
+    "@turf/helpers": "^3.10.5",
+    "@turf/meta": "^3.10.5",
+    "geojson-flatten": "^0.2.1",
+    "simplepolygon": "^1.1.1"
+  }
 }

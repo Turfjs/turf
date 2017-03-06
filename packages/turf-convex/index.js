@@ -3,16 +3,14 @@ var each = require('@turf/meta').coordEach,
     polygon = require('@turf/helpers').polygon;
 
 /**
- * Takes a [feature](http://geojson.org/geojson-spec.html#feature-objects)
- * or a [featureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects)
- * and returns a [convex hull](http://en.wikipedia.org/wiki/Convex_hull) polygon.
+ * Takes a {@link Feature} or a {@link FeatureCollection} and returns a convex hull {@link Polygon}.
  *
  * Internally this uses
  * the [convex-hull](https://github.com/mikolalysenko/convex-hull) module that
  * implements a [monotone chain hull](http://en.wikibooks.org/wiki/Algorithm_Implementation/Geometry/Convex_hull/Monotone_chain).
  *
  * @name convex
- * @param {(Feature|FeatureCollection)} feature input Feature or FeatureCollection
+ * @param {Feature|FeatureCollection} feature input Feature or FeatureCollection
  * @returns {Feature<Polygon>} a convex hull
  * @example
  * var points = {

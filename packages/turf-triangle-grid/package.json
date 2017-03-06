@@ -1,19 +1,16 @@
 {
   "name": "@turf/triangle-grid",
   "version": "3.10.5",
-  "description": "",
+  "description": "turf triangle-grid module",
   "main": "index.js",
-  "dependencies": {
-    "@turf/distance": "^3.10.5",
-    "@turf/helpers": "^3.10.5"
-  },
-  "devDependencies": {
-    "benchmark": "^1.0.0",
-    "tape": "^3.5.0",
-    "@turf/bbox-polygon": "^3.10.5"
-  },
+  "types": "index.d.ts",
+  "files": [
+    "index.js",
+    "index.d.ts"
+  ],
   "scripts": {
-    "test": "node test.js"
+    "test": "node test.js",
+    "bench": "node bench.js"
   },
   "repository": {
     "type": "git",
@@ -33,5 +30,13 @@
     "url": "https://github.com/Turfjs/turf/issues"
   },
   "homepage": "https://github.com/Turfjs/turf",
-  "types": "index.d.ts"
+  "devDependencies": {
+    "benchmark": "^1.0.0",
+    "tape": "^3.5.0",
+    "@turf/bbox-polygon": "^3.10.5"
+  },
+  "dependencies": {
+    "@turf/distance": "^3.10.5",
+    "@turf/helpers": "^3.10.5"
+  }
 }

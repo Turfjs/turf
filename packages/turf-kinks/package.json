@@ -3,15 +3,14 @@
   "version": "3.10.5",
   "description": "turf kinks module",
   "main": "index.js",
-  "dependencies": {
-    "@turf/helpers": "^3.10.5"
-  },
-  "devDependencies": {
-    "benchmark": "^1.0.0",
-    "tape": "^3.5.0"
-  },
+  "types": "index.d.ts",
+  "files": [
+    "index.js",
+    "index.d.ts"
+  ],
   "scripts": {
-    "test": "node test.js"
+    "test": "node test.js",
+    "bench": "node bench.js"
   },
   "repository": {
     "type": "git",
@@ -28,5 +27,11 @@
     "url": "https://github.com/Turfjs/turf/issues"
   },
   "homepage": "https://github.com/Turfjs/turf",
-  "types": "index.d.ts"
+  "devDependencies": {
+    "benchmark": "^1.0.0",
+    "tape": "^3.5.0"
+  },
+  "dependencies": {
+    "@turf/helpers": "^3.10.5"
+  }
 }

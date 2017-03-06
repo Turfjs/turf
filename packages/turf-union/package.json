@@ -1,7 +1,7 @@
 {
   "name": "@turf/union",
   "version": "3.11.6",
-  "description": "find the union of geographic features",
+  "description": "turf union module",
   "main": "index.js",
   "types": "index.d.ts",
   "files": [

@@ -3,8 +3,14 @@
   "version": "3.11.6",
   "description": "turf concave module",
   "main": "index.js",
+  "types": "index.d.ts",
+  "files": [
+    "index.js",
+    "index.d.ts"
+  ],
   "scripts": {
-    "test": "node test.js"
+    "test": "node test.js",
+    "bench": "node bench.js"
   },
   "repository": {
     "type": "git",
@@ -32,6 +38,5 @@
     "@turf/tin": "^3.10.5",
     "@turf/union": "^3.11.6",
     "@turf/distance": "^3.10.5"
-  },
-  "types": "index.d.ts"
+  }
 }

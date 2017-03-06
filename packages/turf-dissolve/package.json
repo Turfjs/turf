@@ -1,10 +1,16 @@
 {
   "name": "@turf/dissolve",
   "version": "3.11.6",
-  "description": "Dissolves polygons based on an attribute",
+  "description": "turf dissolve module",
   "main": "index.js",
+  "types": "index.d.ts",
+  "files": [
+    "index.js",
+    "index.d.ts"
+  ],
   "scripts": {
-    "test": "tape test.js"
+    "test": "node test.js",
+    "bench": "node bench.js"
   },
   "keywords": [
     "turf",
@@ -15,6 +21,17 @@
   ],
   "author": "Turf Authors",
   "license": "MIT",
+  "homepage": "https://github.com/Turfjs/turf",
+  "bugs": {
+    "url": "https://github.com/Turfjs/turf/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/Turfjs/turf.git"
+  },
+  "devDependencies": {
+    "tape": "^4.6.3"
+  },
   "dependencies": {
     "@turf/bbox": "^3.10.5",
     "@turf/helpers": "^3.10.5",
@@ -23,17 +40,5 @@
     "get-closest": "0.0.3",
     "rbush": "^2.0.1",
     "turf-overlaps": "^1.0.3"
-  },
-  "devDependencies": {
-    "tape": "^4.6.3"
-  },
-  "types": "index.d.ts",
-  "homepage": "https://github.com/Turfjs/turf",
-  "bugs": {
-    "url": "https://github.com/Turfjs/turf/issues"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/Turfjs/turf.git"
   }
 }

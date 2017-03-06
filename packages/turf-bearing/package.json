@@ -3,8 +3,14 @@
   "version": "3.10.0",
   "description": "turf bearing module",
   "main": "index.js",
+  "types": "index.d.ts",
+  "files": [
+    "index.js",
+    "index.d.ts"
+  ],
   "scripts": {
-    "test": "tape test.js"
+    "test": "node test.js",
+    "bench": "node bench.js"
   },
   "repository": {
     "type": "git",
@@ -20,12 +26,11 @@
     "url": "https://github.com/Turfjs/turf/issues"
   },
   "homepage": "https://github.com/Turfjs/turf",
-  "dependencies": {
-    "@turf/invariant": "^3.10.0"
-  },
   "devDependencies": {
     "benchmark": "^1.0.0",
     "tape": "^3.5.0"
   },
-  "types": "index.d.ts"
+  "dependencies": {
+    "@turf/invariant": "^3.10.0"
+  }
 }

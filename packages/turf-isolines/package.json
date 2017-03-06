@@ -3,8 +3,15 @@
   "version": "3.10.5",
   "description": "turf isolines module",
   "main": "index.js",
+  "types": "index.d.ts",
+  "files": [
+    "index.js",
+    "index.d.ts",
+    "conrec.js"
+  ],
   "scripts": {
-    "test": "tape test.js"
+    "test": "node test.js",
+    "bench": "node bench.js"
   },
   "repository": {
     "type": "git",
@@ -37,6 +44,5 @@
     "@turf/planepoint": "^3.10.0",
     "@turf/square": "^3.10.5",
     "@turf/tin": "^3.10.5"
-  },
-  "types": "index.d.ts"
+  }
 }

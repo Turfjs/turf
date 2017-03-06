@@ -1,12 +1,12 @@
-var difference = require('../'),
-  test = require('tape'),
-  glob = require('glob'),
-  fs = require('fs');
+var difference = require('.');
+var test = require('tape');
+var glob = require('glob');
+var fs = require('fs');
 
 var REGEN = process.env.REGEN;
 
 test('difference', function(t){
-  glob.sync(__dirname + '/fixtures/in/*.geojson').forEach(function(input) {
+  glob.sync(__dirname + '/test/in/*.geojson').forEach(function(input) {
       var features = JSON.parse(fs.readFileSync(input));
       var before = JSON.parse(JSON.stringify(features));
       var output = difference(features[0], features[1]);
@@ -18,7 +18,7 @@ test('difference', function(t){
 });
 
 test('difference -- geometries', function(t){
-  glob.sync(__dirname + '/fixtures/in/*.geojson').forEach(function(input) {
+  glob.sync(__dirname + '/test/in/*.geojson').forEach(function(input) {
       var fcs = JSON.parse(fs.readFileSync(input));
       var before = JSON.parse(JSON.stringify(fcs));
       var output = difference(fcs[0].geometry, fcs[1].geometry);
@@ -30,7 +30,7 @@ test('difference -- geometries', function(t){
 });
 
 test('difference -- geometries', function(t){
-  glob.sync(__dirname + '/fixtures/in/*.geojson').forEach(function(input) {
+  glob.sync(__dirname + '/test/in/*.geojson').forEach(function(input) {
       var fcs = JSON.parse(fs.readFileSync(input));
       var before = JSON.parse(JSON.stringify(fcs));
       var output = difference(fcs[0].geometry, fcs[1].geometry);
@@ -42,7 +42,7 @@ test('difference -- geometries', function(t){
 });
 
 test('difference -- empty set', function(t) {
-  var polys = JSON.parse(fs.readFileSync(__dirname+'/fixtures/full.geojson'));
+  var polys = JSON.parse(fs.readFileSync(__dirname+'/test/full.geojson'));
   var result = difference(polys[1], polys[0]);
   t.deepEqual(result, undefined);
   t.notOk(result);

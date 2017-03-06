@@ -1,13 +1,16 @@
 {
   "name": "@turf/convex",
   "version": "3.10.5",
-  "description": "",
+  "description": "turf convex module",
   "main": "index.js",
-  "directories": {
-    "test": "test"
-  },
+  "types": "index.d.ts",
+  "files": [
+    "index.js",
+    "index.d.ts"
+  ],
   "scripts": {
-    "test": "tape test/*.js"
+    "test": "node test.js",
+    "bench": "node bench.js"
   },
   "repository": {
     "type": "git",
@@ -32,6 +35,5 @@
     "convex-hull": "^1.0.3",
     "@turf/meta": "^3.10.5",
     "@turf/helpers": "^3.10.5"
-  },
-  "types": "index.d.ts"
+  }
 }

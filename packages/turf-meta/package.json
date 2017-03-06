@@ -1,7 +1,7 @@
 {
   "name": "@turf/meta",
   "version": "3.10.5",
-  "description": "meta and functional programming helpers for turf modules",
+  "description": "turf meta module",
   "main": "index.js",
   "types": "index.d.ts",
   "files": [
@@ -19,6 +19,14 @@
   ],
   "author": "Turf Authors",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/Turfjs/turf.git"
+  },
+  "homepage": "https://github.com/Turfjs/turf",
+  "bugs": {
+    "url": "https://github.com/Turfjs/turf/issues"
+  },
   "devDependencies": {
     "@turf/helpers": "^3.10.5",
     "@turf/random": "^3.10.0",
@@ -27,13 +35,5 @@
     "eslint-config-mourner": "^2.0.1",
     "tape": "^3.4.0"
   },
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/Turfjs/turf.git"
-  },
-  "dependencies": {},
-  "homepage": "https://github.com/Turfjs/turf",
-  "bugs": {
-    "url": "https://github.com/Turfjs/turf/issues"
-  }
+  "dependencies": {}
 }

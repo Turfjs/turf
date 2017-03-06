@@ -1,10 +1,16 @@
 {
   "name": "@turf/intersect",
   "version": "3.10.0",
-  "description": "find the intersection of spatial features",
+  "description": "turf intersect module",
   "main": "index.js",
+  "types": "index.d.ts",
+  "files": [
+    "index.js",
+    "index.d.ts"
+  ],
   "scripts": {
-    "test": "node test/test.js"
+    "test": "node test.js",
+    "bench": "node bench.js"
   },
   "repository": {
     "type": "git",
@@ -28,6 +34,5 @@
   },
   "dependencies": {
     "jsts": "1.3.0"
-  },
-  "types": "index.d.ts"
+  }
 }

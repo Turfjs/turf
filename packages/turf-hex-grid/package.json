@@ -1,10 +1,16 @@
 {
   "name": "@turf/hex-grid",
   "version": "3.11.7",
-  "description": "",
+  "description": "turf hex-grid module",
   "main": "index.js",
+  "types": "index.d.ts",
+  "files": [
+    "index.js",
+    "index.d.ts"
+  ],
   "scripts": {
-    "test": "node test.js"
+    "test": "node test.js",
+    "bench": "node bench.js"
   },
   "repository": {
     "type": "git",
@@ -45,6 +51,5 @@
   "dependencies": {
     "@turf/distance": "^3.10.5",
     "@turf/helpers": "^3.10.5"
-  },
-  "types": "index.d.ts"
+  }
 }

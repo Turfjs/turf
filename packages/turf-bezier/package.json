@@ -1,10 +1,17 @@
 {
   "name": "@turf/bezier",
   "version": "3.10.5",
-  "description": "generate a bezier curve from a linestring",
+  "description": "turf bezier module",
   "main": "index.js",
+  "types": "index.d.ts",
+  "files": [
+    "index.js",
+    "index.d.ts",
+    "spline.js"
+  ],
   "scripts": {
-    "test": "tape test.js"
+    "test": "node test.js",
+    "bench": "node bench.js"
   },
   "repository": {
     "type": "git",
@@ -23,12 +30,11 @@
     "url": "https://github.com/Turfjs/turf/issues"
   },
   "homepage": "https://github.com/Turfjs/turf",
-  "dependencies": {
-    "@turf/helpers": "^3.10.5"
-  },
   "devDependencies": {
     "benchmark": "1.0.0",
     "tape": "~3.5.0"
   },
-  "types": "index.d.ts"
+  "dependencies": {
+    "@turf/helpers": "^3.10.5"
+  }
 }

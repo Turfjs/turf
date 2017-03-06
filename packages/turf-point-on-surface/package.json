@@ -3,8 +3,14 @@
   "version": "3.10.5",
   "description": "turf point-on-surface module",
   "main": "index.js",
+  "types": "index.d.ts",
+  "files": [
+    "index.js",
+    "index.d.ts"
+  ],
   "scripts": {
-    "test": "node test.js"
+    "test": "node test.js",
+    "bench": "node bench.js"
   },
   "repository": {
     "type": "git",
@@ -34,6 +40,5 @@
     "@turf/explode": "^3.10.5",
     "@turf/inside": "^3.10.5",
     "@turf/helpers": "^3.10.5"
-  },
-  "types": "index.d.ts"
+  }
 }
