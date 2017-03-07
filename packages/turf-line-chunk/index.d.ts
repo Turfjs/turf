@@ -1,18 +1,16 @@
-/// <reference types="geojson" />
+import {
+    LineString,
+    LineStrings,
+    MultiLineString,
+    MultiLineStrings,
+    Units
+} from '@turf/helpers'
 
-type LineStringFeature = GeoJSON.Feature<GeoJSON.LineString>;
-type LineString = GeoJSON.LineString;
-type Point = GeoJSON.Point;
+type FeatureIn = LineString | LineStrings | MultiLineString | MultiLineStrings;
 
-type FeatureCollectionLines = GeoJSON.FeatureCollection<LineStringFeature>;
-
-type LineStringFeatures = LineString | LineStringFeature;
-
-declare function LineChunk {
-    /**
-     * http://turfjs.org/docs/#lineChunk
-     */
-    (featureIn: LineStringFeatures, segmentLength: number, unit: Units): FeatureCollectionLines;
-}
-declare const lineChunk: LineChunk;
+/**
+ * http://turfjs.org/docs/#linechunk
+ */
+declare function lineChunk(featureIn: FeatureIn, segmentLength: number, unit?: Units): LineStrings;
+declare namespace lineChunk {}
 export = lineChunk;
