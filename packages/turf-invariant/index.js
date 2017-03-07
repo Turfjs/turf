@@ -1,27 +1,23 @@
 /**
- * Unwrap a coordinate from a Feature with a Point geometry, a Point
- * geometry, or a single coordinate.
+ * Unwrap coordinates from a Feature, Geometry Object or an Array of numbers
  *
- * @param {*} obj any value
- * @returns {Array<number>} a coordinate
+ * @param {Array<any>|Geometry|Feature<any>} obj any value
+ * @returns {Array<any>} coordinates
  */
 function getCoord(obj) {
-    if (Array.isArray(obj) &&
-        typeof obj[0] === 'number' &&
-        typeof obj[1] === 'number') {
-        return obj;
-    } else if (obj) {
-        if (obj.type === 'Feature' &&
-            obj.geometry &&
-            obj.geometry.type === 'Point' &&
-            Array.isArray(obj.geometry.coordinates)) {
-            return obj.geometry.coordinates;
-        } else if (obj.type === 'Point' &&
-            Array.isArray(obj.coordinates)) {
-            return obj.coordinates;
-        }
-    }
-    throw new Error('A coordinate, feature, or point geometry is required');
+    if (obj === undefined) throw new Error('No obj passed');
+
+    // Array of numbers
+    if (obj.length) return obj;
+
+    // Geometry Object
+    if (obj.coordinates) return obj.coordinates;
+
+    // Feature
+    var geometry = obj.geometry;
+    if (geometry && geometry.coordinates) return geometry.coordinates;
+
+    throw new Error('No valid coordinates');
 }
 
 /**
@@ -34,9 +30,9 @@ function getCoord(obj) {
  * @throws {Error} if value is not the expected type.
  */
 function geojsonType(value, type, name) {
-    if (!type || !name) throw new Error('type and name required');
+    if (type === undefined || name === undefined) throw new Error('type and name required');
 
-    if (!value || value.type !== type) {
+    if (value === undefined || value.type !== type) {
         throw new Error('Invalid input to ' + name + ': must be a ' + type + ', given ' + value.type);
     }
 }
@@ -52,11 +48,11 @@ function geojsonType(value, type, name) {
  * @throws {Error} error if value is not the expected type.
  */
 function featureOf(feature, type, name) {
-    if (!name) throw new Error('.featureOf() requires a name');
-    if (!feature || feature.type !== 'Feature' || !feature.geometry) {
+    if (name === undefined) throw new Error('.featureOf() requires a name');
+    if (feature === undefined || feature.type !== 'Feature' || feature.geometry === undefined) {
         throw new Error('Invalid input to ' + name + ', Feature with geometry required');
     }
-    if (!feature.geometry || feature.geometry.type !== type) {
+    if (feature.geometry === undefined || feature.geometry.type !== type) {
         throw new Error('Invalid input to ' + name + ': must be a ' + type + ', given ' + feature.geometry.type);
     }
 }
@@ -66,22 +62,22 @@ function featureOf(feature, type, name) {
  * Internally this uses {@link geojsonType} to judge geometry types.
  *
  * @alias collectionOf
- * @param {FeatureCollection} featurecollection a featurecollection for which features will be judged
+ * @param {FeatureCollection} featureCollection a FeatureCollection for which features will be judged
  * @param {string} type expected GeoJSON type
  * @param {string} name name of calling function
  * @throws {Error} if value is not the expected type.
  */
-function collectionOf(featurecollection, type, name) {
-    if (!name) throw new Error('.collectionOf() requires a name');
-    if (!featurecollection || featurecollection.type !== 'FeatureCollection') {
+function collectionOf(featureCollection, type, name) {
+    if (name === undefined) throw new Error('.collectionOf() requires a name');
+    if (featureCollection === undefined || featureCollection.type !== 'FeatureCollection') {
         throw new Error('Invalid input to ' + name + ', FeatureCollection required');
     }
-    for (var i = 0; i < featurecollection.features.length; i++) {
-        var feature = featurecollection.features[i];
-        if (!feature || feature.type !== 'Feature' || !feature.geometry) {
+    for (var i = 0; i < featureCollection.features.length; i++) {
+        var feature = featureCollection.features[i];
+        if (feature === undefined || feature.type !== 'Feature' || feature.geometry === undefined) {
             throw new Error('Invalid input to ' + name + ', Feature with geometry required');
         }
-        if (!feature.geometry || feature.geometry.type !== type) {
+        if (feature.geometry === undefined || feature.geometry.type !== type) {
             throw new Error('Invalid input to ' + name + ': must be a ' + type + ', given ' + feature.geometry.type);
         }
     }
