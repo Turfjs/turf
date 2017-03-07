@@ -4,7 +4,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"stroke": "#765",
+				"stroke": "#F00",
 				"stroke-width": 6
 			},
 			"geometry": {

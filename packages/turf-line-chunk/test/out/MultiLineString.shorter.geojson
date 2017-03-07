@@ -4,7 +4,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"stroke": "#445",
+				"stroke": "#F00",
 				"stroke-width": 6
 			},
 			"geometry": {
@@ -24,7 +24,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"stroke": "#756",
+				"stroke": "#00F",
 				"stroke-width": 6
 			},
 			"geometry": {
@@ -44,7 +44,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"stroke": "#467",
+				"stroke": "#F00",
 				"stroke-width": 6
 			},
 			"geometry": {
@@ -64,7 +64,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"stroke": "#886",
+				"stroke": "#00F",
 				"stroke-width": 6
 			},
 			"geometry": {
@@ -84,7 +84,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"stroke": "#885",
+				"stroke": "#F00",
 				"stroke-width": 6
 			},
 			"geometry": {
@@ -104,7 +104,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"stroke": "#786",
+				"stroke": "#00F",
 				"stroke-width": 6
 			},
 			"geometry": {
@@ -124,7 +124,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"stroke": "#666",
+				"stroke": "#F00",
 				"stroke-width": 6
 			},
 			"geometry": {

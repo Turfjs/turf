@@ -45,11 +45,12 @@ module.exports = function (featureIn, segmentLength, units) {
         // All features are simple LineString
         featureEach(multiFeature, function (feature) {
             var lineSegments = sliceLineSegments(feature, segmentLength, units);
-            lineSegments.forEach(function (segment) {
+            lineSegments.forEach(function (segment, index) {
                 if (debug === true) {
-                    var r = Math.floor(Math.random() * 5) + 4;
-                    var g = Math.floor(Math.random() * 5) + 4;
-                    var b = Math.floor(Math.random() * 5) + 4;
+                    console.log(index);
+                    var r = (index % 2 === 0) ? 'F' : '0';
+                    var g = (index % 2 === 0) ? '0' : '0';
+                    var b = (index % 2 === 0) ? '0' : 'F';
                     segment.properties['stroke'] = '#' + r + g + b;
                     segment.properties['stroke-width'] = 6;
                 }
