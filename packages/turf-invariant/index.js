@@ -2,10 +2,9 @@
  * Unwrap coordinates from a Feature, Geometry Object or an Array of numbers
  *
  * @param {Array<any>|Geometry|Feature<any>} obj any value
- * @param {boolean} [validate=false] checks if coordinates contains a number
  * @returns {Array<any>} coordinates
  */
-function getCoord(obj, validate) {
+function getCoord(obj) {
     if (!obj) throw new Error('No obj passed');
     var coordinates;
 
@@ -23,7 +22,7 @@ function getCoord(obj, validate) {
     }
     // Check if coordinates contains a number
     if (coordinates) {
-        if (validate) validateCoordinates(coordinates);
+        validateCoordinates(coordinates);
         return coordinates;
     }
     throw new Error('No valid coordinates');
@@ -42,7 +41,7 @@ function validateCoordinates(coordinates) {
     if (coordinates[0].length) {
         return validateCoordinates(coordinates[0]);
     }
-    throw new Error('coordinates must only contain numbers');
+    throw new Error('coordinates must an array of numbers');
 }
 
 /**
