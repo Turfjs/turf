@@ -2,14 +2,15 @@
 
 # lineChunk
 
-Divides a [linestring](linestring) into chunks of a specified length.
-If the line is shorter than the segment length then the orginal line is returned.
+Divides a [LineString](http://geojson.org/geojson-spec.html#linestring) into chunks of a specified length.
+If the line is shorter than the segment length then the original line is returned.
 
 **Parameters**
 
 -   `featureIn` **([FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects) \| [Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;([LineString](http://geojson.org/geojson-spec.html#linestring) \| [MultiLineString](http://geojson.org/geojson-spec.html#multilinestring))>)** the lines to split
 -   `segmentLength` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** how long to make each segment
 -   `units` **\[[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)]** units can be degrees, radians, miles, or kilometers (optional, default `'kilometers'`)
+-   `reverse` **\[[boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)]** reverses coodinates to start the first chunked segment at the end (optional, default `false`)
 
 **Examples**
 

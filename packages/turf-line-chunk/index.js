@@ -12,6 +12,7 @@ var flatten = require('@turf/flatten');
  * @param {FeatureCollection|Feature<LineString|MultiLineString>} featureIn the lines to split
  * @param {number} segmentLength how long to make each segment
  * @param {string}[units='kilometers'] units can be degrees, radians, miles, or kilometers
+ * @param {boolean}[reverse=false] reverses coodinates to start the first chunked segment at the end
  * @return {FeatureCollection<LineString>} collection of line segments
  * @example
  * var line = {
@@ -29,9 +30,9 @@ var flatten = require('@turf/flatten');
  * var result = turf.lineChunk(line, 15, 'miles');
  * //=result
  */
-module.exports = function (featureIn, segmentLength, units) {
+module.exports = function (featureIn, segmentLength, units, reverse) {
     var outFeatures = [];
-    var debug = arguments['3']; // Hidden @param {boolean} Enable debug mode
+    var debug = arguments['4']; // Hidden @param {boolean} Enable debug mode
 
     // Handles FeatureCollection
     featureEach(featureIn, function (multiFeature) {
@@ -43,6 +44,9 @@ module.exports = function (featureIn, segmentLength, units) {
 
         // All features are simple LineString
         featureEach(multiFeature, function (feature) {
+            if (reverse) {
+                feature.geometry.coordinates = feature.geometry.coordinates.reverse();
+            }
             var lineSegments = sliceLineSegments(feature, segmentLength, units);
             lineSegments.forEach(function (segment, index) {
                 if (debug === true) {
