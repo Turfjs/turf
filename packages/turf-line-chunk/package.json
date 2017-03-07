@@ -26,7 +26,12 @@
     "linestring",
     "line segment"
   ],
-  "author": "Tim Channell",
+  "author": "TurfJS",
+  "contributors": [
+    "Tim Channell",
+    "Rowan Winsemius",
+    "Denis Carriere <carriere.denis@gmail.com>"
+  ],
   "license": "MIT",
   "devDependencies": {
     "@turf/truncate": "^3.11.7",

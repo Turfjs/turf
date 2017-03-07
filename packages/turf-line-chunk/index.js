@@ -5,8 +5,8 @@ var featureEach = require('@turf/meta').featureEach;
 var flatten = require('@turf/flatten');
 
 /**
- * Divides a {@link linestring} into chunks of a specified length.
- * If the line is shorter than the segment length then the orginal line is returned.
+ * Divides a {@link LineString} into chunks of a specified length.
+ * If the line is shorter than the segment length then the original line is returned.
  *
  * @name lineChunk
  * @param {FeatureCollection|Feature<LineString|MultiLineString>} featureIn the lines to split
@@ -29,7 +29,6 @@ var flatten = require('@turf/flatten');
  * var result = turf.lineChunk(line, 15, 'miles');
  * //=result
  */
-
 module.exports = function (featureIn, segmentLength, units) {
     var outFeatures = [];
     var debug = arguments['3']; // Hidden @param {boolean} Enable debug mode
