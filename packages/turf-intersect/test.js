@@ -1,33 +1,33 @@
-var test = require('tape');
-var glob = require('glob');
-var fs = require('fs');
-var intersect = require('.');
+const path = require('path');
+const fs = require('fs');
+const test = require('tape');
+const load = require('load-json-file');
+const write = require('write-json-file');
+const intersect = require('.');
 
-var REGEN = process.env.REGEN;
+const directories = {
+    in: path.join(__dirname, 'test', 'in') + path.sep,
+    out: path.join(__dirname, 'test', 'out') + path.sep
+};
 
-test('intersect -- features', function(t){
-  glob.sync(__dirname + '/test/in/*.json').forEach(function(input) {
-      var features = JSON.parse(fs.readFileSync(input));
-      var output = intersect(features[0], features[1]);
-      if (REGEN) fs.writeFileSync(input.replace('/in/', '/out/'), JSON.stringify(output));
-      t.deepEqual(output, JSON.parse(fs.readFileSync(input.replace('/in/', '/out/'))), input);
-  });
-  t.end();
+const fixtures = fs.readdirSync(directories.in).map(filename => {
+    return {
+        filename,
+        name: path.parse(filename).name,
+        geojson: load.sync(directories.in + filename)
+    };
 });
 
-test('intersect -- geometries', function(t){
-  glob.sync(__dirname + '/test/in/*.json').forEach(function(input) {
-      var features = JSON.parse(fs.readFileSync(input));
-      var output = intersect(features[0].geometry, features[1].geometry);
-      if (REGEN) fs.writeFileSync(input.replace('/in/', '/out/'), JSON.stringify(output));
-      t.deepEqual(output, JSON.parse(fs.readFileSync(input.replace('/in/', '/out/'))), input);
-  });
-  t.end();
-});
+test('intersect', t => {
+    for (const {name, geojson, filename} of fixtures) {
+        console.log('processing', name);
+        const features = geojson.features;
+        const result = intersect(features[0], features[1]);
 
-test('intersect -- no overlap', function(t){
-  var noOverlap = JSON.parse(fs.readFileSync(__dirname+'/test/no-overlap.geojson'));
-  var output = intersect(noOverlap[0].geometry, noOverlap[1].geometry);
-  t.deepEqual(output, undefined);
-  t.end();
+        if (result) {
+            if (process.env.REGEN) write.sync(directories.out + filename, result);
+            t.deepEqual(result, load.sync(directories.out + filename), name);
+        }
+    }
+    t.end();
 });
