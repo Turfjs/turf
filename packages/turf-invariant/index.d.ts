@@ -2,11 +2,12 @@
 
 type Feature = GeoJSON.Feature<any>
 type Features = GeoJSON.FeatureCollection<any>
+type GetCoord = Feature | any[] | GeoJSON.GeometryObject
 
 /**
  * http://turfjs.org/docs/
  */
-export function getCoord(obj: any): Array<number>;
+export function getCoord(obj: GetCoord): Array<any>;
 
 /**
  * http://turfjs.org/docs/
