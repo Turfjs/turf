@@ -3,6 +3,7 @@ var path = require('path');
 var fs = require('fs');
 var load = require('load-json-file');
 var write = require('write-json-file');
+var truncate = require('@turf/truncate');
 var lineChunk = require('./');
 
 var directories = {
@@ -16,7 +17,7 @@ var fixtures = fs.readdirSync(directories.in).map(filename => {
 
 test('turf-line-chunk: shorter', t => {
     for (let {filename, geojson} of fixtures) {
-        var chunked = lineChunk(geojson, 5, 'miles', true);
+        var chunked = truncate(lineChunk(geojson, 5, 'miles', true));
         filename = filename.replace('.geojson', '.shorter.geojson');
         if (process.env.REGEN) { write.sync(directories.out + filename, chunked); }
 
@@ -28,7 +29,7 @@ test('turf-line-chunk: shorter', t => {
 
 test('turf-line-chunk: longer', t => {
     for (let {filename, geojson} of fixtures) {
-        var chunked = lineChunk(geojson, 50, 'miles', true);
+        var chunked = truncate(lineChunk(geojson, 50, 'miles', true));
         filename = filename.replace('.geojson', '.longer.geojson');
         if (process.env.REGEN) { write.sync(directories.out + filename, chunked); }
 

@@ -47,7 +47,6 @@ module.exports = function (featureIn, segmentLength, units) {
             var lineSegments = sliceLineSegments(feature, segmentLength, units);
             lineSegments.forEach(function (segment, index) {
                 if (debug === true) {
-                    console.log(index);
                     var r = (index % 2 === 0) ? 'F' : '0';
                     var g = (index % 2 === 0) ? '0' : '0';
                     var b = (index % 2 === 0) ? '0' : 'F';
