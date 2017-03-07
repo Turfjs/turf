@@ -4,19 +4,9 @@ var point = require('@turf/helpers').point;
 var polygon = require('@turf/helpers').polygon;
 var fs = require('fs');
 
-test('bad type', function (t) {
-  var poly = polygon([[[0,0], [0,100], [100,100], [100,0], [0,0]]]);
-
-  t.throws(function() {
-      inside(poly, poly);
-  }, /A coordinate, feature, or point geometry is required/);
-
-  t.end();
-});
-
 test('featureCollection', function (t) {
   // test for a simple polygon
-  var poly = polygon([[[0,0], [0,100], [100,100], [100,0], [0,0]]]);
+  var poly = polygon([[[0, 0], [0, 100], [100, 100], [100, 0], [0, 0]]]);
   var ptIn = point([50, 50]);
   var ptOut = point([140, 150]);
 
