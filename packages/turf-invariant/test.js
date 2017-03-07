@@ -1,23 +1,23 @@
 var test = require('tape'),
     invariant = require('./');
 
-test('invariant#geojsonType', function(t) {
-    t.throws(function() {
+test('invariant#geojsonType', t => {
+    t.throws(() => {
         invariant.geojsonType();
     }, /type and name required/, '.geojsonType() name requirement');
 
-    t.throws(function() {
+    t.throws(() => {
         invariant.geojsonType({}, undefined, 'myfn');
     }, /type and name required/, 'invalid types');
 
-    t.throws(function() {
+    t.throws(() => {
         invariant.geojsonType({
             type: 'Point',
             coordinates: [0, 0]
         }, 'Polygon', 'myfn');
     }, /Invalid input to myfn: must be a Polygon, given Point/, 'invalid geometry type');
 
-    t.doesNotThrow(function() {
+    t.doesNotThrow(() => {
         invariant.geojsonType({
             type: 'Point',
             coordinates: [0, 0]
@@ -27,10 +27,9 @@ test('invariant#geojsonType', function(t) {
     t.end();
 });
 
-test('invariant#featureOf', function(t) {
-    t.throws(function() {
-        invariant.featureOf(
-        {
+test('invariant#featureOf', t => {
+    t.throws(() => {
+        invariant.featureOf({
             type: 'Feature',
             geometry: {
                 type: 'Point',
@@ -40,13 +39,12 @@ test('invariant#featureOf', function(t) {
         }, 'Polygon');
     }, /requires a name/, 'requires a name');
 
-    t.throws(function() {
+    t.throws(() => {
         invariant.featureOf({}, 'Polygon', 'foo');
     }, /Feature with geometry required/, 'requires a feature');
 
-    t.throws(function() {
-        invariant.featureOf(
-        {
+    t.throws(() => {
+        invariant.featureOf({
             type: 'Feature',
             geometry: {
                 type: 'Point',
@@ -56,9 +54,8 @@ test('invariant#featureOf', function(t) {
         }, 'Polygon', 'myfn');
     }, /Invalid input to myfn: must be a Polygon, given Point/, 'invalid geometry type');
 
-    t.doesNotThrow(function() {
-        invariant.featureOf(
-        {
+    t.doesNotThrow(() => {
+        invariant.featureOf({
             type: 'Feature',
             geometry: {
                 type: 'Point',
@@ -71,8 +68,8 @@ test('invariant#featureOf', function(t) {
     t.end();
 });
 
-test('invariant#collectionOf', function(t) {
-    t.throws(function() {
+test('invariant#collectionOf', t => {
+    t.throws(() => {
         invariant.collectionOf({
             type: 'FeatureCollection',
             features: [
@@ -88,15 +85,15 @@ test('invariant#collectionOf', function(t) {
         }, 'Polygon', 'myfn');
     }, /Invalid input to myfn: must be a Polygon, given Point/, 'invalid geometry type');
 
-    t.throws(function() {
+    t.throws(() => {
         invariant.collectionOf({}, 'Polygon');
     }, /requires a name/, 'requires a name');
 
-    t.throws(function() {
+    t.throws(() => {
         invariant.collectionOf({}, 'Polygon', 'foo');
     }, /FeatureCollection required/, 'requires a featurecollection');
 
-    t.doesNotThrow(function() {
+    t.doesNotThrow(() => {
         invariant.collectionOf({
             type: 'FeatureCollection',
             features: [
@@ -115,7 +112,7 @@ test('invariant#collectionOf', function(t) {
     t.end();
 });
 
-test('invariant#getCoord', function(t) {
+test('invariant#getCoord', t => {
     t.deepEqual(invariant.getCoord({
         type: 'Point',
         coordinates: [1, 2]
