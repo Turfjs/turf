@@ -1,10 +1,8 @@
 var lineSliceAlong = require('@turf/line-slice-along');
 var lineDistance = require('@turf/line-distance');
-var helpers = require('@turf/helpers');
-var meta = require('@turf/meta');
+var featureCollection = require('@turf/helpers').featureCollection;
+var featureEach = require('@turf/meta').featureEach;
 var flatten = require('@turf/flatten');
-var lineString = helpers.lineString;
-var featureCollection = helpers.featureCollection;
 
 /**
  * Divides a {@link linestring} into chunks of a specified length.
@@ -33,33 +31,58 @@ var featureCollection = helpers.featureCollection;
  */
 
 module.exports = function (featureIn, segmentLength, units) {
-    if (line.type === 'LineString') {
-        line = lineString(line.coordinates, line.properties);
-    }
-    if (line.type === 'MultiLineString') {
-        line = flatten(line);
-    }
-    var fc = null;
-    if (line.type === 'FeatureCollection') {
-        fc = line;
-    } else {
-        fc = featureCollection([line]);
-    }
     var outFeatures = [];
+    var debug = arguments['3']; // Hidden @param {boolean} Enable debug mode
 
-    meta.featureEach(fc, function (feature) {
-        var lineLength = lineDistance(feature, units);
-        if (lineLength <= segmentLength) {
-            return outFeatures.push(feature);
+    // Handles FeatureCollection
+    featureEach(featureIn, function (multiFeature) {
+
+        // Handles MultiLineString
+        if (multiFeature.geometry.type === 'MultiLineString') {
+            multiFeature = flatten(multiFeature);
         }
 
-        var numberOfSegments = Math.floor(lineLength / segmentLength) + 1;
-
-        for (var i = 0; i < numberOfSegments; i++) {
-            var outline = lineSliceAlong(feature, segmentLength * i, segmentLength * (i + 1), units);
-            outFeatures.push(outline);
-        }
+        // All features are simple LineString
+        featureEach(multiFeature, function (feature) {
+            var lineSegments = sliceLineSegments(feature, segmentLength, units);
+            lineSegments.forEach(function (segment) {
+                if (debug === true) {
+                    var r = Math.floor(Math.random() * 5) + 4;
+                    var g = Math.floor(Math.random() * 5) + 4;
+                    var b = Math.floor(Math.random() * 5) + 4;
+                    segment.properties['stroke'] = '#' + r + g + b;
+                    segment.properties['stroke-width'] = 6;
+                }
+                outFeatures.push(segment);
+            });
+        });
     });
-
     return featureCollection(outFeatures);
 };
+
+/**
+ * Slice Line Segments
+ *
+ * @private
+ * @param {Feature<LineString>} line GeoJSON LineString
+ * @param {number} segmentLength how long to make each segment
+ * @param {string}[units='kilometers'] units can be degrees, radians, miles, or kilometers
+ * @returns {Array<Feature<LineString>>} sliced lines
+ */
+function sliceLineSegments(line, segmentLength, units) {
+    var lineSegments = [];
+    var lineLength = lineDistance(line, units);
+
+    // If the line is shorter than the segment length then the orginal line is returned.
+    if (lineLength <= segmentLength) {
+        return [line];
+    }
+
+    var numberOfSegments = Math.floor(lineLength / segmentLength) + 1;
+
+    for (var i = 0; i < numberOfSegments; i++) {
+        var outline = lineSliceAlong(line, segmentLength * i, segmentLength * (i + 1), units);
+        lineSegments.push(outline);
+    }
+    return lineSegments;
+}
