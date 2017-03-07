@@ -5,19 +5,43 @@
  * @returns {Array<any>} coordinates
  */
 function getCoord(obj) {
-    if (obj === undefined) throw new Error('No obj passed');
+    if (!obj) throw new Error('No obj passed');
+    var coordinates;
 
     // Array of numbers
-    if (obj.length) return obj;
+    if (obj.length) {
+        coordinates = obj;
 
     // Geometry Object
-    if (obj.coordinates) return obj.coordinates;
+    } else if (obj.coordinates) {
+        coordinates = obj.coordinates;
 
     // Feature
-    var geometry = obj.geometry;
-    if (geometry && geometry.coordinates) return geometry.coordinates;
-
+    } else if (obj.geometry && obj.geometry.coordinates) {
+        coordinates = obj.geometry.coordinates;
+    }
+    // Check if coordinates contains a number
+    if (coordinates) {
+        validateCoordinates(coordinates);
+        return coordinates;
+    }
     throw new Error('No valid coordinates');
+}
+
+/**
+ * Validates Coordinates
+ *
+ * @param {Array<any>} coordinates GeoJSON Coordinates
+ * @returns {boolean} true if Array contains a number
+ */
+function validateCoordinates(coordinates) {
+    if (typeof coordinates[0] === 'number') {
+        return true;
+    }
+    if (coordinates[0].length) {
+        return validateCoordinates(coordinates[0]);
+    }
+    throw new Error('coordinates must only contain numbers');
 }
 
 /**
@@ -30,9 +54,9 @@ function getCoord(obj) {
  * @throws {Error} if value is not the expected type.
  */
 function geojsonType(value, type, name) {
-    if (type === undefined || name === undefined) throw new Error('type and name required');
+    if (!type || !name) throw new Error('type and name required');
 
-    if (value === undefined || value.type !== type) {
+    if (!value || value.type !== type) {
         throw new Error('Invalid input to ' + name + ': must be a ' + type + ', given ' + value.type);
     }
 }
@@ -48,11 +72,12 @@ function geojsonType(value, type, name) {
  * @throws {Error} error if value is not the expected type.
  */
 function featureOf(feature, type, name) {
-    if (name === undefined) throw new Error('.featureOf() requires a name');
-    if (feature === undefined || feature.type !== 'Feature' || feature.geometry === undefined) {
+    if (!feature) throw new Error('No feature passed');
+    if (!name) throw new Error('.featureOf() requires a name');
+    if (!feature || feature.type !== 'Feature' || !feature.geometry) {
         throw new Error('Invalid input to ' + name + ', Feature with geometry required');
     }
-    if (feature.geometry === undefined || feature.geometry.type !== type) {
+    if (!feature.geometry || feature.geometry.type !== type) {
         throw new Error('Invalid input to ' + name + ': must be a ' + type + ', given ' + feature.geometry.type);
     }
 }
@@ -68,16 +93,17 @@ function featureOf(feature, type, name) {
  * @throws {Error} if value is not the expected type.
  */
 function collectionOf(featureCollection, type, name) {
-    if (name === undefined) throw new Error('.collectionOf() requires a name');
-    if (featureCollection === undefined || featureCollection.type !== 'FeatureCollection') {
+    if (!featureCollection) throw new Error('No featureCollection passed');
+    if (!name) throw new Error('.collectionOf() requires a name');
+    if (!featureCollection || featureCollection.type !== 'FeatureCollection') {
         throw new Error('Invalid input to ' + name + ', FeatureCollection required');
     }
     for (var i = 0; i < featureCollection.features.length; i++) {
         var feature = featureCollection.features[i];
-        if (feature === undefined || feature.type !== 'Feature' || feature.geometry === undefined) {
+        if (!feature || feature.type !== 'Feature' || !feature.geometry) {
             throw new Error('Invalid input to ' + name + ', Feature with geometry required');
         }
-        if (feature.geometry === undefined || feature.geometry.type !== type) {
+        if (!feature.geometry || feature.geometry.type !== type) {
             throw new Error('Invalid input to ' + name + ': must be a ' + type + ', given ' + feature.geometry.type);
         }
     }
