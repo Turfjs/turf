@@ -27,8 +27,11 @@
   },
   "homepage": "https://github.com/Turfjs/turf",
   "devDependencies": {
+    "@turf/destination": "^3.10.5",
+    "@turf/helpers": "^3.10.5",
     "benchmark": "^1.0.0",
-    "tape": "^3.5.0"
+    "tape": "^3.5.0",
+    "write-json-file": "^2.0.0"
   },
   "dependencies": {
     "@turf/invariant": "^3.10.0"
