@@ -1,20 +1,29 @@
-var union = require('./');
-var test = require('tape');
-var glob = require('glob');
-var fs = require('fs');
+const path = require('path');
+const fs = require('fs');
+const test = require('tape');
+const load = require('load-json-file');
+const write = require('write-json-file');
+const union = require('.');
 
-var REGEN = false;
+const directories = {
+    in: path.join(__dirname, 'test', 'in') + path.sep,
+    out: path.join(__dirname, 'test', 'out') + path.sep
+};
+
+const fixtures = fs.readdirSync(directories.in).map(filename => {
+    return {
+        filename,
+        name: path.parse(filename).name,
+        geojson: load.sync(directories.in + filename)
+    };
+});
 
 test('union', function (t) {
-  glob.sync(__dirname + '/test/in/*.geojson').forEach(function (input) {
-      var fcs = JSON.parse(fs.readFileSync(input));
-      var args = [];
-      for (var i = 0; i < fcs.length; i++) {
-        args[i] = fcs[i].features[0];
-      }
-      var output = union.apply(this, args);
-      if (REGEN) fs.writeFileSync(input.replace('/in/', '/out/'), JSON.stringify(output));
-      t.deepEqual(output, JSON.parse(fs.readFileSync(input.replace('/in/', '/out/'))), input);
-  });
-  t.end();
+    for (const {name, geojson, filename} of fixtures) {
+        const result = union.apply(this, geojson.features);
+
+        if (process.env.REGEN) write.sync(directories.out + filename, result);
+        t.deepEqual(result, load.sync(directories.out + filename), name);
+    }
+    t.end();
 });
