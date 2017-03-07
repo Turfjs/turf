@@ -1,15 +1,27 @@
+const fs = require('fs');
 const path = require('path');
 const Benchmark = require('benchmark');
 const load = require('load-json-file');
-const chunk = require('./');
+const lineChunk = require('./');
 
-const line = load.sync(path.join(__dirname, 'test', 'in', 'feature.geojson'));
+const directories = {
+    in: path.join(__dirname, 'test', 'in') + path.sep,
+    out: path.join(__dirname, 'test', 'out') + path.sep
+};
 
-var suite = new Benchmark.Suite('turf-line-chunk');
+const fixtures = fs.readdirSync(directories.in).map(filename => {
+    return {filename, geojson: load.sync(directories.in + filename)};
+});
+
+const suite = new Benchmark.Suite('turf-line-chunk');
+
+fixtures.forEach(({filename, geojson}) => {
+    suite.add(filename, function () {
+        lineChunk(geojson, 5, 'miles');
+    });
+});
+
 suite
-  .add('turf-line-chunk', function () {
-      chunk(line, 15, 'miles');
-  })
   .on('cycle', function (event) {
       console.log(String(event.target));
   })
