@@ -38,14 +38,3 @@ test('turf-line-chunk: longer', t => {
     t.end();
 });
 
-test('turf-line-chunk: points', t => {
-    for (let {filename, geojson} of fixtures) {
-        var chunked = chunk(geojson, 5, 'miles', true);
-        filename = filename.replace('.geojson', '.points.geojson');
-        if (process.env.REGEN) { write.sync(directories.out + filename, chunked); }
-
-        const expected = load.sync(directories.out + filename);
-        t.deepEquals(chunked, expected, path.parse(filename).name);
-    }
-    t.end();
-});

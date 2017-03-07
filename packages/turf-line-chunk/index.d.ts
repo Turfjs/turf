@@ -5,16 +5,14 @@ type LineString = GeoJSON.LineString;
 type Point = GeoJSON.Point;
 
 type FeatureCollectionLines = GeoJSON.FeatureCollection<LineStringFeature>;
-type FeatureCollectionPoints = GeoJSON.FeatureCollection<LineStringFeature>;
-type FeatureCollection = FeatureCollectionLines | FeatureCollectionPoints;
 
 type LineStringFeatures = LineString | LineStringFeature;
 
-interface LineChunk {
+declare function LineChunk {
     /**
      * http://turfjs.org/docs/#lineChunk
      */
-    (featureIn: LineStringFeatures,  segment_length: number, unit: Units, asPoints?: boolean): FeatureCollection;
+    (featureIn: LineStringFeatures, segmentLength: number, unit: Units): FeatureCollectionLines;
 }
 declare const lineChunk: LineChunk;
 export = lineChunk;

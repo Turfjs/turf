@@ -1,26 +1,25 @@
-var along = require('@turf/along');
+var lineSliceAlong = require('@turf/line-slice-along');
 var lineDistance = require('@turf/line-distance');
 var helpers = require('@turf/helpers');
+var meta = require('@turf/meta');
 var flatten = require('@turf/flatten');
-var linestring = helpers.lineString;
-var point = helpers.point;
-var fc = helpers.featureCollection;
+var lineString = helpers.lineString;
+var featureCollection = helpers.featureCollection;
 
 /**
- * Divides a {@link LineString} into chunks of a specified length.
+ * Divides a {@link linestring} into chunks of a specified length.
  * If the line is shorter than the segment length then the orginal line is returned.
  * @name lineChunk
- * @param {Feature<LineString>} line the line to split
- * @param {Number} segment_length how long to make each segment
- * @param {String} units can be degrees, radians, miles, or kilometers
- * @param {Boolean} [asPoints=false] return points instead of linestring segrments
- * @return {FeatureCollection<LineString>|FeatureCollection<Point>} collection of line segments or points
+ * @param {Feature<linestring>} line the line to split
+ * @param {number} segmentLength how long to make each segment
+ * @param {string}[units='kilometers'] units can be degrees, radians, miles, or kilometers
+ * @return {FeatureCollection<linestring>} collection of line segments
  * @example
  * var line = {
  *   'type': 'Feature',
  *   'properties': {},
  *   'geometry': {
- *     'type': 'LineString',
+ *     'type': 'lineString',
  *     'coordinates': [
  *       [
  *         -86.28524780273438,
@@ -41,54 +40,38 @@ var fc = helpers.featureCollection;
  *     ]
  *   }
  * };
- * //=line
  * var result = turf.lineChunk(line, 15, 'miles');
- * result.features.forEach(function(ft, ind) {
- *   ft.properties.stroke = (ind % 2 === 0) ? '#f40' : '#389979';
- * });
- *
  * //=result
  */
-module.exports = function (line, segment_length, units, asPoints) {
+
+module.exports = function (line, segmentLength, units) {
     if (line.type === 'LineString') {
-        line = {'type': 'Feature', 'properties': {}, 'geometry': line};
+        line = lineString(line.coordinates, line.properties);
     }
-
-    if (lineDistance(line, units) <= segment_length) {
-        return fc([line]);
+    if (line.type === 'MultiLineString') {
+        line = flatten(line);
     }
+    var fc = null;
+    if (line.type === 'FeatureCollection') {
+        fc = line;
+    } else {
+        fc = featureCollection([line]);
+    }
+    var outFeatures = [];
 
-    var coordinates = line.geometry.coordinates.slice();
-    var result = [];
-
-
-    while (coordinates.length > 1) {
-        var endpt = along(linestring(coordinates), segment_length, units);
-        var tempcoords = [];
-        for (var i = 0; i < coordinates.length; i++) {
-            tempcoords.push(coordinates[i]);
-
-            if (lineDistance(linestring(tempcoords), units) >= segment_length) {
-                tempcoords.pop();
-                tempcoords.push(endpt.geometry.coordinates);
-                coordinates = coordinates.slice(i);
-                coordinates.unshift(endpt.geometry.coordinates);
-                result.push(tempcoords);
-                break;
-            }
-
-            if (i === coordinates.length - 1) {
-                coordinates = [];
-                result.push(tempcoords);
-            }
+    meta.featureEach(fc, function (feature) {
+        var lineLength = lineDistance(feature, units);
+        if (lineLength <= segmentLength) {
+            return outFeatures.push(feature);
         }
-    }
 
-    return fc(result.map(function (coords) {
-        if (!asPoints) {
-            return linestring(coords);
-        } else {
-            return point(coords[0]);
+        var numberOfSegments = Math.floor(lineLength / segmentLength) + 1;
+
+        for (var i = 0; i < numberOfSegments; i++) {
+            var outline = lineSliceAlong(feature, segmentLength * i, segmentLength * (i + 1), units);
+            outFeatures.push(outline);
         }
-    }));
+    });
+
+    return featureCollection(outFeatures);
 };

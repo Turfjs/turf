@@ -24,6 +24,27 @@
             },
             "properties": {},
             "type": "Feature"
+        },
+        {
+            "geometry": {
+                "coordinates": [
+                    [
+                        -86.29348754882811,
+                        40.17362690655496
+                    ],
+                    [
+                        -86.23580932617188,
+                        39.891826241725596
+                    ],
+                    [
+                        -85.93643188476562,
+                        39.95606977009003
+                    ]
+                ],
+                "type": "LineString"
+            },
+            "properties": {},
+            "type": "Feature"
         }
     ],
     "type": "FeatureCollection"

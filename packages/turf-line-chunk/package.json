@@ -29,9 +29,11 @@
   "author": "Tim Channell",
   "license": "MIT",
   "dependencies": {
-    "@turf/along": "^3.0.0",
+    "@turf/flatten": "^3.12.2",
     "@turf/helpers": "^3.0.0",
-    "@turf/line-distance": "^3.0.0"
+    "@turf/line-distance": "^3.0.0",
+    "@turf/line-slice-along": "^3.10.5",
+    "@turf/meta": "^3.10.5"
   },
   "devDependencies": {
     "benchmark": "^1.0.0",
