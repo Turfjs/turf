@@ -2,9 +2,7 @@ var featureEach = require('@turf/meta').featureEach;
 var rbush = require('rbush');
 var turfBBox = require('@turf/bbox');
 var helpers = require('@turf/helpers');
-var lineString = helpers.lineString;
-var polygon = helpers.polygon;
-var featureCollection = helpers.featureCollection;
+var union = require('@turf/union');
 
 /**
  * Takes any type of {@link Polygon|polygon} and an optional mask and returns a {@link Polygon|polygon} exterior ring with holes.
@@ -32,12 +30,13 @@ module.exports = function (polygon, mask) {
     var maskPolygon = createMask(mask);
 
     // Define polygon
-    var separated = separatePolygonToLines(polygon);
+    var separated = separatePolygons(polygon);
     var polygonOuters = separated[0];
     var polygonInners = separated[1];
 
     // Union Outers & Inners
-    // polygonOuters = unionLines(polygonOuters);
+    polygonOuters = unionPolygons(polygonOuters);
+    polygonInners = unionPolygons(polygonInners);
 
     // Create masked area
     var masked = buildMask(maskPolygon, polygonOuters, polygonInners);
@@ -49,31 +48,32 @@ module.exports = function (polygon, mask) {
  *
  * @private
  * @param {Feature<Polygon>} maskPolygon Mask Outer
- * @param {FeatureCollection<LineString>} polygonOuters Polygon Outers
- * @param {FeatureCollection<LineString>} polygonInners Polygon Inners
+ * @param {FeatureCollection<Polygon>} polygonOuters Polygon Outers
+ * @param {FeatureCollection<Polygon>} polygonInners Polygon Inners
  * @returns {Feature<Polygon>} Feature Polygon
  */
 function buildMask(maskPolygon, polygonOuters, polygonInners) {
-    var coordinates = maskPolygon.geometry.coordinates;
+    var coordinates = [];
+    coordinates.push(maskPolygon.geometry.coordinates[0]);
 
     featureEach(polygonOuters, function (feature) {
-        coordinates.push(feature.geometry.coordinates);
+        coordinates.push(feature.geometry.coordinates[0]);
     });
 
     featureEach(polygonInners, function (feature) {
-        coordinates.push(feature.geometry.coordinates);
+        coordinates.push(feature.geometry.coordinates[0]);
     });
-    return polygon(coordinates);
+    return helpers.polygon(coordinates);
 }
 
 /**
- * Separate Polygons to inner & outer lines
+ * Separate Polygons to inners & outers
  *
  * @private
  * @param {FeatureCollection|Feature<Polygon|MultiPolygon>} polygon GeoJSON Feature
- * @returns {Array<FeatureCollection<LineString>, FeatureCollection<LineString>>} Outer & Inner lines
+ * @returns {Array<FeatureCollection<Polygon>, FeatureCollection<Polygon>>} Outer & Inner lines
  */
-function separatePolygonToLines(polygon) {
+function separatePolygons(polygon) {
     var outers = [];
     var inners = [];
     featureEach(polygon, function (multiFeature) {
@@ -84,13 +84,13 @@ function separatePolygonToLines(polygon) {
             var coordinates = feature.geometry.coordinates;
             var featureOuter = coordinates[0];
             var featureInner = coordinates.slice(1);
-            outers.push(lineString(featureOuter));
+            outers.push(helpers.polygon([featureOuter]));
             featureInner.forEach(function (inner) {
-                inners.push(lineString(inner));
+                inners.push(helpers.polygon([inner]));
             });
         });
     });
-    return [featureCollection(outers), featureCollection(inners)];
+    return [helpers.featureCollection(outers), helpers.featureCollection(inners)];
 }
 
 /**
@@ -118,30 +118,67 @@ function flattenMultiPolygon(multiPolygon) {
 function createMask(mask) {
     var world = [[[180, 90], [-180, 90], [-180, -90], [180, -90], [180, 90]]];
     var coordinates = mask && mask.geometry.coordinates || world;
-    return polygon(coordinates);
+    return helpers.polygon(coordinates);
 }
 
 /**
- * Union Lines
+ * Union Polygons
  *
  * @private
- * @param {FeatureCollection<LineString>} lines an array of line coordinates
- * @returns {FeatureCollection<LineString>} lines that have been union if they collid
+ * @param {FeatureCollection<Polygon>} polygons collection of polygons
+ * @returns {FeatureCollection<Polygon>} polygons only apply union if they collide
  */
-function unionLines(lines) {
-    var tree = createIndex(lines);
+function unionPolygons(polygons) {
+    if (polygons.features.length <= 1) return polygons;
+
+    var tree = createIndex(polygons);
     var results = [];
-    featureEach(lines, function (feature) {
-        var bbox = turfBBox(feature);
-        var search = tree.search({
-            minX: bbox[0],
-            minY: bbox[1],
-            maxX: bbox[2],
-            maxY: bbox[3]
-        });
-        console.log(search);
+    var removed = {};
+
+    featureEach(polygons, function (currentFeature, currentIndex) {
+        // Exclude any removed features
+        if (removed[currentIndex]) return true;
+
+        // Don't search for itself
+        tree.remove({index: currentIndex}, filterByIndex);
+        removed[currentIndex] = true;
+
+        // Keep applying the union operation until no more overlapping features
+        while (true) {
+            var bbox = turfBBox(currentFeature);
+            var search = tree.search({
+                minX: bbox[0],
+                minY: bbox[1],
+                maxX: bbox[2],
+                maxY: bbox[3]
+            });
+            if (search.length > 0) {
+                var polys = search.map(function (item) {
+                    removed[item.index] = true;
+                    tree.remove({index: item.index}, filterByIndex);
+                    return item.geojson;
+                });
+                polys.push(currentFeature);
+                currentFeature = union.apply(this, polys);
+            }
+            // Done
+            if (search.length === 0) break;
+        }
+        results.push(currentFeature);
     });
-    return featureCollection(results);
+
+    return helpers.featureCollection(results);
+}
+
+/**
+ * Filter by Index - RBush helper function
+ *
+ * @param {Object} a remove item
+ * @param {Object} b search item
+ * @returns {boolean} true if matches
+ */
+function filterByIndex(a, b) {
+    return a.index === b.index;
 }
 
 /**
