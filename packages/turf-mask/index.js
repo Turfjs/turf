@@ -1,5 +1,5 @@
-const helpers = require('@turf/helpers');
-const featureEach = require('@turf/meta').featureEach;
+var helpers = require('@turf/helpers');
+var featureEach = require('@turf/meta').featureEach;
 
 /**
  * Takes any type of {@link Polygon|polygon} and an optional mask and returns a {@link Polygon|polygon} exterior ring with holes.
