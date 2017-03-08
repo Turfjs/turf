@@ -36,6 +36,7 @@
   "homepage": "https://github.com/Turfjs/turf",
   "devDependencies": {
     "@turf/helpers": "^3.10.5",
+    "@turf/truncate": "^3.11.7",
     "benchmark": "^2.1.3",
     "load-json-file": "^2.0.0",
     "tape": "^3.6.1",
