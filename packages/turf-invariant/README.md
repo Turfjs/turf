@@ -2,6 +2,16 @@
 
 # getCoord
 
+Unwrap a coordinate from a Point Feature, Geometry or a single coordinate.
+
+**Parameters**
+
+-   `obj` **([Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;any> | [Geometry](http://geojson.org/geojson-spec.html#geometry) \| [Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;[Point](http://geojson.org/geojson-spec.html#point)>)** any value
+
+Returns **[Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)>** coordinates
+
+# getCoords
+
 Unwrap coordinates from a Feature, Geometry Object or an Array of numbers
 
 **Parameters**

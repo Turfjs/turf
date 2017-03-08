@@ -1,5 +1,6 @@
-var test = require('tape'),
-    invariant = require('./');
+const test = require('tape');
+const {point, lineString, polygon} = require('@turf/helpers');
+const invariant = require('./');
 
 test('invariant#geojsonType', t => {
     t.throws(() => {
@@ -113,18 +114,58 @@ test('invariant#collectionOf', t => {
 });
 
 test('invariant#getCoord', t => {
+    t.throws(() => invariant.getCoord(lineString([[1, 2], [3, 4]])));
+    t.throws(() => invariant.getCoord(polygon([[[-75, 40], [-80, 50], [-70, 50], [-75, 40]]])));
+
     t.deepEqual(invariant.getCoord({
         type: 'Point',
         coordinates: [1, 2]
     }), [1, 2]);
 
+    t.deepEqual(invariant.getCoord(point([1, 2])), [1, 2]);
+    t.end();
+});
+
+test('invariant#getCoord', t => {
+    t.throws(() => invariant.getCoord({
+        type: 'LineString',
+        coordinates: [[1, 2], [3, 4]]
+    }));
+
+    t.throws(() => invariant.getCoord(false));
+    t.throws(() => invariant.getCoord(null));
+    t.throws(() => invariant.getCoord(lineString([[1, 2], [3, 4]])));
+    t.throws(() => invariant.getCoord(['A', 'B', 'C']));
+    t.throws(() => invariant.getCoord([1, 'foo', 'bar']));
+
     t.deepEqual(invariant.getCoord({
-        type: 'Feature',
-        geometry: {
-            type: 'Point',
-            coordinates: [1, 2]
-        },
-        properties: {}
+        type: 'Point',
+        coordinates: [1, 2]
     }), [1, 2]);
+
+    t.deepEqual(invariant.getCoord(point([1, 2])), [1, 2]);
+    t.deepEqual(invariant.getCoord([1, 2]), [1, 2]);
+    t.end();
+});
+
+test('invariant#getCoords', t => {
+    t.throws(() => invariant.getCoords({
+        type: 'LineString',
+        coordinates: null
+    }));
+
+    t.throws(() => invariant.getCoords(false));
+    t.throws(() => invariant.getCoords(null));
+    t.throws(() => invariant.getCoords(['A', 'B', 'C']));
+    t.throws(() => invariant.getCoords([1, 'foo', 'bar']));
+
+    t.deepEqual(invariant.getCoords({
+        type: 'LineString',
+        coordinates: [[1, 2], [3, 4]]
+    }), [[1, 2], [3, 4]]);
+
+    t.deepEqual(invariant.getCoords(point([1, 2])), [1, 2]);
+    t.deepEqual(invariant.getCoords(lineString([[1, 2], [3, 4]])), [[1, 2], [3, 4]]);
+    t.deepEqual(invariant.getCoords([1, 2]), [1, 2]);
     t.end();
 });

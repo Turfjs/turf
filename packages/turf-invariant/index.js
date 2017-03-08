@@ -1,10 +1,31 @@
 /**
+ * Unwrap a coordinate from a Point Feature, Geometry or a single coordinate.
+ *
+ * @param {Array<any>|Geometry|Feature<Point>} obj any value
+ * @returns {Array<number>} coordinates
+ */
+function getCoord(obj) {
+    if (!obj) throw new Error('No obj passed');
+
+    var coordinates = getCoords(obj);
+
+    // getCoord() must contain at least two numbers (Point)
+    if (coordinates.length > 1 &&
+        typeof coordinates[0] === 'number' &&
+        typeof coordinates[1] === 'number') {
+        return coordinates;
+    } else {
+        throw new Error('Coordinate is not a valid Point');
+    }
+}
+
+/**
  * Unwrap coordinates from a Feature, Geometry Object or an Array of numbers
  *
  * @param {Array<any>|Geometry|Feature<any>} obj any value
  * @returns {Array<any>} coordinates
  */
-function getCoord(obj) {
+function getCoords(obj) {
     if (!obj) throw new Error('No obj passed');
     var coordinates;
 
@@ -20,28 +41,31 @@ function getCoord(obj) {
     } else if (obj.geometry && obj.geometry.coordinates) {
         coordinates = obj.geometry.coordinates;
     }
-    // Check if coordinates contains a number
+    // Checks if coordinates contains a number
     if (coordinates) {
-        validateCoordinates(coordinates);
+        containsNumber(coordinates);
         return coordinates;
     }
     throw new Error('No valid coordinates');
 }
 
 /**
- * Validates Coordinates
+ * Checks if coordinates contains a number
  *
+ * @private
  * @param {Array<any>} coordinates GeoJSON Coordinates
  * @returns {boolean} true if Array contains a number
  */
-function validateCoordinates(coordinates) {
-    if (typeof coordinates[0] === 'number') {
+function containsNumber(coordinates) {
+    if (coordinates.length > 1 &&
+        typeof coordinates[0] === 'number' &&
+        typeof coordinates[1] === 'number') {
         return true;
     }
     if (coordinates[0].length) {
-        return validateCoordinates(coordinates[0]);
+        return containsNumber(coordinates[0]);
     }
-    throw new Error('coordinates must an array of numbers');
+    throw new Error('coordinates must only contain numbers');
 }
 
 /**
@@ -113,3 +137,4 @@ module.exports.geojsonType = geojsonType;
 module.exports.collectionOf = collectionOf;
 module.exports.featureOf = featureOf;
 module.exports.getCoord = getCoord;
+module.exports.getCoords = getCoords;
