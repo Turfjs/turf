@@ -4,14 +4,14 @@ var getCoord = require('@turf/invariant').getCoord;
 /**
  * Calculate great circles routes as {@LineString}
  *
- * @name arc
+ * @name greatCircle
  * @param {Feature<Point>} start source point feature
  * @param {Feature<Point>} end destination point feature
  * @param {*} [properties={}] line feature properties
  * @param {number} [npoints=100] number of points
  * @param {number} [offset=10] offset controls the likelyhood that lines will
  * be split which cross the dateline. The higher the number the more likely.
- * @returns {Feature<LineString>} arc line feature
+ * @returns {Feature<LineString>} great circle line feature
  * @example
  * var start = {
  *   "type": "Feature",
@@ -29,7 +29,7 @@ var getCoord = require('@turf/invariant').getCoord;
  *     "coordinates": [-77, 39]
  *   }
  * }
- * var line = turf.arc(start, end, {'name': 'Seattle to DC'});
+ * var line = turf.greatCircle(start, end, {'name': 'Seattle to DC'});
  * //=line
  */
 module.exports = function (start, end, properties, npoints, offset) {

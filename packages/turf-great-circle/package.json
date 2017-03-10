@@ -1,7 +1,7 @@
 {
-  "name": "@turf/arc",
+  "name": "@turf/great-circle",
   "version": "3.0.0",
-  "description": "turf arc module",
+  "description": "turf great-circle module",
   "main": "index.js",
   "types": "index.d.ts",
   "files": [
