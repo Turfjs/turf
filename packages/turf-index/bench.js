@@ -1,28 +1,21 @@
-const fs = require('fs');
-const path = require('path');
-const load = require('load-json-file');
 const Benchmark = require('benchmark');
+const random = require('@turf/random');
 const index = require('./');
 const suite = new Benchmark.Suite('turf-index');
 
-const directories = {
-    in: path.join(__dirname, 'test', 'in') + path.sep,
-    out: path.join(__dirname, 'test', 'out') + path.sep
-};
-
-const fixtures = fs.readdirSync(directories.in).map(filename => {
-    return {
-        filename,
-        name: path.parse(filename).name,
-        geojson: load.sync(directories.in + filename)
-    };
-});
-
-for (const {name, geojson} of fixtures) {
-    suite.add(name, () => index(geojson));
-}
+// Fixtures
+const points = random('points', 100);
+const point = points.features[0];
+const polygons = random('polygons', 100);
+const polygon = polygons.features[0];
+const pointsTree = index(points);
+const polygonsTree = index(polygons);
 
 suite
-    .on('cycle', (event) => { console.log(String(event.target)); })
+    .add('index.points', () => index(points))
+    .add('index.polygons', () => index(polygons))
+    .add('search.points', () => pointsTree.search(point))
+    .add('search.polygons', () => polygonsTree.search(polygon))
+    .on('cycle', e => { console.log(String(e.target)); })
     .on('complete', () => {})
     .run();

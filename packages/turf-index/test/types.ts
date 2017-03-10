@@ -1,13 +1,21 @@
+import * as random from '@turf/random'
 import * as index from '../'
 
-const collection: GeoJSON.FeatureCollection<any> = undefined
-const tree = index(collection, 16, ['0', '1', '0', '1'])
-tree.all().map(bbox => {
-  bbox.index
+// Fixtures
+const points = random('points', 1000);
+const polygons = random('polygons', 1000);
+
+// Build Tree
+const tree = index(points)
+
+// Find All
+tree.all().features.map(feature => {
+    feature.properties
+    feature.geometry
 })
-const search = tree.search({
-  minX: 100,
-  minY: 30,
-  maxX: 120,
-  maxY: 40
-})
+
+// Search
+const search = tree.search(points.features[0])
+
+// Insert one
+tree.insert(points.features[0])

@@ -2,15 +2,11 @@
 
 # index
 
-Creates an RBush Index Tree from a FeatureCollection or GeometryCollection.
+Creates a GeoJSON implementation of an RBush spatial index.
 
 **Parameters**
 
--   `collection` **([GeometryCollection](http://geojson.org/geojson-spec.html#geometrycollection) \| [FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects)&lt;any>)** GeoJSON collection to be added to the RBush Tree index.
--   `maxEntries` **\[[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)]** defines the maximum number of entries in a tree node. 9 (used by default) is a
-    reasonable choice for most applications. Higher value means faster insertion and slower search, and vice versa. (optional, default `9`)
--   `format` **\[[Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;any>]** assumes the format of data points to be an object with minX, minY, maxX and maxY properties.
-    You can customize this by providing an array with corresponding accessor strings as a second argument to rbush
+-   `features` **([FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects) \| [Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;any>)** Features to be added to RBush spatial index.
 
 **Examples**
 
@@ -36,15 +32,18 @@ var collection = {
     }
   ]
 }
+var point = {
+  "type": "Feature",
+  "properties": {},
+  "geometry": {
+    "type": "Point",
+    "coordinates": [-70, 45]
+  }
+}
 var tree = turf.index(collection);
 //=tree
 
-var search = tree.search({
-  minX: -90,
-  minY: 30,
-  maxX: -80,
-  maxY: 35
-})
+var search = tree.search(point)
 //=search
 ```
 

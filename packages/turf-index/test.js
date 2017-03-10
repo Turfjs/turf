@@ -19,12 +19,18 @@ const fixtures = fs.readdirSync(directories.in).map(filename => {
 });
 
 test('turf-index', t => {
-    for (const {name, geojson} of fixtures) {
+    for (const {name, filename, geojson} of fixtures) {
         const tree = index(geojson);
-        var result = tree.all();
+        const all = tree.all();
+        const search = tree.search(geojson.features[0]);
 
-        if (process.env.REGEN) write.sync(directories.out + name + '.json', result);
-        t.deepEqual(result, load.sync(directories.out + name + '.json'), name);
+        if (process.env.REGEN) {
+            write.sync(directories.out + 'all.' + filename, all);
+            write.sync(directories.out + 'search.' + filename, search);
+        }
+
+        t.deepEqual(all, load.sync(directories.out + 'all.' + filename), 'all.' + name);
+        t.deepEqual(search, load.sync(directories.out + 'search.' + filename), 'search.' + name);
     }
     t.end();
 });

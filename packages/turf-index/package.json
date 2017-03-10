@@ -35,6 +35,7 @@
   },
   "homepage": "https://github.com/Turfjs/turf",
   "devDependencies": {
+    "@turf/random": "^3.10.0",
     "@types/geojson": "^1.0.0",
     "@types/rbush": "^2.0.2",
     "benchmark": "^2.1.3",
@@ -44,6 +45,7 @@
   },
   "dependencies": {
     "@turf/bbox": "^3.10.5",
+    "@turf/helpers": "^3.10.5",
     "@turf/meta": "^3.10.5",
     "rbush": "^2.0.1"
   }

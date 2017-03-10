@@ -1,16 +1,13 @@
 var turfBBox = require('@turf/bbox');
+var featureCollection = require('@turf/helpers').featureCollection;
 var featureEach = require('@turf/meta').featureEach;
-var rbush = require('rbush');
+var rbush = require('./rbush');
 
 /**
- * Creates an RBush Index Tree from a FeatureCollection or GeometryCollection.
+ * Creates a GeoJSON implementation of an RBush spatial index.
  *
  * @name index
- * @param {GeometryCollection|FeatureCollection<any>} collection GeoJSON collection to be added to the RBush Tree index.
- * @param {number} [maxEntries=9] defines the maximum number of entries in a tree node. 9 (used by default) is a
- * reasonable choice for most applications. Higher value means faster insertion and slower search, and vice versa.
- * @param {Array<any>} [format] assumes the format of data points to be an object with minX, minY, maxX and maxY properties.
- * You can customize this by providing an array with corresponding accessor strings as a second argument to rbush
+ * @param {FeatureCollection|Feature<any>} features Features to be added to RBush spatial index.
  * @returns {RBush} RBush Tree
  * @example
  * var collection = {
@@ -34,30 +31,46 @@ var rbush = require('rbush');
  *     }
  *   ]
  * }
+ * var point = {
+ *   "type": "Feature",
+ *   "properties": {},
+ *   "geometry": {
+ *     "type": "Point",
+ *     "coordinates": [-70, 45]
+ *   }
+ * }
  * var tree = turf.index(collection);
  * //=tree
  *
- * var search = tree.search({
- *   minX: -90,
- *   minY: 30,
- *   maxX: -80,
- *   maxY: 35
- * })
+ * var search = tree.search(point)
  * //=search
  */
-module.exports = function (collection, maxEntries, format) {
-    var tree = rbush(maxEntries, format);
+module.exports = function (features) {
+    var tree = rbush();
     var load = [];
-    featureEach(collection, function (feature, index) {
-        var bbox = turfBBox(feature);
-        load.push({
-            minX: bbox[0],
-            minY: bbox[1],
-            maxX: bbox[2],
-            maxY: bbox[3],
-            index: index
-        });
+    featureEach(features, function (feature, index) {
+        if (!feature.id) feature.id = index;
+        if (!feature.bbox) feature.bbox = turfBBox(feature);
+        load.push(feature);
     });
     tree.load(load);
     return tree;
+};
+
+rbush.prototype.toBBox = function (item) {
+    var bbox = item.bbox ? item.bbox : turfBBox(item);
+    return {
+        minX: bbox[0],
+        minY: bbox[1],
+        maxX: bbox[2],
+        maxY: bbox[3]
+    };
+};
+
+rbush.prototype.all = function () {
+    return featureCollection(this._all(this.data, []));
+};
+
+rbush.prototype.search = function (bbox) {
+    return featureCollection(this._search(bbox));
 };
