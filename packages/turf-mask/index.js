@@ -173,6 +173,7 @@ function unionPolygons(polygons) {
 /**
  * Filter by Index - RBush helper function
  *
+ * @private
  * @param {Object} a remove item
  * @param {Object} b search item
  * @returns {boolean} true if matches
@@ -184,6 +185,7 @@ function filterByIndex(a, b) {
 /**
  * Create RBush Tree Index
  *
+ * @private
  * @param {FeatureCollection<any>} features GeoJSON FeatureCollection
  * @returns {RBush} RBush Tree
  */
