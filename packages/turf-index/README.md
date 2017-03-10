@@ -2,11 +2,11 @@
 
 # index
 
-Create RBush Tree Index from a Feature Collection or GeometryCollection.
+Creates an RBush Index Tree from a FeatureCollection or GeometryCollection.
 
 **Parameters**
 
--   `collection` **([GeometryCollection](http://geojson.org/geojson-spec.html#geometrycollection) \| [FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects)&lt;any>)** Collection to be added to the RBush Tree index.
+-   `collection` **([GeometryCollection](http://geojson.org/geojson-spec.html#geometrycollection) \| [FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects)&lt;any>)** GeoJSON collection to be added to the RBush Tree index.
 -   `maxEntries` **\[[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)]** defines the maximum number of entries in a tree node. 9 (used by default) is a
     reasonable choice for most applications. Higher value means faster insertion and slower search, and vice versa. (optional, default `9`)
 -   `format` **\[[Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;any>]** assumes the format of data points to be an object with minX, minY, maxX and maxY properties.

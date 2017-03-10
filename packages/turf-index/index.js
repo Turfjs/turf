@@ -3,10 +3,10 @@ var featureEach = require('@turf/meta').featureEach;
 var rbush = require('rbush');
 
 /**
- * Create RBush Tree Index from a Feature Collection or GeometryCollection.
+ * Creates an RBush Index Tree from a FeatureCollection or GeometryCollection.
  *
  * @name index
- * @param {GeometryCollection|FeatureCollection<any>} collection Collection to be added to the RBush Tree index.
+ * @param {GeometryCollection|FeatureCollection<any>} collection GeoJSON collection to be added to the RBush Tree index.
  * @param {number} [maxEntries=9] defines the maximum number of entries in a tree node. 9 (used by default) is a
  * reasonable choice for most applications. Higher value means faster insertion and slower search, and vice versa.
  * @param {Array<any>} [format] assumes the format of data points to be an object with minX, minY, maxX and maxY properties.
