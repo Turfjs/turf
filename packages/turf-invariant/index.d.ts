@@ -12,6 +12,11 @@ export function getCoord(obj: GetCoord): Array<any>;
 /**
  * http://turfjs.org/docs/
  */
+export function getCoords(obj: GetCoord): Array<any>;
+
+/**
+ * http://turfjs.org/docs/
+ */
 export function geojsonType(value: Features, type: string, name: string): void;
 
 /**
