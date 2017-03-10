@@ -20,9 +20,10 @@ let fixtures = fs.readdirSync(directories.in).map(folder => {
     return files;
 });
 // const include = [
-//     'basic',
-//     'feature-collection',
-//     'multipolygon'
+//     // 'basic',
+//     // 'feature-collection',
+//     // 'multipolygon',
+//     'overlapping'
 // ];
 // fixtures = fixtures.filter(fixture => include.indexOf(fixture.folder) !== -1);
 
