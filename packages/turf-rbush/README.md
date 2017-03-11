@@ -42,10 +42,18 @@ var point = {
   }
 }
 var tree = turf.rbush();
+
+// Loading Features in bulk
 tree.load(features);
+
+// Loading Features one by one
+tree.insert(point);
 
 var search = tree.search(point);
 //=search
+
+var collides = tree.collides(point);
+//=collides
 ```
 
 Returns **RBush** RBush Tree
@@ -76,7 +84,7 @@ load
 
 **Parameters**
 
--   `features` **([GeometryCollection](http://geojson.org/geojson-spec.html#geometrycollection) \| [FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects)&lt;any>)** load entire GeoJSON FeatureCollection
+-   `features` **[FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects)&lt;any>** load entire GeoJSON FeatureCollection
 
 Returns **RBush** GeoJSON RBush
 

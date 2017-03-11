@@ -41,10 +41,18 @@ var rbush = require('rbush');
  *   }
  * }
  * var tree = turf.rbush();
+ *
+ * // Loading Features in bulk
  * tree.load(features);
+ *
+ * // Loading Features one by one
+ * tree.insert(point);
  *
  * var search = tree.search(point);
  * //=search
+ *
+ * var collides = tree.collides(point);
+ * //=collides
  */
 module.exports = function (maxEntries) {
     var tree = rbush(maxEntries);
@@ -73,7 +81,7 @@ module.exports = function (maxEntries) {
     /**
      * load
      *
-     * @param {GeometryCollection|FeatureCollection<any>} features load entire GeoJSON FeatureCollection
+     * @param {FeatureCollection<any>} features load entire GeoJSON FeatureCollection
      * @returns {RBush} GeoJSON RBush
      */
     tree.load = function (features) {
