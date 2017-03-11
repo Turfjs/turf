@@ -9,7 +9,7 @@ var rbush = require('rbush');
  * @name rbush
  * @param {number} [maxEntries=9] defines the maximum number of entries in a tree node. 9 (used by default) is a
  * reasonable choice for most applications. Higher value means faster insertion and slower search, and vice versa.
- * @returns {RBush} RBush Tree
+ * @returns {RBush} GeoJSON RBush
  * @example
  * var features = {
  *   "type": "FeatureCollection",
@@ -60,6 +60,7 @@ module.exports = function (maxEntries) {
     /**
      * insert
      *
+     * @private
      * @param {Feature<any>} feature insert single GeoJSON Feature
      * @returns {RBush} GeoJSON RBush
      */
@@ -71,6 +72,7 @@ module.exports = function (maxEntries) {
     /**
      * remove
      *
+     * @private
      * @param {Feature<any>} feature remove single GeoJSON Feature
      * @returns {RBush} GeoJSON RBush
      */
@@ -81,6 +83,7 @@ module.exports = function (maxEntries) {
     /**
      * load
      *
+     * @private
      * @param {FeatureCollection<any>} features load entire GeoJSON FeatureCollection
      * @returns {RBush} GeoJSON RBush
      */
@@ -96,6 +99,7 @@ module.exports = function (maxEntries) {
     /**
      * search
      *
+     * @private
      * @param {FeatureCollection|Feature<any>} geojson search with GeoJSON
      * @returns {FeatureCollection<any>} all features that intersects with the given GeoJSON.
      */
@@ -107,6 +111,7 @@ module.exports = function (maxEntries) {
     /**
      * collides
      *
+     * @private
      * @param {FeatureCollection|Feature<any>} geojson collides with GeoJSON
      * @returns {boolean} true if there are any items intersecting the given GeoJSON, otherwise false.
      */
@@ -117,6 +122,7 @@ module.exports = function (maxEntries) {
     /**
      * all
      *
+     * @private
      * @returns {FeatureCollection<any>} all the features in RBush
      */
     tree.all = function () {
