@@ -7,7 +7,8 @@ var rbush = require('rbush');
  * Creates a GeoJSON implementation of an RBush spatial index.
  *
  * @name rbush
- * @param {FeatureCollection|Feature<any>} features Features to be added to RBush spatial index.
+ * @param {number} [maxEntries=9] defines the maximum number of entries in a tree node. 9 (used by default) is a
+ * reasonable choice for most applications. Higher value means faster insertion and slower search, and vice versa.
  * @returns {RBush} RBush Tree
  * @example
  * var collection = {
@@ -45,10 +46,83 @@ var rbush = require('rbush');
  * var search = tree.search(point)
  * //=search
  */
-module.exports = function (features) {
-    var tree = rbush();
+module.exports = function (maxEntries) {
+    var tree = rbush(maxEntries);
 
-    // GeoJSON implementation
+    /**
+     * insert
+     *
+     * @param {Feature<any>} item load single Feature
+     * @returns {RBush} RBush
+     */
+    tree.insert = function (item) {
+        item.bbox = item.bbox ? item.bbox : turfBBox(item);
+        return rbush.prototype.insert.call(this, item);
+    };
+
+    /**
+     * remove
+     *
+     * @param {Feature<any>} item remove single Feature
+     * @returns {RBush} RBush
+     */
+    tree.remove = function (item) {
+        return rbush.prototype.remove.call(this, item);
+    };
+
+    /**
+     * load
+     *
+     * @param {FeatureCollection<any>} data load entire FeatureCollection
+     * @returns {RBush} RBush
+     */
+    tree.load = function (data) {
+        var load = [];
+        featureEach(data, function (feature) {
+            feature.bbox = feature.bbox ? feature.bbox : turfBBox(feature);
+            load.push(feature);
+        });
+        return rbush.prototype.load.call(this, load);
+    };
+
+    /**
+     * search
+     *
+     * @param {Feature<any>} bbox search by Feature
+     * @returns {RBush} RBush
+     */
+    tree.search = function (bbox) {
+        var search = rbush.prototype.search.call(this, this.toBBox(bbox));
+        return featureCollection(search);
+    };
+
+    /**
+     * collides
+     *
+     * @param {Feature<any>} bbox collides by Feature
+     * @returns {FeatureCollection<any>} all features that collides with input feature
+     */
+    tree.collides = function (bbox) {
+        return rbush.prototype.collides.call(this, this.toBBox(bbox));
+    };
+
+    /**
+     * all
+     *
+     * @returns {FeatureCollection<any>} all the features in RBush
+     */
+    tree.all = function () {
+        var all = rbush.prototype.all.call(this);
+        return featureCollection(all);
+    };
+
+    /**
+     * toBBox
+     *
+     * @private
+     * @param {Feature} item convert to RBush minX & maxY schema
+     * @returns {Object} RBush minX & maxY schema
+     */
     tree.toBBox = function (item) {
         var bbox = item.bbox ? item.bbox : turfBBox(item);
         return {
@@ -59,27 +133,9 @@ module.exports = function (features) {
         };
     };
 
-    tree.collides = function (bbox) {
-        return rbush.prototype.collides.call(this, this.toBBox(bbox));
-    };
-
-    tree.all = function () {
-        var all = rbush.prototype.all.call(this);
-        return featureCollection(all);
-    };
-
-    tree.search = function (bbox) {
-        var search = rbush.prototype.search.call(this, this.toBBox(bbox));
-        return featureCollection(search);
-    };
-
-    // Load GeoJSON features
-    var load = [];
-    featureEach(features, function (feature, index) {
-        if (!feature.id) feature.id = index;
-        if (!feature.bbox) feature.bbox = turfBBox(feature);
-        load.push(feature);
-    });
-    tree.load(load);
     return tree;
 };
+
+
+
+

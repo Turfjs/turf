@@ -2,20 +2,30 @@ import * as random from '@turf/random'
 import * as rbush from '../'
 
 // Fixtures
-const points = random('points', 1000);
-const polygons = random('polygons', 1000);
+const points = random('points', 2);
+const point = points.features[0];
+const polygons = random('polygons', 2);
+const polygon = polygons.features[0];
 
 // Build Tree
-const tree = rbush(points)
+const tree = rbush()
+tree.load(points);
+tree.load(polygons);
 
 // Find All
-tree.all().features.map(feature => {
-    feature.properties
-    feature.geometry
-})
+const all = tree.all()
 
 // Search
-const search = tree.search(points.features[0])
+const search = tree.search(polygon)
 
-// Insert one
-tree.insert(points.features[0])
+// Collides
+const collides = tree.collides(polygon)
+
+// Insert
+tree.insert(point)
+tree.insert(polygon)
+
+// Remove
+tree.remove(point)
+tree.remove(polygon)
+

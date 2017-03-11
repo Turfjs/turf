@@ -20,8 +20,13 @@ const fixtures = fs.readdirSync(directories.in).map(filename => {
 
 test('turf-rbush', t => {
     for (const {name, filename, geojson} of fixtures) {
-        const tree = rbush(geojson);
+        const tree = rbush();
+        tree.load(geojson);
+
+        // Retrive all features inside the RBush index
         const all = tree.all();
+
+        // Search using the first item in the FeatureCollection
         const search = tree.search(geojson.features[0]);
 
         if (process.env.REGEN) {
