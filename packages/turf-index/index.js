@@ -1,7 +1,7 @@
 var turfBBox = require('@turf/bbox');
 var featureCollection = require('@turf/helpers').featureCollection;
 var featureEach = require('@turf/meta').featureEach;
-var rbush = require('./rbush');
+var rbush = require('rbush');
 
 /**
  * Creates a GeoJSON implementation of an RBush spatial index.
@@ -46,7 +46,7 @@ var rbush = require('./rbush');
  * //=search
  */
 module.exports = function (features) {
-    var tree = rbush();
+    var tree = geojsonRbush();
     var load = [];
     featureEach(features, function (feature, index) {
         if (!feature.id) feature.id = index;
@@ -57,20 +57,36 @@ module.exports = function (features) {
     return tree;
 };
 
-rbush.prototype.toBBox = function (item) {
-    var bbox = item.bbox ? item.bbox : turfBBox(item);
-    return {
-        minX: bbox[0],
-        minY: bbox[1],
-        maxX: bbox[2],
-        maxY: bbox[3]
+/**
+ * Creates a GeoJSON implementation of RBush
+ *
+ * @returns {RBush} RBush spatial index
+ */
+function geojsonRbush() {
+    var tree = rbush();
+
+    tree.toBBox = function (item) {
+        var bbox = item.bbox ? item.bbox : turfBBox(item);
+        return {
+            minX: bbox[0],
+            minY: bbox[1],
+            maxX: bbox[2],
+            maxY: bbox[3]
+        };
     };
-};
 
-rbush.prototype.all = function () {
-    return featureCollection(this._all(this.data, []));
-};
+    tree.collides = function (bbox) {
+        return rbush.prototype.collides.call(this, this.toBBox(bbox));
+    };
 
-rbush.prototype.search = function (bbox) {
-    return featureCollection(this._search(bbox));
-};
+    tree.all = function () {
+        var all = rbush.prototype.all.call(this);
+        return featureCollection(all);
+    };
+
+    tree.search = function (bbox) {
+        var search = rbush.prototype.search.call(this, this.toBBox(bbox));
+        return featureCollection(search);
+    };
+    return tree;
+}
