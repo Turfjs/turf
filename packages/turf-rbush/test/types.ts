@@ -7,25 +7,26 @@ const point = points.features[0];
 const polygons = random('polygons', 2);
 const polygon = polygons.features[0];
 
-// Build Tree
+// Initialize GeoJSON RBush Tree
 const tree = rbush()
+
+// Load Tree with a FeatureCollection
 tree.load(points);
 tree.load(polygons);
 
-// Find All
-const all = tree.all()
-
-// Search
-const search = tree.search(polygon)
-
-// Collides
-const collides = tree.collides(polygon)
-
-// Insert
+// Insert by Feature
 tree.insert(point)
 tree.insert(polygon)
 
-// Remove
+// Find All (returns FeatureCollection)
+const all = tree.all()
+
+// Search by Feature (returns FeatureCollection)
+const search = tree.search(polygon)
+
+// Collides by Feature (returns FeatureCollection)
+const collides = tree.collides(polygon)
+
+// Remove by Feature
 tree.remove(point)
 tree.remove(polygon)
-
