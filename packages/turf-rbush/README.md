@@ -1,6 +1,6 @@
-# @turf/index
+# @turf/rbush
 
-# index
+# rbush
 
 Creates a GeoJSON implementation of an RBush spatial index.
 
@@ -40,7 +40,7 @@ var point = {
     "coordinates": [-70, 45]
   }
 }
-var tree = turf.index(collection);
+var tree = turf.rbush(collection);
 //=tree
 
 var search = tree.search(point)
@@ -65,7 +65,7 @@ PRs and issues.
 Install this module individually:
 
 ```sh
-$ npm install @turf/index
+$ npm install @turf/rbush
 ```
 
 Or install the Turf module that includes it as a function:

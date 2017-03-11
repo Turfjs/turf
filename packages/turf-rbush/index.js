@@ -6,7 +6,7 @@ var rbush = require('rbush');
 /**
  * Creates a GeoJSON implementation of an RBush spatial index.
  *
- * @name index
+ * @name rbush
  * @param {FeatureCollection|Feature<any>} features Features to be added to RBush spatial index.
  * @returns {RBush} RBush Tree
  * @example
@@ -39,32 +39,16 @@ var rbush = require('rbush');
  *     "coordinates": [-70, 45]
  *   }
  * }
- * var tree = turf.index(collection);
+ * var tree = turf.rbush(collection);
  * //=tree
  *
  * var search = tree.search(point)
  * //=search
  */
 module.exports = function (features) {
-    var tree = geojsonRbush();
-    var load = [];
-    featureEach(features, function (feature, index) {
-        if (!feature.id) feature.id = index;
-        if (!feature.bbox) feature.bbox = turfBBox(feature);
-        load.push(feature);
-    });
-    tree.load(load);
-    return tree;
-};
-
-/**
- * Creates a GeoJSON implementation of RBush
- *
- * @returns {RBush} RBush spatial index
- */
-function geojsonRbush() {
     var tree = rbush();
 
+    // GeoJSON implementation
     tree.toBBox = function (item) {
         var bbox = item.bbox ? item.bbox : turfBBox(item);
         return {
@@ -88,5 +72,14 @@ function geojsonRbush() {
         var search = rbush.prototype.search.call(this, this.toBBox(bbox));
         return featureCollection(search);
     };
+
+    // Load GeoJSON features
+    var load = [];
+    featureEach(features, function (feature, index) {
+        if (!feature.id) feature.id = index;
+        if (!feature.bbox) feature.bbox = turfBBox(feature);
+        load.push(feature);
+    });
+    tree.load(load);
     return tree;
-}
+};

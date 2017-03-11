@@ -1,12 +1,12 @@
 import * as random from '@turf/random'
-import * as index from '../'
+import * as rbush from '../'
 
 // Fixtures
 const points = random('points', 1000);
 const polygons = random('polygons', 1000);
 
 // Build Tree
-const tree = index(points)
+const tree = rbush(points)
 
 // Find All
 tree.all().features.map(feature => {

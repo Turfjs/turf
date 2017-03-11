@@ -16,8 +16,8 @@ declare class RBush {
 }
 
 /**
- * http://turfjs.org/docs/#index
+ * http://turfjs.org/docs/#rbush
  */
-declare function index(features: Feature | Features): RBush;
-declare namespace index {}
-export = index;
+declare function rbush(features: Feature | Features): RBush;
+declare namespace rbush {}
+export = rbush;

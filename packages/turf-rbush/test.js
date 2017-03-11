@@ -3,7 +3,7 @@ const fs = require('fs');
 const path = require('path');
 const load = require('load-json-file');
 const write = require('write-json-file');
-const index = require('./');
+const rbush = require('./');
 
 const directories = {
     in: path.join(__dirname, 'test', 'in') + path.sep,
@@ -18,9 +18,9 @@ const fixtures = fs.readdirSync(directories.in).map(filename => {
     };
 });
 
-test('turf-index', t => {
+test('turf-rbush', t => {
     for (const {name, filename, geojson} of fixtures) {
-        const tree = index(geojson);
+        const tree = rbush(geojson);
         const all = tree.all();
         const search = tree.search(geojson.features[0]);
 

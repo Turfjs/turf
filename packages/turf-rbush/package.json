@@ -1,7 +1,7 @@
 {
-  "name": "@turf/index",
+  "name": "@turf/rbush",
   "version": "3.0.0",
-  "description": "turf index module",
+  "description": "turf rbush module",
   "main": "index.js",
   "types": "index.d.ts",
   "files": [
