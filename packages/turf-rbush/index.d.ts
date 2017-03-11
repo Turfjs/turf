@@ -1,16 +1,16 @@
 /// <reference types="geojson" />
 
-type Feature = GeoJSON.Feature<any>
-type Features = GeoJSON.FeatureCollection<any>
+type Feature = GeoJSON.Feature<any> | GeoJSON.GeometryObject
+type Features = GeoJSON.FeatureCollection<any> | GeoJSON.GeometryCollection
 
 declare class RBush {
-    insert(item: Feature): RBush;
-    load(items: Features): RBush;
-    remove(item: Feature, equals?: (a: Feature, b: Feature) => boolean): RBush;
+    insert(feature: Feature): RBush;
+    load(features: Features): RBush;
+    remove(feature: Feature, equals?: (a: Feature, b: Feature) => boolean): RBush;
     clear(): RBush;
-    search(bbox: Feature): Features;
+    search(geojson: Feature | Features): Features;
     all(): Features;
-    collides(bbox: Feature): boolean;
+    collides(geosjon: Feature | Features): boolean;
     toJSON(): any;
     fromJSON(data: any): RBush;
 }

@@ -2,7 +2,7 @@
 
 # rbush
 
-Creates a GeoJSON implementation of an RBush spatial index.
+GeoJSON implementation of RBush spatial index.
 
 **Parameters**
 
@@ -12,7 +12,7 @@ Creates a GeoJSON implementation of an RBush spatial index.
 **Examples**
 
 ```javascript
-var collection = {
+var features = {
   "type": "FeatureCollection",
   "features": [
     {
@@ -41,10 +41,10 @@ var point = {
     "coordinates": [-70, 45]
   }
 }
-var tree = turf.rbush(collection);
-//=tree
+var tree = turf.rbush();
+tree.load(features);
 
-var search = tree.search(point)
+var search = tree.search(point);
 //=search
 ```
 
@@ -56,9 +56,19 @@ insert
 
 **Parameters**
 
--   `item` **[Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;any>** load single Feature
+-   `feature` **[Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;any>** insert single GeoJSON Feature
 
-Returns **RBush** RBush
+Returns **RBush** GeoJSON RBush
+
+# remove
+
+remove
+
+**Parameters**
+
+-   `feature` **[Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;any>** remove single GeoJSON Feature
+
+Returns **RBush** GeoJSON RBush
 
 # load
 
@@ -66,9 +76,9 @@ load
 
 **Parameters**
 
--   `data` **[FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects)&lt;any>** load entire FeatureCollection
+-   `features` **([GeometryCollection](http://geojson.org/geojson-spec.html#geometrycollection) \| [FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects)&lt;any>)** load entire GeoJSON FeatureCollection
 
-Returns **RBush** RBush
+Returns **RBush** GeoJSON RBush
 
 # search
 
@@ -76,9 +86,9 @@ search
 
 **Parameters**
 
--   `bbox` **[Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;any>** search by Feature
+-   `geojson` **([FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects) \| [Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;any>)** search with GeoJSON
 
-Returns **RBush** RBush
+Returns **[FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects)&lt;any>** all features that intersects with the given GeoJSON.
 
 # collides
 
@@ -86,9 +96,9 @@ collides
 
 **Parameters**
 
--   `bbox` **[Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;any>** collides by Feature
+-   `geojson` **([FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects) \| [Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;any>)** collides with GeoJSON
 
-Returns **[FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects)&lt;any>** all features that collides with input feature
+Returns **[boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** true if there are any items intersecting the given GeoJSON, otherwise false.
 
 # all
 

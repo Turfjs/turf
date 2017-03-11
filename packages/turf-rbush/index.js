@@ -4,14 +4,14 @@ var featureEach = require('@turf/meta').featureEach;
 var rbush = require('rbush');
 
 /**
- * Creates a GeoJSON implementation of an RBush spatial index.
+ * GeoJSON implementation of RBush spatial index.
  *
  * @name rbush
  * @param {number} [maxEntries=9] defines the maximum number of entries in a tree node. 9 (used by default) is a
  * reasonable choice for most applications. Higher value means faster insertion and slower search, and vice versa.
  * @returns {RBush} RBush Tree
  * @example
- * var collection = {
+ * var features = {
  *   "type": "FeatureCollection",
  *   "features": [
  *     {
@@ -40,10 +40,10 @@ var rbush = require('rbush');
  *     "coordinates": [-70, 45]
  *   }
  * }
- * var tree = turf.rbush(collection);
- * //=tree
+ * var tree = turf.rbush();
+ * tree.load(features);
  *
- * var search = tree.search(point)
+ * var search = tree.search(point);
  * //=search
  */
 module.exports = function (maxEntries) {
@@ -52,33 +52,33 @@ module.exports = function (maxEntries) {
     /**
      * insert
      *
-     * @param {Feature<any>} item load single Feature
-     * @returns {RBush} RBush
+     * @param {Feature<any>} feature insert single GeoJSON Feature
+     * @returns {RBush} GeoJSON RBush
      */
-    tree.insert = function (item) {
-        item.bbox = item.bbox ? item.bbox : turfBBox(item);
-        return rbush.prototype.insert.call(this, item);
+    tree.insert = function (feature) {
+        feature.bbox = feature.bbox ? feature.bbox : turfBBox(feature);
+        return rbush.prototype.insert.call(this, feature);
     };
 
     /**
      * remove
      *
-     * @param {Feature<any>} item remove single Feature
-     * @returns {RBush} RBush
+     * @param {Feature<any>} feature remove single GeoJSON Feature
+     * @returns {RBush} GeoJSON RBush
      */
-    tree.remove = function (item) {
-        return rbush.prototype.remove.call(this, item);
+    tree.remove = function (feature) {
+        return rbush.prototype.remove.call(this, feature);
     };
 
     /**
      * load
      *
-     * @param {FeatureCollection<any>} data load entire FeatureCollection
-     * @returns {RBush} RBush
+     * @param {GeometryCollection|FeatureCollection<any>} features load entire GeoJSON FeatureCollection
+     * @returns {RBush} GeoJSON RBush
      */
-    tree.load = function (data) {
+    tree.load = function (features) {
         var load = [];
-        featureEach(data, function (feature) {
+        featureEach(features, function (feature) {
             feature.bbox = feature.bbox ? feature.bbox : turfBBox(feature);
             load.push(feature);
         });
@@ -88,22 +88,22 @@ module.exports = function (maxEntries) {
     /**
      * search
      *
-     * @param {Feature<any>} bbox search by Feature
-     * @returns {RBush} RBush
+     * @param {FeatureCollection|Feature<any>} geojson search with GeoJSON
+     * @returns {FeatureCollection<any>} all features that intersects with the given GeoJSON.
      */
-    tree.search = function (bbox) {
-        var search = rbush.prototype.search.call(this, this.toBBox(bbox));
+    tree.search = function (geojson) {
+        var search = rbush.prototype.search.call(this, this.toBBox(geojson));
         return featureCollection(search);
     };
 
     /**
      * collides
      *
-     * @param {Feature<any>} bbox collides by Feature
-     * @returns {FeatureCollection<any>} all features that collides with input feature
+     * @param {FeatureCollection|Feature<any>} geojson collides with GeoJSON
+     * @returns {boolean} true if there are any items intersecting the given GeoJSON, otherwise false.
      */
-    tree.collides = function (bbox) {
-        return rbush.prototype.collides.call(this, this.toBBox(bbox));
+    tree.collides = function (geojson) {
+        return rbush.prototype.collides.call(this, this.toBBox(geojson));
     };
 
     /**
@@ -117,14 +117,14 @@ module.exports = function (maxEntries) {
     };
 
     /**
-     * toBBox
+     * Converts GeoJSON to {minX, minY, maxX, maxY} schema
      *
      * @private
-     * @param {Feature} item convert to RBush minX & maxY schema
-     * @returns {Object} RBush minX & maxY schema
+     * @param {FeatureCollectio|Feature<any>} geojson feature(s) to retrieve BBox from
+     * @returns {Object} converted to {minX, minY, maxX, maxY}
      */
-    tree.toBBox = function (item) {
-        var bbox = item.bbox ? item.bbox : turfBBox(item);
+    tree.toBBox = function (geojson) {
+        var bbox = geojson.bbox ? geojson.bbox : turfBBox(geojson);
         return {
             minX: bbox[0],
             minY: bbox[1],
