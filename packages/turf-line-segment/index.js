@@ -5,7 +5,7 @@ var lineString = require('@turf/helpers').lineString;
 var featureCollection = require('@turf/helpers').featureCollection;
 
 /**
- * Takes a {@link LineString}, {@link MultiLineString}, {@link MultiPolygon}, or {@link Polygon} and returns 2-vertex {@link LineString} segments.
+ * Creates a {@link FeatureCollection} of 2-vertex {@link LineString} segments from a {@link LineString}, {@link MultiLineString}, {@link MultiPolygon} or {@link Polygon}.
  *
  * @name lineSegment
  * @param {Feature<LineString|MultiLineString|MultiPolygon|Polygon>} geojson input GeoJSON Feature
