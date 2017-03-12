@@ -1,5 +1,5 @@
 {
-  "name": "turf-line-chunk",
+  "name": "@turf/line-chunk",
   "version": "3.0.0",
   "description": "turf line-chunk module",
   "main": "index.js",
