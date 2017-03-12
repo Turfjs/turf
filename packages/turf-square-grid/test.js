@@ -15,22 +15,20 @@ const directories = {
 };
 
 let fixtures = fs.readdirSync(directories.in).map(filename => {
-    const geojson = load.sync(directories.in + filename);
     return {
         filename,
-        geojson,
         name: path.parse(filename).name,
-        bbox: turfBBox(geojson)
+        geojson: load.sync(directories.in + filename)
     };
 });
 
 // fixtures = fixtures.filter(({name}) => name === 'resolute');
 
 test('square-grid', t => {
-    for (const {name, bbox, geojson} of fixtures) {
-        const grid5 = squareGrid(bbox, 5, 'miles');
-        const grid20 = squareGrid(bbox, 20, 'miles');
-        const completelyWithin = squareGrid(bbox, 5, 'miles', true);
+    for (const {name, geojson} of fixtures) {
+        const grid5 = squareGrid(geojson, 5, 'miles');
+        const grid20 = squareGrid(geojson, 20, 'miles');
+        const completelyWithin = squareGrid(geojson, 5, 'miles', true);
 
         // Add current GeoJSON to grid results
         featureEach(geojson, feature => {

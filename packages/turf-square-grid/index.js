@@ -2,12 +2,13 @@ var featureCollection = require('@turf/helpers').featureCollection;
 var point = require('@turf/helpers').point;
 var polygon = require('@turf/helpers').polygon;
 var distance = require('@turf/distance');
+var turfBBox = require('@turf/bbox');
 
 /**
- * Takes a bounding box and a cell depth and returns a set of square {@link Polygon|polygons} in a grid.
+ * Creates a square grid from a bounding box, {@link Feature} or {@link FeatureCollection}.
  *
  * @name squareGrid
- * @param {Array<number>} bbox extent in [minX, minY, maxX, maxY] order
+ * @param {Array<number>|FeatureCollection|Feature<any>} bbox extent in [minX, minY, maxX, maxY] order
  * @param {number} cellSize width of each cell
  * @param {string} [units=kilometers] used in calculating cellSize, can be degrees, radians, miles, or kilometers
  * @param {boolean} [completelyWithin=false] adjust width & height cellSize to fit exactly within bbox
@@ -22,14 +23,16 @@ var distance = require('@turf/distance');
  */
 module.exports = function squareGrid(bbox, cellSize, units, completelyWithin) {
     var results = [];
+
+    // validation
+    if (!bbox) throw new Error('bbox is required');
+    if (!Array.isArray(bbox)) bbox = turfBBox(bbox); // Convert GeoJSON to bbox
+    if (bbox.length !== 4) throw new Error('bbox must contain 4 numbers');
+
     var west = bbox[0];
     var south = bbox[1];
     var east = bbox[2];
     var north = bbox[3];
-    var xCellSize = 0;
-    var yCellSize = 0;
-    xCellSize += cellSize;
-    yCellSize += cellSize;
 
     // distance
     var xDistance = distance(point([west, south]), point([east, south]), units);
@@ -40,12 +43,12 @@ module.exports = function squareGrid(bbox, cellSize, units, completelyWithin) {
     var rows = Math.ceil(yDistance / cellSize);
 
     // columns | width | x
-    var xFraction = xCellSize / xDistance;
+    var xFraction = cellSize / xDistance;
     var cellWidth = xFraction * (east - west);
     if (completelyWithin === true) cellWidth = cellWidth * ((xDistance / cellSize) / columns);
 
     // rows | height | y
-    var yFraction = yCellSize / yDistance;
+    var yFraction = cellSize / yDistance;
     var cellHeight = yFraction * (north - south);
     if (completelyWithin === true) cellHeight = cellHeight * ((yDistance / cellSize) / rows);
 
