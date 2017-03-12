@@ -5,6 +5,7 @@ const load = require('load-json-file');
 const write = require('write-json-file');
 const turfBBox = require('@turf/bbox');
 const featureEach = require('@turf/meta').featureEach;
+const mkdirp = require('mkdirp');
 const squareGrid = require('./');
 
 
@@ -13,7 +14,7 @@ const directories = {
     out: path.join(__dirname, 'test', 'out') + path.sep
 };
 
-const fixtures = fs.readdirSync(directories.in).map(filename => {
+let fixtures = fs.readdirSync(directories.in).map(filename => {
     const geojson = load.sync(directories.in + filename);
     return {
         filename,
@@ -23,10 +24,13 @@ const fixtures = fs.readdirSync(directories.in).map(filename => {
     };
 });
 
+// fixtures = fixtures.filter(({name}) => name === 'resolute');
+
 test('square-grid', t => {
     for (const {name, bbox, geojson} of fixtures) {
         const grid5 = squareGrid(bbox, 5, 'miles');
         const grid20 = squareGrid(bbox, 20, 'miles');
+        const completelyWithin = squareGrid(bbox, 5, 'miles', true);
 
         // Add current GeoJSON to grid results
         featureEach(geojson, feature => {
@@ -37,14 +41,18 @@ test('square-grid', t => {
             };
             grid5.features.push(feature);
             grid20.features.push(feature);
+            completelyWithin.features.push(feature);
         });
 
         if (process.env.REGEN) {
-            write.sync(directories.out + name + '-5-miles.geojson', grid5);
-            write.sync(directories.out + name + '-20-miles.geojson', grid20);
+            mkdirp.sync(directories.out + name);
+            write.sync(path.join(directories.out, name, '5-miles.geojson'), grid5);
+            write.sync(path.join(directories.out, name, '5-miles-completely-within.geojson'), completelyWithin);
+            write.sync(path.join(directories.out, name, '20-miles.geojson'), grid20);
         }
-        t.deepEqual(grid5, load.sync(directories.out + name + '-5-miles.geojson'), name + ' -- 5-miles');
-        t.deepEqual(grid20, load.sync(directories.out + name + '-20-miles.geojson'), name + ' -- 20-miles');
+        t.deepEqual(grid5, load.sync(path.join(directories.out, name, '5-miles.geojson')), name + ' -- 5 miles');
+        t.deepEqual(grid20, load.sync(path.join(directories.out, name, '20-miles.geojson')), name + ' -- 20 miles');
+        t.deepEqual(completelyWithin, load.sync(path.join(directories.out, name, '5-miles-completely-within.geojson')), name + ' -- Completely Within');
     }
     t.end();
 });

@@ -33,6 +33,7 @@
     "@turf/bbox": "^3.13.0",
     "@turf/meta": "^3.13.0",
     "benchmark": "^2.1.3",
+    "mkdirp": "^0.5.1",
     "tape": "^4.6.3",
     "write-json-file": "^2.0.0"
   },

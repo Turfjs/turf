@@ -9,16 +9,16 @@ Takes a bounding box and a cell depth and returns a set of square [polygons](htt
 -   `bbox` **[Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)>** extent in [minX, minY, maxX, maxY] order
 -   `cellSize` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** width of each cell
 -   `units` **\[[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)]** used in calculating cellSize, can be degrees, radians, miles, or kilometers (optional, default `kilometers`)
+-   `completelyWithin` **\[[boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)]** adjust width & height cellSize to fit exactly within bbox (optional, default `false`)
 
 **Examples**
 
 ```javascript
-var bbox = [-96,31,-84,40];
-var cellSize = 10;
+var bbox = [-95, 30 ,-85, 40];
+var cellSize = 50;
 var units = 'miles';
 
 var squareGrid = turf.squareGrid(bbox, cellSize, units);
-
 //=squareGrid
 ```
 
