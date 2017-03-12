@@ -78,6 +78,9 @@ import * as truncate from '@turf/truncate';
 import * as flatten from '@turf/flatten';
 import * as lineIntersect from '@turf/line-intersect';
 import * as mask from '@turf/mask';
+import * as lineChunk from '@turf/line-chunk';
+import * as unkinkPolygon from '@turf/unkink-polygon';
+import * as greatCircle from '@turf/great-circle';
 
 export {
     isolines,
@@ -151,5 +154,8 @@ export {
     coordAll,
     geomEach,
     lineIntersect,
-    mask
+    mask,
+    lineChunk,
+    unkinkPolygon,
+    greatCircle
 };
