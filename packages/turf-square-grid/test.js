@@ -3,7 +3,6 @@ const fs = require('fs');
 const path = require('path');
 const load = require('load-json-file');
 const write = require('write-json-file');
-const turfBBox = require('@turf/bbox');
 const featureEach = require('@turf/meta').featureEach;
 const mkdirp = require('mkdirp');
 const squareGrid = require('./');
