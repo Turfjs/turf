@@ -1,6 +1,6 @@
 {
   "name": "@turf/dissolve",
-  "version": "3.11.6",
+  "version": "3.13.0",
   "description": "turf dissolve module",
   "main": "index.js",
   "types": "index.d.ts",
@@ -35,9 +35,9 @@
     "tape": "^4.6.3"
   },
   "dependencies": {
-    "@turf/bbox": "^3.10.5",
-    "@turf/helpers": "^3.10.5",
-    "@turf/union": "^3.11.6",
+    "@turf/bbox": "^3.13.0",
+    "@turf/helpers": "^3.13.0",
+    "@turf/union": "^3.13.0",
     "geojson-utils": "^1.1.0",
     "get-closest": "0.0.3",
     "rbush": "^2.0.1",
