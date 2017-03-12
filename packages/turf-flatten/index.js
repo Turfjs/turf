@@ -1,4 +1,3 @@
-// var geojsonFlatten = require('geojson-flatten');
 var helpers = require('@turf/helpers');
 var featureEach = require('@turf/meta').featureEach;
 var geomEach = require('@turf/meta').geomEach;
@@ -57,10 +56,6 @@ function flatten(geojson, properties) {
     case 'Polygon':
         return helpers.featureCollection([geojson]);
     }
-    // // Fallback to geojson-flatten original source code
-    // var flattened = geojsonFlatten(geojson);
-    // if (flattened.type === 'FeatureCollection') return flattened;
-    // else return helpers.featureCollection(geojsonFlatten(geojson));
 }
 module.exports = flatten;
 

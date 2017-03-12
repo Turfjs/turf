@@ -1,5 +1,5 @@
 var simplepolygon = require('simplepolygon');
-var flatten = require('geojson-flatten');
+var flatten = require('@turf/flatten');
 var featureEach = require('@turf/meta').featureEach;
 var featureCollection = require('@turf/helpers').featureCollection;
 
@@ -30,7 +30,7 @@ module.exports = function (geojson) {
     featureEach(geojson, function (feature) {
 
         // Handle MultiPolygons as Feature or FeatureCollection
-        if (feature.geometry.type === 'MultiPolygon') { feature = featureCollection(flatten(feature)); }
+        if (feature.geometry.type === 'MultiPolygon') { feature = flatten(feature); }
 
         // Store simple polygons in results
         featureEach(feature, function (polygon) {
