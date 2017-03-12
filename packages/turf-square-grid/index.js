@@ -1,4 +1,4 @@
-var featurecollection = require('@turf/helpers').featureCollection;
+var featureCollection = require('@turf/helpers').featureCollection;
 var point = require('@turf/helpers').point;
 var polygon = require('@turf/helpers').polygon;
 var distance = require('@turf/distance');
@@ -21,7 +21,7 @@ var distance = require('@turf/distance');
  * //=squareGrid
  */
 module.exports = function squareGrid(bbox, cellSize, units) {
-    var fc = featurecollection([]);
+    var results = [];
     var xFraction = cellSize / (distance(point([bbox[0], bbox[1]]), point([bbox[2], bbox[1]]), units));
     var cellWidth = xFraction * (bbox[2] - bbox[0]);
     var yFraction = cellSize / (distance(point([bbox[0], bbox[1]]), point([bbox[0], bbox[3]]), units));
@@ -38,12 +38,12 @@ module.exports = function squareGrid(bbox, cellSize, units) {
                 [currentX + cellWidth, currentY],
                 [currentX, currentY]
             ]]);
-            fc.features.push(cellPoly);
+            results.push(cellPoly);
 
             currentY += cellHeight;
         }
         currentX += cellWidth;
     }
 
-    return fc;
+    return featureCollection(results);
 };

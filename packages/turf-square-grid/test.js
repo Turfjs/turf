@@ -1,49 +1,50 @@
-var test = require('tape');
-var grid = require('./');
-var fs = require('fs');
+const test = require('tape');
+const fs = require('fs');
+const path = require('path');
+const load = require('load-json-file');
+const write = require('write-json-file');
+const turfBBox = require('@turf/bbox');
+const featureEach = require('@turf/meta').featureEach;
+const squareGrid = require('./');
 
-test('square-grid', function (t) {
-  var bbox1 = [
-        -96.6357421875,
-        31.12819929911196,
-        -84.9462890625,
-        40.58058466412764
-      ];
-  var bbox2 = [
-          -81.650390625,
-          24.926294766395593,
-          -79.8486328125,
-          26.43122806450644
-        ];
-  var bbox3 = [
-        -77.3876953125,
-        38.71980474264239,
-        -76.9482421875,
-        39.027718840211605
-      ];
-  var bbox4 = [
-    63.6328125,
-    11.867350911459308,
-    75.234375,
-    47.754097979680026
-  ];
 
-  var grid1 = grid(bbox1, 20, 'miles');
-  var grid2 = grid(bbox2, 5, 'miles');
-  var grid3 = grid(bbox3, 2, 'miles');
-  var grid4 = grid(bbox4, 50, 'miles');
+const directories = {
+    in: path.join(__dirname, 'test', 'in') + path.sep,
+    out: path.join(__dirname, 'test', 'out') + path.sep
+};
 
-  if (process.env.REGEN) {
-    fs.writeFileSync(__dirname+'/test/out/grid1.geojson', JSON.stringify(grid1,null,2));
-    fs.writeFileSync(__dirname+'/test/out/grid2.geojson', JSON.stringify(grid2,null,2));
-    fs.writeFileSync(__dirname+'/test/out/grid3.geojson', JSON.stringify(grid3,null,2));
-    fs.writeFileSync(__dirname+'/test/out/grid4.geojson', JSON.stringify(grid4,null,2));
-  }
+const fixtures = fs.readdirSync(directories.in).map(filename => {
+    const geojson = load.sync(directories.in + filename);
+    return {
+        filename,
+        geojson,
+        name: path.parse(filename).name,
+        bbox: turfBBox(geojson)
+    };
+});
 
-  t.deepEqual(JSON.parse(fs.readFileSync(__dirname+'/test/out/grid1.geojson')), grid1, 'grid is correct');
-  t.deepEqual(JSON.parse(fs.readFileSync(__dirname+'/test/out/grid2.geojson')), grid2, 'grid is correct');
-  t.deepEqual(JSON.parse(fs.readFileSync(__dirname+'/test/out/grid3.geojson')), grid3, 'grid is correct');
-  t.deepEqual(JSON.parse(fs.readFileSync(__dirname+'/test/out/grid4.geojson')), grid4, 'grid is correct');
+test('square-grid', t => {
+    for (const {name, bbox, geojson} of fixtures) {
+        const grid5 = squareGrid(bbox, 5, 'miles');
+        const grid20 = squareGrid(bbox, 20, 'miles');
 
-  t.end();
+        // Add current GeoJSON to grid results
+        featureEach(geojson, feature => {
+            feature.properties = {
+                stroke: '#F00',
+                'stroke-width': 6,
+                'fill-opacity': 0
+            };
+            grid5.features.push(feature);
+            grid20.features.push(feature);
+        });
+
+        if (process.env.REGEN) {
+            write.sync(directories.out + name + '-5-miles.geojson', grid5);
+            write.sync(directories.out + name + '-20-miles.geojson', grid20);
+        }
+        t.deepEqual(grid5, load.sync(directories.out + name + '-5-miles.geojson'), name + ' -- 5-miles');
+        t.deepEqual(grid20, load.sync(directories.out + name + '-20-miles.geojson'), name + ' -- 20-miles');
+    }
+    t.end();
 });
