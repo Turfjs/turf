@@ -1,6 +1,6 @@
 {
   "name": "@turf/turf",
-  "version": "3.13.1",
+  "version": "3.13.2",
   "description": "a JavaScript library for performing geospatial operations with GeoJSON",
   "main": "index.js",
   "types": "index.d.ts",
@@ -77,7 +77,7 @@
     "@turf/explode": "^3.13.0",
     "@turf/flatten": "^3.13.0",
     "@turf/flip": "^3.13.0",
-    "@turf/great-circle": "^3.13.1",
+    "@turf/great-circle": "^3.13.2",
     "@turf/helpers": "^3.13.0",
     "@turf/hex-grid": "^3.13.0",
     "@turf/idw": "^3.13.1",
