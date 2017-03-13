@@ -1,4 +1,4 @@
-var arc = require('arc');
+var arc = require('./arc');
 var getCoord = require('@turf/invariant').getCoord;
 
 /**
