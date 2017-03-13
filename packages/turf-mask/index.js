@@ -11,18 +11,25 @@ var union = require('@turf/union');
  * @param {FeatureCollection|Feature<Polygon|MultiPolygon>} polygon GeoJSON Polygon used as interior rings or holes.
  * @param {Feature<Polygon>} [mask] GeoJSON Polygon used as the exterior ring (if undefined, the world extent is used)
  * @return {Feature<Polygon>} Masked Polygon (exterior ring with holes).
+ * @addToMap masked
  * @example
  * var polygon = {
- *     "type": "Feature",
- *     "properties": {},
- *     "geometry": {
- *       "type": "Polygon",
- *       "coordinates": [
- *         [[100, 0], [101, 0], [101,1], [100,1], [100, 0]]
- *      ]
- *    }
+ *   "type": "Feature",
+ *   "properties": {},
+ *   "geometry": {
+ *     "type": "Polygon",
+ *     "coordinates": [[[112, -21], [116, -36], [146, -39], [153, -24], [133, -10], [112, -21]]]
+ *   }
  * }
- * var masked = turf.mask(polygon);
+ * var mask = {
+ *   "type": "Feature",
+ *   "properties": {},
+ *   "geometry": {
+ *     "type": "Polygon",
+ *     "coordinates": [[[90, -55], [170, -55], [170, 10], [90, 10], [90, -55]]]
+ *   }
+ * }
+ * var masked = turf.mask(polygon, mask);
  * //=masked
  */
 module.exports = function (polygon, mask) {
