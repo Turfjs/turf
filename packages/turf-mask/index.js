@@ -12,7 +12,7 @@ var union = require('@turf/union');
  * @param {Feature<Polygon>} [mask] GeoJSON Polygon used as the exterior ring (if undefined, the world extent is used)
  * @return {Feature<Polygon>} Masked Polygon (exterior ring with holes).
  * @example
- * var poylgon = {
+ * var polygon = {
  *     "type": "Feature",
  *     "properties": {},
  *     "geometry": {

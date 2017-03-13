@@ -12,7 +12,7 @@ Takes any type of [polygon](http://geojson.org/geojson-spec.html#polygon) and an
 **Examples**
 
 ```javascript
-var poylgon = {
+var polygon = {
     "type": "Feature",
     "properties": {},
     "geometry": {

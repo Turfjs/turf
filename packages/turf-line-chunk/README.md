@@ -1,4 +1,4 @@
-# turf-line-chunk
+# @turf/line-chunk
 
 # lineChunk
 
@@ -49,7 +49,7 @@ PRs and issues.
 Install this module individually:
 
 ```sh
-$ npm install turf-line-chunk
+$ npm install @turf/line-chunk
 ```
 
 Or install the Turf module that includes it as a function:
