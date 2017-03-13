@@ -1,6 +1,6 @@
 {
   "name": "@turf/great-circle",
-  "version": "3.13.0",
+  "version": "3.13.1",
   "description": "turf great-circle module",
   "main": "index.js",
   "types": "index.d.ts",
