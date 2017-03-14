@@ -31,6 +31,6 @@ module.exports = function (geojson) {
                 return currentCoords;
             });
         });
-    })
+    });
     return featureCollection(results);
 };
