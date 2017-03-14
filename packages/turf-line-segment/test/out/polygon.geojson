@@ -5,7 +5,7 @@
 			"type": "Feature",
 			"properties": {
 				"stroke": "#F00",
-				"stroke-width": 6,
+				"stroke-width": 10,
 				"foo": "bar"
 			},
 			"geometry": {
@@ -26,7 +26,7 @@
 			"type": "Feature",
 			"properties": {
 				"stroke": "#00F",
-				"stroke-width": 6,
+				"stroke-width": 10,
 				"foo": "bar"
 			},
 			"geometry": {
@@ -47,7 +47,7 @@
 			"type": "Feature",
 			"properties": {
 				"stroke": "#F00",
-				"stroke-width": 6,
+				"stroke-width": 10,
 				"foo": "bar"
 			},
 			"geometry": {
@@ -68,7 +68,7 @@
 			"type": "Feature",
 			"properties": {
 				"stroke": "#00F",
-				"stroke-width": 6,
+				"stroke-width": 10,
 				"foo": "bar"
 			},
 			"geometry": {
@@ -81,6 +81,40 @@
 					[
 						-50,
 						5
+					]
+				]
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {
+				"stroke": "#000",
+				"stroke-width": 3
+			},
+			"geometry": {
+				"type": "Polygon",
+				"coordinates": [
+					[
+						[
+							-50,
+							5
+						],
+						[
+							-40,
+							-10
+						],
+						[
+							-50,
+							-10
+						],
+						[
+							-40,
+							5
+						],
+						[
+							-50,
+							5
+						]
 					]
 				]
 			}

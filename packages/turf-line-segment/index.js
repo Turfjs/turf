@@ -24,11 +24,13 @@ var featureCollection = require('@turf/helpers').featureCollection;
  */
 module.exports = function (geojson) {
     var results = [];
-    featureEach(flatten(geojson), function (feature) {
-        coordReduce(feature, function (previousCoords, currentCoords) {
-            results.push(lineString([previousCoords, currentCoords], feature.properties));
-            return currentCoords;
+    featureEach(geojson, function (multiFeature) {
+        featureEach(flatten(multiFeature), function (feature) {
+            coordReduce(feature, function (previousCoords, currentCoords) {
+                results.push(lineString([previousCoords, currentCoords], feature.properties));
+                return currentCoords;
+            });
         });
-    });
+    })
     return featureCollection(results);
 };

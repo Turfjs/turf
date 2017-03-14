@@ -23,6 +23,13 @@ const fixtures = fs.readdirSync(directories.in).map(filename => {
 test('turf-line-segment', t => {
     for (const {name, filename, geojson} of fixtures) {
         const results = colorSegments(lineSegment(geojson));
+        featureEach(geojson, feature => {
+            feature.properties = {
+                stroke: '#000',
+                'stroke-width': 3
+            }
+            results.features.push(feature)
+        });
 
         // Save output
         if (process.env.REGEN) write.sync(directories.out + filename, results);
@@ -40,7 +47,7 @@ function colorSegments(segments) {
         const b = (index % 2 === 0) ? '0' : 'F';
         feature.properties = Object.assign({
             stroke: '#' + r + g + b,
-            'stroke-width': 6
+            'stroke-width': 10
         }, feature.properties);
         results.features.push(feature);
     });
