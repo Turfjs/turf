@@ -5,7 +5,7 @@ var each = require('@turf/meta').coordEach;
  *
  * @name bbox
  * @param {(Feature|FeatureCollection)} geojson input features
- * @return {Array<number>} bbox extent in [minX, minY, maxX, maxY] order
+ * @returns {Array<number>} bbox extent in [minX, minY, maxX, maxY] order
  * @example
  * var pt1 = turf.point([114.175329, 22.2524])
  * var pt2 = turf.point([114.170007, 22.267969])

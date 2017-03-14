@@ -14,7 +14,7 @@ var rbush = require('rbush');
  * @param {FeatureCollection<Point>} points points to be aggregated
  * @param {string} inProperty property to be nested from
  * @param {string} outProperty property to be nested into
- * @return {FeatureCollection<Polygon>} polygons with properties listed based on `outField`
+ * @returns {FeatureCollection<Polygon>} polygons with properties listed based on `outField`
  * @example
  * var poly1 = turf.polygon([[[0,0],[10,0],[10,10],[0,10],[0,0]]]);
  * var poly2 = turf.polygon([[[10,0],[20,10],[20,20],[20,0],[10,0]]]);

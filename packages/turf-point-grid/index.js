@@ -10,7 +10,7 @@ var turfBBox = require('@turf/bbox');
  * @param {Array<number>|FeatureCollection|Feature<any>} bbox extent in [minX, minY, maxX, maxY] order
  * @param {number} cellSize the distance across each cell
  * @param {string} [units=kilometers] used in calculating cellSize, can be degrees, radians, miles, or kilometers
- * @return {FeatureCollection<Point>} grid of points
+ * @returns {FeatureCollection<Point>} grid of points
  * @example
  * var extent = [-70.823364, -33.553984, -70.473175, -33.302986];
  * var cellSize = 3;
@@ -20,7 +20,7 @@ var turfBBox = require('@turf/bbox');
  *
  * //=grid
  */
-module.exports = function pointGrid(bbox, cellSize, units) {
+module.exports = function (bbox, cellSize, units) {
     var results = [];
 
     // validation

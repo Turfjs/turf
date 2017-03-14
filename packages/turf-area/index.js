@@ -5,7 +5,7 @@ var geometryArea = require('@mapbox/geojson-area').geometry;
  * in square meters.
  *
  * @param {(Feature|FeatureCollection)} input input features
- * @return {number} area in square meters
+ * @returns {number} area in square meters
  * @example
  * var polygons = {
  *   "type": "FeatureCollection",
