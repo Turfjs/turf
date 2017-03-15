@@ -24,9 +24,8 @@ var pt = {
 var unit = 'miles';
 
 var buffered = turf.buffer(pt, 500, unit);
-var result = turf.featureCollection([buffered, pt]);
 
-//=result
+//=buffered
 ```
 
 Returns **([FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects)&lt;[Polygon](http://geojson.org/geojson-spec.html#polygon)> | [FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects)&lt;[MultiPolygon](http://geojson.org/geojson-spec.html#multipolygon)> | [Polygon](http://geojson.org/geojson-spec.html#polygon) \| [MultiPolygon](http://geojson.org/geojson-spec.html#multipolygon))** buffered features
