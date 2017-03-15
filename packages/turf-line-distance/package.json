@@ -38,6 +38,8 @@
   },
   "dependencies": {
     "@turf/distance": "^3.13.0",
-    "@turf/helpers": "^3.13.0"
+    "@turf/flatten": "^3.13.0",
+    "@turf/helpers": "^3.13.0",
+    "@turf/meta": "^3.13.0"
   }
 }
