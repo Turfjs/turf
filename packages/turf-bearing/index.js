@@ -60,7 +60,7 @@ function bearing(start, end, final) {
 
 /**
  * Calculates Final Bearing
- *
+ * @private
  * @param {Feature<Point>} start starting Point
  * @param {Feature<Point>} end ending Point
  * @returns {number} bearing
