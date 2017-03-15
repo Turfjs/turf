@@ -28,8 +28,10 @@ var pt4 = turf.point([13,1], {population: 200});
 var pt5 = turf.point([19,7], {population: 300});
 var ptFC = turf.featureCollection([pt1, pt2, pt3, pt4, pt5]);
 var collected = turf.collect(polyFC, ptFC, 'population', 'values');
-
-collected.features[0].properties.values // => [200, 600]);
+var values = collected.features[0].properties.values
+//=values => [200, 600]
+//=ptFC
+//=collected
 ```
 
 Returns **[FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects)&lt;[Polygon](http://geojson.org/geojson-spec.html#polygon)>** polygons with properties listed based on `outField`
