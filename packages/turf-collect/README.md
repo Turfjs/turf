@@ -26,11 +26,11 @@ var pt2 = turf.point([1,3], {population: 600});
 var pt3 = turf.point([14,2], {population: 100});
 var pt4 = turf.point([13,1], {population: 200});
 var pt5 = turf.point([19,7], {population: 300});
-var ptFC = turf.featureCollection([pt1, pt2, pt3, pt4, pt5]);
-var collected = turf.collect(polyFC, ptFC, 'population', 'values');
+var pointFC = turf.featureCollection([pt1, pt2, pt3, pt4, pt5]);
+var collected = turf.collect(polyFC, pointFC, 'population', 'values');
 var values = collected.features[0].properties.values
 //=values => [200, 600]
-//=ptFC
+//=pointFC
 //=collected
 ```
 
