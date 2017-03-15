@@ -7,24 +7,54 @@
 				"foo": "bar"
 			},
 			"geometry": {
+				"type": "Point",
+				"coordinates": [
+					100,
+					0
+				]
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {
+				"foo": "bar"
+			},
+			"geometry": {
+				"type": "Point",
+				"coordinates": [
+					101,
+					1
+				]
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {
+				"foo": "bar"
+			},
+			"geometry": {
 				"type": "Polygon",
 				"coordinates": [
 					[
 						[
-							36.38671875,
-							52.05249047600099
+							102,
+							2
 						],
 						[
-							27.94921875,
-							50.51342652633956
+							103,
+							2
 						],
 						[
-							29.70703125,
-							46.55886030311719
+							103,
+							3
 						],
 						[
-							36.38671875,
-							52.05249047600099
+							102,
+							3
+						],
+						[
+							102,
+							2
 						]
 					]
 				]
@@ -33,22 +63,92 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"hello": "world"
+				"foo": "bar"
+			},
+			"geometry": {
+				"type": "Polygon",
+				"coordinates": [
+					[
+						[
+							100,
+							0
+						],
+						[
+							101,
+							0
+						],
+						[
+							101,
+							1
+						],
+						[
+							100,
+							1
+						],
+						[
+							100,
+							0
+						]
+					],
+					[
+						[
+							100.2,
+							0.2
+						],
+						[
+							100.8,
+							0.2
+						],
+						[
+							100.8,
+							0.8
+						],
+						[
+							100.2,
+							0.8
+						],
+						[
+							100.2,
+							0.2
+						]
+					]
+				]
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {
+				"foo": "bar"
 			},
 			"geometry": {
 				"type": "LineString",
 				"coordinates": [
 					[
-						38.232421875,
-						40.111688665595956
+						100,
+						0
 					],
 					[
-						25.400390625,
-						35.60371874069731
+						101,
+						1
+					]
+				]
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {
+				"foo": "bar"
+			},
+			"geometry": {
+				"type": "LineString",
+				"coordinates": [
+					[
+						102,
+						2
 					],
 					[
-						32.08007812499999,
-						33.43144133557529
+						103,
+						3
 					]
 				]
 			}

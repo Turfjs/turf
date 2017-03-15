@@ -17,7 +17,7 @@ let fixtures = fs.readdirSync(directories.in).map(filename => {
         geojson: load.sync(directories.in + filename)
     };
 });
-// fixtures = fixtures.filter(({name}) => (name === 'MultiLineString'));
+// fixtures = fixtures.filter(({name}) => (name === 'FeatureCollection'));
 
 test('flatten', t => {
     for (const {filename, name, geojson} of fixtures) {
@@ -28,7 +28,14 @@ test('flatten', t => {
         }
         t.deepEqual(flattened, load.sync(directories.out + filename), name);
         t.equal(flattened.type, 'FeatureCollection', name + ': feature outputs a featurecollection');
-        t.true(flattened.features.length > 1, name + ': featureCollection has multiple features with feature input');
+        switch (geojson.geometry ? geojson.geometry.type : geojson.type) {
+        case 'Point':
+        case 'LineString':
+        case 'Polygon':
+            break;
+        default:
+            t.true(flattened.features.length > 1, name + ': featureCollection has multiple features with feature input');
+        }
     }
     t.end();
 });
