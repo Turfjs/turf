@@ -1,9 +1,10 @@
-var geometryArea = require('@mapbox/geojson-area').geometry;
+var area = require('@mapbox/geojson-area').geometry;
+var geomReduce = require('@turf/meta').geomReduce;
 
 /**
  * Takes one or more features and returns their area in square meters.
  *
- * @param {(Feature|FeatureCollection)} input input features
+ * @param {FeatureCollection|Feature<any>} geojson input GeoJSON feature(s)
  * @returns {number} area in square meters
  * @addToMap polygon
  * @example
@@ -27,21 +28,11 @@ var geometryArea = require('@mapbox/geojson-area').geometry;
  *   }
  * }
  * var area = turf.area(polygon);
+ * //=area => square meters
  * //=polygon
- * //=area
  */
-function area(input) {
-    if (input.type === 'FeatureCollection') {
-        for (var i = 0, sum = 0; i < input.features.length; i++) {
-            if (input.features[i].geometry) {
-                sum += geometryArea(input.features[i].geometry);
-            }
-        }
-        return sum;
-    } else if (input.type === 'Feature') {
-        return geometryArea(input.geometry);
-    } else {
-        return geometryArea(input);
-    }
+module.exports = function (geojson) {
+    return geomReduce(geojson, function (value, geometry) {
+        return value + area(geometry);
+    }, 0);
 }
-module.exports = area;
