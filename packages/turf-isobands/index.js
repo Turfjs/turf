@@ -1,5 +1,4 @@
-// http://emptypipes.org/2015/07/22/contour-comparison/
-// from https://github.com/RaumZeit/MarchingSquares.js, added module.export
+// https://github.com/RaumZeit/MarchingSquares.js
 var MarchingSquaresJS = require('./marchingsquares-isobands.min');
 
 var turfHelpers = require('@turf/helpers');
@@ -131,9 +130,10 @@ module.exports = function (pointGrid, z, breaks) {
         var lowerBand = +breaks[i - 1]; // make sure the breaks value is a number
         var upperBand = +breaks[i];
         var isobands = MarchingSquaresJS.IsoBands(gridData, lowerBand, upperBand - lowerBand);
-        // as per GeoJson rules for creating a polygon, make sure the first element in the array of linearRings
-        // represents the exterior ring (i.e. biggest area), and any subsequent elements represent interior rings
-        // (i.e. smaller area)
+        // as per GeoJson rules for creating a polygon, make sure the first element
+        // in the array of linearRings represents the exterior ring (i.e. biggest area),
+        // and any subsequent elements represent interior rings (i.e. smaller area);
+        // this avoids rendering issues of the multipolygons on the map
         var nestedRings = orderByArea(isobands);
         var contourSet = groupNestedRings(nestedRings);
         var obj = {};
@@ -203,7 +203,8 @@ function orderByArea(linearRings) {
     return orderedByArea;
 }
 
-// returns an array of arrays of coordinates, each representing a set of (coordinates of) nested LinearRings,
+// returns an array of arrays of coordinates, each representing
+// a set of (coordinates of) nested LinearRings,
 // i.e. the first ring contains all the others
 // it expects an array of coordinates (of LinearRings) in descending order by area
 function groupNestedRings(orderedLinearRings) {
@@ -249,6 +250,7 @@ function isInside(testPolygon, targetPolygon) {
     return true;
 }
 
+// returns if all the LinearRings are marked as grouped
 function allGrouped(list) {
     for (var i = 0; i < list.length; i++) {
         if (list[i].grouped === false) {

@@ -1,6 +1,6 @@
 {
   "name": "turf-isobands",
-  "version": "1.1.0",
+  "version": "2.0.0",
   "description": "turf isobands module",
   "main": "index.js",
   "scripts": {
