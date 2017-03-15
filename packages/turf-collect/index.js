@@ -15,6 +15,7 @@ var rbush = require('rbush');
  * @param {string} inProperty property to be nested from
  * @param {string} outProperty property to be nested into
  * @returns {FeatureCollection<Polygon>} polygons with properties listed based on `outField`
+ * @addToMap collected, pointFc
  * @example
  * var poly1 = turf.polygon([[[0,0],[10,0],[10,10],[0,10],[0,0]]]);
  * var poly2 = turf.polygon([[[10,0],[20,10],[20,20],[20,0],[10,0]]]);
