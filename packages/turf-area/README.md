@@ -6,7 +6,7 @@ Takes one or more features and returns their area in square meters.
 
 **Parameters**
 
--   `input` **([Feature](http://geojson.org/geojson-spec.html#feature-objects) \| [FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects))** input features
+-   `geojson` **([FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects) \| [Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;any>)** input GeoJSON feature(s)
 
 **Examples**
 
@@ -31,8 +31,8 @@ var polygon = {
   }
 }
 var area = turf.area(polygon);
+//=area => square meters
 //=polygon
-//=area
 ```
 
 Returns **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** area in square meters
