@@ -11,7 +11,7 @@ var supportedTypes = ['LineString', 'MultiLineString', 'Polygon', 'MultiPolygon'
  * @param {number} [tolerance=1] simplification tolerance
  * @param {boolean} [highQuality=false] whether or not to spend more time to create
  * a higher-quality simplification with a different algorithm
- * @return {Feature<(LineString|Polygon|MultiLineString|MultiPolygon)>|FeatureCollection|GeometryCollection} a simplified feature
+ * @returns {Feature<(LineString|Polygon|MultiLineString|MultiPolygon)>|FeatureCollection|GeometryCollection} a simplified feature
  * @example
   * var feature = {
  *   "type": "Feature",

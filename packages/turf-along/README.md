@@ -30,13 +30,7 @@ var line = {
 };
 
 var along = turf.along(line, 1, 'miles');
-
-var result = {
-  "type": "FeatureCollection",
-  "features": [line, along]
-};
-
-//=result
+//=along
 ```
 
 Returns **[Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;[Point](http://geojson.org/geojson-spec.html#point)>** Point `distance` `units` along the line

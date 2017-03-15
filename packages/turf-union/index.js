@@ -5,7 +5,7 @@ var jsts = require('jsts');
  *
  * @name union
  * @param {...Feature<Polygon>} A polygon to combine
- * @return {Feature<(Polygon|MultiPolygon)>} a combined {@link Polygon} or {@link MultiPolygon} feature
+ * @returns {Feature<(Polygon|MultiPolygon)>} a combined {@link Polygon} or {@link MultiPolygon} feature
  * @example
  * var poly1 = {
  *   "type": "Feature",

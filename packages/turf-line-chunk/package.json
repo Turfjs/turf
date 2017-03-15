@@ -1,6 +1,6 @@
 {
   "name": "@turf/line-chunk",
-  "version": "3.13.0",
+  "version": "3.13.1",
   "description": "turf line-chunk module",
   "main": "index.js",
   "types": "index.d.ts",
@@ -44,7 +44,7 @@
     "@turf/flatten": "^3.13.0",
     "@turf/helpers": "^3.13.0",
     "@turf/line-distance": "^3.13.0",
-    "@turf/line-slice-along": "^3.13.0",
+    "@turf/line-slice-along": "^3.13.1",
     "@turf/meta": "^3.13.0"
   }
 }

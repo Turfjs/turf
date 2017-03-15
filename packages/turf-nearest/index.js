@@ -9,7 +9,7 @@ var distance = require('@turf/distance');
  * @name nearest
  * @param {Feature<Point>} targetPoint the reference point
  * @param {FeatureCollection<Point>} points against input point set
- * @return {Feature<Point>} the closest point in the set to the reference point
+ * @returns {Feature<Point>} the closest point in the set to the reference point
  * @example
  * var point = {
  *   "type": "Feature",

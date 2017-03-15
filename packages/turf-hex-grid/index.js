@@ -23,7 +23,7 @@ for (var i = 0; i < 6; i++) {
  * @param {number} cellSize dimension of cell in specified units
  * @param {string} [units=kilometers] used in calculating cellSize, can be degrees, radians, miles, or kilometers
  * @param {boolean} [triangles=false] whether to return as triangles instead of hexagons
- * @return {FeatureCollection<Polygon>} a hexagonal grid
+ * @returns {FeatureCollection<Polygon>} a hexagonal grid
  * @example
  * var bbox = [-96,31,-84,40];
  * var cellSize = 50;

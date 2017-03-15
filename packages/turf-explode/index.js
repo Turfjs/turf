@@ -9,7 +9,7 @@ var point = require('@turf/helpers').point;
  *
  * @name explode
  * @param {(Feature|FeatureCollection)} geojson input features
- * @return {FeatureCollection<point>} points representing the exploded input features
+ * @returns {FeatureCollection<point>} points representing the exploded input features
  * @throws {Error} if it encounters an unknown geometry type
  * @example
  * var poly = {

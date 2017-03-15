@@ -12,17 +12,23 @@ Takes any type of [polygon](http://geojson.org/geojson-spec.html#polygon) and an
 **Examples**
 
 ```javascript
-var poylgon = {
-    "type": "Feature",
-    "properties": {},
-    "geometry": {
-      "type": "Polygon",
-      "coordinates": [
-        [[100, 0], [101, 0], [101,1], [100,1], [100, 0]]
-     ]
-   }
+var polygon = {
+  "type": "Feature",
+  "properties": {},
+  "geometry": {
+    "type": "Polygon",
+    "coordinates": [[[112, -21], [116, -36], [146, -39], [153, -24], [133, -10], [112, -21]]]
+  }
 }
-var masked = turf.mask(polygon);
+var mask = {
+  "type": "Feature",
+  "properties": {},
+  "geometry": {
+    "type": "Polygon",
+    "coordinates": [[[90, -55], [170, -55], [170, 10], [90, 10], [90, -55]]]
+  }
+}
+var masked = turf.mask(polygon, mask);
 //=masked
 ```
 

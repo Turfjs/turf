@@ -7,6 +7,7 @@ var bbox = require('@turf/bbox'),
  * @name center
  * @param {(Feature|FeatureCollection)} layer input features
  * @return {Feature<Point>} a Point feature at the absolute center point of all input features
+ * @addToMap features, centerPt
  * @example
  * var features = {
  *   "type": "FeatureCollection",

@@ -1,12 +1,13 @@
 {
   "name": "@turf/great-circle",
-  "version": "3.13.0",
+  "version": "3.13.2",
   "description": "turf great-circle module",
   "main": "index.js",
   "types": "index.d.ts",
   "files": [
     "index.js",
-    "index.d.ts"
+    "index.d.ts",
+    "arc.js"
   ],
   "scripts": {
     "test": "node test.js",

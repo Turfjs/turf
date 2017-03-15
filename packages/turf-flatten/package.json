@@ -37,6 +37,7 @@
   },
   "dependencies": {
     "@turf/helpers": "^3.13.0",
+    "@turf/invariant": "^3.13.0",
     "@turf/meta": "^3.13.0"
   }
 }

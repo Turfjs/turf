@@ -13,7 +13,7 @@ var flatten = require('@turf/flatten');
  * @param {number} segmentLength how long to make each segment
  * @param {string}[units='kilometers'] units can be degrees, radians, miles, or kilometers
  * @param {boolean}[reverse=false] reverses coordinates to start the first chunked segment at the end
- * @return {FeatureCollection<LineString>} collection of line segments
+ * @returns {FeatureCollection<LineString>} collection of line segments
  * @example
  * var line = {
  *   "type": "Feature",

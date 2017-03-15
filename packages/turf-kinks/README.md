@@ -6,7 +6,7 @@ Takes a [linestring](http://geojson.org/geojson-spec.html#linestring), [multi-li
 
 **Parameters**
 
--   `feature` **[Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;([LineString](http://geojson.org/geojson-spec.html#linestring) \| [MultiLineString](http://geojson.org/geojson-spec.html#multilinestring) \| [MultiPolygon](http://geojson.org/geojson-spec.html#multipolygon) \| [Polygon](http://geojson.org/geojson-spec.html#polygon))>** input feature
+-   `featureIn` **[Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;([LineString](http://geojson.org/geojson-spec.html#linestring) \| [MultiLineString](http://geojson.org/geojson-spec.html#multilinestring) \| [MultiPolygon](http://geojson.org/geojson-spec.html#multipolygon) \| [Polygon](http://geojson.org/geojson-spec.html#polygon))>** input feature
 
 **Examples**
 

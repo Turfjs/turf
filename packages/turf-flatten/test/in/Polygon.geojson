@@ -1,0 +1,33 @@
+{
+  "type": "Feature",
+  "properties": {
+    "foo": "bar"
+  },
+  "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+      [
+        [
+          102,
+          2
+        ],
+        [
+          103,
+          2
+        ],
+        [
+          103,
+          3
+        ],
+        [
+          102,
+          3
+        ],
+        [
+          102,
+          2
+        ]
+      ]
+    ]
+  }
+}

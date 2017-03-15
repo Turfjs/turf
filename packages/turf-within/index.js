@@ -7,7 +7,7 @@ var featureCollection = require('@turf/helpers').featureCollection;
  * @name within
  * @param {FeatureCollection<Point>} points input points
  * @param {FeatureCollection<Polygon>} polygons input polygons
- * @return {FeatureCollection<Point>} points that land within at least one polygon
+ * @returns {FeatureCollection<Point>} points that land within at least one polygon
  * @example
  * var searchWithin = {
  *   "type": "FeatureCollection",

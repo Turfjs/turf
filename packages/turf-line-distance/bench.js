@@ -1,59 +1,36 @@
-var lineDistance = require('./');
-var Benchmark = require('benchmark');
-var fs = require('fs');
+const path = require('path');
+const load = require('load-json-file');
+const Benchmark = require('benchmark');
+const fs = require('fs');
+const lineDistance = require('./');
 
-var line = {
-    type: "Feature",
-    properties: {},
-    geometry: {
-        type: "LineString",
-        coordinates: [
-          [
-            -77.0316696166992,
-            38.878605901789236
-          ],
-          [
-            -77.02960968017578,
-            38.88194668656296
-          ],
-          [
-            -77.02033996582031,
-            38.88408470638821
-          ],
-          [
-            -77.02566146850586,
-            38.885821800123196
-          ],
-          [
-            -77.02188491821289,
-            38.88956308852534
-          ],
-          [
-            -77.01982498168944,
-            38.89236892551996
-          ]
-        ]
-    }
-};
+// Define fixtures
+const directory = path.join(__dirname, 'test', 'in') + path.sep;
+const fixtures = fs.readdirSync(directory).map(filename => {
+    return {
+        filename,
+        name: path.parse(filename).name,
+        geojson: load.sync(directory + filename)
+    };
+});
 
-var route1 = JSON.parse(fs.readFileSync(__dirname + '/test/route1.geojson'));
-var route2 = JSON.parse(fs.readFileSync(__dirname + '/test/route2.geojson'));
+/**
+ * Benmark Results
+ *
+ * feature-collection x 274,292 ops/sec ±6.58% (75 runs sampled)
+ * multi-linestring x 606,888 ops/sec ±1.65% (87 runs sampled)
+ * multi-polygon x 425,090 ops/sec ±4.51% (80 runs sampled)
+ * polygon x 617,824 ops/sec ±4.31% (76 runs sampled)
+ * route1 x 1,234 ops/sec ±0.89% (87 runs sampled)
+ * route2 x 1,356 ops/sec ±0.89% (90 runs sampled)
+ */
 
-var suite = new Benchmark.Suite('turf-line-distance');
+// Define benchmark
+const suite = new Benchmark.Suite('turf-line-distance');
+for (const {name, geojson} of fixtures) {
+    suite.add(name, () => lineDistance(geojson));
+}
 suite
-  .add('turf-line-distance#simple',function () {
-      lineDistance(line, 'miles');
-  })
-  .add('turf-line-distance#200 mi',function () {
-      lineDistance(route1, 'miles');
-  })
-  .add('turf-line-distance#700 km',function () {
-      lineDistance(route2, 'miles');
-  })
-  .on('cycle', function (event) {
-      console.log(String(event.target));
-  })
-  .on('complete', function () {
-    
-  })
+  .on('cycle', e => console.log(String(e.target)))
+  .on('complete', () => {})
   .run();

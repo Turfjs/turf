@@ -2,7 +2,7 @@
 
 # greatCircle
 
-Calculate great circles routes as {@LineString}
+Calculate great circles routes as [LineString](http://geojson.org/geojson-spec.html#linestring)
 
 **Parameters**
 

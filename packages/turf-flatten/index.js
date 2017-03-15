@@ -1,14 +1,18 @@
-var helpers = require('@turf/helpers');
 var featureEach = require('@turf/meta').featureEach;
 var geomEach = require('@turf/meta').geomEach;
+var getCoords = require('@turf/invariant').getCoords;
+var helpers = require('@turf/helpers');
+var point = helpers.point;
+var lineString = helpers.lineString;
+var polygon = helpers.polygon;
+var featureCollection = helpers.featureCollection;
 
 /**
  * Flattens any {@link GeoJSON} to a {@link FeatureCollection} inspired by [geojson-flatten](https://github.com/tmcw/geojson-flatten).
  *
  * @name flatten
  * @param {Feature} geojson any valid {@link GeoJSON} with multi-geometry {@link Feature}s
- * @param {*} [properties={}] translate properties to each {@link Feature} (only applies for {@link GeometryCollection} & {@link GeometryObject})
- * @return {FeatureCollection} a flattened {@link FeatureCollection}
+ * @returns {FeatureCollection} a flattened {@link FeatureCollection}
  * @example
  * var geometry = {
  *   "type": "MultiPolygon",
@@ -23,22 +27,7 @@ var geomEach = require('@turf/meta').geomEach;
  *
  * //=flattened
  */
-function flatten(geojson, properties) {
-    // Convert Geometry Object to Feature
-    switch (geojson.type) {
-    case 'FeatureCollection':
-    case 'Feature':
-    case 'GeometryCollection':
-        break;
-    default:
-        geojson = {
-            type: 'Feature',
-            properties: properties || {},
-            geometry: geojson
-        };
-    }
-
-    // Convert to Flattened FeatureCollection
+function flatten(geojson) {
     var type = (geojson.geometry) ? geojson.geometry.type : geojson.type;
     switch (type) {
     case 'MultiPoint':
@@ -50,11 +39,11 @@ function flatten(geojson, properties) {
     case 'FeatureCollection':
         return flattenFeatureCollection(geojson);
     case 'GeometryCollection':
-        return flattenGeometryCollection(geojson, properties);
+        return flattenGeometryCollection(geojson);
     case 'Point':
     case 'LineString':
     case 'Polygon':
-        return helpers.featureCollection([geojson]);
+        return featureCollection([geojson]);
     }
 }
 module.exports = flatten;
@@ -68,18 +57,10 @@ module.exports = flatten;
  */
 function flattenMultiPoint(geojson) {
     var points = [];
-    geojson.geometry.coordinates.forEach(function (coordinates) {
-        var point = {
-            type: 'Feature',
-            properties: geojson.properties,
-            geometry: {
-                type: 'Point',
-                coordinates: coordinates
-            }
-        };
-        points.push(point);
+    getCoords(geojson).forEach(function (coords) {
+        points.push(point(coords, geojson.properties));
     });
-    return helpers.featureCollection(points);
+    return featureCollection(points);
 }
 
 /**
@@ -91,10 +72,10 @@ function flattenMultiPoint(geojson) {
  */
 function flattenMultiLineString(geojson) {
     var lines = [];
-    geojson.geometry.coordinates.forEach(function (coordinates) {
-        lines.push(helpers.lineString(coordinates, geojson.properties));
+    getCoords(geojson).forEach(function (coords) {
+        lines.push(lineString(coords, geojson.properties));
     });
-    return helpers.featureCollection(lines);
+    return featureCollection(lines);
 }
 
 /**
@@ -106,10 +87,10 @@ function flattenMultiLineString(geojson) {
  */
 function flattenMultiPolygon(geojson) {
     var polygons = [];
-    geojson.geometry.coordinates.forEach(function (coordinates) {
-        polygons.push(helpers.polygon(coordinates, geojson.properties));
+    getCoords(geojson).forEach(function (coords) {
+        polygons.push(polygon(coords, geojson.properties));
     });
-    return helpers.featureCollection(polygons);
+    return featureCollection(polygons);
 }
 
 /**
@@ -121,21 +102,20 @@ function flattenMultiPolygon(geojson) {
  */
 function flattenFeatureCollection(geojson) {
     var features = [];
-    featureEach(geojson, function (feature) {
-        switch (feature.type) {
+    featureEach(geojson, function (multiFeature) {
+        switch (multiFeature.geometry.type) {
         case 'MultiPoint':
         case 'MultiLineString':
         case 'MultiPolygon':
-            var flattened = flatten(feature);
-            featureEach(flattened, function (multiFeature) {
-                features.push(multiFeature);
+            featureEach(flatten(multiFeature), function (feature) {
+                features.push(feature);
             });
             break;
         default:
-            features.push(feature);
+            features.push(multiFeature);
         }
     });
-    return helpers.featureCollection(features);
+    return featureCollection(features);
 }
 
 /**
@@ -146,26 +126,25 @@ function flattenFeatureCollection(geojson) {
  * @param {*} [properties] translate properties to Feature
  * @returns {FeatureCollection<any>} Feature Collection
  */
-function flattenGeometryCollection(geojson, properties) {
+function flattenGeometryCollection(geojson) {
     var features = [];
     geomEach(geojson, function (geometry) {
         switch (geometry.type) {
         case 'MultiPoint':
         case 'MultiLineString':
         case 'MultiPolygon':
-            var flattened = flatten(geometry, properties);
-            featureEach(flattened, function (feature) {
+            featureEach(flatten(geometry), function (feature) {
                 features.push(feature);
             });
             break;
         default:
             var feature = {
                 type: 'Feature',
-                properties: properties || {},
+                properties: {},
                 geometry: geometry
             };
             features.push(feature);
         }
     });
-    return helpers.featureCollection(features);
+    return featureCollection(features);
 }

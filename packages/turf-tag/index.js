@@ -8,7 +8,7 @@ var inside = require('@turf/inside');
  * @param {FeatureCollection<Polygon>} polygons input polygons
  * @param {string} field property in `polygons` to add to joined {<Point>} features
  * @param {string} outField property in `points` in which to store joined property from `polygons`
- * @return {FeatureCollection<Point>} points with `containingPolyId` property containing values from `polyId`
+ * @returns {FeatureCollection<Point>} points with `containingPolyId` property containing values from `polyId`
  * @example
  * var pt1 = turf.point([-77, 44]);
  * var pt2 = turf.point([-77, 38]);

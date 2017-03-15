@@ -1,8 +1,8 @@
-var arc = require('arc');
+var arc = require('./arc');
 var getCoord = require('@turf/invariant').getCoord;
 
 /**
- * Calculate great circles routes as {@LineString}
+ * Calculate great circles routes as {@link LineString}
  *
  * @name greatCircle
  * @param {Feature<Point>} start source point feature
@@ -12,6 +12,7 @@ var getCoord = require('@turf/invariant').getCoord;
  * @param {number} [offset=10] offset controls the likelyhood that lines will
  * be split which cross the dateline. The higher the number the more likely.
  * @returns {Feature<LineString>} great circle line feature
+ * @addToMap line
  * @example
  * var start = {
  *   "type": "Feature",

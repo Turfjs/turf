@@ -12,7 +12,7 @@ var turfBBox = require('@turf/bbox');
  * @param {number} cellSize width of each cell
  * @param {string} [units=kilometers] used in calculating cellSize, can be degrees, radians, miles, or kilometers
  * @param {boolean} [completelyWithin=false] adjust width & height cellSize to fit exactly within bbox
- * @return {FeatureCollection<Polygon>} grid a grid of polygons
+ * @returns {FeatureCollection<Polygon>} grid a grid of polygons
  * @example
  * var bbox = [-95, 30 ,-85, 40];
  * var cellSize = 50;
