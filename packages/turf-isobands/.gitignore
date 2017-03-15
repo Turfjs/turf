@@ -25,3 +25,4 @@ build/Release
 node_modules/
 
 #**/htmlTests/
+sandbox/
