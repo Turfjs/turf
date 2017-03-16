@@ -1,4 +1,4 @@
-var simplepolygon = require('simplepolygon');
+var simplepolygon = require('./simplepolygon');
 var flatten = require('@turf/flatten');
 var featureEach = require('@turf/meta').featureEach;
 var featureCollection = require('@turf/helpers').featureCollection;
