@@ -3,8 +3,14 @@
   "version": "2.0.0",
   "description": "turf isobands module",
   "main": "index.js",
+  "types": "index.d.ts",
+  "files": [
+    "index.js",
+    "index.d.ts"
+  ],
   "scripts": {
-    "test": "tape test.js"
+    "test": "tape test.js",
+    "bench": "node bench.js"
   },
   "repository": {
     "type": "git",
@@ -13,7 +19,6 @@
   "keywords": [
     "turf",
     "geojson",
-    "isolines",
     "contours",
     "isobands",
     "elevation",
@@ -28,13 +33,13 @@
   "homepage": "https://github.com/Turfjs/turf",
   "devDependencies": {
     "benchmark": "^1.0.0",
-    "tape": "^3.5.0"
+    "tape": "^3.5.0",
+    "load-json-file": "^2.0.0"
   },
   "dependencies": {
     "@turf/area": "^3.7.0",
     "@turf/explode": "^3.7.0",
     "@turf/helpers": "^3.6.3",
     "@turf/inside": "^3.7.0"
-  },
-  "types": "index.d.ts"
+  }
 }

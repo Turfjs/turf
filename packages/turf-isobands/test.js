@@ -1,17 +1,31 @@
-var test = require('tape');
-var fs = require('fs');
-var isobands = require('./');
+const test = require('tape');
+const path = require('path');
+const fs = require('fs');
+const load = require('load-json-file');
+const isobands = require('./');
 
-test('isobands', function(t){
-  var points = JSON.parse(fs.readFileSync(__dirname + '/geojson/Points.geojson'));
+const directories = {
+    in: path.join(__dirname, 'test', 'in') + path.sep,
+    out: path.join(__dirname, 'test', 'out') + path.sep
+};
 
-  var isobanded = isobands(points, 'elevation', [0, 3, 5, 7, 10]);
-
-  t.ok(isobanded.features, 'should take a set of points with z values and output a set of filled contour' +
-      ' multipolygons');
-  t.equal(isobanded.features[0].geometry.type, 'MultiPolygon');
-
-  fs.writeFileSync(__dirname + '/geojson/isobands.geojson', JSON.stringify(isobanded, null, 2));
-  t.end();
+const inputs = fs.readdirSync(directories.in).map(filename => {
+        return {
+            filename,
+            name: path.parse(filename).name,
+            geojson: load.sync(directories.in + filename)
+        };
 });
 
+test('union', function (t) {
+    inputs.forEach((input) => {
+        const idx = input.filename.split('points')[1];
+        const isobanded = isobands(input.geojson, 'elevation', [0, 3, 5, 7, 10]);
+
+        t.ok(isobanded.features, 'should take a set of points with z values and output a set of filled contour MultiPolygons');
+        t.equal(isobanded.features[0].geometry.type, 'MultiPolygon');
+
+        t.deepEqual(isobanded, load.sync(directories.out + 'isobands' + idx), input.name);
+    });
+    t.end();
+});

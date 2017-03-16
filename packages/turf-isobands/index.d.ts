@@ -1,11 +1,9 @@
-/// <reference types="geojson" />
-
 type Points = GeoJSON.FeatureCollection<GeoJSON.Point>;
-type LineStrings = GeoJSON.FeatureCollection<GeoJSON.LineString>;
+type MultiPolygons = GeoJSON.FeatureCollection<GeoJSON.MultiPolygon>;
 
 /**
- * http://turfjs.org/docs/#isolines
+ * http://turfjs.org/docs/#isobands
  */
-declare function isobands(points: Points, z: string, resolution: number, breaks: Array<number>): LineStrings;
-declare namespace isolines { }
-export = isolines;
+declare function isobands(pointGrid: Points, z: string, breaks: Array<number>): MultiPolygons;
+declare namespace isobands { }
+export = isobands;

@@ -9,17 +9,16 @@ var turfExplode = require('@turf/explode');
 var turfInside = require('@turf/inside');
 var turfArea = require('@turf/area');
 
-/*******************************************************************
+/**
  * Takes a grid ({@link FeatureCollection}) of {@link Point} features with z-values and an array of
  * value breaks and generates filled contour isobands.
  *
  *
- * @module turf/isobands
- * @category interpolation
- * @param {FeatureCollection} grid of points, a FeatureCollection of {@link Point} features
+ * @name isobands
+ * @param {FeatureCollection<Point>} pointGrid a FeatureCollection of {@link Point} features
  * @param {string} z the property name in `points` from which z-values will be pulled
  * @param {Array<number>} breaks where to draw contours
- * @returns {FeatureCollection} a FeatureCollection of {@link MultiPolygon} features representing isobands
+ * @returns {FeatureCollection<MultiPolygon>} a FeatureCollection of {@link MultiPolygon} features representing isobands
  * @example
  * // create random points with random
  * // z-values in their properties
@@ -33,11 +32,11 @@ var turfArea = require('@turf/area');
  * var breaks = [0, 5, 8.5];
  * var isobands = turf.isobands(pointGrid, 'z', breaks);
  * //=isobands
- ******************************************************************/
+ */
 module.exports = function (pointGrid, z, breaks) {
-    
+
     var points = pointGrid.features;
-    
+
     /*####################################
      divide points in pointGrid by latitude, creating a 2-dimensional data grid
      ####################################*/
@@ -51,9 +50,9 @@ module.exports = function (pointGrid, z, breaks) {
     }
     // create an array of arrays of points, each array representing a row (i.e. Latitude) of the 2D grid
     pointsByLatitude = Object.keys(pointsByLatitude).map(function (key) {
-        return pointsByLatitude[key]
+        return pointsByLatitude[key];
     });
-    
+
     /*
      * pointsByLatitude is a matrix of points on the map; NOTE the position of the ORIGIN for MarchingSquaresJS
      *
@@ -65,17 +64,17 @@ module.exports = function (pointGrid, z, breaks) {
      *  ]
      *
      **/
-    
+
     // creates a 2D grid with the z-value of all point on the map
     var gridData = [];
-    pointsByLatitude.forEach(function (pointArr, index, pointsByLat) {
+    pointsByLatitude.forEach(function (pointArr) {
         var row = [];
-        pointArr.map(function (point, index, pointArr) {
+        pointArr.forEach(function (point) {
             row.push(point.properties[z]);
         });
         gridData.push(row);
     });
-    
+
     /* example
      *   gridData = [
      *       [ 1, 13, 10,  9, 10, 13, 18],
@@ -88,8 +87,8 @@ module.exports = function (pointGrid, z, breaks) {
      *       [18, 13, 10,  9, 78, 13, 18]
      *   ]
      */
-    
-    
+
+
     /*####################################
      getting references of the original grid of points (on the map)
      ####################################*/
@@ -99,7 +98,7 @@ module.exports = function (pointGrid, z, breaks) {
     var lastR = pointsByLatitude.length - 1; // last row of the data grid
     // get the distance (on the map) between the first and the last point on a column of the grid
     var originalHeigth = getLatitude(pointsByLatitude[lastR][0]) - getLatitude(pointsByLatitude[0][0]);
-    
+
     // get origin, which is the first point of the last row on the rectangular data on the map
     var x0 = getLongitude(pointsByLatitude[0][0]);
     var y0 = getLatitude(pointsByLatitude[0][0]);
@@ -109,21 +108,21 @@ module.exports = function (pointGrid, z, breaks) {
     // calculate the scaling factor between the unitary grid to the rectangle on the map
     var scaleX = originalWidth / gridWidth;
     var scaleY = originalHeigth / gridHeigth;
-    
+
     var rescale = function (point) {
         point[0] = point[0] * scaleX + x0; // rescaled x
         point[1] = point[1] * scaleY + y0; // rescaled y
     };
-    
-    
+
+
     /*####################################
      creates the contours lines (featuresCollection of polygon features) from the 2D data grid
-     
+
      MarchingSquaresJS process the grid data as a 3D representation of a function on a 2D plane, therefore it
      assumes the points (x-y coordinates) are one 'unit' distance. The result of the IsoBands function needs to be
      rescaled, with turfjs, to the original area and proportions on the google map
      ####################################*/
-    
+
     // based on the provided breaks
     var contours = [];
     for (var i = 1; i < breaks.length; i++) {
@@ -137,13 +136,13 @@ module.exports = function (pointGrid, z, breaks) {
         var nestedRings = orderByArea(isobands);
         var contourSet = groupNestedRings(nestedRings);
         var obj = {};
-        obj["contourSet"] = contourSet;
+        obj['contourSet'] = contourSet;
         obj[z] = +breaks[i]; // make sure it's a number
         contours.push(obj);
-        
+
     }
-    
-    
+
+
     /*####################################
      transform isobands of 2D grid to polygons for the map
      ####################################*/
@@ -155,18 +154,18 @@ module.exports = function (pointGrid, z, breaks) {
             });
         });
     });
-    
+
     // creates GEOJson MultiPolygons from the contours
     var multipolygons = contours.map(function (contour) {
         var obj = {};
         obj[z] = contour[z];
         return turfMultiPolygon(contour.contourSet, obj);
-    
+
     });
-    
+
     // return a GEOJson FeatureCollection of MultiPolygons
     return turfFeaturecollection(multipolygons);
-    
+
 };
 
 
@@ -193,7 +192,7 @@ function orderByArea(linearRings) {
     var orderedByArea = [];
     for (var i = 0; i < areas.length; i++) {
         for (var lr = 0; lr < linearRingsWithArea.length; lr++) {
-            if (linearRingsWithArea[lr].area == areas[i]) {
+            if (linearRingsWithArea[lr].area === areas[i]) {
                 orderedByArea.push(linearRingsWithArea[lr].lineRing);
                 linearRingsWithArea.splice(lr, 1);
                 break;
