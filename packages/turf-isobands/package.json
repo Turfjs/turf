@@ -1,15 +1,16 @@
 {
   "name": "turf-isobands",
-  "version": "2.0.0",
+  "version": "3.0.0",
   "description": "turf isobands module",
   "main": "index.js",
   "types": "index.d.ts",
   "files": [
     "index.js",
-    "index.d.ts"
+    "index.d.ts",
+    "marchingsquares-isobands.js"
   ],
   "scripts": {
-    "test": "tape test.js",
+    "test": "node test.js",
     "bench": "node bench.js"
   },
   "repository": {
@@ -32,9 +33,10 @@
   },
   "homepage": "https://github.com/Turfjs/turf",
   "devDependencies": {
-    "benchmark": "^1.0.0",
-    "tape": "^3.5.0",
-    "load-json-file": "^2.0.0"
+    "benchmark": "^2.1.3",
+    "load-json-file": "^2.0.0",
+    "tape": "^4.6.3",
+    "write-json-file": "^2.0.0"
   },
   "dependencies": {
     "@turf/area": "^3.7.0",

@@ -2,6 +2,7 @@ const test = require('tape');
 const path = require('path');
 const fs = require('fs');
 const load = require('load-json-file');
+const write = require('write-json-file');
 const isobands = require('./');
 
 const directories = {
@@ -9,23 +10,21 @@ const directories = {
     out: path.join(__dirname, 'test', 'out') + path.sep
 };
 
-const inputs = fs.readdirSync(directories.in).map(filename => {
-        return {
-            filename,
-            name: path.parse(filename).name,
-            geojson: load.sync(directories.in + filename)
-        };
+const fixtures = fs.readdirSync(directories.in).map(filename => {
+    return {
+        filename,
+        name: path.parse(filename).name,
+        geojson: load.sync(directories.in + filename)
+    };
 });
 
-test('union', function (t) {
-    inputs.forEach((input) => {
-        const idx = input.filename.split('points')[1];
-        const isobanded = isobands(input.geojson, 'elevation', [0, 3, 5, 7, 10]);
+test('isobands', t => {
+    fixtures.forEach(({name, geojson, filename}) => {
+        const results = isobands(geojson, 'elevation', [0, 3, 5, 7, 10]);
 
-        t.ok(isobanded.features, 'should take a set of points with z values and output a set of filled contour MultiPolygons');
-        t.equal(isobanded.features[0].geometry.type, 'MultiPolygon');
-
-        t.deepEqual(isobanded, load.sync(directories.out + 'isobands' + idx), input.name);
+        if (process.env.REGEN) write.sync(directories.out + filename, results);
+        t.equal(results.features[0].geometry.type, 'MultiPolygon', name + ' geometry=MultiPolygon');
+        t.deepEqual(results, load.sync(directories.out + filename), name);
     });
     t.end();
 });

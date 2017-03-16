@@ -1,13 +1,12 @@
 // https://github.com/RaumZeit/MarchingSquares.js
 var MarchingSquaresJS = require('./marchingsquares-isobands');
-
-var turfHelpers = require('@turf/helpers');
-var turfFeaturecollection = turfHelpers.featureCollection;
-var turfPolygon = turfHelpers.polygon;
-var turfMultiPolygon = turfHelpers.multiPolygon;
-var turfExplode = require('@turf/explode');
-var turfInside = require('@turf/inside');
-var turfArea = require('@turf/area');
+var helpers = require('@turf/helpers');
+var featureCollection = helpers.featureCollection;
+var polygon = helpers.polygon;
+var multiPolygon = helpers.multiPolygon;
+var explode = require('@turf/explode');
+var inside = require('@turf/inside');
+var area = require('@turf/area');
 
 /**
  * Takes a grid ({@link FeatureCollection}) of {@link Point} features with z-values and an array of
@@ -128,7 +127,9 @@ module.exports = function (pointGrid, z, breaks) {
     for (var i = 1; i < breaks.length; i++) {
         var lowerBand = +breaks[i - 1]; // make sure the breaks value is a number
         var upperBand = +breaks[i];
+        /*eslint-disable*/
         var isobands = MarchingSquaresJS.IsoBands(gridData, lowerBand, upperBand - lowerBand);
+        /*eslint-enable*/
         // as per GeoJson rules for creating a polygon, make sure the first element
         // in the array of linearRings represents the exterior ring (i.e. biggest area),
         // and any subsequent elements represent interior rings (i.e. smaller area);
@@ -141,7 +142,6 @@ module.exports = function (pointGrid, z, breaks) {
         contours.push(obj);
 
     }
-
 
     /*####################################
      transform isobands of 2D grid to polygons for the map
@@ -159,15 +159,14 @@ module.exports = function (pointGrid, z, breaks) {
     var multipolygons = contours.map(function (contour) {
         var obj = {};
         obj[z] = contour[z];
-        return turfMultiPolygon(contour.contourSet, obj);
+        return multiPolygon(contour.contourSet, obj);
 
     });
 
     // return a GEOJson FeatureCollection of MultiPolygons
-    return turfFeaturecollection(multipolygons);
+    return featureCollection(multipolygons);
 
 };
-
 
 /**********************************************
  * utility functions
@@ -178,12 +177,12 @@ function orderByArea(linearRings) {
     var linearRingsWithArea = [];
     var areas = [];
     linearRings.forEach(function (points) {
-        var poly = turfPolygon([points]);
-        var area = turfArea(poly);
+        var poly = polygon([points]);
+        var calculatedArea = area(poly);
         // create an array of areas value
-        areas.push(area);
+        areas.push(calculatedArea);
         // associate each lineRing with its area
-        linearRingsWithArea.push({lineRing: points, area: area});
+        linearRingsWithArea.push({lineRing: points, area: calculatedArea});
     });
     areas.sort(function (a, b) { // bigger --> smaller
         return b - a;
@@ -219,11 +218,11 @@ function groupNestedRings(orderedLinearRings) {
                 var group = [];
                 group.push(lrList[i].lrCoordinates);
                 lrList[i].grouped = true;
-                var outerMostPoly = turfPolygon([lrList[i].lrCoordinates]);
+                var outerMostPoly = polygon([lrList[i].lrCoordinates]);
                 // group all the rings contained by the outermost ring
                 for (var j = i + 1; j < lrList.length; j++) {
                     if (!lrList[j].grouped) {
-                        var lrPoly = turfPolygon([lrList[j].lrCoordinates]);
+                        var lrPoly = polygon([lrList[j].lrCoordinates]);
                         if (isInside(lrPoly, outerMostPoly)) {
                             group.push(lrList[j].lrCoordinates);
                             lrList[j].grouped = true;
@@ -240,9 +239,9 @@ function groupNestedRings(orderedLinearRings) {
 
 // returns if test-Polygon is inside target-Polygon
 function isInside(testPolygon, targetPolygon) {
-    var points = turfExplode(testPolygon);
+    var points = explode(testPolygon);
     for (var i = 0; i < points.features.length; i++) {
-        if (!turfInside(points.features[i], targetPolygon)) {
+        if (!inside(points.features[i], targetPolygon)) {
             return false;
         }
     }

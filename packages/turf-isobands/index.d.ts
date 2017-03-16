@@ -1,5 +1,4 @@
-type Points = GeoJSON.FeatureCollection<GeoJSON.Point>;
-type MultiPolygons = GeoJSON.FeatureCollection<GeoJSON.MultiPolygon>;
+import {Points, MultiPolygons} from '@turf/helpers'
 
 /**
  * http://turfjs.org/docs/#isobands
