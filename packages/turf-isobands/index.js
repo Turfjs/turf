@@ -1,5 +1,5 @@
 // https://github.com/RaumZeit/MarchingSquares.js
-var MarchingSquaresJS = require('./marchingsquares-isobands.min');
+var MarchingSquaresJS = require('./marchingsquares-isobands');
 
 var turfHelpers = require('@turf/helpers');
 var turfFeaturecollection = turfHelpers.featureCollection;
