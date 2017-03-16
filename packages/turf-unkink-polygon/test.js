@@ -14,7 +14,7 @@ const fixtures = fs.readdirSync(directories.in).map(filename => {
     return {filename, geojson: load.sync(directories.in + filename)};
 });
 
-test('unkink-polygon', function (t) {
+test('unkink-polygon', t => {
     for (const {filename, geojson} of fixtures) {
         const unkinked = unkink(geojson);
 
@@ -23,5 +23,11 @@ test('unkink-polygon', function (t) {
         const expected = load.sync(directories.out + filename);
         t.deepEquals(unkinked, expected, path.parse(filename).name);
     }
+    t.end();
+});
+
+test('unkink-polygon -- throws', t => {
+    t.throws(() => Array.isUnique(), 'isUnique()');
+    t.throws(() => Array.getUnique(), 'getUnique()');
     t.end();
 });
