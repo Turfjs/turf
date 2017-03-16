@@ -16,7 +16,7 @@ var random = require('geojson-random');
  * @param {Number} [options.max_radial_length=10] the total number of decimal
  * degrees longitude or latitude that a polygon can extent outwards to
  * from its center.
- * @return {FeatureCollection} generated random features
+ * @returns {FeatureCollection} generated random features
  * @example
  * var points = turf.random('points', 100, {
  *   bbox: [-70, 40, -60, 60]

@@ -1,11 +1,8 @@
-/// <reference types="geojson" />
-
-type BBox = Array<number>;
-type Points = GeoJSON.FeatureCollection<GeoJSON.Point>;
+import {BBox, Points, Units, Feature, Features} from '@turf/helpers';
 
 /**
  * http://turfjs.org/docs/#pointgrid
  */
-declare function pointGrid(bbox: BBox, cellSize: number, units?: string): Points;
+declare function pointGrid(bbox: BBox | Feature | Features, cellSize: number, units?: Units): Points;
 declare namespace pointGrid { }
 export = pointGrid;

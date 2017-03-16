@@ -1,0 +1,29 @@
+{
+  "type": "Feature",
+  "properties": {
+    "stroke": "#ff0000"
+  },
+  "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+      [
+        [
+          0,
+          0
+        ],
+        [
+          2,
+          0
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          0,
+          0
+        ]
+      ]
+    ]
+  }
+}

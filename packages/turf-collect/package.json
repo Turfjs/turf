@@ -1,10 +1,16 @@
 {
   "name": "@turf/collect",
-  "version": "3.7.5",
-  "description": "turf aggregate module",
+  "version": "3.13.0",
+  "description": "turf collect module",
   "main": "index.js",
+  "types": "index.d.ts",
+  "files": [
+    "index.js",
+    "index.d.ts"
+  ],
   "scripts": {
-    "test": "tape test.js"
+    "test": "node test.js",
+    "bench": "node bench.js"
   },
   "repository": {
     "type": "git",
@@ -22,20 +28,19 @@
     "stats"
   ],
   "homepage": "https://github.com/Turfjs/turf",
-  "author": "Morgan Herlocker",
+  "author": "Turf Authors",
   "contributors": [
     "Rowan Winsemius"
   ],
   "license": "MIT",
-  "dependencies": {
-    "rbush": "^2.0.1",
-    "@turf/bbox": "^3.7.5",
-    "@turf/inside": "^3.7.5"
-  },
   "devDependencies": {
     "benchmark": "^1.0.0",
     "tape": "^3.6.1",
-    "@turf/helpers": "^3.7.5"
+    "@turf/helpers": "^3.13.0"
   },
-  "types": "index.d.ts"
+  "dependencies": {
+    "rbush": "^2.0.1",
+    "@turf/bbox": "^3.13.0",
+    "@turf/inside": "^3.13.0"
+  }
 }

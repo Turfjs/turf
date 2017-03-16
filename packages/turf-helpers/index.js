@@ -19,13 +19,14 @@
  * //=feature
  */
 function feature(geometry, properties) {
+    if (!geometry) throw new Error('No geometry passed');
+
     return {
         type: 'Feature',
         properties: properties || {},
         geometry: geometry
     };
 }
-
 module.exports.feature = feature;
 
 /**
@@ -42,11 +43,14 @@ module.exports.feature = feature;
  * //=pt1
  */
 module.exports.point = function (coordinates, properties) {
-    if (!Array.isArray(coordinates)) throw new Error('Coordinates must be an array');
+    if (!coordinates) throw new Error('No coordinates passed');
+    if (coordinates.length === undefined) throw new Error('Coordinates must be an array');
     if (coordinates.length < 2) throw new Error('Coordinates must be at least 2 numbers long');
+    if (typeof coordinates[0] !== 'number' || typeof coordinates[1] !== 'number') throw new Error('Coordinates must numbers');
+
     return feature({
         type: 'Point',
-        coordinates: coordinates.slice()
+        coordinates: coordinates
     }, properties);
 };
 
@@ -72,7 +76,6 @@ module.exports.point = function (coordinates, properties) {
  * //=polygon
  */
 module.exports.polygon = function (coordinates, properties) {
-
     if (!coordinates) throw new Error('No coordinates passed');
 
     for (var i = 0; i < coordinates.length; i++) {
@@ -104,16 +107,16 @@ module.exports.polygon = function (coordinates, properties) {
  * @throws {Error} if no coordinates are passed
  * @example
  * var linestring1 = turf.lineString([
- *	[-21.964416, 64.148203],
- *	[-21.956176, 64.141316],
- *	[-21.93901, 64.135924],
- *	[-21.927337, 64.136673]
+ *   [-21.964416, 64.148203],
+ *   [-21.956176, 64.141316],
+ *   [-21.93901, 64.135924],
+ *   [-21.927337, 64.136673]
  * ]);
  * var linestring2 = turf.lineString([
- *	[-21.929054, 64.127985],
- *	[-21.912918, 64.134726],
- *	[-21.916007, 64.141016],
- * 	[-21.930084, 64.14446]
+ *   [-21.929054, 64.127985],
+ *   [-21.912918, 64.134726],
+ *   [-21.916007, 64.141016],
+ *   [-21.930084, 64.14446]
  * ], {name: 'line 1', distance: 145});
  *
  * //=linestring1
@@ -121,9 +124,8 @@ module.exports.polygon = function (coordinates, properties) {
  * //=linestring2
  */
 module.exports.lineString = function (coordinates, properties) {
-    if (!coordinates) {
-        throw new Error('No coordinates passed');
-    }
+    if (!coordinates) throw new Error('No coordinates passed');
+
     return feature({
         type: 'LineString',
         coordinates: coordinates
@@ -148,6 +150,8 @@ module.exports.lineString = function (coordinates, properties) {
  * //=fc
  */
 module.exports.featureCollection = function (features) {
+    if (!features) throw new Error('No features passed');
+
     return {
         type: 'FeatureCollection',
         features: features
@@ -170,9 +174,8 @@ module.exports.featureCollection = function (features) {
  *
  */
 module.exports.multiLineString = function (coordinates, properties) {
-    if (!coordinates) {
-        throw new Error('No coordinates passed');
-    }
+    if (!coordinates) throw new Error('No coordinates passed');
+
     return feature({
         type: 'MultiLineString',
         coordinates: coordinates
@@ -195,9 +198,8 @@ module.exports.multiLineString = function (coordinates, properties) {
  *
  */
 module.exports.multiPoint = function (coordinates, properties) {
-    if (!coordinates) {
-        throw new Error('No coordinates passed');
-    }
+    if (!coordinates) throw new Error('No coordinates passed');
+
     return feature({
         type: 'MultiPoint',
         coordinates: coordinates
@@ -221,9 +223,8 @@ module.exports.multiPoint = function (coordinates, properties) {
  *
  */
 module.exports.multiPolygon = function (coordinates, properties) {
-    if (!coordinates) {
-        throw new Error('No coordinates passed');
-    }
+    if (!coordinates) throw new Error('No coordinates passed');
+
     return feature({
         type: 'MultiPolygon',
         coordinates: coordinates
@@ -252,6 +253,8 @@ module.exports.multiPolygon = function (coordinates, properties) {
  * //=collection
  */
 module.exports.geometryCollection = function (geometries, properties) {
+    if (!geometries) throw new Error('No geometries passed');
+
     return feature({
         type: 'GeometryCollection',
         geometries: geometries
@@ -283,9 +286,8 @@ var factors = {
  */
 module.exports.radiansToDistance = function (radians, units) {
     var factor = factors[units || 'kilometers'];
-    if (factor === undefined) {
-        throw new Error('Invalid unit');
-    }
+    if (factor === undefined) throw new Error('Invalid unit');
+
     return radians * factor;
 };
 
@@ -300,9 +302,8 @@ module.exports.radiansToDistance = function (radians, units) {
  */
 module.exports.distanceToRadians = function (distance, units) {
     var factor = factors[units || 'kilometers'];
-    if (factor === undefined) {
-        throw new Error('Invalid unit');
-    }
+    if (factor === undefined) throw new Error('Invalid unit');
+
     return distance / factor;
 };
 
@@ -317,8 +318,7 @@ module.exports.distanceToRadians = function (distance, units) {
  */
 module.exports.distanceToDegrees = function (distance, units) {
     var factor = factors[units || 'kilometers'];
-    if (factor === undefined) {
-        throw new Error('Invalid unit');
-    }
+    if (factor === undefined) throw new Error('Invalid unit');
+
     return (distance / factor) * 57.2958;
 };

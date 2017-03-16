@@ -29,7 +29,7 @@ npm install @turf/turf
 
 **In browser:**
 
-Download the [minified file](https://api.tiles.mapbox.com/mapbox.js/plugins/turf/v3.0.11/turf.min.js), and include it in a script tag. This will expose a global variable named `turf`.
+Download the [minified file](https://npmcdn.com/@turf/turf/turf.min.js), and include it in a script tag. This will expose a global variable named `turf`.
 
 ```html
 <script src="turf.min.js" charset="utf-8"></script>

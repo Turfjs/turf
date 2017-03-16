@@ -1,10 +1,16 @@
 {
   "name": "@turf/line-slice-along",
-  "version": "3.7.5",
-  "description": "create line segment based on start and end distance on a given line string",
+  "version": "3.13.1",
+  "description": "turf line-slice-along module",
   "main": "index.js",
+  "types": "index.d.ts",
+  "files": [
+    "index.js",
+    "index.d.ts"
+  ],
   "scripts": {
-    "test": "tape test.js"
+    "test": "node test.js",
+    "bench": "node bench.js"
   },
   "repository": {
     "type": "git",
@@ -15,22 +21,24 @@
     "along",
     "line-slice"
   ],
-  "author": "jvrousseau",
+  "author": "Turf Authors",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/Turfjs/turf/issues"
   },
   "homepage": "https://github.com/Turfjs/turf",
   "devDependencies": {
+    "@turf/along": "^3.13.1",
     "benchmark": "^1.0.0",
-    "tape": "^3.5.0",
-    "@turf/along": "^3.7.5"
+    "eslint": "^3.14.1",
+    "eslint-config-mourner": "^2.0.1",
+    "load-json-file": "^2.0.0",
+    "tape": "^3.5.0"
   },
   "dependencies": {
-    "@turf/bearing": "^3.7.5",
-    "@turf/destination": "^3.7.5",
-    "@turf/distance": "^3.7.5",
-    "@turf/helpers": "^3.7.5"
-  },
-  "types": "index.d.ts"
+    "@turf/bearing": "^3.13.0",
+    "@turf/destination": "^3.13.0",
+    "@turf/distance": "^3.13.0",
+    "@turf/helpers": "^3.13.0"
+  }
 }

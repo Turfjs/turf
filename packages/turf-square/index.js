@@ -6,7 +6,7 @@ var distance = require('@turf/distance');
  *
  * @name square
  * @param {Array<number>} bbox extent in [minX, minY, maxX, maxY] order
- * @return {Array<number>} a square surrounding `bbox`
+ * @returns {Array<number>} a square surrounding `bbox`
  * @example
  * var bbox = [-20,-20,-15,0];
  *

@@ -1,0 +1,46 @@
+{
+  "name": "@turf/unkink-polygon",
+  "version": "3.13.0",
+  "description": "turf unkink-polygon module",
+  "main": "index.js",
+  "types": "index.d.ts",
+  "files": [
+    "index.js",
+    "index.d.ts"
+  ],
+  "scripts": {
+    "test": "node test.js",
+    "bench": "node bench.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/Turfjs/turf.git"
+  },
+  "keywords": [
+    "turf",
+    "kinks",
+    "unkink",
+    "polygon",
+    "self-intersection"
+  ],
+  "author": "Turf Authors",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Turfjs/turf/issues"
+  },
+  "homepage": "https://github.com/Turfjs/turf",
+  "devDependencies": {
+    "benchmark": "^2.1.3",
+    "eslint": "^3.16.1",
+    "eslint-config-mourner": "^2.0.1",
+    "load-json-file": "^2.0.0",
+    "tape": "^3.5.0",
+    "write-json-file": "^2.0.0"
+  },
+  "dependencies": {
+    "@turf/flatten": "^3.13.0",
+    "@turf/helpers": "^3.13.0",
+    "@turf/meta": "^3.13.0",
+    "simplepolygon": "^1.1.1"
+  }
+}

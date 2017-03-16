@@ -3,32 +3,33 @@ var dissolve = require('./index');
 var test = require('tape');
 var path = require('path');
 
-// Define fixtures
-var fixtures = {
-    polys: require(path.join(__dirname, 'test', 'fixtures', 'in', 'polys.json')),
-    out: path.join(__dirname, 'test', 'fixtures', 'out'),
-    in: path.join(__dirname, 'test', 'fixtures', 'in')
+var directories = {
+    out: path.join(__dirname, 'test', 'out'),
+    in: path.join(__dirname, 'test', 'in')
 }
 
-// Helper function
-function save(features, out) {
-    if (process.env.REGEN) {
-        fs.writeFileSync(path.join(fixtures.out, out), JSON.stringify(features, null, 2));
-    };
+function save(directory, filename, features) {
+    return fs.writeFileSync(path.join(directory, filename), JSON.stringify(features, null, 2))
+}
+
+function read(directory, filename) {
+    return JSON.parse(fs.readFileSync(path.join(directory, filename), 'utf8'))
 }
 
 test('turf-dissolve', function (t) {
+    var polys = read(directories.in, 'polys.geojson');
+
     // With Property
-    var dissolved = dissolve(fixtures.polys, 'combine');
-    save(dissolved, 'polysByProperty.json')
-    t.equal(dissolved.features.length, 3);
-    t.deepEqual(dissolved, require(path.join(fixtures.out, 'polysByProperty.json')));
+    var polysByProperty = dissolve(polys, 'combine');
+    if (process.env.REGEN) { save(directories.out, 'polysByProperty.geojson', polysByProperty); }
+    t.equal(polysByProperty.features.length, 3);
+    t.deepEqual(polysByProperty, read(directories.out, 'polysByProperty.geojson'));
 
     // Without Property
-    var dissolved2 = dissolve(fixtures.polys);
-    save(dissolved2, 'polysWithoutProperty.json')
-    t.equal(dissolved2.features.length, 2);
-    t.deepEqual(dissolved2, require(path.join(fixtures.out, 'polysWithoutProperty.json')));
+    var polysWithoutProperty = dissolve(polys);
+    if (process.env.REGEN) { save(directories.out, 'polysWithoutProperty.geojson', polysWithoutProperty); }
+    t.equal(polysWithoutProperty.features.length, 2);
+    t.deepEqual(polysWithoutProperty, read(directories.out, 'polysWithoutProperty.geojson'));
 
     t.end();
 });

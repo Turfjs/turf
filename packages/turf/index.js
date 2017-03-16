@@ -9,6 +9,7 @@
  */
 var helpers = require('@turf/helpers');
 var invariant = require('@turf/invariant');
+var meta = require('@turf/meta');
 
 var turf = {
     isolines: require('@turf/isolines'),
@@ -59,6 +60,13 @@ var turf = {
     triangleGrid: require('@turf/triangle-grid'),
     hexGrid: require('@turf/hex-grid'),
     idw: require('@turf/idw'),
+    truncate: require('@turf/truncate'),
+    flatten: require('@turf/flatten'),
+    lineIntersect: require('@turf/line-intersect'),
+    mask: require('@turf/mask'),
+    lineChunk: require('@turf/line-chunk'),
+    unkinkPolygon: require('@turf/unkink-polygon'),
+    greatCircle: require('@turf/great-circle'),
     point: helpers.point,
     polygon: helpers.polygon,
     lineString: helpers.lineString,
@@ -69,12 +77,19 @@ var turf = {
     featureCollection: helpers.featureCollection,
     geometryCollection: helpers.geometryCollection,
     getCoord: invariant.getCoord,
+    getCoords: invariant.getCoords,
     geojsonType: invariant.geojsonType,
     featureOf: invariant.featureOf,
-    collectionOf: invariant.collectionOf
+    collectionOf: invariant.collectionOf,
+    coordEach: meta.coordEach,
+    coordReduce: meta.coordReduce,
+    propEach: meta.propEach,
+    propReduce: meta.propReduce,
+    featureEach: meta.featureEach,
+    featureReduce: meta.featureReduce,
+    coordAll: meta.coordAll,
+    geomEach: meta.geomEach,
+    geomReduce: meta.geomReduce
 };
 
 module.exports = turf;
-
-// Allow use of default import syntax in TypeScript
-module.exports.default = turf;

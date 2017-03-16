@@ -1,19 +1,12 @@
 /// <reference types="geojson" />
 
-type LineStrings = GeoJSON.FeatureCollection<GeoJSON.LineString>;
-type LineString = GeoJSON.Feature<GeoJSON.LineString>;
-type MultiLineStrings = GeoJSON.FeatureCollection<GeoJSON.MultiLineString>;
-type MultiLineString = GeoJSON.Feature<GeoJSON.MultiLineString>;
-type Polygons = GeoJSON.FeatureCollection<GeoJSON.Polygon>;
-type Polygon = GeoJSON.Feature<GeoJSON.Polygon>;
-type MultiPolygons = GeoJSON.FeatureCollection<GeoJSON.MultiPolygon>;
-type MultiPolygon = GeoJSON.Feature<GeoJSON.MultiPolygon>;
-type LineStringFeatures = LineString | LineStrings | MultiLineString | MultiLineStrings | GeoJSON.LineString | GeoJSON.MultiLineString
-type PolygonFeatures = Polygon | Polygons | MultiPolygon | MultiPolygons | GeoJSON.Polygon | GeoJSON.MultiPolygon
+type Geometry = GeoJSON.Polygon | GeoJSON.LineString | GeoJSON.MultiLineString | GeoJSON.MultiPolygon
+type Feature = GeoJSON.Feature<GeoJSON.Polygon | GeoJSON.LineString | GeoJSON.MultiLineString | GeoJSON.MultiPolygon>
+type Features = GeoJSON.FeatureCollection<GeoJSON.Polygon | GeoJSON.LineString | GeoJSON.MultiLineString | GeoJSON.MultiPolygon>
 
 /**
  * http://turfjs.org/docs/#linedistance
  */
-declare function lineDistance(features: LineStringFeatures | PolygonFeatures, units?: string): number;
+declare function lineDistance(features: Geometry | Feature | Features, units?: string): number;
 declare namespace lineDistance { }
 export = lineDistance;

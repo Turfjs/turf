@@ -1,11 +1,8 @@
-/// <reference types="geojson" />
-
-type BBox = Array<number>;
-type Polygons = GeoJSON.FeatureCollection<GeoJSON.Polygon>;
+import {Units, BBox, Polygons} from '@turf/helpers'
 
 /**
  * http://turfjs.org/docs/#trianglegrid
  */
-declare function triangleGrid(bbox: BBox, cellSize: number, units?: string): Polygons;
+declare function triangleGrid(bbox: BBox, cellSize: number, units?: Units): Polygons;
 declare namespace triangleGrid { }
 export = triangleGrid;

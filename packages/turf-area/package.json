@@ -1,10 +1,16 @@
 {
   "name": "@turf/area",
-  "version": "3.7.5",
-  "description": "calculate the area of a polygon or multipolygon feature",
+  "version": "3.13.0",
+  "description": "turf area module",
   "main": "index.js",
+  "types": "index.d.ts",
+  "files": [
+    "index.js",
+    "index.d.ts"
+  ],
   "scripts": {
-    "test": "tape test.js"
+    "test": "node test.js",
+    "bench": "node bench.js"
   },
   "keywords": [
     "turf",
@@ -12,21 +18,24 @@
     "polygon",
     "multipolygon"
   ],
-  "author": "Tom MacWright",
-  "license": "ISC",
-  "dependencies": {
-    "@mapbox/geojson-area": "^0.2.2"
-  },
+  "author": "Turf Authors",
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "git://github.com/Turfjs/turf.git"
   },
-  "devDependencies": {
-    "geojson-fixtures": "^0.6.0",
-    "tape": "^3.5.0"
-  },
   "homepage": "https://github.com/Turfjs/turf",
   "bugs": {
     "url": "https://github.com/Turfjs/turf/issues"
+  },
+  "devDependencies": {
+    "benchmark": "^2.1.3",
+    "load-json-file": "^2.0.0",
+    "tape": "^4.6.3",
+    "write-json-file": "^2.0.0"
+  },
+  "dependencies": {
+    "@mapbox/geojson-area": "^0.2.2",
+    "@turf/meta": "^3.13.0"
   }
 }

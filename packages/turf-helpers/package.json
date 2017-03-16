@@ -1,10 +1,16 @@
 {
   "name": "@turf/helpers",
-  "version": "3.7.5",
-  "description": "turf geometries",
+  "version": "3.13.0",
+  "description": "turf helpers module",
   "main": "index.js",
+  "types": "index.d.ts",
+  "files": [
+    "index.js",
+    "index.d.ts"
+  ],
   "scripts": {
-    "test": "tape test.js && tsc index.d.ts"
+    "test": "node test.js",
+    "bench": "node bench.js"
   },
   "repository": {
     "type": "git",
@@ -16,16 +22,15 @@
     "turf",
     "geojson"
   ],
-  "author": "morganherlocker",
+  "author": "Turf Authors",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/Turfjs/turf/issues"
   },
   "homepage": "https://github.com/Turfjs/turf",
   "devDependencies": {
-    "benchmark": "^1.0.0",
+    "benchmark": "^2.1.3",
     "tape": "^3.5.0"
   },
-  "dependencies": {},
-  "types": "index.d.ts"
+  "dependencies": {}
 }

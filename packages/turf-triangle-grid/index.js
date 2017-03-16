@@ -9,7 +9,7 @@ var distance = require('@turf/distance');
  * @param {Array<number>} bbox extent in [minX, minY, maxX, maxY] order
  * @param {number} cellSize dimension of each cell
  * @param {string} [units=kilometers] used in calculating cellSize, can be degrees, radians, miles, or kilometers
- * @return {FeatureCollection<Polygon>} grid of polygons
+ * @returns {FeatureCollection<Polygon>} grid of polygons
  * @example
  * var bbox = [-96,31,-84,40]
  * var cellSize = 10;

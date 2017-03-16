@@ -1,10 +1,16 @@
 {
   "name": "@turf/inside",
-  "version": "3.7.5",
+  "version": "3.13.0",
   "description": "turf inside module",
   "main": "index.js",
+  "types": "index.d.ts",
+  "files": [
+    "index.js",
+    "index.d.ts"
+  ],
   "scripts": {
-    "test": "tape test.js"
+    "test": "node test.js",
+    "bench": "node bench.js"
   },
   "repository": {
     "type": "git",
@@ -18,19 +24,18 @@
     "bin",
     "gis"
   ],
-  "author": "morganherlocker",
+  "author": "Turf Authors",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/Turfjs/turf/issues"
   },
   "homepage": "https://github.com/Turfjs/turf",
-  "dependencies": {
-    "@turf/invariant": "^3.7.5"
-  },
   "devDependencies": {
     "benchmark": "^1.0.0",
     "tape": "^3.5.0",
-    "@turf/helpers": "^3.7.5"
+    "@turf/helpers": "^3.13.0"
   },
-  "types": "index.d.ts"
+  "dependencies": {
+    "@turf/invariant": "^3.13.0"
+  }
 }

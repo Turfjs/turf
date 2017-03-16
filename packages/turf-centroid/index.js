@@ -9,7 +9,7 @@ var point = require('@turf/helpers').point;
  *
  * @name centroid
  * @param {(Feature|FeatureCollection)} features input features
- * @return {Feature<Point>} the centroid of the input features
+ * @returns {Feature<Point>} the centroid of the input features
  * @example
  * var poly = {
  *   "type": "Feature",

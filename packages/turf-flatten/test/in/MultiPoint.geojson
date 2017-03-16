@@ -1,0 +1,19 @@
+{
+  "type": "Feature",
+  "properties": {
+    "foo": "bar"
+  },
+  "geometry": {
+    "type": "MultiPoint",
+    "coordinates": [
+      [
+        100,
+        0
+      ],
+      [
+        101,
+        1
+      ]
+    ]
+  }
+}

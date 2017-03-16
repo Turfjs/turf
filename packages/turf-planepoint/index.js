@@ -7,7 +7,7 @@
  * @name planepoint
  * @param {Feature<Point>} point the Point for which a z-value will be calculated
  * @param {Feature<Polygon>} triangle a Polygon feature with three vertices
- * @return {number} the z-value for `interpolatedPoint`
+ * @returns {number} the z-value for `interpolatedPoint`
  * @example
  * var point = {
  *   "type": "Feature",

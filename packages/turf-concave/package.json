@@ -1,10 +1,16 @@
 {
   "name": "@turf/concave",
-  "version": "3.8.0",
+  "version": "3.13.0",
   "description": "turf concave module",
   "main": "index.js",
+  "types": "index.d.ts",
+  "files": [
+    "index.js",
+    "index.d.ts"
+  ],
   "scripts": {
-    "test": "node test.js"
+    "test": "node test.js",
+    "bench": "node bench.js"
   },
   "repository": {
     "type": "git",
@@ -15,8 +21,8 @@
     "gis",
     "geometry"
   ],
-  "author": "Morgan Herlocker",
-  "license": "ISC",
+  "author": "Turf Authors",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/Turfjs/turf/issues"
   },
@@ -25,13 +31,12 @@
     "benchmark": "^1.0.0",
     "glob": "~4.3.5",
     "tape": "~3.5.0",
-    "@turf/helpers": "^3.7.5"
+    "@turf/helpers": "^3.13.0"
   },
   "dependencies": {
-    "@turf/meta": "^3.7.5",
-    "@turf/tin": "^3.7.5",
-    "@turf/union": "^3.7.5",
-    "@turf/distance": "^3.7.5"
-  },
-  "types": "index.d.ts"
+    "@turf/meta": "^3.13.0",
+    "@turf/tin": "^3.13.0",
+    "@turf/union": "^3.13.0",
+    "@turf/distance": "^3.13.0"
+  }
 }

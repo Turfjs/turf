@@ -2,9 +2,7 @@
 
 # convex
 
-Takes a [feature](http://geojson.org/geojson-spec.html#feature-objects)
-or a [featureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects)
-and returns a [convex hull](http://en.wikipedia.org/wiki/Convex_hull) polygon.
+Takes a [Feature](http://geojson.org/geojson-spec.html#feature-objects) or a [FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects) and returns a convex hull [Polygon](http://geojson.org/geojson-spec.html#polygon).
 
 Internally this uses
 the [convex-hull](https://github.com/mikolalysenko/convex-hull) module that
