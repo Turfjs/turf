@@ -2,14 +2,14 @@
 
 # isobands
 
-Takes a grid ([FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects)) of [Point](http://geojson.org/geojson-spec.html#point) features with z-values and an array of
+Takes a grid [FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects) of [Point](http://geojson.org/geojson-spec.html#point) features with z-values and an array of
 value breaks and generates filled contour isobands.
 
 **Parameters**
 
--   `pointGrid` **[FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects)&lt;[Point](http://geojson.org/geojson-spec.html#point)>** a FeatureCollection of [Point](http://geojson.org/geojson-spec.html#point) features
--   `z` **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** the property name in `points` from which z-values will be pulled
+-   `points` **[FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects)&lt;[Point](http://geojson.org/geojson-spec.html#point)>** a FeatureCollection of [Point](http://geojson.org/geojson-spec.html#point) features
 -   `breaks` **[Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)>** where to draw contours
+-   `property` **\[[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)]** the property name in `points` from which z-values will be pulled (optional, default `'elevation'`)
 
 **Examples**
 
@@ -24,7 +24,7 @@ for (var i = 0; i < pointGrid.features.length; i++) {
     pointGrid.features[i].properties.elevation = Math.random() * 10;
 }
 var breaks = [0, 5, 8.5];
-var isobands = turf.isobands(pointGrid, 'z', breaks);
+var isobands = turf.isobands(pointGrid, breaks, 'elevation');
 //=isobands
 ```
 

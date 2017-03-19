@@ -1,5 +1,4 @@
-// https://github.com/RaumZeit/MarchingSquares.js
-var MarchingSquaresJS = require('./marchingsquares-isobands');
+var marchingsquares = require('marchingsquares');
 var helpers = require('@turf/helpers');
 var featureCollection = helpers.featureCollection;
 var polygon = helpers.polygon;
@@ -7,16 +6,17 @@ var multiPolygon = helpers.multiPolygon;
 var explode = require('@turf/explode');
 var inside = require('@turf/inside');
 var area = require('@turf/area');
+var invariant = require('@turf/invariant');
+var featureEach = require('@turf/meta').featureEach;
 
 /**
- * Takes a grid ({@link FeatureCollection}) of {@link Point} features with z-values and an array of
+ * Takes a grid {@link FeatureCollection} of {@link Point} features with z-values and an array of
  * value breaks and generates filled contour isobands.
  *
- *
  * @name isobands
- * @param {FeatureCollection<Point>} pointGrid a FeatureCollection of {@link Point} features
- * @param {string} z the property name in `points` from which z-values will be pulled
+ * @param {FeatureCollection<Point>} points a FeatureCollection of {@link Point} features
  * @param {Array<number>} breaks where to draw contours
+ * @param {string} [property='elevation'] the property name in `points` from which z-values will be pulled
  * @returns {FeatureCollection<MultiPolygon>} a FeatureCollection of {@link MultiPolygon} features representing isobands
  * @example
  * // create random points with random
@@ -29,65 +29,51 @@ var area = require('@turf/area');
  *     pointGrid.features[i].properties.elevation = Math.random() * 10;
  * }
  * var breaks = [0, 5, 8.5];
- * var isobands = turf.isobands(pointGrid, 'z', breaks);
+ * var isobands = turf.isobands(pointGrid, breaks, 'elevation');
  * //=isobands
  */
-module.exports = function (pointGrid, z, breaks) {
+module.exports = function (points, breaks, property) {
+    // Input validation
+    invariant.collectionOf(points, 'Point', 'isobands must contain Points');
+    property = property || 'elevation';
 
-    var points = pointGrid.features;
+    // Isoband methods
+    var pointsByLatitude = createPointsByLatitude(points);
+    var gridData = createGridData(pointsByLatitude, property);
+    var contours = createContourLines(gridData, breaks, property);
+    contours = rescaleContours(contours, gridData, pointsByLatitude);
+    var multiPolygons = createMultiPolygons(contours, property);
 
-    /*####################################
-     divide points in pointGrid by latitude, creating a 2-dimensional data grid
-     ####################################*/
-    var pointsByLatitude = {};
-    for (var j = 0; j < points.length; j++) {
-        if (!pointsByLatitude[getLatitude(points[j])]) {
-            pointsByLatitude[getLatitude(points[j])] = [];
-        }
-        // group obj by Lat value
-        pointsByLatitude[getLatitude(points[j])].push(points[j]);
-    }
-    // create an array of arrays of points, each array representing a row (i.e. Latitude) of the 2D grid
-    pointsByLatitude = Object.keys(pointsByLatitude).map(function (key) {
-        return pointsByLatitude[key];
+    return multiPolygons;
+};
+
+/**
+ * Create MultiPolygons from contour lines
+ *
+ * @private
+ * @param {Array<any>} contours Contours
+ * @param {string} [property='elevation'] Property
+ * @returns {FeatureCollection<MultiPolygon>} MultiPolygon from Contour lines
+ */
+function createMultiPolygons(contours, property) {
+    var multipolygons = contours.map(function (contour) {
+        var obj = {};
+        obj[property] = contour[property];
+        return multiPolygon(contour.contourSet, obj);
     });
+    return featureCollection(multipolygons);
+}
 
-    /*
-     * pointsByLatitude is a matrix of points on the map; NOTE the position of the ORIGIN for MarchingSquaresJS
-     *
-     *  pointsByLatitude = [
-     *     [ {point}, {point}, {point},  ... {point} ],
-     *     [ {point}, {point}, {point},  ... {point} ],
-     *     ...
-     *     [ {ORIGIN}, {point}, {point},  ... {point} ]
-     *  ]
-     *
-     **/
-
-    // creates a 2D grid with the z-value of all point on the map
-    var gridData = [];
-    pointsByLatitude.forEach(function (pointArr) {
-        var row = [];
-        pointArr.forEach(function (point) {
-            row.push(point.properties[z]);
-        });
-        gridData.push(row);
-    });
-
-    /* example
-     *   gridData = [
-     *       [ 1, 13, 10,  9, 10, 13, 18],
-     *       [34,  8,  5,  4,  5,  8, 13],
-     *       [10,  5,  2,  1,  2,  5,  4],
-     *       [ 0,  4, 56, 19,  1,  4,  9],
-     *       [10,  5,  2,  1,  2,  5, 10],
-     *       [57,  8,  5,  4,  5, 25, 57],
-     *       [ 3, 13, 10,  9,  5, 13, 18],
-     *       [18, 13, 10,  9, 78, 13, 18]
-     *   ]
-     */
-
-
+/**
+ * Transform isobands of 2D grid to polygons for the map
+ *
+ * @private
+ * @param {Array<any>} contours Contours
+ * @param {Array<Array<number>>} gridData Grid Data
+ * @param {Object} pointsByLatitude Points by Latitude
+ * @returns {Array<any>} contours
+ */
+function rescaleContours(contours, gridData, pointsByLatitude) {
     /*####################################
      getting references of the original grid of points (on the map)
      ####################################*/
@@ -113,39 +99,6 @@ module.exports = function (pointGrid, z, breaks) {
         point[1] = point[1] * scaleY + y0; // rescaled y
     };
 
-
-    /*####################################
-     creates the contours lines (featuresCollection of polygon features) from the 2D data grid
-
-     MarchingSquaresJS process the grid data as a 3D representation of a function on a 2D plane, therefore it
-     assumes the points (x-y coordinates) are one 'unit' distance. The result of the IsoBands function needs to be
-     rescaled, with turfjs, to the original area and proportions on the google map
-     ####################################*/
-
-    // based on the provided breaks
-    var contours = [];
-    for (var i = 1; i < breaks.length; i++) {
-        var lowerBand = +breaks[i - 1]; // make sure the breaks value is a number
-        var upperBand = +breaks[i];
-        /*eslint-disable*/
-        var isobands = MarchingSquaresJS.IsoBands(gridData, lowerBand, upperBand - lowerBand);
-        /*eslint-enable*/
-        // as per GeoJson rules for creating a polygon, make sure the first element
-        // in the array of linearRings represents the exterior ring (i.e. biggest area),
-        // and any subsequent elements represent interior rings (i.e. smaller area);
-        // this avoids rendering issues of the multipolygons on the map
-        var nestedRings = orderByArea(isobands);
-        var contourSet = groupNestedRings(nestedRings);
-        var obj = {};
-        obj['contourSet'] = contourSet;
-        obj[z] = +breaks[i]; // make sure it's a number
-        contours.push(obj);
-
-    }
-
-    /*####################################
-     transform isobands of 2D grid to polygons for the map
-     ####################################*/
     // rescale and shift each point/line of the isobands
     contours.forEach(function (contour) {
         contour.contourSet.forEach(function (lineRingSet) {
@@ -154,19 +107,111 @@ module.exports = function (pointGrid, z, breaks) {
             });
         });
     });
+    return contours;
+}
 
-    // creates GEOJson MultiPolygons from the contours
-    var multipolygons = contours.map(function (contour) {
+/**
+ * Creates the contours lines (featuresCollection of polygon features) from the 2D data grid
+ *
+ * Marchingsquares process the grid data as a 3D representation of a function on a 2D plane, therefore it
+ * assumes the points (x-y coordinates) are one 'unit' distance. The result of the IsoBands function needs to be
+ * rescaled, with turfjs, to the original area and proportions on the map
+ *
+ * @private
+ * @param {Array<Array<number>>} gridData Grid Data
+ * @param {Array<number>} breaks Breaks
+ * @param {string} [property='elevation'] Property
+ * @returns {Array<any>} contours
+ */
+function createContourLines(gridData, breaks, property) {
+    var contours = [];
+    for (var i = 1; i < breaks.length; i++) {
+        var lowerBand = +breaks[i - 1]; // make sure the breaks value is a number
+        var upperBand = +breaks[i];
+        var isobands = marchingsquares.isoBands(gridData, lowerBand, upperBand - lowerBand);
+        // as per GeoJson rules for creating a polygon, make sure the first element
+        // in the array of linearRings represents the exterior ring (i.e. biggest area),
+        // and any subsequent elements represent interior rings (i.e. smaller area);
+        // this avoids rendering issues of the multipolygons on the map
+        var nestedRings = orderByArea(isobands);
+        var contourSet = groupNestedRings(nestedRings);
         var obj = {};
-        obj[z] = contour[z];
-        return multiPolygon(contour.contourSet, obj);
+        obj['contourSet'] = contourSet;
+        obj[property] = +breaks[i]; // make sure it's a number
+        contours.push(obj);
+    }
+    return contours;
+}
 
+/**
+ * Divide points in pointGrid by latitude, creating a 2-dimensional data grid
+ *
+ * @private
+ * @param {FeatureCollection<Point>} points GeoJSON Point features
+ * @returns {Object} pointsByLatitude
+ * @example
+ * createPointsByLatitude(points)
+ * //= [
+ *   [{point}, {point}, {point}, ... {point}],
+ *   [{point}, {point}, {point}, ... {point}],
+ *   ...
+ *   [{ORIGIN}, {point}, {point}, ... {point}]
+ * ]
+ */
+function createPointsByLatitude(points) {
+    var unique = {};
+
+    featureEach(points, function (point) {
+        var lat = getLatitude(point);
+        if (!unique[lat]) unique[lat] = [];
+        unique[lat].push(point);
     });
 
-    // return a GEOJson FeatureCollection of MultiPolygons
-    return featureCollection(multipolygons);
+    // create an array of arrays of points, each array representing a row (i.e. Latitude) of the 2D grid
+    var pointsByLatitude = Object.keys(unique).map(function (key) {
+        return unique[key];
+    });
+    return pointsByLatitude;
+}
 
-};
+/**
+ * Create Grid Data
+ *
+ * @private
+ * @param {Object} pointsByLatitude array of points
+ * @param {string} [property] the property name in `points` from which z-values will be pulled
+ * @returns {Array<Array<number>>} Grid Data
+ * @example
+ * createGridData(points)
+ * //= [
+ *   [ 1, 13, 10,  9, 10, 13, 18],
+ *   [34,  8,  5,  4,  5,  8, 13],
+ *   [10,  5,  2,  1,  2,  5,  4],
+ *   [ 0,  4, 56, 19,  1,  4,  9],
+ *   [10,  5,  2,  1,  2,  5, 10],
+ *   [57,  8,  5,  4,  5, 25, 57],
+ *   [ 3, 13, 10,  9,  5, 13, 18],
+ *   [18, 13, 10,  9, 78, 13, 18]
+ * ]
+ */
+function createGridData(pointsByLatitude, property) {
+    // creates a 2D grid with the z-value of all point on the map
+    var gridData = [];
+    pointsByLatitude.forEach(function (pointArr) {
+        var row = [];
+        pointArr.forEach(function (point) {
+            // elevation property exist
+            if (point.properties[property]) {
+                row.push(point.properties[property]);
+            // z coordinate exists
+            } else if (point.geometry.coordinates.length > 2) {
+                row.push(point.geometry.coordinates[2]);
+            }
+        });
+        gridData.push(row);
+    });
+    return gridData;
+}
 
 /**********************************************
  * utility functions
