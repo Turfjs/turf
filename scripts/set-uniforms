@@ -1,18 +1,14 @@
 #!/usr/bin/env node
+var fs = require("fs");
+var path = require("path");
 
-var fs = require('fs');
-var d3 = require('d3-queue');
-var path = require('path');
-
-var q = d3.queue(1);
-
-fs.readdirSync('./packages').forEach(function(dir) {
-  q.defer(scopePackage, dir);
-});
+var license = fs.readFileSync("./LICENSE", "utf8");
+fs.readdirSync("./packages").forEach(scopePackage);
+fs.readdirSync("./packages").forEach(writeLicense);
 
 function scopeName(name) {
   if (name.match(/^turf/)) {
-    return '@' + name.replace(/-/, '/');
+    return "@" + name.replace(/-/, "/");
   } else {
     return name;
   }
@@ -21,27 +17,29 @@ function scopeName(name) {
 function objMap(obj, map) {
   var newObj = {};
   for (var k in obj) {
-    var res = map([k, obj[k]]);
-    newObj[res[0]] = res[1];
+    var res = map([ k, obj[k] ]);
+    newObj[res[(0)]] = res[(1)];
   }
   return newObj;
 }
 
 function prefixDependency(kv) {
-  return [scopeName(kv[0]), kv[1]];
+  return [ scopeName(kv[(0)]), kv[(1)] ];
 }
 
-function scopePackage(directory, callback) {
-  var pkgPath = path.join('./packages/', directory, '/package.json');
+function scopePackage(directory) {
+  var pkgPath = path.join("./packages/", directory, "/package.json");
   var pkg = JSON.parse(fs.readFileSync(pkgPath));
-  pkg.homepage = 'https://github.com/Turfjs/turf';
-  pkg.bugs = {
-    url: "https://github.com/Turfjs/turf/issues"
-  };
-  pkg.repository = {
-    type: 'git',
-    url: 'git://github.com/Turfjs/turf.git'
-  };
+  pkg.homepage = "https://github.com/Turfjs/turf";
+  pkg.bugs = { url: "https://github.com/Turfjs/turf/issues" };
+  pkg.license = "MIT";
+  pkg.author = "Turf Authors";
+  pkg.repository = { type: "git", url: "git://github.com/Turfjs/turf.git" };
   fs.writeFileSync(pkgPath, JSON.stringify(pkg, null, 2));
-  callback();
 }
+
+function writeLicense(directory) {
+  var licensePath = path.join("./packages/", directory, "/LICENSE");
+  fs.writeFileSync(licensePath, license);
+}
+

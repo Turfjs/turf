@@ -1,18 +1,29 @@
-var union = require('./');
-var Benchmark = require('benchmark');
-var fs = require('fs');
+const load = require('load-json-file');
+const path = require('path');
+const Benchmark = require('benchmark');
+const fs = require('fs');
+const union = require('.');
 
-var fcs = JSON.parse(fs.readFileSync(__dirname+'/test/fixtures/in/Intersect1.geojson'));
+const directories = {
+    in: path.join(__dirname, 'test', 'in') + path.sep,
+    out: path.join(__dirname, 'test', 'out') + path.sep
+};
 
-var suite = new Benchmark.Suite('turf-union');
+const fixtures = fs.readdirSync(directories.in).map(filename => {
+    return {
+        filename,
+        name: path.parse(filename).name,
+        geojson: load.sync(directories.in + filename)
+    };
+});
+
+const suite = new Benchmark.Suite('turf-union');
+
+for (const {name, geojson} of fixtures) {
+    suite.add(name, () => { union.apply(this, geojson.features); });
+}
+
 suite
-  .add('turf-union',function () {
-    union(fcs[0].features[0], fcs[1].features[0]);
-  })
-  .on('cycle', function (event) {
-    console.log(String(event.target));
-  })
-  .on('complete', function () {
-
-  })
+  .on('cycle', e => console.log(String(e.target)))
+  .on('complete', () => {})
   .run();

@@ -5,3 +5,5 @@ bench.js
 packages/turf/turf.js
 packages/turf/turf.min.js
 marchingsquares-isobands.js
+rollup.config.js
+simplepolygon.js

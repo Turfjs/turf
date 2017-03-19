@@ -10,7 +10,8 @@ var destination = require('@turf/destination');
  * @param {Feature<LineString>} line input line
  * @param {number} distance distance along the line
  * @param {string} [units=kilometers] can be degrees, radians, miles, or kilometers
- * @return {Feature<Point>} Point `distance` `units` along the line
+ * @returns {Feature<Point>} Point `distance` `units` along the line
+ * @addToMap along, line
  * @example
  * var line = {
  *   "type": "Feature",
@@ -29,13 +30,7 @@ var destination = require('@turf/destination');
  * };
  *
  * var along = turf.along(line, 1, 'miles');
- *
- * var result = {
- *   "type": "FeatureCollection",
- *   "features": [line, along]
- * };
- *
- * //=result
+ * //=along
  */
 module.exports = function (line, distance, units) {
     var coords;

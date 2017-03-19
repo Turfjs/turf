@@ -1,10 +1,16 @@
 {
   "name": "@turf/line-slice",
-  "version": "3.7.5",
-  "description": "",
+  "version": "3.13.1",
+  "description": "turf line-slice module",
   "main": "index.js",
+  "types": "index.d.ts",
+  "files": [
+    "index.js",
+    "index.d.ts"
+  ],
   "scripts": {
-    "test": "node test.js"
+    "test": "node test.js",
+    "bench": "node bench.js"
   },
   "repository": {
     "type": "git",
@@ -19,23 +25,28 @@
     "line",
     "distance"
   ],
-  "author": "morganherlocker",
+  "author": "Turf Authors",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/Turfjs/turf/issues"
   },
   "homepage": "https://github.com/Turfjs/turf",
   "devDependencies": {
+    "@turf/helpers": "^3.13.0",
+    "@turf/truncate": "^3.13.0",
     "benchmark": "^1.0.0",
+    "eslint": "^3.16.1",
+    "eslint-config-mourner": "^2.0.1",
+    "load-json-file": "^2.0.0",
+    "mkdirp": "^0.5.1",
     "tape": "^3.5.0",
-    "@turf/helpers": "^3.7.5"
+    "write-json-file": "^2.0.0"
   },
   "dependencies": {
-    "@turf/bearing": "^3.7.5",
-    "@turf/destination": "^3.7.5",
-    "@turf/distance": "^3.7.5",
-    "@turf/helpers": "^3.7.5",
-    "@turf/point-on-line": "^3.7.5"
-  },
-  "types": "index.d.ts"
+    "@turf/bearing": "^3.13.0",
+    "@turf/destination": "^3.13.0",
+    "@turf/distance": "^3.13.0",
+    "@turf/helpers": "^3.13.0",
+    "@turf/point-on-line": "^3.13.1"
+  }
 }

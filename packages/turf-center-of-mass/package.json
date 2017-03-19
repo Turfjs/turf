@@ -1,13 +1,16 @@
 {
   "name": "@turf/center-of-mass",
-  "version": "3.7.5",
-  "description": "Turf center of mass module",
+  "version": "3.13.0",
+  "description": "turf center-of-mass module",
   "main": "index.js",
-  "directories": {
-    "test": "test"
-  },
+  "types": "index.d.ts",
+  "files": [
+    "index.js",
+    "index.d.ts"
+  ],
   "scripts": {
-    "test": "tape test/*.js"
+    "test": "node test.js",
+    "bench": "node bench.js"
   },
   "repository": {
     "type": "git",
@@ -17,8 +20,8 @@
     "turf",
     "gis"
   ],
-  "author": "aurelien-defossez",
-  "license": "ISC",
+  "author": "Turf Authors",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/Turfjs/turf/issues"
   },
@@ -29,11 +32,10 @@
     "tape": "~3.5.0"
   },
   "dependencies": {
-    "@turf/meta": "^3.7.5",
-    "@turf/centroid": "^3.7.5",
-    "@turf/convex": "^3.7.5",
-    "@turf/explode": "^3.7.5",
-    "@turf/helpers": "^3.7.5"
-  },
-  "types": "index.d.ts"
+    "@turf/meta": "^3.13.0",
+    "@turf/centroid": "^3.13.0",
+    "@turf/convex": "^3.13.0",
+    "@turf/explode": "^3.13.0",
+    "@turf/helpers": "^3.13.0"
+  }
 }

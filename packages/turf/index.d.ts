@@ -14,6 +14,18 @@ import {
     featureOf,
     collectionOf
 } from '@turf/invariant';
+import {
+    coordEach,
+    coordReduce,
+    propEach,
+    propReduce,
+    featureEach,
+    featureReduce,
+    coordAll,
+    geomEach,
+    geomReduce
+} from '@turf/meta';
+
 import * as isolines from '@turf/isolines';
 import * as convex from '@turf/convex';
 import * as within from '@turf/within';
@@ -62,6 +74,13 @@ import * as squareGrid from '@turf/square-grid';
 import * as triangleGrid from '@turf/triangle-grid';
 import * as hexGrid from '@turf/hex-grid';
 import * as idw from '@turf/idw';
+import * as truncate from '@turf/truncate';
+import * as flatten from '@turf/flatten';
+import * as lineIntersect from '@turf/line-intersect';
+import * as mask from '@turf/mask';
+import * as lineChunk from '@turf/line-chunk';
+import * as unkinkPolygon from '@turf/unkink-polygon';
+import * as greatCircle from '@turf/great-circle';
 
 export {
     isolines,
@@ -125,4 +144,18 @@ export {
     geojsonType,
     featureOf,
     collectionOf,
+    truncate,
+    flatten,
+    coordEach,
+    coordReduce,
+    propEach,
+    propReduce,
+    featureEach,
+    coordAll,
+    geomEach,
+    lineIntersect,
+    mask,
+    lineChunk,
+    unkinkPolygon,
+    greatCircle
 };

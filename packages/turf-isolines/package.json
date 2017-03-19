@@ -1,10 +1,17 @@
 {
   "name": "@turf/isolines",
-  "version": "3.7.5",
+  "version": "3.13.1",
   "description": "turf isolines module",
   "main": "index.js",
+  "types": "index.d.ts",
+  "files": [
+    "index.js",
+    "index.d.ts",
+    "conrec.js"
+  ],
   "scripts": {
-    "test": "tape test.js"
+    "test": "node test.js",
+    "bench": "node bench.js"
   },
   "repository": {
     "type": "git",
@@ -18,7 +25,7 @@
     "elevation",
     "topography"
   ],
-  "author": "morganherlocker",
+  "author": "Turf Authors",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/Turfjs/turf/issues"
@@ -29,14 +36,13 @@
     "tape": "^3.5.0"
   },
   "dependencies": {
-    "@turf/bbox": "^3.7.5",
-    "@turf/point-grid": "^3.7.5",
-    "@turf/distance": "^3.7.5",
-    "@turf/inside": "^3.7.5",
-    "@turf/helpers": "^3.7.5",
-    "@turf/planepoint": "^3.7.5",
-    "@turf/square": "^3.7.5",
-    "@turf/tin": "^3.7.5"
-  },
-  "types": "index.d.ts"
+    "@turf/bbox": "^3.13.0",
+    "@turf/point-grid": "^3.13.1",
+    "@turf/distance": "^3.13.0",
+    "@turf/inside": "^3.13.0",
+    "@turf/helpers": "^3.13.0",
+    "@turf/planepoint": "^3.13.0",
+    "@turf/square": "^3.13.0",
+    "@turf/tin": "^3.13.0"
+  }
 }

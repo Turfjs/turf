@@ -8,7 +8,9 @@ var getCoord = require('@turf/invariant').getCoord;
  * @name bearing
  * @param {Feature<Point>} start starting Point
  * @param {Feature<Point>} end ending Point
+ * @param {boolean} [final=false] calculates the final bearing if true
  * @returns {number} bearing in decimal degrees
+ * @addToMap point1, point2
  * @example
  * var point1 = {
  *   "type": "Feature",
@@ -31,18 +33,13 @@ var getCoord = require('@turf/invariant').getCoord;
  *   }
  * };
  *
- * var points = {
- *   "type": "FeatureCollection",
- *   "features": [point1, point2]
- * };
- *
- * //=points
- *
  * var bearing = turf.bearing(point1, point2);
- *
+ * point1.properties.bearing = bearing
  * //=bearing
  */
-module.exports = function (start, end) {
+function bearing(start, end, final) {
+    if (final === true) return calculateFinalBearing(start, end);
+
     var degrees2radians = Math.PI / 180;
     var radians2degrees = 180 / Math.PI;
     var coordinates1 = getCoord(start);
@@ -56,7 +53,23 @@ module.exports = function (start, end) {
     var b = Math.cos(lat1) * Math.sin(lat2) -
         Math.sin(lat1) * Math.cos(lat2) * Math.cos(lon2 - lon1);
 
-    var bearing = radians2degrees * Math.atan2(a, b);
+    var bear = radians2degrees * Math.atan2(a, b);
 
-    return bearing;
-};
+    return bear;
+}
+
+/**
+ * Calculates Final Bearing
+ * @private
+ * @param {Feature<Point>} start starting Point
+ * @param {Feature<Point>} end ending Point
+ * @returns {number} bearing
+ */
+function calculateFinalBearing(start, end) {
+    // Swap start & end
+    var bear = bearing(end, start);
+    bear = (bear + 180) % 360;
+    return bear;
+}
+
+module.exports = bearing;

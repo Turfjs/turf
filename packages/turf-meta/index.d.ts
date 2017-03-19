@@ -19,53 +19,82 @@ type GeometryObject = GeoJSON.GeometryObject
 
 interface MetaStatic {
     /**
-     * http://turfjs.org/docs/#coordEach
+     * http://turfjs.org/docs/#coordeach
      */
-    coordEach(layer: Points | Point | MultiPoint | MultiPoints, callback: (coords: Array<number>) => void, excludeWrapCoord?: boolean): void;
-    coordEach(layer: LineStrings | LineString | MultiLineString | MultiLineStrings, callback: (coords: Array<Array<number>>) => void, excludeWrapCoord?: boolean): void;
-    coordEach(layer: Polygons | Polygon | MultiPolygons | MultiPolygon, callback: (coords: Array<Array<Array<number>>>) => void, excludeWrapCoord?: boolean): void;
-    coordEach(layer: GeometryCollection | GeometryObject, callback: (coords: Array<any>) => void, excludeWrapCoord?: boolean): void;
+    coordEach(layer: Points | Point | MultiPoint | MultiPoints, callback: (currentCoords: Array<number>, currentIndex: number) => void, excludeWrapCoord?: boolean): void;
+    coordEach(layer: LineStrings | LineString | MultiLineString | MultiLineStrings, callback: (currentCoords: Array<Array<number>>, currentIndex: number) => void, excludeWrapCoord?: boolean): void;
+    coordEach(layer: Polygons | Polygon | MultiPolygons | MultiPolygon, callback: (currentCoords: Array<Array<Array<number>>>, currentIndex: number) => void, excludeWrapCoord?: boolean): void;
+    coordEach(layer: GeometryCollection | GeometryObject, callback: (currentCoords: Array<any>, currentIndex: number) => void, excludeWrapCoord?: boolean): void;
 
     /**
-     * http://turfjs.org/docs/#coordEach
+     * http://turfjs.org/docs/#coordreduce
      */
-    coordReduce(layer: Points | Point | MultiPoint | MultiPoints, callback: (memo: any, coords: Array<number>) => void, memo: any, excludeWrapCoord?: boolean): any;
-    coordReduce(layer: LineStrings | LineString | MultiLineString | MultiLineStrings, callback: (memo: any, coords: Array<Array<number>>) => void, memo: any, excludeWrapCoord?: boolean): any;
-    coordReduce(layer: Polygons | Polygon | MultiPolygons | MultiPolygon, callback: (memo: any, coords: Array<Array<Array<number>>>) => void, memo: any, excludeWrapCoord?: boolean): any;
-    coordReduce(layer: GeometryCollection | GeometryObject, callback: (memo: any, coords: Array<any>) => void, memo: any, excludeWrapCoord?: boolean): any;
+    coordReduce(layer: Points | Point | MultiPoint | MultiPoints, callback: (previousValue: any, currentCoords: Array<number>, currentIndex: number) => void, initialValue: any, excludeWrapCoord?: boolean): any;
+    coordReduce(layer: LineStrings | LineString | MultiLineString | MultiLineStrings, callback: (previousValue: any, currentCoords: Array<Array<number>>, currentIndex: number) => void, initialValue: any, excludeWrapCoord?: boolean): any;
+    coordReduce(layer: Polygons | Polygon | MultiPolygons | MultiPolygon, callback: (previousValue: any, currentCoords: Array<Array<Array<number>>>, currentIndex: number) => void, initialValue: any, excludeWrapCoord?: boolean): any;
+    coordReduce(layer: GeometryCollection | GeometryObject, callback: (previousValue: any, currentCoords: Array<any>, currentIndex: number) => void, initialValue: any, excludeWrapCoord?: boolean): any;
 
     /**
-     * http://turfjs.org/docs/#propEach
+     * http://turfjs.org/docs/#propeach
      */
-    propEach(layer: Feature | Features, callback: (properties: any) => void): void;
+    propEach(layer: Feature | Features, callback: (currentProperties: any, currentIndex: number) => void): void;
 
     /**
-     * http://turfjs.org/docs/#featureEach
+     * http://turfjs.org/docs/#propreduce
      */
-    featureEach(layer: Point | Points, callback: (feature: Point) => void): void;
-    featureEach(layer: LineString | LineStrings, callback: (feature: LineString) => void): void;
-    featureEach(layer: Polygon | Polygons, callback: (feature: Polygon) => void): void;
-    featureEach(layer: MultiPoint | MultiPoints, callback: (feature: MultiPoint) => void): void;
-    featureEach(layer: MultiLineString | MultiLineStrings, callback: (feature: MultiLineString) => void): void;
-    featureEach(layer: MultiPolygon | MultiPolygons, callback: (feature: MultiPolygon) => void): void;
-    featureEach(layer: Feature | Features, callback: (feature: Feature) => void): void;
+    propReduce(layer: Feature | Features, callback: (previousValue: any, currentProperties: any, currentIndex: number) => void, initialValue: any): any;
 
     /**
-     * http://turfjs.org/docs/#coordAll
+     * http://turfjs.org/docs/#featurereduce
+     */
+    featureReduce(layer: Point | Points, callback: (previousValue: any, currentFeature: Point, currentIndex: number) => void, initialValue: any): any;
+    featureReduce(layer: LineString | LineStrings, callback: (previousValue: any, currentFeature: LineString, currentIndex: number) => void, initialValue: any): any;
+    featureReduce(layer: Polygon | Polygons, callback: (previousValue: any, currentFeature: Polygon, currentIndex: number) => void, initialValue: any): any;
+    featureReduce(layer: MultiPoint | MultiPoints, callback: (previousValue: any, currentFeature: MultiPoint, currentIndex: number) => void, initialValue: any): any;
+    featureReduce(layer: MultiLineString | MultiLineStrings, callback: (previousValue: any, currentFeature: MultiLineString, currentIndex: number) => void, initialValue: any): any;
+    featureReduce(layer: MultiPolygon | MultiPolygons, callback: (previousValue: any, currentFeature: MultiPolygon, currentIndex: number) => void, initialValue: any): any;
+    featureReduce(layer: Feature | Features, callback: (previousValue: any, currentFeature: Feature, currentIndex: number) => void, initialValue: any): any;
+
+
+    /**
+     * http://turfjs.org/docs/#featureeach
+     */
+    featureEach(layer: Point | Points, callback: (currentFeature: Point, currentIndex: number) => void): void;
+    featureEach(layer: LineString | LineStrings, callback: (currentFeature: LineString, currentIndex: number) => void): void;
+    featureEach(layer: Polygon | Polygons, callback: (currentFeature: Polygon, currentIndex: number) => void): void;
+    featureEach(layer: MultiPoint | MultiPoints, callback: (currentFeature: MultiPoint, currentIndex: number) => void): void;
+    featureEach(layer: MultiLineString | MultiLineStrings, callback: (currentFeature: MultiLineString, currentIndex: number) => void): void;
+    featureEach(layer: MultiPolygon | MultiPolygons, callback: (currentFeature: MultiPolygon, currentIndex: number) => void): void;
+    featureEach(layer: Feature | Features, callback: (currentFeature: Feature, currentIndex: number) => void): void;
+
+    /**
+     * http://turfjs.org/docs/#coordall
      */
     coordAll(layer: Feature | Features | GeometryCollection | GeometryObject): Array<Array<number>>
 
     /**
-     * http://turfjs.org/docs/#geomEach
+     * http://turfjs.org/docs/#geomreduce
      */
-    geomEach(layer: Point | Points, callback: (geom: GeoJSON.Point) => void): void;
-    geomEach(layer: LineString | LineStrings, callback: (geom: GeoJSON.LineString) => void): void;
-    geomEach(layer: Polygon | Polygons, callback: (geom: GeoJSON.Polygon) => void): void;
-    geomEach(layer: MultiPoint | MultiPoints, callback: (geom: GeoJSON.MultiPoint) => void): void;
-    geomEach(layer: MultiLineString | MultiLineStrings, callback: (geom: GeoJSON.MultiLineString) => void): void;
-    geomEach(layer: MultiPolygon | MultiPolygons, callback: (geom: GeoJSON.MultiPolygon) => void): void;
-    geomEach(layer: Feature | Features, callback: (geom: GeometryObject) => void): void;
-    geomEach(layer: GeometryCollection | GeometryObject, callback: (geom: GeometryObject) => void): void;
+    geomReduce(layer: Point | Points, callback: (previousValue: any, currentGeometry: GeoJSON.Point, currentIndex: number) => void, initialValue: any): any;
+    geomReduce(layer: LineString | LineStrings, callback: (previousValue: any, currentGeometry: GeoJSON.LineString, currentIndex: number) => void, initialValue: any): any;
+    geomReduce(layer: Polygon | Polygons, callback: (previousValue: any, currentGeometry: GeoJSON.Polygon, currentIndex: number) => void, initialValue: any): any;
+    geomReduce(layer: MultiPoint | MultiPoints, callback: (previousValue: any, currentGeometry: GeoJSON.MultiPoint, currentIndex: number) => void, initialValue: any): any;
+    geomReduce(layer: MultiLineString | MultiLineStrings, callback: (previousValue: any, currentGeometry: GeoJSON.MultiLineString, currentIndex: number) => void, initialValue: any): any;
+    geomReduce(layer: MultiPolygon | MultiPolygons, callback: (previousValue: any, currentGeometry: GeoJSON.MultiPolygon, currentIndex: number) => void, initialValue: any): any;
+    geomReduce(layer: Feature | Features, callback: (previousValue: any, currentGeometry: GeometryObject, currentIndex: number) => void, initialValue: any): any;
+    geomReduce(layer: GeometryCollection | GeometryObject, callback: (previousValue: any, currentGeometry: GeometryObject, currentIndex: number) => void, initialValue: any): any;
+
+    /**
+     * http://turfjs.org/docs/#geomeach
+     */
+    geomEach(layer: Point | Points, callback: (currentGeometry: GeoJSON.Point, currentIndex: number) => void): void;
+    geomEach(layer: LineString | LineStrings, callback: (currentGeometry: GeoJSON.LineString, currentIndex: number) => void): void;
+    geomEach(layer: Polygon | Polygons, callback: (currentGeometry: GeoJSON.Polygon, currentIndex: number) => void): void;
+    geomEach(layer: MultiPoint | MultiPoints, callback: (currentGeometry: GeoJSON.MultiPoint, currentIndex: number) => void): void;
+    geomEach(layer: MultiLineString | MultiLineStrings, callback: (currentGeometry: GeoJSON.MultiLineString, currentIndex: number) => void): void;
+    geomEach(layer: MultiPolygon | MultiPolygons, callback: (currentGeometry: GeoJSON.MultiPolygon, currentIndex: number) => void): void;
+    geomEach(layer: Feature | Features, callback: (currentGeometry: GeometryObject, currentIndex: number) => void): void;
+    geomEach(layer: GeometryCollection | GeometryObject, callback: (currentGeometry: GeometryObject, currentIndex: number) => void): void;
 }
 
 declare const meta: MetaStatic

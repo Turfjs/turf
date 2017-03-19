@@ -1,10 +1,16 @@
 {
   "name": "@turf/planepoint",
-  "version": "3.7.5",
+  "version": "3.13.0",
   "description": "turf planepoint module",
   "main": "index.js",
+  "types": "index.d.ts",
+  "files": [
+    "index.js",
+    "index.d.ts"
+  ],
   "scripts": {
-    "test": "tape test.js"
+    "test": "node test.js",
+    "bench": "node bench.js"
   },
   "repository": {
     "type": "git",
@@ -17,7 +23,7 @@
     "point",
     "interpolation"
   ],
-  "author": "morganherlocker",
+  "author": "Turf Authors",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/Turfjs/turf/issues"
@@ -27,6 +33,5 @@
     "benchmark": "^1.0.0",
     "tape": "^3.5.0"
   },
-  "dependencies": {},
-  "types": "index.d.ts"
+  "dependencies": {}
 }

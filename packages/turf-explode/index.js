@@ -1,5 +1,6 @@
 var featureCollection = require('@turf/helpers').featureCollection;
-var each = require('@turf/meta').coordEach;
+var featureEach = require('@turf/meta').featureEach;
+var coordEach = require('@turf/meta').coordEach;
 var point = require('@turf/helpers').point;
 
 /**
@@ -8,7 +9,7 @@ var point = require('@turf/helpers').point;
  *
  * @name explode
  * @param {(Feature|FeatureCollection)} geojson input features
- * @return {FeatureCollection<point>} points representing the exploded input features
+ * @returns {FeatureCollection<point>} points representing the exploded input features
  * @throws {Error} if it encounters an unknown geometry type
  * @example
  * var poly = {
@@ -36,8 +37,16 @@ var point = require('@turf/helpers').point;
  */
 module.exports = function (geojson) {
     var points = [];
-    each(geojson, function (coord) {
-        points.push(point(coord));
-    });
+    if (geojson.type === 'FeatureCollection') {
+        featureEach(geojson, function (feature) {
+            coordEach(feature, function (coord) {
+                points.push(point(coord, feature.properties));
+            });
+        });
+    } else {
+        coordEach(geojson, function (coord) {
+            points.push(point(coord, geojson.properties));
+        });
+    }
     return featureCollection(points);
 };

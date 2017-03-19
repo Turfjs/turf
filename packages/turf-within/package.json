@@ -1,10 +1,16 @@
 {
   "name": "@turf/within",
-  "version": "3.7.5",
+  "version": "3.13.0",
   "description": "turf within module",
   "main": "index.js",
+  "types": "index.d.ts",
+  "files": [
+    "index.js",
+    "index.d.ts"
+  ],
   "scripts": {
-    "test": "tape test.js"
+    "test": "node test.js",
+    "bench": "node bench.js"
   },
   "repository": {
     "type": "git",
@@ -17,7 +23,7 @@
     "polygon",
     "featurecollection"
   ],
-  "author": "morganherlocker",
+  "author": "Turf Authors",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/Turfjs/turf/issues"
@@ -26,11 +32,10 @@
   "devDependencies": {
     "benchmark": "^1.0.0",
     "tape": "^3.5.0",
-    "@turf/helpers": "^3.7.5"
+    "@turf/helpers": "^3.13.0"
   },
   "dependencies": {
-    "@turf/inside": "^3.7.5",
-    "@turf/helpers": "^3.7.5"
-  },
-  "types": "index.d.ts"
+    "@turf/inside": "^3.13.0",
+    "@turf/helpers": "^3.13.0"
+  }
 }

@@ -7,7 +7,7 @@ var featureCollection = require('@turf/helpers').featureCollection;
  * @name sample
  * @param {FeatureCollection} featurecollection set of input features
  * @param {number} num number of features to select
- * @return {FeatureCollection} a FeatureCollection with `n` features
+ * @returns {FeatureCollection} a FeatureCollection with `n` features
  * @example
  * var points = turf.random('points', 1000);
  *

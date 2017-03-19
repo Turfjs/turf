@@ -1,14 +1,16 @@
 var point = require('@turf/helpers').point;
-var featurecollection = require('@turf/helpers').featureCollection;
+var featureCollection = require('@turf/helpers').featureCollection;
 var distance = require('@turf/distance');
+var turfBBox = require('@turf/bbox');
+
 /**
- * Takes a bounding box and a cell depth and returns a set of {@link Point|points} in a grid.
+ * Creates a {@link Point} grid from a bounding box, {@link FeatureCollection} or {@link Feature}.
  *
  * @name pointGrid
- * @param {Array<number>} bbox extent in [minX, minY, maxX, maxY] order
+ * @param {Array<number>|FeatureCollection|Feature<any>} bbox extent in [minX, minY, maxX, maxY] order
  * @param {number} cellSize the distance across each cell
  * @param {string} [units=kilometers] used in calculating cellSize, can be degrees, radians, miles, or kilometers
- * @return {FeatureCollection<Point>} grid of points
+ * @returns {FeatureCollection<Point>} grid of points
  * @example
  * var extent = [-70.823364, -33.553984, -70.473175, -33.302986];
  * var cellSize = 3;
@@ -18,23 +20,33 @@ var distance = require('@turf/distance');
  *
  * //=grid
  */
-module.exports = function pointGrid(bbox, cellSize, units) {
-    var fc = featurecollection([]);
-    var xFraction = cellSize / (distance(point([bbox[0], bbox[1]]), point([bbox[2], bbox[1]]), units));
-    var cellWidth = xFraction * (bbox[2] - bbox[0]);
-    var yFraction = cellSize / (distance(point([bbox[0], bbox[1]]), point([bbox[0], bbox[3]]), units));
-    var cellHeight = yFraction * (bbox[3] - bbox[1]);
+module.exports = function (bbox, cellSize, units) {
+    var results = [];
 
-    var currentX = bbox[0];
-    while (currentX <= bbox[2]) {
-        var currentY = bbox[1];
-        while (currentY <= bbox[3]) {
-            fc.features.push(point([currentX, currentY]));
+    // validation
+    if (!bbox) throw new Error('bbox is required');
+    if (!Array.isArray(bbox)) bbox = turfBBox(bbox); // Convert GeoJSON to bbox
+    if (bbox.length !== 4) throw new Error('bbox must contain 4 numbers');
 
+    var west = bbox[0];
+    var south = bbox[1];
+    var east = bbox[2];
+    var north = bbox[3];
+
+    var xFraction = cellSize / (distance(point([west, south]), point([east, south]), units));
+    var cellWidth = xFraction * (east - west);
+    var yFraction = cellSize / (distance(point([west, south]), point([west, north]), units));
+    var cellHeight = yFraction * (north - south);
+
+    var currentX = west;
+    while (currentX <= east) {
+        var currentY = south;
+        while (currentY <= north) {
+            results.push(point([currentX, currentY]));
             currentY += cellHeight;
         }
         currentX += cellWidth;
     }
 
-    return fc;
+    return featureCollection(results);
 };

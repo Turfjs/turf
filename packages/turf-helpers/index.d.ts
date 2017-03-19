@@ -18,7 +18,7 @@ export type Position = GeoJSON.Position;
 export type LineStringFeatures = LineString | LineStrings | MultiLineString | MultiLineStrings | GeoJSON.LineString | GeoJSON.MultiLineString
 export type PolygonFeatures = Polygon | Polygons | MultiPolygon | MultiPolygons | GeoJSON.Polygon | GeoJSON.MultiPolygon
 export type Units = "miles" | "nauticalmiles" | "degrees" | "radians" | "inches" | "yards" | "meters" | "metres" | "kilometers" | "kilometres";
-export type BBox = Array<number>;
+export type BBox = [number, number, number, number];
 
 /**
  * http://turfjs.org/docs/#feature

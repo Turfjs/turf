@@ -1,27 +1,71 @@
 /**
- * Unwrap a coordinate from a Feature with a Point geometry, a Point
- * geometry, or a single coordinate.
+ * Unwrap a coordinate from a Point Feature, Geometry or a single coordinate.
  *
- * @param {*} obj any value
- * @returns {Array<number>} a coordinate
+ * @param {Array<any>|Geometry|Feature<Point>} obj any value
+ * @returns {Array<number>} coordinates
  */
 function getCoord(obj) {
-    if (Array.isArray(obj) &&
-        typeof obj[0] === 'number' &&
-        typeof obj[1] === 'number') {
-        return obj;
-    } else if (obj) {
-        if (obj.type === 'Feature' &&
-            obj.geometry &&
-            obj.geometry.type === 'Point' &&
-            Array.isArray(obj.geometry.coordinates)) {
-            return obj.geometry.coordinates;
-        } else if (obj.type === 'Point' &&
-            Array.isArray(obj.coordinates)) {
-            return obj.coordinates;
-        }
+    if (!obj) throw new Error('No obj passed');
+
+    var coordinates = getCoords(obj);
+
+    // getCoord() must contain at least two numbers (Point)
+    if (coordinates.length > 1 &&
+        typeof coordinates[0] === 'number' &&
+        typeof coordinates[1] === 'number') {
+        return coordinates;
+    } else {
+        throw new Error('Coordinate is not a valid Point');
     }
-    throw new Error('A coordinate, feature, or point geometry is required');
+}
+
+/**
+ * Unwrap coordinates from a Feature, Geometry Object or an Array of numbers
+ *
+ * @param {Array<any>|Geometry|Feature<any>} obj any value
+ * @returns {Array<any>} coordinates
+ */
+function getCoords(obj) {
+    if (!obj) throw new Error('No obj passed');
+    var coordinates;
+
+    // Array of numbers
+    if (obj.length) {
+        coordinates = obj;
+
+    // Geometry Object
+    } else if (obj.coordinates) {
+        coordinates = obj.coordinates;
+
+    // Feature
+    } else if (obj.geometry && obj.geometry.coordinates) {
+        coordinates = obj.geometry.coordinates;
+    }
+    // Checks if coordinates contains a number
+    if (coordinates) {
+        containsNumber(coordinates);
+        return coordinates;
+    }
+    throw new Error('No valid coordinates');
+}
+
+/**
+ * Checks if coordinates contains a number
+ *
+ * @private
+ * @param {Array<any>} coordinates GeoJSON Coordinates
+ * @returns {boolean} true if Array contains a number
+ */
+function containsNumber(coordinates) {
+    if (coordinates.length > 1 &&
+        typeof coordinates[0] === 'number' &&
+        typeof coordinates[1] === 'number') {
+        return true;
+    }
+    if (coordinates[0].length) {
+        return containsNumber(coordinates[0]);
+    }
+    throw new Error('coordinates must only contain numbers');
 }
 
 /**
@@ -52,6 +96,7 @@ function geojsonType(value, type, name) {
  * @throws {Error} error if value is not the expected type.
  */
 function featureOf(feature, type, name) {
+    if (!feature) throw new Error('No feature passed');
     if (!name) throw new Error('.featureOf() requires a name');
     if (!feature || feature.type !== 'Feature' || !feature.geometry) {
         throw new Error('Invalid input to ' + name + ', Feature with geometry required');
@@ -66,18 +111,19 @@ function featureOf(feature, type, name) {
  * Internally this uses {@link geojsonType} to judge geometry types.
  *
  * @alias collectionOf
- * @param {FeatureCollection} featurecollection a featurecollection for which features will be judged
+ * @param {FeatureCollection} featureCollection a FeatureCollection for which features will be judged
  * @param {string} type expected GeoJSON type
  * @param {string} name name of calling function
  * @throws {Error} if value is not the expected type.
  */
-function collectionOf(featurecollection, type, name) {
+function collectionOf(featureCollection, type, name) {
+    if (!featureCollection) throw new Error('No featureCollection passed');
     if (!name) throw new Error('.collectionOf() requires a name');
-    if (!featurecollection || featurecollection.type !== 'FeatureCollection') {
+    if (!featureCollection || featureCollection.type !== 'FeatureCollection') {
         throw new Error('Invalid input to ' + name + ', FeatureCollection required');
     }
-    for (var i = 0; i < featurecollection.features.length; i++) {
-        var feature = featurecollection.features[i];
+    for (var i = 0; i < featureCollection.features.length; i++) {
+        var feature = featureCollection.features[i];
         if (!feature || feature.type !== 'Feature' || !feature.geometry) {
             throw new Error('Invalid input to ' + name + ', Feature with geometry required');
         }
@@ -91,3 +137,4 @@ module.exports.geojsonType = geojsonType;
 module.exports.collectionOf = collectionOf;
 module.exports.featureOf = featureOf;
 module.exports.getCoord = getCoord;
+module.exports.getCoords = getCoords;

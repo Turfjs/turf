@@ -9,7 +9,7 @@ var distance = require('@turf/distance');
  * @name midpoint
  * @param {Feature<Point>} from first point
  * @param {Feature<Point>} to second point
- * @return {Feature<Point>} a point midway between `pt1` and `pt2`
+ * @returns {Feature<Point>} a point midway between `pt1` and `pt2`
  * @example
  * var pt1 = {
  *   "type": "Feature",

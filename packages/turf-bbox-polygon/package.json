@@ -1,10 +1,16 @@
 {
   "name": "@turf/bbox-polygon",
-  "version": "3.7.5",
-  "description": "turf bboxPolygon module",
+  "version": "3.13.0",
+  "description": "turf bbox-polygon module",
   "main": "index.js",
+  "types": "index.d.ts",
+  "files": [
+    "index.js",
+    "index.d.ts"
+  ],
   "scripts": {
-    "test": "node test.js"
+    "test": "node test.js",
+    "bench": "node bench.js"
   },
   "repository": {
     "type": "git",
@@ -17,7 +23,7 @@
     "extent",
     "bbox"
   ],
-  "author": "morganherlocker",
+  "author": "Turf Authors",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/Turfjs/turf/issues"
@@ -28,7 +34,6 @@
     "tape": "^3.5.0"
   },
   "dependencies": {
-    "@turf/helpers": "^3.7.5"
-  },
-  "types": "index.d.ts"
+    "@turf/helpers": "^3.13.0"
+  }
 }

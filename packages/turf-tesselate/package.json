@@ -1,10 +1,16 @@
 {
   "name": "@turf/tesselate",
-  "version": "3.7.5",
-  "description": "[Turf](http://turfjs.org/) tesselate module",
+  "version": "3.13.0",
+  "description": "turf tesselate module",
   "main": "index.js",
+  "types": "index.d.ts",
+  "files": [
+    "index.js",
+    "index.d.ts"
+  ],
   "scripts": {
-    "test": "node test.js"
+    "test": "node test.js",
+    "bench": "node bench.js"
   },
   "repository": {
     "type": "git",
@@ -18,6 +24,7 @@
     "polygon",
     "triangles"
   ],
+  "author": "Turf Authors",
   "contributors": [
     "morganherlocker",
     "Abel Vázquez"
@@ -29,11 +36,10 @@
   "homepage": "https://github.com/Turfjs/turf",
   "devDependencies": {
     "tape": "^4.0.0",
-    "@turf/helpers": "^3.7.5"
+    "@turf/helpers": "^3.13.0"
   },
   "dependencies": {
     "earcut": "^2.0.0",
-    "@turf/helpers": "^3.7.5"
-  },
-  "types": "index.d.ts"
+    "@turf/helpers": "^3.13.0"
+  }
 }

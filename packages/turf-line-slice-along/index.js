@@ -3,7 +3,6 @@ var distance = require('@turf/distance');
 var destination = require('@turf/destination');
 var lineString = require('@turf/helpers').lineString;
 
-
 /**
  * Takes a {@link LineString|line}, a specified distance along the line to a start {@link Point},
  * and a specified  distance along the line to a stop point
@@ -16,7 +15,7 @@ var lineString = require('@turf/helpers').lineString;
  * @param {number} startDist distance along the line to starting point
  * @param {number} stopDist distance along the line to ending point
  * @param {string} [units=kilometers] can be degrees, radians, miles, or kilometers
- * @return {Feature<LineString>} sliced line
+ * @returns {Feature<LineString>} sliced line
  * @example
  * var line = {
  *   "type": "Feature",
@@ -47,7 +46,7 @@ var lineString = require('@turf/helpers').lineString;
  *
  * //=sliced
  */
-module.exports = function lineSliceAlong(line, startDist, stopDist, units) {
+module.exports = function (line, startDist, stopDist, units) {
     var coords;
     var slice = [];
     if (line.type === 'Feature') coords = line.geometry.coordinates;
@@ -83,6 +82,10 @@ module.exports = function lineSliceAlong(line, startDist, stopDist, units) {
 
         if (travelled >= startDist) {
             slice.push(coords[i]);
+        }
+
+        if (i === coords.length - 1) {
+            return lineString(slice);
         }
 
         travelled += distance(coords[i], coords[i + 1], units);

@@ -8,6 +8,7 @@ Takes two [points](http://geojson.org/geojson-spec.html#point) and finds the geo
 
 -   `start` **[Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;[Point](http://geojson.org/geojson-spec.html#point)>** starting Point
 -   `end` **[Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;[Point](http://geojson.org/geojson-spec.html#point)>** ending Point
+-   `final` **\[[boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)]** calculates the final bearing if true (optional, default `false`)
 
 **Examples**
 
@@ -33,15 +34,8 @@ var point2 = {
   }
 };
 
-var points = {
-  "type": "FeatureCollection",
-  "features": [point1, point2]
-};
-
-//=points
-
 var bearing = turf.bearing(point1, point2);
-
+point1.properties.bearing = bearing
 //=bearing
 ```
 
