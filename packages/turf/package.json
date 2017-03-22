@@ -1,6 +1,6 @@
 {
   "name": "@turf/turf",
-  "version": "3.14.0",
+  "version": "3.14.1",
   "description": "a JavaScript library for performing geospatial operations with GeoJSON",
   "main": "index.js",
   "types": "index.d.ts",
@@ -111,7 +111,7 @@
     "@turf/triangle-grid": "^3.14.0",
     "@turf/truncate": "^3.13.0",
     "@turf/union": "^3.14.0",
-    "@turf/unkink-polygon": "^3.14.0",
+    "@turf/unkink-polygon": "^3.14.1",
     "@turf/within": "^3.14.0"
   },
   "devDependencies": {
