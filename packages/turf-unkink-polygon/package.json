@@ -44,6 +44,7 @@
     "@turf/helpers": "^3.13.0",
     "@turf/meta": "^3.14.0",
     "@turf/within": "^3.14.0",
+    "geojson-polygon-self-intersections": "^1.1.1",
     "rbush": "^2.0.1",
     "simplepolygon": "^1.1.1"
   }
