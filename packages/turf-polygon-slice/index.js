@@ -12,14 +12,12 @@ var featureEach = meta.featureEach;
 var featureReduce = meta.featureReduce;
 
 /**
- * Takes a {@link Polygon} and cuts it with a {@link Linestring}. Note the linestring must be a straight line (eg made of only two points).
- * Properties from the input polygon will be retained on output polygons. Internally uses [polyK](http://polyk.ivank.net/) to perform slice.
+ * Slices {@link Polygon} using a {@link Linestring}.
  *
  * @name polygonSlice
- * @param {Feature<Polygon>} polygon single Polygon Feature
- * @param {Feature<LineString>} linestring single LineString Feature
- * @param {boolean} [debug=false] Debug setting
- * @returns {FeatureCollection<Polygon>} FeatureCollection of Polygons
+ * @param {Feature<Polygon>} polygon Polygon to slice
+ * @param {Feature<LineString>} linestring LineString used to slice Polygon
+ * @returns {FeatureCollection<Polygon>} Sliced Polygons
  * @example
  * var polygon = {
  *   "geometry": {
@@ -33,7 +31,6 @@ var featureReduce = meta.featureReduce;
  *     ]]
  *   }
  * };
- *
  * var linestring =  {
  *     "type": "Feature",
  *     "properties": {},
@@ -45,9 +42,7 @@ var featureReduce = meta.featureReduce;
  *       ]
  *     }
  *   }
- *
- * var sliced = turf.slice(polygon, linestring);
- *
+ * var sliced = turf.polygonSlice(polygon, linestring);
  * //=sliced
 */
 module.exports = function polygonSlice(polygon, linestring) {
