@@ -1,6 +1,6 @@
 {
   "name": "@turf/midpoint",
-  "version": "3.13.0",
+  "version": "3.14.0",
   "description": "turf midpoint module",
   "main": "index.js",
   "types": "index.d.ts",
@@ -35,9 +35,9 @@
     "tape": "^3.5.0"
   },
   "dependencies": {
-    "@turf/bearing": "^3.13.0",
-    "@turf/destination": "^3.13.0",
-    "@turf/distance": "^3.13.0",
+    "@turf/bearing": "^3.14.0",
+    "@turf/destination": "^3.14.0",
+    "@turf/distance": "^3.14.0",
     "@turf/invariant": "^3.13.0"
   }
 }

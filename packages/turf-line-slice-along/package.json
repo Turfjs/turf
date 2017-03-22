@@ -1,6 +1,6 @@
 {
   "name": "@turf/line-slice-along",
-  "version": "3.13.1",
+  "version": "3.14.0",
   "description": "turf line-slice-along module",
   "main": "index.js",
   "types": "index.d.ts",
@@ -28,7 +28,7 @@
   },
   "homepage": "https://github.com/Turfjs/turf",
   "devDependencies": {
-    "@turf/along": "^3.13.1",
+    "@turf/along": "^3.14.0",
     "benchmark": "^1.0.0",
     "eslint": "^3.14.1",
     "eslint-config-mourner": "^2.0.1",
@@ -36,9 +36,9 @@
     "tape": "^3.5.0"
   },
   "dependencies": {
-    "@turf/bearing": "^3.13.0",
-    "@turf/destination": "^3.13.0",
-    "@turf/distance": "^3.13.0",
+    "@turf/bearing": "^3.14.0",
+    "@turf/destination": "^3.14.0",
+    "@turf/distance": "^3.14.0",
     "@turf/helpers": "^3.13.0"
   }
 }

@@ -1,6 +1,6 @@
 {
   "name": "@turf/within",
-  "version": "3.13.0",
+  "version": "3.14.0",
   "description": "turf within module",
   "main": "index.js",
   "types": "index.d.ts",
@@ -35,7 +35,7 @@
     "@turf/helpers": "^3.13.0"
   },
   "dependencies": {
-    "@turf/inside": "^3.13.0",
+    "@turf/inside": "^3.14.0",
     "@turf/helpers": "^3.13.0"
   }
 }
