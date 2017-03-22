@@ -81,6 +81,7 @@ import * as mask from '@turf/mask';
 import * as lineChunk from '@turf/line-chunk';
 import * as unkinkPolygon from '@turf/unkink-polygon';
 import * as greatCircle from '@turf/great-circle';
+import * as lineSegment from '@turf/line-segment';
 
 export {
     isolines,
@@ -157,5 +158,6 @@ export {
     mask,
     lineChunk,
     unkinkPolygon,
-    greatCircle
+    greatCircle,
+    lineSegment
 };

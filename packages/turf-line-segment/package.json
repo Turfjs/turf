@@ -1,6 +1,6 @@
 {
   "name": "@turf/line-segment",
-  "version": "3.13.0",
+  "version": "3.0.0",
   "description": "turf line-segment module",
   "main": "index.js",
   "types": "index.d.ts",

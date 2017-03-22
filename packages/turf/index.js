@@ -67,6 +67,7 @@ var turf = {
     lineChunk: require('@turf/line-chunk'),
     unkinkPolygon: require('@turf/unkink-polygon'),
     greatCircle: require('@turf/great-circle'),
+    lineSegment: require('@turf/line-segment'),
     point: helpers.point,
     polygon: helpers.polygon,
     lineString: helpers.lineString,

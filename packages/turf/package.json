@@ -89,6 +89,7 @@
     "@turf/line-chunk": "^3.13.1",
     "@turf/line-distance": "^3.13.0",
     "@turf/line-intersect": "^3.13.0",
+    "@turf/line-segment": "^3.0.0",
     "@turf/line-slice": "^3.13.1",
     "@turf/line-slice-along": "^3.13.1",
     "@turf/mask": "^3.13.1",
