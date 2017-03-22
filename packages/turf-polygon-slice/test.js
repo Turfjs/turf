@@ -5,7 +5,7 @@ const load = require('load-json-file');
 const write = require('write-json-file');
 const featureCollection = require('@turf/helpers').featureCollection;
 const featureEach = require('@turf/meta').featureEach;
-const polygonSlice = require('.');
+const polygonSlice = require('./');
 
 const directories = {
     in: path.join(__dirname, 'test', 'in') + path.sep,
@@ -29,16 +29,7 @@ let fixtures = fs.readdirSync(directories.in).map(filename => {
 
 test('turf-slice', t => {
     for (const {name, filename, polygon, linestring} of fixtures) {
-        const sliced = polygonSlice(polygon, linestring);
-
-        // Color Results
-        polygon.properties['stroke'] = '#f00';
-        polygon.properties['stroke-width'] = 6;
-        polygon.properties['fill-opacity'] = 0;
-        linestring.properties['stroke'] = '#f0f';
-        linestring.properties['stroke-width'] = 6;
-        const results = featureCollection([polygon, linestring]);
-        featureEach(sliced, feature => results.features.push(feature));
+        const results = colorSegments(polygonSlice(polygon, linestring));
 
         // Save Tests
         if (process.env.REGEN) write.sync(directories.out + filename, results);
@@ -46,3 +37,19 @@ test('turf-slice', t => {
     }
     t.end();
 });
+
+// Preview LineStrings with different colors
+function colorSegments(segments) {
+    const results = featureCollection([]);
+    featureEach(segments, (feature, index) => {
+        const r = (index % 2 === 0) ? 'F' : '0';
+        const g = (index % 2 === 0) ? '0' : '0';
+        const b = (index % 2 === 0) ? '0' : 'F';
+        feature.properties = Object.assign({
+            stroke: '#' + r + g + b,
+            'stroke-width': 6
+        }, feature.properties);
+        results.features.push(feature);
+    });
+    return results;
+}

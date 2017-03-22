@@ -56,11 +56,11 @@ module.exports = function polygonSlice(polygon, linestring) {
 };
 
 /**
- * Split a Polygon|LineString based on a target Polygon|LineString
+ * Split a LineString at the intersections of another LineString.
  *
  * @private
- * @param {Feature<LineString|Polygon>} source Feature to split
- * @param {Feature<LineString|Polygon>} target Feature used to find intersections
+ * @param {Feature<LineString>} source Line Feature to split
+ * @param {Feature<LineString>} target Line Feature used to find intersections
  * @returns {FeatureCollection<LineString>} Split lines
  */
 function lineSplit(source, target) {
