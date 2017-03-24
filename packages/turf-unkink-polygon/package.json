@@ -6,8 +6,7 @@
   "types": "index.d.ts",
   "files": [
     "index.js",
-    "index.d.ts",
-    "simplepolygon.js"
+    "index.d.ts"
   ],
   "scripts": {
     "test": "node test.js",
@@ -46,6 +45,6 @@
     "@turf/within": "^3.14.0",
     "geojson-polygon-self-intersections": "^1.1.1",
     "rbush": "^2.0.1",
-    "simplepolygon": "^1.1.1"
+    "simplepolygon": "^1.1.3"
   }
 }
