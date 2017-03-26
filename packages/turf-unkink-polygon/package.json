@@ -1,6 +1,6 @@
 {
   "name": "@turf/unkink-polygon",
-  "version": "3.14.1",
+  "version": "3.14.2",
   "description": "turf unkink-polygon module",
   "main": "index.js",
   "types": "index.d.ts",
@@ -39,7 +39,7 @@
   },
   "dependencies": {
     "@turf/area": "^3.14.0",
-    "@turf/flatten": "^3.14.0",
+    "@turf/flatten": "^3.14.2",
     "@turf/helpers": "^3.13.0",
     "@turf/meta": "^3.14.0",
     "@turf/within": "^3.14.0",

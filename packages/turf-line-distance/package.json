@@ -1,6 +1,6 @@
 {
   "name": "@turf/line-distance",
-  "version": "3.14.0",
+  "version": "3.14.2",
   "description": "turf line-distance module",
   "main": "index.js",
   "types": "index.d.ts",
@@ -38,7 +38,7 @@
   },
   "dependencies": {
     "@turf/distance": "^3.14.0",
-    "@turf/flatten": "^3.14.0",
+    "@turf/flatten": "^3.14.2",
     "@turf/helpers": "^3.13.0",
     "@turf/meta": "^3.14.0"
   }
