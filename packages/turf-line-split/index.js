@@ -1,86 +1,93 @@
+var pointOnLine = require('@turf/point-on-line');
 var helpers = require('@turf/helpers');
 var meta = require('@turf/meta');
-var lineSegment = require('@turf/line-segment');
-var getCoords = require('@turf/invariant').getCoords;
-var lineIntersect = require('@turf/line-intersect');
-var rbush = require('geojson-rbush');
-var clone = require('clone');
-// var featureCollection = helpers.featureCollection;
-var lineString = helpers.lineString;
 var featureEach = meta.featureEach;
 var featureReduce = meta.featureReduce;
-var coordEach = meta.coordEach;
+var lineSegment = require('@turf/line-segment');
+var invariant = require('@turf/invariant');
+var getCoords = invariant.getCoords;
+// var lineIntersect = require('@turf/line-intersect');
+var rbush = require('geojson-rbush');
+var featureCollection = helpers.featureCollection;
+var lineString = helpers.lineString;
 
 /**
  * Split a Polygon|LineString based on a target Polygon|LineString
  *
  * @name lineSplit
- * @param {Feature<LineString|Polygon>} source Feature to split
- * @param {Feature<LineString|Polygon>} target Feature used to find intersections
- * @returns {FeatureCollection<LineString>} Split lines
+ * @param {Feature<LineString>} line LineString Feature to split
+ * @param {Feature<LineString|MultiLineString|Polygon|MultiPolygon|Point|MultiPoint>} splitter Feature used to split
+ * @returns {FeatureCollection<LineString>} Split LineStrings
  */
-module.exports = function (source, target) {
+module.exports = function (line, splitter) {
     var results = [];
+    if (geomType(line) !== 'LineString') throw new Error('<line> must be LineString');
+    if (geomType(splitter) === 'FeatureCollection') throw new Error('<splitter> cannot be a FeatureCollection');
 
-    // Spatial Index
-    var tree = rbush();
-    tree.load(lineSegment(target));
-
-    // Lines of 2-vertex
-    var segments = lineSegment(source);
-    var initialValue = segments.features[0];
-
-    var last = featureReduce(segments, function (previous, current, index) {
-        var matched = false;
-        var lastCoord = getCoords(clone(current))[1];
-
-        featureEach(tree.search(current), function (polySegment) {
-            if (!matched) {
-                // Segments match
-                var intersect = lineIntersect(current, polySegment).features[0];
-                if (intersect) {
-                    // Create Segment
-                    var newSegment = clone(previous);
-                    if (index === 0) {
-                        newSegment = lineString([getCoords(current)[0], getCoords(intersect)]);
-                    } else {
-                        newSegment.geometry.coordinates.push(getCoords(intersect));
-                    }
-                    // Push new split lines to results
-                    if (validSegment(newSegment)) {
-                        results.push(newSegment);
-                    }
-                    // Restart previous value to intersection point
-                    previous.geometry.coordinates = [intersect.geometry.coordinates];
-                    matched = true;
-                }
-            }
-        });
-        // Append last coordinate of current segment
-        previous.geometry.coordinates.push(lastCoord);
-        return previous;
-    }, initialValue);
-
-    // Add the end segment to the lineEnd of the line
-    if (validSegment(last)) {
-        results.push(last);
+    switch (geomType(splitter)) {
+    case 'Point':
+        results = splitLineWithPoint(line, splitter).features;
     }
-    // Temporary Results
-    return lineIntersect(source, target);
-    // return featureCollection(results);
+    return featureCollection(results);
 };
 
 /**
- * Validate Segment - Must contain more than 1 unique point
+ * Retrieves Geometry Type from GeoJSON
  *
- * @private
- * @param {Feature<LineString>} segment Line Segment
- * @returns {boolean} true if segment is valid
+ * @param {Feature<any>} geojson Feature
+ * @returns {string} Geometry Type
  */
-function validSegment(segment) {
-    var uniques = {};
-    coordEach(segment, function (coord) {
-        uniques[coord.join(',')] = true;
-    });
-    return Object.keys(uniques).length > 1;
+function geomType(geojson) {
+    return (geojson.geometry) ? geojson.geometry.type : geojson.type;
+}
+
+/**
+ * Split LineString with MultiPoint
+ *
+ * @param {Feature<LineString>} line LineString
+ * @param {Feature<Point>} splitter Point
+ * @returns {FeatureCollection<LineString>} split LineStrings
+ */
+function splitLineWithPoint(line, splitter) {
+    // Create spatial index
+    var tree = rbush();
+    var segments = lineSegment(line);
+    tree.load(segments);
+    var search = tree.search(splitter);
+
+    // Return itself if point is not within spatial index
+    if (!search.features.length) return featureCollection([line]);
+
+    // Filter to one segment that is the closest to the line
+    var closestDistance;
+    var closestSegment;
+    if (search.features.length > 1) {
+        featureEach(search, function (segment) {
+            var point = pointOnLine(segment, splitter);
+            if (closestDistance === undefined) {
+                closestSegment = segment;
+                closestDistance = point.properties.dist;
+            } else if (point.properties.dist < closestDistance) {
+                closestSegment = segment;
+                closestDistance = point.properties.dist;
+            }
+        });
+    } else { closestSegment = search.features[0]; }
+
+    // Split lines
+    var lines = [];
+    var initialValue = [getCoords(segments.features[0])[0]]; // First point of segments
+    var lastCoords = featureReduce(segments, function (previous, current, index) {
+        if (index === closestSegment.id) {
+            var coords = getCoords(splitter);
+            previous.push(coords);
+            lines.push(lineString(previous));
+            return [coords, getCoords(current)[1]];
+        } else {
+            previous.push(getCoords(current)[1]);
+            return previous;
+        }
+    }, initialValue);
+    lines.push(lineString(lastCoords));
+    return featureCollection(lines);
 }

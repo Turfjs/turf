@@ -23,7 +23,7 @@
     "line",
     "split"
   ],
-  "author": "Denis Carriere",
+  "author": "Denis Carriere <@DenisCarriere>",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/Turfjs/turf/issues"
@@ -38,10 +38,10 @@
   "dependencies": {
     "@turf/helpers": "^3.13.0",
     "@turf/invariant": "^3.13.0",
-    "@turf/line-intersect": "^3.14.2",
-    "@turf/line-segment": "^3.14.2",
+    "@turf/line-intersect": "^3.14.3",
+    "@turf/line-segment": "^3.14.3",
     "@turf/meta": "^3.14.0",
-    "clone": "^2.1.1",
+    "@turf/point-on-line": "^3.14.2",
     "geojson-rbush": "^1.0.1"
   }
 }
