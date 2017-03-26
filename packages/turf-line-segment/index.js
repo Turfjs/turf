@@ -1,8 +1,8 @@
 var flatten = require('@turf/flatten');
 var featureEach = require('@turf/meta').featureEach;
-var coordReduce = require('@turf/meta').coordReduce;
 var lineString = require('@turf/helpers').lineString;
 var featureCollection = require('@turf/helpers').featureCollection;
+var getCoords = require('@turf/invariant').getCoords;
 
 /**
  * Creates a {@link FeatureCollection} of 2-vertex {@link LineString} segments from a {@link LineString}, {@link MultiLineString}, {@link MultiPolygon} or {@link Polygon}.
@@ -26,9 +26,20 @@ module.exports = function (geojson) {
     var results = [];
     featureEach(geojson, function (multiFeature) {
         featureEach(flatten(multiFeature), function (feature) {
-            coordReduce(feature, function (previousCoords, currentCoords) {
-                results.push(lineString([previousCoords, currentCoords], feature.properties));
-                return currentCoords;
+            var linestrings;
+            var type = (feature.geometry) ? feature.geometry.type : feature.type;
+            switch (type) {
+            case 'Polygon':
+                linestrings = getCoords(feature);
+                break;
+            case 'LineString':
+                linestrings = [getCoords(feature)];
+            }
+            linestrings.forEach(function (linestring) {
+                linestring.reduce(function (previousCoords, currentCoords) {
+                    results.push(lineString([previousCoords, currentCoords], feature.properties));
+                    return currentCoords;
+                });
             });
         });
     });
