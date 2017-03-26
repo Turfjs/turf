@@ -19,6 +19,25 @@ var lineString = helpers.lineString;
  * @param {Feature<LineString>} line LineString Feature to split
  * @param {Feature<Point|MultiPoint|LineString|MultiLineString|Polygon|MultiPolygon>} splitter Feature used to split line
  * @returns {FeatureCollection<LineString>} Split LineStrings
+ * @example
+ * var line = {
+ *   "type": "Feature",
+ *   "properties": {},
+ *   "geometry": {
+ *     "type": "LineString",
+ *     "coordinates": [[120, -25], [145, -25]]
+ *   }
+ * };
+ * var splitter = {
+ *   "type": "Feature",
+ *   "properties": {},
+ *   "geometry": {
+ *     "type": "LineString",
+ *     "coordinates": [[130, -15], [130, -35]]
+ *   }
+ * };
+ * var split = turf.lineSplit(line, splitter);
+ * //=split
  */
 module.exports = function (line, splitter) {
     if (geomType(line) !== 'LineString') throw new Error('<line> must be LineString');
