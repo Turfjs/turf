@@ -1,6 +1,6 @@
 {
   "name": "@turf/turf",
-  "version": "3.14.2",
+  "version": "3.14.3",
   "description": "a JavaScript library for performing geospatial operations with GeoJSON",
   "main": "index.js",
   "types": "index.d.ts",
@@ -88,8 +88,8 @@
     "@turf/kinks": "^3.14.0",
     "@turf/line-chunk": "^3.14.2",
     "@turf/line-distance": "^3.14.2",
-    "@turf/line-intersect": "^3.14.2",
-    "@turf/line-segment": "^3.14.2",
+    "@turf/line-intersect": "^3.14.3",
+    "@turf/line-segment": "^3.14.3",
     "@turf/line-slice": "^3.14.2",
     "@turf/line-slice-along": "^3.14.0",
     "@turf/mask": "^3.14.0",
