@@ -30,16 +30,17 @@
   },
   "homepage": "https://github.com/Turfjs/turf",
   "devDependencies": {
+    "@turf/truncate": "^3.13.0",
     "benchmark": "^2.1.3",
     "load-json-file": "^2.0.0",
     "tape": "^3.5.0",
     "write-json-file": "^2.0.0"
   },
   "dependencies": {
-    "@turf/bbox-polygon": "^3.14.0",
-    "@turf/flatten": "^3.14.0",
     "@turf/helpers": "^3.13.0",
+    "@turf/invariant": "^3.13.0",
+    "@turf/line-segment": "^3.14.0",
     "@turf/meta": "^3.14.0",
-    "rbush": "^2.0.1"
+    "geojson-rbush": "^1.0.1"
   }
 }

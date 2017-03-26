@@ -1,4 +1,0 @@
-{
-  "type": "FeatureCollection",
-  "features": []
-}
