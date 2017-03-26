@@ -1,10 +1,14 @@
-import {LineString, Polygon, LineStrings} from '@turf/helpers';
+import {LineString, LineStrings} from '@turf/helpers';
 
-type Line = LineString | Polygon
+type Splitter = GeoJSON.Feature<
+  GeoJSON.Point | GeoJSON.MultiPoint |
+  GeoJSON.LineString | GeoJSON.MultiLineString |
+  GeoJSON.Polygon | GeoJSON.MultiPolygon
+>
 
 /**
- * http://turfjs.org/docs/#lineslit
+ * http://turfjs.org/docs/#linesplit
  */
-declare function lineSplit(source: Line, target: Line): LineStrings;
+declare function lineSplit(line: LineString, splitter: Splitter): LineStrings;
 declare namespace lineSplit { }
 export = lineSplit;
