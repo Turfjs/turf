@@ -16,11 +16,13 @@ const fixtures = fs.readdirSync(directory).map(filename => {
 /**
  * Benchmark Results
  *
- * feature-collection x 440,309 ops/sec ±0.69% (89 runs sampled)
- * linestring x 1,353,662 ops/sec ±1.64% (84 runs sampled)
- * multi-linestring x 588,394 ops/sec ±6.48% (78 runs sampled)
- * polygon-with-holes x 619,014 ops/sec ±1.38% (87 runs sampled)
- * polygon x 1,278,418 ops/sec ±1.47% (86 runs sampled)
+ * 2-vertex-segment x 1,172,641 ops/sec ±1.89% (80 runs sampled)
+ * feature-collection x 270,916 ops/sec ±1.49% (89 runs sampled)
+ * linestring x 938,353 ops/sec ±1.21% (88 runs sampled)
+ * multi-linestring x 451,359 ops/sec ±1.14% (89 runs sampled)
+ * multi-polygon x 447,952 ops/sec ±1.37% (92 runs sampled)
+ * polygon-with-holes x 390,985 ops/sec ±1.19% (86 runs sampled)
+ * polygon x 873,856 ops/sec ±1.28% (88 runs sampled)
  */
 const suite = new Benchmark.Suite('turf-line-segment');
 fixtures.forEach(({name, geojson}) => suite.add(name, () => lineSegment(geojson)));
