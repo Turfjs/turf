@@ -5,6 +5,7 @@ const load = require('load-json-file');
 const write = require('write-json-file');
 const featureEach = require('@turf/meta').featureEach;
 const featureCollection = require('@turf/helpers').featureCollection;
+const truncate = require('@turf/truncate');
 const lineIntersect = require('./');
 
 const directories = {
@@ -24,7 +25,7 @@ test('turf-line-intersect', t => {
     for (const {filename, name, geojson}  of fixtures) {
         const line1 = geojson.features[0];
         const line2 = geojson.features[1];
-        const points = lineIntersect(line1, line2);
+        const points = truncate(lineIntersect(line1, line2));
         const results = featureCollection([line1, line2]);
         featureEach(points, point => results.features.push(point));
 
