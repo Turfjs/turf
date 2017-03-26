@@ -24,6 +24,7 @@ var getCoords = require('@turf/invariant').getCoords;
  */
 module.exports = function (geojson) {
     var results = [];
+    var index = 0;
     featureEach(geojson, function (multiFeature) {
         featureEach(flatten(multiFeature), function (feature) {
             var coords = [];
@@ -37,7 +38,11 @@ module.exports = function (geojson) {
             }
             coords.forEach(function (coord) {
                 var segments = createSegments(coord, feature.properties);
-                segments.forEach(function (segment) { results.push(segment); });
+                segments.forEach(function (segment) {
+                    segment.id = index;
+                    results.push(segment);
+                    index++;
+                });
             });
         });
     });
