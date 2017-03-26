@@ -36,10 +36,10 @@
     "write-json-file": "^2.0.0"
   },
   "dependencies": {
-    "@turf/bbox-polygon": "^3.14.0",
-    "@turf/flatten": "^3.14.0",
     "@turf/helpers": "^3.13.0",
+    "@turf/invariant": "^3.13.0",
+    "@turf/line-segment": "^3.14.0",
     "@turf/meta": "^3.14.0",
-    "rbush": "^2.0.1"
+    "geojson-rbush": "^1.0.1"
   }
 }
