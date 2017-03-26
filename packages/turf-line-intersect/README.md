@@ -17,10 +17,7 @@ var line1 = {
   "properties": {},
   "geometry": {
     "type": "LineString",
-    "coordinates": [
-      [126, -11],
-      [129, -21]
-    ]
+    "coordinates": [[126, -11], [129, -21]]
   }
 };
 var line2 = {
@@ -28,10 +25,7 @@ var line2 = {
   "properties": {},
   "geometry": {
     "type": "LineString",
-    "coordinates": [
-      [123, -18],
-      [131, -14]
-    ]
+    "coordinates": [[123, -18], [131, -14]]
   }
 };
 var points = turf.lineIntersect(line1, line2);
