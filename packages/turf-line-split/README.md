@@ -2,7 +2,7 @@
 
 # lineSplit
 
-Split a Polygon|LineString based on a target Polygon|LineString
+Split a LineString by another GeoJSON Feature.
 
 **Parameters**
 

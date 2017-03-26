@@ -13,7 +13,7 @@ var featureCollection = helpers.featureCollection;
 var lineString = helpers.lineString;
 
 /**
- * Split a Polygon|LineString based on a target Polygon|LineString
+ * Split a LineString by another GeoJSON Feature.
  *
  * @name lineSplit
  * @param {Feature<LineString>} line LineString Feature to split
