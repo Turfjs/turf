@@ -1,0 +1,251 @@
+{
+	"type": "FeatureCollection",
+	"features": [
+		{
+			"type": "Feature",
+			"properties": {
+				"stroke": "#F00",
+				"stroke-width": 10
+			},
+			"geometry": {
+				"type": "Point",
+				"coordinates": [
+					-13.779530044496044,
+					25.244695951306014
+				]
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {
+				"stroke": "#00F",
+				"stroke-width": 10
+			},
+			"geometry": {
+				"type": "Point",
+				"coordinates": [
+					-1.0182432477539543,
+					25.244695951306014
+				]
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {
+				"stroke": "#F00",
+				"stroke-width": 10
+			},
+			"geometry": {
+				"type": "Point",
+				"coordinates": [
+					13.166298956207239,
+					25.244695951306014
+				]
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {
+				"stroke": "#00F",
+				"stroke-width": 10
+			},
+			"geometry": {
+				"type": "Point",
+				"coordinates": [
+					-17.476687484008625,
+					25.244695951306014
+				]
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {
+				"stroke": "#F00",
+				"stroke-width": 10
+			},
+			"geometry": {
+				"type": "Point",
+				"coordinates": [
+					22.85156250000001,
+					31.584256011340763
+				]
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {
+				"stroke": "#00F",
+				"stroke-width": 10
+			},
+			"geometry": {
+				"type": "Point",
+				"coordinates": [
+					22.85156250000001,
+					36.15533205769751
+				]
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {
+				"stroke": "#F00",
+				"stroke-width": 10
+			},
+			"geometry": {
+				"type": "Point",
+				"coordinates": [
+					18.127085933523816,
+					42.16340342422398
+				]
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {
+				"stroke": "#00F",
+				"stroke-width": 10
+			},
+			"geometry": {
+				"type": "Point",
+				"coordinates": [
+					11.088783399105202,
+					42.16340342422398
+				]
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {
+				"stroke": "#F00",
+				"stroke-width": 10
+			},
+			"geometry": {
+				"type": "Point",
+				"coordinates": [
+					-8.945627161081145,
+					42.16340342422398
+				]
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {
+				"stroke": "#00F",
+				"stroke-width": 10
+			},
+			"geometry": {
+				"type": "Point",
+				"coordinates": [
+					-17.961934878047867,
+					42.16340342422398
+				]
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {
+				"stroke": "#F00",
+				"stroke-width": 10
+			},
+			"geometry": {
+				"type": "Point",
+				"coordinates": [
+					-22.499999999999975,
+					40.405398511606414
+				]
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {
+				"stroke": "#00F",
+				"stroke-width": 10
+			},
+			"geometry": {
+				"type": "Point",
+				"coordinates": [
+					-22.499999999999975,
+					30.27472981176568
+				]
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {},
+			"geometry": {
+				"type": "Polygon",
+				"coordinates": [
+					[
+						[
+							-22.499999999999975,
+							25.244695951306014
+						],
+						[
+							22.85156250000001,
+							25.244695951306014
+						],
+						[
+							22.85156250000001,
+							42.16340342422398
+						],
+						[
+							-22.499999999999975,
+							42.16340342422398
+						],
+						[
+							-22.499999999999975,
+							25.244695951306014
+						]
+					]
+				]
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {},
+			"geometry": {
+				"type": "Polygon",
+				"coordinates": [
+					[
+						[
+							-15.556640624999982,
+							23.32208001137843
+						],
+						[
+							-6.416015624999988,
+							33.211116472416826
+						],
+						[
+							3.3398437500000204,
+							18.81271785640775
+						],
+						[
+							25.224609375000032,
+							33.137551192346145
+						],
+						[
+							15.29296875000003,
+							45.767522962149876
+						],
+						[
+							3.6035156250000226,
+							35.746512259918504
+						],
+						[
+							-12.832031249999977,
+							44.15068115978091
+						],
+						[
+							-29.79492187499998,
+							37.579412513438385
+						],
+						[
+							-15.556640624999982,
+							23.32208001137843
+						]
+					]
+				]
+			}
+		}
+	]
+}
