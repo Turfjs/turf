@@ -3,10 +3,9 @@ var grid = require('../../turf-point-grid');
 
 var bbox = [0, 30, 20, 50];
 var cellWidth = 50;
-// var units = 'miles';
 var pointGrid = grid(bbox, cellWidth);
 for (var i = 0; i < pointGrid.features.length; i++) {
-  pointGrid.features[i].properties.elevation = Math.round(Math.random() * 1000) / 100;
+    pointGrid.features[i].properties.elevation = Math.round(Math.random() * 1000) / 100;
 }
 
 console.log('pointGrid:\n', JSON.stringify(pointGrid));

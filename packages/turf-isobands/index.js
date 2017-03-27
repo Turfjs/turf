@@ -152,12 +152,9 @@ function createPointGrid(points, property) {
 }
 
 /**
- * Returns if the passed array of arrays is a matrix,
- * i.e. all rows have the same length
- *
  * @private
  * @param {Array<Array>} input array of array of points divided by latitude
- * @returns {boolean}
+ * @returns {boolean} true if the passed array of arrays is a matrix, i.e. all rows have the same length
  */
 function isPointGrid(input) {
     if (!Array.isArray(input) || input.length < 2) return false;
@@ -380,8 +377,8 @@ function groupNestedRings(orderedLinearRings) {
 
 /**
  * @private
- * @param {Polygon} testPolygon
- * @param {Polygon} targetPolygon
+ * @param {Polygon} testPolygon polygon of interest
+ * @param {Polygon} targetPolygon polygon you want to compare with
  * @returns {boolean} true if test-Polygon is inside target-Polygon
  */
 function isInside(testPolygon, targetPolygon) {
@@ -396,7 +393,7 @@ function isInside(testPolygon, targetPolygon) {
 
 /**
  * @private
- * @param {Array<Object>} list
+ * @param {Array<Object>} list list of objects which might contain the 'group' attribute
  * @returns {boolean} true if all the objects in the list are marked as grouped
  */
 function allGrouped(list) {
@@ -410,7 +407,7 @@ function allGrouped(list) {
 
 /**
  * @private
- * @param {Point} point
+ * @param {Point} point input
  * @returns {number} latitude (y-coordinate) of the input point
  */
 function getLatitude(point) {
@@ -419,7 +416,7 @@ function getLatitude(point) {
 
 /**
  * @private
- * @param {Point} point
+ * @param {Point} point input
  * @returns {number} longitude (x-coordinate) of the inpnut point
  */
 function getLongitude(point) {

@@ -2,10 +2,10 @@ var random = require('../../turf-random');
 var isobands = require('../../turf-isobands');
 
 var randomPoints = random('point', 50, {
-  bbox: [0, 30, 20, 50]
+    bbox: [0, 30, 20, 50]
 });
 for (var j = 0; j < randomPoints.features.length; j++) {
-  randomPoints.features[j].properties.elevation = Math.round(Math.random() * 1000) / 100;
+    randomPoints.features[j].properties.elevation = Math.round(Math.random() * 1000) / 100;
 }
 console.log('randomPoints:\n', JSON.stringify(randomPoints));
 
