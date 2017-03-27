@@ -8,6 +8,13 @@ var inside = require('@turf/inside');
 var area = require('@turf/area');
 var invariant = require('@turf/invariant');
 var featureEach = require('@turf/meta').featureEach;
+var bbox = require('@turf/bbox');
+var distance = require('@turf/distance');
+var grid = require('@turf/point-grid');
+var planepoint = require('@turf/planepoint');
+var point = helpers.point;
+var square = require('@turf/square');
+var tin = require('@turf/tin');
 
 /**
  * Takes a grid {@link FeatureCollection} of {@link Point} features with z-values and an array of
@@ -34,11 +41,15 @@ var featureEach = require('@turf/meta').featureEach;
  */
 module.exports = function (points, breaks, property) {
     // Input validation
-    invariant.collectionOf(points, 'Point', 'isobands must contain Points');
+    invariant.collectionOf(points, 'Point', 'input must contain Points');
     property = property || 'elevation';
 
     // Isoband methods
     var pointsByLatitude = createPointsByLatitude(points);
+    if (!isPointGrid(pointsByLatitude)) {
+        var pointGrid = createPointGrid(points, property);
+        pointsByLatitude = createPointsByLatitude(pointGrid);
+    }
     var gridData = createGridData(pointsByLatitude, property);
     var contours = createContourLines(gridData, breaks, property);
     contours = rescaleContours(contours, gridData, pointsByLatitude);
@@ -74,15 +85,13 @@ function createMultiPolygons(contours, property) {
  * @returns {Array<any>} contours
  */
 function rescaleContours(contours, gridData, pointsByLatitude) {
-    /*####################################
-     getting references of the original grid of points (on the map)
-     ####################################*/
-    var lastC = pointsByLatitude[0].length - 1; // last colum of the data grid
+    // getting references of the original grid of points (on the map)
+    var lastCol = pointsByLatitude[0].length - 1; // last column of the data grid
+    var lastRow = pointsByLatitude.length - 1; // last row of the data grid
     // get the distance (on the map) between the first and the last point on a row of the grid
-    var originalWidth = getLongitude(pointsByLatitude[0][lastC]) - getLongitude(pointsByLatitude[0][0]);
-    var lastR = pointsByLatitude.length - 1; // last row of the data grid
+    var originalWidth = getLongitude(pointsByLatitude[0][lastCol]) - getLongitude(pointsByLatitude[0][0]);
     // get the distance (on the map) between the first and the last point on a column of the grid
-    var originalHeigth = getLatitude(pointsByLatitude[lastR][0]) - getLatitude(pointsByLatitude[0][0]);
+    var originalHeigth = getLatitude(pointsByLatitude[lastRow][0]) - getLatitude(pointsByLatitude[0][0]);
 
     // get origin, which is the first point of the last row on the rectangular data on the map
     var x0 = getLongitude(pointsByLatitude[0][0]);
@@ -108,6 +117,77 @@ function rescaleContours(contours, gridData, pointsByLatitude) {
         });
     });
     return contours;
+}
+
+/**
+ * Create a point grid out of the input (random) points
+ *
+ * @private
+ * @param {FeatureCollection<Point>} points GeoJSON Point features
+ * @param {string} property name of the vertical value
+ * @returns {FeatureCollection<Point>} grid of points which include the input points
+ */
+function createPointGrid(points, property) {
+    var tinResult = tin(points, property);
+    var bboxBBox = bbox(points); // [minX, minY, maxX, maxY]
+    var resolution = 100; // number of points per grid side
+    var squareBBox = square(bboxBBox);
+    var gridCellSize = distance(
+            point([squareBBox[0], squareBBox[1]]),
+            point([squareBBox[2], squareBBox[1]])
+        ) / resolution;
+    var gridResult = grid(squareBBox, gridCellSize);
+    // add property value to each point of the grid
+    for (var i = 0; i < gridResult.features.length; i++) {
+        var pt = gridResult.features[i];
+        for (var j = 0; j < tinResult.features.length; j++) {
+            var triangle = tinResult.features[j];
+            if (inside(pt, triangle)) {
+                pt.properties = {};
+                pt.properties[property] = planepoint(pt, triangle);
+            }
+        }
+    }
+    return gridResult;
+}
+
+/**
+ * Returns if the passed array of arrays is a matrix,
+ * i.e. all rows have the same length
+ *
+ * @private
+ * @param {Array<Array>} input
+ * @returns boolean
+ */
+function isPointGrid(input) {
+    if (!Array.isArray(input) || input.length < 2) return false;
+    var pointDistance = function (p1, p2) {
+        // approximate to the 9th digit to avoid incorrect comparison between distances
+        return Math.round(distance(p1, p2) / 1000000000) / 1000000000;
+    };
+    var rowsCount = input.length;
+    var rowsDistance = pointDistance(input[0][0], input[1][0]);
+    for (var r = 0; r < rowsCount; r++) {
+        var cols = input[r].length;
+        // false if less than 2 columns in any single row
+        if (cols < 2) return false;
+        var row = input[r];
+        var columnsDistance = pointDistance(row[0], row[1]);
+        for (var c = 1; c < cols - 1; c++) {
+            // check if all points in the same row, i.e. same latitude, is equally distant
+            if (pointDistance(row[c], row[c + 1]) !== columnsDistance) {
+                return false;
+            }
+        }
+        // exclude first and last row
+        if (0 < r && r < rowsCount - 1) {
+            // check if all rows/longitudes are at the same distance
+            if (pointDistance(input[r][0], input[r + 1][0]) !== rowsDistance) {
+                return false;
+            }
+        }
+    }
+    return true;
 }
 
 /**
@@ -143,12 +223,13 @@ function createContourLines(gridData, breaks, property) {
     return contours;
 }
 
+
 /**
  * Divide points in pointGrid by latitude, creating a 2-dimensional data grid
  *
  * @private
  * @param {FeatureCollection<Point>} points GeoJSON Point features
- * @returns {Object} pointsByLatitude
+ * @returns {Array} pointsByLatitude
  * @example
  * createPointsByLatitude(points)
  * //= [
@@ -203,9 +284,11 @@ function createGridData(pointsByLatitude, property) {
             // elevation property exist
             if (point.properties[property]) {
                 row.push(point.properties[property]);
-            // z coordinate exists
+                // z coordinate exists
             } else if (point.geometry.coordinates.length > 2) {
                 row.push(point.geometry.coordinates[2]);
+            } else {
+                row.push(null);
             }
         });
         gridData.push(row);
@@ -213,11 +296,19 @@ function createGridData(pointsByLatitude, property) {
     return gridData;
 }
 
-/**********************************************
- * utility functions
- *********************************************/
 
-// returns an array of coordinates (of LinearRings) in descending order by area
+/*
+ * utility functions
+ */
+
+
+/**
+ * Returns an array of coordinates (of LinearRings) in descending order by area
+ *
+ * @private
+ * @param linearRings
+ * @return {Array}
+ */
 function orderByArea(linearRings) {
     var linearRingsWithArea = [];
     var areas = [];
@@ -246,10 +337,15 @@ function orderByArea(linearRings) {
     return orderedByArea;
 }
 
-// returns an array of arrays of coordinates, each representing
-// a set of (coordinates of) nested LinearRings,
-// i.e. the first ring contains all the others
-// it expects an array of coordinates (of LinearRings) in descending order by area
+/**
+ * Returns an array of arrays of coordinates, each representing
+ * a set of (coordinates of) nested LinearRings,
+ * i.e. the first ring contains all the others
+ *
+ * @private
+ * @param {Array} orderedLinearRings array of coordinates (of LinearRings) in descending order by area
+ * @return {Array<Array>} Array of coordinates of nested LinearRings
+ */
 function groupNestedRings(orderedLinearRings) {
     // create a list of the (coordinates of) LinearRings
     var lrList = orderedLinearRings.map(function (lr) {
@@ -282,7 +378,14 @@ function groupNestedRings(orderedLinearRings) {
     return groupedLinearRings;
 }
 
-// returns if test-Polygon is inside target-Polygon
+/**
+ * Returns if test-Polygon is inside target-Polygon
+ *
+ * @private
+ * @param {Polygon} testPolygon
+ * @param {Polygon} targetPolygon
+ * @return boolean
+ */
 function isInside(testPolygon, targetPolygon) {
     var points = explode(testPolygon);
     for (var i = 0; i < points.features.length; i++) {
@@ -293,7 +396,12 @@ function isInside(testPolygon, targetPolygon) {
     return true;
 }
 
-// returns if all the LinearRings are marked as grouped
+/**
+ * Returns if all the LinearRings are marked as grouped
+ *
+ * @private
+ * @param list
+ */
 function allGrouped(list) {
     for (var i = 0; i < list.length; i++) {
         if (list[i].grouped === false) {
@@ -303,10 +411,24 @@ function allGrouped(list) {
     return true;
 }
 
+/**
+ * Returns the y-coordinate of the point
+ *
+ * @private
+ * @param {Point} point
+ * @returns number
+ */
 function getLatitude(point) {
     return point.geometry.coordinates[1];
 }
 
+/**
+ * Returns the x-coordinate of the point
+ *
+ * @private
+ * @param {Point} point
+ * @returns number
+ */
 function getLongitude(point) {
     return point.geometry.coordinates[0];
 }
