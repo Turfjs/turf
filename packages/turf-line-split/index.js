@@ -1,16 +1,15 @@
 var flatten = require('@turf/flatten');
 var pointOnLine = require('@turf/point-on-line');
+var lineSegment = require('@turf/line-segment');
+var getCoords = require('@turf/invariant').getCoords;
+var lineIntersect = require('@turf/line-intersect');
+var rbush = require('geojson-rbush');
 var helpers = require('@turf/helpers');
+var featureCollection = helpers.featureCollection;
+var lineString = helpers.lineString;
 var meta = require('@turf/meta');
 var featureEach = meta.featureEach;
 var featureReduce = meta.featureReduce;
-var lineSegment = require('@turf/line-segment');
-var invariant = require('@turf/invariant');
-var getCoords = invariant.getCoords;
-var lineIntersect = require('@turf/line-intersect');
-var rbush = require('geojson-rbush');
-var featureCollection = helpers.featureCollection;
-var lineString = helpers.lineString;
 
 /**
  * Split a LineString by another GeoJSON Feature.
@@ -78,34 +77,39 @@ function geomType(geojson) {
  * @returns {FeatureCollection<LineString>} split LineStrings
  */
 function splitLineWithPoints(line, splitter) {
+    var results = [];
     var tree = rbush();
-    var lines = [];
+
     featureEach(splitter, function (point) {
-        // Add index/id to features
-        lines.forEach(function (feature, index) {
+        // Add index/id to features (needed for filter)
+        results.forEach(function (feature, index) {
             feature.id = index;
         });
-        // First Point
-        if (!lines.length) {
-            lines = splitLineWithPoint(line, point).features;
-            tree.load(featureCollection(lines));
-        // Split with remaining points
+        // First Point - doesn't need to handle any previous line results
+        if (!results.length) {
+            results = splitLineWithPoint(line, point).features;
+            tree.load(featureCollection(results));
+        // Split with remaining points - lines might needed to be split multiple times
         } else {
+            // Find all lines that are within the splitter's bbox
             var search = tree.search(point);
+
+            // RBush might return multiple lines - only process the closest line to splitter
             var closestLine = findClosestFeature(point, search);
 
-            // Remove closest line from results (will be split)
-            lines = lines.filter(function (feature) { return feature.id !== closestLine.id; });
+            // Remove closest line from results since this will be split into two lines
+            // This removes any duplicates inside the results & index
+            results = results.filter(function (feature) { return feature.id !== closestLine.id; });
             tree.remove(closestLine);
 
-            // Split lines
+            // Append the two newly split lines into the results
             featureEach(splitLineWithPoint(closestLine, point), function (line) {
-                lines.push(line);
+                results.push(line);
                 tree.insert(line);
             });
         }
     });
-    return featureCollection(lines);
+    return featureCollection(results);
 }
 
 /**
@@ -117,33 +121,42 @@ function splitLineWithPoints(line, splitter) {
  * @returns {FeatureCollection<LineString>} split LineStrings
  */
 function splitLineWithPoint(line, splitter) {
+    var results = [];
+
     // Create spatial index
     var tree = rbush();
     var segments = lineSegment(line);
     tree.load(segments);
+
+    // Find all segments that are within bbox of splitter
     var search = tree.search(splitter);
 
     // Return itself if point is not within spatial index
     if (!search.features.length) return featureCollection([line]);
 
+    // RBush might return multiple lines - only process the closest line to splitter
     var closestSegment = findClosestFeature(splitter, search);
 
-    // Split lines
-    var lines = [];
-    var initialValue = [getCoords(segments.features[0])[0]]; // First point of segments
+    // Initial value is the first point of the first segments (begining of line)
+    var initialValue = [getCoords(segments.features[0])[0]];
     var lastCoords = featureReduce(segments, function (previous, current, index) {
+
+        // Location where segment intersects with line
         if (index === closestSegment.id) {
             var coords = getCoords(splitter);
             previous.push(coords);
-            lines.push(lineString(previous));
+            results.push(lineString(previous));
             return [coords, getCoords(current)[1]];
+
+        // Keep iterating over coords until finished or intersection is found
         } else {
             previous.push(getCoords(current)[1]);
             return previous;
         }
     }, initialValue);
-    lines.push(lineString(lastCoords));
-    return featureCollection(lines);
+    // Append last line to final split results
+    results.push(lineString(lastCoords));
+    return featureCollection(results);
 }
 
 /**
@@ -155,7 +168,7 @@ function splitLineWithPoint(line, splitter) {
  * @returns {Feature<LineString>} closest LineString
  */
 function findClosestFeature(point, lines) {
-        // Filter to one segment that is the closest to the line
+    // Filter to one segment that is the closest to the line
     var closestDistance;
     var closestFeature;
     if (!lines.features) throw new Error('<lines> must contain features');
