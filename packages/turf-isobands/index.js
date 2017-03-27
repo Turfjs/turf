@@ -156,8 +156,8 @@ function createPointGrid(points, property) {
  * i.e. all rows have the same length
  *
  * @private
- * @param {Array<Array>} input
- * @returns boolean
+ * @param {Array<Array>} input array of array of points divided by latitude
+ * @returns {boolean}
  */
 function isPointGrid(input) {
     if (!Array.isArray(input) || input.length < 2) return false;
@@ -180,7 +180,7 @@ function isPointGrid(input) {
             }
         }
         // exclude first and last row
-        if (0 < r && r < rowsCount - 1) {
+        if (r > 0 && r < rowsCount - 1) {
             // check if all rows/longitudes are at the same distance
             if (pointDistance(input[r][0], input[r + 1][0]) !== rowsDistance) {
                 return false;
@@ -306,8 +306,8 @@ function createGridData(pointsByLatitude, property) {
  * Returns an array of coordinates (of LinearRings) in descending order by area
  *
  * @private
- * @param linearRings
- * @return {Array}
+ * @param {Array<LineString>} linearRings array of closed LineString
+ * @returns {Array} array of the input LineString ordered by area
  */
 function orderByArea(linearRings) {
     var linearRingsWithArea = [];
@@ -344,7 +344,7 @@ function orderByArea(linearRings) {
  *
  * @private
  * @param {Array} orderedLinearRings array of coordinates (of LinearRings) in descending order by area
- * @return {Array<Array>} Array of coordinates of nested LinearRings
+ * @returns {Array<Array>} Array of coordinates of nested LinearRings
  */
 function groupNestedRings(orderedLinearRings) {
     // create a list of the (coordinates of) LinearRings
@@ -379,12 +379,10 @@ function groupNestedRings(orderedLinearRings) {
 }
 
 /**
- * Returns if test-Polygon is inside target-Polygon
- *
  * @private
  * @param {Polygon} testPolygon
  * @param {Polygon} targetPolygon
- * @return boolean
+ * @returns {boolean} true if test-Polygon is inside target-Polygon
  */
 function isInside(testPolygon, targetPolygon) {
     var points = explode(testPolygon);
@@ -397,10 +395,9 @@ function isInside(testPolygon, targetPolygon) {
 }
 
 /**
- * Returns if all the LinearRings are marked as grouped
- *
  * @private
- * @param list
+ * @param {Array<Object>} list
+ * @returns {boolean} true if all the objects in the list are marked as grouped
  */
 function allGrouped(list) {
     for (var i = 0; i < list.length; i++) {
@@ -412,22 +409,18 @@ function allGrouped(list) {
 }
 
 /**
- * Returns the y-coordinate of the point
- *
  * @private
  * @param {Point} point
- * @returns number
+ * @returns {number} latitude (y-coordinate) of the input point
  */
 function getLatitude(point) {
     return point.geometry.coordinates[1];
 }
 
 /**
- * Returns the x-coordinate of the point
- *
  * @private
  * @param {Point} point
- * @returns number
+ * @returns {number} longitude (x-coordinate) of the inpnut point
  */
 function getLongitude(point) {
     return point.geometry.coordinates[0];
