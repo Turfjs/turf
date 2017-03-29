@@ -42,7 +42,7 @@ You can create light-weight turf builds with only the functions you need using t
 All of Turf's functions can also be installed as separate modules. This works well with tools like [browserify](http://browserify.org/) where you want to install only the code you need. It also allows you to mix and match modules. This is the recommended usage pattern for most production environments. For example, to install the *point* and *buffer* modules use:
 
 ```sh
-npm install @turf/point @turf/buffer
+npm install @turf/helpers @turf/buffer
 ```
 
 **Bower [NOTE: Bower support will be dropped Jan 1st 2017]:**
