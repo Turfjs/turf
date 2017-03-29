@@ -262,17 +262,17 @@ module.exports.geometryCollection = function (geometries, properties) {
 };
 
 var factors = {
-    miles:3963.190592,
-    nauticalmiles:3443.918467,
-    degrees:57.2957795,
-    radians:1,
-    inches:251107755.9055118,
-    yards:6975215.442,
-    meters:6378137,
-    metres:6378137,
-    kilometers:6378.137,
-    kilometres:6378.137,
-    feet:20925646.325459316
+    miles: 3963.190592,
+    nauticalmiles: 3443.918467,
+    degrees: 57.2957795,
+    radians: 1,
+    inches: 251107755.9055118,
+    yards: 6975215.442,
+    meters: 6378137,
+    metres: 6378137,
+    kilometers: 6378.137,
+    kilometres: 6378.137,
+    feet: 20925646.325459316
 };
 
 /*
