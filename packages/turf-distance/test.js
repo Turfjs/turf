@@ -1,27 +1,48 @@
-var test = require('tape');
-var distance = require('./');
+const write = require('write-json-file');
+const load = require('load-json-file');
+const fs = require('fs');
+const path = require('path');
+const test = require('tape');
+const distance = require('./');
 
-test('distance', function(t){
-  var pt1 = {
-    type: "Feature",
-    geometry: {type: "Point", coordinates: [-75.343, 39.984]}
-  };
-  var pt2 = {
-    type: "Feature",
-    geometry: {type: "Point", coordinates: [-75.534, 39.123]}
-  };
+const directories = {
+    in: path.join(__dirname, 'test', 'in') + path.sep,
+    out: path.join(__dirname, 'test', 'out') + path.sep
+};
 
-  t.equal(distance(pt1, pt2, 'miles'), 60.37218405837491, 'miles');
-  t.equal(distance(pt1, pt2, 'nauticalmiles'), 52.461979624130436, 'miles');
-  t.equal(distance(pt1, pt2, 'kilometers'), 97.15957803131901, 'kilometers');
-  t.equal(distance(pt1, pt2, 'kilometres'), 97.15957803131901, 'kilometres');
-  t.equal(distance(pt1, pt2, 'radians'), 0.015245501024842149, 'radians');
-  t.equal(distance(pt1, pt2, 'degrees'), 0.8735028650863799, 'degrees');
-  t.equal(distance(pt1, pt2), 97.15957803131901, 'default=kilometers');
+const fixtures = fs.readdirSync(directories.in).map(filename => {
+    return {
+        filename,
+        name: path.parse(filename).name,
+        geojson: load.sync(directories.in + filename)
+    };
+});
 
-  t.throws(function() {
-      distance(pt1, pt2, 'blah');
-  }, 'unknown option given to units');
+test('distance', t => {
+    for (const {name, geojson}  of fixtures) {
+        const pt1 = geojson.features[0];
+        const pt2 = geojson.features[1];
+        const miles = distance(pt1, pt2, 'miles');
+        const nauticalmiles = distance(pt1, pt2, 'nauticalmiles');
+        const kilometers = distance(pt1, pt2, 'kilometers');
+        const radians = distance(pt1, pt2, 'radians');
+        const degrees = distance(pt1, pt2, 'degrees');
 
-  t.end();
+        if (process.env.REGEN) {
+            write.sync(directories.out + name + '-miles.json', miles);
+            write.sync(directories.out + name + '-nauticalmiles.json', nauticalmiles);
+            write.sync(directories.out + name + '-kilometers.json', kilometers);
+            write.sync(directories.out + name + '-radians.json', radians);
+            write.sync(directories.out + name + '-degrees.json', degrees);
+        }
+        t.deepEqual(miles, load.sync(directories.out + name + '-miles.json'), name + '-miles');
+        t.deepEqual(nauticalmiles, load.sync(directories.out + name + '-nauticalmiles.json'), name + '-nauticalmiles');
+        t.deepEqual(kilometers, load.sync(directories.out + name + '-kilometers.json'), name + '-kilometers');
+        t.deepEqual(radians, load.sync(directories.out + name + '-radians.json'), name + '-radians');
+        t.deepEqual(degrees, load.sync(directories.out + name + '-degrees.json'), name + '-degrees');
+        t.throws(() => {
+            distance(pt1, pt2, 'blah');
+        }, 'unknown option given to units');
+    }
+    t.end();
 });

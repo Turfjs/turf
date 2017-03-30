@@ -1,16 +1,31 @@
-var test = require('tape');
-var distance = require('@turf/distance');
-var destination = require('./');
+const write = require('write-json-file');
+const load = require('load-json-file');
+const fs = require('fs');
+const path = require('path');
+const test = require('tape');
+const destination = require('./');
 
-test('destination', function(t){
-  var pt1 = {
-    type: "Feature",
-    geometry: {type: "Point", coordinates: [-75.0, 39.0]}
-  };
-  var dist = 100;
-  var bear = 180;
+const directories = {
+    in: path.join(__dirname, 'test', 'in') + path.sep,
+    out: path.join(__dirname, 'test', 'out') + path.sep
+};
 
-  var pt2 = destination(pt1, dist, bear, 'kilometers');
-  t.deepEqual(pt2, { geometry: { coordinates: [ -75, 38.10096062273525 ], type: 'Point' }, properties: {}, type: 'Feature' }, 'returns the correct point');
-  t.end();
+const fixtures = fs.readdirSync(directories.in).map(filename => {
+    return {
+        filename,
+        name: path.parse(filename).name,
+        geojson: load.sync(directories.in + filename)
+    };
+});
+
+test('turf-destination', t => {
+    for (const {filename, name, geojson}  of fixtures) {
+        const dist = 100;
+        const bear = 180;
+        const results = destination(geojson, dist, bear, 'kilometers');
+
+        if (process.env.REGEN) write.sync(directories.out + filename, results);
+        t.deepEqual(results, load.sync(directories.out + filename), name);
+    }
+    t.end();
 });

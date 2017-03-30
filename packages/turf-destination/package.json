@@ -31,12 +31,14 @@
   },
   "homepage": "https://github.com/Turfjs/turf",
   "devDependencies": {
+    "@turf/distance": "^3.14.0",
     "benchmark": "^1.0.0",
-    "tape": "^3.5.0",
-    "@turf/distance": "^3.14.0"
+    "tape": "^3.5.0"
   },
   "dependencies": {
     "@turf/helpers": "^3.13.0",
-    "@turf/invariant": "^3.13.0"
+    "@turf/invariant": "^3.13.0",
+    "load-json-file": "^2.0.0",
+    "write-json-file": "^2.0.0"
   }
 }
