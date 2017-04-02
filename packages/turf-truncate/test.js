@@ -3,6 +3,7 @@ const test = require('tape');
 const path = require('path');
 const load = require('load-json-file');
 const write = require('write-json-file');
+const point = require('@turf/helpers').point;
 const truncate = require('./');
 
 const directories = {
@@ -28,3 +29,10 @@ test('truncate', t => {
     }
     t.end();
 });
+
+test('truncate - precision & coordinates', t => {
+    t.deepEqual(truncate(point([50.1234567, 40.1234567]), 3).geometry.coordinates, [50.123, 40.123], 'precision 3')
+    t.deepEqual(truncate(point([50.1234567, 40.1234567]), 0).geometry.coordinates, [50, 40], 'precision 0')
+    t.deepEqual(truncate(point([50, 40, 1100]), 6, 2).geometry.coordinates, [50, 40], 'coordinates 2')
+    t.end()
+})
