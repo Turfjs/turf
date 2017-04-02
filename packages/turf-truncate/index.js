@@ -23,10 +23,10 @@
  * //= pointTrunc
  */
 module.exports = function (layer, precision, coordinates) {
-    precision = precision || 6;
-    coordinates = coordinates || 2;
+    precision = (precision !== undefined) ? precision : 6;
+    coordinates = (coordinates !== undefined) ? coordinates : 2;
 
-    if (layer === undefined) { throw new Error('layer is required'); }
+    if (layer === undefined) throw new Error('layer is required');
 
     switch (layer.type) {
     case 'FeatureCollection': {
