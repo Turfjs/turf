@@ -1,19 +1,12 @@
-import {
-    Points,
-    LineString,
-    LineStrings,
-    MultiLineString,
-    MultiLineStrings,
-    Polygon,
-    Polygons,
-    MultiPolygon,
-    MultiPolygons} from '@turf/helpers';
+/// <reference types="geojson" />
 
-type Line = LineString | LineStrings | MultiLineString | MultiLineStrings | Polygon | Polygons | MultiPolygon | MultiPolygon
+type LineTypes = GeoJSON.LineString | GeoJSON.MultiLineString | GeoJSON.Polygon | GeoJSON.MultiPolygon;
+type Line = GeoJSON.Feature<LineTypes> | GeoJSON.FeatureCollection<LineTypes>;
+type Points = GeoJSON.FeatureCollection<GeoJSON.Point>;
 
 /**
  * http://turfjs.org/docs/#lineintersect
  */
 declare function lineIntersect(line1: Line, line2: Line): Points;
-declare namespace lineIntersect { }
+declare namespace lineIntersect {}
 export = lineIntersect;
