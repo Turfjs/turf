@@ -48,6 +48,7 @@
     "@turf/invariant": "^3.13.0",
     "@turf/line-intersect": "^3.14.0",
     "@turf/line-segment": "^3.14.0",
+    "@turf/line-split": "^4.0.0",
     "@turf/meta": "^3.14.0",
     "clone": "^2.1.1",
     "geojson-rbush": "^1.0.1"
