@@ -1,6 +1,6 @@
 {
   "name": "@turf/hex-grid",
-  "version": "3.14.0",
+  "version": "4.0.0",
   "description": "turf hex-grid module",
   "main": "index.js",
   "types": "index.d.ts",
@@ -37,10 +37,10 @@
   },
   "homepage": "https://github.com/Turfjs/turf",
   "devDependencies": {
-    "@turf/bbox-polygon": "^3.14.0",
-    "@turf/explode": "^3.14.0",
-    "@turf/inside": "^3.14.0",
-    "@turf/truncate": "^3.13.0",
+    "@turf/bbox-polygon": "^4.0.0",
+    "@turf/explode": "^4.0.0",
+    "@turf/inside": "^4.0.0",
+    "@turf/truncate": "^4.0.0",
     "benchmark": "^1.0.0",
     "eslint": "^3.15.0",
     "eslint-config-mourner": "^2.0.1",
@@ -49,7 +49,7 @@
     "write-json-file": "^2.0.0"
   },
   "dependencies": {
-    "@turf/distance": "^3.14.0",
-    "@turf/helpers": "^3.13.0"
+    "@turf/distance": "^4.0.0",
+    "@turf/helpers": "^4.0.0"
   }
 }

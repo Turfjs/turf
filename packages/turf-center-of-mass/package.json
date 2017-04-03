@@ -1,6 +1,6 @@
 {
   "name": "@turf/center-of-mass",
-  "version": "3.14.0",
+  "version": "4.0.0",
   "description": "turf center-of-mass module",
   "main": "index.js",
   "types": "index.d.ts",
@@ -32,10 +32,10 @@
     "tape": "~3.5.0"
   },
   "dependencies": {
-    "@turf/meta": "^3.14.0",
-    "@turf/centroid": "^3.14.0",
-    "@turf/convex": "^3.14.0",
-    "@turf/explode": "^3.14.0",
-    "@turf/helpers": "^3.13.0"
+    "@turf/meta": "^4.0.0",
+    "@turf/centroid": "^4.0.0",
+    "@turf/convex": "^4.0.0",
+    "@turf/explode": "^4.0.0",
+    "@turf/helpers": "^4.0.0"
   }
 }
