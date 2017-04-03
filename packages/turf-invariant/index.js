@@ -62,7 +62,8 @@ function containsNumber(coordinates) {
         typeof coordinates[1] === 'number') {
         return true;
     }
-    if (coordinates[0].length) {
+
+    if (Array.isArray(coordinates[0]) && coordinates[0].length) {
         return containsNumber(coordinates[0]);
     }
     throw new Error('coordinates must only contain numbers');
@@ -138,3 +139,4 @@ module.exports.collectionOf = collectionOf;
 module.exports.featureOf = featureOf;
 module.exports.getCoord = getCoord;
 module.exports.getCoords = getCoords;
+module.exports.containsNumber = containsNumber;
