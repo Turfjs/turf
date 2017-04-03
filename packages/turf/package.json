@@ -92,6 +92,7 @@
     "@turf/line-segment": "^3.14.3",
     "@turf/line-slice": "^3.14.2",
     "@turf/line-slice-along": "^3.14.0",
+    "@turf/line-split": "^3.0.0",
     "@turf/mask": "^3.14.0",
     "@turf/meta": "^3.14.0",
     "@turf/midpoint": "^3.14.0",

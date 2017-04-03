@@ -82,6 +82,7 @@ import * as lineChunk from '@turf/line-chunk';
 import * as unkinkPolygon from '@turf/unkink-polygon';
 import * as greatCircle from '@turf/great-circle';
 import * as lineSegment from '@turf/line-segment';
+import * as lineSplit from '@turf/line-split';
 
 export {
     isolines,
@@ -159,5 +160,6 @@ export {
     lineChunk,
     unkinkPolygon,
     greatCircle,
-    lineSegment
+    lineSegment,
+    lineSplit
 };
