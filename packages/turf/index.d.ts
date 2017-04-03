@@ -12,7 +12,8 @@ import {
     getCoord,
     geojsonType,
     featureOf,
-    collectionOf
+    collectionOf,
+    containsNumber
 } from '@turf/invariant';
 import {
     coordEach,
@@ -146,6 +147,7 @@ export {
     geojsonType,
     featureOf,
     collectionOf,
+    containsNumber,
     truncate,
     flatten,
     coordEach,
