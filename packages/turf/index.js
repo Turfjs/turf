@@ -83,6 +83,7 @@ var turf = {
     geojsonType: invariant.geojsonType,
     featureOf: invariant.featureOf,
     collectionOf: invariant.collectionOf,
+    containsNumber: invariant.containsNumber,
     coordEach: meta.coordEach,
     coordReduce: meta.coordReduce,
     propEach: meta.propEach,
