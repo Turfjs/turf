@@ -298,8 +298,8 @@ test('geometrycollection', t => {
 
 test('radiansToDistance', t => {
     t.equal(radiansToDistance(1, 'radians'), 1);
-    t.equal(radiansToDistance(1, 'kilometers'), 6378.137);
-    t.equal(radiansToDistance(1, 'miles'), 3963.190592);
+    t.equal(radiansToDistance(1, 'kilometers'), 6373);
+    t.equal(radiansToDistance(1, 'miles'), 3960);
 
     t.end();
 });
