@@ -1,6 +1,5 @@
-// depend on jsts for now https://github.com/bjornharrtell/jsts/blob/master/examples/overlay.html
-var jsts = require('jsts');
-
+var martinez = require('./martinez.min.js')
+var feature = require('@turf/helpers').feature
 /**
  * Finds the difference between two {@link Polygon|polygons} by clipping the second
  * polygon from the first.
@@ -60,35 +59,21 @@ module.exports = function (p1, p2) {
     var poly1 = JSON.parse(JSON.stringify(p1));
     var poly2 = JSON.parse(JSON.stringify(p2));
     if (poly1.type !== 'Feature') {
-        poly1 = {
-            type: 'Feature',
-            properties: {},
-            geometry: poly1
-        };
+        poly1 = feature(poly1)
     }
     if (poly2.type !== 'Feature') {
-        poly2 = {
-            type: 'Feature',
-            properties: {},
-            geometry: poly2
-        };
+        poly2 = feature(poly2)
     }
+    var outCoords = martinez.diff(poly1.geometry.coordinates, poly2.geometry.coordinates)
 
-    var reader = new jsts.io.GeoJSONReader();
-    var a = reader.read(JSON.stringify(poly1.geometry));
-    var b = reader.read(JSON.stringify(poly2.geometry));
-    var differenced = a.difference(b);
-
-    if (differenced.isEmpty()) return undefined;
-
-    var writer = new jsts.io.GeoJSONWriter();
-    var geojsonGeometry = writer.write(differenced);
-
-    poly1.geometry = differenced;
-
-    return {
-        type: 'Feature',
-        properties: poly1.properties,
-        geometry: geojsonGeometry
-    };
+    if (outCoords.length === 0) {
+    	return undefined
+    }
+    if (outCoords.length > 1) {
+    	poly1.geometry.coordinates = [outCoords]
+    	poly1.geometry.type = 'MultiPolygon'
+    } else {
+    	poly1.geometry.coordinates = outCoords
+    }
+    return poly1
 };
