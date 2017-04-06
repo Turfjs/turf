@@ -6,3 +6,4 @@ packages/turf/turf.js
 packages/turf/turf.min.js
 rollup.config.js
 simplepolygon.js
+martinez.min.js
