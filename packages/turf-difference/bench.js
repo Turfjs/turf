@@ -1,22 +1,32 @@
-var difference = require('./');
-var Benchmark = require('benchmark');
-var fs = require('fs');
+const Benchmark = require('benchmark');
+const path = require('path');
+const fs = require('fs');
+const load = require('load-json-file');
+const difference = require('./');
 
-var clip = JSON.parse(fs.readFileSync(__dirname+'/test/fixtures/in/differencedHole.geojson'));
-var hole = JSON.parse(fs.readFileSync(__dirname+'/test/fixtures/in/differencedFC.geojson'));
+const directory = path.join(__dirname, 'test', 'in') + path.sep;
+const fixtures = fs.readdirSync(directory).map(filename => {
+    return {
+        filename,
+        name: path.parse(filename).name,
+        geojson: load.sync(directory + filename)
+    };
+});
 
-var suite = new Benchmark.Suite('turf-difference');
+/**
+ * Benchmark Results
+ *
+ * polygons-with-holes x 6,239 ops/sec ±1.20% (87 runs sampled)
+ * simple x 32,934 ops/sec ±1.21% (86 runs sampled)
+ * split-to-multipolygon-with-holes x 15,805 ops/sec ±1.13% (83 runs sampled)
+ * split-to-multipolygon x 22,732 ops/sec ±1.97% (86 runs sampled)
+ */
+const suite = new Benchmark.Suite('turf-difference');
+for (const {name, geojson} of fixtures) {
+    suite.add(name, () => difference(geojson.features[0], geojson.features[1]));
+}
+
 suite
-  .add('turf-difference#clip',function () {
-    difference(clip[0], clip[1]);
-  })
-  .add('turf-difference#hole',function () {
-    difference(hole[0], hole[1]);
-  })
-  .on('cycle', function (event) {
-    console.log(String(event.target));
-  })
-  .on('complete', function () {
-    
-  })
-  .run();
+    .on('cycle', e => console.log(String(e.target)))
+    .on('complete', () => {})
+    .run();

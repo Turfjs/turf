@@ -27,11 +27,15 @@
   },
   "homepage": "https://github.com/Turfjs/turf",
   "devDependencies": {
-    "benchmark": "^1.0.0",
-    "glob": "~5.0.5",
-    "tape": "~4.0.0"
+    "@turf/meta": "^4.0.1",
+    "benchmark": "^2.1.4",
+    "load-json-file": "^2.0.0",
+    "tape": "^4.6.3",
+    "write-json-file": "^2.0.0"
   },
   "dependencies": {
-    "@turf/helpers": "^4.0.0"
+    "@turf/helpers": "^4.0.0",
+    "@turf/invariant": "^4.0.1",
+    "simplepolygon": "^1.1.3"
   }
 }
