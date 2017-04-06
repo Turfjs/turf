@@ -6,12 +6,12 @@ var featureCollection = require('@turf/helpers').featureCollection;
 var featureEach = require('@turf/meta').featureEach;
 
 /**
- * Takes any LineString or Polygon and returns the intersecting lines that are shared between both features.
+ * Takes any LineString or Polygon and returns the overlapping lines between both features.
  *
- * @name lineShare
- * @param {Feature<LineString|MultiLineString|Polygon|MultiPolygon>} source any LineString or Polygon
- * @param {Feature<LineString|MultiLineString|Polygon|MultiPolygon>} target any LineString or Polygon
- * @returns {FeatureCollection<LineString>} lines(s) that are shared between both features
+ * @name lineOverlap
+ * @param {Feature<LineString|MultiLineString|Polygon|MultiPolygon>} line1 any LineString or Polygon
+ * @param {Feature<LineString|MultiLineString|Polygon|MultiPolygon>} line2 any LineString or Polygon
+ * @returns {FeatureCollection<LineString>} lines(s) that are overlapping between both features
  * @example
  * var line1 = {
  *   "type": "Feature",
@@ -31,19 +31,19 @@ var featureEach = require('@turf/meta').featureEach;
  *     ]
  *   }
  * }
- * var shared = turf.lineShare(line1, line2);
- * //= shared
+ * var overlapping = turf.lineOverlap(line1, line2);
+ * //= overlapping
  */
-module.exports = function (source, target) {
+module.exports = function (line1, line2) {
     var results = [];
 
     // Create Spatial Index
     var tree = rbush();
-    tree.load(lineSegment(source));
+    tree.load(lineSegment(line1));
     var overlaps;
 
     // Iterate over line segments
-    featureEach(lineSegment(target), function (segment) {
+    featureEach(lineSegment(line2), function (segment) {
         var doesOverlaps = false;
         featureEach(tree.search(segment), function (match) {
             if (doesOverlaps === false) {

@@ -5,7 +5,7 @@ const load = require('load-json-file');
 const write = require('write-json-file');
 const featureEach = require('@turf/meta').featureEach;
 const featureCollection = require('@turf/helpers').featureCollection;
-const lineShare = require('./');
+const lineOverlap = require('./');
 
 const directories = {
     in: path.join(__dirname, 'test', 'in') + path.sep,
@@ -20,11 +20,11 @@ const fixtures = fs.readdirSync(directories.in).map(filename => {
     };
 });
 
-test('turf-line-share', t => {
+test('turf-line-overlap', t => {
     for (const {filename, name, geojson}  of fixtures) {
         const source = colorize(geojson.features[0], '#00F').features[0];
         const target = colorize(geojson.features[1], '#00F').features[0];
-        const shared = colorize(lineShare(source, target), '#F00');
+        const shared = colorize(lineOverlap(source, target), '#F00');
 
         const results = featureCollection([target, source].concat(shared.features));
 

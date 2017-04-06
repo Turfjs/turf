@@ -2,7 +2,7 @@ const Benchmark = require('benchmark');
 const path = require('path');
 const fs = require('fs');
 const load = require('load-json-file');
-const lineShare = require('./');
+const lineOverlap = require('./');
 
 const directory = path.join(__dirname, 'test', 'in') + path.sep;
 const fixtures = fs.readdirSync(directory).map(filename => {
@@ -21,9 +21,9 @@ const fixtures = fs.readdirSync(directory).map(filename => {
  * simple2 x 10,278 ops/sec ±1.52% (86 runs sampled)
  * simple3 x 13,124 ops/sec ±1.37% (85 runs sampled)
  */
-const suite = new Benchmark.Suite('turf-line-share');
+const suite = new Benchmark.Suite('turf-line-overlap');
 for (const {name, geojson} of fixtures) {
-    suite.add(name, () => lineShare(geojson.features[0], geojson.features[1]));
+    suite.add(name, () => lineOverlap(geojson.features[0], geojson.features[1]));
 }
 
 suite
