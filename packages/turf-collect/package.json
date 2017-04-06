@@ -1,6 +1,6 @@
 {
   "name": "@turf/collect",
-  "version": "4.0.1",
+  "version": "4.0.2",
   "description": "turf collect module",
   "main": "index.js",
   "types": "index.d.ts",
@@ -40,7 +40,7 @@
   },
   "dependencies": {
     "rbush": "^2.0.1",
-    "@turf/bbox": "^4.0.1",
+    "@turf/bbox": "^4.0.2",
     "@turf/inside": "^4.0.1"
   }
 }

@@ -1,6 +1,6 @@
 {
   "name": "@turf/combine",
-  "version": "4.0.1",
+  "version": "4.0.2",
   "description": "turf combine module",
   "main": "index.js",
   "types": "index.d.ts",
@@ -35,6 +35,6 @@
     "@turf/helpers": "^4.0.1"
   },
   "dependencies": {
-    "@turf/meta": "^4.0.1"
+    "@turf/meta": "^4.0.2"
   }
 }

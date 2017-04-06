@@ -1,6 +1,6 @@
 {
   "name": "@turf/line-slice",
-  "version": "4.0.1",
+  "version": "4.0.2",
   "description": "turf line-slice module",
   "main": "index.js",
   "types": "index.d.ts",
@@ -47,6 +47,6 @@
     "@turf/destination": "^4.0.1",
     "@turf/distance": "^4.0.1",
     "@turf/helpers": "^4.0.1",
-    "@turf/point-on-line": "^4.0.1"
+    "@turf/point-on-line": "^4.0.2"
   }
 }
