@@ -16,10 +16,13 @@ const fixtures = fs.readdirSync(directory).map(filename => {
 /**
  * Benchmark Results
  *
- * polygons-with-holes x 6,239 ops/sec ±1.20% (87 runs sampled)
- * simple x 32,934 ops/sec ±1.21% (86 runs sampled)
- * split-to-multipolygon-with-holes x 15,805 ops/sec ±1.13% (83 runs sampled)
- * split-to-multipolygon x 22,732 ops/sec ±1.97% (86 runs sampled)
+ * completely-overlapped x 70,903 ops/sec ±4.07% (80 runs sampled)
+ * multi-polygon-input x 14,147 ops/sec ±1.50% (86 runs sampled)
+ * multi-polygon-target x 9,252 ops/sec ±1.25% (88 runs sampled)
+ * polygons-with-holes x 5,673 ops/sec ±2.98% (84 runs sampled)
+ * simple x 26,264 ops/sec ±9.35% (74 runs sampled)
+ * split-to-multipolygon-with-holes x 13,678 ops/sec ±5.52% (79 runs sampled)
+ * split-to-multipolygon x 22,073 ops/sec ±1.61% (85 runs sampled)
  */
 const suite = new Benchmark.Suite('turf-difference');
 for (const {name, geojson} of fixtures) {
