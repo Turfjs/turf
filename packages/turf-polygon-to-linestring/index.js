@@ -1,4 +1,5 @@
-var feature = require('@turf/helpers').feature
+var feature = require('@turf/helpers').feature;
+
 /**
  * Takes a GeoJSON {@link Polygon}Polygon or {@link MultiPolygon}MultiPolygon feature and returns 
  * it as a GeoJSON  {@link LineString}linestring or {@link MultiLineString}MultiLineString feature.
@@ -24,7 +25,7 @@ var feature = require('@turf/helpers').feature
  * var addToMap = [newLine]
  */
  module.exports = function (polygon) {
- 	var line = JSON.parse(JSON.stringify(polygon))
+ 	var line = polygon;
  	
  	if (line.type !== 'Feature') {
  		line = feature(line);
@@ -42,10 +43,10 @@ var feature = require('@turf/helpers').feature
  	if (line.geometry.type === "LineString" && line.geometry.coordinates.length > 1) {
  		line.geometry.type = "MultiLineString";
  		line.geometry.coordinates.forEach(function (coordSet) {
- 			coordSet = [].concat.apply([], line.geometry.coordinates)
- 		})
+ 			coordSet = [].concat.apply([], line.geometry.coordinates);
+ 		});
  	} else {
- 		line.geometry.coordinates = [].concat.apply([], line.geometry.coordinates)
+ 		line.geometry.coordinates = [].concat.apply([], line.geometry.coordinates);
  	}
 
  	return line;
