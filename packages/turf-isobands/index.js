@@ -45,10 +45,10 @@ module.exports = function (points, breaks, property) {
     property = property || 'elevation';
 
     // Isoband methods
-    var pointsByLatitude = createPointsByLatitude(points);
+    var pointsByLatitude = dividePointsByLatitude(points);
     if (!isPointGrid(pointsByLatitude)) {
         var pointGrid = createPointGrid(points, property);
-        pointsByLatitude = createPointsByLatitude(pointGrid);
+        pointsByLatitude = dividePointsByLatitude(pointGrid);
     }
     var gridData = createGridData(pointsByLatitude, property);
     var contours = createContourLines(gridData, breaks, property);
@@ -228,7 +228,7 @@ function createContourLines(gridData, breaks, property) {
  * @param {FeatureCollection<Point>} points GeoJSON Point features
  * @returns {Array} pointsByLatitude
  * @example
- * createPointsByLatitude(points)
+ * dividePointsByLatitude(points)
  * //= [
  *   [{point}, {point}, {point}, ... {point}],
  *   [{point}, {point}, {point}, ... {point}],
@@ -236,7 +236,7 @@ function createContourLines(gridData, breaks, property) {
  *   [{ORIGIN}, {point}, {point}, ... {point}]
  * ]
  */
-function createPointsByLatitude(points) {
+function dividePointsByLatitude(points) {
     var unique = {};
 
     featureEach(points, function (point) {
