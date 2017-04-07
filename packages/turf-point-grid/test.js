@@ -26,6 +26,7 @@ test('square-grid', t => {
     for (const {name, geojson} of fixtures) {
         const grid5 = grid(geojson, 5, 'miles');
         const grid20 = grid(geojson, 20, 'miles');
+        const gridCentered = grid(geojson, 12.5, 'miles', true);
 
         // Add current GeoJSON to grid results
         featureEach(geojson, feature => {
@@ -36,15 +37,18 @@ test('square-grid', t => {
             };
             grid5.features.push(feature);
             grid20.features.push(feature);
+            gridCentered.features.push(feature);
         });
 
         if (process.env.REGEN) {
             mkdirp.sync(directories.out + name);
             write.sync(path.join(directories.out, name, '5-miles.geojson'), grid5);
             write.sync(path.join(directories.out, name, '20-miles.geojson'), grid20);
+            write.sync(path.join(directories.out, name, 'centered.geojson'), grid20);
         }
         t.deepEqual(grid5, load.sync(path.join(directories.out, name, '5-miles.geojson')), name + ' -- 5 miles');
         t.deepEqual(grid20, load.sync(path.join(directories.out, name, '20-miles.geojson')), name + ' -- 20 miles');
+        t.deepEqual(gridCentered, load.sync(path.join(directories.out, name, 'centered.geojson')), name + ' -- centered');
     }
     t.end();
 });
