@@ -27,8 +27,8 @@ test('turf-line-segment', t => {
             feature.properties = {
                 stroke: '#000',
                 'stroke-width': 3
-            }
-            results.features.push(feature)
+            };
+            results.features.push(feature);
         });
 
         // Save output

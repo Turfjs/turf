@@ -12,7 +12,8 @@ import {
     getCoord,
     geojsonType,
     featureOf,
-    collectionOf
+    collectionOf,
+    containsNumber
 } from '@turf/invariant';
 import {
     coordEach,
@@ -81,6 +82,8 @@ import * as mask from '@turf/mask';
 import * as lineChunk from '@turf/line-chunk';
 import * as unkinkPolygon from '@turf/unkink-polygon';
 import * as greatCircle from '@turf/great-circle';
+import * as lineSegment from '@turf/line-segment';
+import * as lineSplit from '@turf/line-split';
 
 export {
     isolines,
@@ -144,6 +147,7 @@ export {
     geojsonType,
     featureOf,
     collectionOf,
+    containsNumber,
     truncate,
     flatten,
     coordEach,
@@ -157,5 +161,7 @@ export {
     mask,
     lineChunk,
     unkinkPolygon,
-    greatCircle
+    greatCircle,
+    lineSegment,
+    lineSplit
 };

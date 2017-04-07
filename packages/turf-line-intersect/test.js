@@ -3,43 +3,34 @@ const fs = require('fs');
 const path = require('path');
 const load = require('load-json-file');
 const write = require('write-json-file');
-const mkdirp = require('mkdirp');
-const lineIntersect = require('.');
+const featureEach = require('@turf/meta').featureEach;
+const featureCollection = require('@turf/helpers').featureCollection;
+const truncate = require('@turf/truncate');
+const lineIntersect = require('./');
 
 const directories = {
     in: path.join(__dirname, 'test', 'in') + path.sep,
     out: path.join(__dirname, 'test', 'out') + path.sep
 };
 
-let fixtures = fs.readdirSync(directories.in).map(folder => {
-    const files = {folder};
-    fs.readdirSync(path.join(directories.in, folder)).forEach(filename => {
-        const name = path.parse(filename).name;
-        files[name] = load.sync(path.join(directories.in, folder, filename));
-    });
-    return files;
+const fixtures = fs.readdirSync(directories.in).map(filename => {
+    return {
+        filename,
+        name: path.parse(filename).name,
+        geojson: load.sync(directories.in + filename)
+    };
 });
 
-// const include = [
-//     'multi-linestring'
-// ];
-// fixtures = fixtures.filter(fixture => include.indexOf(fixture.folder) !== -1);
-
 test('turf-line-intersect', t => {
-    for (const {folder, line1, line2}  of fixtures) {
-        // Line Intersect
-        const points = lineIntersect(line1, line2);
-        const debug = lineIntersect(line1, line2, true);
+    for (const {filename, name, geojson}  of fixtures) {
+        const line1 = geojson.features[0];
+        const line2 = geojson.features[1];
+        const points = truncate(lineIntersect(line1, line2));
+        const results = featureCollection([line1, line2]);
+        featureEach(points, point => results.features.push(point));
 
-        // Save Results
-        mkdirp.sync(path.join(directories.out, folder));
-        if (process.env.REGEN) {
-            write.sync(path.join(directories.out, folder, 'results.geojson'), points);
-            write.sync(path.join(directories.out, folder, 'debug.geojson'), debug);
-        }
-
-        // Tests
-        t.deepEquals(points, load.sync(path.join(directories.out, folder, 'results.geojson')), folder);
+        if (process.env.REGEN) write.sync(directories.out + filename, results);
+        t.deepEquals(results, load.sync(directories.out + filename), name);
     }
     t.end();
 });

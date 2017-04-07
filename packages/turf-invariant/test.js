@@ -2,6 +2,18 @@ const test = require('tape');
 const {point, lineString, polygon} = require('@turf/helpers');
 const invariant = require('./');
 
+test('invariant#containsNumber', t => {
+    t.equals(invariant.containsNumber([1, 1]), true);
+    t.equals(invariant.containsNumber([[1, 1], [1, 1]]), true);
+    t.equals(invariant.containsNumber([[[1,1], [1,1]], [1, 1]]), true);
+
+    //# Ensure recusive call handles Max callstack exceeded
+    t.throws(() => {
+        invariant.containsNumber(['1', 1]);
+    }, /coordinates must only contain numbers/, 'Must only contain numbers');
+    t.end();
+});
+
 test('invariant#geojsonType', t => {
     t.throws(() => {
         invariant.geojsonType();

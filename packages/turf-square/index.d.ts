@@ -1,6 +1,6 @@
 /// <reference types="geojson" />
 
-type BBox = Array<number>;
+type BBox = [number, number, number, number];
 
 /**
  * http://turfjs.org/docs/#square
