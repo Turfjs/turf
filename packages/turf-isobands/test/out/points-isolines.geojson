@@ -1,0 +1,45 @@
+{
+	"type": "FeatureCollection",
+	"features": [
+		{
+			"type": "Feature",
+			"properties": {
+				"elevation": 3
+			},
+			"geometry": {
+				"type": "MultiPolygon",
+				"coordinates": []
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {
+				"elevation": 5
+			},
+			"geometry": {
+				"type": "MultiPolygon",
+				"coordinates": []
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {
+				"elevation": 7
+			},
+			"geometry": {
+				"type": "MultiPolygon",
+				"coordinates": []
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {
+				"elevation": 10
+			},
+			"geometry": {
+				"type": "MultiPolygon",
+				"coordinates": []
+			}
+		}
+	]
+}
