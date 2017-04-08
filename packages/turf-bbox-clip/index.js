@@ -9,8 +9,7 @@ var multiPolygon = helpers.multiPolygon;
 /**
  * Takes a {@link Feature} and a bbox and clips the feature to the bbox using [lineclip](https://github.com/mapbox/lineclip).
  *
- * @module turf/bbox-clip
- * @category transformation
+ * @name bbox-clip
  * @param {Feature<LineString|MultiLineString|Polygon|MultiPolygon>} feature feature to clip to the bbox
  * @param {Array<number>} bbox extent in [minX, minY, maxX, maxY] order
  * @returns {Feature<LineString|MultiLineString|Polygon|MultiPolygon>} clipped Feature

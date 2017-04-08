@@ -1,6 +1,6 @@
 # @turf/bbox-clip
 
-# turf/bbox-clip
+# bbox-clip
 
 Takes a [Feature](http://geojson.org/geojson-spec.html#feature-objects) and a bbox and clips the feature to the bbox using [lineclip](https://github.com/mapbox/lineclip).
 
