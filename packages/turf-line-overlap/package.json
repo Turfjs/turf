@@ -1,0 +1,46 @@
+{
+  "name": "@turf/line-overlap",
+  "version": "4.0.0",
+  "description": "turf line-overlap module",
+  "main": "index.js",
+  "types": "index.d.ts",
+  "files": [
+    "index.js",
+    "index.d.ts"
+  ],
+  "scripts": {
+    "test": "node test.js",
+    "bench": "node bench.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/Turfjs/turf.git"
+  },
+  "keywords": [
+    "turf",
+    "geojson",
+    "gis",
+    "line",
+    "overlap"
+  ],
+  "author": "Denis Carriere",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Turfjs/turf/issues"
+  },
+  "homepage": "https://github.com/Turfjs/turf",
+  "devDependencies": {
+    "benchmark": "^2.1.3",
+    "load-json-file": "^2.0.0",
+    "tape": "^3.5.0",
+    "write-json-file": "^2.0.0"
+  },
+  "dependencies": {
+    "@turf/helpers": "^4.0.1",
+    "@turf/invariant": "^4.0.1",
+    "@turf/line-segment": "^4.0.1",
+    "@turf/meta": "^4.0.1",
+    "deep-equal": "^1.0.1",
+    "geojson-rbush": "^1.0.1"
+  }
+}
