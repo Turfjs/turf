@@ -3,6 +3,7 @@
 # bbox-clip
 
 Takes a [Feature](http://geojson.org/geojson-spec.html#feature-objects) and a bbox and clips the feature to the bbox using [lineclip](https://github.com/mapbox/lineclip).
+May result in degenerate edges when clipping Polygons.
 
 **Parameters**
 

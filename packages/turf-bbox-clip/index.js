@@ -8,6 +8,7 @@ var multiPolygon = helpers.multiPolygon;
 
 /**
  * Takes a {@link Feature} and a bbox and clips the feature to the bbox using [lineclip](https://github.com/mapbox/lineclip).
+ * May result in degenerate edges when clipping Polygons.
  *
  * @name bbox-clip
  * @param {Feature<LineString|MultiLineString|Polygon|MultiPolygon>} feature feature to clip to the bbox
