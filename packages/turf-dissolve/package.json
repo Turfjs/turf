@@ -39,7 +39,7 @@
     "@turf/helpers": "^4.0.1",
     "@turf/union": "^4.0.2",
     "geojson-utils": "^1.1.0",
-    "get-closest": "0.0.3",
+    "get-closest": "^0.0.4",
     "rbush": "^2.0.1",
     "turf-overlaps": "^1.0.3"
   }
