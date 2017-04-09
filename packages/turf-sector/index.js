@@ -36,13 +36,6 @@ var line = helpers.lineString;
  * var addToMap = [center, sector]
  */
 module.exports = function (center, radius, bearing1, bearing2, steps, units) {
-    var properties = center.properties || {};
-
-    // extract required params from GeoJSON properties
-    if (radius === undefined || properties.radius) radius = properties.radius;
-    if (bearing1 === undefined || properties.bearing1) bearing1 = properties.bearing1;
-    if (bearing2 === undefined || properties.bearing2) bearing2 = properties.bearing2;
-
     // validation
     if (!center) throw new Error('center is required');
     if (bearing1 === undefined || bearing1 === null) throw new Error('bearing1 is required');
@@ -99,7 +92,7 @@ function getArcLine(center, radius, angle1, angle2, steps, units) {
 }
 
 /**
- * Takes any angle in  degrees
+ * Takes any angle in degrees
  * and returns a valid angle between 0-360 degrees
  *
  * @private
