@@ -18,23 +18,38 @@ var line = helpers.lineString;
  * @param {string} [units=kilometers] miles, kilometers, degrees, or radians
  * @returns {Feature<Polygon>} sector polygon
  * @example
- * var center = turf.point([-75.343, 39.984]);
+ * var center = {
+ *   "type": "Feature",
+ *   "properties": {},
+ *   "geometry": {
+ *     "type": "Point",
+ *     "coordinates": [-75, 40]
+ *   }
+ * }
  * var radius = 5;
  * var bearing1 = 25;
- * var bearing2 = 47;
- * var steps = 30;
- * var units = 'kilometers';
+ * var bearing2 = 45;
  *
- * var sector = turf.sector(center, radius, bearing1, bearing2, steps, units);
+ * var sector = turf.sector(center, radius, bearing1, bearing2);
  *
- * //=sector
+ * //addToMap
+ * var addToMap = [center, sector]
  */
 module.exports = function (center, radius, bearing1, bearing2, steps, units) {
+    var properties = center.properties || {};
+
+    // extract required params from GeoJSON properties
+    if (radius === undefined || properties.radius) radius = properties.radius;
+    if (bearing1 === undefined || properties.bearing1) bearing1 = properties.bearing1;
+    if (bearing2 === undefined || properties.bearing2) bearing2 = properties.bearing2;
 
     // validation
-    if (!center || bearing1 === undefined || bearing2 === undefined || !radius) {
-        throw new Error('Missing required parameter(s) for sector');
-    }
+    if (!center) throw new Error('center is required');
+    if (bearing1 === undefined || bearing1 === null) throw new Error('bearing1 is required');
+    if (bearing2 === undefined || bearing2 === null) throw new Error('bearing1 is required');
+    if (!radius) throw new Error('radius is required');
+
+    // default params
     steps = steps || 64;
 
     if (convertAngleTo360(bearing1) === convertAngleTo360(bearing2)) {
@@ -67,7 +82,6 @@ module.exports = function (center, radius, bearing1, bearing2, steps, units) {
  * @returns {LineString} circular arc
  */
 function getArcLine(center, radius, angle1, angle2, steps, units) {
-
     var alfa = convertAngleTo360(angle1);
     angle2 = convertAngleTo360(angle2);
     var coordinates = [];
