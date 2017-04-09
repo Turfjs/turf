@@ -73,7 +73,8 @@ module.exports = function (center, radius, bearing1, bearing2, steps, units) {
  * @returns {LineString} circular arc
  */
 function getArcLine(center, radius, angle1, angle2, steps, units) {
-    var alfa = convertAngleTo360(angle1);
+    var alfa =  angle1;
+    angle1 = convertAngleTo360(angle1);
     angle2 = convertAngleTo360(angle2);
     var coordinates = [];
     var i = 0;
