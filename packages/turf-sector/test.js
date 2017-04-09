@@ -3,6 +3,7 @@ const fs = require('fs');
 const path = require('path');
 const load = require('load-json-file');
 const write = require('write-json-file');
+const truncate = require('@turf/truncate');
 const featureCollection = require('@turf/helpers').featureCollection;
 const sector = require('./');
 
@@ -22,7 +23,7 @@ const fixtures = fs.readdirSync(directories.in).map(filename => {
 test('turf-sector', t => {
     for (const {filename, name, geojson}  of fixtures) {
         const {radius, bearing1, bearing2} = geojson.properties;
-        const sectored = sector(geojson, radius, bearing1, bearing2);
+        const sectored = truncate(sector(geojson, radius, bearing1, bearing2));
         const results = featureCollection([geojson, sectored]);
 
         if (process.env.REGEN) write.sync(directories.out + filename, results);
