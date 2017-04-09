@@ -2,6 +2,7 @@ var destination = require('@turf/destination');
 var circle = require('@turf/circle');
 var coordEach = require('@turf/meta').coordEach;
 var helpers = require('@turf/helpers');
+var getCoords = require('@turf/invariant').getCoords;
 var polygon = helpers.polygon;
 var line = helpers.lineString;
 
@@ -48,19 +49,16 @@ module.exports = function (center, radius, bearing1, bearing2, steps, units) {
     if (convertAngleTo360(bearing1) === convertAngleTo360(bearing2)) {
         return circle(center, radius, steps, units);
     }
-
+    var coords = getCoords(center);
     var arc = getArcLine(center, radius, bearing1, bearing2, steps, units);
-    var sliceCoords = [[
-        getCoords(center)
-    ]];
+    var sliceCoords = [[coords]];
     coordEach(arc, function (currentCoords) {
         sliceCoords[0].push(currentCoords);
     });
-    sliceCoords[0].push(getCoords(center));
+    sliceCoords[0].push(coords);
 
     return polygon(sliceCoords);
 };
-
 
 /**
  * Returns a circular arc, of a circle of the given radius, between angle1 and angle2
@@ -105,15 +103,4 @@ function convertAngleTo360(alfa) {
         beta += 360;
     }
     return beta;
-}
-
-/**
- * Returns feature's coordinates
- *
- * @private
- * @param {Feature<Point>} feature any feature
- * @returns {Array<number>} coordinates array
- */
-function getCoords(feature) {
-    return feature.geometry.coordinates;
 }
