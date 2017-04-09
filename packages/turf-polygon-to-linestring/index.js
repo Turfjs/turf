@@ -1,53 +1,53 @@
-var feature = require('@turf/helpers').feature;
+var getCoords = require('@turf/invariant').getCoords;
+var helpers = require('@turf/helpers');
+var lineString = helpers.lineString;
+var multiLineString = helpers.multiLineString;
+var featureCollection = helpers.featureCollection;
 
 /**
- * Takes a GeoJSON {@link Polygon}Polygon or {@link MultiPolygon}MultiPolygon feature and returns 
- * it as a GeoJSON  {@link LineString}linestring or {@link MultiLineString}MultiLineString feature.
+ * Converts a {@link Polygon} or {@link MultiPolygon} to a {@link FeatureCollection} of {@link LineString} or {@link MultiLineString}.
  *
  * @name polygonToLineString
- * @param {Feature<Polygon> | Feature<MultiPolygon> } a Polygon or MultiPolygon feature
- * @return {Feature<LineString> | Feature<MultiLinestring> a LineString or MultiLinestring feature
+ * @param {Feature<Polygon|MultiPolygon>} polygon Feature to convert
+ * @returns {FeatureCollection<LineString|MultiLinestring>} converted Feature to Lines
  * @example
- * var poly = {"type": "Feature",
- *            "geometry": {
- *                "type": "Polygon", 
- *                "coordinates": [
- *                	[[-2.275543, 53.464547],
- *                 	[-2.275543, 53.489271],
- *                  [-2.215118, 53.489271],
- *                  [-2.215118, 53.464547],
- *                  [-2.275543, 53.464547]]
- *                 ]},
- *                 "properties": {}; 
- * 
- * var newLine = turf.polygonToLineString(poly);
+ * var poly = {
+ *   'type': 'Feature',
+ *   'properties': {},
+ *   'geometry': {
+ *     'type': 'Polygon',
+ *     'coordinates': [[[125, -30], [145, -30], [145, -20], [125, -20], [125, -30]]]
+ *   }
+ * }
+ * var line = turf.polygonToLineString(poly);
  * //addToMap
- * var addToMap = [newLine]
+ * var addToMap = [line]
  */
- module.exports = function (polygon) {
- 	var line = polygon;
- 	
- 	if (line.type !== 'Feature') {
- 		line = feature(line);
- 	}
+module.exports = function (polygon) {
+    var geom = getGeomType(polygon);
+    var coords = getCoords(polygon);
+    var properties = polygon.properties;
+    if (!coords.length) throw new Error('polygon must contain coordinates');
 
- 	if (line.geometry.type === 'Polygon') {
- 		line.geometry.type = "LineString";
- 	}
+    switch (geom) {
+    case 'Polygon':
+        return featureCollection([coordsToLine(coords, properties)]);
+    case 'MultiPolygon':
+        var lines = [];
+        coords.forEach(function (coord) {
+            lines.push(coordsToLine(coord, properties));
+        });
+        return featureCollection(lines);
+    default:
+        throw new Error('geom ' + geom + ' not supported');
+    }
+};
 
- 	if (line.geometry.type === 'MultiPolygon') {
- 		line.geometry.type = "MultiLineString";
- 	}
+function coordsToLine(coords, properties) {
+    if (coords.length > 1) return multiLineString(coords, properties);
+    return lineString(coords[0], properties);
+}
 
- 	// Cater for a polygon with a hole
- 	if (line.geometry.type === "LineString" && line.geometry.coordinates.length > 1) {
- 		line.geometry.type = "MultiLineString";
- 		line.geometry.coordinates.forEach(function (coordSet) {
- 			coordSet = [].concat.apply([], line.geometry.coordinates);
- 		});
- 	} else {
- 		line.geometry.coordinates = [].concat.apply([], line.geometry.coordinates);
- 	}
-
- 	return line;
- };
+function getGeomType(feature) {
+    return (feature.geometry) ? feature.geometry.type : feature.type;
+}
