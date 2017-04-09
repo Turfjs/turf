@@ -3,6 +3,8 @@ const path = require('path');
 const test = require('tape');
 const load = require('load-json-file');
 const write = require('write-json-file');
+const featureEach = require('@turf/meta').featureEach;
+const featureCollection = require('@turf/helpers').featureCollection;
 const unkink = require('./');
 
 const directories = {
@@ -16,7 +18,7 @@ const fixtures = fs.readdirSync(directories.in).map(filename => {
 
 test('unkink-polygon', t => {
     for (const {filename, geojson} of fixtures) {
-        const unkinked = unkink(geojson);
+        const unkinked = colorize(unkink(geojson));
 
         if (process.env.REGEN) { write.sync(directories.out + filename, unkinked); }
 
@@ -36,3 +38,18 @@ test('unkink-polygon -- throws', t => {
     t.throws(() => Array.getUnique(), 'getUnique()');
     t.end();
 });
+
+function colorize(features, colors = ['#F00', '#00F'], width = 6) {
+    const results = [];
+    featureEach(features, (feature, index) => {
+        const color = colors[index % colors.length]
+        feature.properties = {
+            stroke: color,
+            fill: color,
+            'stroke-width': width,
+            'fill-opacity': 0.1
+        };
+        results.push(feature);
+    });
+    return featureCollection(results);
+}
