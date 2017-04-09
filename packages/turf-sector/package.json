@@ -1,0 +1,41 @@
+{
+  "name": "@turf/sector",
+  "version": "4.0.2",
+  "description": "turf sector module",
+  "main": "index.js",
+  "types": "index.d.ts",
+  "files": [
+    "index.js",
+    "index.d.ts"
+  ],
+  "scripts": {
+    "test": "node test.js",
+    "bench": "node bench.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/Turfjs/turf.git"
+  },
+  "keywords": [
+    "turf",
+    "gif"
+  ],
+  "author": "Turf Authors",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Turfjs/turf/issues"
+  },
+  "homepage": "https://github.com/Turfjs/turf",
+  "devDependencies": {
+    "benchmark": "^1.0.0",
+    "glob": "~4.3.5",
+    "tape": "~3.5.0",
+    "@turf/inside": "^4.0.1"
+  },
+  "dependencies": {
+    "@turf/destination": "^4.0.1",
+    "@turf/circle": "^4.0.1",
+    "@turf/meta": "^4.0.1",
+    "@turf/helpers": "^4.0.1"
+  }
+}
