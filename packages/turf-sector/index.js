@@ -40,7 +40,7 @@ module.exports = function (center, radius, bearing1, bearing2, steps, units) {
     // validation
     if (!center) throw new Error('center is required');
     if (bearing1 === undefined || bearing1 === null) throw new Error('bearing1 is required');
-    if (bearing2 === undefined || bearing2 === null) throw new Error('bearing1 is required');
+    if (bearing2 === undefined || bearing2 === null) throw new Error('bearing2 is required');
     if (!radius) throw new Error('radius is required');
 
     // default params
@@ -73,10 +73,10 @@ module.exports = function (center, radius, bearing1, bearing2, steps, units) {
  * @returns {LineString} circular arc
  */
 function getArcLine(center, radius, angle1, angle2, steps, units) {
-    var alfa =  angle1;
     angle1 = convertAngleTo360(angle1);
     angle2 = convertAngleTo360(angle2);
     var coordinates = [];
+    var alfa =  angle1;
     var i = 0;
 
     while (alfa < angle2) {
