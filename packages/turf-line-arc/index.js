@@ -15,39 +15,45 @@ var line = require('@turf/helpers').lineString;
  * @param {string} [units=kilometers] miles, kilometers, degrees, or radians
  * @returns {Feature<LineString>} line arc
  * @example
- * var center = turf.point([-75.343, 39.984]);
+ * var center = {
+ *   "type": "Feature",
+ *   "properties": {},
+ *   "geometry": {
+ *     "type": "Point",
+ *     "coordinates": [-75, 40]
+ *   }
+ * }
  * var radius = 5;
  * var bearing1 = 25;
  * var bearing2 = 47;
- * var steps = 30;
- * var units = 'kilometers';
  *
- * var sector = turf.lineArc(center, radius, bearing1, bearing2, steps, units);
+ * var arc = turf.lineArc(center, radius, bearing1, bearing2);
  *
- * //=arc
+ * //addToMap
+ * var addToMap = [center, arc]
+
  */
 module.exports = function (center, radius, bearing1, bearing2, steps, units) {
 
     // validation
-    if (!center || bearing1 === undefined || bearing2 === undefined || !radius) {
-        throw new Error('Missing required parameter(s) for arc-line');
-    }
+    if (!center) throw new Error('center is required');
+    if (bearing1 === undefined || bearing1 === null) throw new Error('bearing1 is required');
+    if (bearing2 === undefined || bearing2 === null) throw new Error('bearing2 is required');
+    if (!radius) throw new Error('radius is required');
+
+    // default params
     steps = steps || 64;
 
     var angle1 = convertAngleTo360(bearing1);
     var angle2 = convertAngleTo360(bearing2);
-    var arcStartDegree, arcEndDegree;
 
     // handle angle parameters
     if (angle1 === angle2) {
         return circle(center, radius, steps, units);
-    } else if (angle1 < angle2) {
-        arcStartDegree = angle1;
-        arcEndDegree = angle2;
-    } else {
-        arcStartDegree = angle2;
-        arcEndDegree = angle1;
     }
+
+    var arcStartDegree = angle1;
+    var arcEndDegree = (angle1 < angle2) ? angle2 : angle2 + 360;
 
     var alfa = arcStartDegree;
     var coordinates = [];
