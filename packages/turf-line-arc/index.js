@@ -1,6 +1,6 @@
 var destination = require('@turf/destination');
 var circle = require('@turf/circle');
-var line = require('@turf/helpers').lineString;
+var lineString = require('@turf/helpers').lineString;
 
 /**
  * Creates a circular arc, of a circle of the given radius and center point, between bearing1 and bearing2;
@@ -12,7 +12,7 @@ var line = require('@turf/helpers').lineString;
  * @param {number} bearing1 angle, in decimal degrees, of the first radius of the arc
  * @param {number} bearing2 angle, in decimal degrees, of the second radius of the arc
  * @param {number} [steps=64] number of steps
- * @param {string} [units=kilometers] miles, kilometers, degrees, or radians
+ * @param {string} [units="kilometers""] miles, kilometers, degrees, or radians
  * @returns {Feature<LineString>} line arc
  * @example
  * var center = {
@@ -33,7 +33,6 @@ var line = require('@turf/helpers').lineString;
  * var addToMap = [center, arc]
  */
 module.exports = function (center, radius, bearing1, bearing2, steps, units) {
-
     // validation
     if (!center) throw new Error('center is required');
     if (bearing1 === undefined || bearing1 === null) throw new Error('bearing1 is required');
@@ -45,10 +44,11 @@ module.exports = function (center, radius, bearing1, bearing2, steps, units) {
 
     var angle1 = convertAngleTo360(bearing1);
     var angle2 = convertAngleTo360(bearing2);
+    var properties = center.properties;
 
     // handle angle parameters
     if (angle1 === angle2) {
-        return circle(center, radius, steps, units);
+        return lineString(circle(center, radius, steps, units).geometry.coordinates[0], properties);
     }
     var arcStartDegree = angle1;
     var arcEndDegree = (angle1 < angle2) ? angle2 : angle2 + 360;
@@ -65,7 +65,7 @@ module.exports = function (center, radius, bearing1, bearing2, steps, units) {
     if (alfa > arcEndDegree) {
         coordinates.push(destination(center, radius, arcEndDegree, units).geometry.coordinates);
     }
-    return line(coordinates);
+    return lineString(coordinates, properties);
 };
 
 

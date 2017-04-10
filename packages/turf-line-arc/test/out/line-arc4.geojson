@@ -18,7 +18,11 @@
 		},
 		{
 			"type": "Feature",
-			"properties": {},
+			"properties": {
+				"radius": 5,
+				"bearing1": -50,
+				"bearing2": -15
+			},
 			"geometry": {
 				"type": "LineString",
 				"coordinates": [
