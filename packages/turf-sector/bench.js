@@ -15,12 +15,14 @@ const fixtures = fs.readdirSync(directory).map(filename => {
 /**
  * Benchmark Results
  *
- * sector-full-360 x 46,260 ops/sec ±0.96% (91 runs sampled)
- * sector-greater-360 x 516,991 ops/sec ±1.13% (88 runs sampled)
- * sector1 x 271,179 ops/sec ±5.04% (82 runs sampled)
- * sector2 x 105,831 ops/sec ±2.57% (86 runs sampled)
- * sector3 x 56,994 ops/sec ±1.29% (89 runs sampled)
- * sector4 x 37,871 ops/sec ±3.13% (86 runs sampled)
+ * sector-full-360 x 29,179 ops/sec ±2.42% (76 runs sampled)
+ * sector-greater-360 x 296,103 ops/sec ±10.92% (65 runs sampled)
+ * sector1 x 189,709 ops/sec ±3.46% (75 runs sampled)
+ * sector2 x 72,365 ops/sec ±2.11% (77 runs sampled)
+ * sector3 x 38,093 ops/sec ±2.97% (77 runs sampled)
+ * sector4 x 210,468 ops/sec ±2.58% (78 runs sampled)
+ * sector5 x 26,438 ops/sec ±9.98% (70 runs sampled)
+ * sector6 x 29,032 ops/sec ±2.36% (70 runs sampled)
  */
 const suite = new Benchmark.Suite('turf-sector');
 for (const {name, geojson} of fixtures) {

@@ -1,10 +1,9 @@
-var destination = require('@turf/destination');
 var circle = require('@turf/circle');
 var coordEach = require('@turf/meta').coordEach;
 var helpers = require('@turf/helpers');
 var getCoords = require('@turf/invariant').getCoords;
 var polygon = helpers.polygon;
-var line = helpers.lineString;
+var lineArc = require('@turf/line-arc');
 
 /**
  * Creates a circular sector of a circle of given radius and center {@link Point},
@@ -50,7 +49,7 @@ module.exports = function (center, radius, bearing1, bearing2, steps, units) {
         return circle(center, radius, steps, units);
     }
     var coords = getCoords(center);
-    var arc = getArcLine(center, radius, bearing1, bearing2, steps, units);
+    var arc = lineArc(center, radius, bearing1, bearing2, steps, units);
     var sliceCoords = [[coords]];
     coordEach(arc, function (currentCoords) {
         sliceCoords[0].push(currentCoords);
@@ -59,40 +58,6 @@ module.exports = function (center, radius, bearing1, bearing2, steps, units) {
 
     return polygon(sliceCoords);
 };
-
-/**
- * Returns a circular arc, of a circle of the given radius, between angle1 and angle2
- *
- * @private
- * @param {Feature<Point>} center center point of the originating circle
- * @param {number} radius radius of the circle
- * @param {number} angle1 angle, in decimal degrees, delimiting the arc
- * @param {number} angle2 angle, in decimal degrees, delimiting the arc
- * @param {number} [steps=64] number of steps
- * @param {string} [units=kilometers] miles, kilometers, degrees, or radians
- * @returns {LineString} circular arc
- */
-function getArcLine(center, radius, angle1, angle2, steps, units) {
-    angle1 = convertAngleTo360(angle1);
-    angle2 = convertAngleTo360(angle2);
-
-    var arcStartDegree = angle1;
-    var arcEndDegree = (angle1 < angle2) ? angle2 : angle2 + 360;
-
-    var alfa = arcStartDegree;
-    var coordinates = [];
-    var i = 0;
-
-    while (alfa < arcEndDegree) {
-        coordinates.push(destination(center, radius, alfa, units).geometry.coordinates);
-        i++;
-        alfa = arcStartDegree + i * 360 / steps;
-    }
-    if (alfa > arcEndDegree) {
-        coordinates.push(destination(center, radius, arcEndDegree, units).geometry.coordinates);
-    }
-    return line(coordinates);
-}
 
 /**
  * Takes any angle in degrees

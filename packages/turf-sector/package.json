@@ -35,7 +35,7 @@
   },
   "dependencies": {
     "@turf/circle": "^4.0.1",
-    "@turf/destination": "^4.0.1",
+    "@turf/line-arc": "^4.0.1",
     "@turf/helpers": "^4.0.1",
     "@turf/invariant": "^4.0.1",
     "@turf/meta": "^4.0.1"
