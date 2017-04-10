@@ -1,0 +1,65 @@
+{
+	"type": "FeatureCollection",
+	"features": [
+		{
+			"type": "Feature",
+			"properties": {
+				"radius": 5,
+				"bearing1": -50,
+				"bearing2": -15
+			},
+			"geometry": {
+				"type": "Point",
+				"coordinates": [
+					11.343,
+					44.495
+				]
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {
+				"radius": 5,
+				"bearing1": -50,
+				"bearing2": -15
+			},
+			"geometry": {
+				"type": "LineString",
+				"coordinates": [
+					[
+						11.294701,
+						44.523884
+					],
+					[
+						11.298903,
+						44.527122
+					],
+					[
+						11.303531,
+						44.530051
+					],
+					[
+						11.30854,
+						44.532641
+					],
+					[
+						11.313881,
+						44.534869
+					],
+					[
+						11.319503,
+						44.536713
+					],
+					[
+						11.325352,
+						44.538155
+					],
+					[
+						11.326677,
+						44.538419
+					]
+				]
+			}
+		}
+	]
+}

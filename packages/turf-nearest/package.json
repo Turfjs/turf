@@ -1,6 +1,6 @@
 {
   "name": "@turf/nearest",
-  "version": "4.0.1",
+  "version": "4.1.0",
   "description": "turf nearest module",
   "main": "index.js",
   "types": "index.d.ts",
@@ -33,6 +33,6 @@
     "tape": "^3.5.0"
   },
   "dependencies": {
-    "@turf/distance": "^4.0.1"
+    "@turf/distance": "^4.1.0"
   }
 }

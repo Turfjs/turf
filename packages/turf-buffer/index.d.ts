@@ -1,4 +1,5 @@
 /// <reference types="geojson" />
+
 import {
     Units,
     Feature, Features,
@@ -16,8 +17,8 @@ interface Buffer {
     (feature: MultiPoints | MultiLineStrings | MultiPolygons, radius?: number, unit?: Units): MultiPolygons;
     (feature: Feature, radius?: number, unit?: Units): Polygon | MultiPolygon;
     (feature: Features, radius?: number, unit?: Units): Polygons | MultiPolygons;
-    (feature: GeoJSON.GeometryObject, radius?: number, unit?: Units): Polygon;
-    (feature: GeoJSON.GeometryCollection, radius?: number, unit?: Units): MultiPolygon;
+    (feature: GeoJSON.GeometryObject, radius?: number, unit?: Units): Polygon | MultiPolygon;
+    (feature: GeoJSON.GeometryCollection, radius?: number, unit?: Units): Polygons | MultiPolygons;
 }
 declare const buffer: Buffer;
 declare namespace buffer { }

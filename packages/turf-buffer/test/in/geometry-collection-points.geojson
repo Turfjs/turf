@@ -1,0 +1,29 @@
+{
+  "type": "GeometryCollection",
+  "geometries": [
+    {
+      "type": "MultiPoint",
+      "coordinates": [
+        [
+          135,
+          -25
+        ],
+        [
+          130,
+          -20
+        ],
+        [
+          125,
+          -25
+        ]
+      ]
+    },
+    {
+      "type": "Point",
+      "coordinates": [
+        130,
+        -27.5
+      ]
+    }
+  ]
+}
