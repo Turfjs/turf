@@ -1,0 +1,15 @@
+{
+  "type": "Feature",
+  "properties": {
+    "radius": 5,
+    "bearing1": 20,
+    "bearing2": 60
+  },
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      11.343,
+      44.495
+    ]
+  }
+}
