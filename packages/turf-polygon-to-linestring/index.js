@@ -19,9 +19,9 @@ var featureCollection = helpers.featureCollection;
  *     'coordinates': [[[125, -30], [145, -30], [145, -20], [125, -20], [125, -30]]]
  *   }
  * }
- * var line = turf.polygonToLineString(poly);
+ * var lines = turf.polygonToLineString(poly);
  * //addToMap
- * var addToMap = [line]
+ * var addToMap = [lines]
  */
 module.exports = function (polygon) {
     var geom = getGeomType(polygon);

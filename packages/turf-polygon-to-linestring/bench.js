@@ -2,7 +2,7 @@ const Benchmark = require('benchmark');
 const path = require('path');
 const fs = require('fs');
 const load = require('load-json-file');
-const polygonToLineString = require('./index-before');
+const polygonToLineString = require('./');
 
 const directory = path.join(__dirname, 'test', 'in') + path.sep;
 const fixtures = fs.readdirSync(directory).map(filename => {
@@ -16,14 +16,6 @@ const fixtures = fs.readdirSync(directory).map(filename => {
 /**
  * Benchmark Results
  *
- * ==Before==
- * geometry x 637,469 ops/sec ±0.72% (91 runs sampled)
- * multipolygon x 625,724 ops/sec ±1.53% (91 runs sampled)
- * poly_not_feature x 872,408 ops/sec ±1.37% (88 runs sampled)
- * polygon x 899,319 ops/sec ±1.04% (88 runs sampled)
- * polygon_hole x 655,762 ops/sec ±0.92% (88 runs sampled)
- *
- * ==After==
  * geometry-polygon x 8,237,334 ops/sec ±1.12% (92 runs sampled)
  * multi-polygon-with-holes x 2,665,487 ops/sec ±1.62% (88 runs sampled)
  * multi-polygon x 3,109,822 ops/sec ±1.13% (87 runs sampled)
