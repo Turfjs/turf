@@ -22,9 +22,9 @@ const fixtures = fs.readdirSync(directories.in).map(filename => {
 
 test('turf-line-arc', t => {
     for (const {filename, name, geojson}  of fixtures) {
-        const {radius, bearing1, bearing2} = geojson.properties;
-        const sectored = truncate(lineArc(geojson, radius, bearing1, bearing2));
-        const results = featureCollection([geojson, sectored]);
+        const {radius, bearing1, bearing2, steps, units} = geojson.properties;
+        const arc = truncate(lineArc(geojson, radius, bearing1, bearing2, steps, units));
+        const results = featureCollection([geojson, arc]);
 
         if (process.env.REGEN) write.sync(directories.out + filename, results);
         t.deepEquals(results, load.sync(directories.out + filename), name);

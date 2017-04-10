@@ -2,7 +2,7 @@ const Benchmark = require('benchmark');
 const path = require('path');
 const fs = require('fs');
 const load = require('load-json-file');
-const sector = require('./');
+const lineArc = require('./');
 
 const directory = path.join(__dirname, 'test', 'in') + path.sep;
 const fixtures = fs.readdirSync(directory).map(filename => {
@@ -15,17 +15,19 @@ const fixtures = fs.readdirSync(directory).map(filename => {
 /**
  * Benchmark Results
  *
- * sector-full-360 x 46,260 ops/sec ±0.96% (91 runs sampled)
- * sector-greater-360 x 516,991 ops/sec ±1.13% (88 runs sampled)
- * sector1 x 271,179 ops/sec ±5.04% (82 runs sampled)
- * sector2 x 105,831 ops/sec ±2.57% (86 runs sampled)
- * sector3 x 56,994 ops/sec ±1.29% (89 runs sampled)
- * sector4 x 37,871 ops/sec ±3.13% (86 runs sampled)
+ * line-arc-full-360 x 38,879 ops/sec ±5.53% (78 runs sampled)
+ * line-arc-greater-360 x 435,501 ops/sec ±13.18% (66 runs sampled)
+ * line-arc1 x 249,765 ops/sec ±6.43% (69 runs sampled)
+ * line-arc2 x 92,964 ops/sec ±6.81% (72 runs sampled)
+ * line-arc3 x 47,342 ops/sec ±4.41% (74 runs sampled)
+ * line-arc4 x 267,112 ops/sec ±5.95% (71 runs sampled)
+ * line-arc5 x 35,259 ops/sec ±4.43% (69 runs sampled)
+ * line-arc6 x 38,674 ops/sec ±4.86% (75 runs sampled)
  */
 const suite = new Benchmark.Suite('turf-line-arc');
 for (const {name, geojson} of fixtures) {
-    const {radius, bearing1, bearing2} = geojson.properties;
-    suite.add(name, () => sector(geojson, radius, bearing1, bearing2));
+    const {radius, bearing1, bearing2, steps, units} = geojson.properties;
+    suite.add(name, () => lineArc(geojson, radius, bearing1, bearing2, steps, units));
 }
 
 suite
