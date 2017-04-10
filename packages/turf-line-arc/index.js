@@ -31,7 +31,6 @@ var line = require('@turf/helpers').lineString;
  *
  * //addToMap
  * var addToMap = [center, arc]
-
  */
 module.exports = function (center, radius, bearing1, bearing2, steps, units) {
 
@@ -51,7 +50,6 @@ module.exports = function (center, radius, bearing1, bearing2, steps, units) {
     if (angle1 === angle2) {
         return circle(center, radius, steps, units);
     }
-
     var arcStartDegree = angle1;
     var arcEndDegree = (angle1 < angle2) ? angle2 : angle2 + 360;
 
