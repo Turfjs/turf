@@ -25,7 +25,7 @@ test('turf-sector', t => {
         const {radius, bearing1, bearing2} = geojson.properties;
         const sectored = truncate(sector(geojson, radius, bearing1, bearing2));
         const results = featureCollection([geojson, sectored]);
-
+var r = JSON.stringify(results);
         if (process.env.REGEN) write.sync(directories.out + filename, results);
         t.deepEquals(results, load.sync(directories.out + filename), name);
     }

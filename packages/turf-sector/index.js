@@ -75,17 +75,21 @@ module.exports = function (center, radius, bearing1, bearing2, steps, units) {
 function getArcLine(center, radius, angle1, angle2, steps, units) {
     angle1 = convertAngleTo360(angle1);
     angle2 = convertAngleTo360(angle2);
+
+    var arcStartDegree = angle1;
+    var arcEndDegree = (angle1 < angle2) ? angle2 : angle2 + 360;
+
+    var alfa = arcStartDegree;
     var coordinates = [];
-    var alfa =  angle1;
     var i = 0;
 
-    while (alfa < angle2) {
+    while (alfa < arcEndDegree) {
         coordinates.push(destination(center, radius, alfa, units).geometry.coordinates);
         i++;
-        alfa = angle1 + i * 360 / steps;
+        alfa = arcStartDegree + i * 360 / steps;
     }
-    if (alfa > angle2) {
-        coordinates.push(destination(center, radius, angle2, units).geometry.coordinates);
+    if (alfa > arcEndDegree) {
+        coordinates.push(destination(center, radius, arcEndDegree, units).geometry.coordinates);
     }
     return line(coordinates);
 }
