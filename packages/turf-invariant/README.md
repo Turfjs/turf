@@ -20,6 +20,16 @@ Unwrap coordinates from a Feature, Geometry Object or an Array of numbers
 
 Returns **[Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;any>** coordinates
 
+# containsNumber
+
+Checks if coordinates contains a number
+
+**Parameters**
+
+-   `coordinates` **[Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;any>** GeoJSON Coordinates
+
+Returns **[boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** true if Array contains a number
+
 # geojsonType
 
 Enforce expectations about types of GeoJSON objects for Turf.

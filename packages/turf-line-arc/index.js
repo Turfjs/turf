@@ -12,7 +12,7 @@ var lineString = require('@turf/helpers').lineString;
  * @param {number} bearing1 angle, in decimal degrees, of the first radius of the arc
  * @param {number} bearing2 angle, in decimal degrees, of the second radius of the arc
  * @param {number} [steps=64] number of steps
- * @param {string} [units="kilometers""] miles, kilometers, degrees, or radians
+ * @param {string} [units=kilometers] miles, kilometers, degrees, or radians
  * @returns {Feature<LineString>} line arc
  * @example
  * var center = {

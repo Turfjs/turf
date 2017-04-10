@@ -279,10 +279,8 @@ var factors = {
  *
  * @name radiansToDistance
  * @param {number} radians in radians across the sphere
- * @param {string} [units="kilometers""] can be degrees, radians, miles, or kilometers inches, yards, metres, meters, kilometres, kilometers.
+ * @param {string} [units=kilometers] can be degrees, radians, miles, or kilometers inches, yards, metres, meters, kilometres, kilometers.
  * @returns {number} distance
- * @example
- * var foo = 'bar';
  */
 function radiansToDistance(radians, units) {
     var factor = factors[units || 'kilometers'];
@@ -296,7 +294,7 @@ function radiansToDistance(radians, units) {
  *
  * @name distanceToRadians
  * @param {number} distance in real units
- * @param {string} [units="kilometers""] can be degrees, radians, miles, or kilometers inches, yards, metres, meters, kilometres, kilometers.
+ * @param {string} [units=kilometers] can be degrees, radians, miles, or kilometers inches, yards, metres, meters, kilometres, kilometers.
  * @returns {number} radians
  */
 function distanceToRadians(distance, units) {
@@ -311,7 +309,7 @@ function distanceToRadians(distance, units) {
  *
  * @name distanceToDegrees
  * @param {number} distance in real units
- * @param {string} [units="kilometers"] can be degrees, radians, miles, or kilometers inches, yards, metres, meters, kilometres, kilometers.
+ * @param {string} [units=kilometers] can be degrees, radians, miles, or kilometers inches, yards, metres, meters, kilometres, kilometers.
  * @returns {number} degrees
  */
 function distanceToDegrees(distance, units) {
