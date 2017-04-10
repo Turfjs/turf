@@ -27,7 +27,6 @@ function feature(geometry, properties) {
         geometry: geometry
     };
 }
-module.exports.feature = feature;
 
 /**
  * Takes coordinates and properties (optional) and returns a new {@link Point} feature.
@@ -42,7 +41,7 @@ module.exports.feature = feature;
  *
  * //=pt1
  */
-module.exports.point = function (coordinates, properties) {
+function point(coordinates, properties) {
     if (!coordinates) throw new Error('No coordinates passed');
     if (coordinates.length === undefined) throw new Error('Coordinates must be an array');
     if (coordinates.length < 2) throw new Error('Coordinates must be at least 2 numbers long');
@@ -52,7 +51,7 @@ module.exports.point = function (coordinates, properties) {
         type: 'Point',
         coordinates: coordinates
     }, properties);
-};
+}
 
 /**
  * Takes an array of LinearRings and optionally an {@link Object} with properties and returns a {@link Polygon} feature.
@@ -75,7 +74,7 @@ module.exports.point = function (coordinates, properties) {
  *
  * //=polygon
  */
-module.exports.polygon = function (coordinates, properties) {
+function polygon(coordinates, properties) {
     if (!coordinates) throw new Error('No coordinates passed');
 
     for (var i = 0; i < coordinates.length; i++) {
@@ -94,7 +93,7 @@ module.exports.polygon = function (coordinates, properties) {
         type: 'Polygon',
         coordinates: coordinates
     }, properties);
-};
+}
 
 /**
  * Creates a {@link LineString} based on a
@@ -123,14 +122,14 @@ module.exports.polygon = function (coordinates, properties) {
  *
  * //=linestring2
  */
-module.exports.lineString = function (coordinates, properties) {
+function lineString(coordinates, properties) {
     if (!coordinates) throw new Error('No coordinates passed');
 
     return feature({
         type: 'LineString',
         coordinates: coordinates
     }, properties);
-};
+}
 
 /**
  * Takes one or more {@link Feature|Features} and creates a {@link FeatureCollection}.
@@ -149,14 +148,14 @@ module.exports.lineString = function (coordinates, properties) {
  *
  * //=fc
  */
-module.exports.featureCollection = function (features) {
+function featureCollection(features) {
     if (!features) throw new Error('No features passed');
 
     return {
         type: 'FeatureCollection',
         features: features
     };
-};
+}
 
 /**
  * Creates a {@link Feature<MultiLineString>} based on a
@@ -173,14 +172,14 @@ module.exports.featureCollection = function (features) {
  * //=multiLine
  *
  */
-module.exports.multiLineString = function (coordinates, properties) {
+function multiLineString(coordinates, properties) {
     if (!coordinates) throw new Error('No coordinates passed');
 
     return feature({
         type: 'MultiLineString',
         coordinates: coordinates
     }, properties);
-};
+}
 
 /**
  * Creates a {@link Feature<MultiPoint>} based on a
@@ -197,14 +196,14 @@ module.exports.multiLineString = function (coordinates, properties) {
  * //=multiPt
  *
  */
-module.exports.multiPoint = function (coordinates, properties) {
+function multiPoint(coordinates, properties) {
     if (!coordinates) throw new Error('No coordinates passed');
 
     return feature({
         type: 'MultiPoint',
         coordinates: coordinates
     }, properties);
-};
+}
 
 
 /**
@@ -222,14 +221,14 @@ module.exports.multiPoint = function (coordinates, properties) {
  * //=multiPoly
  *
  */
-module.exports.multiPolygon = function (coordinates, properties) {
+function multiPolygon(coordinates, properties) {
     if (!coordinates) throw new Error('No coordinates passed');
 
     return feature({
         type: 'MultiPolygon',
         coordinates: coordinates
     }, properties);
-};
+}
 
 /**
  * Creates a {@link Feature<GeometryCollection>} based on a
@@ -252,14 +251,14 @@ module.exports.multiPolygon = function (coordinates, properties) {
  *
  * //=collection
  */
-module.exports.geometryCollection = function (geometries, properties) {
+function geometryCollection(geometries, properties) {
     if (!geometries) throw new Error('No geometries passed');
 
     return feature({
         type: 'GeometryCollection',
         geometries: geometries
     }, properties);
-};
+}
 
 var factors = {
     miles: 3960,
@@ -275,50 +274,64 @@ var factors = {
     feet: 20908792.65
 };
 
-/*
+/**
  * Convert a distance measurement from radians to a more friendly unit.
  *
  * @name radiansToDistance
- * @param {number} distance in radians across the sphere
- * @param {string} [units=kilometers] can be degrees, radians, miles, or kilometers
- * inches, yards, metres, meters, kilometres, kilometers.
+ * @param {number} radians in radians across the sphere
+ * @param {string} [units="kilometers""] can be degrees, radians, miles, or kilometers inches, yards, metres, meters, kilometres, kilometers.
  * @returns {number} distance
+ * @example
+ * var foo = 'bar';
  */
-module.exports.radiansToDistance = function (radians, units) {
+function radiansToDistance(radians, units) {
     var factor = factors[units || 'kilometers'];
     if (factor === undefined) throw new Error('Invalid unit');
 
     return radians * factor;
-};
+}
 
-/*
+/**
  * Convert a distance measurement from a real-world unit into radians
  *
  * @name distanceToRadians
  * @param {number} distance in real units
- * @param {string} [units=kilometers] can be degrees, radians, miles, or kilometers
- * inches, yards, metres, meters, kilometres, kilometers.
+ * @param {string} [units="kilometers""] can be degrees, radians, miles, or kilometers inches, yards, metres, meters, kilometres, kilometers.
  * @returns {number} radians
  */
-module.exports.distanceToRadians = function (distance, units) {
+function distanceToRadians(distance, units) {
     var factor = factors[units || 'kilometers'];
     if (factor === undefined) throw new Error('Invalid unit');
 
     return distance / factor;
-};
+}
 
-/*
+/**
  * Convert a distance measurement from a real-world unit into degrees
  *
- * @name distanceToRadians
+ * @name distanceToDegrees
  * @param {number} distance in real units
- * @param {string} [units=kilometers] can be degrees, radians, miles, or kilometers
- * inches, yards, metres, meters, kilometres, kilometers.
+ * @param {string} [units="kilometers"] can be degrees, radians, miles, or kilometers inches, yards, metres, meters, kilometres, kilometers.
  * @returns {number} degrees
  */
-module.exports.distanceToDegrees = function (distance, units) {
+function distanceToDegrees(distance, units) {
     var factor = factors[units || 'kilometers'];
     if (factor === undefined) throw new Error('Invalid unit');
 
     return (distance / factor) * 57.2958;
+}
+
+module.exports = {
+    feature: feature,
+    featureCollection: featureCollection,
+    geometryCollection: geometryCollection,
+    point: point,
+    multiPoint: multiPoint,
+    lineString: lineString,
+    multiLineString: multiLineString,
+    polygon: polygon,
+    multiPolygon: multiPolygon,
+    radiansToDistance: radiansToDistance,
+    distanceToRadians: distanceToRadians,
+    distanceToDegrees: distanceToDegrees
 };
