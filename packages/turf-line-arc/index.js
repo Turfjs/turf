@@ -6,14 +6,14 @@ var line = require('@turf/helpers').lineString;
  * Creates a circular arc, of a circle of the given radius and center point, between bearing1 and bearing2;
  * 0 bearing is North of center point, positive clockwise.
  *
- * @name arc-line
+ * @name line-arc
  * @param {Feature<Point>} center center point
  * @param {number} radius radius of the circle
  * @param {number} bearing1 angle, in decimal degrees, of the first radius of the arc
  * @param {number} bearing2 angle, in decimal degrees, of the second radius of the arc
  * @param {number} [steps=64] number of steps
  * @param {string} [units=kilometers] miles, kilometers, degrees, or radians
- * @returns {Feature<LineString>} arc line
+ * @returns {Feature<LineString>} line arc
  * @example
  * var center = turf.point([-75.343, 39.984]);
  * var radius = 5;
@@ -22,7 +22,7 @@ var line = require('@turf/helpers').lineString;
  * var steps = 30;
  * var units = 'kilometers';
  *
- * var sector = turf.arcLine(center, radius, bearing1, bearing2, steps, units);
+ * var sector = turf.lineArc(center, radius, bearing1, bearing2, steps, units);
  *
  * //=arc
  */
