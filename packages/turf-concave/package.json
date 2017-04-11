@@ -1,6 +1,6 @@
 {
   "name": "@turf/concave",
-  "version": "4.0.2",
+  "version": "4.1.0",
   "description": "turf concave module",
   "main": "index.js",
   "types": "index.d.ts",
@@ -31,12 +31,12 @@
     "benchmark": "^1.0.0",
     "glob": "~4.3.5",
     "tape": "~3.5.0",
-    "@turf/helpers": "^4.0.1"
+    "@turf/helpers": "^4.1.0"
   },
   "dependencies": {
-    "@turf/meta": "^4.0.2",
-    "@turf/tin": "^4.0.1",
-    "@turf/union": "^4.0.2",
-    "@turf/distance": "^4.0.1"
+    "@turf/meta": "^4.1.0",
+    "@turf/tin": "^4.1.0",
+    "@turf/union": "^4.1.0",
+    "@turf/distance": "^4.1.0"
   }
 }

@@ -111,7 +111,6 @@ function coordEach(layer, callback, excludeWrapCoord) {
         }
     }
 }
-module.exports.coordEach = coordEach;
 
 /**
  * Callback for coordReduce
@@ -186,7 +185,6 @@ function coordReduce(layer, callback, initialValue, excludeWrapCoord) {
     }, excludeWrapCoord);
     return previousValue;
 }
-module.exports.coordReduce = coordReduce;
 
 /**
  * Callback for propEach
@@ -244,7 +242,6 @@ function propEach(layer, callback) {
         break;
     }
 }
-module.exports.propEach = propEach;
 
 
 /**
@@ -320,7 +317,6 @@ function propReduce(layer, callback, initialValue) {
     });
     return previousValue;
 }
-module.exports.propReduce = propReduce;
 
 /**
  * Callback for featureEach
@@ -375,7 +371,6 @@ function featureEach(layer, callback) {
         }
     }
 }
-module.exports.featureEach = featureEach;
 
 /**
  * Callback for featureReduce
@@ -448,7 +443,6 @@ function featureReduce(layer, callback, initialValue) {
     });
     return previousValue;
 }
-module.exports.featureReduce = featureReduce;
 
 /**
  * Get all coordinates from any GeoJSON object.
@@ -488,7 +482,6 @@ function coordAll(layer) {
     });
     return coords;
 }
-module.exports.coordAll = coordAll;
 
 /**
  * Iterate over each geometry in any GeoJSON object, similar to Array.forEach()
@@ -574,7 +567,6 @@ function geomEach(layer, callback) {
         }
     }
 }
-module.exports.geomEach = geomEach;
 
 /**
  * Callback for geomReduce
@@ -647,4 +639,15 @@ function geomReduce(layer, callback, initialValue) {
     });
     return previousValue;
 }
-module.exports.geomReduce = geomReduce;
+
+module.exports = {
+    coordEach: coordEach,
+    coordReduce: coordReduce,
+    propEach: propEach,
+    propReduce: propReduce,
+    featureEach: featureEach,
+    featureReduce: featureReduce,
+    coordAll: coordAll,
+    geomEach: geomEach,
+    geomReduce: geomReduce
+};

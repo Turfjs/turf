@@ -7,9 +7,13 @@ import {
     multiLineString,
     feature,
     featureCollection,
-    geometryCollection} from '@turf/helpers';
+    geometryCollection,
+    radiansToDistance,
+    distanceToRadians,
+    distanceToDegrees} from '@turf/helpers';
 import {
     getCoord,
+    getCoords,
     geojsonType,
     featureOf,
     collectionOf,
@@ -84,6 +88,10 @@ import * as unkinkPolygon from '@turf/unkink-polygon';
 import * as greatCircle from '@turf/great-circle';
 import * as lineSegment from '@turf/line-segment';
 import * as lineSplit from '@turf/line-split';
+import * as lineArc from '@turf/line-arc'
+import * as polygonToLineString from '@turf/polygon-to-linestring'
+import * as bboxClip from '@turf/bbox-clip'
+import * as lineOverlap from '@turf/line-overlap'
 
 export {
     isolines,
@@ -143,6 +151,9 @@ export {
     feature,
     featureCollection,
     geometryCollection,
+    radiansToDistance,
+    distanceToRadians,
+    distanceToDegrees,
     getCoord,
     geojsonType,
     featureOf,
@@ -163,5 +174,9 @@ export {
     unkinkPolygon,
     greatCircle,
     lineSegment,
-    lineSplit
+    lineSplit,
+    lineArc,
+    polygonToLineString,
+    bboxClip,
+    lineOverlap
 };
