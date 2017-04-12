@@ -25,16 +25,22 @@ $ npm test
 ## Structure of a turf module
 
 ```
-turf-hello
-	|
-	|-tests
-		|
-		|-fixtures
-			|
-			|-points.geojson
-		|-test.js
-	|-index.js
-	|-README.md
+turf-<module>
+│   index.js
+│   index.d.ts
+│   bench.js
+│   test.js
+│   package.json
+│   README.md
+│
+└───tests
+    │   types.ts
+    │
+    ├───in
+    │   points.geojson
+    │
+    └───out
+        points.geojson
 ```
 
 ## Publishing
