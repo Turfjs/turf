@@ -18,7 +18,13 @@
 		},
 		{
 			"type": "Feature",
-			"properties": {},
+			"properties": {
+				"stroke": "#000000",
+				"stroke-width": 10,
+				"stroke-opacity": 1,
+				"fill": "#FF0",
+				"fill-opacity": 0.8
+			},
 			"geometry": {
 				"type": "Polygon",
 				"coordinates": [

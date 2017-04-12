@@ -23,7 +23,7 @@ const fixtures = fs.readdirSync(directories.in).map(filename => {
 test('turf-sector', t => {
     for (const {filename, name, geojson}  of fixtures) {
         const {radius, bearing1, bearing2} = geojson.properties;
-        const sectored = truncate(sector(geojson, radius, bearing1, bearing2));
+        const sectored = colorize(truncate(sector(geojson, radius, bearing1, bearing2)));
         const results = featureCollection([geojson, sectored]);
 
         if (process.env.REGEN) write.sync(directories.out + filename, results);
@@ -31,3 +31,14 @@ test('turf-sector', t => {
     }
     t.end();
 });
+
+function colorize(feature, color = '#FF0', width = 10) {
+    feature.properties = {
+        'stroke': '#000000',
+        'stroke-width': width,
+        'stroke-opacity': 1,
+        'fill': color,
+        'fill-opacity': 0.8
+    };
+    return feature;
+}
