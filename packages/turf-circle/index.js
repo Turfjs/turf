@@ -1,6 +1,5 @@
 var destination = require('@turf/destination');
-var helpers = require('@turf/helpers');
-var polygon = helpers.polygon;
+var polygon = require('@turf/helpers').polygon;
 
 /**
  * Takes a {@link Point} and calculates the circle polygon given a radius in degrees, radians, miles, or kilometers; and steps for precision.
@@ -22,7 +21,14 @@ var polygon = helpers.polygon;
  * //=circle
  */
 module.exports = function (center, radius, steps, units) {
+    // validation
+    if (!center) throw new Error('center is required');
+    if (!radius) throw new Error('radius is required');
+
+    // default params
     steps = steps || 64;
+
+    var properties = center.properties;
     var coordinates = [];
 
     for (var i = 0; i < steps; i++) {
@@ -31,5 +37,5 @@ module.exports = function (center, radius, steps, units) {
 
     coordinates.push(coordinates[0]);
 
-    return polygon([coordinates]);
+    return polygon([coordinates], properties);
 };
