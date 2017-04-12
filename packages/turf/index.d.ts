@@ -10,7 +10,8 @@ import {
     geometryCollection,
     radiansToDistance,
     distanceToRadians,
-    distanceToDegrees} from '@turf/helpers';
+    distanceToDegrees,
+    bearingToAngle} from '@turf/helpers';
 import {
     getCoord,
     getCoords,

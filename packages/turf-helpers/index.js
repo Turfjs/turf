@@ -319,6 +319,24 @@ function distanceToDegrees(distance, units) {
     return (distance / factor) * 57.2958;
 }
 
+
+/**
+ * Converts any bearing angle from the north line direction (positive clockwise)
+ * and returns an angle between 0-360 degrees (positive clockwise), 0 being the north line
+ *
+ * @name bearingToAngle
+ * @param {number} alpha angle
+ * @returns {number} angle between 0 and 360 degrees
+ */
+function bearingToAngle(alpha) {
+    var beta = alpha % 360;
+    if (beta < 0) {
+        beta += 360;
+    }
+    return beta;
+}
+
+
 module.exports = {
     feature: feature,
     featureCollection: featureCollection,
@@ -331,5 +349,6 @@ module.exports = {
     multiPolygon: multiPolygon,
     radiansToDistance: radiansToDistance,
     distanceToRadians: distanceToRadians,
-    distanceToDegrees: distanceToDegrees
+    distanceToDegrees: distanceToDegrees,
+    bearingToAngle: bearingToAngle
 };
