@@ -39,9 +39,10 @@
     "write-json-file": "^2.0.0"
   },
   "dependencies": {
-    "@mapbox/geojson-normalize": "0.0.1",
-    "@turf/combine": "^4.1.0",
-    "@turf/helpers": "^4.1.0",
-    "jsts": "1.3.0"
+    "@turf/circle": "^4.0.1",
+    "@turf/helpers": "^4.0.1",
+    "@turf/invariant": "^4.0.1",
+    "@turf/meta": "^4.0.2",
+    "polygon-offset": "^0.3.1"
   }
 }
