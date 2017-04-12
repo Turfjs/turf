@@ -32,6 +32,7 @@ turf-<module>
 │   test.js
 │   package.json
 │   README.md
+│   LICENSE
 │
 └───tests
     │   types.ts
