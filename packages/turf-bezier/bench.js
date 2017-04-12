@@ -1,18 +1,30 @@
-var bezier = require('./');
-var Benchmark = require('benchmark');
-var fs = require('fs');
+const Benchmark = require('benchmark');
+const path = require('path');
+const fs = require('fs');
+const load = require('load-json-file');
+const bezier = require('./');
 
-var line = JSON.parse(fs.readFileSync(__dirname+'/test/bezierIn.geojson'));
+const directory = path.join(__dirname, 'test', 'in') + path.sep;
+const fixtures = fs.readdirSync(directory).map(filename => {
+    return {
+        filename,
+        name: path.parse(filename).name,
+        geojson: load.sync(directory + filename)
+    };
+});
 
-var suite = new Benchmark.Suite('turf-bezier');
+/**
+ * Benchmark Results
+ *
+ * bezierIn x 771 ops/sec ±1.31% (88 runs sampled)
+ * simple x 768 ops/sec ±1.20% (89 runs sampled)
+ */
+const suite = new Benchmark.Suite('turf-bezier');
+for (const {name, geojson} of fixtures) {
+    suite.add(name, () => bezier(geojson));
+}
+
 suite
-  .add('turf-bezier',function () {
-    bezier(line, 5000, .85);
-  })
-  .on('cycle', function (event) {
-    console.log(String(event.target));
-  })
-  .on('complete', function () {
-    
-  })
-  .run();
+    .on('cycle', e => console.log(String(e.target)))
+    .on('complete', () => {})
+    .run();
