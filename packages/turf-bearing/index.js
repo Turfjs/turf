@@ -10,13 +10,10 @@ var getCoord = require('@turf/invariant').getCoord;
  * @param {Feature<Point>} end ending Point
  * @param {boolean} [final=false] calculates the final bearing if true
  * @returns {number} bearing in decimal degrees
- * @addToMap point1, point2
  * @example
  * var point1 = {
  *   "type": "Feature",
- *   "properties": {
- *     "marker-color": '#f00'
- *   },
+ *   "properties": {},
  *   "geometry": {
  *     "type": "Point",
  *     "coordinates": [-75.343, 39.984]
@@ -24,9 +21,7 @@ var getCoord = require('@turf/invariant').getCoord;
  * };
  * var point2 = {
  *   "type": "Feature",
- *   "properties": {
- *     "marker-color": '#0f0'
- *   },
+ *   "properties": {},
  *   "geometry": {
  *     "type": "Point",
  *     "coordinates": [-75.534, 39.123]
@@ -34,9 +29,13 @@ var getCoord = require('@turf/invariant').getCoord;
  * };
  *
  * var bearing = turf.bearing(point1, point2);
+ * //addToMap
+ * var addToMap = [point1, point2]
+ * point1.properties['marker-color'] = '#f00'
+ * point2.properties['marker-color'] = '#0f0'
  * point1.properties.bearing = bearing
- * //=bearing
  */
+
 function bearing(start, end, final) {
     if (final === true) return calculateFinalBearing(start, end);
 

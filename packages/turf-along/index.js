@@ -11,7 +11,6 @@ var destination = require('@turf/destination');
  * @param {number} distance distance along the line
  * @param {string} [units=kilometers] can be degrees, radians, miles, or kilometers
  * @returns {Feature<Point>} Point `distance` `units` along the line
- * @addToMap along, line
  * @example
  * var line = {
  *   "type": "Feature",
@@ -30,7 +29,8 @@ var destination = require('@turf/destination');
  * };
  *
  * var along = turf.along(line, 1, 'miles');
- * //=along
+ * //addToMap
+ * var addToMap = [along, line]
  */
 module.exports = function (line, distance, units) {
     var coords;
