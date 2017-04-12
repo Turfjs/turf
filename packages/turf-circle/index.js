@@ -18,7 +18,8 @@ var polygon = require('@turf/helpers').polygon;
  *
  * var circle = turf.circle(center, radius, steps, units);
  *
- * //=circle
+ * //addToMap
+ * var addToMap = [center, circle]
  */
 module.exports = function (center, radius, steps, units) {
     // validation
