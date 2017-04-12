@@ -15,7 +15,6 @@ var normalize = require('@mapbox/geojson-normalize');
  * @param {number} radius distance to draw the buffer
  * @param {string} units any of the options supported by turf units
  * @return {FeatureCollection<Polygon>|FeatureCollection<MultiPolygon>|Polygon|MultiPolygon} buffered features
- * @addToMap pt, buffered
  * @example
  * var pt = {
  *   "type": "Feature",
@@ -28,8 +27,8 @@ var normalize = require('@mapbox/geojson-normalize');
  * var unit = 'miles';
  *
  * var buffered = turf.buffer(pt, 500, unit);
- *
- * //=buffered
+ * //addToMap
+ * var addToMap = [pt, buffered]
  */
 
 module.exports = function (feature, radius, units) {

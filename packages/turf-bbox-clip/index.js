@@ -10,7 +10,7 @@ var multiPolygon = helpers.multiPolygon;
  * Takes a {@link Feature} and a bbox and clips the feature to the bbox using [lineclip](https://github.com/mapbox/lineclip).
  * May result in degenerate edges when clipping Polygons.
  *
- * @name bbox-clip
+ * @name bboxClip
  * @param {Feature<LineString|MultiLineString|Polygon|MultiPolygon>} feature feature to clip to the bbox
  * @param {Array<number>} bbox extent in [minX, minY, maxX, maxY] order
  * @returns {Feature<LineString|MultiLineString|Polygon|MultiPolygon>} clipped Feature
@@ -26,8 +26,8 @@ var multiPolygon = helpers.multiPolygon;
  * }
  *
  * var clipped = turf.bboxClip(poly, bbox);
- *
- * //=clipped
+ * //addToMap
+ * var addToMap = [bbox, poly, clipped]
  */
 module.exports = function (feature, bbox) {
     var geom = getGeom(feature);
