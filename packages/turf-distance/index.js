@@ -38,11 +38,11 @@ var radiansToDistance = require('@turf/helpers').radiansToDistance;
  *   "features": [from, to]
  * };
  *
- * //=points
- *
  * var distance = turf.distance(from, to, units);
- *
- * //=distance
+ * //addToMap
+ * from.properties.distance = distance
+ * to.properties.distance = distance
+ * var addToMap = [points]
  */
 module.exports = function (from, to, units) {
     var degrees2radians = Math.PI / 180;

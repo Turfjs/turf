@@ -30,8 +30,8 @@ for (var i = 0; i < 6; i++) {
  * var units = 'miles';
  *
  * var hexgrid = turf.hexGrid(bbox, cellSize, units);
- *
- * //=hexgrid
+ * //addToMap
+ * var addToMap = [hexgrid]
  */
 module.exports = function hexGrid(bbox, cellSize, units, triangles) {
     var xFraction = cellSize / (distance(point([bbox[0], bbox[1]]), point([bbox[2], bbox[1]]), units));

@@ -12,9 +12,7 @@ var jsts = require('jsts');
  * @example
  * var poly1 = {
  *   "type": "Feature",
- *   "properties": {
- *     "fill": "#0f0"
- *   },
+ *   "properties": {},
  *   "geometry": {
  *     "type": "Polygon",
  *     "coordinates": [[
@@ -28,9 +26,7 @@ var jsts = require('jsts');
  * };
  * var poly2 = {
  *   "type": "Feature",
- *   "properties": {
- *     "fill": "#00f"
- *   },
+ *   "properties": {},
  *   "geometry": {
  *     "type": "Polygon",
  *     "coordinates": [[
@@ -44,16 +40,12 @@ var jsts = require('jsts');
  * };
  *
  * var differenced = turf.difference(poly1, poly2);
+ *
+ * //addToMap
+ * var addToMap = [poly1, poly2, differenced]
+ * poly1.properties.fill = '#0f0';
+ * poly2.properties.fill = '#00f';
  * differenced.properties.fill = '#f00';
- *
- * var polygons = {
- *   "type": "FeatureCollection",
- *   "features": [poly1, poly2]
- * };
- *
- * //=polygons
- *
- * //=differenced
  */
 
 module.exports = function (p1, p2) {

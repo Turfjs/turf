@@ -17,11 +17,9 @@ var coordEach = require('@turf/meta').coordEach;
  *   }
  * };
  *
- * //=serbia
- *
  * var saudiArabia = turf.flip(serbia);
- *
- * //=saudiArabia
+ * //addToMap
+ * var addToMap = [serbia, saudiArabia]
  */
 module.exports = function flip(input) {
     // ensure that we don't modify features in-place and changes to the

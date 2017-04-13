@@ -107,7 +107,8 @@ var each = require('@turf/meta').coordEach,
  *
  * var centerOfMass = turf.centerOfMass(feature);
  *
- * //=centerOfMass
+ * //addToMap
+ * var addToMap = [feature, centerOfMass]
  */
 function centerOfMass(fc) {
     if (fc.type === 'Feature' && fc.geometry.type === 'Polygon') {

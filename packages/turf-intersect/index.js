@@ -29,8 +29,8 @@ var jsts = require('jsts');
  * ]]);
  *
  * var intersection = turf.intersect(poly1, poly2);
- *
- * //=intersection
+ * //addToMap
+ * var addToMap = [poly1, poly2, intersection]
  */
 module.exports = function (poly1, poly2) {
     var geom1, geom2;

@@ -36,7 +36,8 @@ var featureReduce = meta.featureReduce;
  *   }
  * };
  * var split = turf.lineSplit(line, splitter);
- * //=split
+ * //addToMap
+ * var addToMap = [line, splitter]
  */
 module.exports = function (line, splitter) {
     if (geomType(line) !== 'LineString') throw new Error('<line> must be LineString');

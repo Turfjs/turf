@@ -22,13 +22,12 @@ var random = require('geojson-random');
  *   bbox: [-70, 40, -60, 60]
  * });
  *
- * //=points
- *
  * var polygons = turf.random('polygons', 4, {
  *   bbox: [-70, 40, -60, 60]
  * });
  *
- * //=polygons
+ * //addToMap
+ * var addToMap = [points, polygons]
  */
 module.exports = function (type, count, options) {
     options = options || {};

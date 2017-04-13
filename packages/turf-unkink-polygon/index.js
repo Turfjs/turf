@@ -20,8 +20,8 @@ var featureCollection = require('@turf/helpers').featureCollection;
  * };
  *
  * var result = turf.unkinkPolygon(poly);
- *
- * //=result
+ * //addToMap
+ * var addToMap = [poly, result]
  */
 module.exports = function (geojson) {
     var results = featureCollection([]);

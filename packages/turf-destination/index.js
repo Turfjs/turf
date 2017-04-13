@@ -17,9 +17,7 @@ var distanceToRadians = helpers.distanceToRadians;
  * @example
  * var point = {
  *   "type": "Feature",
- *   "properties": {
- *     "marker-color": "#0f0"
- *   },
+ *   "properties": {},
  *   "geometry": {
  *     "type": "Point",
  *     "coordinates": [-75.343, 39.984]
@@ -30,14 +28,11 @@ var distanceToRadians = helpers.distanceToRadians;
  * var units = 'miles';
  *
  * var destination = turf.destination(point, distance, bearing, units);
+ *
+ * //addToMap
+ * var addToMap = [point, destination]
  * destination.properties['marker-color'] = '#f00';
- *
- * var result = {
- *   "type": "FeatureCollection",
- *   "features": [point, destination]
- * };
- *
- * //=result
+ * point.properties['marker-color'] = '#0f0';
  */
 module.exports = function (from, distance, bearing, units) {
     var degrees2radians = Math.PI / 180;

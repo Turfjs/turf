@@ -6,7 +6,7 @@ var lineString = require('@turf/helpers').lineString;
  * Creates a circular arc, of a circle of the given radius and center point, between bearing1 and bearing2;
  * 0 bearing is North of center point, positive clockwise.
  *
- * @name line-arc
+ * @name lineArc
  * @param {Feature<Point>} center center point
  * @param {number} radius radius of the circle
  * @param {number} bearing1 angle, in decimal degrees, of the first radius of the arc

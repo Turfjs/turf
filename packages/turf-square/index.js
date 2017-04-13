@@ -21,7 +21,8 @@ var distance = require('@turf/distance');
  *   ]
  * };
  *
- * //=features
+ * //addToMap
+ * var addToMap = [features]
  */
 module.exports = function (bbox) {
     var west = bbox[0];

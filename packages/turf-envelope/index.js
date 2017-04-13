@@ -44,13 +44,8 @@ var bboxPolygon = require('@turf/bbox-polygon');
  *
  * var enveloped = turf.envelope(fc);
  *
- * var resultFeatures = fc.features.concat(enveloped);
- * var result = {
- *   "type": "FeatureCollection",
- *   "features": resultFeatures
- * };
- *
- * //=result
+ * //addToMap
+ * var addToMap = [fc, enveloped]
  */
 
 module.exports = function (features) {
