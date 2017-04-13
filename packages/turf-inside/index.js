@@ -23,9 +23,10 @@ var invariant = require('@turf/invariant');
  * ]]);
  *
  * var isInside = turf.inside(pt, poly);
+ *
  * //addToMap
- * var addToMap = [pt, poly]
  * pt.properties.isInside = isInside
+ * var addToMap = [pt, poly]
  */
 module.exports = function (point, polygon) {
     var pt = invariant.getCoord(point);
