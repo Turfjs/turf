@@ -26,7 +26,7 @@ var rbush = require('rbush');
  * var pt5 = turf.point([19,7], {population: 300});
  * var pointFC = turf.featureCollection([pt1, pt2, pt3, pt4, pt5]);
  * var collected = turf.collect(polyFC, pointFC, 'population', 'values');
-  * var values = collected.features[0].properties.values
+ * var values = collected.features[0].properties.values
  * //=values => [200, 600]
  * //addToMap
  * var addToMap = [pointFC, collected]
