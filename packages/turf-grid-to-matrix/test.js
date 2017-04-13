@@ -18,7 +18,7 @@ const fixtures = fs.readdirSync(directories.in).map(filename => {
     };
 });
 
-test('turf-line-arc', t => {
+test('grid-to-matrix', t => {
     for (const {filename, name, geojson}  of fixtures) {
         const matrix = gridToMatrix(geojson);
 
