@@ -18,7 +18,7 @@ const fixtures = fs.readdirSync(directory).map(filename => {
  * 3x4 x 28,271 ops/sec ±14.14% (63 runs sampled)
  * 8x8 x 10,233 ops/sec ±5.71% (73 runs sampled)
  */
-const suite = new Benchmark.Suite('turf-line-arc');
+const suite = new Benchmark.Suite('grid-to-matrix');
 for (const {name, geojson} of fixtures) {
     suite.add(name, () => gridToMatrix(geojson));
 }
