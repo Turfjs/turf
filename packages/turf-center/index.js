@@ -1,5 +1,5 @@
-var bbox = require('@turf/bbox'),
-    point = require('@turf/helpers').point;
+var bbox = require('@turf/bbox');
+var point = require('@turf/helpers').point;
 
 /**
  * Takes a {@link Feature} or {@link FeatureCollection} and returns the absolute center point of all features.
@@ -106,7 +106,6 @@ var bbox = require('@turf/bbox'),
  * centerPt.properties['marker-size'] = 'large';
  * centerPt.properties['marker-color'] = '#000';
  */
-
 module.exports = function (layer) {
     var ext = bbox(layer);
     var x = (ext[0] + ext[2]) / 2;
