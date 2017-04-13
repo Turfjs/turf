@@ -1,0 +1,13 @@
+{
+  "type": "Feature",
+  "properties": {
+    "radius": 5
+  },
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      -75.343,
+      39.984
+    ]
+  }
+}

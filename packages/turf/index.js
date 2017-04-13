@@ -85,6 +85,7 @@ var turf = {
     radiansToDistance: helpers.radiansToDistance,
     distanceToRadians: helpers.distanceToRadians,
     distanceToDegrees: helpers.distanceToDegrees,
+    bearingToAngle: helpers.bearingToAngle,
     getCoord: invariant.getCoord,
     getCoords: invariant.getCoords,
     geojsonType: invariant.geojsonType,
