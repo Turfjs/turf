@@ -28,11 +28,11 @@ var distance = require('@turf/distance');
  *   }
  * };
  *
- * var midpointed = turf.midpoint(pt1, pt2);
+ * var midpoint = turf.midpoint(pt1, pt2);
  *
  * //addToMap
- * var addToMap = [pt1, pt2, midpointed]
- * midpointed.properties['marker-color'] = '#f00';
+ * midpoint.properties['marker-color'] = '#f00';
+ * var addToMap = [pt1, pt2, midpoint]
 */
 module.exports = function (from, to) {
     var dist = distance(from, to, 'miles');
