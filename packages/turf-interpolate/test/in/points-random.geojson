@@ -31,7 +31,7 @@
       "properties": {
         "name": "Location A",
         "category": "Store",
-        "elevation": 23
+        "elevation": 50
       }
     },
     {
@@ -46,7 +46,7 @@
       "properties": {
         "name": "Location C",
         "category": "Office",
-        "elevation": 29
+        "elevation": 70
       }
     },
     {
@@ -61,7 +61,7 @@
       "properties": {
         "name": "Location A",
         "category": "Store",
-        "elevation": 12
+        "elevation": 10
       }
     },
     {
@@ -76,7 +76,7 @@
       "properties": {
         "name": "Location B",
         "category": "House",
-        "elevation": 11
+        "elevation": 90
       }
     },
     {
@@ -91,7 +91,7 @@
       "properties": {
         "name": "Location C",
         "category": "Office",
-        "elevation": 49
+        "elevation": 150
       }
     },
     {
@@ -121,7 +121,7 @@
       "properties": {
         "name": "Location B",
         "category": "House",
-        "elevation": 90
+        "elevation": 190
       }
     },
     {
@@ -136,7 +136,7 @@
       "properties": {
         "name": "Location C",
         "category": "Office",
-        "elevation": 22
+        "elevation": 220
       }
     },
     {
@@ -151,7 +151,7 @@
       "properties": {
         "name": "Location A",
         "category": "Store",
-        "elevation": 99
+        "elevation": 175
       }
     },
     {
@@ -166,7 +166,7 @@
       "properties": {
         "name": "Location B",
         "category": "House",
-        "elevation": 55
+        "elevation": 155
       }
     },
     {
@@ -181,7 +181,7 @@
       "properties": {
         "name": "Location C",
         "category": "Office",
-        "elevation": 41
+        "elevation": 40
       }
     },
     {
@@ -196,7 +196,7 @@
       "properties": {
         "name": "Location A",
         "category": "Store",
-        "elevation": 52
+        "elevation": 152
       }
     },
     {
@@ -256,7 +256,7 @@
       "properties": {
         "name": "Location C",
         "category": "Office",
-        "elevation": 52
+        "elevation": 200
       }
     }
   ]
