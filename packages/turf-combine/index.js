@@ -36,7 +36,6 @@ var meta = require('@turf/meta');
  * //addToMap
  * var addToMap = [combined]
  */
-
 module.exports = function (fc) {
     var groups = {
         MultiPoint: {coordinates: [], properties: []},
