@@ -30,10 +30,8 @@ var point = require('@turf/helpers').point;
  * };
  *
  * var points = turf.explode(poly);
- *
- * //=poly
- *
- * //=points
+ * //addToMap
+ * var addToMap = [poly, points]
  */
 module.exports = function (geojson) {
     var points = [];

@@ -63,14 +63,8 @@ var each = require('@turf/meta').coordEach,
  * };
  *
  * var hull = turf.convex(points);
- *
- * var resultFeatures = points.features.concat(hull);
- * var result = {
- *   "type": "FeatureCollection",
- *   "features": resultFeatures
- * };
- *
- * //=result
+ * //addToMap
+ * var addToMap = [points, hull]
  */
 module.exports = function (feature) {
     var points = [];

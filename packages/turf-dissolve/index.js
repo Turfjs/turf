@@ -50,8 +50,8 @@ var getClosest = require('get-closest');
  * }
  *
  * var dissolved = turf.dissolve(features, 'combine');
- *
- * //=dissolved
+ * //addToMap
+ * var addToMap = [features, dissolved]
  */
 module.exports = function (featureCollection, propertyName) {
 

@@ -37,14 +37,9 @@ var destination = require('@turf/destination');
  * };
  *
  * var snapped = turf.pointOnLine(line, pt, 'miles');
+ * //addToMap
+ * var addToMap = [line, pt, snapped]
  * snapped.properties['marker-color'] = '#00f'
- *
- * var result = {
- *   "type": "FeatureCollection",
- *   "features": [line, pt, snapped]
- * };
- *
- * //=result
  */
 
 module.exports = function (line, pt, units) {

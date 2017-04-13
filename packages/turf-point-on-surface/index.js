@@ -17,17 +17,10 @@ var explode = require('@turf/explode');
  * // create a random polygon
  * var polygon = turf.random('polygon');
  *
- * //=polygon
- *
  * var pointOnPolygon = turf.pointOnSurface(polygon);
  *
-* var resultFeatures = polygon.features.concat(pointOnPolygon);
-* var result = {
-*   "type": "FeatureCollection",
-*   "features": resultFeatures
-* };
- *
- * //=result
+ * //addToMap
+ * var addToMap = [polygon, pointOnPolygon]
  */
 function pointOnSurface(fc) {
     // normalize

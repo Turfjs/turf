@@ -33,7 +33,8 @@ var meta = require('@turf/meta');
  *
  * var combined = turf.combine(fc);
  *
- * //=combined
+ * //addToMap
+ * var addToMap = [combined]
  */
 
 module.exports = function (fc) {

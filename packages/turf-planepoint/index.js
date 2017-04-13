@@ -45,10 +45,9 @@
  * };
  *
  * var zValue = turf.planepoint(point, triangle);
- *
- * //=features
- *
- * //=zValue
+ * //addToMap
+ * var addToMap = [features]
+ * point.properties.zValue = zValue
  */
 module.exports = function (point, triangle) {
     var x = point.geometry.coordinates[0],

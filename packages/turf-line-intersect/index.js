@@ -32,7 +32,8 @@ var featureEach = meta.featureEach;
  *   }
  * };
  * var points = turf.lineIntersect(line1, line2);
- * //= points
+ * //addToMap
+ * var addToMap = [line, line2, points]
  */
 module.exports = function (line1, line2) {
     var results = [];

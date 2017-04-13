@@ -17,7 +17,8 @@ var distance = require('@turf/distance');
  *
  * var triangleGrid = turf.triangleGrid(bbox, cellSize, units);
  *
- * //=triangleGrid
+ * //addToMap
+ * var addToMap = [triangleGrid]
  */
 module.exports = function (bbox, cellSize, units) {
     var fc = featurecollection([]);

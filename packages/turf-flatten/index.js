@@ -25,7 +25,8 @@ var featureCollection = helpers.featureCollection;
  *
  * var flattened = turf.flatten(geometry);
  *
- * //=flattened
+ * //addToMap
+ * var addToMap = [flattened]
  */
 function flatten(geojson) {
     var type = (geojson.geometry) ? geojson.geometry.type : geojson.type;

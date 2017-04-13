@@ -23,14 +23,8 @@ var point = require('@turf/helpers').point;
  * };
  *
  * var kinks = turf.kinks(poly);
- *
- * var resultFeatures = kinks.features.concat(poly);
- * var result = {
- *   "type": "FeatureCollection",
- *   "features": resultFeatures
- * };
- *
- * //=result
+ * //addToMap
+ * var addToMap = [poly, kinks]
  */
 module.exports = function (featureIn) {
     var coordinates;

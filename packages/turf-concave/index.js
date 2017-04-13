@@ -69,14 +69,8 @@ var distance = require('@turf/distance');
  * };
  *
  * var hull = turf.concave(points, 1, 'miles');
- *
- * var resultFeatures = points.features.concat(hull);
- * var result = {
- *   "type": "FeatureCollection",
- *   "features": resultFeatures
- * };
- *
- * //=result
+ * //addToMap
+ * var addToMap = [points, hull]
  */
 function concave(points, maxEdge, units) {
     if (typeof maxEdge !== 'number') throw new Error('maxEdge parameter is required');

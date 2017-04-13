@@ -33,7 +33,8 @@ var inside = require('@turf/inside');
  * var tagged = turf.tag(points, polygons,
  *                       'pop', 'population');
  *
- * //=tagged
+ * //addToMap
+ * var addToMap = [tagged, polygons]
  */
 module.exports = function (points, polygons, field, outField) {
     // prevent mutations
