@@ -5,8 +5,8 @@ var point = require('@turf/helpers').point;
  * Takes a {@link Feature} or {@link FeatureCollection} and returns the absolute center point of all features.
  *
  * @name center
- * @param {(Feature|FeatureCollection)} layer input features
- * @return {Feature<Point>} a Point feature at the absolute center point of all input features
+ * @param {FeatureCollection|Feature<any>} layer input features
+ * @returns {Feature<Point>} a Point feature at the absolute center point of all input features
  * @example
  * var features = {
  *   "type": "FeatureCollection",
