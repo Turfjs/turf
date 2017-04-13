@@ -1,14 +1,12 @@
 var meta = require('@turf/meta');
 
 /**
- * Combines a {@link FeatureCollection} of {@link Point},
- * {@link LineString}, or {@link Polygon} features
- * into {@link MultiPoint}, {@link MultiLineString}, or
- * {@link MultiPolygon} features.
+ * Combines a {@link FeatureCollection} of {@link Point}, {@link LineString}, or {@link Polygon} features
+ * into {@link MultiPoint}, {@link MultiLineString}, or {@link MultiPolygon} features.
  *
  * @name combine
- * @param {FeatureCollection<(Point|LineString|Polygon)>} fc a FeatureCollection of any type
- * @return {FeatureCollection<(MultiPoint|MultiLineString|MultiPolygon)>} a FeatureCollection of corresponding type to input
+ * @param {FeatureCollection<Point|LineString|Polygon>} fc a FeatureCollection of any type
+ * @returns {FeatureCollection<MultiPoint|MultiLineString|MultiPolygon>} a FeatureCollection of corresponding type to input
  * @example
  * var fc = {
  *   "type": "FeatureCollection",
