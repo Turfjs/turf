@@ -1,0 +1,40 @@
+{
+  "name": "turf-aim",
+  "version": "3.0.5",
+  "description": "turf aim module",
+  "main": "index.js",
+  "scripts": {
+    "test": "node test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Turfjs/turf-aim.git"
+  },
+  "keywords": [
+    "target",
+    "projectile",
+    "aim",
+    "speed",
+    "distance"
+  ],
+  "author": {
+    "name": "Mustafa Dokumacı",
+    "email": "mustafa@foraa.com",
+    "url": "http://mustafadokumaci.com"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Turfjs/turf-aim/issues"
+  },
+  "homepage": "https://github.com/Turfjs/turf-aim",
+  "devDependencies": {
+    "benchmark": "^1.0.0",
+    "tape": "^3.5.0",
+    "turf-helpers": "^3.0.5"
+  },
+  "dependencies": {
+    "turf-bearing": "^3.0.5",
+    "turf-destination": "^3.0.5",
+    "turf-distance": "^3.0.5"
+  }
+}
