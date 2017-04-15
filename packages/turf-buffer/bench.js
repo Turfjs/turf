@@ -16,14 +16,15 @@ const fixtures = fs.readdirSync(directory).map(filename => {
 /**
  * Benchmark Results
  *
- * feature-collection-points x 3,792 ops/sec ±10.41% (82 runs sampled)
- * geometry-collection-points x 4,346 ops/sec ±2.05% (90 runs sampled)
- * linestring x 9,087 ops/sec ±2.14% (89 runs sampled)
- * multi-linestring x 1,145 ops/sec ±9.46% (80 runs sampled)
- * multi-point x 4,898 ops/sec ±4.73% (78 runs sampled)
- * multi-polygon x 1,737 ops/sec ±9.31% (66 runs sampled)
- * point x 11,907 ops/sec ±8.10% (72 runs sampled)
- * polygon-with-holes x 6,417 ops/sec ±6.16% (79 runs sampled)
+ * feature-collection-points x 9,335 ops/sec ±1.37% (88 runs sampled)
+ * geometry-collection-points x 9,505 ops/sec ±1.57% (86 runs sampled)
+ * linestring x 7,977 ops/sec ±17.93% (75 runs sampled)
+ * multi-linestring x 1,371 ops/sec ±2.00% (88 runs sampled)
+ * multi-point x 515 ops/sec ±3.35% (85 runs sampled)
+ * multi-polygon x 2,549 ops/sec ±3.03% (88 runs sampled)
+ * north-latitude-points x 812 ops/sec ±2.31% (88 runs sampled)
+ * point x 42,867 ops/sec ±1.38% (89 runs sampled)
+ * polygon-with-holes x 7,397 ops/sec ±1.93% (88 runs sampled)
  */
 const suite = new Benchmark.Suite('turf-buffer');
 for (const {name, geojson} of fixtures) {

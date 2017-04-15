@@ -3,9 +3,7 @@
   "features": [
     {
       "type": "Feature",
-      "properties": {
-        "foo": "bar"
-      },
+      "properties": {},
       "geometry": {
         "type": "MultiPoint",
         "coordinates": [
