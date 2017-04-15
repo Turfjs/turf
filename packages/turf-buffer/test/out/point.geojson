@@ -3,7 +3,9 @@
 	"features": [
 		{
 			"type": "Feature",
-			"properties": {},
+			"properties": {
+				"foo": "bar"
+			},
 			"geometry": {
 				"type": "Polygon",
 				"coordinates": [

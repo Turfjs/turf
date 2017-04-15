@@ -574,7 +574,9 @@
 					]
 				]
 			},
-			"properties": {}
+			"properties": {
+				"radius": 300
+			}
 		},
 		{
 			"type": "Feature",

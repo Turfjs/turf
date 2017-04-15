@@ -72,11 +72,15 @@ function buffer(feature, radius, units, steps) {
 
     switch (geometry.type) {
     case 'Point':
-        return circle(feature, radius, steps, units);
+        var poly = circle(feature, radius, steps, units);
+        poly.properties = properties;
+        return poly;
     case 'MultiPoint':
         var polys = [];
         coordEach(feature, function (coord) {
-            polys.push(circle(point(coord, properties), radius, steps, units));
+            var poly = circle(point(coord, properties), radius, steps, units);
+            poly.properties = properties;
+            polys.push(poly);
         });
         return dissolve(featureCollection(polys));
     case 'LineString':
