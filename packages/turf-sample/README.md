@@ -14,11 +14,14 @@ Takes a [FeatureCollection](http://geojson.org/geojson-spec.html#feature-collect
 ```javascript
 var points = turf.random('points', 1000);
 
-//=points
-
 var sample = turf.sample(points, 10);
 
-//=sample
+//addToMap
+var addToMap = [points, sample]
+turf.featureEach(sample, function (currentFeature) {
+  currentFeature.properties['marker-size'] = 'large';
+  currentFeature.properties['marker-color'] = '#000';
+});
 ```
 
 Returns **[FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects)** a FeatureCollection with `n` features

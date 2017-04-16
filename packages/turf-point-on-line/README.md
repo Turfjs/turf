@@ -38,14 +38,10 @@ var pt = {
 };
 
 var snapped = turf.pointOnLine(line, pt, 'miles');
-snapped.properties['marker-color'] = '#00f'
 
-var result = {
-  "type": "FeatureCollection",
-  "features": [line, pt, snapped]
-};
-
-//=result
+//addToMap
+snapped.properties['marker-color'] = '#00f';
+var addToMap = [line, pt, snapped];
 ```
 
 Returns **[Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;[Point](http://geojson.org/geojson-spec.html#point)>** closest point on the `line` to `point`. The properties object will contain three values: `index`: closest point was found on nth line part, `dist`: distance between pt and the closest point, `location`: distance along the line between start and the closest point.

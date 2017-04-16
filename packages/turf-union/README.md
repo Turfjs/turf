@@ -43,16 +43,11 @@ var poly2 = {
     ]]
   }
 };
-var polygons = {
-  "type": "FeatureCollection",
-  "features": [poly1, poly2]
-};
 
 var union = turf.union(poly1, poly2);
 
-//=polygons
-
-//=union
+//addToMap
+var addToMap = [poly1, poly2, union];
 ```
 
 Returns **[Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;([Polygon](http://geojson.org/geojson-spec.html#polygon) \| [MultiPolygon](http://geojson.org/geojson-spec.html#multipolygon))>** a combined [Polygon](http://geojson.org/geojson-spec.html#polygon) or [MultiPolygon](http://geojson.org/geojson-spec.html#multipolygon) feature

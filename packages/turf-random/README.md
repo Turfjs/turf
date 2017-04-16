@@ -26,13 +26,12 @@ var points = turf.random('points', 100, {
   bbox: [-70, 40, -60, 60]
 });
 
-//=points
-
 var polygons = turf.random('polygons', 4, {
   bbox: [-70, 40, -60, 60]
 });
 
-//=polygons
+//addToMap
+var addToMap = [points, polygons]
 ```
 
 Returns **[FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects)** generated random features

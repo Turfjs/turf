@@ -6,25 +6,24 @@ Takes a set of features, calculates the bbox of all input features, and returns 
 
 **Parameters**
 
--   `geojson` **([Feature](http://geojson.org/geojson-spec.html#feature-objects) \| [FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects))** input features
+-   `geojson` **([FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects) \| [Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;any>)** input features
 
 **Examples**
 
 ```javascript
-var pt1 = turf.point([114.175329, 22.2524])
-var pt2 = turf.point([114.170007, 22.267969])
-var pt3 = turf.point([114.200649, 22.274641])
-var pt4 = turf.point([114.200649, 22.274641])
-var pt5 = turf.point([114.186744, 22.265745])
-var features = turf.featureCollection([pt1, pt2, pt3, pt4, pt5])
+var line = {
+  "type": "Feature",
+  "properties": {},
+  "geometry": {
+    "type": "LineString",
+    "coordinates": [[-74, 40], [-78, 42], [-82, 35]]
+  }
+}
+var bbox = turf.bbox(line);
 
-var bbox = turf.bbox(features);
-
+//addToMap
 var bboxPolygon = turf.bboxPolygon(bbox);
-
-//=bbox
-
-//=bboxPolygon
+var addToMap = [line, bboxPolygon]
 ```
 
 Returns **[Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)>** bbox extent in [minX, minY, maxX, maxY] order

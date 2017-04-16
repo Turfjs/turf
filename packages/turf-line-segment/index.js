@@ -20,6 +20,7 @@ var getCoords = require('@turf/invariant').getCoords;
  *   }
  * }
  * var segments = turf.lineSegment(polygon);
+ *
  * //addToMap
  * var addToMap = [polygon, segments]
  */

@@ -20,8 +20,9 @@ var featureCollection = helpers.featureCollection;
  *   }
  * }
  * var lines = turf.polygonToLineString(poly);
+ *
  * //addToMap
- * var addToMap = [lines]
+ * var addToMap = [lines];
  */
 module.exports = function (polygon) {
     var geom = getGeomType(polygon);

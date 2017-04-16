@@ -17,18 +17,12 @@ var destination = require('@turf/destination');
  *   "properties": {},
  *   "geometry": {
  *     "type": "LineString",
- *     "coordinates": [
- *       [-77.031669, 38.878605],
- *       [-77.029609, 38.881946],
- *       [-77.020339, 38.884084],
- *       [-77.025661, 38.885821],
- *       [-77.021884, 38.889563],
- *       [-77.019824, 38.892368]
- *     ]
+ *     "coordinates": [[-83, 30], [-84, 36], [-78, 41]]
  *   }
  * };
  *
- * var along = turf.along(line, 1, 'miles');
+ * var along = turf.along(line, 200, 'miles');
+ *
  * //addToMap
  * var addToMap = [along, line]
  */

@@ -20,7 +20,8 @@ var units = 'miles';
 
 var grid = turf.pointGrid(extent, cellSize, units);
 
-//=grid
+//addToMap
+var addToMap = [grid];
 ```
 
 Returns **[FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects)&lt;[Point](http://geojson.org/geojson-spec.html#point)>** grid of points

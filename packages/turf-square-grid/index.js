@@ -19,6 +19,7 @@ var turfBBox = require('@turf/bbox');
  * var units = 'miles';
  *
  * var squareGrid = turf.squareGrid(bbox, cellSize, units);
+ *
  * //addToMap
  * var addToMap = [squareGrid]
  */

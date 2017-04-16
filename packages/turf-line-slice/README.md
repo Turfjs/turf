@@ -51,9 +51,8 @@ var stop = {
 
 var sliced = turf.lineSlice(start, stop, line);
 
-//=line
-
-//=sliced
+//addToMap
+var addToMap = [start, stop, line]
 ```
 
 Returns **[Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;[LineString](http://geojson.org/geojson-spec.html#linestring)>** sliced line

@@ -14,8 +14,7 @@
  * @name coordEach
  * @param {Object} layer any GeoJSON object
  * @param {Function} callback a method that takes (currentCoords, currentIndex)
- * @param {boolean} [excludeWrapCoord=false] whether or not to include
- * the final coordinate of LinearRings that wraps the ring in its iteration.
+ * @param {boolean} [excludeWrapCoord=false] whether or not to include the final coordinate of LinearRings that wraps the ring in its iteration.
  * @example
  * var features = {
  *   "type": "FeatureCollection",

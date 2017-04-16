@@ -20,15 +20,13 @@ var line = {
   "properties": {},
   "geometry": {
     "type": "LineString",
-    "coordinates": [
-      [-95, 40],
-      [-93, 45],
-      [-85, 50]
-    ]
+    "coordinates": [[-95, 40], [-93, 45], [-85, 50]]
   }
 };
-var result = turf.lineChunk(line, 15, 'miles');
-//=result
+var chunk = turf.lineChunk(line, 15, 'miles');
+
+//addToMap
+var addToMap = [line, chunk];
 ```
 
 Returns **[FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects)&lt;[LineString](http://geojson.org/geojson-spec.html#linestring)>** collection of line segments

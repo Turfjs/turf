@@ -24,21 +24,18 @@ the points that represent the corners of the triangle.
 var points = turf.random('points', 30, {
   bbox: [50, 30, 70, 50]
 });
-//=points
 // add a random property to each point between 0 and 9
 for (var i = 0; i < points.features.length; i++) {
   points.features[i].properties.z = ~~(Math.random() * 9);
 }
-var tin = turf.tin(points, 'z')
+var tin = turf.tin(points, 'z');
+
+//addToMap
+var addToMap = [tin, points]
 for (var i = 0; i < tin.features.length; i++) {
   var properties  = tin.features[i].properties;
-  // roughly turn the properties of each
-  // triangle into a fill color
-  // so we can visualize the result
-  properties.fill = '#' + properties.a +
-    properties.b + properties.c;
+  properties.fill = '#' + properties.a + properties.b + properties.c;
 }
-//=tin
 ```
 
 Returns **[FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects)&lt;[Polygon](http://geojson.org/geojson-spec.html#polygon)>** TIN output

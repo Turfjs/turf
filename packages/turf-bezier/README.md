@@ -36,9 +36,10 @@ var line = {
 };
 
 var curved = turf.bezier(line);
-curved.properties = { stroke: '#0f0' };
 
-//=curved
+//addToMap
+curved.properties = { stroke: '#0f0' };
+var addToMap = [line, curved]
 ```
 
 Returns **[Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;[LineString](http://geojson.org/geojson-spec.html#linestring)>** curved line

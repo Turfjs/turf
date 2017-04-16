@@ -20,7 +20,7 @@ var explode = require('@turf/explode');
  * var pointOnPolygon = turf.pointOnSurface(polygon);
  *
  * //addToMap
- * var addToMap = [polygon, pointOnPolygon]
+ * var addToMap = [polygon, pointOnPolygon];
  */
 function pointOnSurface(fc) {
     // normalize

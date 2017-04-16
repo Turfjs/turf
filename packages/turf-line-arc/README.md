@@ -1,6 +1,6 @@
 # @turf/line-arc
 
-# line-arc
+# lineArc
 
 Creates a circular arc, of a circle of the given radius and center point, between bearing1 and bearing2;
 0 bearing is North of center point, positive clockwise.

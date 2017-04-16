@@ -2,10 +2,10 @@
  * Takes a GeoJSON Feature or FeatureCollection and truncates the precision of the geometry.
  *
  * @name truncate
- * @param {(Feature|FeatureCollection)} layer any GeoJSON Feature or FeatureCollection
+ * @param {FeatureCollection|Feature<any>} layer any GeoJSON Feature or FeatureCollection
  * @param {number} [precision=6] coordinate decimal precision
  * @param {number} [coordinates=2] maximum number of coordinates (primarly used to remove z coordinates)
- * @returns {(Feature|FeatureCollection)} layer with truncated geometry
+ * @returns {FeatureCollection|Feature<any>} layer with truncated geometry
  * @example
  * var point = {
  *     "type": "Feature",

@@ -32,18 +32,13 @@ var to = {
     "coordinates": [-75.534, 39.123]
   }
 };
-var units = "miles";
 
-var points = {
-  "type": "FeatureCollection",
-  "features": [from, to]
-};
+var distance = turf.distance(from, to, "miles");
 
-//=points
-
-var distance = turf.distance(from, to, units);
-
-//=distance
+//addToMap
+from.properties.distance = distance;
+to.properties.distance = distance;
+var addToMap = [from, to];
 ```
 
 Returns **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** distance between the two points

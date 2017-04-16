@@ -20,8 +20,9 @@ var poly = {
   }
 }
 var lines = turf.polygonToLineString(poly);
+
 //addToMap
-var addToMap = [lines]
+var addToMap = [lines];
 ```
 
 Returns **[FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects)&lt;([LineString](http://geojson.org/geojson-spec.html#linestring) | MultiLinestring)>** converted Feature to Lines

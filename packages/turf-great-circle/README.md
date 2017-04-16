@@ -32,8 +32,10 @@ var end = {
     "coordinates": [-77, 39]
   }
 }
-var line = turf.greatCircle(start, end, {'name': 'Seattle to DC'});
-//=line
+var greatCircle = turf.greatCircle(start, end, {'name': 'Seattle to DC'});
+
+//addToMap
+var addToMap = [start, end, greatCircle]
 ```
 
 Returns **[Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;[LineString](http://geojson.org/geojson-spec.html#linestring)>** great circle line feature

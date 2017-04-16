@@ -30,6 +30,7 @@ for (var i = 0; i < 6; i++) {
  * var units = 'miles';
  *
  * var hexgrid = turf.hexGrid(bbox, cellSize, units);
+ *
  * //addToMap
  * var addToMap = [hexgrid]
  */

@@ -45,16 +45,11 @@ var triangle = {
   }
 };
 
-var features = {
-  "type": "FeatureCollection",
-  "features": [triangle, point]
-};
-
 var zValue = turf.planepoint(point, triangle);
 
-//=features
-
-//=zValue
+//addToMap
+point.properties.zValue = zValue;
+var addToMap = [triangle, point];
 ```
 
 Returns **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** the z-value for `interpolatedPoint`

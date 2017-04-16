@@ -39,13 +39,13 @@ var jsts = require('jsts');
  *   }
  * };
  *
- * var differenced = turf.difference(poly1, poly2);
+ * var difference = turf.difference(poly1, poly2);
  *
  * //addToMap
- * var addToMap = [poly1, poly2, differenced]
  * poly1.properties.fill = '#0f0';
  * poly2.properties.fill = '#00f';
- * differenced.properties.fill = '#f00';
+ * difference.properties.fill = '#f00';
+ * var addToMap = [poly1, poly2, difference];
  */
 
 module.exports = function (p1, p2) {

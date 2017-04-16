@@ -18,7 +18,7 @@ Takes a [Point](http://geojson.org/geojson-spec.html#point) and calculates the c
 var center = [-75.343, 39.984];
 var radius = 5;
 var steps = 10;
-var units = 'miles';
+var units = 'kilometers';
 var properties = {foo: 'bar'};
 
 var circle = turf.circle(center, radius, steps, units, properties);

@@ -20,7 +20,7 @@ var turfBBox = require('@turf/bbox');
  * var grid = turf.pointGrid(extent, cellSize, units);
  *
  * //addToMap
- * var addToMap = [grid]
+ * var addToMap = [grid];
  */
 module.exports = function (bbox, cellSize, units, centered) {
     var results = [];

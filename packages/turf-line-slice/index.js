@@ -47,6 +47,7 @@ var pointOnLine = require('@turf/point-on-line');
  * };
  *
  * var sliced = turf.lineSlice(start, stop, line);
+ *
  * //addToMap
  * var addToMap = [start, stop, line]
  */

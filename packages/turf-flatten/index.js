@@ -17,16 +17,16 @@ var featureCollection = helpers.featureCollection;
  * var geometry = {
  *   "type": "MultiPolygon",
  *   "coordinates": [
- *     [[[102.0, 2.0], [103.0, 2.0], [103.0, 3.0], [102.0, 3.0], [102.0, 2.0]]],
+ *      [[[102.0, 2.0], [103.0, 2.0], [103.0, 3.0], [102.0, 3.0], [102.0, 2.0]]],
  *      [[[100.0, 0.0], [101.0, 0.0], [101.0, 1.0], [100.0, 1.0], [100.0, 0.0]],
  *      [[100.2, 0.2], [100.8, 0.2], [100.8, 0.8], [100.2, 0.8], [100.2, 0.2]]]
  *    ]
  *  };
  *
- * var flattened = turf.flatten(geometry);
+ * var flatten = turf.flatten(geometry);
  *
  * //addToMap
- * var addToMap = [flattened]
+ * var addToMap = [flatten]
  */
 function flatten(geojson) {
     var type = (geojson.geometry) ? geojson.geometry.type : geojson.type;
