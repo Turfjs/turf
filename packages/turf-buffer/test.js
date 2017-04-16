@@ -4,6 +4,8 @@ const path = require('path');
 const load = require('load-json-file');
 const write = require('write-json-file');
 const truncate = require('@turf/truncate');
+const featureEach = require('@turf/meta').featureEach;
+const featureCollection = require('@turf/helpers').featureCollection;
 const buffer = require('./');
 
 const directories = {
@@ -25,7 +27,12 @@ test('turf-buffer', function (t) {
         radius = radius || 50;
         units = units || 'miles';
 
-        const results = truncate(buffer(geojson, radius, units, padding));
+        const buffered = truncate(buffer(geojson, radius, units, padding));
+
+        // Add Results to FeatureCollection
+        const results = featureCollection([]);
+        featureEach(buffered, feature => results.features.push(feature));
+        featureEach(geojson, feature => results.features.push(feature));
 
         if (process.env.REGEN) write.sync(directories.out + filename, results);
         t.deepEqual(results, load.sync(directories.out + filename), name);

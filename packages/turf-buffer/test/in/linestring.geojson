@@ -1,6 +1,8 @@
 {
   "type": "Feature",
-  "properties": {},
+  "properties": {
+    "foo": "bar"
+  },
   "geometry": {
     "type": "LineString",
     "coordinates": [
