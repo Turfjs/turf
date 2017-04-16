@@ -4,6 +4,9 @@
 		{
 			"type": "Feature",
 			"properties": {
+				"stroke": "#0000ff",
+				"stroke-width": 6,
+				"stroke-opacity": 1,
 				"name": "poly1",
 				"population": 400
 			},
@@ -60,6 +63,9 @@
 		{
 			"type": "Feature",
 			"properties": {
+				"stroke": "#ff8000",
+				"stroke-width": 6,
+				"stroke-opacity": 1,
 				"name": "poly1",
 				"population": 400
 			},
@@ -116,6 +122,9 @@
 		{
 			"type": "Feature",
 			"properties": {
+				"stroke": "#008000",
+				"stroke-width": 6,
+				"stroke-opacity": 1,
 				"name": "poly1",
 				"population": 400
 			},
