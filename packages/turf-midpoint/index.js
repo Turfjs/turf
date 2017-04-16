@@ -28,17 +28,12 @@ var distance = require('@turf/distance');
  *   }
  * };
  *
- * var midpointed = turf.midpoint(pt1, pt2);
- * midpointed.properties['marker-color'] = '#f00';
+ * var midpoint = turf.midpoint(pt1, pt2);
  *
- *
- * var result = {
- *   "type": "FeatureCollection",
- *   "features": [pt1, pt2, midpointed]
- * };
- *
- * //=result
- */
+ * //addToMap
+ * midpoint.properties['marker-color'] = '#f00';
+ * var addToMap = [pt1, pt2, midpoint]
+*/
 module.exports = function (from, to) {
     var dist = distance(from, to, 'miles');
     var heading = bearing(from, to);

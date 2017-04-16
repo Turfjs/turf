@@ -74,16 +74,21 @@ export function multiPolygon(coordinates: Position[][][], properties?: any): Mul
 export function geometryCollection(geometries: Array<GeoJSON.GeometryObject>, properties?: any): GeoJSON.GeometryCollection;
 
 /**
- * http://turfjs.org/docs/
+ * http://turfjs.org/docs/#radianstodistance
  */
 export function radiansToDistance(radians: number, units?: Units): number
 
 /**
- * http://turfjs.org/docs/
+ * http://turfjs.org/docs/#distancetoradians
  */
 export function distanceToRadians(distance: number, units?: Units): number
 
 /**
- * http://turfjs.org/docs/
+ * http://turfjs.org/docs/#distancetodegrees
  */
 export function distanceToDegrees(distance: number, units?: Units): number
+
+/**
+ * http://turfjs.org/docs/#bearingtoangle
+ */
+export function bearingToAngle(alpha: number): number

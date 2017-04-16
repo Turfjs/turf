@@ -28,12 +28,8 @@ var point = require('@turf/helpers').point;
  *
  * var centroidPt = turf.centroid(poly);
  *
- * var result = {
- *   "type": "FeatureCollection",
- *   "features": [poly, centroidPt]
- * };
- *
- * //=result
+ * //addToMap
+ * var addToMap = [poly, centroidPt]
  */
 module.exports = function (features) {
     var xSum = 0, ySum = 0, len = 0;

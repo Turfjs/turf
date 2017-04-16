@@ -28,7 +28,8 @@ var flatten = require('@turf/flatten');
  *   }
  * };
  * var result = turf.lineChunk(line, 15, 'miles');
- * //=result
+ * //addToMap
+ * var addToMap = [line, result]
  */
 module.exports = function (featureIn, segmentLength, units, reverse) {
     var outFeatures = [];

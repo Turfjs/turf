@@ -1,6 +1,6 @@
 {
   "name": "@turf/line-segment",
-  "version": "4.0.1",
+  "version": "4.1.0",
   "description": "turf line-segment module",
   "main": "index.js",
   "types": "index.d.ts",
@@ -34,9 +34,9 @@
     "write-json-file": "^2.0.0"
   },
   "dependencies": {
-    "@turf/flatten": "^4.0.1",
-    "@turf/helpers": "^4.0.1",
-    "@turf/invariant": "^4.0.1",
-    "@turf/meta": "^4.0.1"
+    "@turf/flatten": "^4.1.0",
+    "@turf/helpers": "^4.1.0",
+    "@turf/invariant": "^4.1.0",
+    "@turf/meta": "^4.1.0"
   }
 }

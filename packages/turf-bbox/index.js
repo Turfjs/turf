@@ -6,7 +6,6 @@ var each = require('@turf/meta').coordEach;
  * @name bbox
  * @param {(Feature|FeatureCollection)} geojson input features
  * @returns {Array<number>} bbox extent in [minX, minY, maxX, maxY] order
- * @addToMap features, bboxPolygon
  * @example
  * var pt1 = turf.point([114.175329, 22.2524])
  * var pt2 = turf.point([114.170007, 22.267969])
@@ -18,10 +17,8 @@ var each = require('@turf/meta').coordEach;
  * var bbox = turf.bbox(features);
  *
  * var bboxPolygon = turf.bboxPolygon(bbox);
- *
- * //=bbox
- *
- * //=bboxPolygon
+ * //addToMap
+ * var addToMap = [features, bboxPolygon]
  */
 module.exports = function (geojson) {
     var bbox = [Infinity, Infinity, -Infinity, -Infinity];

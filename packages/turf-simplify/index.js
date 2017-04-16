@@ -45,12 +45,10 @@ var supportedTypes = ['LineString', 'MultiLineString', 'Polygon', 'MultiPolygon'
 
  * var tolerance = 0.01;
  *
- * var simplified = turf.simplify(
- *  feature, tolerance, false);
+ * var simplified = turf.simplify(feature, tolerance, false);
  *
- * //=feature
- *
- * //=simplified
+ * //addToMap
+ * var addToMap = [feature, simplified]
  */
 module.exports = function (feature, tolerance, highQuality) {
     if (feature.type === 'Feature') {

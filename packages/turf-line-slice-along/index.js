@@ -41,10 +41,8 @@ var lineString = require('@turf/helpers').lineString;
  * var units = 'miles';
  *
  * var sliced = turf.lineSliceAlong(line, start, stop, units);
- *
- * //=line
- *
- * //=sliced
+ * //addToMap
+ * var addToMap = [line, start, stop, sliced]
  */
 module.exports = function (line, startDist, stopDist, units) {
     var coords;

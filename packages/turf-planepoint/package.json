@@ -1,6 +1,6 @@
 {
   "name": "@turf/planepoint",
-  "version": "3.14.0",
+  "version": "4.1.0",
   "description": "turf planepoint module",
   "main": "index.js",
   "types": "index.d.ts",

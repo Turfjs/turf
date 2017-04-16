@@ -1,21 +1,33 @@
-var test = require('tape');
-var destination = require('@turf/destination');
-var inside = require('@turf/inside');
-var circle = require('./');
+const test = require('tape');
+const fs = require('fs');
+const path = require('path');
+const load = require('load-json-file');
+const write = require('write-json-file');
+const truncate = require('@turf/truncate');
+const featureCollection = require('@turf/helpers').featureCollection;
+const circle = require('./');
 
-test('circle', function(t){
-    var center = {
-        type: "Feature",
-        geometry: {type: "Point", coordinates: [-75.343, 39.984]}
+const directories = {
+    in: path.join(__dirname, 'test', 'in') + path.sep,
+    out: path.join(__dirname, 'test', 'out') + path.sep
+};
+
+const fixtures = fs.readdirSync(directories.in).map(filename => {
+    return {
+        filename,
+        name: path.parse(filename).name,
+        geojson: load.sync(directories.in + filename)
     };
-    var radius = 5;
-    var steps = 10;
+});
 
-    var polygon = circle(center, radius, steps, 'kilometers');
-    var point1 = destination(center, radius - 1, 45, 'kilometers');
-    var point2 = destination(center, radius + 1, 135, 'kilometers');
+test('turf-circle', t => {
+    for (const {filename, name, geojson}  of fixtures) {
+        const {radius, steps, units} = geojson.properties;
+        const C = truncate(circle(geojson, radius, steps, units));
+        const results = featureCollection([geojson, C]);
 
-    t.equal(inside(point1, polygon), true, 'point is inside the polygon');
-    t.equal(inside(point2, polygon), false, 'point is outside the polygon');
+        if (process.env.REGEN) write.sync(directories.out + filename, results);
+        t.deepEquals(results, load.sync(directories.out + filename), name);
+    }
     t.end();
 });

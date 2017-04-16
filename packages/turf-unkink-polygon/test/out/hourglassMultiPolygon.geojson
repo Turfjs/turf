@@ -4,7 +4,10 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"stroke": "#ff0000"
+				"stroke": "#F00",
+				"fill": "#F00",
+				"stroke-width": 6,
+				"fill-opacity": 0.1
 			},
 			"geometry": {
 				"type": "Polygon",
@@ -33,7 +36,10 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"stroke": "#ff0000"
+				"stroke": "#00F",
+				"fill": "#00F",
+				"stroke-width": 6,
+				"fill-opacity": 0.1
 			},
 			"geometry": {
 				"type": "Polygon",
@@ -62,7 +68,10 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"stroke": "#ff0000"
+				"stroke": "#F00",
+				"fill": "#F00",
+				"stroke-width": 6,
+				"fill-opacity": 0.1
 			},
 			"geometry": {
 				"type": "Polygon",
@@ -91,7 +100,10 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"stroke": "#ff0000"
+				"stroke": "#00F",
+				"fill": "#00F",
+				"stroke-width": 6,
+				"fill-opacity": 0.1
 			},
 			"geometry": {
 				"type": "Polygon",
