@@ -36,7 +36,10 @@ var point = helpers.point;
  */
 
 module.exports = function (geojson, radius, units, steps) {
+    // validation
     if (radius === undefined || radius === null) throw new Error('radius is required');
+
+    // default params
     steps = steps || 64;
 
     switch (geojson.type) {
