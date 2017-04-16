@@ -4,7 +4,7 @@ var polygon = helpers.polygon;
 var featureCollection = helpers.featureCollection;
 
 /**
- * Converts a {@link LineString} or {@link MultiLineString} to a {@link Polygon}.
+ * Converts (Multi)LineString(s) to Polygon(s).
  *
  * @name lineStringToPolygon
  * @param {FeatureCollection|Feature<LineString|MultiLineString>} lines Features to convert

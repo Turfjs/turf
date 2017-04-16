@@ -2,7 +2,7 @@
 
 # lineStringToPolygon
 
-Converts a [LineString](http://geojson.org/geojson-spec.html#linestring) or [MultiLineString](http://geojson.org/geojson-spec.html#multilinestring) to a [Polygon](http://geojson.org/geojson-spec.html#polygon).
+Converts (Multi)LineString(s) to Polygon(s).
 
 **Parameters**
 
