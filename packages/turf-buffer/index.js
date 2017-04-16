@@ -1,12 +1,14 @@
-var jsts = require('jsts');
+var Offset = require('polygon-offset');
 var helpers = require('@turf/helpers');
 var circle = require('@turf/circle');
 var dissolve = require('@turf/dissolve');
 var meta = require('@turf/meta');
+var getCoords = require('@turf/invariant').getCoords;
 var coordEach = meta.coordEach;
 var featureEach = meta.featureEach;
 var featureCollection = helpers.featureCollection;
 var distanceToDegrees = helpers.distanceToDegrees;
+var polygon = helpers.polygon;
 var point = helpers.point;
 
 /**
@@ -69,15 +71,23 @@ module.exports = function (geojson, radius, units, steps) {
  * @returns {Feature<Polygon|MultiPolygon>} buffered feature
  */
 function buffer(feature, radius, units, steps) {
+    // validation
+    if (steps <= 0) throw new Error('steps must be greater than 0');
+
+    // default params
     var properties = feature.properties || {};
     var distance = distanceToDegrees(radius, units);
     var geometry = (feature.type === 'Feature') ? feature.geometry : feature;
+    var coords = getCoords(feature);
+
+    // Polygon-offset has issues when arcSegments is greater than 32
+    var offset = new Offset(coords, (steps > 32) ? 32 : steps);
 
     switch (geometry.type) {
     case 'Point':
-        var poly = circle(feature, radius, steps, units);
-        poly.properties = properties;
-        return poly;
+        var pointBuffer = circle(feature, radius, steps, units);
+        pointBuffer.properties = properties;
+        return pointBuffer;
     case 'MultiPoint':
         var polys = [];
         coordEach(feature, function (coord) {
@@ -88,14 +98,12 @@ function buffer(feature, radius, units, steps) {
         return dissolve(featureCollection(polys));
     case 'LineString':
     case 'MultiLineString':
+        var lineBuffer = offset.offsetLine(distance);
+        return polygon(lineBuffer, properties);
     case 'Polygon':
     case 'MultiPolygon':
-        var reader = new jsts.io.GeoJSONReader();
-        var geom = reader.read(geometry);
-        var buffered = geom.buffer(distance);
-        var writer = new jsts.io.GeoJSONWriter();
-        buffered = writer.write(buffered);
-        return helpers.feature(buffered, properties);
+        var polyBuffer = offset.margin(distance);
+        return polygon(polyBuffer, properties);
     default:
         throw new Error('geometry type ' + geometry.type + ' not supported');
     }

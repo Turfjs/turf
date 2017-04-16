@@ -16,6 +16,19 @@ const fixtures = fs.readdirSync(directory).map(filename => {
 /**
  * Benchmark Results
  *
+ * ==polygon-offset:after==
+ * feature-collection-points x 6,905 ops/sec ±16.80% (70 runs sampled)
+ * geometry-collection-points x 7,682 ops/sec ±9.08% (75 runs sampled)
+ * linestring x 404 ops/sec ±1.54% (85 runs sampled)
+ * multi-linestring x 117 ops/sec ±1.43% (73 runs sampled)
+ * multi-point x 1,406 ops/sec ±17.23% (81 runs sampled)
+ * multi-polygon x 38.88 ops/sec ±1.21% (51 runs sampled)
+ * north-latitude-points x 552 ops/sec ±1.24% (84 runs sampled)
+ * northern-polygon x 215 ops/sec ±2.45% (81 runs sampled)
+ * point x 36,843 ops/sec ±6.75% (80 runs sampled)
+ * polygon-with-holes x 74.91 ops/sec ±7.91% (63 runs sampled)
+ *
+ * ==jsts:before ==
  * feature-collection-points x 9,335 ops/sec ±1.37% (88 runs sampled)
  * geometry-collection-points x 9,505 ops/sec ±1.57% (86 runs sampled)
  * linestring x 7,977 ops/sec ±17.93% (75 runs sampled)

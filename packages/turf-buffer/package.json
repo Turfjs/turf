@@ -46,7 +46,8 @@
     "@turf/circle": "^4.1.0",
     "@turf/dissolve": "^4.1.0",
     "@turf/helpers": "^4.1.0",
+    "@turf/invariant": "^4.1.0",
     "@turf/meta": "^4.1.0",
-    "jsts": "1.3.0"
+    "polygon-offset": "^0.3.1"
   }
 }
