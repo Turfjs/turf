@@ -17,16 +17,16 @@ const fixtures = fs.readdirSync(directory).map(filename => {
  * Benchmark Results
  *
  * ==polygon-offset:after==
- * feature-collection-points x 6,905 ops/sec ±16.80% (70 runs sampled)
- * geometry-collection-points x 7,682 ops/sec ±9.08% (75 runs sampled)
- * linestring x 404 ops/sec ±1.54% (85 runs sampled)
- * multi-linestring x 117 ops/sec ±1.43% (73 runs sampled)
- * multi-point x 1,406 ops/sec ±17.23% (81 runs sampled)
- * multi-polygon x 38.88 ops/sec ±1.21% (51 runs sampled)
- * north-latitude-points x 552 ops/sec ±1.24% (84 runs sampled)
- * northern-polygon x 215 ops/sec ±2.45% (81 runs sampled)
- * point x 36,843 ops/sec ±6.75% (80 runs sampled)
- * polygon-with-holes x 74.91 ops/sec ±7.91% (63 runs sampled)
+ * feature-collection-points x 9,876 ops/sec ±0.88% (89 runs sampled)
+ * geometry-collection-points x 9,919 ops/sec ±0.90% (91 runs sampled)
+ * linestring x 219 ops/sec ±1.37% (83 runs sampled)
+ * multi-linestring x 61.91 ops/sec ±4.88% (64 runs sampled)
+ * multi-point x 995 ops/sec ±24.51% (82 runs sampled)
+ * multi-polygon x 42.77 ops/sec ±0.92% (56 runs sampled)
+ * north-latitude-points x 842 ops/sec ±1.23% (91 runs sampled)
+ * northern-polygon x 236 ops/sec ±1.83% (83 runs sampled)
+ * point x 43,814 ops/sec ±1.19% (94 runs sampled)
+ * polygon-with-holes x 79.33 ops/sec ±16.13% (65 runs sampled)
  *
  * ==jsts:before ==
  * feature-collection-points x 9,335 ops/sec ±1.37% (88 runs sampled)

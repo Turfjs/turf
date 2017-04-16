@@ -80,9 +80,6 @@ function buffer(feature, radius, units, steps) {
     var geometry = (feature.type === 'Feature') ? feature.geometry : feature;
     var coords = getCoords(feature);
 
-    // Polygon-offset has issues when arcSegments is greater than 32
-    var offset = new Offset(coords, (steps > 32) ? 32 : steps);
-
     switch (geometry.type) {
     case 'Point':
         var pointBuffer = circle(feature, radius, steps, units);
@@ -98,11 +95,14 @@ function buffer(feature, radius, units, steps) {
         return dissolve(featureCollection(polys));
     case 'LineString':
     case 'MultiLineString':
-        var lineBuffer = offset.offsetLine(distance);
+        var lineOffset = new Offset(coords, steps);
+        var lineBuffer = lineOffset.offsetLine(distance);
         return polygon(lineBuffer, properties);
     case 'Polygon':
     case 'MultiPolygon':
-        var polyBuffer = offset.margin(distance);
+        // Polygon-offset has issues when arcSegments is greater than 32
+        var polyOffset = new Offset(coords, (steps > 32) ? 32 : steps);
+        var polyBuffer = polyOffset.margin(distance);
         return polygon(polyBuffer, properties);
     default:
         throw new Error('geometry type ' + geometry.type + ' not supported');
