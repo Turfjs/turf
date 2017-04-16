@@ -1,7 +1,7 @@
 var getCoords = require('@turf/invariant').getCoords;
 var polygon = require('@turf/helpers').polygon;
 var featureCollection = require('@turf/helpers').featureCollection;
-var martinez = require('./martinez.min.js');
+var martinez = require('./martinez.js');
 
 /**
  * Finds the difference between two {@link Polygon|polygons} by clipping the second
