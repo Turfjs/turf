@@ -6,12 +6,12 @@ Takes any number of features and returns a rectangular [Polygon](http://geojson.
 
 **Parameters**
 
--   `features` **([Feature](http://geojson.org/geojson-spec.html#feature-objects) \| [FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects))** input features
+-   `geojson` **([FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects) \| [Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;any>)** input features
 
 **Examples**
 
 ```javascript
-var fc = {
+var features = {
   "type": "FeatureCollection",
   "features": [
     {
@@ -45,15 +45,10 @@ var fc = {
   ]
 };
 
-var enveloped = turf.envelope(fc);
+var enveloped = turf.envelope(features);
 
-var resultFeatures = fc.features.concat(enveloped);
-var result = {
-  "type": "FeatureCollection",
-  "features": resultFeatures
-};
-
-//=result
+//addToMap
+var addToMap = [features, enveloped]
 ```
 
 Returns **[Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;[Polygon](http://geojson.org/geojson-spec.html#polygon)>** a rectangular Polygon feature that encompasses all vertices

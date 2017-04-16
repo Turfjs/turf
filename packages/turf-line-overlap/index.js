@@ -32,6 +32,7 @@ var featureEach = require('@turf/meta').featureEach;
  *   }
  * }
  * var overlapping = turf.lineOverlap(line1, line2);
+ *
  * //addToMap
  * var addToMap = [line1, line2, overlapping]
  */

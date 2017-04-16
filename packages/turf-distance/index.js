@@ -31,18 +31,13 @@ var radiansToDistance = require('@turf/helpers').radiansToDistance;
  *     "coordinates": [-75.534, 39.123]
  *   }
  * };
- * var units = "miles";
  *
- * var points = {
- *   "type": "FeatureCollection",
- *   "features": [from, to]
- * };
+ * var distance = turf.distance(from, to, "miles");
  *
- * var distance = turf.distance(from, to, units);
  * //addToMap
- * from.properties.distance = distance
- * to.properties.distance = distance
- * var addToMap = [points]
+ * from.properties.distance = distance;
+ * to.properties.distance = distance;
+ * var addToMap = [from, to];
  */
 module.exports = function (from, to, units) {
     var degrees2radians = Math.PI / 180;

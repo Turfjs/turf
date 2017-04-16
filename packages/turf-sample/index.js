@@ -12,11 +12,12 @@ var featureCollection = require('@turf/helpers').featureCollection;
  * var points = turf.random('points', 1000);
  *
  * var sample = turf.sample(points, 10);
+ *
  * //addToMap
  * var addToMap = [points, sample]
  * turf.featureEach(sample, function (currentFeature) {
- *  currentFeature.properties['marker-size'] = 'large';
- *  currentFeature.properties['marker-color'] = '#000';
+ *   currentFeature.properties['marker-size'] = 'large';
+ *   currentFeature.properties['marker-color'] = '#000';
  * });
  */
 module.exports = function (featurecollection, num) {

@@ -23,6 +23,7 @@ var point = require('@turf/helpers').point;
  * };
  *
  * var kinks = turf.kinks(poly);
+ *
  * //addToMap
  * var addToMap = [poly, kinks]
  */

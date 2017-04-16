@@ -33,7 +33,7 @@ var lineArc = require('@turf/line-arc');
  * var sector = turf.sector(center, radius, bearing1, bearing2);
  *
  * //addToMap
- * var addToMap = [center, sector]
+ * var addToMap = [center, sector];
  */
 module.exports = function (center, radius, bearing1, bearing2, steps, units) {
     // validation

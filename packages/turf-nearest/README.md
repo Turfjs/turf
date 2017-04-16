@@ -54,15 +54,10 @@ var against = {
 };
 
 var nearest = turf.nearest(point, against);
+
+//addToMap
 nearest.properties['marker-color'] = '#f00';
-
-var resultFeatures = against.features.concat(point);
-var result = {
-  "type": "FeatureCollection",
-  "features": resultFeatures
-};
-
-//=result
+var addToMap = [point, against, nearest];
 ```
 
 Returns **[Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;[Point](http://geojson.org/geojson-spec.html#point)>** the closest point in the set to the reference point

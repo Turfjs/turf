@@ -30,8 +30,7 @@ var inside = require('@turf/inside');
  * var points = turf.featureCollection([pt1, pt2]);
  * var polygons = turf.featureCollection([poly1, poly2]);
  *
- * var tagged = turf.tag(points, polygons,
- *                       'pop', 'population');
+ * var tagged = turf.tag(points, polygons, 'pop', 'population');
  *
  * //addToMap
  * var addToMap = [tagged, polygons]

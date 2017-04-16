@@ -16,9 +16,7 @@ i.e. the angle measured in degrees from the north line (0 degrees)
 ```javascript
 var point1 = {
   "type": "Feature",
-  "properties": {
-    "marker-color": '#f00'
-  },
+  "properties": {},
   "geometry": {
     "type": "Point",
     "coordinates": [-75.343, 39.984]
@@ -26,9 +24,7 @@ var point1 = {
 };
 var point2 = {
   "type": "Feature",
-  "properties": {
-    "marker-color": '#0f0'
-  },
+  "properties": {},
   "geometry": {
     "type": "Point",
     "coordinates": [-75.534, 39.123]
@@ -36,8 +32,12 @@ var point2 = {
 };
 
 var bearing = turf.bearing(point1, point2);
+
+//addToMap
+var addToMap = [point1, point2]
+point1.properties['marker-color'] = '#f00'
+point2.properties['marker-color'] = '#0f0'
 point1.properties.bearing = bearing
-//=bearing
 ```
 
 Returns **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** bearing in decimal degrees, between -180 and 180 degrees (positive clockwise)

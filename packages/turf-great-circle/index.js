@@ -29,9 +29,10 @@ var getCoord = require('@turf/invariant').getCoord;
  *     "coordinates": [-77, 39]
  *   }
  * }
- * var line = turf.greatCircle(start, end, {'name': 'Seattle to DC'});
+ * var greatCircle = turf.greatCircle(start, end, {'name': 'Seattle to DC'});
+ *
  * //addToMap
- * var addToMap = [start, end, line]
+ * var addToMap = [start, end, greatCircle]
  */
 module.exports = function (start, end, properties, npoints, offset) {
     start = getCoord(start);

@@ -22,7 +22,8 @@ var poly = {
 
 var result = turf.unkinkPolygon(poly);
 
-//=result
+//addToMap
+var addToMap = [poly, result]
 ```
 
 Returns **[FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects)&lt;[Polygon](http://geojson.org/geojson-spec.html#polygon)>** Unkinked polygons

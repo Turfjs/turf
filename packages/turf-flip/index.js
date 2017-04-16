@@ -5,8 +5,8 @@ var coordEach = require('@turf/meta').coordEach;
  * from `[x, y]` to `[y, x]`.
  *
  * @name flip
- * @param {(Feature|FeatureCollection)} input input features
- * @returns {(Feature|FeatureCollection)} a feature or set of features of the same type as `input` with flipped coordinates
+ * @param {FeatureCollection|Feature<any>} input input features
+ * @returns {FeatureCollection|Feature<any>} a feature or set of features of the same type as `input` with flipped coordinates
  * @example
  * var serbia = {
  *   "type": "Feature",
@@ -18,6 +18,7 @@ var coordEach = require('@turf/meta').coordEach;
  * };
  *
  * var saudiArabia = turf.flip(serbia);
+ *
  * //addToMap
  * var addToMap = [serbia, saudiArabia]
  */

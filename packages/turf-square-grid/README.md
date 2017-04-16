@@ -19,7 +19,9 @@ var cellSize = 50;
 var units = 'miles';
 
 var squareGrid = turf.squareGrid(bbox, cellSize, units);
-//=squareGrid
+
+//addToMap
+var addToMap = [squareGrid]
 ```
 
 Returns **[FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects)&lt;[Polygon](http://geojson.org/geojson-spec.html#polygon)>** grid a grid of polygons

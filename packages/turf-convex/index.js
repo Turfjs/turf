@@ -63,6 +63,7 @@ var each = require('@turf/meta').coordEach,
  * };
  *
  * var hull = turf.convex(points);
+ *
  * //addToMap
  * var addToMap = [points, hull]
  */

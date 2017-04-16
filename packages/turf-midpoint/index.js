@@ -32,7 +32,7 @@ var distance = require('@turf/distance');
  *
  * //addToMap
  * midpoint.properties['marker-color'] = '#f00';
- * var addToMap = [pt1, pt2, midpoint]
+ * var addToMap = [pt1, pt2, midpoint];
 */
 module.exports = function (from, to) {
     var dist = distance(from, to, 'miles');

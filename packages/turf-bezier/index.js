@@ -33,6 +33,7 @@ var Spline = require('./spline.js');
  * };
  *
  * var curved = turf.bezier(line);
+ *
  * //addToMap
  * curved.properties = { stroke: '#0f0' };
  * var addToMap = [line, curved]

@@ -30,6 +30,7 @@ var getCoord = require('@turf/invariant').getCoord;
  * };
  *
  * var bearing = turf.bearing(point1, point2);
+ *
  * //addToMap
  * var addToMap = [point1, point2]
  * point1.properties['marker-color'] = '#f00'

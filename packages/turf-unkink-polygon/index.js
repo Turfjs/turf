@@ -20,6 +20,7 @@ var featureCollection = require('@turf/helpers').featureCollection;
  * };
  *
  * var result = turf.unkinkPolygon(poly);
+ *
  * //addToMap
  * var addToMap = [poly, result]
  */

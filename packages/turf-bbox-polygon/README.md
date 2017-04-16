@@ -15,7 +15,8 @@ var bbox = [0, 0, 10, 10];
 
 var poly = turf.bboxPolygon(bbox);
 
-//=poly
+//addToMap
+var addToMap = [poly]
 ```
 
 Returns **[Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;[Polygon](http://geojson.org/geojson-spec.html#polygon)>** a Polygon representation of the bounding box

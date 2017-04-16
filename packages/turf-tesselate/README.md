@@ -16,7 +16,8 @@ var poly = turf.random('polygon').features[0];
 
 var triangles = turf.tesselate(poly);
 
-//=triangles
+//addToMap
+var addToMap = [poly, triangles]
 ```
 
 Returns **[FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects)&lt;[Polygon](http://geojson.org/geojson-spec.html#polygon)>** a geometrycollection feature

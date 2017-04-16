@@ -50,7 +50,8 @@ var features = {
 
 var dissolved = turf.dissolve(features, 'combine');
 
-//=dissolved
+//addToMap
+var addToMap = [features, dissolved]
 ```
 
 Returns **[FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects)&lt;[Polygon](http://geojson.org/geojson-spec.html#polygon)>** a FeatureCollection containing the dissolved polygons

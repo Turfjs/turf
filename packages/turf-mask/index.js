@@ -29,6 +29,7 @@ var union = require('@turf/union');
  *   }
  * }
  * var masked = turf.mask(polygon, mask);
+ *
  * //addToMap
  * var addToMap = [masked]
  */

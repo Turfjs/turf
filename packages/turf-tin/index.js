@@ -27,7 +27,8 @@ var featurecollection = require('@turf/helpers').featureCollection;
  * for (var i = 0; i < points.features.length; i++) {
  *   points.features[i].properties.z = ~~(Math.random() * 9);
  * }
- * var tin = turf.tin(points, 'z')
+ * var tin = turf.tin(points, 'z');
+ *
  * //addToMap
  * var addToMap = [tin, points]
  * for (var i = 0; i < tin.features.length; i++) {

@@ -24,7 +24,8 @@ var features = {
   ]
 };
 
-//=features
+//addToMap
+var addToMap = [features]
 ```
 
 Returns **[Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)>** a square surrounding `bbox`

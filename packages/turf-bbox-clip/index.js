@@ -26,6 +26,7 @@ var multiPolygon = helpers.multiPolygon;
  * }
  *
  * var clipped = turf.bboxClip(poly, bbox);
+ *
  * //addToMap
  * var addToMap = [bbox, poly, clipped]
  */

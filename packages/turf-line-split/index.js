@@ -36,6 +36,7 @@ var featureReduce = meta.featureReduce;
  *   }
  * };
  * var split = turf.lineSplit(line, splitter);
+ *
  * //addToMap
  * var addToMap = [line, splitter]
  */

@@ -11,6 +11,7 @@ var polygon = require('@turf/helpers').polygon;
  * var bbox = [0, 0, 10, 10];
  *
  * var poly = turf.bboxPolygon(bbox);
+ *
  * //addToMap
  * var addToMap = [poly]
  */

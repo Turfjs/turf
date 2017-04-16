@@ -77,11 +77,12 @@ var points = {
 
 var ptsWithin = turf.within(points, searchWithin);
 
-//=points
-
-//=searchWithin
-
-//=ptsWithin
+//addToMap
+var addToMap = [points, searchWithin, ptsWithin]
+turf.featureEach(ptsWithin, function (currentFeature) {
+  currentFeature.properties['marker-size'] = 'large';
+  currentFeature.properties['marker-color'] = '#000';
+});
 ```
 
 Returns **[FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects)&lt;[Point](http://geojson.org/geojson-spec.html#point)>** points that land within at least one polygon

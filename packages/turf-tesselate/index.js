@@ -13,6 +13,7 @@ var earcut = require('earcut');
  * var poly = turf.random('polygon').features[0];
  *
  * var triangles = turf.tesselate(poly);
+ *
  * //addToMap
  * var addToMap = [poly, triangles]
  */

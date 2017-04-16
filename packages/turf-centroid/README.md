@@ -14,29 +14,19 @@ the centroid of a set of polygons.
 **Examples**
 
 ```javascript
-var poly = {
+var polygon = {
   "type": "Feature",
   "properties": {},
   "geometry": {
     "type": "Polygon",
-    "coordinates": [[
-      [105.818939,21.004714],
-      [105.818939,21.061754],
-      [105.890007,21.061754],
-      [105.890007,21.004714],
-      [105.818939,21.004714]
-    ]]
+    "coordinates": [[[-81, 41], [-88, 36], [-84, 31], [-80, 33], [-77, 39], [-81, 41]]]
   }
 };
 
-var centroidPt = turf.centroid(poly);
+var centroid = turf.centroid(polygon);
 
-var result = {
-  "type": "FeatureCollection",
-  "features": [poly, centroidPt]
-};
-
-//=result
+//addToMap
+var addToMap = [polygon, centroid]
 ```
 
 Returns **[Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;[Point](http://geojson.org/geojson-spec.html#point)>** the centroid of the input features

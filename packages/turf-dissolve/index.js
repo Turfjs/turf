@@ -50,6 +50,7 @@ var getClosest = require('get-closest');
  * }
  *
  * var dissolved = turf.dissolve(features, 'combine');
+ *
  * //addToMap
  * var addToMap = [features, dissolved]
  */

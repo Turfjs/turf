@@ -31,9 +31,10 @@ var featureEach = meta.featureEach;
  *     "coordinates": [[123, -18], [131, -14]]
  *   }
  * };
- * var points = turf.lineIntersect(line1, line2);
+ * var intersects = turf.lineIntersect(line1, line2);
+ *
  * //addToMap
- * var addToMap = [line, line2, points]
+ * var addToMap = [line, line2, intersects]
  */
 module.exports = function (line1, line2) {
     var results = [];

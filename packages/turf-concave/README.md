@@ -9,8 +9,7 @@ Internally, this uses [turf-tin](https://github.com/Turfjs/turf-tin) to generate
 **Parameters**
 
 -   `points` **[FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects)&lt;[Point](http://geojson.org/geojson-spec.html#point)>** input points
--   `maxEdge` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** the size of an edge necessary for part of the
-    hull to become concave (in miles)
+-   `maxEdge` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** the size of an edge necessary for part of the hull to become concave (in miles)
 -   `units` **\[[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)]** can be degrees, radians, miles, or kilometers (optional, default `kilometers`)
 
 **Examples**
@@ -67,13 +66,8 @@ var points = {
 
 var hull = turf.concave(points, 1, 'miles');
 
-var resultFeatures = points.features.concat(hull);
-var result = {
-  "type": "FeatureCollection",
-  "features": resultFeatures
-};
-
-//=result
+//addToMap
+var addToMap = [points, hull]
 ```
 
 -   Throws **[Error](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error)** if maxEdge parameter is missing or unable to compute hull

@@ -15,9 +15,7 @@ polygon from the first.
 ```javascript
 var poly1 = {
   "type": "Feature",
-  "properties": {
-    "fill": "#0f0"
-  },
+  "properties": {},
   "geometry": {
     "type": "Polygon",
     "coordinates": [[
@@ -31,9 +29,7 @@ var poly1 = {
 };
 var poly2 = {
   "type": "Feature",
-  "properties": {
-    "fill": "#00f"
-  },
+  "properties": {},
   "geometry": {
     "type": "Polygon",
     "coordinates": [[
@@ -46,17 +42,13 @@ var poly2 = {
   }
 };
 
-var differenced = turf.difference(poly1, poly2);
-differenced.properties.fill = '#f00';
+var difference = turf.difference(poly1, poly2);
 
-var polygons = {
-  "type": "FeatureCollection",
-  "features": [poly1, poly2]
-};
-
-//=polygons
-
-//=differenced
+//addToMap
+poly1.properties.fill = '#0f0';
+poly2.properties.fill = '#00f';
+difference.properties.fill = '#f00';
+var addToMap = [poly1, poly2, difference];
 ```
 
 Returns **[Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;([Polygon](http://geojson.org/geojson-spec.html#polygon) \| [MultiPolygon](http://geojson.org/geojson-spec.html#multipolygon))>** a Polygon or MultiPolygon feature showing the area of `p1` excluding the area of `p2`

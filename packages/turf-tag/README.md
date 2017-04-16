@@ -34,10 +34,10 @@ var poly2 = turf.polygon([[
 var points = turf.featureCollection([pt1, pt2]);
 var polygons = turf.featureCollection([poly1, poly2]);
 
-var tagged = turf.tag(points, polygons,
-                      'pop', 'population');
+var tagged = turf.tag(points, polygons, 'pop', 'population');
 
-//=tagged
+//addToMap
+var addToMap = [tagged, polygons]
 ```
 
 Returns **[FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects)&lt;[Point](http://geojson.org/geojson-spec.html#point)>** points with `containingPolyId` property containing values from `polyId`

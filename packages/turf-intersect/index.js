@@ -7,7 +7,7 @@ var jsts = require('jsts');
  * @name intersect
  * @param {Feature<Polygon>} poly1 the first polygon
  * @param {Feature<Polygon>} poly2 the second polygon
- * @returns {(Feature|undefined)} returns a feature representing the point(s) they share (in case of a {@link Point}  or {@link MultiPoint}), the borders they share (in case of a {@link LineString} or a {@link MultiLineString}), the area they share (in case of {@link Polygon} or {@link MultiPolygon}). If they do not share any point, returns `undefined`.
+ * @returns {Feature|undefined} returns a feature representing the point(s) they share (in case of a {@link Point}  or {@link MultiPoint}), the borders they share (in case of a {@link LineString} or a {@link MultiLineString}), the area they share (in case of {@link Polygon} or {@link MultiPolygon}). If they do not share any point, returns `undefined`.
  * @example
  * var poly1 = turf.polygon([[
  *   [-122.801742, 45.48565],
@@ -29,6 +29,7 @@ var jsts = require('jsts');
  * ]]);
  *
  * var intersection = turf.intersect(poly1, poly2);
+ *
  * //addToMap
  * var addToMap = [poly1, poly2, intersection]
  */

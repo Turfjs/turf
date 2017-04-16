@@ -13,21 +13,11 @@ var geomReduce = require('@turf/meta').geomReduce;
  *   "properties": {},
  *   "geometry": {
  *     "type": "Polygon",
- *     "coordinates": [
- *       [
- *         [125, -15],
- *         [113, -22],
- *         [117, -37],
- *         [130, -33],
- *         [148, -39],
- *         [154, -27],
- *         [144, -15],
- *         [125, -15]
- *       ]
- *     ]
+ *     "coordinates": [[[125, -15], [113, -22], [154, -27], [144, -15], [125, -15]]]
  *   }
  * }
  * var area = turf.area(polygon);
+ *
  * //addToMap
  * polygon.properties.area = area
  * var addToMap = [polygon]

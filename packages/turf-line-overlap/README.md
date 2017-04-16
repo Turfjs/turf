@@ -31,7 +31,9 @@ var line2 = {
   }
 }
 var overlapping = turf.lineOverlap(line1, line2);
-//= overlapping
+
+//addToMap
+var addToMap = [line1, line2, overlapping]
 ```
 
 Returns **[FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects)&lt;[LineString](http://geojson.org/geojson-spec.html#linestring)>** lines(s) that are overlapping between both features
