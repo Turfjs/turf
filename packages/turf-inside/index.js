@@ -1,4 +1,6 @@
 var invariant = require('@turf/invariant');
+var getCoord = invariant.getCoord;
+var getCoords = invariant.getCoords;
 
 // http://en.wikipedia.org/wiki/Even%E2%80%93odd_rule
 // modified from: https://github.com/substack/point-in-polygon/blob/master/index.js
@@ -10,7 +12,7 @@ var invariant = require('@turf/invariant');
  *
  * @name inside
  * @param {Feature<Point>} point input point
- * @param {Feature<(Polygon|MultiPolygon)>} polygon input polygon or multipolygon
+ * @param {Feature<Polygon|MultiPolygon>} polygon input polygon or multipolygon
  * @returns {boolean} `true` if the Point is inside the Polygon; `false` if the Point is not inside the Polygon
  * @example
  * var pt = turf.point([-77, 44]);
@@ -29,10 +31,16 @@ var invariant = require('@turf/invariant');
  * var addToMap = [pt, poly]
  */
 module.exports = function (point, polygon) {
-    var pt = invariant.getCoord(point);
-    var polys = polygon.geometry.coordinates;
+    // validation
+    if (!point) throw new Error('point is required');
+    if (!polygon) throw new Error('polygon is required');
+
+    var pt = getCoord(point);
+    var polys = getCoords(polygon);
+    var type = (polygon.geometry) ? polygon.geometry.type : polygon.type;
+
     // normalize to multipolygon
-    if (polygon.geometry.type === 'Polygon') polys = [polys];
+    if (type === 'Polygon') polys = [polys];
 
     for (var i = 0, insidePoly = false; i < polys.length && !insidePoly; i++) {
         // check if it is in the outer ring first
@@ -52,7 +60,15 @@ module.exports = function (point, polygon) {
     return insidePoly;
 };
 
-// pt is [x,y] and ring is [[x,y], [x,y],..]
+/**
+ * inRing
+ *
+ * @private
+ * @param {[number, number]} pt [x,y]
+ * @param {Array<[number, number]>} ring [[x,y], [x,y],..]
+ * @param {boolean} ignoreBoundary ignoreBoundary
+ * @returns {boolean} inRing
+ */
 function inRing(pt, ring, ignoreBoundary) {
     var isInside = false;
     if (ring[0][0] === ring[ring.length - 1][0] && ring[0][1] === ring[ring.length - 1][1]) ring = ring.slice(0, ring.length - 1);

@@ -1,6 +1,12 @@
 {
   "type": "Feature",
   "properties": {},
+  "bbox": [
+    -86.73980712890625,
+    36.173495506147,
+    -86.67303085327148,
+    36.23084281427824
+  ],
   "geometry": {
     "type": "Polygon",
     "coordinates": [
