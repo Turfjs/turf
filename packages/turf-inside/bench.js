@@ -14,9 +14,9 @@ var multiPolyHole = JSON.parse(fs.readFileSync(__dirname + '/test/in/multipoly-w
 /**
  * Benchmark Results
  *
- * simple x 3,185,225 ops/sec ±0.99% (90 runs sampled)
- * multiPolyHole - inside x 1,234,815 ops/sec ±0.90% (90 runs sampled)
- * multiPolyHole - outside x 1,644,657 ops/sec ±1.26% (88 runs sampled)
+ * simple x 3,219,331 ops/sec ±1.14% (91 runs sampled)
+ * multiPolyHole - inside x 1,171,486 ops/sec ±1.10% (90 runs sampled)
+ * multiPolyHole - outside x 7,697,033 ops/sec ±0.89% (89 runs sampled)
  */
 var suite = new Benchmark.Suite('turf-inside');
 suite
