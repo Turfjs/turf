@@ -93,6 +93,7 @@ function inRing(pt, ring, ignoreBoundary) {
 /**
  * inBBox
  *
+ * @private
  * @param {[number, number]} pt point [x,y]
  * @param {[number, number, number, number]} bbox BBox [west, south, east, north]
  * @returns {boolean} true/false if point is inside BBox
