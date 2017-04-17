@@ -38,6 +38,10 @@ module.exports = function (point, polygon) {
     var pt = getCoord(point);
     var polys = getCoords(polygon);
     var type = (polygon.geometry) ? polygon.geometry.type : polygon.type;
+    var bbox = polygon.bbox;
+
+    // Quick elimination if point is not inside bbox
+    if (bbox && inBBox(pt, bbox) === false) return false;
 
     // normalize to multipolygon
     if (type === 'Polygon') polys = [polys];
@@ -84,4 +88,18 @@ function inRing(pt, ring, ignoreBoundary) {
         if (intersect) isInside = !isInside;
     }
     return isInside;
+}
+
+/**
+ * inBBox
+ *
+ * @param {[number, number]} pt point [x,y]
+ * @param {[number, number, number, number]} bbox BBox [west, south, east, north]
+ * @returns {boolean} true/false if point is inside BBox
+ */
+function inBBox(pt, bbox) {
+    return bbox[0] <= pt[0] &&
+           bbox[1] <= pt[1] &&
+           bbox[2] >= pt[0] &&
+           bbox[3] >= pt[1];
 }
