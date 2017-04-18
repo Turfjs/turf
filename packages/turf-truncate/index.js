@@ -84,7 +84,7 @@ function truncate(feature, precision, coordinates) {
  */
 function truncateGeometry(geometry, precision, coordinates) {
     var coords = geometry.coordinates;
-    if (coordinates !== undefined) coords = deepSlice(coords, 0, coordinates);
+    coords = deepSlice(coords, 0, coordinates);
     coords = toFix(coords, precision);
 
     return {type: geometry.type, coordinates: coords};
@@ -99,9 +99,10 @@ function truncateGeometry(geometry, precision, coordinates) {
  * @returns {Array<number>} array of fixed numbers
  */
 function toFix(array, precision) {
+    var pow = Math.pow(10, precision);
     return array.map(function (value) {
         if (typeof value === 'object') { return toFix(value, precision); }
-        return Number(value.toFixed(precision));
+        return Math.round(value * pow) / pow;
     });
 }
 
@@ -120,6 +121,9 @@ function toFix(array, precision) {
  */
 function deepSlice(items, start, end) {
     if (typeof items[0] !== 'object') {
+        if (items.length <= end) {
+            return items;
+        }
         return items.slice(start, end);
     }
     return items.map(function (item) {
