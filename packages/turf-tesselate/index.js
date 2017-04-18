@@ -14,7 +14,8 @@ var earcut = require('earcut');
  *
  * var triangles = turf.tesselate(poly);
  *
- * //=triangles
+ * //addToMap
+ * var addToMap = [poly, triangles]
  */
 module.exports = function (poly) {
     if (!poly.geometry || (poly.geometry.type !== 'Polygon' && poly.geometry.type !== 'MultiPolygon')) {

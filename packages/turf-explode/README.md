@@ -2,38 +2,28 @@
 
 # explode
 
-Takes a feature or set of features and returns all positions as
-[points](http://geojson.org/geojson-spec.html#point).
+Takes a feature or set of features and returns all positions as [points](http://geojson.org/geojson-spec.html#point).
 
 **Parameters**
 
--   `geojson` **([Feature](http://geojson.org/geojson-spec.html#feature-objects) \| [FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects))** input features
+-   `geojson` **([FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects) \| [Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;any>)** input features
 
 **Examples**
 
 ```javascript
-var poly = {
+var polygon = {
   "type": "Feature",
   "properties": {},
   "geometry": {
     "type": "Polygon",
-    "coordinates": [[
-      [177.434692, -17.77517],
-      [177.402076, -17.779093],
-      [177.38079, -17.803937],
-      [177.40242, -17.826164],
-      [177.438468, -17.824857],
-      [177.454948, -17.796746],
-      [177.434692, -17.77517]
-    ]]
+    "coordinates": [[[-81, 41], [-88, 36], [-84, 31], [-80, 33], [-77, 39], [-81, 41]]]
   }
 };
 
-var points = turf.explode(poly);
+var explode = turf.explode(polygon);
 
-//=poly
-
-//=points
+//addToMap
+var addToMap = [polygon, explode]
 ```
 
 -   Throws **[Error](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error)** if it encounters an unknown geometry type

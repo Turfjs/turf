@@ -10,7 +10,9 @@ const {
     multiPoint,
     multiPolygon,
     geometryCollection,
-    radiansToDistance} = helpers;
+    radiansToDistance,
+    bearingToAngle
+} = helpers;
 
 test('point', t => {
     const ptArray = point([5, 10], {name: 'test point'});
@@ -300,6 +302,16 @@ test('radiansToDistance', t => {
     t.equal(radiansToDistance(1, 'radians'), 1);
     t.equal(radiansToDistance(1, 'kilometers'), 6373);
     t.equal(radiansToDistance(1, 'miles'), 3960);
+
+    t.end();
+});
+
+test('bearingToAngle', t => {
+    t.equal(bearingToAngle(40), 40);
+    t.equal(bearingToAngle(-105), 255);
+    t.equal(bearingToAngle(410), 50);
+    t.equal(bearingToAngle(-200), 160);
+    t.equal(bearingToAngle(-395), 325);
 
     t.end();
 });

@@ -29,7 +29,9 @@ var splitter = {
   }
 };
 var split = turf.lineSplit(line, splitter);
-//=split
+
+//addToMap
+var addToMap = [line, splitter]
 ```
 
 Returns **[FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects)&lt;[LineString](http://geojson.org/geojson-spec.html#linestring)>** Split LineStrings

@@ -22,7 +22,8 @@ var units = 'miles';
 
 var hexgrid = turf.hexGrid(bbox, cellSize, units);
 
-//=hexgrid
+//addToMap
+var addToMap = [hexgrid]
 ```
 
 Returns **[FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects)&lt;[Polygon](http://geojson.org/geojson-spec.html#polygon)>** a hexagonal grid

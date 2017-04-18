@@ -1,4 +1,5 @@
 /// <reference types="geojson" />
+
 import {
     Units,
     Feature, Features,
@@ -10,15 +11,15 @@ interface Buffer {
     /**
      * http://turfjs.org/docs/#buffer
      */
-    (feature: Point | LineString | Polygon, radius?: number, unit?: Units): Polygon;
-    (feature: Points | LineStrings | Polygons, radius?: number, unit?: Units): Polygons;
-    (feature: MultiPoint | MultiLineString | MultiPolygon, radius?: number, unit?: Units): MultiPolygon;
-    (feature: MultiPoints | MultiLineStrings | MultiPolygons, radius?: number, unit?: Units): MultiPolygons;
-    (feature: Feature, radius?: number, unit?: Units): Polygon | MultiPolygon;
-    (feature: Features, radius?: number, unit?: Units): Polygons | MultiPolygons;
-    (feature: GeoJSON.GeometryObject, radius?: number, unit?: Units): Polygon;
-    (feature: GeoJSON.GeometryCollection, radius?: number, unit?: Units): MultiPolygon;
+    (feature: Point | LineString | Polygon, radius?: number, unit?: Units, steps?: number): Polygon;
+    (feature: Points | LineStrings | Polygons | MultiPoint | MultiPoints, radius?: number, unit?: Units, steps?: number): Polygons;
+    (feature: MultiLineString | MultiPolygon, radius?: number, unit?: Units, steps?: number): MultiPolygon;
+    (feature: MultiLineStrings | MultiPolygons, radius?: number, unit?: Units, steps?: number): MultiPolygons;
+    (feature: Feature, radius?: number, unit?: Units, steps?: number): Polygon | Polygons | MultiPolygon;
+    (feature: Features, radius?: number, unit?: Units, steps?: number): Polygons | MultiPolygons;
+    (feature: GeoJSON.GeometryObject, radius?: number, unit?: Units, steps?: number): Polygon | Polygons | MultiPolygon;
+    (feature: GeoJSON.GeometryCollection, radius?: number, unit?: Units, steps?: number): Polygons | MultiPolygons;
 }
 declare const buffer: Buffer;
-declare namespace buffer { }
+declare namespace buffer {}
 export = buffer;

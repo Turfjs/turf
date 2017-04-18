@@ -20,7 +20,9 @@ var polygon = {
   }
 }
 var segments = turf.lineSegment(polygon);
-//=segments
+
+//addToMap
+var addToMap = [polygon, segments]
 ```
 
 Returns **[FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects)&lt;[LineString](http://geojson.org/geojson-spec.html#linestring)>** 2-vertex line segments

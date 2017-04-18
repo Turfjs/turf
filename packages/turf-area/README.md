@@ -16,23 +16,14 @@ var polygon = {
   "properties": {},
   "geometry": {
     "type": "Polygon",
-    "coordinates": [
-      [
-        [125, -15],
-        [113, -22],
-        [117, -37],
-        [130, -33],
-        [148, -39],
-        [154, -27],
-        [144, -15],
-        [125, -15]
-      ]
-    ]
+    "coordinates": [[[125, -15], [113, -22], [154, -27], [144, -15], [125, -15]]]
   }
 }
 var area = turf.area(polygon);
-//=area => square meters
-//=polygon
+
+//addToMap
+polygon.properties.area = area
+var addToMap = [polygon]
 ```
 
 Returns **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** area in square meters

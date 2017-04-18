@@ -13,7 +13,6 @@ var Spline = require('./spline.js');
  * @param {number} [resolution=10000] time in milliseconds between points
  * @param {number} [sharpness=0.85] a measure of how curvy the path should be between splines
  * @returns {Feature<LineString>} curved line
- * @addToMap line, curved
  * @example
  * var line = {
  *   "type": "Feature",
@@ -34,9 +33,10 @@ var Spline = require('./spline.js');
  * };
  *
  * var curved = turf.bezier(line);
- * curved.properties = { stroke: '#0f0' };
  *
- * //=curved
+ * //addToMap
+ * curved.properties = { stroke: '#0f0' };
+ * var addToMap = [line, curved]
  */
 module.exports = function (line, resolution, sharpness) {
     var lineOut = linestring([]);

@@ -13,8 +13,7 @@ var distance = require('@turf/distance');
  * Internally, this uses [turf-tin](https://github.com/Turfjs/turf-tin) to generate geometries.
  *
  * @param {FeatureCollection<Point>} points input points
- * @param {number} maxEdge the size of an edge necessary for part of the
- * hull to become concave (in miles)
+ * @param {number} maxEdge the size of an edge necessary for part of the hull to become concave (in miles)
  * @param {string} [units=kilometers] can be degrees, radians, miles, or kilometers
  * @returns {Feature<Polygon>} a concave hull
  * @throws {Error} if maxEdge parameter is missing or unable to compute hull
@@ -70,13 +69,8 @@ var distance = require('@turf/distance');
  *
  * var hull = turf.concave(points, 1, 'miles');
  *
- * var resultFeatures = points.features.concat(hull);
- * var result = {
- *   "type": "FeatureCollection",
- *   "features": resultFeatures
- * };
- *
- * //=result
+ * //addToMap
+ * var addToMap = [points, hull]
  */
 function concave(points, maxEdge, units) {
     if (typeof maxEdge !== 'number') throw new Error('maxEdge parameter is required');

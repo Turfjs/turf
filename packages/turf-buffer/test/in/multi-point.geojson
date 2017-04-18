@@ -1,0 +1,23 @@
+{
+  "type": "Feature",
+  "properties": {
+    "radius": 300
+  },
+  "geometry": {
+    "type": "MultiPoint",
+    "coordinates": [
+      [
+        145,
+        -25
+      ],
+      [
+        130,
+        -20
+      ],
+      [
+        125,
+        -25
+      ]
+    ]
+  }
+}

@@ -12,7 +12,6 @@ var getCoord = require('@turf/invariant').getCoord;
  * @param {number} [offset=10] offset controls the likelyhood that lines will
  * be split which cross the dateline. The higher the number the more likely.
  * @returns {Feature<LineString>} great circle line feature
- * @addToMap line
  * @example
  * var start = {
  *   "type": "Feature",
@@ -30,8 +29,10 @@ var getCoord = require('@turf/invariant').getCoord;
  *     "coordinates": [-77, 39]
  *   }
  * }
- * var line = turf.greatCircle(start, end, {'name': 'Seattle to DC'});
- * //=line
+ * var greatCircle = turf.greatCircle(start, end, {'name': 'Seattle to DC'});
+ *
+ * //addToMap
+ * var addToMap = [start, end, greatCircle]
  */
 module.exports = function (start, end, properties, npoints, offset) {
     start = getCoord(start);

@@ -20,15 +20,13 @@ var flatten = require('@turf/flatten');
  *   "properties": {},
  *   "geometry": {
  *     "type": "LineString",
- *     "coordinates": [
- *       [-95, 40],
- *       [-93, 45],
- *       [-85, 50]
- *     ]
+ *     "coordinates": [[-95, 40], [-93, 45], [-85, 50]]
  *   }
  * };
- * var result = turf.lineChunk(line, 15, 'miles');
- * //=result
+ * var chunk = turf.lineChunk(line, 15, 'miles');
+ *
+ * //addToMap
+ * var addToMap = [line, chunk];
  */
 module.exports = function (featureIn, segmentLength, units, reverse) {
     var outFeatures = [];

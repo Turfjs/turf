@@ -1,48 +1,23 @@
+import {featureCollection, point, lineString, geometryCollection} from '@turf/helpers'
 import * as truncate from '../'
 
-const points: GeoJSON.FeatureCollection<GeoJSON.Point> = {
-  "type": "FeatureCollection",
-  "features": [
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          70.46923055566859,
-          58.11088890802906
-        ]
-      },
-      "properties": {}
-    },
-    {
-      "type": "Feature",
-      "properties": {},
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -435.69979190826416,
-          45.42502188406042
-        ]
-      }
-    }
-  ]
-}
-const point: GeoJSON.Feature<GeoJSON.Point> = {
-  "type": "Feature",
-  "geometry": {
-    "type": "Point",
-    "coordinates": [
-      70.46923055566859,
-      58.11088890802906,
-      3012
-    ]
-  },
-  "properties": {}
-}
+const pt = point([120.1234567, 40.1234567])
+const ptGeom = pt.geometry
+const line = lineString([[20,80], [50, 40]])
+const lineGeom = line.geometry
+const points = featureCollection([pt])
+const lines = featureCollection([line])
+const geomCollection = geometryCollection([ptGeom, lineGeom])
 
-truncate(point, 6)
-truncate(point)
-truncate(point, 3, 2)
-truncate(points, 6)
+truncate(pt)
+truncate(ptGeom)
+truncate(line)
+truncate(lineGeom)
+truncate(lines)
 truncate(points)
+truncate(geomCollection)
+truncate(pt, 6)
+truncate(pt, 3, 2)
+truncate(points, 6)
+
 

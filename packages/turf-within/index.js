@@ -74,11 +74,12 @@ var featureCollection = require('@turf/helpers').featureCollection;
  *
  * var ptsWithin = turf.within(points, searchWithin);
  *
- * //=points
- *
- * //=searchWithin
- *
- * //=ptsWithin
+ * //addToMap
+ * var addToMap = [points, searchWithin, ptsWithin]
+ * turf.featureEach(ptsWithin, function (currentFeature) {
+ *   currentFeature.properties['marker-size'] = 'large';
+ *   currentFeature.properties['marker-color'] = '#000';
+ * });
  */
 module.exports = function (points, polygons) {
     var pointsWithin = featureCollection([]);

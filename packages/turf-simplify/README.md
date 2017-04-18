@@ -46,12 +46,10 @@ var feature = {
 
 var tolerance = 0.01;
 
-var simplified = turf.simplify(
- feature, tolerance, false);
+var simplified = turf.simplify(feature, tolerance, false);
 
-//=feature
-
-//=simplified
+//addToMap
+var addToMap = [feature, simplified]
 ```
 
 Returns **([Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;([LineString](http://geojson.org/geojson-spec.html#linestring) \| [Polygon](http://geojson.org/geojson-spec.html#polygon) \| [MultiLineString](http://geojson.org/geojson-spec.html#multilinestring) \| [MultiPolygon](http://geojson.org/geojson-spec.html#multipolygon))> | [FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects) \| [GeometryCollection](http://geojson.org/geojson-spec.html#geometrycollection))** a simplified feature

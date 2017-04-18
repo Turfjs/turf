@@ -1,10 +1,21 @@
 const Benchmark = require('benchmark');
-const helpers = require('.');
 const {
   point, lineString, polygon,
   multiPoint, multiLineString, multiPolygon,
-  featureCollection, geometryCollection} = helpers;
+  featureCollection, geometryCollection} = require('./');
 
+/**
+ * Benchmark Results
+ *
+ * point x 25,384,060 ops/sec ±2.29% (85 runs sampled)
+ * lineString x 16,548,474 ops/sec ±1.84% (86 runs sampled)
+ * polygon x 12,348,826 ops/sec ±2.02% (85 runs sampled)
+ * multiPoint x 17,150,485 ops/sec ±1.76% (86 runs sampled)
+ * multiLineString x 11,328,369 ops/sec ±2.82% (79 runs sampled)
+ * multiPolygon x 1,284,305 ops/sec ±1.22% (89 runs sampled)
+ * featureCollection x 10,847,952 ops/sec ±1.95% (82 runs sampled)
+ * geometryCollection x 14,392,524 ops/sec ±2.06% (89 runs sampled)
+ */
 const suite = new Benchmark.Suite('turf-helpers');
 suite
     .add('point', () => point([5, 10]))

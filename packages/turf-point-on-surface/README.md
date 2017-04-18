@@ -18,17 +18,10 @@ Takes a feature and returns a [Point](http://geojson.org/geojson-spec.html#point
 // create a random polygon
 var polygon = turf.random('polygon');
 
-//=polygon
-
 var pointOnPolygon = turf.pointOnSurface(polygon);
 
-var resultFeatures = polygon.features.concat(pointOnPolygon);
-var result = {
-  "type": "FeatureCollection",
-  "features": resultFeatures
-};
-
-//=result
+//addToMap
+var addToMap = [polygon, pointOnPolygon];
 ```
 
 Returns **[Feature](http://geojson.org/geojson-spec.html#feature-objects)** a point on the surface of `input`

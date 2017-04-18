@@ -11,11 +11,14 @@ var featureCollection = require('@turf/helpers').featureCollection;
  * @example
  * var points = turf.random('points', 1000);
  *
- * //=points
- *
  * var sample = turf.sample(points, 10);
  *
- * //=sample
+ * //addToMap
+ * var addToMap = [points, sample]
+ * turf.featureEach(sample, function (currentFeature) {
+ *   currentFeature.properties['marker-size'] = 'large';
+ *   currentFeature.properties['marker-color'] = '#000';
+ * });
  */
 module.exports = function (featurecollection, num) {
     var outFC = featureCollection(getRandomSubarray(featurecollection.features, num));

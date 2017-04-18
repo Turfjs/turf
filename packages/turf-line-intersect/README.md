@@ -28,8 +28,10 @@ var line2 = {
     "coordinates": [[123, -18], [131, -14]]
   }
 };
-var points = turf.lineIntersect(line1, line2);
-//= points
+var intersects = turf.lineIntersect(line1, line2);
+
+//addToMap
+var addToMap = [line, line2, intersects]
 ```
 
 Returns **[FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects)&lt;[Point](http://geojson.org/geojson-spec.html#point)>** point(s) that intersect both

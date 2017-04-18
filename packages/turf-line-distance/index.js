@@ -32,9 +32,9 @@ var point = require('@turf/helpers').point;
  *
  * var length = turf.lineDistance(line, 'miles');
  *
- * //=line
- *
- * //=length
+ * //addToMap
+ * line.properties.distance = length;
+ * var addToMap = [line];
  */
 module.exports = function lineDistance(geojson, units) {
     // Input Validation

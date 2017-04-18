@@ -1,6 +1,6 @@
 {
   "name": "@turf/bbox",
-  "version": "4.0.2",
+  "version": "4.1.0",
   "description": "turf bbox module",
   "main": "index.js",
   "types": "index.d.ts",
@@ -35,6 +35,6 @@
     "tape": "^3.5.0"
   },
   "dependencies": {
-    "@turf/meta": "^4.0.2"
+    "@turf/meta": "^4.1.0"
   }
 }
