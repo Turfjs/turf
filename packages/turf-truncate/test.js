@@ -18,7 +18,7 @@ let fixtures = fs.readdirSync(directories.in).map(filename => {
         geojson: load.sync(directories.in + filename)
     };
 });
-// fixtures = fixtures.filter(fixture => fixture.name === 'point');
+// fixtures = fixtures.filter(fixture => fixture.name === 'points');
 
 test('turf-truncate', t => {
     for (const {filename, name, geojson}  of fixtures) {

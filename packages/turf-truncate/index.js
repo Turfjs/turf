@@ -1,7 +1,3 @@
-var helpers = require('@turf/helpers');
-var featureCollection = helpers.featureCollection;
-var geometryCollection = helpers.geometryCollection;
-
 /**
  * Takes a GeoJSON Feature or FeatureCollection and truncates the precision of the geometry.
  *
@@ -36,15 +32,19 @@ module.exports = function (geojson, precision, coordinates) {
 
     switch (geojson.type) {
     case 'GeometryCollection':
+        var newGeometryCollection = geojson;
         var geometries = geojson.geometries.map(function (geometry) {
             return truncateGeometry(geometry, precision, coordinates);
         });
-        return geometryCollection(geometries);
+        newGeometryCollection.geometries = geometries;
+        return newGeometryCollection;
     case 'FeatureCollection':
+        var newCollection = geojson;
         var features = geojson.features.map(function (feature) {
             return truncate(feature, precision, coordinates);
         });
-        return featureCollection(features);
+        newCollection.features = features;
+        return newCollection;
     case 'Feature':
         return truncate(geojson, precision, coordinates);
     case 'Point':
@@ -69,8 +69,10 @@ module.exports = function (geojson, precision, coordinates) {
  * @returns {Feature<any>} truncated Feature
  */
 function truncate(feature, precision, coordinates) {
-    var geometry = truncateGeometry(feature.geometry, precision, coordinates);
-    return helpers.feature(geometry, feature.properties);
+    var geom = feature.geometry;
+    var newFeature = feature;
+    newFeature.geometry = truncateGeometry(geom, precision, coordinates);
+    return newFeature;
 }
 
 /**
@@ -83,11 +85,12 @@ function truncate(feature, precision, coordinates) {
  * @returns {Geometry<any>} truncated Geometry Object
  */
 function truncateGeometry(geometry, precision, coordinates) {
+    var newGeometry = geometry;
     var coords = geometry.coordinates;
     coords = deepSlice(coords, 0, coordinates);
     coords = toFix(coords, precision);
-
-    return {type: geometry.type, coordinates: coords};
+    newGeometry.coordinates = coords;
+    return newGeometry;
 }
 
 /**
