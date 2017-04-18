@@ -24,7 +24,7 @@ test('turf-truncate', t => {
     for (const {filename, name, geojson}  of fixtures) {
         const before = JSON.parse(JSON.stringify(geojson));
         const {precision, coordinates} = geojson.properties || {};
-        const results = truncate(geojson, precision, coordinates);
+        const results = truncate(JSON.parse(JSON.stringify(geojson)), precision, coordinates);
 
         if (process.env.REGEN) write.sync(directories.out + filename, results);
         t.deepEqual(geojson, before, 'prevent input mutation');

@@ -1,5 +1,8 @@
+var coordEach = require('@turf/meta').coordEach;
+
 /**
  * Takes a GeoJSON Feature or FeatureCollection and truncates the precision of the geometry.
+ * **Warning:** This module does mutate user input, consider using JSON.parse(JSON.stringify(geojson)) to preserve input integrity.
  *
  * @name truncate
  * @param {FeatureCollection|Feature<any>} geojson any GeoJSON Feature, FeatureCollection, Geometry or GeometryCollection.
@@ -20,7 +23,9 @@
  *     }
  * };
  * var truncated = turf.truncate(point);
- * //= truncated
+ *
+ * //addToMap
+ * var addToMap = [truncated];
  */
 module.exports = function (geojson, precision, coordinates) {
     // validation
@@ -29,103 +34,19 @@ module.exports = function (geojson, precision, coordinates) {
     // default params
     precision = (precision !== undefined) ? precision : 6;
     coordinates = (coordinates !== undefined) ? coordinates : 2;
+    var pow = Math.pow(10, precision);
 
     // prevent input mutation
-    geojson = JSON.parse(JSON.stringify(geojson));
+    // geojson = JSON.parse(JSON.stringify(geojson));
 
-    switch (geojson.type) {
-    case 'GeometryCollection':
-        geojson.geometries = geojson.geometries.map(function (geometry) {
-            return truncateGeometry(geometry, precision, coordinates);
-        });
-        return geojson;
-    case 'FeatureCollection':
-        geojson.features = geojson.features.map(function (feature) {
-            return truncate(feature, precision, coordinates);
-        });
-        return geojson;
-    case 'Feature':
-        return truncate(geojson, precision, coordinates);
-    case 'Point':
-    case 'MultiPoint':
-    case 'LineString':
-    case 'MultiLineString':
-    case 'Polygon':
-    case 'MultiPolygon':
-        return truncateGeometry(geojson, precision, coordinates);
-    default:
-        throw new Error('invalid type');
-    }
-};
+    coordEach(geojson, function (coords) {
+        // Remove extra coordinates (usually elevation coordinates and more)
+        if (coords.length > coordinates) coords.splice(coordinates, coords.length);
 
-/**
- * Truncate Feature
- *
- * @private
- * @param {Feature<any>} feature GeoJSON Feature
- * @param {number} [precision=6] coordinate decimal precision
- * @param {number} [coordinates=2] maximum number of coordinates (primarly used to remove z coordinates)
- * @returns {Feature<any>} truncated Feature
- */
-function truncate(feature, precision, coordinates) {
-    feature.geometry = truncateGeometry(feature.geometry, precision, coordinates);
-    return feature;
-}
-
-/**
- * Truncate Geometry
- *
- * @private
- * @param {Geometry<any>} geometry GeoJSON Geometry Object
- * @param {number} [precision=6] coordinate decimal precision
- * @param {number} [coordinates=2] maximum number of coordinates (primarly used to remove z coordinates)
- * @returns {Geometry<any>} truncated Geometry Object
- */
-function truncateGeometry(geometry, precision, coordinates) {
-    var coords = geometry.coordinates;
-    coords = deepSlice(coords, 0, coordinates);
-    coords = toFix(coords, precision);
-    geometry.coordinates = coords;
-    return geometry;
-}
-
-/**
- * toFix
- *
- * @private
- * @param {Array<number>} array Array of numbers
- * @param {number} precision Decimal precision
- * @returns {Array<number>} array of fixed numbers
- */
-function toFix(array, precision) {
-    var pow = Math.pow(10, precision);
-    return array.map(function (value) {
-        if (typeof value === 'object') { return toFix(value, precision); }
-        return Math.round(value * pow) / pow;
-    });
-}
-
-/**
- * Recursive Array.prototype.slice()
- * https://github.com/DenisCarriere/deep-slice
- *
- * @private
- * @param {Array} items Array input
- * @param {number} start The beginning of the specified portion of the array.
- * @param {number} end The end of the specified portion of the array.
- * @returns {Array} Returns a section of an array.
- * @example
- * deepSlice([[10, 20, 30], [40, 50, 60]], 0, 2)
- * //=[[10, 20], [40, 50]]
- */
-function deepSlice(items, start, end) {
-    if (typeof items[0] !== 'object') {
-        if (items.length <= end) {
-            return items;
+        // Truncate coordinate decimals
+        for (var i = 0; i < coords.length; i++) {
+            coords[i] = Math.round(coords[i] * pow) / pow;
         }
-        return items.slice(start, end);
-    }
-    return items.map(function (item) {
-        return deepSlice(item, start, end);
     });
-}
+    return geojson;
+};
