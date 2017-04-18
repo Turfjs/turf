@@ -30,21 +30,20 @@ module.exports = function (geojson, precision, coordinates) {
     precision = (precision !== undefined) ? precision : 6;
     coordinates = (coordinates !== undefined) ? coordinates : 2;
 
+    // prevent input mutation
+    geojson = JSON.parse(JSON.stringify(geojson));
+
     switch (geojson.type) {
     case 'GeometryCollection':
-        var newGeometryCollection = geojson;
-        var geometries = geojson.geometries.map(function (geometry) {
+        geojson.geometries = geojson.geometries.map(function (geometry) {
             return truncateGeometry(geometry, precision, coordinates);
         });
-        newGeometryCollection.geometries = geometries;
-        return newGeometryCollection;
+        return geojson;
     case 'FeatureCollection':
-        var newCollection = geojson;
-        var features = geojson.features.map(function (feature) {
+        geojson.features = geojson.features.map(function (feature) {
             return truncate(feature, precision, coordinates);
         });
-        newCollection.features = features;
-        return newCollection;
+        return geojson;
     case 'Feature':
         return truncate(geojson, precision, coordinates);
     case 'Point':
@@ -69,10 +68,8 @@ module.exports = function (geojson, precision, coordinates) {
  * @returns {Feature<any>} truncated Feature
  */
 function truncate(feature, precision, coordinates) {
-    var geom = feature.geometry;
-    var newFeature = feature;
-    newFeature.geometry = truncateGeometry(geom, precision, coordinates);
-    return newFeature;
+    feature.geometry = truncateGeometry(feature.geometry, precision, coordinates);
+    return feature;
 }
 
 /**
@@ -85,12 +82,11 @@ function truncate(feature, precision, coordinates) {
  * @returns {Geometry<any>} truncated Geometry Object
  */
 function truncateGeometry(geometry, precision, coordinates) {
-    var newGeometry = geometry;
     var coords = geometry.coordinates;
     coords = deepSlice(coords, 0, coordinates);
     coords = toFix(coords, precision);
-    newGeometry.coordinates = coords;
-    return newGeometry;
+    geometry.coordinates = coords;
+    return geometry;
 }
 
 /**
