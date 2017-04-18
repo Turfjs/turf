@@ -6,7 +6,7 @@ Takes a GeoJSON Feature or FeatureCollection and truncates the precision of the 
 
 **Parameters**
 
--   `layer` **([FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects) \| [Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;any>)** any GeoJSON Feature or FeatureCollection
+-   `geojson` **([FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects) \| [Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;any>)** any GeoJSON Feature, FeatureCollection, Geometry or GeometryCollection.
 -   `precision` **\[[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)]** coordinate decimal precision (optional, default `6`)
 -   `coordinates` **\[[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)]** maximum number of coordinates (primarly used to remove z coordinates) (optional, default `2`)
 
@@ -15,6 +15,7 @@ Takes a GeoJSON Feature or FeatureCollection and truncates the precision of the 
 ```javascript
 var point = {
     "type": "Feature",
+    "properties": {}
     "geometry": {
         "type": "Point",
         "coordinates": [
@@ -22,11 +23,10 @@ var point = {
             58.11088890802906,
             1508
         ]
-    },
-    "properties": {}
+    }
 };
-var pointTrunc = turf.truncate(point);
-//= pointTrunc
+var truncated = turf.truncate(point);
+//= truncated
 ```
 
 Returns **([FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects) \| [Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;any>)** layer with truncated geometry

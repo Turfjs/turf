@@ -11,18 +11,19 @@ const directories = {
     out: path.join(__dirname, 'test', 'out') + path.sep
 };
 
-const fixtures = fs.readdirSync(directories.in).map(filename => {
+let fixtures = fs.readdirSync(directories.in).map(filename => {
     return {
         filename,
         name: path.parse(filename).name,
         geojson: load.sync(directories.in + filename)
     };
 });
+// fixtures = fixtures.filter(fixture => fixture.name === 'point');
 
-
-test('truncate', t => {
+test('turf-truncate', t => {
     for (const {filename, name, geojson}  of fixtures) {
-        const results = truncate(geojson);
+        const {precision, coordinates} = geojson.properties || {};
+        const results = truncate(geojson, precision, coordinates);
 
         if (process.env.REGEN) write.sync(directories.out + filename, results);
         t.deepEqual(results, load.sync(directories.out + filename), name);
@@ -30,9 +31,9 @@ test('truncate', t => {
     t.end();
 });
 
-test('truncate - precision & coordinates', t => {
-    t.deepEqual(truncate(point([50.1234567, 40.1234567]), 3).geometry.coordinates, [50.123, 40.123], 'precision 3')
-    t.deepEqual(truncate(point([50.1234567, 40.1234567]), 0).geometry.coordinates, [50, 40], 'precision 0')
-    t.deepEqual(truncate(point([50, 40, 1100]), 6, 2).geometry.coordinates, [50, 40], 'coordinates 2')
-    t.end()
-})
+test('turf-truncate - precision & coordinates', t => {
+    t.deepEqual(truncate(point([50.1234567, 40.1234567]), 3).geometry.coordinates, [50.123, 40.123], 'precision 3');
+    t.deepEqual(truncate(point([50.1234567, 40.1234567]), 0).geometry.coordinates, [50, 40], 'precision 0');
+    t.deepEqual(truncate(point([50, 40, 1100]), 6, 2).geometry.coordinates, [50, 40], 'coordinates 2');
+    t.end();
+});

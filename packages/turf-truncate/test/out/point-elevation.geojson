@@ -1,11 +1,14 @@
 {
 	"type": "Feature",
-	"properties": {},
+	"properties": {
+		"precision": 4,
+		"coordinates": 2
+	},
 	"geometry": {
 		"type": "Point",
 		"coordinates": [
-			-75.699921,
-			45.425097
+			-75.6999,
+			45.4251
 		]
 	}
 }
