@@ -1,8 +1,12 @@
-import {featureCollection, lineString} from '@turf/helpers'
+import {featureCollection, lineString, multiLineString, Polygon, MultiPolygon} from '@turf/helpers'
 import * as polygonToLineString from '../'
 
-const line1 = lineString([[125, -30], [145, -30], [145, -20], [125, -20], [125, -30]]);
-const line2 = lineString([[125, -30], [145, -30], [145, -20], [125, -20], [125, -30]]);
+// Fixtures
+const coords = [[125, -30], [145, -30], [145, -20], [125, -20], [125, -30]];
+const line = lineString(coords);
+const multiLine = multiLineString([coords, coords]);
 
-const poly = polygonToLineString(line1);
-const polys = polygonToLineString(featureCollection([line1, line2]));
+// Assert results with types
+const poly1: Polygon = polygonToLineString(line);
+const poly2: Polygon = polygonToLineString(multiLine);
+const multiPoly: MultiPolygon = polygonToLineString(featureCollection([line, multiLine]));

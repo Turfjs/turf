@@ -1,15 +1,16 @@
 var getCoords = require('@turf/invariant').getCoords;
 var helpers = require('@turf/helpers');
 var polygon = helpers.polygon;
-var featureCollection = helpers.featureCollection;
+var multiPolygon = helpers.multiPolygon;
 
 /**
  * Converts (Multi)LineString(s) to Polygon(s).
  *
  * @name lineStringToPolygon
  * @param {FeatureCollection|Feature<LineString|MultiLineString>} lines Features to convert
- * @param {boolean} [autoComplete=true] auto complete linestrings
- * @returns {FeatureCollection|Feature<Polygon>} converted to Polygons
+ * @param {boolean} [autoComplete=true] auto complete linestrings (matches first & last coordinates)
+ * @param {Object} [properties] translates GeoJSON properties to Feature
+ * @returns {Feature<Polygon|MultiPolygon>} converted to Polygons
  * @example
  * var line = {
  *   'type': 'Feature',
@@ -24,7 +25,7 @@ var featureCollection = helpers.featureCollection;
  * //addToMap
  * var addToMap = [polygon];
  */
-module.exports = function (lines, autoComplete) {
+module.exports = function (lines, autoComplete, properties) {
     // validation
     if (!lines) throw new Error('lines is required');
 
@@ -35,14 +36,14 @@ module.exports = function (lines, autoComplete) {
     switch (type) {
     case 'FeatureCollection':
     case 'GeometryCollection':
-        var results = [];
+        var coords = [];
         var features = (lines.features) ? lines.features : lines.geometries;
         features.forEach(function (line) {
-            results.push(lineStringToPolygon(line, autoComplete));
+            coords.push(getCoords(lineStringToPolygon(line, autoComplete)));
         });
-        return featureCollection(results);
+        return multiPolygon(coords, properties);
     }
-    return lineStringToPolygon(lines, autoComplete);
+    return lineStringToPolygon(lines, autoComplete, properties);
 };
 
 /**
@@ -51,12 +52,14 @@ module.exports = function (lines, autoComplete) {
  * @private
  * @param {Feature<LineString|MultiLineString>} line line
  * @param {boolean} [autoComplete=true] auto complete linestrings
+ * @param {Object} [properties] translates GeoJSON properties to Feature
  * @returns {Feature<Polygon>} line converted to Polygon
  */
-function lineStringToPolygon(line, autoComplete) {
-    var properties = line.properties;
+function lineStringToPolygon(line, autoComplete, properties) {
+    properties = properties || line.properties || {};
     var coords = getCoords(line);
     var type = geomType(line);
+
     if (!coords.length) throw new Error('line must contain coordinates');
 
     switch (type) {
@@ -77,6 +80,12 @@ function geomType(feature) {
     return (feature.geometry) ? feature.geometry.type : feature.type;
 }
 
+/**
+ * Auto Complete Coords - matches first & last coordinates
+ *
+ * @param {Array<Array<number>>} coords Coordinates
+ * @returns {Array<Array<number>>} auto completed coordinates
+ */
 function autoCompleteCoords(coords) {
     var first = coords[0];
     var x1 = first[0];

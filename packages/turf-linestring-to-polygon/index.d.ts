@@ -1,16 +1,24 @@
 /// <reference types="geojson" />
 
-import {
-  Polygon,
-  Polygons,
-  LineString,
-  LineStrings,
-  MultiLineString,
-  MultiLineStrings} from '@turf/helpers'
+// Geometry Types
+type MultiLineString = GeoJSON.MultiLineString
+type LineString = GeoJSON.LineString
+type Polygon = GeoJSON.Polygon
+type MultiPolygon = GeoJSON.MultiPolygon
 
+// Inputs
+type Feature = GeoJSON.Feature<LineString | MultiLineString> | LineString | MultiLineString
+type FeatureCollection = GeoJSON.FeatureCollection<LineString | MultiLineString> | GeoJSON.GeometryCollection
+
+/**
+ * Output type changes based on input type
+ *
+ * Feature => Polygon
+ * FeatureCollection => MultiPolygon
+ */
 interface LineStringToPolygon {
-  (lines: LineString | MultiLineString): Polygon
-  (lines: LineStrings | MultiLineStrings): Polygons
+  (lines: Feature): GeoJSON.Feature<Polygon>
+  (lines: FeatureCollection): GeoJSON.Feature<MultiPolygon>
 }
 declare const lineStringToPolygon: LineStringToPolygon;
 export = lineStringToPolygon;
