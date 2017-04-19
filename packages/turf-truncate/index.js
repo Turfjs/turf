@@ -34,7 +34,7 @@ module.exports = function (geojson, precision, coordinates) {
     // default params
     precision = (precision !== undefined) ? precision : 6;
     coordinates = (coordinates !== undefined) ? coordinates : 2;
-    var pow = Math.pow(10, precision);
+    var factor = Math.pow(10, precision);
 
     // prevent input mutation
     // geojson = JSON.parse(JSON.stringify(geojson));
@@ -45,7 +45,7 @@ module.exports = function (geojson, precision, coordinates) {
 
         // Truncate coordinate decimals
         for (var i = 0; i < coords.length; i++) {
-            coords[i] = Math.round(coords[i] * pow) / pow;
+            coords[i] = Math.round(coords[i] * factor) / factor;
         }
     });
     return geojson;
