@@ -3,6 +3,10 @@ const load = require('load-json-file');
 const fs = require('fs');
 const path = require('path');
 const test = require('tape');
+const distance = require('@turf/distance');
+const truncate = require('@turf/truncate');
+const {featureCollection} = require('@turf/helpers');
+const greatCircle = require('@turf/great-circle');
 const destination = require('./');
 
 const directories = {
@@ -10,22 +14,35 @@ const directories = {
     out: path.join(__dirname, 'test', 'out') + path.sep
 };
 
+const round = (num, decimals) => {
+    const factor = Math.pow(10, decimals);
+    return Math.round(num * factor) / factor;
+}
+
 const fixtures = fs.readdirSync(directories.in).map(filename => {
     return {
         filename,
         name: path.parse(filename).name,
-        geojson: load.sync(directories.in + filename)
+        inputPoint: load.sync(directories.in + filename)
     };
 });
 
 test('turf-destination', t => {
-    for (const {filename, name, geojson}  of fixtures) {
-        const dist = 100;
-        const bear = 180;
-        const results = destination(geojson, dist, bear, 'kilometers');
+    for (const {filename, name, inputPoint}  of fixtures) {
+        let {bearing, dist, units} = inputPoint.properties || {};
+        bearing = (bearing !== undefined) ? bearing : 180;
+        dist = (dist !== undefined) ? dist : 100;
+        units = units || 'kilometers';
 
-        if (process.env.REGEN) write.sync(directories.out + filename, results);
-        t.deepEqual(results, load.sync(directories.out + filename), name);
+        const resultPoint = destination(inputPoint, dist, bearing, units);
+        const line = truncate(greatCircle(inputPoint, resultPoint, {"stroke": "#F00", "stroke-width": 4}));
+        inputPoint.properties['marker-color'] = '#F00';
+        const result = featureCollection([line, inputPoint, resultPoint]);
+        const d = distance(inputPoint, resultPoint);
+
+        if (process.env.REGEN) write.sync(directories.out + filename, result);
+        t.deepEqual(result, load.sync(directories.out + filename), name);
+        t.equals(dist, round(d, 9), 'distance');
     }
     t.end();
 });
