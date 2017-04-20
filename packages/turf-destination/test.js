@@ -38,7 +38,7 @@ test('turf-destination', t => {
         const line = truncate(greatCircle(inputPoint, resultPoint, {"stroke": "#F00", "stroke-width": 4}));
         inputPoint.properties['marker-color'] = '#F00';
         const result = featureCollection([line, inputPoint, resultPoint]);
-        const d = distance(inputPoint, resultPoint);
+        const d = distance(inputPoint, resultPoint, units);
 
         if (process.env.REGEN) write.sync(directories.out + filename, result);
         t.deepEqual(result, load.sync(directories.out + filename), name);
