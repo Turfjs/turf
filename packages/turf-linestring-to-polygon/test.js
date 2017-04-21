@@ -22,9 +22,9 @@ let fixtures = fs.readdirSync(directories.in).map(filename => {
 
 test('turf-linestring-to-polygon', t => {
     for (const {name, filename, geojson} of fixtures) {
-        let {autoComplete, properties} = geojson.properties || {};
+        let {autoComplete, properties, orderCoords} = geojson.properties || {};
         properties = properties || {stroke: '#F0F', 'stroke-width': 6};
-        const results = lineStringToPolygon(geojson, autoComplete, properties);
+        const results = lineStringToPolygon(geojson, properties, autoComplete, orderCoords);
 
         if (process.env.REGEN) write.sync(directories.out + filename, results);
         t.deepEqual(load.sync(directories.out + filename), results, name);
@@ -32,8 +32,6 @@ test('turf-linestring-to-polygon', t => {
     // Handle Errors
     t.throws(() => lineStringToPolygon(point([10, 5])), 'throws - invalid geometry');
     t.throws(() => lineStringToPolygon(lineString([])), 'throws - empty coordinates');
-    t.throws(() => lineStringToPolygon(lineString([[10, 5], [20, 10], [30, 20]]), false), 'throws - autoComplete=false');
+    t.throws(() => lineStringToPolygon(lineString([[10, 5], [20, 10], [30, 20]]), {}, false), 'throws - autoComplete=false');
     t.end();
 });
-
-
