@@ -2,12 +2,11 @@
 
 # flip
 
-Takes input features and flips all of their coordinates
-from `[x, y]` to `[y, x]`.
+Takes input features and flips all of their coordinates from `[x, y]` to `[y, x]`.
 
 **Parameters**
 
--   `input` **([FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects) \| [Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;any>)** input features
+-   `geojson` **([FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects) \| [Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;any>)** input features
 
 **Examples**
 
