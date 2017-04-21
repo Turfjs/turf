@@ -1,0 +1,13 @@
+{
+  "type": "Feature",
+  "properties": {
+    "bearing": 0
+  },
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      -75,
+      38.10096062273525
+    ]
+  }
+}
