@@ -3,6 +3,7 @@
 # truncate
 
 Takes a GeoJSON Feature or FeatureCollection and truncates the precision of the geometry.
+**Warning:** This module does mutate user input, consider using JSON.parse(JSON.stringify(geojson)) to preserve input integrity.
 
 **Parameters**
 
@@ -26,7 +27,9 @@ var point = {
     }
 };
 var truncated = turf.truncate(point);
-//= truncated
+
+//addToMap
+var addToMap = [truncated];
 ```
 
 Returns **([FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects) \| [Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;any>)** layer with truncated geometry
