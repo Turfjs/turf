@@ -7,6 +7,7 @@ var explode = require('@turf/explode');
 var inside = require('@turf/inside');
 var area = require('@turf/area');
 var invariant = require('@turf/invariant');
+var getCoords = invariant.getCoords;
 var featureEach = require('@turf/meta').featureEach;
 var bbox = require('@turf/bbox');
 var distance = require('@turf/distance');
@@ -45,34 +46,135 @@ module.exports = function (points, breaks, property) {
     property = property || 'elevation';
 
     // Isoband methods
-    var pointsByLatitude = dividePointsByLatitude(points);
-    if (!isPointGrid(pointsByLatitude)) {
-        var pointGrid = createPointGrid(points, property);
-        pointsByLatitude = dividePointsByLatitude(pointGrid);
-    }
-    var gridData = createGridData(pointsByLatitude, property);
+    var pointsByLatLng = sortPointsByLatLng(points);
+    var gridData = createGridData(pointsByLatLng, property);
     var contours = createContourLines(gridData, breaks, property);
-    contours = rescaleContours(contours, gridData, pointsByLatitude);
+    contours = rescaleContours(contours, gridData, pointsByLatLng);
     var multiPolygons = createMultiPolygons(contours, property);
 
     return multiPolygons;
 };
 
 /**
- * Create MultiPolygons from contour lines
+ * Sorts points by latitude and longitude, creating a 2-dimensional array of points
  *
  * @private
- * @param {Array<any>} contours Contours
- * @param {string} [property='elevation'] Property
- * @returns {FeatureCollection<MultiPolygon>} MultiPolygon from Contour lines
+ * @param {FeatureCollection<Point>} points GeoJSON Point features
+ * @returns {Array<Array<Point>>} points by latitude and longitude
  */
-function createMultiPolygons(contours, property) {
-    var multipolygons = contours.map(function (contour) {
-        var obj = {};
-        obj[property] = contour[property];
-        return multiPolygon(contour.contourSet, obj);
+function sortPointsByLatLng(points) {
+    var pointsByLatitude = {};
+
+    // divide points by rows with the same latitude
+    featureEach(points, function (point) {
+        var lat = getCoords(point)[1];
+        if (!pointsByLatitude[lat]) {
+            pointsByLatitude[lat] = [];
+        }
+        pointsByLatitude[lat].push(point);
     });
-    return featureCollection(multipolygons);
+
+    // sort points (with the same latitude) by longitude
+    var orderedRowsByLatitude = Object.keys(pointsByLatitude).map(function (lat) {
+        var row = pointsByLatitude[lat];
+        var rowOrderedByLongitude = row.sort(function (a, b) {
+            return getCoords(a)[0] - getCoords(b)[0];
+        });
+        return rowOrderedByLongitude;
+    });
+
+    // sort rows (of points with the same latitude) by latitude
+    var pointMatrix = orderedRowsByLatitude.sort(function (a, b) {
+        return getCoords(b[0])[1] - getCoords(a[0])[1];
+    });
+    return pointMatrix;
+}
+
+/**
+ * Create Grid Data
+ *
+ * @private
+ * @param {Object} pointsByLatitude array of points
+ * @param {string} [property] the property name in `points` from which z-values will be pulled
+ * @returns {Array<Array<number>>} Grid Data
+ * @example
+ * createGridData(points)
+ * //= [
+ *   [ 1, 13, 10,  9, 10, 13, 18],
+ *   [34,  8,  5,  4,  5,  8, 13],
+ *   [10,  5,  2,  1,  2,  5,  4],
+ *   [ 0,  4, 56, 19,  1,  4,  9],
+ *   [10,  5,  2,  1,  2,  5, 10],
+ *   [57,  8,  5,  4,  5, 25, 57],
+ *   [ 3, 13, 10,  9,  5, 13, 18],
+ *   [18, 13, 10,  9, 78, 13, 18]
+ * ]
+ */
+function createGridData(pointsByLatitude, property) {
+    // creates a 2D grid with the z-value of all poinst on the map
+    var gridData = [];
+    pointsByLatitude.forEach(function (pointArr) {
+        var row = [];
+        pointArr.forEach(function (point) {
+            // elevation property exist
+            if (point.properties[property]) {
+                row.push(point.properties[property]);
+                // z coordinate exists
+            } else if (point.geometry.coordinates.length > 2) {
+                row.push(point.geometry.coordinates[2]);
+            } else {
+                row.push(null);
+            }
+        });
+        gridData.push(row);
+    });
+    return gridData;
+}
+
+/**
+ * Creates the contours lines (featuresCollection of polygon features) from the 2D data grid
+ *
+ * Marchingsquares process the grid data as a 3D representation of a function on a 2D plane, therefore it
+ * assumes the points (x-y coordinates) are one 'unit' distance. The result of the IsoBands function needs to be
+ * rescaled, with turfjs, to the original area and proportions on the map
+ *
+ * @private
+ * @param {Array<Array<number>>} gridData Grid Data
+ * @param {Array<number>} breaks Breaks
+ * @param {string} [property='elevation'] Property
+ * @returns {Array<any>} contours
+ */
+function createContourLines(gridData, breaks, property) {
+
+    // add zeros around the grid
+    var matrix = [(new Array(gridData[0].length + 2)).fill(0)];
+    for (var j = 0; j < gridData.length; j++) {
+        var row = [0].concat(gridData[j]);
+        row.push(0);
+        matrix.push(row);
+    }
+    matrix.push((new Array(gridData[0].length + 2)).fill(0));
+
+    var contours = [];
+    for (var i = 1; i < breaks.length; i++) {
+        var lowerBand = +breaks[i - 1]; // make sure the breaks value is a number
+        var upperBand = +breaks[i];
+        var isobands = marchingsquares.isoBands(matrix, lowerBand, upperBand - lowerBand);
+
+        var poly = polygon([isobands[0]]);
+
+        // as per GeoJson rules for creating a polygon, make sure the first element
+        // in the array of linearRings represents the exterior ring (i.e. biggest area),
+        // and any subsequent elements represent interior rings (i.e. smaller area);
+        // this avoids rendering issues of the multipolygons on the map
+        var nestedRings = orderByArea(isobands);
+        var contourSet = groupNestedRings(nestedRings);
+        var obj = {};
+        obj['contourSet'] = contourSet;
+        obj[property] = +breaks[i]; // make sure it's a number
+        contours.push(obj);
+    }
+    return contours;
 }
 
 /**
@@ -120,178 +222,22 @@ function rescaleContours(contours, gridData, pointsByLatitude) {
 }
 
 /**
- * Create a point grid out of the input (random) points
+ * Create MultiPolygons from contour lines
  *
  * @private
- * @param {FeatureCollection<Point>} points GeoJSON Point features
- * @param {string} property name of the vertical value
- * @returns {FeatureCollection<Point>} grid of points which include the input points
- */
-function createPointGrid(points, property) {
-    var tinResult = tin(points, property);
-    var bboxBBox = bbox(points); // [minX, minY, maxX, maxY]
-    var resolution = 100; // number of points per grid side
-    var squareBBox = square(bboxBBox);
-    var gridCellSize = distance(
-            point([squareBBox[0], squareBBox[1]]),
-            point([squareBBox[2], squareBBox[1]])
-        ) / resolution;
-    var gridResult = grid(squareBBox, gridCellSize);
-    // add property value to each point of the grid
-    for (var i = 0; i < gridResult.features.length; i++) {
-        var pt = gridResult.features[i];
-        for (var j = 0; j < tinResult.features.length; j++) {
-            var triangle = tinResult.features[j];
-            if (inside(pt, triangle)) {
-                pt.properties = {};
-                pt.properties[property] = planepoint(pt, triangle);
-            }
-        }
-    }
-    return gridResult;
-}
-
-/**
- * @private
- * @param {Array<Array>} input array of array of points divided by latitude
- * @returns {boolean} true if the passed array of arrays is a matrix, i.e. all rows have the same length
- */
-function isPointGrid(input) {
-    if (!Array.isArray(input) || input.length < 2) return false;
-    var pointDistance = function (p1, p2) {
-        // approximate to the 9th digit to avoid incorrect comparison between distances
-        return Math.round(distance(p1, p2) / 1000000000) / 1000000000;
-    };
-    var rowsCount = input.length;
-    var rowsDistance = pointDistance(input[0][0], input[1][0]);
-    for (var r = 0; r < rowsCount; r++) {
-        var cols = input[r].length;
-        // false if less than 2 columns in any single row
-        if (cols < 2) return false;
-        var row = input[r];
-        var columnsDistance = pointDistance(row[0], row[1]);
-        for (var c = 1; c < cols - 1; c++) {
-            // check if all points in the same row, i.e. same latitude, is equally distant
-            if (pointDistance(row[c], row[c + 1]) !== columnsDistance) {
-                return false;
-            }
-        }
-        // exclude first and last row
-        if (r > 0 && r < rowsCount - 1) {
-            // check if all rows/longitudes are at the same distance
-            if (pointDistance(input[r][0], input[r + 1][0]) !== rowsDistance) {
-                return false;
-            }
-        }
-    }
-    return true;
-}
-
-/**
- * Creates the contours lines (featuresCollection of polygon features) from the 2D data grid
- *
- * Marchingsquares process the grid data as a 3D representation of a function on a 2D plane, therefore it
- * assumes the points (x-y coordinates) are one 'unit' distance. The result of the IsoBands function needs to be
- * rescaled, with turfjs, to the original area and proportions on the map
- *
- * @private
- * @param {Array<Array<number>>} gridData Grid Data
- * @param {Array<number>} breaks Breaks
+ * @param {Array<any>} contours Contours
  * @param {string} [property='elevation'] Property
- * @returns {Array<any>} contours
+ * @returns {FeatureCollection<MultiPolygon>} MultiPolygon from Contour lines
  */
-function createContourLines(gridData, breaks, property) {
-    var contours = [];
-    for (var i = 1; i < breaks.length; i++) {
-        var lowerBand = +breaks[i - 1]; // make sure the breaks value is a number
-        var upperBand = +breaks[i];
-        var isobands = marchingsquares.isoBands(gridData, lowerBand, upperBand - lowerBand);
-        // as per GeoJson rules for creating a polygon, make sure the first element
-        // in the array of linearRings represents the exterior ring (i.e. biggest area),
-        // and any subsequent elements represent interior rings (i.e. smaller area);
-        // this avoids rendering issues of the multipolygons on the map
-        var nestedRings = orderByArea(isobands);
-        var contourSet = groupNestedRings(nestedRings);
+function createMultiPolygons(contours, property) {
+    var multipolygons = contours.map(function (contour) {
         var obj = {};
-        obj['contourSet'] = contourSet;
-        obj[property] = +breaks[i]; // make sure it's a number
-        contours.push(obj);
-    }
-    return contours;
+        obj[property] = contour[property];
+        return multiPolygon(contour.contourSet, obj);
+    });
+    return featureCollection(multipolygons);
 }
 
-
-/**
- * Divide points in pointGrid by latitude, creating a 2-dimensional data grid
- *
- * @private
- * @param {FeatureCollection<Point>} points GeoJSON Point features
- * @returns {Array} pointsByLatitude
- * @example
- * dividePointsByLatitude(points)
- * //= [
- *   [{point}, {point}, {point}, ... {point}],
- *   [{point}, {point}, {point}, ... {point}],
- *   ...
- *   [{ORIGIN}, {point}, {point}, ... {point}]
- * ]
- */
-function dividePointsByLatitude(points) {
-    var unique = {};
-
-    featureEach(points, function (point) {
-        var lat = getLatitude(point);
-        if (!unique[lat]) unique[lat] = [];
-        unique[lat].push(point);
-    });
-
-    // create an array of arrays of points, each array representing a row (i.e. Latitude) of the 2D grid
-    var pointsByLatitude = Object.keys(unique).map(function (key) {
-        return unique[key];
-    });
-    return pointsByLatitude;
-}
-
-/**
- * Create Grid Data
- *
- * @private
- * @param {Object} pointsByLatitude array of points
- * @param {string} [property] the property name in `points` from which z-values will be pulled
- * @returns {Array<Array<number>>} Grid Data
- * @example
- * createGridData(points)
- * //= [
- *   [ 1, 13, 10,  9, 10, 13, 18],
- *   [34,  8,  5,  4,  5,  8, 13],
- *   [10,  5,  2,  1,  2,  5,  4],
- *   [ 0,  4, 56, 19,  1,  4,  9],
- *   [10,  5,  2,  1,  2,  5, 10],
- *   [57,  8,  5,  4,  5, 25, 57],
- *   [ 3, 13, 10,  9,  5, 13, 18],
- *   [18, 13, 10,  9, 78, 13, 18]
- * ]
- */
-function createGridData(pointsByLatitude, property) {
-    // creates a 2D grid with the z-value of all point on the map
-    var gridData = [];
-    pointsByLatitude.forEach(function (pointArr) {
-        var row = [];
-        pointArr.forEach(function (point) {
-            // elevation property exist
-            if (point.properties[property]) {
-                row.push(point.properties[property]);
-                // z coordinate exists
-            } else if (point.geometry.coordinates.length > 2) {
-                row.push(point.geometry.coordinates[2]);
-            } else {
-                row.push(null);
-            }
-        });
-        gridData.push(row);
-    });
-    return gridData;
-}
 
 
 /*
