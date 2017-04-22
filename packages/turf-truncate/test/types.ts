@@ -18,6 +18,8 @@ truncate(points)
 truncate(geomCollection)
 truncate(pt, 6)
 truncate(pt, 3, 2)
+truncate(pt, 3, 2, false)
+truncate(pt, 3, 2, true)
 truncate(points, 6)
 
 
