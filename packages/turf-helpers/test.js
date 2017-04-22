@@ -1,5 +1,6 @@
 const test = require('tape');
 const helpers = require('.');
+const distance = require('@turf/distance');
 const {
     point,
     polygon,
@@ -11,8 +12,11 @@ const {
     multiPolygon,
     geometryCollection,
     radiansToDistance,
+    distanceToRadians,
+    distanceToDegrees,
     bearingToAngle
-} = helpers;
+}
+= helpers;
 
 test('point', t => {
     const ptArray = point([5, 10], {name: 'test point'});
@@ -302,6 +306,26 @@ test('radiansToDistance', t => {
     t.equal(radiansToDistance(1, 'radians'), 1);
     t.equal(radiansToDistance(1, 'kilometers'), 6373);
     t.equal(radiansToDistance(1, 'miles'), 3960);
+
+    t.end();
+});
+
+
+const dx = distance(point([-120, 47]), point([-120.5, 47]));
+const dy = distance(point([-120, 47]), point([-120, 47.5]));
+
+test('distanceToRadians', t => {
+    t.equal(distanceToRadians(dx), distanceToRadians(dy), 'radiance conversion fails');
+    t.equal(distanceToRadians(1, 'radians'), 1);
+    t.equal(distanceToRadians(6373, 'kilometers'), 1);
+    t.equal(distanceToRadians(3960, 'miles'), 1);
+
+    t.end();
+});
+
+test('distanceToDegrees', t => {
+    t.equal(distanceToDegrees(dx), .5, 'degrees conversion fails');
+    t.equal(distanceToDegrees(dy), .5, 'degrees conversion fails');
 
     t.end();
 });
