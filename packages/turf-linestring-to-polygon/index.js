@@ -102,6 +102,7 @@ function geomType(feature) {
 /**
  * Auto Complete Coords - matches first & last coordinates
  *
+ * @private
  * @param {Array<Array<number>>} coords Coordinates
  * @returns {Array<Array<number>>} auto completed coordinates
  */
