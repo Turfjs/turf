@@ -1,5 +1,5 @@
 import {featureCollection, point, lineString, geometryCollection} from '@turf/helpers'
-import * as truncate from '../'
+import * as flip from '../'
 
 const pt = point([120.1234567, 40.1234567])
 const ptGeom = pt.geometry
@@ -9,17 +9,11 @@ const points = featureCollection([pt])
 const lines = featureCollection([line])
 const geomCollection = geometryCollection([ptGeom, lineGeom])
 
-truncate(pt)
-truncate(ptGeom)
-truncate(line)
-truncate(lineGeom)
-truncate(lines)
-truncate(points)
-truncate(geomCollection)
-truncate(pt, 6)
-truncate(pt, 3, 2)
-truncate(pt, 3, 2, false)
-truncate(pt, 3, 2, true)
-truncate(points, 6)
-
+flip(pt)
+flip(ptGeom)
+flip(line)
+flip(lineGeom)
+flip(lines)
+flip(points)
+flip(geomCollection)
 

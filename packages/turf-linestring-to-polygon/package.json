@@ -1,7 +1,7 @@
 {
-  "name": "@turf/flip",
-  "version": "4.1.0",
-  "description": "turf flip module",
+  "name": "@turf/linestring-to-polygon",
+  "version": "4.0.0",
+  "description": "turf linestring-to-polygon module",
   "main": "index.js",
   "types": "index.d.ts",
   "files": [
@@ -18,24 +18,26 @@
   },
   "keywords": [
     "turf",
-    "geojson",
-    "coordinate",
-    "flip"
+    "gis"
   ],
   "author": "Turf Authors",
+  "contributors": [
+    "Denis Carriere <@DenisCarriere>"
+  ],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/Turfjs/turf/issues"
   },
   "homepage": "https://github.com/Turfjs/turf",
   "devDependencies": {
-    "@turf/helpers": "^4.1.0",
-    "benchmark": "^2.1.4",
+    "benchmark": "^2.1.3",
     "load-json-file": "^2.0.0",
     "tape": "^4.6.3",
     "write-json-file": "^2.0.0"
   },
   "dependencies": {
-    "@turf/meta": "^4.1.0"
+    "@turf/bbox": "^4.1.0",
+    "@turf/helpers": "^4.1.0",
+    "@turf/invariant": "^4.1.0"
   }
 }
