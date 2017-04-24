@@ -310,12 +310,12 @@ test('radiansToDistance', t => {
     t.end();
 });
 
-
-const dx = distance(point([-120, 47]), point([-120.5, 47]));
-const dy = distance(point([-120, 47]), point([-120, 47.5]));
+// the higher/lower in latitude, the greater the distortion (curvature of the earth)
+const dx = distance(point([-120, 0]), point([-120.5, 0]));
+const dy = distance(point([-120, 0]), point([-120, 0.5]));
 
 test('distanceToRadians', t => {
-    t.equal(distanceToRadians(dx), distanceToRadians(dy), 'radiance conversion fails');
+    t.equal(distanceToRadians(dx), distanceToRadians(dy), 'radiance conversion');
     t.equal(distanceToRadians(1, 'radians'), 1);
     t.equal(distanceToRadians(6373, 'kilometers'), 1);
     t.equal(distanceToRadians(3960, 'miles'), 1);
@@ -324,8 +324,8 @@ test('distanceToRadians', t => {
 });
 
 test('distanceToDegrees', t => {
-    t.equal(distanceToDegrees(dx), .5, 'degrees conversion fails');
-    t.equal(distanceToDegrees(dy), .5, 'degrees conversion fails');
+    t.equal(Number(distanceToDegrees(dx).toFixed(6)), 0.5, 'degrees conversion');
+    t.equal(Number(distanceToDegrees(dy).toFixed(6)), 0.5, 'degrees conversion');
 
     t.end();
 });
