@@ -52,6 +52,7 @@
     "@turf/point-grid": "^3.14.0",
     "@turf/square": "^3.14.0",
     "@turf/tin": "^3.14.0",
+    "grid-to-matrix": "^1.1.0",
     "marchingsquares": "^1.2.0"
   }
 }
