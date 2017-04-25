@@ -34,6 +34,7 @@
     "@turf/bearing": "^4.1.0",
     "@turf/destination": "^4.1.0",
     "@turf/distance": "^4.1.0",
-    "@turf/helpers": "^4.1.0"
+    "@turf/helpers": "^4.1.0",
+    "@turf/line-intersect": "^4.1.0"
   }
 }
