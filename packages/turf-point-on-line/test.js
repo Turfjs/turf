@@ -28,7 +28,7 @@ test('turf-linestring-to-polygon', t => {
         const [line, point] = geojson.features;
         const onLine = pointOnLine(line, point);
         onLine.properties['marker-color'] = '#F0F';
-        const results = featureCollection([line, point, onLine]);
+        const results = truncate(featureCollection([line, point, onLine]));
 
         if (process.env.REGEN) write.sync(directories.out + filename, results);
         t.deepEqual(load.sync(directories.out + filename), results, name);
