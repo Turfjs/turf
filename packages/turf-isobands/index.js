@@ -1,4 +1,4 @@
-var marchingsquares = require('marchingsquares');
+var MS_isoBands = require('marchingsquares').isoBands;
 var helpers = require('@turf/helpers');
 var featureCollection = helpers.featureCollection;
 var polygon = helpers.polygon;
@@ -62,11 +62,29 @@ module.exports = function (points, breaks, property) {
  */
 function createContourLines(matrix, breaks, property) {
 
+    // add a frame value around the matrix
+    // so that the first contour will always include the matrix outline
+    var outerValue = +breaks[0] - 1; // lower that the first limit
+    var newMatrix = [(new Array(matrix[0].length + 2)).fill(outerValue)];
+    for (var j = 0; j < matrix.length; j++) {
+        var row = [0].concat(matrix[j]);
+        row.push(outerValue);
+        newMatrix.push(row);
+    }
+    newMatrix.push((new Array(matrix[0].length + 2)).fill(outerValue));
+
     var contours = [];
     for (var i = 1; i < breaks.length; i++) {
         var lowerBand = +breaks[i - 1]; // make sure the breaks value is a number
         var upperBand = +breaks[i];
-        var isobands = marchingsquares.isoBands(matrix, lowerBand, upperBand - lowerBand);
+
+        var isobands = MS_isoBands(newMatrix, lowerBand, upperBand - lowerBand);
+        // debug variables
+        // --------------
+        var props = {};
+        props[property] = breaks[i - 1] + "-" + breaks[i];
+        var strings = multiPolygon([MS_isoBands(newMatrix, lowerBand, upperBand - lowerBand)], props);
+        // --------------
 
         // as per GeoJson rules for creating a Polygon, make sure the first element
         // in the array of LinearRings represents the exterior ring (i.e. biggest area),
@@ -102,11 +120,11 @@ function rescaleContours(contours, matrix, points) {
     var x0 = gridBbox[0];
     var y0 = gridBbox[1];
     // get matrix dimensions
-    var horizontalCells = matrix[0].length - 1;
-    var verticalCells = matrix.length - 1;
-    // calculate the scaling factor between the unitary grid to the rectangle on the map
-    var scaleX = originalWidth / horizontalCells;
-    var scaleY = originalHeigth / verticalCells;
+    var matrixWidth = matrix[0].length - 1;
+    var matrixHeight = matrix.length - 1;
+    // calculate the scaling factor between matrix and rectangular grid on the map
+    var scaleX = originalWidth / matrixWidth;
+    var scaleY = originalHeigth / matrixHeight;
 
     var rescale = function (point) {
         point[0] = point[0] * scaleX + x0; // rescaled x
