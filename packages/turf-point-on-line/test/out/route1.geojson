@@ -19052,8 +19052,8 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"dist": 7.879021113861131,
-				"location": 183.53025885418427,
+				"dist": 7.879021,
+				"location": 183.530259,
 				"index": 3104,
 				"marker-color": "#F0F"
 			},

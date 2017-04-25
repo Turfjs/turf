@@ -23,11 +23,18 @@ const fixtures = fs.readdirSync(directories.in).map(filename => {
     };
 });
 
+function round(num, precision = 6) {
+    const factor = Math.pow(10, precision);
+    return Math.round(num * factor) / factor;
+}
+
 test('turf-linestring-to-polygon', t => {
     for (const {name, filename, geojson} of fixtures) {
         const [line, point] = geojson.features;
         const onLine = pointOnLine(line, point);
         onLine.properties['marker-color'] = '#F0F';
+        onLine.properties.dist = round(onLine.properties.dist);
+        onLine.properties.location = round(onLine.properties.location);
         const results = truncate(featureCollection([line, point, onLine]));
 
         if (process.env.REGEN) write.sync(directories.out + filename, results);
