@@ -74,7 +74,7 @@ module.exports = function (line, pt, units) {
         var perpendicularPt1 = destination(pt, heightDistance, direction + 90, units);
         var perpendicularPt2 = destination(pt, heightDistance, direction - 90, units);
         var intersect = lineIntersects(lineString([perpendicularPt1.geometry.coordinates, perpendicularPt2.geometry.coordinates]), lineString([start.geometry.coordinates, stop.geometry.coordinates]));
-        var intersectPt = null
+        var intersectPt = null;
         if (intersect.features.length > 0) {
             intersectPt = intersect.features[0];
             intersectPt.properties.dist = distance(pt, intersectPt, units);
