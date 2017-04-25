@@ -35,7 +35,8 @@ test('turf-linestring-to-polygon', t => {
         onLine.properties['marker-color'] = '#F0F';
         onLine.properties.dist = round(onLine.properties.dist);
         onLine.properties.location = round(onLine.properties.location);
-        const results = truncate(featureCollection([line, point, onLine]));
+        const between = lineString([onLine.geometry.coordinates, point.geometry.coordinates], {stroke: '#F00', 'stroke-width': 6});
+        const results = truncate(featureCollection([line, between, point, onLine]));
 
         if (process.env.REGEN) write.sync(directories.out + filename, results);
         t.deepEqual(load.sync(directories.out + filename), results, name);

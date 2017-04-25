@@ -28,6 +28,26 @@
 		},
 		{
 			"type": "Feature",
+			"properties": {
+				"stroke": "#F00",
+				"stroke-width": 6
+			},
+			"geometry": {
+				"type": "LineString",
+				"coordinates": [
+					[
+						-94.517044,
+						74.854791
+					],
+					[
+						-94.713135,
+						74.870757
+					]
+				]
+			}
+		},
+		{
+			"type": "Feature",
 			"properties": {},
 			"geometry": {
 				"type": "Point",
