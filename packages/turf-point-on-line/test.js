@@ -1,151 +1,183 @@
 const test = require('tape');
-const {lineString, point} = require('@turf/helpers');
+const fs = require('fs');
+const path = require('path');
+const {lineString, point, featureCollection} = require('@turf/helpers');
 const distance = require('@turf/distance');
 const lineDistance = require('@turf/line-distance');
 const along = require('@turf/along');
-const pointOnLine = require('.');
+const truncate = require('@turf/truncate');
+const write = require('write-json-file');
+const load = require('load-json-file');
+const pointOnLine = require('./');
 
-test('turf-point-on-line - first point', function (t) {
-    var line = lineString([[-122.45717525482178,37.72003306385638],[-122.45717525482178,37.718242366859215]]);
-    var pt = point([-122.45717525482178,37.72003306385638]);
+const directories = {
+    in: path.join(__dirname, 'test', 'in') + path.sep,
+    out: path.join(__dirname, 'test', 'out') + path.sep
+};
 
-    var snapped = pointOnLine(line, pt);
+const fixtures = fs.readdirSync(directories.in).map(filename => {
+    return {
+        filename,
+        name: path.parse(filename).name,
+        geojson: load.sync(directories.in + filename)
+    };
+});
+
+function round(num, precision = 6) {
+    const factor = Math.pow(10, precision);
+    return Math.round(num * factor) / factor;
+}
+
+test('turf-linestring-to-polygon', t => {
+    for (const {name, filename, geojson} of fixtures) {
+        const [line, point] = geojson.features;
+        const onLine = pointOnLine(line, point);
+        onLine.properties['marker-color'] = '#F0F';
+        onLine.properties.dist = round(onLine.properties.dist);
+        onLine.properties.location = round(onLine.properties.location);
+        const between = lineString([onLine.geometry.coordinates, point.geometry.coordinates], {stroke: '#F00', 'stroke-width': 6});
+        const results = truncate(featureCollection([line, between, point, onLine]));
+
+        if (process.env.REGEN) write.sync(directories.out + filename, results);
+        t.deepEqual(load.sync(directories.out + filename), results, name);
+    }
+    t.end();
+});
+
+test('turf-point-on-line - first point', t => {
+    const line = lineString([[-122.457175, 37.720033], [-122.457175, 37.718242]]);
+    const pt = point([-122.457175, 37.720033]);
+
+    const snapped = truncate(pointOnLine(line, pt));
 
     t.deepEqual(pt.geometry.coordinates, snapped.geometry.coordinates, 'pt on start does not move');
-    t.equal(snapped.properties.location, 0, 'properties.location');
+    t.equal(Number(snapped.properties.location.toFixed(6)), 0, 'properties.location');
 
     t.end();
 });
 
-test('turf-point-on-line - points behind first point', function (t) {
-    var line = lineString([[-122.45717525482178,37.72003306385638],[-122.45717525482178,37.718242366859215]]);
-    var first = point(line.geometry.coordinates[0])
-    var pts = [
-        point([-122.45717525482178,37.72009306385638]),
-        point([-122.45717525482178,37.82009306385638]),
-        point([-122.45716525482178,37.72009306385638]),
-        point([-122.45516525482178,37.72009306385638])
+test('turf-point-on-line - points behind first point', t => {
+    const line = lineString([[-122.457175, 37.720033], [-122.457175, 37.718242]]);
+    const first = point(line.geometry.coordinates[0]);
+    const pts = [
+        point([-122.457175, 37.720093]),
+        point([-122.457175, 37.820093]),
+        point([-122.457165, 37.720093]),
+        point([-122.455165, 37.720093])
     ];
-    var expectedLocation = [
+    const expectedLocation = [
         0,
         0,
         0,
         0
     ];
 
-    pts.forEach(function(pt, i){
-        var snapped = pointOnLine(line, pt);
+    pts.forEach(pt => {
+        const snapped = truncate(pointOnLine(line, pt));
         t.deepEqual(first.geometry.coordinates, snapped.geometry.coordinates, 'pt behind start moves to first vertex');
-        t.equal(snapped.properties.location, expectedLocation[i], 'properties.location');
+        expectedLocation.push(Number(snapped.properties.location.toFixed(6)));
     });
 
+    const filepath = directories.out + 'expectedLocation - points behind first point.json';
+    if (process.env.REGEN) write.sync(filepath, expectedLocation);
+    t.deepEqual(load.sync(filepath), expectedLocation, 'properties.location');
     t.end();
 });
 
-test('turf-point-on-line - points in front of last point', function (t) {
-    var line = lineString([[-122.45616137981413,37.72125936929241],[-122.45717525482178,37.72003306385638],[-122.45717525482178,37.718242366859215]]);
-    var last = point(line.geometry.coordinates[line.geometry.coordinates.length - 1])
-    var pts = [
-        point([-122.45696067810057,37.71814052497085]),
-        point([-122.4573630094528,37.71813203814049]),
-        point([-122.45730936527252,37.71797927502795]),
-        point([-122.45718061923981,37.71704571582896])
+test('turf-point-on-line - points in front of last point', t => {
+    const line = lineString([[-122.456161, 37.721259], [-122.457175, 37.720033], [-122.457175, 37.718242]]);
+    const last = point(line.geometry.coordinates[line.geometry.coordinates.length - 1]);
+    const pts = [
+        point([-122.456960, 37.718140]),
+        point([-122.457363, 37.718132]),
+        point([-122.457309, 37.717979]),
+        point([-122.457180, 37.717045])
     ];
-    var expectedLocation = [
-        0.36215983244260574,
-        0.36215983244260574,
-        0.36215983244260574,
-        0.36215983244260574
-    ];
+    const expectedLocation = [];
 
-    pts.forEach(function(pt, i){
-        var snapped = pointOnLine(line, pt);
+    pts.forEach(pt => {
+        const snapped = truncate(pointOnLine(line, pt));
         t.deepEqual(last.geometry.coordinates, snapped.geometry.coordinates, 'pt behind start moves to last vertex');
-        t.equal(snapped.properties.location, expectedLocation[i], 'properties.location');
+        expectedLocation.push(Number(snapped.properties.location.toFixed(6)));
     });
 
+    const filepath = directories.out + 'expectedLocation - points in front of last point.json';
+    if (process.env.REGEN) write.sync(filepath, expectedLocation);
+    t.deepEqual(load.sync(filepath), expectedLocation, 'properties.location');
     t.end();
 });
 
-test('turf-point-on-line - points on joints', function (t) {
-    var lines = [
-        lineString([[-122.45616137981413,37.72125936929241],[-122.45717525482178,37.72003306385638],[-122.45717525482178,37.718242366859215]]),
-        lineString([[26.279296875,31.728167146023935],[21.796875,32.69486597787505],[18.80859375,29.99300228455108],[12.919921874999998,33.137551192346145],[10.1953125,35.60371874069731],[4.921875,36.527294814546245],[-1.669921875,36.527294814546245],[-5.44921875,34.74161249883172],[-8.7890625,32.99023555965106]]),
-        lineString([[-0.10919809341430663,51.52204224896724],[-0.10923027992248535,51.521942114455435],[-0.10916590690612793,51.52186200668747],[-0.10904788970947266,51.52177522311313],[-0.10886549949645996,51.521601655468345],[-0.10874748229980469,51.52138135712038],[-0.10855436325073242,51.5206870765674],[-0.10843634605407713,51.52027984939518],[-0.10839343070983887,51.519952729849024],[-0.10817885398864746,51.51957887606202],[-0.10814666748046874,51.51928513164789],[-0.10789990425109863,51.518624199789016],[-0.10759949684143065,51.51778299991493]])
+test('turf-point-on-line - points on joints', t => {
+    const lines = [
+        lineString([[-122.456161, 37.721259], [-122.457175, 37.720033], [-122.457175, 37.718242]]),
+        lineString([[26.279296, 31.728167], [21.796875, 32.694865], [18.808593, 29.993002], [12.919921, 33.137551], [10.195312, 35.603718], [4.921875, 36.527294], [-1.669921, 36.527294], [-5.449218, 34.741612], [-8.789062, 32.990235]]),
+        lineString([[-0.109198, 51.522042], [-0.109230, 51.521942], [-0.109165, 51.521862], [-0.109047, 51.521775], [-0.108865, 51.521601], [-0.108747, 51.521381], [-0.108554, 51.520687], [-0.108436, 51.520279], [-0.108393, 51.519952], [-0.108178, 51.519578], [-0.108146, 51.519285], [-0.107899, 51.518624], [-0.107599, 51.517782]])
     ];
-    var expectedLocation = [
-        [ 0, 0.16298090408353966, 0.36215983244260574 ],
-        [ 0, 435.28883447486135, 848.6494800799092, 1507.098441657023, 1878.3021695683806, 2363.3789829162574, 2952.4473854390017, 3347.5942918385786, 3712.3870894188008 ],
-        [ 0, 0.011358519828719417, 0.02132062044562163, 0.03396549327758369, 0.05703192228718658, 0.08286114111611394, 0.16123397358954772, 0.2072603600715873, 0.24376684566141119, 0.2879229927633058, 0.3206719917049851, 0.3961452220802617, 0.49199418947985657 ],
-    ];
+    const expectedLocation = [];
 
-    lines.forEach(function(line, i){
-        line.geometry.coordinates.map(function(coord){
+    lines.forEach((line, i) => {
+        line.geometry.coordinates.map(coord => {
             return point(coord);
-        }).forEach(function(pt, j){
-            var snapped = pointOnLine(line, pt);
+        }).forEach((pt, j) => {
+            const snapped = truncate(pointOnLine(line, pt));
             t.deepEqual(pt.geometry.coordinates, snapped.geometry.coordinates, 'pt on joint stayed in place');
-            t.equal(snapped.properties.location.toFixed(6), expectedLocation[i][j].toFixed(6), 'properties.location');
+            if (!expectedLocation[i]) expectedLocation[i] = [];
+            expectedLocation[i][j] = Number(snapped.properties.location.toFixed(6));
         });
     });
 
+    const filepath = directories.out + 'expectedLocation - points on joints.json';
+    if (process.env.REGEN) write.sync(filepath, expectedLocation);
+    t.deepEqual(load.sync(filepath), expectedLocation, 'properties.location');
     t.end();
 });
 
-test('turf-point-on-line - points on top of line', function (t) {
-    var line = lineString([[-0.10919809341430663,51.52204224896724],[-0.10923027992248535,51.521942114455435],[-0.10916590690612793,51.52186200668747],[-0.10904788970947266,51.52177522311313],[-0.10886549949645996,51.521601655468345],[-0.10874748229980469,51.52138135712038],[-0.10855436325073242,51.5206870765674],[-0.10843634605407713,51.52027984939518],[-0.10839343070983887,51.519952729849024],[-0.10817885398864746,51.51957887606202],[-0.10814666748046874,51.51928513164789],[-0.10789990425109863,51.518624199789016],[-0.10759949684143065,51.51778299991493]]);
-    var expectedLocation = [
-      0,
-      0.02110518647092914,
-      0.05148754414244644,
-      0.05148754414244644,
-      0.10018618161220916,
-      0.15146974875556068,
-      0.1789071161686319,
-      0.19925640783802623,
-      0.19925640783802623,
-      0.24615331546176628
-    ];
+test('turf-point-on-line - points on top of line', t => {
+    const line = lineString([[-0.109198, 51.522042], [-0.109230, 51.521942], [-0.109165, 51.521862], [-0.109047, 51.521775], [-0.108865, 51.521601], [-0.108747, 51.521381], [-0.108554, 51.520687], [-0.108436, 51.520279], [-0.108393, 51.519952], [-0.108178, 51.519578], [-0.108146, 51.519285], [-0.107899, 51.518624], [-0.107599, 51.517782]]);
+    const expectedLocation = [];
 
-    var dist = lineDistance(line, 'miles');
-    var increment = dist / 10;
+    const dist = lineDistance(line, 'miles');
+    const increment = dist / 10;
 
-    for (var i = 0; i < 10; i++) {
-        var pt = along(line, increment * i, 'miles');
-        var snapped = pointOnLine(line, pt, 'miles');
-        var shift = distance(pt, snapped, 'miles');
+    for (let i = 0; i < 10; i++) {
+        const pt = along(line, increment * i, 'miles');
+        const snapped = pointOnLine(line, pt, 'miles');
+        const shift = distance(pt, snapped, 'miles');
         t.true(shift < 0.000001, 'pt did not shift far');
-        t.equal(snapped.properties.location, expectedLocation[i], 'properties.location');
+        expectedLocation.push(Number(snapped.properties.location.toFixed(6)));
     }
 
+    const filepath = directories.out + 'expectedLocation - points on top of line.json';
+    if (process.env.REGEN) write.sync(filepath, expectedLocation);
+    t.deepEqual(load.sync(filepath), expectedLocation, 'properties.location');
     t.end();
 });
 
-test('turf-point-on-line - point along line', function (t) {
-    var line = lineString([[-122.45717525482178,37.72003306385638],[-122.45717525482178,37.718242366859215]]);
+test('turf-point-on-line - point along line', t => {
+    const line = lineString([[-122.457175, 37.720033], [-122.457175, 37.718242]]);
 
-    var pt = along(line, 0.019, 'miles');
-    var snapped = pointOnLine(line, pt);
-    var shift = distance(pt, snapped, 'miles');
+    const pt = along(line, 0.019, 'miles');
+    const snapped = pointOnLine(line, pt);
+    const shift = distance(pt, snapped, 'miles');
 
     t.true(shift < 0.00001, 'pt did not shift far');
 
     t.end();
 });
 
-test('turf-point-on-line - points on sides of lines', function (t) {
-    var line = lineString([[-122.45616137981413,37.72125936929241],[-122.45717525482178,37.718242366859215]]);
-    var first = line.geometry.coordinates[0];
-    var last = line.geometry.coordinates[line.geometry.coordinates.length - 1];
-    var pts = [
-        point([-122.45702505111694,37.71881098149625]),
-        point([-122.45733618736267,37.719235317933844]),
-        point([-122.45686411857605,37.72027068864082]),
-        point([-122.45652079582213,37.72063561093274])
+test('turf-point-on-line - points on sides of lines', t => {
+    const line = lineString([[-122.456161, 37.721259], [-122.457175, 37.718242]]);
+    const first = line.geometry.coordinates[0];
+    const last = line.geometry.coordinates[line.geometry.coordinates.length - 1];
+    const pts = [
+        point([-122.457025, 37.718810]),
+        point([-122.457336, 37.719235]),
+        point([-122.456864, 37.720270]),
+        point([-122.456520, 37.720635])
     ];
 
-    pts.forEach(function(pt, i){
-        var snapped = pointOnLine(line, pt);
+    pts.forEach(pt => {
+        const snapped = pointOnLine(line, pt);
         t.notDeepEqual(snapped.geometry.coordinates, first, 'pt did not snap to first vertex');
         t.notDeepEqual(snapped.geometry.coordinates, last, 'pt did not snap to last vertex');
     });
@@ -153,14 +185,14 @@ test('turf-point-on-line - points on sides of lines', function (t) {
     t.end();
 });
 
-test('turf-point-on-line - check dist and index', function(t) {
-    var line = lineString([[-92.09049224853516,41.10289743708757],[-92.19108581542969,41.07986874098993],[-92.22850799560547,41.05605531253442],[-92.23709106445312,41.00814350872298],[-92.22576141357422,40.96693739752686],[-92.15023040771484,40.93685883302701],[-92.11246490478516,40.97756533655244],[-92.06268310546874,41.03456405894359],[-92.10079193115234,41.04000226828482]]);
-    var pt = point([-92.11057662963867, 41.04064964423169]);
-    var snapped = pointOnLine(line, pt);
+test('turf-point-on-line - check dist and index', t => {
+    const line = lineString([[-92.090492, 41.102897], [-92.191085, 41.079868], [-92.228507, 41.056055], [-92.237091, 41.008143], [-92.225761, 40.966937], [-92.150230, 40.936858], [-92.112464, 40.977565], [-92.062683, 41.034564], [-92.100791, 41.040002]]);
+    const pt = point([-92.110576, 41.040649]);
+    const snapped = truncate(pointOnLine(line, pt));
 
     t.equal(snapped.properties.index, 8, 'properties.index');
-    t.equal(snapped.properties.dist, 0.8240378840589049, 'properties.dist');
-    t.deepEqual(snapped.geometry.coordinates,[-92.10079193115234, 41.04000226828482], 'coordinates');
+    t.equal(Number(snapped.properties.dist.toFixed(6)), 0.824059, 'properties.dist');
+    t.deepEqual(snapped.geometry.coordinates, [-92.100791, 41.040002], 'coordinates');
 
     t.end();
 });
