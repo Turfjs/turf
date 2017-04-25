@@ -1,6 +1,7 @@
 const test = require('tape');
+const fs = require('fs');
 const path = require('path');
-const {lineString, point} = require('@turf/helpers');
+const {lineString, point, featureCollection} = require('@turf/helpers');
 const distance = require('@turf/distance');
 const lineDistance = require('@turf/line-distance');
 const along = require('@turf/along');
@@ -14,6 +15,27 @@ const directories = {
     out: path.join(__dirname, 'test', 'out') + path.sep
 };
 
+const fixtures = fs.readdirSync(directories.in).map(filename => {
+    return {
+        filename,
+        name: path.parse(filename).name,
+        geojson: load.sync(directories.in + filename)
+    };
+});
+
+test('turf-linestring-to-polygon', t => {
+    for (const {name, filename, geojson} of fixtures) {
+        const [line, point] = geojson.features;
+        const onLine = pointOnLine(line, point);
+        onLine.properties['marker-color'] = '#F0F';
+        const results = featureCollection([line, point, onLine]);
+
+        if (process.env.REGEN) write.sync(directories.out + filename, results);
+        t.deepEqual(load.sync(directories.out + filename), results, name);
+    }
+    t.end();
+});
+
 test('turf-point-on-line - first point', t => {
     const line = lineString([[-122.457175, 37.720033], [-122.457175, 37.718242]]);
     const pt = point([-122.457175, 37.720033]);
@@ -21,7 +43,7 @@ test('turf-point-on-line - first point', t => {
     const snapped = truncate(pointOnLine(line, pt));
 
     t.deepEqual(pt.geometry.coordinates, snapped.geometry.coordinates, 'pt on start does not move');
-    t.equal(snapped.properties.location, 0, 'properties.location');
+    t.equal(Number(snapped.properties.location.toFixed(6)), 0, 'properties.location');
 
     t.end();
 });
@@ -45,7 +67,7 @@ test('turf-point-on-line - points behind first point', t => {
     pts.forEach(pt => {
         const snapped = truncate(pointOnLine(line, pt));
         t.deepEqual(first.geometry.coordinates, snapped.geometry.coordinates, 'pt behind start moves to first vertex');
-        expectedLocation.push(snapped.properties.location);
+        expectedLocation.push(Number(snapped.properties.location.toFixed(6)));
     });
 
     const filepath = directories.out + 'expectedLocation - points behind first point.json';
@@ -68,7 +90,7 @@ test('turf-point-on-line - points in front of last point', t => {
     pts.forEach(pt => {
         const snapped = truncate(pointOnLine(line, pt));
         t.deepEqual(last.geometry.coordinates, snapped.geometry.coordinates, 'pt behind start moves to last vertex');
-        expectedLocation.push(snapped.properties.location);
+        expectedLocation.push(Number(snapped.properties.location.toFixed(6)));
     });
 
     const filepath = directories.out + 'expectedLocation - points in front of last point.json';
@@ -92,7 +114,7 @@ test('turf-point-on-line - points on joints', t => {
             const snapped = truncate(pointOnLine(line, pt));
             t.deepEqual(pt.geometry.coordinates, snapped.geometry.coordinates, 'pt on joint stayed in place');
             if (!expectedLocation[i]) expectedLocation[i] = [];
-            expectedLocation[i][j] = snapped.properties.location;
+            expectedLocation[i][j] = Number(snapped.properties.location.toFixed(6));
         });
     });
 
@@ -114,7 +136,7 @@ test('turf-point-on-line - points on top of line', t => {
         const snapped = pointOnLine(line, pt, 'miles');
         const shift = distance(pt, snapped, 'miles');
         t.true(shift < 0.000001, 'pt did not shift far');
-        expectedLocation.push(snapped.properties.location);
+        expectedLocation.push(Number(snapped.properties.location.toFixed(6)));
     }
 
     const filepath = directories.out + 'expectedLocation - points on top of line.json';
