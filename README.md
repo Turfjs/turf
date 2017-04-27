@@ -1,5 +1,6 @@
 ![turf](https://raw.githubusercontent.com/Turfjs/turf/9a1d5e8d99564d4080f1e2bf1517ed41d18012fa/logo.png) 
 ======
+[![Gitter](https://badges.gitter.im/Join Chat.svg)](https://gitter.im/Turfjs/turf?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 [![Version Badge][npm-img]][npm-url]
 [![Circle CI](https://circleci.com/gh/Turfjs/turf.svg?style=svg)](https://circleci.com/gh/Turfjs/turf)
