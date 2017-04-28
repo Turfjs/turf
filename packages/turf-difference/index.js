@@ -1,5 +1,6 @@
 var getCoords = require('@turf/invariant').getCoords;
 var polygon = require('@turf/helpers').polygon;
+var multiPolygon = require('@turf/helpers').multiPolygon;
 var featureCollection = require('@turf/helpers').featureCollection;
 var martinez = require('./martinez.min.js');
 
@@ -55,11 +56,9 @@ module.exports = function (poly1, poly2) {
     var coords1 = getCoords(poly1);
     var coords2 = getCoords(poly2);
     var outCoords = martinez.diff(coords1, coords2);
+    if (outCoords.length === 1) results.push(polygon(outCoords[0]));
 
-    if (outCoords.length === 1) results.push(polygon(outCoords));
-    // To-Do (Geometry is not a valid MultiPolygon)
-    // https://github.com/w8r/martinez/issues/5
-    else if (outCoords.length > 1) results.push(polygon(outCoords));
+    else if (outCoords.length > 1) results.push(multiPolygon(outCoords));
 
     return featureCollection(results);
 };
