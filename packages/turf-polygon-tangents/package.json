@@ -1,0 +1,40 @@
+{
+  "name": "@turf/polygon-tangents",
+  "version": "4.1.0",
+  "description": "turf polygon tangents module",
+  "main": "index.js",
+  "types": "index.d.ts",
+  "files": [
+    "index.js",
+    "index.d.ts"
+  ],
+  "scripts": {
+    "test": "node test.js",
+    "bench": "node bench.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/Turfjs/turf.git"
+  },
+  "keywords": [
+    "turf",
+    "geojson",
+    "point",
+    "tangent",
+    "polygon"
+  ],
+  "author": "Turf Authors",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Turfjs/turf/issues"
+  },
+  "homepage": "https://github.com/Turfjs/turf",
+  "devDependencies": {
+    "@turf/helpers": "^4.1.0",
+    "benchmark": "^1.0.0",
+    "tape": "^3.5.0"
+  },
+  "dependencies": {
+    "@turf/meta": "^4.1.0"
+  }
+}
