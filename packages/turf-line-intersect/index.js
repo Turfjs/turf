@@ -1,11 +1,11 @@
-var helpers = require('@turf/helpers');
 var meta = require('@turf/meta');
-var lineSegment = require('@turf/line-segment');
-var getCoords = require('@turf/invariant').getCoords;
 var rbush = require('geojson-rbush');
+var helpers = require('@turf/helpers');
+var getCoords = require('@turf/invariant').getCoords;
+var lineSegment = require('@turf/line-segment');
 var point = helpers.point;
-var featureCollection = helpers.featureCollection;
 var featureEach = meta.featureEach;
+var featureCollection = helpers.featureCollection;
 
 /**
  * Takes any LineString or Polygon GeoJSON and returns the intersecting point(s).
@@ -37,7 +37,9 @@ var featureEach = meta.featureEach;
  * var addToMap = [line, line2, intersects]
  */
 module.exports = function (line1, line2) {
+    var unique = {};
     var results = [];
+
     // Handles simple 2-vertex segments
     if (line1.geometry.type === 'LineString' &&
         line2.geometry.type === 'LineString' &&
@@ -47,13 +49,20 @@ module.exports = function (line1, line2) {
         if (intersect) results.push(intersect);
         return featureCollection(results);
     }
+
     // Handles complex GeoJSON Geometries
     var tree = rbush();
     tree.load(lineSegment(line2));
     featureEach(lineSegment(line1), function (segment) {
         featureEach(tree.search(segment), function (match) {
             var intersect = intersects(segment, match);
-            if (intersect) results.push(intersect);
+            if (intersect) {
+                var key = getCoords(intersect).join(',');
+                if (!unique[key]) {
+                    unique[key] = true;
+                    results.push(intersect);
+                }
+            }
         });
     });
     return featureCollection(results);
