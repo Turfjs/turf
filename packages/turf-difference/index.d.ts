@@ -1,11 +1,10 @@
 /// <reference types="geojson" />
 
-type Polygon = GeoJSON.Feature<GeoJSON.Polygon>;
-type MultiPolygon = GeoJSON.Feature<GeoJSON.MultiPolygon>;
+import {Polygon, Polygons, MultiPolygon} from '@turf/helpers'
 
 /**
  * http://turfjs.org/docs/#difference
  */
-declare function difference(poly1: Polygon, poly2: Polygon): Polygon|MultiPolygon;
+declare function difference(poly1: Polygon|MultiPolygon, poly2: Polygon|MultiPolygon): Polygons;
 declare namespace difference { }
 export = difference;

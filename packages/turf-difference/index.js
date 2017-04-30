@@ -1,14 +1,17 @@
-// depend on jsts for now https://github.com/bjornharrtell/jsts/blob/master/examples/overlay.html
-var jsts = require('jsts');
+var getCoords = require('@turf/invariant').getCoords;
+var polygon = require('@turf/helpers').polygon;
+var multiPolygon = require('@turf/helpers').multiPolygon;
+var featureCollection = require('@turf/helpers').featureCollection;
+var martinez = require('./martinez.min.js');
 
 /**
  * Finds the difference between two {@link Polygon|polygons} by clipping the second
  * polygon from the first.
  *
  * @name difference
- * @param {Feature<Polygon>} p1 input Polygon feature
- * @param {Feature<Polygon>} p2 Polygon feature to difference from `p1`
- * @return {Feature<(Polygon|MultiPolygon)>} a Polygon or MultiPolygon feature showing the area of `p1` excluding the area of `p2`
+ * @param {Feature<Polygon|MultiPolygon>} poly1 input Polygon feature
+ * @param {Feature<Polygon|MultiPolygon>} poly2 Polygon feature to difference from `poly1`
+ * @return {FeatureCollection<Polygon>} a Collection of Polygons showing the area of `poly1` excluding the area of `poly2`
  * @example
  * var poly1 = {
  *   "type": "Feature",
@@ -48,39 +51,14 @@ var jsts = require('jsts');
  * var addToMap = [poly1, poly2, difference];
  */
 
-module.exports = function (p1, p2) {
-    var poly1 = JSON.parse(JSON.stringify(p1));
-    var poly2 = JSON.parse(JSON.stringify(p2));
-    if (poly1.type !== 'Feature') {
-        poly1 = {
-            type: 'Feature',
-            properties: {},
-            geometry: poly1
-        };
-    }
-    if (poly2.type !== 'Feature') {
-        poly2 = {
-            type: 'Feature',
-            properties: {},
-            geometry: poly2
-        };
-    }
+module.exports = function (poly1, poly2) {
+    var results = [];
+    var coords1 = getCoords(poly1);
+    var coords2 = getCoords(poly2);
+    var outCoords = martinez.diff(coords1, coords2);
+    if (outCoords.length === 1) results.push(polygon(outCoords[0]));
 
-    var reader = new jsts.io.GeoJSONReader();
-    var a = reader.read(JSON.stringify(poly1.geometry));
-    var b = reader.read(JSON.stringify(poly2.geometry));
-    var differenced = a.difference(b);
+    else if (outCoords.length > 1) results.push(multiPolygon(outCoords));
 
-    if (differenced.isEmpty()) return undefined;
-
-    var writer = new jsts.io.GeoJSONWriter();
-    var geojsonGeometry = writer.write(differenced);
-
-    poly1.geometry = differenced;
-
-    return {
-        type: 'Feature',
-        properties: poly1.properties,
-        geometry: geojsonGeometry
-    };
+    return featureCollection(results);
 };

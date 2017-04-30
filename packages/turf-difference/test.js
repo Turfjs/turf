@@ -1,50 +1,49 @@
-var difference = require('.');
-var test = require('tape');
-var glob = require('glob');
-var fs = require('fs');
+const test = require('tape');
+const fs = require('fs');
+const path = require('path');
+const load = require('load-json-file');
+const write = require('write-json-file');
+const featureEach = require('@turf/meta').featureEach;
+const featureCollection = require('@turf/helpers').featureCollection;
+const difference = require('./');
 
-var REGEN = process.env.REGEN;
+const directories = {
+    in: path.join(__dirname, 'test', 'in') + path.sep,
+    out: path.join(__dirname, 'test', 'out') + path.sep
+};
 
-test('difference', function(t){
-  glob.sync(__dirname + '/test/in/*.geojson').forEach(function(input) {
-      var features = JSON.parse(fs.readFileSync(input));
-      var before = JSON.parse(JSON.stringify(features));
-      var output = difference(features[0], features[1]);
-      if (REGEN) fs.writeFileSync(input.replace('/in/', '/out/'), JSON.stringify(output));
-      t.deepEqual(before, features, 'does not mutate data');
-      t.deepEqual(output, JSON.parse(fs.readFileSync(input.replace('/in/', '/out/'))), input);
-  });
-  t.end();
+const fixtures = fs.readdirSync(directories.in).map(filename => {
+    return {
+        filename,
+        name: path.parse(filename).name,
+        geojson: load.sync(directories.in + filename)
+    };
 });
 
-test('difference -- geometries', function(t){
-  glob.sync(__dirname + '/test/in/*.geojson').forEach(function(input) {
-      var fcs = JSON.parse(fs.readFileSync(input));
-      var before = JSON.parse(JSON.stringify(fcs));
-      var output = difference(fcs[0].geometry, fcs[1].geometry);
-      if (REGEN) fs.writeFileSync(input.replace('/in/', '/out/'), JSON.stringify(output));
-      t.deepEqual(before, fcs, 'does not mutate data');
-      t.deepEqual(output, JSON.parse(fs.readFileSync(input.replace('/in/', '/out/'))), input);
-  });
-  t.end();
+test('turf-difference', t => {
+    for (const {filename, name, geojson}  of fixtures) {
+        const source = colorize(geojson.features[0], '#00F', 2).features[0];
+        const target = colorize(geojson.features[1], '#070', 2).features[0];
+        const shared = colorize(difference(source, target), '#F00');
+
+        const results = featureCollection([target, source].concat(shared.features));
+
+        if (process.env.REGEN) write.sync(directories.out + filename, results);
+        t.deepEquals(results, load.sync(directories.out + filename), name);
+    }
+    t.end();
 });
 
-test('difference -- geometries', function(t){
-  glob.sync(__dirname + '/test/in/*.geojson').forEach(function(input) {
-      var fcs = JSON.parse(fs.readFileSync(input));
-      var before = JSON.parse(JSON.stringify(fcs));
-      var output = difference(fcs[0].geometry, fcs[1].geometry);
-      if (REGEN) fs.writeFileSync(input.replace('/in/', '/out/'), JSON.stringify(output));
-      t.deepEqual(before, fcs, 'does not mutate data');
-      t.deepEqual(output, JSON.parse(fs.readFileSync(input.replace('/in/', '/out/'))), input);
-  });
-  t.end();
-});
-
-test('difference -- empty set', function(t) {
-  var polys = JSON.parse(fs.readFileSync(__dirname+'/test/full.geojson'));
-  var result = difference(polys[1], polys[0]);
-  t.deepEqual(result, undefined);
-  t.notOk(result);
-  t.end();
-});
+function colorize(features, color = '#F00', width = 6) {
+    const results = [];
+    featureEach(features, feature => {
+        feature.properties = {
+            stroke: color,
+            fill: color,
+            'stroke-width': width,
+            'fill-opacity': 0.1
+        };
+        results.push(feature);
+    });
+    return featureCollection(results);
+}
