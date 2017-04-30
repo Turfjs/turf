@@ -16,11 +16,10 @@ const fixtures = fs.readdirSync(directory).map(filename => {
 /**
  * Benchmark Results
  *
- * ==original==
- * feature-collection-points x 133,182 ops/sec ±1.01% (86 runs sampled)
- * linestring x 136,473 ops/sec ±0.88% (93 runs sampled)
- * point-with-elevation x 268,397 ops/sec ±1.09% (89 runs sampled)
- * polygon x 97,702 ops/sec ±1.42% (91 runs sampled)
+ * feature-collection-points x 7,937,394 ops/sec ±1.43% (89 runs sampled)
+ * linestring x 6,496,534 ops/sec ±1.75% (86 runs sampled)
+ * point-with-elevation x 10,779,300 ops/sec ±2.08% (84 runs sampled)
+ * polygon x 4,454,602 ops/sec ±3.45% (86 runs sampled)
  */
 const suite = new Benchmark.Suite('turf-flip');
 for (const {name, geojson} of fixtures) {
