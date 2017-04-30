@@ -2,7 +2,6 @@ var coordEach = require('@turf/meta').coordEach;
 
 /**
  * Takes a GeoJSON Feature or FeatureCollection and truncates the precision of the geometry.
- * **Warning:** This module does mutate user input, consider using JSON.parse(JSON.stringify(geojson)) to preserve input integrity.
  *
  * @name truncate
  * @param {FeatureCollection|Feature<any>} geojson any GeoJSON Feature, FeatureCollection, Geometry or GeometryCollection.
@@ -29,25 +28,43 @@ var coordEach = require('@turf/meta').coordEach;
  * var addToMap = [truncated];
  */
 module.exports = function (geojson, precision, coordinates, mutate) {
-    // validation
-    if (!geojson) throw new Error('geojson is required');
-
     // default params
     precision = (precision !== undefined) ? precision : 6;
     coordinates = (coordinates !== undefined) ? coordinates : 2;
-    var factor = Math.pow(10, precision);
+
+    // validation
+    if (!geojson) throw new Error('<geojson> is required');
+    if (typeof precision !== 'number') throw new Error('<precision> must be a number');
+    if (typeof coordinates !== 'number') throw new Error('<coordinates> must be a number');
 
     // prevent input mutation
     if (mutate === false || mutate === undefined) geojson = JSON.parse(JSON.stringify(geojson));
 
-    coordEach(geojson, function (coords) {
-        // Remove extra coordinates (usually elevation coordinates and more)
-        if (coords.length > coordinates) coords.splice(coordinates, coords.length);
+    var factor = Math.pow(10, precision);
 
-        // Truncate coordinate decimals
-        for (var i = 0; i < coords.length; i++) {
-            coords[i] = Math.round(coords[i] * factor) / factor;
-        }
+    // Truncate Coordinates
+    coordEach(geojson, function (coords) {
+        truncate(coords, factor, coordinates);
     });
     return geojson;
 };
+
+/**
+ * Truncate Coordinates - Mutates coordinates in place
+ *
+ * @private
+ * @param {Array<any>} coords Geometry Coordinates
+ * @param {number} factor rounding factor for coordinate decimal precision
+ * @param {number} coordinates maximum number of coordinates (primarly used to remove z coordinates)
+ * @returns {Array<any>} mutated coordinates
+ */
+function truncate(coords, factor, coordinates) {
+    // Remove extra coordinates (usually elevation coordinates and more)
+    if (coords.length > coordinates) coords.splice(coordinates, coords.length);
+
+    // Truncate coordinate decimals
+    for (var i = 0; i < coords.length; i++) {
+        coords[i] = Math.round(coords[i] * factor) / factor;
+    }
+    return coords;
+}

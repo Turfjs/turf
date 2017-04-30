@@ -37,3 +37,12 @@ test('turf-truncate - precision & coordinates', t => {
     t.deepEqual(truncate(point([50, 40, 1100]), 6, 2).geometry.coordinates, [50, 40], 'coordinates 2');
     t.end();
 });
+
+test('turf-truncate - handle input mutation', t => {
+    const geojson = point([120.123, 40.123, 3000]);
+    truncate(geojson, 0);
+    t.deepEqual(geojson, point([120.123, 40.123, 3000]), 'does not mutate input');
+    truncate(geojson, 0, 2, true);
+    t.deepEqual(geojson, point([120, 40]), 'does mutate input');
+    t.end();
+});

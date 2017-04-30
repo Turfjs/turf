@@ -3,7 +3,6 @@
 # truncate
 
 Takes a GeoJSON Feature or FeatureCollection and truncates the precision of the geometry.
-**Warning:** This module does mutate user input, consider using JSON.parse(JSON.stringify(geojson)) to preserve input integrity.
 
 **Parameters**
 
