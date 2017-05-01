@@ -70,7 +70,7 @@ export function multiPolygon(coordinates: Position[][][], properties?: any): Mul
 /**
  * http://turfjs.org/docs/#geometrycollection
  */
-export function geometryCollection<Geom extends GeometryObject>(geometries: Geom[], properties?: any): GeometryCollection;
+export function geometryCollection(geometries: GeometryObject[], properties?: any): GeometryCollection;
 
 /**
  * http://turfjs.org/docs/#radianstodistance
