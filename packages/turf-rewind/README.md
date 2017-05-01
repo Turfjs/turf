@@ -2,11 +2,11 @@
 
 # rewind
 
-Rewind [LineString](http://geojson.org/geojson-spec.html#linestring) or [Polygon](http://geojson.org/geojson-spec.html#polygon) outer ring clockwise and inner rings counterclockwise (Uses [Shoelace Formula](http://en.wikipedia.org/wiki/Shoelace_formula)).
+Rewind [(Mutli)LineString](http://geojson.org/geojson-spec.html#linestring) or [(Multi)Polygon](http://geojson.org/geojson-spec.html#polygon) outer ring clockwise and inner rings counterclockwise (Uses [Shoelace Formula](http://en.wikipedia.org/wiki/Shoelace_formula)).
 
 **Parameters**
 
--   `geojson` **[Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;([Polygon](http://geojson.org/geojson-spec.html#polygon) \| [LineString](http://geojson.org/geojson-spec.html#linestring))>** input GeoJSON Polygon
+-   `geojson` **[Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;([Polygon](http://geojson.org/geojson-spec.html#polygon) \| [MultiPolygon](http://geojson.org/geojson-spec.html#multipolygon) \| [LineString](http://geojson.org/geojson-spec.html#linestring) \| [MultiLineString](http://geojson.org/geojson-spec.html#multilinestring))>** input GeoJSON Polygon
 -   `reverse` **\[[Boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)]** enable reverse winding (optional, default `false`)
 -   `mutate` **\[[boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)]** allows GeoJSON input to be mutated (significant performance increase if true) (optional, default `false`)
 
@@ -29,7 +29,7 @@ var rewind = turf.rewind(polygon);
 var addToMap = [rewind];
 ```
 
-Returns **[Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;([Polygon](http://geojson.org/geojson-spec.html#polygon) \| [LineString](http://geojson.org/geojson-spec.html#linestring))>** rewind Polygon
+Returns **[Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;([Polygon](http://geojson.org/geojson-spec.html#polygon) \| [MultiPolygon](http://geojson.org/geojson-spec.html#multipolygon) \| [LineString](http://geojson.org/geojson-spec.html#linestring) \| [MultiLineString](http://geojson.org/geojson-spec.html#multilinestring))>** rewind Polygon
 
 # rewindLineString
 

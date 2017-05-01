@@ -1,13 +1,13 @@
 var getCoords = require('@turf/invariant').getCoords;
 
 /**
- * Rewind {@link LineString} or {@link Polygon} outer ring clockwise and inner rings counterclockwise (Uses {@link http://en.wikipedia.org/wiki/Shoelace_formula|Shoelace Formula}).
+ * Rewind {@link LineString|(Mutli)LineString} or {@link Polygon|(Multi)Polygon} outer ring clockwise and inner rings counterclockwise (Uses {@link http://en.wikipedia.org/wiki/Shoelace_formula|Shoelace Formula}).
  *
  * @name rewind
- * @param {Feature<Polygon|LineString>} geojson input GeoJSON Polygon
+ * @param {Feature<Polygon|MultiPolygon|LineString|MultiLineString>} geojson input GeoJSON Polygon
  * @param {Boolean} [reverse=false] enable reverse winding
  * @param {boolean} [mutate=false] allows GeoJSON input to be mutated (significant performance increase if true)
- * @returns {Feature<Polygon|LineString>} rewind Polygon
+ * @returns {Feature<Polygon|MultiPolygon|LineString|MultiLineString>} rewind Polygon
  * @example
  * var polygon = {
  *     "type": "Feature",
