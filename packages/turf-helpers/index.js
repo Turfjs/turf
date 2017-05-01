@@ -124,6 +124,7 @@ function polygon(coordinates, properties) {
  */
 function lineString(coordinates, properties) {
     if (!coordinates) throw new Error('No coordinates passed');
+    if (coordinates.length < 2) throw new Error('Coordinates must be an array of two or more positions');
 
     return feature({
         type: 'LineString',
