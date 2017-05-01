@@ -1,8 +1,8 @@
-var MS_isoBands = require('marchingsquares').isoBands;
+var marchingsquares = require('marchingsquares');
 var helpers = require('@turf/helpers');
 var featureCollection = helpers.featureCollection;
 var polygon = helpers.polygon;
-// var lineString = helpers.lineString;
+var multiLineString = helpers.multiLineString;
 var multiPolygon = helpers.multiPolygon;
 var explode = require('@turf/explode');
 var inside = require('@turf/inside');
@@ -85,11 +85,12 @@ function createContourLines(matrix, breaks, property) {
         var lowerBand = +breaks[i - 1]; // make sure the breaks value is a number
         var upperBand = +breaks[i];
 
-        var isobandsCoords = MS_isoBands(matrix, lowerBand, upperBand - lowerBand);
+        var isobandsCoords = marchingsquares.isoBands(matrix, lowerBand, upperBand - lowerBand);
         // as per GeoJson rules for creating a Polygon, make sure the first element
         // in the array of LinearRings represents the exterior ring (i.e. biggest area),
         // and any subsequent elements represent interior rings (i.e. smaller area);
         // this avoids rendering issues of the MultiPolygons on the map
+        var isolines = multiLineString(isobandsCoords);
         var nestedRings = orderByArea(isobandsCoords);
         var groupedRings = groupNestedRings(nestedRings);
         var obj = {};
@@ -127,8 +128,8 @@ function rescaleContours(contours, matrix, points) {
     var scaleY = originalHeigth / matrixHeight;
 
     var resize = function (point) {
-        point[0] = point[0] * scaleX + x0; // rescaled x
-        point[1] = point[1] * scaleY + y0; // rescaled y
+        point[0] = point[0] * scaleX + x0;
+        point[1] = point[1] * scaleY + y0;
     };
 
     // resize and shift each point/line of the isobands
@@ -171,7 +172,7 @@ function orderByArea(ringsCoords) {
     });
     // create a new array of linearRings coordinates ordered by their area
     var orderedByArea = [];
-    areas.forEach(function(area) {
+    areas.forEach(function (area) {
         for (var lr = 0; lr < ringsWithArea.length; lr++) {
             if (ringsWithArea[lr].area === area) {
                 orderedByArea.push(ringsWithArea[lr].ring);
