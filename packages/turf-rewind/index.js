@@ -1,4 +1,5 @@
 var getCoords = require('@turf/invariant').getCoords;
+var isClockWise = require('turf-is-clockwise');
 
 /**
  * Rewind {@link LineString|(Mutli)LineString} or {@link Polygon|(Multi)Polygon} outer ring clockwise and inner rings counterclockwise (Uses {@link http://en.wikipedia.org/wiki/Shoelace_formula|Shoelace Formula}).
@@ -91,25 +92,6 @@ function rewindPolygon(coords, reverse) {
             coords[i].reverse();
         }
     }
-}
-
-/**
- * is Clockwise
- *
- * @private
- * @param {Array<Array<number>>} coords LineString geometry coordinates
- * @returns {boolean} is LineString clockwise or not
- */
-function isClockWise(coords) {
-    var initialValue = 0;
-    var reduced = coords.reduce(function (previous, current, index) {
-        var a = previous;
-        var b = current;
-        var c = index;
-        var d = coords;
-        return a + ((c < d.length - 1) ? (d[c + 1][0] - b[0]) * (d[c + 1][1] + b[1]) : 0);
-    }, initialValue);
-    return reduced > 0;
 }
 
 function getGeomType(feature) {
