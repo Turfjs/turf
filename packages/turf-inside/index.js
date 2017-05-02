@@ -13,6 +13,7 @@ var getCoords = invariant.getCoords;
  * @name inside
  * @param {Feature<Point>} point input point
  * @param {Feature<Polygon|MultiPolygon>} polygon input polygon or multipolygon
+ * @param {boolean} [ignoreBoundary=false] True if polygon boundary should be ignored when determining if the point is inside the polygon otherwise false.
  * @returns {boolean} `true` if the Point is inside the Polygon; `false` if the Point is not inside the Polygon
  * @example
  * var pt = turf.point([-77, 44]);
@@ -30,7 +31,7 @@ var getCoords = invariant.getCoords;
  * pt.properties.isInside = isInside
  * var addToMap = [pt, poly]
  */
-module.exports = function (point, polygon) {
+module.exports = function (point, polygon, ignoreBoundary) {
     // validation
     if (!point) throw new Error('point is required');
     if (!polygon) throw new Error('polygon is required');
@@ -48,12 +49,12 @@ module.exports = function (point, polygon) {
 
     for (var i = 0, insidePoly = false; i < polys.length && !insidePoly; i++) {
         // check if it is in the outer ring first
-        if (inRing(pt, polys[i][0])) {
+        if (inRing(pt, polys[i][0], ignoreBoundary)) {
             var inHole = false;
             var k = 1;
             // check for the point in any of the holes
             while (k < polys[i].length && !inHole) {
-                if (inRing(pt, polys[i][k], true)) {
+                if (inRing(pt, polys[i][k], !ignoreBoundary)) {
                     inHole = true;
                 }
                 k++;
