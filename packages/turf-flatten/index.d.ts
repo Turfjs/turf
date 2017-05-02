@@ -13,8 +13,8 @@ interface Flatten {
     (geojson: Point | Points | MultiPoint | MultiPoints): Points;
     (geojson: LineString | LineStrings | MultiLineString | MultiLineStrings): LineStrings;
     (geojson: Polygons | Polygons | MultiPolygons | MultiPolygons): Polygons;
-    (geojson: Feature | Features): Features;
-    (geojson: GeoJSON.GeometryCollection | GeoJSON.GeometryObject): Features;
+    (geojson: Feature<any> | Features<any>): Features<any>;
+    (geojson: GeoJSON.GeometryCollection | GeoJSON.GeometryObject): Features<any>;
 }
 
 declare const flatten: Flatten;
