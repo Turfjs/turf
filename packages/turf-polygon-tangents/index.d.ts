@@ -1,12 +1,12 @@
 /// <reference types="geojson" />
 
 type Point = GeoJSON.Feature<GeoJSON.Point>;
-type Feature = GeoJSON.Feature<any>;
-type Features = GeoJSON.FeatureCollection<any>;
+type Polygon = GeoJSON.Feature<GeoJSON.Polygon>;
+type Features = GeoJSON.FeatureCollection<Point>;
 
 /**
- * http://turfjs.org/docs/#pointonsurface
+ * http://turfjs.org/docs/#polygonTangents
  */
-declare function pointOnSurface(features: Feature | Features): Point;
-declare namespace pointOnSurface { }
-export = pointOnSurface;
+declare function polygonTangents(point: Point, polygon: Polygon): Features;
+declare namespace polygonTangents { }
+export = polygonTangents;
