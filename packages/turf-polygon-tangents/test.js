@@ -1,45 +1,31 @@
-var test = require('tape');
-var tangent = require('./');
-var fs = require('fs');
-var helpers = require('@turf/helpers');
+const test = require('tape');
+const fs = require('fs');
+const path = require('path');
+const load = require('load-json-file');
+const write = require('write-json-file');
+const polygonTangents = require('./');
 
-test('point-on-surface -- closest vertex on polygons', function(t) {
-  // var fc = JSON.parse(fs.readFileSync(__dirname + '/test/polygons.geojson'));
-  var poly = helpers.polygon(
-[
-          [
-            [
-              19.6875,
-              56.36525013685606
-            ],
-            [
-              4.39453125,
-              36.73888412439431
-            ],
-            [
-              6.6796875,
-              21.616579336740603
-            ],
-            [
-              16.5234375,
-              31.203404950917395
-            ],
-            [
-              27.0703125,
-              17.476432197195518
-            ],
-            [
-              19.6875,
-              56.36525013685606
-            ]
-          ]
-        ]);
-  var point = helpers.point([45.3515625, 32.24997445586331]);
+const directories = {
+    in: path.join(__dirname, 'test', 'in') + path.sep,
+    out: path.join(__dirname, 'test', 'out') + path.sep
+};
 
-  var out = tangent(point, poly);
-  console.log(out);
-
-
-  t.end();
+const fixtures = fs.readdirSync(directories.in).map(filename => {
+    return {
+        filename,
+        name: path.parse(filename).name,
+        geojson: load.sync(directories.in + filename)
+    };
 });
+
+test('turf-polygon-tangents', t => {
+    for (const {name, filename, geojson} of fixtures) {
+        const results = polygonTangents(geojson.features[1], geojson.features[0]);
+
+        if (process.env.REGEN) write.sync(directories.out + filename, results);
+        t.deepEqual(load.sync(directories.out + filename), results, name);
+    }
+    t.end();
+});
+
 
