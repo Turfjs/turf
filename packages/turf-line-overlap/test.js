@@ -3,8 +3,8 @@ const fs = require('fs');
 const path = require('path');
 const load = require('load-json-file');
 const write = require('write-json-file');
-const featureEach = require('@turf/meta').featureEach;
-const featureCollection = require('@turf/helpers').featureCollection;
+const {featureEach} = require('@turf/meta');
+const {featureCollection, lineString} = require('@turf/helpers');
 const lineOverlap = require('./');
 
 const directories = {
@@ -31,6 +31,14 @@ test('turf-line-overlap', t => {
         if (process.env.REGEN) write.sync(directories.out + filename, results);
         t.deepEquals(results, load.sync(directories.out + filename), name);
     }
+    t.end();
+});
+
+test('turf-line-overlap - Geometry Object', t => {
+    const line1 = lineString([[115, -35], [125, -30], [135, -30], [145, -35]]);
+    const line2 = lineString([[135, -30], [145, -35]]);
+
+    t.true(lineOverlap(line1.geometry, line2.geometry).features.length > 0, 'support geometry object');
     t.end();
 });
 
