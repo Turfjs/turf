@@ -19,6 +19,12 @@ module.exports = function (feature1, feature2) {
     var geom2 = getGeom(feature2);
 
     switch (geom1.type) {
+    case 'Point':
+        switch (geom2.type) {
+        case 'Point':
+            return deepEqual(geom1.coordinates, geom2. coordinates);
+        }
+        throw new Error('feature2 ' + geom2.type + ' geometry not supported');
     case 'MultiPoint':
         switch (geom2.type) {
         case 'Point':
