@@ -1,51 +1,56 @@
-var helpers = require('@turf/helpers');
 var inside = require('@turf/inside');
-var internalHelpers = require('./helpers');
+var helpers = require('@turf/helpers');
+var deepEqual = require('deep-equal');
 var lineOverlap = require('@turf/line-overlap');
-var isPointOnLineSegment = internalHelpers.isPointOnLineSegment;
-var checkIfCoordArraysMatch = internalHelpers.checkIfCoordArraysMatch;
-var checkIfDeepCoordArraysMatch = internalHelpers.checkIfDeepCoordArraysMatch;
-
 
 /**
-* Contains returns true if the second geometry is completely contained by the first geometry.
-* The contains predicate returns the exact opposite result of the within predicate.
-*
-* @name contains
-* @param {feature1} feature1
-* @param {feature2} feature2
-* @returns {Boolean}
-* @example
-* var along = turf.contains(line, point);
-*/
-
+ * Contains returns true if the second geometry is completely contained by the first geometry.
+ * The contains predicate returns the exact opposite result of the within predicate.
+ *
+ * @name contains
+ * @param {Geometry|Feature<any>} feature1 source
+ * @param {Geometry|Feature<any>} feature2 target
+ * @returns {Boolean} true/false
+ * @example
+ * var along = turf.contains(line, point);
+ */
 module.exports = function (feature1, feature2) {
-    if (feature1.geometry.type === 'MultiPoint' && feature2.geometry.type === 'Point') {
-        return isPointInMultiPoint(feature1, feature2);
-    }
-    if (feature1.geometry.type === 'MultiPoint' && feature2.geometry.type === 'MultiPoint') {
-        return isMultiPointInMultiPoint(feature1, feature2);
-    }
-    if (feature1.geometry.type === 'LineString' && feature2.geometry.type === 'Point') {
-        return isPointOnLine(feature1, feature2);
-    }
-    if (feature1.geometry.type === 'LineString' && feature2.geometry.type === 'MultiPoint') {
-        return isMultiPointOnLine(feature1, feature2);
-    }
-    if (feature1.geometry.type === 'Polygon' && feature2.geometry.type === 'Point') {
-        return isPointInPoly(feature1, feature2);
-    }
-    if (feature1.geometry.type === 'Polygon' && feature2.geometry.type === 'MultiPoint') {
-        return isMultiPointInPoly(feature1, feature2);
-    }
-    if (feature1.geometry.type === 'LineString' && feature2.geometry.type === 'LineString') {
-        return isLineOnLine(feature1, feature2);
-    }
-    if (feature1.geometry.type === 'Polygon' && feature2.geometry.type === 'LineString') {
-        return isLineInPoly(feature1, feature2);
-    }
-    if (feature1.geometry.type === 'Polygon' && feature2.geometry.type === 'Polygon') {
-        return isPolyInPoly(feature1, feature2);
+    var geom1 = getGeom(feature1);
+    var geom2 = getGeom(feature2);
+
+    switch (geom1.type) {
+    case 'MultiPoint':
+        switch (geom2.type) {
+        case 'Point':
+            return isPointInMultiPoint(feature1, feature2);
+        case 'MultiPoint':
+            return isMultiPointInMultiPoint(feature1, feature2);
+        }
+        throw new Error('feature2 ' + geom2.type + ' geometry not supported');
+    case 'LineString':
+        switch (geom2.type) {
+        case 'Point':
+            return isPointOnLine(feature1, feature2);
+        case 'LineString':
+            return isLineOnLine(feature1, feature2);
+        case 'MultiPoint':
+            return isMultiPointOnLine(feature1, feature2);
+        }
+        throw new Error('feature2 ' + geom2.type + ' geometry not supported');
+    case 'Polygon':
+        switch (geom2.type) {
+        case 'Point':
+            return isPointInPoly(feature1, feature2);
+        case 'LineString':
+            return isLineInPoly(feature1, feature2);
+        case 'Polygon':
+            return isPolyInPoly(feature1, feature2);
+        case 'MultiPoint':
+            return isMultiPointInPoly(feature1, feature2);
+        }
+        throw new Error('feature2 ' + geom2.type + ' geometry not supported');
+    default:
+        throw new Error('feature1 ' + geom1.type + ' geometry not supported');
     }
 };
 
@@ -53,7 +58,7 @@ function isPointInMultiPoint(MultiPoint, Point) {
     var i;
     var output = false;
     for (i = 0; i < MultiPoint.geometry.coordinates.length; i++) {
-        if (checkIfCoordArraysMatch(MultiPoint.geometry.coordinates[i], Point.geometry.coordinates)) {
+        if (deepEqual(MultiPoint.geometry.coordinates[i], Point.geometry.coordinates)) {
             output = true;
             break;
         }
@@ -66,7 +71,7 @@ function isMultiPointInMultiPoint(MultiPoint1, MultiPoint2) {
     for (var i = 0; i < MultiPoint2.geometry.coordinates.length; i++) {
         var anyMatch = false;
         for (var i2 = 0; i2 < MultiPoint1.geometry.coordinates.length; i2++) {
-            if (checkIfCoordArraysMatch(MultiPoint2.geometry.coordinates[i], MultiPoint1.geometry.coordinates[i2])) {
+            if (deepEqual(MultiPoint2.geometry.coordinates[i], MultiPoint1.geometry.coordinates[i2])) {
                 foundAMatch++;
                 anyMatch = true;
                 break;
@@ -158,8 +163,38 @@ function isPolyInPoly(Polygon1, Polygon2) {
         }
     }
 
-    if (checkIfDeepCoordArraysMatch(Polygon1.geometry.coordinates, Polygon2.geometry.coordinates)) {
+    if (deepEqual(Polygon1.geometry.coordinates, Polygon2.geometry.coordinates)) {
         return false;
     }
     return true;
+}
+
+function isPointOnLineSegment(LineSegmentStart, LineSegmentEnd, Point) {
+    var dxc = Point[0] - LineSegmentStart[0];
+    var dyc = Point[1] - LineSegmentStart[1];
+    var dxl = LineSegmentEnd[0] - LineSegmentStart[0];
+    var dyl = LineSegmentEnd[1] - LineSegmentStart[1];
+    var cross = dxc * dyl - dyc * dxl;
+    if (cross !== 0) {
+        return false;
+    }
+    if (Math.abs(dxl) >= Math.abs(dyl)) {
+        return dxl > 0 ? LineSegmentStart[0] <= Point[0] && Point[0] <= LineSegmentEnd[0] : LineSegmentEnd[0] <= Point[0] && Point[0] <= LineSegmentStart[0];
+    } else {
+        return dyl > 0 ? LineSegmentStart[1] <= Point[1] && Point[1] <= LineSegmentEnd[1] : LineSegmentEnd[1] <= Point[1] && Point[1] <= LineSegmentStart[1];
+    }
+}
+
+/**
+ * Get Geometry from Feature or Geometry Object
+ *
+ * @private
+ * @param {Feature<any>|Geometry<any>} geojson GeoJSON Feature or Geometry Object
+ * @returns {Geometry<any>} GeoJSON Geometry Object
+ * @throws {Error} if geojson is not a Feature or Geometry Object
+ */
+function getGeom(geojson) {
+    if (geojson.geometry) return geojson.geometry;
+    if (geojson.coordinates) return geojson;
+    throw new Error('geojson must be a feature or geometry object');
 }

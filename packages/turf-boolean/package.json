@@ -30,9 +30,9 @@
   },
   "homepage": "https://github.com/Turfjs/turf",
   "devDependencies": {
+    "@turf/helpers": "^4.1.0",
     "benchmark": "^1.0.0",
-    "tape": "^3.5.0",
-    "@turf/helpers": "^4.1.0"
+    "tape": "^3.5.0"
   },
   "dependencies": {
     "@turf/helpers": "^4.1.0",
@@ -40,6 +40,7 @@
     "@turf/line-intersect": "^4.1.0",
     "@turf/line-overlap": "^4.1.0",
     "@turf/meta": "^4.1.0",
-    "@turf/polygon-to-linestring": "^4.2.0"
+    "@turf/polygon-to-linestring": "^4.2.0",
+    "deep-equal": "^1.0.1"
   }
 }
