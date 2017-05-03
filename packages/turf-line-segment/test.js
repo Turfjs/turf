@@ -38,7 +38,7 @@ test('turf-line-segment', t => {
     t.end();
 });
 
-test('turf-line-overlap - Geometry Object', t => {
+test('turf-line-segment - Geometry Object', t => {
     const line = lineString([[115, -35], [125, -30], [135, -30], [145, -35]]);
     t.true(lineSegment(line.geometry).features.length > 0, 'geometry object');
     t.end();

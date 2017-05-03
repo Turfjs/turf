@@ -38,7 +38,7 @@ test('turf-line-overlap - Geometry Object', t => {
     const line1 = lineString([[115, -35], [125, -30], [135, -30], [145, -35]]);
     const line2 = lineString([[135, -30], [145, -35]]);
 
-    t.true(lineOverlap(line1.geometry, line2.geoemtry).features.length > 0);
+    t.true(lineOverlap(line1.geometry, line2.geometry).features.length > 0, 'support geometry object');
     t.end();
 });
 
