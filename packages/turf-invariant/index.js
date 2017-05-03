@@ -136,11 +136,26 @@ function collectionOf(featureCollection, type, name) {
     }
 }
 
+/**
+ * Get Geometry from Feature or Geometry Object
+ *
+ * @private
+ * @param {Feature<any>|Geometry<any>} geojson GeoJSON Feature or Geometry Object
+ * @returns {Geometry<any>} GeoJSON Geometry Object
+ * @throws {Error} if geojson is not a Feature or Geometry Object
+ */
+function getGeom(geojson) {
+    if (geojson.geometry) return geojson.geometry;
+    if (geojson.coordinates) return geojson;
+    throw new Error('geojson must be a feature or geometry object');
+}
+
 module.exports = {
     geojsonType: geojsonType,
     collectionOf: collectionOf,
     featureOf: featureOf,
     getCoord: getCoord,
     getCoords: getCoords,
-    containsNumber: containsNumber
+    containsNumber: containsNumber,
+    getGeom: getGeom
 };
