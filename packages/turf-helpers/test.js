@@ -1,5 +1,4 @@
 const test = require('tape');
-const helpers = require('.');
 const distance = require('@turf/distance');
 const {
     point,
@@ -15,8 +14,7 @@ const {
     distanceToRadians,
     distanceToDegrees,
     bearingToAngle
-}
-= helpers;
+} = require('./');
 
 test('point', t => {
     const ptArray = point([5, 10], {name: 'test point'});
@@ -61,11 +59,10 @@ test('lineString', t => {
     t.equal(line.geometry.coordinates[0][0], 5);
     t.equal(line.geometry.coordinates[1][0], 20);
     t.equal(line.properties.name, 'test line');
-    t.throws(() => {
-        lineString();
-    }, /No coordinates passed/, 'error on no coordinates');
-    const noProps = lineString([[5, 10], [20, 40]]);
-    t.deepEqual(noProps.properties, {}, 'no properties case');
+    t.deepEqual(lineString([[5, 10], [20, 40]]).properties, {}, 'no properties case');
+
+    t.throws(() => lineString(), 'error on no coordinates');
+    t.throws(() => lineString([[5, 10]]), 'coordinates must be an array of two or more positions');
     t.end();
 });
 
