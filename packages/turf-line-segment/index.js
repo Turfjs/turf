@@ -9,10 +9,10 @@ var lineString = helpers.lineString;
 var featureCollection = helpers.featureCollection;
 
 /**
- * Creates a {@link FeatureCollection} of 2-vertex {@link LineString} segments from a {@link LineString}, {@link MultiLineString}, {@link MultiPolygon} or {@link Polygon}.
+ * Creates a {@link FeatureCollection} of 2-vertex {@link LineString} segments from a {@link LineString|(Multi)LineString} or {@link Polygon|(Multi)Polygon}.
  *
  * @name lineSegment
- * @param {Geometry|Feature<LineString|MultiLineString|MultiPolygon|Polygon>} geojson GeoJSON Polygon or LineString
+ * @param {Geometry|FeatureCollection|Feature<LineString|MultiLineString|MultiPolygon|Polygon>} geojson GeoJSON Polygon or LineString
  * @returns {FeatureCollection<LineString>} 2-vertex line segments
  * @example
  * var polygon = {
