@@ -7,6 +7,11 @@ var pointGeometry = {
     coordinates: [0, 0]
 };
 
+var point2Geometry = {
+    type: 'Point',
+    coordinates: [1, 1]
+};
+
 var lineStringGeometry = {
     type: 'LineString',
     coordinates: [[0, 0], [1, 1]]
@@ -15,6 +20,11 @@ var lineStringGeometry = {
 var polygonGeometry = {
     type: 'Polygon',
     coordinates: [[[0, 0], [1, 1], [0, 1], [0, 0]]]
+};
+
+var multiPointGeometry = {
+    type: 'MultiPoint',
+    coordinates: [ pointGeometry.coordinates, point2Geometry.coordinates ]
 };
 
 var multiPolygonGeometry = {
@@ -27,10 +37,21 @@ var geometryCollection = {
     geometries: [pointGeometry, lineStringGeometry]
 };
 
+var multiGeometryCollection = {
+    type: 'GeometryCollection',
+    geometries: [lineStringGeometry, multiPointGeometry]
+};
+
 var pointFeature = {
     type: 'Feature',
     properties: {a: 1},
     geometry: pointGeometry
+};
+
+var multiGeometryFeature = {
+    type: 'Feature',
+    properties: {a: 1},
+    geometry: multiGeometryCollection
 };
 
 function collection(feature) {
@@ -273,5 +294,113 @@ test('geomEach#bare-pointFeature', function (t) {
         output.push(geom);
     });
     t.deepEqual(output, [pointGeometry]);
+    t.end();
+});
+
+test('geomEach#multiGeometryFeature-properties', function (t) {
+    var lastProperties;
+    meta.geomEach(multiGeometryFeature, function (geom, index, properties) {
+        lastProperties = properties;
+    });
+    t.deepEqual(lastProperties, multiGeometryFeature.properties);
+    t.end();
+});
+
+featureAndCollection(multiPointGeometry).forEach(function (input) {
+    test('flattenEach#MultiPoint', function (t) {
+        var output = [];
+        meta.flattenEach(input, function (feature) {
+            output.push(feature.geometry);
+        });
+        t.deepEqual(output, [pointGeometry, point2Geometry]);
+        t.end();
+    });
+});
+
+featureAndCollection(multiGeometryCollection).forEach(function (input) {
+    test('flattenEach#MultiGeometryCollection', function (t) {
+        var output = [];
+        meta.flattenEach(input, function (feature) {
+            output.push(feature.geometry);
+        });
+        t.deepEqual(output, [lineStringGeometry, pointGeometry, point2Geometry]);
+        t.end();
+    });
+});
+
+collection(pointFeature).forEach(function (input) {
+    test('flattenEach#Point-properties', function (t) {
+        var lastProperties;
+        meta.flattenEach(input, function (feature) {
+            lastProperties = feature.properties;
+        });
+        t.deepEqual(lastProperties, pointFeature.properties);
+        t.end();
+    });
+});
+
+collection(multiGeometryFeature).forEach(function (input) {
+    test('flattenEach#multiGeometryFeature-properties', function (t) {
+        var lastProperties;
+        meta.flattenEach(input, function (feature) {
+            lastProperties = feature.properties;
+        });
+        t.deepEqual(lastProperties, multiGeometryFeature.properties);
+        t.end();
+    });
+});
+
+test('flattenReduce#initialValue', function (t) {
+    var lastIndex;
+    var lastSubIndex;
+    var sum = meta.flattenReduce(multiPointGeometry, function (previousValue,
+                                                               currentFeature,
+                                                               currentIndex,
+                                                               currentSubIndex) {
+        lastIndex = currentIndex;
+        lastSubIndex = currentSubIndex;
+        return previousValue + currentFeature.geometry.coordinates[0];
+    }, 0);
+    t.equal(lastIndex, 0);
+    t.equal(lastSubIndex, 1);
+    t.equal(sum, 1);
+    t.end();
+});
+
+test('flattenReduce#previous-feature', function (t) {
+    var features = [];
+    var lastIndex;
+    var lastSubIndex;
+    meta.flattenReduce(multiGeometryCollection, function (previousValue,
+                                                          currentFeature,
+                                                          currentIndex,
+                                                          currentSubIndex) {
+        lastIndex = currentIndex;
+        lastSubIndex = currentSubIndex;
+        features.push(currentFeature);
+        return currentFeature;
+    });
+    t.equal(lastIndex, 1);
+    t.equal(lastSubIndex, 1);
+    t.equal(features.length, 2);
+    t.end();
+});
+
+test('flattenReduce#previous-feature+initialValue', function (t) {
+    var features = [];
+    var lastIndex;
+    var lastSubIndex;
+    var sum = meta.flattenReduce(multiPointGeometry, function (previousValue,
+                                                               currentFeature,
+                                                               currentIndex,
+                                                               currentSubIndex) {
+        lastIndex = currentIndex;
+        lastSubIndex = currentSubIndex;
+        features.push(currentFeature);
+        return currentFeature;
+    }, pointFeature);
+    t.equal(lastIndex, 0);
+    t.equal(lastSubIndex, 1);
+    t.equal(features.length, 2);
     t.end();
 });

@@ -1,3 +1,5 @@
+var helpers = require('@turf/helpers');
+
 /**
  * Callback for coordEach
  *
@@ -487,7 +489,7 @@ function coordAll(layer) {
  *
  * @name geomEach
  * @param {Object} layer any GeoJSON object
- * @param {Function} callback a method that takes (currentGeometry, currentIndex)
+ * @param {Function} callback a method that takes (currentGeometry, currentIndex, currentProperties)
  * @example
  * var features = {
  *   "type": "FeatureCollection",
@@ -510,15 +512,17 @@ function coordAll(layer) {
  *     }
  *   ]
  * };
- * turf.geomEach(features, function (currentGeometry, currentIndex) {
+ * turf.geomEach(features, function (currentGeometry, currentIndex, currentProperties) {
  *   //=currentGeometry
  *   //=currentIndex
+ *   //=currentProperties
  * });
  */
 function geomEach(layer, callback) {
     var i, j, g, geometry, stopG,
         geometryMaybeCollection,
         isGeometryCollection,
+        geometryProperties,
         currentIndex = 0,
         isFeatureCollection = layer.type === 'FeatureCollection',
         isFeature = layer.type === 'Feature',
@@ -540,6 +544,8 @@ function geomEach(layer, callback) {
 
         geometryMaybeCollection = (isFeatureCollection ? layer.features[i].geometry :
         (isFeature ? layer.geometry : layer));
+        geometryProperties = (isFeatureCollection ? layer.features[i].properties :
+                              (isFeature ? layer.properties : {}));
         isGeometryCollection = geometryMaybeCollection.type === 'GeometryCollection';
         stopG = isGeometryCollection ? geometryMaybeCollection.geometries.length : 1;
 
@@ -553,11 +559,11 @@ function geomEach(layer, callback) {
                 geometry.type === 'Polygon' ||
                 geometry.type === 'MultiLineString' ||
                 geometry.type === 'MultiPolygon') {
-                callback(geometry, currentIndex);
+                callback(geometry, currentIndex, geometryProperties);
                 currentIndex++;
             } else if (geometry.type === 'GeometryCollection') {
                 for (j = 0; j < geometry.geometries.length; j++) {
-                    callback(geometry.geometries[j], currentIndex);
+                    callback(geometry.geometries[j], currentIndex, geometryProperties);
                     currentIndex++;
                 }
             } else {
@@ -588,6 +594,7 @@ function geomEach(layer, callback) {
  * @param {*} currentGeometry The current Feature being processed.
  * @param {number} currentIndex The index of the current element being processed in the
  * array.Starts at index 0, if an initialValue is provided, and at index 1 otherwise.
+ * @param {object} currentProperties The current feature properties being processed.
  */
 
 /**
@@ -595,7 +602,7 @@ function geomEach(layer, callback) {
  *
  * @name geomReduce
  * @param {Object} layer any GeoJSON object
- * @param {Function} callback a method that takes (previousValue, currentGeometry, currentIndex)
+ * @param {Function} callback a method that takes (previousValue, currentGeometry, currentIndex, currentProperties)
  * @param {*} [initialValue] Value to use as the first argument to the first call of the callback.
  * @returns {*} The value that results from the reduction.
  * @example
@@ -629,11 +636,167 @@ function geomEach(layer, callback) {
  */
 function geomReduce(layer, callback, initialValue) {
     var previousValue = initialValue;
-    geomEach(layer, function (currentGeometry, currentIndex) {
+    geomEach(layer, function (currentGeometry, currentIndex, currentProperties) {
         if (currentIndex === 0 && initialValue === undefined) {
             previousValue = currentGeometry;
         } else {
-            previousValue = callback(previousValue, currentGeometry, currentIndex);
+            previousValue = callback(previousValue, currentGeometry, currentIndex, currentProperties);
+        }
+    });
+    return previousValue;
+}
+
+/**
+ * Callback for flattenEach
+ *
+ * @private
+ * @callback flattenEachCallback
+ * @param {Feature<any>} currentFeature The current flattened feature being processed.
+ * @param {number} currentIndex The index of the current element being processed in the
+ * array. Starts at index 0, if an initialValue is provided, and at index 1 otherwise.
+ * @param {number} currentSubIndex The subindex of the current element being processed in the
+ * array. Starts at index 0 and increases if the flattened feature was a multi-geometry.
+ */
+
+/**
+ * Iterate over flattened features in any GeoJSON object, similar to
+ * Array.forEach.
+ *
+ * @name flattenEach
+ * @param {Object} layer any GeoJSON object
+ * @param {Function} callback a method that takes (currentFeature, currentIndex, currentSubIndex)
+ * @example
+ * var features = {
+ *   "type": "FeatureCollection",
+ *   "features": [
+ *     {
+ *       "type": "Feature",
+ *       "properties": {},
+ *       "geometry": {
+ *         "type": "Point",
+ *         "coordinates": [26, 37]
+ *       }
+ *     },
+ *     {
+ *       "type": "Feature",
+ *       "properties": {},
+ *       "geometry": {
+ *         "type": "MultiPoint",
+ *         "coordinates": [ [36, 53], [46, 69] ]
+ *       }
+ *     }
+ *   ]
+ * };
+ * turf.flattenEach(features, function (currentFeature, currentIndex, currentSubIndex) {
+ *   //=currentFeature
+ *   //=currentIndex
+ *   //=currentSubIndex
+ * });
+ */
+function flattenEach(layer, callback) {
+    geomEach(layer, function (geometry, index, properties) {
+
+        var createFeature = null;
+
+        // Callback for single geometry
+        switch (geometry.type) {
+        case 'Point':
+        case 'LineString':
+        case 'Polygon':
+            callback(helpers.feature(geometry, properties), index, 0);
+            return;
+        }
+
+        // Callback for multi-geometry
+        switch (geometry.type) {
+        case 'MultiPoint':
+            createFeature = helpers.point;
+            break;
+        case 'MultiLineString':
+            createFeature = helpers.lineString;
+            break;
+        case 'MultiPolygon':
+            createFeature = helpers.polygon;
+            break;
+        }
+
+        geometry.coordinates.forEach(function (coordinate, subindex) {
+            callback(createFeature(coordinate, properties), index, subindex);
+        });
+
+    });
+}
+
+/**
+ * Callback for flattenReduce
+ *
+ * The first time the callback function is called, the values provided as arguments depend
+ * on whether the reduce method has an initialValue argument.
+ *
+ * If an initialValue is provided to the reduce method:
+ *  - The previousValue argument is initialValue.
+ *  - The currentValue argument is the value of the first element present in the array.
+ *
+ * If an initialValue is not provided:
+ *  - The previousValue argument is the value of the first element present in the array.
+ *  - The currentValue argument is the value of the second element present in the array.
+ *
+ * @private
+ * @callback flattenReduceCallback
+ * @param {*} previousValue The accumulated value previously returned in the last invocation
+ * of the callback, or initialValue, if supplied.
+ * @param {Feature<any>} currentFeature The current Feature being processed.
+ * @param {number} currentIndex The index of the current element being processed in the
+ * array.Starts at index 0, if an initialValue is provided, and at index 1 otherwise.
+ * @param {number} currentSubIndex The subindex of the current element being processed in the
+ * array. Starts at index 0 and increases if the flattened feature was a multi-geometry.
+ */
+
+/**
+ * Reduce flattened features in any GeoJSON object, similar to Array.reduce().
+ *
+ * @name flattenReduce
+ * @param {Object} layer any GeoJSON object
+ * @param {Function} callback a method that takes (previousValue, currentFeature, currentIndex, currentSubIndex)
+ * @param {*} [initialValue] Value to use as the first argument to the first call of the callback.
+ * @returns {*} The value that results from the reduction.
+ * @example
+ * var features = {
+ *   "type": "FeatureCollection",
+ *   "features": [
+ *     {
+ *       "type": "Feature",
+ *       "properties": {"foo": "bar"},
+ *       "geometry": {
+ *         "type": "Point",
+ *         "coordinates": [26, 37]
+ *       }
+ *     },
+ *     {
+ *       "type": "Feature",
+ *       "properties": {"hello": "world"},
+ *       "geometry": {
+ *         "type": "MultiPoint",
+ *         "coordinates": [ [36, 53], [46, 69] ]
+ *       }
+ *     }
+ *   ]
+ * };
+ * turf.flattenReduce(features, function (previousValue, currentFeature, currentIndex, currentSubIndex) {
+ *   //=previousValue
+ *   //=currentFeature
+ *   //=currentIndex
+ *   //=currentSubIndex
+ *   return currentFeature
+ * });
+ */
+function flattenReduce(layer, callback, initialValue) {
+    var previousValue = initialValue;
+    flattenEach(layer, function (currentFeature, currentIndex, currentSubIndex) {
+        if (currentIndex === 0 && currentSubIndex === 0 && initialValue === undefined) {
+            previousValue = currentFeature;
+        } else {
+            previousValue = callback(previousValue, currentFeature, currentIndex, currentSubIndex);
         }
     });
     return previousValue;
@@ -648,5 +811,7 @@ module.exports = {
     featureReduce: featureReduce,
     coordAll: coordAll,
     geomEach: geomEach,
-    geomReduce: geomReduce
+    geomReduce: geomReduce,
+    flattenEach: flattenEach,
+    flattenReduce: flattenReduce
 };
