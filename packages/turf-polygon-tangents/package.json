@@ -24,6 +24,9 @@
     "polygon"
   ],
   "author": "Turf Authors",
+  "contributors": [
+    "Rowan Winsemius <@rowanwins>"
+  ],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/Turfjs/turf/issues"

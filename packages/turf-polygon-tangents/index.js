@@ -8,7 +8,7 @@ var turfFc = helpers.featureCollection;
  * @name polygonTangents
  * @param {Feature<Point>} point to calculate the tangent points from
  * @param {Feature<Polygon>} polygon to get tangents from
- * @returns {FeatureCollection|Feature<Point>} Feature Collection containing the two tangent points
+ * @returns {FeatureCollection<Point>} Feature Collection containing the two tangent points
  * @example
  * var poly = {
  *   "type": "Feature",
