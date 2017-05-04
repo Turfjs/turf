@@ -1,5 +1,3 @@
-var helpers = require('@turf/helpers');
-
 /**
  * Callback for coordEach
  *
@@ -696,32 +694,38 @@ function geomReduce(layer, callback, initialValue) {
 function flattenEach(layer, callback) {
     geomEach(layer, function (geometry, index, properties) {
 
-        var createFeature = null;
-
         // Callback for single geometry
         switch (geometry.type) {
         case 'Point':
         case 'LineString':
         case 'Polygon':
-            callback(helpers.feature(geometry, properties), index, 0);
+            callback(feature(geometry, properties), index, 0);
             return;
         }
+
+        var geomType;
 
         // Callback for multi-geometry
         switch (geometry.type) {
         case 'MultiPoint':
-            createFeature = helpers.point;
+            geomType = 'Point';
             break;
         case 'MultiLineString':
-            createFeature = helpers.lineString;
+            geomType = 'LineString';
             break;
         case 'MultiPolygon':
-            createFeature = helpers.polygon;
+            geomType = 'Polygon';
             break;
+        default:
+            throw new Error('geometry ' + geometry.type + ' type not supported');
         }
 
         geometry.coordinates.forEach(function (coordinate, subindex) {
-            callback(createFeature(coordinate, properties), index, subindex);
+            var geom = {
+                type: geomType,
+                coordinates: coordinate
+            };
+            callback(feature(geom, properties), index, subindex);
         });
 
     });
@@ -800,6 +804,24 @@ function flattenReduce(layer, callback, initialValue) {
         }
     });
     return previousValue;
+}
+
+/**
+ * Create Feature
+ *
+ * @private
+ * @param {Geometry} geometry GeoJSON Geometry
+ * @param {Object} properties Properties
+ * @returns {Feature} GeoJSON Feature
+ */
+function feature(geometry, properties) {
+    if (!geometry) throw new Error('No geometry passed');
+
+    return {
+        type: 'Feature',
+        properties: properties || {},
+        geometry: geometry
+    };
 }
 
 module.exports = {
