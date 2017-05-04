@@ -21,7 +21,6 @@ const fixtures = fs.readdirSync(directories.in).map(filename => {
 test('turf-polygon-tangents', t => {
     for (const {name, filename, geojson} of fixtures) {
         const results = polygonTangents(geojson.features[1], geojson.features[0]);
-
         if (process.env.REGEN) write.sync(directories.out + filename, results);
         t.deepEqual(load.sync(directories.out + filename), results, name);
     }

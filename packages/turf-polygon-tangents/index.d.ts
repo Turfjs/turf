@@ -1,8 +1,8 @@
 /// <reference types="geojson" />
 
-type Point = GeoJSON.Feature<GeoJSON.Point>;
-type Polygon = GeoJSON.Feature<GeoJSON.Polygon>;
-type FeatureCollection = GeoJSON.FeatureCollection<GeoJSON.Point>;
+type Point = GeoJSON.Feature<GeoJSON.Point> | GeoJSON.Point;
+type Polygon = GeoJSON.Feature<GeoJSON.Polygon> | GeoJSON.Polygon;
+type FeatureCollection = GeoJSON.FeatureCollection<Point>;
 
 /**
  * http://turfjs.org/docs/#polygonTangents

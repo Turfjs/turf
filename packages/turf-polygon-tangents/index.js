@@ -1,4 +1,3 @@
-var coordEach = require('@turf/meta').coordEach;
 var helpers = require('@turf/helpers');
 var turfPoint = helpers.point;
 var turfFc = helpers.featureCollection;
@@ -41,44 +40,63 @@ var turfFc = helpers.featureCollection;
  * //addToMap
  * var addToMap = [tangents];
  */
+
 module.exports = function (point, polygon) {
     var eprev;
     var enext;
-    var rtan = 0;
-    var ltan = 0;
+    var rtan = polygon.geometry.coordinates[0][0].slice(0, 2);
+    var ltan = polygon.geometry.coordinates[0][0].slice(0, 2);
+    var pointCoords = point.geometry.coordinates;
+    if (polygon.geometry.type === 'Polygon') {
+        eprev = isLeft(polygon.geometry.coordinates[0][0], polygon.geometry.coordinates[0][1], point.geometry.coordinates);
+        var out = processPolygon(polygon.geometry.coordinates[0], pointCoords, eprev, enext, rtan, ltan);
+        rtan = out[0];
+        ltan = out[1];
+    }
+    if (polygon.geometry.type === 'MultiPolygon') {
+        eprev = isLeft(polygon.geometry.coordinates[0][0][0], polygon.geometry.coordinates[0][0][1], point.geometry.coordinates);
+        rtan = polygon.geometry.coordinates[0][0][0].slice(0, 1);
+        ltan = polygon.geometry.coordinates[0][0][0].slice(0, 1);
+        polygon.geometry.coordinates.forEach(function (singlePoly) {
+            var out = processPolygon(singlePoly[0], pointCoords, eprev, enext, rtan, ltan);
+            rtan = out[0];
+            ltan = out[1];
+        });
+    }
+    return turfFc([turfPoint(rtan), turfPoint(ltan)]);
+};
 
-    coordEach(polygon, function (currentCoords, currentIndex) {
-        if (currentIndex === 0) {
-            eprev = isLeft(polygon.geometry.coordinates[0][0],  polygon.geometry.coordinates[0][1], point.geometry.coordinates);
+function processPolygon(polygonCoords, point, eprev, enext, rtan, ltan) {
+    for (var i = 0; i < polygonCoords.length; i++) {
+        var currentCoords = polygonCoords[i];
+        var nextCoordPair = polygonCoords[i + 1];
+        if (i === polygonCoords.length - 1) {
+            nextCoordPair = polygonCoords[0];
         }
-        var nextCoordPair = polygon.geometry.coordinates[0][currentIndex + 1];
-        if (currentIndex === polygon.geometry.coordinates[0].length - 1) {
-            nextCoordPair = polygon.geometry.coordinates[0][0];
-        }
-        enext = isLeft(currentCoords, nextCoordPair, point.geometry.coordinates);
+        enext = isLeft(currentCoords, nextCoordPair, point);
         if (eprev <= 0 && enext > 0) {
-            if (!isBelow(point.geometry.coordinates, currentCoords, polygon.geometry.coordinates[0][rtan])) {
-                rtan = currentIndex;
+            if (!isBelow(point, currentCoords, rtan)) {
+                rtan = polygonCoords[i].slice(0, 2);
             }
         }
         if (eprev > 0 && enext <= 0) {
-            if (!isAbove(point.geometry.coordinates, currentCoords, polygon.geometry.coordinates[0][ltan])) {
-                ltan = currentIndex;
+            if (!isAbove(point, currentCoords, ltan)) {
+                ltan = polygonCoords[i].slice(0, 2);
             }
         }
         eprev = enext;
-    });
-    return turfFc([turfPoint(polygon.geometry.coordinates[0][rtan]), turfPoint(polygon.geometry.coordinates[0][ltan])]);
-};
-
-function isAbove(Point1, Point2, Point3) {
-    return isLeft(Point1, Point2, Point3) >= 0;
+    }
+    return [rtan, ltan];
 }
 
-function isBelow(Point1, Point2, Point3) {
-    return isLeft(Point1, Point2, Point3) <= 0;
+function isAbove(point1, point2, point3) {
+    return isLeft(point1, point2, point3) >= 0;
 }
 
-function isLeft(Point1, Point2, Point3) {
-    return (Point2[0] - Point1[0]) * (Point3[1] - Point1[1]) - (Point3[0] - Point1[0]) * (Point2[1] - Point1[1]);
+function isBelow(point1, point2, point3) {
+    return isLeft(point1, point2, point3) <= 0;
+}
+
+function isLeft(point1, point2, point3) {
+    return (point2[0] - point1[0]) * (point3[1] - point1[1]) - (point3[0] - point1[0]) * (point2[1] - point1[1]);
 }
