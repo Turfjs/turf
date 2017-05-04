@@ -1,4 +1,5 @@
 const test = require('tape');
+const helpers = require('.');
 const distance = require('@turf/distance');
 const {
     point,
@@ -13,6 +14,8 @@ const {
     radiansToDistance,
     distanceToRadians,
     distanceToDegrees,
+    radians2degrees,
+    degrees2radians,
     bearingToAngle
 } = require('./');
 
@@ -301,30 +304,54 @@ test('geometrycollection', t => {
 
 test('radiansToDistance', t => {
     t.equal(radiansToDistance(1, 'radians'), 1);
-    t.equal(radiansToDistance(1, 'kilometers'), 6373);
-    t.equal(radiansToDistance(1, 'miles'), 3960);
+    t.equal(radiansToDistance(1, 'kilometers'), 6371);
+    t.equal(radiansToDistance(1, 'miles'), 3958.755866);
 
     t.end();
 });
 
 // the higher/lower in latitude, the greater the distortion (curvature of the earth)
-const dx = distance(point([-120, 0]), point([-120.5, 0]));
-const dy = distance(point([-120, 0]), point([-120, 0.5]));
+const dx0 = distance(point([-120, 0]), point([-120.5, 0]));
+const dy0 = distance(point([-120, 0]), point([-120, 0.5]));
+
+const dx70 = distance(point([-120, 70]), point([-120.5, 70]));
+const dy70 = distance(point([-120, 70]), point([-120, 70.5]));
 
 test('distanceToRadians', t => {
-    t.equal(distanceToRadians(dx), distanceToRadians(dy), 'radiance conversion');
     t.equal(distanceToRadians(1, 'radians'), 1);
-    t.equal(distanceToRadians(6373, 'kilometers'), 1);
-    t.equal(distanceToRadians(3960, 'miles'), 1);
+    t.equal(distanceToRadians(6371, 'kilometers'), 1);
+    t.equal(distanceToRadians(3958.755866, 'miles'), 1);
+    t.equal(distanceToRadians(dx0), distanceToRadians(dy0), 'radiance conversion [x0, y0]');
+    t.equal(distanceToRadians(dx70), 0.002986, 'radiance conversion [x70, y70]');
 
-    t.end();
+t.end();
 });
 
 test('distanceToDegrees', t => {
-    t.equal(Number(distanceToDegrees(dx).toFixed(6)), 0.5, 'degrees conversion');
-    t.equal(Number(distanceToDegrees(dy).toFixed(6)), 0.5, 'degrees conversion');
+    t.equal(distanceToDegrees(dx0), 0.500135, 'degrees conversion dx0');
+    t.equal(distanceToDegrees(dy0), 0.500135, 'degrees conversion dy0');
+    t.equal(distanceToDegrees(dx70), 0.171085, 'degrees conversion dx70');
+    t.equal(distanceToDegrees(dy70), 0.500135, 'degrees conversion dy70');
+    t.equal(distanceToDegrees(dx0), distanceToDegrees(dy0), 'equal delta degrees 0');
+    t.equal(distanceToDegrees(dx70), 0.171085, 'equal delta degrees 70');
 
-    t.end();
+t.end();
+});
+
+test('radians2degrees', t => {
+    t.equal(radians2degrees(Math.PI / 3), 60, 'radiance conversion PI/3');
+    t.equal(radians2degrees(3.5 * Math.PI), 270, 'radiance conversion 3.5PI');
+    t.equal(radians2degrees(-Math.PI), -180, 'radiance conversion -PI');
+
+t.end();
+});
+
+test('radians2degrees', t => {
+    t.equal(degrees2radians(60), round(Math.PI / 3, 6), 'degrees conversion 60');
+    t.equal(degrees2radians(270), round(1.5 * Math.PI, 6), 'degrees conversion 270');
+    t.equal(degrees2radians(-180), round(-Math.PI, 6), 'degrees conversion -180');
+
+t.end();
 });
 
 test('bearingToAngle', t => {
@@ -336,3 +363,9 @@ test('bearingToAngle', t => {
 
     t.end();
 });
+
+
+function round(num, precision) {
+    var multiplier = Math.pow(10, precision || 0);
+    return Math.round(num * multiplier) / multiplier;
+}

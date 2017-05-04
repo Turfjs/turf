@@ -206,7 +206,6 @@ function multiPoint(coordinates, properties) {
     }, properties);
 }
 
-
 /**
  * Creates a {@link Feature<MultiPolygon>} based on a
  * coordinate array. Properties can be added optionally.
@@ -261,22 +260,30 @@ function geometryCollection(geometries, properties) {
     }, properties);
 }
 
-var factors = {
-    miles: 3960,
-    nauticalmiles: 3441.145,
-    degrees: 57.2957795,
-    radians: 1,
-    inches: 250905600,
-    yards: 6969600,
-    meters: 6373000,
-    metres: 6373000,
-    kilometers: 6373,
-    kilometres: 6373,
-    feet: 20908792.65
+// https://en.wikipedia.org/wiki/Great-circle_distance#Radius_for_spherical_Earth
+var earthRadiusIn = {
+    kilometers: 6371,
+    kilometres: 6371,
+    meters: 6371000,
+    metres: 6371000,
+    centimeters: 637100000,
+    miles: 3958.755866,
+    yards: 6967410.32371,
+    feet: 20902230.971129,
+    inches: 250826771.65354,
+    nauticalmiles: 3440.064795,
+    degrees: 57.29578, //= 180 / Math.PI
+    radians: 1
+};
+
+// round number to precision
+var round = function (num, precision) {
+    var multiplier = Math.pow(10, precision || 0);
+    return Math.round(num * multiplier) / multiplier;
 };
 
 /**
- * Convert a distance measurement from radians to a more friendly unit.
+ * Convert a distance measurement (assuming a spherical Earth) from radians to a more friendly unit.
  *
  * @name radiansToDistance
  * @param {number} radians in radians across the sphere
@@ -284,14 +291,14 @@ var factors = {
  * @returns {number} distance
  */
 function radiansToDistance(radians, units) {
-    var factor = factors[units || 'kilometers'];
-    if (factor === undefined) throw new Error('Invalid unit');
+    var radius = earthRadiusIn[units || 'kilometers'];
+    if (radius === undefined) throw new Error('Invalid unit');
 
-    return radians * factor;
+    return round(radians * radius, 6);
 }
 
 /**
- * Convert a distance measurement from a real-world unit into radians
+ * Convert a distance measurement (assuming a spherical Earth) from a real-world unit into radians
  *
  * @name distanceToRadians
  * @param {number} distance in real units
@@ -299,14 +306,15 @@ function radiansToDistance(radians, units) {
  * @returns {number} radians
  */
 function distanceToRadians(distance, units) {
-    var factor = factors[units || 'kilometers'];
-    if (factor === undefined) throw new Error('Invalid unit');
+    var radius = earthRadiusIn[units || 'kilometers'];
+    if (radius === undefined) throw new Error('Invalid unit');
 
-    return distance / factor;
+    var centralAngle = distance / radius;
+    return round(centralAngle, 6);
 }
 
 /**
- * Convert a distance measurement from a real-world unit into degrees
+ * Convert a distance measurement (assuming a spherical Earth) from a real-world unit into degrees
  *
  * @name distanceToDegrees
  * @param {number} distance in real units
@@ -314,19 +322,15 @@ function distanceToRadians(distance, units) {
  * @returns {number} degrees
  */
 function distanceToDegrees(distance, units) {
-    var factor = factors[units || 'kilometers'];
-    if (factor === undefined) throw new Error('Invalid unit');
-
-    return (distance / factor) * 57.2958;
+    return radians2degrees(distanceToRadians(distance, units));
 }
-
 
 /**
  * Converts any bearing angle from the north line direction (positive clockwise)
  * and returns an angle between 0-360 degrees (positive clockwise), 0 being the north line
  *
  * @name bearingToAngle
- * @param {number} alpha angle
+ * @param {number} alpha angle, between -180 and +180 degrees
  * @returns {number} angle between 0 and 360 degrees
  */
 function bearingToAngle(alpha) {
@@ -335,6 +339,33 @@ function bearingToAngle(alpha) {
         beta += 360;
     }
     return beta;
+}
+
+/**
+ * Converts an angle in radians to degrees
+ *
+ * @name radians2degrees
+ * @param {number} alpha angle in radians
+ * @returns {number} angle between 0 and 360 degrees
+ */
+function radians2degrees(alpha) {
+    if (alpha === null || alpha === undefined) throw new Error('Invalid angle');
+    var beta = alpha % (2 * Math.PI);
+    return round(beta * 180 / Math.PI, 6);
+}
+
+
+/**
+ * Converts an angle in degrees to radians
+ *
+ * @name degrees2radians
+ * @param {number} alpha angle between 0 and 360 degrees
+ * @returns {number} angle in radians
+ */
+function degrees2radians(alpha) {
+    if (alpha === null || alpha === undefined) throw new Error('Invalid angle');
+    var beta = alpha % 360;
+    return round(beta * Math.PI / 180, 6);
 }
 
 
@@ -351,5 +382,7 @@ module.exports = {
     radiansToDistance: radiansToDistance,
     distanceToRadians: distanceToRadians,
     distanceToDegrees: distanceToDegrees,
+    radians2degrees: radians2degrees,
+    degrees2radians: degrees2radians,
     bearingToAngle: bearingToAngle
 };
