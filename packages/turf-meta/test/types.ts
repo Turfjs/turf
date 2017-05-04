@@ -1,80 +1,80 @@
+import {
+    point, lineString, polygon,
+    multiPoint, multiLineString, multiPolygon,
+    featureCollection, geometryCollection} from '@turf/helpers'
 import * as meta from '../index'
 
-const pointGeometry: GeoJSON.Point = {
-    type: 'Point',
-    coordinates: [0, 0]
-};
+const pt = point([0, 0])
+const line = lineString([[0, 0], [1, 1]])
+const poly = polygon([[[0, 0], [1, 1], [0, 1], [0, 0]]])
+const multiPoly = multiPolygon([[[[0, 0], [1, 1], [0, 1], [0, 0]]]])
+const geomCollection = geometryCollection([pt.geometry, line.geometry])
+const features = featureCollection([pt, line])
 
-const lineStringGeometry: GeoJSON.LineString = {
-    type: 'LineString',
-    coordinates: [[0, 0], [1, 1]]
-};
-
-const polygonGeometry: GeoJSON.Polygon = {
-    type: 'Polygon',
-    coordinates: [[[0, 0], [1, 1], [0, 1], [0, 0]]]
-};
-
-const multiPolygonGeometry: GeoJSON.MultiPolygon = {
-    type: 'MultiPolygon',
-    coordinates: [[[[0, 0], [1, 1], [0, 1], [0, 0]]]]
-};
-
-const geometryCollection: GeoJSON.GeometryCollection = {
-    type: 'GeometryCollection',
-    geometries: [pointGeometry, lineStringGeometry]
-};
-
-const pointFeature: GeoJSON.Feature<GeoJSON.Point> = {
-    type: 'Feature',
-    properties: { a: 1},
-    geometry: pointGeometry
-};
-
-// pointGeometry
-meta.coordEach(pointGeometry, coords => {
-    const equal: Array<number> = coords
-})
-
-// lineStringGeometry
-meta.coordEach(lineStringGeometry, coords => {
-    const equal: Array<Array<number>> = coords
-})
-
-// polygonGeometry
-meta.coordEach(polygonGeometry, coords => {
-    const equal: Array<Array<Array<number>>> = coords
-})
-
-// multiPolygonGeometry
-meta.coordEach(multiPolygonGeometry, coords => {
-    const equal: Array<Array<Array<number>>> = coords
-})
-
-// geometryCollection
-meta.coordEach(geometryCollection, coords => {
-    const equal: Array<Array<Array<number>>> = coords
-})
-
-// pointFeature
-meta.coordEach(pointFeature, coords => {
-    const equal: Array<number> = coords
-})
+// coordEach
+meta.coordEach(pt, coords => coords)
+meta.coordEach(pt, (coords, index) => coords)
+meta.coordEach(pt, coords => { const equal: number[] = coords })
+meta.coordEach(line, coords => { const equal: number[][] = coords })
+meta.coordEach(poly, coords => { const equal: number[][][] = coords })
+meta.coordEach(multiPoly, coords => { const equal: number[][][][] = coords })
 
 // coordReduce
-meta.coordReduce(pointFeature, (memo, coords) => {
-    const equal: Array<number> = coords
-}, 'foo')
+meta.coordReduce(pt, (previous, coords) => coords)
+meta.coordReduce(pt, (previous, coords, index) => coords)
+meta.coordReduce(pt, (previous, coords, index) => coords, 0)
+meta.coordReduce(pt, (previous, coords) => { const equal: Array<number> = coords })
+
+interface CustomProps {
+    foo: string
+    bar: number
+}
+
+// propReduce
+meta.propReduce(poly, (previous, prop) => prop)
+meta.propReduce(poly, (previous, prop) => prop, 0)
+meta.propReduce(features, (previous, prop) => prop)
+meta.propReduce(poly, (previous, prop, index) => prop)
+meta.propReduce<CustomProps>(poly, (previous, prop) => prop.foo)
 
 // propEach
-meta.propEach(pointFeature, properties => {
-    const equal: any = properties
-})
+meta.propEach(poly, prop => prop)
+meta.propEach(features, prop => prop)
+meta.propEach(poly, (prop, index) => prop)
+meta.propEach<CustomProps>(poly, prop => prop.bar)
 
-// coordAll
-const coords: Array<Array<number>> = meta.coordAll(polygonGeometry)
+// // coordAll
+const coords: Array<Array<number>> = meta.coordAll(poly)
+
+// featureReduce
+meta.featureReduce(poly, (previous, feature) => feature)
+meta.featureReduce(poly, (previous, feature) => feature, 0)
+meta.featureReduce(features, (previous, feature) => feature)
+meta.featureReduce(poly, (previous, feature, index) => feature)
+
+// featureEach
+meta.featureEach(poly, feature => feature)
+meta.featureEach(features, feature => feature)
+meta.featureEach(poly, (feature, index) => feature)
+
+// geomReduce
+meta.geomReduce(poly, (previous, geom) => geom)
+meta.geomReduce(poly, (previous, geom) => geom, 0)
+meta.geomReduce(features, (previous, geom) => geom)
+meta.geomReduce(poly, (previous, geom, index, props) => geom)
 
 // geomEach
-meta.geomEach(polygonGeometry, geom => {
-    const equal: GeoJSON.Polygon = geom
-})
+meta.geomEach(poly, geom => geom)
+meta.geomEach(features, geom => geom)
+meta.geomEach(poly, (geom, index, props) => geom)
+
+// flattenReduce
+meta.flattenReduce(poly, (previous, feature) => feature)
+meta.flattenReduce(poly, (previous, feature) => feature, 0)
+meta.flattenReduce(features, (previous, feature) => feature)
+meta.flattenReduce(poly, (previous, feature, index, props) => feature)
+
+// flattenEach
+meta.flattenEach(poly, feature => feature)
+meta.flattenEach(features, feature => feature)
+meta.flattenEach(poly, (feature, index, props) => feature)
