@@ -4,7 +4,7 @@
  * @name feature
  * @param {Geometry} geometry input geometry
  * @param {Object} properties properties
- * @returns {FeatureCollection} a FeatureCollection of input features
+ * @returns {Feature} a GeoJSON Feature
  * @example
  * var geometry = {
  *      "type": "Point",
