@@ -37,3 +37,14 @@ test('turf-polygon-tangents - Geometry Objects', t => {
     t.assert(polygonTangents(pt.geometry, poly.geometry));
     t.end();
 });
+
+test('turf-polygon-tangents - Prevent Input Mutation', t => {
+    const pt = point([61, 5]);
+    const poly = polygon([[[11, 0], [22, 4], [31, 0], [31, 11], [21, 15], [11, 11], [11, 0]]]);
+    const beforePoly = JSON.parse(JSON.stringify(poly));
+    const beforePt = JSON.parse(JSON.stringify(pt));
+    polygonTangents(pt.geometry, poly.geometry);
+    t.deepEqual(poly, beforePoly, 'pt should not mutate');
+    t.deepEqual(pt, beforePt, 'poly should not mutate');
+    t.end();
+});

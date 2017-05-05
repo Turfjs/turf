@@ -1,7 +1,6 @@
 var getCoords = require('@turf/invariant').getCoords;
 var helpers = require('@turf/helpers');
-var turfPoint = helpers.point;
-var turfFc = helpers.featureCollection;
+var featureCollection = helpers.featureCollection;
 
 /**
  * Finds the tangents of a {@link Polygon|(Multi)Polygon} from a {@link Point}.
@@ -11,7 +10,7 @@ var turfFc = helpers.featureCollection;
  * @param {Feature<Polygon|MultiPolygon>} polygon to get tangents from
  * @returns {FeatureCollection<Point>} Feature Collection containing the two tangent points
  * @example
- * var poly = {
+ * var polygon = {
  *   "type": "Feature",
  *   "properties": {},
  *   "geometry": {
@@ -27,55 +26,59 @@ var turfFc = helpers.featureCollection;
  *     "coordinates": [61, 5]
  *   }
  * }
- * var tangents = turf.polygonTangents(point, poly)
+ * var tangents = turf.polygonTangents(point, polygon)
  * //addToMap
- * var addToMap = [tangents];
+ * var addToMap = [tangents, point, polygon];
  */
 
 module.exports = function (point, polygon) {
     var eprev;
     var enext;
+    var rtan;
+    var ltan;
     var pointCoords = getCoords(point);
     var polyCoords = getCoords(polygon);
-    var rtan = polyCoords[0][0].slice(0, 2);
-    var ltan = polyCoords[0][0].slice(0, 2);
-    var geomType = (polygon.geometry) ? polygon.geometry.type : polygon.type;
 
-    if (geomType === 'Polygon') {
+    var type = getGeomType(polygon);
+    switch (type) {
+    case 'Polygon':
+        rtan = polyCoords[0][0];
+        ltan = polyCoords[0][0];
         eprev = isLeft(polyCoords[0][0], polyCoords[0][1], pointCoords);
         var out = processPolygon(polyCoords[0], pointCoords, eprev, enext, rtan, ltan);
         rtan = out[0];
         ltan = out[1];
-    }
-    if (geomType === 'MultiPolygon') {
+        break;
+    case 'MultiPolygon':
+        rtan = polyCoords[0][0][0];
+        ltan = polyCoords[0][0][0];
         eprev = isLeft(polyCoords[0][0][0], polyCoords[0][0][1], pointCoords);
-        rtan = polyCoords[0][0][0].slice(0, 1);
-        ltan = polyCoords[0][0][0].slice(0, 1);
-        polyCoords.forEach(function (singlePoly) {
-            var out = processPolygon(singlePoly[0], pointCoords, eprev, enext, rtan, ltan);
+        polyCoords.forEach(function (ring) {
+            var out = processPolygon(ring[0], pointCoords, eprev, enext, rtan, ltan);
             rtan = out[0];
             ltan = out[1];
         });
+        break;
     }
-    return turfFc([turfPoint(rtan), turfPoint(ltan)]);
+    return featureCollection([helpers.point(rtan), helpers.point(ltan)]);
 };
 
-function processPolygon(polygonCoords, point, eprev, enext, rtan, ltan) {
+function processPolygon(polygonCoords, ptCoords, eprev, enext, rtan, ltan) {
     for (var i = 0; i < polygonCoords.length; i++) {
         var currentCoords = polygonCoords[i];
         var nextCoordPair = polygonCoords[i + 1];
         if (i === polygonCoords.length - 1) {
             nextCoordPair = polygonCoords[0];
         }
-        enext = isLeft(currentCoords, nextCoordPair, point);
+        enext = isLeft(currentCoords, nextCoordPair, ptCoords);
         if (eprev <= 0 && enext > 0) {
-            if (!isBelow(point, currentCoords, rtan)) {
-                rtan = polygonCoords[i].slice(0, 2);
+            if (!isBelow(ptCoords, currentCoords, rtan)) {
+                rtan = polygonCoords[i];
             }
         }
         if (eprev > 0 && enext <= 0) {
-            if (!isAbove(point, currentCoords, ltan)) {
-                ltan = polygonCoords[i].slice(0, 2);
+            if (!isAbove(ptCoords, currentCoords, ltan)) {
+                ltan = polygonCoords[i];
             }
         }
         eprev = enext;
@@ -93,4 +96,9 @@ function isBelow(point1, point2, point3) {
 
 function isLeft(point1, point2, point3) {
     return (point2[0] - point1[0]) * (point3[1] - point1[1]) - (point3[0] - point1[0]) * (point2[1] - point1[1]);
+}
+
+// will be included in @turf/invariant
+function getGeomType(geojson) {
+    return (geojson.geometry) ? geojson.geometry.type : geojson.type;
 }
