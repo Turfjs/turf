@@ -1,3 +1,4 @@
+var getCoords = require('@turf/invariant').getCoords;
 var helpers = require('@turf/helpers');
 var turfPoint = helpers.point;
 var turfFc = helpers.featureCollection;
@@ -34,20 +35,23 @@ var turfFc = helpers.featureCollection;
 module.exports = function (point, polygon) {
     var eprev;
     var enext;
-    var rtan = polygon.geometry.coordinates[0][0].slice(0, 2);
-    var ltan = polygon.geometry.coordinates[0][0].slice(0, 2);
-    var pointCoords = point.geometry.coordinates;
-    if (polygon.geometry.type === 'Polygon') {
-        eprev = isLeft(polygon.geometry.coordinates[0][0], polygon.geometry.coordinates[0][1], point.geometry.coordinates);
-        var out = processPolygon(polygon.geometry.coordinates[0], pointCoords, eprev, enext, rtan, ltan);
+    var pointCoords = getCoords(point);
+    var polyCoords = getCoords(polygon);
+    var rtan = polyCoords[0][0].slice(0, 2);
+    var ltan = polyCoords[0][0].slice(0, 2);
+    var geomType = (polygon.geometry) ? polygon.geometry.type : polygon.type;
+
+    if (geomType === 'Polygon') {
+        eprev = isLeft(polyCoords[0][0], polyCoords[0][1], pointCoords);
+        var out = processPolygon(polyCoords[0], pointCoords, eprev, enext, rtan, ltan);
         rtan = out[0];
         ltan = out[1];
     }
-    if (polygon.geometry.type === 'MultiPolygon') {
-        eprev = isLeft(polygon.geometry.coordinates[0][0][0], polygon.geometry.coordinates[0][0][1], point.geometry.coordinates);
-        rtan = polygon.geometry.coordinates[0][0][0].slice(0, 1);
-        ltan = polygon.geometry.coordinates[0][0][0].slice(0, 1);
-        polygon.geometry.coordinates.forEach(function (singlePoly) {
+    if (geomType === 'MultiPolygon') {
+        eprev = isLeft(polyCoords[0][0][0], polyCoords[0][0][1], pointCoords);
+        rtan = polyCoords[0][0][0].slice(0, 1);
+        ltan = polyCoords[0][0][0].slice(0, 1);
+        polyCoords.forEach(function (singlePoly) {
             var out = processPolygon(singlePoly[0], pointCoords, eprev, enext, rtan, ltan);
             rtan = out[0];
             ltan = out[1];
