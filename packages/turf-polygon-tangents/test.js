@@ -1,8 +1,9 @@
-const test = require('tape');
 const fs = require('fs');
+const test = require('tape');
 const path = require('path');
 const load = require('load-json-file');
 const write = require('write-json-file');
+const {polygon, point} = require('@turf/helpers');
 const polygonTangents = require('./');
 
 const directories = {
@@ -20,11 +21,18 @@ const fixtures = fs.readdirSync(directories.in).map(filename => {
 
 test('turf-polygon-tangents', t => {
     for (const {name, filename, geojson} of fixtures) {
-        const results = polygonTangents(geojson.features[1], geojson.features[0]);
+        const [poly, pt] = geojson.features;
+        const results = polygonTangents(pt, poly);
+
         if (process.env.REGEN) write.sync(directories.out + filename, results);
         t.deepEqual(load.sync(directories.out + filename), results, name);
     }
     t.end();
 });
 
-
+test('turf-polygon-tangents - Geometry Objects', t => {
+    const pt = point([61, 5]);
+    const poly = polygon([[[11, 0], [22, 4], [31, 0], [31, 11], [21, 15], [11, 11], [11, 0]]]);
+    t.assert(polygonTangents(pt.geometry, poly.geometry));
+    t.end();
+});
