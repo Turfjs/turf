@@ -23,6 +23,7 @@ test('turf-polygon-tangents', t => {
     for (const {name, filename, geojson} of fixtures) {
         const [poly, pt] = geojson.features;
         const results = polygonTangents(pt, poly);
+        results.features = results.features.concat(geojson.features);
 
         if (process.env.REGEN) write.sync(directories.out + filename, results);
         t.deepEqual(load.sync(directories.out + filename), results, name);
