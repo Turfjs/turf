@@ -1,7 +1,7 @@
-const Benchmark = require('benchmark');
-const path = require('path');
 const fs = require('fs');
+const path = require('path');
 const load = require('load-json-file');
+const Benchmark = require('benchmark');
 const tangents = require('./');
 
 const directory = path.join(__dirname, 'test', 'in') + path.sep;
@@ -22,9 +22,10 @@ let fixtures = fs.readdirSync(directory).map(filename => {
  * polygonWithHole x 1,054,454 ops/sec ±0.82% (91 runs sampled)
  * square x 1,050,479 ops/sec ±0.94% (89 runs sampled)
  */
-const suite = new Benchmark.Suite('turf-linestring-to-polygon');
+const suite = new Benchmark.Suite('turf-polygon-tangents');
 for (const {name, geojson} of fixtures) {
-    suite.add(name, () => tangents(geojson.features[1], geojson.features[0]));
+    const [poly, pt] = geojson.features;
+    suite.add(name, () => tangents(pt, poly));
 }
 
 suite

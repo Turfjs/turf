@@ -2,11 +2,12 @@
 
 type Point = GeoJSON.Feature<GeoJSON.Point> | GeoJSON.Point;
 type Polygon = GeoJSON.Feature<GeoJSON.Polygon> | GeoJSON.Polygon;
-type FeatureCollection = GeoJSON.FeatureCollection<Point>;
+type MultiPolygon = GeoJSON.Feature<GeoJSON.MultiPolygon> | GeoJSON.MultiPolygon;
+type FeatureCollection = GeoJSON.FeatureCollection<GeoJSON.Point>;
 
 /**
  * http://turfjs.org/docs/#polygonTangents
  */
-declare function polygonTangents(point: Point, polygon: Polygon): FeatureCollection;
+declare function polygonTangents(point: Point, polygon: Polygon | MultiPolygon): FeatureCollection;
 declare namespace polygonTangents { }
 export = polygonTangents;

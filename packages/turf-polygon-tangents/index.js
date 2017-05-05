@@ -3,11 +3,11 @@ var turfPoint = helpers.point;
 var turfFc = helpers.featureCollection;
 
 /**
- * Finds the tangents of a {@link Polygon} from a {@link Point}.
+ * Finds the tangents of a {@link Polygon|(Multi)Polygon} from a {@link Point}.
  *
  * @name polygonTangents
  * @param {Feature<Point>} point to calculate the tangent points from
- * @param {Feature<Polygon>} polygon to get tangents from
+ * @param {Feature<Polygon|MultiPolygon>} polygon to get tangents from
  * @returns {FeatureCollection<Point>} Feature Collection containing the two tangent points
  * @example
  * var poly = {
@@ -15,17 +15,7 @@ var turfFc = helpers.featureCollection;
  *   "properties": {},
  *   "geometry": {
  *     "type": "Polygon",
- *     "coordinates": [
- *        [
- *          [11, 0],
- *          [22, 4],
- *          [31, 0],
- *          [31, 11],
- *          [21, 15],
- *          [11, 11],
- *          [11, 0]
- *        ]
- *      ]
+ *     "coordinates": [[[11, 0], [22, 4], [31, 0], [31, 11], [21, 15], [11, 11], [11, 0]]]
  *   }
  * }
  * var point = {
