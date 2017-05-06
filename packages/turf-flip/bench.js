@@ -1,36 +1,32 @@
-var flip = require('./');
-var Benchmark = require('benchmark');
-var fs = require('fs');
-var point = require('@turf/helpers').point;
-var linestring = require('@turf/helpers').lineString;
-var polygon = require('@turf/helpers').polygon;
-var featurecollection = require('@turf/helpers').featureCollection;
+const Benchmark = require('benchmark');
+const path = require('path');
+const fs = require('fs');
+const load = require('load-json-file');
+const flip = require('./');
 
-var pt = point(1,0);
-var line = linestring([[1,0], [1,0]]);
-var poly = polygon([[[1,0], [1,0], [1,2]], [[.2,.2], [.3,.3],[.1,.2]]]);
-var pt1 = point(1,0);
-var pt2 = point(1,0);
-var fc = featurecollection([pt1, pt2]);
+const directory = path.join(__dirname, 'test', 'in') + path.sep;
+const fixtures = fs.readdirSync(directory).map(filename => {
+    return {
+        filename,
+        name: path.parse(filename).name,
+        geojson: load.sync(directory + filename)
+    };
+});
 
-var suite = new Benchmark.Suite('turf-flip');
+/**
+ * Benchmark Results
+ *
+ * feature-collection-points x 7,937,394 ops/sec ±1.43% (89 runs sampled)
+ * linestring x 6,496,534 ops/sec ±1.75% (86 runs sampled)
+ * point-with-elevation x 10,779,300 ops/sec ±2.08% (84 runs sampled)
+ * polygon x 4,454,602 ops/sec ±3.45% (86 runs sampled)
+ */
+const suite = new Benchmark.Suite('turf-flip');
+for (const {name, geojson} of fixtures) {
+    suite.add(name, () => flip(geojson));
+}
+
 suite
-  .add('turf-flip#Point',function () {
-    flip(pt);
-  })
-  .add('turf-flip#LineString',function () {
-    flip(line);
-  })
-  .add('turf-flip#Polygon',function () {
-    flip(poly);
-  })
-  .add('turf-flip#FeatureCollection',function () {
-    flip(fc);
-  })
-  .on('cycle', function (event) {
-    console.log(String(event.target));
-  })
-  .on('complete', function () {
-    
-  })
-  .run();
+    .on('cycle', e => console.log(String(e.target)))
+    .on('complete', () => {})
+    .run();

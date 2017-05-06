@@ -91,8 +91,10 @@ import * as lineSegment from '@turf/line-segment';
 import * as lineSplit from '@turf/line-split';
 import * as lineArc from '@turf/line-arc'
 import * as polygonToLineString from '@turf/polygon-to-linestring'
+import * as lineStringToPolygon from '@turf/linestring-to-polygon'
 import * as bboxClip from '@turf/bbox-clip'
 import * as lineOverlap from '@turf/line-overlap'
+import * as sector from '@turf/sector'
 
 export {
     isolines,
@@ -178,6 +180,8 @@ export {
     lineSplit,
     lineArc,
     polygonToLineString,
+    lineStringToPolygon,
     bboxClip,
-    lineOverlap
+    lineOverlap,
+    sector
 };

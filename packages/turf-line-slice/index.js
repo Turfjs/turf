@@ -70,10 +70,10 @@ module.exports = function lineSlice(startPt, stopPt, line) {
     } else {
         ends = [stopVertex, startVertex];
     }
-    var clipLine = linestring([ends[0].geometry.coordinates], {});
+    var clipCoords = [ends[0].geometry.coordinates];
     for (var i = ends[0].properties.index + 1; i < ends[1].properties.index + 1; i++) {
-        clipLine.geometry.coordinates.push(coords[i]);
+        clipCoords.push(coords[i]);
     }
-    clipLine.geometry.coordinates.push(ends[1].geometry.coordinates);
-    return clipLine;
+    clipCoords.push(ends[1].geometry.coordinates);
+    return linestring(clipCoords, line.properties);
 };

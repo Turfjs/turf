@@ -15,8 +15,8 @@ interface Buffer {
     (feature: Points | LineStrings | Polygons | MultiPoint | MultiPoints, radius?: number, unit?: Units, steps?: number): Polygons;
     (feature: MultiLineString | MultiPolygon, radius?: number, unit?: Units, steps?: number): MultiPolygon;
     (feature: MultiLineStrings | MultiPolygons, radius?: number, unit?: Units, steps?: number): MultiPolygons;
-    (feature: Feature, radius?: number, unit?: Units, steps?: number): Polygon | Polygons | MultiPolygon;
-    (feature: Features, radius?: number, unit?: Units, steps?: number): Polygons | MultiPolygons;
+    (feature: Feature<any>, radius?: number, unit?: Units, steps?: number): Polygon | Polygons | MultiPolygon;
+    (feature: Features<any>, radius?: number, unit?: Units, steps?: number): Polygons | MultiPolygons;
     (feature: GeoJSON.GeometryObject, radius?: number, unit?: Units, steps?: number): Polygon | Polygons | MultiPolygon;
     (feature: GeoJSON.GeometryCollection, radius?: number, unit?: Units, steps?: number): Polygons | MultiPolygons;
 }

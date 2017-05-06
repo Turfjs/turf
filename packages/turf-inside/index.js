@@ -1,4 +1,6 @@
 var invariant = require('@turf/invariant');
+var getCoord = invariant.getCoord;
+var getCoords = invariant.getCoords;
 
 // http://en.wikipedia.org/wiki/Even%E2%80%93odd_rule
 // modified from: https://github.com/substack/point-in-polygon/blob/master/index.js
@@ -10,7 +12,8 @@ var invariant = require('@turf/invariant');
  *
  * @name inside
  * @param {Feature<Point>} point input point
- * @param {Feature<(Polygon|MultiPolygon)>} polygon input polygon or multipolygon
+ * @param {Feature<Polygon|MultiPolygon>} polygon input polygon or multipolygon
+ * @param {boolean} [ignoreBoundary=false] True if polygon boundary should be ignored when determining if the point is inside the polygon otherwise false.
  * @returns {boolean} `true` if the Point is inside the Polygon; `false` if the Point is not inside the Polygon
  * @example
  * var pt = turf.point([-77, 44]);
@@ -28,20 +31,30 @@ var invariant = require('@turf/invariant');
  * pt.properties.isInside = isInside
  * var addToMap = [pt, poly]
  */
-module.exports = function (point, polygon) {
-    var pt = invariant.getCoord(point);
-    var polys = polygon.geometry.coordinates;
+module.exports = function (point, polygon, ignoreBoundary) {
+    // validation
+    if (!point) throw new Error('point is required');
+    if (!polygon) throw new Error('polygon is required');
+
+    var pt = getCoord(point);
+    var polys = getCoords(polygon);
+    var type = (polygon.geometry) ? polygon.geometry.type : polygon.type;
+    var bbox = polygon.bbox;
+
+    // Quick elimination if point is not inside bbox
+    if (bbox && inBBox(pt, bbox) === false) return false;
+
     // normalize to multipolygon
-    if (polygon.geometry.type === 'Polygon') polys = [polys];
+    if (type === 'Polygon') polys = [polys];
 
     for (var i = 0, insidePoly = false; i < polys.length && !insidePoly; i++) {
         // check if it is in the outer ring first
-        if (inRing(pt, polys[i][0])) {
+        if (inRing(pt, polys[i][0], ignoreBoundary)) {
             var inHole = false;
             var k = 1;
             // check for the point in any of the holes
             while (k < polys[i].length && !inHole) {
-                if (inRing(pt, polys[i][k], true)) {
+                if (inRing(pt, polys[i][k], !ignoreBoundary)) {
                     inHole = true;
                 }
                 k++;
@@ -52,7 +65,15 @@ module.exports = function (point, polygon) {
     return insidePoly;
 };
 
-// pt is [x,y] and ring is [[x,y], [x,y],..]
+/**
+ * inRing
+ *
+ * @private
+ * @param {[number, number]} pt [x,y]
+ * @param {Array<[number, number]>} ring [[x,y], [x,y],..]
+ * @param {boolean} ignoreBoundary ignoreBoundary
+ * @returns {boolean} inRing
+ */
 function inRing(pt, ring, ignoreBoundary) {
     var isInside = false;
     if (ring[0][0] === ring[ring.length - 1][0] && ring[0][1] === ring[ring.length - 1][1]) ring = ring.slice(0, ring.length - 1);
@@ -68,4 +89,19 @@ function inRing(pt, ring, ignoreBoundary) {
         if (intersect) isInside = !isInside;
     }
     return isInside;
+}
+
+/**
+ * inBBox
+ *
+ * @private
+ * @param {[number, number]} pt point [x,y]
+ * @param {[number, number, number, number]} bbox BBox [west, south, east, north]
+ * @returns {boolean} true/false if point is inside BBox
+ */
+function inBBox(pt, bbox) {
+    return bbox[0] <= pt[0] &&
+           bbox[1] <= pt[1] &&
+           bbox[2] >= pt[0] &&
+           bbox[3] >= pt[1];
 }

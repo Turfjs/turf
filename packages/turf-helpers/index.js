@@ -4,7 +4,7 @@
  * @name feature
  * @param {Geometry} geometry input geometry
  * @param {Object} properties properties
- * @returns {FeatureCollection} a FeatureCollection of input features
+ * @returns {Feature} a GeoJSON Feature
  * @example
  * var geometry = {
  *      "type": "Point",
@@ -124,6 +124,7 @@ function polygon(coordinates, properties) {
  */
 function lineString(coordinates, properties) {
     if (!coordinates) throw new Error('No coordinates passed');
+    if (coordinates.length < 2) throw new Error('Coordinates must be an array of two or more positions');
 
     return feature({
         type: 'LineString',

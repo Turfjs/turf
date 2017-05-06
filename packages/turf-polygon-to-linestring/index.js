@@ -5,34 +5,36 @@ var multiLineString = helpers.multiLineString;
 var featureCollection = helpers.featureCollection;
 
 /**
- * Converts a {@link Polygon} or {@link MultiPolygon} to a {@link FeatureCollection} of {@link LineString} or {@link MultiLineString}.
+ * Converts a {@link Polygon} to {@link LineString|(Multi)LineString} or {@link MultiPolygon} to a {@link FeatureCollection} of {@link LineString|(Multi)LineString}.
  *
  * @name polygonToLineString
  * @param {Feature<Polygon|MultiPolygon>} polygon Feature to convert
- * @returns {FeatureCollection<LineString|MultiLinestring>} converted Feature to Lines
+ * @param {Object} [properties] translates GeoJSON properties to Feature
+ * @returns {FeatureCollection|Feature<LineString|MultiLinestring>} converted (Multi)Polygon to (Multi)LineString
  * @example
  * var poly = {
- *   'type': 'Feature',
- *   'properties': {},
- *   'geometry': {
- *     'type': 'Polygon',
- *     'coordinates': [[[125, -30], [145, -30], [145, -20], [125, -20], [125, -30]]]
+ *   "type": "Feature",
+ *   "properties": {},
+ *   "geometry": {
+ *     "type": "Polygon",
+ *     "coordinates": [[[125, -30], [145, -30], [145, -20], [125, -20], [125, -30]]]
  *   }
  * }
- * var lines = turf.polygonToLineString(poly);
+ * var line = turf.polygonToLineString(poly);
  *
  * //addToMap
- * var addToMap = [lines];
+ * var addToMap = [line];
  */
-module.exports = function (polygon) {
+module.exports = function (polygon, properties) {
     var geom = getGeomType(polygon);
     var coords = getCoords(polygon);
-    var properties = polygon.properties;
+    properties = properties || polygon.properties || {};
+
     if (!coords.length) throw new Error('polygon must contain coordinates');
 
     switch (geom) {
     case 'Polygon':
-        return featureCollection([coordsToLine(coords, properties)]);
+        return coordsToLine(coords, properties);
     case 'MultiPolygon':
         var lines = [];
         coords.forEach(function (coord) {
