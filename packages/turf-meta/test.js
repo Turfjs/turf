@@ -27,9 +27,14 @@ const multiPointGeometry = {
     coordinates: [pointGeometry.coordinates, point2Geometry.coordinates]
 };
 
+const multiLineStringGeometry = {
+    type: 'MultiLineString',
+    coordinates: [lineStringGeometry.coordinates]
+};
+
 const multiPolygonGeometry = {
     type: 'MultiPolygon',
-    coordinates: [[[[0, 0], [1, 1], [0, 1], [0, 0]]]]
+    coordinates: [polygonGeometry.coordinates]
 };
 
 const geometryCollection = {
@@ -39,7 +44,10 @@ const geometryCollection = {
 
 const multiGeometryCollection = {
     type: 'GeometryCollection',
-    geometries: [lineStringGeometry, multiPointGeometry]
+    geometries: [lineStringGeometry,
+                 multiLineStringGeometry,
+                 multiPolygonGeometry,
+                 multiPointGeometry]
 };
 
 const pointFeature = {
@@ -323,7 +331,11 @@ test('flattenEach#MultiGeometryCollection', t => {
         meta.flattenEach(input, feature => {
             output.push(feature.geometry);
         });
-        t.deepEqual(output, [lineStringGeometry, pointGeometry, point2Geometry]);
+        t.deepEqual(output, [lineStringGeometry,
+                             lineStringGeometry,
+                             polygonGeometry,
+                             pointGeometry,
+                             point2Geometry]);
     });
     t.end();
 });
@@ -374,9 +386,9 @@ test('flattenReduce#previous-feature', t => {
         features.push(current);
         return current;
     });
-    t.equal(lastIndex, 1);
+    t.equal(lastIndex, 3);
     t.equal(lastSubIndex, 1);
-    t.equal(features.length, 2);
+    t.equal(features.length, 4);
     t.end();
 });
 
