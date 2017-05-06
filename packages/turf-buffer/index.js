@@ -39,6 +39,7 @@ var distanceToDegrees = helpers.distanceToDegrees;
 
 module.exports = function (geojson, radius, units, steps) {
     // validation
+    if (!geojson) throw new Error('geojson is required');
     if (radius === undefined || radius === null) throw new Error('radius is required');
 
     // default params
@@ -75,6 +76,9 @@ function buffer(geojson, radius, units, steps) {
     if (!geojson) throw new Error('geojson is required');
     if (radius === undefined || radius === null) throw new Error('radius is required');
     if (steps <= 0) throw new Error('steps must be greater than 0');
+
+    // prevent input mutation
+    geojson = JSON.parse(JSON.stringify(geojson));
 
     // default params
     var properties = geojson.properties || {};

@@ -13,13 +13,14 @@ const directories = {
     out: path.join(__dirname, 'test', 'out') + path.sep
 };
 
-const fixtures = fs.readdirSync(directories.in).map(filename => {
+let fixtures = fs.readdirSync(directories.in).map(filename => {
     return {
         filename,
         name: path.parse(filename).name,
         geojson: load.sync(directories.in + filename)
     };
 });
+// fixtures = fixtures.filter(({name}) => name === 'northern-polygon');
 
 test('turf-buffer', t => {
     for (const {filename, name, geojson} of fixtures) {
