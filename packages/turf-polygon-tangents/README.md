@@ -12,7 +12,7 @@ Finds the tangents of a [(Multi)Polygon](http://geojson.org/geojson-spec.html#po
 **Examples**
 
 ```javascript
-var poly = {
+var polygon = {
   "type": "Feature",
   "properties": {},
   "geometry": {
@@ -28,9 +28,9 @@ var point = {
     "coordinates": [61, 5]
   }
 }
-var tangents = turf.polygonTangents(point, poly)
+var tangents = turf.polygonTangents(point, polygon)
 //addToMap
-var addToMap = [tangents];
+var addToMap = [tangents, point, polygon];
 ```
 
 Returns **[FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects)&lt;[Point](http://geojson.org/geojson-spec.html#point)>** Feature Collection containing the two tangent points

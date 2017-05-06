@@ -25,7 +25,7 @@ var feature = turf.feature(geometry);
 //=feature
 ```
 
-Returns **[FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects)** a FeatureCollection of input features
+Returns **[Feature](http://geojson.org/geojson-spec.html#feature-objects)** a GeoJSON Feature
 
 # point
 
