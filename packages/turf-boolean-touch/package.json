@@ -1,7 +1,7 @@
 {
-  "name": "@turf/boolean-within",
-  "version": "4.1.0",
-  "description": "turf boolean-within module",
+  "name": "@turf/boolean-touch",
+  "version": "4.0.0",
+  "description": "turf boolean-touch module",
   "main": "index.js",
   "types": "index.d.ts",
   "files": [
@@ -18,7 +18,7 @@
   },
   "keywords": [
     "turf",
-    "within",
+    "touch",
     "boolean",
     "de-9im"
   ],
@@ -37,5 +37,11 @@
     "benchmark": "^2.1.4",
     "tape": "^4.6.3"
   },
-  "dependencies": {}
+  "dependencies": {
+    "@turf/inside": "^4.2.0",
+    "@turf/invariant": "^4.2.0",
+    "@turf/line-overlap": "^4.2.0",
+    "@turf/polygon-to-linestring": "^4.2.0",
+    "deep-equal": "^1.0.1"
+  }
 }
