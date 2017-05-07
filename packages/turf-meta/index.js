@@ -716,8 +716,6 @@ function flattenEach(layer, callback) {
         case 'MultiPolygon':
             geomType = 'Polygon';
             break;
-        default:
-            throw new Error('geometry ' + geometry.type + ' type not supported');
         }
 
         geometry.coordinates.forEach(function (coordinate, subindex) {
