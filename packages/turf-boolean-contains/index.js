@@ -1,5 +1,5 @@
 var inside = require('@turf/inside');
-var helpers = require('@turf/helpers');
+var helpers = require('@turf/helpers'); //= Remove @turf/helpers at Turf v4.3
 var getCoords = require('@turf/invariant').getCoords;
 var deepEqual = require('deep-equal');
 var lineOverlap = require('@turf/line-overlap');
@@ -67,7 +67,7 @@ module.exports = function (feature1, feature2) {
     case 'Polygon':
         switch (type2) {
         case 'Point':
-            return isPointInPoly(geom1, geom2);
+            return inside(geom2, geom1);
         case 'LineString':
             return isLineInPoly(geom1, geom2);
         case 'Polygon':
@@ -141,14 +141,10 @@ function isMultiPointOnLine(LineString, MultiPoint) {
     return output;
 }
 
-function isPointInPoly(Polygon, Point) {
-    return inside(Point, Polygon);
-}
-
 function isMultiPointInPoly(Polygon, MultiPoint) {
     var output = true;
     for (var i = 0; i < MultiPoint.coordinates.length; i++) {
-        var isInside = isPointInPoly(Polygon, helpers.point(MultiPoint.coordinates[1]));
+        var isInside = inside(MultiPoint.coordinates[1], Polygon);
         if (!isInside) {
             output = false;
             break;
@@ -161,6 +157,7 @@ function isMultiPointInPoly(Polygon, MultiPoint) {
 // Also need to make sure lines are exactly the same, eg the second must be smaller than the first
 function isLineOnLine(LineString1, LineString2) {
     var output = true;
+    //== CHANGE Turf v4.3 - LineOverlap supports Geometry Objects ==//
     var overlappingLine = lineOverlap(helpers.feature(LineString1), helpers.feature(LineString2)).features[0];
     if (!overlappingLine) return false;
     overlappingLine = getGeom(overlappingLine);
@@ -174,7 +171,7 @@ function isLineOnLine(LineString1, LineString2) {
 function isLineInPoly(Polygon, Linestring) {
     var output = true;
     for (var i = 0; i < Linestring.coordinates.length; i++) {
-        var isInside = isPointInPoly(Polygon, Linestring.coordinates[i]);
+        var isInside = inside(Linestring.coordinates[i], Polygon);
         if (!isInside) {
             output = false;
             break;
@@ -187,7 +184,7 @@ function isLineInPoly(Polygon, Linestring) {
 // TO DO - Need to handle if the polys are the same, eg there must be some outer coordinates different
 function isPolyInPoly(Polygon1, Polygon2) {
     for (var i = 0; i < Polygon2.coordinates[0].length; i++) {
-        if (!isPointInPoly(Polygon1, helpers.point(Polygon2.coordinates[0][i]))) {
+        if (!inside(Polygon2.coordinates[0][i], Polygon1)) {
             return false;
         }
     }

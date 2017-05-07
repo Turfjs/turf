@@ -37,10 +37,10 @@
     "tape": "^4.6.3"
   },
   "dependencies": {
-    "@turf/helpers": "^4.1.0",
-    "@turf/inside": "^4.1.0",
+    "@turf/helpers": "^4.2.0",
+    "@turf/inside": "^4.2.0",
     "@turf/invariant": "^4.2.0",
-    "@turf/line-overlap": "^4.1.0",
+    "@turf/line-overlap": "^4.2.0",
     "deep-equal": "^1.0.1"
   }
 }
