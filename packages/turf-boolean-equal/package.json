@@ -17,13 +17,16 @@
     "url": "git://github.com/Turfjs/turf.git"
   },
   "keywords": [
-    "along",
-    "line",
-    "linestring",
     "turf",
-    "distance"
+    "equal",
+    "boolean",
+    "de-9im"
   ],
   "author": "Turf Authors",
+  "contributors": [
+    "Rowan Winsemius <@rowanwins>",
+    "Denis Carriere <@DenisCarriere>"
+  ],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/Turfjs/turf/issues"
