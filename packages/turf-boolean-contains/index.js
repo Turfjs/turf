@@ -1,40 +1,61 @@
 var inside = require('@turf/inside');
 var helpers = require('@turf/helpers');
+var getCoords = require('@turf/invariant').getCoords;
 var deepEqual = require('deep-equal');
 var lineOverlap = require('@turf/line-overlap');
 
 /**
- * Contains returns true if the second geometry is completely contained by the first geometry.
- * The contains predicate returns the exact opposite result of the within predicate.
+ * Contains returns True if the second geometry is completely contained by the first geometry.
  *
  * @name contains
- * @param {Geometry|Feature<any>} feature1 source
- * @param {Geometry|Feature<any>} feature2 target
+ * @param {Geometry|Feature<any>} feature1 first geometry
+ * @param {Geometry|Feature<any>} feature2 second geometry
  * @returns {Boolean} true/false
  * @example
- * var along = turf.contains(line, point);
+ * const point = {
+ *   "type": "Feature",
+ *   "properties": {},
+ *   "geometry": {
+ *     "type": "Point",
+ *     "coordinates": [1, 1]
+ *   }
+ * }
+ * const line = {
+ *   "type": "Feature",
+ *   "properties": {},
+ *   "geometry": {
+ *     "type": "LineString",
+ *     "coordinates": [[1, 1], [1, 2], [1, 3], [1, 4]]
+ *   }
+ * }
+ * turf.contains(line, point);
+ * //=true
  */
 module.exports = function (feature1, feature2) {
+    var type1 = getGeomType(feature1);
+    var type2 = getGeomType(feature2);
     var geom1 = getGeom(feature1);
     var geom2 = getGeom(feature2);
+    var coords1 = getCoords(feature1);
+    var coords2 = getCoords(feature1);
 
-    switch (geom1.type) {
+    switch (type1) {
     case 'Point':
-        switch (geom2.type) {
+        switch (type2) {
         case 'Point':
-            return deepEqual(geom1.coordinates, geom2.coordinates);
+            return deepEqual(coords1, coords2);
         }
-        throw new Error('feature2 ' + geom2.type + ' geometry not supported');
+        throw new Error('feature2 ' + type2 + ' geometry not supported');
     case 'MultiPoint':
-        switch (geom2.type) {
+        switch (type2) {
         case 'Point':
             return isPointInMultiPoint(geom1, geom2);
         case 'MultiPoint':
             return isMultiPointInMultiPoint(geom1, geom2);
         }
-        throw new Error('feature2 ' + geom2.type + ' geometry not supported');
+        throw new Error('feature2 ' + type2 + ' geometry not supported');
     case 'LineString':
-        switch (geom2.type) {
+        switch (type2) {
         case 'Point':
             return isPointOnLine(geom1, geom2);
         case 'LineString':
@@ -42,9 +63,9 @@ module.exports = function (feature1, feature2) {
         case 'MultiPoint':
             return isMultiPointOnLine(geom1, geom2);
         }
-        throw new Error('feature2 ' + geom2.type + ' geometry not supported');
+        throw new Error('feature2 ' + type2 + ' geometry not supported');
     case 'Polygon':
-        switch (geom2.type) {
+        switch (type2) {
         case 'Point':
             return isPointInPoly(geom1, geom2);
         case 'LineString':
@@ -54,9 +75,9 @@ module.exports = function (feature1, feature2) {
         case 'MultiPoint':
             return isMultiPointInPoly(geom1, geom2);
         }
-        throw new Error('feature2 ' + geom2.type + ' geometry not supported');
+        throw new Error('feature2 ' + type2 + ' geometry not supported');
     default:
-        throw new Error('feature1 ' + geom1.type + ' geometry not supported');
+        throw new Error('feature1 ' + type1 + ' geometry not supported');
     }
 };
 
@@ -195,6 +216,7 @@ function isPointOnLineSegment(LineSegmentStart, LineSegmentEnd, Point) {
 
 /**
  * Get Geometry from Feature or Geometry Object
+ * //!! Remove this method when implemented to @turf/invariant
  *
  * @private
  * @param {Feature<any>|Geometry<any>} geojson GeoJSON Feature or Geometry Object
@@ -204,5 +226,12 @@ function isPointOnLineSegment(LineSegmentStart, LineSegmentEnd, Point) {
 function getGeom(geojson) {
     if (geojson.geometry) return geojson.geometry;
     if (geojson.coordinates) return geojson;
+    throw new Error('geojson must be a feature or geometry object');
+}
+
+// Remove this method when implemented to @turf/invariant
+function getGeomType(geojson) {
+    if (geojson.geometry) return geojson.geometry.type;
+    if (geojson.coordinates) return geojson.type;
     throw new Error('geojson must be a feature or geometry object');
 }
