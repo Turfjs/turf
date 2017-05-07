@@ -16,7 +16,9 @@
 		},
 		{
 			"type": "Feature",
-			"properties": {},
+			"properties": {
+				"radius": 5
+			},
 			"geometry": {
 				"type": "Polygon",
 				"coordinates": [
