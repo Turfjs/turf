@@ -1,8 +1,8 @@
-var inside = require('@turf/inside');
-var getCoords = require('@turf/invariant').getCoords;
+// var inside = require('@turf/inside');
+// var getCoords = require('@turf/invariant').getCoords;
 var deepEqual = require('deep-equal');
-var lineOverlap = require('@turf/line-overlap');
-var polyToLinestring = require('@turf/polygon-to-linestring');
+// var lineOverlap = require('@turf/line-overlap');
+// var polyToLinestring = require('@turf/polygon-to-linestring');
 
 /**
  * Touch returns True if none of the points common to both geometries intersect the interiors of both geometries.
@@ -33,12 +33,12 @@ var polyToLinestring = require('@turf/polygon-to-linestring');
  * //=true
  */
 module.exports = function (feature1, feature2) {
-    var geom1 = getGeom(feature1);
-    var geom2 = getGeom(feature2);
+    // var geom1 = getGeom(feature1);
+    // var geom2 = getGeom(feature2);
     var type1 = getGeomType(feature1);
     var type2 = getGeomType(feature2);
-    var coords1 = getCoords(feature1);
-    var coords2 = getCoords(feature1);
+    // var coords1 = getCoords(feature1);
+    // var coords2 = getCoords(feature1);
 
     switch (type1) {
     case 'Point':
@@ -149,12 +149,12 @@ function isPointOnLineSegment(LineSegmentStart, LineSegmentEnd, Point) {
     }
 }
 
-// Remove this method when implemented to @turf/invariant
-function getGeom(geojson) {
-    if (geojson.geometry) return geojson.geometry;
-    if (geojson.coordinates) return geojson;
-    throw new Error('geojson must be a feature or geometry object');
-}
+// // Remove this method when implemented to @turf/invariant
+// function getGeom(geojson) {
+//     if (geojson.geometry) return geojson.geometry;
+//     if (geojson.coordinates) return geojson;
+//     throw new Error('geojson must be a feature or geometry object');
+// }
 
 // Remove this method when implemented to @turf/invariant
 function getGeomType(geojson) {
