@@ -3,7 +3,10 @@
   "features": [
     {
       "type": "Feature",
-      "properties": {},
+      "properties": {
+        "fill": "#66F",
+        "marker-color": "#66F"
+      },
       "geometry": {
         "type": "MultiPoint",
         "coordinates": [
@@ -18,18 +21,39 @@
           [
             125,
             -25
+          ],
+          [
+            126,
+            -25
           ]
         ]
       }
     },
     {
       "type": "Feature",
-      "properties": {},
+      "properties": {
+        "fill": "#F66",
+        "marker-color": "#F66"
+      },
       "geometry": {
         "type": "Point",
         "coordinates": [
           130,
           -27.5
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "fill": "#FF6",
+        "marker-color": "#FF6"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          126,
+          -24.5
         ]
       }
     }

@@ -22,9 +22,7 @@ var point = {
     "coordinates": [-90.548630, 14.616599]
   }
 };
-var unit = 'miles';
-
-var buffered = turf.buffer(point, 500, unit);
+var buffered = turf.buffer(point, 500, 'miles');
 
 //addToMap
 var addToMap = [point, buffered]
