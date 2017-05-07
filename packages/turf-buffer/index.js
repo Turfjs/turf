@@ -1,19 +1,21 @@
-var jsts = require('jsts');
-var helpers = require('@turf/helpers');
-var circle = require('@turf/circle');
-var dissolve = require('@turf/dissolve');
 var meta = require('@turf/meta');
+var Offset = require('polygon-offset');
+var circle = require('@turf/circle');
+var helpers = require('@turf/helpers');
+var dissolve = require('@turf/dissolve');
+var getCoords = require('@turf/invariant').getCoords;
+var point = helpers.point;
+var polygon = helpers.polygon;
 var coordEach = meta.coordEach;
 var featureEach = meta.featureEach;
 var featureCollection = helpers.featureCollection;
 var distanceToDegrees = helpers.distanceToDegrees;
-var point = helpers.point;
 
 /**
  * Calculates a buffer for input features for a given radius. Units supported are miles, kilometers, and degrees.
  *
  * @name buffer
- * @param {FeatureCollection|Feature<any>} feature input to be buffered
+ * @param {FeatureCollection|Geometry|Feature<any>} feature input to be buffered
  * @param {number} radius distance to draw the buffer
  * @param {string} [units=kilometers] any of the options supported by turf units
  * @param {number} [steps=64] number of steps
@@ -37,6 +39,7 @@ var point = helpers.point;
 
 module.exports = function (geojson, radius, units, steps) {
     // validation
+    if (!geojson) throw new Error('geojson is required');
     if (radius === undefined || radius === null) throw new Error('radius is required');
 
     // default params
@@ -62,25 +65,35 @@ module.exports = function (geojson, radius, units, steps) {
  * Buffer single Feature
  *
  * @private
- * @param {Feature<any>} feature input to be buffered
+ * @param {Geometry|Feature<any>} geojson input to be buffered
  * @param {number} radius distance to draw the buffer
  * @param {string} [units='kilometers'] any of the options supported by turf units
  * @param {number} [steps=64] number of steps
  * @returns {Feature<Polygon|MultiPolygon>} buffered feature
  */
-function buffer(feature, radius, units, steps) {
-    var properties = feature.properties || {};
-    var distance = distanceToDegrees(radius, units);
-    var geometry = (feature.type === 'Feature') ? feature.geometry : feature;
+function buffer(geojson, radius, units, steps) {
+    // validation
+    if (!geojson) throw new Error('geojson is required');
+    if (radius === undefined || radius === null) throw new Error('radius is required');
+    if (steps <= 0) throw new Error('steps must be greater than 0');
 
-    switch (geometry.type) {
+    // prevent input mutation
+    geojson = JSON.parse(JSON.stringify(geojson));
+
+    // default params
+    var properties = geojson.properties || {};
+    var distance = distanceToDegrees(radius, units);
+    var coords = getCoords(geojson);
+    var type = (geojson.geometry) ? geojson.geometry.type : geojson.type;
+
+    switch (type) {
     case 'Point':
-        var poly = circle(feature, radius, steps, units);
-        poly.properties = properties;
-        return poly;
+        var pointBuffer = circle(coords, radius, steps, units);
+        pointBuffer.properties = properties;
+        return pointBuffer;
     case 'MultiPoint':
         var polys = [];
-        coordEach(feature, function (coord) {
+        coordEach(geojson, function (coord) {
             var poly = circle(point(coord, properties), radius, steps, units);
             poly.properties = properties;
             polys.push(poly);
@@ -88,15 +101,14 @@ function buffer(feature, radius, units, steps) {
         return dissolve(featureCollection(polys));
     case 'LineString':
     case 'MultiLineString':
+        var lineOffset = new Offset(coords, steps);
+        var lineBuffer = lineOffset.offsetLine(distance);
+        return polygon(lineBuffer, properties);
     case 'Polygon':
     case 'MultiPolygon':
-        var reader = new jsts.io.GeoJSONReader();
-        var geom = reader.read(geometry);
-        var buffered = geom.buffer(distance);
-        var writer = new jsts.io.GeoJSONWriter();
-        buffered = writer.write(buffered);
-        return helpers.feature(buffered, properties);
-    default:
-        throw new Error('geometry type ' + geometry.type + ' not supported');
+        // Polygon-offset has issues when arcSegments is greater than 32
+        var polyOffset = new Offset(coords, (steps > 32) ? 32 : steps);
+        var polyBuffer = polyOffset.margin(distance);
+        return polygon(polyBuffer, properties);
     }
 }
