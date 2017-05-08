@@ -1,5 +1,4 @@
 const test = require('tape');
-const helpers = require('.');
 const distance = require('@turf/distance');
 const {
     point,
@@ -16,7 +15,8 @@ const {
     distanceToDegrees,
     radians2degrees,
     degrees2radians,
-    bearingToAngle
+    bearingToAngle,
+    round
 } = require('./');
 
 test('point', t => {
@@ -324,7 +324,7 @@ test('distanceToRadians', t => {
     t.equal(distanceToRadians(dx0), distanceToRadians(dy0), 'radiance conversion [x0, y0]');
     t.equal(distanceToRadians(dx70), 0.002986, 'radiance conversion [x70, y70]');
 
-t.end();
+    t.end();
 });
 
 test('distanceToDegrees', t => {
@@ -335,7 +335,7 @@ test('distanceToDegrees', t => {
     t.equal(distanceToDegrees(dx0), distanceToDegrees(dy0), 'equal delta degrees 0');
     t.equal(distanceToDegrees(dx70), 0.171085, 'equal delta degrees 70');
 
-t.end();
+    t.end();
 });
 
 test('radians2degrees', t => {
@@ -343,7 +343,7 @@ test('radians2degrees', t => {
     t.equal(radians2degrees(3.5 * Math.PI), 270, 'radiance conversion 3.5PI');
     t.equal(radians2degrees(-Math.PI), -180, 'radiance conversion -PI');
 
-t.end();
+    t.end();
 });
 
 test('radians2degrees', t => {
@@ -351,7 +351,7 @@ test('radians2degrees', t => {
     t.equal(degrees2radians(270), round(1.5 * Math.PI, 6), 'degrees conversion 270');
     t.equal(degrees2radians(-180), round(-Math.PI, 6), 'degrees conversion -180');
 
-t.end();
+    t.end();
 });
 
 test('bearingToAngle', t => {
@@ -364,8 +364,10 @@ test('bearingToAngle', t => {
     t.end();
 });
 
+test('round', t => {
+    t.equal(round(125.123), 125);
+    t.equal(round(123.123, 1), 123.1);
+    t.equal(round(123.5), 124);
 
-function round(num, precision) {
-    var multiplier = Math.pow(10, precision || 0);
-    return Math.round(num * multiplier) / multiplier;
-}
+    t.end();
+});

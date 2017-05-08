@@ -276,11 +276,22 @@ var earthRadiusIn = {
     radians: 1
 };
 
-// round number to precision
-var round = function (num, precision) {
+/**
+ * Round number to precision
+ *
+ * @param {number} num Number
+ * @param {number} [precision=0] Precision
+ * @returns {number} rounded number
+ * @example
+ * round(120.4321)
+ * //=120
+ * round(120.4321, 2)
+ * //=120.43
+ */
+function round(num, precision) {
     var multiplier = Math.pow(10, precision || 0);
     return Math.round(num * multiplier) / multiplier;
-};
+}
 
 /**
  * Convert a distance measurement (assuming a spherical Earth) from radians to a more friendly unit.
@@ -330,44 +341,43 @@ function distanceToDegrees(distance, units) {
  * and returns an angle between 0-360 degrees (positive clockwise), 0 being the north line
  *
  * @name bearingToAngle
- * @param {number} alpha angle, between -180 and +180 degrees
+ * @param {number} bearing angle, between -180 and +180 degrees
  * @returns {number} angle between 0 and 360 degrees
  */
-function bearingToAngle(alpha) {
-    var beta = alpha % 360;
-    if (beta < 0) {
-        beta += 360;
+function bearingToAngle(bearing) {
+    if (bearing === null || bearing === undefined) throw new Error('bearing is required');
+    var angle = bearing % 360;
+    if (angle < 0) {
+        angle += 360;
     }
-    return beta;
+    return angle;
 }
 
 /**
  * Converts an angle in radians to degrees
  *
  * @name radians2degrees
- * @param {number} alpha angle in radians
- * @returns {number} angle between 0 and 360 degrees
+ * @param {number} radians angle in radians
+ * @returns {number} degrees between 0 and 360 degrees
  */
-function radians2degrees(alpha) {
-    if (alpha === null || alpha === undefined) throw new Error('Invalid angle');
-    var beta = alpha % (2 * Math.PI);
-    return round(beta * 180 / Math.PI, 6);
+function radians2degrees(radians) {
+    if (radians === null || radians === undefined) throw new Error('radians is required');
+    var degrees = radians % (2 * Math.PI);
+    return round(degrees * 180 / Math.PI, 6);
 }
-
 
 /**
  * Converts an angle in degrees to radians
  *
  * @name degrees2radians
- * @param {number} alpha angle between 0 and 360 degrees
+ * @param {number} degrees angle between 0 and 360 degrees
  * @returns {number} angle in radians
  */
-function degrees2radians(alpha) {
-    if (alpha === null || alpha === undefined) throw new Error('Invalid angle');
-    var beta = alpha % 360;
-    return round(beta * Math.PI / 180, 6);
+function degrees2radians(degrees) {
+    if (degrees === null || degrees === undefined) throw new Error('degrees is required');
+    var radians = degrees % 360;
+    return round(radians * Math.PI / 180, 6);
 }
-
 
 module.exports = {
     feature: feature,
@@ -384,5 +394,6 @@ module.exports = {
     distanceToDegrees: distanceToDegrees,
     radians2degrees: radians2degrees,
     degrees2radians: degrees2radians,
-    bearingToAngle: bearingToAngle
+    bearingToAngle: bearingToAngle,
+    round: round
 };
