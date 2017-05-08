@@ -37,7 +37,7 @@ module.exports = function (feature1, feature2) {
     var geom1 = getGeom(feature1);
     var geom2 = getGeom(feature2);
     var coords1 = getCoords(feature1);
-    var coords2 = getCoords(feature1);
+    var coords2 = getCoords(feature2);
 
     switch (type1) {
     case 'Point':
@@ -71,7 +71,7 @@ module.exports = function (feature1, feature2) {
         case 'LineString':
             return isLineInPoly(geom1, geom2);
         case 'Polygon':
-            return isPolyInPoly(geom1, geom2);
+            return isPolyInPoly(feature2, feature1);
         case 'MultiPoint':
             return isMultiPointInPoly(geom1, geom2);
         }
@@ -180,18 +180,29 @@ function isLineInPoly(Polygon, Linestring) {
     return output;
 }
 
-// See http://stackoverflow.com/a/4833823/1979085
-// TO DO - Need to handle if the polys are the same, eg there must be some outer coordinates different
-function isPolyInPoly(Polygon1, Polygon2) {
-    for (var i = 0; i < Polygon2.coordinates[0].length; i++) {
-        if (!inside(Polygon2.coordinates[0][i], Polygon1)) {
-            return false;
-        }
-    }
+/**
+ * Is Polygon (geom1) in Polygon (geom2)
+ * Only takes into account outer rings
+ * See http://stackoverflow.com/a/4833823/1979085
+ *
+ * @private
+ * @param {Geometry|Feature<Polygon>} feature1 Polygon1
+ * @param {Geometry|Feature<Polygon>} feature2 Polygon2
+ * @returns {Boolean} true/false
+ */
+function isPolyInPoly(feature1, feature2) {
+    var coords = getCoords(feature1)[0];
+    var ring = getCoords(feature2)[0];
+    var bbox = feature2.bbox;
 
-    if (deepEqual(Polygon1.coordinates, Polygon2.coordinates)) {
-        return false;
+    // check if outer coordinates is inside outer ring
+    for (var i = 0; i < coords.length; i++) {
+        // 3x performance increase if BBox is present
+        if (bbox && !inBBox(coords[i], bbox)) return false;
+        if (!inRing(coords[i], ring)) return false;
     }
+    // Outer geometries cannot be the same
+    if (deepEqual(coords, ring)) return false;
     return true;
 }
 
@@ -231,4 +242,45 @@ function getGeomType(geojson) {
     if (geojson.geometry) return geojson.geometry.type;
     if (geojson.coordinates) return geojson.type;
     throw new Error('geojson must be a feature or geometry object');
+}
+
+/**
+ * inRing - @turf/inside
+ *
+ * @private
+ * @param {[number, number]} pt [x,y]
+ * @param {Array<[number, number]>} ring [[x,y], [x,y],..]
+ * @param {boolean} ignoreBoundary ignoreBoundary
+ * @returns {boolean} inRing
+ */
+function inRing(pt, ring, ignoreBoundary) {
+    var isInside = false;
+    if (ring[0][0] === ring[ring.length - 1][0] && ring[0][1] === ring[ring.length - 1][1]) ring = ring.slice(0, ring.length - 1);
+
+    for (var i = 0, j = ring.length - 1; i < ring.length; j = i++) {
+        var xi = ring[i][0], yi = ring[i][1];
+        var xj = ring[j][0], yj = ring[j][1];
+        var onBoundary = (pt[1] * (xi - xj) + yi * (xj - pt[0]) + yj * (pt[0] - xi) === 0) &&
+            ((xi - pt[0]) * (xj - pt[0]) <= 0) && ((yi - pt[1]) * (yj - pt[1]) <= 0);
+        if (onBoundary) return !ignoreBoundary;
+        var intersect = ((yi > pt[1]) !== (yj > pt[1])) &&
+        (pt[0] < (xj - xi) * (pt[1] - yi) / (yj - yi) + xi);
+        if (intersect) isInside = !isInside;
+    }
+    return isInside;
+}
+
+/**
+ * inBBox - @turf/inside
+ *
+ * @private
+ * @param {[number, number]} pt point [x,y]
+ * @param {[number, number, number, number]} bbox BBox [west, south, east, north]
+ * @returns {boolean} true/false if point is inside BBox
+ */
+function inBBox(pt, bbox) {
+    return bbox[0] <= pt[0] &&
+           bbox[1] <= pt[1] &&
+           bbox[2] >= pt[0] &&
+           bbox[3] >= pt[1];
 }
