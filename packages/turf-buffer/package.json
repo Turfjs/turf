@@ -43,10 +43,11 @@
     "write-json-file": "^2.0.0"
   },
   "dependencies": {
+    "@turf/center": "^4.2.0",
     "@turf/circle": "^4.2.0",
-    "@turf/dissolve": "^4.2.0",
     "@turf/helpers": "^4.2.0",
     "@turf/meta": "^4.2.0",
+    "d3-geo": "^1.6.3",
     "jsts": "1.3.0"
   }
 }
