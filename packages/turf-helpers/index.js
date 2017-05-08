@@ -304,7 +304,7 @@ function radiansToDistance(radians, units) {
     if (radians === undefined || radians === null) throw new Error('radians is required');
 
     var factor = factors[units || 'kilometers'];
-    if (!factors) throw new Error('units is invalid');
+    if (!factor) throw new Error('units is invalid');
     return radians * factor;
 }
 
@@ -320,7 +320,7 @@ function distanceToRadians(distance, units) {
     if (distance === undefined || distance === null) throw new Error('distance is required');
 
     var factor = factors[units || 'kilometers'];
-    if (!factors) throw new Error('units is invalid');
+    if (!factor) throw new Error('units is invalid');
     var centralAngle = distance / factor;
     return centralAngle;
 }

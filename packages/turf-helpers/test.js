@@ -305,7 +305,7 @@ test('radiansToDistance', t => {
     t.equal(radiansToDistance(1, 'radians'), 1);
     t.equal(radiansToDistance(1, 'kilometers'), 6373);
     t.equal(radiansToDistance(1, 'miles'), 3960);
-
+    t.throws(() => radiansToDistance(1, 'foo'), 'invalid units');
     t.end();
 });
 
@@ -313,6 +313,7 @@ test('distanceToRadians', t => {
     t.equal(distanceToRadians(1, 'radians'), 1);
     t.equal(distanceToRadians(6373, 'kilometers'), 1);
     t.equal(distanceToRadians(3960, 'miles'), 1);
+    t.throws(() => distanceToRadians(1, 'foo'), 'invalid units');
     t.end();
 });
 
