@@ -90,4 +90,19 @@ export function distanceToDegrees(distance: number, units?: Units): number
 /**
  * http://turfjs.org/docs/#bearingtoangle
  */
-export function bearingToAngle(alpha: number): number
+export function bearingToAngle(bearing: number): number
+
+/**
+ * http://turfjs.org/docs/#radians2degrees
+ */
+export function radians2degrees(radians: number): number
+
+/**
+ * http://turfjs.org/docs/#degrees2radians
+ */
+export function degrees2radians(degrees: number): number
+
+/**
+ * http://turfjs.org/docs/#round
+ */
+export function round(num: number, precision?: number): number
