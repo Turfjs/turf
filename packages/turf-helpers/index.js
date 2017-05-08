@@ -262,18 +262,17 @@ function geometryCollection(geometries, properties) {
 
 // https://en.wikipedia.org/wiki/Great-circle_distance#Radius_for_spherical_Earth
 var earthRadiusIn = {
-    kilometers: 6371,
-    kilometres: 6371,
-    meters: 6371000,
-    metres: 6371000,
-    centimeters: 637100000,
-    miles: 3958.755866,
-    yards: 6967410.32371,
-    feet: 20902230.971129,
-    inches: 250826771.65354,
-    nauticalmiles: 3440.064795,
-    degrees: 57.29578, //= 180 / Math.PI
-    radians: 1
+    miles: 3960,
+    nauticalmiles: 3441.145,
+    degrees: 57.2957795,
+    radians: 1,
+    inches: 250905600,
+    yards: 6969600,
+    meters: 6373000,
+    metres: 6373000,
+    kilometers: 6373,
+    kilometres: 6373,
+    feet: 20908792.65
 };
 
 /**

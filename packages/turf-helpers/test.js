@@ -1,5 +1,4 @@
 const test = require('tape');
-const distance = require('@turf/distance');
 const {
     point,
     polygon,
@@ -304,37 +303,16 @@ test('geometrycollection', t => {
 
 test('radiansToDistance', t => {
     t.equal(radiansToDistance(1, 'radians'), 1);
-    t.equal(radiansToDistance(1, 'kilometers'), 6371);
-    t.equal(radiansToDistance(1, 'miles'), 3958.755866);
+    t.equal(radiansToDistance(1, 'kilometers'), 6373); //= 6371 when earthRadiusIn is updated
+    t.equal(radiansToDistance(1, 'miles'), 3960); //= 3958.755866 when earthRadiusIn is updated
 
     t.end();
 });
-
-// the higher/lower in latitude, the greater the distortion (curvature of the earth)
-const dx0 = distance(point([-120, 0]), point([-120.5, 0]));
-const dy0 = distance(point([-120, 0]), point([-120, 0.5]));
-
-const dx70 = distance(point([-120, 70]), point([-120.5, 70]));
-const dy70 = distance(point([-120, 70]), point([-120, 70.5]));
 
 test('distanceToRadians', t => {
     t.equal(distanceToRadians(1, 'radians'), 1);
-    t.equal(distanceToRadians(6371, 'kilometers'), 1);
-    t.equal(distanceToRadians(3958.755866, 'miles'), 1);
-    t.equal(distanceToRadians(dx0), distanceToRadians(dy0), 'radiance conversion [x0, y0]');
-    t.equal(distanceToRadians(dx70), 0.002986, 'radiance conversion [x70, y70]');
-
-    t.end();
-});
-
-test('distanceToDegrees', t => {
-    t.equal(distanceToDegrees(dx0), 0.500135, 'degrees conversion dx0');
-    t.equal(distanceToDegrees(dy0), 0.500135, 'degrees conversion dy0');
-    t.equal(distanceToDegrees(dx70), 0.171085, 'degrees conversion dx70');
-    t.equal(distanceToDegrees(dy70), 0.500135, 'degrees conversion dy70');
-    t.equal(distanceToDegrees(dx0), distanceToDegrees(dy0), 'equal delta degrees 0');
-    t.equal(distanceToDegrees(dx70), 0.171085, 'equal delta degrees 70');
-
+    t.equal(distanceToRadians(6371, 'kilometers'), 0.999686); //= 1 when earthRadiusIn is updated
+    t.equal(distanceToRadians(3958.755866, 'miles'), 0.999686); //= 1 when earthRadiusIn is updated
     t.end();
 });
 
