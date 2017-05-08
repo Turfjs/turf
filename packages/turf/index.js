@@ -94,6 +94,8 @@ var turf = {
     featureOf: invariant.featureOf,
     collectionOf: invariant.collectionOf,
     containsNumber: invariant.containsNumber,
+    getGeom: invariant.getGeom,
+    getGeomType: invariant.getGeomType,
     coordEach: meta.coordEach,
     coordReduce: meta.coordReduce,
     propEach: meta.propEach,
