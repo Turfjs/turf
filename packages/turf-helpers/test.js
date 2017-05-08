@@ -1,5 +1,4 @@
 const test = require('tape');
-const distance = require('@turf/distance');
 const {
     point,
     polygon,
@@ -13,7 +12,10 @@ const {
     radiansToDistance,
     distanceToRadians,
     distanceToDegrees,
-    bearingToAngle
+    radians2degrees,
+    degrees2radians,
+    bearingToAngle,
+    round
 } = require('./');
 
 test('point', t => {
@@ -303,26 +305,30 @@ test('radiansToDistance', t => {
     t.equal(radiansToDistance(1, 'radians'), 1);
     t.equal(radiansToDistance(1, 'kilometers'), 6373);
     t.equal(radiansToDistance(1, 'miles'), 3960);
-
+    t.throws(() => radiansToDistance(1, 'foo'), 'invalid units');
     t.end();
 });
 
-// the higher/lower in latitude, the greater the distortion (curvature of the earth)
-const dx = distance(point([-120, 0]), point([-120.5, 0]));
-const dy = distance(point([-120, 0]), point([-120, 0.5]));
-
 test('distanceToRadians', t => {
-    t.equal(distanceToRadians(dx), distanceToRadians(dy), 'radiance conversion');
     t.equal(distanceToRadians(1, 'radians'), 1);
     t.equal(distanceToRadians(6373, 'kilometers'), 1);
     t.equal(distanceToRadians(3960, 'miles'), 1);
+    t.throws(() => distanceToRadians(1, 'foo'), 'invalid units');
+    t.end();
+});
+
+test('radians2degrees', t => {
+    t.equal(round(radians2degrees(Math.PI / 3), 6), 60, 'radiance conversion PI/3');
+    t.equal(radians2degrees(3.5 * Math.PI), 270, 'radiance conversion 3.5PI');
+    t.equal(radians2degrees(-Math.PI), -180, 'radiance conversion -PI');
 
     t.end();
 });
 
-test('distanceToDegrees', t => {
-    t.equal(Number(distanceToDegrees(dx).toFixed(6)), 0.5, 'degrees conversion');
-    t.equal(Number(distanceToDegrees(dy).toFixed(6)), 0.5, 'degrees conversion');
+test('radians2degrees', t => {
+    t.equal(degrees2radians(60), Math.PI / 3, 'degrees conversion 60');
+    t.equal(degrees2radians(270), 1.5 * Math.PI, 'degrees conversion 270');
+    t.equal(degrees2radians(-180), -Math.PI, 'degrees conversion -180');
 
     t.end();
 });
@@ -333,6 +339,14 @@ test('bearingToAngle', t => {
     t.equal(bearingToAngle(410), 50);
     t.equal(bearingToAngle(-200), 160);
     t.equal(bearingToAngle(-395), 325);
+
+    t.end();
+});
+
+test('round', t => {
+    t.equal(round(125.123), 125);
+    t.equal(round(123.123, 1), 123.1);
+    t.equal(round(123.5), 124);
 
     t.end();
 });

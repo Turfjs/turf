@@ -7,12 +7,9 @@
  * @returns {Feature} a GeoJSON Feature
  * @example
  * var geometry = {
- *      "type": "Point",
- *      "coordinates": [
- *        67.5,
- *        32.84267363195431
- *      ]
- *    }
+ *   "type": "Point",
+ *   "coordinates": [110, 50]
+ * };
  *
  * var feature = turf.feature(geometry);
  *
@@ -37,9 +34,9 @@ function feature(geometry, properties) {
  * properties
  * @returns {Feature<Point>} a Point feature
  * @example
- * var pt1 = turf.point([-75.343, 39.984]);
+ * var point = turf.point([-75.343, 39.984]);
  *
- * //=pt1
+ * //=point
  */
 function point(coordinates, properties) {
     if (!coordinates) throw new Error('No coordinates passed');
@@ -61,15 +58,14 @@ function point(coordinates, properties) {
  * @param {Object=} properties a properties object
  * @returns {Feature<Polygon>} a Polygon feature
  * @throws {Error} throw an error if a LinearRing of the polygon has too few positions
- * or if a LinearRing of the Polygon does not have matching Positions at the
- * beginning & end.
+ * or if a LinearRing of the Polygon does not have matching Positions at the beginning & end.
  * @example
  * var polygon = turf.polygon([[
- *  [-2.275543, 53.464547],
- *  [-2.275543, 53.489271],
- *  [-2.215118, 53.489271],
- *  [-2.215118, 53.464547],
- *  [-2.275543, 53.464547]
+ *   [-2.275543, 53.464547],
+ *   [-2.275543, 53.489271],
+ *   [-2.215118, 53.489271],
+ *   [-2.215118, 53.464547],
+ *   [-2.275543, 53.464547]
  * ]], { name: 'poly1', population: 400});
  *
  * //=polygon
@@ -145,9 +141,9 @@ function lineString(coordinates, properties) {
  *  turf.point([-75.534, 39.123], {name: 'Location C'})
  * ];
  *
- * var fc = turf.featureCollection(features);
+ * var collection = turf.featureCollection(features);
  *
- * //=fc
+ * //=collection
  */
 function featureCollection(features) {
     if (!features) throw new Error('No features passed');
@@ -171,7 +167,6 @@ function featureCollection(features) {
  * var multiLine = turf.multiLineString([[[0,0],[10,10]]]);
  *
  * //=multiLine
- *
  */
 function multiLineString(coordinates, properties) {
     if (!coordinates) throw new Error('No coordinates passed');
@@ -195,7 +190,6 @@ function multiLineString(coordinates, properties) {
  * var multiPt = turf.multiPoint([[0,0],[10,10]]);
  *
  * //=multiPt
- *
  */
 function multiPoint(coordinates, properties) {
     if (!coordinates) throw new Error('No coordinates passed');
@@ -205,7 +199,6 @@ function multiPoint(coordinates, properties) {
         coordinates: coordinates
     }, properties);
 }
-
 
 /**
  * Creates a {@link Feature<MultiPolygon>} based on a
@@ -253,7 +246,7 @@ function multiPolygon(coordinates, properties) {
  * //=collection
  */
 function geometryCollection(geometries, properties) {
-    if (!geometries) throw new Error('No geometries passed');
+    if (!geometries) throw new Error('geometries is required');
 
     return feature({
         type: 'GeometryCollection',
@@ -261,6 +254,7 @@ function geometryCollection(geometries, properties) {
     }, properties);
 }
 
+// https://en.wikipedia.org/wiki/Great-circle_distance#Radius_for_spherical_Earth
 var factors = {
     miles: 3960,
     nauticalmiles: 3441.145,
@@ -276,7 +270,25 @@ var factors = {
 };
 
 /**
- * Convert a distance measurement from radians to a more friendly unit.
+ * Round number to precision
+ *
+ * @param {number} num Number
+ * @param {number} [precision=0] Precision
+ * @returns {number} rounded number
+ * @example
+ * round(120.4321)
+ * //=120
+ *
+ * round(120.4321, 2)
+ * //=120.43
+ */
+function round(num, precision) {
+    var multiplier = Math.pow(10, precision || 0);
+    return Math.round(num * multiplier) / multiplier;
+}
+
+/**
+ * Convert a distance measurement (assuming a spherical Earth) from radians to a more friendly unit.
  *
  * @name radiansToDistance
  * @param {number} radians in radians across the sphere
@@ -284,14 +296,15 @@ var factors = {
  * @returns {number} distance
  */
 function radiansToDistance(radians, units) {
-    var factor = factors[units || 'kilometers'];
-    if (factor === undefined) throw new Error('Invalid unit');
+    if (radians === undefined || radians === null) throw new Error('radians is required');
 
+    var factor = factors[units || 'kilometers'];
+    if (!factor) throw new Error('units is invalid');
     return radians * factor;
 }
 
 /**
- * Convert a distance measurement from a real-world unit into radians
+ * Convert a distance measurement (assuming a spherical Earth) from a real-world unit into radians
  *
  * @name distanceToRadians
  * @param {number} distance in real units
@@ -299,14 +312,15 @@ function radiansToDistance(radians, units) {
  * @returns {number} radians
  */
 function distanceToRadians(distance, units) {
-    var factor = factors[units || 'kilometers'];
-    if (factor === undefined) throw new Error('Invalid unit');
+    if (distance === undefined || distance === null) throw new Error('distance is required');
 
+    var factor = factors[units || 'kilometers'];
+    if (!factor) throw new Error('units is invalid');
     return distance / factor;
 }
 
 /**
- * Convert a distance measurement from a real-world unit into degrees
+ * Convert a distance measurement (assuming a spherical Earth) from a real-world unit into degrees
  *
  * @name distanceToDegrees
  * @param {number} distance in real units
@@ -314,29 +328,52 @@ function distanceToRadians(distance, units) {
  * @returns {number} degrees
  */
 function distanceToDegrees(distance, units) {
-    var factor = factors[units || 'kilometers'];
-    if (factor === undefined) throw new Error('Invalid unit');
-
-    return (distance / factor) * 57.2958;
+    return radians2degrees(distanceToRadians(distance, units));
 }
-
 
 /**
  * Converts any bearing angle from the north line direction (positive clockwise)
  * and returns an angle between 0-360 degrees (positive clockwise), 0 being the north line
  *
  * @name bearingToAngle
- * @param {number} alpha angle
+ * @param {number} bearing angle, between -180 and +180 degrees
  * @returns {number} angle between 0 and 360 degrees
  */
-function bearingToAngle(alpha) {
-    var beta = alpha % 360;
-    if (beta < 0) {
-        beta += 360;
-    }
-    return beta;
+function bearingToAngle(bearing) {
+    if (bearing === null || bearing === undefined) throw new Error('bearing is required');
+
+    var angle = bearing % 360;
+    if (angle < 0) angle += 360;
+    return angle;
 }
 
+/**
+ * Converts an angle in radians to degrees
+ *
+ * @name radians2degrees
+ * @param {number} radians angle in radians
+ * @returns {number} degrees between 0 and 360 degrees
+ */
+function radians2degrees(radians) {
+    if (radians === null || radians === undefined) throw new Error('radians is required');
+
+    var degrees = radians % (2 * Math.PI);
+    return degrees * 180 / Math.PI;
+}
+
+/**
+ * Converts an angle in degrees to radians
+ *
+ * @name degrees2radians
+ * @param {number} degrees angle between 0 and 360 degrees
+ * @returns {number} angle in radians
+ */
+function degrees2radians(degrees) {
+    if (degrees === null || degrees === undefined) throw new Error('degrees is required');
+
+    var radians = degrees % 360;
+    return radians * Math.PI / 180;
+}
 
 module.exports = {
     feature: feature,
@@ -351,5 +388,8 @@ module.exports = {
     radiansToDistance: radiansToDistance,
     distanceToRadians: distanceToRadians,
     distanceToDegrees: distanceToDegrees,
-    bearingToAngle: bearingToAngle
+    radians2degrees: radians2degrees,
+    degrees2radians: degrees2radians,
+    bearingToAngle: bearingToAngle,
+    round: round
 };
