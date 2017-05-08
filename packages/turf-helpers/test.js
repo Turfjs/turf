@@ -303,21 +303,21 @@ test('geometrycollection', t => {
 
 test('radiansToDistance', t => {
     t.equal(radiansToDistance(1, 'radians'), 1);
-    t.equal(radiansToDistance(1, 'kilometers'), 6373); //= 6371 when earthRadiusIn is updated
-    t.equal(radiansToDistance(1, 'miles'), 3960); //= 3958.755866 when earthRadiusIn is updated
+    t.equal(radiansToDistance(1, 'kilometers'), 6373);
+    t.equal(radiansToDistance(1, 'miles'), 3960);
 
     t.end();
 });
 
 test('distanceToRadians', t => {
     t.equal(distanceToRadians(1, 'radians'), 1);
-    t.equal(distanceToRadians(6371, 'kilometers'), 0.999686); //= 1 when earthRadiusIn is updated
-    t.equal(distanceToRadians(3958.755866, 'miles'), 0.999686); //= 1 when earthRadiusIn is updated
+    t.equal(distanceToRadians(6373, 'kilometers'), 1);
+    t.equal(distanceToRadians(3960, 'miles'), 1);
     t.end();
 });
 
 test('radians2degrees', t => {
-    t.equal(radians2degrees(Math.PI / 3), 60, 'radiance conversion PI/3');
+    t.equal(round(radians2degrees(Math.PI / 3), 6), 60, 'radiance conversion PI/3');
     t.equal(radians2degrees(3.5 * Math.PI), 270, 'radiance conversion 3.5PI');
     t.equal(radians2degrees(-Math.PI), -180, 'radiance conversion -PI');
 
@@ -325,9 +325,9 @@ test('radians2degrees', t => {
 });
 
 test('radians2degrees', t => {
-    t.equal(degrees2radians(60), round(Math.PI / 3, 6), 'degrees conversion 60');
-    t.equal(degrees2radians(270), round(1.5 * Math.PI, 6), 'degrees conversion 270');
-    t.equal(degrees2radians(-180), round(-Math.PI, 6), 'degrees conversion -180');
+    t.equal(degrees2radians(60), Math.PI / 3, 'degrees conversion 60');
+    t.equal(degrees2radians(270), 1.5 * Math.PI, 'degrees conversion 270');
+    t.equal(degrees2radians(-180), -Math.PI, 'degrees conversion -180');
 
     t.end();
 });

@@ -252,7 +252,7 @@ function multiPolygon(coordinates, properties) {
  * //=collection
  */
 function geometryCollection(geometries, properties) {
-    if (!geometries) throw new Error('No geometries passed');
+    if (!geometries) throw new Error('geometries is required');
 
     return feature({
         type: 'GeometryCollection',
@@ -261,7 +261,7 @@ function geometryCollection(geometries, properties) {
 }
 
 // https://en.wikipedia.org/wiki/Great-circle_distance#Radius_for_spherical_Earth
-var earthRadiusIn = {
+var factors = {
     miles: 3960,
     nauticalmiles: 3441.145,
     degrees: 57.2957795,
@@ -301,10 +301,11 @@ function round(num, precision) {
  * @returns {number} distance
  */
 function radiansToDistance(radians, units) {
-    var radius = earthRadiusIn[units || 'kilometers'];
-    if (radius === undefined) throw new Error('Invalid unit');
+    if (radians === undefined || radians === null) throw new Error('radians is required');
 
-    return round(radians * radius, 6);
+    var factor = factors[units || 'kilometers'];
+    if (!factors) throw new Error('units is invalid');
+    return radians * factor;
 }
 
 /**
@@ -316,11 +317,12 @@ function radiansToDistance(radians, units) {
  * @returns {number} radians
  */
 function distanceToRadians(distance, units) {
-    var radius = earthRadiusIn[units || 'kilometers'];
-    if (radius === undefined) throw new Error('Invalid unit');
+    if (distance === undefined || distance === null) throw new Error('distance is required');
 
-    var centralAngle = distance / radius;
-    return round(centralAngle, 6);
+    var factor = factors[units || 'kilometers'];
+    if (!factors) throw new Error('units is invalid');
+    var centralAngle = distance / factor;
+    return centralAngle;
 }
 
 /**
@@ -345,10 +347,9 @@ function distanceToDegrees(distance, units) {
  */
 function bearingToAngle(bearing) {
     if (bearing === null || bearing === undefined) throw new Error('bearing is required');
+
     var angle = bearing % 360;
-    if (angle < 0) {
-        angle += 360;
-    }
+    if (angle < 0) angle += 360;
     return angle;
 }
 
@@ -361,8 +362,9 @@ function bearingToAngle(bearing) {
  */
 function radians2degrees(radians) {
     if (radians === null || radians === undefined) throw new Error('radians is required');
+
     var degrees = radians % (2 * Math.PI);
-    return round(degrees * 180 / Math.PI, 6);
+    return degrees * 180 / Math.PI;
 }
 
 /**
@@ -374,8 +376,9 @@ function radians2degrees(radians) {
  */
 function degrees2radians(degrees) {
     if (degrees === null || degrees === undefined) throw new Error('degrees is required');
+
     var radians = degrees % 360;
-    return round(radians * Math.PI / 180, 6);
+    return radians * Math.PI / 180;
 }
 
 module.exports = {
