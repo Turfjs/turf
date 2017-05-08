@@ -3,7 +3,7 @@
  *
  * @private
  * @callback coordEachCallback
- * @param {[number, number]} currentCoords The current coordinates being processed.
+ * @param {Array<number>} currentCoords The current coordinates being processed.
  * @param {number} currentIndex The index of the current element being processed in the
  * array.Starts at index 0, if an initialValue is provided, and at index 1 otherwise.
  */
@@ -12,7 +12,7 @@
  * Iterate over coordinates in any GeoJSON object, similar to Array.forEach()
  *
  * @name coordEach
- * @param {Object} layer any GeoJSON object
+ * @param {FeatureCollection|Geometry|Feature<any>} geojson any GeoJSON object
  * @param {Function} callback a method that takes (currentCoords, currentIndex)
  * @param {boolean} [excludeWrapCoord=false] whether or not to include the final coordinate of LinearRings that wraps the ring in its iteration.
  * @example
@@ -42,15 +42,15 @@
  *   //=currentIndex
  * });
  */
-function coordEach(layer, callback, excludeWrapCoord) {
+function coordEach(geojson, callback, excludeWrapCoord) {
     var i, j, k, g, l, geometry, stopG, coords,
         geometryMaybeCollection,
         wrapShrink = 0,
         currentIndex = 0,
         isGeometryCollection,
-        isFeatureCollection = layer.type === 'FeatureCollection',
-        isFeature = layer.type === 'Feature',
-        stop = isFeatureCollection ? layer.features.length : 1;
+        isFeatureCollection = geojson.type === 'FeatureCollection',
+        isFeature = geojson.type === 'Feature',
+        stop = isFeatureCollection ? geojson.features.length : 1;
 
   // This logic may look a little weird. The reason why it is that way
   // is because it's trying to be fast. GeoJSON supports multiple kinds
@@ -66,8 +66,8 @@ function coordEach(layer, callback, excludeWrapCoord) {
   // be required with the normalization approach.
     for (i = 0; i < stop; i++) {
 
-        geometryMaybeCollection = (isFeatureCollection ? layer.features[i].geometry :
-        (isFeature ? layer.geometry : layer));
+        geometryMaybeCollection = (isFeatureCollection ? geojson.features[i].geometry :
+        (isFeature ? geojson.geometry : geojson));
         isGeometryCollection = geometryMaybeCollection.type === 'GeometryCollection';
         stopG = isGeometryCollection ? geometryMaybeCollection.geometries.length : 1;
 
@@ -138,7 +138,7 @@ function coordEach(layer, callback, excludeWrapCoord) {
  * Reduce coordinates in any GeoJSON object, similar to Array.reduce()
  *
  * @name coordReduce
- * @param {Object} layer any GeoJSON object
+ * @param {FeatureCollection|Geometry|Feature<any>} geojson any GeoJSON object
  * @param {Function} callback a method that takes (previousValue, currentCoords, currentIndex)
  * @param {*} [initialValue] Value to use as the first argument to the first call of the callback.
  * @param {boolean} [excludeWrapCoord=false] whether or not to include
@@ -173,9 +173,9 @@ function coordEach(layer, callback, excludeWrapCoord) {
  *   return currentCoords;
  * });
  */
-function coordReduce(layer, callback, initialValue, excludeWrapCoord) {
+function coordReduce(geojson, callback, initialValue, excludeWrapCoord) {
     var previousValue = initialValue;
-    coordEach(layer, function (currentCoords, currentIndex) {
+    coordEach(geojson, function (currentCoords, currentIndex) {
         if (currentIndex === 0 && initialValue === undefined) {
             previousValue = currentCoords;
         } else {
@@ -199,7 +199,7 @@ function coordReduce(layer, callback, initialValue, excludeWrapCoord) {
  * Iterate over properties in any GeoJSON object, similar to Array.forEach()
  *
  * @name propEach
- * @param {Object} layer any GeoJSON object
+ * @param {FeatureCollection|Feature<any>} geojson any GeoJSON object
  * @param {Function} callback a method that takes (currentProperties, currentIndex)
  * @example
  * var features = {
@@ -228,16 +228,16 @@ function coordReduce(layer, callback, initialValue, excludeWrapCoord) {
  *   //=currentIndex
  * });
  */
-function propEach(layer, callback) {
+function propEach(geojson, callback) {
     var i;
-    switch (layer.type) {
+    switch (geojson.type) {
     case 'FeatureCollection':
-        for (i = 0; i < layer.features.length; i++) {
-            callback(layer.features[i].properties, i);
+        for (i = 0; i < geojson.features.length; i++) {
+            callback(geojson.features[i].properties, i);
         }
         break;
     case 'Feature':
-        callback(layer.properties, 0);
+        callback(geojson.properties, 0);
         break;
     }
 }
@@ -272,7 +272,7 @@ function propEach(layer, callback) {
  * the reduction, so an array of all properties is unnecessary.
  *
  * @name propReduce
- * @param {Object} layer any GeoJSON object
+ * @param {FeatureCollection|Feature<any>} geojson any GeoJSON object
  * @param {Function} callback a method that takes (previousValue, currentProperties, currentIndex)
  * @param {*} [initialValue] Value to use as the first argument to the first call of the callback.
  * @returns {*} The value that results from the reduction.
@@ -305,9 +305,9 @@ function propEach(layer, callback) {
  *   return currentProperties
  * });
  */
-function propReduce(layer, callback, initialValue) {
+function propReduce(geojson, callback, initialValue) {
     var previousValue = initialValue;
-    propEach(layer, function (currentProperties, currentIndex) {
+    propEach(geojson, function (currentProperties, currentIndex) {
         if (currentIndex === 0 && initialValue === undefined) {
             previousValue = currentProperties;
         } else {
@@ -332,7 +332,7 @@ function propReduce(layer, callback, initialValue) {
  * Array.forEach.
  *
  * @name featureEach
- * @param {Object} layer any GeoJSON object
+ * @param {Geometry|FeatureCollection|Feature<any>} geojson any GeoJSON object
  * @param {Function} callback a method that takes (currentFeature, currentIndex)
  * @example
  * var features = {
@@ -361,12 +361,12 @@ function propReduce(layer, callback, initialValue) {
  *   //=currentIndex
  * });
  */
-function featureEach(layer, callback) {
-    if (layer.type === 'Feature') {
-        callback(layer, 0);
-    } else if (layer.type === 'FeatureCollection') {
-        for (var i = 0; i < layer.features.length; i++) {
-            callback(layer.features[i], i);
+function featureEach(geojson, callback) {
+    if (geojson.type === 'Feature') {
+        callback(geojson, 0);
+    } else if (geojson.type === 'FeatureCollection') {
+        for (var i = 0; i < geojson.features.length; i++) {
+            callback(geojson.features[i], i);
         }
     }
 }
@@ -398,7 +398,7 @@ function featureEach(layer, callback) {
  * Reduce features in any GeoJSON object, similar to Array.reduce().
  *
  * @name featureReduce
- * @param {Object} layer any GeoJSON object
+ * @param {Geometry|FeatureCollection|Feature<any>} geojson any GeoJSON object
  * @param {Function} callback a method that takes (previousValue, currentFeature, currentIndex)
  * @param {*} [initialValue] Value to use as the first argument to the first call of the callback.
  * @returns {*} The value that results from the reduction.
@@ -431,9 +431,9 @@ function featureEach(layer, callback) {
  *   return currentFeature
  * });
  */
-function featureReduce(layer, callback, initialValue) {
+function featureReduce(geojson, callback, initialValue) {
     var previousValue = initialValue;
-    featureEach(layer, function (currentFeature, currentIndex) {
+    featureEach(geojson, function (currentFeature, currentIndex) {
         if (currentIndex === 0 && initialValue === undefined) {
             previousValue = currentFeature;
         } else {
@@ -447,7 +447,7 @@ function featureReduce(layer, callback, initialValue) {
  * Get all coordinates from any GeoJSON object.
  *
  * @name coordAll
- * @param {Object} layer any GeoJSON object
+ * @param {Geometry|FeatureCollection|Feature<any>} geojson any GeoJSON object
  * @returns {Array<Array<number>>} coordinate position array
  * @example
  * var features = {
@@ -474,9 +474,9 @@ function featureReduce(layer, callback, initialValue) {
  * var coords = turf.coordAll(features);
  * //=coords
  */
-function coordAll(layer) {
+function coordAll(geojson) {
     var coords = [];
-    coordEach(layer, function (coord) {
+    coordEach(geojson, function (coord) {
         coords.push(coord);
     });
     return coords;
@@ -486,7 +486,7 @@ function coordAll(layer) {
  * Iterate over each geometry in any GeoJSON object, similar to Array.forEach()
  *
  * @name geomEach
- * @param {Object} layer any GeoJSON object
+ * @param {Geometry|FeatureCollection|Feature<any>} geojson any GeoJSON object
  * @param {Function} callback a method that takes (currentGeometry, currentIndex, currentProperties)
  * @example
  * var features = {
@@ -516,15 +516,15 @@ function coordAll(layer) {
  *   //=currentProperties
  * });
  */
-function geomEach(layer, callback) {
+function geomEach(geojson, callback) {
     var i, j, g, geometry, stopG,
         geometryMaybeCollection,
         isGeometryCollection,
         geometryProperties,
         currentIndex = 0,
-        isFeatureCollection = layer.type === 'FeatureCollection',
-        isFeature = layer.type === 'Feature',
-        stop = isFeatureCollection ? layer.features.length : 1;
+        isFeatureCollection = geojson.type === 'FeatureCollection',
+        isFeature = geojson.type === 'Feature',
+        stop = isFeatureCollection ? geojson.features.length : 1;
 
   // This logic may look a little weird. The reason why it is that way
   // is because it's trying to be fast. GeoJSON supports multiple kinds
@@ -540,10 +540,10 @@ function geomEach(layer, callback) {
   // be required with the normalization approach.
     for (i = 0; i < stop; i++) {
 
-        geometryMaybeCollection = (isFeatureCollection ? layer.features[i].geometry :
-        (isFeature ? layer.geometry : layer));
-        geometryProperties = (isFeatureCollection ? layer.features[i].properties :
-                              (isFeature ? layer.properties : {}));
+        geometryMaybeCollection = (isFeatureCollection ? geojson.features[i].geometry :
+        (isFeature ? geojson.geometry : geojson));
+        geometryProperties = (isFeatureCollection ? geojson.features[i].properties :
+                              (isFeature ? geojson.properties : {}));
         isGeometryCollection = geometryMaybeCollection.type === 'GeometryCollection';
         stopG = isGeometryCollection ? geometryMaybeCollection.geometries.length : 1;
 
@@ -599,7 +599,7 @@ function geomEach(layer, callback) {
  * Reduce geometry in any GeoJSON object, similar to Array.reduce().
  *
  * @name geomReduce
- * @param {Object} layer any GeoJSON object
+ * @param {Geometry|FeatureCollection|Feature<any>} geojson any GeoJSON object
  * @param {Function} callback a method that takes (previousValue, currentGeometry, currentIndex, currentProperties)
  * @param {*} [initialValue] Value to use as the first argument to the first call of the callback.
  * @returns {*} The value that results from the reduction.
@@ -632,9 +632,9 @@ function geomEach(layer, callback) {
  *   return currentGeometry
  * });
  */
-function geomReduce(layer, callback, initialValue) {
+function geomReduce(geojson, callback, initialValue) {
     var previousValue = initialValue;
-    geomEach(layer, function (currentGeometry, currentIndex, currentProperties) {
+    geomEach(geojson, function (currentGeometry, currentIndex, currentProperties) {
         if (currentIndex === 0 && initialValue === undefined) {
             previousValue = currentGeometry;
         } else {
@@ -661,7 +661,7 @@ function geomReduce(layer, callback, initialValue) {
  * Array.forEach.
  *
  * @name flattenEach
- * @param {Object} layer any GeoJSON object
+ * @param {Geometry|FeatureCollection|Feature<any>} geojson any GeoJSON object
  * @param {Function} callback a method that takes (currentFeature, currentIndex, currentSubIndex)
  * @example
  * var features = {
@@ -691,8 +691,8 @@ function geomReduce(layer, callback, initialValue) {
  *   //=currentSubIndex
  * });
  */
-function flattenEach(layer, callback) {
-    geomEach(layer, function (geometry, index, properties) {
+function flattenEach(geojson, callback) {
+    geomEach(geojson, function (geometry, index, properties) {
 
         // Callback for single geometry
         switch (geometry.type) {
@@ -758,7 +758,7 @@ function flattenEach(layer, callback) {
  * Reduce flattened features in any GeoJSON object, similar to Array.reduce().
  *
  * @name flattenReduce
- * @param {Object} layer any GeoJSON object
+ * @param {Geometry|FeatureCollection|Feature<any>} geojson any GeoJSON object
  * @param {Function} callback a method that takes (previousValue, currentFeature, currentIndex, currentSubIndex)
  * @param {*} [initialValue] Value to use as the first argument to the first call of the callback.
  * @returns {*} The value that results from the reduction.
@@ -792,9 +792,9 @@ function flattenEach(layer, callback) {
  *   return currentFeature
  * });
  */
-function flattenReduce(layer, callback, initialValue) {
+function flattenReduce(geojson, callback, initialValue) {
     var previousValue = initialValue;
-    flattenEach(layer, function (currentFeature, currentIndex, currentSubIndex) {
+    flattenEach(geojson, function (currentFeature, currentIndex, currentSubIndex) {
         if (currentIndex === 0 && currentSubIndex === 0 && initialValue === undefined) {
             previousValue = currentFeature;
         } else {
