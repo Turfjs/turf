@@ -7,8 +7,8 @@
     [ 1, 5,  5,  5,  5, 5, 1],
     [ 1, 1,  1,  1,  1, 1, 1]
   ],
-  "origin": [ 20, 10 ],
+  "origin": [ 10.8, 44.1 ],
   "cellSize": 20,
   "breaks": [2, 4, 8, 12],
-  "property": "temperature"
+  "zProperty": "temperature"
 }

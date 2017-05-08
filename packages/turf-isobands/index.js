@@ -2,13 +2,11 @@ var marchingsquares = require('marchingsquares');
 var helpers = require('@turf/helpers');
 var featureCollection = helpers.featureCollection;
 var polygon = helpers.polygon;
-var multiLineString = helpers.multiLineString;
 var multiPolygon = helpers.multiPolygon;
 var explode = require('@turf/explode');
 var inside = require('@turf/inside');
 var area = require('@turf/area');
 var invariant = require('@turf/invariant');
-// var getCoords = invariant.getCoords;
 var collectionOf = invariant.collectionOf;
 var bbox = require('@turf/bbox');
 var gridToMatrix = require('grid-to-matrix');
@@ -20,7 +18,11 @@ var gridToMatrix = require('grid-to-matrix');
  * @name isobands
  * @param {FeatureCollection<Point>} points a FeatureCollection of {@link Point} features
  * @param {Array<number>} breaks where to draw contours
- * @param {string} [property='elevation'] the property name in `points` from which z-values will be pulled
+ * @param {string} [zProperty='elevation'] the property name in `points` from which z-values will be pulled
+ * @param {Object} [options={}] options on output
+ * @param {Array<Object>} [options.isobandProperties=[]] GeoJSON properties passed, in order, to the correspondent
+ * isoband (order defined by breaks)
+ * @param {Object} [options.commonProperties={}] GeoJSON properties passed to ALL isobands
  * @returns {FeatureCollection<MultiPolygon>} a FeatureCollection of {@link MultiPolygon} features representing isobands
  * @example
  * // create random points with random
@@ -33,22 +35,49 @@ var gridToMatrix = require('grid-to-matrix');
  *     pointGrid.features[i].properties.elevation = Math.random() * 10;
  * }
  * var breaks = [0, 5, 8.5];
- * var isobands = turf.isobands(pointGrid, breaks, 'elevation');
- * //=isobands
+ * var isobands = turf.isobands(pointGrid, breaks, 'temp');
+ *
+ * //addToMap
+ * var addToMap = [isobands];
  */
-module.exports = function (points, breaks, property) {
+module.exports = function (points, breaks, zProperty, options) {
     // Input validation
-    collectionOf(points, 'Point', 'input must contain Points');
-    property = property || 'elevation';
+    var isObject = function (input) {
+        return (!!input) && (input.constructor === Object);
+    };
+    collectionOf(points, 'Point', 'Input must contain Points');
+    if (!breaks || !Array.isArray(breaks)) throw new Error('breaks is required');
+    if (options.commonProperties && !isObject(options.commonProperties)) {
+        throw new Error('commonProperties is not an Object');
+    }
+    if (options.isobandProperties && !Array.isArray(options.isobandProperties)) {
+        throw new Error('isobandProperties is not an Array');
+    }
+    if (zProperty && typeof zProperty !== 'string') { throw new Error('zProperty is not a string'); }
+
+    zProperty = zProperty || 'elevation';
+    options = options || {};
+    var commonProperties = options.commonProperties || {};
+    var isobandProperties = options.isobandProperties || [];
 
     // Isoband methods
-    var matrix = gridToMatrix(points, property);
-    var contours = createContourLines(matrix, breaks, property);
+    var matrix = gridToMatrix(points, zProperty, true);
+    var contours = createContourLines(matrix, breaks, zProperty);
     contours = rescaleContours(contours, matrix, points);
-    var multipolygons = contours.map(function (contour) {
-        var obj = {};
-        obj[property] = contour[property];
-        return multiPolygon(contour.groupedRings, obj);
+
+    var multipolygons = contours.map(function (contour, index) {
+        if (isobandProperties[index] && !isObject(isobandProperties[index])) {
+            throw new Error('Each mappedProperty is required to be an Object');
+        }
+        // collect all properties
+        var contourProperties = Object.assign(
+            {},
+            commonProperties,
+            isobandProperties[index]
+        );
+        contourProperties[zProperty] = contour[zProperty];
+        var multiP = multiPolygon(contour.groupedRings, contourProperties);
+        return multiP;
     });
 
     return featureCollection(multipolygons);
@@ -69,17 +98,6 @@ module.exports = function (points, breaks, property) {
  */
 function createContourLines(matrix, breaks, property) {
 
-    // add a frame, with value lower that the first limit, around the matrix
-    // so that the first contour will always include the matrix outline
-    // var outerValue = +breaks[0] - 5;
-    // var newMatrix = [(new Array(matrix[0].length + 2)).fill(outerValue)];
-    // for (var j = 0; j < matrix.length; j++) {
-    //     var row = [outerValue].concat(matrix[j]);
-    //     row.push(outerValue);
-    //     newMatrix.push(row);
-    // }
-    // newMatrix.push((new Array(matrix[0].length + 2)).fill(outerValue));
-
     var contours = [];
     for (var i = 1; i < breaks.length; i++) {
         var lowerBand = +breaks[i - 1]; // make sure the breaks value is a number
@@ -90,12 +108,11 @@ function createContourLines(matrix, breaks, property) {
         // in the array of LinearRings represents the exterior ring (i.e. biggest area),
         // and any subsequent elements represent interior rings (i.e. smaller area);
         // this avoids rendering issues of the MultiPolygons on the map
-        var isolines = multiLineString(isobandsCoords);
         var nestedRings = orderByArea(isobandsCoords);
         var groupedRings = groupNestedRings(nestedRings);
         var obj = {};
         obj['groupedRings'] = groupedRings;
-        obj[property] = +breaks[i]; // make sure it's a number
+        obj[property] = lowerBand + '-' + upperBand;
         contours.push(obj);
     }
     return contours;
@@ -144,9 +161,7 @@ function rescaleContours(contours, matrix, points) {
 }
 
 
-/*
- * utility functions
- */
+/*  utility functions */
 
 
 /**
