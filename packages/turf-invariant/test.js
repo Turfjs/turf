@@ -1,11 +1,11 @@
 const test = require('tape');
-const {point, lineString, polygon} = require('@turf/helpers');
+const {point, lineString, polygon, featureCollection} = require('@turf/helpers');
 const invariant = require('./');
 
 test('invariant#containsNumber', t => {
     t.equals(invariant.containsNumber([1, 1]), true);
     t.equals(invariant.containsNumber([[1, 1], [1, 1]]), true);
-    t.equals(invariant.containsNumber([[[1,1], [1,1]], [1, 1]]), true);
+    t.equals(invariant.containsNumber([[[1, 1], [1, 1]], [1, 1]]), true);
 
     //# Ensure recusive call handles Max callstack exceeded
     t.throws(() => {
@@ -179,5 +179,23 @@ test('invariant#getCoords', t => {
     t.deepEqual(invariant.getCoords(point([1, 2])), [1, 2]);
     t.deepEqual(invariant.getCoords(lineString([[1, 2], [3, 4]])), [[1, 2], [3, 4]]);
     t.deepEqual(invariant.getCoords([1, 2]), [1, 2]);
+    t.end();
+});
+
+test('invariant#getGeom', t => {
+    const pt = point([1, 1]);
+
+    t.deepEqual(invariant.getGeom(pt), pt.geometry);
+    t.throws(() => invariant.getGeom(featureCollection([pt, pt])), 'featureCollection not valid');
+    t.end();
+});
+
+test('invariant#getGeomType', t => {
+    const pt = point([1, 1]);
+    const line = lineString([[0, 1], [1, 1]]);
+
+    t.deepEqual(invariant.getGeomType(pt), 'Point');
+    t.deepEqual(invariant.getGeomType(line), 'LineString');
+    t.throws(() => invariant.getGeomType(featureCollection([pt, pt])), 'featureCollection not valid');
     t.end();
 });
