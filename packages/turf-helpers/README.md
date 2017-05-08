@@ -13,12 +13,9 @@ Wraps a GeoJSON [Geometry](http://geojson.org/geojson-spec.html#geometry) in a G
 
 ```javascript
 var geometry = {
-     "type": "Point",
-     "coordinates": [
-       67.5,
-       32.84267363195431
-     ]
-   }
+  "type": "Point",
+  "coordinates": [110, 50]
+};
 
 var feature = turf.feature(geometry);
 
@@ -40,9 +37,9 @@ Takes coordinates and properties (optional) and returns a new [Point](http://geo
 **Examples**
 
 ```javascript
-var pt1 = turf.point([-75.343, 39.984]);
+var point = turf.point([-75.343, 39.984]);
 
-//=pt1
+//=point
 ```
 
 Returns **[Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;[Point](http://geojson.org/geojson-spec.html#point)>** a Point feature
@@ -60,19 +57,18 @@ Takes an array of LinearRings and optionally an [Object](https://developer.mozil
 
 ```javascript
 var polygon = turf.polygon([[
- [-2.275543, 53.464547],
- [-2.275543, 53.489271],
- [-2.215118, 53.489271],
- [-2.215118, 53.464547],
- [-2.275543, 53.464547]
+  [-2.275543, 53.464547],
+  [-2.275543, 53.489271],
+  [-2.215118, 53.489271],
+  [-2.215118, 53.464547],
+  [-2.275543, 53.464547]
 ]], { name: 'poly1', population: 400});
 
 //=polygon
 ```
 
 -   Throws **[Error](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error)** throw an error if a LinearRing of the polygon has too few positions
-    or if a LinearRing of the Polygon does not have matching Positions at the
-    beginning & end.
+    or if a LinearRing of the Polygon does not have matching Positions at the beginning & end.
 
 Returns **[Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;[Polygon](http://geojson.org/geojson-spec.html#polygon)>** a Polygon feature
 
@@ -128,9 +124,9 @@ var features = [
  turf.point([-75.534, 39.123], {name: 'Location C'})
 ];
 
-var fc = turf.featureCollection(features);
+var collection = turf.featureCollection(features);
 
-//=fc
+//=collection
 ```
 
 Returns **[FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects)** a FeatureCollection of input features
@@ -243,6 +239,7 @@ Round number to precision
 ```javascript
 round(120.4321)
 //=120
+
 round(120.4321, 2)
 //=120.43
 ```

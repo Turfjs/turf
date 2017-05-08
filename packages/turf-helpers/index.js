@@ -7,12 +7,9 @@
  * @returns {FeatureCollection} a FeatureCollection of input features
  * @example
  * var geometry = {
- *      "type": "Point",
- *      "coordinates": [
- *        67.5,
- *        32.84267363195431
- *      ]
- *    }
+ *   "type": "Point",
+ *   "coordinates": [110, 50]
+ * };
  *
  * var feature = turf.feature(geometry);
  *
@@ -37,9 +34,9 @@ function feature(geometry, properties) {
  * properties
  * @returns {Feature<Point>} a Point feature
  * @example
- * var pt1 = turf.point([-75.343, 39.984]);
+ * var point = turf.point([-75.343, 39.984]);
  *
- * //=pt1
+ * //=point
  */
 function point(coordinates, properties) {
     if (!coordinates) throw new Error('No coordinates passed');
@@ -61,15 +58,14 @@ function point(coordinates, properties) {
  * @param {Object=} properties a properties object
  * @returns {Feature<Polygon>} a Polygon feature
  * @throws {Error} throw an error if a LinearRing of the polygon has too few positions
- * or if a LinearRing of the Polygon does not have matching Positions at the
- * beginning & end.
+ * or if a LinearRing of the Polygon does not have matching Positions at the beginning & end.
  * @example
  * var polygon = turf.polygon([[
- *  [-2.275543, 53.464547],
- *  [-2.275543, 53.489271],
- *  [-2.215118, 53.489271],
- *  [-2.215118, 53.464547],
- *  [-2.275543, 53.464547]
+ *   [-2.275543, 53.464547],
+ *   [-2.275543, 53.489271],
+ *   [-2.215118, 53.489271],
+ *   [-2.215118, 53.464547],
+ *   [-2.275543, 53.464547]
  * ]], { name: 'poly1', population: 400});
  *
  * //=polygon
@@ -145,9 +141,9 @@ function lineString(coordinates, properties) {
  *  turf.point([-75.534, 39.123], {name: 'Location C'})
  * ];
  *
- * var fc = turf.featureCollection(features);
+ * var collection = turf.featureCollection(features);
  *
- * //=fc
+ * //=collection
  */
 function featureCollection(features) {
     if (!features) throw new Error('No features passed');
@@ -171,7 +167,6 @@ function featureCollection(features) {
  * var multiLine = turf.multiLineString([[[0,0],[10,10]]]);
  *
  * //=multiLine
- *
  */
 function multiLineString(coordinates, properties) {
     if (!coordinates) throw new Error('No coordinates passed');
@@ -195,7 +190,6 @@ function multiLineString(coordinates, properties) {
  * var multiPt = turf.multiPoint([[0,0],[10,10]]);
  *
  * //=multiPt
- *
  */
 function multiPoint(coordinates, properties) {
     if (!coordinates) throw new Error('No coordinates passed');
@@ -284,6 +278,7 @@ var factors = {
  * @example
  * round(120.4321)
  * //=120
+ *
  * round(120.4321, 2)
  * //=120.43
  */
@@ -321,8 +316,7 @@ function distanceToRadians(distance, units) {
 
     var factor = factors[units || 'kilometers'];
     if (!factor) throw new Error('units is invalid');
-    var centralAngle = distance / factor;
-    return centralAngle;
+    return distance / factor;
 }
 
 /**
