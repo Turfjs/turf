@@ -13,6 +13,8 @@ import {
     distanceToDegrees,
     bearingToAngle} from '@turf/helpers';
 import {
+    getGeom,
+    getGeomType,
     getCoord,
     getCoords,
     geojsonType,
@@ -158,6 +160,9 @@ export {
     distanceToRadians,
     distanceToDegrees,
     getCoord,
+    getCoords,
+    getGeom,
+    getGeomType,
     geojsonType,
     featureOf,
     collectionOf,
