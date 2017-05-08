@@ -157,7 +157,7 @@ function collectionOf(featureCollection, type, name) {
 function getGeom(geojson) {
     if (!geojson) throw new Error('<geojson> is required');
     if (geojson.geometry) return geojson.geometry;
-    if (geojson.coordinates) return geojson;
+    if (geojson.coordinates || geojson.geometries) return geojson;
     throw new Error('<geojson> must be a Feature or Geometry Object');
 }
 
@@ -180,10 +180,7 @@ function getGeom(geojson) {
  * //="Point"
  */
 function getGeomType(geojson) {
-    if (!geojson) throw new Error('<geojson> is required');
-    if (geojson.geometry) return geojson.geometry.type;
-    if (geojson.coordinates) return geojson.type;
-    throw new Error('<geojson> must be a Feature or Geometry Object');
+    return getGeom(geojson).type;
 }
 
 module.exports = {

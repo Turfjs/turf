@@ -1,5 +1,5 @@
 const test = require('tape');
-const {point, lineString, polygon, featureCollection} = require('@turf/helpers');
+const {point, lineString, polygon, featureCollection, geometryCollection} = require('@turf/helpers');
 const invariant = require('./');
 
 test('invariant#containsNumber', t => {
@@ -184,18 +184,27 @@ test('invariant#getCoords', t => {
 
 test('invariant#getGeom', t => {
     const pt = point([1, 1]);
+    const line = lineString([[0, 1], [1, 1]]);
+    const collection = featureCollection([pt, line]);
+    const geomCollection = geometryCollection([pt.geometry, line.geometry]);
 
-    t.deepEqual(invariant.getGeom(pt), pt.geometry);
-    t.throws(() => invariant.getGeom(featureCollection([pt, pt])), 'featureCollection not valid');
+    t.deepEqual(invariant.getGeom(pt), pt.geometry, 'Point');
+    t.deepEqual(invariant.getGeom(line.geometry), line.geometry, 'LineString');
+    t.deepEqual(invariant.getGeom(geomCollection), geomCollection.geometry, 'GeometryCollection');
+    t.deepEqual(invariant.getGeom(geomCollection.geometry), geomCollection.geometry, 'GeometryCollection');
+    t.throws(() => invariant.getGeom(collection), 'featureCollection not valid');
     t.end();
 });
 
 test('invariant#getGeomType', t => {
     const pt = point([1, 1]);
     const line = lineString([[0, 1], [1, 1]]);
+    const collection = featureCollection([pt, line]);
+    const geomCollection = geometryCollection([pt.geometry, line.geometry]);
 
     t.deepEqual(invariant.getGeomType(pt), 'Point');
-    t.deepEqual(invariant.getGeomType(line), 'LineString');
-    t.throws(() => invariant.getGeomType(featureCollection([pt, pt])), 'featureCollection not valid');
+    t.deepEqual(invariant.getGeomType(line.geometry), 'LineString');
+    t.deepEqual(invariant.getGeomType(geomCollection), 'GeometryCollection');
+    t.throws(() => invariant.getGeomType(collection, 'featureCollection not valid'));
     t.end();
 });

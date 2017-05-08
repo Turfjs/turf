@@ -1,6 +1,7 @@
 /// <reference types="geojson" />
 
 export type GeometryObject = GeoJSON.GeometryObject;
+export type GeometryCollection = GeoJSON.GeometryCollection;
 export type Feature<Geom extends GeometryObject> = GeoJSON.Feature<Geom>;
 export type Features<Geom extends GeometryObject> = GeoJSON.FeatureCollection<Geom>;
 
@@ -37,9 +38,9 @@ export function containsNumber(coordinates: any[]): boolean;
 /**
  * http://turfjs.org/docs/
  */
-export function getGeom(geojson: GeometryObject | Feature<any>): boolean;
+export function getGeom(geojson: GeometryCollection | GeometryObject | Feature<any>): boolean;
 
 /**
  * http://turfjs.org/docs/
  */
-export function getGeomType(geojson: GeometryObject | Feature<any>): string;
+export function getGeomType(geojson: GeometryCollection | GeometryObject | Feature<any>): string;
