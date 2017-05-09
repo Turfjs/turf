@@ -1,8 +1,7 @@
 # @turf/rhumb-destination
 
-# destination
+# rhumb-destination
 
-Takes a [Point](http://geojson.org/geojson-spec.html#point) and calculates the location of a destination point given a distance in degrees, radians, miles, or kilometers; and bearing in degrees. This uses the [Haversine formula](http://en.wikipedia.org/wiki/Haversine_formula) to account for global curvature.
 Returns the destination [Point](http://geojson.org/geojson-spec.html#point) having travelled the given distance along a [Rhumb line](https://en.wikipedia.org/wiki/Rhumb_line) from the origin with the (constant) given bearing.
 
 **Parameters**
@@ -53,7 +52,7 @@ PRs and issues.
 Install this module individually:
 
 ```sh
-$ npm install @turf/destination
+$ npm install @turf/rhumb-destination
 ```
 
 Or install the Turf module that includes it as a function:

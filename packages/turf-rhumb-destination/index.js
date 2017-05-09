@@ -8,7 +8,7 @@ var degrees2radians = helpers.degrees2radians;
 var GeodesyLatLon = require('geodesy').LatLonSpherical;
 
 /**
- * Returns the destination {@link Point} having travelled the given distance along a rhumb line from the
+ * Returns the destination {@link Point} having travelled the given distance along a Rhumb line from the
  * origin Point with the (constant) given bearing.
  *
  * @name rhumb-destination
@@ -53,6 +53,9 @@ module.exports = function (origin, distance, bearing, units) {
             break;
         case 'miles':
             distanceInMeters = distance * 1609.34;
+            break;
+        case 'nauticalmiles':
+            distanceInMeters = distance * 1852;
             break;
         case 'degrees':
             distanceInMeters = radiansToDistance(degrees2radians(distance), 'meters');
