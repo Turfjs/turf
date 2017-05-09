@@ -12,7 +12,6 @@ feature({coordinates: [1, 0], type: 'point'})
 multiLineString([[[0, 1], [2, 3], [0, 1]]])
 multiPoint([[0, 1], [2, 3], [0, 1]])
 multiPolygon([[[[0, 1], [2, 3], [0, 1]]]])
-geometryCollection([{coordinates: [1, 0], type: 'point'}])
 radiansToDistance(5)
 distanceToRadians(10)
 distanceToDegrees(45)
@@ -43,3 +42,7 @@ lines.features.push(line)
 // Collection with only Polygons
 const polygons = featureCollection<GeoJSON.Polygon>([])
 polygons.features.push(poly)
+
+// Geometry Collection
+const geomCollection = geometryCollection([{coordinates: [1, 0], type: 'point'}])
+geomCollection.geometry.geometries

@@ -23,6 +23,10 @@ export type GeometryObject = GeoJSON.GeometryObject;
 export type GeometryCollection = GeoJSON.GeometryCollection;
 export type Geoms = GeoJSON.Point | GeoJSON.LineString | GeoJSON.Polygon | GeoJSON.MultiPoint | GeoJSON.MultiLineString | GeoJSON.MultiPolygon;
 
+export interface FeatureGeometryCollection extends GeoJSON.Feature<any> {
+  geometry: GeometryCollection
+}
+
 /**
  * http://turfjs.org/docs/#feature
  */
@@ -70,7 +74,7 @@ export function multiPolygon(coordinates: Position[][][], properties?: any): Mul
 /**
  * http://turfjs.org/docs/#geometrycollection
  */
-export function geometryCollection(geometries: GeometryObject[], properties?: any): GeometryCollection;
+export function geometryCollection(geometries: GeometryObject[], properties?: any): FeatureGeometryCollection;
 
 /**
  * http://turfjs.org/docs/#radianstodistance
