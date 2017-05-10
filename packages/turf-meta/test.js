@@ -1,4 +1,4 @@
-const test = require('tape');
+const {test} = require('tap');
 const {lineString} = require('@turf/helpers');
 const meta = require('./');
 
