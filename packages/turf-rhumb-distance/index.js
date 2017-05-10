@@ -54,24 +54,24 @@ module.exports = function (from, to, units) {
 
     var distance;
     switch (units) {
-        case 'kilometers':
-        case 'kilometres':
-            distance = distanceInMeters / 1000;
-            break;
-        case 'miles':
-            distance = distanceInMeters / 1609.34;
-            break;
-        case 'nauticalmiles':
-            distance = distanceInMeters / 1852;
-            break;
-        case 'degrees':
-            distance = distanceToDegrees(distanceInMeters, 'meters');
-            break;
-        case 'radians':
-            distance = distanceToRadians(distanceInMeters, 'meters');
-            break;
-        default:
-            throw new Error('unknown option given to units');
+    case 'kilometers':
+    case 'kilometres':
+        distance = distanceInMeters / 1000;
+        break;
+    case 'miles':
+        distance = distanceInMeters / 1609.34;
+        break;
+    case 'nauticalmiles':
+        distance = distanceInMeters / 1852;
+        break;
+    case 'degrees':
+        distance = distanceToDegrees(distanceInMeters, 'meters');
+        break;
+    case 'radians':
+        distance = distanceToRadians(distanceInMeters, 'meters');
+        break;
+    default:
+        throw new Error('unknown option given to units');
     }
 
     return distance;

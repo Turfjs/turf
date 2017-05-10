@@ -47,24 +47,24 @@ module.exports = function (origin, distance, bearing, units) {
 
     var distanceInMeters;
     switch (units) {
-        case 'kilometers':
-        case 'kilometres':
-            distanceInMeters = distance * 1000;
-            break;
-        case 'miles':
-            distanceInMeters = distance * 1609.34;
-            break;
-        case 'nauticalmiles':
-            distanceInMeters = distance * 1852;
-            break;
-        case 'degrees':
-            distanceInMeters = radiansToDistance(degrees2radians(distance), 'meters');
-            break;
-        case 'radians':
-            distanceInMeters = radiansToDistance(distance, 'meters');
-            break;
-        default:
-            throw new Error('units not valid');
+    case 'kilometers':
+    case 'kilometres':
+        distanceInMeters = distance * 1000;
+        break;
+    case 'miles':
+        distanceInMeters = distance * 1609.34;
+        break;
+    case 'nauticalmiles':
+        distanceInMeters = distance * 1852;
+        break;
+    case 'degrees':
+        distanceInMeters = radiansToDistance(degrees2radians(distance), 'meters');
+        break;
+    case 'radians':
+        distanceInMeters = radiansToDistance(distance, 'meters');
+        break;
+    default:
+        throw new Error('units not valid');
     }
 
     var coords = getCoords(origin);
