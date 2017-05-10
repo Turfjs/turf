@@ -1,5 +1,5 @@
+var {point} = require('@turf/helpers');
 var Benchmark = require('benchmark');
-var point = require('@turf/helpers').point;
 var rhumbBearing = require('./');
 
 var start = point([-75.4, 39.4]);
@@ -13,8 +13,8 @@ var end = point([-75.534, 39.123]);
  */
 var suite = new Benchmark.Suite('turf-rhumb-bearing');
 suite
-    .add('initial bearing', () => { rhumbBearing(start, end); })
-    .add('final bearing', () => { rhumbBearing(start, end, true); })
+    .add('initial bearing', () => rhumbBearing(start, end))
+    .add('final bearing', () => rhumbBearing(start, end, true))
     .on('cycle', e => console.log(String(e.target)))
     .on('complete', () => {})
     .run();

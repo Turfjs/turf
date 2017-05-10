@@ -1,30 +1,18 @@
-var distance = require('./');
-var Benchmark = require('benchmark');
-var fs = require('fs');
+const {point} = require('@turf/helpers');
+const Benchmark = require('benchmark');
+const distance = require('./');
 
-var pt1 = { 
-    type: "Feature",
-    geometry: {type: "Point", coordinates: [-75.4, 39.4]}
-  };
-var pt2 = {
-  type: "Feature",
-  geometry: {type: "Point", coordinates: [-75.534, 39.123]}
-};
+const pt1 = point([-75.4, 39.4]);
+const pt2 = point([-75.534, 39.123]);
 
 /**
  * Benchmark Results
  *
- * turf-rhumb-distance x 1,168,928 ops/sec ±2.29% (86 runs sampled)
+ * turf-rhumb-distance x 1,721,401 ops/sec ±0.86% (89 runs sampled)
  */
-var suite = new Benchmark.Suite('turf-rhumb-distance');
+const suite = new Benchmark.Suite('turf-rhumb-distance');
 suite
-  .add('turf-rhumb-distance',function () {
-    distance(pt1, pt2, 'miles');
-  })
-  .on('cycle', function (event) {
-    console.log(String(event.target));
-  })
-  .on('complete', function () {
-    
-  })
+  .add('turf-rhumb-distance', () => distance(pt1, pt2, 'miles'))
+  .on('cycle', e => console.log(String(e.target)))
+  .on('complete', () => {})
   .run();
