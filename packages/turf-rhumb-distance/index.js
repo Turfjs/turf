@@ -71,7 +71,7 @@ module.exports = function (from, to, units) {
             distance = distanceToRadians(distanceInMeters, 'meters');
             break;
         default:
-            throw new Error('units not valid');
+            throw new Error('unknown option given to units');
     }
 
     return distance;

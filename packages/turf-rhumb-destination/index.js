@@ -40,7 +40,7 @@ var GeodesyLatLon = require('geodesy').LatLonSpherical;
 module.exports = function (origin, distance, bearing, units) {
     // validation
     if (!origin) throw new Error('origin is required');
-    if (distance === undefined || distance === null) throw new Error('distance is required');
+    if (distance === undefined || distance === null || distance < 0) throw new Error('distance is required');
     if (bearing === undefined || bearing === null) throw new Error('bearing is required');
 
     units = units || 'kilometers';

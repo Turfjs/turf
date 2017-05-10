@@ -6,18 +6,13 @@ const test = require('tape');
 // const distance = require('@turf/distance');
 const truncate = require('@turf/truncate');
 const getCoords = require('@turf/invariant').getCoords;
-const {featureCollection, lineString} = require('@turf/helpers');
+const {featureCollection, lineString, point} = require('@turf/helpers');
 const rhumbDestination = require('./');
 
 const directories = {
     in: path.join(__dirname, 'test', 'in') + path.sep,
     out: path.join(__dirname, 'test', 'out') + path.sep
 };
-
-const round = (num, decimals) => {
-    const factor = Math.pow(10, decimals);
-    return Math.round(num * factor) / factor;
-}
 
 const fixtures = fs.readdirSync(directories.in).map(filename => {
     return {
@@ -44,5 +39,12 @@ test('turf-rhumb-destination', t => {
         t.deepEqual(result, load.sync(directories.out + filename), name);
         // t.equals(dist, round(d, 9), 'distance');
     }
+
+    const pt = point([12, -54]);
+    t.throws(() => { rhumbDestination(pt, 100, 45, 'blah') }, 'unknown option given to units');
+    t.throws(() => { rhumbDestination(pt, -200, 75 ); }, 'invalid distance');
+    t.throws(() => { rhumbDestination(pt, null, 75 ); }, 'missing distance');
+    t.throws(() => { rhumbDestination('point', 200, 75, 'miles'); }, 'invalid point');
+
     t.end();
 });
