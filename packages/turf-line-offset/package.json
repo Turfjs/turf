@@ -17,11 +17,10 @@
     "url": "git://github.com/Turfjs/turf.git"
   },
   "keywords": [
-    "along",
     "line",
     "linestring",
     "turf",
-    "distance"
+    "offset"
   ],
   "author": "Turf Authors",
   "license": "MIT",

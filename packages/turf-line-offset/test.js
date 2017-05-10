@@ -4,9 +4,6 @@ const path = require('path');
 const load = require('load-json-file');
 const write = require('write-json-file');
 const lineOffset = require('./');
-const helpers = require('@turf/helpers');
-const feature = helpers.feature;
-const fc = helpers.featureCollection;
 
 const directories = {
     in: path.join(__dirname, 'test', 'in') + path.sep,
