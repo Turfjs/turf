@@ -11,6 +11,11 @@ var pt2 = {
   geometry: {type: "Point", coordinates: [-75.534, 39.123]}
 };
 
+/**
+ * Benchmark Results
+ *
+ * turf-rhumb-distance x 1,168,928 ops/sec ±2.29% (86 runs sampled)
+ */
 var suite = new Benchmark.Suite('turf-rhumb-distance');
 suite
   .add('turf-rhumb-distance',function () {

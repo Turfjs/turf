@@ -12,6 +12,7 @@ var bear = 180;
 /**
  * Benchmark Results
  *
+ * turf-rhumb-destination x 1,183,462 ops/sec ±3.56% (84 runs sampled)
  */
 var suite = new Benchmark.Suite('turf-rhumb-destination');
 suite
