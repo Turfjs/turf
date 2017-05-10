@@ -1,6 +1,6 @@
 // https://en.wikipedia.org/wiki/Rhumb_line
 // http://www.movable-type.co.uk/scripts/latlong.html#rhumblines
-var getCoords = require('@turf/invariant').getCoords;
+var getCoord = require('@turf/invariant').getCoord;
 var GeodesyLatLon = require('geodesy').LatLonSpherical;
 
 /**
@@ -8,14 +8,16 @@ var GeodesyLatLon = require('geodesy').LatLonSpherical;
  * i.e. the angle measured in degrees start the north line (0 degrees)
  *
  * @name rhumbBearing
- * @param {Feature<Point>} start starting Point
- * @param {Feature<Point>} end ending Point
+ * @param {Geometry|Feature<Point>|Array<number>} start starting Point
+ * @param {Geometry|Feature<Point>|Array<number>} end ending Point
  * @param {boolean} [final=false] calculates the final bearing if true
  * @returns {number} bearing from north in decimal degrees, between -180 and 180 degrees (positive clockwise)
  * @example
  * var point1 = {
  *   "type": "Feature",
- *   "properties": {},
+ *   "properties": {
+ *     "marker-color": "#F00"
+ *   },
  *   "geometry": {
  *     "type": "Point",
  *     "coordinates": [-75.343, 39.984]
@@ -23,7 +25,9 @@ var GeodesyLatLon = require('geodesy').LatLonSpherical;
  * };
  * var point2 = {
  *   "type": "Feature",
- *   "properties": {},
+ *   "properties": {
+ *     "marker-color": "#00F"
+ *   },
  *   "geometry": {
  *     "type": "Point",
  *     "coordinates": [-75.534, 39.123]
@@ -33,18 +37,17 @@ var GeodesyLatLon = require('geodesy').LatLonSpherical;
  * var bearing = turf.rhumbBearing(point1, point2);
  *
  * //addToMap
- * var addToMap = [point1, point2]
- * point1.properties['marker-color'] = '#f00'
- * point2.properties['marker-color'] = '#0f0'
  * point1.properties.bearing = bearing
+ * point2.properties.bearing = bearing
+ * var addToMap = [point1, point2]
  */
 module.exports = function (start, end, final) {
     // validation
     if (!start) throw new Error('start point is required');
     if (!end) throw new Error('end point is required');
 
-    var coordsStart = getCoords(start);
-    var coordsEnd = getCoords(end);
+    var coordsStart = getCoord(start);
+    var coordsEnd = getCoord(end);
     var origin = new GeodesyLatLon(coordsStart[1], coordsStart[0]);
     var destination = new GeodesyLatLon(coordsEnd[1], coordsEnd[0]);
     var bear360;

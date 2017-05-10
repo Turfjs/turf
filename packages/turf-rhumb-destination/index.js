@@ -12,11 +12,11 @@ var distanceToRadians = helpers.distanceToRadians;
  * origin Point with the (constant) given bearing.
  *
  * @name rhumbDestination
- * @param {Point|Array<number>} origin starting point
+ * @param {Geometry|Feature<Point>|Array<number>} origin starting point
  * @param {number} distance distance from the starting point
  * @param {number} bearing constant bearing angle ranging from -180 to 180 degrees from north
  * @param {string} [units=kilometers] miles, kilometers, degrees, or radians
- * @returns {Point} Destination point.
+ * @returns {Feature<Point>} Destination point.
  * @example
  * var point = {
  *   "type": "Feature",

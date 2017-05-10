@@ -7,8 +7,8 @@ i.e. the angle measured in degrees start the north line (0 degrees)
 
 **Parameters**
 
--   `start` **[Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;[Point](http://geojson.org/geojson-spec.html#point)>** starting Point
--   `end` **[Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;[Point](http://geojson.org/geojson-spec.html#point)>** ending Point
+-   `start` **([Geometry](http://geojson.org/geojson-spec.html#geometry) \| [Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;[Point](http://geojson.org/geojson-spec.html#point)> | [Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)>)** starting Point
+-   `end` **([Geometry](http://geojson.org/geojson-spec.html#geometry) \| [Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;[Point](http://geojson.org/geojson-spec.html#point)> | [Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)>)** ending Point
 -   `final` **\[[boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)]** calculates the final bearing if true (optional, default `false`)
 
 **Examples**
@@ -16,7 +16,9 @@ i.e. the angle measured in degrees start the north line (0 degrees)
 ```javascript
 var point1 = {
   "type": "Feature",
-  "properties": {},
+  "properties": {
+    "marker-color": "#F00"
+  },
   "geometry": {
     "type": "Point",
     "coordinates": [-75.343, 39.984]
@@ -24,7 +26,9 @@ var point1 = {
 };
 var point2 = {
   "type": "Feature",
-  "properties": {},
+  "properties": {
+    "marker-color": "#00F"
+  },
   "geometry": {
     "type": "Point",
     "coordinates": [-75.534, 39.123]
@@ -34,10 +38,9 @@ var point2 = {
 var bearing = turf.rhumbBearing(point1, point2);
 
 //addToMap
-var addToMap = [point1, point2]
-point1.properties['marker-color'] = '#f00'
-point2.properties['marker-color'] = '#0f0'
 point1.properties.bearing = bearing
+point2.properties.bearing = bearing
+var addToMap = [point1, point2]
 ```
 
 Returns **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** bearing from north in decimal degrees, between -180 and 180 degrees (positive clockwise)
