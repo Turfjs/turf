@@ -1,9 +1,9 @@
 // https://en.wikipedia.org/wiki/Rhumb_line
 // http://www.movable-type.co.uk/scripts/latlong.html#rhumblines
 var helpers = require('@turf/helpers');
-var getCoords = require('@turf/invariant').getCoords;
+var getCoord = require('@turf/invariant').getCoord;
 var GeodesyLatLon = require('geodesy').LatLonSpherical;
-var distanceToDegrees = helpers.distanceToDegrees;
+var radiansToDistance = helpers.radiansToDistance;
 var distanceToRadians = helpers.distanceToRadians;
 
 /**
@@ -11,8 +11,8 @@ var distanceToRadians = helpers.distanceToRadians;
  * miles, or kilometers.
  *
  * @name rhumbDistance
- * @param {Feature<Point>} from origin point
- * @param {Feature<Point>} to destination point
+ * @param {Geometry|Feature<Point>|Array<number>} from origin point
+ * @param {Geometry|Feature<Point>|Array<number>} to destination point
  * @param {string} [units=kilometers] can be degrees, radians, miles, or kilometers
  * @returns {number} distance between the two points
  * @example
@@ -47,33 +47,11 @@ module.exports = function (from, to, units) {
 
     units = units || 'kilometers';
 
-    var coordsFrom = getCoords(from);
-    var coordsTo = getCoords(to);
+    var coordsFrom = getCoord(from);
+    var coordsTo = getCoord(to);
     var origin = new GeodesyLatLon(coordsFrom[1], coordsFrom[0]);
     var destination = new GeodesyLatLon(coordsTo[1], coordsTo[0]);
     var distanceInMeters = origin.rhumbDistanceTo(destination);
-
-    var distance;
-    switch (units) {
-    case 'kilometers':
-    case 'kilometres':
-        distance = distanceInMeters / 1000;
-        break;
-    case 'miles':
-        distance = distanceInMeters / 1609.34;
-        break;
-    case 'nauticalmiles':
-        distance = distanceInMeters / 1852;
-        break;
-    case 'degrees':
-        distance = distanceToDegrees(distanceInMeters, 'meters');
-        break;
-    case 'radians':
-        distance = distanceToRadians(distanceInMeters, 'meters');
-        break;
-    default:
-        throw new Error('unknown option given to units');
-    }
-
+    var distance = radiansToDistance(distanceToRadians(distanceInMeters, 'meters'), units);
     return distance;
 };
