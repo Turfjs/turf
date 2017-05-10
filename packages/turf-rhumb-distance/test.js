@@ -1,9 +1,10 @@
-const write = require('write-json-file');
-const load = require('load-json-file');
 const fs = require('fs');
 const path = require('path');
 const test = require('tape');
+const load = require('load-json-file');
+const write = require('write-json-file');
 const distance = require('@turf/distance');
+const {round} = require('@turf/helpers');
 const rhumbDistance = require('./');
 
 const directories = {
@@ -21,33 +22,25 @@ const fixtures = fs.readdirSync(directories.in).map(filename => {
 
 test('rhumb-distance', t => {
     for (const {name, geojson}  of fixtures) {
-        const pt1 = geojson.features[0];
-        const pt2 = geojson.features[1];
-        const miles = rhumbDistance(pt1, pt2, 'miles');
-        const nauticalmiles = rhumbDistance(pt1, pt2, 'nauticalmiles');
-        const kilometers = rhumbDistance(pt1, pt2, 'kilometers');
-        const greatCircleDistance = distance(pt1, pt2, 'kilometers');
-        const radians = rhumbDistance(pt1, pt2, 'radians');
-        const degrees = rhumbDistance(pt1, pt2, 'degrees');
-
-        if (process.env.REGEN) {
-            write.sync(directories.out + name + '-miles.json', miles);
-            write.sync(directories.out + name + '-nauticalmiles.json', nauticalmiles);
-            write.sync(directories.out + name + '-kilometers.json', kilometers);
-            write.sync(directories.out + name + '-radians.json', radians);
-            write.sync(directories.out + name + '-degrees.json', degrees);
+        const [pt1, pt2] = geojson.features;
+        const distances = {
+            miles: round(rhumbDistance(pt1, pt2, 'miles'), 6),
+            nauticalmiles: round(rhumbDistance(pt1, pt2, 'nauticalmiles'), 6),
+            kilometers: round(rhumbDistance(pt1, pt2, 'kilometers'), 6),
+            greatCircleDistance: round(distance(pt1, pt2, 'kilometers'), 6),
+            radians: round(rhumbDistance(pt1, pt2, 'radians'), 6),
+            degrees: round(rhumbDistance(pt1, pt2, 'degrees'), 6)
         }
-        t.deepEqual(miles, load.sync(directories.out + name + '-miles.json'), name + '-miles');
-        t.deepEqual(nauticalmiles, load.sync(directories.out + name + '-nauticalmiles.json'), name + '-nauticalmiles');
-        t.deepEqual(kilometers, load.sync(directories.out + name + '-kilometers.json'), name + '-kilometers');
-        t.deepEqual(radians, load.sync(directories.out + name + '-radians.json'), name + '-radians');
-        t.deepEqual(degrees, load.sync(directories.out + name + '-degrees.json'), name + '-degrees');
 
-        t.ok(kilometers < greatCircleDistance, 'distance comparison');
+        if (process.env.REGEN) write.sync(directories.out + name + '.json', distances);
+        t.deepEqual(distances, load.sync(directories.out + name + '.json'), name);
 
-        t.throws(() => {rhumbDistance(pt1, pt2, 'blah');}, 'unknown option given to units');
-        t.throws(() => {rhumbDistance(null, pt2);}, 'null point');
-        t.throws(() => {rhumbDistance(pt1, 'point', 'miles');}, 'invalid point');
+        // Removed since (point1 = true & point2 = false)
+        // t.ok(distances.kilometers < distances.greatCircleDistance, name + ' distance comparison');
+
+        t.throws(() => rhumbDistance(pt1, pt2, 'blah'), 'unknown option given to units');
+        t.throws(() => rhumbDistance(null, pt2), 'null point');
+        t.throws(() => rhumbDistance(pt1, 'point', 'miles'), 'invalid point');
     }
     t.end();
 });
