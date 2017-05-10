@@ -16,10 +16,10 @@ const fixtures = fs.readdirSync(directories.in).map(filename => {
 /**
  * Benchmark Results
  *
- * FeatureCollection.geojson x 47,826 ops/sec ±3.59% (77 runs sampled)
- * GeometryCollection.geojson x 50,569 ops/sec ±2.39% (85 runs sampled)
- * LineString.geojson x 86,579 ops/sec ±10.94% (72 runs sampled)
- * MultiLineString.geojson x 83,800 ops/sec ±10.76% (69 runs sampled)
+ * FeatureCollection.geojson x 54,653 ops/sec ±1.91% (88 runs sampled)
+ * GeometryCollection.geojson x 53,065 ops/sec ±2.88% (83 runs sampled)
+ * LineString.geojson x 113,926 ops/sec ±1.05% (90 runs sampled)
+ * MultiLineString.geojson x 123,430 ops/sec ±1.57% (89 runs sampled)
  */
 const suite = new Benchmark.Suite('turf-line-chunk');
 fixtures.forEach(({filename, geojson}) => {

@@ -28,14 +28,16 @@ var flattenEach = require('@turf/meta').flattenEach;
  * var addToMap = [chunk];
  */
 module.exports = function (geojson, segmentLength, units, reverse) {
+    if (!geojson) throw new Error('geojson is required');
+    if (segmentLength <= 0) throw new Error('segmentLength must be greater than 0');
     var results = [];
+
     // Flatten each feature to simple LineString
     flattenEach(geojson, function (feature) {
+        // reverses coordinates to start the first chunked segment at the end
         if (reverse) feature.geometry.coordinates = feature.geometry.coordinates.reverse();
 
-        var lineSegments = sliceLineSegments(feature, segmentLength, units);
-
-        lineSegments.forEach(function (segment) {
+        sliceLineSegments(feature, segmentLength, units, function (segment) {
             results.push(segment);
         });
     });
@@ -49,19 +51,18 @@ module.exports = function (geojson, segmentLength, units, reverse) {
  * @param {Feature<LineString>} line GeoJSON LineString
  * @param {number} segmentLength how long to make each segment
  * @param {string}[units='kilometers'] units can be degrees, radians, miles, or kilometers
- * @returns {Array<Feature<LineString>>} sliced lines
+ * @param {Function} callback iterate over sliced line segments
+ * @returns {void}
  */
-function sliceLineSegments(line, segmentLength, units) {
-    var lineSegments = [];
+function sliceLineSegments(line, segmentLength, units, callback) {
     var lineLength = lineDistance(line, units);
 
     // If the line is shorter than the segment length then the orginal line is returned.
-    if (lineLength <= segmentLength) return [line];
+    if (lineLength <= segmentLength) return callback(line);
 
     var numberOfSegments = Math.floor(lineLength / segmentLength) + 1;
     for (var i = 0; i < numberOfSegments; i++) {
         var outline = lineSliceAlong(line, segmentLength * i, segmentLength * (i + 1), units);
-        lineSegments.push(outline);
+        callback(outline, i);
     }
-    return lineSegments;
 }
