@@ -5,7 +5,7 @@
 			"type": "Feature",
 			"properties": {
 				"stroke": "#F00",
-				"stroke-width": 6
+				"stroke-width": 10
 			},
 			"geometry": {
 				"type": "LineString",
@@ -24,8 +24,8 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"stroke": "#F00",
-				"stroke-width": 6
+				"stroke": "#00F",
+				"stroke-width": 10
 			},
 			"geometry": {
 				"type": "LineString",
