@@ -1,11 +1,11 @@
 // https://en.wikipedia.org/wiki/Rhumb_line
 // http://www.movable-type.co.uk/scripts/latlong.html#rhumblines
 var helpers = require('@turf/helpers');
-var getCoords = require('@turf/invariant').getCoords;
+var getCoord = require('@turf/invariant').getCoord;
 var GeodesyLatLon = require('geodesy').LatLonSpherical;
 var point = helpers.point;
 var radiansToDistance = helpers.radiansToDistance;
-var degrees2radians = helpers.degrees2radians;
+var distanceToRadians = helpers.distanceToRadians;
 
 /**
  * Returns the destination {@link Point} having travelled the given distance along a Rhumb line from the
@@ -45,30 +45,8 @@ module.exports = function (origin, distance, bearing, units) {
     if (!(distance >= 0)) throw new Error('distance must be greater than 0');
 
     units = units || 'kilometers';
-
-    var distanceInMeters;
-    switch (units) {
-    case 'kilometers':
-    case 'kilometres':
-        distanceInMeters = distance * 1000;
-        break;
-    case 'miles':
-        distanceInMeters = distance * 1609.34;
-        break;
-    case 'nauticalmiles':
-        distanceInMeters = distance * 1852;
-        break;
-    case 'degrees':
-        distanceInMeters = radiansToDistance(degrees2radians(distance), 'meters');
-        break;
-    case 'radians':
-        distanceInMeters = radiansToDistance(distance, 'meters');
-        break;
-    default:
-        throw new Error('units not valid');
-    }
-
-    var coords = getCoords(origin);
+    var distanceInMeters = radiansToDistance(distanceToRadians(distance, units), 'meters');
+    var coords = getCoord(origin);
     var pt = new GeodesyLatLon(coords[1], coords[0]);
     var destination = pt.rhumbDestinationPoint(distanceInMeters, bearing);
 
