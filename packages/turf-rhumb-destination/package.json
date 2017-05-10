@@ -37,9 +37,7 @@
   },
   "homepage": "https://github.com/Turfjs/turf",
   "devDependencies": {
-    "@turf/distance": "^4.2.0",
     "@turf/truncate": "^4.2.0",
-    "@turf/great-circle": "^4.2.0",
     "benchmark": "^1.0.0",
     "load-json-file": "^2.0.0",
     "tape": "^3.5.0",

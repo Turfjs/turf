@@ -1,11 +1,10 @@
-const write = require('write-json-file');
-const load = require('load-json-file');
 const fs = require('fs');
 const path = require('path');
 const test = require('tape');
-// const distance = require('@turf/distance');
+const write = require('write-json-file');
+const load = require('load-json-file');
 const truncate = require('@turf/truncate');
-const getCoords = require('@turf/invariant').getCoords;
+const {getCoords} = require('@turf/invariant');
 const {featureCollection, lineString, point} = require('@turf/helpers');
 const rhumbDestination = require('./');
 
@@ -33,18 +32,18 @@ test('turf-rhumb-destination', t => {
         const line = truncate(lineString([getCoords(inputPoint), getCoords(resultPoint)], {"stroke": "#F00", "stroke-width": 4}));
         inputPoint.properties['marker-color'] = '#F00';
         const result = featureCollection([line, inputPoint, resultPoint]);
-        // const d = distance(inputPoint, resultPoint, units);
 
         if (process.env.REGEN) write.sync(directories.out + filename, result);
         t.deepEqual(result, load.sync(directories.out + filename), name);
-        // t.equals(dist, round(d, 9), 'distance');
     }
 
     const pt = point([12, -54]);
+    t.assert(rhumbDestination(pt, 0, 45).geometry.coordinates[0], '0 distance is valid')
+    t.assert(rhumbDestination(pt, 100, 0).geometry.coordinates[0], '0 bearing is valid')
     t.throws(() => { rhumbDestination(pt, 100, 45, 'blah') }, 'unknown option given to units');
     t.throws(() => { rhumbDestination(pt, -200, 75 ); }, 'invalid distance');
     t.throws(() => { rhumbDestination(pt, null, 75 ); }, 'missing distance');
+    t.throws(() => { rhumbDestination(pt, 'miles', 75) }, 'invalid distance - units param switched to distance');
     t.throws(() => { rhumbDestination('point', 200, 75, 'miles'); }, 'invalid point');
-
     t.end();
 });
