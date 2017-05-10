@@ -17,21 +17,22 @@ origin Point with the (constant) given bearing.
 ```javascript
 var point = {
   "type": "Feature",
-  "properties": {},
+  "properties": {
+    "marker-color": "F00"
+  },
   "geometry": {
     "type": "Point",
     "coordinates": [-75.343, 39.984]
   }
 };
 var distance = 50;
-var bearing = 90;// function (from, distance, bearing, units) {
+var bearing = 90;
 var units = 'miles';
 
 var destination = turf.rhumbDestination(point, distance, bearing, units);
 
 //addToMap
-destination.properties['marker-color'] = '#f00';
-point.properties['marker-color'] = '#0f0';
+destination.properties['marker-color'] = '#00F';
 var addToMap = [point, destination]
 ```
 
