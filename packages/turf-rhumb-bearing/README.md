@@ -1,9 +1,9 @@
 # @turf/rhumb-bearing
 
-# rhumb-bearing
+# rhumbBearing
 
-Takes two [points](http://geojson.org/geojson-spec.html#point) and finds bearing the angle between them along a [Rhumb line](https://en.wikipedia.org/wiki/Rhumb_line),
-i.e. the angle measured in degrees from the north line (0 degrees)
+Takes two [points](http://geojson.org/geojson-spec.html#point) and finds the bearing angle between them along a Rhumb line
+i.e. the angle measured in degrees start the north line (0 degrees)
 
 **Parameters**
 

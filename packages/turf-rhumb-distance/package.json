@@ -1,6 +1,6 @@
 {
   "name": "@turf/rhumb-distance",
-  "version": "4.2.0",
+  "version": "4.0.0",
   "description": "turf rhumb-distance module",
   "main": "index.js",
   "types": "index.d.ts",
@@ -26,6 +26,9 @@
     "km"
   ],
   "author": "Turf Authors",
+  "contributors": [
+    "Stefano Borghi <@stebogit>"
+  ],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/Turfjs/turf/issues"

@@ -7,7 +7,7 @@ var GeodesyLatLon = require('geodesy').LatLonSpherical;
  * Takes two {@link Point|points} and finds the bearing angle between them along a Rhumb line
  * i.e. the angle measured in degrees start the north line (0 degrees)
  *
- * @name rhumb-bearing
+ * @name rhumbBearing
  * @param {Feature<Point>} start starting Point
  * @param {Feature<Point>} end ending Point
  * @param {boolean} [final=false] calculates the final bearing if true

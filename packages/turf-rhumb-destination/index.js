@@ -1,17 +1,17 @@
 // https://en.wikipedia.org/wiki/Rhumb_line
 // http://www.movable-type.co.uk/scripts/latlong.html#rhumblines
-var getCoords = require('@turf/invariant').getCoords;
 var helpers = require('@turf/helpers');
+var getCoords = require('@turf/invariant').getCoords;
+var GeodesyLatLon = require('geodesy').LatLonSpherical;
 var point = helpers.point;
 var radiansToDistance = helpers.radiansToDistance;
 var degrees2radians = helpers.degrees2radians;
-var GeodesyLatLon = require('geodesy').LatLonSpherical;
 
 /**
  * Returns the destination {@link Point} having travelled the given distance along a Rhumb line from the
  * origin Point with the (constant) given bearing.
  *
- * @name rhumb-destination
+ * @name rhumbDestination
  * @param {Point|Array<number>} origin starting point
  * @param {number} distance distance from the starting point
  * @param {number} bearing constant bearing angle ranging from -180 to 180 degrees from north

@@ -1,15 +1,16 @@
 // https://en.wikipedia.org/wiki/Rhumb_line
 // http://www.movable-type.co.uk/scripts/latlong.html#rhumblines
+var helpers = require('@turf/helpers');
 var getCoords = require('@turf/invariant').getCoords;
-var distanceToDegrees = require('@turf/helpers').distanceToDegrees;
-var distanceToRadians = require('@turf/helpers').distanceToRadians;
 var GeodesyLatLon = require('geodesy').LatLonSpherical;
+var distanceToDegrees = helpers.distanceToDegrees;
+var distanceToRadians = helpers.distanceToRadians;
 
 /**
  * Calculates the distance along a rhumb line between two {@link Point|points} in degrees, radians,
  * miles, or kilometers.
  *
- * @name distance
+ * @name rhumbDistance
  * @param {Feature<Point>} from origin point
  * @param {Feature<Point>} to destination point
  * @param {string} [units=kilometers] can be degrees, radians, miles, or kilometers

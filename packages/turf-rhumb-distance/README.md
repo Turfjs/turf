@@ -1,11 +1,10 @@
 # @turf/rhumb-distance
 
-# rhumb-distance
+# rhumbDistance
 
-Calculates the distance along a [Rhumb line](https://en.wikipedia.org/wiki/Rhumb_line) between two [points](http://geojson.org/geojson-spec.html#point) in degrees, radians,
+Calculates the distance along a rhumb line between two [points](http://geojson.org/geojson-spec.html#point) in degrees, radians,
 miles, or kilometers.
 
- 
 **Parameters**
 
 -   `from` **[Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;[Point](http://geojson.org/geojson-spec.html#point)>** origin point
