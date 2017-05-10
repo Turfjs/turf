@@ -1,0 +1,43 @@
+{
+  "name": "@turf/line-offset",
+  "version": "4.1.0",
+  "description": "turf line offset module",
+  "main": "index.js",
+  "types": "index.d.ts",
+  "files": [
+    "index.js",
+    "index.d.ts"
+  ],
+  "scripts": {
+    "test": "node test.js",
+    "bench": "node bench.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/Turfjs/turf.git"
+  },
+  "keywords": [
+    "along",
+    "line",
+    "linestring",
+    "turf",
+    "distance"
+  ],
+  "author": "Turf Authors",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Turfjs/turf/issues"
+  },
+  "homepage": "https://github.com/Turfjs/turf",
+  "devDependencies": {
+    "benchmark": "^1.0.0",
+    "tape": "^3.5.0",
+    "@turf/helpers": "^4.1.0"
+  },
+  "dependencies": {
+    "@turf/helpers": "^4.1.0",
+    "@turf/invariant": "^4.2.0",
+    "@turf/meta": "^4.2.0",
+    "intersection": "0.0.1"
+  }
+}
