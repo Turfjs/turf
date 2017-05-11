@@ -23,7 +23,11 @@
     "line",
     "intersect"
   ],
-  "author": "Denis Carriere",
+  "author": "TurfJS",
+  "contributors": [
+    "Denis Carriere <@DenisCarriere>",
+    "Daniel Pulido <@dpmcmlxxvi>"
+  ],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/Turfjs/turf/issues"

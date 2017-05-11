@@ -42,12 +42,8 @@ module.exports = function (line1, line2) {
 
     // First, normalize geometries to features
     // Then, handle simple 2-vertex segments
-    if (line1.type === 'LineString') {
-        line1 = helpers.feature(line1);
-    }
-    if (line2.type === 'LineString') {
-        line2 = helpers.feature(line2);
-    }
+    if (line1.type === 'LineString') line1 = helpers.feature(line1);
+    if (line2.type === 'LineString') line2 = helpers.feature(line2);
     if (line1.type === 'Feature' &&
         line2.type === 'Feature' &&
         line1.geometry.type === 'LineString' &&
@@ -66,6 +62,7 @@ module.exports = function (line1, line2) {
         featureEach(tree.search(segment), function (match) {
             var intersect = intersects(segment, match);
             if (intersect) {
+                // prevent duplicate points https://github.com/Turfjs/turf/issues/688
                 var key = getCoords(intersect).join(',');
                 if (!unique[key]) {
                     unique[key] = true;
