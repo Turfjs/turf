@@ -1,18 +1,24 @@
 // depend on jsts for now https://github.com/bjornharrtell/jsts/blob/master/examples/overlay.html
 var jsts = require('jsts');
+var area = require('@turf/area');
+var feature = require('@turf/helpers').feature;
+var getGeom = require('@turf/invariant').getGeom;
+var flattenEach = require('@turf/meta').flattenEach;
 
 /**
- * Finds the difference between two {@link Polygon|polygons} by clipping the second
- * polygon from the first.
+ * Finds the difference between two {@link Polygon|polygons} by clipping the second polygon from the first.
  *
  * @name difference
- * @param {Feature<Polygon>} p1 input Polygon feature
- * @param {Feature<Polygon>} p2 Polygon feature to difference from `p1`
- * @return {Feature<(Polygon|MultiPolygon)>} a Polygon or MultiPolygon feature showing the area of `p1` excluding the area of `p2`
+ * @param {Feature<Polygon|MultiPolygon>} polygon1 input Polygon feature
+ * @param {Feature<Polygon|MultiPolygon>} polygon2 Polygon feature to difference from polygon1
+ * @returns {Feature<Polygon|MultiPolygon>|undefined} a Polygon or MultiPolygon feature showing the area of `polygon1` excluding the area of `polygon2` (if empty returns `undefined`)
  * @example
- * var poly1 = {
+ * var polygon1 = {
  *   "type": "Feature",
- *   "properties": {},
+ *   "properties": {
+ *     "fill": "#F00",
+ *     "fill-opacity": 0.1
+ *   },
  *   "geometry": {
  *     "type": "Polygon",
  *     "coordinates": [[
@@ -24,63 +30,62 @@ var jsts = require('jsts');
  *     ]]
  *   }
  * };
- * var poly2 = {
+ * var polygon2 = {
  *   "type": "Feature",
- *   "properties": {},
+ *   "properties": {
+ *     "fill": "#00F",
+ *     "fill-opacity": 0.1
+ *   },
  *   "geometry": {
  *     "type": "Polygon",
- *     "coordinates": [[
- *       [-46.650009, -23.631314],
- *       [-46.650009, -23.5237],
- *       [-46.509246, -23.5237],
- *       [-46.509246, -23.631314],
- *       [-46.650009, -23.631314]
- *     ]]
+ *     "coordinates": [[[126, -28], [140, -28], [140, -20], [126, -20], [126, -28]]]
  *   }
  * };
  *
- * var difference = turf.difference(poly1, poly2);
+ * var difference = turf.difference(polygon1, polygon2);
  *
  * //addToMap
- * poly1.properties.fill = '#0f0';
- * poly2.properties.fill = '#00f';
- * difference.properties.fill = '#f00';
- * var addToMap = [poly1, poly2, difference];
+ * var addToMap = [polygon1, polygon2, difference];
  */
+module.exports = function (polygon1, polygon2) {
+    var geom1 = getGeom(polygon1);
+    var geom2 = getGeom(polygon2);
+    var properties = polygon1.properties || {};
 
-module.exports = function (p1, p2) {
-    var poly1 = JSON.parse(JSON.stringify(p1));
-    var poly2 = JSON.parse(JSON.stringify(p2));
-    if (poly1.type !== 'Feature') {
-        poly1 = {
-            type: 'Feature',
-            properties: {},
-            geometry: poly1
-        };
-    }
-    if (poly2.type !== 'Feature') {
-        poly2 = {
-            type: 'Feature',
-            properties: {},
-            geometry: poly2
-        };
-    }
+    // Issue #721 - JSTS can't handle empty polygons
+    geom1 = removeEmptyPolygon(geom1);
+    geom2 = removeEmptyPolygon(geom2);
+    if (!geom1) return undefined;
+    if (!geom2) return feature(geom1, properties);
 
+    // JSTS difference operation
     var reader = new jsts.io.GeoJSONReader();
-    var a = reader.read(JSON.stringify(poly1.geometry));
-    var b = reader.read(JSON.stringify(poly2.geometry));
+    var a = reader.read(geom1);
+    var b = reader.read(geom2);
     var differenced = a.difference(b);
-
     if (differenced.isEmpty()) return undefined;
-
     var writer = new jsts.io.GeoJSONWriter();
-    var geojsonGeometry = writer.write(differenced);
+    var geom = writer.write(differenced);
 
-    poly1.geometry = differenced;
-
-    return {
-        type: 'Feature',
-        properties: poly1.properties,
-        geometry: geojsonGeometry
-    };
+    return feature(geom, properties);
 };
+
+/**
+ * Detect Empty Polygon
+ *
+ * @param {Geometry<Polygon|MultiPolygon>} geom Geometry Object
+ * @returns {Geometry<Polygon|MultiPolygon>|undefined} removed any polygons with no areas
+ */
+function removeEmptyPolygon(geom) {
+    switch (geom.type) {
+    case 'Polygon':
+        if (area(geom) > 1) return geom;
+        return undefined;
+    case 'MultiPolygon':
+        var coordinates = [];
+        flattenEach(geom, function (feature) {
+            if (area(feature) > 1) coordinates.push(feature.geometry.coordinates);
+        });
+        if (coordinates.length) return {type: 'MultiPolygon', coordinates: coordinates};
+    }
+}
