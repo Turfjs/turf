@@ -29,12 +29,12 @@
   },
   "homepage": "https://github.com/Turfjs/turf",
   "devDependencies": {
-    "benchmark": "^1.0.0",
+    "benchmark": "^2.1.4",
     "geojson-fixtures": "^0.5.0",
-    "tape": "^3.5.0"
+    "tape": "^4.6.3"
   },
   "dependencies": {
-    "@turf/meta": "^4.2.0",
-    "@turf/helpers": "^4.2.0"
+    "@turf/helpers": "^4.2.0",
+    "@turf/meta": "^4.2.0"
   }
 }

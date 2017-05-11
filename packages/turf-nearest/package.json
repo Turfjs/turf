@@ -29,8 +29,8 @@
   },
   "homepage": "https://github.com/Turfjs/turf",
   "devDependencies": {
-    "benchmark": "^1.0.0",
-    "tape": "^3.5.0"
+    "benchmark": "^2.1.4",
+    "tape": "^4.6.3"
   },
   "dependencies": {
     "@turf/distance": "^4.2.0"

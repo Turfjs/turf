@@ -28,15 +28,15 @@
   },
   "homepage": "https://github.com/Turfjs/turf",
   "devDependencies": {
-    "benchmark": "^1.0.0",
+    "@turf/helpers": "^4.2.0",
+    "benchmark": "^2.1.4",
     "glob": "~4.3.5",
-    "tape": "~3.5.0",
-    "@turf/helpers": "^4.2.0"
+    "tape": "^4.6.3"
   },
   "dependencies": {
+    "@turf/distance": "^4.2.0",
     "@turf/meta": "^4.2.0",
     "@turf/tin": "^4.2.0",
-    "@turf/union": "^4.2.0",
-    "@turf/distance": "^4.2.0"
+    "@turf/union": "^4.2.0"
   }
 }

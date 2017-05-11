@@ -35,11 +35,12 @@
   },
   "homepage": "https://github.com/Turfjs/turf",
   "devDependencies": {
-    "tape": "^4.0.0",
-    "@turf/helpers": "^4.2.0"
+    "@turf/helpers": "^4.2.0",
+    "benchmark": "^2.1.4",
+    "tape": "^4.6.3"
   },
   "dependencies": {
-    "earcut": "^2.0.0",
-    "@turf/helpers": "^4.2.0"
+    "@turf/helpers": "^4.2.0",
+    "earcut": "^2.0.0"
   }
 }
