@@ -23,6 +23,11 @@
     "geojson"
   ],
   "author": "Turf Authors",
+  "contributors": [
+    "Tom MacWright <@tmcw>",
+    "Stefano Borghi <@stebogit>",
+    "Denis Carriere <@DenisCarriere>"
+  ],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/Turfjs/turf/issues"
