@@ -15,6 +15,7 @@ const {
     radians2degrees,
     degrees2radians,
     bearingToAngle,
+    convertDistance,
     round
 } = require('./');
 
@@ -317,11 +318,18 @@ test('distanceToRadians', t => {
     t.end();
 });
 
+test('distanceToDegrees', t => {
+    t.equal(distanceToDegrees(1, 'radians'), 57.29577951308232);
+    t.equal(distanceToDegrees(100, 'kilometers'), 0.8990393772647469);
+    t.equal(distanceToDegrees(10, 'miles'), 0.14468631190172304);
+    t.throws(() => distanceToRadians(1, 'foo'), 'invalid units');
+    t.end();
+});
+
 test('radians2degrees', t => {
     t.equal(round(radians2degrees(Math.PI / 3), 6), 60, 'radiance conversion PI/3');
     t.equal(radians2degrees(3.5 * Math.PI), 270, 'radiance conversion 3.5PI');
     t.equal(radians2degrees(-Math.PI), -180, 'radiance conversion -PI');
-
     t.end();
 });
 
@@ -329,7 +337,6 @@ test('radians2degrees', t => {
     t.equal(degrees2radians(60), Math.PI / 3, 'degrees conversion 60');
     t.equal(degrees2radians(270), 1.5 * Math.PI, 'degrees conversion 270');
     t.equal(degrees2radians(-180), -Math.PI, 'degrees conversion -180');
-
     t.end();
 });
 
@@ -339,7 +346,6 @@ test('bearingToAngle', t => {
     t.equal(bearingToAngle(410), 50);
     t.equal(bearingToAngle(-200), 160);
     t.equal(bearingToAngle(-395), 325);
-
     t.end();
 });
 
@@ -347,6 +353,17 @@ test('round', t => {
     t.equal(round(125.123), 125);
     t.equal(round(123.123, 1), 123.1);
     t.equal(round(123.5), 124);
+    t.throws(() => round(34.5, 'precision'), 'invalid precision');
+    t.throws(() => round(34.5, -5), 'invalid precision');
+    t.end();
+});
 
+test('convertDistance', t => {
+    t.equal(convertDistance(1000, 'meters'), 1);
+    t.equal(convertDistance(1, 'kilometers', 'miles'), 0.6213714106386318);
+    t.equal(convertDistance(1, 'miles', 'kilometers'), 1.6093434343434343);
+    t.equal(convertDistance(1, 'nauticalmiles'), 1.851999843075488);
+    t.equal(convertDistance(1, 'meters', 'centimeters'), 100);
+    t.throws(() => convertDistance(1, 'foo'), 'invalid units');
     t.end();
 });

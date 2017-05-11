@@ -264,6 +264,8 @@ var factors = {
     yards: 6969600,
     meters: 6373000,
     metres: 6373000,
+    centimeters: 6.373e+8,
+    centimetres: 6.373e+8,
     kilometers: 6373,
     kilometres: 6373,
     feet: 20908792.65
@@ -283,12 +285,15 @@ var factors = {
  * //=120.43
  */
 function round(num, precision) {
+    if (num === undefined || num === null || isNaN(num)) throw new Error('num is required');
+    if (precision && !(precision >= 0)) throw new Error('precision must be a positive number');
     var multiplier = Math.pow(10, precision || 0);
     return Math.round(num * multiplier) / multiplier;
 }
 
 /**
  * Convert a distance measurement (assuming a spherical Earth) from radians to a more friendly unit.
+ * Valid units: miles, nauticalmiles, inches, yards, meters, metres, kilometers, centimeters, feet
  *
  * @name radiansToDistance
  * @param {number} radians in radians across the sphere
@@ -305,6 +310,7 @@ function radiansToDistance(radians, units) {
 
 /**
  * Convert a distance measurement (assuming a spherical Earth) from a real-world unit into radians
+ * Valid units: miles, nauticalmiles, inches, yards, meters, metres, kilometers, centimeters, feet
  *
  * @name distanceToRadians
  * @param {number} distance in real units
@@ -321,6 +327,7 @@ function distanceToRadians(distance, units) {
 
 /**
  * Convert a distance measurement (assuming a spherical Earth) from a real-world unit into degrees
+ * Valid units: miles, nauticalmiles, inches, yards, meters, metres, centimeters, kilometres, feet
  *
  * @name distanceToDegrees
  * @param {number} distance in real units
@@ -375,6 +382,25 @@ function degrees2radians(degrees) {
     return radians * Math.PI / 180;
 }
 
+
+/**
+ * Converts a distance to the requested unit.
+ * Valid units: miles, nauticalmiles, inches, yards, meters, metres, kilometers, centimeters, feet
+ *
+ * @param {number} distance to be converted
+ * @param {string} originalUnit of the distance
+ * @param {string} [finalUnit=kilometers] returned unit
+ * @returns {number} the converted distance
+ */
+function convertDistance(distance, originalUnit, finalUnit) {
+    if (distance === null || distance === undefined) throw new Error('distance is required');
+    if (!(distance >= 0)) throw new Error('distance must be a positive number');
+
+    var convertedDistance = radiansToDistance(distanceToRadians(distance, originalUnit), finalUnit || 'kilometers');
+    return convertedDistance;
+}
+
+
 module.exports = {
     feature: feature,
     featureCollection: featureCollection,
@@ -391,5 +417,6 @@ module.exports = {
     radians2degrees: radians2degrees,
     degrees2radians: degrees2radians,
     bearingToAngle: bearingToAngle,
+    convertDistance: convertDistance,
     round: round
 };
