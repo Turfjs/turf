@@ -34,13 +34,13 @@
   ],
   "license": "MIT",
   "devDependencies": {
-    "benchmark": "^1.0.0",
-    "tape": "^3.6.1",
-    "@turf/helpers": "^4.2.0"
+    "@turf/helpers": "^4.2.0",
+    "benchmark": "^2.1.4",
+    "tape": "^4.6.3"
   },
   "dependencies": {
-    "rbush": "^2.0.1",
     "@turf/bbox": "^4.2.0",
-    "@turf/inside": "^4.2.0"
+    "@turf/inside": "^4.2.0",
+    "rbush": "^2.0.1"
   }
 }

@@ -35,9 +35,9 @@
   },
   "dependencies": {
     "@turf/circle": "^4.2.0",
-    "@turf/line-arc": "^4.2.0",
     "@turf/helpers": "^4.2.0",
     "@turf/invariant": "^4.2.0",
+    "@turf/line-arc": "^4.2.0",
     "@turf/meta": "^4.2.0"
   }
 }

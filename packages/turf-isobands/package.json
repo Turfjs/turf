@@ -36,7 +36,7 @@
     "@turf/envelope": "4.2.0",
     "@turf/point-grid": "^3.14.0",
     "@turf/random": "^3.13.0",
-    "benchmark": "^2.1.3",
+    "benchmark": "^2.1.4",
     "chroma-js": "1.3.3",
     "load-json-file": "^2.0.0",
     "matrix-to-grid": "3.0.0",
