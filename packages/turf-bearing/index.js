@@ -7,8 +7,8 @@ var getCoord = require('@turf/invariant').getCoord;
  * i.e. the angle measured in degrees from the north line (0 degrees)
  *
  * @name bearing
- * @param {Feature<Point>} start starting Point
- * @param {Feature<Point>} end ending Point
+ * @param {Geometry|Feature<Point>|Array<number>} start starting Point
+ * @param {Geometry|Feature<Point>|Array<number>} end ending Point
  * @param {boolean} [final=false] calculates the final bearing if true
  * @returns {number} bearing in decimal degrees, between -180 and 180 degrees (positive clockwise)
  * @example

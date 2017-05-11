@@ -1,11 +1,9 @@
-# @turf/distance
+# @turf/rhumb-distance
 
-# distance
+# rhumbDistance
 
-Calculates the distance between two [points](http://geojson.org/geojson-spec.html#point) in degrees, radians,
-miles, or kilometers. This uses the
-[Haversine formula](http://en.wikipedia.org/wiki/Haversine_formula)
-to account for global curvature.
+Calculates the distance along a rhumb line between two [points](http://geojson.org/geojson-spec.html#point) in degrees, radians,
+miles, or kilometers.
 
 **Parameters**
 
@@ -33,7 +31,7 @@ var to = {
   }
 };
 
-var distance = turf.distance(from, to, "miles");
+var distance = turf.rhumbDistance(from, to, "miles");
 
 //addToMap
 from.properties.distance = distance;
@@ -59,7 +57,7 @@ PRs and issues.
 Install this module individually:
 
 ```sh
-$ npm install @turf/distance
+$ npm install @turf/rhumb-distance
 ```
 
 Or install the Turf module that includes it as a function:

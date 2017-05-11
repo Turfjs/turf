@@ -1,0 +1,47 @@
+{
+  "name": "@turf/rhumb-bearing",
+  "version": "4.0.0",
+  "description": "turf rhumb-bearing module",
+  "main": "index.js",
+  "types": "index.d.ts",
+  "files": [
+    "index.js",
+    "index.d.ts"
+  ],
+  "scripts": {
+    "test": "node test.js",
+    "bench": "node bench.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/Turfjs/turf.git"
+  },
+  "keywords": [
+    "turf",
+    "bearing",
+    "loxodrome",
+    "rhumb",
+    "rhumb line"
+  ],
+  "author": "Turf Authors",
+  "contributors": [
+    "Stefano Borghi <@stebogit>",
+    "Denis Carriere <@DenisCarriere>"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Turfjs/turf/issues"
+  },
+  "homepage": "https://github.com/Turfjs/turf",
+  "devDependencies": {
+    "@turf/destination": "^4.2.0",
+    "@turf/helpers": "^4.2.0",
+    "benchmark": "^2.1.4",
+    "tape": "^4.6.3",
+    "write-json-file": "^2.0.0"
+  },
+  "dependencies": {
+    "@turf/invariant": "^4.2.0",
+    "geodesy": "1.1.1"
+  }
+}
