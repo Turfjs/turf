@@ -24,6 +24,8 @@ test('turf-line-intersect', t => {
     for (const {filename, name, geojson}  of fixtures) {
         const [line1, line2] = geojson.features;
         const results = truncate(lineIntersect(line1, line2));
+        results.features.push(line1);
+        results.features.push(line2);
 
         if (process.env.REGEN) write.sync(directories.out + filename, results);
         t.deepEquals(results, load.sync(directories.out + filename), name);
