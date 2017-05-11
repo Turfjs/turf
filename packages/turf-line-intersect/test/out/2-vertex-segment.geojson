@@ -5,40 +5,6 @@
 			"type": "Feature",
 			"properties": {},
 			"geometry": {
-				"type": "LineString",
-				"coordinates": [
-					[
-						124.584961,
-						-12.768946
-					],
-					[
-						126.738281,
-						-17.224758
-					]
-				]
-			}
-		},
-		{
-			"type": "Feature",
-			"properties": {},
-			"geometry": {
-				"type": "LineString",
-				"coordinates": [
-					[
-						123.354492,
-						-15.961329
-					],
-					[
-						127.22168,
-						-14.008696
-					]
-				]
-			}
-		},
-		{
-			"type": "Feature",
-			"properties": {},
-			"geometry": {
 				"type": "Point",
 				"coordinates": [
 					125.583754,
