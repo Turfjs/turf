@@ -35,8 +35,9 @@ test('rhumb-distance', t => {
         if (process.env.REGEN) write.sync(directories.out + name + '.json', distances);
         t.deepEqual(distances, load.sync(directories.out + name + '.json'), name);
 
-        // Removed since (point1 = true & point2 = false)
-        // t.ok(distances.kilometers < distances.greatCircleDistance, name + ' distance comparison');
+        // Now fails due to approximation error
+        // TODO: to be added once earth radius is updated to 6371km
+        // t.ok(distances.kilometers > distances.greatCircleDistance, name + ' distance comparison');
 
         t.throws(() => rhumbDistance(pt1, pt2, 'blah'), 'unknown option given to units');
         t.throws(() => rhumbDistance(null, pt2), 'null point');
