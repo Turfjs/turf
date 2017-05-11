@@ -15,8 +15,8 @@ const fixtures = fs.readdirSync(directory).map(filename => {
 
 /**
  * Benchmark Results
- * linestring-feature x 640,105 ops/sec ±1.90% (87 runs sampled)
- * linestring-geometry x 633,886 ops/sec ±1.53% (92 runs sampled)
+ * linestring-feature x 293,412 ops/sec ±1.42% (76 runs sampled)
+ * linestring-geometry x 288,033 ops/sec ±2.62% (79 runs sampled)
  */
 const suite = new Benchmark.Suite('turf-line-offset');
 for (const {name, geojson} of fixtures) {

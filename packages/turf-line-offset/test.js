@@ -4,6 +4,7 @@ const path = require('path');
 const load = require('load-json-file');
 const write = require('write-json-file');
 const lineOffset = require('./');
+const truncate = require('@turf/truncate');
 
 const directories = {
     in: path.join(__dirname, 'test', 'in') + path.sep,
@@ -20,7 +21,7 @@ const fixtures = fs.readdirSync(directories.in).map(filename => {
 
 test('turf-lineOffset', t => {
     for (const {name, geojson} of fixtures) {
-        const results = lineOffset(geojson, 10, 'kilometers');
+        const results = truncate(lineOffset(geojson, 10, 'kilometers'));
         if (process.env.REGEN) write.sync(directories.out + name + '.geojson', results);
         t.deepEqual(results, load.sync(directories.out + name + '.geojson'), name);
     }
