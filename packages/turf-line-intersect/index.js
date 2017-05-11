@@ -11,8 +11,8 @@ var featureCollection = helpers.featureCollection;
  * Takes any LineString or Polygon GeoJSON and returns the intersecting point(s).
  *
  * @name lineIntersect
- * @param {FeatureCollection|Feature<LineString|MultiLineString|Polygon|MultiPolygon>} line1 any LineString or Polygon
- * @param {FeatureCollection|Feature<LineString|MultiLineString|Polygon|MultiPolygon>} line2 any LineString or Polygon
+ * @param {Geometry|FeatureCollection|Feature<LineString|MultiLineString|Polygon|MultiPolygon>} line1 any LineString or Polygon
+ * @param {Geometry|FeatureCollection|Feature<LineString|MultiLineString|Polygon|MultiPolygon>} line2 any LineString or Polygon
  * @returns {FeatureCollection<Point>} point(s) that intersect both
  * @example
  * var line1 = {
@@ -40,8 +40,13 @@ module.exports = function (line1, line2) {
     var unique = {};
     var results = [];
 
-    // Handles simple 2-vertex segments
-    if (line1.geometry.type === 'LineString' &&
+    // First, normalize geometries to features
+    // Then, handle simple 2-vertex segments
+    if (line1.type === 'LineString') line1 = helpers.feature(line1);
+    if (line2.type === 'LineString') line2 = helpers.feature(line2);
+    if (line1.type === 'Feature' &&
+        line2.type === 'Feature' &&
+        line1.geometry.type === 'LineString' &&
         line2.geometry.type === 'LineString' &&
         line1.geometry.coordinates.length === 2 &&
         line2.geometry.coordinates.length === 2) {
@@ -57,6 +62,7 @@ module.exports = function (line1, line2) {
         featureEach(tree.search(segment), function (match) {
             var intersect = intersects(segment, match);
             if (intersect) {
+                // prevent duplicate points https://github.com/Turfjs/turf/issues/688
                 var key = getCoords(intersect).join(',');
                 if (!unique[key]) {
                     unique[key] = true;

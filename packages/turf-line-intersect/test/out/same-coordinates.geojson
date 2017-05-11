@@ -5,6 +5,31 @@
 			"type": "Feature",
 			"properties": {},
 			"geometry": {
+				"type": "Point",
+				"coordinates": [
+					120,
+					-20
+				]
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {},
+			"geometry": {
+				"type": "Point",
+				"coordinates": [
+					130,
+					-20
+				]
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {
+				"stroke": "#F00",
+				"stroke-width": 6
+			},
+			"geometry": {
 				"type": "LineString",
 				"coordinates": [
 					[
@@ -32,7 +57,10 @@
 		},
 		{
 			"type": "Feature",
-			"properties": {},
+			"properties": {
+				"stroke": "#00F",
+				"stroke-width": 6
+			},
 			"geometry": {
 				"type": "LineString",
 				"coordinates": [
@@ -56,28 +84,6 @@
 						130,
 						-20
 					]
-				]
-			}
-		},
-		{
-			"type": "Feature",
-			"properties": {},
-			"geometry": {
-				"type": "Point",
-				"coordinates": [
-					120,
-					-20
-				]
-			}
-		},
-		{
-			"type": "Feature",
-			"properties": {},
-			"geometry": {
-				"type": "Point",
-				"coordinates": [
-					130,
-					-20
 				]
 			}
 		}
