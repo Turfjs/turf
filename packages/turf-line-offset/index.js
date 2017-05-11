@@ -9,7 +9,7 @@ var distanceToDegrees = helpers.distanceToDegrees;
  * Takes a {@link LineString|line} and returns a {@link LineString|line} at offset by the specified distance.
  *
  * @name lineOffset
- * @param {Feature<LineString>|Geometry<LineString>} line input line
+ * @param {Geometry|Feature<LineString>} line input line
  * @param {number} offset distance to offset the line
  * @param {string} [units=kilometers] can be degrees, radians, miles, kilometers, inches, yards, meters
  * @returns {Feature<LineString>} Line offset from the input line
@@ -55,7 +55,7 @@ module.exports = function (line, offset, units) {
         return segment[0];
     });
     finalCoords.push(segments[segments.length - 1][1]);
-    return lineString(finalCoords);
+    return lineString(finalCoords, line.properties);
 };
 
 // Inspiration taken from http://stackoverflow.com/questions/2825412/draw-a-parallel-line

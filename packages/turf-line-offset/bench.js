@@ -1,64 +1,29 @@
-var along = require('./');
-var Benchmark = require('benchmark');
-var fs = require('fs');
+const Benchmark = require('benchmark');
+const path = require('path');
+const fs = require('fs');
+const load = require('load-json-file');
+const lineOffset = require('./');
 
-var line = {
-  type: "Feature",
-  properties: {},
-  geometry: {
-    type: "LineString",
-    coordinates: [
-      [
-        -77.0316696166992,
-        38.878605901789236
-      ],
-      [
-        -77.02960968017578,
-        38.88194668656296
-      ],
-      [
-        -77.02033996582031,
-        38.88408470638821
-      ],
-      [
-        -77.02566146850586,
-        38.885821800123196
-      ],
-      [
-        -77.02188491821289,
-        38.88956308852534
-      ],
-      [
-        -77.01982498168944,
-        38.89236892551996
-      ]
-    ]
-  }
-};
+const directory = path.join(__dirname, 'test', 'in') + path.sep;
+const fixtures = fs.readdirSync(directory).map(filename => {
+    return {
+        filename,
+        name: path.parse(filename).name,
+        geojson: load.sync(directory + filename)
+    };
+});
 
-var route = JSON.parse(fs.readFileSync(__dirname + '/test/fixtures/route.geojson'));
+/**
+ * Benchmark Results
+ * linestring-feature x 640,105 ops/sec ±1.90% (87 runs sampled)
+ * linestring-geometry x 633,886 ops/sec ±1.53% (92 runs sampled)
+ */
+const suite = new Benchmark.Suite('turf-line-offset');
+for (const {name, geojson} of fixtures) {
+    suite.add(name, () => lineOffset(geojson, 100, 'meters'));
+}
 
-var suite = new Benchmark.Suite('turf-along');
 suite
-  .add('turf-along',function () {
-    along(line, 1, 'miles');
-  })
-  .add('turf-along#route 1 mile',function () {
-    along(route, 1, 'miles');
-  })
-  .add('turf-along#route 10 miles',function () {
-    along(route, 10, 'miles');
-  })
-  .add('turf-along#route 50 miles',function () {
-    along(route, 50, 'miles');
-  })
-  .add('turf-along#route 100 miles',function () {
-    along(route, 100, 'miles');
-  })
-  .on('cycle', function (event) {
-    console.log(String(event.target));
-  })
-  .on('complete', function () {
-    
-  })
-  .run();
+    .on('cycle', e => { console.log(String(e.target)); })
+    .on('complete', () => {})
+    .run();

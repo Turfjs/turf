@@ -23,15 +23,21 @@
     "offset"
   ],
   "author": "Turf Authors",
+  "contributors": [
+    "Rowan Winsemius <@rowanwins>",
+    "Denis Carriere <@DenisCarriere>"
+  ],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/Turfjs/turf/issues"
   },
   "homepage": "https://github.com/Turfjs/turf",
   "devDependencies": {
-    "benchmark": "^1.0.0",
-    "tape": "^3.5.0",
-    "@turf/helpers": "^4.1.0"
+    "@turf/helpers": "^4.1.0",
+    "benchmark": "^2.1.4",
+    "load-json-file": "^2.0.0",
+    "tape": "^4.6.3",
+    "write-json-file": "^2.0.0"
   },
   "dependencies": {
     "@turf/helpers": "^4.1.0",
