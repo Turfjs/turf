@@ -45,10 +45,10 @@ module.exports = function (line, offset, units) {
 
                 // Handling for line segments that aren't straight
                 if (int !== false) {
-                    seg2Coords[1][0] = int.x;
-                    seg2Coords[1][1] = int.y;
-                    segment[0][0] = int.x;
-                    segment[0][1] = int.y;
+                    seg2Coords[1][0] = int[0];
+                    seg2Coords[1][1] = int[1];
+                    segment[0][0] = int[0];
+                    segment[0][1] = int[1];
                 }
 
                 finalCoords.push(seg2Coords[0]);

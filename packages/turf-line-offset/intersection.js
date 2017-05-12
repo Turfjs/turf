@@ -5,9 +5,9 @@
  * @returns {Array<number>} coordinates [x, y]
  */
 function AB(segment) {
-    var start = segment.start;
-    var end = segment.end;
-    return {x: end.x - start.x, y: end.y - start.y};
+    var start = segment[0];
+    var end = segment[1];
+    return [end[0] - start[0], end[1] - start[1]];
 }
 
 /**
@@ -18,7 +18,7 @@ function AB(segment) {
  * @returns {Array<number>} Cross Product
  */
 function crossProduct(v1, v2) {
-    return (v1.x * v2.y) - (v2.x * v1.y);
+    return (v1[0] * v2[1]) - (v2[0] * v1[1]);
 }
 
 /**
@@ -29,7 +29,7 @@ function crossProduct(v1, v2) {
  * @returns {Array<number>} Add
  */
 function add(v1, v2) {
-    return {x: v1.x + v2.x, y: v1.y + v2.y};
+    return [v1[0] + v2[0], v1[1] + v2[1]];
 }
 
 /**
@@ -40,7 +40,7 @@ function add(v1, v2) {
  * @returns {Array<number>} Sub
  */
 function sub(v1, v2) {
-    return {x: v1.x - v2.x, y: v1.y - v2.y};
+    return [v1[0] - v2[0], v1[1] - v2[1]];
 }
 
 /**
@@ -51,7 +51,7 @@ function sub(v1, v2) {
  * @returns {Array<number>} scalarMult
  */
 function scalarMult(s, v) {
-    return {x: s * v.x, y: s * v.y};
+    return [s * v[0], s * v[1]];
 }
 
 /**
@@ -62,9 +62,9 @@ function scalarMult(s, v) {
  * @returns {Array<number>} intersection
  */
 function intersectSegments(a, b) {
-    var p = a.start;
+    var p = a[0];
     var r = AB(a);
-    var q = b.start;
+    var q = b[0];
     var s = AB(b);
 
     var cross = crossProduct(r, s);
@@ -98,12 +98,9 @@ function isParallel(a, b) {
 function intersect(a, b) {
     // a = JSON.parse(JSON.stringify(a));
     // b = JSON.parse(JSON.stringify(b));
-    // d = [[a.start.x, a.start.y], [a.end.x, a.end.y]];
-    // e = [[b.start.x, b.start.y], [b.end.x, b.end.y]];
-    if (isParallel(a, b) === false) {
-        return intersectSegments(a, b);
-    } else {
-        return false;
-    }
+    a = [[a.start.x, a.start.y], [a.end.x, a.end.y]];
+    b = [[b.start.x, b.start.y], [b.end.x, b.end.y]];
+    if (isParallel(a, b)) return false;
+    return intersectSegments(a, b);
 }
 module.exports = intersect;
