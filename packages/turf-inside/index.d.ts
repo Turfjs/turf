@@ -6,6 +6,6 @@ type Polygon = GeoJSON.Feature<GeoJSON.Polygon | GeoJSON.MultiPolygon> | GeoJSON
 /**
  * http://turfjs.org/docs/#inside
  */
-declare function inside(point: Point, polygon: Polygon): boolean;
+declare function inside(point: Point, polygon: Polygon, ignoreBoundary?: boolean): boolean;
 declare namespace inside { }
 export = inside;

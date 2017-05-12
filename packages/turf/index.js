@@ -75,6 +75,12 @@ var turf = {
     bboxClip: require('@turf/bbox-clip'),
     lineOverlap: require('@turf/line-overlap'),
     sector: require('@turf/sector'),
+    rhumbBearing: require('@turf/rhumb-bearing'),
+    rhumbDistance: require('@turf/rhumb-distance'),
+    rhumbDestination: require('@turf/rhumb-destination'),
+    polygonTangents: require('@turf/polygon-tangents'),
+    rewind: require('@turf/rewind'),
+    isobands: require('@turf/isobands'),
     point: helpers.point,
     polygon: helpers.polygon,
     lineString: helpers.lineString,
@@ -88,6 +94,10 @@ var turf = {
     distanceToRadians: helpers.distanceToRadians,
     distanceToDegrees: helpers.distanceToDegrees,
     bearingToAngle: helpers.bearingToAngle,
+    degrees2radians: helpers.degrees2radians,
+    radians2degrees: helpers.radians2degrees,
+    convertDistance: helpers.convertDistance,
+    round: helpers.round,
     getCoord: invariant.getCoord,
     getCoords: invariant.getCoords,
     geojsonType: invariant.geojsonType,
@@ -104,7 +114,9 @@ var turf = {
     featureReduce: meta.featureReduce,
     coordAll: meta.coordAll,
     geomEach: meta.geomEach,
-    geomReduce: meta.geomReduce
+    geomReduce: meta.geomReduce,
+    flattenEach: meta.flattenEach,
+    flattenReduce: meta.flattenReduce
 };
 
 module.exports = turf;

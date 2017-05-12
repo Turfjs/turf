@@ -110,3 +110,8 @@ export function degrees2radians(degrees: number): number
  * http://turfjs.org/docs/#round
  */
 export function round(num: number, precision?: number): number
+
+/**
+ * http://turfjs.org/docs/#convertdistance
+ */
+export function convertDistance(distance: number, originalUnit: Unit, finalUnit?: Unit): number

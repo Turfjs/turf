@@ -1,4 +1,4 @@
-# turf-isobands
+# @turf/isobands
 
 # isobands
 
@@ -52,7 +52,7 @@ PRs and issues.
 Install this module individually:
 
 ```sh
-$ npm install turf-isobands
+$ npm install @turf/isobands
 ```
 
 Or install the Turf module that includes it as a function:

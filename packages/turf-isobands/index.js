@@ -1,15 +1,15 @@
-var marchingsquares = require('marchingsquares');
+var bbox = require('@turf/bbox');
+var area = require('@turf/area');
+var inside = require('@turf/inside');
 var helpers = require('@turf/helpers');
-var featureCollection = helpers.featureCollection;
+var explode = require('@turf/explode');
+var invariant = require('@turf/invariant');
+var gridToMatrix = require('grid-to-matrix');
+var marchingsquares = require('marchingsquares');
 var polygon = helpers.polygon;
 var multiPolygon = helpers.multiPolygon;
-var explode = require('@turf/explode');
-var inside = require('@turf/inside');
-var area = require('@turf/area');
-var invariant = require('@turf/invariant');
 var collectionOf = invariant.collectionOf;
-var bbox = require('@turf/bbox');
-var gridToMatrix = require('grid-to-matrix');
+var featureCollection = helpers.featureCollection;
 
 /**
  * Takes a grid {@link FeatureCollection} of {@link Point} features with z-values and an array of

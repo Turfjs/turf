@@ -11,7 +11,11 @@ import {
     radiansToDistance,
     distanceToRadians,
     distanceToDegrees,
-    bearingToAngle} from '@turf/helpers';
+    bearingToAngle,
+    radians2degrees,
+    degrees2radians,
+    round,
+    convertDistance} from '@turf/helpers';
 import {
     getGeom,
     getGeomType,
@@ -31,7 +35,9 @@ import {
     featureReduce,
     coordAll,
     geomEach,
-    geomReduce
+    geomReduce,
+    flattenEach,
+    flattenReduce,
 } from '@turf/meta';
 
 import * as isolines from '@turf/isolines';
@@ -91,13 +97,18 @@ import * as unkinkPolygon from '@turf/unkink-polygon';
 import * as greatCircle from '@turf/great-circle';
 import * as lineSegment from '@turf/line-segment';
 import * as lineSplit from '@turf/line-split';
-import * as lineArc from '@turf/line-arc'
-import * as polygonToLineString from '@turf/polygon-to-linestring'
-import * as lineStringToPolygon from '@turf/linestring-to-polygon'
-import * as bboxClip from '@turf/bbox-clip'
-import * as lineOverlap from '@turf/line-overlap'
-import * as sector from '@turf/sector'
-
+import * as lineArc from '@turf/line-arc';
+import * as polygonToLineString from '@turf/polygon-to-linestring';
+import * as lineStringToPolygon from '@turf/linestring-to-polygon';
+import * as bboxClip from '@turf/bbox-clip';
+import * as lineOverlap from '@turf/line-overlap';
+import * as sector from '@turf/sector';
+import * as rhumbBearing from '@turf/rhumb-bearing';
+import * as rhumbDistance from '@turf/rhumb-distance';
+import * as rhumbDestination from '@turf/rhumb-destination';
+import * as polygonTangents from '@turf/polygon-tangents';
+import * as rewind from '@turf/rewind';
+import * as isobands from '@turf/isobands';
 export {
     isolines,
     convex,
@@ -188,5 +199,17 @@ export {
     lineStringToPolygon,
     bboxClip,
     lineOverlap,
-    sector
+    sector,
+    rhumbBearing,
+    rhumbDistance,
+    rhumbDestination,
+    polygonTangents,
+    rewind,
+    isobands,
+    radians2degrees,
+    degrees2radians,
+    round,
+    flattenEach,
+    flattenReduce,
+    convertDistance
 };

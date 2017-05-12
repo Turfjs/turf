@@ -1,13 +1,12 @@
 {
-  "name": "turf-isobands",
-  "version": "3.0.0",
+  "name": "@turf/isobands",
+  "version": "4.0.0",
   "description": "turf isobands module",
   "main": "index.js",
   "types": "index.d.ts",
   "files": [
     "index.js",
-    "index.d.ts",
-    "marchingsquares-isobands.js"
+    "index.d.ts"
   ],
   "scripts": {
     "test": "node test.js",
@@ -26,7 +25,10 @@
     "topography",
     "filled"
   ],
-  "author": "stebogit",
+  "author": "TurfJS",
+  "contributors": [
+    "Stefano Borghi <@stebogit>"
+  ],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/Turfjs/turf/issues"
