@@ -22,7 +22,7 @@ const fixtures = fs.readdirSync(directories.in).map(filename => {
 
 test('turf-line-offset', t => {
     for (const {name, geojson} of fixtures) {
-        const offset = truncate(lineOffset(geojson, 50, 'kilometers'));
+        const offset = truncate(lineOffset(geojson, 50, 'kilometers'), 4);
         offset.properties.stroke = '#00F';
         const results = featureCollection([offset, geojson]);
 
