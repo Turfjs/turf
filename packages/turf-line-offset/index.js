@@ -1,6 +1,5 @@
 var getCoords = require('@turf/invariant').getCoords;
 var coordEach = require('@turf/meta').coordEach;
-var intersection = require('./intersection');
 var helpers = require('@turf/helpers');
 var lineString = helpers.lineString;
 var distanceToDegrees = helpers.distanceToDegrees;
@@ -10,7 +9,7 @@ var distanceToDegrees = helpers.distanceToDegrees;
  *
  * @name lineOffset
  * @param {Geometry|Feature<LineString>} line input line
- * @param {number} offset distance to offset the line
+ * @param {number} offset distance to offset the line (can be of negative value)
  * @param {string} [units=kilometers] can be degrees, radians, miles, kilometers, inches, yards, meters
  * @returns {Feature<LineString>} Line offset from the input line
  * @example
@@ -29,6 +28,9 @@ var distanceToDegrees = helpers.distanceToDegrees;
  * var addToMap = [offsetLine, line]
  */
 module.exports = function (line, offset, units) {
+    if (!line) throw new Error('line is required');
+    if (offset === undefined || offset === null || isNaN(offset)) throw new Error('offset is required');
+
     var segments = [];
     var offsetDegrees = distanceToDegrees(offset, units);
     var coords = getCoords(line);
@@ -39,16 +41,12 @@ module.exports = function (line, offset, units) {
             segments.push(segment);
             if (index > 0) {
                 var seg2Coords = segments[index - 1];
-                var seg1 = {start: {x: segment[0][0], y: segment[0][1]}, end: {x: segment[1][0], y: segment[1][1]}};
-                var seg2 = {start: {x: seg2Coords[0][0], y: seg2Coords[0][1]}, end: {x: seg2Coords[1][0], y: seg2Coords[1][1]}};
-                var int = intersection(seg1, seg2);
+                var intersects = intersection(segment, seg2Coords);
 
                 // Handling for line segments that aren't straight
-                if (int !== false) {
-                    seg2Coords[1][0] = int[0];
-                    seg2Coords[1][1] = int[1];
-                    segment[0][0] = int[0];
-                    segment[0][1] = int[1];
+                if (intersects !== false) {
+                    seg2Coords[1] = intersects;
+                    segment[0] = intersects;
                 }
 
                 finalCoords.push(seg2Coords[0]);
@@ -85,4 +83,115 @@ function processSegment(point1, point2, offset) {
     var out1y = point1[1] + offset * (point1[0] - point2[0]) / L;
     var out2y = point2[1] + offset * (point1[0] - point2[0]) / L;
     return [[out1x, out1y], [out2x, out2y]];
+}
+
+/**
+ * AB
+ *
+ * @private
+ * @param {Array<Array<number>>} segment - 2 vertex line segment
+ * @returns {Array<number>} coordinates [x, y]
+ */
+function ab(segment) {
+    var start = segment[0];
+    var end = segment[1];
+    return [end[0] - start[0], end[1] - start[1]];
+}
+
+/**
+ * Cross Product
+ *
+ * @private
+ * @param {Array<number>} v1 coordinates [x, y]
+ * @param {Array<number>} v2 coordinates [x, y]
+ * @returns {Array<number>} Cross Product
+ */
+function crossProduct(v1, v2) {
+    return (v1[0] * v2[1]) - (v2[0] * v1[1]);
+}
+
+/**
+ * Add
+ *
+ * @private
+ * @param {Array<number>} v1 coordinates [x, y]
+ * @param {Array<number>} v2 coordinates [x, y]
+ * @returns {Array<number>} Add
+ */
+function add(v1, v2) {
+    return [v1[0] + v2[0], v1[1] + v2[1]];
+}
+
+/**
+ * Sub
+ *
+ * @private
+ * @param {Array<number>} v1 coordinates [x, y]
+ * @param {Array<number>} v2 coordinates [x, y]
+ * @returns {Array<number>} Sub
+ */
+function sub(v1, v2) {
+    return [v1[0] - v2[0], v1[1] - v2[1]];
+}
+
+/**
+ * scalarMult
+ *
+ * @private
+ * @param {number} s scalar
+ * @param {Array<number>} v coordinates [x, y]
+ * @returns {Array<number>} scalarMult
+ */
+function scalarMult(s, v) {
+    return [s * v[0], s * v[1]];
+}
+
+/**
+ * Intersect Segments
+ *
+ * @private
+ * @param {Array<number>} a coordinates [x, y]
+ * @param {Array<number>} b coordinates [x, y]
+ * @returns {Array<number>} intersection
+ */
+function intersectSegments(a, b) {
+    var p = a[0];
+    var r = ab(a);
+    var q = b[0];
+    var s = ab(b);
+
+    var cross = crossProduct(r, s);
+    var qmp = sub(q, p);
+    var numerator = crossProduct(qmp, s);
+    var t = numerator / cross;
+    var intersection = add(p, scalarMult(t, r));
+    return intersection;
+}
+
+/**
+ * Is Parallel
+ *
+ * @private
+ * @param {Array<number>} a coordinates [x, y]
+ * @param {Array<number>} b coordinates [x, y]
+ * @returns {boolean} true if a and b are parallel (or co-linear)
+ */
+function isParallel(a, b) {
+    var r = ab(a);
+    var s = ab(b);
+    return (crossProduct(r, s) === 0);
+}
+
+/**
+ * Intersection
+ * https://github.com/rook2pawn/node-intersection/blob/master/index.js
+ *
+ * @private
+ * @param {Array<number>} a coordinates [x, y]
+ * @param {Array<number>} b coordinates [x, y]
+ * @returns {Array<number>|boolean} true if a and b are parallel (or co-linear)
+ */
+function intersection(a, b) {
+    if (isParallel(a, b)) return false;
+    return intersectSegments(a, b);
 }

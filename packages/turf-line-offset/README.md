@@ -7,7 +7,7 @@ Takes a [line](http://geojson.org/geojson-spec.html#linestring) and returns a [l
 **Parameters**
 
 -   `line` **([Geometry](http://geojson.org/geojson-spec.html#geometry) \| [Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;[LineString](http://geojson.org/geojson-spec.html#linestring)>)** input line
--   `offset` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** distance to offset the line
+-   `offset` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** distance to offset the line (can be of negative value)
 -   `units` **\[[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)]** can be degrees, radians, miles, kilometers, inches, yards, meters (optional, default `kilometers`)
 
 **Examples**
