@@ -1,6 +1,6 @@
 var getCoords = require('@turf/invariant').getCoords;
 var coordEach = require('@turf/meta').coordEach;
-var intersection = require('intersection');
+var intersection = require('./intersection');
 var helpers = require('@turf/helpers');
 var lineString = helpers.lineString;
 var distanceToDegrees = helpers.distanceToDegrees;
@@ -41,7 +41,7 @@ module.exports = function (line, offset, units) {
                 var seg2Coords = segments[index - 1];
                 var seg1 = {start: {x: segment[0][0], y: segment[0][1]}, end: {x: segment[1][0], y: segment[1][1]}};
                 var seg2 = {start: {x: seg2Coords[0][0], y: seg2Coords[0][1]}, end: {x: seg2Coords[1][0], y: seg2Coords[1][1]}};
-                var int = intersection.intersect(seg1, seg2);
+                var int = intersection(seg1, seg2);
 
                 // Handling for line segments that aren't straight
                 if (int !== false) {
