@@ -34,7 +34,7 @@ module.exports = function (line, offset, units) {
     var segments = [];
     var offsetDegrees = distanceToDegrees(offset, units);
     var coords = getCoords(line);
-    var finalCoords = [];
+    var result = [];
     coordEach(line, function (currentCoords, index) {
         if (index !== coords.length - 1) {
             var segment = processSegment(currentCoords, coords[index + 1], offsetDegrees);
@@ -49,20 +49,20 @@ module.exports = function (line, offset, units) {
                     segment[0] = intersects;
                 }
 
-                finalCoords.push(seg2Coords[0]);
+                result.push(seg2Coords[0]);
                 if (index === coords.length - 2) {
-                    finalCoords.push(segment[0]);
-                    finalCoords.push(segment[1]);
+                    result.push(segment[0]);
+                    result.push(segment[1]);
                 }
             }
             // Handling for lines that only have 1 segment
             if (coords.length === 2) {
-                finalCoords.push(segment[0]);
-                finalCoords.push(segment[1]);
+                result.push(segment[0]);
+                result.push(segment[1]);
             }
         }
     });
-    return lineString(finalCoords, line.properties);
+    return lineString(result, line.properties);
 };
 
 /**
