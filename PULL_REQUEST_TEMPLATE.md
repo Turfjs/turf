@@ -7,8 +7,7 @@ Please fill in this template.
 
 Submitting a new TurfJS Module.
 
-- [ ] Provide a general overview/description of the proposed module.
-- [ ] Provide JSDocs to help understand the input/output data types.
-- [ ] Provide a basic JavaScript example.
+- [ ] Overview description of proposed module.
+- [ ] Include JSDocs with a basic example.
 - [ ] Execute `./scripts/generate-readmes` to create `README.md`.
 - [ ] Add yourself to **contributors** in `package.json` using "Full Name <@GitHub Username>".
