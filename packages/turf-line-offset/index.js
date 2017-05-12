@@ -1,6 +1,6 @@
 var getCoords = require('@turf/invariant').getCoords;
 var coordEach = require('@turf/meta').coordEach;
-var intersection = require('./intersection');
+var intersection = require('intersection');
 var helpers = require('@turf/helpers');
 var lineString = helpers.lineString;
 var distanceToDegrees = helpers.distanceToDegrees;
@@ -71,6 +71,7 @@ module.exports = function (line, offset, units) {
  * Process Segment
  * Inspiration taken from http://stackoverflow.com/questions/2825412/draw-a-parallel-line
  *
+ * @private
  * @param {Array<number>} point1 Point coordinates
  * @param {Array<number>} point2 Point coordinates
  * @param {number} offset Offset
