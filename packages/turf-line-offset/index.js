@@ -42,15 +42,25 @@ module.exports = function (line, offset, units) {
                 var seg1 = {start: {x: segment[0][0], y: segment[0][1]}, end: {x: segment[1][0], y: segment[1][1]}};
                 var seg2 = {start: {x: seg2Coords[0][0], y: seg2Coords[0][1]}, end: {x: seg2Coords[1][0], y: seg2Coords[1][1]}};
                 var int = intersection.intersect(seg1, seg2);
-                seg2Coords[1][0] = int.x;
-                seg2Coords[1][1] = int.y;
-                segment[0][0] = int.x;
-                segment[0][1] = int.y;
+
+                // Handling for line segments that aren't straight
+                if (int !== false) {
+                    seg2Coords[1][0] = int.x;
+                    seg2Coords[1][1] = int.y;
+                    segment[0][0] = int.x;
+                    segment[0][1] = int.y;
+                }
+
                 finalCoords.push(seg2Coords[0]);
                 if (index === coords.length - 2) {
                     finalCoords.push(segment[0]);
                     finalCoords.push(segment[1]);
                 }
+            }
+            // Handling for lines that only have 1 segment
+            if (coords.length === 2) {
+                finalCoords.push(segment[0]);
+                finalCoords.push(segment[1]);
             }
         }
     });
