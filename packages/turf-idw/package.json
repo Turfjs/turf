@@ -1,6 +1,6 @@
 {
   "name": "@turf/idw",
-  "version": "4.2.0",
+  "version": "4.3.0",
   "description": "turf idw module",
   "main": "index.js",
   "types": "index.d.ts",
@@ -27,10 +27,10 @@
     "tape": "^4.6.3"
   },
   "dependencies": {
-    "@turf/bbox": "^4.2.0",
-    "@turf/centroid": "^4.2.0",
-    "@turf/distance": "^4.2.0",
-    "@turf/helpers": "^4.2.0",
-    "@turf/square-grid": "^4.2.0"
+    "@turf/bbox": "^4.3.0",
+    "@turf/centroid": "^4.3.0",
+    "@turf/distance": "^4.3.0",
+    "@turf/helpers": "^4.3.0",
+    "@turf/square-grid": "^4.3.0"
   }
 }
