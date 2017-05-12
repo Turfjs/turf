@@ -1,6 +1,6 @@
 var getCoords = require('@turf/invariant').getCoords;
 var coordEach = require('@turf/meta').coordEach;
-var intersection = require('intersection');
+var intersection = require('./intersection');
 var helpers = require('@turf/helpers');
 var lineString = helpers.lineString;
 var distanceToDegrees = helpers.distanceToDegrees;
@@ -67,7 +67,15 @@ module.exports = function (line, offset, units) {
     return lineString(finalCoords, line.properties);
 };
 
-// Inspiration taken from http://stackoverflow.com/questions/2825412/draw-a-parallel-line
+/**
+ * Process Segment
+ * Inspiration taken from http://stackoverflow.com/questions/2825412/draw-a-parallel-line
+ *
+ * @param {Array<number>} point1 Point coordinates
+ * @param {Array<number>} point2 Point coordinates
+ * @param {number} offset Offset
+ * @returns {Array<Array<number>>} offset points
+ */
 function processSegment(point1, point2, offset) {
     var L = Math.sqrt((point1[0] - point2[0]) * (point1[0] - point2[0]) + (point1[1] - point2[1]) * (point1[1] - point2[1]));
 
