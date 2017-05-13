@@ -43,37 +43,21 @@ module.exports = function (feature1, feature2) {
     case 'Point':
         switch (type2) {
         case 'Point':
-            return deepEqual(coords1, coords2);
+            return !deepEqual(coords1, coords2) ? true : false; //eslint-disable-line no-unneeded-ternary
+        case 'MultiPoint':
+            return !isPointInMultiPoint(geom2, geom1) ? true : false; //eslint-disable-line no-unneeded-ternary
+        case 'LineString':
+            return !isPointOnLine(geom2, geom1) ? true : false; //eslint-disable-line no-unneeded-ternary
+        case 'Polygon':
+            return !inside(geom1, geom2) ? true : false; //eslint-disable-line no-unneeded-ternary
         }
         throw new Error('feature2 ' + type2 + ' geometry not supported');
     case 'MultiPoint':
         switch (type2) {
-        case 'Point':
-            return isPointInMultiPoint(geom1, geom2);
         case 'MultiPoint':
-            return isMultiPointInMultiPoint(geom1, geom2);
-        }
-        throw new Error('feature2 ' + type2 + ' geometry not supported');
-    case 'LineString':
-        switch (type2) {
-        case 'Point':
-            return isPointOnLine(geom1, geom2);
+            return !isMultiPointInMultiPoint(geom1, geom2) ? true : false; //eslint-disable-line no-unneeded-ternary
         case 'LineString':
-            return isLineOnLine(geom1, geom2);
-        case 'MultiPoint':
-            return isMultiPointOnLine(geom1, geom2);
-        }
-        throw new Error('feature2 ' + type2 + ' geometry not supported');
-    case 'Polygon':
-        switch (type2) {
-        case 'Point':
-            return inside(geom2, geom1);
-        case 'LineString':
-            return isLineInPoly(geom1, geom2);
-        case 'Polygon':
-            return isPolyInPoly(feature2, feature1);
-        case 'MultiPoint':
-            return isMultiPointInPoly(geom1, geom2);
+            return !isMultiPointOnLine(geom1, geom2) ? true : false; //eslint-disable-line no-unneeded-ternary
         }
         throw new Error('feature2 ' + type2 + ' geometry not supported');
     default:
@@ -94,21 +78,16 @@ function isPointInMultiPoint(MultiPoint, Point) {
 }
 
 function isMultiPointInMultiPoint(MultiPoint1, MultiPoint2) {
-    var foundAMatch = 0;
+    var match = false;
     for (var i = 0; i < MultiPoint2.coordinates.length; i++) {
-        var anyMatch = false;
         for (var i2 = 0; i2 < MultiPoint1.coordinates.length; i2++) {
             if (deepEqual(MultiPoint2.coordinates[i], MultiPoint1.coordinates[i2])) {
-                foundAMatch++;
-                anyMatch = true;
+                match = true;
                 break;
             }
         }
-        if (!anyMatch) {
-            return false;
-        }
     }
-    return foundAMatch > 0;
+    return match;
 }
 
 // http://stackoverflow.com/a/11908158/1979085
