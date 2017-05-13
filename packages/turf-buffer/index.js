@@ -58,7 +58,9 @@ module.exports = function (geojson, radius, units, steps) {
         return featureCollection(results);
     case 'FeatureCollection':
         featureEach(geojson, function (feature) {
-            results.push(buffer(feature, radius, units, steps));
+            featureEach(buffer(feature, radius, units, steps), function (buffered) {
+                results.push(buffered);
+            });
         });
         return featureCollection(results);
     }
@@ -83,6 +85,12 @@ function buffer(geojson, radius, units, steps) {
     switch (geometry.type) {
     case 'Point':
         return circle(geometry.coordinates, radius, steps, units, properties);
+    case 'GeometryCollection':
+        var results = [];
+        geomEach(geojson, function (geometry) {
+            results.push(buffer(geometry, radius, units, steps));
+        });
+        return featureCollection(results);
     }
 
     // Project GeoJSON to Transverse Mercator projection (convert to Meters)
