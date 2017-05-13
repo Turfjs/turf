@@ -1,14 +1,21 @@
 /// <reference types="geojson" />
 
-type Polygon = GeoJSON.Feature<GeoJSON.Polygon> | GeoJSON.Polygon;
-type LineString = GeoJSON.Feature<GeoJSON.LineString> | GeoJSON.LineString;
-type MultiLineString = GeoJSON.Feature<GeoJSON.MultiLineString> | GeoJSON.MultiLineString;
-type MultiPolygon = GeoJSON.Feature<GeoJSON.MultiPolygon> | GeoJSON.MultiPolygon;
-type Rewind = Polygon | LineString | MultiLineString | MultiPolygon;
+import {Units, FeatureGeometryCollection} from '@turf/helpers';
+
+type LineString = GeoJSON.LineString;
+type Polygon = GeoJSON.Polygon;
+type MultiLineString = GeoJSON.MultiLineString;
+type MultiPolygon = GeoJSON.MultiPolygon;
+type GeometryObject = GeoJSON.GeometryObject;
+type GeometryCollection = GeoJSON.GeometryCollection;
+type Feature<Geom extends GeometryObject> = GeoJSON.Feature<Geom>;
+type FeatureCollection<Geom extends GeometryObject> = GeoJSON.FeatureCollection<Geom>;
+type Geoms = LineString|Polygon|MultiLineString|MultiPolygon;
+type Input = FeatureCollection<Geoms> | Feature<Geoms> | Geoms | FeatureGeometryCollection;
 
 /**
  * http://turfjs.org/docs/#rewind
  */
-declare function rewind<Input extends Rewind>(geojson: Input, reversed?: boolean, mutate?: boolean): Input;
+declare function rewind<T extends Input>(geojson: T, reversed?: boolean, mutate?: boolean): T;
 declare namespace rewind { }
 export = rewind;

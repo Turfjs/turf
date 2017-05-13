@@ -17,11 +17,12 @@ let fixtures = fs.readdirSync(directory).map(filename => {
 /**
  * Benchmark Results
  *
- * geometry-polygon-counter-clockwise x 10,379,811 ops/sec ±0.84% (89 runs sampled)
- * line-clockwise x 7,937,098 ops/sec ±1.13% (90 runs sampled)
- * line-counter-clockwise x 6,324,221 ops/sec ±5.40% (74 runs sampled)
- * polygon-clockwise x 8,941,337 ops/sec ±2.95% (81 runs sampled)
- * polygon-counter-clockwise x 7,625,375 ops/sec ±12.27% (72 runs sampled)
+ * feature-collection x 2,476,533 ops/sec ±2.44% (80 runs sampled)
+ * geometry-polygon-counter-clockwise x 7,422,622 ops/sec ±1.79% (87 runs sampled)
+ * line-clockwise x 5,845,725 ops/sec ±1.55% (86 runs sampled)
+ * line-counter-clockwise x 5,889,989 ops/sec ±1.03% (88 runs sampled)
+ * polygon-clockwise x 4,898,849 ops/sec ±8.02% (75 runs sampled)
+ * polygon-counter-clockwise x 6,586,601 ops/sec ±6.10% (82 runs sampled)
  */
 const suite = new Benchmark.Suite('turf-rewind');
 for (const {name, geojson} of fixtures) {
