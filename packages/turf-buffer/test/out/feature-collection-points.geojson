@@ -3,7 +3,12 @@
 	"features": [
 		{
 			"type": "Feature",
-			"properties": {},
+			"properties": {
+				"stroke": "#F00",
+				"fill": "#F00",
+				"marker-color": "#F00",
+				"fill-opacity": 0.3
+			},
 			"geometry": {
 				"type": "MultiPolygon",
 				"coordinates": [
@@ -492,7 +497,12 @@
 		},
 		{
 			"type": "Feature",
-			"properties": {},
+			"properties": {
+				"stroke": "#F00",
+				"fill": "#F00",
+				"marker-color": "#F00",
+				"fill-opacity": 0.3
+			},
 			"geometry": {
 				"type": "Polygon",
 				"coordinates": [
@@ -763,7 +773,12 @@
 		},
 		{
 			"type": "Feature",
-			"properties": {},
+			"properties": {
+				"stroke": "#F00",
+				"fill": "#F00",
+				"marker-color": "#F00",
+				"fill-opacity": 0.3
+			},
 			"geometry": {
 				"type": "Polygon",
 				"coordinates": [
@@ -1034,7 +1049,12 @@
 		},
 		{
 			"type": "Feature",
-			"properties": {},
+			"properties": {
+				"stroke": "#00F",
+				"fill": "#00F",
+				"marker-color": "#00F",
+				"fill-opacity": 0.3
+			},
 			"geometry": {
 				"type": "MultiPoint",
 				"coordinates": [
@@ -1059,7 +1079,12 @@
 		},
 		{
 			"type": "Feature",
-			"properties": {},
+			"properties": {
+				"stroke": "#00F",
+				"fill": "#00F",
+				"marker-color": "#00F",
+				"fill-opacity": 0.3
+			},
 			"geometry": {
 				"type": "Point",
 				"coordinates": [
@@ -1070,7 +1095,12 @@
 		},
 		{
 			"type": "Feature",
-			"properties": {},
+			"properties": {
+				"stroke": "#00F",
+				"fill": "#00F",
+				"marker-color": "#00F",
+				"fill-opacity": 0.3
+			},
 			"geometry": {
 				"type": "Point",
 				"coordinates": [

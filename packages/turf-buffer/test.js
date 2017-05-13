@@ -5,7 +5,7 @@ const load = require('load-json-file');
 const write = require('write-json-file');
 const truncate = require('@turf/truncate');
 const {featureEach} = require('@turf/meta');
-const {featureCollection, point, polygon} = require('@turf/helpers');
+const {featureCollection, point, polygon, geometryCollection} = require('@turf/helpers');
 const buffer = require('./');
 
 const directories = {
@@ -24,16 +24,16 @@ let fixtures = fs.readdirSync(directories.in).map(filename => {
 
 test('turf-buffer', t => {
     for (const {filename, name, geojson} of fixtures) {
-        let {radius, units, padding} = geojson.properties || {};
+        let {radius, units, steps} = geojson.properties || {};
         radius = radius || 50;
         units = units || 'miles';
 
-        const buffered = truncate(buffer(geojson, radius, units, padding));
+        const buffered = truncate(buffer(geojson, radius, units, steps));
 
         // Add Results to FeatureCollection
         const results = featureCollection([]);
-        featureEach(buffered, feature => results.features.push(feature));
-        featureEach(geojson, feature => results.features.push(feature));
+        featureEach(buffered, feature => results.features.push(colorize(feature, '#F00')));
+        featureEach(geojson, feature => results.features.push(colorize(feature, '#00F')));
 
         if (process.env.REGEN) write.sync(directories.out + filename, results);
         t.deepEqual(results, load.sync(directories.out + filename), name);
@@ -41,12 +41,22 @@ test('turf-buffer', t => {
     t.end();
 });
 
+// https://github.com/Turfjs/turf/pull/736
+test('turf-buffer - Support Negative Buffer', t => {
+    const poly = polygon([[[11, 0], [22, 4], [31, 0], [31, 11], [21, 15], [11, 11], [11, 0]]]);
+
+    t.assert(buffer(poly, -50), 'allow negative buffer param');
+    t.end();
+});
+
 test('turf-buffer - Support Geometry Objects', t => {
     const pt = point([61, 5]);
     const poly = polygon([[[11, 0], [22, 4], [31, 0], [31, 11], [21, 15], [11, 11], [11, 0]]]);
+    // const gc = geometryCollection([pt.geometry, poly.geometry]);
 
-    buffer(pt.geometry, 10);
-    buffer(poly.geometry, 10);
+    // t.assert(buffer(gc, 10), 'support Geometry Collection');
+    t.assert(buffer(pt.geometry, 10), 'support Point Geometry');
+    t.assert(buffer(poly.geometry, 10), 'support Polygon Geometry');
     t.end();
 });
 
@@ -68,3 +78,13 @@ test('turf-buffer - Prevent Input Mutation', t => {
     t.deepEqual(collection, beforeCollection, 'collection should not mutate');
     t.end();
 });
+
+function colorize(feature, color = '#F00') {
+    if (feature.properties) {
+        feature.properties.stroke = color;
+        feature.properties.fill = color;
+        feature.properties['marker-color'] = color;
+        feature.properties['fill-opacity'] = 0.3;
+    }
+    return feature;
+}
