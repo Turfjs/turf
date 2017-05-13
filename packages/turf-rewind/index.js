@@ -1,14 +1,18 @@
+var meta = require('@turf/meta');
 var getCoords = require('@turf/invariant').getCoords;
 var isClockWise = require('turf-is-clockwise');
+var featureCollection = require('@turf/helpers').featureCollection;
+var geomEach = meta.geomEach;
+var featureEach = meta.featureEach;
 
 /**
- * Rewind {@link LineString|(Mutli)LineString} or {@link Polygon|(Multi)Polygon} outer ring clockwise and inner rings counterclockwise (Uses {@link http://en.wikipedia.org/wiki/Shoelace_formula|Shoelace Formula}).
+ * Rewind {@link LineString|(Multi)LineString} or {@link Polygon|(Multi)Polygon} outer ring counterclockwise and inner rings clockwise (Uses {@link http://en.wikipedia.org/wiki/Shoelace_formula|Shoelace Formula}).
  *
  * @name rewind
- * @param {Feature<Polygon|MultiPolygon|LineString|MultiLineString>} geojson input GeoJSON Polygon
+ * @param {FeatureCollection|Geometry|Feature<Polygon|MultiPolygon|LineString|MultiLineString>} geojson input GeoJSON Polygon
  * @param {Boolean} [reverse=false] enable reverse winding
  * @param {boolean} [mutate=false] allows GeoJSON input to be mutated (significant performance increase if true)
- * @returns {Feature<Polygon|MultiPolygon|LineString|MultiLineString>} rewind Polygon
+ * @returns {FeatureCollection|Geometry|Feature<Polygon|MultiPolygon|LineString|MultiLineString>} rewind Polygon
  * @example
  * var polygon = {
  *     "type": "Feature",
@@ -38,34 +42,70 @@ module.exports = function (geojson, reverse, mutate) {
     // prevent input mutation
     if (mutate === false || mutate === undefined) geojson = JSON.parse(JSON.stringify(geojson));
 
-    var coords = getCoords(geojson);
-    var type = getGeomType(geojson);
+    // Support Feature Collection or Geometry Collection
+    var results = [];
+    switch (geojson.type) {
+    case 'GeometryCollection':
+        geomEach(geojson, function (geometry) {
+            rewind(geometry, reverse);
+        });
+        return geojson;
+    case 'FeatureCollection':
+        featureEach(geojson, function (feature) {
+            featureEach(rewind(feature, reverse), function (result) {
+                results.push(result);
+            });
+        });
+        return featureCollection(results);
+    }
+    // Support Feature or Geometry Objects
+    return rewind(geojson, reverse);
+};
 
+/**
+ * Rewind
+ *
+ * @private
+ * @param {Geometry|Feature<any>} geojson Geometry or Feature
+ * @param {Boolean} [reverse=false] enable reverse winding
+ * @returns {Geometry|Feature<any>} rewind Geometry or Feature
+ */
+function rewind(geojson, reverse) {
+    var type = (geojson.type === 'Feature') ? geojson.geometry.type : geojson.type;
+
+    // Support all GeoJSON Geometry Objects
     switch (type) {
+    case 'GeometryCollection':
+        geomEach(geojson, function (geometry) {
+            rewind(geometry, reverse);
+        });
+        return geojson;
     case 'LineString':
-        rewindLineString(coords, reverse);
+        rewindLineString(getCoords(geojson), reverse);
         return geojson;
     case 'Polygon':
-        rewindPolygon(coords, reverse);
+        rewindPolygon(getCoords(geojson), reverse);
         return geojson;
     case 'MultiLineString':
-        coords.forEach(function (lineCoords) {
+        getCoords(geojson).forEach(function (lineCoords) {
             rewindLineString(lineCoords, reverse);
         });
         return geojson;
     case 'MultiPolygon':
-        coords.forEach(function (lineCoords) {
+        getCoords(geojson).forEach(function (lineCoords) {
             rewindPolygon(lineCoords, reverse);
         });
         return geojson;
-    default:
-        throw new Error('geometry ' + type + ' type not supported');
+    case 'Point':
+    case 'MultiPoint':
+        return geojson;
     }
-};
+}
 
 /**
  * Rewind LineString - outer ring clockwise
  *
+ * @private
  * @param {Array<Array<number>>} coords GeoJSON LineString geometry coordinates
  * @param {Boolean} [reverse=false] enable reverse winding
  * @returns {void} mutates coordinates
@@ -75,25 +115,22 @@ function rewindLineString(coords, reverse) {
 }
 
 /**
- * Rewind Polygon - outer ring clockwise and inner rings counterclockwise.
+ * Rewind Polygon - outer ring counterclockwise and inner rings clockwise.
  *
+ * @private
  * @param {Array<Array<Array<number>>>} coords GeoJSON Polygon geometry coordinates
  * @param {Boolean} [reverse=false] enable reverse winding
  * @returns {void} mutates coordinates
  */
 function rewindPolygon(coords, reverse) {
     // outer ring
-    if (isClockWise(coords[0]) === reverse) {
+    if (isClockWise(coords[0]) !== reverse) {
         coords[0].reverse();
     }
     // inner rings
     for (var i = 1; i < coords.length; i++) {
-        if (isClockWise(coords[i]) !== reverse) {
+        if (isClockWise(coords[i]) === reverse) {
             coords[i].reverse();
         }
     }
-}
-
-function getGeomType(feature) {
-    return (feature.geometry) ? feature.geometry.type : feature.type;
 }
