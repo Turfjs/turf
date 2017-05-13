@@ -12,7 +12,7 @@ type GeometryObject = GeoJSON.GeometryObject;
 type GeometryCollection = GeoJSON.GeometryCollection;
 type Feature<Geom extends GeometryObject> = GeoJSON.Feature<Geom>;
 type FeatureCollection<Geom extends GeometryObject> = GeoJSON.FeatureCollection<Geom>;
-type Geoms = Point|LineString|Polygon|MultiPoint|MultiLineString|MultiPolygon|;
+type Geoms = Point|LineString|Polygon|MultiPoint|MultiLineString|MultiPolygon;
 
 // Feature Geometry Collection not supported by @types/geojson
 interface GeometryCollectionFeature extends Feature<any> {
