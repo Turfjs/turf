@@ -52,9 +52,9 @@ test('turf-buffer - Support Negative Buffer', t => {
 test('turf-buffer - Support Geometry Objects', t => {
     const pt = point([61, 5]);
     const poly = polygon([[[11, 0], [22, 4], [31, 0], [31, 11], [21, 15], [11, 11], [11, 0]]]);
-    // const gc = geometryCollection([pt.geometry, poly.geometry]);
+    const gc = geometryCollection([pt.geometry, poly.geometry]);
 
-    // t.assert(buffer(gc, 10), 'support Geometry Collection');
+    t.assert(buffer(gc, 10), 'support Geometry Collection');
     t.assert(buffer(pt.geometry, 10), 'support Point Geometry');
     t.assert(buffer(poly.geometry, 10), 'support Polygon Geometry');
     t.end();
