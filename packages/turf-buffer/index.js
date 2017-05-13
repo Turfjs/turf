@@ -38,8 +38,8 @@ var distanceToRadians = helpers.distanceToRadians;
 module.exports = function (geojson, radius, units, steps) {
     // validation
     if (!geojson) throw new Error('geojson is required');
-    if (!radius) throw new Error('radius is required');
-    if (radius <= 0) throw new Error('radius must be greater than 0');
+    // Allow negative buffers ("erosion") or zero-sized buffers ("repair geometry")
+    if (radius === undefined) throw new Error('radius is required');
     if (steps <= 0) throw new Error('steps must be greater than 0');
 
     // prevent input mutation
