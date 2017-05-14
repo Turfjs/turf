@@ -6,7 +6,7 @@ Creates a [FeatureCollection](http://geojson.org/geojson-spec.html#feature-colle
 
 **Parameters**
 
--   `geojson` **([GeometryCollection](http://geojson.org/geojson-spec.html#geometrycollection) \| [Geometry](http://geojson.org/geojson-spec.html#geometry) \| [FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects) \| [Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;([LineString](http://geojson.org/geojson-spec.html#linestring) \| [MultiLineString](http://geojson.org/geojson-spec.html#multilinestring) \| [MultiPolygon](http://geojson.org/geojson-spec.html#multipolygon) \| [Polygon](http://geojson.org/geojson-spec.html#polygon))>)** GeoJSON Polygon or LineString
+-   `geojson` **([Geometry](http://geojson.org/geojson-spec.html#geometry) \| [FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects) \| [Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;([LineString](http://geojson.org/geojson-spec.html#linestring) \| [MultiLineString](http://geojson.org/geojson-spec.html#multilinestring) \| [MultiPolygon](http://geojson.org/geojson-spec.html#multipolygon) \| [Polygon](http://geojson.org/geojson-spec.html#polygon))>)** GeoJSON Polygon or LineString
 
 **Examples**
 
