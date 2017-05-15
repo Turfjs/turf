@@ -1,22 +1,22 @@
 var helpers = require('@turf/helpers');
 var inside = require('@turf/inside');
-var internalHelpers = require('./helpers');
 var lineIntersect = require('@turf/line-intersect');
 var polyToLinestring = require('@turf/polygon-to-linestring');
-var isPointOnLineSegment = internalHelpers.isPointOnLineSegment;
 
 /**
-* Contains returns true if the second geometry is completely contained by the first geometry.
-* The contains predicate returns the exact opposite result of the within predicate.
-*
-* @name overlap
-* @param {feature1} feature1
-* @param {feature2} feature2
-* @returns {Boolean}
-* @example
-* var along = turf.contains(line, point);
-*/
-
+ * Cross returns True if the intersection results in a geometry whose dimension is one less than
+ * the maximum dimension of the two source geometries and the intersection set is interior to
+ * both source geometries.
+ *
+ * Cross returns t (TRUE) for only multipoint/polygon, multipoint/linestring, linestring/linestring, linestring/polygon, and linestring/multipolygon comparisons.
+ *
+ * @name cross
+ * @param {feature1} feature1 GeoJSON Feature
+ * @param {feature2} feature2 GeoJSON Feature
+ * @returns {Boolean} Crossed Features
+ * @example
+ * var cross = turf.cross(feature1, feature2);
+ */
 module.exports = function (feature1, feature2) {
     if (feature1.geometry.type === 'MultiPoint' && feature2.geometry.type === 'LineString') {
         return doMultiPointAndLineStringCross(feature1, feature2);
@@ -92,4 +92,21 @@ function doesMultiPointCrossPoly(MultiPoint, Polygon) {
     }
 
     return foundExtPoint && foundExtPoint;
+}
+
+// Shall be removed in favor of @turf/boolean-helpers
+function isPointOnLineSegment(LineSegmentStart, LineSegmentEnd, Point) {
+    var dxc = Point[0] - LineSegmentStart[0];
+    var dyc = Point[1] - LineSegmentStart[1];
+    var dxl = LineSegmentEnd[0] - LineSegmentStart[0];
+    var dyl = LineSegmentEnd[1] - LineSegmentStart[1];
+    var cross = dxc * dyl - dyc * dxl;
+    if (cross !== 0) {
+        return false;
+    }
+    if (Math.abs(dxl) >= Math.abs(dyl)) {
+        return dxl > 0 ? LineSegmentStart[0] <= Point[0] && Point[0] <= LineSegmentEnd[0] : LineSegmentEnd[0] <= Point[0] && Point[0] <= LineSegmentStart[0];
+    } else {
+        return dyl > 0 ? LineSegmentStart[1] <= Point[1] && Point[1] <= LineSegmentEnd[1] : LineSegmentEnd[1] <= Point[1] && Point[1] <= LineSegmentStart[1];
+    }
 }

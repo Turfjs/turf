@@ -1,7 +1,7 @@
 {
-  "name": "@turf/boolean-cross",
+  "name": "@turf/boolean-overlap",
   "version": "4.0.0",
-  "description": "turf boolean-cross module",
+  "description": "turf boolean-overlap module",
   "main": "index.js",
   "types": "index.d.ts",
   "files": [
@@ -18,7 +18,7 @@
   },
   "keywords": [
     "turf",
-    "equal",
+    "overlap",
     "boolean",
     "de-9im"
   ],
@@ -39,7 +39,7 @@
   "dependencies": {
     "@turf/helpers": "^4.3.0",
     "@turf/inside": "^4.3.0",
-    "@turf/line-intersect": "^4.3.0",
-    "@turf/polygon-to-linestring": "^4.3.0"
+    "@turf/line-overlap": "^4.3.0",
+    "deep-equal": "^1.0.1"
   }
 }

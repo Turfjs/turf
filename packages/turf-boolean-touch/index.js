@@ -30,7 +30,7 @@ var deepEqual = require('deep-equal');
  *   }
  * }
  * turf.touch(point, line);
- * //=true
+ * //=true/false
  */
 module.exports = function (feature1, feature2) {
     // var geom1 = getGeom(feature1);

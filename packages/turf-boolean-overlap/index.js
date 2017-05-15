@@ -1,21 +1,20 @@
-var helpers = require('@turf/helpers');
 var inside = require('@turf/inside');
-var internalHelpers = require('./helpers');
+var helpers = require('@turf/helpers');
 var lineOverlap = require('@turf/line-overlap');
-var checkIfCoordArraysMatch = internalHelpers.checkIfCoordArraysMatch;
+var deepEqual = require('deep-equal');
 
 /**
-* Contains returns true if the second geometry is completely contained by the first geometry.
-* The contains predicate returns the exact opposite result of the within predicate.
-*
-* @name overlap
-* @param {feature1} feature1
-* @param {feature2} feature2
-* @returns {Boolean}
-* @example
-* var along = turf.contains(line, point);
-*/
-
+ * Overlap compares two geometries of the same dimension and returns (TRUE) if their
+ * intersectionset resultsin a geometry different from both but of the same dimension.
+ *
+ * @name overlap
+ * @param {feature1} feature1 GeoJSON Feature
+ * @param {feature2} feature2 GeoJSON Feature
+ * @returns {Boolean} Features overlap
+ * @example
+ * turf.overlap(feature1, feature2);
+ * //=true/false
+ */
 module.exports = function (feature1, feature2) {
     if (feature1.geometry.type === 'MultiPoint' && feature2.geometry.type === 'MultiPoint') {
         return doMultiPointsOverlap(feature1, feature2);
@@ -31,7 +30,7 @@ module.exports = function (feature1, feature2) {
 function doMultiPointsOverlap(MultiPoint1, MultiPoint2) {
     for (var i = 0; i < MultiPoint2.geometry.coordinates.length; i++) {
         for (var i2 = 0; i2 < MultiPoint1.geometry.coordinates.length; i2++) {
-            if (checkIfCoordArraysMatch(MultiPoint2.geometry.coordinates[i], MultiPoint1.geometry.coordinates[i2])) {
+            if (deepEqual(MultiPoint2.geometry.coordinates[i], MultiPoint1.geometry.coordinates[i2])) {
                 return true;
             }
         }
