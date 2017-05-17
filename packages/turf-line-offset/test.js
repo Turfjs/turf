@@ -12,19 +12,22 @@ const directories = {
     out: path.join(__dirname, 'test', 'out') + path.sep
 };
 
-const fixtures = fs.readdirSync(directories.in).map(filename => {
+let fixtures = fs.readdirSync(directories.in).map(filename => {
     return {
         filename,
         name: path.parse(filename).name,
         geojson: load.sync(directories.in + filename)
     };
 });
+// fixtures = fixtures.filter(fixture => fixture.name === 'polygon');
 
 test('turf-line-offset', t => {
     for (const {name, geojson} of fixtures) {
-        const offset = truncate(lineOffset(geojson, 50, 'kilometers'), 4);
-        offset.properties.stroke = '#00F';
-        const results = featureCollection([offset, geojson]);
+        let {distance, units} = geojson.properties || {};
+        distance = distance || 50;
+        const output = truncate(lineOffset(geojson, distance, units), 4);
+        output.properties.stroke = '#00F';
+        const results = featureCollection([output, geojson]);
 
         if (process.env.REGEN) write.sync(directories.out + name + '.geojson', results);
         t.deepEqual(results, load.sync(directories.out + name + '.geojson'), name);

@@ -5,13 +5,14 @@ const Benchmark = require('benchmark');
 const lineOffset = require('./');
 
 const directory = path.join(__dirname, 'test', 'in') + path.sep;
-const fixtures = fs.readdirSync(directory).map(filename => {
+let fixtures = fs.readdirSync(directory).map(filename => {
     return {
         filename,
         name: path.parse(filename).name,
         geojson: load.sync(directory + filename)
     };
 });
+// fixtures = fixtures.filter(fixture => fixture.name === 'polygon');
 
 /**
  * Benchmark Results
