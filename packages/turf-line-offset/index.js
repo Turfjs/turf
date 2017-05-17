@@ -9,7 +9,7 @@ var distanceToDegrees = helpers.distanceToDegrees;
  * Takes a {@link LineString|line} and returns a {@link LineString|line} at offset by the specified distance.
  *
  * @name lineOffset
- * @param {Geometry|Feature<LineString>} line input line
+ * @param {Geometry|Feature<LineString>} geojson input GeoJSON
  * @param {number} offset distance to offset the line (can be of negative value)
  * @param {string} [units=kilometers] can be degrees, radians, miles, kilometers, inches, yards, meters
  * @returns {Feature<LineString>} Line offset from the input line
@@ -31,10 +31,29 @@ var distanceToDegrees = helpers.distanceToDegrees;
  * offsetLine.properties.stroke = "#00F"
  * var addToMap = [offsetLine, line]
  */
-module.exports = function (line, offset, units) {
-    if (!line) throw new Error('line is required');
+module.exports = function (geojson, offset, units) {
+    if (!geojson) throw new Error('geojson is required');
     if (offset === undefined || offset === null || isNaN(offset)) throw new Error('offset is required');
+    var type = (geojson.type === 'Feature') ? geojson.geometry.type : geojson.type;
 
+    switch (type) {
+    case 'LineString':
+        return lineOffset(geojson, offset, units);
+    default:
+        throw new Error('geometry ' + type + ' is not supported');
+    }
+};
+
+/**
+ * Line Offset
+ *
+ * @private
+ * @param {Geometry|Feature<LineString>} line input line
+ * @param {number} offset distance to offset the line (can be of negative value)
+ * @param {string} [units=kilometers] units
+ * @returns {Feature<LineString>} Line offset from the input line
+ */
+function lineOffset(line, offset, units) {
     var segments = [];
     var offsetDegrees = distanceToDegrees(offset, units);
     var coords = getCoords(line);
@@ -67,7 +86,7 @@ module.exports = function (line, offset, units) {
         }
     });
     return lineString(finalCoords, line.properties);
-};
+}
 
 /**
  * Process Segment

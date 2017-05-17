@@ -29,8 +29,13 @@ test('turf-line-offset', t => {
         if (process.env.REGEN) write.sync(directories.out + name + '.geojson', results);
         t.deepEqual(results, load.sync(directories.out + name + '.geojson'), name);
     }
-    t.throws(() => lineOffset(), /line is required/);
-    t.throws(() => lineOffset(lineString([[10, 10], [0, 0]])), /offset is required/);
+    t.end();
+});
+
+test('turf-line-offset - Throws Errors', t => {
+    const line = lineString([[10, 10], [0, 0]]);
+    t.throws(() => lineOffset(), /geojson is required/);
+    t.throws(() => lineOffset(line, /offset is required/));
     t.end();
 });
 
