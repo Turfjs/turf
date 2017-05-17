@@ -39,3 +39,12 @@ test('turf-line-offset - Support Geometry Objects', t => {
     t.ok(lineOffset(line.geometry, 10), 'Geometry Object');
     t.end();
 });
+
+test('turf-line-offset - Prevent Input Mutation', t => {
+    const line = lineString([[10, 10], [0, 0]]);
+    const before = JSON.parse(JSON.stringify(line));
+    lineOffset(line.geometry, 10);
+
+    t.deepEqual(line, before, 'input does not mutate');
+    t.end();
+});
