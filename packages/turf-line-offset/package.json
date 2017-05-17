@@ -6,7 +6,8 @@
   "types": "index.d.ts",
   "files": [
     "index.js",
-    "index.d.ts"
+    "index.d.ts",
+    "intersection.js"
   ],
   "scripts": {
     "test": "node test.js",
@@ -24,6 +25,7 @@
   ],
   "author": "Turf Authors",
   "contributors": [
+    "David Wee <@rook2pawn>",
     "Rowan Winsemius <@rowanwins>",
     "Denis Carriere <@DenisCarriere>"
   ],
