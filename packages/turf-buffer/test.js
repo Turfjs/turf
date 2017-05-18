@@ -79,6 +79,16 @@ test('turf-buffer - Prevent Input Mutation', t => {
     t.end();
 });
 
+// https://github.com/Turfjs/turf/issues/745
+// https://github.com/Turfjs/turf/pull/736#issuecomment-301937747
+test('turf-buffer - morphological closing', t => {
+    const poly = polygon([[[11, 0], [22, 4], [31, 0], [31, 11], [21, 15], [11, 11], [11, 0]]]);
+
+    t.equal(buffer(poly, -500, 'miles'), undefined, 'empty geometry should be undefined');
+    t.deepEqual(buffer(featureCollection([poly]), -500, 'miles'), featureCollection([]), 'empty geometries should be an empty FeatureCollection');
+    t.end();
+});
+
 function colorize(feature, color = '#F00') {
     if (feature.properties) {
         feature.properties.stroke = color;

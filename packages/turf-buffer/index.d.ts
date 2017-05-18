@@ -18,12 +18,12 @@ interface Buffer {
     /**
      * http://turfjs.org/docs/#buffer
      */
-    <Geom extends Point|LineString|Polygon>(feature: Feature<Geom>|Geom, radius?: number, unit?: Units, steps?: number): Feature<Polygon>;
-    <Geom extends MultiPoint|MultiLineString|MultiPolygon>(feature: Feature<Geom>|Geom, radius?: number, unit?: Units, steps?: number): Feature<MultiPolygon>;
+    <Geom extends Point|LineString|Polygon>(feature: Feature<Geom>|Geom, radius?: number, unit?: Units, steps?: number): Feature<Polygon> | undefined;
+    <Geom extends MultiPoint|MultiLineString|MultiPolygon>(feature: Feature<Geom>|Geom, radius?: number, unit?: Units, steps?: number): Feature<MultiPolygon> | undefined;
     <Geom extends Point|LineString|Polygon>(feature: FeatureCollection<Geom>, radius?: number, unit?: Units, steps?: number): FeatureCollection<Polygon>;
     <Geom extends MultiPoint|MultiLineString|MultiPolygon>(feature: FeatureCollection<Geom>, radius?: number, unit?: Units, steps?: number): FeatureCollection<MultiPolygon>;
     (feature: FeatureCollection<any>|FeatureGeometryCollection|GeometryCollection, radius?: number, unit?: Units, steps?: number): FeatureCollection<Polygon|MultiPolygon>;
-    (feature: Feature<any>|GeometryObject, radius?: number, unit?: Units, steps?: number): Feature<Polygon|MultiPolygon>;
+    (feature: Feature<any>|GeometryObject, radius?: number, unit?: Units, steps?: number): Feature<Polygon|MultiPolygon> | undefined;
 }
 declare const buffer: Buffer;
 declare namespace buffer {}
