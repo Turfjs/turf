@@ -19,6 +19,7 @@
   "bugs": {
     "url": "https://github.com/Turfjs/turf/issues"
   },
+  "homepage": "https://github.com/Turfjs/turf",
   "keywords": [
     "turf",
     "gis",
@@ -26,7 +27,7 @@
     "linestring",
     "line segment"
   ],
-  "author": "TurfJS",
+  "author": "Turf Authors",
   "contributors": [
     "Tim Channell <@tcql>",
     "Rowan Winsemius <@rowanwins>",

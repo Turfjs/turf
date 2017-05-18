@@ -30,7 +30,7 @@
   "homepage": "https://github.com/Turfjs/turf",
   "author": "Turf Authors",
   "contributors": [
-    "Rowan Winsemius"
+    "Rowan Winsemius <@rowanwins>"
   ],
   "license": "MIT",
   "devDependencies": {

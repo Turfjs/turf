@@ -32,6 +32,7 @@
     "@turf/meta": "^4.3.0",
     "benchmark": "^2.1.4",
     "load-json-file": "^2.0.0",
+    "mkdirp": "^0.5.1",
     "tape": "^4.6.3",
     "write-json-file": "^2.0.0"
   },

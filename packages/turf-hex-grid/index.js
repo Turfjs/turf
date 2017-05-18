@@ -1,9 +1,10 @@
-var point = require('@turf/helpers').point;
-var polygon = require('@turf/helpers').polygon;
 var distance = require('@turf/distance');
-var featurecollection = require('@turf/helpers').featureCollection;
+var helpers = require('@turf/helpers');
+var point = helpers.point;
+var polygon = helpers.polygon;
+var featureCollection = helpers.featureCollection;
 
-//Precompute cosines and sines of angles used in hexagon creation
+// Precompute cosines and sines of angles used in hexagon creation
 // for performance gain
 var cosines = [];
 var sines = [];
@@ -67,7 +68,7 @@ module.exports = function hexGrid(bbox, cellSize, units, triangles) {
         y_adjust -= hex_height / 4;
     }
 
-    var fc = featurecollection([]);
+    var fc = featureCollection([]);
     for (var x = 0; x < x_count; x++) {
         for (var y = 0; y <= y_count; y++) {
 

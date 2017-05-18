@@ -1,7 +1,8 @@
-var point = require('@turf/helpers').point;
-var featureCollection = require('@turf/helpers').featureCollection;
 var distance = require('@turf/distance');
 var turfBBox = require('@turf/bbox');
+var helpers = require('@turf/helpers');
+var point = helpers.point;
+var featureCollection = helpers.featureCollection;
 
 /**
  * Creates a {@link Point} grid from a bounding box, {@link FeatureCollection} or {@link Feature}.

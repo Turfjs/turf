@@ -1,10 +1,10 @@
-const test = require('tape');
 const fs = require('fs');
+const test = require('tape');
 const path = require('path');
 const load = require('load-json-file');
 const write = require('write-json-file');
-const featureEach = require('@turf/meta').featureEach;
 const mkdirp = require('mkdirp');
+const {featureEach} = require('@turf/meta');
 const grid = require('./');
 
 const directories = {
@@ -19,10 +19,9 @@ let fixtures = fs.readdirSync(directories.in).map(filename => {
         geojson: load.sync(directories.in + filename)
     };
 });
-
 // fixtures = fixtures.filter(({name}) => name === 'resolute');
 
-test('square-grid', t => {
+test('turf-point-grid', t => {
     for (const {name, geojson} of fixtures) {
         const grid5 = grid(geojson, 5, 'miles');
         const grid20 = grid(geojson, 20, 'miles');
@@ -44,7 +43,7 @@ test('square-grid', t => {
             mkdirp.sync(directories.out + name);
             write.sync(path.join(directories.out, name, '5-miles.geojson'), grid5);
             write.sync(path.join(directories.out, name, '20-miles.geojson'), grid20);
-            write.sync(path.join(directories.out, name, 'centered.geojson'), grid20);
+            write.sync(path.join(directories.out, name, 'centered.geojson'), gridCentered);
         }
         t.deepEqual(grid5, load.sync(path.join(directories.out, name, '5-miles.geojson')), name + ' -- 5 miles');
         t.deepEqual(grid20, load.sync(path.join(directories.out, name, '20-miles.geojson')), name + ' -- 20 miles');
