@@ -1,10 +1,10 @@
-const test = require('tape');
 const fs = require('fs');
+const test = require('tape');
 const path = require('path');
 const load = require('load-json-file');
 const write = require('write-json-file');
-const {featureCollection} = require('@turf/helpers');
 const truncate = require('@turf/truncate');
+const {featureCollection} = require('@turf/helpers');
 const greatCircle = require('./');
 
 const directories = {
@@ -22,8 +22,7 @@ let fixtures = fs.readdirSync(directories.in).map(filename => {
 
 test('turf-great-circle', t => {
     for (const {name, filename, geojson} of fixtures) {
-        const start = geojson.features[0];
-        const end = geojson.features[1];
+        const [start, end] = geojson.features;
         const line = truncate(greatCircle(start, end));
         const results = featureCollection([line, start, end]);
 

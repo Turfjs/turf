@@ -23,7 +23,11 @@
     "gis",
     "featurecollection"
   ],
-  "author": "Tom MacWright",
+  "author": "Turf Authors",
+  "contributors": [
+    "Tom MacWright <@tmcw>",
+    "Denis Carriere <@DenisCarriere>"
+  ],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/Turfjs/turf/issues"
@@ -37,7 +41,6 @@
   },
   "dependencies": {
     "@turf/helpers": "^4.3.0",
-    "@turf/invariant": "^4.3.0",
     "@turf/meta": "^4.3.0"
   }
 }

@@ -30,8 +30,6 @@
   "devDependencies": {
     "@turf/along": "^4.3.0",
     "benchmark": "^2.1.4",
-    "eslint": "^3.14.1",
-    "eslint-config-mourner": "^2.0.1",
     "load-json-file": "^2.0.0",
     "tape": "^4.6.3"
   },

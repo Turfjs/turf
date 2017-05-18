@@ -1,6 +1,7 @@
-var featurecollection = require('@turf/helpers').featureCollection;
-var polygon = require('@turf/helpers').polygon;
 var distance = require('@turf/distance');
+var helpers = require('@turf/helpers');
+var polygon = helpers.polygon;
+var featureCollection = helpers.featureCollection;
 
 /**
  * Takes a bounding box and a cell depth and returns a set of triangular {@link Polygon|polygons} in a grid.
@@ -21,7 +22,7 @@ var distance = require('@turf/distance');
  * var addToMap = [triangleGrid];
  */
 module.exports = function (bbox, cellSize, units) {
-    var fc = featurecollection([]);
+    var fc = featureCollection([]);
     var xFraction = cellSize / (distance([bbox[0], bbox[1]], [bbox[2], bbox[1]], units));
     var cellWidth = xFraction * (bbox[2] - bbox[0]);
     var yFraction = cellSize / (distance([bbox[0], bbox[1]], [bbox[0], bbox[3]], units));

@@ -1,7 +1,8 @@
 //http://en.wikipedia.org/wiki/Delaunay_triangulation
 //https://github.com/ironwallaby/delaunay
-var polygon = require('@turf/helpers').polygon;
-var featurecollection = require('@turf/helpers').featureCollection;
+var helpers = require('@turf/helpers');
+var polygon = helpers.polygon;
+var featurecollection = helpers.featureCollection;
 
 /**
  * Takes a set of {@link Point|points} and the name of a z-value property and

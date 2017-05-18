@@ -23,6 +23,9 @@
     "truncate"
   ],
   "author": "Turf Authors",
+  "contributors": [
+    "Denis Carriere <@DenisCarriere>"
+  ],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/Turfjs/turf/issues"

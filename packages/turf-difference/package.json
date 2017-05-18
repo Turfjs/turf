@@ -38,6 +38,6 @@
     "@turf/helpers": "^4.3.0",
     "@turf/invariant": "^4.3.0",
     "@turf/meta": "^4.3.0",
-    "jsts": "^1.4.0"
+    "jsts": "1.3.0"
   }
 }

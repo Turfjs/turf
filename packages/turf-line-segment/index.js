@@ -1,7 +1,8 @@
-var featureCollection = require('@turf/helpers').featureCollection;
-var flattenEach = require('@turf/meta').flattenEach;
+var helpers = require('@turf/helpers');
 var getCoords = require('@turf/invariant').getCoords;
-var lineString = require('@turf/helpers').lineString;
+var flattenEach = require('@turf/meta').flattenEach;
+var lineString = helpers.lineString;
+var featureCollection = helpers.featureCollection;
 
 /**
  * Creates a {@link FeatureCollection} of 2-vertex {@link LineString} segments from a {@link LineString|(Multi)LineString} or {@link Polygon|(Multi)Polygon}.

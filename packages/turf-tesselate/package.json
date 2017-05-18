@@ -26,7 +26,7 @@
   ],
   "author": "Turf Authors",
   "contributors": [
-    "morganherlocker",
+    "Morgan Herlocker <@morganherlocker>",
     "Abel Vázquez"
   ],
   "license": "MIT",
@@ -35,7 +35,6 @@
   },
   "homepage": "https://github.com/Turfjs/turf",
   "devDependencies": {
-    "@turf/helpers": "^4.3.0",
     "benchmark": "^2.1.4",
     "tape": "^4.6.3"
   },

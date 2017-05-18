@@ -1,13 +1,13 @@
-const test = require('tape');
 const fs = require('fs');
+const test = require('tape');
 const path = require('path');
-const {lineString, point, featureCollection} = require('@turf/helpers');
-const distance = require('@turf/distance');
-const lineDistance = require('@turf/line-distance');
-const along = require('@turf/along');
-const truncate = require('@turf/truncate');
-const write = require('write-json-file');
 const load = require('load-json-file');
+const write = require('write-json-file');
+const along = require('@turf/along');
+const distance = require('@turf/distance');
+const truncate = require('@turf/truncate');
+const lineDistance = require('@turf/line-distance');
+const {lineString, point, featureCollection} = require('@turf/helpers');
 const pointOnLine = require('./');
 
 const directories = {

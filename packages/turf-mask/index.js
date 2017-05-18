@@ -1,8 +1,8 @@
-var featureEach = require('@turf/meta').featureEach;
 var rbush = require('rbush');
-var turfBBox = require('@turf/bbox');
-var helpers = require('@turf/helpers');
 var union = require('@turf/union');
+var helpers = require('@turf/helpers');
+var turfBBox = require('@turf/bbox');
+var featureEach = require('@turf/meta').featureEach;
 
 /**
  * Takes any type of {@link Polygon|polygon} and an optional mask and returns a {@link Polygon|polygon} exterior ring with holes.
