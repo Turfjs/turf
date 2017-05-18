@@ -83,10 +83,9 @@ test('turf-buffer - Prevent Input Mutation', t => {
 // https://github.com/Turfjs/turf/pull/736#issuecomment-301937747
 test('turf-buffer - morphological closing', t => {
     const poly = polygon([[[11, 0], [22, 4], [31, 0], [31, 11], [21, 15], [11, 11], [11, 0]]]);
-    const buffered = buffer(poly, -500, 'miles').geometry.coordinates;
 
-    t.true(Number.isNaN(buffered[0][0]));
-    t.true(Number.isNaN(buffered[0][1]));
+    t.equal(buffer(poly, -500, 'miles'), undefined, 'empty geometry should be undefined');
+    t.deepEqual(buffer(featureCollection([poly]), -500, 'miles'), featureCollection([]), 'empty geometries should be an empty FeatureCollection');
     t.end();
 });
 

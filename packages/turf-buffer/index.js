@@ -15,11 +15,11 @@ var distanceToRadians = helpers.distanceToRadians;
  * Calculates a buffer for input features for a given radius. Units supported are miles, kilometers, and degrees.
  *
  * @name buffer
- * @param {FeatureCollection|Feature<any>} feature input to be buffered
- * @param {number} radius distance to draw the buffer
+ * @param {FeatureCollection|Geometry|Feature<any>} feature input to be buffered
+ * @param {number} radius distance to draw the buffer (negative values are allowed)
  * @param {string} [units=kilometers] any of the options supported by turf units
  * @param {number} [steps=64] number of steps
- * @return {FeatureCollection|Feature<Polygon|MultiPolygon>} buffered features
+ * @return {FeatureCollection|Feature<Polygon|MultiPolygon>|undefined} buffered features
  * @example
  * var point = {
  *   "type": "Feature",
@@ -53,14 +53,18 @@ module.exports = function (geojson, radius, units, steps) {
     switch (geojson.type) {
     case 'GeometryCollection':
         geomEach(geojson, function (geometry) {
-            results.push(buffer(geometry, radius, units, steps));
+            var buffered = buffer(geometry, radius, units, steps);
+            if (buffered) results.push(buffered);
         });
         return featureCollection(results);
     case 'FeatureCollection':
         featureEach(geojson, function (feature) {
-            featureEach(buffer(feature, radius, units, steps), function (buffered) {
-                results.push(buffered);
-            });
+            var multiBuffered = buffer(feature, radius, units, steps);
+            if (multiBuffered) {
+                featureEach(multiBuffered, function (buffered) {
+                    if (buffered) results.push(buffered);
+                });
+            }
         });
         return featureCollection(results);
     }
@@ -88,7 +92,8 @@ function buffer(geojson, radius, units, steps) {
     case 'GeometryCollection':
         var results = [];
         geomEach(geojson, function (geometry) {
-            results.push(buffer(geometry, radius, units, steps));
+            var buffered = buffer(geometry, radius, units, steps);
+            if (buffered) results.push(buffered);
         });
         return featureCollection(results);
     }
@@ -108,11 +113,25 @@ function buffer(geojson, radius, units, steps) {
     var writer = new jsts.io.GeoJSONWriter();
     buffered = writer.write(buffered);
 
+    // Detect if empty geometries
+    if (coordsIsNaN(buffered.coordinates)) return undefined;
+
     // Unproject coordinates (convert to Degrees)
     buffered.coordinates = unprojectCoords(buffered.coordinates, projection);
     return feature(buffered, properties);
 }
 
+/**
+ * Coordinates isNaN
+ *
+ * @private
+ * @param {Array<any>} coords GeoJSON Coordinates
+ * @returns {Boolean} if NaN exists
+ */
+function coordsIsNaN(coords) {
+    if (Array.isArray(coords[0])) return coordsIsNaN(coords[0]);
+    return isNaN(coords[0]);
+}
 
 /**
  * Project coordinates to projection
