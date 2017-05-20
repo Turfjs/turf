@@ -1,0 +1,35 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "distance": 50,
+        "direction": 90,
+        "marker-color": "#F00",
+        "marker-symbol": "star"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -75.2496027101289,
+          45.43145021122502
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "distance": 50,
+        "direction": 90
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -75.69926351308823,
+          45.43145021122502
+        ]
+      }
+    }
+  ]
+}
