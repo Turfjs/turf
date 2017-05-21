@@ -1,8 +1,9 @@
 {
   "type": "Feature",
   "properties": {
-    "distance": 50,
-    "direction": 90
+    "distance": 20,
+    "units": "miles",
+    "direction": 45
   },
   "geometry": {
     "type": "Point",

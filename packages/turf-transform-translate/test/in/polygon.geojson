@@ -1,8 +1,8 @@
 {
   "type": "Feature",
   "properties": {
-    "distance": 100,
-    "direction": 45
+    "distance": 300,
+    "direction": 70
   },
   "geometry": {
     "type": "Polygon",

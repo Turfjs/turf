@@ -3,13 +3,17 @@ var invariant = require('@turf/invariant');
 var meta = require('@turf/meta');
 var coordEach = meta.coordEach;
 var point = helpers.point;
+var multiPoint = helpers.multiPoint;
+var lineString = helpers.lineString;
+var multiLineString = helpers.multiLineString;
 var polygon = helpers.polygon;
 var multiPolygon = helpers.multiPolygon;
 var featureCollection = helpers.featureCollection;
 var getCoords = invariant.getCoords;
-var collectionOf = invariant.collectionOf;
-var destination = require('@turf/rhumb-destination');
-var matrix = require('matrix-js');
+// var collectionOf = invariant.collectionOf;
+var rhumbDestination = require('@turf/rhumb-destination');
+var dist = require('@turf/distance');
+var rhumbDistance = require('@turf/rhumb-distance');
 
 /**
  * Moves any geojson Feature or Geometry of a specified distance on the provided direction angle.
@@ -43,7 +47,12 @@ module.exports = function (geojson, distance, direction, units, zTranslation) {
         properties[key] = geojson.properties[key];
     });
 
-    var motionVector = getCoords(destination(point([0, 0]), distance, direction, units));
+
+    var motionVector = getCoords(rhumbDestination([0, 0], distance, direction, units));
+    var motionV = rhumbDestination([0, 0], distance, direction, units);
+    var d = dist([0, 0], motionV, units);
+    var rd = rhumbDistance([0, 0], motionV, units);
+
     motionVector.push(zTranslation || 0);
 
     var translationMatrix = [
@@ -52,20 +61,6 @@ module.exports = function (geojson, distance, direction, units, zTranslation) {
         [0, 0, 1, motionVector[2]],
         [0, 0, 0, 1]
     ];
-
-    // var a = [
-    //     [1, 2, 3],
-    //     [4, 5, 6]
-    // ];
-    // var b = [
-    //     [7, 8],
-    //     [9, 10],
-    //     [11, 12]
-    // ];
-    // var B = matrix(b);
-    // var A = matrix(a);
-    // var P = multiplyMatrices(a, b);
-    // = [[58, 64], [139, 154]]
 
     var translatedCoords = [];
     coordEach(geojson, function (pointCoords) {
@@ -86,6 +81,8 @@ module.exports = function (geojson, distance, direction, units, zTranslation) {
 
     switch (type) {
     case 'Point':
+        d = dist(getCoords(geojson), translatedCoords[0], units);
+        rd = rhumbDistance(getCoords(geojson), translatedCoords[0], units);
         return point(translatedCoords[0], properties);
     // case 'MultiPoint':
     //     return lineOffset(geojson, distance, units);
@@ -93,8 +90,9 @@ module.exports = function (geojson, distance, direction, units, zTranslation) {
     //     return lineOffset(geojson, distance, units);
     // case 'MultiLineString':
     //     return lineOffset(geojson, distance, units);
-    // case 'Polygon':
-    //     return lineOffset(geojson, distance, units);
+    case 'Polygon':
+        translatedCoords.push(translatedCoords[0]);
+        return polygon([translatedCoords], properties);
     // case 'MultiPolygon':
     //     return lineOffset(geojson, distance, units);
     // default:
@@ -105,39 +103,42 @@ module.exports = function (geojson, distance, direction, units, zTranslation) {
 };
 
 /**
+ * Returns the product of the two matrices; supports vectors as well.
+ * original: http://jsfiddle.net/FloydPink/babopxq8/
  *
- * from: http://jsfiddle.net/FloydPink/babopxq8/
- * @param a
- * @param b
- * @return {Array}
+ * @private
+ * @param {Array<Array>} a matrix1
+ * @param {Array<Array>} b matrix2
+ * @returns {Array<Array>} product
  */
 function multiplyMatrices(a, b) {
+    if (!a || !b) {
+        throw new Error('both matrices are required');
+    }
     if (!Array.isArray(a) || !Array.isArray(b) || !a.length || !b.length) {
         throw new Error('arguments should be in 2-dimensional array format');
     }
 
-    var x = a.length,
-        z = a[0].length,
-        y = b[0].length;
+    var aRows = a.length,
+        aCols = a[0].length,
+        bRows = b.length,
+        bCols = b[0].length;
 
-    if (b.length !== z) {
-        // XxZ & ZxY => XxY
-        throw new Error('number of columns in the first matrix should be the same as the number of rows in the second');
+    if (bRows !== aCols) {
+        throw new Error('columns in first matrix mismatch rows in second one');
     }
 
-    var productRow = Array.apply(null, new Array(y)).map(Number.prototype.valueOf, 0);
-    var product = new Array(x);
-    for (var p = 0; p < x; p++) {
-        product[p] = productRow.slice();
-    }
-
-    for (var i = 0; i < x; i++) {
-        for (var j = 0; j < y; j++) {
-            for (var k = 0; k < z; k++) {
+    var product = [];
+    for (var i = 0; i < aRows; i++) {
+        product[i] = [];
+        for (var j = 0; j < bCols; j++) {
+            for (var k = 0; k < aCols; k++) {
+                if (product[i][j] === undefined) {
+                    product[i][j] = 0;
+                }
                 product[i][j] += a[i][k] * b[k][j];
             }
         }
     }
-
     return product;
 }
