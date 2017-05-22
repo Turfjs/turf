@@ -68,7 +68,7 @@ class Graph {
   /** Delete cut-edges (bridge edges)
    */
   deleteCutEdges() {
-    Object.values(this.nodes).forEach(node => this._computeNextCWEdges(node));
+    this._computeNextCWEdges();
     this._findLabeledEdgeRings();
 
     // Cut-edges (bridges) are edges where both edges have the same label
@@ -83,38 +83,149 @@ class Graph {
   /** Set the `next` property of each Edge.
    * The graph will be transversed in a CW form, so, we set the next of the symetrical edge is the previous one.
    * OuterEdges are sorted CCW.
-   * @param Node
+   *
+   * @param Node (optional) If no node is passed, the function calls itself for every node in the Graph
    */
   _computeNextCWEdges(node) {
+    if (typeof(node) == "undefined")
+      return Object.values(this.nodes).forEach(node => this._computeNextCWEdges(node));
+
     node.outerEdges.forEach((edge, i) => {
       edge.symetric.next = node.outerEdges[(i === 0 ? node.outerEdges.length : i) - 1];
     });
   }
 
+  /** Computes the next edge pointers going CCW around the given node, for the given edgering label.
+   * This algorithm has the effect of converting maximal edgerings into minimal edgerings
+   *
+   * XXX: method literally transcribed from PolygonizeGraph::computeNextCCWEdges
+   *
+   * @param Node
+   * @param label
+   */
+  _computeNextCCWEdges(node, label) {
+    const edges = node.outerEdges;
+    let firstOutDE,
+      prevInDE;
+
+    for (let i = edges.length - 1; i >= 0; --i) {
+      let de = edges[i],
+        sym = de.symetric,
+        outDE,
+        inDE;
+
+      if (de.label == label)
+        outDE = de;
+
+      if (sym.label == label)
+        inDE = sym;
+
+      if (!outDE || !inDE) // This edge is not in edgering
+        continue;
+
+      if (inDE)
+        prevInDE = inDE;
+
+      if (outDE) {
+        if (prevInDE) {
+          prevInDE.next = outDE
+          prevInDE = undefined;
+        }
+
+        if (!firstOutDE)
+          firstOutDE = outDE;
+      }
+    }
+
+    if (prevInDE)
+      prevInDE.next = firstOutDE;
+  }
+
+
   /** Finds rings and labels edges according to which rings are.
    * The label is a number which is increased for each ring.
-   * @return Array<Array<Edge>>
+   * @return Array<Edge> edges that start rings
    */
   _findLabeledEdgeRings() {
-    const rings = [];
+    const edgeRingStarts = [];
     let label = 0;
     this.edges.forEach(edge => {
       if (edge.label >= 0)
         return;
 
-      const ring = [];
+      edgeRingStarts.push(edge);
+
       let e = edge;
       do {
         e.label = label;
-        ring.push(e);
         e = e.next;
       } while (!edge.isEqual(e));
 
       label++;
-      rings.push(ring);
     });
 
-    return rings;
+    return edgeRingStarts;
+  }
+
+  /** Computes the EdgeRings formed by the edges in this graph
+   * @return Array<Edge> TODO:
+   */
+  getEdgeRings() {
+    this._computeNextCWEdges();
+
+    // Clear labels
+    this.edges.forEach(edge => edge.label = undefined);
+
+    // convertMaximalToMinimalEdgeRings
+    this._findLabeledEdgeRings().forEach(edge => {
+      this._findIntersectionNodes(edge).forEach(node => {
+        this._computeNextCCWEdges(node, edge.label)
+      });
+    });
+
+    const edgeRingList = [];
+
+    // find all edgerings
+    this.edges.forEach(edge => {
+      if (edge.ring)
+        return;
+      edgeRingList.push(this._findEdgeRing(edge));
+    });
+
+    return edgeRingList;
+  }
+
+  _findIntersectionNodes(startEdge) {
+    const intersectionNodes = [];
+    let edge = startEdge;
+    do {
+      // getDegree
+      let degree = 0;
+      edge.from.outerEdges.forEach(e => {
+        if (startEdge.label == e.label)
+          ++degree;
+      });
+
+      if (degree > 1)
+        intersectionNodes.push(edge.from);
+
+      edge = edge.next;
+    } while(!startEdge.isEqual(edge));
+
+    return intersectionNodes;
+  }
+
+  _findEdgeRing(startEdge) {
+    let edge = startEdge;
+    const edgeRing = [];
+
+    do {
+      edgeRing.push(edge);
+      edge.ring = edgeRing;
+      edge = edge.next;
+    } while(!startEdge.isEqual(edge));
+
+    return edgeRing;
   }
 
   /** Removes a node from the Graph.
@@ -156,6 +267,7 @@ class Edge {
     this.next = undefined; //< The edge to be computed after
     this.label = undefined; //< Used in order to detect Cut Edges (Bridges)
     this.symetric = undefined; //< The symetric edge of this
+    this.ring = undefined; //< TODO: explanation
 
     this.from.addOuterEdge(this);
     this.to.addInnerEdge(this);

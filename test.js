@@ -82,3 +82,23 @@ test('deleteCutEdges', t => {
 
   t.end();
 });
+
+test('getEdgeRings', t => {
+  const geoJson = featureCollection([
+    lineString([[0, 0], [0, 1]]),
+    lineString([[0, 1], [1, 1]]),
+    lineString([[0, 0], [1, 1]]),
+    lineString([[1, 1], [2, 1]]),
+    lineString([[2, 1], [3, 1]]),
+    lineString([[3, 1], [3, 0]]),
+    lineString([[2, 1], [3, 0]]),
+  ]),
+    graph = Graph.fromGeoJson(geoJson);
+
+  graph.deleteCutEdges();
+  const edgeRings = graph.getEdgeRings();
+
+  console.log(edgeRings);
+
+  t.end();
+});
