@@ -5,6 +5,7 @@ const load = require('load-json-file');
 const write = require('write-json-file');
 const helpers = require('@turf/helpers');
 const featureCollection = helpers.featureCollection;
+const point = helpers.point;
 const translate = require('./');
 
 const directories = {
@@ -27,7 +28,7 @@ test('translate', t => {
         const translated = translate(geojson, distance, direction, units, zTranslation);
 
         // style result
-        if (translated.geometry.type === 'Point') {
+        if (translated.geometry.type === 'Point' || translated.geometry.type === 'MultiPoint') {
             translated.properties['marker-color'] = '#F00';
             translated.properties['marker-symbol'] = 'star';
         } else {
@@ -44,12 +45,14 @@ test('translate', t => {
     t.end();
 });
 
-// test('translate -- throws', t => {
-//     const points = pointGrid([-70.823364, -33.553984, -70.473175, -33.302986], 5);
-//
-//     t.throws(() => isobands(random('polygon'), [1, 2, 3]), 'invalid points');
-//     t.throws(() => isobands(points, ''), 'invalid breaks');
-//     t.throws(() => isobands(points, [1, 2, 3], 'temp', { isobandProperties: 'hello' }), 'invalid options');
-//
-//     t.end();
-// });
+test('translate -- throws', t => {
+    const pt = point([-70.823364, -33.553984]);
+
+    t.throws(() => translate(null, 100, -29), 'missing geojson');
+    t.throws(() => translate(pt, null, 98), 'missing distance');
+    t.throws(() => translate(pt, 23, null), 'missing direction');
+    t.throws(() => translate(pt, 56, 57, 'notAunit'), 'invalid units');
+    t.throws(() => translate(pt, 56, 57, 'miles', 'zTrans'), 'invalid zTranslation');
+
+    t.end();
+});

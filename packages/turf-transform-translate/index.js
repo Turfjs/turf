@@ -1,19 +1,16 @@
 var helpers = require('@turf/helpers');
-var invariant = require('@turf/invariant');
-var meta = require('@turf/meta');
-var coordEach = meta.coordEach;
 var point = helpers.point;
 var multiPoint = helpers.multiPoint;
 var lineString = helpers.lineString;
 var multiLineString = helpers.multiLineString;
 var polygon = helpers.polygon;
 var multiPolygon = helpers.multiPolygon;
-var featureCollection = helpers.featureCollection;
+var feature = helpers.feature;
+var invariant = require('@turf/invariant');
 var getCoords = invariant.getCoords;
-// var collectionOf = invariant.collectionOf;
 var rhumbDestination = require('@turf/rhumb-destination');
-var dist = require('@turf/distance');
-var rhumbDistance = require('@turf/rhumb-distance');
+// var dist = require('@turf/distance');
+// var rhumbDistance = require('@turf/rhumb-distance');
 
 /**
  * Moves any geojson Feature or Geometry of a specified distance on the provided direction angle.
@@ -21,12 +18,11 @@ var rhumbDistance = require('@turf/rhumb-distance');
  * @name translate
  * @param {Geometry|Feature<any>} geojson object to be translated
  * @param {number} distance length of the motion; negative values determine motion in opposite direction
- * @param {number} direction of the motion; angle from North in decimal degrees, positive clockwise
+ * @param {number} direction of the motion; angle from North between -180 and 180 decimal degrees, positive clockwise
  * @param {string} [units=kilometers] in which `distance` will be express; miles, kilometers, degrees, or radians
  *     (optional, default `kilometers`)
  * @param {number} [zTranslation=0] length of the vertical motion, same unit of distance
- * @returns {FeatureCollection<MultiPolygon>} a FeatureCollection of {@link MultiPolygon} features representing
- *     isobands
+ * @returns {Feature<any>} the translated GeoJSON feature
  * @example
  * var poly = turf.polygon([[0,29],[3.5,29],[2.5,32],[0,29]]);
  * var translatedPoly = turf.translate(poly, 100, 35);
@@ -38,8 +34,17 @@ module.exports = function (geojson, distance, direction, units, zTranslation) {
     // Input validation
     if (!geojson) throw new Error('geojson is required');
     if (distance === undefined || distance === null || isNaN(distance)) throw new Error('distance is required');
+    if (zTranslation && typeof zTranslation !== 'number' && isNaN(zTranslation)) throw new Error('zTranslation is not a number');
+
+    // shortcut no-motion
+    if (distance === 0 && zTranslation === 0) return (geojson.type === 'Feature') ? geojson : feature(geojson);
+
     if (direction === undefined || direction === null || isNaN(direction)) throw new Error('direction is required');
-    var type = (geojson.type === 'Feature') ? geojson.geometry.type : geojson.type;
+
+    if (distance < 0) {
+        distance = -distance;
+        direction = -direction;
+    }
 
     // copy properties to avoid reference issues
     var properties = {};
@@ -47,11 +52,11 @@ module.exports = function (geojson, distance, direction, units, zTranslation) {
         properties[key] = geojson.properties[key];
     });
 
-
     var motionVector = getCoords(rhumbDestination([0, 0], distance, direction, units));
-    var motionV = rhumbDestination([0, 0], distance, direction, units);
-    var d = dist([0, 0], motionV, units);
-    var rd = rhumbDistance([0, 0], motionV, units);
+    // probes
+    // var motionV = rhumbDestination([0, 0], distance, direction, units);
+    // var d = dist([0, 0], motionV, units);
+    // var rd = rhumbDistance([0, 0], motionV, units);
 
     motionVector.push(zTranslation || 0);
 
@@ -62,8 +67,55 @@ module.exports = function (geojson, distance, direction, units, zTranslation) {
         [0, 0, 0, 1]
     ];
 
-    var translatedCoords = [];
-    coordEach(geojson, function (pointCoords) {
+    var translatedCoords;
+
+    var type = (geojson.type === 'Feature') ? geojson.geometry.type : geojson.type;
+    switch (type) {
+    case 'Point':
+        translatedCoords = translate([getCoords(geojson)], translationMatrix, zTranslation);
+        // probes
+        // d = dist(getCoords(geojson), translatedCoords[0], units);
+        // rd = rhumbDistance(getCoords(geojson), translatedCoords[0], units);
+        return point(translatedCoords[0], properties);
+    case 'MultiPoint':
+        translatedCoords = translate(getCoords(geojson), translationMatrix, zTranslation);
+        return multiPoint(translatedCoords, properties);
+    case 'LineString':
+        translatedCoords = translate(getCoords(geojson), translationMatrix, zTranslation);
+        return lineString(translatedCoords, properties);
+    case 'MultiLineString':
+        translatedCoords = getCoords(geojson).map(function (lineCoords) {
+            return translate(lineCoords, translationMatrix, zTranslation);
+        });
+        return multiLineString(translatedCoords, properties);
+    case 'Polygon':
+        translatedCoords = getCoords(geojson).map(function (ringCoords) {
+            return translate(ringCoords, translationMatrix, zTranslation);
+        });
+        return polygon(translatedCoords, properties);
+    case 'MultiPolygon':
+        translatedCoords = getCoords(geojson).map(function (polyCoords) {
+            return polyCoords.map(function (ringCoords) {
+                return translate(ringCoords, translationMatrix, zTranslation);
+            });
+        });
+        return multiPolygon(translatedCoords, properties);
+    default:
+        throw new Error('geometry ' + type + ' is not supported');
+    }
+};
+
+/**
+ * Applies translation matrix to each coordinate of the input array
+ *
+ * @private
+ * @param {Array<Array<number>>} featureCoords coordinates of the points of a feature
+ * @param {Array<Array<number>>} translationMatrix defining the motion for each point
+ * @param {number} [zTranslation=0] length of the vertical motion
+ * @returns {Array<Array<number>>} translated coordinates
+ */
+function translate(featureCoords, translationMatrix, zTranslation) {
+    return featureCoords.map(function (pointCoords) {
         var coordsVector = [
             [pointCoords[0]],
             [pointCoords[1]],
@@ -75,36 +127,14 @@ module.exports = function (geojson, distance, direction, units, zTranslation) {
         if (!zTranslation) {
             resultVector.pop(); // remove z value
         }
-        var coords = [].concat.apply([], resultVector); // flatten vector
-        translatedCoords.push(coords);
+        var translatedCoords = [].concat.apply([], resultVector); // flatten translated vector
+        return translatedCoords;
     });
-
-    switch (type) {
-    case 'Point':
-        d = dist(getCoords(geojson), translatedCoords[0], units);
-        rd = rhumbDistance(getCoords(geojson), translatedCoords[0], units);
-        return point(translatedCoords[0], properties);
-    // case 'MultiPoint':
-    //     return lineOffset(geojson, distance, units);
-    // case 'LineString':
-    //     return lineOffset(geojson, distance, units);
-    // case 'MultiLineString':
-    //     return lineOffset(geojson, distance, units);
-    case 'Polygon':
-        translatedCoords.push(translatedCoords[0]);
-        return polygon([translatedCoords], properties);
-    // case 'MultiPolygon':
-    //     return lineOffset(geojson, distance, units);
-    // default:
-    //     throw new Error('geometry ' + type + ' is not supported');
-    }
-
-    // return featureCollection(multipolygons);
-};
+}
 
 /**
  * Returns the product of the two matrices; supports vectors as well.
- * original: http://jsfiddle.net/FloydPink/babopxq8/
+ * from: http://jsfiddle.net/FloydPink/babopxq8/
  *
  * @private
  * @param {Array<Array>} a matrix1
