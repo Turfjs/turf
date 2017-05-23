@@ -1,3 +1,7 @@
+const { multiPoint, lineString, point } = require('@turf/helpers'),
+  envelope = require('@turf/envelope'),
+  inside = require('@turf/inside');
+
 /** Returns the direction of the point q relative to the vector p1 -> p2.
  * Implementation of geos::algorithm::CGAlgorithm::orientationIndex()
  *
@@ -16,6 +20,36 @@ function orientationIndex(p1, p2, q) {
     dy2 = q[1] - p2[1];
 
   return Math.sign(dx1 * dy2 - dx2 * dy1);
+}
+
+/** Checks if two envelopes are equal
+ * The function assumes that the arguments are envelopes, i.e.: Rectangular polygons
+ *
+ * @param {Feature<Polygon>} env1 - Envelope
+ * @param {Feature<Polygon>} env2 - Envelope
+ * @return {Boolean} - True if the envelopes are equal
+ */
+function envelopeIsEqual(env1, env2) {
+  const envX1 = env1.geometry.coordinates.map(c => c[0]),
+    envY1 = env1.geometry.coordinates.map(c => c[1]),
+    envX2 = env2.geometry.coordinates.map(c => c[0]),
+    envY2 = env2.geometry.coordinates.map(c => c[1]);
+
+  return Math.max(null, envX1) == Math.max(null, envX2) &&
+    Math.max(null, envY1) == Math.max(null, envY2) &&
+    Math.min(null, envX1) == Math.min(null, envX2) &&
+    Math.min(null, envY1) == Math.min(null, envY2);
+}
+
+/** Check if a envelope is contained in other one
+ * The function assumes that the arguments are envelopes, i.e.: Rectangular polygons
+ *
+ * @param {Feature<Polygon>} self - Envelope
+ * @param {Feature<Polygon>} env - Envelope
+ * @return {Boolean} - True if env is contained in self
+ */
+function envelopeContains(self, env) {
+  return env.geometry.coordinates.every(c => inside(point(c), self));
 }
 
 /** Represents a planar graph of edges and nodes that can be used to compute a
@@ -334,6 +368,13 @@ class Edge {
   toString() {
     return `Edge { ${this.from.id} -> ${this.to.id} }`;
   }
+
+  /**
+   * @return {Feature<LineString>}
+   */
+  toLineString() {
+    return lineString([this.from.coordinates, this.to.coordinates]);
+  }
 }
 
 class Node {
@@ -426,14 +467,51 @@ class EdgeRing extends Array {
     return disc > 0;
   }
 
+  /** Creates a MultiPoint representing the EdgeRing (discarts edges directions)
+   * @return {Feature<MultiPoint>}
+   */
+  toMultiPoint() {
+    return multiPoint(this.map(edge => edge.from.coordinates));
+  }
+
   /**
+   * @return {Feature<Polygon>} envelope
+   */
+  getEnvelope() {
+    return envelope(this.toMultiPoint());
+  }
+
+  /**
+   * geos::operation::polygonize::EdgeRing::findEdgeRingContaining
    *
    * @param {EdgeRing} edgeRing
    * @param {EdgeRing[]} shellList
    *
    * @return {EdgeRing}
    */
-  static findEdgeRingContaining(edgeRing, shellList) {
+  static findEdgeRingContaining(testEdgeRing, shellList) {
+    const testEnvelope = testEdgeRing.getEnvelope(),
+      testPoint = testEnvelope.geometry.coordinates[0];
+
+    let minEnvelope,
+      minShell;
+    shellList.forEach(shell => {
+      const tryEnvelope = shell.getEnvelope();
+
+      if (minShell)
+        minEnvelope = minShell.getEnvelope();
+
+      // the hole envelope cannot equal the shell envelope
+      if (envelopeIsEqual(tryEnvelope, testEnvelope))
+        return;
+
+      // TODO:
+      if (envelopeContains(tryEnvelope, testEnvelope)) {
+
+      }
+
+    });
+
   }
 }
 

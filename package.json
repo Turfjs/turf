@@ -26,8 +26,11 @@
   },
   "homepage": "https://github.com/Turfjs/turf#readme",
   "devDependencies": {
-    "@turf/helpers": "^4.3.0",
     "tape": "^4.6.3"
   },
-  "dependencies": {}
+  "dependencies": {
+    "@turf/envelope": "^4.3.0",
+    "@turf/helpers": "^4.3.0",
+    "@turf/inside": "^4.3.0"
+  }
 }
