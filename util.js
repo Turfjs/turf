@@ -1,8 +1,32 @@
-// 1. PolygonizerGraph -> Grafo dirijo (a ambos lados) y no dirijido
-//
-// 2. Delete Dangles -> Remueve todos los nodos que tengan grado 1
-// 3. deleteCutEdges -> Numerar los edges de acuerdo a los rings, si un edge y su simetrico tienen el mismo numero, significa que son cut-edges (bridge)
+/** Returns the direction of the point q relative to the vector p1 -> p2.
+ * Implementation of geos::algorithm::CGAlgorithm::orientationIndex()
+ *
+ * @param p1 [Array<Number>]: the origin point of the vector
+ * @param p2 [Array<Number>]: the final point of the vector
+ * @param q [Array<Number>]: the point to compute the direction to
+ *
+ * @return 1 if q is ccw (left) from p1->p2,
+ *        -1 if q is cw (right) from p1->p2,
+ *         0 if q is colinear with p1->p2
+ */
+function orientationIndex(p1, p2, q) {
+  const dx1 = p2[0] - p1[0],
+    dy1 = p2[1] - p1[1],
+    dx2 = q[0] - p2[0],
+    dy2 = q[1] - p2[1];
 
+  return Math.sign(dx1 * dy2 - dx2 * dy1);
+}
+
+/** Represents a planar graph of edges and nodes that can be used to compute a
+ * polygonization.
+ *
+ * Although, this class is inspired by GEOS's geos::operation::polygonize::PolygonizeGraph,
+ * it isn't a rewrite. As regards algorithm, this class implements the same logic, but it
+ * isn't a javascript transcription of the C++ source.
+ *
+ * This graph is directed (both directions are created)
+ */
 class Graph {
   static fromGeoJson(geoJson) {
     const graph = new Graph();
@@ -17,8 +41,8 @@ class Graph {
   }
 
   /** Creates or get a Node
-   * @param Array<Number> coordinates
-   * @return Node
+   * @param coordinates [Array<Number>]
+   * @return [Node]
    */
   getNode(coordinates) {
     const id = Node.buildId(coordinates);
@@ -55,6 +79,8 @@ class Graph {
 
   /** Check if node is dangle, if so, remove it.
    * It calls itself recursively, removing a dangling node might cause another dangling node
+   *
+   * @param node [Node]
    */
   _removeIfDangle(node) {
     // As edges are directed and symetrical, we count only innerEdges
@@ -65,7 +91,11 @@ class Graph {
     }
   }
 
-  /** Delete cut-edges (bridge edges)
+  /** Delete cut-edges (bridge edges).
+   *
+   * The graph will be traversed, all the edges will be labeled according the ring
+   * in which they are. (The label is a number incremented by 1). Edges with the same
+   * label are cut-edges.
    */
   deleteCutEdges() {
     this._computeNextCWEdges();
@@ -81,10 +111,10 @@ class Graph {
   }
 
   /** Set the `next` property of each Edge.
-   * The graph will be transversed in a CW form, so, we set the next of the symetrical edge is the previous one.
+   * The graph will be transversed in a CW form, so, we set the next of the symetrical edge as the previous one.
    * OuterEdges are sorted CCW.
    *
-   * @param Node (optional) If no node is passed, the function calls itself for every node in the Graph
+   * @param node [Node]: (optional) If no node is passed, the function calls itself for every node in the Graph
    */
   _computeNextCWEdges(node) {
     if (typeof(node) == "undefined")
@@ -98,9 +128,10 @@ class Graph {
   /** Computes the next edge pointers going CCW around the given node, for the given edgering label.
    * This algorithm has the effect of converting maximal edgerings into minimal edgerings
    *
-   * XXX: method literally transcribed from PolygonizeGraph::computeNextCCWEdges
+   * XXX: method literally transcribed from PolygonizeGraph::computeNextCCWEdges, could be written
+   * in a more javascript way
    *
-   * @param Node
+   * @param node [Node]
    * @param label
    */
   _computeNextCCWEdges(node, label) {
@@ -144,6 +175,7 @@ class Graph {
 
   /** Finds rings and labels edges according to which rings are.
    * The label is a number which is increased for each ring.
+   *
    * @return Array<Edge> edges that start rings
    */
   _findLabeledEdgeRings() {
@@ -167,8 +199,9 @@ class Graph {
     return edgeRingStarts;
   }
 
-  /** Computes the EdgeRings formed by the edges in this graph
-   * @return Array<Edge> TODO:
+  /** Computes the EdgeRings formed by the edges in this graph.
+   *
+   * @return Array<EdgeRing>
    */
   getEdgeRings() {
     this._computeNextCWEdges();
@@ -215,9 +248,13 @@ class Graph {
     return intersectionNodes;
   }
 
+  /** Get the edge-ring which starts from the provided Edge
+   * @param startEdge [Edge]: starting edge of the edge ring
+   * @return [EdgeRing]
+   */
   _findEdgeRing(startEdge) {
     let edge = startEdge;
-    const edgeRing = [];
+    const edgeRing = new EdgeRing();
 
     do {
       edgeRing.push(edge);
@@ -230,7 +267,7 @@ class Graph {
 
   /** Removes a node from the Graph.
    * It also removes edges asociated to that node
-   * @param Node
+   * @param node [Node]
    */
   removeNode(node) {
     node.outerEdges.forEach(edge => this.removeEdge(edge));
@@ -239,7 +276,7 @@ class Graph {
   }
 
   /** Remove edge from the graph and deletes the edge
-   * @param Edge
+   * @param edge [Edge]
    */
   removeEdge(edge) {
     this.edges = this.edges.filter(e => !e.isEqual(edge));
@@ -247,6 +284,8 @@ class Graph {
   }
 }
 
+/** This class is inspired by GEOS's geos::operation::polygonize::PolygonizeDirectedEdge
+ */
 class Edge {
   /** Creates or get the symetric Edge
    * @return Edge
@@ -260,6 +299,10 @@ class Edge {
     return this.symetric;
   }
 
+  /**
+   * @param from [Node]: start node of the Edge
+   * @param to [Node]: end node of the edge
+   */
   constructor(from, to) {
     this.from = from; //< start
     this.to = to; //< End
@@ -273,6 +316,8 @@ class Edge {
     this.to.addInnerEdge(this);
   }
 
+  /** Removes edge from from and to nodes
+   */
   deleteEdge() {
     this.from.removeOuterEdge(this);
     this.to.removeInnerEdge(this);
@@ -280,6 +325,10 @@ class Edge {
 
   isEqual(edge) {
     return this.from.id == edge.from.id && this.to.id == edge.to.id;
+  }
+
+  toString() {
+    return `Edge { ${this.from.id} -> ${this.to.id} }`;
   }
 }
 
@@ -290,7 +339,7 @@ class Node {
 
   constructor(coordinates) {
     this.id = Node.buildId(coordinates);
-    this.coordinates = coordinates;
+    this.coordinates = coordinates; //< Array<Number>
     this.innerEdges = []; //< Array<Edge>
 
     // We wil store to (out) edges in an CCW order
@@ -306,6 +355,7 @@ class Node {
   }
 
   /** Outer edges are stored CCW order
+   * @param edge [Edge]
    */
   addOuterEdge(edge) {
     this.outerEdges.push(edge);
@@ -324,8 +374,7 @@ class Node {
         return bNode.coordinates[1] - aNode.coordinates[1];
       }
 
-      const det = (aNode.coordinates[0] - this.coordinates[0]) * (bNode.coordinates[1] - this.coordinates[1]) -
-        (bNode.coordinates[0] - this.coordinates[0]) * (aNode.coordinates[1] - this.coordinates[1]);
+      const det = orientationIndex(this.coordinates, aNode.coordinates, bNode.coordinates);
       if (det < 0)
         return 1;
       if (det > 0)
@@ -343,8 +392,26 @@ class Node {
   }
 }
 
+/** Ring of edges which form a polygon.
+ * The ring may be either an outer shell or a hole.
+ *
+ * This class is inspired in GEOS's geos::operation::polygonize::EdgeRing
+ */
+class EdgeRing extends Array {
+
+  /** Tests whether this ring is a hole.
+   *
+   * A ring is a hole if it is oriented counter-clockwise.
+   * @return Boolean true: if it is a hole
+   */
+  isHole() {
+
+
+  }
+}
+
 module.exports = {
   Graph,
   Node,
-  Edge
+  Edge,
 };

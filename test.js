@@ -98,7 +98,11 @@ test('getEdgeRings', t => {
   graph.deleteCutEdges();
   const edgeRings = graph.getEdgeRings();
 
-  console.log(edgeRings);
+  t.equal(edgeRings.length, 4);
+
+  edgeRings.forEach(edgeRing => {
+    t.equal(edgeRing.length, 3);
+  });
 
   t.end();
 });
