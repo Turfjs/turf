@@ -78,7 +78,7 @@ module.exports = function (line, pt, units) {
         if (intersect.features.length > 0) {
             intersectPt = intersect.features[0];
             intersectPt.properties.dist = distance(pt, intersectPt, units);
-            intersectPt.properties.location = length + distance(start, closestPt, units);
+            intersectPt.properties.location = length + distance(start, intersectPt, units);
         }
 
         if (start.properties.dist < closestPt.properties.dist) {
