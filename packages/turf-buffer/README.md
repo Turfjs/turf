@@ -4,6 +4,12 @@
 
 Calculates a buffer for input features for a given radius. Units supported are miles, kilometers, and degrees.
 
+When using a negative radius, the resulting geometry may be invalid if
+it's too small compared to the radius magnitude. If the input is a
+FeatureCollection, only valid members will be returned in the output
+FeatureCollection - i.e., the output collection may have fewer members than
+the input, or even be empty.
+
 **Parameters**
 
 -   `feature` **([FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects) \| [Geometry](http://geojson.org/geojson-spec.html#geometry) \| [Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;any>)** input to be buffered
