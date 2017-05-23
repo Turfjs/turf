@@ -1,9 +1,9 @@
 /** Returns the direction of the point q relative to the vector p1 -> p2.
  * Implementation of geos::algorithm::CGAlgorithm::orientationIndex()
  *
- * @param p1 [Array<Number>]: the origin point of the vector
- * @param p2 [Array<Number>]: the final point of the vector
- * @param q [Array<Number>]: the point to compute the direction to
+ * @param {Number[]} p1 - the origin point of the vector
+ * @param {Number[]} p2 - the final point of the vector
+ * @param {Number[]} q - the point to compute the direction to
  *
  * @return 1 if q is ccw (left) from p1->p2,
  *        -1 if q is cw (right) from p1->p2,
@@ -41,8 +41,8 @@ class Graph {
   }
 
   /** Creates or get a Node
-   * @param coordinates [Array<Number>]
-   * @return [Node]
+   * @param {Number[]} coordinates
+   * @return {Node}
    */
   getNode(coordinates) {
     const id = Node.buildId(coordinates);
@@ -80,7 +80,7 @@ class Graph {
   /** Check if node is dangle, if so, remove it.
    * It calls itself recursively, removing a dangling node might cause another dangling node
    *
-   * @param node [Node]
+   * @param {Node} node
    */
   _removeIfDangle(node) {
     // As edges are directed and symetrical, we count only innerEdges
@@ -114,7 +114,7 @@ class Graph {
    * The graph will be transversed in a CW form, so, we set the next of the symetrical edge as the previous one.
    * OuterEdges are sorted CCW.
    *
-   * @param node [Node]: (optional) If no node is passed, the function calls itself for every node in the Graph
+   * @param {Node} [node] - If no node is passed, the function calls itself for every node in the Graph
    */
   _computeNextCWEdges(node) {
     if (typeof(node) == "undefined")
@@ -131,8 +131,8 @@ class Graph {
    * XXX: method literally transcribed from PolygonizeGraph::computeNextCCWEdges, could be written
    * in a more javascript way
    *
-   * @param node [Node]
-   * @param label
+   * @param {Node} node
+   * @param {Number} label
    */
   _computeNextCCWEdges(node, label) {
     const edges = node.outerEdges;
@@ -176,7 +176,7 @@ class Graph {
   /** Finds rings and labels edges according to which rings are.
    * The label is a number which is increased for each ring.
    *
-   * @return Array<Edge> edges that start rings
+   * @return {Edge[]} edges that start rings
    */
   _findLabeledEdgeRings() {
     const edgeRingStarts = [];
@@ -201,7 +201,7 @@ class Graph {
 
   /** Computes the EdgeRings formed by the edges in this graph.
    *
-   * @return Array<EdgeRing>
+   * @return {EdgeRing[]}
    */
   getEdgeRings() {
     this._computeNextCWEdges();
@@ -248,9 +248,10 @@ class Graph {
     return intersectionNodes;
   }
 
-  /** Get the edge-ring which starts from the provided Edge
-   * @param startEdge [Edge]: starting edge of the edge ring
-   * @return [EdgeRing]
+  /** Get the edge-ring which starts from the provided Edge.
+   *
+   * @param {Edge} startEdge - starting edge of the edge ring
+   * @return {EdgeRing}
    */
   _findEdgeRing(startEdge) {
     let edge = startEdge;
@@ -266,8 +267,9 @@ class Graph {
   }
 
   /** Removes a node from the Graph.
+   *
    * It also removes edges asociated to that node
-   * @param node [Node]
+   * @param {Node} node
    */
   removeNode(node) {
     node.outerEdges.forEach(edge => this.removeEdge(edge));
@@ -276,7 +278,8 @@ class Graph {
   }
 
   /** Remove edge from the graph and deletes the edge
-   * @param edge [Edge]
+   *
+   * @param {Edge} edge
    */
   removeEdge(edge) {
     this.edges = this.edges.filter(e => !e.isEqual(edge));
@@ -288,7 +291,8 @@ class Graph {
  */
 class Edge {
   /** Creates or get the symetric Edge
-   * @return Edge
+   *
+   * @return {Edge}
    */
   getSymetric() {
     if (! this.symetric) {
@@ -300,8 +304,8 @@ class Edge {
   }
 
   /**
-   * @param from [Node]: start node of the Edge
-   * @param to [Node]: end node of the edge
+   * @param {Node} from - start node of the Edge
+   * @param {Node} to - end node of the edge
    */
   constructor(from, to) {
     this.from = from; //< start
@@ -339,11 +343,11 @@ class Node {
 
   constructor(coordinates) {
     this.id = Node.buildId(coordinates);
-    this.coordinates = coordinates; //< Array<Number>
-    this.innerEdges = []; //< Array<Edge>
+    this.coordinates = coordinates; //< Number[]
+    this.innerEdges = []; //< Edge[]
 
     // We wil store to (out) edges in an CCW order
-    this.outerEdges = []; //< Array<Edge>
+    this.outerEdges = []; //< Edge[]
   }
 
   removeInnerEdge(edge) {
@@ -355,7 +359,7 @@ class Node {
   }
 
   /** Outer edges are stored CCW order
-   * @param edge [Edge]
+   * @param {Edge} edge
    */
   addOuterEdge(edge) {
     this.outerEdges.push(edge);
@@ -403,7 +407,7 @@ class EdgeRing extends Array {
   /** Tests whether this ring is a hole.
    * A ring is a hole if it is oriented counter-clockwise.
    * Similar implementation of geos::algorithm::CGAlgorithms::isCCW
-   * @return Boolean true: if it is a hole
+   * @return {Boolean} - true: if it is a hole
    */
   isHole() {
     // XXX: Assuming Ring is valid
@@ -420,6 +424,16 @@ class EdgeRing extends Array {
     if (disc == 0)
       return this[iPrev].from.coordinates[0] > this[iNext].from.coordinates[0];
     return disc > 0;
+  }
+
+  /**
+   *
+   * @param {EdgeRing} edgeRing
+   * @param {EdgeRing[]} shellList
+   *
+   * @return {EdgeRing}
+   */
+  static findEdgeRingContaining(edgeRing, shellList) {
   }
 }
 

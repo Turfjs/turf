@@ -7,8 +7,8 @@ const { Graph } = require('./util');
  *
  * LineStrings must only have to coordinate points.
  *
- * @param geoJson [FeatureCollection<LineString>]: Lines in order to polygonize
- * @return [FeatureCollection<Polygon>]
+ * @param {FeatureCollection<LineString>} geoJson - Lines in order to polygonize
+ * @return {FeatureCollection<Polygon>}
  */
 module.export = function polygonize(geoJson) {
   const graph = Graph.fromGeoJson(geoJson);
@@ -31,6 +31,10 @@ module.export = function polygonize(geoJson) {
   });
 
   // 4. Assign Holes to Shells
+  holes.forEach(hole => {
+    if (!EdgeRing.findEdgeRingContaining(hole, shells))
+      shells.push(hole);
+  });
 
   // 5. EdgeRings to Polygons
 };
