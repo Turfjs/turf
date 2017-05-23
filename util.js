@@ -398,15 +398,28 @@ class Node {
  * This class is inspired in GEOS's geos::operation::polygonize::EdgeRing
  */
 class EdgeRing extends Array {
+  // XXX: isValid?
 
   /** Tests whether this ring is a hole.
-   *
    * A ring is a hole if it is oriented counter-clockwise.
+   * Similar implementation of geos::algorithm::CGAlgorithms::isCCW
    * @return Boolean true: if it is a hole
    */
   isHole() {
+    // XXX: Assuming Ring is valid
+    // Find highest point
+    const hiIndex = this.reduce((high, edge, i) => {
+      if (edge.from.coordinates[1] > this[high].from.coordinates[1])
+        high = i;
+      return high;
+    }, 0),
+      iPrev = (hiIndex == 0 ? this.length : hiIndex) -1,
+      iNext = (hiIndex + 1) % this.length,
+      disc = orientationIndex(this[iPrev].from.coordinates, this[hiIndex].from.coordinates, this[iNext].from.coordinates);
 
-
+    if (disc == 0)
+      return this[iPrev].from.coordinates[0] > this[iNext].from.coordinates[0];
+    return disc > 0;
   }
 }
 
@@ -414,4 +427,5 @@ module.exports = {
   Graph,
   Node,
   Edge,
+  EdgeRing
 };

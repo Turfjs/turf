@@ -1,5 +1,5 @@
 const test = require('tape'),
-  { Graph, Node, Edge } = require('./util'),
+  { Graph, Node, Edge, EdgeRing } = require('./util'),
   { featureCollection, lineString } = require('@turf/helpers');
 
 test('graph.fromGeoJson', t => {
@@ -103,6 +103,34 @@ test('getEdgeRings', t => {
   edgeRings.forEach(edgeRing => {
     t.equal(edgeRing.length, 3);
   });
+
+  t.end();
+});
+
+test('EdgeRing.isHole', t => {
+  function getNextEdge(edge) {
+    return edge.to.outerEdges.find(e => !e.isEqual(edge.symetric));
+  }
+  const geoJson = featureCollection([
+    lineString([[0, 0], [0, 1]]),
+    lineString([[0, 1], [1, 0]]),
+    lineString([[1, 0], [0, 0]]),
+  ]),
+    graph = Graph.fromGeoJson(geoJson);
+
+  let edgeRing = new EdgeRing();
+  edgeRing.push(graph.edges.find(e => e.from.id == Node.buildId([0,0]) && e.to.id == Node.buildId([1,0])));
+  edgeRing.push(getNextEdge(edgeRing[0]));
+  edgeRing.push(getNextEdge(edgeRing[1]));
+
+  t.ok(edgeRing.isHole());
+
+  edgeRing = new EdgeRing();
+  edgeRing.push(graph.edges.find(e => e.from.id == Node.buildId([0,0]) && e.to.id == Node.buildId([0,1])));
+  edgeRing.push(getNextEdge(edgeRing[0]));
+  edgeRing.push(getNextEdge(edgeRing[1]));
+
+  t.notOk(edgeRing.isHole());
 
   t.end();
 });
