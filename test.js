@@ -123,14 +123,14 @@ test('EdgeRing.isHole', t => {
   edgeRing.push(getNextEdge(edgeRing[0]));
   edgeRing.push(getNextEdge(edgeRing[1]));
 
-  t.ok(edgeRing.isHole());
+  t.ok(edgeRing.isHole(), 'A EdgeRing with elements in CCW order has to be a Hole');
 
   edgeRing = new EdgeRing();
   edgeRing.push(graph.edges.find(e => e.from.id == Node.buildId([0,0]) && e.to.id == Node.buildId([0,1])));
   edgeRing.push(getNextEdge(edgeRing[0]));
   edgeRing.push(getNextEdge(edgeRing[1]));
 
-  t.notOk(edgeRing.isHole());
+  t.notOk(edgeRing.isHole(), 'A EdgeRing with elements in CW order does not have to be a Hole');
 
   t.end();
 });

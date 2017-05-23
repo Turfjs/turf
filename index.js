@@ -1,8 +1,14 @@
-const { Graph, findValidEdgeRings } = require('./util');
+const { Graph } = require('./util');
 
 /** Implementation of GEOSPolygonizel function (geos::operation::polygonize::Polygonizer)
- * @param FeatureCollection<LineString>: TODO: preconditions!
- * @return FeatureCollection<Polygon>
+ *
+ * Polygonizes a set of lines that represents edges in a planar graph. Edges must be correctly
+ * noded, i.e., they must only meet at their endpoints.
+ *
+ * LineStrings must only have to coordinate points.
+ *
+ * @param geoJson [FeatureCollection<LineString>]: Lines in order to polygonize
+ * @return [FeatureCollection<Polygon>]
  */
 module.export = function polygonize(geoJson) {
   const graph = Graph.fromGeoJson(geoJson);
