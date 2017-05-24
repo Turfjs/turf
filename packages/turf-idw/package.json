@@ -30,7 +30,6 @@
     "@turf/bbox": "^4.3.0",
     "@turf/centroid": "^4.3.0",
     "@turf/distance": "^4.3.0",
-    "@turf/helpers": "^4.3.0",
     "@turf/square-grid": "^4.3.0"
   }
 }

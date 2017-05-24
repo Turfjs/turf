@@ -19,9 +19,9 @@ test('turf - required files', t => {
         for (const filename of ['test.js', 'bench.js', 'index.js', 'index.d.ts', 'LICENSE', 'README.md']) {
             if (!fs.existsSync(path.join(dir, filename))) t.fail(`${name} ${filename} is required`);
         }
-        // ENABLE "types.ts" WHEN COMPLETELY ADDED
         // if (!fs.existsSync(path.join(dir, 'types.ts'))) t.fail(`${name} types.ts is required`);
     }
+    t.skip('add "types.ts" to all packages');
     t.end();
 });
 
@@ -32,9 +32,9 @@ test('turf - invalid dependencies', t => {
             if (dependencies[invalidDependency]) t.fail(`${name} ${invalidDependency} should be defined as devDependencies`);
         }
         if (devDependencies['eslint'] || devDependencies['eslint-config-mourner']) t.fail(`${name} eslint is handled at the root level`);
-        // ENABLE "mkdirp"" WHEN COMPLETELY REMOVED
         // if (devDependencies['mkdirp']) t.fail(`${name} tests should not have to create folders`);
     }
+    t.skip('remove "mkdirp" from testing');
     t.end();
 });
 
@@ -50,7 +50,7 @@ test('turf - duplicate dependencies', t => {
     for (const {name, pckg} of modules) {
         const {dependencies, devDependencies} = pckg;
         for (const dependency of Object.keys(dependencies)) {
-            if (devDependencies[dependency]) t.fail(`${name} ${dependency} is duplicated in devDependencies`)
+            if (devDependencies[dependency]) t.fail(`${name} ${dependency} is duplicated in devDependencies`);
         }
     }
     t.end();
@@ -59,9 +59,9 @@ test('turf - duplicate dependencies', t => {
 test('turf - check if files exists', t => {
     for (const {name, dir, pckg} of modules) {
         const {files} = pckg;
-        if (!files || !files.length) t.fail(`${name} (files) must be included in package.json`)
+        if (!files || !files.length) t.fail(`${name} (files) must be included in package.json`);
         for (const file of files) {
-            if (!fs.existsSync(path.join(dir, file))) t.fail(`${name} missing file ${file} in "files"`)
+            if (!fs.existsSync(path.join(dir, file))) t.fail(`${name} missing file ${file} in "files"`);
         }
     }
     t.end();
@@ -78,26 +78,25 @@ test('turf - MIT license', t => {
 });
 
 test('turf - contributors', t => {
-    for (const {name, dir, pckg} of modules) {
+    for (const {name, pckg} of modules) {
         for (const contributor of pckg.contributors || []) {
-            // ADD WHEN COMPLETED
-            // if (!contributor.match(/<@.+>/)) t.fail(`${name} ${contributor} (contributors) should resemble "Full Name <@GitHub>"`)
+            if (!contributor.match(/<@.+>/)) t.fail(`${name} ${contributor} (contributors) should use "Full Name <@GitHub>"`);
         }
     }
     t.end();
 });
 
 test('turf - scoped package name', t => {
-    for (const {name, dir, pckg} of modules) {
-        const expected = name.replace('turf-', '@turf/')
-        if (pckg.name !== expected) t.fail(`${name} (name) must use ${expected} in package.json`)
+    for (const {name, pckg} of modules) {
+        const expected = name.replace('turf-', '@turf/');
+        if (pckg.name !== expected) t.fail(`${name} (name) must use ${expected} in package.json`);
     }
     t.end();
 });
 
 test('turf - pre-defined attributes in package.json', t => {
-    for (const {name, dir, pckg} of modules) {
-        if (pckg.author !== 'Turf Authors') t.fail(name + ' (author) should be "Turf Authors"')
+    for (const {name, pckg} of modules) {
+        if (pckg.author !== 'Turf Authors') t.fail(name + ' (author) should be "Turf Authors"');
         if (pckg.main !== 'index.js') t.fail(`${name} (main) must be "index.js" in package.json`);
         if (pckg.types !== 'index.d.ts') t.fail(`${name} (types) must be "index.d.ts" in package.json`);
         if (!pckg.bugs || pckg.bugs.url !== 'https://github.com/Turfjs/turf/issues') t.fail(`${name} (bugs.url) must be "https://github.com/Turfjs/turf/issues" in package.json`);
@@ -109,12 +108,19 @@ test('turf - pre-defined attributes in package.json', t => {
 test('turf - parsing dependencies from index.js', t => {
     for (const {name, dir, pckg} of modules) {
         const index = fs.readFileSync(path.join(dir, 'index.js'), 'utf8');
-        const uniques = {};
-        for (const dependency of index.match(/require\('[\@\/a-z]+'\)/gi) || []) {
-            const dependencyName = dependency.match(/require\('([\@\/a-z]+)'\)/)[1];
+
+        // Read Depedencies from index.js
+        const dependencies = new Set();
+        for (const dependency of index.match(/require\('[\@\/a-z-\d]+'\)/gi) || []) {
+            const dependencyName = dependency.split(/'/)[1];
             if (!pckg.dependencies[dependencyName]) t.fail(`${name} ${dependencyName} is missing from dependencies`);
-            if (uniques[dependencyName]) t.fail(`${name} ${dependency} is duplicated in index.js`)
-            uniques[dependencyName] = true;
+            if (dependencies.has(dependencyName)) t.fail(`${name} ${dependencyName} is duplicated in index.js`);
+            dependencies.add(dependencyName);
+        }
+
+        // Read Dependencies from package.json
+        for (const dependencyName of Object.keys(pckg.dependencies)) {
+            if (!dependencies.has(dependencyName)) t.fail(`${name} ${dependencyName} is not required in index.js`);
         }
     }
     t.end();

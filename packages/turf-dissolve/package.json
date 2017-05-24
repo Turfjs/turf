@@ -36,7 +36,6 @@
   },
   "dependencies": {
     "@turf/bbox": "^4.3.0",
-    "@turf/helpers": "^4.3.0",
     "@turf/union": "^4.3.0",
     "geojson-utils": "^1.1.0",
     "get-closest": "^0.0.4",
