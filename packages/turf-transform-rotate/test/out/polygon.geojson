@@ -1,0 +1,104 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "angle": 200,
+        "pivot": {
+          "type": "Feature",
+          "properties": {
+            "marker-symbol": "circle"
+          },
+          "geometry": {
+            "type": "Point",
+            "coordinates": [
+              2.48291015625,
+              27.819644755099446
+            ]
+          }
+        },
+        "stroke": "#F00",
+        "stroke-width": 4
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              4.3313177068775985,
+              25.963561613772093
+            ],
+            [
+              1.0811003144309552,
+              27.016435835047787
+            ],
+            [
+              0.8781407538403982,
+              23.896460484383486
+            ],
+            [
+              4.3313177068775985,
+              25.963561613772093
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "angle": 200,
+        "pivot": {
+          "type": "Feature",
+          "properties": {
+            "marker-symbol": "circle"
+          },
+          "geometry": {
+            "type": "Point",
+            "coordinates": [
+              2.48291015625,
+              27.819644755099446
+            ]
+          }
+        }
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              0,
+              29
+            ],
+            [
+              3.5,
+              29
+            ],
+            [
+              2.5,
+              32
+            ],
+            [
+              0,
+              29
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "marker-symbol": "circle"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.48291015625,
+          27.819644755099446
+        ]
+      }
+    }
+  ]
+}
