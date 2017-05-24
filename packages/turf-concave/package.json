@@ -35,7 +35,6 @@
   },
   "dependencies": {
     "@turf/distance": "^4.3.0",
-    "@turf/meta": "^4.3.0",
     "@turf/tin": "^4.3.0",
     "@turf/union": "^4.3.0"
   }

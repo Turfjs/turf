@@ -33,7 +33,6 @@
     "tape": "^4.6.3"
   },
   "dependencies": {
-    "@turf/distance": "^4.3.0",
-    "@turf/helpers": "^4.3.0"
+    "@turf/distance": "^4.3.0"
   }
 }

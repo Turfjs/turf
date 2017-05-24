@@ -26,8 +26,10 @@
   ],
   "author": "Turf Authors",
   "contributors": [
+    "Abel Vázquez <@AbelVM>",
     "Morgan Herlocker <@morganherlocker>",
-    "Abel Vázquez"
+    "Tom MacWright <@tmcw>",
+    "Vladimir Agafonkin <@mourner>"
   ],
   "license": "MIT",
   "bugs": {

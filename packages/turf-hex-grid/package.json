@@ -26,10 +26,12 @@
   ],
   "author": "Turf Authors",
   "contributors": [
-    "jseppi",
-    "jvail",
+    "James Seppi <@jseppi>",
+    "Morgan Herlocker <@morganherlocker>",
+    "Tom MacWright <@tmcw>",
+    "Jan Vaillant <@jvail>",
     "Lyzi Diamond <@lyzidiamond>",
-    "Tom MacWright <@tmcw>"
+    "Denis Carriere <@DenisCarriere>"
   ],
   "license": "MIT",
   "bugs": {

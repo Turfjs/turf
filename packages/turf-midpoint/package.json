@@ -37,7 +37,6 @@
   "dependencies": {
     "@turf/bearing": "^4.3.0",
     "@turf/destination": "^4.3.0",
-    "@turf/distance": "^4.3.0",
-    "@turf/invariant": "^4.3.0"
+    "@turf/distance": "^4.3.0"
   }
 }

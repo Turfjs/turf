@@ -36,7 +36,6 @@
   "dependencies": {
     "@turf/circle": "^4.3.0",
     "@turf/destination": "^4.3.0",
-    "@turf/helpers": "^4.3.0",
-    "@turf/meta": "^4.3.0"
+    "@turf/helpers": "^4.3.0"
   }
 }
