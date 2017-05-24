@@ -1,0 +1,14 @@
+{
+  "type": "Feature",
+  "properties": {
+    "stroke": "#F00",
+    "stroke-width": 6
+  },
+  "geometry": {
+    "type": "MultiLineString",
+    "coordinates": [
+      [[10, 10], [2, 2], [0, 0]],
+      [[25, 5], [20, 10], [15, 5]]
+    ]
+  }
+}
