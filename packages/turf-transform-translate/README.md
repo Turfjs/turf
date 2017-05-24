@@ -19,6 +19,7 @@ var poly = turf.polygon([[0,29],[3.5,29],[2.5,32],[0,29]]);
 var translatedPoly = turf.translate(poly, 100, 35);
 
 //addToMap
+translatedPoly.properties = {stroke: '#F00', 'stroke-width': 4};
 var addToMap = [poly, translatedPoly];
 ```
 
