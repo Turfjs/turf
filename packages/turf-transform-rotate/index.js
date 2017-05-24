@@ -1,17 +1,18 @@
 var helpers = require('@turf/helpers');
+var centroid = require('@turf/centroid');
+var invariant = require('@turf/invariant');
+var rhumbBearing = require('@turf/rhumb-bearing');
+var rhumbDistance = require('@turf/rhumb-distance');
+var rhumbDestination = require('@turf/rhumb-destination');
+var getCoord = invariant.getCoord;
+var getCoords = invariant.getCoords;
 var point = helpers.point;
+var feature = helpers.feature;
+var polygon = helpers.polygon;
 var multiPoint = helpers.multiPoint;
 var lineString = helpers.lineString;
-var multiLineString = helpers.multiLineString;
-var polygon = helpers.polygon;
 var multiPolygon = helpers.multiPolygon;
-var feature = helpers.feature;
-var invariant = require('@turf/invariant');
-var getCoords = invariant.getCoords;
-var centroid = require('@turf/centroid');
-var rhumbBearing = require('@turf/rhumb-bearing');
-var rhumbDestination = require('@turf/rhumb-destination');
-var rhumbDistance = require('@turf/rhumb-distance');
+var multiLineString = helpers.multiLineString;
 
 /**
  * Rotates any geojson Feature or Geometry of a specified angle, around its `centroid` or a given `pivot` point;
@@ -21,34 +22,30 @@ var rhumbDistance = require('@turf/rhumb-distance');
  * @param {Geometry|Feature<any>} geojson object to be rotated
  * @param {number} angle of rotation (along the vertical axis), from North in decimal degrees, negative clockwise
  * @param {Geometry|Feature<Point>|Array<number>} [pivot=`centroid`] point around which the rotation will be performed
- * @param {number} [xRotation=0] angle of rotation, respect to the horizontal (x,y) plain, about the x axis;
- * @param {number} [yRotation=0] angle of rotation, respect to the horizontal (x,y) plain, about the y axis;
  * @returns {Feature<any>} the rotated GeoJSON feature
  * @example
- * var poly = turf.polygon([[0,29],[3.5,29],[2.5,32],[0,29]]);
- * var rotatedPoly = turf.rotate(poly, 100, 35);
+ * var poly = turf.polygon([[[0,29],[3.5,29],[2.5,32],[0,29]]]);
+ * var rotatedPoly = turf.rotate(poly, 100, [15, 15]);
  *
  * //addToMap
- * var addToMap = [rotatedPoly];
+ * rotatedPoly.properties = {stroke: '#F00', 'stroke-width': 4};
+ * var addToMap = [poly, rotatedPoly];
  */
-module.exports = function (geojson, angle, pivot, xRotation, yRotation) {
+module.exports = function (geojson, angle, pivot) {
     // Input validation
     if (!geojson) throw new Error('geojson is required');
     if (angle === undefined || angle === null || isNaN(angle)) throw new Error('angle is required');
-    if (pivot && !Array.isArray(pivot) && pivot.geometry.type !== 'Point' && pivot.type !== 'Point') throw new Error('invalid pivot');
-    // if (yRotation && typeof yRotation !== 'number' && isNaN(yRotation)) throw new Error('yRotation is not a number');
-    // if (xRotation && typeof xRotation !== 'number' && isNaN(xRotation)) throw new Error('xRotation is not a number');
 
+    if (geojson.type === 'FeatureCollection') throw new Error('FeatureCollection is not supported');
+    if (geojson.type === 'GeometryCollection') throw new Error('GeometryCollection is not supported');
     if (geojson.type !== 'Feature') geojson = feature(geojson);
 
     // shortcut no-rotation
-    if (angle === 0 && yRotation === 0) return geojson;
+    if (angle === 0) return geojson;
 
-    if (!pivot) {
-        pivot = centroid(geojson);
-    } else if (Array.isArray(pivot)) {
-        pivot = point(pivot);
-    }
+    // Handle pivot
+    if (pivot) pivot = point(getCoord(pivot));
+    else pivot = centroid(geojson);
 
     // copy properties to avoid reference issues
     var properties = {};
@@ -87,8 +84,8 @@ module.exports = function (geojson, angle, pivot, xRotation, yRotation) {
             });
         });
         return multiPolygon(rotatedCoords, properties);
-    default:
-        throw new Error('geometry ' + type + ' is not supported');
+    case 'GeometryCollection':
+        throw new Error('GeometryCollection is not supported');
     }
 };
 
