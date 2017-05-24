@@ -4,8 +4,10 @@
 
 Takes a triangular plane as a [Polygon](http://geojson.org/geojson-spec.html#polygon)
 and a [Point](http://geojson.org/geojson-spec.html#point) within that triangle and returns the z-value
-at that point. The Polygon needs to have properties `a`, `b`, and `c`
-that define the values at its three corners.
+at that point. The Polygon should have properties `a`, `b`, and `c`
+that define the values at its three corners. Alternatively, the z-values
+of each triangle point can be provided by their respective 3rd coordinate
+if their values are not provided as properties.
 
 **Parameters**
 

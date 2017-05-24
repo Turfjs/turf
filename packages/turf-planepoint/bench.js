@@ -1,28 +1,22 @@
-var planepoint = require('./');
-var Benchmark = require('benchmark');
-var fs = require('fs');
+const planepoint = require('./');
+const Benchmark = require('benchmark');
+const fs = require('fs');
 
-var triangle = JSON.parse(fs.readFileSync(__dirname+'/test/Triangle.geojson'));
-var point = {
+const triangle = JSON.parse(fs.readFileSync(__dirname+'/test/Triangle.geojson'));
+const point = {
   type: "Feature",
   geometry: {
     type: "Point",
     coordinates: [
-      -75.3221,
-      39.529
+      1,
+      1
     ]
   }
 };
 
-var suite = new Benchmark.Suite('turf-planepoint');
+const suite = new Benchmark.Suite('turf-planepoint');
 suite
-  .add('turf-planepoint',function () {
-    planepoint(point, triangle);
-  })
-  .on('cycle', function (event) {
-    console.log(String(event.target));
-  })
-  .on('complete', function () {
-    
-  })
+  .add('turf-planepoint', () => { planepoint(point, triangle); })
+  .on('cycle', event => { console.log(String(event.target)); })
+  .on('complete', () => {})
   .run();
