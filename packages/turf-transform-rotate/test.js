@@ -7,6 +7,7 @@ const centroid = require('@turf/centroid');
 const helpers = require('@turf/helpers');
 const featureCollection = helpers.featureCollection;
 const point = helpers.point;
+const lineString = helpers.lineString;
 const rotate = require('./');
 
 const directories = {
@@ -54,14 +55,12 @@ test('rotate', t => {
     t.end();
 });
 
-// test('rotate -- throws', t => {
-//     const pt = point([-70.823364, -33.553984]);
-//
-//     t.throws(() => rotate(null, 100, -29), 'missing geojson');
-//     t.throws(() => rotate(pt, null, 98), 'missing distance');
-//     t.throws(() => rotate(pt, 23, null), 'missing direction');
-//     t.throws(() => rotate(pt, 56, 57, 'notAunit'), 'invalid units');
-//     t.throws(() => rotate(pt, 56, 57, 'miles', 'zTrans'), 'invalid zTranslation');
-//
-//     t.end();
-// });
+test('rotate -- throws', t => {
+    const line = lineString([[10, 10], [12, 15]]);
+
+    t.throws(() => rotate(null, 100), 'missing geojson');
+    t.throws(() => rotate(line, null), 'missing angle');
+    t.throws(() => rotate(line, 56, 'notApoint'), 'invalid pivot');
+
+    t.end();
+});
