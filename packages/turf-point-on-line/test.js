@@ -196,3 +196,12 @@ test('turf-point-on-line - check dist and index', t => {
 
     t.end();
 });
+
+test('turf-point-on-line -- Issue #691', t => {
+    const line1 = lineString([[7, 50], [8, 50], [9, 50]]);
+    const pointAlong = along(line1, 10);
+    const {location} = pointOnLine(line1, pointAlong).properties;
+
+    t.false(isNaN(location))
+    t.end();
+});
