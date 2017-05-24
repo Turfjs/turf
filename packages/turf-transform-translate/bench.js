@@ -1,7 +1,7 @@
-const path = require('path');
-const Benchmark = require('benchmark');
-const load = require('load-json-file');
 const fs = require('fs');
+const path = require('path');
+const load = require('load-json-file');
+const Benchmark = require('benchmark');
 const translate = require('./');
 
 const directory = path.join(__dirname, 'test', 'in') + path.sep;
@@ -28,7 +28,7 @@ const fixtures = fs.readdirSync(directory).map(filename => {
  */
 const suite = new Benchmark.Suite('turf-transform-translate');
 for (const {name, geojson} of fixtures) {
-    let {distance, direction, units, zTranslation} = geojson.properties || {};
+    const {distance, direction, units, zTranslation} = geojson.properties || {};
     suite.add(name, () => translate(geojson, distance, direction, units, zTranslation));
 }
 

@@ -1,11 +1,9 @@
+const fs = require('fs');
 const test = require('tape');
 const path = require('path');
-const fs = require('fs');
 const load = require('load-json-file');
 const write = require('write-json-file');
-const helpers = require('@turf/helpers');
-const featureCollection = helpers.featureCollection;
-const point = helpers.point;
+const {point, featureCollection} = require('@turf/helpers');
 const translate = require('./');
 
 const directories = {
@@ -22,21 +20,11 @@ const fixtures = fs.readdirSync(directories.in).map(filename => {
 });
 
 test('translate', t => {
-    for (const {filename, name, geojson}  of fixtures) {
+    for (const {filename, name, geojson} of fixtures) {
         let {distance, direction, units, zTranslation} = geojson.properties || {};
 
         const translated = translate(geojson, distance, direction, units, zTranslation);
-
-        // style result
-        if (translated.geometry.type === 'Point' || translated.geometry.type === 'MultiPoint') {
-            translated.properties['marker-color'] = '#F00';
-            translated.properties['marker-symbol'] = 'star';
-        } else {
-            translated.properties["stroke"] = "#F00";
-            translated.properties["stroke-width"] = 4;
-        }
-
-        const result = featureCollection([translated, geojson]);
+        const result = featureCollection([colorize(translated), geojson]);
 
         if (process.env.REGEN) write.sync(directories.out + filename, result);
         t.deepEqual(result, load.sync(directories.out + filename), name);
@@ -56,3 +44,15 @@ test('translate -- throws', t => {
 
     t.end();
 });
+
+// style result
+function colorize(geojson) {
+    if (geojson.geometry.type === 'Point' || geojson.geometry.type === 'MultiPoint') {
+        geojson.properties['marker-color'] = '#F00';
+        geojson.properties['marker-symbol'] = 'star';
+    } else {
+        geojson.properties['stroke'] = '#F00';
+        geojson.properties['stroke-width'] = 4;
+    }
+    return geojson;
+}

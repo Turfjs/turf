@@ -1,16 +1,14 @@
 var helpers = require('@turf/helpers');
+var invariant = require('@turf/invariant');
+var rhumbDestination = require('@turf/rhumb-destination');
 var point = helpers.point;
+var feature = helpers.feature;
+var polygon = helpers.polygon;
 var multiPoint = helpers.multiPoint;
 var lineString = helpers.lineString;
-var multiLineString = helpers.multiLineString;
-var polygon = helpers.polygon;
 var multiPolygon = helpers.multiPolygon;
-var feature = helpers.feature;
-var invariant = require('@turf/invariant');
+var multiLineString = helpers.multiLineString;
 var getCoords = invariant.getCoords;
-var rhumbDestination = require('@turf/rhumb-destination');
-// var dist = require('@turf/distance');
-// var rhumbDistance = require('@turf/rhumb-distance');
 
 /**
  * Moves any geojson Feature or Geometry of a specified distance on the provided direction angle.
@@ -20,7 +18,6 @@ var rhumbDestination = require('@turf/rhumb-destination');
  * @param {number} distance length of the motion; negative values determine motion in opposite direction
  * @param {number} direction of the motion; angle from North between -180 and 180 decimal degrees, positive clockwise
  * @param {string} [units=kilometers] in which `distance` will be express; miles, kilometers, degrees, or radians
- *     (optional, default `kilometers`)
  * @param {number} [zTranslation=0] length of the vertical motion, same unit of distance
  * @returns {Feature<any>} the translated GeoJSON feature
  * @example
@@ -28,7 +25,7 @@ var rhumbDestination = require('@turf/rhumb-destination');
  * var translatedPoly = turf.translate(poly, 100, 35);
  *
  * //addToMap
- * var addToMap = [translatedPoly];
+ * var addToMap = [poly, translatedPoly];
  */
 module.exports = function (geojson, distance, direction, units, zTranslation) {
     // Input validation
