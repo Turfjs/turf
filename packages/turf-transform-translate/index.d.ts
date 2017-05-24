@@ -10,6 +10,7 @@ declare function translate<Geom extends GeometryObject>(
     geojson: Feature<Geom> | Geom,
     distance: number,
     direction: number,
-    units?: string): Feature<Geom>;
+    units?: string,
+    zTranslation?: number): Feature<Geom>;
 declare namespace translate { }
 export = translate;
