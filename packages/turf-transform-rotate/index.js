@@ -22,6 +22,8 @@ var multiLineString = helpers.multiLineString;
  * @param {Geometry|Feature<any>} geojson object to be rotated
  * @param {number} angle of rotation (along the vertical axis), from North in decimal degrees, negative clockwise
  * @param {Geometry|Feature<Point>|Array<number>} [pivot=`centroid`] point around which the rotation will be performed
+ * @param {number} [xRotation=0] angle of rotation, respect to the horizontal (x,y) plain, about the x axis (not implemented);
+ * @param {number} [yRotation=0] angle of rotation, respect to the horizontal (x,y) plain, about the y axis (not implemented);
  * @returns {Feature<any>} the rotated GeoJSON feature
  * @example
  * var poly = turf.polygon([[[0,29],[3.5,29],[2.5,32],[0,29]]]);
@@ -31,7 +33,7 @@ var multiLineString = helpers.multiLineString;
  * rotatedPoly.properties = {stroke: '#F00', 'stroke-width': 4};
  * var addToMap = [poly, rotatedPoly];
  */
-module.exports = function (geojson, angle, pivot) {
+module.exports = function (geojson, angle, pivot, xRotation, yRotation) {
     // Input validation
     if (!geojson) throw new Error('geojson is required');
     if (angle === undefined || angle === null || isNaN(angle)) throw new Error('angle is required');
@@ -39,9 +41,11 @@ module.exports = function (geojson, angle, pivot) {
     if (geojson.type === 'FeatureCollection') throw new Error('FeatureCollection is not supported');
     if (geojson.type === 'GeometryCollection') throw new Error('GeometryCollection is not supported');
     if (geojson.type !== 'Feature') geojson = feature(geojson);
+    if (xRotation !== undefined) throw new Error('xRotation is not implemented');
+    if (yRotation !== undefined) throw new Error('yRotation is not implemented');
 
     // shortcut no-rotation
-    if (angle === 0) return geojson;
+    if (angle === 0 && yRotation === 0) return geojson;
 
     // Handle pivot
     if (pivot) pivot = point(getCoord(pivot));

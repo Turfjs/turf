@@ -11,3 +11,6 @@ const rotatedPoly: GeoJSON.Feature<GeoJSON.Polygon> = rotate(poly, 100, pt);
 rotate(poly, 100, pt);
 rotate(poly, 100, pt.geometry);
 rotate(poly.geometry, 100, pt.geometry.coordinates);
+
+// xRotation & yRotation
+rotate(poly, 100, pt, 40, 20);

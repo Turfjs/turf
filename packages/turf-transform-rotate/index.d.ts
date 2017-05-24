@@ -10,7 +10,9 @@ type Point = Feature<GeoJSON.Point> | GeoJSON.Point | number[];
 declare function rotate<Geom extends GeometryObject>(
     geojson: Feature<Geom> | Geom,
     angle: number,
-    pivot?: Point): Feature<Geom>;
+    pivot?: Point,
+    xRotation?: number,
+    yRotation?: number): Feature<Geom>;
 
 declare namespace rotate { }
 export = rotate;

@@ -45,6 +45,8 @@ test('rotate -- throws', t => {
     t.throws(() => rotate(featureCollection([line]), 100), /FeatureCollection is not supported/, 'featureCollection');
     t.throws(() => rotate(geometryCollection([line.geometry]), 100), /GeometryCollection is not supported/, 'geometryCollection');
     t.throws(() => rotate(geometryCollection([line.geometry]).geometry, 100), /GeometryCollection is not supported/, 'geometryCollection');
+    t.throws(() => rotate(line, 100, [0, 0], 10), /xRotation is not implemented/, 'xRotation');
+    t.throws(() => rotate(line, 100, [0, 0], undefined, 10), /yRotation is not implemented/, 'yRotation');
     t.end();
 });
 
