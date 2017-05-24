@@ -2,10 +2,7 @@
   "type": "Feature",
   "properties": {
     "angle": 90,
-    "pivot": [
-      -98.9,
-      19.15
-    ]
+    "pivot": [-98.9, 19.15]
   },
   "geometry": {
     "type": "MultiLineString",

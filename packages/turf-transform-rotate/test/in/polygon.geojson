@@ -2,17 +2,7 @@
   "type": "Feature",
   "properties": {
     "angle": 200,
-    "pivot": {
-      "type": "Feature",
-      "properties": {},
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          2.48291015625,
-          27.819644755099446
-        ]
-      }
-    }
+    "pivot": [2.48291015625, 27.819644755099446]
   },
   "geometry": {
     "type": "Polygon",
