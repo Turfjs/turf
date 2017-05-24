@@ -1,0 +1,39 @@
+{
+  "name": "@turf/split",
+  "version": "3.7.5",
+  "description": "split a polygon based on a linestring",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "tape test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/Turfjs/turf.git"
+  },
+  "keywords": [
+    "turf",
+    "gis",
+    "split",
+    "geojson"
+  ],
+  "author": "Turf Authors",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Turfjs/turf/issues"
+  },
+  "homepage": "https://github.com/Turfjs/turf",
+  "devDependencies": {
+    "benchmark": "^1.0.0",
+    "tape": "^3.5.0"
+  },
+  "dependencies": {
+    "@turf/buffer": "^3.7.5",
+    "@turf/helpers": "^3.7.5",
+    "lodash.chunk": "^4.2.0",
+    "polyk": "^0.22.2"
+  },
+  "types": "index.d.ts"
+}
