@@ -12,6 +12,25 @@ const fixtures = fs.readdirSync(directory).map(filename => {
     };
 });
 
+/**
+ * Single Process Benchmark
+ *
+ * line: 6.765ms
+ * multiLine: 0.705ms
+ * multiPoint: 0.443ms
+ * multiPolygon: 1.613ms
+ * no-motion: 0.703ms
+ * point: 0.146ms
+ * polygon-with-hole: 0.423ms
+ * polygon: 0.263ms
+ * z-translation: 0.374ms
+ */
+for (const {name, geojson} of fixtures) {
+    const {distance, direction, units, zTranslation} = geojson.properties || {};
+    console.time(name);
+    translate(geojson, distance, direction, units, zTranslation);
+    console.timeEnd(name);
+}
 
 /**
  * Benchmark Results
