@@ -10,8 +10,6 @@ all rotations follow the right-hand rule: <https://en.wikipedia.org/wiki/Right-h
 -   `geojson` **([Geometry](http://geojson.org/geojson-spec.html#geometry) \| [Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;any>)** object to be rotated
 -   `angle` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** of rotation (along the vertical axis), from North in decimal degrees, negative clockwise
 -   `pivot` **\[([Geometry](http://geojson.org/geojson-spec.html#geometry) \| [Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;[Point](http://geojson.org/geojson-spec.html#point)> | [Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)>)]** point around which the rotation will be performed (optional, default `` `centroid` ``)
--   `xRotation` **\[[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)]** angle of rotation, respect to the horizontal (x,y) plain, about the x axis (not implemented); (optional, default `0`)
--   `yRotation` **\[[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)]** angle of rotation, respect to the horizontal (x,y) plain, about the y axis (not implemented); (optional, default `0`)
 
 **Examples**
 

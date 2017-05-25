@@ -16,14 +16,14 @@ const fixtures = fs.readdirSync(directory).map(filename => {
 /**
  * Single Process Benchmark
  *
- * line: 3.101ms
- * multiLine: 0.475ms
- * multiPoint: 1.921ms
- * multiPolygon: 4.726ms
- * no-rotation: 0.006ms
- * point: 0.076ms
- * polygon-with-hole: 3.484ms
- * polygon: 0.122ms
+ * line: 2.890ms
+ * multiLine: 0.193ms
+ * multiPoint: 0.536ms
+ * multiPolygon: 2.388ms
+ * no-rotation: 1.534ms
+ * point: 0.081ms
+ * polygon-with-hole: 0.487ms
+ * polygon: 0.101ms
  */
 for (const {name, geojson} of fixtures) {
     const {angle, pivot} = geojson.properties || {};

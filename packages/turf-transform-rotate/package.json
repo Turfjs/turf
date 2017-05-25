@@ -46,7 +46,6 @@
     "@turf/meta": "^4.3.0",
     "@turf/rhumb-bearing": "^4.3.0",
     "@turf/rhumb-destination": "^4.3.0",
-    "@turf/rhumb-distance": "^4.3.0",
-    "clone": "2.1.1"
+    "@turf/rhumb-distance": "^4.3.0"
   }
 }
