@@ -1,16 +1,17 @@
 /// <reference types="geojson" />
 
-type GeometryObject = GeoJSON.GeometryObject;
-type Feature<Geom extends GeometryObject> = GeoJSON.Feature<Geom>;
+type Geoms = GeoJSON.Feature<any> | GeoJSON.FeatureCollection<any> | GeoJSON.GeometryObject | GeoJSON.GeometryCollection;
 
 /**
  * http://turfjs.org/docs/#transform-translate
  */
-declare function translate<Geom extends GeometryObject>(
-    geojson: Feature<Geom> | Geom,
+declare function translate<Geom extends Geoms>(
+    geojson: Geom,
     distance: number,
     direction: number,
     units?: string,
-    zTranslation?: number): Feature<Geom>;
+    zTranslation?: number,
+    mutate?: boolean): Geom;
+
 declare namespace translate { }
 export = translate;

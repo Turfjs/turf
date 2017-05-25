@@ -1,65 +1,65 @@
 {
-  "type": "FeatureCollection",
-  "features": [
-    {
-      "type": "Feature",
-      "properties": {
-        "distance": -10,
-        "units": "miles",
-        "direction": 90,
-        "marker-color": "#F00",
-        "marker-symbol": "star"
-      },
-      "geometry": {
-        "type": "MultiPoint",
-        "coordinates": [
-          [
-            99.85526826781518,
-            8.862262627761441e-18
-          ],
-          [
-            100.85526826781518,
-            1
-          ],
-          [
-            101.00526826781518,
-            -0.86
-          ],
-          [
-            99.65526826781517,
-            1.8
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "distance": -10,
-        "units": "miles",
-        "direction": 90
-      },
-      "geometry": {
-        "type": "MultiPoint",
-        "coordinates": [
-          [
-            100,
-            0
-          ],
-          [
-            101,
-            1
-          ],
-          [
-            101.15,
-            -0.86
-          ],
-          [
-            99.8,
-            1.8
-          ]
-        ]
-      }
-    }
-  ]
+	"type": "FeatureCollection",
+	"features": [
+		{
+			"type": "Feature",
+			"properties": {
+				"distance": -10,
+				"units": "miles",
+				"direction": 90,
+				"marker-color": "#F00",
+				"marker-symbol": "star"
+			},
+			"geometry": {
+				"type": "MultiPoint",
+				"coordinates": [
+					[
+						99.855268,
+						0
+					],
+					[
+						100.855268,
+						1
+					],
+					[
+						101.005268,
+						-0.86
+					],
+					[
+						99.655268,
+						1.8
+					]
+				]
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {
+				"distance": -10,
+				"units": "miles",
+				"direction": 90
+			},
+			"geometry": {
+				"type": "MultiPoint",
+				"coordinates": [
+					[
+						100,
+						0
+					],
+					[
+						101,
+						1
+					],
+					[
+						101.15,
+						-0.86
+					],
+					[
+						99.8,
+						1.8
+					]
+				]
+			}
+		}
+	]
 }

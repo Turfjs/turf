@@ -14,12 +14,13 @@ var getCoords = invariant.getCoords;
  * Moves any geojson Feature or Geometry of a specified distance on the provided direction angle.
  *
  * @name translate
- * @param {Geometry|Feature<any>} geojson object to be translated
+ * @param {GeoJSON} geojson object to be translated
  * @param {number} distance length of the motion; negative values determine motion in opposite direction
  * @param {number} direction of the motion; angle from North between -180 and 180 decimal degrees, positive clockwise
  * @param {string} [units=kilometers] in which `distance` will be express; miles, kilometers, degrees, or radians
  * @param {number} [zTranslation=0] length of the vertical motion, same unit of distance
- * @returns {Feature<any>} the translated GeoJSON feature
+ * @param {boolean} [mutate=false] allows GeoJSON input to be mutated (significant performance increase if true)
+ * @returns {GeoJSON} the translated GeoJSON feature
  * @example
  * var poly = turf.polygon([[0,29],[3.5,29],[2.5,32],[0,29]]);
  * var translatedPoly = turf.translate(poly, 100, 35);
@@ -28,7 +29,7 @@ var getCoords = invariant.getCoords;
  * translatedPoly.properties = {stroke: '#F00', 'stroke-width': 4};
  * var addToMap = [poly, translatedPoly];
  */
-module.exports = function (geojson, distance, direction, units, zTranslation) {
+module.exports = function (geojson, distance, direction, units, zTranslation, mutate) {
     // Input validation
     if (!geojson) throw new Error('geojson is required');
     if (distance === undefined || distance === null || isNaN(distance)) throw new Error('distance is required');
@@ -43,12 +44,10 @@ module.exports = function (geojson, distance, direction, units, zTranslation) {
         distance = -distance;
         direction = -direction;
     }
+    var properties = geojson.properties || {};
 
-    // copy properties to avoid reference issues
-    var properties = {};
-    Object.keys(geojson.properties).forEach(function (key) {
-        properties[key] = geojson.properties[key];
-    });
+    // Clone geojson to avoid side effects
+    if (mutate === false || mutate === undefined) geojson = JSON.parse(JSON.stringify(geojson));
 
     var motionVector = getCoords(rhumbDestination([0, 0], distance, direction, units));
     // probes

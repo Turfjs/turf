@@ -1,67 +1,67 @@
 {
-  "type": "FeatureCollection",
-  "features": [
-    {
-      "type": "Feature",
-      "properties": {
-        "distance": 300,
-        "direction": 70,
-        "stroke": "#F00",
-        "stroke-width": 4
-      },
-      "geometry": {
-        "type": "Polygon",
-        "coordinates": [
-          [
-            [
-              2.5353672352121066,
-              29.922758313656583
-            ],
-            [
-              6.035367235212107,
-              29.922758313656583
-            ],
-            [
-              5.035367235212107,
-              32.92275831365659
-            ],
-            [
-              2.5353672352121066,
-              29.922758313656583
-            ]
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "distance": 300,
-        "direction": 70
-      },
-      "geometry": {
-        "type": "Polygon",
-        "coordinates": [
-          [
-            [
-              0,
-              29
-            ],
-            [
-              3.5,
-              29
-            ],
-            [
-              2.5,
-              32
-            ],
-            [
-              0,
-              29
-            ]
-          ]
-        ]
-      }
-    }
-  ]
+	"type": "FeatureCollection",
+	"features": [
+		{
+			"type": "Feature",
+			"properties": {
+				"direction": 70,
+				"distance": 300,
+				"stroke": "#F00",
+				"stroke-width": 4
+			},
+			"geometry": {
+				"type": "Polygon",
+				"coordinates": [
+					[
+						[
+							2.535367,
+							29.922758
+						],
+						[
+							6.035367,
+							29.922758
+						],
+						[
+							5.035367,
+							32.922758
+						],
+						[
+							2.535367,
+							29.922758
+						]
+					]
+				]
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {
+				"direction": 70,
+				"distance": 300
+			},
+			"geometry": {
+				"type": "Polygon",
+				"coordinates": [
+					[
+						[
+							0,
+							29
+						],
+						[
+							3.5,
+							29
+						],
+						[
+							2.5,
+							32
+						],
+						[
+							0,
+							29
+						]
+					]
+				]
+			}
+		}
+	]
 }

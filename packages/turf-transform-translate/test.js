@@ -3,7 +3,8 @@ const test = require('tape');
 const path = require('path');
 const load = require('load-json-file');
 const write = require('write-json-file');
-const {point, featureCollection} = require('@turf/helpers');
+const truncate = require('@turf/truncate');
+const {point, lineString, geometryCollection, featureCollection} = require('@turf/helpers');
 const translate = require('./');
 
 const directories = {
@@ -24,7 +25,7 @@ test('translate', t => {
         let {distance, direction, units, zTranslation} = geojson.properties || {};
 
         const translated = translate(geojson, distance, direction, units, zTranslation);
-        const result = featureCollection([colorize(translated), geojson]);
+        const result = featureCollection([colorize(truncate(translated, 6, 3)), geojson]);
 
         if (process.env.REGEN) write.sync(directories.out + filename, result);
         t.deepEqual(result, load.sync(directories.out + filename), name);
@@ -42,6 +43,32 @@ test('translate -- throws', t => {
     t.throws(() => translate(pt, 56, 57, 'notAunit'), 'invalid units');
     t.throws(() => translate(pt, 56, 57, 'miles', 'zTrans'), 'invalid zTranslation');
 
+    t.end();
+});
+
+test('rotate -- mutated input', t => {
+    const line = lineString([[10, 10], [12, 15]]);
+    const lineBefore = JSON.parse(JSON.stringify(line));
+
+    translate(line, 100, 50);
+    t.deepEqual(line, lineBefore, 'input should not be mutated');
+    t.end();
+});
+
+test('rotate -- geometry support', t => {
+    // const line = lineString([[10, 10], [12, 15]]);
+    // t.assert(translate(geometryCollection([line.geometry]), 100, 50), 'geometryCollection support');
+    // t.assert(translate(geometryCollection([line.geometry]).geometry, 100, 50), 'geometryCollection support');
+    // t.assert(translate(featureCollection([line]), 100, 50), 'featureCollection support');
+    // t.assert(translate(line.geometry, 100, 50), 'geometry line support');
+    // t.assert(translate(line.geometry, 100, 50), 'geometry pt support');
+    // t.assert(translate(line.geometry.coordinates, 100, 50), 'pt coordinate support');
+    t.skip('geometryCollection support');
+    t.skip('geometryCollection support');
+    t.skip('featureCollection support');
+    t.skip('geometry line support');
+    t.skip('geometry pt support');
+    t.skip('pt coordinate support');
     t.end();
 });
 

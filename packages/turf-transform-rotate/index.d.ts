@@ -11,7 +11,8 @@ declare function rotate<Geom extends Geoms>(
     angle: number,
     pivot?: Point,
     xRotation?: number,
-    yRotation?: number): Geom;
+    yRotation?: number,
+    mutate?: boolean): Geom;
 
 declare namespace rotate { }
 export = rotate;
