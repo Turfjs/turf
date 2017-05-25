@@ -37,17 +37,17 @@ module.exports = function (geojson, angle, pivot) {
     if (geojson.type === 'GeometryCollection') throw new Error('GeometryCollection is not supported');
     if (geojson.type !== 'Feature') geojson = feature(geojson);
 
-    // shortcut no-rotation
+    // Shortcut no-rotation
     if (angle === 0) return geojson;
 
     // Handle pivot
     if (pivot) pivot = point(getCoord(pivot));
     else pivot = centroid(geojson);
 
-    // clone geojson to avoid side effects
-    var newGeojson = JSON.parse(JSON.stringify(geojson));
+    // Clone geojson to avoid side effects
+    var geojsonCopy = JSON.parse(JSON.stringify(geojson));
 
-    coordEach(newGeojson, function (pointCoords) {
+    coordEach(geojsonCopy, function (pointCoords) {
         var initialAngle = rhumbBearing(pivot, pointCoords);
         var finalAngle = initialAngle + angle;
         var distance = rhumbDistance(pivot, pointCoords);
@@ -56,6 +56,6 @@ module.exports = function (geojson, angle, pivot) {
         pointCoords[1] = newCoords[1];
     });
 
-    return newGeojson;
+    return geojsonCopy;
 };
 
