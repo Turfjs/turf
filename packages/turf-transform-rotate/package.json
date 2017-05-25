@@ -33,6 +33,7 @@
   },
   "homepage": "https://github.com/Turfjs/turf",
   "devDependencies": {
+    "@turf/helpers": "^4.3.0",
     "@turf/truncate": "^4.3.0",
     "benchmark": "^2.1.4",
     "load-json-file": "^2.0.0",
@@ -41,7 +42,6 @@
   },
   "dependencies": {
     "@turf/centroid": "^4.3.0",
-    "@turf/helpers": "^4.3.0",
     "@turf/invariant": "^4.3.0",
     "@turf/meta": "^4.3.0",
     "@turf/rhumb-bearing": "^4.3.0",

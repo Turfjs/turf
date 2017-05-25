@@ -27,7 +27,7 @@ test('rotate', t => {
         const {angle, pivot} = geojson.properties || {};
 
         const rotated = rotate(geojson, angle, pivot);
-        const result = featureCollection([colorize(truncate(rotated)), geojson, makePivot(pivot, geojson)]);
+        const result = featureCollection([colorize(truncate(rotated, 6, 3)), geojson, makePivot(pivot, geojson)]);
 
         if (process.env.REGEN) write.sync(directories.out + filename, result);
         t.deepEqual(result, load.sync(directories.out + filename), name);
@@ -42,9 +42,6 @@ test('rotate -- throws', t => {
     t.throws(() => rotate(null, 100), /geojson is required/, 'missing geojson');
     t.throws(() => rotate(line, null), /angle is required/, 'missing angle');
     t.throws(() => rotate(line, 56, 'notApoint'), /coordinates must only contain numbers/, 'invalid pivot');
-    t.throws(() => rotate(featureCollection([line]), 100), /FeatureCollection is not supported/, 'featureCollection');
-    t.throws(() => rotate(geometryCollection([line.geometry]), 100), /GeometryCollection is not supported/, 'geometryCollection');
-    t.throws(() => rotate(geometryCollection([line.geometry]).geometry, 100), /GeometryCollection is not supported/, 'geometryCollection');
     t.end();
 });
 
@@ -61,6 +58,9 @@ test('rotate -- geometry support', t => {
     const line = lineString([[10, 10], [12, 15]]);
     const pt = point([10, 10]);
 
+    t.assert(rotate(geometryCollection([line.geometry]), 100), 'geometryCollection support');
+    t.assert(rotate(geometryCollection([line.geometry]).geometry, 100), 'geometryCollection support');
+    t.assert(rotate(featureCollection([line]), 100), 'featureCollection support');
     t.assert(rotate(line.geometry, 100), 'geometry line support');
     t.assert(rotate(line.geometry, 100, pt.geometry), 'geometry pt support');
     t.assert(rotate(line.geometry, 100, pt.geometry.coordinates), 'pt coordinate support');

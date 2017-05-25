@@ -1,18 +1,17 @@
 /// <reference types="geojson" />
 
-type GeometryObject = GeoJSON.GeometryObject;
-type Feature<Geom extends GeometryObject> = GeoJSON.Feature<Geom>;
-type Point = Feature<GeoJSON.Point> | GeoJSON.Point | number[];
+type Point = GeoJSON.Feature<GeoJSON.Point> | GeoJSON.Point | number[];
+type Geoms = GeoJSON.Feature<any> | GeoJSON.FeatureCollection<any> | GeoJSON.GeometryObject | GeoJSON.GeometryCollection;
 
 /**
  * http://turfjs.org/docs/#transform-rotate
  */
-declare function rotate<Geom extends GeometryObject>(
-    geojson: Feature<Geom> | Geom,
+declare function rotate<Geom extends Geoms>(
+    geojson: Geom,
     angle: number,
     pivot?: Point,
     xRotation?: number,
-    yRotation?: number): Feature<Geom>;
+    yRotation?: number): Geom;
 
 declare namespace rotate { }
 export = rotate;

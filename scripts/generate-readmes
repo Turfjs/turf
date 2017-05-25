@@ -14,6 +14,7 @@ fs.readdirSync('./packages').forEach(function(dir) {
 });
 
 var geojsonPaths = {
+  GeoJSON: 'http://geojson.org/geojson-spec.html#geojson-objects',
   GeometryCollection: 'http://geojson.org/geojson-spec.html#geometrycollection',
   Point: 'http://geojson.org/geojson-spec.html#point',
   MultiPoint: 'http://geojson.org/geojson-spec.html#multipoint',
