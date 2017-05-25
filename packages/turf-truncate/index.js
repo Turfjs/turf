@@ -6,7 +6,7 @@ var coordEach = require('@turf/meta').coordEach;
  * @name truncate
  * @param {FeatureCollection|Feature<any>} geojson any GeoJSON Feature, FeatureCollection, Geometry or GeometryCollection.
  * @param {number} [precision=6] coordinate decimal precision
- * @param {number} [coordinates=2] maximum number of coordinates (primarly used to remove z coordinates)
+ * @param {number} [coordinates=3] maximum number of coordinates (primarly used to remove z coordinates)
  * @param {boolean} [mutate=false] allows GeoJSON input to be mutated (significant performance increase if true)
  * @returns {FeatureCollection|Feature<any>} layer with truncated geometry
  * @example
@@ -29,8 +29,8 @@ var coordEach = require('@turf/meta').coordEach;
  */
 module.exports = function (geojson, precision, coordinates, mutate) {
     // default params
-    precision = (precision !== undefined) ? precision : 6;
-    coordinates = (coordinates !== undefined) ? coordinates : 2;
+    precision = (precision === undefined || precision === null || isNaN(precision)) ? 6 : precision;
+    coordinates = (coordinates === undefined || coordinates === null || isNaN(coordinates)) ? 3 : coordinates;
 
     // validation
     if (!geojson) throw new Error('<geojson> is required');

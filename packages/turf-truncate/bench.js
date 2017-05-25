@@ -1,7 +1,7 @@
-const Benchmark = require('benchmark');
-const path = require('path');
 const fs = require('fs');
+const path = require('path');
 const load = require('load-json-file');
+const Benchmark = require('benchmark');
 const truncate = require('./');
 
 const directory = path.join(__dirname, 'test', 'in') + path.sep;
@@ -13,6 +13,24 @@ let fixtures = fs.readdirSync(directory).map(filename => {
     };
 });
 // fixtures = fixtures.filter(fixture => fixture.name === 'polygons');
+
+/**
+ * Single Process Benchmark
+ *
+ * geometry-collection: 0.563ms
+ * linestring-geometry: 0.076ms
+ * point-elevation: 0.046ms
+ * point-geometry: 0.012ms
+ * point: 0.022ms
+ * points: 0.028ms
+ * polygon: 0.030ms
+ * polygons: 0.030ms
+ */
+for (const {name, geojson} of fixtures) {
+    console.time(name);
+    truncate(geojson, 6, 2, true);
+    console.timeEnd(name);
+}
 
 /**
  * Benchmark Results
