@@ -1,4 +1,4 @@
-const { multiPoint, lineString, point } = require('@turf/helpers'),
+const { multiPoint, lineString, point, polygon } = require('@turf/helpers'),
   envelope = require('@turf/envelope'),
   inside = require('@turf/inside');
 
@@ -43,13 +43,14 @@ function envelopeIsEqual(env1, env2) {
 
 /** Check if a envelope is contained in other one
  * The function assumes that the arguments are envelopes, i.e.: Rectangular polygons
+ * XXX: Envelopes are rectangular, it could be optimized by using that assumption
  *
  * @param {Feature<Polygon>} self - Envelope
  * @param {Feature<Polygon>} env - Envelope
  * @return {Boolean} - True if env is contained in self
  */
 function envelopeContains(self, env) {
-  return env.geometry.coordinates.every(c => inside(point(c), self));
+  return env.geometry.coordinates[0].every(c => inside(point(c), self));
 }
 
 /** Represents a planar graph of edges and nodes that can be used to compute a
@@ -474,6 +475,14 @@ class EdgeRing extends Array {
     return multiPoint(this.map(edge => edge.from.coordinates));
   }
 
+  /** Creates a Polygon representing the EdgeRing
+   */
+  toPolygon() {
+    const coordinates = this.map(edge => edge.from.coordinates);
+    coordinates.push(this[0].from.coordinates);
+    return polygon([coordinates]);
+  }
+
   /**
    * @return {Feature<Polygon>} envelope
    */
@@ -490,8 +499,7 @@ class EdgeRing extends Array {
    * @return {EdgeRing}
    */
   static findEdgeRingContaining(testEdgeRing, shellList) {
-    const testEnvelope = testEdgeRing.getEnvelope(),
-      testPoint = testEnvelope.geometry.coordinates[0];
+    const testEnvelope = testEdgeRing.getEnvelope();
 
     let minEnvelope,
       minShell;
@@ -507,11 +515,31 @@ class EdgeRing extends Array {
 
       // TODO:
       if (envelopeContains(tryEnvelope, testEnvelope)) {
+        const testPoint = testEdgeRing.find(edge => {
+          return shell.find(e => {
+            if (e.from.coordinates[0] == edge.from.coordinates[0] && e.from.coordinates[1] == edge.from.coordinates[1])
+              return true;
+            return false;
+          });
+        });
 
+        if (testPoint && shell.inside(point(testPoint.from.coordinates))) {
+          if (!minShell || envelopeContains(minEnvelope, tryEnvelope))
+            minShell = shell;
+        }
       }
-
     });
 
+    return minShell;
+  }
+
+  /** Checks if the point is inside the edgeRing
+   *
+   * @param {Feature<Point>} point
+   * @return {Boolean}
+   */
+  inside(point) {
+    return inside(point, this.toPolygon());
   }
 }
 

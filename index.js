@@ -1,4 +1,5 @@
-const { Graph } = require('./util');
+const { Graph, EdgeRing } = require('./util'),
+  { featureCollection } = require('@turf/helpers');
 
 /** Implementation of GEOSPolygonizel function (geos::operation::polygonize::Polygonizer)
  *
@@ -10,7 +11,7 @@ const { Graph } = require('./util');
  * @param {FeatureCollection<LineString>} geoJson - Lines in order to polygonize
  * @return {FeatureCollection<Polygon>}
  */
-module.export = function polygonize(geoJson) {
+module.exports = function polygonize(geoJson) {
   const graph = Graph.fromGeoJson(geoJson);
 
   // 1. Remove dangle node
@@ -30,6 +31,9 @@ module.export = function polygonize(geoJson) {
       shells.push(edgeRing);
   });
 
+  console.log(JSON.stringify(featureCollection(holes.map(h => h.toPolygon()))));
+  console.log(JSON.stringify(featureCollection(shells.map(s => s.toPolygon()))));
+
   // 4. Assign Holes to Shells
   holes.forEach(hole => {
     if (!EdgeRing.findEdgeRingContaining(hole, shells))
@@ -37,4 +41,5 @@ module.export = function polygonize(geoJson) {
   });
 
   // 5. EdgeRings to Polygons
+  return featureCollection(shells.map(shell => shell.toPolygon()));
 };

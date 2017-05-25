@@ -1,6 +1,7 @@
 const test = require('tape'),
   { Graph, Node, Edge, EdgeRing } = require('./util'),
-  { featureCollection, lineString } = require('@turf/helpers');
+  { featureCollection, lineString } = require('@turf/helpers'),
+  polygonize = require('./index.js');
 
 test('graph.fromGeoJson', t => {
   const geoJson = featureCollection([
@@ -132,5 +133,23 @@ test('EdgeRing.isHole', t => {
 
   t.notOk(edgeRing.isHole(), 'A EdgeRing with elements in CW order does not have to be a Hole');
 
+  t.end();
+});
+
+test('Full', t => {
+  const geoJson = featureCollection([
+    lineString([[-58.3959417, -34.8036499], [-58.395087, -34.8031464]]),
+    lineString([[-58.3964727, -34.8029764], [-58.3959417, -34.8036499]]),
+    lineString([[-58.395087, -34.8031464], [-58.3942164, -34.8042266]]),
+    lineString([[-58.3942164, -34.8042266], [-58.3949969, -34.8047067]]),
+    lineString([[-58.3949969, -34.8047067], [-58.3957427, -34.8051655]]),
+    lineString([[-58.396618, -34.8040484], [-58.3957427, -34.8051655]]),
+    lineString([[-58.3976747, -34.8036356], [-58.3971168, -34.8043422]]),
+    lineString([[-58.3976747, -34.8036356], [-58.3964727, -34.8029764]]),
+    lineString([[-58.3971168, -34.8043422], [-58.396618, -34.8040484]]),
+    lineString([[-58.396618, -34.8040484], [-58.3959417, -34.8036499]]),
+  ]),
+    polygons = polygonize(geoJson);
+  console.log(JSON.stringify(polygons));
   t.end();
 });
