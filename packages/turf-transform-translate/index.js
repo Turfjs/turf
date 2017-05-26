@@ -31,6 +31,7 @@ module.exports = function (geojson, distance, direction, units, zTranslation, mu
     if (zTranslation && typeof zTranslation !== 'number' && isNaN(zTranslation)) throw new Error('zTranslation is not a number');
 
     // Shortcut no-motion
+    zTranslation = (zTranslation !== undefined) ? zTranslation : 0;
     if (distance === 0 && zTranslation === 0) return geojson;
 
     if (direction === undefined || direction === null || isNaN(direction)) throw new Error('direction is required');

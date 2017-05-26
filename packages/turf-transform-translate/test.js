@@ -51,7 +51,10 @@ test('rotate -- mutated input', t => {
     const lineBefore = JSON.parse(JSON.stringify(line));
 
     translate(line, 100, 50);
-    t.deepEqual(line, lineBefore, 'input should not be mutated');
+    t.deepEqual(line, lineBefore, 'input should NOT be mutated');
+
+    translate(line, 100, 50, 'kilometers', undefined, true);
+    t.deepEqual(truncate(line, 1), lineString([[10.7, 10.6], [12.7, 15.6]]), 'input should be mutated');
     t.end();
 });
 
@@ -62,7 +65,7 @@ test('rotate -- geometry support', t => {
     t.assert(translate(featureCollection([line]), 100, 50), 'featureCollection support');
     t.assert(translate(line.geometry, 100, 50), 'geometry line support');
     t.assert(translate(line.geometry, 100, 50), 'geometry pt support');
-    // t.assert(translate(line.geometry.coordinates, 100, 50), 'pt coordinate support');
+    t.assert(translate(line, 0, 100), 'shortcut no-motion');
     t.skip('pt coordinate support');
     t.end();
 });
