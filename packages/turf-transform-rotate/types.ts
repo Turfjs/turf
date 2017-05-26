@@ -18,5 +18,5 @@ rotate(geometryCollection([poly.geometry]).geometry, 100, pt.geometry);
 rotate(geometryCollection([poly.geometry]), 100, pt.geometry);
 rotate(geometryCollection([poly.geometry, pt.geometry]), 100, pt);
 
-// xRotation & yRotation
-rotate(poly, 100, pt, 40, 20, true);
+// Allow mutating
+rotate(poly, 100, pt, true);
