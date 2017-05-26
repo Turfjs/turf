@@ -10,8 +10,6 @@ declare function rotate<Geom extends Geoms>(
     geojson: Geom,
     angle: number,
     pivot?: Point,
-    xRotation?: number,
-    yRotation?: number,
     mutate?: boolean): Geom;
 
 declare namespace rotate { }

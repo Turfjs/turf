@@ -50,7 +50,10 @@ test('rotate -- mutated input', t => {
     const lineBefore = JSON.parse(JSON.stringify(line));
 
     rotate(line, 100);
-    t.deepEqual(line, lineBefore, 'input should not be mutated');
+    t.deepEqual(line, lineBefore, 'input should NOT be mutated');
+
+    rotate(line, 100, undefined, true);
+    t.deepEqual(truncate(line, 1), lineString([[8.6, 13.9], [13.3, 11.1]]), 'input should be mutated');
     t.end();
 });
 
