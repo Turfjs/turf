@@ -1,0 +1,65 @@
+{
+	"type": "FeatureCollection",
+	"features": [
+		{
+			"type": "Feature",
+			"properties": {
+				"distance": -10,
+				"units": "miles",
+				"direction": 90,
+				"marker-color": "#F00",
+				"marker-symbol": "star"
+			},
+			"geometry": {
+				"type": "MultiPoint",
+				"coordinates": [
+					[
+						99.855268,
+						0
+					],
+					[
+						100.855246,
+						1
+					],
+					[
+						101.005252,
+						-0.86
+					],
+					[
+						99.655197,
+						1.8
+					]
+				]
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {
+				"distance": -10,
+				"units": "miles",
+				"direction": 90
+			},
+			"geometry": {
+				"type": "MultiPoint",
+				"coordinates": [
+					[
+						100,
+						0
+					],
+					[
+						101,
+						1
+					],
+					[
+						101.15,
+						-0.86
+					],
+					[
+						99.8,
+						1.8
+					]
+				]
+			}
+		}
+	]
+}

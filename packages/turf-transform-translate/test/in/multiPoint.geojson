@@ -1,0 +1,29 @@
+{
+  "type": "Feature",
+  "properties": {
+    "distance": -10,
+    "units": "miles",
+    "direction": 90
+  },
+  "geometry": {
+    "type": "MultiPoint",
+    "coordinates": [
+      [
+        100.0,
+        0.0
+      ],
+      [
+        101.0,
+        1.0
+      ],
+      [
+        101.15,
+        -0.86
+      ],
+      [
+        99.8,
+        1.8
+      ]
+    ]
+  }
+}

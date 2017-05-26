@@ -1,0 +1,106 @@
+{
+	"type": "FeatureCollection",
+	"features": [
+		{
+			"type": "Feature",
+			"properties": {
+				"angle": 90,
+				"pivot": [
+					-98.9,
+					19.15
+				],
+				"stroke": "#F00",
+				"stroke-width": 4
+			},
+			"geometry": {
+				"type": "MultiLineString",
+				"coordinates": [
+					[
+						[
+							-98.952975,
+							19.433442
+						],
+						[
+							-98.878816,
+							19.338921
+						],
+						[
+							-98.952944,
+							19.244481
+						]
+					],
+					[
+						[
+							-98.889405,
+							19.43339
+						],
+						[
+							-98.815265,
+							19.338887
+						],
+						[
+							-98.889411,
+							19.244463
+						]
+					]
+				]
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {
+				"angle": 90,
+				"pivot": [
+					-98.9,
+					19.15
+				]
+			},
+			"geometry": {
+				"type": "MultiLineString",
+				"coordinates": [
+					[
+						[
+							-99.2,
+							19.1
+						],
+						[
+							-99.1,
+							19.17
+						],
+						[
+							-99,
+							19.1
+						]
+					],
+					[
+						[
+							-99.2,
+							19.16
+						],
+						[
+							-99.1,
+							19.23
+						],
+						[
+							-99,
+							19.16
+						]
+					]
+				]
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {
+				"marker-symbol": "circle"
+			},
+			"geometry": {
+				"type": "Point",
+				"coordinates": [
+					-98.9,
+					19.15
+				]
+			}
+		}
+	]
+}
