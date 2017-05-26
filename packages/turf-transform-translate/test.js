@@ -56,18 +56,13 @@ test('rotate -- mutated input', t => {
 });
 
 test('rotate -- geometry support', t => {
-    // const line = lineString([[10, 10], [12, 15]]);
-    // t.assert(translate(geometryCollection([line.geometry]), 100, 50), 'geometryCollection support');
-    // t.assert(translate(geometryCollection([line.geometry]).geometry, 100, 50), 'geometryCollection support');
-    // t.assert(translate(featureCollection([line]), 100, 50), 'featureCollection support');
-    // t.assert(translate(line.geometry, 100, 50), 'geometry line support');
-    // t.assert(translate(line.geometry, 100, 50), 'geometry pt support');
+    const line = lineString([[10, 10], [12, 15]]);
+    t.assert(translate(geometryCollection([line.geometry]), 100, 50), 'geometryCollection support');
+    t.assert(translate(geometryCollection([line.geometry]).geometry, 100, 50), 'geometryCollection support');
+    t.assert(translate(featureCollection([line]), 100, 50), 'featureCollection support');
+    t.assert(translate(line.geometry, 100, 50), 'geometry line support');
+    t.assert(translate(line.geometry, 100, 50), 'geometry pt support');
     // t.assert(translate(line.geometry.coordinates, 100, 50), 'pt coordinate support');
-    t.skip('geometryCollection support');
-    t.skip('geometryCollection support');
-    t.skip('featureCollection support');
-    t.skip('geometry line support');
-    t.skip('geometry pt support');
     t.skip('pt coordinate support');
     t.end();
 });

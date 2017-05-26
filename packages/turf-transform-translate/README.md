@@ -2,20 +2,20 @@
 
 # translate
 
-Moves any geojson Feature or Geometry of a specified distance on the provided direction angle.
+Moves any geojson Feature or Geometry of a specified distance along a Rhumb Line on the provided direction angle.
 
 **Parameters**
 
 -   `geojson` **[GeoJSON](http://geojson.org/geojson-spec.html#geojson-objects)** object to be translated
 -   `distance` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** length of the motion; negative values determine motion in opposite direction
--   `direction` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** of the motion; angle from North between -180 and 180 decimal degrees, positive clockwise
+-   `direction` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** of the motion; angle from North in decimal degrees, positive clockwise
 -   `units` **\[[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)]** in which `distance` will be express; miles, kilometers, degrees, or radians (optional, default `kilometers`)
 -   `zTranslation` **\[[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)]** length of the vertical motion, same unit of distance (optional, default `0`)
 
 **Examples**
 
 ```javascript
-var poly = turf.polygon([[0,29],[3.5,29],[2.5,32],[0,29]]);
+var poly = turf.polygon([[[0,29],[3.5,29],[2.5,32],[0,29]]]);
 var translatedPoly = turf.translate(poly, 100, 35);
 
 //addToMap

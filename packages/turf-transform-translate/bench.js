@@ -15,35 +15,35 @@ const fixtures = fs.readdirSync(directory).map(filename => {
 /**
  * Single Process Benchmark
  *
- * line: 6.765ms
- * multiLine: 0.705ms
- * multiPoint: 0.443ms
- * multiPolygon: 1.613ms
- * no-motion: 0.703ms
- * point: 0.146ms
- * polygon-with-hole: 0.423ms
- * polygon: 0.263ms
- * z-translation: 0.374ms
+ * line: 1.364ms
+ * multiLine: 0.072ms
+ * multiPoint: 0.053ms
+ * multiPolygon: 1.482ms
+ * no-motion: 1.352ms
+ * point: 0.022ms
+ * polygon-with-hole: 0.100ms
+ * polygon: 0.018ms
+ * z-translation: 0.073ms
  */
 for (const {name, geojson} of fixtures) {
     const {distance, direction, units, zTranslation} = geojson.properties || {};
     console.time(name);
-    translate(geojson, distance, direction, units, zTranslation);
+    translate(geojson, distance, direction, units, zTranslation, true);
     console.timeEnd(name);
 }
 
 /**
  * Benchmark Results
  *
- * line x 48,600 ops/sec ±2.90% (74 runs sampled)
- * multiLine x 86,384 ops/sec ±2.33% (77 runs sampled)
- * multiPoint x 113,514 ops/sec ±3.20% (74 runs sampled)
- * multiPolygon x 6,712 ops/sec ±2.15% (77 runs sampled)
- * no-motion x 24,466 ops/sec ±2.86% (78 runs sampled)
- * point x 245,205 ops/sec ±2.00% (81 runs sampled)
- * polygon-with-hole x 17,681 ops/sec ±2.07% (78 runs sampled)
- * polygon x 117,984 ops/sec ±2.56% (76 runs sampled)
- * z-translation x 83,989 ops/sec ±3.72% (77 runs sampled)
+ * line x 26,602 ops/sec ±2.77% (77 runs sampled)
+ * multiLine x 56,968 ops/sec ±2.22% (79 runs sampled)
+ * multiPoint x 55,514 ops/sec ±18.05% (58 runs sampled)
+ * multiPolygon x 3,685 ops/sec ±2.36% (74 runs sampled)
+ * no-motion x 17,622 ops/sec ±3.22% (75 runs sampled)
+ * point x 121,712 ops/sec ±2.02% (79 runs sampled)
+ * polygon-with-hole x 9,527 ops/sec ±2.52% (75 runs sampled)
+ * polygon x 73,538 ops/sec ±5.07% (72 runs sampled)
+ * z-translation x 44,638 ops/sec ±3.09% (78 runs sampled)
  */
 const suite = new Benchmark.Suite('turf-transform-translate');
 for (const {name, geojson} of fixtures) {
