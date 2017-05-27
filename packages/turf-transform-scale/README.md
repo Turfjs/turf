@@ -8,9 +8,8 @@ on the provided direction angle.
 **Parameters**
 
 -   `geojson` **[GeoJSON](http://geojson.org/geojson-spec.html#geojson-objects)** object to be scaled
--   `factor` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** of scaling, positive values greater than 0
--   `fromCenter` **\[[boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)]** point from which the scaling will occur; it will default to the most
-    south-west point of a `bbox` containing the geojson, if true the scaling will origin from the `centroid` of the geojson (optional, default `true`)
+-   `factor` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** of scaling, positive or negative values greater than 0
+-   `fromCorner` **\[[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)]** BBox corner from which the scaling will occur (options: sw/se/nw/ne/center/centroid) (optional, default `"centroid"`)
 -   `mutate` **\[[boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)]** allows GeoJSON input to be mutated (significant performance increase if true) (optional, default `false`)
 
 **Examples**
