@@ -9,17 +9,17 @@ var rhumbDistance = require('@turf/rhumb-distance');
 var rhumbDestination = require('@turf/rhumb-destination');
 var point = helpers.point;
 var coordEach = meta.coordEach;
+var getCoord = invariant.getCoord;
 var getCoords = invariant.getCoords;
 
 
 /**
- * Moves any geojson Feature or Geometry of a specified distance along a Rhumb Line
- * on the provided direction angle.
+ * Scale a GeoJSON from a given point by a factor of scaling (ex: factor=2 would make the GeoJSON 200% larger).
  *
  * @name scale
  * @param {GeoJSON} geojson object to be scaled
  * @param {number} factor of scaling, positive or negative values greater than 0
- * @param {string} [fromCorner="centroid"] BBox corner from which the scaling will occur (options: sw/se/nw/ne/center/centroid)
+ * @param {string|Geometry|Feature<Point>|Array<number>} [origin="centroid"] Point from which the scaling will occur (string options: sw/se/nw/ne/center/centroid)
  * @param {boolean} [mutate=false] allows GeoJSON input to be mutated (significant performance increase if true)
  * @returns {GeoJSON} the scaled GeoJSON object
  * @example
@@ -30,16 +30,15 @@ var getCoords = invariant.getCoords;
  * scaledPoly.properties = {stroke: '#F00', 'stroke-width': 4};
  * var addToMap = [poly, scaledPoly];
  */
-module.exports = function (geojson, factor, fromCorner, mutate) {
+module.exports = function (geojson, factor, origin, mutate) {
     // Input validation
-    if (!geojson) throw new Error('geojson is required');
+    if (!geojson) throw new Error('geojson required');
     if (typeof factor !== 'number' || factor === 0) throw new Error('invalid factor');
 
     // Default params
     var isMutate = (mutate === false || mutate === undefined);
     var isPoint = (geojson.type === 'Point' || geojson.geometry && geojson.geometry.type === 'Point');
-    var origin = defineOrigin(geojson, fromCorner);
-    if (fromCorner === undefined || fromCorner === null) fromCorner = 'centroid';
+    origin = defineOrigin(geojson, origin);
 
     // Shortcut no-scaling
     if (factor === 1 || isPoint) return geojson;
@@ -66,16 +65,24 @@ module.exports = function (geojson, factor, fromCorner, mutate) {
  *
  * @private
  * @param {GeoJSON} geojson GeoJSON
- * @param {string} fromCorner sw/se/nw/ne/center/centroid
+ * @param {string|Geometry|Feature<Point>|Array<number>} origin sw/se/nw/ne/center/centroid
  * @returns {Feature<Point>} Point origin
  */
-function defineOrigin(geojson, fromCorner) {
+function defineOrigin(geojson, origin) {
+    // Default params
+    if (origin === undefined || origin === null) origin = 'centroid';
+
+    // Input Geometry|Feature<Point>|Array<number>
+    if (Array.isArray(origin) || typeof origin === 'object') return getCoord(origin);
+
+    // Define BBox
     var bbox = (geojson.bbox) ? geojson.bbox : turfBBox(geojson);
     var west = bbox[0];
     var south = bbox[1];
     var east = bbox[2];
     var north = bbox[3];
-    switch (fromCorner) {
+
+    switch (origin) {
     case 'sw':
     case 'southwest':
     case 'westsouth':
@@ -103,6 +110,6 @@ function defineOrigin(geojson, fromCorner) {
     case 'centroid':
         return centroid(geojson);
     default:
-        throw new Error('fromCorner is invalid');
+        throw new Error('invalid origin');
     }
 }

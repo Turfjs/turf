@@ -37,10 +37,11 @@ test('scale', t => {
 test('scale -- throws', t => {
     const line = lineString([[10, 10], [12, 15]]);
 
-    t.throws(() => scale(null, 1.5), /geojson is required/);
+    t.throws(() => scale(null, 1.5), /geojson required/);
     t.throws(() => scale(line, null), /invalid factor/);
     t.throws(() => scale(line, 0), /invalid factor/);
-    t.throws(() => scale(line, 1.5, 'foobar'), /fromCorner is invalid/);
+    t.throws(() => scale(line, 1.5, 'foobar'), /invalid origin/);
+    t.throws(() => scale(line, 1.5, 2), /invalid origin/);
 
     t.end();
 });
@@ -91,6 +92,9 @@ test('scale -- geometry support', t => {
     t.assert(scale(line.geometry, 1.5), 'geometry line support');
     t.assert(scale(pt.geometry, 1.5), 'geometry point support');
     t.assert(scale(pt, 1.5), 'geometry point support');
+    t.assert(scale(pt, 1.5, pt), 'feature point support');
+    t.assert(scale(pt, 1.5, pt.geometry), 'geometry point support');
+    t.assert(scale(pt, 1.5, pt.geometry.coordinates), 'coordinate point support');
 
     t.end();
 });

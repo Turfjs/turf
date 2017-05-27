@@ -2,14 +2,13 @@
 
 # scale
 
-Moves any geojson Feature or Geometry of a specified distance along a Rhumb Line
-on the provided direction angle.
+Scale a GeoJSON from a given point by a factor of scaling (ex: factor=2 would make the GeoJSON 200% larger).
 
 **Parameters**
 
 -   `geojson` **[GeoJSON](http://geojson.org/geojson-spec.html#geojson-objects)** object to be scaled
 -   `factor` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** of scaling, positive or negative values greater than 0
--   `fromCorner` **\[[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)]** BBox corner from which the scaling will occur (options: sw/se/nw/ne/center/centroid) (optional, default `"centroid"`)
+-   `origin` **\[([string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) \| [Geometry](http://geojson.org/geojson-spec.html#geometry) \| [Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;[Point](http://geojson.org/geojson-spec.html#point)> | [Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)>)]** Point from which the scaling will occur (string options: sw/se/nw/ne/center/centroid) (optional, default `"centroid"`)
 -   `mutate` **\[[boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)]** allows GeoJSON input to be mutated (significant performance increase if true) (optional, default `false`)
 
 **Examples**

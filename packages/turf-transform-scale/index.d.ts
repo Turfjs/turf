@@ -1,6 +1,7 @@
 /// <reference types="geojson" />
 
 type Geoms = GeoJSON.Feature<any> | GeoJSON.FeatureCollection<any> | GeoJSON.GeometryObject | GeoJSON.GeometryCollection;
+type Point = GeoJSON.Feature<GeoJSON.Point> | GeoJSON.Point | number[];
 type Corners = 'sw' | 'se' | 'nw' | 'ne' | 'center' | 'centroid' | undefined | null;
 
 /**
@@ -9,7 +10,7 @@ type Corners = 'sw' | 'se' | 'nw' | 'ne' | 'center' | 'centroid' | undefined | n
 declare function scale<Geom extends Geoms>(
     geojson: Geom,
     factor: number,
-    fromCorner?: Corners,
+    origin?: Corners | Point,
     mutate?: boolean): Geom;
 
 declare namespace scale { }
