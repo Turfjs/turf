@@ -8,7 +8,7 @@ type Geoms = GeoJSON.Feature<any> | GeoJSON.FeatureCollection<any> | GeoJSON.Geo
 declare function scale<Geom extends Geoms>(
     geojson: Geom,
     factor: number,
-    fromCenter: boolean,
+    fromCenter?: boolean,
     mutate?: boolean): Geom;
 
 declare namespace scale { }
