@@ -35,11 +35,37 @@ test('scale', t => {
 });
 
 test('scale -- throws', t => {
-    const pt = point([-70.823364, -33.553984]);
+    const line = lineString([[10, 10], [12, 15]]);
 
-    t.throws(() => scale(null, 1.5), 'missing geojson');
-    t.throws(() => scale(pt, null), 'missing factor');
+    t.throws(() => scale(null, 1.5), /geojson is required/);
+    t.throws(() => scale(line, null), /invalid factor/);
+    t.throws(() => scale(line, 0), /invalid factor/);
+    t.throws(() => scale(line, 1.5, 'foobar'), /fromCorner is invalid/);
 
+    t.end();
+});
+
+test('scale -- additional params', t => {
+    const line = lineString([[10, 10], [12, 15]]);
+    const bbox = [-180, -90, 180, 90];
+
+    t.assert(scale(line, 1.5, 'sw'));
+    t.assert(scale(line, 1.5, 'se'));
+    t.assert(scale(line, 1.5, 'nw'));
+    t.assert(scale(line, 1.5, 'ne'));
+    t.assert(scale(line, 1.5, 'center'));
+    t.assert(scale(line, 1.5, 'centroid'));
+    t.assert(scale(line, 1.5, null));
+    line.bbox = bbox;
+    t.assert(scale(line, 1.5));
+    t.end();
+});
+
+test('scale -- bbox provided', t => {
+    const line = lineString([[10, 10], [12, 15]]);
+    line.bbox = [-180, -90, 180, 90];
+
+    t.assert(scale(line, 1.5));
     t.end();
 });
 
@@ -48,16 +74,24 @@ test('scale -- mutated input', t => {
     const lineBefore = JSON.parse(JSON.stringify(line));
 
     scale(line, 1.5);
-    t.deepEqual(line, lineBefore, 'input should not be mutated');
+    t.deepEqual(line, lineBefore, 'input should NOT be mutated');
+
+    scale(line, 1.5, 'centroid', true);
+    t.deepEqual(truncate(line, 1), lineString([[8.5, 6.2], [13.5, 18.7]]), 'input should be mutated');
     t.end();
 });
 
 test('scale -- geometry support', t => {
+    const pt = point([10, 10]);
     const line = lineString([[10, 10], [12, 15]]);
+
     t.assert(scale(geometryCollection([line.geometry]), 1.5), 'geometryCollection support');
     t.assert(scale(geometryCollection([line.geometry]).geometry, 1.5), 'geometryCollection support');
     t.assert(scale(featureCollection([line]), 1.50), 'featureCollection support');
     t.assert(scale(line.geometry, 1.5), 'geometry line support');
+    t.assert(scale(pt.geometry, 1.5), 'geometry point support');
+    t.assert(scale(pt, 1.5), 'geometry point support');
+
     t.end();
 });
 

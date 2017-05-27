@@ -1,7 +1,8 @@
 /// <reference types="geojson" />
 
 type Geoms = GeoJSON.Feature<any> | GeoJSON.FeatureCollection<any> | GeoJSON.GeometryObject | GeoJSON.GeometryCollection;
-type Corners = 'sw' | 'se' | 'nw' | 'ne' | 'center' | undefined
+type Corners = 'sw' | 'se' | 'nw' | 'ne' | 'center' | 'centroid' | undefined | null;
+
 /**
  * http://turfjs.org/docs/#transform-scale
  */

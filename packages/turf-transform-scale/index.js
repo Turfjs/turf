@@ -33,13 +33,13 @@ var getCoords = invariant.getCoords;
 module.exports = function (geojson, factor, fromCorner, mutate) {
     // Input validation
     if (!geojson) throw new Error('geojson is required');
-    if (typeof factor !== 'number' && factor === 0) throw new Error('invalid factor');
-    if (!factor) throw new Error('factor is required');
+    if (typeof factor !== 'number' || factor === 0) throw new Error('invalid factor');
 
     // Default params
     var isMutate = (mutate === false || mutate === undefined);
     var isPoint = (geojson.type === 'Point' || geojson.geometry && geojson.geometry.type === 'Point');
     var origin = defineOrigin(geojson, fromCorner);
+    if (fromCorner === undefined || fromCorner === null) fromCorner = 'centroid';
 
     // Shortcut no-scaling
     if (factor === 1 || isPoint) return geojson;
@@ -66,7 +66,7 @@ module.exports = function (geojson, factor, fromCorner, mutate) {
  *
  * @private
  * @param {GeoJSON} geojson GeoJSON
- * @param {string} [fromCorner] sw/se/nw/ne/center
+ * @param {string} fromCorner sw/se/nw/ne/center/centroid
  * @returns {Feature<Point>} Point origin
  */
 function defineOrigin(geojson, fromCorner) {
@@ -98,7 +98,11 @@ function defineOrigin(geojson, fromCorner) {
         return point([east, north]);
     case 'center':
         return center(geojson);
-    default:
+    case undefined:
+    case null:
+    case 'centroid':
         return centroid(geojson);
+    default:
+        throw new Error('fromCorner is invalid');
     }
 }
