@@ -1,0 +1,36 @@
+{
+  "name": "@turf/polygonize",
+  "version": "4.3.0",
+  "description": "turf polygonize module",
+  "main": "index.js",
+  "scripts": {
+    "test": "node test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/Turfjs/turf.git"
+  },
+  "keywords": [
+    "turf",
+    "geojson",
+    "gis",
+    "polygonize"
+  ],
+  "author": "Turf Authors",
+  "contributors": [
+    "Nicolas Cisco <@nickcis>"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Turfjs/turf/issues"
+  },
+  "homepage": "https://github.com/Turfjs/turf#readme",
+  "devDependencies": {
+    "tape": "^4.6.3"
+  },
+  "dependencies": {
+    "@turf/envelope": "^4.3.0",
+    "@turf/helpers": "^4.3.0",
+    "@turf/inside": "^4.3.0"
+  }
+}
