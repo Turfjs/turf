@@ -36,7 +36,7 @@ module.exports = function polygonize(geoJson) {
 
   // 4. Assign Holes to Shells
   holes.forEach(hole => {
-    if (!EdgeRing.findEdgeRingContaining(hole, shells))
+    if (EdgeRing.findEdgeRingContaining(hole, shells))
       shells.push(hole);
   });
 

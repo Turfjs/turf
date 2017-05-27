@@ -4,6 +4,7 @@ const { multiPoint, lineString, point, polygon } = require('@turf/helpers'),
 
 /** Returns the direction of the point q relative to the vector p1 -> p2.
  * Implementation of geos::algorithm::CGAlgorithm::orientationIndex()
+ * (same as geos::algorithm::CGAlgorithm::computeOrientation())
  *
  * @param {Number[]} p1 - the origin point of the vector
  * @param {Number[]} p2 - the final point of the vector
@@ -99,7 +100,7 @@ class Graph {
   }
 
   constructor() {
-    this.edges = [];
+    this.edges = []; //< {Edge[]} dirEdges
 
     // The key is the `id` of the Node (ie: coordinates.join(','))
     this.nodes = {};
@@ -156,7 +157,7 @@ class Graph {
       return Object.values(this.nodes).forEach(node => this._computeNextCWEdges(node));
 
     node.outerEdges.forEach((edge, i) => {
-      edge.symetric.next = node.outerEdges[(i === 0 ? node.outerEdges.length : i) - 1];
+      node.outerEdges[(i === 0 ? node.outerEdges.length : i) - 1].symetric.next = edge;
     });
   }
 
@@ -244,8 +245,9 @@ class Graph {
     // Clear labels
     this.edges.forEach(edge => edge.label = undefined);
 
-    // convertMaximalToMinimalEdgeRings
     this._findLabeledEdgeRings().forEach(edge => {
+      // convertMaximalToMinimalEdgeRings
+      // XXX: revisar!
       this._findIntersectionNodes(edge).forEach(node => {
         this._computeNextCCWEdges(node, edge.label)
       });
@@ -263,6 +265,12 @@ class Graph {
     return edgeRingList;
   }
 
+  /** Find all nodes in a Maxima EdgeRing which are self-intersection nodes
+   * XXX: anda mal!
+   *
+   * @param {Node} startEdge
+   * @return {Node[]} - intersection nodes
+   */
   _findIntersectionNodes(startEdge) {
     const intersectionNodes = [];
     let edge = startEdge;
@@ -270,7 +278,7 @@ class Graph {
       // getDegree
       let degree = 0;
       edge.from.outerEdges.forEach(e => {
-        if (startEdge.label == e.label)
+        if (e.label == startEdge.label)
           ++degree;
       });
 
@@ -376,6 +384,18 @@ class Edge {
   toLineString() {
     return lineString([this.from.coordinates, this.to.coordinates]);
   }
+
+  /** Comparator of two edges.
+   * Implementation of geos::planargraph::DirectedEdge::compareTo.
+   *
+   * @param {Edge} other
+   * @return -1 if this Edge has a greater angle with the positive x-axis than b,
+   *          0 if the Edges are colinear,
+   *          1 otherwise
+   */
+  compareTo(edge) {
+    return orientationIndex(edge.from.coordinates, edge.to.coordinates, this.to.coordinates);
+  }
 }
 
 class Node {
@@ -405,6 +425,7 @@ class Node {
    */
   addOuterEdge(edge) {
     this.outerEdges.push(edge);
+    //this.outerEdges.sort((a, b) => a.compareTo(b));
     this.outerEdges.sort((a, b) => {
       const aNode = a.to,
         bNode = b.to;
@@ -444,7 +465,17 @@ class Node {
  * This class is inspired in GEOS's geos::operation::polygonize::EdgeRing
  */
 class EdgeRing extends Array {
-  // XXX: isValid?
+  /** Check if the ring is valid in geomtry terms.
+   * A ring must have either 0 or 4 or more points. The first and the last must be
+   * equal (in 2D)
+   * geos::geom::LinearRing::validateConstruction
+   *
+   * @return {Boolean}
+   */
+  isValid() {
+    // TODO: stub
+    return true;
+  }
 
   /** Tests whether this ring is a hole.
    * A ring is a hole if it is oriented counter-clockwise.
@@ -515,15 +546,21 @@ class EdgeRing extends Array {
 
       // TODO:
       if (envelopeContains(tryEnvelope, testEnvelope)) {
-        const testPoint = testEdgeRing.find(edge => {
-          return shell.find(e => {
+        /*const testPoint = testEdgeRing.find(edge => {
+          const testPt = edge.from.coordinates;
+          return !shell.every(e => {
             if (e.from.coordinates[0] == edge.from.coordinates[0] && e.from.coordinates[1] == edge.from.coordinates[1])
               return true;
-            return false;
           });
         });
 
         if (testPoint && shell.inside(point(testPoint.from.coordinates))) {
+          if (!minShell || envelopeContains(minEnvelope, tryEnvelope))
+            minShell = shell;
+        }*/
+
+        const testPoint = this.ptNotInList(testEdgeRing, shell);
+        if (testPoint && shell.inside(point(testPoint))) {
           if (!minShell || envelopeContains(minEnvelope, tryEnvelope))
             minShell = shell;
         }
@@ -531,6 +568,23 @@ class EdgeRing extends Array {
     });
 
     return minShell;
+  }
+
+  ptNotInList(testPts, pts) {
+    for (let i=0; i < testPts.length; ++i) {
+      const coordinate = testPts[i].from.coordinates;
+      if (this.isInList(coordinate, pts))
+        return coordinate;
+    }
+  }
+
+  isInList(testPt, pts) {
+    for (let i=0; i < pts.length; ++i) {
+      if (testPt[0] == pts[i].from.coordinates[0] && testPt[1] == pts[i].from.coordinates[1])
+        return false;
+    }
+
+    return true;
   }
 
   /** Checks if the point is inside the edgeRing
