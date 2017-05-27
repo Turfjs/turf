@@ -4,7 +4,7 @@
   "description": "turf polygonize module",
   "main": "index.js",
   "scripts": {
-    "test": "node test.js"
+    "test": "tape src/*.test.js test.js"
   },
   "repository": {
     "type": "git",
