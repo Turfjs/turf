@@ -9,7 +9,7 @@
     "index.d.ts"
   ],
   "scripts": {
-    "test": "tap test.js",
+    "test": "node test.js",
     "bench": "node bench.js"
   },
   "repository": {
@@ -39,7 +39,6 @@
     "@turf/truncate": "^4.3.0",
     "benchmark": "^2.1.4",
     "load-json-file": "^2.0.0",
-    "tap": "^10.3.2",
     "tape": "^4.6.3",
     "write-json-file": "^2.0.0"
   },
