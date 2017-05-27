@@ -1,7 +1,8 @@
-var bbox = require('@turf/bbox');
 var meta = require('@turf/meta');
+var center = require('@turf/center');
 var helpers = require('@turf/helpers');
 var centroid = require('@turf/centroid');
+var turfBBox = require('@turf/bbox');
 var invariant = require('@turf/invariant');
 var rhumbBearing = require('@turf/rhumb-bearing');
 var rhumbDistance = require('@turf/rhumb-distance');
@@ -17,9 +18,8 @@ var getCoords = invariant.getCoords;
  *
  * @name scale
  * @param {GeoJSON} geojson object to be scaled
- * @param {number} factor of scaling, positive values greater than 0
- * @param {boolean} [fromCenter=true] point from which the scaling will occur; it will default to the most
- * south-west point of a `bbox` containing the geojson, if true the scaling will origin from the `centroid` of the geojson
+ * @param {number} factor of scaling, positive or negative values greater than 0
+ * @param {string} [fromCorner="centroid"] BBox corner from which the scaling will occur (options: sw/se/nw/ne/center/centroid)
  * @param {boolean} [mutate=false] allows GeoJSON input to be mutated (significant performance increase if true)
  * @returns {GeoJSON} the scaled GeoJSON object
  * @example
@@ -30,26 +30,19 @@ var getCoords = invariant.getCoords;
  * scaledPoly.properties = {stroke: '#F00', 'stroke-width': 4};
  * var addToMap = [poly, scaledPoly];
  */
-module.exports = function (geojson, factor, fromCenter, mutate) {
+module.exports = function (geojson, factor, fromCorner, mutate) {
     // Input validation
     if (!geojson) throw new Error('geojson is required');
     if (typeof factor !== 'number' && factor === 0) throw new Error('invalid factor');
     if (!factor) throw new Error('factor is required');
 
     // Default params
-    var isMutate = mutate === false || mutate === undefined;
-    var isCenter = fromCenter === true || fromCenter === undefined;
-    var origin;
+    var isMutate = (mutate === false || mutate === undefined);
+    var isPoint = (geojson.type === 'Point' || geojson.geometry && geojson.geometry.type === 'Point');
+    var origin = defineOrigin(geojson, fromCorner);
 
     // Shortcut no-scaling
-    if (factor === 1) return geojson;
-
-    // Define origin
-    if (isCenter) origin = centroid(geojson);
-    else {
-        var box = (geojson.bbox) ? geojson.bbox : bbox(geojson); // [ west, south, east, north ]
-        origin = point([box[0], box[1]]);
-    }
+    if (factor === 1 || isPoint) return geojson;
 
     // Clone geojson to avoid side effects
     if (isMutate) geojson = JSON.parse(JSON.stringify(geojson));
@@ -67,3 +60,45 @@ module.exports = function (geojson, factor, fromCenter, mutate) {
 
     return geojson;
 };
+
+/**
+ * Define Origin
+ *
+ * @private
+ * @param {GeoJSON} geojson GeoJSON
+ * @param {string} [fromCorner] sw/se/nw/ne/center
+ * @returns {Feature<Point>} Point origin
+ */
+function defineOrigin(geojson, fromCorner) {
+    var bbox = (geojson.bbox) ? geojson.bbox : turfBBox(geojson);
+    var west = bbox[0];
+    var south = bbox[1];
+    var east = bbox[2];
+    var north = bbox[3];
+    switch (fromCorner) {
+    case 'sw':
+    case 'southwest':
+    case 'westsouth':
+    case 'bottomleft':
+        return point([west, south]);
+    case 'se':
+    case 'southeast':
+    case 'eastsouth':
+    case 'bottomright':
+        return point([east, south]);
+    case 'nw':
+    case 'northwest':
+    case 'westnorth':
+    case 'topleft':
+        return point([west, north]);
+    case 'ne':
+    case 'northeast':
+    case 'eastnorth':
+    case 'topright':
+        return point([east, north]);
+    case 'center':
+        return center(geojson);
+    default:
+        return centroid(geojson);
+    }
+}

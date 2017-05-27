@@ -11,9 +11,9 @@ const scaledPoly: GeoJSON.Feature<GeoJSON.Polygon> = scale(poly, 1.5);
 // Diferent Geometry inputs
 scale(line.geometry, 1.5);
 scale(poly.geometry, 1.5);
-scale(featureCollection([poly]), 1.5, false);
+scale(featureCollection([poly]), 1.5);
 
 // All params
 scale(poly, 1.5);
-scale(poly, 1.5, false);
-scale(poly, 1.5, true, true);
+scale(poly, 1.5, undefined);
+scale(poly, 1.5, 'ne', true);

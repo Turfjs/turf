@@ -22,9 +22,9 @@ const fixtures = fs.readdirSync(directories.in).map(filename => {
 
 test('scale', t => {
     for (const {filename, name, geojson} of fixtures) {
-        let {factor, fromCenter, mutate} = geojson.properties || {};
+        let {factor, fromCorner, mutate} = geojson.properties || {};
 
-        const scaled = scale(geojson, factor, fromCenter, mutate);
+        const scaled = scale(geojson, factor, fromCorner, mutate);
         const result = featureCollection([colorize(truncate(scaled, 6, 3)), geojson]);
 
         if (process.env.REGEN) write.sync(directories.out + filename, result);

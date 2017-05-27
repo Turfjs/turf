@@ -43,6 +43,7 @@
   },
   "dependencies": {
     "@turf/bbox": "^4.3.0",
+    "@turf/center": "^4.3.0",
     "@turf/centroid": "^4.3.0",
     "@turf/helpers": "^4.3.0",
     "@turf/invariant": "^4.3.0",
