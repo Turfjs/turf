@@ -20,7 +20,6 @@ const fixtures = fs.readdirSync(directories.in).map(filename => {
 
 test('intersect', t => {
     for (const {name, geojson, filename} of fixtures) {
-        console.log('processing', name);
         const features = geojson.features;
         const result = intersect(features[0], features[1]);
 

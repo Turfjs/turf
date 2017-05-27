@@ -24,7 +24,9 @@
   "homepage": "https://github.com/Turfjs/turf",
   "devDependencies": {
     "benchmark": "^2.1.4",
-    "tape": "^4.6.3"
+    "load-json-file": "^2.0.0",
+    "tape": "^4.6.3",
+    "write-json-file": "^2.2.0"
   },
   "dependencies": {
     "@turf/bbox": "^4.3.0",
