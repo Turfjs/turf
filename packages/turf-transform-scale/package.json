@@ -1,0 +1,55 @@
+{
+  "name": "@turf/transform-scale",
+  "version": "4.3.0",
+  "description": "turf transform-scale module",
+  "main": "index.js",
+  "types": "index.d.ts",
+  "files": [
+    "index.js",
+    "index.d.ts"
+  ],
+  "scripts": {
+    "test": "tap test.js",
+    "bench": "node bench.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/Turfjs/turf.git"
+  },
+  "keywords": [
+    "turf",
+    "transform",
+    "transformation",
+    "scale",
+    "move",
+    "shift"
+  ],
+  "author": "Turf Authors",
+  "contributors": [
+    "Stefano Borghi <@stebogit>",
+    "Denis Carriere <@DenisCarriere>"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Turfjs/turf/issues"
+  },
+  "homepage": "https://github.com/Turfjs/turf",
+  "devDependencies": {
+    "@turf/truncate": "^4.3.0",
+    "benchmark": "^2.1.4",
+    "load-json-file": "^2.0.0",
+    "tap": "^10.3.2",
+    "tape": "^4.6.3",
+    "write-json-file": "^2.0.0"
+  },
+  "dependencies": {
+    "@turf/bbox": "^4.3.0",
+    "@turf/centroid": "^4.3.0",
+    "@turf/helpers": "^4.3.0",
+    "@turf/invariant": "^4.3.0",
+    "@turf/meta": "^4.3.0",
+    "@turf/rhumb-bearing": "^4.3.0",
+    "@turf/rhumb-distance": "^4.3.0",
+    "@turf/rhumb-destination": "^4.3.0"
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "type": "Feature",
+  "properties": {
+    "factor": 5,
+    "fromCenter": true
+  },
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      -75.69926351308823,
+      45.43145021122502
+    ]
+  }
+}
