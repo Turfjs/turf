@@ -70,7 +70,6 @@ test('lineString', t => {
 });
 
 test('featureCollection', t => {
-    t.plan(7);
     const p1 = point([0, 0], {name: 'first point'});
     const p2 = point([0, 10]);
     const p3 = point([10, 10]);
@@ -83,6 +82,9 @@ test('featureCollection', t => {
     t.equal(fc.features[1].geometry.type, 'Point');
     t.equal(fc.features[1].geometry.coordinates[0], 0);
     t.equal(fc.features[1].geometry.coordinates[1], 10);
+    t.throws(() => featureCollection(fc), /features must be an Array/);
+    t.throws(() => featureCollection(p1), /features must be an Array/);
+    t.end();
 });
 
 test('multilinestring', t => {
