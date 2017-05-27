@@ -33,38 +33,36 @@ var getCoords = invariant.getCoords;
 module.exports = function (geojson, factor, fromCenter, mutate) {
     // Input validation
     if (!geojson) throw new Error('geojson is required');
-
-    if (geojson.type === 'Point')
-        return (mutate === false || mutate === undefined) ? geojson : JSON.parse(JSON.stringify(geojson));
-
+    if (typeof factor !== 'number' && factor === 0) throw new Error('invalid factor');
     if (!factor) throw new Error('factor is required');
-    if (factor && typeof factor !== 'number' && factor === 0) throw new Error('invalid factor');
+
+    // Default params
+    var isMutate = mutate === false || mutate === undefined;
+    var isCenter = fromCenter === true || fromCenter === undefined;
+    var origin;
 
     // Shortcut no-scaling
-    if (factor === 1)
-        return (mutate === false || mutate === undefined) ? geojson : JSON.parse(JSON.stringify(geojson));
+    if (factor === 1) return geojson;
 
     // Define origin
-    var origin;
-    if (fromCenter === true || fromCenter === undefined) {
-        origin = centroid(geojson);
-    } else {
-        var box = bbox(geojson); // [ minX, minY, maxX, maxY ]
+    if (isCenter) origin = centroid(geojson);
+    else {
+        var box = (geojson.bbox) ? geojson.bbox : bbox(geojson); // [ west, south, east, north ]
         origin = point([box[0], box[1]]);
     }
 
     // Clone geojson to avoid side effects
-    if (mutate === false || mutate === undefined) geojson = JSON.parse(JSON.stringify(geojson));
+    if (isMutate) geojson = JSON.parse(JSON.stringify(geojson));
 
     // Scale each coordinate
-    coordEach(geojson, function (pointCoords) {
-        var originalDistance = rhumbDistance(origin, pointCoords);
-        var bearing = rhumbBearing(origin, pointCoords);
+    coordEach(geojson, function (coord) {
+        var originalDistance = rhumbDistance(origin, coord);
+        var bearing = rhumbBearing(origin, coord);
         var newDistance = originalDistance * factor;
-        var newCoords = getCoords(rhumbDestination(pointCoords, newDistance, bearing));
-        pointCoords[0] = newCoords[0];
-        pointCoords[1] = newCoords[1];
-        if (pointCoords.length === 3) pointCoords[2] *= factor;
+        var newCoord = getCoords(rhumbDestination(coord, newDistance, bearing));
+        coord[0] = newCoord[0];
+        coord[1] = newCoord[1];
+        if (coord.length === 3) coord[2] *= factor;
     });
 
     return geojson;
