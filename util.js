@@ -23,8 +23,8 @@ function orientationIndex(p1, p2, q) {
   return Math.sign(dx1 * dy2 - dx2 * dy1);
 }
 
-/** Checks if two envelopes are equal
- * The function assumes that the arguments are envelopes, i.e.: Rectangular polygons
+/** Checks if two envelopes are equal.
+ * The function assumes that the arguments are envelopes, i.e.: Rectangular polygon
  *
  * @param {Feature<Polygon>} env1 - Envelope
  * @param {Feature<Polygon>} env2 - Envelope
@@ -42,9 +42,10 @@ function envelopeIsEqual(env1, env2) {
     Math.min(null, envY1) == Math.min(null, envY2);
 }
 
-/** Check if a envelope is contained in other one
- * The function assumes that the arguments are envelopes, i.e.: Rectangular polygons
- * XXX: Envelopes are rectangular, it could be optimized by using that assumption
+/** Check if a envelope is contained in other one.
+ * The function assumes that the arguments are envelopes, i.e.: Convex polygon
+ * XXX: Envelopes are rectangular, checking if a point is inside a rectangule is something easy,
+ * this could be further improved.
  *
  * @param {Feature<Polygon>} self - Envelope
  * @param {Feature<Polygon>} env - Envelope
@@ -52,6 +53,16 @@ function envelopeIsEqual(env1, env2) {
  */
 function envelopeContains(self, env) {
   return env.geometry.coordinates[0].every(c => inside(point(c), self));
+}
+
+/** Checks if two coordinates are equal.
+ *
+ * @param {Number[]}
+ * @param {Number[]}
+ * @return {Boolean} - True if coordinates are equal
+ */
+function coordinatesEqual(coord1, coord2) {
+  return coord1[0] == coord2[0] && coord1[1] == coord2[1];
 }
 
 /** Represents a planar graph of edges and nodes that can be used to compute a
@@ -76,7 +87,8 @@ class Graph {
     return graph;
   }
 
-  /** Creates or get a Node
+  /** Creates or get a Node.
+   *
    * @param {Number[]} coordinates
    * @return {Node}
    */
@@ -89,7 +101,11 @@ class Graph {
     return node;
   }
 
-  /** Edges are added symetrically
+  /** Adds an Edge and its symetricall.
+   * Edges are added symetrically, i.e.: we also add its symetric
+   *
+   * @param {Node} from - Node which starts the Edge
+   * @param {Node} to - Node which ends the Edge
    */
   addEdge(from, to) {
     const edge = new Edge(from, to),
@@ -106,7 +122,7 @@ class Graph {
     this.nodes = {};
   }
 
-  /** Remove Dangle Nodes (nodes with grade 1)
+  /** Removes Dangle Nodes (nodes with grade 1).
    */
   deleteDangles() {
     Object.values(this.nodes)
@@ -247,7 +263,6 @@ class Graph {
 
     this._findLabeledEdgeRings().forEach(edge => {
       // convertMaximalToMinimalEdgeRings
-      // XXX: revisar!
       this._findIntersectionNodes(edge).forEach(node => {
         this._computeNextCCWEdges(node, edge.label)
       });
@@ -265,8 +280,7 @@ class Graph {
     return edgeRingList;
   }
 
-  /** Find all nodes in a Maxima EdgeRing which are self-intersection nodes
-   * XXX: anda mal!
+  /** Find all nodes in a Maxima EdgeRing which are self-intersection nodes.
    *
    * @param {Node} startEdge
    * @return {Node[]} - intersection nodes
@@ -320,7 +334,7 @@ class Graph {
     delete this.nodes[node.id];
   }
 
-  /** Remove edge from the graph and deletes the edge
+  /** Remove edge from the graph and deletes the edge.
    *
    * @param {Edge} edge
    */
@@ -333,7 +347,7 @@ class Graph {
 /** This class is inspired by GEOS's geos::operation::polygonize::PolygonizeDirectedEdge
  */
 class Edge {
-  /** Creates or get the symetric Edge
+  /** Creates or get the symetric Edge.
    *
    * @return {Edge}
    */
@@ -357,19 +371,23 @@ class Edge {
     this.next = undefined; //< The edge to be computed after
     this.label = undefined; //< Used in order to detect Cut Edges (Bridges)
     this.symetric = undefined; //< The symetric edge of this
-    this.ring = undefined; //< TODO: explanation
+    this.ring = undefined; //< EdgeRing in which the Edge is
 
     this.from.addOuterEdge(this);
     this.to.addInnerEdge(this);
   }
 
-  /** Removes edge from from and to nodes
+  /** Removes edge from from and to nodes.
    */
   deleteEdge() {
     this.from.removeOuterEdge(this);
     this.to.removeInnerEdge(this);
   }
 
+  /** Compares Edge equallity.
+   * An edge is equal to another, if the from and to nodes are the same.
+   * @return {Boolean}
+   */
   isEqual(edge) {
     return this.from.id == edge.from.id && this.to.id == edge.to.id;
   }
@@ -378,7 +396,7 @@ class Edge {
     return `Edge { ${this.from.id} -> ${this.to.id} }`;
   }
 
-  /**
+  /** Returns a LineString representation of the Edge
    * @return {Feature<LineString>}
    */
   toLineString() {
@@ -408,7 +426,7 @@ class Node {
     this.coordinates = coordinates; //< Number[]
     this.innerEdges = []; //< Edge[]
 
-    // We wil store to (out) edges in an CCW order
+    // We wil store to (out) edges in an CCW order as geos::planargraph::DirectedEdgeStar does
     this.outerEdges = []; //< Edge[]
   }
 
@@ -420,12 +438,14 @@ class Node {
     this.outerEdges = this.outerEdges.filter(e => e.to.id != edge.to.id);
   }
 
-  /** Outer edges are stored CCW order
+  /** Outer edges are stored CCW order.
+   * XXX: on each add we are ordering, this could be optimized
    * @param {Edge} edge
    */
   addOuterEdge(edge) {
     this.outerEdges.push(edge);
     //this.outerEdges.sort((a, b) => a.compareTo(b));
+    // Using this comparator in order to be deterministic
     this.outerEdges.sort((a, b) => {
       const aNode = a.to,
         bNode = b.to;
@@ -499,14 +519,16 @@ class EdgeRing extends Array {
     return disc > 0;
   }
 
-  /** Creates a MultiPoint representing the EdgeRing (discarts edges directions)
+  /** Creates a MultiPoint representing the EdgeRing (discarts edges directions).
    * @return {Feature<MultiPoint>}
    */
   toMultiPoint() {
     return multiPoint(this.map(edge => edge.from.coordinates));
   }
 
-  /** Creates a Polygon representing the EdgeRing
+  /** Creates a Polygon representing the EdgeRing.
+   * XXX: the polygon could be cached
+   * @return {Feature<Polygon>}
    */
   toPolygon() {
     const coordinates = this.map(edge => edge.from.coordinates);
@@ -514,8 +536,9 @@ class EdgeRing extends Array {
     return polygon([coordinates]);
   }
 
-  /**
-   * @return {Feature<Polygon>} envelope
+  /** Calculates the envelope of the EdgeRing.
+   * XXX: the envelope could be cached
+   * @return {Feature<Polygon>} - envelope
    */
   getEnvelope() {
     return envelope(this.toMultiPoint());
@@ -544,22 +567,10 @@ class EdgeRing extends Array {
       if (envelopeIsEqual(tryEnvelope, testEnvelope))
         return;
 
-      // TODO:
       if (envelopeContains(tryEnvelope, testEnvelope)) {
-        /*const testPoint = testEdgeRing.find(edge => {
-          const testPt = edge.from.coordinates;
-          return !shell.every(e => {
-            if (e.from.coordinates[0] == edge.from.coordinates[0] && e.from.coordinates[1] == edge.from.coordinates[1])
-              return true;
-          });
-        });
+        const testPoint = testEdgeRing.map(edge => edge.from.coodinates)
+          .find(pt => !shell.some(edge => coordinatesEqual(pt, edge.from.coordinates)));
 
-        if (testPoint && shell.inside(point(testPoint.from.coordinates))) {
-          if (!minShell || envelopeContains(minEnvelope, tryEnvelope))
-            minShell = shell;
-        }*/
-
-        const testPoint = this.ptNotInList(testEdgeRing, shell);
         if (testPoint && shell.inside(point(testPoint))) {
           if (!minShell || envelopeContains(minEnvelope, tryEnvelope))
             minShell = shell;
@@ -568,23 +579,6 @@ class EdgeRing extends Array {
     });
 
     return minShell;
-  }
-
-  ptNotInList(testPts, pts) {
-    for (let i=0; i < testPts.length; ++i) {
-      const coordinate = testPts[i].from.coordinates;
-      if (this.isInList(coordinate, pts))
-        return coordinate;
-    }
-  }
-
-  isInList(testPt, pts) {
-    for (let i=0; i < pts.length; ++i) {
-      if (testPt[0] == pts[i].from.coordinates[0] && testPt[1] == pts[i].from.coordinates[1])
-        return false;
-    }
-
-    return true;
   }
 
   /** Checks if the point is inside the edgeRing

@@ -24,15 +24,14 @@ module.exports = function polygonize(geoJson) {
   const holes = [],
     shells = [];
 
-  graph.getEdgeRings().forEach(edgeRing => {
+  graph.getEdgeRings()
+    .filter(edgeRing => edgeRing.isValid())
+    .forEach(edgeRing => {
     if (edgeRing.isHole())
       holes.push(edgeRing);
     else
       shells.push(edgeRing);
   });
-
-  console.log(JSON.stringify(featureCollection(holes.map(h => h.toPolygon()))));
-  console.log(JSON.stringify(featureCollection(shells.map(s => s.toPolygon()))));
 
   // 4. Assign Holes to Shells
   holes.forEach(hole => {
