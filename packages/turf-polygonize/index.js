@@ -12,6 +12,7 @@ var polygonize = require('polygonize');
  * - Cut Edges (bridges): edges that are connected at both ends but which do not form part
  *     of a polygon.
  *
+ * @name polygonize
  * @param {FeatureCollection<LineString>} geoJson - Lines in order to polygonize
  * @returns {FeatureCollection<Polygon>} - Polygons created
  */
