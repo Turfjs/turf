@@ -66,7 +66,6 @@ test('rotate -- geometry support', t => {
     t.assert(translate(line.geometry, 100, 50), 'geometry line support');
     t.assert(translate(line.geometry, 100, 50), 'geometry pt support');
     t.assert(translate(line, 0, 100), 'shortcut no-motion');
-    t.skip('pt coordinate support');
     t.end();
 });
 

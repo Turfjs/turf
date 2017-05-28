@@ -2,7 +2,7 @@
 
 # random
 
-Generates random [GeoJSON](GeoJSON) data, including [Points](http://geojson.org/geojson-spec.html#point) and [Polygons](http://geojson.org/geojson-spec.html#polygon), for testing
+Generates random [GeoJSON](http://geojson.org/geojson-spec.html#geojson-objects) data, including [Points](http://geojson.org/geojson-spec.html#point) and [Polygons](http://geojson.org/geojson-spec.html#polygon), for testing
 and experimentation.
 
 **Parameters**

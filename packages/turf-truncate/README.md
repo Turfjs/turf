@@ -8,7 +8,7 @@ Takes a GeoJSON Feature or FeatureCollection and truncates the precision of the 
 
 -   `geojson` **([FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects) \| [Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;any>)** any GeoJSON Feature, FeatureCollection, Geometry or GeometryCollection.
 -   `precision` **\[[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)]** coordinate decimal precision (optional, default `6`)
--   `coordinates` **\[[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)]** maximum number of coordinates (primarly used to remove z coordinates) (optional, default `2`)
+-   `coordinates` **\[[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)]** maximum number of coordinates (primarly used to remove z coordinates) (optional, default `3`)
 -   `mutate` **\[[boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)]** allows GeoJSON input to be mutated (significant performance increase if true) (optional, default `false`)
 
 **Examples**

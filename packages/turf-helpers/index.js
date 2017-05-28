@@ -147,6 +147,7 @@ function lineString(coordinates, properties) {
  */
 function featureCollection(features) {
     if (!features) throw new Error('No features passed');
+    if (!Array.isArray(features)) throw new Error('features must be an Array');
 
     return {
         type: 'FeatureCollection',

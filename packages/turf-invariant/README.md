@@ -36,7 +36,7 @@ Enforce expectations about types of GeoJSON objects for Turf.
 
 **Parameters**
 
--   `value` **GeoJSON** any GeoJSON object
+-   `value` **[GeoJSON](http://geojson.org/geojson-spec.html#geojson-objects)** any GeoJSON object
 -   `type` **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** expected GeoJSON type
 -   `name` **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** name of calling function
 
