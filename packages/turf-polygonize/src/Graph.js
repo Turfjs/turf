@@ -1,6 +1,6 @@
 const Node = require('./Node'),
-  Edge = require('./Edge'),
-  EdgeRing = require('./EdgeRing');
+    Edge = require('./Edge'),
+    EdgeRing = require('./EdgeRing');
 
 /** Represents a planar graph of edges and nodes that can be used to compute a
  * polygonization.
@@ -12,277 +12,277 @@ const Node = require('./Node'),
  * This graph is directed (both directions are created)
  */
 class Graph {
-  /** Creates a graph from a GeoJSON.
-   * @param {FeatureCollection<LineString>} geoJson - it must comply with the restrictions detailed in the index
-   * @return {Graph}
-   */
-  static fromGeoJson(geoJson) {
-    const graph = new Graph();
-    geoJson.features.forEach(feature => {
-      const start = graph.getNode(feature.geometry.coordinates[0]),
-        end = graph.getNode(feature.geometry.coordinates[1]);
+    /** Creates a graph from a GeoJSON.
+     * @param {FeatureCollection<LineString>} geoJson - it must comply with the restrictions detailed in the index
+     * @returns {Graph}
+     */
+    static fromGeoJson(geoJson) {
+        const graph = new Graph();
+        geoJson.features.forEach(feature => {
+            const start = graph.getNode(feature.geometry.coordinates[0]),
+                end = graph.getNode(feature.geometry.coordinates[1]);
 
-      graph.addEdge(start, end);
-    });
+            graph.addEdge(start, end);
+        });
 
-    return graph;
-  }
-
-  /** Creates or get a Node.
-   *
-   * @param {Number[]} coordinates
-   * @return {Node}
-   */
-  getNode(coordinates) {
-    const id = Node.buildId(coordinates);
-    let node = this.nodes[id];
-    if (!node)
-      node = this.nodes[id] = new Node(coordinates);
-
-    return node;
-  }
-
-  /** Adds an Edge and its symetricall.
-   * Edges are added symetrically, i.e.: we also add its symetric
-   *
-   * @param {Node} from - Node which starts the Edge
-   * @param {Node} to - Node which ends the Edge
-   */
-  addEdge(from, to) {
-    const edge = new Edge(from, to),
-      symetricEdge = edge.getSymetric();
-
-    this.edges.push(edge);
-    this.edges.push(symetricEdge);
-  }
-
-  constructor() {
-    this.edges = []; //< {Edge[]} dirEdges
-
-    // The key is the `id` of the Node (ie: coordinates.join(','))
-    this.nodes = {};
-  }
-
-  /** Removes Dangle Nodes (nodes with grade 1).
-   */
-  deleteDangles() {
-    Object.values(this.nodes)
-      .forEach(node => this._removeIfDangle(node));
-  }
-
-  /** Check if node is dangle, if so, remove it.
-   * It calls itself recursively, removing a dangling node might cause another dangling node
-   *
-   * @param {Node} node
-   */
-  _removeIfDangle(node) {
-    // As edges are directed and symetrical, we count only innerEdges
-    if (node.innerEdges.length <= 1) {
-      const outerNodes = node.outerEdges.map(e => e.to);
-      this.removeNode(node);
-      outerNodes.forEach(n => this._removeIfDangle(n));
+        return graph;
     }
-  }
 
-  /** Delete cut-edges (bridge edges).
-   *
-   * The graph will be traversed, all the edges will be labeled according the ring
-   * in which they are. (The label is a number incremented by 1). Edges with the same
-   * label are cut-edges.
-   */
-  deleteCutEdges() {
-    this._computeNextCWEdges();
-    this._findLabeledEdgeRings();
+    /** Creates or get a Node.
+     *
+     * @param {Number[]} coordinates
+     * @returns {Node}
+     */
+    getNode(coordinates) {
+        const id = Node.buildId(coordinates);
+        let node = this.nodes[id];
+        if (!node)
+            node = this.nodes[id] = new Node(coordinates);
 
-    // Cut-edges (bridges) are edges where both edges have the same label
-    this.edges.forEach(edge => {
-      if (edge.label == edge.symetric.label) {
-        this.removeEdge(edge.symetric);
-        this.removeEdge(edge);
-      }
-    });
-  }
+        return node;
+    }
 
-  /** Set the `next` property of each Edge.
-   * The graph will be transversed in a CW form, so, we set the next of the symetrical edge as the previous one.
-   * OuterEdges are sorted CCW.
-   *
-   * @param {Node} [node] - If no node is passed, the function calls itself for every node in the Graph
-   */
-  _computeNextCWEdges(node) {
-    if (typeof(node) == "undefined")
-      return Object.values(this.nodes).forEach(node => this._computeNextCWEdges(node));
+    /** Adds an Edge and its symetricall.
+     * Edges are added symetrically, i.e.: we also add its symetric
+     *
+     * @param {Node} from - Node which starts the Edge
+     * @param {Node} to - Node which ends the Edge
+     */
+    addEdge(from, to) {
+        const edge = new Edge(from, to),
+            symetricEdge = edge.getSymetric();
 
-    node.outerEdges.forEach((edge, i) => {
-      node.outerEdges[(i === 0 ? node.outerEdges.length : i) - 1].symetric.next = edge;
-    });
-  }
+        this.edges.push(edge);
+        this.edges.push(symetricEdge);
+    }
 
-  /** Computes the next edge pointers going CCW around the given node, for the given edgering label.
-   * This algorithm has the effect of converting maximal edgerings into minimal edgerings
-   *
-   * XXX: method literally transcribed from `geos::operation::polygonize::PolygonizeGraph::computeNextCCWEdges`,
-   * could be written in a more javascript way.
-   *
-   * @param {Node} node
-   * @param {Number} label
-   */
-  _computeNextCCWEdges(node, label) {
-    const edges = node.outerEdges;
-    let firstOutDE,
-      prevInDE;
+    constructor() {
+        this.edges = []; //< {Edge[]} dirEdges
 
-    for (let i = edges.length - 1; i >= 0; --i) {
-      let de = edges[i],
-        sym = de.symetric,
-        outDE,
-        inDE;
+        // The key is the `id` of the Node (ie: coordinates.join(','))
+        this.nodes = {};
+    }
 
-      if (de.label == label)
-        outDE = de;
+    /** Removes Dangle Nodes (nodes with grade 1).
+     */
+    deleteDangles() {
+        Object.values(this.nodes)
+            .forEach(node => this._removeIfDangle(node));
+    }
 
-      if (sym.label == label)
-        inDE = sym;
+    /** Check if node is dangle, if so, remove it.
+     * It calls itself recursively, removing a dangling node might cause another dangling node
+     *
+     * @param {Node} node
+     */
+    _removeIfDangle(node) {
+        // As edges are directed and symetrical, we count only innerEdges
+        if (node.innerEdges.length <= 1) {
+            const outerNodes = node.outerEdges.map(e => e.to);
+            this.removeNode(node);
+            outerNodes.forEach(n => this._removeIfDangle(n));
+        }
+    }
 
-      if (!outDE || !inDE) // This edge is not in edgering
-        continue;
+    /** Delete cut-edges (bridge edges).
+     *
+     * The graph will be traversed, all the edges will be labeled according the ring
+     * in which they are. (The label is a number incremented by 1). Edges with the same
+     * label are cut-edges.
+     */
+    deleteCutEdges() {
+        this._computeNextCWEdges();
+        this._findLabeledEdgeRings();
 
-      if (inDE)
-        prevInDE = inDE;
+        // Cut-edges (bridges) are edges where both edges have the same label
+        this.edges.forEach(edge => {
+            if (edge.label == edge.symetric.label) {
+                this.removeEdge(edge.symetric);
+                this.removeEdge(edge);
+            }
+        });
+    }
 
-      if (outDE) {
-        if (prevInDE) {
-          prevInDE.next = outDE
-          prevInDE = undefined;
+    /** Set the `next` property of each Edge.
+     * The graph will be transversed in a CW form, so, we set the next of the symetrical edge as the previous one.
+     * OuterEdges are sorted CCW.
+     *
+     * @param {Node} [node] - If no node is passed, the function calls itself for every node in the Graph
+     */
+    _computeNextCWEdges(node) {
+        if (typeof(node) == "undefined")
+            return Object.values(this.nodes).forEach(node => this._computeNextCWEdges(node));
+
+        node.outerEdges.forEach((edge, i) => {
+            node.outerEdges[(i === 0 ? node.outerEdges.length : i) - 1].symetric.next = edge;
+        });
+    }
+
+    /** Computes the next edge pointers going CCW around the given node, for the given edgering label.
+     * This algorithm has the effect of converting maximal edgerings into minimal edgerings
+     *
+     * XXX: method literally transcribed from `geos::operation::polygonize::PolygonizeGraph::computeNextCCWEdges`,
+     * could be written in a more javascript way.
+     *
+     * @param {Node} node
+     * @param {Number} label
+     */
+    _computeNextCCWEdges(node, label) {
+        const edges = node.outerEdges;
+        let firstOutDE,
+            prevInDE;
+
+        for (let i = edges.length - 1; i >= 0; --i) {
+            let de = edges[i],
+                sym = de.symetric,
+                outDE,
+                inDE;
+
+            if (de.label == label)
+                outDE = de;
+
+            if (sym.label == label)
+                inDE = sym;
+
+            if (!outDE || !inDE) // This edge is not in edgering
+                continue;
+
+            if (inDE)
+                prevInDE = inDE;
+
+            if (outDE) {
+                if (prevInDE) {
+                    prevInDE.next = outDE
+                    prevInDE = undefined;
+                }
+
+                if (!firstOutDE)
+                    firstOutDE = outDE;
+            }
         }
 
-        if (!firstOutDE)
-          firstOutDE = outDE;
-      }
+        if (prevInDE)
+            prevInDE.next = firstOutDE;
     }
 
-    if (prevInDE)
-      prevInDE.next = firstOutDE;
-  }
 
+    /** Finds rings and labels edges according to which rings are.
+     * The label is a number which is increased for each ring.
+     *
+     * @returns {Edge[]} edges that start rings
+     */
+    _findLabeledEdgeRings() {
+        const edgeRingStarts = [];
+        let label = 0;
+        this.edges.forEach(edge => {
+            if (edge.label >= 0)
+                return;
 
-  /** Finds rings and labels edges according to which rings are.
-   * The label is a number which is increased for each ring.
-   *
-   * @return {Edge[]} edges that start rings
-   */
-  _findLabeledEdgeRings() {
-    const edgeRingStarts = [];
-    let label = 0;
-    this.edges.forEach(edge => {
-      if (edge.label >= 0)
-        return;
+            edgeRingStarts.push(edge);
 
-      edgeRingStarts.push(edge);
+            let e = edge;
+            do {
+                e.label = label;
+                e = e.next;
+            } while (!edge.isEqual(e));
 
-      let e = edge;
-      do {
-        e.label = label;
-        e = e.next;
-      } while (!edge.isEqual(e));
+            label++;
+        });
 
-      label++;
-    });
+        return edgeRingStarts;
+    }
 
-    return edgeRingStarts;
-  }
+    /** Computes the EdgeRings formed by the edges in this graph.
+     *
+     * @returns {EdgeRing[]}
+     */
+    getEdgeRings() {
+        this._computeNextCWEdges();
 
-  /** Computes the EdgeRings formed by the edges in this graph.
-   *
-   * @return {EdgeRing[]}
-   */
-  getEdgeRings() {
-    this._computeNextCWEdges();
+        // Clear labels
+        this.edges.forEach(edge => edge.label = undefined);
 
-    // Clear labels
-    this.edges.forEach(edge => edge.label = undefined);
+        this._findLabeledEdgeRings().forEach(edge => {
+            // convertMaximalToMinimalEdgeRings
+            this._findIntersectionNodes(edge).forEach(node => {
+                this._computeNextCCWEdges(node, edge.label)
+            });
+        });
 
-    this._findLabeledEdgeRings().forEach(edge => {
-      // convertMaximalToMinimalEdgeRings
-      this._findIntersectionNodes(edge).forEach(node => {
-        this._computeNextCCWEdges(node, edge.label)
-      });
-    });
+        const edgeRingList = [];
 
-    const edgeRingList = [];
+        // find all edgerings
+        this.edges.forEach(edge => {
+            if (edge.ring)
+                return;
+            edgeRingList.push(this._findEdgeRing(edge));
+        });
 
-    // find all edgerings
-    this.edges.forEach(edge => {
-      if (edge.ring)
-        return;
-      edgeRingList.push(this._findEdgeRing(edge));
-    });
+        return edgeRingList;
+    }
 
-    return edgeRingList;
-  }
+    /** Find all nodes in a Maxima EdgeRing which are self-intersection nodes.
+     *
+     * @param {Node} startEdge
+     * @returns {Node[]} - intersection nodes
+     */
+    _findIntersectionNodes(startEdge) {
+        const intersectionNodes = [];
+        let edge = startEdge;
+        do {
+            // getDegree
+            let degree = 0;
+            edge.from.outerEdges.forEach(e => {
+                if (e.label == startEdge.label)
+                    ++degree;
+            });
 
-  /** Find all nodes in a Maxima EdgeRing which are self-intersection nodes.
-   *
-   * @param {Node} startEdge
-   * @return {Node[]} - intersection nodes
-   */
-  _findIntersectionNodes(startEdge) {
-    const intersectionNodes = [];
-    let edge = startEdge;
-    do {
-      // getDegree
-      let degree = 0;
-      edge.from.outerEdges.forEach(e => {
-        if (e.label == startEdge.label)
-          ++degree;
-      });
+            if (degree > 1)
+                intersectionNodes.push(edge.from);
 
-      if (degree > 1)
-        intersectionNodes.push(edge.from);
+            edge = edge.next;
+        } while(!startEdge.isEqual(edge));
 
-      edge = edge.next;
-    } while(!startEdge.isEqual(edge));
+        return intersectionNodes;
+    }
 
-    return intersectionNodes;
-  }
+    /** Get the edge-ring which starts from the provided Edge.
+     *
+     * @param {Edge} startEdge - starting edge of the edge ring
+     * @returns {EdgeRing}
+     */
+    _findEdgeRing(startEdge) {
+        let edge = startEdge;
+        const edgeRing = new EdgeRing();
 
-  /** Get the edge-ring which starts from the provided Edge.
-   *
-   * @param {Edge} startEdge - starting edge of the edge ring
-   * @return {EdgeRing}
-   */
-  _findEdgeRing(startEdge) {
-    let edge = startEdge;
-    const edgeRing = new EdgeRing();
+        do {
+            edgeRing.push(edge);
+            edge.ring = edgeRing;
+            edge = edge.next;
+        } while(!startEdge.isEqual(edge));
 
-    do {
-      edgeRing.push(edge);
-      edge.ring = edgeRing;
-      edge = edge.next;
-    } while(!startEdge.isEqual(edge));
+        return edgeRing;
+    }
 
-    return edgeRing;
-  }
+    /** Removes a node from the Graph.
+     *
+     * It also removes edges asociated to that node
+     * @param {Node} node
+     */
+    removeNode(node) {
+        node.outerEdges.forEach(edge => this.removeEdge(edge));
+        node.innerEdges.forEach(edge => this.removeEdge(edge));
+        delete this.nodes[node.id];
+    }
 
-  /** Removes a node from the Graph.
-   *
-   * It also removes edges asociated to that node
-   * @param {Node} node
-   */
-  removeNode(node) {
-    node.outerEdges.forEach(edge => this.removeEdge(edge));
-    node.innerEdges.forEach(edge => this.removeEdge(edge));
-    delete this.nodes[node.id];
-  }
-
-  /** Remove edge from the graph and deletes the edge.
-   *
-   * @param {Edge} edge
-   */
-  removeEdge(edge) {
-    this.edges = this.edges.filter(e => !e.isEqual(edge));
-    edge.deleteEdge();
-  }
+    /** Remove edge from the graph and deletes the edge.
+     *
+     * @param {Edge} edge
+     */
+    removeEdge(edge) {
+        this.edges = this.edges.filter(e => !e.isEqual(edge));
+        edge.deleteEdge();
+    }
 }
 
 module.exports = Graph;
