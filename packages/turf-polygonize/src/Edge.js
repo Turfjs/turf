@@ -6,10 +6,10 @@ const {lineString} = require('@turf/helpers'),
 class Edge {
     /** Creates or get the symetric Edge.
      *
-     * @returns {Edge}
+     * @returns {Edge} - Symetric Edge.
      */
     getSymetric() {
-        if (! this.symetric) {
+        if (!this.symetric) {
             this.symetric = new Edge(this.to, this.from);
             this.symetric.symetric = this;
         }
@@ -43,10 +43,12 @@ class Edge {
 
     /** Compares Edge equallity.
      * An edge is equal to another, if the from and to nodes are the same.
-     * @returns {Boolean}
+     *
+     * @param {Edge} edge - Another Edge
+     * @returns {Boolean} - True if Edges are equal, False otherwise
      */
     isEqual(edge) {
-        return this.from.id == edge.from.id && this.to.id == edge.to.id;
+        return this.from.id === edge.from.id && this.to.id === edge.to.id;
     }
 
     toString() {
@@ -54,7 +56,8 @@ class Edge {
     }
 
     /** Returns a LineString representation of the Edge
-     * @returns {Feature<LineString>}
+     *
+     * @returns {Feature<LineString>} - LineString representation of the Edge
      */
     toLineString() {
         return lineString([this.from.coordinates, this.to.coordinates]);
@@ -63,7 +66,7 @@ class Edge {
     /** Comparator of two edges.
      * Implementation of geos::planargraph::DirectedEdge::compareTo.
      *
-     * @param {Edge} other
+     * @param {Edge} edge - Another edge to compare with this one
      * @returns {Number} -1 if this Edge has a greater angle with the positive x-axis than b,
      *                    0 if the Edges are colinear,
      *                    1 otherwise
