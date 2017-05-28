@@ -10,8 +10,6 @@ lib-cov
 types.js
 .DS_Store
 
-yarn.lock
-
 pids
 logs
 results
