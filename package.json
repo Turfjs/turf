@@ -6,7 +6,7 @@
     "test": "npm run lint && lerna bootstrap && tap packages/*/test.js && npm run types",
     "lint": "eslint packages",
     "types": "tsc",
-    "prepublish": "node ./scripts/generate-readmes"
+    "docs": "node ./scripts/generate-readmes"
   },
   "repository": {
     "type": "git",
@@ -53,6 +53,8 @@
     "eslint": "^2.0.0",
     "eslint-config-mourner": "^2.0.0",
     "lerna": "2.0.0-beta.34",
+    "load-json-file": "^2.0.0",
+    "progress": "^2.0.0",
     "tap": "^10.3.2",
     "typescript": "^2.2.1",
     "uglify-js": "~2.4.16"
