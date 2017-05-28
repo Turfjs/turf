@@ -4,7 +4,7 @@
   "description": "turf polygonize module",
   "main": "index.js",
   "scripts": {
-    "test": "tape src/*.test.js test.js"
+    "test": "tape test.js"
   },
   "repository": {
     "type": "git",
@@ -26,11 +26,10 @@
   },
   "homepage": "https://github.com/Turfjs/turf#readme",
   "devDependencies": {
+    "@turf/helpers": "^4.3.0",
     "tape": "^4.6.3"
   },
   "dependencies": {
-    "@turf/envelope": "^4.3.0",
-    "@turf/helpers": "^4.3.0",
-    "@turf/inside": "^4.3.0"
+    "polygonize": "^1.0.0"
   }
 }
