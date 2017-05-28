@@ -34,7 +34,7 @@ test('scale', t => {
         const result = featureCollection([]);
         featureEach(colorize(truncate(scaled, 6, 3)), feature => result.features.push(feature));
         featureEach(geojson, feature => result.features.push(feature));
-        result.features.push(markedOrigin(geojson, origin));
+        featureEach(geojson, feature => result.features.push(markedOrigin(feature, origin)));
 
         if (process.env.REGEN) write.sync(directories.out + filename, result);
         t.deepEqual(result, load.sync(directories.out + filename), name);

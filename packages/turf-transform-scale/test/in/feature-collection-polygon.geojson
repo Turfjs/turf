@@ -4,11 +4,7 @@
     {
       "type": "Feature",
       "properties": {
-        "stroke": "#555555",
-        "stroke-width": 2,
-        "stroke-opacity": 1,
-        "fill": "#00ff00",
-        "fill-opacity": 0.5,
+        "fill": "#0F0",
         "factor": 0.8,
         "origin": "center"
       },
