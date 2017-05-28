@@ -3,14 +3,14 @@ const test = require('tape');
 const path = require('path');
 const load = require('load-json-file');
 const write = require('write-json-file');
+const center = require('@turf/center');
 const truncate = require('@turf/truncate');
-const invariant = require('@turf/invariant');
+const turfBBox = require('@turf/bbox');
+const centroid = require('@turf/centroid');
+const {featureEach} = require('@turf/meta');
+const {getCoord} = require('@turf/invariant');
 const {point, lineString, geometryCollection, featureCollection} = require('@turf/helpers');
 const scale = require('./');
-const center = require('@turf/center');
-const centroid = require('@turf/centroid');
-const turfBBox = require('@turf/bbox');
-const getCoord = invariant.getCoord;
 
 const directories = {
     in: path.join(__dirname, 'test', 'in') + path.sep,
@@ -28,15 +28,15 @@ const fixtures = fs.readdirSync(directories.in).map(filename => {
 test('scale', t => {
     for (const {filename, name, geojson} of fixtures) {
         let {factor, origin, mutate} = geojson.properties || {};
+        factor = factor || 2;
 
-    const scaled = scale(geojson, factor, origin, mutate);
-        const result = featureCollection([
-            colorize(truncate(scaled, 6, 3)),
-            geojson,
-            markedOrigin(geojson, origin, {'marker-color': '#00F', 'marker-symbol': 'circle'})
-        ]);
+        const scaled = scale(geojson, factor, origin, mutate);
+        const result = featureCollection([]);
+        featureEach(colorize(truncate(scaled, 6, 3)), feature => result.features.push(feature));
+        featureEach(geojson, feature => result.features.push(feature));
+        result.features.push(markedOrigin(geojson, origin));
 
-    if (process.env.REGEN) write.sync(directories.out + filename, result);
+        if (process.env.REGEN) write.sync(directories.out + filename, result);
         t.deepEqual(result, load.sync(directories.out + filename), name);
     }
 
@@ -114,64 +114,56 @@ test('scale -- geometry support', t => {
 
 // style result
 function colorize(geojson) {
-    if (geojson.geometry.type === 'Point' || geojson.geometry.type === 'MultiPoint') {
-        geojson.properties['marker-color'] = '#F00';
-        geojson.properties['marker-symbol'] = 'star';
-    } else {
-        geojson.properties['stroke'] = '#F00';
-        geojson.properties['stroke-width'] = 4;
-    }
+    featureEach(geojson, (feature, index) => {
+        if (feature.geometry.type === 'Point' || feature.geometry.type === 'MultiPoint') {
+            feature.properties['marker-color'] = '#F00';
+            feature.properties['marker-symbol'] = 'star';
+        } else {
+            feature.properties['stroke'] = '#F00';
+            feature.properties['stroke-width'] = 4;
+        }
+        if (geojson.type === 'Feature') return feature;
+        geojson.features[index] = feature;
+    });
     return geojson;
 }
 
 // define origin, as defined in transform-scale, and style it
-function markedOrigin(geojson, origin, properties) {
-    // Default params
-    if (origin === undefined || origin === null) origin = 'centroid';
-
+function markedOrigin(geojson, origin, properties = {'marker-color': '#00F', 'marker-symbol': 'circle'}) {
     // Input Geometry|Feature<Point>|Array<number>
     if (Array.isArray(origin) || typeof origin === 'object') return point(getCoord(origin), properties);
 
     // Define BBox
-    var bbox = (geojson.bbox) ? geojson.bbox : turfBBox(geojson);
-    var west = bbox[0];
-    var south = bbox[1];
-    var east = bbox[2];
-    var north = bbox[3];
+    const [west, south, east, north] = (geojson.bbox) ? geojson.bbox : turfBBox(geojson);
 
     switch (origin) {
-        case 'sw':
-        case 'southwest':
-        case 'westsouth':
-        case 'bottomleft':
-            return point([west, south], properties);
-        case 'se':
-        case 'southeast':
-        case 'eastsouth':
-        case 'bottomright':
-            return point([east, south], properties);
-        case 'nw':
-        case 'northwest':
-        case 'westnorth':
-        case 'topleft':
-            return point([west, north], properties);
-        case 'ne':
-        case 'northeast':
-        case 'eastnorth':
-        case 'topright':
-            return point([east, north], properties);
-        case 'center':
-            const cr = center(geojson);
-            cr.properties = properties;
-            cr.properties = properties;
-            return cr;
-        case undefined:
-        case null:
-        case 'centroid':
-            const cid = centroid(geojson);
-            cid.properties = properties;
-            return cid;
-        default:
-            throw new Error('invalid origin');
+    case 'sw':
+    case 'southwest':
+    case 'westsouth':
+    case 'bottomleft':
+        return point([west, south], properties);
+    case 'se':
+    case 'southeast':
+    case 'eastsouth':
+    case 'bottomright':
+        return point([east, south], properties);
+    case 'nw':
+    case 'northwest':
+    case 'westnorth':
+    case 'topleft':
+        return point([west, north], properties);
+    case 'ne':
+    case 'northeast':
+    case 'eastnorth':
+    case 'topright':
+        return point([east, north], properties);
+    case 'center':
+        var cr = center(geojson);
+        cr.properties = properties;
+        return cr;
+    default:
+        var cid = centroid(geojson);
+        cid.properties = properties;
+        return cid;
     }
 }
