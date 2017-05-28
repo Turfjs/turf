@@ -3,7 +3,6 @@ const path = require('path');
 const load = require('load-json-file');
 const write = require('write-json-file');
 const truncate = require('@turf/truncate');
-const {coordEach} = require('@turf/meta');
 const grid = require('./');
 
 const directories = {
@@ -75,14 +74,15 @@ test('longitude (13141439571036224) issue #758', t => {
     const cellSize = 1;
     const units = 'kilometers';
     const hexgrid = grid(bbox, cellSize, units);
-    let fail;
-    coordEach(hexgrid, ([lng, lat]) => {
-        if (!fail) {
-            if (lng > 1000 || lng < -1000) {
-                t.fail(`longitude is +- 1000 [${lng},${lat}]`);
-                fail = true;
-            }
+
+    const coords = [];
+    hexgrid.features.forEach(feature => feature.geometry.coordinates[0].forEach(coord => coords.push(coord)));
+
+    for (const [lng, lat] of coords) {
+        if (lng > 1000 || lng < -1000) {
+            t.fail(`longitude is +- 1000 [${lng},${lat}]`);
+            break;
         }
-    });
+    }
     t.end();
 });
