@@ -15,40 +15,44 @@ const fixtures = fs.readdirSync(directory).map(filename => {
 /**
  * Single Process Benchmark
  *
- * line: 1.364ms
- * multiLine: 0.072ms
- * multiPoint: 0.053ms
- * multiPolygon: 1.482ms
- * no-motion: 1.352ms
- * point: 0.022ms
- * polygon-with-hole: 0.100ms
- * polygon: 0.018ms
- * z-translation: 0.073ms
+ * line: 3.586ms
+ * multiLine: 0.228ms
+ * multiPoint: 3.490ms
+ * multiPolygon: 2.211ms
+ * no-scale: 0.336ms
+ * point: 0.038ms
+ * poly-double: 2.511ms
+ * poly-half: 0.176ms
+ * polygon-with-hole: 1.094ms
+ * polygon: 0.143ms
+ * z-scaling: 0.237ms
  */
 for (const {name, geojson} of fixtures) {
-    const {distance, direction, units, zTranslation} = geojson.properties || {};
+    const {factor, origin} = geojson.properties || {};
     console.time(name);
-    scale(geojson, distance, direction, units, zTranslation, true);
+    scale(geojson, factor, origin, true);
     console.timeEnd(name);
 }
 
 /**
  * Benchmark Results
  *
- * line x 26,602 ops/sec ±2.77% (77 runs sampled)
- * multiLine x 56,968 ops/sec ±2.22% (79 runs sampled)
- * multiPoint x 55,514 ops/sec ±18.05% (58 runs sampled)
- * multiPolygon x 3,685 ops/sec ±2.36% (74 runs sampled)
- * no-motion x 17,622 ops/sec ±3.22% (75 runs sampled)
- * point x 121,712 ops/sec ±2.02% (79 runs sampled)
- * polygon-with-hole x 9,527 ops/sec ±2.52% (75 runs sampled)
- * polygon x 73,538 ops/sec ±5.07% (72 runs sampled)
- * z-translation x 44,638 ops/sec ±3.09% (78 runs sampled)
+ * line x 15,591 ops/sec ±2.38% (77 runs sampled)
+ * multiLine x 27,635 ops/sec ±2.27% (78 runs sampled)
+ * multiPoint x 19,728 ops/sec ±2.18% (76 runs sampled)
+ * multiPolygon x 2,178 ops/sec ±2.31% (77 runs sampled)
+ * no-scale x 28,279 ops/sec ±2.48% (76 runs sampled)
+ * point x 138,281 ops/sec ±2.48% (76 runs sampled)
+ * poly-double x 34,934 ops/sec ±2.05% (76 runs sampled)
+ * poly-half x 33,563 ops/sec ±2.49% (74 runs sampled)
+ * polygon-with-hole x 5,046 ops/sec ±3.55% (75 runs sampled)
+ * polygon x 35,747 ops/sec ±2.65% (77 runs sampled)
+ * z-scaling x 26,205 ops/sec ±2.05% (75 runs sampled)
  */
 const suite = new Benchmark.Suite('turf-transform-scale');
 for (const {name, geojson} of fixtures) {
-    const {distance, direction, units, zTranslation} = geojson.properties || {};
-    suite.add(name, () => scale(geojson, distance, direction, units, zTranslation));
+    const {factor, origin} = geojson.properties || {};
+    suite.add(name, () => scale(geojson, factor, origin));
 }
 
 suite
