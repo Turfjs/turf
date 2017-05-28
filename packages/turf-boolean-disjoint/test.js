@@ -32,8 +32,7 @@ test('turf-boolean-disjoint', t => {
     t.equal(disjoint(p1, poly1), true, 'A point is outside a polygon so disjoint is true');
     t.equal(disjoint(p3, poly1), false, 'A point is inside a polygon so disjoint is false');
 
-    // **== ERROR ==**
-    // t.equal(disjoint(mp1, line1), false, 'A multipoint is partially on a line so disjoint is false');
+    t.skip(disjoint(mp1, line1), false, 'A multipoint is partially on a line so disjoint is false');
     t.equal(disjoint(mp2, line1), true, 'A multipoint does not touch a line so disjoint is true');
 
 

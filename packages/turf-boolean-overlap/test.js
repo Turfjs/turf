@@ -3,5 +3,6 @@ const {point, lineString, polygon, multiPoint, multiLineString, multiPolygon} = 
 const equal = require('./');
 
 test('turf-boolean-overlap', t => {
+    t.skip('boolean-overlap');
     t.end();
 });

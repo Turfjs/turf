@@ -17,8 +17,7 @@ test('turf-boolean-cross', t => {
 
     t.equal(cross(line1, line2), true, 'True if lines cross');
     t.equal(cross(line1, line3), false, 'False if lines cross');
-    // **== ERROR ==**
-    // t.equal(cross(line1, line4), false, 'False if lines only touch');
+    t.skip(cross(line1, line4), false, 'False if lines only touch');
 
     const poly1 = polygon([[[-1, 2], [3, 2], [3, 3], [-1, 3], [-1, 2]]]);
     const line5 = lineString([[0.5, 2.5], [1, 1]]);

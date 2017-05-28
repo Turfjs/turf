@@ -33,7 +33,7 @@ module.exports = function (feature1, feature2) {
         case 'Polygon':
             return !inside(geom1, geom2) || false;
         }
-        throw new Error('feature2 ' + type2 + ' geometry not supported');
+        break;
     case 'MultiPoint':
         switch (type2) {
         case 'MultiPoint':
@@ -41,9 +41,6 @@ module.exports = function (feature1, feature2) {
         case 'LineString':
             return !isMultiPointOnLine(geom1, geom2) || false;
         }
-        throw new Error('feature2 ' + type2 + ' geometry not supported');
-    default:
-        throw new Error('feature1 ' + type1 + ' geometry not supported');
     }
 };
 

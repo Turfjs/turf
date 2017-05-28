@@ -39,8 +39,7 @@ test('turf-boolean-within', t => {
     const line3 = helpers.lineString([[1, 2], [1, 3], [1, 15.5]]);
 
     t.equal(within(line2, line1), true, 'A line lies inside the other line');
-    // ==>> ERROR <<===
-    // t.equal(within(line3, line1), false, 'A line fails that lies partially outside the other line');
+    t.skip(within(line3, line1), false, 'A line fails that lies partially outside the other line');
 
     t.equal(within(line1, poly1), true, 'A line within the poly passes as true');
     t.equal(within(line3, poly1), false, 'A line that lies partially outside the poly is false');
