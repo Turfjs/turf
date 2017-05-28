@@ -92,7 +92,7 @@ class EdgeRing extends Array {
         return;
 
       if (envelopeContains(tryEnvelope, testEnvelope)) {
-        const testPoint = testEdgeRing.map(edge => edge.from.coodinates)
+        const testPoint = testEdgeRing.map(edge => edge.from.coordinates)
           .find(pt => !shell.some(edge => coordinatesEqual(pt, edge.from.coordinates)));
 
         if (testPoint && shell.inside(point(testPoint))) {

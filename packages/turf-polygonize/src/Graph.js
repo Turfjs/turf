@@ -5,13 +5,17 @@ const Node = require('./Node'),
 /** Represents a planar graph of edges and nodes that can be used to compute a
  * polygonization.
  *
- * Although, this class is inspired by GEOS's geos::operation::polygonize::PolygonizeGraph,
+ * Although, this class is inspired by GEOS's `geos::operation::polygonize::PolygonizeGraph`,
  * it isn't a rewrite. As regards algorithm, this class implements the same logic, but it
  * isn't a javascript transcription of the C++ source.
  *
  * This graph is directed (both directions are created)
  */
 class Graph {
+  /** Creates a graph from a GeoJSON.
+   * @param {FeatureCollection<LineString>} geoJson - it must comply with the restrictions detailed in the index
+   * @return {Graph}
+   */
   static fromGeoJson(geoJson) {
     const graph = new Graph();
     geoJson.features.forEach(feature => {
@@ -117,8 +121,8 @@ class Graph {
   /** Computes the next edge pointers going CCW around the given node, for the given edgering label.
    * This algorithm has the effect of converting maximal edgerings into minimal edgerings
    *
-   * XXX: method literally transcribed from PolygonizeGraph::computeNextCCWEdges, could be written
-   * in a more javascript way
+   * XXX: method literally transcribed from `geos::operation::polygonize::PolygonizeGraph::computeNextCCWEdges`,
+   * could be written in a more javascript way.
    *
    * @param {Node} node
    * @param {Number} label

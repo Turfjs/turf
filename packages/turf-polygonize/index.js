@@ -2,12 +2,17 @@ const Graph = require('./src/Graph'),
   EdgeRing = require('./src/EdgeRing'),
   { featureCollection } = require('@turf/helpers');
 
-/** Implementation of GEOSPolygonizel function (geos::operation::polygonize::Polygonizer)
+/** Implementation of GEOSPolygonize function (`geos::operation::polygonize::Polygonizer`).
  *
  * Polygonizes a set of lines that represents edges in a planar graph. Edges must be correctly
- * noded, i.e., they must only meet at their endpoints.
+ * noded, i.e., they must only meet at their endpoints. LineStrings must only have two coordinate
+ * points.
  *
- * LineStrings must only have to coordinate points.
+ * The implementation correctly handles:
+ *
+ * - Dangles: edges which have one or both ends which are not incident on another edge endpoint.
+ * - Cut Edges (bridges): edges that are connected at both ends but which do not form part
+ *   of a polygon.
  *
  * @param {FeatureCollection<LineString>} geoJson - Lines in order to polygonize
  * @return {FeatureCollection<Polygon>}

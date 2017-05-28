@@ -3,7 +3,7 @@ const test = require('tape'),
   Node = require('./Node'),
   { featureCollection, lineString } = require('@turf/helpers');
 
-test('graph.fromGeoJson', t => {
+test('Graph :: fromGeoJson', t => {
   const geoJson = featureCollection([
     lineString([[0, 1], [0, 0]]),
     lineString([[1, 1], [0, 0]]),
@@ -19,7 +19,7 @@ test('graph.fromGeoJson', t => {
   t.end();
 });
 
-test('deleteDangles', t => {
+test('Graph :: deleteDangles', t => {
   const geoJson = featureCollection([
     lineString([[0, 0], [0, 1]]),
     lineString([[0, 1], [0, 2]]),
@@ -38,7 +38,7 @@ test('deleteDangles', t => {
   t.end();
 });
 
-test('deleteCutEdges', t => {
+test('Graph :: deleteCutEdges', t => {
   const geoJson = featureCollection([
     lineString([[0, 0], [0, 1]]),
     lineString([[0, 1], [1, 1]]),
@@ -61,7 +61,7 @@ test('deleteCutEdges', t => {
   t.end();
 });
 
-test('getEdgeRings', t => {
+test('Graph :: getEdgeRings', t => {
   const geoJson = featureCollection([
     lineString([[0, 0], [0, 1]]),
     lineString([[0, 1], [1, 1]]),

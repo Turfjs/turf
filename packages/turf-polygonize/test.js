@@ -1,27 +1,51 @@
 const test = require('tape'),
   { featureCollection, lineString, polygon } = require('@turf/helpers'),
-  polygonize = require('./index.js');
+  polygonize = require('./'),
+  fs = require('fs'),
+  path = require('path');
 
-test('Polygonize', t => {
-  const geoJson = featureCollection([
-    lineString([[-58.3959417, -34.8036499], [-58.395087, -34.8031464]]),
-    lineString([[-58.3964727, -34.8029764], [-58.3959417, -34.8036499]]),
-    lineString([[-58.395087, -34.8031464], [-58.3942164, -34.8042266]]),
-    lineString([[-58.3942164, -34.8042266], [-58.3949969, -34.8047067]]),
-    lineString([[-58.3949969, -34.8047067], [-58.3957427, -34.8051655]]),
-    lineString([[-58.396618, -34.8040484], [-58.3957427, -34.8051655]]),
-    lineString([[-58.3976747, -34.8036356], [-58.3971168, -34.8043422]]),
-    lineString([[-58.3976747, -34.8036356], [-58.3964727, -34.8029764]]),
-    lineString([[-58.3971168, -34.8043422], [-58.396618, -34.8040484]]),
-    lineString([[-58.396618, -34.8040484], [-58.3959417, -34.8036499]]),
-  ]),
-    expected = featureCollection([
-      polygon([[[-58.3959417,-34.8036499],[-58.395087,-34.8031464],[-58.3942164,-34.8042266],[-58.3949969,-34.8047067],[-58.3957427,-34.8051655],[-58.396618,-34.8040484],[-58.3959417,-34.8036499]]]),
-      polygon([[[-58.3964727,-34.8029764],[-58.3959417,-34.8036499],[-58.396618,-34.8040484],[-58.3971168,-34.8043422],[-58.3976747,-34.8036356],[-58.3964727,-34.8029764]]]),
-    ]),
-    polygons = polygonize(geoJson);
+const directories = {
+  in: path.join(__dirname, 'test', 'in') + path.sep,
+  out: path.join(__dirname, 'test', 'out') + path.sep,
+};
 
-  t.deepEqual(polygons, expected);
+function getFullPath(filename, type='in') {
+  return path.join(directories[type], filename);
+}
 
-  t.end();
-});
+function readJsonFile(filename, type='in') {
+  try {
+    return JSON.parse(fs.readFileSync(getFullPath(filename, type)));
+  } catch(e) {
+    if (e.code !== 'ENOENT')
+      throw e;
+    return undefined;
+  }
+}
+
+function writeJsonFile(filename, data, type='out') {
+  fs.writeFileSync(getFullPath(filename, type), JSON.stringify(data));
+}
+
+fs.readdirSync(directories.in)
+  .filter(filename => !filename.startsWith('.'))
+  .map(filename => {
+    return {
+      filename,
+      name: path.parse(filename).name,
+      input: readJsonFile(filename, 'in'),
+      output: readJsonFile(filename, 'out'),
+    }
+  })
+  .forEach(({filename, name, input, output}) => {
+    test(`turf-polygonize :: ${name}`, t => {
+      const result = polygonize(input);
+      if (output) {
+        t.deepEqual(result, output);
+      } else {
+        t.skip(`${name} not found :: writing`);
+        writeJsonFile(filename, result);
+      }
+      t.end();
+    });
+  });
