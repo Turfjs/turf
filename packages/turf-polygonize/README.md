@@ -12,13 +12,13 @@ The implementation correctly handles:
 
 -   Dangles: edges which have one or both ends which are not incident on another edge endpoint.
 -   Cut Edges (bridges): edges that are connected at both ends but which do not form part
-    of a polygon.
+      of a polygon.
 
 **Parameters**
 
 -   `geoJson` **[FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects)&lt;[LineString](http://geojson.org/geojson-spec.html#linestring)>** Lines in order to polygonize
 
-Returns **[FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects)&lt;[Polygon](http://geojson.org/geojson-spec.html#polygon)>** 
+Returns **[FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects)&lt;[Polygon](http://geojson.org/geojson-spec.html#polygon)>** Polygons created
 
 # Graph
 
@@ -37,9 +37,9 @@ Creates or get a Node.
 
 **Parameters**
 
--   `coordinates` **[Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)>** 
+-   `coordinates` **[Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)>** Coordinates of the node
 
-Returns **[Node](https://developer.mozilla.org/en-US/docs/Web/API/Node/nextSibling)** 
+Returns **[Node](https://developer.mozilla.org/en-US/docs/Web/API/Node/nextSibling)** The created or stored node
 
 ## addEdge
 
@@ -62,7 +62,7 @@ It calls itself recursively, removing a dangling node might cause another dangli
 
 **Parameters**
 
--   `node` **[Node](https://developer.mozilla.org/en-US/docs/Web/API/Node/nextSibling)** 
+-   `node` **[Node](https://developer.mozilla.org/en-US/docs/Web/API/Node/nextSibling)** Node to check if it's a dangle
 
 ## deleteCutEdges
 
@@ -92,8 +92,8 @@ could be written in a more javascript way.
 
 **Parameters**
 
--   `node` **[Node](https://developer.mozilla.org/en-US/docs/Web/API/Node/nextSibling)** 
--   `label` **[Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** 
+-   `node` **[Node](https://developer.mozilla.org/en-US/docs/Web/API/Node/nextSibling)** Node
+-   `label` **[Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** Ring's label
 
 ## \_findLabeledEdgeRings
 
@@ -106,7 +106,7 @@ Returns **[Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Refere
 
 Computes the EdgeRings formed by the edges in this graph.
 
-Returns **[Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[EdgeRing](#edgering)>** 
+Returns **[Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[EdgeRing](#edgering)>** A list of all the EdgeRings in the graph.
 
 ## \_findIntersectionNodes
 
@@ -114,7 +114,7 @@ Find all nodes in a Maxima EdgeRing which are self-intersection nodes.
 
 **Parameters**
 
--   `startEdge` **[Node](https://developer.mozilla.org/en-US/docs/Web/API/Node/nextSibling)** 
+-   `startEdge` **[Node](https://developer.mozilla.org/en-US/docs/Web/API/Node/nextSibling)** Start Edge of the Ring
 
 Returns **[Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[Node](https://developer.mozilla.org/en-US/docs/Web/API/Node/nextSibling)>** intersection nodes
 
@@ -126,7 +126,7 @@ Get the edge-ring which starts from the provided Edge.
 
 -   `startEdge` **[Edge](#edge)** starting edge of the edge ring
 
-Returns **[EdgeRing](#edgering)** 
+Returns **[EdgeRing](#edgering)** EdgeRing which start Edge is the provided one.
 
 ## removeNode
 
@@ -136,7 +136,7 @@ It also removes edges asociated to that node
 
 **Parameters**
 
--   `node` **[Node](https://developer.mozilla.org/en-US/docs/Web/API/Node/nextSibling)** 
+-   `node` **[Node](https://developer.mozilla.org/en-US/docs/Web/API/Node/nextSibling)** Node to be removed
 
 ## removeEdge
 
@@ -144,7 +144,7 @@ Remove edge from the graph and deletes the edge.
 
 **Parameters**
 
--   `edge` **[Edge](#edge)** 
+-   `edge` **[Edge](#edge)** Edge to be removed
 
 ## fromGeoJson
 
@@ -154,7 +154,7 @@ Creates a graph from a GeoJSON.
 
 -   `geoJson` **[FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects)&lt;[LineString](http://geojson.org/geojson-spec.html#linestring)>** it must comply with the restrictions detailed in the index
 
-Returns **[Graph](#graph)** 
+Returns **[Graph](#graph)** The newly created graph
 
 # addOuterEdge
 
@@ -163,7 +163,7 @@ XXX: on each add we are ordering, this could be optimized
 
 **Parameters**
 
--   `edge` **[Edge](#edge)** 
+-   `edge` **[Edge](#edge)** Edge to add as an outerEdge.
 
 # Edge
 
@@ -173,7 +173,7 @@ This class is inspired by GEOS's geos::operation::polygonize::PolygonizeDirected
 
 Creates or get the symetric Edge.
 
-Returns **[Edge](#edge)** 
+Returns **[Edge](#edge)** Symetric Edge.
 
 ## constructor
 
@@ -193,15 +193,15 @@ An edge is equal to another, if the from and to nodes are the same.
 
 **Parameters**
 
--   `edge`  
+-   `edge` **[Edge](#edge)** Another Edge
 
-Returns **[Boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** 
+Returns **[Boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** True if Edges are equal, False otherwise
 
 ## toLineString
 
 Returns a LineString representation of the Edge
 
-Returns **[Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;[LineString](http://geojson.org/geojson-spec.html#linestring)>** 
+Returns **[Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;[LineString](http://geojson.org/geojson-spec.html#linestring)>** LineString representation of the Edge
 
 ## compareTo
 
@@ -210,12 +210,11 @@ Implementation of geos::planargraph::DirectedEdge::compareTo.
 
 **Parameters**
 
--   `other` **[Edge](#edge)** 
--   `edge`  
+-   `edge` **[Edge](#edge)** Another edge to compare with this one
 
-Returns **Any** \-1 if this Edge has a greater angle with the positive x-axis than b,
-         0 if the Edges are colinear,
-         1 otherwise
+Returns **[Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** \-1 if this Edge has a greater angle with the positive x-axis than b,
+                   0 if the Edges are colinear,
+                   1 otherwise
 
 # EdgeRing
 
@@ -233,7 +232,7 @@ A ring must have either 0 or 4 or more points. The first and the last must be
 equal (in 2D)
 geos::geom::LinearRing::validateConstruction
 
-Returns **[Boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** 
+Returns **[Boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** Validity of the EdgeRing
 
 ## isHole
 
@@ -247,14 +246,14 @@ Returns **[Boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Refe
 
 Creates a MultiPoint representing the EdgeRing (discarts edges directions).
 
-Returns **[Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;[MultiPoint](http://geojson.org/geojson-spec.html#multipoint)>** 
+Returns **[Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;[MultiPoint](http://geojson.org/geojson-spec.html#multipoint)>** Multipoint representation of the EdgeRing
 
 ## toPolygon
 
 Creates a Polygon representing the EdgeRing.
 XXX: the polygon could be cached
 
-Returns **[Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;[Polygon](http://geojson.org/geojson-spec.html#polygon)>** 
+Returns **[Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;[Polygon](http://geojson.org/geojson-spec.html#polygon)>** Polygon representation of the Edge Ring
 
 ## getEnvelope
 
@@ -269,21 +268,20 @@ Checks if the point is inside the edgeRing
 
 **Parameters**
 
--   `point` **[Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;[Point](http://geojson.org/geojson-spec.html#point)>** 
+-   `point` **[Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;[Point](http://geojson.org/geojson-spec.html#point)>** Point to check if it is inside the edgeRing
 
-Returns **[Boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** 
+Returns **[Boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** True if it is inside, False otherwise
 
 ## findEdgeRingContaining
 
-geos::operation::polygonize::EdgeRing::findEdgeRingContaining
+`geos::operation::polygonize::EdgeRing::findEdgeRingContaining`
 
 **Parameters**
 
--   `edgeRing` **[EdgeRing](#edgering)** 
--   `testEdgeRing`  
--   `shellList` **[Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[EdgeRing](#edgering)>** 
+-   `testEdgeRing` **[EdgeRing](#edgering)** EdgeRing to look in the list
+-   `shellList` **[Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[EdgeRing](#edgering)>** List of EdgeRing in which to search
 
-Returns **[EdgeRing](#edgering)** 
+Returns **[EdgeRing](#edgering)** EdgeRing which contains the testEdgeRing
 
 # orientationIndex
 
@@ -297,7 +295,7 @@ Implementation of geos::algorithm::CGAlgorithm::orientationIndex()
 -   `p2` **[Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)>** the final point of the vector
 -   `q` **[Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)>** the point to compute the direction to
 
-Returns **Any** 1 if q is ccw (left) from p1->p2,
+Returns **[Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** 1 if q is ccw (left) from p1->p2,
        \-1 if q is cw (right) from p1->p2,
         0 if q is colinear with p1->p2
 
@@ -333,8 +331,8 @@ Checks if two coordinates are equal.
 
 **Parameters**
 
--   `coord1`  
--   `coord2`  
+-   `coord1` **[Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)>** First coordinate
+-   `coord2` **[Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)>** Second coordinate
 
 Returns **[Boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** True if coordinates are equal
 
