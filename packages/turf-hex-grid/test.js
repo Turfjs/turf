@@ -3,6 +3,7 @@ const path = require('path');
 const load = require('load-json-file');
 const write = require('write-json-file');
 const truncate = require('@turf/truncate');
+const {coordEach} = require('@turf/meta');
 const grid = require('./');
 
 const directories = {
@@ -66,5 +67,22 @@ test('hex-tri-grid', t => {
     t.deepEqual(load.sync(directories.out + 'trigrid3.geojson'), grid3, 'grid is correct');
     t.deepEqual(load.sync(directories.out + 'trigrid4.geojson'), grid4, 'grid is correct');
 
+    t.end();
+});
+
+test('longitude (13141439571036224) issue #758', t => {
+    const bbox = [-179, -90, 179, 90];
+    const cellSize = 1;
+    const units = 'kilometers';
+    const hexgrid = grid(bbox, cellSize, units);
+    let fail;
+    coordEach(hexgrid, ([lng, lat]) => {
+        if (!fail) {
+            if (lng > 1000 || lng < -1000) {
+                t.fail(`longitude is +- 1000 [${lng},${lat}]`);
+                fail = true;
+            }
+        }
+    });
     t.end();
 });
