@@ -1,7 +1,8 @@
 {
   "type": "Feature",
   "properties": {
-    "factor": 0.5
+    "factor": 1.8,
+    "origin": "topleft"
   },
   "geometry": {
     "type": "MultiLineString",

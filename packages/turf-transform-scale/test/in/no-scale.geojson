@@ -1,7 +1,8 @@
 {
   "type": "Feature",
   "properties": {
-    "factor": 1
+    "factor": 1,
+    "origin": "ne"
   },
   "geometry": {
     "type": "Polygon",

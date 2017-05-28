@@ -1,8 +1,8 @@
 {
   "type": "Feature",
   "properties": {
-    "factor": 0.9,
-    "fromCenter": true,
+    "factor": 5,
+    "origin": "sw",
     "name": "Bled Lake",
     "area": "1.45",
     "area-unit": "km2",

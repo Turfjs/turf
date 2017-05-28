@@ -2,7 +2,7 @@
   "type": "Feature",
   "properties": {
     "factor": 5,
-    "fromCenter": true
+    "origin": "southwest"
   },
   "geometry": {
     "type": "Point",

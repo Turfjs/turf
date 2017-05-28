@@ -5,7 +5,7 @@
 			"type": "Feature",
 			"properties": {
 				"factor": 5,
-				"fromCenter": true,
+				"origin": "southwest",
 				"marker-color": "#F00",
 				"marker-symbol": "star"
 			},
@@ -21,7 +21,21 @@
 			"type": "Feature",
 			"properties": {
 				"factor": 5,
-				"fromCenter": true
+				"origin": "southwest"
+			},
+			"geometry": {
+				"type": "Point",
+				"coordinates": [
+					-75.69926351308823,
+					45.43145021122502
+				]
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {
+				"marker-color": "#00F",
+				"marker-symbol": "circle"
 			},
 			"geometry": {
 				"type": "Point",

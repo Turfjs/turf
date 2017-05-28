@@ -6,6 +6,9 @@ const write = require('write-json-file');
 const truncate = require('@turf/truncate');
 const {point, lineString, geometryCollection, featureCollection} = require('@turf/helpers');
 const scale = require('./');
+const center = require('@turf/center');
+const centroid = require('@turf/centroid');
+const turfBBox = require('@turf/bbox');
 
 const directories = {
     in: path.join(__dirname, 'test', 'in') + path.sep,
@@ -22,12 +25,16 @@ const fixtures = fs.readdirSync(directories.in).map(filename => {
 
 test('scale', t => {
     for (const {filename, name, geojson} of fixtures) {
-        let {factor, fromCorner, mutate} = geojson.properties || {};
+        let {factor, origin, mutate} = geojson.properties || {};
 
-        const scaled = scale(geojson, factor, fromCorner, mutate);
-        const result = featureCollection([colorize(truncate(scaled, 6, 3)), geojson]);
+    const scaled = scale(geojson, factor, origin, mutate);
+        const result = featureCollection([
+            colorize(truncate(scaled, 6, 3)),
+            geojson,
+            markedOrigin(geojson, origin, {'marker-color': '#00F', 'marker-symbol': 'circle'})
+        ]);
 
-        if (process.env.REGEN) write.sync(directories.out + filename, result);
+    if (process.env.REGEN) write.sync(directories.out + filename, result);
         t.deepEqual(result, load.sync(directories.out + filename), name);
     }
 
@@ -75,10 +82,14 @@ test('scale -- mutated input', t => {
     const lineBefore = JSON.parse(JSON.stringify(line));
 
     scale(line, 1.5);
-    t.deepEqual(line, lineBefore, 'input should NOT be mutated');
+    t.deepEqual(line, lineBefore, 'mutate = undefined - input should NOT be mutated');
+    scale(line, 1.5, 'centroid', false);
+    t.deepEqual(line, lineBefore, 'mutate = false - input should NOT be mutated');
+    scale(line, 1.5, 'centroid', 'nonBoolean');
+    t.deepEqual(line, lineBefore, 'non-boolean mutate - input should NOT be mutated');
 
     scale(line, 1.5, 'centroid', true);
-    t.deepEqual(truncate(line, 1), lineString([[8.5, 6.2], [13.5, 18.7]]), 'input should be mutated');
+    t.deepEqual(truncate(line, 1), lineString([[9.5, 8.8], [12.5, 16.2]]), 'mutate = true - input should be mutated');
     t.end();
 });
 
@@ -109,4 +120,56 @@ function colorize(geojson) {
         geojson.properties['stroke-width'] = 4;
     }
     return geojson;
+}
+
+// define origin, as defined in transform-scale, and style it
+function markedOrigin(geojson, origin, properties) {
+    // Default params
+    if (origin === undefined || origin === null) origin = 'centroid';
+
+    // Input Geometry|Feature<Point>|Array<number>
+    if (Array.isArray(origin) || typeof origin === 'object') return getCoord(origin);
+
+    // Define BBox
+    var bbox = (geojson.bbox) ? geojson.bbox : turfBBox(geojson);
+    var west = bbox[0];
+    var south = bbox[1];
+    var east = bbox[2];
+    var north = bbox[3];
+
+    switch (origin) {
+        case 'sw':
+        case 'southwest':
+        case 'westsouth':
+        case 'bottomleft':
+            return point([west, south], properties);
+        case 'se':
+        case 'southeast':
+        case 'eastsouth':
+        case 'bottomright':
+            return point([east, south], properties);
+        case 'nw':
+        case 'northwest':
+        case 'westnorth':
+        case 'topleft':
+            return point([west, north], properties);
+        case 'ne':
+        case 'northeast':
+        case 'eastnorth':
+        case 'topright':
+            return point([east, north], properties);
+        case 'center':
+            const cr = center(geojson);
+            cr.properties = properties;
+            cr.properties = properties;
+            return cr;
+        case undefined:
+        case null:
+        case 'centroid':
+            const cid = centroid(geojson);
+            cid.properties = properties;
+            return cid;
+        default:
+            throw new Error('invalid origin');
+    }
 }

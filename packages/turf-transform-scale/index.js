@@ -36,22 +36,22 @@ module.exports = function (geojson, factor, origin, mutate) {
     if (typeof factor !== 'number' || factor === 0) throw new Error('invalid factor');
 
     // Default params
-    var isMutate = (mutate === false || mutate === undefined);
     var isPoint = (geojson.type === 'Point' || geojson.geometry && geojson.geometry.type === 'Point');
     origin = defineOrigin(geojson, origin);
+
+    // Clone geojson to avoid side effects
+    if (mutate !== true) geojson = JSON.parse(JSON.stringify(geojson));
 
     // Shortcut no-scaling
     if (factor === 1 || isPoint) return geojson;
 
-    // Clone geojson to avoid side effects
-    if (isMutate) geojson = JSON.parse(JSON.stringify(geojson));
-
     // Scale each coordinate
+    var scaleFactor = (origin === 'center' || origin === 'centroid') ? factor / 2 : factor;
     coordEach(geojson, function (coord) {
         var originalDistance = rhumbDistance(origin, coord);
         var bearing = rhumbBearing(origin, coord);
-        var newDistance = originalDistance * factor;
-        var newCoord = getCoords(rhumbDestination(coord, newDistance, bearing));
+        var newDistance = originalDistance * scaleFactor;
+        var newCoord = getCoords(rhumbDestination(origin, newDistance, bearing));
         coord[0] = newCoord[0];
         coord[1] = newCoord[1];
         if (coord.length === 3) coord[2] *= factor;

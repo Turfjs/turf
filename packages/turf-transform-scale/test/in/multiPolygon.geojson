@@ -1,8 +1,8 @@
 {
   "type": "Feature",
   "properties": {
-    "factor": 0.5,
-    "fromCenter": true
+    "factor": 0.8,
+    "origin": "center"
   },
   "geometry": {
     "type": "MultiPolygon",

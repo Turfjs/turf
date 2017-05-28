@@ -4,40 +4,34 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"factor": 1.8,
-				"origin": "topleft",
+				"factor": 2,
+				"origin": "bottomleft",
 				"stroke": "#F00",
 				"stroke-width": 4
 			},
 			"geometry": {
-				"type": "MultiLineString",
+				"type": "Polygon",
 				"coordinates": [
 					[
 						[
-							-99.2,
-							18.996
+							0,
+							0
 						],
 						[
-							-99.020026,
-							19.122
+							4,
+							0
 						],
 						[
-							-98.840113,
-							18.996
-						]
-					],
-					[
-						[
-							-99.2,
-							19.104
+							4.000609,
+							2
 						],
 						[
-							-99.02,
-							19.23
+							0,
+							2
 						],
 						[
-							-98.840061,
-							19.104
+							0,
+							0
 						]
 					]
 				]
@@ -46,38 +40,32 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"factor": 1.8,
-				"origin": "topleft"
+				"factor": 2,
+				"origin": "bottomleft"
 			},
 			"geometry": {
-				"type": "MultiLineString",
+				"type": "Polygon",
 				"coordinates": [
 					[
 						[
-							-99.2,
-							19.1
+							0,
+							0
 						],
 						[
-							-99.1,
-							19.17
+							2,
+							0
 						],
 						[
-							-99,
-							19.1
-						]
-					],
-					[
-						[
-							-99.2,
-							19.16
+							2,
+							1
 						],
 						[
-							-99.1,
-							19.23
+							0,
+							1
 						],
 						[
-							-99,
-							19.16
+							0,
+							0
 						]
 					]
 				]
@@ -92,8 +80,8 @@
 			"geometry": {
 				"type": "Point",
 				"coordinates": [
-					-99.2,
-					19.23
+					0,
+					0
 				]
 			}
 		}

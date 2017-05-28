@@ -4,7 +4,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"factor": 1.5,
+				"factor": 0.1,
 				"stroke": "#F00",
 				"stroke-width": 4
 			},
@@ -13,20 +13,20 @@
 				"coordinates": [
 					[
 						[
-							-2.964193,
-							27.5
+							1.799105,
+							29.9
 						],
 						[
-							5.723145,
-							27.5
+							2.150671,
+							29.9
 						],
 						[
-							3.271037,
-							35
+							2.049534,
+							30.2
 						],
 						[
-							-2.964193,
-							27.5
+							1.799105,
+							29.9
 						]
 					]
 				]
@@ -35,7 +35,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"factor": 1.5
+				"factor": 0.1
 			},
 			"geometry": {
 				"type": "Polygon",
@@ -58,6 +58,20 @@
 							29
 						]
 					]
+				]
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {
+				"marker-color": "#00F",
+				"marker-symbol": "circle"
+			},
+			"geometry": {
+				"type": "Point",
+				"coordinates": [
+					2,
+					30
 				]
 			}
 		}

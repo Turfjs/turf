@@ -21,8 +21,10 @@
     "transform",
     "transformation",
     "scale",
-    "move",
-    "shift"
+    "enlarge",
+    "contract",
+    "zoom-in",
+    "zoom-out"
   ],
   "author": "Turf Authors",
   "contributors": [
