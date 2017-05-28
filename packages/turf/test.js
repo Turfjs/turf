@@ -16,7 +16,7 @@ modules = modules.filter(({name}) => name !== 'turf');
 
 test('turf - required files', t => {
     for (const {name, dir} of modules) {
-        for (const filename of ['test.js', 'bench.js', 'index.js', 'index.d.ts', 'LICENSE', 'README.md']) {
+        for (const filename of ['test.js', 'bench.js', 'index.js', 'index.d.ts', 'LICENSE', 'README.md', 'yarn.lock']) {
             if (!fs.existsSync(path.join(dir, filename))) t.fail(`${name} ${filename} is required`);
         }
         // if (!fs.existsSync(path.join(dir, 'types.ts'))) t.fail(`${name} types.ts is required`);
