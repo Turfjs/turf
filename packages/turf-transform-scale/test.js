@@ -4,11 +4,13 @@ const path = require('path');
 const load = require('load-json-file');
 const write = require('write-json-file');
 const truncate = require('@turf/truncate');
+const invariant = require('@turf/invariant');
 const {point, lineString, geometryCollection, featureCollection} = require('@turf/helpers');
 const scale = require('./');
 const center = require('@turf/center');
 const centroid = require('@turf/centroid');
 const turfBBox = require('@turf/bbox');
+const getCoord = invariant.getCoord;
 
 const directories = {
     in: path.join(__dirname, 'test', 'in') + path.sep,
@@ -128,7 +130,7 @@ function markedOrigin(geojson, origin, properties) {
     if (origin === undefined || origin === null) origin = 'centroid';
 
     // Input Geometry|Feature<Point>|Array<number>
-    if (Array.isArray(origin) || typeof origin === 'object') return getCoord(origin);
+    if (Array.isArray(origin) || typeof origin === 'object') return point(getCoord(origin), properties);
 
     // Define BBox
     var bbox = (geojson.bbox) ? geojson.bbox : turfBBox(geojson);

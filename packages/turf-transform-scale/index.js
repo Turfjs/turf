@@ -46,11 +46,10 @@ module.exports = function (geojson, factor, origin, mutate) {
     if (factor === 1 || isPoint) return geojson;
 
     // Scale each coordinate
-    var scaleFactor = (origin === 'center' || origin === 'centroid') ? factor / 2 : factor;
     coordEach(geojson, function (coord) {
         var originalDistance = rhumbDistance(origin, coord);
         var bearing = rhumbBearing(origin, coord);
-        var newDistance = originalDistance * scaleFactor;
+        var newDistance = originalDistance * factor;
         var newCoord = getCoords(rhumbDestination(origin, newDistance, bearing));
         coord[0] = newCoord[0];
         coord[1] = newCoord[1];
