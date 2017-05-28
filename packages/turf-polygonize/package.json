@@ -3,6 +3,9 @@
   "version": "4.3.0",
   "description": "turf polygonize module",
   "main": "index.js",
+  "files": [
+    "index.js"
+  ],
   "scripts": {
     "test": "tape test.js"
   },
