@@ -1,5 +1,5 @@
 const {orientationIndex, envelopeIsEqual, envelopeContains, coordinatesEqual} = require('./util'),
-    {multiPoint, polygon} = require('@turf/helpers'),
+    {multiPoint, polygon, point} = require('@turf/helpers'),
     envelope = require('@turf/envelope'),
     inside = require('@turf/inside');
 
@@ -14,7 +14,7 @@ class EdgeRing extends Array {
      * equal (in 2D)
      * geos::geom::LinearRing::validateConstruction
      *
-     * @returns {Boolean}
+     * @returns {Boolean} - Validity of the EdgeRing
      */
     isValid() {
         // TODO: stub
@@ -30,21 +30,21 @@ class EdgeRing extends Array {
         // XXX: Assuming Ring is valid
         // Find highest point
         const hiIndex = this.reduce((high, edge, i) => {
-            if (edge.from.coordinates[1] > this[high].from.coordinates[1])
-                high = i;
-            return high;
-        }, 0),
-            iPrev = (hiIndex == 0 ? this.length : hiIndex) -1,
+                if (edge.from.coordinates[1] > this[high].from.coordinates[1])
+                    high = i;
+                return high;
+            }, 0),
+            iPrev = (hiIndex === 0 ? this.length : hiIndex) - 1,
             iNext = (hiIndex + 1) % this.length,
             disc = orientationIndex(this[iPrev].from.coordinates, this[hiIndex].from.coordinates, this[iNext].from.coordinates);
 
-        if (disc == 0)
+        if (disc === 0)
             return this[iPrev].from.coordinates[0] > this[iNext].from.coordinates[0];
         return disc > 0;
     }
 
     /** Creates a MultiPoint representing the EdgeRing (discarts edges directions).
-     * @returns {Feature<MultiPoint>}
+     * @returns {Feature<MultiPoint>} - Multipoint representation of the EdgeRing
      */
     toMultiPoint() {
         return multiPoint(this.map(edge => edge.from.coordinates));
@@ -52,7 +52,7 @@ class EdgeRing extends Array {
 
     /** Creates a Polygon representing the EdgeRing.
      * XXX: the polygon could be cached
-     * @returns {Feature<Polygon>}
+     * @returns {Feature<Polygon>} - Polygon representation of the Edge Ring
      */
     toPolygon() {
         const coordinates = this.map(edge => edge.from.coordinates);
@@ -69,12 +69,12 @@ class EdgeRing extends Array {
     }
 
     /**
-     * geos::operation::polygonize::EdgeRing::findEdgeRingContaining
+     * `geos::operation::polygonize::EdgeRing::findEdgeRingContaining`
      *
-     * @param {EdgeRing} edgeRing
-     * @param {EdgeRing[]} shellList
+     * @param {EdgeRing} testEdgeRing - EdgeRing to look in the list
+     * @param {EdgeRing[]} shellList - List of EdgeRing in which to search
      *
-     * @returns {EdgeRing}
+     * @returns {EdgeRing} - EdgeRing which contains the testEdgeRing
      */
     static findEdgeRingContaining(testEdgeRing, shellList) {
         const testEnvelope = testEdgeRing.getEnvelope();
@@ -107,8 +107,8 @@ class EdgeRing extends Array {
 
     /** Checks if the point is inside the edgeRing
      *
-     * @param {Feature<Point>} point
-     * @returns {Boolean}
+     * @param {Feature<Point>} point - Point to check if it is inside the edgeRing
+     * @returns {Boolean} - True if it is inside, False otherwise
      */
     inside(point) {
         return inside(point, this.toPolygon());
