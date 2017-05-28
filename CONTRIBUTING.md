@@ -30,12 +30,12 @@ turf-<module>
 │   index.d.ts
 │   bench.js
 │   test.js
+|   types.ts
 │   package.json
 │   README.md
 │   LICENSE
 │
 └───tests
-    │   types.ts
     │
     ├───in
     │   points.geojson
