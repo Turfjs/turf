@@ -10,6 +10,7 @@ the centroid of a set of polygons.
 **Parameters**
 
 -   `features` **([Feature](http://geojson.org/geojson-spec.html#feature-objects) \| [FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects))** input features
+-   `properties` **\[[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)]** a properties object
 
 **Examples**
 
@@ -23,7 +24,7 @@ var polygon = {
   }
 };
 
-var centroid = turf.centroid(polygon);
+var centroid = turf.centroid(polygon, {'marker-symbol': 'circle'});
 
 //addToMap
 var addToMap = [polygon, centroid]
