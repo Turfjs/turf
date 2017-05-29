@@ -1,0 +1,29 @@
+{
+  "type": "Feature",
+  "properties": {
+    "factor": 0.1
+  },
+  "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+      [
+        [
+          0,
+          29
+        ],
+        [
+          3.5,
+          29
+        ],
+        [
+          2.5,
+          32
+        ],
+        [
+          0,
+          29
+        ]
+      ]
+    ]
+  }
+}

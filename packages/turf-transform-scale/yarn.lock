@@ -2,6 +2,26 @@
 # yarn lockfile v1
 
 
+"@turf/bbox@^4.3.0":
+  version "4.3.0"
+  resolved "https://registry.yarnpkg.com/@turf/bbox/-/bbox-4.3.0.tgz#644c4b745172d21aae70d1584b2a7866f1040865"
+  dependencies:
+    "@turf/meta" "^4.3.0"
+
+"@turf/center@^4.3.0":
+  version "4.3.0"
+  resolved "https://registry.yarnpkg.com/@turf/center/-/center-4.3.0.tgz#9587959d3c1717fb99b7a53c878aaa571009fbb4"
+  dependencies:
+    "@turf/bbox" "^4.3.0"
+    "@turf/helpers" "^4.3.0"
+
+"@turf/centroid@^4.3.0":
+  version "4.3.0"
+  resolved "https://registry.yarnpkg.com/@turf/centroid/-/centroid-4.3.0.tgz#086f6f562b934f3a4ccfb9d453c872357462d739"
+  dependencies:
+    "@turf/helpers" "^4.3.0"
+    "@turf/meta" "^4.3.0"
+
 "@turf/helpers@^4.3.0":
   version "4.3.0"
   resolved "https://registry.yarnpkg.com/@turf/helpers/-/helpers-4.3.0.tgz#7b2f733aa0eb3ea1f07d467ac02ede00cc6cde0d"
@@ -14,9 +34,24 @@
   version "4.3.0"
   resolved "https://registry.yarnpkg.com/@turf/meta/-/meta-4.3.0.tgz#eb11dd2c2511524258123767fe0f5c3bd963e8d7"
 
+"@turf/rhumb-bearing@^4.3.0":
+  version "4.3.1"
+  resolved "https://registry.yarnpkg.com/@turf/rhumb-bearing/-/rhumb-bearing-4.3.1.tgz#0d25e423d6eadb0ee954317fd0ec710453cc8322"
+  dependencies:
+    "@turf/invariant" "^4.3.0"
+    geodesy "1.1.1"
+
 "@turf/rhumb-destination@^4.3.0":
   version "4.3.1"
   resolved "https://registry.yarnpkg.com/@turf/rhumb-destination/-/rhumb-destination-4.3.1.tgz#1685f3da434249032ca485faf660bf7e0b1564a4"
+  dependencies:
+    "@turf/helpers" "^4.3.0"
+    "@turf/invariant" "^4.3.0"
+    geodesy "1.1.1"
+
+"@turf/rhumb-distance@^4.3.0":
+  version "4.3.1"
+  resolved "https://registry.yarnpkg.com/@turf/rhumb-distance/-/rhumb-distance-4.3.1.tgz#0bc7dd472e27ccb0f3713f2ecaac7e34c168dad6"
   dependencies:
     "@turf/helpers" "^4.3.0"
     "@turf/invariant" "^4.3.0"
