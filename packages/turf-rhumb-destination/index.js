@@ -51,5 +51,8 @@ module.exports = function (origin, distance, bearing, units) {
     var pt = new GeodesyLatLon(coords[1], coords[0]);
     var destination = pt.rhumbDestinationPoint(distanceInMeters, bearing);
 
+    // compensate the crossing of the 180th meridian (https://macwright.org/2016/09/26/the-180th-meridian.html)
+    // solution from https://github.com/mapbox/mapbox-gl-js/issues/3250#issuecomment-294887678
+    destination.lon += (destination.lon - coords[0] > 180) ? -360 : (coords[0] - destination.lon > 180) ? 360 : 0;
     return point([destination.lon, destination.lat]);
 };

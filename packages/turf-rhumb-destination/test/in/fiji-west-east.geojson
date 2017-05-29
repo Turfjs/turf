@@ -1,0 +1,14 @@
+{
+	"type": "Feature",
+	"properties": {
+		"bearing": 120,
+		"dist": 150
+	},
+	"geometry": {
+		"type": "Point",
+		"coordinates": [
+			179.5,
+			-16.5
+		]
+	}
+}
