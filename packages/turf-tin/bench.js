@@ -1,17 +1,12 @@
-global.tin = require('./');
-var Benchmark = require('benchmark');
-var fs = require('fs');
+const Benchmark = require('benchmark');
+const fs = require('fs');
+const tin = require('./');
 
-global.points = JSON.parse(fs.readFileSync(__dirname+'/test/Points.geojson'));
+const points = JSON.parse(fs.readFileSync(__dirname+'/test/Points.json'));
 
-var suite = new Benchmark.Suite('turf-tin');
+const suite = new Benchmark.Suite('turf-tin');
 suite
-  .add('turf-tin',function () {
-    global.tin(global.points, 'elevation');
-  })
-  .on('cycle', function (event) {
-    console.log(String(event.target));
-  })
-  .on('complete', function () {
-  })
+  .add('turf-tin', () => tin(points, 'elevation'))
+  .on('cycle', event => console.log(String(event.target)))
+  .on('complete', () => {})
   .run();

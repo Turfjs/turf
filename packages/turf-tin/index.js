@@ -5,14 +5,14 @@ var polygon = helpers.polygon;
 var featurecollection = helpers.featureCollection;
 
 /**
- * Takes a set of {@link Point|points} and the name of a z-value property and
- * creates a [Triangulated Irregular Network](http://en.wikipedia.org/wiki/Triangulated_irregular_network),
+ * Takes a set of {@link Point|points} and creates a
+ * [Triangulated Irregular Network](http://en.wikipedia.org/wiki/Triangulated_irregular_network),
  * or a TIN for short, returned as a collection of Polygons. These are often used
  * for developing elevation contour maps or stepped heat visualizations.
  *
- * This triangulates the points, as well as adds properties called `a`, `b`,
- * and `c` representing the value of the given `propertyName` at each of
- * the points that represent the corners of the triangle.
+ * If an optional z-value property is provided then it is added as properties called `a`, `b`,
+ * and `c` representing its value at each of the points that represent the corners of the
+ * triangle.
  *
  * @name tin
  * @param {FeatureCollection<Point>} points input points
@@ -39,24 +39,42 @@ var featurecollection = helpers.featureCollection;
  */
 module.exports = function (points, z) {
     //break down points
+    var isPointZ = false;
     return featurecollection(triangulate(points.features.map(function (p) {
         var point = {
             x: p.geometry.coordinates[0],
             y: p.geometry.coordinates[1]
         };
-        if (z) point.z = p.properties[z];
+        if (z) {
+            point.z = p.properties[z];
+        } else if (p.geometry.coordinates.length === 3) {
+            isPointZ = true;
+            point.z = p.geometry.coordinates[2];
+        }
         return point;
     })).map(function (triangle) {
-        return polygon([[
-        [triangle.a.x, triangle.a.y],
-        [triangle.b.x, triangle.b.y],
-        [triangle.c.x, triangle.c.y],
-        [triangle.a.x, triangle.a.y]
-        ]], {
-            a: triangle.a.z,
-            b: triangle.b.z,
-            c: triangle.c.z
-        });
+
+        var a = [triangle.a.x, triangle.a.y];
+        var b = [triangle.b.x, triangle.b.y];
+        var c = [triangle.c.x, triangle.c.y];
+        var properties = {};
+
+        // Add z coordinates to triangle points if user passed
+        // them in that way otherwise add it as a property.
+        if (isPointZ) {
+            a.push(triangle.a.z);
+            b.push(triangle.b.z);
+            c.push(triangle.c.z);
+        } else {
+            properties = {
+                a: triangle.a.z,
+                b: triangle.b.z,
+                c: triangle.c.z
+            };
+        }
+
+        return polygon([[a, b, c, a]], properties);
+
     }));
 };
 
