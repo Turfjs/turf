@@ -1,17 +1,47 @@
-var centerOfMass = require('./');
-var Benchmark = require('benchmark');
-var fs = require('fs');
+const fs = require('fs');
+const path = require('path');
+const glob = require('glob');
+const load = require('load-json-file');
+const Benchmark = require('benchmark');
+const centerOfMass = require('./');
 
-var fc = JSON.parse(fs.readFileSync(__dirname+'/test/fixtures/in/elevation1.geojson'));
-var suite = new Benchmark.Suite('turf-center-of-mass');
+const fixtures = glob.sync(path.join(__dirname, 'test', 'in', '*.geojson')).map(input => {
+    return {
+        name: path.parse(input).name,
+        geojson: load.sync(input)
+    }
+});
+
+/**
+ * Single Process Benchmark
+ *
+ * feature-collection: 1.645ms
+ * imbalanced-polygon: 0.073ms
+ * linestring: 0.134ms
+ * point: 0.253ms
+ * polygon: 0.034ms
+ */
+for (const {name, geojson} of fixtures) {
+    console.time(name);
+    centerOfMass(geojson);
+    console.timeEnd(name);
+}
+
+/**
+ * Benchmark Results
+ *
+ * feature-collection x 268,173 ops/sec ±1.69% (89 runs sampled)
+ * imbalanced-polygon x 227,405 ops/sec ±1.76% (86 runs sampled)
+ * linestring x 975,430 ops/sec ±3.57% (83 runs sampled)
+ * point x 8,949,698 ops/sec ±2.01% (85 runs sampled)
+ * polygon x 463,325 ops/sec ±1.73% (89 runs sampled)
+ */
+const suite = new Benchmark.Suite('turf-center-of-mass');
+for (const {name, geojson} of fixtures) {
+    suite.add(name, () => centerOfMass(geojson));
+}
+
 suite
-  .add('turf-center-of-mass',function () {
-    centerOfMass(fc.features[0]);
-  })
-  .on('cycle', function (event) {
-    console.log(String(event.target));
-  })
-  .on('complete', function () {
-
-  })
-  .run();
+    .on('cycle', e => console.log(String(e.target)))
+    .on('complete', () => {})
+    .run();
