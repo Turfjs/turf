@@ -29,13 +29,16 @@
   "devDependencies": {
     "benchmark": "^2.1.4",
     "glob": "~4.3.5",
-    "tape": "^4.6.3"
+    "load-json-file": "^2.0.0",
+    "tape": "^4.6.3",
+    "write-json-file": "^2.2.0"
   },
   "dependencies": {
     "@turf/centroid": "^4.3.0",
     "@turf/convex": "^4.3.0",
     "@turf/explode": "^4.3.0",
     "@turf/helpers": "^4.3.0",
+    "@turf/invariant": "^4.3.0",
     "@turf/meta": "^4.3.0"
   }
 }

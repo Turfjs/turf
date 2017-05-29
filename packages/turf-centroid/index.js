@@ -1,15 +1,13 @@
-var each = require('@turf/meta').coordEach;
+var coordEach = require('@turf/meta').coordEach;
 var point = require('@turf/helpers').point;
 
 /**
- * Takes one or more features and calculates the centroid using
- * the mean of all vertices.
- * This lessens the effect of small islands and artifacts when calculating
- * the centroid of a set of polygons.
+ * Takes one or more features and calculates the centroid using the mean of all vertices.
+ * This lessens the effect of small islands and artifacts when calculating the centroid of a set of polygons.
  *
  * @name centroid
- * @param {(Feature|FeatureCollection)} features input features
- * @param {Object=} properties an Object that is used as the {@link Feature}'s properties
+ * @param {GeoJSON} geojson GeoJSON to be centered
+ * @param {Object} [properties] an Object that is used as the {@link Feature}'s properties
  * @returns {Feature<Point>} the centroid of the input features
  * @example
  * var polygon = {
@@ -26,9 +24,11 @@ var point = require('@turf/helpers').point;
  * //addToMap
  * var addToMap = [polygon, centroid]
  */
-module.exports = function (features, properties) {
-    var xSum = 0, ySum = 0, len = 0;
-    each(features, function (coord) {
+module.exports = function (geojson, properties) {
+    var xSum = 0;
+    var ySum = 0;
+    var len = 0;
+    coordEach(geojson, function (coord) {
         xSum += coord[0];
         ySum += coord[1];
         len++;

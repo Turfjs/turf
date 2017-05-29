@@ -2,14 +2,12 @@
 
 # centroid
 
-Takes one or more features and calculates the centroid using
-the mean of all vertices.
-This lessens the effect of small islands and artifacts when calculating
-the centroid of a set of polygons.
+Takes one or more features and calculates the centroid using the mean of all vertices.
+This lessens the effect of small islands and artifacts when calculating the centroid of a set of polygons.
 
 **Parameters**
 
--   `features` **([Feature](http://geojson.org/geojson-spec.html#feature-objects) \| [FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects))** input features
+-   `geojson` **[GeoJSON](http://geojson.org/geojson-spec.html#geojson-objects)** GeoJSON to be centered
 -   `properties` **\[[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)]** an Object that is used as the [Feature](http://geojson.org/geojson-spec.html#feature-objects)'s properties
 
 **Examples**
