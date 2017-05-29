@@ -6,12 +6,12 @@ var boxFC = JSON.parse(fs.readFileSync(__dirname+'/test/in/box.geojson'));
 var blockFC = JSON.parse(fs.readFileSync(__dirname+'/test/in/block.geojson'));
 
 test('center', function(t){
-  var boxFcCenter = center(boxFC);
+  var boxFcCenter = center(boxFC, {'marker-symbol': 'circle'});
   boxFcCenter.properties['marker-color'] = '#f0f';
   t.ok(boxFcCenter, 'should return the proper center for a FeatureCollection');
   t.deepEqual(boxFcCenter.geometry.coordinates, [65.56640625, 43.59448261855401]);
 
-  var blockFcCenter = center(blockFC.features[0]);
+  var blockFcCenter = center(blockFC.features[0], {'marker-symbol': 'circle'});
   blockFcCenter.properties['marker-color'] = '#f0f';
   t.ok(blockFcCenter, 'should return the proper center for a FeatureCollection');
   t.deepEqual(blockFcCenter.geometry.coordinates, [ -114.02911397119072, 51.050271120392566]);

@@ -35,6 +35,7 @@
     {
       "type": "Feature",
       "properties": {
+        "marker-symbol": "circle",
         "marker-color": "#f0f"
       },
       "geometry": {

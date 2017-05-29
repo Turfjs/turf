@@ -6,6 +6,7 @@ var point = require('@turf/helpers').point;
  *
  * @name center
  * @param {FeatureCollection|Feature<any>} layer input features
+ * @param {Object=} properties an Object that is used as the {@link Feature}'s properties
  * @returns {Feature<Point>} a Point feature at the absolute center point of all input features
  * @example
  * var features = {
@@ -43,9 +44,9 @@ var point = require('@turf/helpers').point;
  * center.properties['marker-color'] = '#000';
  * var addToMap = [features, center]
  */
-module.exports = function (layer) {
+module.exports = function (layer, properties) {
     var ext = bbox(layer);
     var x = (ext[0] + ext[2]) / 2;
     var y = (ext[1] + ext[3]) / 2;
-    return point([x, y]);
+    return point([x, y], properties);
 };

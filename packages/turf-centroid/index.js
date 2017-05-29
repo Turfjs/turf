@@ -9,6 +9,7 @@ var point = require('@turf/helpers').point;
  *
  * @name centroid
  * @param {(Feature|FeatureCollection)} features input features
+ * @param {Object=} properties an Object that is used as the {@link Feature}'s properties
  * @returns {Feature<Point>} the centroid of the input features
  * @example
  * var polygon = {
@@ -25,12 +26,12 @@ var point = require('@turf/helpers').point;
  * //addToMap
  * var addToMap = [polygon, centroid]
  */
-module.exports = function (features) {
+module.exports = function (features, properties) {
     var xSum = 0, ySum = 0, len = 0;
     each(features, function (coord) {
         xSum += coord[0];
         ySum += coord[1];
         len++;
     }, true);
-    return point([xSum / len, ySum / len]);
+    return point([xSum / len, ySum / len], properties);
 };
