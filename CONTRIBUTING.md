@@ -9,7 +9,7 @@
 - GeoJSON is the lingua franca of Turf. It should be used as the data structure for anything that can be represented as geography.
 - Avoid large dependencies at all costs.
 - Turf is used in a wide range of places. Make sure that your code can run in the browser (ie: don't make calls to external services, don't hit the filesystem, etc.).
-- The `README.md` files in `packages/turf-<module>` are automatically generated from the [JSDocs](http://usejsdoc.org/) of the `index.js`. Please modify the JSDocs instead of modifying the `README.md` files directly. To update/create the `README.md` execute [`./scripts/genereate-readme`](https://github.com/Turfjs/turf/blob/master/scripts/generate-readmes) or run `npm test` from the root TurfJS directory.
+- The `README.md` files in `packages/turf-<module>` are automatically generated from the [JSDocs](http://usejsdoc.org/) of the `index.js`. Please modify the JSDocs instead of modifying the `README.md` files directly. To update/create the `README.md` execute [`./scripts/generate-readme`](https://github.com/Turfjs/turf/blob/master/scripts/generate-readmes) or run `npm run docs` from the root TurfJS directory.
 
 ## Code Style
 
