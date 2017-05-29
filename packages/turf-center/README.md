@@ -7,7 +7,7 @@ Takes a [Feature](http://geojson.org/geojson-spec.html#feature-objects) or [Feat
 **Parameters**
 
 -   `layer` **([FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects) \| [Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;any>)** input features
--   `properties` **\[[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)]** a properties object
+-   `properties` **\[[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)]** an Object that is used as the [Feature](http://geojson.org/geojson-spec.html#feature-objects)'s properties
 
 **Examples**
 
@@ -40,9 +40,11 @@ var features = {
   ]
 };
 
-var center = turf.center(features, {'marker-size': 'large', 'marker-color':'#000'});
+var center = turf.center(features);
 
 //addToMap
+center.properties['marker-size'] = 'large';
+center.properties['marker-color'] = '#000';
 var addToMap = [features, center]
 ```
 
