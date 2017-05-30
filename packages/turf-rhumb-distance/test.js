@@ -30,18 +30,20 @@ test('rhumb-distance', t => {
             greatCircleDistance: round(distance(pt1, pt2, 'kilometers'), 6),
             radians: round(rhumbDistance(pt1, pt2, 'radians'), 6),
             degrees: round(rhumbDistance(pt1, pt2, 'degrees'), 6)
-        }
+        };
 
         if (process.env.REGEN) write.sync(directories.out + name + '.json', distances);
         t.deepEqual(distances, load.sync(directories.out + name + '.json'), name);
 
-        // Now fails due to approximation error
-        // TODO: to be added once earth radius is updated to 6371km
-        // t.ok(distances.kilometers > distances.greatCircleDistance, name + ' distance comparison');
-
-        t.throws(() => rhumbDistance(pt1, pt2, 'blah'), 'unknown option given to units');
-        t.throws(() => rhumbDistance(null, pt2), 'null point');
-        t.throws(() => rhumbDistance(pt1, 'point', 'miles'), 'invalid point');
     }
+
+    // Now fails due to approximation error
+    // TODO: to be added once earth radius is updated to 6371km
+    // t.ok(distances.kilometers > distances.greatCircleDistance, name + ' distance comparison');
+
+    t.throws(() => rhumbDistance(pt1, pt2, 'blah'), 'unknown option given to units');
+    t.throws(() => rhumbDistance(null, pt2), 'null point');
+    t.throws(() => rhumbDistance(pt1, 'point', 'miles'), 'invalid point');
+
     t.end();
 });

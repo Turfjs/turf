@@ -2,6 +2,21 @@
 # yarn lockfile v1
 
 
+"@turf/distance@^4.3.0":
+  version "4.3.0"
+  resolved "https://registry.yarnpkg.com/@turf/distance/-/distance-4.3.0.tgz#b533ba75936fea897ee1987824714b803df9061c"
+  dependencies:
+    "@turf/helpers" "^4.3.0"
+    "@turf/invariant" "^4.3.0"
+
+"@turf/helpers@^4.3.0":
+  version "4.3.0"
+  resolved "https://registry.yarnpkg.com/@turf/helpers/-/helpers-4.3.0.tgz#7b2f733aa0eb3ea1f07d467ac02ede00cc6cde0d"
+
+"@turf/invariant@^4.3.0":
+  version "4.3.0"
+  resolved "https://registry.yarnpkg.com/@turf/invariant/-/invariant-4.3.0.tgz#5bd1ce6ae51b1229dc0dc7d09d973fabae49af89"
+
 balanced-match@^0.4.1:
   version "0.4.2"
   resolved "https://registry.yarnpkg.com/balanced-match/-/balanced-match-0.4.2.tgz#cb3f3e3c732dc0f01ee70b403f302e61d7709838"
