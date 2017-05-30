@@ -39,7 +39,9 @@
   "dependencies": {
     "@turf/helpers": "^4.3.0",
     "@turf/inside": "^4.3.0",
+    "@turf/line-intersect": "^4.3.0",
     "@turf/line-overlap": "^4.3.0",
+    "@turf/polygon-to-linestring": "^4.3.0",
     "deep-equal": "^1.0.1"
   }
 }
