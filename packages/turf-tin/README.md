@@ -2,14 +2,14 @@
 
 # tin
 
-Takes a set of [points](http://geojson.org/geojson-spec.html#point) and the name of a z-value property and
-creates a [Triangulated Irregular Network](http://en.wikipedia.org/wiki/Triangulated_irregular_network),
+Takes a set of [points](http://geojson.org/geojson-spec.html#point) and creates a
+[Triangulated Irregular Network](http://en.wikipedia.org/wiki/Triangulated_irregular_network),
 or a TIN for short, returned as a collection of Polygons. These are often used
 for developing elevation contour maps or stepped heat visualizations.
 
-This triangulates the points, as well as adds properties called `a`, `b`,
-and `c` representing the value of the given `propertyName` at each of
-the points that represent the corners of the triangle.
+If an optional z-value property is provided then it is added as properties called `a`, `b`,
+and `c` representing its value at each of the points that represent the corners of the
+triangle.
 
 **Parameters**
 
