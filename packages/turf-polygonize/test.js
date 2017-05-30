@@ -21,10 +21,12 @@ const fixtures = fs.readdirSync(directories.in).map(filename => {
 
 test('turf-polygonize', t => {
   for (const {filename, name, geojson}  of fixtures) {
-    const results = polygonize(geojson);
+    const geojsonBefore = JSON.parse(JSON.stringify(geojson)),
+      results = polygonize(geojson);
 
     if (process.env.REGEN) write.sync(directories.out + filename, results);
     t.deepEquals(results, load.sync(directories.out + filename), name);
+    t.deepEquals(geojson, geojsonBefore, `${name} - input should NOT be mutated`);
   }
   t.end();
 });
