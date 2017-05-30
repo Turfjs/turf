@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const test = require('tape');
-const tin = require('./index.js');
+const tin = require('./');
 
 const points = require(path.join(__dirname,  'test', 'Points.json'));
 
@@ -11,6 +11,7 @@ test('tin - z property', t => {
   t.equal(tinned.features[0].geometry.type, 'Polygon');
   t.equal(tinned.features.length, 24);
   t.deepEqual(tinned, expected, 'tinned polygons match');
+  fs.writeFileSync(path.join(__dirname, 'test', 'Tin.json'), JSON.stringify(tinned, null, 2));
   t.end();
 });
 
@@ -20,5 +21,6 @@ test('tin - z coordinate', t => {
   t.equal(tinned.features[0].geometry.type, 'Polygon');
   t.equal(tinned.features.length, 24);
   t.deepEqual(tinned, expected, 'tinned polygons match');
+  fs.writeFileSync(path.join(__dirname, 'test', 'Tin-z.json'), JSON.stringify(tinned, null, 2));
   t.end();
 });

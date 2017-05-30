@@ -38,6 +38,7 @@ var featurecollection = helpers.featureCollection;
  * }
  */
 module.exports = function (points, z) {
+    if (points.type !== 'FeatureCollection') throw new Error('points must be a FeatureCollection');
     //break down points
     var isPointZ = false;
     return featurecollection(triangulate(points.features.map(function (p) {

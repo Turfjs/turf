@@ -1,8 +1,9 @@
 const Benchmark = require('benchmark');
 const fs = require('fs');
+const path = require('path');
 const tin = require('./');
 
-const points = JSON.parse(fs.readFileSync(__dirname+'/test/Points.json'));
+const points = JSON.parse(fs.readFileSync(path.join(__dirname, 'test', 'Points.json')));
 
 const suite = new Benchmark.Suite('turf-tin');
 suite
