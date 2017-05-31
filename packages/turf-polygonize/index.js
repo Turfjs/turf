@@ -12,9 +12,9 @@ var lineSegment = require('@turf/line-segment');
  * - Cut Edges (bridges): edges that are connected at both ends but which do not form part of a polygon.
  *
  * @name polygonize
- * @param {FeatureCollection|Geometry|Feature<LineString|MultiLineString>} lines Lines in order to polygonize
- * @returns {FeatureCollection<Polygon>} Polygons created
+ * @param {FeatureCollection|Geometry|Feature<LineString|MultiLineString>} geojson (Multi)LineStrings in order to polygonize
+ * @returns {FeatureCollection<Polygon>} Polygons created from connected LineStrings
  */
-module.exports = function (lines) {
-    return polygonize(lineSegment(lines));
+module.exports = function (geojson) {
+    return polygonize(lineSegment(geojson));
 };

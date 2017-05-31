@@ -23,8 +23,8 @@ const fixtures = fs.readdirSync(directories.in).map(filename => {
 test('turf-polygonize', t => {
     for (const {filename, name, geojson}  of fixtures) {
         const polygonized = polygonize(geojson);
-        const results = featureCollection([]);
 
+        const results = featureCollection([]);
         featureEach(geojson, feature => results.features.push(colorize(feature)));
         featureEach(polygonized, feature => results.features.push(colorize(feature, '#00F', 3)));
 
