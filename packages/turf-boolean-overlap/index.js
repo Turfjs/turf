@@ -6,36 +6,54 @@ var lineIntersect = require('@turf/line-intersect');
 var deepEqual = require('deep-equal');
 
 /**
- * Overlap compares two geometries of the same dimension and returns (TRUE) if their
+ * Compares two geometries of the same dimension and returns (TRUE) if their
  * intersection set results in a geometry different from both but of the same dimension.
  *
- * @name overlap
- * @param {feature1} feature1 GeoJSON Feature
- * @param {feature2} feature2 GeoJSON Feature
- * @returns {Boolean} Features overlap
+ * @name booleanOverlap
+ * @param {Geometry|Feature<MultiPoint|LineString|Polygon>} feature1 GeoJSON Feature or geometry
+ * @param {Geometry|Feature<MultiPoint|LineString|Polygon>} feature2 GeoJSON Feature or geometry
+ * @returns {Boolean} true/false
  * @example
  * turf.booleanOverlap(feature1, feature2);
  * //=true/false
  */
 module.exports = function (feature1, feature2) {
-    if (feature1.geometry.type === 'MultiPoint' && feature2.geometry.type === 'MultiPoint') {
-        return doMultiPointsOverlap(feature1, feature2);
-    }
-    if (feature1.geometry.type === 'LineString' && feature2.geometry.type === 'LineString') {
-        return isLineOnLine(feature1, feature2);
-    }
-    if (feature1.geometry.type === 'Polygon' && feature2.geometry.type === 'Polygon') {
-        return isPolyInPoly(feature1, feature2);
+    var type1 = getGeomType(feature1);
+    var type2 = getGeomType(feature2);
+    var geom1 = getGeom(feature1);
+    var geom2 = getGeom(feature2);
+
+    switch (type1) {
+    case 'MultiPoint':
+        switch (type2) {
+        case 'MultiPoint':
+            return doMultiPointsOverlap(geom1, geom2);
+        }
+        throw new Error('feature2 ' + type2 + ' geometry not supported');
+    case 'LineString':
+        switch (type2) {
+        case 'LineString':
+            return isLineOnLine(geom1, geom2);
+        }
+        throw new Error('feature2 ' + type2 + ' geometry not supported');
+    case 'Polygon':
+        switch (type2) {
+        case 'Polygon':
+            return isPolyInPoly(geom1, geom2);
+        }
+        throw new Error('feature2 ' + type2 + ' geometry not supported');
+    default:
+        throw new Error('feature1 ' + type1 + ' geometry not supported');
     }
 };
 
 function doMultiPointsOverlap(multipoint1, multipoint2) {
-    if (deepEqual(multipoint1, multipoint2)) {
-        return false;
-    }
-    for (var i = 0; i < multipoint2.geometry.coordinates.length; i++) {
-        for (var i2 = 0; i2 < multipoint1.geometry.coordinates.length; i2++) {
-            if (deepEqual(multipoint2.geometry.coordinates[i], multipoint1.geometry.coordinates[i2])) {
+    for (var i = 0; i < multipoint2.coordinates.length; i++) {
+        for (var i2 = 0; i2 < multipoint1.coordinates.length; i2++) {
+            if (deepEqual(multipoint2.coordinates[i], multipoint1.coordinates[i2])) {
+                if (deepEqual(multipoint1, multipoint2)) {
+                    return false;
+                }
                 return true;
             }
         }
@@ -49,8 +67,8 @@ function isLineOnLine(lineString1, lineString2) {
     }
     var overlappingLine = lineOverlap(lineString1, lineString2);
     if (overlappingLine.features.length !== 0) {
-        for (var i = 0; i < lineString1.geometry.coordinates.length; i++) {
-            if (!ispointOnLine(lineString2.geometry, lineString1.geometry.coordinates[i])) {
+        for (var i = 0; i < lineString1.coordinates.length; i++) {
+            if (!ispointOnLine(lineString2, lineString1.coordinates[i])) {
                 return true;
             }
         }
@@ -58,13 +76,13 @@ function isLineOnLine(lineString1, lineString2) {
     return false;
 }
 
-function ispointInPoly(Polygon, point) {
-    return inside(point, Polygon);
+function ispointInPoly(polygon, point) {
+    return inside(point, polygon);
 }
 
 function isPolyInPoly(polygon1, polygon2) {
-    for (var i = 0; i < polygon2.geometry.coordinates[0].length; i++) {
-        if (ispointInPoly(polygon1, helpers.point(polygon2.geometry.coordinates[0][i]), true)) {
+    for (var i = 0; i < polygon1.coordinates[0].length; i++) {
+        if (ispointInPoly(polygon2, helpers.point(polygon1.coordinates[0][i]), true)) {
             return true;
         }
     }
@@ -105,4 +123,25 @@ function ispointOnLineSegment(LineSegmentStart, LineSegmentEnd, point) {
     } else {
         return dyl > 0 ? LineSegmentStart[1] <= point[1] && point[1] <= LineSegmentEnd[1] : LineSegmentEnd[1] <= point[1] && point[1] <= LineSegmentStart[1];
     }
+}
+/**
+ * Get Geometry from Feature or Geometry Object
+ * //!! Remove this method when implemented to @turf/invariant
+ *
+ * @private
+ * @param {Feature<any>|Geometry<any>} geojson GeoJSON Feature or Geometry Object
+ * @returns {Geometry<any>} GeoJSON Geometry Object
+ * @throws {Error} if geojson is not a Feature or Geometry Object
+ */
+function getGeom(geojson) {
+    if (geojson.geometry) return geojson.geometry;
+    if (geojson.coordinates) return geojson;
+    throw new Error('geojson must be a feature or geometry object');
+}
+
+// Remove this method when implemented to @turf/invariant
+function getGeomType(geojson) {
+    if (geojson.geometry) return geojson.geometry.type;
+    if (geojson.coordinates) return geojson.type;
+    throw new Error('geojson must be a feature or geometry object');
 }
