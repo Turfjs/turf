@@ -6,6 +6,9 @@ Polygonizes [(Multi)LineString(s)](http://geojson.org/geojson-spec.html#linestri
 
 Implementation of GEOSPolygonize function (`geos::operation::polygonize::Polygonizer`).
 
+Polygonizes a set of lines that represents edges in a planar graph. Edges must be correctly
+noded, i.e., they must only meet at their endpoints.
+
 The implementation correctly handles:
 
 -   Dangles: edges which have one or both ends which are not incident on another edge endpoint.
@@ -13,7 +16,10 @@ The implementation correctly handles:
 
 **Parameters**
 
--   `lines` **([FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects) \| [Geometry](http://geojson.org/geojson-spec.html#geometry) \| [Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;([LineString](http://geojson.org/geojson-spec.html#linestring) \| [MultiLineString](http://geojson.org/geojson-spec.html#multilinestring))>)** Lines in order to polygonize
+-   `geojson` **([FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects) \| [Geometry](http://geojson.org/geojson-spec.html#geometry) \| [Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;([LineString](http://geojson.org/geojson-spec.html#linestring) \| [MultiLineString](http://geojson.org/geojson-spec.html#multilinestring))>)** Lines in order to polygonize
+
+
+-   Throws **[Error](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error)** if geoJson is invalid.
 
 Returns **[FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects)&lt;[Polygon](http://geojson.org/geojson-spec.html#polygon)>** Polygons created
 

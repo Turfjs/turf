@@ -1,5 +1,4 @@
 var polygonize = require('polygonize');
-var lineSegment = require('@turf/line-segment');
 
 /**
  * Polygonizes {@link LineString|(Multi)LineString(s)} into {@link Polygons}.
@@ -19,6 +18,4 @@ var lineSegment = require('@turf/line-segment');
  * @returns {FeatureCollection<Polygon>} Polygons created
  * @throws {Error} if geoJson is invalid.
  */
-module.exports = function (geojson) {
-    return polygonize(lineSegment(geojson));
-};
+module.exports = polygonize;
