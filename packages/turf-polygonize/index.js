@@ -1,10 +1,10 @@
 var polygonize = require('polygonize');
 
-/** Implementation of GEOSPolygonize function (`geos::operation::polygonize::Polygonizer`).
- *
+/**
  * Polygonizes a set of lines that represents edges in a planar graph. Edges must be correctly
- * noded, i.e., they must only meet at their endpoints. LineStrings must only have two coordinate
- * points.
+ * noded, i.e., they must only meet at their endpoints. LineStrings must only have two coordinate points.
+ *
+ * Implementation of GEOSPolygonize function (`geos::operation::polygonize::Polygonizer`).
  *
  * The implementation correctly handles:
  *
@@ -13,7 +13,10 @@ var polygonize = require('polygonize');
  *     of a polygon.
  *
  * @name polygonize
- * @param {FeatureCollection<LineString>} geoJson - Lines in order to polygonize
- * @returns {FeatureCollection<Polygon>} - Polygons created
+ * @param {FeatureCollection<LineString>} lines Lines in order to polygonize
+ * @returns {FeatureCollection<Polygon>} Polygons created
  */
-module.exports = polygonize;
+module.exports = function (lines) {
+    if (lines.type !== 'FeatureCollection') throw new Error('lines must be a FeatureCollection');
+    return polygonize(lines);
+};

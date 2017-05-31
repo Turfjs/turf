@@ -1,32 +1,49 @@
-const test = require('tape'),
-  { featureCollection, lineString, polygon } = require('@turf/helpers'),
-  polygonize = require('./'),
-  fs = require('fs'),
-  path = require('path'),
-  load = require('load-json-file'),
-  write = require('write-json-file');
+const fs = require('fs');
+const test = require('tape');
+const path = require('path');
+const load = require('load-json-file');
+const write = require('write-json-file');
+const {featureCollection, lineString} = require('@turf/helpers');
+const polygonize = require('./');
 
 const directories = {
-  in: path.join(__dirname, 'test', 'in') + path.sep,
-  out: path.join(__dirname, 'test', 'out') + path.sep,
+    in: path.join(__dirname, 'test', 'in') + path.sep,
+    out: path.join(__dirname, 'test', 'out') + path.sep
 };
 
 const fixtures = fs.readdirSync(directories.in).map(filename => {
-  return {
-    filename,
-    name: path.parse(filename).name,
-    geojson: load.sync(directories.in + filename)
-  };
+    return {
+        filename,
+        name: path.parse(filename).name,
+        geojson: load.sync(directories.in + filename)
+    };
 });
 
 test('turf-polygonize', t => {
-  for (const {filename, name, geojson}  of fixtures) {
-    const geojsonBefore = JSON.parse(JSON.stringify(geojson)),
-      results = polygonize(geojson);
+    for (const {filename, name, geojson}  of fixtures) {
+        const results = polygonize(geojson);
 
-    if (process.env.REGEN) write.sync(directories.out + filename, results);
-    t.deepEquals(results, load.sync(directories.out + filename), name);
-    t.deepEquals(geojson, geojsonBefore, `${name} - input should NOT be mutated`);
-  }
-  t.end();
+        if (process.env.REGEN) write.sync(directories.out + filename, results);
+        t.deepEquals(results, load.sync(directories.out + filename), name);
+    }
+    t.end();
+});
+
+test('turf-polygonize -- throws', t => {
+    const line = lineString([[0, 0], [1, 1]]);
+
+    t.throws(() => polygonize(line));
+});
+
+test('turf-polygonize -- input mutation', t => {
+    const lines = featureCollection([
+        lineString([[0, 0], [1, 1]]),
+        lineString([[1, 1], [-1, -1]]),
+        lineString([[-1, -1], [0, 0]])
+    ]);
+    const linesBefore = JSON.parse(JSON.stringify(lines));
+    polygonize(lines);
+
+    t.deepEquals(lines, linesBefore, 'input does not mutate');
+    t.end();
 });
