@@ -3,6 +3,7 @@ const test = require('tape');
 const path = require('path');
 const load = require('load-json-file');
 const write = require('write-json-file');
+const {featureEach} = require('@turf/meta');
 const {featureCollection, lineString} = require('@turf/helpers');
 const polygonize = require('./');
 
@@ -21,7 +22,11 @@ const fixtures = fs.readdirSync(directories.in).map(filename => {
 
 test('turf-polygonize', t => {
     for (const {filename, name, geojson}  of fixtures) {
-        const results = polygonize(geojson);
+        const polygonized = polygonize(geojson);
+        const results = featureCollection([]);
+
+        featureEach(geojson, feature => results.features.push(colorize(feature)));
+        featureEach(polygonized, feature => results.features.push(colorize(feature, '#00F', 3)));
 
         if (process.env.REGEN) write.sync(directories.out + filename, results);
         t.deepEquals(results, load.sync(directories.out + filename), name);
@@ -29,10 +34,17 @@ test('turf-polygonize', t => {
     t.end();
 });
 
-test('turf-polygonize -- throws', t => {
-    const line = lineString([[0, 0], [1, 1]]);
+test('turf-polygonize -- Geometry Support', t => {
+    const line = lineString([[0, 0], [1, 1], [5, 2], [0, 0]]);
 
-    t.throws(() => polygonize(line));
+    t.assert(polygonize(line.geometry), 'line geometry');
+    t.end();
+});
+
+test('turf-polygonize -- throws', t => {
+    // const line = lineString([[0, 0], [1, 1]]);
+
+    // t.throws(() => polygonize(line));
     t.end();
 });
 
@@ -48,3 +60,11 @@ test('turf-polygonize -- input mutation', t => {
     t.deepEquals(lines, linesBefore, 'input does not mutate');
     t.end();
 });
+
+function colorize(feature, color = '#F00', width = 6) {
+    feature.properties['fill'] = color;
+    feature.properties['fill-opacity'] = 0.3;
+    feature.properties['stroke'] = color;
+    feature.properties['stroke-width'] = width;
+    return feature;
+}

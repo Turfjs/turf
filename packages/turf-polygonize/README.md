@@ -1,22 +1,19 @@
 # @turf/polygonize
 
-# index
+# polygonize
+
+Polygonizes [(Multi)LineString(s)](http://geojson.org/geojson-spec.html#linestring) into [Polygons](Polygons).
 
 Implementation of GEOSPolygonize function (`geos::operation::polygonize::Polygonizer`).
-
-Polygonizes a set of lines that represents edges in a planar graph. Edges must be correctly
-noded, i.e., they must only meet at their endpoints. LineStrings must only have two coordinate
-points.
 
 The implementation correctly handles:
 
 -   Dangles: edges which have one or both ends which are not incident on another edge endpoint.
--   Cut Edges (bridges): edges that are connected at both ends but which do not form part
-      of a polygon.
+-   Cut Edges (bridges): edges that are connected at both ends but which do not form part of a polygon.
 
 **Parameters**
 
--   `geoJson` **[FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects)&lt;[LineString](http://geojson.org/geojson-spec.html#linestring)>** Lines in order to polygonize
+-   `lines` **([FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects) \| [Geometry](http://geojson.org/geojson-spec.html#geometry) \| [Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;([LineString](http://geojson.org/geojson-spec.html#linestring) \| [MultiLineString](http://geojson.org/geojson-spec.html#multilinestring))>)** Lines in order to polygonize
 
 Returns **[FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects)&lt;[Polygon](http://geojson.org/geojson-spec.html#polygon)>** Polygons created
 
