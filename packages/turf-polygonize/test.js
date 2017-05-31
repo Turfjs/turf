@@ -33,6 +33,7 @@ test('turf-polygonize -- throws', t => {
     const line = lineString([[0, 0], [1, 1]]);
 
     t.throws(() => polygonize(line));
+    t.end();
 });
 
 test('turf-polygonize -- input mutation', t => {
