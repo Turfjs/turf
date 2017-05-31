@@ -28,10 +28,10 @@ test('turf-rhumb-destination', t => {
         dist = (dist !== undefined) ? dist : 100;
         units = units || 'kilometers';
 
-        const resultPoint = rhumbDestination(inputPoint, dist, bearing, units);
-        const line = truncate(lineString([getCoords(inputPoint), getCoords(resultPoint)], {"stroke": "#F00", "stroke-width": 4}));
+        const destinationPoint = rhumbDestination(inputPoint, dist, bearing, units);
+        const line = truncate(lineString([getCoords(inputPoint), getCoords(destinationPoint)], {"stroke": "#F00", "stroke-width": 4}));
         inputPoint.properties['marker-color'] = '#F00';
-        const result = featureCollection([line, inputPoint, resultPoint]);
+        const result = featureCollection([line, inputPoint, destinationPoint]);
 
         if (process.env.REGEN) write.sync(directories.out + filename, result);
         t.deepEqual(result, load.sync(directories.out + filename), name);
