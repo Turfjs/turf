@@ -48,14 +48,22 @@ module.exports = function (feature1, feature2) {
 };
 
 function doMultiPointsOverlap(multipoint1, multipoint2) {
+    var foundMatch = false;
+    var foundMismatch = false;
     for (var i = 0; i < multipoint2.coordinates.length; i++) {
+        var pointHasMatch = false;
         for (var i2 = 0; i2 < multipoint1.coordinates.length; i2++) {
             if (deepEqual(multipoint2.coordinates[i], multipoint1.coordinates[i2])) {
-                if (deepEqual(multipoint1, multipoint2)) {
-                    return false;
-                }
-                return true;
+                foundMatch = true;
+                pointHasMatch = true;
+                break;
             }
+        }
+        if (!pointHasMatch) {
+            foundMismatch = true;
+        }
+        if (foundMatch && foundMismatch) {
+            return true;
         }
     }
     return false;
@@ -76,8 +84,8 @@ function isLineOnLine(lineString1, lineString2) {
     return false;
 }
 
-function ispointInPoly(polygon, point) {
-    return inside(point, polygon);
+function ispointInPoly(polygon, point, ignoreBoundary) {
+    return inside(point, polygon, ignoreBoundary);
 }
 
 function isPolyInPoly(polygon1, polygon2) {
