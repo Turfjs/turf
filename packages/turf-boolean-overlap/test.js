@@ -1,36 +1,36 @@
-var test = require('tape');
-var path = require('path');
-var fs = require('fs');
-var load = require('load-json-file');
-var overlap = require('./');
+const path = require('path');
+const test = require('tape');
+const glob = require('glob');
+const load = require('load-json-file');
+const overlap = require('./');
 
-var directories = {
-    true: path.join(__dirname, 'test', 'true') + path.sep,
-    false: path.join(__dirname, 'test', 'false') + path.sep
+const directories = {
+    true: path.join(__dirname, 'test', 'true', '*.geojson'),
+    false: path.join(__dirname, 'test', 'false', '*.geojson')
 };
 
-var trueFixtures = fs.readdirSync(directories.true).map(filename => {
-    return {
-        filename,
-        geojson: load.sync(directories.true + filename),
+const fixtures = [];
+
+glob.sync(directories.true).forEach(filepath => {
+    fixtures.push({
+        name: path.parse(filepath).name,
+        geojson: load.sync(filepath),
         matchType: true
-    };
+    });
 });
 
-var falseFixtures = fs.readdirSync(directories.false).map(filename => {
-    return {
-        filename,
-        geojson: load.sync(directories.false + filename),
+glob.sync(directories.false).forEach(filepath => {
+    fixtures.push({
+        name: path.parse(filepath).name,
+        geojson: load.sync(filepath),
         matchType: false
-    };
+    });
 });
 
 test('turf-boolean-overlap', t => {
-    for (let {filename, geojson, matchType} of trueFixtures) {
-        t.deepEquals(overlap(geojson.features[0], geojson.features[1]), matchType, path.parse(filename).name + ' returns as ' + matchType);
-    }
-    for (let {filename, geojson, matchType} of falseFixtures) {
-        t.deepEquals(overlap(geojson.features[0], geojson.features[1]), matchType, path.parse(filename).name + ' returns as ' + matchType);
+    for (let {name, geojson, matchType} of fixtures) {
+        const [feature1, feature2] = geojson.features;
+        t.deepEquals(overlap(feature1, feature2), matchType, `${name} returns as ${matchType}`);
     }
     t.end();
 });

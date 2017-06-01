@@ -1,9 +1,9 @@
 var inside = require('@turf/inside');
 var helpers = require('@turf/helpers');
-var lineOverlap = require('@turf/line-overlap');
-var polyToLinestring = require('@turf/polygon-to-linestring');
-var lineIntersect = require('@turf/line-intersect');
 var deepEqual = require('deep-equal');
+var lineOverlap = require('@turf/line-overlap');
+var lineIntersect = require('@turf/line-intersect');
+var polyToLinestring = require('@turf/polygon-to-linestring');
 
 /**
  * Compares two geometries of the same dimension and returns (TRUE) if their
