@@ -5,6 +5,7 @@ var coordEach = require('@turf/meta').coordEach;
  *
  * @name flip
  * @param {FeatureCollection|Feature<any>} geojson input features
+ * @param {boolean} [mutate=false] allows GeoJSON input to be mutated (significant performance increase if true)
  * @returns {FeatureCollection|Feature<any>} a feature or set of features of the same type as `input` with flipped coordinates
  * @example
  * var serbia = {
@@ -21,11 +22,12 @@ var coordEach = require('@turf/meta').coordEach;
  * //addToMap
  * var addToMap = [serbia, saudiArabia]
  */
-module.exports = function (geojson) {
+module.exports = function (geojson, mutate) {
+    if (!geojson) throw new Error('geojson is required');
     // ensure that we don't modify features in-place and changes to the
     // output do not change the previous feature, including changes to nested
     // properties.
-    geojson = JSON.parse(JSON.stringify(geojson));
+    if (mutate === false || mutate === undefined) geojson = JSON.parse(JSON.stringify(geojson));
 
     coordEach(geojson, function (coord) {
         var x = coord[0];

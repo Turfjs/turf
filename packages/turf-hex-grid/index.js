@@ -1,9 +1,10 @@
-var point = require('@turf/helpers').point;
-var polygon = require('@turf/helpers').polygon;
 var distance = require('@turf/distance');
-var featurecollection = require('@turf/helpers').featureCollection;
+var helpers = require('@turf/helpers');
+var point = helpers.point;
+var polygon = helpers.polygon;
+var featureCollection = helpers.featureCollection;
 
-//Precompute cosines and sines of angles used in hexagon creation
+// Precompute cosines and sines of angles used in hexagon creation
 // for performance gain
 var cosines = [];
 var sines = [];
@@ -35,17 +36,25 @@ for (var i = 0; i < 6; i++) {
  * var addToMap = [hexgrid]
  */
 module.exports = function hexGrid(bbox, cellSize, units, triangles) {
-    var xFraction = cellSize / (distance(point([bbox[0], bbox[1]]), point([bbox[2], bbox[1]]), units));
-    var cellWidth = xFraction * (bbox[2] - bbox[0]);
-    var yFraction = cellSize / (distance(point([bbox[0], bbox[1]]), point([bbox[0], bbox[3]]), units));
-    var cellHeight = yFraction * (bbox[3] - bbox[1]);
+    var west = bbox[0];
+    var south = bbox[1];
+    var east = bbox[2];
+    var north = bbox[3];
+    var centerY = (south + north) / 2;
+    var centerX = (west + east) / 2;
+
+    // https://github.com/Turfjs/turf/issues/758
+    var xFraction = cellSize / (distance(point([west, centerY]), point([east, centerY]), units));
+    var cellWidth = xFraction * (east - west);
+    var yFraction = cellSize / (distance(point([centerX, south]), point([centerX, north]), units));
+    var cellHeight = yFraction * (north - south);
     var radius = cellWidth / 2;
 
     var hex_width = radius * 2;
     var hex_height = Math.sqrt(3) / 2 * cellHeight;
 
-    var box_width = bbox[2] - bbox[0];
-    var box_height = bbox[3] - bbox[1];
+    var box_width = east - west;
+    var box_height = north - south;
 
     var x_interval = 3 / 4 * hex_width;
     var y_interval = hex_height;
@@ -67,7 +76,7 @@ module.exports = function hexGrid(bbox, cellSize, units, triangles) {
         y_adjust -= hex_height / 4;
     }
 
-    var fc = featurecollection([]);
+    var fc = featureCollection([]);
     for (var x = 0; x < x_count; x++) {
         for (var y = 0; y <= y_count; y++) {
 
@@ -80,8 +89,8 @@ module.exports = function hexGrid(bbox, cellSize, units, triangles) {
                 continue;
             }
 
-            var center_x = x * x_interval + bbox[0] - x_adjust;
-            var center_y = y * y_interval + bbox[1] + y_adjust;
+            var center_x = x * x_interval + west - x_adjust;
+            var center_y = y * y_interval + south + y_adjust;
 
             if (isOdd) {
                 center_y -= hex_height / 2;

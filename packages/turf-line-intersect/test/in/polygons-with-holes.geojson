@@ -3,7 +3,10 @@
 	"features": [
 		{
 			"type": "Feature",
-			"properties": {},
+      "properties": {
+        "stroke": "#F00",
+        "stroke-width": 6
+      },
 			"geometry": {
 				"type": "Polygon",
 				"coordinates": [
@@ -180,7 +183,10 @@
 		},
 		{
 			"type": "Feature",
-			"properties": {},
+      "properties": {
+        "stroke": "#00F",
+        "stroke-width": 6
+      },
 			"geometry": {
 				"type": "Polygon",
 				"coordinates": [

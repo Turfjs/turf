@@ -1,10 +1,10 @@
-const test = require('tape');
 const fs = require('fs');
+const test = require('tape');
 const path = require('path');
 const load = require('load-json-file');
 const write = require('write-json-file');
-const featureEach = require('@turf/meta').featureEach;
-const featureCollection = require('@turf/helpers').featureCollection;
+const {featureEach} = require('@turf/meta');
+const {point, lineString, featureCollection} = require('@turf/helpers');
 const lineSplit = require('./');
 
 const directories = {
@@ -30,6 +30,25 @@ test('turf-line-split', t => {
         if (process.env.REGEN) write.sync(directories.out + filename, results);
         t.deepEquals(results, load.sync(directories.out + filename), name);
     }
+    t.end();
+});
+
+test('turf-line-split - lines should only contain 2 vertices #688', t => {
+    const pt = point([8, 50]);
+    const line = lineString([[7, 50], [8, 50], [9, 50]]);
+    const [line1, line2] = lineSplit(line, pt).features;
+
+    t.deepEqual(line1, lineString([[7, 50], [8, 50]]), 'line1 should have 2 vertices');
+    t.deepEqual(line2, lineString([[8, 50], [9, 50]]), 'line2 should have 2 vertices');
+    t.end();
+});
+
+test('turf-line-split - splitter exactly on end of line', t => {
+    const pt = point([9, 50]);
+    const line = lineString([[7, 50], [8, 50], [9, 50]]);
+    const features = lineSplit(line, pt).features;
+
+    t.deepEqual(features, [line], 'should only contain 1 line of 3 vertices');
     t.end();
 });
 

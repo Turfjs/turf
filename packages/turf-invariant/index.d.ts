@@ -1,35 +1,46 @@
 /// <reference types="geojson" />
 
-type Feature = GeoJSON.Feature<any>;
-type Features = GeoJSON.FeatureCollection<any>;
-type GetCoord = Feature | any[] | GeoJSON.GeometryObject;
+export type GeometryObject = GeoJSON.GeometryObject;
+export type GeometryCollection = GeoJSON.GeometryCollection;
+export type Feature<Geom extends GeometryObject> = GeoJSON.Feature<Geom>;
+export type Features<Geom extends GeometryObject> = GeoJSON.FeatureCollection<Geom>;
 
 /**
  * http://turfjs.org/docs/
  */
-export function getCoord(obj: GetCoord): Array<any>;
+export function getCoord(obj: Feature<any> | GeometryObject | any[]): Array<any>;
 
 /**
  * http://turfjs.org/docs/
  */
-export function getCoords(obj: GetCoord): Array<any>;
+export function getCoords(obj: Feature<any> | GeometryObject | any[]): Array<any>;
 
 /**
  * http://turfjs.org/docs/
  */
-export function geojsonType(value: Features, type: string, name: string): void;
+export function geojsonType(value: Features<any>, type: string, name: string): void;
 
 /**
  * http://turfjs.org/docs/
  */
-export function featureOf(feature: Feature, type: string, name: string): void;
+export function featureOf(feature: Feature<any>, type: string, name: string): void;
 
 /**
  * http://turfjs.org/docs/
  */
-export function collectionOf(featurecollection: Features, type: string, name: string): void;
+export function collectionOf(featurecollection: Features<any>, type: string, name: string): void;
 
 /**
  * http://turfjs.org/docs/
  */
 export function containsNumber(coordinates: any[]): boolean;
+
+/**
+ * http://turfjs.org/docs/
+ */
+export function getGeom(geojson: GeometryCollection | GeometryObject | Feature<any>): boolean;
+
+/**
+ * http://turfjs.org/docs/
+ */
+export function getGeomType(geojson: GeometryCollection | GeometryObject | Feature<any>): string;

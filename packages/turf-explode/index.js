@@ -1,7 +1,9 @@
-var featureCollection = require('@turf/helpers').featureCollection;
-var featureEach = require('@turf/meta').featureEach;
-var coordEach = require('@turf/meta').coordEach;
-var point = require('@turf/helpers').point;
+var meta = require('@turf/meta');
+var helpers = require('@turf/helpers');
+var point = helpers.point;
+var coordEach = meta.coordEach;
+var featureEach = meta.featureEach;
+var featureCollection = helpers.featureCollection;
 
 /**
  * Takes a feature or set of features and returns all positions as {@link Point|points}.

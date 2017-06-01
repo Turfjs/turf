@@ -1,3 +1,4 @@
+.nyc_output
 lib-cov
 *.seed
 *.log
@@ -8,8 +9,6 @@ lib-cov
 .idea/*
 types.js
 .DS_Store
-
-yarn.lock
 
 pids
 logs

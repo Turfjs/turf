@@ -1,0 +1,15 @@
+{
+  "type": "Feature",
+  "properties": {
+    "distance": 20,
+    "units": "miles",
+    "direction": 45
+  },
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      -75.69926351308823,
+      45.43145021122502
+    ]
+  }
+}

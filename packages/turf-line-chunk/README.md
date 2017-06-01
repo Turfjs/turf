@@ -7,7 +7,7 @@ If the line is shorter than the segment length then the original line is returne
 
 **Parameters**
 
--   `featureIn` **([FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects) \| [Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;([LineString](http://geojson.org/geojson-spec.html#linestring) \| [MultiLineString](http://geojson.org/geojson-spec.html#multilinestring))>)** the lines to split
+-   `geojson` **([FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects) \| [Geometry](http://geojson.org/geojson-spec.html#geometry) \| [Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;([LineString](http://geojson.org/geojson-spec.html#linestring) \| [MultiLineString](http://geojson.org/geojson-spec.html#multilinestring))>)** the lines to split
 -   `segmentLength` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** how long to make each segment
 -   `units` **\[[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)]** units can be degrees, radians, miles, or kilometers (optional, default `'kilometers'`)
 -   `reverse` **\[[boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)]** reverses coordinates to start the first chunked segment at the end (optional, default `false`)
@@ -26,7 +26,7 @@ var line = {
 var chunk = turf.lineChunk(line, 15, 'miles');
 
 //addToMap
-var addToMap = [line, chunk];
+var addToMap = [chunk];
 ```
 
 Returns **[FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects)&lt;[LineString](http://geojson.org/geojson-spec.html#linestring)>** collection of line segments

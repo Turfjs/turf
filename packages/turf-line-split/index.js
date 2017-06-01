@@ -142,22 +142,28 @@ function splitLineWithPoint(line, splitter) {
     // Initial value is the first point of the first segments (begining of line)
     var initialValue = [getCoords(segments.features[0])[0]];
     var lastCoords = featureReduce(segments, function (previous, current, index) {
+        var currentCoords = getCoords(current)[1];
+        var splitterCoords = getCoords(splitter);
 
         // Location where segment intersects with line
         if (index === closestSegment.id) {
-            var coords = getCoords(splitter);
-            previous.push(coords);
+            previous.push(splitterCoords);
             results.push(lineString(previous));
-            return [coords, getCoords(current)[1]];
+            // Don't duplicate splitter coordinate (Issue #688)
+            if (splitterCoords[0] === currentCoords[0] &&
+                splitterCoords[1] === currentCoords[1]) return [splitterCoords];
+            return [splitterCoords, currentCoords];
 
         // Keep iterating over coords until finished or intersection is found
         } else {
-            previous.push(getCoords(current)[1]);
+            previous.push(currentCoords);
             return previous;
         }
     }, initialValue);
     // Append last line to final split results
-    results.push(lineString(lastCoords));
+    if (lastCoords.length > 1) {
+        results.push(lineString(lastCoords));
+    }
     return featureCollection(results);
 }
 

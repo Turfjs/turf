@@ -1,6 +1,6 @@
 {
   "name": "@turf/truncate",
-  "version": "4.1.0",
+  "version": "4.3.0",
   "description": "turf truncate module",
   "main": "index.js",
   "types": "index.d.ts",
@@ -23,19 +23,22 @@
     "truncate"
   ],
   "author": "Turf Authors",
+  "contributors": [
+    "Denis Carriere <@DenisCarriere>"
+  ],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/Turfjs/turf/issues"
   },
   "homepage": "https://github.com/Turfjs/turf",
   "devDependencies": {
-    "@turf/helpers": "^4.1.0",
+    "@turf/helpers": "^4.3.0",
     "benchmark": "^2.1.4",
     "load-json-file": "^2.0.0",
     "tape": "^4.6.3",
     "write-json-file": "^2.0.0"
   },
   "dependencies": {
-    "@turf/meta": "^4.1.0"
+    "@turf/meta": "^4.3.0"
   }
 }

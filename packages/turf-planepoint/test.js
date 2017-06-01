@@ -1,26 +1,16 @@
 // http://math.stackexchange.com/questions/28043/finding-the-z-value-on-a-plane-with-x-y-values
 // http://stackoverflow.com/a/13916669/461015
-var test = require('tape');
-var fs = require('fs');
-var planepoint = require('./');
+const test = require('tape');
+const {polygon} = require('@turf/helpers');
+const planepoint = require('./');
 
-test('planepoint', function(t){
-  var triangle = JSON.parse(fs.readFileSync(__dirname+'/test/Triangle.geojson'));
-  var point = {
-    type: "Feature",
-    geometry: {
-      type: "Point",
-      coordinates: [
-        -75.3221,
-        39.529
-      ]
-    }
-  };
 
-  var z = planepoint(point, triangle);
+test('turf-planepoint', t => {
+    const point = [1, 1];
+    const triangleProps = polygon([[[0, 0], [2, 0], [1, 2], [0, 0]]], {a: 0, b: 0, c: 2});
+    const triangleZ = polygon([[[0, 0, 0], [2, 0, 0], [1, 2, 2], [0, 0, 0]]]);
 
-  t.ok(z, 'should return the z value of a point on a plane');
-
-  t.end();
+    t.equal(planepoint(point, triangleProps), 1, 'properties');
+    t.equal(planepoint(point, triangleZ), 1, 'z coordinates');
+    t.end();
 });
-

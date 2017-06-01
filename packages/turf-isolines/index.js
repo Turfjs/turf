@@ -1,15 +1,16 @@
 //https://github.com/jasondavies/conrec.js
 //http://stackoverflow.com/questions/263305/drawing-a-topographical-map
 var tin = require('@turf/tin');
-var inside = require('@turf/inside');
-var grid = require('@turf/point-grid');
-var distance = require('@turf/distance');
 var bbox = require('@turf/bbox');
-var planepoint = require('@turf/planepoint');
-var featurecollection = require('@turf/helpers').featureCollection;
-var linestring = require('@turf/helpers').lineString;
-var point = require('@turf/helpers').point;
+var grid = require('@turf/point-grid');
+var inside = require('@turf/inside');
 var square = require('@turf/square');
+var helpers = require('@turf/helpers');
+var distance = require('@turf/distance');
+var planepoint = require('@turf/planepoint');
+var featurecollection = helpers.featureCollection;
+var linestring = helpers.lineString;
+var point = helpers.point;
 var Conrec = require('./conrec');
 
 /**

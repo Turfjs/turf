@@ -1,0 +1,37 @@
+{
+	"type": "FeatureCollection",
+	"features": [
+		{
+			"type": "Feature",
+			"properties": {
+				"distance": 20,
+				"units": "miles",
+				"direction": 45,
+				"marker-color": "#F00",
+				"marker-symbol": "star"
+			},
+			"geometry": {
+				"type": "Point",
+				"coordinates": [
+					-75.407065,
+					45.636132
+				]
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {
+				"distance": 20,
+				"units": "miles",
+				"direction": 45
+			},
+			"geometry": {
+				"type": "Point",
+				"coordinates": [
+					-75.69926351308823,
+					45.43145021122502
+				]
+			}
+		}
+	]
+}

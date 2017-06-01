@@ -1,0 +1,86 @@
+{
+	"type": "FeatureCollection",
+	"features": [
+		{
+			"type": "Feature",
+			"properties": {
+				"angle": 200,
+				"pivot": [
+					2.48291015625,
+					27.819644755099446
+				],
+				"stroke": "#F00",
+				"stroke-width": 4
+			},
+			"geometry": {
+				"type": "Polygon",
+				"coordinates": [
+					[
+						[
+							4.331318,
+							25.963562
+						],
+						[
+							1.0811,
+							27.016436
+						],
+						[
+							0.878141,
+							23.89646
+						],
+						[
+							4.331318,
+							25.963562
+						]
+					]
+				]
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {
+				"angle": 200,
+				"pivot": [
+					2.48291015625,
+					27.819644755099446
+				]
+			},
+			"geometry": {
+				"type": "Polygon",
+				"coordinates": [
+					[
+						[
+							0,
+							29
+						],
+						[
+							3.5,
+							29
+						],
+						[
+							2.5,
+							32
+						],
+						[
+							0,
+							29
+						]
+					]
+				]
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {
+				"marker-symbol": "circle"
+			},
+			"geometry": {
+				"type": "Point",
+				"coordinates": [
+					2.48291015625,
+					27.819644755099446
+				]
+			}
+		}
+	]
+}

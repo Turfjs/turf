@@ -1,31 +1,38 @@
-var pointOnLine = require('./');
-var Benchmark = require('benchmark');
-var fs = require('fs');
-var point = require('@turf/helpers').point;
+const Benchmark = require('benchmark');
+const path = require('path');
+const fs = require('fs');
+const load = require('load-json-file');
+const pointOnLine = require('./');
 
-var route1 = JSON.parse(fs.readFileSync(__dirname + '/test/in/route1.geojson'));
-var route2 = JSON.parse(fs.readFileSync(__dirname + '/test/in/route2.geojson'));
-var line1 = JSON.parse(fs.readFileSync(__dirname + '/test/in/line1.geojson'));
+const directory = path.join(__dirname, 'test', 'in') + path.sep;
+const fixtures = fs.readdirSync(directory).map(filename => {
+    return {
+        filename,
+        name: path.parse(filename).name,
+        geojson: load.sync(directory + filename)
+    };
+});
 
-var pt1 = point([-97.79617309570312,22.254624939561698]);
-var pt2 = point([-79.0850830078125,37.60117623656667]);
-var pt3 = point([-112.60660171508789,45.96021963947196]);
+/**
+ * Benchmark Results
+ *
+ * ==after (@turf/line-intersect)==
+ * line1 x 234,231 ops/sec ±1.78% (88 runs sampled)
+ * route1 x 161 ops/sec ±1.53% (80 runs sampled)
+ * route2 x 184 ops/sec ±1.96% (80 runs sampled)
+ *
+ * ==before (original)==
+ * line1 x 272,785 ops/sec ±1.29% (87 runs sampled)
+ * route1 x 195 ops/sec ±2.23% (80 runs sampled)
+ * route2 x 218 ops/sec ±2.42% (78 runs sampled)
+ */
+const suite = new Benchmark.Suite('turf-linestring-to-polygon');
+for (const {name, geojson} of fixtures) {
+    const [line, point] = geojson.features;
+    suite.add(name, () => pointOnLine(line, point));
+}
 
-var suite = new Benchmark.Suite('turf-point-on-line');
 suite
-  .add('turf-point-on-line#simple',function () {
-      pointOnLine(line1, pt1);
-  })
-  .add('turf-point-on-line#route1',function () {
-      pointOnLine(route1, pt2);
-  })
-  .add('turf-point-on-line#route2',function () {
-      pointOnLine(route2, pt3);
-  })
-  .on('cycle', function (event) {
-      console.log(String(event.target));
-  })
-  .on('complete', function () {
-    
-  })
-  .run();
+    .on('cycle', e => console.log(String(e.target)))
+    .on('complete', () => {})
+    .run();

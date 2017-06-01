@@ -1,0 +1,51 @@
+{
+	"type": "FeatureCollection",
+	"features": [
+		{
+			"type": "Feature",
+			"properties": {
+				"stroke": "#F00",
+				"stroke-width": 4
+			},
+			"geometry": {
+				"type": "LineString",
+				"coordinates": [
+					[
+						-539.5,
+						-16.5
+					],
+					[
+						-540.437946,
+						-16.5
+					]
+				]
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {
+				"bearing": -90,
+				"dist": 100,
+				"marker-color": "#F00"
+			},
+			"geometry": {
+				"type": "Point",
+				"coordinates": [
+					-539.5,
+					-16.5
+				]
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {},
+			"geometry": {
+				"type": "Point",
+				"coordinates": [
+					-540.4379464911018,
+					-16.5
+				]
+			}
+		}
+	]
+}

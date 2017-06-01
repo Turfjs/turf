@@ -30,7 +30,7 @@ module.exports = function (center, radius, steps, units, properties) {
 
     // default params
     steps = steps || 64;
-    properties = properties | center.properties | {};
+    properties = properties || center.properties || {};
 
     var coordinates = [];
     for (var i = 0; i < steps; i++) {

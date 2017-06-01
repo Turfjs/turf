@@ -18,6 +18,10 @@
           [
             125,
             -25
+          ],
+          [
+            126,
+            -25
           ]
         ]
       }
@@ -30,6 +34,17 @@
         "coordinates": [
           130,
           -27.5
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {},
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          126,
+          -24.5
         ]
       }
     }

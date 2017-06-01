@@ -11,9 +11,10 @@ const fixtures = {
 
 const suite = new Benchmark.Suite('turf-meta');
 
-
 /**
  * Benchmark Results
+ * flattenEach   - point x 6,447,234 ops/sec ±5.56% (79 runs sampled)
+ * flattenReduce - point x 5,415,555 ops/sec ±1.28% (85 runs sampled)
  * coordEach     - point x 19,941,547 ops/sec ±0.64% (84 runs sampled)
  * coordReduce   - point x 11,959,189 ops/sec ±1.53% (85 runs sampled)
  * propEach      - point x 29,317,809 ops/sec ±1.38% (85 runs sampled)
@@ -23,6 +24,8 @@ const suite = new Benchmark.Suite('turf-meta');
  * featureEach   - point x 29,588,658 ops/sec ±1.02% (88 runs sampled)
  * featureReduce - point x 15,372,497 ops/sec ±1.11% (89 runs sampled)
  * coordAll      - point x 8,348,718 ops/sec ±0.68% (92 runs sampled)
+ * flattenEach   - points x 18,821 ops/sec ±7.17% (76 runs sampled)
+ * flattenReduce - points x 17,848 ops/sec ±1.10% (88 runs sampled)
  * coordEach     - points x 71,017 ops/sec ±0.80% (90 runs sampled)
  * coordReduce   - points x 46,986 ops/sec ±1.24% (91 runs sampled)
  * propEach      - points x 137,509 ops/sec ±0.38% (96 runs sampled)
@@ -32,6 +35,8 @@ const suite = new Benchmark.Suite('turf-meta');
  * featureEach   - points x 151,234 ops/sec ±0.45% (92 runs sampled)
  * featureReduce - points x 71,235 ops/sec ±1.51% (92 runs sampled)
  * coordAll      - points x 40,960 ops/sec ±0.88% (94 runs sampled)
+ * flattenEach   - polygon x 6,262,904 ops/sec ±2.84% (85 runs sampled)
+ * flattenReduce - polygon x 4,944,606 ops/sec ±4.15% (82 runs sampled)
  * coordEach     - polygon x 6,153,922 ops/sec ±2.36% (87 runs sampled)
  * coordReduce   - polygon x 3,348,489 ops/sec ±2.08% (91 runs sampled)
  * propEach      - polygon x 30,816,868 ops/sec ±0.96% (88 runs sampled)
@@ -41,6 +46,8 @@ const suite = new Benchmark.Suite('turf-meta');
  * featureEach   - polygon x 29,478,632 ops/sec ±1.86% (87 runs sampled)
  * featureReduce - polygon x 14,642,632 ops/sec ±2.62% (81 runs sampled)
  * coordAll      - polygon x 2,080,425 ops/sec ±13.27% (61 runs sampled)
+ * flattenEach   - polygons x 17,587 ops/sec ±3.05% (85 runs sampled)
+ * flattenReduce - polygons x 16,576 ops/sec ±1.33% (86 runs sampled)
  * coordEach     - polygons x 3,040 ops/sec ±15.62% (41 runs sampled)
  * coordReduce   - polygons x 4,100 ops/sec ±7.31% (85 runs sampled)
  * propEach      - polygons x 126,455 ops/sec ±0.85% (87 runs sampled)
@@ -54,6 +61,8 @@ const suite = new Benchmark.Suite('turf-meta');
 Object.keys(fixtures).forEach(name => {
     const geojson = fixtures[name];
     suite
+        .add('flattenEach   - ' + name, () => meta.flattenEach(geojson, () => {}))
+        .add('flattenReduce - ' + name, () => meta.flattenReduce(geojson, () => {}))
         .add('coordEach     - ' + name, () => meta.coordEach(geojson, () => {}))
         .add('coordReduce   - ' + name, () => meta.coordReduce(geojson, () => {}))
         .add('propEach      - ' + name, () => meta.propEach(geojson, () => {}))
@@ -66,6 +75,6 @@ Object.keys(fixtures).forEach(name => {
 });
 
 suite
-  .on('cycle', e => { console.log(String(e.target)); })
+  .on('cycle', e => console.log(String(e.target)))
   .on('complete', () => {})
   .run();

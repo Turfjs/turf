@@ -1,11 +1,11 @@
 const test = require('tape');
-const {point, lineString, polygon} = require('@turf/helpers');
+const {point, lineString, polygon, featureCollection, geometryCollection} = require('@turf/helpers');
 const invariant = require('./');
 
 test('invariant#containsNumber', t => {
     t.equals(invariant.containsNumber([1, 1]), true);
     t.equals(invariant.containsNumber([[1, 1], [1, 1]]), true);
-    t.equals(invariant.containsNumber([[[1,1], [1,1]], [1, 1]]), true);
+    t.equals(invariant.containsNumber([[[1, 1], [1, 1]], [1, 1]]), true);
 
     //# Ensure recusive call handles Max callstack exceeded
     t.throws(() => {
@@ -179,5 +179,32 @@ test('invariant#getCoords', t => {
     t.deepEqual(invariant.getCoords(point([1, 2])), [1, 2]);
     t.deepEqual(invariant.getCoords(lineString([[1, 2], [3, 4]])), [[1, 2], [3, 4]]);
     t.deepEqual(invariant.getCoords([1, 2]), [1, 2]);
+    t.end();
+});
+
+test('invariant#getGeom', t => {
+    const pt = point([1, 1]);
+    const line = lineString([[0, 1], [1, 1]]);
+    const collection = featureCollection([pt, line]);
+    const geomCollection = geometryCollection([pt.geometry, line.geometry]);
+
+    t.deepEqual(invariant.getGeom(pt), pt.geometry, 'Point');
+    t.deepEqual(invariant.getGeom(line.geometry), line.geometry, 'LineString');
+    t.deepEqual(invariant.getGeom(geomCollection), geomCollection.geometry, 'GeometryCollection');
+    t.deepEqual(invariant.getGeom(geomCollection.geometry), geomCollection.geometry, 'GeometryCollection');
+    t.throws(() => invariant.getGeom(collection), 'featureCollection not valid');
+    t.end();
+});
+
+test('invariant#getGeomType', t => {
+    const pt = point([1, 1]);
+    const line = lineString([[0, 1], [1, 1]]);
+    const collection = featureCollection([pt, line]);
+    const geomCollection = geometryCollection([pt.geometry, line.geometry]);
+
+    t.deepEqual(invariant.getGeomType(pt), 'Point');
+    t.deepEqual(invariant.getGeomType(line.geometry), 'LineString');
+    t.deepEqual(invariant.getGeomType(geomCollection), 'GeometryCollection');
+    t.throws(() => invariant.getGeomType(collection, 'featureCollection not valid'));
     t.end();
 });
