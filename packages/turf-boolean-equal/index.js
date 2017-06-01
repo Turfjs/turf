@@ -5,8 +5,8 @@ var getCoords = require('@turf/invariant').getCoords;
  * Equal returns True if two geometries of the same type have identical X,Y coordinate values.
  *
  * @name equal
- * @param {Geometry|Feature<any>} feature1 first geometry
- * @param {Geometry|Feature<any>} feature2 second geometry
+ * @param {Geometry|Feature<any>} feature1 GeoJSON Feature or Geometry
+ * @param {Geometry|Feature<any>} feature2 GeoJSON Feature or Geometry
  * @returns {Boolean} true/false
  * @example
  * const point1 = {

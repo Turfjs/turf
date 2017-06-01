@@ -6,8 +6,8 @@ Within returns True if the first geometry is completely within the second geomet
 
 **Parameters**
 
--   `feature1` **([Geometry](http://geojson.org/geojson-spec.html#geometry) \| [Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;any>)** first geometry
--   `feature2` **([Geometry](http://geojson.org/geojson-spec.html#geometry) \| [Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;any>)** second geometry
+-   `feature1` **([Geometry](http://geojson.org/geojson-spec.html#geometry) \| [Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;any>)** GeoJSON Feature or Geometry
+-   `feature2` **([Geometry](http://geojson.org/geojson-spec.html#geometry) \| [Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;any>)** GeoJSON Feature or Geometry
 
 **Examples**
 
@@ -40,8 +40,8 @@ Contains returns True if the second geometry is completely contained by the firs
 
 **Parameters**
 
--   `feature1` **([Geometry](http://geojson.org/geojson-spec.html#geometry) \| [Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;any>)** first geometry
--   `feature2` **([Geometry](http://geojson.org/geojson-spec.html#geometry) \| [Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;any>)** second geometry
+-   `feature1` **([Geometry](http://geojson.org/geojson-spec.html#geometry) \| [Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;any>)** GeoJSON Feature or Geometry
+-   `feature2` **([Geometry](http://geojson.org/geojson-spec.html#geometry) \| [Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;any>)** GeoJSON Feature or Geometry
 
 **Examples**
 

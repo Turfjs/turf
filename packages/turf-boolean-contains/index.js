@@ -8,8 +8,8 @@ var lineOverlap = require('@turf/line-overlap');
  * Contains returns True if the second geometry is completely contained by the first geometry.
  *
  * @name contains
- * @param {Geometry|Feature<any>} feature1 first geometry
- * @param {Geometry|Feature<any>} feature2 second geometry
+ * @param {Geometry|Feature<any>} feature1 GeoJSON Feature or Geometry
+ * @param {Geometry|Feature<any>} feature2 GeoJSON Feature or Geometry
  * @returns {Boolean} true/false
  * @example
  * const point = {

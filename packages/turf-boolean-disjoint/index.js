@@ -6,8 +6,8 @@ var deepEqual = require('deep-equal');
  * Disjoint returns (TRUE) if the intersection of the two geometries is an empty set.
  *
  * @name disjoint
- * @param {Geometry|Feature<any>} feature1 first geometry
- * @param {Geometry|Feature<any>} feature2 second geometry
+ * @param {Geometry|Feature<any>} feature1 GeoJSON Feature or Geometry
+ * @param {Geometry|Feature<any>} feature2 GeoJSON Feature or Geometry
  * @returns {Boolean} true/false
  * @example
  * turf.disjoint(line, point);

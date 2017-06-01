@@ -11,9 +11,9 @@ var polyToLinestring = require('@turf/polygon-to-linestring');
  * Cross returns t (TRUE) for only multipoint/polygon, multipoint/linestring, linestring/linestring, linestring/polygon, and linestring/multipolygon comparisons.
  *
  * @name cross
- * @param {feature1} feature1 GeoJSON Feature
- * @param {feature2} feature2 GeoJSON Feature
- * @returns {Boolean} Crossed Features
+ * @param {Geometry|Feature<any>} feature1 GeoJSON Feature or Geometry
+ * @param {Geometry|Feature<any>} feature2 GeoJSON Feature or Geometry
+ * @returns {Boolean} true/false
  * @example
  * var cross = turf.cross(feature1, feature2);
  */

@@ -4,8 +4,8 @@ var contains = require('../turf-boolean-contains');
  * Within returns True if the first geometry is completely within the second geometry.
  *
  * @name within
- * @param {Geometry|Feature<any>} feature1 first geometry
- * @param {Geometry|Feature<any>} feature2 second geometry
+ * @param {Geometry|Feature<any>} feature1 GeoJSON Feature or Geometry
+ * @param {Geometry|Feature<any>} feature2 GeoJSON Feature or Geometry
  * @returns {Boolean} true/false
  * @example
  * const point = {

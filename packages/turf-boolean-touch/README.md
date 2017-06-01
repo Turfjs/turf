@@ -7,8 +7,8 @@ At least one geometry must be a linestring, polygon, multilinestring, or multipo
 
 **Parameters**
 
--   `feature1` **([Geometry](http://geojson.org/geojson-spec.html#geometry) \| [Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;any>)** first geometry
--   `feature2` **([Geometry](http://geojson.org/geojson-spec.html#geometry) \| [Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;any>)** second geometry
+-   `feature1` **([Geometry](http://geojson.org/geojson-spec.html#geometry) \| [Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;any>)** GeoJSON Feature or Geometry
+-   `feature2` **([Geometry](http://geojson.org/geojson-spec.html#geometry) \| [Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;any>)** GeoJSON Feature or Geometry
 
 **Examples**
 

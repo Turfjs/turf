@@ -10,8 +10,8 @@ var polyToLinestring = require('@turf/polygon-to-linestring');
  * intersection set results in a geometry different from both but of the same dimension.
  *
  * @name booleanOverlap
- * @param {Geometry|Feature<MultiPoint|LineString|Polygon>} feature1 GeoJSON Feature or geometry
- * @param {Geometry|Feature<MultiPoint|LineString|Polygon>} feature2 GeoJSON Feature or geometry
+ * @param {Geometry|Feature<any>} feature1 GeoJSON Feature or Geometry
+ * @param {Geometry|Feature<any>} feature2 GeoJSON Feature or Geometry
  * @returns {Boolean} true/false
  * @example
  * turf.booleanOverlap(feature1, feature2);

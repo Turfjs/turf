@@ -9,8 +9,8 @@ var deepEqual = require('deep-equal');
  * At least one geometry must be a linestring, polygon, multilinestring, or multipolygon.
  *
  * @name touch
- * @param {Geometry|Feature<any>} feature1 first geometry
- * @param {Geometry|Feature<any>} feature2 second geometry
+ * @param {Geometry|Feature<any>} feature1 GeoJSON Feature or Geometry
+ * @param {Geometry|Feature<any>} feature2 GeoJSON Feature or Geometry
  * @returns {Boolean} true/false
  * @example
  * const point = {
