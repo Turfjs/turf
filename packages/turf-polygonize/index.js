@@ -16,6 +16,8 @@ var polygonize = require('polygonize');
  * @name polygonize
  * @param {FeatureCollection|Geometry|Feature<LineString|MultiLineString>} geojson Lines in order to polygonize
  * @returns {FeatureCollection<Polygon>} Polygons created
- * @throws {Error} if geoJson is invalid.
+ * @throws {Error} if GeoJSON is invalid.
  */
-module.exports = polygonize;
+module.exports = function (geojson) {
+    return polygonize(geojson);
+};
