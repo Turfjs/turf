@@ -1,6 +1,7 @@
 var test = require('tape');
 var point = require('@turf/helpers').point;
 var polygon = require('@turf/helpers').polygon;
+var lineString = require('@turf/helpers').lineString
 var fs = require('fs');
 var inside = require('./');
 
@@ -9,9 +10,11 @@ test('featureCollection', function (t) {
   var poly = polygon([[[0, 0], [0, 100], [100, 100], [100, 0], [0, 0]]]);
   var ptIn = point([50, 50]);
   var ptOut = point([140, 150]);
+  var ptOnBorder = point([0, 100]);
 
   t.true(inside(ptIn, poly), 'point inside simple polygon');
   t.false(inside(ptOut, poly), 'point outside simple polygon');
+  t.true(inside(ptOnBorder, poly), 'point on the border of simple polygon');
 
   // test for a concave polygon
   var concavePoly = polygon([[[0,0], [50, 50], [0,100], [100,100], [100,0], [0,0]]]);
@@ -20,6 +23,28 @@ test('featureCollection', function (t) {
 
   t.true(inside(ptConcaveIn, concavePoly), 'point inside concave polygon');
   t.false(inside(ptConcaveOut, concavePoly), 'point outside concave polygon');
+
+  t.end();
+});
+
+test('feature input', function (t) {
+  // test line inside polygon
+  var poly = polygon([[[0, 0], [0, 100], [100, 100], [100, 0], [0, 0]]]);
+  var lineStringIn = lineString([[50, 50], [80, 80]]);
+  var lineStringOut = lineString([[50, 50], [150, 150]]);
+  var lineStringToBorder = lineString([[50, 50], [100, 100]]);
+
+  t.true(inside(lineStringIn, poly), 'line inside simple polygon');
+  t.false(inside(lineStringOut, poly), 'line outside simple polygon');
+  t.true(inside(lineStringToBorder, poly), 'line ending on simple polygon border');
+  t.false(inside(lineStringToBorder, poly, true), 'line ending on simple polygon border, ignoring border');
+
+  // test polygon inside polygon
+  var polyIn = polygon([[[10, 10], [10, 50], [50, 50], [50, 10], [10, 10]]]);
+  var polyOut = polygon([[[10, 10], [10, 150], [150, 150], [150, 10], [10, 10]]]);
+
+  t.true(inside(polyIn, poly), 'poly inside simple polygon');
+  t.false(inside(polyOut, poly), 'poly outside simple polygon');
 
   t.end();
 });

@@ -1,6 +1,8 @@
 var invariant = require('@turf/invariant');
 var getCoord = invariant.getCoord;
 var getCoords = invariant.getCoords;
+var getGeomType = invariant.getGeomType;
+var explode = require('@turf/explode');
 
 // http://en.wikipedia.org/wiki/Even%E2%80%93odd_rule
 // modified from: https://github.com/substack/point-in-polygon/blob/master/index.js
@@ -11,10 +13,10 @@ var getCoords = invariant.getCoords;
  * be convex or concave. The function accounts for holes.
  *
  * @name inside
- * @param {Feature<Point>} point input point
+ * @param {Feature<any>} feature input feature
  * @param {Feature<Polygon|MultiPolygon>} polygon input polygon or multipolygon
  * @param {boolean} [ignoreBoundary=false] True if polygon boundary should be ignored when determining if the point is inside the polygon otherwise false.
- * @returns {boolean} `true` if the Point is inside the Polygon; `false` if the Point is not inside the Polygon
+ * @returns {boolean} `true` if the feature is completely inside the Polygon
  * @example
  * var pt = turf.point([-77, 44]);
  * var poly = turf.polygon([[
@@ -31,12 +33,14 @@ var getCoords = invariant.getCoords;
  * pt.properties.isInside = isInside
  * var addToMap = [pt, poly]
  */
-module.exports = function (point, polygon, ignoreBoundary) {
+function inside(feature, polygon, ignoreBoundary) {
     // validation
-    if (!point) throw new Error('point is required');
+    if (!feature) throw new Error('feature is required');
     if (!polygon) throw new Error('polygon is required');
 
-    var pt = getCoord(point);
+    if (getGeomType(feature) !== 'Point') { return allPointsInside(feature, polygon, ignoreBoundary); }
+
+    var pt = getCoord(feature);
     var polys = getCoords(polygon);
     var type = (polygon.geometry) ? polygon.geometry.type : polygon.type;
     var bbox = polygon.bbox;
@@ -63,7 +67,17 @@ module.exports = function (point, polygon, ignoreBoundary) {
         }
     }
     return insidePoly;
-};
+}
+
+function allPointsInside(feature, polygon, ignoreBoundary) {
+    var points = explode(feature);
+    for (var i = 0; i < points.features.length; i++) {
+        if (!inside(points.features[i], polygon, ignoreBoundary)) {
+            return false;
+        }
+    }
+    return true;
+}
 
 /**
  * inRing
@@ -105,3 +119,6 @@ function inBBox(pt, bbox) {
            bbox[2] >= pt[0] &&
            bbox[3] >= pt[1];
 }
+
+
+module.exports = inside;

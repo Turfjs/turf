@@ -36,6 +36,7 @@
     "tape": "^4.6.3"
   },
   "dependencies": {
+    "@turf/explode": "^4.3.0",
     "@turf/invariant": "^4.3.0"
   }
 }
