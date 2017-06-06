@@ -18,6 +18,8 @@ const poly = polygon([[[1, 1], [1, 10], [10, 10], [10, 1], [1, 1]]]);
  */
 const suite = new Benchmark.Suite('turf-boolean-equal');
 suite
+    .add('precision', () => equal(line, line, false, 6))
+    .add('direction', () => equal(line, line, true))
     .add('point - line', () => equal(pt, line))
     .add('point - polygon', () => equal(pt, polygon))
     .add('point - point', () => equal(pt, pt))

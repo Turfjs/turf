@@ -5,6 +5,6 @@ type Feature = GeoJSON.Feature<any> | GeoJSON.GeometryObject;
 /**
  * http://turfjs.org/docs/#boolean-equal
  */
-declare function equal(feature1: Feature, feature2: Feature): boolean;
+declare function equal(feature1: Feature, feature2: Feature, direction?: boolean, precision?: number): boolean;
 declare namespace equal { }
 export = equal;

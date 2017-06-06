@@ -6,9 +6,36 @@
   version "4.3.0"
   resolved "https://registry.yarnpkg.com/@turf/helpers/-/helpers-4.3.0.tgz#7b2f733aa0eb3ea1f07d467ac02ede00cc6cde0d"
 
+"@turf/helpers@^4.4.0":
+  version "4.4.0"
+  resolved "https://registry.yarnpkg.com/@turf/helpers/-/helpers-4.4.0.tgz#c83112f7fbe6ed183c7c0c2f776481b94d1cbd01"
+
 "@turf/invariant@^4.2.0":
   version "4.3.0"
   resolved "https://registry.yarnpkg.com/@turf/invariant/-/invariant-4.3.0.tgz#5bd1ce6ae51b1229dc0dc7d09d973fabae49af89"
+
+"@turf/invariant@^4.4.0":
+  version "4.4.0"
+  resolved "https://registry.yarnpkg.com/@turf/invariant/-/invariant-4.4.0.tgz#aac0afb840ae40908f9c80393f416222dcf79c32"
+
+"@turf/meta@^4.4.0":
+  version "4.4.0"
+  resolved "https://registry.yarnpkg.com/@turf/meta/-/meta-4.4.0.tgz#4fa25d4cc0525bd4cdbaf4ff68a6f8ae81f1975f"
+
+"@turf/rewind@^4.4.0":
+  version "4.4.0"
+  resolved "https://registry.yarnpkg.com/@turf/rewind/-/rewind-4.4.0.tgz#4942be56fe381cfbb0522ba26eb985153d386c72"
+  dependencies:
+    "@turf/helpers" "^4.4.0"
+    "@turf/invariant" "^4.4.0"
+    "@turf/meta" "^4.4.0"
+    turf-is-clockwise "^1.0.0"
+
+"@turf/truncate@^4.4.0":
+  version "4.4.0"
+  resolved "https://registry.yarnpkg.com/@turf/truncate/-/truncate-4.4.0.tgz#194deef33b91d6b27cc9b33a141cacb6e7ce23a0"
+  dependencies:
+    "@turf/meta" "^4.4.0"
 
 balanced-match@^0.4.1:
   version "0.4.2"
@@ -207,6 +234,10 @@ tape@^4.6.3:
 through@~2.3.4, through@~2.3.8:
   version "2.3.8"
   resolved "https://registry.yarnpkg.com/through/-/through-2.3.8.tgz#0dd4c9ffaabc357960b1b724115d7e0e86a2e1f5"
+
+turf-is-clockwise@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/turf-is-clockwise/-/turf-is-clockwise-1.0.0.tgz#dc22e5ffd4cf10934683aa004627cff87a6dfe91"
 
 wrappy@1:
   version "1.0.2"

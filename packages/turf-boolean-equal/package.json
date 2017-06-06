@@ -39,6 +39,8 @@
   },
   "dependencies": {
     "@turf/invariant": "^4.2.0",
+    "@turf/rewind": "^4.4.0",
+    "@turf/truncate": "^4.4.0",
     "deep-equal": "^1.0.1"
   }
 }
