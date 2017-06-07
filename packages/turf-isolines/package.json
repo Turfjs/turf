@@ -49,6 +49,7 @@
     "@turf/helpers": "^4.4.0",
     "@turf/inside": "^4.4.0",
     "@turf/invariant": "^4.4.0",
+    "@turf/meta": "^4.4.0",
     "@turf/planepoint": "^4.4.0",
     "@turf/point-grid": "^4.4.0",
     "@turf/square": "^4.4.0",

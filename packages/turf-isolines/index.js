@@ -1,17 +1,11 @@
-// var tin = require('@turf/tin');
 var bbox = require('@turf/bbox');
-// var grid = require('@turf/point-grid');
-// var inside = require('@turf/inside');
-// var square = require('@turf/square');
-var invariant = require('@turf/invariant');
-var square = require('@turf/square');
+var meta = require('@turf/meta');
 var helpers = require('@turf/helpers');
-// var distance = require('@turf/distance');
-// var planepoint = require('@turf/planepoint');
+var invariant = require('@turf/invariant');
 var gridToMatrix = require('grid-to-matrix');
 var marchingsquares = require('marchingsquares');
-// var point = helpers.point;
 var multiLineString = helpers.multiLineString;
+var coordEach = meta.coordEach;
 var collectionOf = invariant.collectionOf;
 var featureCollection = helpers.featureCollection;
 
@@ -67,29 +61,14 @@ module.exports = function (points, breaks, zProperty, options) {
 
     // Isolined methods
     var matrix = gridToMatrix(points, zProperty, true);
-    var isolines = createIsoLines(matrix, breaks, zProperty);
+    var isolines = createIsoLines(matrix, breaks, zProperty, isolineProperties, commonProperties);
     var scaledIsolines = rescaleIsolines(isolines, matrix, points);
 
-    var multilines = scaledIsolines.map(function (isolines, index) {
-        if (isolineProperties[index] && !isObject(isolineProperties[index])) {
-            throw new Error('Each mappedProperty is required to be an Object');
-        }
-        // collect all properties
-        var contourProperties = Object.assign(
-            {},
-            commonProperties,
-            isolineProperties[index]
-        );
-        contourProperties[zProperty] = isolines[zProperty];
-        var multiL = multiLineString(isolines.lines, contourProperties);
-        return multiL;
-    });
-
-    return featureCollection(multilines);
+    return featureCollection(scaledIsolines);
 };
 
 /**
- * Creates the isolines lines (featuresCollection of polygon features) from the 2D data grid
+ * Creates the isolines lines (featuresCollection of MultiLineString features) from the 2D data grid
  *
  * Marchingsquares process the grid data as a 3D representation of a function on a 2D plane, therefore it
  * assumes the points (x-y coordinates) are one 'unit' distance. The result of the isolines function needs to be
@@ -98,31 +77,37 @@ module.exports = function (points, breaks, zProperty, options) {
  * @private
  * @param {Array<Array<number>>} matrix Grid Data
  * @param {Array<number>} breaks Breaks
- * @param {string} [property='elevation'] Property
- * @returns {Array<any>} isolines
+ * @param {string} zProperty name of the z-values property
+ * @param {Object} isolineProperties GeoJSON properties passed to the correspondent isoline
+ * @param {Object} commonProperties GeoJSON properties passed to ALL isolines
+ * @returns {Array<MultiLineString>} isolines
  */
-function createIsoLines(matrix, breaks, property) {
+function createIsoLines(matrix, breaks, zProperty, isolineProperties, commonProperties) {
     var isolines = [];
     for (var i = 1; i < breaks.length; i++) {
         var threshold = +breaks[i]; // make sure it's a number
 
-        var isolinesCoords = marchingsquares.isoContours(matrix, threshold);
-        var obj = {};
-        obj['lines'] = isolinesCoords;
-        obj[property] = threshold;
-        isolines.push(obj);
+        var properties = Object.assign(
+            {},
+            isolineProperties[i],
+            commonProperties
+        );
+        properties[zProperty] = threshold;
+        var isoline = multiLineString(marchingsquares.isoContours(matrix, threshold), properties);
+
+        isolines.push(isoline);
     }
     return isolines;
 }
 
 /**
- * Transform isolines of 2D grid to polygons for the map
+ * Translates and scales isolines
  *
  * @private
- * @param {Array<any>} isolines Contours
+ * @param {Array<MultiLineString>} isolines to be rescaled
  * @param {Array<Array<number>>} matrix Grid Data
  * @param {Object} points Points by Latitude
- * @returns {Array<any>} isolines
+ * @returns {Array<MultiLineString>} isolines
  */
 function rescaleIsolines(isolines, matrix, points) {
 
@@ -147,12 +132,8 @@ function rescaleIsolines(isolines, matrix, points) {
     };
 
     // resize and shift each point/line of the isolines
-    isolines.forEach(function (contour) {
-        contour.lines.forEach(function (lineRingSet) {
-            lineRingSet.forEach(function (lineRing) {
-                lineRing.forEach(resize);
-            });
-        });
+    isolines.forEach(function (isoline) {
+        coordEach(isoline, resize);
     });
     return isolines;
 }

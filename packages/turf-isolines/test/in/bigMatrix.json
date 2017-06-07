@@ -7,7 +7,7 @@
     "stroke-width": 4,
     "fill-opacity": 0.4
   },
-  "isobandProperties": [
+  "isolineProperties": [
     {
       "stroke": "grey",
       "fill": "grey"

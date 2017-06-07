@@ -28,13 +28,13 @@ const fixtures = fs.readdirSync(directories.in).map(filename => {
 test('isolines', t => {
     fixtures.forEach(({name, jsondata, filename}) => {
 
-        let breaks, points, zProperty, isobandProperties, commonProperties;
+        let breaks, points, zProperty, isolineProperties, commonProperties;
         // allow geojson featureCollection...
         if (filename.includes('geojson')) {
             breaks = jsondata.properties.breaks;
             zProperty = jsondata.properties.zProperty;
             commonProperties = jsondata.properties.commonProperties;
-            isobandProperties = jsondata.properties.isobandProperties;
+            isolineProperties = jsondata.properties.isolineProperties;
             points = jsondata;
         } else {
             // ...or matrix input
@@ -45,12 +45,12 @@ test('isolines', t => {
             zProperty = jsondata.zProperty;
             points = matrixToGrid(matrix, origin, cellSize, { zProperty, units: jsondata.units });
             commonProperties = jsondata.commonProperties;
-            isobandProperties = jsondata.isobandProperties;
+            isolineProperties = jsondata.isolineProperties;
         }
 
         const results = isolines(points, breaks, zProperty, {
             commonProperties,
-            isobandProperties
+            isolineProperties
         });
 
         const box = lineString(getCoords(envelope(points))[0]);
@@ -70,7 +70,7 @@ test('isolines -- throws', t => {
 
     t.throws(() => isolines(random('polygon'), [1, 2, 3]), 'invalid points');
     t.throws(() => isolines(points, ''), 'invalid breaks');
-    t.throws(() => isolines(points, [1, 2, 3], 'temp', { isobandProperties: 'hello' }), 'invalid options');
+    t.throws(() => isolines(points, [1, 2, 3], 'temp', { isolineProperties: 'hello' }), 'invalid options');
 
     t.end();
 });
