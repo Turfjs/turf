@@ -26,13 +26,13 @@ const fixtures = fs.readdirSync(directory).map(filename => {
 const suite = new Benchmark.Suite('turf-isolines');
 for (const {name, jsondata, filename} of fixtures) {
 
-    let breaks, points, zProperty, isolineProperties, commonProperties;
+    let breaks, points, zProperty, perIsoline, toAllIsolines;
     // allow geojson featureCollection...
     if (filename.includes('geojson')) {
         breaks = jsondata.properties.breaks;
         zProperty = jsondata.properties.zProperty;
-        commonProperties = jsondata.properties.commonProperties;
-        isolineProperties = jsondata.properties.isolineProperties;
+        toAllIsolines = jsondata.properties.toAllIsolines;
+        perIsoline = jsondata.properties.perIsoline;
         points = jsondata;
     } else {
         // ...or matrix input
@@ -42,21 +42,14 @@ for (const {name, jsondata, filename} of fixtures) {
         breaks = jsondata.breaks;
         zProperty = jsondata.zProperty;
         points = matrixToGrid(matrix, origin, cellSize, {zProperty, units: jsondata.units});
-        commonProperties = jsondata.commonProperties;
-        isolineProperties = jsondata.isolineProperties;
+        toAllIsolines = jsondata.toAllIsolines;
+        perIsoline = jsondata.perIsoline;
     }
 
-    isolines(points, breaks, zProperty, {
-        commonProperties,
-        isolineProperties
-    });
+    isolines(points, breaks, zProperty, {perIsoline, toAllIsolines});
 
     // isolines(geojson, 'elevation', [5, 45, 55, 65, 85,  95, 105, 120, 180]);
-    suite.add(name, () => isolines(points, breaks, zProperty, {
-            commonProperties,
-            isolineProperties
-        })
-    );
+    suite.add(name, () => isolines(points, breaks, zProperty, {perIsoline, toAllIsolines}));
 }
 suite
   .on('cycle', e => console.log(String(e.target)))

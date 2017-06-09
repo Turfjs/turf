@@ -28,13 +28,13 @@ const fixtures = fs.readdirSync(directories.in).map(filename => {
 test('isolines', t => {
     fixtures.forEach(({name, jsondata, filename}) => {
 
-        let breaks, points, zProperty, isolineProperties, commonProperties;
+        let breaks, points, zProperty, perIsoline, toAllIsolines;
         // allow geojson featureCollection...
         if (filename.includes('geojson')) {
             breaks = jsondata.properties.breaks;
             zProperty = jsondata.properties.zProperty;
-            commonProperties = jsondata.properties.commonProperties;
-            isolineProperties = jsondata.properties.isolineProperties;
+            toAllIsolines = jsondata.properties.toAllIsolines;
+            perIsoline = jsondata.properties.perIsoline;
             points = jsondata;
         } else {
             // ...or matrix input
@@ -44,14 +44,11 @@ test('isolines', t => {
             breaks = jsondata.breaks;
             zProperty = jsondata.zProperty;
             points = matrixToGrid(matrix, origin, cellSize, { zProperty, units: jsondata.units });
-            commonProperties = jsondata.commonProperties;
-            isolineProperties = jsondata.isolineProperties;
+            toAllIsolines = jsondata.toAllIsolines;
+            perIsoline = jsondata.perIsoline;
         }
 
-        const results = isolines(points, breaks, zProperty, {
-            commonProperties,
-            isolineProperties
-        });
+        const results = isolines(points, breaks, zProperty, { perIsoline, toAllIsolines });
 
         const box = lineString(getCoords(envelope(points))[0]);
         box.properties['stroke'] = '#F00';
@@ -70,7 +67,9 @@ test('isolines -- throws', t => {
 
     t.throws(() => isolines(random('polygon'), [1, 2, 3]), 'invalid points');
     t.throws(() => isolines(points, ''), 'invalid breaks');
-    t.throws(() => isolines(points, [1, 2, 3], 'temp', { isolineProperties: 'hello' }), 'invalid options');
+    t.throws(() => isolines(points, [1, 2, 3], 'temp', 'string'), 'invalid properties');
+    t.throws(() => isolines(points, [1, 2, 3], 'temp', {toAllIsolines: 'string'}), 'invalid properties.toAllIsolines');
+    t.throws(() => isolines(points, [1, 2, 3], 'temp', {perIsoline: 'string'}), 'invalid properties.perIsoline');
 
     t.end();
 });
