@@ -8,6 +8,6 @@ interface Properties {
 /**
  * http://turfjs.org/docs/#isolines
  */
-declare function isolines(points: Points, breaks: Array<number>, properties?: Properties): MultiLineStrings;
+declare function isolines(points: Points, breaks: Array<number>, zProperty?:string, properties?: Properties): MultiLineStrings;
 declare namespace isolines { }
 export = isolines;
