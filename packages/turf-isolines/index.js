@@ -137,8 +137,10 @@ function rescaleIsolines(isolines, matrix, points) {
 
 /**
  * Checks input type
+ *
+ * @private
  * @param {*} input to be checked
- * @returns {boolean} true if the input is object
+ * @returns {boolean} true if the input is an Object
  */
 function isObject(input) {
     return (!!input) && (input.constructor === Object);
