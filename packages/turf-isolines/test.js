@@ -59,9 +59,22 @@ test('isolines -- throws', t => {
     const points = pointGrid([-70.823364, -33.553984, -70.473175, -33.302986], 5);
 
     t.throws(() => isolines(random('polygon'), [1, 2, 3]), 'invalid points');
-    t.throws(() => isolines(points, ''), 'invalid breaks');
-    t.throws(() => isolines(points, [1, 2, 3], 'temp', {}, 'string'), 'invalid properties.toAllIsolines');
-    t.throws(() => isolines(points, [1, 2, 3], 'temp', 'string'), 'invalid properties.perIsoline');
+    t.throws(() => isolines(points), /breaks is required/);
+    t.throws(() => isolines(points, 'string'), /breaks must be an Array/);
+    t.throws(() => isolines(points, [1, 2, 3], 5), /zProperty must be a string/);
+    t.throws(() => isolines(points, [1, 2, 3], 'temp', 'string'), /propertiesToAllIsolines must be an Object/);
+    t.throws(() => isolines(points, [1, 2, 3], 'temp', {}, 'string'), /propertiesPerIsoline must be an Array/);
 
+    t.end();
+});
+
+test('isolines -- handling properties', t => {
+    const points = pointGrid([-70.823364, -33.553984, -70.473175, -33.302986], 5);
+    const propertiesToAllIsolines = {name: 'unknown', source: 'foobar'};
+    const propertiesPerIsoline = [{name: 'break1'}, {name: 'break2'}, {name: 'break3'}];
+
+    const lines = isolines(points, [1, 2, 3], 'z', propertiesToAllIsolines, propertiesPerIsoline);
+    t.equal(lines.features[0].properties.name, 'break2');
+    t.equal(lines.features[0].properties.source, 'foobar');
     t.end();
 });

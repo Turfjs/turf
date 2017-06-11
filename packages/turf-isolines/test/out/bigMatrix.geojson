@@ -4,10 +4,10 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"stroke": "blue",
-				"fill": "blue",
 				"stroke-width": 4,
 				"fill-opacity": 0.4,
+				"stroke": "blue",
+				"fill": "blue",
 				"pressure": 0.24
 			},
 			"geometry": {
@@ -815,10 +815,10 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"stroke": "green",
-				"fill": "green",
 				"stroke-width": 4,
 				"fill-opacity": 0.4,
+				"stroke": "green",
+				"fill": "green",
 				"pressure": 0.5
 			},
 			"geometry": {
@@ -1896,10 +1896,10 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"stroke": "yellow",
-				"fill": "yellow",
 				"stroke-width": 4,
 				"fill-opacity": 0.4,
+				"stroke": "yellow",
+				"fill": "yellow",
 				"pressure": 1.5
 			},
 			"geometry": {
@@ -2873,10 +2873,10 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"stroke": "red",
-				"fill": "red",
 				"stroke-width": 4,
 				"fill-opacity": 0.4,
+				"stroke": "red",
+				"fill": "red",
 				"pressure": 2.5
 			},
 			"geometry": {

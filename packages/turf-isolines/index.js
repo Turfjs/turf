@@ -43,7 +43,8 @@ module.exports = function (points, breaks, zProperty, propertiesToAllIsolines, p
 
     // Input validation
     collectionOf(points, 'Point', 'Input must contain Points');
-    if (!breaks || !Array.isArray(breaks)) throw new Error('breaks is required');
+    if (!breaks) throw new Error('breaks is required');
+    if (!Array.isArray(breaks)) throw new Error('breaks must be an Array');
     if (!isObject(propertiesToAllIsolines)) throw new Error('propertiesToAllIsolines must be an Object');
     if (!Array.isArray(propertiesPerIsoline)) throw new Error('propertiesPerIsoline must be an Array');
     if (typeof zProperty !== 'string') throw new Error('zProperty must be a string');
@@ -78,8 +79,8 @@ function createIsoLines(matrix, breaks, zProperty, propertiesToAllIsolines, prop
 
         var properties = Object.assign(
             {},
-            propertiesPerIsoline[i],
-            propertiesToAllIsolines
+            propertiesToAllIsolines,
+            propertiesPerIsoline[i]
         );
         properties[zProperty] = threshold;
         var isoline = multiLineString(marchingsquares.isoContours(matrix, threshold), properties);

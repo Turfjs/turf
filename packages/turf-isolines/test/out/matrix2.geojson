@@ -4,10 +4,10 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"fill-opacity": 0.5,
 				"stroke-width": 3,
 				"stroke": "darkred",
 				"fill": "darkred",
+				"fill-opacity": 0.5,
 				"elevation": 4.5
 			},
 			"geometry": {
@@ -143,10 +143,10 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"fill-opacity": 0.7,
 				"stroke-width": 3,
 				"stroke": "darkred",
 				"fill": "darkred",
+				"fill-opacity": 0.7,
 				"elevation": 9
 			},
 			"geometry": {
@@ -282,10 +282,10 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"fill-opacity": 0.8,
 				"stroke-width": 3,
 				"stroke": "darkred",
 				"fill": "darkred",
+				"fill-opacity": 0.8,
 				"elevation": 13.5
 			},
 			"geometry": {
