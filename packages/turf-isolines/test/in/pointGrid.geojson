@@ -2,7 +2,7 @@
     "type": "FeatureCollection",
     "properties": {
       "breaks": [0, 20, 40, 80, 160],
-      "perIsoline": [
+      "propertiesPerIsoline": [
         {
           "fill-opacity": 0.5
         },

@@ -1,13 +1,14 @@
 import {Points, MultiLineStrings} from '@turf/helpers'
 
-interface Properties {
-    perIsoline: Array<Object>,
-    toAllIsolines: Object
-}
-
 /**
  * http://turfjs.org/docs/#isolines
  */
-declare function isolines(points: Points, breaks: Array<number>, zProperty?:string, properties?: Properties): MultiLineStrings;
+declare function isolines(
+    points: Points,
+    breaks: number[],
+    zProperty?:string,
+    propertiesToAllIsolines?: Object,
+    propertiesPerIsoline?: Object[]): MultiLineStrings;
+
 declare namespace isolines { }
 export = isolines;

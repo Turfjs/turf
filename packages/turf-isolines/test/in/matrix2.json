@@ -13,12 +13,12 @@
   "origin": [ 10.85, 44 ],
   "cellSize": 20,
   "breaks": [0, 4.5, 9, 13.5, 18],
-  "toAllIsolines": {
+  "propertiesToAllIsolines": {
     "stroke-width": 3,
     "stroke": "darkred",
     "fill": "darkred"
   },
-  "perIsoline": [
+  "propertiesPerIsoline": [
     {
       "fill-opacity": 0.4
     },{

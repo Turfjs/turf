@@ -1,7 +1,7 @@
-const path = require('path');
-const Benchmark = require('benchmark');
-const load = require('load-json-file');
 const fs = require('fs');
+const path = require('path');
+const load = require('load-json-file');
+const Benchmark = require('benchmark');
 const matrixToGrid = require('matrix-to-grid');
 const isolines = require('./');
 
@@ -18,6 +18,10 @@ const fixtures = fs.readdirSync(directory).map(filename => {
 /**
  * Benchmark Results
  *
+ * bigMatrix: 21.457ms
+ * matrix1: 0.741ms
+ * matrix2: 0.547ms
+ * pointGrid: 1.373ms
  * bigMatrix x 168 ops/sec ±2.79% (72 runs sampled)
  * matrix1 x 17,145 ops/sec ±4.73% (68 runs sampled)
  * matrix2 x 11,004 ops/sec ±2.56% (79 runs sampled)
@@ -25,31 +29,25 @@ const fixtures = fs.readdirSync(directory).map(filename => {
  */
 const suite = new Benchmark.Suite('turf-isolines');
 for (const {name, jsondata, filename} of fixtures) {
+    const {
+        breaks,
+        zProperty,
+        propertiesPerIsoline,
+        propertiesToAllIsolines,
+        matrix,
+        cellSize,
+        units,
+        origin} = jsondata.properties || jsondata;
 
-    let breaks, points, zProperty, perIsoline, toAllIsolines;
-    // allow geojson featureCollection...
-    if (filename.includes('geojson')) {
-        breaks = jsondata.properties.breaks;
-        zProperty = jsondata.properties.zProperty;
-        toAllIsolines = jsondata.properties.toAllIsolines;
-        perIsoline = jsondata.properties.perIsoline;
-        points = jsondata;
-    } else {
-        // ...or matrix input
-        const matrix = jsondata.matrix;
-        const cellSize = jsondata.cellSize;
-        const origin = jsondata.origin;
-        breaks = jsondata.breaks;
-        zProperty = jsondata.zProperty;
-        points = matrixToGrid(matrix, origin, cellSize, {zProperty, units: jsondata.units});
-        toAllIsolines = jsondata.toAllIsolines;
-        perIsoline = jsondata.perIsoline;
-    }
+    // allow GeoJSON FeatureCollection or Matrix
+    let points;
+    if (filename.includes('geojson')) points = jsondata;
+    else points = matrixToGrid(matrix, origin, cellSize, {zProperty, units});
 
-    isolines(points, breaks, zProperty, {perIsoline, toAllIsolines});
-
-    // isolines(geojson, 'elevation', [5, 45, 55, 65, 85,  95, 105, 120, 180]);
-    suite.add(name, () => isolines(points, breaks, zProperty, {perIsoline, toAllIsolines}));
+    console.time(name);
+    isolines(points, breaks, zProperty, propertiesToAllIsolines, propertiesPerIsoline);
+    console.timeEnd(name);
+    suite.add(name, () => isolines(points, breaks, zProperty, propertiesToAllIsolines, propertiesPerIsoline));
 }
 suite
   .on('cycle', e => console.log(String(e.target)))

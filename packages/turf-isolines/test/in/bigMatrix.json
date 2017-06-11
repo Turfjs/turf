@@ -3,11 +3,11 @@
   "cellSize": 10,
   "breaks": [0, 0.24, 0.5, 1.5, 2.5, 100],
   "zProperty": "pressure",
-  "toAllIsolines": {
+  "propertiesToAllIsolines": {
     "stroke-width": 4,
     "fill-opacity": 0.4
   },
-  "perIsoline": [
+  "propertiesPerIsoline": [
     {
       "stroke": "grey",
       "fill": "grey"
