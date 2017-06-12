@@ -1,0 +1,70 @@
+{
+  "type": "FeatureCollection",
+  "properties": {
+    "radius": 25,
+    "units": "meters"
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {},
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              4.946893,
+              52.509638
+            ],
+            [
+              4.947357,
+              52.509492
+            ],
+            [
+              4.947427,
+              52.509472
+            ],
+            [
+              4.947761,
+              52.509428
+            ],
+            [
+              4.947331,
+              52.509564
+            ],
+            [
+              4.946736,
+              52.509714
+            ],
+            [
+              4.946893,
+              52.509638
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {},
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.946736,
+          52.509714
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {},
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.947761,
+          52.509428
+        ]
+      }
+    }
+  ]
+}
