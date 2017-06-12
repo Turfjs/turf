@@ -3,7 +3,9 @@
   "features": [
     {
       "type": "Feature",
-      "properties": {},
+      "properties": {
+        "marker-color": "#F00"
+      },
       "geometry": {
         "type": "MultiPoint",
         "coordinates": [
@@ -28,7 +30,9 @@
     },
     {
       "type": "Feature",
-      "properties": {},
+      "properties": {
+        "marker-color": "#0F0"
+      },
       "geometry": {
         "type": "Point",
         "coordinates": [
@@ -39,7 +43,9 @@
     },
     {
       "type": "Feature",
-      "properties": {},
+      "properties": {
+        "marker-color": "#00F"
+      },
       "geometry": {
         "type": "Point",
         "coordinates": [

@@ -44,7 +44,6 @@
   },
   "dependencies": {
     "@turf/center": "^4.4.0",
-    "@turf/circle": "^4.4.0",
     "@turf/helpers": "^4.4.0",
     "@turf/meta": "^4.4.0",
     "d3-geo": "^1.6.3",
