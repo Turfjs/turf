@@ -1,10 +1,10 @@
 /// <reference types="geojson" />
 
-type Feature = GeoJSON.Feature<any> | GeoJSON.GeometryObject;
+type Feature = GeoJSON.Feature<GeoJSON.LineString | GeoJSON.Polygon>
 
 /**
- * http://turfjs.org/docs/#boolean-within
+ * http://turfjs.org/docs/#boolean-clockwise
  */
-declare function within(feature1: Feature, feature2: Feature): boolean;
-declare namespace within { }
-export = within;
+declare function clockwise(feature: Feature): boolean;
+declare namespace clockwise { }
+export = clockwise;

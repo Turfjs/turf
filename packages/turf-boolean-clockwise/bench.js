@@ -1,22 +1,24 @@
-var isClockwise = require('./');
-var Benchmark = require('benchmark');
-var fs = require('fs');
+const path = require('path');
+const glob = require('glob');
+const Benchmark = require('benchmark');
+const load = require('load-json-file');
+const isClockwise = require('./');
 
-var clockwiseRing = [[0,0],[1,1],[1,0],[0,0]];
-var counterClockwiseRing = [[0,0],[1,0],[1,1],[0,0]];
+/**
+ * Benchmark Results
+ *
+ * counter-clockwise-line x 7,272,353 ops/sec ±11.64% (58 runs sampled)
+ * clockwise-line x 10,724,102 ops/sec ±2.19% (76 runs sampled)
+ */
+const suite = new Benchmark.Suite('turf-boolean-clockwise');
+glob.sync(path.join(__dirname, 'test', '**', '*.geojson')).forEach(filepath => {
+    const {name} = path.parse(filepath);
+    const geojson = load.sync(filepath);
+    const [feature] = geojson.features;
+    suite.add(name, () => isClockwise(feature));
+});
 
-var suite = new Benchmark.Suite('turf-is-clockwise');
 suite
-  .add('turf-is-clockwise##clockwise',function () {
-    isClockwise(clockwiseRing);
-  })
-  .add('turf-is-clockwise#counterclockwise',function () {
-    isClockwise(counterClockwiseRing);
-  })
-  .on('cycle', function (event) {
-    console.log(String(event.target));
-  })
-  .on('complete', function () {
-    
-  })
-  .run();
+    .on('cycle', e => console.log(String(e.target)))
+    .on('complete', () => {})
+    .run();
