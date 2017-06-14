@@ -1,14 +1,31 @@
-var test = require('tape');
-var isClockwise = require('./');
+const glob = require('glob');
+const path = require('path');
+const test = require('tape');
+const load = require('load-json-file');
+const {point} = require('@turf/helpers');
+const isClockwise = require('./');
 
-test('isClockwise', function(t){
-  var ring = [[0,0],[1,1],[1,0],[0,0]];
-  var clockwise = isClockwise(ring);
-  t.equal(clockwise, true, 'should take a ring and return clockwise true');
+test('isClockwise#fixtures', t => {
+    // True Fixtures
+    glob.sync(path.join(__dirname, 'test', 'true', '*.geojson')).forEach(filepath => {
+        const {name} = path.parse(filepath);
+        const geojson = load.sync(filepath);
+        const [feature] = geojson.features;
+        t.true(isClockwise(feature), '[true] ' + name);
+    });
+    // False Fixtures
+    glob.sync(path.join(__dirname, 'test', 'false', '*.geojson')).forEach(filepath => {
+        const {name} = path.parse(filepath);
+        const geojson = load.sync(filepath);
+        const [feature] = geojson.features;
+        t.false(isClockwise(feature), '[false] ' + name);
+    });
+    t.end();
+});
 
-  var ring = [[0,0],[1,0],[1,1],[0,0]];
-  var counterClockwise = isClockwise(ring);
-  t.equal(counterClockwise, false, 'should take a ring and return clockwise false');
+test('isClockwise -- throws', t => {
+    const pt = point([-10, -33]);
+    t.throws(() => isClockwise(pt), 'feature geometry not supported');
 
-  t.end();
-})
+    t.end();
+});
