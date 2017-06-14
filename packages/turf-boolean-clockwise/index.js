@@ -6,7 +6,7 @@ var getGeomType = invariant.getGeomType;
  * Takes a ring and return true or false whether or not the ring is clockwise or counter-clockwise.
  *
  * @name clockwise
- * @param {LineString|Polygon} feature GeoJSON Feature or Geometry
+ * @param {LineString|Polygon|Array<Array<number>>} feature to be evaluated
  * @returns {Boolean} true/false
  * @example
  * var clockwiseRing = [[0,0],[1,1],[1,0],[0,0]]
@@ -21,7 +21,7 @@ module.exports = function (feature) {
     // validation
     if (!feature) throw new Error('feature is required');
     var type = getGeomType(feature);
-    if (type !== 'LineString' && type !== 'Polygon') throw new Error('feature geometry not supported');
+    if (!Array.isArray(feature) && type !== 'LineString' && type !== 'Polygon') throw new Error('feature geometry not supported');
 
     var ring = getCoords(feature);
     var sum = 0;
