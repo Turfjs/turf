@@ -23,6 +23,9 @@
     "geojson"
   ],
   "author": "Turf Authors",
+  "contributors": [
+    "Stefano Borghi <@stebogit>"
+  ],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/Turfjs/turf/issues"
