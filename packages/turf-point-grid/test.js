@@ -55,3 +55,9 @@ test('turf-point-grid', t => {
     }
     t.end();
 });
+
+test('turf-point-grid -- throws', t => {
+    t.throws(() => grid(null, 10), /bbox is required/, 'missing bbox');
+    t.throws(() => grid([-95, 30, 40], 10), /bbox must contain 4 numbers/, 'invalid bbox');
+    t.end();
+});
