@@ -1,6 +1,6 @@
 /// <reference types="geojson" />
 
-type Feature = GeoJSON.Feature<GeoJSON.LineString | GeoJSON.Polygon>
+type Feature = GeoJSON.Feature<GeoJSON.LineString>
 
 /**
  * http://turfjs.org/docs/#boolean-clockwise

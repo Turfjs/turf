@@ -23,6 +23,16 @@ test('isClockwise#fixtures', t => {
     t.end();
 });
 
+test('isClockwise', t => {
+    const cwArray = [[0, 0], [1, 1], [1, 0], [0, 0]];
+    const ccwArray = [[0, 0], [1, 0], [1, 1], [0, 0]];
+
+    t.equal(isClockwise(cwArray), true, '[true] clockwise array input');
+    t.equal(isClockwise(ccwArray), false, '[false] counter-clockwise array input');
+
+    t.end();
+});
+
 test('isClockwise -- throws', t => {
     const pt = point([-10, -33]);
     t.throws(() => isClockwise(pt), 'feature geometry not supported');

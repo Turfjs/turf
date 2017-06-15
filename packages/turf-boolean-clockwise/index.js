@@ -1,12 +1,11 @@
 var invariant = require('@turf/invariant');
 var getCoords = invariant.getCoords;
-var getGeomType = invariant.getGeomType;
 
 /**
  * Takes a ring and return true or false whether or not the ring is clockwise or counter-clockwise.
  *
  * @name clockwise
- * @param {LineString|Polygon|Array<Array<number>>} feature to be evaluated
+ * @param {Geometry|Feature<LineString>|Array<Array<number>>} feature to be evaluated
  * @returns {Boolean} true/false
  * @example
  * var clockwiseRing = [[0,0],[1,1],[1,0],[0,0]]
@@ -20,8 +19,8 @@ var getGeomType = invariant.getGeomType;
 module.exports = function (feature) {
     // validation
     if (!feature) throw new Error('feature is required');
-    var type = getGeomType(feature);
-    if (!Array.isArray(feature) && type !== 'LineString' && type !== 'Polygon') throw new Error('feature geometry not supported');
+    if (!Array.isArray(feature) && feature.geometry.type !== 'LineString' && feature.type !== 'LineString')
+        throw new Error('feature geometry not supported');
 
     var ring = getCoords(feature);
     var sum = 0;
