@@ -26,6 +26,7 @@ test('turf-point-grid', t => {
         const grid5 = grid(geojson, 5, 'miles');
         const grid20 = grid(geojson, 20, 'miles');
         const gridCentered = grid(geojson, 12.5, 'miles', true);
+        const gridMasked = grid(geojson, 15, 'miles', true, true);
 
         // Add current GeoJSON to grid results
         featureEach(geojson, feature => {
@@ -37,6 +38,7 @@ test('turf-point-grid', t => {
             grid5.features.push(feature);
             grid20.features.push(feature);
             gridCentered.features.push(feature);
+            gridMasked.features.push(feature);
         });
 
         if (process.env.REGEN) {
@@ -44,10 +46,12 @@ test('turf-point-grid', t => {
             write.sync(path.join(directories.out, name, '5-miles.geojson'), grid5);
             write.sync(path.join(directories.out, name, '20-miles.geojson'), grid20);
             write.sync(path.join(directories.out, name, 'centered.geojson'), gridCentered);
+            write.sync(path.join(directories.out, name, 'masked.geojson'), gridMasked);
         }
         t.deepEqual(grid5, load.sync(path.join(directories.out, name, '5-miles.geojson')), name + ' -- 5 miles');
         t.deepEqual(grid20, load.sync(path.join(directories.out, name, '20-miles.geojson')), name + ' -- 20 miles');
         t.deepEqual(gridCentered, load.sync(path.join(directories.out, name, 'centered.geojson')), name + ' -- centered');
+        t.deepEqual(gridMasked, load.sync(path.join(directories.out, name, 'masked.geojson')), name + ' -- masked');
     }
     t.end();
 });
