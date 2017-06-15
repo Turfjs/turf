@@ -3,9 +3,11 @@
   "version": "4.4.0",
   "description": "a JavaScript library for performing geospatial operations with GeoJSON",
   "main": "index.js",
+  "module": "module.js",
   "types": "index.d.ts",
   "files": [
     "index.js",
+    "module.js",
     "index.d.ts",
     "turf.js",
     "turf.min.js",
