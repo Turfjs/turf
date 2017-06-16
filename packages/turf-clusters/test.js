@@ -6,7 +6,7 @@ const write = require('write-json-file');
 const {featureEach} = require('@turf/meta');
 const {featureCollection, polygon} = require('@turf/helpers');
 const chromatism = require('chromatism');
-const clusters = require('./');
+const cluster = require('./');
 
 const directories = {
     in: path.join(__dirname, 'test', 'in') + path.sep,
@@ -21,11 +21,11 @@ const fixtures = fs.readdirSync(directories.in).map(filename => {
     };
 });
 
-test('isolines', t => {
-    fixtures.forEach(({name, geojson, filename}) => {
+test('cluster', t => {
+    fixtures.forEach(({name, geojson}) => {
         const {numberOfCentroids} = geojson.properties || {};
 
-        const clustered = clusters(geojson, numberOfCentroids);
+        const clustered = cluster(geojson, numberOfCentroids);
         const result = featureCollection(colorize(clustered));
 
         if (process.env.REGEN) write.sync(directories.out + name + '.geojson', result);
@@ -35,9 +35,9 @@ test('isolines', t => {
     t.end();
 });
 
-test('clusters -- throws', t => {
+test('cluster -- throws', t => {
     const poly = polygon([[[0, 0], [10, 10], [0, 10], [0, 0]]]);
-    t.throws(() => clusters(poly, 3), /Input must contain Points/);
+    t.throws(() => cluster(poly, 3), /Input must contain Points/);
     t.end();
 });
 

@@ -1,18 +1,18 @@
 var meta = require('@turf/meta');
 var helpers = require('@turf/helpers');
 var invariant = require('@turf/invariant');
+var clusterMaker = require('clusters');
 var point = helpers.point;
 var getCoords = invariant.getCoords;
 var collectionOf = invariant.collectionOf;
 var featureReduce = meta.featureReduce;
 var featureCollection = helpers.featureCollection;
-var clusterMaker = require('clusters');
 
 /**
  * Takes a set of {@link Point|points} and partition them into clusters using the k-mean .
  * It uses the [k-means algorithm](https://en.wikipedia.org/wiki/K-means_clustering)
  *
- * @name clusters
+ * @name cluster
  * @param {FeatureCollection<Point>} points to be clustered
  * @param {number} [numberOfClusters=Math.sqrt(numberOfPoints/2)] numberOfClusters that will be generated
  * @returns {Object} an object containing a `points` FeatureCollection, the input points where each Point
@@ -24,7 +24,7 @@ var clusterMaker = require('clusters');
  *   bbox: [0, 30, 20, 50]
  * });
  * var numberOfClusters = 7;
- * var clustered = turf.clusters(points, numberOfClusters);
+ * var clustered = turf.cluster(points, numberOfClusters);
  *
  * //addToMap
  * var addToMap = featureCollection(clustered.points);

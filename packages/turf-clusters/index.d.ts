@@ -1,9 +1,14 @@
 import {Points} from '@turf/helpers'
 
-/**
- * http://turfjs.org/docs/#clusters
- */
-declare function clusters(points: Points, breaks?: number): Object;
+interface Clustered {
+  points: Points
+  centroid: Points
+}
 
-declare namespace clusters { }
-export = clusters;
+/**
+ * http://turfjs.org/docs/#cluster
+ */
+declare function cluster(points: Points, numberOfClusters?: number): Clustered;
+
+declare namespace cluster { }
+export = cluster;
