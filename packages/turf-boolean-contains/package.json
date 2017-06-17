@@ -41,7 +41,6 @@
   },
   "dependencies": {
     "@turf/inside": "^4.2.0",
-    "@turf/invariant": "^4.2.0",
-    "deep-equal": "^1.0.1"
+    "@turf/invariant": "^4.2.0"
   }
 }

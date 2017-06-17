@@ -1,5 +1,4 @@
 var inside = require('@turf/inside');
-var deepEqual = require('deep-equal');
 var invariant = require('@turf/invariant');
 var getGeom = invariant.getGeom;
 var getCoords = invariant.getCoords;
@@ -47,7 +46,7 @@ module.exports = function (feature1, feature2) {
     case 'Point':
         switch (type2) {
         case 'Point':
-            return deepEqual(coords1, coords2);
+            return compareCoords(coords1, coords2);
         }
         throw new Error('feature2 ' + type2 + ' geometry not supported');
     case 'MultiPoint':
@@ -89,7 +88,7 @@ function isPointInMultiPoint(multiPoint, point) {
     var i;
     var output = false;
     for (i = 0; i < multiPoint.coordinates.length; i++) {
-        if (deepEqual(multiPoint.coordinates[i], point.coordinates)) {
+        if (compareCoords(multiPoint.coordinates[i], point.coordinates)) {
             output = true;
             break;
         }
@@ -102,7 +101,7 @@ function isMultiPointInMultiPoint(multiPoint1, multiPoint2) {
     for (var i = 0; i < multiPoint2.coordinates.length; i++) {
         var anyMatch = false;
         for (var i2 = 0; i2 < multiPoint1.coordinates.length; i2++) {
-            if (deepEqual(multiPoint2.coordinates[i], multiPoint1.coordinates[i2])) {
+            if (compareCoords(multiPoint2.coordinates[i], multiPoint1.coordinates[i2])) {
                 foundAMatch++;
                 anyMatch = true;
                 break;
@@ -175,8 +174,8 @@ function isLineOnLine(lineString1, lineString2) {
         }
     }
     if (output) {
-        if (deepEqual(lineString1.coordinates[0], lineString2.coordinates[0]) ||
-            deepEqual(lineString1.coordinates[lineString1.coordinates.length - 1], lineString2.coordinates[lineString2.coordinates.length - 1])) {
+        if (compareCoords(lineString1.coordinates[0], lineString2.coordinates[0]) ||
+            compareCoords(lineString1.coordinates[lineString1.coordinates.length - 1], lineString2.coordinates[lineString2.coordinates.length - 1])) {
             output = false;
         }
     }
@@ -302,4 +301,16 @@ function inBBox(pt, bbox) {
            bbox[1] <= pt[1] &&
            bbox[2] >= pt[0] &&
            bbox[3] >= pt[1];
+}
+
+/**
+ * compareCoords
+ *
+ * @private
+ * @param {[number, number]} pair1 point [x,y]
+ * @param {[number, number]} pair2 point [x,y]
+ * @returns {boolean} true/false if coord pairs match
+ */
+function compareCoords(pair1, pair2) {
+    return pair1[0] === pair2[0] && pair1[1] === pair2[1];
 }
