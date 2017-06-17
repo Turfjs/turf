@@ -1,10 +1,10 @@
 /// <reference types="geojson" />
 
-type Feature = GeoJSON.Feature<GeoJSON.LineString>
+type Line = GeoJSON.Feature<GeoJSON.LineString> | GeoJSON.LineString | Array<Array<number>>;
 
 /**
  * http://turfjs.org/docs/#boolean-clockwise
  */
-declare function clockwise(feature: Feature): boolean;
+declare function clockwise(line: Line): boolean;
 declare namespace clockwise { }
 export = clockwise;

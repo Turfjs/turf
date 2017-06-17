@@ -2,7 +2,7 @@ const glob = require('glob');
 const path = require('path');
 const test = require('tape');
 const load = require('load-json-file');
-const {point} = require('@turf/helpers');
+const {point, lineString} = require('@turf/helpers');
 const isClockwise = require('./');
 
 test('isClockwise#fixtures', t => {
@@ -29,6 +29,15 @@ test('isClockwise', t => {
 
     t.equal(isClockwise(cwArray), true, '[true] clockwise array input');
     t.equal(isClockwise(ccwArray), false, '[false] counter-clockwise array input');
+
+    t.end();
+});
+
+test('isClockwise -- Geometry types', t => {
+    const line = lineString([[0, 0], [1, 1], [1, 0], [0, 0]]);
+
+    t.equal(isClockwise(line), true, 'Feature');
+    t.equal(isClockwise(line.geometry), true, 'Geometry Object');
 
     t.end();
 });

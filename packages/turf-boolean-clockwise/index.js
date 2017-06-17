@@ -4,25 +4,25 @@ var getCoords = invariant.getCoords;
 /**
  * Takes a ring and return true or false whether or not the ring is clockwise or counter-clockwise.
  *
- * @name boolean-clockwise
- * @param {Geometry|Feature<LineString>|Array<Array<number>>} feature to be evaluated
+ * @name booleanClockwise
+ * @param {Geometry|Feature<LineString>|Array<Array<number>>} line to be evaluated
  * @returns {Boolean} true/false
  * @example
  * var clockwiseRing = [[0,0],[1,1],[1,0],[0,0]]
  * var counterClockwiseRing = [[0,0],[1,0],[1,1],[0,0]]
  *
- * turf.isClockwise(clockwiseRing)
+ * turf.booleanClockwise(clockwiseRing)
  * //=true
- * turf.isClockwise(counterClockwiseRing)
+ * turf.booleanClockwise(counterClockwiseRing)
  * //=false
  */
-module.exports = function (feature) {
+module.exports = function (line) {
     // validation
-    if (!feature) throw new Error('feature is required');
-    if (!Array.isArray(feature) && feature.geometry.type !== 'LineString' && feature.type !== 'LineString')
-        throw new Error('feature geometry not supported');
+    if (!line) throw new Error('line is required');
+    var type = (line.geometry) ? line.geometry.type : line.type;
+    if (!Array.isArray(line) && type !== 'LineString') throw new Error('geometry must be a LineString');
 
-    var ring = getCoords(feature);
+    var ring = getCoords(line);
     var sum = 0;
     var i = 1;
     var prev, cur;
