@@ -4,7 +4,7 @@ var getCoords = invariant.getCoords;
 /**
  * Takes a ring and return true or false whether or not the ring is clockwise or counter-clockwise.
  *
- * @name clockwise
+ * @name boolean-clockwise
  * @param {Geometry|Feature<LineString>|Array<Array<number>>} feature to be evaluated
  * @returns {Boolean} true/false
  * @example
