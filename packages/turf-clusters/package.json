@@ -1,7 +1,7 @@
 {
-  "name": "@turf/clusters",
+  "name": "@turf/cluster",
   "version": "4.4.0",
-  "description": "turf clusters module",
+  "description": "turf cluster module",
   "main": "index.js",
   "types": "index.d.ts",
   "files": [
@@ -19,6 +19,7 @@
   "keywords": [
     "turf",
     "geojson",
+    "cluster",
     "clusters",
     "clustering",
     "k-means"
@@ -44,6 +45,6 @@
     "@turf/helpers": "^4.4.0",
     "@turf/invariant": "^4.4.0",
     "@turf/meta": "^4.4.0",
-    "clusters": "0.0.4"
+    "skmeans": "0.5.0"
   }
 }

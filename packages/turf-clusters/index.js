@@ -5,26 +5,28 @@ var point = helpers.point;
 var getCoords = invariant.getCoords;
 var collectionOf = invariant.collectionOf;
 var featureReduce = meta.featureReduce;
+var featureEach = meta.featureEach;
 var featureCollection = helpers.featureCollection;
-var clusterMaker = require('clusters');
+var skmeans = require('skmeans');
 
 /**
  * Takes a set of {@link Point|points} and partition them into clusters using the k-mean .
  * It uses the [k-means algorithm](https://en.wikipedia.org/wiki/K-means_clustering)
  *
- * @name clusters
+ * @name cluster
  * @param {FeatureCollection<Point>} points to be clustered
  * @param {number} [numberOfClusters=Math.sqrt(numberOfPoints/2)] numberOfClusters that will be generated
- * @returns {Object} an object containing a `points` FeatureCollection, the input points where each Point
- *     has given a `cluster` property with the cluster number it belongs, and a `centroids` FeatureCollection of
- *     Points, collecting all the cluster centroids each with its own `cluster` property.
+ * @returns {Object} an object containing a `points` FeatureCollection, containing the input points where each Point
+ *     has given an additional `cluster` property with the cluster number it belongs,
+ *     and a `centroids` FeatureCollection of Points, collecting all the cluster centroids
+ *     each with its own `cluster` property.
  * @example
  * // create random points with random z-values in their properties
  * var points = turf.random('point', 100, {
  *   bbox: [0, 30, 20, 50]
  * });
  * var numberOfClusters = 7;
- * var clustered = turf.clusters(points, numberOfClusters);
+ * var clustered = turf.cluster(points, numberOfClusters);
  *
  * //addToMap
  * var addToMap = featureCollection(clustered.points);
@@ -34,31 +36,27 @@ module.exports = function (points, numberOfClusters) {
     collectionOf(points, 'Point', 'Input must contain Points');
     // Default Params
     var count = points.features.length;
-    numberOfClusters = numberOfClusters || Math.sqrt(count / 2);
+    numberOfClusters = numberOfClusters || Math.round(Math.sqrt(count / 2));
 
     // collect points coordinates
     var data = featureReduce(points, function (prevValue, currentFeature) {
         var coord = getCoords(currentFeature);
         return prevValue.concat([coord]);
     }, []);
+    // create seed to avoid skmeans to drift
+    var initialCentroids = data.slice(0, numberOfClusters);
 
     // create clusters
-    clusterMaker.k(numberOfClusters);
-    clusterMaker.data(data);
-    var clusters = clusterMaker.clusters();
-
-    // create output
-    var outputPoints = [];
-    var centroids = [];
-    clusters.forEach(function (cluster, idx) {
-        cluster.points.forEach(function (coord) {
-            outputPoints.push(point(coord, {cluster: idx}));
-        });
-        centroids.push(point(cluster.centroid, {cluster: idx}));
+    var clastersResult = skmeans(data, numberOfClusters, initialCentroids);
+    var centroids = clastersResult.centroids.map(function (coord, idx) {
+        return point(coord, {cluster: idx});
+    });
+    featureEach(points, function (pt, i) {
+        pt.properties.cluster = clastersResult.idxs[i];
     });
 
     return {
-        points: featureCollection(outputPoints),
+        points: points,
         centroids: featureCollection(centroids)
     };
 };

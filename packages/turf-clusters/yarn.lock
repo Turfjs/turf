@@ -68,10 +68,6 @@ chromatism@2.6.0:
   version "2.6.0"
   resolved "https://registry.yarnpkg.com/chromatism/-/chromatism-2.6.0.tgz#c50ba715565bc9febd87b57a351850e1e51376a4"
 
-clusters@0.0.4:
-  version "0.0.4"
-  resolved "https://registry.yarnpkg.com/clusters/-/clusters-0.0.4.tgz#f6d603139788b1443415fee42fe1d4ececea8379"
-
 concat-map@0.0.1:
   version "0.0.1"
   resolved "https://registry.yarnpkg.com/concat-map/-/concat-map-0.0.1.tgz#d8a96bd77fd68df7793a73036a3ba0d5405d477b"
@@ -285,6 +281,10 @@ resumer@~0.0.0:
   resolved "https://registry.yarnpkg.com/resumer/-/resumer-0.0.0.tgz#f1e8f461e4064ba39e82af3cdc2a8c893d076759"
   dependencies:
     through "~2.3.4"
+
+skmeans@0.5.0:
+  version "0.5.0"
+  resolved "https://registry.yarnpkg.com/skmeans/-/skmeans-0.5.0.tgz#0450dcbafffee5f24acffddfd1336143e74513c1"
 
 slide@^1.1.5:
   version "1.1.6"
