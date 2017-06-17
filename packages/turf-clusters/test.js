@@ -22,7 +22,7 @@ const fixtures = fs.readdirSync(directories.in).map(filename => {
 });
 
 test('cluster', t => {
-    fixtures.forEach(({name, geojson, filename}) => {
+    fixtures.forEach(({name, geojson}) => {
         const {numberOfCentroids} = geojson.properties || {};
 
         const clustered = cluster(geojson, numberOfCentroids);

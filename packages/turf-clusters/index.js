@@ -1,13 +1,13 @@
 var meta = require('@turf/meta');
+var skmeans = require('skmeans');
 var helpers = require('@turf/helpers');
 var invariant = require('@turf/invariant');
 var point = helpers.point;
 var getCoords = invariant.getCoords;
+var featureEach = meta.featureEach;
 var collectionOf = invariant.collectionOf;
 var featureReduce = meta.featureReduce;
-var featureEach = meta.featureEach;
 var featureCollection = helpers.featureCollection;
-var skmeans = require('skmeans');
 
 /**
  * Takes a set of {@link Point|points} and partition them into clusters using the k-mean .
@@ -16,10 +16,9 @@ var skmeans = require('skmeans');
  * @name cluster
  * @param {FeatureCollection<Point>} points to be clustered
  * @param {number} [numberOfClusters=Math.sqrt(numberOfPoints/2)] numberOfClusters that will be generated
- * @returns {Object} an object containing a `points` FeatureCollection, containing the input points where each Point
- *     has given an additional `cluster` property with the cluster number it belongs,
- *     and a `centroids` FeatureCollection of Points, collecting all the cluster centroids
- *     each with its own `cluster` property.
+ * @returns {Object} an object containing a `points` FeatureCollection, the input points where each Point
+ *     has given a `cluster` property with the cluster number it belongs, and a `centroids` FeatureCollection of
+ *     Points, collecting all the cluster centroids each with its own `cluster` property.
  * @example
  * // create random points with random z-values in their properties
  * var points = turf.random('point', 100, {
