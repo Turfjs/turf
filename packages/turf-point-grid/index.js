@@ -1,6 +1,9 @@
 var distance = require('@turf/distance');
 var turfBBox = require('@turf/bbox');
 var helpers = require('@turf/helpers');
+var inside = require('@turf/inside');
+var invariant = require('@turf/invariant');
+var getGeomType = invariant.getGeomType;
 var point = helpers.point;
 var featureCollection = helpers.featureCollection;
 
@@ -12,6 +15,8 @@ var featureCollection = helpers.featureCollection;
  * @param {number} cellSize the distance across each cell
  * @param {string} [units=kilometers] used in calculating cellSize, can be degrees, radians, miles, or kilometers
  * @param {boolean} [centered=false] adjust points position to center the grid into bbox
+ * @param {boolean} [bboxIsMask=false] if true, and bbox is a Polygon or MultiPolygon, the grid Point will be created
+ * only if inside the bbox Polygon(s)
  * @returns {FeatureCollection<Point>} grid of points
  * @example
  * var extent = [-70.823364, -33.553984, -70.473175, -33.302986];
@@ -23,9 +28,10 @@ var featureCollection = helpers.featureCollection;
  * //addToMap
  * var addToMap = [grid];
  */
-module.exports = function (bbox, cellSize, units, centered) {
+module.exports = function (bbox, cellSize, units, centered, bboxIsMask) {
     var results = [];
 
+    var bboxMask = bbox;
     // validation
     if (!bbox) throw new Error('bbox is required');
     if (!Array.isArray(bbox)) bbox = turfBBox(bbox); // Convert GeoJSON to bbox
@@ -51,13 +57,22 @@ module.exports = function (bbox, cellSize, units, centered) {
         var deltaY = (bboxVerticalSide - rows * cellHeight) / 2;
     }
 
+    var isPoly = !Array.isArray(bboxMask) && (getGeomType(bboxMask) === 'Polygon' || getGeomType(bboxMask) === 'MultiPolygon');
+
     var currentX = west;
     if (centered === true) currentX += deltaX;
     while (currentX <= east) {
         var currentY = south;
         if (centered === true) currentY += deltaY;
         while (currentY <= north) {
-            results.push(point([currentX, currentY]));
+            var pt = point([currentX, currentY]);
+            if (bboxIsMask === true && isPoly) {
+                if (inside(pt, bboxMask)) {
+                    results.push(pt);
+                }
+            } else {
+                results.push(pt);
+            }
             currentY += cellHeight;
         }
         currentX += cellWidth;
