@@ -1,0 +1,47 @@
+{
+  "name": "@turf/boolean-touch",
+  "version": "4.0.0",
+  "description": "turf boolean-touch module",
+  "main": "index.js",
+  "types": "index.d.ts",
+  "files": [
+    "index.js",
+    "index.d.ts"
+  ],
+  "scripts": {
+    "test": "node test.js",
+    "bench": "node bench.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/Turfjs/turf.git"
+  },
+  "keywords": [
+    "turf",
+    "touch",
+    "boolean",
+    "de-9im"
+  ],
+  "author": "Turf Authors",
+  "contributors": [
+    "Rowan Winsemius <@rowanwins>",
+    "Denis Carriere <@DenisCarriere>"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Turfjs/turf/issues"
+  },
+  "homepage": "https://github.com/Turfjs/turf",
+  "devDependencies": {
+    "@turf/helpers": "^4.2.0",
+    "benchmark": "^2.1.4",
+    "tape": "^4.6.3"
+  },
+  "dependencies": {
+    "@turf/inside": "^4.2.0",
+    "@turf/invariant": "^4.2.0",
+    "@turf/line-overlap": "^4.2.0",
+    "@turf/polygon-to-linestring": "^4.2.0",
+    "deep-equal": "^1.0.1"
+  }
+}
