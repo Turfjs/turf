@@ -251,47 +251,6 @@ function isPointOnLineSegment(lineSegmentStart, lineSegmentEnd, point, incEnd) {
     }
 }
 
-/**
- * inRing - @turf/inside
- *
- * @private
- * @param {[number, number]} pt [x,y]
- * @param {Array<[number, number]>} ring [[x,y], [x,y],..]
- * @param {boolean} ignoreBoundary ignoreBoundary
- * @returns {boolean} inRing
- */
-function inRing(pt, ring, ignoreBoundary) {
-    var isInside = false;
-    if (ring[0][0] === ring[ring.length - 1][0] && ring[0][1] === ring[ring.length - 1][1]) ring = ring.slice(0, ring.length - 1);
-
-    for (var i = 0, j = ring.length - 1; i < ring.length; j = i++) {
-        var xi = ring[i][0], yi = ring[i][1];
-        var xj = ring[j][0], yj = ring[j][1];
-        var onBoundary = (pt[1] * (xi - xj) + yi * (xj - pt[0]) + yj * (pt[0] - xi) === 0) &&
-            ((xi - pt[0]) * (xj - pt[0]) <= 0) && ((yi - pt[1]) * (yj - pt[1]) <= 0);
-        if (onBoundary) return !ignoreBoundary;
-        var intersect = ((yi > pt[1]) !== (yj > pt[1])) &&
-        (pt[0] < (xj - xi) * (pt[1] - yi) / (yj - yi) + xi);
-        if (intersect) isInside = !isInside;
-    }
-    return isInside;
-}
-
-/**
- * inBBox - @turf/inside
- *
- * @private
- * @param {[number, number]} pt point [x,y]
- * @param {[number, number, number, number]} bbox BBox [west, south, east, north]
- * @returns {boolean} true/false if point is inside BBox
- */
-function inBBox(pt, bbox) {
-    return bbox[0] <= pt[0] &&
-           bbox[1] <= pt[1] &&
-           bbox[2] >= pt[0] &&
-           bbox[3] >= pt[1];
-}
-
 function doBBoxOverlap(bbox1, bbox2) {
     if (bbox1[0] > bbox2[0]) return false;
     if (bbox1[2] < bbox2[2]) return false;
