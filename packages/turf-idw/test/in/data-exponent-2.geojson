@@ -1,14 +1,16 @@
 {
   "type": "FeatureCollection",
+  "properties": {
+    "valueField": "value",
+    "weight": 2,
+    "cellWidth": 1,
+    "units": "miles"
+  },
   "features": [
     {
       "type": "Feature",
       "properties": {
-        "marker-color": "#7e7e7e",
-        "marker-size": "medium",
-        "marker-symbol": "",
-        "value": 4,
-        "id": 4
+        "value": 4
       },
       "geometry": {
         "type": "Point",
@@ -21,11 +23,7 @@
     {
       "type": "Feature",
       "properties": {
-        "marker-color": "#7e7e7e",
-        "marker-size": "medium",
-        "marker-symbol": "",
-        "value": 99,
-        "id": 2
+        "value": 99
       },
       "geometry": {
         "type": "Point",
@@ -38,11 +36,7 @@
     {
       "type": "Feature",
       "properties": {
-        "marker-color": "#7e7e7e",
-        "marker-size": "medium",
-        "marker-symbol": "",
-        "value": 10,
-        "id": 1
+        "value": 10
       },
       "geometry": {
         "type": "Point",
@@ -55,11 +49,7 @@
     {
       "type": "Feature",
       "properties": {
-        "marker-color": "#7e7e7e",
-        "marker-size": "medium",
-        "marker-symbol": "",
-        "value": 6,
-        "id": 3
+        "value": 6
       },
       "geometry": {
         "type": "Point",
@@ -72,11 +62,7 @@
     {
       "type": "Feature",
       "properties": {
-        "marker-color": "#7e7e7e",
-        "marker-size": "medium",
-        "marker-symbol": "",
-        "value": 7,
-        "id": 5
+        "value": 7
       },
       "geometry": {
         "type": "Point",
