@@ -5,10 +5,13 @@ const test = require('tape');
 // Helpers
 const directory = path.join(__dirname, '..');
 let modules = fs.readdirSync(directory).map(name => {
+    const pckg = JSON.parse(fs.readFileSync(path.join(directory, name, 'package.json')));
     return {
         name,
         dir: path.join(directory, name),
-        pckg: JSON.parse(fs.readFileSync(path.join(directory, name, 'package.json')))
+        pckg,
+        dependencies: pckg.dependencies || {},
+        devDependencies: pckg.devDependencies || {}
     };
 });
 // Exclude main Turf module
@@ -26,8 +29,7 @@ test('turf - required files', t => {
 });
 
 test('turf - invalid dependencies', t => {
-    for (const {name, pckg} of modules) {
-        const {dependencies, devDependencies} = pckg;
+    for (const {name, dependencies, devDependencies} of modules) {
         for (const invalidDependency of ['load-json-file', 'write-json-file', 'tape', 'benchmark', 'glob', 'lerna', 'documentation', 'uglify-js']) {
             if (dependencies[invalidDependency]) t.fail(`${name} ${invalidDependency} should be defined as devDependencies`);
         }
@@ -39,16 +41,14 @@ test('turf - invalid dependencies', t => {
 });
 
 test('turf - strict version dependencies', t => {
-    for (const {name, pckg} of modules) {
-        const {dependencies} = pckg;
+    for (const {name, dependencies} of modules) {
         if (dependencies['jsts'] && dependencies['jsts'] !== '1.3.0') t.fail(`${name} jsts must use v1.3.0`);
     }
     t.end();
 });
 
 test('turf - duplicate dependencies', t => {
-    for (const {name, pckg} of modules) {
-        const {dependencies, devDependencies} = pckg;
+    for (const {name, dependencies, devDependencies} of modules) {
         for (const dependency of Object.keys(dependencies)) {
             if (devDependencies[dependency]) t.fail(`${name} ${dependency} is duplicated in devDependencies`);
         }
@@ -106,21 +106,21 @@ test('turf - pre-defined attributes in package.json', t => {
 });
 
 test('turf - parsing dependencies from index.js', t => {
-    for (const {name, dir, pckg} of modules) {
+    for (const {name, dir, dependencies} of modules) {
         const index = fs.readFileSync(path.join(dir, 'index.js'), 'utf8');
 
         // Read Depedencies from index.js
-        const dependencies = new Set();
+        const dependenciesUsed = new Set();
         for (const dependency of index.match(/require\('[\@\/a-z-\d]+'\)/gi) || []) {
             const dependencyName = dependency.split(/'/)[1];
-            if (!pckg.dependencies[dependencyName]) t.fail(`${name} ${dependencyName} is missing from dependencies`);
-            if (dependencies.has(dependencyName)) t.fail(`${name} ${dependencyName} is duplicated in index.js`);
-            dependencies.add(dependencyName);
+            if (!dependencies[dependencyName]) t.fail(`${name} ${dependencyName} is missing from dependencies`);
+            if (dependenciesUsed.has(dependencyName)) t.fail(`${name} ${dependencyName} is duplicated in index.js`);
+            dependenciesUsed.add(dependencyName);
         }
 
         // Read Dependencies from package.json
-        for (const dependencyName of Object.keys(pckg.dependencies)) {
-            if (!dependencies.has(dependencyName)) t.fail(`${name} ${dependencyName} is not required in index.js`);
+        for (const dependencyName of Object.keys(dependencies)) {
+            if (!dependenciesUsed.has(dependencyName)) t.fail(`${name} ${dependencyName} is not required in index.js`);
         }
     }
     t.end();

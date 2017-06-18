@@ -1,13 +1,12 @@
 {
   "name": "@turf/isolines",
-  "version": "4.3.0",
+  "version": "4.4.0",
   "description": "turf isolines module",
   "main": "index.js",
   "types": "index.d.ts",
   "files": [
     "index.js",
-    "index.d.ts",
-    "conrec.js"
+    "index.d.ts"
   ],
   "scripts": {
     "test": "node test.js",
@@ -26,23 +25,30 @@
     "topography"
   ],
   "author": "Turf Authors",
+  "contributors": [
+    "Stefano Borghi <@stebogit>"
+  ],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/Turfjs/turf/issues"
   },
   "homepage": "https://github.com/Turfjs/turf",
   "devDependencies": {
+    "@turf/envelope": "^4.4.0",
+    "@turf/point-grid": "^3.14.0",
+    "@turf/random": "^3.13.0",
     "benchmark": "^2.1.4",
-    "tape": "^4.6.3"
+    "load-json-file": "^2.0.0",
+    "matrix-to-grid": "3.0.0",
+    "tape": "^4.6.3",
+    "write-json-file": "^2.0.0"
   },
   "dependencies": {
-    "@turf/bbox": "^4.3.0",
-    "@turf/distance": "^4.3.0",
-    "@turf/helpers": "^4.3.0",
-    "@turf/inside": "^4.3.0",
-    "@turf/planepoint": "^4.3.0",
-    "@turf/point-grid": "^4.3.0",
-    "@turf/square": "^4.3.0",
-    "@turf/tin": "^4.3.0"
+    "@turf/bbox": "^4.4.0",
+    "@turf/helpers": "^4.4.0",
+    "@turf/invariant": "^4.4.0",
+    "@turf/meta": "^4.4.0",
+    "grid-to-matrix": "^1.2.0",
+    "marchingsquares": "^1.2.0"
   }
 }

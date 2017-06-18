@@ -1,7 +1,6 @@
 var d3 = require('d3-geo');
 var jsts = require('jsts');
 var meta = require('@turf/meta');
-var circle = require('@turf/circle');
 var center = require('@turf/center');
 var helpers = require('@turf/helpers');
 var feature = helpers.feature;
@@ -93,8 +92,6 @@ function buffer(geojson, radius, units, steps) {
 
     // Geometry Types faster than jsts
     switch (geometry.type) {
-    case 'Point':
-        return circle(geometry.coordinates, radius, steps, units, properties);
     case 'GeometryCollection':
         var results = [];
         geomEach(geojson, function (geometry) {

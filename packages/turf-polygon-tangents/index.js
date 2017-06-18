@@ -42,16 +42,16 @@ module.exports = function (point, polygon) {
     var type = getGeomType(polygon);
     switch (type) {
     case 'Polygon':
-        rtan = polyCoords[0][0];
-        ltan = polyCoords[0][0];
+        rtan = 0;
+        ltan = 0;
         eprev = isLeft(polyCoords[0][0], polyCoords[0][1], pointCoords);
         var out = processPolygon(polyCoords[0], pointCoords, eprev, enext, rtan, ltan);
         rtan = out[0];
         ltan = out[1];
         break;
     case 'MultiPolygon':
-        rtan = polyCoords[0][0][0];
-        ltan = polyCoords[0][0][0];
+        rtan = 0;
+        ltan = 0;
         eprev = isLeft(polyCoords[0][0][0], polyCoords[0][0][1], pointCoords);
         polyCoords.forEach(function (ring) {
             var out = processPolygon(ring[0], pointCoords, eprev, enext, rtan, ltan);
@@ -73,12 +73,12 @@ function processPolygon(polygonCoords, ptCoords, eprev, enext, rtan, ltan) {
         enext = isLeft(currentCoords, nextCoordPair, ptCoords);
         if (eprev <= 0 && enext > 0) {
             if (!isBelow(ptCoords, currentCoords, rtan)) {
-                rtan = polygonCoords[i];
+                rtan = currentCoords;
             }
         }
         if (eprev > 0 && enext <= 0) {
             if (!isAbove(ptCoords, currentCoords, ltan)) {
-                ltan = polygonCoords[i];
+                ltan = currentCoords;
             }
         }
         eprev = enext;
