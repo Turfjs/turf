@@ -1,7 +1,7 @@
 {
-  "name": "@turf/point-grid",
-  "version": "4.4.0",
-  "description": "turf point-grid module",
+  "name": "@turf/boolean-clockwise",
+  "version": "4.0.0",
+  "description": "turf boolean-clockwise module",
   "main": "index.js",
   "types": "index.d.ts",
   "files": [
@@ -18,12 +18,14 @@
   },
   "keywords": [
     "turf",
-    "grid",
-    "points",
-    "geojson"
+    "clockwise",
+    "boolean"
   ],
   "author": "Turf Authors",
   "contributors": [
+    "Morgan Herlocker <@morganherlocker>",
+    "Rowan Winsemius <@rowanwins>",
+    "Denis Carriere <@DenisCarriere>",
     "Stefano Borghi <@stebogit>"
   ],
   "license": "MIT",
@@ -32,18 +34,13 @@
   },
   "homepage": "https://github.com/Turfjs/turf",
   "devDependencies": {
-    "@turf/meta": "^4.4.0",
+    "@turf/helpers": "^4.2.0",
     "benchmark": "^2.1.4",
+    "glob": "^7.1.1",
     "load-json-file": "^2.0.0",
-    "mkdirp": "^0.5.1",
-    "tape": "^4.6.3",
-    "write-json-file": "^2.0.0"
+    "tape": "^4.6.3"
   },
   "dependencies": {
-    "@turf/bbox": "^4.4.0",
-    "@turf/distance": "^4.4.0",
-    "@turf/helpers": "^4.4.0",
-    "@turf/inside": "^4.4.0",
-    "@turf/invariant": "^4.4.0"
+    "@turf/invariant": "^4.2.0"
   }
 }
