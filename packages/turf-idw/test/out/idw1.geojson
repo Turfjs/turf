@@ -4,7 +4,7 @@
     {
       "type": "Feature",
       "properties": {
-        "z": 16.81001550711536
+        "value": 16.81001550711536
       },
       "geometry": {
         "type": "Polygon",
@@ -37,7 +37,7 @@
     {
       "type": "Feature",
       "properties": {
-        "z": 18.473505425981134
+        "value": 18.473505425981134
       },
       "geometry": {
         "type": "Polygon",
@@ -70,7 +70,7 @@
     {
       "type": "Feature",
       "properties": {
-        "z": 19.316889697462177
+        "value": 19.316889697462177
       },
       "geometry": {
         "type": "Polygon",
@@ -103,7 +103,7 @@
     {
       "type": "Feature",
       "properties": {
-        "z": 19.97767338084117
+        "value": 19.97767338084117
       },
       "geometry": {
         "type": "Polygon",
@@ -136,7 +136,7 @@
     {
       "type": "Feature",
       "properties": {
-        "z": 20.820468605021016
+        "value": 20.820468605021016
       },
       "geometry": {
         "type": "Polygon",
@@ -169,7 +169,7 @@
     {
       "type": "Feature",
       "properties": {
-        "z": 21.895809439423466
+        "value": 21.895809439423466
       },
       "geometry": {
         "type": "Polygon",
@@ -202,7 +202,7 @@
     {
       "type": "Feature",
       "properties": {
-        "z": 23.101697491085
+        "value": 23.101697491085
       },
       "geometry": {
         "type": "Polygon",
@@ -235,7 +235,7 @@
     {
       "type": "Feature",
       "properties": {
-        "z": 24.37260533177796
+        "value": 24.37260533177796
       },
       "geometry": {
         "type": "Polygon",
@@ -268,7 +268,7 @@
     {
       "type": "Feature",
       "properties": {
-        "z": 25.65462680057427
+        "value": 25.65462680057427
       },
       "geometry": {
         "type": "Polygon",
@@ -301,7 +301,7 @@
     {
       "type": "Feature",
       "properties": {
-        "z": 26.861724700664123
+        "value": 26.861724700664123
       },
       "geometry": {
         "type": "Polygon",
@@ -334,7 +334,7 @@
     {
       "type": "Feature",
       "properties": {
-        "z": 27.89152583488245
+        "value": 27.89152583488245
       },
       "geometry": {
         "type": "Polygon",
@@ -367,7 +367,7 @@
     {
       "type": "Feature",
       "properties": {
-        "z": 18.360700293368026
+        "value": 18.360700293368026
       },
       "geometry": {
         "type": "Polygon",
@@ -400,7 +400,7 @@
     {
       "type": "Feature",
       "properties": {
-        "z": 18.685112009771757
+        "value": 18.685112009771757
       },
       "geometry": {
         "type": "Polygon",
@@ -433,7 +433,7 @@
     {
       "type": "Feature",
       "properties": {
-        "z": 18.85165934354042
+        "value": 18.85165934354042
       },
       "geometry": {
         "type": "Polygon",
@@ -466,7 +466,7 @@
     {
       "type": "Feature",
       "properties": {
-        "z": 19.056150486029537
+        "value": 19.056150486029537
       },
       "geometry": {
         "type": "Polygon",
@@ -499,7 +499,7 @@
     {
       "type": "Feature",
       "properties": {
-        "z": 19.987843530793864
+        "value": 19.987843530793864
       },
       "geometry": {
         "type": "Polygon",
@@ -532,7 +532,7 @@
     {
       "type": "Feature",
       "properties": {
-        "z": 21.403024748126157
+        "value": 21.403024748126157
       },
       "geometry": {
         "type": "Polygon",
@@ -565,7 +565,7 @@
     {
       "type": "Feature",
       "properties": {
-        "z": 22.89338242974083
+        "value": 22.89338242974083
       },
       "geometry": {
         "type": "Polygon",
@@ -598,7 +598,7 @@
     {
       "type": "Feature",
       "properties": {
-        "z": 24.45902416417733
+        "value": 24.45902416417733
       },
       "geometry": {
         "type": "Polygon",
@@ -631,7 +631,7 @@
     {
       "type": "Feature",
       "properties": {
-        "z": 26.090462897436403
+        "value": 26.090462897436403
       },
       "geometry": {
         "type": "Polygon",
@@ -664,7 +664,7 @@
     {
       "type": "Feature",
       "properties": {
-        "z": 27.648297730939312
+        "value": 27.648297730939312
       },
       "geometry": {
         "type": "Polygon",
@@ -697,7 +697,7 @@
     {
       "type": "Feature",
       "properties": {
-        "z": 28.944155589777935
+        "value": 28.944155589777935
       },
       "geometry": {
         "type": "Polygon",
@@ -730,7 +730,7 @@
     {
       "type": "Feature",
       "properties": {
-        "z": 19.11296153966931
+        "value": 19.11296153966931
       },
       "geometry": {
         "type": "Polygon",
@@ -763,7 +763,7 @@
     {
       "type": "Feature",
       "properties": {
-        "z": 18.886139563630852
+        "value": 18.886139563630852
       },
       "geometry": {
         "type": "Polygon",
@@ -796,7 +796,7 @@
     {
       "type": "Feature",
       "properties": {
-        "z": 18.21928901756154
+        "value": 18.21928901756154
       },
       "geometry": {
         "type": "Polygon",
@@ -829,7 +829,7 @@
     {
       "type": "Feature",
       "properties": {
-        "z": 16.762811621411842
+        "value": 16.762811621411842
       },
       "geometry": {
         "type": "Polygon",
@@ -862,7 +862,7 @@
     {
       "type": "Feature",
       "properties": {
-        "z": 18.677010097553154
+        "value": 18.677010097553154
       },
       "geometry": {
         "type": "Polygon",
@@ -895,7 +895,7 @@
     {
       "type": "Feature",
       "properties": {
-        "z": 20.870812788657318
+        "value": 20.870812788657318
       },
       "geometry": {
         "type": "Polygon",
@@ -928,7 +928,7 @@
     {
       "type": "Feature",
       "properties": {
-        "z": 22.59436010753512
+        "value": 22.59436010753512
       },
       "geometry": {
         "type": "Polygon",
@@ -961,7 +961,7 @@
     {
       "type": "Feature",
       "properties": {
-        "z": 24.493692250743297
+        "value": 24.493692250743297
       },
       "geometry": {
         "type": "Polygon",
@@ -994,7 +994,7 @@
     {
       "type": "Feature",
       "properties": {
-        "z": 26.660017803391963
+        "value": 26.660017803391963
       },
       "geometry": {
         "type": "Polygon",
@@ -1027,7 +1027,7 @@
     {
       "type": "Feature",
       "properties": {
-        "z": 28.780656430366598
+        "value": 28.780656430366598
       },
       "geometry": {
         "type": "Polygon",
@@ -1060,7 +1060,7 @@
     {
       "type": "Feature",
       "properties": {
-        "z": 30.489663195228182
+        "value": 30.489663195228182
       },
       "geometry": {
         "type": "Polygon",
@@ -1093,7 +1093,7 @@
     {
       "type": "Feature",
       "properties": {
-        "z": 19.64678513644176
+        "value": 19.64678513644176
       },
       "geometry": {
         "type": "Polygon",
@@ -1126,7 +1126,7 @@
     {
       "type": "Feature",
       "properties": {
-        "z": 19.24731073710813
+        "value": 19.24731073710813
       },
       "geometry": {
         "type": "Polygon",
@@ -1159,7 +1159,7 @@
     {
       "type": "Feature",
       "properties": {
-        "z": 18.343626016545254
+        "value": 18.343626016545254
       },
       "geometry": {
         "type": "Polygon",
@@ -1192,7 +1192,7 @@
     {
       "type": "Feature",
       "properties": {
-        "z": 16.11888869230707
+        "value": 16.11888869230707
       },
       "geometry": {
         "type": "Polygon",
@@ -1225,7 +1225,7 @@
     {
       "type": "Feature",
       "properties": {
-        "z": 18.529681344737696
+        "value": 18.529681344737696
       },
       "geometry": {
         "type": "Polygon",
@@ -1258,7 +1258,7 @@
     {
       "type": "Feature",
       "properties": {
-        "z": 20.604599279885406
+        "value": 20.604599279885406
       },
       "geometry": {
         "type": "Polygon",
@@ -1291,7 +1291,7 @@
     {
       "type": "Feature",
       "properties": {
-        "z": 21.907906123196582
+        "value": 21.907906123196582
       },
       "geometry": {
         "type": "Polygon",
@@ -1324,7 +1324,7 @@
     {
       "type": "Feature",
       "properties": {
-        "z": 24.26472163598338
+        "value": 24.26472163598338
       },
       "geometry": {
         "type": "Polygon",
@@ -1357,7 +1357,7 @@
     {
       "type": "Feature",
       "properties": {
-        "z": 27.409878851100494
+        "value": 27.409878851100494
       },
       "geometry": {
         "type": "Polygon",
@@ -1390,7 +1390,7 @@
     {
       "type": "Feature",
       "properties": {
-        "z": 30.483907449513215
+        "value": 30.483907449513215
       },
       "geometry": {
         "type": "Polygon",
@@ -1423,7 +1423,7 @@
     {
       "type": "Feature",
       "properties": {
-        "z": 32.90713718413754
+        "value": 32.90713718413754
       },
       "geometry": {
         "type": "Polygon",
@@ -1456,7 +1456,7 @@
     {
       "type": "Feature",
       "properties": {
-        "z": 20.174683809063797
+        "value": 20.174683809063797
       },
       "geometry": {
         "type": "Polygon",
@@ -1489,7 +1489,7 @@
     {
       "type": "Feature",
       "properties": {
-        "z": 19.872361665803574
+        "value": 19.872361665803574
       },
       "geometry": {
         "type": "Polygon",
@@ -1522,7 +1522,7 @@
     {
       "type": "Feature",
       "properties": {
-        "z": 19.469880860583437
+        "value": 19.469880860583437
       },
       "geometry": {
         "type": "Polygon",
@@ -1555,7 +1555,7 @@
     {
       "type": "Feature",
       "properties": {
-        "z": 19.269455825543897
+        "value": 19.269455825543897
       },
       "geometry": {
         "type": "Polygon",
@@ -1588,7 +1588,7 @@
     {
       "type": "Feature",
       "properties": {
-        "z": 19.967528977811334
+        "value": 19.967528977811334
       },
       "geometry": {
         "type": "Polygon",
@@ -1621,7 +1621,7 @@
     {
       "type": "Feature",
       "properties": {
-        "z": 20.740591490262503
+        "value": 20.740591490262503
       },
       "geometry": {
         "type": "Polygon",
@@ -1654,7 +1654,7 @@
     {
       "type": "Feature",
       "properties": {
-        "z": 18.534782430913562
+        "value": 18.534782430913562
       },
       "geometry": {
         "type": "Polygon",
@@ -1687,7 +1687,7 @@
     {
       "type": "Feature",
       "properties": {
-        "z": 23.84018690845106
+        "value": 23.84018690845106
       },
       "geometry": {
         "type": "Polygon",
@@ -1720,7 +1720,7 @@
     {
       "type": "Feature",
       "properties": {
-        "z": 28.532481193318585
+        "value": 28.532481193318585
       },
       "geometry": {
         "type": "Polygon",
@@ -1753,7 +1753,7 @@
     {
       "type": "Feature",
       "properties": {
-        "z": 33.09968454933635
+        "value": 33.09968454933635
       },
       "geometry": {
         "type": "Polygon",
@@ -1786,7 +1786,7 @@
     {
       "type": "Feature",
       "properties": {
-        "z": 37.07779479103008
+        "value": 37.07779479103008
       },
       "geometry": {
         "type": "Polygon",
@@ -1819,7 +1819,7 @@
     {
       "type": "Feature",
       "properties": {
-        "z": 20.701724897057897
+        "value": 20.701724897057897
       },
       "geometry": {
         "type": "Polygon",
@@ -1852,7 +1852,7 @@
     {
       "type": "Feature",
       "properties": {
-        "z": 20.54176843277757
+        "value": 20.54176843277757
       },
       "geometry": {
         "type": "Polygon",
@@ -1885,7 +1885,7 @@
     {
       "type": "Feature",
       "properties": {
-        "z": 20.441391692709168
+        "value": 20.441391692709168
       },
       "geometry": {
         "type": "Polygon",
@@ -1918,7 +1918,7 @@
     {
       "type": "Feature",
       "properties": {
-        "z": 20.552953723636005
+        "value": 20.552953723636005
       },
       "geometry": {
         "type": "Polygon",
@@ -1951,7 +1951,7 @@
     {
       "type": "Feature",
       "properties": {
-        "z": 21.00532456524345
+        "value": 21.00532456524345
       },
       "geometry": {
         "type": "Polygon",
@@ -1984,7 +1984,7 @@
     {
       "type": "Feature",
       "properties": {
-        "z": 21.616974876818308
+        "value": 21.616974876818308
       },
       "geometry": {
         "type": "Polygon",
@@ -2017,7 +2017,7 @@
     {
       "type": "Feature",
       "properties": {
-        "z": 22.36552843371282
+        "value": 22.36552843371282
       },
       "geometry": {
         "type": "Polygon",
@@ -2050,7 +2050,7 @@
     {
       "type": "Feature",
       "properties": {
-        "z": 25.328958980854264
+        "value": 25.328958980854264
       },
       "geometry": {
         "type": "Polygon",
@@ -2083,7 +2083,7 @@
     {
       "type": "Feature",
       "properties": {
-        "z": 30.036218391773726
+        "value": 30.036218391773726
       },
       "geometry": {
         "type": "Polygon",
@@ -2116,7 +2116,7 @@
     {
       "type": "Feature",
       "properties": {
-        "z": 36.45157755883081
+        "value": 36.45157755883081
       },
       "geometry": {
         "type": "Polygon",
@@ -2149,7 +2149,7 @@
     {
       "type": "Feature",
       "properties": {
-        "z": 45.70648531987206
+        "value": 45.70648531987206
       },
       "geometry": {
         "type": "Polygon",
@@ -2182,7 +2182,7 @@
     {
       "type": "Feature",
       "properties": {
-        "z": 21.18429221433469
+        "value": 21.18429221433469
       },
       "geometry": {
         "type": "Polygon",
@@ -2215,7 +2215,7 @@
     {
       "type": "Feature",
       "properties": {
-        "z": 21.10918889594753
+        "value": 21.10918889594753
       },
       "geometry": {
         "type": "Polygon",
@@ -2248,7 +2248,7 @@
     {
       "type": "Feature",
       "properties": {
-        "z": 21.105612364348104
+        "value": 21.105612364348104
       },
       "geometry": {
         "type": "Polygon",
@@ -2281,7 +2281,7 @@
     {
       "type": "Feature",
       "properties": {
-        "z": 21.240473729770986
+        "value": 21.240473729770986
       },
       "geometry": {
         "type": "Polygon",
@@ -2314,7 +2314,7 @@
     {
       "type": "Feature",
       "properties": {
-        "z": 21.594366026675996
+        "value": 21.594366026675996
       },
       "geometry": {
         "type": "Polygon",
@@ -2347,7 +2347,7 @@
     {
       "type": "Feature",
       "properties": {
-        "z": 22.308814651263713
+        "value": 22.308814651263713
       },
       "geometry": {
         "type": "Polygon",
@@ -2380,7 +2380,7 @@
     {
       "type": "Feature",
       "properties": {
-        "z": 23.753501034638756
+        "value": 23.753501034638756
       },
       "geometry": {
         "type": "Polygon",
@@ -2413,7 +2413,7 @@
     {
       "type": "Feature",
       "properties": {
-        "z": 26.473146357454564
+        "value": 26.473146357454564
       },
       "geometry": {
         "type": "Polygon",
@@ -2446,7 +2446,7 @@
     {
       "type": "Feature",
       "properties": {
-        "z": 30.78188495051979
+        "value": 30.78188495051979
       },
       "geometry": {
         "type": "Polygon",
@@ -2479,7 +2479,7 @@
     {
       "type": "Feature",
       "properties": {
-        "z": 37.50327216367918
+        "value": 37.50327216367918
       },
       "geometry": {
         "type": "Polygon",
@@ -2512,7 +2512,7 @@
     {
       "type": "Feature",
       "properties": {
-        "z": 50.63925193968551
+        "value": 50.63925193968551
       },
       "geometry": {
         "type": "Polygon",
@@ -2545,7 +2545,7 @@
     {
       "type": "Feature",
       "properties": {
-        "z": 21.60546577029173
+        "value": 21.60546577029173
       },
       "geometry": {
         "type": "Polygon",
@@ -2578,7 +2578,7 @@
     {
       "type": "Feature",
       "properties": {
-        "z": 21.559571745365353
+        "value": 21.559571745365353
       },
       "geometry": {
         "type": "Polygon",
@@ -2611,7 +2611,7 @@
     {
       "type": "Feature",
       "properties": {
-        "z": 21.544928656013095
+        "value": 21.544928656013095
       },
       "geometry": {
         "type": "Polygon",
@@ -2644,7 +2644,7 @@
     {
       "type": "Feature",
       "properties": {
-        "z": 21.561791077619628
+        "value": 21.561791077619628
       },
       "geometry": {
         "type": "Polygon",
@@ -2677,7 +2677,7 @@
     {
       "type": "Feature",
       "properties": {
-        "z": 21.619198187353064
+        "value": 21.619198187353064
       },
       "geometry": {
         "type": "Polygon",
@@ -2710,7 +2710,7 @@
     {
       "type": "Feature",
       "properties": {
-        "z": 21.966829789183905
+        "value": 21.966829789183905
       },
       "geometry": {
         "type": "Polygon",
@@ -2743,7 +2743,7 @@
     {
       "type": "Feature",
       "properties": {
-        "z": 23.471284123296673
+        "value": 23.471284123296673
       },
       "geometry": {
         "type": "Polygon",
@@ -2776,7 +2776,7 @@
     {
       "type": "Feature",
       "properties": {
-        "z": 26.30338922225253
+        "value": 26.30338922225253
       },
       "geometry": {
         "type": "Polygon",
@@ -2809,7 +2809,7 @@
     {
       "type": "Feature",
       "properties": {
-        "z": 30.102282649940324
+        "value": 30.102282649940324
       },
       "geometry": {
         "type": "Polygon",
@@ -2842,7 +2842,7 @@
     {
       "type": "Feature",
       "properties": {
-        "z": 34.87872106046728
+        "value": 34.87872106046728
       },
       "geometry": {
         "type": "Polygon",
@@ -2875,7 +2875,7 @@
     {
       "type": "Feature",
       "properties": {
-        "z": 39.67351867729192
+        "value": 39.67351867729192
       },
       "geometry": {
         "type": "Polygon",
@@ -2908,7 +2908,7 @@
     {
       "type": "Feature",
       "properties": {
-        "z": 21.976323392073112
+        "value": 21.976323392073112
       },
       "geometry": {
         "type": "Polygon",
@@ -2941,7 +2941,7 @@
     {
       "type": "Feature",
       "properties": {
-        "z": 21.93359919257378
+        "value": 21.93359919257378
       },
       "geometry": {
         "type": "Polygon",
@@ -2974,7 +2974,7 @@
     {
       "type": "Feature",
       "properties": {
-        "z": 21.871733949413017
+        "value": 21.871733949413017
       },
       "geometry": {
         "type": "Polygon",
@@ -3007,7 +3007,7 @@
     {
       "type": "Feature",
       "properties": {
-        "z": 21.71308927246352
+        "value": 21.71308927246352
       },
       "geometry": {
         "type": "Polygon",
@@ -3040,7 +3040,7 @@
     {
       "type": "Feature",
       "properties": {
-        "z": 21.21363094515566
+        "value": 21.21363094515566
       },
       "geometry": {
         "type": "Polygon",
@@ -3073,7 +3073,7 @@
     {
       "type": "Feature",
       "properties": {
-        "z": 19.707134699045138
+        "value": 19.707134699045138
       },
       "geometry": {
         "type": "Polygon",
@@ -3106,7 +3106,7 @@
     {
       "type": "Feature",
       "properties": {
-        "z": 21.590132846632386
+        "value": 21.590132846632386
       },
       "geometry": {
         "type": "Polygon",
@@ -3139,7 +3139,7 @@
     {
       "type": "Feature",
       "properties": {
-        "z": 25.407883297540387
+        "value": 25.407883297540387
       },
       "geometry": {
         "type": "Polygon",
@@ -3172,7 +3172,7 @@
     {
       "type": "Feature",
       "properties": {
-        "z": 28.80323317717345
+        "value": 28.80323317717345
       },
       "geometry": {
         "type": "Polygon",
@@ -3205,7 +3205,7 @@
     {
       "type": "Feature",
       "properties": {
-        "z": 32.08870720203215
+        "value": 32.08870720203215
       },
       "geometry": {
         "type": "Polygon",
@@ -3238,7 +3238,7 @@
     {
       "type": "Feature",
       "properties": {
-        "z": 34.7154144630512
+        "value": 34.7154144630512
       },
       "geometry": {
         "type": "Polygon",
@@ -3271,7 +3271,7 @@
     {
       "type": "Feature",
       "properties": {
-        "z": 22.3181863190113
+        "value": 22.3181863190113
       },
       "geometry": {
         "type": "Polygon",
@@ -3304,7 +3304,7 @@
     {
       "type": "Feature",
       "properties": {
-        "z": 22.283068999763355
+        "value": 22.283068999763355
       },
       "geometry": {
         "type": "Polygon",
@@ -3337,7 +3337,7 @@
     {
       "type": "Feature",
       "properties": {
-        "z": 22.206786244012722
+        "value": 22.206786244012722
       },
       "geometry": {
         "type": "Polygon",
@@ -3370,7 +3370,7 @@
     {
       "type": "Feature",
       "properties": {
-        "z": 21.99547511651665
+        "value": 21.99547511651665
       },
       "geometry": {
         "type": "Polygon",
@@ -3403,7 +3403,7 @@
     {
       "type": "Feature",
       "properties": {
-        "z": 21.37935265354187
+        "value": 21.37935265354187
       },
       "geometry": {
         "type": "Polygon",
@@ -3436,7 +3436,7 @@
     {
       "type": "Feature",
       "properties": {
-        "z": 19.64813168531422
+        "value": 19.64813168531422
       },
       "geometry": {
         "type": "Polygon",
@@ -3469,7 +3469,7 @@
     {
       "type": "Feature",
       "properties": {
-        "z": 21.390180845549708
+        "value": 21.390180845549708
       },
       "geometry": {
         "type": "Polygon",
@@ -3502,7 +3502,7 @@
     {
       "type": "Feature",
       "properties": {
-        "z": 24.93997539514576
+        "value": 24.93997539514576
       },
       "geometry": {
         "type": "Polygon",
@@ -3535,7 +3535,7 @@
     {
       "type": "Feature",
       "properties": {
-        "z": 27.744368481114137
+        "value": 27.744368481114137
       },
       "geometry": {
         "type": "Polygon",
@@ -3568,7 +3568,7 @@
     {
       "type": "Feature",
       "properties": {
-        "z": 30.143895001515038
+        "value": 30.143895001515038
       },
       "geometry": {
         "type": "Polygon",
@@ -3601,7 +3601,7 @@
     {
       "type": "Feature",
       "properties": {
-        "z": 31.965088446230027
+        "value": 31.965088446230027
       },
       "geometry": {
         "type": "Polygon",

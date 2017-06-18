@@ -16,10 +16,10 @@ var bbox = require('@turf/bbox');
  * @param {number} b Exponent regulating the distance-decay weighting
  * @param {number} cellWidth The distance across each cell
  * @param {string} [units=kilometers] used in calculating cellSize, can be degrees, radians, miles, or kilometers
- * @returns {FeatureCollection<Polygon>} grid A grid of polygons with a property field "IDW"
+ * @returns {FeatureCollection<Polygon>} grid A grid of polygons with a property field named as `valueField`
  */
 module.exports = function (controlPoints, valueField, b, cellWidth, units) {
-    // check if field containing data exists..
+    // check if field containing data exists.
     var filtered = controlPoints.features.filter(function (feature) {
         return feature.properties &&
             feature.properties.hasOwnProperty(valueField);
@@ -43,7 +43,7 @@ module.exports = function (controlPoints, valueField, b, cellWidth, units) {
                 zw += w * controlPoints.features[j].properties[valueField];
             }
             // write IDW value for each grid cell
-            samplingGrid.features[i].properties.z = zw / sw;
+            samplingGrid.features[i].properties[valueField] = zw / sw;
         }
         return samplingGrid;
     } else {
