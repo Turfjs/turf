@@ -10,8 +10,7 @@
     "module.js",
     "index.d.ts",
     "turf.js",
-    "turf.min.js",
-    "bower.json"
+    "turf.min.js"
   ],
   "scripts": {
     "test": "node test.js",
