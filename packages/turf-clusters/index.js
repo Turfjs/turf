@@ -34,6 +34,7 @@ module.exports = function (points, numberOfClusters) {
     collectionOf(points, 'Point', 'Input must contain Points');
     // Default Params
     var count = points.features.length;
+    if (numberOfClusters > count) throw new Error('numberOfClusters can\'t be grated than the number of points');
     numberOfClusters = numberOfClusters || Math.round(Math.sqrt(count / 2));
 
     // collect points coordinates

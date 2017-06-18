@@ -21,7 +21,7 @@ const fixtures = fs.readdirSync(directories.in).map(filename => {
     };
 });
 
-test('cluster', t => {
+test('clusters', t => {
     fixtures.forEach(({name, geojson}) => {
         const {numberOfCentroids} = geojson.properties || {};
 
@@ -35,18 +35,20 @@ test('cluster', t => {
     t.end();
 });
 
+const points = featureCollection([
+    point([0, 0], {foo: 'bar'}),
+    point([2, 4], {foo: 'bar'}),
+    point([3, 6], {foo: 'bar'})
+]);
+
 test('clusters -- throws', t => {
     const poly = polygon([[[0, 0], [10, 10], [0, 10], [0, 0]]]);
-    t.throws(() => clusters(poly, 3), /Input must contain Points/);
+    t.throws(() => clusters(poly, 1), /Input must contain Points/);
+    t.throws(() => clusters(points, 5), /numberOfClusters can't be grated than the number of points/);
     t.end();
 });
 
 test('clusters -- translate properties', t => {
-    const points = featureCollection([
-        point([0, 0], {foo: 'bar'}),
-        point([2, 4], {foo: 'bar'}),
-        point([3, 6], {foo: 'bar'})
-    ]);
     t.equal(clusters(points, 2).points.features[0].properties.foo, 'bar');
     t.end();
 });
