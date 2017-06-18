@@ -1,7 +1,7 @@
-var distance = require('@turf/distance');
-var squareGrid = require('@turf/square-grid');
-var centroid = require('@turf/centroid');
 var bbox = require('@turf/bbox');
+var distance = require('@turf/distance');
+var centroid = require('@turf/centroid');
+var squareGrid = require('@turf/square-grid');
 
 /**
  *
