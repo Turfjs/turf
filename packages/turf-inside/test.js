@@ -74,7 +74,7 @@ test('Boundary test', function (t) {
     [ 50,  0 ],
     [ 30, -20 ],
     [ 10,  0 ]
-  ]]);  
+  ]]);
   var poly4 = polygon([[
     [  0,  0 ],
     [  0, 20 ],
@@ -152,4 +152,19 @@ test('Boundary test', function (t) {
   runTest(t, false);
   runTest(t, true);
   t.end();
+});
+
+// https://github.com/Turfjs/turf-inside/issues/15
+test(t => {
+    var pt1 = point([-9.9964077, 53.8040989]);
+    var poly = polygon([[
+        [5.080336744095521, 67.89398938540765],
+        [0.35070899909145403, 69.32470003971179],
+        [-24.453622256504122, 41.146696777884564],
+        [-21.6445524714804, 40.43225902006474],
+        [5.080336744095521, 67.89398938540765]
+    ]]);
+
+    t.true(inside(pt1, poly));
+    t.end();
 });

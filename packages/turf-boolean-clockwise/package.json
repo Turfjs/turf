@@ -1,0 +1,46 @@
+{
+  "name": "@turf/boolean-clockwise",
+  "version": "4.0.0",
+  "description": "turf boolean-clockwise module",
+  "main": "index.js",
+  "types": "index.d.ts",
+  "files": [
+    "index.js",
+    "index.d.ts"
+  ],
+  "scripts": {
+    "test": "node test.js",
+    "bench": "node bench.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/Turfjs/turf.git"
+  },
+  "keywords": [
+    "turf",
+    "clockwise",
+    "boolean"
+  ],
+  "author": "Turf Authors",
+  "contributors": [
+    "Morgan Herlocker <@morganherlocker>",
+    "Rowan Winsemius <@rowanwins>",
+    "Denis Carriere <@DenisCarriere>",
+    "Stefano Borghi <@stebogit>"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Turfjs/turf/issues"
+  },
+  "homepage": "https://github.com/Turfjs/turf",
+  "devDependencies": {
+    "@turf/helpers": "^4.2.0",
+    "benchmark": "^2.1.4",
+    "glob": "^7.1.1",
+    "load-json-file": "^2.0.0",
+    "tape": "^4.6.3"
+  },
+  "dependencies": {
+    "@turf/invariant": "^4.2.0"
+  }
+}

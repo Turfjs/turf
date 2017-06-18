@@ -15,9 +15,20 @@
     "@mapbox/geojson-area" "^0.2.2"
     "@turf/meta" "^3.14.0"
 
+"@turf/flatten@^4.4.0":
+  version "4.4.0"
+  resolved "https://registry.yarnpkg.com/@turf/flatten/-/flatten-4.4.0.tgz#81ecef33e6a7753ae881e057ddad2113c6cddfdc"
+  dependencies:
+    "@turf/helpers" "^4.4.0"
+    "@turf/meta" "^4.4.0"
+
 "@turf/helpers@^3.13.0":
   version "3.13.0"
   resolved "https://registry.yarnpkg.com/@turf/helpers/-/helpers-3.13.0.tgz#d06078a1464cf56cdb7ea624ea1e13a71b88b806"
+
+"@turf/helpers@^4.4.0":
+  version "4.4.0"
+  resolved "https://registry.yarnpkg.com/@turf/helpers/-/helpers-4.4.0.tgz#c83112f7fbe6ed183c7c0c2f776481b94d1cbd01"
 
 "@turf/inside@^3.14.0":
   version "3.14.0"
@@ -32,6 +43,10 @@
 "@turf/meta@^3.14.0":
   version "3.14.0"
   resolved "https://registry.yarnpkg.com/@turf/meta/-/meta-3.14.0.tgz#8d3050c1a0f44bf406a633b6bd28c510f7bcee27"
+
+"@turf/meta@^4.4.0":
+  version "4.4.0"
+  resolved "https://registry.yarnpkg.com/@turf/meta/-/meta-4.4.0.tgz#4fa25d4cc0525bd4cdbaf4ff68a6f8ae81f1975f"
 
 "@turf/within@^3.13.0":
   version "3.14.0"

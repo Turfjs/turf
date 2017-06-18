@@ -109,6 +109,11 @@ import * as rhumbDestination from '@turf/rhumb-destination';
 import * as polygonTangents from '@turf/polygon-tangents';
 import * as rewind from '@turf/rewind';
 import * as isobands from '@turf/isobands';
+import * as transformRotate from '@turf/transform-rotate';
+import * as transformScale from '@turf/transform-scale';
+import * as transformTranslate from '@turf/transform-translate';
+import * as lineOffset from '@turf/line-offset';
+import * as polygonize from '@turf/polygonize';
 export {
     isolines,
     convex,
@@ -211,5 +216,10 @@ export {
     round,
     flattenEach,
     flattenReduce,
-    convertDistance
+    convertDistance,
+    transformRotate,
+    transformScale,
+    transformTranslate,
+    lineOffset,
+    polygonize,
 };
