@@ -17,6 +17,9 @@
     "url": "git://github.com/Turfjs/turf.git"
   },
   "author": "Turf Authors",
+  "contributors": [
+    "Stefano Borghi <@stebogit>"
+  ],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/Turfjs/turf/issues"
