@@ -5,6 +5,6 @@ type Feature = GeoJSON.Feature<any> | GeoJSON.GeometryObject;
 /**
  * http://turfjs.org/docs/#boolean-contains
  */
-declare function contains(feature1: Feature, feature2: Feature): boolean;
-declare namespace contains { }
-export = contains;
+declare function booleanContains(feature1: Feature, feature2: Feature): boolean;
+declare namespace booleanContains { }
+export = booleanContains;

@@ -40,6 +40,7 @@
     "tape": "^4.6.3"
   },
   "dependencies": {
+    "@turf/bbox": "^4.4.0",
     "@turf/inside": "^4.2.0",
     "@turf/invariant": "^4.2.0"
   }

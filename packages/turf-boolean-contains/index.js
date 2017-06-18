@@ -1,4 +1,5 @@
 var inside = require('@turf/inside');
+var calcBbox = require('@turf/bbox');
 var invariant = require('@turf/invariant');
 var getGeom = invariant.getGeom;
 var getCoords = invariant.getCoords;
@@ -60,7 +61,7 @@ module.exports = function (feature1, feature2) {
     case 'LineString':
         switch (type2) {
         case 'Point':
-            return isPointOnLine(geom1, geom2);
+            return isPointOnLine(geom1, geom2, true);
         case 'LineString':
             return isLineOnLine(geom1, geom2);
         case 'MultiPoint':
@@ -74,7 +75,7 @@ module.exports = function (feature1, feature2) {
         case 'LineString':
             return isLineInPoly(geom1, geom2);
         case 'Polygon':
-            return isPolyInPoly(feature2, feature1);
+            return isPolyInPoly(geom1, geom2);
         case 'MultiPoint':
             return isMultiPointInPoly(geom1, geom2);
         }
@@ -115,11 +116,11 @@ function isMultiPointInMultiPoint(multiPoint1, multiPoint2) {
 }
 
 // http://stackoverflow.com/a/11908158/1979085
-function isPointOnLine(lineString, point) {
+function isPointOnLine(lineString, point, excEndPoints) {
     var output = false;
     for (var i = 0; i < lineString.coordinates.length - 1; i++) {
         var incEndVertices = true;
-        if (i === 0 || i === lineString.coordinates.length - 2) {
+        if ((i === 0 || i === lineString.coordinates.length - 2) && excEndPoints) {
             incEndVertices = false;
         }
         if (isPointOnLineSegment(lineString.coordinates[i], lineString.coordinates[i + 1], point.coordinates, incEndVertices)) {
@@ -132,14 +133,14 @@ function isPointOnLine(lineString, point) {
 
 function isMultiPointOnLine(lineString, multiPoint) {
     var output = true;
+    var foundAnInteriorPoint = false;
     for (var i = 0; i < multiPoint.coordinates.length; i++) {
         var pointIsOnLine = false;
         for (var i2 = 0; i2 < lineString.coordinates.length - 1; i2++) {
-            var incEndVertices = true;
-            if (i2 === 0 || i2 === lineString.coordinates.length - 2) {
-                incEndVertices = false;
-            }
-            if (isPointOnLineSegment(lineString.coordinates[i2], lineString.coordinates[i2 + 1], multiPoint.coordinates[i], incEndVertices)) {
+            if (isPointOnLineSegment(lineString.coordinates[i2], lineString.coordinates[i2 + 1], multiPoint.coordinates[i], true)) {
+                if (!foundAnInteriorPoint && isPointOnLineSegment(lineString.coordinates[i2], lineString.coordinates[i2 + 1], multiPoint.coordinates[i], false)) {
+                    foundAnInteriorPoint = true;
+                }
                 pointIsOnLine = true;
                 break;
             }
@@ -149,13 +150,13 @@ function isMultiPointOnLine(lineString, multiPoint) {
             break;
         }
     }
-    return output;
+    return output && foundAnInteriorPoint;
 }
 
 function isMultiPointInPoly(polygon, multiPoint) {
     var output = true;
     for (var i = 0; i < multiPoint.coordinates.length; i++) {
-        var isInside = inside(multiPoint.coordinates[1], polygon);
+        var isInside = inside(multiPoint.coordinates[1], polygon, true);
         if (!isInside) {
             output = false;
             break;
@@ -167,36 +168,29 @@ function isMultiPointInPoly(polygon, multiPoint) {
 function isLineOnLine(lineString1, lineString2) {
     var output = true;
     for (var i = 0; i < lineString2.coordinates.length; i++) {
-        var checkLineCoords = isPointOnLine(lineString1, {type: 'Point', coordinates: lineString2.coordinates[i]});
+        var checkLineCoords = isPointOnLine(lineString1, {type: 'Point', coordinates: lineString2.coordinates[i]}, false);
         if (!checkLineCoords) {
             output = false;
             break;
-        }
-    }
-    if (output) {
-        if (compareCoords(lineString1.coordinates[0], lineString2.coordinates[0]) ||
-            compareCoords(lineString1.coordinates[lineString1.coordinates.length - 1], lineString2.coordinates[lineString2.coordinates.length - 1])) {
-            output = false;
         }
     }
     return output;
 }
 
 function isLineInPoly(polygon, linestring) {
-    var output = true;
-    var foundInternalPoint = false;
-    for (var i = 0; i < linestring.coordinates.length; i++) {
-        var isInside = null;
-        if (!foundInternalPoint) {
-            isInside = inside(linestring.coordinates[i], polygon);
-        } else {
-            isInside = inside(linestring.coordinates[i], polygon, true);
-        }
-        if (isInside) {
-            foundInternalPoint = true;
-        }
-        if (!isInside) {
-            output = false;
+    var output = false;
+    var i = 0;
+    var lineLength = linestring.coordinates.length;
+
+    var polyBbox = calcBbox(polygon);
+    var lineBbox = calcBbox(linestring);
+    if (!doBBoxOverlap(polyBbox, lineBbox)) {
+        return false;
+    }
+    for (i; i < lineLength - 1; i++) {
+        var midPoint = getMidpoint(linestring.coordinates[i], linestring.coordinates[i + 1]);
+        if (inside({type: 'Point', coordinates: midPoint}, polygon, true)) {
+            output = true;
             break;
         }
     }
@@ -214,15 +208,10 @@ function isLineInPoly(polygon, linestring) {
  * @returns {Boolean} true/false
  */
 function isPolyInPoly(feature1, feature2) {
-    var coords = getCoords(feature1)[0];
-    var ring = getCoords(feature2)[0];
-    var bbox = feature2.bbox;
-
-    // check if outer coordinates is inside outer ring
-    for (var i = 0; i < coords.length; i++) {
-        // 3x performance increase if BBox is present
-        if (bbox && !inBBox(coords[i], bbox)) return false;
-        if (!inRing(coords[i], ring)) return false;
+    var poly1Bbox = calcBbox(feature1);
+    var poly2Bbox = calcBbox(feature2);
+    if (!doBBoxOverlap(poly1Bbox, poly2Bbox)) {
+        return false;
     }
     return true;
 }
@@ -303,6 +292,14 @@ function inBBox(pt, bbox) {
            bbox[3] >= pt[1];
 }
 
+function doBBoxOverlap(bbox1, bbox2) {
+    if (bbox1[0] > bbox2[0]) return false;
+    if (bbox1[2] < bbox2[2]) return false;
+    if (bbox1[1] > bbox2[1]) return false;
+    if (bbox1[3] < bbox2[3]) return false;
+    return true;
+}
+
 /**
  * compareCoords
  *
@@ -313,4 +310,8 @@ function inBBox(pt, bbox) {
  */
 function compareCoords(pair1, pair2) {
     return pair1[0] === pair2[0] && pair1[1] === pair2[1];
+}
+
+function getMidpoint(pair1, pair2) {
+    return [(pair1[0] + pair2[0]) / 2, (pair1[1] + pair2[1]) / 2];
 }
