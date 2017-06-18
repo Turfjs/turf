@@ -4,7 +4,7 @@ const path = require('path');
 const load = require('load-json-file');
 const write = require('write-json-file');
 const {featureEach} = require('@turf/meta');
-const {featureCollection, polygon} = require('@turf/helpers');
+const {featureCollection, point, polygon} = require('@turf/helpers');
 const chromatism = require('chromatism');
 const clusters = require('./');
 
@@ -41,6 +41,15 @@ test('clusters -- throws', t => {
     t.end();
 });
 
+test('clusters -- translate properties', t => {
+    const points = featureCollection([
+        point([0, 0], {foo: 'bar'}),
+        point([2, 4], {foo: 'bar'}),
+        point([3, 6], {foo: 'bar'})
+    ]);
+    t.equal(clusters(points, 2).points.features[0].properties.foo, 'bar');
+    t.end();
+});
 
 // style result
 function colorize(clustered) {
