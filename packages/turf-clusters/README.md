@@ -1,6 +1,6 @@
-# @turf/cluster
+# @turf/clusters
 
-# cluster
+# clusters
 
 Takes a set of {@link Point|points} and partition them into clusters using the k-mean.
 It uses the [k-means clustering](https://en.wikipedia.org/wiki/K-means_clustering) algorithm.
@@ -17,7 +17,7 @@ var points = turf.random('point', 100, {
   bbox: [0, 30, 20, 50]
 });
 var numberOfClusters = 7;
-var clustered = turf.cluster(points, numberOfClusters);
+var clustered = turf.clusters(points, numberOfClusters);
 //addToMap
 var addToMap = featureCollection(clustered.points);
 ```

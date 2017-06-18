@@ -1,7 +1,7 @@
 {
-  "name": "@turf/cluster",
+  "name": "@turf/clusters",
   "version": "4.4.0",
-  "description": "turf cluster module",
+  "description": "turf clusters module",
   "main": "index.js",
   "types": "index.d.ts",
   "files": [

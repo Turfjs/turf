@@ -8,7 +8,7 @@ interface Clustered {
 /**
  * http://turfjs.org/docs/#cluster
  */
-declare function cluster(points: Points, numberOfClusters?: number): Clustered;
+declare function clusters(points: Points, numberOfClusters?: number): Clustered;
 
-declare namespace cluster { }
-export = cluster;
+declare namespace clusters { }
+export = clusters;
