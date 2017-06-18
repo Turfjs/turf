@@ -42,6 +42,12 @@
     "@turf/distance" "^4.4.0"
     "@turf/helpers" "^4.4.0"
 
+"@turf/truncate@^4.4.0":
+  version "4.4.0"
+  resolved "https://registry.yarnpkg.com/@turf/truncate/-/truncate-4.4.0.tgz#194deef33b91d6b27cc9b33a141cacb6e7ce23a0"
+  dependencies:
+    "@turf/meta" "^4.4.0"
+
 balanced-match@^0.4.1:
   version "0.4.2"
   resolved "https://registry.yarnpkg.com/balanced-match/-/balanced-match-0.4.2.tgz#cb3f3e3c732dc0f01ee70b403f302e61d7709838"
