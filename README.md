@@ -1,8 +1,7 @@
-![turf](https://raw.githubusercontent.com/Turfjs/turf/9a1d5e8d99564d4080f1e2bf1517ed41d18012fa/logo.png) 
+![turf](https://raw.githubusercontent.com/Turfjs/turf/9a1d5e8d99564d4080f1e2bf1517ed41d18012fa/logo.png)
 ======
 
 [![Version Badge][npm-img]][npm-url]
-[![Circle CI](https://circleci.com/gh/Turfjs/turf.svg?style=svg)](https://circleci.com/gh/Turfjs/turf)
 [![Travis CI](https://travis-ci.org/Turfjs/turf.svg?branch=master)](https://travis-ci.org/Turfjs/turf)
 [![Gitter chat][gitter-img]][gitter-url]
 [![Coverage Status](https://coveralls.io/repos/github/Turfjs/turf/badge.svg)](https://coveralls.io/github/Turfjs/turf)
@@ -46,15 +45,9 @@ All of Turf's functions can also be installed as separate modules. This works we
 npm install @turf/helpers @turf/buffer
 ```
 
-**Bower [NOTE: Bower support will be dropped Jan 1st 2017]:**
+**Bower [NOTE: Bower support has been dropped Jan 1st 2017]:**
 
 _Not recommend. Please don't use Bower. Use Browserify, Webpack, or the CDN instead._
-
-The latest Bower build is at:
-
-```
-https://unpkg.com/@turf/turf@3.1.1/bower.zip
-```
 
 **TypeScript**
 
