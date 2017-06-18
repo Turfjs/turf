@@ -33,7 +33,6 @@
   },
   "homepage": "https://github.com/Turfjs/turf",
   "devDependencies": {
-    "@turf/bbox": "^4.2.0",
     "benchmark": "^2.1.4",
     "glob": "^7.1.1",
     "load-json-file": "^2.0.0",
