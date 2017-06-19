@@ -1,8 +1,0 @@
-{
-  "private": true,
-  "dependencies": {
-    "@turf/helpers": "^4.4.0",
-    "python-shell": "^0.4.0",
-    "tape": "^4.6.3"
-  }
-}
