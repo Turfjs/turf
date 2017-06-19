@@ -45,6 +45,7 @@
     "url": "https://github.com/Turfjs/turf/issues"
   },
   "devDependencies": {
+    "@turf/helpers": "^4.4.0",
     "@types/geojson": "0.0.31",
     "@types/node": "^6.0.56",
     "browserify": "^13.0.0",
@@ -55,7 +56,9 @@
     "lerna": "2.0.0-beta.34",
     "load-json-file": "^2.0.0",
     "progress": "^2.0.0",
+    "python-shell": "^0.4.0",
     "tap": "^10.3.2",
+    "tape": "^4.6.3",
     "typescript": "^2.2.1",
     "uglify-js": "~2.4.16"
   }
