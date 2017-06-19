@@ -21,6 +21,7 @@ module.exports = function (operation, feature1, feature2) {
     if (feature2.geometry) feature2 = feature2.geometry;
 
     const options = {
+        scriptPath: __dirname,
         args: [
             operation,
             JSON.stringify(feature1),
