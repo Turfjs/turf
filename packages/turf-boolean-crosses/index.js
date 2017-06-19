@@ -38,10 +38,20 @@ module.exports = function (feature1, feature2) {
         throw new Error('feature2 ' + type2 + ' geometry not supported');
     case 'LineString':
         switch (type2) {
+        case 'MultiPoint': // An inverse operation
+            return doMultiPointAndLineStringCross(geom2, geom1);
         case 'LineString':
             return doLineStringsCross(geom1, geom2);
         case 'Polygon':
             return doLineStringAndPolygonCross(geom1, geom2);
+        }
+        throw new Error('feature2 ' + type2 + ' geometry not supported');
+    case 'Polygon':
+        switch (type2) {
+        case 'MultiPoint': // An inverse operation
+            return doesMultiPointCrossPoly(geom2, geom1);
+        case 'LineString': // An inverse operation
+            return doLineStringAndPolygonCross(geom2, geom1);
         }
         throw new Error('feature2 ' + type2 + ' geometry not supported');
     default:
