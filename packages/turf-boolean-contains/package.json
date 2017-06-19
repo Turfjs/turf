@@ -33,6 +33,7 @@
   },
   "homepage": "https://github.com/Turfjs/turf",
   "devDependencies": {
+    "@turf/helpers": "^4.4.0",
     "benchmark": "^2.1.4",
     "boolean-shapely": "^0.1.2",
     "glob": "^7.1.1",
