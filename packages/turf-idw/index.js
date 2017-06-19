@@ -1,7 +1,7 @@
-var distance = require('@turf/distance');
-var squareGrid = require('@turf/square-grid');
-var centroid = require('@turf/centroid');
 var bbox = require('@turf/bbox');
+var distance = require('@turf/distance');
+var centroid = require('@turf/centroid');
+var squareGrid = require('@turf/square-grid');
 
 /**
  *
@@ -13,40 +13,43 @@ var bbox = require('@turf/bbox');
  * @name idw
  * @param {FeatureCollection<Point>} controlPoints Sampled points with known value
  * @param {string} valueField GeoJSON field containing the known value to interpolate on
- * @param {number} b Exponent regulating the distance-decay weighting
+ * @param {number} weight Exponent regulating the distance-decay weighting
  * @param {number} cellWidth The distance across each cell
  * @param {string} [units=kilometers] used in calculating cellSize, can be degrees, radians, miles, or kilometers
- * @returns {FeatureCollection<Polygon>} grid A grid of polygons with a property field "IDW"
+ * @returns {FeatureCollection<Polygon>} grid A grid of polygons with a property field named as `valueField`
  */
-module.exports = function (controlPoints, valueField, b, cellWidth, units) {
-    // check if field containing data exists..
+module.exports = function (controlPoints, valueField, weight, cellWidth, units) {
+    // validation
+    if (!valueField) throw new Error('valueField is required');
+    if (weight === undefined || weight === null) throw new Error('weight is required');
+    if (cellWidth === undefined || cellWidth === null) throw new Error('cellWidth is required');
+
+    // check if field containing data exists.
     var filtered = controlPoints.features.filter(function (feature) {
         return feature.properties &&
             feature.properties.hasOwnProperty(valueField);
     });
-    if (filtered.length !== 0) {
-      // create a sample square grid
-      // compared to a point grid helps visualizing the output (like a raster..)
-        var samplingGrid = squareGrid(bbox(controlPoints), cellWidth, units);
-        var N = samplingGrid.features.length;
-        for (var i = 0; i < N; i++) {
-            var zw = 0;
-            var sw = 0;
-            // calculate the distance from each control point to cell's centroid
-            for (var j = 0; j < controlPoints.features.length; j++) {
-                var d = distance(centroid(samplingGrid.features[i]), controlPoints.features[j], units);
-                if (d === 0) {
-                    zw = controlPoints.features[j].properties[valueField];
-                }
-                var w = 1.0 / Math.pow(d, b);
-                sw += w;
-                zw += w * controlPoints.features[j].properties[valueField];
+    if (filtered.length === 0) throw new Error('Specified Data Field is Missing');
+
+    // create a sample square grid
+    // compared to a point grid helps visualizing the output (like a raster..)
+    var samplingGrid = squareGrid(bbox(controlPoints), cellWidth, units);
+    var N = samplingGrid.features.length;
+    for (var i = 0; i < N; i++) {
+        var zw = 0;
+        var sw = 0;
+        // calculate the distance from each control point to cell's centroid
+        for (var j = 0; j < controlPoints.features.length; j++) {
+            var d = distance(centroid(samplingGrid.features[i]), controlPoints.features[j], units);
+            if (d === 0) {
+                zw = controlPoints.features[j].properties[valueField];
             }
-            // write IDW value for each grid cell
-            samplingGrid.features[i].properties.z = zw / sw;
+            var w = 1.0 / Math.pow(d, weight);
+            sw += w;
+            zw += w * controlPoints.features[j].properties[valueField];
         }
-        return samplingGrid;
-    } else {
-        console.log('Specified Data Field is Missing');
+        // write IDW value for each grid cell
+        samplingGrid.features[i].properties[valueField] = zw / sw;
     }
+    return samplingGrid;
 };
