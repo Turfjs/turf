@@ -34,8 +34,9 @@ module.exports = function (feature1, feature2) {
             return doMultiPointAndLineStringCross(geom1, geom2);
         case 'Polygon':
             return doesMultiPointCrossPoly(geom1, geom2);
+        default:
+            throw new Error('feature2 ' + type2 + ' geometry not supported');
         }
-        throw new Error('feature2 ' + type2 + ' geometry not supported');
     case 'LineString':
         switch (type2) {
         case 'MultiPoint': // An inverse operation
@@ -44,16 +45,18 @@ module.exports = function (feature1, feature2) {
             return doLineStringsCross(geom1, geom2);
         case 'Polygon':
             return doLineStringAndPolygonCross(geom1, geom2);
+        default:
+            throw new Error('feature2 ' + type2 + ' geometry not supported');
         }
-        throw new Error('feature2 ' + type2 + ' geometry not supported');
     case 'Polygon':
         switch (type2) {
         case 'MultiPoint': // An inverse operation
             return doesMultiPointCrossPoly(geom2, geom1);
         case 'LineString': // An inverse operation
             return doLineStringAndPolygonCross(geom2, geom1);
+        default:
+            throw new Error('feature2 ' + type2 + ' geometry not supported');
         }
-        throw new Error('feature2 ' + type2 + ' geometry not supported');
     default:
         throw new Error('feature1 ' + type1 + ' geometry not supported');
     }
