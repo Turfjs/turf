@@ -1,7 +1,7 @@
 {
-  "name": "@turf/idw",
+  "name": "@turf/clusters",
   "version": "4.4.0",
-  "description": "turf idw module",
+  "description": "turf clusters module",
   "main": "index.js",
   "types": "index.d.ts",
   "files": [
@@ -16,10 +16,17 @@
     "type": "git",
     "url": "git://github.com/Turfjs/turf.git"
   },
+  "keywords": [
+    "turf",
+    "geojson",
+    "cluster",
+    "clusters",
+    "clustering",
+    "k-means"
+  ],
   "author": "Turf Authors",
   "contributors": [
-    "Stefano Borghi <@stebogit>",
-    "Denis Carriere <@DenisCarriere>"
+    "Stefano Borghi <@stebogit>"
   ],
   "license": "MIT",
   "bugs": {
@@ -27,16 +34,18 @@
   },
   "homepage": "https://github.com/Turfjs/turf",
   "devDependencies": {
-    "@turf/helpers": "^4.4.0",
+    "@turf/random": "^4.4.0",
     "benchmark": "^2.1.4",
+    "chromatism": "2.6.0",
     "load-json-file": "^2.0.0",
+    "matrix-to-grid": "3.0.0",
     "tape": "^4.6.3",
-    "write-json-file": "^2.2.0"
+    "write-json-file": "^2.0.0"
   },
   "dependencies": {
-    "@turf/bbox": "^4.4.0",
-    "@turf/centroid": "^4.4.0",
-    "@turf/distance": "^4.4.0",
-    "@turf/square-grid": "^4.4.0"
+    "@turf/helpers": "^4.4.0",
+    "@turf/invariant": "^4.4.0",
+    "@turf/meta": "^4.4.0",
+    "skmeans": "0.5.0"
   }
 }

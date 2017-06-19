@@ -1,0 +1,30 @@
+const path = require('path');
+const glob = require('glob');
+const Benchmark = require('benchmark');
+const load = require('load-json-file');
+const crosses = require('./');
+
+/**
+ * Benchmark Results
+ * LineDoesNotCrossButTouches x 71,945 ops/sec ±2.04% (71 runs sampled)
+ * LineDoesNotCrossLine x 88,084 ops/sec ±2.56% (70 runs sampled)
+ * LineDoesNotCrossPolygon x 86,024 ops/sec ±2.80% (71 runs sampled)
+ * MultiPointNotCrossLine x 11,976,750 ops/sec ±1.61% (93 runs sampled)
+ * MultiPointNotCrossLineEnd x 10,191,949 ops/sec ±3.51% (85 runs sampled)
+ * LineCrossesLine x 68,764 ops/sec ±2.53% (72 runs sampled)
+ * LineCrossesPolygon x 49,268 ops/sec ±2.70% (80 runs sampled)
+ * LineCrossesPolygonPartial x 63,313 ops/sec ±2.87% (71 runs sampled)
+ * MultiPointsCrossLine x 10,900,034 ops/sec ±0.39% (93 runs sampled)
+ */
+const suite = new Benchmark.Suite('turf-boolean-crosses');
+glob.sync(path.join(__dirname, 'test', '**', '*.geojson')).forEach(filepath => {
+    const {name} = path.parse(filepath);
+    const geojson = load.sync(filepath);
+    const [feature1, feature2] = geojson.features;
+    suite.add(name, () => crosses(feature1, feature2));
+});
+
+suite
+    .on('cycle', e => console.log(String(e.target)))
+    .on('complete', () => {})
+    .run();
