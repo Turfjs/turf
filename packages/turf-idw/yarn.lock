@@ -2,6 +2,52 @@
 # yarn lockfile v1
 
 
+"@turf/bbox@^4.4.0":
+  version "4.4.0"
+  resolved "https://registry.yarnpkg.com/@turf/bbox/-/bbox-4.4.0.tgz#3149458eb41404427cf786a90fb3680a0e8aab55"
+  dependencies:
+    "@turf/meta" "^4.4.0"
+
+"@turf/centroid@^4.4.0":
+  version "4.4.0"
+  resolved "https://registry.yarnpkg.com/@turf/centroid/-/centroid-4.4.0.tgz#48c7affdfdf5e6f8ba5782b342d17dc2be57e698"
+  dependencies:
+    "@turf/helpers" "^4.4.0"
+    "@turf/meta" "^4.4.0"
+
+"@turf/distance@^4.4.0":
+  version "4.4.0"
+  resolved "https://registry.yarnpkg.com/@turf/distance/-/distance-4.4.0.tgz#6101f5951caf4e7ee5c006540900574af2f106bd"
+  dependencies:
+    "@turf/helpers" "^4.4.0"
+    "@turf/invariant" "^4.4.0"
+
+"@turf/helpers@^4.4.0":
+  version "4.4.0"
+  resolved "https://registry.yarnpkg.com/@turf/helpers/-/helpers-4.4.0.tgz#c83112f7fbe6ed183c7c0c2f776481b94d1cbd01"
+
+"@turf/invariant@^4.4.0":
+  version "4.4.0"
+  resolved "https://registry.yarnpkg.com/@turf/invariant/-/invariant-4.4.0.tgz#aac0afb840ae40908f9c80393f416222dcf79c32"
+
+"@turf/meta@^4.4.0":
+  version "4.4.0"
+  resolved "https://registry.yarnpkg.com/@turf/meta/-/meta-4.4.0.tgz#4fa25d4cc0525bd4cdbaf4ff68a6f8ae81f1975f"
+
+"@turf/square-grid@^4.4.0":
+  version "4.4.0"
+  resolved "https://registry.yarnpkg.com/@turf/square-grid/-/square-grid-4.4.0.tgz#9cab42ab53a4dcc264e19ae99746703b2bd1ab6a"
+  dependencies:
+    "@turf/bbox" "^4.4.0"
+    "@turf/distance" "^4.4.0"
+    "@turf/helpers" "^4.4.0"
+
+"@turf/truncate@^4.4.0":
+  version "4.4.0"
+  resolved "https://registry.yarnpkg.com/@turf/truncate/-/truncate-4.4.0.tgz#194deef33b91d6b27cc9b33a141cacb6e7ce23a0"
+  dependencies:
+    "@turf/meta" "^4.4.0"
+
 balanced-match@^0.4.1:
   version "0.4.2"
   resolved "https://registry.yarnpkg.com/balanced-match/-/balanced-match-0.4.2.tgz#cb3f3e3c732dc0f01ee70b403f302e61d7709838"

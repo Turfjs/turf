@@ -42,7 +42,7 @@ test('unkink-polygon -- throws', t => {
 function colorize(features, colors = ['#F00', '#00F'], width = 6) {
     const results = [];
     featureEach(features, (feature, index) => {
-        const color = colors[index % colors.length]
+        const color = colors[index % colors.length];
         feature.properties = {
             stroke: color,
             fill: color,
