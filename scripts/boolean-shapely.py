@@ -12,7 +12,7 @@ def shapely(operation, geometry1, geometry2):
     if operation == 'crosses':
         print geometry1.crosses(geometry2)
     elif operation == 'contains':
-        print geometry1.conains(geometry2)
+        print geometry1.contains(geometry2)
 
 if __name__ == '__main__':
     OPERATION = sys.argv[1]
