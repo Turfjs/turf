@@ -48,16 +48,18 @@ module.exports = function (feature1, feature2) {
         switch (type2) {
         case 'Point':
             return compareCoords(coords1, coords2);
+        default:
+            throw new Error('feature2 ' + type2 + ' geometry not supported');
         }
-        throw new Error('feature2 ' + type2 + ' geometry not supported');
     case 'MultiPoint':
         switch (type2) {
         case 'Point':
             return isPointInMultiPoint(geom1, geom2);
         case 'MultiPoint':
             return isMultiPointInMultiPoint(geom1, geom2);
+        default:
+            throw new Error('feature2 ' + type2 + ' geometry not supported');
         }
-        throw new Error('feature2 ' + type2 + ' geometry not supported');
     case 'LineString':
         switch (type2) {
         case 'Point':
@@ -66,8 +68,9 @@ module.exports = function (feature1, feature2) {
             return isLineOnLine(geom1, geom2);
         case 'MultiPoint':
             return isMultiPointOnLine(geom1, geom2);
+        default:
+            throw new Error('feature2 ' + type2 + ' geometry not supported');
         }
-        throw new Error('feature2 ' + type2 + ' geometry not supported');
     case 'Polygon':
         switch (type2) {
         case 'Point':
@@ -78,8 +81,9 @@ module.exports = function (feature1, feature2) {
             return isPolyInPoly(geom1, geom2);
         case 'MultiPoint':
             return isMultiPointInPoly(geom1, geom2);
+        default:
+            throw new Error('feature2 ' + type2 + ' geometry not supported');
         }
-        throw new Error('feature2 ' + type2 + ' geometry not supported');
     default:
         throw new Error('feature1 ' + type1 + ' geometry not supported');
     }

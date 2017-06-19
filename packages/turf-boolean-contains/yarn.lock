@@ -2,25 +2,11 @@
 # yarn lockfile v1
 
 
-"@turf/bbox@^3.10.5":
-  version "3.14.0"
-  resolved "https://registry.yarnpkg.com/@turf/bbox/-/bbox-3.14.0.tgz#cee5f396dde78aca9cede05e1122db18bc504635"
+"@turf/bbox@^4.4.0":
+  version "4.4.0"
+  resolved "https://registry.yarnpkg.com/@turf/bbox/-/bbox-4.4.0.tgz#3149458eb41404427cf786a90fb3680a0e8aab55"
   dependencies:
-    "@turf/meta" "^3.14.0"
-
-"@turf/bbox@^4.2.0":
-  version "4.3.0"
-  resolved "https://registry.yarnpkg.com/@turf/bbox/-/bbox-4.3.0.tgz#644c4b745172d21aae70d1584b2a7866f1040865"
-  dependencies:
-    "@turf/meta" "^4.3.0"
-
-"@turf/helpers@^3.10.5":
-  version "3.13.0"
-  resolved "https://registry.yarnpkg.com/@turf/helpers/-/helpers-3.13.0.tgz#d06078a1464cf56cdb7ea624ea1e13a71b88b806"
-
-"@turf/helpers@^4.2.0", "@turf/helpers@^4.3.0":
-  version "4.3.0"
-  resolved "https://registry.yarnpkg.com/@turf/helpers/-/helpers-4.3.0.tgz#7b2f733aa0eb3ea1f07d467ac02ede00cc6cde0d"
+    "@turf/meta" "^4.4.0"
 
 "@turf/inside@^4.2.0":
   version "4.3.0"
@@ -32,32 +18,9 @@
   version "4.3.0"
   resolved "https://registry.yarnpkg.com/@turf/invariant/-/invariant-4.3.0.tgz#5bd1ce6ae51b1229dc0dc7d09d973fabae49af89"
 
-"@turf/line-overlap@^4.2.0":
-  version "4.3.0"
-  resolved "https://registry.yarnpkg.com/@turf/line-overlap/-/line-overlap-4.3.0.tgz#f0572d3a3f536a35055d857099b5d1549cfd0074"
-  dependencies:
-    "@turf/helpers" "^4.3.0"
-    "@turf/invariant" "^4.3.0"
-    "@turf/line-segment" "^4.3.0"
-    "@turf/meta" "^4.3.0"
-    deep-equal "^1.0.1"
-    geojson-rbush "^1.0.1"
-
-"@turf/line-segment@^4.3.0":
-  version "4.3.0"
-  resolved "https://registry.yarnpkg.com/@turf/line-segment/-/line-segment-4.3.0.tgz#7835209227f3c0712ec549c6f51af72394c638ab"
-  dependencies:
-    "@turf/helpers" "^4.3.0"
-    "@turf/invariant" "^4.3.0"
-    "@turf/meta" "^4.3.0"
-
-"@turf/meta@^3.10.5", "@turf/meta@^3.14.0":
-  version "3.14.0"
-  resolved "https://registry.yarnpkg.com/@turf/meta/-/meta-3.14.0.tgz#8d3050c1a0f44bf406a633b6bd28c510f7bcee27"
-
-"@turf/meta@^4.3.0":
-  version "4.3.0"
-  resolved "https://registry.yarnpkg.com/@turf/meta/-/meta-4.3.0.tgz#eb11dd2c2511524258123767fe0f5c3bd963e8d7"
+"@turf/meta@^4.4.0":
+  version "4.4.0"
+  resolved "https://registry.yarnpkg.com/@turf/meta/-/meta-4.4.0.tgz#4fa25d4cc0525bd4cdbaf4ff68a6f8ae81f1975f"
 
 balanced-match@^0.4.1:
   version "0.4.2"
@@ -81,7 +44,7 @@ concat-map@0.0.1:
   version "0.0.1"
   resolved "https://registry.yarnpkg.com/concat-map/-/concat-map-0.0.1.tgz#d8a96bd77fd68df7793a73036a3ba0d5405d477b"
 
-deep-equal@^1.0.1, deep-equal@~1.0.1:
+deep-equal@~1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/deep-equal/-/deep-equal-1.0.1.tgz#f5d260292b660e084eff4cdbc9f08ad3247448b5"
 
@@ -136,15 +99,6 @@ fs.realpath@^1.0.0:
 function-bind@^1.0.2, function-bind@^1.1.0, function-bind@~1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/function-bind/-/function-bind-1.1.0.tgz#16176714c801798e4e8f2cf7f7529467bb4a5771"
-
-geojson-rbush@^1.0.1:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/geojson-rbush/-/geojson-rbush-1.0.1.tgz#450559bc18457e725191ac9acbbe0a8b5e18ddae"
-  dependencies:
-    "@turf/bbox" "^3.10.5"
-    "@turf/helpers" "^3.10.5"
-    "@turf/meta" "^3.10.5"
-    rbush "^2.0.1"
 
 glob@^7.1.1, glob@~7.1.1:
   version "7.1.2"
@@ -258,16 +212,6 @@ pify@^2.0.0:
 platform@^1.3.3:
   version "1.3.4"
   resolved "https://registry.yarnpkg.com/platform/-/platform-1.3.4.tgz#6f0fb17edaaa48f21442b3a975c063130f1c3ebd"
-
-quickselect@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/quickselect/-/quickselect-1.0.0.tgz#02630818f9aae4ecab26f0103f98d061c17c58f3"
-
-rbush@^2.0.1:
-  version "2.0.1"
-  resolved "https://registry.yarnpkg.com/rbush/-/rbush-2.0.1.tgz#4cfaca28c3064bc0ee75431a1b79990e875eefa9"
-  dependencies:
-    quickselect "^1.0.0"
 
 resolve@~1.1.7:
   version "1.1.7"
