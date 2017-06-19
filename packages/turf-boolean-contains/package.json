@@ -34,6 +34,7 @@
   "homepage": "https://github.com/Turfjs/turf",
   "devDependencies": {
     "benchmark": "^2.1.4",
+    "boolean-shapely": "^0.1.0",
     "glob": "^7.1.1",
     "load-json-file": "^2.0.0",
     "tape": "^4.6.3"
