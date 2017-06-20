@@ -140,9 +140,15 @@ function isPointOnLineSegment(LineSegmentStart, LineSegmentEnd, Point) {
         return false;
     }
     if (Math.abs(dxl) >= Math.abs(dyl)) {
-        return dxl > 0 ? LineSegmentStart[0] <= Point[0] && Point[0] <= LineSegmentEnd[0] : LineSegmentEnd[0] <= Point[0] && Point[0] <= LineSegmentStart[0];
+        if (dxl > 0) {
+            return LineSegmentStart[0] <= Point[0] && Point[0] <= LineSegmentEnd[0];
+        } else {
+            return LineSegmentEnd[0] <= Point[0] && Point[0] <= LineSegmentStart[0];
+        }
+    } else if (dyl > 0) {
+        return LineSegmentStart[1] <= Point[1] && Point[1] <= LineSegmentEnd[1];
     } else {
-        return dyl > 0 ? LineSegmentStart[1] <= Point[1] && Point[1] <= LineSegmentEnd[1] : LineSegmentEnd[1] <= Point[1] && Point[1] <= LineSegmentStart[1];
+        return LineSegmentEnd[1] <= Point[1] && Point[1] <= LineSegmentStart[1];
     }
 }
 
