@@ -1,10 +1,8 @@
-var helpers = require('@turf/helpers');
 var inside = require('@turf/inside');
 var lineIntersect = require('@turf/line-intersect');
-var polyToLinestring = require('@turf/polygon-to-linestring');
 var invariant = require('@turf/invariant');
+var flattenEach = require('@turf/meta').flattenEach;
 var getGeom = invariant.getGeom;
-var getGeomType = invariant.getGeomType;
 
 /**
  * Boolean-Crosses returns True if the intersection results in a geometry whose dimension is one less than
@@ -22,40 +20,99 @@ var getGeomType = invariant.getGeomType;
  */
 
 module.exports = function (feature1, feature2) {
-    var type1 = getGeomType(feature1);
-    var type2 = getGeomType(feature2);
     var geom1 = getGeom(feature1);
     var geom2 = getGeom(feature2);
 
-    switch (type1) {
+    return crosses(geom1, geom2);
+};
+
+/**
+ * Crosses boolean operation for simple geometries (exception of MultiPoint)
+ *
+ * @private
+ * @param {Geometry} geom1 GeoJSON Geometry
+ * @param {Geometry} geom2 GeoJSON Geometry
+ * @returns {Boolean} true/false
+ */
+function crosses(geom1, geom2) {
+    if (geom1.type === 'Point' || geom2.type === 'Point') return false;
+
+    switch (geom1.type) {
     case 'MultiPoint':
-        switch (type2) {
+        switch (geom2.type) {
         case 'LineString':
             return doMultiPointAndLineStringCross(geom1, geom2);
         case 'Polygon':
             return doesMultiPointCrossPoly(geom1, geom2);
+        case 'MultiLineString':
+            return doMultiLineStringsCrossMultiPoint(geom2, geom1);
         }
         break;
     case 'LineString':
-        switch (type2) {
+        switch (geom2.type) {
         case 'MultiPoint': // An inverse operation
             return doMultiPointAndLineStringCross(geom2, geom1);
         case 'LineString':
             return doLineStringsCross(geom1, geom2);
         case 'Polygon':
-            return doLineStringAndPolygonCross(geom1, geom2);
+            return doLineStringsCross(geom1, polyToLine(geom2));
+        case 'MultiLineString':
+            return doMultiLineStringsCross(geom1, geom2);
         }
         break;
     case 'Polygon':
-        switch (type2) {
+        switch (geom2.type) {
         case 'MultiPoint': // An inverse operation
             return doesMultiPointCrossPoly(geom2, geom1);
         case 'LineString': // An inverse operation
-            return doLineStringAndPolygonCross(geom2, geom1);
+            return doLineStringsCross(polyToLine(geom1), geom2);
+        }
+        break;
+    case 'MultiLineString':
+        switch (geom2.type) {
+        case 'MultiPoint':
+            return doMultiLineStringsCrossMultiPoint(geom1, geom2);
+        case 'LineString':
+            return doMultiPointAndLineStringCross(geom1, geom2);
+        case 'Polygon':
+            return doMultiPointAndLineStringCross(geom1, polyToLine(geom2));
         }
         break;
     }
-};
+}
+
+/**
+ * Polygon to LineString Geometry
+ *
+ * @param {Geometry<Polygon>} geom Polygon GeoJSON Geometry
+ * @returns {Geometry<LineString>} LineString from outer Polygon
+ */
+function polyToLine(geom) {
+    return {
+        type: 'LineString',
+        coordinates: geom.coordinates[0]
+    };
+}
+
+function doMultiLineStringsCross(multiLineString1, multiLineString2) {
+    var boolean = false;
+    flattenEach(multiLineString1, function (lineString1) {
+        flattenEach(multiLineString2, function (lineString2) {
+            if (boolean === true) return true;
+            boolean = doLineStringsCross(lineString1, lineString2);
+        });
+    });
+    return boolean;
+}
+
+function doMultiLineStringsCrossMultiPoint(multiLineString, multiPoint) {
+    var boolean;
+    flattenEach(multiLineString, function (lineString) {
+        if (boolean === true) return true;
+        boolean = doMultiPointAndLineStringCross(multiPoint, lineString);
+    });
+    return boolean;
+}
 
 function doMultiPointAndLineStringCross(multiPoint, lineString) {
     var foundIntPoint = false;
@@ -97,14 +154,6 @@ function doLineStringsCross(lineString1, lineString2) {
     return false;
 }
 
-function doLineStringAndPolygonCross(lineString, polygon) {
-    var doLinesIntersect = lineIntersect(lineString, polyToLinestring(polygon));
-    if (doLinesIntersect.features.length > 0) {
-        return true;
-    }
-    return false;
-}
-
 function isPointInPoly(polygon, point) {
     return inside(point, polygon);
 }
@@ -115,7 +164,7 @@ function doesMultiPointCrossPoly(multiPoint, polygon) {
     var pointLength = multiPoint.coordinates[0].length;
     var i = 0;
     while (i < pointLength && foundIntPoint && foundExtPoint) {
-        if (isPointInPoly(polygon, helpers.point(multiPoint.coordinates[0][i]), true)) {
+        if (isPointInPoly(polygon, multiPoint.coordinates[0][i], true)) {
             foundIntPoint = true;
         } else {
             foundExtPoint = true;
@@ -159,4 +208,3 @@ function isPointOnLineSegment(lineSegmentStart, lineSegmentEnd, point, incEnd) {
         return dyl > 0 ? lineSegmentStart[1] < point[1] && point[1] < lineSegmentEnd[1] : lineSegmentEnd[1] < point[1] && point[1] < lineSegmentStart[1];
     }
 }
-
