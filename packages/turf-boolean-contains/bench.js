@@ -8,6 +8,33 @@ const contains = require('./');
 /**
  * Benchmark Results
  *
+ * LineIsNotContainedByLine: 0.632ms
+ * LineIsNotContainedByPolygon: 0.280ms
+ * LineIsNotContainedByPolygonBoundary: 0.649ms
+ * MultiPointsIsNotContainedByLine: 0.243ms
+ * MultiPointsOnLineEndsIsNotContainedByLine: 0.492ms
+ * MultiPointIsNotContainedByMultiPoint: 0.160ms
+ * MultiPointAllOnBoundaryIsNotContainedByPolygon: 0.284ms
+ * MultiPointIsNotContainedByPolygon: 0.034ms
+ * PointIsNotContainedByLine: 0.019ms
+ * PointIsNotContainedByLineBecauseOnEnd: 0.017ms
+ * PointOnEndIsContainedByLinestring: 0.015ms
+ * PointIsNotContainedBYMultiPoint: 0.133ms
+ * PointIsNotContainedByPolygon: 0.021ms
+ * PointOnPolygonBoundary: 0.025ms
+ * Polygon-Polygon: 0.118ms
+ * LineIsContainedByLine: 0.030ms
+ * LinesExactSame: 0.057ms
+ * LineIsContainedByPolygon: 0.083ms
+ * LineIsContainedByPolygonWithNoInternalVertices: 0.055ms
+ * MultipointsIsContainedByLine: 0.019ms
+ * MultiPointsContainedByMultiPoints: 0.022ms
+ * MultiPointIsContainedByPolygonBoundary: 0.032ms
+ * PointIsContainedByLine: 0.011ms
+ * PointIsContainedByMultiPoint: 0.010ms
+ * PointInsidePolygonBoundary: 0.018ms
+ * PolygonIsContainedByPolygon: 0.012ms
+ * PolygonsExactSameShape: 0.012ms
  * LineIsNotContainedByLine x 4,398,295 ops/sec ±1.43% (84 runs sampled)
  * LineIsNotContainedByPolygon x 1,916,541 ops/sec ±3.03% (84 runs sampled)
  * LineIsNotContainedByPolygonBoundary x 721,394 ops/sec ±3.84% (77 runs sampled)
@@ -43,6 +70,10 @@ glob.sync(path.join(__dirname, 'test', '**', '*.geojson')).forEach(filepath => {
     const [feature1, feature2] = geojson.features;
     feature1.bbox = bbox(feature1);
     feature2.bbox = bbox(feature2);
+
+    console.time(name);
+    contains(feature1, feature2);
+    console.timeEnd(name);
     suite.add(name, () => contains(feature1, feature2));
 });
 
