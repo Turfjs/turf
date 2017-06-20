@@ -1,10 +1,7 @@
 var inside = require('@turf/inside');
-var invariant = require('@turf/invariant');
+var flattenEach = require('@turf/meta').flattenEach;
 var lineIntersect = require('@turf/line-intersect');
 var polyToLinestring = require('@turf/polygon-to-linestring');
-var getGeom = invariant.getGeom;
-var getCoords = invariant.getCoords;
-var getGeomType = invariant.getGeomType;
 
 /**
  * Boolean-disjoint returns (TRUE) if the intersection of the two geometries is an empty set.
@@ -34,44 +31,40 @@ var getGeomType = invariant.getGeomType;
  * //=true
  */
 module.exports = function (feature1, feature2) {
-    var type1 = getGeomType(feature1);
-    var type2 = getGeomType(feature2);
-    var geom1 = getGeom(feature1);
-    var geom2 = getGeom(feature2);
-    var coords1 = getCoords(feature1);
-    var coords2 = getCoords(feature2);
+    var boolean;
+    flattenEach(feature1, function (flatten1) {
+        flattenEach(feature2, function (flatten2) {
+            if (boolean === false) return false;
+            boolean = disjoint(flatten1.geometry, flatten2.geometry);
+        });
+    });
+    return boolean;
+};
 
-    switch (type1) {
+/**
+ * Disjoint operation for simple Geometries (Point/LineString/Polygon)
+ *
+ * @private
+ * @param {Geometry<any>} geom1 GeoJSON Geometry
+ * @param {Geometry<any>} geom2 GeoJSON Geometry
+ * @returns {Boolean} true/false
+ */
+function disjoint(geom1, geom2) {
+    switch (geom1.type) {
     case 'Point':
-        switch (type2) {
+        switch (geom2.type) {
         case 'Point':
-            return !compareCoords(coords1, coords2);
-        case 'MultiPoint':
-            return !isPointInMultiPoint(geom2, geom1);
+            return !compareCoords(geom1.coordinates, geom2.coordinates);
         case 'LineString':
             return !isPointOnLine(geom2, geom1);
         case 'Polygon':
             return !inside(geom1, geom2);
         }
         break;
-    case 'MultiPoint':
-        switch (type2) {
-        case 'Point':
-            return !isPointInMultiPoint(coords1, coords2);
-        case 'MultiPoint':
-            return !isMultiPointInMultiPoint(geom1, geom2);
-        case 'LineString':
-            return !isMultiPointOnLine(geom2, geom1);
-        case 'Polygon':
-            return !isMultiPointInPoly(geom2, geom1);
-        }
-        break;
     case 'LineString':
-        switch (type2) {
+        switch (geom2.type) {
         case 'Point':
             return !isPointOnLine(geom1, geom2);
-        case 'MultiPoint':
-            return !isMultiPointOnLine(geom1, geom2);
         case 'LineString':
             return !isLineOnLine(geom1, geom2);
         case 'Polygon':
@@ -79,11 +72,9 @@ module.exports = function (feature1, feature2) {
         }
         break;
     case 'Polygon':
-        switch (type2) {
+        switch (geom2.type) {
         case 'Point':
             return !inside(geom2, geom1);
-        case 'MultiPoint':
-            return !isMultiPointInPoly(geom1, geom2);
         case 'LineString':
             return !isLineInPoly(geom1, geom2);
         case 'Polygon':
@@ -91,52 +82,12 @@ module.exports = function (feature1, feature2) {
         }
         break;
     }
-};
-
-function isPointInMultiPoint(multiPoint, point) {
-    for (var i = 0; i < multiPoint.coordinates.length; i++) {
-        if (compareCoords(multiPoint.coordinates[i], point.coordinates)) {
-            return true;
-        }
-    }
-    return false;
-}
-
-function isMultiPointInMultiPoint(multiPoint1, multiPoint2) {
-    for (var i = 0; i < multiPoint2.coordinates.length; i++) {
-        for (var i2 = 0; i2 < multiPoint1.coordinates.length; i2++) {
-            if (compareCoords(multiPoint2.coordinates[i], multiPoint1.coordinates[i2])) {
-                return true;
-            }
-        }
-    }
-    return false;
 }
 
 // http://stackoverflow.com/a/11908158/1979085
 function isPointOnLine(lineString, point) {
     for (var i = 0; i < lineString.coordinates.length - 1; i++) {
         if (isPointOnLineSegment(lineString.coordinates[i], lineString.coordinates[i + 1], point.coordinates)) {
-            return true;
-        }
-    }
-    return false;
-}
-
-function isMultiPointOnLine(lineString, multiPoint) {
-    for (var i = 0; i < multiPoint.coordinates.length; i++) {
-        for (var i2 = 0; i2 < lineString.coordinates.length - 1; i2++) {
-            if (isPointOnLineSegment(lineString.coordinates[i2], lineString.coordinates[i2 + 1], multiPoint.coordinates[i])) {
-                return true;
-            }
-        }
-    }
-    return false;
-}
-
-function isMultiPointInPoly(polygon, multiPoint) {
-    for (var i = 0; i < multiPoint.coordinates.length; i++) {
-        if (inside(multiPoint.coordinates[i], polygon)) {
             return true;
         }
     }

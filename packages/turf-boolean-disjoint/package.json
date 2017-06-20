@@ -41,8 +41,8 @@
   },
   "dependencies": {
     "@turf/inside": "^4.4.0",
-    "@turf/invariant": "^4.3.0",
     "@turf/line-intersect": "^4.4.0",
+    "@turf/meta": "^4.4.0",
     "@turf/polygon-to-linestring": "^4.4.0"
   }
 }

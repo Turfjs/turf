@@ -1,7 +1,7 @@
 const path = require('path');
 const glob = require('glob');
-const Benchmark = require('benchmark');
 const load = require('load-json-file');
+const Benchmark = require('benchmark');
 const disjoint = require('./');
 
 /**
