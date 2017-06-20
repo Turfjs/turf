@@ -30,8 +30,8 @@ module.exports = function (feature1, feature2) {
  * Crosses boolean operation for simple geometries (exception of MultiPoint)
  *
  * @private
- * @param {Geometry} geom1 GeoJSON Geometry
- * @param {Geometry} geom2 GeoJSON Geometry
+ * @param {Geometry<any>} geom1 GeoJSON Geometry
+ * @param {Geometry<any>} geom2 GeoJSON Geometry
  * @returns {Boolean} true/false
  */
 function crosses(geom1, geom2) {
@@ -82,8 +82,9 @@ function crosses(geom1, geom2) {
 }
 
 /**
- * Polygon to LineString Geometry
+ * Polygon outer ring to LineString Geometry
  *
+ * @private
  * @param {Geometry<Polygon>} geom Polygon GeoJSON Geometry
  * @returns {Geometry<LineString>} LineString from outer Polygon
  */
@@ -181,9 +182,9 @@ function doesMultiPointCrossPoly(multiPoint, polygon) {
  * See http://stackoverflow.com/a/4833823/1979085
  *
  * @private
- * @param {Array} lineSegmentStart coord pair of start of line
- * @param {Array} lineSegmentEnd coord pair of end of line
- * @param {Array} point coord pair of point to check
+ * @param {[number, number]} lineSegmentStart coord pair of start of line
+ * @param {[number, number]} lineSegmentEnd coord pair of end of line
+ * @param {[number, number]} point coord pair of point to check
  * @param {Boolean} incEnd whether the point is allowed to fall on the line ends
  * @returns {Boolean} true/false
  */
