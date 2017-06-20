@@ -1,10 +1,10 @@
 var inside = require('@turf/inside');
+var invariant = require('@turf/invariant');
 var lineIntersect = require('@turf/line-intersect');
 var polyToLinestring = require('@turf/polygon-to-linestring');
-var invariant = require('@turf/invariant');
 var getGeom = invariant.getGeom;
-var getGeomType = invariant.getGeomType;
 var getCoords = invariant.getCoords;
+var getGeomType = invariant.getGeomType;
 
 /**
  * Boolean-disjoint returns (TRUE) if the intersection of the two geometries is an empty set.
@@ -45,49 +45,49 @@ module.exports = function (feature1, feature2) {
     case 'Point':
         switch (type2) {
         case 'Point':
-            return !compareCoords(coords1, coords2) || false;
+            return !compareCoords(coords1, coords2);
         case 'MultiPoint':
-            return !isPointInMultiPoint(geom2, geom1) || false;
+            return !isPointInMultiPoint(geom2, geom1);
         case 'LineString':
-            return !isPointOnLine(geom2, geom1) || false;
+            return !isPointOnLine(geom2, geom1);
         case 'Polygon':
-            return !inside(geom1, geom2) || false;
+            return !inside(geom1, geom2);
         }
         break;
     case 'MultiPoint':
         switch (type2) {
         case 'Point':
-            return !isPointInMultiPoint(coords1, coords2) || false;
+            return !isPointInMultiPoint(coords1, coords2);
         case 'MultiPoint':
-            return !isMultiPointInMultiPoint(geom1, geom2) || false;
+            return !isMultiPointInMultiPoint(geom1, geom2);
         case 'LineString':
-            return !isMultiPointOnLine(geom2, geom1) || false;
+            return !isMultiPointOnLine(geom2, geom1);
         case 'Polygon':
-            return !isMultiPointInPoly(geom2, geom1) || false;
+            return !isMultiPointInPoly(geom2, geom1);
         }
         break;
     case 'LineString':
         switch (type2) {
         case 'Point':
-            return !isPointOnLine(geom1, geom2) || false;
+            return !isPointOnLine(geom1, geom2);
         case 'MultiPoint':
-            return !isMultiPointOnLine(geom1, geom2) || false;
+            return !isMultiPointOnLine(geom1, geom2);
         case 'LineString':
-            return !isLineOnLine(geom1, geom2) || false;
+            return !isLineOnLine(geom1, geom2);
         case 'Polygon':
-            return !isLineInPoly(geom2, geom1) || false;
+            return !isLineInPoly(geom2, geom1);
         }
         break;
     case 'Polygon':
         switch (type2) {
         case 'Point':
-            return !inside(geom2, geom1) || false;
+            return !inside(geom2, geom1);
         case 'MultiPoint':
-            return !isMultiPointInPoly(geom1, geom2) || false;
+            return !isMultiPointInPoly(geom1, geom2);
         case 'LineString':
-            return !isLineInPoly(geom1, geom2) || false;
+            return !isLineInPoly(geom1, geom2);
         case 'Polygon':
-            return !isPolyInPoly(geom2, geom1) || false;
+            return !isPolyInPoly(geom2, geom1);
         }
         break;
     }
@@ -159,16 +159,16 @@ function isLineInPoly(polygon, lineString) {
     return false;
 }
 
-// /**
-//  * Is Polygon (geom1) in Polygon (geom2)
-//  * Only takes into account outer rings
-//  * See http://stackoverflow.com/a/4833823/1979085
-//  *
-//  * @private
-//  * @param {Geometry|Feature<Polygon>} feature1 Polygon1
-//  * @param {Geometry|Feature<Polygon>} feature2 Polygon2
-//  * @returns {Boolean} true/false
-//  */
+/**
+ * Is Polygon (geom1) in Polygon (geom2)
+ * Only takes into account outer rings
+ * See http://stackoverflow.com/a/4833823/1979085
+ *
+ * @private
+ * @param {Geometry|Feature<Polygon>} feature1 Polygon1
+ * @param {Geometry|Feature<Polygon>} feature2 Polygon2
+ * @returns {Boolean} true/false
+ */
 function isPolyInPoly(feature1, feature2) {
     for (var i = 0; i < feature1.coordinates[0].length; i++) {
         if (inside(feature1.coordinates[0][i], feature2)) {

@@ -7,6 +7,27 @@ const disjoint = require('./');
 /**
  * Benchmark Results
  *
+ * LineIsNotDisjointFromLine: 3.464ms
+ * LineIsNotDisjointFromPolygon: 1.199ms
+ * MultiPointNotDisjointFromLine: 0.213ms
+ * MultiPointNotDisjointFromMultipoint: 0.193ms
+ * MultiPointNotDisjointFromPoly: 1.468ms
+ * PointIsNotDisjointFromLineString: 0.184ms
+ * PointNotDisjointFromInternalPoly: 0.651ms
+ * PointNotDisjointFromMultipoint: 0.165ms
+ * PointNotDisjointFromPoint: 0.020ms
+ * PointNotDisjointFromPoly: 0.025ms
+ * PolyIsNotDisjointFromPoly: 0.209ms
+ * LineIsDisjointFromLine: 0.280ms
+ * LineIsDisjointFromPolygon: 0.230ms
+ * MultiPointDisjointFromLine: 0.046ms
+ * MultiPointDisjointFromMultipoint: 0.015ms
+ * MultiPointIsDisjointFromPoly: 0.034ms
+ * PointDisjointFromMultipoint: 0.155ms
+ * PointDisjointFromPoint: 0.021ms
+ * PointIsDisjointFromLinestring: 0.962ms
+ * PointIsDisjointFromPoly: 0.131ms
+ * PolyIsDisjointFromPoly: 0.080ms
  * LineIsNotDisjointFromLine x 50,655 ops/sec ±3.66% (63 runs sampled)
  * LineIsNotDisjointFromPolygon x 49,947 ops/sec ±2.79% (42 runs sampled)
  * MultiPointNotDisjointFromLine x 7,431,677 ops/sec ±1.24% (85 runs sampled)
@@ -34,6 +55,9 @@ glob.sync(path.join(__dirname, 'test', '**', '*.geojson')).forEach(filepath => {
     const {name} = path.parse(filepath);
     const geojson = load.sync(filepath);
     const [feature1, feature2] = geojson.features;
+    console.time(name);
+    disjoint(feature1, feature2);
+    console.timeEnd(name);
     suite.add(name, () => disjoint(feature1, feature2));
 });
 
