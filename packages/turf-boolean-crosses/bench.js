@@ -6,6 +6,16 @@ const crosses = require('./');
 
 /**
  * Benchmark Results
+ *
+ * LineDoesNotCrossButTouches: 3.012ms
+ * LineDoesNotCrossLine: 0.170ms
+ * LineDoesNotCrossPolygon: 0.644ms
+ * MultiPointNotCrossLine: 0.135ms
+ * MultiPointNotCrossLineEnd: 0.031ms
+ * LineCrossesLine: 0.321ms
+ * LineCrossesPolygon: 0.405ms
+ * LineCrossesPolygonPartial: 0.408ms
+ * MultiPointsCrossLine: 0.026ms
  * LineDoesNotCrossButTouches x 71,945 ops/sec ±2.04% (71 runs sampled)
  * LineDoesNotCrossLine x 88,084 ops/sec ±2.56% (70 runs sampled)
  * LineDoesNotCrossPolygon x 86,024 ops/sec ±2.80% (71 runs sampled)
@@ -21,6 +31,10 @@ glob.sync(path.join(__dirname, 'test', '**', '*.geojson')).forEach(filepath => {
     const {name} = path.parse(filepath);
     const geojson = load.sync(filepath);
     const [feature1, feature2] = geojson.features;
+
+    console.time(name);
+    crosses(feature1, feature2);
+    console.timeEnd(name);
     suite.add(name, () => crosses(feature1, feature2));
 });
 
