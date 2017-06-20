@@ -60,6 +60,7 @@ function disjoint(geom1, geom2) {
         case 'Polygon':
             return !inside(geom1, geom2);
         }
+        /* istanbul ignore next */
         break;
     case 'LineString':
         switch (geom2.type) {
@@ -70,6 +71,7 @@ function disjoint(geom1, geom2) {
         case 'Polygon':
             return !isLineInPoly(geom2, geom1);
         }
+        /* istanbul ignore next */
         break;
     case 'Polygon':
         switch (geom2.type) {
@@ -80,7 +82,6 @@ function disjoint(geom1, geom2) {
         case 'Polygon':
             return !isPolyInPoly(geom2, geom1);
         }
-        break;
     }
 }
 
