@@ -8,7 +8,7 @@ const contains = require('./');
 
 test('turf-boolean-contains', t => {
     // True Fixtures
-    glob.sync(path.join(__dirname, 'test', 'true', '*.geojson')).forEach(filepath => {
+    glob.sync(path.join(__dirname, 'test', 'true', '**', '*.geojson')).forEach(filepath => {
         const {name} = path.parse(filepath);
         const geojson = load.sync(filepath);
         const [feature1, feature2] = geojson.features;
@@ -18,7 +18,7 @@ test('turf-boolean-contains', t => {
         t.true(result, '[true] ' + name);
     });
     // False Fixtures
-    glob.sync(path.join(__dirname, 'test', 'false', '*.geojson')).forEach(filepath => {
+    glob.sync(path.join(__dirname, 'test', 'false', '**', '*.geojson')).forEach(filepath => {
         const {name} = path.parse(filepath);
         const geojson = load.sync(filepath);
         const [feature1, feature2] = geojson.features;
