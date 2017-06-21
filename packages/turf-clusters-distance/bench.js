@@ -56,4 +56,3 @@ suite
   .on('cycle', e => console.log(String(e.target)))
   .on('complete', () => {})
   .run();
-

@@ -2,27 +2,6 @@
 # yarn lockfile v1
 
 
-"@turf/bbox@^3.13.0", "@turf/bbox@^3.14.0":
-  version "3.14.0"
-  resolved "https://registry.yarnpkg.com/@turf/bbox/-/bbox-3.14.0.tgz#cee5f396dde78aca9cede05e1122db18bc504635"
-  dependencies:
-    "@turf/meta" "^3.14.0"
-
-"@turf/center@^3.13.0":
-  version "3.14.0"
-  resolved "https://registry.yarnpkg.com/@turf/center/-/center-3.14.0.tgz#1083aca4f137d3c4988955740c7d440c45cc9ecc"
-  dependencies:
-    "@turf/bbox" "^3.14.0"
-    "@turf/helpers" "^3.13.0"
-
-"@turf/helpers@4.1.0":
-  version "4.1.0"
-  resolved "https://registry.yarnpkg.com/@turf/helpers/-/helpers-4.1.0.tgz#013a9c53db6a9386e47c7ab445d93ca2035c4b81"
-
-"@turf/helpers@^3.13.0":
-  version "3.13.0"
-  resolved "https://registry.yarnpkg.com/@turf/helpers/-/helpers-3.13.0.tgz#d06078a1464cf56cdb7ea624ea1e13a71b88b806"
-
 "@turf/helpers@^4.4.0":
   version "4.4.0"
   resolved "https://registry.yarnpkg.com/@turf/helpers/-/helpers-4.4.0.tgz#c83112f7fbe6ed183c7c0c2f776481b94d1cbd01"
@@ -30,10 +9,6 @@
 "@turf/invariant@^4.4.0":
   version "4.4.0"
   resolved "https://registry.yarnpkg.com/@turf/invariant/-/invariant-4.4.0.tgz#aac0afb840ae40908f9c80393f416222dcf79c32"
-
-"@turf/meta@^3.14.0":
-  version "3.14.0"
-  resolved "https://registry.yarnpkg.com/@turf/meta/-/meta-3.14.0.tgz#8d3050c1a0f44bf406a633b6bd28c510f7bcee27"
 
 "@turf/meta@^4.4.0":
   version "4.4.0"
@@ -48,13 +23,6 @@
 balanced-match@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/balanced-match/-/balanced-match-1.0.0.tgz#89b4d199ab2bee49de164ea02b89ce462d71b767"
-
-bbox-dateline@^1.1.1:
-  version "1.2.1"
-  resolved "https://registry.yarnpkg.com/bbox-dateline/-/bbox-dateline-1.2.1.tgz#4bd2e4ea928f90406b0882d4504e956bc7fb094c"
-  dependencies:
-    "@turf/bbox" "^3.13.0"
-    "@turf/center" "^3.13.0"
 
 benchmark@^2.1.4:
   version "2.1.4"
@@ -159,12 +127,6 @@ glob@~7.1.1:
     once "^1.3.0"
     path-is-absolute "^1.0.0"
 
-global-mercator@2.7.0, global-mercator@^2.7.0:
-  version "2.7.0"
-  resolved "https://registry.yarnpkg.com/global-mercator/-/global-mercator-2.7.0.tgz#72975ed01b25d2f43d88f73468e1a9aee7685207"
-  dependencies:
-    bbox-dateline "^1.1.1"
-
 graceful-fs@^4.1.11, graceful-fs@^4.1.2:
   version "4.1.11"
   resolved "https://registry.yarnpkg.com/graceful-fs/-/graceful-fs-4.1.11.tgz#0e8bdfe4d1ddb8854d64e04ea7c00e2a026e5658"
@@ -243,13 +205,6 @@ make-dir@^1.0.0:
   dependencies:
     pify "^2.3.0"
 
-matrix-to-grid@3.0.0:
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/matrix-to-grid/-/matrix-to-grid-3.0.0.tgz#7854792a0a439a5155bd0701e05daa745fe3dcbb"
-  dependencies:
-    "@turf/helpers" "4.1.0"
-    global-mercator "2.7.0"
-
 minimatch@^3.0.4:
   version "3.0.4"
   resolved "https://registry.yarnpkg.com/minimatch/-/minimatch-3.0.4.tgz#5166e286457f03306064be5497e8dbb0c3d32083"
@@ -301,10 +256,6 @@ resumer@~0.0.0:
   resolved "https://registry.yarnpkg.com/resumer/-/resumer-0.0.0.tgz#f1e8f461e4064ba39e82af3cdc2a8c893d076759"
   dependencies:
     through "~2.3.4"
-
-skmeans@0.5.0:
-  version "0.5.0"
-  resolved "https://registry.yarnpkg.com/skmeans/-/skmeans-0.5.0.tgz#0450dcbafffee5f24acffddfd1336143e74513c1"
 
 slide@^1.1.5:
   version "1.1.6"
