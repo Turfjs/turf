@@ -20,5 +20,5 @@ interface linestringToPolygon {
   (lines: Feature, properties?: any, autoComplete?: boolean, orderCoords?: boolean): GeoJSON.Feature<Polygon>
   (lines: FeatureCollection, properties?: any, autoComplete?: boolean, orderCoords?: boolean): GeoJSON.Feature<MultiPolygon>
 }
-declare const linestringToPolygon: LineStringToPolygon;
+declare const linestringToPolygon: linestringToPolygon;
 export = linestringToPolygon;
