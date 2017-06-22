@@ -8,7 +8,7 @@ var lineString = helpers.lineString;
 /**
  * Converts (Multi)LineString(s) to Polygon(s).
  *
- * @name lineStringToPolygon
+ * @name linestringToPolygon
  * @param {FeatureCollection|Feature<LineString|MultiLineString>} lines Features to convert
  * @param {Object} [properties] translates GeoJSON properties to Feature
  * @param {boolean} [autoComplete=true] auto complete linestrings (matches first & last coordinates)
@@ -23,7 +23,7 @@ var lineString = helpers.lineString;
  *     'coordinates': [[125, -30], [145, -30], [145, -20], [125, -20], [125, -30]]
  *   }
  * }
- * var polygon = turf.lineStringToPolygon(line);
+ * var polygon = turf.linestringToPolygon(line);
  *
  * //addToMap
  * var addToMap = [polygon];

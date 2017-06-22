@@ -5,7 +5,7 @@ type Geoms = GeoJSON.Feature<any> | GeoJSON.FeatureCollection<any> | GeoJSON.Geo
 /**
  * http://turfjs.org/docs/#transform-translate
  */
-declare function translate<Geom extends Geoms>(
+declare function transformTranslate<Geom extends Geoms>(
     geojson: Geom,
     distance: number,
     direction: number,
@@ -13,5 +13,5 @@ declare function translate<Geom extends Geoms>(
     zTranslation?: number,
     mutate?: boolean): Geom;
 
-declare namespace translate { }
-export = translate;
+declare namespace transformTranslate { }
+export = transformTranslate;

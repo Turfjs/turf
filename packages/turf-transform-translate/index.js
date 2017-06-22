@@ -8,7 +8,7 @@ var getCoords = invariant.getCoords;
  * Moves any geojson Feature or Geometry of a specified distance along a Rhumb Line
  * on the provided direction angle.
  *
- * @name translate
+ * @name transformTranslate
  * @param {GeoJSON} geojson object to be translated
  * @param {number} distance length of the motion; negative values determine motion in opposite direction
  * @param {number} direction of the motion; angle from North in decimal degrees, positive clockwise
@@ -18,7 +18,7 @@ var getCoords = invariant.getCoords;
  * @returns {GeoJSON} the translated GeoJSON object
  * @example
  * var poly = turf.polygon([[[0,29],[3.5,29],[2.5,32],[0,29]]]);
- * var translatedPoly = turf.translate(poly, 100, 35);
+ * var translatedPoly = turf.transformTranslate(poly, 100, 35);
  *
  * //addToMap
  * translatedPoly.properties = {stroke: '#F00', 'stroke-width': 4};

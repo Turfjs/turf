@@ -11,7 +11,7 @@ var getCoords = invariant.getCoords;
  * Rotates any geojson Feature or Geometry of a specified angle, around its `centroid` or a given `pivot` point;
  * all rotations follow the right-hand rule: https://en.wikipedia.org/wiki/Right-hand_rule
  *
- * @name rotate
+ * @name transformRotate
  * @param {GeoJSON} geojson object to be rotated
  * @param {number} angle of rotation (along the vertical axis), from North in decimal degrees, negative clockwise
  * @param {Geometry|Feature<Point>|Array<number>} [pivot=`centroid`] point around which the rotation will be performed
@@ -19,7 +19,7 @@ var getCoords = invariant.getCoords;
  * @returns {GeoJSON} the rotated GeoJSON feature
  * @example
  * var poly = turf.polygon([[[0,29],[3.5,29],[2.5,32],[0,29]]]);
- * var rotatedPoly = turf.rotate(poly, 100, [15, 15]);
+ * var rotatedPoly = turf.transformRotate(poly, 100, [15, 15]);
  *
  * //addToMap
  * rotatedPoly.properties = {stroke: '#F00', 'stroke-width': 4};
