@@ -1,6 +1,6 @@
 # @turf/transform-translate
 
-# translate
+# transformTranslate
 
 Moves any geojson Feature or Geometry of a specified distance along a Rhumb Line
 on the provided direction angle.
@@ -18,7 +18,7 @@ on the provided direction angle.
 
 ```javascript
 var poly = turf.polygon([[[0,29],[3.5,29],[2.5,32],[0,29]]]);
-var translatedPoly = turf.translate(poly, 100, 35);
+var translatedPoly = turf.transformTranslate(poly, 100, 35);
 
 //addToMap
 translatedPoly.properties = {stroke: '#F00', 'stroke-width': 4};
