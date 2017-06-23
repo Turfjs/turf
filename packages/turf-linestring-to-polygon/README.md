@@ -1,6 +1,6 @@
 # @turf/linestring-to-polygon
 
-# linestringToPolygon
+# lineStringToPolygon
 
 Converts (Multi)LineString(s) to Polygon(s).
 
@@ -22,7 +22,7 @@ var line = {
     'coordinates': [[125, -30], [145, -30], [145, -20], [125, -20], [125, -30]]
   }
 }
-var polygon = turf.linestringToPolygon(line);
+var polygon = turf.lineStringToPolygon(line);
 
 //addToMap
 var addToMap = [polygon];
