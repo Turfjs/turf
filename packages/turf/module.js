@@ -15,7 +15,8 @@ import {
     radians2degrees,
     degrees2radians,
     round,
-    convertDistance} from '@turf/helpers';
+    convertDistance,
+    convertArea} from '@turf/helpers';
 import {
     getGeom,
     getGeomType,
@@ -214,6 +215,7 @@ export {
     flattenEach,
     flattenReduce,
     convertDistance,
+    convertArea,
     transformRotate,
     transformScale,
     transformTranslate,
