@@ -103,6 +103,7 @@ var turf = {
     radians2degrees: helpers.radians2degrees,
     convertDistance: helpers.convertDistance,
     round: helpers.round,
+    convertArea: helpers.convertArea,
     getCoord: invariant.getCoord,
     getCoords: invariant.getCoords,
     geojsonType: invariant.geojsonType,
