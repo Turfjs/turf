@@ -42,7 +42,7 @@ function point(coordinates, properties) {
     if (!coordinates) throw new Error('No coordinates passed');
     if (coordinates.length === undefined) throw new Error('Coordinates must be an array');
     if (coordinates.length < 2) throw new Error('Coordinates must be at least 2 numbers long');
-    if (typeof coordinates[0] !== 'number' || typeof coordinates[1] !== 'number') throw new Error('Coordinates must numbers');
+    if (typeof coordinates[0] !== 'number' || typeof coordinates[1] !== 'number') throw new Error('Coordinates must contain numbers');
 
     return feature({
         type: 'Point',
