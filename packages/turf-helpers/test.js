@@ -16,6 +16,7 @@ const {
     degrees2radians,
     bearingToAngle,
     convertDistance,
+    convertArea,
     round
 } = require('./');
 
@@ -367,5 +368,20 @@ test('convertDistance', t => {
     t.equal(convertDistance(1, 'nauticalmiles'), 1.851999843075488);
     t.equal(convertDistance(1, 'meters', 'centimeters'), 100);
     t.throws(() => convertDistance(1, 'foo'), 'invalid units');
+    t.end();
+});
+
+test('convertArea', t => {
+    t.equal(convertArea(1000), 0.001);
+    t.equal(convertArea(1, 'kilometres', 'miles'), 0.386);
+    t.equal(convertArea(1, 'miles', 'kilometers'), 2.5906735751295336);
+    t.equal(convertArea(1, 'meters', 'centimetres'), 10000);
+    t.equal(convertArea(100, 'metres', 'acres'), 0.0247105);
+    t.equal(convertArea(100, null, 'yards'), 119.59900459999999);
+    t.equal(convertArea(100, 'metres', 'feet'), 1076.3910417);
+    t.equal(convertArea(100000, 'feet', null), 0.009290303999749462);
+    t.throws(() => convertDistance(1, 'foo'), 'invalid original units');
+    t.throws(() => convertDistance(1, 'meters', 'foo'), 'invalid final units');
+
     t.end();
 });

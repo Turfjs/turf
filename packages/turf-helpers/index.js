@@ -272,6 +272,19 @@ var factors = {
     feet: 20908792.65
 };
 
+var areaFactors = {
+    kilometers: 0.000001,
+    kilometres: 0.000001,
+    meters: 1,
+    metres: 1,
+    centimetres: 10000,
+    millimeter: 1000000,
+    acres: 0.000247105,
+    miles: 3.86e-7,
+    yards: 1.195990046,
+    feet: 10.763910417,
+    inches: 1550.003100006
+};
 /**
  * Round number to precision
  *
@@ -401,6 +414,26 @@ function convertDistance(distance, originalUnit, finalUnit) {
     return convertedDistance;
 }
 
+/**
+ * Converts a area to the requested unit.
+ * Valid units: kilometers, kilometres, meters, metres, centimetres, millimeter, acre, mile, yard, foot, inch
+ * @param {number} area to be converted
+ * @param {string} [originalUnit=meters] of the distance
+ * @param {string} [finalUnit=kilometers] returned unit
+ * @returns {number} the converted distance
+ */
+function convertArea(area, originalUnit, finalUnit) {
+    if (area === null || area === undefined) throw new Error('area is required');
+    if (!(area >= 0)) throw new Error('area must be a positive number');
+
+    var startFactor = areaFactors[originalUnit || 'meters'];
+    if (!startFactor) throw new Error('invalid original units');
+
+    var finalFactor = areaFactors[finalUnit || 'kilometers'];
+    if (!finalFactor) throw new Error('invalid final units');
+
+    return (area / startFactor) * finalFactor;
+}
 
 module.exports = {
     feature: feature,
@@ -419,5 +452,6 @@ module.exports = {
     degrees2radians: degrees2radians,
     bearingToAngle: bearingToAngle,
     convertDistance: convertDistance,
+    convertArea: convertArea,
     round: round
 };
