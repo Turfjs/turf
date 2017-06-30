@@ -1,6 +1,6 @@
 {
   "name": "@turf/tesselate",
-  "version": "4.5.1",
+  "version": "4.5.2",
   "description": "turf tesselate module",
   "main": "index.js",
   "types": "index.d.ts",
@@ -41,7 +41,7 @@
     "tape": "^4.6.3"
   },
   "dependencies": {
-    "@turf/helpers": "^4.5.1",
+    "@turf/helpers": "^4.5.2",
     "earcut": "^2.0.0"
   }
 }

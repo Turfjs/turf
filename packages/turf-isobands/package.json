@@ -1,6 +1,6 @@
 {
   "name": "@turf/isobands",
-  "version": "4.5.1",
+  "version": "4.5.2",
   "description": "turf isobands module",
   "main": "index.js",
   "types": "index.d.ts",
@@ -35,7 +35,7 @@
   },
   "homepage": "https://github.com/Turfjs/turf",
   "devDependencies": {
-    "@turf/envelope": "^4.5.1",
+    "@turf/envelope": "^4.5.2",
     "@turf/point-grid": "^3.14.0",
     "@turf/random": "^3.13.0",
     "benchmark": "^2.1.4",
