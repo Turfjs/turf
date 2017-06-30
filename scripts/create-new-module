@@ -152,7 +152,7 @@ suite
     .run();
 `);
 
-// Create bench.js
+// Create test.js
 fs.writeFileSync(path.join(folderPath, 'test.js'), `const fs = require('fs');
 const test = require('tape');
 const path = require('path');
