@@ -10,7 +10,8 @@ Creates a [Point](http://geojson.org/geojson-spec.html#point) grid from a boundi
 -   `cellSide` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** the distance between points
 -   `units` **\[[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)]** used in calculating cellSide, can be degrees, radians, miles, or kilometers (optional, default `kilometers`)
 -   `centered` **\[[boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)]** adjust points position to center the grid into bbox (optional, default `false`)
--   `bboxIsMask` **\[[boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)]** if true, and bbox is a Polygon or MultiPolygon, the grid Point will be created only if inside the bbox Polygon(s) (optional, default `false`)
+-   `bboxIsMask` **\[[boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)]** if true, and bbox is a Polygon or MultiPolygon, the grid Point will be created
+    only if inside the bbox Polygon(s) (optional, default `false`)
 
 **Examples**
 
