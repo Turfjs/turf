@@ -4,6 +4,8 @@
 
 Prevents GeoJSON coordinates from being mutated, similar to JSON.parse(JSON.stringify(geojson)).
 
+Only cloning coordinates can be 3x-20x faster than the `parse + stringify` approach.
+
 **Parameters**
 
 -   `geojson` **[GeoJSON](http://geojson.org/geojson-spec.html#geojson-objects)** GeoJSON Object

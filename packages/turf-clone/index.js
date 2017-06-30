@@ -1,6 +1,8 @@
 /**
  * Prevents GeoJSON coordinates from being mutated, similar to JSON.parse(JSON.stringify(geojson)).
  *
+ * Only cloning coordinates can be 3x-20x faster than the `parse + stringify` approach.
+ *
  * @name clone
  * @param {GeoJSON} geojson GeoJSON Object
  * @param {Boolean} [cloneAll=false] clones entire GeoJSON (3-20x slower if True)
