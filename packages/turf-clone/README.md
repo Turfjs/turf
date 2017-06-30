@@ -2,7 +2,7 @@
 
 # clone
 
-Prevents GeoJSON from being matuated (only clones coordinates by default)
+Prevents GeoJSON coordinates from being mutated, similar to JSON.parse(JSON.stringify(geojson)).
 
 **Parameters**
 

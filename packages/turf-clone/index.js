@@ -1,5 +1,5 @@
 /**
- * Prevents GeoJSON from being matuated (only clones coordinates by default)
+ * Prevents GeoJSON coordinates from being mutated, similar to JSON.parse(JSON.stringify(geojson)).
  *
  * @name clone
  * @param {GeoJSON} geojson GeoJSON Object

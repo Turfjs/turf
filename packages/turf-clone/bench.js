@@ -27,8 +27,7 @@ const fixtures = [
  * Polygon x 723,111 ops/sec ±1.06% (87 runs sampled)
  * Polygon -- clones entire object x 227,034 ops/sec ±0.62% (91 runs sampled)
  * FeatureCollection x 370,012 ops/sec ±1.25% (87 runs sampled)
- * FeatureCollection -- clones entire object x 91,582 ops/sec ±0.81% (86 runs samp
-led)
+ * FeatureCollection -- clones entire object x 91,582 ops/sec ±0.81% (86 runs sampled)
  */
 const suite = new Benchmark.Suite('turf-clone');
 for (const fixture of fixtures) {
