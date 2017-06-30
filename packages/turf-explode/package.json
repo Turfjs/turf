@@ -1,42 +1,9 @@
 {
-  "name": "@turf/explode",
-  "version": "4.4.0",
-  "description": "turf explode module",
-  "main": "index.js",
-  "types": "index.d.ts",
-  "files": [
-    "index.js",
-    "index.d.ts"
-  ],
-  "scripts": {
-    "test": "node test.js",
-    "bench": "node bench.js"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/Turfjs/turf.git"
-  },
-  "keywords": [
-    "turf",
-    "geojson",
-    "geospatial",
-    "coordinates"
-  ],
-  "author": "Turf Authors",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/Turfjs/turf/issues"
-  },
-  "homepage": "https://github.com/Turfjs/turf",
-  "devDependencies": {
+  "dependencies": {
     "benchmark": "^2.1.4",
     "geojson-fixtures": "^0.6.1",
     "load-json-file": "^2.0.0",
     "tape": "^4.6.3",
     "write-json-file": "^2.0.0"
-  },
-  "dependencies": {
-    "@turf/helpers": "^4.4.0",
-    "@turf/meta": "^4.4.0"
   }
 }
