@@ -1,6 +1,6 @@
 {
   "name": "@turf/line-split",
-  "version": "4.4.0",
+  "version": "4.5.0",
   "description": "turf line-split module",
   "main": "index.js",
   "types": "index.d.ts",
@@ -39,13 +39,13 @@
     "write-json-file": "^2.0.0"
   },
   "dependencies": {
-    "@turf/flatten": "^4.4.0",
-    "@turf/helpers": "^4.4.0",
-    "@turf/invariant": "^4.4.0",
-    "@turf/line-intersect": "^4.4.0",
-    "@turf/line-segment": "^4.4.0",
-    "@turf/meta": "^4.4.0",
-    "@turf/point-on-line": "^4.4.0",
+    "@turf/flatten": "^4.5.0",
+    "@turf/helpers": "^4.5.0",
+    "@turf/invariant": "^4.5.0",
+    "@turf/line-intersect": "^4.5.0",
+    "@turf/line-segment": "^4.5.0",
+    "@turf/meta": "^4.5.0",
+    "@turf/point-on-line": "^4.5.0",
     "geojson-rbush": "^1.0.1"
   }
 }
