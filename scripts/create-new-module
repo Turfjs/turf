@@ -153,12 +153,11 @@ suite
 `);
 
 // Create bench.js
-fs.writeFileSync(path.join(folderPath, 'bench.js'), `const fs = require('fs');
+fs.writeFileSync(path.join(folderPath, 'test.js'), `const fs = require('fs');
 const test = require('tape');
 const path = require('path');
 const load = require('load-json-file');
 const write = require('write-json-file');
-const {point} = require('@turf/helpers');
 const ${camelcaseName} = require('./');
 
 const directories = {
