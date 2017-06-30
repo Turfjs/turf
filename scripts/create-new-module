@@ -1,0 +1,187 @@
+#!/usr/bin/env node
+
+const fs = require('fs');
+const path = require('path');
+const meow = require('meow');
+const camelcase = require('camelcase');
+const decamelize = require('decamelize');
+
+const cli = meow(`
+    Usage:
+      $ ./scripts/create-new-module <module>
+    Examples:
+      $ ./scripts/create-new-module clone
+`);
+
+if (!cli.input.length) cli.showHelp();
+let name = cli.input[0];
+
+// Normalize module name
+// turf-clone => clone
+name = name.replace(/turf-/, '');
+const camelcaseName = camelcase(name);
+const decamelizeName = decamelize(name);
+
+// Create Folder
+const folderPath = path.join(__dirname, '..', 'packages', `turf-${decamelizeName}`);
+if (!fs.existsSync(folderPath)) {
+    fs.mkdirSync(folderPath);
+    fs.mkdirSync(path.join(folderPath, 'test'));
+}
+
+// Create index.js
+fs.writeFileSync(path.join(folderPath, 'index.js'), `/**
+ * <DESCRIPTION>
+ *
+ * @name ${camelcaseName}
+ * @param {Geometry|Feature<any>} feature1 GeoJSON Feature or Geometry
+ * @param {Geometry|Feature<any>} feature2 GeoJSON Feature or Geometry
+ * @returns {Boolean} true/false
+ * @example
+ * <SIMPLE EXAMPLE>
+ */
+module.exports = function (feature1, feature2) {
+    return true;
+};
+`);
+
+// Create package.json
+fs.writeFileSync(path.join(folderPath, 'package.json'), `{
+  "name": "@turf/${decamelizeName}",
+  "version": "4.0.0",
+  "description": "turf ${decamelizeName} module",
+  "main": "index.js",
+  "types": "index.d.ts",
+  "files": [
+    "index.js",
+    "index.d.ts"
+  ],
+  "scripts": {
+    "test": "node test.js",
+    "bench": "node bench.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/Turfjs/turf.git"
+  },
+  "keywords": [
+    "turf",
+    "${name}"
+  ],
+  "author": "Turf Authors",
+  "contributors": [
+    "YOUR NAME <@GITHUB NAME>"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Turfjs/turf/issues"
+  },
+  "homepage": "https://github.com/Turfjs/turf",
+  "devDependencies": {
+    "benchmark": "^2.1.4",
+    "write-json-file": "^2.2.0",
+    "load-json-file": "^2.0.0",
+    "tape": "^4.6.3"
+  },
+  "dependencies": {}
+}
+`);
+
+// Create LICENSE
+fs.writeFileSync(path.join(folderPath, 'LICENSE'), `The MIT License (MIT)
+
+Copyright (c) 2017 TurfJS
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of
+this software and associated documentation files (the "Software"), to deal in
+the Software without restriction, including without limitation the rights to
+use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
+the Software, and to permit persons to whom the Software is furnished to do so,
+subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
+FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
+COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
+IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+`);
+
+// Create index.d.ts
+fs.writeFileSync(path.join(folderPath, 'index.d.ts'), `/// <reference types="geojson" />
+
+type Feature = GeoJSON.Feature<any> | GeoJSON.GeometryObject;
+
+/**
+ * http://turfjs.org/docs/#${name.toLocaleLowerCase().replace('-', '')}
+ */
+declare function ${camelcaseName}(feature1: Feature, feature2: Feature): boolean;
+declare namespace ${camelcaseName} { }
+export = ${camelcaseName};
+`);
+
+// Create bench.js
+fs.writeFileSync(path.join(folderPath, 'bench.js'), `const path = require('path');
+const glob = require('glob');
+const load = require('load-json-file');
+const Benchmark = require('benchmark');
+const ${camelcaseName} = require('./');
+
+/**
+ * Benchmark Results
+ *
+ * <Place results here>
+ */
+const suite = new Benchmark.Suite('turf-${decamelizeName}');
+glob.sync(path.join(__dirname, 'test', 'in', '*.geojson')).forEach(filepath => {
+    const {name} = path.parse(filepath);
+    const geojson = load.sync(filepath);
+    const [feature1, feature2] = geojson.features;
+    console.time(name);
+    ${camelcaseName}(feature1, feature2);
+    console.timeEnd(name);
+    suite.add(name, () => ${camelcaseName}(feature1, feature2));
+});
+
+suite
+    .on('cycle', e => console.log(String(e.target)))
+    .on('complete', () => {})
+    .run();
+`);
+
+// Create bench.js
+fs.writeFileSync(path.join(folderPath, 'bench.js'), `const fs = require('fs');
+const test = require('tape');
+const path = require('path');
+const load = require('load-json-file');
+const write = require('write-json-file');
+const {point} = require('@turf/helpers');
+const ${camelcaseName} = require('./');
+
+const directories = {
+    in: path.join(__dirname, 'test', 'in') + path.sep,
+    out: path.join(__dirname, 'test', 'out') + path.sep
+};
+
+const fixtures = fs.readdirSync(directories.in).map(filename => {
+    return {
+        filename,
+        name: path.parse(filename).name,
+        geojson: load.sync(directories.in + filename)
+    };
+});
+
+test('turf-${decamelizeName}', t => {
+    for (const {filename, name, geojson}  of fixtures) {
+        const [feature1, feature2] = geojson.features;
+        const results = ${camelcaseName}(feature1, feature2);
+
+        if (process.env.REGEN) write.sync(directories.out + filename, results);
+        t.deepEqual(results, load.sync(directories.out + filename), name);
+    }
+    t.end();
+});
+`);
