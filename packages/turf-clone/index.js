@@ -1,11 +1,11 @@
 /**
- * Prevents GeoJSON coordinates from being mutated, similar to JSON.parse(JSON.stringify(geojson)).
- *
- * Only cloning coordinates can be 3x-20x faster than the `parse + stringify` approach.
+ * Returns a cloned copy of the passed GeoJSON Object.
+ * By default it duplicates only the standard GeoJSON fields of the object; if `cloneAll` is set to `true` all
+ * fields of the Object, thus including 'Foreign Members', will be cloned (3-20x slower).
  *
  * @name clone
  * @param {GeoJSON} geojson GeoJSON Object
- * @param {Boolean} [cloneAll=false] clones entire GeoJSON (3-20x slower if True)
+ * @param {Boolean} [cloneAll=false] clones entire GeoJSON object, using JSON.parse(JSON.stringify(geojson))
  * @returns {GeoJSON} cloned GeoJSON Object
  * @example
  * var line = {
@@ -22,10 +22,10 @@ module.exports = function (geojson, cloneAll) {
     if (!geojson) throw new Error('geojson is required');
     if (cloneAll && typeof cloneAll !== 'boolean') throw new Error('cloneAll must be a Boolean');
 
-    // Clone entire GeoJSON object (3-20x slower)
+    // Clone entire object (3-20x slower)
     if (cloneAll) return JSON.parse(JSON.stringify(geojson));
 
-    // Clones only coordinates
+    // Clones only GeoJSON fields
     return clone(geojson);
 };
 
