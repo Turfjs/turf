@@ -25,17 +25,12 @@ module.exports = function (points, maxDistance) {
     collectionOf(points, 'Point', 'Input must contain Points');
 
     // Create index
-    const load = points.features.map(function (point, index) {
-        point.id = index;
-        return point;
-    });
-    const tree = kdbush(load, getX, getY);
+    const tree = kdbush(points.features, getX, getY);
 
     // Iterate over each untagged Feature
     let clusterId = -1;
     tree.ids.forEach(function (id) {
         const feature = tree.points[id];
-        const coord = feature.geometry.coordinates;
 
         // Define new clusterId
         if (feature.properties.cluster === undefined) {
@@ -45,9 +40,9 @@ module.exports = function (points, maxDistance) {
         } else return;
 
         // Find features around untagged cluster
-        const around = geokdbush.around(tree, coord[0], coord[1], Infinity, maxDistance);
+        const around = geokdbush.around(tree, getX(feature), getY(feature), Infinity, maxDistance);
         around.forEach(function (feature) {
-            tree.points[feature.id].properties.cluster = clusterId;
+            feature.properties.cluster = clusterId;
         });
     });
     return {
