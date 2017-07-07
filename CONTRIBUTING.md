@@ -25,12 +25,12 @@ $ npm test
 ## Structure of a turf module
 
 ```
-turf-<module>
+turf-<MODULE NAME>
 │   index.js
 │   index.d.ts
 │   bench.js
 │   test.js
-|   types.ts
+│   types.ts
 │   package.json
 │   README.md
 │   LICENSE
@@ -43,6 +43,11 @@ turf-<module>
     └───out
         points.geojson
 ```
+To get started with a new module navigate to the root directory and run 
+```sh
+$ node ./scripts/create-new-module <MODULE NAME>
+```
+it will create a new folder inside `packages` with a simple boilerplate for your module.
 
 ## Publishing
 
