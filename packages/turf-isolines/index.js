@@ -10,11 +10,11 @@ var collectionOf = invariant.collectionOf;
 var featureCollection = helpers.featureCollection;
 
 /**
- * Takes {@link Point|points} with z-values and an array of
+ * Takes a grid {@link FeatureCollection} of {@link Point} features with z-values and an array of
  * value breaks and generates [isolines](http://en.wikipedia.org/wiki/Isoline).
  *
  * @name isolines
- * @param {FeatureCollection<Point>} points input points
+ * @param {FeatureCollection<Point>} pointGrid input points
  * @param {Array<number>} breaks values of `zProperty` where to draw isolines
  * @param {string} [zProperty='elevation'] the property name in `points` from which z-values will be pulled
  * @param {Object} [propertiesToAllIsolines={}] GeoJSON properties passed to ALL isolines
@@ -22,37 +22,38 @@ var featureCollection = helpers.featureCollection;
  * isoline; the breaks array will define the order in which the isolines are created
  * @returns {FeatureCollection<MultiLineString>} a FeatureCollection of {@link MultiLineString} features representing isolines
  * @example
- * // create random points with random z-values in their properties
- * var points = turf.random('point', 100, {
- *   bbox: [0, 30, 20, 50]
- * });
- * for (var i = 0; i < points.features.length; i++) {
- *   points.features[i].properties.z = Math.random() * 10;
+ * // create a grid of points with random z-values in their properties
+ * var extent = [0, 30, 20, 50];
+ * var cellWidth = 100;
+ * var units = 'miles';
+ * var pointGrid = turf.pointGrid(extent, cellWidth, units);
+ * for (var i = 0; i < pointGrid.features.length; i++) {
+ *     pointGrid.features[i].properties.temperature = Math.random() * 10;
  * }
  * var breaks = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
- * var isolines = turf.isolines(points, breaks, 'temperature');
+ * var isolines = turf.isolines(pointGrid, breaks, 'temperature');
  *
  * //addToMap
  * var addToMap = [isolines];
  */
-module.exports = function (points, breaks, zProperty, propertiesToAllIsolines, propertiesPerIsoline) {
+module.exports = function (pointGrid, breaks, zProperty, propertiesToAllIsolines, propertiesPerIsoline) {
     // Default Params
     zProperty = zProperty || 'elevation';
     propertiesToAllIsolines = propertiesToAllIsolines || {};
     propertiesPerIsoline = propertiesPerIsoline || [];
 
     // Input validation
-    collectionOf(points, 'Point', 'Input must contain Points');
+    collectionOf(pointGrid, 'Point', 'Input must contain Points');
     if (!breaks) throw new Error('breaks is required');
     if (!Array.isArray(breaks)) throw new Error('breaks must be an Array');
     if (!isObject(propertiesToAllIsolines)) throw new Error('propertiesToAllIsolines must be an Object');
     if (!Array.isArray(propertiesPerIsoline)) throw new Error('propertiesPerIsoline must be an Array');
     if (typeof zProperty !== 'string') throw new Error('zProperty must be a string');
 
-    // Isolined methods
-    var matrix = gridToMatrix(points, zProperty, true);
+    // Isoline methods
+    var matrix = gridToMatrix(pointGrid, zProperty, true);
     var isolines = createIsoLines(matrix, breaks, zProperty, propertiesToAllIsolines, propertiesPerIsoline);
-    var scaledIsolines = rescaleIsolines(isolines, matrix, points);
+    var scaledIsolines = rescaleIsolines(isolines, matrix, pointGrid);
 
     return featureCollection(scaledIsolines);
 };

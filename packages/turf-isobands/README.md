@@ -7,7 +7,7 @@ value breaks and generates filled contour isobands.
 
 **Parameters**
 
--   `points` **[FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects)&lt;[Point](http://geojson.org/geojson-spec.html#point)>** a FeatureCollection of [Point](http://geojson.org/geojson-spec.html#point) features
+-   `pointGrid` **[FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects)&lt;[Point](http://geojson.org/geojson-spec.html#point)>** input points
 -   `breaks` **[Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)>** where to draw contours
 -   `zProperty` **\[[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)]** the property name in `points` from which z-values will be pulled (optional, default `'elevation'`)
 -   `options` **\[[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)]** options on output (optional, default `{}`)
@@ -18,8 +18,7 @@ value breaks and generates filled contour isobands.
 **Examples**
 
 ```javascript
-// create random points with random
-// z-values in their properties
+// create a grid of points with random z-values in their properties
 var extent = [-70.823364, -33.553984, -69.823364, -32.553984];
 var cellWidth = 5;
 var units = 'miles';

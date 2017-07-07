@@ -2,12 +2,12 @@
 
 # isolines
 
-Takes [points](http://geojson.org/geojson-spec.html#point) with z-values and an array of
+Takes a grid [FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects) of [Point](http://geojson.org/geojson-spec.html#point) features with z-values and an array of
 value breaks and generates [isolines](http://en.wikipedia.org/wiki/Isoline).
 
 **Parameters**
 
--   `points` **[FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects)&lt;[Point](http://geojson.org/geojson-spec.html#point)>** input points
+-   `pointGrid` **[FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects)&lt;[Point](http://geojson.org/geojson-spec.html#point)>** input points
 -   `breaks` **[Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)>** values of `zProperty` where to draw isolines
 -   `zProperty` **\[[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)]** the property name in `points` from which z-values will be pulled (optional, default `'elevation'`)
 -   `propertiesToAllIsolines` **\[[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)]** GeoJSON properties passed to ALL isolines (optional, default `{}`)
@@ -17,15 +17,16 @@ value breaks and generates [isolines](http://en.wikipedia.org/wiki/Isoline).
 **Examples**
 
 ```javascript
-// create random points with random z-values in their properties
-var points = turf.random('point', 100, {
-  bbox: [0, 30, 20, 50]
-});
-for (var i = 0; i < points.features.length; i++) {
-  points.features[i].properties.z = Math.random() * 10;
-}
-var breaks = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-var isolines = turf.isolines(points, breaks, 'temperature');
+ // create a grid of points with random z-values in their properties
+ var extent = [0, 30, 20, 50];
+ var cellWidth = 100;
+ var units = 'miles';
+ var pointGrid = turf.pointGrid(extent, cellWidth, units);
+ for (var i = 0; i < pointGrid.features.length; i++) {
+     pointGrid.features[i].properties.temperature = Math.random() * 10;
+ }
+ var breaks = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+ var isolines = turf.isolines(pointGrid, breaks, 'temperature');
 
 //addToMap
 var addToMap = [isolines];
