@@ -27,7 +27,7 @@ for (var i = 0; i < pointGrid.features.length; i++) {
     pointGrid.features[i].properties.elevation = Math.random() * 10;
 }
 var breaks = [0, 5, 8.5];
-var isobands = turf.isobands(pointGrid, breaks, 'temp');
+var isobands = turf.isobands(pointGrid, breaks);
 
 //addToMap
 var addToMap = [isobands];

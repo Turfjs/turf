@@ -34,7 +34,7 @@ var featureCollection = helpers.featureCollection;
  *     pointGrid.features[i].properties.elevation = Math.random() * 10;
  * }
  * var breaks = [0, 5, 8.5];
- * var isobands = turf.isobands(pointGrid, breaks, 'temp');
+ * var isobands = turf.isobands(pointGrid, breaks);
  *
  * //addToMap
  * var addToMap = [isobands];
@@ -46,6 +46,7 @@ module.exports = function (pointGrid, breaks, zProperty, options) {
     };
     collectionOf(pointGrid, 'Point', 'Input must contain Points');
     if (!breaks || !Array.isArray(breaks)) throw new Error('breaks is required');
+    options = options || {};
     if (options.commonProperties && !isObject(options.commonProperties)) {
         throw new Error('commonProperties is not an Object');
     }
@@ -55,7 +56,6 @@ module.exports = function (pointGrid, breaks, zProperty, options) {
     if (zProperty && typeof zProperty !== 'string') { throw new Error('zProperty is not a string'); }
 
     zProperty = zProperty || 'elevation';
-    options = options || {};
     var commonProperties = options.commonProperties || {};
     var isobandProperties = options.isobandProperties || [];
 
