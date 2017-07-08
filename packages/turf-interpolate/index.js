@@ -1,59 +1,64 @@
-var inside = require('@turf/inside');
-var invariant = require('@turf/invariant');
-var featureEach = require('@turf/meta').featureEach;
+var meta = require('@turf/meta');
 var bbox = require('@turf/bbox');
-var grid = require('@turf/point-grid');
-var planepoint = require('@turf/planepoint');
-var square = require('@turf/square');
-var tin = require('@turf/tin');
+var poinGrid = require('@turf/point-grid');
+var distance = require('@turf/distance');
+var invariant = require('@turf/invariant');
+var featureEach = meta.featureEach;
+var collectionOf = invariant.collectionOf;
 
 /**
- * Takes a set of points and estimates their 'property' values on a grid.
+ * Takes a set of points and estimates their 'property' values on a grid using the Inverse Distance Weighting (IDW) method.](https://en.wikipedia.org/wiki/Inverse_distance_weighting.
  *
  * @name interpolate
- * @param {FeatureCollection<Point>} points a FeatureCollection of {@link Point} features
- * @param {number} cellSize the distance across each cell
+ * @param {FeatureCollection<Point>} points with known value
+ * @param {number} cellSize the distance across each grid point
  * @param {string} [property='elevation'] the property name in `points` from which z-values will be pulled
- * @param {string} [units=kilometers] miles, kilometers
+ * @param {string} [units=kilometers] used in calculating cellSize, can be degrees, radians, miles, or kilometers
+ * @param {number} [weight=1] exponent regulating the distance-decay weighting
  * @returns {FeatureCollection<Point>} grid of points with 'property'
  * @example
-
-
-
- *
- * var arc = turf.lineArc(center, radius, bearing1, bearing2);
+ * var points = turf.random('points', 30, {
+ *     bbox: [50, 30, 70, 50]
+ * });
+ * // add a random property to each point
+ * turf.featureEach(points, function(point) {
+ *     point.properties.solRad = Math.random() * 50;
+ * });
+ * var grid = interpolate(points, 100, 'solRad', 'miles');
  *
  * //addToMap
- * var addToMap = [center, arc]
+ * var addToMap = grid
  */
-module.exports = function (points, cellSize, property, units) {
+module.exports = function (points, cellSize, property, units, weight) {
     // validation
     if (!points) throw new Error('points is required');
-    if (!cellSize) throw new Error('points is required');
-    invariant.collectionOf(points, 'Point', 'input must contain Points');
+    collectionOf(points, 'Point', 'input must contain Points');
+    if (!cellSize) throw new Error('cellSize is required');
+    if (cellSize === undefined || cellSize === null) throw new Error('cellWidth is required');
 
     // default values
     property = property || 'elevation';
+    weight = weight || 1;
 
-    var tinResult = tin(points, property);
-    var bboxBBox = bbox(points); // [minX, minY, maxX, maxY]
-    var squareBBox = square(bboxBBox);
+    // create the point grid
+    var grid = poinGrid(bbox(points), cellSize, units, true);
 
-    var x = JSON.stringify(tinResult);
-
-    var gridResult = grid(squareBBox, cellSize, units, true);
-
-    // add property value to each point of the grid
-    featureEach(gridResult, function (pt) {
-        featureEach(tinResult, function (triangle) {
-            if (inside(pt, triangle)) {
-                pt.properties = {};
-                pt.properties[property] = planepoint(pt, triangle);
-            } else {
-                pt.properties[property] = 0;
-            }
+    featureEach(grid, function (gridPoint) {
+        var zw = 0;
+        var sw = 0;
+        // calculate the distance from each input point to the grid points
+        featureEach(points, function (point) {
+            var d = distance(gridPoint, point, units);
+            var zValue = point.properties[property];
+            if (zValue === undefined) throw new Error('Specified property is missing');
+            if (d === 0) zw = zValue;
+            var w = 1.0 / Math.pow(d, weight);
+            sw += w;
+            zw += w * zValue;
         });
+        // write interpolated value for each grid point
+        gridPoint.properties[property] = zw / sw;
     });
 
-    return gridResult;
+    return grid;
 };

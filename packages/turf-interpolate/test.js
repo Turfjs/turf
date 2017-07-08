@@ -3,9 +3,9 @@ const fs = require('fs');
 const path = require('path');
 const load = require('load-json-file');
 const write = require('write-json-file');
-const truncate = require('@turf/truncate');
+const round = require('@turf/helpers').round;
 const featureEach = require('@turf/meta').featureEach;
-const featureCollection = require('@turf/helpers').featureCollection;
+const chromatism = require('chromatism');
 const interpolate = require('./');
 
 const directories = {
@@ -23,31 +23,36 @@ const fixtures = fs.readdirSync(directories.in).map(filename => {
 
 test('turf-interpolate', t => {
     for (const {filename, name, geojson}  of fixtures) {
-        const {cellSize} = geojson.properties;
+        const {property, cellSize, units, weight} = geojson.properties;
 
-    // const coloredGeojson = setColor(geojson);
-    //     const gjs = JSON.stringify(coloredGeojson);
+        const grid = interpolate(geojson, cellSize, property, units, weight);
+        const result = colorize(grid, property);
 
-        const grid = truncate(interpolate(geojson, cellSize));
-        // const results = featureCollection([geojson, grid]);
-        const coloredGrid = setColor(grid);
-        const g = JSON.stringify(coloredGrid);
-
-
-        if (process.env.REGEN) write.sync(directories.out + filename, grid);
+        if (process.env.REGEN) write.sync(directories.out + filename, result);
             t.deepEquals(grid, load.sync(directories.out + filename), name);
     }
     t.end();
 });
 
 
-function setColor(grid) {
-    featureEach(grid, function (pt) {
-        // set color #0000ff -> #00ffff
-        const elev = Math.round(pt.properties.elevation);
-        const shade = elev.toString(16);
-        const color = '#' + shade + shade + shade;
-        pt.properties['marker-color'] = color;
+// style result
+function colorize(grid, property) {
+    property = property || 'elevation'
+    let max = -Infinity;
+    let min = Infinity;
+    featureEach(grid, function (point) {
+        const value = point.properties[property];
+        if (value > max) max = value;
+        if (value < min) min = value;
     });
+    const delta = (max - min) * 1.1; // extend range to enhance color shade
+
+    featureEach(grid, function (point) {
+        const value = point.properties[property];
+        const percent = round((value - min) / delta * 100);
+        const color = chromatism.brightness(percent, '#002c56').hex;
+        point.properties['marker-color'] = color;
+    });
+
     return grid;
 }

@@ -3,8 +3,8 @@
 import {Points} from '@turf/helpers';
 
 /**
- * http://turfjs.org/docs/#linearc
+ * http://turfjs.org/docs/#interpolate
  */
-declare function interpolate(points: Points, cellSize: number, property?: number, units?: string): Points;
+declare function interpolate(points: Points, cellSize: number, property?: number, units?: string, weight?:number): Points;
 declare namespace interpolate { }
 export = interpolate;
