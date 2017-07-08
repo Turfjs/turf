@@ -4,7 +4,7 @@
     {
       "type": "Feature",
       "properties": {
-        "foo": "bar"
+        "marker-color": "#F00"
       },
       "geometry": {
         "type": "MultiPoint",
@@ -20,18 +20,37 @@
           [
             125,
             -25
+          ],
+          [
+            126,
+            -25
           ]
         ]
       }
     },
     {
       "type": "Feature",
-      "properties": {},
+      "properties": {
+        "marker-color": "#0F0"
+      },
       "geometry": {
         "type": "Point",
         "coordinates": [
           130,
           -27.5
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "marker-color": "#00F"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          126,
+          -24.5
         ]
       }
     }

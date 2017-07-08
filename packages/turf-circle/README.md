@@ -6,22 +6,25 @@ Takes a [Point](http://geojson.org/geojson-spec.html#point) and calculates the c
 
 **Parameters**
 
--   `center` **[Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;[Point](http://geojson.org/geojson-spec.html#point)>** center point
+-   `center` **([Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;[Point](http://geojson.org/geojson-spec.html#point)> | [Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)>)** center point
 -   `radius` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** radius of the circle
 -   `steps` **\[[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)]** number of steps (optional, default `64`)
 -   `units` **\[[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)]** miles, kilometers, degrees, or radians (optional, default `kilometers`)
+-   `properties` **\[[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)]** properties (optional, default `{}`)
 
 **Examples**
 
 ```javascript
-var center = turf.point([-75.343, 39.984]);
+var center = [-75.343, 39.984];
 var radius = 5;
 var steps = 10;
 var units = 'kilometers';
+var properties = {foo: 'bar'};
 
-var circle = turf.circle(center, radius, steps, units);
+var circle = turf.circle(center, radius, steps, units, properties);
 
-//=circle
+//addToMap
+var addToMap = [turf.point(center), circle]
 ```
 
 Returns **[Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;[Polygon](http://geojson.org/geojson-spec.html#polygon)>** circle polygon

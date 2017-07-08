@@ -4,8 +4,8 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"name": "poly1",
-				"population": 400
+				"stroke": "#F00",
+				"stroke-width": 6
 			},
 			"geometry": {
 				"type": "MultiLineString",
@@ -60,8 +60,8 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"name": "poly1",
-				"population": 400
+				"stroke": "#F00",
+				"stroke-width": 6
 			},
 			"geometry": {
 				"type": "MultiLineString",
@@ -116,8 +116,8 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"name": "poly1",
-				"population": 400
+				"stroke": "#F00",
+				"stroke-width": 6
 			},
 			"geometry": {
 				"type": "LineString",

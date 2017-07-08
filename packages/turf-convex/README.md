@@ -66,13 +66,8 @@ var points = {
 
 var hull = turf.convex(points);
 
-var resultFeatures = points.features.concat(hull);
-var result = {
-  "type": "FeatureCollection",
-  "features": resultFeatures
-};
-
-//=result
+//addToMap
+var addToMap = [points, hull]
 ```
 
 Returns **[Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;[Polygon](http://geojson.org/geojson-spec.html#polygon)>** a convex hull

@@ -4,13 +4,15 @@
 
 Takes a triangular plane as a [Polygon](http://geojson.org/geojson-spec.html#polygon)
 and a [Point](http://geojson.org/geojson-spec.html#point) within that triangle and returns the z-value
-at that point. The Polygon needs to have properties `a`, `b`, and `c`
-that define the values at its three corners.
+at that point. The Polygon should have properties `a`, `b`, and `c`
+that define the values at its three corners. Alternatively, the z-values
+of each triangle point can be provided by their respective 3rd coordinate
+if their values are not provided as properties.
 
 **Parameters**
 
--   `point` **[Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;[Point](http://geojson.org/geojson-spec.html#point)>** the Point for which a z-value will be calculated
--   `triangle` **[Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;[Polygon](http://geojson.org/geojson-spec.html#polygon)>** a Polygon feature with three vertices
+-   `point` **([Geometry](http://geojson.org/geojson-spec.html#geometry) \| [Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;[Point](http://geojson.org/geojson-spec.html#point)> | [Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)>)** the Point for which a z-value will be calculated
+-   `triangle` **([Geometry](http://geojson.org/geojson-spec.html#geometry) \| [Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;[Polygon](http://geojson.org/geojson-spec.html#polygon)>)** a Polygon feature with three vertices
 
 **Examples**
 
@@ -45,16 +47,11 @@ var triangle = {
   }
 };
 
-var features = {
-  "type": "FeatureCollection",
-  "features": [triangle, point]
-};
-
 var zValue = turf.planepoint(point, triangle);
 
-//=features
-
-//=zValue
+//addToMap
+point.properties.zValue = zValue;
+var addToMap = [triangle, point];
 ```
 
 Returns **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** the z-value for `interpolatedPoint`

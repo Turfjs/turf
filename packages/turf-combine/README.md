@@ -2,10 +2,8 @@
 
 # combine
 
-Combines a [FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects) of [Point](http://geojson.org/geojson-spec.html#point),
-[LineString](http://geojson.org/geojson-spec.html#linestring), or [Polygon](http://geojson.org/geojson-spec.html#polygon) features
-into [MultiPoint](http://geojson.org/geojson-spec.html#multipoint), [MultiLineString](http://geojson.org/geojson-spec.html#multilinestring), or
-[MultiPolygon](http://geojson.org/geojson-spec.html#multipolygon) features.
+Combines a [FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects) of [Point](http://geojson.org/geojson-spec.html#point), [LineString](http://geojson.org/geojson-spec.html#linestring), or [Polygon](http://geojson.org/geojson-spec.html#polygon) features
+into [MultiPoint](http://geojson.org/geojson-spec.html#multipoint), [MultiLineString](http://geojson.org/geojson-spec.html#multilinestring), or [MultiPolygon](http://geojson.org/geojson-spec.html#multipolygon) features.
 
 **Parameters**
 
@@ -37,7 +35,8 @@ var fc = {
 
 var combined = turf.combine(fc);
 
-//=combined
+//addToMap
+var addToMap = [combined]
 ```
 
 Returns **[FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects)&lt;([MultiPoint](http://geojson.org/geojson-spec.html#multipoint) \| [MultiLineString](http://geojson.org/geojson-spec.html#multilinestring) \| [MultiPolygon](http://geojson.org/geojson-spec.html#multipolygon))>** a FeatureCollection of corresponding type to input

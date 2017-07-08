@@ -239,6 +239,8 @@ GreatCircle.prototype.Arc = function (npoints, options) {
     return arc;
 };
 
-module.exports.Coord = Coord;
-module.exports.Arc = Arc;
-module.exports.GreatCircle = GreatCircle;
+module.exports = {
+    Coord: Coord,
+    Arc: Arc,
+    GreatCircle: GreatCircle
+};

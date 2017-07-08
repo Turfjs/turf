@@ -9,6 +9,7 @@ be convex or concave. The function accounts for holes.
 
 -   `point` **[Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;[Point](http://geojson.org/geojson-spec.html#point)>** input point
 -   `polygon` **[Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;([Polygon](http://geojson.org/geojson-spec.html#polygon) \| [MultiPolygon](http://geojson.org/geojson-spec.html#multipolygon))>** input polygon or multipolygon
+-   `ignoreBoundary` **\[[boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)]** True if polygon boundary should be ignored when determining if the point is inside the polygon otherwise false. (optional, default `false`)
 
 **Examples**
 
@@ -24,7 +25,9 @@ var poly = turf.polygon([[
 
 var isInside = turf.inside(pt, poly);
 
-//=isInside
+//addToMap
+pt.properties.isInside = isInside
+var addToMap = [pt, poly]
 ```
 
 Returns **[boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** `true` if the Point is inside the Polygon; `false` if the Point is not inside the Polygon

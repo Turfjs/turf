@@ -2,41 +2,30 @@
 
 # centroid
 
-Takes one or more features and calculates the centroid using
-the mean of all vertices.
-This lessens the effect of small islands and artifacts when calculating
-the centroid of a set of polygons.
+Takes one or more features and calculates the centroid using the mean of all vertices.
+This lessens the effect of small islands and artifacts when calculating the centroid of a set of polygons.
 
 **Parameters**
 
--   `features` **([Feature](http://geojson.org/geojson-spec.html#feature-objects) \| [FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects))** input features
+-   `geojson` **[GeoJSON](http://geojson.org/geojson-spec.html#geojson-objects)** GeoJSON to be centered
+-   `properties` **\[[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)]** an Object that is used as the [Feature](http://geojson.org/geojson-spec.html#feature-objects)'s properties
 
 **Examples**
 
 ```javascript
-var poly = {
+var polygon = {
   "type": "Feature",
   "properties": {},
   "geometry": {
     "type": "Polygon",
-    "coordinates": [[
-      [105.818939,21.004714],
-      [105.818939,21.061754],
-      [105.890007,21.061754],
-      [105.890007,21.004714],
-      [105.818939,21.004714]
-    ]]
+    "coordinates": [[[-81, 41], [-88, 36], [-84, 31], [-80, 33], [-77, 39], [-81, 41]]]
   }
 };
 
-var centroidPt = turf.centroid(poly);
+var centroid = turf.centroid(polygon);
 
-var result = {
-  "type": "FeatureCollection",
-  "features": [poly, centroidPt]
-};
-
-//=result
+//addToMap
+var addToMap = [polygon, centroid]
 ```
 
 Returns **[Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;[Point](http://geojson.org/geojson-spec.html#point)>** the centroid of the input features

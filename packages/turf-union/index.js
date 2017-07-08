@@ -39,16 +39,11 @@ var jsts = require('jsts');
  *     ]]
  *   }
  * };
- * var polygons = {
- *   "type": "FeatureCollection",
- *   "features": [poly1, poly2]
- * };
  *
  * var union = turf.union(poly1, poly2);
  *
- * //=polygons
- *
- * //=union
+ * //addToMap
+ * var addToMap = [poly1, poly2, union];
  */
 module.exports = function () {
     var reader = new jsts.io.GeoJSONReader();

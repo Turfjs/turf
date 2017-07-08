@@ -1,8 +1,9 @@
-var featureCollection = require('@turf/helpers').featureCollection;
-var point = require('@turf/helpers').point;
-var polygon = require('@turf/helpers').polygon;
 var distance = require('@turf/distance');
 var turfBBox = require('@turf/bbox');
+var helpers = require('@turf/helpers');
+var point = helpers.point;
+var polygon = helpers.polygon;
+var featureCollection = helpers.featureCollection;
 
 /**
  * Creates a square grid from a bounding box, {@link Feature} or {@link FeatureCollection}.
@@ -19,7 +20,9 @@ var turfBBox = require('@turf/bbox');
  * var units = 'miles';
  *
  * var squareGrid = turf.squareGrid(bbox, cellSize, units);
- * //=squareGrid
+ *
+ * //addToMap
+ * var addToMap = [squareGrid]
  */
 module.exports = function squareGrid(bbox, cellSize, units, completelyWithin) {
     var results = [];

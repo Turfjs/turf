@@ -1,7 +1,7 @@
-const Benchmark = require('benchmark');
-const path = require('path');
 const fs = require('fs');
+const path = require('path');
 const load = require('load-json-file');
+const Benchmark = require('benchmark');
 const buffer = require('./');
 
 const directory = path.join(__dirname, 'test', 'in') + path.sep;
@@ -16,22 +16,36 @@ const fixtures = fs.readdirSync(directory).map(filename => {
 /**
  * Benchmark Results
  *
- * feature-collection-points x 3,792 ops/sec ±10.41% (82 runs sampled)
- * geometry-collection-points x 4,346 ops/sec ±2.05% (90 runs sampled)
- * linestring x 9,087 ops/sec ±2.14% (89 runs sampled)
- * multi-linestring x 1,145 ops/sec ±9.46% (80 runs sampled)
- * multi-point x 4,898 ops/sec ±4.73% (78 runs sampled)
- * multi-polygon x 1,737 ops/sec ±9.31% (66 runs sampled)
- * point x 11,907 ops/sec ±8.10% (72 runs sampled)
- * polygon-with-holes x 6,417 ops/sec ±6.16% (79 runs sampled)
+ * feature-collection-points: 139.101ms
+ * geometry-collection-points: 20.334ms
+ * issue-#783: 33.209ms
+ * linestring: 6.371ms
+ * multi-linestring: 48.786ms
+ * multi-point: 7.627ms
+ * multi-polygon: 38.921ms
+ * negative-buffer: 5.621ms
+ * north-latitude-points: 71.144ms
+ * northern-polygon: 2.644ms
+ * point: 8.155ms
+ * polygon-with-holes: 6.965ms
+ * feature-collection-points x 722 ops/sec ±14.28% (65 runs sampled)
+ * geometry-collection-points x 1,314 ops/sec ±7.87% (66 runs sampled)
+ * issue-#783 x 1,404 ops/sec ±6.81% (64 runs sampled)
+ * linestring x 2,936 ops/sec ±6.94% (72 runs sampled)
+ * multi-linestring x 623 ops/sec ±4.35% (79 runs sampled)
+ * multi-point x 1,735 ops/sec ±8.60% (65 runs sampled)
+ * multi-polygon x 1,125 ops/sec ±3.93% (80 runs sampled)
+ * north-latitude-points x 1,649 ops/sec ±2.09% (86 runs sampled)
+ * northern-polygon x 4,658 ops/sec ±3.08% (78 runs sampled)
+ * point x 65,020 ops/sec ±1.29% (85 runs sampled)
+ * polygon-with-holes x 2,795 ops/sec ±2.98% (81 runs sampled)
  */
 const suite = new Benchmark.Suite('turf-buffer');
 for (const {name, geojson} of fixtures) {
-    let {radius, units, padding} = geojson.properties || {};
-    radius = radius || 50;
-    units = units || 'miles';
-
-    suite.add(name, () => buffer(geojson, radius, units, padding));
+    console.time(name);
+    buffer(geojson, 50, 'miles');
+    console.timeEnd(name);
+    suite.add(name, () => buffer(geojson, 50, 'miles'));
 }
 
 suite

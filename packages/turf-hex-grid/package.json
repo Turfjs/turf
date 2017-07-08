@@ -1,6 +1,6 @@
 {
   "name": "@turf/hex-grid",
-  "version": "4.1.0",
+  "version": "4.5.2",
   "description": "turf hex-grid module",
   "main": "index.js",
   "types": "index.d.ts",
@@ -26,10 +26,12 @@
   ],
   "author": "Turf Authors",
   "contributors": [
-    "jseppi",
-    "jvail",
-    "lyzidiamond",
-    "tmcw"
+    "James Seppi <@jseppi>",
+    "Morgan Herlocker <@morganherlocker>",
+    "Tom MacWright <@tmcw>",
+    "Jan Vaillant <@jvail>",
+    "Lyzi Diamond <@lyzidiamond>",
+    "Denis Carriere <@DenisCarriere>"
   ],
   "license": "MIT",
   "bugs": {
@@ -37,19 +39,15 @@
   },
   "homepage": "https://github.com/Turfjs/turf",
   "devDependencies": {
-    "@turf/bbox-polygon": "^4.1.0",
-    "@turf/explode": "^4.1.0",
-    "@turf/inside": "^4.1.0",
-    "@turf/truncate": "^4.1.0",
-    "benchmark": "^1.0.0",
-    "eslint": "^3.15.0",
-    "eslint-config-mourner": "^2.0.1",
+    "@turf/centroid": "^4.5.2",
+    "@turf/truncate": "^4.5.2",
+    "benchmark": "^2.1.4",
     "load-json-file": "^2.0.0",
-    "tape": "^3.5.0",
+    "tape": "^4.6.3",
     "write-json-file": "^2.0.0"
   },
   "dependencies": {
-    "@turf/distance": "^4.1.0",
-    "@turf/helpers": "^4.1.0"
+    "@turf/distance": "^4.5.2",
+    "@turf/helpers": "^4.5.2"
   }
 }

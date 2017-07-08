@@ -10,11 +10,18 @@ var earcut = require('earcut');
  * @param {Feature<Polygon>} poly the polygon to tesselate
  * @returns {FeatureCollection<Polygon>} a geometrycollection feature
  * @example
- * var poly = turf.random('polygon').features[0];
- *
+ * var poly = {
+ *   "type": "Feature",
+ *   "properties": {},
+ *   "geometry": {
+ *     "type": "Polygon",
+ *     "coordinates": [[[11, 0], [22, 4], [31, 0], [31, 11], [21, 15], [11, 11], [11, 0]]]
+ *   }
+ * }
  * var triangles = turf.tesselate(poly);
  *
- * //=triangles
+ * //addToMap
+ * var addToMap = [poly, triangles]
  */
 module.exports = function (poly) {
     if (!poly.geometry || (poly.geometry.type !== 'Polygon' && poly.geometry.type !== 'MultiPolygon')) {

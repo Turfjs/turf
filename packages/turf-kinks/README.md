@@ -28,13 +28,8 @@ var poly = {
 
 var kinks = turf.kinks(poly);
 
-var resultFeatures = kinks.features.concat(poly);
-var result = {
-  "type": "FeatureCollection",
-  "features": resultFeatures
-};
-
-//=result
+//addToMap
+var addToMap = [poly, kinks]
 ```
 
 Returns **[FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects)&lt;[Point](http://geojson.org/geojson-spec.html#point)>** self-intersections

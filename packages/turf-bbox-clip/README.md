@@ -1,6 +1,6 @@
 # @turf/bbox-clip
 
-# bbox-clip
+# bboxClip
 
 Takes a [Feature](http://geojson.org/geojson-spec.html#feature-objects) and a bbox and clips the feature to the bbox using [lineclip](https://github.com/mapbox/lineclip).
 May result in degenerate edges when clipping Polygons.
@@ -25,7 +25,8 @@ var poly = {
 
 var clipped = turf.bboxClip(poly, bbox);
 
-//=clipped
+//addToMap
+var addToMap = [bbox, poly, clipped]
 ```
 
 Returns **[Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;([LineString](http://geojson.org/geojson-spec.html#linestring) \| [MultiLineString](http://geojson.org/geojson-spec.html#multilinestring) \| [Polygon](http://geojson.org/geojson-spec.html#polygon) \| [MultiPolygon](http://geojson.org/geojson-spec.html#multipolygon))>** clipped Feature

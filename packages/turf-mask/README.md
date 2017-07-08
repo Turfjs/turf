@@ -29,7 +29,9 @@ var mask = {
   }
 }
 var masked = turf.mask(polygon, mask);
-//=masked
+
+//addToMap
+var addToMap = [masked]
 ```
 
 Returns **[Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;[Polygon](http://geojson.org/geojson-spec.html#polygon)>** Masked Polygon (exterior ring with holes).

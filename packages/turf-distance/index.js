@@ -10,8 +10,8 @@ var radiansToDistance = require('@turf/helpers').radiansToDistance;
  * to account for global curvature.
  *
  * @name distance
- * @param {Feature<Point>} from origin point
- * @param {Feature<Point>} to destination point
+ * @param {Geometry|Feature<Point>|Array<number>} from origin point
+ * @param {Geometry|Feature<Point>|Array<number>} to destination point
  * @param {string} [units=kilometers] can be degrees, radians, miles, or kilometers
  * @returns {number} distance between the two points
  * @example
@@ -31,18 +31,13 @@ var radiansToDistance = require('@turf/helpers').radiansToDistance;
  *     "coordinates": [-75.534, 39.123]
  *   }
  * };
- * var units = "miles";
  *
- * var points = {
- *   "type": "FeatureCollection",
- *   "features": [from, to]
- * };
+ * var distance = turf.distance(from, to, "miles");
  *
- * //=points
- *
- * var distance = turf.distance(from, to, units);
- *
- * //=distance
+ * //addToMap
+ * from.properties.distance = distance;
+ * to.properties.distance = distance;
+ * var addToMap = [from, to];
  */
 module.exports = function (from, to, units) {
     var degrees2radians = Math.PI / 180;

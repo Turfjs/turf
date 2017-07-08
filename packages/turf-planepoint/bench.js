@@ -1,28 +1,18 @@
-var planepoint = require('./');
-var Benchmark = require('benchmark');
-var fs = require('fs');
+const {polygon} = require('@turf/helpers');
+const Benchmark = require('benchmark');
+const planepoint = require('./');
 
-var triangle = JSON.parse(fs.readFileSync(__dirname+'/test/Triangle.geojson'));
-var point = {
-  type: "Feature",
-  geometry: {
-    type: "Point",
-    coordinates: [
-      -75.3221,
-      39.529
-    ]
-  }
-};
+const point = [1, 1];
+const triangle = polygon([[[0, 0, 0], [2, 0, 0], [1, 2, 2], [0, 0, 0]]], {a: 0, b: 0, c: 2});
 
-var suite = new Benchmark.Suite('turf-planepoint');
+/**
+ * Benchmmark Results
+ *
+ * turf-planepoint x 14,905,445 ops/sec ±4.54% (75 runs sampled)
+ */
+const suite = new Benchmark.Suite('turf-planepoint');
 suite
-  .add('turf-planepoint',function () {
-    planepoint(point, triangle);
-  })
-  .on('cycle', function (event) {
-    console.log(String(event.target));
-  })
-  .on('complete', function () {
-    
-  })
+  .add('turf-planepoint', () => planepoint(point, triangle))
+  .on('cycle', e => console.log(String(e.target)))
+  .on('complete', () => {})
   .run();

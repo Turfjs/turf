@@ -1,0 +1,30 @@
+{
+  "type": "Feature",
+  "properties": {
+    "direction": 70,
+    "distance": 300
+  },
+  "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+      [
+        [
+          0,
+          29
+        ],
+        [
+          3.5,
+          29
+        ],
+        [
+          2.5,
+          32
+        ],
+        [
+          0,
+          29
+        ]
+      ]
+    ]
+  }
+}

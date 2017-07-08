@@ -12,11 +12,18 @@ using [earcut](https://github.com/mapbox/earcut).
 **Examples**
 
 ```javascript
-var poly = turf.random('polygon').features[0];
-
+var poly = {
+  "type": "Feature",
+  "properties": {},
+  "geometry": {
+    "type": "Polygon",
+    "coordinates": [[[11, 0], [22, 4], [31, 0], [31, 11], [21, 15], [11, 11], [11, 0]]]
+  }
+}
 var triangles = turf.tesselate(poly);
 
-//=triangles
+//addToMap
+var addToMap = [poly, triangles]
 ```
 
 Returns **[FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects)&lt;[Polygon](http://geojson.org/geojson-spec.html#polygon)>** a geometrycollection feature

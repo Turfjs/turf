@@ -136,11 +136,60 @@ function collectionOf(featureCollection, type, name) {
     }
 }
 
+/**
+ * Get Geometry from Feature or Geometry Object
+ *
+ * @param {Feature<any>|Geometry<any>} geojson GeoJSON Feature or Geometry Object
+ * @returns {Geometry<any>} GeoJSON Geometry Object
+ * @throws {Error} if geojson is not a Feature or Geometry Object
+ * @example
+ * var point = {
+ *   "type": "Feature",
+ *   "properties": {},
+ *   "geometry": {
+ *     "type": "Point",
+ *     "coordinates": [110, 40]
+ *   }
+ * }
+ * var geom = invariant.getGeom(point)
+ * //={"type": "Point", "coordinates": [110, 40]}
+ */
+function getGeom(geojson) {
+    if (!geojson) throw new Error('<geojson> is required');
+    if (geojson.geometry) return geojson.geometry;
+    if (geojson.coordinates || geojson.geometries) return geojson;
+    throw new Error('<geojson> must be a Feature or Geometry Object');
+}
+
+/**
+ * Get Geometry Type from Feature or Geometry Object
+ *
+ * @param {Feature<any>|Geometry<any>} geojson GeoJSON Feature or Geometry Object
+ * @returns {string} GeoJSON Geometry Type
+ * @throws {Error} if geojson is not a Feature or Geometry Object
+ * @example
+ * var point = {
+ *   "type": "Feature",
+ *   "properties": {},
+ *   "geometry": {
+ *     "type": "Point",
+ *     "coordinates": [110, 40]
+ *   }
+ * }
+ * var geom = invariant.getGeom(point)
+ * //="Point"
+ */
+function getGeomType(geojson) {
+    return getGeom(geojson).type;
+}
+
 module.exports = {
     geojsonType: geojsonType,
     collectionOf: collectionOf,
     featureOf: featureOf,
     getCoord: getCoord,
     getCoords: getCoords,
-    containsNumber: containsNumber
+    containsNumber: containsNumber,
+    getGeom: getGeom,
+    getGeomType: getGeomType
 };

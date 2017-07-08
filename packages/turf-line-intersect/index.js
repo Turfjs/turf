@@ -1,18 +1,18 @@
-var helpers = require('@turf/helpers');
 var meta = require('@turf/meta');
-var lineSegment = require('@turf/line-segment');
-var getCoords = require('@turf/invariant').getCoords;
 var rbush = require('geojson-rbush');
+var helpers = require('@turf/helpers');
+var getCoords = require('@turf/invariant').getCoords;
+var lineSegment = require('@turf/line-segment');
 var point = helpers.point;
-var featureCollection = helpers.featureCollection;
 var featureEach = meta.featureEach;
+var featureCollection = helpers.featureCollection;
 
 /**
  * Takes any LineString or Polygon GeoJSON and returns the intersecting point(s).
  *
  * @name lineIntersect
- * @param {FeatureCollection|Feature<LineString|MultiLineString|Polygon|MultiPolygon>} line1 any LineString or Polygon
- * @param {FeatureCollection|Feature<LineString|MultiLineString|Polygon|MultiPolygon>} line2 any LineString or Polygon
+ * @param {Geometry|FeatureCollection|Feature<LineString|MultiLineString|Polygon|MultiPolygon>} line1 any LineString or Polygon
+ * @param {Geometry|FeatureCollection|Feature<LineString|MultiLineString|Polygon|MultiPolygon>} line2 any LineString or Polygon
  * @returns {FeatureCollection<Point>} point(s) that intersect both
  * @example
  * var line1 = {
@@ -31,13 +31,22 @@ var featureEach = meta.featureEach;
  *     "coordinates": [[123, -18], [131, -14]]
  *   }
  * };
- * var points = turf.lineIntersect(line1, line2);
- * //= points
+ * var intersects = turf.lineIntersect(line1, line2);
+ *
+ * //addToMap
+ * var addToMap = [line, line2, intersects]
  */
 module.exports = function (line1, line2) {
+    var unique = {};
     var results = [];
-    // Handles simple 2-vertex segments
-    if (line1.geometry.type === 'LineString' &&
+
+    // First, normalize geometries to features
+    // Then, handle simple 2-vertex segments
+    if (line1.type === 'LineString') line1 = helpers.feature(line1);
+    if (line2.type === 'LineString') line2 = helpers.feature(line2);
+    if (line1.type === 'Feature' &&
+        line2.type === 'Feature' &&
+        line1.geometry.type === 'LineString' &&
         line2.geometry.type === 'LineString' &&
         line1.geometry.coordinates.length === 2 &&
         line2.geometry.coordinates.length === 2) {
@@ -45,13 +54,21 @@ module.exports = function (line1, line2) {
         if (intersect) results.push(intersect);
         return featureCollection(results);
     }
+
     // Handles complex GeoJSON Geometries
     var tree = rbush();
     tree.load(lineSegment(line2));
     featureEach(lineSegment(line1), function (segment) {
         featureEach(tree.search(segment), function (match) {
             var intersect = intersects(segment, match);
-            if (intersect) results.push(intersect);
+            if (intersect) {
+                // prevent duplicate points https://github.com/Turfjs/turf/issues/688
+                var key = getCoords(intersect).join(',');
+                if (!unique[key]) {
+                    unique[key] = true;
+                    results.push(intersect);
+                }
+            }
         });
     });
     return featureCollection(results);

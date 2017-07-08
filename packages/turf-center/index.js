@@ -1,13 +1,13 @@
-var bbox = require('@turf/bbox'),
-    point = require('@turf/helpers').point;
+var bbox = require('@turf/bbox');
+var point = require('@turf/helpers').point;
 
 /**
  * Takes a {@link Feature} or {@link FeatureCollection} and returns the absolute center point of all features.
  *
  * @name center
- * @param {(Feature|FeatureCollection)} layer input features
- * @return {Feature<Point>} a Point feature at the absolute center point of all input features
- * @addToMap features, centerPt
+ * @param {GeoJSON} geojson GeoJSON to be centered
+ * @param {Object} [properties] an Object that is used as the {@link Feature}'s properties
+ * @returns {Feature<Point>} a Point feature at the absolute center point of all input features
  * @example
  * var features = {
  *   "type": "FeatureCollection",
@@ -33,89 +33,20 @@ var bbox = require('@turf/bbox'),
  *         "type": "Point",
  *         "coordinates": [-97.508269, 35.463245]
  *       }
- *     }, {
- *       "type": "Feature",
- *       "properties": {},
- *       "geometry": {
- *         "type": "Point",
- *         "coordinates": [-97.516809, 35.465779]
- *       }
- *     }, {
- *       "type": "Feature",
- *       "properties": {},
- *       "geometry": {
- *         "type": "Point",
- *         "coordinates": [-97.515372, 35.467072]
- *       }
- *     }, {
- *       "type": "Feature",
- *       "properties": {},
- *       "geometry": {
- *         "type": "Point",
- *         "coordinates": [-97.509363, 35.463053]
- *       }
- *     }, {
- *       "type": "Feature",
- *       "properties": {},
- *       "geometry": {
- *         "type": "Point",
- *         "coordinates": [-97.511123, 35.466601]
- *       }
- *     }, {
- *       "type": "Feature",
- *       "properties": {},
- *       "geometry": {
- *         "type": "Point",
- *         "coordinates": [-97.518547, 35.469327]
- *       }
- *     }, {
- *       "type": "Feature",
- *       "properties": {},
- *       "geometry": {
- *         "type": "Point",
- *         "coordinates": [-97.519706, 35.469659]
- *       }
- *     }, {
- *       "type": "Feature",
- *       "properties": {},
- *       "geometry": {
- *         "type": "Point",
- *         "coordinates": [-97.517839, 35.466998]
- *       }
- *     }, {
- *       "type": "Feature",
- *       "properties": {},
- *       "geometry": {
- *         "type": "Point",
- *         "coordinates": [-97.508678, 35.464942]
- *       }
- *     }, {
- *       "type": "Feature",
- *       "properties": {},
- *       "geometry": {
- *         "type": "Point",
- *         "coordinates": [-97.514914, 35.463453]
- *       }
  *     }
  *   ]
  * };
  *
- * var centerPt = turf.center(features);
- * centerPt.properties['marker-size'] = 'large';
- * centerPt.properties['marker-color'] = '#000';
+ * var center = turf.center(features);
  *
- * var resultFeatures = features.features.concat(centerPt);
- * var result = {
- *   "type": "FeatureCollection",
- *   "features": resultFeatures
- * };
- *
- * //=result
+ * //addToMap
+ * center.properties['marker-size'] = 'large';
+ * center.properties['marker-color'] = '#000';
+ * var addToMap = [features, center]
  */
-
-module.exports = function (layer) {
-    var ext = bbox(layer);
+module.exports = function (geojson, properties) {
+    var ext = bbox(geojson);
     var x = (ext[0] + ext[2]) / 2;
     var y = (ext[1] + ext[3]) / 2;
-    return point([x, y]);
+    return point([x, y], properties);
 };

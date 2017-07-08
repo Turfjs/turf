@@ -1,8 +1,8 @@
-var featureEach = require('@turf/meta').featureEach;
 var rbush = require('rbush');
-var turfBBox = require('@turf/bbox');
-var helpers = require('@turf/helpers');
 var union = require('@turf/union');
+var helpers = require('@turf/helpers');
+var turfBBox = require('@turf/bbox');
+var featureEach = require('@turf/meta').featureEach;
 
 /**
  * Takes any type of {@link Polygon|polygon} and an optional mask and returns a {@link Polygon|polygon} exterior ring with holes.
@@ -11,7 +11,6 @@ var union = require('@turf/union');
  * @param {FeatureCollection|Feature<Polygon|MultiPolygon>} polygon GeoJSON Polygon used as interior rings or holes.
  * @param {Feature<Polygon>} [mask] GeoJSON Polygon used as the exterior ring (if undefined, the world extent is used)
  * @returns {Feature<Polygon>} Masked Polygon (exterior ring with holes).
- * @addToMap masked
  * @example
  * var polygon = {
  *   "type": "Feature",
@@ -30,7 +29,9 @@ var union = require('@turf/union');
  *   }
  * }
  * var masked = turf.mask(polygon, mask);
- * //=masked
+ *
+ * //addToMap
+ * var addToMap = [masked]
  */
 module.exports = function (polygon, mask) {
     // Define mask

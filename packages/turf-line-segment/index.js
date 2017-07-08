@@ -1,14 +1,14 @@
-var flatten = require('@turf/flatten');
-var featureEach = require('@turf/meta').featureEach;
-var lineString = require('@turf/helpers').lineString;
-var featureCollection = require('@turf/helpers').featureCollection;
+var helpers = require('@turf/helpers');
 var getCoords = require('@turf/invariant').getCoords;
+var flattenEach = require('@turf/meta').flattenEach;
+var lineString = helpers.lineString;
+var featureCollection = helpers.featureCollection;
 
 /**
- * Creates a {@link FeatureCollection} of 2-vertex {@link LineString} segments from a {@link LineString}, {@link MultiLineString}, {@link MultiPolygon} or {@link Polygon}.
+ * Creates a {@link FeatureCollection} of 2-vertex {@link LineString} segments from a {@link LineString|(Multi)LineString} or {@link Polygon|(Multi)Polygon}.
  *
  * @name lineSegment
- * @param {FeatureCollection|Feature<LineString|MultiLineString|MultiPolygon|Polygon>} geojson GeoJSON Polygon or LineString
+ * @param {Geometry|FeatureCollection|Feature<LineString|MultiLineString|MultiPolygon|Polygon>} geojson GeoJSON Polygon or LineString
  * @returns {FeatureCollection<LineString>} 2-vertex line segments
  * @example
  * var polygon = {
@@ -20,34 +20,46 @@ var getCoords = require('@turf/invariant').getCoords;
  *   }
  * }
  * var segments = turf.lineSegment(polygon);
- * //=segments
+ *
+ * //addToMap
+ * var addToMap = [polygon, segments]
  */
 module.exports = function (geojson) {
+    if (!geojson) throw new Error('geojson is required');
+
     var results = [];
-    var index = 0;
-    featureEach(geojson, function (multiFeature) {
-        featureEach(flatten(multiFeature), function (feature) {
-            var coords = [];
-            var type = (feature.geometry) ? feature.geometry.type : feature.type;
-            switch (type) {
-            case 'Polygon':
-                coords = getCoords(feature);
-                break;
-            case 'LineString':
-                coords = [getCoords(feature)];
-            }
-            coords.forEach(function (coord) {
-                var segments = createSegments(coord, feature.properties);
-                segments.forEach(function (segment) {
-                    segment.id = index;
-                    results.push(segment);
-                    index++;
-                });
-            });
-        });
+    flattenEach(geojson, function (feature) {
+        lineSegment(feature, results);
     });
     return featureCollection(results);
 };
+
+/**
+ * Line Segment
+ *
+ * @private
+ * @param {Feature<LineString|Polygon>} geojson Line or polygon feature
+ * @param {Array} results push to results
+ * @returns {void}
+ */
+function lineSegment(geojson, results) {
+    var coords = [];
+    var geometry = geojson.geometry;
+    switch (geometry.type) {
+    case 'Polygon':
+        coords = getCoords(geometry);
+        break;
+    case 'LineString':
+        coords = [getCoords(geometry)];
+    }
+    coords.forEach(function (coord) {
+        var segments = createSegments(coord, geojson.properties);
+        segments.forEach(function (segment) {
+            segment.id = results.length;
+            results.push(segment);
+        });
+    });
+}
 
 /**
  * Create Segments from LineString coordinates

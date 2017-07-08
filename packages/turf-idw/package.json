@@ -1,6 +1,6 @@
 {
   "name": "@turf/idw",
-  "version": "4.1.0",
+  "version": "4.5.2",
   "description": "turf idw module",
   "main": "index.js",
   "types": "index.d.ts",
@@ -17,19 +17,26 @@
     "url": "git://github.com/Turfjs/turf.git"
   },
   "author": "Turf Authors",
+  "contributors": [
+    "Stefano Borghi <@stebogit>",
+    "Denis Carriere <@DenisCarriere>"
+  ],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/Turfjs/turf/issues"
   },
   "homepage": "https://github.com/Turfjs/turf",
   "devDependencies": {
-    "tape": "^4.5.1"
+    "@turf/helpers": "^4.5.2",
+    "benchmark": "^2.1.4",
+    "load-json-file": "^2.0.0",
+    "tape": "^4.6.3",
+    "write-json-file": "^2.2.0"
   },
   "dependencies": {
-    "@turf/bbox": "^4.1.0",
-    "@turf/centroid": "^4.1.0",
-    "@turf/distance": "^4.1.0",
-    "@turf/helpers": "^4.1.0",
-    "@turf/square-grid": "^4.1.0"
+    "@turf/bbox": "^4.5.2",
+    "@turf/centroid": "^4.5.2",
+    "@turf/distance": "^4.5.2",
+    "@turf/square-grid": "^4.5.2"
   }
 }

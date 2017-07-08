@@ -2,27 +2,28 @@
 
 # hexGrid
 
-Takes a bounding box and a cell size in degrees and returns a [FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects) of flat-topped
-hexagons ([Polygon](http://geojson.org/geojson-spec.html#polygon) features) aligned in an "odd-q" vertical grid as
+Takes a bounding box and the diameter of the cell and returns a [FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects) of flat-topped
+hexagons or triangles ([Polygon](http://geojson.org/geojson-spec.html#polygon) features) aligned in an "odd-q" vertical grid as
 described in [Hexagonal Grids](http://www.redblobgames.com/grids/hexagons/).
 
 **Parameters**
 
 -   `bbox` **[Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)>** extent in [minX, minY, maxX, maxY] order
--   `cellSize` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** dimension of cell in specified units
--   `units` **\[[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)]** used in calculating cellSize, can be degrees, radians, miles, or kilometers (optional, default `kilometers`)
+-   `cellDiameter` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** diameter of the circumcircle of the hexagons, in specified units
+-   `units` **\[[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)]** used in calculating cell size, can be degrees, radians, miles, or kilometers (optional, default `kilometers`)
 -   `triangles` **\[[boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)]** whether to return as triangles instead of hexagons (optional, default `false`)
 
 **Examples**
 
 ```javascript
 var bbox = [-96,31,-84,40];
-var cellSize = 50;
+var cellDiameter = 50;
 var units = 'miles';
 
-var hexgrid = turf.hexGrid(bbox, cellSize, units);
+var hexgrid = turf.hexGrid(bbox, cellDiameter, units);
 
-//=hexgrid
+//addToMap
+var addToMap = [hexgrid]
 ```
 
 Returns **[FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects)&lt;[Polygon](http://geojson.org/geojson-spec.html#polygon)>** a hexagonal grid

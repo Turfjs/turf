@@ -1,10 +1,12 @@
-var distance = require('@turf/distance');
-var featureEach = require('@turf/meta').featureEach;
-var coordReduce = require('@turf/meta').coordReduce;
-var geomEach = require('@turf/meta').geomEach;
 var flatten = require('@turf/flatten');
-var lineString = require('@turf/helpers').lineString;
-var point = require('@turf/helpers').point;
+var distance = require('@turf/distance');
+var meta = require('@turf/meta');
+var geomEach = meta.geomEach;
+var featureEach = meta.featureEach;
+var coordReduce = meta.coordReduce;
+var helpers = require('@turf/helpers');
+var point = helpers.point;
+var lineString = helpers.lineString;
 
 /**
  * Takes a {@link LineString} or {@link Polygon} and measures its length in the specified units.
@@ -32,9 +34,9 @@ var point = require('@turf/helpers').point;
  *
  * var length = turf.lineDistance(line, 'miles');
  *
- * //=line
- *
- * //=length
+ * //addToMap
+ * line.properties.distance = length;
+ * var addToMap = [line];
  */
 module.exports = function lineDistance(geojson, units) {
     // Input Validation

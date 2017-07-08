@@ -1,6 +1,6 @@
 /// <reference types="geojson" />
 
-type Point = GeoJSON.Feature<GeoJSON.Point>;
+type Point = GeoJSON.Feature<GeoJSON.Point> | GeoJSON.Point | Array<number>;
 type LineString = GeoJSON.Feature<GeoJSON.LineString>;
 
 /**

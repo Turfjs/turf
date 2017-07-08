@@ -2,14 +2,14 @@
 
 # tin
 
-Takes a set of [points](http://geojson.org/geojson-spec.html#point) and the name of a z-value property and
-creates a [Triangulated Irregular Network](http://en.wikipedia.org/wiki/Triangulated_irregular_network),
+Takes a set of [points](http://geojson.org/geojson-spec.html#point) and creates a
+[Triangulated Irregular Network](http://en.wikipedia.org/wiki/Triangulated_irregular_network),
 or a TIN for short, returned as a collection of Polygons. These are often used
 for developing elevation contour maps or stepped heat visualizations.
 
-This triangulates the points, as well as adds properties called `a`, `b`,
-and `c` representing the value of the given `propertyName` at each of
-the points that represent the corners of the triangle.
+If an optional z-value property is provided then it is added as properties called `a`, `b`,
+and `c` representing its value at each of the points that represent the corners of the
+triangle.
 
 **Parameters**
 
@@ -24,21 +24,18 @@ the points that represent the corners of the triangle.
 var points = turf.random('points', 30, {
   bbox: [50, 30, 70, 50]
 });
-//=points
 // add a random property to each point between 0 and 9
 for (var i = 0; i < points.features.length; i++) {
   points.features[i].properties.z = ~~(Math.random() * 9);
 }
-var tin = turf.tin(points, 'z')
+var tin = turf.tin(points, 'z');
+
+//addToMap
+var addToMap = [tin, points]
 for (var i = 0; i < tin.features.length; i++) {
   var properties  = tin.features[i].properties;
-  // roughly turn the properties of each
-  // triangle into a fill color
-  // so we can visualize the result
-  properties.fill = '#' + properties.a +
-    properties.b + properties.c;
+  properties.fill = '#' + properties.a + properties.b + properties.c;
 }
-//=tin
 ```
 
 Returns **[FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects)&lt;[Polygon](http://geojson.org/geojson-spec.html#polygon)>** TIN output

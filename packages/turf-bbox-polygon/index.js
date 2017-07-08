@@ -12,7 +12,8 @@ var polygon = require('@turf/helpers').polygon;
  *
  * var poly = turf.bboxPolygon(bbox);
  *
- * //=poly
+ * //addToMap
+ * var addToMap = [poly]
  */
 
 module.exports = function (bbox) {

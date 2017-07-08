@@ -1,0 +1,54 @@
+{
+	"type": "FeatureCollection",
+	"features": [
+		{
+			"type": "Feature",
+			"properties": {
+				"angle": 80,
+				"pivot": [
+					-75.6,
+					45.3
+				],
+				"marker-color": "#F00",
+				"marker-symbol": "star"
+			},
+			"geometry": {
+				"type": "Point",
+				"coordinates": [
+					-75.433041,
+					45.391507
+				]
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {
+				"angle": 80,
+				"pivot": [
+					-75.6,
+					45.3
+				]
+			},
+			"geometry": {
+				"type": "Point",
+				"coordinates": [
+					-75.69926351308823,
+					45.43145021122502
+				]
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {
+				"marker-symbol": "circle"
+			},
+			"geometry": {
+				"type": "Point",
+				"coordinates": [
+					-75.6,
+					45.3
+				]
+			}
+		}
+	]
+}

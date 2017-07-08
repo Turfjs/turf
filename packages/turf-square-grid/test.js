@@ -1,10 +1,10 @@
-const test = require('tape');
 const fs = require('fs');
+const test = require('tape');
 const path = require('path');
 const load = require('load-json-file');
 const write = require('write-json-file');
-const featureEach = require('@turf/meta').featureEach;
 const mkdirp = require('mkdirp');
+const {featureEach} = require('@turf/meta');
 const squareGrid = require('./');
 
 

@@ -1,124 +1,46 @@
-var each = require('@turf/meta').coordEach,
-    centroid = require('@turf/centroid'),
-    convex = require('@turf/convex'),
-    explode = require('@turf/explode'),
-    point = require('@turf/helpers').point;
+var point = require('@turf/helpers').point;
+var convex = require('@turf/convex');
+var explode = require('@turf/explode');
+var centroid = require('@turf/centroid');
+var getCoord = require('@turf/invariant').getCoord;
+var coordEach = require('@turf/meta').coordEach;
 
 /**
- * Takes a [feature](http://geojson.org/geojson-spec.html#feature-objects)
- * or a [featureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects)
- * and returns its [center of mass](https://en.wikipedia.org/wiki/Center_of_mass)
- * using this formula: [Centroid of Polygon](https://en.wikipedia.org/wiki/Centroid#Centroid_of_polygon).
+ * Takes any {@link Feature} or a {@link FeatureCollection} and returns its [center of mass](https://en.wikipedia.org/wiki/Center_of_mass) using this formula: [Centroid of Polygon](https://en.wikipedia.org/wiki/Centroid#Centroid_of_polygon).
  *
- * @param {FeatureCollection|Feature} fc - the feature collection or feature
+ * @param {GeoJSON} geojson GeoJSON to be centered
+ * @param {Object} [properties] an Object that is used as the {@link Feature}'s properties
  * @returns {Feature<Point>} the center of mass
  * @example
- * var feature = {
+ * var polygon = {
  *   "type": "Feature",
  *   "properties": {},
  *   "geometry": {
  *     "type": "Polygon",
- *     "coordinates": [
- *       [
- *         [
- *           4.854240417480469,
- *           45.77258200374433
- *         ],
- *         [
- *           4.8445844650268555,
- *           45.777431068484894
- *         ],
- *         [
- *           4.845442771911621,
- *           45.778658234059755
- *         ],
- *         [
- *           4.845914840698242,
- *           45.779376562352425
- *         ],
- *         [
- *           4.846644401550292,
- *           45.78021460033108
- *         ],
- *         [
- *           4.847245216369629,
- *           45.78078326178593
- *         ],
- *         [
- *           4.848060607910156,
- *           45.78138184652523
- *         ],
- *         [
- *           4.8487043380737305,
- *           45.78186070968964
- *         ],
- *         [
- *           4.849562644958495,
- *           45.78248921135124
- *         ],
- *         [
- *           4.850893020629883,
- *           45.78302792142197
- *         ],
- *         [
- *           4.852008819580077,
- *           45.78374619341895
- *         ],
- *         [
- *           4.852995872497559,
- *           45.784075398324866
- *         ],
- *         [
- *           4.853854179382324,
- *           45.78443452873236
- *         ],
- *         [
- *           4.8549699783325195,
- *           45.78470387501975
- *         ],
- *         [
- *           4.85569953918457,
- *           45.784793656826345
- *         ],
- *         [
- *           4.857330322265624,
- *           45.784853511283764
- *         ],
- *         [
- *           4.858231544494629,
- *           45.78494329284938
- *         ],
- *         [
- *           4.859304428100585,
- *           45.784883438488365
- *         ],
- *         [
- *           4.858360290527344,
- *           45.77294120818474
- *         ],
- *         [
- *           4.854240417480469,
- *           45.77258200374433
- *         ]
- *       ]
- *     ]
+ *     "coordinates": [[[-81, 41], [-88, 36], [-84, 31], [-80, 33], [-77, 39], [-81, 41]]]
  *   }
  * };
  *
- * var centerOfMass = turf.centerOfMass(feature);
+ * var center = turf.centerOfMass(polygon);
  *
- * //=centerOfMass
+ * //addToMap
+ * var addToMap = [polygon, center]
  */
-function centerOfMass(fc) {
-    if (fc.type === 'Feature' && fc.geometry.type === 'Polygon') {
+function centerOfMass(geojson, properties) {
+    var type = (geojson.geometry) ? geojson.geometry.type : geojson.type;
+
+    switch (type) {
+    case 'Point':
+        return point(getCoord(geojson), properties);
+    case 'Polygon':
         var coords = [];
-        each(fc, function (coord) {
+        coordEach(geojson, function (coord) {
             coords.push(coord);
         });
 
         // First, we neutralize the feature (set it around coordinates [0,0]) to prevent rounding errors
         // We take any point to translate all the points around 0
-        var centre = centroid(fc);
+        var centre = centroid(geojson, properties);
         var translation = centre.geometry.coordinates;
         var sx = 0;
         var sy = 0;
@@ -166,17 +88,17 @@ function centerOfMass(fc) {
             return point([
                 translation[0] + areaFactor * sx,
                 translation[1] + areaFactor * sy
-            ]);
+            ], properties);
         }
-    } else {
+    default:
         // Not a polygon: Compute the convex hull and work with that
-        var hull = convex(explode(fc));
+        var hull = convex(explode(geojson));
 
         if (hull) {
-            return module.exports(hull);
+            return centerOfMass(hull, properties);
         } else {
             // Hull is empty: fallback on the centroid
-            return centroid(fc);
+            return centroid(geojson, properties);
         }
     }
 }

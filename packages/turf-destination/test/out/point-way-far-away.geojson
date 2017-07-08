@@ -1,0 +1,48 @@
+{
+	"type": "FeatureCollection",
+	"features": [
+		{
+			"type": "Feature",
+			"properties": {
+				"bearing": 90,
+				"dist": 5000,
+				"units": "miles"
+			},
+			"geometry": {
+				"type": "Point",
+				"coordinates": [
+					-75,
+					39
+				]
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {},
+			"geometry": {
+				"type": "Point",
+				"coordinates": [
+					-22.898974671086123,
+					26.446988157260996
+				]
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {},
+			"geometry": {
+				"type": "LineString",
+				"coordinates": [
+					[
+						-75,
+						39
+					],
+					[
+						-22.898974671086123,
+						26.446988157260996
+					]
+				]
+			}
+		}
+	]
+}

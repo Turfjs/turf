@@ -1,0 +1,14 @@
+{
+  "type": "Feature",
+  "properties": {
+    "angle": 80,
+    "pivot": [-75.6, 45.3]
+  },
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      -75.69926351308823,
+      45.43145021122502
+    ]
+  }
+}

@@ -1,5 +1,6 @@
 {
   "type": "FeatureCollection",
+  "id": 12345,
   "features": [
     {
       "type": "Feature",

@@ -2,7 +2,7 @@
 
 # random
 
-Generates random [GeoJSON](GeoJSON) data, including [Points](http://geojson.org/geojson-spec.html#point) and [Polygons](http://geojson.org/geojson-spec.html#polygon), for testing
+Generates random [GeoJSON](http://geojson.org/geojson-spec.html#geojson-objects) data, including [Points](http://geojson.org/geojson-spec.html#point) and [Polygons](http://geojson.org/geojson-spec.html#polygon), for testing
 and experimentation.
 
 **Parameters**
@@ -26,13 +26,12 @@ var points = turf.random('points', 100, {
   bbox: [-70, 40, -60, 60]
 });
 
-//=points
-
 var polygons = turf.random('polygons', 4, {
   bbox: [-70, 40, -60, 60]
 });
 
-//=polygons
+//addToMap
+var addToMap = [points, polygons]
 ```
 
 Returns **[FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects)** generated random features

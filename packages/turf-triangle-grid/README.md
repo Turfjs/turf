@@ -19,7 +19,8 @@ var units = 'miles';
 
 var triangleGrid = turf.triangleGrid(bbox, cellSize, units);
 
-//=triangleGrid
+//addToMap
+var addToMap = [triangleGrid];
 ```
 
 Returns **[FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects)&lt;[Polygon](http://geojson.org/geojson-spec.html#polygon)>** grid of polygons

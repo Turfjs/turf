@@ -17,16 +17,22 @@ between (clockwise) bearing1 and bearing2; 0 bearing is North of center point, p
 **Examples**
 
 ```javascript
-var center = turf.point([-75.343, 39.984]);
+var center = {
+  "type": "Feature",
+  "properties": {},
+  "geometry": {
+    "type": "Point",
+    "coordinates": [-75, 40]
+  }
+}
 var radius = 5;
 var bearing1 = 25;
-var bearing2 = 47;
-var steps = 30;
-var units = 'kilometers';
+var bearing2 = 45;
 
-var sector = turf.sector(center, radius, bearing1, bearing2, steps, units);
+var sector = turf.sector(center, radius, bearing1, bearing2);
 
-//=sector
+//addToMap
+var addToMap = [center, sector];
 ```
 
 Returns **[Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;[Polygon](http://geojson.org/geojson-spec.html#polygon)>** sector polygon

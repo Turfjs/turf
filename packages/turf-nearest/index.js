@@ -50,15 +50,10 @@ var distance = require('@turf/distance');
  * };
  *
  * var nearest = turf.nearest(point, against);
+ *
+ * //addToMap
  * nearest.properties['marker-color'] = '#f00';
- *
- * var resultFeatures = against.features.concat(point);
- * var result = {
- *   "type": "FeatureCollection",
- *   "features": resultFeatures
- * };
- *
- * //=result
+ * var addToMap = [point, against, nearest];
  */
 module.exports = function (targetPoint, points) {
     var nearestPoint, minDist = Infinity;

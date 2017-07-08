@@ -6,8 +6,8 @@ Takes a [Point](http://geojson.org/geojson-spec.html#point) and calculates the l
 
 **Parameters**
 
--   `from` **[Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;[Point](http://geojson.org/geojson-spec.html#point)>** starting point
--   `distance` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** distance from the starting point
+-   `origin` **([Geometry](http://geojson.org/geojson-spec.html#geometry) \| [Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;[Point](http://geojson.org/geojson-spec.html#point)> | [Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)>)** starting point
+-   `distance` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** distance from the origin point
 -   `bearing` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** ranging from -180 to 180
 -   `units` **\[[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)]** miles, kilometers, degrees, or radians (optional, default `kilometers`)
 
@@ -16,9 +16,7 @@ Takes a [Point](http://geojson.org/geojson-spec.html#point) and calculates the l
 ```javascript
 var point = {
   "type": "Feature",
-  "properties": {
-    "marker-color": "#0f0"
-  },
+  "properties": {},
   "geometry": {
     "type": "Point",
     "coordinates": [-75.343, 39.984]
@@ -29,14 +27,11 @@ var bearing = 90;
 var units = 'miles';
 
 var destination = turf.destination(point, distance, bearing, units);
+
+//addToMap
 destination.properties['marker-color'] = '#f00';
-
-var result = {
-  "type": "FeatureCollection",
-  "features": [point, destination]
-};
-
-//=result
+point.properties['marker-color'] = '#0f0';
+var addToMap = [point, destination]
 ```
 
 Returns **[Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;[Point](http://geojson.org/geojson-spec.html#point)>** destination point

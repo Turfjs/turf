@@ -1,7 +1,7 @@
 /// <reference types="geojson" />
 
-type Point = GeoJSON.Feature<GeoJSON.Point>;
-type Polygon = GeoJSON.Feature<GeoJSON.Polygon>;
+type Point = GeoJSON.Feature<GeoJSON.Point> | GeoJSON.Point | number[];
+type Polygon = GeoJSON.Feature<GeoJSON.Polygon> | GeoJSON.Polygon;
 
 /**
  * http://turfjs.org/docs/#planepoint

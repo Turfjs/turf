@@ -18,19 +18,14 @@ var line = {
   "properties": {},
   "geometry": {
     "type": "LineString",
-    "coordinates": [
-      [-77.031669, 38.878605],
-      [-77.029609, 38.881946],
-      [-77.020339, 38.884084],
-      [-77.025661, 38.885821],
-      [-77.021884, 38.889563],
-      [-77.019824, 38.892368]
-    ]
+    "coordinates": [[-83, 30], [-84, 36], [-78, 41]]
   }
 };
 
-var along = turf.along(line, 1, 'miles');
-//=along
+var along = turf.along(line, 200, 'miles');
+
+//addToMap
+var addToMap = [along, line]
 ```
 
 Returns **[Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;[Point](http://geojson.org/geojson-spec.html#point)>** Point `distance` `units` along the line

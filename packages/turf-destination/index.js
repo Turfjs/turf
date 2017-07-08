@@ -9,17 +9,15 @@ var distanceToRadians = helpers.distanceToRadians;
  * Takes a {@link Point} and calculates the location of a destination point given a distance in degrees, radians, miles, or kilometers; and bearing in degrees. This uses the [Haversine formula](http://en.wikipedia.org/wiki/Haversine_formula) to account for global curvature.
  *
  * @name destination
- * @param {Feature<Point>} from starting point
- * @param {number} distance distance from the starting point
+ * @param {Geometry|Feature<Point>|Array<number>} origin starting point
+ * @param {number} distance distance from the origin point
  * @param {number} bearing ranging from -180 to 180
  * @param {string} [units=kilometers] miles, kilometers, degrees, or radians
  * @returns {Feature<Point>} destination point
  * @example
  * var point = {
  *   "type": "Feature",
- *   "properties": {
- *     "marker-color": "#0f0"
- *   },
+ *   "properties": {},
  *   "geometry": {
  *     "type": "Point",
  *     "coordinates": [-75.343, 39.984]
@@ -30,19 +28,16 @@ var distanceToRadians = helpers.distanceToRadians;
  * var units = 'miles';
  *
  * var destination = turf.destination(point, distance, bearing, units);
+ *
+ * //addToMap
  * destination.properties['marker-color'] = '#f00';
- *
- * var result = {
- *   "type": "FeatureCollection",
- *   "features": [point, destination]
- * };
- *
- * //=result
+ * point.properties['marker-color'] = '#0f0';
+ * var addToMap = [point, destination]
  */
-module.exports = function (from, distance, bearing, units) {
+module.exports = function (origin, distance, bearing, units) {
     var degrees2radians = Math.PI / 180;
     var radians2degrees = 180 / Math.PI;
-    var coordinates1 = getCoord(from);
+    var coordinates1 = getCoord(origin);
     var longitude1 = degrees2radians * coordinates1[0];
     var latitude1 = degrees2radians * coordinates1[1];
     var bearing_rad = degrees2radians * bearing;

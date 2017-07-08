@@ -1,6 +1,15 @@
 {
   "type": "Feature",
-  "properties": {},
+  "properties": {
+    "precision": 3
+  },
+	"id": 12345,
+	"bbox": [
+		1,
+		2,
+		3,
+		4
+	],
   "geometry": {
     "type": "Point",
     "coordinates": [

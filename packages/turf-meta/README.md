@@ -6,10 +6,9 @@ Iterate over coordinates in any GeoJSON object, similar to Array.forEach()
 
 **Parameters**
 
--   `layer` **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)** any GeoJSON object
+-   `geojson` **([FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects) \| [Geometry](http://geojson.org/geojson-spec.html#geometry) \| [Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;any>)** any GeoJSON object
 -   `callback` **[Function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function)** a method that takes (currentCoords, currentIndex)
--   `excludeWrapCoord` **\[[boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)]** whether or not to include
-    the final coordinate of LinearRings that wraps the ring in its iteration. (optional, default `false`)
+-   `excludeWrapCoord` **\[[boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)]** whether or not to include the final coordinate of LinearRings that wraps the ring in its iteration. (optional, default `false`)
 
 **Examples**
 
@@ -47,7 +46,7 @@ Reduce coordinates in any GeoJSON object, similar to Array.reduce()
 
 **Parameters**
 
--   `layer` **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)** any GeoJSON object
+-   `geojson` **([FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects) \| [Geometry](http://geojson.org/geojson-spec.html#geometry) \| [Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;any>)** any GeoJSON object
 -   `callback` **[Function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function)** a method that takes (previousValue, currentCoords, currentIndex)
 -   `initialValue` **\[Any]** Value to use as the first argument to the first call of the callback.
 -   `excludeWrapCoord` **\[[boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)]** whether or not to include
@@ -93,7 +92,7 @@ Iterate over properties in any GeoJSON object, similar to Array.forEach()
 
 **Parameters**
 
--   `layer` **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)** any GeoJSON object
+-   `geojson` **([FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects) \| [Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;any>)** any GeoJSON object
 -   `callback` **[Function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function)** a method that takes (currentProperties, currentIndex)
 
 **Examples**
@@ -134,7 +133,7 @@ the reduction, so an array of all properties is unnecessary.
 
 **Parameters**
 
--   `layer` **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)** any GeoJSON object
+-   `geojson` **([FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects) \| [Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;any>)** any GeoJSON object
 -   `callback` **[Function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function)** a method that takes (previousValue, currentProperties, currentIndex)
 -   `initialValue` **\[Any]** Value to use as the first argument to the first call of the callback.
 
@@ -179,7 +178,7 @@ Array.forEach.
 
 **Parameters**
 
--   `layer` **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)** any GeoJSON object
+-   `geojson` **([Geometry](http://geojson.org/geojson-spec.html#geometry) \| [FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects) \| [Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;any>)** any GeoJSON object
 -   `callback` **[Function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function)** a method that takes (currentFeature, currentIndex)
 
 **Examples**
@@ -218,7 +217,7 @@ Reduce features in any GeoJSON object, similar to Array.reduce().
 
 **Parameters**
 
--   `layer` **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)** any GeoJSON object
+-   `geojson` **([Geometry](http://geojson.org/geojson-spec.html#geometry) \| [FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects) \| [Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;any>)** any GeoJSON object
 -   `callback` **[Function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function)** a method that takes (previousValue, currentFeature, currentIndex)
 -   `initialValue` **\[Any]** Value to use as the first argument to the first call of the callback.
 
@@ -262,7 +261,7 @@ Get all coordinates from any GeoJSON object.
 
 **Parameters**
 
--   `layer` **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)** any GeoJSON object
+-   `geojson` **([Geometry](http://geojson.org/geojson-spec.html#geometry) \| [FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects) \| [Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;any>)** any GeoJSON object
 
 **Examples**
 
@@ -300,8 +299,8 @@ Iterate over each geometry in any GeoJSON object, similar to Array.forEach()
 
 **Parameters**
 
--   `layer` **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)** any GeoJSON object
--   `callback` **[Function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function)** a method that takes (currentGeometry, currentIndex)
+-   `geojson` **([Geometry](http://geojson.org/geojson-spec.html#geometry) \| [FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects) \| [Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;any>)** any GeoJSON object
+-   `callback` **[Function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function)** a method that takes (currentGeometry, currentIndex, currentProperties)
 
 **Examples**
 
@@ -327,9 +326,10 @@ var features = {
     }
   ]
 };
-turf.geomEach(features, function (currentGeometry, currentIndex) {
+turf.geomEach(features, function (currentGeometry, currentIndex, currentProperties) {
   //=currentGeometry
   //=currentIndex
+  //=currentProperties
 });
 ```
 
@@ -339,8 +339,8 @@ Reduce geometry in any GeoJSON object, similar to Array.reduce().
 
 **Parameters**
 
--   `layer` **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)** any GeoJSON object
--   `callback` **[Function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function)** a method that takes (previousValue, currentGeometry, currentIndex)
+-   `geojson` **([Geometry](http://geojson.org/geojson-spec.html#geometry) \| [FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects) \| [Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;any>)** any GeoJSON object
+-   `callback` **[Function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function)** a method that takes (previousValue, currentGeometry, currentIndex, currentProperties)
 -   `initialValue` **\[Any]** Value to use as the first argument to the first call of the callback.
 
 **Examples**
@@ -372,6 +372,92 @@ turf.geomReduce(features, function (previousValue, currentGeometry, currentIndex
   //=currentGeometry
   //=currentIndex
   return currentGeometry
+});
+```
+
+Returns **Any** The value that results from the reduction.
+
+# flattenEach
+
+Iterate over flattened features in any GeoJSON object, similar to
+Array.forEach.
+
+**Parameters**
+
+-   `geojson` **([Geometry](http://geojson.org/geojson-spec.html#geometry) \| [FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects) \| [Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;any>)** any GeoJSON object
+-   `callback` **[Function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function)** a method that takes (currentFeature, currentIndex, currentSubIndex)
+
+**Examples**
+
+```javascript
+var features = {
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {},
+      "geometry": {
+        "type": "Point",
+        "coordinates": [26, 37]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {},
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [ [36, 53], [46, 69] ]
+      }
+    }
+  ]
+};
+turf.flattenEach(features, function (currentFeature, currentIndex, currentSubIndex) {
+  //=currentFeature
+  //=currentIndex
+  //=currentSubIndex
+});
+```
+
+# flattenReduce
+
+Reduce flattened features in any GeoJSON object, similar to Array.reduce().
+
+**Parameters**
+
+-   `geojson` **([Geometry](http://geojson.org/geojson-spec.html#geometry) \| [FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects) \| [Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;any>)** any GeoJSON object
+-   `callback` **[Function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function)** a method that takes (previousValue, currentFeature, currentIndex, currentSubIndex)
+-   `initialValue` **\[Any]** Value to use as the first argument to the first call of the callback.
+
+**Examples**
+
+```javascript
+var features = {
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {"foo": "bar"},
+      "geometry": {
+        "type": "Point",
+        "coordinates": [26, 37]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {"hello": "world"},
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [ [36, 53], [46, 69] ]
+      }
+    }
+  ]
+};
+turf.flattenReduce(features, function (previousValue, currentFeature, currentIndex, currentSubIndex) {
+  //=previousValue
+  //=currentFeature
+  //=currentIndex
+  //=currentSubIndex
+  return currentFeature
 });
 ```
 

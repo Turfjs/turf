@@ -30,6 +30,6 @@ for (const {geojson, name} of fixtures) {
     suite.add(name, () => flatten(geojson));
 }
 suite
-    .on('cycle', e => { console.log(String(e.target)); })
+    .on('cycle', e => console.log(String(e.target)))
     .on('complete', () => {})
     .run();

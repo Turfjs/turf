@@ -6,9 +6,9 @@ Calculate great circles routes as [LineString](http://geojson.org/geojson-spec.h
 
 **Parameters**
 
--   `start` **[Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;[Point](http://geojson.org/geojson-spec.html#point)>** source point feature
--   `end` **[Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;[Point](http://geojson.org/geojson-spec.html#point)>** destination point feature
--   `properties` **\[Any]** line feature properties (optional, default `{}`)
+-   `start` **([Geometry](http://geojson.org/geojson-spec.html#geometry) \| [Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;[Point](http://geojson.org/geojson-spec.html#point)> | [Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)>)** source point feature
+-   `end` **([Geometry](http://geojson.org/geojson-spec.html#geometry) \| [Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;[Point](http://geojson.org/geojson-spec.html#point)> | [Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)>)** destination point feature
+-   `properties` **\[[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)]** line feature properties (optional, default `{}`)
 -   `npoints` **\[[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)]** number of points (optional, default `100`)
 -   `offset` **\[[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)]** offset controls the likelyhood that lines will
     be split which cross the dateline. The higher the number the more likely. (optional, default `10`)
@@ -32,8 +32,10 @@ var end = {
     "coordinates": [-77, 39]
   }
 }
-var line = turf.greatCircle(start, end, {'name': 'Seattle to DC'});
-//=line
+var greatCircle = turf.greatCircle(start, end, {'name': 'Seattle to DC'});
+
+//addToMap
+var addToMap = [start, end, greatCircle]
 ```
 
 Returns **[Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;[LineString](http://geojson.org/geojson-spec.html#linestring)>** great circle line feature

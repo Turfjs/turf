@@ -30,16 +30,11 @@ var pt2 = {
   }
 };
 
-var midpointed = turf.midpoint(pt1, pt2);
-midpointed.properties['marker-color'] = '#f00';
+var midpoint = turf.midpoint(pt1, pt2);
 
-
-var result = {
-  "type": "FeatureCollection",
-  "features": [pt1, pt2, midpointed]
-};
-
-//=result
+//addToMap
+midpoint.properties['marker-color'] = '#f00';
+var addToMap = [pt1, pt2, midpoint];
 ```
 
 Returns **[Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;[Point](http://geojson.org/geojson-spec.html#point)>** a point midway between `pt1` and `pt2`
