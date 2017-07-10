@@ -24,7 +24,7 @@ var collectionOf = invariant.collectionOf;
  * turf.featureEach(points, function(point) {
  *     point.properties.solRad = Math.random() * 50;
  * });
- * var grid = interpolate(points, 100, 'solRad', 'miles');
+ * var grid = turf.interpolate(points, 100, 'solRad', 'miles');
  *
  * //addToMap
  * var addToMap = grid
