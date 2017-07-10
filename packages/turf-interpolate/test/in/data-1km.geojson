@@ -2,7 +2,7 @@
   "type": "FeatureCollection",
   "properties": {
     "property": "value",
-    "outputType": "squares",
+    "gridType": "square",
     "weight": 0.5,
     "cellSize": 1
   },

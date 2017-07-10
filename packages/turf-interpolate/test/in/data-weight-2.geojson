@@ -3,8 +3,7 @@
   "properties": {
     "property": "value",
     "weight": 2,
-    "outputType": "squares",
-    "outputType": "squares",
+    "gridType": "square",
     "cellSize": 1,
     "units": "miles"
   },

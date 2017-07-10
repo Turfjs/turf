@@ -8,13 +8,15 @@ var squareGrid = require('@turf/square-grid');
 var featureEach = meta.featureEach;
 var collectionOf = invariant.collectionOf;
 
+var gridTypes = ['square', 'point'];
+
 /**
  * Takes a set of points and estimates their 'property' values on a grid using the [Inverse Distance Weighting (IDW) method](https://en.wikipedia.org/wiki/Inverse_distance_weighting).
  *
  * @name interpolate
  * @param {FeatureCollection<Point>} points with known value
  * @param {number} cellSize the distance across each grid point
- * @param {string} outputType defines if the output will be a `squareGrid` (outputType='squares') or a `pointGrid` (outputType='points').
+ * @param {string} [gridType='square'] defines the output format based on a Grid Type (options: 'square' | 'point')
  * @param {string} [property='elevation'] the property name in `points` from which z-values will be pulled, zValue fallbacks to 3rd coordinate if no property exists.
  * @param {string} [units=kilometers] used in calculating cellSize, can be degrees, radians, miles, or kilometers
  * @param {number} [weight=1] exponent regulating the distance-decay weighting
@@ -32,13 +34,13 @@ var collectionOf = invariant.collectionOf;
  * //addToMap
  * var addToMap = grid
  */
-module.exports = function (points, cellSize, outputType, property, units, weight) {
+module.exports = function (points, cellSize, gridType, property, units, weight) {
     // validation
     if (!points) throw new Error('points is required');
     collectionOf(points, 'Point', 'input must contain Points');
     if (!cellSize) throw new Error('cellSize is required');
-    if (!outputType) throw new Error('outputType is required');
-    if (outputType !== 'points' && outputType !== 'squares') throw new Error('invalid outputType');
+    if (!gridType) throw new Error('gridType is required');
+    if (gridTypes.indexOf(gridType) === -1) throw new Error('invalid gridType');
     if (weight !== undefined && typeof weight !== 'number') throw new Error('weight must be a number');
 
     // default values
@@ -46,14 +48,14 @@ module.exports = function (points, cellSize, outputType, property, units, weight
     weight = weight || 1;
 
     var box = bbox(points);
-    var grid = (outputType === 'points') ? poinGrid(box, cellSize, units, true) : squareGrid(box, cellSize, units);
+    var grid = (gridType === 'point') ? poinGrid(box, cellSize, units, true) : squareGrid(box, cellSize, units);
 
     featureEach(grid, function (gridFeature) {
         var zw = 0;
         var sw = 0;
         // calculate the distance from each input point to the grid points
         featureEach(points, function (point) {
-            var gridPoint = (outputType === 'points') ? gridFeature : centroid(gridFeature);
+            var gridPoint = (gridType === 'point') ? gridFeature : centroid(gridFeature);
             var d = distance(gridPoint, point, units);
             var zValue;
             // property has priority for zValue, fallbacks to 3rd coordinate from geometry

@@ -2,7 +2,7 @@
   "type": "FeatureCollection",
   "properties": {
     "cellSize": 5,
-    "outputType": "points"
+    "gridType": "point"
   },
   "features": [
     {

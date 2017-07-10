@@ -24,11 +24,11 @@ const fixtures = fs.readdirSync(directories.in).map(filename => {
 
 test('turf-interpolate', t => {
     for (const {filename, name, geojson}  of fixtures) {
-        let {property, cellSize, outputType, units, weight} = geojson.properties;
+        let {property, cellSize, gridType, units, weight} = geojson.properties;
         property = property || 'elevation';
 
         // Truncate coordinates & elevation (property) to 6 precision
-        let grid = truncate(interpolate(geojson, cellSize, outputType, property, units, weight));
+        let grid = truncate(interpolate(geojson, cellSize, gridType, property, units, weight));
         propEach(grid, props => { props[property] = round(props[property]); });
         const result = colorize(grid, property);
 
@@ -45,34 +45,34 @@ test('turf-interpolate -- throws errors', t => {
     const property = 'elevation';
     const weight = 0.5;
     const units = 'miles';
-    const outputType = 'points';
+    const gridType = 'point';
     const points = featureCollection([
         point([1, 2], {elevation: 200}),
         point([2, 1], {elevation: 300}),
         point([1.5, 1.5], {elevation: 400})
     ]);
 
-    t.assert(interpolate(points, cellSize, outputType, undefined, units, weight).features.length);
-    t.throws(() => interpolate(points, undefined, outputType), /cellSize is required/);
-    t.throws(() => interpolate(undefined, cellSize, outputType), /points is required/);
-    t.throws(() => interpolate(points, cellSize, undefined), /outputType is required/);
-    t.throws(() => interpolate(points, cellSize, 'foo', property, units), 'invalid outputType');
-    t.throws(() => interpolate(points, cellSize, outputType, property, 'foo'), 'invalid units');
-    t.throws(() => interpolate(points, cellSize, outputType, property, units, 'foo'), /weight must be a number/);
-    t.throws(() => interpolate(points, cellSize, outputType, 'property'), /zValue is missing/);
-    t.throws(() => interpolate(points, cellSize, outputType, property, units, 'foo'), /weight must be a number/);
+    t.assert(interpolate(points, cellSize, gridType, undefined, units, weight).features.length);
+    t.throws(() => interpolate(points, undefined, gridType), /cellSize is required/);
+    t.throws(() => interpolate(undefined, cellSize, gridType), /points is required/);
+    t.throws(() => interpolate(points, cellSize, undefined), /gridType is required/);
+    t.throws(() => interpolate(points, cellSize, 'foo', property, units), /invalid gridType/);
+    t.throws(() => interpolate(points, cellSize, gridType, property, 'foo'), 'invalid units');
+    t.throws(() => interpolate(points, cellSize, gridType, property, units, 'foo'), /weight must be a number/);
+    t.throws(() => interpolate(points, cellSize, gridType, 'foo'), /zValue is missing/);
+    t.throws(() => interpolate(points, cellSize, gridType, property, units, 'foo'), /weight must be a number/);
     t.end();
 });
 
 test('turf-interpolate -- zValue from 3rd coordinate', t => {
     const cellSize = 1;
-    const outputType = 'points';
+    const gridType = 'point';
     const points = featureCollection([
         point([1, 2, 200]),
         point([2, 1, 300]),
         point([1.5, 1.5, 400])
     ]);
-    t.assert(interpolate(points, cellSize, outputType).features.length);
+    t.assert(interpolate(points, cellSize, gridType).features.length);
     t.end();
 });
 

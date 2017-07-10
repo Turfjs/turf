@@ -3,7 +3,7 @@
 	"properties": {
 		"cellSize": 1,
 		"property": "pressure",
-		"outputType": "points",
+		"gridType": "point",
 		"weight": 0.5,
 		"units": "miles"
 	},
