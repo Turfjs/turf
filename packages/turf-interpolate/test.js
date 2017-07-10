@@ -1,11 +1,12 @@
-const test = require('tape');
 const fs = require('fs');
+const test = require('tape');
 const path = require('path');
 const load = require('load-json-file');
 const write = require('write-json-file');
-const round = require('@turf/helpers').round;
-const featureEach = require('@turf/meta').featureEach;
+const {round} = require('@turf/helpers');
+const truncate = require('@turf/truncate');
 const chromatism = require('chromatism');
+const {featureEach} = require('@turf/meta');
 const interpolate = require('./');
 
 const directories = {
@@ -26,10 +27,10 @@ test('turf-interpolate', t => {
         const {property, cellSize, units, weight} = geojson.properties;
 
         const grid = interpolate(geojson, cellSize, property, units, weight);
-        const result = colorize(grid, property);
+        const result = colorize(truncate(grid), property);
 
         if (process.env.REGEN) write.sync(directories.out + filename, result);
-            t.deepEquals(grid, load.sync(directories.out + filename), name);
+        t.deepEquals(result, load.sync(directories.out + filename), name);
     }
     t.end();
 });
@@ -37,7 +38,7 @@ test('turf-interpolate', t => {
 
 // style result
 function colorize(grid, property) {
-    property = property || 'elevation'
+    property = property || 'elevation';
     let max = -Infinity;
     let min = Infinity;
     featureEach(grid, function (point) {

@@ -43,6 +43,12 @@
     "@turf/inside" "^4.5.2"
     "@turf/invariant" "^4.5.2"
 
+"@turf/truncate@^4.5.2":
+  version "4.5.2"
+  resolved "https://registry.yarnpkg.com/@turf/truncate/-/truncate-4.5.2.tgz#8080c4966854478770345a411b2ed737ad25ebf3"
+  dependencies:
+    "@turf/meta" "^4.5.2"
+
 balanced-match@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/balanced-match/-/balanced-match-1.0.0.tgz#89b4d199ab2bee49de164ea02b89ce462d71b767"

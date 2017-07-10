@@ -31,19 +31,19 @@
   },
   "homepage": "https://github.com/Turfjs/turf",
   "devDependencies": {
-    "@turf/helpers": "^4.5.2",
+    "@turf/truncate": "^4.5.2",
     "benchmark": "^2.1.4",
-    "load-json-file": "^2.0.0",
     "chromatism": "2.6.0",
+    "load-json-file": "^2.0.0",
     "tape": "^4.6.3",
     "write-json-file": "^2.0.0"
   },
   "dependencies": {
-    "@turf/point-grid": "^4.5.2",
-    "@turf/distance": "^4.5.2",
-    "@turf/invariant": "^4.5.2",
     "@turf/bbox": "^4.5.2",
-    "@turf/meta": "^4.5.2"
+    "@turf/distance": "^4.5.2",
+    "@turf/helpers": "^4.5.2",
+    "@turf/invariant": "^4.5.2",
+    "@turf/meta": "^4.5.2",
+    "@turf/point-grid": "^4.5.2"
   }
 }
-
