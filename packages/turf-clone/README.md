@@ -2,12 +2,14 @@
 
 # clone
 
-Returns a cloned copy of the passed Object. By default it duplicates only the [standard GeoJSON fields](https://tools.ietf.org/html/rfc7946#section-3) of the object; if `cloneAll` is set to `true` all fields of the Object, thus including ['Foreign Members'](https://tools.ietf.org/html/rfc7946#section-6), will be cloned (3-20x slower).
+Returns a cloned copy of the passed GeoJSON Object.
+By default it duplicates only the standard GeoJSON fields of the object; if `cloneAll` is set to `true` all
+fields of the Object, thus including 'Foreign Members', will be cloned (3-20x slower).
 
 **Parameters**
 
 -   `geojson` **[GeoJSON](http://geojson.org/geojson-spec.html#geojson-objects)** GeoJSON Object
--   `cloneAll` **\[[Boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)]** clones entire GeoJSON object (optional, default `false`)
+-   `cloneAll` **\[[Boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)]** clones entire GeoJSON object, using JSON.parse(JSON.stringify(geojson)) (optional, default `false`)
 
 **Examples**
 

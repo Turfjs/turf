@@ -12,7 +12,7 @@ var collectionOf = invariant.collectionOf;
  * @name interpolate
  * @param {FeatureCollection<Point>} points with known value
  * @param {number} cellSize the distance across each grid point
- * @param {string} [property='elevation'] the property name in `points` from which z-values will be pulled
+ * @param {string} [property='elevation'] the property name in `points` from which z-values will be pulled, zValue fallbacks to 3rd coordinate if no property exists.
  * @param {string} [units=kilometers] used in calculating cellSize, can be degrees, radians, miles, or kilometers
  * @param {number} [weight=1] exponent regulating the distance-decay weighting
  * @returns {FeatureCollection<Point>} grid of points with 'property'
