@@ -8,6 +8,13 @@
   dependencies:
     "@turf/meta" "^4.5.2"
 
+"@turf/centroid@^4.5.2":
+  version "4.5.2"
+  resolved "https://registry.yarnpkg.com/@turf/centroid/-/centroid-4.5.2.tgz#3637ee131d6d984e627cbb79213ab63dd0bd6c14"
+  dependencies:
+    "@turf/helpers" "^4.5.2"
+    "@turf/meta" "^4.5.2"
+
 "@turf/distance@^4.5.2":
   version "4.5.2"
   resolved "https://registry.yarnpkg.com/@turf/distance/-/distance-4.5.2.tgz#afc352c44a86e6e1ee69899321992ab941901a8a"
@@ -42,6 +49,14 @@
     "@turf/helpers" "^4.5.2"
     "@turf/inside" "^4.5.2"
     "@turf/invariant" "^4.5.2"
+
+"@turf/square-grid@^4.5.2":
+  version "4.5.2"
+  resolved "https://registry.yarnpkg.com/@turf/square-grid/-/square-grid-4.5.2.tgz#9647c01933a021bafc5851ce4bbf92864d2690e1"
+  dependencies:
+    "@turf/bbox" "^4.5.2"
+    "@turf/distance" "^4.5.2"
+    "@turf/helpers" "^4.5.2"
 
 "@turf/truncate@^4.5.2":
   version "4.5.2"

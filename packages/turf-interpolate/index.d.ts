@@ -8,6 +8,7 @@ import {Units, Points} from '@turf/helpers';
 declare function interpolate(
     points: Points,
     cellSize: number,
+    outputType: string,
     property?: string,
     units?: Units,
     weight?: number): Points;

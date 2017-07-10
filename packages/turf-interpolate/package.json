@@ -43,6 +43,8 @@
     "@turf/distance": "^4.5.2",
     "@turf/helpers": "^4.5.2",
     "@turf/invariant": "^4.5.2",
+    "@turf/centroid": "^4.5.2",
+    "@turf/square-grid": "^4.5.2",
     "@turf/meta": "^4.5.2",
     "@turf/point-grid": "^4.5.2"
   }

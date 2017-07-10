@@ -1,7 +1,8 @@
 {
   "type": "FeatureCollection",
   "properties": {
-    "cellSize": 5
+    "cellSize": 5,
+    "outputType": "points"
   },
   "features": [
     {

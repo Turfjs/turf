@@ -24,11 +24,11 @@ const fixtures = fs.readdirSync(directories.in).map(filename => {
 
 test('turf-interpolate', t => {
     for (const {filename, name, geojson}  of fixtures) {
-        let {property, cellSize, units, weight} = geojson.properties;
+        let {property, cellSize, outputType, units, weight} = geojson.properties;
         property = property || 'elevation';
 
         // Truncate coordinates & elevation (property) to 6 precision
-        let grid = truncate(interpolate(geojson, cellSize, property, units, weight));
+        let grid = truncate(interpolate(geojson, cellSize, outputType, property, units, weight));
         propEach(grid, props => { props[property] = round(props[property]); });
         const result = colorize(grid, property);
 
@@ -45,30 +45,34 @@ test('turf-interpolate -- throws errors', t => {
     const property = 'elevation';
     const weight = 0.5;
     const units = 'miles';
+    const outputType = 'points';
     const points = featureCollection([
         point([1, 2], {elevation: 200}),
         point([2, 1], {elevation: 300}),
         point([1.5, 1.5], {elevation: 400})
     ]);
 
-    t.assert(interpolate(points, cellSize, undefined, units, weight).features.length);
-    t.throws(() => interpolate(points, undefined), /cellSize is required/);
-    t.throws(() => interpolate(undefined, cellSize), /points is required/);
-    t.throws(() => interpolate(points, cellSize, property, 'foo'), 'invalid units');
-    t.throws(() => interpolate(points, cellSize, property, units, 'foo'), /weight must be a number/);
-    t.throws(() => interpolate(points, cellSize, 'property'), /zValue is missing/);
-    t.throws(() => interpolate(points, cellSize, property, units, 'foo'), /weight must be a number/);
+    t.assert(interpolate(points, cellSize, outputType, undefined, units, weight).features.length);
+    t.throws(() => interpolate(points, undefined, outputType), /cellSize is required/);
+    t.throws(() => interpolate(undefined, cellSize, outputType), /points is required/);
+    t.throws(() => interpolate(points, cellSize, undefined), /outputType is required/);
+    t.throws(() => interpolate(points, cellSize, 'foo', property, units), 'invalid outputType');
+    t.throws(() => interpolate(points, cellSize, outputType, property, 'foo'), 'invalid units');
+    t.throws(() => interpolate(points, cellSize, outputType, property, units, 'foo'), /weight must be a number/);
+    t.throws(() => interpolate(points, cellSize, outputType, 'property'), /zValue is missing/);
+    t.throws(() => interpolate(points, cellSize, outputType, property, units, 'foo'), /weight must be a number/);
     t.end();
 });
 
 test('turf-interpolate -- zValue from 3rd coordinate', t => {
     const cellSize = 1;
+    const outputType = 'points';
     const points = featureCollection([
         point([1, 2, 200]),
         point([2, 1, 300]),
         point([1.5, 1.5, 400])
     ]);
-    t.assert(interpolate(points, cellSize).features.length);
+    t.assert(interpolate(points, cellSize, outputType).features.length);
     t.end();
 });
 
@@ -77,18 +81,24 @@ function colorize(grid, property) {
     property = property || 'elevation';
     let max = -Infinity;
     let min = Infinity;
-    featureEach(grid, function (point) {
-        const value = point.properties[property];
+    featureEach(grid, function (feature) {
+        const value = feature.properties[property];
         if (value > max) max = value;
         if (value < min) min = value;
     });
-    const delta = (max - min) * 1.1; // extend range to enhance color shade
+    const delta = (max - min);
+    const extended = delta * 1.25; // extend range to enhance color shade, limiting brightness variation to -/+40%
 
-    featureEach(grid, function (point) {
-        const value = point.properties[property];
-        const percent = round((value - min) / delta * 100);
-        const color = chromatism.brightness(percent, '#002c56').hex;
-        point.properties['marker-color'] = color;
+    featureEach(grid, function (feature) {
+        const value = feature.properties[property];
+        const percent = round((value - min - delta / 2) / extended * 100);
+        const color = chromatism.brightness(-percent, '#0086FF').hex;
+        if (feature.geometry.type === 'Point') feature.properties['marker-color'] = color;
+        else {
+            feature.properties['stroke'] = color;
+            feature.properties['fill'] = color;
+            feature.properties['fill-opacity'] = 0.85;
+        }
     });
 
     return grid;

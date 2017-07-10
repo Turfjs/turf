@@ -2,20 +2,23 @@ var meta = require('@turf/meta');
 var bbox = require('@turf/bbox');
 var poinGrid = require('@turf/point-grid');
 var distance = require('@turf/distance');
+var centroid = require('@turf/centroid');
 var invariant = require('@turf/invariant');
+var squareGrid = require('@turf/square-grid');
 var featureEach = meta.featureEach;
 var collectionOf = invariant.collectionOf;
 
 /**
- * Takes a set of points and estimates their 'property' values on a grid using the Inverse Distance Weighting (IDW) method.](https://en.wikipedia.org/wiki/Inverse_distance_weighting.
+ * Takes a set of points and estimates their 'property' values on a grid using the [Inverse Distance Weighting (IDW) method](https://en.wikipedia.org/wiki/Inverse_distance_weighting).
  *
  * @name interpolate
  * @param {FeatureCollection<Point>} points with known value
  * @param {number} cellSize the distance across each grid point
+ * @param {string} outputType defines if the output will be a `squareGrid` (outputType='squares') or a `pointGrid` (outputType='points').
  * @param {string} [property='elevation'] the property name in `points` from which z-values will be pulled, zValue fallbacks to 3rd coordinate if no property exists.
  * @param {string} [units=kilometers] used in calculating cellSize, can be degrees, radians, miles, or kilometers
  * @param {number} [weight=1] exponent regulating the distance-decay weighting
- * @returns {FeatureCollection<Point>} grid of points with 'property'
+ * @returns {FeatureCollection<Point|Polygon>} grid of points or polygons with interpolated 'property'
  * @example
  * var points = turf.random('points', 30, {
  *     bbox: [50, 30, 70, 50]
@@ -24,30 +27,33 @@ var collectionOf = invariant.collectionOf;
  * turf.featureEach(points, function(point) {
  *     point.properties.solRad = Math.random() * 50;
  * });
- * var grid = turf.interpolate(points, 100, 'solRad', 'miles');
+ * var grid = turf.interpolate(points, 100, 'points', 'solRad', 'miles');
  *
  * //addToMap
  * var addToMap = grid
  */
-module.exports = function (points, cellSize, property, units, weight) {
+module.exports = function (points, cellSize, outputType, property, units, weight) {
     // validation
     if (!points) throw new Error('points is required');
     collectionOf(points, 'Point', 'input must contain Points');
     if (!cellSize) throw new Error('cellSize is required');
+    if (!outputType) throw new Error('outputType is required');
+    if (outputType !== 'points' && outputType !== 'squares') throw new Error('invalid outputType');
     if (weight !== undefined && typeof weight !== 'number') throw new Error('weight must be a number');
 
     // default values
     property = property || 'elevation';
     weight = weight || 1;
 
-    // create the point grid
-    var grid = poinGrid(bbox(points), cellSize, units, true);
+    var box = bbox(points);
+    var grid = (outputType === 'points') ? poinGrid(box, cellSize, units, true) : squareGrid(box, cellSize, units);
 
-    featureEach(grid, function (gridPoint) {
+    featureEach(grid, function (gridFeature) {
         var zw = 0;
         var sw = 0;
         // calculate the distance from each input point to the grid points
         featureEach(points, function (point) {
+            var gridPoint = (outputType === 'points') ? gridFeature : centroid(gridFeature);
             var d = distance(gridPoint, point, units);
             var zValue;
             // property has priority for zValue, fallbacks to 3rd coordinate from geometry
@@ -60,7 +66,7 @@ module.exports = function (points, cellSize, property, units, weight) {
             zw += w * zValue;
         });
         // write interpolated value for each grid point
-        gridPoint.properties[property] = zw / sw;
+        gridFeature.properties[property] = zw / sw;
     });
 
     return grid;

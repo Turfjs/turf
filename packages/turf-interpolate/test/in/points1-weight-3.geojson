@@ -4,7 +4,7 @@
 		"cellSize": 1,
 		"property": "pressure",
 		"outputType": "points",
-		"weight": 0.5,
+		"weight": 3,
 		"units": "miles"
 	},
 	"features": [
