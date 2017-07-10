@@ -6,9 +6,15 @@
   version "0.0.31"
   resolved "https://registry.yarnpkg.com/@types/geojson/-/geojson-0.0.31.tgz#ad8d4cb76f7bf13c59babc5bed77f2dd2c4175bc"
 
-"@types/node@^6.0.56":
+"@types/node@*", "@types/node@^6.0.56":
   version "6.0.73"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-6.0.73.tgz#85dc4bb6f125377c75ddd2519a1eeb63f0a4ed70"
+
+"@types/tape@^4.2.30":
+  version "4.2.30"
+  resolved "https://registry.yarnpkg.com/@types/tape/-/tape-4.2.30.tgz#3c1917c4dfd6f27271b9922772513515bc6c46b4"
+  dependencies:
+    "@types/node" "*"
 
 JSONStream@^1.0.3:
   version "1.3.1"

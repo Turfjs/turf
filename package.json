@@ -47,6 +47,7 @@
   "devDependencies": {
     "@types/geojson": "0.0.31",
     "@types/node": "^6.0.56",
+    "@types/tape": "^4.2.30",
     "browserify": "^13.0.0",
     "camelcase": "^4.1.0",
     "d3-queue": "3.0.1",
