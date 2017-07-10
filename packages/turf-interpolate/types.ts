@@ -1,11 +1,11 @@
 import * as interpolate from './';
-import {point, featureCollection, Points} from '@turf/helpers';
+import {point, featureCollection} from '@turf/helpers';
 
 const cellSize = 1;
 const property = 'pressure';
 const weight = 0.5;
 const units = 'miles';
-const points: Points = featureCollection([
+const points = featureCollection([
   point([1, 2]),
   point([12, 13]),
   point([23, 22]),

@@ -42,22 +42,35 @@ test('turf-interpolate', t => {
 
 test('turf-interpolate -- throws errors', t => {
     const cellSize = 1;
-    const property = 'pressure';
+    const property = 'elevation';
     const weight = 0.5;
     const units = 'miles';
     const points = featureCollection([
-        point([1, 2], {pressure: 2}),
-        point([2, 1], {pressure: 3}),
-        point([1.5, 1.5], {pressure: 4})
+        point([1, 2], {elevation: 200}),
+        point([2, 1], {elevation: 300}),
+        point([1.5, 1.5], {elevation: 400})
     ]);
-    interpolate(points, cellSize, property, units, weight);
-    t.throws(() => interpolate(points, undefined, property, units, weight), /cellSize is required/);
-    t.throws(() => interpolate(undefined, cellSize, property, units, weight), /points is required/);
-    t.throws(() => interpolate(points, cellSize, property, 'foo', weight), 'invalid units');
+
+    t.assert(interpolate(points, cellSize, undefined, units, weight).features.length);
+    t.throws(() => interpolate(points, undefined), /cellSize is required/);
+    t.throws(() => interpolate(undefined, cellSize), /points is required/);
+    t.throws(() => interpolate(points, cellSize, property, 'foo'), 'invalid units');
+    t.throws(() => interpolate(points, cellSize, property, units, 'foo'), /weight must be a number/);
+    t.throws(() => interpolate(points, cellSize, 'property'), /zValue is missing/);
     t.throws(() => interpolate(points, cellSize, property, units, 'foo'), /weight must be a number/);
     t.end();
 });
 
+test('turf-interpolate -- zValue from 3rd coordinate', t => {
+    const cellSize = 1;
+    const points = featureCollection([
+        point([1, 2, 200]),
+        point([2, 1, 300]),
+        point([1.5, 1.5, 400])
+    ]);
+    t.assert(interpolate(points, cellSize).features.length);
+    t.end();
+});
 
 // style result
 function colorize(grid, property) {

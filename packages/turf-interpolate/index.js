@@ -49,8 +49,11 @@ module.exports = function (points, cellSize, property, units, weight) {
         // calculate the distance from each input point to the grid points
         featureEach(points, function (point) {
             var d = distance(gridPoint, point, units);
-            var zValue = point.properties[property];
-            if (zValue === undefined) throw new Error('Specified property is missing');
+            var zValue;
+            // property has priority for zValue, fallbacks to 3rd coordinate from geometry
+            if (property !== undefined) zValue = point.properties[property];
+            if (zValue === undefined) zValue = point.geometry.coordinates[2];
+            if (zValue === undefined) throw new Error('zValue is missing');
             if (d === 0) zw = zValue;
             var w = 1.0 / Math.pow(d, weight);
             sw += w;
