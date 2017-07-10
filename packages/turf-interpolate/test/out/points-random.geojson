@@ -4,7 +4,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 101.79650592737597,
+				"elevation": 102,
 				"marker-color": "#42a2ff"
 			},
 			"geometry": {
@@ -18,7 +18,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 98.980813736038,
+				"elevation": 99,
 				"marker-color": "#379dff"
 			},
 			"geometry": {
@@ -32,7 +32,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 95.0597382380387,
+				"elevation": 95,
 				"marker-color": "#2895ff"
 			},
 			"geometry": {
@@ -46,7 +46,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 90.932851376768,
+				"elevation": 91,
 				"marker-color": "#148bff"
 			},
 			"geometry": {
@@ -60,7 +60,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 91.54379345511965,
+				"elevation": 92,
 				"marker-color": "#198eff"
 			},
 			"geometry": {
@@ -74,7 +74,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 97.00037309572478,
+				"elevation": 97,
 				"marker-color": "#2d98ff"
 			},
 			"geometry": {
@@ -88,7 +88,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 103.041650218553,
+				"elevation": 103,
 				"marker-color": "#47a4ff"
 			},
 			"geometry": {
@@ -102,7 +102,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 107.9128872468414,
+				"elevation": 108,
 				"marker-color": "#5baeff"
 			},
 			"geometry": {
@@ -116,7 +116,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 111.7890530330926,
+				"elevation": 112,
 				"marker-color": "#6ab6ff"
 			},
 			"geometry": {
@@ -130,7 +130,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 115.04329325064332,
+				"elevation": 115,
 				"marker-color": "#7abdff"
 			},
 			"geometry": {
@@ -144,7 +144,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 117.90904670692906,
+				"elevation": 118,
 				"marker-color": "#84c2ff"
 			},
 			"geometry": {
@@ -158,7 +158,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 120.25373932626219,
+				"elevation": 120,
 				"marker-color": "#8ec7ff"
 			},
 			"geometry": {
@@ -172,8 +172,8 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 121.37048994744433,
-				"marker-color": "#93caff"
+				"elevation": 121,
+				"marker-color": "#8ec7ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -186,7 +186,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 120.75158828891252,
+				"elevation": 121,
 				"marker-color": "#8ec7ff"
 			},
 			"geometry": {
@@ -200,7 +200,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 119.12813271268537,
+				"elevation": 119,
 				"marker-color": "#89c5ff"
 			},
 			"geometry": {
@@ -214,7 +214,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 117.58302311879818,
+				"elevation": 118,
 				"marker-color": "#84c2ff"
 			},
 			"geometry": {
@@ -228,7 +228,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 116.87284154854024,
+				"elevation": 117,
 				"marker-color": "#7fc0ff"
 			},
 			"geometry": {
@@ -242,7 +242,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 117.8184842302514,
+				"elevation": 118,
 				"marker-color": "#84c2ff"
 			},
 			"geometry": {
@@ -256,7 +256,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 121.98294504839212,
+				"elevation": 122,
 				"marker-color": "#93caff"
 			},
 			"geometry": {
@@ -270,7 +270,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 128.9788866836776,
+				"elevation": 129,
 				"marker-color": "#b2d9ff"
 			},
 			"geometry": {
@@ -284,7 +284,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 102.03038223690515,
+				"elevation": 102,
 				"marker-color": "#42a2ff"
 			},
 			"geometry": {
@@ -298,7 +298,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 98.64808450516513,
+				"elevation": 99,
 				"marker-color": "#379dff"
 			},
 			"geometry": {
@@ -312,7 +312,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 92.89360525092937,
+				"elevation": 93,
 				"marker-color": "#1e90ff"
 			},
 			"geometry": {
@@ -326,7 +326,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 81.3901958028132,
+				"elevation": 81,
 				"marker-color": "#0079ef"
 			},
 			"geometry": {
@@ -340,8 +340,8 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 77.4662024234985,
-				"marker-color": "#0072e0"
+				"elevation": 77,
+				"marker-color": "#006fdb"
 			},
 			"geometry": {
 				"type": "Point",
@@ -354,7 +354,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 93.97945442794763,
+				"elevation": 94,
 				"marker-color": "#2393ff"
 			},
 			"geometry": {
@@ -368,7 +368,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 103.1865466914265,
+				"elevation": 103,
 				"marker-color": "#47a4ff"
 			},
 			"geometry": {
@@ -382,7 +382,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 109.08398856169974,
+				"elevation": 109,
 				"marker-color": "#60b1ff"
 			},
 			"geometry": {
@@ -396,7 +396,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 113.44708507627973,
+				"elevation": 113,
 				"marker-color": "#70b8ff"
 			},
 			"geometry": {
@@ -410,7 +410,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 117.18224535639037,
+				"elevation": 117,
 				"marker-color": "#7fc0ff"
 			},
 			"geometry": {
@@ -424,7 +424,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 120.95404739407414,
+				"elevation": 121,
 				"marker-color": "#8ec7ff"
 			},
 			"geometry": {
@@ -438,7 +438,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 125.01944695509493,
+				"elevation": 125,
 				"marker-color": "#a3d1ff"
 			},
 			"geometry": {
@@ -452,8 +452,8 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 127.36189952716104,
-				"marker-color": "#add6ff"
+				"elevation": 127,
+				"marker-color": "#a8d4ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -466,7 +466,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 125.07865195156417,
+				"elevation": 125,
 				"marker-color": "#a3d1ff"
 			},
 			"geometry": {
@@ -480,8 +480,8 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 121.21755010408738,
-				"marker-color": "#93caff"
+				"elevation": 121,
+				"marker-color": "#8ec7ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -494,7 +494,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 118.20602606433249,
+				"elevation": 118,
 				"marker-color": "#84c2ff"
 			},
 			"geometry": {
@@ -508,7 +508,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 116.57466057375451,
+				"elevation": 117,
 				"marker-color": "#7fc0ff"
 			},
 			"geometry": {
@@ -522,7 +522,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 117.03099842737541,
+				"elevation": 117,
 				"marker-color": "#7fc0ff"
 			},
 			"geometry": {
@@ -536,7 +536,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 121.90649891351966,
+				"elevation": 122,
 				"marker-color": "#93caff"
 			},
 			"geometry": {
@@ -550,7 +550,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 137.03319147959502,
+				"elevation": 137,
 				"marker-color": "#d0e8ff"
 			},
 			"geometry": {
@@ -564,7 +564,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 103.13134497470102,
+				"elevation": 103,
 				"marker-color": "#47a4ff"
 			},
 			"geometry": {
@@ -578,7 +578,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 99.88804712399431,
+				"elevation": 100,
 				"marker-color": "#3d9fff"
 			},
 			"geometry": {
@@ -592,7 +592,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 94.28629387286517,
+				"elevation": 94,
 				"marker-color": "#2393ff"
 			},
 			"geometry": {
@@ -606,7 +606,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 81.65610660749897,
+				"elevation": 82,
 				"marker-color": "#0079ef"
 			},
 			"geometry": {
@@ -620,7 +620,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 77.80680897382261,
+				"elevation": 78,
 				"marker-color": "#0072e0"
 			},
 			"geometry": {
@@ -634,8 +634,8 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 96.26535545575344,
-				"marker-color": "#2d98ff"
+				"elevation": 96,
+				"marker-color": "#2895ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -648,7 +648,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 105.64595263869984,
+				"elevation": 106,
 				"marker-color": "#51a9ff"
 			},
 			"geometry": {
@@ -662,8 +662,8 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 111.44655527277818,
-				"marker-color": "#6ab6ff"
+				"elevation": 111,
+				"marker-color": "#65b3ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -676,7 +676,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 115.71389845001708,
+				"elevation": 116,
 				"marker-color": "#7abdff"
 			},
 			"geometry": {
@@ -690,8 +690,8 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 119.52877094839135,
-				"marker-color": "#89c5ff"
+				"elevation": 120,
+				"marker-color": "#8ec7ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -704,7 +704,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 124.07791009152274,
+				"elevation": 124,
 				"marker-color": "#9dcfff"
 			},
 			"geometry": {
@@ -718,7 +718,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 131.88823847704097,
+				"elevation": 132,
 				"marker-color": "#bcdeff"
 			},
 			"geometry": {
@@ -732,7 +732,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 142.29558978948165,
+				"elevation": 142,
 				"marker-color": "#e5f2ff"
 			},
 			"geometry": {
@@ -746,8 +746,8 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 131.31438325382672,
-				"marker-color": "#bcdeff"
+				"elevation": 131,
+				"marker-color": "#b7dbff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -760,7 +760,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 122.96562097419442,
+				"elevation": 123,
 				"marker-color": "#98ccff"
 			},
 			"geometry": {
@@ -774,7 +774,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 118.15373339754765,
+				"elevation": 118,
 				"marker-color": "#84c2ff"
 			},
 			"geometry": {
@@ -788,7 +788,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 115.24464219593119,
+				"elevation": 115,
 				"marker-color": "#7abdff"
 			},
 			"geometry": {
@@ -802,7 +802,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 114.08309850209716,
+				"elevation": 114,
 				"marker-color": "#75bbff"
 			},
 			"geometry": {
@@ -816,7 +816,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 115.12647315809937,
+				"elevation": 115,
 				"marker-color": "#7abdff"
 			},
 			"geometry": {
@@ -830,7 +830,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 116.84562486592928,
+				"elevation": 117,
 				"marker-color": "#7fc0ff"
 			},
 			"geometry": {
@@ -844,7 +844,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 105.00204003054078,
+				"elevation": 105,
 				"marker-color": "#51a9ff"
 			},
 			"geometry": {
@@ -858,7 +858,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 102.32616322799299,
+				"elevation": 102,
 				"marker-color": "#42a2ff"
 			},
 			"geometry": {
@@ -872,7 +872,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 99.00815975512201,
+				"elevation": 99,
 				"marker-color": "#379dff"
 			},
 			"geometry": {
@@ -886,7 +886,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 96.02567552964067,
+				"elevation": 96,
 				"marker-color": "#2895ff"
 			},
 			"geometry": {
@@ -900,7 +900,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 97.51354270882015,
+				"elevation": 98,
 				"marker-color": "#329aff"
 			},
 			"geometry": {
@@ -914,7 +914,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 104.1936139757621,
+				"elevation": 104,
 				"marker-color": "#4ca7ff"
 			},
 			"geometry": {
@@ -928,7 +928,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 110.46811887712539,
+				"elevation": 110,
 				"marker-color": "#65b3ff"
 			},
 			"geometry": {
@@ -942,7 +942,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 115.01455147725265,
+				"elevation": 115,
 				"marker-color": "#7abdff"
 			},
 			"geometry": {
@@ -956,8 +956,8 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 118.54147844090183,
-				"marker-color": "#84c2ff"
+				"elevation": 119,
+				"marker-color": "#89c5ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -970,7 +970,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 121.80367977213743,
+				"elevation": 122,
 				"marker-color": "#93caff"
 			},
 			"geometry": {
@@ -984,7 +984,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 125.80303653207783,
+				"elevation": 126,
 				"marker-color": "#a3d1ff"
 			},
 			"geometry": {
@@ -998,8 +998,8 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 133.5533969060618,
-				"marker-color": "#c1e1ff"
+				"elevation": 134,
+				"marker-color": "#c6e3ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -1012,7 +1012,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 148.4229786678998,
+				"elevation": 148,
 				"marker-color": "#feffff"
 			},
 			"geometry": {
@@ -1026,7 +1026,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 132.22058672055346,
+				"elevation": 132,
 				"marker-color": "#bcdeff"
 			},
 			"geometry": {
@@ -1040,7 +1040,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 122.71907342688986,
+				"elevation": 123,
 				"marker-color": "#98ccff"
 			},
 			"geometry": {
@@ -1054,7 +1054,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 117.06658938186652,
+				"elevation": 117,
 				"marker-color": "#7fc0ff"
 			},
 			"geometry": {
@@ -1068,7 +1068,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 112.99632368085385,
+				"elevation": 113,
 				"marker-color": "#70b8ff"
 			},
 			"geometry": {
@@ -1082,7 +1082,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 109.92599655708005,
+				"elevation": 110,
 				"marker-color": "#65b3ff"
 			},
 			"geometry": {
@@ -1096,7 +1096,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 107.7133952663544,
+				"elevation": 108,
 				"marker-color": "#5baeff"
 			},
 			"geometry": {
@@ -1110,8 +1110,8 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 106.13082576976011,
-				"marker-color": "#56acff"
+				"elevation": 106,
+				"marker-color": "#51a9ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -1124,7 +1124,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 107.50021611464551,
+				"elevation": 108,
 				"marker-color": "#5baeff"
 			},
 			"geometry": {
@@ -1138,8 +1138,8 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 104.62286589632765,
-				"marker-color": "#4ca7ff"
+				"elevation": 105,
+				"marker-color": "#51a9ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -1152,7 +1152,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 101.85053698749627,
+				"elevation": 102,
 				"marker-color": "#42a2ff"
 			},
 			"geometry": {
@@ -1166,7 +1166,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 101.92072891085354,
+				"elevation": 102,
 				"marker-color": "#42a2ff"
 			},
 			"geometry": {
@@ -1180,8 +1180,8 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 106.13987495138184,
-				"marker-color": "#56acff"
+				"elevation": 106,
+				"marker-color": "#51a9ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -1194,7 +1194,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 112.25482700842997,
+				"elevation": 112,
 				"marker-color": "#6ab6ff"
 			},
 			"geometry": {
@@ -1208,7 +1208,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 116.81870361145947,
+				"elevation": 117,
 				"marker-color": "#7fc0ff"
 			},
 			"geometry": {
@@ -1222,8 +1222,8 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 119.5513078820293,
-				"marker-color": "#89c5ff"
+				"elevation": 120,
+				"marker-color": "#8ec7ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -1236,7 +1236,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 121.90431728908882,
+				"elevation": 122,
 				"marker-color": "#93caff"
 			},
 			"geometry": {
@@ -1250,7 +1250,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 124.26783052030542,
+				"elevation": 124,
 				"marker-color": "#9dcfff"
 			},
 			"geometry": {
@@ -1264,7 +1264,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 126.53165283119252,
+				"elevation": 127,
 				"marker-color": "#a8d4ff"
 			},
 			"geometry": {
@@ -1278,7 +1278,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 129.0368004062231,
+				"elevation": 129,
 				"marker-color": "#b2d9ff"
 			},
 			"geometry": {
@@ -1292,7 +1292,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 130.24758211767056,
+				"elevation": 130,
 				"marker-color": "#b7dbff"
 			},
 			"geometry": {
@@ -1306,8 +1306,8 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 126.24117368948333,
-				"marker-color": "#a8d4ff"
+				"elevation": 126,
+				"marker-color": "#a3d1ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -1320,7 +1320,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 120.40316299550759,
+				"elevation": 120,
 				"marker-color": "#8ec7ff"
 			},
 			"geometry": {
@@ -1334,7 +1334,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 115.0670462757342,
+				"elevation": 115,
 				"marker-color": "#7abdff"
 			},
 			"geometry": {
@@ -1348,7 +1348,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 110.16927634289286,
+				"elevation": 110,
 				"marker-color": "#65b3ff"
 			},
 			"geometry": {
@@ -1362,7 +1362,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 105.27253092024435,
+				"elevation": 105,
 				"marker-color": "#51a9ff"
 			},
 			"geometry": {
@@ -1376,7 +1376,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 99.96669940090516,
+				"elevation": 100,
 				"marker-color": "#3d9fff"
 			},
 			"geometry": {
@@ -1390,7 +1390,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 95.48178455287815,
+				"elevation": 95,
 				"marker-color": "#2895ff"
 			},
 			"geometry": {
@@ -1404,8 +1404,8 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 111.43682641210873,
-				"marker-color": "#6ab6ff"
+				"elevation": 111,
+				"marker-color": "#65b3ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -1418,8 +1418,8 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 106.35181328887849,
-				"marker-color": "#56acff"
+				"elevation": 106,
+				"marker-color": "#51a9ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -1432,7 +1432,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 99.29858072736518,
+				"elevation": 99,
 				"marker-color": "#379dff"
 			},
 			"geometry": {
@@ -1446,7 +1446,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 99.4186737275212,
+				"elevation": 99,
 				"marker-color": "#379dff"
 			},
 			"geometry": {
@@ -1460,7 +1460,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 110.60515071697924,
+				"elevation": 111,
 				"marker-color": "#65b3ff"
 			},
 			"geometry": {
@@ -1474,7 +1474,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 122.71305393870611,
+				"elevation": 123,
 				"marker-color": "#98ccff"
 			},
 			"geometry": {
@@ -1488,7 +1488,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 125.82759007833447,
+				"elevation": 126,
 				"marker-color": "#a3d1ff"
 			},
 			"geometry": {
@@ -1502,8 +1502,8 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 124.73390758844383,
-				"marker-color": "#9dcfff"
+				"elevation": 125,
+				"marker-color": "#a3d1ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -1516,7 +1516,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 125.70164958707498,
+				"elevation": 126,
 				"marker-color": "#a3d1ff"
 			},
 			"geometry": {
@@ -1530,7 +1530,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 127.78744477885013,
+				"elevation": 128,
 				"marker-color": "#add6ff"
 			},
 			"geometry": {
@@ -1544,7 +1544,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 128.68939487665867,
+				"elevation": 129,
 				"marker-color": "#b2d9ff"
 			},
 			"geometry": {
@@ -1558,7 +1558,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 127.87796599977428,
+				"elevation": 128,
 				"marker-color": "#add6ff"
 			},
 			"geometry": {
@@ -1572,7 +1572,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 125.986835335882,
+				"elevation": 126,
 				"marker-color": "#a3d1ff"
 			},
 			"geometry": {
@@ -1586,7 +1586,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 122.54346480207174,
+				"elevation": 123,
 				"marker-color": "#98ccff"
 			},
 			"geometry": {
@@ -1600,7 +1600,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 117.90769782192558,
+				"elevation": 118,
 				"marker-color": "#84c2ff"
 			},
 			"geometry": {
@@ -1614,7 +1614,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 112.78194945173969,
+				"elevation": 113,
 				"marker-color": "#70b8ff"
 			},
 			"geometry": {
@@ -1628,7 +1628,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 107.2878135996566,
+				"elevation": 107,
 				"marker-color": "#56acff"
 			},
 			"geometry": {
@@ -1642,7 +1642,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 100.88129907714462,
+				"elevation": 101,
 				"marker-color": "#3d9fff"
 			},
 			"geometry": {
@@ -1656,7 +1656,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 91.76345479755108,
+				"elevation": 92,
 				"marker-color": "#198eff"
 			},
 			"geometry": {
@@ -1670,7 +1670,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 77.50608953387751,
+				"elevation": 78,
 				"marker-color": "#0072e0"
 			},
 			"geometry": {
@@ -1684,8 +1684,8 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 121.33079581123292,
-				"marker-color": "#93caff"
+				"elevation": 121,
+				"marker-color": "#8ec7ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -1698,7 +1698,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 109.85433463055311,
+				"elevation": 110,
 				"marker-color": "#65b3ff"
 			},
 			"geometry": {
@@ -1712,7 +1712,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 87.86940924684535,
+				"elevation": 88,
 				"marker-color": "#0986ff"
 			},
 			"geometry": {
@@ -1726,7 +1726,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 76.84834619183445,
+				"elevation": 77,
 				"marker-color": "#006fdb"
 			},
 			"geometry": {
@@ -1740,7 +1740,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 113.03729472003087,
+				"elevation": 113,
 				"marker-color": "#70b8ff"
 			},
 			"geometry": {
@@ -1754,7 +1754,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 150.17429739302992,
+				"elevation": 150,
 				"marker-color": "#ffffff"
 			},
 			"geometry": {
@@ -1768,7 +1768,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 139.281105133203,
+				"elevation": 139,
 				"marker-color": "#dbedff"
 			},
 			"geometry": {
@@ -1782,7 +1782,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 128.9275988750947,
+				"elevation": 129,
 				"marker-color": "#b2d9ff"
 			},
 			"geometry": {
@@ -1796,7 +1796,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 129.32739212292677,
+				"elevation": 129,
 				"marker-color": "#b2d9ff"
 			},
 			"geometry": {
@@ -1810,7 +1810,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 133.4515256043353,
+				"elevation": 133,
 				"marker-color": "#c1e1ff"
 			},
 			"geometry": {
@@ -1824,7 +1824,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 134.07088578246137,
+				"elevation": 134,
 				"marker-color": "#c6e3ff"
 			},
 			"geometry": {
@@ -1838,8 +1838,8 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 129.54151690818844,
-				"marker-color": "#b2d9ff"
+				"elevation": 130,
+				"marker-color": "#b7dbff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -1852,7 +1852,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 125.32735373508804,
+				"elevation": 125,
 				"marker-color": "#a3d1ff"
 			},
 			"geometry": {
@@ -1866,7 +1866,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 120.8715091100185,
+				"elevation": 121,
 				"marker-color": "#8ec7ff"
 			},
 			"geometry": {
@@ -1880,7 +1880,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 115.99909548419964,
+				"elevation": 116,
 				"marker-color": "#7abdff"
 			},
 			"geometry": {
@@ -1894,7 +1894,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 110.68351082768535,
+				"elevation": 111,
 				"marker-color": "#65b3ff"
 			},
 			"geometry": {
@@ -1908,8 +1908,8 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 104.8052502975307,
-				"marker-color": "#4ca7ff"
+				"elevation": 105,
+				"marker-color": "#51a9ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -1922,7 +1922,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 97.89643491443849,
+				"elevation": 98,
 				"marker-color": "#329aff"
 			},
 			"geometry": {
@@ -1936,7 +1936,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 88.45616740418188,
+				"elevation": 88,
 				"marker-color": "#0986ff"
 			},
 			"geometry": {
@@ -1950,7 +1950,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 73.66388799829905,
+				"elevation": 74,
 				"marker-color": "#006ad0"
 			},
 			"geometry": {
@@ -1964,7 +1964,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 131.03057904822109,
+				"elevation": 131,
 				"marker-color": "#b7dbff"
 			},
 			"geometry": {
@@ -1978,8 +1978,8 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 114.68935336017377,
-				"marker-color": "#75bbff"
+				"elevation": 115,
+				"marker-color": "#7abdff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -1992,7 +1992,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 99.05756367453162,
+				"elevation": 99,
 				"marker-color": "#379dff"
 			},
 			"geometry": {
@@ -2006,7 +2006,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 96.01857392664262,
+				"elevation": 96,
 				"marker-color": "#2895ff"
 			},
 			"geometry": {
@@ -2020,7 +2020,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 114.31537668357234,
+				"elevation": 114,
 				"marker-color": "#75bbff"
 			},
 			"geometry": {
@@ -2034,7 +2034,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 132.74656767276485,
+				"elevation": 133,
 				"marker-color": "#c1e1ff"
 			},
 			"geometry": {
@@ -2048,7 +2048,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 133.01814627063843,
+				"elevation": 133,
 				"marker-color": "#c1e1ff"
 			},
 			"geometry": {
@@ -2062,7 +2062,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 129.10665810687013,
+				"elevation": 129,
 				"marker-color": "#b2d9ff"
 			},
 			"geometry": {
@@ -2076,7 +2076,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 131.94151125726063,
+				"elevation": 132,
 				"marker-color": "#bcdeff"
 			},
 			"geometry": {
@@ -2090,7 +2090,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 138.2940595831347,
+				"elevation": 138,
 				"marker-color": "#d6ebff"
 			},
 			"geometry": {
@@ -2104,7 +2104,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 139.00323246409417,
+				"elevation": 139,
 				"marker-color": "#dbedff"
 			},
 			"geometry": {
@@ -2118,8 +2118,8 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 132.4346700933512,
-				"marker-color": "#c1e1ff"
+				"elevation": 132,
+				"marker-color": "#bcdeff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -2132,7 +2132,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 125.74739894949366,
+				"elevation": 126,
 				"marker-color": "#a3d1ff"
 			},
 			"geometry": {
@@ -2146,7 +2146,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 119.97409463950787,
+				"elevation": 120,
 				"marker-color": "#8ec7ff"
 			},
 			"geometry": {
@@ -2160,7 +2160,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 114.48530954735267,
+				"elevation": 114,
 				"marker-color": "#75bbff"
 			},
 			"geometry": {
@@ -2174,7 +2174,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 108.81636184859875,
+				"elevation": 109,
 				"marker-color": "#60b1ff"
 			},
 			"geometry": {
@@ -2188,7 +2188,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 102.67105871732787,
+				"elevation": 103,
 				"marker-color": "#47a4ff"
 			},
 			"geometry": {
@@ -2202,7 +2202,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 95.87185986372309,
+				"elevation": 96,
 				"marker-color": "#2895ff"
 			},
 			"geometry": {
@@ -2216,7 +2216,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 88.69631628744311,
+				"elevation": 89,
 				"marker-color": "#0f89ff"
 			},
 			"geometry": {
@@ -2230,7 +2230,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 83.26156646111683,
+				"elevation": 83,
 				"marker-color": "#007cf4"
 			},
 			"geometry": {
@@ -2244,8 +2244,8 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 131.29287003294698,
-				"marker-color": "#bcdeff"
+				"elevation": 131,
+				"marker-color": "#b7dbff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -2258,7 +2258,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 116.5398792272011,
+				"elevation": 117,
 				"marker-color": "#7fc0ff"
 			},
 			"geometry": {
@@ -2272,8 +2272,8 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 109.68111732772502,
-				"marker-color": "#60b1ff"
+				"elevation": 110,
+				"marker-color": "#65b3ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -2286,7 +2286,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 109.46782509549368,
+				"elevation": 109,
 				"marker-color": "#60b1ff"
 			},
 			"geometry": {
@@ -2300,7 +2300,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 115.34974422223144,
+				"elevation": 115,
 				"marker-color": "#7abdff"
 			},
 			"geometry": {
@@ -2314,7 +2314,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 121.71340414483744,
+				"elevation": 122,
 				"marker-color": "#93caff"
 			},
 			"geometry": {
@@ -2328,7 +2328,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 124.32327954030251,
+				"elevation": 124,
 				"marker-color": "#9dcfff"
 			},
 			"geometry": {
@@ -2342,7 +2342,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 126.02792615836267,
+				"elevation": 126,
 				"marker-color": "#a3d1ff"
 			},
 			"geometry": {
@@ -2356,7 +2356,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 132.8193000639489,
+				"elevation": 133,
 				"marker-color": "#c1e1ff"
 			},
 			"geometry": {
@@ -2370,7 +2370,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 153.95859269230291,
+				"elevation": 154,
 				"marker-color": "#ffffff"
 			},
 			"geometry": {
@@ -2384,7 +2384,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 157.8334715198302,
+				"elevation": 158,
 				"marker-color": "#ffffff"
 			},
 			"geometry": {
@@ -2398,7 +2398,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 135.44077439238603,
+				"elevation": 135,
 				"marker-color": "#cbe6ff"
 			},
 			"geometry": {
@@ -2412,7 +2412,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 125.7027672786476,
+				"elevation": 126,
 				"marker-color": "#a3d1ff"
 			},
 			"geometry": {
@@ -2426,7 +2426,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 118.93906074052819,
+				"elevation": 119,
 				"marker-color": "#89c5ff"
 			},
 			"geometry": {
@@ -2440,7 +2440,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 112.99131681911116,
+				"elevation": 113,
 				"marker-color": "#70b8ff"
 			},
 			"geometry": {
@@ -2454,7 +2454,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 107.01871713792465,
+				"elevation": 107,
 				"marker-color": "#56acff"
 			},
 			"geometry": {
@@ -2468,7 +2468,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 100.53858759732007,
+				"elevation": 101,
 				"marker-color": "#3d9fff"
 			},
 			"geometry": {
@@ -2482,7 +2482,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 93.2271774791667,
+				"elevation": 93,
 				"marker-color": "#1e90ff"
 			},
 			"geometry": {
@@ -2496,7 +2496,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 85.27587785210262,
+				"elevation": 85,
 				"marker-color": "#0081fe"
 			},
 			"geometry": {
@@ -2510,7 +2510,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 79.05795791615002,
+				"elevation": 79,
 				"marker-color": "#0074e5"
 			},
 			"geometry": {
@@ -2524,8 +2524,8 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 121.37077925041108,
-				"marker-color": "#93caff"
+				"elevation": 121,
+				"marker-color": "#8ec7ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -2538,8 +2538,8 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 114.71263943564517,
-				"marker-color": "#75bbff"
+				"elevation": 115,
+				"marker-color": "#7abdff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -2552,7 +2552,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 112.23035320055591,
+				"elevation": 112,
 				"marker-color": "#6ab6ff"
 			},
 			"geometry": {
@@ -2566,7 +2566,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 113.31776732201357,
+				"elevation": 113,
 				"marker-color": "#70b8ff"
 			},
 			"geometry": {
@@ -2580,8 +2580,8 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 116.40314126046563,
-				"marker-color": "#7fc0ff"
+				"elevation": 116,
+				"marker-color": "#7abdff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -2594,7 +2594,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 118.9553852676755,
+				"elevation": 119,
 				"marker-color": "#89c5ff"
 			},
 			"geometry": {
@@ -2608,7 +2608,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 119.14056574810402,
+				"elevation": 119,
 				"marker-color": "#89c5ff"
 			},
 			"geometry": {
@@ -2622,7 +2622,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 119.13053094571119,
+				"elevation": 119,
 				"marker-color": "#89c5ff"
 			},
 			"geometry": {
@@ -2636,7 +2636,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 126.96782265151435,
+				"elevation": 127,
 				"marker-color": "#a8d4ff"
 			},
 			"geometry": {
@@ -2650,7 +2650,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 143.43687592664668,
+				"elevation": 143,
 				"marker-color": "#eaf5ff"
 			},
 			"geometry": {
@@ -2664,7 +2664,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 146.68511607810885,
+				"elevation": 147,
 				"marker-color": "#f9fcff"
 			},
 			"geometry": {
@@ -2678,7 +2678,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 132.63319800740356,
+				"elevation": 133,
 				"marker-color": "#c1e1ff"
 			},
 			"geometry": {
@@ -2692,7 +2692,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 123.794889905757,
+				"elevation": 124,
 				"marker-color": "#9dcfff"
 			},
 			"geometry": {
@@ -2706,7 +2706,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 117.21511653293314,
+				"elevation": 117,
 				"marker-color": "#7fc0ff"
 			},
 			"geometry": {
@@ -2720,8 +2720,8 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 111.2764694021026,
-				"marker-color": "#6ab6ff"
+				"elevation": 111,
+				"marker-color": "#65b3ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -2734,7 +2734,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 105.2170261652452,
+				"elevation": 105,
 				"marker-color": "#51a9ff"
 			},
 			"geometry": {
@@ -2748,7 +2748,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 98.43809953375951,
+				"elevation": 98,
 				"marker-color": "#329aff"
 			},
 			"geometry": {
@@ -2762,7 +2762,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 90.03649512537247,
+				"elevation": 90,
 				"marker-color": "#148bff"
 			},
 			"geometry": {
@@ -2776,7 +2776,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 77.94929272532835,
+				"elevation": 78,
 				"marker-color": "#0072e0"
 			},
 			"geometry": {
@@ -2790,8 +2790,8 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 60.858699810691384,
-				"marker-color": "#004d98"
+				"elevation": 61,
+				"marker-color": "#00509d"
 			},
 			"geometry": {
 				"type": "Point",
@@ -2804,7 +2804,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 108.49086359401721,
+				"elevation": 108,
 				"marker-color": "#5baeff"
 			},
 			"geometry": {
@@ -2818,7 +2818,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 109.00885395324451,
+				"elevation": 109,
 				"marker-color": "#60b1ff"
 			},
 			"geometry": {
@@ -2832,8 +2832,8 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 111.24000013871847,
-				"marker-color": "#6ab6ff"
+				"elevation": 111,
+				"marker-color": "#65b3ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -2846,7 +2846,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 114.86291812923558,
+				"elevation": 115,
 				"marker-color": "#7abdff"
 			},
 			"geometry": {
@@ -2860,7 +2860,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 118.62121429417982,
+				"elevation": 119,
 				"marker-color": "#89c5ff"
 			},
 			"geometry": {
@@ -2874,8 +2874,8 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 119.77137730993758,
-				"marker-color": "#89c5ff"
+				"elevation": 120,
+				"marker-color": "#8ec7ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -2888,7 +2888,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 115.49083476595656,
+				"elevation": 115,
 				"marker-color": "#7abdff"
 			},
 			"geometry": {
@@ -2902,7 +2902,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 94.91872570989383,
+				"elevation": 95,
 				"marker-color": "#2895ff"
 			},
 			"geometry": {
@@ -2916,7 +2916,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 116.67058572893517,
+				"elevation": 117,
 				"marker-color": "#7fc0ff"
 			},
 			"geometry": {
@@ -2930,7 +2930,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 127.26606753956347,
+				"elevation": 127,
 				"marker-color": "#a8d4ff"
 			},
 			"geometry": {
@@ -2944,8 +2944,8 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 129.7338390208562,
-				"marker-color": "#b2d9ff"
+				"elevation": 130,
+				"marker-color": "#b7dbff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -2958,7 +2958,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 125.79790964751045,
+				"elevation": 126,
 				"marker-color": "#a3d1ff"
 			},
 			"geometry": {
@@ -2972,7 +2972,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 120.30246768798338,
+				"elevation": 120,
 				"marker-color": "#8ec7ff"
 			},
 			"geometry": {
@@ -2986,8 +2986,8 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 114.83260647429903,
-				"marker-color": "#75bbff"
+				"elevation": 115,
+				"marker-color": "#7abdff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -3000,7 +3000,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 109.33264792882478,
+				"elevation": 109,
 				"marker-color": "#60b1ff"
 			},
 			"geometry": {
@@ -3014,7 +3014,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 103.48243274958934,
+				"elevation": 103,
 				"marker-color": "#47a4ff"
 			},
 			"geometry": {
@@ -3028,7 +3028,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 96.80883621956833,
+				"elevation": 97,
 				"marker-color": "#2d98ff"
 			},
 			"geometry": {
@@ -3042,7 +3042,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 88.27245450269925,
+				"elevation": 88,
 				"marker-color": "#0986ff"
 			},
 			"geometry": {
@@ -3056,8 +3056,8 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 74.62646255295157,
-				"marker-color": "#006ad0"
+				"elevation": 75,
+				"marker-color": "#006cd5"
 			},
 			"geometry": {
 				"type": "Point",
@@ -3070,7 +3070,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 44.27127645389989,
+				"elevation": 44,
 				"marker-color": "#002c56"
 			},
 			"geometry": {
@@ -3084,7 +3084,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 95.58710607308008,
+				"elevation": 96,
 				"marker-color": "#2895ff"
 			},
 			"geometry": {
@@ -3098,7 +3098,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 100.96142884862553,
+				"elevation": 101,
 				"marker-color": "#3d9fff"
 			},
 			"geometry": {
@@ -3112,7 +3112,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 108.77675153328283,
+				"elevation": 109,
 				"marker-color": "#60b1ff"
 			},
 			"geometry": {
@@ -3126,7 +3126,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 116.57214497290673,
+				"elevation": 117,
 				"marker-color": "#7fc0ff"
 			},
 			"geometry": {
@@ -3140,7 +3140,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 125.17740776574016,
+				"elevation": 125,
 				"marker-color": "#a3d1ff"
 			},
 			"geometry": {
@@ -3154,8 +3154,8 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 127.36601460472733,
-				"marker-color": "#add6ff"
+				"elevation": 127,
+				"marker-color": "#a8d4ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -3168,7 +3168,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 119.4066023555404,
+				"elevation": 119,
 				"marker-color": "#89c5ff"
 			},
 			"geometry": {
@@ -3182,8 +3182,8 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 111.4944646030469,
-				"marker-color": "#6ab6ff"
+				"elevation": 111,
+				"marker-color": "#65b3ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -3196,7 +3196,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 115.77030729132841,
+				"elevation": 116,
 				"marker-color": "#7abdff"
 			},
 			"geometry": {
@@ -3210,7 +3210,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 120.74099991755928,
+				"elevation": 121,
 				"marker-color": "#8ec7ff"
 			},
 			"geometry": {
@@ -3224,7 +3224,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 122.0503982390248,
+				"elevation": 122,
 				"marker-color": "#93caff"
 			},
 			"geometry": {
@@ -3238,7 +3238,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 120.2436702049276,
+				"elevation": 120,
 				"marker-color": "#8ec7ff"
 			},
 			"geometry": {
@@ -3252,7 +3252,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 116.65025368561882,
+				"elevation": 117,
 				"marker-color": "#7fc0ff"
 			},
 			"geometry": {
@@ -3266,7 +3266,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 112.2271932163199,
+				"elevation": 112,
 				"marker-color": "#6ab6ff"
 			},
 			"geometry": {
@@ -3280,7 +3280,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 107.29070366248602,
+				"elevation": 107,
 				"marker-color": "#56acff"
 			},
 			"geometry": {
@@ -3294,7 +3294,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 101.8405825400323,
+				"elevation": 102,
 				"marker-color": "#42a2ff"
 			},
 			"geometry": {
@@ -3308,7 +3308,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 95.73076118176324,
+				"elevation": 96,
 				"marker-color": "#2895ff"
 			},
 			"geometry": {
@@ -3322,8 +3322,8 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 88.61361023225506,
-				"marker-color": "#0986ff"
+				"elevation": 89,
+				"marker-color": "#0f89ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -3336,7 +3336,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 79.91319851826104,
+				"elevation": 80,
 				"marker-color": "#0077ea"
 			},
 			"geometry": {
@@ -3350,7 +3350,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 71.62743837466155,
+				"elevation": 72,
 				"marker-color": "#0065c6"
 			},
 			"geometry": {
@@ -3364,7 +3364,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 71.48399767091361,
+				"elevation": 71,
 				"marker-color": "#0065c6"
 			},
 			"geometry": {
@@ -3378,7 +3378,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 92.50924229582077,
+				"elevation": 93,
 				"marker-color": "#1e90ff"
 			},
 			"geometry": {
@@ -3392,8 +3392,8 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 106.47165293717136,
-				"marker-color": "#56acff"
+				"elevation": 106,
+				"marker-color": "#51a9ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -3406,7 +3406,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 118.037770569845,
+				"elevation": 118,
 				"marker-color": "#84c2ff"
 			},
 			"geometry": {
@@ -3420,7 +3420,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 138.11762146980308,
+				"elevation": 138,
 				"marker-color": "#d6ebff"
 			},
 			"geometry": {
@@ -3434,7 +3434,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 150.9514642653181,
+				"elevation": 151,
 				"marker-color": "#ffffff"
 			},
 			"geometry": {
@@ -3448,7 +3448,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 125.44560997689976,
+				"elevation": 125,
 				"marker-color": "#a3d1ff"
 			},
 			"geometry": {
@@ -3462,8 +3462,8 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 118.5902616689621,
-				"marker-color": "#84c2ff"
+				"elevation": 119,
+				"marker-color": "#89c5ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -3476,8 +3476,8 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 117.47587286791415,
-				"marker-color": "#84c2ff"
+				"elevation": 117,
+				"marker-color": "#7fc0ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -3490,7 +3490,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 118.12817386865542,
+				"elevation": 118,
 				"marker-color": "#84c2ff"
 			},
 			"geometry": {
@@ -3504,7 +3504,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 117.99907359066196,
+				"elevation": 118,
 				"marker-color": "#84c2ff"
 			},
 			"geometry": {
@@ -3518,8 +3518,8 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 116.41357182505496,
-				"marker-color": "#7fc0ff"
+				"elevation": 116,
+				"marker-color": "#7abdff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -3532,8 +3532,8 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 113.55508350985697,
-				"marker-color": "#70b8ff"
+				"elevation": 114,
+				"marker-color": "#75bbff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -3546,8 +3546,8 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 109.76890197808991,
-				"marker-color": "#60b1ff"
+				"elevation": 110,
+				"marker-color": "#65b3ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -3560,7 +3560,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 105.26743261067415,
+				"elevation": 105,
 				"marker-color": "#51a9ff"
 			},
 			"geometry": {
@@ -3574,7 +3574,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 100.15001420601533,
+				"elevation": 100,
 				"marker-color": "#3d9fff"
 			},
 			"geometry": {
@@ -3588,8 +3588,8 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 94.55274053911494,
-				"marker-color": "#2393ff"
+				"elevation": 95,
+				"marker-color": "#2895ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -3602,7 +3602,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 88.84115757587406,
+				"elevation": 89,
 				"marker-color": "#0f89ff"
 			},
 			"geometry": {
@@ -3616,7 +3616,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 83.73977584697526,
+				"elevation": 84,
 				"marker-color": "#007ff9"
 			},
 			"geometry": {
@@ -3630,8 +3630,8 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 80.52063935421633,
-				"marker-color": "#0077ea"
+				"elevation": 81,
+				"marker-color": "#0079ef"
 			},
 			"geometry": {
 				"type": "Point",
@@ -3644,7 +3644,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 85.0625480234703,
+				"elevation": 85,
 				"marker-color": "#0081fe"
 			},
 			"geometry": {
@@ -3658,8 +3658,8 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 94.85407140380178,
-				"marker-color": "#2393ff"
+				"elevation": 95,
+				"marker-color": "#2895ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -3672,8 +3672,8 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 106.15458497526046,
-				"marker-color": "#56acff"
+				"elevation": 106,
+				"marker-color": "#51a9ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -3686,8 +3686,8 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 116.39597094477136,
-				"marker-color": "#7fc0ff"
+				"elevation": 116,
+				"marker-color": "#7abdff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -3700,7 +3700,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 128.2119185733995,
+				"elevation": 128,
 				"marker-color": "#add6ff"
 			},
 			"geometry": {
@@ -3714,7 +3714,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 132.3164314804459,
+				"elevation": 132,
 				"marker-color": "#bcdeff"
 			},
 			"geometry": {
@@ -3728,7 +3728,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 124.28406547935785,
+				"elevation": 124,
 				"marker-color": "#9dcfff"
 			},
 			"geometry": {
@@ -3742,7 +3742,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 119.4114664219894,
+				"elevation": 119,
 				"marker-color": "#89c5ff"
 			},
 			"geometry": {
@@ -3756,8 +3756,8 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 117.37364402410171,
-				"marker-color": "#84c2ff"
+				"elevation": 117,
+				"marker-color": "#7fc0ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -3770,8 +3770,8 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 116.4652177937181,
-				"marker-color": "#7fc0ff"
+				"elevation": 116,
+				"marker-color": "#7abdff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -3784,7 +3784,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 115.44714044627524,
+				"elevation": 115,
 				"marker-color": "#7abdff"
 			},
 			"geometry": {
@@ -3798,7 +3798,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 113.70713007959343,
+				"elevation": 114,
 				"marker-color": "#75bbff"
 			},
 			"geometry": {
@@ -3812,7 +3812,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 111.08971569383641,
+				"elevation": 111,
 				"marker-color": "#65b3ff"
 			},
 			"geometry": {
@@ -3826,7 +3826,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 107.62492191848321,
+				"elevation": 108,
 				"marker-color": "#5baeff"
 			},
 			"geometry": {
@@ -3840,7 +3840,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 103.34825580844615,
+				"elevation": 103,
 				"marker-color": "#47a4ff"
 			},
 			"geometry": {
@@ -3854,7 +3854,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 98.26187010975583,
+				"elevation": 98,
 				"marker-color": "#329aff"
 			},
 			"geometry": {
@@ -3868,8 +3868,8 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 92.47686487685502,
-				"marker-color": "#1e90ff"
+				"elevation": 92,
+				"marker-color": "#198eff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -3882,7 +3882,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 86.74779665075346,
+				"elevation": 87,
 				"marker-color": "#0484ff"
 			},
 			"geometry": {
@@ -3896,7 +3896,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 83.04286773530468,
+				"elevation": 83,
 				"marker-color": "#007cf4"
 			},
 			"geometry": {
@@ -3910,7 +3910,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 82.36052850351608,
+				"elevation": 82,
 				"marker-color": "#0079ef"
 			},
 			"geometry": {
@@ -3924,7 +3924,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 96.8437284719463,
+				"elevation": 97,
 				"marker-color": "#2d98ff"
 			},
 			"geometry": {
@@ -3938,7 +3938,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 100.77382461250015,
+				"elevation": 101,
 				"marker-color": "#3d9fff"
 			},
 			"geometry": {
@@ -3952,7 +3952,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 107.12380655376217,
+				"elevation": 107,
 				"marker-color": "#56acff"
 			},
 			"geometry": {
@@ -3966,7 +3966,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 113.68375824112677,
+				"elevation": 114,
 				"marker-color": "#75bbff"
 			},
 			"geometry": {
@@ -3980,7 +3980,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 119.29599907662163,
+				"elevation": 119,
 				"marker-color": "#89c5ff"
 			},
 			"geometry": {
@@ -3994,7 +3994,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 121.52471144020487,
+				"elevation": 122,
 				"marker-color": "#93caff"
 			},
 			"geometry": {
@@ -4008,7 +4008,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 120.04478054112619,
+				"elevation": 120,
 				"marker-color": "#8ec7ff"
 			},
 			"geometry": {
@@ -4022,7 +4022,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 117.83922160725085,
+				"elevation": 118,
 				"marker-color": "#84c2ff"
 			},
 			"geometry": {
@@ -4036,8 +4036,8 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 116.18708903102564,
-				"marker-color": "#7fc0ff"
+				"elevation": 116,
+				"marker-color": "#7abdff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -4050,7 +4050,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 114.90802377626214,
+				"elevation": 115,
 				"marker-color": "#7abdff"
 			},
 			"geometry": {
@@ -4064,8 +4064,8 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 113.52588609565693,
-				"marker-color": "#70b8ff"
+				"elevation": 114,
+				"marker-color": "#75bbff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -4078,7 +4078,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 111.67472259861108,
+				"elevation": 112,
 				"marker-color": "#6ab6ff"
 			},
 			"geometry": {
@@ -4092,7 +4092,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 109.15831923356609,
+				"elevation": 109,
 				"marker-color": "#60b1ff"
 			},
 			"geometry": {
@@ -4106,7 +4106,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 105.87131370294796,
+				"elevation": 106,
 				"marker-color": "#51a9ff"
 			},
 			"geometry": {
@@ -4120,7 +4120,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 101.68983957003041,
+				"elevation": 102,
 				"marker-color": "#42a2ff"
 			},
 			"geometry": {
@@ -4134,8 +4134,8 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 96.35858956521763,
-				"marker-color": "#2d98ff"
+				"elevation": 96,
+				"marker-color": "#2895ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -4148,7 +4148,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 89.36114016959192,
+				"elevation": 89,
 				"marker-color": "#0f89ff"
 			},
 			"geometry": {
@@ -4162,7 +4162,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 80.33999718964179,
+				"elevation": 80,
 				"marker-color": "#0077ea"
 			},
 			"geometry": {
@@ -4176,7 +4176,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 75.37797091481832,
+				"elevation": 75,
 				"marker-color": "#006cd5"
 			},
 			"geometry": {
@@ -4190,8 +4190,8 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 79.83746297729628,
-				"marker-color": "#0074e5"
+				"elevation": 80,
+				"marker-color": "#0077ea"
 			},
 			"geometry": {
 				"type": "Point",
@@ -4204,7 +4204,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 101.99364141774358,
+				"elevation": 102,
 				"marker-color": "#42a2ff"
 			},
 			"geometry": {
@@ -4218,7 +4218,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 104.32671056108569,
+				"elevation": 104,
 				"marker-color": "#4ca7ff"
 			},
 			"geometry": {
@@ -4232,7 +4232,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 107.97480583665117,
+				"elevation": 108,
 				"marker-color": "#5baeff"
 			},
 			"geometry": {
@@ -4246,7 +4246,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 111.88446491664159,
+				"elevation": 112,
 				"marker-color": "#6ab6ff"
 			},
 			"geometry": {
@@ -4260,7 +4260,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 115.0719355588293,
+				"elevation": 115,
 				"marker-color": "#7abdff"
 			},
 			"geometry": {
@@ -4274,7 +4274,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 116.67884411604942,
+				"elevation": 117,
 				"marker-color": "#7fc0ff"
 			},
 			"geometry": {
@@ -4288,7 +4288,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 116.63742483317401,
+				"elevation": 117,
 				"marker-color": "#7fc0ff"
 			},
 			"geometry": {
@@ -4302,7 +4302,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 115.73145073920273,
+				"elevation": 116,
 				"marker-color": "#7abdff"
 			},
 			"geometry": {
@@ -4316,8 +4316,8 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 114.59775851120625,
-				"marker-color": "#75bbff"
+				"elevation": 115,
+				"marker-color": "#7abdff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -4330,7 +4330,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 113.37420798432095,
+				"elevation": 113,
 				"marker-color": "#70b8ff"
 			},
 			"geometry": {
@@ -4344,7 +4344,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 111.93081975537177,
+				"elevation": 112,
 				"marker-color": "#6ab6ff"
 			},
 			"geometry": {
@@ -4358,7 +4358,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 110.08453820717244,
+				"elevation": 110,
 				"marker-color": "#65b3ff"
 			},
 			"geometry": {
@@ -4372,7 +4372,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 107.6797439616519,
+				"elevation": 108,
 				"marker-color": "#5baeff"
 			},
 			"geometry": {
@@ -4386,8 +4386,8 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 104.57271272863083,
-				"marker-color": "#4ca7ff"
+				"elevation": 105,
+				"marker-color": "#51a9ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -4400,7 +4400,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 100.55328549109963,
+				"elevation": 101,
 				"marker-color": "#3d9fff"
 			},
 			"geometry": {
@@ -4414,7 +4414,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 95.16968070053777,
+				"elevation": 95,
 				"marker-color": "#2895ff"
 			},
 			"geometry": {
@@ -4428,7 +4428,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 87.19442991562737,
+				"elevation": 87,
 				"marker-color": "#0484ff"
 			},
 			"geometry": {
@@ -4442,7 +4442,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 72.1050175128524,
+				"elevation": 72,
 				"marker-color": "#0065c6"
 			},
 			"geometry": {
@@ -4456,7 +4456,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 54.20979094557051,
+				"elevation": 54,
 				"marker-color": "#00407f"
 			},
 			"geometry": {
@@ -4470,7 +4470,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"elevation": 76.90974403809834,
+				"elevation": 77,
 				"marker-color": "#006fdb"
 			},
 			"geometry": {

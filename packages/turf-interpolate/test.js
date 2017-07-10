@@ -3,10 +3,10 @@ const test = require('tape');
 const path = require('path');
 const load = require('load-json-file');
 const write = require('write-json-file');
-const {round} = require('@turf/helpers');
+const {round, featureCollection, point} = require('@turf/helpers');
 const truncate = require('@turf/truncate');
 const chromatism = require('chromatism');
-const {featureEach} = require('@turf/meta');
+const {featureEach, propEach} = require('@turf/meta');
 const interpolate = require('./');
 
 const directories = {
@@ -24,14 +24,37 @@ const fixtures = fs.readdirSync(directories.in).map(filename => {
 
 test('turf-interpolate', t => {
     for (const {filename, name, geojson}  of fixtures) {
-        const {property, cellSize, units, weight} = geojson.properties;
+        let {property, cellSize, units, weight} = geojson.properties;
+        property = property || 'elevation';
 
-        const grid = interpolate(geojson, cellSize, property, units, weight);
-        const result = colorize(truncate(grid), property);
+        // Truncate coordinates & elevation (property) to 6 precision
+        let grid = truncate(interpolate(geojson, cellSize, property, units, weight));
+        propEach(grid, props => { props[property] = round(props[property]); });
+        const result = colorize(grid, property);
 
         if (process.env.REGEN) write.sync(directories.out + filename, result);
         t.deepEquals(result, load.sync(directories.out + filename), name);
     }
+    t.end();
+});
+
+
+
+test('turf-interpolate -- throws errors', t => {
+    const cellSize = 1;
+    const property = 'pressure';
+    const weight = 0.5;
+    const units = 'miles';
+    const points = featureCollection([
+        point([1, 2], {pressure: 2}),
+        point([2, 1], {pressure: 3}),
+        point([1.5, 1.5], {pressure: 4})
+    ]);
+    interpolate(points, cellSize, property, units, weight);
+    t.throws(() => interpolate(points, undefined, property, units, weight), /cellSize is required/);
+    t.throws(() => interpolate(undefined, cellSize, property, units, weight), /points is required/);
+    t.throws(() => interpolate(points, cellSize, property, 'foo', weight), 'invalid units');
+    t.throws(() => interpolate(points, cellSize, property, units, 'foo'), /weight must be a number/);
     t.end();
 });
 

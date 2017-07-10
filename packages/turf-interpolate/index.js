@@ -34,7 +34,7 @@ module.exports = function (points, cellSize, property, units, weight) {
     if (!points) throw new Error('points is required');
     collectionOf(points, 'Point', 'input must contain Points');
     if (!cellSize) throw new Error('cellSize is required');
-    if (cellSize === undefined || cellSize === null) throw new Error('cellWidth is required');
+    if (weight !== undefined && typeof weight !== 'number') throw new Error('weight must be a number');
 
     // default values
     property = property || 'elevation';
