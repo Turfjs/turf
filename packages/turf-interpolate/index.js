@@ -8,8 +8,6 @@ var squareGrid = require('@turf/square-grid');
 var featureEach = meta.featureEach;
 var collectionOf = invariant.collectionOf;
 
-var gridTypes = ['square', 'point'];
-
 /**
  * Takes a set of points and estimates their 'property' values on a grid using the [Inverse Distance Weighting (IDW) method](https://en.wikipedia.org/wiki/Inverse_distance_weighting).
  *
@@ -39,16 +37,25 @@ module.exports = function (points, cellSize, gridType, property, units, weight) 
     if (!points) throw new Error('points is required');
     collectionOf(points, 'Point', 'input must contain Points');
     if (!cellSize) throw new Error('cellSize is required');
-    if (!gridType) throw new Error('gridType is required');
-    if (gridTypes.indexOf(gridType) === -1) throw new Error('invalid gridType');
     if (weight !== undefined && typeof weight !== 'number') throw new Error('weight must be a number');
 
     // default values
     property = property || 'elevation';
+    gridType = gridType || 'square';
     weight = weight || 1;
 
     var box = bbox(points);
-    var grid = (gridType === 'point') ? poinGrid(box, cellSize, units, true) : squareGrid(box, cellSize, units);
+    var grid;
+    switch (gridType) {
+    case 'point':
+        grid = poinGrid(box, cellSize, units, true);
+        break;
+    case 'square':
+        grid = squareGrid(box, cellSize, units);
+        break;
+    default:
+        throw new Error('invalid gridType');
+    }
 
     featureEach(grid, function (gridFeature) {
         var zw = 0;

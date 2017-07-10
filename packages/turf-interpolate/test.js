@@ -53,26 +53,24 @@ test('turf-interpolate -- throws errors', t => {
     ]);
 
     t.assert(interpolate(points, cellSize, gridType, undefined, units, weight).features.length);
-    t.throws(() => interpolate(points, undefined, gridType), /cellSize is required/);
-    t.throws(() => interpolate(undefined, cellSize, gridType), /points is required/);
-    t.throws(() => interpolate(points, cellSize, undefined), /gridType is required/);
-    t.throws(() => interpolate(points, cellSize, 'foo', property, units), /invalid gridType/);
+    t.throws(() => interpolate(points, undefined, gridType), /cellSize is required/, 'cellSize is required');
+    t.throws(() => interpolate(undefined, cellSize, gridType), /points is required/, 'points is required');
+    t.throws(() => interpolate(points, cellSize, 'foo', property, units), /invalid gridType/, 'invalid gridType');
     t.throws(() => interpolate(points, cellSize, gridType, property, 'foo'), 'invalid units');
-    t.throws(() => interpolate(points, cellSize, gridType, property, units, 'foo'), /weight must be a number/);
-    t.throws(() => interpolate(points, cellSize, gridType, 'foo'), /zValue is missing/);
-    t.throws(() => interpolate(points, cellSize, gridType, property, units, 'foo'), /weight must be a number/);
+    t.throws(() => interpolate(points, cellSize, gridType, property, units, 'foo'), /weight must be a number/, 'weight must be a number');
+    t.throws(() => interpolate(points, cellSize, gridType, 'foo'), /zValue is missing/, 'zValue is missing');
+    t.throws(() => interpolate(points, cellSize, gridType, property, units, 'foo'), /weight must be a number/, 'weight must be a number');
     t.end();
 });
 
 test('turf-interpolate -- zValue from 3rd coordinate', t => {
     const cellSize = 1;
-    const gridType = 'point';
     const points = featureCollection([
         point([1, 2, 200]),
         point([2, 1, 300]),
         point([1.5, 1.5, 400])
     ]);
-    t.assert(interpolate(points, cellSize, gridType).features.length);
+    t.assert(interpolate(points, cellSize).features.length, 'zValue from 3rd coordinate');
     t.end();
 });
 
