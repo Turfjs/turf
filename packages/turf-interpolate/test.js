@@ -87,11 +87,11 @@ function colorize(grid, property) {
         if (value < min) min = value;
     });
     const delta = (max - min);
-    const extended = delta * 1.25; // extend range to enhance color shade, limiting brightness variation to -/+40%
 
     featureEach(grid, function (feature) {
         const value = feature.properties[property];
-        const percent = round((value - min - delta / 2) / extended * 100);
+        const percent = round((value - min - delta / 2) / delta * 100);
+        // darker corresponds to higher values
         const color = chromatism.brightness(-percent, '#0086FF').hex;
         if (feature.geometry.type === 'Point') feature.properties['marker-color'] = color;
         else {

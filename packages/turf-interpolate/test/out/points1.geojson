@@ -5,7 +5,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -19,7 +19,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -33,7 +33,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -47,7 +47,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -61,7 +61,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -75,7 +75,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -89,7 +89,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -103,7 +103,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -117,7 +117,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -131,7 +131,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -145,7 +145,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -159,7 +159,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -173,7 +173,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -187,7 +187,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -313,7 +313,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 8,
-				"marker-color": "#005099"
+				"marker-color": "#004280"
 			},
 			"geometry": {
 				"type": "Point",
@@ -327,7 +327,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 9,
-				"marker-color": "#001b33"
+				"marker-color": "#000000"
 			},
 			"geometry": {
 				"type": "Point",
@@ -341,7 +341,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -355,7 +355,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -369,7 +369,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -383,7 +383,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -397,7 +397,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -411,7 +411,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -425,7 +425,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -439,7 +439,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -453,7 +453,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -467,7 +467,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -481,7 +481,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -495,7 +495,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -509,7 +509,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -523,7 +523,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -649,7 +649,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 8,
-				"marker-color": "#005099"
+				"marker-color": "#004280"
 			},
 			"geometry": {
 				"type": "Point",
@@ -663,7 +663,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 8,
-				"marker-color": "#005099"
+				"marker-color": "#004280"
 			},
 			"geometry": {
 				"type": "Point",
@@ -677,7 +677,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -691,7 +691,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -705,7 +705,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -719,7 +719,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -733,7 +733,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -747,7 +747,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -761,7 +761,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -775,7 +775,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -789,7 +789,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -803,7 +803,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -817,7 +817,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -831,7 +831,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -845,7 +845,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -859,7 +859,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -873,7 +873,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -1013,7 +1013,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -1027,7 +1027,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -1041,7 +1041,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -1055,7 +1055,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -1069,7 +1069,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -1083,7 +1083,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -1097,7 +1097,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -1111,7 +1111,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -1125,7 +1125,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -1139,7 +1139,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -1153,7 +1153,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -1167,7 +1167,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -1181,7 +1181,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -1195,7 +1195,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -1209,7 +1209,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -1349,7 +1349,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -1363,7 +1363,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -1377,7 +1377,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -1391,7 +1391,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -1405,7 +1405,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -1419,7 +1419,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -1433,7 +1433,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -1447,7 +1447,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -1461,7 +1461,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -1475,7 +1475,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -1489,7 +1489,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -1503,7 +1503,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -1517,7 +1517,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -1531,7 +1531,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -1545,7 +1545,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -1559,7 +1559,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -1685,7 +1685,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -1699,7 +1699,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -1713,7 +1713,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -1727,7 +1727,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -1741,7 +1741,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -1755,7 +1755,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -1769,7 +1769,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -1783,7 +1783,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -1797,7 +1797,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -1811,7 +1811,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -1825,7 +1825,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -1839,7 +1839,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -1853,7 +1853,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -1867,7 +1867,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -1881,7 +1881,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -1895,7 +1895,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -2021,7 +2021,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -2035,7 +2035,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -2049,7 +2049,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -2063,7 +2063,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -2077,7 +2077,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -2091,7 +2091,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -2105,7 +2105,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -2119,7 +2119,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -2133,7 +2133,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -2147,7 +2147,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -2161,7 +2161,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -2175,7 +2175,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -2189,7 +2189,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -2203,7 +2203,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -2217,7 +2217,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -2231,7 +2231,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -2245,7 +2245,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -2357,7 +2357,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -2371,7 +2371,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -2385,7 +2385,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -2399,7 +2399,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -2413,7 +2413,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -2427,7 +2427,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -2441,7 +2441,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -2455,7 +2455,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -2469,7 +2469,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -2483,7 +2483,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -2497,7 +2497,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -2511,7 +2511,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -2525,7 +2525,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -2539,7 +2539,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -2553,7 +2553,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -2567,7 +2567,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -2581,7 +2581,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -2595,7 +2595,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -2693,7 +2693,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -2707,7 +2707,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -2721,7 +2721,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -2735,7 +2735,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -2749,7 +2749,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -2763,7 +2763,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -2777,7 +2777,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -2791,7 +2791,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -2805,7 +2805,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -2819,7 +2819,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -2833,7 +2833,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -2847,7 +2847,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -2861,7 +2861,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -2875,7 +2875,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -2889,7 +2889,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -2903,7 +2903,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -2917,7 +2917,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -2931,7 +2931,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -2945,7 +2945,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -2959,7 +2959,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -3029,7 +3029,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -3043,7 +3043,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -3057,7 +3057,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -3071,7 +3071,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -3085,7 +3085,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -3099,7 +3099,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -3113,7 +3113,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -3127,7 +3127,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -3141,7 +3141,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -3155,7 +3155,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -3169,7 +3169,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 5,
-				"marker-color": "#cce7ff"
+				"marker-color": "#ffffff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -3183,7 +3183,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -3197,7 +3197,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -3211,7 +3211,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -3225,7 +3225,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -3239,7 +3239,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -3253,7 +3253,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -3267,7 +3267,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -3281,7 +3281,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -3295,7 +3295,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -3309,7 +3309,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -3323,7 +3323,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -3365,7 +3365,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -3379,7 +3379,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -3393,7 +3393,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -3407,7 +3407,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -3421,7 +3421,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -3435,7 +3435,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -3449,7 +3449,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -3463,7 +3463,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -3477,7 +3477,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 5,
-				"marker-color": "#cce7ff"
+				"marker-color": "#ffffff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -3491,7 +3491,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 5,
-				"marker-color": "#cce7ff"
+				"marker-color": "#ffffff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -3505,7 +3505,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 5,
-				"marker-color": "#cce7ff"
+				"marker-color": "#ffffff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -3519,7 +3519,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 5,
-				"marker-color": "#cce7ff"
+				"marker-color": "#ffffff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -3533,7 +3533,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 5,
-				"marker-color": "#cce7ff"
+				"marker-color": "#ffffff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -3547,7 +3547,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -3561,7 +3561,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -3575,7 +3575,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -3589,7 +3589,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -3603,7 +3603,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -3617,7 +3617,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -3631,7 +3631,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -3645,7 +3645,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -3659,7 +3659,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -3673,7 +3673,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -3701,7 +3701,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -3715,7 +3715,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -3729,7 +3729,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -3743,7 +3743,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -3757,7 +3757,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -3771,7 +3771,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -3785,7 +3785,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -3799,7 +3799,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -3813,7 +3813,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 5,
-				"marker-color": "#cce7ff"
+				"marker-color": "#ffffff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -3827,7 +3827,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 5,
-				"marker-color": "#cce7ff"
+				"marker-color": "#ffffff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -3841,7 +3841,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 5,
-				"marker-color": "#cce7ff"
+				"marker-color": "#ffffff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -3855,7 +3855,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 5,
-				"marker-color": "#cce7ff"
+				"marker-color": "#ffffff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -3869,7 +3869,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 5,
-				"marker-color": "#cce7ff"
+				"marker-color": "#ffffff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -3883,7 +3883,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 5,
-				"marker-color": "#cce7ff"
+				"marker-color": "#ffffff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -3897,7 +3897,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -3911,7 +3911,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -3925,7 +3925,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -3939,7 +3939,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -3953,7 +3953,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -3967,7 +3967,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -3981,7 +3981,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -3995,7 +3995,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -4009,7 +4009,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -4023,7 +4023,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -4037,7 +4037,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -4051,7 +4051,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -4065,7 +4065,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -4079,7 +4079,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -4093,7 +4093,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -4107,7 +4107,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -4121,7 +4121,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -4135,7 +4135,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 5,
-				"marker-color": "#cce7ff"
+				"marker-color": "#ffffff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -4149,7 +4149,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 5,
-				"marker-color": "#cce7ff"
+				"marker-color": "#ffffff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -4163,7 +4163,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 5,
-				"marker-color": "#cce7ff"
+				"marker-color": "#ffffff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -4177,7 +4177,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 5,
-				"marker-color": "#cce7ff"
+				"marker-color": "#ffffff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -4191,7 +4191,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 5,
-				"marker-color": "#cce7ff"
+				"marker-color": "#ffffff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -4205,7 +4205,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 5,
-				"marker-color": "#cce7ff"
+				"marker-color": "#ffffff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -4219,7 +4219,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 5,
-				"marker-color": "#cce7ff"
+				"marker-color": "#ffffff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -4233,7 +4233,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -4247,7 +4247,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -4261,7 +4261,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -4275,7 +4275,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -4289,7 +4289,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -4303,7 +4303,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -4317,7 +4317,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -4331,7 +4331,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -4345,7 +4345,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -4359,7 +4359,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -4373,7 +4373,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -4387,7 +4387,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -4401,7 +4401,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -4415,7 +4415,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -4429,7 +4429,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -4443,7 +4443,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -4457,7 +4457,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -4471,7 +4471,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 5,
-				"marker-color": "#cce7ff"
+				"marker-color": "#ffffff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -4485,7 +4485,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 5,
-				"marker-color": "#cce7ff"
+				"marker-color": "#ffffff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -4499,7 +4499,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 5,
-				"marker-color": "#cce7ff"
+				"marker-color": "#ffffff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -4513,7 +4513,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 5,
-				"marker-color": "#cce7ff"
+				"marker-color": "#ffffff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -4527,7 +4527,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 5,
-				"marker-color": "#cce7ff"
+				"marker-color": "#ffffff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -4541,7 +4541,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 5,
-				"marker-color": "#cce7ff"
+				"marker-color": "#ffffff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -4555,7 +4555,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 5,
-				"marker-color": "#cce7ff"
+				"marker-color": "#ffffff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -4569,7 +4569,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -4583,7 +4583,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -4597,7 +4597,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -4611,7 +4611,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -4625,7 +4625,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -4639,7 +4639,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -4653,7 +4653,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -4667,7 +4667,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -4681,7 +4681,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -4695,7 +4695,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -4709,7 +4709,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -4723,7 +4723,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -4737,7 +4737,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -4751,7 +4751,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -4765,7 +4765,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -4779,7 +4779,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -4793,7 +4793,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -4807,7 +4807,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -4821,7 +4821,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 5,
-				"marker-color": "#cce7ff"
+				"marker-color": "#ffffff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -4835,7 +4835,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 5,
-				"marker-color": "#cce7ff"
+				"marker-color": "#ffffff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -4849,7 +4849,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 5,
-				"marker-color": "#cce7ff"
+				"marker-color": "#ffffff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -4863,7 +4863,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 5,
-				"marker-color": "#cce7ff"
+				"marker-color": "#ffffff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -4877,7 +4877,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 5,
-				"marker-color": "#cce7ff"
+				"marker-color": "#ffffff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -4891,7 +4891,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -4905,7 +4905,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -4919,7 +4919,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -4933,7 +4933,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -4947,7 +4947,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -4961,7 +4961,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -4975,7 +4975,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -4989,7 +4989,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -5003,7 +5003,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -5017,7 +5017,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -5031,7 +5031,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -5045,7 +5045,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -5059,7 +5059,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -5073,7 +5073,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -5087,7 +5087,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -5101,7 +5101,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -5115,7 +5115,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -5129,7 +5129,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -5143,7 +5143,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -5157,7 +5157,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -5171,7 +5171,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 5,
-				"marker-color": "#cce7ff"
+				"marker-color": "#ffffff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -5185,7 +5185,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 5,
-				"marker-color": "#cce7ff"
+				"marker-color": "#ffffff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -5199,7 +5199,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 5,
-				"marker-color": "#cce7ff"
+				"marker-color": "#ffffff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -5213,7 +5213,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -5227,7 +5227,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -5241,7 +5241,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -5255,7 +5255,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -5269,7 +5269,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -5283,7 +5283,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -5297,7 +5297,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -5311,7 +5311,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -5325,7 +5325,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -5339,7 +5339,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -5353,7 +5353,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -5367,7 +5367,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -5381,7 +5381,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -5395,7 +5395,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -5409,7 +5409,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -5423,7 +5423,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -5437,7 +5437,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -5451,7 +5451,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -5465,7 +5465,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -5479,7 +5479,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -5493,7 +5493,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -5507,7 +5507,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -5521,7 +5521,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -5535,7 +5535,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -5549,7 +5549,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -5563,7 +5563,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -5577,7 +5577,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -5591,7 +5591,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -5605,7 +5605,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -5619,7 +5619,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -5633,7 +5633,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -5647,7 +5647,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -5661,7 +5661,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -5675,7 +5675,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -5689,7 +5689,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -5703,7 +5703,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -5717,7 +5717,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -5731,7 +5731,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -5745,7 +5745,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -5759,7 +5759,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -5773,7 +5773,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -5787,7 +5787,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -5801,7 +5801,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -5815,7 +5815,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -5829,7 +5829,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -5843,7 +5843,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -5857,7 +5857,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -5871,7 +5871,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -5885,7 +5885,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -5899,7 +5899,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -5913,7 +5913,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -5927,7 +5927,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -5941,7 +5941,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -5955,7 +5955,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -5969,7 +5969,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -5983,7 +5983,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -5997,7 +5997,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -6011,7 +6011,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -6025,7 +6025,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -6039,7 +6039,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -6053,7 +6053,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -6067,7 +6067,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -6081,7 +6081,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -6095,7 +6095,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -6109,7 +6109,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -6123,7 +6123,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -6137,7 +6137,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -6151,7 +6151,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -6165,7 +6165,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -6179,7 +6179,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -6193,7 +6193,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -6207,7 +6207,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -6221,7 +6221,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -6235,7 +6235,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -6249,7 +6249,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -6263,7 +6263,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -6277,7 +6277,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -6291,7 +6291,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -6305,7 +6305,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -6319,7 +6319,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -6333,7 +6333,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -6347,7 +6347,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -6361,7 +6361,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -6375,7 +6375,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -6389,7 +6389,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -6403,7 +6403,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -6417,7 +6417,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -6431,7 +6431,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -6445,7 +6445,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -6459,7 +6459,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -6473,7 +6473,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -6487,7 +6487,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -6501,7 +6501,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -6515,7 +6515,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -6529,7 +6529,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -6543,7 +6543,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -6557,7 +6557,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -6571,7 +6571,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -6585,7 +6585,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -6599,7 +6599,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -6613,7 +6613,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -6627,7 +6627,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -6641,7 +6641,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -6655,7 +6655,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -6669,7 +6669,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -6683,7 +6683,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -6697,7 +6697,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -6711,7 +6711,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -6725,7 +6725,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -6739,7 +6739,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -6753,7 +6753,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -6767,7 +6767,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -6781,7 +6781,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -6795,7 +6795,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -6809,7 +6809,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -6823,7 +6823,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -6837,7 +6837,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -6851,7 +6851,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -6865,7 +6865,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -6879,7 +6879,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -6893,7 +6893,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -6907,7 +6907,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -6921,7 +6921,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -6935,7 +6935,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -6949,7 +6949,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -6963,7 +6963,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -6977,7 +6977,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -6991,7 +6991,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -7005,7 +7005,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -7019,7 +7019,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -7033,7 +7033,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -7047,7 +7047,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -7061,7 +7061,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -7075,7 +7075,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -7089,7 +7089,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -7103,7 +7103,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -7117,7 +7117,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -7131,7 +7131,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -7145,7 +7145,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -7159,7 +7159,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -7173,7 +7173,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -7187,7 +7187,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -7201,7 +7201,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -7215,7 +7215,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -7229,7 +7229,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -7243,7 +7243,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -7257,7 +7257,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -7271,7 +7271,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -7285,7 +7285,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -7299,7 +7299,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -7313,7 +7313,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -7327,7 +7327,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -7341,7 +7341,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -7355,7 +7355,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -7369,7 +7369,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -7383,348 +7383,12 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
 				"coordinates": [
 					-89.280251,
-					-0.671285
-				]
-			}
-		},
-		{
-			"type": "Feature",
-			"properties": {
-				"pressure": 5,
-				"marker-color": "#cce7ff"
-			},
-			"geometry": {
-				"type": "Point",
-				"coordinates": [
-					-89.265781,
-					-1.004063
-				]
-			}
-		},
-		{
-			"type": "Feature",
-			"properties": {
-				"pressure": 6,
-				"marker-color": "#66b6ff"
-			},
-			"geometry": {
-				"type": "Point",
-				"coordinates": [
-					-89.265781,
-					-0.989595
-				]
-			}
-		},
-		{
-			"type": "Feature",
-			"properties": {
-				"pressure": 6,
-				"marker-color": "#66b6ff"
-			},
-			"geometry": {
-				"type": "Point",
-				"coordinates": [
-					-89.265781,
-					-0.975126
-				]
-			}
-		},
-		{
-			"type": "Feature",
-			"properties": {
-				"pressure": 6,
-				"marker-color": "#66b6ff"
-			},
-			"geometry": {
-				"type": "Point",
-				"coordinates": [
-					-89.265781,
-					-0.960657
-				]
-			}
-		},
-		{
-			"type": "Feature",
-			"properties": {
-				"pressure": 6,
-				"marker-color": "#66b6ff"
-			},
-			"geometry": {
-				"type": "Point",
-				"coordinates": [
-					-89.265781,
-					-0.946189
-				]
-			}
-		},
-		{
-			"type": "Feature",
-			"properties": {
-				"pressure": 6,
-				"marker-color": "#66b6ff"
-			},
-			"geometry": {
-				"type": "Point",
-				"coordinates": [
-					-89.265781,
-					-0.93172
-				]
-			}
-		},
-		{
-			"type": "Feature",
-			"properties": {
-				"pressure": 6,
-				"marker-color": "#66b6ff"
-			},
-			"geometry": {
-				"type": "Point",
-				"coordinates": [
-					-89.265781,
-					-0.917252
-				]
-			}
-		},
-		{
-			"type": "Feature",
-			"properties": {
-				"pressure": 6,
-				"marker-color": "#66b6ff"
-			},
-			"geometry": {
-				"type": "Point",
-				"coordinates": [
-					-89.265781,
-					-0.902783
-				]
-			}
-		},
-		{
-			"type": "Feature",
-			"properties": {
-				"pressure": 6,
-				"marker-color": "#66b6ff"
-			},
-			"geometry": {
-				"type": "Point",
-				"coordinates": [
-					-89.265781,
-					-0.888314
-				]
-			}
-		},
-		{
-			"type": "Feature",
-			"properties": {
-				"pressure": 6,
-				"marker-color": "#66b6ff"
-			},
-			"geometry": {
-				"type": "Point",
-				"coordinates": [
-					-89.265781,
-					-0.873846
-				]
-			}
-		},
-		{
-			"type": "Feature",
-			"properties": {
-				"pressure": 6,
-				"marker-color": "#66b6ff"
-			},
-			"geometry": {
-				"type": "Point",
-				"coordinates": [
-					-89.265781,
-					-0.859377
-				]
-			}
-		},
-		{
-			"type": "Feature",
-			"properties": {
-				"pressure": 6,
-				"marker-color": "#66b6ff"
-			},
-			"geometry": {
-				"type": "Point",
-				"coordinates": [
-					-89.265781,
-					-0.844908
-				]
-			}
-		},
-		{
-			"type": "Feature",
-			"properties": {
-				"pressure": 6,
-				"marker-color": "#66b6ff"
-			},
-			"geometry": {
-				"type": "Point",
-				"coordinates": [
-					-89.265781,
-					-0.83044
-				]
-			}
-		},
-		{
-			"type": "Feature",
-			"properties": {
-				"pressure": 6,
-				"marker-color": "#66b6ff"
-			},
-			"geometry": {
-				"type": "Point",
-				"coordinates": [
-					-89.265781,
-					-0.815971
-				]
-			}
-		},
-		{
-			"type": "Feature",
-			"properties": {
-				"pressure": 6,
-				"marker-color": "#66b6ff"
-			},
-			"geometry": {
-				"type": "Point",
-				"coordinates": [
-					-89.265781,
-					-0.801502
-				]
-			}
-		},
-		{
-			"type": "Feature",
-			"properties": {
-				"pressure": 6,
-				"marker-color": "#66b6ff"
-			},
-			"geometry": {
-				"type": "Point",
-				"coordinates": [
-					-89.265781,
-					-0.787034
-				]
-			}
-		},
-		{
-			"type": "Feature",
-			"properties": {
-				"pressure": 6,
-				"marker-color": "#66b6ff"
-			},
-			"geometry": {
-				"type": "Point",
-				"coordinates": [
-					-89.265781,
-					-0.772565
-				]
-			}
-		},
-		{
-			"type": "Feature",
-			"properties": {
-				"pressure": 6,
-				"marker-color": "#66b6ff"
-			},
-			"geometry": {
-				"type": "Point",
-				"coordinates": [
-					-89.265781,
-					-0.758097
-				]
-			}
-		},
-		{
-			"type": "Feature",
-			"properties": {
-				"pressure": 6,
-				"marker-color": "#66b6ff"
-			},
-			"geometry": {
-				"type": "Point",
-				"coordinates": [
-					-89.265781,
-					-0.743628
-				]
-			}
-		},
-		{
-			"type": "Feature",
-			"properties": {
-				"pressure": 6,
-				"marker-color": "#66b6ff"
-			},
-			"geometry": {
-				"type": "Point",
-				"coordinates": [
-					-89.265781,
-					-0.729159
-				]
-			}
-		},
-		{
-			"type": "Feature",
-			"properties": {
-				"pressure": 6,
-				"marker-color": "#66b6ff"
-			},
-			"geometry": {
-				"type": "Point",
-				"coordinates": [
-					-89.265781,
-					-0.714691
-				]
-			}
-		},
-		{
-			"type": "Feature",
-			"properties": {
-				"pressure": 6,
-				"marker-color": "#66b6ff"
-			},
-			"geometry": {
-				"type": "Point",
-				"coordinates": [
-					-89.265781,
-					-0.700222
-				]
-			}
-		},
-		{
-			"type": "Feature",
-			"properties": {
-				"pressure": 6,
-				"marker-color": "#66b6ff"
-			},
-			"geometry": {
-				"type": "Point",
-				"coordinates": [
-					-89.265781,
-					-0.685753
-				]
-			}
-		},
-		{
-			"type": "Feature",
-			"properties": {
-				"pressure": 6,
-				"marker-color": "#66b6ff"
-			},
-			"geometry": {
-				"type": "Point",
-				"coordinates": [
-					-89.265781,
 					-0.671285
 				]
 			}
@@ -7733,7 +7397,343 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 5,
-				"marker-color": "#cce7ff"
+				"marker-color": "#ffffff"
+			},
+			"geometry": {
+				"type": "Point",
+				"coordinates": [
+					-89.265781,
+					-1.004063
+				]
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {
+				"pressure": 6,
+				"marker-color": "#80c2ff"
+			},
+			"geometry": {
+				"type": "Point",
+				"coordinates": [
+					-89.265781,
+					-0.989595
+				]
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {
+				"pressure": 6,
+				"marker-color": "#80c2ff"
+			},
+			"geometry": {
+				"type": "Point",
+				"coordinates": [
+					-89.265781,
+					-0.975126
+				]
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {
+				"pressure": 6,
+				"marker-color": "#80c2ff"
+			},
+			"geometry": {
+				"type": "Point",
+				"coordinates": [
+					-89.265781,
+					-0.960657
+				]
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {
+				"pressure": 6,
+				"marker-color": "#80c2ff"
+			},
+			"geometry": {
+				"type": "Point",
+				"coordinates": [
+					-89.265781,
+					-0.946189
+				]
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {
+				"pressure": 6,
+				"marker-color": "#80c2ff"
+			},
+			"geometry": {
+				"type": "Point",
+				"coordinates": [
+					-89.265781,
+					-0.93172
+				]
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {
+				"pressure": 6,
+				"marker-color": "#80c2ff"
+			},
+			"geometry": {
+				"type": "Point",
+				"coordinates": [
+					-89.265781,
+					-0.917252
+				]
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {
+				"pressure": 6,
+				"marker-color": "#80c2ff"
+			},
+			"geometry": {
+				"type": "Point",
+				"coordinates": [
+					-89.265781,
+					-0.902783
+				]
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {
+				"pressure": 6,
+				"marker-color": "#80c2ff"
+			},
+			"geometry": {
+				"type": "Point",
+				"coordinates": [
+					-89.265781,
+					-0.888314
+				]
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {
+				"pressure": 6,
+				"marker-color": "#80c2ff"
+			},
+			"geometry": {
+				"type": "Point",
+				"coordinates": [
+					-89.265781,
+					-0.873846
+				]
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {
+				"pressure": 6,
+				"marker-color": "#80c2ff"
+			},
+			"geometry": {
+				"type": "Point",
+				"coordinates": [
+					-89.265781,
+					-0.859377
+				]
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {
+				"pressure": 6,
+				"marker-color": "#80c2ff"
+			},
+			"geometry": {
+				"type": "Point",
+				"coordinates": [
+					-89.265781,
+					-0.844908
+				]
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {
+				"pressure": 6,
+				"marker-color": "#80c2ff"
+			},
+			"geometry": {
+				"type": "Point",
+				"coordinates": [
+					-89.265781,
+					-0.83044
+				]
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {
+				"pressure": 6,
+				"marker-color": "#80c2ff"
+			},
+			"geometry": {
+				"type": "Point",
+				"coordinates": [
+					-89.265781,
+					-0.815971
+				]
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {
+				"pressure": 6,
+				"marker-color": "#80c2ff"
+			},
+			"geometry": {
+				"type": "Point",
+				"coordinates": [
+					-89.265781,
+					-0.801502
+				]
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {
+				"pressure": 6,
+				"marker-color": "#80c2ff"
+			},
+			"geometry": {
+				"type": "Point",
+				"coordinates": [
+					-89.265781,
+					-0.787034
+				]
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {
+				"pressure": 6,
+				"marker-color": "#80c2ff"
+			},
+			"geometry": {
+				"type": "Point",
+				"coordinates": [
+					-89.265781,
+					-0.772565
+				]
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {
+				"pressure": 6,
+				"marker-color": "#80c2ff"
+			},
+			"geometry": {
+				"type": "Point",
+				"coordinates": [
+					-89.265781,
+					-0.758097
+				]
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {
+				"pressure": 6,
+				"marker-color": "#80c2ff"
+			},
+			"geometry": {
+				"type": "Point",
+				"coordinates": [
+					-89.265781,
+					-0.743628
+				]
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {
+				"pressure": 6,
+				"marker-color": "#80c2ff"
+			},
+			"geometry": {
+				"type": "Point",
+				"coordinates": [
+					-89.265781,
+					-0.729159
+				]
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {
+				"pressure": 6,
+				"marker-color": "#80c2ff"
+			},
+			"geometry": {
+				"type": "Point",
+				"coordinates": [
+					-89.265781,
+					-0.714691
+				]
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {
+				"pressure": 6,
+				"marker-color": "#80c2ff"
+			},
+			"geometry": {
+				"type": "Point",
+				"coordinates": [
+					-89.265781,
+					-0.700222
+				]
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {
+				"pressure": 6,
+				"marker-color": "#80c2ff"
+			},
+			"geometry": {
+				"type": "Point",
+				"coordinates": [
+					-89.265781,
+					-0.685753
+				]
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {
+				"pressure": 6,
+				"marker-color": "#80c2ff"
+			},
+			"geometry": {
+				"type": "Point",
+				"coordinates": [
+					-89.265781,
+					-0.671285
+				]
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {
+				"pressure": 5,
+				"marker-color": "#ffffff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -7747,7 +7747,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 5,
-				"marker-color": "#cce7ff"
+				"marker-color": "#ffffff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -7761,7 +7761,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -7775,7 +7775,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -7789,7 +7789,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -7803,7 +7803,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -7817,7 +7817,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -7831,7 +7831,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -7845,7 +7845,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -7859,7 +7859,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -7873,7 +7873,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -7887,7 +7887,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -7901,7 +7901,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -7915,7 +7915,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -7929,7 +7929,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -7943,7 +7943,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -7957,7 +7957,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -7971,7 +7971,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -7985,7 +7985,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -7999,7 +7999,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -8013,7 +8013,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -8027,7 +8027,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -8041,7 +8041,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
@@ -8055,7 +8055,7 @@
 			"type": "Feature",
 			"properties": {
 				"pressure": 6,
-				"marker-color": "#66b6ff"
+				"marker-color": "#80c2ff"
 			},
 			"geometry": {
 				"type": "Point",
