@@ -8,7 +8,7 @@ Takes a set of points and estimates their 'property' values on a grid using the 
 
 -   `points` **[FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects)&lt;[Point](http://geojson.org/geojson-spec.html#point)>** with known value
 -   `cellSize` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** the distance across each grid point
--   `outputType` **\[[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)]** defines if the output will be a `squareGrid` (`outputType`='squares') or a `pointGrid` (`outputType`='points').
+-   `gridType` **\[[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)]** defines if the output will be a `squareGrid` (`outputType`='squares'), a `pointGrid` (`outputType`='points'), a `haxGrid` (`outputType`='hex') or a `triangleGrid` (`outputType`='triangle').
 -   `property` **\[[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)]** the property name in `points` from which z-values will be pulled, zValue fallbacks to 3rd coordinate if no property exists. (optional, default `'elevation'`)
 -   `units` **\[[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)]** used in calculating cellSize, can be degrees, radians, miles, or kilometers (optional, default `kilometers`)
 -   `weight` **\[[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)]** exponent regulating the distance-decay weighting (optional, default `1`)

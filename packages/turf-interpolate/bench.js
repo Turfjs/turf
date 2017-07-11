@@ -16,18 +16,22 @@ const fixtures = fs.readdirSync(directory).map(filename => {
 /**
  * Benchmark Results
  *
- * data-1km: 14.950ms
- * data-500m: 12.788ms
- * data-weight-2: 0.319ms
- * points-random: 15.994ms
- * points1-weight-3: 2.797ms
- * points1: 2.052ms
- * data-1km x 1,592 ops/sec ±2.59% (76 runs sampled)
- * data-500m x 382 ops/sec ±2.18% (71 runs sampled)
- * data-weight-2 x 3,992 ops/sec ±2.05% (82 runs sampled)
- * points-random x 582 ops/sec ±1.98% (79 runs sampled)
- * points1-weight-3 x 602 ops/sec ±2.03% (81 runs sampled)
- * points1 x 544 ops/sec ±2.17% (77 runs sampled)
+ * data-1km: 15.042ms
+ * data-500m: 14.286ms
+ * data-weight-2: 0.408ms
+ * hex-zValue: 1.778ms
+ * points-random: 20.676ms
+ * points1-weight-3: 5.569ms
+ * points1: 4.254ms
+ * triangle-zValue: 3.519ms
+ * data-1km x 1,585 ops/sec ±2.77% (80 runs sampled)
+ * data-500m x 351 ops/sec ±2.59% (76 runs sampled)
+ * data-weight-2 x 3,730 ops/sec ±1.55% (82 runs sampled)
+ * hex-zValue x 2,854 ops/sec ±4.45% (72 runs sampled)
+ * points-random x 265 ops/sec ±1.67% (75 runs sampled)
+ * points1-weight-3 x 381 ops/sec ±2.06% (76 runs sampled)
+ * points1 x 356 ops/sec ±1.83% (70 runs sampled)
+ * triangle-zValue x 570 ops/sec ±1.69% (81 runs sampled)
  */
 const suite = new Benchmark.Suite('turf-interpolate');
 for (const {name, geojson} of fixtures) {

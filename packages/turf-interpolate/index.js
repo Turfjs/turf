@@ -1,10 +1,12 @@
 var meta = require('@turf/meta');
 var bbox = require('@turf/bbox');
+var hexGrid = require('@turf/hex-grid');
 var poinGrid = require('@turf/point-grid');
 var distance = require('@turf/distance');
 var centroid = require('@turf/centroid');
 var invariant = require('@turf/invariant');
 var squareGrid = require('@turf/square-grid');
+var triangleGrid = require('@turf/triangle-grid');
 var featureEach = meta.featureEach;
 var collectionOf = invariant.collectionOf;
 
@@ -14,7 +16,7 @@ var collectionOf = invariant.collectionOf;
  * @name interpolate
  * @param {FeatureCollection<Point>} points with known value
  * @param {number} cellSize the distance across each grid point
- * @param {string} [gridType='square'] defines the output format based on a Grid Type (options: 'square' | 'point')
+ * @param {string} [gridType='square'] defines the output format based on a Grid Type (options: 'square' | 'point' | 'hex' | 'triangle')
  * @param {string} [property='elevation'] the property name in `points` from which z-values will be pulled, zValue fallbacks to 3rd coordinate if no property exists.
  * @param {string} [units=kilometers] used in calculating cellSize, can be degrees, radians, miles, or kilometers
  * @param {number} [weight=1] exponent regulating the distance-decay weighting
@@ -52,6 +54,12 @@ module.exports = function (points, cellSize, gridType, property, units, weight) 
         break;
     case 'square':
         grid = squareGrid(box, cellSize, units);
+        break;
+    case 'hex':
+        grid = hexGrid(box, cellSize, units);
+        break;
+    case 'triangle':
+        grid = triangleGrid(box, cellSize, units);
         break;
     default:
         throw new Error('invalid gridType');

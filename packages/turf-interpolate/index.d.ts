@@ -14,7 +14,7 @@ declare function interpolate(
     weight?: number): interpolate.Points;
 
 declare namespace interpolate {
-    type OutputTypes = 'point' | 'square';
+    type OutputTypes = 'point' | 'square' | 'hex' | 'triangle';
     type Points = helpers.Points;
     type Units = helpers.Units;
 }

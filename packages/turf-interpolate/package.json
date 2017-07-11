@@ -45,6 +45,8 @@
     "@turf/invariant": "^4.5.2",
     "@turf/centroid": "^4.5.2",
     "@turf/square-grid": "^4.5.2",
+    "@turf/triangle-grid": "^4.5.2",
+    "@turf/hex-grid": "^4.5.2",
     "@turf/meta": "^4.5.2",
     "@turf/point-grid": "^4.5.2"
   }

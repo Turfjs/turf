@@ -26,6 +26,13 @@
   version "4.5.2"
   resolved "https://registry.yarnpkg.com/@turf/helpers/-/helpers-4.5.2.tgz#6fc6772a7b301f277b49732925c354c7fb85d1df"
 
+"@turf/hex-grid@^4.5.2":
+  version "4.5.2"
+  resolved "https://registry.yarnpkg.com/@turf/hex-grid/-/hex-grid-4.5.2.tgz#3a96ba6962b96eeb33d4da4baa8ee735f1221ade"
+  dependencies:
+    "@turf/distance" "^4.5.2"
+    "@turf/helpers" "^4.5.2"
+
 "@turf/inside@^4.5.2":
   version "4.5.2"
   resolved "https://registry.yarnpkg.com/@turf/inside/-/inside-4.5.2.tgz#9823c1b4c2efe5369e23cbf2c0fa2661bbb06e25"
@@ -55,6 +62,13 @@
   resolved "https://registry.yarnpkg.com/@turf/square-grid/-/square-grid-4.5.2.tgz#9647c01933a021bafc5851ce4bbf92864d2690e1"
   dependencies:
     "@turf/bbox" "^4.5.2"
+    "@turf/distance" "^4.5.2"
+    "@turf/helpers" "^4.5.2"
+
+"@turf/triangle-grid@^4.5.2":
+  version "4.5.2"
+  resolved "https://registry.yarnpkg.com/@turf/triangle-grid/-/triangle-grid-4.5.2.tgz#d6666d23d631c5f972aa23e2a7e1ab0a4044719f"
+  dependencies:
     "@turf/distance" "^4.5.2"
     "@turf/helpers" "^4.5.2"
 
