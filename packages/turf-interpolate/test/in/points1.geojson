@@ -1,0 +1,64 @@
+{
+	"type": "FeatureCollection",
+	"properties": {
+		"cellSize": 1,
+		"property": "pressure",
+		"gridType": "point",
+		"weight": 0.5,
+		"units": "miles"
+	},
+	"features": [
+		{
+			"type": "Feature",
+			"properties": {
+				"pressure": 10
+			},
+			"geometry": {
+				"type": "Point",
+				"coordinates": [
+					-89.58526611328125,
+					-0.6687775379129342
+				]
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {
+				"pressure": 7
+			},
+			"geometry": {
+				"type": "Point",
+				"coordinates": [
+					-89.51385498046874,
+					-0.7429296202184131
+				]
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {
+				"pressure": 3
+			},
+			"geometry": {
+				"type": "Point",
+				"coordinates": [
+					-89.41635131835938,
+					-0.8486628140085705
+				]
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {
+				"pressure": 5
+			},
+			"geometry": {
+				"type": "Point",
+				"coordinates": [
+					-89.25018310546875,
+					-1.0065705335484296
+				]
+			}
+		}
+	]
+}
