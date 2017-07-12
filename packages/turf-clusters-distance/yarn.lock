@@ -10,6 +10,10 @@
   version "4.5.2"
   resolved "https://registry.yarnpkg.com/@turf/invariant/-/invariant-4.5.2.tgz#0642ee1e6bca531be3f6f9292d590155f2fb9604"
 
+"@turf/meta@^4.5.2":
+  version "4.5.2"
+  resolved "https://registry.yarnpkg.com/@turf/meta/-/meta-4.5.2.tgz#8450fc442d2a59494251a5a52ae520017e2dcf0d"
+
 "@turf/random@^4.4.0":
   version "4.5.2"
   resolved "https://registry.yarnpkg.com/@turf/random/-/random-4.5.2.tgz#965353691cd64261c341cb4dc071c618b8f05e51"

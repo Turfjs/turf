@@ -1,7 +1,8 @@
 {
 	"type": "FeatureCollection",
 	"properties": {
-		"distance": "80"
+		"distance": "75",
+		"minPoints": 3
 	},
 	"features": [
 		{

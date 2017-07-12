@@ -23,10 +23,11 @@ const fixtures = fs.readdirSync(directories.in).map(filename => {
 
 test('clusters-distance', t => {
     fixtures.forEach(({name, filename, geojson}) => {
-        let {distance} = geojson.properties || {};
+        let {distance, minPoints} = geojson.properties || {};
         distance = distance || 100;
+        minPoints = minPoints || 1;
 
-        const clustered = clustersDistance(geojson, distance);
+        const clustered = clustersDistance(geojson, distance, minPoints);
         const result = featureCollection(colorize(clustered));
 
         if (process.env.REGEN) write.sync(directories.out + filename, result);
@@ -64,13 +65,5 @@ function colorize(clustered) {
         point.properties['marker-size'] = 'small';
         points.push(point);
     });
-    // featureEach(clustered.centroids, function (centroid) {
-    //     const color = chromatism.brightness(-25, colours[centroid.properties.cluster]).hex;
-    //     centroid.properties['marker-color'] = color;
-    //     centroid.properties['marker-symbol'] = 'star-stroked';
-    //     centroid.properties['marker-size'] = 'large';
-    //     centroid.properties['marker-size'] = 'large';
-    //     points.push(centroid);
-    // });
     return points;
 }
