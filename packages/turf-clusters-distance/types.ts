@@ -6,8 +6,9 @@ const points = random('point', 50, {
 })
 
 const maxDistance = 5;
+const minPoints = 3;
 const clustered = clusters(points, maxDistance)
 
 // Properties option
-clusters(points)
 clusters(points, maxDistance)
+clusters(points, maxDistance, minPoints)
