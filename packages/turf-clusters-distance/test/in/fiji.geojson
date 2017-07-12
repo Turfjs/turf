@@ -3,7 +3,6 @@
 	"features": [
 		{
 			"type": "Feature",
-			"properties": {},
 			"geometry": {
 				"type": "Point",
 				"coordinates": [
@@ -14,7 +13,6 @@
 		},
 		{
 			"type": "Feature",
-			"properties": {},
 			"geometry": {
 				"type": "Point",
 				"coordinates": [
@@ -25,7 +23,6 @@
 		},
 		{
 			"type": "Feature",
-			"properties": {},
 			"geometry": {
 				"type": "Point",
 				"coordinates": [
@@ -36,7 +33,6 @@
 		},
 		{
 			"type": "Feature",
-			"properties": {},
 			"geometry": {
 				"type": "Point",
 				"coordinates": [
@@ -47,7 +43,6 @@
 		},
 		{
 			"type": "Feature",
-			"properties": {},
 			"geometry": {
 				"type": "Point",
 				"coordinates": [
@@ -58,7 +53,6 @@
 		},
 		{
 			"type": "Feature",
-			"properties": {},
 			"geometry": {
 				"type": "Point",
 				"coordinates": [

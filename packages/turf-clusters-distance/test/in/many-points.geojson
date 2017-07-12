@@ -1,7 +1,7 @@
 {
 	"type": "FeatureCollection",
 	"properties": {
-		"distance": "200"
+		"distance": "80"
 	},
 	"features": [
 		{

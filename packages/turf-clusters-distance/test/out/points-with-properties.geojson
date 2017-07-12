@@ -15,23 +15,8 @@
 					68.477783203125,
 					-48.84302835299516
 				]
-			}
-		},
-		{
-			"type": "Feature",
-			"properties": {
-				"marker-symbol": 2,
-				"cluster": 0,
-				"marker-color": "#0000ff",
-				"marker-size": "small"
 			},
-			"geometry": {
-				"type": "Point",
-				"coordinates": [
-					68.873291015625,
-					-48.821332549646634
-				]
-			}
+			"id": 0
 		},
 		{
 			"type": "Feature",
@@ -47,7 +32,25 @@
 					68.69750976562499,
 					-48.958580664409766
 				]
-			}
+			},
+			"id": 2
+		},
+		{
+			"type": "Feature",
+			"properties": {
+				"marker-symbol": 2,
+				"cluster": 0,
+				"marker-color": "#0000ff",
+				"marker-size": "small"
+			},
+			"geometry": {
+				"type": "Point",
+				"coordinates": [
+					68.873291015625,
+					-48.821332549646634
+				]
+			},
+			"id": 1
 		},
 		{
 			"type": "Feature",
@@ -63,23 +66,8 @@
 					70.87280273437499,
 					-49.418120700666414
 				]
-			}
-		},
-		{
-			"type": "Feature",
-			"properties": {
-				"marker-symbol": 5,
-				"cluster": 1,
-				"marker-color": "#ffff00",
-				"marker-size": "small"
 			},
-			"geometry": {
-				"type": "Point",
-				"coordinates": [
-					71.949462890625,
-					-49.36091154712616
-				]
-			}
+			"id": 3
 		},
 		{
 			"type": "Feature",
@@ -95,7 +83,25 @@
 					71.4111328125,
 					-49.102645497788814
 				]
-			}
+			},
+			"id": 5
+		},
+		{
+			"type": "Feature",
+			"properties": {
+				"marker-symbol": 5,
+				"cluster": 1,
+				"marker-color": "#ffff00",
+				"marker-size": "small"
+			},
+			"geometry": {
+				"type": "Point",
+				"coordinates": [
+					71.949462890625,
+					-49.36091154712616
+				]
+			},
+			"id": 4
 		}
 	]
 }

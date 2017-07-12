@@ -3,9 +3,9 @@ const test = require('tape');
 const path = require('path');
 const load = require('load-json-file');
 const write = require('write-json-file');
+const chromatism = require('chromatism');
 const {featureEach} = require('@turf/meta');
 const {featureCollection, point, polygon} = require('@turf/helpers');
-const chromatism = require('chromatism');
 const clustersDistance = require('./');
 
 const directories = {
@@ -49,7 +49,7 @@ test('clusters -- throws', t => {
 });
 
 test('clusters -- translate properties', t => {
-    t.equal(clustersDistance(points, 2).features[0].properties.foo, 'bar');
+    t.equal(clustersDistance(points, 2, 1).features[0].properties.foo, 'bar');
     t.end();
 });
 

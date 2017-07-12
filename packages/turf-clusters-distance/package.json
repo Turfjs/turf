@@ -26,7 +26,8 @@
   ],
   "author": "Turf Authors",
   "contributors": [
-    "Denis Carriere <@DenisCarriere>"
+    "Denis Carriere <@DenisCarriere>",
+    "Stefano Borghi <@stebogit>"
   ],
   "license": "MIT",
   "bugs": {
@@ -35,7 +36,6 @@
   "homepage": "https://github.com/Turfjs/turf",
   "devDependencies": {
     "@turf/helpers": "^4.4.0",
-    "@turf/meta": "^4.4.0",
     "@turf/random": "^4.4.0",
     "benchmark": "^2.1.4",
     "chromatism": "2.6.0",
@@ -45,6 +45,8 @@
   },
   "dependencies": {
     "@turf/invariant": "^4.4.0",
+    "es6-map": "^0.1.5",
+    "es6-set": "^0.1.5",
     "geokdbush": "^1.1.0",
     "kdbush": "^1.0.1"
   }
