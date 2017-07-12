@@ -1,6 +1,10 @@
 {
 	"type": "Feature",
-	"properties": {},
+	"properties": {
+		"cellSide": 12.5,
+		"units": "miles",
+		"bboxIsMask": true
+	},
 	"geometry": {
 		"type": "Polygon",
 		"coordinates": [
