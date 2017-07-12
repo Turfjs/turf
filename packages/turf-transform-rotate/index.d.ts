@@ -6,11 +6,11 @@ type Geoms = GeoJSON.Feature<any> | GeoJSON.FeatureCollection<any> | GeoJSON.Geo
 /**
  * http://turfjs.org/docs/#transform-rotate
  */
-declare function rotate<Geom extends Geoms>(
+declare function transformRotate<Geom extends Geoms>(
     geojson: Geom,
     angle: number,
     pivot?: Point,
     mutate?: boolean): Geom;
 
-declare namespace rotate { }
-export = rotate;
+declare namespace transformRotate { }
+export = transformRotate;

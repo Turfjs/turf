@@ -15,7 +15,8 @@ import {
     radians2degrees,
     degrees2radians,
     round,
-    convertDistance} from '@turf/helpers';
+    convertDistance,
+    convertArea} from '@turf/helpers';
 import {
     getGeom,
     getGeomType,
@@ -111,6 +112,11 @@ import * as transformScale from '@turf/transform-scale';
 import * as transformTranslate from '@turf/transform-translate';
 import * as lineOffset from '@turf/line-offset';
 import * as polygonize from '@turf/polygonize';
+import * as booleanDisjoint from '@turf/boolean-disjoint';
+import * as booleanContains from '@turf/boolean-contains';
+import * as booleanCrosses from '@turf/boolean-crosses';
+import * as booleanClockwise from '@turf/boolean-clockwise';
+import * as clone from '@turf/clone';
 export {
     isolines,
     convex,
@@ -214,6 +220,7 @@ export {
     flattenEach,
     flattenReduce,
     convertDistance,
+    convertArea,
     transformRotate,
     transformScale,
     transformTranslate,
@@ -221,5 +228,10 @@ export {
     polygonize,
     bearingToAngle,
     featureReduce,
-    geomReduce
+    geomReduce,
+    booleanDisjoint,
+    booleanContains,
+    booleanCrosses,
+    booleanClockwise,
+    clone
 };

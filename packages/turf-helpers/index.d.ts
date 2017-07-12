@@ -115,3 +115,8 @@ export function round(num: number, precision?: number): number
  * http://turfjs.org/docs/#convertdistance
  */
 export function convertDistance(distance: number, originalUnit: Units, finalUnit?: Units): number
+
+/**
+ * http://turfjs.org/docs/#convertarea
+ */
+export function convertArea(area: number, originalUnit?: Units, finalUnit?: Units): number

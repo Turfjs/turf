@@ -1,6 +1,6 @@
 {
   "name": "@turf/polygonize",
-  "version": "4.4.0",
+  "version": "4.5.2",
   "description": "turf polygonize module",
   "main": "index.js",
   "types": "index.d.ts",
@@ -33,8 +33,8 @@
   },
   "homepage": "https://github.com/Turfjs/turf",
   "devDependencies": {
-    "@turf/helpers": "^4.4.0",
-    "@turf/meta": "^4.4.0",
+    "@turf/helpers": "^4.5.2",
+    "@turf/meta": "^4.5.2",
     "benchmark": "^2.1.4",
     "load-json-file": "^2.0.0",
     "tape": "^4.6.3",
