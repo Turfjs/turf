@@ -12,8 +12,8 @@ var lineString = helpers.lineString;
  * Takes a {@link Point} and a {@link LineString} and calculates the closest Point on the (Multi)LineString.
  *
  * @name pointOnLine
- * @param {Feature<LineString>|Feature<MultiLineString>} lines lines to snap to
- * @param {Feature<Point>} pt point to snap from
+ * @param {Geometry|Feature<LineString|MultiLineString>} lines lines to snap to
+ * @param {Geometry|Feature<Point>|number[]} pt point to snap from
  * @param {string} [units=kilometers] can be degrees, radians, miles, or kilometers
  * @returns {Feature<Point>} closest point on the `line` to `point`. The properties object will contain three values: `index`: closest point was found on nth line part, `dist`: distance between pt and the closest point, `location`: distance along the line between start and the closest point.
  * @example
@@ -49,8 +49,9 @@ var lineString = helpers.lineString;
  */
 module.exports = function (lines, pt, units) {
     // validation
-    if (lines.type !== 'Feature' && lines.type !== 'LineString' && lines.type !== 'MultiLineString' && lines.geometry.type !== 'LineString' && lines.geometry.type !== 'MultiLineString') {
-        throw new Error('input must be a LineString or MultiLineString Feature or Geometry');
+    var type = (lines.geometry) ? lines.geometry.type : lines.type;
+    if (type !== 'LineString' && type !== 'MultiLineString') {
+        throw new Error('lines must be LineString or MultiLineString');
     }
 
     var closestPt = point([Infinity, Infinity], {
