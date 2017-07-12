@@ -3,9 +3,7 @@ const test = require('tape');
 const path = require('path');
 const load = require('load-json-file');
 const write = require('write-json-file');
-const mkdirp = require('mkdirp');
-const {featureEach} = require('@turf/meta');
-const grid = require('./');
+const pointGrid = require('./');
 
 const directories = {
     in: path.join(__dirname, 'test', 'in') + path.sep,
@@ -23,41 +21,25 @@ let fixtures = fs.readdirSync(directories.in).map(filename => {
 
 test('turf-point-grid', t => {
     for (const {name, geojson} of fixtures) {
-        const grid5 = grid(geojson, 5, 'miles');
-        const grid20 = grid(geojson, 20, 'miles');
-        const gridCentered = grid(geojson, 12.5, 'miles', true);
-        const gridMasked = grid(geojson, 15, 'miles', true, true);
+        const {cellSide, units, centered, bboxIsMask} = geojson.properties;
+        const result = pointGrid(geojson, cellSide, units, centered, bboxIsMask);
 
-        // Add current GeoJSON to grid results
-        featureEach(geojson, feature => {
-            feature.properties = {
-                stroke: '#F00',
-                'stroke-width': 6,
-                'fill-opacity': 0
-            };
-            grid5.features.push(feature);
-            grid20.features.push(feature);
-            gridCentered.features.push(feature);
-            gridMasked.features.push(feature);
-        });
+        // Add styled GeoJSON to the result
+        geojson.properties = {
+            stroke: '#F00',
+            'stroke-width': 6,
+            'fill-opacity': 0
+        };
+        result.features.push(geojson);
 
-        if (process.env.REGEN) {
-            mkdirp.sync(directories.out + name);
-            write.sync(path.join(directories.out, name, '5-miles.geojson'), grid5);
-            write.sync(path.join(directories.out, name, '20-miles.geojson'), grid20);
-            write.sync(path.join(directories.out, name, 'centered.geojson'), gridCentered);
-            write.sync(path.join(directories.out, name, 'masked.geojson'), gridMasked);
-        }
-        t.deepEqual(grid5, load.sync(path.join(directories.out, name, '5-miles.geojson')), name + ' -- 5 miles');
-        t.deepEqual(grid20, load.sync(path.join(directories.out, name, '20-miles.geojson')), name + ' -- 20 miles');
-        t.deepEqual(gridCentered, load.sync(path.join(directories.out, name, 'centered.geojson')), name + ' -- centered');
-        t.deepEqual(gridMasked, load.sync(path.join(directories.out, name, 'masked.geojson')), name + ' -- masked');
+        if (process.env.REGEN) write.sync(directories.out + name + '.geojson', result);
+        t.deepEqual(result, load.sync(directories.out + name + '.geojson'), name);
     }
     t.end();
 });
 
 test('turf-point-grid -- throws', t => {
-    t.throws(() => grid(null, 10), /bbox is required/, 'missing bbox');
-    t.throws(() => grid([-95, 30, 40], 10), /bbox must contain 4 numbers/, 'invalid bbox');
+    t.throws(() => pointGrid(null, 10), /bbox is required/, 'missing bbox');
+    t.throws(() => pointGrid([-95, 30, 40], 10), /bbox must contain 4 numbers/, 'invalid bbox');
     t.end();
 });
