@@ -2,11 +2,11 @@
 
 # pointOnLine
 
-Takes a [Point](http://geojson.org/geojson-spec.html#point) and a [LineString](http://geojson.org/geojson-spec.html#linestring) and calculates the closest Point on the LineString.
+Takes a [Point](http://geojson.org/geojson-spec.html#point) and a [LineString](http://geojson.org/geojson-spec.html#linestring) or [MultiLineString](http://geojson.org/geojson-spec.html#multilinestring) and calculates the closest Point on the (Multi)LineString.
 
 **Parameters**
 
--   `line` **[Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;[LineString](http://geojson.org/geojson-spec.html#linestring)>** line to snap to
+-   `lines` **[Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;[LineString](http://geojson.org/geojson-spec.html#linestring)|[MultiLineString](http://geojson.org/geojson-spec.html#multilinestring)>** lines to snap to
 -   `pt` **[Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;[Point](http://geojson.org/geojson-spec.html#point)>** point to snap from
 -   `units` **\[[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)]** can be degrees, radians, miles, or kilometers (optional, default `kilometers`)
 

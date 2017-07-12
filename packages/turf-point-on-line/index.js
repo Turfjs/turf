@@ -1,18 +1,21 @@
-var distance = require('@turf/distance');
+var meta = require('@turf/meta');
 var helpers = require('@turf/helpers');
 var bearing = require('@turf/bearing');
+var distance = require('@turf/distance');
 var destination = require('@turf/destination');
 var lineIntersects = require('@turf/line-intersect');
 var point = helpers.point;
+var coordAll = meta.coordAll;
 var lineString = helpers.lineString;
+
 /**
- * Takes a {@link Point} and a {@link LineString} and calculates the closest Point on the LineString.
+ * Takes a {@link Point} and a {@link LineString} and calculates the closest Point on the (Multi)LineString.
  *
  * @name pointOnLine
- * @param {Feature<LineString>} line line to snap to
+ * @param {Feature<LineString>|Feature<MultiLineString>} lines lines to snap to
  * @param {Feature<Point>} pt point to snap from
  * @param {string} [units=kilometers] can be degrees, radians, miles, or kilometers
- * @return {Feature<Point>} closest point on the `line` to `point`. The properties object will contain three values: `index`: closest point was found on nth line part, `dist`: distance between pt and the closest point, `location`: distance along the line between start and the closest point.
+ * @returns {Feature<Point>} closest point on the `line` to `point`. The properties object will contain three values: `index`: closest point was found on nth line part, `dist`: distance between pt and the closest point, `location`: distance along the line between start and the closest point.
  * @example
  * var line = {
  *   "type": "Feature",
@@ -44,24 +47,22 @@ var lineString = helpers.lineString;
  * snapped.properties['marker-color'] = '#00f';
  * var addToMap = [line, pt, snapped];
  */
-
-module.exports = function (line, pt, units) {
-    var coords;
-    if (line.type === 'Feature') {
-        coords = line.geometry.coordinates;
-    } else if (line.type === 'LineString') {
-        coords = line.coordinates;
-    } else {
-        throw new Error('input must be a LineString Feature or Geometry');
+module.exports = function (lines, pt, units) {
+    // validation
+    if (lines.type !== 'Feature' && lines.type !== 'LineString' && lines.type !== 'MultiLineString' && lines.geometry.type !== 'LineString' && lines.geometry.type !== 'MultiLineString') {
+        throw new Error('input must be a LineString or MultiLineString Feature or Geometry');
     }
 
     var closestPt = point([Infinity, Infinity], {
         dist: Infinity
     });
     var length = 0.0;
-    for (var i = 0; i < coords.length - 1; i++) {
-        var start = point(coords[i]);
-        var stop = point(coords[i + 1]);
+
+    var allCoords = coordAll(lines);
+
+    for (var i = 0; i < allCoords.length - 1; i++) {
+        var start = point(allCoords[i]);
+        var stop = point(allCoords[i + 1]);
         //start
         start.properties.dist = distance(pt, start, units);
         //stop
