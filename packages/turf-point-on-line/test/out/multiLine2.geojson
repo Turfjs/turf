@@ -60,8 +60,8 @@
 				"type": "LineString",
 				"coordinates": [
 					[
-						125.35031,
-						-16.275419
+						127.265625,
+						-13.667338
 					],
 					[
 						124.189453,
@@ -84,16 +84,16 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"dist": 148.797459,
-				"location": 2147.045875,
-				"index": 3,
+				"dist": 391.064911,
+				"index": 0,
+				"location": 1656.657319,
 				"marker-color": "#F0F"
 			},
 			"geometry": {
 				"type": "Point",
 				"coordinates": [
-					125.35031,
-					-16.275419
+					127.265625,
+					-13.667338
 				]
 			}
 		}
