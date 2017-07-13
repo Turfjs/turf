@@ -2,6 +2,7 @@ var Set = require('es6-set');
 var Map = require('es6-map');
 var kdbush = require('kdbush');
 var geokdbush = require('geokdbush');
+var convertDistance = require('@turf/helpers').convertDistance;
 var collectionOf = require('@turf/invariant').collectionOf;
 
 /**
@@ -9,7 +10,8 @@ var collectionOf = require('@turf/invariant').collectionOf;
  *
  * @name clustersDistance
  * @param {FeatureCollection<Point>} points to be clustered
- * @param {number} maxDistance Maximum Distance to generate the clusters (kilometers only)
+ * @param {number} maxDistance Maximum Distance between any point of the cluster to generate the clusters (kilometers only)
+ * @param {string} [units=kilometers] in which `maxDistance` is expressed, can be degrees, radians, miles, or kilometers
  * @param {number} [minPoints=1] Minimum number of points to generate a single cluster, points will be excluded if the cluster does not meet the minimum amounts of points.
  * @returns {FeatureCollection<Point>} clustered points
  * @example
@@ -23,13 +25,12 @@ var collectionOf = require('@turf/invariant').collectionOf;
  * //addToMap
  * var addToMap = featureCollection(clustered.points);
  */
-module.exports = function (points, maxDistance, minPoints) {
+module.exports = function (points, maxDistance, units, minPoints) {
     // Input validation
     collectionOf(points, 'Point', 'Input must contain Points');
-    if (!maxDistance) throw new Error('maxDistance is required');
-
-    // Default values
-    minPoints = minPoints || 1;
+    if (maxDistance === null || maxDistance === undefined) throw new Error('maxDistance is required');
+    if (!(Math.sign(maxDistance) > 0)) throw new Error('Invalid maxDistance');
+    if (!(minPoints === undefined || minPoints === null || Math.sign(minPoints) > 0)) throw new Error('Invalid minPoints');
 
     // Generate IDs - 11,558,342 ops/sec
     points = generateUniqueIds(points);
@@ -38,16 +39,16 @@ module.exports = function (points, maxDistance, minPoints) {
     var tree = kdbush(points.features, getX, getY);
 
     // Create Clusters - 13,041 ops/sec
-    var clusters = createClusters(tree, maxDistance);
+    var clusters = createClusters(tree, maxDistance, units);
 
     // Join Clusters - 4,435 ops/sec
     var joined = joinClusters(clusters);
 
     // Remove Clusters based on minPoints
-    var removed = removeClusters(joined, minPoints);
+    var cleaned = (minPoints && minPoints > 1) ? cleanClusters(joined, minPoints) : joined;
 
     // Clusters To Features -
-    var features = clustersToFeatures(removed, points, minPoints);
+    var features = clustersToFeatures(cleaned, points, minPoints);
 
     return {
         type: 'FeatureCollection',
@@ -68,6 +69,7 @@ function getY(p) {
  *
  * @param {KDBush} tree KDBush Tree
  * @param {number} maxDistance Maximum Distance (in kilometers)
+ * @param {string} [units=kilometers] in which `maxDistance` is expressed, can be degrees, radians, miles, or kilometers
  * @returns {Map<number, Set<number>>} Map<clusterId, cluster> A Map which contains a Set of Feature ids which are 'around' by maxDistance
  * @example
  * createClusters(tree, maxDistance)
@@ -79,16 +81,18 @@ function getY(p) {
  *   26 => Set { 26, 23, 21, 24, 22, 11, 8, 7, 10, 6, 9, 13 }
  * }
  */
-function createClusters(tree, maxDistance) {
+function createClusters(tree, maxDistance, units) {
     var clusters = new Map();
     var clusterId = 0;
+
     tree.ids.forEach(function (id) {
         // Cluster contains a Set of Feature IDs
         var cluster = new Set();
         var feature = tree.points[id];
 
         // Find points around Max Distance
-        var around = geokdbush.around(tree, getX(feature), getY(feature), Infinity, maxDistance);
+        var maxDistanceKm = convertDistance(maxDistance, units);
+        var around = geokdbush.around(tree, getX(feature), getY(feature), Infinity, maxDistanceKm);
         around.forEach(function (feature) {
             cluster.add(feature.id);
         });
@@ -149,11 +153,11 @@ function joinClusters(clusters) {
  * @returns {boolean} (true) if Set1 contains a number in Set2
  */
 function setContains(set1, set2) {
-    var boolean = false;
-    set1.forEach(function (value) {
-        if (set2.has(value)) boolean = true;
-    });
-    return boolean;
+    var it = set1.values();
+    for (var item = it.next(); !item.done; item = it.next()) {
+        if (set2.has(item.value)) return true;
+    }
+    return false;
 }
 
 /**
@@ -195,7 +199,7 @@ function generateUniqueIds(geojson) {
  * @param {number} minPoints Minimum Points
  * @returns {Map<number, Set<number>>} removed clusters
  */
-function removeClusters(clusters, minPoints) {
+function cleanClusters(clusters, minPoints) {
     var clusterId = 0;
     var newClusters = new Map();
     clusters.forEach(function (cluster) {
