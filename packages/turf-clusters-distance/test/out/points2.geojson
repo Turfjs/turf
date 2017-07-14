@@ -102,7 +102,7 @@
 			"properties": {
 				"cluster": 1,
 				"dbscan": "core",
-				"marker-color": "#ff007e",
+				"marker-color": "#ff00ca",
 				"marker-size": "small"
 			},
 			"geometry": {
@@ -118,7 +118,7 @@
 			"properties": {
 				"cluster": 1,
 				"dbscan": "core",
-				"marker-color": "#ff007e",
+				"marker-color": "#ff00ca",
 				"marker-size": "small"
 			},
 			"geometry": {
@@ -134,7 +134,7 @@
 			"properties": {
 				"cluster": 1,
 				"dbscan": "core",
-				"marker-color": "#ff007e",
+				"marker-color": "#ff00ca",
 				"marker-size": "small"
 			},
 			"geometry": {
@@ -150,7 +150,7 @@
 			"properties": {
 				"cluster": 1,
 				"dbscan": "core",
-				"marker-color": "#ff007e",
+				"marker-color": "#ff00ca",
 				"marker-size": "small"
 			},
 			"geometry": {
@@ -166,7 +166,7 @@
 			"properties": {
 				"cluster": 1,
 				"dbscan": "core",
-				"marker-color": "#ff007e",
+				"marker-color": "#ff00ca",
 				"marker-size": "small"
 			},
 			"geometry": {
@@ -182,7 +182,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#ffff00",
+				"marker-color": "#ff6600",
 				"marker-size": "small"
 			},
 			"geometry": {
@@ -198,7 +198,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#ffff00",
+				"marker-color": "#ff6600",
 				"marker-size": "small"
 			},
 			"geometry": {
@@ -214,7 +214,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#ffff00",
+				"marker-color": "#ff6600",
 				"marker-size": "small"
 			},
 			"geometry": {
@@ -230,7 +230,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#ffff00",
+				"marker-color": "#ff6600",
 				"marker-size": "small"
 			},
 			"geometry": {
@@ -246,7 +246,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#ffff00",
+				"marker-color": "#ff6600",
 				"marker-size": "small"
 			},
 			"geometry": {
@@ -262,7 +262,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#ffff00",
+				"marker-color": "#ff6600",
 				"marker-size": "small"
 			},
 			"geometry": {
@@ -294,7 +294,7 @@
 			"properties": {
 				"cluster": 1,
 				"dbscan": "core",
-				"marker-color": "#ff007e",
+				"marker-color": "#ff00ca",
 				"marker-size": "small"
 			},
 			"geometry": {
@@ -310,7 +310,7 @@
 			"properties": {
 				"cluster": 1,
 				"dbscan": "core",
-				"marker-color": "#ff007e",
+				"marker-color": "#ff00ca",
 				"marker-size": "small"
 			},
 			"geometry": {
@@ -326,7 +326,7 @@
 			"properties": {
 				"cluster": 1,
 				"dbscan": "core",
-				"marker-color": "#ff007e",
+				"marker-color": "#ff00ca",
 				"marker-size": "small"
 			},
 			"geometry": {
@@ -342,7 +342,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#ffff00",
+				"marker-color": "#ff6600",
 				"marker-size": "small"
 			},
 			"geometry": {
@@ -358,7 +358,7 @@
 			"properties": {
 				"cluster": 1,
 				"dbscan": "core",
-				"marker-color": "#ff007e",
+				"marker-color": "#ff00ca",
 				"marker-size": "small"
 			},
 			"geometry": {
@@ -422,7 +422,7 @@
 			"properties": {
 				"cluster": 3,
 				"dbscan": "core",
-				"marker-color": "#00ff80",
+				"marker-color": "#65ff00",
 				"marker-size": "small"
 			},
 			"geometry": {
@@ -438,7 +438,7 @@
 			"properties": {
 				"cluster": 3,
 				"dbscan": "core",
-				"marker-color": "#00ff80",
+				"marker-color": "#65ff00",
 				"marker-size": "small"
 			},
 			"geometry": {
@@ -454,7 +454,7 @@
 			"properties": {
 				"cluster": 3,
 				"dbscan": "core",
-				"marker-color": "#00ff80",
+				"marker-color": "#65ff00",
 				"marker-size": "small"
 			},
 			"geometry": {
@@ -470,7 +470,7 @@
 			"properties": {
 				"cluster": 3,
 				"dbscan": "core",
-				"marker-color": "#00ff80",
+				"marker-color": "#65ff00",
 				"marker-size": "small"
 			},
 			"geometry": {
@@ -486,7 +486,7 @@
 			"properties": {
 				"cluster": 3,
 				"dbscan": "core",
-				"marker-color": "#00ff80",
+				"marker-color": "#65ff00",
 				"marker-size": "small"
 			},
 			"geometry": {
@@ -518,7 +518,7 @@
 			"properties": {
 				"cluster": 3,
 				"dbscan": "core",
-				"marker-color": "#00ff80",
+				"marker-color": "#65ff00",
 				"marker-size": "small"
 			},
 			"geometry": {
