@@ -26,7 +26,7 @@ var featureCollection = helpers.featureCollection;
  *   bbox: [0, 30, 20, 50]
  * });
  * var distance = 100;
- * var clustered = turf.clustersDistance(points, distance);
+ * var clustered = turf.clustersDbscan(points, distance);
  *
  * //addToMap
  * var addToMap = featureCollection(clustered.points);

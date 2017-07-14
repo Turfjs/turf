@@ -7,7 +7,7 @@ const chromatism = require('chromatism');
 const centerOfMass = require('@turf/center-of-mass');
 const {featureEach, propEach} = require('@turf/meta');
 const {featureCollection, point, polygon} = require('@turf/helpers');
-const clustersDistance = require('./');
+const clusters = require('./');
 
 const directories = {
     in: path.join(__dirname, 'test', 'in') + path.sep,
@@ -22,13 +22,13 @@ const fixtures = fs.readdirSync(directories.in).map(filename => {
     };
 });
 
-test('clusters-distance', t => {
+test('clusters-dbscan', t => {
     fixtures.forEach(({name, filename, geojson}) => {
         let {distance, minPoints, units} = geojson.properties || {};
         distance = distance || 100;
 
         // console.log(geojson.features.length);
-        const clustered = clustersDistance(geojson, distance, units, minPoints);
+        const clustered = clusters(geojson, distance, units, minPoints);
         // console.log(clustered.points.features.length);
         const result = colorize(clustered);
 
@@ -47,29 +47,29 @@ const points = featureCollection([
 
 test('clusters -- throws', t => {
     const poly = polygon([[[0, 0], [10, 10], [0, 10], [0, 0]]]);
-    t.throws(() => clustersDistance(poly, 1), /Input must contain Points/);
-    t.throws(() => clustersDistance(points), /maxDistance is required/);
-    t.throws(() => clustersDistance(points, -4), /Invalid maxDistance/);
-    t.throws(() => clustersDistance(points, 'foo'), /Invalid maxDistance/);
-    t.throws(() => clustersDistance(points, 1, 'nanometers'), /units is invalid/);
-    t.throws(() => clustersDistance(points, 1, null, 0), /Invalid minPoints/);
-    t.throws(() => clustersDistance(points, 1, 'miles', 'baz'), /Invalid minPoints/);
+    t.throws(() => clusters(poly, 1), /Input must contain Points/);
+    t.throws(() => clusters(points), /maxDistance is required/);
+    t.throws(() => clusters(points, -4), /Invalid maxDistance/);
+    t.throws(() => clusters(points, 'foo'), /Invalid maxDistance/);
+    t.throws(() => clusters(points, 1, 'nanometers'), /units is invalid/);
+    t.throws(() => clusters(points, 1, null, 0), /Invalid minPoints/);
+    t.throws(() => clusters(points, 1, 'miles', 'baz'), /Invalid minPoints/);
     t.end();
 });
 
 test('clusters -- prevent input mutation', t => {
-    clustersDistance(points, 2, 'kilometers', 1);
+    clusters(points, 2, 'kilometers', 1);
     t.true(points.features[0].properties.cluster === undefined, 'cluster properties should be undefined');
     t.end();
 });
 
 test('clusters -- translate properties', t => {
-    t.equal(clustersDistance(points, 2, 'kilometers', 1).features[0].properties.foo, 'bar');
+    t.equal(clusters(points, 2, 'kilometers', 1).features[0].properties.foo, 'bar');
     t.end();
 });
 
 test('clusters -- handle Array of Points', t => {
-    t.assert(clustersDistance(points.features, 2), 'Support Array of Features input');
+    t.assert(clusters(points.features, 2), 'Support Array of Features input');
     t.end();
 });
 

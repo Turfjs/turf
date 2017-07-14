@@ -18,7 +18,7 @@ const fixtures = fs.readdirSync(directory).map(filename => {
 /**
  * Benchmark Results
  *
- * // Clusters distance (dbscan)
+ * // Clusters dbscan
  * fiji: 2.034ms
  * many-points: 50.185ms
  * noise: 1.027ms
@@ -44,7 +44,7 @@ const fixtures = fs.readdirSync(directory).map(filename => {
  * points1 x 44,736 ops/sec ±5.12% (77 runs sampled)
  * points2 x 26,771 ops/sec ±4.22% (83 runs sampled)
  */
-const suite = new Benchmark.Suite('turf-clusters');
+const suite = new Benchmark.Suite('turf-clusters-dbscan');
 for (const {name, geojson} of fixtures) {
     let {distance} = geojson.properties || {};
     distance = distance || 100;

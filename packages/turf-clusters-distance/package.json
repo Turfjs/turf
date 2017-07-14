@@ -1,7 +1,7 @@
 {
-  "name": "@turf/clusters-distance",
+  "name": "@turf/clusters-dbscan",
   "version": "4.0.0",
-  "description": "turf clusters-distance module",
+  "description": "turf clusters-dbscan module",
   "main": "index.js",
   "types": "index.d.ts",
   "files": [
