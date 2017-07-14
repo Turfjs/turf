@@ -29,7 +29,7 @@ test('clusters-distance', t => {
         // console.log(geojson.features.length);
         const clustered = clustersDistance(geojson, distance, units, minPoints);
         // console.log(clustered.points.features.length);
-        const result = featureCollection(colorize(clustered));
+        const result = colorize(clustered);
 
         if (process.env.REGEN) write.sync(directories.out + filename, result);
         t.deepEqual(result, load.sync(directories.out + filename), name);
@@ -63,35 +63,41 @@ test('clusters -- prevent input mutation', t => {
 });
 
 test('clusters -- translate properties', t => {
-    t.equal(clustersDistance(points, 2, 'kilometers', 1).points.features[0].properties.foo, 'bar');
+    t.equal(clustersDistance(points, 2, 'kilometers', 1).features[0].properties.foo, 'bar');
     t.end();
 });
 
 // style result
 function colorize(clustered) {
-    let count = featureReduce(clustered.points, (count, point) => Math.max(count, point.properties.cluster || 0), 1) + 1;
+    const count = featureReduce(clustered, (count, point) => Math.max(count, point.properties.cluster || 0), 1) + 1;
     const colours = chromatism.adjacent(360 / count, count, '#0000FF').hex;
     const points = [];
 
-    featureEach(clustered.points, function (point) {
-        const color = colours[point.properties.cluster];
-        point.properties['marker-color'] = color;
-        point.properties['marker-size'] = 'small';
-        points.push(point);
-    });
-    featureEach(clustered.centroids, function (centroid) {
-        const color = chromatism.brightness(-25, colours[centroid.properties.cluster]).hex;
-        centroid.properties['marker-color'] = color;
-        centroid.properties['marker-symbol'] = 'star';
-        centroid.properties['marker-size'] = 'large';
-        points.push(centroid);
-    });
-    featureEach(clustered.noise, function (point) {
-        point.properties['marker-color'] = '#AEAEAE';
-        point.properties['marker-symbol'] = 'circle-stroked';
-        point.properties['marker-size'] = 'medium';
-        points.push(point);
+    featureEach(clustered, function (point) {
+        switch (point.properties.dbscan) {
+        case 'core': {
+            const color = colours[point.properties.cluster];
+            point.properties['marker-color'] = color;
+            point.properties['marker-size'] = 'small';
+            points.push(point);
+            break;
+        }
+        case 'edge': {
+            const color = chromatism.brightness(-25, colours[point.properties.cluster]).hex;
+            point.properties['marker-color'] = color;
+            point.properties['marker-symbol'] = 'star';
+            point.properties['marker-size'] = 'large';
+            points.push(point);
+            break;
+        }
+        case 'noise': {
+            point.properties['marker-color'] = '#AEAEAE';
+            point.properties['marker-symbol'] = 'circle-stroked';
+            point.properties['marker-size'] = 'medium';
+            points.push(point);
+        }
+        }
     });
 
-    return points;
+    return featureCollection(points);
 }

@@ -12,6 +12,7 @@
 			},
 			"properties": {
 				"cluster": 0,
+				"dbscan": "core",
 				"marker-color": "#0000ff",
 				"marker-size": "small"
 			}
@@ -27,6 +28,7 @@
 			},
 			"properties": {
 				"cluster": 0,
+				"dbscan": "core",
 				"marker-color": "#0000ff",
 				"marker-size": "small"
 			}
@@ -42,6 +44,7 @@
 			},
 			"properties": {
 				"cluster": 0,
+				"dbscan": "core",
 				"marker-color": "#0000ff",
 				"marker-size": "small"
 			}
@@ -57,6 +60,7 @@
 			},
 			"properties": {
 				"cluster": 1,
+				"dbscan": "core",
 				"marker-color": "#ffff00",
 				"marker-size": "small"
 			}
@@ -72,6 +76,7 @@
 			},
 			"properties": {
 				"cluster": 1,
+				"dbscan": "core",
 				"marker-color": "#ffff00",
 				"marker-size": "small"
 			}
@@ -87,40 +92,9 @@
 			},
 			"properties": {
 				"cluster": 1,
+				"dbscan": "core",
 				"marker-color": "#ffff00",
 				"marker-size": "small"
-			}
-		},
-		{
-			"type": "Feature",
-			"properties": {
-				"cluster": 0,
-				"marker-color": "#000080",
-				"marker-symbol": "star",
-				"marker-size": "large"
-			},
-			"geometry": {
-				"type": "Point",
-				"coordinates": [
-					179.31884765625,
-					-16.85349333079957
-				]
-			}
-		},
-		{
-			"type": "Feature",
-			"properties": {
-				"cluster": 1,
-				"marker-color": "#808000",
-				"marker-symbol": "star",
-				"marker-size": "large"
-			},
-			"geometry": {
-				"type": "Point",
-				"coordinates": [
-					180.992431640625,
-					-16.436035791177318
-				]
 			}
 		}
 	]

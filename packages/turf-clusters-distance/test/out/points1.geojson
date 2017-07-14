@@ -5,6 +5,7 @@
 			"type": "Feature",
 			"properties": {
 				"cluster": 0,
+				"dbscan": "core",
 				"marker-color": "#0000ff",
 				"marker-size": "small"
 			},
@@ -20,6 +21,7 @@
 			"type": "Feature",
 			"properties": {
 				"cluster": 0,
+				"dbscan": "core",
 				"marker-color": "#0000ff",
 				"marker-size": "small"
 			},
@@ -35,6 +37,7 @@
 			"type": "Feature",
 			"properties": {
 				"cluster": 0,
+				"dbscan": "core",
 				"marker-color": "#0000ff",
 				"marker-size": "small"
 			},
@@ -50,6 +53,7 @@
 			"type": "Feature",
 			"properties": {
 				"cluster": 0,
+				"dbscan": "core",
 				"marker-color": "#0000ff",
 				"marker-size": "small"
 			},
@@ -65,6 +69,7 @@
 			"type": "Feature",
 			"properties": {
 				"cluster": 0,
+				"dbscan": "core",
 				"marker-color": "#0000ff",
 				"marker-size": "small"
 			},
@@ -80,6 +85,7 @@
 			"type": "Feature",
 			"properties": {
 				"cluster": 0,
+				"dbscan": "core",
 				"marker-color": "#0000ff",
 				"marker-size": "small"
 			},
@@ -95,7 +101,8 @@
 			"type": "Feature",
 			"properties": {
 				"cluster": 1,
-				"marker-color": "#ff007e",
+				"dbscan": "core",
+				"marker-color": "#ff0000",
 				"marker-size": "small"
 			},
 			"geometry": {
@@ -110,7 +117,8 @@
 			"type": "Feature",
 			"properties": {
 				"cluster": 1,
-				"marker-color": "#ff007e",
+				"dbscan": "core",
+				"marker-color": "#ff0000",
 				"marker-size": "small"
 			},
 			"geometry": {
@@ -125,7 +133,8 @@
 			"type": "Feature",
 			"properties": {
 				"cluster": 1,
-				"marker-color": "#ff007e",
+				"dbscan": "core",
+				"marker-color": "#ff0000",
 				"marker-size": "small"
 			},
 			"geometry": {
@@ -140,7 +149,8 @@
 			"type": "Feature",
 			"properties": {
 				"cluster": 1,
-				"marker-color": "#ff007e",
+				"dbscan": "core",
+				"marker-color": "#ff0000",
 				"marker-size": "small"
 			},
 			"geometry": {
@@ -155,7 +165,8 @@
 			"type": "Feature",
 			"properties": {
 				"cluster": 1,
-				"marker-color": "#ff007e",
+				"dbscan": "core",
+				"marker-color": "#ff0000",
 				"marker-size": "small"
 			},
 			"geometry": {
@@ -170,7 +181,8 @@
 			"type": "Feature",
 			"properties": {
 				"cluster": 1,
-				"marker-color": "#ff007e",
+				"dbscan": "core",
+				"marker-color": "#ff0000",
 				"marker-size": "small"
 			},
 			"geometry": {
@@ -185,7 +197,8 @@
 			"type": "Feature",
 			"properties": {
 				"cluster": 1,
-				"marker-color": "#ff007e",
+				"dbscan": "core",
+				"marker-color": "#ff0000",
 				"marker-size": "small"
 			},
 			"geometry": {
@@ -200,7 +213,8 @@
 			"type": "Feature",
 			"properties": {
 				"cluster": 1,
-				"marker-color": "#ff007e",
+				"dbscan": "core",
+				"marker-color": "#ff0000",
 				"marker-size": "small"
 			},
 			"geometry": {
@@ -214,23 +228,9 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"cluster": 1,
-				"marker-color": "#ff007e",
-				"marker-size": "small"
-			},
-			"geometry": {
-				"type": "Point",
-				"coordinates": [
-					-75.94024658203124,
-					20.360077646657153
-				]
-			}
-		},
-		{
-			"type": "Feature",
-			"properties": {
 				"cluster": 2,
-				"marker-color": "#ffff00",
+				"dbscan": "core",
+				"marker-color": "#00ff01",
 				"marker-size": "small"
 			},
 			"geometry": {
@@ -245,7 +245,8 @@
 			"type": "Feature",
 			"properties": {
 				"cluster": 2,
-				"marker-color": "#ffff00",
+				"dbscan": "core",
+				"marker-color": "#00ff01",
 				"marker-size": "small"
 			},
 			"geometry": {
@@ -260,7 +261,8 @@
 			"type": "Feature",
 			"properties": {
 				"cluster": 2,
-				"marker-color": "#ffff00",
+				"dbscan": "core",
+				"marker-color": "#00ff01",
 				"marker-size": "small"
 			},
 			"geometry": {
@@ -275,7 +277,8 @@
 			"type": "Feature",
 			"properties": {
 				"cluster": 2,
-				"marker-color": "#ffff00",
+				"dbscan": "core",
+				"marker-color": "#00ff01",
 				"marker-size": "small"
 			},
 			"geometry": {
@@ -290,7 +293,8 @@
 			"type": "Feature",
 			"properties": {
 				"cluster": 2,
-				"marker-color": "#ffff00",
+				"dbscan": "core",
+				"marker-color": "#00ff01",
 				"marker-size": "small"
 			},
 			"geometry": {
@@ -305,7 +309,8 @@
 			"type": "Feature",
 			"properties": {
 				"cluster": 2,
-				"marker-color": "#ffff00",
+				"dbscan": "core",
+				"marker-color": "#00ff01",
 				"marker-size": "small"
 			},
 			"geometry": {
@@ -320,7 +325,8 @@
 			"type": "Feature",
 			"properties": {
 				"cluster": 2,
-				"marker-color": "#ffff00",
+				"dbscan": "core",
+				"marker-color": "#00ff01",
 				"marker-size": "small"
 			},
 			"geometry": {
@@ -334,73 +340,26 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"cluster": 3,
-				"marker-color": "#00ff80",
+				"cluster": 1,
+				"dbscan": "core",
+				"marker-color": "#ff0000",
 				"marker-size": "small"
 			},
 			"geometry": {
 				"type": "Point",
 				"coordinates": [
-					-77.71728515624999,
-					21.596150576461426
+					-75.94024658203124,
+					20.360077646657153
 				]
 			}
 		},
 		{
 			"type": "Feature",
 			"properties": {
-				"cluster": 0,
-				"marker-color": "#000080",
-				"marker-symbol": "star",
-				"marker-size": "large"
-			},
-			"geometry": {
-				"type": "Point",
-				"coordinates": [
-					-82.29918627072443,
-					23.09352518096456
-				]
-			}
-		},
-		{
-			"type": "Feature",
-			"properties": {
-				"cluster": 1,
-				"marker-color": "#80003e",
-				"marker-symbol": "star",
-				"marker-size": "large"
-			},
-			"geometry": {
-				"type": "Point",
-				"coordinates": [
-					-75.85202121882148,
-					20.122630322815162
-				]
-			}
-		},
-		{
-			"type": "Feature",
-			"properties": {
-				"cluster": 2,
-				"marker-color": "#808000",
-				"marker-symbol": "star",
-				"marker-size": "large"
-			},
-			"geometry": {
-				"type": "Point",
-				"coordinates": [
-					-80.44391685584579,
-					22.135422527231796
-				]
-			}
-		},
-		{
-			"type": "Feature",
-			"properties": {
-				"cluster": 3,
-				"marker-color": "#008040",
-				"marker-symbol": "star",
-				"marker-size": "large"
+				"dbscan": "noise",
+				"marker-color": "#AEAEAE",
+				"marker-symbol": "circle-stroked",
+				"marker-size": "medium"
 			},
 			"geometry": {
 				"type": "Point",

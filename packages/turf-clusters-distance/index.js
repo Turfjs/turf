@@ -2,13 +2,11 @@ var meta = require('@turf/meta');
 var helpers = require('@turf/helpers');
 var invariant = require('@turf/invariant');
 var clustering = require('density-clustering');
-var centerOfMass = require('@turf/center-of-mass');
 var turfDistance = require('@turf/distance');
 var clone = require('@turf/clone');
 var coordAll = meta.coordAll;
 var collectionOf = invariant.collectionOf;
 var convertDistance = helpers.convertDistance;
-var featureCollection = helpers.featureCollection;
 
 /**
  * Takes a set of {@link Point|points} and partition them into clusters.
@@ -17,7 +15,7 @@ var featureCollection = helpers.featureCollection;
  * @param {FeatureCollection<Point>} points to be clustered
  * @param {number} maxDistance Maximum Distance between any point of the cluster to generate the clusters (kilometers only)
  * @param {string} [units=kilometers] in which `maxDistance` is expressed, can be degrees, radians, miles, or kilometers
- * @param {number} [minPoints=1] Minimum number of points to generate a single cluster, points will be excluded if the
+ * @param {number} [minPoints=3] Minimum number of points to generate a single cluster, points will be excluded if the
  *     cluster does not meet the minimum amounts of points.
  * @returns {Object} an object containing a `points` FeatureCollection, the input points where each Point
  *     has given a `cluster` property with the cluster number it belongs, a `centroids` FeatureCollection of
@@ -45,47 +43,33 @@ module.exports = function (points, maxDistance, units, minPoints) {
     points = clone(points, true);
 
     // Defaults
-    minPoints = minPoints || 1;
-    var maxDistanceKm = convertDistance(maxDistance, units);
+    minPoints = minPoints || 3;
 
-    // collect points coordinates
-    var pointsCoords = coordAll(points);
     // create clustered ids
     var dbscan = new clustering.DBSCAN();
-    var clusteredIds = dbscan.run(pointsCoords, maxDistanceKm, minPoints, turfDistance);
+    var clusteredIds = dbscan.run(coordAll(points), convertDistance(maxDistance, units), minPoints, turfDistance);
 
-    var newPoints = [];
-    var edges = [];
-    var centroids = [];
-    var noise = [];
+    // Tag points to Clusters ID
     var clusterId = -1;
     clusteredIds.forEach(function (clusterIds) {
-        var cluster = [];
         clusterId++;
         // assign cluster ids to input points
         clusterIds.forEach(function (idx) {
             var clusterPoint = points.features[idx];
-            if (clusterPoint.properties) clusterPoint.properties.cluster = clusterId;
-            else clusterPoint.properties = {cluster: clusterId};
-            cluster.push(clusterPoint);
-            newPoints.push(clusterPoint);
+            if (!clusterPoint.properties) clusterPoint.properties = {};
+            clusterPoint.properties.cluster = clusterId;
+            clusterPoint.properties.dbscan = 'core';
         });
-        var centroid = centerOfMass(featureCollection(cluster), {cluster: clusterId});
-        centroids.push(centroid);
-    });
-    // handle noise points, if any
-    dbscan.noise.forEach(function (noiseId) {
-        var noisePoint = points.features[noiseId];
-        // Skip Noise if cluster is already associated
-        // This might be a slight deviation of DBSCAN (or a bug in the library)
-        if (noisePoint.properties.cluster) return edges.push(noisePoint);
-        noise.push(noisePoint);
     });
 
-    return {
-        points: featureCollection(newPoints),
-        edeges: featureCollection(edges),
-        centroids: featureCollection(centroids),
-        noise: featureCollection(noise)
-    };
+    // handle noise points, if any
+    // Skip Noise if cluster is already associated
+    // This might be a slight deviation of DBSCAN (or a bug in the library)
+    dbscan.noise.forEach(function (noiseId) {
+        var noisePoint = points.features[noiseId];
+        if (noisePoint.properties.cluster) noisePoint.properties.dbscan = 'edge';
+        else noisePoint.properties.dbscan = 'noise';
+    });
+
+    return points;
 };
