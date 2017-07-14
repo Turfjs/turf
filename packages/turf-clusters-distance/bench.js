@@ -19,18 +19,18 @@ const fixtures = fs.readdirSync(directory).map(filename => {
  * Benchmark Results
  *
  * // Clusters distance (dbscan)
- * fiji: 1.875ms
- * many-points: 57.541ms
- * noise: 0.937ms
- * points-with-properties: 0.087ms
- * points1: 0.495ms
- * points2: 0.380ms
- * fiji x 104,254 ops/sec ±2.31% (77 runs sampled)
- * many-points x 20.61 ops/sec ±6.17% (39 runs sampled)
- * noise x 7,929 ops/sec ±1.86% (80 runs sampled)
- * points-with-properties x 97,864 ops/sec ±1.68% (81 runs sampled)
- * points1 x 9,350 ops/sec ±1.71% (78 runs sampled)
- * points2 x 4,396 ops/sec ±1.94% (80 runs sampled)
+ * fiji: 2.034ms
+ * many-points: 50.185ms
+ * noise: 1.027ms
+ * points-with-properties: 0.355ms
+ * points1: 0.769ms
+ * points2: 0.325ms
+ * fiji x 34,724 ops/sec ±12.09% (73 runs sampled)
+ * many-points x 30.43 ops/sec ±5.53% (54 runs sampled)
+ * noise x 5,955 ops/sec ±1.85% (86 runs sampled)
+ * points-with-properties x 30,850 ops/sec ±7.87% (80 runs sampled)
+ * points1 x 4,704 ops/sec ±12.26% (64 runs sampled)
+ * points2 x 3,014 ops/sec ±7.66% (78 runs sampled)
  *
  * // Clusters kmeans
  * fiji: 3.236ms
