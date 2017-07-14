@@ -4,6 +4,7 @@ const path = require('path');
 const load = require('load-json-file');
 const write = require('write-json-file');
 const chromatism = require('chromatism');
+const centerOfMass = require('@turf/center-of-mass');
 const {featureEach, propEach} = require('@turf/meta');
 const {featureCollection, point, polygon} = require('@turf/helpers');
 const clustersDistance = require('./');
@@ -99,5 +100,50 @@ function colorize(clustered) {
         }
         }
     });
+    // Create Centroid from cluster property
+    const properties = {
+        'marker-symbol': 'star',
+        'marker-size': 'large'
+    };
+    const centroids = centroidFromProperty(points, 'cluster', properties);
+    featureEach(centroids, point => {
+        const color = chromatism.brightness(-15, colours[point.properties.cluster]).hex;
+        point.properties['marker-color'] = color;
+        points.push(point);
+    });
+
     return featureCollection(points);
+}
+
+/**
+ * Basic implementation of creating centroids based on a single Property
+ * Can be expanded with very complex property combination
+ *
+ * @private
+ * @param {FeatureCollection|Feature[]} geojson GeoJSON
+ * @param {string} property Name of property of GeoJSON Properties to bin each feature - This property will be translated to each centroid's properties
+ * @param {*} properties Properties to translate down to each centroid (2nd priority)
+ * @returns {FeatureCollection<Point>} centroids
+ * @example
+ * var centroids = centroidFromProperty(points, 'cluster');
+ */
+function centroidFromProperty(geojson, property, properties) {
+    if (Array.isArray(geojson)) geojson = featureCollection(geojson);
+
+    const centroids = [];
+    const bins = new Map();
+    featureEach(geojson, feature => {
+        const prop = feature.properties[property];
+        if (prop === undefined) return;
+        if (bins.has(prop)) bins.get(prop).push(feature);
+        else bins.set(prop, [feature]);
+    });
+    bins.forEach(features => {
+        // Retrieve property of first feature (only the defined property tags, nothing else)
+        const props = JSON.parse(JSON.stringify(properties));
+        props[property] = features[0].properties[property];
+        const centroid = centerOfMass(featureCollection(features), props);
+        centroids.push(centroid);
+    });
+    return featureCollection(centroids);
 }
