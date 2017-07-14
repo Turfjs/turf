@@ -64,6 +64,7 @@ module.exports = function (points, maxDistance, units, minPoints) {
     // edges points are tagged by DBSCAN as both 'noise' and 'cluster' as they can "reach" less than 'minPoints' number of points
     dbscan.noise.forEach(function (noiseId) {
         var noisePoint = points.features[noiseId];
+        if (!noisePoint.properties) noisePoint.properties = {};
         if (noisePoint.properties.cluster) noisePoint.properties.dbscan = 'edge';
         else noisePoint.properties.dbscan = 'noise';
     });
