@@ -23,14 +23,13 @@ const fixtures = fs.readdirSync(directories.in).map(filename => {
 
 test('clusters-distance', t => {
     fixtures.forEach(({name, filename, geojson}) => {
-        let {distance, minPoints} = geojson.properties || {};
+        let {distance, minPoints, units} = geojson.properties || {};
         distance = distance || 100;
-        minPoints = minPoints || 1;
 
-        const clustered = clustersDistance(geojson, distance, minPoints);
+        const clustered = clustersDistance(geojson, distance, units, minPoints);
         const result = featureCollection(colorize(clustered));
 
-        if (process.env.REGEN) write.sync(directories.out + filename, result);
+        if (process.env.REGEN) write.sync(directories.out + filename, result.points);
         t.deepEqual(result, load.sync(directories.out + filename), name);
     });
 
@@ -46,24 +45,44 @@ const points = featureCollection([
 test('clusters -- throws', t => {
     const poly = polygon([[[0, 0], [10, 10], [0, 10], [0, 0]]]);
     t.throws(() => clustersDistance(poly, 1), /Input must contain Points/);
+    t.throws(() => clustersDistance(points), /maxDistance is required/);
+    t.throws(() => clustersDistance(points, -4), /Invalid maxDistance/);
+    t.throws(() => clustersDistance(points, 'foo'), /Invalid maxDistance/);
+    t.throws(() => clustersDistance(points, 1, 'nanometers'), /units is invalid/);
+    t.throws(() => clustersDistance(points, 1, null, 0), /Invalid minPoints/);
+    t.throws(() => clustersDistance(points, 1, 'miles', 'baz'), /Invalid minPoints/);
     t.end();
 });
 
 test('clusters -- translate properties', t => {
-    t.equal(clustersDistance(points, 2, 1).features[0].properties.foo, 'bar');
+    t.equal(clustersDistance(points, 2, 'kilometers', 1).points.features[0].properties.foo, 'bar');
     t.end();
 });
 
 // style result
 function colorize(clustered) {
-    const maxCluster = Math.max(...clustered.features.map(feature => feature.properties.cluster)) + 1;
-
-    const colours = chromatism.adjacent(360 / maxCluster, maxCluster, '#0000FF').hex;
+    const count = clustered.centroids.features.length;
+    const colours = chromatism.adjacent(360 / count, count, '#0000FF').hex;
     const points = [];
-    featureEach(clustered, function (point) {
+
+    featureEach(clustered.points, function (point) {
         point.properties['marker-color'] = colours[point.properties.cluster];
         point.properties['marker-size'] = 'small';
         points.push(point);
     });
+    featureEach(clustered.centroids, function (centroid) {
+        const color = chromatism.brightness(-25, colours[centroid.properties.cluster]).hex;
+        centroid.properties['marker-color'] = color;
+        centroid.properties['marker-symbol'] = 'star';
+        centroid.properties['marker-size'] = 'large';
+        points.push(centroid);
+    });
+    featureEach(clustered.noise, function (point) {
+        point.properties['marker-color'] = '#AEAEAE';
+        point.properties['marker-symbol'] = 'circle-stroked';
+        point.properties['marker-size'] = 'medium';
+        points.push(point);
+    });
+
     return points;
 }
