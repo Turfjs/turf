@@ -4,6 +4,7 @@ var invariant = require('@turf/invariant');
 var clustering = require('density-clustering');
 var centerOfMass = require('@turf/center-of-mass');
 var turfDistance = require('@turf/distance');
+var clone = require('@turf/clone');
 var coordAll = meta.coordAll;
 var collectionOf = invariant.collectionOf;
 var convertDistance = helpers.convertDistance;
@@ -40,6 +41,9 @@ module.exports = function (points, maxDistance, units, minPoints) {
     if (!(Math.sign(maxDistance) > 0)) throw new Error('Invalid maxDistance');
     if (!(minPoints === undefined || minPoints === null || Math.sign(minPoints) > 0)) throw new Error('Invalid minPoints');
 
+    // Clone points to prevent any mutations
+    points = clone(points, true);
+
     // Defaults
     minPoints = minPoints || 1;
     var maxDistanceKm = convertDistance(maxDistance, units);
@@ -51,6 +55,7 @@ module.exports = function (points, maxDistance, units, minPoints) {
     var clusteredIds = dbscan.run(pointsCoords, maxDistanceKm, minPoints, turfDistance);
 
     var newPoints = [];
+    var edges = [];
     var centroids = [];
     var noise = [];
     var clusterId = -1;
@@ -73,12 +78,13 @@ module.exports = function (points, maxDistance, units, minPoints) {
         var noisePoint = points.features[noiseId];
         // Skip Noise if cluster is already associated
         // This might be a slight deviation of DBSCAN (or a bug in the library)
-        if (noisePoint.properties.cluster) return;
+        if (noisePoint.properties.cluster) return edges.push(noisePoint);
         noise.push(noisePoint);
     });
 
     return {
         points: featureCollection(newPoints),
+        edeges: featureCollection(edges),
         centroids: featureCollection(centroids),
         noise: featureCollection(noise)
     };

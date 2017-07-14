@@ -56,6 +56,12 @@ test('clusters -- throws', t => {
     t.end();
 });
 
+test('clusters -- prevent input mutation', t => {
+    clustersDistance(points, 2, 'kilometers', 1);
+    t.true(points.features[0].properties.cluster === undefined, 'cluster properties should be undefined');
+    t.end();
+});
+
 test('clusters -- translate properties', t => {
     t.equal(clustersDistance(points, 2, 'kilometers', 1).points.features[0].properties.foo, 'bar');
     t.end();

@@ -3,6 +3,7 @@
 import {Units, Points} from '@turf/helpers';
 
 interface Output {
+    edges: Points;
     points: Points;
     noise: Points;
     centroids: Points;

@@ -20,6 +20,10 @@
     "@turf/helpers" "^4.5.2"
     "@turf/meta" "^4.5.2"
 
+"@turf/clone@^4.5.2":
+  version "4.5.2"
+  resolved "https://registry.yarnpkg.com/@turf/clone/-/clone-4.5.2.tgz#397d3b173beb0c67137a6ecd8c232a24c7561316"
+
 "@turf/convex@^4.5.2":
   version "4.5.2"
   resolved "https://registry.yarnpkg.com/@turf/convex/-/convex-4.5.2.tgz#8e9fe83d6593a19532c9c40db29dc8525f23ef3e"
