@@ -7,7 +7,7 @@ const along = require('@turf/along');
 const distance = require('@turf/distance');
 const truncate = require('@turf/truncate');
 const lineDistance = require('@turf/line-distance');
-const {lineString, point, featureCollection} = require('@turf/helpers');
+const {lineString, multiLineString, point, featureCollection, round} = require('@turf/helpers');
 const pointOnLine = require('./');
 
 const directories = {
@@ -23,18 +23,13 @@ const fixtures = fs.readdirSync(directories.in).map(filename => {
     };
 });
 
-function round(num, precision = 6) {
-    const factor = Math.pow(10, precision);
-    return Math.round(num * factor) / factor;
-}
-
 test('turf-linestring-to-polygon', t => {
     for (const {name, filename, geojson} of fixtures) {
         const [line, point] = geojson.features;
         const onLine = pointOnLine(line, point);
         onLine.properties['marker-color'] = '#F0F';
-        onLine.properties.dist = round(onLine.properties.dist);
-        onLine.properties.location = round(onLine.properties.location);
+        onLine.properties.dist = round(onLine.properties.dist, 6);
+        onLine.properties.location = round(onLine.properties.location, 6);
         const between = lineString([onLine.geometry.coordinates, point.geometry.coordinates], {stroke: '#F00', 'stroke-width': 6});
         const results = truncate(featureCollection([line, between, point, onLine]));
 
@@ -65,12 +60,7 @@ test('turf-point-on-line - points behind first point', t => {
         point([-122.457165, 37.720093]),
         point([-122.455165, 37.720093])
     ];
-    const expectedLocation = [
-        0,
-        0,
-        0,
-        0
-    ];
+    const expectedLocation = [0, 0, 0, 0];
 
     pts.forEach(pt => {
         const snapped = truncate(pointOnLine(line, pt));
@@ -202,6 +192,20 @@ test('turf-point-on-line -- Issue #691', t => {
     const pointAlong = along(line1, 10);
     const {location} = pointOnLine(line1, pointAlong).properties;
 
-    t.false(isNaN(location))
+    t.false(isNaN(location));
+    t.end();
+});
+
+test('turf-point-on-line -- Geometry Support', t => {
+    const pt = point([7, 55]);
+    const line = lineString([[7, 50], [8, 50], [9, 50]]);
+    const multiLine = multiLineString([
+        [[7, 50], [8, 50], [9, 50]],
+        [[17, 30], [4, 30], [2, 30]]
+    ]);
+    t.assert(pointOnLine(line.geometry, pt), 'line Geometry');
+    t.assert(pointOnLine(multiLine.geometry, pt), 'multiLine Geometry');
+    t.assert(pointOnLine(line, pt.geometry), 'point Geometry');
+    t.assert(pointOnLine(line, pt.geometry.coordinates), 'point Coordinates');
     t.end();
 });
