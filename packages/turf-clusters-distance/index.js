@@ -17,10 +17,8 @@ var convertDistance = helpers.convertDistance;
  * @param {string} [units=kilometers] in which `maxDistance` is expressed, can be degrees, radians, miles, or kilometers
  * @param {number} [minPoints=3] Minimum number of points to generate a single cluster, points will be excluded if the
  *     cluster does not meet the minimum amounts of points.
- * @returns {Object} an object containing a `points` FeatureCollection, the input points where each Point
- *     has given a `cluster` property with the cluster number it belongs, a `centroids` FeatureCollection of
- *     Points, collecting all the cluster centroids each with its own `cluster` property, and a `noise` FeatureCollection
- *     collecting (if any) the points not belonging to any cluster.
+ * @returns {FeatureCollection<Point>} each Point has two extra properties; `cluster` property with the cluster number it belongs &
+ * `dbscan` which is defines the which type of point it has been flagged as ('core'|'edge'|'noise').
  * @example
  * // create random points with random z-values in their properties
  * var points = turf.random('point', 100, {
@@ -63,8 +61,7 @@ module.exports = function (points, maxDistance, units, minPoints) {
     });
 
     // handle noise points, if any
-    // Skip Noise if cluster is already associated
-    // This might be a slight deviation of DBSCAN (or a bug in the library)
+    // edges points are tagged by DBSCAN as both 'noise' and 'cluster' as they can "reach" less than 'minPoints' number of points
     dbscan.noise.forEach(function (noiseId) {
         var noisePoint = points.features[noiseId];
         if (noisePoint.properties.cluster) noisePoint.properties.dbscan = 'edge';

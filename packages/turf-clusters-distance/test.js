@@ -78,17 +78,12 @@ function colorize(clustered) {
 
     featureEach(clustered, function (point) {
         switch (point.properties.dbscan) {
-        case 'core': {
-            const color = colours[point.properties.cluster];
-            point.properties['marker-color'] = color;
-            point.properties['marker-size'] = 'small';
-            points.push(point);
-            break;
-        }
+        case 'core':
         case 'edge': {
-            const color = chromatism.brightness(-15, colours[point.properties.cluster]).hex;
-            point.properties['marker-color'] = color;
-            point.properties['marker-symbol'] = 'cross';
+            const coreColor = colours[point.properties.cluster];
+            const edgeColor = chromatism.brightness(-20, colours[point.properties.cluster]).hex;
+            point.properties['marker-color'] = (point.properties.dbscan === 'core') ? coreColor : edgeColor;
+            point.properties['marker-size'] = 'small';
             points.push(point);
             break;
         }

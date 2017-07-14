@@ -349,8 +349,8 @@
 			"properties": {
 				"cluster": 11,
 				"dbscan": "edge",
-				"marker-color": "#00b348",
-				"marker-symbol": "cross"
+				"marker-color": "#00993e",
+				"marker-size": "small"
 			}
 		},
 		{
@@ -493,8 +493,8 @@
 			"properties": {
 				"cluster": 10,
 				"dbscan": "edge",
-				"marker-color": "#00b301",
-				"marker-symbol": "cross"
+				"marker-color": "#009901",
+				"marker-size": "small"
 			}
 		},
 		{
@@ -1437,8 +1437,8 @@
 			"properties": {
 				"cluster": 12,
 				"dbscan": "edge",
-				"marker-color": "#00b390",
-				"marker-symbol": "cross"
+				"marker-color": "#00997b",
+				"marker-size": "small"
 			}
 		},
 		{
@@ -3533,8 +3533,8 @@
 			"properties": {
 				"cluster": 13,
 				"dbscan": "edge",
-				"marker-color": "#008db3",
-				"marker-symbol": "cross"
+				"marker-color": "#007999",
+				"marker-size": "small"
 			}
 		},
 		{
@@ -5133,8 +5133,8 @@
 			"properties": {
 				"cluster": 13,
 				"dbscan": "edge",
-				"marker-color": "#008db3",
-				"marker-symbol": "cross"
+				"marker-color": "#007999",
+				"marker-size": "small"
 			}
 		},
 		{
