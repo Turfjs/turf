@@ -50,6 +50,7 @@ module.exports = function (points, maxDistance, units, minPoints) {
     var dbscan = new clustering.DBSCAN();
     var clusteredIds = dbscan.run(pointsCoords, maxDistanceKm, minPoints, turfDistance);
 
+    var newPoints = [];
     var centroids = [];
     var noise = [];
     var clusterId = -1;
@@ -62,17 +63,22 @@ module.exports = function (points, maxDistance, units, minPoints) {
             if (clusterPoint.properties) clusterPoint.properties.cluster = clusterId;
             else clusterPoint.properties = {cluster: clusterId};
             cluster.push(clusterPoint);
+            newPoints.push(clusterPoint);
         });
         var centroid = centerOfMass(featureCollection(cluster), {cluster: clusterId});
         centroids.push(centroid);
     });
     // handle noise points, if any
     dbscan.noise.forEach(function (noiseId) {
-        noise.push(points.features[noiseId]);
+        var noisePoint = points.features[noiseId];
+        // Skip Noise if cluster is already associated
+        // This might be a slight deviation of DBSCAN (or a bug in the library)
+        if (noisePoint.properties.cluster) return;
+        noise.push(noisePoint);
     });
 
     return {
-        points: points,
+        points: featureCollection(newPoints),
         centroids: featureCollection(centroids),
         noise: featureCollection(noise)
     };

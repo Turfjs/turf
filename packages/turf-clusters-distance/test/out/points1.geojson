@@ -214,6 +214,21 @@
 		{
 			"type": "Feature",
 			"properties": {
+				"cluster": 1,
+				"marker-color": "#ff007e",
+				"marker-size": "small"
+			},
+			"geometry": {
+				"type": "Point",
+				"coordinates": [
+					-75.94024658203124,
+					20.360077646657153
+				]
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {
 				"cluster": 2,
 				"marker-color": "#ffff00",
 				"marker-size": "small"
@@ -313,21 +328,6 @@
 				"coordinates": [
 					-80.54351806640625,
 					22.0525504317147
-				]
-			}
-		},
-		{
-			"type": "Feature",
-			"properties": {
-				"cluster": 1,
-				"marker-color": "#ff007e",
-				"marker-size": "small"
-			},
-			"geometry": {
-				"type": "Point",
-				"coordinates": [
-					-75.94024658203124,
-					20.360077646657153
 				]
 			}
 		},

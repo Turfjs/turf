@@ -26,7 +26,9 @@ test('clusters-distance', t => {
         let {distance, minPoints, units} = geojson.properties || {};
         distance = distance || 100;
 
+        // console.log(geojson.features.length);
         const clustered = clustersDistance(geojson, distance, units, minPoints);
+        // console.log(clustered.points.features.length);
         const result = featureCollection(colorize(clustered));
 
         if (process.env.REGEN) write.sync(directories.out + filename, result);

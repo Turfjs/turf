@@ -214,6 +214,21 @@
 		{
 			"type": "Feature",
 			"properties": {
+				"cluster": 1,
+				"marker-color": "#ff0000",
+				"marker-size": "small"
+			},
+			"geometry": {
+				"type": "Point",
+				"coordinates": [
+					-75.94024658203124,
+					20.360077646657153
+				]
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {
 				"cluster": 2,
 				"marker-color": "#00ff01",
 				"marker-size": "small"
@@ -319,66 +334,6 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"cluster": 1,
-				"marker-color": "#ff0000",
-				"marker-size": "small"
-			},
-			"geometry": {
-				"type": "Point",
-				"coordinates": [
-					-75.94024658203124,
-					20.360077646657153
-				]
-			}
-		},
-		{
-			"type": "Feature",
-			"properties": {
-				"marker-color": "#AEAEAE",
-				"marker-size": "medium",
-				"marker-symbol": "circle-stroked"
-			},
-			"geometry": {
-				"type": "Point",
-				"coordinates": [
-					-77.71728515624999,
-					21.596150576461426
-				]
-			}
-		},
-		{
-			"type": "Feature",
-			"properties": {
-				"marker-color": "#AEAEAE",
-				"marker-size": "medium",
-				"marker-symbol": "circle-stroked"
-			},
-			"geometry": {
-				"type": "Point",
-				"coordinates": [
-					-78.046875,
-					18.218916080017465
-				]
-			}
-		},
-		{
-			"type": "Feature",
-			"properties": {
-				"marker-color": "#AEAEAE",
-				"marker-size": "medium",
-				"marker-symbol": "circle-stroked"
-			},
-			"geometry": {
-				"type": "Point",
-				"coordinates": [
-					-82.46337890625,
-					21.718679805703154
-				]
-			}
-		},
-		{
-			"type": "Feature",
-			"properties": {
 				"cluster": 0,
 				"marker-color": "#000080",
 				"marker-symbol": "star",
@@ -428,8 +383,8 @@
 			"type": "Feature",
 			"properties": {
 				"marker-color": "#AEAEAE",
-				"marker-size": "medium",
-				"marker-symbol": "circle-stroked"
+				"marker-symbol": "circle-stroked",
+				"marker-size": "medium"
 			},
 			"geometry": {
 				"type": "Point",
@@ -443,8 +398,8 @@
 			"type": "Feature",
 			"properties": {
 				"marker-color": "#AEAEAE",
-				"marker-size": "medium",
-				"marker-symbol": "circle-stroked"
+				"marker-symbol": "circle-stroked",
+				"marker-size": "medium"
 			},
 			"geometry": {
 				"type": "Point",
@@ -458,8 +413,8 @@
 			"type": "Feature",
 			"properties": {
 				"marker-color": "#AEAEAE",
-				"marker-size": "medium",
-				"marker-symbol": "circle-stroked"
+				"marker-symbol": "circle-stroked",
+				"marker-size": "medium"
 			},
 			"geometry": {
 				"type": "Point",
