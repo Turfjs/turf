@@ -14,10 +14,8 @@ var featureCollection = helpers.featureCollection;
  *
  * @name clustersDistance
  * @param {FeatureCollection<Point>} points to be clustered
- * @param {number} maxDistance Maximum Distance between any point of the cluster to generate the clusters (kilometers
- *     only)
- * @param {string} [units=kilometers] in which `maxDistance` is expressed, can be degrees, radians, miles, or
- *     kilometers
+ * @param {number} maxDistance Maximum Distance between any point of the cluster to generate the clusters (kilometers only)
+ * @param {string} [units=kilometers] in which `maxDistance` is expressed, can be degrees, radians, miles, or kilometers
  * @param {number} [minPoints=1] Minimum number of points to generate a single cluster, points will be excluded if the
  *     cluster does not meet the minimum amounts of points.
  * @returns {Object} an object containing a `points` FeatureCollection, the input points where each Point
