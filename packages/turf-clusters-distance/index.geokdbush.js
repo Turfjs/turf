@@ -3,7 +3,9 @@ var Map = require('es6-map');
 var kdbush = require('kdbush');
 var geokdbush = require('geokdbush');
 var collectionOf = require('@turf/invariant').collectionOf;
-var featureCollection = require('@turf/helpers').featureCollection;
+var helpers = require('@turf/helpers');
+var featureCollection = helpers.featureCollection;
+var convertDistance = helpers.convertDistance;
 
 /**
  * Takes a set of {@link Point|points} and partition them into clusters.
@@ -28,10 +30,13 @@ var featureCollection = require('@turf/helpers').featureCollection;
 module.exports = function (points, maxDistance, units, minPoints) {
     // Input validation
     collectionOf(points, 'Point', 'Input must contain Points');
-    if (!maxDistance) throw new Error('maxDistance is required');
+    if (maxDistance === null || maxDistance === undefined) throw new Error('maxDistance is required');
+    if (!(Math.sign(maxDistance) > 0)) throw new Error('Invalid maxDistance');
+    if (!(minPoints === undefined || minPoints === null || Math.sign(minPoints) > 0)) throw new Error('Invalid minPoints');
 
     // Default values
     minPoints = minPoints || 1;
+    var maxDistanceKm = convertDistance(maxDistance, units);
 
     // Generate IDs - 11,558,342 ops/sec
     points = generateUniqueIds(points);
@@ -40,7 +45,7 @@ module.exports = function (points, maxDistance, units, minPoints) {
     var tree = kdbush(points.features, getX, getY);
 
     // Create Clusters - 13,041 ops/sec
-    var clusters = createClusters(tree, maxDistance);
+    var clusters = createClusters(tree, maxDistanceKm);
 
     // Join Clusters - 4,435 ops/sec
     var joined = joinClusters(clusters);

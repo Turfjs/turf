@@ -4,7 +4,7 @@ const path = require('path');
 const load = require('load-json-file');
 const write = require('write-json-file');
 const chromatism = require('chromatism');
-const {featureEach} = require('@turf/meta');
+const {featureEach, featureReduce} = require('@turf/meta');
 const {featureCollection, point, polygon} = require('@turf/helpers');
 const clustersDistance = require('./');
 
@@ -61,12 +61,13 @@ test('clusters -- translate properties', t => {
 
 // style result
 function colorize(clustered) {
-    const count = clustered.centroids.features.length;
+    let count = featureReduce(clustered.points, (count, point) => Math.max(count, point.properties.cluster || 0), 1) + 1;
     const colours = chromatism.adjacent(360 / count, count, '#0000FF').hex;
     const points = [];
 
     featureEach(clustered.points, function (point) {
-        point.properties['marker-color'] = colours[point.properties.cluster];
+        const color = colours[point.properties.cluster];
+        point.properties['marker-color'] = color;
         point.properties['marker-size'] = 'small';
         points.push(point);
     });
