@@ -1,10 +1,16 @@
 /// <reference types="geojson" />
 
-type Points = GeoJSON.FeatureCollection<GeoJSON.Point>;
+import {Units, Points} from '@turf/helpers';
+
+interface Output {
+    points: Points;
+    noise: Points;
+    centroids: Points;
+}
 
 /**
  * http://turfjs.org/docs/#clusterdistance
  */
-declare function clustersDistance(points: Points, maxDistance: number, minPoints?: number): Points;
+declare function clustersDistance(points: Points, maxDistance: number, units?: Units, minPoints?: number): Output;
 declare namespace clustersDistance { }
 export = clustersDistance;
