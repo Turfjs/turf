@@ -29,7 +29,7 @@ test('clusters-distance', t => {
         const clustered = clustersDistance(geojson, distance, units, minPoints);
         const result = featureCollection(colorize(clustered));
 
-        if (process.env.REGEN) write.sync(directories.out + filename, result.points);
+        if (process.env.REGEN) write.sync(directories.out + filename, result);
         t.deepEqual(result, load.sync(directories.out + filename), name);
     });
 
