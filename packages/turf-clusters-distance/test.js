@@ -85,10 +85,9 @@ function colorize(clustered) {
             break;
         }
         case 'edge': {
-            const color = chromatism.brightness(-25, colours[point.properties.cluster]).hex;
+            const color = chromatism.brightness(-15, colours[point.properties.cluster]).hex;
             point.properties['marker-color'] = color;
-            point.properties['marker-symbol'] = 'star';
-            point.properties['marker-size'] = 'large';
+            point.properties['marker-symbol'] = 'cross';
             points.push(point);
             break;
         }
@@ -100,6 +99,5 @@ function colorize(clustered) {
         }
         }
     });
-
     return featureCollection(points);
 }
