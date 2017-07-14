@@ -29,7 +29,7 @@ test('clusters-distance', t => {
         const clustered = clustersDistance(geojson, distance, units, minPoints);
         const result = featureCollection(colorize(clustered));
 
-        if (process.env.REGEN) write.sync(directories.out + filename, result);
+        if (process.env.REGEN) write.sync(directories.out + filename, result.points);
         t.deepEqual(result, load.sync(directories.out + filename), name);
     });
 
@@ -55,20 +55,34 @@ test('clusters -- throws', t => {
 });
 
 test('clusters -- translate properties', t => {
-    t.equal(clustersDistance(points, 2, 'kilometers', 1).features[0].properties.foo, 'bar');
+    t.equal(clustersDistance(points, 2, 'kilometers', 1).points.features[0].properties.foo, 'bar');
     t.end();
 });
 
 // style result
 function colorize(clustered) {
-    const maxCluster = Math.max(...clustered.features.map(feature => feature.properties.cluster)) + 1;
-
-    const colours = chromatism.adjacent(360 / maxCluster, maxCluster, '#0000FF').hex;
+    const count = clustered.centroids.features.length;
+    const colours = chromatism.adjacent(360 / count, count, '#0000FF').hex;
     const points = [];
-    featureEach(clustered, function (point) {
+
+    featureEach(clustered.points, function (point) {
         point.properties['marker-color'] = colours[point.properties.cluster];
         point.properties['marker-size'] = 'small';
         points.push(point);
     });
+    featureEach(clustered.centroids, function (centroid) {
+        const color = chromatism.brightness(-25, colours[centroid.properties.cluster]).hex;
+        centroid.properties['marker-color'] = color;
+        centroid.properties['marker-symbol'] = 'star';
+        centroid.properties['marker-size'] = 'large';
+        points.push(centroid);
+    });
+    featureEach(clustered.noise, function (point) {
+        point.properties['marker-color'] = '#AEAEAE';
+        point.properties['marker-symbol'] = 'circle-stroked';
+        point.properties['marker-size'] = 'medium';
+        points.push(point);
+    });
+
     return points;
 }
