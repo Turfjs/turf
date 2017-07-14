@@ -40,7 +40,11 @@
     "chromatism": "2.6.0",
     "load-json-file": "^2.0.0",
     "tape": "^4.6.3",
-    "write-json-file": "^2.0.0"
+    "write-json-file": "^2.0.0",
+    "es6-map": "^0.1.5",
+    "es6-set": "^0.1.5",
+    "geokdbush": "^1.1.0",
+    "kdbush": "^1.0.1"
   },
   "dependencies": {
     "@turf/center-of-mass": "^4.4.0",
@@ -48,10 +52,6 @@
     "@turf/helpers": "^4.4.0",
     "@turf/invariant": "^4.5.2",
     "@turf/meta": "^4.4.0",
-    "density-clustering": "1.3.0",
-    "es6-map": "^0.1.5",
-    "es6-set": "^0.1.5",
-    "geokdbush": "^1.1.0",
-    "kdbush": "^1.0.1"
+    "density-clustering": "1.3.0"
   }
 }
