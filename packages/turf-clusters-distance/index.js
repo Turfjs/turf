@@ -1,18 +1,19 @@
 var meta = require('@turf/meta');
+var clone = require('@turf/clone');
 var helpers = require('@turf/helpers');
 var invariant = require('@turf/invariant');
 var clustering = require('density-clustering');
 var turfDistance = require('@turf/distance');
-var clone = require('@turf/clone');
 var coordAll = meta.coordAll;
 var collectionOf = invariant.collectionOf;
 var convertDistance = helpers.convertDistance;
+var featureCollection = helpers.featureCollection;
 
 /**
- * Takes a set of {@link Point|points} and partition them into clusters.
+ * Takes a set of {@link Point|points} and partition them into clusters according to {@link DBSCAN's|https://en.wikipedia.org/wiki/DBSCAN} data clustering algorithm.
  *
- * @name clustersDistance
- * @param {FeatureCollection<Point>} points to be clustered
+ * @name clustersDbscan
+ * @param {FeatureCollection|Feature[]} points to be clustered
  * @param {number} maxDistance Maximum Distance between any point of the cluster to generate the clusters (kilometers only)
  * @param {string} [units=kilometers] in which `maxDistance` is expressed, can be degrees, radians, miles, or kilometers
  * @param {number} [minPoints=3] Minimum number of points to generate a single cluster, points will be excluded if the
@@ -31,6 +32,9 @@ var convertDistance = helpers.convertDistance;
  * var addToMap = featureCollection(clustered.points);
  */
 module.exports = function (points, maxDistance, units, minPoints) {
+    // Handle Array of Points
+    if (Array.isArray(points)) points = featureCollection(points);
+
     // Input validation
     collectionOf(points, 'Point', 'Input must contain Points');
     if (maxDistance === null || maxDistance === undefined) throw new Error('maxDistance is required');

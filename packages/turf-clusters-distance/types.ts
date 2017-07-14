@@ -25,3 +25,6 @@ const units = 'miles';
 clusters(pts, maxDistance);
 clusters(pts, maxDistance, units);
 clusters(pts, maxDistance, units, minPoints);
+
+// Handle Array of Points
+clusters(pts.features, maxDistance);

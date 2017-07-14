@@ -1,8 +1,8 @@
 # @turf/clusters-distance
 
-# clustersDistance
+# clustersDbscan
 
-Takes a set of [points](http://geojson.org/geojson-spec.html#point) and partition them into clusters.
+Takes a set of [points](http://geojson.org/geojson-spec.html#point) and partition them into clusters according to [https://en.wikipedia.org/wiki/DBSCAN](DBSCAN's) data clustering algorithm.
 
 **Parameters**
 

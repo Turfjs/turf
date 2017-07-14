@@ -68,6 +68,11 @@ test('clusters -- translate properties', t => {
     t.end();
 });
 
+test('clusters -- handle Array of Points', t => {
+    t.assert(clustersDistance(points.features, 2), 'Support Array of Features input');
+    t.end();
+});
+
 // style result
 function colorize(clustered) {
     const clusters = new Set();

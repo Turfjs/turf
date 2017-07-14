@@ -1,30 +1,29 @@
 /// <reference types="geojson" />
 
-import {Units, Points} from '@turf/helpers';
-
-interface Point extends GeoJSON.Feature<GeoJSON.Point> {
-    properties: {
-        dbscan?: clustersDistance.DBSCANProps;
-        cluster?: number;
-        [key: string]: any;
-    }
-}
+import {Units, Points, Point} from '@turf/helpers';
 
 interface Output {
     type: 'FeatureCollection'
-    features: Point[];
+    features: clustersDistance.Point[];
 }
 
 /**
  * http://turfjs.org/docs/#clusterdistance
  */
 declare function clustersDistance(
-    points: Points,
+    points: Points | Point[],
     maxDistance: number,
     units?: Units,
     minPoints?: number): Output;
 
 declare namespace clustersDistance {
-    type DBSCANProps = 'core' | 'edge' | 'noise'
+    type Categories = 'core' | 'edge' | 'noise'
+    interface Point extends GeoJSON.Feature<GeoJSON.Point> {
+        properties: {
+            dbscan?: clustersDistance.Categories;
+            cluster?: number;
+            [key: string]: any;
+        }
+    }
 }
 export = clustersDistance;
