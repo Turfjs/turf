@@ -133,12 +133,12 @@ function colorize(clustered) {
  * @private
  * @param {FeatureCollection|Feature[]} geojson GeoJSON
  * @param {string} property Name of property of GeoJSON Properties to bin each feature - This property will be translated to each centroid's properties
- * @param {*} properties Properties to translate down to each centroid (2nd priority)
+ * @param {*} [properties={}] Properties to translate down to each centroid (2nd priority)
  * @returns {FeatureCollection<Point>} centroids
  * @example
- * var centroids = centroidFromProperty(points, 'cluster');
+ * var centroids = centroidFromProperty(geojson, 'cluster');
  */
-function centroidFromProperty(geojson, property, properties) {
+function centroidFromProperty(geojson, property, properties = {}) {
     if (Array.isArray(geojson)) geojson = featureCollection(geojson);
 
     const centroids = [];
@@ -166,10 +166,10 @@ function centroidFromProperty(geojson, property, properties) {
  * @private
  * @param {FeatureCollection|Feature[]} geojson GeoJSON
  * @param {string} property Name of property of GeoJSON Properties to bin each feature - This property will be translated to each centroid's properties
- * @param {*} properties Properties to translate down to each polygons (2nd priority)
+ * @param {*} [properties={}] Properties to translate down to each polygons (2nd priority)
  * @returns {FeatureCollection<Polygon>} concave Polygons
  * @example
- * var centroids = centroidFromProperty(points, 'cluster');
+ * var centroids = concaveFromProperty(geojson, 'cluster');
  */
 function concaveFromProperty(geojson, property, properties = {}) {
     if (Array.isArray(geojson)) geojson = featureCollection(geojson);
