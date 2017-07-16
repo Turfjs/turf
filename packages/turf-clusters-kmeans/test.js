@@ -3,10 +3,10 @@ const test = require('tape');
 const path = require('path');
 const load = require('load-json-file');
 const write = require('write-json-file');
+const chromatism = require('chromatism');
 const {featureEach} = require('@turf/meta');
 const {featureCollection, point, polygon} = require('@turf/helpers');
-const chromatism = require('chromatism');
-const clusters = require('./');
+const clustersKmeans = require('./');
 
 const directories = {
     in: path.join(__dirname, 'test', 'in') + path.sep,
@@ -21,11 +21,11 @@ const fixtures = fs.readdirSync(directories.in).map(filename => {
     };
 });
 
-test('clusters', t => {
+test('clusters-kmeans', t => {
     fixtures.forEach(({name, geojson}) => {
         const {numberOfCentroids} = geojson.properties || {};
 
-        const clustered = clusters(geojson, numberOfCentroids);
+        const clustered = clustersKmeans(geojson, numberOfCentroids);
         const result = featureCollection(colorize(clustered));
 
         if (process.env.REGEN) write.sync(directories.out + name + '.geojson', result);
@@ -41,15 +41,15 @@ const points = featureCollection([
     point([3, 6], {foo: 'bar'})
 ]);
 
-test('clusters -- throws', t => {
+test('clusters-kmeans -- throws', t => {
     const poly = polygon([[[0, 0], [10, 10], [0, 10], [0, 0]]]);
-    t.throws(() => clusters(poly, 1), /Input must contain Points/);
-    t.throws(() => clusters(points, 5), /numberOfClusters can't be grated than the number of points/);
+    t.throws(() => clustersKmeans(poly, 1), /Input must contain Points/);
+    t.throws(() => clustersKmeans(points, 5), /numberOfClusters can't be grated than the number of points/);
     t.end();
 });
 
-test('clusters -- translate properties', t => {
-    t.equal(clusters(points, 2).points.features[0].properties.foo, 'bar');
+test('clusters-kmeans -- translate properties', t => {
+    t.equal(clustersKmeans(points, 2).points.features[0].properties.foo, 'bar');
     t.end();
 });
 

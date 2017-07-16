@@ -1,6 +1,6 @@
-# @turf/clusters
+# @turf/clusters-kmeans
 
-# clusters
+# clustersKmeans
 
 Takes a set of [points](http://geojson.org/geojson-spec.html#point) and partition them into clusters using the k-mean .
 It uses the [k-means algorithm](https://en.wikipedia.org/wiki/K-means_clustering)
@@ -18,7 +18,7 @@ var points = turf.random('point', 100, {
   bbox: [0, 30, 20, 50]
 });
 var numberOfClusters = 7;
-var clustered = turf.clusters(points, numberOfClusters);
+var clustered = turf.clustersKmeans(points, numberOfClusters);
 
 //addToMap
 var addToMap = featureCollection(clustered.points);
@@ -44,7 +44,7 @@ PRs and issues.
 Install this module individually:
 
 ```sh
-$ npm install @turf/clusters
+$ npm install @turf/clusters-kmeans
 ```
 
 Or install the Turf module that includes it as a function:

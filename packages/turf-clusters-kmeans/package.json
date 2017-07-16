@@ -1,7 +1,7 @@
 {
-  "name": "@turf/clusters",
-  "version": "4.5.2",
-  "description": "turf clusters module",
+  "name": "@turf/clusters-kmeans",
+  "version": "4.0.0",
+  "description": "turf clusters-kmeans module",
   "main": "index.js",
   "types": "index.d.ts",
   "files": [
@@ -26,7 +26,9 @@
   ],
   "author": "Turf Authors",
   "contributors": [
-    "Stefano Borghi <@stebogit>"
+    "David Gómez Matarrodona <@solzimer>",
+    "Stefano Borghi <@stebogit>",
+    "Denis Carriere <@DenisCarriere>"
   ],
   "license": "MIT",
   "bugs": {
@@ -46,6 +48,6 @@
     "@turf/helpers": "^4.5.2",
     "@turf/invariant": "^4.5.2",
     "@turf/meta": "^4.5.2",
-    "skmeans": "0.5.0"
+    "skmeans": "0.7.0"
   }
 }

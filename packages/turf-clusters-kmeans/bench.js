@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 const load = require('load-json-file');
 const Benchmark = require('benchmark');
-const clusters = require('./');
+const clustersKmeans = require('./');
 
 // Define Fixtures
 const directory = path.join(__dirname, 'test', 'in') + path.sep;
@@ -18,25 +18,25 @@ const fixtures = fs.readdirSync(directory).map(filename => {
 /**
  * Benchmark Results
  *
- * fiji: 3.236ms
- * many-points: 32.563ms
- * points-with-properties: 0.123ms
- * points1: 0.569ms
- * points2: 0.119ms
- * fiji x 112,975 ops/sec ±7.64% (70 runs sampled)
- * many-points x 129 ops/sec ±20.10% (62 runs sampled)
- * points-with-properties x 151,784 ops/sec ±4.47% (80 runs sampled)
- * points1 x 44,736 ops/sec ±5.12% (77 runs sampled)
- * points2 x 26,771 ops/sec ±4.22% (83 runs sampled)
+ * fiji: 2.243ms
+ * many-points: 35.878ms
+ * points-with-properties: 4.576ms
+ * points1: 0.203ms
+ * points2: 0.103ms
+ * fiji x 240,316 ops/sec ±1.24% (87 runs sampled)
+ * many-points x 184 ops/sec ±2.42% (82 runs sampled)
+ * points-with-properties x 230,182 ops/sec ±2.81% (85 runs sampled)
+ * points1 x 66,020 ops/sec ±3.35% (84 runs sampled)
+ * points2 x 38,978 ops/sec ±2.10% (88 runs sampled)
  */
-const suite = new Benchmark.Suite('turf-clusters');
+const suite = new Benchmark.Suite('turf-clusters-kmeans');
 for (const {name, geojson} of fixtures) {
     const {numberOfCentroids} = geojson.properties || {};
 
     console.time(name);
-    clusters(geojson, numberOfCentroids);
+    clustersKmeans(geojson, numberOfCentroids);
     console.timeEnd(name);
-    suite.add(name, () => clusters(geojson, numberOfCentroids));
+    suite.add(name, () => clustersKmeans(geojson, numberOfCentroids));
 }
 suite
   .on('cycle', e => console.log(String(e.target)))

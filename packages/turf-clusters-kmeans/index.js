@@ -12,7 +12,7 @@ var featureCollection = helpers.featureCollection;
  * Takes a set of {@link Point|points} and partition them into clusters using the k-mean .
  * It uses the [k-means algorithm](https://en.wikipedia.org/wiki/K-means_clustering)
  *
- * @name clusters
+ * @name clustersKmeans
  * @param {FeatureCollection<Point>} points to be clustered
  * @param {number} [numberOfClusters=Math.sqrt(numberOfPoints/2)] numberOfClusters that will be generated
  * @returns {Object} an object containing a `points` FeatureCollection, the input points where each Point
@@ -24,7 +24,7 @@ var featureCollection = helpers.featureCollection;
  *   bbox: [0, 30, 20, 50]
  * });
  * var numberOfClusters = 7;
- * var clustered = turf.clusters(points, numberOfClusters);
+ * var clustered = turf.clustersKmeans(points, numberOfClusters);
  *
  * //addToMap
  * var addToMap = featureCollection(clustered.points);

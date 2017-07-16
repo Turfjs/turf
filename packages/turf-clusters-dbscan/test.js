@@ -8,7 +8,7 @@ const concaveman = require('concaveman');
 const centerOfMass = require('@turf/center-of-mass');
 const {featureEach, propEach, coordEach} = require('@turf/meta');
 const {featureCollection, point, polygon} = require('@turf/helpers');
-const clusters = require('./');
+const clustersDbscan = require('./');
 
 const directories = {
     in: path.join(__dirname, 'test', 'in') + path.sep,
@@ -29,7 +29,7 @@ test('clusters-dbscan', t => {
         distance = distance || 100;
 
         // console.log(geojson.features.length);
-        const clustered = clusters(geojson, distance, units, minPoints);
+        const clustered = clustersDbscan(geojson, distance, units, minPoints);
         // console.log(clustered.points.features.length);
         const result = colorize(clustered);
 
@@ -46,31 +46,31 @@ const points = featureCollection([
     point([3, 6], {foo: 'bar'})
 ]);
 
-test('clusters -- throws', t => {
+test('clusters-dbscan -- throws', t => {
     const poly = polygon([[[0, 0], [10, 10], [0, 10], [0, 0]]]);
-    t.throws(() => clusters(poly, 1), /Input must contain Points/);
-    t.throws(() => clusters(points), /maxDistance is required/);
-    t.throws(() => clusters(points, -4), /Invalid maxDistance/);
-    t.throws(() => clusters(points, 'foo'), /Invalid maxDistance/);
-    t.throws(() => clusters(points, 1, 'nanometers'), /units is invalid/);
-    t.throws(() => clusters(points, 1, null, 0), /Invalid minPoints/);
-    t.throws(() => clusters(points, 1, 'miles', 'baz'), /Invalid minPoints/);
+    t.throws(() => clustersDbscan(poly, 1), /Input must contain Points/);
+    t.throws(() => clustersDbscan(points), /maxDistance is required/);
+    t.throws(() => clustersDbscan(points, -4), /Invalid maxDistance/);
+    t.throws(() => clustersDbscan(points, 'foo'), /Invalid maxDistance/);
+    t.throws(() => clustersDbscan(points, 1, 'nanometers'), /units is invalid/);
+    t.throws(() => clustersDbscan(points, 1, null, 0), /Invalid minPoints/);
+    t.throws(() => clustersDbscan(points, 1, 'miles', 'baz'), /Invalid minPoints/);
     t.end();
 });
 
-test('clusters -- prevent input mutation', t => {
-    clusters(points, 2, 'kilometers', 1);
+test('clusters-dbscan -- prevent input mutation', t => {
+    clustersDbscan(points, 2, 'kilometers', 1);
     t.true(points.features[0].properties.cluster === undefined, 'cluster properties should be undefined');
     t.end();
 });
 
-test('clusters -- translate properties', t => {
-    t.equal(clusters(points, 2, 'kilometers', 1).features[0].properties.foo, 'bar');
+test('clusters-dbscan -- translate properties', t => {
+    t.equal(clustersDbscan(points, 2, 'kilometers', 1).features[0].properties.foo, 'bar');
     t.end();
 });
 
-test('clusters -- handle Array of Points', t => {
-    t.assert(clusters(points.features, 2), 'Support Array of Features input');
+test('clusters-dbscan -- handle Array of Points', t => {
+    t.assert(clustersDbscan(points.features, 2), 'Support Array of Features input');
     t.end();
 });
 

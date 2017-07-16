@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 const load = require('load-json-file');
 const Benchmark = require('benchmark');
-const clusters = require('./');
+const clustersDbscan = require('./');
 
 // Define Fixtures
 const directory = path.join(__dirname, 'test', 'in') + path.sep;
@@ -14,35 +14,21 @@ const fixtures = fs.readdirSync(directory).map(filename => {
     };
 });
 
-
 /**
  * Benchmark Results
  *
- * // Clusters dbscan
- * fiji: 2.034ms
- * many-points: 50.185ms
- * noise: 1.027ms
- * points-with-properties: 0.355ms
- * points1: 0.769ms
- * points2: 0.325ms
- * fiji x 34,724 ops/sec ±12.09% (73 runs sampled)
- * many-points x 30.43 ops/sec ±5.53% (54 runs sampled)
- * noise x 5,955 ops/sec ±1.85% (86 runs sampled)
- * points-with-properties x 30,850 ops/sec ±7.87% (80 runs sampled)
- * points1 x 4,704 ops/sec ±12.26% (64 runs sampled)
- * points2 x 3,014 ops/sec ±7.66% (78 runs sampled)
- *
- * // Clusters kmeans
- * fiji: 3.236ms
- * many-points: 32.563ms
- * points-with-properties: 0.123ms
- * points1: 0.569ms
- * points2: 0.119ms
- * fiji x 112,975 ops/sec ±7.64% (70 runs sampled)
- * many-points x 129 ops/sec ±20.10% (62 runs sampled)
- * points-with-properties x 151,784 ops/sec ±4.47% (80 runs sampled)
- * points1 x 44,736 ops/sec ±5.12% (77 runs sampled)
- * points2 x 26,771 ops/sec ±4.22% (83 runs sampled)
+ * fiji: 2.472ms
+ * many-points: 48.504ms
+ * noise: 1.218ms
+ * points-with-properties: 0.194ms
+ * points1: 0.697ms
+ * points2: 0.579ms
+ * fiji x 42,125 ops/sec ±1.27% (90 runs sampled)
+ * many-points x 33.21 ops/sec ±1.23% (57 runs sampled)
+ * noise x 6,379 ops/sec ±0.98% (90 runs sampled)
+ * points-with-properties x 35,111 ops/sec ±0.74% (94 runs sampled)
+ * points1 x 7,199 ops/sec ±0.99% (90 runs sampled)
+ * points2 x 4,047 ops/sec ±1.02% (91 runs sampled)
  */
 const suite = new Benchmark.Suite('turf-clusters-dbscan');
 for (const {name, geojson} of fixtures) {
@@ -50,9 +36,9 @@ for (const {name, geojson} of fixtures) {
     distance = distance || 100;
 
     console.time(name);
-    clusters(geojson, distance);
+    clustersDbscan(geojson, distance);
     console.timeEnd(name);
-    suite.add(name, () => clusters(geojson, distance));
+    suite.add(name, () => clustersDbscan(geojson, distance));
 }
 suite
   .on('cycle', e => console.log(String(e.target)))
