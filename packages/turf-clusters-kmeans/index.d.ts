@@ -1,14 +1,18 @@
-import {Points} from '@turf/helpers'
+/// <reference types="geojson" />
+
+import {Points} from '@turf/helpers';
 
 interface Clustered {
-  points: Points
-  centroid: Points
+    points: Points;
+    centroid: Points;
 }
 
 /**
- * http://turfjs.org/docs/#cluster
+ * http://turfjs.org/docs/#clusterskmeans
  */
-declare function clusters(points: Points, numberOfClusters?: number): Clustered;
+declare function clustersKmeans(
+    points: Points,
+    numberOfClusters?: number): Clustered;
 
-declare namespace clusters { }
-export = clusters;
+declare namespace clustersKmeans { }
+export = clustersKmeans;
