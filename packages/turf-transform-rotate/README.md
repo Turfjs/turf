@@ -1,6 +1,6 @@
 # @turf/transform-rotate
 
-# rotate
+# transformRotate
 
 Rotates any geojson Feature or Geometry of a specified angle, around its `centroid` or a given `pivot` point;
 all rotations follow the right-hand rule: <https://en.wikipedia.org/wiki/Right-hand_rule>
@@ -16,7 +16,7 @@ all rotations follow the right-hand rule: <https://en.wikipedia.org/wiki/Right-h
 
 ```javascript
 var poly = turf.polygon([[[0,29],[3.5,29],[2.5,32],[0,29]]]);
-var rotatedPoly = turf.rotate(poly, 100, [15, 15]);
+var rotatedPoly = turf.transformRotate(poly, 100, [15, 15]);
 
 //addToMap
 rotatedPoly.properties = {stroke: '#F00', 'stroke-width': 4};

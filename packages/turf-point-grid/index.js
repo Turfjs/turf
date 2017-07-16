@@ -12,23 +12,23 @@ var featureCollection = helpers.featureCollection;
  *
  * @name pointGrid
  * @param {Array<number>|FeatureCollection|Feature<any>} bbox extent in [minX, minY, maxX, maxY] order
- * @param {number} cellSize the distance across each cell
- * @param {string} [units=kilometers] used in calculating cellSize, can be degrees, radians, miles, or kilometers
- * @param {boolean} [centered=false] adjust points position to center the grid into bbox
+ * @param {number} cellSide the distance between points
+ * @param {string} [units=kilometers] used in calculating cellSide, can be degrees, radians, miles, or kilometers
+ * @param {boolean} [centered=true] adjust points position to center the grid into bbox. **This parameter is going to be removed** in the next major release, having the output always centered into bbox.
  * @param {boolean} [bboxIsMask=false] if true, and bbox is a Polygon or MultiPolygon, the grid Point will be created
  * only if inside the bbox Polygon(s)
  * @returns {FeatureCollection<Point>} grid of points
  * @example
  * var extent = [-70.823364, -33.553984, -70.473175, -33.302986];
- * var cellSize = 3;
+ * var cellSide = 3;
  * var units = 'miles';
  *
- * var grid = turf.pointGrid(extent, cellSize, units);
+ * var grid = turf.pointGrid(extent, cellSide, units);
  *
  * //addToMap
  * var addToMap = [grid];
  */
-module.exports = function (bbox, cellSize, units, centered, bboxIsMask) {
+module.exports = function (bbox, cellSide, units, centered, bboxIsMask) {
     var results = [];
 
     var bboxMask = bbox;
@@ -42,12 +42,12 @@ module.exports = function (bbox, cellSize, units, centered, bboxIsMask) {
     var east = bbox[2];
     var north = bbox[3];
 
-    var xFraction = cellSize / (distance(point([west, south]), point([east, south]), units));
+    var xFraction = cellSide / (distance(point([west, south]), point([east, south]), units));
     var cellWidth = xFraction * (east - west);
-    var yFraction = cellSize / (distance(point([west, south]), point([west, north]), units));
+    var yFraction = cellSide / (distance(point([west, south]), point([west, north]), units));
     var cellHeight = yFraction * (north - south);
 
-    if (centered === true) {
+    if (centered !== false) {
         var bboxHorizontalSide = (east - west);
         var bboxVerticalSide = (north - south);
         var columns = Math.floor(bboxHorizontalSide / cellWidth);
@@ -60,10 +60,10 @@ module.exports = function (bbox, cellSize, units, centered, bboxIsMask) {
     var isPoly = !Array.isArray(bboxMask) && (getGeomType(bboxMask) === 'Polygon' || getGeomType(bboxMask) === 'MultiPolygon');
 
     var currentX = west;
-    if (centered === true) currentX += deltaX;
+    if (centered !== false) currentX += deltaX;
     while (currentX <= east) {
         var currentY = south;
-        if (centered === true) currentY += deltaY;
+        if (centered !== false) currentY += deltaY;
         while (currentY <= north) {
             var pt = point([currentX, currentY]);
             if (bboxIsMask === true && isPoly) {

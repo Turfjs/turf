@@ -1,0 +1,139 @@
+{
+	"type": "FeatureCollection",
+	"features": [
+		{
+			"type": "Feature",
+			"properties": {},
+			"geometry": {
+				"type": "Point",
+				"coordinates": [
+					-95.63028796838113,
+					74.50452048104366
+				]
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {},
+			"geometry": {
+				"type": "Point",
+				"coordinates": [
+					-95.63028796838113,
+					74.68537837092082
+				]
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {},
+			"geometry": {
+				"type": "Point",
+				"coordinates": [
+					-95.63028796838113,
+					74.86623626079798
+				]
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {},
+			"geometry": {
+				"type": "Point",
+				"coordinates": [
+					-94.954833984375,
+					74.50452048104366
+				]
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {},
+			"geometry": {
+				"type": "Point",
+				"coordinates": [
+					-94.954833984375,
+					74.68537837092082
+				]
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {},
+			"geometry": {
+				"type": "Point",
+				"coordinates": [
+					-94.954833984375,
+					74.86623626079798
+				]
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {},
+			"geometry": {
+				"type": "Point",
+				"coordinates": [
+					-94.27938000036887,
+					74.50452048104366
+				]
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {},
+			"geometry": {
+				"type": "Point",
+				"coordinates": [
+					-94.27938000036887,
+					74.68537837092082
+				]
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {},
+			"geometry": {
+				"type": "Point",
+				"coordinates": [
+					-94.27938000036887,
+					74.86623626079798
+				]
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {
+				"stroke": "#F00",
+				"stroke-width": 6,
+				"fill-opacity": 0
+			},
+			"geometry": {
+				"type": "Polygon",
+				"coordinates": [
+					[
+						[
+							-95.877685546875,
+							74.46849062193377
+						],
+						[
+							-94.031982421875,
+							74.46849062193377
+						],
+						[
+							-94.031982421875,
+							74.90226611990785
+						],
+						[
+							-95.877685546875,
+							74.90226611990785
+						],
+						[
+							-95.877685546875,
+							74.46849062193377
+						]
+					]
+				]
+			}
+		}
+	]
+}

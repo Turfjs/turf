@@ -1,5 +1,11 @@
-import {BBox, Points} from '@turf/helpers'
-import * as pointGrid from './'
+import * as pointGrid from './';
+import {BBox} from './';
 
-const bbox: BBox = [-95, 30, -85, 40]
-const grid: Points = pointGrid(bbox, 50, 'miles', true, true)
+const units = 'miles';
+const cellSide = 50;
+const bbox: BBox = [-95, 30, -85, 40];
+
+pointGrid(bbox, cellSide);
+pointGrid(bbox, cellSide, units);
+pointGrid(bbox, cellSide, units, true);
+pointGrid(bbox, cellSide, units, true, true);

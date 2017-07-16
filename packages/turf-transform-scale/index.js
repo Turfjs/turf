@@ -18,7 +18,7 @@ var getCoords = invariant.getCoords;
  * Scale a GeoJSON from a given point by a factor of scaling (ex: factor=2 would make the GeoJSON 200% larger).
  * If a FeatureCollection is provided, the origin point will be calculated based on each individual Feature.
  *
- * @name scale
+ * @name transformScale
  * @param {GeoJSON} geojson GeoJSON to be scaled
  * @param {number} factor of scaling, positive or negative values greater than 0
  * @param {string|Geometry|Feature<Point>|Array<number>} [origin="centroid"] Point from which the scaling will occur (string options: sw/se/nw/ne/center/centroid)
@@ -26,7 +26,7 @@ var getCoords = invariant.getCoords;
  * @returns {GeoJSON} scaled GeoJSON
  * @example
  * var poly = turf.polygon([[[0,29],[3.5,29],[2.5,32],[0,29]]]);
- * var scaledPoly = turf.scale(poly, 3);
+ * var scaledPoly = turf.transformScale(poly, 3);
  *
  * //addToMap
  * scaledPoly.properties = {stroke: '#F00', 'stroke-width': 4};

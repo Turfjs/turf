@@ -2,6 +2,8 @@ const test = require('tape');
 const path = require('path');
 const load = require('load-json-file');
 const write = require('write-json-file');
+const centroid = require('@turf/centroid');
+const distance = require('@turf/distance');
 const truncate = require('@turf/truncate');
 const grid = require('./');
 
@@ -78,7 +80,7 @@ test('hex-tri-grid', t => {
     t.end();
 });
 
-test('longitude (13141439571036224) issue #758', t => {
+test('longitude (13141439571036224) - issue #758', t => {
     const bbox = [-179, -90, 179, 90];
     const hexgrid = grid(bbox, 500, 'kilometers');
 
@@ -93,3 +95,23 @@ test('longitude (13141439571036224) issue #758', t => {
     }
     t.end();
 });
+
+test('hexagon size - issue #623', t => {
+    const bbox = [9.244, 45.538, 9.115, 45.439];
+    const cellDiameter = 1;
+    const hexgrid = grid(bbox, 1, 'kilometers');
+
+    const tile1 = hexgrid.features[0];
+    const tile2 = hexgrid.features[1];
+    var dist = distance(centroid(tile1), centroid(tile2), "kilometers");
+
+    t.equal(round(dist, 10), round(Math.sqrt(3) * cellDiameter / 2, 10));
+
+    t.end();
+});
+
+
+function round(value, places) {
+    var multiplier = Math.pow(10, places);
+    return (Math.round(value * multiplier) / multiplier);
+}
