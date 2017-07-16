@@ -16,9 +16,9 @@ type FeatureCollection = GeoJSON.FeatureCollection<LineString | MultiLineString>
  * Feature => Polygon
  * FeatureCollection => MultiPolygon
  */
-interface LineStringToPolygon {
+interface lineStringToPolygon {
   (lines: Feature, properties?: any, autoComplete?: boolean, orderCoords?: boolean): GeoJSON.Feature<Polygon>
   (lines: FeatureCollection, properties?: any, autoComplete?: boolean, orderCoords?: boolean): GeoJSON.Feature<MultiPolygon>
 }
-declare const lineStringToPolygon: LineStringToPolygon;
+declare const lineStringToPolygon: lineStringToPolygon;
 export = lineStringToPolygon;

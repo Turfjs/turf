@@ -7,11 +7,11 @@ type Corners = 'sw' | 'se' | 'nw' | 'ne' | 'center' | 'centroid' | undefined | n
 /**
  * http://turfjs.org/docs/#transform-scale
  */
-declare function scale<Geom extends Geoms>(
+declare function transformScale<Geom extends Geoms>(
     geojson: Geom,
     factor: number,
     origin?: Corners | Point,
     mutate?: boolean): Geom;
 
-declare namespace scale { }
-export = scale;
+declare namespace transformScale { }
+export = transformScale;

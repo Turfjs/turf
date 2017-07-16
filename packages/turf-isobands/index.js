@@ -16,7 +16,7 @@ var featureCollection = helpers.featureCollection;
  * value breaks and generates filled contour isobands.
  *
  * @name isobands
- * @param {FeatureCollection<Point>} points a FeatureCollection of {@link Point} features
+ * @param {FeatureCollection<Point>} pointGrid input points
  * @param {Array<number>} breaks where to draw contours
  * @param {string} [zProperty='elevation'] the property name in `points` from which z-values will be pulled
  * @param {Object} [options={}] options on output
@@ -25,8 +25,7 @@ var featureCollection = helpers.featureCollection;
  * @param {Object} [options.commonProperties={}] GeoJSON properties passed to ALL isobands
  * @returns {FeatureCollection<MultiPolygon>} a FeatureCollection of {@link MultiPolygon} features representing isobands
  * @example
- * // create random points with random
- * // z-values in their properties
+ * // create a grid of points with random z-values in their properties
  * var extent = [-70.823364, -33.553984, -69.823364, -32.553984];
  * var cellWidth = 5;
  * var units = 'miles';
@@ -35,18 +34,19 @@ var featureCollection = helpers.featureCollection;
  *     pointGrid.features[i].properties.elevation = Math.random() * 10;
  * }
  * var breaks = [0, 5, 8.5];
- * var isobands = turf.isobands(pointGrid, breaks, 'temp');
+ * var isobands = turf.isobands(pointGrid, breaks);
  *
  * //addToMap
  * var addToMap = [isobands];
  */
-module.exports = function (points, breaks, zProperty, options) {
+module.exports = function (pointGrid, breaks, zProperty, options) {
     // Input validation
     var isObject = function (input) {
         return (!!input) && (input.constructor === Object);
     };
-    collectionOf(points, 'Point', 'Input must contain Points');
+    collectionOf(pointGrid, 'Point', 'Input must contain Points');
     if (!breaks || !Array.isArray(breaks)) throw new Error('breaks is required');
+    options = options || {};
     if (options.commonProperties && !isObject(options.commonProperties)) {
         throw new Error('commonProperties is not an Object');
     }
@@ -56,14 +56,13 @@ module.exports = function (points, breaks, zProperty, options) {
     if (zProperty && typeof zProperty !== 'string') { throw new Error('zProperty is not a string'); }
 
     zProperty = zProperty || 'elevation';
-    options = options || {};
     var commonProperties = options.commonProperties || {};
     var isobandProperties = options.isobandProperties || [];
 
     // Isoband methods
-    var matrix = gridToMatrix(points, zProperty, true);
+    var matrix = gridToMatrix(pointGrid, zProperty, true);
     var contours = createContourLines(matrix, breaks, zProperty);
-    contours = rescaleContours(contours, matrix, points);
+    contours = rescaleContours(contours, matrix, pointGrid);
 
     var multipolygons = contours.map(function (contour, index) {
         if (isobandProperties[index] && !isObject(isobandProperties[index])) {

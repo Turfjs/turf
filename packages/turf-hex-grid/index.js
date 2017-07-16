@@ -15,27 +15,27 @@ for (var i = 0; i < 6; i++) {
 }
 
 /**
- * Takes a bounding box and a cell size in degrees and returns a {@link FeatureCollection} of flat-topped
- * hexagons ({@link Polygon} features) aligned in an "odd-q" vertical grid as
+ * Takes a bounding box and the diameter of the cell and returns a {@link FeatureCollection} of flat-topped
+ * hexagons or triangles ({@link Polygon} features) aligned in an "odd-q" vertical grid as
  * described in [Hexagonal Grids](http://www.redblobgames.com/grids/hexagons/).
  *
  * @name hexGrid
  * @param {Array<number>} bbox extent in [minX, minY, maxX, maxY] order
- * @param {number} cellSize dimension of cell in specified units
- * @param {string} [units=kilometers] used in calculating cellSize, can be degrees, radians, miles, or kilometers
+ * @param {number} cellDiameter diameter of the circumcircle of the hexagons, in specified units
+ * @param {string} [units=kilometers] used in calculating cell size, can be degrees, radians, miles, or kilometers
  * @param {boolean} [triangles=false] whether to return as triangles instead of hexagons
  * @returns {FeatureCollection<Polygon>} a hexagonal grid
  * @example
  * var bbox = [-96,31,-84,40];
- * var cellSize = 50;
+ * var cellDiameter = 50;
  * var units = 'miles';
  *
- * var hexgrid = turf.hexGrid(bbox, cellSize, units);
+ * var hexgrid = turf.hexGrid(bbox, cellDiameter, units);
  *
  * //addToMap
  * var addToMap = [hexgrid]
  */
-module.exports = function hexGrid(bbox, cellSize, units, triangles) {
+module.exports = function hexGrid(bbox, cellDiameter, units, triangles) {
     var west = bbox[0];
     var south = bbox[1];
     var east = bbox[2];
@@ -44,9 +44,9 @@ module.exports = function hexGrid(bbox, cellSize, units, triangles) {
     var centerX = (west + east) / 2;
 
     // https://github.com/Turfjs/turf/issues/758
-    var xFraction = cellSize / (distance(point([west, centerY]), point([east, centerY]), units));
+    var xFraction = cellDiameter / (distance(point([west, centerY]), point([east, centerY]), units));
     var cellWidth = xFraction * (east - west);
-    var yFraction = cellSize / (distance(point([centerX, south]), point([centerX, north]), units));
+    var yFraction = cellDiameter / (distance(point([centerX, south]), point([centerX, north]), units));
     var cellHeight = yFraction * (north - south);
     var radius = cellWidth / 2;
 

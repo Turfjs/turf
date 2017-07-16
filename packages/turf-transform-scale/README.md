@@ -1,13 +1,13 @@
 # @turf/transform-scale
 
-# scale
+# transformScale
 
 Scale a GeoJSON from a given point by a factor of scaling (ex: factor=2 would make the GeoJSON 200% larger).
 If a FeatureCollection is provided, the origin point will be calculated based on each individual Feature.
 
 **Parameters**
 
--   `geojson` **[GeoJSON](http://geojson.org/geojson-spec.html#geojson-objects)** object to be scaled
+-   `geojson` **[GeoJSON](http://geojson.org/geojson-spec.html#geojson-objects)** GeoJSON to be scaled
 -   `factor` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** of scaling, positive or negative values greater than 0
 -   `origin` **\[([string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) \| [Geometry](http://geojson.org/geojson-spec.html#geometry) \| [Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;[Point](http://geojson.org/geojson-spec.html#point)> | [Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)>)]** Point from which the scaling will occur (string options: sw/se/nw/ne/center/centroid) (optional, default `"centroid"`)
 -   `mutate` **\[[boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)]** allows GeoJSON input to be mutated (significant performance increase if true) (optional, default `false`)
@@ -16,7 +16,7 @@ If a FeatureCollection is provided, the origin point will be calculated based on
 
 ```javascript
 var poly = turf.polygon([[[0,29],[3.5,29],[2.5,32],[0,29]]]);
-var scaledPoly = turf.scale(poly, 3);
+var scaledPoly = turf.transformScale(poly, 3);
 
 //addToMap
 scaledPoly.properties = {stroke: '#F00', 'stroke-width': 4};
