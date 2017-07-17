@@ -160,7 +160,7 @@ function clusterReduce(geojson, property, callback, initialValue) {
  *
  * @private
  * @param {FeatureCollection} geojson GeoJSON Features
- * @param {string} property Property values are used to create bins
+ * @param {string|number} property Property values are used to create bins
  * @returns {Object} bins with Feature IDs
  * @example
  * const geojson = turf.featureCollection([

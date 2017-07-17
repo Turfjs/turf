@@ -1,6 +1,6 @@
 const test = require('tape');
 const {featureCollection, point} = require('@turf/helpers');
-const {propertiesContainsFilter, filterProperties, applyFilter} = require('./'); // Testing Purposes
+const {propertiesContainsFilter, filterProperties, applyFilter, createBins} = require('./'); // Testing Purposes
 const {getCluster, clusterEach, clusterReduce} = require('./');
 
 const properties = {foo: 'bar', cluster: 0};
@@ -56,12 +56,15 @@ test('clusters -- applyFilter', t => {
     t.true(applyFilter(properties, ['cluster']));
     t.false(applyFilter(properties, {cluster: 1}));
     t.true(applyFilter(properties, {cluster: 0}));
+    t.false(applyFilter(undefined, {cluster: 0}));
     t.end();
 });
 
 // Testing Purposes
 test('clusters -- filterProperties', t => {
     t.deepEqual(filterProperties(properties, ['cluster']), {cluster: 0});
+    t.deepEqual(filterProperties(properties, []), {});
+    t.deepEqual(filterProperties(properties, undefined), {});
     t.end();
 });
 
@@ -70,5 +73,11 @@ test('clusters -- propertiesContainsFilter', t => {
     t.deepEqual(propertiesContainsFilter(properties, {cluster: 0}), true);
     t.deepEqual(propertiesContainsFilter(properties, {cluster: 1}), false);
     t.deepEqual(propertiesContainsFilter(properties, {bar: 'foo'}), false);
+    t.end();
+});
+
+// Testing Purposes
+test('clusters -- propertiesContainsFilter', t => {
+    t.deepEqual(createBins(geojson, 'cluster'), {'0': [0], '1': [1, 2]});
     t.end();
 });
