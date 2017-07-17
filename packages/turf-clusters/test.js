@@ -1,7 +1,7 @@
 const test = require('tape');
 const {featureCollection, point} = require('@turf/helpers');
 const {propertiesContainsFilter, filterProperties, applyFilter} = require('./'); // Testing Purposes
-const {getCluster} = require('./');
+const {getCluster, clusterEach, clusterReduce} = require('./');
 
 const properties = {foo: 'bar', cluster: 0};
 const geojson = featureCollection([
@@ -24,6 +24,29 @@ test('clusters -- getCluster', t => {
     t.equal(getCluster(geojson, ['cluster', {foo: 'bar'}]).features.length, 1);
     t.equal(getCluster(geojson, ['cluster', 'foo']).features.length, 2);
     t.equal(getCluster(geojson, ['cluster']).features.length, 3);
+    t.end();
+});
+
+test('clusters -- clusterEach', t => {
+    const clusters = [];
+    let total = 0;
+    clusterEach(geojson, 'cluster', (cluster) => {
+        total += cluster.features.length;
+        clusters.push(cluster);
+    });
+    t.equal(total, 3);
+    t.equal(clusters.length, 2);
+    t.end();
+});
+
+test('clusters -- clusterReduce', t => {
+    const clusters = [];
+    const total = clusterReduce(geojson, 'cluster', (previousValue, cluster)  => {
+        clusters.push(cluster);
+        return previousValue + cluster.features.length;
+    }, 0);
+    t.equal(total, 3);
+    t.equal(clusters.length, 2);
     t.end();
 });
 

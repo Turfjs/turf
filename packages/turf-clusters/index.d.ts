@@ -15,9 +15,18 @@ export function getCluster<T extends GeometryObject>(
 /**
  * http://turfjs.org/docs/#clustereach
  */
-export function clusterEach(geojson: any): any;
+export function clusterEach<T extends GeometryObject>(
+    geojson: FeatureCollection<T> | Feature<T>[],
+    property: number | string,
+    callback: (cluster: FeatureCollection<T>, clusterValue: any, currentIndex: number) => void
+): void;
 
 /**
  * http://turfjs.org/docs/#clusterreduce
  */
-export function clusterReduce(geojson: any): any;
+export function clusterReduce<T extends GeometryObject>(
+    geojson: FeatureCollection<T> | Feature<T>[],
+    property: number | string,
+    callback: (previousValue: any, cluster: FeatureCollection<T>, clusterValue: any, currentIndex: number) => void,
+    initialValue: any
+): void;
