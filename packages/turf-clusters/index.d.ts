@@ -8,7 +8,7 @@ type GeometryObject = GeoJSON.GeometryObject;
  * http://turfjs.org/docs/#getcluster
  */
 export function getCluster<T extends GeometryObject>(
-    geojson: FeatureCollection<T> | Feature<T>[],
+    geojson: FeatureCollection<T>,
     filter: any
 ): FeatureCollection<T>;
 
@@ -16,7 +16,7 @@ export function getCluster<T extends GeometryObject>(
  * http://turfjs.org/docs/#clustereach
  */
 export function clusterEach<T extends GeometryObject>(
-    geojson: FeatureCollection<T> | Feature<T>[],
+    geojson: FeatureCollection<T>,
     property: number | string,
     callback: (cluster: FeatureCollection<T>, clusterValue: any, currentIndex: number) => void
 ): void;
@@ -25,7 +25,7 @@ export function clusterEach<T extends GeometryObject>(
  * http://turfjs.org/docs/#clusterreduce
  */
 export function clusterReduce<T extends GeometryObject>(
-    geojson: FeatureCollection<T> | Feature<T>[],
+    geojson: FeatureCollection<T>,
     property: number | string,
     callback: (previousValue: any, cluster: FeatureCollection<T>, clusterValue: any, currentIndex: number) => void,
     initialValue: any

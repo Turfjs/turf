@@ -1,7 +1,7 @@
 /**
  * Get Cluster
  *
- * @param {FeatureCollection|Feature[]} geojson GeoJSON Features
+ * @param {FeatureCollection} geojson GeoJSON Features
  * @param {*} filter Filter used on GeoJSON properties to get Cluster
  * @returns {FeatureCollection} Single Cluster filtered by GeoJSON Properties
  * @example
@@ -22,14 +22,13 @@
 function getCluster(geojson, filter) {
     // Validation
     if (!geojson) throw new Error('geojson is required');
+    if (geojson.type !== 'FeatureCollection') throw new Error('geojson must be a FeatureCollection');
     if (filter === undefined || filter === null) throw new Error('filter is required');
-    if (geojson.type === 'FeatureCollection') geojson = geojson.features;
-    if (!Array.isArray(geojson)) throw new Error('invalid geojson');
 
     // Filter
     var features = [];
-    for (var i = 0; i < geojson.length; i++) {
-        var feature = geojson[i];
+    for (var i = 0; i < geojson.features.length; i++) {
+        var feature = geojson.features[i];
         var properties = feature.properties;
         if (applyFilter(properties, filter)) features.push(feature);
     }
@@ -52,7 +51,7 @@ function getCluster(geojson, filter) {
 /**
  * clusterEach
  *
- * @param {FeatureCollection|Feature[]} geojson GeoJSON Features
+ * @param {FeatureCollection} geojson GeoJSON Features
  * @param {string|number} property GeoJSON property key/value used to create clusters
  * @param {Function} callback a method that takes (cluster, clusterValue, currentIndex)
  * @returns {void}
@@ -78,9 +77,8 @@ function getCluster(geojson, filter) {
 function clusterEach(geojson, property, callback) {
     // Validation
     if (!geojson) throw new Error('geojson is required');
+    if (geojson.type !== 'FeatureCollection') throw new Error('geojson must be a FeatureCollection');
     if (property === undefined || property === null) throw new Error('property is required');
-    if (geojson.type === 'FeatureCollection') geojson = geojson.features;
-    if (!Array.isArray(geojson)) throw new Error('invalid geojson');
 
     // Create clusters based on property values
     var bins = createBins(geojson, property);
@@ -127,7 +125,7 @@ function clusterEach(geojson, property, callback) {
  * Reduce clusters in GeoJSON Features, similar to Array.reduce()
  *
  * @name clusterReduce
- * @param {FeatureCollection|Feature[]} geojson GeoJSON Features
+ * @param {FeatureCollection} geojson GeoJSON Features
  * @param {string|number} property GeoJSON property key/value used to create clusters
  * @param {Function} callback a method that takes (previousValue, cluster, clusterValue, currentIndex)
  * @param {*} [initialValue] Value to use as the first argument to the first call of the callback.
@@ -167,24 +165,24 @@ function clusterReduce(geojson, property, callback, initialValue) {
  * Create Bins
  *
  * @private
- * @param {Feature[]} features GeoJSON Features
+ * @param {FeatureCollection} geojson GeoJSON Features
  * @param {string} property Property values are used to create bins
  * @returns {Object} bins with Feature IDs
  * @example
- * const features = [
- *     point([0, 0], {cluster: 0, foo: 'null'}),
- *     point([2, 4], {cluster: 1, foo: 'bar'}),
- *     point([5, 1], {0: 'foo'}),
- *     point([3, 6], {cluster: 1}),
- * ];
- * createBins(features, 'cluster');
+ * const geojson = turf.featureCollection([
+ *     turf.point([0, 0], {cluster: 0, foo: 'null'}),
+ *     turf.point([2, 4], {cluster: 1, foo: 'bar'}),
+ *     turf.point([5, 1], {0: 'foo'}),
+ *     turf.point([3, 6], {cluster: 1}),
+ * ]);
+ * createBins(geojson, 'cluster');
  * //= { '0': [ 0 ], '1': [ 1, 3 ] }
  */
-function createBins(features, property) {
+function createBins(geojson, property) {
     var bins = {};
 
-    for (var i = 0; i < features.length; i++) {
-        var feature = features[i];
+    for (var i = 0; i < geojson.features.length; i++) {
+        var feature = geojson.features[i];
         var properties = feature.properties || {};
         if (properties.hasOwnProperty(property)) {
             var value = properties[property];
