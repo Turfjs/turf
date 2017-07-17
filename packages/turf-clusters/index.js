@@ -6,21 +6,18 @@
  * @returns {FeatureCollection} Single Cluster filtered by GeoJSON Properties
  * @example
  * var geojson = turf.featureCollection([
- *     turf.point([0, 0], {cluster: 0, foo: 'null'}),
- *     turf.point([2, 4], {cluster: 1, foo: 'bar'}),
- *     turf.point([3, 6], {cluster: 1}),
- *     turf.point([5, 1], {0: 'foo'}),
- *     turf.point([4, 2], {'bar': 'foo'})
+ *     turf.point([0, 0]),
+ *     turf.point([2, 4]),
+ *     turf.point([3, 6]),
+ *     turf.point([5, 1]),
+ *     turf.point([4, 2])
  * ]);
  *
- * // Create a cluster by Object
- * var cluster1 = turf.getCluster(geojson, {cluster: 1});
+ * // Create a cluster using K-Means (adds `cluster` to GeoJSON properties)
+ * var clustered = turf.clustersKmeans(geojson);
  *
- * // Create a cluster by String
- * var cluster2 = turf.getCluster(geojson, 'cluster');
- *
- * // Create a cluster by an Array of Strings
- * var cluster3 = turf.getCluster(geojson, ['cluster', 'foo']);
+ * // Retrieve first cluster (0)
+ * var cluster = turf.getCluster(clustered, {cluster: 0});
  */
 function getCluster(geojson, filter) {
     // Validation
@@ -61,16 +58,21 @@ function getCluster(geojson, filter) {
  * @returns {void}
  * @example
  * var geojson = turf.featureCollection([
- *     turf.point([0, 0], {cluster: 0, foo: 'null'}),
- *     turf.point([2, 4], {cluster: 1, foo: 'bar'}),
- *     turf.point([3, 6], {cluster: 1}),
- *     turf.point([5, 1], {0: 'foo'}),
- *     turf.point([4, 2], {'bar': 'foo'})
+ *     turf.point([0, 0]),
+ *     turf.point([2, 4]),
+ *     turf.point([3, 6]),
+ *     turf.point([5, 1]),
+ *     turf.point([4, 2])
  * ]);
+ *
+ * // Create a cluster using K-Means (adds `cluster` to GeoJSON properties)
+ * var clustered = turf.clustersKmeans(geojson);
+ *
+ * // Iterate over each cluster
  * clusterEach(geojson, 'cluster', function (cluster, clusterValue, currentIndex) {
- *   //= cluster
- *   //= clusterValue
- *   //= currentIndex
+ *     //= cluster
+ *     //= clusterValue
+ *     //= currentIndex
  * })
  */
 function clusterEach(geojson, property, callback) {
@@ -132,19 +134,25 @@ function clusterEach(geojson, property, callback) {
  * @returns {*} The value that results from the reduction.
  * @example
  * var geojson = turf.featureCollection([
- *     turf.point([0, 0], {cluster: 0, foo: 'null'}),
- *     turf.point([2, 4], {cluster: 1, foo: 'bar'}),
- *     turf.point([3, 6], {cluster: 1}),
- *     turf.point([5, 1], {0: 'foo'}),
- *     turf.point([4, 2], {'bar': 'foo'})
+ *     turf.point([0, 0]),
+ *     turf.point([2, 4]),
+ *     turf.point([3, 6]),
+ *     turf.point([5, 1]),
+ *     turf.point([4, 2])
  * ]);
- * turf.clusterReduce(geojson, 'cluster', function (previousValue, cluster, clusterValue, currentIndex) {
- *   //=previousValue
- *   //=cluster
- *   //=clusterValue
- *   //=currentIndex
- *   return cluster;
- * });
+ *
+ * // Create a cluster using K-Means (adds `cluster` to GeoJSON properties)
+ * var clustered = turf.clustersKmeans(geojson);
+ *
+ * // Iterate over each cluster and perform a calculation
+ * var initialValue = 0;
+ * var total = turf.clusterReduce(clustered, 'cluster', function (previousValue, cluster, clusterValue, currentIndex) {
+ *     //=previousValue
+ *     //=cluster
+ *     //=clusterValue
+ *     //=currentIndex
+ *     return previousValue++;
+ * }, initialValue);
  */
 function clusterReduce(geojson, property, callback, initialValue) {
     var previousValue = initialValue;
