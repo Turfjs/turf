@@ -1,3 +1,6 @@
+var featureEach = require('@turf/meta').featureEach;
+var featureCollection = require('@turf/helpers').featureCollection;
+
 /**
  * Get Cluster
  *
@@ -25,17 +28,12 @@ function getCluster(geojson, filter) {
     if (geojson.type !== 'FeatureCollection') throw new Error('geojson must be a FeatureCollection');
     if (filter === undefined || filter === null) throw new Error('filter is required');
 
-    // Filter
+    // Filter Features
     var features = [];
-    for (var i = 0; i < geojson.features.length; i++) {
-        var feature = geojson.features[i];
-        var properties = feature.properties;
-        if (applyFilter(properties, filter)) features.push(feature);
-    }
-    return {
-        type: 'FeatureCollection',
-        features: features
-    };
+    featureEach(geojson, function (feature) {
+        if (applyFilter(feature.properties, filter)) features.push(feature);
+    });
+    return featureCollection(features);
 }
 
 /**
@@ -83,18 +81,14 @@ function clusterEach(geojson, property, callback) {
     // Create clusters based on property values
     var bins = createBins(geojson, property);
     var values = Object.keys(bins);
-    for (var i = 0; i < values.length; i++) {
-        var value = values[i];
+    for (var index = 0; index < values.length; index++) {
+        var value = values[index];
         var bin = bins[value];
         var features = [];
-        for (var j = 0; j < bin.length; j++) {
-            var id = bin[j];
-            features.push(geojson[id]);
+        for (var i = 0; i < bin.length; i++) {
+            features.push(geojson[bin[i]]);
         }
-        callback({
-            type: 'FeatureCollection',
-            features: features
-        }, value, i);
+        callback(featureCollection(features), value, index);
     }
 }
 
@@ -181,15 +175,14 @@ function clusterReduce(geojson, property, callback, initialValue) {
 function createBins(geojson, property) {
     var bins = {};
 
-    for (var i = 0; i < geojson.features.length; i++) {
-        var feature = geojson.features[i];
+    featureEach(geojson, function (feature, i) {
         var properties = feature.properties || {};
         if (properties.hasOwnProperty(property)) {
             var value = properties[property];
             if (bins.hasOwnProperty(value)) bins[value].push(i);
             else bins[value] = [i];
         }
-    }
+    });
     return bins;
 }
 
