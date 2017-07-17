@@ -45,7 +45,6 @@ function getCluster(geojson, filter) {
 /**
  * Callback for clusterEach
  *
- * @private
  * @callback clusterEachCallback
  * @param {FeatureCollection} cluster The current cluster being processed.
  * @param {*} clusterValue Value used to create cluster being processed.
@@ -113,7 +112,6 @@ function clusterEach(geojson, property, callback) {
  *  - The previousValue argument is the value of the first element present in the array.
  *  - The currentValue argument is the value of the second element present in the array.
  *
- * @private
  * @callback clusterReduceCallback
  * @param {*} previousValue The accumulated value previously returned in the last invocation
  * of the callback, or initialValue, if supplied.

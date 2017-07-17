@@ -19,15 +19,124 @@ var geojson = turf.featureCollection([
     turf.point([5, 1], {0: 'foo'}),
     turf.point([4, 2], {'bar': 'foo'})
 ]);
+
 // Create a cluster by Object
-var cluster1 = getCluster(geojson, {cluster: 1});
+var cluster1 = turf.getCluster(geojson, {cluster: 1});
+
 // Create a cluster by String
-var cluster2 = getCluster(geojson, 'cluster');
+var cluster2 = turf.getCluster(geojson, 'cluster');
+
 // Create a cluster by an Array of Strings
-var cluster3 = getCluster(geojson, ['cluster', 'foo']);
+var cluster3 = turf.getCluster(geojson, ['cluster', 'foo']);
 ```
 
 Returns **[FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects)** Single Cluster filtered by GeoJSON Properties
+
+# clusterEachCallback
+
+Callback for clusterEach
+
+**Parameters**
+
+-   `cluster` **[FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects)** The current cluster being processed.
+-   `clusterValue` **Any** Value used to create cluster being processed.
+-   `currentIndex` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** The index of the current element being processed in the array.Starts at index 0
+-   `geojson`  
+-   `property`  
+-   `callback`  
+
+Returns **void** 
+
+# clusterEach
+
+clusterEach
+
+**Parameters**
+
+-   `geojson` **([FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects) \| [Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[Feature](http://geojson.org/geojson-spec.html#feature-objects)>)** GeoJSON Features
+-   `property` **([string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) \| [number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number))** GeoJSON property key/value used to create clusters
+-   `callback` **[Function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function)** a method that takes (cluster, clusterValue, currentIndex)
+
+**Examples**
+
+```javascript
+var geojson = turf.featureCollection([
+    turf.point([0, 0], {cluster: 0, foo: 'null'}),
+    turf.point([2, 4], {cluster: 1, foo: 'bar'}),
+    turf.point([3, 6], {cluster: 1}),
+    turf.point([5, 1], {0: 'foo'}),
+    turf.point([4, 2], {'bar': 'foo'})
+]);
+clusterEach(geojson, 'cluster', function (cluster, clusterValue, currentIndex) {
+  //= cluster
+  //= clusterValue
+  //= currentIndex
+})
+```
+
+Returns **void** 
+
+# clusterReduceCallback
+
+Callback for clusterReduce
+
+The first time the callback function is called, the values provided as arguments depend
+on whether the reduce method has an initialValue argument.
+
+If an initialValue is provided to the reduce method:
+
+-   The previousValue argument is initialValue.
+-   The currentValue argument is the value of the first element present in the array.
+
+If an initialValue is not provided:
+
+-   The previousValue argument is the value of the first element present in the array.
+-   The currentValue argument is the value of the second element present in the array.
+
+**Parameters**
+
+-   `previousValue` **Any** The accumulated value previously returned in the last invocation
+    of the callback, or initialValue, if supplied.
+-   `cluster` **[FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects)** The current cluster being processed.
+-   `clusterValue` **Any** Value used to create cluster being processed.
+-   `currentIndex` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** The index of the current element being processed in the
+    array. Starts at index 0, if an initialValue is provided, and at index 1 otherwise.
+-   `geojson`  
+-   `property`  
+-   `callback`  
+-   `initialValue`  
+
+# clusterReduce
+
+Reduce clusters in GeoJSON Features, similar to Array.reduce()
+
+**Parameters**
+
+-   `geojson` **([FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects) \| [Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[Feature](http://geojson.org/geojson-spec.html#feature-objects)>)** GeoJSON Features
+-   `property` **([string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) \| [number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number))** GeoJSON property key/value used to create clusters
+-   `callback` **[Function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function)** a method that takes (previousValue, cluster, clusterValue, currentIndex)
+-   `initialValue` **\[Any]** Value to use as the first argument to the first call of the callback.
+
+**Examples**
+
+```javascript
+var geojson = turf.featureCollection([
+    turf.point([0, 0], {cluster: 0, foo: 'null'}),
+    turf.point([2, 4], {cluster: 1, foo: 'bar'}),
+    turf.point([3, 6], {cluster: 1}),
+    turf.point([5, 1], {0: 'foo'}),
+    turf.point([4, 2], {'bar': 'foo'})
+]);
+turf.clusterReduce(geojson, 'cluster', function (previousValue, cluster, clusterValue, currentIndex) {
+  //=previousValue
+  //=cluster
+  //=clusterValue
+  //=currentIndex
+  return cluster;
+});
+```
+
+Returns **Any** The value that results from the reduction.
 
 <!-- This file is automatically generated. Please don't edit it directly:
 if you find an error, edit the source file (likely index.js), and re-run
