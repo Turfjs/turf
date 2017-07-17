@@ -6,7 +6,7 @@ Get Cluster
 
 **Parameters**
 
--   `geojson` **([FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects) \| [Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[Feature](http://geojson.org/geojson-spec.html#feature-objects)>)** GeoJSON Features
+-   `geojson` **[FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects)** GeoJSON Features
 -   `filter` **Any** Filter used on GeoJSON properties to get Cluster
 
 **Examples**
@@ -50,7 +50,7 @@ clusterEach
 
 **Parameters**
 
--   `geojson` **([FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects) \| [Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[Feature](http://geojson.org/geojson-spec.html#feature-objects)>)** GeoJSON Features
+-   `geojson` **[FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects)** GeoJSON Features
 -   `property` **([string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) \| [number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number))** GeoJSON property key/value used to create clusters
 -   `callback` **[Function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function)** a method that takes (cluster, clusterValue, currentIndex)
 
@@ -69,7 +69,7 @@ var geojson = turf.featureCollection([
 var clustered = turf.clustersKmeans(geojson);
 
 // Iterate over each cluster
-clusterEach(geojson, 'cluster', function (cluster, clusterValue, currentIndex) {
+clusterEach(clustered, 'cluster', function (cluster, clusterValue, currentIndex) {
     //= cluster
     //= clusterValue
     //= currentIndex
@@ -114,7 +114,7 @@ Reduce clusters in GeoJSON Features, similar to Array.reduce()
 
 **Parameters**
 
--   `geojson` **([FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects) \| [Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[Feature](http://geojson.org/geojson-spec.html#feature-objects)>)** GeoJSON Features
+-   `geojson` **[FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects)** GeoJSON Features
 -   `property` **([string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) \| [number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number))** GeoJSON property key/value used to create clusters
 -   `callback` **[Function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function)** a method that takes (previousValue, cluster, clusterValue, currentIndex)
 -   `initialValue` **\[Any]** Value to use as the first argument to the first call of the callback.

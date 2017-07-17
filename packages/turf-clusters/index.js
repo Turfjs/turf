@@ -68,7 +68,7 @@ function getCluster(geojson, filter) {
  * var clustered = turf.clustersKmeans(geojson);
  *
  * // Iterate over each cluster
- * clusterEach(geojson, 'cluster', function (cluster, clusterValue, currentIndex) {
+ * clusterEach(clustered, 'cluster', function (cluster, clusterValue, currentIndex) {
  *     //= cluster
  *     //= clusterValue
  *     //= currentIndex
