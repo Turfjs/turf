@@ -1,0 +1,35 @@
+{
+  "name": "turf-overlaps",
+  "version": "1.0.2",
+  "description": "find whether spatial features overlap",
+  "main": "index.js",
+  "scripts": {
+    "test": "node test/test.js",
+    "doc": "dox -r < index.js | doxme --readme > README.md"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/tchannel/turf-overlaps.git"
+  },
+  "keywords": [
+    "turf",
+    "gis",
+    "overlap"
+  ],
+  "author": "Tim Channell",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tchannel/turf-overlaps/issues"
+  },
+  "homepage": "https://github.com/tchannel/turf-overlaps",
+  "devDependencies": {
+    "benchmark": "^1.0.0",
+    "glob": "~4.3.1",
+    "tape": "~3.0.3",
+    "dox": "^0.6.1",
+    "doxme": "^1.4.2"
+  },
+  "dependencies": {
+    "turf-is-clockwise": "^1.0.0"
+  }
+}
