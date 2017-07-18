@@ -27,7 +27,7 @@ var clustered = turf.clustersKmeans(geojson);
 var cluster = turf.getCluster(clustered, {cluster: 0});
 //= cluster
 
-// Retrieve custom properties
+// Retrieve cluster based on custom properties
 turf.getCluster(clustered, {'marker-symbol': 'circle'}).length;
 //= 2
 turf.getCluster(clustered, {'marker-symbol': 'square'}).length;
