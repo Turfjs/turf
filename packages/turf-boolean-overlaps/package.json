@@ -1,35 +1,45 @@
 {
-  "name": "turf-overlaps",
-  "version": "1.0.2",
-  "description": "find whether spatial features overlap",
+  "name": "@turf/boolean-overlaps",
+  "version": "4.5.0",
+  "description": "turf boolean-overlaps module",
   "main": "index.js",
+  "types": "index.d.ts",
+  "files": [
+    "index.js",
+    "index.d.ts"
+  ],
   "scripts": {
-    "test": "node test/test.js",
-    "doc": "dox -r < index.js | doxme --readme > README.md"
+    "test": "node test.js",
+    "bench": "node bench.js"
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/tchannel/turf-overlaps.git"
+    "url": "git://github.com/Turfjs/turf.git"
   },
   "keywords": [
     "turf",
     "gis",
+    "boolean",
     "overlap"
   ],
-  "author": "Tim Channell",
-  "license": "ISC",
+  "author": "Turf Authors",
+  "contributors": [
+    "Tim Channell <@tcql>",
+    "Stefano Borghi <@stebogit>"
+  ],
+  "license": "MIT",
   "bugs": {
-    "url": "https://github.com/tchannel/turf-overlaps/issues"
+    "url": "https://github.com/Turfjs/turf/issues"
   },
-  "homepage": "https://github.com/tchannel/turf-overlaps",
+  "homepage": "https://github.com/Turfjs/turf",
   "devDependencies": {
-    "benchmark": "^1.0.0",
-    "glob": "~4.3.1",
-    "tape": "~3.0.3",
-    "dox": "^0.6.1",
-    "doxme": "^1.4.2"
+    "benchmark": "^2.1.4",
+    "glob": "^7.1.1",
+    "load-json-file": "^2.0.0",
+    "tape": "^4.6.3"
   },
   "dependencies": {
-    "turf-is-clockwise": "^1.0.0"
+    "@turf/boolean-clockwise": "^4.5.2",
+    "@turf/invariant": "^4.5.2"
   }
 }

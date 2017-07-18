@@ -1,10 +1,16 @@
 /// <reference types="geojson" />
 
-type Line = GeoJSON.Feature<GeoJSON.LineString> | GeoJSON.LineString | Array<Array<number>>;
+type LineString = GeoJSON.LineString
+type Polygon = GeoJSON.Polygon
+type MultiLineString = GeoJSON.MultiLineString
+type MultiPolygon = GeoJSON.MultiPolygon
+
+type Feature = GeoJSON.Feature<LineString | MultiLineString | Polygon | MultiPolygon>
+    | LineString | MultiLineString | Polygon | MultiPolygon
 
 /**
- * http://turfjs.org/docs/#boolean-clockwise
+ * http://turfjs.org/docs/#boolean-overlaps
  */
-declare function clockwise(line: Line): boolean;
-declare namespace clockwise { }
-export = clockwise;
+declare function overlaps(feature1: Feature, feature2: Feature): boolean;
+declare namespace overlaps { }
+export = overlaps;
