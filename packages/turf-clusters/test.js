@@ -50,7 +50,7 @@ test('clusters -- clusterReduce', t => {
     t.end();
 });
 
-// Testing Purposes
+// Internal purposes only
 test('clusters -- applyFilter', t => {
     t.true(applyFilter(properties, 'cluster'));
     t.true(applyFilter(properties, ['cluster']));
@@ -60,7 +60,7 @@ test('clusters -- applyFilter', t => {
     t.end();
 });
 
-// Testing Purposes
+// Internal purposes only
 test('clusters -- filterProperties', t => {
     t.deepEqual(filterProperties(properties, ['cluster']), {cluster: 0});
     t.deepEqual(filterProperties(properties, []), {});
@@ -68,7 +68,7 @@ test('clusters -- filterProperties', t => {
     t.end();
 });
 
-// Testing Purposes
+// Internal purposes only
 test('clusters -- propertiesContainsFilter', t => {
     t.deepEqual(propertiesContainsFilter(properties, {cluster: 0}), true);
     t.deepEqual(propertiesContainsFilter(properties, {cluster: 1}), false);
@@ -76,7 +76,7 @@ test('clusters -- propertiesContainsFilter', t => {
     t.end();
 });
 
-// Testing Purposes
+// Internal purposes only
 test('clusters -- propertiesContainsFilter', t => {
     t.deepEqual(createBins(geojson, 'cluster'), {'0': [0], '1': [1, 2]});
     t.end();

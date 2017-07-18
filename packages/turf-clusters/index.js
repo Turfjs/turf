@@ -9,11 +9,11 @@ var featureCollection = require('@turf/helpers').featureCollection;
  * @returns {FeatureCollection} Single Cluster filtered by GeoJSON Properties
  * @example
  * var geojson = turf.featureCollection([
- *     turf.point([0, 0]),
- *     turf.point([2, 4]),
- *     turf.point([3, 6]),
- *     turf.point([5, 1]),
- *     turf.point([4, 2])
+ *     turf.point([0, 0], {'marker-symbol': 'circle'}),
+ *     turf.point([2, 4], {'marker-symbol': 'star'}),
+ *     turf.point([3, 6], {'marker-symbol': 'star'}),
+ *     turf.point([5, 1], {'marker-symbol': 'square'}),
+ *     turf.point([4, 2], {'marker-symbol': 'circle'})
  * ]);
  *
  * // Create a cluster using K-Means (adds `cluster` to GeoJSON properties)
@@ -21,6 +21,13 @@ var featureCollection = require('@turf/helpers').featureCollection;
  *
  * // Retrieve first cluster (0)
  * var cluster = turf.getCluster(clustered, {cluster: 0});
+ * //= cluster
+ *
+ * // Retrieve custom properties
+ * turf.getCluster(clustered, {'marker-symbol': 'circle'}).length;
+ * //= 2
+ * turf.getCluster(clustered, {'marker-symbol': 'square'}).length;
+ * //= 1
  */
 function getCluster(geojson, filter) {
     // Validation
@@ -40,9 +47,9 @@ function getCluster(geojson, filter) {
  * Callback for clusterEach
  *
  * @callback clusterEachCallback
- * @param {FeatureCollection} cluster The current cluster being processed.
- * @param {*} clusterValue Value used to create cluster being processed.
- * @param {number} currentIndex The index of the current element being processed in the array.Starts at index 0
+ * @param {FeatureCollection} [cluster] The current cluster being processed.
+ * @param {*} [clusterValue] Value used to create cluster being processed.
+ * @param {number} [currentIndex] The index of the current element being processed in the array.Starts at index 0
  * @returns {void}
  */
 
@@ -71,6 +78,18 @@ function getCluster(geojson, filter) {
  *     //= clusterValue
  *     //= currentIndex
  * })
+ *
+ * // Calculate the total number of clusters
+ * var total = 0
+ * turf.clusterEach(clustered, 'cluster', function () {
+ *     total++;
+ * });
+ *
+ * // Create an Array of all the values retrieved from the 'cluster' property
+ * var values = []
+ * turf.clusterEach(clustered, 'cluster', function (cluster, clusterValue) {
+ *     values.push(clusterValue);
+ * });
  */
 function clusterEach(geojson, property, callback) {
     // Validation
@@ -107,11 +126,11 @@ function clusterEach(geojson, property, callback) {
  *  - The currentValue argument is the value of the second element present in the array.
  *
  * @callback clusterReduceCallback
- * @param {*} previousValue The accumulated value previously returned in the last invocation
+ * @param {*} [previousValue] The accumulated value previously returned in the last invocation
  * of the callback, or initialValue, if supplied.
- * @param {FeatureCollection} cluster The current cluster being processed.
- * @param {*} clusterValue Value used to create cluster being processed.
- * @param {number} currentIndex The index of the current element being processed in the
+ * @param {FeatureCollection} [cluster] The current cluster being processed.
+ * @param {*} [clusterValue] Value used to create cluster being processed.
+ * @param {number} [currentIndex] The index of the current element being processed in the
  * array. Starts at index 0, if an initialValue is provided, and at index 1 otherwise.
  */
 
@@ -137,14 +156,24 @@ function clusterEach(geojson, property, callback) {
  * var clustered = turf.clustersKmeans(geojson);
  *
  * // Iterate over each cluster and perform a calculation
- * var initialValue = 0;
- * var total = turf.clusterReduce(clustered, 'cluster', function (previousValue, cluster, clusterValue, currentIndex) {
+ * var initialValue = 0
+ * turf.clusterReduce(clustered, 'cluster', function (previousValue, cluster, clusterValue, currentIndex) {
  *     //=previousValue
  *     //=cluster
  *     //=clusterValue
  *     //=currentIndex
  *     return previousValue++;
  * }, initialValue);
+ *
+ * // Calculate the total number of clusters
+ * var total = turf.clusterReduce(clustered, 'cluster', function (previousValue) {
+ *     return previousValue++;
+ * }, 0);
+ *
+ * // Create an Array of all the values retrieved from the 'cluster' property
+ * var values = turf.clusterReduce(clustered, 'cluster', function (previousValue, cluster, clusterValue) {
+ *     return previousValue.push(clusterValue);
+ * }, []);
  */
 function clusterReduce(geojson, property, callback, initialValue) {
     var previousValue = initialValue;
@@ -261,8 +290,8 @@ module.exports = {
     getCluster: getCluster,
     clusterEach: clusterEach,
     clusterReduce: clusterReduce,
-    createBins: createBins, // Only exposed for testing purposes
-    applyFilter: applyFilter, // Only exposed for testing purposes
-    propertiesContainsFilter: propertiesContainsFilter, // Only exposed for testing purposes
-    filterProperties: filterProperties // Only exposed for testing purposes
+    createBins: createBins, // Not exposed in @turf/turf - Internal purposes only
+    applyFilter: applyFilter, // Not exposed in @turf/turf - Internal purposes only
+    propertiesContainsFilter: propertiesContainsFilter, // Not exposed in @turf/turf - Internal purposes only
+    filterProperties: filterProperties // Not exposed in @turf/turf - Internal purposes only
 };
