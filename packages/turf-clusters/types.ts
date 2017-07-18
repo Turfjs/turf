@@ -31,14 +31,14 @@ clusterEach(geojson, 'cluster', (cluster, clusterValue, currentIndex) => {
     //= currentIndex
 })
 // Calculate the total number of clusters
-var total = 0
+let total = 0
 clusterEach(geojson, 'cluster', function () {
     total++;
 });
 
 // Create an Array of all the values retrieved from the 'cluster' property
-var values = []
-clusterEach(geojson, 'cluster', function (cluster, clusterValue) {
+const values: number[] = []
+clusterEach(geojson, 'cluster', function (cluster, clusterValue: number) {
     values.push(clusterValue);
 });
 
@@ -54,11 +54,11 @@ clusterReduce(geojson, 'cluster', (previousValue, cluster, clusterValue, current
 }, initialValue)
 
 // Calculate the total number of clusters
-var totalReduce = clusterReduce(geojson, 'cluster', function (previousValue) {
+const totalReduce = clusterReduce(geojson, 'cluster', function (previousValue) {
     return previousValue++;
 }, 0);
 
 // Create an Array of all the values retrieved from the 'cluster' property
-var valuesReduce = clusterReduce(geojson, 'cluster', function (previousValue, cluster, clusterValue) {
+const valuesReduce = clusterReduce(geojson, 'cluster', function (previousValue, cluster, clusterValue) {
     return previousValue.push(clusterValue);
 }, []);
