@@ -1,12 +1,16 @@
-import * as random from '@turf/random'
+import {featureCollection, point} from '@turf/helpers'
 import * as clustersKmeans from './'
 
-const points = random('point', 50, {
-    bbox: [0, 30, 20, 50]
-})
+// Fixtures
+const points = featureCollection([
+    point([0, 0]),
+    point([2, 2])
+]);
 
+// Default
 const numberOfClusters = 5;
 const clustered = clustersKmeans(points, numberOfClusters)
+clustered.features[0].properties.cluster
 
 // Properties option
 clustersKmeans(points)
