@@ -33,6 +33,7 @@ test('clusters -- clusterEach', t => {
     clusterEach(geojson, 'cluster', (cluster) => {
         total += cluster.features.length;
         clusters.push(cluster);
+        if (!cluster.features[0]) t.fail('if feature is undefined');
     });
     t.equal(total, 3);
     t.equal(clusters.length, 2);
