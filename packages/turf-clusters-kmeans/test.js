@@ -63,23 +63,31 @@ test('clusters-kmeans -- translate properties', t => {
 // style result
 function colorize(clustered) {
     const clusters = new Set();
+    const centroids = new Set();
     propEach(clustered, ({cluster}) => clusters.add(cluster));
     const count = clusters.size;
     const colours = chromatism.adjacent(360 / count, count, '#0000FF').hex;
     const features = [];
 
-    featureEach(clustered, function (point) {
-        point.properties['marker-color'] = colours[point.properties.cluster];
-        point.properties['marker-size'] = 'small';
-        features.push(point);
+    featureEach(clustered, function (pt) {
+        // Add Point
+        const clusterId = pt.properties.cluster;
+        pt.properties['marker-color'] = colours[clusterId];
+        pt.properties['marker-size'] = 'small';
+        features.push(pt);
+
+        // Add Centroid
+        const centroidId = pt.properties.centroid.join('+');
+        if (!centroids.has(centroidId)) {
+            const color = chromatism.brightness(-25, colours[clusterId]).hex;
+            const centroid = point(pt.properties.centroid, {
+                'marker-color': color,
+                'marker-symbol': 'star-stroked',
+                'marker-size': 'large'
+            });
+            features.push(centroid);
+            centroids.add(centroidId);
+        }
     });
-    // featureEach(clustered.centroids, function (centroid) {
-    //     const color = chromatism.brightness(-25, colours[centroid.properties.cluster]).hex;
-    //     centroid.properties['marker-color'] = color;
-    //     centroid.properties['marker-symbol'] = 'star-stroked';
-    //     centroid.properties['marker-size'] = 'large';
-    //     centroid.properties['marker-size'] = 'large';
-    //     features.push(centroid);
-    // });
     return featureCollection(features);
 }

@@ -22,6 +22,21 @@
 		},
 		{
 			"type": "Feature",
+			"properties": {
+				"marker-color": "#000080",
+				"marker-symbol": "star-stroked",
+				"marker-size": "large"
+			},
+			"geometry": {
+				"type": "Point",
+				"coordinates": [
+					-85.22273916681061,
+					18.11205670884361
+				]
+			}
+		},
+		{
+			"type": "Feature",
 			"geometry": {
 				"type": "Point",
 				"coordinates": [
@@ -41,6 +56,21 @@
 		},
 		{
 			"type": "Feature",
+			"properties": {
+				"marker-color": "#2f0080",
+				"marker-symbol": "star-stroked",
+				"marker-size": "large"
+			},
+			"geometry": {
+				"type": "Point",
+				"coordinates": [
+					-85.201027549492,
+					21.346638923038203
+				]
+			}
+		},
+		{
+			"type": "Feature",
 			"geometry": {
 				"type": "Point",
 				"coordinates": [
@@ -56,6 +86,21 @@
 				],
 				"marker-color": "#bf00ff",
 				"marker-size": "small"
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {
+				"marker-color": "#5f0080",
+				"marker-symbol": "star-stroked",
+				"marker-size": "large"
+			},
+			"geometry": {
+				"type": "Point",
+				"coordinates": [
+					-77.80959890542613,
+					23.062586927512516
+				]
 			}
 		},
 		{
@@ -98,6 +143,21 @@
 		},
 		{
 			"type": "Feature",
+			"properties": {
+				"marker-color": "#80003e",
+				"marker-symbol": "star-stroked",
+				"marker-size": "large"
+			},
+			"geometry": {
+				"type": "Point",
+				"coordinates": [
+					-72.1036518524473,
+					21.632139370868533
+				]
+			}
+		},
+		{
+			"type": "Feature",
 			"geometry": {
 				"type": "Point",
 				"coordinates": [
@@ -113,6 +173,21 @@
 				],
 				"marker-color": "#ffff00",
 				"marker-size": "small"
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {
+				"marker-color": "#808000",
+				"marker-symbol": "star-stroked",
+				"marker-size": "large"
+			},
+			"geometry": {
+				"type": "Point",
+				"coordinates": [
+					-74.65884587304036,
+					23.14443612672486
+				]
 			}
 		},
 		{
@@ -136,6 +211,21 @@
 		},
 		{
 			"type": "Feature",
+			"properties": {
+				"marker-color": "#802000",
+				"marker-symbol": "star-stroked",
+				"marker-size": "large"
+			},
+			"geometry": {
+				"type": "Point",
+				"coordinates": [
+					-78.71931668447289,
+					26.441283306379056
+				]
+			}
+		},
+		{
+			"type": "Feature",
 			"geometry": {
 				"type": "Point",
 				"coordinates": [
@@ -151,6 +241,21 @@
 				],
 				"marker-color": "#ff9f00",
 				"marker-size": "small"
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {
+				"marker-color": "#805000",
+				"marker-symbol": "star-stroked",
+				"marker-size": "large"
+			},
+			"geometry": {
+				"type": "Point",
+				"coordinates": [
+					-71.60386443367564,
+					25.68144722581964
+				]
 			}
 		},
 		{
@@ -189,6 +294,21 @@
 				],
 				"marker-color": "#00beff",
 				"marker-size": "small"
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {
+				"marker-color": "#005e80",
+				"marker-symbol": "star-stroked",
+				"marker-size": "large"
+			},
+			"geometry": {
+				"type": "Point",
+				"coordinates": [
+					-85.66057622205204,
+					25.309521790657058
+				]
 			}
 		},
 		{
@@ -269,6 +389,21 @@
 		},
 		{
 			"type": "Feature",
+			"properties": {
+				"marker-color": "#008070",
+				"marker-symbol": "star-stroked",
+				"marker-size": "large"
+			},
+			"geometry": {
+				"type": "Point",
+				"coordinates": [
+					-71.88949473129752,
+					18.220552149539706
+				]
+			}
+		},
+		{
+			"type": "Feature",
 			"geometry": {
 				"type": "Point",
 				"coordinates": [
@@ -307,6 +442,21 @@
 		},
 		{
 			"type": "Feature",
+			"properties": {
+				"marker-color": "#002f80",
+				"marker-symbol": "star-stroked",
+				"marker-size": "large"
+			},
+			"geometry": {
+				"type": "Point",
+				"coordinates": [
+					-79.95661302836459,
+					19.68004339959817
+				]
+			}
+		},
+		{
+			"type": "Feature",
 			"geometry": {
 				"type": "Point",
 				"coordinates": [
@@ -341,6 +491,21 @@
 				],
 				"marker-color": "#ff001e",
 				"marker-size": "small"
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {
+				"marker-color": "#80000e",
+				"marker-symbol": "star-stroked",
+				"marker-size": "large"
+			},
+			"geometry": {
+				"type": "Point",
+				"coordinates": [
+					-74.59772375968392,
+					26.040657608812058
+				]
 			}
 		},
 		{
@@ -440,6 +605,21 @@
 		},
 		{
 			"type": "Feature",
+			"properties": {
+				"marker-color": "#008010",
+				"marker-symbol": "star-stroked",
+				"marker-size": "large"
+			},
+			"geometry": {
+				"type": "Point",
+				"coordinates": [
+					-74.87813096725604,
+					19.051404705480532
+				]
+			}
+		},
+		{
+			"type": "Feature",
 			"geometry": {
 				"type": "Point",
 				"coordinates": [
@@ -459,6 +639,21 @@
 		},
 		{
 			"type": "Feature",
+			"properties": {
+				"marker-color": "#1f8000",
+				"marker-symbol": "star-stroked",
+				"marker-size": "large"
+			},
+			"geometry": {
+				"type": "Point",
+				"coordinates": [
+					-81.67819501734249,
+					22.456058950791007
+				]
+			}
+		},
+		{
+			"type": "Feature",
 			"geometry": {
 				"type": "Point",
 				"coordinates": [
@@ -474,6 +669,21 @@
 				],
 				"marker-color": "#ff00de",
 				"marker-size": "small"
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {
+				"marker-color": "#80006e",
+				"marker-symbol": "star-stroked",
+				"marker-size": "large"
+			},
+			"geometry": {
+				"type": "Point",
+				"coordinates": [
+					-82.07389862745148,
+					18.10014805204155
+				]
 			}
 		},
 		{
@@ -554,6 +764,21 @@
 		},
 		{
 			"type": "Feature",
+			"properties": {
+				"marker-color": "#008040",
+				"marker-symbol": "star-stroked",
+				"marker-size": "large"
+			},
+			"geometry": {
+				"type": "Point",
+				"coordinates": [
+					-77.46953467512287,
+					17.829026800774887
+				]
+			}
+		},
+		{
+			"type": "Feature",
 			"geometry": {
 				"type": "Point",
 				"coordinates": [
@@ -588,6 +813,21 @@
 				],
 				"marker-color": "#9fff00",
 				"marker-size": "small"
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {
+				"marker-color": "#4f8000",
+				"marker-symbol": "star-stroked",
+				"marker-size": "large"
+			},
+			"geometry": {
+				"type": "Point",
+				"coordinates": [
+					-83.28970527419875,
+					25.03901137331529
+				]
 			}
 		},
 		{
