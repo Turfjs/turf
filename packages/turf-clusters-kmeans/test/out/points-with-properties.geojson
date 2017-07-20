@@ -6,6 +6,10 @@
 			"properties": {
 				"marker-symbol": 1,
 				"cluster": 0,
+				"centroid": [
+					68.682861328125,
+					-48.87431385568385
+				],
 				"marker-color": "#0000ff",
 				"marker-size": "small"
 			},
@@ -22,6 +26,10 @@
 			"properties": {
 				"marker-symbol": 2,
 				"cluster": 0,
+				"centroid": [
+					68.682861328125,
+					-48.87431385568385
+				],
 				"marker-color": "#0000ff",
 				"marker-size": "small"
 			},
@@ -38,6 +46,10 @@
 			"properties": {
 				"marker-symbol": 3,
 				"cluster": 0,
+				"centroid": [
+					68.682861328125,
+					-48.87431385568385
+				],
 				"marker-color": "#0000ff",
 				"marker-size": "small"
 			},
@@ -54,6 +66,10 @@
 			"properties": {
 				"marker-symbol": 4,
 				"cluster": 1,
+				"centroid": [
+					71.4111328125,
+					-49.29389258186046
+				],
 				"marker-color": "#ffff00",
 				"marker-size": "small"
 			},
@@ -70,6 +86,10 @@
 			"properties": {
 				"marker-symbol": 5,
 				"cluster": 1,
+				"centroid": [
+					71.4111328125,
+					-49.29389258186046
+				],
 				"marker-color": "#ffff00",
 				"marker-size": "small"
 			},
@@ -86,6 +106,10 @@
 			"properties": {
 				"marker-symbol": 6,
 				"cluster": 1,
+				"centroid": [
+					71.4111328125,
+					-49.29389258186046
+				],
 				"marker-color": "#ffff00",
 				"marker-size": "small"
 			},

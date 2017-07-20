@@ -12,12 +12,14 @@ interface Output {
  */
 declare function clustersKmeans(
     points: Points,
-    numberOfClusters?: number): Output;
+    numberOfClusters?: number,
+    mutate?: boolean): Output;
 
 declare namespace clustersKmeans {
     interface Point extends GeoJSON.Feature<GeoJSON.Point> {
         properties: {
             cluster?: number;
+            centroid?: [number, number];
             [key: string]: any;
         }
     }

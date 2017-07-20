@@ -34,9 +34,9 @@ for (const {name, geojson} of fixtures) {
     const {numberOfCentroids} = geojson.properties || {};
 
     console.time(name);
-    clustersKmeans(geojson, numberOfCentroids);
+    clustersKmeans(geojson, numberOfCentroids, true);
     console.timeEnd(name);
-    suite.add(name, () => clustersKmeans(geojson, numberOfCentroids));
+    suite.add(name, () => clustersKmeans(geojson, numberOfCentroids, true));
 }
 suite
   .on('cycle', e => console.log(String(e.target)))

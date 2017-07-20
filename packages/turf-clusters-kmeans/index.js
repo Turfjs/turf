@@ -13,7 +13,10 @@ var collectionOf = invariant.collectionOf;
  * @name clustersKmeans
  * @param {FeatureCollection<Point>} points to be clustered
  * @param {number} [numberOfClusters=Math.sqrt(numberOfPoints/2)] numberOfClusters that will be generated
- * @returns {FeatureCollection<Point>} a collection of points with an added property `cluster` which associates which cluster it belongs to
+ * @param {boolean} [mutate=false] allows GeoJSON input to be mutated (significant performance increase if true)
+ * @returns {FeatureCollection<Point>} Clustered Points with an additional two properties associated to each Feature:
+ * - {number} cluster - the associated clusterId
+ * - {[number, number]} centroid - Centroid of the cluster [Longitude, Latitude]
  * @example
  * // create random points with random z-values in their properties
  * var points = turf.random('point', 100, {
@@ -25,7 +28,7 @@ var collectionOf = invariant.collectionOf;
  * //addToMap
  * var addToMap = clustered;
  */
-module.exports = function (points, numberOfClusters) {
+module.exports = function (points, numberOfClusters, mutate) {
     // Input validation
     collectionOf(points, 'Point', 'Input must contain Points');
 
@@ -37,8 +40,8 @@ module.exports = function (points, numberOfClusters) {
     // fallbacks to count
     if (numberOfClusters > count) numberOfClusters = count;
 
-    // Clone points to prevent any mutations
-    points = clone(points, true);
+    // Clone points to prevent any mutations (enabled by default)
+    if (mutate === false || mutate === undefined) points = clone(points, true);
 
     // collect points coordinates
     var data = coordAll(points);
@@ -46,12 +49,20 @@ module.exports = function (points, numberOfClusters) {
     // create seed to avoid skmeans to drift
     var initialCentroids = data.slice(0, numberOfClusters);
 
-    // create clusters
-    var clustered = skmeans(data, numberOfClusters, initialCentroids);
+    // create skmeans clusters
+    var skmeansResult = skmeans(data, numberOfClusters, initialCentroids);
+
+    // store centroids {clusterId: [number, number]}
+    var centroids = {};
+    skmeansResult.centroids.forEach(function (coord, idx) {
+        centroids[idx] = coord;
+    });
 
     // add associated cluster number
     featureEach(points, function (point, index) {
-        point.properties.cluster = clustered.idxs[index];
+        var clusterId = skmeansResult.idxs[index];
+        point.properties.cluster = clusterId;
+        point.properties.centroid = centroids[clusterId];
     });
 
     return points;

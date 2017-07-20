@@ -5,6 +5,10 @@
 			"type": "Feature",
 			"properties": {
 				"cluster": 0,
+				"centroid": [
+					-82.3114013671875,
+					23.093189398632948
+				],
 				"marker-color": "#0000ff",
 				"marker-size": "small"
 			},
@@ -20,6 +24,10 @@
 			"type": "Feature",
 			"properties": {
 				"cluster": 0,
+				"centroid": [
+					-82.3114013671875,
+					23.093189398632948
+				],
 				"marker-color": "#0000ff",
 				"marker-size": "small"
 			},
@@ -35,6 +43,10 @@
 			"type": "Feature",
 			"properties": {
 				"cluster": 0,
+				"centroid": [
+					-82.3114013671875,
+					23.093189398632948
+				],
 				"marker-color": "#0000ff",
 				"marker-size": "small"
 			},
@@ -50,6 +62,10 @@
 			"type": "Feature",
 			"properties": {
 				"cluster": 0,
+				"centroid": [
+					-82.3114013671875,
+					23.093189398632948
+				],
 				"marker-color": "#0000ff",
 				"marker-size": "small"
 			},
@@ -65,6 +81,10 @@
 			"type": "Feature",
 			"properties": {
 				"cluster": 0,
+				"centroid": [
+					-82.3114013671875,
+					23.093189398632948
+				],
 				"marker-color": "#0000ff",
 				"marker-size": "small"
 			},
@@ -80,6 +100,10 @@
 			"type": "Feature",
 			"properties": {
 				"cluster": 0,
+				"centroid": [
+					-82.3114013671875,
+					23.093189398632948
+				],
 				"marker-color": "#0000ff",
 				"marker-size": "small"
 			},
@@ -95,6 +119,10 @@
 			"type": "Feature",
 			"properties": {
 				"cluster": 2,
+				"centroid": [
+					-75.81596374511719,
+					20.06558308561739
+				],
 				"marker-color": "#00ff01",
 				"marker-size": "small"
 			},
@@ -110,6 +138,10 @@
 			"type": "Feature",
 			"properties": {
 				"cluster": 2,
+				"centroid": [
+					-75.81596374511719,
+					20.06558308561739
+				],
 				"marker-color": "#00ff01",
 				"marker-size": "small"
 			},
@@ -125,6 +157,10 @@
 			"type": "Feature",
 			"properties": {
 				"cluster": 2,
+				"centroid": [
+					-75.81596374511719,
+					20.06558308561739
+				],
 				"marker-color": "#00ff01",
 				"marker-size": "small"
 			},
@@ -140,6 +176,10 @@
 			"type": "Feature",
 			"properties": {
 				"cluster": 2,
+				"centroid": [
+					-75.81596374511719,
+					20.06558308561739
+				],
 				"marker-color": "#00ff01",
 				"marker-size": "small"
 			},
@@ -155,6 +195,10 @@
 			"type": "Feature",
 			"properties": {
 				"cluster": 2,
+				"centroid": [
+					-75.81596374511719,
+					20.06558308561739
+				],
 				"marker-color": "#00ff01",
 				"marker-size": "small"
 			},
@@ -170,6 +214,10 @@
 			"type": "Feature",
 			"properties": {
 				"cluster": 2,
+				"centroid": [
+					-75.81596374511719,
+					20.06558308561739
+				],
 				"marker-color": "#00ff01",
 				"marker-size": "small"
 			},
@@ -185,6 +233,10 @@
 			"type": "Feature",
 			"properties": {
 				"cluster": 2,
+				"centroid": [
+					-75.81596374511719,
+					20.06558308561739
+				],
 				"marker-color": "#00ff01",
 				"marker-size": "small"
 			},
@@ -200,6 +252,10 @@
 			"type": "Feature",
 			"properties": {
 				"cluster": 2,
+				"centroid": [
+					-75.81596374511719,
+					20.06558308561739
+				],
 				"marker-color": "#00ff01",
 				"marker-size": "small"
 			},
@@ -215,6 +271,10 @@
 			"type": "Feature",
 			"properties": {
 				"cluster": 1,
+				"centroid": [
+					-80.44267926897321,
+					22.122696498115662
+				],
 				"marker-color": "#ff0000",
 				"marker-size": "small"
 			},
@@ -230,6 +290,10 @@
 			"type": "Feature",
 			"properties": {
 				"cluster": 1,
+				"centroid": [
+					-80.44267926897321,
+					22.122696498115662
+				],
 				"marker-color": "#ff0000",
 				"marker-size": "small"
 			},
@@ -245,6 +309,10 @@
 			"type": "Feature",
 			"properties": {
 				"cluster": 1,
+				"centroid": [
+					-80.44267926897321,
+					22.122696498115662
+				],
 				"marker-color": "#ff0000",
 				"marker-size": "small"
 			},
@@ -260,6 +328,10 @@
 			"type": "Feature",
 			"properties": {
 				"cluster": 1,
+				"centroid": [
+					-80.44267926897321,
+					22.122696498115662
+				],
 				"marker-color": "#ff0000",
 				"marker-size": "small"
 			},
@@ -275,6 +347,10 @@
 			"type": "Feature",
 			"properties": {
 				"cluster": 1,
+				"centroid": [
+					-80.44267926897321,
+					22.122696498115662
+				],
 				"marker-color": "#ff0000",
 				"marker-size": "small"
 			},
@@ -290,6 +366,10 @@
 			"type": "Feature",
 			"properties": {
 				"cluster": 1,
+				"centroid": [
+					-80.44267926897321,
+					22.122696498115662
+				],
 				"marker-color": "#ff0000",
 				"marker-size": "small"
 			},
@@ -305,6 +385,10 @@
 			"type": "Feature",
 			"properties": {
 				"cluster": 1,
+				"centroid": [
+					-80.44267926897321,
+					22.122696498115662
+				],
 				"marker-color": "#ff0000",
 				"marker-size": "small"
 			},

@@ -10,8 +10,13 @@ const points = featureCollection([
 // Default
 const numberOfClusters = 5;
 const clustered = clustersKmeans(points, numberOfClusters)
-clustered.features[0].properties.cluster
+let {cluster, centroid} = clustered.features[0].properties
+cluster = 2
+centroid = [-110, 85]
+// cluster = 'foo' // Type Error - Type '"foo"' is not assignable to type 'number'.
+// centroid = 'foo' // Type Error - Type '"foo"' is not assignable to type '[number, number]'.
 
 // Properties option
 clustersKmeans(points)
 clustersKmeans(points, numberOfClusters)
+clustersKmeans(points, numberOfClusters, true)
