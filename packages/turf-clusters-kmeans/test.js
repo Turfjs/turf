@@ -41,6 +41,13 @@ const points = featureCollection([
     point([3, 6], {foo: 'bar'})
 ]);
 
+test('clusters-kmeans -- prevent input mutation', t => {
+    const before = JSON.parse(JSON.stringify(points));
+    clustersKmeans(points);
+    t.deepEqual(before, points);
+    t.end();
+});
+
 test('clusters-kmeans -- throws', t => {
     const poly = polygon([[[0, 0], [10, 10], [0, 10], [0, 0]]]);
     t.throws(() => clustersKmeans(poly, 1), /Input must contain Points/);
