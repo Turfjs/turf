@@ -105,7 +105,7 @@ function clusterEach(geojson, property, callback) {
         var bin = bins[value];
         var features = [];
         for (var i = 0; i < bin.length; i++) {
-            features.push(geojson[bin[i]]);
+            features.push(geojson.features[bin[i]]);
         }
         callback(featureCollection(features), value, index);
     }
