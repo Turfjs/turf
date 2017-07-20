@@ -76,14 +76,16 @@ function styleResult(clustered) {
     const colours = chromatism.adjacent(360 / count, count, '#0000FF').hex;
     const features = [];
 
-    // Add all Point
+    // Add all clusterd points
     featureEach(clustered, function (pt) {
-        const {cluster, dbscan} = pt.properties;
+        const dbscan = pt.properties.dbscan;
+        const clusterId = pt.properties.cluster;
+
         switch (dbscan) {
         case 'core':
         case 'edge': {
-            const coreColor = colours[cluster];
-            const edgeColor = chromatism.brightness(-20, colours[cluster]).hex;
+            const coreColor = colours[clusterId];
+            const edgeColor = chromatism.brightness(-20, colours[clusterId]).hex;
             pt.properties['marker-color'] = (dbscan === 'core') ? coreColor : edgeColor;
             pt.properties['marker-size'] = 'small';
             break;
@@ -104,7 +106,7 @@ function styleResult(clustered) {
 
         // Add Centroid
         features.push(centroid(cluster, {
-            'marker-color': color,
+            'marker-color': colours[clusterId],
             'marker-symbol': 'star-stroked',
             'marker-size': 'large'
         }));

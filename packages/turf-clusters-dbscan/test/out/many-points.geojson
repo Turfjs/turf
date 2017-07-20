@@ -8004,7 +8004,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"marker-color": "#000080",
+				"marker-color": "#0000ff",
 				"marker-symbol": "star-stroked",
 				"marker-size": "large"
 			},
@@ -8130,7 +8130,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"marker-color": "#360080",
+				"marker-color": "#6d00ff",
 				"marker-symbol": "star-stroked",
 				"marker-size": "large"
 			},
@@ -8220,7 +8220,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"marker-color": "#6d0080",
+				"marker-color": "#da00ff",
 				"marker-symbol": "star-stroked",
 				"marker-size": "large"
 			},
@@ -8614,7 +8614,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"marker-color": "#80005a",
+				"marker-color": "#ff00b5",
 				"marker-symbol": "star-stroked",
 				"marker-size": "large"
 			},
@@ -8676,7 +8676,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"marker-color": "#800023",
+				"marker-color": "#ff0047",
 				"marker-symbol": "star-stroked",
 				"marker-size": "large"
 			},
@@ -8750,7 +8750,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"marker-color": "#801200",
+				"marker-color": "#ff2400",
 				"marker-symbol": "star-stroked",
 				"marker-size": "large"
 			},
@@ -8980,7 +8980,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"marker-color": "#804900",
+				"marker-color": "#ff9200",
 				"marker-symbol": "star-stroked",
 				"marker-size": "large"
 			},
@@ -9074,7 +9074,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"marker-color": "#808000",
+				"marker-color": "#ffff00",
 				"marker-symbol": "star-stroked",
 				"marker-size": "large"
 			},
@@ -9120,7 +9120,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"marker-color": "#488000",
+				"marker-color": "#91ff00",
 				"marker-symbol": "star-stroked",
 				"marker-size": "large"
 			},
@@ -9166,7 +9166,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"marker-color": "#128000",
+				"marker-color": "#24ff00",
 				"marker-symbol": "star-stroked",
 				"marker-size": "large"
 			},
@@ -9216,7 +9216,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"marker-color": "#008025",
+				"marker-color": "#00ff49",
 				"marker-symbol": "star-stroked",
 				"marker-size": "large"
 			},
@@ -9270,7 +9270,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"marker-color": "#00805c",
+				"marker-color": "#00ffb7",
 				"marker-symbol": "star-stroked",
 				"marker-size": "large"
 			},
@@ -9340,7 +9340,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"marker-color": "#006c80",
+				"marker-color": "#00daff",
 				"marker-symbol": "star-stroked",
 				"marker-size": "large"
 			},
@@ -9390,7 +9390,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"marker-color": "#003580",
+				"marker-color": "#006cff",
 				"marker-symbol": "star-stroked",
 				"marker-size": "large"
 			},

@@ -100,7 +100,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"marker-color": "#000080",
+				"marker-color": "#0000ff",
 				"marker-symbol": "star-stroked",
 				"marker-size": "large"
 			},
@@ -146,7 +146,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"marker-color": "#808000",
+				"marker-color": "#ffff00",
 				"marker-symbol": "star-stroked",
 				"marker-size": "large"
 			},
