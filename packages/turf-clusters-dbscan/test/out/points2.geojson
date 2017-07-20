@@ -102,7 +102,7 @@
 			"properties": {
 				"cluster": 1,
 				"dbscan": "core",
-				"marker-color": "#ff00ca",
+				"marker-color": "#ff007e",
 				"marker-size": "small"
 			},
 			"geometry": {
@@ -118,7 +118,7 @@
 			"properties": {
 				"cluster": 1,
 				"dbscan": "core",
-				"marker-color": "#ff00ca",
+				"marker-color": "#ff007e",
 				"marker-size": "small"
 			},
 			"geometry": {
@@ -134,7 +134,7 @@
 			"properties": {
 				"cluster": 1,
 				"dbscan": "core",
-				"marker-color": "#ff00ca",
+				"marker-color": "#ff007e",
 				"marker-size": "small"
 			},
 			"geometry": {
@@ -150,7 +150,7 @@
 			"properties": {
 				"cluster": 1,
 				"dbscan": "core",
-				"marker-color": "#ff00ca",
+				"marker-color": "#ff007e",
 				"marker-size": "small"
 			},
 			"geometry": {
@@ -166,7 +166,7 @@
 			"properties": {
 				"cluster": 1,
 				"dbscan": "core",
-				"marker-color": "#ff00ca",
+				"marker-color": "#ff007e",
 				"marker-size": "small"
 			},
 			"geometry": {
@@ -182,7 +182,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#ff6600",
+				"marker-color": "#ffff00",
 				"marker-size": "small"
 			},
 			"geometry": {
@@ -198,7 +198,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#ff6600",
+				"marker-color": "#ffff00",
 				"marker-size": "small"
 			},
 			"geometry": {
@@ -214,7 +214,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#ff6600",
+				"marker-color": "#ffff00",
 				"marker-size": "small"
 			},
 			"geometry": {
@@ -230,7 +230,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#ff6600",
+				"marker-color": "#ffff00",
 				"marker-size": "small"
 			},
 			"geometry": {
@@ -246,7 +246,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#ff6600",
+				"marker-color": "#ffff00",
 				"marker-size": "small"
 			},
 			"geometry": {
@@ -262,7 +262,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#ff6600",
+				"marker-color": "#ffff00",
 				"marker-size": "small"
 			},
 			"geometry": {
@@ -294,7 +294,7 @@
 			"properties": {
 				"cluster": 1,
 				"dbscan": "core",
-				"marker-color": "#ff00ca",
+				"marker-color": "#ff007e",
 				"marker-size": "small"
 			},
 			"geometry": {
@@ -310,7 +310,7 @@
 			"properties": {
 				"cluster": 1,
 				"dbscan": "core",
-				"marker-color": "#ff00ca",
+				"marker-color": "#ff007e",
 				"marker-size": "small"
 			},
 			"geometry": {
@@ -326,7 +326,7 @@
 			"properties": {
 				"cluster": 1,
 				"dbscan": "core",
-				"marker-color": "#ff00ca",
+				"marker-color": "#ff007e",
 				"marker-size": "small"
 			},
 			"geometry": {
@@ -342,7 +342,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#ff6600",
+				"marker-color": "#ffff00",
 				"marker-size": "small"
 			},
 			"geometry": {
@@ -358,7 +358,7 @@
 			"properties": {
 				"cluster": 1,
 				"dbscan": "core",
-				"marker-color": "#ff00ca",
+				"marker-color": "#ff007e",
 				"marker-size": "small"
 			},
 			"geometry": {
@@ -422,7 +422,7 @@
 			"properties": {
 				"cluster": 3,
 				"dbscan": "core",
-				"marker-color": "#65ff00",
+				"marker-color": "#00ff80",
 				"marker-size": "small"
 			},
 			"geometry": {
@@ -438,7 +438,7 @@
 			"properties": {
 				"cluster": 3,
 				"dbscan": "core",
-				"marker-color": "#65ff00",
+				"marker-color": "#00ff80",
 				"marker-size": "small"
 			},
 			"geometry": {
@@ -454,7 +454,7 @@
 			"properties": {
 				"cluster": 3,
 				"dbscan": "core",
-				"marker-color": "#65ff00",
+				"marker-color": "#00ff80",
 				"marker-size": "small"
 			},
 			"geometry": {
@@ -470,7 +470,7 @@
 			"properties": {
 				"cluster": 3,
 				"dbscan": "core",
-				"marker-color": "#65ff00",
+				"marker-color": "#00ff80",
 				"marker-size": "small"
 			},
 			"geometry": {
@@ -486,7 +486,7 @@
 			"properties": {
 				"cluster": 3,
 				"dbscan": "core",
-				"marker-color": "#65ff00",
+				"marker-color": "#00ff80",
 				"marker-size": "small"
 			},
 			"geometry": {
@@ -518,7 +518,7 @@
 			"properties": {
 				"cluster": 3,
 				"dbscan": "core",
-				"marker-color": "#65ff00",
+				"marker-color": "#00ff80",
 				"marker-size": "small"
 			},
 			"geometry": {
@@ -532,73 +532,23 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"marker-symbol": "star",
-				"marker-size": "large",
-				"cluster": 0,
-				"marker-color": "#0000b3"
+				"marker-color": "#000080",
+				"marker-symbol": "star-stroked",
+				"marker-size": "large"
 			},
 			"geometry": {
 				"type": "Point",
 				"coordinates": [
-					-111.14396593978711,
-					58.526354655274915
+					-110.703125,
+					58.758597808755766
 				]
 			}
 		},
 		{
 			"type": "Feature",
 			"properties": {
-				"marker-symbol": "star",
-				"marker-size": "large",
-				"cluster": 1,
-				"marker-color": "#b3008c"
-			},
-			"geometry": {
-				"type": "Point",
-				"coordinates": [
-					-77.9292180020266,
-					58.7918947594985
-				]
-			}
-		},
-		{
-			"type": "Feature",
-			"properties": {
-				"marker-symbol": "star",
-				"marker-size": "large",
-				"cluster": 2,
-				"marker-color": "#b34700"
-			},
-			"geometry": {
-				"type": "Point",
-				"coordinates": [
-					-90.00684860941635,
-					48.82536527257181
-				]
-			}
-		},
-		{
-			"type": "Feature",
-			"properties": {
-				"marker-symbol": "star",
-				"marker-size": "large",
-				"cluster": 3,
-				"marker-color": "#46b300"
-			},
-			"geometry": {
-				"type": "Point",
-				"coordinates": [
-					-115.72429519223303,
-					43.80424173749561
-				]
-			}
-		},
-		{
-			"type": "Feature",
-			"properties": {
-				"cluster": 0,
-				"fill": "#0000b3",
-				"stroke": "#0000b3",
+				"fill": "#000080",
+				"stroke": "#000080",
 				"fill-opacity": 0.3
 			},
 			"geometry": {
@@ -630,10 +580,6 @@
 							60.84491057364912
 						],
 						[
-							-111.14396593978711,
-							58.526354655274915
-						],
-						[
 							-110.478515625,
 							59.265880628258095
 						],
@@ -656,9 +602,23 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"cluster": 1,
-				"fill": "#b3008c",
-				"stroke": "#b3008c",
+				"marker-color": "#80003e",
+				"marker-symbol": "star-stroked",
+				"marker-size": "large"
+			},
+			"geometry": {
+				"type": "Point",
+				"coordinates": [
+					-78.1640625,
+					59.13130073540497
+				]
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {
+				"fill": "#80003e",
+				"stroke": "#80003e",
 				"fill-opacity": 0.3
 			},
 			"geometry": {
@@ -694,10 +654,6 @@
 							58.44773280389084
 						],
 						[
-							-77.9292180020266,
-							58.7918947594985
-						],
-						[
 							-79.541015625,
 							55.178867663281984
 						],
@@ -712,9 +668,23 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"cluster": 2,
-				"fill": "#b34700",
-				"stroke": "#b34700",
+				"marker-color": "#808000",
+				"marker-symbol": "star-stroked",
+				"marker-size": "large"
+			},
+			"geometry": {
+				"type": "Point",
+				"coordinates": [
+					-89.92466517857143,
+					48.5629708241413
+				]
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {
+				"fill": "#808000",
+				"stroke": "#808000",
 				"fill-opacity": 0.3
 			},
 			"geometry": {
@@ -736,10 +706,6 @@
 						[
 							-90.263671875,
 							50.17689812200107
-						],
-						[
-							-90.00684860941635,
-							48.82536527257181
 						],
 						[
 							-88.41796875,
@@ -764,9 +730,23 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"cluster": 3,
-				"fill": "#46b300",
-				"stroke": "#46b300",
+				"marker-color": "#008040",
+				"marker-symbol": "star-stroked",
+				"marker-size": "large"
+			},
+			"geometry": {
+				"type": "Point",
+				"coordinates": [
+					-115.6787109375,
+					44.12841091507608
+				]
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {
+				"fill": "#008040",
+				"stroke": "#008040",
 				"fill-opacity": 0.3
 			},
 			"geometry": {

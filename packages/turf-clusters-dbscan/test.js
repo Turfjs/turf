@@ -3,10 +3,11 @@ const test = require('tape');
 const path = require('path');
 const load = require('load-json-file');
 const write = require('write-json-file');
+const centroid = require('@turf/centroid');
 const chromatism = require('chromatism');
 const concaveman = require('concaveman');
-const centerOfMass = require('@turf/center-of-mass');
-const {featureEach, propEach, coordEach} = require('@turf/meta');
+const {clusterEach, clusterReduce} = require('@turf/clusters');
+const {featureEach, coordAll} = require('@turf/meta');
 const {featureCollection, point, polygon} = require('@turf/helpers');
 const clustersDbscan = require('./');
 
@@ -31,7 +32,7 @@ test('clusters-dbscan', t => {
         // console.log(geojson.features.length);
         const clustered = clustersDbscan(geojson, distance, units, minPoints);
         // console.log(clustered.points.features.length);
-        const result = colorize(clustered);
+        const result = styleResult(clustered);
 
         if (process.env.REGEN) write.sync(directories.out + filename, result);
         t.deepEqual(result, load.sync(directories.out + filename), name);
@@ -70,121 +71,50 @@ test('clusters-dbscan -- translate properties', t => {
 });
 
 // style result
-function colorize(clustered) {
-    const clusters = new Set();
-    propEach(clustered, ({cluster}) => clusters.add(cluster));
-    const count = clusters.size;
+function styleResult(clustered) {
+    const count = clusterReduce(clustered, 'cluster', i => i + 1, 0);
     const colours = chromatism.adjacent(360 / count, count, '#0000FF').hex;
     const features = [];
 
-    featureEach(clustered, function (point) {
-        switch (point.properties.dbscan) {
+    // Add all Point
+    featureEach(clustered, function (pt) {
+        const {cluster, dbscan} = pt.properties;
+        switch (dbscan) {
         case 'core':
         case 'edge': {
-            const coreColor = colours[point.properties.cluster];
-            const edgeColor = chromatism.brightness(-20, colours[point.properties.cluster]).hex;
-            point.properties['marker-color'] = (point.properties.dbscan === 'core') ? coreColor : edgeColor;
-            point.properties['marker-size'] = 'small';
-            features.push(point);
+            const coreColor = colours[cluster];
+            const edgeColor = chromatism.brightness(-20, colours[cluster]).hex;
+            pt.properties['marker-color'] = (dbscan === 'core') ? coreColor : edgeColor;
+            pt.properties['marker-size'] = 'small';
             break;
         }
         case 'noise': {
-            point.properties['marker-color'] = '#AEAEAE';
-            point.properties['marker-symbol'] = 'circle-stroked';
-            point.properties['marker-size'] = 'medium';
-            features.push(point);
+            pt.properties['marker-color'] = '#AEAEAE';
+            pt.properties['marker-symbol'] = 'circle-stroked';
+            pt.properties['marker-size'] = 'medium';
+            break;
         }
         }
-    });
-    // Create Centroid from cluster property
-    const properties = {
-        'marker-symbol': 'star',
-        'marker-size': 'large'
-    };
-    const centroids = centroidFromProperty(features, 'cluster', properties);
-    featureEach(centroids, point => {
-        const color = chromatism.brightness(-15, colours[point.properties.cluster]).hex;
-        point.properties['marker-color'] = color;
-        features.push(point);
+        features.push(pt);
     });
 
-    // Create Concave Polygons from cluster
-    const polys = concaveFromProperty(features, 'cluster');
-    featureEach(polys, poly => {
-        const color = chromatism.brightness(-15, colours[poly.properties.cluster]).hex;
-        poly.properties['fill'] = color;
-        poly.properties['stroke'] = color;
-        poly.properties['fill-opacity'] = 0.3;
-        features.push(poly);
-    });
+    // Iterate over each Cluster
+    clusterEach(clustered, 'cluster', (cluster, clusterValue, clusterId) => {
+        const color = chromatism.brightness(-25, colours[clusterId]).hex;
 
+        // Add Centroid
+        features.push(centroid(cluster, {
+            'marker-color': color,
+            'marker-symbol': 'star-stroked',
+            'marker-size': 'large'
+        }));
+
+        // Add concave polygon
+        features.push(polygon([concaveman(coordAll(cluster))], {
+            fill: color,
+            stroke: color,
+            'fill-opacity': 0.3
+        }));
+    });
     return featureCollection(features);
-}
-
-/**
- * Basic implementation of creating centroids based on a single Property
- * Can be expanded with very complex property combination
- *
- * @private
- * @param {FeatureCollection|Feature[]} geojson GeoJSON
- * @param {string} property Name of property of GeoJSON Properties to bin each feature - This property will be translated to each centroid's properties
- * @param {*} [properties={}] Properties to translate down to each centroid (2nd priority)
- * @returns {FeatureCollection<Point>} centroids
- * @example
- * var centroids = centroidFromProperty(geojson, 'cluster');
- */
-function centroidFromProperty(geojson, property, properties = {}) {
-    if (Array.isArray(geojson)) geojson = featureCollection(geojson);
-
-    const centroids = [];
-    const bins = new Map();
-    featureEach(geojson, feature => {
-        const prop = feature.properties[property];
-        if (prop === undefined) return;
-        if (bins.has(prop)) bins.get(prop).push(feature);
-        else bins.set(prop, [feature]);
-    });
-    bins.forEach((features, value) => {
-        // Retrieve property of first feature (only the defined property tags, nothing else)
-        const props = JSON.parse(JSON.stringify(properties));
-        props[property] = value;
-        const centroid = centerOfMass(featureCollection(features), props);
-        centroids.push(centroid);
-    });
-    return featureCollection(centroids);
-}
-
-/**
- * Basic implementation of creating concave polygons based on a single Property
- * https://github.com/mapbox/concaveman
- *
- * @private
- * @param {FeatureCollection|Feature[]} geojson GeoJSON
- * @param {string} property Name of property of GeoJSON Properties to bin each feature - This property will be translated to each centroid's properties
- * @param {*} [properties={}] Properties to translate down to each polygons (2nd priority)
- * @returns {FeatureCollection<Polygon>} concave Polygons
- * @example
- * var centroids = concaveFromProperty(geojson, 'cluster');
- */
-function concaveFromProperty(geojson, property, properties = {}) {
-    if (Array.isArray(geojson)) geojson = featureCollection(geojson);
-
-    const container = [];
-    const bins = new Map();
-    featureEach(geojson, feature => {
-        const prop = feature.properties[property];
-        if (prop === undefined) return;
-        coordEach(feature, coord => {
-            if (bins.has(prop)) bins.get(prop).push(coord);
-            else bins.set(prop, [coord]);
-        });
-    });
-    bins.forEach((coords, value) => {
-        // Retrieve property of first feature (only the defined property tags, nothing else)
-        const props = JSON.parse(JSON.stringify(properties));
-        props[property] = value;
-        const poly = polygon([concaveman(coords)], props);
-        container.push(poly);
-    });
-    return featureCollection(container);
 }
