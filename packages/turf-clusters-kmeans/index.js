@@ -1,5 +1,5 @@
 var meta = require('@turf/meta');
-var clone = require('clone');
+var clone = require('@turf/clone');
 var skmeans = require('skmeans');
 var invariant = require('@turf/invariant');
 var coordAll = meta.coordAll;
