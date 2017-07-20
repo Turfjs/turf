@@ -3,8 +3,11 @@ const test = require('tape');
 const path = require('path');
 const load = require('load-json-file');
 const write = require('write-json-file');
+const centroid = require('@turf/centroid');
 const chromatism = require('chromatism');
-const {featureEach, propEach} = require('@turf/meta');
+const concaveman = require('concaveman');
+const {featureEach, coordAll} = require('@turf/meta');
+const {clusterEach, clusterReduce} = require('@turf/clusters');
 const {featureCollection, point, polygon} = require('@turf/helpers');
 const clustersKmeans = require('./');
 
@@ -26,7 +29,7 @@ test('clusters-kmeans', t => {
         const {numberOfCentroids} = geojson.properties || {};
 
         const clustered = clustersKmeans(geojson, numberOfCentroids);
-        const result = colorize(clustered);
+        const result = styleResult(clustered);
 
         if (process.env.REGEN) write.sync(directories.out + name + '.geojson', result);
         t.deepEqual(result, load.sync(directories.out + name + '.geojson'), name);
@@ -61,33 +64,36 @@ test('clusters-kmeans -- translate properties', t => {
 });
 
 // style result
-function colorize(clustered) {
-    const clusters = new Set();
-    const centroids = new Set();
-    propEach(clustered, ({cluster}) => clusters.add(cluster));
-    const count = clusters.size;
+function styleResult(clustered) {
+    const count = clusterReduce(clustered, 'cluster', i => i + 1, 0);
     const colours = chromatism.adjacent(360 / count, count, '#0000FF').hex;
     const features = [];
 
+    // Add all Point
     featureEach(clustered, function (pt) {
-        // Add Point
         const clusterId = pt.properties.cluster;
         pt.properties['marker-color'] = colours[clusterId];
         pt.properties['marker-size'] = 'small';
         features.push(pt);
+    });
+
+    // Iterate over each Cluster
+    clusterEach(clustered, 'cluster', (cluster, clusterValue, clusterId) => {
+        const color = chromatism.brightness(-25, colours[clusterId]).hex;
 
         // Add Centroid
-        const centroidId = pt.properties.centroid.join('+');
-        if (!centroids.has(centroidId)) {
-            const color = chromatism.brightness(-25, colours[clusterId]).hex;
-            const centroid = point(pt.properties.centroid, {
-                'marker-color': color,
-                'marker-symbol': 'star-stroked',
-                'marker-size': 'large'
-            });
-            features.push(centroid);
-            centroids.add(centroidId);
-        }
+        features.push(centroid(cluster, {
+            'marker-color': color,
+            'marker-symbol': 'star-stroked',
+            'marker-size': 'large'
+        }));
+
+        // Add concave polygon
+        features.push(polygon([concaveman(coordAll(cluster))], {
+            fill: color,
+            stroke: color,
+            'fill-opacity': 0.3
+        }));
     });
     return featureCollection(features);
 }
