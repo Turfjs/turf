@@ -15,10 +15,11 @@ var convertDistance = helpers.convertDistance;
  * @param {FeatureCollection<Point>} points to be clustered
  * @param {number} maxDistance Maximum Distance between any point of the cluster to generate the clusters (kilometers only)
  * @param {string} [units=kilometers] in which `maxDistance` is expressed, can be degrees, radians, miles, or kilometers
- * @param {number} [minPoints=3] Minimum number of points to generate a single cluster, points will be excluded if the
- *     cluster does not meet the minimum amounts of points.
- * @returns {FeatureCollection<Point>} each Point has two extra properties; `cluster` property with the cluster number it belongs &
- * `dbscan` which is defines the which type of point it has been flagged as ('core'|'edge'|'noise').
+ * @param {number} [minPoints=3] Minimum number of points to generate a single cluster,
+ * points which do not meet this requirement will be classified as an 'edge' or 'noise'.
+ * @returns {FeatureCollection<Point>} clustered Points will contain two extra properties:
+ * - `cluster` the associated cluster number
+ * - `dbscan` type of point it has been classified as ('core'|'edge'|'noise')
  * @example
  * // create random points with random z-values in their properties
  * var points = turf.random('point', 100, {
