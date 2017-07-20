@@ -69,11 +69,6 @@ test('clusters-dbscan -- translate properties', t => {
     t.end();
 });
 
-test('clusters-dbscan -- handle Array of Points', t => {
-    t.assert(clustersDbscan(points.features, 2), 'Support Array of Features input');
-    t.end();
-});
-
 // style result
 function colorize(clustered) {
     const clusters = new Set();
