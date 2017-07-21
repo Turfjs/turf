@@ -1,6 +1,6 @@
 /// <reference types="geojson" />
 
-import {Units, Points, Point} from '@turf/helpers';
+import {Units, Points} from '@turf/helpers';
 
 interface Output {
     type: 'FeatureCollection'
@@ -11,7 +11,7 @@ interface Output {
  * http://turfjs.org/docs/#clustersdbscans
  */
 declare function clustersDbscan(
-    points: Points | Point[],
+    points: Points,
     maxDistance: number,
     units?: Units,
     minPoints?: number): Output;
