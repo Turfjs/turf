@@ -52,6 +52,19 @@ test('turf-line-split - splitter exactly on end of line', t => {
     t.end();
 });
 
+test('turf-line-split -- throws', t => {
+    const pt = point([9, 50]);
+    const line = lineString([[7, 50], [8, 50], [9, 50]]);
+
+    t.throws(() => lineSplit(null, pt), '<geojson> is required');
+    t.throws(() => lineSplit(line, null), '<geojson> is required');
+    t.throws(() => lineSplit(pt, pt), '<line> must be LineString');
+    t.throws(() => lineSplit(line, featureCollection([pt, line])), '<splitter> cannot be a FeatureCollection');
+
+    t.end();
+});
+
+
 /**
  * Colorize FeatureCollection
  *
