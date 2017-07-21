@@ -1,13 +1,14 @@
-var flatten = require('@turf/flatten');
-var pointOnLine = require('@turf/point-on-line');
-var lineSegment = require('@turf/line-segment');
-var getCoords = require('@turf/invariant').getCoords;
-var lineIntersect = require('@turf/line-intersect');
+var meta = require('@turf/meta');
 var rbush = require('geojson-rbush');
 var helpers = require('@turf/helpers');
+var flatten = require('@turf/flatten');
+var truncate = require('@turf/truncate');
+var getCoords = require('@turf/invariant').getCoords;
+var pointOnLine = require('@turf/point-on-line');
+var lineSegment = require('@turf/line-segment');
+var lineIntersect = require('@turf/line-intersect');
 var featureCollection = helpers.featureCollection;
 var lineString = helpers.lineString;
-var meta = require('@turf/meta');
 var featureEach = meta.featureEach;
 var featureReduce = meta.featureReduce;
 
@@ -43,6 +44,10 @@ var featureReduce = meta.featureReduce;
 module.exports = function (line, splitter) {
     if (geomType(line) !== 'LineString') throw new Error('<line> must be LineString');
     if (geomType(splitter) === 'FeatureCollection') throw new Error('<splitter> cannot be a FeatureCollection');
+
+    // remove excessive decimals from splitter
+    // to avoid possible approximation issues in rbush
+    truncate(splitter, 6, 3, true);
 
     switch (geomType(splitter)) {
     case 'Point':

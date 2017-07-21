@@ -22,9 +22,9 @@ const fixtures = fs.readdirSync(directories.in).map(filename => {
 
 test('turf-line-split', t => {
     for (const {filename, name, geojson}  of fixtures) {
-        const source = geojson.features[0];
-        const target = geojson.features[1];
-        const results = colorize(lineSplit(source, target));
+        const line = geojson.features[0];
+        const splitter = geojson.features[1];
+        const results = colorize(lineSplit(line, splitter));
         featureEach(geojson, feature => results.features.push(feature));
 
         if (process.env.REGEN) write.sync(directories.out + filename, results);
