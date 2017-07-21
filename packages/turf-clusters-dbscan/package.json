@@ -37,14 +37,11 @@
   },
   "homepage": "https://github.com/Turfjs/turf",
   "devDependencies": {
-    "@turf/center-of-mass": "^4.4.0",
+    "@turf/centroid": "^4.5.2",
+    "@turf/clusters": "^4.6.0",
     "benchmark": "^2.1.4",
     "chromatism": "2.6.0",
     "concaveman": "^1.1.1",
-    "es6-map": "^0.1.5",
-    "es6-set": "^0.1.5",
-    "geokdbush": "^1.1.0",
-    "kdbush": "^1.0.1",
     "load-json-file": "^2.0.0",
     "tape": "^4.6.3",
     "write-json-file": "^2.0.0"

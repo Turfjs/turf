@@ -12,6 +12,10 @@
 			},
 			"properties": {
 				"cluster": 0,
+				"centroid": [
+					-85.22273916681061,
+					18.11205670884361
+				],
 				"marker-color": "#0000ff",
 				"marker-size": "small"
 			}
@@ -27,6 +31,10 @@
 			},
 			"properties": {
 				"cluster": 1,
+				"centroid": [
+					-85.201027549492,
+					21.346638923038203
+				],
 				"marker-color": "#5f00ff",
 				"marker-size": "small"
 			}
@@ -42,6 +50,10 @@
 			},
 			"properties": {
 				"cluster": 2,
+				"centroid": [
+					-77.80959890542613,
+					23.062586927512516
+				],
 				"marker-color": "#bf00ff",
 				"marker-size": "small"
 			}
@@ -57,6 +69,10 @@
 			},
 			"properties": {
 				"cluster": 0,
+				"centroid": [
+					-85.22273916681061,
+					18.11205670884361
+				],
 				"marker-color": "#0000ff",
 				"marker-size": "small"
 			}
@@ -72,6 +88,10 @@
 			},
 			"properties": {
 				"cluster": 4,
+				"centroid": [
+					-72.1036518524473,
+					21.632139370868533
+				],
 				"marker-color": "#ff007e",
 				"marker-size": "small"
 			}
@@ -87,6 +107,10 @@
 			},
 			"properties": {
 				"cluster": 8,
+				"centroid": [
+					-74.65884587304036,
+					23.14443612672486
+				],
 				"marker-color": "#ffff00",
 				"marker-size": "small"
 			}
@@ -102,6 +126,10 @@
 			},
 			"properties": {
 				"cluster": 6,
+				"centroid": [
+					-78.71931668447289,
+					26.441283306379056
+				],
 				"marker-color": "#ff4000",
 				"marker-size": "small"
 			}
@@ -117,6 +145,10 @@
 			},
 			"properties": {
 				"cluster": 7,
+				"centroid": [
+					-71.60386443367564,
+					25.68144722581964
+				],
 				"marker-color": "#ff9f00",
 				"marker-size": "small"
 			}
@@ -132,6 +164,10 @@
 			},
 			"properties": {
 				"cluster": 4,
+				"centroid": [
+					-72.1036518524473,
+					21.632139370868533
+				],
 				"marker-color": "#ff007e",
 				"marker-size": "small"
 			}
@@ -147,6 +183,10 @@
 			},
 			"properties": {
 				"cluster": 14,
+				"centroid": [
+					-85.66057622205204,
+					25.309521790657058
+				],
 				"marker-color": "#00beff",
 				"marker-size": "small"
 			}
@@ -162,6 +202,10 @@
 			},
 			"properties": {
 				"cluster": 1,
+				"centroid": [
+					-85.201027549492,
+					21.346638923038203
+				],
 				"marker-color": "#5f00ff",
 				"marker-size": "small"
 			}
@@ -177,6 +221,10 @@
 			},
 			"properties": {
 				"cluster": 4,
+				"centroid": [
+					-72.1036518524473,
+					21.632139370868533
+				],
 				"marker-color": "#ff007e",
 				"marker-size": "small"
 			}
@@ -192,6 +240,10 @@
 			},
 			"properties": {
 				"cluster": 2,
+				"centroid": [
+					-77.80959890542613,
+					23.062586927512516
+				],
 				"marker-color": "#bf00ff",
 				"marker-size": "small"
 			}
@@ -207,6 +259,10 @@
 			},
 			"properties": {
 				"cluster": 13,
+				"centroid": [
+					-71.88949473129752,
+					18.220552149539706
+				],
 				"marker-color": "#00ffe0",
 				"marker-size": "small"
 			}
@@ -222,6 +278,10 @@
 			},
 			"properties": {
 				"cluster": 14,
+				"centroid": [
+					-85.66057622205204,
+					25.309521790657058
+				],
 				"marker-color": "#00beff",
 				"marker-size": "small"
 			}
@@ -237,6 +297,10 @@
 			},
 			"properties": {
 				"cluster": 15,
+				"centroid": [
+					-79.95661302836459,
+					19.68004339959817
+				],
 				"marker-color": "#005fff",
 				"marker-size": "small"
 			}
@@ -252,6 +316,10 @@
 			},
 			"properties": {
 				"cluster": 1,
+				"centroid": [
+					-85.201027549492,
+					21.346638923038203
+				],
 				"marker-color": "#5f00ff",
 				"marker-size": "small"
 			}
@@ -267,6 +335,10 @@
 			},
 			"properties": {
 				"cluster": 5,
+				"centroid": [
+					-74.59772375968392,
+					26.040657608812058
+				],
 				"marker-color": "#ff001e",
 				"marker-size": "small"
 			}
@@ -282,6 +354,10 @@
 			},
 			"properties": {
 				"cluster": 13,
+				"centroid": [
+					-71.88949473129752,
+					18.220552149539706
+				],
 				"marker-color": "#00ffe0",
 				"marker-size": "small"
 			}
@@ -297,6 +373,10 @@
 			},
 			"properties": {
 				"cluster": 5,
+				"centroid": [
+					-74.59772375968392,
+					26.040657608812058
+				],
 				"marker-color": "#ff001e",
 				"marker-size": "small"
 			}
@@ -312,6 +392,10 @@
 			},
 			"properties": {
 				"cluster": 2,
+				"centroid": [
+					-77.80959890542613,
+					23.062586927512516
+				],
 				"marker-color": "#bf00ff",
 				"marker-size": "small"
 			}
@@ -327,6 +411,10 @@
 			},
 			"properties": {
 				"cluster": 0,
+				"centroid": [
+					-85.22273916681061,
+					18.11205670884361
+				],
 				"marker-color": "#0000ff",
 				"marker-size": "small"
 			}
@@ -342,6 +430,10 @@
 			},
 			"properties": {
 				"cluster": 11,
+				"centroid": [
+					-74.87813096725604,
+					19.051404705480532
+				],
 				"marker-color": "#00ff20",
 				"marker-size": "small"
 			}
@@ -357,6 +449,10 @@
 			},
 			"properties": {
 				"cluster": 10,
+				"centroid": [
+					-81.67819501734249,
+					22.456058950791007
+				],
 				"marker-color": "#3fff00",
 				"marker-size": "small"
 			}
@@ -372,6 +468,10 @@
 			},
 			"properties": {
 				"cluster": 3,
+				"centroid": [
+					-82.07389862745148,
+					18.10014805204155
+				],
 				"marker-color": "#ff00de",
 				"marker-size": "small"
 			}
@@ -387,6 +487,10 @@
 			},
 			"properties": {
 				"cluster": 11,
+				"centroid": [
+					-74.87813096725604,
+					19.051404705480532
+				],
 				"marker-color": "#00ff20",
 				"marker-size": "small"
 			}
@@ -402,6 +506,10 @@
 			},
 			"properties": {
 				"cluster": 6,
+				"centroid": [
+					-78.71931668447289,
+					26.441283306379056
+				],
 				"marker-color": "#ff4000",
 				"marker-size": "small"
 			}
@@ -417,6 +525,10 @@
 			},
 			"properties": {
 				"cluster": 2,
+				"centroid": [
+					-77.80959890542613,
+					23.062586927512516
+				],
 				"marker-color": "#bf00ff",
 				"marker-size": "small"
 			}
@@ -432,6 +544,10 @@
 			},
 			"properties": {
 				"cluster": 12,
+				"centroid": [
+					-77.46953467512287,
+					17.829026800774887
+				],
 				"marker-color": "#00ff80",
 				"marker-size": "small"
 			}
@@ -447,6 +563,10 @@
 			},
 			"properties": {
 				"cluster": 5,
+				"centroid": [
+					-74.59772375968392,
+					26.040657608812058
+				],
 				"marker-color": "#ff001e",
 				"marker-size": "small"
 			}
@@ -462,6 +582,10 @@
 			},
 			"properties": {
 				"cluster": 9,
+				"centroid": [
+					-83.28970527419875,
+					25.03901137331529
+				],
 				"marker-color": "#9fff00",
 				"marker-size": "small"
 			}
@@ -477,6 +601,10 @@
 			},
 			"properties": {
 				"cluster": 11,
+				"centroid": [
+					-74.87813096725604,
+					19.051404705480532
+				],
 				"marker-color": "#00ff20",
 				"marker-size": "small"
 			}
@@ -492,6 +620,10 @@
 			},
 			"properties": {
 				"cluster": 15,
+				"centroid": [
+					-79.95661302836459,
+					19.68004339959817
+				],
 				"marker-color": "#005fff",
 				"marker-size": "small"
 			}
@@ -507,6 +639,10 @@
 			},
 			"properties": {
 				"cluster": 2,
+				"centroid": [
+					-77.80959890542613,
+					23.062586927512516
+				],
 				"marker-color": "#bf00ff",
 				"marker-size": "small"
 			}
@@ -522,6 +658,10 @@
 			},
 			"properties": {
 				"cluster": 8,
+				"centroid": [
+					-74.65884587304036,
+					23.14443612672486
+				],
 				"marker-color": "#ffff00",
 				"marker-size": "small"
 			}
@@ -537,6 +677,10 @@
 			},
 			"properties": {
 				"cluster": 2,
+				"centroid": [
+					-77.80959890542613,
+					23.062586927512516
+				],
 				"marker-color": "#bf00ff",
 				"marker-size": "small"
 			}
@@ -552,6 +696,10 @@
 			},
 			"properties": {
 				"cluster": 10,
+				"centroid": [
+					-81.67819501734249,
+					22.456058950791007
+				],
 				"marker-color": "#3fff00",
 				"marker-size": "small"
 			}
@@ -567,6 +715,10 @@
 			},
 			"properties": {
 				"cluster": 3,
+				"centroid": [
+					-82.07389862745148,
+					18.10014805204155
+				],
 				"marker-color": "#ff00de",
 				"marker-size": "small"
 			}
@@ -582,6 +734,10 @@
 			},
 			"properties": {
 				"cluster": 4,
+				"centroid": [
+					-72.1036518524473,
+					21.632139370868533
+				],
 				"marker-color": "#ff007e",
 				"marker-size": "small"
 			}
@@ -597,6 +753,10 @@
 			},
 			"properties": {
 				"cluster": 15,
+				"centroid": [
+					-79.95661302836459,
+					19.68004339959817
+				],
 				"marker-color": "#005fff",
 				"marker-size": "small"
 			}
@@ -612,6 +772,10 @@
 			},
 			"properties": {
 				"cluster": 5,
+				"centroid": [
+					-74.59772375968392,
+					26.040657608812058
+				],
 				"marker-color": "#ff001e",
 				"marker-size": "small"
 			}
@@ -627,6 +791,10 @@
 			},
 			"properties": {
 				"cluster": 14,
+				"centroid": [
+					-85.66057622205204,
+					25.309521790657058
+				],
 				"marker-color": "#00beff",
 				"marker-size": "small"
 			}
@@ -642,6 +810,10 @@
 			},
 			"properties": {
 				"cluster": 3,
+				"centroid": [
+					-82.07389862745148,
+					18.10014805204155
+				],
 				"marker-color": "#ff00de",
 				"marker-size": "small"
 			}
@@ -657,6 +829,10 @@
 			},
 			"properties": {
 				"cluster": 5,
+				"centroid": [
+					-74.59772375968392,
+					26.040657608812058
+				],
 				"marker-color": "#ff001e",
 				"marker-size": "small"
 			}
@@ -672,6 +848,10 @@
 			},
 			"properties": {
 				"cluster": 2,
+				"centroid": [
+					-77.80959890542613,
+					23.062586927512516
+				],
 				"marker-color": "#bf00ff",
 				"marker-size": "small"
 			}
@@ -687,6 +867,10 @@
 			},
 			"properties": {
 				"cluster": 7,
+				"centroid": [
+					-71.60386443367564,
+					25.68144722581964
+				],
 				"marker-color": "#ff9f00",
 				"marker-size": "small"
 			}
@@ -702,6 +886,10 @@
 			},
 			"properties": {
 				"cluster": 1,
+				"centroid": [
+					-85.201027549492,
+					21.346638923038203
+				],
 				"marker-color": "#5f00ff",
 				"marker-size": "small"
 			}
@@ -717,6 +905,10 @@
 			},
 			"properties": {
 				"cluster": 14,
+				"centroid": [
+					-85.66057622205204,
+					25.309521790657058
+				],
 				"marker-color": "#00beff",
 				"marker-size": "small"
 			}
@@ -732,6 +924,10 @@
 			},
 			"properties": {
 				"cluster": 6,
+				"centroid": [
+					-78.71931668447289,
+					26.441283306379056
+				],
 				"marker-color": "#ff4000",
 				"marker-size": "small"
 			}
@@ -747,6 +943,10 @@
 			},
 			"properties": {
 				"cluster": 4,
+				"centroid": [
+					-72.1036518524473,
+					21.632139370868533
+				],
 				"marker-color": "#ff007e",
 				"marker-size": "small"
 			}
@@ -762,6 +962,10 @@
 			},
 			"properties": {
 				"cluster": 5,
+				"centroid": [
+					-74.59772375968392,
+					26.040657608812058
+				],
 				"marker-color": "#ff001e",
 				"marker-size": "small"
 			}
@@ -777,6 +981,10 @@
 			},
 			"properties": {
 				"cluster": 12,
+				"centroid": [
+					-77.46953467512287,
+					17.829026800774887
+				],
 				"marker-color": "#00ff80",
 				"marker-size": "small"
 			}
@@ -792,6 +1000,10 @@
 			},
 			"properties": {
 				"cluster": 12,
+				"centroid": [
+					-77.46953467512287,
+					17.829026800774887
+				],
 				"marker-color": "#00ff80",
 				"marker-size": "small"
 			}
@@ -807,6 +1019,10 @@
 			},
 			"properties": {
 				"cluster": 11,
+				"centroid": [
+					-74.87813096725604,
+					19.051404705480532
+				],
 				"marker-color": "#00ff20",
 				"marker-size": "small"
 			}
@@ -822,6 +1038,10 @@
 			},
 			"properties": {
 				"cluster": 1,
+				"centroid": [
+					-85.201027549492,
+					21.346638923038203
+				],
 				"marker-color": "#5f00ff",
 				"marker-size": "small"
 			}
@@ -837,6 +1057,10 @@
 			},
 			"properties": {
 				"cluster": 11,
+				"centroid": [
+					-74.87813096725604,
+					19.051404705480532
+				],
 				"marker-color": "#00ff20",
 				"marker-size": "small"
 			}
@@ -852,6 +1076,10 @@
 			},
 			"properties": {
 				"cluster": 5,
+				"centroid": [
+					-74.59772375968392,
+					26.040657608812058
+				],
 				"marker-color": "#ff001e",
 				"marker-size": "small"
 			}
@@ -867,6 +1095,10 @@
 			},
 			"properties": {
 				"cluster": 11,
+				"centroid": [
+					-74.87813096725604,
+					19.051404705480532
+				],
 				"marker-color": "#00ff20",
 				"marker-size": "small"
 			}
@@ -882,6 +1114,10 @@
 			},
 			"properties": {
 				"cluster": 11,
+				"centroid": [
+					-74.87813096725604,
+					19.051404705480532
+				],
 				"marker-color": "#00ff20",
 				"marker-size": "small"
 			}
@@ -897,6 +1133,10 @@
 			},
 			"properties": {
 				"cluster": 9,
+				"centroid": [
+					-83.28970527419875,
+					25.03901137331529
+				],
 				"marker-color": "#9fff00",
 				"marker-size": "small"
 			}
@@ -912,6 +1152,10 @@
 			},
 			"properties": {
 				"cluster": 14,
+				"centroid": [
+					-85.66057622205204,
+					25.309521790657058
+				],
 				"marker-color": "#00beff",
 				"marker-size": "small"
 			}
@@ -927,6 +1171,10 @@
 			},
 			"properties": {
 				"cluster": 10,
+				"centroid": [
+					-81.67819501734249,
+					22.456058950791007
+				],
 				"marker-color": "#3fff00",
 				"marker-size": "small"
 			}
@@ -942,6 +1190,10 @@
 			},
 			"properties": {
 				"cluster": 9,
+				"centroid": [
+					-83.28970527419875,
+					25.03901137331529
+				],
 				"marker-color": "#9fff00",
 				"marker-size": "small"
 			}
@@ -957,6 +1209,10 @@
 			},
 			"properties": {
 				"cluster": 2,
+				"centroid": [
+					-77.80959890542613,
+					23.062586927512516
+				],
 				"marker-color": "#bf00ff",
 				"marker-size": "small"
 			}
@@ -972,6 +1228,10 @@
 			},
 			"properties": {
 				"cluster": 7,
+				"centroid": [
+					-71.60386443367564,
+					25.68144722581964
+				],
 				"marker-color": "#ff9f00",
 				"marker-size": "small"
 			}
@@ -987,6 +1247,10 @@
 			},
 			"properties": {
 				"cluster": 14,
+				"centroid": [
+					-85.66057622205204,
+					25.309521790657058
+				],
 				"marker-color": "#00beff",
 				"marker-size": "small"
 			}
@@ -1002,6 +1266,10 @@
 			},
 			"properties": {
 				"cluster": 12,
+				"centroid": [
+					-77.46953467512287,
+					17.829026800774887
+				],
 				"marker-color": "#00ff80",
 				"marker-size": "small"
 			}
@@ -1017,6 +1285,10 @@
 			},
 			"properties": {
 				"cluster": 6,
+				"centroid": [
+					-78.71931668447289,
+					26.441283306379056
+				],
 				"marker-color": "#ff4000",
 				"marker-size": "small"
 			}
@@ -1032,6 +1304,10 @@
 			},
 			"properties": {
 				"cluster": 12,
+				"centroid": [
+					-77.46953467512287,
+					17.829026800774887
+				],
 				"marker-color": "#00ff80",
 				"marker-size": "small"
 			}
@@ -1047,6 +1323,10 @@
 			},
 			"properties": {
 				"cluster": 14,
+				"centroid": [
+					-85.66057622205204,
+					25.309521790657058
+				],
 				"marker-color": "#00beff",
 				"marker-size": "small"
 			}
@@ -1062,6 +1342,10 @@
 			},
 			"properties": {
 				"cluster": 11,
+				"centroid": [
+					-74.87813096725604,
+					19.051404705480532
+				],
 				"marker-color": "#00ff20",
 				"marker-size": "small"
 			}
@@ -1077,6 +1361,10 @@
 			},
 			"properties": {
 				"cluster": 9,
+				"centroid": [
+					-83.28970527419875,
+					25.03901137331529
+				],
 				"marker-color": "#9fff00",
 				"marker-size": "small"
 			}
@@ -1092,6 +1380,10 @@
 			},
 			"properties": {
 				"cluster": 14,
+				"centroid": [
+					-85.66057622205204,
+					25.309521790657058
+				],
 				"marker-color": "#00beff",
 				"marker-size": "small"
 			}
@@ -1107,6 +1399,10 @@
 			},
 			"properties": {
 				"cluster": 5,
+				"centroid": [
+					-74.59772375968392,
+					26.040657608812058
+				],
 				"marker-color": "#ff001e",
 				"marker-size": "small"
 			}
@@ -1122,6 +1418,10 @@
 			},
 			"properties": {
 				"cluster": 7,
+				"centroid": [
+					-71.60386443367564,
+					25.68144722581964
+				],
 				"marker-color": "#ff9f00",
 				"marker-size": "small"
 			}
@@ -1137,6 +1437,10 @@
 			},
 			"properties": {
 				"cluster": 13,
+				"centroid": [
+					-71.88949473129752,
+					18.220552149539706
+				],
 				"marker-color": "#00ffe0",
 				"marker-size": "small"
 			}
@@ -1152,6 +1456,10 @@
 			},
 			"properties": {
 				"cluster": 14,
+				"centroid": [
+					-85.66057622205204,
+					25.309521790657058
+				],
 				"marker-color": "#00beff",
 				"marker-size": "small"
 			}
@@ -1167,6 +1475,10 @@
 			},
 			"properties": {
 				"cluster": 12,
+				"centroid": [
+					-77.46953467512287,
+					17.829026800774887
+				],
 				"marker-color": "#00ff80",
 				"marker-size": "small"
 			}
@@ -1182,6 +1494,10 @@
 			},
 			"properties": {
 				"cluster": 9,
+				"centroid": [
+					-83.28970527419875,
+					25.03901137331529
+				],
 				"marker-color": "#9fff00",
 				"marker-size": "small"
 			}
@@ -1197,6 +1513,10 @@
 			},
 			"properties": {
 				"cluster": 0,
+				"centroid": [
+					-85.22273916681061,
+					18.11205670884361
+				],
 				"marker-color": "#0000ff",
 				"marker-size": "small"
 			}
@@ -1212,6 +1532,10 @@
 			},
 			"properties": {
 				"cluster": 6,
+				"centroid": [
+					-78.71931668447289,
+					26.441283306379056
+				],
 				"marker-color": "#ff4000",
 				"marker-size": "small"
 			}
@@ -1227,6 +1551,10 @@
 			},
 			"properties": {
 				"cluster": 9,
+				"centroid": [
+					-83.28970527419875,
+					25.03901137331529
+				],
 				"marker-color": "#9fff00",
 				"marker-size": "small"
 			}
@@ -1242,6 +1570,10 @@
 			},
 			"properties": {
 				"cluster": 4,
+				"centroid": [
+					-72.1036518524473,
+					21.632139370868533
+				],
 				"marker-color": "#ff007e",
 				"marker-size": "small"
 			}
@@ -1257,6 +1589,10 @@
 			},
 			"properties": {
 				"cluster": 1,
+				"centroid": [
+					-85.201027549492,
+					21.346638923038203
+				],
 				"marker-color": "#5f00ff",
 				"marker-size": "small"
 			}
@@ -1272,6 +1608,10 @@
 			},
 			"properties": {
 				"cluster": 9,
+				"centroid": [
+					-83.28970527419875,
+					25.03901137331529
+				],
 				"marker-color": "#9fff00",
 				"marker-size": "small"
 			}
@@ -1287,6 +1627,10 @@
 			},
 			"properties": {
 				"cluster": 9,
+				"centroid": [
+					-83.28970527419875,
+					25.03901137331529
+				],
 				"marker-color": "#9fff00",
 				"marker-size": "small"
 			}
@@ -1302,6 +1646,10 @@
 			},
 			"properties": {
 				"cluster": 6,
+				"centroid": [
+					-78.71931668447289,
+					26.441283306379056
+				],
 				"marker-color": "#ff4000",
 				"marker-size": "small"
 			}
@@ -1317,6 +1665,10 @@
 			},
 			"properties": {
 				"cluster": 13,
+				"centroid": [
+					-71.88949473129752,
+					18.220552149539706
+				],
 				"marker-color": "#00ffe0",
 				"marker-size": "small"
 			}
@@ -1332,6 +1684,10 @@
 			},
 			"properties": {
 				"cluster": 7,
+				"centroid": [
+					-71.60386443367564,
+					25.68144722581964
+				],
 				"marker-color": "#ff9f00",
 				"marker-size": "small"
 			}
@@ -1347,6 +1703,10 @@
 			},
 			"properties": {
 				"cluster": 10,
+				"centroid": [
+					-81.67819501734249,
+					22.456058950791007
+				],
 				"marker-color": "#3fff00",
 				"marker-size": "small"
 			}
@@ -1362,6 +1722,10 @@
 			},
 			"properties": {
 				"cluster": 6,
+				"centroid": [
+					-78.71931668447289,
+					26.441283306379056
+				],
 				"marker-color": "#ff4000",
 				"marker-size": "small"
 			}
@@ -1377,6 +1741,10 @@
 			},
 			"properties": {
 				"cluster": 9,
+				"centroid": [
+					-83.28970527419875,
+					25.03901137331529
+				],
 				"marker-color": "#9fff00",
 				"marker-size": "small"
 			}
@@ -1392,6 +1760,10 @@
 			},
 			"properties": {
 				"cluster": 3,
+				"centroid": [
+					-82.07389862745148,
+					18.10014805204155
+				],
 				"marker-color": "#ff00de",
 				"marker-size": "small"
 			}
@@ -1407,6 +1779,10 @@
 			},
 			"properties": {
 				"cluster": 2,
+				"centroid": [
+					-77.80959890542613,
+					23.062586927512516
+				],
 				"marker-color": "#bf00ff",
 				"marker-size": "small"
 			}
@@ -1422,6 +1798,10 @@
 			},
 			"properties": {
 				"cluster": 1,
+				"centroid": [
+					-85.201027549492,
+					21.346638923038203
+				],
 				"marker-color": "#5f00ff",
 				"marker-size": "small"
 			}
@@ -1437,6 +1817,10 @@
 			},
 			"properties": {
 				"cluster": 4,
+				"centroid": [
+					-72.1036518524473,
+					21.632139370868533
+				],
 				"marker-color": "#ff007e",
 				"marker-size": "small"
 			}
@@ -1452,6 +1836,10 @@
 			},
 			"properties": {
 				"cluster": 5,
+				"centroid": [
+					-74.59772375968392,
+					26.040657608812058
+				],
 				"marker-color": "#ff001e",
 				"marker-size": "small"
 			}
@@ -1467,6 +1855,10 @@
 			},
 			"properties": {
 				"cluster": 14,
+				"centroid": [
+					-85.66057622205204,
+					25.309521790657058
+				],
 				"marker-color": "#00beff",
 				"marker-size": "small"
 			}
@@ -1482,6 +1874,10 @@
 			},
 			"properties": {
 				"cluster": 14,
+				"centroid": [
+					-85.66057622205204,
+					25.309521790657058
+				],
 				"marker-color": "#00beff",
 				"marker-size": "small"
 			}
@@ -1497,6 +1893,10 @@
 			},
 			"properties": {
 				"cluster": 4,
+				"centroid": [
+					-72.1036518524473,
+					21.632139370868533
+				],
 				"marker-color": "#ff007e",
 				"marker-size": "small"
 			}
@@ -1512,6 +1912,10 @@
 			},
 			"properties": {
 				"cluster": 8,
+				"centroid": [
+					-74.65884587304036,
+					23.14443612672486
+				],
 				"marker-color": "#ffff00",
 				"marker-size": "small"
 			}
@@ -1527,6 +1931,10 @@
 			},
 			"properties": {
 				"cluster": 6,
+				"centroid": [
+					-78.71931668447289,
+					26.441283306379056
+				],
 				"marker-color": "#ff4000",
 				"marker-size": "small"
 			}
@@ -1542,6 +1950,10 @@
 			},
 			"properties": {
 				"cluster": 7,
+				"centroid": [
+					-71.60386443367564,
+					25.68144722581964
+				],
 				"marker-color": "#ff9f00",
 				"marker-size": "small"
 			}
@@ -1557,6 +1969,10 @@
 			},
 			"properties": {
 				"cluster": 1,
+				"centroid": [
+					-85.201027549492,
+					21.346638923038203
+				],
 				"marker-color": "#5f00ff",
 				"marker-size": "small"
 			}
@@ -1572,6 +1988,10 @@
 			},
 			"properties": {
 				"cluster": 15,
+				"centroid": [
+					-79.95661302836459,
+					19.68004339959817
+				],
 				"marker-color": "#005fff",
 				"marker-size": "small"
 			}
@@ -1587,6 +2007,10 @@
 			},
 			"properties": {
 				"cluster": 3,
+				"centroid": [
+					-82.07389862745148,
+					18.10014805204155
+				],
 				"marker-color": "#ff00de",
 				"marker-size": "small"
 			}
@@ -1602,6 +2026,10 @@
 			},
 			"properties": {
 				"cluster": 5,
+				"centroid": [
+					-74.59772375968392,
+					26.040657608812058
+				],
 				"marker-color": "#ff001e",
 				"marker-size": "small"
 			}
@@ -1617,6 +2045,10 @@
 			},
 			"properties": {
 				"cluster": 12,
+				"centroid": [
+					-77.46953467512287,
+					17.829026800774887
+				],
 				"marker-color": "#00ff80",
 				"marker-size": "small"
 			}
@@ -1632,6 +2064,10 @@
 			},
 			"properties": {
 				"cluster": 1,
+				"centroid": [
+					-85.201027549492,
+					21.346638923038203
+				],
 				"marker-color": "#5f00ff",
 				"marker-size": "small"
 			}
@@ -1647,6 +2083,10 @@
 			},
 			"properties": {
 				"cluster": 15,
+				"centroid": [
+					-79.95661302836459,
+					19.68004339959817
+				],
 				"marker-color": "#005fff",
 				"marker-size": "small"
 			}
@@ -1662,6 +2102,10 @@
 			},
 			"properties": {
 				"cluster": 3,
+				"centroid": [
+					-82.07389862745148,
+					18.10014805204155
+				],
 				"marker-color": "#ff00de",
 				"marker-size": "small"
 			}
@@ -1677,6 +2121,10 @@
 			},
 			"properties": {
 				"cluster": 2,
+				"centroid": [
+					-77.80959890542613,
+					23.062586927512516
+				],
 				"marker-color": "#bf00ff",
 				"marker-size": "small"
 			}
@@ -1692,6 +2140,10 @@
 			},
 			"properties": {
 				"cluster": 12,
+				"centroid": [
+					-77.46953467512287,
+					17.829026800774887
+				],
 				"marker-color": "#00ff80",
 				"marker-size": "small"
 			}
@@ -1707,6 +2159,10 @@
 			},
 			"properties": {
 				"cluster": 0,
+				"centroid": [
+					-85.22273916681061,
+					18.11205670884361
+				],
 				"marker-color": "#0000ff",
 				"marker-size": "small"
 			}
@@ -1722,6 +2178,10 @@
 			},
 			"properties": {
 				"cluster": 8,
+				"centroid": [
+					-74.65884587304036,
+					23.14443612672486
+				],
 				"marker-color": "#ffff00",
 				"marker-size": "small"
 			}
@@ -1737,6 +2197,10 @@
 			},
 			"properties": {
 				"cluster": 14,
+				"centroid": [
+					-85.66057622205204,
+					25.309521790657058
+				],
 				"marker-color": "#00beff",
 				"marker-size": "small"
 			}
@@ -1752,6 +2216,10 @@
 			},
 			"properties": {
 				"cluster": 9,
+				"centroid": [
+					-83.28970527419875,
+					25.03901137331529
+				],
 				"marker-color": "#9fff00",
 				"marker-size": "small"
 			}
@@ -1767,6 +2235,10 @@
 			},
 			"properties": {
 				"cluster": 3,
+				"centroid": [
+					-82.07389862745148,
+					18.10014805204155
+				],
 				"marker-color": "#ff00de",
 				"marker-size": "small"
 			}
@@ -1782,6 +2254,10 @@
 			},
 			"properties": {
 				"cluster": 11,
+				"centroid": [
+					-74.87813096725604,
+					19.051404705480532
+				],
 				"marker-color": "#00ff20",
 				"marker-size": "small"
 			}
@@ -1797,6 +2273,10 @@
 			},
 			"properties": {
 				"cluster": 2,
+				"centroid": [
+					-77.80959890542613,
+					23.062586927512516
+				],
 				"marker-color": "#bf00ff",
 				"marker-size": "small"
 			}
@@ -1812,6 +2292,10 @@
 			},
 			"properties": {
 				"cluster": 10,
+				"centroid": [
+					-81.67819501734249,
+					22.456058950791007
+				],
 				"marker-color": "#3fff00",
 				"marker-size": "small"
 			}
@@ -1827,6 +2311,10 @@
 			},
 			"properties": {
 				"cluster": 10,
+				"centroid": [
+					-81.67819501734249,
+					22.456058950791007
+				],
 				"marker-color": "#3fff00",
 				"marker-size": "small"
 			}
@@ -1842,6 +2330,10 @@
 			},
 			"properties": {
 				"cluster": 5,
+				"centroid": [
+					-74.59772375968392,
+					26.040657608812058
+				],
 				"marker-color": "#ff001e",
 				"marker-size": "small"
 			}
@@ -1857,6 +2349,10 @@
 			},
 			"properties": {
 				"cluster": 1,
+				"centroid": [
+					-85.201027549492,
+					21.346638923038203
+				],
 				"marker-color": "#5f00ff",
 				"marker-size": "small"
 			}
@@ -1872,6 +2368,10 @@
 			},
 			"properties": {
 				"cluster": 11,
+				"centroid": [
+					-74.87813096725604,
+					19.051404705480532
+				],
 				"marker-color": "#00ff20",
 				"marker-size": "small"
 			}
@@ -1887,6 +2387,10 @@
 			},
 			"properties": {
 				"cluster": 5,
+				"centroid": [
+					-74.59772375968392,
+					26.040657608812058
+				],
 				"marker-color": "#ff001e",
 				"marker-size": "small"
 			}
@@ -1902,6 +2406,10 @@
 			},
 			"properties": {
 				"cluster": 12,
+				"centroid": [
+					-77.46953467512287,
+					17.829026800774887
+				],
 				"marker-color": "#00ff80",
 				"marker-size": "small"
 			}
@@ -1917,6 +2425,10 @@
 			},
 			"properties": {
 				"cluster": 9,
+				"centroid": [
+					-83.28970527419875,
+					25.03901137331529
+				],
 				"marker-color": "#9fff00",
 				"marker-size": "small"
 			}
@@ -1932,6 +2444,10 @@
 			},
 			"properties": {
 				"cluster": 0,
+				"centroid": [
+					-85.22273916681061,
+					18.11205670884361
+				],
 				"marker-color": "#0000ff",
 				"marker-size": "small"
 			}
@@ -1947,6 +2463,10 @@
 			},
 			"properties": {
 				"cluster": 10,
+				"centroid": [
+					-81.67819501734249,
+					22.456058950791007
+				],
 				"marker-color": "#3fff00",
 				"marker-size": "small"
 			}
@@ -1962,6 +2482,10 @@
 			},
 			"properties": {
 				"cluster": 5,
+				"centroid": [
+					-74.59772375968392,
+					26.040657608812058
+				],
 				"marker-color": "#ff001e",
 				"marker-size": "small"
 			}
@@ -1977,6 +2501,10 @@
 			},
 			"properties": {
 				"cluster": 2,
+				"centroid": [
+					-77.80959890542613,
+					23.062586927512516
+				],
 				"marker-color": "#bf00ff",
 				"marker-size": "small"
 			}
@@ -1992,6 +2520,10 @@
 			},
 			"properties": {
 				"cluster": 0,
+				"centroid": [
+					-85.22273916681061,
+					18.11205670884361
+				],
 				"marker-color": "#0000ff",
 				"marker-size": "small"
 			}
@@ -2007,6 +2539,10 @@
 			},
 			"properties": {
 				"cluster": 11,
+				"centroid": [
+					-74.87813096725604,
+					19.051404705480532
+				],
 				"marker-color": "#00ff20",
 				"marker-size": "small"
 			}
@@ -2022,6 +2558,10 @@
 			},
 			"properties": {
 				"cluster": 2,
+				"centroid": [
+					-77.80959890542613,
+					23.062586927512516
+				],
 				"marker-color": "#bf00ff",
 				"marker-size": "small"
 			}
@@ -2037,6 +2577,10 @@
 			},
 			"properties": {
 				"cluster": 4,
+				"centroid": [
+					-72.1036518524473,
+					21.632139370868533
+				],
 				"marker-color": "#ff007e",
 				"marker-size": "small"
 			}
@@ -2052,6 +2596,10 @@
 			},
 			"properties": {
 				"cluster": 5,
+				"centroid": [
+					-74.59772375968392,
+					26.040657608812058
+				],
 				"marker-color": "#ff001e",
 				"marker-size": "small"
 			}
@@ -2067,6 +2615,10 @@
 			},
 			"properties": {
 				"cluster": 8,
+				"centroid": [
+					-74.65884587304036,
+					23.14443612672486
+				],
 				"marker-color": "#ffff00",
 				"marker-size": "small"
 			}
@@ -2082,6 +2634,10 @@
 			},
 			"properties": {
 				"cluster": 2,
+				"centroid": [
+					-77.80959890542613,
+					23.062586927512516
+				],
 				"marker-color": "#bf00ff",
 				"marker-size": "small"
 			}
@@ -2097,6 +2653,10 @@
 			},
 			"properties": {
 				"cluster": 5,
+				"centroid": [
+					-74.59772375968392,
+					26.040657608812058
+				],
 				"marker-color": "#ff001e",
 				"marker-size": "small"
 			}
@@ -2112,6 +2672,10 @@
 			},
 			"properties": {
 				"cluster": 5,
+				"centroid": [
+					-74.59772375968392,
+					26.040657608812058
+				],
 				"marker-color": "#ff001e",
 				"marker-size": "small"
 			}
@@ -2127,6 +2691,10 @@
 			},
 			"properties": {
 				"cluster": 1,
+				"centroid": [
+					-85.201027549492,
+					21.346638923038203
+				],
 				"marker-color": "#5f00ff",
 				"marker-size": "small"
 			}
@@ -2142,6 +2710,10 @@
 			},
 			"properties": {
 				"cluster": 14,
+				"centroid": [
+					-85.66057622205204,
+					25.309521790657058
+				],
 				"marker-color": "#00beff",
 				"marker-size": "small"
 			}
@@ -2157,6 +2729,10 @@
 			},
 			"properties": {
 				"cluster": 11,
+				"centroid": [
+					-74.87813096725604,
+					19.051404705480532
+				],
 				"marker-color": "#00ff20",
 				"marker-size": "small"
 			}
@@ -2172,6 +2748,10 @@
 			},
 			"properties": {
 				"cluster": 4,
+				"centroid": [
+					-72.1036518524473,
+					21.632139370868533
+				],
 				"marker-color": "#ff007e",
 				"marker-size": "small"
 			}
@@ -2187,6 +2767,10 @@
 			},
 			"properties": {
 				"cluster": 15,
+				"centroid": [
+					-79.95661302836459,
+					19.68004339959817
+				],
 				"marker-color": "#005fff",
 				"marker-size": "small"
 			}
@@ -2202,6 +2786,10 @@
 			},
 			"properties": {
 				"cluster": 0,
+				"centroid": [
+					-85.22273916681061,
+					18.11205670884361
+				],
 				"marker-color": "#0000ff",
 				"marker-size": "small"
 			}
@@ -2217,6 +2805,10 @@
 			},
 			"properties": {
 				"cluster": 8,
+				"centroid": [
+					-74.65884587304036,
+					23.14443612672486
+				],
 				"marker-color": "#ffff00",
 				"marker-size": "small"
 			}
@@ -2232,6 +2824,10 @@
 			},
 			"properties": {
 				"cluster": 9,
+				"centroid": [
+					-83.28970527419875,
+					25.03901137331529
+				],
 				"marker-color": "#9fff00",
 				"marker-size": "small"
 			}
@@ -2247,6 +2843,10 @@
 			},
 			"properties": {
 				"cluster": 12,
+				"centroid": [
+					-77.46953467512287,
+					17.829026800774887
+				],
 				"marker-color": "#00ff80",
 				"marker-size": "small"
 			}
@@ -2262,6 +2862,10 @@
 			},
 			"properties": {
 				"cluster": 4,
+				"centroid": [
+					-72.1036518524473,
+					21.632139370868533
+				],
 				"marker-color": "#ff007e",
 				"marker-size": "small"
 			}
@@ -2277,6 +2881,10 @@
 			},
 			"properties": {
 				"cluster": 3,
+				"centroid": [
+					-82.07389862745148,
+					18.10014805204155
+				],
 				"marker-color": "#ff00de",
 				"marker-size": "small"
 			}
@@ -2292,6 +2900,10 @@
 			},
 			"properties": {
 				"cluster": 5,
+				"centroid": [
+					-74.59772375968392,
+					26.040657608812058
+				],
 				"marker-color": "#ff001e",
 				"marker-size": "small"
 			}
@@ -2307,6 +2919,10 @@
 			},
 			"properties": {
 				"cluster": 10,
+				"centroid": [
+					-81.67819501734249,
+					22.456058950791007
+				],
 				"marker-color": "#3fff00",
 				"marker-size": "small"
 			}
@@ -2322,6 +2938,10 @@
 			},
 			"properties": {
 				"cluster": 6,
+				"centroid": [
+					-78.71931668447289,
+					26.441283306379056
+				],
 				"marker-color": "#ff4000",
 				"marker-size": "small"
 			}
@@ -2337,6 +2957,10 @@
 			},
 			"properties": {
 				"cluster": 3,
+				"centroid": [
+					-82.07389862745148,
+					18.10014805204155
+				],
 				"marker-color": "#ff00de",
 				"marker-size": "small"
 			}
@@ -2352,6 +2976,10 @@
 			},
 			"properties": {
 				"cluster": 10,
+				"centroid": [
+					-81.67819501734249,
+					22.456058950791007
+				],
 				"marker-color": "#3fff00",
 				"marker-size": "small"
 			}
@@ -2367,6 +2995,10 @@
 			},
 			"properties": {
 				"cluster": 2,
+				"centroid": [
+					-77.80959890542613,
+					23.062586927512516
+				],
 				"marker-color": "#bf00ff",
 				"marker-size": "small"
 			}
@@ -2382,6 +3014,10 @@
 			},
 			"properties": {
 				"cluster": 0,
+				"centroid": [
+					-85.22273916681061,
+					18.11205670884361
+				],
 				"marker-color": "#0000ff",
 				"marker-size": "small"
 			}
@@ -2397,6 +3033,10 @@
 			},
 			"properties": {
 				"cluster": 10,
+				"centroid": [
+					-81.67819501734249,
+					22.456058950791007
+				],
 				"marker-color": "#3fff00",
 				"marker-size": "small"
 			}
@@ -2412,6 +3052,10 @@
 			},
 			"properties": {
 				"cluster": 14,
+				"centroid": [
+					-85.66057622205204,
+					25.309521790657058
+				],
 				"marker-color": "#00beff",
 				"marker-size": "small"
 			}
@@ -2427,6 +3071,10 @@
 			},
 			"properties": {
 				"cluster": 11,
+				"centroid": [
+					-74.87813096725604,
+					19.051404705480532
+				],
 				"marker-color": "#00ff20",
 				"marker-size": "small"
 			}
@@ -2442,6 +3090,10 @@
 			},
 			"properties": {
 				"cluster": 5,
+				"centroid": [
+					-74.59772375968392,
+					26.040657608812058
+				],
 				"marker-color": "#ff001e",
 				"marker-size": "small"
 			}
@@ -2457,6 +3109,10 @@
 			},
 			"properties": {
 				"cluster": 15,
+				"centroid": [
+					-79.95661302836459,
+					19.68004339959817
+				],
 				"marker-color": "#005fff",
 				"marker-size": "small"
 			}
@@ -2472,6 +3128,10 @@
 			},
 			"properties": {
 				"cluster": 3,
+				"centroid": [
+					-82.07389862745148,
+					18.10014805204155
+				],
 				"marker-color": "#ff00de",
 				"marker-size": "small"
 			}
@@ -2487,6 +3147,10 @@
 			},
 			"properties": {
 				"cluster": 5,
+				"centroid": [
+					-74.59772375968392,
+					26.040657608812058
+				],
 				"marker-color": "#ff001e",
 				"marker-size": "small"
 			}
@@ -2502,6 +3166,10 @@
 			},
 			"properties": {
 				"cluster": 2,
+				"centroid": [
+					-77.80959890542613,
+					23.062586927512516
+				],
 				"marker-color": "#bf00ff",
 				"marker-size": "small"
 			}
@@ -2517,6 +3185,10 @@
 			},
 			"properties": {
 				"cluster": 7,
+				"centroid": [
+					-71.60386443367564,
+					25.68144722581964
+				],
 				"marker-color": "#ff9f00",
 				"marker-size": "small"
 			}
@@ -2532,6 +3204,10 @@
 			},
 			"properties": {
 				"cluster": 0,
+				"centroid": [
+					-85.22273916681061,
+					18.11205670884361
+				],
 				"marker-color": "#0000ff",
 				"marker-size": "small"
 			}
@@ -2547,6 +3223,10 @@
 			},
 			"properties": {
 				"cluster": 12,
+				"centroid": [
+					-77.46953467512287,
+					17.829026800774887
+				],
 				"marker-color": "#00ff80",
 				"marker-size": "small"
 			}
@@ -2562,6 +3242,10 @@
 			},
 			"properties": {
 				"cluster": 2,
+				"centroid": [
+					-77.80959890542613,
+					23.062586927512516
+				],
 				"marker-color": "#bf00ff",
 				"marker-size": "small"
 			}
@@ -2577,6 +3261,10 @@
 			},
 			"properties": {
 				"cluster": 7,
+				"centroid": [
+					-71.60386443367564,
+					25.68144722581964
+				],
 				"marker-color": "#ff9f00",
 				"marker-size": "small"
 			}
@@ -2592,6 +3280,10 @@
 			},
 			"properties": {
 				"cluster": 2,
+				"centroid": [
+					-77.80959890542613,
+					23.062586927512516
+				],
 				"marker-color": "#bf00ff",
 				"marker-size": "small"
 			}
@@ -2607,6 +3299,10 @@
 			},
 			"properties": {
 				"cluster": 9,
+				"centroid": [
+					-83.28970527419875,
+					25.03901137331529
+				],
 				"marker-color": "#9fff00",
 				"marker-size": "small"
 			}
@@ -2622,6 +3318,10 @@
 			},
 			"properties": {
 				"cluster": 7,
+				"centroid": [
+					-71.60386443367564,
+					25.68144722581964
+				],
 				"marker-color": "#ff9f00",
 				"marker-size": "small"
 			}
@@ -2637,6 +3337,10 @@
 			},
 			"properties": {
 				"cluster": 3,
+				"centroid": [
+					-82.07389862745148,
+					18.10014805204155
+				],
 				"marker-color": "#ff00de",
 				"marker-size": "small"
 			}
@@ -2652,6 +3356,10 @@
 			},
 			"properties": {
 				"cluster": 13,
+				"centroid": [
+					-71.88949473129752,
+					18.220552149539706
+				],
 				"marker-color": "#00ffe0",
 				"marker-size": "small"
 			}
@@ -2667,6 +3375,10 @@
 			},
 			"properties": {
 				"cluster": 0,
+				"centroid": [
+					-85.22273916681061,
+					18.11205670884361
+				],
 				"marker-color": "#0000ff",
 				"marker-size": "small"
 			}
@@ -2682,6 +3394,10 @@
 			},
 			"properties": {
 				"cluster": 3,
+				"centroid": [
+					-82.07389862745148,
+					18.10014805204155
+				],
 				"marker-color": "#ff00de",
 				"marker-size": "small"
 			}
@@ -2697,6 +3413,10 @@
 			},
 			"properties": {
 				"cluster": 11,
+				"centroid": [
+					-74.87813096725604,
+					19.051404705480532
+				],
 				"marker-color": "#00ff20",
 				"marker-size": "small"
 			}
@@ -2712,6 +3432,10 @@
 			},
 			"properties": {
 				"cluster": 2,
+				"centroid": [
+					-77.80959890542613,
+					23.062586927512516
+				],
 				"marker-color": "#bf00ff",
 				"marker-size": "small"
 			}
@@ -2727,6 +3451,10 @@
 			},
 			"properties": {
 				"cluster": 4,
+				"centroid": [
+					-72.1036518524473,
+					21.632139370868533
+				],
 				"marker-color": "#ff007e",
 				"marker-size": "small"
 			}
@@ -2742,6 +3470,10 @@
 			},
 			"properties": {
 				"cluster": 3,
+				"centroid": [
+					-82.07389862745148,
+					18.10014805204155
+				],
 				"marker-color": "#ff00de",
 				"marker-size": "small"
 			}
@@ -2757,6 +3489,10 @@
 			},
 			"properties": {
 				"cluster": 2,
+				"centroid": [
+					-77.80959890542613,
+					23.062586927512516
+				],
 				"marker-color": "#bf00ff",
 				"marker-size": "small"
 			}
@@ -2772,6 +3508,10 @@
 			},
 			"properties": {
 				"cluster": 14,
+				"centroid": [
+					-85.66057622205204,
+					25.309521790657058
+				],
 				"marker-color": "#00beff",
 				"marker-size": "small"
 			}
@@ -2787,6 +3527,10 @@
 			},
 			"properties": {
 				"cluster": 9,
+				"centroid": [
+					-83.28970527419875,
+					25.03901137331529
+				],
 				"marker-color": "#9fff00",
 				"marker-size": "small"
 			}
@@ -2802,6 +3546,10 @@
 			},
 			"properties": {
 				"cluster": 11,
+				"centroid": [
+					-74.87813096725604,
+					19.051404705480532
+				],
 				"marker-color": "#00ff20",
 				"marker-size": "small"
 			}
@@ -2817,6 +3565,10 @@
 			},
 			"properties": {
 				"cluster": 11,
+				"centroid": [
+					-74.87813096725604,
+					19.051404705480532
+				],
 				"marker-color": "#00ff20",
 				"marker-size": "small"
 			}
@@ -2832,6 +3584,10 @@
 			},
 			"properties": {
 				"cluster": 3,
+				"centroid": [
+					-82.07389862745148,
+					18.10014805204155
+				],
 				"marker-color": "#ff00de",
 				"marker-size": "small"
 			}
@@ -2847,6 +3603,10 @@
 			},
 			"properties": {
 				"cluster": 2,
+				"centroid": [
+					-77.80959890542613,
+					23.062586927512516
+				],
 				"marker-color": "#bf00ff",
 				"marker-size": "small"
 			}
@@ -2862,6 +3622,10 @@
 			},
 			"properties": {
 				"cluster": 5,
+				"centroid": [
+					-74.59772375968392,
+					26.040657608812058
+				],
 				"marker-color": "#ff001e",
 				"marker-size": "small"
 			}
@@ -2877,6 +3641,10 @@
 			},
 			"properties": {
 				"cluster": 13,
+				"centroid": [
+					-71.88949473129752,
+					18.220552149539706
+				],
 				"marker-color": "#00ffe0",
 				"marker-size": "small"
 			}
@@ -2892,6 +3660,10 @@
 			},
 			"properties": {
 				"cluster": 3,
+				"centroid": [
+					-82.07389862745148,
+					18.10014805204155
+				],
 				"marker-color": "#ff00de",
 				"marker-size": "small"
 			}
@@ -2907,6 +3679,10 @@
 			},
 			"properties": {
 				"cluster": 9,
+				"centroid": [
+					-83.28970527419875,
+					25.03901137331529
+				],
 				"marker-color": "#9fff00",
 				"marker-size": "small"
 			}
@@ -2922,6 +3698,10 @@
 			},
 			"properties": {
 				"cluster": 4,
+				"centroid": [
+					-72.1036518524473,
+					21.632139370868533
+				],
 				"marker-color": "#ff007e",
 				"marker-size": "small"
 			}
@@ -2937,6 +3717,10 @@
 			},
 			"properties": {
 				"cluster": 8,
+				"centroid": [
+					-74.65884587304036,
+					23.14443612672486
+				],
 				"marker-color": "#ffff00",
 				"marker-size": "small"
 			}
@@ -2952,6 +3736,10 @@
 			},
 			"properties": {
 				"cluster": 8,
+				"centroid": [
+					-74.65884587304036,
+					23.14443612672486
+				],
 				"marker-color": "#ffff00",
 				"marker-size": "small"
 			}
@@ -2967,6 +3755,10 @@
 			},
 			"properties": {
 				"cluster": 3,
+				"centroid": [
+					-82.07389862745148,
+					18.10014805204155
+				],
 				"marker-color": "#ff00de",
 				"marker-size": "small"
 			}
@@ -2982,6 +3774,10 @@
 			},
 			"properties": {
 				"cluster": 7,
+				"centroid": [
+					-71.60386443367564,
+					25.68144722581964
+				],
 				"marker-color": "#ff9f00",
 				"marker-size": "small"
 			}
@@ -2997,6 +3793,10 @@
 			},
 			"properties": {
 				"cluster": 14,
+				"centroid": [
+					-85.66057622205204,
+					25.309521790657058
+				],
 				"marker-color": "#00beff",
 				"marker-size": "small"
 			}
@@ -3012,6 +3812,10 @@
 			},
 			"properties": {
 				"cluster": 7,
+				"centroid": [
+					-71.60386443367564,
+					25.68144722581964
+				],
 				"marker-color": "#ff9f00",
 				"marker-size": "small"
 			}
@@ -3027,6 +3831,10 @@
 			},
 			"properties": {
 				"cluster": 8,
+				"centroid": [
+					-74.65884587304036,
+					23.14443612672486
+				],
 				"marker-color": "#ffff00",
 				"marker-size": "small"
 			}
@@ -3042,6 +3850,10 @@
 			},
 			"properties": {
 				"cluster": 10,
+				"centroid": [
+					-81.67819501734249,
+					22.456058950791007
+				],
 				"marker-color": "#3fff00",
 				"marker-size": "small"
 			}
@@ -3057,6 +3869,10 @@
 			},
 			"properties": {
 				"cluster": 6,
+				"centroid": [
+					-78.71931668447289,
+					26.441283306379056
+				],
 				"marker-color": "#ff4000",
 				"marker-size": "small"
 			}
@@ -3072,6 +3888,10 @@
 			},
 			"properties": {
 				"cluster": 0,
+				"centroid": [
+					-85.22273916681061,
+					18.11205670884361
+				],
 				"marker-color": "#0000ff",
 				"marker-size": "small"
 			}
@@ -3087,6 +3907,10 @@
 			},
 			"properties": {
 				"cluster": 1,
+				"centroid": [
+					-85.201027549492,
+					21.346638923038203
+				],
 				"marker-color": "#5f00ff",
 				"marker-size": "small"
 			}
@@ -3102,6 +3926,10 @@
 			},
 			"properties": {
 				"cluster": 1,
+				"centroid": [
+					-85.201027549492,
+					21.346638923038203
+				],
 				"marker-color": "#5f00ff",
 				"marker-size": "small"
 			}
@@ -3117,6 +3945,10 @@
 			},
 			"properties": {
 				"cluster": 13,
+				"centroid": [
+					-71.88949473129752,
+					18.220552149539706
+				],
 				"marker-color": "#00ffe0",
 				"marker-size": "small"
 			}
@@ -3132,6 +3964,10 @@
 			},
 			"properties": {
 				"cluster": 10,
+				"centroid": [
+					-81.67819501734249,
+					22.456058950791007
+				],
 				"marker-color": "#3fff00",
 				"marker-size": "small"
 			}
@@ -3147,6 +3983,10 @@
 			},
 			"properties": {
 				"cluster": 11,
+				"centroid": [
+					-74.87813096725604,
+					19.051404705480532
+				],
 				"marker-color": "#00ff20",
 				"marker-size": "small"
 			}
@@ -3162,6 +4002,10 @@
 			},
 			"properties": {
 				"cluster": 12,
+				"centroid": [
+					-77.46953467512287,
+					17.829026800774887
+				],
 				"marker-color": "#00ff80",
 				"marker-size": "small"
 			}
@@ -3177,6 +4021,10 @@
 			},
 			"properties": {
 				"cluster": 6,
+				"centroid": [
+					-78.71931668447289,
+					26.441283306379056
+				],
 				"marker-color": "#ff4000",
 				"marker-size": "small"
 			}
@@ -3192,6 +4040,10 @@
 			},
 			"properties": {
 				"cluster": 8,
+				"centroid": [
+					-74.65884587304036,
+					23.14443612672486
+				],
 				"marker-color": "#ffff00",
 				"marker-size": "small"
 			}
@@ -3207,6 +4059,10 @@
 			},
 			"properties": {
 				"cluster": 4,
+				"centroid": [
+					-72.1036518524473,
+					21.632139370868533
+				],
 				"marker-color": "#ff007e",
 				"marker-size": "small"
 			}
@@ -3222,6 +4078,10 @@
 			},
 			"properties": {
 				"cluster": 6,
+				"centroid": [
+					-78.71931668447289,
+					26.441283306379056
+				],
 				"marker-color": "#ff4000",
 				"marker-size": "small"
 			}
@@ -3237,6 +4097,10 @@
 			},
 			"properties": {
 				"cluster": 11,
+				"centroid": [
+					-74.87813096725604,
+					19.051404705480532
+				],
 				"marker-color": "#00ff20",
 				"marker-size": "small"
 			}
@@ -3252,6 +4116,10 @@
 			},
 			"properties": {
 				"cluster": 0,
+				"centroid": [
+					-85.22273916681061,
+					18.11205670884361
+				],
 				"marker-color": "#0000ff",
 				"marker-size": "small"
 			}
@@ -3267,6 +4135,10 @@
 			},
 			"properties": {
 				"cluster": 10,
+				"centroid": [
+					-81.67819501734249,
+					22.456058950791007
+				],
 				"marker-color": "#3fff00",
 				"marker-size": "small"
 			}
@@ -3282,6 +4154,10 @@
 			},
 			"properties": {
 				"cluster": 13,
+				"centroid": [
+					-71.88949473129752,
+					18.220552149539706
+				],
 				"marker-color": "#00ffe0",
 				"marker-size": "small"
 			}
@@ -3297,6 +4173,10 @@
 			},
 			"properties": {
 				"cluster": 2,
+				"centroid": [
+					-77.80959890542613,
+					23.062586927512516
+				],
 				"marker-color": "#bf00ff",
 				"marker-size": "small"
 			}
@@ -3312,6 +4192,10 @@
 			},
 			"properties": {
 				"cluster": 11,
+				"centroid": [
+					-74.87813096725604,
+					19.051404705480532
+				],
 				"marker-color": "#00ff20",
 				"marker-size": "small"
 			}
@@ -3327,6 +4211,10 @@
 			},
 			"properties": {
 				"cluster": 1,
+				"centroid": [
+					-85.201027549492,
+					21.346638923038203
+				],
 				"marker-color": "#5f00ff",
 				"marker-size": "small"
 			}
@@ -3342,6 +4230,10 @@
 			},
 			"properties": {
 				"cluster": 5,
+				"centroid": [
+					-74.59772375968392,
+					26.040657608812058
+				],
 				"marker-color": "#ff001e",
 				"marker-size": "small"
 			}
@@ -3357,6 +4249,10 @@
 			},
 			"properties": {
 				"cluster": 8,
+				"centroid": [
+					-74.65884587304036,
+					23.14443612672486
+				],
 				"marker-color": "#ffff00",
 				"marker-size": "small"
 			}
@@ -3372,6 +4268,10 @@
 			},
 			"properties": {
 				"cluster": 6,
+				"centroid": [
+					-78.71931668447289,
+					26.441283306379056
+				],
 				"marker-color": "#ff4000",
 				"marker-size": "small"
 			}
@@ -3387,6 +4287,10 @@
 			},
 			"properties": {
 				"cluster": 0,
+				"centroid": [
+					-85.22273916681061,
+					18.11205670884361
+				],
 				"marker-color": "#0000ff",
 				"marker-size": "small"
 			}
@@ -3402,6 +4306,10 @@
 			},
 			"properties": {
 				"cluster": 0,
+				"centroid": [
+					-85.22273916681061,
+					18.11205670884361
+				],
 				"marker-color": "#0000ff",
 				"marker-size": "small"
 			}
@@ -3417,6 +4325,10 @@
 			},
 			"properties": {
 				"cluster": 10,
+				"centroid": [
+					-81.67819501734249,
+					22.456058950791007
+				],
 				"marker-color": "#3fff00",
 				"marker-size": "small"
 			}
@@ -3432,6 +4344,10 @@
 			},
 			"properties": {
 				"cluster": 6,
+				"centroid": [
+					-78.71931668447289,
+					26.441283306379056
+				],
 				"marker-color": "#ff4000",
 				"marker-size": "small"
 			}
@@ -3447,6 +4363,10 @@
 			},
 			"properties": {
 				"cluster": 4,
+				"centroid": [
+					-72.1036518524473,
+					21.632139370868533
+				],
 				"marker-color": "#ff007e",
 				"marker-size": "small"
 			}
@@ -3462,6 +4382,10 @@
 			},
 			"properties": {
 				"cluster": 9,
+				"centroid": [
+					-83.28970527419875,
+					25.03901137331529
+				],
 				"marker-color": "#9fff00",
 				"marker-size": "small"
 			}
@@ -3477,6 +4401,10 @@
 			},
 			"properties": {
 				"cluster": 2,
+				"centroid": [
+					-77.80959890542613,
+					23.062586927512516
+				],
 				"marker-color": "#bf00ff",
 				"marker-size": "small"
 			}
@@ -3492,6 +4420,10 @@
 			},
 			"properties": {
 				"cluster": 2,
+				"centroid": [
+					-77.80959890542613,
+					23.062586927512516
+				],
 				"marker-color": "#bf00ff",
 				"marker-size": "small"
 			}
@@ -3507,6 +4439,10 @@
 			},
 			"properties": {
 				"cluster": 9,
+				"centroid": [
+					-83.28970527419875,
+					25.03901137331529
+				],
 				"marker-color": "#9fff00",
 				"marker-size": "small"
 			}
@@ -3522,6 +4458,10 @@
 			},
 			"properties": {
 				"cluster": 6,
+				"centroid": [
+					-78.71931668447289,
+					26.441283306379056
+				],
 				"marker-color": "#ff4000",
 				"marker-size": "small"
 			}
@@ -3537,6 +4477,10 @@
 			},
 			"properties": {
 				"cluster": 9,
+				"centroid": [
+					-83.28970527419875,
+					25.03901137331529
+				],
 				"marker-color": "#9fff00",
 				"marker-size": "small"
 			}
@@ -3552,6 +4496,10 @@
 			},
 			"properties": {
 				"cluster": 10,
+				"centroid": [
+					-81.67819501734249,
+					22.456058950791007
+				],
 				"marker-color": "#3fff00",
 				"marker-size": "small"
 			}
@@ -3567,6 +4515,10 @@
 			},
 			"properties": {
 				"cluster": 0,
+				"centroid": [
+					-85.22273916681061,
+					18.11205670884361
+				],
 				"marker-color": "#0000ff",
 				"marker-size": "small"
 			}
@@ -3582,6 +4534,10 @@
 			},
 			"properties": {
 				"cluster": 11,
+				"centroid": [
+					-74.87813096725604,
+					19.051404705480532
+				],
 				"marker-color": "#00ff20",
 				"marker-size": "small"
 			}
@@ -3597,6 +4553,10 @@
 			},
 			"properties": {
 				"cluster": 7,
+				"centroid": [
+					-71.60386443367564,
+					25.68144722581964
+				],
 				"marker-color": "#ff9f00",
 				"marker-size": "small"
 			}
@@ -3612,6 +4572,10 @@
 			},
 			"properties": {
 				"cluster": 12,
+				"centroid": [
+					-77.46953467512287,
+					17.829026800774887
+				],
 				"marker-color": "#00ff80",
 				"marker-size": "small"
 			}
@@ -3627,6 +4591,10 @@
 			},
 			"properties": {
 				"cluster": 6,
+				"centroid": [
+					-78.71931668447289,
+					26.441283306379056
+				],
 				"marker-color": "#ff4000",
 				"marker-size": "small"
 			}
@@ -3642,6 +4610,10 @@
 			},
 			"properties": {
 				"cluster": 12,
+				"centroid": [
+					-77.46953467512287,
+					17.829026800774887
+				],
 				"marker-color": "#00ff80",
 				"marker-size": "small"
 			}
@@ -3657,6 +4629,10 @@
 			},
 			"properties": {
 				"cluster": 1,
+				"centroid": [
+					-85.201027549492,
+					21.346638923038203
+				],
 				"marker-color": "#5f00ff",
 				"marker-size": "small"
 			}
@@ -3672,6 +4648,10 @@
 			},
 			"properties": {
 				"cluster": 6,
+				"centroid": [
+					-78.71931668447289,
+					26.441283306379056
+				],
 				"marker-color": "#ff4000",
 				"marker-size": "small"
 			}
@@ -3687,6 +4667,10 @@
 			},
 			"properties": {
 				"cluster": 8,
+				"centroid": [
+					-74.65884587304036,
+					23.14443612672486
+				],
 				"marker-color": "#ffff00",
 				"marker-size": "small"
 			}
@@ -3702,6 +4686,10 @@
 			},
 			"properties": {
 				"cluster": 7,
+				"centroid": [
+					-71.60386443367564,
+					25.68144722581964
+				],
 				"marker-color": "#ff9f00",
 				"marker-size": "small"
 			}
@@ -3717,6 +4705,10 @@
 			},
 			"properties": {
 				"cluster": 13,
+				"centroid": [
+					-71.88949473129752,
+					18.220552149539706
+				],
 				"marker-color": "#00ffe0",
 				"marker-size": "small"
 			}
@@ -3732,6 +4724,10 @@
 			},
 			"properties": {
 				"cluster": 12,
+				"centroid": [
+					-77.46953467512287,
+					17.829026800774887
+				],
 				"marker-color": "#00ff80",
 				"marker-size": "small"
 			}
@@ -3747,6 +4743,10 @@
 			},
 			"properties": {
 				"cluster": 15,
+				"centroid": [
+					-79.95661302836459,
+					19.68004339959817
+				],
 				"marker-color": "#005fff",
 				"marker-size": "small"
 			}
@@ -3762,6 +4762,10 @@
 			},
 			"properties": {
 				"cluster": 9,
+				"centroid": [
+					-83.28970527419875,
+					25.03901137331529
+				],
 				"marker-color": "#9fff00",
 				"marker-size": "small"
 			}
@@ -3777,6 +4781,10 @@
 			},
 			"properties": {
 				"cluster": 0,
+				"centroid": [
+					-85.22273916681061,
+					18.11205670884361
+				],
 				"marker-color": "#0000ff",
 				"marker-size": "small"
 			}
@@ -3792,6 +4800,10 @@
 			},
 			"properties": {
 				"cluster": 12,
+				"centroid": [
+					-77.46953467512287,
+					17.829026800774887
+				],
 				"marker-color": "#00ff80",
 				"marker-size": "small"
 			}
@@ -3807,6 +4819,10 @@
 			},
 			"properties": {
 				"cluster": 1,
+				"centroid": [
+					-85.201027549492,
+					21.346638923038203
+				],
 				"marker-color": "#5f00ff",
 				"marker-size": "small"
 			}
@@ -3822,6 +4838,10 @@
 			},
 			"properties": {
 				"cluster": 14,
+				"centroid": [
+					-85.66057622205204,
+					25.309521790657058
+				],
 				"marker-color": "#00beff",
 				"marker-size": "small"
 			}
@@ -3837,6 +4857,10 @@
 			},
 			"properties": {
 				"cluster": 13,
+				"centroid": [
+					-71.88949473129752,
+					18.220552149539706
+				],
 				"marker-color": "#00ffe0",
 				"marker-size": "small"
 			}
@@ -3852,6 +4876,10 @@
 			},
 			"properties": {
 				"cluster": 8,
+				"centroid": [
+					-74.65884587304036,
+					23.14443612672486
+				],
 				"marker-color": "#ffff00",
 				"marker-size": "small"
 			}
@@ -3867,6 +4895,10 @@
 			},
 			"properties": {
 				"cluster": 3,
+				"centroid": [
+					-82.07389862745148,
+					18.10014805204155
+				],
 				"marker-color": "#ff00de",
 				"marker-size": "small"
 			}
@@ -3882,6 +4914,10 @@
 			},
 			"properties": {
 				"cluster": 8,
+				"centroid": [
+					-74.65884587304036,
+					23.14443612672486
+				],
 				"marker-color": "#ffff00",
 				"marker-size": "small"
 			}
@@ -3897,6 +4933,10 @@
 			},
 			"properties": {
 				"cluster": 0,
+				"centroid": [
+					-85.22273916681061,
+					18.11205670884361
+				],
 				"marker-color": "#0000ff",
 				"marker-size": "small"
 			}
@@ -3912,6 +4952,10 @@
 			},
 			"properties": {
 				"cluster": 13,
+				"centroid": [
+					-71.88949473129752,
+					18.220552149539706
+				],
 				"marker-color": "#00ffe0",
 				"marker-size": "small"
 			}
@@ -3927,6 +4971,10 @@
 			},
 			"properties": {
 				"cluster": 3,
+				"centroid": [
+					-82.07389862745148,
+					18.10014805204155
+				],
 				"marker-color": "#ff00de",
 				"marker-size": "small"
 			}
@@ -3942,6 +4990,10 @@
 			},
 			"properties": {
 				"cluster": 1,
+				"centroid": [
+					-85.201027549492,
+					21.346638923038203
+				],
 				"marker-color": "#5f00ff",
 				"marker-size": "small"
 			}
@@ -3957,6 +5009,10 @@
 			},
 			"properties": {
 				"cluster": 2,
+				"centroid": [
+					-77.80959890542613,
+					23.062586927512516
+				],
 				"marker-color": "#bf00ff",
 				"marker-size": "small"
 			}
@@ -3972,6 +5028,10 @@
 			},
 			"properties": {
 				"cluster": 5,
+				"centroid": [
+					-74.59772375968392,
+					26.040657608812058
+				],
 				"marker-color": "#ff001e",
 				"marker-size": "small"
 			}
@@ -3987,6 +5047,10 @@
 			},
 			"properties": {
 				"cluster": 14,
+				"centroid": [
+					-85.66057622205204,
+					25.309521790657058
+				],
 				"marker-color": "#00beff",
 				"marker-size": "small"
 			}
@@ -4002,6 +5066,10 @@
 			},
 			"properties": {
 				"cluster": 1,
+				"centroid": [
+					-85.201027549492,
+					21.346638923038203
+				],
 				"marker-color": "#5f00ff",
 				"marker-size": "small"
 			}
@@ -4017,6 +5085,10 @@
 			},
 			"properties": {
 				"cluster": 3,
+				"centroid": [
+					-82.07389862745148,
+					18.10014805204155
+				],
 				"marker-color": "#ff00de",
 				"marker-size": "small"
 			}
@@ -4032,6 +5104,10 @@
 			},
 			"properties": {
 				"cluster": 14,
+				"centroid": [
+					-85.66057622205204,
+					25.309521790657058
+				],
 				"marker-color": "#00beff",
 				"marker-size": "small"
 			}
@@ -4047,6 +5123,10 @@
 			},
 			"properties": {
 				"cluster": 8,
+				"centroid": [
+					-74.65884587304036,
+					23.14443612672486
+				],
 				"marker-color": "#ffff00",
 				"marker-size": "small"
 			}
@@ -4062,6 +5142,10 @@
 			},
 			"properties": {
 				"cluster": 6,
+				"centroid": [
+					-78.71931668447289,
+					26.441283306379056
+				],
 				"marker-color": "#ff4000",
 				"marker-size": "small"
 			}
@@ -4077,6 +5161,10 @@
 			},
 			"properties": {
 				"cluster": 11,
+				"centroid": [
+					-74.87813096725604,
+					19.051404705480532
+				],
 				"marker-color": "#00ff20",
 				"marker-size": "small"
 			}
@@ -4092,6 +5180,10 @@
 			},
 			"properties": {
 				"cluster": 11,
+				"centroid": [
+					-74.87813096725604,
+					19.051404705480532
+				],
 				"marker-color": "#00ff20",
 				"marker-size": "small"
 			}
@@ -4107,6 +5199,10 @@
 			},
 			"properties": {
 				"cluster": 8,
+				"centroid": [
+					-74.65884587304036,
+					23.14443612672486
+				],
 				"marker-color": "#ffff00",
 				"marker-size": "small"
 			}
@@ -4122,6 +5218,10 @@
 			},
 			"properties": {
 				"cluster": 6,
+				"centroid": [
+					-78.71931668447289,
+					26.441283306379056
+				],
 				"marker-color": "#ff4000",
 				"marker-size": "small"
 			}
@@ -4137,6 +5237,10 @@
 			},
 			"properties": {
 				"cluster": 5,
+				"centroid": [
+					-74.59772375968392,
+					26.040657608812058
+				],
 				"marker-color": "#ff001e",
 				"marker-size": "small"
 			}
@@ -4152,6 +5256,10 @@
 			},
 			"properties": {
 				"cluster": 2,
+				"centroid": [
+					-77.80959890542613,
+					23.062586927512516
+				],
 				"marker-color": "#bf00ff",
 				"marker-size": "small"
 			}
@@ -4167,6 +5275,10 @@
 			},
 			"properties": {
 				"cluster": 12,
+				"centroid": [
+					-77.46953467512287,
+					17.829026800774887
+				],
 				"marker-color": "#00ff80",
 				"marker-size": "small"
 			}
@@ -4182,6 +5294,10 @@
 			},
 			"properties": {
 				"cluster": 13,
+				"centroid": [
+					-71.88949473129752,
+					18.220552149539706
+				],
 				"marker-color": "#00ffe0",
 				"marker-size": "small"
 			}
@@ -4197,6 +5313,10 @@
 			},
 			"properties": {
 				"cluster": 12,
+				"centroid": [
+					-77.46953467512287,
+					17.829026800774887
+				],
 				"marker-color": "#00ff80",
 				"marker-size": "small"
 			}
@@ -4212,6 +5332,10 @@
 			},
 			"properties": {
 				"cluster": 14,
+				"centroid": [
+					-85.66057622205204,
+					25.309521790657058
+				],
 				"marker-color": "#00beff",
 				"marker-size": "small"
 			}
@@ -4227,6 +5351,10 @@
 			},
 			"properties": {
 				"cluster": 11,
+				"centroid": [
+					-74.87813096725604,
+					19.051404705480532
+				],
 				"marker-color": "#00ff20",
 				"marker-size": "small"
 			}
@@ -4242,6 +5370,10 @@
 			},
 			"properties": {
 				"cluster": 11,
+				"centroid": [
+					-74.87813096725604,
+					19.051404705480532
+				],
 				"marker-color": "#00ff20",
 				"marker-size": "small"
 			}
@@ -4257,6 +5389,10 @@
 			},
 			"properties": {
 				"cluster": 11,
+				"centroid": [
+					-74.87813096725604,
+					19.051404705480532
+				],
 				"marker-color": "#00ff20",
 				"marker-size": "small"
 			}
@@ -4272,6 +5408,10 @@
 			},
 			"properties": {
 				"cluster": 15,
+				"centroid": [
+					-79.95661302836459,
+					19.68004339959817
+				],
 				"marker-color": "#005fff",
 				"marker-size": "small"
 			}
@@ -4287,6 +5427,10 @@
 			},
 			"properties": {
 				"cluster": 12,
+				"centroid": [
+					-77.46953467512287,
+					17.829026800774887
+				],
 				"marker-color": "#00ff80",
 				"marker-size": "small"
 			}
@@ -4302,6 +5446,10 @@
 			},
 			"properties": {
 				"cluster": 7,
+				"centroid": [
+					-71.60386443367564,
+					25.68144722581964
+				],
 				"marker-color": "#ff9f00",
 				"marker-size": "small"
 			}
@@ -4317,6 +5465,10 @@
 			},
 			"properties": {
 				"cluster": 12,
+				"centroid": [
+					-77.46953467512287,
+					17.829026800774887
+				],
 				"marker-color": "#00ff80",
 				"marker-size": "small"
 			}
@@ -4332,6 +5484,10 @@
 			},
 			"properties": {
 				"cluster": 5,
+				"centroid": [
+					-74.59772375968392,
+					26.040657608812058
+				],
 				"marker-color": "#ff001e",
 				"marker-size": "small"
 			}
@@ -4347,6 +5503,10 @@
 			},
 			"properties": {
 				"cluster": 1,
+				"centroid": [
+					-85.201027549492,
+					21.346638923038203
+				],
 				"marker-color": "#5f00ff",
 				"marker-size": "small"
 			}
@@ -4362,6 +5522,10 @@
 			},
 			"properties": {
 				"cluster": 9,
+				"centroid": [
+					-83.28970527419875,
+					25.03901137331529
+				],
 				"marker-color": "#9fff00",
 				"marker-size": "small"
 			}
@@ -4377,6 +5541,10 @@
 			},
 			"properties": {
 				"cluster": 6,
+				"centroid": [
+					-78.71931668447289,
+					26.441283306379056
+				],
 				"marker-color": "#ff4000",
 				"marker-size": "small"
 			}
@@ -4392,6 +5560,10 @@
 			},
 			"properties": {
 				"cluster": 6,
+				"centroid": [
+					-78.71931668447289,
+					26.441283306379056
+				],
 				"marker-color": "#ff4000",
 				"marker-size": "small"
 			}
@@ -4407,6 +5579,10 @@
 			},
 			"properties": {
 				"cluster": 14,
+				"centroid": [
+					-85.66057622205204,
+					25.309521790657058
+				],
 				"marker-color": "#00beff",
 				"marker-size": "small"
 			}
@@ -4422,6 +5598,10 @@
 			},
 			"properties": {
 				"cluster": 2,
+				"centroid": [
+					-77.80959890542613,
+					23.062586927512516
+				],
 				"marker-color": "#bf00ff",
 				"marker-size": "small"
 			}
@@ -4437,6 +5617,10 @@
 			},
 			"properties": {
 				"cluster": 4,
+				"centroid": [
+					-72.1036518524473,
+					21.632139370868533
+				],
 				"marker-color": "#ff007e",
 				"marker-size": "small"
 			}
@@ -4452,6 +5636,10 @@
 			},
 			"properties": {
 				"cluster": 9,
+				"centroid": [
+					-83.28970527419875,
+					25.03901137331529
+				],
 				"marker-color": "#9fff00",
 				"marker-size": "small"
 			}
@@ -4467,6 +5655,10 @@
 			},
 			"properties": {
 				"cluster": 3,
+				"centroid": [
+					-82.07389862745148,
+					18.10014805204155
+				],
 				"marker-color": "#ff00de",
 				"marker-size": "small"
 			}
@@ -4482,6 +5674,10 @@
 			},
 			"properties": {
 				"cluster": 15,
+				"centroid": [
+					-79.95661302836459,
+					19.68004339959817
+				],
 				"marker-color": "#005fff",
 				"marker-size": "small"
 			}
@@ -4497,6 +5693,10 @@
 			},
 			"properties": {
 				"cluster": 5,
+				"centroid": [
+					-74.59772375968392,
+					26.040657608812058
+				],
 				"marker-color": "#ff001e",
 				"marker-size": "small"
 			}
@@ -4512,6 +5712,10 @@
 			},
 			"properties": {
 				"cluster": 4,
+				"centroid": [
+					-72.1036518524473,
+					21.632139370868533
+				],
 				"marker-color": "#ff007e",
 				"marker-size": "small"
 			}
@@ -4527,6 +5731,10 @@
 			},
 			"properties": {
 				"cluster": 11,
+				"centroid": [
+					-74.87813096725604,
+					19.051404705480532
+				],
 				"marker-color": "#00ff20",
 				"marker-size": "small"
 			}
@@ -4542,6 +5750,10 @@
 			},
 			"properties": {
 				"cluster": 7,
+				"centroid": [
+					-71.60386443367564,
+					25.68144722581964
+				],
 				"marker-color": "#ff9f00",
 				"marker-size": "small"
 			}
@@ -4557,6 +5769,10 @@
 			},
 			"properties": {
 				"cluster": 2,
+				"centroid": [
+					-77.80959890542613,
+					23.062586927512516
+				],
 				"marker-color": "#bf00ff",
 				"marker-size": "small"
 			}
@@ -4572,6 +5788,10 @@
 			},
 			"properties": {
 				"cluster": 8,
+				"centroid": [
+					-74.65884587304036,
+					23.14443612672486
+				],
 				"marker-color": "#ffff00",
 				"marker-size": "small"
 			}
@@ -4587,6 +5807,10 @@
 			},
 			"properties": {
 				"cluster": 14,
+				"centroid": [
+					-85.66057622205204,
+					25.309521790657058
+				],
 				"marker-color": "#00beff",
 				"marker-size": "small"
 			}
@@ -4602,6 +5826,10 @@
 			},
 			"properties": {
 				"cluster": 3,
+				"centroid": [
+					-82.07389862745148,
+					18.10014805204155
+				],
 				"marker-color": "#ff00de",
 				"marker-size": "small"
 			}
@@ -4617,6 +5845,10 @@
 			},
 			"properties": {
 				"cluster": 4,
+				"centroid": [
+					-72.1036518524473,
+					21.632139370868533
+				],
 				"marker-color": "#ff007e",
 				"marker-size": "small"
 			}
@@ -4632,6 +5864,10 @@
 			},
 			"properties": {
 				"cluster": 8,
+				"centroid": [
+					-74.65884587304036,
+					23.14443612672486
+				],
 				"marker-color": "#ffff00",
 				"marker-size": "small"
 			}
@@ -4647,6 +5883,10 @@
 			},
 			"properties": {
 				"cluster": 10,
+				"centroid": [
+					-81.67819501734249,
+					22.456058950791007
+				],
 				"marker-color": "#3fff00",
 				"marker-size": "small"
 			}
@@ -4662,6 +5902,10 @@
 			},
 			"properties": {
 				"cluster": 2,
+				"centroid": [
+					-77.80959890542613,
+					23.062586927512516
+				],
 				"marker-color": "#bf00ff",
 				"marker-size": "small"
 			}
@@ -4677,6 +5921,10 @@
 			},
 			"properties": {
 				"cluster": 15,
+				"centroid": [
+					-79.95661302836459,
+					19.68004339959817
+				],
 				"marker-color": "#005fff",
 				"marker-size": "small"
 			}
@@ -4692,6 +5940,10 @@
 			},
 			"properties": {
 				"cluster": 15,
+				"centroid": [
+					-79.95661302836459,
+					19.68004339959817
+				],
 				"marker-color": "#005fff",
 				"marker-size": "small"
 			}
@@ -4707,6 +5959,10 @@
 			},
 			"properties": {
 				"cluster": 6,
+				"centroid": [
+					-78.71931668447289,
+					26.441283306379056
+				],
 				"marker-color": "#ff4000",
 				"marker-size": "small"
 			}
@@ -4722,6 +5978,10 @@
 			},
 			"properties": {
 				"cluster": 6,
+				"centroid": [
+					-78.71931668447289,
+					26.441283306379056
+				],
 				"marker-color": "#ff4000",
 				"marker-size": "small"
 			}
@@ -4737,6 +5997,10 @@
 			},
 			"properties": {
 				"cluster": 14,
+				"centroid": [
+					-85.66057622205204,
+					25.309521790657058
+				],
 				"marker-color": "#00beff",
 				"marker-size": "small"
 			}
@@ -4752,6 +6016,10 @@
 			},
 			"properties": {
 				"cluster": 10,
+				"centroid": [
+					-81.67819501734249,
+					22.456058950791007
+				],
 				"marker-color": "#3fff00",
 				"marker-size": "small"
 			}
@@ -4767,6 +6035,10 @@
 			},
 			"properties": {
 				"cluster": 12,
+				"centroid": [
+					-77.46953467512287,
+					17.829026800774887
+				],
 				"marker-color": "#00ff80",
 				"marker-size": "small"
 			}
@@ -4782,6 +6054,10 @@
 			},
 			"properties": {
 				"cluster": 11,
+				"centroid": [
+					-74.87813096725604,
+					19.051404705480532
+				],
 				"marker-color": "#00ff20",
 				"marker-size": "small"
 			}
@@ -4797,6 +6073,10 @@
 			},
 			"properties": {
 				"cluster": 3,
+				"centroid": [
+					-82.07389862745148,
+					18.10014805204155
+				],
 				"marker-color": "#ff00de",
 				"marker-size": "small"
 			}
@@ -4812,6 +6092,10 @@
 			},
 			"properties": {
 				"cluster": 11,
+				"centroid": [
+					-74.87813096725604,
+					19.051404705480532
+				],
 				"marker-color": "#00ff20",
 				"marker-size": "small"
 			}
@@ -4827,6 +6111,10 @@
 			},
 			"properties": {
 				"cluster": 3,
+				"centroid": [
+					-82.07389862745148,
+					18.10014805204155
+				],
 				"marker-color": "#ff00de",
 				"marker-size": "small"
 			}
@@ -4842,6 +6130,10 @@
 			},
 			"properties": {
 				"cluster": 8,
+				"centroid": [
+					-74.65884587304036,
+					23.14443612672486
+				],
 				"marker-color": "#ffff00",
 				"marker-size": "small"
 			}
@@ -4857,6 +6149,10 @@
 			},
 			"properties": {
 				"cluster": 8,
+				"centroid": [
+					-74.65884587304036,
+					23.14443612672486
+				],
 				"marker-color": "#ffff00",
 				"marker-size": "small"
 			}
@@ -4872,6 +6168,10 @@
 			},
 			"properties": {
 				"cluster": 13,
+				"centroid": [
+					-71.88949473129752,
+					18.220552149539706
+				],
 				"marker-color": "#00ffe0",
 				"marker-size": "small"
 			}
@@ -4887,6 +6187,10 @@
 			},
 			"properties": {
 				"cluster": 13,
+				"centroid": [
+					-71.88949473129752,
+					18.220552149539706
+				],
 				"marker-color": "#00ffe0",
 				"marker-size": "small"
 			}
@@ -4902,6 +6206,10 @@
 			},
 			"properties": {
 				"cluster": 10,
+				"centroid": [
+					-81.67819501734249,
+					22.456058950791007
+				],
 				"marker-color": "#3fff00",
 				"marker-size": "small"
 			}
@@ -4917,6 +6225,10 @@
 			},
 			"properties": {
 				"cluster": 12,
+				"centroid": [
+					-77.46953467512287,
+					17.829026800774887
+				],
 				"marker-color": "#00ff80",
 				"marker-size": "small"
 			}
@@ -4932,6 +6244,10 @@
 			},
 			"properties": {
 				"cluster": 15,
+				"centroid": [
+					-79.95661302836459,
+					19.68004339959817
+				],
 				"marker-color": "#005fff",
 				"marker-size": "small"
 			}
@@ -4947,6 +6263,10 @@
 			},
 			"properties": {
 				"cluster": 11,
+				"centroid": [
+					-74.87813096725604,
+					19.051404705480532
+				],
 				"marker-color": "#00ff20",
 				"marker-size": "small"
 			}
@@ -4962,6 +6282,10 @@
 			},
 			"properties": {
 				"cluster": 3,
+				"centroid": [
+					-82.07389862745148,
+					18.10014805204155
+				],
 				"marker-color": "#ff00de",
 				"marker-size": "small"
 			}
@@ -4977,6 +6301,10 @@
 			},
 			"properties": {
 				"cluster": 6,
+				"centroid": [
+					-78.71931668447289,
+					26.441283306379056
+				],
 				"marker-color": "#ff4000",
 				"marker-size": "small"
 			}
@@ -4992,6 +6320,10 @@
 			},
 			"properties": {
 				"cluster": 11,
+				"centroid": [
+					-74.87813096725604,
+					19.051404705480532
+				],
 				"marker-color": "#00ff20",
 				"marker-size": "small"
 			}
@@ -5007,6 +6339,10 @@
 			},
 			"properties": {
 				"cluster": 4,
+				"centroid": [
+					-72.1036518524473,
+					21.632139370868533
+				],
 				"marker-color": "#ff007e",
 				"marker-size": "small"
 			}
@@ -5022,6 +6358,10 @@
 			},
 			"properties": {
 				"cluster": 6,
+				"centroid": [
+					-78.71931668447289,
+					26.441283306379056
+				],
 				"marker-color": "#ff4000",
 				"marker-size": "small"
 			}
@@ -5037,6 +6377,10 @@
 			},
 			"properties": {
 				"cluster": 3,
+				"centroid": [
+					-82.07389862745148,
+					18.10014805204155
+				],
 				"marker-color": "#ff00de",
 				"marker-size": "small"
 			}
@@ -5052,6 +6396,10 @@
 			},
 			"properties": {
 				"cluster": 11,
+				"centroid": [
+					-74.87813096725604,
+					19.051404705480532
+				],
 				"marker-color": "#00ff20",
 				"marker-size": "small"
 			}
@@ -5067,6 +6415,10 @@
 			},
 			"properties": {
 				"cluster": 6,
+				"centroid": [
+					-78.71931668447289,
+					26.441283306379056
+				],
 				"marker-color": "#ff4000",
 				"marker-size": "small"
 			}
@@ -5082,6 +6434,10 @@
 			},
 			"properties": {
 				"cluster": 12,
+				"centroid": [
+					-77.46953467512287,
+					17.829026800774887
+				],
 				"marker-color": "#00ff80",
 				"marker-size": "small"
 			}
@@ -5097,6 +6453,10 @@
 			},
 			"properties": {
 				"cluster": 5,
+				"centroid": [
+					-74.59772375968392,
+					26.040657608812058
+				],
 				"marker-color": "#ff001e",
 				"marker-size": "small"
 			}
@@ -5112,6 +6472,10 @@
 			},
 			"properties": {
 				"cluster": 7,
+				"centroid": [
+					-71.60386443367564,
+					25.68144722581964
+				],
 				"marker-color": "#ff9f00",
 				"marker-size": "small"
 			}
@@ -5127,6 +6491,10 @@
 			},
 			"properties": {
 				"cluster": 9,
+				"centroid": [
+					-83.28970527419875,
+					25.03901137331529
+				],
 				"marker-color": "#9fff00",
 				"marker-size": "small"
 			}
@@ -5142,6 +6510,10 @@
 			},
 			"properties": {
 				"cluster": 9,
+				"centroid": [
+					-83.28970527419875,
+					25.03901137331529
+				],
 				"marker-color": "#9fff00",
 				"marker-size": "small"
 			}
@@ -5157,6 +6529,10 @@
 			},
 			"properties": {
 				"cluster": 15,
+				"centroid": [
+					-79.95661302836459,
+					19.68004339959817
+				],
 				"marker-color": "#005fff",
 				"marker-size": "small"
 			}
@@ -5172,6 +6548,10 @@
 			},
 			"properties": {
 				"cluster": 0,
+				"centroid": [
+					-85.22273916681061,
+					18.11205670884361
+				],
 				"marker-color": "#0000ff",
 				"marker-size": "small"
 			}
@@ -5187,6 +6567,10 @@
 			},
 			"properties": {
 				"cluster": 11,
+				"centroid": [
+					-74.87813096725604,
+					19.051404705480532
+				],
 				"marker-color": "#00ff20",
 				"marker-size": "small"
 			}
@@ -5202,6 +6586,10 @@
 			},
 			"properties": {
 				"cluster": 4,
+				"centroid": [
+					-72.1036518524473,
+					21.632139370868533
+				],
 				"marker-color": "#ff007e",
 				"marker-size": "small"
 			}
@@ -5217,6 +6605,10 @@
 			},
 			"properties": {
 				"cluster": 10,
+				"centroid": [
+					-81.67819501734249,
+					22.456058950791007
+				],
 				"marker-color": "#3fff00",
 				"marker-size": "small"
 			}
@@ -5232,6 +6624,10 @@
 			},
 			"properties": {
 				"cluster": 11,
+				"centroid": [
+					-74.87813096725604,
+					19.051404705480532
+				],
 				"marker-color": "#00ff20",
 				"marker-size": "small"
 			}
@@ -5247,6 +6643,10 @@
 			},
 			"properties": {
 				"cluster": 13,
+				"centroid": [
+					-71.88949473129752,
+					18.220552149539706
+				],
 				"marker-color": "#00ffe0",
 				"marker-size": "small"
 			}
@@ -5262,6 +6662,10 @@
 			},
 			"properties": {
 				"cluster": 7,
+				"centroid": [
+					-71.60386443367564,
+					25.68144722581964
+				],
 				"marker-color": "#ff9f00",
 				"marker-size": "small"
 			}
@@ -5277,6 +6681,10 @@
 			},
 			"properties": {
 				"cluster": 5,
+				"centroid": [
+					-74.59772375968392,
+					26.040657608812058
+				],
 				"marker-color": "#ff001e",
 				"marker-size": "small"
 			}
@@ -5292,6 +6700,10 @@
 			},
 			"properties": {
 				"cluster": 15,
+				"centroid": [
+					-79.95661302836459,
+					19.68004339959817
+				],
 				"marker-color": "#005fff",
 				"marker-size": "small"
 			}
@@ -5307,6 +6719,10 @@
 			},
 			"properties": {
 				"cluster": 4,
+				"centroid": [
+					-72.1036518524473,
+					21.632139370868533
+				],
 				"marker-color": "#ff007e",
 				"marker-size": "small"
 			}
@@ -5322,6 +6738,10 @@
 			},
 			"properties": {
 				"cluster": 7,
+				"centroid": [
+					-71.60386443367564,
+					25.68144722581964
+				],
 				"marker-color": "#ff9f00",
 				"marker-size": "small"
 			}
@@ -5337,6 +6757,10 @@
 			},
 			"properties": {
 				"cluster": 2,
+				"centroid": [
+					-77.80959890542613,
+					23.062586927512516
+				],
 				"marker-color": "#bf00ff",
 				"marker-size": "small"
 			}
@@ -5352,6 +6776,10 @@
 			},
 			"properties": {
 				"cluster": 7,
+				"centroid": [
+					-71.60386443367564,
+					25.68144722581964
+				],
 				"marker-color": "#ff9f00",
 				"marker-size": "small"
 			}
@@ -5367,6 +6795,10 @@
 			},
 			"properties": {
 				"cluster": 13,
+				"centroid": [
+					-71.88949473129752,
+					18.220552149539706
+				],
 				"marker-color": "#00ffe0",
 				"marker-size": "small"
 			}
@@ -5382,6 +6814,10 @@
 			},
 			"properties": {
 				"cluster": 12,
+				"centroid": [
+					-77.46953467512287,
+					17.829026800774887
+				],
 				"marker-color": "#00ff80",
 				"marker-size": "small"
 			}
@@ -5397,6 +6833,10 @@
 			},
 			"properties": {
 				"cluster": 6,
+				"centroid": [
+					-78.71931668447289,
+					26.441283306379056
+				],
 				"marker-color": "#ff4000",
 				"marker-size": "small"
 			}
@@ -5412,6 +6852,10 @@
 			},
 			"properties": {
 				"cluster": 15,
+				"centroid": [
+					-79.95661302836459,
+					19.68004339959817
+				],
 				"marker-color": "#005fff",
 				"marker-size": "small"
 			}
@@ -5427,6 +6871,10 @@
 			},
 			"properties": {
 				"cluster": 7,
+				"centroid": [
+					-71.60386443367564,
+					25.68144722581964
+				],
 				"marker-color": "#ff9f00",
 				"marker-size": "small"
 			}
@@ -5442,6 +6890,10 @@
 			},
 			"properties": {
 				"cluster": 4,
+				"centroid": [
+					-72.1036518524473,
+					21.632139370868533
+				],
 				"marker-color": "#ff007e",
 				"marker-size": "small"
 			}
@@ -5457,6 +6909,10 @@
 			},
 			"properties": {
 				"cluster": 5,
+				"centroid": [
+					-74.59772375968392,
+					26.040657608812058
+				],
 				"marker-color": "#ff001e",
 				"marker-size": "small"
 			}
@@ -5472,6 +6928,10 @@
 			},
 			"properties": {
 				"cluster": 4,
+				"centroid": [
+					-72.1036518524473,
+					21.632139370868533
+				],
 				"marker-color": "#ff007e",
 				"marker-size": "small"
 			}
@@ -5487,6 +6947,10 @@
 			},
 			"properties": {
 				"cluster": 6,
+				"centroid": [
+					-78.71931668447289,
+					26.441283306379056
+				],
 				"marker-color": "#ff4000",
 				"marker-size": "small"
 			}
@@ -5502,6 +6966,10 @@
 			},
 			"properties": {
 				"cluster": 5,
+				"centroid": [
+					-74.59772375968392,
+					26.040657608812058
+				],
 				"marker-color": "#ff001e",
 				"marker-size": "small"
 			}
@@ -5517,6 +6985,10 @@
 			},
 			"properties": {
 				"cluster": 14,
+				"centroid": [
+					-85.66057622205204,
+					25.309521790657058
+				],
 				"marker-color": "#00beff",
 				"marker-size": "small"
 			}
@@ -5532,6 +7004,10 @@
 			},
 			"properties": {
 				"cluster": 1,
+				"centroid": [
+					-85.201027549492,
+					21.346638923038203
+				],
 				"marker-color": "#5f00ff",
 				"marker-size": "small"
 			}
@@ -5547,6 +7023,10 @@
 			},
 			"properties": {
 				"cluster": 10,
+				"centroid": [
+					-81.67819501734249,
+					22.456058950791007
+				],
 				"marker-color": "#3fff00",
 				"marker-size": "small"
 			}
@@ -5562,6 +7042,10 @@
 			},
 			"properties": {
 				"cluster": 12,
+				"centroid": [
+					-77.46953467512287,
+					17.829026800774887
+				],
 				"marker-color": "#00ff80",
 				"marker-size": "small"
 			}
@@ -5577,6 +7061,10 @@
 			},
 			"properties": {
 				"cluster": 15,
+				"centroid": [
+					-79.95661302836459,
+					19.68004339959817
+				],
 				"marker-color": "#005fff",
 				"marker-size": "small"
 			}
@@ -5592,6 +7080,10 @@
 			},
 			"properties": {
 				"cluster": 9,
+				"centroid": [
+					-83.28970527419875,
+					25.03901137331529
+				],
 				"marker-color": "#9fff00",
 				"marker-size": "small"
 			}
@@ -5607,6 +7099,10 @@
 			},
 			"properties": {
 				"cluster": 2,
+				"centroid": [
+					-77.80959890542613,
+					23.062586927512516
+				],
 				"marker-color": "#bf00ff",
 				"marker-size": "small"
 			}
@@ -5622,6 +7118,10 @@
 			},
 			"properties": {
 				"cluster": 9,
+				"centroid": [
+					-83.28970527419875,
+					25.03901137331529
+				],
 				"marker-color": "#9fff00",
 				"marker-size": "small"
 			}
@@ -5637,6 +7137,10 @@
 			},
 			"properties": {
 				"cluster": 4,
+				"centroid": [
+					-72.1036518524473,
+					21.632139370868533
+				],
 				"marker-color": "#ff007e",
 				"marker-size": "small"
 			}
@@ -5652,6 +7156,10 @@
 			},
 			"properties": {
 				"cluster": 2,
+				"centroid": [
+					-77.80959890542613,
+					23.062586927512516
+				],
 				"marker-color": "#bf00ff",
 				"marker-size": "small"
 			}
@@ -5667,6 +7175,10 @@
 			},
 			"properties": {
 				"cluster": 2,
+				"centroid": [
+					-77.80959890542613,
+					23.062586927512516
+				],
 				"marker-color": "#bf00ff",
 				"marker-size": "small"
 			}
@@ -5682,6 +7194,10 @@
 			},
 			"properties": {
 				"cluster": 4,
+				"centroid": [
+					-72.1036518524473,
+					21.632139370868533
+				],
 				"marker-color": "#ff007e",
 				"marker-size": "small"
 			}
@@ -5697,6 +7213,10 @@
 			},
 			"properties": {
 				"cluster": 14,
+				"centroid": [
+					-85.66057622205204,
+					25.309521790657058
+				],
 				"marker-color": "#00beff",
 				"marker-size": "small"
 			}
@@ -5712,6 +7232,10 @@
 			},
 			"properties": {
 				"cluster": 8,
+				"centroid": [
+					-74.65884587304036,
+					23.14443612672486
+				],
 				"marker-color": "#ffff00",
 				"marker-size": "small"
 			}
@@ -5727,6 +7251,10 @@
 			},
 			"properties": {
 				"cluster": 12,
+				"centroid": [
+					-77.46953467512287,
+					17.829026800774887
+				],
 				"marker-color": "#00ff80",
 				"marker-size": "small"
 			}
@@ -5742,6 +7270,10 @@
 			},
 			"properties": {
 				"cluster": 1,
+				"centroid": [
+					-85.201027549492,
+					21.346638923038203
+				],
 				"marker-color": "#5f00ff",
 				"marker-size": "small"
 			}
@@ -5757,6 +7289,10 @@
 			},
 			"properties": {
 				"cluster": 12,
+				"centroid": [
+					-77.46953467512287,
+					17.829026800774887
+				],
 				"marker-color": "#00ff80",
 				"marker-size": "small"
 			}
@@ -5772,6 +7308,10 @@
 			},
 			"properties": {
 				"cluster": 11,
+				"centroid": [
+					-74.87813096725604,
+					19.051404705480532
+				],
 				"marker-color": "#00ff20",
 				"marker-size": "small"
 			}
@@ -5787,6 +7327,10 @@
 			},
 			"properties": {
 				"cluster": 13,
+				"centroid": [
+					-71.88949473129752,
+					18.220552149539706
+				],
 				"marker-color": "#00ffe0",
 				"marker-size": "small"
 			}
@@ -5802,6 +7346,10 @@
 			},
 			"properties": {
 				"cluster": 13,
+				"centroid": [
+					-71.88949473129752,
+					18.220552149539706
+				],
 				"marker-color": "#00ffe0",
 				"marker-size": "small"
 			}
@@ -5817,6 +7365,10 @@
 			},
 			"properties": {
 				"cluster": 12,
+				"centroid": [
+					-77.46953467512287,
+					17.829026800774887
+				],
 				"marker-color": "#00ff80",
 				"marker-size": "small"
 			}
@@ -5832,6 +7384,10 @@
 			},
 			"properties": {
 				"cluster": 14,
+				"centroid": [
+					-85.66057622205204,
+					25.309521790657058
+				],
 				"marker-color": "#00beff",
 				"marker-size": "small"
 			}
@@ -5847,6 +7403,10 @@
 			},
 			"properties": {
 				"cluster": 4,
+				"centroid": [
+					-72.1036518524473,
+					21.632139370868533
+				],
 				"marker-color": "#ff007e",
 				"marker-size": "small"
 			}
@@ -5862,6 +7422,10 @@
 			},
 			"properties": {
 				"cluster": 15,
+				"centroid": [
+					-79.95661302836459,
+					19.68004339959817
+				],
 				"marker-color": "#005fff",
 				"marker-size": "small"
 			}
@@ -5877,6 +7441,10 @@
 			},
 			"properties": {
 				"cluster": 6,
+				"centroid": [
+					-78.71931668447289,
+					26.441283306379056
+				],
 				"marker-color": "#ff4000",
 				"marker-size": "small"
 			}
@@ -5892,6 +7460,10 @@
 			},
 			"properties": {
 				"cluster": 5,
+				"centroid": [
+					-74.59772375968392,
+					26.040657608812058
+				],
 				"marker-color": "#ff001e",
 				"marker-size": "small"
 			}
@@ -5907,6 +7479,10 @@
 			},
 			"properties": {
 				"cluster": 13,
+				"centroid": [
+					-71.88949473129752,
+					18.220552149539706
+				],
 				"marker-color": "#00ffe0",
 				"marker-size": "small"
 			}
@@ -5922,6 +7498,10 @@
 			},
 			"properties": {
 				"cluster": 9,
+				"centroid": [
+					-83.28970527419875,
+					25.03901137331529
+				],
 				"marker-color": "#9fff00",
 				"marker-size": "small"
 			}
@@ -5937,6 +7517,10 @@
 			},
 			"properties": {
 				"cluster": 2,
+				"centroid": [
+					-77.80959890542613,
+					23.062586927512516
+				],
 				"marker-color": "#bf00ff",
 				"marker-size": "small"
 			}
@@ -5952,6 +7536,10 @@
 			},
 			"properties": {
 				"cluster": 14,
+				"centroid": [
+					-85.66057622205204,
+					25.309521790657058
+				],
 				"marker-color": "#00beff",
 				"marker-size": "small"
 			}
@@ -5967,6 +7555,10 @@
 			},
 			"properties": {
 				"cluster": 2,
+				"centroid": [
+					-77.80959890542613,
+					23.062586927512516
+				],
 				"marker-color": "#bf00ff",
 				"marker-size": "small"
 			}
@@ -5982,6 +7574,10 @@
 			},
 			"properties": {
 				"cluster": 8,
+				"centroid": [
+					-74.65884587304036,
+					23.14443612672486
+				],
 				"marker-color": "#ffff00",
 				"marker-size": "small"
 			}
@@ -5997,6 +7593,10 @@
 			},
 			"properties": {
 				"cluster": 3,
+				"centroid": [
+					-82.07389862745148,
+					18.10014805204155
+				],
 				"marker-color": "#ff00de",
 				"marker-size": "small"
 			}
@@ -6012,6 +7612,10 @@
 			},
 			"properties": {
 				"cluster": 12,
+				"centroid": [
+					-77.46953467512287,
+					17.829026800774887
+				],
 				"marker-color": "#00ff80",
 				"marker-size": "small"
 			}
@@ -6027,6 +7631,10 @@
 			},
 			"properties": {
 				"cluster": 8,
+				"centroid": [
+					-74.65884587304036,
+					23.14443612672486
+				],
 				"marker-color": "#ffff00",
 				"marker-size": "small"
 			}
@@ -6042,6 +7650,10 @@
 			},
 			"properties": {
 				"cluster": 15,
+				"centroid": [
+					-79.95661302836459,
+					19.68004339959817
+				],
 				"marker-color": "#005fff",
 				"marker-size": "small"
 			}
@@ -6057,6 +7669,10 @@
 			},
 			"properties": {
 				"cluster": 2,
+				"centroid": [
+					-77.80959890542613,
+					23.062586927512516
+				],
 				"marker-color": "#bf00ff",
 				"marker-size": "small"
 			}
@@ -6072,6 +7688,10 @@
 			},
 			"properties": {
 				"cluster": 10,
+				"centroid": [
+					-81.67819501734249,
+					22.456058950791007
+				],
 				"marker-color": "#3fff00",
 				"marker-size": "small"
 			}
@@ -6087,6 +7707,10 @@
 			},
 			"properties": {
 				"cluster": 12,
+				"centroid": [
+					-77.46953467512287,
+					17.829026800774887
+				],
 				"marker-color": "#00ff80",
 				"marker-size": "small"
 			}
@@ -6102,6 +7726,10 @@
 			},
 			"properties": {
 				"cluster": 7,
+				"centroid": [
+					-71.60386443367564,
+					25.68144722581964
+				],
 				"marker-color": "#ff9f00",
 				"marker-size": "small"
 			}
@@ -6117,6 +7745,10 @@
 			},
 			"properties": {
 				"cluster": 6,
+				"centroid": [
+					-78.71931668447289,
+					26.441283306379056
+				],
 				"marker-color": "#ff4000",
 				"marker-size": "small"
 			}
@@ -6132,6 +7764,10 @@
 			},
 			"properties": {
 				"cluster": 10,
+				"centroid": [
+					-81.67819501734249,
+					22.456058950791007
+				],
 				"marker-color": "#3fff00",
 				"marker-size": "small"
 			}
@@ -6147,6 +7783,10 @@
 			},
 			"properties": {
 				"cluster": 11,
+				"centroid": [
+					-74.87813096725604,
+					19.051404705480532
+				],
 				"marker-color": "#00ff20",
 				"marker-size": "small"
 			}
@@ -6162,6 +7802,10 @@
 			},
 			"properties": {
 				"cluster": 0,
+				"centroid": [
+					-85.22273916681061,
+					18.11205670884361
+				],
 				"marker-color": "#0000ff",
 				"marker-size": "small"
 			}
@@ -6177,6 +7821,10 @@
 			},
 			"properties": {
 				"cluster": 5,
+				"centroid": [
+					-74.59772375968392,
+					26.040657608812058
+				],
 				"marker-color": "#ff001e",
 				"marker-size": "small"
 			}
@@ -6192,6 +7840,10 @@
 			},
 			"properties": {
 				"cluster": 11,
+				"centroid": [
+					-74.87813096725604,
+					19.051404705480532
+				],
 				"marker-color": "#00ff20",
 				"marker-size": "small"
 			}
@@ -6207,6 +7859,10 @@
 			},
 			"properties": {
 				"cluster": 4,
+				"centroid": [
+					-72.1036518524473,
+					21.632139370868533
+				],
 				"marker-color": "#ff007e",
 				"marker-size": "small"
 			}
@@ -6222,6 +7878,10 @@
 			},
 			"properties": {
 				"cluster": 3,
+				"centroid": [
+					-82.07389862745148,
+					18.10014805204155
+				],
 				"marker-color": "#ff00de",
 				"marker-size": "small"
 			}
@@ -6237,6 +7897,10 @@
 			},
 			"properties": {
 				"cluster": 11,
+				"centroid": [
+					-74.87813096725604,
+					19.051404705480532
+				],
 				"marker-color": "#00ff20",
 				"marker-size": "small"
 			}
@@ -6252,6 +7916,10 @@
 			},
 			"properties": {
 				"cluster": 11,
+				"centroid": [
+					-74.87813096725604,
+					19.051404705480532
+				],
 				"marker-color": "#00ff20",
 				"marker-size": "small"
 			}
@@ -6267,6 +7935,10 @@
 			},
 			"properties": {
 				"cluster": 10,
+				"centroid": [
+					-81.67819501734249,
+					22.456058950791007
+				],
 				"marker-color": "#3fff00",
 				"marker-size": "small"
 			}
@@ -6282,6 +7954,10 @@
 			},
 			"properties": {
 				"cluster": 13,
+				"centroid": [
+					-71.88949473129752,
+					18.220552149539706
+				],
 				"marker-color": "#00ffe0",
 				"marker-size": "small"
 			}
@@ -6297,6 +7973,10 @@
 			},
 			"properties": {
 				"cluster": 4,
+				"centroid": [
+					-72.1036518524473,
+					21.632139370868533
+				],
 				"marker-color": "#ff007e",
 				"marker-size": "small"
 			}
@@ -6312,6 +7992,10 @@
 			},
 			"properties": {
 				"cluster": 13,
+				"centroid": [
+					-71.88949473129752,
+					18.220552149539706
+				],
 				"marker-color": "#00ffe0",
 				"marker-size": "small"
 			}
@@ -6327,6 +8011,10 @@
 			},
 			"properties": {
 				"cluster": 9,
+				"centroid": [
+					-83.28970527419875,
+					25.03901137331529
+				],
 				"marker-color": "#9fff00",
 				"marker-size": "small"
 			}
@@ -6342,6 +8030,10 @@
 			},
 			"properties": {
 				"cluster": 5,
+				"centroid": [
+					-74.59772375968392,
+					26.040657608812058
+				],
 				"marker-color": "#ff001e",
 				"marker-size": "small"
 			}
@@ -6357,6 +8049,10 @@
 			},
 			"properties": {
 				"cluster": 2,
+				"centroid": [
+					-77.80959890542613,
+					23.062586927512516
+				],
 				"marker-color": "#bf00ff",
 				"marker-size": "small"
 			}
@@ -6372,6 +8068,10 @@
 			},
 			"properties": {
 				"cluster": 4,
+				"centroid": [
+					-72.1036518524473,
+					21.632139370868533
+				],
 				"marker-color": "#ff007e",
 				"marker-size": "small"
 			}
@@ -6387,6 +8087,10 @@
 			},
 			"properties": {
 				"cluster": 8,
+				"centroid": [
+					-74.65884587304036,
+					23.14443612672486
+				],
 				"marker-color": "#ffff00",
 				"marker-size": "small"
 			}
@@ -6402,6 +8106,10 @@
 			},
 			"properties": {
 				"cluster": 15,
+				"centroid": [
+					-79.95661302836459,
+					19.68004339959817
+				],
 				"marker-color": "#005fff",
 				"marker-size": "small"
 			}
@@ -6417,6 +8125,10 @@
 			},
 			"properties": {
 				"cluster": 10,
+				"centroid": [
+					-81.67819501734249,
+					22.456058950791007
+				],
 				"marker-color": "#3fff00",
 				"marker-size": "small"
 			}
@@ -6432,6 +8144,10 @@
 			},
 			"properties": {
 				"cluster": 8,
+				"centroid": [
+					-74.65884587304036,
+					23.14443612672486
+				],
 				"marker-color": "#ffff00",
 				"marker-size": "small"
 			}
@@ -6447,6 +8163,10 @@
 			},
 			"properties": {
 				"cluster": 13,
+				"centroid": [
+					-71.88949473129752,
+					18.220552149539706
+				],
 				"marker-color": "#00ffe0",
 				"marker-size": "small"
 			}
@@ -6462,6 +8182,10 @@
 			},
 			"properties": {
 				"cluster": 14,
+				"centroid": [
+					-85.66057622205204,
+					25.309521790657058
+				],
 				"marker-color": "#00beff",
 				"marker-size": "small"
 			}
@@ -6477,6 +8201,10 @@
 			},
 			"properties": {
 				"cluster": 4,
+				"centroid": [
+					-72.1036518524473,
+					21.632139370868533
+				],
 				"marker-color": "#ff007e",
 				"marker-size": "small"
 			}
@@ -6492,6 +8220,10 @@
 			},
 			"properties": {
 				"cluster": 10,
+				"centroid": [
+					-81.67819501734249,
+					22.456058950791007
+				],
 				"marker-color": "#3fff00",
 				"marker-size": "small"
 			}
@@ -6507,6 +8239,10 @@
 			},
 			"properties": {
 				"cluster": 10,
+				"centroid": [
+					-81.67819501734249,
+					22.456058950791007
+				],
 				"marker-color": "#3fff00",
 				"marker-size": "small"
 			}
@@ -6522,6 +8258,10 @@
 			},
 			"properties": {
 				"cluster": 1,
+				"centroid": [
+					-85.201027549492,
+					21.346638923038203
+				],
 				"marker-color": "#5f00ff",
 				"marker-size": "small"
 			}
@@ -6537,6 +8277,10 @@
 			},
 			"properties": {
 				"cluster": 11,
+				"centroid": [
+					-74.87813096725604,
+					19.051404705480532
+				],
 				"marker-color": "#00ff20",
 				"marker-size": "small"
 			}
@@ -6552,6 +8296,10 @@
 			},
 			"properties": {
 				"cluster": 14,
+				"centroid": [
+					-85.66057622205204,
+					25.309521790657058
+				],
 				"marker-color": "#00beff",
 				"marker-size": "small"
 			}
@@ -6567,6 +8315,10 @@
 			},
 			"properties": {
 				"cluster": 0,
+				"centroid": [
+					-85.22273916681061,
+					18.11205670884361
+				],
 				"marker-color": "#0000ff",
 				"marker-size": "small"
 			}
@@ -6582,6 +8334,10 @@
 			},
 			"properties": {
 				"cluster": 0,
+				"centroid": [
+					-85.22273916681061,
+					18.11205670884361
+				],
 				"marker-color": "#0000ff",
 				"marker-size": "small"
 			}
@@ -6597,6 +8353,10 @@
 			},
 			"properties": {
 				"cluster": 2,
+				"centroid": [
+					-77.80959890542613,
+					23.062586927512516
+				],
 				"marker-color": "#bf00ff",
 				"marker-size": "small"
 			}
@@ -6612,6 +8372,10 @@
 			},
 			"properties": {
 				"cluster": 10,
+				"centroid": [
+					-81.67819501734249,
+					22.456058950791007
+				],
 				"marker-color": "#3fff00",
 				"marker-size": "small"
 			}
@@ -6627,6 +8391,10 @@
 			},
 			"properties": {
 				"cluster": 9,
+				"centroid": [
+					-83.28970527419875,
+					25.03901137331529
+				],
 				"marker-color": "#9fff00",
 				"marker-size": "small"
 			}
@@ -6642,6 +8410,10 @@
 			},
 			"properties": {
 				"cluster": 5,
+				"centroid": [
+					-74.59772375968392,
+					26.040657608812058
+				],
 				"marker-color": "#ff001e",
 				"marker-size": "small"
 			}
@@ -6657,6 +8429,10 @@
 			},
 			"properties": {
 				"cluster": 15,
+				"centroid": [
+					-79.95661302836459,
+					19.68004339959817
+				],
 				"marker-color": "#005fff",
 				"marker-size": "small"
 			}
@@ -6672,6 +8448,10 @@
 			},
 			"properties": {
 				"cluster": 5,
+				"centroid": [
+					-74.59772375968392,
+					26.040657608812058
+				],
 				"marker-color": "#ff001e",
 				"marker-size": "small"
 			}
@@ -6687,6 +8467,10 @@
 			},
 			"properties": {
 				"cluster": 14,
+				"centroid": [
+					-85.66057622205204,
+					25.309521790657058
+				],
 				"marker-color": "#00beff",
 				"marker-size": "small"
 			}
@@ -6702,6 +8486,10 @@
 			},
 			"properties": {
 				"cluster": 14,
+				"centroid": [
+					-85.66057622205204,
+					25.309521790657058
+				],
 				"marker-color": "#00beff",
 				"marker-size": "small"
 			}
@@ -6717,6 +8505,10 @@
 			},
 			"properties": {
 				"cluster": 1,
+				"centroid": [
+					-85.201027549492,
+					21.346638923038203
+				],
 				"marker-color": "#5f00ff",
 				"marker-size": "small"
 			}
@@ -6732,6 +8524,10 @@
 			},
 			"properties": {
 				"cluster": 14,
+				"centroid": [
+					-85.66057622205204,
+					25.309521790657058
+				],
 				"marker-color": "#00beff",
 				"marker-size": "small"
 			}
@@ -6747,6 +8543,10 @@
 			},
 			"properties": {
 				"cluster": 11,
+				"centroid": [
+					-74.87813096725604,
+					19.051404705480532
+				],
 				"marker-color": "#00ff20",
 				"marker-size": "small"
 			}
@@ -6762,6 +8562,10 @@
 			},
 			"properties": {
 				"cluster": 4,
+				"centroid": [
+					-72.1036518524473,
+					21.632139370868533
+				],
 				"marker-color": "#ff007e",
 				"marker-size": "small"
 			}
@@ -6777,6 +8581,10 @@
 			},
 			"properties": {
 				"cluster": 2,
+				"centroid": [
+					-77.80959890542613,
+					23.062586927512516
+				],
 				"marker-color": "#bf00ff",
 				"marker-size": "small"
 			}
@@ -6792,6 +8600,10 @@
 			},
 			"properties": {
 				"cluster": 0,
+				"centroid": [
+					-85.22273916681061,
+					18.11205670884361
+				],
 				"marker-color": "#0000ff",
 				"marker-size": "small"
 			}
@@ -6807,6 +8619,10 @@
 			},
 			"properties": {
 				"cluster": 14,
+				"centroid": [
+					-85.66057622205204,
+					25.309521790657058
+				],
 				"marker-color": "#00beff",
 				"marker-size": "small"
 			}
@@ -6822,6 +8638,10 @@
 			},
 			"properties": {
 				"cluster": 9,
+				"centroid": [
+					-83.28970527419875,
+					25.03901137331529
+				],
 				"marker-color": "#9fff00",
 				"marker-size": "small"
 			}
@@ -6837,6 +8657,10 @@
 			},
 			"properties": {
 				"cluster": 1,
+				"centroid": [
+					-85.201027549492,
+					21.346638923038203
+				],
 				"marker-color": "#5f00ff",
 				"marker-size": "small"
 			}
@@ -6852,6 +8676,10 @@
 			},
 			"properties": {
 				"cluster": 12,
+				"centroid": [
+					-77.46953467512287,
+					17.829026800774887
+				],
 				"marker-color": "#00ff80",
 				"marker-size": "small"
 			}
@@ -6867,6 +8695,10 @@
 			},
 			"properties": {
 				"cluster": 10,
+				"centroid": [
+					-81.67819501734249,
+					22.456058950791007
+				],
 				"marker-color": "#3fff00",
 				"marker-size": "small"
 			}
@@ -6882,6 +8714,10 @@
 			},
 			"properties": {
 				"cluster": 5,
+				"centroid": [
+					-74.59772375968392,
+					26.040657608812058
+				],
 				"marker-color": "#ff001e",
 				"marker-size": "small"
 			}
@@ -6897,6 +8733,10 @@
 			},
 			"properties": {
 				"cluster": 3,
+				"centroid": [
+					-82.07389862745148,
+					18.10014805204155
+				],
 				"marker-color": "#ff00de",
 				"marker-size": "small"
 			}
@@ -6912,6 +8752,10 @@
 			},
 			"properties": {
 				"cluster": 13,
+				"centroid": [
+					-71.88949473129752,
+					18.220552149539706
+				],
 				"marker-color": "#00ffe0",
 				"marker-size": "small"
 			}
@@ -6927,6 +8771,10 @@
 			},
 			"properties": {
 				"cluster": 0,
+				"centroid": [
+					-85.22273916681061,
+					18.11205670884361
+				],
 				"marker-color": "#0000ff",
 				"marker-size": "small"
 			}
@@ -6942,6 +8790,10 @@
 			},
 			"properties": {
 				"cluster": 5,
+				"centroid": [
+					-74.59772375968392,
+					26.040657608812058
+				],
 				"marker-color": "#ff001e",
 				"marker-size": "small"
 			}
@@ -6957,6 +8809,10 @@
 			},
 			"properties": {
 				"cluster": 13,
+				"centroid": [
+					-71.88949473129752,
+					18.220552149539706
+				],
 				"marker-color": "#00ffe0",
 				"marker-size": "small"
 			}
@@ -6972,6 +8828,10 @@
 			},
 			"properties": {
 				"cluster": 14,
+				"centroid": [
+					-85.66057622205204,
+					25.309521790657058
+				],
 				"marker-color": "#00beff",
 				"marker-size": "small"
 			}
@@ -6987,6 +8847,10 @@
 			},
 			"properties": {
 				"cluster": 9,
+				"centroid": [
+					-83.28970527419875,
+					25.03901137331529
+				],
 				"marker-color": "#9fff00",
 				"marker-size": "small"
 			}
@@ -7002,6 +8866,10 @@
 			},
 			"properties": {
 				"cluster": 11,
+				"centroid": [
+					-74.87813096725604,
+					19.051404705480532
+				],
 				"marker-color": "#00ff20",
 				"marker-size": "small"
 			}
@@ -7017,6 +8885,10 @@
 			},
 			"properties": {
 				"cluster": 3,
+				"centroid": [
+					-82.07389862745148,
+					18.10014805204155
+				],
 				"marker-color": "#ff00de",
 				"marker-size": "small"
 			}
@@ -7032,6 +8904,10 @@
 			},
 			"properties": {
 				"cluster": 1,
+				"centroid": [
+					-85.201027549492,
+					21.346638923038203
+				],
 				"marker-color": "#5f00ff",
 				"marker-size": "small"
 			}
@@ -7047,6 +8923,10 @@
 			},
 			"properties": {
 				"cluster": 0,
+				"centroid": [
+					-85.22273916681061,
+					18.11205670884361
+				],
 				"marker-color": "#0000ff",
 				"marker-size": "small"
 			}
@@ -7062,6 +8942,10 @@
 			},
 			"properties": {
 				"cluster": 14,
+				"centroid": [
+					-85.66057622205204,
+					25.309521790657058
+				],
 				"marker-color": "#00beff",
 				"marker-size": "small"
 			}
@@ -7077,6 +8961,10 @@
 			},
 			"properties": {
 				"cluster": 4,
+				"centroid": [
+					-72.1036518524473,
+					21.632139370868533
+				],
 				"marker-color": "#ff007e",
 				"marker-size": "small"
 			}
@@ -7092,6 +8980,10 @@
 			},
 			"properties": {
 				"cluster": 13,
+				"centroid": [
+					-71.88949473129752,
+					18.220552149539706
+				],
 				"marker-color": "#00ffe0",
 				"marker-size": "small"
 			}
@@ -7107,6 +8999,10 @@
 			},
 			"properties": {
 				"cluster": 9,
+				"centroid": [
+					-83.28970527419875,
+					25.03901137331529
+				],
 				"marker-color": "#9fff00",
 				"marker-size": "small"
 			}
@@ -7122,6 +9018,10 @@
 			},
 			"properties": {
 				"cluster": 8,
+				"centroid": [
+					-74.65884587304036,
+					23.14443612672486
+				],
 				"marker-color": "#ffff00",
 				"marker-size": "small"
 			}
@@ -7137,6 +9037,10 @@
 			},
 			"properties": {
 				"cluster": 9,
+				"centroid": [
+					-83.28970527419875,
+					25.03901137331529
+				],
 				"marker-color": "#9fff00",
 				"marker-size": "small"
 			}
@@ -7152,6 +9056,10 @@
 			},
 			"properties": {
 				"cluster": 5,
+				"centroid": [
+					-74.59772375968392,
+					26.040657608812058
+				],
 				"marker-color": "#ff001e",
 				"marker-size": "small"
 			}
@@ -7167,6 +9075,10 @@
 			},
 			"properties": {
 				"cluster": 11,
+				"centroid": [
+					-74.87813096725604,
+					19.051404705480532
+				],
 				"marker-color": "#00ff20",
 				"marker-size": "small"
 			}
@@ -7182,6 +9094,10 @@
 			},
 			"properties": {
 				"cluster": 6,
+				"centroid": [
+					-78.71931668447289,
+					26.441283306379056
+				],
 				"marker-color": "#ff4000",
 				"marker-size": "small"
 			}
@@ -7197,6 +9113,10 @@
 			},
 			"properties": {
 				"cluster": 5,
+				"centroid": [
+					-74.59772375968392,
+					26.040657608812058
+				],
 				"marker-color": "#ff001e",
 				"marker-size": "small"
 			}
@@ -7212,6 +9132,10 @@
 			},
 			"properties": {
 				"cluster": 13,
+				"centroid": [
+					-71.88949473129752,
+					18.220552149539706
+				],
 				"marker-color": "#00ffe0",
 				"marker-size": "small"
 			}
@@ -7227,6 +9151,10 @@
 			},
 			"properties": {
 				"cluster": 2,
+				"centroid": [
+					-77.80959890542613,
+					23.062586927512516
+				],
 				"marker-color": "#bf00ff",
 				"marker-size": "small"
 			}
@@ -7242,6 +9170,10 @@
 			},
 			"properties": {
 				"cluster": 7,
+				"centroid": [
+					-71.60386443367564,
+					25.68144722581964
+				],
 				"marker-color": "#ff9f00",
 				"marker-size": "small"
 			}
@@ -7257,6 +9189,10 @@
 			},
 			"properties": {
 				"cluster": 7,
+				"centroid": [
+					-71.60386443367564,
+					25.68144722581964
+				],
 				"marker-color": "#ff9f00",
 				"marker-size": "small"
 			}
@@ -7272,6 +9208,10 @@
 			},
 			"properties": {
 				"cluster": 12,
+				"centroid": [
+					-77.46953467512287,
+					17.829026800774887
+				],
 				"marker-color": "#00ff80",
 				"marker-size": "small"
 			}
@@ -7287,6 +9227,10 @@
 			},
 			"properties": {
 				"cluster": 11,
+				"centroid": [
+					-74.87813096725604,
+					19.051404705480532
+				],
 				"marker-color": "#00ff20",
 				"marker-size": "small"
 			}
@@ -7302,6 +9246,10 @@
 			},
 			"properties": {
 				"cluster": 13,
+				"centroid": [
+					-71.88949473129752,
+					18.220552149539706
+				],
 				"marker-color": "#00ffe0",
 				"marker-size": "small"
 			}
@@ -7317,6 +9265,10 @@
 			},
 			"properties": {
 				"cluster": 12,
+				"centroid": [
+					-77.46953467512287,
+					17.829026800774887
+				],
 				"marker-color": "#00ff80",
 				"marker-size": "small"
 			}
@@ -7332,6 +9284,10 @@
 			},
 			"properties": {
 				"cluster": 3,
+				"centroid": [
+					-82.07389862745148,
+					18.10014805204155
+				],
 				"marker-color": "#ff00de",
 				"marker-size": "small"
 			}
@@ -7347,6 +9303,10 @@
 			},
 			"properties": {
 				"cluster": 8,
+				"centroid": [
+					-74.65884587304036,
+					23.14443612672486
+				],
 				"marker-color": "#ffff00",
 				"marker-size": "small"
 			}
@@ -7362,6 +9322,10 @@
 			},
 			"properties": {
 				"cluster": 8,
+				"centroid": [
+					-74.65884587304036,
+					23.14443612672486
+				],
 				"marker-color": "#ffff00",
 				"marker-size": "small"
 			}
@@ -7377,6 +9341,10 @@
 			},
 			"properties": {
 				"cluster": 10,
+				"centroid": [
+					-81.67819501734249,
+					22.456058950791007
+				],
 				"marker-color": "#3fff00",
 				"marker-size": "small"
 			}
@@ -7392,6 +9360,10 @@
 			},
 			"properties": {
 				"cluster": 2,
+				"centroid": [
+					-77.80959890542613,
+					23.062586927512516
+				],
 				"marker-color": "#bf00ff",
 				"marker-size": "small"
 			}
@@ -7407,6 +9379,10 @@
 			},
 			"properties": {
 				"cluster": 12,
+				"centroid": [
+					-77.46953467512287,
+					17.829026800774887
+				],
 				"marker-color": "#00ff80",
 				"marker-size": "small"
 			}
@@ -7422,6 +9398,10 @@
 			},
 			"properties": {
 				"cluster": 12,
+				"centroid": [
+					-77.46953467512287,
+					17.829026800774887
+				],
 				"marker-color": "#00ff80",
 				"marker-size": "small"
 			}
@@ -7437,6 +9417,10 @@
 			},
 			"properties": {
 				"cluster": 1,
+				"centroid": [
+					-85.201027549492,
+					21.346638923038203
+				],
 				"marker-color": "#5f00ff",
 				"marker-size": "small"
 			}
@@ -7452,6 +9436,10 @@
 			},
 			"properties": {
 				"cluster": 6,
+				"centroid": [
+					-78.71931668447289,
+					26.441283306379056
+				],
 				"marker-color": "#ff4000",
 				"marker-size": "small"
 			}
@@ -7467,6 +9455,10 @@
 			},
 			"properties": {
 				"cluster": 14,
+				"centroid": [
+					-85.66057622205204,
+					25.309521790657058
+				],
 				"marker-color": "#00beff",
 				"marker-size": "small"
 			}
@@ -7482,6 +9474,10 @@
 			},
 			"properties": {
 				"cluster": 6,
+				"centroid": [
+					-78.71931668447289,
+					26.441283306379056
+				],
 				"marker-color": "#ff4000",
 				"marker-size": "small"
 			}
@@ -7497,6 +9493,10 @@
 			},
 			"properties": {
 				"cluster": 13,
+				"centroid": [
+					-71.88949473129752,
+					18.220552149539706
+				],
 				"marker-color": "#00ffe0",
 				"marker-size": "small"
 			}
@@ -7504,7 +9504,6 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"cluster": 0,
 				"marker-color": "#000080",
 				"marker-symbol": "star-stroked",
 				"marker-size": "large"
@@ -7520,7 +9519,105 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"cluster": 1,
+				"fill": "#000080",
+				"stroke": "#000080",
+				"fill-opacity": 0.3
+			},
+			"geometry": {
+				"type": "Polygon",
+				"coordinates": [
+					[
+						[
+							-86.16769788043096,
+							16.98191521287846
+						],
+						[
+							-86.07548891214728,
+							17.301084891511273
+						],
+						[
+							-86.58330318049086,
+							18.09915952726896
+						],
+						[
+							-86.21686530340585,
+							18.59063554310776
+						],
+						[
+							-86.01507615292597,
+							18.68916636419406
+						],
+						[
+							-86.02504204870841,
+							18.793197099411397
+						],
+						[
+							-86.56755786305595,
+							19.40265705295205
+						],
+						[
+							-86.05313261324237,
+							19.319796400696145
+						],
+						[
+							-85.67038090634749,
+							19.518488261229543
+						],
+						[
+							-84.36337554761008,
+							19.119473770547124
+						],
+						[
+							-84.33158765668573,
+							19.452979509754268
+						],
+						[
+							-83.71943800617547,
+							19.616649637864654
+						],
+						[
+							-83.7861071942679,
+							18.669738072373164
+						],
+						[
+							-84.50710379745864,
+							18.424063455433217
+						],
+						[
+							-84.51391779937516,
+							18.211967578932978
+						],
+						[
+							-84.81019601780373,
+							17.165972386566605
+						],
+						[
+							-84.71045285694422,
+							17.079742569860166
+						],
+						[
+							-84.28985709132587,
+							16.584015683001546
+						],
+						[
+							-84.91640675333899,
+							16.590848739189624
+						],
+						[
+							-85.54709582459233,
+							16.53706271986311
+						],
+						[
+							-86.16769788043096,
+							16.98191521287846
+						]
+					]
+				]
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {
 				"marker-color": "#2f0080",
 				"marker-symbol": "star-stroked",
 				"marker-size": "large"
@@ -7536,7 +9633,101 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"cluster": 2,
+				"fill": "#2f0080",
+				"stroke": "#2f0080",
+				"fill-opacity": 0.3
+			},
+			"geometry": {
+				"type": "Polygon",
+				"coordinates": [
+					[
+						[
+							-86.287484618002,
+							19.75003759357949
+						],
+						[
+							-86.71994017762563,
+							20.189025977120103
+						],
+						[
+							-85.98455859943033,
+							21.06707023138771
+						],
+						[
+							-85.95908129532202,
+							21.185424844181092
+						],
+						[
+							-86.26129906562491,
+							21.294934204528648
+						],
+						[
+							-86.40609968225364,
+							21.87541299401925
+						],
+						[
+							-86.55727606952377,
+							22.36430316761306
+						],
+						[
+							-85.61849018164143,
+							22.47855670455455
+						],
+						[
+							-85.2549851564484,
+							22.35997051326973
+						],
+						[
+							-84.96994176238145,
+							22.888540550894795
+						],
+						[
+							-84.59495181641225,
+							22.81831350748234
+						],
+						[
+							-84.31384918144222,
+							22.633190689556994
+						],
+						[
+							-84.19143746995799,
+							22.76299900389558
+						],
+						[
+							-83.70000865367116,
+							21.542018533522416
+						],
+						[
+							-83.44899512481147,
+							21.52626642668551
+						],
+						[
+							-83.26242751330523,
+							20.472647289870025
+						],
+						[
+							-84.42534293525704,
+							20.342801196105015
+						],
+						[
+							-84.48717976822758,
+							20.224242981590255
+						],
+						[
+							-85.93555696939467,
+							19.98152959915939
+						],
+						[
+							-86.287484618002,
+							19.75003759357949
+						]
+					]
+				]
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {
 				"marker-color": "#5f0080",
 				"marker-symbol": "star-stroked",
 				"marker-size": "large"
@@ -7552,7 +9743,133 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"cluster": 3,
+				"fill": "#5f0080",
+				"stroke": "#5f0080",
+				"fill-opacity": 0.3
+			},
+			"geometry": {
+				"type": "Polygon",
+				"coordinates": [
+					[
+						[
+							-79.46924741699405,
+							22.27588495796526
+						],
+						[
+							-79.43974652662247,
+							22.60413987147912
+						],
+						[
+							-79.07431215190033,
+							23.634255220677876
+						],
+						[
+							-79.26216347689832,
+							23.673136982276464
+						],
+						[
+							-79.60441825132624,
+							23.93129090727725
+						],
+						[
+							-79.01326798044877,
+							24.122014119489563
+						],
+						[
+							-78.9102252552082,
+							23.883340808622673
+						],
+						[
+							-78.20462326614003,
+							24.00357261039075
+						],
+						[
+							-77.54286133638129,
+							24.13575708893132
+						],
+						[
+							-77.4550593256632,
+							24.03016205722427
+						],
+						[
+							-77.20171143790367,
+							24.334344930797855
+						],
+						[
+							-77.24844766066971,
+							24.484245781333726
+						],
+						[
+							-77.18119091611597,
+							24.755151867045228
+						],
+						[
+							-76.3453947248687,
+							24.50576556423695
+						],
+						[
+							-76.45068182631776,
+							24.018640243238202
+						],
+						[
+							-76.58173201222138,
+							23.850997885697698
+						],
+						[
+							-76.76206658518934,
+							23.71467590682046
+						],
+						[
+							-76.68634851848167,
+							23.203154689599817
+						],
+						[
+							-76.41316964578398,
+							23.148029434777555
+						],
+						[
+							-76.40761927871347,
+							22.617986414434352
+						],
+						[
+							-76.49404471100601,
+							22.009751251682275
+						],
+						[
+							-76.61068998466835,
+							21.311283807756645
+						],
+						[
+							-77.5644212682104,
+							20.850894115743387
+						],
+						[
+							-77.92734033427595,
+							20.82599847071201
+						],
+						[
+							-78.49722908932829,
+							21.926256397875694
+						],
+						[
+							-78.89319872559254,
+							21.773847762169503
+						],
+						[
+							-78.87897523658762,
+							22.009563011217917
+						],
+						[
+							-79.46924741699405,
+							22.27588495796526
+						]
+					]
+				]
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {
 				"marker-color": "#80006e",
 				"marker-symbol": "star-stroked",
 				"marker-size": "large"
@@ -7568,7 +9885,109 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"cluster": 4,
+				"fill": "#80006e",
+				"stroke": "#80006e",
+				"fill-opacity": 0.3
+			},
+			"geometry": {
+				"type": "Polygon",
+				"coordinates": [
+					[
+						[
+							-83.34448173717335,
+							17.84048983960788
+						],
+						[
+							-83.28006204700529,
+							18.638001663502685
+						],
+						[
+							-83.3932989046418,
+							19.030002383084067
+						],
+						[
+							-83.32489553257798,
+							19.57470756961103
+						],
+						[
+							-82.97783503664645,
+							19.823228188109127
+						],
+						[
+							-82.51440928893466,
+							19.680938852916263
+						],
+						[
+							-81.8977221405959,
+							19.412558043465
+						],
+						[
+							-81.25719355261317,
+							18.841254641177088
+						],
+						[
+							-81.14342020536195,
+							18.867794740406104
+						],
+						[
+							-81.15582212817301,
+							18.696902173553443
+						],
+						[
+							-80.67095396405709,
+							17.953443362949123
+						],
+						[
+							-80.52285998029147,
+							17.487274302366117
+						],
+						[
+							-80.27561331569953,
+							16.994251063813262
+						],
+						[
+							-81.02534851234576,
+							16.756254338847338
+						],
+						[
+							-81.51495780456581,
+							16.669087042407536
+						],
+						[
+							-81.72560883757795,
+							16.962762773864505
+						],
+						[
+							-82.20796912251339,
+							16.910765069076696
+						],
+						[
+							-82.5062774214051,
+							17.326690422594897
+						],
+						[
+							-83.09703651590019,
+							17.421833037838393
+						],
+						[
+							-83.17815192274419,
+							17.766464076510605
+						],
+						[
+							-83.33929483454432,
+							17.79933711363019
+						],
+						[
+							-83.34448173717335,
+							17.84048983960788
+						]
+					]
+				]
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {
 				"marker-color": "#80003e",
 				"marker-symbol": "star-stroked",
 				"marker-size": "large"
@@ -7584,7 +10003,109 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"cluster": 5,
+				"fill": "#80003e",
+				"stroke": "#80003e",
+				"fill-opacity": 0.3
+			},
+			"geometry": {
+				"type": "Polygon",
+				"coordinates": [
+					[
+						[
+							-72.57808400285332,
+							20.00051975393173
+						],
+						[
+							-73.17395695535176,
+							20.322052935788367
+						],
+						[
+							-73.3184598837461,
+							20.339708336838683
+						],
+						[
+							-72.97261043138833,
+							20.783569456567577
+						],
+						[
+							-72.80042213720098,
+							20.990256802329768
+						],
+						[
+							-73.24887371103026,
+							21.739851639014628
+						],
+						[
+							-72.90249827777127,
+							22.05793250583984
+						],
+						[
+							-72.97302399035408,
+							22.395504699565535
+						],
+						[
+							-72.71898403700982,
+							22.858679743400074
+						],
+						[
+							-72.46253580071742,
+							22.833272724615775
+						],
+						[
+							-72.3275873181896,
+							23.43075879262019
+						],
+						[
+							-71.89153777133139,
+							23.170952976617727
+						],
+						[
+							-71.56458486764306,
+							23.27787869671228
+						],
+						[
+							-71.30133416063728,
+							22.908999108726512
+						],
+						[
+							-71.17146072076018,
+							22.71145107992815
+						],
+						[
+							-70.8076846951252,
+							22.255910609327792
+						],
+						[
+							-70.81872422593077,
+							21.669857512462364
+						],
+						[
+							-70.94492705924428,
+							21.0702981386651
+						],
+						[
+							-71.22442161042382,
+							20.946470968784404
+						],
+						[
+							-71.23882701110625,
+							20.30184311650061
+						],
+						[
+							-72.04442014558218,
+							20.180967527569678
+						],
+						[
+							-72.57808400285332,
+							20.00051975393173
+						]
+					]
+				]
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {
 				"marker-color": "#80000e",
 				"marker-symbol": "star-stroked",
 				"marker-size": "large"
@@ -7600,7 +10121,105 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"cluster": 6,
+				"fill": "#80000e",
+				"stroke": "#80000e",
+				"fill-opacity": 0.3
+			},
+			"geometry": {
+				"type": "Polygon",
+				"coordinates": [
+					[
+						[
+							-75.39338327111777,
+							24.626502743687922
+						],
+						[
+							-75.43791743989885,
+							24.962432920525124
+						],
+						[
+							-75.54213379075634,
+							25.505384186492893
+						],
+						[
+							-76.57090751033381,
+							25.058967866824403
+						],
+						[
+							-76.50335139484208,
+							25.338279000551893
+						],
+						[
+							-76.55059712821668,
+							25.49682672225246
+						],
+						[
+							-76.26218882048389,
+							26.41236152098589
+						],
+						[
+							-75.40829350874473,
+							27.268125557919248
+						],
+						[
+							-74.75631134659818,
+							27.4074383447763
+						],
+						[
+							-74.14433438213305,
+							27.036543336370556
+						],
+						[
+							-74.07684618758876,
+							27.17395724732544
+						],
+						[
+							-73.77643699392496,
+							27.091684659861052
+						],
+						[
+							-73.76701891828932,
+							27.195861233372437
+						],
+						[
+							-73.14138268439117,
+							27.295964747431004
+						],
+						[
+							-73.38809337052642,
+							26.427105032557755
+						],
+						[
+							-73.64279747070925,
+							25.651725881829897
+						],
+						[
+							-73.30367109087219,
+							25.1900948213395
+						],
+						[
+							-73.58692805675213,
+							24.80146814851551
+						],
+						[
+							-73.79193518864761,
+							24.737897659493715
+						],
+						[
+							-73.79365159485565,
+							24.73837411446049
+						],
+						[
+							-75.39338327111777,
+							24.626502743687922
+						]
+					]
+				]
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {
 				"marker-color": "#802000",
 				"marker-symbol": "star-stroked",
 				"marker-size": "large"
@@ -7616,7 +10235,125 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"cluster": 7,
+				"fill": "#802000",
+				"stroke": "#802000",
+				"fill-opacity": 0.3
+			},
+			"geometry": {
+				"type": "Polygon",
+				"coordinates": [
+					[
+						[
+							-80.72145863838075,
+							25.18049472134159
+						],
+						[
+							-80.39732218872196,
+							25.629464613691137
+						],
+						[
+							-80.23254193941007,
+							26.262181726505418
+						],
+						[
+							-81.15681636726895,
+							26.828785859624258
+						],
+						[
+							-80.96348979974654,
+							27.35814140608639
+						],
+						[
+							-80.76905431857912,
+							27.471768557404076
+						],
+						[
+							-79.99265814798184,
+							27.483971653923085
+						],
+						[
+							-79.18586938186745,
+							27.019278441405643
+						],
+						[
+							-78.89936609149818,
+							27.20566948335109
+						],
+						[
+							-78.17830942471453,
+							27.459109723499697
+						],
+						[
+							-77.95694749118951,
+							27.39255408553263
+						],
+						[
+							-77.65455892791887,
+							27.186142540274957
+						],
+						[
+							-77.64984925794586,
+							27.17403653643745
+						],
+						[
+							-76.68105867358958,
+							27.21289905396955
+						],
+						[
+							-77.41470444523833,
+							26.791071724795167
+						],
+						[
+							-77.20251485577793,
+							26.55556740273682
+						],
+						[
+							-76.96213190737039,
+							26.279325304846623
+						],
+						[
+							-77.05832892131573,
+							25.244587077548168
+						],
+						[
+							-77.61949782551551,
+							25.38069882274378
+						],
+						[
+							-78.55079764304975,
+							25.525431992772358
+						],
+						[
+							-78.97472021053458,
+							26.061373986456793
+						],
+						[
+							-79.32534041974515,
+							26.094983944812824
+						],
+						[
+							-79.3121102967554,
+							25.956525827964448
+						],
+						[
+							-79.5468209860248,
+							25.79011427888136
+						],
+						[
+							-80.04325753495058,
+							24.349990861490674
+						],
+						[
+							-80.72145863838075,
+							25.18049472134159
+						]
+					]
+				]
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {
 				"marker-color": "#805000",
 				"marker-symbol": "star-stroked",
 				"marker-size": "large"
@@ -7632,7 +10369,89 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"cluster": 8,
+				"fill": "#805000",
+				"stroke": "#805000",
+				"fill-opacity": 0.3
+			},
+			"geometry": {
+				"type": "Polygon",
+				"coordinates": [
+					[
+						[
+							-72.9283270010284,
+							24.674017344728615
+						],
+						[
+							-72.92622530551323,
+							25.623260952842156
+						],
+						[
+							-72.95113454727932,
+							26.357292830184782
+						],
+						[
+							-72.76340181762502,
+							26.57219504751686
+						],
+						[
+							-72.72311173060332,
+							27.453459491416243
+						],
+						[
+							-71.09304190552334,
+							27.42090911618883
+						],
+						[
+							-70.84877351272029,
+							26.92445686110058
+						],
+						[
+							-71.11420407247648,
+							26.113452348786268
+						],
+						[
+							-70.80371392928168,
+							26.040116775073876
+						],
+						[
+							-70.78174587415,
+							25.852826126614094
+						],
+						[
+							-70.58570795493182,
+							25.546633692923525
+						],
+						[
+							-70.67472974247343,
+							24.956264380693316
+						],
+						[
+							-70.7096594822639,
+							24.460836562368442
+						],
+						[
+							-71.72209650039468,
+							24.280447748568445
+						],
+						[
+							-71.78777310048918,
+							23.92218146021364
+						],
+						[
+							-72.59204571681656,
+							24.786873137315194
+						],
+						[
+							-72.9283270010284,
+							24.674017344728615
+						]
+					]
+				]
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {
 				"marker-color": "#808000",
 				"marker-symbol": "star-stroked",
 				"marker-size": "large"
@@ -7648,7 +10467,97 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"cluster": 9,
+				"fill": "#808000",
+				"stroke": "#808000",
+				"fill-opacity": 0.3
+			},
+			"geometry": {
+				"type": "Polygon",
+				"coordinates": [
+					[
+						[
+							-75.90881672418563,
+							21.468642424655155
+						],
+						[
+							-75.55667427680913,
+							22.171811135508918
+						],
+						[
+							-75.64211828010676,
+							22.535063069435896
+						],
+						[
+							-76.03458096249997,
+							22.65764273416216
+						],
+						[
+							-75.4614226211491,
+							23.444082141644998
+						],
+						[
+							-75.84458598730575,
+							23.70594482686843
+						],
+						[
+							-75.89333076284501,
+							24.384990740752006
+						],
+						[
+							-75.34538728645822,
+							24.41450380344747
+						],
+						[
+							-74.69220087076908,
+							23.99722100792555
+						],
+						[
+							-74.05488356732162,
+							24.111641311913072
+						],
+						[
+							-73.93734071291428,
+							23.99085830463023
+						],
+						[
+							-73.59332944904146,
+							24.120911542546878
+						],
+						[
+							-73.73009496457921,
+							23.7983464395302
+						],
+						[
+							-73.54280695688689,
+							23.237868840297253
+						],
+						[
+							-73.23963323045145,
+							23.244627904260923
+						],
+						[
+							-73.81530228240368,
+							21.899431865794316
+						],
+						[
+							-74.27364128877521,
+							21.130861117009847
+						],
+						[
+							-74.71160840330522,
+							21.77620359204627
+						],
+						[
+							-75.90881672418563,
+							21.468642424655155
+						]
+					]
+				]
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {
 				"marker-color": "#4f8000",
 				"marker-symbol": "star-stroked",
 				"marker-size": "large"
@@ -7664,7 +10573,97 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"cluster": 10,
+				"fill": "#4f8000",
+				"stroke": "#4f8000",
+				"fill-opacity": 0.3
+			},
+			"geometry": {
+				"type": "Polygon",
+				"coordinates": [
+					[
+						[
+							-84.09803657824347,
+							23.3454534216312
+						],
+						[
+							-84.5179339115434,
+							23.450627516507094
+						],
+						[
+							-84.47025910061983,
+							24.118620545794855
+						],
+						[
+							-84.41505346819054,
+							25.017559911985607
+						],
+						[
+							-84.2520931858629,
+							25.53784765691357
+						],
+						[
+							-84.21354373461136,
+							25.88846335275895
+						],
+						[
+							-83.74759623801513,
+							26.12337676616272
+						],
+						[
+							-83.40595166597085,
+							26.80155978434455
+						],
+						[
+							-83.07748325170441,
+							27.337367361375666
+						],
+						[
+							-82.45286775268717,
+							27.264956115483226
+						],
+						[
+							-82.50995550468448,
+							26.805856081166645
+						],
+						[
+							-82.13081869539506,
+							26.23449839991876
+						],
+						[
+							-81.56890381178304,
+							24.88700194600341
+						],
+						[
+							-81.40866406564102,
+							24.65588369863437
+						],
+						[
+							-82.27546806320538,
+							24.62810216606337
+						],
+						[
+							-82.3562097070285,
+							24.24226765651852
+						],
+						[
+							-83.2729878125471,
+							23.65784314034355
+						],
+						[
+							-83.55598541988493,
+							23.62640751670331
+						],
+						[
+							-84.09803657824347,
+							23.3454534216312
+						]
+					]
+				]
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {
 				"marker-color": "#1f8000",
 				"marker-symbol": "star-stroked",
 				"marker-size": "large"
@@ -7680,7 +10679,81 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"cluster": 11,
+				"fill": "#1f8000",
+				"stroke": "#1f8000",
+				"fill-opacity": 0.3
+			},
+			"geometry": {
+				"type": "Polygon",
+				"coordinates": [
+					[
+						[
+							-82.80521037357039,
+							21.252980629644455
+						],
+						[
+							-82.684418563593,
+							21.47654476359144
+						],
+						[
+							-83.00830955618024,
+							21.885311144830727
+						],
+						[
+							-82.86222771555597,
+							22.720569651349564
+						],
+						[
+							-82.56477901274141,
+							23.02518524523849
+						],
+						[
+							-82.17844562558024,
+							23.80702766062598
+						],
+						[
+							-80.93509999305662,
+							24.197922897145702
+						],
+						[
+							-80.45164209210782,
+							23.76673190659356
+						],
+						[
+							-80.37798026966385,
+							22.800554127763526
+						],
+						[
+							-80.19600112265177,
+							22.73914989583398
+						],
+						[
+							-79.76550387867614,
+							21.84873202139447
+						],
+						[
+							-80.55680807421967,
+							21.907870183116437
+						],
+						[
+							-81.3831207434748,
+							20.990164116130572
+						],
+						[
+							-81.98171564844314,
+							21.140743955694063
+						],
+						[
+							-82.80521037357039,
+							21.252980629644455
+						]
+					]
+				]
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {
 				"marker-color": "#008010",
 				"marker-symbol": "star-stroked",
 				"marker-size": "large"
@@ -7696,7 +10769,117 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"cluster": 12,
+				"fill": "#008010",
+				"stroke": "#008010",
+				"fill-opacity": 0.3
+			},
+			"geometry": {
+				"type": "Polygon",
+				"coordinates": [
+					[
+						[
+							-76.18027511981438,
+							18.875894880366534
+						],
+						[
+							-76.30245460933854,
+							19.23352889608482
+						],
+						[
+							-76.62437731409852,
+							19.781049107501957
+						],
+						[
+							-76.379040540202,
+							20.37524788330293
+						],
+						[
+							-75.98170526139158,
+							20.98332034823357
+						],
+						[
+							-75.75695759804495,
+							20.08490410319372
+						],
+						[
+							-75.4273474590883,
+							20.29560385897871
+						],
+						[
+							-75.21242542631086,
+							20.177739085659635
+						],
+						[
+							-75.18827115285569,
+							20.273168111170328
+						],
+						[
+							-75.04153303125153,
+							20.350657127526738
+						],
+						[
+							-74.64966522234937,
+							20.677188588895476
+						],
+						[
+							-73.67260570784427,
+							20.45532583962798
+						],
+						[
+							-73.65487739464005,
+							20.270385418656613
+						],
+						[
+							-73.70162022475394,
+							19.229694616459863
+						],
+						[
+							-73.75288708284614,
+							18.922685406247748
+						],
+						[
+							-73.59793295622734,
+							18.75099342612817
+						],
+						[
+							-73.73592652087561,
+							17.55179712679042
+						],
+						[
+							-74.37506450657898,
+							16.711071194315227
+						],
+						[
+							-74.8522033753837,
+							16.57371866969067
+						],
+						[
+							-75.10886304098058,
+							16.8269149948045
+						],
+						[
+							-75.0632043924848,
+							17.78197939775129
+						],
+						[
+							-75.48932636312891,
+							18.050155326157473
+						],
+						[
+							-75.75702086888295,
+							18.06842605714349
+						],
+						[
+							-76.18027511981438,
+							18.875894880366534
+						]
+					]
+				]
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {
 				"marker-color": "#008040",
 				"marker-symbol": "star-stroked",
 				"marker-size": "large"
@@ -7712,7 +10895,133 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"cluster": 13,
+				"fill": "#008040",
+				"stroke": "#008040",
+				"fill-opacity": 0.3
+			},
+			"geometry": {
+				"type": "Polygon",
+				"coordinates": [
+					[
+						[
+							-77.65357594791968,
+							16.66838838845727
+						],
+						[
+							-77.84175265531377,
+							16.85074369818602
+						],
+						[
+							-77.79951671731996,
+							16.979753651505465
+						],
+						[
+							-78.28434198674468,
+							17.20571626766068
+						],
+						[
+							-78.51548817891319,
+							17.202270132332913
+						],
+						[
+							-79.13970036126891,
+							17.506087557394512
+						],
+						[
+							-79.27005222591032,
+							17.528372337434828
+						],
+						[
+							-78.93434205722116,
+							17.8751516982336
+						],
+						[
+							-78.28566063654243,
+							18.482281406816814
+						],
+						[
+							-78.25360192470616,
+							18.686705558388965
+						],
+						[
+							-77.99706809934376,
+							18.63550290606603
+						],
+						[
+							-77.51634149582756,
+							19.10937565092933
+						],
+						[
+							-77.28628835491551,
+							19.571063802546057
+						],
+						[
+							-77.25519670513809,
+							19.980973614544432
+						],
+						[
+							-77.17536572906562,
+							19.792647657345
+						],
+						[
+							-77.01405131484972,
+							18.581612310870824
+						],
+						[
+							-77.10989174097693,
+							18.469712160553517
+						],
+						[
+							-76.80434002543046,
+							18.311428726658654
+						],
+						[
+							-76.54532805510269,
+							17.55045667323678
+						],
+						[
+							-76.11344269598334,
+							17.666989151972253
+						],
+						[
+							-75.86140755178053,
+							17.50071319492512
+						],
+						[
+							-76.0243253011326,
+							17.45098074087971
+						],
+						[
+							-76.38990946382116,
+							17.402709176906622
+						],
+						[
+							-76.70189850382681,
+							16.534625567595363
+						],
+						[
+							-76.80981841825783,
+							16.752970728846513
+						],
+						[
+							-77.28374988273468,
+							16.800162341500304
+						],
+						[
+							-77.40499501048518,
+							16.63021658406485
+						],
+						[
+							-77.65357594791968,
+							16.66838838845727
+						]
+					]
+				]
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {
 				"marker-color": "#008070",
 				"marker-symbol": "star-stroked",
 				"marker-size": "large"
@@ -7728,7 +11037,89 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"cluster": 14,
+				"fill": "#008070",
+				"stroke": "#008070",
+				"fill-opacity": 0.3
+			},
+			"geometry": {
+				"type": "Polygon",
+				"coordinates": [
+					[
+						[
+							-70.59056449409796,
+							17.249155158477635
+						],
+						[
+							-71.3558896446572,
+							17.44256116852827
+						],
+						[
+							-71.43164354544895,
+							17.413235272364112
+						],
+						[
+							-71.65532298324348,
+							17.29988957265243
+						],
+						[
+							-72.02923748665658,
+							17.06286092924691
+						],
+						[
+							-73.31937806169958,
+							16.63036465541673
+						],
+						[
+							-72.99075803676163,
+							17.651929487468298
+						],
+						[
+							-73.21048541308969,
+							17.919231608494442
+						],
+						[
+							-73.01377215866017,
+							18.936419309424537
+						],
+						[
+							-72.66122425689909,
+							19.364456854255717
+						],
+						[
+							-72.15374231895991,
+							19.572527461376602
+						],
+						[
+							-71.89833899459296,
+							19.72230811960007
+						],
+						[
+							-70.89623600838752,
+							19.396975077838288
+						],
+						[
+							-70.63635988061537,
+							18.75973134353604
+						],
+						[
+							-70.80026818559628,
+							18.561998669158292
+						],
+						[
+							-70.76720344494535,
+							17.95425416674962
+						],
+						[
+							-70.59056449409796,
+							17.249155158477635
+						]
+					]
+				]
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {
 				"marker-color": "#005e80",
 				"marker-symbol": "star-stroked",
 				"marker-size": "large"
@@ -7744,7 +11135,109 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"cluster": 15,
+				"fill": "#005e80",
+				"stroke": "#005e80",
+				"fill-opacity": 0.3
+			},
+			"geometry": {
+				"type": "Polygon",
+				"coordinates": [
+					[
+						[
+							-86.84081911742697,
+							23.793624669453152
+						],
+						[
+							-86.84949687526881,
+							23.882703836621122
+						],
+						[
+							-86.96796993174219,
+							24.703657172369798
+						],
+						[
+							-86.55081810986574,
+							24.915158163291853
+						],
+						[
+							-86.57393282654176,
+							26.261024024692077
+						],
+						[
+							-86.95625724719481,
+							26.53239538653403
+						],
+						[
+							-86.59504589774306,
+							27.064096554971023
+						],
+						[
+							-85.49928602385201,
+							27.41608769703238
+						],
+						[
+							-85.29187361259146,
+							27.392240106344147
+						],
+						[
+							-84.44936060272309,
+							27.49130192814892
+						],
+						[
+							-84.66397149031135,
+							25.831969038126523
+						],
+						[
+							-84.85957138950651,
+							25.651916540759668
+						],
+						[
+							-84.90737511126233,
+							25.663681166863604
+						],
+						[
+							-84.98702719224296,
+							25.275001495112985
+						],
+						[
+							-85.0134734724832,
+							25.13419607033201
+						],
+						[
+							-84.63151040609172,
+							24.490225688795583
+						],
+						[
+							-84.85611159709538,
+							24.40263258506802
+						],
+						[
+							-84.86031632408672,
+							24.23389023003475
+						],
+						[
+							-85.24173363419717,
+							24.34323106176321
+						],
+						[
+							-85.51950761862354,
+							23.496329401717578
+						],
+						[
+							-86.17454776573982,
+							23.461743771248557
+						],
+						[
+							-86.84081911742697,
+							23.793624669453152
+						]
+					]
+				]
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {
 				"marker-color": "#002f80",
 				"marker-symbol": "star-stroked",
 				"marker-size": "large"
@@ -7754,6 +11247,93 @@
 				"coordinates": [
 					-79.95661302836459,
 					19.68004339959817
+				]
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {
+				"fill": "#002f80",
+				"stroke": "#002f80",
+				"fill-opacity": 0.3
+			},
+			"geometry": {
+				"type": "Polygon",
+				"coordinates": [
+					[
+						[
+							-81.13208804398411,
+							19.266357159361213
+						],
+						[
+							-81.28624765409677,
+							19.684275914963393
+						],
+						[
+							-80.81251634431071,
+							20.933095236667395
+						],
+						[
+							-80.47725300277814,
+							20.834238692742822
+						],
+						[
+							-80.2707934048482,
+							20.982305048038683
+						],
+						[
+							-80.22266857015823,
+							20.94137638968897
+						],
+						[
+							-79.77674346051477,
+							21.375540465284374
+						],
+						[
+							-79.25614050898571,
+							20.47865304539995
+						],
+						[
+							-78.83487262625073,
+							20.095259588587723
+						],
+						[
+							-78.5883411017305,
+							19.917932537792794
+						],
+						[
+							-78.4434583942987,
+							19.619680064723546
+						],
+						[
+							-78.88684525321649,
+							18.726646021819167
+						],
+						[
+							-79.43898229878118,
+							18.874231952472687
+						],
+						[
+							-80.15292492090326,
+							18.519443297834165
+						],
+						[
+							-79.96400931937723,
+							18.174770180214516
+						],
+						[
+							-80.00665657564603,
+							18.009509829132515
+						],
+						[
+							-80.6420973159142,
+							18.58453117274099
+						],
+						[
+							-81.13208804398411,
+							19.266357159361213
+						]
+					]
 				]
 			}
 		}
