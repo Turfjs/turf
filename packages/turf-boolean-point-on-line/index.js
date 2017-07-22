@@ -1,7 +1,7 @@
 var getCoords = require('@turf/invariant').getCoords;
 
 /**
- * booleanPointOnLine returns true if a point is on a line. Accepts a optional parameter to ignore the start and end vertices of the linestring.
+ * Returns true if a point is on a line. Accepts a optional parameter to ignore the start and end vertices of the linestring.
  *
  * @name booleanPointOnLine
  * @param {Geometry|Feature<Point>} point GeoJSON Feature or Geometry
@@ -23,10 +23,8 @@ module.exports = function (point, linestring, ignoreEndVertices) {
     return false;
 };
 
+// See http://stackoverflow.com/a/4833823/1979085
 /**
- * Is a point on a line segment
- * See http://stackoverflow.com/a/4833823/1979085
- *
  * @private
  * @param {Array} lineSegmentStart coord pair of start of line
  * @param {Array} lineSegmentEnd coord pair of end of line

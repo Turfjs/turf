@@ -7,4 +7,4 @@ type Feature = GeoJSON.Feature<any> | GeoJSON.GeometryObject;
  */
 declare function booleanPointOnLine(feature1: Feature, feature2: Feature): boolean;
 declare namespace booleanPointOnLine { }
-export = booleanIsPointOnLine;
+export = booleanPointOnLine;
