@@ -1,11 +1,12 @@
 /// <reference types="geojson" />
 
-type Point = GeoJSON.Feature<Point> | GeoJSON.GeometryObject;
-type LineString = GeoJSON.Feature<LineString> | GeoJSON.GeometryObject;
+type Point = GeoJSON.Feature<GeoJSON.Point> | GeoJSON.Point;
+type LineString = GeoJSON.LineString;
+type Line = GeoJSON.Feature<LineString> | LineString;
 
 /**
  * http://turfjs.org/docs/#booleanpointonline
  */
-declare function booleanPointOnLine(feature1: Point, feature2: LineString, ignoreEndVertices: boolean): boolean;
+declare function booleanPointOnLine(feature1: Point, feature2: Line, ignoreEndVertices: boolean): boolean;
 declare namespace booleanPointOnLine { }
 export = booleanPointOnLine;
