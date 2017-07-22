@@ -33,9 +33,9 @@ var distanceToRadians = helpers.distanceToRadians;
  * var units = 'miles';
  *
  * var destination = turf.rhumbDestination(point, distance, bearing, units);
+ * destination.properties['marker-color'] = '#00F';
  *
  * //addToMap
- * destination.properties['marker-color'] = '#00F';
  * var addToMap = [point, destination]
  */
 module.exports = function (origin, distance, bearing, units) {

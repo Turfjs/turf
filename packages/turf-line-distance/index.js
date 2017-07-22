@@ -33,9 +33,9 @@ var lineString = helpers.lineString;
  * };
  *
  * var length = turf.lineDistance(line, 'miles');
+ * line.properties.distance = length;
  *
  * //addToMap
- * line.properties.distance = length;
  * var addToMap = [line];
  */
 module.exports = function lineDistance(geojson, units) {

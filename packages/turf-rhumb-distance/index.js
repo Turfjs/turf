@@ -34,10 +34,10 @@ var distanceToRadians = helpers.distanceToRadians;
  * };
  *
  * var distance = turf.rhumbDistance(from, to, "miles");
- *
- * //addToMap
  * from.properties.distance = distance;
  * to.properties.distance = distance;
+ *
+ * //addToMap
  * var addToMap = [from, to];
  */
 module.exports = function (from, to, units) {

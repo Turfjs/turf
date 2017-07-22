@@ -28,10 +28,10 @@ var distanceToRadians = helpers.distanceToRadians;
  * var units = 'miles';
  *
  * var destination = turf.destination(point, distance, bearing, units);
- *
- * //addToMap
  * destination.properties['marker-color'] = '#f00';
  * point.properties['marker-color'] = '#0f0';
+ *
+ * //addToMap
  * var addToMap = [point, destination]
  */
 module.exports = function (origin, distance, bearing, units) {

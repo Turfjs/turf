@@ -33,10 +33,10 @@ var radiansToDistance = require('@turf/helpers').radiansToDistance;
  * };
  *
  * var distance = turf.distance(from, to, "miles");
- *
- * //addToMap
  * from.properties.distance = distance;
  * to.properties.distance = distance;
+ *
+ * //addToMap
  * var addToMap = [from, to];
  */
 module.exports = function (from, to, units) {

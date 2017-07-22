@@ -44,9 +44,9 @@ var flattenEach = meta.flattenEach;
  * };
  *
  * var snapped = turf.pointOnLine(line, pt, 'miles');
+ * snapped.properties['marker-color'] = '#00f';
  *
  * //addToMap
- * snapped.properties['marker-color'] = '#00f';
  * var addToMap = [line, pt, snapped];
  */
 module.exports = function (lines, pt, units) {

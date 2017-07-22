@@ -46,9 +46,9 @@ var getGeom = invariant.getGeom;
  * };
  *
  * var zValue = turf.planepoint(point, triangle);
+ * point.properties.zValue = zValue;
  *
  * //addToMap
- * point.properties.zValue = zValue;
  * var addToMap = [triangle, point];
  */
 module.exports = function (point, triangle) {

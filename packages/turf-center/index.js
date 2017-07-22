@@ -38,10 +38,10 @@ var point = require('@turf/helpers').point;
  * };
  *
  * var center = turf.center(features);
- *
- * //addToMap
  * center.properties['marker-size'] = 'large';
  * center.properties['marker-color'] = '#000';
+ *
+ * //addToMap
  * var addToMap = [features, center]
  */
 module.exports = function (geojson, properties) {

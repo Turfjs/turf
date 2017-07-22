@@ -33,9 +33,9 @@ var Spline = require('./spline.js');
  * };
  *
  * var curved = turf.bezier(line);
+ * curved.properties = { stroke: '#0f0' };
  *
  * //addToMap
- * curved.properties = { stroke: '#0f0' };
  * var addToMap = [line, curved]
  */
 module.exports = function (line, resolution, sharpness) {
