@@ -18,7 +18,12 @@ module.exports = function (point, linestring, ignoreEndVertices) {
     var pointCoords = getCoords(point);
     var lineCoords = getCoords(linestring);
     for (var i = 0; i < lineCoords.length - 1; i++) {
-        if (isPointOnLineSegment(lineCoords[i], lineCoords[i + 1], pointCoords, ignoreEndVertices)) return true;
+        var ignoreFinal = false;
+        if (ignoreEndVertices) {
+            if (i === 0) ignoreFinal = 'start';
+            if (i === lineCoords.length - 2) ignoreFinal = 'end';
+        }
+        if (isPointOnLineSegment(lineCoords[i], lineCoords[i + 1], pointCoords, ignoreFinal)) return true;
     }
     return false;
 };
@@ -41,11 +46,16 @@ function isPointOnLineSegment(lineSegmentStart, lineSegmentEnd, point, ignoreEnd
     if (cross !== 0) {
         return false;
     }
-    if (ignoreEnd) {
+    if (ignoreEnd === 'start') {
         if (Math.abs(dxl) >= Math.abs(dyl)) {
-            return dxl > 0 ? lineSegmentStart[0] < point[0] && point[0] < lineSegmentEnd[0] : lineSegmentEnd[0] < point[0] && point[0] < lineSegmentStart[0];
+            return dxl > 0 ? lineSegmentStart[0] < point[0] && point[0] <= lineSegmentEnd[0] : lineSegmentEnd[0] <= point[0] && point[0] < lineSegmentStart[0];
         }
-        return dyl > 0 ? lineSegmentStart[1] < point[1] && point[1] < lineSegmentEnd[1] : lineSegmentEnd[1] < point[1] && point[1] < lineSegmentStart[1];
+        return dyl > 0 ? lineSegmentStart[1] < point[1] && point[1] <= lineSegmentEnd[1] : lineSegmentEnd[1] <= point[1] && point[1] < lineSegmentStart[1];
+    } else if (ignoreEnd === 'end') {
+        if (Math.abs(dxl) >= Math.abs(dyl)) {
+            return dxl > 0 ? lineSegmentStart[0] <= point[0] && point[0] < lineSegmentEnd[0] : lineSegmentEnd[0] < point[0] && point[0] <= lineSegmentStart[0];
+        }
+        return dyl > 0 ? lineSegmentStart[1] <= point[1] && point[1] < lineSegmentEnd[1] : lineSegmentEnd[1] < point[1] && point[1] <= lineSegmentStart[1];
     } else {
         if (Math.abs(dxl) >= Math.abs(dyl)) {
             return dxl > 0 ? lineSegmentStart[0] <= point[0] && point[0] <= lineSegmentEnd[0] : lineSegmentEnd[0] <= point[0] && point[0] <= lineSegmentStart[0];
