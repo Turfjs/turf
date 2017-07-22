@@ -8,6 +8,10 @@
   dependencies:
     "@turf/invariant" "^4.5.2"
 
+"@turf/helpers@^4.5.2":
+  version "4.5.2"
+  resolved "https://registry.yarnpkg.com/@turf/helpers/-/helpers-4.5.2.tgz#6fc6772a7b301f277b49732925c354c7fb85d1df"
+
 "@turf/invariant@^4.5.2":
   version "4.5.2"
   resolved "https://registry.yarnpkg.com/@turf/invariant/-/invariant-4.5.2.tgz#0642ee1e6bca531be3f6f9292d590155f2fb9604"
