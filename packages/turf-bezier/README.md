@@ -17,23 +17,14 @@ The bezier spline implementation is by [Leszek Rybicki](http://leszek.rybicki.cc
 **Examples**
 
 ```javascript
-var line = {
-  "type": "Feature",
-  "properties": {
-    "stroke": "#f00"
-  },
-  "geometry": {
-    "type": "LineString",
-    "coordinates": [
-      [-76.091308, 18.427501],
-      [-76.695556, 18.729501],
-      [-76.552734, 19.40443],
-      [-74.61914, 19.134789],
-      [-73.652343, 20.07657],
-      [-73.157958, 20.210656]
-    ]
-  }
-};
+var line = turf.lineString([
+    [-76.091308, 18.427501],
+    [-76.695556, 18.729501],
+    [-76.552734, 19.40443],
+    [-74.61914, 19.134789],
+    [-73.652343, 20.07657],
+    [-73.157958, 20.210656]
+]);
 
 var curved = turf.bezier(line);
 

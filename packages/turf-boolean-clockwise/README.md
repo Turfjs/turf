@@ -11,8 +11,8 @@ Takes a ring and return true or false whether or not the ring is clockwise or co
 **Examples**
 
 ```javascript
-var clockwiseRing = [[0,0],[1,1],[1,0],[0,0]]
-var counterClockwiseRing = [[0,0],[1,0],[1,1],[0,0]]
+var clockwiseRing = turf.lineString([[0,0],[1,1],[1,0],[0,0]]);
+var counterClockwiseRing = turf.lineString([[0,0],[1,0],[1,1],[0,0]]);
 
 turf.booleanClockwise(clockwiseRing)
 //=true

@@ -237,10 +237,10 @@ Round number to precision
 **Examples**
 
 ```javascript
-round(120.4321)
+turf.round(120.4321)
 //=120
 
-round(120.4321, 2)
+turf.round(120.4321, 2)
 //=120.43
 ```
 

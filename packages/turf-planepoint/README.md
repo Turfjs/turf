@@ -17,14 +17,6 @@ if their values are not provided as properties.
 **Examples**
 
 ```javascript
-var point = {
-  "type": "Feature",
-  "properties": {},
-  "geometry": {
-    "type": "Point",
-    "coordinates": [-75.3221, 39.529]
-  }
-};
 var point = turf.point([-75.3221, 39.529]);
 // triangle is a polygon with "a", "b",
 // and "c" values representing
