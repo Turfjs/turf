@@ -12,26 +12,10 @@ into [MultiPoint](http://geojson.org/geojson-spec.html#multipoint), [MultiLineSt
 **Examples**
 
 ```javascript
-var fc = {
-  "type": "FeatureCollection",
-  "features": [
-    {
-      "type": "Feature",
-      "properties": {},
-      "geometry": {
-        "type": "Point",
-        "coordinates": [19.026432, 47.49134]
-      }
-    }, {
-      "type": "Feature",
-      "properties": {},
-      "geometry": {
-        "type": "Point",
-        "coordinates": [19.074497, 47.509548]
-      }
-    }
-  ]
-};
+var fc = turf.featureCollection([
+  turf.point([19.026432, 47.49134],
+  turf.point([19.074497, 47.509548]
+]);
 
 var combined = turf.combine(fc);
 

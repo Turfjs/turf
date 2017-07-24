@@ -17,14 +17,7 @@ between (clockwise) bearing1 and bearing2; 0 bearing is North of center point, p
 **Examples**
 
 ```javascript
-var center = {
-  "type": "Feature",
-  "properties": {},
-  "geometry": {
-    "type": "Point",
-    "coordinates": [-75, 40]
-  }
-}
+var center = turf.point([-75, 40]);}
 var radius = 5;
 var bearing1 = 25;
 var bearing2 = 45;

@@ -24,8 +24,8 @@ var line = turf.lineString([
 var length = turf.lineDistance(line, 'miles');
 
 //addToMap
-line.properties.distance = length;
 var addToMap = [line];
+line.properties.distance = length;
 ```
 
 Returns **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** length feature

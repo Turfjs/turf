@@ -4,7 +4,7 @@
 
 Polygonizes [(Multi)LineString(s)](http://geojson.org/geojson-spec.html#linestring) into [Polygons](Polygons).
 
-Implementation of GEOSPolygonize function ([`geos::operation::polygonize::Polygonizer`](https://geos.osgeo.org/doxygen/classgeos_1_1operation_1_1polygonize_1_1Polygonizer.html)).
+Implementation of GEOSPolygonize function (`geos::operation::polygonize::Polygonizer`).
 
 Polygonizes a set of lines that represents edges in a planar graph. Edges must be correctly
 noded, i.e., they must only meet at their endpoints.

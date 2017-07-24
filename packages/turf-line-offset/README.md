@@ -13,22 +13,13 @@ Takes a [line](http://geojson.org/geojson-spec.html#linestring) and returns a [l
 **Examples**
 
 ```javascript
-var line = {
-  "type": "Feature",
-  "properties": {
-    "stroke": "#F00"
-  },
-  "geometry": {
-    "type": "LineString",
-    "coordinates": [[-83, 30], [-84, 36], [-78, 41]]
-  }
-};
+var line = turf.lineString[[-83, 30], [-84, 36], [-78, 41]], { "stroke": "#F00" });
 
 var offsetLine = turf.lineOffset(line, 2, "miles");
 
 //addToMap
-offsetLine.properties.stroke = "#00F"
 var addToMap = [offsetLine, line]
+offsetLine.properties.stroke = "#00F"
 ```
 
 Returns **[Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;([LineString](http://geojson.org/geojson-spec.html#linestring) \| [MultiLineString](http://geojson.org/geojson-spec.html#multilinestring))>** Line offset from the input line

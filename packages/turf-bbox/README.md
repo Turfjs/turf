@@ -11,18 +11,11 @@ Takes a set of features, calculates the bbox of all input features, and returns 
 **Examples**
 
 ```javascript
-var line = {
-  "type": "Feature",
-  "properties": {},
-  "geometry": {
-    "type": "LineString",
-    "coordinates": [[-74, 40], [-78, 42], [-82, 35]]
-  }
-}
+var line = turf.lineString([[-74, 40], [-78, 42], [-82, 35]]);
 var bbox = turf.bbox(line);
+var bboxPolygon = turf.bboxPolygon(bbox);
 
 //addToMap
-var bboxPolygon = turf.bboxPolygon(bbox);
 var addToMap = [line, bboxPolygon]
 ```
 
