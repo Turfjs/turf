@@ -4,14 +4,17 @@ var coordEach = require('@turf/meta').coordEach;
  * Takes a GeoJSON Feature or FeatureCollection and truncates the precision of the geometry.
  *
  * @name truncate
- * @param {FeatureCollection|Feature} geojson any GeoJSON Feature, FeatureCollection, Geometry or GeometryCollection.
+ * @param {FeatureCollection|Feature<any>} geojson any GeoJSON Feature, FeatureCollection, Geometry or GeometryCollection.
  * @param {number} [precision=6] coordinate decimal precision
  * @param {number} [coordinates=3] maximum number of coordinates (primarly used to remove z coordinates)
  * @param {boolean} [mutate=false] allows GeoJSON input to be mutated (significant performance increase if true)
- * @returns {FeatureCollection|Feature} layer with truncated geometry
+ * @returns {FeatureCollection|Feature<any>} layer with truncated geometry
  * @example
- * var point = turf.point([70.46923055566859, 58.11088890802906, 1508]);
- *
+ * var point = turf.point([
+ *     70.46923055566859,
+ *     58.11088890802906,
+ *     1508
+ * ]);
  * var truncated = turf.truncate(point);
  *
  * //addToMap

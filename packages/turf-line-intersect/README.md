@@ -12,26 +12,12 @@ Takes any LineString or Polygon GeoJSON and returns the intersecting point(s).
 **Examples**
 
 ```javascript
-var line1 = {
-  "type": "Feature",
-  "properties": {},
-  "geometry": {
-    "type": "LineString",
-    "coordinates": [[126, -11], [129, -21]]
-  }
-};
-var line2 = {
-  "type": "Feature",
-  "properties": {},
-  "geometry": {
-    "type": "LineString",
-    "coordinates": [[123, -18], [131, -14]]
-  }
-};
+var line1 = turf.lineString([[126, -11], [129, -21]]);
+var line2 = turf.lineString([[123, -18], [131, -14]]);
 var intersects = turf.lineIntersect(line1, line2);
 
 //addToMap
-var addToMap = [line, line2, intersects]
+var addToMap = [line1, line2, intersects]
 ```
 
 Returns **[FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects)&lt;[Point](http://geojson.org/geojson-spec.html#point)>** point(s) that intersect both

@@ -2,40 +2,26 @@
 
 # pointOnLine
 
-Takes a [Point](http://geojson.org/geojson-spec.html#point) and a [LineString](http://geojson.org/geojson-spec.html#linestring) or [MultiLineString](http://geojson.org/geojson-spec.html#multilinestring) and calculates the closest Point on the (Multi)LineString.
+Takes a [Point](http://geojson.org/geojson-spec.html#point) and a [LineString](http://geojson.org/geojson-spec.html#linestring) and calculates the closest Point on the (Multi)LineString.
 
 **Parameters**
 
--   `lines` **[Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;[LineString](http://geojson.org/geojson-spec.html#linestring)|[MultiLineString](http://geojson.org/geojson-spec.html#multilinestring)>** lines to snap to
--   `pt` **[Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;[Point](http://geojson.org/geojson-spec.html#point)>** point to snap from
+-   `lines` **([Geometry](http://geojson.org/geojson-spec.html#geometry) \| [Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;([LineString](http://geojson.org/geojson-spec.html#linestring) \| [MultiLineString](http://geojson.org/geojson-spec.html#multilinestring))>)** lines to snap to
+-   `pt` **([Geometry](http://geojson.org/geojson-spec.html#geometry) \| [Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;[Point](http://geojson.org/geojson-spec.html#point)> | [Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)>)** point to snap from
 -   `units` **\[[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)]** can be degrees, radians, miles, or kilometers (optional, default `kilometers`)
 
 **Examples**
 
 ```javascript
-var line = {
-  "type": "Feature",
-  "properties": {},
-  "geometry": {
-    "type": "LineString",
-    "coordinates": [
-      [-77.031669, 38.878605],
-      [-77.029609, 38.881946],
-      [-77.020339, 38.884084],
-      [-77.025661, 38.885821],
-      [-77.021884, 38.889563],
-      [-77.019824, 38.892368]
-    ]
-  }
-};
-var pt = {
-  "type": "Feature",
-  "properties": {},
-  "geometry": {
-    "type": "Point",
-    "coordinates": [-77.037076, 38.884017]
-  }
-};
+var line = turf.lineString([
+    [-77.031669, 38.878605],
+    [-77.029609, 38.881946],
+    [-77.020339, 38.884084],
+    [-77.025661, 38.885821],
+    [-77.021884, 38.889563],
+    [-77.019824, 38.892368]
+]);
+var pt = turf.point([-77.037076, 38.884017]);
 
 var snapped = turf.pointOnLine(line, pt, 'miles');
 

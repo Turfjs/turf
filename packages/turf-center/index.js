@@ -10,9 +10,9 @@ var point = require('@turf/helpers').point;
  * @returns {Feature<Point>} a Point feature at the absolute center point of all input features
  * @example
  * var features = turf.featureCollection([
- *   turf.point([-97.522259, 35.4691]),
- *   turf.point([-97.502754, 35.463455]),
- *   turf.point([-97.508269, 35.463245]
+ *   turf.point( [-97.522259, 35.4691]),
+ *   turf.point( [-97.502754, 35.463455]),
+ *   turf.point( [-97.508269, 35.463245])
  * ]);
  *
  * var center = turf.center(features);

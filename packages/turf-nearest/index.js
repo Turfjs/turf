@@ -7,22 +7,22 @@ var distance = require('@turf/distance');
  * is geodesic.
  *
  * @name nearest
- * @param {Feature<Point>} targetPoint the reference point
+ * @param {Geometry|Feature<Point>|Array<number>} targetPoint the reference point
  * @param {FeatureCollection<Point>} points against input point set
  * @returns {Feature<Point>} the closest point in the set to the reference point
  * @example
- * var point = turf.point([28.965797, 41.010086], {"marker-color": "#0f0"});
- * var against = turf.featureCollection([
- *   turf.point([28.973865, 41.011122]),
- *   turf.point([28.948459, 41.024204]),
- *   turf.point([28.938674, 41.013324])
+ * var targetPoint = turf.point([28.965797, 41.010086], {"marker-color": "#0F0"});
+ * var points = turf.featureCollection([
+ *     turf.point([28.973865, 41.011122]),
+ *     turf.point([28.948459, 41.024204]),
+ *     turf.point([28.938674, 41.013324])
  * ]);
  *
- * var nearest = turf.nearest(point, against);
+ * var nearest = turf.nearest(targetPoint, points);
  *
  * //addToMap
- * var addToMap = [point, against, nearest];
- * nearest.properties['marker-color'] = '#f00';
+ * var addToMap = [targetPoint, points, nearest];
+ * nearest.properties['marker-color'] = '#F00';
  */
 module.exports = function (targetPoint, points) {
     var nearestPoint, minDist = Infinity;
