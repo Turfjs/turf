@@ -7,14 +7,7 @@ var coordEach = require('@turf/meta').coordEach;
  * @param {FeatureCollection|Feature<any>} geojson input features
  * @returns {Array<number>} bbox extent in [minX, minY, maxX, maxY] order
  * @example
- * var line = {
- *   "type": "Feature",
- *   "properties": {},
- *   "geometry": {
- *     "type": "LineString",
- *     "coordinates": [[-74, 40], [-78, 42], [-82, 35]]
- *   }
- * }
+ * var line = turf.lineString([[-74, 40], [-78, 42], [-82, 35]]);
  * var bbox = turf.bbox(line);
  * var bboxPolygon = turf.bboxPolygon(bbox);
  *

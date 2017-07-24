@@ -8,14 +8,8 @@
  * @param {Boolean} [cloneAll=false] clones entire GeoJSON object, using JSON.parse(JSON.stringify(geojson))
  * @returns {GeoJSON} cloned GeoJSON Object
  * @example
- * var line = {
- *   "type": "Feature",
- *   "properties": {},
- *   "geometry": {
- *     "type": "LineString",
- *     "coordinates": [[-74, 40], [-78, 42], [-82, 35]]
- *   }
- * }
+ * var line = turf.lineString([[-74, 40], [-78, 42], [-82, 35]]);
+ *
  * var lineCloned = turf.clone(line);
  */
 module.exports = function (geojson, cloneAll) {

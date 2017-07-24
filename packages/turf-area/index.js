@@ -8,19 +8,13 @@ var geomReduce = require('@turf/meta').geomReduce;
  * @param {FeatureCollection|Feature<any>} geojson input GeoJSON feature(s)
  * @returns {number} area in square meters
  * @example
- * var polygon = {
- *   "type": "Feature",
- *   "properties": {},
- *   "geometry": {
- *     "type": "Polygon",
- *     "coordinates": [[[125, -15], [113, -22], [154, -27], [144, -15], [125, -15]]]
- *   }
- * }
+ * var polygon = turf.polygon([[[125, -15], [113, -22], [154, -27], [144, -15], [125, -15]]]);
+ *
  * var area = turf.area(polygon);
- * polygon.properties.area = area
  *
  * //addToMap
  * var addToMap = [polygon]
+ * polygon.properties.area = area
  */
 module.exports = function (geojson) {
     return geomReduce(geojson, function (value, geometry) {

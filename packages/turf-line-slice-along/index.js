@@ -17,14 +17,7 @@ var lineString = require('@turf/helpers').lineString;
  * @param {string} [units=kilometers] can be degrees, radians, miles, or kilometers
  * @returns {Feature<LineString>} sliced line
  * @example
- * var line = {
- *   "type": "Feature",
- *   "properties": {},
- *   "geometry": {
- *     "type": "LineString",
- *     "coordinates": [[7, 45], [9, 45], [14, 40], [14, 41]]
- *   }
- * };
+ * var line = turf.lineString([[7, 45], [9, 45], [14, 40], [14, 41]]);
  * var start = 12.5;
  * var stop = 25;
  * var sliced = turf.lineSliceAlong(line, start, stop, 'miles');

@@ -20,8 +20,7 @@ var featureCollection = helpers.featureCollection;
  * @param {Array<number>} breaks where to draw contours
  * @param {string} [zProperty='elevation'] the property name in `points` from which z-values will be pulled
  * @param {Object} [options={}] options on output
- * @param {Array<Object>} [options.isobandProperties=[]] GeoJSON properties passed, in order, to the correspondent
- * isoband (order defined by breaks)
+ * @param {Array<Object>} [options.isobandProperties=[]] GeoJSON properties passed, in order, to the correspondent isoband (order defined by breaks)
  * @param {Object} [options.commonProperties={}] GeoJSON properties passed to ALL isobands
  * @returns {FeatureCollection<MultiPolygon>} a FeatureCollection of {@link MultiPolygon} features representing isobands
  * @example
@@ -34,6 +33,7 @@ var featureCollection = helpers.featureCollection;
  *     pointGrid.features[i].properties.elevation = Math.random() * 10;
  * }
  * var breaks = [0, 5, 8.5];
+ *
  * var isobands = turf.isobands(pointGrid, breaks);
  *
  * //addToMap

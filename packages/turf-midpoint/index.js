@@ -11,29 +11,15 @@ var distance = require('@turf/distance');
  * @param {Feature<Point>} to second point
  * @returns {Feature<Point>} a point midway between `pt1` and `pt2`
  * @example
- * var pt1 = {
- *   "type": "Feature",
- *   "properties": {},
- *   "geometry": {
- *     "type": "Point",
- *     "coordinates": [144.834823, -37.771257]
- *   }
- * };
- * var pt2 = {
- *   "type": "Feature",
- *   "properties": {},
- *   "geometry": {
- *     "type": "Point",
- *     "coordinates": [145.14244, -37.830937]
- *   }
- * };
+ * var pt1 = turf.point([144.834823, -37.771257]);
+ * var pt2 = turf.point([145.14244, -37.830937]);
  *
  * var midpoint = turf.midpoint(pt1, pt2);
- * midpoint.properties['marker-color'] = '#f00';
  *
  * //addToMap
  * var addToMap = [pt1, pt2, midpoint];
-*/
+ * midpoint.properties['marker-color'] = '#f00';
+ */
 module.exports = function (from, to) {
     var dist = distance(from, to, 'miles');
     var heading = bearing(from, to);

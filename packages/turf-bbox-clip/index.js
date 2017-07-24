@@ -16,14 +16,7 @@ var multiPolygon = helpers.multiPolygon;
  * @returns {Feature<LineString|MultiLineString|Polygon|MultiPolygon>} clipped Feature
  * @example
  * var bbox = [0, 0, 10, 10];
- * var poly = {
- *   "type": "Feature",
- *   "properties": {},
- *   "geometry": {
- *     "type": "Polygon",
- *     "coordinates": [[[2, 2], [8, 4], [12, 8], [3, 7], [2, 2]]]
- *   }
- * }
+ * var poly = turf.polygon([[[2, 2], [8, 4], [12, 8], [3, 7], [2, 2]]]);
  *
  * var clipped = turf.bboxClip(poly, bbox);
  *

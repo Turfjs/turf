@@ -16,27 +16,20 @@ var lineString = helpers.lineString;
  * @param {string} [units=kilometers] can be degrees, radians, miles, or kilometers
  * @returns {number} length feature
  * @example
- * var line = {
- *   "type": "Feature",
- *   "properties": {},
- *   "geometry": {
- *     "type": "LineString",
- *     "coordinates": [
- *       [-77.031669, 38.878605],
- *       [-77.029609, 38.881946],
- *       [-77.020339, 38.884084],
- *       [-77.025661, 38.885821],
- *       [-77.021884, 38.889563],
- *       [-77.019824, 38.892368]
- *     ]
- *   }
- * };
+ * var line = turf.lineString([
+ *   [-77.031669, 38.878605],
+ *   [-77.029609, 38.881946],
+ *   [-77.020339, 38.884084],
+ *   [-77.025661, 38.885821],
+ *   [-77.021884, 38.889563],
+ *   [-77.019824, 38.892368]
+ * ]);
  *
  * var length = turf.lineDistance(line, 'miles');
- * line.properties.distance = length;
  *
  * //addToMap
  * var addToMap = [line];
+ * line.properties.distance = length;
  */
 module.exports = function lineDistance(geojson, units) {
     // Input Validation

@@ -20,7 +20,7 @@ var featureCollection = helpers.featureCollection;
  * var intersects = turf.lineIntersect(line1, line2);
  *
  * //addToMap
- * var addToMap = [line1, line2, intersects]
+ * var addToMap = [line1, line2, intersects];
  */
 module.exports = function (line1, line2) {
     var unique = {};

@@ -8,26 +8,10 @@ var meta = require('@turf/meta');
  * @param {FeatureCollection<Point|LineString|Polygon>} fc a FeatureCollection of any type
  * @returns {FeatureCollection<MultiPoint|MultiLineString|MultiPolygon>} a FeatureCollection of corresponding type to input
  * @example
- * var fc = {
- *   "type": "FeatureCollection",
- *   "features": [
- *     {
- *       "type": "Feature",
- *       "properties": {},
- *       "geometry": {
- *         "type": "Point",
- *         "coordinates": [19.026432, 47.49134]
- *       }
- *     }, {
- *       "type": "Feature",
- *       "properties": {},
- *       "geometry": {
- *         "type": "Point",
- *         "coordinates": [19.074497, 47.509548]
- *       }
- *     }
- *   ]
- * };
+ * var fc = turf.featureCollection([
+ *   turf.point([19.026432, 47.49134],
+ *   turf.point([19.074497, 47.509548]
+ * ]);
  *
  * var combined = turf.combine(fc);
  *

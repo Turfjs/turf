@@ -15,7 +15,6 @@ var polygon = require('@turf/helpers').polygon;
  * //addToMap
  * var addToMap = [poly]
  */
-
 module.exports = function (bbox) {
     var lowLeft = [bbox[0], bbox[1]];
     var topLeft = [bbox[0], bbox[3]];

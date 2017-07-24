@@ -14,16 +14,8 @@ var featureEach = meta.featureEach;
  * @param {boolean} [mutate=false] allows GeoJSON input to be mutated (significant performance increase if true)
  * @returns {FeatureCollection|Geometry|Feature<Polygon|MultiPolygon|LineString|MultiLineString>} rewind Polygon
  * @example
- * var polygon = {
- *     "type": "Feature",
- *     "properties": {},
- *     "geometry": {
- *         "type": "Polygon",
- *         "coordinates": [
- *             [[121, -29], [138, -29], [138, -18], [121, -18], [121, -29]]
- *         ]
- *     }
- * };
+ * var polygon = turf.polygon([[[121, -29], [138, -29], [138, -18], [121, -18], [121, -29]]]);
+ *
  * var rewind = turf.rewind(polygon);
  *
  * //addToMap

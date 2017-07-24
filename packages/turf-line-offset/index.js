@@ -16,22 +16,13 @@ var distanceToDegrees = helpers.distanceToDegrees;
  * @param {string} [units=kilometers] can be degrees, radians, miles, kilometers, inches, yards, meters
  * @returns {Feature<LineString|MultiLineString>} Line offset from the input line
  * @example
- * var line = {
- *   "type": "Feature",
- *   "properties": {
- *     "stroke": "#F00"
- *   },
- *   "geometry": {
- *     "type": "LineString",
- *     "coordinates": [[-83, 30], [-84, 36], [-78, 41]]
- *   }
- * };
+ * var line = turf.lineString[[-83, 30], [-84, 36], [-78, 41]], { "stroke": "#F00" });
  *
  * var offsetLine = turf.lineOffset(line, 2, "miles");
  *
  * //addToMap
- * offsetLine.properties.stroke = "#00F"
  * var addToMap = [offsetLine, line]
+ * offsetLine.properties.stroke = "#00F"
  */
 module.exports = function (geojson, distance, units) {
     if (!geojson) throw new Error('geojson is required');
