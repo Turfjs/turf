@@ -10,22 +10,22 @@ var featureCollection = require('@turf/helpers').featureCollection;
  * @returns {FeatureCollection<Point>} points that land within at least one polygon
  * @example
  * var searchWithin = turf.featureCollection([
- *   turf.polygon([[
- *     [-46.653,-23.543],
- *     [-46.634,-23.5346],
- *     [-46.613,-23.543],
- *     [-46.614,-23.559],
- *     [-46.631,-23.567],
- *     [-46.653,-23.560],
- *     [-46.653,-23.543]
- *   ]])
+ *     turf.polygon([[
+ *         [-46.653,-23.543],
+ *         [-46.634,-23.5346],
+ *         [-46.613,-23.543],
+ *         [-46.614,-23.559],
+ *         [-46.631,-23.567],
+ *         [-46.653,-23.560],
+ *         [-46.653,-23.543]
+ *     ]])
  * ]);
  * var points = turf.featureCollection([
- *   turf.point([-46.6318, -23.5523],
- *   turf.point([-46.6246, -23.5325],
- *   turf.point([-46.6062, -23.5513],
- *   turf.point([-46.663, -23.554],
- *   turf.point([-46.643, -23.557]
+ *     turf.point([-46.6318, -23.5523],
+ *     turf.point([-46.6246, -23.5325],
+ *     turf.point([-46.6062, -23.5513],
+ *     turf.point([-46.663, -23.554],
+ *     turf.point([-46.643, -23.557]
  * ]);
  *
  * var ptsWithin = turf.within(points, searchWithin);

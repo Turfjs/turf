@@ -15,6 +15,7 @@ var coordEach = require('@turf/meta').coordEach;
  *     58.11088890802906,
  *     1508
  * ]);
+ *
  * var truncated = turf.truncate(point);
  *
  * //addToMap
