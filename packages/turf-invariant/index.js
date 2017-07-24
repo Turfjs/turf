@@ -151,7 +151,7 @@ function collectionOf(featureCollection, type, name) {
  *     "coordinates": [110, 40]
  *   }
  * }
- * var geom = invariant.getGeom(point)
+ * var geom = turf.getGeom(point)
  * //={"type": "Point", "coordinates": [110, 40]}
  */
 function getGeom(geojson) {
@@ -176,7 +176,7 @@ function getGeom(geojson) {
  *     "coordinates": [110, 40]
  *   }
  * }
- * var geom = invariant.getGeom(point)
+ * var geom = turf.getGeom(point)
  * //="Point"
  */
 function getGeomType(geojson) {

@@ -9,55 +9,24 @@ is geodesic.
 
 **Parameters**
 
--   `targetPoint` **[Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;[Point](http://geojson.org/geojson-spec.html#point)>** the reference point
+-   `targetPoint` **([Geometry](http://geojson.org/geojson-spec.html#geometry) \| [Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;[Point](http://geojson.org/geojson-spec.html#point)> | [Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)>)** the reference point
 -   `points` **[FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects)&lt;[Point](http://geojson.org/geojson-spec.html#point)>** against input point set
 
 **Examples**
 
 ```javascript
-var point = {
-  "type": "Feature",
-  "properties": {
-    "marker-color": "#0f0"
-  },
-  "geometry": {
-    "type": "Point",
-    "coordinates": [28.965797, 41.010086]
-  }
-};
-var against = {
-  "type": "FeatureCollection",
-  "features": [
-    {
-      "type": "Feature",
-      "properties": {},
-      "geometry": {
-        "type": "Point",
-        "coordinates": [28.973865, 41.011122]
-      }
-    }, {
-      "type": "Feature",
-      "properties": {},
-      "geometry": {
-        "type": "Point",
-        "coordinates": [28.948459, 41.024204]
-      }
-    }, {
-      "type": "Feature",
-      "properties": {},
-      "geometry": {
-        "type": "Point",
-        "coordinates": [28.938674, 41.013324]
-      }
-    }
-  ]
-};
+var targetPoint = turf.point([28.965797, 41.010086], {"marker-color": "#0f0"});
+var points = turf.featureCollection([
+    turf.point([28.973865, 41.011122]),
+    turf.point([28.948459, 41.024204]),
+    turf.point([28.938674, 41.013324])
+]);
 
-var nearest = turf.nearest(point, against);
+var nearest = turf.nearest(targetPoint, points);
 
 //addToMap
 nearest.properties['marker-color'] = '#f00';
-var addToMap = [point, against, nearest];
+var addToMap = [targetPoint, points, nearest];
 ```
 
 Returns **[Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;[Point](http://geojson.org/geojson-spec.html#point)>** the closest point in the set to the reference point

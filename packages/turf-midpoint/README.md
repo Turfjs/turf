@@ -7,34 +7,20 @@ The midpoint is calculated geodesically, meaning the curvature of the earth is t
 
 **Parameters**
 
--   `from` **[Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;[Point](http://geojson.org/geojson-spec.html#point)>** first point
--   `to` **[Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;[Point](http://geojson.org/geojson-spec.html#point)>** second point
+-   `point1` **([Geometry](http://geojson.org/geojson-spec.html#geometry) \| [Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;[Point](http://geojson.org/geojson-spec.html#point)> | [Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)>)** first point
+-   `point2` **([Geometry](http://geojson.org/geojson-spec.html#geometry) \| [Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;[Point](http://geojson.org/geojson-spec.html#point)> | [Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)>)** second point
 
 **Examples**
 
 ```javascript
-var pt1 = {
-  "type": "Feature",
-  "properties": {},
-  "geometry": {
-    "type": "Point",
-    "coordinates": [144.834823, -37.771257]
-  }
-};
-var pt2 = {
-  "type": "Feature",
-  "properties": {},
-  "geometry": {
-    "type": "Point",
-    "coordinates": [145.14244, -37.830937]
-  }
-};
+var point1 = turf.point([144.834823, -37.771257]);
+var point2 = turf.point([145.14244, -37.830937]);
 
-var midpoint = turf.midpoint(pt1, pt2);
+var midpoint = turf.midpoint(point1, point2);
+midpoint.properties['marker-color'] = '#f00';
 
 //addToMap
-midpoint.properties['marker-color'] = '#f00';
-var addToMap = [pt1, pt2, midpoint];
+var addToMap = [point1, point2, midpoint];
 ```
 
 Returns **[Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;[Point](http://geojson.org/geojson-spec.html#point)>** a point midway between `pt1` and `pt2`

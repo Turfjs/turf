@@ -7,38 +7,20 @@ var jsts = require('jsts');
  * @param {...Feature<Polygon>} A polygon to combine
  * @returns {Feature<(Polygon|MultiPolygon)>} a combined {@link Polygon} or {@link MultiPolygon} feature
  * @example
- * var poly1 = {
- *   "type": "Feature",
- *   "properties": {
- *     "fill": "#0f0"
- *   },
- *   "geometry": {
- *     "type": "Polygon",
- *     "coordinates": [[
- *       [-82.574787, 35.594087],
- *       [-82.574787, 35.615581],
- *       [-82.545261, 35.615581],
- *       [-82.545261, 35.594087],
- *       [-82.574787, 35.594087]
- *     ]]
- *   }
- * };
- * var poly2 = {
- *   "type": "Feature",
- *   "properties": {
- *     "fill": "#00f"
- *   },
- *   "geometry": {
- *     "type": "Polygon",
- *     "coordinates": [[
- *       [-82.560024, 35.585153],
- *       [-82.560024, 35.602602],
- *       [-82.52964, 35.602602],
- *       [-82.52964, 35.585153],
- *       [-82.560024, 35.585153]
- *     ]]
- *   }
- * };
+ * var poly1 = turf.polygon([[
+ *     [-82.574787, 35.594087],
+ *     [-82.574787, 35.615581],
+ *     [-82.545261, 35.615581],
+ *     [-82.545261, 35.594087],
+ *     [-82.574787, 35.594087]
+ * ]], {"fill": "#0f0"});
+ * var poly2 = turf.polygon([[
+ *     [-82.560024, 35.585153],
+ *     [-82.560024, 35.602602],
+ *     [-82.52964, 35.602602],
+ *     [-82.52964, 35.585153],
+ *     [-82.560024, 35.585153]
+ * ]], {"fill": "#00f"});
  *
  * var union = turf.union(poly1, poly2);
  *

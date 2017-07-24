@@ -90,7 +90,7 @@ var point = {
     "coordinates": [110, 40]
   }
 }
-var geom = invariant.getGeom(point)
+var geom = turf.getGeom(point)
 //={"type": "Point", "coordinates": [110, 40]}
 ```
 
@@ -117,7 +117,7 @@ var point = {
     "coordinates": [110, 40]
   }
 }
-var geom = invariant.getGeom(point)
+var geom = turf.getGeom(point)
 //="Point"
 ```
 

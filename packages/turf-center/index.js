@@ -9,33 +9,11 @@ var point = require('@turf/helpers').point;
  * @param {Object} [properties] an Object that is used as the {@link Feature}'s properties
  * @returns {Feature<Point>} a Point feature at the absolute center point of all input features
  * @example
- * var features = {
- *   "type": "FeatureCollection",
- *   "features": [
- *     {
- *       "type": "Feature",
- *       "properties": {},
- *       "geometry": {
- *         "type": "Point",
- *         "coordinates": [-97.522259, 35.4691]
- *       }
- *     }, {
- *       "type": "Feature",
- *       "properties": {},
- *       "geometry": {
- *         "type": "Point",
- *         "coordinates": [-97.502754, 35.463455]
- *       }
- *     }, {
- *       "type": "Feature",
- *       "properties": {},
- *       "geometry": {
- *         "type": "Point",
- *         "coordinates": [-97.508269, 35.463245]
- *       }
- *     }
- *   ]
- * };
+ * var features = turf.featureCollection([
+ *     turf.point([-97.522259, 35.4691]),
+ *     turf.point([-97.502754, 35.463455]),
+ *     turf.point([-97.508269, 35.463245])
+ * ]);
  *
  * var center = turf.center(features);
  *

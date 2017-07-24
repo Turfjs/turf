@@ -11,22 +11,9 @@ var polyToLinestring = require('@turf/polygon-to-linestring');
  * @param {Geometry|Feature<any>} feature2 GeoJSON Feature or Geometry
  * @returns {Boolean} true/false
  * @example
- * const point = {
- *   "type": "Feature",
- *   "properties": {},
- *   "geometry": {
- *     "type": "Point",
- *     "coordinates": [2, 2]
- *   }
- * }
- * const line = {
- *   "type": "Feature",
- *   "properties": {},
- *   "geometry": {
- *     "type": "LineString",
- *     "coordinates": [[1, 1], [1, 2], [1, 3], [1, 4]]
- *   }
- * }
+ * const point = turf.point([2, 2]);
+ * const line = turf.lineString([[1, 1], [1, 2], [1, 3], [1, 4]]);
+ *
  * turf.booleanDisjoint(line, point);
  * //=true
  */

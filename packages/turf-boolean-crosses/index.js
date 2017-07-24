@@ -16,9 +16,13 @@ var getGeomType = invariant.getGeomType;
  * @name booleanCrosses
  * @param {Geometry|Feature<any>} feature1 GeoJSON Feature or Geometry
  * @param {Geometry|Feature<any>} feature2 GeoJSON Feature or Geometry
- * @returns {Boolean} true/false
+ * @returns {boolean} true/false
  * @example
- * var cross = turf.booleanCrosses(feature1, feature2);
+ * var line1 = turf.lineString([[-2, 2], [4, 2]]);
+ * var line2 = turf.lineString([[1, 1], [1, 2], [1, 3], [1, 4]]);
+ *
+ * var cross = turf.booleanCrosses(line1, line2);
+ * //=true
  */
 
 module.exports = function (feature1, feature2) {
