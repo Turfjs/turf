@@ -1,9 +1,8 @@
-const test = require('tape');
 const fs = require('fs');
+const test = require('tape');
 const path = require('path');
 const load = require('load-json-file');
 const write = require('write-json-file');
-const {point, multiPoint} = require('@turf/helpers');
 const lineDistance = require('./');
 
 const directories = {
@@ -25,11 +24,5 @@ test('turf-line-distance', t => {
         if (process.env.REGEN) write.sync(directories.out + name + '.json', results);
         t.equal(results, load.sync(directories.out + name + '.json'), name);
     }
-    t.end();
-});
-
-test('turf-line-distance -- throws', t => {
-    t.throws(() => lineDistance(point([110, 60])), 'point');
-    t.throws(() => lineDistance(multiPoint([[-120, 40], [110, 60]])), 'multiPoint');
     t.end();
 });
