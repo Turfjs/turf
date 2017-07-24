@@ -27,4 +27,4 @@ module.exports = function (geojson) {
         results.push(feature);
     });
     return featureCollection(results);
-}
+};

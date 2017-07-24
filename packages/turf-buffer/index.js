@@ -24,7 +24,7 @@ var distanceToRadians = helpers.distanceToRadians;
  * @param {number} radius distance to draw the buffer (negative values are allowed)
  * @param {string} [units=kilometers] any of the options supported by turf units
  * @param {number} [steps=64] number of steps
- * @return {FeatureCollection|Feature<Polygon|MultiPolygon>|undefined} buffered features
+ * @returns {FeatureCollection|Feature<Polygon|MultiPolygon>|undefined} buffered features
  * @example
  * var point = turf.point([-90.548630, 14.616599]);
  * var buffered = turf.buffer(point, 500, 'miles');

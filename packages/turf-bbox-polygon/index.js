@@ -5,7 +5,7 @@ var polygon = require('@turf/helpers').polygon;
  *
  * @name bboxPolygon
  * @param {Array<number>} bbox extent in [minX, minY, maxX, maxY] order
- * @return {Feature<Polygon>} a Polygon representation of the bounding box
+ * @returns {Feature<Polygon>} a Polygon representation of the bounding box
  * @addToMap poly
  * @example
  * var bbox = [0, 0, 10, 10];

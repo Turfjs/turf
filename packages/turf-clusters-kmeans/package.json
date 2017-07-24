@@ -42,7 +42,7 @@
     "@turf/random": "^4.5.2",
     "benchmark": "^2.1.4",
     "chromatism": "2.6.0",
-    "concaveman": "^1.1.1",
+    "concaveman": "1.1.1",
     "load-json-file": "^2.0.0",
     "matrix-to-grid": "3.0.0",
     "tape": "^4.6.3",
