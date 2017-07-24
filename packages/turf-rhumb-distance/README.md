@@ -14,22 +14,8 @@ miles, or kilometers.
 **Examples**
 
 ```javascript
-var from = {
-  "type": "Feature",
-  "properties": {},
-  "geometry": {
-    "type": "Point",
-    "coordinates": [-75.343, 39.984]
-  }
-};
-var to = {
-  "type": "Feature",
-  "properties": {},
-  "geometry": {
-    "type": "Point",
-    "coordinates": [-75.534, 39.123]
-  }
-};
+var from = turf.point([-75.343, 39.984]);
+var to = turf.point([-75.534, 39.123]);
 
 var distance = turf.rhumbDistance(from, to, "miles");
 
