@@ -16,7 +16,7 @@ var distanceToDegrees = helpers.distanceToDegrees;
  * @param {string} [units=kilometers] can be degrees, radians, miles, kilometers, inches, yards, meters
  * @returns {Feature<LineString|MultiLineString>} Line offset from the input line
  * @example
- * var line = turf.lineString[[-83, 30], [-84, 36], [-78, 41]], { "stroke": "#F00" });
+ * var line = turf.lineString([[-83, 30], [-84, 36], [-78, 41]], { "stroke": "#F00" });
  *
  * var offsetLine = turf.lineOffset(line, 2, "miles");
  *

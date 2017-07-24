@@ -13,8 +13,8 @@ into [MultiPoint](http://geojson.org/geojson-spec.html#multipoint), [MultiLineSt
 
 ```javascript
 var fc = turf.featureCollection([
-  turf.point([19.026432, 47.49134],
-  turf.point([19.074497, 47.509548]
+  turf.point([19.026432, 47.49134]),
+  turf.point([19.074497, 47.509548])
 ]);
 
 var combined = turf.combine(fc);

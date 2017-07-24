@@ -13,7 +13,7 @@ Takes a [line](http://geojson.org/geojson-spec.html#linestring) and returns a [l
 **Examples**
 
 ```javascript
-var line = turf.lineString[[-83, 30], [-84, 36], [-78, 41]], { "stroke": "#F00" });
+var line = turf.lineString([[-83, 30], [-84, 36], [-78, 41]], { "stroke": "#F00" });
 
 var offsetLine = turf.lineOffset(line, 2, "miles");
 

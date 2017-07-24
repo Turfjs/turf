@@ -24,11 +24,11 @@ var searchWithin = turf.featureCollection([
     ]])
 ]);
 var points = turf.featureCollection([
-    turf.point([-46.6318, -23.5523],
-    turf.point([-46.6246, -23.5325],
-    turf.point([-46.6062, -23.5513],
-    turf.point([-46.663, -23.554],
-    turf.point([-46.643, -23.557]
+    turf.point([-46.6318, -23.5523]),
+    turf.point([-46.6246, -23.5325]),
+    turf.point([-46.6062, -23.5513]),
+    turf.point([-46.663, -23.554]),
+    turf.point([-46.643, -23.557])
 ]);
 
 var ptsWithin = turf.within(points, searchWithin);

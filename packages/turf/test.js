@@ -170,7 +170,7 @@ test('turf-${turfName}', t => {
     t.skip('${turfName}');
     t.end();
 });
-`
+`;
     return `
 test('turf-${turfName}', t => {
     const ${testFunctionName} = () => {

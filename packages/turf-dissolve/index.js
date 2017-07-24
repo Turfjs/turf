@@ -13,7 +13,7 @@ var getClosest = require('get-closest');
  * @param {string} [propertyName] property name on which to dissolve features
  * @returns {FeatureCollection<Polygon>} a FeatureCollection containing the dissolved polygons
  * @example
- * var features = turf.featureCollection"([
+ * var features = turf.featureCollection([
  *   turf.polygon([[[0, 0], [0, 1], [1, 1], [1, 0], [0, 0]]], {"combine": "yes"}),
  *   turf.polygon([[[0, -1], [0, 0], [1, 0], [1, -1], [0,-1]]], {"combine": "yes"}),
  *   turf.polygon([[[1,-1],[1, 0], [2, 0], [2, -1], [1, -1]]], {"combine": "no"}),

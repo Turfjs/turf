@@ -14,7 +14,7 @@ var distance = require('@turf/distance');
  * var point1 = turf.point([144.834823, -37.771257]);
  * var point2 = turf.point([145.14244, -37.830937]);
  *
- * var midpoint = turf.midpoint(pt1, pt2);
+ * var midpoint = turf.midpoint(point1, point2);
  *
  * //addToMap
  * var addToMap = [point1, point2, midpoint];

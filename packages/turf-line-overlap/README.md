@@ -12,8 +12,8 @@ Takes any LineString or Polygon and returns the overlapping lines between both f
 **Examples**
 
 ```javascript
-var line1 = turf.lineString([[115, -35], [125, -30], [135, -30], [145, -35]);
-var line2 = turf.lineString([[115, -25], [125, -30], [135, -30], [145, -25]);
+var line1 = turf.lineString([[115, -35], [125, -30], [135, -30], [145, -35]]);
+var line2 = turf.lineString([[115, -25], [125, -30], [135, -30], [145, -25]]);
 
 var overlapping = turf.lineOverlap(line1, line2);
 

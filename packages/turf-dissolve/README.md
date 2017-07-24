@@ -12,7 +12,7 @@ Dissolves a FeatureCollection of polygons based on a property. Note that multipa
 **Examples**
 
 ```javascript
-var features = turf.featureCollection"([
+var features = turf.featureCollection([
   turf.polygon([[[0, 0], [0, 1], [1, 1], [1, 0], [0, 0]]], {"combine": "yes"}),
   turf.polygon([[[0, -1], [0, 0], [1, 0], [1, -1], [0,-1]]], {"combine": "yes"}),
   turf.polygon([[[1,-1],[1, 0], [2, 0], [2, -1], [1, -1]]], {"combine": "no"}),
