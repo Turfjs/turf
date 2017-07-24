@@ -136,12 +136,7 @@ test('turf - parsing dependencies from index.js', t => {
  * =========================
  * Builds => test.example.js
  * =========================
- *
- * To-Do
- * -----
- * - [x] Fix @example errors
- * - [x] Add 'node test.example' in package.json => scripts => posttest
- * - [ ] Include `addToMap` validation tests
+ * will be run as `posttest`
  */
 
 // File Paths
