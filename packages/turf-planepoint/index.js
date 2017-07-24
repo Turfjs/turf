@@ -15,14 +15,6 @@ var getGeom = invariant.getGeom;
  * @param {Geometry|Feature<Polygon>} triangle a Polygon feature with three vertices
  * @returns {number} the z-value for `interpolatedPoint`
  * @example
- * var point = {
- *   "type": "Feature",
- *   "properties": {},
- *   "geometry": {
- *     "type": "Point",
- *     "coordinates": [-75.3221, 39.529]
- *   }
- * };
  * var point = turf.point([-75.3221, 39.529]);
  * // triangle is a polygon with "a", "b",
  * // and "c" values representing
@@ -46,9 +38,9 @@ var getGeom = invariant.getGeom;
  * };
  *
  * var zValue = turf.planepoint(point, triangle);
- * point.properties.zValue = zValue;
  *
  * //addToMap
+ * point.properties.zValue = zValue;
  * var addToMap = [triangle, point];
  */
 module.exports = function (point, triangle) {

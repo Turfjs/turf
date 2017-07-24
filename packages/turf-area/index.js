@@ -17,9 +17,9 @@ var geomReduce = require('@turf/meta').geomReduce;
  *   }
  * }
  * var area = turf.area(polygon);
- * polygon.properties.area = area
  *
  * //addToMap
+ * polygon.properties.area = area
  * var addToMap = [polygon]
  */
 module.exports = function (geojson) {

@@ -16,9 +16,9 @@ var coordEach = require('@turf/meta').coordEach;
  *   }
  * }
  * var bbox = turf.bbox(line);
- * var bboxPolygon = turf.bboxPolygon(bbox);
  *
  * //addToMap
+ * var bboxPolygon = turf.bboxPolygon(bbox);
  * var addToMap = [line, bboxPolygon]
  */
 module.exports = function (geojson) {

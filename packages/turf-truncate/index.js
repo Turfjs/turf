@@ -10,18 +10,11 @@ var coordEach = require('@turf/meta').coordEach;
  * @param {boolean} [mutate=false] allows GeoJSON input to be mutated (significant performance increase if true)
  * @returns {FeatureCollection|Feature} layer with truncated geometry
  * @example
- * var point = {
- *     "type": "Feature",
- *     "properties": {},
- *     "geometry": {
- *         "type": "Point",
- *         "coordinates": [
- *             70.46923055566859,
- *             58.11088890802906,
- *             1508
- *         ]
- *     }
- * };
+ * var point = turf.point([
+ *     70.46923055566859,
+ *     58.11088890802906,
+ *     1508
+ * ]);
  * var truncated = turf.truncate(point);
  *
  * //addToMap

@@ -13,32 +13,14 @@ var GeodesyLatLon = require('geodesy').LatLonSpherical;
  * @param {boolean} [final=false] calculates the final bearing if true
  * @returns {number} bearing from north in decimal degrees, between -180 and 180 degrees (positive clockwise)
  * @example
- * var point1 = {
- *   "type": "Feature",
- *   "properties": {
- *     "marker-color": "#F00"
- *   },
- *   "geometry": {
- *     "type": "Point",
- *     "coordinates": [-75.343, 39.984]
- *   }
- * };
- * var point2 = {
- *   "type": "Feature",
- *   "properties": {
- *     "marker-color": "#00F"
- *   },
- *   "geometry": {
- *     "type": "Point",
- *     "coordinates": [-75.534, 39.123]
- *   }
- * };
+ * var point1 = turf.point([-75.343, 39.984], {"marker-color": "#F00"});
+ * var point2 = turf.point([-75.534, 39.123], {"marker-color": "#00F"});
  *
  * var bearing = turf.rhumbBearing(point1, point2);
- * point1.properties.bearing = bearing
- * point2.properties.bearing = bearing
  *
  * //addToMap
+ * point1.properties.bearing = bearing
+ * point2.properties.bearing = bearing
  * var addToMap = [point1, point2]
  */
 module.exports = function (start, end, final) {
@@ -51,11 +33,9 @@ module.exports = function (start, end, final) {
     var origin = new GeodesyLatLon(coordsStart[1], coordsStart[0]);
     var destination = new GeodesyLatLon(coordsEnd[1], coordsEnd[0]);
     var bear360;
-    if (final) {
-        bear360 = destination.rhumbBearingTo(origin);
-    } else {
-        bear360 = origin.rhumbBearingTo(destination);
-    }
+
+    if (final) bear360 = destination.rhumbBearingTo(origin);
+    else bear360 = origin.rhumbBearingTo(destination);
 
     var bear180 = (bear360 > 180) ? -(360 - bear360) : bear360;
 
