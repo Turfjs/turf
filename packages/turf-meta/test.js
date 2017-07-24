@@ -408,3 +408,27 @@ test('flattenReduce#previous-feature+initialValue', t => {
     t.deepEqual(sum, features[features.length - 1]);
     t.end();
 });
+
+test('segmentEach', t => {
+    const segments = [];
+    let total = 0;
+    meta.segmentEach(polygonGeometry, currentSegment => {
+        segments.push(currentSegment);
+        total++;
+    });
+    t.equal(segments[0].geometry.coordinates.length, 2);
+    t.equal(total, 3);
+    t.end();
+});
+
+test('segmentReduce', t => {
+    const segments = [];
+    const total = meta.segmentReduce(polygonGeometry, (previousValue, currentSegment) => {
+        segments.push(currentSegment);
+        previousValue++;
+        return previousValue;
+    }, 0);
+    t.equal(segments[0].geometry.coordinates.length, 2);
+    t.equal(total, 3);
+    t.end();
+});

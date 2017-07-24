@@ -67,3 +67,13 @@ export function flattenReduce<Geom extends GeometryObject>(geojson: Feature<Geom
  * http://turfjs.org/docs/#flatteneach
  */
 export function flattenEach<Geom extends GeometryObject>(geojson: Feature<Geom> | Features<Geom> | Geom | GeometryCollection, callback: (currentFeature: Feature<Geom>, currentIndex: number, currentSubIndex: number) => void): void;
+
+/**
+ * http://turfjs.org/docs/#segmentreduce
+ */
+export function segmentReduce(geojson: Feature<any> | Features<any> | GeometryObject | GeometryCollection, callback: (previousValue?: any, currentSegment?: Feature<LineString>, currentIndex?: number) => void, initialValue?: any): void;
+
+/**
+ * http://turfjs.org/docs/#segmenteach
+ */
+export function segmentEach(geojson: Feature<any> | Features<any> | GeometryObject | GeometryCollection, callback: (currentSegment?: Feature<LineString>, currentIndex?: number) => void): void;
