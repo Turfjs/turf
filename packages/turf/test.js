@@ -3,6 +3,7 @@ const path = require('path');
 const glob = require('glob');
 const test = require('tape');
 const documentation = require('documentation');
+const turf = require('./');
 
 // Helpers
 const directory = path.join(__dirname, '..');
@@ -161,6 +162,14 @@ const turf = require('./');
 function testString(turfFunction, example) {
     const turfName = turfFunction.name;
     const testFunctionName = turfName + 'Test';
+
+    // New modules will be excluded from tests
+    if (!turf.hasOwnProperty(turfName)) return `
+test('turf-${turfName}', t => {
+    t.skip('${turfName}');
+    t.end();
+});
+`
     return `
 test('turf-${turfName}', t => {
     const ${testFunctionName} = () => {

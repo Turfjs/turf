@@ -18,16 +18,7 @@ var distanceToRadians = helpers.distanceToRadians;
  * @param {string} [units=kilometers] miles, kilometers, degrees, or radians
  * @returns {Feature<Point>} Destination point.
  * @example
- * var point = {
- *   "type": "Feature",
- *   "properties": {
- *     "marker-color": "F00"
- *   },
- *   "geometry": {
- *     "type": "Point",
- *     "coordinates": [-75.343, 39.984]
- *   }
- * };
+ * var point = turf.point([-75.343, 39.984], {"marker-color": "F00"});
  * var distance = 50;
  * var bearing = 90;
  * var units = 'miles';
