@@ -421,6 +421,17 @@ test('segmentEach', t => {
     t.end();
 });
 
+test('segmentEach#MultiPoint', t => {
+    const segments = [];
+    let total = 0;
+    meta.segmentEach(multiPointGeometry, currentSegment => {
+        segments.push(currentSegment);
+        total++;
+    });
+    t.equal(total, 0); // No segments are created from MultiPoint geometry
+    t.end();
+});
+
 test('segmentReduce', t => {
     const segments = [];
     const total = meta.segmentReduce(polygonGeometry, (previousValue, currentSegment) => {

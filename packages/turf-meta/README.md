@@ -13,27 +13,10 @@ Iterate over coordinates in any GeoJSON object, similar to Array.forEach()
 **Examples**
 
 ```javascript
-var features = {
-  "type": "FeatureCollection",
-  "features": [
-    {
-      "type": "Feature",
-      "properties": {},
-      "geometry": {
-        "type": "Point",
-        "coordinates": [26, 37]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {},
-      "geometry": {
-        "type": "Point",
-        "coordinates": [36, 53]
-      }
-    }
-  ]
-};
+var features = turf.featureCollection([
+    turf.point([26, 37]),
+    turf.point([36, 53])
+]);
 turf.coordEach(features, function (currentCoords, currentIndex) {
   //=currentCoords
   //=currentIndex
@@ -55,27 +38,10 @@ Reduce coordinates in any GeoJSON object, similar to Array.reduce()
 **Examples**
 
 ```javascript
-var features = {
-  "type": "FeatureCollection",
-  "features": [
-    {
-      "type": "Feature",
-      "properties": {},
-      "geometry": {
-        "type": "Point",
-        "coordinates": [26, 37]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {},
-      "geometry": {
-        "type": "Point",
-        "coordinates": [36, 53]
-      }
-    }
-  ]
-};
+var features = turf.featureCollection([
+    turf.point([26, 37]),
+    turf.point([36, 53])
+]);
 turf.coordReduce(features, function (previousValue, currentCoords, currentIndex) {
   //=previousValue
   //=currentCoords
@@ -98,27 +64,10 @@ Iterate over properties in any GeoJSON object, similar to Array.forEach()
 **Examples**
 
 ```javascript
-var features = {
-  "type": "FeatureCollection",
-  "features": [
-    {
-      "type": "Feature",
-      "properties": {"foo": "bar"},
-      "geometry": {
-        "type": "Point",
-        "coordinates": [26, 37]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {"hello": "world"},
-      "geometry": {
-        "type": "Point",
-        "coordinates": [36, 53]
-      }
-    }
-  ]
-};
+var features = turf.featureCollection([
+    turf.point([26, 37], {foo: 'bar'}),
+    turf.point([36, 53], {hello: 'world'})
+]);
 turf.propEach(features, function (currentProperties, currentIndex) {
   //=currentProperties
   //=currentIndex
@@ -140,27 +89,10 @@ the reduction, so an array of all properties is unnecessary.
 **Examples**
 
 ```javascript
-var features = {
-  "type": "FeatureCollection",
-  "features": [
-    {
-      "type": "Feature",
-      "properties": {"foo": "bar"},
-      "geometry": {
-        "type": "Point",
-        "coordinates": [26, 37]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {"hello": "world"},
-      "geometry": {
-        "type": "Point",
-        "coordinates": [36, 53]
-      }
-    }
-  ]
-};
+var features = turf.featureCollection([
+    turf.point([26, 37], {foo: 'bar'}),
+    turf.point([36, 53], {hello: 'world'})
+]);
 turf.propReduce(features, function (previousValue, currentProperties, currentIndex) {
   //=previousValue
   //=currentProperties
@@ -184,27 +116,10 @@ Array.forEach.
 **Examples**
 
 ```javascript
-var features = {
-  "type": "FeatureCollection",
-  "features": [
-    {
-      "type": "Feature",
-      "properties": {},
-      "geometry": {
-        "type": "Point",
-        "coordinates": [26, 37]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {},
-      "geometry": {
-        "type": "Point",
-        "coordinates": [36, 53]
-      }
-    }
-  ]
-};
+var features = turf.featureCollection([
+    turf.point([26, 37]),
+    turf.point([36, 53])
+]);
 turf.featureEach(features, function (currentFeature, currentIndex) {
   //=currentFeature
   //=currentIndex
@@ -224,27 +139,10 @@ Reduce features in any GeoJSON object, similar to Array.reduce().
 **Examples**
 
 ```javascript
-var features = {
-  "type": "FeatureCollection",
-  "features": [
-    {
-      "type": "Feature",
-      "properties": {"foo": "bar"},
-      "geometry": {
-        "type": "Point",
-        "coordinates": [26, 37]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {"hello": "world"},
-      "geometry": {
-        "type": "Point",
-        "coordinates": [36, 53]
-      }
-    }
-  ]
-};
+var features = turf.featureCollection([
+    turf.point([26, 37]),
+    turf.point([36, 53])
+]);
 turf.featureReduce(features, function (previousValue, currentFeature, currentIndex) {
   //=previousValue
   //=currentFeature
@@ -266,27 +164,10 @@ Get all coordinates from any GeoJSON object.
 **Examples**
 
 ```javascript
-var features = {
-  "type": "FeatureCollection",
-  "features": [
-    {
-      "type": "Feature",
-      "properties": {},
-      "geometry": {
-        "type": "Point",
-        "coordinates": [26, 37]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {},
-      "geometry": {
-        "type": "Point",
-        "coordinates": [36, 53]
-      }
-    }
-  ]
-};
+var features = turf.featureCollection([
+    turf.point([26, 37]),
+    turf.point([36, 53])
+]);
 var coords = turf.coordAll(features);
 //=coords
 ```
@@ -305,27 +186,10 @@ Iterate over each geometry in any GeoJSON object, similar to Array.forEach()
 **Examples**
 
 ```javascript
-var features = {
-  "type": "FeatureCollection",
-  "features": [
-    {
-      "type": "Feature",
-      "properties": {},
-      "geometry": {
-        "type": "Point",
-        "coordinates": [26, 37]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {},
-      "geometry": {
-        "type": "Point",
-        "coordinates": [36, 53]
-      }
-    }
-  ]
-};
+var features = turf.featureCollection([
+    turf.point([26, 37], {foo: 'bar'}),
+    turf.point([36, 53], {hello: 'world'})
+]);
 turf.geomEach(features, function (currentGeometry, currentIndex, currentProperties) {
   //=currentGeometry
   //=currentIndex
@@ -346,27 +210,10 @@ Reduce geometry in any GeoJSON object, similar to Array.reduce().
 **Examples**
 
 ```javascript
-var features = {
-  "type": "FeatureCollection",
-  "features": [
-    {
-      "type": "Feature",
-      "properties": {"foo": "bar"},
-      "geometry": {
-        "type": "Point",
-        "coordinates": [26, 37]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {"hello": "world"},
-      "geometry": {
-        "type": "Point",
-        "coordinates": [36, 53]
-      }
-    }
-  ]
-};
+var features = turf.featureCollection([
+    turf.point([26, 37], {foo: 'bar'}),
+    turf.point([36, 53], {hello: 'world'})
+]);
 turf.geomReduce(features, function (previousValue, currentGeometry, currentIndex) {
   //=previousValue
   //=currentGeometry
@@ -390,27 +237,10 @@ Array.forEach.
 **Examples**
 
 ```javascript
-var features = {
-  "type": "FeatureCollection",
-  "features": [
-    {
-      "type": "Feature",
-      "properties": {},
-      "geometry": {
-        "type": "Point",
-        "coordinates": [26, 37]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {},
-      "geometry": {
-        "type": "MultiPoint",
-        "coordinates": [ [36, 53], [46, 69] ]
-      }
-    }
-  ]
-};
+var features = turf.featureCollection([
+    turf.point([26, 37], {foo: 'bar'}),
+    turf.multiPoint([[40, 30], [36, 53]], {hello: 'world'})
+]);
 turf.flattenEach(features, function (currentFeature, currentIndex, currentSubIndex) {
   //=currentFeature
   //=currentIndex
@@ -431,27 +261,10 @@ Reduce flattened features in any GeoJSON object, similar to Array.reduce().
 **Examples**
 
 ```javascript
-var features = {
-  "type": "FeatureCollection",
-  "features": [
-    {
-      "type": "Feature",
-      "properties": {"foo": "bar"},
-      "geometry": {
-        "type": "Point",
-        "coordinates": [26, 37]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {"hello": "world"},
-      "geometry": {
-        "type": "MultiPoint",
-        "coordinates": [ [36, 53], [46, 69] ]
-      }
-    }
-  ]
-};
+var features = turf.featureCollection([
+    turf.point([26, 37], {foo: 'bar'}),
+    turf.multiPoint([[40, 30], [36, 53]], {hello: 'world'})
+]);
 turf.flattenReduce(features, function (previousValue, currentFeature, currentIndex, currentSubIndex) {
   //=previousValue
   //=currentFeature
@@ -479,6 +292,7 @@ Returns **void**
 # segmentEach
 
 Iterate over 2-vertex line segment in any GeoJSON object, similar to Array.forEach()
+(Multi)Point geometries do not contain segments therefore they are ignored during this operation.
 
 **Parameters**
 
@@ -488,14 +302,8 @@ Iterate over 2-vertex line segment in any GeoJSON object, similar to Array.forEa
 **Examples**
 
 ```javascript
-var polygon = {
-  "type": "Feature",
-  "properties": {},
-  "geometry": {
-    "type": "Polygon",
-    "coordinates": [[[-50, 5], [-40, -10], [-50, -10], [-40, 5], [-50, 5]]]
-  }
-}
+var polygon = turf.polygon([[[-50, 5], [-40, -10], [-50, -10], [-40, 5], [-50, 5]]]);
+
 // Iterate over GeoJSON by 2-vertex segments
 turf.segmentEach(polygon, function (currentSegment, currentIndex) {
   //= currentSegment
@@ -543,6 +351,7 @@ If an initialValue is not provided:
 # segmentReduce
 
 Reduce 2-vertex line segment in any GeoJSON object, similar to Array.reduce()
+(Multi)Point geometries do not contain segments therefore they are ignored during this operation.
 
 **Parameters**
 
@@ -553,14 +362,8 @@ Reduce 2-vertex line segment in any GeoJSON object, similar to Array.reduce()
 **Examples**
 
 ```javascript
-var polygon = {
-  "type": "Feature",
-  "properties": {},
-  "geometry": {
-    "type": "Polygon",
-    "coordinates": [[[-50, 5], [-40, -10], [-50, -10], [-40, 5], [-50, 5]]]
-  }
-}
+var polygon = turf.polygon([[[-50, 5], [-40, -10], [-50, -10], [-40, 5], [-50, 5]]]);
+
 // Iterate over GeoJSON by 2-vertex segments
 turf.segmentReduce(polygon, function (previousSegment, currentSegment, currentIndex) {
   //= previousSegment
