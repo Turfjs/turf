@@ -66,7 +66,7 @@ function coordEach(geojson, callback, excludeWrapCoord) {
 
             switch (geomType) {
             case null:
-                return;
+                break;
             case 'Point':
                 callback(coords, currentIndex);
                 currentIndex++;
@@ -433,6 +433,8 @@ function geomEach(geojson, callback) {
             var type = (geometry === null) ? null : geometry.type;
             switch (type) {
             case null:
+                currentIndex++;
+                break;
             case 'Point':
             case 'LineString':
             case 'MultiPoint':
@@ -546,11 +548,10 @@ function geomReduce(geojson, callback, initialValue) {
  */
 function flattenEach(geojson, callback) {
     geomEach(geojson, function (geometry, index, properties) {
-        var type = (geometry === null) ? null : geometry.type;
+        if (geometry === null) return;
 
         // Callback for single geometry
-        switch (type) {
-        case null:
+        switch (geometry.type) {
         case 'Point':
         case 'LineString':
         case 'Polygon':
@@ -561,7 +562,7 @@ function flattenEach(geojson, callback) {
         var geomType;
 
         // Callback for multi-geometry
-        switch (type) {
+        switch (geometry.type) {
         case 'MultiPoint':
             geomType = 'Point';
             break;
