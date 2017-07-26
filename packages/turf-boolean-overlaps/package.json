@@ -20,6 +20,7 @@
     "turf",
     "gis",
     "boolean",
+    "de-9im",
     "overlap"
   ],
   "author": "Turf Authors",
@@ -39,11 +40,11 @@
     "tape": "^4.6.3"
   },
   "dependencies": {
-    "@turf/meta": "^4.5.2",
     "@turf/helpers": "^4.5.2",
     "@turf/invariant": "^4.5.2",
     "@turf/line-overlap": "^4.5.2",
     "@turf/line-intersect": "^4.5.2",
+    "@turf/meta": "^4.5.2",
     "geojson-equality": "0.1.6"
   }
 }

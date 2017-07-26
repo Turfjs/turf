@@ -2,23 +2,23 @@
 
 # booleanOverlaps
 
-Takes two features and returns true or false whether or not they overlap, i.e. whether any pair of edges on the two polygons intersect. If there are any edge intersections, the polygons overlap.
+Compares two geometries of the same dimension and returns true if their intersection set results in a geometry different from both but of the same dimension. It applies to Polygon/Polygon, LineString/LineString, Multipoint/Multipoint, MultiLineString/MultiLineString and MultiPolygon/MultiPolygon
 
 **Parameters**
 
--   `feature1` **([Geometry](http://geojson.org/geojson-spec.html#geometry) \| [Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;[LineString](http://geojson.org/geojson-spec.html#linestring)|[MultiLineString](http://geojson.org/geojson-spec.html#multilinestring)|[Polygon](http://geojson.org/geojson-spec.html#polygon)|[MultiPolygon](http://geojson.org/geojson-spec.html#multipolygon)>)** GeoJSON Feature or Geometry
--   `feature2` **([Geometry](http://geojson.org/geojson-spec.html#geometry) \| [Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;[LineString](http://geojson.org/geojson-spec.html#linestring)|[MultiLineString](http://geojson.org/geojson-spec.html#multilinestring)|[Polygon](http://geojson.org/geojson-spec.html#polygon)|[MultiPolygon](http://geojson.org/geojson-spec.html#multipolygon)>)** GeoJSON Feature or Geometry
+-   `feature1` **([Geometry](http://geojson.org/geojson-spec.html#geometry) \| [Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;any>)** GeoJSON Feature or Geometry
+-   `feature2` **([Geometry](http://geojson.org/geojson-spec.html#geometry) \| [Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;any>)** GeoJSON Feature or Geometry
 
 **Examples**
 
 ```javascript
-var poly1 = turf.polygon([[[18.70,-34.19],[18.93,-34.19],[18.93,-34],[18.70,-34],[18.70,-34.19]]]);
-var poly2 = turf.polygon([[[18.52,-34.36],[18.79,-34.36],[18.79,-34.10],[18.52,-34.10],[1852,-34.36]]]);
-var line = turf.lineString([[18.62,-34.39],[18.87,-34.21]]);
+var poly1 = turf.polygon([[[0,0],[0,5],[5,5],[5,0],[0,0]]]);
+var poly2 = turf.polygon([[[1,1],[1,6],[6,6],[6,1],[1,1]]]);
+var poly3 = turf.polygon([[[10,10],[10,15],[15,15],[15,10],[10,10]]]);
 
 turf.booleanOverlaps(poly1, poly2)
 //=true
-turf.booleanOverlaps(poly2, line)
+turf.booleanOverlaps(poly2, poly3)
 //=false
 ```
 
