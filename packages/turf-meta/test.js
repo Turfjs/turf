@@ -450,6 +450,7 @@ test('null geometries -- index', t => {
     t.deepEqual(meta.coordReduce(fc, (prev, coords, i) => prev.concat(i), []), [0, 1, 2], 'coordReduce');
     t.deepEqual(meta.geomReduce(fc, (prev, geom, i) => prev.concat(i), []), [1, 3], 'geomReduce');
     t.deepEqual(meta.flattenReduce(fc, (prev, feature, i) => prev.concat(i), []), [1, 3], 'flattenReduce');
+    t.end();
 });
 
 test('segmentEach', t => {
