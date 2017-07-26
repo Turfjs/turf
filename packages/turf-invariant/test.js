@@ -218,6 +218,9 @@ test('null geometries', t => {
     };
     t.throws(() => invariant.getGeom(null), /geojson is required/, 'getGeom => geojson is required');
     t.throws(() => invariant.getGeomType(null), /geojson is required/, 'getGeomType => geojson is required');
+    t.throws(() => invariant.getCoords(nullFeature), /No valid coordinates/, 'getCoords => No valid coordinates');
+    t.throws(() => invariant.getCoord(nullFeature), /No valid coordinates/, 'getCoord => No valid coordinates');
+
     t.equal(invariant.getGeom(nullFeature), null, 'getGeom => null');
     t.equal(invariant.getGeomType(nullFeature), undefined, 'getGeomType => undefined');
     t.end();
