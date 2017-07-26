@@ -15,14 +15,8 @@ var lineString = helpers.lineString;
  * @param {boolean} [orderCoords=true] sorts linestrings to place outer ring at the first position of the coordinates
  * @returns {Feature<Polygon|MultiPolygon>} converted to Polygons
  * @example
- * var line = {
- *   'type': 'Feature',
- *   'properties': {},
- *   'geometry': {
- *     'type': 'LineString',
- *     'coordinates': [[125, -30], [145, -30], [145, -20], [125, -20], [125, -30]]
- *   }
- * }
+ * var line = turf.lineString([[125, -30], [145, -30], [145, -20], [125, -20], [125, -30]]);
+ *
  * var polygon = turf.lineStringToPolygon(line);
  *
  * //addToMap

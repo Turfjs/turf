@@ -12,7 +12,7 @@ the input, or even be empty.
 
 **Parameters**
 
--   `feature` **([FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects) \| [Geometry](http://geojson.org/geojson-spec.html#geometry) \| [Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;any>)** input to be buffered
+-   `geojson` **([FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects) \| [Geometry](http://geojson.org/geojson-spec.html#geometry) \| [Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;any>)** input to be buffered
 -   `radius` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** distance to draw the buffer (negative values are allowed)
 -   `units` **\[[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)]** any of the options supported by turf units (optional, default `kilometers`)
 -   `steps` **\[[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)]** number of steps (optional, default `64`)
@@ -20,14 +20,7 @@ the input, or even be empty.
 **Examples**
 
 ```javascript
-var point = {
-  "type": "Feature",
-  "properties": {},
-  "geometry": {
-    "type": "Point",
-    "coordinates": [-90.548630, 14.616599]
-  }
-};
+var point = turf.point([-90.548630, 14.616599]);
 var buffered = turf.buffer(point, 500, 'miles');
 
 //addToMap

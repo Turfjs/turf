@@ -21,9 +21,9 @@ var radiansToDistance = require('@turf/helpers').radiansToDistance;
  * var distance = turf.distance(from, to, "miles");
  *
  * //addToMap
+ * var addToMap = [from, to];
  * from.properties.distance = distance;
  * to.properties.distance = distance;
- * var addToMap = [from, to];
  */
 module.exports = function (from, to, units) {
     var degrees2radians = Math.PI / 180;

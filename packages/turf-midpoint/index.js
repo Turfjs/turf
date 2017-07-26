@@ -15,11 +15,11 @@ var distance = require('@turf/distance');
  * var point2 = turf.point([145.14244, -37.830937]);
  *
  * var midpoint = turf.midpoint(point1, point2);
- * midpoint.properties['marker-color'] = '#f00';
  *
  * //addToMap
  * var addToMap = [point1, point2, midpoint];
-*/
+ * midpoint.properties['marker-color'] = '#f00';
+ */
 module.exports = function (point1, point2) {
     var dist = distance(point1, point2, 'miles');
     var heading = bearing(point1, point2);

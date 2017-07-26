@@ -20,9 +20,9 @@ var to = turf.point([-75.534, 39.123]);
 var distance = turf.rhumbDistance(from, to, "miles");
 
 //addToMap
+var addToMap = [from, to];
 from.properties.distance = distance;
 to.properties.distance = distance;
-var addToMap = [from, to];
 ```
 
 Returns **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** distance between the two points

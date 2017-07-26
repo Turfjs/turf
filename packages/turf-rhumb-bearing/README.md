@@ -20,9 +20,9 @@ var point2 = turf.point([-75.534, 39.123], {"marker-color": "#00F"});
 var bearing = turf.rhumbBearing(point1, point2);
 
 //addToMap
+var addToMap = [point1, point2]
 point1.properties.bearing = bearing
 point2.properties.bearing = bearing
-var addToMap = [point1, point2]
 ```
 
 Returns **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** bearing from north in decimal degrees, between -180 and 180 degrees (positive clockwise)

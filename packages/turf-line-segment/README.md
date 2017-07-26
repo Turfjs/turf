@@ -11,14 +11,7 @@ Creates a [FeatureCollection](http://geojson.org/geojson-spec.html#feature-colle
 **Examples**
 
 ```javascript
-var polygon = {
-  "type": "Feature",
-  "properties": {},
-  "geometry": {
-    "type": "Polygon",
-    "coordinates": [[[-50, 5], [-40, -10], [-50, -10], [-40, 5], [-50, 5]]]
-  }
-}
+var polygon = turf.polygon([[[-50, 5], [-40, -10], [-50, -10], [-40, 5], [-50, 5]]]);
 var segments = turf.lineSegment(polygon);
 
 //addToMap

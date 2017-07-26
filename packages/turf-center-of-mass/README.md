@@ -12,14 +12,7 @@ Takes any [Feature](http://geojson.org/geojson-spec.html#feature-objects) or a [
 **Examples**
 
 ```javascript
-var polygon = {
-  "type": "Feature",
-  "properties": {},
-  "geometry": {
-    "type": "Polygon",
-    "coordinates": [[[-81, 41], [-88, 36], [-84, 31], [-80, 33], [-77, 39], [-81, 41]]]
-  }
-};
+var polygon = turf.polygon([[[-81, 41], [-88, 36], [-84, 31], [-80, 33], [-77, 39], [-81, 41]]]);
 
 var center = turf.centerOfMass(polygon);
 

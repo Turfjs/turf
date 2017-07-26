@@ -4,6 +4,11 @@
  * @name getCoord
  * @param {Array<any>|Geometry|Feature<Point>} obj any value
  * @returns {Array<number>} coordinates
+ * @example
+ * var pt = turf.point([10, 10]);
+ *
+ * var coord = turf.getCoord(pt);
+ * //= [10, 10]
  */
 function getCoord(obj) {
     if (!obj) throw new Error('No obj passed');
@@ -26,6 +31,11 @@ function getCoord(obj) {
  * @name getCoords
  * @param {Array<any>|Geometry|Feature<any>} obj any value
  * @returns {Array<any>} coordinates
+ * @example
+ * var poly = turf.polygon([[[119.32, -8.7], [119.55, -8.69], [119.51, -8.54], [119.32, -8.7]]]);
+ *
+ * var coord = turf.getCoords(poly);
+ * //= [[[119.32, -8.7], [119.55, -8.69], [119.51, -8.54], [119.32, -8.7]]]
  */
 function getCoords(obj) {
     if (!obj) throw new Error('No obj passed');

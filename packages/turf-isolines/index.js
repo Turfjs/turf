@@ -18,8 +18,8 @@ var featureCollection = helpers.featureCollection;
  * @param {Array<number>} breaks values of `zProperty` where to draw isolines
  * @param {string} [zProperty='elevation'] the property name in `points` from which z-values will be pulled
  * @param {Object} [propertiesToAllIsolines={}] GeoJSON properties passed to ALL isolines
- * @param {Array<Object>} [propertiesPerIsoline=[]] GeoJSON properties passed, in order, to the correspondent
- * isoline; the breaks array will define the order in which the isolines are created
+ * @param {Array<Object>} [propertiesPerIsoline=[]] GeoJSON properties passed, in order, to the correspondent isoline;
+ * the breaks array will define the order in which the isolines are created
  * @returns {FeatureCollection<MultiLineString>} a FeatureCollection of {@link MultiLineString} features representing isolines
  * @example
  * // create a grid of points with random z-values in their properties
@@ -31,6 +31,7 @@ var featureCollection = helpers.featureCollection;
  *     pointGrid.features[i].properties.temperature = Math.random() * 10;
  * }
  * var breaks = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+ *
  * var isolines = turf.isolines(pointGrid, breaks, 'temperature');
  *
  * //addToMap

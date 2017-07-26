@@ -33,7 +33,7 @@ for (var i = 0; i < 6; i++) {
  * var hexgrid = turf.hexGrid(bbox, cellDiameter, units);
  *
  * //addToMap
- * var addToMap = [hexgrid]
+ * var addToMap = [hexgrid];
  */
 module.exports = function hexGrid(bbox, cellDiameter, units, triangles) {
     var west = bbox[0];

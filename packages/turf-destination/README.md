@@ -22,9 +22,9 @@ var units = 'miles';
 var destination = turf.destination(point, distance, bearing, units);
 
 //addToMap
+var addToMap = [point, destination]
 destination.properties['marker-color'] = '#f00';
 point.properties['marker-color'] = '#0f0';
-var addToMap = [point, destination]
 ```
 
 Returns **[Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;[Point](http://geojson.org/geojson-spec.html#point)>** destination point

@@ -24,7 +24,6 @@ var getGeomType = invariant.getGeomType;
  * var cross = turf.booleanCrosses(line1, line2);
  * //=true
  */
-
 module.exports = function (feature1, feature2) {
     var type1 = getGeomType(feature1);
     var type2 = getGeomType(feature2);
