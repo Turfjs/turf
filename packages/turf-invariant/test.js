@@ -215,10 +215,10 @@ test('null geometries', t => {
         type: 'Feature',
         properties: {},
         geometry: null
-    }
-    t.equal(invariant.getGeom(null), null);
-    t.equal(invariant.getGeomType(null), null);
-    t.equal(invariant.getGeom(nullFeature), null);
-    t.equal(invariant.getGeomType(nullFeature), null);
+    };
+    t.throws(() => invariant.getGeom(null), /geojson is required/, 'getGeom => geojson is required');
+    t.throws(() => invariant.getGeomType(null), /geojson is required/, 'getGeomType => geojson is required');
+    t.equal(invariant.getGeom(nullFeature), null, 'getGeom => null');
+    t.equal(invariant.getGeomType(nullFeature), undefined, 'getGeomType => undefined');
     t.end();
 });
