@@ -2,7 +2,7 @@
  * Unwrap a coordinate from a Point Feature, Geometry or a single coordinate.
  *
  * @name getCoord
- * @param {Array<any>|Geometry|Feature<Point>} obj any value
+ * @param {Array<number>|Geometry<Point>|Feature<Point>} obj Object
  * @returns {Array<number>} coordinates
  * @example
  * var pt = turf.point([10, 10]);
@@ -11,7 +11,7 @@
  * //= [10, 10]
  */
 function getCoord(obj) {
-    if (!obj) throw new Error('No obj passed');
+    if (!obj) throw new Error('obj is required');
 
     var coordinates = getCoords(obj);
 
@@ -29,7 +29,7 @@ function getCoord(obj) {
  * Unwrap coordinates from a Feature, Geometry Object or an Array of numbers
  *
  * @name getCoords
- * @param {Array<number>|Geometry|Feature} geojson GeoJSON object
+ * @param {Array<number>|Geometry|Feature} obj Object
  * @returns {Array<number>} coordinates
  * @example
  * var poly = turf.polygon([[[119.32, -8.7], [119.55, -8.69], [119.51, -8.54], [119.32, -8.7]]]);
@@ -37,21 +37,21 @@ function getCoord(obj) {
  * var coord = turf.getCoords(poly);
  * //= [[[119.32, -8.7], [119.55, -8.69], [119.51, -8.54], [119.32, -8.7]]]
  */
-function getCoords(geojson) {
-    if (!geojson) throw new Error('geojson is required');
+function getCoords(obj) {
+    if (!obj) throw new Error('obj is required');
     var coordinates;
 
     // Array of numbers
-    if (geojson.length) {
-        coordinates = geojson;
+    if (obj.length) {
+        coordinates = obj;
 
     // Geometry Object
-    } else if (geojson.coordinates) {
-        coordinates = geojson.coordinates;
+    } else if (obj.coordinates) {
+        coordinates = obj.coordinates;
 
     // Feature
-    } else if (geojson.geometry && geojson.geometry.coordinates) {
-        coordinates = geojson.geometry.coordinates;
+    } else if (obj.geometry && obj.geometry.coordinates) {
+        coordinates = obj.geometry.coordinates;
     }
     // Checks if coordinates contains a number
     if (coordinates) {
