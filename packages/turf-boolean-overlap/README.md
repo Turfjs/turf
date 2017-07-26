@@ -1,6 +1,6 @@
-# @turf/boolean-overlaps
+# @turf/boolean-overlap
 
-# booleanOverlaps
+# booleanOverlap
 
 Compares two geometries of the same dimension and returns true if their intersection set results in a geometry different from both but of the same dimension. It applies to Polygon/Polygon, LineString/LineString, Multipoint/Multipoint, MultiLineString/MultiLineString and MultiPolygon/MultiPolygon
 
@@ -16,9 +16,9 @@ var poly1 = turf.polygon([[[0,0],[0,5],[5,5],[5,0],[0,0]]]);
 var poly2 = turf.polygon([[[1,1],[1,6],[6,6],[6,1],[1,1]]]);
 var poly3 = turf.polygon([[[10,10],[10,15],[15,15],[15,10],[10,10]]]);
 
-turf.booleanOverlaps(poly1, poly2)
+turf.booleanOverlap(poly1, poly2)
 //=true
-turf.booleanOverlaps(poly2, poly3)
+turf.booleanOverlap(poly2, poly3)
 //=false
 ```
 
@@ -40,7 +40,7 @@ PRs and issues.
 Install this module individually:
 
 ```sh
-$ npm install @turf/boolean-overlaps
+$ npm install @turf/boolean-overlap
 ```
 
 Or install the Turf module that includes it as a function:

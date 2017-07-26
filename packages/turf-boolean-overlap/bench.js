@@ -1,11 +1,12 @@
 const path = require('path');
 const glob = require('glob');
 const load = require('load-json-file');
-const overlaps = require('./');
+const overlap = require('./');
 const Benchmark = require('benchmark');
 
 /**
  * Benchmark Results
+ *
  * equal-linear-rings: 2.348ms
  * equal-lines-inverse: 0.319ms
  * equal-multipoints: 0.703ms
@@ -45,9 +46,9 @@ glob.sync(path.join(__dirname, 'test', '**', '*.geojson')).forEach(filepath => {
     const geojson = load.sync(filepath);
     const [feature1, feature2] = geojson.features;
     console.time(name);
-    overlaps(feature1, feature2);
+    overlap(feature1, feature2);
     console.timeEnd(name);
-    suite.add(name, () => overlaps(feature1, feature2));
+    suite.add(name, () => overlap(feature1, feature2));
 });
 
 suite

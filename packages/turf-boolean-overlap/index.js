@@ -15,7 +15,7 @@ var getGeomType = invariant.getGeomType;
  * different from both but of the same dimension. It applies to Polygon/Polygon, LineString/LineString,
  * Multipoint/Multipoint, MultiLineString/MultiLineString and MultiPolygon/MultiPolygon
  *
- * @name booleanOverlaps
+ * @name booleanOverlap
  * @param  {Geometry|Feature<LineString|MultiLineString|Polygon|MultiPolygon>} feature1 input
  * @param  {Geometry|Feature<LineString|MultiLineString|Polygon|MultiPolygon>} feature2 input
  * @returns {boolean} true/false
@@ -24,9 +24,9 @@ var getGeomType = invariant.getGeomType;
  * var poly2 = turf.polygon([[[1,1],[1,6],[6,6],[6,1],[1,1]]]);
  * var poly3 = turf.polygon([[[10,10],[10,15],[15,15],[15,10],[10,10]]]);
  *
- * turf.booleanOverlaps(poly1, poly2)
+ * turf.booleanOverlap(poly1, poly2)
  * //=true
- * turf.booleanOverlaps(poly2, poly3)
+ * turf.booleanOverlap(poly2, poly3)
  * //=false
  */
 module.exports = function (feature1, feature2) {
