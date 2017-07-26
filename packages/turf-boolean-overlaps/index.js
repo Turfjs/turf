@@ -1,14 +1,14 @@
-var invariant = require('@turf/invariant');
-var flatten = require('@turf/flatten');
-var lineOverlap = require('@turf/line-overlap');
 var meta = require('@turf/meta');
 var helpers = require('@turf/helpers');
-var getGeomType = invariant.getGeomType;
-var lineString = helpers.lineString;
-var coordReduce = meta.coordReduce;
-var featureEach = meta.featureEach;
+var invariant = require('@turf/invariant');
+var lineOverlap = require('@turf/line-overlap');
+var lineIntersect = require('@turf/line-intersect');
+var GeojsonEquality = require('geojson-equality');
 var coordAll = meta.coordAll;
+var lineString = helpers.lineString;
 var flattenEach = meta.flattenEach;
+var coordReduce = meta.coordReduce;
+var getGeomType = invariant.getGeomType;
 
 /**
  * Compares two geometries of the same dimension and returns true if their intersection set results in a geometry
@@ -20,13 +20,13 @@ var flattenEach = meta.flattenEach;
  * @param  {Geometry|Feature<LineString|MultiLineString|Polygon|MultiPolygon>} feature2 input
  * @returns {boolean} true/false
  * @example
- * var poly1 = turf.polygon([[[18.70,-34.19],[18.93,-34.19],[18.93,-34],[18.70,-34],[18.70,-34.19]]]);
- * var poly2 = turf.polygon([[[18.52,-34.36],[18.79,-34.36],[18.79,-34.10],[18.52,-34.10],[18.52,-34.36]]]);
- * var line = turf.lineString([[18.62,-34.39],[18.87,-34.21]]);
+ * var poly1 = turf.polygon([[[0,0],[0,5],[5,5],[5,0],[0,0]]]);
+ * var poly2 = turf.polygon([[[1,1],[1,6],[6,6],[6,1],[1,1]]]);
+ * var poly3 = turf.polygon([[[10,10],[10,15],[15,15],[15,10],[10,10]]]);
  *
  * turf.booleanOverlaps(poly1, poly2)
  * //=true
- * turf.booleanOverlaps(poly2, line)
+ * turf.booleanOverlaps(poly2, poly3)
  * //=false
  */
 module.exports = function (feature1, feature2) {
@@ -35,9 +35,13 @@ module.exports = function (feature1, feature2) {
     if (!feature2) throw new Error('feature2 is required');
     var type1 = getGeomType(feature1);
     var type2 = getGeomType(feature2);
-    if (type1 === 'Point') throw new Error('feature1 ' + type1 + ' geometry not supported');
-    if (type2 === 'Point') throw new Error('feature2 ' + type2 + ' geometry not supported');
     if (type1 !== type2) throw new Error('features must be of the same type');
+    if (type1 === 'Point') throw new Error('Point geometry not supported');
+
+    // false if features are equal
+    var considerDirection = (type1 === 'LineString' && feature1.coor);
+    var equality = new GeojsonEquality({direction: considerDirection, precision: 6});
+    if (equality.compare(feature1, feature2)) return false;
 
     var overlap = 0;
 
@@ -47,43 +51,46 @@ module.exports = function (feature1, feature2) {
         var coords2 = coordAll(feature2);
         coords1.forEach(function (coord1) {
             coords2.forEach(function (coord2) {
-                if (coord1[0] === coord2[0] && coord1[1] === coord2[1]) {
-                    overlap++;
-                }
+                if (coord1[0] === coord2[0] && coord1[1] === coord2[1]) overlap++;
             });
         });
-        // true if at least one point match, but not all
-        return overlap > 0 && overlap !== coords1.length && overlap !== coords2.length;
+        break;
 
     case 'LineString':
     case 'MultiLineString':
-    case 'Polygon':
-    case 'MultiPolygon':
-        var equals = false;
-        var segments2 = 0;
-        segmentEach(feature1, function (segment1, i1) {
-            segmentEach(feature2, function (segment2, i2) {
-                segments2 = i2;
-                if (lineOverlap(segment1, segment2).features.length) overlap++;
+        segmentEach(feature1, function (segment1) {
+            segmentEach(feature2, function (segment2) {
                 if (lineOverlap(segment1, segment2).features.length) overlap++;
             });
         });
-        // return if there is overlapping and the features are not the same
-        return overlap > 0 && overlap !== segments1 && overlap !== segments2;
+        break;
+
+    case 'Polygon':
+    case 'MultiPolygon':
+        segmentEach(feature1, function (segment1) {
+            segmentEach(feature2, function (segment2) {
+                if (lineIntersect(segment1, segment2).features.length) overlap++;
+            });
+        });
+        break;
     }
 
+    return overlap > 0;
 };
 
+// todo: replace with new @turf/meta.segmentEach
 function segmentEach(geojson, callback) {
-    var count = 0;
-    featureEach(geojson, function (multiFeature) {
-        featureEach(flatten(multiFeature), function (feature) {
-            coordReduce(feature, function (previousCoords, currentCoords) {
-                var line = lineString([previousCoords, currentCoords], feature.properties);
-                callback(line, count);
-                count++;
-                return currentCoords;
-            });
+    var currentIndex = 0;
+    flattenEach(geojson, function (feature, featureIndex, featureSubIndex) {
+        // (Multi)Point geometries do not contain segments therefore they are ignored during this operation.
+        var type = feature.geometry.type;
+        if (type === 'Point' || type === 'MultiPoint') return;
+        // Generate 2-vertex line segments
+        coordReduce(feature, function (previousCoords, currentCoords) {
+            var currentSegment = lineString([previousCoords, currentCoords], feature.properties);
+            callback(currentSegment, currentIndex, featureIndex, featureSubIndex);
+            currentIndex++;
+            return currentCoords;
         });
     });
 }

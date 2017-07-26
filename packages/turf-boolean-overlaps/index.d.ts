@@ -1,12 +1,6 @@
 /// <reference types="geojson" />
 
-type LineString = GeoJSON.LineString
-type Polygon = GeoJSON.Polygon
-type MultiLineString = GeoJSON.MultiLineString
-type MultiPolygon = GeoJSON.MultiPolygon
-
-type Feature = GeoJSON.Feature<LineString | MultiLineString | Polygon | MultiPolygon>
-    | LineString | MultiLineString | Polygon | MultiPolygon
+type Feature = GeoJSON.Feature<any> | GeoJSON.GeometryObject
 
 /**
  * http://turfjs.org/docs/#boolean-overlaps

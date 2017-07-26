@@ -6,46 +6,38 @@ const Benchmark = require('benchmark');
 
 /**
  * Benchmark Results
- * lines: 0.824ms
- * multiline-polygon: 0.152ms
- * multipolygon-line: 0.099ms
- * multipolygon-multiline: 1.879ms
- * multipolygon-polygon: 0.322ms
- * polygon-line: 0.044ms
- * polygon-with-hole-polygon: 0.088ms
- * polygons: 0.098ms
- * geometries: 0.067ms
- * lines: 0.904ms
- * lines2: 0.070ms
- * multiline-polygon: 0.052ms
- * multipolygon-line: 0.025ms
- * multipolygon-multiline: 0.083ms
- * multipolygon-polygon: 0.037ms
- * polygon-line: 0.122ms
- * polygon-with-hole-line: 0.076ms
- * polygon-with-hole-polygon: 0.116ms
- * polygons: 0.068ms
- * polygons2: 0.050ms
- * lines x 152,592 ops/sec ±3.12% (72 runs sampled)
- * multiline-polygon x 215,290 ops/sec ±6.04% (64 runs sampled)
- * multipolygon-line x 185,348 ops/sec ±3.75% (76 runs sampled)
- * multipolygon-multiline x 122,911 ops/sec ±2.83% (77 runs sampled)
- * multipolygon-polygon x 66,818 ops/sec ±2.37% (79 runs sampled)
- * polygon-line x 475,840 ops/sec ±1.66% (65 runs sampled)
- * polygon-with-hole-polygon x 85,510 ops/sec ±2.26% (77 runs sampled)
- * polygons x 125,798 ops/sec ±3.29% (80 runs sampled)
- * geometries x 470,264 ops/sec ±1.65% (79 runs sampled)
- * lines x 211,284 ops/sec ±3.97% (72 runs sampled)
- * lines2 x 615,171 ops/sec ±1.50% (81 runs sampled)
- * multiline-polygon x 292,558 ops/sec ±1.98% (80 runs sampled)
- * multipolygon-line x 719,546 ops/sec ±1.75% (77 runs sampled)
- * multipolygon-multiline x 152,743 ops/sec ±2.46% (80 runs sampled)
- * multipolygon-polygon x 535,466 ops/sec ±2.57% (77 runs sampled)
- * polygon-line x 446,153 ops/sec ±4.79% (77 runs sampled)
- * polygon-with-hole-line x 275,506 ops/sec ±2.14% (80 runs sampled)
- * polygon-with-hole-polygon x 134,078 ops/sec ±1.76% (77 runs sampled)
- * polygons x 233,564 ops/sec ±2.38% (79 runs sampled)
- * polygons2 x 366,677 ops/sec ±2.11% (79 runs sampled)
+ * equal-linear-rings: 2.348ms
+ * equal-lines-inverse: 0.319ms
+ * equal-multipoints: 0.703ms
+ * equal-polygons: 0.343ms
+ * linear-rings: 19.876ms
+ * lines: 1.244ms
+ * multipoints: 1.003ms
+ * polygon-with-hole-polygon: 1.822ms
+ * polygons: 0.242ms
+ * linear-rings: 5.881ms
+ * lines: 8.569ms
+ * multipoints: 0.082ms
+ * polygon-with-hole-polygon: 1.158ms
+ * polygons: 0.114ms
+ * simple-lines: 0.724ms
+ * single-multipoints: 0.055ms
+ * equal-linear-rings x 39,585 ops/sec ±24.47% (40 runs sampled)
+ * equal-lines-inverse x 52,454 ops/sec ±24.98% (59 runs sampled)
+ * equal-multipoints x 24,361 ops/sec ±10.90% (59 runs sampled)
+ * equal-polygons x 36,479 ops/sec ±22.33% (48 runs sampled)
+ * linear-rings x 2,625 ops/sec ±16.13% (47 runs sampled)
+ * lines x 6,756 ops/sec ±5.54% (70 runs sampled)
+ * multipoints x 234,229 ops/sec ±7.44% (64 runs sampled)
+ * polygon-with-hole-polygon x 34,922 ops/sec ±6.70% (61 runs sampled)
+ * polygons x 79,687 ops/sec ±2.98% (79 runs sampled)
+ * linear-rings x 3,252 ops/sec ±5.96% (66 runs sampled)
+ * lines x 4,328 ops/sec ±8.67% (63 runs sampled)
+ * multipoints x 285,695 ops/sec ±2.91% (77 runs sampled)
+ * polygon-with-hole-polygon x 39,154 ops/sec ±2.30% (80 runs sampled)
+ * polygons x 79,419 ops/sec ±2.21% (77 runs sampled)
+ * simple-lines x 7,479 ops/sec ±3.99% (71 runs sampled)
+ * single-multipoints x 232,414 ops/sec ±13.49% (67 runs sampled)
  */
 const suite = new Benchmark.Suite('turf-boolean-disjoint');
 glob.sync(path.join(__dirname, 'test', '**', '*.geojson')).forEach(filepath => {
