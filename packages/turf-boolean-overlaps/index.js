@@ -1,10 +1,19 @@
 var invariant = require('@turf/invariant');
-var clockwise = require('@turf/boolean-clockwise');
+var flatten = require('@turf/flatten');
+var lineOverlap = require('@turf/line-overlap');
+var meta = require('@turf/meta');
+var helpers = require('@turf/helpers');
 var getGeomType = invariant.getGeomType;
+var lineString = helpers.lineString;
+var coordReduce = meta.coordReduce;
+var featureEach = meta.featureEach;
+var coordAll = meta.coordAll;
+var flattenEach = meta.flattenEach;
 
 /**
- * Takes two features and returns true or false whether or not they overlap, i.e. whether any pair of edges
- * on the two polygons intersect. If there are any edge intersections, the polygons overlap.
+ * Compares two geometries of the same dimension and returns true if their intersection set results in a geometry
+ * different from both but of the same dimension. It applies to Polygon/Polygon, LineString/LineString,
+ * Multipoint/Multipoint, MultiLineString/MultiLineString and MultiPolygon/MultiPolygon
  *
  * @name booleanOverlaps
  * @param  {Geometry|Feature<LineString|MultiLineString|Polygon|MultiPolygon>} feature1 input
@@ -22,84 +31,59 @@ var getGeomType = invariant.getGeomType;
  */
 module.exports = function (feature1, feature2) {
     // validation
-    if (getGeomType(feature1) === 'Point') throw new Error('feature1 Point geometry not supported');
-    if (getGeomType(feature2) === 'Point') throw new Error('feature2 Point geometry not supported');
+    if (!feature1) throw new Error('feature1 is required');
+    if (!feature2) throw new Error('feature2 is required');
+    var type1 = getGeomType(feature1);
+    var type2 = getGeomType(feature2);
+    if (type1 === 'Point') throw new Error('feature1 ' + type1 + ' geometry not supported');
+    if (type2 === 'Point') throw new Error('feature2 ' + type2 + ' geometry not supported');
+    if (type1 !== type2) throw new Error('features must be of the same type');
 
-    var coords1 = getCoordinatesArr(feature1),
-        coords2 = getCoordinatesArr(feature2);
+    var overlap = 0;
 
-    // Since we don't care about the overlap amount, or it's geometry, but rather just whether overlap
-    // occurs, polygon overlap can most simply be expressed by testing whether any pair of edges on the two polygons
-    // intersect. If there are any edge intersections, the polygons overlap.
+    switch (type1) {
+    case 'MultiPoint':
+        var coords1 = coordAll(feature1);
+        var coords2 = coordAll(feature2);
+        coords1.forEach(function (coord1) {
+            coords2.forEach(function (coord2) {
+                if (coord1[0] === coord2[0] && coord1[1] === coord2[1]) {
+                    overlap++;
+                }
+            });
+        });
+        // true if at least one point match, but not all
+        return overlap > 0 && overlap !== coords1.length && overlap !== coords2.length;
 
-    // This looks completely stupid ridiculous to have so many nested loops, but it supports
-    // multipolygons nicely. In the case of polygons or linestrings, the outer loops are only one iteration.
-    return coords1.some(function (rings1) {
-        return coords2.some(function (rings2) {
-            return rings1.some(function (ring1) {
-                return rings2.some(function (ring2) {
-                    return doLinesIntersect(ring1, ring2);
-                });
+    case 'LineString':
+    case 'MultiLineString':
+    case 'Polygon':
+    case 'MultiPolygon':
+        var equals = false;
+        var segments2 = 0;
+        segmentEach(feature1, function (segment1, i1) {
+            segmentEach(feature2, function (segment2, i2) {
+                segments2 = i2;
+                if (lineOverlap(segment1, segment2).features.length) overlap++;
+                if (lineOverlap(segment1, segment2).features.length) overlap++;
+            });
+        });
+        // return if there is overlapping and the features are not the same
+        return overlap > 0 && overlap !== segments1 && overlap !== segments2;
+    }
+
+};
+
+function segmentEach(geojson, callback) {
+    var count = 0;
+    featureEach(geojson, function (multiFeature) {
+        featureEach(flatten(multiFeature), function (feature) {
+            coordReduce(feature, function (previousCoords, currentCoords) {
+                var line = lineString([previousCoords, currentCoords], feature.properties);
+                callback(line, count);
+                count++;
+                return currentCoords;
             });
         });
     });
-};
-
-/**
- * Returns if the two lineStrings intersect
- *
- * @private
- * @param {Array<Array<number|Array<number>>>} ring1 array of a LineString coordinates
- * @param {Array<Array<number|Array<number>>>} ring2 array of a LineString coordinates
- * @returns {boolean} lines intersect
- */
-function doLinesIntersect(ring1, ring2) {
-    for (var p1_ind = 0; p1_ind < (ring1.length - 1); p1_ind++) {
-        var p1_line = [ring1[p1_ind], ring1[p1_ind + 1]];
-        for (var p2_ind = 0; p2_ind < (ring2.length - 1); p2_ind++) {
-            var p2_line = [ring2[p2_ind], ring2[p2_ind + 1]];
-
-            if (doSegmentsIntersect(p1_line, p2_line)) {
-                return true;
-            }
-        }
-    }
-    return false;
-}
-
-/**
- * Returns if the two segments intersect
- *
- * @private
- * @param {Array<Array<number>>} line1 array of a segment coordinates
- * @param {Array<Array<number>>} line2 array of a segment coordinates
- * @returns {boolean} segments intersect
- */
-function doSegmentsIntersect(line1, line2) {
-    var p1 = line1[0],
-        p2 = line1[1],
-        p3 = line2[0],
-        p4 = line2[1];
-
-    return (clockwise([p1, p3, p4, p1]) !== clockwise([p2, p3, p4, p2])) && (clockwise([p1, p2, p3, p1]) !== clockwise([p1, p2, p4, p1]));
-}
-
-/**
- * Takes a feature and returns nested Arrays containing the feature coordinates
- *
- * @private
- * @param {Geometry|Feature<LineString|MultiLineString|Polygon|MultiPolygon>} feature input
- * @returns {Array<Array<Array<number>>>} array of array of array of coordinates
- */
-function getCoordinatesArr(feature) {
-    switch (feature.geometry.type) {
-    case 'LineString':
-        return [[feature.geometry.coordinates]];
-    case 'Polygon':
-    case 'MultiLineString':
-        return [feature.geometry.coordinates];
-    case 'MultiPolygon':
-        return feature.geometry.coordinates;
-    }
-    return [[[]]];
 }

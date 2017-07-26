@@ -40,6 +40,7 @@
     "tape": "^4.6.3"
   },
   "dependencies": {
+    "@turf/turf": "^4.5.2",
     "@turf/boolean-clockwise": "^4.5.2",
     "@turf/invariant": "^4.5.2"
   }
