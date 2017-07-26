@@ -97,6 +97,7 @@ meta.segmentReduce(poly, (previousValue, currentSegment) => currentSegment, 0)
 meta.segmentReduce(features, (previousValue, currentSegment) => currentSegment)
 meta.segmentReduce(poly, (previousValue, currentSegment, currentIndex) => currentSegment)
 meta.segmentReduce(geomCollection, (previousValue, currentSegment, currentIndex) => currentSegment)
+meta.segmentReduce(geomCollection, (previousValue, currentSegment, currentIndex, currentSubIndex) => currentSegment)
 
 // segmentEach
 meta.segmentEach(poly, () => {})
@@ -104,3 +105,4 @@ meta.segmentEach(poly, currentSegment => currentSegment)
 meta.segmentEach(features, currentSegment => currentSegment)
 meta.segmentEach(poly.geometry, (currentSegment, currentIndex) => currentSegment)
 meta.segmentEach(geomCollection, (currentSegment, currentIndex) => currentSegment)
+meta.segmentEach(geomCollection, (currentSegment, currentIndex, currentSubIndex) => currentSegment)

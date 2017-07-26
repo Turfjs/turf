@@ -629,6 +629,8 @@ function flattenReduce(geojson, callback, initialValue) {
  * @callback segmentEachCallback
  * @param {Feature<LineString>} [currentSegment] The current segment being processed.
  * @param {number} [currentIndex] The index of the current element being processed in the array, starts at index 0.
+ * @param {number} [currentSubIndex] The subindex of the current element being processed in the
+ * array. Starts at index 0 and increases for each iterating line segment.
  * @returns {void}
  */
 
@@ -637,15 +639,16 @@ function flattenReduce(geojson, callback, initialValue) {
  * (Multi)Point geometries do not contain segments therefore they are ignored during this operation.
  *
  * @param {FeatureCollection|Feature|Geometry} geojson any GeoJSON
- * @param {Function} callback a method that takes (currentSegment, currentIndex)
+ * @param {Function} callback a method that takes (currentSegment, currentIndex, currentSubIndex)
  * @returns {void}
  * @example
  * var polygon = turf.polygon([[[-50, 5], [-40, -10], [-50, -10], [-40, 5], [-50, 5]]]);
  *
  * // Iterate over GeoJSON by 2-vertex segments
- * turf.segmentEach(polygon, function (currentSegment, currentIndex) {
+ * turf.segmentEach(polygon, function (currentSegment, currentIndex, currentSubIndex) {
  *   //= currentSegment
  *   //= currentIndex
+ *   //= currentSubIndex
  * });
  *
  * // Calculate the total number of segments
@@ -656,8 +659,8 @@ function flattenReduce(geojson, callback, initialValue) {
  * }, initialValue);
  */
 function segmentEach(geojson, callback) {
-    var currentIndex = 0;
-    flattenEach(geojson, function (feature) {
+    flattenEach(geojson, function (feature, currentIndex) {
+        var currentSubIndex = 0;
         // (Multi)Point geometries do not contain segments therefore they are ignored during this operation.
         var type = feature.geometry.type;
         if (type === 'Point' || type === 'MultiPoint') return;
@@ -665,8 +668,8 @@ function segmentEach(geojson, callback) {
         // Generate 2-vertex line segments
         coordReduce(feature, function (previousCoords, currentCoords) {
             var currentSegment = lineString([previousCoords, currentCoords], feature.properties);
-            callback(currentSegment, currentIndex);
-            currentIndex++;
+            callback(currentSegment, currentIndex, currentSubIndex);
+            currentSubIndex++;
             return currentCoords;
         });
     });
@@ -692,6 +695,8 @@ function segmentEach(geojson, callback) {
  * @param {Feature<LineString>} [currentSegment] The current segment being processed.
  * @param {number} [currentIndex] The index of the current element being processed in the
  * array. Starts at index 0, if an initialValue is provided, and at index 1 otherwise.
+ * @param {number} [currentSubIndex] The subindex of the current element being processed in the
+ * array. Starts at index 0 and increases for each iterating line segment.
  */
 
 /**
@@ -706,10 +711,11 @@ function segmentEach(geojson, callback) {
  * var polygon = turf.polygon([[[-50, 5], [-40, -10], [-50, -10], [-40, 5], [-50, 5]]]);
  *
  * // Iterate over GeoJSON by 2-vertex segments
- * turf.segmentReduce(polygon, function (previousSegment, currentSegment, currentIndex) {
+ * turf.segmentReduce(polygon, function (previousSegment, currentSegment, currentIndex, currentSubIndex) {
  *   //= previousSegment
  *   //= currentSegment
  *   //= currentIndex
+ *   //= currentSubIndex
  *   return currentSegment
  * });
  *
@@ -722,9 +728,9 @@ function segmentEach(geojson, callback) {
  */
 function segmentReduce(geojson, callback, initialValue) {
     var previousValue = initialValue;
-    segmentEach(geojson, function (currentSegment, currentIndex) {
+    segmentEach(geojson, function (currentSegment, currentIndex, currentSubIndex) {
         if (currentIndex === 0 && initialValue === undefined) previousValue = currentSegment;
-        else previousValue = callback(previousValue, currentSegment, currentIndex);
+        else previousValue = callback(previousValue, currentSegment, currentIndex, currentSubIndex);
     });
     return previousValue;
 }
