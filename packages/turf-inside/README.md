@@ -23,11 +23,8 @@ var poly = turf.polygon([[
   [-81, 41]
 ]]);
 
-var isInside = turf.inside(pt, poly);
-
-//addToMap
-pt.properties.isInside = isInside
-var addToMap = [pt, poly]
+turf.inside(pt, poly);
+//= true
 ```
 
 Returns **[boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** `true` if the Point is inside the Polygon; `false` if the Point is not inside the Polygon

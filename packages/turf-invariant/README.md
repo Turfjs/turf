@@ -8,6 +8,15 @@ Unwrap a coordinate from a Point Feature, Geometry or a single coordinate.
 
 -   `obj` **([Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;any> | [Geometry](http://geojson.org/geojson-spec.html#geometry) \| [Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;[Point](http://geojson.org/geojson-spec.html#point)>)** any value
 
+**Examples**
+
+```javascript
+var pt = turf.point([10, 10]);
+
+var coord = turf.getCoord(pt);
+//= [10, 10]
+```
+
 Returns **[Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)>** coordinates
 
 # getCoords
@@ -17,6 +26,15 @@ Unwrap coordinates from a Feature, Geometry Object or an Array of numbers
 **Parameters**
 
 -   `obj` **([Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;any> | [Geometry](http://geojson.org/geojson-spec.html#geometry) \| [Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;any>)** any value
+
+**Examples**
+
+```javascript
+var poly = turf.polygon([[[119.32, -8.7], [119.55, -8.69], [119.51, -8.54], [119.32, -8.7]]]);
+
+var coord = turf.getCoords(poly);
+//= [[[119.32, -8.7], [119.55, -8.69], [119.51, -8.54], [119.32, -8.7]]]
+```
 
 Returns **[Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;any>** coordinates
 

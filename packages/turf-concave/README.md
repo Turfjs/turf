@@ -3,7 +3,6 @@
 # concave
 
 Takes a set of [points](http://geojson.org/geojson-spec.html#point) and returns a concave hull polygon.
-
 Internally, this uses [turf-tin](https://github.com/Turfjs/turf-tin) to generate geometries.
 
 **Parameters**
@@ -15,54 +14,14 @@ Internally, this uses [turf-tin](https://github.com/Turfjs/turf-tin) to generate
 **Examples**
 
 ```javascript
-var points = {
-  "type": "FeatureCollection",
-  "features": [
-    {
-      "type": "Feature",
-      "properties": {},
-      "geometry": {
-        "type": "Point",
-        "coordinates": [-63.601226, 44.642643]
-      }
-    }, {
-      "type": "Feature",
-      "properties": {},
-      "geometry": {
-        "type": "Point",
-        "coordinates": [-63.591442, 44.651436]
-      }
-    }, {
-      "type": "Feature",
-      "properties": {},
-      "geometry": {
-        "type": "Point",
-        "coordinates": [-63.580799, 44.648749]
-      }
-    }, {
-      "type": "Feature",
-      "properties": {},
-      "geometry": {
-        "type": "Point",
-        "coordinates": [-63.573589, 44.641788]
-      }
-    }, {
-      "type": "Feature",
-      "properties": {},
-      "geometry": {
-        "type": "Point",
-        "coordinates": [-63.587665, 44.64533]
-      }
-    }, {
-      "type": "Feature",
-      "properties": {},
-      "geometry": {
-        "type": "Point",
-        "coordinates": [-63.595218, 44.64765]
-      }
-    }
-  ]
-};
+var points = turf.featureCollection([
+  turf.point([-63.601226, 44.642643]),
+  turf.point([-63.591442, 44.651436]),
+  turf.point([-63.580799, 44.648749]),
+  turf.point([-63.573589, 44.641788]),
+  turf.point([-63.587665, 44.64533]),
+  turf.point([-63.595218, 44.64765])
+]);
 
 var hull = turf.concave(points, 1, 'miles');
 

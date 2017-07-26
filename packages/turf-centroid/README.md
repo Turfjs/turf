@@ -13,14 +13,7 @@ This lessens the effect of small islands and artifacts when calculating the cent
 **Examples**
 
 ```javascript
-var polygon = {
-  "type": "Feature",
-  "properties": {},
-  "geometry": {
-    "type": "Polygon",
-    "coordinates": [[[-81, 41], [-88, 36], [-84, 31], [-80, 33], [-77, 39], [-81, 41]]]
-  }
-};
+var polygon = turf.polygon([[[-81, 41], [-88, 36], [-84, 31], [-80, 33], [-77, 39], [-81, 41]]]);
 
 var centroid = turf.centroid(polygon);
 

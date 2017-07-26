@@ -17,9 +17,10 @@
  * @param {boolean} [excludeWrapCoord=false] whether or not to include the final coordinate of LinearRings that wraps the ring in its iteration.
  * @example
  * var features = turf.featureCollection([
- *     turf.point([26, 37]),
- *     turf.point([36, 53])
+ *   turf.point([26, 37], {"foo": "bar"}),
+ *   turf.point([36, 53], {"hello": "world"})
  * ]);
+ *
  * turf.coordEach(features, function (currentCoords, currentIndex) {
  *   //=currentCoords
  *   //=currentIndex
@@ -124,14 +125,14 @@ function coordEach(geojson, callback, excludeWrapCoord) {
  * @param {FeatureCollection|Geometry|Feature<any>} geojson any GeoJSON object
  * @param {Function} callback a method that takes (previousValue, currentCoords, currentIndex)
  * @param {*} [initialValue] Value to use as the first argument to the first call of the callback.
- * @param {boolean} [excludeWrapCoord=false] whether or not to include
- * the final coordinate of LinearRings that wraps the ring in its iteration.
+ * @param {boolean} [excludeWrapCoord=false] whether or not to include the final coordinate of LinearRings that wraps the ring in its iteration.
  * @returns {*} The value that results from the reduction.
  * @example
  * var features = turf.featureCollection([
- *     turf.point([26, 37]),
- *     turf.point([36, 53])
+ *   turf.point([26, 37], {"foo": "bar"}),
+ *   turf.point([36, 53], {"hello": "world"})
  * ]);
+ *
  * turf.coordReduce(features, function (previousValue, currentCoords, currentIndex) {
  *   //=previousValue
  *   //=currentCoords
@@ -169,6 +170,7 @@ function coordReduce(geojson, callback, initialValue, excludeWrapCoord) {
  *     turf.point([26, 37], {foo: 'bar'}),
  *     turf.point([36, 53], {hello: 'world'})
  * ]);
+ *
  * turf.propEach(features, function (currentProperties, currentIndex) {
  *   //=currentProperties
  *   //=currentIndex
@@ -227,6 +229,7 @@ function propEach(geojson, callback) {
  *     turf.point([26, 37], {foo: 'bar'}),
  *     turf.point([36, 53], {hello: 'world'})
  * ]);
+ *
  * turf.propReduce(features, function (previousValue, currentProperties, currentIndex) {
  *   //=previousValue
  *   //=currentProperties
@@ -262,9 +265,10 @@ function propReduce(geojson, callback, initialValue) {
  * @param {Function} callback a method that takes (currentFeature, currentIndex)
  * @example
  * var features = turf.featureCollection([
- *     turf.point([26, 37]),
- *     turf.point([36, 53])
+ *   turf.point([26, 37], {foo: 'bar'}),
+ *   turf.point([36, 53], {hello: 'world'})
  * ]);
+ *
  * turf.featureEach(features, function (currentFeature, currentIndex) {
  *   //=currentFeature
  *   //=currentIndex
@@ -313,9 +317,10 @@ function featureEach(geojson, callback) {
  * @returns {*} The value that results from the reduction.
  * @example
  * var features = turf.featureCollection([
- *     turf.point([26, 37]),
- *     turf.point([36, 53])
+ *   turf.point([26, 37], {"foo": "bar"}),
+ *   turf.point([36, 53], {"hello": "world"})
  * ]);
+ *
  * turf.featureReduce(features, function (previousValue, currentFeature, currentIndex) {
  *   //=previousValue
  *   //=currentFeature
@@ -340,11 +345,12 @@ function featureReduce(geojson, callback, initialValue) {
  * @returns {Array<Array<number>>} coordinate position array
  * @example
  * var features = turf.featureCollection([
- *     turf.point([26, 37]),
- *     turf.point([36, 53])
+ *   turf.point([26, 37], {foo: 'bar'}),
+ *   turf.point([36, 53], {hello: 'world'})
  * ]);
+ *
  * var coords = turf.coordAll(features);
- * //=coords
+ * //= [[26, 37], [36, 53]]
  */
 function coordAll(geojson) {
     var coords = [];
@@ -376,6 +382,7 @@ function coordAll(geojson) {
  *     turf.point([26, 37], {foo: 'bar'}),
  *     turf.point([36, 53], {hello: 'world'})
  * ]);
+ *
  * turf.geomEach(features, function (currentGeometry, currentIndex, currentProperties) {
  *   //=currentGeometry
  *   //=currentIndex
@@ -474,6 +481,7 @@ function geomEach(geojson, callback) {
  *     turf.point([26, 37], {foo: 'bar'}),
  *     turf.point([36, 53], {hello: 'world'})
  * ]);
+ *
  * turf.geomReduce(features, function (previousValue, currentGeometry, currentIndex) {
  *   //=previousValue
  *   //=currentGeometry
@@ -514,6 +522,7 @@ function geomReduce(geojson, callback, initialValue) {
  *     turf.point([26, 37], {foo: 'bar'}),
  *     turf.multiPoint([[40, 30], [36, 53]], {hello: 'world'})
  * ]);
+ *
  * turf.flattenEach(features, function (currentFeature, currentIndex, currentSubIndex) {
  *   //=currentFeature
  *   //=currentIndex
@@ -596,6 +605,7 @@ function flattenEach(geojson, callback) {
  *     turf.point([26, 37], {foo: 'bar'}),
  *     turf.multiPoint([[40, 30], [36, 53]], {hello: 'world'})
  * ]);
+ *
  * turf.flattenReduce(features, function (previousValue, currentFeature, currentIndex, currentSubIndex) {
  *   //=previousValue
  *   //=currentFeature

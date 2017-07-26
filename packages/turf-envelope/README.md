@@ -11,44 +11,16 @@ Takes any number of features and returns a rectangular [Polygon](http://geojson.
 **Examples**
 
 ```javascript
-var features = {
-  "type": "FeatureCollection",
-  "features": [
-    {
-      "type": "Feature",
-      "properties": {
-        "name": "Location A"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [-75.343, 39.984]
-      }
-    }, {
-      "type": "Feature",
-      "properties": {
-        "name": "Location B"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [-75.833, 39.284]
-      }
-    }, {
-      "type": "Feature",
-      "properties": {
-        "name": "Location C"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [-75.534, 39.123]
-      }
-    }
-  ]
-};
+var features = turf.featureCollection([
+  turf.point([-75.343, 39.984], {"name": "Location A"}),
+  turf.point([-75.833, 39.284], {"name": "Location B"}),
+  turf.point([-75.534, 39.123], {"name": "Location C"})
+]);
 
 var enveloped = turf.envelope(features);
 
 //addToMap
-var addToMap = [features, enveloped]
+var addToMap = [features, enveloped];
 ```
 
 Returns **[Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;[Polygon](http://geojson.org/geojson-spec.html#polygon)>** a rectangular Polygon feature that encompasses all vertices

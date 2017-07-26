@@ -18,14 +18,7 @@ var lineArc = require('@turf/line-arc');
  * @param {string} [units=kilometers] miles, kilometers, degrees, or radians
  * @returns {Feature<Polygon>} sector polygon
  * @example
- * var center = {
- *   "type": "Feature",
- *   "properties": {},
- *   "geometry": {
- *     "type": "Point",
- *     "coordinates": [-75, 40]
- *   }
- * }
+ * var center = turf.point([-75, 40]);
  * var radius = 5;
  * var bearing1 = 25;
  * var bearing2 = 45;

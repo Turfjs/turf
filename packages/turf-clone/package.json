@@ -32,7 +32,7 @@
   "devDependencies": {
     "@turf/helpers": "^4.5.2",
     "@turf/meta": "^4.5.2",
-    "benchmark": "^2.1.4",
-    "tape": "^4.6.3"
+    "benchmark": "2.1.4",
+    "tape": "4.7.0"
   }
 }

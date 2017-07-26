@@ -15,54 +15,14 @@ implements a [monotone chain hull](http://en.wikibooks.org/wiki/Algorithm_Implem
 **Examples**
 
 ```javascript
-var points = {
-  "type": "FeatureCollection",
-  "features": [
-    {
-      "type": "Feature",
-      "properties": {},
-      "geometry": {
-        "type": "Point",
-        "coordinates": [10.195312, 43.755225]
-      }
-    }, {
-      "type": "Feature",
-      "properties": {},
-      "geometry": {
-        "type": "Point",
-        "coordinates": [10.404052, 43.8424511]
-      }
-    }, {
-      "type": "Feature",
-      "properties": {},
-      "geometry": {
-        "type": "Point",
-        "coordinates": [10.579833, 43.659924]
-      }
-    }, {
-      "type": "Feature",
-      "properties": {},
-      "geometry": {
-        "type": "Point",
-        "coordinates": [10.360107, 43.516688]
-      }
-    }, {
-      "type": "Feature",
-      "properties": {},
-      "geometry": {
-        "type": "Point",
-        "coordinates": [10.14038, 43.588348]
-      }
-    }, {
-      "type": "Feature",
-      "properties": {},
-      "geometry": {
-        "type": "Point",
-        "coordinates": [10.195312, 43.755225]
-      }
-    }
-  ]
-};
+var points = turf.featureCollection([
+  turf.point([10.195312, 43.755225]),
+  turf.point([10.404052, 43.8424511]),
+  turf.point([10.579833, 43.659924]),
+  turf.point([10.360107, 43.516688]),
+  turf.point([10.14038, 43.588348]),
+  turf.point([10.195312, 43.755225])
+]);
 
 var hull = turf.convex(points);
 

@@ -15,14 +15,8 @@ If the line is shorter than the segment length then the original line is returne
 **Examples**
 
 ```javascript
-var line = {
-  "type": "Feature",
-  "properties": {},
-  "geometry": {
-    "type": "LineString",
-    "coordinates": [[-95, 40], [-93, 45], [-85, 50]]
-  }
-};
+var line = turf.lineString([[-95, 40], [-93, 45], [-85, 50]]);
+
 var chunk = turf.lineChunk(line, 15, 'miles');
 
 //addToMap

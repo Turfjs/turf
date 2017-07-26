@@ -13,24 +13,9 @@ var featureEach = require('@turf/meta').featureEach;
  * @param {Geometry|Feature<LineString|MultiLineString|Polygon|MultiPolygon>} line2 any LineString or Polygon
  * @returns {FeatureCollection<LineString>} lines(s) that are overlapping between both features
  * @example
- * var line1 = {
- *   "type": "Feature",
- *   "properties": {},
- *   "geometry": {
- *     "type": "LineString",
- *     "coordinates": [[115, -35], [125, -30], [135, -30], [145, -35]
- *     ]
- *   }
- * }
- * var line2 = {
- *   "type": "Feature",
- *   "properties": {},
- *   "geometry": {
- *     "type": "LineString",
- *     "coordinates": [[115, -25], [125, -30], [135, -30], [145, -25]
- *     ]
- *   }
- * }
+ * var line1 = turf.lineString([[115, -35], [125, -30], [135, -30], [145, -35]]);
+ * var line2 = turf.lineString([[115, -25], [125, -30], [135, -30], [145, -25]]);
+ *
  * var overlapping = turf.lineOverlap(line1, line2);
  *
  * //addToMap

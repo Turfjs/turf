@@ -26,8 +26,8 @@ var distanceToRadians = helpers.distanceToRadians;
  * var destination = turf.rhumbDestination(point, distance, bearing, units);
  *
  * //addToMap
- * destination.properties['marker-color'] = '#00F';
  * var addToMap = [point, destination]
+ * destination.properties['marker-color'] = '#00F';
  */
 module.exports = function (origin, distance, bearing, units) {
     // validation

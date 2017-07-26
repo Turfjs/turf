@@ -32,8 +32,8 @@ var flattenEach = meta.flattenEach;
  * var snapped = turf.pointOnLine(line, pt, 'miles');
  *
  * //addToMap
- * snapped.properties['marker-color'] = '#00f';
  * var addToMap = [line, pt, snapped];
+ * snapped.properties['marker-color'] = '#00f';
  */
 module.exports = function (lines, pt, units) {
     // validation

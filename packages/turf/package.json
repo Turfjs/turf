@@ -14,7 +14,7 @@
   ],
   "scripts": {
     "test": "node test.js",
-    "posttest": "echo \"manually execute => node test.example.js\"",
+    "posttest": "node test.example.js",
     "prepublish": "npm run build",
     "build": "browserify index.js -s turf > turf.js && uglifyjs turf.js -c -m > turf.min.js",
     "size": "browserify index.js --full-paths -s turf | uglifyjs -c -m | discify | hcat"

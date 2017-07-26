@@ -22,8 +22,8 @@ var getCoords = invariant.getCoords;
  * var rotatedPoly = turf.transformRotate(poly, 100, [15, 15]);
  *
  * //addToMap
- * rotatedPoly.properties = {stroke: '#F00', 'stroke-width': 4};
  * var addToMap = [poly, rotatedPoly];
+ * rotatedPoly.properties = {stroke: '#F00', 'stroke-width': 4};
  */
 module.exports = function (geojson, angle, pivot, mutate) {
     // Input validation

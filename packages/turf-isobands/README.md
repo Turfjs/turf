@@ -11,8 +11,7 @@ value breaks and generates filled contour isobands.
 -   `breaks` **[Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)>** where to draw contours
 -   `zProperty` **\[[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)]** the property name in `points` from which z-values will be pulled (optional, default `'elevation'`)
 -   `options` **\[[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)]** options on output (optional, default `{}`)
-    -   `options.isobandProperties` **\[[Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)>]** GeoJSON properties passed, in order, to the correspondent
-        isoband (order defined by breaks) (optional, default `[]`)
+    -   `options.isobandProperties` **\[[Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)>]** GeoJSON properties passed, in order, to the correspondent isoband (order defined by breaks) (optional, default `[]`)
     -   `options.commonProperties` **\[[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)]** GeoJSON properties passed to ALL isobands (optional, default `{}`)
 
 **Examples**
@@ -27,6 +26,7 @@ for (var i = 0; i < pointGrid.features.length; i++) {
     pointGrid.features[i].properties.elevation = Math.random() * 10;
 }
 var breaks = [0, 5, 8.5];
+
 var isobands = turf.isobands(pointGrid, breaks);
 
 //addToMap

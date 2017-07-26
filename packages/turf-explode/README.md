@@ -11,14 +11,7 @@ Takes a feature or set of features and returns all positions as [points](http://
 **Examples**
 
 ```javascript
-var polygon = {
-  "type": "Feature",
-  "properties": {},
-  "geometry": {
-    "type": "Polygon",
-    "coordinates": [[[-81, 41], [-88, 36], [-84, 31], [-80, 33], [-77, 39], [-81, 41]]]
-  }
-};
+var polygon = turf.polygon([[[-81, 41], [-88, 36], [-84, 31], [-80, 33], [-77, 39], [-81, 41]]]);
 
 var explode = turf.explode(polygon);
 

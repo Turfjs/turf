@@ -13,16 +13,11 @@ would contain the input.
 
 ```javascript
 var bbox = [-20,-20,-15,0];
-
 var squared = turf.square(bbox);
-
-var features = {
-  "type": "FeatureCollection",
-  "features": [
-    turf.bboxPolygon(bbox),
-    turf.bboxPolygon(squared)
-  ]
-};
+var features = turf.featureCollection([
+  turf.bboxPolygon(bbox),
+  turf.bboxPolygon(squared)
+]);
 
 //addToMap
 var addToMap = [features]

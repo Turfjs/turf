@@ -14,14 +14,8 @@ fields of the Object, thus including 'Foreign Members', will be cloned (3-20x sl
 **Examples**
 
 ```javascript
-var line = {
-  "type": "Feature",
-  "properties": {},
-  "geometry": {
-    "type": "LineString",
-    "coordinates": [[-74, 40], [-78, 42], [-82, 35]]
-  }
-}
+var line = turf.lineString([[-74, 40], [-78, 42], [-82, 35]]);
+
 var lineCloned = turf.clone(line);
 ```
 
