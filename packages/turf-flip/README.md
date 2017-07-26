@@ -12,19 +12,12 @@ Takes input features and flips all of their coordinates from `[x, y]` to `[y, x]
 **Examples**
 
 ```javascript
-var serbia = {
-  "type": "Feature",
-  "properties": {},
-  "geometry": {
-    "type": "Point",
-    "coordinates": [20.566406, 43.421008]
-  }
-};
+var serbia = turf.point([20.566406, 43.421008]);
 
 var saudiArabia = turf.flip(serbia);
 
 //addToMap
-var addToMap = [serbia, saudiArabia]
+var addToMap = [serbia, saudiArabia];
 ```
 
 Returns **([FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects) \| [Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;any>)** a feature or set of features of the same type as `input` with flipped coordinates

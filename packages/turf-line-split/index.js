@@ -22,22 +22,9 @@ var featureCollection = helpers.featureCollection;
  * @param {Feature<Point|MultiPoint|LineString|MultiLineString|Polygon|MultiPolygon>} splitter Feature used to split line
  * @returns {FeatureCollection<LineString>} Split LineStrings
  * @example
- * var line = {
- *   "type": "Feature",
- *   "properties": {},
- *   "geometry": {
- *     "type": "LineString",
- *     "coordinates": [[120, -25], [145, -25]]
- *   }
- * };
- * var splitter = {
- *   "type": "Feature",
- *   "properties": {},
- *   "geometry": {
- *     "type": "LineString",
- *     "coordinates": [[130, -15], [130, -35]]
- *   }
- * };
+ * var line = turf.lineString([[120, -25], [145, -25]]);
+ * var splitter = turf.lineString([[130, -15], [130, -35]]);
+ *
  * var split = turf.lineSplit(line, splitter);
  *
  * //addToMap

@@ -131,16 +131,12 @@ test('turf - parsing dependencies from index.js', t => {
     t.end();
 });
 
+
 /**
  * =========================
  * Builds => test.example.js
  * =========================
- *
- * To-Do
- * -----
- * - [ ] Fix @example errors
- * - [ ] Add 'node test.example' in package.json => scripts => posttest
- * - [ ] Include `addToMap` validation tests
+ * will be run as `posttest`
  */
 
 // File Paths
@@ -169,7 +165,7 @@ test('turf-${turfName}', t => {
     t.skip('${turfName}');
     t.end();
 });
-`
+`;
     return `
 test('turf-${turfName}', t => {
     const ${testFunctionName} = () => {

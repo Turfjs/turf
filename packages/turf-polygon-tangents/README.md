@@ -12,23 +12,11 @@ Finds the tangents of a [(Multi)Polygon](http://geojson.org/geojson-spec.html#po
 **Examples**
 
 ```javascript
-var polygon = {
-  "type": "Feature",
-  "properties": {},
-  "geometry": {
-    "type": "Polygon",
-    "coordinates": [[[11, 0], [22, 4], [31, 0], [31, 11], [21, 15], [11, 11], [11, 0]]]
-  }
-}
-var point = {
-  "type": "Feature",
-  "properties": {},
-  "geometry": {
-    "type": "Point",
-    "coordinates": [61, 5]
-  }
-}
+var polygon = turf.polygon([[[11, 0], [22, 4], [31, 0], [31, 11], [21, 15], [11, 11], [11, 0]]]);
+var point = turf.point([61, 5]);
+
 var tangents = turf.polygonTangents(point, polygon)
+
 //addToMap
 var addToMap = [tangents, point, polygon];
 ```

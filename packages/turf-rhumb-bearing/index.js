@@ -19,9 +19,9 @@ var GeodesyLatLon = require('geodesy').LatLonSpherical;
  * var bearing = turf.rhumbBearing(point1, point2);
  *
  * //addToMap
+ * var addToMap = [point1, point2]
  * point1.properties.bearing = bearing
  * point2.properties.bearing = bearing
- * var addToMap = [point1, point2]
  */
 module.exports = function (start, end, final) {
     // validation

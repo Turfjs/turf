@@ -23,9 +23,9 @@ var distanceToRadians = helpers.distanceToRadians;
  * var destination = turf.destination(point, distance, bearing, units);
  *
  * //addToMap
+ * var addToMap = [point, destination]
  * destination.properties['marker-color'] = '#f00';
  * point.properties['marker-color'] = '#0f0';
- * var addToMap = [point, destination]
  */
 module.exports = function (origin, distance, bearing, units) {
     var degrees2radians = Math.PI / 180;

@@ -18,14 +18,7 @@ This can be useful for extracting only the part of a route between two distances
 **Examples**
 
 ```javascript
-var line = {
-  "type": "Feature",
-  "properties": {},
-  "geometry": {
-    "type": "LineString",
-    "coordinates": [[7, 45], [9, 45], [14, 40], [14, 41]]
-  }
-};
+var line = turf.lineString([[7, 45], [9, 45], [14, 40], [14, 41]]);
 var start = 12.5;
 var stop = 25;
 var sliced = turf.lineSliceAlong(line, start, stop, 'miles');

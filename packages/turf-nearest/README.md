@@ -15,7 +15,7 @@ is geodesic.
 **Examples**
 
 ```javascript
-var targetPoint = turf.point([28.965797, 41.010086], {"marker-color": "#0f0"});
+var targetPoint = turf.point([28.965797, 41.010086], {"marker-color": "#0F0"});
 var points = turf.featureCollection([
     turf.point([28.973865, 41.011122]),
     turf.point([28.948459, 41.024204]),
@@ -25,8 +25,8 @@ var points = turf.featureCollection([
 var nearest = turf.nearest(targetPoint, points);
 
 //addToMap
-nearest.properties['marker-color'] = '#f00';
 var addToMap = [targetPoint, points, nearest];
+nearest.properties['marker-color'] = '#F00';
 ```
 
 Returns **[Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;[Point](http://geojson.org/geojson-spec.html#point)>** the closest point in the set to the reference point

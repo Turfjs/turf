@@ -39,12 +39,12 @@
   "devDependencies": {
     "@turf/centroid": "^4.5.2",
     "@turf/clusters": "^4.6.0",
-    "benchmark": "^2.1.4",
+    "benchmark": "2.1.4",
     "chromatism": "2.6.0",
-    "concaveman": "^1.1.1",
-    "load-json-file": "^2.0.0",
-    "tape": "^4.6.3",
-    "write-json-file": "^2.0.0"
+    "concaveman": "1.1.1",
+    "load-json-file": "2.0.0",
+    "tape": "4.7.0",
+    "write-json-file": "2.2.0"
   },
   "dependencies": {
     "@turf/clone": "^4.5.2",

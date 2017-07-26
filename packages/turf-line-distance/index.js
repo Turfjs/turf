@@ -28,8 +28,8 @@ var lineString = helpers.lineString;
  * var length = turf.lineDistance(line, 'miles');
  *
  * //addToMap
- * line.properties.distance = length;
  * var addToMap = [line];
+ * line.properties.distance = length;
  */
 module.exports = function lineDistance(geojson, units) {
     // Input Validation

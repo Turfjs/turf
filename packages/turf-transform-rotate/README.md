@@ -19,8 +19,8 @@ var poly = turf.polygon([[[0,29],[3.5,29],[2.5,32],[0,29]]]);
 var rotatedPoly = turf.transformRotate(poly, 100, [15, 15]);
 
 //addToMap
-rotatedPoly.properties = {stroke: '#F00', 'stroke-width': 4};
 var addToMap = [poly, rotatedPoly];
+rotatedPoly.properties = {stroke: '#F00', 'stroke-width': 4};
 ```
 
 Returns **[GeoJSON](http://geojson.org/geojson-spec.html#geojson-objects)** the rotated GeoJSON feature

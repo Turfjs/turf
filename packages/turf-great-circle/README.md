@@ -16,22 +16,9 @@ Calculate great circles routes as [LineString](http://geojson.org/geojson-spec.h
 **Examples**
 
 ```javascript
-var start = {
-  "type": "Feature",
-  "properties": {},
-  "geometry": {
-    "type": "Point",
-    "coordinates": [-122, 48]
-  }
-}
-var end = {
-  "type": "Feature",
-  "properties": {},
-  "geometry": {
-    "type": "Point",
-    "coordinates": [-77, 39]
-  }
-}
+var start = turf.point([-122, 48]);
+var end = turf.point([-77, 39]);
+
 var greatCircle = turf.greatCircle(start, end, {'name': 'Seattle to DC'});
 
 //addToMap
