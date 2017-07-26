@@ -71,36 +71,16 @@ function buildMask(maskPolygon, polygonOuters, polygonInners) {
 function separatePolygons(polygon) {
     var outers = [];
     var inners = [];
-    flattenEach(polygon, function (multiFeature) {
-        if (multiFeature.geometry.type === 'MultiPolygon') {
-            multiFeature = flattenMultiPolygon(multiFeature);
-        }
-        flattenEach(multiFeature, function (feature) {
-            var coordinates = feature.geometry.coordinates;
-            var featureOuter = coordinates[0];
-            var featureInner = coordinates.slice(1);
-            outers.push(helpers.polygon([featureOuter]));
-            featureInner.forEach(function (inner) {
-                inners.push(helpers.polygon([inner]));
-            });
+    flattenEach(polygon, function (feature) {
+        var coordinates = feature.geometry.coordinates;
+        var featureOuter = coordinates[0];
+        var featureInner = coordinates.slice(1);
+        outers.push(helpers.polygon([featureOuter]));
+        featureInner.forEach(function (inner) {
+            inners.push(helpers.polygon([inner]));
         });
     });
     return [helpers.featureCollection(outers), helpers.featureCollection(inners)];
-}
-
-/**
- * Flatten MultiPolygon
- *
- * @private
- * @param {Feature<MultiPolygon>} multiPolygon GeoJSON Feature
- * @returns {FeatureCollection<Polygon>} Feature Collection
- */
-function flattenMultiPolygon(multiPolygon) {
-    var polygons = [];
-    multiPolygon.geometry.coordinates.forEach(function (coordinates) {
-        polygons.push(helpers.polygon(coordinates));
-    });
-    return helpers.featureCollection(polygons);
 }
 
 /**
