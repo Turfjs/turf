@@ -7,7 +7,9 @@ const {
     flattenEach,
     flattenReduce,
     geomEach,
-    geomReduce
+    geomReduce,
+    coordEach,
+    coordReduce
 } = require('./');
 
 const pointGeometry = {
@@ -424,13 +426,15 @@ test('null geometries', t => {
         feature(null)
     ]);
     // Each operations
-    featureEach(fc, feature => t.equal(feature.geometry, null));
-    geomEach(fc, geometry => t.equal(geometry, null));
-    flattenEach(fc, feature => t.equal(feature.geometry, null));
+    featureEach(fc, feature => t.equal(feature.geometry, null, 'featureEach'));
+    geomEach(fc, geometry => t.equal(geometry, null, 'geomEach'));
+    flattenEach(fc, feature => t.equal(feature.geometry, null, 'flattenEach'));
+    coordEach(fc, () => {}, 'coordEach');
 
     // Reduce operations
-    t.equal(featureReduce(fc, prev => prev += 1, 0), 2);
-    t.equal(geomReduce(fc, prev => prev += 1, 0), 2);
-    t.equal(flattenReduce(fc, prev => prev += 1, 0), 2);
+    t.equal(featureReduce(fc, prev => prev += 1, 0), 2, 'featureReduce');
+    t.equal(geomReduce(fc, prev => prev += 1, 0), 2, 'geomReduce');
+    t.equal(flattenReduce(fc, prev => prev += 1, 0), 2, 'flattenReduce');
+    t.equal(coordReduce(fc, prev => prev += 1, 0), 0, 'coordReduce');
     t.end();
-})
+});

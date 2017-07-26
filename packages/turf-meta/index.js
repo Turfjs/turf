@@ -48,64 +48,73 @@ function coordEach(geojson, callback, excludeWrapCoord) {
         wrapShrink = 0,
         currentIndex = 0,
         isGeometryCollection,
-        isFeatureCollection = geojson.type === 'FeatureCollection',
-        isFeature = geojson.type === 'Feature',
+        type = (geojson) ? geojson.type : null,
+        isFeatureCollection = type === 'FeatureCollection',
+        isFeature = type === 'Feature',
         stop = isFeatureCollection ? geojson.features.length : 1;
 
-  // This logic may look a little weird. The reason why it is that way
-  // is because it's trying to be fast. GeoJSON supports multiple kinds
-  // of objects at its root: FeatureCollection, Features, Geometries.
-  // This function has the responsibility of handling all of them, and that
-  // means that some of the `for` loops you see below actually just don't apply
-  // to certain inputs. For instance, if you give this just a
-  // Point geometry, then both loops are short-circuited and all we do
-  // is gradually rename the input until it's called 'geometry'.
-  //
-  // This also aims to allocate as few resources as possible: just a
-  // few numbers and booleans, rather than any temporary arrays as would
-  // be required with the normalization approach.
+    // This logic may look a little weird. The reason why it is that way
+    // is because it's trying to be fast. GeoJSON supports multiple kinds
+    // of objects at its root: FeatureCollection, Features, Geometries.
+    // This function has the responsibility of handling all of them, and that
+    // means that some of the `for` loops you see below actually just don't apply
+    // to certain inputs. For instance, if you give this just a
+    // Point geometry, then both loops are short-circuited and all we do
+    // is gradually rename the input until it's called 'geometry'.
+    //
+    // This also aims to allocate as few resources as possible: just a
+    // few numbers and booleans, rather than any temporary arrays as would
+    // be required with the normalization approach.
     for (i = 0; i < stop; i++) {
 
         geometryMaybeCollection = (isFeatureCollection ? geojson.features[i].geometry :
         (isFeature ? geojson.geometry : geojson));
-        isGeometryCollection = geometryMaybeCollection.type === 'GeometryCollection';
+        isGeometryCollection = (geometryMaybeCollection) ? geometryMaybeCollection.type === 'GeometryCollection' : false;
         stopG = isGeometryCollection ? geometryMaybeCollection.geometries.length : 1;
 
         for (g = 0; g < stopG; g++) {
             geometry = isGeometryCollection ?
             geometryMaybeCollection.geometries[g] : geometryMaybeCollection;
-            coords = geometry.coordinates;
+            coords = (geometry === null) ? null : geometry.coordinates;
+            var geomType = (geometry === null) ? null : geometry.type;
 
-            wrapShrink = (excludeWrapCoord &&
-                (geometry.type === 'Polygon' || geometry.type === 'MultiPolygon')) ?
-                1 : 0;
+            wrapShrink = (excludeWrapCoord && (geomType === 'Polygon' || geomType === 'MultiPolygon')) ? 1 : 0;
 
-            if (geometry.type === 'Point') {
+            switch (geomType) {
+            case null:
+                return;
+            case 'Point':
                 callback(coords, currentIndex);
                 currentIndex++;
-            } else if (geometry.type === 'LineString' || geometry.type === 'MultiPoint') {
+                break;
+            case 'LineString':
+            case 'MultiPoint':
                 for (j = 0; j < coords.length; j++) {
                     callback(coords[j], currentIndex);
                     currentIndex++;
                 }
-            } else if (geometry.type === 'Polygon' || geometry.type === 'MultiLineString') {
+                break;
+            case 'Polygon':
+            case 'MultiLineString':
                 for (j = 0; j < coords.length; j++)
                     for (k = 0; k < coords[j].length - wrapShrink; k++) {
                         callback(coords[j][k], currentIndex);
                         currentIndex++;
                     }
-            } else if (geometry.type === 'MultiPolygon') {
+                break;
+            case 'MultiPolygon':
                 for (j = 0; j < coords.length; j++)
                     for (k = 0; k < coords[j].length; k++)
                         for (l = 0; l < coords[j][k].length - wrapShrink; l++) {
                             callback(coords[j][k][l], currentIndex);
                             currentIndex++;
                         }
-            } else if (geometry.type === 'GeometryCollection') {
+                break;
+            case 'GeometryCollection':
                 for (j = 0; j < geometry.geometries.length; j++)
                     coordEach(geometry.geometries[j], callback, excludeWrapCoord);
-            } else {
-                throw new Error('Unknown Geometry Type');
+                break;
+            default: throw new Error('Unknown Geometry Type');
             }
         }
     }
