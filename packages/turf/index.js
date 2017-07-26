@@ -127,7 +127,9 @@ var turf = {
     geomEach: meta.geomEach,
     geomReduce: meta.geomReduce,
     flattenEach: meta.flattenEach,
-    flattenReduce: meta.flattenReduce
+    flattenReduce: meta.flattenReduce,
+    segmentReduce: meta.segmentReduce,
+    segmentEach: meta.segmentEach
 };
 
 module.exports = turf;
