@@ -15,9 +15,29 @@
   "keywords": [
     "functional",
     "programming",
-    "turfjs"
+    "turfjs",
+    "geojson",
+    "meta",
+    "flattenEach",
+    "flattenReduce",
+    "segmentEach",
+    "segmentReduce",
+    "coordEach",
+    "coordReduce",
+    "propEach",
+    "propReduce",
+    "featureEach",
+    "featureReduce",
+    "coordAll",
+    "geomEach",
+    "geomReduce"
   ],
   "author": "Turf Authors",
+  "contributors": [
+    "Tom MacWright <@tmcw>",
+    "Daniel Pulido <@dpmcmlxxvi>",
+    "Denis Carriere <@DenisCarriere>"
+  ],
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -32,5 +52,6 @@
     "@turf/random": "^4.5.2",
     "benchmark": "^2.1.4",
     "tape": "^4.6.3"
-  }
+  },
+  "dependencies": {}
 }

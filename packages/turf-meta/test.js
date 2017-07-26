@@ -1,5 +1,5 @@
 const test = require('tape');
-const {point, lineString, feature, featureCollection} = require('@turf/helpers');
+const {point, lineString, feature, polygon, featureCollection} = require('@turf/helpers');
 const meta = require('./');
 const {
     featureEach,
@@ -450,5 +450,73 @@ test('null geometries -- index', t => {
     t.deepEqual(meta.coordReduce(fc, (prev, coords, i) => prev.concat(i), []), [0, 1, 2], 'coordReduce');
     t.deepEqual(meta.geomReduce(fc, (prev, geom, i) => prev.concat(i), []), [1, 3], 'geomReduce');
     t.deepEqual(meta.flattenReduce(fc, (prev, feature, i) => prev.concat(i), []), [1, 3], 'flattenReduce');
+});
+
+test('segmentEach', t => {
+    const segments = [];
+    let total = 0;
+    meta.segmentEach(polygonGeometry, currentSegment => {
+        segments.push(currentSegment);
+        total++;
+    });
+    t.equal(segments[0].geometry.coordinates.length, 2);
+    t.equal(total, 3);
+    t.end();
+});
+
+test('segmentEach#MultiPoint', t => {
+    const segments = [];
+    let total = 0;
+    meta.segmentEach(multiPointGeometry, currentSegment => {
+        segments.push(currentSegment);
+        total++;
+    });
+    t.equal(total, 0); // No segments are created from MultiPoint geometry
+    t.end();
+});
+
+test('segmentReduce', t => {
+    const segments = [];
+    const total = meta.segmentReduce(polygonGeometry, (previousValue, currentSegment) => {
+        segments.push(currentSegment);
+        previousValue++;
+        return previousValue;
+    }, 0);
+    t.equal(segments[0].geometry.coordinates.length, 2);
+    t.equal(total, 3);
+    t.end();
+});
+
+const geojsonSegments = featureCollection([
+    point([0, 1]),
+    lineString([[0, 0], [2, 2], [4, 4]]), // subIndex = 0, 1
+    polygon([[[5, 5], [0, 0], [2, 2], [4, 4], [5, 5]]]), // subIndex = 0, 1, 2, 3
+    point([0, 1]),
+    lineString([[0, 0], [2, 2], [4, 4]]) // subIndex = 0, 1
+]);
+
+test('segmentEach -- index & subIndex', t => {
+    const index = [];
+    const subIndex = [];
+    // Segment Each
+    meta.segmentEach(geojsonSegments, (segment, currentIndex, currentSubIndex) => {
+        index.push(currentIndex);
+        subIndex.push(currentSubIndex);
+    });
+    t.deepEqual(index, [1, 1, 2, 2, 2, 2, 4, 4], 'index');
+    t.deepEqual(subIndex, [0, 1, 0, 1, 2, 3, 0, 1], 'subIndex');
+    t.end();
+});
+
+test('segmentReduce -- index & subIndex', t => {
+    const index = [];
+    const subIndex = [];
+    // Segment Each
+    meta.segmentReduce(geojsonSegments, (previousValue, segment, currentIndex, currentSubIndex) => {
+        index.push(currentIndex);
+        subIndex.push(currentSubIndex);
+    });
+    t.deepEqual(index, [1, 1, 2, 2, 2, 2, 4, 4], 'index');
+    t.deepEqual(subIndex, [0, 1, 0, 1, 2, 3, 0, 1], 'subIndex');
     t.end();
 });

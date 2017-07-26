@@ -1,7 +1,7 @@
 {
-  "name": "@turf/line-distance",
-  "version": "4.5.2",
-  "description": "turf line-distance module",
+  "name": "@turf/boolean-overlap",
+  "version": "4.5.0",
+  "description": "turf boolean-overlap module",
   "main": "index.js",
   "types": "index.d.ts",
   "files": [
@@ -18,16 +18,15 @@
   },
   "keywords": [
     "turf",
-    "linestring",
-    "length",
-    "distance",
-    "units",
-    "gis"
+    "gis",
+    "boolean",
+    "de-9im",
+    "overlap"
   ],
   "author": "Turf Authors",
   "contributors": [
-    "Denis Carriere <@DenisCarriere>",
-    "Tom MacWright <@tmcw>"
+    "Tim Channell <@tcql>",
+    "Stefano Borghi <@stebogit>"
   ],
   "license": "MIT",
   "bugs": {
@@ -36,13 +35,16 @@
   "homepage": "https://github.com/Turfjs/turf",
   "devDependencies": {
     "benchmark": "^2.1.4",
+    "glob": "^7.1.1",
     "load-json-file": "^2.0.0",
-    "tape": "^4.6.3",
-    "write-json-file": "^2.0.0"
+    "tape": "^4.6.3"
   },
   "dependencies": {
-    "@turf/distance": "^4.5.2",
     "@turf/helpers": "^4.5.2",
-    "@turf/meta": "^4.5.2"
+    "@turf/invariant": "^4.5.2",
+    "@turf/line-overlap": "^4.5.2",
+    "@turf/line-intersect": "^4.5.2",
+    "@turf/meta": "^4.5.2",
+    "geojson-equality": "0.1.6"
   }
 }
