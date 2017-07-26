@@ -2,7 +2,7 @@ var rbush = require('rbush');
 var union = require('@turf/union');
 var helpers = require('@turf/helpers');
 var turfBBox = require('@turf/bbox');
-var featureEach = require('@turf/meta').featureEach;
+var flattenEach = require('@turf/meta').flattenEach;
 
 /**
  * Takes any type of {@link Polygon|polygon} and an optional mask and returns a {@link Polygon|polygon} exterior ring with holes.
@@ -51,11 +51,11 @@ function buildMask(maskPolygon, polygonOuters, polygonInners) {
     var coordinates = [];
     coordinates.push(maskPolygon.geometry.coordinates[0]);
 
-    featureEach(polygonOuters, function (feature) {
+    flattenEach(polygonOuters, function (feature) {
         coordinates.push(feature.geometry.coordinates[0]);
     });
 
-    featureEach(polygonInners, function (feature) {
+    flattenEach(polygonInners, function (feature) {
         coordinates.push(feature.geometry.coordinates[0]);
     });
     return helpers.polygon(coordinates);
@@ -71,11 +71,11 @@ function buildMask(maskPolygon, polygonOuters, polygonInners) {
 function separatePolygons(polygon) {
     var outers = [];
     var inners = [];
-    featureEach(polygon, function (multiFeature) {
+    flattenEach(polygon, function (multiFeature) {
         if (multiFeature.geometry.type === 'MultiPolygon') {
             multiFeature = flattenMultiPolygon(multiFeature);
         }
-        featureEach(multiFeature, function (feature) {
+        flattenEach(multiFeature, function (feature) {
             var coordinates = feature.geometry.coordinates;
             var featureOuter = coordinates[0];
             var featureInner = coordinates.slice(1);
@@ -130,7 +130,7 @@ function unionPolygons(polygons) {
     var results = [];
     var removed = {};
 
-    featureEach(polygons, function (currentFeature, currentIndex) {
+    flattenEach(polygons, function (currentFeature, currentIndex) {
         // Exclude any removed features
         if (removed[currentIndex]) return true;
 
@@ -187,7 +187,7 @@ function filterByIndex(a, b) {
 function createIndex(features) {
     var tree = rbush();
     var load = [];
-    featureEach(features, function (feature, index) {
+    flattenEach(features, function (feature, index) {
         var bbox = turfBBox(feature);
         load.push({
             minX: bbox[0],
