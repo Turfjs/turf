@@ -544,28 +544,33 @@ function geomEach(geojson, callback) {
         (isFeature ? geojson.geometry : geojson));
         geometryProperties = (isFeatureCollection ? geojson.features[i].properties :
                               (isFeature ? geojson.properties : {}));
-        isGeometryCollection = geometryMaybeCollection.type === 'GeometryCollection';
+        isGeometryCollection = (geometryMaybeCollection) ? geometryMaybeCollection.type === 'GeometryCollection' : false;
         stopG = isGeometryCollection ? geometryMaybeCollection.geometries.length : 1;
 
         for (g = 0; g < stopG; g++) {
             geometry = isGeometryCollection ?
             geometryMaybeCollection.geometries[g] : geometryMaybeCollection;
-
-            if (geometry.type === 'Point' ||
-                geometry.type === 'LineString' ||
-                geometry.type === 'MultiPoint' ||
-                geometry.type === 'Polygon' ||
-                geometry.type === 'MultiLineString' ||
-                geometry.type === 'MultiPolygon') {
+            var type = (geometry === null) ? null : geometry.type;
+            switch (type) {
+            case null:
+            case 'Point':
+            case 'LineString':
+            case 'MultiPoint':
+            case 'Polygon':
+            case 'MultiLineString':
+            case 'MultiPolygon': {
                 callback(geometry, currentIndex, geometryProperties);
                 currentIndex++;
-            } else if (geometry.type === 'GeometryCollection') {
+                break;
+            }
+            case 'GeometryCollection': {
                 for (j = 0; j < geometry.geometries.length; j++) {
                     callback(geometry.geometries[j], currentIndex, geometryProperties);
                     currentIndex++;
                 }
-            } else {
-                throw new Error('Unknown Geometry Type');
+                break;
+            }
+            default: throw new Error('Unknown Geometry Type');
             }
         }
     }
@@ -693,9 +698,11 @@ function geomReduce(geojson, callback, initialValue) {
  */
 function flattenEach(geojson, callback) {
     geomEach(geojson, function (geometry, index, properties) {
+        var type = (geometry === null) ? null : geometry.type;
 
         // Callback for single geometry
-        switch (geometry.type) {
+        switch (type) {
+        case null:
         case 'Point':
         case 'LineString':
         case 'Polygon':
@@ -706,7 +713,7 @@ function flattenEach(geojson, callback) {
         var geomType;
 
         // Callback for multi-geometry
-        switch (geometry.type) {
+        switch (type) {
         case 'MultiPoint':
             geomType = 'Point';
             break;
@@ -813,7 +820,7 @@ function flattenReduce(geojson, callback, initialValue) {
  * @returns {Feature} GeoJSON Feature
  */
 function feature(geometry, properties) {
-    if (!geometry) throw new Error('No geometry passed');
+    if (geometry === undefined) throw new Error('No geometry passed');
 
     return {
         type: 'Feature',

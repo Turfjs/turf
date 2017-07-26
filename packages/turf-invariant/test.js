@@ -208,3 +208,17 @@ test('invariant#getGeomType', t => {
     t.throws(() => invariant.getGeomType(collection, 'featureCollection not valid'));
     t.end();
 });
+
+// https://github.com/Turfjs/turf/issues/853
+test('null geometries', t => {
+    const nullFeature = {
+        type: 'Feature',
+        properties: {},
+        geometry: null
+    }
+    t.equal(invariant.getGeom(null), null);
+    t.equal(invariant.getGeomType(null), null);
+    t.equal(invariant.getGeom(nullFeature), null);
+    t.equal(invariant.getGeomType(nullFeature), null);
+    t.end();
+});

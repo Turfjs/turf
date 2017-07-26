@@ -1,6 +1,14 @@
 const test = require('tape');
-const {lineString} = require('@turf/helpers');
+const {lineString, feature, featureCollection} = require('@turf/helpers');
 const meta = require('./');
+const {
+    featureEach,
+    featureReduce,
+    flattenEach,
+    flattenReduce,
+    geomEach,
+    geomReduce
+} = require('./');
 
 const pointGeometry = {
     type: 'Point',
@@ -408,3 +416,21 @@ test('flattenReduce#previous-feature+initialValue', t => {
     t.deepEqual(sum, features[features.length - 1]);
     t.end();
 });
+
+// https://github.com/Turfjs/turf/issues/853
+test('null geometries', t => {
+    const fc = featureCollection([
+        feature(null),
+        feature(null)
+    ]);
+    // Each operations
+    featureEach(fc, feature => t.equal(feature.geometry, null));
+    geomEach(fc, geometry => t.equal(geometry, null));
+    flattenEach(fc, feature => t.equal(feature.geometry, null));
+
+    // Reduce operations
+    t.equal(featureReduce(fc, prev => prev += 1, 0), 2);
+    t.equal(geomReduce(fc, prev => prev += 1, 0), 2);
+    t.equal(flattenReduce(fc, prev => prev += 1, 0), 2);
+    t.end();
+})
