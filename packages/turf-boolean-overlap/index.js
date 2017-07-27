@@ -1,19 +1,16 @@
 var meta = require('@turf/meta');
-var helpers = require('@turf/helpers');
 var invariant = require('@turf/invariant');
 var lineOverlap = require('@turf/line-overlap');
 var lineIntersect = require('@turf/line-intersect');
 var GeojsonEquality = require('geojson-equality');
 var coordAll = meta.coordAll;
-var lineString = helpers.lineString;
-var flattenEach = meta.flattenEach;
-var coordReduce = meta.coordReduce;
+var segmentEach = meta.segmentEach;
 var getGeomType = invariant.getGeomType;
 
 /**
  * Compares two geometries of the same dimension and returns true if their intersection set results in a geometry
  * different from both but of the same dimension. It applies to Polygon/Polygon, LineString/LineString,
- * Multipoint/Multipoint, MultiLineString/MultiLineString and MultiPolygon/MultiPolygon
+ * Multipoint/Multipoint, MultiLineString/MultiLineString and MultiPolygon/MultiPolygon.
  *
  * @name booleanOverlap
  * @param  {Geometry|Feature<LineString|MultiLineString|Polygon|MultiPolygon>} feature1 input
@@ -38,9 +35,8 @@ module.exports = function (feature1, feature2) {
     if (type1 !== type2) throw new Error('features must be of the same type');
     if (type1 === 'Point') throw new Error('Point geometry not supported');
 
-    // false if features are equal
-    var considerDirection = (type1 === 'LineString' && feature1.coor);
-    var equality = new GeojsonEquality({direction: considerDirection, precision: 6});
+    // features must be not equal
+    var equality = new GeojsonEquality({precision: 6});
     if (equality.compare(feature1, feature2)) return false;
 
     var overlap = 0;
@@ -77,20 +73,3 @@ module.exports = function (feature1, feature2) {
 
     return overlap > 0;
 };
-
-// todo: replace with new @turf/meta.segmentEach
-function segmentEach(geojson, callback) {
-    var currentIndex = 0;
-    flattenEach(geojson, function (feature, featureIndex, featureSubIndex) {
-        // (Multi)Point geometries do not contain segments therefore they are ignored during this operation.
-        var type = feature.geometry.type;
-        if (type === 'Point' || type === 'MultiPoint') return;
-        // Generate 2-vertex line segments
-        coordReduce(feature, function (previousCoords, currentCoords) {
-            var currentSegment = lineString([previousCoords, currentCoords], feature.properties);
-            callback(currentSegment, currentIndex, featureIndex, featureSubIndex);
-            currentIndex++;
-            return currentCoords;
-        });
-    });
-}

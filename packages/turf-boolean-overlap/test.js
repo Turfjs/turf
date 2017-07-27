@@ -2,7 +2,7 @@ const glob = require('glob');
 const path = require('path');
 const test = require('tape');
 const load = require('load-json-file');
-const {point, lineString} = require('@turf/helpers');
+const {point, lineString, polygon} = require('@turf/helpers');
 const overlap = require('./');
 
 test('turf-boolean-overlap', t => {
@@ -29,13 +29,24 @@ test('turf-boolean-overlap', t => {
     t.end();
 });
 
-test('turf-boolean-overlap -- throws', t => {
-    const pt = point([9, 50]);
-    const line = lineString([[7, 50], [8, 50], [9, 50]]);
+const pt = point([9, 50]);
+const line1 = lineString([[7, 50], [8, 50], [9, 50]]);
+const line2 = lineString([[8, 50], [9, 50], [10, 50]]);
+const poly1 = polygon([[[8.5, 50], [9.5, 50], [9.5, 49], [8.5, 49], [8.5, 50]]]);
+const poly2 = polygon([[[8, 50], [9, 50], [9, 49], [8, 49], [8, 50]]]);
+const poly3 = polygon([[[10, 50], [10.5, 50], [10.5, 49], [10, 49], [10, 50]]]);
 
-    t.throws(() => overlap(null, line), /feature1 is required/, 'missing feature1');
-    t.throws(() => overlap(line, null), /feature2 is required/, 'missing feature2');
-    t.throws(() => overlap(pt, line), /features must be of the same type/, 'different types');
+test('turf-boolean-overlap -- geometries', t => {
+    t.true(overlap(line1.geometry, line2.geometry), `[true] LineString geometry`);
+    t.true(overlap(poly1.geometry, poly2.geometry), `[true] Polygon geometry`);
+    t.false(overlap(poly1.geometry, poly3.geometry), `[false] Polygon geometry`);
+    t.end();
+});
+
+test('turf-boolean-overlap -- throws', t => {
+    t.throws(() => overlap(null, line1), /feature1 is required/, 'missing feature1');
+    t.throws(() => overlap(line1, null), /feature2 is required/, 'missing feature2');
+    t.throws(() => overlap(pt, line1), /features must be of the same type/, 'different types');
     t.throws(() => overlap(pt, pt), /Point geometry not supported/, 'geometry not supported');
 
     t.end();
