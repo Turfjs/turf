@@ -14,7 +14,7 @@
 
 ## Code Style
 
-To ensure code style at the `turf` module level, run
+To ensure code style, at the `turf` root level run
 
 ```sh
 $ npm run lint
