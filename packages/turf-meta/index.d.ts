@@ -16,12 +16,12 @@ export type AllGeoJSON = Feature<any> | Features<any> | GeometryObject | Geometr
 /**
  * http://turfjs.org/docs/#coordreduce
  */
-export function coordReduce(geojson: AllGeoJSON, callback: (previousValue: any, currentCoord: number[], coordIndex: number, featureIndex: number, featureSubIndex: number) => void, initialValue?: any): void;
+export function coordReduce(geojson: AllGeoJSON, callback: (previousValue: any, currentCoord: number[], coordIndex: number) => void, initialValue?: any): void;
 
 /**
  * http://turfjs.org/docs/#coordeach
  */
-export function coordEach(geojson: AllGeoJSON, callback: (currentCoord: number[], coordIndex: number, featureIndex: number, featureSubIndex: number) => void): void;
+export function coordEach(geojson: AllGeoJSON, callback: (currentCoord: number[], coordIndex: number) => void): void;
 
 /**
  * http://turfjs.org/docs/#propeach
