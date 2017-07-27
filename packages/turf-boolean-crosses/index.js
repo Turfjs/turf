@@ -143,8 +143,8 @@ function doesMultiPointCrossPoly(multiPoint, polygon) {
  * @param {Array} lineSegmentStart coord pair of start of line
  * @param {Array} lineSegmentEnd coord pair of end of line
  * @param {Array} point coord pair of point to check
- * @param {Boolean} incEnd whether the point is allowed to fall on the line ends
- * @returns {Boolean} true/false
+ * @param {boolean} incEnd whether the point is allowed to fall on the line ends
+ * @returns {boolean} true/false
  */
 function isPointOnLineSegment(lineSegmentStart, lineSegmentEnd, point, incEnd) {
     var dxc = point[0] - lineSegmentStart[0];
