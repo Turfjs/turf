@@ -428,14 +428,14 @@ test('null geometries', t => {
 
     // Each operations
     featureEach(fc, feature => t.equal(feature.geometry, null, 'featureEach'));
-    geomEach(fc, () => t.fail('no geometries should be found'));
-    flattenEach(fc, () => t.fail('no features should be found'));
+    geomEach(fc, geometry => t.equal(geometry, null), 'geomEach');
+    flattenEach(fc, feature => t.equal(feature.geometry, null, 'flattenEach'));
     coordEach(fc, () => t.fail('no coordinates should be found'));
 
     // Reduce operations
     t.equal(featureReduce(fc, prev => prev += 1, 0), 2, 'featureReduce');
-    t.equal(geomReduce(fc, prev => prev += 1, 0), 0, 'geomReduce');
-    t.equal(flattenReduce(fc, prev => prev += 1, 0), 0, 'flattenReduce');
+    t.equal(geomReduce(fc, prev => prev += 1, 0), 2, 'geomReduce');
+    t.equal(flattenReduce(fc, prev => prev += 1, 0), 2, 'flattenReduce');
     t.equal(coordReduce(fc, prev => prev += 1, 0), 0, 'coordReduce');
     t.end();
 });
@@ -445,11 +445,11 @@ test('null geometries -- index', t => {
         feature(null), // index 0
         point([0, 0]), // index 1
         feature(null), // index 2
-        lineString([0, 0]) // index 3
+        lineString([[1, 1], [0, 0]]) // index 3
     ]);
-    t.deepEqual(meta.coordReduce(fc, (prev, coords, i) => prev.concat(i), []), [0, 1, 2], 'coordReduce');
-    t.deepEqual(meta.geomReduce(fc, (prev, geom, i) => prev.concat(i), []), [1, 3], 'geomReduce');
-    t.deepEqual(meta.flattenReduce(fc, (prev, feature, i) => prev.concat(i), []), [1, 3], 'flattenReduce');
+    t.deepEqual(meta.coordReduce(fc, (prev, coords, coordIndex) => prev.concat(coordIndex), []), [0, 1, 2], 'coordReduce');
+    t.deepEqual(meta.geomReduce(fc, (prev, geom, featureIndex) => prev.concat(featureIndex), []), [0, 1, 2, 3], 'geomReduce');
+    t.deepEqual(meta.flattenReduce(fc, (prev, feature, featureIndex) => prev.concat(featureIndex), []), [0, 1, 2, 3], 'flattenReduce');
     t.end();
 });
 

@@ -435,8 +435,6 @@ function geomEach(geojson, callback) {
             var type = (geometry === null) ? null : geometry.type;
             switch (type) {
             case null:
-                currentIndex++;
-                break;
             case 'Point':
             case 'LineString':
             case 'MultiPoint':
@@ -547,10 +545,10 @@ function geomReduce(geojson, callback, initialValue) {
  */
 function flattenEach(geojson, callback) {
     geomEach(geojson, function (geometry, index, properties) {
-        if (geometry === null) return;
-
         // Callback for single geometry
-        switch (geometry.type) {
+        var type = (geometry === null) ? null : geometry.type;
+        switch (type) {
+        case null:
         case 'Point':
         case 'LineString':
         case 'Polygon':
@@ -561,7 +559,7 @@ function flattenEach(geojson, callback) {
         var geomType;
 
         // Callback for multi-geometry
-        switch (geometry.type) {
+        switch (type) {
         case 'MultiPoint':
             geomType = 'Point';
             break;
@@ -678,6 +676,8 @@ function flattenReduce(geojson, callback, initialValue) {
 function segmentEach(geojson, callback) {
     flattenEach(geojson, function (feature, currentIndex) {
         var currentSubIndex = 0;
+        // Exclude null Geometries
+        if (!feature.geometry) return;
         // (Multi)Point geometries do not contain segments therefore they are ignored during this operation.
         var type = feature.geometry.type;
         if (type === 'Point' || type === 'MultiPoint') return;
@@ -751,7 +751,6 @@ function segmentReduce(geojson, callback, initialValue) {
     });
     return previousValue;
 }
-
 
 /**
  * Create Feature
