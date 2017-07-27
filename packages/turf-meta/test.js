@@ -500,9 +500,9 @@ test('segmentEach -- index & subIndex', t => {
     const index = [];
     const subIndex = [];
     // Segment Each
-    meta.segmentEach(geojsonSegments, (segment, currentIndex, currentSubIndex) => {
-        index.push(currentIndex);
-        subIndex.push(currentSubIndex);
+    meta.segmentEach(geojsonSegments, (segment, featureIndex, featureSubIndex) => {
+        index.push(featureIndex);
+        subIndex.push(featureSubIndex);
     });
     t.deepEqual(index, [1, 1, 2, 2, 2, 2, 4, 4], 'index');
     t.deepEqual(subIndex, [0, 1, 0, 1, 2, 3, 0, 1], 'subIndex');
@@ -513,9 +513,9 @@ test('segmentReduce -- index & subIndex', t => {
     const index = [];
     const subIndex = [];
     // Segment Each
-    meta.segmentReduce(geojsonSegments, (previousValue, segment, currentIndex, currentSubIndex) => {
-        index.push(currentIndex);
-        subIndex.push(currentSubIndex);
+    meta.segmentReduce(geojsonSegments, (previousValue, segment, featureIndex, featureSubIndex) => {
+        index.push(featureIndex);
+        subIndex.push(featureSubIndex);
     });
     t.deepEqual(index, [1, 1, 2, 2, 2, 2, 4, 4], 'index');
     t.deepEqual(subIndex, [0, 1, 0, 1, 2, 3, 0, 1], 'subIndex');
