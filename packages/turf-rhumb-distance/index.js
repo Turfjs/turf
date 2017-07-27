@@ -22,9 +22,9 @@ var distanceToRadians = helpers.distanceToRadians;
  * var distance = turf.rhumbDistance(from, to, "miles");
  *
  * //addToMap
+ * var addToMap = [from, to];
  * from.properties.distance = distance;
  * to.properties.distance = distance;
- * var addToMap = [from, to];
  */
 module.exports = function (from, to, units) {
     // validation

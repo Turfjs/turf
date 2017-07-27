@@ -37,7 +37,9 @@ import {
     geomEach,
     geomReduce,
     flattenEach,
-    flattenReduce} from '@turf/meta';
+    flattenReduce,
+    segmentEach,
+    segmentReduce} from '@turf/meta';
 import * as isolines from '@turf/isolines';
 import * as convex from '@turf/convex';
 import * as within from '@turf/within';
@@ -233,5 +235,7 @@ export {
     booleanContains,
     booleanCrosses,
     booleanClockwise,
-    clone
+    clone,
+    segmentEach,
+    segmentReduce
 };

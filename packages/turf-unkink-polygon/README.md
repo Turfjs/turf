@@ -12,13 +12,7 @@ Uses [simplepolygon](https://github.com/mclaeysb/simplepolygon) internally.
 **Examples**
 
 ```javascript
-var poly = {
-   'type': 'Feature',
-     'geometry': {
-        'type': 'Polygon',
-       'coordinates': [[[0, 0], [2, 0], [0, 2], [2, 2], [0, 0]]]
-      }
-};
+var poly = turf.polygon([[[0, 0], [2, 0], [0, 2], [2, 2], [0, 0]]]);
 
 var result = turf.unkinkPolygon(poly);
 

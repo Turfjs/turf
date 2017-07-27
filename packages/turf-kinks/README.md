@@ -11,20 +11,13 @@ Takes a [linestring](http://geojson.org/geojson-spec.html#linestring), [multi-li
 **Examples**
 
 ```javascript
-var poly = {
-  "type": "Feature",
-  "properties": {},
-  "geometry": {
-    "type": "Polygon",
-    "coordinates": [[
-      [-12.034835, 8.901183],
-      [-12.060413, 8.899826],
-      [-12.03638, 8.873199],
-      [-12.059383, 8.871418],
-      [-12.034835, 8.901183]
-    ]]
-  }
-};
+var poly = turf.polygon([[
+  [-12.034835, 8.901183],
+  [-12.060413, 8.899826],
+  [-12.03638, 8.873199],
+  [-12.059383, 8.871418],
+  [-12.034835, 8.901183]
+]]);
 
 var kinks = turf.kinks(poly);
 

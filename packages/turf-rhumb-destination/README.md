@@ -23,8 +23,8 @@ var units = 'miles';
 var destination = turf.rhumbDestination(point, distance, bearing, units);
 
 //addToMap
-destination.properties['marker-color'] = '#00F';
 var addToMap = [point, destination]
+destination.properties['marker-color'] = '#00F';
 ```
 
 Returns **[Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;[Point](http://geojson.org/geojson-spec.html#point)>** Destination point.

@@ -88,3 +88,21 @@ meta.flattenEach(poly, feature => feature)
 meta.flattenEach(features, feature => feature)
 meta.flattenEach(poly.geometry, (feature, index, props) => feature)
 // meta.flattenEach(geomCollection, (feature, index, props) => feature)
+
+// segmentReduce
+meta.segmentReduce(poly, () => {})
+meta.segmentReduce(poly, previousValue => previousValue)
+meta.segmentReduce(poly, (previousValue, currentSegment) => currentSegment)
+meta.segmentReduce(poly, (previousValue, currentSegment) => currentSegment, 0)
+meta.segmentReduce(features, (previousValue, currentSegment) => currentSegment)
+meta.segmentReduce(poly, (previousValue, currentSegment, currentIndex) => currentSegment)
+meta.segmentReduce(geomCollection, (previousValue, currentSegment, currentIndex) => currentSegment)
+meta.segmentReduce(geomCollection, (previousValue, currentSegment, currentIndex, currentSubIndex) => currentSegment)
+
+// segmentEach
+meta.segmentEach(poly, () => {})
+meta.segmentEach(poly, currentSegment => currentSegment)
+meta.segmentEach(features, currentSegment => currentSegment)
+meta.segmentEach(poly.geometry, (currentSegment, currentIndex) => currentSegment)
+meta.segmentEach(geomCollection, (currentSegment, currentIndex) => currentSegment)
+meta.segmentEach(geomCollection, (currentSegment, currentIndex, currentSubIndex) => currentSegment)

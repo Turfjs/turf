@@ -13,14 +13,7 @@ Takes a [line](http://geojson.org/geojson-spec.html#linestring) and returns a [p
 **Examples**
 
 ```javascript
-var line = {
-  "type": "Feature",
-  "properties": {},
-  "geometry": {
-    "type": "LineString",
-    "coordinates": [[-83, 30], [-84, 36], [-78, 41]]
-  }
-};
+var line = turf.lineString([[-83, 30], [-84, 36], [-78, 41]]);
 
 var along = turf.along(line, 200, 'miles');
 

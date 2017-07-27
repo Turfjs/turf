@@ -25,11 +25,8 @@ var getCoords = invariant.getCoords;
  *   [-81, 41]
  * ]]);
  *
- * var isInside = turf.inside(pt, poly);
- *
- * //addToMap
- * pt.properties.isInside = isInside
- * var addToMap = [pt, poly]
+ * turf.inside(pt, poly);
+ * //= true
  */
 module.exports = function (point, polygon, ignoreBoundary) {
     // validation

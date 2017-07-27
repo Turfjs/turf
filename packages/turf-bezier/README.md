@@ -18,19 +18,19 @@ The bezier spline implementation is by [Leszek Rybicki](http://leszek.rybicki.cc
 
 ```javascript
 var line = turf.lineString([
-    [-76.091308, 18.427501],
-    [-76.695556, 18.729501],
-    [-76.552734, 19.40443],
-    [-74.61914, 19.134789],
-    [-73.652343, 20.07657],
-    [-73.157958, 20.210656]
+  [-76.091308, 18.427501],
+  [-76.695556, 18.729501],
+  [-76.552734, 19.40443],
+  [-74.61914, 19.134789],
+  [-73.652343, 20.07657],
+  [-73.157958, 20.210656]
 ]);
 
 var curved = turf.bezier(line);
 
 //addToMap
-curved.properties = { stroke: '#0f0' };
 var addToMap = [line, curved]
+curved.properties = { stroke: '#0F0' };
 ```
 
 Returns **[Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;[LineString](http://geojson.org/geojson-spec.html#linestring)>** curved line

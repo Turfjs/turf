@@ -14,14 +14,8 @@ Converts (Multi)LineString(s) to Polygon(s).
 **Examples**
 
 ```javascript
-var line = {
-  'type': 'Feature',
-  'properties': {},
-  'geometry': {
-    'type': 'LineString',
-    'coordinates': [[125, -30], [145, -30], [145, -20], [125, -20], [125, -30]]
-  }
-}
+var line = turf.lineString([[125, -30], [145, -30], [145, -20], [125, -20], [125, -30]]);
+
 var polygon = turf.lineStringToPolygon(line);
 
 //addToMap

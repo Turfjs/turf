@@ -12,14 +12,7 @@ using [earcut](https://github.com/mapbox/earcut).
 **Examples**
 
 ```javascript
-var poly = {
-  "type": "Feature",
-  "properties": {},
-  "geometry": {
-    "type": "Polygon",
-    "coordinates": [[[11, 0], [22, 4], [31, 0], [31, 11], [21, 15], [11, 11], [11, 0]]]
-  }
-}
+var poly = turf.polygon([[[11, 0], [22, 4], [31, 0], [31, 11], [21, 15], [11, 11], [11, 0]]]);
 var triangles = turf.tesselate(poly);
 
 //addToMap
