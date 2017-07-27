@@ -2,7 +2,7 @@
 
 # booleanOverlap
 
-Compares two geometries of the same dimension and returns true if their intersection set results in a geometry different from both but of the same dimension. It applies to Polygon/Polygon, LineString/LineString, Multipoint/Multipoint, MultiLineString/MultiLineString and MultiPolygon/MultiPolygon
+Compares two geometries of the same dimension and returns true if their intersection set results in a geometry different from both but of the same dimension. It applies to Polygon/Polygon, LineString/LineString, Multipoint/Multipoint, MultiLineString/MultiLineString and MultiPolygon/MultiPolygon. See [spatial relations](http://edndoc.esri.com/arcsde/9.0/general_topics/understand_spatial_relations.htm).
 
 **Parameters**
 
