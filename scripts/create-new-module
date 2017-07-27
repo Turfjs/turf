@@ -172,7 +172,7 @@ test('turf-${decamelizeName}', t => {
 // Create README.md
 fs.writeFileSync(path.join(folderPath, 'README.md'), `# @turf/${decamelizeName}
 
-# ${decamelizeName}
+# ${camelcaseName}
 
 <DESCRIPTION>
 
