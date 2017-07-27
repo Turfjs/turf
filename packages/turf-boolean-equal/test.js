@@ -2,6 +2,7 @@ const glob = require('glob');
 const path = require('path');
 const test = require('tape');
 const load = require('load-json-file');
+const shapely = require('boolean-shapely');
 const {point, lineString, polygon} = require('@turf/helpers');
 const equal = require('./');
 
@@ -37,9 +38,9 @@ const poly2 = polygon([[[8.5, 50], [9.5, 50], [9.5, 49], [8.5, 49], [8.5, 50]]])
 const poly3 = polygon([[[10, 50], [10.5, 50], [10.5, 49], [10, 49], [10, 50]]]);
 
 test('turf-boolean-equal -- geometries', t => {
-    t.true(equal(line1.geometry, line2.geometry), `[true] LineString geometry`);
-    t.true(equal(poly1.geometry, poly2.geometry), `[true] Polygon geometry`);
-    t.false(equal(poly1.geometry, poly3.geometry), `[false] Polygon geometry`);
+    t.true(equal(line1.geometry, line2.geometry), '[true] LineString geometry');
+    t.true(equal(poly1.geometry, poly2.geometry), '[true] Polygon geometry');
+    t.false(equal(poly1.geometry, poly3.geometry), '[false] Polygon geometry');
     t.end();
 });
 
