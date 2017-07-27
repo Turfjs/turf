@@ -1,13 +1,10 @@
 var meta = require('@turf/meta');
-var helpers = require('@turf/helpers');
 var invariant = require('@turf/invariant');
 var lineOverlap = require('@turf/line-overlap');
 var lineIntersect = require('@turf/line-intersect');
 var GeojsonEquality = require('geojson-equality');
 var coordAll = meta.coordAll;
-var lineString = helpers.lineString;
-var flattenEach = meta.flattenEach;
-var coordReduce = meta.coordReduce;
+var segmentEach = meta.segmentEach;
 var getGeomType = invariant.getGeomType;
 
 /**
@@ -77,20 +74,3 @@ module.exports = function (feature1, feature2) {
 
     return overlap > 0;
 };
-
-// todo: replace with new @turf/meta.segmentEach
-function segmentEach(geojson, callback) {
-    var currentIndex = 0;
-    flattenEach(geojson, function (feature, featureIndex, featureSubIndex) {
-        // (Multi)Point geometries do not contain segments therefore they are ignored during this operation.
-        var type = feature.geometry.type;
-        if (type === 'Point' || type === 'MultiPoint') return;
-        // Generate 2-vertex line segments
-        coordReduce(feature, function (previousCoords, currentCoords) {
-            var currentSegment = lineString([previousCoords, currentCoords], feature.properties);
-            callback(currentSegment, currentIndex, featureIndex, featureSubIndex);
-            currentIndex++;
-            return currentCoords;
-        });
-    });
-}
