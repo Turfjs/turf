@@ -69,19 +69,19 @@ const suite = new Benchmark.Suite('turf-meta');
 Object.keys(fixtures).forEach(name => {
     const geojson = fixtures[name];
     suite
-        .add('segmentEach   - ' + name, () => meta.segmentEach(geojson, () => {}))
-        .add('segmentReduce - ' + name, () => meta.segmentReduce(geojson, () => {}))
-        .add('flattenEach   - ' + name, () => meta.flattenEach(geojson, () => {}))
-        .add('flattenReduce - ' + name, () => meta.flattenReduce(geojson, () => {}))
+        // .add('segmentEach   - ' + name, () => meta.segmentEach(geojson, () => {}))
+        // .add('segmentReduce - ' + name, () => meta.segmentReduce(geojson, () => {}))
+        // .add('flattenEach   - ' + name, () => meta.flattenEach(geojson, () => {}))
+        // .add('flattenReduce - ' + name, () => meta.flattenReduce(geojson, () => {}))
         .add('coordEach     - ' + name, () => meta.coordEach(geojson, () => {}))
         .add('coordReduce   - ' + name, () => meta.coordReduce(geojson, () => {}))
-        .add('propEach      - ' + name, () => meta.propEach(geojson, () => {}))
-        .add('propReduce    - ' + name, () => meta.propReduce(geojson, () => {}))
-        .add('geomEach      - ' + name, () => meta.geomEach(geojson, () => {}))
-        .add('geomReduce    - ' + name, () => meta.geomReduce(geojson, () => {}))
-        .add('featureEach   - ' + name, () => meta.featureEach(geojson, () => {}))
-        .add('featureReduce - ' + name, () => meta.featureReduce(geojson, () => {}))
-        .add('coordAll      - ' + name, () => meta.coordAll(geojson));
+        // .add('propEach      - ' + name, () => meta.propEach(geojson, () => {}))
+        // .add('propReduce    - ' + name, () => meta.propReduce(geojson, () => {}))
+        // .add('geomEach      - ' + name, () => meta.geomEach(geojson, () => {}))
+        // .add('geomReduce    - ' + name, () => meta.geomReduce(geojson, () => {}))
+        // .add('featureEach   - ' + name, () => meta.featureEach(geojson, () => {}))
+        // .add('featureReduce - ' + name, () => meta.featureReduce(geojson, () => {}))
+        // .add('coordAll      - ' + name, () => meta.coordAll(geojson));
 });
 
 suite
