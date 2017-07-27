@@ -10,7 +10,7 @@ var getGeomType = invariant.getGeomType;
 /**
  * Compares two geometries of the same dimension and returns true if their intersection set results in a geometry
  * different from both but of the same dimension. It applies to Polygon/Polygon, LineString/LineString,
- * Multipoint/Multipoint, MultiLineString/MultiLineString and MultiPolygon/MultiPolygon
+ * Multipoint/Multipoint, MultiLineString/MultiLineString and MultiPolygon/MultiPolygon.
  *
  * @name booleanOverlap
  * @param  {Geometry|Feature<LineString|MultiLineString|Polygon|MultiPolygon>} feature1 input
@@ -35,9 +35,8 @@ module.exports = function (feature1, feature2) {
     if (type1 !== type2) throw new Error('features must be of the same type');
     if (type1 === 'Point') throw new Error('Point geometry not supported');
 
-    // false if features are equal
-    var considerDirection = (type1 === 'LineString' && feature1.coor);
-    var equality = new GeojsonEquality({direction: considerDirection, precision: 6});
+    // features must be not equal
+    var equality = new GeojsonEquality({precision: 6});
     if (equality.compare(feature1, feature2)) return false;
 
     var overlap = 0;

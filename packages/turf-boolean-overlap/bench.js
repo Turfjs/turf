@@ -40,7 +40,7 @@ const Benchmark = require('benchmark');
  * simple-lines x 8,880 ops/sec ±3.63% (75 runs sampled)
  * single-multipoints x 281,914 ops/sec ±2.27% (76 runs sampled)
  */
-const suite = new Benchmark.Suite('turf-boolean-disjoint');
+const suite = new Benchmark.Suite('turf-boolean-overlap');
 glob.sync(path.join(__dirname, 'test', '**', '*.geojson')).forEach(filepath => {
     const {name} = path.parse(filepath);
     const geojson = load.sync(filepath);

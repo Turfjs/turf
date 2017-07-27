@@ -21,7 +21,8 @@
     "gis",
     "boolean",
     "de-9im",
-    "overlap"
+    "overlap",
+    "boolean-overlap"
   ],
   "author": "Turf Authors",
   "contributors": [
