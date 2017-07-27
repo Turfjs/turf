@@ -4,7 +4,8 @@
   "description": "a node.js library for performing geospatial operations with geojson",
   "scripts": {
     "test": "npm run lint && lerna bootstrap && tap packages/*/test.js && npm run types",
-    "lint": "eslint packages",
+    "lint": "eslint packages/turf-*/index.js",
+    "postlint": "documentation lint packages/turf-*/index.js",
     "types": "tsc",
     "docs": "node ./scripts/generate-readmes"
   },

@@ -465,7 +465,7 @@ function geomEach(geojson, callback) {
  * @param {Geometry<any>} currentGeometry The current Feature being processed.
  * @param {number} currentIndex The index of the current element being processed in the
  * array.Starts at index 0, if an initialValue is provided, and at index 1 otherwise.
- * @param {object} currentProperties The current feature properties being processed.
+ * @param {Object} currentProperties The current feature properties being processed.
  */
 
 /**
@@ -738,7 +738,6 @@ function segmentReduce(geojson, callback, initialValue) {
 
 /**
  * Create Feature
- * @turf/helpers
  *
  * @private
  * @param {Geometry} geometry GeoJSON Geometry
@@ -757,7 +756,6 @@ function feature(geometry, properties) {
 
 /**
  * Create LineString
- * @turf/helpers
  *
  * @private
  * @param {Array<Array<number>>} coordinates Line Coordinates

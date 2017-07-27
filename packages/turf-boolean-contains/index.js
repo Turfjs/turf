@@ -14,7 +14,7 @@ var getGeomType = invariant.getGeomType;
  * @name booleanContains
  * @param {Geometry|Feature<any>} feature1 GeoJSON Feature or Geometry
  * @param {Geometry|Feature<any>} feature2 GeoJSON Feature or Geometry
- * @returns {Boolean} true/false
+ * @returns {boolean} true/false
  * @example
  * const line = turf.lineString([[1, 1], [1, 2], [1, 3], [1, 4]]);
  * const point = turf.point([1, 2]);
@@ -196,7 +196,7 @@ function isLineInPoly(polygon, linestring) {
  * @private
  * @param {Geometry|Feature<Polygon>} feature1 Polygon1
  * @param {Geometry|Feature<Polygon>} feature2 Polygon2
- * @returns {Boolean} true/false
+ * @returns {boolean} true/false
  */
 function isPolyInPoly(feature1, feature2) {
     var poly1Bbox = calcBbox(feature1);
@@ -217,8 +217,8 @@ function isPolyInPoly(feature1, feature2) {
  * @param {Array} lineSegmentStart coord pair of start of line
  * @param {Array} lineSegmentEnd coord pair of end of line
  * @param {Array} point coord pair of point to check
- * @param {Boolean} incEnd whether the point is allowed to fall on the line ends
- * @returns {Boolean} true/false
+ * @param {boolean} incEnd whether the point is allowed to fall on the line ends
+ * @returns {boolean} true/false
  */
 function isPointOnLineSegment(lineSegmentStart, lineSegmentEnd, point, incEnd) {
     var dxc = point[0] - lineSegmentStart[0];
