@@ -27,69 +27,83 @@
  * });
  */
 function coordEach(geojson, callback, excludeWrapCoord) {
+    // Handles null Geometry -- Skips this GeoJSON
+    if (geojson === null) return;
     var i, j, k, g, l, geometry, stopG, coords,
         geometryMaybeCollection,
         wrapShrink = 0,
         currentIndex = 0,
         isGeometryCollection,
-        isFeatureCollection = geojson.type === 'FeatureCollection',
-        isFeature = geojson.type === 'Feature',
+        type = geojson.type,
+        isFeatureCollection = type === 'FeatureCollection',
+        isFeature = type === 'Feature',
         stop = isFeatureCollection ? geojson.features.length : 1;
 
-  // This logic may look a little weird. The reason why it is that way
-  // is because it's trying to be fast. GeoJSON supports multiple kinds
-  // of objects at its root: FeatureCollection, Features, Geometries.
-  // This function has the responsibility of handling all of them, and that
-  // means that some of the `for` loops you see below actually just don't apply
-  // to certain inputs. For instance, if you give this just a
-  // Point geometry, then both loops are short-circuited and all we do
-  // is gradually rename the input until it's called 'geometry'.
-  //
-  // This also aims to allocate as few resources as possible: just a
-  // few numbers and booleans, rather than any temporary arrays as would
-  // be required with the normalization approach.
+    // This logic may look a little weird. The reason why it is that way
+    // is because it's trying to be fast. GeoJSON supports multiple kinds
+    // of objects at its root: FeatureCollection, Features, Geometries.
+    // This function has the responsibility of handling all of them, and that
+    // means that some of the `for` loops you see below actually just don't apply
+    // to certain inputs. For instance, if you give this just a
+    // Point geometry, then both loops are short-circuited and all we do
+    // is gradually rename the input until it's called 'geometry'.
+    //
+    // This also aims to allocate as few resources as possible: just a
+    // few numbers and booleans, rather than any temporary arrays as would
+    // be required with the normalization approach.
     for (i = 0; i < stop; i++) {
 
         geometryMaybeCollection = (isFeatureCollection ? geojson.features[i].geometry :
         (isFeature ? geojson.geometry : geojson));
-        isGeometryCollection = geometryMaybeCollection.type === 'GeometryCollection';
+        isGeometryCollection = (geometryMaybeCollection) ? geometryMaybeCollection.type === 'GeometryCollection' : false;
         stopG = isGeometryCollection ? geometryMaybeCollection.geometries.length : 1;
 
         for (g = 0; g < stopG; g++) {
             geometry = isGeometryCollection ?
             geometryMaybeCollection.geometries[g] : geometryMaybeCollection;
+
+            // Handles null Geometry -- Skips this geometry
+            if (geometry === null) continue;
             coords = geometry.coordinates;
+            var geomType = geometry.type;
 
-            wrapShrink = (excludeWrapCoord &&
-                (geometry.type === 'Polygon' || geometry.type === 'MultiPolygon')) ?
-                1 : 0;
+            wrapShrink = (excludeWrapCoord && (geomType === 'Polygon' || geomType === 'MultiPolygon')) ? 1 : 0;
 
-            if (geometry.type === 'Point') {
+            switch (geomType) {
+            case null:
+                break;
+            case 'Point':
                 callback(coords, currentIndex);
                 currentIndex++;
-            } else if (geometry.type === 'LineString' || geometry.type === 'MultiPoint') {
+                break;
+            case 'LineString':
+            case 'MultiPoint':
                 for (j = 0; j < coords.length; j++) {
                     callback(coords[j], currentIndex);
                     currentIndex++;
                 }
-            } else if (geometry.type === 'Polygon' || geometry.type === 'MultiLineString') {
+                break;
+            case 'Polygon':
+            case 'MultiLineString':
                 for (j = 0; j < coords.length; j++)
                     for (k = 0; k < coords[j].length - wrapShrink; k++) {
                         callback(coords[j][k], currentIndex);
                         currentIndex++;
                     }
-            } else if (geometry.type === 'MultiPolygon') {
+                break;
+            case 'MultiPolygon':
                 for (j = 0; j < coords.length; j++)
                     for (k = 0; k < coords[j].length; k++)
                         for (l = 0; l < coords[j][k].length - wrapShrink; l++) {
                             callback(coords[j][k][l], currentIndex);
                             currentIndex++;
                         }
-            } else if (geometry.type === 'GeometryCollection') {
+                break;
+            case 'GeometryCollection':
                 for (j = 0; j < geometry.geometries.length; j++)
                     coordEach(geometry.geometries[j], callback, excludeWrapCoord);
-            } else {
-                throw new Error('Unknown Geometry Type');
+                break;
+            default: throw new Error('Unknown Geometry Type');
             }
         }
     }
@@ -417,28 +431,33 @@ function geomEach(geojson, callback) {
         (isFeature ? geojson.geometry : geojson));
         geometryProperties = (isFeatureCollection ? geojson.features[i].properties :
                               (isFeature ? geojson.properties : {}));
-        isGeometryCollection = geometryMaybeCollection.type === 'GeometryCollection';
+        isGeometryCollection = (geometryMaybeCollection) ? geometryMaybeCollection.type === 'GeometryCollection' : false;
         stopG = isGeometryCollection ? geometryMaybeCollection.geometries.length : 1;
 
         for (g = 0; g < stopG; g++) {
             geometry = isGeometryCollection ?
             geometryMaybeCollection.geometries[g] : geometryMaybeCollection;
-
-            if (geometry.type === 'Point' ||
-                geometry.type === 'LineString' ||
-                geometry.type === 'MultiPoint' ||
-                geometry.type === 'Polygon' ||
-                geometry.type === 'MultiLineString' ||
-                geometry.type === 'MultiPolygon') {
+            var type = (geometry === null) ? null : geometry.type;
+            switch (type) {
+            case null:
+            case 'Point':
+            case 'LineString':
+            case 'MultiPoint':
+            case 'Polygon':
+            case 'MultiLineString':
+            case 'MultiPolygon': {
                 callback(geometry, currentIndex, geometryProperties);
                 currentIndex++;
-            } else if (geometry.type === 'GeometryCollection') {
+                break;
+            }
+            case 'GeometryCollection': {
                 for (j = 0; j < geometry.geometries.length; j++) {
                     callback(geometry.geometries[j], currentIndex, geometryProperties);
                     currentIndex++;
                 }
-            } else {
-                throw new Error('Unknown Geometry Type');
+                break;
+            }
+            default: throw new Error('Unknown Geometry Type');
             }
         }
     }
@@ -531,9 +550,10 @@ function geomReduce(geojson, callback, initialValue) {
  */
 function flattenEach(geojson, callback) {
     geomEach(geojson, function (geometry, index, properties) {
-
         // Callback for single geometry
-        switch (geometry.type) {
+        var type = (geometry === null) ? null : geometry.type;
+        switch (type) {
+        case null:
         case 'Point':
         case 'LineString':
         case 'Polygon':
@@ -544,7 +564,7 @@ function flattenEach(geojson, callback) {
         var geomType;
 
         // Callback for multi-geometry
-        switch (geometry.type) {
+        switch (type) {
         case 'MultiPoint':
             geomType = 'Point';
             break;
@@ -661,6 +681,8 @@ function flattenReduce(geojson, callback, initialValue) {
 function segmentEach(geojson, callback) {
     flattenEach(geojson, function (feature, currentIndex) {
         var currentSubIndex = 0;
+        // Exclude null Geometries
+        if (!feature.geometry) return;
         // (Multi)Point geometries do not contain segments therefore they are ignored during this operation.
         var type = feature.geometry.type;
         if (type === 'Point' || type === 'MultiPoint') return;
@@ -735,7 +757,6 @@ function segmentReduce(geojson, callback, initialValue) {
     return previousValue;
 }
 
-
 /**
  * Create Feature
  *
@@ -745,7 +766,7 @@ function segmentReduce(geojson, callback, initialValue) {
  * @returns {Feature} GeoJSON Feature
  */
 function feature(geometry, properties) {
-    if (!geometry) throw new Error('No geometry passed');
+    if (geometry === undefined) throw new Error('No geometry passed');
 
     return {
         type: 'Feature',

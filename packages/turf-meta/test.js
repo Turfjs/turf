@@ -1,6 +1,16 @@
 const test = require('tape');
-const {point, lineString, polygon, featureCollection} = require('@turf/helpers');
+const {point, lineString, feature, polygon, featureCollection} = require('@turf/helpers');
 const meta = require('./');
+const {
+    featureEach,
+    featureReduce,
+    flattenEach,
+    flattenReduce,
+    geomEach,
+    geomReduce,
+    coordEach,
+    coordReduce
+} = require('./');
 
 const pointGeometry = {
     type: 'Point',
@@ -406,6 +416,40 @@ test('flattenReduce#previous-feature+initialValue', t => {
     t.equal(lastSubIndex, 1);
     t.equal(features.length, 2);
     t.deepEqual(sum, features[features.length - 1]);
+    t.end();
+});
+
+// https://github.com/Turfjs/turf/issues/853
+test('null geometries', t => {
+    const fc = featureCollection([
+        feature(null),
+        feature(null)
+    ]);
+
+    // Each operations
+    featureEach(fc, feature => t.equal(feature.geometry, null, 'featureEach'));
+    geomEach(fc, geometry => t.equal(geometry, null), 'geomEach');
+    flattenEach(fc, feature => t.equal(feature.geometry, null, 'flattenEach'));
+    coordEach(fc, () => t.fail('no coordinates should be found'));
+
+    // Reduce operations
+    t.equal(featureReduce(fc, prev => prev += 1, 0), 2, 'featureReduce');
+    t.equal(geomReduce(fc, prev => prev += 1, 0), 2, 'geomReduce');
+    t.equal(flattenReduce(fc, prev => prev += 1, 0), 2, 'flattenReduce');
+    t.equal(coordReduce(fc, prev => prev += 1, 0), 0, 'coordReduce');
+    t.end();
+});
+
+test('null geometries -- index', t => {
+    const fc = featureCollection([
+        feature(null), // index 0
+        point([0, 0]), // index 1
+        feature(null), // index 2
+        lineString([[1, 1], [0, 0]]) // index 3
+    ]);
+    t.deepEqual(meta.coordReduce(fc, (prev, coords, coordIndex) => prev.concat(coordIndex), []), [0, 1, 2], 'coordReduce');
+    t.deepEqual(meta.geomReduce(fc, (prev, geom, featureIndex) => prev.concat(featureIndex), []), [0, 1, 2, 3], 'geomReduce');
+    t.deepEqual(meta.flattenReduce(fc, (prev, feature, featureIndex) => prev.concat(featureIndex), []), [0, 1, 2, 3], 'flattenReduce');
     t.end();
 });
 
