@@ -27,12 +27,14 @@
  * });
  */
 function coordEach(geojson, callback, excludeWrapCoord) {
+    // Handles null Geometry -- Skips this GeoJSON
+    if (geojson === null) return;
     var i, j, k, g, l, geometry, stopG, coords,
         geometryMaybeCollection,
         wrapShrink = 0,
         currentIndex = 0,
         isGeometryCollection,
-        type = (geojson) ? geojson.type : null,
+        type = geojson.type,
         isFeatureCollection = type === 'FeatureCollection',
         isFeature = type === 'Feature',
         stop = isFeatureCollection ? geojson.features.length : 1;
@@ -59,8 +61,11 @@ function coordEach(geojson, callback, excludeWrapCoord) {
         for (g = 0; g < stopG; g++) {
             geometry = isGeometryCollection ?
             geometryMaybeCollection.geometries[g] : geometryMaybeCollection;
-            coords = (geometry === null) ? null : geometry.coordinates;
-            var geomType = (geometry === null) ? null : geometry.type;
+
+            // Handles null Geometry -- Skips this geometry
+            if (geometry === null) continue;
+            coords = geometry.coordinates;
+            var geomType = geometry.type;
 
             wrapShrink = (excludeWrapCoord && (geomType === 'Polygon' || geomType === 'MultiPolygon')) ? 1 : 0;
 
