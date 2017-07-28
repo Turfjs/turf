@@ -2,7 +2,7 @@
  * Unwrap a coordinate from a Point Feature, Geometry or a single coordinate.
  *
  * @name getCoord
- * @param {Array<any>|Geometry|Feature<Point>} obj any value
+ * @param {Array<number>|Geometry<Point>|Feature<Point>} obj Object
  * @returns {Array<number>} coordinates
  * @example
  * var pt = turf.point([10, 10]);
@@ -11,7 +11,7 @@
  * //= [10, 10]
  */
 function getCoord(obj) {
-    if (!obj) throw new Error('No obj passed');
+    if (!obj) throw new Error('obj is required');
 
     var coordinates = getCoords(obj);
 
@@ -29,8 +29,8 @@ function getCoord(obj) {
  * Unwrap coordinates from a Feature, Geometry Object or an Array of numbers
  *
  * @name getCoords
- * @param {Array<any>|Geometry|Feature<any>} obj any value
- * @returns {Array<any>} coordinates
+ * @param {Array<number>|Geometry|Feature} obj Object
+ * @returns {Array<number>} coordinates
  * @example
  * var poly = turf.polygon([[[119.32, -8.7], [119.55, -8.69], [119.51, -8.54], [119.32, -8.7]]]);
  *
@@ -38,7 +38,7 @@ function getCoord(obj) {
  * //= [[[119.32, -8.7], [119.55, -8.69], [119.51, -8.54], [119.32, -8.7]]]
  */
 function getCoords(obj) {
-    if (!obj) throw new Error('No obj passed');
+    if (!obj) throw new Error('obj is required');
     var coordinates;
 
     // Array of numbers
@@ -149,8 +149,8 @@ function collectionOf(featureCollection, type, name) {
 /**
  * Get Geometry from Feature or Geometry Object
  *
- * @param {Feature<any>|Geometry<any>} geojson GeoJSON Feature or Geometry Object
- * @returns {Geometry<any>} GeoJSON Geometry Object
+ * @param {Feature|Geometry} geojson GeoJSON Feature or Geometry Object
+ * @returns {Geometry|null} GeoJSON Geometry Object
  * @throws {Error} if geojson is not a Feature or Geometry Object
  * @example
  * var point = {
@@ -165,16 +165,16 @@ function collectionOf(featureCollection, type, name) {
  * //={"type": "Point", "coordinates": [110, 40]}
  */
 function getGeom(geojson) {
-    if (!geojson) throw new Error('<geojson> is required');
-    if (geojson.geometry) return geojson.geometry;
+    if (!geojson) throw new Error('geojson is required');
+    if (geojson.geometry !== undefined) return geojson.geometry;
     if (geojson.coordinates || geojson.geometries) return geojson;
-    throw new Error('<geojson> must be a Feature or Geometry Object');
+    throw new Error('geojson must be a valid Feature or Geometry Object');
 }
 
 /**
  * Get Geometry Type from Feature or Geometry Object
  *
- * @param {Feature<any>|Geometry<any>} geojson GeoJSON Feature or Geometry Object
+ * @param {Feature|Geometry} geojson GeoJSON Feature or Geometry Object
  * @returns {string} GeoJSON Geometry Type
  * @throws {Error} if geojson is not a Feature or Geometry Object
  * @example
@@ -190,7 +190,9 @@ function getGeom(geojson) {
  * //="Point"
  */
 function getGeomType(geojson) {
-    return getGeom(geojson).type;
+    if (!geojson) throw new Error('geojson is required');
+    var geom = getGeom(geojson);
+    if (geom) return geom.type;
 }
 
 module.exports = {
