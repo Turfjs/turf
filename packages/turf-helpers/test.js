@@ -385,3 +385,13 @@ test('convertArea', t => {
 
     t.end();
 });
+
+// https://github.com/Turfjs/turf/issues/853
+// https://github.com/Turfjs/turf/pull/866#discussion_r129873661
+test('null geometries', t => {
+    t.equal(feature(null).geometry, null, 'feature');
+    t.equal(featureCollection([feature(null)]).features[0].geometry, null, 'featureCollection');
+    t.equal(geometryCollection([feature(null).geometry]).geometry.geometries[0], null, 'geometryCollection');
+    t.equal(geometryCollection([]).geometry.geometries.length, 0, 'geometryCollection -- empty');
+    t.end();
+});

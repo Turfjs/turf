@@ -1,11 +1,11 @@
-const test = require('tape');
 const fs = require('fs');
+const test = require('tape');
 const path = require('path');
 const load = require('load-json-file');
 const write = require('write-json-file');
+const {point, feature} = require('@turf/helpers');
 const turfBBox = require('@turf/bbox');
-const featureCollection = require('@turf/helpers').featureCollection;
-const point = require('@turf/helpers').point;
+const {featureCollection} = require('@turf/helpers');
 const bboxClip = require('./');
 
 const directories = {
@@ -34,8 +34,8 @@ test('turf-bbox-clip', t => {
     t.end();
 });
 
-test('turf-bbox-clip errors', t => {
-    t.throws(() => bboxClip(point([5, 10]), [-180, -90, 180, 90]));
+test('turf-bbox-clip -- throws', t => {
+    t.throws(() => bboxClip(point([5, 10]), [-180, -90, 180, 90]), /geometry Point not supported/);
     t.end();
 });
 
@@ -48,3 +48,8 @@ function colorize(feature, color = '#F00', width = 6) {
     };
     return feature;
 }
+
+test('turf-bbox-clip -- null geometries', t => {
+    t.throws(() => bboxClip(feature(null), [-180, -90, 180, 90]), /No valid coordinates/);
+    t.end();
+});

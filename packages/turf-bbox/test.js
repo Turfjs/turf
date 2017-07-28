@@ -1,72 +1,63 @@
-var test = require('tape');
-var fs = require('fs');
-var extent = require('./');
+const test = require('tape');
+const {
+    point,
+    lineString,
+    polygon,
+    feature,
+    featureCollection,
+    multiPolygon,
+    multiLineString} = require('@turf/helpers');
+const bbox = require('./');
 
-// test data
-var fc = require('./test/FeatureCollection');
-var pt  = require('./test/Point');
-var line = require('./test/LineString');
-var poly = require('./test/Polygon');
-var multiLine = require('./test/MultiLineString');
-var multiPoly = require('./test/MultiPolygon');
+// Fixtures
+const pt  = point([102.0, 0.5]);
+const line = lineString([[102.0, -10.0], [103.0, 1.0], [104.0, 0.0], [130.0, 4.0]]);
+const poly = polygon([[[101.0, 0.0], [101.0, 1.0], [100.0, 1.0], [100.0, 0.0], [101.0, 0.0]]]);
+const multiLine = multiLineString([
+  [[100.0, 0.0], [101.0, 1.0]],
+  [[102.0, 2.0], [103.0, 3.0]]
+]);
+const multiPoly = multiPolygon([
+  [[[102.0, 2.0], [103.0, 2.0], [103.0, 3.0], [102.0, 3.0], [102.0, 2.0]]],
+  [[[100.0, 0.0], [101.0, 0.0], [101.0, 1.0], [100.0, 1.0], [100.0, 0.0]], [[100.2, 0.2], [100.8, 0.2], [100.8, 0.8], [100.2, 0.8], [100.2, 0.2]]]
+]);
+const fc = featureCollection([pt, line, poly, multiLine, multiPoly]);
 
-test('extent', function(t){
-  // FeatureCollection
-  var fcExtent = extent(fc);
+test('bbox', t => {
+    // FeatureCollection
+    const fcBBox = bbox(fc);
+    t.deepEqual(fcBBox, [100, -10, 130, 4], 'featureCollection');
 
-  t.ok(fcExtent, 'FeatureCollection');
-  t.equal(fcExtent[0], 20);
-  t.equal(fcExtent[1], -10);
-  t.equal(fcExtent[2], 130);
-  t.equal(fcExtent[3], 4);
+    // Point
+    const ptBBox = bbox(pt);
+    t.deepEqual(ptBBox, [102, 0.5, 102, 0.5], 'point');
 
-  // Point
-  var ptExtent = extent(pt);
-  t.ok(ptExtent, 'Point');
-  t.equal(ptExtent[0], 102);
-  t.equal(ptExtent[1], 0.5);
-  t.equal(ptExtent[2], 102);
-  t.equal(ptExtent[3], 0.5);
+    // Line
+    const lineBBox = bbox(line);
+    t.deepEqual(lineBBox, [102, -10, 130, 4], 'lineString');
 
-  // Line
-  var lineExtent = extent(line);
+    // Polygon
+    const polyExtent = bbox(poly);
+    t.deepEqual(polyExtent, [100, 0, 101, 1], 'polygon');
 
-  t.ok(lineExtent, 'Line');
-  t.equal(lineExtent[0], 102);
-  t.equal(lineExtent[1], -10);
-  t.equal(lineExtent[2], 130);
-  t.equal(lineExtent[3], 4);
+    // MultiLineString
+    const multiLineBBox = bbox(multiLine);
+    t.deepEqual(multiLineBBox, [100, 0, 103, 3], 'multiLineString');
 
-  // Polygon
-  var polyExtent = extent(poly);
+    // MultiPolygon
+    const multiPolyBBox = bbox(multiPoly);
+    t.deepEqual(multiPolyBBox, [100, 0, 103, 3], 'multiPolygon');
 
-  t.ok(polyExtent, 'Polygon');
-  t.equal(polyExtent[0], 100);
-  t.equal(polyExtent[1], 0);
-  t.equal(polyExtent[2], 101);
-  t.equal(polyExtent[3], 1);
 
-  // MultiLineString
-  var multiLineExtent = extent(multiLine);
+    t.end();
+});
 
-  t.ok(multiLineExtent, 'MultiLineString');
-  t.equal(multiLineExtent[0], 100);
-  t.equal(multiLineExtent[1], 0);
-  t.equal(multiLineExtent[2], 103);
-  t.equal(multiLineExtent[3], 3);
+test('bbox -- throws', t => {
+    t.throws(() => bbox({}), /Unknown Geometry Type/, 'unknown geometry type error');
+    t.end();
+});
 
-  // MultiPolygon
-  var multiPolyExtent = extent(multiPoly);
-
-  t.ok(multiPolyExtent, 'MultiPolygon');
-  t.equal(multiPolyExtent[0], 100);
-  t.equal(multiPolyExtent[1], 0);
-  t.equal(multiPolyExtent[2], 103);
-  t.equal(multiPolyExtent[3], 3);
-
-  t.throws(function() {
-      var multiPolyExtent = extent({});
-  }, /Unknown Geometry Type/, 'unknown geometry type error');
-
-  t.end();
+test('bbox -- null geometries', t => {
+    t.deepEqual(bbox(feature(null)), [Infinity, Infinity, -Infinity, -Infinity]);
+    t.end();
 });
