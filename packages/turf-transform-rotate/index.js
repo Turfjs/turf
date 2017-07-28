@@ -19,7 +19,7 @@ var getCoords = invariant.getCoords;
  * @returns {GeoJSON} the rotated GeoJSON feature
  * @example
  * var poly = turf.polygon([[[0,29],[3.5,29],[2.5,32],[0,29]]]);
- * var rotatedPoly = turf.transformRotate(poly, 100, [15, 15]);
+ * var rotatedPoly = turf.transformRotate(poly, 10, [0, 25]);
  *
  * //addToMap
  * var addToMap = [poly, rotatedPoly];

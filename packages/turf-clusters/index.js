@@ -4,6 +4,7 @@ var featureCollection = require('@turf/helpers').featureCollection;
 /**
  * Get Cluster
  *
+ * @name getCluster
  * @param {FeatureCollection} geojson GeoJSON Features
  * @param {*} filter Filter used on GeoJSON properties to get Cluster
  * @returns {FeatureCollection} Single Cluster filtered by GeoJSON Properties
@@ -56,6 +57,7 @@ function getCluster(geojson, filter) {
 /**
  * clusterEach
  *
+ * @name clusterEach
  * @param {FeatureCollection} geojson GeoJSON Features
  * @param {string|number} property GeoJSON property key/value used to create clusters
  * @param {Function} callback a method that takes (cluster, clusterValue, currentIndex)
