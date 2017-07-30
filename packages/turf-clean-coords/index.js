@@ -1,8 +1,7 @@
-var meta = require('@turf/meta');
 var clone = require('@turf/clone');
-var coordAll = meta.coordAll;
 var invariant = require('@turf/invariant');
 var getCoords = invariant.getCoords;
+var getGeomType = invariant.getGeomType;
 
 /**
  * Removes redundant coordinates from a (Multi)LineString or (Multi)Polygon; ignores (Multi)Point.
@@ -19,8 +18,51 @@ var getCoords = invariant.getCoords;
  */
 module.exports = function (geojson, mutate) {
     if (!geojson) throw new Error('geojson is required');
+    var type = getGeomType(geojson);
+    var newPoints = [];
 
-    var points = getCoords(geojson);
+    var coords = getCoords(geojson);
+
+    switch (type) {
+    case 'LineString':
+        newPoints = cleanCoords(geojson, mutate);
+        break;
+    case 'MultiLineString':
+    case 'Polygon':
+        for (var i = 0; i < coords.length; i++) {
+            var line = coords[i];
+            newPoints.push(cleanCoords(line));
+        }
+        break;
+    case 'MultiPolygon':
+        for (var j = 0; j < coords.length; j++) {
+            var polys = coords[j];
+            var polyPoints = [];
+            for (var p = 0; p < polys.length; p++) {
+                var ring = polys[p];
+                polyPoints.push(cleanCoords(ring));
+            }
+            newPoints.push(polyPoints);
+        }
+        break;
+    case 'Point':
+    case 'MultiPoint':
+        newPoints = coords;
+        break;
+    default:
+        throw new Error(type + ' geometry not supported');
+    }
+
+    var output = (mutate === true) ? geojson : clone(geojson, true);
+
+    if (output.coordinates) output.coordinates = newPoints;
+    else output.geometry.coordinates = newPoints;
+
+    return output;
+};
+
+function cleanCoords(line) {
+    var points = getCoords(line);
 
     var prevPoint, point, nextPoint;
     var newPoints = [];
@@ -36,18 +78,9 @@ module.exports = function (geojson, mutate) {
             newPoints.push(point);
         }
     }
-    if (nextPoint[0] !== point[0] || nextPoint[1] !== point[1]) newPoints.push(nextPoint);
-
-    var output = (mutate === true)
-        ? geojson
-        : clone(geojson, true);
-    if (output.coordinates)
-        output.coordinates = newPoints;
-    else
-        output.geometry.coordinates = newPoints;
-
-    return output;
-};
+    newPoints.push(nextPoint);
+    return newPoints;
+}
 
 /**
  * Returns if `point` is on the segment between `start` and `end`.

@@ -1,4 +1,4 @@
-# @turf/ clean-coords
+# @turf/clean-coords
 
 # cleanCoords
 
