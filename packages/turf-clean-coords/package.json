@@ -36,5 +36,7 @@
     "load-json-file": "^2.0.0",
     "tape": "^4.6.3"
   },
-  "dependencies": {}
+  "dependencies": {
+    "@turf/turf": "4.5.2"
+  }
 }
