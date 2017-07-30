@@ -26,7 +26,7 @@ turf.featureEach(points, function(point) {
 var grid = turf.interpolate(points, 100, 'points', 'solRad', 'miles');
 
 //addToMap
-var addToMap = grid;
+var addToMap = [grid];
 ```
 
 Returns **[FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects)&lt;([Point](http://geojson.org/geojson-spec.html#point) \| [Polygon](http://geojson.org/geojson-spec.html#polygon))>** grid of points or polygons with interpolated 'property'

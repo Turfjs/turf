@@ -12,9 +12,11 @@ Takes a [FeatureCollection](http://geojson.org/geojson-spec.html#feature-collect
 **Examples**
 
 ```javascript
-var points = turf.random('points', 1000);
+var points = turf.random('points', 100, {
+  bbox: [-80, 30, -60, 60]
+});
 
-var sample = turf.sample(points, 10);
+var sample = turf.sample(points, 5);
 
 //addToMap
 var addToMap = [points, sample]

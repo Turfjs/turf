@@ -13,8 +13,8 @@ Takes a bounding box and a cell depth and returns a set of triangular [polygons]
 **Examples**
 
 ```javascript
-var bbox = [-96,31,-84,40]
-var cellSize = 10;
+var bbox = [-95, 30 ,-85, 40];
+var cellSize = 50;
 var units = 'miles';
 
 var triangleGrid = turf.triangleGrid(bbox, cellSize, units);
