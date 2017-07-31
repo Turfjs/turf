@@ -2,7 +2,7 @@ const fs = require('fs');
 const test = require('tape');
 const path = require('path');
 const load = require('load-json-file');
-const {lineString, multiPolygon} = require('@turf/helpers');
+const {multiPoint, lineString, multiPolygon} = require('@turf/helpers');
 const write = require('write-json-file');
 const cleanCoords = require('./');
 
@@ -26,6 +26,11 @@ test('turf-clean-coords', t => {
         if (process.env.REGEN) write.sync(directories.out + filename, results);
         t.deepEqual(results, load.sync(directories.out + filename), name);
     }
+    t.end();
+});
+
+test('turf-clean-coords -- extras', t => {
+    t.equal(cleanCoords(multiPoint([[0, 0], [0, 0], [2, 2]])).geometry.coordinates.length, 2);
     t.end();
 });
 

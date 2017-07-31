@@ -7,11 +7,11 @@ var getGeomType = invariant.getGeomType;
  * Removes redundant coordinates from a (Multi)LineString or (Multi)Polygon; ignores (Multi)Point.
  *
  * @name cleanCoords
- * @param {Geometry|Feature<any>} geojson Feature or Geometry
+ * @param {Geometry|Feature} geojson Feature or Geometry
  * @param {boolean} [mutate=false] allows GeoJSON input to be mutated
- * @returns {Geometry|Feature<any>} the cleaned input Feature/Geometry
+ * @returns {Geometry|Feature} the cleaned input Feature/Geometry
  * @example
- * var line = trf.lineString([[0, 0], [0, 2], [0, 5], [0, 8], [0, 8], [0, 10]]);
+ * var line = turf.lineString([[0, 0], [0, 2], [0, 5], [0, 8], [0, 8], [0, 10]]);
  *
  * var cleaned = turf.cleanCoords(line).geometry.coordinates;
  * //= [[0, 0], [0, 10]]
@@ -19,19 +19,20 @@ var getGeomType = invariant.getGeomType;
 module.exports = function (geojson, mutate) {
     if (!geojson) throw new Error('geojson is required');
     var type = getGeomType(geojson);
-    var newPoints = [];
-
     var coords = getCoords(geojson);
+
+    // Store new "clean" points in this Array
+    var newCoords = [];
 
     switch (type) {
     case 'LineString':
-        newPoints = cleanCoords(geojson, mutate);
+        newCoords = cleanCoords(geojson, mutate);
         break;
     case 'MultiLineString':
     case 'Polygon':
         for (var i = 0; i < coords.length; i++) {
             var line = coords[i];
-            newPoints.push(cleanCoords(line));
+            newCoords.push(cleanCoords(line));
         }
         break;
     case 'MultiPolygon':
@@ -42,23 +43,31 @@ module.exports = function (geojson, mutate) {
                 var ring = polys[p];
                 polyPoints.push(cleanCoords(ring));
             }
-            newPoints.push(polyPoints);
+            newCoords.push(polyPoints);
         }
         break;
     case 'Point':
+        return geojson;
     case 'MultiPoint':
-        newPoints = coords;
+        var existing = {};
+        for (var i = 0; i < coords.length; i++) {
+            var point = coords[i];
+            var key = point.join('-');
+            if (!existing.hasOwnProperty(key)) {
+                newCoords.push(point);
+                existing[key] = true
+            }
+        }
         break;
     default:
         throw new Error(type + ' geometry not supported');
     }
 
-    var output = (mutate === true) ? geojson : clone(geojson, true);
+    if (mutate !== true) geojson = clone(geojson, false);
 
-    if (output.coordinates) output.coordinates = newPoints;
-    else output.geometry.coordinates = newPoints;
-
-    return output;
+    if (geojson.coordinates) geojson.coordinates = newCoords;
+    else geojson.geometry.coordinates = newCoords;
+    return geojson;
 };
 
 function cleanCoords(line) {
