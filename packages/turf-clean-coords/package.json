@@ -32,10 +32,11 @@
   "homepage": "https://github.com/Turfjs/turf",
   "devDependencies": {
     "@turf/helpers": "4.5.2",
+    "@turf/truncate": "^4.5.2",
     "benchmark": "^2.1.4",
-    "write-json-file": "^2.2.0",
     "load-json-file": "^2.0.0",
-    "tape": "^4.6.3"
+    "tape": "^4.6.3",
+    "write-json-file": "^2.2.0"
   },
   "dependencies": {
     "@turf/clone": "4.5.2",

@@ -2,7 +2,8 @@ const fs = require('fs');
 const test = require('tape');
 const path = require('path');
 const load = require('load-json-file');
-const {multiPoint, lineString, multiPolygon} = require('@turf/helpers');
+const truncate = require('@turf/truncate');
+const {point, multiPoint, lineString, multiPolygon, polygon} = require('@turf/helpers');
 const write = require('write-json-file');
 const cleanCoords = require('./');
 
@@ -30,7 +31,15 @@ test('turf-clean-coords', t => {
 });
 
 test('turf-clean-coords -- extras', t => {
-    t.equal(cleanCoords(multiPoint([[0, 0], [0, 0], [2, 2]])).geometry.coordinates.length, 2);
+    t.equal(cleanCoords(point([0, 0])).geometry.coordinates.length, 2, 'point');
+    t.equal(cleanCoords(lineString([[0, 0], [1, 1], [2, 2]])).geometry.coordinates.length, 2, 'lineString');
+    t.equal(cleanCoords(polygon([[[0, 0], [1, 1], [2, 2], [0, 2], [0, 0]]])).geometry.coordinates[0].length, 4, 'polygon');
+    t.equal(cleanCoords(multiPoint([[0, 0], [0, 0], [2, 2]])).geometry.coordinates.length, 2, 'multiPoint');
+    t.end();
+});
+
+test('turf-clean-coords -- truncate', t => {
+    t.equal(cleanCoords(truncate(lineString([[0, 0], [1.1, 1.123], [2.12, 2.32], [3, 3]]), 0)).geometry.coordinates.length, 2);
     t.end();
 });
 
