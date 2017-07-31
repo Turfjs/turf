@@ -73,6 +73,12 @@ module.exports = function (geojson, mutate) {
     return geojson;
 };
 
+/**
+ * Clean Coords
+ *
+ * @private
+ * @param {Array<number>|LineString} line Line
+ */
 function cleanCoords(line) {
     var points = getCoords(line);
 
