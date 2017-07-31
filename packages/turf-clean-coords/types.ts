@@ -11,3 +11,6 @@ cleanCoords(multiPt).properties
 // Geometry
 cleanCoords(multiPt.geometry).coordinates
 cleanCoords(multiPt.geometry).type
+
+// Input mutation
+cleanCoords(multiPt.geometry, true)

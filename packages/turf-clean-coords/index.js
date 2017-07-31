@@ -8,6 +8,7 @@ var getGeomType = invariant.getGeomType;
  *
  * @name cleanCoords
  * @param {Geometry|Feature} geojson Feature or Geometry
+ * @param {boolean} [mutate=false] allows GeoJSON input to be mutated
  * @returns {Geometry|Feature} the cleaned input Feature/Geometry
  * @example
  * var line = turf.lineString([[0, 0], [0, 2], [0, 5], [0, 8], [0, 8], [0, 10]]);
@@ -19,7 +20,7 @@ var getGeomType = invariant.getGeomType;
  * turf.cleanCoords(multiPoint).geometry.coordinates;
  * //= [[0, 0], [2, 2]]
  */
-module.exports = function (geojson) {
+module.exports = function (geojson, mutate) {
     if (!geojson) throw new Error('geojson is required');
     var type = getGeomType(geojson);
     var coords = getCoords(geojson);
@@ -62,8 +63,20 @@ module.exports = function (geojson) {
         throw new Error(type + ' geometry not supported');
     }
 
-    if (geojson.coordinates) return geometry(geojson, type, newCoords);
-    else return feature(geojson, type, newCoords);
+    // Support input mutation
+    if (geojson.coordinates) {
+        if (mutate === true) {
+            geojson.coordinates = newCoords;
+            return geojson;
+        }
+        return geometry(geojson, type, newCoords);
+    } else {
+        if (mutate === true) {
+            geojson.geometry.coordinates = newCoords;
+            return geojson;
+        }
+        return feature(geojson, type, newCoords);
+    }
 };
 
 /**
