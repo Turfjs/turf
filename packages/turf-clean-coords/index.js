@@ -54,12 +54,12 @@ module.exports = function (geojson, mutate) {
         return geojson;
     case 'MultiPoint':
         var existing = {};
-        for (var i = 0; i < coords.length; i++) {
-            var point = coords[i];
+        for (var y = 0; y < coords.length; y++) {
+            var point = coords[y];
             var key = point.join('-');
             if (!existing.hasOwnProperty(key)) {
                 newCoords.push(point);
-                existing[key] = true
+                existing[key] = true;
             }
         }
         break;
@@ -78,6 +78,7 @@ module.exports = function (geojson, mutate) {
  *
  * @private
  * @param {Array<number>|LineString} line Line
+ * @returns {Array<number>} Cleaned coordinates
  */
 function cleanCoords(line) {
     var points = getCoords(line);
