@@ -1,3 +1,4 @@
+var helpers = require('@turf/helpers');
 var invariant = require('@turf/invariant');
 var getCoords = invariant.getCoords;
 var getGeomType = invariant.getGeomType;
@@ -91,11 +92,7 @@ function geometry(geojson, type, coordinates) {
  * @returns {Feature} Feature
  */
 function feature(geojson, type, coordinates) {
-    var feat = {
-        type: 'Feature',
-        properties: geojson.properties || {},
-        geometry: geometry(geojson.geometry, type, coordinates)
-    };
+    var feat = helpers.feature(geometry(geojson.geometry, type, coordinates), geojson.properties);
     if (geojson.id) feat.id = geojson.id;
     if (geojson.bbox) feat.bbox = geojson.bbox;
     return feat;
