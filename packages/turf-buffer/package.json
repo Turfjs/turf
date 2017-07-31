@@ -1,12 +1,13 @@
 {
   "name": "@turf/buffer",
-  "version": "4.5.2",
-  "description": "turf buffer module",
+  "version": "4.0.0",
+  "description": "turf-buffer module",
   "main": "index.js",
   "types": "index.d.ts",
   "files": [
     "index.js",
-    "index.d.ts"
+    "index.d.ts",
+    "intersection.js"
   ],
   "scripts": {
     "test": "node test.js",
@@ -17,17 +18,15 @@
     "url": "git://github.com/Turfjs/turf.git"
   },
   "keywords": [
-    "buffer",
-    "offset",
-    "polygon",
+    "line",
     "linestring",
-    "point",
-    "geojson",
-    "turf"
+    "turf",
+    "offset",
+    "polygon"
   ],
   "author": "Turf Authors",
   "contributors": [
-    "Tom MacWright <@tmcw>",
+    "Rowan Winsemius <@rowanwins>",
     "Denis Carriere <@DenisCarriere>"
   ],
   "license": "MIT",
@@ -36,17 +35,19 @@
   },
   "homepage": "https://github.com/Turfjs/turf",
   "devDependencies": {
-    "@turf/truncate": "^4.5.2",
+    "@turf/truncate": "^4.3.0",
     "benchmark": "^2.1.4",
     "load-json-file": "^2.0.0",
     "tape": "^4.6.3",
     "write-json-file": "^2.0.0"
   },
   "dependencies": {
-    "@turf/center": "^4.5.2",
-    "@turf/helpers": "^4.5.2",
-    "@turf/meta": "^4.5.2",
-    "d3-geo": "^1.6.3",
-    "jsts": "1.3.0"
+    "@turf/bearing": "^4.3.0",
+    "@turf/center": "^4.4.0",
+    "@turf/destination": "^4.4.0",
+    "@turf/helpers": "^4.3.0",
+    "@turf/invariant": "^4.3.0",
+    "@turf/line-arc": "^4.3.0",
+    "@turf/meta": "^4.2.0"
   }
 }
