@@ -4,7 +4,7 @@ var getCoords = invariant.getCoords;
 var getGeomType = invariant.getGeomType;
 
 /**
- * Removes redundant coordinates from a (Multi)LineString or (Multi)Polygon; ignores (Multi)Point.
+ * Removes redundant coordinates from any GeoJSON Geometry.
  *
  * @name cleanCoords
  * @param {Geometry|Feature} geojson Feature or Geometry
