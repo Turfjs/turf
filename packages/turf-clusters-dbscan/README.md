@@ -23,7 +23,7 @@ var distance = 100;
 var clustered = turf.clustersDbscan(points, distance);
 
 //addToMap
-var addToMap = clustered;
+var addToMap = [clustered];
 ```
 
 Returns **[FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects)&lt;[Point](http://geojson.org/geojson-spec.html#point)>** Clustered Points with an additional two properties associated to each Feature:-   {number} cluster - the associated clusterId

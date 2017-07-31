@@ -13,11 +13,11 @@ Finds the difference between two [polygons](http://geojson.org/geojson-spec.html
 
 ```javascript
 var polygon1 = turf.polygon([[
-  [-46.738586, -23.596711],
-  [-46.738586, -23.458207],
-  [-46.560058, -23.458207],
-  [-46.560058, -23.596711],
-  [-46.738586, -23.596711]
+  [128, -26],
+  [141, -26],
+  [141, -21],
+  [128, -21],
+  [128, -26]
 ]], {
   "fill": "#F00",
   "fill-opacity": 0.1

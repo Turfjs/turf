@@ -14,11 +14,11 @@ var flattenEach = require('@turf/meta').flattenEach;
  * @returns {Feature<Polygon|MultiPolygon>|undefined} a Polygon or MultiPolygon feature showing the area of `polygon1` excluding the area of `polygon2` (if empty returns `undefined`)
  * @example
  * var polygon1 = turf.polygon([[
- *   [-46.738586, -23.596711],
- *   [-46.738586, -23.458207],
- *   [-46.560058, -23.458207],
- *   [-46.560058, -23.596711],
- *   [-46.738586, -23.596711]
+ *   [128, -26],
+ *   [141, -26],
+ *   [141, -21],
+ *   [128, -21],
+ *   [128, -26]
  * ]], {
  *   "fill": "#F00",
  *   "fill-opacity": 0.1
