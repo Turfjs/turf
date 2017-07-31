@@ -12,22 +12,9 @@ Split a LineString by another GeoJSON Feature.
 **Examples**
 
 ```javascript
-var line = {
-  "type": "Feature",
-  "properties": {},
-  "geometry": {
-    "type": "LineString",
-    "coordinates": [[120, -25], [145, -25]]
-  }
-};
-var splitter = {
-  "type": "Feature",
-  "properties": {},
-  "geometry": {
-    "type": "LineString",
-    "coordinates": [[130, -15], [130, -35]]
-  }
-};
+var line = turf.lineString([[120, -25], [145, -25]]);
+var splitter = turf.lineString([[130, -15], [130, -35]]);
+
 var split = turf.lineSplit(line, splitter);
 
 //addToMap

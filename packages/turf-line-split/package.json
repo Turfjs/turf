@@ -45,6 +45,7 @@
     "@turf/line-intersect": "^4.5.2",
     "@turf/line-segment": "^4.5.2",
     "@turf/meta": "^4.5.2",
+    "@turf/truncate": "^4.5.2",
     "@turf/point-on-line": "^4.5.2",
     "geojson-rbush": "^1.0.1"
   }

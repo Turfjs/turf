@@ -1,30 +1,28 @@
 import {featureCollection, point} from '@turf/helpers'
-import * as clusters from './'
+import * as clustersDbscan from './'
 
-// Default
-const pts = featureCollection([
+// Fixtures
+const points = featureCollection([
     point([0, 0]),
     point([2, 2])
 ]);
 
+// Default
 const maxDistance = 5;
-const clustered = clusters(pts, maxDistance);
+const clustered = clustersDbscan(points, maxDistance);
 
 // Enforce strict properties when using the dbscan property
-const output = clusters(pts, maxDistance);
+const output = clustersDbscan(points, maxDistance);
 let {dbscan, cluster} = output.features[0].properties
 dbscan = 'edge'
 dbscan = 'core'
 dbscan = 'noise'
 // dbscan = 'foo' //= [ts] Type '"foo"' is not assignable to type '"core" | "edge" | "noise"'.
-clusters(output, maxDistance);
+clustersDbscan(output, maxDistance);
 
 // Options
 const minPoints = 3;
 const units = 'miles';
-clusters(pts, maxDistance);
-clusters(pts, maxDistance, units);
-clusters(pts, maxDistance, units, minPoints);
-
-// Handle Array of Points
-clusters(pts.features, maxDistance);
+clustersDbscan(points, maxDistance);
+clustersDbscan(points, maxDistance, units);
+clustersDbscan(points, maxDistance, units, minPoints);

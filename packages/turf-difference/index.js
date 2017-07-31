@@ -13,34 +13,26 @@ var flattenEach = require('@turf/meta').flattenEach;
  * @param {Feature<Polygon|MultiPolygon>} polygon2 Polygon feature to difference from polygon1
  * @returns {Feature<Polygon|MultiPolygon>|undefined} a Polygon or MultiPolygon feature showing the area of `polygon1` excluding the area of `polygon2` (if empty returns `undefined`)
  * @example
- * var polygon1 = {
- *   "type": "Feature",
- *   "properties": {
- *     "fill": "#F00",
- *     "fill-opacity": 0.1
- *   },
- *   "geometry": {
- *     "type": "Polygon",
- *     "coordinates": [[
- *       [-46.738586, -23.596711],
- *       [-46.738586, -23.458207],
- *       [-46.560058, -23.458207],
- *       [-46.560058, -23.596711],
- *       [-46.738586, -23.596711]
- *     ]]
- *   }
- * };
- * var polygon2 = {
- *   "type": "Feature",
- *   "properties": {
- *     "fill": "#00F",
- *     "fill-opacity": 0.1
- *   },
- *   "geometry": {
- *     "type": "Polygon",
- *     "coordinates": [[[126, -28], [140, -28], [140, -20], [126, -20], [126, -28]]]
- *   }
- * };
+ * var polygon1 = turf.polygon([[
+ *   [128, -26],
+ *   [141, -26],
+ *   [141, -21],
+ *   [128, -21],
+ *   [128, -26]
+ * ]], {
+ *   "fill": "#F00",
+ *   "fill-opacity": 0.1
+ * });
+ * var polygon2 = turf.polygon([[
+ *   [126, -28],
+ *   [140, -28],
+ *   [140, -20],
+ *   [126, -20],
+ *   [126, -28]
+ * ]], {
+ *   "fill": "#00F",
+ *   "fill-opacity": 0.1
+ * });
  *
  * var difference = turf.difference(polygon1, polygon2);
  *

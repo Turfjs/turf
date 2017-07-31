@@ -12,14 +12,8 @@ Converts a [Polygon](http://geojson.org/geojson-spec.html#polygon) to [(Multi)Li
 **Examples**
 
 ```javascript
-var poly = {
-  "type": "Feature",
-  "properties": {},
-  "geometry": {
-    "type": "Polygon",
-    "coordinates": [[[125, -30], [145, -30], [145, -20], [125, -20], [125, -30]]]
-  }
-}
+var poly = turf.polygon([[[125, -30], [145, -30], [145, -20], [125, -20], [125, -30]]]);
+
 var line = turf.polygonToLineString(poly);
 
 //addToMap

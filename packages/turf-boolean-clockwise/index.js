@@ -8,8 +8,8 @@ var getCoords = invariant.getCoords;
  * @param {Geometry|Feature<LineString>|Array<Array<number>>} line to be evaluated
  * @returns {Boolean} true/false
  * @example
- * var clockwiseRing = [[0,0],[1,1],[1,0],[0,0]]
- * var counterClockwiseRing = [[0,0],[1,0],[1,1],[0,0]]
+ * var clockwiseRing = turf.lineString([[0,0],[1,1],[1,0],[0,0]]);
+ * var counterClockwiseRing = turf.lineString([[0,0],[1,0],[1,1],[0,0]]);
  *
  * turf.booleanClockwise(clockwiseRing)
  * //=true

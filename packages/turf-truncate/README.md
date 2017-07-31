@@ -14,18 +14,12 @@ Takes a GeoJSON Feature or FeatureCollection and truncates the precision of the 
 **Examples**
 
 ```javascript
-var point = {
-    "type": "Feature",
-    "properties": {}
-    "geometry": {
-        "type": "Point",
-        "coordinates": [
-            70.46923055566859,
-            58.11088890802906,
-            1508
-        ]
-    }
-};
+var point = turf.point([
+    70.46923055566859,
+    58.11088890802906,
+    1508
+]);
+
 var truncated = turf.truncate(point);
 
 //addToMap

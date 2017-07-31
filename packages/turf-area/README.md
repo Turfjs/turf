@@ -11,19 +11,13 @@ Takes one or more features and returns their area in square meters.
 **Examples**
 
 ```javascript
-var polygon = {
-  "type": "Feature",
-  "properties": {},
-  "geometry": {
-    "type": "Polygon",
-    "coordinates": [[[125, -15], [113, -22], [154, -27], [144, -15], [125, -15]]]
-  }
-}
+var polygon = turf.polygon([[[125, -15], [113, -22], [154, -27], [144, -15], [125, -15]]]);
+
 var area = turf.area(polygon);
 
 //addToMap
-polygon.properties.area = area
 var addToMap = [polygon]
+polygon.properties.area = area
 ```
 
 Returns **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** area in square meters

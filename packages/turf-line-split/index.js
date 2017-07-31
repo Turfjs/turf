@@ -1,15 +1,18 @@
-var flatten = require('@turf/flatten');
-var pointOnLine = require('@turf/point-on-line');
-var lineSegment = require('@turf/line-segment');
-var getCoords = require('@turf/invariant').getCoords;
-var lineIntersect = require('@turf/line-intersect');
+var meta = require('@turf/meta');
 var rbush = require('geojson-rbush');
 var helpers = require('@turf/helpers');
-var featureCollection = helpers.featureCollection;
+var flatten = require('@turf/flatten');
+var truncate = require('@turf/truncate');
+var invariant = require('@turf/invariant');
+var pointOnLine = require('@turf/point-on-line');
+var lineSegment = require('@turf/line-segment');
+var lineIntersect = require('@turf/line-intersect');
+var getCoords = invariant.getCoords;
 var lineString = helpers.lineString;
-var meta = require('@turf/meta');
+var getGeomType = invariant.getGeomType;
 var featureEach = meta.featureEach;
 var featureReduce = meta.featureReduce;
+var featureCollection = helpers.featureCollection;
 
 /**
  * Split a LineString by another GeoJSON Feature.
@@ -19,32 +22,24 @@ var featureReduce = meta.featureReduce;
  * @param {Feature<Point|MultiPoint|LineString|MultiLineString|Polygon|MultiPolygon>} splitter Feature used to split line
  * @returns {FeatureCollection<LineString>} Split LineStrings
  * @example
- * var line = {
- *   "type": "Feature",
- *   "properties": {},
- *   "geometry": {
- *     "type": "LineString",
- *     "coordinates": [[120, -25], [145, -25]]
- *   }
- * };
- * var splitter = {
- *   "type": "Feature",
- *   "properties": {},
- *   "geometry": {
- *     "type": "LineString",
- *     "coordinates": [[130, -15], [130, -35]]
- *   }
- * };
+ * var line = turf.lineString([[120, -25], [145, -25]]);
+ * var splitter = turf.lineString([[130, -15], [130, -35]]);
+ *
  * var split = turf.lineSplit(line, splitter);
  *
  * //addToMap
  * var addToMap = [line, splitter]
  */
 module.exports = function (line, splitter) {
-    if (geomType(line) !== 'LineString') throw new Error('<line> must be LineString');
-    if (geomType(splitter) === 'FeatureCollection') throw new Error('<splitter> cannot be a FeatureCollection');
+    if (getGeomType(line) !== 'LineString') throw new Error('<line> must be LineString');
+    var splitterType = getGeomType(splitter);
+    if (splitterType === 'FeatureCollection') throw new Error('<splitter> cannot be a FeatureCollection');
 
-    switch (geomType(splitter)) {
+    // remove excessive decimals from splitter
+    // to avoid possible approximation issues in rbush
+    truncate(splitter, 6, 3, true);
+
+    switch (splitterType) {
     case 'Point':
         return splitLineWithPoint(line, splitter);
     case 'MultiPoint':
@@ -58,17 +53,6 @@ module.exports = function (line, splitter) {
         throw new Error('<splitter> geometry type is not supported');
     }
 };
-
-/**
- * Retrieves Geometry Type from GeoJSON
- *
- * @private
- * @param {Feature<any>} geojson Feature
- * @returns {string} Geometry Type
- */
-function geomType(geojson) {
-    return (geojson.geometry) ? geojson.geometry.type : geojson.type;
-}
 
 /**
  * Split LineString with MultiPoint

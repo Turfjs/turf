@@ -38,7 +38,7 @@ export function containsNumber(coordinates: any[]): boolean;
 /**
  * http://turfjs.org/docs/
  */
-export function getGeom(geojson: GeometryCollection | GeometryObject | Feature<any>): boolean;
+export function getGeom(geojson: GeometryCollection | GeometryObject | Feature<any>): GeometryObject;
 
 /**
  * http://turfjs.org/docs/

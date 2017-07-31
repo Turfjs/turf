@@ -32,7 +32,7 @@ var collectionOf = invariant.collectionOf;
  * var grid = turf.interpolate(points, 100, 'points', 'solRad', 'miles');
  *
  * //addToMap
- * var addToMap = grid
+ * var addToMap = [grid];
  */
 module.exports = function (points, cellSize, gridType, property, units, weight) {
     // validation

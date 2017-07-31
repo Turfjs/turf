@@ -14,22 +14,8 @@ i.e. the angle measured in degrees from the north line (0 degrees)
 **Examples**
 
 ```javascript
-var point1 = {
-  "type": "Feature",
-  "properties": {},
-  "geometry": {
-    "type": "Point",
-    "coordinates": [-75.343, 39.984]
-  }
-};
-var point2 = {
-  "type": "Feature",
-  "properties": {},
-  "geometry": {
-    "type": "Point",
-    "coordinates": [-75.534, 39.123]
-  }
-};
+var point1 = turf.point([-75.343, 39.984]);
+var point2 = turf.point([-75.534, 39.123]);
 
 var bearing = turf.bearing(point1, point2);
 

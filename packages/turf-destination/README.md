@@ -14,14 +14,7 @@ Takes a [Point](http://geojson.org/geojson-spec.html#point) and calculates the l
 **Examples**
 
 ```javascript
-var point = {
-  "type": "Feature",
-  "properties": {},
-  "geometry": {
-    "type": "Point",
-    "coordinates": [-75.343, 39.984]
-  }
-};
+var point = turf.point([-75.343, 39.984]);
 var distance = 50;
 var bearing = 90;
 var units = 'miles';
@@ -29,9 +22,9 @@ var units = 'miles';
 var destination = turf.destination(point, distance, bearing, units);
 
 //addToMap
+var addToMap = [point, destination]
 destination.properties['marker-color'] = '#f00';
 point.properties['marker-color'] = '#0f0';
-var addToMap = [point, destination]
 ```
 
 Returns **[Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;[Point](http://geojson.org/geojson-spec.html#point)>** destination point

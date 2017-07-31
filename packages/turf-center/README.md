@@ -12,40 +12,18 @@ Takes a [Feature](http://geojson.org/geojson-spec.html#feature-objects) or [Feat
 **Examples**
 
 ```javascript
-var features = {
-  "type": "FeatureCollection",
-  "features": [
-    {
-      "type": "Feature",
-      "properties": {},
-      "geometry": {
-        "type": "Point",
-        "coordinates": [-97.522259, 35.4691]
-      }
-    }, {
-      "type": "Feature",
-      "properties": {},
-      "geometry": {
-        "type": "Point",
-        "coordinates": [-97.502754, 35.463455]
-      }
-    }, {
-      "type": "Feature",
-      "properties": {},
-      "geometry": {
-        "type": "Point",
-        "coordinates": [-97.508269, 35.463245]
-      }
-    }
-  ]
-};
+var features = turf.featureCollection([
+  turf.point( [-97.522259, 35.4691]),
+  turf.point( [-97.502754, 35.463455]),
+  turf.point( [-97.508269, 35.463245])
+]);
 
 var center = turf.center(features);
 
 //addToMap
+var addToMap = [features, center]
 center.properties['marker-size'] = 'large';
 center.properties['marker-color'] = '#000';
-var addToMap = [features, center]
 ```
 
 Returns **[Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;[Point](http://geojson.org/geojson-spec.html#point)>** a Point feature at the absolute center point of all input features

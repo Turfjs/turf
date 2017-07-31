@@ -1,75 +1,84 @@
-const fs = require('fs');
 const test = require('tape');
-const path = require('path');
-const load = require('load-json-file');
-const write = require('write-json-file');
-const {featureEach} = require('@turf/meta');
-const {featureCollection, point, polygon} = require('@turf/helpers');
-const chromatism = require('chromatism');
-const clusters = require('./');
+const {featureCollection, point} = require('@turf/helpers');
+const {propertiesContainsFilter, filterProperties, applyFilter, createBins} = require('./'); // Testing Purposes
+const {getCluster, clusterEach, clusterReduce} = require('./');
 
-const directories = {
-    in: path.join(__dirname, 'test', 'in') + path.sep,
-    out: path.join(__dirname, 'test', 'out') + path.sep
-};
-
-const fixtures = fs.readdirSync(directories.in).map(filename => {
-    return {
-        filename,
-        name: path.parse(filename).name,
-        geojson: load.sync(directories.in + filename)
-    };
-});
-
-test('clusters', t => {
-    fixtures.forEach(({name, geojson}) => {
-        const {numberOfCentroids} = geojson.properties || {};
-
-        const clustered = clusters(geojson, numberOfCentroids);
-        const result = featureCollection(colorize(clustered));
-
-        if (process.env.REGEN) write.sync(directories.out + name + '.geojson', result);
-        t.deepEqual(result, load.sync(directories.out + name + '.geojson'), name);
-    });
-
-    t.end();
-});
-
-const points = featureCollection([
-    point([0, 0], {foo: 'bar'}),
-    point([2, 4], {foo: 'bar'}),
-    point([3, 6], {foo: 'bar'})
+const properties = {foo: 'bar', cluster: 0};
+const geojson = featureCollection([
+    point([0, 0], {cluster: 0, foo: 'null'}),
+    point([2, 4], {cluster: 1, foo: 'bar'}),
+    point([3, 6], {cluster: 1}),
+    point([5, 1], {0: 'foo'}),
+    point([4, 2], {'bar': 'foo'}),
+    point([2, 4], {}),
+    point([4, 3], undefined)
 ]);
 
-test('clusters -- throws', t => {
-    const poly = polygon([[[0, 0], [10, 10], [0, 10], [0, 0]]]);
-    t.throws(() => clusters(poly, 1), /Input must contain Points/);
-    t.throws(() => clusters(points, 5), /numberOfClusters can't be grated than the number of points/);
+test('clusters -- getCluster', t => {
+    t.equal(getCluster(geojson, 0).features.length, 1, 'number1');
+    t.equal(getCluster(geojson, 1).features.length, 0, 'number2');
+    t.equal(getCluster(geojson, 'bar').features.length, 1, 'string1');
+    t.equal(getCluster(geojson, 'cluster').features.length, 3, 'string2');
+    t.equal(getCluster(geojson, {cluster: 1}).features.length, 2, 'object1');
+    t.equal(getCluster(geojson, {cluster: 0}).features.length, 1, 'object2');
+    t.equal(getCluster(geojson, ['cluster', {foo: 'bar'}]).features.length, 1);
+    t.equal(getCluster(geojson, ['cluster', 'foo']).features.length, 2);
+    t.equal(getCluster(geojson, ['cluster']).features.length, 3);
     t.end();
 });
 
-test('clusters -- translate properties', t => {
-    t.equal(clusters(points, 2).points.features[0].properties.foo, 'bar');
+test('clusters -- clusterEach', t => {
+    const clusters = [];
+    let total = 0;
+    clusterEach(geojson, 'cluster', (cluster) => {
+        total += cluster.features.length;
+        clusters.push(cluster);
+        if (!cluster.features[0]) t.fail('if feature is undefined');
+    });
+    t.equal(total, 3);
+    t.equal(clusters.length, 2);
     t.end();
 });
 
-// style result
-function colorize(clustered) {
-    const count = clustered.centroids.features.length;
-    const colours = chromatism.adjacent(360 / count, count, '#0000FF').hex;
-    const points = [];
-    featureEach(clustered.points, function (point) {
-        point.properties['marker-color'] = colours[point.properties.cluster];
-        point.properties['marker-size'] = 'small';
-        points.push(point);
-    });
-    featureEach(clustered.centroids, function (centroid) {
-        const color = chromatism.brightness(-25, colours[centroid.properties.cluster]).hex;
-        centroid.properties['marker-color'] = color;
-        centroid.properties['marker-symbol'] = 'star-stroked';
-        centroid.properties['marker-size'] = 'large';
-        centroid.properties['marker-size'] = 'large';
-        points.push(centroid);
-    });
-    return points;
-}
+test('clusters -- clusterReduce', t => {
+    const clusters = [];
+    const total = clusterReduce(geojson, 'cluster', (previousValue, cluster)  => {
+        clusters.push(cluster);
+        return previousValue + cluster.features.length;
+    }, 0);
+    t.equal(total, 3);
+    t.equal(clusters.length, 2);
+    t.end();
+});
+
+// Internal purposes only
+test('clusters -- applyFilter', t => {
+    t.true(applyFilter(properties, 'cluster'));
+    t.true(applyFilter(properties, ['cluster']));
+    t.false(applyFilter(properties, {cluster: 1}));
+    t.true(applyFilter(properties, {cluster: 0}));
+    t.false(applyFilter(undefined, {cluster: 0}));
+    t.end();
+});
+
+// Internal purposes only
+test('clusters -- filterProperties', t => {
+    t.deepEqual(filterProperties(properties, ['cluster']), {cluster: 0});
+    t.deepEqual(filterProperties(properties, []), {});
+    t.deepEqual(filterProperties(properties, undefined), {});
+    t.end();
+});
+
+// Internal purposes only
+test('clusters -- propertiesContainsFilter', t => {
+    t.deepEqual(propertiesContainsFilter(properties, {cluster: 0}), true);
+    t.deepEqual(propertiesContainsFilter(properties, {cluster: 1}), false);
+    t.deepEqual(propertiesContainsFilter(properties, {bar: 'foo'}), false);
+    t.end();
+});
+
+// Internal purposes only
+test('clusters -- propertiesContainsFilter', t => {
+    t.deepEqual(createBins(geojson, 'cluster'), {'0': [0], '1': [1, 2]});
+    t.end();
+});

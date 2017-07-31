@@ -16,7 +16,7 @@
  * //=feature
  */
 function feature(geometry, properties) {
-    if (!geometry) throw new Error('No geometry passed');
+    if (geometry === undefined) throw new Error('No geometry passed');
 
     return {
         type: 'Feature',
@@ -248,6 +248,7 @@ function multiPolygon(coordinates, properties) {
  */
 function geometryCollection(geometries, properties) {
     if (!geometries) throw new Error('geometries is required');
+    if (!Array.isArray(geometries)) throw new Error('geometries must be an Array');
 
     return feature({
         type: 'GeometryCollection',
@@ -292,10 +293,10 @@ var areaFactors = {
  * @param {number} [precision=0] Precision
  * @returns {number} rounded number
  * @example
- * round(120.4321)
+ * turf.round(120.4321)
  * //=120
  *
- * round(120.4321, 2)
+ * turf.round(120.4321, 2)
  * //=120.43
  */
 function round(num, precision) {

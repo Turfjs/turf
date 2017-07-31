@@ -20,26 +20,18 @@ var distanceToRadians = helpers.distanceToRadians;
  * the input, or even be empty.
  *
  * @name buffer
- * @param {FeatureCollection|Geometry|Feature<any>} feature input to be buffered
+ * @param {FeatureCollection|Geometry|Feature<any>} geojson input to be buffered
  * @param {number} radius distance to draw the buffer (negative values are allowed)
  * @param {string} [units=kilometers] any of the options supported by turf units
  * @param {number} [steps=64] number of steps
- * @return {FeatureCollection|Feature<Polygon|MultiPolygon>|undefined} buffered features
+ * @returns {FeatureCollection|Feature<Polygon|MultiPolygon>|undefined} buffered features
  * @example
- * var point = {
- *   "type": "Feature",
- *   "properties": {},
- *   "geometry": {
- *     "type": "Point",
- *     "coordinates": [-90.548630, 14.616599]
- *   }
- * };
+ * var point = turf.point([-90.548630, 14.616599]);
  * var buffered = turf.buffer(point, 500, 'miles');
  *
  * //addToMap
  * var addToMap = [point, buffered]
  */
-
 module.exports = function (geojson, radius, units, steps) {
     // validation
     if (!geojson) throw new Error('geojson is required');

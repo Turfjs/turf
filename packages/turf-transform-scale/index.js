@@ -29,8 +29,8 @@ var getCoords = invariant.getCoords;
  * var scaledPoly = turf.transformScale(poly, 3);
  *
  * //addToMap
- * scaledPoly.properties = {stroke: '#F00', 'stroke-width': 4};
  * var addToMap = [poly, scaledPoly];
+ * scaledPoly.properties = {stroke: '#F00', 'stroke-width': 4};
  */
 module.exports = function (geojson, factor, origin, mutate) {
     // Input validation

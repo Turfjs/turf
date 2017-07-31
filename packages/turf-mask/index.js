@@ -2,7 +2,7 @@ var rbush = require('rbush');
 var union = require('@turf/union');
 var helpers = require('@turf/helpers');
 var turfBBox = require('@turf/bbox');
-var featureEach = require('@turf/meta').featureEach;
+var flattenEach = require('@turf/meta').flattenEach;
 
 /**
  * Takes any type of {@link Polygon|polygon} and an optional mask and returns a {@link Polygon|polygon} exterior ring with holes.
@@ -12,22 +12,9 @@ var featureEach = require('@turf/meta').featureEach;
  * @param {Feature<Polygon>} [mask] GeoJSON Polygon used as the exterior ring (if undefined, the world extent is used)
  * @returns {Feature<Polygon>} Masked Polygon (exterior ring with holes).
  * @example
- * var polygon = {
- *   "type": "Feature",
- *   "properties": {},
- *   "geometry": {
- *     "type": "Polygon",
- *     "coordinates": [[[112, -21], [116, -36], [146, -39], [153, -24], [133, -10], [112, -21]]]
- *   }
- * }
- * var mask = {
- *   "type": "Feature",
- *   "properties": {},
- *   "geometry": {
- *     "type": "Polygon",
- *     "coordinates": [[[90, -55], [170, -55], [170, 10], [90, 10], [90, -55]]]
- *   }
- * }
+ * var polygon = turf.polygon([[[112, -21], [116, -36], [146, -39], [153, -24], [133, -10], [112, -21]]]);
+ * var mask = turf.polygon([[[90, -55], [170, -55], [170, 10], [90, 10], [90, -55]]]);
+ *
  * var masked = turf.mask(polygon, mask);
  *
  * //addToMap
@@ -64,11 +51,11 @@ function buildMask(maskPolygon, polygonOuters, polygonInners) {
     var coordinates = [];
     coordinates.push(maskPolygon.geometry.coordinates[0]);
 
-    featureEach(polygonOuters, function (feature) {
+    flattenEach(polygonOuters, function (feature) {
         coordinates.push(feature.geometry.coordinates[0]);
     });
 
-    featureEach(polygonInners, function (feature) {
+    flattenEach(polygonInners, function (feature) {
         coordinates.push(feature.geometry.coordinates[0]);
     });
     return helpers.polygon(coordinates);
@@ -84,36 +71,16 @@ function buildMask(maskPolygon, polygonOuters, polygonInners) {
 function separatePolygons(polygon) {
     var outers = [];
     var inners = [];
-    featureEach(polygon, function (multiFeature) {
-        if (multiFeature.geometry.type === 'MultiPolygon') {
-            multiFeature = flattenMultiPolygon(multiFeature);
-        }
-        featureEach(multiFeature, function (feature) {
-            var coordinates = feature.geometry.coordinates;
-            var featureOuter = coordinates[0];
-            var featureInner = coordinates.slice(1);
-            outers.push(helpers.polygon([featureOuter]));
-            featureInner.forEach(function (inner) {
-                inners.push(helpers.polygon([inner]));
-            });
+    flattenEach(polygon, function (feature) {
+        var coordinates = feature.geometry.coordinates;
+        var featureOuter = coordinates[0];
+        var featureInner = coordinates.slice(1);
+        outers.push(helpers.polygon([featureOuter]));
+        featureInner.forEach(function (inner) {
+            inners.push(helpers.polygon([inner]));
         });
     });
     return [helpers.featureCollection(outers), helpers.featureCollection(inners)];
-}
-
-/**
- * Flatten MultiPolygon
- *
- * @private
- * @param {Feature<MultiPolygon>} multiPolygon GeoJSON Feature
- * @returns {FeatureCollection<Polygon>} Feature Collection
- */
-function flattenMultiPolygon(multiPolygon) {
-    var polygons = [];
-    multiPolygon.geometry.coordinates.forEach(function (coordinates) {
-        polygons.push(helpers.polygon(coordinates));
-    });
-    return helpers.featureCollection(polygons);
 }
 
 /**
@@ -143,7 +110,7 @@ function unionPolygons(polygons) {
     var results = [];
     var removed = {};
 
-    featureEach(polygons, function (currentFeature, currentIndex) {
+    flattenEach(polygons, function (currentFeature, currentIndex) {
         // Exclude any removed features
         if (removed[currentIndex]) return true;
 
@@ -200,7 +167,7 @@ function filterByIndex(a, b) {
 function createIndex(features) {
     var tree = rbush();
     var load = [];
-    featureEach(features, function (feature, index) {
+    flattenEach(features, function (feature, index) {
         var bbox = turfBBox(feature);
         load.push({
             minX: bbox[0],

@@ -29,7 +29,7 @@
 			"properties": {
 				"cluster": 1,
 				"dbscan": "core",
-				"marker-color": "#6500ff",
+				"marker-color": "#6d00ff",
 				"marker-size": "small"
 			}
 		},
@@ -45,7 +45,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -61,7 +61,7 @@
 			"properties": {
 				"cluster": 3,
 				"dbscan": "core",
-				"marker-color": "#ff00ca",
+				"marker-color": "#ff00b5",
 				"marker-size": "small"
 			}
 		},
@@ -77,7 +77,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -93,7 +93,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -109,7 +109,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -125,7 +125,7 @@
 			"properties": {
 				"cluster": 4,
 				"dbscan": "core",
-				"marker-color": "#ff0064",
+				"marker-color": "#ff0047",
 				"marker-size": "small"
 			}
 		},
@@ -141,7 +141,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -157,7 +157,7 @@
 			"properties": {
 				"cluster": 5,
 				"dbscan": "core",
-				"marker-color": "#ff0000",
+				"marker-color": "#ff2400",
 				"marker-size": "small"
 			}
 		},
@@ -173,7 +173,7 @@
 			"properties": {
 				"cluster": 1,
 				"dbscan": "core",
-				"marker-color": "#6500ff",
+				"marker-color": "#6d00ff",
 				"marker-size": "small"
 			}
 		},
@@ -189,7 +189,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -205,7 +205,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -221,7 +221,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -237,7 +237,7 @@
 			"properties": {
 				"cluster": 5,
 				"dbscan": "core",
-				"marker-color": "#ff0000",
+				"marker-color": "#ff2400",
 				"marker-size": "small"
 			}
 		},
@@ -253,7 +253,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -269,7 +269,7 @@
 			"properties": {
 				"cluster": 1,
 				"dbscan": "core",
-				"marker-color": "#6500ff",
+				"marker-color": "#6d00ff",
 				"marker-size": "small"
 			}
 		},
@@ -285,7 +285,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -301,7 +301,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -317,7 +317,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -333,7 +333,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -349,7 +349,7 @@
 			"properties": {
 				"cluster": 11,
 				"dbscan": "edge",
-				"marker-color": "#00993e",
+				"marker-color": "#00996e",
 				"marker-size": "small"
 			}
 		},
@@ -365,7 +365,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -397,7 +397,7 @@
 			"properties": {
 				"cluster": 6,
 				"dbscan": "core",
-				"marker-color": "#ff6600",
+				"marker-color": "#ff9200",
 				"marker-size": "small"
 			}
 		},
@@ -413,7 +413,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -429,7 +429,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -445,7 +445,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -461,7 +461,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -477,7 +477,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -493,7 +493,7 @@
 			"properties": {
 				"cluster": 10,
 				"dbscan": "edge",
-				"marker-color": "#009901",
+				"marker-color": "#00992c",
 				"marker-size": "small"
 			}
 		},
@@ -509,7 +509,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -525,7 +525,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -557,7 +557,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -573,7 +573,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -589,7 +589,7 @@
 			"properties": {
 				"cluster": 5,
 				"dbscan": "core",
-				"marker-color": "#ff0000",
+				"marker-color": "#ff2400",
 				"marker-size": "small"
 			}
 		},
@@ -621,7 +621,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -653,7 +653,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -669,7 +669,7 @@
 			"properties": {
 				"cluster": 5,
 				"dbscan": "core",
-				"marker-color": "#ff0000",
+				"marker-color": "#ff2400",
 				"marker-size": "small"
 			}
 		},
@@ -701,7 +701,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -717,7 +717,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -733,7 +733,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -749,7 +749,7 @@
 			"properties": {
 				"cluster": 5,
 				"dbscan": "core",
-				"marker-color": "#ff0000",
+				"marker-color": "#ff2400",
 				"marker-size": "small"
 			}
 		},
@@ -765,7 +765,7 @@
 			"properties": {
 				"cluster": 5,
 				"dbscan": "core",
-				"marker-color": "#ff0000",
+				"marker-color": "#ff2400",
 				"marker-size": "small"
 			}
 		},
@@ -781,7 +781,7 @@
 			"properties": {
 				"cluster": 7,
 				"dbscan": "core",
-				"marker-color": "#ffcc00",
+				"marker-color": "#ffff00",
 				"marker-size": "small"
 			}
 		},
@@ -797,7 +797,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -813,7 +813,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -829,7 +829,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -845,7 +845,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -861,7 +861,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -877,7 +877,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -893,7 +893,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -909,7 +909,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -925,7 +925,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -941,7 +941,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -957,7 +957,7 @@
 			"properties": {
 				"cluster": 5,
 				"dbscan": "core",
-				"marker-color": "#ff0000",
+				"marker-color": "#ff2400",
 				"marker-size": "small"
 			}
 		},
@@ -973,7 +973,7 @@
 			"properties": {
 				"cluster": 5,
 				"dbscan": "core",
-				"marker-color": "#ff0000",
+				"marker-color": "#ff2400",
 				"marker-size": "small"
 			}
 		},
@@ -989,7 +989,7 @@
 			"properties": {
 				"cluster": 5,
 				"dbscan": "core",
-				"marker-color": "#ff0000",
+				"marker-color": "#ff2400",
 				"marker-size": "small"
 			}
 		},
@@ -1005,7 +1005,7 @@
 			"properties": {
 				"cluster": 5,
 				"dbscan": "core",
-				"marker-color": "#ff0000",
+				"marker-color": "#ff2400",
 				"marker-size": "small"
 			}
 		},
@@ -1021,7 +1021,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -1037,7 +1037,7 @@
 			"properties": {
 				"cluster": 4,
 				"dbscan": "core",
-				"marker-color": "#ff0064",
+				"marker-color": "#ff0047",
 				"marker-size": "small"
 			}
 		},
@@ -1053,7 +1053,7 @@
 			"properties": {
 				"cluster": 5,
 				"dbscan": "core",
-				"marker-color": "#ff0000",
+				"marker-color": "#ff2400",
 				"marker-size": "small"
 			}
 		},
@@ -1069,7 +1069,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -1085,7 +1085,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -1101,7 +1101,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -1117,7 +1117,7 @@
 			"properties": {
 				"cluster": 5,
 				"dbscan": "core",
-				"marker-color": "#ff0000",
+				"marker-color": "#ff2400",
 				"marker-size": "small"
 			}
 		},
@@ -1133,7 +1133,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -1149,7 +1149,7 @@
 			"properties": {
 				"cluster": 5,
 				"dbscan": "core",
-				"marker-color": "#ff0000",
+				"marker-color": "#ff2400",
 				"marker-size": "small"
 			}
 		},
@@ -1165,7 +1165,7 @@
 			"properties": {
 				"cluster": 5,
 				"dbscan": "core",
-				"marker-color": "#ff0000",
+				"marker-color": "#ff2400",
 				"marker-size": "small"
 			}
 		},
@@ -1181,7 +1181,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -1197,7 +1197,7 @@
 			"properties": {
 				"cluster": 4,
 				"dbscan": "core",
-				"marker-color": "#ff0064",
+				"marker-color": "#ff0047",
 				"marker-size": "small"
 			}
 		},
@@ -1213,7 +1213,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -1229,7 +1229,7 @@
 			"properties": {
 				"cluster": 5,
 				"dbscan": "core",
-				"marker-color": "#ff0000",
+				"marker-color": "#ff2400",
 				"marker-size": "small"
 			}
 		},
@@ -1245,7 +1245,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -1261,7 +1261,7 @@
 			"properties": {
 				"cluster": 5,
 				"dbscan": "core",
-				"marker-color": "#ff0000",
+				"marker-color": "#ff2400",
 				"marker-size": "small"
 			}
 		},
@@ -1293,7 +1293,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -1309,7 +1309,7 @@
 			"properties": {
 				"cluster": 5,
 				"dbscan": "core",
-				"marker-color": "#ff0000",
+				"marker-color": "#ff2400",
 				"marker-size": "small"
 			}
 		},
@@ -1325,7 +1325,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -1341,7 +1341,7 @@
 			"properties": {
 				"cluster": 1,
 				"dbscan": "core",
-				"marker-color": "#6500ff",
+				"marker-color": "#6d00ff",
 				"marker-size": "small"
 			}
 		},
@@ -1357,7 +1357,7 @@
 			"properties": {
 				"cluster": 5,
 				"dbscan": "core",
-				"marker-color": "#ff0000",
+				"marker-color": "#ff2400",
 				"marker-size": "small"
 			}
 		},
@@ -1373,7 +1373,7 @@
 			"properties": {
 				"cluster": 5,
 				"dbscan": "core",
-				"marker-color": "#ff0000",
+				"marker-color": "#ff2400",
 				"marker-size": "small"
 			}
 		},
@@ -1405,7 +1405,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -1421,7 +1421,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -1437,7 +1437,7 @@
 			"properties": {
 				"cluster": 12,
 				"dbscan": "edge",
-				"marker-color": "#00997b",
+				"marker-color": "#008299",
 				"marker-size": "small"
 			}
 		},
@@ -1453,7 +1453,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -1469,7 +1469,7 @@
 			"properties": {
 				"cluster": 5,
 				"dbscan": "core",
-				"marker-color": "#ff0000",
+				"marker-color": "#ff2400",
 				"marker-size": "small"
 			}
 		},
@@ -1501,7 +1501,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -1533,7 +1533,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -1549,7 +1549,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -1565,7 +1565,7 @@
 			"properties": {
 				"cluster": 5,
 				"dbscan": "core",
-				"marker-color": "#ff0000",
+				"marker-color": "#ff2400",
 				"marker-size": "small"
 			}
 		},
@@ -1581,7 +1581,7 @@
 			"properties": {
 				"cluster": 5,
 				"dbscan": "core",
-				"marker-color": "#ff0000",
+				"marker-color": "#ff2400",
 				"marker-size": "small"
 			}
 		},
@@ -1597,7 +1597,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -1613,7 +1613,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -1629,7 +1629,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -1645,7 +1645,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -1661,7 +1661,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -1693,7 +1693,7 @@
 			"properties": {
 				"cluster": 6,
 				"dbscan": "core",
-				"marker-color": "#ff6600",
+				"marker-color": "#ff9200",
 				"marker-size": "small"
 			}
 		},
@@ -1709,7 +1709,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -1725,7 +1725,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -1741,7 +1741,7 @@
 			"properties": {
 				"cluster": 1,
 				"dbscan": "core",
-				"marker-color": "#6500ff",
+				"marker-color": "#6d00ff",
 				"marker-size": "small"
 			}
 		},
@@ -1757,7 +1757,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -1805,7 +1805,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -1821,7 +1821,7 @@
 			"properties": {
 				"cluster": 3,
 				"dbscan": "core",
-				"marker-color": "#ff00ca",
+				"marker-color": "#ff00b5",
 				"marker-size": "small"
 			}
 		},
@@ -1837,7 +1837,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -1853,7 +1853,7 @@
 			"properties": {
 				"cluster": 5,
 				"dbscan": "core",
-				"marker-color": "#ff0000",
+				"marker-color": "#ff2400",
 				"marker-size": "small"
 			}
 		},
@@ -1869,7 +1869,7 @@
 			"properties": {
 				"cluster": 5,
 				"dbscan": "core",
-				"marker-color": "#ff0000",
+				"marker-color": "#ff2400",
 				"marker-size": "small"
 			}
 		},
@@ -1885,7 +1885,7 @@
 			"properties": {
 				"cluster": 6,
 				"dbscan": "core",
-				"marker-color": "#ff6600",
+				"marker-color": "#ff9200",
 				"marker-size": "small"
 			}
 		},
@@ -1901,7 +1901,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -1917,7 +1917,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -1933,7 +1933,7 @@
 			"properties": {
 				"cluster": 5,
 				"dbscan": "core",
-				"marker-color": "#ff0000",
+				"marker-color": "#ff2400",
 				"marker-size": "small"
 			}
 		},
@@ -1949,7 +1949,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -1965,7 +1965,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -1981,7 +1981,7 @@
 			"properties": {
 				"cluster": 1,
 				"dbscan": "core",
-				"marker-color": "#6500ff",
+				"marker-color": "#6d00ff",
 				"marker-size": "small"
 			}
 		},
@@ -1997,7 +1997,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -2013,7 +2013,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -2029,7 +2029,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -2045,7 +2045,7 @@
 			"properties": {
 				"cluster": 5,
 				"dbscan": "core",
-				"marker-color": "#ff0000",
+				"marker-color": "#ff2400",
 				"marker-size": "small"
 			}
 		},
@@ -2077,7 +2077,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -2093,7 +2093,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -2109,7 +2109,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -2141,7 +2141,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -2157,7 +2157,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -2173,7 +2173,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -2189,7 +2189,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -2205,7 +2205,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -2221,7 +2221,7 @@
 			"properties": {
 				"cluster": 8,
 				"dbscan": "core",
-				"marker-color": "#cbff00",
+				"marker-color": "#91ff00",
 				"marker-size": "small"
 			}
 		},
@@ -2237,7 +2237,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -2253,7 +2253,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -2269,7 +2269,7 @@
 			"properties": {
 				"cluster": 1,
 				"dbscan": "core",
-				"marker-color": "#6500ff",
+				"marker-color": "#6d00ff",
 				"marker-size": "small"
 			}
 		},
@@ -2285,7 +2285,7 @@
 			"properties": {
 				"cluster": 5,
 				"dbscan": "core",
-				"marker-color": "#ff0000",
+				"marker-color": "#ff2400",
 				"marker-size": "small"
 			}
 		},
@@ -2301,7 +2301,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -2317,7 +2317,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -2333,7 +2333,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -2365,7 +2365,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -2381,7 +2381,7 @@
 			"properties": {
 				"cluster": 5,
 				"dbscan": "core",
-				"marker-color": "#ff0000",
+				"marker-color": "#ff2400",
 				"marker-size": "small"
 			}
 		},
@@ -2397,7 +2397,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -2413,7 +2413,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -2445,7 +2445,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -2461,7 +2461,7 @@
 			"properties": {
 				"cluster": 5,
 				"dbscan": "core",
-				"marker-color": "#ff0000",
+				"marker-color": "#ff2400",
 				"marker-size": "small"
 			}
 		},
@@ -2477,7 +2477,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -2493,7 +2493,7 @@
 			"properties": {
 				"cluster": 6,
 				"dbscan": "core",
-				"marker-color": "#ff6600",
+				"marker-color": "#ff9200",
 				"marker-size": "small"
 			}
 		},
@@ -2509,7 +2509,7 @@
 			"properties": {
 				"cluster": 5,
 				"dbscan": "core",
-				"marker-color": "#ff0000",
+				"marker-color": "#ff2400",
 				"marker-size": "small"
 			}
 		},
@@ -2525,7 +2525,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -2541,7 +2541,7 @@
 			"properties": {
 				"cluster": 3,
 				"dbscan": "core",
-				"marker-color": "#ff00ca",
+				"marker-color": "#ff00b5",
 				"marker-size": "small"
 			}
 		},
@@ -2557,7 +2557,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -2573,7 +2573,7 @@
 			"properties": {
 				"cluster": 5,
 				"dbscan": "core",
-				"marker-color": "#ff0000",
+				"marker-color": "#ff2400",
 				"marker-size": "small"
 			}
 		},
@@ -2589,7 +2589,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -2605,7 +2605,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -2621,7 +2621,7 @@
 			"properties": {
 				"cluster": 9,
 				"dbscan": "core",
-				"marker-color": "#65ff00",
+				"marker-color": "#24ff00",
 				"marker-size": "small"
 			}
 		},
@@ -2653,7 +2653,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -2669,7 +2669,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -2685,7 +2685,7 @@
 			"properties": {
 				"cluster": 4,
 				"dbscan": "core",
-				"marker-color": "#ff0064",
+				"marker-color": "#ff0047",
 				"marker-size": "small"
 			}
 		},
@@ -2701,7 +2701,7 @@
 			"properties": {
 				"cluster": 3,
 				"dbscan": "core",
-				"marker-color": "#ff00ca",
+				"marker-color": "#ff00b5",
 				"marker-size": "small"
 			}
 		},
@@ -2717,7 +2717,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -2733,7 +2733,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -2749,7 +2749,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -2765,7 +2765,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -2781,7 +2781,7 @@
 			"properties": {
 				"cluster": 10,
 				"dbscan": "core",
-				"marker-color": "#00ff01",
+				"marker-color": "#00ff49",
 				"marker-size": "small"
 			}
 		},
@@ -2797,7 +2797,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -2813,7 +2813,7 @@
 			"properties": {
 				"cluster": 6,
 				"dbscan": "core",
-				"marker-color": "#ff6600",
+				"marker-color": "#ff9200",
 				"marker-size": "small"
 			}
 		},
@@ -2829,7 +2829,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -2861,7 +2861,7 @@
 			"properties": {
 				"cluster": 6,
 				"dbscan": "core",
-				"marker-color": "#ff6600",
+				"marker-color": "#ff9200",
 				"marker-size": "small"
 			}
 		},
@@ -2877,7 +2877,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -2893,7 +2893,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -2909,7 +2909,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -2925,7 +2925,7 @@
 			"properties": {
 				"cluster": 6,
 				"dbscan": "core",
-				"marker-color": "#ff6600",
+				"marker-color": "#ff9200",
 				"marker-size": "small"
 			}
 		},
@@ -2941,7 +2941,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -2957,7 +2957,7 @@
 			"properties": {
 				"cluster": 5,
 				"dbscan": "core",
-				"marker-color": "#ff0000",
+				"marker-color": "#ff2400",
 				"marker-size": "small"
 			}
 		},
@@ -2973,7 +2973,7 @@
 			"properties": {
 				"cluster": 5,
 				"dbscan": "core",
-				"marker-color": "#ff0000",
+				"marker-color": "#ff2400",
 				"marker-size": "small"
 			}
 		},
@@ -2989,7 +2989,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -3005,7 +3005,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -3037,7 +3037,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -3053,7 +3053,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -3069,7 +3069,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -3085,7 +3085,7 @@
 			"properties": {
 				"cluster": 6,
 				"dbscan": "core",
-				"marker-color": "#ff6600",
+				"marker-color": "#ff9200",
 				"marker-size": "small"
 			}
 		},
@@ -3101,7 +3101,7 @@
 			"properties": {
 				"cluster": 5,
 				"dbscan": "core",
-				"marker-color": "#ff0000",
+				"marker-color": "#ff2400",
 				"marker-size": "small"
 			}
 		},
@@ -3117,7 +3117,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -3133,7 +3133,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -3149,7 +3149,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -3181,7 +3181,7 @@
 			"properties": {
 				"cluster": 4,
 				"dbscan": "core",
-				"marker-color": "#ff0064",
+				"marker-color": "#ff0047",
 				"marker-size": "small"
 			}
 		},
@@ -3197,7 +3197,7 @@
 			"properties": {
 				"cluster": 5,
 				"dbscan": "core",
-				"marker-color": "#ff0000",
+				"marker-color": "#ff2400",
 				"marker-size": "small"
 			}
 		},
@@ -3245,7 +3245,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -3261,7 +3261,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -3277,7 +3277,7 @@
 			"properties": {
 				"cluster": 11,
 				"dbscan": "core",
-				"marker-color": "#00ff67",
+				"marker-color": "#00ffb7",
 				"marker-size": "small"
 			}
 		},
@@ -3293,7 +3293,7 @@
 			"properties": {
 				"cluster": 1,
 				"dbscan": "core",
-				"marker-color": "#6500ff",
+				"marker-color": "#6d00ff",
 				"marker-size": "small"
 			}
 		},
@@ -3309,7 +3309,7 @@
 			"properties": {
 				"cluster": 1,
 				"dbscan": "core",
-				"marker-color": "#6500ff",
+				"marker-color": "#6d00ff",
 				"marker-size": "small"
 			}
 		},
@@ -3325,7 +3325,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -3341,7 +3341,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -3357,7 +3357,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -3373,7 +3373,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -3405,7 +3405,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -3421,7 +3421,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -3437,7 +3437,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -3453,7 +3453,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -3469,7 +3469,7 @@
 			"properties": {
 				"cluster": 3,
 				"dbscan": "core",
-				"marker-color": "#ff00ca",
+				"marker-color": "#ff00b5",
 				"marker-size": "small"
 			}
 		},
@@ -3485,7 +3485,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -3501,7 +3501,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -3517,7 +3517,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -3533,7 +3533,7 @@
 			"properties": {
 				"cluster": 13,
 				"dbscan": "edge",
-				"marker-color": "#007999",
+				"marker-color": "#004099",
 				"marker-size": "small"
 			}
 		},
@@ -3549,7 +3549,7 @@
 			"properties": {
 				"cluster": 1,
 				"dbscan": "core",
-				"marker-color": "#6500ff",
+				"marker-color": "#6d00ff",
 				"marker-size": "small"
 			}
 		},
@@ -3565,7 +3565,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -3581,7 +3581,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -3597,7 +3597,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -3629,7 +3629,7 @@
 			"properties": {
 				"cluster": 3,
 				"dbscan": "core",
-				"marker-color": "#ff00ca",
+				"marker-color": "#ff00b5",
 				"marker-size": "small"
 			}
 		},
@@ -3645,7 +3645,7 @@
 			"properties": {
 				"cluster": 5,
 				"dbscan": "core",
-				"marker-color": "#ff0000",
+				"marker-color": "#ff2400",
 				"marker-size": "small"
 			}
 		},
@@ -3661,7 +3661,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -3677,7 +3677,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -3693,7 +3693,7 @@
 			"properties": {
 				"cluster": 5,
 				"dbscan": "core",
-				"marker-color": "#ff0000",
+				"marker-color": "#ff2400",
 				"marker-size": "small"
 			}
 		},
@@ -3709,7 +3709,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -3725,7 +3725,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -3741,7 +3741,7 @@
 			"properties": {
 				"cluster": 5,
 				"dbscan": "core",
-				"marker-color": "#ff0000",
+				"marker-color": "#ff2400",
 				"marker-size": "small"
 			}
 		},
@@ -3757,7 +3757,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -3773,7 +3773,7 @@
 			"properties": {
 				"cluster": 5,
 				"dbscan": "core",
-				"marker-color": "#ff0000",
+				"marker-color": "#ff2400",
 				"marker-size": "small"
 			}
 		},
@@ -3789,7 +3789,7 @@
 			"properties": {
 				"cluster": 5,
 				"dbscan": "core",
-				"marker-color": "#ff0000",
+				"marker-color": "#ff2400",
 				"marker-size": "small"
 			}
 		},
@@ -3805,7 +3805,7 @@
 			"properties": {
 				"cluster": 11,
 				"dbscan": "core",
-				"marker-color": "#00ff67",
+				"marker-color": "#00ffb7",
 				"marker-size": "small"
 			}
 		},
@@ -3821,7 +3821,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -3853,7 +3853,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -3869,7 +3869,7 @@
 			"properties": {
 				"cluster": 7,
 				"dbscan": "core",
-				"marker-color": "#ffcc00",
+				"marker-color": "#ffff00",
 				"marker-size": "small"
 			}
 		},
@@ -3885,7 +3885,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -3901,7 +3901,7 @@
 			"properties": {
 				"cluster": 5,
 				"dbscan": "core",
-				"marker-color": "#ff0000",
+				"marker-color": "#ff2400",
 				"marker-size": "small"
 			}
 		},
@@ -3917,7 +3917,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -3933,7 +3933,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -3949,7 +3949,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -3965,7 +3965,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -3981,7 +3981,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -4013,7 +4013,7 @@
 			"properties": {
 				"cluster": 5,
 				"dbscan": "core",
-				"marker-color": "#ff0000",
+				"marker-color": "#ff2400",
 				"marker-size": "small"
 			}
 		},
@@ -4029,7 +4029,7 @@
 			"properties": {
 				"cluster": 11,
 				"dbscan": "core",
-				"marker-color": "#00ff67",
+				"marker-color": "#00ffb7",
 				"marker-size": "small"
 			}
 		},
@@ -4045,7 +4045,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -4061,7 +4061,7 @@
 			"properties": {
 				"cluster": 1,
 				"dbscan": "core",
-				"marker-color": "#6500ff",
+				"marker-color": "#6d00ff",
 				"marker-size": "small"
 			}
 		},
@@ -4077,7 +4077,7 @@
 			"properties": {
 				"cluster": 5,
 				"dbscan": "core",
-				"marker-color": "#ff0000",
+				"marker-color": "#ff2400",
 				"marker-size": "small"
 			}
 		},
@@ -4093,7 +4093,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -4109,7 +4109,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -4141,7 +4141,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -4157,7 +4157,7 @@
 			"properties": {
 				"cluster": 11,
 				"dbscan": "core",
-				"marker-color": "#00ff67",
+				"marker-color": "#00ffb7",
 				"marker-size": "small"
 			}
 		},
@@ -4173,7 +4173,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -4205,7 +4205,7 @@
 			"properties": {
 				"cluster": 5,
 				"dbscan": "core",
-				"marker-color": "#ff0000",
+				"marker-color": "#ff2400",
 				"marker-size": "small"
 			}
 		},
@@ -4221,7 +4221,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -4237,7 +4237,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -4253,7 +4253,7 @@
 			"properties": {
 				"cluster": 5,
 				"dbscan": "core",
-				"marker-color": "#ff0000",
+				"marker-color": "#ff2400",
 				"marker-size": "small"
 			}
 		},
@@ -4269,7 +4269,7 @@
 			"properties": {
 				"cluster": 1,
 				"dbscan": "core",
-				"marker-color": "#6500ff",
+				"marker-color": "#6d00ff",
 				"marker-size": "small"
 			}
 		},
@@ -4301,7 +4301,7 @@
 			"properties": {
 				"cluster": 5,
 				"dbscan": "core",
-				"marker-color": "#ff0000",
+				"marker-color": "#ff2400",
 				"marker-size": "small"
 			}
 		},
@@ -4317,7 +4317,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -4333,7 +4333,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -4349,7 +4349,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -4365,7 +4365,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -4381,7 +4381,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -4397,7 +4397,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -4413,7 +4413,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -4429,7 +4429,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -4445,7 +4445,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -4461,7 +4461,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -4477,7 +4477,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -4493,7 +4493,7 @@
 			"properties": {
 				"cluster": 5,
 				"dbscan": "core",
-				"marker-color": "#ff0000",
+				"marker-color": "#ff2400",
 				"marker-size": "small"
 			}
 		},
@@ -4509,7 +4509,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -4525,7 +4525,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -4541,7 +4541,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -4573,7 +4573,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -4589,7 +4589,7 @@
 			"properties": {
 				"cluster": 4,
 				"dbscan": "core",
-				"marker-color": "#ff0064",
+				"marker-color": "#ff0047",
 				"marker-size": "small"
 			}
 		},
@@ -4605,7 +4605,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -4621,7 +4621,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -4637,7 +4637,7 @@
 			"properties": {
 				"cluster": 11,
 				"dbscan": "core",
-				"marker-color": "#00ff67",
+				"marker-color": "#00ffb7",
 				"marker-size": "small"
 			}
 		},
@@ -4653,7 +4653,7 @@
 			"properties": {
 				"cluster": 5,
 				"dbscan": "core",
-				"marker-color": "#ff0000",
+				"marker-color": "#ff2400",
 				"marker-size": "small"
 			}
 		},
@@ -4669,7 +4669,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -4685,7 +4685,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -4701,7 +4701,7 @@
 			"properties": {
 				"cluster": 5,
 				"dbscan": "core",
-				"marker-color": "#ff0000",
+				"marker-color": "#ff2400",
 				"marker-size": "small"
 			}
 		},
@@ -4717,7 +4717,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -4733,7 +4733,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -4749,7 +4749,7 @@
 			"properties": {
 				"cluster": 10,
 				"dbscan": "core",
-				"marker-color": "#00ff01",
+				"marker-color": "#00ff49",
 				"marker-size": "small"
 			}
 		},
@@ -4781,7 +4781,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -4797,7 +4797,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -4813,7 +4813,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -4829,7 +4829,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -4861,7 +4861,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -4877,7 +4877,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -4893,7 +4893,7 @@
 			"properties": {
 				"cluster": 5,
 				"dbscan": "core",
-				"marker-color": "#ff0000",
+				"marker-color": "#ff2400",
 				"marker-size": "small"
 			}
 		},
@@ -4909,7 +4909,7 @@
 			"properties": {
 				"cluster": 6,
 				"dbscan": "core",
-				"marker-color": "#ff6600",
+				"marker-color": "#ff9200",
 				"marker-size": "small"
 			}
 		},
@@ -4925,7 +4925,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -4941,7 +4941,7 @@
 			"properties": {
 				"cluster": 8,
 				"dbscan": "core",
-				"marker-color": "#cbff00",
+				"marker-color": "#91ff00",
 				"marker-size": "small"
 			}
 		},
@@ -4957,7 +4957,7 @@
 			"properties": {
 				"cluster": 5,
 				"dbscan": "core",
-				"marker-color": "#ff0000",
+				"marker-color": "#ff2400",
 				"marker-size": "small"
 			}
 		},
@@ -4973,7 +4973,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -4989,7 +4989,7 @@
 			"properties": {
 				"cluster": 9,
 				"dbscan": "core",
-				"marker-color": "#65ff00",
+				"marker-color": "#24ff00",
 				"marker-size": "small"
 			}
 		},
@@ -5021,7 +5021,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -5037,7 +5037,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -5069,7 +5069,7 @@
 			"properties": {
 				"cluster": 5,
 				"dbscan": "core",
-				"marker-color": "#ff0000",
+				"marker-color": "#ff2400",
 				"marker-size": "small"
 			}
 		},
@@ -5085,7 +5085,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -5101,7 +5101,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -5117,7 +5117,7 @@
 			"properties": {
 				"cluster": 6,
 				"dbscan": "core",
-				"marker-color": "#ff6600",
+				"marker-color": "#ff9200",
 				"marker-size": "small"
 			}
 		},
@@ -5133,7 +5133,7 @@
 			"properties": {
 				"cluster": 13,
 				"dbscan": "edge",
-				"marker-color": "#007999",
+				"marker-color": "#004099",
 				"marker-size": "small"
 			}
 		},
@@ -5149,7 +5149,7 @@
 			"properties": {
 				"cluster": 6,
 				"dbscan": "core",
-				"marker-color": "#ff6600",
+				"marker-color": "#ff9200",
 				"marker-size": "small"
 			}
 		},
@@ -5165,7 +5165,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -5181,7 +5181,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -5197,7 +5197,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -5213,7 +5213,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -5229,7 +5229,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -5245,7 +5245,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -5277,7 +5277,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -5309,7 +5309,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -5325,7 +5325,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -5341,7 +5341,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -5357,7 +5357,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -5373,7 +5373,7 @@
 			"properties": {
 				"cluster": 6,
 				"dbscan": "core",
-				"marker-color": "#ff6600",
+				"marker-color": "#ff9200",
 				"marker-size": "small"
 			}
 		},
@@ -5389,7 +5389,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -5405,7 +5405,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -5421,7 +5421,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -5437,7 +5437,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -5453,7 +5453,7 @@
 			"properties": {
 				"cluster": 4,
 				"dbscan": "core",
-				"marker-color": "#ff0064",
+				"marker-color": "#ff0047",
 				"marker-size": "small"
 			}
 		},
@@ -5469,7 +5469,7 @@
 			"properties": {
 				"cluster": 5,
 				"dbscan": "core",
-				"marker-color": "#ff0000",
+				"marker-color": "#ff2400",
 				"marker-size": "small"
 			}
 		},
@@ -5485,7 +5485,7 @@
 			"properties": {
 				"cluster": 5,
 				"dbscan": "core",
-				"marker-color": "#ff0000",
+				"marker-color": "#ff2400",
 				"marker-size": "small"
 			}
 		},
@@ -5501,7 +5501,7 @@
 			"properties": {
 				"cluster": 9,
 				"dbscan": "core",
-				"marker-color": "#65ff00",
+				"marker-color": "#24ff00",
 				"marker-size": "small"
 			}
 		},
@@ -5517,7 +5517,7 @@
 			"properties": {
 				"cluster": 3,
 				"dbscan": "core",
-				"marker-color": "#ff00ca",
+				"marker-color": "#ff00b5",
 				"marker-size": "small"
 			}
 		},
@@ -5533,7 +5533,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -5549,7 +5549,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -5565,7 +5565,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -5581,7 +5581,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -5597,7 +5597,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -5613,7 +5613,7 @@
 			"properties": {
 				"cluster": 4,
 				"dbscan": "core",
-				"marker-color": "#ff0064",
+				"marker-color": "#ff0047",
 				"marker-size": "small"
 			}
 		},
@@ -5629,7 +5629,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -5645,7 +5645,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -5661,7 +5661,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -5677,7 +5677,7 @@
 			"properties": {
 				"cluster": 4,
 				"dbscan": "core",
-				"marker-color": "#ff0064",
+				"marker-color": "#ff0047",
 				"marker-size": "small"
 			}
 		},
@@ -5693,7 +5693,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -5709,7 +5709,7 @@
 			"properties": {
 				"cluster": 4,
 				"dbscan": "core",
-				"marker-color": "#ff0064",
+				"marker-color": "#ff0047",
 				"marker-size": "small"
 			}
 		},
@@ -5725,7 +5725,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -5741,7 +5741,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -5789,7 +5789,7 @@
 			"properties": {
 				"cluster": 4,
 				"dbscan": "core",
-				"marker-color": "#ff0064",
+				"marker-color": "#ff0047",
 				"marker-size": "small"
 			}
 		},
@@ -5805,7 +5805,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -5821,7 +5821,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -5837,7 +5837,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -5853,7 +5853,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -5869,7 +5869,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -5885,7 +5885,7 @@
 			"properties": {
 				"cluster": 5,
 				"dbscan": "core",
-				"marker-color": "#ff0000",
+				"marker-color": "#ff2400",
 				"marker-size": "small"
 			}
 		},
@@ -5901,7 +5901,7 @@
 			"properties": {
 				"cluster": 5,
 				"dbscan": "core",
-				"marker-color": "#ff0000",
+				"marker-color": "#ff2400",
 				"marker-size": "small"
 			}
 		},
@@ -5917,7 +5917,7 @@
 			"properties": {
 				"cluster": 5,
 				"dbscan": "core",
-				"marker-color": "#ff0000",
+				"marker-color": "#ff2400",
 				"marker-size": "small"
 			}
 		},
@@ -5933,7 +5933,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -5949,7 +5949,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -5965,7 +5965,7 @@
 			"properties": {
 				"cluster": 12,
 				"dbscan": "core",
-				"marker-color": "#00ffcd",
+				"marker-color": "#00daff",
 				"marker-size": "small"
 			}
 		},
@@ -5981,7 +5981,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -5997,7 +5997,7 @@
 			"properties": {
 				"cluster": 5,
 				"dbscan": "core",
-				"marker-color": "#ff0000",
+				"marker-color": "#ff2400",
 				"marker-size": "small"
 			}
 		},
@@ -6013,7 +6013,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -6029,7 +6029,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -6045,7 +6045,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -6061,7 +6061,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -6077,7 +6077,7 @@
 			"properties": {
 				"cluster": 5,
 				"dbscan": "core",
-				"marker-color": "#ff0000",
+				"marker-color": "#ff2400",
 				"marker-size": "small"
 			}
 		},
@@ -6093,7 +6093,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -6109,7 +6109,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -6125,7 +6125,7 @@
 			"properties": {
 				"cluster": 1,
 				"dbscan": "core",
-				"marker-color": "#6500ff",
+				"marker-color": "#6d00ff",
 				"marker-size": "small"
 			}
 		},
@@ -6141,7 +6141,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -6157,7 +6157,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -6189,7 +6189,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -6205,7 +6205,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -6221,7 +6221,7 @@
 			"properties": {
 				"cluster": 5,
 				"dbscan": "core",
-				"marker-color": "#ff0000",
+				"marker-color": "#ff2400",
 				"marker-size": "small"
 			}
 		},
@@ -6237,7 +6237,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -6253,7 +6253,7 @@
 			"properties": {
 				"cluster": 9,
 				"dbscan": "core",
-				"marker-color": "#65ff00",
+				"marker-color": "#24ff00",
 				"marker-size": "small"
 			}
 		},
@@ -6269,7 +6269,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -6285,7 +6285,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -6301,7 +6301,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -6317,7 +6317,7 @@
 			"properties": {
 				"cluster": 10,
 				"dbscan": "core",
-				"marker-color": "#00ff01",
+				"marker-color": "#00ff49",
 				"marker-size": "small"
 			}
 		},
@@ -6333,7 +6333,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -6349,7 +6349,7 @@
 			"properties": {
 				"cluster": 5,
 				"dbscan": "core",
-				"marker-color": "#ff0000",
+				"marker-color": "#ff2400",
 				"marker-size": "small"
 			}
 		},
@@ -6365,7 +6365,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -6381,7 +6381,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -6397,7 +6397,7 @@
 			"properties": {
 				"cluster": 6,
 				"dbscan": "core",
-				"marker-color": "#ff6600",
+				"marker-color": "#ff9200",
 				"marker-size": "small"
 			}
 		},
@@ -6413,7 +6413,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -6429,7 +6429,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -6461,7 +6461,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -6477,7 +6477,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -6493,7 +6493,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -6509,7 +6509,7 @@
 			"properties": {
 				"cluster": 4,
 				"dbscan": "core",
-				"marker-color": "#ff0064",
+				"marker-color": "#ff0047",
 				"marker-size": "small"
 			}
 		},
@@ -6541,7 +6541,7 @@
 			"properties": {
 				"cluster": 5,
 				"dbscan": "core",
-				"marker-color": "#ff0000",
+				"marker-color": "#ff2400",
 				"marker-size": "small"
 			}
 		},
@@ -6557,7 +6557,7 @@
 			"properties": {
 				"cluster": 8,
 				"dbscan": "core",
-				"marker-color": "#cbff00",
+				"marker-color": "#91ff00",
 				"marker-size": "small"
 			}
 		},
@@ -6573,7 +6573,7 @@
 			"properties": {
 				"cluster": 11,
 				"dbscan": "core",
-				"marker-color": "#00ff67",
+				"marker-color": "#00ffb7",
 				"marker-size": "small"
 			}
 		},
@@ -6589,7 +6589,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -6605,7 +6605,7 @@
 			"properties": {
 				"cluster": 13,
 				"dbscan": "core",
-				"marker-color": "#00cbff",
+				"marker-color": "#006cff",
 				"marker-size": "small"
 			}
 		},
@@ -6621,7 +6621,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -6637,7 +6637,7 @@
 			"properties": {
 				"cluster": 6,
 				"dbscan": "core",
-				"marker-color": "#ff6600",
+				"marker-color": "#ff9200",
 				"marker-size": "small"
 			}
 		},
@@ -6653,7 +6653,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -6669,7 +6669,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -6685,7 +6685,7 @@
 			"properties": {
 				"cluster": 12,
 				"dbscan": "core",
-				"marker-color": "#00ffcd",
+				"marker-color": "#00daff",
 				"marker-size": "small"
 			}
 		},
@@ -6717,7 +6717,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -6733,7 +6733,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -6749,7 +6749,7 @@
 			"properties": {
 				"cluster": 12,
 				"dbscan": "core",
-				"marker-color": "#00ffcd",
+				"marker-color": "#00daff",
 				"marker-size": "small"
 			}
 		},
@@ -6765,7 +6765,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -6781,7 +6781,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -6797,7 +6797,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -6813,7 +6813,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -6845,7 +6845,7 @@
 			"properties": {
 				"cluster": 5,
 				"dbscan": "core",
-				"marker-color": "#ff0000",
+				"marker-color": "#ff2400",
 				"marker-size": "small"
 			}
 		},
@@ -6861,7 +6861,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -6877,7 +6877,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -6893,7 +6893,7 @@
 			"properties": {
 				"cluster": 5,
 				"dbscan": "core",
-				"marker-color": "#ff0000",
+				"marker-color": "#ff2400",
 				"marker-size": "small"
 			}
 		},
@@ -6909,7 +6909,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -6925,7 +6925,7 @@
 			"properties": {
 				"cluster": 5,
 				"dbscan": "core",
-				"marker-color": "#ff0000",
+				"marker-color": "#ff2400",
 				"marker-size": "small"
 			}
 		},
@@ -6941,7 +6941,7 @@
 			"properties": {
 				"cluster": 5,
 				"dbscan": "core",
-				"marker-color": "#ff0000",
+				"marker-color": "#ff2400",
 				"marker-size": "small"
 			}
 		},
@@ -6957,7 +6957,7 @@
 			"properties": {
 				"cluster": 1,
 				"dbscan": "core",
-				"marker-color": "#6500ff",
+				"marker-color": "#6d00ff",
 				"marker-size": "small"
 			}
 		},
@@ -6973,7 +6973,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -6989,7 +6989,7 @@
 			"properties": {
 				"cluster": 5,
 				"dbscan": "core",
-				"marker-color": "#ff0000",
+				"marker-color": "#ff2400",
 				"marker-size": "small"
 			}
 		},
@@ -7005,7 +7005,7 @@
 			"properties": {
 				"cluster": 3,
 				"dbscan": "core",
-				"marker-color": "#ff00ca",
+				"marker-color": "#ff00b5",
 				"marker-size": "small"
 			}
 		},
@@ -7037,7 +7037,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -7053,7 +7053,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -7085,7 +7085,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -7101,7 +7101,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -7117,7 +7117,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -7133,7 +7133,7 @@
 			"properties": {
 				"cluster": 5,
 				"dbscan": "core",
-				"marker-color": "#ff0000",
+				"marker-color": "#ff2400",
 				"marker-size": "small"
 			}
 		},
@@ -7149,7 +7149,7 @@
 			"properties": {
 				"cluster": 5,
 				"dbscan": "core",
-				"marker-color": "#ff0000",
+				"marker-color": "#ff2400",
 				"marker-size": "small"
 			}
 		},
@@ -7165,7 +7165,7 @@
 			"properties": {
 				"cluster": 11,
 				"dbscan": "core",
-				"marker-color": "#00ff67",
+				"marker-color": "#00ffb7",
 				"marker-size": "small"
 			}
 		},
@@ -7181,7 +7181,7 @@
 			"properties": {
 				"cluster": 5,
 				"dbscan": "core",
-				"marker-color": "#ff0000",
+				"marker-color": "#ff2400",
 				"marker-size": "small"
 			}
 		},
@@ -7197,7 +7197,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -7213,7 +7213,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -7229,7 +7229,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -7245,7 +7245,7 @@
 			"properties": {
 				"cluster": 11,
 				"dbscan": "core",
-				"marker-color": "#00ff67",
+				"marker-color": "#00ffb7",
 				"marker-size": "small"
 			}
 		},
@@ -7261,7 +7261,7 @@
 			"properties": {
 				"cluster": 5,
 				"dbscan": "core",
-				"marker-color": "#ff0000",
+				"marker-color": "#ff2400",
 				"marker-size": "small"
 			}
 		},
@@ -7277,7 +7277,7 @@
 			"properties": {
 				"cluster": 5,
 				"dbscan": "core",
-				"marker-color": "#ff0000",
+				"marker-color": "#ff2400",
 				"marker-size": "small"
 			}
 		},
@@ -7293,7 +7293,7 @@
 			"properties": {
 				"cluster": 11,
 				"dbscan": "core",
-				"marker-color": "#00ff67",
+				"marker-color": "#00ffb7",
 				"marker-size": "small"
 			}
 		},
@@ -7309,7 +7309,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -7325,7 +7325,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -7341,7 +7341,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -7357,7 +7357,7 @@
 			"properties": {
 				"cluster": 6,
 				"dbscan": "core",
-				"marker-color": "#ff6600",
+				"marker-color": "#ff9200",
 				"marker-size": "small"
 			}
 		},
@@ -7373,7 +7373,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -7389,7 +7389,7 @@
 			"properties": {
 				"cluster": 3,
 				"dbscan": "core",
-				"marker-color": "#ff00ca",
+				"marker-color": "#ff00b5",
 				"marker-size": "small"
 			}
 		},
@@ -7405,7 +7405,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -7421,7 +7421,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -7437,7 +7437,7 @@
 			"properties": {
 				"cluster": 5,
 				"dbscan": "core",
-				"marker-color": "#ff0000",
+				"marker-color": "#ff2400",
 				"marker-size": "small"
 			}
 		},
@@ -7453,7 +7453,7 @@
 			"properties": {
 				"cluster": 10,
 				"dbscan": "core",
-				"marker-color": "#00ff01",
+				"marker-color": "#00ff49",
 				"marker-size": "small"
 			}
 		},
@@ -7469,7 +7469,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -7501,7 +7501,7 @@
 			"properties": {
 				"cluster": 5,
 				"dbscan": "core",
-				"marker-color": "#ff0000",
+				"marker-color": "#ff2400",
 				"marker-size": "small"
 			}
 		},
@@ -7533,7 +7533,7 @@
 			"properties": {
 				"cluster": 5,
 				"dbscan": "core",
-				"marker-color": "#ff0000",
+				"marker-color": "#ff2400",
 				"marker-size": "small"
 			}
 		},
@@ -7549,7 +7549,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -7581,7 +7581,7 @@
 			"properties": {
 				"cluster": 10,
 				"dbscan": "core",
-				"marker-color": "#00ff01",
+				"marker-color": "#00ff49",
 				"marker-size": "small"
 			}
 		},
@@ -7597,7 +7597,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -7613,7 +7613,7 @@
 			"properties": {
 				"cluster": 5,
 				"dbscan": "core",
-				"marker-color": "#ff0000",
+				"marker-color": "#ff2400",
 				"marker-size": "small"
 			}
 		},
@@ -7629,7 +7629,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -7645,7 +7645,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -7661,7 +7661,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -7677,7 +7677,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -7693,7 +7693,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -7709,7 +7709,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -7725,7 +7725,7 @@
 			"properties": {
 				"cluster": 4,
 				"dbscan": "core",
-				"marker-color": "#ff0064",
+				"marker-color": "#ff0047",
 				"marker-size": "small"
 			}
 		},
@@ -7757,7 +7757,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -7773,7 +7773,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -7789,7 +7789,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -7805,7 +7805,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -7837,7 +7837,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -7853,7 +7853,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -7869,7 +7869,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -7885,7 +7885,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -7901,7 +7901,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -7917,7 +7917,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -7933,7 +7933,7 @@
 			"properties": {
 				"cluster": 5,
 				"dbscan": "core",
-				"marker-color": "#ff0000",
+				"marker-color": "#ff2400",
 				"marker-size": "small"
 			}
 		},
@@ -7949,7 +7949,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
@@ -7965,7 +7965,7 @@
 			"properties": {
 				"cluster": 5,
 				"dbscan": "core",
-				"marker-color": "#ff0000",
+				"marker-color": "#ff2400",
 				"marker-size": "small"
 			}
 		},
@@ -7981,7 +7981,7 @@
 			"properties": {
 				"cluster": 7,
 				"dbscan": "core",
-				"marker-color": "#ffcc00",
+				"marker-color": "#ffff00",
 				"marker-size": "small"
 			}
 		},
@@ -7997,240 +7997,30 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#cb00ff",
+				"marker-color": "#da00ff",
 				"marker-size": "small"
 			}
 		},
 		{
 			"type": "Feature",
 			"properties": {
-				"marker-symbol": "star",
-				"marker-size": "large",
-				"cluster": 0,
-				"marker-color": "#0000b3"
+				"marker-color": "#0000ff",
+				"marker-symbol": "star-stroked",
+				"marker-size": "large"
 			},
 			"geometry": {
 				"type": "Point",
 				"coordinates": [
-					-82.2818192293862,
-					18.574500694938493
+					-82.28408175118237,
+					18.83101672516768
 				]
 			}
 		},
 		{
 			"type": "Feature",
 			"properties": {
-				"marker-symbol": "star",
-				"marker-size": "large",
-				"cluster": 1,
-				"marker-color": "#4600b3"
-			},
-			"geometry": {
-				"type": "Point",
-				"coordinates": [
-					-85.50093063239368,
-					21.224065996591293
-				]
-			}
-		},
-		{
-			"type": "Feature",
-			"properties": {
-				"marker-symbol": "star",
-				"marker-size": "large",
-				"cluster": 2,
-				"marker-color": "#8e00b3"
-			},
-			"geometry": {
-				"type": "Point",
-				"coordinates": [
-					-76.38586227451087,
-					21.98614593162952
-				]
-			}
-		},
-		{
-			"type": "Feature",
-			"properties": {
-				"marker-symbol": "star",
-				"marker-size": "large",
-				"cluster": 3,
-				"marker-color": "#b3008c"
-			},
-			"geometry": {
-				"type": "Point",
-				"coordinates": [
-					-85.29197467462896,
-					16.89833198921854
-				]
-			}
-		},
-		{
-			"type": "Feature",
-			"properties": {
-				"marker-symbol": "star",
-				"marker-size": "large",
-				"cluster": 4,
-				"marker-color": "#b30045"
-			},
-			"geometry": {
-				"type": "Point",
-				"coordinates": [
-					-71.19866708595949,
-					25.44237624486178
-				]
-			}
-		},
-		{
-			"type": "Feature",
-			"properties": {
-				"marker-symbol": "star",
-				"marker-size": "large",
-				"cluster": 5,
-				"marker-color": "#b30000"
-			},
-			"geometry": {
-				"type": "Point",
-				"coordinates": [
-					-84.40228073804343,
-					24.487873950148828
-				]
-			}
-		},
-		{
-			"type": "Feature",
-			"properties": {
-				"marker-symbol": "star",
-				"marker-size": "large",
-				"cluster": 11,
-				"marker-color": "#00b348"
-			},
-			"geometry": {
-				"type": "Point",
-				"coordinates": [
-					-86.27619027173938,
-					19.29109029324635
-				]
-			}
-		},
-		{
-			"type": "Feature",
-			"properties": {
-				"marker-symbol": "star",
-				"marker-size": "large",
-				"cluster": 6,
-				"marker-color": "#b34700"
-			},
-			"geometry": {
-				"type": "Point",
-				"coordinates": [
-					-82.06608907239291,
-					17.412329163401335
-				]
-			}
-		},
-		{
-			"type": "Feature",
-			"properties": {
-				"marker-symbol": "star",
-				"marker-size": "large",
-				"cluster": 10,
-				"marker-color": "#00b301"
-			},
-			"geometry": {
-				"type": "Point",
-				"coordinates": [
-					-82.73913749561382,
-					26.855457529245705
-				]
-			}
-		},
-		{
-			"type": "Feature",
-			"properties": {
-				"marker-symbol": "star",
-				"marker-size": "large",
-				"cluster": 7,
-				"marker-color": "#b38f00"
-			},
-			"geometry": {
-				"type": "Point",
-				"coordinates": [
-					-80.96312016186486,
-					27.219565274371575
-				]
-			}
-		},
-		{
-			"type": "Feature",
-			"properties": {
-				"marker-symbol": "star",
-				"marker-size": "large",
-				"cluster": 12,
-				"marker-color": "#00b390"
-			},
-			"geometry": {
-				"type": "Point",
-				"coordinates": [
-					-81.1051665883531,
-					24.395330154899057
-				]
-			}
-		},
-		{
-			"type": "Feature",
-			"properties": {
-				"marker-symbol": "star",
-				"marker-size": "large",
-				"cluster": 8,
-				"marker-color": "#8eb300"
-			},
-			"geometry": {
-				"type": "Point",
-				"coordinates": [
-					-76.16707065674852,
-					21.25441552688179
-				]
-			}
-		},
-		{
-			"type": "Feature",
-			"properties": {
-				"marker-symbol": "star",
-				"marker-size": "large",
-				"cluster": 9,
-				"marker-color": "#46b300"
-			},
-			"geometry": {
-				"type": "Point",
-				"coordinates": [
-					-78.7626466683383,
-					20.005421882638764
-				]
-			}
-		},
-		{
-			"type": "Feature",
-			"properties": {
-				"marker-symbol": "star",
-				"marker-size": "large",
-				"cluster": 13,
-				"marker-color": "#008db3"
-			},
-			"geometry": {
-				"type": "Point",
-				"coordinates": [
-					-74.77871030764776,
-					16.703901619603467
-				]
-			}
-		},
-		{
-			"type": "Feature",
-			"properties": {
-				"cluster": 0,
-				"fill": "#0000b3",
-				"stroke": "#0000b3",
+				"fill": "#000080",
+				"stroke": "#000080",
 				"fill-opacity": 0.3
 			},
 			"geometry": {
@@ -8250,8 +8040,16 @@
 							17.953443362949123
 						],
 						[
-							-82.2818192293862,
-							18.574500694938493
+							-81.15582212817301,
+							18.696902173553443
+						],
+						[
+							-81.25719355261317,
+							18.841254641177088
+						],
+						[
+							-82.77696496688779,
+							18.94471042190279
 						],
 						[
 							-83.28006204700529,
@@ -8332,9 +8130,23 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"cluster": 1,
-				"fill": "#4600b3",
-				"stroke": "#4600b3",
+				"marker-color": "#6d00ff",
+				"marker-symbol": "star-stroked",
+				"marker-size": "large"
+			},
+			"geometry": {
+				"type": "Point",
+				"coordinates": [
+					-85.49490340440704,
+					21.114965400671604
+				]
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {
+				"fill": "#360080",
+				"stroke": "#360080",
 				"fill-opacity": 0.3
 			},
 			"geometry": {
@@ -8356,10 +8168,6 @@
 						[
 							-86.10048201961024,
 							21.361849810266136
-						],
-						[
-							-85.50093063239368,
-							21.224065996591293
 						],
 						[
 							-85.42569161383636,
@@ -8412,9 +8220,23 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"cluster": 2,
-				"fill": "#8e00b3",
-				"stroke": "#8e00b3",
+				"marker-color": "#da00ff",
+				"marker-symbol": "star-stroked",
+				"marker-size": "large"
+			},
+			"geometry": {
+				"type": "Point",
+				"coordinates": [
+					-75.73992434997538,
+					21.94985759016944
+				]
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {
+				"fill": "#6d0080",
+				"stroke": "#6d0080",
 				"fill-opacity": 0.3
 			},
 			"geometry": {
@@ -8792,9 +8614,23 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"cluster": 3,
-				"fill": "#b3008c",
-				"stroke": "#b3008c",
+				"marker-color": "#ff00b5",
+				"marker-symbol": "star-stroked",
+				"marker-size": "large"
+			},
+			"geometry": {
+				"type": "Point",
+				"coordinates": [
+					-85.23373053592442,
+					16.8920553982022
+				]
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {
+				"fill": "#80005a",
+				"stroke": "#80005a",
 				"fill-opacity": 0.3
 			},
 			"geometry": {
@@ -8840,9 +8676,23 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"cluster": 4,
-				"fill": "#b30045",
-				"stroke": "#b30045",
+				"marker-color": "#ff0047",
+				"marker-symbol": "star-stroked",
+				"marker-size": "large"
+			},
+			"geometry": {
+				"type": "Point",
+				"coordinates": [
+					-71.1194577566574,
+					25.589091707982796
+				]
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {
+				"fill": "#800023",
+				"stroke": "#800023",
 				"fill-opacity": 0.3
 			},
 			"geometry": {
@@ -8886,10 +8736,6 @@
 							24.460836562368442
 						],
 						[
-							-71.19866708595949,
-							25.44237624486178
-						],
-						[
 							-71.53755328892348,
 							25.323104677883705
 						],
@@ -8904,9 +8750,23 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"cluster": 5,
-				"fill": "#b30000",
-				"stroke": "#b30000",
+				"marker-color": "#ff2400",
+				"marker-symbol": "star-stroked",
+				"marker-size": "large"
+			},
+			"geometry": {
+				"type": "Point",
+				"coordinates": [
+					-84.26550046355221,
+					24.44198758419083
+				]
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {
+				"fill": "#801200",
+				"stroke": "#801200",
 				"fill-opacity": 0.3
 			},
 			"geometry": {
@@ -9120,65 +8980,23 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"cluster": 11,
-				"fill": "#00b348",
-				"stroke": "#00b348",
-				"fill-opacity": 0.3
+				"marker-color": "#ff9200",
+				"marker-symbol": "star-stroked",
+				"marker-size": "large"
 			},
 			"geometry": {
-				"type": "Polygon",
+				"type": "Point",
 				"coordinates": [
-					[
-						[
-							-86.58330318049086,
-							18.09915952726896
-						],
-						[
-							-86.27619027173938,
-							19.29109029324635
-						],
-						[
-							-86.56755786305595,
-							19.40265705295205
-						],
-						[
-							-86.71994017762563,
-							20.189025977120103
-						],
-						[
-							-85.93555696939467,
-							19.98152959915939
-						],
-						[
-							-85.67038090634749,
-							19.518488261229543
-						],
-						[
-							-86.02504204870841,
-							18.793197099411397
-						],
-						[
-							-86.01507615292597,
-							18.68916636419406
-						],
-						[
-							-86.21686530340585,
-							18.59063554310776
-						],
-						[
-							-86.58330318049086,
-							18.09915952726896
-						]
-					]
+					-82.14437416584026,
+					17.41110464007145
 				]
 			}
 		},
 		{
 			"type": "Feature",
 			"properties": {
-				"cluster": 6,
-				"fill": "#b34700",
-				"stroke": "#b34700",
+				"fill": "#804900",
+				"stroke": "#804900",
 				"fill-opacity": 0.3
 			},
 			"geometry": {
@@ -9256,9 +9074,165 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"cluster": 10,
-				"fill": "#00b301",
-				"stroke": "#00b301",
+				"marker-color": "#ffff00",
+				"marker-symbol": "star-stroked",
+				"marker-size": "large"
+			},
+			"geometry": {
+				"type": "Point",
+				"coordinates": [
+					-80.96312016186486,
+					27.219565274371575
+				]
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {
+				"fill": "#808000",
+				"stroke": "#808000",
+				"fill-opacity": 0.3
+			},
+			"geometry": {
+				"type": "Polygon",
+				"coordinates": [
+					[
+						[
+							-80.76905431857912,
+							27.471768557404076
+						],
+						[
+							-81.15681636726895,
+							26.828785859624258
+						],
+						[
+							-80.96348979974654,
+							27.35814140608639
+						],
+						[
+							-80.76905431857912,
+							27.471768557404076
+						]
+					]
+				]
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {
+				"marker-color": "#91ff00",
+				"marker-symbol": "star-stroked",
+				"marker-size": "large"
+			},
+			"geometry": {
+				"type": "Point",
+				"coordinates": [
+					-76.16707065674852,
+					21.25441552688179
+				]
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {
+				"fill": "#488000",
+				"stroke": "#488000",
+				"fill-opacity": 0.3
+			},
+			"geometry": {
+				"type": "Polygon",
+				"coordinates": [
+					[
+						[
+							-75.98170526139158,
+							20.98332034823357
+						],
+						[
+							-76.61068998466835,
+							21.311283807756645
+						],
+						[
+							-75.90881672418563,
+							21.468642424655155
+						],
+						[
+							-75.98170526139158,
+							20.98332034823357
+						]
+					]
+				]
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {
+				"marker-color": "#24ff00",
+				"marker-symbol": "star-stroked",
+				"marker-size": "large"
+			},
+			"geometry": {
+				"type": "Point",
+				"coordinates": [
+					-78.78070315781642,
+					20.027881309126002
+				]
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {
+				"fill": "#128000",
+				"stroke": "#128000",
+				"fill-opacity": 0.3
+			},
+			"geometry": {
+				"type": "Polygon",
+				"coordinates": [
+					[
+						[
+							-78.4434583942987,
+							19.619680064723546
+						],
+						[
+							-79.25614050898571,
+							20.47865304539995
+						],
+						[
+							-78.83487262625073,
+							20.095259588587723
+						],
+						[
+							-78.5883411017305,
+							19.917932537792794
+						],
+						[
+							-78.4434583942987,
+							19.619680064723546
+						]
+					]
+				]
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {
+				"marker-color": "#00ff49",
+				"marker-symbol": "star-stroked",
+				"marker-size": "large"
+			},
+			"geometry": {
+				"type": "Point",
+				"coordinates": [
+					-82.75601339734492,
+					26.90145854875671
+				]
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {
+				"fill": "#008025",
+				"stroke": "#008025",
 				"fill-opacity": 0.3
 			},
 			"geometry": {
@@ -9296,9 +9270,23 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"cluster": 7,
-				"fill": "#b38f00",
-				"stroke": "#b38f00",
+				"marker-color": "#00ffb7",
+				"marker-symbol": "star-stroked",
+				"marker-size": "large"
+			},
+			"geometry": {
+				"type": "Point",
+				"coordinates": [
+					-86.20743398331993,
+					19.233369341871892
+				]
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {
+				"fill": "#00805c",
+				"stroke": "#00805c",
 				"fill-opacity": 0.3
 			},
 			"geometry": {
@@ -9306,24 +9294,44 @@
 				"coordinates": [
 					[
 						[
-							-80.76905431857912,
-							27.471768557404076
+							-86.58330318049086,
+							18.09915952726896
 						],
 						[
-							-80.96312016186486,
-							27.219565274371575
+							-86.05313261324237,
+							19.319796400696145
 						],
 						[
-							-81.15681636726895,
-							26.828785859624258
+							-86.56755786305595,
+							19.40265705295205
 						],
 						[
-							-80.96348979974654,
-							27.35814140608639
+							-86.71994017762563,
+							20.189025977120103
 						],
 						[
-							-80.76905431857912,
-							27.471768557404076
+							-85.93555696939467,
+							19.98152959915939
+						],
+						[
+							-85.67038090634749,
+							19.518488261229543
+						],
+						[
+							-86.02504204870841,
+							18.793197099411397
+						],
+						[
+							-86.01507615292597,
+							18.68916636419406
+						],
+						[
+							-86.21686530340585,
+							18.59063554310776
+						],
+						[
+							-86.58330318049086,
+							18.09915952726896
 						]
 					]
 				]
@@ -9332,9 +9340,23 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"cluster": 12,
-				"fill": "#00b390",
-				"stroke": "#00b390",
+				"marker-color": "#00daff",
+				"marker-symbol": "star-stroked",
+				"marker-size": "large"
+			},
+			"geometry": {
+				"type": "Point",
+				"coordinates": [
+					-81.09107749064712,
+					24.37688511209426
+				]
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {
+				"fill": "#006c80",
+				"stroke": "#006c80",
 				"fill-opacity": 0.3
 			},
 			"geometry": {
@@ -9348,10 +9370,6 @@
 						[
 							-81.56890381178304,
 							24.88700194600341
-						],
-						[
-							-81.1051665883531,
-							24.395330154899057
 						],
 						[
 							-80.45164209210782,
@@ -9372,85 +9390,23 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"cluster": 8,
-				"fill": "#8eb300",
-				"stroke": "#8eb300",
-				"fill-opacity": 0.3
+				"marker-color": "#006cff",
+				"marker-symbol": "star-stroked",
+				"marker-size": "large"
 			},
 			"geometry": {
-				"type": "Polygon",
+				"type": "Point",
 				"coordinates": [
-					[
-						[
-							-75.98170526139158,
-							20.98332034823357
-						],
-						[
-							-76.61068998466835,
-							21.311283807756645
-						],
-						[
-							-76.16707065674852,
-							21.25441552688179
-						],
-						[
-							-75.90881672418563,
-							21.468642424655155
-						],
-						[
-							-75.98170526139158,
-							20.98332034823357
-						]
-					]
+					-74.77871030764776,
+					16.703901619603467
 				]
 			}
 		},
 		{
 			"type": "Feature",
 			"properties": {
-				"cluster": 9,
-				"fill": "#46b300",
-				"stroke": "#46b300",
-				"fill-opacity": 0.3
-			},
-			"geometry": {
-				"type": "Polygon",
-				"coordinates": [
-					[
-						[
-							-78.4434583942987,
-							19.619680064723546
-						],
-						[
-							-78.7626466683383,
-							20.005421882638764
-						],
-						[
-							-79.25614050898571,
-							20.47865304539995
-						],
-						[
-							-78.83487262625073,
-							20.095259588587723
-						],
-						[
-							-78.5883411017305,
-							19.917932537792794
-						],
-						[
-							-78.4434583942987,
-							19.619680064723546
-						]
-					]
-				]
-			}
-		},
-		{
-			"type": "Feature",
-			"properties": {
-				"cluster": 13,
-				"fill": "#008db3",
-				"stroke": "#008db3",
+				"fill": "#003580",
+				"stroke": "#003580",
 				"fill-opacity": 0.3
 			},
 			"geometry": {
@@ -9464,10 +9420,6 @@
 						[
 							-75.10886304098058,
 							16.8269149948045
-						],
-						[
-							-74.77871030764776,
-							16.703901619603467
 						],
 						[
 							-74.37506450657898,

@@ -22,9 +22,9 @@ const fixtures = fs.readdirSync(directories.in).map(filename => {
 
 test('turf-line-split', t => {
     for (const {filename, name, geojson}  of fixtures) {
-        const source = geojson.features[0];
-        const target = geojson.features[1];
-        const results = colorize(lineSplit(source, target));
+        const line = geojson.features[0];
+        const splitter = geojson.features[1];
+        const results = colorize(lineSplit(line, splitter));
         featureEach(geojson, feature => results.features.push(feature));
 
         if (process.env.REGEN) write.sync(directories.out + filename, results);
@@ -51,6 +51,19 @@ test('turf-line-split - splitter exactly on end of line', t => {
     t.deepEqual(features, [line], 'should only contain 1 line of 3 vertices');
     t.end();
 });
+
+test('turf-line-split -- throws', t => {
+    const pt = point([9, 50]);
+    const line = lineString([[7, 50], [8, 50], [9, 50]]);
+
+    t.throws(() => lineSplit(null, pt), '<geojson> is required');
+    t.throws(() => lineSplit(line, null), '<geojson> is required');
+    t.throws(() => lineSplit(pt, pt), '<line> must be LineString');
+    t.throws(() => lineSplit(line, featureCollection([pt, line])), '<splitter> cannot be a FeatureCollection');
+
+    t.end();
+});
+
 
 /**
  * Colorize FeatureCollection
