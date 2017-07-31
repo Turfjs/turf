@@ -6,7 +6,7 @@
   version "4.5.2"
   resolved "https://registry.yarnpkg.com/@turf/clone/-/clone-4.5.2.tgz#397d3b173beb0c67137a6ecd8c232a24c7561316"
 
-"@turf/helpers@4.5.2":
+"@turf/helpers@^4.5.2":
   version "4.5.2"
   resolved "https://registry.yarnpkg.com/@turf/helpers/-/helpers-4.5.2.tgz#6fc6772a7b301f277b49732925c354c7fb85d1df"
 

@@ -1,4 +1,3 @@
-var clone = require('@turf/clone');
 var invariant = require('@turf/invariant');
 var getCoords = invariant.getCoords;
 var getGeomType = invariant.getGeomType;
@@ -8,7 +7,6 @@ var getGeomType = invariant.getGeomType;
  *
  * @name cleanCoords
  * @param {Geometry|Feature} geojson Feature or Geometry
- * @param {boolean} [mutate=false] allows GeoJSON input to be mutated
  * @returns {Geometry|Feature} the cleaned input Feature/Geometry
  * @example
  * var line = turf.lineString([[0, 0], [0, 2], [0, 5], [0, 8], [0, 8], [0, 10]]);
@@ -20,7 +18,7 @@ var getGeomType = invariant.getGeomType;
  * turf.cleanCoords(multiPoint).geometry.coordinates;
  * //= [[0, 0], [2, 2]]
  */
-module.exports = function (geojson, mutate) {
+module.exports = function (geojson) {
     if (!geojson) throw new Error('geojson is required');
     var type = getGeomType(geojson);
     var coords = getCoords(geojson);
@@ -30,7 +28,7 @@ module.exports = function (geojson, mutate) {
 
     switch (type) {
     case 'LineString':
-        newCoords = cleanCoords(geojson, mutate);
+        newCoords = cleanCoords(geojson);
         break;
     case 'MultiLineString':
     case 'Polygon':
@@ -63,11 +61,45 @@ module.exports = function (geojson, mutate) {
         throw new Error(type + ' geometry not supported');
     }
 
-    if (mutate !== true) geojson = clone(geojson);
-    if (geojson.coordinates) geojson.coordinates = newCoords;
-    else geojson.geometry.coordinates = newCoords;
-    return geojson;
+    if (geojson.coordinates) return geometry(geojson, type, newCoords);
+    else return feature(geojson, type, newCoords);
 };
+
+/**
+ * Create Geometry from existing Geometry
+ *
+ * @param {Geometry} geojson Existing Geometry
+ * @param {string} type Geometry Type
+ * @param {Array<number>} coordinates Coordinates
+ * @returns {Geometry} Geometry
+ */
+function geometry(geojson, type, coordinates) {
+    var geom = {
+        type: type,
+        coordinates: coordinates
+    };
+    if (geojson.bbox) geom.bbox = geojson.bbox;
+    return geom;
+}
+
+/**
+ * Create Feature from existing Feature
+ *
+ * @param {Feature} geojson Existing Feature
+ * @param {string} type Feature Type
+ * @param {Array<number>} coordinates Coordinates
+ * @returns {Feature} Feature
+ */
+function feature(geojson, type, coordinates) {
+    var feat = {
+        type: 'Feature',
+        properties: geojson.properties || {},
+        geometry: geometry(geojson.geometry, type, coordinates)
+    };
+    if (geojson.id) feat.id = geojson.id;
+    if (geojson.bbox) feat.bbox = geojson.bbox;
+    return feat;
+}
 
 /**
  * Clean Coords

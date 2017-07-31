@@ -50,8 +50,9 @@ test('turf-clean-coords -- throws', t => {
 
 test('turf-clean-coords -- prevent input mutation', t => {
     const line = lineString([[0, 0], [1, 1], [2, 2]], {foo: 'bar'});
-    cleanCoords(line);
     const lineBefore = JSON.parse(JSON.stringify(line));
+
+    cleanCoords(line);
     t.deepEqual(lineBefore, line, 'line should NOT be mutated');
 
     const multiPoly = multiPolygon([
@@ -61,8 +62,5 @@ test('turf-clean-coords -- prevent input mutation', t => {
     const multiPolyBefore = JSON.parse(JSON.stringify(multiPoly));
     cleanCoords(multiPoly);
     t.deepEqual(multiPolyBefore, multiPoly, 'multiPolygon should NOT be mutated');
-
-    const cleanLine = cleanCoords(line, true);
-    t.deepEqual(cleanLine, line, 'line should be mutated');
     t.end();
 });

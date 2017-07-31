@@ -31,9 +31,9 @@ glob.sync(path.join(__dirname, 'test', 'in', '*.geojson')).forEach(filepath => {
     const {name} = path.parse(filepath);
     const geojson = load.sync(filepath);
     console.time(name);
-    cleanCoords(geojson, true);
+    cleanCoords(geojson);
     console.timeEnd(name);
-    suite.add(name, () => cleanCoords(geojson, true));
+    suite.add(name, () => cleanCoords(geojson));
 });
 
 suite
