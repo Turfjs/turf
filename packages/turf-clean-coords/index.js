@@ -34,34 +34,30 @@ module.exports = function (geojson, mutate) {
         break;
     case 'MultiLineString':
     case 'Polygon':
-        for (var i = 0; i < coords.length; i++) {
-            var line = coords[i];
+        coords.forEach(function (line) {
             newCoords.push(cleanCoords(line));
-        }
+        });
         break;
     case 'MultiPolygon':
-        for (var j = 0; j < coords.length; j++) {
-            var polys = coords[j];
+        coords.forEach(function (polygons) {
             var polyPoints = [];
-            for (var p = 0; p < polys.length; p++) {
-                var ring = polys[p];
+            polygons.forEach(function (ring) {
                 polyPoints.push(cleanCoords(ring));
-            }
+            });
             newCoords.push(polyPoints);
-        }
+        });
         break;
     case 'Point':
         return geojson;
     case 'MultiPoint':
         var existing = {};
-        for (var y = 0; y < coords.length; y++) {
-            var point = coords[y];
-            var key = point.join('-');
+        coords.forEach(function (coord) {
+            var key = coord.join('-');
             if (!existing.hasOwnProperty(key)) {
-                newCoords.push(point);
+                newCoords.push(coord);
                 existing[key] = true;
             }
-        }
+        });
         break;
     default:
         throw new Error(type + ' geometry not supported');
@@ -103,7 +99,7 @@ function cleanCoords(line) {
 
 /**
  * Returns if `point` is on the segment between `start` and `end`.
- * Borrowed from `@turf/boolean-point-on-line` to speed up the evaluation
+ * Borrowed from `@turf/boolean-point-on-line` to speed up the evaluation (instead of using the module as dependency)
  *
  * @private
  * @param {Array<number>} start coord pair of start of line
