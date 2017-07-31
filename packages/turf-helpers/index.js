@@ -35,7 +35,7 @@ function feature(geometry, properties, bbox, id) {
 }
 
 /**
- * Creates a GeoJSON {@link Geometry}.
+ * Creates a GeoJSON {@link Geometry} from a Geometry string type & coordinates.
  * For GeometryCollection type use `helpers.geometryCollection`
  *
  * @name geometry
