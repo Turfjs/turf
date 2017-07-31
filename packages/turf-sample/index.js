@@ -9,9 +9,11 @@ var featureCollection = require('@turf/helpers').featureCollection;
  * @param {number} num number of features to select
  * @returns {FeatureCollection} a FeatureCollection with `n` features
  * @example
- * var points = turf.random('points', 1000);
+ * var points = turf.random('points', 100, {
+ *   bbox: [-80, 30, -60, 60]
+ * });
  *
- * var sample = turf.sample(points, 10);
+ * var sample = turf.sample(points, 5);
  *
  * //addToMap
  * var addToMap = [points, sample]
