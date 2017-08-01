@@ -29,7 +29,7 @@ var convertDistance = helpers.convertDistance;
  * var clustered = turf.clustersDbscan(points, distance);
  *
  * //addToMap
- * var addToMap = clustered;
+ * var addToMap = [clustered];
  */
 module.exports = function (points, maxDistance, units, minPoints) {
     // Input validation

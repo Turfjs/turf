@@ -1,6 +1,16 @@
 const test = require('tape');
-const {point, lineString, polygon, featureCollection} = require('@turf/helpers');
+const {point, lineString, feature, polygon, featureCollection} = require('@turf/helpers');
 const meta = require('./');
+const {
+    featureEach,
+    featureReduce,
+    flattenEach,
+    flattenReduce,
+    geomEach,
+    geomReduce,
+    coordEach,
+    coordReduce
+} = require('./');
 
 const pointGeometry = {
     type: 'Point',
@@ -409,6 +419,40 @@ test('flattenReduce#previous-feature+initialValue', t => {
     t.end();
 });
 
+// https://github.com/Turfjs/turf/issues/853
+test('null geometries', t => {
+    const fc = featureCollection([
+        feature(null),
+        feature(null)
+    ]);
+
+    // Each operations
+    featureEach(fc, feature => t.equal(feature.geometry, null, 'featureEach'));
+    geomEach(fc, geometry => t.equal(geometry, null), 'geomEach');
+    flattenEach(fc, feature => t.equal(feature.geometry, null, 'flattenEach'));
+    coordEach(fc, () => t.fail('no coordinates should be found'));
+
+    // Reduce operations
+    t.equal(featureReduce(fc, prev => prev += 1, 0), 2, 'featureReduce');
+    t.equal(geomReduce(fc, prev => prev += 1, 0), 2, 'geomReduce');
+    t.equal(flattenReduce(fc, prev => prev += 1, 0), 2, 'flattenReduce');
+    t.equal(coordReduce(fc, prev => prev += 1, 0), 0, 'coordReduce');
+    t.end();
+});
+
+test('null geometries -- index', t => {
+    const fc = featureCollection([
+        feature(null), // index 0
+        point([0, 0]), // index 1
+        feature(null), // index 2
+        lineString([[1, 1], [0, 0]]) // index 3
+    ]);
+    t.deepEqual(meta.coordReduce(fc, (prev, coords, coordIndex) => prev.concat(coordIndex), []), [0, 1, 2], 'coordReduce');
+    t.deepEqual(meta.geomReduce(fc, (prev, geom, featureIndex) => prev.concat(featureIndex), []), [0, 1, 2, 3], 'geomReduce');
+    t.deepEqual(meta.flattenReduce(fc, (prev, feature, featureIndex) => prev.concat(featureIndex), []), [0, 1, 2, 3], 'flattenReduce');
+    t.end();
+});
+
 test('segmentEach', t => {
     const segments = [];
     let total = 0;
@@ -455,11 +499,14 @@ const geojsonSegments = featureCollection([
 test('segmentEach -- index & subIndex', t => {
     const index = [];
     const subIndex = [];
-    // Segment Each
-    meta.segmentEach(geojsonSegments, (segment, currentIndex, currentSubIndex) => {
-        index.push(currentIndex);
-        subIndex.push(currentSubIndex);
+    let total = 0;
+
+    meta.segmentEach(geojsonSegments, (segment, featureIndex, featureSubIndex) => {
+        index.push(featureIndex);
+        subIndex.push(featureSubIndex);
+        total++;
     });
+    t.equal(total, 8, 'total');
     t.deepEqual(index, [1, 1, 2, 2, 2, 2, 4, 4], 'index');
     t.deepEqual(subIndex, [0, 1, 0, 1, 2, 3, 0, 1], 'subIndex');
     t.end();
@@ -468,12 +515,61 @@ test('segmentEach -- index & subIndex', t => {
 test('segmentReduce -- index & subIndex', t => {
     const index = [];
     const subIndex = [];
-    // Segment Each
-    meta.segmentReduce(geojsonSegments, (previousValue, segment, currentIndex, currentSubIndex) => {
-        index.push(currentIndex);
-        subIndex.push(currentSubIndex);
-    });
+
+    const total = meta.segmentReduce(geojsonSegments, (previousValue, segment, featureIndex, featureSubIndex) => {
+        index.push(featureIndex);
+        subIndex.push(featureSubIndex);
+        previousValue++;
+        return previousValue;
+    }, 0);
+
+    t.equal(total, 8, 'total');
     t.deepEqual(index, [1, 1, 2, 2, 2, 2, 4, 4], 'index');
     t.deepEqual(subIndex, [0, 1, 0, 1, 2, 3, 0, 1], 'subIndex');
+    t.end();
+});
+
+const geojsonCoords = featureCollection([
+    point([0, 1]),
+    lineString([[0, 0], [2, 2], [4, 4]]),
+    point([2, 2])
+]);
+
+test('coordEach -- index & subIndex', t => {
+    const coordIndexes = [];
+    const featureIndexes = [];
+    const featureSubIndexes = [];
+    let total = 0;
+
+    meta.coordEach(geojsonCoords, (coord, coordIndex, featureIndex, featureSubIndex) => {
+        coordIndexes.push(coordIndex);
+        featureIndexes.push(featureIndex);
+        featureSubIndexes.push(featureSubIndex);
+        total++;
+    });
+    t.equal(total, 5, 'total');
+    t.deepEqual(coordIndexes, [0, 1, 2, 3, 4], 'coordIndex');
+    t.deepEqual(featureIndexes, [0, 1, 1, 1, 2], 'featureIndex');
+    t.deepEqual(featureSubIndexes, [0, 0, 1, 2, 0], 'featureSubIndex');
+    t.end();
+});
+
+test('coordEach -- index & subIndex', t => {
+    const coordIndexes = [];
+    const featureIndexes = [];
+    const featureSubIndexes = [];
+
+    const total = meta.coordReduce(geojsonCoords, (previousValue, coord, coordIndex, featureIndex, featureSubIndex) => {
+        coordIndexes.push(coordIndex);
+        featureIndexes.push(featureIndex);
+        featureSubIndexes.push(featureSubIndex);
+        previousValue++;
+        return previousValue;
+    }, 0);
+
+    t.equal(total, 5);
+    t.deepEqual(coordIndexes, [0, 1, 2, 3, 4], 'coordIndex');
+    t.deepEqual(featureIndexes, [0, 1, 1, 1, 2], 'featureIndex');
+    t.deepEqual(featureSubIndexes, [0, 0, 1, 2, 0], 'featureSubIndex');
     t.end();
 });

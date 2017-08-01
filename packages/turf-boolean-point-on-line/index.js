@@ -32,10 +32,10 @@ module.exports = function (point, linestring, ignoreEndVertices) {
 // See http://stackoverflow.com/a/4833823/1979085
 /**
  * @private
- * @param {Array} lineSegmentStart coord pair of start of line
- * @param {Array} lineSegmentEnd coord pair of end of line
- * @param {Array} point coord pair of point to check
- * @param {boolean|String} excludeBoundary whether the point is allowed to fall on the line ends. If true which end to ignore.
+ * @param {Array<number>} lineSegmentStart coord pair of start of line
+ * @param {Array<number>} lineSegmentEnd coord pair of end of line
+ * @param {Array<number>} point coord pair of point to check
+ * @param {boolean|string} excludeBoundary whether the point is allowed to fall on the line ends. If true which end to ignore.
  * @returns {boolean} true/false
  */
 function isPointOnLineSegment(lineSegmentStart, lineSegmentEnd, point, excludeBoundary) {

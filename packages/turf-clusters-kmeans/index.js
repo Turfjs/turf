@@ -26,7 +26,7 @@ var collectionOf = invariant.collectionOf;
  * var clustered = turf.clustersKmeans(points, numberOfClusters);
  *
  * //addToMap
- * var addToMap = clustered;
+ * var addToMap = [clustered];
  */
 module.exports = function (points, numberOfClusters, mutate) {
     // Input validation
