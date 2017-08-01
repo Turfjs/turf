@@ -1,4 +1,5 @@
 var GeojsonEquality = require('geojson-equality');
+var cleanCoords = require('@turf/clean-coords');
 var invariant = require('@turf/invariant');
 var getGeomType = invariant.getGeomType;
 
@@ -29,5 +30,5 @@ module.exports = function (feature1, feature2) {
     if (type1 !== type2) throw new Error('features must be of the same type');
 
     var equality = new GeojsonEquality({precision: 6});
-    return equality.compare(feature1, feature2);
+    return equality.compare(cleanCoords(feature1), cleanCoords(feature2));
 };

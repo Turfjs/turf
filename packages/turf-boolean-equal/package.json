@@ -44,6 +44,7 @@
     "tape": "^4.6.3"
   },
   "dependencies": {
+    "@turf/clean-coords": "^4.5.2",
     "@turf/invariant": "^4.5.2",
     "geojson-equality": "0.1.6"
   }
