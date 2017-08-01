@@ -23,7 +23,6 @@ var getGeomType = invariant.getGeomType;
 module.exports = function (geojson, mutate) {
     if (!geojson) throw new Error('geojson is required');
     var type = getGeomType(geojson);
-    var coords = getCoords(geojson);
 
     // Store new "clean" points in this Array
     var newCoords = [];
@@ -34,12 +33,12 @@ module.exports = function (geojson, mutate) {
         break;
     case 'MultiLineString':
     case 'Polygon':
-        coords.forEach(function (line) {
+        getCoords(geojson).forEach(function (line) {
             newCoords.push(cleanCoords(line));
         });
         break;
     case 'MultiPolygon':
-        coords.forEach(function (polygons) {
+        getCoords(geojson).forEach(function (polygons) {
             var polyPoints = [];
             polygons.forEach(function (ring) {
                 polyPoints.push(cleanCoords(ring));
@@ -51,7 +50,7 @@ module.exports = function (geojson, mutate) {
         return geojson;
     case 'MultiPoint':
         var existing = {};
-        coords.forEach(function (coord) {
+        getCoords(geojson).forEach(function (coord) {
             var key = coord.join('-');
             if (!existing.hasOwnProperty(key)) {
                 newCoords.push(coord);
@@ -120,6 +119,8 @@ function feature(geojson, type, coordinates) {
  */
 function cleanCoords(line) {
     var points = getCoords(line);
+    // handle "clean" segment
+    if (points.length === 2 && !equals(points[0], points[1])) return points;
 
     var prevPoint, point, nextPoint;
     var newPoints = [];
@@ -137,6 +138,18 @@ function cleanCoords(line) {
     }
     newPoints.push(nextPoint);
     return newPoints;
+}
+
+/**
+ * Compares two points and returns if they are equals
+ *
+ * @private
+ * @param {Array<number>} pt1 point
+ * @param {Array<number>} pt2 point
+ * @returns {boolean} true if they are equals
+ */
+function equals(pt1, pt2) {
+    return pt1[0] === pt2[0] && pt1[1] === pt2[1];
 }
 
 /**
