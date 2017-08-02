@@ -41,6 +41,7 @@ test('turf-boolean-equal -- geometries', t => {
     t.true(equal(line1.geometry, line2.geometry), '[true] LineString geometry');
     t.true(equal(poly1.geometry, poly2.geometry), '[true] Polygon geometry');
     t.false(equal(poly1.geometry, poly3.geometry), '[false] Polygon geometry');
+    t.false(equal(pt, line1), '[false] different types');
     t.end();
 });
 
@@ -48,6 +49,5 @@ test('turf-boolean-equal -- geometries', t => {
 test('turf-boolean-equal -- throws', t => {
     t.throws(() => equal(null, line1), /feature1 is required/, 'missing feature1');
     t.throws(() => equal(line1, null), /feature2 is required/, 'missing feature2');
-    t.throws(() => equal(pt, line1), /features must be of the same type/, 'different types');
     t.end();
 });

@@ -8,9 +8,9 @@ var getGeomType = invariant.getGeomType;
  * See http://edndoc.esri.com/arcsde/9.0/general_topics/understand_spatial_relations.htm
  *
  * @name booleanEqual
- * @param {Geometry|Feature<any>} feature1 GeoJSON input
- * @param {Geometry|Feature<any>} feature2 GeoJSON input
- * @returns {Boolean} true if the objects are equal, false otherwise
+ * @param {Geometry|Feature} feature1 GeoJSON input
+ * @param {Geometry|Feature} feature2 GeoJSON input
+ * @returns {boolean} true if the objects are equal, false otherwise
  * @example
  * var pt1 = turf.point([0, 0]);
  * var pt2 = turf.point([0, 0]);
@@ -27,7 +27,7 @@ module.exports = function (feature1, feature2) {
     if (!feature2) throw new Error('feature2 is required');
     var type1 = getGeomType(feature1);
     var type2 = getGeomType(feature2);
-    if (type1 !== type2) throw new Error('features must be of the same type');
+    if (type1 !== type2) return false;
 
     var equality = new GeojsonEquality({precision: 6});
     return equality.compare(cleanCoords(feature1), cleanCoords(feature2));
