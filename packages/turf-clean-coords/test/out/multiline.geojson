@@ -1,0 +1,29 @@
+{
+	"type": "Feature",
+	"properties": {},
+	"geometry": {
+		"type": "MultiLineString",
+		"coordinates": [
+			[
+				[
+					0,
+					0
+				],
+				[
+					0,
+					10
+				]
+			],
+			[
+				[
+					1,
+					1
+				],
+				[
+					6,
+					6
+				]
+			]
+		]
+	}
+}

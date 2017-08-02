@@ -1,13 +1,12 @@
 {
-  "name": "@turf/clusters-kmeans",
-  "version": "4.0.0",
-  "description": "turf clusters-kmeans module",
+  "name": "@turf/boolean-equal",
+  "version": "4.5.0",
+  "description": "turf boolean-equal module",
   "main": "index.js",
   "types": "index.d.ts",
   "files": [
     "index.js",
-    "index.d.ts",
-    "skmeans.js"
+    "index.d.ts"
   ],
   "scripts": {
     "test": "node test.js",
@@ -19,17 +18,17 @@
   },
   "keywords": [
     "turf",
-    "geojson",
-    "cluster",
-    "clusters",
-    "clustering",
-    "k-means"
+    "gis",
+    "boolean",
+    "de-9im",
+    "equal",
+    "boolean-equal"
   ],
   "author": "Turf Authors",
   "contributors": [
-    "David Gómez Matarrodona <@solzimer>",
-    "Stefano Borghi <@stebogit>",
-    "Denis Carriere <@DenisCarriere>"
+    "Tom MacWright <@tmcw>",
+    "Tim Channell <@tcql>",
+    "Stefano Borghi <@stebogit>"
   ],
   "license": "MIT",
   "bugs": {
@@ -37,21 +36,16 @@
   },
   "homepage": "https://github.com/Turfjs/turf",
   "devDependencies": {
-    "@turf/centroid": "^4.5.2",
-    "@turf/clusters": "^4.6.0",
     "@turf/helpers": "^4.5.2",
-    "@turf/random": "^4.5.2",
     "benchmark": "^2.1.4",
-    "chromatism": "2.6.0",
-    "concaveman": "1.1.1",
+    "boolean-shapely": "^0.1.2",
+    "glob": "^7.1.1",
     "load-json-file": "^2.0.0",
-    "matrix-to-grid": "3.0.0",
-    "tape": "^4.6.3",
-    "write-json-file": "^2.0.0"
+    "tape": "^4.6.3"
   },
   "dependencies": {
-    "@turf/clone": "^4.5.2",
+    "@turf/clean-coords": "^4.5.0",
     "@turf/invariant": "^4.5.2",
-    "@turf/meta": "^4.5.2"
+    "geojson-equality": "0.1.6"
   }
 }

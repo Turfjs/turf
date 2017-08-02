@@ -7,16 +7,19 @@ const turf = require('./');
 
 // Helpers
 const directory = path.join(__dirname, '..');
-let modules = fs.readdirSync(directory).map(name => {
-    const pckg = JSON.parse(fs.readFileSync(path.join(directory, name, 'package.json')));
-    return {
+let modules = [];
+for (const name of fs.readdirSync(directory)) {
+    const pckgPath = path.join(directory, name, 'package.json');
+    if (!fs.existsSync(pckgPath)) continue;
+    const pckg = JSON.parse(fs.readFileSync(pckgPath));
+    modules.push({
         name,
         dir: path.join(directory, name),
         pckg,
         dependencies: pckg.dependencies || {},
         devDependencies: pckg.devDependencies || {}
-    };
-});
+    });
+}
 // Exclude main Turf module
 modules = modules.filter(({name}) => name !== 'turf');
 
