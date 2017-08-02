@@ -69,6 +69,7 @@
     "@turf/boolean-disjoint": "^4.5.2",
     "@turf/boolean-overlap": "^4.5.0",
     "@turf/boolean-point-on-line": "^4.0.0",
+    "@turf/boolean-equal": "^4.5.0",
     "@turf/buffer": "^4.5.2",
     "@turf/center": "^4.5.2",
     "@turf/center-of-mass": "^4.5.2",

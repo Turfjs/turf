@@ -118,6 +118,14 @@
   dependencies:
     "@turf/invariant" "^4.5.2"
 
+"@turf/boolean-equal@^4.5.0":
+  version "4.5.0"
+  resolved "https://registry.yarnpkg.com/@turf/boolean-equal/-/boolean-equal-4.5.0.tgz#71ab0a221714b9360426a09e1644add5127fe2da"
+  dependencies:
+    "@turf/clean-coords" "^4.5.0"
+    "@turf/invariant" "^4.5.2"
+    geojson-equality "0.1.6"
+
 "@turf/buffer@^4.5.2":
   version "4.5.2"
   resolved "https://registry.yarnpkg.com/@turf/buffer/-/buffer-4.5.2.tgz#4c19514d157e4181d2170bcbc8b603411a991363"
