@@ -1,6 +1,6 @@
 {
   "name": "@turf/transform-scale",
-  "version": "4.6.0",
+  "version": "4.6.1",
   "description": "turf transform-scale module",
   "main": "index.js",
   "types": "index.d.ts",
@@ -45,8 +45,8 @@
   },
   "dependencies": {
     "@turf/bbox": "^4.6.0",
-    "@turf/center": "^4.6.0",
-    "@turf/centroid": "^4.6.0",
+    "@turf/center": "^4.6.1",
+    "@turf/centroid": "^4.6.1",
     "@turf/helpers": "^4.6.0",
     "@turf/invariant": "^4.6.0",
     "@turf/meta": "^4.6.0",
