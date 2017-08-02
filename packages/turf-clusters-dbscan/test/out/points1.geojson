@@ -102,7 +102,7 @@
 			"properties": {
 				"cluster": 1,
 				"dbscan": "core",
-				"marker-color": "#ff007e",
+				"marker-color": "#ff0000",
 				"marker-size": "small"
 			},
 			"geometry": {
@@ -118,7 +118,7 @@
 			"properties": {
 				"cluster": 1,
 				"dbscan": "core",
-				"marker-color": "#ff007e",
+				"marker-color": "#ff0000",
 				"marker-size": "small"
 			},
 			"geometry": {
@@ -134,7 +134,7 @@
 			"properties": {
 				"cluster": 1,
 				"dbscan": "core",
-				"marker-color": "#ff007e",
+				"marker-color": "#ff0000",
 				"marker-size": "small"
 			},
 			"geometry": {
@@ -150,7 +150,7 @@
 			"properties": {
 				"cluster": 1,
 				"dbscan": "core",
-				"marker-color": "#ff007e",
+				"marker-color": "#ff0000",
 				"marker-size": "small"
 			},
 			"geometry": {
@@ -166,7 +166,7 @@
 			"properties": {
 				"cluster": 1,
 				"dbscan": "core",
-				"marker-color": "#ff007e",
+				"marker-color": "#ff0000",
 				"marker-size": "small"
 			},
 			"geometry": {
@@ -182,7 +182,7 @@
 			"properties": {
 				"cluster": 1,
 				"dbscan": "core",
-				"marker-color": "#ff007e",
+				"marker-color": "#ff0000",
 				"marker-size": "small"
 			},
 			"geometry": {
@@ -198,7 +198,7 @@
 			"properties": {
 				"cluster": 1,
 				"dbscan": "core",
-				"marker-color": "#ff007e",
+				"marker-color": "#ff0000",
 				"marker-size": "small"
 			},
 			"geometry": {
@@ -214,7 +214,7 @@
 			"properties": {
 				"cluster": 1,
 				"dbscan": "core",
-				"marker-color": "#ff007e",
+				"marker-color": "#ff0000",
 				"marker-size": "small"
 			},
 			"geometry": {
@@ -230,7 +230,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#ffff00",
+				"marker-color": "#00ff01",
 				"marker-size": "small"
 			},
 			"geometry": {
@@ -246,7 +246,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#ffff00",
+				"marker-color": "#00ff01",
 				"marker-size": "small"
 			},
 			"geometry": {
@@ -262,7 +262,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#ffff00",
+				"marker-color": "#00ff01",
 				"marker-size": "small"
 			},
 			"geometry": {
@@ -278,7 +278,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#ffff00",
+				"marker-color": "#00ff01",
 				"marker-size": "small"
 			},
 			"geometry": {
@@ -294,7 +294,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#ffff00",
+				"marker-color": "#00ff01",
 				"marker-size": "small"
 			},
 			"geometry": {
@@ -310,7 +310,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#ffff00",
+				"marker-color": "#00ff01",
 				"marker-size": "small"
 			},
 			"geometry": {
@@ -326,7 +326,7 @@
 			"properties": {
 				"cluster": 2,
 				"dbscan": "core",
-				"marker-color": "#ffff00",
+				"marker-color": "#00ff01",
 				"marker-size": "small"
 			},
 			"geometry": {
@@ -342,7 +342,7 @@
 			"properties": {
 				"cluster": 1,
 				"dbscan": "core",
-				"marker-color": "#ff007e",
+				"marker-color": "#ff0000",
 				"marker-size": "small"
 			},
 			"geometry": {
@@ -372,57 +372,23 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"marker-symbol": "star",
-				"marker-size": "large",
-				"cluster": 0,
-				"marker-color": "#0000b3"
+				"marker-color": "#0000ff",
+				"marker-symbol": "star-stroked",
+				"marker-size": "large"
 			},
 			"geometry": {
 				"type": "Point",
 				"coordinates": [
-					-82.29918627072443,
-					23.09352518096456
+					-82.3114013671875,
+					23.093189398632948
 				]
 			}
 		},
 		{
 			"type": "Feature",
 			"properties": {
-				"marker-symbol": "star",
-				"marker-size": "large",
-				"cluster": 1,
-				"marker-color": "#b30057"
-			},
-			"geometry": {
-				"type": "Point",
-				"coordinates": [
-					-75.85202121882148,
-					20.122630322815162
-				]
-			}
-		},
-		{
-			"type": "Feature",
-			"properties": {
-				"marker-symbol": "star",
-				"marker-size": "large",
-				"cluster": 2,
-				"marker-color": "#b3b300"
-			},
-			"geometry": {
-				"type": "Point",
-				"coordinates": [
-					-80.44391685584579,
-					22.135422527231796
-				]
-			}
-		},
-		{
-			"type": "Feature",
-			"properties": {
-				"cluster": 0,
-				"fill": "#0000b3",
-				"stroke": "#0000b3",
+				"fill": "#000080",
+				"stroke": "#000080",
 				"fill-opacity": 0.3
 			},
 			"geometry": {
@@ -446,10 +412,6 @@
 							23.120153621695614
 						],
 						[
-							-82.29918627072443,
-							23.09352518096456
-						],
-						[
 							-82.19970703125,
 							23.221154981846556
 						],
@@ -468,9 +430,23 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"cluster": 1,
-				"fill": "#b30057",
-				"stroke": "#b30057",
+				"marker-color": "#ff0000",
+				"marker-symbol": "star-stroked",
+				"marker-size": "large"
+			},
+			"geometry": {
+				"type": "Point",
+				"coordinates": [
+					-75.81878662109375,
+					20.097163159890428
+				]
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {
+				"fill": "#800000",
+				"stroke": "#800000",
 				"fill-opacity": 0.3
 			},
 			"geometry": {
@@ -490,16 +466,8 @@
 							20.040450354169483
 						],
 						[
-							-75.8551025390625,
-							20.035289711352377
-						],
-						[
 							-76.00341796875,
 							19.947532877989353
-						],
-						[
-							-75.85202121882148,
-							20.122630322815162
 						],
 						[
 							-75.9375,
@@ -508,6 +476,10 @@
 						[
 							-75.94024658203124,
 							20.360077646657153
+						],
+						[
+							-75.8551025390625,
+							20.035289711352377
 						],
 						[
 							-75.73974609375,
@@ -528,9 +500,23 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"cluster": 2,
-				"fill": "#b3b300",
-				"stroke": "#b3b300",
+				"marker-color": "#00ff01",
+				"marker-symbol": "star-stroked",
+				"marker-size": "large"
+			},
+			"geometry": {
+				"type": "Point",
+				"coordinates": [
+					-80.44267926897321,
+					22.122696498115662
+				]
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {
+				"fill": "#008001",
+				"stroke": "#008001",
 				"fill-opacity": 0.3
 			},
 			"geometry": {

@@ -1,7 +1,7 @@
+const fs = require('fs');
 const path = require('path');
 const load = require('load-json-file');
 const Benchmark = require('benchmark');
-const fs = require('fs');
 const lineDistance = require('./');
 
 // Define fixtures
@@ -17,12 +17,12 @@ const fixtures = fs.readdirSync(directory).map(filename => {
 /**
  * Benmark Results
  *
- * feature-collection x 274,292 ops/sec ±6.58% (75 runs sampled)
- * multi-linestring x 606,888 ops/sec ±1.65% (87 runs sampled)
- * multi-polygon x 425,090 ops/sec ±4.51% (80 runs sampled)
- * polygon x 617,824 ops/sec ±4.31% (76 runs sampled)
- * route1 x 1,234 ops/sec ±0.89% (87 runs sampled)
- * route2 x 1,356 ops/sec ±0.89% (90 runs sampled)
+ * feature-collection x 240,519 ops/sec ±2.55% (83 runs sampled)
+ * multi-linestring x 352,542 ops/sec ±8.44% (76 runs sampled)
+ * multi-polygon x 308,500 ops/sec ±3.92% (83 runs sampled)
+ * polygon x 534,768 ops/sec ±1.29% (84 runs sampled)
+ * route1 x 1,280 ops/sec ±1.23% (89 runs sampled)
+ * route2 x 1,452 ops/sec ±1.57% (87 runs sampled)
  */
 
 // Define benchmark

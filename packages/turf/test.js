@@ -1,19 +1,25 @@
 const fs = require('fs');
 const path = require('path');
+const glob = require('glob');
 const test = require('tape');
+const documentation = require('documentation');
+const turf = require('./');
 
 // Helpers
 const directory = path.join(__dirname, '..');
-let modules = fs.readdirSync(directory).map(name => {
-    const pckg = JSON.parse(fs.readFileSync(path.join(directory, name, 'package.json')));
-    return {
+let modules = [];
+for (const name of fs.readdirSync(directory)) {
+    const pckgPath = path.join(directory, name, 'package.json');
+    if (!fs.existsSync(pckgPath)) continue;
+    const pckg = JSON.parse(fs.readFileSync(pckgPath));
+    modules.push({
         name,
         dir: path.join(directory, name),
         pckg,
         dependencies: pckg.dependencies || {},
         devDependencies: pckg.devDependencies || {}
-    };
-});
+    });
+}
 // Exclude main Turf module
 modules = modules.filter(({name}) => name !== 'turf');
 
@@ -126,4 +132,78 @@ test('turf - parsing dependencies from index.js', t => {
         }
     }
     t.end();
+});
+
+
+/**
+ * =========================
+ * Builds => test.example.js
+ * =========================
+ * will be run as `posttest`
+ */
+
+// File Paths
+const testFilePath = path.join(__dirname, 'test.example.js');
+const turfModulesPath = path.join(__dirname, '..', 'turf-*', 'index.js');
+
+// Test Strings
+const requireString = `const test = require('tape');
+const turf = require('./');
+`;
+
+/**
+ * Generate Test String
+ *
+ * @param {Object} turfFunction Documentation function object
+ * @param {Object} example Documentation example object
+ * @returns {string} Test String
+ */
+function testString(turfFunction, example) {
+    const turfName = turfFunction.name;
+    const testFunctionName = turfName + 'Test';
+
+    // New modules will be excluded from tests
+    if (!turf.hasOwnProperty(turfName)) return `
+test('turf-${turfName}', t => {
+    t.skip('${turfName}');
+    t.end();
+});
+`;
+    return `
+test('turf-${turfName}', t => {
+    const ${testFunctionName} = () => {
+        ${example.description}
+    }
+    ${testFunctionName}();
+    t.pass('${turfName}');
+    t.end();
+});
+`;
+}
+
+// Iterate over each module and retrieve @example to build tests from them
+glob(turfModulesPath, (err, files) => {
+    if (err) throw err;
+
+    // Read each JSDocs from index.js files
+    documentation.build(files, {}).then(turfFunctions => {
+        if (err) throw err;
+
+        // Write header of test.js
+        const writeableStream = fs.createWriteStream(testFilePath);
+        writeableStream.write(requireString);
+        writeableStream.on('error', err => { throw err; });
+
+        // Retrieve @example
+        turfFunctions.forEach(turfFunction => {
+            if (turfFunction.examples) {
+
+                // Save to test.js
+                turfFunction.examples.forEach(example => {
+                    writeableStream.write(testString(turfFunction, example));
+                });
+            }
+        });
+        writeableStream.end();
+    });
 });

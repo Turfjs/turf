@@ -8,19 +8,12 @@ var coordEach = require('@turf/meta').coordEach;
  * @param {boolean} [mutate=false] allows GeoJSON input to be mutated (significant performance increase if true)
  * @returns {FeatureCollection|Feature<any>} a feature or set of features of the same type as `input` with flipped coordinates
  * @example
- * var serbia = {
- *   "type": "Feature",
- *   "properties": {},
- *   "geometry": {
- *     "type": "Point",
- *     "coordinates": [20.566406, 43.421008]
- *   }
- * };
+ * var serbia = turf.point([20.566406, 43.421008]);
  *
  * var saudiArabia = turf.flip(serbia);
  *
  * //addToMap
- * var addToMap = [serbia, saudiArabia]
+ * var addToMap = [serbia, saudiArabia];
  */
 module.exports = function (geojson, mutate) {
     if (!geojson) throw new Error('geojson is required');

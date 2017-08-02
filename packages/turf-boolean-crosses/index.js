@@ -16,11 +16,14 @@ var getGeomType = invariant.getGeomType;
  * @name booleanCrosses
  * @param {Geometry|Feature<any>} feature1 GeoJSON Feature or Geometry
  * @param {Geometry|Feature<any>} feature2 GeoJSON Feature or Geometry
- * @returns {Boolean} true/false
+ * @returns {boolean} true/false
  * @example
- * var cross = turf.booleanCrosses(feature1, feature2);
+ * var line1 = turf.lineString([[-2, 2], [4, 2]]);
+ * var line2 = turf.lineString([[1, 1], [1, 2], [1, 3], [1, 4]]);
+ *
+ * var cross = turf.booleanCrosses(line1, line2);
+ * //=true
  */
-
 module.exports = function (feature1, feature2) {
     var type1 = getGeomType(feature1);
     var type2 = getGeomType(feature2);
@@ -140,8 +143,8 @@ function doesMultiPointCrossPoly(multiPoint, polygon) {
  * @param {Array} lineSegmentStart coord pair of start of line
  * @param {Array} lineSegmentEnd coord pair of end of line
  * @param {Array} point coord pair of point to check
- * @param {Boolean} incEnd whether the point is allowed to fall on the line ends
- * @returns {Boolean} true/false
+ * @param {boolean} incEnd whether the point is allowed to fall on the line ends
+ * @returns {boolean} true/false
  */
 function isPointOnLineSegment(lineSegmentStart, lineSegmentEnd, point, incEnd) {
     var dxc = point[0] - lineSegmentStart[0];

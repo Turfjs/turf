@@ -25,6 +25,10 @@
     "gis"
   ],
   "author": "Turf Authors",
+  "contributors": [
+    "Denis Carriere <@DenisCarriere>",
+    "Tom MacWright <@tmcw>"
+  ],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/Turfjs/turf/issues"
@@ -38,7 +42,6 @@
   },
   "dependencies": {
     "@turf/distance": "^4.5.2",
-    "@turf/flatten": "^4.5.2",
     "@turf/helpers": "^4.5.2",
     "@turf/meta": "^4.5.2"
   }

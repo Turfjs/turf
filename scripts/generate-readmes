@@ -36,7 +36,12 @@ const paths = {
 };
 
 function generateDocs(directory, callback) {
-    const {name, main} = load.sync(path.join(directory, 'package.json'));
+    const pkgPath = path.join(directory, 'package.json');
+    if (!fs.existsSync(pkgPath)) {
+        bar.tick();
+        return callback(null);
+    }
+    const {name, main} = load.sync(pkgPath);
     const pkgMain = path.join(directory, main);
 
     // Build Documentation

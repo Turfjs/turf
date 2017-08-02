@@ -21,8 +21,8 @@ var getCoords = invariant.getCoords;
  * var translatedPoly = turf.transformTranslate(poly, 100, 35);
  *
  * //addToMap
- * translatedPoly.properties = {stroke: '#F00', 'stroke-width': 4};
  * var addToMap = [poly, translatedPoly];
+ * translatedPoly.properties = {stroke: '#F00', 'stroke-width': 4};
  */
 module.exports = function (geojson, distance, direction, units, zTranslation, mutate) {
     // Input validation

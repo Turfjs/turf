@@ -15,26 +15,12 @@ var featureCollection = helpers.featureCollection;
  * @param {Geometry|FeatureCollection|Feature<LineString|MultiLineString|Polygon|MultiPolygon>} line2 any LineString or Polygon
  * @returns {FeatureCollection<Point>} point(s) that intersect both
  * @example
- * var line1 = {
- *   "type": "Feature",
- *   "properties": {},
- *   "geometry": {
- *     "type": "LineString",
- *     "coordinates": [[126, -11], [129, -21]]
- *   }
- * };
- * var line2 = {
- *   "type": "Feature",
- *   "properties": {},
- *   "geometry": {
- *     "type": "LineString",
- *     "coordinates": [[123, -18], [131, -14]]
- *   }
- * };
+ * var line1 = turf.lineString([[126, -11], [129, -21]]);
+ * var line2 = turf.lineString([[123, -18], [131, -14]]);
  * var intersects = turf.lineIntersect(line1, line2);
  *
  * //addToMap
- * var addToMap = [line, line2, intersects]
+ * var addToMap = [line1, line2, intersects]
  */
 module.exports = function (line1, line2) {
     var unique = {};

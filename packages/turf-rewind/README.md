@@ -13,16 +13,8 @@ Rewind [(Multi)LineString](http://geojson.org/geojson-spec.html#linestring) or [
 **Examples**
 
 ```javascript
-var polygon = {
-    "type": "Feature",
-    "properties": {},
-    "geometry": {
-        "type": "Polygon",
-        "coordinates": [
-            [[121, -29], [138, -29], [138, -18], [121, -18], [121, -29]]
-        ]
-    }
-};
+var polygon = turf.polygon([[[121, -29], [138, -29], [138, -18], [121, -18], [121, -29]]]);
+
 var rewind = turf.rewind(polygon);
 
 //addToMap

@@ -32,7 +32,7 @@ var collectionOf = invariant.collectionOf;
  * var grid = turf.interpolate(points, 100, 'points', 'solRad', 'miles');
  *
  * //addToMap
- * var addToMap = grid
+ * var addToMap = [grid];
  */
 module.exports = function (points, cellSize, gridType, property, units, weight) {
     // validation
@@ -50,15 +50,19 @@ module.exports = function (points, cellSize, gridType, property, units, weight) 
     var grid;
     switch (gridType) {
     case 'point':
+    case 'points':
         grid = poinGrid(box, cellSize, units, true);
         break;
     case 'square':
+    case 'squares':
         grid = squareGrid(box, cellSize, units);
         break;
     case 'hex':
+    case 'hexes':
         grid = hexGrid(box, cellSize, units);
         break;
     case 'triangle':
+    case 'triangles':
         grid = triangleGrid(box, cellSize, units);
         break;
     default:

@@ -13,22 +13,9 @@ var getCoord = require('@turf/invariant').getCoord;
  * be split which cross the dateline. The higher the number the more likely.
  * @returns {Feature<LineString>} great circle line feature
  * @example
- * var start = {
- *   "type": "Feature",
- *   "properties": {},
- *   "geometry": {
- *     "type": "Point",
- *     "coordinates": [-122, 48]
- *   }
- * }
- * var end = {
- *   "type": "Feature",
- *   "properties": {},
- *   "geometry": {
- *     "type": "Point",
- *     "coordinates": [-77, 39]
- *   }
- * }
+ * var start = turf.point([-122, 48]);
+ * var end = turf.point([-77, 39]);
+ *
  * var greatCircle = turf.greatCircle(start, end, {'name': 'Seattle to DC'});
  *
  * //addToMap

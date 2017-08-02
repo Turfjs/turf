@@ -12,41 +12,11 @@ Dissolves a FeatureCollection of polygons based on a property. Note that multipa
 **Examples**
 
 ```javascript
-var features = {
-"type": "FeatureCollection",
-"features": [
-  {
-    "type": "Feature",
-    "properties": {
-      "combine": "yes"
-    },
-    "geometry": {
-      "type": "Polygon",
-      "coordinates": [[[0, 0], [0, 1], [1, 1], [1, 0], [0, 0]]]
-    }
-  },
-  {
-    "type": "Feature",
-    "properties": {
-      "combine": "yes"
-    },
-    "geometry": {
-      "type": "Polygon",
-      "coordinates": [[[0, -1], [0, 0], [1, 0], [1, -1], [0,-1]]]
-    }
-  },
-  {
-    "type": "Feature",
-    "properties": {
-      "combine": "no"
-    },
-    "geometry": {
-      "type": "Polygon",
-      "coordinates": [[[1,-1],[1, 0], [2, 0], [2, -1], [1, -1]]]
-    }
-  }
- ]
-}
+var features = turf.featureCollection([
+  turf.polygon([[[0, 0], [0, 1], [1, 1], [1, 0], [0, 0]]], {"combine": "yes"}),
+  turf.polygon([[[0, -1], [0, 0], [1, 0], [1, -1], [0,-1]]], {"combine": "yes"}),
+  turf.polygon([[[1,-1],[1, 0], [2, 0], [2, -1], [1, -1]]], {"combine": "no"}),
+]);
 
 var dissolved = turf.dissolve(features, 'combine');
 

@@ -3,7 +3,9 @@
  *
  * @name feature
  * @param {Geometry} geometry input geometry
- * @param {Object} properties properties
+ * @param {Object} [properties={}] an Object of key-value pairs to add as properties
+ * @param {Array<number>} [bbox] BBox [west, south, east, north]
+ * @param {string|number} [id] Identifier
  * @returns {Feature} a GeoJSON Feature
  * @example
  * var geometry = {
@@ -15,14 +17,61 @@
  *
  * //=feature
  */
-function feature(geometry, properties) {
-    if (!geometry) throw new Error('No geometry passed');
+function feature(geometry, properties, bbox, id) {
+    if (geometry === undefined) throw new Error('geometry is required');
+    if (properties && properties.constructor !== Object) throw new Error('properties must be an Object');
 
-    return {
+    var feat = {
         type: 'Feature',
         properties: properties || {},
         geometry: geometry
     };
+    if (bbox) {
+        if (bbox.length !== 4) throw new Error('bbox must be an Array of 4 numbers');
+        feat.bbox = bbox;
+    }
+    if (id) feat.id = id;
+    return feat;
+}
+
+/**
+ * Creates a GeoJSON {@link Geometry} from a Geometry string type & coordinates.
+ * For GeometryCollection type use `helpers.geometryCollection`
+ *
+ * @name geometry
+ * @param {string} type Geometry Type
+ * @param {Array<number>} coordinates Coordinates
+ * @param {Array<number>} [bbox] BBox [west, south, east, north]
+ * @returns {Geometry} a GeoJSON Geometry
+ * @example
+ * var type = 'Point';
+ * var coordinates = [110, 50];
+ *
+ * var geometry = turf.geometry(type, coordinates);
+ *
+ * //=geometry
+ */
+function geometry(type, coordinates, bbox) {
+    // Validation
+    if (!type) throw new Error('type is required');
+    if (!coordinates) throw new Error('coordinates is required');
+    if (!Array.isArray(coordinates)) throw new Error('coordinates must be an Array');
+
+    var geom;
+    switch (type) {
+    case 'Point': geom = point(coordinates).geometry; break;
+    case 'LineString': geom = lineString(coordinates).geometry; break;
+    case 'Polygon': geom = polygon(coordinates).geometry; break;
+    case 'MultiPoint': geom = multiPoint(coordinates).geometry; break;
+    case 'MultiLineString': geom = multiLineString(coordinates).geometry; break;
+    case 'MultiPolygon': geom = multiPolygon(coordinates).geometry; break;
+    default: throw new Error(type + ' is invalid');
+    }
+    if (bbox) {
+        if (bbox.length !== 4) throw new Error('bbox must be an Array of 4 numbers');
+        geom.bbox = bbox;
+    }
+    return geom;
 }
 
 /**
@@ -30,15 +79,16 @@ function feature(geometry, properties) {
  *
  * @name point
  * @param {Array<number>} coordinates longitude, latitude position (each in decimal degrees)
- * @param {Object=} properties an Object that is used as the {@link Feature}'s
- * properties
+ * @param {Object} [properties={}] an Object of key-value pairs to add as properties
+ * @param {Array<number>} [bbox] BBox [west, south, east, north]
+ * @param {string|number} [id] Identifier
  * @returns {Feature<Point>} a Point feature
  * @example
  * var point = turf.point([-75.343, 39.984]);
  *
  * //=point
  */
-function point(coordinates, properties) {
+function point(coordinates, properties, bbox, id) {
     if (!coordinates) throw new Error('No coordinates passed');
     if (coordinates.length === undefined) throw new Error('Coordinates must be an array');
     if (coordinates.length < 2) throw new Error('Coordinates must be at least 2 numbers long');
@@ -47,7 +97,7 @@ function point(coordinates, properties) {
     return feature({
         type: 'Point',
         coordinates: coordinates
-    }, properties);
+    }, properties, bbox, id);
 }
 
 /**
@@ -55,7 +105,9 @@ function point(coordinates, properties) {
  *
  * @name polygon
  * @param {Array<Array<Array<number>>>} coordinates an array of LinearRings
- * @param {Object=} properties a properties object
+ * @param {Object} [properties={}] an Object of key-value pairs to add as properties
+ * @param {Array<number>} [bbox] BBox [west, south, east, north]
+ * @param {string|number} [id] Identifier
  * @returns {Feature<Polygon>} a Polygon feature
  * @throws {Error} throw an error if a LinearRing of the polygon has too few positions
  * or if a LinearRing of the Polygon does not have matching Positions at the beginning & end.
@@ -70,7 +122,7 @@ function point(coordinates, properties) {
  *
  * //=polygon
  */
-function polygon(coordinates, properties) {
+function polygon(coordinates, properties, bbox, id) {
     if (!coordinates) throw new Error('No coordinates passed');
 
     for (var i = 0; i < coordinates.length; i++) {
@@ -88,7 +140,7 @@ function polygon(coordinates, properties) {
     return feature({
         type: 'Polygon',
         coordinates: coordinates
-    }, properties);
+    }, properties, bbox, id);
 }
 
 /**
@@ -97,7 +149,9 @@ function polygon(coordinates, properties) {
  *
  * @name lineString
  * @param {Array<Array<number>>} coordinates an array of Positions
- * @param {Object=} properties an Object of key-value pairs to add as properties
+ * @param {Object} [properties={}] an Object of key-value pairs to add as properties
+ * @param {Array<number>} [bbox] BBox [west, south, east, north]
+ * @param {string|number} [id] Identifier
  * @returns {Feature<LineString>} a LineString feature
  * @throws {Error} if no coordinates are passed
  * @example
@@ -118,14 +172,14 @@ function polygon(coordinates, properties) {
  *
  * //=linestring2
  */
-function lineString(coordinates, properties) {
+function lineString(coordinates, properties, bbox, id) {
     if (!coordinates) throw new Error('No coordinates passed');
     if (coordinates.length < 2) throw new Error('Coordinates must be an array of two or more positions');
 
     return feature({
         type: 'LineString',
         coordinates: coordinates
-    }, properties);
+    }, properties, bbox, id);
 }
 
 /**
@@ -133,6 +187,7 @@ function lineString(coordinates, properties) {
  *
  * @name featureCollection
  * @param {Feature[]} features input features
+ * @param {Array<number>} [bbox] BBox [west, south, east, north]
  * @returns {FeatureCollection} a FeatureCollection of input features
  * @example
  * var features = [
@@ -145,14 +200,16 @@ function lineString(coordinates, properties) {
  *
  * //=collection
  */
-function featureCollection(features) {
+function featureCollection(features, bbox) {
     if (!features) throw new Error('No features passed');
     if (!Array.isArray(features)) throw new Error('features must be an Array');
 
-    return {
+    var fc = {
         type: 'FeatureCollection',
         features: features
     };
+    if (bbox) fc.bbox = bbox;
+    return fc;
 }
 
 /**
@@ -161,7 +218,9 @@ function featureCollection(features) {
  *
  * @name multiLineString
  * @param {Array<Array<Array<number>>>} coordinates an array of LineStrings
- * @param {Object=} properties an Object of key-value pairs to add as properties
+ * @param {Object} [properties={}] an Object of key-value pairs to add as properties
+ * @param {Array<number>} [bbox] BBox [west, south, east, north]
+ * @param {string|number} [id] Identifier
  * @returns {Feature<MultiLineString>} a MultiLineString feature
  * @throws {Error} if no coordinates are passed
  * @example
@@ -169,13 +228,13 @@ function featureCollection(features) {
  *
  * //=multiLine
  */
-function multiLineString(coordinates, properties) {
+function multiLineString(coordinates, properties, bbox, id) {
     if (!coordinates) throw new Error('No coordinates passed');
 
     return feature({
         type: 'MultiLineString',
         coordinates: coordinates
-    }, properties);
+    }, properties, bbox, id);
 }
 
 /**
@@ -184,7 +243,9 @@ function multiLineString(coordinates, properties) {
  *
  * @name multiPoint
  * @param {Array<Array<number>>} coordinates an array of Positions
- * @param {Object=} properties an Object of key-value pairs to add as properties
+ * @param {Object} [properties={}] an Object of key-value pairs to add as properties
+ * @param {Array<number>} [bbox] BBox [west, south, east, north]
+ * @param {string|number} [id] Identifier
  * @returns {Feature<MultiPoint>} a MultiPoint feature
  * @throws {Error} if no coordinates are passed
  * @example
@@ -192,13 +253,13 @@ function multiLineString(coordinates, properties) {
  *
  * //=multiPt
  */
-function multiPoint(coordinates, properties) {
+function multiPoint(coordinates, properties, bbox, id) {
     if (!coordinates) throw new Error('No coordinates passed');
 
     return feature({
         type: 'MultiPoint',
         coordinates: coordinates
-    }, properties);
+    }, properties, bbox, id);
 }
 
 /**
@@ -207,7 +268,9 @@ function multiPoint(coordinates, properties) {
  *
  * @name multiPolygon
  * @param {Array<Array<Array<Array<number>>>>} coordinates an array of Polygons
- * @param {Object=} properties an Object of key-value pairs to add as properties
+ * @param {Object} [properties={}] an Object of key-value pairs to add as properties
+ * @param {Array<number>} [bbox] BBox [west, south, east, north]
+ * @param {string|number} [id] Identifier
  * @returns {Feature<MultiPolygon>} a multipolygon feature
  * @throws {Error} if no coordinates are passed
  * @example
@@ -216,13 +279,13 @@ function multiPoint(coordinates, properties) {
  * //=multiPoly
  *
  */
-function multiPolygon(coordinates, properties) {
+function multiPolygon(coordinates, properties, bbox, id) {
     if (!coordinates) throw new Error('No coordinates passed');
 
     return feature({
         type: 'MultiPolygon',
         coordinates: coordinates
-    }, properties);
+    }, properties, bbox, id);
 }
 
 /**
@@ -230,8 +293,10 @@ function multiPolygon(coordinates, properties) {
  * coordinate array. Properties can be added optionally.
  *
  * @name geometryCollection
- * @param {Array<{Geometry}>} geometries an array of GeoJSON Geometries
- * @param {Object=} properties an Object of key-value pairs to add as properties
+ * @param {Array<Geometry>} geometries an array of GeoJSON Geometries
+ * @param {Object} [properties={}] an Object of key-value pairs to add as properties
+ * @param {Array<number>} [bbox] BBox [west, south, east, north]
+ * @param {string|number} [id] Identifier
  * @returns {Feature<GeometryCollection>} a GeoJSON GeometryCollection Feature
  * @example
  * var pt = {
@@ -246,13 +311,14 @@ function multiPolygon(coordinates, properties) {
  *
  * //=collection
  */
-function geometryCollection(geometries, properties) {
+function geometryCollection(geometries, properties, bbox, id) {
     if (!geometries) throw new Error('geometries is required');
+    if (!Array.isArray(geometries)) throw new Error('geometries must be an Array');
 
     return feature({
         type: 'GeometryCollection',
         geometries: geometries
-    }, properties);
+    }, properties, bbox, id);
 }
 
 // https://en.wikipedia.org/wiki/Great-circle_distance#Radius_for_spherical_Earth
@@ -292,10 +358,10 @@ var areaFactors = {
  * @param {number} [precision=0] Precision
  * @returns {number} rounded number
  * @example
- * round(120.4321)
+ * turf.round(120.4321)
  * //=120
  *
- * round(120.4321, 2)
+ * turf.round(120.4321, 2)
  * //=120.43
  */
 function round(num, precision) {
@@ -437,6 +503,7 @@ function convertArea(area, originalUnit, finalUnit) {
 
 module.exports = {
     feature: feature,
+    geometry: geometry,
     featureCollection: featureCollection,
     geometryCollection: geometryCollection,
     point: point,

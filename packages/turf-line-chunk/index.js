@@ -14,14 +14,8 @@ var flattenEach = require('@turf/meta').flattenEach;
  * @param {boolean}[reverse=false] reverses coordinates to start the first chunked segment at the end
  * @returns {FeatureCollection<LineString>} collection of line segments
  * @example
- * var line = {
- *   "type": "Feature",
- *   "properties": {},
- *   "geometry": {
- *     "type": "LineString",
- *     "coordinates": [[-95, 40], [-93, 45], [-85, 50]]
- *   }
- * };
+ * var line = turf.lineString([[-95, 40], [-93, 45], [-85, 50]]);
+ *
  * var chunk = turf.lineChunk(line, 15, 'miles');
  *
  * //addToMap

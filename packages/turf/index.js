@@ -10,6 +10,7 @@
 var helpers = require('@turf/helpers');
 var invariant = require('@turf/invariant');
 var meta = require('@turf/meta');
+var clusters = require('@turf/clusters');
 
 var turf = {
     isolines: require('@turf/isolines'),
@@ -90,7 +91,17 @@ var turf = {
     booleanContains: require('@turf/boolean-contains'),
     booleanCrosses: require('@turf/boolean-crosses'),
     booleanClockwise: require('@turf/boolean-clockwise'),
+    booleanOverlap: require('@turf/boolean-overlap'), // v4.6.0
+    booleanPointOnLine: require('@turf/boolean-point-on-line'), // v4.6.0
+    booleanEqual: require('@turf/boolean-equal'), // 4.6.0
     clone: require('@turf/clone'),
+    cleanCoords: require('@turf/clean-coords'), // v4.6.0
+    interpolate: require('@turf/interpolate'), // v4.6.0
+    clustersDbscan: require('@turf/clusters-dbscan'), // v4.6.0
+    clustersKmeans: require('@turf/clusters-kmeans'), // v4.6.0
+    getCluster: clusters.getCluster, // v4.6.0
+    clusterEach: clusters.clusterEach, // v4.6.0
+    clusterReduce: clusters.clusterReduce, // v4.6.0
     point: helpers.point,
     polygon: helpers.polygon,
     lineString: helpers.lineString,
@@ -98,6 +109,7 @@ var turf = {
     multiPolygon: helpers.multiPolygon,
     multiLineString: helpers.multiLineString,
     feature: helpers.feature,
+    geometry: helpers.geometry, // 4.6.0
     featureCollection: helpers.featureCollection,
     geometryCollection: helpers.geometryCollection,
     radiansToDistance: helpers.radiansToDistance,
@@ -127,7 +139,9 @@ var turf = {
     geomEach: meta.geomEach,
     geomReduce: meta.geomReduce,
     flattenEach: meta.flattenEach,
-    flattenReduce: meta.flattenReduce
+    flattenReduce: meta.flattenReduce,
+    segmentReduce: meta.segmentReduce, // 4.6.0
+    segmentEach: meta.segmentEach // 4.6.0
 };
 
 module.exports = turf;

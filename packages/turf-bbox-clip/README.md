@@ -14,14 +14,7 @@ May result in degenerate edges when clipping Polygons.
 
 ```javascript
 var bbox = [0, 0, 10, 10];
-var poly = {
-  "type": "Feature",
-  "properties": {},
-  "geometry": {
-    "type": "Polygon",
-    "coordinates": [[[2, 2], [8, 4], [12, 8], [3, 7], [2, 2]]]
-  }
-}
+var poly = turf.polygon([[[2, 2], [8, 4], [12, 8], [3, 7], [2, 2]]]);
 
 var clipped = turf.bboxClip(poly, bbox);
 
