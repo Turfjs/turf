@@ -16,9 +16,9 @@ var getGeomType = invariant.getGeomType;
  * var pt2 = turf.point([0, 0]);
  * var pt3 = turf.point([1, 1]);
  *
- * turf.equal(pt1, pt2);
+ * turf.booleanEqual(pt1, pt2);
  * //= true
- * turf.equal(pt2, pt3);
+ * turf.booleanEqual(pt2, pt3);
  * //= false
  */
 module.exports = function (feature1, feature2) {

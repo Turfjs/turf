@@ -109,7 +109,7 @@ var turf = {
     multiPolygon: helpers.multiPolygon,
     multiLineString: helpers.multiLineString,
     feature: helpers.feature,
-    geometry: helpers.geometry,
+    geometry: helpers.geometry, // 4.6.0
     featureCollection: helpers.featureCollection,
     geometryCollection: helpers.geometryCollection,
     radiansToDistance: helpers.radiansToDistance,
@@ -140,8 +140,8 @@ var turf = {
     geomReduce: meta.geomReduce,
     flattenEach: meta.flattenEach,
     flattenReduce: meta.flattenReduce,
-    segmentReduce: meta.segmentReduce,
-    segmentEach: meta.segmentEach
+    segmentReduce: meta.segmentReduce, // 4.6.0
+    segmentEach: meta.segmentEach // 4.6.0
 };
 
 module.exports = turf;

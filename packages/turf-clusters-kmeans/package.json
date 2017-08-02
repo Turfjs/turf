@@ -52,7 +52,6 @@
   "dependencies": {
     "@turf/clone": "^4.5.2",
     "@turf/invariant": "^4.5.2",
-    "@turf/meta": "^4.5.2",
-    "skmeans": "0.7.0"
+    "@turf/meta": "^4.5.2"
   }
 }
