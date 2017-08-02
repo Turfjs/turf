@@ -39,6 +39,6 @@
     "@turf/flatten": "^4.5.2",
     "@turf/helpers": "^4.5.2",
     "@turf/meta": "^4.5.2",
-    "simplepolygon": "^1.1.6"
+    "simplepolygon": "1.2.0"
   }
 }

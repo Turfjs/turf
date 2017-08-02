@@ -36,9 +36,19 @@
   dependencies:
     "@turf/invariant" "^3.13.0"
 
+"@turf/inside@^4.5.2":
+  version "4.5.2"
+  resolved "https://registry.yarnpkg.com/@turf/inside/-/inside-4.5.2.tgz#9823c1b4c2efe5369e23cbf2c0fa2661bbb06e25"
+  dependencies:
+    "@turf/invariant" "^4.5.2"
+
 "@turf/invariant@^3.13.0":
   version "3.13.0"
   resolved "https://registry.yarnpkg.com/@turf/invariant/-/invariant-3.13.0.tgz#89243308cd563206e81e5c6162e0d22f61822f90"
+
+"@turf/invariant@^4.5.2":
+  version "4.5.2"
+  resolved "https://registry.yarnpkg.com/@turf/invariant/-/invariant-4.5.2.tgz#0642ee1e6bca531be3f6f9292d590155f2fb9604"
 
 "@turf/meta@^3.14.0":
   version "3.14.0"
@@ -300,12 +310,13 @@ resumer@~0.0.0:
   dependencies:
     through "~2.3.4"
 
-simplepolygon@^1.1.6:
-  version "1.1.6"
-  resolved "https://registry.yarnpkg.com/simplepolygon/-/simplepolygon-1.1.6.tgz#2b4d42c8afe5c33ba8c4b514a5b7b0085984c01b"
+simplepolygon@1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/simplepolygon/-/simplepolygon-1.2.0.tgz#46260a48bbe467e2a7a10bcb65ecd0e3ddbb2eb9"
   dependencies:
     "@turf/area" "^3.13.0"
     "@turf/helpers" "^3.13.0"
+    "@turf/inside" "^4.5.2"
     "@turf/within" "^3.13.0"
     debug "^2.6.3"
     geojson-polygon-self-intersections "^1.1.1"
