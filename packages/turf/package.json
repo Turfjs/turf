@@ -67,6 +67,7 @@
     "@turf/boolean-contains": "^4.5.2",
     "@turf/boolean-crosses": "^4.5.2",
     "@turf/boolean-disjoint": "^4.5.2",
+    "@turf/boolean-equal": "^4.5.0",
     "@turf/buffer": "^4.5.2",
     "@turf/center": "^4.5.2",
     "@turf/center-of-mass": "^4.5.2",

@@ -90,6 +90,7 @@ var turf = {
     booleanContains: require('@turf/boolean-contains'),
     booleanCrosses: require('@turf/boolean-crosses'),
     booleanClockwise: require('@turf/boolean-clockwise'),
+    booleanEqual: require('@turf/boolean-equal'),
     clone: require('@turf/clone'),
     cleanCoords: require('@turf/clean-coords'),
     point: helpers.point,

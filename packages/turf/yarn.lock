@@ -102,6 +102,14 @@
     "@turf/meta" "^4.5.2"
     "@turf/polygon-to-linestring" "^4.5.2"
 
+"@turf/boolean-equal@^4.5.0":
+  version "4.5.0"
+  resolved "https://registry.yarnpkg.com/@turf/boolean-equal/-/boolean-equal-4.5.0.tgz#71ab0a221714b9360426a09e1644add5127fe2da"
+  dependencies:
+    "@turf/clean-coords" "^4.5.0"
+    "@turf/invariant" "^4.5.2"
+    geojson-equality "0.1.6"
+
 "@turf/buffer@^4.5.2":
   version "4.5.2"
   resolved "https://registry.yarnpkg.com/@turf/buffer/-/buffer-4.5.2.tgz#4c19514d157e4181d2170bcbc8b603411a991363"
@@ -2616,6 +2624,12 @@ gauge@~2.7.3:
 geodesy@1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/geodesy/-/geodesy-1.1.1.tgz#918c414a5cc247c8128332b7624050c467e98a5d"
+
+geojson-equality@0.1.6:
+  version "0.1.6"
+  resolved "https://registry.yarnpkg.com/geojson-equality/-/geojson-equality-0.1.6.tgz#a171374ef043e5d4797995840bae4648e0752d72"
+  dependencies:
+    deep-equal "^1.0.0"
 
 geojson-polygon-self-intersections@^1.1.1:
   version "1.1.1"
