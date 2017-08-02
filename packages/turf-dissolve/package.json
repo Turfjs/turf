@@ -36,10 +36,10 @@
   },
   "dependencies": {
     "@turf/bbox": "^4.6.0",
+    "@turf/boolean-overlap": "^4.6.0",
     "@turf/union": "^4.6.0",
     "geojson-utils": "^1.1.0",
     "get-closest": "^0.0.4",
-    "rbush": "^2.0.1",
-    "turf-overlaps": "^1.0.3"
+    "rbush": "^2.0.1"
   }
 }
