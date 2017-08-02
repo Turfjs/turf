@@ -57,7 +57,9 @@ function clipPolygon(rings, bbox) {
             if (clipped[0][0] !== clipped[clipped.length - 1][0] || clipped[0][1] !== clipped[clipped.length - 1][1]) {
                 clipped.push(clipped[0]);
             }
-            outRings.push(clipped);
+            if (clipped.length >= 4) {
+                outRings.push(clipped);
+            }
         }
     }
     return outRings;
