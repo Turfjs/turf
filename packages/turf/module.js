@@ -120,6 +120,7 @@ import * as booleanContains from '@turf/boolean-contains';
 import * as booleanCrosses from '@turf/boolean-crosses';
 import * as booleanClockwise from '@turf/boolean-clockwise';
 import * as clone from '@turf/clone';
+import * as cleanCoords from '@turf/clean-coords';
 export {
     isolines,
     convex,
@@ -239,5 +240,6 @@ export {
     booleanClockwise,
     clone,
     segmentEach,
-    segmentReduce
+    segmentReduce,
+    cleanCoords
 };

@@ -91,6 +91,7 @@ var turf = {
     booleanCrosses: require('@turf/boolean-crosses'),
     booleanClockwise: require('@turf/boolean-clockwise'),
     clone: require('@turf/clone'),
+    cleanCoords: require('@turf/clean-coords'),
     point: helpers.point,
     polygon: helpers.polygon,
     lineString: helpers.lineString,

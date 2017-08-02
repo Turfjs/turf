@@ -144,6 +144,13 @@
     "@turf/destination" "^4.5.2"
     "@turf/helpers" "^4.5.2"
 
+"@turf/clean-coords@^4.5.0":
+  version "4.5.0"
+  resolved "https://registry.yarnpkg.com/@turf/clean-coords/-/clean-coords-4.5.0.tgz#3de0ee57e91d373d2bd5937c88282c583589b1be"
+  dependencies:
+    "@turf/helpers" "^4.5.2"
+    "@turf/invariant" "^4.5.2"
+
 "@turf/clone@^4.5.2":
   version "4.5.2"
   resolved "https://registry.yarnpkg.com/@turf/clone/-/clone-4.5.2.tgz#397d3b173beb0c67137a6ecd8c232a24c7561316"
@@ -447,11 +454,7 @@
   version "3.14.0"
   resolved "https://registry.yarnpkg.com/@turf/meta/-/meta-3.14.0.tgz#8d3050c1a0f44bf406a633b6bd28c510f7bcee27"
 
-"@turf/meta@^4.1.0":
-  version "4.3.0"
-  resolved "https://registry.yarnpkg.com/@turf/meta/-/meta-4.3.0.tgz#eb11dd2c2511524258123767fe0f5c3bd963e8d7"
-
-"@turf/meta@^4.3.0", "@turf/meta@^4.5.2":
+"@turf/meta@^4.1.0", "@turf/meta@^4.3.0", "@turf/meta@^4.5.2":
   version "4.5.2"
   resolved "https://registry.yarnpkg.com/@turf/meta/-/meta-4.5.2.tgz#8450fc442d2a59494251a5a52ae520017e2dcf0d"
 

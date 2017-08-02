@@ -72,6 +72,7 @@
     "@turf/center-of-mass": "^4.5.2",
     "@turf/centroid": "^4.5.2",
     "@turf/circle": "^4.5.2",
+    "@turf/clean-coords": "^4.5.0",
     "@turf/clone": "^4.5.2",
     "@turf/collect": "^4.5.2",
     "@turf/combine": "^4.5.2",
