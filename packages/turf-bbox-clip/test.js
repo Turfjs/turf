@@ -50,6 +50,6 @@ function colorize(feature, color = '#F00', width = 6) {
 }
 
 test('turf-bbox-clip -- null geometries', t => {
-    t.throws(() => bboxClip(feature(null), [-180, -90, 180, 90]), /No valid coordinates/);
+    t.throws(() => bboxClip(feature(null), [-180, -90, 180, 90]), /No geometry passed/);
     t.end();
 });
