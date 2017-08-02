@@ -98,6 +98,7 @@ var turf = {
     multiPolygon: helpers.multiPolygon,
     multiLineString: helpers.multiLineString,
     feature: helpers.feature,
+    geometry: helpers.geometry,
     featureCollection: helpers.featureCollection,
     geometryCollection: helpers.geometryCollection,
     radiansToDistance: helpers.radiansToDistance,
