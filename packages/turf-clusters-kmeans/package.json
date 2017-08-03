@@ -6,8 +6,7 @@
   "types": "index.d.ts",
   "files": [
     "index.js",
-    "index.d.ts",
-    "skmeans.js"
+    "index.d.ts"
   ],
   "scripts": {
     "test": "node test.js",
@@ -52,6 +51,7 @@
   "dependencies": {
     "@turf/clone": "^4.6.1",
     "@turf/invariant": "^4.6.0",
-    "@turf/meta": "^4.6.0"
+    "@turf/meta": "^4.6.0",
+    "skmeans": "0.9.7"
   }
 }

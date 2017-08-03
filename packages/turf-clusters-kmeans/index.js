@@ -1,7 +1,6 @@
 var meta = require('@turf/meta');
 var clone = require('@turf/clone');
-// https://wzrd.in/standalone/skmeans@latest
-var skmeans = require('./skmeans');
+var skmeans = require('skmeans');
 var invariant = require('@turf/invariant');
 var coordAll = meta.coordAll;
 var featureEach = meta.featureEach;
