@@ -20,7 +20,7 @@ test('unkink-polygon', t => {
     for (const {filename, geojson} of fixtures) {
         const unkinked = colorize(unkink(geojson));
 
-        if (process.env.REGEN) { write.sync(directories.out + filename, unkinked); }
+        if (process.env.REGEN) write.sync(directories.out + filename, unkinked);
 
         const expected = load.sync(directories.out + filename);
         t.deepEquals(unkinked, expected, path.parse(filename).name);
@@ -39,16 +39,16 @@ test('unkink-polygon -- throws', t => {
     t.end();
 });
 
-function colorize(features, colors = ['#F00', '#00F'], width = 6) {
+function colorize(features, colors = ['#F00', '#00F', '#0F0', '#F0F', '#FFF'], width = 6) {
     const results = [];
     featureEach(features, (feature, index) => {
         const color = colors[index % colors.length];
-        feature.properties = {
+        feature.properties = Object.assign({
             stroke: color,
             fill: color,
             'stroke-width': width,
-            'fill-opacity': 0.1
-        };
+            'fill-opacity': 0.5
+        }, feature.properties);
         results.push(feature);
     });
     return featureCollection(results);

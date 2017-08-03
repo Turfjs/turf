@@ -19,6 +19,10 @@
   version "3.13.0"
   resolved "https://registry.yarnpkg.com/@turf/helpers/-/helpers-3.13.0.tgz#d06078a1464cf56cdb7ea624ea1e13a71b88b806"
 
+"@turf/helpers@^4.6.0":
+  version "4.6.0"
+  resolved "https://registry.yarnpkg.com/@turf/helpers/-/helpers-4.6.0.tgz#12398733b8ae28420df6166fa44c7ee8ffd6414c"
+
 "@turf/inside@^3.14.0":
   version "3.14.0"
   resolved "https://registry.yarnpkg.com/@turf/inside/-/inside-3.14.0.tgz#d6b6af55882cbdb8f9a558dca98689c67bd3c590"
@@ -42,6 +46,10 @@
 "@turf/meta@^3.14.0":
   version "3.14.0"
   resolved "https://registry.yarnpkg.com/@turf/meta/-/meta-3.14.0.tgz#8d3050c1a0f44bf406a633b6bd28c510f7bcee27"
+
+"@turf/meta@^4.6.0":
+  version "4.6.0"
+  resolved "https://registry.yarnpkg.com/@turf/meta/-/meta-4.6.0.tgz#0d3f9a218e58d1c5e5deedf467c3321dd61203f3"
 
 "@turf/within@^3.13.0":
   version "3.14.0"
@@ -138,7 +146,7 @@ function-bind@^1.0.2, function-bind@^1.1.0, function-bind@~1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/function-bind/-/function-bind-1.1.0.tgz#16176714c801798e4e8f2cf7f7529467bb4a5771"
 
-geojson-polygon-self-intersections@^1.1.1:
+geojson-polygon-self-intersections@^1.1.2:
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/geojson-polygon-self-intersections/-/geojson-polygon-self-intersections-1.1.2.tgz#bc49ce3be2175005802ad6f3c231dbdd7c65777b"
   dependencies:
@@ -301,16 +309,16 @@ resumer@~0.0.0:
   dependencies:
     through "~2.3.4"
 
-simplepolygon@1.2.0:
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/simplepolygon/-/simplepolygon-1.2.0.tgz#46260a48bbe467e2a7a10bcb65ecd0e3ddbb2eb9"
+simplepolygon@1.2.1:
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/simplepolygon/-/simplepolygon-1.2.1.tgz#48250a6a853275e96e42c7105f507da00dc67d64"
   dependencies:
     "@turf/area" "^3.13.0"
     "@turf/helpers" "^3.13.0"
     "@turf/inside" "^4.5.2"
     "@turf/within" "^3.13.0"
     debug "^2.6.3"
-    geojson-polygon-self-intersections "^1.1.1"
+    geojson-polygon-self-intersections "^1.1.2"
     rbush "^2.0.1"
 
 slide@^1.1.5:
