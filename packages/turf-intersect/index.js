@@ -1,5 +1,6 @@
 // depend on jsts for now http://bjornharrtell.github.io/jsts/
 var jsts = require('jsts');
+var truncate = require('@turf/truncate');
 
 /**
  * Takes two {@link Polygon|polygons} and finds their intersection. If they share a border, returns the border; if they don't intersect, returns undefined.
@@ -34,22 +35,17 @@ var jsts = require('jsts');
  * var addToMap = [poly1, poly2, intersection];
  */
 module.exports = function (poly1, poly2) {
-    var geom1, geom2;
-    if (poly1.type === 'Feature') geom1 = poly1.geometry;
-    else geom1 = poly1;
-    if (poly2.type === 'Feature') geom2 = poly2.geometry;
-    else geom2 = poly2;
+    var geom1 = (poly1.type === 'Feature') ? poly1.geometry : poly1;
+    var geom2 = (poly2.type === 'Feature') ? poly2.geometry : poly2;
+
     var reader = new jsts.io.GeoJSONReader();
-    var a = reader.read(JSON.stringify(geom1));
-    var b = reader.read(JSON.stringify(geom2));
+    var a = reader.read(JSON.stringify(truncate(geom1)));
+    var b = reader.read(JSON.stringify(truncate(geom2)));
     var intersection = a.intersection(b);
 
-    if (intersection.isEmpty()) {
-        return undefined;
-    }
+    if (intersection.isEmpty()) return null;
 
     var writer = new jsts.io.GeoJSONWriter();
-
     var geojsonGeometry = writer.write(intersection);
     return {
         type: 'Feature',

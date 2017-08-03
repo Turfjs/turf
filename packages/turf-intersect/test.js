@@ -3,6 +3,7 @@ const fs = require('fs');
 const test = require('tape');
 const load = require('load-json-file');
 const write = require('write-json-file');
+var truncate = require('@turf/truncate');
 const intersect = require('.');
 
 const directories = {
@@ -23,10 +24,8 @@ test('intersect', t => {
         const features = geojson.features;
         const result = intersect(features[0], features[1]);
 
-        if (result) {
-            if (process.env.REGEN) write.sync(directories.out + filename, result);
-            t.deepEqual(result, load.sync(directories.out + filename), name);
-        }
+        if (process.env.REGEN) write.sync(directories.out + filename, result);
+        t.deepEqual(result, load.sync(directories.out + filename), name);
     }
     t.end();
 });
