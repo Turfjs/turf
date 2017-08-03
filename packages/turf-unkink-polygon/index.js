@@ -1,4 +1,4 @@
-var meta = require('@turf/meta')
+var meta = require('@turf/meta');
 var helpers = require('@turf/helpers');
 var simplepolygon = require('simplepolygon');
 var flattenEach = meta.flattenEach;
@@ -24,7 +24,7 @@ var featureCollection = helpers.featureCollection;
 module.exports = function (geojson) {
     var features = [];
     flattenEach(geojson, function (feature) {
-        if (feature.geometry.type !== 'Polygon') return
+        if (feature.geometry.type !== 'Polygon') return;
         featureEach(simplepolygon(feature), function (poly) {
             features.push(polygon(poly.geometry.coordinates, feature.properties));
         });
