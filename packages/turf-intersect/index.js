@@ -39,11 +39,15 @@ module.exports = function (poly1, poly2) {
     var geom2 = (poly2.type === 'Feature') ? poly2.geometry : poly2;
 
     var reader = new jsts.io.GeoJSONReader();
-    var a = reader.read(JSON.stringify(truncate(geom1)));
-    var b = reader.read(JSON.stringify(truncate(geom2)));
+    var a = reader.read(truncate(geom1));
+    var b = reader.read(truncate(geom2));
     var intersection = a.intersection(b);
 
-    if (intersection.isEmpty()) return null;
+    if (intersection.isEmpty()) return {
+        type: 'Feature',
+        properties: {},
+        geometry: null
+    };
 
     var writer = new jsts.io.GeoJSONWriter();
     var geojsonGeometry = writer.write(intersection);
