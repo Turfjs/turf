@@ -36,9 +36,8 @@
     "write-json-file": "^2.0.0"
   },
   "dependencies": {
-    "@turf/flatten": "^4.6.0",
     "@turf/helpers": "^4.6.0",
     "@turf/meta": "^4.6.0",
-    "simplepolygon": "1.2.0"
+    "simplepolygon": "1.2.1"
   }
 }
