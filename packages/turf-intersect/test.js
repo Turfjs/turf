@@ -3,7 +3,6 @@ const fs = require('fs');
 const test = require('tape');
 const load = require('load-json-file');
 const write = require('write-json-file');
-var truncate = require('@turf/truncate');
 const intersect = require('.');
 
 const directories = {
