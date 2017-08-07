@@ -37,18 +37,18 @@ module.exports = function (line, splitter) {
 
     // remove excessive decimals from splitter
     // to avoid possible approximation issues in rbush
-    truncate(splitter, 6, 3, true);
+    var truncatedSplitter = truncate(splitter);
 
     switch (splitterType) {
     case 'Point':
-        return splitLineWithPoint(line, splitter);
+        return splitLineWithPoint(line, truncatedSplitter);
     case 'MultiPoint':
-        return splitLineWithPoints(line, flatten(splitter));
+        return splitLineWithPoints(line, flatten(truncatedSplitter));
     case 'LineString':
     case 'MultiLineString':
     case 'Polygon':
     case 'MultiPolygon':
-        return splitLineWithPoints(line, lineIntersect(line, splitter));
+        return splitLineWithPoints(line, lineIntersect(line, truncatedSplitter));
     default:
         throw new Error('<splitter> geometry type is not supported');
     }
