@@ -18,7 +18,7 @@ let fixtures = fs.readdirSync(directory).map(filename => {
  * complex x 17,634 ops/sec ±1.63% (88 runs sampled)
  * rectangle x 33,735 ops/sec ±2.27% (92 runs sampled)
  */
-const suite = new Benchmark.Suite('turf-line-offset');
+const suite = new Benchmark.Suite('turf-buffer');
 for (const {name, geojson} of fixtures) {
     suite.add(name, () => lineOffset(geojson, 100, 'meters'));
 }

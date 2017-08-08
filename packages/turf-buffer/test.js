@@ -5,7 +5,7 @@ const load = require('load-json-file');
 const write = require('write-json-file');
 const truncate = require('@turf/truncate');
 const {featureCollection, lineString} = require('@turf/helpers');
-const lineOffset = require('./');
+const buffer = require('./');
 
 const directories = {
     in: path.join(__dirname, 'test', 'in') + path.sep,
@@ -24,7 +24,7 @@ test('turf-buffer', t => {
     for (const {name, geojson} of fixtures) {
         let {distance, units} = geojson.properties || {};
         distance = distance || 50;
-        const output = truncate(lineOffset(geojson, distance, units), 4);
+        const output = truncate(buffer(geojson, distance, units), 4);
         output.properties.stroke = '#00F';
         const results = featureCollection([output, geojson]);
         if (process.env.REGEN) write.sync(directories.out + name + '.geojson', results);

@@ -7,8 +7,8 @@ type Feature<Geom extends GeometryObject> = GeoJSON.Feature<Geom>;
 type Geoms = GeoJSON.LineString | GeoJSON.MultiLineString;
 
 /**
- * http://turfjs.org/docs/#lineoffset
+ * http://turfjs.org/docs/#buffer
  */
-declare function lineOffset<Geom extends Geoms>(line: Feature<Geom> | Geom, distance: number, units?: Units): Feature<Geom>;
-declare namespace lineOffset { }
-export = lineOffset;
+declare function buffer<Geom extends Geoms>(line: Feature<Geom> | Geom, distance: number, units?: Units): Feature<Geom>;
+declare namespace buffer { }
+export = buffer;
