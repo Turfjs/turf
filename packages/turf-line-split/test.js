@@ -64,7 +64,7 @@ test('turf-line-split -- throws', t => {
     t.end();
 });
 
-test("turf-line-split - precision start point", t => {
+test('turf-line-split -- precision start point', t => {
     const line = lineString([[9.2202022, 49.1438226], [9.2199531, 49.1439048], [9.2196177, 49.1440264]]);
     const features = lineSplit(line, point([9.2202022, 49.1438226])).features;
 
@@ -72,7 +72,7 @@ test("turf-line-split - precision start point", t => {
     t.end();
 });
 
-test("turf-line-split - precision middle point", t => {
+test('turf-line-split -- precision middle point', t => {
     const line = lineString([[9.2202022, 49.1438226], [9.2199531, 49.1439048], [9.2196177, 49.1440264]]);
     const [line1, line2] = lineSplit(line, point([9.2199531, 49.1439048])).features;
 
@@ -81,13 +81,22 @@ test("turf-line-split - precision middle point", t => {
     t.end();
 });
 
-test("turf-line-split - precision end point", t => {
+test('turf-line-split -- precision end point', t => {
     const line = lineString([[9.2202022, 49.1438226], [9.2199531, 49.1439048], [9.2196177, 49.1440264]]);
     const features = lineSplit(line, point([9.2196177, 49.1440264])).features;
 
     t.deepEqual(features, [line], 'should only contain 1 line of 3 vertices');
     t.end();
 });
+
+test('turf-line-split -- prevent input mutation', t => {
+    const line = lineString([[9.2202022, 49.1438226], [9.2199531, 49.1439048], [9.2196177, 49.1440264]]);
+    const lineBefore = JSON.parse(JSON.stringify(line));
+    lineSplit(line, point([9.2196177, 49.1440264]));
+
+    t.deepEqual(line, lineBefore, 'line should be the same');
+    t.end();
+})
 
 /**
  * Colorize FeatureCollection
