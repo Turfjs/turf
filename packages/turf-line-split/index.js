@@ -37,7 +37,7 @@ module.exports = function (line, splitter) {
 
     // remove excessive decimals from splitter
     // to avoid possible approximation issues in rbush
-    var truncatedSplitter = truncate(splitter);
+    var truncatedSplitter = truncate(splitter, 7);
 
     switch (splitterType) {
     case 'Point':
@@ -99,7 +99,7 @@ function splitLineWithPoints(line, splitter) {
 }
 
 /**
- * Split LineString with MultiPoint
+ * Split LineString with Point
  *
  * @private
  * @param {Feature<LineString>} line LineString
@@ -123,7 +123,7 @@ function splitLineWithPoint(line, splitter) {
     // RBush might return multiple lines - only process the closest line to splitter
     var closestSegment = findClosestFeature(splitter, search);
 
-    // Initial value is the first point of the first segments (begining of line)
+    // Initial value is the first point of the first segments (beginning of line)
     var initialValue = [getCoords(segments.features[0])[0]];
     var lastCoords = featureReduce(segments, function (previous, current, index) {
         var currentCoords = getCoords(current)[1];
@@ -160,19 +160,16 @@ function splitLineWithPoint(line, splitter) {
  * @returns {Feature<LineString>} closest LineString
  */
 function findClosestFeature(point, lines) {
-    // Filter to one segment that is the closest to the line
-    var closestDistance;
-    var closestFeature;
     if (!lines.features) throw new Error('<lines> must contain features');
+    // Filter to one segment that is the closest to the line
     if (lines.features.length === 1) return lines.features[0];
 
+    var closestDistance;
+    var closestFeature;
     featureEach(lines, function (segment) {
         var pt = pointOnLine(segment, point);
         var dist = pt.properties.dist;
-        if (closestDistance === undefined) {
-            closestFeature = segment;
-            closestDistance = dist;
-        } else if (dist < closestDistance) {
+        if (closestDistance === undefined || dist < closestDistance) {
             closestFeature = segment;
             closestDistance = dist;
         }
