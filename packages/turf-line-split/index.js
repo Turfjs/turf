@@ -4,8 +4,8 @@ var helpers = require('@turf/helpers');
 var flatten = require('@turf/flatten');
 var truncate = require('@turf/truncate');
 var invariant = require('@turf/invariant');
-var pointOnLine = require('@turf/point-on-line');
 var lineSegment = require('@turf/line-segment');
+var pointOnLine = require('@turf/point-on-line');
 var lineIntersect = require('@turf/line-intersect');
 var getCoords = invariant.getCoords;
 var lineString = helpers.lineString;
@@ -19,7 +19,7 @@ var featureCollection = helpers.featureCollection;
  *
  * @name lineSplit
  * @param {Feature<LineString>} line LineString Feature to split
- * @param {Feature<Point|MultiPoint|LineString|MultiLineString|Polygon|MultiPolygon>} splitter Feature used to split line
+ * @param {Feature} splitter Feature used to split line
  * @returns {FeatureCollection<LineString>} Split LineStrings
  * @example
  * var line = turf.lineString([[120, -25], [145, -25]]);
@@ -31,9 +31,15 @@ var featureCollection = helpers.featureCollection;
  * var addToMap = [line, splitter]
  */
 module.exports = function (line, splitter) {
-    if (getGeomType(line) !== 'LineString') throw new Error('<line> must be LineString');
+    if (!line) throw new Error('line is required');
+    if (!splitter) throw new Error('splitter is required');
+
+    var lineType = getGeomType(line);
     var splitterType = getGeomType(splitter);
-    if (splitterType === 'FeatureCollection') throw new Error('<splitter> cannot be a FeatureCollection');
+
+    if (lineType !== 'LineString') throw new Error('line must be LineString');
+    if (splitterType === 'FeatureCollection') throw new Error('splitter cannot be a FeatureCollection');
+    if (splitterType === 'GeometryCollection') throw new Error('splitter cannot be a GeometryCollection');
 
     // remove excessive decimals from splitter
     // to avoid possible approximation issues in rbush
@@ -49,8 +55,6 @@ module.exports = function (line, splitter) {
     case 'Polygon':
     case 'MultiPolygon':
         return splitLineWithPoints(line, lineIntersect(line, truncatedSplitter));
-    default:
-        throw new Error('<splitter> geometry type is not supported');
     }
 };
 
