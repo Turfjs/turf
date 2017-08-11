@@ -2,48 +2,11 @@
 # yarn lockfile v1
 
 
-"@turf/centroid@^4.5.2":
-  version "4.5.2"
-  resolved "https://registry.yarnpkg.com/@turf/centroid/-/centroid-4.5.2.tgz#3637ee131d6d984e627cbb79213ab63dd0bd6c14"
-  dependencies:
-    "@turf/helpers" "^4.5.2"
-    "@turf/meta" "^4.5.2"
-
-"@turf/clone@^4.5.2":
-  version "4.5.2"
-  resolved "https://registry.yarnpkg.com/@turf/clone/-/clone-4.5.2.tgz#397d3b173beb0c67137a6ecd8c232a24c7561316"
-
-"@turf/clusters@^4.6.0":
-  version "4.6.0"
-  resolved "https://registry.yarnpkg.com/@turf/clusters/-/clusters-4.6.0.tgz#352f29b2e7b26f24c435551238bf43e09a709312"
-  dependencies:
-    "@turf/helpers" "^4.5.2"
-    "@turf/meta" "^4.5.2"
-
-"@turf/distance@^4.4.0":
-  version "4.5.2"
-  resolved "https://registry.yarnpkg.com/@turf/distance/-/distance-4.5.2.tgz#afc352c44a86e6e1ee69899321992ab941901a8a"
-  dependencies:
-    "@turf/helpers" "^4.5.2"
-    "@turf/invariant" "^4.5.2"
-
-"@turf/helpers@^4.4.0", "@turf/helpers@^4.5.2":
-  version "4.5.2"
-  resolved "https://registry.yarnpkg.com/@turf/helpers/-/helpers-4.5.2.tgz#6fc6772a7b301f277b49732925c354c7fb85d1df"
-
-"@turf/invariant@^4.5.2":
-  version "4.5.2"
-  resolved "https://registry.yarnpkg.com/@turf/invariant/-/invariant-4.5.2.tgz#0642ee1e6bca531be3f6f9292d590155f2fb9604"
-
-"@turf/meta@^4.4.0", "@turf/meta@^4.5.2":
-  version "4.5.2"
-  resolved "https://registry.yarnpkg.com/@turf/meta/-/meta-4.5.2.tgz#8450fc442d2a59494251a5a52ae520017e2dcf0d"
-
 balanced-match@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/balanced-match/-/balanced-match-1.0.0.tgz#89b4d199ab2bee49de164ea02b89ce462d71b767"
 
-benchmark@^2.1.4:
+benchmark@2.1.4:
   version "2.1.4"
   resolved "https://registry.yarnpkg.com/benchmark/-/benchmark-2.1.4.tgz#09f3de31c916425d498cc2ee565a0ebf3c2a5629"
   dependencies:
@@ -65,7 +28,7 @@ concat-map@0.0.1:
   version "0.0.1"
   resolved "https://registry.yarnpkg.com/concat-map/-/concat-map-0.0.1.tgz#d8a96bd77fd68df7793a73036a3ba0d5405d477b"
 
-concaveman@^1.1.1:
+concaveman@1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/concaveman/-/concaveman-1.1.1.tgz#6c2482580b2523cef82fc2bec00a0415e6e68162"
   dependencies:
@@ -205,7 +168,7 @@ is-symbol@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/is-symbol/-/is-symbol-1.0.1.tgz#3cc59f00025194b6ab2e38dbae6689256b660572"
 
-load-json-file@^2.0.0:
+load-json-file@2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/load-json-file/-/load-json-file-2.0.0.tgz#7947e42149af80d696cbf797bcaabcfe1fe29ca8"
   dependencies:
@@ -348,7 +311,7 @@ strip-bom@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/strip-bom/-/strip-bom-3.0.0.tgz#2334c18e9c759f7bdd56fdef7e9ae3d588e68ed3"
 
-tape@^4.6.3:
+tape@4.7.0:
   version "4.7.0"
   resolved "https://registry.yarnpkg.com/tape/-/tape-4.7.0.tgz#f3ebb214fef3d6907e5a57dbaafe3bd8a7cbed88"
   dependencies:
@@ -394,7 +357,7 @@ write-file-atomic@^2.0.0:
     imurmurhash "^0.1.4"
     slide "^1.1.5"
 
-write-json-file@^2.0.0:
+write-json-file@2.2.0:
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/write-json-file/-/write-json-file-2.2.0.tgz#51862506bbb3b619eefab7859f1fd6c6d0530876"
   dependencies:

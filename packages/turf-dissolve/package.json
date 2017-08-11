@@ -1,6 +1,6 @@
 {
   "name": "@turf/dissolve",
-  "version": "4.5.2",
+  "version": "4.6.0",
   "description": "turf dissolve module",
   "main": "index.js",
   "types": "index.d.ts",
@@ -35,11 +35,11 @@
     "tape": "^4.6.3"
   },
   "dependencies": {
-    "@turf/bbox": "^4.5.2",
-    "@turf/union": "^4.5.2",
+    "@turf/bbox": "^4.6.0",
+    "@turf/boolean-overlap": "^4.6.0",
+    "@turf/union": "^4.6.0",
     "geojson-utils": "^1.1.0",
     "get-closest": "^0.0.4",
-    "rbush": "^2.0.1",
-    "turf-overlaps": "^1.0.3"
+    "rbush": "^2.0.1"
   }
 }

@@ -1,0 +1,51 @@
+{
+  "name": "@turf/boolean-equal",
+  "version": "4.6.0",
+  "description": "turf boolean-equal module",
+  "main": "index.js",
+  "types": "index.d.ts",
+  "files": [
+    "index.js",
+    "index.d.ts"
+  ],
+  "scripts": {
+    "test": "node test.js",
+    "bench": "node bench.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/Turfjs/turf.git"
+  },
+  "keywords": [
+    "turf",
+    "gis",
+    "boolean",
+    "de-9im",
+    "equal",
+    "boolean-equal"
+  ],
+  "author": "Turf Authors",
+  "contributors": [
+    "Tom MacWright <@tmcw>",
+    "Tim Channell <@tcql>",
+    "Stefano Borghi <@stebogit>"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Turfjs/turf/issues"
+  },
+  "homepage": "https://github.com/Turfjs/turf",
+  "devDependencies": {
+    "@turf/helpers": "^4.6.0",
+    "benchmark": "^2.1.4",
+    "boolean-shapely": "^0.1.2",
+    "glob": "^7.1.1",
+    "load-json-file": "^2.0.0",
+    "tape": "^4.6.3"
+  },
+  "dependencies": {
+    "@turf/clean-coords": "^4.6.0",
+    "@turf/invariant": "^4.6.0",
+    "geojson-equality": "0.1.6"
+  }
+}

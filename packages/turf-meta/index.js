@@ -2,9 +2,11 @@
  * Callback for coordEach
  *
  * @callback coordEachCallback
- * @param {Array<number>} currentCoord The current coordinates being processed.
- * @param {number} coordIndex The index of the current element being processed in the
- * array.Starts at index 0, if an initialValue is provided, and at index 1 otherwise.
+ * @param {Array<number>} currentCoord The current coordinate being processed.
+ * @param {number} coordIndex The current index of the coordinate being processed.
+ * Starts at index 0.
+ * @param {number} featureIndex The current index of the feature being processed.
+ * @param {number} featureSubIndex The current subIndex of the feature being processed.
  */
 
 /**
@@ -12,7 +14,7 @@
  *
  * @name coordEach
  * @param {FeatureCollection|Geometry|Feature} geojson any GeoJSON object
- * @param {Function} callback a method that takes (currentCoord, coordIndex)
+ * @param {Function} callback a method that takes (currentCoord, coordIndex, featureIndex, featureSubIndex)
  * @param {boolean} [excludeWrapCoord=false] whether or not to include the final coordinate of LinearRings that wraps the ring in its iteration.
  * @example
  * var features = turf.featureCollection([
@@ -20,15 +22,17 @@
  *   turf.point([36, 53], {"hello": "world"})
  * ]);
  *
- * turf.coordEach(features, function (currentCoord, coordIndex) {
+ * turf.coordEach(features, function (currentCoord, coordIndex, featureIndex, featureSubIndex) {
  *   //=currentCoord
  *   //=coordIndex
+ *   //=featureIndex
+ *   //=featureSubIndex
  * });
  */
 function coordEach(geojson, callback, excludeWrapCoord) {
     // Handles null Geometry -- Skips this GeoJSON
     if (geojson === null) return;
-    var i, j, k, g, l, geometry, stopG, coords,
+    var featureIndex, geometryIndex, j, k, l, geometry, stopG, coords,
         geometryMaybeCollection,
         wrapShrink = 0,
         coordIndex = 0,
@@ -50,16 +54,17 @@ function coordEach(geojson, callback, excludeWrapCoord) {
     // This also aims to allocate as few resources as possible: just a
     // few numbers and booleans, rather than any temporary arrays as would
     // be required with the normalization approach.
-    for (i = 0; i < stop; i++) {
+    for (featureIndex = 0; featureIndex < stop; featureIndex++) {
+        var featureSubIndex = 0;
 
-        geometryMaybeCollection = (isFeatureCollection ? geojson.features[i].geometry :
+        geometryMaybeCollection = (isFeatureCollection ? geojson.features[featureIndex].geometry :
         (isFeature ? geojson.geometry : geojson));
         isGeometryCollection = (geometryMaybeCollection) ? geometryMaybeCollection.type === 'GeometryCollection' : false;
         stopG = isGeometryCollection ? geometryMaybeCollection.geometries.length : 1;
 
-        for (g = 0; g < stopG; g++) {
+        for (geometryIndex = 0; geometryIndex < stopG; geometryIndex++) {
             geometry = isGeometryCollection ?
-            geometryMaybeCollection.geometries[g] : geometryMaybeCollection;
+            geometryMaybeCollection.geometries[geometryIndex] : geometryMaybeCollection;
 
             // Handles null Geometry -- Skips this geometry
             if (geometry === null) continue;
@@ -72,30 +77,34 @@ function coordEach(geojson, callback, excludeWrapCoord) {
             case null:
                 break;
             case 'Point':
-                callback(coords, coordIndex);
+                callback(coords, coordIndex, featureIndex, featureSubIndex);
                 coordIndex++;
+                featureSubIndex++;
                 break;
             case 'LineString':
             case 'MultiPoint':
                 for (j = 0; j < coords.length; j++) {
-                    callback(coords[j], coordIndex);
+                    callback(coords[j], coordIndex, featureIndex, featureSubIndex);
                     coordIndex++;
+                    featureSubIndex++;
                 }
                 break;
             case 'Polygon':
             case 'MultiLineString':
                 for (j = 0; j < coords.length; j++)
                     for (k = 0; k < coords[j].length - wrapShrink; k++) {
-                        callback(coords[j][k], coordIndex);
+                        callback(coords[j][k], coordIndex, featureIndex, featureSubIndex);
                         coordIndex++;
+                        featureSubIndex++;
                     }
                 break;
             case 'MultiPolygon':
                 for (j = 0; j < coords.length; j++)
                     for (k = 0; k < coords[j].length; k++)
                         for (l = 0; l < coords[j][k].length - wrapShrink; l++) {
-                            callback(coords[j][k][l], coordIndex);
+                            callback(coords[j][k][l], coordIndex, featureIndex, featureSubIndex);
                             coordIndex++;
+                            featureSubIndex++;
                         }
                 break;
             case 'GeometryCollection':
@@ -126,8 +135,10 @@ function coordEach(geojson, callback, excludeWrapCoord) {
  * @param {*} previousValue The accumulated value previously returned in the last invocation
  * of the callback, or initialValue, if supplied.
  * @param {Array<number>} currentCoord The current coordinate being processed.
- * @param {number} coordIndex The index of the current element being processed in the
- * array.Starts at index 0, if an initialValue is provided, and at index 1 otherwise.
+ * @param {number} coordIndex The current index of the coordinate being processed.
+ * Starts at index 0, if an initialValue is provided, and at index 1 otherwise.
+ * @param {number} featureIndex The current index of the feature being processed.
+ * @param {number} featureSubIndex The current subIndex of the feature being processed.
  */
 
 /**
@@ -145,18 +156,20 @@ function coordEach(geojson, callback, excludeWrapCoord) {
  *   turf.point([36, 53], {"hello": "world"})
  * ]);
  *
- * turf.coordReduce(features, function (previousValue, currentCoord, coordIndex) {
+ * turf.coordReduce(features, function (previousValue, currentCoord, coordIndex, featureIndex, featureSubIndex) {
  *   //=previousValue
  *   //=currentCoord
  *   //=coordIndex
+ *   //=featureIndex
+ *   //=featureSubIndex
  *   return currentCoord;
  * });
  */
 function coordReduce(geojson, callback, initialValue, excludeWrapCoord) {
     var previousValue = initialValue;
-    coordEach(geojson, function (currentCoord, coordIndex) {
+    coordEach(geojson, function (currentCoord, coordIndex, featureIndex, featureSubIndex) {
         if (coordIndex === 0 && initialValue === undefined) previousValue = currentCoord;
-        else previousValue = callback(previousValue, currentCoord, coordIndex);
+        else previousValue = callback(previousValue, currentCoord, coordIndex, featureIndex, featureSubIndex);
     }, excludeWrapCoord);
     return previousValue;
 }

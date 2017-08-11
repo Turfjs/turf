@@ -6,6 +6,7 @@ import {
     multiPolygon,
     multiLineString,
     feature,
+    geometry,
     featureCollection,
     geometryCollection,
     radiansToDistance,
@@ -118,7 +119,9 @@ import * as booleanDisjoint from '@turf/boolean-disjoint';
 import * as booleanContains from '@turf/boolean-contains';
 import * as booleanCrosses from '@turf/boolean-crosses';
 import * as booleanClockwise from '@turf/boolean-clockwise';
+import * as booleanEqual from '@turf/boolean-equal';
 import * as clone from '@turf/clone';
+import * as cleanCoords from '@turf/clean-coords';
 export {
     isolines,
     convex,
@@ -175,6 +178,7 @@ export {
     multiPolygon,
     multiLineString,
     feature,
+    geometry,
     featureCollection,
     geometryCollection,
     radiansToDistance,
@@ -235,7 +239,9 @@ export {
     booleanContains,
     booleanCrosses,
     booleanClockwise,
+    booleanEqual,
     clone,
     segmentEach,
-    segmentReduce
+    segmentReduce,
+    cleanCoords
 };
