@@ -109,6 +109,12 @@ function splitLineWithPoints(line, splitter) {
 function splitLineWithPoint(line, splitter) {
     var results = [];
 
+    // handle endpoints
+    var startPoint = getCoords(line)[0];
+    var endPoint = getCoords(line)[line.geometry.coordinates.length - 1];
+    if (pointsEquals(startPoint, getCoords(splitter)) ||
+        pointsEquals(endPoint, getCoords(splitter))) return featureCollection([line]);
+
     // Create spatial index
     var tree = rbush();
     var segments = lineSegment(line);
@@ -124,7 +130,7 @@ function splitLineWithPoint(line, splitter) {
     var closestSegment = findClosestFeature(splitter, search);
 
     // Initial value is the first point of the first segments (beginning of line)
-    var initialValue = [getCoords(segments.features[0])[0]];
+    var initialValue = [startPoint];
     var lastCoords = featureReduce(segments, function (previous, current, index) {
         var currentCoords = getCoords(current)[1];
         var splitterCoords = getCoords(splitter);
@@ -134,8 +140,7 @@ function splitLineWithPoint(line, splitter) {
             previous.push(splitterCoords);
             results.push(lineString(previous));
             // Don't duplicate splitter coordinate (Issue #688)
-            if (splitterCoords[0] === currentCoords[0] &&
-                splitterCoords[1] === currentCoords[1]) return [splitterCoords];
+            if (pointsEquals(splitterCoords, currentCoords)) return [splitterCoords];
             return [splitterCoords, currentCoords];
 
         // Keep iterating over coords until finished or intersection is found
@@ -151,6 +156,8 @@ function splitLineWithPoint(line, splitter) {
     return featureCollection(results);
 }
 
+
+
 /**
  * Find Closest Feature
  *
@@ -164,15 +171,28 @@ function findClosestFeature(point, lines) {
     // Filter to one segment that is the closest to the line
     if (lines.features.length === 1) return lines.features[0];
 
-    var closestDistance;
     var closestFeature;
+    var closestDistance = Infinity;
     featureEach(lines, function (segment) {
         var pt = pointOnLine(segment, point);
+        // console.log('pointonline', pt.geomerty.coordinates);
         var dist = pt.properties.dist;
-        if (closestDistance === undefined || dist < closestDistance) {
+        if (dist < closestDistance) {
             closestFeature = segment;
             closestDistance = dist;
         }
     });
     return closestFeature;
+}
+
+/**
+ * Compares two points and returns if they are equals
+ *
+ * @private
+ * @param {Array<number>} pt1 point
+ * @param {Array<number>} pt2 point
+ * @returns {boolean} true if they are equals
+ */
+function pointsEquals(pt1, pt2) {
+    return pt1[0] === pt2[0] && pt1[1] === pt2[1];
 }
