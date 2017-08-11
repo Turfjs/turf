@@ -95,6 +95,22 @@ test('scale -- mutated input', t => {
     t.end();
 });
 
+test('scale -- mutated FeatureCollection', t => {
+    const line = featureCollection([
+        lineString([[10, 10], [12, 15]]),
+        lineString([[15, 15], [22, 35]]),
+        lineString([[30, 30], [42, 45]])
+    ]);
+    const lineBefore = JSON.parse(JSON.stringify(line));
+    scale(line, 1.5);
+    t.deepEqual(line, lineBefore, 'mutate = undefined - input should NOT be mutated');
+    scale(line, 1.5, 'centroid', false);
+    t.deepEqual(line, lineBefore, 'mutate = false - input should NOT be mutated');
+    scale(line, 1.5, 'centroid', 'nonBoolean');
+    t.deepEqual(line, lineBefore, 'non-boolean mutate - input should NOT be mutated');
+    t.end();
+});
+
 test('scale -- geometry support', t => {
     const pt = point([10, 10]);
     const line = lineString([[10, 10], [12, 15]]);
