@@ -33,25 +33,6 @@ test('turf-line-split', t => {
     t.end();
 });
 
-test('turf-line-split - lines should only contain 2 vertices #688', t => {
-    const pt = point([8, 50]);
-    const line = lineString([[7, 50], [8, 50], [9, 50]]);
-    const [line1, line2] = lineSplit(line, pt).features;
-
-    t.deepEqual(line1, lineString([[7, 50], [8, 50]]), 'line1 should have 2 vertices');
-    t.deepEqual(line2, lineString([[8, 50], [9, 50]]), 'line2 should have 2 vertices');
-    t.end();
-});
-
-test('turf-line-split - splitter exactly on end of line', t => {
-    const pt = point([9, 50]);
-    const line = lineString([[7, 50], [8, 50], [9, 50]]);
-    const features = lineSplit(line, pt).features;
-
-    t.deepEqual(features, [line], 'should only contain 1 line of 3 vertices');
-    t.end();
-});
-
 test('turf-line-split -- throws', t => {
     const pt = point([9, 50]);
     const line = lineString([[7, 50], [8, 50], [9, 50]]);
@@ -60,32 +41,40 @@ test('turf-line-split -- throws', t => {
     t.throws(() => lineSplit(line, null), '<geojson> is required');
     t.throws(() => lineSplit(pt, pt), '<line> must be LineString');
     t.throws(() => lineSplit(line, featureCollection([pt, line])), '<splitter> cannot be a FeatureCollection');
-
     t.end();
 });
 
-test('turf-line-split -- precision start point', t => {
-    const line = lineString([[9.2202022, 49.1438226], [9.2199531, 49.1439048], [9.2196177, 49.1440264]]);
-    const features = lineSplit(line, point([9.2202022, 49.1438226])).features;
+test('turf-line-split -- splitter exactly on end of line', t => {
+    const pt = point([9, 50]);
+    const line = lineString([[7, 50], [8, 50], [9, 50]]);
+    const features = lineSplit(line, pt).features;
 
     t.deepEqual(features, [line], 'should only contain 1 line of 3 vertices');
     t.end();
 });
 
-test('turf-line-split -- precision middle point', t => {
-    const line = lineString([[9.2202022, 49.1438226], [9.2199531, 49.1439048], [9.2196177, 49.1440264]]);
-    const [line1, line2] = lineSplit(line, point([9.2199531, 49.1439048])).features;
 
-    t.deepEqual(line1, lineString([[9.2202022, 49.1438226], [9.2199531, 49.1439048]]), 'line1 should have 2 vertices');
-    t.deepEqual(line2, lineString([[9.2199531, 49.1439048], [9.2196177, 49.1440264]]), 'line2 should have 2 vertices');
+test('turf-line-split -- lines should only contain 2 vertices #688', t => {
+    const middlePoint = point([8, 50]);
+    const line = lineString([[7, 50], [8, 50], [9, 50]]);
+    const [line1, line2] = lineSplit(line, middlePoint).features;
+
+    t.deepEqual(line1, lineString([[7, 50], [8, 50]]), 'line1 should have 2 vertices');
+    t.deepEqual(line2, lineString([[8, 50], [9, 50]]), 'line2 should have 2 vertices');
     t.end();
 });
 
-test('turf-line-split -- precision end point', t => {
+test("turf-line-split -- precision issue #852", t => {
     const line = lineString([[9.2202022, 49.1438226], [9.2199531, 49.1439048], [9.2196177, 49.1440264]]);
-    const features = lineSplit(line, point([9.2196177, 49.1440264])).features;
+    const startPoint = point([9.2202022, 49.1438226]);
+    const middlePoint = point([9.2199531, 49.1439048]);
+    const endPoint = point([9.2196177, 49.1440264]);
+    const [line1, line2] = lineSplit(line, middlePoint).features;
 
-    t.deepEqual(features, [line], 'should only contain 1 line of 3 vertices');
+    t.deepEqual(line1, lineString([[9.2202022, 49.1438226], [9.2199531, 49.1439048]]), 'middlePoint: line1 should have 2 vertices');
+    t.deepEqual(line2, lineString([[9.2199531, 49.1439048], [9.2196177, 49.1440264]]), 'middlePoint: line2 should have 2 vertices');
+    t.deepEqual(lineSplit(line, startPoint).features, [line], 'startPoint: should only contain 1 line of 3 vertices');
+    t.deepEqual(lineSplit(line, endPoint).features, [line], 'endPoint: should only contain 1 line of 3 vertices');
     t.end();
 });
 
@@ -98,6 +87,7 @@ test('turf-line-split -- prevent input mutation', t => {
     t.end();
 })
 
+
 /**
  * Colorize FeatureCollection
  *
@@ -108,7 +98,7 @@ function colorize(geojson) {
     const results = [];
     featureEach(geojson, (feature, index) => {
         const r = (index % 2 === 0) ? 'F' : '0';
-        const g = (index % 2 === 0) ? '0' : '0';
+        const g = '0';
         const b = (index % 2 === 0) ? '0' : 'F';
         feature.properties = Object.assign({
             stroke: '#' + r + g + b,
