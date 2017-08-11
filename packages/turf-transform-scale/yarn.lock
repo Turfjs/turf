@@ -2,6 +2,81 @@
 # yarn lockfile v1
 
 
+"@turf/bbox@^4.6.0":
+  version "4.6.0"
+  resolved "https://registry.yarnpkg.com/@turf/bbox/-/bbox-4.6.0.tgz#8c7f68cdd2bee9178de4d9f9bfbcee4235db5fc3"
+  dependencies:
+    "@turf/meta" "^4.6.0"
+
+"@turf/center@^4.6.1":
+  version "4.6.1"
+  resolved "https://registry.yarnpkg.com/@turf/center/-/center-4.6.1.tgz#d9ed7a7e098f6ac1ff5189a05ee752b60d7ac681"
+  dependencies:
+    "@turf/bbox" "^4.6.0"
+    "@turf/helpers" "^4.6.0"
+
+"@turf/centroid@^4.6.1":
+  version "4.6.1"
+  resolved "https://registry.yarnpkg.com/@turf/centroid/-/centroid-4.6.1.tgz#6ffe203746aa33dec17d41c22aa5691342e46496"
+  dependencies:
+    "@turf/helpers" "^4.6.0"
+    "@turf/meta" "^4.6.0"
+
+"@turf/distance@^4.6.0":
+  version "4.6.0"
+  resolved "https://registry.yarnpkg.com/@turf/distance/-/distance-4.6.0.tgz#6410b9b4ea7e44e4a99be33018d9daab031946e0"
+  dependencies:
+    "@turf/helpers" "^4.6.0"
+    "@turf/invariant" "^4.6.0"
+
+"@turf/helpers@^4.6.0":
+  version "4.6.0"
+  resolved "https://registry.yarnpkg.com/@turf/helpers/-/helpers-4.6.0.tgz#12398733b8ae28420df6166fa44c7ee8ffd6414c"
+
+"@turf/hex-grid@^4.6.1":
+  version "4.6.1"
+  resolved "https://registry.yarnpkg.com/@turf/hex-grid/-/hex-grid-4.6.1.tgz#211ee084cad9c5ba60ceb36a2994e4bf6962f746"
+  dependencies:
+    "@turf/distance" "^4.6.0"
+    "@turf/helpers" "^4.6.0"
+
+"@turf/invariant@^4.6.0":
+  version "4.6.0"
+  resolved "https://registry.yarnpkg.com/@turf/invariant/-/invariant-4.6.0.tgz#ba61401d537543f81ccfc588e12bb0d8e653dd80"
+
+"@turf/meta@^4.6.0":
+  version "4.6.0"
+  resolved "https://registry.yarnpkg.com/@turf/meta/-/meta-4.6.0.tgz#0d3f9a218e58d1c5e5deedf467c3321dd61203f3"
+
+"@turf/rhumb-bearing@^4.6.0":
+  version "4.6.0"
+  resolved "https://registry.yarnpkg.com/@turf/rhumb-bearing/-/rhumb-bearing-4.6.0.tgz#550821a34317f274e4eb90363ec32ce2ea94c2a9"
+  dependencies:
+    "@turf/invariant" "^4.6.0"
+    geodesy "1.1.1"
+
+"@turf/rhumb-destination@^4.6.0":
+  version "4.6.0"
+  resolved "https://registry.yarnpkg.com/@turf/rhumb-destination/-/rhumb-destination-4.6.0.tgz#d21d3c76fa7b7312e5b1f3b40083aefb99879a86"
+  dependencies:
+    "@turf/helpers" "^4.6.0"
+    "@turf/invariant" "^4.6.0"
+    geodesy "1.1.1"
+
+"@turf/rhumb-distance@^4.6.0":
+  version "4.6.0"
+  resolved "https://registry.yarnpkg.com/@turf/rhumb-distance/-/rhumb-distance-4.6.0.tgz#2a4fbb510f0be2a2cc8f50e9f3e59fac2ec590fb"
+  dependencies:
+    "@turf/helpers" "^4.6.0"
+    "@turf/invariant" "^4.6.0"
+    geodesy "1.1.1"
+
+"@turf/truncate@^4.6.0":
+  version "4.6.0"
+  resolved "https://registry.yarnpkg.com/@turf/truncate/-/truncate-4.6.0.tgz#903ad5ed34c0b851b93529975eb8e2eb769a561f"
+  dependencies:
+    "@turf/meta" "^4.6.0"
+
 balanced-match@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/balanced-match/-/balanced-match-1.0.0.tgz#89b4d199ab2bee49de164ea02b89ce462d71b767"
@@ -83,6 +158,10 @@ fs.realpath@^1.0.0:
 function-bind@^1.0.2, function-bind@^1.1.0, function-bind@~1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/function-bind/-/function-bind-1.1.0.tgz#16176714c801798e4e8f2cf7f7529467bb4a5771"
+
+geodesy@1.1.1:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/geodesy/-/geodesy-1.1.1.tgz#918c414a5cc247c8128332b7624050c467e98a5d"
 
 glob@~7.1.2:
   version "7.1.2"

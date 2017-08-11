@@ -4,6 +4,7 @@ const path = require('path');
 const load = require('load-json-file');
 const write = require('write-json-file');
 const center = require('@turf/center');
+const hexGrid = require('@turf/hex-grid');
 const truncate = require('@turf/truncate');
 const turfBBox = require('@turf/bbox');
 const centroid = require('@turf/centroid');
@@ -108,6 +109,18 @@ test('scale -- mutated FeatureCollection', t => {
     t.deepEqual(line, lineBefore, 'mutate = false - input should NOT be mutated');
     scale(line, 1.5, 'centroid', 'nonBoolean');
     t.deepEqual(line, lineBefore, 'non-boolean mutate - input should NOT be mutated');
+    t.end();
+});
+
+test('scale -- Issue #895', t => {
+    const grid = hexGrid([-122.930, 45.385, -122.294, 45.772], 5, 'miles');
+    featureEach(grid, (feature, index) => {
+        const factor = (index % 2 === 0) ? 0.4 : 0.6;
+        scale(feature, factor, 'centroid', true);
+    });
+    const output = directories.out + 'issue-#895.geojson';
+    if (process.env.REGEN) write.sync(output, grid);
+    t.deepEqual(grid, load.sync(output));
     t.end();
 });
 
