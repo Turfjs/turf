@@ -22,6 +22,10 @@
     "@turf/helpers" "^4.6.0"
     "@turf/meta" "^4.6.0"
 
+"@turf/clone@^4.6.1":
+  version "4.6.1"
+  resolved "https://registry.yarnpkg.com/@turf/clone/-/clone-4.6.1.tgz#e4136d9dca48a7065a61454009275c63a9f68121"
+
 "@turf/distance@^4.6.0":
   version "4.6.0"
   resolved "https://registry.yarnpkg.com/@turf/distance/-/distance-4.6.0.tgz#6410b9b4ea7e44e4a99be33018d9daab031946e0"

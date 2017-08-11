@@ -48,6 +48,7 @@
     "@turf/bbox": "^4.6.0",
     "@turf/center": "^4.6.1",
     "@turf/centroid": "^4.6.1",
+    "@turf/clone": "^4.6.1",
     "@turf/helpers": "^4.6.0",
     "@turf/invariant": "^4.6.0",
     "@turf/meta": "^4.6.0",

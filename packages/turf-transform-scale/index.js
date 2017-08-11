@@ -1,4 +1,5 @@
 var meta = require('@turf/meta');
+var clone = require('@turf/clone');
 var center = require('@turf/center');
 var helpers = require('@turf/helpers');
 var centroid = require('@turf/centroid');
@@ -12,6 +13,7 @@ var coordEach = meta.coordEach;
 var featureEach = meta.featureEach;
 var getCoord = invariant.getCoord;
 var getCoords = invariant.getCoords;
+var getGeomType = invariant.getGeomType;
 
 
 /**
@@ -39,17 +41,17 @@ module.exports = function (geojson, factor, origin, mutate) {
     var originIsPoint = Array.isArray(origin) || typeof origin === 'object';
 
     // Clone geojson to avoid side effects
-    if (mutate !== true) geojson = JSON.parse(JSON.stringify(geojson));
+    if (mutate !== true) geojson = clone(geojson);
 
     // Scale each Feature separately
     if (geojson.type === 'FeatureCollection' && !originIsPoint) {
         featureEach(geojson, function (feature, index) {
-            geojson.features[index] = scale(feature, factor, origin);
+            geojson.features[index] = scale(feature, factor, origin, mutate);
         });
         return geojson;
     }
     // Scale Feature/Geometry
-    return scale(geojson, factor, origin);
+    return scale(geojson, factor, origin, mutate);
 };
 
 /**
@@ -59,18 +61,24 @@ module.exports = function (geojson, factor, origin, mutate) {
  * @param {Feature|Geometry} geojson GeoJSON Feature/Geometry
  * @param {number} factor of scaling, positive or negative values greater than 0
  * @param {string|Geometry|Feature<Point>|Array<number>} [origin="centroid"] Point from which the scaling will occur (string options: sw/se/nw/ne/center/centroid)
+ * @param {boolean} [mutate=false] allows GeoJSON input to be mutated
  * @returns {Feature|Geometry} scaled GeoJSON Feature/Geometry
  */
-function scale(geojson, factor, origin) {
+function scale(geojson, factor, origin, mutate) {
     // Default params
-    var isPoint = (geojson.type === 'Point' || geojson.geometry && geojson.geometry.type === 'Point');
+    var geomType = getGeomType(geojson);
+    var isPoint = geomType === 'Point';
+    var isPolygon = geomType === 'Polygon' || geomType === 'MultiPolygon';
     origin = defineOrigin(geojson, origin);
 
     // Shortcut no-scaling
     if (factor === 1 || isPoint) return geojson;
 
     // Scale each coordinate
-    coordEach(geojson, function (coord) {
+    coordEach(geojson, function (coord, coordIndex, featureIndex, featureSubIndex) {
+        // Ignore scaling on first coordinate of Polygons (Issue #895)
+        if (isPolygon && mutate === true && featureSubIndex === 0) return;
+
         var originalDistance = rhumbDistance(origin, coord);
         var bearing = rhumbBearing(origin, coord);
         var newDistance = originalDistance * factor;
