@@ -6,8 +6,10 @@ Polygonizes [(Multi)LineString(s)](http://geojson.org/geojson-spec.html#linestri
 
 Implementation of GEOSPolygonize function (`geos::operation::polygonize::Polygonizer`).
 
-Polygonizes a set of lines that represents edges in a planar graph. Edges must be correctly
-noded, i.e., they must only meet at their endpoints.
+Polygonizes a set of lines that represents edges in a planar graph. Edges must be correctly noded, 
+i.e. they must only meet at their endpoints. (NOTE: while TurfJS has no specific function, an easy way 
+to ensure this is to use the [QGis](https://github.com/qgis/QGIS) library and call [`unaryUnion()`](https://github.com/qgis/QGIS/blob/master/src/core/geometry/qgsgeometry.cpp#L2057) 
+on the set of input geometries and then pass the result to `turf-polygonize`)
 
 The implementation correctly handles:
 
