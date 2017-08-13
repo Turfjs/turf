@@ -115,7 +115,7 @@ function hexagon(center, rx, ry) {
         vertices.push([x, y]);
     }
     //first and last vertex must be the same
-    vertices.push(vertices[0]);
+    vertices.push(vertices[0].slice());
     return polygon([vertices]);
 }
 

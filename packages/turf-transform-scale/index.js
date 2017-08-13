@@ -46,39 +46,33 @@ module.exports = function (geojson, factor, origin, mutate) {
     // Scale each Feature separately
     if (geojson.type === 'FeatureCollection' && !originIsPoint) {
         featureEach(geojson, function (feature, index) {
-            geojson.features[index] = scale(feature, factor, origin, mutate);
+            geojson.features[index] = scale(feature, factor, origin);
         });
         return geojson;
     }
     // Scale Feature/Geometry
-    return scale(geojson, factor, origin, mutate);
+    return scale(geojson, factor, origin);
 };
 
 /**
  * Scale Feature/Geometry
  *
  * @private
- * @param {Feature|Geometry} geojson GeoJSON Feature/Geometry
+ * @param {GeoJSON} geojson GeoJSON Feature/Geometry
  * @param {number} factor of scaling, positive or negative values greater than 0
  * @param {string|Geometry|Feature<Point>|Array<number>} [origin="centroid"] Point from which the scaling will occur (string options: sw/se/nw/ne/center/centroid)
- * @param {boolean} [mutate=false] allows GeoJSON input to be mutated
- * @returns {Feature|Geometry} scaled GeoJSON Feature/Geometry
+ * @returns {GeoJSON} scaled GeoJSON object
  */
-function scale(geojson, factor, origin, mutate) {
+function scale(geojson, factor, origin) {
     // Default params
-    var geomType = getGeomType(geojson);
-    var isPoint = geomType === 'Point';
-    var isPolygon = geomType === 'Polygon' || geomType === 'MultiPolygon';
+    var isPoint = getGeomType(geojson) === 'Point';
     origin = defineOrigin(geojson, origin);
 
     // Shortcut no-scaling
     if (factor === 1 || isPoint) return geojson;
 
     // Scale each coordinate
-    coordEach(geojson, function (coord, coordIndex, featureIndex, featureSubIndex) {
-        // Ignore scaling on first coordinate of Polygons (Issue #895)
-        if (isPolygon && mutate === true && featureSubIndex === 0) return;
-
+    coordEach(geojson, function (coord) {
         var originalDistance = rhumbDistance(origin, coord);
         var bearing = rhumbBearing(origin, coord);
         var newDistance = originalDistance * factor;
