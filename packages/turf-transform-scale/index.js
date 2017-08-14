@@ -58,21 +58,21 @@ module.exports = function (geojson, factor, origin, mutate) {
  * Scale Feature/Geometry
  *
  * @private
- * @param {Feature|Geometry} geojson GeoJSON Feature/Geometry
+ * @param {Feature|Geometry} feature GeoJSON Feature/Geometry
  * @param {number} factor of scaling, positive or negative values greater than 0
  * @param {string|Geometry|Feature<Point>|Array<number>} [origin="centroid"] Point from which the scaling will occur (string options: sw/se/nw/ne/center/centroid)
  * @returns {Feature|Geometry} scaled GeoJSON Feature/Geometry
  */
-function scale(geojson, factor, origin) {
+function scale(feature, factor, origin) {
     // Default params
-    var isPoint = getGeomType(geojson) === 'Point';
-    origin = defineOrigin(geojson, origin);
+    var isPoint = getGeomType(feature) === 'Point';
+    origin = defineOrigin(feature, origin);
 
     // Shortcut no-scaling
-    if (factor === 1 || isPoint) return geojson;
+    if (factor === 1 || isPoint) return feature;
 
     // Scale each coordinate
-    coordEach(geojson, function (coord) {
+    coordEach(feature, function (coord) {
         var originalDistance = rhumbDistance(origin, coord);
         var bearing = rhumbBearing(origin, coord);
         var newDistance = originalDistance * factor;
@@ -82,7 +82,7 @@ function scale(geojson, factor, origin) {
         if (coord.length === 3) coord[2] *= factor;
     });
 
-    return geojson;
+    return feature;
 }
 
 /**
