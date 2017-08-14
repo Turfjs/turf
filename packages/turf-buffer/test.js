@@ -4,6 +4,7 @@ const path = require('path');
 const load = require('load-json-file');
 const write = require('write-json-file');
 const truncate = require('@turf/truncate');
+const turfjsBuffer = require('@turf/buffer');
 const {featureCollection, lineString} = require('@turf/helpers');
 const buffer = require('./');
 
@@ -29,6 +30,19 @@ test('turf-buffer', t => {
         const results = featureCollection([output, geojson]);
         if (process.env.REGEN) write.sync(directories.out + name + '.geojson', results);
         t.deepEqual(results, load.sync(directories.out + name + '.geojson'), name);
+    }
+    t.end();
+});
+
+test('turf-buffer -- original @turf/buffer', t => {
+    for (const {name, geojson} of fixtures) {
+        let {distance, units} = geojson.properties || {};
+        distance = distance || 50;
+        const output = truncate(turfjsBuffer(geojson, distance, units), 4);
+        output.properties.stroke = '#00F';
+        const results = featureCollection([output, geojson]);
+        if (process.env.REGEN) write.sync(directories.out + 'turfjs-' + name + '.geojson', results);
+        t.deepEqual(results, load.sync(directories.out + 'turfjs-' + name + '.geojson'), name);
     }
     t.end();
 });
