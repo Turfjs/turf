@@ -58,10 +58,10 @@ module.exports = function (geojson, factor, origin, mutate) {
  * Scale Feature/Geometry
  *
  * @private
- * @param {GeoJSON} geojson GeoJSON Feature/Geometry
+ * @param {Feature|Geometry} geojson GeoJSON Feature/Geometry
  * @param {number} factor of scaling, positive or negative values greater than 0
  * @param {string|Geometry|Feature<Point>|Array<number>} [origin="centroid"] Point from which the scaling will occur (string options: sw/se/nw/ne/center/centroid)
- * @returns {GeoJSON} scaled GeoJSON object
+ * @returns {Feature|Geometry} scaled GeoJSON Feature/Geometry
  */
 function scale(geojson, factor, origin) {
     // Default params
