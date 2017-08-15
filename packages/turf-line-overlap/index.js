@@ -28,7 +28,7 @@ var segmentEach = meta.segmentEach;
  */
 module.exports = function (line1, line2, proximity) {
     var features = [];
-    proximity = proximity || 2.5;
+    proximity = proximity || 0;
 
     // Create Spatial Index
     var tree = rbush();
