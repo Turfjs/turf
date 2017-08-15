@@ -129,8 +129,5 @@
 				]
 			}
 		}
-	],
-	"properties": {
-		"tolerance": 0.01
-	}
+	]
 }

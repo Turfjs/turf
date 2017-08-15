@@ -38,7 +38,9 @@
   },
   "dependencies": {
     "@turf/clean-coords": "^4.6.0",
+    "@turf/clone": "^4.6.1",
     "@turf/helpers": "^4.6.0",
+    "@turf/meta": "^4.6.0",
     "simplify-js": "^1.2.1"
   }
 }

@@ -1,7 +1,7 @@
-var simplify = require('simplify-js');
-var helpers = require('@turf/helpers');
+var simplifyJS = require('simplify-js');
 var cleanCoords = require('@turf/clean-coords');
-var feature = helpers.feature;
+var geomEach = require('@turf/meta').geomEach;
+var clone = require('@turf/clone');
 
 /**
  * Takes a {@link GeoJSON} object and returns a simplified version. Internally uses
@@ -11,6 +11,7 @@ var feature = helpers.feature;
  * @param {GeoJSON} geojson object to be simplified
  * @param {number} [tolerance=1] simplification tolerance
  * @param {boolean} [highQuality=false] whether or not to spend more time to create a higher-quality simplification with a different algorithm
+ * @param {boolean} [mutate=false] allows GeoJSON input to be mutated (significant performance increase if true)
  * @returns {GeoJSON} a simplified GeoJSON
  * @example
  * var geojson = turf.polygon([[
@@ -42,79 +43,56 @@ var feature = helpers.feature;
  * //addToMap
  * var addToMap = [geojson, simplified]
  */
-module.exports = function (geojson, tolerance, highQuality) {
+module.exports = function (geojson, tolerance, highQuality, mutate) {
     if (!geojson) throw new Error('geojson is required');
     if (tolerance && tolerance < 0) throw new Error('invalid tolerance');
 
-    var output;
+    // Clone geojson to avoid side effects
+    if (mutate !== true) geojson = clone(geojson);
 
-    switch (geojson.type) {
-    case 'Feature':
-        return feature(simplifyHelper(cleanCoords(geojson), tolerance, highQuality), geojson.properties);
-    case 'FeatureCollection':
-        output = {
-            type: 'FeatureCollection',
-            features: geojson.features.map(function (f) {
-                return feature(simplifyHelper(cleanCoords(f), tolerance, highQuality), f.properties);
-            })
-        };
-        if (geojson.properties) output.properties = geojson.properties;
-        return output;
-    case 'GeometryCollection':
-        output = {
-            type: 'GeometryCollection',
-            geometries: geojson.geometries.map(function (g) {
-                return simplifyHelper({
-                    type: 'Feature',
-                    geometry: cleanCoords(g)
-                }, tolerance, highQuality);
-            })
-        };
-        if (geojson.properties) output.properties = geojson.properties;
-        return output;
-    default:
-        return geojson;
-    }
+    geomEach(geojson, function (geom) {
+        simplify(geom, tolerance, highQuality);
+    });
+    return geojson;
 };
 
 /**
  * Simplifies a feature's coordinates
  *
  * @private
- * @param {Feature} feature to be simplified
+ * @param {Geometry} geometry to be simplified
  * @param {number} [tolerance=1] simplification tolerance
  * @param {boolean} [highQuality=false] whether or not to spend more time to create a higher-quality simplification with a different algorithm
  * @returns {Geometry} output
  */
-function simplifyHelper(feature, tolerance, highQuality) {
-    var type = feature.geometry.type;
-    // "unsimplyfiable" geometry types
-    if (type === 'Point' || type === 'MultiPoint') return feature.geometry;
+function simplify(geometry, tolerance, highQuality) {
+    var type = geometry.type;
 
-    var coordinates = feature.geometry.coordinates;
-    var simplified;
+    // "unsimplyfiable" geometry types
+    if (type === 'Point' || type === 'MultiPoint') return geometry;
+
+    // Remove any extra coordinates
+    cleanCoords(geometry, true);
+
+    var coordinates = geometry.coordinates;
     switch (type) {
     case 'LineString':
-        simplified = simplifyLine(coordinates, tolerance, highQuality);
+        geometry['coordinates'] = simplifyLine(coordinates, tolerance, highQuality);
         break;
     case 'MultiLineString':
-        simplified = coordinates.map(function (lines) {
+        geometry['coordinates'] = coordinates.map(function (lines) {
             return simplifyLine(lines, tolerance, highQuality);
         });
         break;
     case 'Polygon':
-        simplified = simplifyPolygon(coordinates, tolerance, highQuality);
+        geometry['coordinates'] = simplifyPolygon(coordinates, tolerance, highQuality);
         break;
     case 'MultiPolygon':
-        simplified = coordinates.map(function (rings) {
+        geometry['coordinates'] = coordinates.map(function (rings) {
             return simplifyPolygon(rings, tolerance, highQuality);
         });
     }
-
-    return {
-        type: type,
-        coordinates: simplified
-    };
+    return geometry;
 }
 
 
@@ -128,7 +106,7 @@ function simplifyHelper(feature, tolerance, highQuality) {
  * @returns {Array<Array<number>>} simplified coords
  */
 function simplifyLine(coordinates, tolerance, highQuality) {
-    return simplify(coordinates.map(function (coord) {
+    return simplifyJS(coordinates.map(function (coord) {
         return {x: coord[0], y: coord[1], z: coord[2]};
     }), tolerance, highQuality).map(function (coords) {
         return (coords.z) ? [coords.x, coords.y, coords.z] : [coords.x, coords.y];
@@ -153,13 +131,13 @@ function simplifyPolygon(coordinates, tolerance, highQuality) {
         if (pts.length < 4) {
             throw new Error('invalid polygon');
         }
-        var simpleRing = simplify(pts, tolerance, highQuality).map(function (coords) {
+        var simpleRing = simplifyJS(pts, tolerance, highQuality).map(function (coords) {
             return [coords.x, coords.y];
         });
         //remove 1 percent of tolerance until enough points to make a triangle
         while (!checkValidity(simpleRing)) {
             tolerance -= tolerance * 0.01;
-            simpleRing = simplify(pts, tolerance, highQuality).map(function (coords) {
+            simpleRing = simplifyJS(pts, tolerance, highQuality).map(function (coords) {
                 return [coords.x, coords.y];
             });
         }

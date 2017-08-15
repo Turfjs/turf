@@ -3,9 +3,15 @@
 	"properties": {},
 	"geometry": {
 		"type": "MultiPoint",
-		"coordinates":[[
-			0,
-			0
-		],[ 1,2]]
+		"coordinates": [
+			[
+				0,
+				0
+			],
+			[
+				1,
+				2
+			]
+		]
 	}
 }
