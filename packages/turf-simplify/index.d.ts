@@ -5,6 +5,10 @@ type Geoms = GeoJSON.Feature<any> | GeoJSON.FeatureCollection<any> | GeoJSON.Geo
 /**
  * http://turfjs.org/docs/#simplify
  */
-declare function simplify(geojson: Geoms, tolerance?: number, highQuality?: boolean): Geoms;
+declare function simplify<T extends Geoms>(
+  geojson: T,
+  tolerance?: number,
+  highQuality?: boolean): T;
+
 declare namespace simplify { }
 export = simplify;
