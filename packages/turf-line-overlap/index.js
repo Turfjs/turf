@@ -4,6 +4,7 @@ var rbush = require('geojson-rbush');
 var invariant = require('@turf/invariant');
 var lineSegment = require('@turf/line-segment');
 var pointOnLine = require('@turf/point-on-line');
+var booleanPointOnLine = require('@turf/boolean-point-on-line');
 var featureCollection = require('@turf/helpers').featureCollection;
 var getCoords = invariant.getCoords;
 var featureEach = meta.featureEach;
@@ -55,12 +56,18 @@ module.exports = function (line1, line2, proximity) {
                     else overlapSegment = segment;
                 // Match segments which don't share nodes (Issue #901)
                 } else if (
+                    (proximity === 0) ?
+                    booleanPointOnLine(coordsSegment[0], match) &&
+                    booleanPointOnLine(coordsSegment[1], match) :
                     pointOnLine(match, coordsSegment[0]).properties.dist <= proximity &&
                     pointOnLine(match, coordsSegment[1]).properties.dist <= proximity) {
                     doesOverlaps = true;
                     if (overlapSegment) overlapSegment = concatSegment(overlapSegment, segment);
                     else overlapSegment = segment;
                 } else if (
+                    (proximity === 0) ?
+                    booleanPointOnLine(coordsMatch[0], segment) &&
+                    booleanPointOnLine(coordsMatch[1], segment) :
                     pointOnLine(segment, coordsMatch[0]).properties.dist <= proximity &&
                     pointOnLine(segment, coordsMatch[1]).properties.dist <= proximity) {
                     // Do not define (doesOverlap = true) since more matches can occur within the same segment

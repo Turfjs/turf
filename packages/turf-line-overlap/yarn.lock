@@ -20,16 +20,11 @@
   dependencies:
     "@turf/invariant" "^4.6.0"
 
-"@turf/clean-coords@^4.6.0":
-  version "4.6.0"
-  resolved "https://registry.yarnpkg.com/@turf/clean-coords/-/clean-coords-4.6.0.tgz#c25ea557f4d21b2a7f67312765bf23c0d451a619"
-  dependencies:
-    "@turf/helpers" "^4.6.0"
-    "@turf/invariant" "^4.6.0"
-
-"@turf/clone@^4.6.1":
+"@turf/boolean-point-on-line@^4.6.1":
   version "4.6.1"
-  resolved "https://registry.yarnpkg.com/@turf/clone/-/clone-4.6.1.tgz#e4136d9dca48a7065a61454009275c63a9f68121"
+  resolved "https://registry.yarnpkg.com/@turf/boolean-point-on-line/-/boolean-point-on-line-4.6.1.tgz#74d8e9826f0b5a29994b5d7a3ff2b391725bb6eb"
+  dependencies:
+    "@turf/invariant" "^4.6.0"
 
 "@turf/destination@^4.6.0":
   version "4.6.0"
@@ -93,12 +88,6 @@
     "@turf/helpers" "^4.6.0"
     "@turf/invariant" "^4.6.0"
     "@turf/line-intersect" "^4.6.0"
-    "@turf/meta" "^4.6.0"
-
-"@turf/truncate@^4.6.0":
-  version "4.6.0"
-  resolved "https://registry.yarnpkg.com/@turf/truncate/-/truncate-4.6.0.tgz#903ad5ed34c0b851b93529975eb8e2eb769a561f"
-  dependencies:
     "@turf/meta" "^4.6.0"
 
 balanced-match@^1.0.0:

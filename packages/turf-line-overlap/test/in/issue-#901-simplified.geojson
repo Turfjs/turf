@@ -1,8 +1,5 @@
 {
 	"type": "FeatureCollection",
-	"properties": {
-		"proximity": 2.5
-	},
 	"features": [
 		{
 			"type": "Feature",

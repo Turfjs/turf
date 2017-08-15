@@ -39,6 +39,7 @@
     "write-json-file": "^2.0.0"
   },
   "dependencies": {
+    "@turf/boolean-point-on-line": "^4.6.1",
     "@turf/helpers": "^4.6.0",
     "@turf/invariant": "^4.6.0",
     "@turf/line-segment": "^4.6.0",
