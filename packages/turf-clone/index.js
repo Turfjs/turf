@@ -48,17 +48,24 @@ function clone(geojson) {
  * Clone Feature
  *
  * @private
- * @param {Feature<any>} feature GeoJSON Feature
+ * @param {Feature<any>} geojson GeoJSON Feature
  * @returns {Feature<any>} cloned Feature
  */
-function cloneFeature(feature) {
-    var cloned = {
-        type: 'Feature',
-        properties: feature.properties || {},
-        geometry: cloneGeometry(feature.geometry)
-    };
-    if (feature.id) cloned.id = feature.id;
-    if (feature.bbox) cloned.bbox = feature.bbox;
+function cloneFeature(geojson) {
+    var cloned = {type: 'Feature'};
+    // Add id & bbox first
+    if (geojson.id) cloned.id = geojson.id;
+    if (geojson.bbox) cloned.bbox = geojson.bbox;
+
+    // Custom Properties
+    Object.keys(geojson).forEach(function (key) {
+        if (['id', 'type', 'bbox', 'properties', 'geometry'].indexOf(key) !== -1) return;
+        cloned[key] = geojson[key];
+    });
+
+    // Add properties & geometry last
+    cloned.properties = geojson.properties || {};
+    cloned.geometry = cloneGeometry(geojson.geometry);
     return cloned;
 }
 
@@ -70,12 +77,21 @@ function cloneFeature(feature) {
  * @returns {FeatureCollection<any>} cloned Feature Collection
  */
 function cloneFeatureCollection(geojson) {
-    return {
-        type: 'FeatureCollection',
-        features: geojson.features.map(function (feature) {
-            return cloneFeature(feature);
-        })
-    };
+    const cloned = {type: 'FeatureCollection'};
+    // Add id & bbox first
+    if (geojson.id) cloned.id = geojson.id;
+    if (geojson.bbox) cloned.bbox = geojson.bbox;
+
+    // Custom Properties
+    Object.keys(geojson).forEach(function (key) {
+        if (['id', 'type', 'bbox', 'features'].indexOf(key) !== -1) return;
+        cloned[key] = geojson[key];
+    });
+    // Add features as last property
+    cloned.features = geojson.features.map(function (feature) {
+        return cloneFeature(feature);
+    });
+    return cloned;
 }
 
 /**
@@ -86,18 +102,17 @@ function cloneFeatureCollection(geojson) {
  * @returns {Geometry<any>} cloned Geometry
  */
 function cloneGeometry(geometry) {
+    const geom = {type: geometry.type};
+    if (geometry.bbox) geom.bbox = geometry.bbox;
+
     if (geometry.type === 'GeometryCollection') {
-        return {
-            type: 'GeometryCollection',
-            geometries: geometry.geometries.map(function (geom) {
-                return cloneGeometry(geom);
-            })
-        };
+        geom.geometries = geometry.geometries.map(function (geom) {
+            return cloneGeometry(geom);
+        });
+        return geom;
     }
-    return {
-        type: geometry.type,
-        coordinates: deepSlice(geometry.coordinates)
-    };
+    geom.coordinates = deepSlice(geometry.coordinates);
+    return geom;
 }
 
 /**

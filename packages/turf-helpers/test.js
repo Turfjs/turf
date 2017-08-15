@@ -395,3 +395,19 @@ test('null geometries', t => {
     t.equal(geometryCollection([]).geometry.geometries.length, 0, 'geometryCollection -- empty');
     t.end();
 });
+
+test('turf-helpers -- Handle Id & BBox properties', t => {
+    const id = 12345;
+    const bbox = [10, 30, 10, 30];
+    const pt = point([10, 30], {}, bbox, id);
+    const fc = featureCollection([pt], bbox, id);
+    t.equal(pt.id, id, 'feature id');
+    t.equal(pt.bbox, bbox, 'feature bbox');
+    t.equal(fc.id, id, 'featureCollection id');
+    t.equal(fc.bbox, bbox, 'featureCollection bbox');
+    t.throws(() => point([10, 30], {}, [0], id), 'throws invalid bbox');
+    t.throws(() => point([10, 30], {}, bbox, {invalid: 'id'}), 'throws invalid id');
+    t.throws(() => featureCollection([pt], [0], id), 'throws invalid bbox');
+    t.throws(() => featureCollection([pt], [0], {invalid: 'id'}), 'throws invalid id');
+    t.end();
+});

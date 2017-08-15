@@ -89,3 +89,34 @@ test('turf-clone -- Geometry Objects', t => {
     t.deepEqual(poly.coordinates, [[[10, 40], [0, 20], [20, 0], [10, 40]]], 'geometry polygon');
     t.end();
 });
+
+test('turf-clone -- Preserve Foreign Members -- Feature', t => {
+    const properties = {foo: 'bar'};
+    const bbox = [0, 20, 0, 20];
+    const id = 12345;
+    const pt = point([0, 20], properties, bbox, id);
+    pt.custom = 'foreign members';
+
+    const cloned = clone(pt);
+    t.equal(cloned.id, id);
+    t.equal(cloned.custom, pt.custom);
+    t.deepEqual(cloned.bbox, bbox);
+    t.deepEqual(cloned.properties, properties);
+    t.end();
+});
+
+test('turf-clone -- Preserve Foreign Members -- FeatureCollection', t => {
+    const properties = {foo: 'bar'};
+    const bbox = [0, 20, 0, 20];
+    const id = 12345;
+    const fc = featureCollection([point([0, 20])], bbox, id);
+    fc.custom = 'foreign members';
+    fc.properties = properties;
+
+    const cloned = clone(fc);
+    t.equal(cloned.id, id);
+    t.equal(cloned.custom, fc.custom);
+    t.deepEqual(cloned.bbox, bbox);
+    t.deepEqual(cloned.properties, properties);
+    t.end();
+});
