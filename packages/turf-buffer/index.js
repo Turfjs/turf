@@ -1,14 +1,11 @@
-var center = require('@turf/center');
 var getCoords = require('@turf/invariant').getCoords;
 var coordEach = require('@turf/meta').coordEach;
 var helpers = require('@turf/helpers');
 var bearingToAngle = helpers.bearingToAngle;
 var polygon = helpers.polygon;
 var point = helpers.point;
-var distanceToRadians = helpers.distanceToRadians;
+var featureCollection = helpers.featureCollection;
 var distanceToDegrees = helpers.distanceToDegrees;
-var radiansToDegrees = helpers.radians2degrees;
-var radiansToDistance = helpers.radiansToDistance;
 var bearing = require('@turf/bearing');
 var lineArc = require('@turf/line-arc');
 var circle = require('@turf/circle');
@@ -42,32 +39,56 @@ module.exports = function (geojson, distance, units, steps) {
     if (distance === undefined || distance === null || isNaN(distance)) throw new Error('distance is required');
     var numSteps = steps ? steps : 64;
 
-    var properties = geojson.properties || {};
+    // var properties = geojson.properties || {};
 
     var geometry = (geojson.type === 'Feature') ? geojson.geometry : geojson;
     var distanceDegrees = distanceToDegrees(distance, units);
 
-    var buffered = null;
+    var outFeatures = [];
     switch (geometry.type) {
     case 'Polygon':
-        buffered = bufferPolygon(geometry, distanceDegrees, numSteps);
+        if (geometry.coordinates.length === 1) {
+            outFeatures.push(bufferPolygon(geometry, distanceDegrees, numSteps));
+        } else {
+            // If a polygon has holes
+            var outFeature = null;
+            geometry.coordinates.forEach(function (coords, index) {
+                if (index === 0) {
+                    outFeature = bufferPolygon(polygon([coords]), distanceDegrees, numSteps);
+                } else {
+                    var hole = bufferPolygon(polygon([coords]), getOppositeDistance(distanceDegrees), numSteps, true);
+                    outFeature.geometry.coordinates.push(hole.geometry.coordinates[0]);
+                }
+            });
+            outFeatures.push(outFeature);
+        }
+        break;
+    case 'MultiPolygon':
+        geometry.coordinates.forEach(function (ringCoords, ringIndex) { // eslint-disable-line
+            // const isExterior = ringIndex === 0;
+            outFeatures.push(bufferPolygon(polygon(ringCoords), distanceDegrees, numSteps));
+        });
         break;
     case 'LineString':
-        buffered = bufferLineString(geometry, distanceDegrees, numSteps);
+        outFeatures.push(bufferLineString(geometry, distanceDegrees, numSteps));
         break;
     case 'Point':
-        buffered = bufferPoint(geometry, distanceDegrees, numSteps);
+        outFeatures.push(bufferPoint(geometry, distanceDegrees, numSteps));
+        break;
+    case 'MultiPoint':
+        geometry.coordinates.forEach(function (coords) {
+            outFeatures.push(bufferPoint(coords, distanceDegrees, numSteps));
+        });
     }
 
-    buffered.properties = properties;
-    return buffered;
+    return featureCollection(outFeatures);
 };
 
 function bufferPoint(geometry, distance, steps) {
     return circle(geometry, distance, steps, 'degrees');
 }
 
-function bufferPolygon(feature, distance, steps) {
+function bufferPolygon(feature, distance, steps, inInterior) {
     var coords = getCoords(feature);
     var finalCoords = [];
 
@@ -90,16 +111,21 @@ function bufferPolygon(feature, distance, steps) {
         if (index > 0) {
             var segment = processSegment(currentCoords, nextCoords, distance);
             var prevSegment = processSegment(prevCoords, currentCoords, distance);
-            if (angleInDegs < 180) {
-                var outsector = getJoin('round', currentCoords, distance, bearingNextCoords, bearingPrevCoords, steps);
-                finalCoords = finalCoords.concat(outsector);
+            if (angleInDegs < 180 && !inInterior || inInterior && angleInDegs > 180) {
+                if (inInterior) {
+                    var outsector = getJoin('round', currentCoords, distance, bearingPrevCoords - 180, bearingNextCoords + 180, steps);
+                    finalCoords = finalCoords.concat(outsector.reverse());
+                } else {
+                    var outsector = getJoin('round', currentCoords, distance, bearingNextCoords, bearingPrevCoords, steps);
+                    finalCoords = finalCoords.concat(outsector);
+                }
             } else {
                 var intersects = checkLineIntersection(segment[0][0], segment[0][1], segment[1][0], segment[1][1], prevSegment[0][0], prevSegment[0][1], prevSegment[1][0], prevSegment[1][1]);
                 finalCoords.push([intersects.x, intersects.y]);
             }
         }
     });
-    finalCoords.push(finalCoords[0])
+    finalCoords.push(finalCoords[0]);
     return polygon([finalCoords], polygon.properties);
 }
 
@@ -152,7 +178,7 @@ function bufferLineString(feature, distance, steps, endType, joinType) {
     return polygon([finalCoords], feature.properties);
 }
 
-function getJoin (joinType, coords, distance, bearingNextCoords, bearingPrevCoords, numSteps) {
+function getJoin(joinType, coords, distance, bearingNextCoords, bearingPrevCoords, numSteps) {
     switch (joinType) {
     case 'round':
         return createRounded(coords, distance, bearingNextCoords, bearingPrevCoords, numSteps);
@@ -163,7 +189,7 @@ function getJoin (joinType, coords, distance, bearingNextCoords, bearingPrevCoor
     }
 }
 
-function getEnd (endType, coords, distance, bearingNextCoords, bearingPrevCoords, numSteps) {
+function getEnd(endType, coords, distance, bearingNextCoords, bearingPrevCoords, numSteps) {
     switch (endType) {
     case 'round':
         return createRounded(coords, distance, bearingNextCoords, bearingPrevCoords, numSteps);
@@ -245,4 +271,8 @@ function checkLineIntersection(line1StartX, line1StartY, line1EndX, line1EndY, l
         result.onLine1 = true;
     }
     return result;
+}
+
+function getOppositeDistance(distance) {
+    return distance > 0  ? -Math.abs(distance) : Math.abs(distance);
 }
