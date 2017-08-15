@@ -3,7 +3,11 @@
   "features": [
     {
       "type": "Feature",
-      "properties": {},
+      "properties": {
+        "stroke": "#F00",
+        "stroke-width": 10,
+        "stroke-opacity": 1
+      },
       "geometry": {
         "type": "LineString",
         "coordinates": [
@@ -28,7 +32,11 @@
     },
     {
       "type": "Feature",
-      "properties": {},
+      "properties": {
+        "stroke": "#00F",
+        "stroke-width": 3,
+        "stroke-opacity": 1
+      },
       "geometry": {
         "type": "LineString",
         "coordinates": [

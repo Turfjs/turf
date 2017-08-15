@@ -1,9 +1,9 @@
-var lineSegment = require('@turf/line-segment');
-var getCoords = require('@turf/invariant').getCoords;
 var rbush = require('geojson-rbush');
 var equal = require('deep-equal');
-var featureCollection = require('@turf/helpers').featureCollection;
+var getCoords = require('@turf/invariant').getCoords;
 var featureEach = require('@turf/meta').featureEach;
+var lineSegment = require('@turf/line-segment');
+var featureCollection = require('@turf/helpers').featureCollection;
 
 /**
  * Takes any LineString or Polygon and returns the overlapping lines between both features.
