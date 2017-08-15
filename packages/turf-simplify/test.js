@@ -43,6 +43,20 @@ test('simplify -- throw', t => {
 });
 
 
+test('simplify -- removes ID & BBox from properties', t => {
+    const properties = {foo: 'bar'};
+    const id = 12345;
+    const bbox = [0, 0, 2, 2];
+    const poly = polygon([[[0, 0], [2, 2], [2, 0], [0, 0]]], properties, bbox, id);
+    const simple = simplify(poly, 0.1);
+
+    t.equal(simple.properties.id, id);
+    t.deepEqual(simple.properties.bbox, bbox);
+    t.deepEqual(simple.properties, properties);
+    t.end();
+});
+
+
 test('simplify -- issue #555', t => {
     // polygons from issue #555
     const poly1 = polygon([[[-75.693254, 45.431144], [-75.693335, 45.431109], [-75.693335, 45.431109], [-75.693254, 45.431144]]]);
