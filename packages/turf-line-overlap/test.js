@@ -3,7 +3,6 @@ const fs = require('fs');
 const path = require('path');
 const load = require('load-json-file');
 const write = require('write-json-file');
-const lineIntersect = require('@turf/line-intersect');
 const {featureEach} = require('@turf/meta');
 const {featureCollection, lineString} = require('@turf/helpers');
 const lineOverlap = require('./');
@@ -13,24 +12,22 @@ const directories = {
     out: path.join(__dirname, 'test', 'out') + path.sep
 };
 
-const fixtures = fs.readdirSync(directories.in).map(filename => {
+let fixtures = fs.readdirSync(directories.in).map(filename => {
     return {
         filename,
         name: path.parse(filename).name,
         geojson: load.sync(directories.in + filename)
     };
 });
+// fixtures = fixtures.filter(({name}) => name.includes('#901'));
 
 test('turf-line-overlap', t => {
     for (const {filename, name, geojson}  of fixtures) {
+        const {proximity} = geojson.properties || {};
         const [source, target] = geojson.features;
-        const shared = colorize(lineOverlap(source, target), '#FF0');
+        const shared = colorize(lineOverlap(source, target, proximity), '#0F0');
         const results = featureCollection(shared.features.concat([source, target]));
 
-        // Add line intersections
-        featureEach(lineIntersect(target, source), feature => {
-            results.features.push(feature);
-        });
         if (process.env.REGEN) write.sync(directories.out + filename, results);
         t.deepEquals(results, load.sync(directories.out + filename), name);
     }
@@ -45,7 +42,7 @@ test('turf-line-overlap - Geometry Object', t => {
     t.end();
 });
 
-function colorize(features, color = '#F00', width = 20) {
+function colorize(features, color = '#F00', width = 25) {
     const results = [];
     featureEach(features, feature => {
         feature.properties = {

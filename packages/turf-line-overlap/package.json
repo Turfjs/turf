@@ -33,7 +33,6 @@
   },
   "homepage": "https://github.com/Turfjs/turf",
   "devDependencies": {
-    "@turf/line-intersect": "^4.6.0",
     "benchmark": "^2.1.4",
     "load-json-file": "^2.0.0",
     "tape": "^4.6.3",
@@ -44,6 +43,7 @@
     "@turf/invariant": "^4.6.0",
     "@turf/line-segment": "^4.6.0",
     "@turf/meta": "^4.6.0",
+    "@turf/point-on-line": "^4.6.0",
     "deep-equal": "^1.0.1",
     "geojson-rbush": "^1.0.1"
   }

@@ -4,9 +4,9 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"stroke": "#FF0",
-				"fill": "#FF0",
-				"stroke-width": 20
+				"stroke": "#0F0",
+				"fill": "#0F0",
+				"stroke-width": 25
 			},
 			"geometry": {
 				"type": "LineString",
@@ -24,14 +24,7 @@
 						-35
 					]
 				]
-			},
-			"bbox": [
-				125,
-				-30,
-				135,
-				-30
-			],
-			"id": 1
+			}
 		},
 		{
 			"type": "Feature",
@@ -92,39 +85,6 @@
 						145,
 						-25
 					]
-				]
-			}
-		},
-		{
-			"type": "Feature",
-			"properties": {},
-			"geometry": {
-				"type": "Point",
-				"coordinates": [
-					125,
-					-30
-				]
-			}
-		},
-		{
-			"type": "Feature",
-			"properties": {},
-			"geometry": {
-				"type": "Point",
-				"coordinates": [
-					135,
-					-30
-				]
-			}
-		},
-		{
-			"type": "Feature",
-			"properties": {},
-			"geometry": {
-				"type": "Point",
-				"coordinates": [
-					145,
-					-35
 				]
 			}
 		}
