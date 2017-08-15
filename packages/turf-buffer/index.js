@@ -1,14 +1,28 @@
+<<<<<<< HEAD
 var getCoords = require('@turf/invariant').getCoords;
 var coordEach = require('@turf/meta').coordEach;
+=======
+var center = require('@turf/center');
+var circle = require('@turf/circle');
+var bearing = require('@turf/bearing');
+>>>>>>> 2227dfbb33589a400a0a01e9683488c2cbc7d13f
 var helpers = require('@turf/helpers');
+var lineArc = require('@turf/line-arc');
+var coordEach = require('@turf/meta').coordEach;
+var getCoords = require('@turf/invariant').getCoords;
 var bearingToAngle = helpers.bearingToAngle;
 var polygon = helpers.polygon;
 var point = helpers.point;
 var featureCollection = helpers.featureCollection;
 var distanceToDegrees = helpers.distanceToDegrees;
+<<<<<<< HEAD
 var bearing = require('@turf/bearing');
 var lineArc = require('@turf/line-arc');
 var circle = require('@turf/circle');
+=======
+var radiansToDegrees = helpers.radians2degrees;
+var radiansToDistance = helpers.radiansToDistance;
+>>>>>>> 2227dfbb33589a400a0a01e9683488c2cbc7d13f
 
 /**
  * Takes a {@link Feature and returns a {@link Feature} at offset by the specified distance.
@@ -159,7 +173,7 @@ function bufferLineString(feature, distance, steps, endType, joinType) {
 
             if (angleInDegs < 180) {
                 var outsector = getJoin('round', currentCoords, distance, bearingNextCoords, bearingPrevCoords, steps);
-                finalCoords = finalCoords.concat(outsector.geometry.coordinates.reverse());
+                finalCoords = finalCoords.concat(outsector.reverse());
                 var segmentRev = processSegment(currentCoords, nextCoords, -Math.abs(distance));
                 var prevSegmentRev = processSegment(prevCoords, currentCoords, -Math.abs(distance));
                 var intersects = checkLineIntersection(segmentRev[0][0], segmentRev[0][1], segmentRev[1][0], segmentRev[1][1], prevSegmentRev[0][0], prevSegmentRev[0][1], prevSegmentRev[1][0], prevSegmentRev[1][1]);
