@@ -11,13 +11,14 @@ const directories = {
     out: path.join(__dirname, 'test', 'out') + path.sep
 };
 
-const fixtures = fs.readdirSync(directories.in).map(filename => {
+let fixtures = fs.readdirSync(directories.in).map(filename => {
     return {
         filename,
         name: path.parse(filename).name,
         geojson: load.sync(directories.in + filename)
     };
 });
+// fixtures = fixtures.filter(({name}) => name.includes('#555'));
 
 test('simplify', t => {
     for (const {filename, name, geojson} of fixtures) {
@@ -50,8 +51,8 @@ test('simplify -- removes ID & BBox from properties', t => {
     const poly = polygon([[[0, 0], [2, 2], [2, 0], [0, 0]]], properties, bbox, id);
     const simple = simplify(poly, 0.1);
 
-    t.equal(simple.properties.id, id);
-    t.deepEqual(simple.properties.bbox, bbox);
+    t.equal(simple.id, id);
+    t.deepEqual(simple.bbox, bbox);
     t.deepEqual(simple.properties, properties);
     t.end();
 });
