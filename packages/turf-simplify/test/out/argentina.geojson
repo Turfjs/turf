@@ -1,5 +1,9 @@
 {
   "type": "Feature",
+  "properties": {
+    "tolerance": 0.1,
+    "name": "Argentina"
+  },
   "geometry": {
     "type": "Polygon",
     "coordinates": [
@@ -410,8 +414,5 @@
         ]
       ]
     ]
-  },
-  "properties": {
-    "name": "Argentina"
   }
 }

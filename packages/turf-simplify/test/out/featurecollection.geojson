@@ -1,8 +1,12 @@
 {
   "type": "FeatureCollection",
+  "properties": {
+    "tolerance": 0.01
+  },
   "features": [
     {
       "type": "Feature",
+      "properties": {},
       "geometry": {
         "type": "LineString",
         "coordinates": [
@@ -15,11 +19,11 @@
             -26.183015655416536
           ]
         ]
-      },
-      "properties": {}
+      }
     },
     {
       "type": "Feature",
+      "properties": {},
       "geometry": {
         "type": "Polygon",
         "coordinates": [
@@ -42,11 +46,11 @@
             ]
           ]
         ]
-      },
-      "properties": {}
+      }
     },
     {
       "type": "Feature",
+      "properties": {},
       "geometry": {
         "type": "Polygon",
         "coordinates": [
@@ -107,8 +111,7 @@
             ]
           ]
         ]
-      },
-      "properties": {}
+      }
     },
     {
       "type": "Feature",

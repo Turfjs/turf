@@ -1,5 +1,8 @@
 {
   "type": "Feature",
+  "properties": {
+    "tolerance": 100
+  },
   "geometry": {
     "type": "Polygon",
     "coordinates": [
@@ -22,6 +25,5 @@
         ]
       ]
     ]
-  },
-  "properties": {}
+  }
 }

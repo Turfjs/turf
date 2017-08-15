@@ -1,5 +1,9 @@
 {
   "type": "Feature",
+  "properties": {
+    "tolerance": 1,
+    "elevation": 25
+  },
   "geometry": {
     "type": "Polygon",
     "coordinates": [
@@ -22,8 +26,5 @@
         ]
       ]
     ]
-  },
-  "properties": {
-    "elevation": 25
   }
 }

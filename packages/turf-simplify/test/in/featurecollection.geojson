@@ -1,5 +1,8 @@
 {
   "type": "FeatureCollection",
+  "properties": {
+    "tolerance": 0.01
+  },
   "features": [
     {
       "type": "Feature",

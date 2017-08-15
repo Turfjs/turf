@@ -1,112 +1,36 @@
-var simplify = require('./');
-var test = require('tape');
-var fs = require('fs');
+const fs = require('fs');
+const test = require('tape');
+const path = require('path');
+const load = require('load-json-file');
+const write = require('write-json-file');
+const {point, lineString, geometryCollection, featureCollection} = require('@turf/helpers');
+const simplify = require('./');
 
-test('simplify -- line', function (t) {
-  var line = JSON.parse(fs.readFileSync(__dirname + '/test/fixtures/in/linestring.geojson'));
+const directories = {
+    in: path.join(__dirname, 'test', 'in') + path.sep,
+    out: path.join(__dirname, 'test', 'out') + path.sep
+};
 
-  var simplified = simplify(line, 0.01, false);
-  t.ok(simplified);
-  t.equal(simplified.type, 'Feature');
-  t.equal(typeof simplified.geometry.coordinates[0][0], 'number');
-  fs.writeFileSync(__dirname + '/test/fixtures/out/linestring_out.geojson', JSON.stringify(simplified, null, 2));
-
-  t.end();
+const fixtures = fs.readdirSync(directories.in).map(filename => {
+    return {
+        filename,
+        name: path.parse(filename).name,
+        geojson: load.sync(directories.in + filename)
+    };
 });
 
-test('simplify -- multiline', function (t) {
-  var multiline = JSON.parse(fs.readFileSync(__dirname + '/test/fixtures/in/multilinestring.geojson'));
+test('simplify', t => {
+    for (const {filename, name, geojson} of fixtures) {
+        let {tolerance, highQuality} = geojson.properties || {};
+        tolerance = tolerance || 0.01;
+        highQuality = highQuality || false;
 
-  var simplified = simplify(multiline, 0.01, false);
-  t.ok(simplified);
-  t.equal(simplified.type, 'Feature');
-  var len = multiline.geometry.coordinates.length,
-    i;
-  for (i = 0; i < len; i++) {
-    t.equal(typeof simplified.geometry.coordinates[i][0][0], 'number');
-  }
-  fs.writeFileSync(__dirname + '/test/fixtures/out/multilinestring_out.geojson', JSON.stringify(simplified, null, 2));
+        const simplified = simplify(geojson, tolerance, highQuality);
+        // const result = featureCollection([simplified, geojson]);
 
-  t.end();
-});
-
-test('simplify -- polygon', function (t) {
-  var polygon = JSON.parse(fs.readFileSync(__dirname + '/test/fixtures/in/polygon.geojson'));
-
-  var simplified = simplify(polygon, 1, false);
-  t.equal(simplified.type, 'Feature');
-  t.equal(typeof simplified.geometry.coordinates[0][0][0], 'number');
-  fs.writeFileSync(__dirname + '/test/fixtures/out/polygon_out.geojson', JSON.stringify(simplified, null, 2));
-
-  t.end();
-});
-
-test('simplify -- over simplify polygon', function (t) {
-  var polygon = JSON.parse(fs.readFileSync(__dirname + '/test/fixtures/in/simple.geojson'));
-
-  var simplified = simplify(polygon, 100, false);
-  t.equal(simplified.type, 'Feature');
-  t.equal(typeof simplified.geometry.coordinates[0][0][0], 'number');
-  fs.writeFileSync(__dirname + '/test/fixtures/out/simple_out.geojson', JSON.stringify(simplified, null, 2));
-
-  t.end();
-});
-
-test('simplify -- multipolygon', function (t) {
-  var multipolygon = JSON.parse(fs.readFileSync(__dirname + '/test/fixtures/in/multipolygon.geojson'));
-
-  var simplified = simplify(multipolygon, 0.01, false);
-  t.equal(simplified.type, 'Feature');
-  var len = multipolygon.geometry.coordinates.length,
-    i;
-  for (i = 0; i < len; i++) {
-    t.equal(typeof simplified.geometry.coordinates[i][0][0][0], 'number');
-  }
-  fs.writeFileSync(__dirname + '/test/fixtures/out/multipolygon_out.geojson', JSON.stringify(simplified, null, 2));
-
-  t.end();
-});
-
-test('simplify -- featurecollection', function (t) {
-  var featurecollection = JSON.parse((fs.readFileSync(__dirname + '/test/fixtures/in/featurecollection.geojson')));
-
-  var simplified = simplify(featurecollection, 0.01, false);
-  t.equal(simplified.type, 'FeatureCollection');
-
-  fs.writeFileSync(__dirname + '/test/fixtures/out/featurecollection_out.geojson', JSON.stringify(simplified, null, 2));
-
-  t.end();
-});
-
-test('simplify -- geometrycollection', function (t) {
-  var geometrycollection = JSON.parse((fs.readFileSync(__dirname + '/test/fixtures/in/geometrycollection.geojson')));
-
-  var simplified = simplify(geometrycollection, 0.01, false);
-  t.equal(simplified.type, 'GeometryCollection');
-  simplified.geometries.forEach(function (g) {
-    if (g.type === 'LineString') {
-      t.equal(typeof g.coordinates[0][0], 'number');
-    } else if (g.type === 'MultiLineString' || g.type === 'Polygon') {
-      // intentionally only checking the first line for multilinestring, test covered elsewhere
-      t.equal(typeof g.coordinates[0][0][0], 'number');
-    } else if (g.type === 'MultiPolygon') {
-      // intentionally only checking the first ring, test covered elsewhere
-      t.equal(typeof g.coordinates[0][0][0][0], 'number');
+        if (process.env.REGEN) write.sync(directories.out + filename, simplified);
+        t.deepEqual(simplified, load.sync(directories.out + filename), name);
     }
-  });
 
-  fs.writeFileSync(__dirname + '/test/fixtures/out/geometrycollection_out.geojson', JSON.stringify(simplified, null, 2));
-
-  t.end();
-});
-
-test('simplify -- argentina', function (t) {
-  var argentina = JSON.parse(fs.readFileSync(__dirname + '/test/fixtures/in/argentina.geojson'));
-
-  var simplified = simplify(argentina, 0.1, false);
-  t.equal(simplified.type, 'Feature');
-  t.equal(typeof simplified.geometry.coordinates[0][0][0], 'number');
-  fs.writeFileSync(__dirname + '/test/fixtures/out/argentina_out.geojson', JSON.stringify(simplified, null, 2));
-
-  t.end();
+    t.end();
 });
