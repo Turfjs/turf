@@ -3,6 +3,6 @@ import * as simplify from './'
 
 const poly = polygon([[[0, 0], [10, 10], [20, 20], [0, 0]]]);
 
-simplify(poly)
-simplify(poly, 1)
-simplify(poly, 1, true)
+simplify(poly);
+simplify(poly, 1);
+simplify(poly, 1, true);
