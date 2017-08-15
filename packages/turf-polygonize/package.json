@@ -41,6 +41,6 @@
     "write-json-file": "2.2.0"
   },
   "dependencies": {
-    "polygonize": "1.0.1"
+    "polygonize": "1.0.2"
   }
 }
