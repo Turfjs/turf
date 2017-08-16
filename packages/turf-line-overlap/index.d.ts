@@ -10,7 +10,7 @@ type Feature<Geom extends GeoJSON.GeometryObject> = GeoJSON.Feature<Geom>;
 declare function lineOverlap(
   source: Feature<Geoms> | Geoms,
   target: Feature<Geoms> | Geoms,
-  proximity?: number
+  tolerance?: number
 ): LineStrings;
 
 declare namespace lineOverlap {}

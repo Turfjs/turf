@@ -16,7 +16,7 @@ var segmentEach = meta.segmentEach;
  * @name lineOverlap
  * @param {Geometry|Feature<LineString|MultiLineString|Polygon|MultiPolygon>} line1 any LineString or Polygon
  * @param {Geometry|Feature<LineString|MultiLineString|Polygon|MultiPolygon>} line2 any LineString or Polygon
- * @param {number} [proximity=0] Proximity distance to match overlapping line segments (in kilometers)
+ * @param {number} [tolerance=0] Tolerance distance to match overlapping line segments (in kilometers)
  * @returns {FeatureCollection<LineString>} lines(s) that are overlapping between both features
  * @example
  * var line1 = turf.lineString([[115, -35], [125, -30], [135, -30], [145, -35]]);
@@ -27,9 +27,9 @@ var segmentEach = meta.segmentEach;
  * //addToMap
  * var addToMap = [line1, line2, overlapping]
  */
-module.exports = function (line1, line2, proximity) {
+module.exports = function (line1, line2, tolerance) {
     var features = [];
-    proximity = proximity || 0;
+    tolerance = tolerance || 0;
 
     // Create Spatial Index
     var tree = rbush();
@@ -56,20 +56,20 @@ module.exports = function (line1, line2, proximity) {
                     else overlapSegment = segment;
                 // Match segments which don't share nodes (Issue #901)
                 } else if (
-                    (proximity === 0) ?
+                    (tolerance === 0) ?
                     booleanPointOnLine(coordsSegment[0], match) &&
                     booleanPointOnLine(coordsSegment[1], match) :
-                    pointOnLine(match, coordsSegment[0]).properties.dist <= proximity &&
-                    pointOnLine(match, coordsSegment[1]).properties.dist <= proximity) {
+                    pointOnLine(match, coordsSegment[0]).properties.dist <= tolerance &&
+                    pointOnLine(match, coordsSegment[1]).properties.dist <= tolerance) {
                     doesOverlaps = true;
                     if (overlapSegment) overlapSegment = concatSegment(overlapSegment, segment);
                     else overlapSegment = segment;
                 } else if (
-                    (proximity === 0) ?
+                    (tolerance === 0) ?
                     booleanPointOnLine(coordsMatch[0], segment) &&
                     booleanPointOnLine(coordsMatch[1], segment) :
-                    pointOnLine(segment, coordsMatch[0]).properties.dist <= proximity &&
-                    pointOnLine(segment, coordsMatch[1]).properties.dist <= proximity) {
+                    pointOnLine(segment, coordsMatch[0]).properties.dist <= tolerance &&
+                    pointOnLine(segment, coordsMatch[1]).properties.dist <= tolerance) {
                     // Do not define (doesOverlap = true) since more matches can occur within the same segment
                     // doesOverlaps = true;
                     if (overlapSegment) overlapSegment = concatSegment(overlapSegment, match);
