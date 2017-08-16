@@ -81,6 +81,7 @@ module.exports = function (geojson, mutate) {
 /**
  * Create Geometry from existing Geometry
  *
+ * @private
  * @param {Geometry} geojson Existing Geometry
  * @param {string} type Geometry Type
  * @param {Array<number>} coordinates Coordinates
@@ -98,6 +99,7 @@ function geometry(geojson, type, coordinates) {
 /**
  * Create Feature from existing Feature
  *
+ * @private
  * @param {Feature} geojson Existing Feature
  * @param {string} type Feature Type
  * @param {Array<number>} coordinates Coordinates

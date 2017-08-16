@@ -12,6 +12,7 @@ var clone = require('@turf/clone');
  * Takes a set of {@link Point|points} and returns a concave hull polygon.
  * Internally, this uses [turf-tin](https://github.com/Turfjs/turf-tin) to generate geometries.
  *
+ * @name concave
  * @param {FeatureCollection<Point>} points input points
  * @param {number} maxEdge the length (in 'units') of an edge necessary for part of the hull to become concave
  * @param {string} [units=kilometers] can be degrees, radians, miles, or kilometers
