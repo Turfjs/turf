@@ -6,9 +6,11 @@ Callback for coordEach
 
 **Parameters**
 
--   `currentCoord` **[Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)>** The current coordinates being processed.
--   `coordIndex` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** The index of the current element being processed in the
-    array.Starts at index 0, if an initialValue is provided, and at index 1 otherwise.
+-   `currentCoord` **[Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)>** The current coordinate being processed.
+-   `coordIndex` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** The current index of the coordinate being processed.
+    Starts at index 0.
+-   `featureIndex` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** The current index of the feature being processed.
+-   `featureSubIndex` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** The current subIndex of the feature being processed.
 -   `geojson`  
 -   `callback`  
 -   `excludeWrapCoord`  
@@ -20,7 +22,7 @@ Iterate over coordinates in any GeoJSON object, similar to Array.forEach()
 **Parameters**
 
 -   `geojson` **([FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects) \| [Geometry](http://geojson.org/geojson-spec.html#geometry) \| [Feature](http://geojson.org/geojson-spec.html#feature-objects))** any GeoJSON object
--   `callback` **[Function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function)** a method that takes (currentCoord, coordIndex)
+-   `callback` **[Function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function)** a method that takes (currentCoord, coordIndex, featureIndex, featureSubIndex)
 -   `excludeWrapCoord` **\[[boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)]** whether or not to include the final coordinate of LinearRings that wraps the ring in its iteration. (optional, default `false`)
 
 **Examples**
@@ -31,9 +33,11 @@ var features = turf.featureCollection([
   turf.point([36, 53], {"hello": "world"})
 ]);
 
-turf.coordEach(features, function (currentCoord, coordIndex) {
+turf.coordEach(features, function (currentCoord, coordIndex, featureIndex, featureSubIndex) {
   //=currentCoord
   //=coordIndex
+  //=featureIndex
+  //=featureSubIndex
 });
 ```
 
@@ -56,10 +60,12 @@ var features = turf.featureCollection([
   turf.point([36, 53], {"hello": "world"})
 ]);
 
-turf.coordReduce(features, function (previousValue, currentCoord, coordIndex) {
+turf.coordReduce(features, function (previousValue, currentCoord, coordIndex, featureIndex, featureSubIndex) {
   //=previousValue
   //=currentCoord
   //=coordIndex
+  //=featureIndex
+  //=featureSubIndex
   return currentCoord;
 });
 ```
@@ -88,8 +94,10 @@ If an initialValue is not provided:
 -   `previousValue` **Any** The accumulated value previously returned in the last invocation
     of the callback, or initialValue, if supplied.
 -   `currentCoord` **[Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)>** The current coordinate being processed.
--   `coordIndex` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** The index of the current element being processed in the
-    array.Starts at index 0, if an initialValue is provided, and at index 1 otherwise.
+-   `coordIndex` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** The current index of the coordinate being processed.
+    Starts at index 0, if an initialValue is provided, and at index 1 otherwise.
+-   `featureIndex` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** The current index of the feature being processed.
+-   `featureSubIndex` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** The current subIndex of the feature being processed.
 -   `geojson`  
 -   `callback`  
 -   `initialValue`  
