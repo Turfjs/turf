@@ -15,9 +15,11 @@ const fixtures = fs.readdirSync(directory).map(filename => {
 /**
  * Single Process Benchmark
  *
- * issue-333: 651.884ms
- * pts1: 6.568ms
- * pts2: 476.032ms
+ * fiji: 17.973ms
+ * issue-333: 31.418ms
+ * pts1: 1.207ms
+ * pts2: 17.366ms
+ * pts3: 0.853ms
  */
 for (const {name, geojson} of fixtures) {
     const {maxEdge, units} = geojson.properties || {maxEdge: 1};
@@ -29,9 +31,11 @@ for (const {name, geojson} of fixtures) {
 /**
  * Benchmark Results
  *
- * issue-333 x 5.57 ops/sec ±10.65% (18 runs sampled)
- * pts1 x 315 ops/sec ±3.48% (70 runs sampled)
- * pts2 x 4.51 ops/sec ±2.28% (16 runs sampled)
+ * fiji x 1,513 ops/sec ±10.80% (63 runs sampled)
+ * issue-333 x 183 ops/sec ±2.41% (74 runs sampled)
+ * pts1 x 2,934 ops/sec ±2.35% (78 runs sampled)
+ * pts2 x 136 ops/sec ±3.87% (67 runs sampled)
+ * pts3 x 7,215 ops/sec ±9.04% (70 runs sampled)
  */
 const suite = new Benchmark.Suite('turf-transform-scale');
 for (const {name, geojson} of fixtures) {
