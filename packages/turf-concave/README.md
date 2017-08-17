@@ -2,7 +2,7 @@
 
 # concave
 
-Takes a set of [points](http://geojson.org/geojson-spec.html#point) and returns a concave hull polygon.
+Takes a set of [points](http://geojson.org/geojson-spec.html#point) and returns a concave hull Polygon or MultiPolygon.
 Internally, this uses [turf-tin](https://github.com/Turfjs/turf-tin) to generate geometries.
 
 **Parameters**
