@@ -21,10 +21,9 @@ const fixtures = fs.readdirSync(directories.in).map(filename => {
 });
 
 test('turf-concave', t => {
-    for(const {filename, name, geojson}  of fixtures) {
+    for (const {filename, name, geojson}  of fixtures) {
         let {maxEdge, units} = geojson.properties;
-        maxEdge = maxEdge || 1;
-        const hull = concave(geojson, maxEdge, units);
+        const hull = concave(geojson, maxEdge || 1, units);
         featureEach(geojson, stylePt);
         const results = featureCollection([...geojson.features, hull]);
 
@@ -49,7 +48,7 @@ test('concave -- throw', t => {
     t.end();
 });
 
-function stylePt(pt){
+function stylePt(pt) {
     pt.properties['marker-color'] = '#f0f';
     pt.properties['marker-size'] = 'small';
 }
