@@ -31,7 +31,8 @@
     "Rowan Winsemius <@rowanwins>",
     "Daniel Pulido <@dpmcmlxxvi>",
     "Stephen Whitmore <@noffle>",
-    "Gregor MacLennan <@gmaclennan>"
+    "Gregor MacLennan <@gmaclennan>",
+    "Mike Bostock <@mbostock>"
   ],
   "license": "MIT",
   "bugs": {
@@ -39,6 +40,7 @@
   },
   "homepage": "https://github.com/Turfjs/turf",
   "devDependencies": {
+    "@turf/clusters-dbscan": "^4.6.1",
     "@turf/meta": "^4.6.0",
     "benchmark": "^2.1.4",
     "load-json-file": "^2.0.0",

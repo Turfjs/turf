@@ -2,7 +2,22 @@
 # yarn lockfile v1
 
 
-"@turf/distance@4.6.0":
+"@turf/clone@^4.6.1":
+  version "4.6.1"
+  resolved "https://registry.yarnpkg.com/@turf/clone/-/clone-4.6.1.tgz#e4136d9dca48a7065a61454009275c63a9f68121"
+
+"@turf/clusters-dbscan@^4.6.1":
+  version "4.6.1"
+  resolved "https://registry.yarnpkg.com/@turf/clusters-dbscan/-/clusters-dbscan-4.6.1.tgz#fff17d7cf5c45a44b3afcc6fae566341e4b4707c"
+  dependencies:
+    "@turf/clone" "^4.6.1"
+    "@turf/distance" "^4.6.0"
+    "@turf/helpers" "^4.6.0"
+    "@turf/invariant" "^4.6.0"
+    "@turf/meta" "^4.6.0"
+    density-clustering "1.3.0"
+
+"@turf/distance@4.6.0", "@turf/distance@^4.6.0":
   version "4.6.0"
   resolved "https://registry.yarnpkg.com/@turf/distance/-/distance-4.6.0.tgz#6410b9b4ea7e44e4a99be33018d9daab031946e0"
   dependencies:
@@ -88,6 +103,10 @@ define-properties@^1.1.2:
 defined@~1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/defined/-/defined-1.0.0.tgz#c98d9bcef75674188e110969151199e39b1fa693"
+
+density-clustering@1.3.0:
+  version "1.3.0"
+  resolved "https://registry.yarnpkg.com/density-clustering/-/density-clustering-1.3.0.tgz#dc9f59c8f0ab97e1624ac64930fd3194817dcac5"
 
 detect-indent@^5.0.0:
   version "5.0.0"
