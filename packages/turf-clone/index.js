@@ -69,17 +69,14 @@ function cloneProperties(properties) {
     if (!properties) return cloned;
     Object.keys(properties).forEach(function (key) {
         var value = properties[key];
-        switch (typeof value) {
-        case 'number':
-        case 'string':
-            cloned[key] = value;
-            break;
-        case 'object':
-            // array
-            if (value.length) cloned[key] = value.map(function (item) { return item; });
-            // object
+        if (typeof value === 'object') {
+            // handle Array
+            if (value.length) cloned[key] = value.map(function (item) {
+                return item;
+            });
+            // handle Object
             cloned[key] = cloneProperties(value);
-        }
+        } else cloned[key] = value;
     });
     return cloned;
 }
