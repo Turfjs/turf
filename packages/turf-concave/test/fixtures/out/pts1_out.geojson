@@ -185,7 +185,6 @@
     },
     {
       "type": "Feature",
-      "properties": {},
       "geometry": {
         "type": "MultiPolygon",
         "coordinates": [
@@ -258,7 +257,8 @@
             ]
           ]
         ]
-      }
+      },
+      "properties": {}
     }
   ]
 }

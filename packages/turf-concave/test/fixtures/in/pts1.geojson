@@ -1,9 +1,5 @@
 {
   "type": "FeatureCollection",
-  "properties": {
-    "maxEdge": 5.5,
-    "units": "miles"
-  },
   "features": [
     {
       "type": "Feature",

@@ -23,8 +23,10 @@ test('intersect', t => {
         const features = geojson.features;
         const result = intersect(features[0], features[1]);
 
-        if (process.env.REGEN) write.sync(directories.out + filename, result);
-        t.deepEqual(result, load.sync(directories.out + filename), name);
+        if (result) {
+            if (process.env.REGEN) write.sync(directories.out + filename, result);
+            t.deepEqual(result, load.sync(directories.out + filename), name);
+        }
     }
     t.end();
 });
