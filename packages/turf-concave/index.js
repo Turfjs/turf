@@ -2,6 +2,7 @@ var tin = require('@turf/tin');
 var helpers = require('@turf/helpers');
 var distance = require('@turf/distance');
 var dissolve = require('geojson-dissolve');
+var featureEach = require('@turf/meta').featureEach;
 var feature = helpers.feature;
 var featureCollection = helpers.featureCollection;
 
@@ -73,7 +74,9 @@ module.exports = function (points, maxEdge, units) {
 function removeDuplicates(points) {
     var cleaned = [];
     var existing = {};
-    points.features.forEach(function (pt) {
+
+    featureEach(points, function (pt) {
+        if (!pt.geometry) return;
         var key = pt.geometry.coordinates.join('-');
         if (!existing.hasOwnProperty(key)) {
             cleaned.push(pt);
