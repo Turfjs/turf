@@ -80,5 +80,5 @@ function removeDuplicates(points) {
             existing[key] = true;
         }
     });
-    return featureCollection(cleaned, points.properties);
+    return featureCollection(cleaned);
 }
