@@ -24,7 +24,15 @@
   ],
   "author": "Turf Authors",
   "contributors": [
-    "Stefano Borghi <@stebogit>"
+    "Tom MacWright <@tmcw>",
+    "Lyzi Diamond <@lyzidiamond>",
+    "Denis Carriere <@DenisCarriere>",
+    "Stefano Borghi <@stebogit>",
+    "Rowan Winsemius <@rowanwins>",
+    "Daniel Pulido <@dpmcmlxxvi>",
+    "Stephen Whitmore <@noffle>",
+    "Gregor MacLennan <@gmaclennan>",
+    "Mike Bostock <@mbostock>"
   ],
   "license": "MIT",
   "bugs": {
@@ -32,17 +40,16 @@
   },
   "homepage": "https://github.com/Turfjs/turf",
   "devDependencies": {
-    "@turf/helpers": "^4.6.0",
-    "@turf/meta": "^4.6.0",
     "benchmark": "^2.1.4",
     "load-json-file": "^2.0.0",
     "tape": "^4.6.3",
     "write-json-file": "^2.1.4"
   },
   "dependencies": {
-    "@turf/distance": "^4.6.0",
-    "@turf/tin": "^4.6.0",
-    "@turf/union": "^4.6.0",
-    "@turf/clone": "^4.6.0"
+    "@turf/distance": "4.6.0",
+    "@turf/helpers": "^4.6.0",
+    "@turf/meta": "^4.6.0",
+    "@turf/tin": "4.6.0",
+    "geojson-dissolve": "3.1.0"
   }
 }

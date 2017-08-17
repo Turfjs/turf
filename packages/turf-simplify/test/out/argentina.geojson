@@ -1,5 +1,6 @@
 {
 	"type": "Feature",
+	"id": "ARG",
 	"properties": {
 		"tolerance": 0.1,
 		"name": "Argentina"
@@ -414,6 +415,5 @@
 				]
 			]
 		]
-	},
-	"id": "ARG"
+	}
 }

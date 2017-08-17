@@ -20,10 +20,10 @@ const fixtures = fs.readdirSync(directories.in).map(filename => {
     };
 });
 
-test('turf-line-split', t => {
-    for(const {filename, name, geojson}  of fixtures) {
-        const {maxEdge, units} = geojson.properties || {maxEdge: 1};
-        const hull = concave(geojson, maxEdge, units);
+test('turf-concave', t => {
+    for (const {filename, name, geojson}  of fixtures) {
+        let {maxEdge, units} = geojson.properties;
+        const hull = concave(geojson, maxEdge || 1, units);
         featureEach(geojson, stylePt);
         const results = featureCollection([...geojson.features, hull]);
 
@@ -37,7 +37,7 @@ test('turf-line-split', t => {
 const points = featureCollection([point([0, 0]), point([1, 1]), point([1, 0])]);
 const onePoint = featureCollection([point([0, 0])]);
 
-test('concave', t => {
+test('concave -- throw', t => {
     t.throws(() => concave(onePoint, 5.5, 'miles'), /too few polygons found to compute concave hull/, 'too few points');
     t.throws(() => concave(onePoint, 0), /too few polygons found to compute concave hull/, 'maxEdge too small');
 
@@ -48,7 +48,7 @@ test('concave', t => {
     t.end();
 });
 
-function stylePt(pt){
+function stylePt(pt) {
     pt.properties['marker-color'] = '#f0f';
     pt.properties['marker-size'] = 'small';
 }

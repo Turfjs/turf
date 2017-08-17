@@ -1,15 +1,13 @@
-// 1. run tin on points
-// 2. calculate length of all edges and area of all triangles
-// 3. remove triangles that fail the max length test
-// 4. buffer the results slightly
-// 5. merge the results
 var tin = require('@turf/tin');
-var union = require('@turf/union');
+var helpers = require('@turf/helpers');
 var distance = require('@turf/distance');
-var clone = require('@turf/clone');
+var dissolve = require('geojson-dissolve');
+var featureEach = require('@turf/meta').featureEach;
+var feature = helpers.feature;
+var featureCollection = helpers.featureCollection;
 
 /**
- * Takes a set of {@link Point|points} and returns a concave hull polygon.
+ * Takes a set of {@link Point|points} and returns a concave hull Polygon or MultiPolygon.
  * Internally, this uses [turf-tin](https://github.com/Turfjs/turf-tin) to generate geometries.
  *
  * @name concave
@@ -34,11 +32,16 @@ var clone = require('@turf/clone');
  * var addToMap = [points, hull]
  */
 module.exports = function (points, maxEdge, units) {
+    // validation
     if (!points) throw new Error('points is required');
     if (maxEdge === undefined || maxEdge === null) throw new Error('maxEdge is required');
     if (typeof maxEdge !== 'number') throw new Error('invalid maxEdge');
 
-    var tinPolys = tin(points);
+    var cleaned = removeDuplicates(points);
+
+    var tinPolys = tin(cleaned);
+    // calculate length of all edges and area of all triangles
+    // and remove triangles that fail the max length test
     tinPolys.features = tinPolys.features.filter(function (triangle) {
         var pt1 = triangle.geometry.coordinates[0][0];
         var pt2 = triangle.geometry.coordinates[0][1];
@@ -51,23 +54,34 @@ module.exports = function (points, maxEdge, units) {
 
     if (tinPolys.features.length < 1) throw new Error('too few polygons found to compute concave hull');
 
-    return merge(tinPolys.features);
+    // merge the adjacent triangles
+    var dissolved = dissolve(tinPolys.features);
+    // geojson-dissolve always returns a MultiPolygon
+    if (dissolved.coordinates.length === 1) {
+        dissolved.coordinates = dissolved.coordinates[0];
+        dissolved.type = 'Polygon';
+    }
+    return feature(dissolved);
 };
 
 /**
- * Merges/Unifies all the features in a single polygon
+ * Removes duplicated points in a collection returning a new collection
  *
  * @private
- * @param {Array<Feature>} features to be merged
- * @returns {Feature<(Polygon|MultiPolygon)>} merged result
+ * @param {FeatureCollection<Point>} points to be cleaned
+ * @returns {FeatureCollection<Point>} cleaned set of points
  */
-function merge(features) {
-    var merged = clone(features[0]);
-    merged.properties = {};
+function removeDuplicates(points) {
+    var cleaned = [];
+    var existing = {};
 
-    for (var i = 0, len = features.length; i < len; i++) {
-        var poly = features[i];
-        if (poly.geometry) merged = union(merged, poly);
-    }
-    return merged;
+    featureEach(points, function (pt) {
+        if (!pt.geometry) return;
+        var key = pt.geometry.coordinates.join('-');
+        if (!existing.hasOwnProperty(key)) {
+            cleaned.push(pt);
+            existing[key] = true;
+        }
+    });
+    return featureCollection(cleaned);
 }
