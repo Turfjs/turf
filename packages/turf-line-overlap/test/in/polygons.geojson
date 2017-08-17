@@ -3,7 +3,13 @@
   "features": [
     {
       "type": "Feature",
-      "properties": {},
+      "properties": {
+        "stroke": "#F00",
+        "fill": "#F00",
+        "stroke-width": 10,
+        "stroke-opacity": 1,
+        "fill-opacity": 0.1
+      },
       "geometry": {
         "type": "Polygon",
         "coordinates": [
@@ -66,7 +72,13 @@
     },
     {
       "type": "Feature",
-      "properties": {},
+      "properties": {
+        "stroke": "#00F",
+        "fill": "#00F",
+        "stroke-width": 3,
+        "stroke-opacity": 1,
+        "fill-opacity": 0.1
+      },
       "geometry": {
         "type": "Polygon",
         "coordinates": [
