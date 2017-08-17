@@ -114,6 +114,11 @@ function isPolyInPoly(feature1, feature2) {
             return true;
         }
     }
+    for (var i2 = 0; i2 < feature2.coordinates[0].length; i2++) {
+        if (inside(feature2.coordinates[0][i2], feature1)) {
+            return true;
+        }
+    }
     return false;
 }
 

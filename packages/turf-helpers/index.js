@@ -20,17 +20,14 @@
 function feature(geometry, properties, bbox, id) {
     if (geometry === undefined) throw new Error('geometry is required');
     if (properties && properties.constructor !== Object) throw new Error('properties must be an Object');
+    if (bbox && bbox.length !== 4) throw new Error('bbox must be an Array of 4 numbers');
+    if (id && ['string', 'number'].indexOf(typeof id) === -1) throw new Error('id must be a number or a string');
 
-    var feat = {
-        type: 'Feature',
-        properties: properties || {},
-        geometry: geometry
-    };
-    if (bbox) {
-        if (bbox.length !== 4) throw new Error('bbox must be an Array of 4 numbers');
-        feat.bbox = bbox;
-    }
+    var feat = {type: 'Feature'};
     if (id) feat.id = id;
+    if (bbox) feat.bbox = bbox;
+    feat.properties = properties || {};
+    feat.geometry = geometry;
     return feat;
 }
 
@@ -56,6 +53,7 @@ function geometry(type, coordinates, bbox) {
     if (!type) throw new Error('type is required');
     if (!coordinates) throw new Error('coordinates is required');
     if (!Array.isArray(coordinates)) throw new Error('coordinates must be an Array');
+    if (bbox && bbox.length !== 4) throw new Error('bbox must be an Array of 4 numbers');
 
     var geom;
     switch (type) {
@@ -67,10 +65,7 @@ function geometry(type, coordinates, bbox) {
     case 'MultiPolygon': geom = multiPolygon(coordinates).geometry; break;
     default: throw new Error(type + ' is invalid');
     }
-    if (bbox) {
-        if (bbox.length !== 4) throw new Error('bbox must be an Array of 4 numbers');
-        geom.bbox = bbox;
-    }
+    if (bbox) geom.bbox = bbox;
     return geom;
 }
 
@@ -92,7 +87,6 @@ function point(coordinates, properties, bbox, id) {
     if (!coordinates) throw new Error('No coordinates passed');
     if (coordinates.length === undefined) throw new Error('Coordinates must be an array');
     if (coordinates.length < 2) throw new Error('Coordinates must be at least 2 numbers long');
-    if (typeof coordinates[0] !== 'number' || typeof coordinates[1] !== 'number') throw new Error('Coordinates must contain numbers');
 
     return feature({
         type: 'Point',
@@ -188,6 +182,7 @@ function lineString(coordinates, properties, bbox, id) {
  * @name featureCollection
  * @param {Feature[]} features input features
  * @param {Array<number>} [bbox] BBox [west, south, east, north]
+ * @param {string|number} [id] Identifier
  * @returns {FeatureCollection} a FeatureCollection of input features
  * @example
  * var features = [
@@ -200,15 +195,16 @@ function lineString(coordinates, properties, bbox, id) {
  *
  * //=collection
  */
-function featureCollection(features, bbox) {
+function featureCollection(features, bbox, id) {
     if (!features) throw new Error('No features passed');
     if (!Array.isArray(features)) throw new Error('features must be an Array');
+    if (bbox && bbox.length !== 4) throw new Error('bbox must be an Array of 4 numbers');
+    if (id && ['string', 'number'].indexOf(typeof id) === -1) throw new Error('id must be a number or a string');
 
-    var fc = {
-        type: 'FeatureCollection',
-        features: features
-    };
+    var fc = {type: 'FeatureCollection'};
+    if (id) fc.id = id;
     if (bbox) fc.bbox = bbox;
+    fc.features = features;
     return fc;
 }
 
