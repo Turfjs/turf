@@ -34,5 +34,6 @@
     "@turf/meta": "^4.6.0",
     "benchmark": "2.1.4",
     "tape": "4.7.0"
-  }
+  },
+  "dependencies": {}
 }

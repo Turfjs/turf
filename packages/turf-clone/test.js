@@ -52,10 +52,7 @@ test('turf-clone', t => {
 });
 
 test('turf-clone -- throws', t => {
-    const pt = point([0, 20]);
-
     t.throws(() => clone(), /geojson is required/);
-    t.throws(() => clone(pt, 'foo'), /cloneAll must be a Boolean/);
     t.end();
 });
 
@@ -118,5 +115,47 @@ test('turf-clone -- Preserve Foreign Members -- FeatureCollection', t => {
     t.equal(cloned.custom, fc.custom);
     t.deepEqual(cloned.bbox, bbox);
     t.deepEqual(cloned.properties, properties);
+    t.end();
+});
+
+
+test('turf-clone -- Preserve all properties -- Feature', t => {
+    const id = 12345;
+    const bbox = [0, 20, 0, 20];
+    const properties = {foo: 'bar', object: {property: 1}, array: [0, 1, 2]};
+    const pt = point([0, 20], properties, bbox, id);
+    pt.hello = 'world'; // Foreign member
+
+    // Clone and mutate
+    const cloned = clone(pt);
+    cloned['hello'] = 'universe';
+    cloned.properties['foo'] = 'foo';
+    cloned['id'] = 54321;
+    cloned['bbox'] = [30, 40, 30, 40];
+    cloned.properties.object['property'] = 2;
+    cloned.properties.array[0] = 500;
+
+    t.equal(pt.hello, 'world');
+    t.equal(pt.properties.foo, 'bar');
+    t.equal(pt.id, 12345);
+    t.deepEqual(pt.bbox, [0, 20, 0, 20]);
+    t.equal(pt.properties.object.property, 1);
+    t.deepEqual(pt.properties.array, [0, 1, 2]);
+    t.end();
+});
+
+test('turf-clone -- Preserve all properties -- FeatureCollection', t => {
+    const fc = featureCollection([point([0, 20])], [0, 20, 0, 20], 12345);
+    fc.hello = 'world'; // Foreign member
+
+    // Clone and mutate
+    const cloned = clone(fc);
+    cloned['hello'] = 'universe';
+    cloned['id'] = 54321;
+    cloned['bbox'] = [30, 40, 30, 40];
+
+    t.equal(fc.hello, 'world');
+    t.equal(fc.id, 12345);
+    t.deepEqual(fc.bbox, [0, 20, 0, 20]);
     t.end();
 });
