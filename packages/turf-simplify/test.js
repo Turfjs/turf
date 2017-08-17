@@ -3,6 +3,7 @@ const test = require('tape');
 const path = require('path');
 const load = require('load-json-file');
 const write = require('write-json-file');
+const truncate = require('@turf/truncate');
 const {polygon} = require('@turf/helpers');
 const simplify = require('./');
 
@@ -26,7 +27,7 @@ test('simplify', t => {
         tolerance = tolerance || 0.01;
         highQuality = highQuality || false;
 
-        const simplified = simplify(geojson, tolerance, highQuality);
+        const simplified = truncate(simplify(geojson, tolerance, highQuality));
 
         if (process.env.REGEN) write.sync(directories.out + filename, simplified);
         t.deepEqual(simplified, load.sync(directories.out + filename), name);
