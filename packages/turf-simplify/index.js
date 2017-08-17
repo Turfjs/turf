@@ -1,19 +1,20 @@
-var simplify = require('simplify-js');
-
-// supported GeoJSON geometries, used to check whether to wrap in simpleFeature()
-var supportedTypes = ['LineString', 'MultiLineString', 'Polygon', 'MultiPolygon'];
+var simplifyJS = require('simplify-js');
+var cleanCoords = require('@turf/clean-coords');
+var geomEach = require('@turf/meta').geomEach;
+var clone = require('@turf/clone');
 
 /**
- * Takes a {@link LineString} or {@link Polygon} and returns a simplified version. Internally uses [simplify-js](http://mourner.github.io/simplify-js/) to perform simplification.
+ * Takes a {@link GeoJSON} object and returns a simplified version. Internally uses
+ * [simplify-js](http://mourner.github.io/simplify-js/) to perform simplification.
  *
  * @name simplify
- * @param {Feature<(LineString|Polygon|MultiLineString|MultiPolygon)>|FeatureCollection|GeometryCollection} feature feature to be simplified
+ * @param {GeoJSON} geojson object to be simplified
  * @param {number} [tolerance=1] simplification tolerance
- * @param {boolean} [highQuality=false] whether or not to spend more time to create
- * a higher-quality simplification with a different algorithm
- * @returns {Feature<(LineString|Polygon|MultiLineString|MultiPolygon)>|FeatureCollection|GeometryCollection} a simplified feature
+ * @param {boolean} [highQuality=false] whether or not to spend more time to create a higher-quality simplification with a different algorithm
+ * @param {boolean} [mutate=false] allows GeoJSON input to be mutated (significant performance increase if true)
+ * @returns {GeoJSON} a simplified GeoJSON
  * @example
- * var feature = turf.polygon([[
+ * var geojson = turf.polygon([[
  *   [-70.603637, -33.399918],
  *   [-70.614624, -33.395332],
  *   [-70.639343, -33.392466],
@@ -37,135 +38,128 @@ var supportedTypes = ['LineString', 'MultiLineString', 'Polygon', 'MultiPolygon'
  * ]]);
  * var tolerance = 0.01;
  *
- * var simplified = turf.simplify(feature, tolerance, false);
+ * var simplified = turf.simplify(geojson, tolerance, false);
  *
  * //addToMap
- * var addToMap = [feature, simplified]
+ * var addToMap = [geojson, simplified]
  */
-module.exports = function (feature, tolerance, highQuality) {
-    if (feature.type === 'Feature') {
-        return simpleFeature(
-            simplifyHelper(feature, tolerance, highQuality),
-            feature.properties);
-    } else if (feature.type === 'FeatureCollection') {
-        return {
-            type: 'FeatureCollection',
-            features: feature.features.map(function (f) {
-                var simplified = simplifyHelper(f, tolerance, highQuality);
+module.exports = function (geojson, tolerance, highQuality, mutate) {
+    if (!geojson) throw new Error('geojson is required');
+    if (tolerance && tolerance < 0) throw new Error('invalid tolerance');
 
-                // we create simpleFeature here because it doesn't apply to GeometryCollection
-                // so we can't create it at simplifyHelper()
-                if (supportedTypes.indexOf(simplified.type) > -1) {
-                    return simpleFeature(simplified, f.properties);
-                } else {
-                    return simplified;
-                }
-            })
-        };
-    } else if (feature.type === 'GeometryCollection') {
-        return {
-            type: 'GeometryCollection',
-            geometries: feature.geometries.map(function (g) {
-                if (supportedTypes.indexOf(g.type) > -1) {
-                    return simplifyHelper({
-                        type: 'Feature',
-                        geometry: g
-                    }, tolerance, highQuality);
-                }
-                return g;
-            })
-        };
-    } else {
-        return feature;
-    }
+    // Clone geojson to avoid side effects
+    if (mutate !== true) geojson = clone(geojson);
+
+    geomEach(geojson, function (geom) {
+        simplify(geom, tolerance, highQuality);
+    });
+    return geojson;
 };
 
+/**
+ * Simplifies a feature's coordinates
+ *
+ * @private
+ * @param {Geometry} geometry to be simplified
+ * @param {number} [tolerance=1] simplification tolerance
+ * @param {boolean} [highQuality=false] whether or not to spend more time to create a higher-quality simplification with a different algorithm
+ * @returns {Geometry} output
+ */
+function simplify(geometry, tolerance, highQuality) {
+    var type = geometry.type;
 
-function simplifyHelper(feature, tolerance, highQuality) {
-    if (feature.geometry.type === 'LineString') {
-        return {
-            type: 'LineString',
-            coordinates: simplifyLine(feature.geometry.coordinates, tolerance, highQuality)
-        };
-    } else if (feature.geometry.type === 'MultiLineString') {
-        return {
-            type: 'MultiLineString',
-            coordinates: feature.geometry.coordinates.map(function (lines) {
-                return simplifyLine(lines, tolerance, highQuality);
-            })
-        };
-    } else if (feature.geometry.type === 'Polygon') {
-        return {
-            type: 'Polygon',
-            coordinates: simplifyPolygon(feature.geometry.coordinates, tolerance, highQuality)
-        };
-    } else if (feature.geometry.type === 'MultiPolygon') {
-        return {
-            type: 'MultiPolygon',
-            coordinates: feature.geometry.coordinates.map(function (rings) {
-                return simplifyPolygon(rings, tolerance, highQuality);
-            })
-        };
-    } else {
-        // unsupported geometry type supplied
-        return feature;
+    // "unsimplyfiable" geometry types
+    if (type === 'Point' || type === 'MultiPoint') return geometry;
+
+    // Remove any extra coordinates
+    cleanCoords(geometry, true);
+
+    var coordinates = geometry.coordinates;
+    switch (type) {
+    case 'LineString':
+        geometry['coordinates'] = simplifyLine(coordinates, tolerance, highQuality);
+        break;
+    case 'MultiLineString':
+        geometry['coordinates'] = coordinates.map(function (lines) {
+            return simplifyLine(lines, tolerance, highQuality);
+        });
+        break;
+    case 'Polygon':
+        geometry['coordinates'] = simplifyPolygon(coordinates, tolerance, highQuality);
+        break;
+    case 'MultiPolygon':
+        geometry['coordinates'] = coordinates.map(function (rings) {
+            return simplifyPolygon(rings, tolerance, highQuality);
+        });
     }
+    return geometry;
 }
 
-/*
-* returns true if ring's first coordinate is the same as its last
-*/
-function checkValidity(ring) {
-    if (ring.length < 3) {
-        return false;
-    //if the last point is the same as the first, it's not a triangle
-    } else if (ring.length === 3 &&
-      ((ring[2][0] === ring[0][0]) && (ring[2][1] === ring[0][1]))) {
-        return false;
-    } else {
-        return true;
-    }
-}
 
-function simpleFeature(geom, properties) {
-    return {
-        type: 'Feature',
-        geometry: geom,
-        properties: properties
-    };
-}
-
+/**
+ * Simplifies the coordinates of a LineString with simplify-js
+ *
+ * @private
+ * @param {Array<number>} coordinates to be processed
+ * @param {number} tolerance simplification tolerance
+ * @param {boolean} highQuality whether or not to spend more time to create a higher-quality
+ * @returns {Array<Array<number>>} simplified coords
+ */
 function simplifyLine(coordinates, tolerance, highQuality) {
-    return simplify(coordinates.map(function (coord) {
+    return simplifyJS(coordinates.map(function (coord) {
         return {x: coord[0], y: coord[1], z: coord[2]};
     }), tolerance, highQuality).map(function (coords) {
         return (coords.z) ? [coords.x, coords.y, coords.z] : [coords.x, coords.y];
     });
 }
 
+
+/**
+ * Simplifies the coordinates of a Polygon with simplify-js
+ *
+ * @private
+ * @param {Array<number>} coordinates to be processed
+ * @param {number} tolerance simplification tolerance
+ * @param {boolean} highQuality whether or not to spend more time to create a higher-quality
+ * @returns {Array<Array<Array<number>>>} simplified coords
+ */
 function simplifyPolygon(coordinates, tolerance, highQuality) {
     return coordinates.map(function (ring) {
         var pts = ring.map(function (coord) {
             return {x: coord[0], y: coord[1]};
         });
         if (pts.length < 4) {
-            throw new Error('Invalid polygon');
+            throw new Error('invalid polygon');
         }
-        var simpleRing = simplify(pts, tolerance, highQuality).map(function (coords) {
+        var simpleRing = simplifyJS(pts, tolerance, highQuality).map(function (coords) {
             return [coords.x, coords.y];
         });
         //remove 1 percent of tolerance until enough points to make a triangle
         while (!checkValidity(simpleRing)) {
             tolerance -= tolerance * 0.01;
-            simpleRing = simplify(pts, tolerance, highQuality).map(function (coords) {
+            simpleRing = simplifyJS(pts, tolerance, highQuality).map(function (coords) {
                 return [coords.x, coords.y];
             });
         }
         if (
             (simpleRing[simpleRing.length - 1][0] !== simpleRing[0][0]) ||
-                (simpleRing[simpleRing.length - 1][1] !== simpleRing[0][1])) {
+            (simpleRing[simpleRing.length - 1][1] !== simpleRing[0][1])) {
             simpleRing.push(simpleRing[0]);
         }
         return simpleRing;
     });
+}
+
+
+/**
+ * Returns true if ring has at least 3 coordinates and its first coordinate is the same as its last
+ *
+ * @private
+ * @param {Array<number>} ring coordinates to be checked
+ * @returns {boolean} true if valid
+ */
+function checkValidity(ring) {
+    if (ring.length < 3) return false;
+    //if the last point is the same as the first, it's not a triangle
+    return !(ring.length === 3 && ((ring[2][0] === ring[0][0]) && (ring[2][1] === ring[0][1])));
 }
