@@ -1,13 +1,12 @@
 /**
- * Returns a cloned copy of the passed GeoJSON Object.
- * By default it duplicates only the standard GeoJSON fields of the object; if `cloneAll` is set to `true` all
- * fields of the Object, thus including 'Foreign Members', will be cloned (3-20x slower).
+ * Returns a cloned copy of the passed GeoJSON Object, including possible 'Foreign Members'.
+ * ~3-5x faster than the common JSON.parse + JSON.stringify combo method.
  *
  * @name clone
  * @param {GeoJSON} geojson GeoJSON Object
  * @returns {GeoJSON} cloned GeoJSON Object
  * @example
- * var line = turf.lineString([[-74, 40], [-78, 42], [-82, 35]]);
+ * var line = turf.lineString([[-74, 40], [-78, 42], [-82, 35]], {color: 'red'});
  *
  * var lineCloned = turf.clone(line);
  */
