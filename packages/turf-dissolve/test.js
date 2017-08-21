@@ -1,35 +1,50 @@
-var fs = require('fs');
-var dissolve = require('./index');
-var test = require('tape');
-var path = require('path');
+const fs = require('fs');
+const test = require('tape');
+const path = require('path');
+const load = require('load-json-file');
+const write = require('write-json-file');
+const {polygon, point, featureCollection} = require('@turf/helpers');
+const {featureEach} = require('@turf/meta');
+const dissolve = require('./');
 
-var directories = {
-    out: path.join(__dirname, 'test', 'out'),
-    in: path.join(__dirname, 'test', 'in')
-}
+const directories = {
+    in: path.join(__dirname, 'test', 'in') + path.sep,
+    out: path.join(__dirname, 'test', 'out') + path.sep
+};
 
-function save(directory, filename, features) {
-    return fs.writeFileSync(path.join(directory, filename), JSON.stringify(features, null, 2))
-}
+const fixtures = fs.readdirSync(directories.in).map(filename => {
+    return {
+        filename,
+        name: path.parse(filename).name,
+        geojson: load.sync(directories.in + filename)
+    };
+});
 
-function read(directory, filename) {
-    return JSON.parse(fs.readFileSync(path.join(directory, filename), 'utf8'))
-}
 
-test('turf-dissolve', function (t) {
-    var polys = read(directories.in, 'polys.geojson');
+test('turf-dissolve', t => {
+    for (const {filename, name, geojson}  of fixtures) {
+        if (
+            name === 'simplified-issue'
+            // name === 'polysByProperty' || name === 'polysWithoutProperty'
+        ) continue;
 
-    // With Property
-    var polysByProperty = dissolve(polys, 'combine');
-    if (process.env.REGEN) { save(directories.out, 'polysByProperty.geojson', polysByProperty); }
-    t.equal(polysByProperty.features.length, 3);
-    t.deepEqual(polysByProperty, read(directories.out, 'polysByProperty.geojson'));
+        const propertyName = geojson.propertyName;
+        const results = dissolve(geojson, propertyName);
 
-    // Without Property
-    var polysWithoutProperty = dissolve(polys);
-    if (process.env.REGEN) { save(directories.out, 'polysWithoutProperty.geojson', polysWithoutProperty); }
-    t.equal(polysWithoutProperty.features.length, 2);
-    t.deepEqual(polysWithoutProperty, read(directories.out, 'polysWithoutProperty.geojson'));
+        if (process.env.REGEN) write.sync(directories.out + filename, results);
+        t.deepEquals(results, load.sync(directories.out + filename), name);
+    }
+    t.end();
+});
 
+
+test('dissolve -- throw', t => {
+    const poly = polygon([[[-61,27],[-59,27],[-59,29],[-61,29],[-61,27]]]);
+    const pt = point([-62,29]);
+    // const poly2 = polygon([[[-62,26],[-60,26],[-60,28],[-62,28],[-62,26]]]);
+
+    t.throws(() => dissolve(null, 'foo'), /No featureCollection passed/, 'missing featureCollection');
+    t.throws(() => dissolve(poly, 'foo'), /Invalid input to dissolve, FeatureCollection required/, 'invalid featureCollection');
+    t.throws(() => dissolve(featureCollection([poly, pt]), 'foo'), /Invalid input to dissolve: must be a Polygon, given Point/, 'invalid collection type');
     t.end();
 });

@@ -7,7 +7,7 @@ Dissolves a FeatureCollection of polygons based on a property. Note that multipa
 **Parameters**
 
 -   `featureCollection` **[FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects)&lt;[Polygon](http://geojson.org/geojson-spec.html#polygon)>** input feature collection to be dissolved
--   `propertyName` **\[[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)]** property name on which to dissolve features
+-   `propertyName` **\[[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)]** property name on which to dissolve features (optional, default `null`)
 
 **Examples**
 

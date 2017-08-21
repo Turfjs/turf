@@ -1,0 +1,237 @@
+{
+  "type": "FeatureCollection",
+  "propertyName": "combine",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "stroke": "#555555",
+        "stroke-width": 2,
+        "stroke-opacity": 1,
+        "fill": "#ff0000",
+        "fill-opacity": 0.5,
+        "combine": "yes"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              0.5,
+              0
+            ],
+            [
+              0,
+              1
+            ],
+            [
+              1,
+              1
+            ],
+            [
+              1,
+              0.5
+            ],
+            [
+              0.7,
+              0
+            ],
+            [
+              0.5,
+              0
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "stroke": "#555555",
+        "stroke-width": 2,
+        "stroke-opacity": 1,
+        "fill": "#ff0000",
+        "fill-opacity": 0.5,
+        "combine": "yes"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              1,
+              0
+            ],
+            [
+              1,
+              1
+            ],
+            [
+              2,
+              1
+            ],
+            [
+              2,
+              0
+            ],
+            [
+              1,
+              0
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "stroke": "#555555",
+        "stroke-width": 2,
+        "stroke-opacity": 1,
+        "fill": "#ff0000",
+        "fill-opacity": 0.5,
+        "combine": "yes"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              0.23620605468749623,
+              -0.8901516807502449
+            ],
+            [
+              0.23620605468749623,
+              0.10986321392741416
+            ],
+            [
+              1.2362060546874962,
+              0.10986321392741416
+            ],
+            [
+              1.2362060546874962,
+              -0.8901516807502449
+            ],
+            [
+              0.23620605468749623,
+              -0.8901516807502449
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "stroke": "#555555",
+        "stroke-width": 2,
+        "stroke-opacity": 1,
+        "fill": "#00ff00",
+        "fill-opacity": 0.5,
+        "combine": "no"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              1,
+              -1
+            ],
+            [
+              1,
+              0
+            ],
+            [
+              2,
+              0
+            ],
+            [
+              2,
+              -1
+            ],
+            [
+              1,
+              -1
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "stroke": "#555555",
+        "stroke-width": 2,
+        "stroke-opacity": 1,
+        "fill": "#00ff00",
+        "fill-opacity": 0.5,
+        "combine": "no"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              0.851440429687502,
+              -1.647722051796948
+            ],
+            [
+              0.851440429687502,
+              1.4500404973607692
+            ],
+            [
+              1.516113281250002,
+              1.4500404973607692
+            ],
+            [
+              1.516113281250002,
+              -1.647722051796948
+            ],
+            [
+              0.851440429687502,
+              -1.647722051796948
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "stroke": "#555555",
+        "stroke-width": 2,
+        "stroke-opacity": 1,
+        "fill": "#ffff00",
+        "fill-opacity": 0.5
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -0.252685546875,
+              1.252341676699629
+            ],
+            [
+              -0.252685546875,
+              1.653212936926045
+            ],
+            [
+              0.28564453125,
+              1.653212936926045
+            ],
+            [
+              0.28564453125,
+              1.252341676699629
+            ],
+            [
+              -0.252685546875,
+              1.252341676699629
+            ]
+          ]
+        ]
+      }
+    }
+  ]
+}

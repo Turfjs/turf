@@ -1,22 +1,32 @@
-var turfUnion = require('@turf/union');
-var booleanOverlap = require('@turf/boolean-overlap');
-var turfbbox = require('@turf/bbox');
-var Rbush = require('rbush');
 var gju = require('geojson-utils');
+var meta = require('@turf/meta');
+var Rbush = require('rbush');
+var rbush = require('geojson-rbush');
+var clone = require('@turf/clone');
+var lineIntersect = require('@turf/line-intersect');
+var helpers = require('@turf/helpers');
+var turfbbox = require('@turf/bbox');
+var invariant = require('@turf/invariant');
+var turfUnion = require('@turf/union');
 var getClosest = require('get-closest');
+var overlap = require('@turf/boolean-overlap');
+var coordAll = meta.coordAll;
+var lineString = helpers.lineString;
+var collectionOf = invariant.collectionOf;
 
 /**
- * Dissolves a FeatureCollection of polygons based on a property. Note that multipart features within the collection are not supported
+ * Dissolves a FeatureCollection of polygons, filtered by an optional property name:value.
+ * Note that multipart features within the collection are not supported
  *
  * @name dissolve
  * @param {FeatureCollection<Polygon>} featureCollection input feature collection to be dissolved
- * @param {string} [propertyName] property name on which to dissolve features
+ * @param {string} [propertyName] features with equals 'propertyName' in `properties` will be merged
  * @returns {FeatureCollection<Polygon>} a FeatureCollection containing the dissolved polygons
  * @example
  * var features = turf.featureCollection([
- *   turf.polygon([[[0, 0], [0, 1], [1, 1], [1, 0], [0, 0]]], {"combine": "yes"}),
- *   turf.polygon([[[0, -1], [0, 0], [1, 0], [1, -1], [0,-1]]], {"combine": "yes"}),
- *   turf.polygon([[[1,-1],[1, 0], [2, 0], [2, -1], [1, -1]]], {"combine": "no"}),
+ *   turf.polygon([[[0, 0], [0, 1], [1, 1], [1, 0], [0, 0]]], {combine: 'yes'}),
+ *   turf.polygon([[[0, -1], [0, 0], [1, 0], [1, -1], [0,-1]]], {combine: 'yes'}),
+ *   turf.polygon([[[1,-1],[1, 0], [2, 0], [2, -1], [1, -1]]], {combine: 'no'}),
  * ]);
  *
  * var dissolved = turf.dissolve(features, 'combine');
@@ -25,12 +35,16 @@ var getClosest = require('get-closest');
  * var addToMap = [features, dissolved]
  */
 module.exports = function (featureCollection, propertyName) {
+    collectionOf(featureCollection, 'Polygon', 'dissolve');
+
+    var fc = clone(featureCollection);
+    var features = fc.features;
 
     var originalIndexOfItemsRemoved = [];
     var treeItems = [];
     var rtree = new Rbush();
-    for (var polyIndex = 0; polyIndex < featureCollection.features.length; polyIndex++) {
-        var inputFeatureBbox = turfbbox(featureCollection.features[polyIndex]);
+    for (var polyIndex = 0; polyIndex < features.length; polyIndex++) {
+        var inputFeatureBbox = turfbbox(features[polyIndex]);
         var treeObj = {
             minX: inputFeatureBbox[0],
             minY: inputFeatureBbox[1],
@@ -42,8 +56,10 @@ module.exports = function (featureCollection, propertyName) {
     }
     rtree.load(treeItems);
 
-    for (var i = 0; i < featureCollection.features.length; i++) {
-        var polygon = featureCollection.features[i];
+
+    for (var i in features) {
+
+        var polygon = features[i];
 
         var polyBoundingBox = turfbbox(polygon);
         var searchObj = {
@@ -56,8 +72,8 @@ module.exports = function (featureCollection, propertyName) {
 
         var featureChanged = false;
 
-        for (var searchIndex = 0; searchIndex < potentialMatchingFeatures.length; searchIndex++) {
-            polygon = featureCollection.features[i];
+        for (var searchIndex in potentialMatchingFeatures) {
+            polygon = features[i];
 
             var matchFeaturePosition = potentialMatchingFeatures[searchIndex].origIndexPosition;
 
@@ -72,38 +88,28 @@ module.exports = function (featureCollection, propertyName) {
                 }
             }
 
-            if (matchFeaturePosition === i) {
-                continue;
-            }
-            var matchFeature = featureCollection.features[matchFeaturePosition];
+            if (matchFeaturePosition === +i) continue;
 
-            if (typeof propertyName !== undefined) {
-                if (matchFeature.properties[propertyName] !== polygon.properties[propertyName]) {
-                    continue;
-                }
-            }
+            var matchFeature = features[matchFeaturePosition];
 
-            var overlapCheck = booleanOverlap(polygon, matchFeature);
+            if (propertyName !== undefined &&
+                matchFeature.properties[propertyName] !== polygon.properties[propertyName]) continue;
+if (polygon.geometry.type !== matchFeature.geometry.type) {
+    var x = 1;
+}
+            if (!overlap(polygon, matchFeature) || !ringsIntersect(polygon, matchFeature)) continue;
 
-            if (!overlapCheck) {
-                var polyClone = JSON.stringify(polygon);
-                var polyBeingCheckedClone = JSON.stringify(matchFeature);
-                var linestring1 = toLinestring(JSON.parse(polyClone));
-                var linestring2 = toLinestring(JSON.parse(polyBeingCheckedClone));
-                overlapCheck = gju.lineStringsIntersect(linestring1.geometry, linestring2.geometry);
+            features[i] = turfUnion(polygon, matchFeature);
+            if (features[i].geometry.type !== 'Polygon') {
+                var y = 1;
             }
-            if (!overlapCheck) {
-                continue;
-            }
-
-            featureCollection.features[i] = turfUnion(polygon, matchFeature);
             originalIndexOfItemsRemoved.push(potentialMatchingFeatures[searchIndex].origIndexPosition);
             originalIndexOfItemsRemoved.sort(function (a, b) {
                 return a - b;
             });
 
             rtree.remove(potentialMatchingFeatures[searchIndex]);
-            featureCollection.features.splice(matchFeaturePosition, 1);
+            features.splice(matchFeaturePosition, 1);
             searchObj.origIndexPosition = i;
             rtree.remove(searchObj, function (a, b) {
                 return a.origIndexPosition === b.origIndexPosition;
@@ -122,13 +128,13 @@ module.exports = function (featureCollection, propertyName) {
             i--;
         }
     }
-    return featureCollection;
+    return fc;
 };
 
-function toLinestring(polygon) {
-    if (polygon === null || polygon === undefined) throw new Error('No polygon was passed');
-    polygon.geometry.type = 'LineString';
-    var flat_arr = [].concat.apply([], polygon.geometry.coordinates);
-    polygon.geometry.coordinates = flat_arr;
-    return polygon;
+
+function ringsIntersect(poly1, poly2) {
+    var line1 = lineString(coordAll(poly1));
+    var line2 = lineString(coordAll(poly2));
+    var points = lineIntersect(line1, line2).features;
+    return points.length > 0;
 }

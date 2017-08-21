@@ -20,6 +20,10 @@
     "polygon"
   ],
   "author": "Turf Authors",
+  "contributors": [
+    "Denis Carriere <@DenisCarriere>",
+    "Rowan Winsemius <@rowanwins>"
+  ],
   "license": "MIT",
   "homepage": "https://github.com/Turfjs/turf",
   "bugs": {
@@ -32,14 +36,19 @@
   "devDependencies": {
     "benchmark": "^2.1.4",
     "load-json-file": "^2.0.0",
-    "tape": "^4.6.3"
+    "tape": "^4.6.3",
+    "write-json-file": "^2.1.4"
   },
   "dependencies": {
     "@turf/bbox": "^4.6.0",
     "@turf/boolean-overlap": "^4.6.0",
+    "@turf/clone": "^4.6.0",
+    "@turf/helpers": "^4.6.0",
+    "@turf/invariant": "^4.6.0",
+    "@turf/line-intersect": "^4.6.0",
+    "@turf/meta": "^4.6.0",
     "@turf/union": "^4.6.0",
-    "geojson-utils": "^1.1.0",
-    "get-closest": "^0.0.4",
-    "rbush": "^2.0.1"
+    "geojson-rbush": "^1.1.1",
+    "get-closest": "^0.0.4"
   }
 }
