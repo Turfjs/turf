@@ -40,7 +40,6 @@
     "write-json-file": "^2.1.4"
   },
   "dependencies": {
-    "@turf/bbox": "^4.6.0",
     "@turf/boolean-overlap": "^4.6.0",
     "@turf/clone": "^4.6.0",
     "@turf/helpers": "^4.6.0",

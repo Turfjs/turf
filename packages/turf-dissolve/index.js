@@ -1,15 +1,12 @@
-var gju = require('geojson-utils');
 var meta = require('@turf/meta');
-var Rbush = require('rbush');
 var rbush = require('geojson-rbush');
 var clone = require('@turf/clone');
-var lineIntersect = require('@turf/line-intersect');
+var overlap = require('@turf/boolean-overlap');
 var helpers = require('@turf/helpers');
-var turfbbox = require('@turf/bbox');
 var invariant = require('@turf/invariant');
 var turfUnion = require('@turf/union');
 var getClosest = require('get-closest');
-var overlap = require('@turf/boolean-overlap');
+var lineIntersect = require('@turf/line-intersect');
 var coordAll = meta.coordAll;
 var lineString = helpers.lineString;
 var collectionOf = invariant.collectionOf;
@@ -41,41 +38,22 @@ module.exports = function (featureCollection, propertyName) {
     var features = fc.features;
 
     var originalIndexOfItemsRemoved = [];
-    var treeItems = [];
-    var rtree = new Rbush();
-    for (var polyIndex = 0; polyIndex < features.length; polyIndex++) {
-        var inputFeatureBbox = turfbbox(features[polyIndex]);
-        var treeObj = {
-            minX: inputFeatureBbox[0],
-            minY: inputFeatureBbox[1],
-            maxX: inputFeatureBbox[2],
-            maxY: inputFeatureBbox[3],
-            origIndexPosition: polyIndex
-        };
-        treeItems.push(treeObj);
-    }
-    rtree.load(treeItems);
 
+    features.forEach(function (f, i) {
+        f.properties.origIndexPosition = i;
+    });
+    var tree = rbush();
+    tree.load(fc);
 
     for (var i in features) {
-
         var polygon = features[i];
-
-        var polyBoundingBox = turfbbox(polygon);
-        var searchObj = {
-            minX: polyBoundingBox[0],
-            minY: polyBoundingBox[1],
-            maxX: polyBoundingBox[2],
-            maxY: polyBoundingBox[3]
-        };
-        var potentialMatchingFeatures = rtree.search(searchObj);
 
         var featureChanged = false;
 
-        for (var searchIndex in potentialMatchingFeatures) {
+        for (var potentialMatchingFeature of tree.search(polygon).features) {
             polygon = features[i];
 
-            var matchFeaturePosition = potentialMatchingFeatures[searchIndex].origIndexPosition;
+            var matchFeaturePosition = potentialMatchingFeature.properties.origIndexPosition;
 
             if (originalIndexOfItemsRemoved.length > 0 && matchFeaturePosition !== 0) {
                 if (matchFeaturePosition > originalIndexOfItemsRemoved[originalIndexOfItemsRemoved.length - 1]) {
@@ -94,40 +72,37 @@ module.exports = function (featureCollection, propertyName) {
 
             if (propertyName !== undefined &&
                 matchFeature.properties[propertyName] !== polygon.properties[propertyName]) continue;
-if (polygon.geometry.type !== matchFeature.geometry.type) {
-    var x = 1;
-}
+
             if (!overlap(polygon, matchFeature) || !ringsIntersect(polygon, matchFeature)) continue;
 
             features[i] = turfUnion(polygon, matchFeature);
-            if (features[i].geometry.type !== 'Polygon') {
-                var y = 1;
-            }
-            originalIndexOfItemsRemoved.push(potentialMatchingFeatures[searchIndex].origIndexPosition);
+
+            originalIndexOfItemsRemoved.push(potentialMatchingFeature.properties.origIndexPosition);
             originalIndexOfItemsRemoved.sort(function (a, b) {
                 return a - b;
             });
 
-            rtree.remove(potentialMatchingFeatures[searchIndex]);
+            tree.remove(potentialMatchingFeature);
             features.splice(matchFeaturePosition, 1);
-            searchObj.origIndexPosition = i;
-            rtree.remove(searchObj, function (a, b) {
-                return a.origIndexPosition === b.origIndexPosition;
+            polygon.properties.origIndexPosition = i;
+            tree.remove(polygon, function (a, b) {
+                return a.properties.origIndexPosition === b.properties.origIndexPosition;
             });
             featureChanged = true;
         }
+
         if (featureChanged) {
-            var newBoundingBox = turfbbox(polygon);
-            rtree.insert({
-                minX: newBoundingBox[0],
-                minY: newBoundingBox[1],
-                maxX: newBoundingBox[2],
-                maxY: newBoundingBox[3],
-                origIndexPosition: i
-            });
+            polygon.properties.origIndexPosition = i;
+            tree.insert(polygon);
             i--;
         }
     }
+
+    features.forEach(function (f) {
+        delete f.properties.origIndexPosition;
+        delete f.bbox;
+    });
+
     return fc;
 };
 

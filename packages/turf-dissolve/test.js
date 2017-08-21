@@ -4,7 +4,6 @@ const path = require('path');
 const load = require('load-json-file');
 const write = require('write-json-file');
 const {polygon, point, featureCollection} = require('@turf/helpers');
-const {featureEach} = require('@turf/meta');
 const dissolve = require('./');
 
 const directories = {
@@ -23,11 +22,6 @@ const fixtures = fs.readdirSync(directories.in).map(filename => {
 
 test('turf-dissolve', t => {
     for (const {filename, name, geojson}  of fixtures) {
-        if (
-            name === 'simplified-issue'
-            // name === 'polysByProperty' || name === 'polysWithoutProperty'
-        ) continue;
-
         const propertyName = geojson.propertyName;
         const results = dissolve(geojson, propertyName);
 
@@ -41,7 +35,6 @@ test('turf-dissolve', t => {
 test('dissolve -- throw', t => {
     const poly = polygon([[[-61,27],[-59,27],[-59,29],[-61,29],[-61,27]]]);
     const pt = point([-62,29]);
-    // const poly2 = polygon([[[-62,26],[-60,26],[-60,28],[-62,28],[-62,26]]]);
 
     t.throws(() => dissolve(null, 'foo'), /No featureCollection passed/, 'missing featureCollection');
     t.throws(() => dissolve(poly, 'foo'), /Invalid input to dissolve, FeatureCollection required/, 'invalid featureCollection');
