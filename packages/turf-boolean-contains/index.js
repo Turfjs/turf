@@ -1,6 +1,9 @@
 var inside = require('@turf/inside');
 var calcBbox = require('@turf/bbox');
 var invariant = require('@turf/invariant');
+var explode = require('@turf/explode');
+var lineString = require('@turf/helpers').lineString;
+var lineIntersect = require('@turf/line-intersect');
 var getGeom = invariant.getGeom;
 var getCoords = invariant.getCoords;
 var getGeomType = invariant.getGeomType;
@@ -201,8 +204,19 @@ function isLineInPoly(polygon, linestring) {
 function isPolyInPoly(feature1, feature2) {
     var poly1Bbox = calcBbox(feature1);
     var poly2Bbox = calcBbox(feature2);
-    if (!doBBoxOverlap(poly1Bbox, poly2Bbox)) {
-        return false;
+    return (doBBoxOverlap(poly1Bbox, poly2Bbox) && !outerRingsCross(feature1, feature2));
+}
+
+function outerRingsCross(feature1, feature2) {
+    var ring1 = feature1.coordinates[0];
+    var ring2 = feature2.coordinates[0];
+    var features = lineIntersect(lineString(ring1), lineString(ring2)).features;
+    return features.length > 0 && !allPointsInside(feature1, feature2);
+}
+
+function allPointsInside(feature1, feature2) {
+    for (var pt of explode(feature2).features) {
+        if (!inside(pt, feature1, false)) return false;
     }
     return true;
 }
@@ -246,8 +260,7 @@ function doBBoxOverlap(bbox1, bbox2) {
     if (bbox1[0] > bbox2[0]) return false;
     if (bbox1[2] < bbox2[2]) return false;
     if (bbox1[1] > bbox2[1]) return false;
-    if (bbox1[3] < bbox2[3]) return false;
-    return true;
+    return !(bbox1[3] < bbox2[3]);
 }
 
 /**

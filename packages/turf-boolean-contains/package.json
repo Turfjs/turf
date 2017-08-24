@@ -33,7 +33,6 @@
   },
   "homepage": "https://github.com/Turfjs/turf",
   "devDependencies": {
-    "@turf/helpers": "^4.6.0",
     "benchmark": "2.1.4",
     "boolean-shapely": "0.1.2",
     "glob": "7.1.2",
@@ -41,7 +40,10 @@
     "tape": "4.7.0"
   },
   "dependencies": {
+    "@turf/helpers": "^4.6.0",
     "@turf/bbox": "^4.6.0",
+    "@turf/explode": "^4.6.0",
+    "@turf/line-intersect": "^4.6.0",
     "@turf/inside": "^4.6.0",
     "@turf/invariant": "^4.6.0"
   }
