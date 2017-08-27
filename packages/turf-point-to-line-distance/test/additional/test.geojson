@@ -1,5 +1,9 @@
 {
 	"type": "FeatureCollection",
+	"properties": {
+		"units": "miles",
+		"rhumb": true
+	},
 	"features": [
 		{
 			"type": "Feature",
@@ -7,8 +11,8 @@
 			"geometry": {
 				"type": "Point",
 				"coordinates": [
-					1.3,
-					2
+					-47.08740234375,
+					32.26855544621476
 				]
 			}
 		},
@@ -19,20 +23,12 @@
 				"type": "LineString",
 				"coordinates": [
 					[
-						1,
-						3
+						-49.053955078125,
+						31.914867503276223
 					],
 					[
-						2,
-						2
-					],
-					[
-						2,
-						0
-					],
-					[
-						-1.5,
-						-1.5
+						-43.428955078125,
+						34.00713506435885
 					]
 				]
 			}

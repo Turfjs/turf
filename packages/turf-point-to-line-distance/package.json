@@ -38,5 +38,6 @@
     "@turf/turf": "^4.6.0"
   },
   "dependencies": {
+    "geodesy": "1.1.1"
   }
 }
