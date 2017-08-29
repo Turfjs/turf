@@ -1,5 +1,6 @@
 var inside = require('@turf/inside');
 var calcBbox = require('@turf/bbox');
+var isPointOnLine = require('@turf/boolean-point-on-line');
 var invariant = require('@turf/invariant');
 var getGeom = invariant.getGeom;
 var getCoords = invariant.getCoords;
@@ -50,7 +51,7 @@ module.exports = function (feature1, feature2) {
     case 'LineString':
         switch (type2) {
         case 'Point':
-            return isPointOnLine(geom1, geom2, true);
+            return isPointOnLine(geom2, geom1, true);
         case 'LineString':
             return isLineOnLine(geom1, geom2);
         case 'MultiPoint':
@@ -89,83 +90,58 @@ function isPointInMultiPoint(multiPoint, point) {
 }
 
 function isMultiPointInMultiPoint(multiPoint1, multiPoint2) {
-    var foundAMatch = 0;
     for (var i = 0; i < multiPoint2.coordinates.length; i++) {
-        var anyMatch = false;
+        var matchFound = false;
         for (var i2 = 0; i2 < multiPoint1.coordinates.length; i2++) {
             if (compareCoords(multiPoint2.coordinates[i], multiPoint1.coordinates[i2])) {
-                foundAMatch++;
-                anyMatch = true;
+                matchFound = true;
                 break;
             }
         }
-        if (!anyMatch) {
+        if (!matchFound) {
             return false;
         }
     }
-    return foundAMatch > 0;
+    return true;
 }
 
-// http://stackoverflow.com/a/11908158/1979085
-function isPointOnLine(lineString, point, excEndPoints) {
-    var output = false;
-    for (var i = 0; i < lineString.coordinates.length - 1; i++) {
-        var incEndVertices = true;
-        if ((i === 0 || i === lineString.coordinates.length - 2) && excEndPoints) {
-            incEndVertices = false;
-        }
-        if (isPointOnLineSegment(lineString.coordinates[i], lineString.coordinates[i + 1], point.coordinates, incEndVertices)) {
-            output = true;
-            break;
-        }
-    }
-    return output;
-}
 
 function isMultiPointOnLine(lineString, multiPoint) {
-    var output = true;
-    var foundAnInteriorPoint = false;
+    var haveFoundInteriorPoint = false;
     for (var i = 0; i < multiPoint.coordinates.length; i++) {
-        var pointIsOnLine = false;
-        for (var i2 = 0; i2 < lineString.coordinates.length - 1; i2++) {
-            if (isPointOnLineSegment(lineString.coordinates[i2], lineString.coordinates[i2 + 1], multiPoint.coordinates[i], true)) {
-                if (!foundAnInteriorPoint && isPointOnLineSegment(lineString.coordinates[i2], lineString.coordinates[i2 + 1], multiPoint.coordinates[i], false)) {
-                    foundAnInteriorPoint = true;
-                }
-                pointIsOnLine = true;
-                break;
-            }
+        if (isPointOnLine(multiPoint.coordinates[i], lineString, true)) {
+            haveFoundInteriorPoint = true;
         }
-        if (!pointIsOnLine) {
-            output = false;
-            break;
+        if (!isPointOnLine(multiPoint.coordinates[i], lineString)) {
+            return false;
         }
     }
-    return output && foundAnInteriorPoint;
+    if (haveFoundInteriorPoint) {
+        return true;
+    }
+    return false;
 }
 
 function isMultiPointInPoly(polygon, multiPoint) {
-    var output = true;
     for (var i = 0; i < multiPoint.coordinates.length; i++) {
-        var isInside = inside(multiPoint.coordinates[1], polygon, true);
-        if (!isInside) {
-            output = false;
-            break;
+        if (!inside(multiPoint.coordinates[i], polygon, true)) {
+            return false;
         }
     }
-    return output;
+    return true;
 }
 
 function isLineOnLine(lineString1, lineString2) {
-    var output = true;
+    var haveFoundInteriorPoint = false;
     for (var i = 0; i < lineString2.coordinates.length; i++) {
-        var checkLineCoords = isPointOnLine(lineString1, {type: 'Point', coordinates: lineString2.coordinates[i]}, false);
-        if (!checkLineCoords) {
-            output = false;
-            break;
+        if (isPointOnLine({type: 'Point', coordinates: lineString2.coordinates[i]}, lineString1, true)) {
+            haveFoundInteriorPoint = true;
+        }
+        if (!isPointOnLine({type: 'Point', coordinates: lineString2.coordinates[i]}, lineString1, false)) {
+            return false;
         }
     }
-    return output;
+    return haveFoundInteriorPoint;
 }
 
 function isLineInPoly(polygon, linestring) {
@@ -189,9 +165,8 @@ function isLineInPoly(polygon, linestring) {
 }
 
 /**
- * Is Polygon (geom1) in Polygon (geom2)
+ * Is Polygon2 in Polygon1
  * Only takes into account outer rings
- * See http://stackoverflow.com/a/4833823/1979085
  *
  * @private
  * @param {Geometry|Feature<Polygon>} feature1 Polygon1
@@ -204,42 +179,12 @@ function isPolyInPoly(feature1, feature2) {
     if (!doBBoxOverlap(poly1Bbox, poly2Bbox)) {
         return false;
     }
+    for (var i = 0; i < feature2.coordinates[0].length; i++) {
+        if (!inside(feature2.coordinates[0][i], feature1)) {
+            return false;
+        }
+    }
     return true;
-}
-
-
-/**
- * Is a point on a line segment
- * Only takes into account outer rings
- * See http://stackoverflow.com/a/4833823/1979085
- *
- * @private
- * @param {Array} lineSegmentStart coord pair of start of line
- * @param {Array} lineSegmentEnd coord pair of end of line
- * @param {Array} point coord pair of point to check
- * @param {boolean} incEnd whether the point is allowed to fall on the line ends
- * @returns {boolean} true/false
- */
-function isPointOnLineSegment(lineSegmentStart, lineSegmentEnd, point, incEnd) {
-    var dxc = point[0] - lineSegmentStart[0];
-    var dyc = point[1] - lineSegmentStart[1];
-    var dxl = lineSegmentEnd[0] - lineSegmentStart[0];
-    var dyl = lineSegmentEnd[1] - lineSegmentStart[1];
-    var cross = dxc * dyl - dyc * dxl;
-    if (cross !== 0) {
-        return false;
-    }
-    if (incEnd) {
-        if (Math.abs(dxl) >= Math.abs(dyl)) {
-            return dxl > 0 ? lineSegmentStart[0] <= point[0] && point[0] <= lineSegmentEnd[0] : lineSegmentEnd[0] <= point[0] && point[0] <= lineSegmentStart[0];
-        }
-        return dyl > 0 ? lineSegmentStart[1] <= point[1] && point[1] <= lineSegmentEnd[1] : lineSegmentEnd[1] <= point[1] && point[1] <= lineSegmentStart[1];
-    } else {
-        if (Math.abs(dxl) >= Math.abs(dyl)) {
-            return dxl > 0 ? lineSegmentStart[0] < point[0] && point[0] < lineSegmentEnd[0] : lineSegmentEnd[0] < point[0] && point[0] < lineSegmentStart[0];
-        }
-        return dyl > 0 ? lineSegmentStart[1] < point[1] && point[1] < lineSegmentEnd[1] : lineSegmentEnd[1] < point[1] && point[1] < lineSegmentStart[1];
-    }
 }
 
 function doBBoxOverlap(bbox1, bbox2) {
