@@ -1,7 +1,8 @@
 {
 	"type": "FeatureCollection",
 	"properties": {
-		"units": "miles"
+		"units": "miles",
+		"mercator": true
 	},
 	"features": [
 		{
@@ -11,7 +12,7 @@
 				"type": "Point",
 				"coordinates": [
 					1,
-					1
+					-1
 				]
 			}
 		},
@@ -22,12 +23,12 @@
 				"type": "LineString",
 				"coordinates": [
 					[
-						2,
-						1
+						0,
+						0
 					],
 					[
-						3,
-						1
+						2,
+						0
 					]
 				]
 			}

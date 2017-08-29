@@ -24,9 +24,9 @@ const fixtures = fs.readdirSync(directories.in).map(filename => {
 test('turf-point-to-line-distance', t => {
     for (const {filename, name, geojson}  of fixtures) {
         const [point, line] = geojson.features;
-        let {units, rhumb} = geojson.properties || {};
+        let {units, mercator} = geojson.properties || {};
         if (!units) units = 'kilometers';
-        const distance = pointToLineDistance(point, line, units, rhumb);
+        const distance = pointToLineDistance(point, line, units, mercator);
 
     var gc = greatCircle(line.geometry.coordinates[0], line.geometry.coordinates[1]);
     var c = circle(point, distance, 200, units);

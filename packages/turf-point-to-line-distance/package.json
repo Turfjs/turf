@@ -31,13 +31,14 @@
   },
   "homepage": "https://github.com/Turfjs/turf",
   "devDependencies": {
+    "@turf/turf": "^4.6.0",
     "benchmark": "^2.1.4",
-    "write-json-file": "^2.2.0",
     "load-json-file": "^2.0.0",
     "tape": "^4.6.3",
-    "@turf/turf": "^4.6.0"
+    "write-json-file": "^2.2.0"
   },
   "dependencies": {
+    "sphericalmercator": "^1.0.5",
     "geodesy": "1.1.1"
   }
 }
