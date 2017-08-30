@@ -174,8 +174,8 @@ function euclideanIntersection(a, b, p) {
  * Returns euclidean distance between two points
  *
  * @private
- * @param {object} from first point
- * @param {object} to second point
+ * @param {Object} from first point
+ * @param {Object} to second point
  * @param {string} units can be degrees, radians, miles, or kilometers
  * @returns {number} squared distance
  */

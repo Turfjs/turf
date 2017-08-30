@@ -40,10 +40,10 @@ module.exports = function (type, count, options) {
     case 'polygon':
     case 'polygons':
         return random.polygon(
-                count,
-                options.num_vertices,
-                options.max_radial_length,
-                options.bbox);
+            count,
+            options.num_vertices,
+            options.max_radial_length,
+            options.bbox);
     default:
         throw new Error('Unknown type given: valid options are points and polygons');
     }

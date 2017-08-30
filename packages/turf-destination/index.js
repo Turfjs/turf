@@ -39,8 +39,7 @@ module.exports = function (origin, distance, bearing, units) {
 
     var latitude2 = Math.asin(Math.sin(latitude1) * Math.cos(radians) +
         Math.cos(latitude1) * Math.sin(radians) * Math.cos(bearing_rad));
-    var longitude2 = longitude1 + Math.atan2(Math.sin(bearing_rad) *
-        Math.sin(radians) * Math.cos(latitude1),
+    var longitude2 = longitude1 + Math.atan2(Math.sin(bearing_rad) * Math.sin(radians) * Math.cos(latitude1),
         Math.cos(radians) - Math.sin(latitude1) * Math.sin(latitude2));
 
     return point([radians2degrees * longitude2, radians2degrees * latitude2]);
