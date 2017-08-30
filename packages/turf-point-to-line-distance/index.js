@@ -56,10 +56,11 @@ module.exports = function (point, line, units, mercator) {
 
 function distanceToSegment(p, a, b, units, mercator) {
 
-    var distanceAP = (mercator !== true) ? distance(a, p, units) : mercatorDistance(a, p, units);
+    var distanceAP = (mercator !== true) ? distance(a, p, units) : euclideanDistance(a, p, units);
     var azimuthAP = bearingToAngle((mercator !== true) ? bearing(a, p) : rhumbBearing(a, p));
     var azimuthAB = bearingToAngle((mercator !== true) ? bearing(a, b) : rhumbBearing(a, b));
     var angleA = Math.abs(azimuthAP - azimuthAB);
+    // if (angleA > 180) angleA = Math.abs(angleA - 360);
     // if the angle PAB is obtuse its projection on the line extending the segment falls outside the segment
     // thus return distance between P and the start point A
     /*
@@ -75,6 +76,7 @@ function distanceToSegment(p, a, b, units, mercator) {
     var azimuthBA = (azimuthAB + 180) % 360;
     var azimuthBP = bearingToAngle((mercator !== true) ? bearing(b, p) : rhumbBearing(b, p));
     var angleB = Math.abs(azimuthBP - azimuthBA);
+    if (angleB > 180) angleB = Math.abs(angleB - 360);
     // also if the angle ABP is acute the projection of P falls outside the segment, on the other side
     // so return the distance between P and the end point B
     /*
@@ -85,7 +87,7 @@ function distanceToSegment(p, a, b, units, mercator) {
         /______________/    |
        A               B    H
     */
-    if (angleB > 90) return (mercator !== true) ? distance(p, b, units) : mercatorDistance(p, b, units);
+    if (angleB > 90) return (mercator !== true) ? distance(p, b, units) : euclideanDistance(p, b, units);
     // finally if the projection falls inside the segment
     // return the distance between P and the segment
     /*
@@ -102,12 +104,19 @@ function distanceToSegment(p, a, b, units, mercator) {
 }
 
 function mercatorPH(a, b, p, units) {
+    var delta = 0;
+    // translate points if any is crossing the 180th meridian
+    if (Math.abs(a[0]) >= 180 || Math.abs(b[0]) >= 180 || Math.abs(p[0]) >= 180) {
+        delta = (a[0] > 0 || b[0] > 0 || p[0] > 0) ? -180 : 180;
+    }
+
     var origin = turfPoint(p);
-    var A = toMercator(a);
-    var B = toMercator(b);
-    var P = toMercator(p);
+    var A = toMercator([a[0] + delta, a[1]]);
+    var B = toMercator([b[0] + delta, b[1]]);
+    var P = toMercator([p[0] + delta, p[1]]);
     var h = toWGS84(euclideanIntersection(A, B, P));
 
+    if (delta !== 0) h[0] -= delta; // translate back to original position
     var distancePH = rhumbDistance(origin, h, units);
     return distancePH;
 }
@@ -149,9 +158,17 @@ function euclideanIntersection(a, b, p) {
  * @param {object} p2 point
  * @returns {number} squared distance
  */
-function mercatorDistance(from, to, units) {
-    var p1 = toMercator(from);
-    var p2 = toMercator(to);
+function euclideanDistance(from, to, units) {
+    // translate points if any is crossing the 180th meridian
+    var delta = 0;
+    if (Math.abs(from[0]) >= 180) {
+        delta = (from[0] > 0) ? -180 : 180;
+    }
+    if (Math.abs(to[0]) >= 180) {
+        delta = (to[0] > 0) ? -180 : 180;
+    }
+    var p1 = toMercator([from[0] + delta, from[1]]);
+    var p2 = toMercator([to[0] + delta, to[1]]);
 
     var sqr = function (n) { return n * n; };
     var squareD = sqr(p1[0] - p2[0]) + sqr(p1[1] - p2[1]);

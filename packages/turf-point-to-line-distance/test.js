@@ -31,7 +31,7 @@ test('turf-point-to-line-distance', t => {
     var gc = greatCircle(line.geometry.coordinates[0], line.geometry.coordinates[1]);
     var c = circle(point, distance, 200, units);
     geojson.features.push(c);
-    geojson.features.push(gc);
+    // geojson.features.push(gc);
 
         if (process.env.REGEN) write.sync(directories.out + filename, results);
         const expected = load.sync(directories.out + 'distances.json');
