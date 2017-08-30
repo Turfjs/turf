@@ -1,3 +1,6 @@
+// (logic of computation inspired by:
+// https://stackoverflow.com/questions/32771458/distance-from-lat-lng-point-to-minor-arc-segment)
+
 var meta = require('@turf/meta');
 var bearing = require('@turf/bearing');
 var helpers = require('@turf/helpers');
@@ -16,8 +19,6 @@ var degrees2radians = helpers.degrees2radians;
 /**
  * Returns the minimum distance between a {@link Point} and a {@link LineString}, being the distance from a line the
  * minimum distance between the point and any segment of the `LineString`.
- * (logic of computation inspired by:
- * https://stackoverflow.com/questions/32771458/distance-from-lat-lng-point-to-minor-arc-segment)
  *
  * @name pointToLineDistance
  * @param {Feature<Point>|Array<number>} point Feature or Geometry
@@ -29,7 +30,7 @@ var degrees2radians = helpers.degrees2radians;
  * var pt = turf.point([0, 0]);
  * var line = turf.lineString([[1, 1],[-1, 1]);
  *
- * var d = pointToLineDistance(point, line, 'miles');
+ * var d = pointToLineDistance(pt, line, 'miles');
  * //=69.11854715938406
  */
 module.exports = function (point, line, units, mercator) {
@@ -46,7 +47,6 @@ module.exports = function (point, line, units, mercator) {
     segmentEach(line, function (segment) {
         var a = segment.geometry.coordinates[0];
         var b = segment.geometry.coordinates[1];
-        // var d = (mercator !== true) ? distanceToSegment(p, a, b, units) : mercatorDistanceToSegment(p, a, b, units);
         var d = distanceToSegment(p, a, b, units, mercator);
         if (distance > d) distance = d;
     });
@@ -147,7 +147,6 @@ function mercatorPH(a, b, p, units) {
  * Returns the point H projection of a point P on a segment AB, on the euclidean plain
  * from https://stackoverflow.com/questions/10301001/perpendicular-on-a-line-segment-from-a-given-point#answer-12499474
  *            P
- *           |
  *           |
  *           |
  *  _________|____

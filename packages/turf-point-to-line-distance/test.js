@@ -3,8 +3,9 @@ const test = require('tape');
 const path = require('path');
 const load = require('load-json-file');
 const write = require('write-json-file');
-const pointToLineDistance = require('./');
 const circle = require('@turf/circle');
+const {point, lineString} = require('@turf/helpers');
+const pointToLineDistance = require('./');
 
 const directories = {
     in: path.join(__dirname, 'test', 'in') + path.sep,
@@ -34,5 +35,18 @@ test('turf-point-to-line-distance', t => {
         const expected = load.sync(directories.out + 'distances.json');
         t.deepEqual(distance, expected[name], name);
     }
+    t.end();
+});
+
+test('turf-point-to-line-distance -- throws', t => {
+    const pt = point([0, 0]);
+    const line = lineString([[1,1], [-1,1]]);
+
+    t.throws(() => pointToLineDistance(null, line), /point is required/, 'missing point');
+    t.throws(() => pointToLineDistance(pt, null), /line is required/, 'missing line');
+    t.throws(() => pointToLineDistance(pt, line, 'invalid'), /units is invalid/, 'invalid units');
+    t.throws(() => pointToLineDistance(line, line), /Invalid input to point: must be a Point, given LineString/, 'invalid line');
+    t.throws(() => pointToLineDistance(pt, pt), /Invalid input to line: must be a LineString, given Point/, 'invalid point');
+
     t.end();
 });
