@@ -11,7 +11,7 @@ var getGeomType = invariant.getGeomType;
  * must not intersect the exterior of the secondary (geometry b).
  * Boolean-within returns the exact opposite result of the `@turf/boolean-contains`.
  *
- * @name booleanWith
+ * @name booleanWithin
  * @param {Geometry|Feature<any>} feature1 GeoJSON Feature or Geometry
  * @param {Geometry|Feature<any>} feature2 GeoJSON Feature or Geometry
  * @returns {boolean} true/false
