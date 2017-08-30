@@ -23,14 +23,14 @@ var degrees2radians = helpers.degrees2radians;
  * @param {Feature<Point>|Array<number>} point Feature or Geometry
  * @param {Feature<LineString>|Array<Array<number>>} line GeoJSON Feature or Geometry
  * @param {string} [units=kilometers] can be degrees, radians, miles, or kilometers
- * @param {boolean} [mercator=false] if segments should be considered Rhumb lines
+ * @param {boolean} [mercator=false] if distance should be on Mercator or WGS84 projection
  * @returns {number} distance between point and line
  * @example
  * var pt = turf.point([0, 0]);
  * var line = turf.lineString([[1, 1],[-1, 1]);
  *
- * var d = pointToLineDistance(point, line, 'degrees');
- * //=1
+ * var d = pointToLineDistance(point, line, 'miles');
+ * //=69.11854715938406
  */
 module.exports = function (point, line, units, mercator) {
     // validation
@@ -54,6 +54,17 @@ module.exports = function (point, line, units, mercator) {
 };
 
 
+/**
+ * Returns the distance between a point P on a segment AB.
+ *
+ * @private
+ * @param {Array<number>} p external point
+ * @param {Array<number>} a first segment point
+ * @param {Array<number>} b second segment point
+ * @param {string} [units=kilometers] can be degrees, radians, miles, or kilometers
+ * @param {boolean} [mercator=false] if distance should be on Mercator or WGS84 projection
+ * @returns {number} distance
+ */
 function distanceToSegment(p, a, b, units, mercator) {
 
     var distanceAP = (mercator !== true) ? distance(a, p, units) : euclideanDistance(a, p, units);
@@ -103,6 +114,16 @@ function distanceToSegment(p, a, b, units, mercator) {
     return mercatorPH(a, b, p, units);
 }
 
+/**
+ * Returns the distance between a point P on a segment AB, on Mercator projection
+ *
+ * @private
+ * @param {Array<number>} a first segment point
+ * @param {Array<number>} b second segment point
+ * @param {Array<number>} p external point
+ * @param {string} [units=kilometers] can be degrees, radians, miles, or kilometers
+ * @returns {number} distance
+ */
 function mercatorPH(a, b, p, units) {
     var delta = 0;
     // translate points if any is crossing the 180th meridian
@@ -123,20 +144,20 @@ function mercatorPH(a, b, p, units) {
 
 
 /**
- * Returns the point projection of a point on a line on the euclidean plain
+ * Returns the point H projection of a point P on a segment AB, on the euclidean plain
  * from https://stackoverflow.com/questions/10301001/perpendicular-on-a-line-segment-from-a-given-point#answer-12499474
  *            P
- *         __/|\
- *      __/   | \
- *   __/      |  \
- *  /_________|___\
- * A          H    B
+ *           |
+ *           |
+ *           |
+ *  _________|____
+ * A          H   B
  *
  * @private
- * @param {Array<number>} a point
- * @param {Array<number>} b point
- * @param {Array<number>} p point
- * @returns {Array<number>} projection
+ * @param {Array<number>} a first segment point
+ * @param {Array<number>} b second segment point
+ * @param {Array<number>} p external point
+ * @returns {Array<number>} projected point
  */
 function euclideanIntersection(a, b, p) {
     var x1 = a[0], y1 = a[1],
@@ -151,11 +172,12 @@ function euclideanIntersection(a, b, p) {
 
 
 /**
- * Returns the squared distance between points
+ * Returns euclidean distance between two points
  *
  * @private
- * @param {object} p1 point
- * @param {object} p2 point
+ * @param {object} from first point
+ * @param {object} to second point
+ * @param {string} units can be degrees, radians, miles, or kilometers
  * @returns {number} squared distance
  */
 function euclideanDistance(from, to, units) {
@@ -180,8 +202,9 @@ function euclideanDistance(from, to, units) {
  * Convert lon/lat values to 900913 x/y.
  * from https://github.com/mapbox/sphericalmercator
  *
- * @param lonLat
- * @return {[null,null]}
+ * @private
+ * @param {Array<number>} lonLat WGS84 point
+ * @returns {Array<number>} Mercator [x, y] point
  */
 function toMercator(lonLat) {
     var D2R = Math.PI / 180,
@@ -201,14 +224,13 @@ function toMercator(lonLat) {
     return xy;
 }
 
-
 /**
  * Convert 900913 x/y values to lon/lat.
  * from https://github.com/mapbox/sphericalmercator
  *
  * @private
- * @param xy
- * @returns {[null,null]}
+ * @param {Array<number>} xy Mercator [x, y] point
+ * @returns {Array<number>} WGS84 [lon, lat] point
  */
 function toWGS84(xy) {
     // 900913 properties.
