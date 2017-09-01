@@ -33,7 +33,11 @@
     "benchmark": "^2.1.4",
     "write-json-file": "^2.2.0",
     "load-json-file": "^2.0.0",
+    "proj4": "2.4.4",
     "tape": "^4.6.3"
   },
-  "dependencies": {}
+  "dependencies": {
+    "@turf/clone": "^4.6.1",
+    "@turf/meta": "^4.6.0"
+  }
 }

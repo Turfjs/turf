@@ -1,6 +1,6 @@
 var meta = require('@turf/meta');
 var clone = require('@turf/clone');
-var coordAll = meta.coordAll;
+var coordEach = meta.coordEach;
 
 /**
  * <DESCRIPTION>
@@ -17,8 +17,10 @@ module.exports = function (geojson, mutate) {
 
     if (mutate !== true) geojson = clone(geojson);
 
-    coordAll(geojson, function (coord) {
-        coord = convert(coord);
+    coordEach(geojson, function (coord) {
+        var newCoord = convert(coord);
+        coord[0] = newCoord[0];
+        coord[1] = newCoord[1];
     });
 
     return geojson;
