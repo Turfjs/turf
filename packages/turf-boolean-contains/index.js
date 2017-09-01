@@ -147,14 +147,13 @@ function isLineOnLine(lineString1, lineString2) {
 function isLineInPoly(polygon, linestring) {
     var output = false;
     var i = 0;
-    var lineLength = linestring.coordinates.length;
 
     var polyBbox = calcBbox(polygon);
     var lineBbox = calcBbox(linestring);
     if (!doBBoxOverlap(polyBbox, lineBbox)) {
         return false;
     }
-    for (i; i < lineLength - 1; i++) {
+    for (i; i < linestring.coordinates.length - 1; i++) {
         var midPoint = getMidpoint(linestring.coordinates[i], linestring.coordinates[i + 1]);
         if (inside({type: 'Point', coordinates: midPoint}, polygon, true)) {
             output = true;
