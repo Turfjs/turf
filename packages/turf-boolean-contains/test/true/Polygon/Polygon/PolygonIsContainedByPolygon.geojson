@@ -9,7 +9,7 @@
         "coordinates": [[[1, 1], [1, 10], [10, 10], [10, 1], [1, 1]]]
       }
     },
-    {
+     {
       "type": "Feature",
       "properties": {},
       "geometry": {

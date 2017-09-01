@@ -1,0 +1,37 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "stroke": "#ffa200",
+        "stroke-width": 2,
+        "stroke-opacity": 1,
+        "fill": "#d4c63b",
+        "fill-opacity": 0.5,
+        "description": "shape which was intersected with a longer pipe to produce the pipe shown"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[
+          [3.1249679625034332, 50.90354450528237],
+            [3.1252093613147736, 50.90354957970863],
+            [3.1252361834049225, 50.90334491073787],
+            [3.125006854534149, 50.903344064996546],
+            [3.1248298287391663, 50.90339988389688],
+            [3.1249679625034332, 50.90354450528237]
+        ]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "description": "output of an intersect call with a longer pipe and the other feature in this file"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[3.124910769300162,50.90341155120744],[3.12484701356319,50.90343165437331],[3.124918293470778,50.903431917293965],[3.124982049176972,50.90341181412811],[3.124910769300162,50.90341155120744]]]
+      }
+    }
+  ]
+}

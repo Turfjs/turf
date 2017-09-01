@@ -87,6 +87,7 @@ function point(coordinates, properties, bbox, id) {
     if (!coordinates) throw new Error('No coordinates passed');
     if (coordinates.length === undefined) throw new Error('Coordinates must be an array');
     if (coordinates.length < 2) throw new Error('Coordinates must be at least 2 numbers long');
+    if (!isNumber(coordinates[0]) || !isNumber(coordinates[1])) throw new Error('Coordinates must contain numbers');
 
     return feature({
         type: 'Point',
@@ -125,6 +126,8 @@ function polygon(coordinates, properties, bbox, id) {
             throw new Error('Each LinearRing of a Polygon must have 4 or more Positions.');
         }
         for (var j = 0; j < ring[ring.length - 1].length; j++) {
+            // Check if first point of Polygon contains two numbers
+            if (i === 0 && j === 0 && !isNumber(ring[0][0]) || !isNumber(ring[0][1])) throw new Error('Coordinates must contain numbers');
             if (ring[ring.length - 1][j] !== ring[0][j]) {
                 throw new Error('First and last Position are not equivalent.');
             }
@@ -169,6 +172,8 @@ function polygon(coordinates, properties, bbox, id) {
 function lineString(coordinates, properties, bbox, id) {
     if (!coordinates) throw new Error('No coordinates passed');
     if (coordinates.length < 2) throw new Error('Coordinates must be an array of two or more positions');
+    // Check if first point of LineString contains two numbers
+    if (!isNumber(coordinates[0][1]) || !isNumber(coordinates[0][1])) throw new Error('Coordinates must contain numbers');
 
     return feature({
         type: 'LineString',
@@ -497,6 +502,21 @@ function convertArea(area, originalUnit, finalUnit) {
     return (area / startFactor) * finalFactor;
 }
 
+/**
+ * isNumber
+ *
+ * @param {*} num Number to validate
+ * @returns {boolean} true/false
+ * @example
+ * turf.isNumber(123)
+ * //=true
+ * turf.isNumber('foo')
+ * //=false
+ */
+function isNumber(num) {
+    return !isNaN(num) && num !== null && !Array.isArray(num);
+}
+
 module.exports = {
     feature: feature,
     geometry: geometry,
@@ -516,5 +536,6 @@ module.exports = {
     bearingToAngle: bearingToAngle,
     convertDistance: convertDistance,
     convertArea: convertArea,
-    round: round
+    round: round,
+    isNumber: isNumber
 };
