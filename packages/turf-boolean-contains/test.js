@@ -3,7 +3,9 @@ const path = require('path');
 const test = require('tape');
 const load = require('load-json-file');
 const {point} = require('@turf/helpers');
+const booleanJSTS = require('boolean-jsts');
 const shapely = require('boolean-shapely');
+
 const contains = require('./');
 
 test('turf-boolean-contains', t => {
@@ -14,6 +16,7 @@ test('turf-boolean-contains', t => {
         const [feature1, feature2] = geojson.features;
         const result = contains(feature1, feature2);
 
+        if (process.env.JSTS) t.true(booleanJSTS('contains', feature1, feature2), '[true] JSTS - ' + name);
         if (process.env.SHAPELY) shapely.contains(feature1, feature2).then(result => t.true(result, '[true] shapely - ' + name));
         t.true(result, '[true] ' + name);
     });
@@ -24,6 +27,7 @@ test('turf-boolean-contains', t => {
         const [feature1, feature2] = geojson.features;
         const result = contains(feature1, feature2);
 
+        if (process.env.JSTS) t.false(booleanJSTS('contains', feature1, feature2), '[false] JSTS - ' + name);
         if (process.env.SHAPELY) shapely.contains(feature1, feature2).then(result => t.false(result, '[false] shapely - ' + name));
         t.false(result, '[false] ' + name);
     });

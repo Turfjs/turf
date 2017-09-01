@@ -1,5 +1,6 @@
-/// <reference types="geojson" />
+/// <reference types='geojson' />
 
+export type Id = string|number
 export type Points = GeoJSON.FeatureCollection<GeoJSON.Point>;
 export type Point = GeoJSON.Feature<GeoJSON.Point>;
 export type MultiPoints = GeoJSON.FeatureCollection<GeoJSON.MultiPoint>;
@@ -17,7 +18,7 @@ export type LineStringFeatures = LineString | LineStrings | MultiLineString | Mu
 export type PolygonFeatures = Polygon | Polygons | MultiPolygon | MultiPolygons | GeoJSON.Polygon | GeoJSON.MultiPolygon
 export type Features<Geom extends GeometryObject> = GeoJSON.FeatureCollection<Geom>;
 export type Feature<Geom extends GeometryObject> = GeoJSON.Feature<Geom>;
-export type Units = "miles" | "nauticalmiles" | "degrees" | "radians" | "inches" | "yards" | "meters" | "metres" | "kilometers" | "kilometres";
+export type Units = 'miles' | 'nauticalmiles' | 'degrees' | 'radians' | 'inches' | 'yards' | 'meters' | 'metres' | 'kilometers' | 'kilometres';
 export type BBox = [number, number, number, number];
 export type GeometryObject = GeoJSON.GeometryObject;
 export type GeometryCollection = GeoJSON.GeometryCollection;
@@ -29,8 +30,8 @@ export interface FeatureGeometryCollection extends GeoJSON.Feature<any> {
 }
 
 export interface FeatureCollection {
-  <Geom extends Geoms>(features: Feature<Geom>[], bbox?: BBox): Features<Geom>;
-  (features: Feature<any>[], bbox?: BBox): Features<any>;
+  <Geom extends Geoms>(features: Feature<Geom>[], bbox?: BBox, id?: Id): Features<Geom>;
+  (features: Feature<any>[], bbox?: BBox, id?: Id): Features<any>;
 }
 
 export interface Properties {
@@ -40,7 +41,7 @@ export interface Properties {
 /**
  * http://turfjs.org/docs/#feature
  */
-export function feature<Geom extends GeometryObject>(geometry: Geom, properties?: Properties, bbox?: BBox, id?: string|number): Feature<Geom>;
+export function feature<Geom extends GeometryObject>(geometry: Geom, properties?: Properties, bbox?: BBox, id?: Id): Feature<Geom>;
 
 /**
  * http://turfjs.org/docs/#geometry
@@ -50,17 +51,17 @@ export function geometry(type: GeometryTypes, coordinates: any[], bbox?: BBox): 
 /**
  * http://turfjs.org/docs/#point
  */
-export function point(coordinates: Position, properties?: Properties, bbox?: BBox, id?: string|number): Point;
+export function point(coordinates: Position, properties?: Properties, bbox?: BBox, id?: Id): Point;
 
 /**
  * http://turfjs.org/docs/#polygon
  */
-export function polygon(coordinates: Position[][], properties?: Properties, bbox?: BBox, id?: string|number): Polygon;
+export function polygon(coordinates: Position[][], properties?: Properties, bbox?: BBox, id?: Id): Polygon;
 
 /**
  * http://turfjs.org/docs/#linestring
  */
-export function lineString(coordinates: Position[], properties?: Properties, bbox?: BBox, id?: string|number): LineString;
+export function lineString(coordinates: Position[], properties?: Properties, bbox?: BBox, id?: Id): LineString;
 
 /**
  * http://turfjs.org/docs/#featurecollection
@@ -70,22 +71,22 @@ export const featureCollection: FeatureCollection;
 /**
  * http://turfjs.org/docs/#multilinestring
  */
-export function multiLineString(coordinates: Position[][], properties?: Properties, bbox?: BBox, id?: string|number): MultiLineString;
+export function multiLineString(coordinates: Position[][], properties?: Properties, bbox?: BBox, id?: Id): MultiLineString;
 
 /**
  * http://turfjs.org/docs/#multipoint
  */
-export function multiPoint(coordinates: Position[], properties?: Properties, bbox?: BBox, id?: string|number): MultiPoint;
+export function multiPoint(coordinates: Position[], properties?: Properties, bbox?: BBox, id?: Id): MultiPoint;
 
 /**
  * http://turfjs.org/docs/#multipolygon
  */
-export function multiPolygon(coordinates: Position[][][], properties?: Properties, bbox?: BBox, id?: string|number): MultiPolygon;
+export function multiPolygon(coordinates: Position[][][], properties?: Properties, bbox?: BBox, id?: Id): MultiPolygon;
 
 /**
  * http://turfjs.org/docs/#geometrycollection
  */
-export function geometryCollection(geometries: GeometryObject[], properties?: Properties, bbox?: BBox, id?: string|number): FeatureGeometryCollection;
+export function geometryCollection(geometries: GeometryObject[], properties?: Properties, bbox?: BBox, id?: Id): FeatureGeometryCollection;
 
 /**
  * http://turfjs.org/docs/#radianstodistance
@@ -131,3 +132,8 @@ export function convertDistance(distance: number, originalUnit: Units, finalUnit
  * http://turfjs.org/docs/#convertarea
  */
 export function convertArea(area: number, originalUnit?: Units, finalUnit?: Units): number
+
+/**
+ * http://turfjs.org/docs/#isnumber
+ */
+export function isNumber(num: any): boolean

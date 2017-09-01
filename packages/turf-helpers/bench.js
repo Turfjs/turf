@@ -20,8 +20,8 @@ const {
  */
 const suite = new Benchmark.Suite('turf-helpers');
 suite
-    .add('round', () => round(120.123))
     .add('point', () => point([5, 10]))
+    .add('round', () => round(120.123))
     .add('lineString', () => lineString([[5, 10], [20, 40]]))
     .add('polygon', () => polygon([[[5, 10], [20, 40], [40, 0], [5, 10]]]))
     .add('multiPoint', () => multiPoint([[0, 0], [10, 10]]))

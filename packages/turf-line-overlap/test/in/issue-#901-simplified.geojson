@@ -1,0 +1,29 @@
+{
+	"type": "FeatureCollection",
+	"features": [
+		{
+			"type": "Feature",
+			"properties": {
+				"stroke": "#F00",
+				"stroke-width": 10,
+				"stroke-opacity": 1
+			},
+			"geometry": {
+				"type": "LineString",
+				"coordinates": [[2, 2], [4, 4]]
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {
+				"stroke": "#00F",
+				"stroke-width": 3,
+				"stroke-opacity": 1
+			},
+			"geometry": {
+				"type": "LineString",
+				"coordinates": [[0, 0], [6, 6]]
+			}
+		}
+	]
+}

@@ -7,7 +7,7 @@ Split a LineString by another GeoJSON Feature.
 **Parameters**
 
 -   `line` **[Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;[LineString](http://geojson.org/geojson-spec.html#linestring)>** LineString Feature to split
--   `splitter` **[Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;([Point](http://geojson.org/geojson-spec.html#point) \| [MultiPoint](http://geojson.org/geojson-spec.html#multipoint) \| [LineString](http://geojson.org/geojson-spec.html#linestring) \| [MultiLineString](http://geojson.org/geojson-spec.html#multilinestring) \| [Polygon](http://geojson.org/geojson-spec.html#polygon) \| [MultiPolygon](http://geojson.org/geojson-spec.html#multipolygon))>** Feature used to split line
+-   `splitter` **[Feature](http://geojson.org/geojson-spec.html#feature-objects)** Feature used to split line
 
 **Examples**
 

@@ -1,7 +1,10 @@
+var meta = require('@turf/meta');
+var helpers = require('@turf/helpers');
 var simplepolygon = require('simplepolygon');
-var flatten = require('@turf/flatten');
-var featureEach = require('@turf/meta').featureEach;
-var featureCollection = require('@turf/helpers').featureCollection;
+var flattenEach = meta.flattenEach;
+var featureEach = meta.featureEach;
+var polygon = helpers.polygon;
+var featureCollection = helpers.featureCollection;
 
 /**
  * Takes a kinked polygon and returns a feature collection of polygons that have no kinks.
@@ -19,23 +22,12 @@ var featureCollection = require('@turf/helpers').featureCollection;
  * var addToMap = [poly, result]
  */
 module.exports = function (geojson) {
-    var results = featureCollection([]);
-
-    // Handles FeatureCollection & Feature
-    featureEach(geojson, function (feature) {
-
-        // Handle MultiPolygons as Feature or FeatureCollection
-        if (feature.geometry.type === 'MultiPolygon') { feature = flatten(feature); }
-
-        // Store simple polygons in results
-        featureEach(feature, function (polygon) {
-            var simple = simplepolygon(polygon);
-
-            featureEach(simple, function (poly) {
-                poly.properties = (polygon.properties) ? polygon.properties : {};
-                results.features.push(poly);
-            });
+    var features = [];
+    flattenEach(geojson, function (feature) {
+        if (feature.geometry.type !== 'Polygon') return;
+        featureEach(simplepolygon(feature), function (poly) {
+            features.push(polygon(poly.geometry.coordinates, feature.properties));
         });
     });
-    return results;
+    return featureCollection(features);
 };
