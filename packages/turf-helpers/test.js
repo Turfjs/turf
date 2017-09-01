@@ -17,7 +17,8 @@ const {
     bearingToAngle,
     convertDistance,
     convertArea,
-    round
+    round,
+    isNumber
 } = require('./');
 
 test('point', t => {
@@ -409,5 +410,37 @@ test('turf-helpers -- Handle Id & BBox properties', t => {
     t.throws(() => point([10, 30], {}, bbox, {invalid: 'id'}), 'throws invalid id');
     t.throws(() => featureCollection([pt], [0], id), 'throws invalid bbox');
     t.throws(() => featureCollection([pt], [0], {invalid: 'id'}), 'throws invalid id');
+    t.end();
+});
+
+test('turf-helpers -- isNumber', t => {
+    t.throws(() => point(['foo', 'bar']), /Coordinates must contain numbers/, 'Coordinates must contain numbers');
+    t.throws(() => lineString([['foo', 'bar'], ['hello', 'world']]), /Coordinates must contain numbers/, 'Coordinates must contain numbers');
+    t.throws(() => polygon([[['foo', 'bar'], ['hello', 'world'], ['world', 'hello'], ['foo', 'bar']]]), /Coordinates must contain numbers/, 'Coordinates must contain numbers');
+
+    // true
+    t.true(isNumber(123));
+    t.true(isNumber(1.23));
+    t.true(isNumber(-1.23));
+    t.true(isNumber(-123));
+    t.true(isNumber('123'));
+    t.true(isNumber(+'123'));
+    t.true(isNumber('1e10000'));
+    t.true(isNumber(1e10000));
+    t.true(isNumber(Infinity));
+    t.true(isNumber(-Infinity));
+
+    // false
+    t.false(isNumber(+'ciao'));
+    t.false(isNumber('foo'));
+    t.false(isNumber('10px'));
+    t.false(isNumber(NaN));
+    t.false(isNumber(undefined));
+    t.false(isNumber(null));
+    t.false(isNumber({a: 1}));
+    t.false(isNumber({}));
+    t.false(isNumber([1, 2, 3]));
+    t.false(isNumber([]));
+    t.false(isNumber(isNumber));
     t.end();
 });
