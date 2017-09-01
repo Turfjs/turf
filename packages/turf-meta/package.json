@@ -1,6 +1,6 @@
 {
   "name": "@turf/meta",
-  "version": "4.5.2",
+  "version": "4.6.0",
   "description": "turf meta module",
   "main": "index.js",
   "types": "index.d.ts",
@@ -48,10 +48,9 @@
     "url": "https://github.com/Turfjs/turf/issues"
   },
   "devDependencies": {
-    "@turf/helpers": "^4.5.2",
+    "@turf/helpers": "^4.6.0",
     "@turf/random": "^4.5.2",
     "benchmark": "^2.1.4",
     "tape": "^4.6.3"
-  },
-  "dependencies": {}
+  }
 }

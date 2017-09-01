@@ -1,112 +1,82 @@
-var simplify = require('./');
-var test = require('tape');
-var fs = require('fs');
+const fs = require('fs');
+const test = require('tape');
+const path = require('path');
+const load = require('load-json-file');
+const write = require('write-json-file');
+const truncate = require('@turf/truncate');
+const {polygon, multiPolygon} = require('@turf/helpers');
+const simplify = require('./');
 
-test('simplify -- line', function (t) {
-  var line = JSON.parse(fs.readFileSync(__dirname + '/test/fixtures/in/linestring.geojson'));
+const directories = {
+    in: path.join(__dirname, 'test', 'in') + path.sep,
+    out: path.join(__dirname, 'test', 'out') + path.sep
+};
 
-  var simplified = simplify(line, 0.01, false);
-  t.ok(simplified);
-  t.equal(simplified.type, 'Feature');
-  t.equal(typeof simplified.geometry.coordinates[0][0], 'number');
-  fs.writeFileSync(__dirname + '/test/fixtures/out/linestring_out.geojson', JSON.stringify(simplified, null, 2));
-
-  t.end();
+let fixtures = fs.readdirSync(directories.in).map(filename => {
+    return {
+        filename,
+        name: path.parse(filename).name,
+        geojson: load.sync(directories.in + filename)
+    };
 });
+// fixtures = fixtures.filter(({name}) => name.includes('#555'));
 
-test('simplify -- multiline', function (t) {
-  var multiline = JSON.parse(fs.readFileSync(__dirname + '/test/fixtures/in/multilinestring.geojson'));
+test('simplify', t => {
+    for (const {filename, name, geojson} of fixtures) {
+        let {tolerance, highQuality} = geojson.properties || {};
+        tolerance = tolerance || 0.01;
+        highQuality = highQuality || false;
 
-  var simplified = simplify(multiline, 0.01, false);
-  t.ok(simplified);
-  t.equal(simplified.type, 'Feature');
-  var len = multiline.geometry.coordinates.length,
-    i;
-  for (i = 0; i < len; i++) {
-    t.equal(typeof simplified.geometry.coordinates[i][0][0], 'number');
-  }
-  fs.writeFileSync(__dirname + '/test/fixtures/out/multilinestring_out.geojson', JSON.stringify(simplified, null, 2));
+        const simplified = truncate(simplify(geojson, tolerance, highQuality));
 
-  t.end();
-});
-
-test('simplify -- polygon', function (t) {
-  var polygon = JSON.parse(fs.readFileSync(__dirname + '/test/fixtures/in/polygon.geojson'));
-
-  var simplified = simplify(polygon, 1, false);
-  t.equal(simplified.type, 'Feature');
-  t.equal(typeof simplified.geometry.coordinates[0][0][0], 'number');
-  fs.writeFileSync(__dirname + '/test/fixtures/out/polygon_out.geojson', JSON.stringify(simplified, null, 2));
-
-  t.end();
-});
-
-test('simplify -- over simplify polygon', function (t) {
-  var polygon = JSON.parse(fs.readFileSync(__dirname + '/test/fixtures/in/simple.geojson'));
-
-  var simplified = simplify(polygon, 100, false);
-  t.equal(simplified.type, 'Feature');
-  t.equal(typeof simplified.geometry.coordinates[0][0][0], 'number');
-  fs.writeFileSync(__dirname + '/test/fixtures/out/simple_out.geojson', JSON.stringify(simplified, null, 2));
-
-  t.end();
-});
-
-test('simplify -- multipolygon', function (t) {
-  var multipolygon = JSON.parse(fs.readFileSync(__dirname + '/test/fixtures/in/multipolygon.geojson'));
-
-  var simplified = simplify(multipolygon, 0.01, false);
-  t.equal(simplified.type, 'Feature');
-  var len = multipolygon.geometry.coordinates.length,
-    i;
-  for (i = 0; i < len; i++) {
-    t.equal(typeof simplified.geometry.coordinates[i][0][0][0], 'number');
-  }
-  fs.writeFileSync(__dirname + '/test/fixtures/out/multipolygon_out.geojson', JSON.stringify(simplified, null, 2));
-
-  t.end();
-});
-
-test('simplify -- featurecollection', function (t) {
-  var featurecollection = JSON.parse((fs.readFileSync(__dirname + '/test/fixtures/in/featurecollection.geojson')));
-
-  var simplified = simplify(featurecollection, 0.01, false);
-  t.equal(simplified.type, 'FeatureCollection');
-
-  fs.writeFileSync(__dirname + '/test/fixtures/out/featurecollection_out.geojson', JSON.stringify(simplified, null, 2));
-
-  t.end();
-});
-
-test('simplify -- geometrycollection', function (t) {
-  var geometrycollection = JSON.parse((fs.readFileSync(__dirname + '/test/fixtures/in/geometrycollection.geojson')));
-
-  var simplified = simplify(geometrycollection, 0.01, false);
-  t.equal(simplified.type, 'GeometryCollection');
-  simplified.geometries.forEach(function (g) {
-    if (g.type === 'LineString') {
-      t.equal(typeof g.coordinates[0][0], 'number');
-    } else if (g.type === 'MultiLineString' || g.type === 'Polygon') {
-      // intentionally only checking the first line for multilinestring, test covered elsewhere
-      t.equal(typeof g.coordinates[0][0][0], 'number');
-    } else if (g.type === 'MultiPolygon') {
-      // intentionally only checking the first ring, test covered elsewhere
-      t.equal(typeof g.coordinates[0][0][0][0], 'number');
+        if (process.env.REGEN) write.sync(directories.out + filename, simplified);
+        t.deepEqual(simplified, load.sync(directories.out + filename), name);
     }
-  });
 
-  fs.writeFileSync(__dirname + '/test/fixtures/out/geometrycollection_out.geojson', JSON.stringify(simplified, null, 2));
-
-  t.end();
+    t.end();
 });
 
-test('simplify -- argentina', function (t) {
-  var argentina = JSON.parse(fs.readFileSync(__dirname + '/test/fixtures/in/argentina.geojson'));
 
-  var simplified = simplify(argentina, 0.1, false);
-  t.equal(simplified.type, 'Feature');
-  t.equal(typeof simplified.geometry.coordinates[0][0][0], 'number');
-  fs.writeFileSync(__dirname + '/test/fixtures/out/argentina_out.geojson', JSON.stringify(simplified, null, 2));
+test('simplify -- throw', t => {
+    const poly = polygon([[[0, 0], [2, 2], [2, 0], [0, 0]]]);
+    t.throws(() => simplify(null, 0.1), /geojson is required/, 'missing geojson');
+    t.throws(() => simplify(poly, -1), /invalid tolerance/, 'negative tolerance');
+    t.end();
+});
 
-  t.end();
+
+test('simplify -- removes ID & BBox from properties', t => {
+    const properties = {foo: 'bar'};
+    const id = 12345;
+    const bbox = [0, 0, 2, 2];
+    const poly = polygon([[[0, 0], [2, 2], [2, 0], [0, 0]]], properties, bbox, id);
+    const simple = simplify(poly, 0.1);
+
+    t.equal(simple.id, id);
+    t.deepEqual(simple.bbox, bbox);
+    t.deepEqual(simple.properties, properties);
+    t.end();
+});
+
+
+test('simplify -- issue #555', t => {
+    // polygons from issue #555
+    const poly1 = polygon([[[-75.693254, 45.431144], [-75.693335, 45.431109], [-75.693335, 45.431109], [-75.693254, 45.431144]]]);
+    const poly2 = polygon([[[-75.627178, 45.438106], [-75.627179, 45.438106], [-75.62718, 45.438106], [-75.627178, 45.438106]]]);
+    const poly3 = polygon([[[-75.684722, 45.410083], [-75.684641, 45.409989], [-75.684641, 45.409989], [-75.684722, 45.410083], [-75.684722, 45.410083]]]);
+    const poly4 = polygon([[[-75.885634, 45.272762], [-75.885482, 45.272641], [-75.885554, 45.272596], [-75.885534, 45.272581], [-75.885581, 45.272551], [-75.885703, 45.272647], [-75.885706, 45.272645], [-75.885709, 45.272647], [-75.885767, 45.272693], [-75.885759, 45.272698], [-75.885716, 45.272728], [-75.885716, 45.272728], [-75.885712, 45.272731], [-75.885712, 45.272731], [-75.885708, 45.272734], [-75.885684, 45.272749], [-75.885671, 45.272739], [-75.885634, 45.272762]], [[-75.885708, 45.27273], [-75.885708, 45.272729], [-75.885708, 45.272729], [-75.885708, 45.27273]]]);
+
+    t.throws(() => simplify(poly1, 0.000001, true), /invalid polygon/);
+    t.throws(() => simplify(poly2, 0.000001, true), /invalid polygon/);
+    t.throws(() => simplify(poly3, 0.000001, true), /invalid polygon/);
+    t.throws(() => simplify(poly4, 0.000001, true), /invalid polygon/);
+    t.end();
+});
+
+test('simplify -- issue #918', t => {
+    // simplify hangs on this input #918
+    t.throws(() => simplify(multiPolygon([[[[0, 90], [0, 90], [0, 90], [0, 90], [0, 90], [0, 90], [0, 90], [0, 90], [0, 90], [0, 90], [0, 90]]]])), /invalid polygon/, 'invalid polygon');
+    t.throws(() => simplify(multiPolygon([[[[0, 1], [0, 2], [0, 3], [0, 2.5], [0, 1]]]])), /invalid polygon/, 'invalid polygon');
+    t.throws(() => simplify(multiPolygon([[[[0, 1], [0, 1], [1, 2], [0, 1]]]])), /invalid polygon/, 'invalid polygon');
+    t.end();
 });

@@ -1,64 +1,82 @@
 /**
- * Returns a cloned copy of the passed GeoJSON Object.
- * By default it duplicates only the standard GeoJSON fields of the object; if `cloneAll` is set to `true` all
- * fields of the Object, thus including 'Foreign Members', will be cloned (3-20x slower).
+ * Returns a cloned copy of the passed GeoJSON Object, including possible 'Foreign Members'.
+ * ~3-5x faster than the common JSON.parse + JSON.stringify combo method.
  *
  * @name clone
  * @param {GeoJSON} geojson GeoJSON Object
- * @param {Boolean} [cloneAll=false] clones entire GeoJSON object, using JSON.parse(JSON.stringify(geojson))
  * @returns {GeoJSON} cloned GeoJSON Object
  * @example
- * var line = turf.lineString([[-74, 40], [-78, 42], [-82, 35]]);
+ * var line = turf.lineString([[-74, 40], [-78, 42], [-82, 35]], {color: 'red'});
  *
  * var lineCloned = turf.clone(line);
  */
-module.exports = function (geojson, cloneAll) {
+module.exports = function (geojson) {
     if (!geojson) throw new Error('geojson is required');
-    if (cloneAll && typeof cloneAll !== 'boolean') throw new Error('cloneAll must be a Boolean');
 
-    // Clone entire object (3-20x slower)
-    if (cloneAll) return JSON.parse(JSON.stringify(geojson));
-
-    // Clones only GeoJSON fields
-    return clone(geojson);
+    switch (geojson.type) {
+    case 'Feature':
+        return cloneFeature(geojson);
+    case 'FeatureCollection':
+        return cloneFeatureCollection(geojson);
+    case 'Point':
+    case 'LineString':
+    case 'Polygon':
+    case 'MultiPoint':
+    case 'MultiLineString':
+    case 'MultiPolygon':
+    case 'GeometryCollection':
+        return cloneGeometry(geojson);
+    default:
+        throw new Error('unknown GeoJSON type');
+    }
 };
-
-/**
- * Clone
- *
- * @private
- * @param {GeoJSON} geojson GeoJSON Feature or Geometry
- * @returns {GeoJSON} cloned Feature
- */
-function clone(geojson) {
-    // Geometry Object
-    if (geojson.coordinates) return cloneGeometry(geojson);
-
-    // Feature
-    if (geojson.type === 'Feature') return cloneFeature(geojson);
-
-    // Feature Collection
-    if (geojson.type === 'FeatureCollection') return cloneFeatureCollection(geojson);
-
-    // Geometry Collection
-    if (geojson.type === 'GeometryCollection') return cloneGeometry(geojson);
-}
 
 /**
  * Clone Feature
  *
  * @private
- * @param {Feature<any>} feature GeoJSON Feature
+ * @param {Feature<any>} geojson GeoJSON Feature
  * @returns {Feature<any>} cloned Feature
  */
-function cloneFeature(feature) {
-    var cloned = {
-        type: 'Feature',
-        properties: feature.properties || {},
-        geometry: cloneGeometry(feature.geometry)
-    };
-    if (feature.id) cloned.id = feature.id;
-    if (feature.bbox) cloned.bbox = feature.bbox;
+function cloneFeature(geojson) {
+    var cloned = {type: 'Feature'};
+    // Preserve Foreign Members
+    Object.keys(geojson).forEach(function (key) {
+        switch (key) {
+        case 'type':
+        case 'properties':
+        case 'geometry':
+            return;
+        default:
+            cloned[key] = geojson[key];
+        }
+    });
+    // Add properties & geometry last
+    cloned.properties = cloneProperties(geojson.properties);
+    cloned.geometry = cloneGeometry(geojson.geometry);
+    return cloned;
+}
+
+/**
+ * Clone Properties
+ *
+ * @param {Object} properties GeoJSON Properties
+ * @returns {Object} cloned Properties
+ */
+function cloneProperties(properties) {
+    var cloned = {};
+    if (!properties) return cloned;
+    Object.keys(properties).forEach(function (key) {
+        var value = properties[key];
+        if (typeof value === 'object') {
+            // handle Array
+            if (value.length) cloned[key] = value.map(function (item) {
+                return item;
+            });
+            // handle Object
+            cloned[key] = cloneProperties(value);
+        } else cloned[key] = value;
+    });
     return cloned;
 }
 
@@ -70,12 +88,23 @@ function cloneFeature(feature) {
  * @returns {FeatureCollection<any>} cloned Feature Collection
  */
 function cloneFeatureCollection(geojson) {
-    return {
-        type: 'FeatureCollection',
-        features: geojson.features.map(function (feature) {
-            return cloneFeature(feature);
-        })
-    };
+    var cloned = {type: 'FeatureCollection'};
+
+    // Preserve Foreign Members
+    Object.keys(geojson).forEach(function (key) {
+        switch (key) {
+        case 'type':
+        case 'features':
+            return;
+        default:
+            cloned[key] = geojson[key];
+        }
+    });
+    // Add features
+    cloned.features = geojson.features.map(function (feature) {
+        return cloneFeature(feature);
+    });
+    return cloned;
 }
 
 /**
@@ -86,18 +115,17 @@ function cloneFeatureCollection(geojson) {
  * @returns {Geometry<any>} cloned Geometry
  */
 function cloneGeometry(geometry) {
+    var geom = {type: geometry.type};
+    if (geometry.bbox) geom.bbox = geometry.bbox;
+
     if (geometry.type === 'GeometryCollection') {
-        return {
-            type: 'GeometryCollection',
-            geometries: geometry.geometries.map(function (geom) {
-                return cloneGeometry(geom);
-            })
-        };
+        geom.geometries = geometry.geometries.map(function (geom) {
+            return cloneGeometry(geom);
+        });
+        return geom;
     }
-    return {
-        type: geometry.type,
-        coordinates: deepSlice(geometry.coordinates)
-    };
+    geom.coordinates = deepSlice(geometry.coordinates);
+    return geom;
 }
 
 /**

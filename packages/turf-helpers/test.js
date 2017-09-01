@@ -17,7 +17,8 @@ const {
     bearingToAngle,
     convertDistance,
     convertArea,
-    round
+    round,
+    isNumber
 } = require('./');
 
 test('point', t => {
@@ -393,5 +394,53 @@ test('null geometries', t => {
     t.equal(featureCollection([feature(null)]).features[0].geometry, null, 'featureCollection');
     t.equal(geometryCollection([feature(null).geometry]).geometry.geometries[0], null, 'geometryCollection');
     t.equal(geometryCollection([]).geometry.geometries.length, 0, 'geometryCollection -- empty');
+    t.end();
+});
+
+test('turf-helpers -- Handle Id & BBox properties', t => {
+    const id = 12345;
+    const bbox = [10, 30, 10, 30];
+    const pt = point([10, 30], {}, bbox, id);
+    const fc = featureCollection([pt], bbox, id);
+    t.equal(pt.id, id, 'feature id');
+    t.equal(pt.bbox, bbox, 'feature bbox');
+    t.equal(fc.id, id, 'featureCollection id');
+    t.equal(fc.bbox, bbox, 'featureCollection bbox');
+    t.throws(() => point([10, 30], {}, [0], id), 'throws invalid bbox');
+    t.throws(() => point([10, 30], {}, bbox, {invalid: 'id'}), 'throws invalid id');
+    t.throws(() => featureCollection([pt], [0], id), 'throws invalid bbox');
+    t.throws(() => featureCollection([pt], [0], {invalid: 'id'}), 'throws invalid id');
+    t.end();
+});
+
+test('turf-helpers -- isNumber', t => {
+    t.throws(() => point(['foo', 'bar']), /Coordinates must contain numbers/, 'Coordinates must contain numbers');
+    t.throws(() => lineString([['foo', 'bar'], ['hello', 'world']]), /Coordinates must contain numbers/, 'Coordinates must contain numbers');
+    t.throws(() => polygon([[['foo', 'bar'], ['hello', 'world'], ['world', 'hello'], ['foo', 'bar']]]), /Coordinates must contain numbers/, 'Coordinates must contain numbers');
+
+    // true
+    t.true(isNumber(123));
+    t.true(isNumber(1.23));
+    t.true(isNumber(-1.23));
+    t.true(isNumber(-123));
+    t.true(isNumber('123'));
+    t.true(isNumber(+'123'));
+    t.true(isNumber('1e10000'));
+    t.true(isNumber(1e10000));
+    t.true(isNumber(Infinity));
+    t.true(isNumber(-Infinity));
+
+    // false
+    t.false(isNumber(+'ciao'));
+    t.false(isNumber('foo'));
+    t.false(isNumber('10px'));
+    t.false(isNumber(NaN));
+    t.false(isNumber(undefined));
+    t.false(isNumber(null));
+    t.false(isNumber({a: 1}));
+    t.false(isNumber({}));
+    t.false(isNumber([1, 2, 3]));
+    t.false(isNumber([]));
+    t.false(isNumber(isNumber));
     t.end();
 });

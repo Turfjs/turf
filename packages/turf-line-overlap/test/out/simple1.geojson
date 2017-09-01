@@ -4,52 +4,13 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"stroke": "#00F",
-				"fill": "#00F",
-				"stroke-width": 6,
-				"fill-opacity": 0.1
+				"stroke": "#0F0",
+				"fill": "#0F0",
+				"stroke-width": 25
 			},
 			"geometry": {
 				"type": "LineString",
 				"coordinates": [
-					[
-						115,
-						-25
-					],
-					[
-						125,
-						-30
-					],
-					[
-						135,
-						-30
-					],
-					[
-						145,
-						-35
-					],
-					[
-						145,
-						-25
-					]
-				]
-			}
-		},
-		{
-			"type": "Feature",
-			"properties": {
-				"stroke": "#00F",
-				"fill": "#00F",
-				"stroke-width": 6,
-				"fill-opacity": 0.1
-			},
-			"geometry": {
-				"type": "LineString",
-				"coordinates": [
-					[
-						115,
-						-35
-					],
 					[
 						125,
 						-30
@@ -69,13 +30,16 @@
 			"type": "Feature",
 			"properties": {
 				"stroke": "#F00",
-				"fill": "#F00",
-				"stroke-width": 6,
-				"fill-opacity": 0.1
+				"stroke-width": 10,
+				"stroke-opacity": 1
 			},
 			"geometry": {
 				"type": "LineString",
 				"coordinates": [
+					[
+						115,
+						-35
+					],
 					[
 						125,
 						-30
@@ -89,14 +53,40 @@
 						-35
 					]
 				]
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {
+				"stroke": "#00F",
+				"stroke-width": 3,
+				"stroke-opacity": 1
 			},
-			"bbox": [
-				125,
-				-30,
-				135,
-				-30
-			],
-			"id": 1
+			"geometry": {
+				"type": "LineString",
+				"coordinates": [
+					[
+						115,
+						-25
+					],
+					[
+						125,
+						-30
+					],
+					[
+						135,
+						-30
+					],
+					[
+						145,
+						-35
+					],
+					[
+						145,
+						-25
+					]
+				]
+			}
 		}
 	]
 }

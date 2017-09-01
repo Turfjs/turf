@@ -52,10 +52,7 @@ test('turf-clone', t => {
 });
 
 test('turf-clone -- throws', t => {
-    const pt = point([0, 20]);
-
     t.throws(() => clone(), /geojson is required/);
-    t.throws(() => clone(pt, 'foo'), /cloneAll must be a Boolean/);
     t.end();
 });
 
@@ -87,5 +84,101 @@ test('turf-clone -- Geometry Objects', t => {
     t.deepEqual(pt.coordinates, [0, 20], 'geometry point');
     t.deepEqual(line.coordinates, [[10, 40], [0, 20]], 'geometry line');
     t.deepEqual(poly.coordinates, [[[10, 40], [0, 20], [20, 0], [10, 40]]], 'geometry polygon');
+    t.end();
+});
+
+test('turf-clone -- Preserve Foreign Members -- Feature', t => {
+    const properties = {foo: 'bar'};
+    const bbox = [0, 20, 0, 20];
+    const id = 12345;
+    const pt = point([0, 20], properties, bbox, id);
+    pt.custom = 'foreign members';
+
+    const cloned = clone(pt);
+    t.equal(cloned.id, id);
+    t.equal(cloned.custom, pt.custom);
+    t.deepEqual(cloned.bbox, bbox);
+    t.deepEqual(cloned.properties, properties);
+    t.end();
+});
+
+test('turf-clone -- Preserve Foreign Members -- FeatureCollection', t => {
+    const properties = {foo: 'bar'};
+    const bbox = [0, 20, 0, 20];
+    const id = 12345;
+    const fc = featureCollection([point([0, 20])], bbox, id);
+    fc.custom = 'foreign members';
+    fc.properties = properties;
+
+    const cloned = clone(fc);
+    t.equal(cloned.id, id);
+    t.equal(cloned.custom, fc.custom);
+    t.deepEqual(cloned.bbox, bbox);
+    t.deepEqual(cloned.properties, properties);
+    t.end();
+});
+
+
+test('turf-clone -- Preserve all properties -- Feature', t => {
+    const id = 12345;
+    const bbox = [0, 20, 0, 20];
+    const properties = {
+        foo: 'bar',
+        object: {property: 1},
+        array: [0, 1, 2],
+        number: 1,
+        boolean: true
+    };
+    const pt = point([0, 20], properties, bbox, id);
+    pt.hello = 'world'; // Foreign member
+
+    // Clone and mutate
+    const cloned = clone(pt);
+
+    // Clone properly translated all properties
+    t.equal(cloned.hello, 'world');
+    t.equal(cloned.properties.foo, 'bar');
+    t.equal(cloned.id, 12345);
+    t.deepEqual(cloned.bbox, [0, 20, 0, 20]);
+    t.equal(cloned.properties.object.property, 1);
+    t.deepEqual(cloned.properties.array, [0, 1, 2]);
+    t.equal(cloned.properties.number, 1);
+    t.equal(cloned.properties.boolean, true);
+
+    // Mutate clone properties
+    cloned['hello'] = 'universe';
+    cloned.properties['foo'] = 'foo';
+    cloned['id'] = 54321;
+    cloned['bbox'] = [30, 40, 30, 40];
+    cloned.properties.object['property'] = 2;
+    cloned.properties.array[0] = 500;
+    cloned.properties.number = -99;
+    cloned.properties.boolean = false;
+
+    // Test if original point hasn't been mutated
+    t.equal(pt.hello, 'world');
+    t.equal(pt.properties.foo, 'bar');
+    t.equal(pt.id, 12345);
+    t.deepEqual(pt.bbox, [0, 20, 0, 20]);
+    t.equal(pt.properties.object.property, 1);
+    t.deepEqual(pt.properties.array, [0, 1, 2]);
+    t.equal(pt.properties.number, 1);
+    t.equal(pt.properties.boolean, true);
+    t.end();
+});
+
+test('turf-clone -- Preserve all properties -- FeatureCollection', t => {
+    const fc = featureCollection([point([0, 20])], [0, 20, 0, 20], 12345);
+    fc.hello = 'world'; // Foreign member
+
+    // Clone and mutate
+    const cloned = clone(fc);
+    cloned['hello'] = 'universe';
+    cloned['id'] = 54321;
+    cloned['bbox'] = [30, 40, 30, 40];
+
+    t.equal(fc.hello, 'world');
+    t.equal(fc.id, 12345);
+    t.deepEqual(fc.bbox, [0, 20, 0, 20]);
     t.end();
 });

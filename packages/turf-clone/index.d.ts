@@ -5,6 +5,6 @@ type Types = GeoJSON.FeatureCollection<any> | GeoJSON.Feature<any> | GeoJSON.Geo
 /**
  * http://turfjs.org/docs/#clone
  */
-declare function clone<T extends Types>(geojson: T, cloneAll?: boolean): T;
+declare function clone<T extends Types>(geojson: T): T;
 declare namespace clone { }
 export = clone;

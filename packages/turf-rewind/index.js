@@ -1,6 +1,6 @@
 var meta = require('@turf/meta');
 var getCoords = require('@turf/invariant').getCoords;
-var isClockWise = require('turf-is-clockwise');
+var booleanClockwise = require('@turf/boolean-clockwise');
 var featureCollection = require('@turf/helpers').featureCollection;
 var geomEach = meta.geomEach;
 var featureEach = meta.featureEach;
@@ -103,7 +103,7 @@ function rewind(geojson, reverse) {
  * @returns {void} mutates coordinates
  */
 function rewindLineString(coords, reverse) {
-    if (isClockWise(coords) === reverse) coords.reverse();
+    if (booleanClockwise(coords) === reverse) coords.reverse();
 }
 
 /**
@@ -116,12 +116,12 @@ function rewindLineString(coords, reverse) {
  */
 function rewindPolygon(coords, reverse) {
     // outer ring
-    if (isClockWise(coords[0]) !== reverse) {
+    if (booleanClockwise(coords[0]) !== reverse) {
         coords[0].reverse();
     }
     // inner rings
     for (var i = 1; i < coords.length; i++) {
-        if (isClockWise(coords[i]) === reverse) {
+        if (booleanClockwise(coords[i]) === reverse) {
             coords[i].reverse();
         }
     }

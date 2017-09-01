@@ -76,7 +76,7 @@ var geojson = turf.featureCollection([
 var clustered = turf.clustersKmeans(geojson);
 
 // Iterate over each cluster
-clusterEach(clustered, 'cluster', function (cluster, clusterValue, currentIndex) {
+turf.clusterEach(clustered, 'cluster', function (cluster, clusterValue, currentIndex) {
     //= cluster
     //= clusterValue
     //= currentIndex
@@ -169,7 +169,7 @@ var total = turf.clusterReduce(clustered, 'cluster', function (previousValue) {
 
 // Create an Array of all the values retrieved from the 'cluster' property
 var values = turf.clusterReduce(clustered, 'cluster', function (previousValue, cluster, clusterValue) {
-    return previousValue.push(clusterValue);
+    return previousValue.concat(clusterValue);
 }, []);
 ```
 

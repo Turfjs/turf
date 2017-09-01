@@ -1,5 +1,5 @@
 var turfUnion = require('@turf/union');
-var turfOverlaps = require('turf-overlaps');
+var booleanOverlap = require('@turf/boolean-overlap');
 var turfbbox = require('@turf/bbox');
 var Rbush = require('rbush');
 var gju = require('geojson-utils');
@@ -83,7 +83,7 @@ module.exports = function (featureCollection, propertyName) {
                 }
             }
 
-            var overlapCheck = turfOverlaps(polygon, matchFeature);
+            var overlapCheck = booleanOverlap(polygon, matchFeature);
 
             if (!overlapCheck) {
                 var polyClone = JSON.stringify(polygon);
