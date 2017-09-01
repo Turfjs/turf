@@ -4,7 +4,7 @@ const path = require('path');
 const load = require('load-json-file');
 const write = require('write-json-file');
 const truncate = require('@turf/truncate');
-const {polygon} = require('@turf/helpers');
+const {polygon, multiPolygon} = require('@turf/helpers');
 const simplify = require('./');
 
 const directories = {
@@ -70,5 +70,13 @@ test('simplify -- issue #555', t => {
     t.throws(() => simplify(poly2, 0.000001, true), /invalid polygon/);
     t.throws(() => simplify(poly3, 0.000001, true), /invalid polygon/);
     t.throws(() => simplify(poly4, 0.000001, true), /invalid polygon/);
+    t.end();
+});
+
+test('simplify -- issue #918', t => {
+    // simplify hangs on this input #918
+    t.throws(() => simplify(multiPolygon([[[[0, 90], [0, 90], [0, 90], [0, 90], [0, 90], [0, 90], [0, 90], [0, 90], [0, 90], [0, 90], [0, 90]]]])), /invalid polygon/, 'invalid polygon');
+    t.throws(() => simplify(multiPolygon([[[[0, 1], [0, 2], [0, 3], [0, 2.5], [0, 1]]]])), /invalid polygon/, 'invalid polygon');
+    t.throws(() => simplify(multiPolygon([[[[0, 1], [0, 1], [1, 2], [0, 1]]]])), /invalid polygon/, 'invalid polygon');
     t.end();
 });

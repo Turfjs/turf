@@ -119,6 +119,7 @@ var turf = {
     degrees2radians: helpers.degrees2radians,
     radians2degrees: helpers.radians2degrees,
     convertDistance: helpers.convertDistance,
+    isNumber: helpers.isNumber, // 4.7.0
     round: helpers.round,
     convertArea: helpers.convertArea,
     getCoord: invariant.getCoord,
