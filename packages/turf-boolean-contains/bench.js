@@ -8,60 +8,64 @@ const contains = require('./');
 /**
  * Benchmark Results
  *
- * LineIsNotContainedByLine: 0.632ms
- * LineIsNotContainedByPolygon: 0.280ms
- * LineIsNotContainedByPolygonBoundary: 0.649ms
- * MultiPointsIsNotContainedByLine: 0.243ms
- * MultiPointsOnLineEndsIsNotContainedByLine: 0.492ms
- * MultiPointIsNotContainedByMultiPoint: 0.160ms
- * MultiPointAllOnBoundaryIsNotContainedByPolygon: 0.284ms
- * MultiPointIsNotContainedByPolygon: 0.034ms
- * PointIsNotContainedByLine: 0.019ms
- * PointIsNotContainedByLineBecauseOnEnd: 0.017ms
- * PointOnEndIsContainedByLinestring: 0.015ms
- * PointIsNotContainedBYMultiPoint: 0.133ms
- * PointIsNotContainedByPolygon: 0.021ms
- * PointOnPolygonBoundary: 0.025ms
- * Polygon-Polygon: 0.118ms
- * LineIsContainedByLine: 0.030ms
- * LinesExactSame: 0.057ms
- * LineIsContainedByPolygon: 0.083ms
- * LineIsContainedByPolygonWithNoInternalVertices: 0.055ms
- * MultipointsIsContainedByLine: 0.019ms
- * MultiPointsContainedByMultiPoints: 0.022ms
- * MultiPointIsContainedByPolygonBoundary: 0.032ms
- * PointIsContainedByLine: 0.011ms
+ * LineIsNotContainedByLine: 0.697ms
+ * LineIsNotContainedByPolygon: 0.123ms
+ * LineIsNotContainedByPolygonBoundary: 0.394ms
+ * MultiPointsIsNotContainedByLine: 0.140ms
+ * MultiPointsOnLineEndsIsNotContainedByLine: 0.013ms
+ * MultiPointIsNotContainedByMultiPoint: 0.131ms
+ * MultiPointAllOnBoundaryIsNotContainedByPolygon: 0.068ms
+ * MultiPointIsNotContainedByPolygon: 0.009ms
+ * PointIsNotContainedByLine: 0.006ms
+ * PointIsNotContainedByLineBecauseOnEnd: 0.009ms
+ * PointOnEndIsContainedByLinestring: 0.007ms
+ * PointIsNotContainedBYMultiPoint: 0.171ms
+ * PointIsNotContainedByPolygon: 0.022ms
+ * PointOnPolygonBoundary: 0.026ms
+ * Polygon-Polygon: 0.274ms
+ * Polygon-Polygon2: 0.076ms
+ * LineIsContainedByLine: 0.013ms
+ * LinesExactlySame: 0.016ms
+ * LineIsContainedByPolygon: 0.027ms
+ * LineIsContainedByPolygonWithNoInternalVertices: 0.029ms
+ * MultipointsIsContainedByLine: 0.364ms
+ * MultiPointsContainedByMultiPoints: 0.011ms
+ * MultiPointsEqual: 0.008ms
+ * MultiPointIsContainedByPolygonBoundary: 0.022ms
+ * PointIsContainedByLine: 0.617ms
  * PointIsContainedByMultiPoint: 0.010ms
- * PointInsidePolygonBoundary: 0.018ms
+ * PointInsidePolygonBoundary: 0.013ms
+ * PolygonExactSameShape: 0.047ms
  * PolygonIsContainedByPolygon: 0.012ms
- * PolygonsExactSameShape: 0.012ms
- * LineIsNotContainedByLine x 4,398,295 ops/sec ±1.43% (84 runs sampled)
- * LineIsNotContainedByPolygon x 1,916,541 ops/sec ±3.03% (84 runs sampled)
- * LineIsNotContainedByPolygonBoundary x 721,394 ops/sec ±3.84% (77 runs sampled)
- * MultiPointAllOnBoundaryIsNotContainedByPolygon x 2,190,982 ops/sec ±2.56% (89 runs sampled)
- * MultiPointIsNotContainedByMultiPoint x 7,368,141 ops/sec ±1.02% (90 runs sampled)
- * MultiPointIsNotContainedByPolygon x 2,150,014 ops/sec ±0.92% (88 runs sampled)
- * MultiPointsIsNotContainedByLine x 4,678,701 ops/sec ±0.88% (84 runs sampled)
- * MultiPointsOnLineEndsIsNotContainedByLine x 3,713,593 ops/sec ±5.79% (86 runs sampled)
- * PointIsNotContainedByLine x 6,149,162 ops/sec ±5.08% (82 runs sampled)
- * PointIsNotContainedByLineBecauseOnEnd x 6,491,086 ops/sec ±0.79% (89 runs sampled)
- * PointIsNotContainedBYMultiPoint x 10,046,634 ops/sec ±0.55% (92 runs sampled)
- * PointIsNotContainedByPolygon x 2,310,881 ops/sec ±1.45% (88 runs sampled)
- * PointOnEndIsContainedByLinestring x 6,252,890 ops/sec ±2.74% (79 runs sampled)
- * PointOnPolygonBoundary x 2,607,654 ops/sec ±0.88% (90 runs sampled)
- * PolygonIsNotContainedByPolygon x 1,706,009 ops/sec ±2.14% (87 runs sampled)
- * LineIsContainedByLine x 4,310,811 ops/sec ±1.42% (89 runs sampled)
- * LineIsContainedByPolygon x 1,101,408 ops/sec ±3.09% (89 runs sampled)
- * LineIsContainedByPolygonWithNoInternalVertices x 1,153,415 ops/sec ±1.00% (88 runs sampled)
- * LinesExactSame x 3,881,843 ops/sec ±3.83% (91 runs sampled)
- * MultiPointIsContainedByPolygonBoundary x 1,262,263 ops/sec ±2.75% (89 runs sampled)
- * MultiPointsContainedByMultiPoints x 7,074,094 ops/sec ±3.32% (92 runs sampled)
- * MultipointsIsContainedByLine x 4,909,852 ops/sec ±2.85% (92 runs sampled)
- * PointInsidePolygonBoundary x 2,323,817 ops/sec ±3.11% (88 runs sampled)
- * PointIsContainedByLine x 7,894,080 ops/sec ±3.41% (89 runs sampled)
- * PointIsContainedByMultiPoint x 11,832,775 ops/sec ±2.13% (89 runs sampled)
- * PolygonIsContainedByPolygon x 1,907,608 ops/sec ±5.67% (87 runs sampled)
- * PolygonsExactSameShape x 1,578,745 ops/sec ±7.73% (76 runs sampled)
+ * LineIsNotContainedByLine x 1,589,100 ops/sec ±0.33% (96 runs sampled)
+ * LineIsNotContainedByPolygon x 2,051,985 ops/sec ±2.50% (86 runs sampled)
+ * LineIsNotContainedByPolygonBoundary x 845,089 ops/sec ±0.58% (89 runs sampled)
+ * MultiPointsIsNotContainedByLine x 2,149,963 ops/sec ±0.17% (94 runs sampled)
+ * MultiPointsOnLineEndsIsNotContainedByLine x 2,037,412 ops/sec ±0.22% (92 runs sampled)
+ * MultiPointIsNotContainedByMultiPoint x 7,778,981 ops/sec ±0.25% (95 runs sampled)
+ * MultiPointAllOnBoundaryIsNotContainedByPolygon x 2,507,225 ops/sec ±0.72% (94 runs sampled)
+ * MultiPointIsNotContainedByPolygon x 2,510,635 ops/sec ±0.63% (97 runs sampled)
+ * PointIsNotContainedByLine x 5,661,981 ops/sec ±0.17% (94 runs sampled)
+ * PointIsNotContainedByLineBecauseOnEnd x 5,126,586 ops/sec ±0.27% (90 runs sampled)
+ * PointOnEndIsContainedByLinestring x 5,263,534 ops/sec ±0.24% (94 runs sampled)
+ * PointIsNotContainedBYMultiPoint x 11,119,884 ops/sec ±1.38% (92 runs sampled)
+ * PointIsNotContainedByPolygon x 2,490,072 ops/sec ±0.63% (96 runs sampled)
+ * PointOnPolygonBoundary x 2,780,452 ops/sec ±0.61% (97 runs sampled)
+ * Polygon-Polygon x 1,773,762 ops/sec ±1.75% (90 runs sampled)
+ * Polygon-Polygon2 x 759,058 ops/sec ±0.95% (88 runs sampled)
+ * LineIsContainedByLine x 1,608,626 ops/sec ±0.61% (93 runs sampled)
+ * LinesExactlySame x 1,217,588 ops/sec ±0.52% (96 runs sampled)
+ * LineIsContainedByPolygon x 1,109,333 ops/sec ±1.05% (90 runs sampled)
+ * LineIsContainedByPolygonWithNoInternalVertices x 1,116,300 ops/sec ±0.94% (90 runs sampled)
+ * MultipointsIsContainedByLine x 2,379,783 ops/sec ±0.18% (96 runs sampled)
+ * MultiPointsContainedByMultiPoints x 7,758,259 ops/sec ±0.29% (93 runs sampled)
+ * MultiPointsEqual x 7,308,718 ops/sec ±1.07% (91 runs sampled)
+ * MultiPointIsContainedByPolygonBoundary x 1,316,660 ops/sec ±0.96% (95 runs sampled)
+ * PointIsContainedByLine x 6,499,130 ops/sec ±0.17% (93 runs sampled)
+ * PointIsContainedByMultiPoint x 11,266,710 ops/sec ±1.84% (91 runs sampled)
+ * PointInsidePolygonBoundary x 2,450,588 ops/sec ±0.68% (93 runs sampled)
+ * PolygonExactSameShape x 491,320 ops/sec ±0.84% (91 runs sampled)
+ * PolygonIsContainedByPolygon x 553,878 ops/sec ±0.82% (93 runs sampled)
  */
 const suite = new Benchmark.Suite('turf-boolean-contains');
 glob.sync(path.join(__dirname, 'test', '**', '*.geojson')).forEach(filepath => {
