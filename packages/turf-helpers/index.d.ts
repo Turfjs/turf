@@ -132,3 +132,8 @@ export function convertDistance(distance: number, originalUnit: Units, finalUnit
  * http://turfjs.org/docs/#convertarea
  */
 export function convertArea(area: number, originalUnit?: Units, finalUnit?: Units): number
+
+/**
+ * http://turfjs.org/docs/#isnumber
+ */
+export function isNumber(num: any): boolean

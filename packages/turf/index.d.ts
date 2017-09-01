@@ -17,7 +17,8 @@ import {
     degrees2radians,
     round,
     convertDistance,
-    convertArea} from '@turf/helpers';
+    convertArea,
+    isNumber} from '@turf/helpers';
 import {
     getGeom,
     getGeomType,
@@ -243,5 +244,6 @@ export {
     clone,
     segmentEach,
     segmentReduce,
-    cleanCoords
+    cleanCoords,
+    isNumber
 };
