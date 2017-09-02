@@ -4,7 +4,7 @@ const path = require('path');
 const load = require('load-json-file');
 const write = require('write-json-file');
 const circle = require('@turf/circle');
-const {point, lineString} = require('@turf/helpers');
+const {point, lineString, round} = require('@turf/helpers');
 const pointToLineDistance = require('./');
 
 const directories = {
@@ -33,7 +33,7 @@ test('turf-point-to-line-distance', t => {
 
         if (process.env.REGEN) write.sync(directories.out + filename, results);
         const expected = load.sync(directories.out + 'distances.json');
-        t.deepEqual(distance, expected[name], name);
+        t.deepEqual(round(distance, 14), round(expected[name], 14), name);
     }
     t.end();
 });
