@@ -60,6 +60,7 @@ function cloneFeature(geojson) {
 /**
  * Clone Properties
  *
+ * @private
  * @param {Object} properties GeoJSON Properties
  * @returns {Object} cloned Properties
  */

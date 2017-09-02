@@ -1,7 +1,7 @@
 {
-  "name": "@turf/to-wgs84",
+  "name": "@turf/projection",
   "version": "4.0.0",
-  "description": "turf to-wgs84 module",
+  "description": "turf projection module",
   "main": "index.js",
   "types": "index.d.ts",
   "files": [
@@ -18,11 +18,22 @@
   },
   "keywords": [
     "turf",
-    "to-wgs84"
+    "projection",
+    "to-mercator",
+    "to-wgs84",
+    "EPSG:4326",
+    "WGS84",
+    "mercator",
+    "web-mercator",
+    "EPSG:3857",
+    "EPSG:3785",
+    "900913",
+    "EPSG:900913",
+    "EPSG:102113"
   ],
   "author": "Turf Authors",
   "contributors": [
-    "YOUR NAME <@GITHUB NAME>"
+    "Stefano Borghi <@stebogit>"
   ],
   "license": "MIT",
   "bugs": {
@@ -30,10 +41,16 @@
   },
   "homepage": "https://github.com/Turfjs/turf",
   "devDependencies": {
+    "@turf/helpers": "^4.6.0",
+    "@turf/truncate": "^4.6.0",
     "benchmark": "^2.1.4",
     "write-json-file": "^2.2.0",
     "load-json-file": "^2.0.0",
+    "proj4": "2.4.4",
     "tape": "^4.6.3"
   },
-  "dependencies": {}
+  "dependencies": {
+    "@turf/clone": "^4.6.1",
+    "@turf/meta": "^4.6.0"
+  }
 }
