@@ -1,10 +1,13 @@
 /// <reference types="geojson" />
 
-type Feature = GeoJSON.Feature<any> | GeoJSON.GeometryObject;
+type Types = GeoJSON.FeatureCollection<any> | GeoJSON.Feature<any> | GeoJSON.GeometryObject | GeoJSON.GeometryCollection;
 
 /**
- * http://turfjs.org/docs/#tomercator
+ * http://turfjs.org/docs/#toMercator
  */
-declare function toMercator(feature1: Feature, feature2: Feature): boolean;
-declare namespace toMercator { }
-export = toMercator;
+export function toMercator<T extends Types>(geojson: T, mutate?: boolean): T;
+
+/**
+ * http://turfjs.org/docs/#toWgs84
+ */
+export function toWgs84<T extends Types>(geojson: T, mutate?: boolean): T;
