@@ -82,11 +82,17 @@ function convertToMercator(lonLat) {
         MAXEXTENT = 20037508.342789244;
 
     // compensate for 180th meridian issue
+    // var longitude = (lonLat[0] > 180 || lonLat[0] < -180) ? lonLat[0] %= 180 : lonLat[0];
     // if (lonLat[0] > 180 || lonLat[0] < -180) lonLat[0] %= 180;
     var xy = [
+        // A * longitude * D2R,
         A * lonLat[0] * D2R,
         A * Math.log(Math.tan((Math.PI * 0.25) + (0.5 * lonLat[1] * D2R)))
     ];
+    // compensate for 180th meridian issue
+    // if (lonLat[0] > 180) xy[0] += A * 180 * D2R;
+    // if (lonLat[0] < -180) xy[0] -= A * 180 * D2R;
+
     // if xy value is beyond maxextent (e.g. poles), return maxextent
     if (xy[0] > MAXEXTENT) xy[0] = MAXEXTENT;
     if (xy[0] < -MAXEXTENT) xy[0] = -MAXEXTENT;
