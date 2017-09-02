@@ -33,7 +33,7 @@ test('turf-point-to-line-distance', t => {
 
         if (process.env.REGEN) write.sync(directories.out + filename, results);
         const expected = load.sync(directories.out + 'distances.json');
-        t.deepEqual(round(distance, 14), round(expected[name], 14), name);
+        t.deepEqual(round(distance, 10), round(expected[name], 10), name);
     }
     t.end();
 });
