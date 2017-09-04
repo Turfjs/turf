@@ -937,5 +937,5 @@ module.exports = {
     segmentEach: segmentEach,
     segmentReduce: segmentReduce,
     lineEach: lineEach,
-    lineReduce: lineReduce,
+    lineReduce: lineReduce
 };
