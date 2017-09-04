@@ -1,6 +1,5 @@
-var meta = require('@turf/meta');
+var coordEach = require('@turf/meta').coordEach;
 var clone = require('@turf/clone');
-var coordEach = meta.coordEach;
 
 module.exports = {
     toMercator: toMercator,

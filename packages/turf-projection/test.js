@@ -12,7 +12,8 @@ const {toMercator, toWgs84} = require('./');
 
 const directories = {
     mercator: path.join(__dirname, 'test', 'mercator') + path.sep,
-    wgs84: path.join(__dirname, 'test', 'wgs84') + path.sep
+    wgs84: path.join(__dirname, 'test', 'wgs84') + path.sep,
+    out: path.join(__dirname, 'test', 'out') + path.sep
 };
 
 
@@ -33,10 +34,11 @@ test('to-mercator', t => {
             coord[0] = newCoord[0];
             coord[1] = newCoord[1];
         });
-        const result = toMercator(geojson);
+        const results = toMercator(geojson);
 
-        if (process.env.REGEN) write.sync(directories.out + filename, results);
-        t.deepEqual(truncate(result, 7), truncate(expected, 7), name);
+        if (process.env.REGEN) write.sync(directories.out + 'mercator-' + filename, results);
+        t.deepEqual(truncate(results, 7), truncate(expected, 7), name);
+        t.deepEqual(results, load.sync(directories.out + 'mercator-' + filename));
     }
     t.end();
 });
@@ -59,11 +61,12 @@ test('to-wgs84', t => {
             coord[0] = newCoord[0];
             coord[1] = newCoord[1];
         });
-        const result = toWgs84(geojson);
+        const results = toWgs84(geojson);
 
-        if (process.env.REGEN) write.sync(directories.out + filename, results);
+        if (process.env.REGEN) write.sync(directories.out + 'wgs84-' + filename, results);
         // double truncate to avoid rounding error
-        t.deepEqual(truncate(truncate(result, 10), 7), truncate(truncate(expected, 10), 7), name);
+        t.deepEqual(truncate(truncate(results, 10), 7), truncate(truncate(expected, 10), 7), name);
+        t.deepEqual(results, load.sync(directories.out + 'wgs84-' + filename));
     }
     t.end();
 });
