@@ -1,18 +1,6 @@
 const test = require('tape');
-const {point, lineString, feature, polygon, multiPolygon, multiLineString, featureCollection} = require('@turf/helpers');
+const {point, lineString, feature, polygon, multiPoint, multiPolygon, multiLineString, featureCollection} = require('@turf/helpers');
 const meta = require('./');
-const {
-    featureEach,
-    featureReduce,
-    lineEach,
-    lineReduce,
-    flattenEach,
-    flattenReduce,
-    geomEach,
-    geomReduce,
-    coordEach,
-    coordReduce
-} = require('./');
 
 const pointGeometry = {
     type: 'Point',
@@ -429,16 +417,18 @@ test('null geometries', t => {
     ]);
 
     // Each operations
-    featureEach(fc, feature => t.equal(feature.geometry, null, 'featureEach'));
-    geomEach(fc, geometry => t.equal(geometry, null), 'geomEach');
-    flattenEach(fc, feature => t.equal(feature.geometry, null, 'flattenEach'));
-    coordEach(fc, () => t.fail('no coordinates should be found'));
+    meta.featureEach(fc, feature => t.equal(feature.geometry, null, 'featureEach'));
+    meta.geomEach(fc, geometry => t.equal(geometry, null), 'geomEach');
+    meta.flattenEach(fc, feature => t.equal(feature.geometry, null, 'flattenEach'));
+    meta.coordEach(fc, () => t.fail('no coordinates should be found'));
 
     // Reduce operations
-    t.equal(featureReduce(fc, prev => prev += 1, 0), 2, 'featureReduce');
-    t.equal(geomReduce(fc, prev => prev += 1, 0), 2, 'geomReduce');
-    t.equal(flattenReduce(fc, prev => prev += 1, 0), 2, 'flattenReduce');
-    t.equal(coordReduce(fc, prev => prev += 1, 0), 0, 'coordReduce');
+    /* eslint-disable no-return-assign */
+    t.equal(meta.featureReduce(fc, prev => prev += 1, 0), 2, 'featureReduce');
+    t.equal(meta.geomReduce(fc, prev => prev += 1, 0), 2, 'geomReduce');
+    t.equal(meta.flattenReduce(fc, prev => prev += 1, 0), 2, 'flattenReduce');
+    t.equal(meta.coordReduce(fc, prev => prev += 1, 0), 0, 'coordReduce');
+    /* eslint-enable no-return-assign */
     t.end();
 });
 
@@ -613,7 +603,7 @@ test('lineEach#multiLineString', t => {
 
 test('lineEach#multiPolygon', t => {
     const mp = multiPolygon([
-        [[[12,48],[2,41],[24,38],[12,48]], [[9,44],[13,41],[13,45],[9,44]]],
+        [[[12, 48], [2, 41], [24, 38], [12, 48]], [[9, 44], [13, 41], [13, 45], [9, 44]]],
         [[[5, 5], [0, 0], [2, 2], [4, 4], [5, 5]]]
     ]);
     const index = [];
@@ -651,13 +641,12 @@ test('lineReduce#multiLineString', t => {
 });
 
 test('lineReduce#multiPolygon', t => {
-const mp = multiPolygon([
-        [[[12,48],[2,41],[24,38],[12,48]], [[9,44],[13,41],[13,45],[9,44]]],
+    const mp = multiPolygon([
+        [[[12, 48], [2, 41], [24, 38], [12, 48]],  [[9, 44], [13, 41], [13, 45], [9, 44]]],
         [[[5, 5], [0, 0], [2, 2], [4, 4], [5, 5]]]
     ]);
     const index = [];
     const subIndex = [];
-    const lineSubIndex = [];
 
     const total = meta.lineReduce(mp, (previousValue, line, lineIndex, lineSubIndex) => {
         index.push(lineIndex);
@@ -669,5 +658,15 @@ const mp = multiPolygon([
     t.equal(total, 6, 'total');
     t.deepEqual(index, [0, 1, 0], 'index');
     t.deepEqual(subIndex, [0, 0, 1], 'subIndex');
+    t.end();
+});
+
+test('lineEach & lineReduce -- throws', t => {
+    const pt = point([0, 0]);
+    const multiPt = multiPoint([[0, 0], [10, 10]]);
+    t.throws(() => meta.lineEach(pt, () => {}), /geometry not supported/, 'geometry not supported');
+    t.throws(() => meta.lineEach(multiPt, () => {}), /geometry not supported/, 'geometry not supported');
+    t.throws(() => meta.lineReduce(pt, () => {}), /geometry not supported/, 'geometry not supported');
+    t.throws(() => meta.lineReduce(multiPt, () => {}), /geometry not supported/, 'geometry not supported');
     t.end();
 });

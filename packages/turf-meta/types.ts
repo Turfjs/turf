@@ -74,7 +74,7 @@ function geomReduce() {
     meta.geomReduce(poly, (previous, geom) => 1 + 1, 0)
     meta.geomReduce(features, (previous, geom) => geom)
     meta.geomReduce(poly, (previous, geom, index, props) => geom)
-    meta.geomReduce(geomCollection, (previous, geom, index, props) => geom)
+    // meta.geomReduce(geomCollection, (previous, geom, index, props) => geom)
 }
 
 function geomEach() {
@@ -120,6 +120,7 @@ function segmentEach() {
 }
 
 function lineEach() {
+    // meta.lineEach(pt, () => {}) // Argument of type 'Feature<Point>' is not assignable to parameter of type 'LineString | Polygon | MultiPolygon | MultiLineString | Feature<Lines>'.
     const value: void = meta.lineEach(line, () => {})
     meta.lineEach(line, currentLine => currentLine)
     meta.lineEach(multiLine, (currentLine, currentIndex) => currentLine)
@@ -129,6 +130,7 @@ function lineEach() {
 }
 
 function lineReduce() {
+    // meta.lineReduce(pt, () => {}) // Argument of type 'Feature<Point>' is not assignable to parameter of type 'LineString | Polygon | MultiPolygon | MultiLineString | Feature<Lines>'.
     const value: number = meta.lineReduce(line, () => 1 + 1)
     meta.lineReduce(line, previousValue => previousValue)
     meta.lineReduce(line, (previousValue, currentLine) => currentLine)
