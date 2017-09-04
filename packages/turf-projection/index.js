@@ -81,17 +81,13 @@ function convertToMercator(lonLat) {
         A = 6378137.0,
         MAXEXTENT = 20037508.342789244;
 
-    // compensate for 180th meridian issue
-    // var longitude = (lonLat[0] > 180 || lonLat[0] < -180) ? lonLat[0] %= 180 : lonLat[0];
-    // if (lonLat[0] > 180 || lonLat[0] < -180) lonLat[0] %= 180;
+    // compensate longitudes passing the 180th meridian
+    // from https://github.com/proj4js/proj4js/blob/master/lib/common/adjust_lon.js
+    var adjusted = (Math.abs(lonLat[0]) <= 180) ? lonLat[0] : (lonLat[0] - (sign(lonLat[0]) * 360));
     var xy = [
-        // A * longitude * D2R,
-        A * lonLat[0] * D2R,
+        A * adjusted * D2R,
         A * Math.log(Math.tan((Math.PI * 0.25) + (0.5 * lonLat[1] * D2R)))
     ];
-    // compensate for 180th meridian issue
-    // if (lonLat[0] > 180) xy[0] += A * 180 * D2R;
-    // if (lonLat[0] < -180) xy[0] -= A * 180 * D2R;
 
     // if xy value is beyond maxextent (e.g. poles), return maxextent
     if (xy[0] > MAXEXTENT) xy[0] = MAXEXTENT;
@@ -119,4 +115,15 @@ function convertToWgs84(xy) {
         (xy[0] * R2D / A),
         ((Math.PI * 0.5) - 2.0 * Math.atan(Math.exp(-xy[1] / A))) * R2D
     ];
+}
+
+/**
+ * Returns the sign of the input, or zero
+ *
+ * @private
+ * @param {number} x input
+ * @returns {number} -1|0|1 output
+ */
+function sign(x) {
+    return (x < 0) ? -1 : (x > 0) ? 1 : 0;
 }

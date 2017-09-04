@@ -24,10 +24,11 @@ const fromWgs84 = fs.readdirSync(directories.wgs84).map(filename => {
     };
 });
 
+
 test('to-mercator', t => {
     for (const {filename, name, geojson}  of fromWgs84) {
-        var compare = clone(geojson);
-        coordEach(compare, function (coord) {
+        var expected = clone(geojson);
+        coordEach(expected, function (coord) {
             var newCoord = proj4('WGS84', 'EPSG:900913', coord);
             coord[0] = newCoord[0];
             coord[1] = newCoord[1];
@@ -35,7 +36,7 @@ test('to-mercator', t => {
         const result = toMercator(geojson);
 
         if (process.env.REGEN) write.sync(directories.out + filename, results);
-        t.deepEqual(truncate(result, 7), truncate(compare, 7), name);
+        t.deepEqual(truncate(result, 7), truncate(expected, 7), name);
     }
     t.end();
 });
@@ -52,8 +53,8 @@ const fromMercator = fs.readdirSync(directories.mercator).map(filename => {
 
 test('to-wgs84', t => {
     for (const {filename, name, geojson}  of fromMercator) {
-        var compare = clone(geojson);
-        coordEach(compare, function (coord) {
+        var expected = clone(geojson);
+        coordEach(expected, function (coord) {
             var newCoord = proj4('EPSG:900913', 'WGS84', coord);
             coord[0] = newCoord[0];
             coord[1] = newCoord[1];
@@ -61,7 +62,8 @@ test('to-wgs84', t => {
         const result = toWgs84(geojson);
 
         if (process.env.REGEN) write.sync(directories.out + filename, results);
-        t.deepEqual(truncate(result, 7), truncate(compare, 7), name);
+        // double truncate to avoid rounding error
+        t.deepEqual(truncate(truncate(result, 10), 7), truncate(truncate(expected, 10), 7), name);
     }
     t.end();
 });
