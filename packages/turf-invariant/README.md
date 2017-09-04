@@ -135,7 +135,7 @@ var point = {
     "coordinates": [110, 40]
   }
 }
-var geom = turf.getGeom(point)
+var geom = turf.getGeomType(point)
 //="Point"
 ```
 
