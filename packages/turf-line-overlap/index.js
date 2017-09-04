@@ -57,19 +57,17 @@ module.exports = function (line1, line2, tolerance) {
                 // Match segments which don't share nodes (Issue #901)
                 } else if (
                     (tolerance === 0) ?
-                    booleanPointOnLine(coordsSegment[0], match) &&
-                    booleanPointOnLine(coordsSegment[1], match) :
-                    pointOnLine(match, coordsSegment[0]).properties.dist <= tolerance &&
-                    pointOnLine(match, coordsSegment[1]).properties.dist <= tolerance) {
+                        booleanPointOnLine(coordsSegment[0], match) && booleanPointOnLine(coordsSegment[1], match) :
+                        pointOnLine(match, coordsSegment[0]).properties.dist <= tolerance &&
+                        pointOnLine(match, coordsSegment[1]).properties.dist <= tolerance) {
                     doesOverlaps = true;
                     if (overlapSegment) overlapSegment = concatSegment(overlapSegment, segment);
                     else overlapSegment = segment;
                 } else if (
                     (tolerance === 0) ?
-                    booleanPointOnLine(coordsMatch[0], segment) &&
-                    booleanPointOnLine(coordsMatch[1], segment) :
-                    pointOnLine(segment, coordsMatch[0]).properties.dist <= tolerance &&
-                    pointOnLine(segment, coordsMatch[1]).properties.dist <= tolerance) {
+                        booleanPointOnLine(coordsMatch[0], segment) && booleanPointOnLine(coordsMatch[1], segment) :
+                        pointOnLine(segment, coordsMatch[0]).properties.dist <= tolerance &&
+                        pointOnLine(segment, coordsMatch[1]).properties.dist <= tolerance) {
                     // Do not define (doesOverlap = true) since more matches can occur within the same segment
                     // doesOverlaps = true;
                     if (overlapSegment) overlapSegment = concatSegment(overlapSegment, match);

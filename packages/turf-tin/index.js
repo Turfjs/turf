@@ -111,21 +111,21 @@ function dedup(edges) {
         a, b, i, m, n;
 
     outer:
-  while (j) {
-      b = edges[--j];
-      a = edges[--j];
-      i = j;
-      while (i) {
-          n = edges[--i];
-          m = edges[--i];
-          if ((a === m && b === n) || (a === n && b === m)) {
-              edges.splice(j, 2);
-              edges.splice(i, 2);
-              j -= 2;
-              continue outer;
-          }
-      }
-  }
+    while (j) {
+        b = edges[--j];
+        a = edges[--j];
+        i = j;
+        while (i) {
+            n = edges[--i];
+            m = edges[--i];
+            if ((a === m && b === n) || (a === n && b === m)) {
+                edges.splice(j, 2);
+                edges.splice(i, 2);
+                j -= 2;
+                continue outer;
+            }
+        }
+    }
 }
 
 function triangulate(vertices) {
@@ -186,7 +186,7 @@ function triangulate(vertices) {
                 y: ymid - dmax,
                 __sentinel: true
             }
-        )],
+            )],
         closed = [],
         edges = [],
         j;
@@ -217,10 +217,10 @@ function triangulate(vertices) {
 
             // Remove the triangle and add it's edges to the edge list.
             edges.push(
-        open[j].a, open[j].b,
-        open[j].b, open[j].c,
-        open[j].c, open[j].a
-      );
+                open[j].a, open[j].b,
+                open[j].b, open[j].c,
+                open[j].c, open[j].a
+            );
             open.splice(j, 1);
         }
 
@@ -251,8 +251,8 @@ function triangulate(vertices) {
     i = closed.length;
     while (i--)
         if (closed[i].a.__sentinel ||
-      closed[i].b.__sentinel ||
-      closed[i].c.__sentinel)
+            closed[i].b.__sentinel ||
+            closed[i].c.__sentinel)
             closed.splice(i, 1);
 
     return closed;
