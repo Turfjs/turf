@@ -129,7 +129,7 @@ import * as booleanClockwise from '@turf/boolean-clockwise';
 import * as booleanEqual from '@turf/boolean-equal';
 import * as clone from '@turf/clone';
 import * as cleanCoords from '@turf/clean-coords';
-import * as pointToLineDistance from '@turf/point-to-line-distance';
+import * as pointToLineDistance from '@turf/point-to-line-distance'; // v4.7.0
 export {
     isolines,
     convex,
@@ -253,7 +253,7 @@ export {
     segmentReduce,
     cleanCoords,
     isNumber,
-    pointToLineDistance,
+    pointToLineDistance, // v4.7.0
     helpers,
     meta,
     invariant,
