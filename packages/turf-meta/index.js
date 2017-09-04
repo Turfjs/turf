@@ -880,10 +880,12 @@ function lineString(coordinates, properties) {
 function lineEach(geojson, callback) {
     // validation
     if (!geojson) throw new Error('geojson is required');
-    var coordinates = geojson.geometry.coordinates || geojson.coordinates;
-    if (!coordinates) throw new Error('invalid geojson');
-    var type = geojson.geometry.type || geojson.type;
+    var type = geojson.geometry ? geojson.geometry.type : geojson.type;
     if (!type) throw new Error('invalid geojson');
+    if (type === 'FeatureCollection') throw new Error('FeatureCollection is not supported');
+    if (type === 'GeometryCollection') throw new Error('GeometryCollection is not supported');
+    var coordinates = geojson.geometry ? geojson.geometry.coordinates : geojson.coordinates;
+    if (!coordinates) throw new Error('geojson must contain coordinates');
 
     switch (type) {
     case 'LineString':
@@ -905,7 +907,7 @@ function lineEach(geojson, callback) {
         }
         return;
     default:
-        throw new Error('geometry not supported');
+        throw new Error(type + ' geometry not supported');
     }
 }
 

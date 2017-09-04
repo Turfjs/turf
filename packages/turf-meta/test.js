@@ -664,9 +664,12 @@ test('lineReduce#multiPolygon', t => {
 test('lineEach & lineReduce -- throws', t => {
     const pt = point([0, 0]);
     const multiPt = multiPoint([[0, 0], [10, 10]]);
-    t.throws(() => meta.lineEach(pt, () => {}), /geometry not supported/, 'geometry not supported');
-    t.throws(() => meta.lineEach(multiPt, () => {}), /geometry not supported/, 'geometry not supported');
-    t.throws(() => meta.lineReduce(pt, () => {}), /geometry not supported/, 'geometry not supported');
-    t.throws(() => meta.lineReduce(multiPt, () => {}), /geometry not supported/, 'geometry not supported');
+    t.throws(() => meta.lineEach(pt, () => {}), /Point geometry not supported/, 'Point geometry not supported');
+    t.throws(() => meta.lineEach(multiPt, () => {}), /MultiPoint geometry not supported/, 'MultiPoint geometry not supported');
+    t.throws(() => meta.lineReduce(pt, () => {}), /Point geometry not supported/, 'Point geometry not supported');
+    t.throws(() => meta.lineReduce(multiPt, () => {}), /MultiPoint geometry not supported/, 'MultiPoint geometry not supported');
+    t.throws(() => meta.lineReduce(geometryCollection, () => {}), /GeometryCollection is not supported/, 'GeometryCollection is not supported');
+    t.throws(() => meta.lineReduce(featureCollection([lineString([[10, 10], [0, 0]])]), () => {}), /FeatureCollection is not supported/, 'FeatureCollection is not supported');
+    t.throws(() => meta.lineReduce(feature(null), () => {}), /geojson must contain coordinates/, 'geojson must contain coordinates');
     t.end();
 });
