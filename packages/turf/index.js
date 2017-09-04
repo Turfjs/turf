@@ -93,7 +93,7 @@ var turf = {
     booleanClockwise: require('@turf/boolean-clockwise'),
     booleanOverlap: require('@turf/boolean-overlap'), // v4.6.0
     booleanPointOnLine: require('@turf/boolean-point-on-line'), // v4.6.0
-    booleanEqual: require('@turf/boolean-equal'), // 4.6.0
+    booleanEqual: require('@turf/boolean-equal'), // v4.6.0
     clone: require('@turf/clone'),
     cleanCoords: require('@turf/clean-coords'), // v4.6.0
     interpolate: require('@turf/interpolate'), // v4.6.0
@@ -110,7 +110,7 @@ var turf = {
     multiPolygon: helpers.multiPolygon,
     multiLineString: helpers.multiLineString,
     feature: helpers.feature,
-    geometry: helpers.geometry, // 4.6.0
+    geometry: helpers.geometry, // v4.6.0
     featureCollection: helpers.featureCollection,
     geometryCollection: helpers.geometryCollection,
     radiansToDistance: helpers.radiansToDistance,
@@ -142,8 +142,10 @@ var turf = {
     geomReduce: meta.geomReduce,
     flattenEach: meta.flattenEach,
     flattenReduce: meta.flattenReduce,
-    segmentReduce: meta.segmentReduce, // 4.6.0
-    segmentEach: meta.segmentEach // 4.6.0
+    segmentReduce: meta.segmentReduce, // v4.6.0
+    segmentEach: meta.segmentEach, // v4.6.0
+    lineEach: meta.lineEach, // v4.7.0
+    lineReduce: meta.lineReduce // v4.7.0
 };
 
 module.exports = turf;

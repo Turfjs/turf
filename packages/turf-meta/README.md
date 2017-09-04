@@ -138,6 +138,34 @@ Callback for propEach
 -   `geojson`  
 -   `callback`  
 
+# propReduceCallback
+
+Callback for propReduce
+
+The first time the callback function is called, the values provided as arguments depend
+on whether the reduce method has an initialValue argument.
+
+If an initialValue is provided to the reduce method:
+
+-   The previousValue argument is initialValue.
+-   The currentValue argument is the value of the first element present in the array.
+
+If an initialValue is not provided:
+
+-   The previousValue argument is the value of the first element present in the array.
+-   The currentValue argument is the value of the second element present in the array.
+
+**Parameters**
+
+-   `previousValue` **Any** The accumulated value previously returned in the last invocation
+    of the callback, or initialValue, if supplied.
+-   `currentProperties` **Any** The current properties being processed.
+-   `featureIndex` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** The index of the current element being processed in the
+    array.Starts at index 0, if an initialValue is provided, and at index 1 otherwise.
+-   `geojson`  
+-   `callback`  
+-   `initialValue`  
+
 # propReduce
 
 Reduce properties in any GeoJSON object into a single value,
@@ -168,33 +196,17 @@ turf.propReduce(features, function (previousValue, currentProperties, featureInd
 
 Returns **Any** The value that results from the reduction.
 
-# propReduceCallback
+# featureEachCallback
 
-Callback for propReduce
-
-The first time the callback function is called, the values provided as arguments depend
-on whether the reduce method has an initialValue argument.
-
-If an initialValue is provided to the reduce method:
-
--   The previousValue argument is initialValue.
--   The currentValue argument is the value of the first element present in the array.
-
-If an initialValue is not provided:
-
--   The previousValue argument is the value of the first element present in the array.
--   The currentValue argument is the value of the second element present in the array.
+Callback for featureEach
 
 **Parameters**
 
--   `previousValue` **Any** The accumulated value previously returned in the last invocation
-    of the callback, or initialValue, if supplied.
--   `currentProperties` **Any** The current properties being processed.
+-   `currentFeature` **[Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;any>** The current feature being processed.
 -   `featureIndex` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** The index of the current element being processed in the
     array.Starts at index 0, if an initialValue is provided, and at index 1 otherwise.
 -   `geojson`  
 -   `callback`  
--   `initialValue`  
 
 # featureEach
 
@@ -219,18 +231,6 @@ turf.featureEach(features, function (currentFeature, featureIndex) {
   //=featureIndex
 });
 ```
-
-# featureEachCallback
-
-Callback for featureEach
-
-**Parameters**
-
--   `currentFeature` **[Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;any>** The current feature being processed.
--   `featureIndex` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** The index of the current element being processed in the
-    array.Starts at index 0, if an initialValue is provided, and at index 1 otherwise.
--   `geojson`  
--   `callback`  
 
 # featureReduceCallback
 
@@ -614,6 +614,100 @@ var total = turf.segmentReduce(polygon, function (previousValue) {
 ```
 
 Returns **void** 
+
+# lineEachCallback
+
+Callback for lineEach
+
+**Parameters**
+
+-   `currentLine` **[Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;[LineString](http://geojson.org/geojson-spec.html#linestring)>** The current LineString|LinearRing being processed.
+-   `lineIndex` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** The index of the current element being processed in the array, starts at index 0.
+-   `lineSubIndex` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** The sub-index of the current line being processed at index 0
+-   `geojson`  
+-   `callback`  
+
+# lineEach
+
+Iterate over line or ring coordinates in LineString, Polygon, MultiLineString, MultiPolygon Features or Geometries,
+similar to Array.forEach.
+
+**Parameters**
+
+-   `geojson` **([Geometry](http://geojson.org/geojson-spec.html#geometry) \| [Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;([LineString](http://geojson.org/geojson-spec.html#linestring) \| [Polygon](http://geojson.org/geojson-spec.html#polygon) \| [MultiLineString](http://geojson.org/geojson-spec.html#multilinestring) \| [MultiPolygon](http://geojson.org/geojson-spec.html#multipolygon))>)** object
+-   `callback` **[Function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function)** a method that takes (currentLine, lineIndex, lineSubIndex)
+
+**Examples**
+
+```javascript
+var mtLn = turf.multiLine([
+  turf.lineString([[26, 37], [35, 45]]),
+  turf.lineString([[36, 53], [38, 50], [41, 55]])
+]);
+
+turf.lineEach(mtLn, function (currentLine, lineIndex) {
+  //=currentLine
+  //=lineIndex
+});
+```
+
+# lineReduceCallback
+
+Callback for lineReduce
+
+The first time the callback function is called, the values provided as arguments depend
+on whether the reduce method has an initialValue argument.
+
+If an initialValue is provided to the reduce method:
+
+-   The previousValue argument is initialValue.
+-   The currentValue argument is the value of the first element present in the array.
+
+If an initialValue is not provided:
+
+-   The previousValue argument is the value of the first element present in the array.
+-   The currentValue argument is the value of the second element present in the array.
+
+**Parameters**
+
+-   `previousValue` **Any** The accumulated value previously returned in the last invocation
+    of the callback, or initialValue, if supplied.
+-   `currentLine` **[Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;[LineString](http://geojson.org/geojson-spec.html#linestring)>** The current LineString|LinearRing being processed.
+-   `lineIndex` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** The index of the current element being processed in the
+    array. Starts at index 0, if an initialValue is provided, and at index 1 otherwise.
+-   `lineSubIndex` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** The sub-index of the current line being processed at index 0
+-   `geojson`  
+-   `callback`  
+-   `initialValue`  
+
+# lineReduce
+
+Reduce features in any GeoJSON object, similar to Array.reduce().
+
+**Parameters**
+
+-   `geojson` **([Geometry](http://geojson.org/geojson-spec.html#geometry) \| [Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;([LineString](http://geojson.org/geojson-spec.html#linestring) \| [Polygon](http://geojson.org/geojson-spec.html#polygon) \| [MultiLineString](http://geojson.org/geojson-spec.html#multilinestring) \| [MultiPolygon](http://geojson.org/geojson-spec.html#multipolygon))>)** object
+-   `callback` **[Function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function)** a method that takes (previousValue, currentFeature, featureIndex)
+-   `initialValue` **\[Any]** Value to use as the first argument to the first call of the callback.
+
+**Examples**
+
+```javascript
+var mtp = turf.multiPolygon([
+  turf.polygon([[[12,48],[2,41],[24,38],[12,48]], [[9,44],[13,41],[13,45],[9,44]]]),
+  turf.polygon([[[5, 5], [0, 0], [2, 2], [4, 4], [5, 5]]])
+]);
+
+turf.lineReduce(mtp, function (previousValue, currentLine, lineIndex, lineSubIndex) {
+  //=previousValue
+  //=currentLine
+  //=lineIndex
+  //=lineSubIndex
+  return currentLine
+}, 2);
+```
+
+Returns **Any** The value that results from the reduction.
 
 <!-- This file is automatically generated. Please don't edit it directly:
 if you find an error, edit the source file (likely index.js), and re-run

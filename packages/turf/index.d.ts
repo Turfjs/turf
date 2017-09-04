@@ -44,7 +44,10 @@ import {
     flattenEach,
     flattenReduce,
     segmentEach,
-    segmentReduce} from '@turf/meta';
+    segmentReduce,
+    lineEach, // v4.7.0
+    lineReduce // v4.7.0
+} from '@turf/meta';
 import * as isolines from '@turf/isolines';
 import * as convex from '@turf/convex';
 import * as within from '@turf/within';
@@ -126,7 +129,7 @@ import * as booleanClockwise from '@turf/boolean-clockwise';
 import * as booleanEqual from '@turf/boolean-equal';
 import * as clone from '@turf/clone';
 import * as cleanCoords from '@turf/clean-coords';
-import * as pointToLineDistance from '@turf/point-to-line-distance';
+import * as pointToLineDistance from '@turf/point-to-line-distance'; // v4.7.0
 export {
     isolines,
     convex,
@@ -250,8 +253,10 @@ export {
     segmentReduce,
     cleanCoords,
     isNumber,
-    pointToLineDistance,
+    pointToLineDistance, // v4.7.0
     helpers,
     meta,
-    invariant
+    invariant,
+    lineEach, // v4.7.0
+    lineReduce // v4.7.0
 };
