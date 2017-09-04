@@ -11,6 +11,7 @@ export type Feature<Geom extends GeometryObject> = GeoJSON.Feature<Geom>;
 export type GeometryObject = GeoJSON.GeometryObject;
 export type GeometryCollection = GeoJSON.GeometryCollection;
 export type Geoms = Point | LineString | Polygon | MultiPoint | MultiLineString | MultiPolygon;
+export type Lines = LineString | Polygon | MultiLineString | MultiPolygon;
 export type AllGeoJSON = Feature<any> | Features<any> | GeometryObject | GeometryCollection;
 
 /**
@@ -77,3 +78,13 @@ export function segmentReduce(geojson: Feature<any> | Features<any> | GeometryOb
  * http://turfjs.org/docs/#segmenteach
  */
 export function segmentEach(geojson: Feature<any> | Features<any> | GeometryObject | GeometryCollection, callback: (currentSegment?: Feature<LineString>, featureIndex?: number, featureSubIndex?: number) => void): void;
+
+/**
+ * http://turfjs.org/docs/#linereduce
+ */
+export function lineReduce(geojson: Lines, callback: (previousValue?: any, currentSegment?: Feature<LineString>, featureIndex?: number, featureSubIndex?: number) => void, initialValue?: any): void;
+
+/**
+ * http://turfjs.org/docs/#lineeach
+ */
+export function lineEach(geojson: Lines, callback: (currentSegment?: Feature<LineString>, featureIndex?: number, featureSubIndex?: number) => void): void;
