@@ -58,13 +58,13 @@ function coordEach(geojson, callback, excludeWrapCoord) {
         var featureSubIndex = 0;
 
         geometryMaybeCollection = (isFeatureCollection ? geojson.features[featureIndex].geometry :
-        (isFeature ? geojson.geometry : geojson));
+            (isFeature ? geojson.geometry : geojson));
         isGeometryCollection = (geometryMaybeCollection) ? geometryMaybeCollection.type === 'GeometryCollection' : false;
         stopG = isGeometryCollection ? geometryMaybeCollection.geometries.length : 1;
 
         for (geometryIndex = 0; geometryIndex < stopG; geometryIndex++) {
             geometry = isGeometryCollection ?
-            geometryMaybeCollection.geometries[geometryIndex] : geometryMaybeCollection;
+                geometryMaybeCollection.geometries[geometryIndex] : geometryMaybeCollection;
 
             // Handles null Geometry -- Skips this geometry
             if (geometry === null) continue;
@@ -111,7 +111,8 @@ function coordEach(geojson, callback, excludeWrapCoord) {
                 for (j = 0; j < geometry.geometries.length; j++)
                     coordEach(geometry.geometries[j], callback, excludeWrapCoord);
                 break;
-            default: throw new Error('Unknown Geometry Type');
+            default:
+                throw new Error('Unknown Geometry Type');
             }
         }
     }
@@ -419,30 +420,30 @@ function geomEach(geojson, callback) {
         isFeature = geojson.type === 'Feature',
         stop = isFeatureCollection ? geojson.features.length : 1;
 
-  // This logic may look a little weird. The reason why it is that way
-  // is because it's trying to be fast. GeoJSON supports multiple kinds
-  // of objects at its root: FeatureCollection, Features, Geometries.
-  // This function has the responsibility of handling all of them, and that
-  // means that some of the `for` loops you see below actually just don't apply
-  // to certain inputs. For instance, if you give this just a
-  // Point geometry, then both loops are short-circuited and all we do
-  // is gradually rename the input until it's called 'geometry'.
-  //
-  // This also aims to allocate as few resources as possible: just a
-  // few numbers and booleans, rather than any temporary arrays as would
-  // be required with the normalization approach.
+    // This logic may look a little weird. The reason why it is that way
+    // is because it's trying to be fast. GeoJSON supports multiple kinds
+    // of objects at its root: FeatureCollection, Features, Geometries.
+    // This function has the responsibility of handling all of them, and that
+    // means that some of the `for` loops you see below actually just don't apply
+    // to certain inputs. For instance, if you give this just a
+    // Point geometry, then both loops are short-circuited and all we do
+    // is gradually rename the input until it's called 'geometry'.
+    //
+    // This also aims to allocate as few resources as possible: just a
+    // few numbers and booleans, rather than any temporary arrays as would
+    // be required with the normalization approach.
     for (i = 0; i < stop; i++) {
 
         geometryMaybeCollection = (isFeatureCollection ? geojson.features[i].geometry :
-        (isFeature ? geojson.geometry : geojson));
+            (isFeature ? geojson.geometry : geojson));
         geometryProperties = (isFeatureCollection ? geojson.features[i].properties :
-                              (isFeature ? geojson.properties : {}));
+            (isFeature ? geojson.properties : {}));
         isGeometryCollection = (geometryMaybeCollection) ? geometryMaybeCollection.type === 'GeometryCollection' : false;
         stopG = isGeometryCollection ? geometryMaybeCollection.geometries.length : 1;
 
         for (g = 0; g < stopG; g++) {
             geometry = isGeometryCollection ?
-            geometryMaybeCollection.geometries[g] : geometryMaybeCollection;
+                geometryMaybeCollection.geometries[g] : geometryMaybeCollection;
 
             // Handle null Geometry
             if (geometry === null) {
@@ -468,7 +469,8 @@ function geomEach(geojson, callback) {
                 }
                 break;
             }
-            default: throw new Error('Unknown Geometry Type');
+            default:
+                throw new Error('Unknown Geometry Type');
             }
         }
     }

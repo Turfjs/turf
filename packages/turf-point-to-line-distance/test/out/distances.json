@@ -1,0 +1,21 @@
+{
+	"segment1": 69.09334842498865,
+	"segment1a": 69.09334842498865,
+	"segment2": 69.09334842498865,
+	"segment3": 69.17074902579057,
+	"segment4": 333.73911452247074,
+	"segment-fiji": 27.556466166676397,
+	"line1": 23.616870857680677,
+	"line2": 188.02212276470638,
+	"line-fiji": 27.016029431060844,
+	"line-resolute-bay": 424.56987879032073,
+	"city-line1": 0.9997112294789969,
+	"city-line2": 3.583891652669501,
+	"city-segment-inside1": 1.1447896287675474,
+	"city-segment-inside2": 0.9977971634304259,
+	"city-segment-inside3": 3.4981840220723557,
+	"city-segment-obtuse1": 2.8582176667031516,
+	"city-segment-obtuse2": 3.35493956118816,
+	"city-segment-projected1": 3.589782772179696,
+	"city-segment-projected2": 4.1647711521094095
+}

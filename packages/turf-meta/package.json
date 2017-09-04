@@ -50,7 +50,7 @@
   "devDependencies": {
     "@turf/helpers": "^4.6.0",
     "@turf/random": "^4.5.2",
-    "benchmark": "^2.1.4",
-    "tape": "^4.6.3"
+    "benchmark": "2.1.4",
+    "tape": "4.8.0"
   }
 }

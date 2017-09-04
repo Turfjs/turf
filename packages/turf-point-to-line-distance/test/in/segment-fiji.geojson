@@ -1,0 +1,36 @@
+{
+	"type": "FeatureCollection",
+	"properties": {
+		"mercator": true
+	},
+	"features": [
+		{
+			"type": "Feature",
+			"properties": {},
+			"geometry": {
+				"type": "Point",
+				"coordinates": [
+					-180.46142578124997,
+					-17.481671724450752
+				]
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {},
+			"geometry": {
+				"type": "LineString",
+				"coordinates": [
+					[
+						-181.087646484375,
+						-17.69897856226166
+					],
+					[
+						-179.60586547851562,
+						-16.380756046586434
+					]
+				]
+			}
+		}
+	]
+}
