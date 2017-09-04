@@ -44,7 +44,10 @@ import {
     flattenEach,
     flattenReduce,
     segmentEach,
-    segmentReduce} from '@turf/meta';
+    segmentReduce,
+    lineEach, // v4.7.0
+    lineReduce // v4.7.0
+} from '@turf/meta';
 import * as isolines from '@turf/isolines';
 import * as convex from '@turf/convex';
 import * as within from '@turf/within';
@@ -253,5 +256,7 @@ export {
     pointToLineDistance,
     helpers,
     meta,
-    invariant
+    invariant,
+    lineEach, // v4.7.0
+    lineReduce // v4.7.0
 };
