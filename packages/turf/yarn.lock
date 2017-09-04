@@ -575,6 +575,18 @@
     "@turf/helpers" "^4.6.0"
     "@turf/inside" "^4.6.0"
 
+"@turf/point-to-line-distance@^4.0.0":
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/@turf/point-to-line-distance/-/point-to-line-distance-4.0.0.tgz#1f431a2188887f6e6a22cbf951e1e6f28a2a1051"
+  dependencies:
+    "@turf/bearing" "^4.6.0"
+    "@turf/distance" "^4.6.0"
+    "@turf/helpers" "^4.6.0"
+    "@turf/invariant" "^4.6.0"
+    "@turf/meta" "^4.6.0"
+    "@turf/rhumb-bearing" "^4.6.0"
+    "@turf/rhumb-distance" "^4.6.0"
+
 "@turf/polygon-tangents@^4.6.0":
   version "4.6.0"
   resolved "https://registry.yarnpkg.com/@turf/polygon-tangents/-/polygon-tangents-4.6.0.tgz#f46d0087ff5d1069d4b0668b9b385ed76ad8fdc6"

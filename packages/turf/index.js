@@ -99,6 +99,7 @@ var turf = {
     interpolate: require('@turf/interpolate'), // v4.6.0
     clustersDbscan: require('@turf/clusters-dbscan'), // v4.6.0
     clustersKmeans: require('@turf/clusters-kmeans'), // v4.6.0
+    pointToLineDistance: require('@turf/point-to-line-distance'), // v4.7.0
     getCluster: clusters.getCluster, // v4.6.0
     clusterEach: clusters.clusterEach, // v4.6.0
     clusterReduce: clusters.clusterReduce, // v4.6.0

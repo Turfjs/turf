@@ -122,6 +122,7 @@
     "@turf/point-grid": "^4.6.0",
     "@turf/point-on-line": "^4.6.0",
     "@turf/point-on-surface": "^4.6.1",
+    "@turf/point-to-line-distance": "^4.0.0",
     "@turf/polygon-tangents": "^4.6.0",
     "@turf/polygon-to-linestring": "^4.6.0",
     "@turf/polygonize": "^4.6.1",
