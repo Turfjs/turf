@@ -1,9 +1,11 @@
 const test = require('tape');
-const {point, lineString, feature, polygon, featureCollection} = require('@turf/helpers');
+const {point, lineString, feature, polygon, multiPolygon, multiLineString, featureCollection} = require('@turf/helpers');
 const meta = require('./');
 const {
     featureEach,
     featureReduce,
+    lineEach,
+    lineReduce,
     flattenEach,
     flattenReduce,
     geomEach,
@@ -571,5 +573,101 @@ test('coordEach -- index & subIndex', t => {
     t.deepEqual(coordIndexes, [0, 1, 2, 3, 4], 'coordIndex');
     t.deepEqual(featureIndexes, [0, 1, 1, 1, 2], 'featureIndex');
     t.deepEqual(featureSubIndexes, [0, 0, 1, 2, 0], 'featureSubIndex');
+    t.end();
+});
+
+
+test('lineEach#lineString', t => {
+    const l = lineString([[0, 0], [2, 2], [4, 4]]);
+    const index = [];
+    const subIndex = [];
+    let total = 0;
+
+    meta.lineEach(l, (line, lineIndex, lineSubIndex) => {
+        index.push(lineIndex);
+        subIndex.push(lineSubIndex);
+        total++;
+    });
+    t.equal(total, 1, 'total');
+    t.deepEqual(index, [0], 'index');
+    t.deepEqual(subIndex, [0], 'subIndex');
+    t.end();
+});
+
+test('lineEach#multiLineString', t => {
+    const mls = multiLineString([[[0, 0], [2, 2], [4, 4]], [[1, 1], [3, 3], [5, 5]]]);
+    const index = [];
+    const subIndex = [];
+    let total = 0;
+
+    meta.lineEach(mls, (line, lineIndex, lineSubIndex) => {
+        index.push(lineIndex);
+        subIndex.push(lineSubIndex);
+        total++;
+    });
+    t.equal(total, 2, 'total');
+    t.deepEqual(index, [0, 1], 'index');
+    t.deepEqual(subIndex, [0, 1], 'subIndex');
+    t.end();
+});
+
+test('lineEach#multiPolygon', t => {
+    const mp = multiPolygon([
+        [[[12,48],[2,41],[24,38],[12,48]], [[9,44],[13,41],[13,45],[9,44]]],
+        [[[5, 5], [0, 0], [2, 2], [4, 4], [5, 5]]]
+    ]);
+    const index = [];
+    const subIndex = [];
+    let total = 0;
+
+    meta.lineEach(mp, (ring, ringIndex, ringSubIndex) => {
+        index.push(ringIndex);
+        subIndex.push(ringSubIndex);
+        total++;
+    });
+    t.equal(total, 3, 'total');
+    t.deepEqual(index, [0, 1, 0], 'index');
+    t.deepEqual(subIndex, [0, 0, 1], 'subIndex');
+    t.end();
+});
+
+
+test('lineReduce#multiLineString', t => {
+    const mls = multiLineString([[[0, 0], [2, 2], [4, 4]], [[1, 1], [3, 3], [5, 5]]]);
+    const index = [];
+    const subIndex = [];
+
+    const total = meta.lineReduce(mls, (previousValue, line, lineIndex, lineSubIndex) => {
+        index.push(lineIndex);
+        subIndex.push(lineSubIndex);
+        previousValue++;
+        return previousValue;
+    }, 1);
+
+    t.equal(total, 3, 'total');
+    t.deepEqual(index, [0, 1], 'index');
+    t.deepEqual(subIndex, [0, 1], 'subIndex');
+    t.end();
+});
+
+test('lineReduce#multiPolygon', t => {
+const mp = multiPolygon([
+        [[[12,48],[2,41],[24,38],[12,48]], [[9,44],[13,41],[13,45],[9,44]]],
+        [[[5, 5], [0, 0], [2, 2], [4, 4], [5, 5]]]
+    ]);
+    const index = [];
+    const subIndex = [];
+    const lineSubIndex = [];
+
+    const total = meta.lineReduce(mp, (previousValue, line, lineIndex, lineSubIndex) => {
+        index.push(lineIndex);
+        subIndex.push(lineSubIndex);
+        previousValue++;
+        return previousValue;
+    }, 3);
+
+    t.equal(total, 6, 'total');
+    t.deepEqual(index, [0, 1, 0], 'index');
+    t.deepEqual(subIndex, [0, 0, 1], 'subIndex');
     t.end();
 });
