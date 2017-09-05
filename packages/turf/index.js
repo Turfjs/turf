@@ -93,7 +93,8 @@ var turf = {
     booleanClockwise: require('@turf/boolean-clockwise'),
     booleanOverlap: require('@turf/boolean-overlap'), // v4.6.0
     booleanPointOnLine: require('@turf/boolean-point-on-line'), // v4.6.0
-    booleanEqual: require('@turf/boolean-equal'), // v4.6.0
+    booleanEqual: require('@turf/boolean-equal'), // 4.6.0
+    booleanWithin: require('@turf/boolean-within'), // 4.7.0
     clone: require('@turf/clone'),
     cleanCoords: require('@turf/clean-coords'), // v4.6.0
     interpolate: require('@turf/interpolate'), // v4.6.0

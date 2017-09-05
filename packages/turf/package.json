@@ -70,6 +70,7 @@
     "@turf/boolean-equal": "^4.6.0",
     "@turf/boolean-overlap": "^4.6.0",
     "@turf/boolean-point-on-line": "^4.6.1",
+    "@turf/boolean-within": "^4.0.0",
     "@turf/buffer": "^4.6.1",
     "@turf/center": "^4.6.1",
     "@turf/center-of-mass": "^4.6.1",
