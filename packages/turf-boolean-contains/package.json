@@ -1,6 +1,6 @@
 {
   "name": "@turf/boolean-contains",
-  "version": "4.6.1",
+  "version": "4.7.0",
   "description": "turf boolean-contains module",
   "main": "index.js",
   "types": "index.d.ts",
@@ -33,7 +33,7 @@
   },
   "homepage": "https://github.com/Turfjs/turf",
   "devDependencies": {
-    "@turf/helpers": "^4.6.0",
+    "@turf/helpers": "4.7.0",
     "benchmark": "2.1.4",
     "boolean-jsts": "0.0.1",
     "boolean-shapely": "0.1.2",
@@ -42,9 +42,9 @@
     "tape": "4.7.0"
   },
   "dependencies": {
-    "@turf/bbox": "^4.6.0",
-    "@turf/boolean-point-on-line": "^4.6.1",
-    "@turf/inside": "^4.6.0",
-    "@turf/invariant": "^4.6.0"
+    "@turf/bbox": "4.7.0",
+    "@turf/boolean-point-on-line": "4.7.0",
+    "@turf/inside": "4.7.0",
+    "@turf/invariant": "4.7.0"
   }
 }
