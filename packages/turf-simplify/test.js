@@ -4,7 +4,7 @@ const path = require('path');
 const load = require('load-json-file');
 const write = require('write-json-file');
 const truncate = require('@turf/truncate');
-const {polygon} = require('@turf/helpers');
+const {polygon, multiPolygon} = require('@turf/helpers');
 const simplify = require('./');
 
 const directories = {
