@@ -100,6 +100,7 @@ var turf = {
     interpolate: require('@turf/interpolate'), // v4.6.0
     clustersDbscan: require('@turf/clusters-dbscan'), // v4.6.0
     clustersKmeans: require('@turf/clusters-kmeans'), // v4.6.0
+    pointToLineDistance: require('@turf/point-to-line-distance'), // v4.7.0
     getCluster: clusters.getCluster, // v4.6.0
     clusterEach: clusters.clusterEach, // v4.6.0
     clusterReduce: clusters.clusterReduce, // v4.6.0
@@ -110,7 +111,7 @@ var turf = {
     multiPolygon: helpers.multiPolygon,
     multiLineString: helpers.multiLineString,
     feature: helpers.feature,
-    geometry: helpers.geometry, // 4.6.0
+    geometry: helpers.geometry, // v4.6.0
     featureCollection: helpers.featureCollection,
     geometryCollection: helpers.geometryCollection,
     radiansToDistance: helpers.radiansToDistance,
@@ -142,8 +143,10 @@ var turf = {
     geomReduce: meta.geomReduce,
     flattenEach: meta.flattenEach,
     flattenReduce: meta.flattenReduce,
-    segmentReduce: meta.segmentReduce, // 4.6.0
-    segmentEach: meta.segmentEach // 4.6.0
+    segmentReduce: meta.segmentReduce, // v4.6.0
+    segmentEach: meta.segmentEach, // v4.6.0
+    lineEach: meta.lineEach, // v4.7.0
+    lineReduce: meta.lineReduce // v4.7.0
 };
 
 module.exports = turf;

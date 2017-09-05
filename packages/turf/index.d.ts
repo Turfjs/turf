@@ -1,3 +1,4 @@
+import * as helpers from '@turf/helpers';
 import {
     point,
     polygon,
@@ -19,6 +20,7 @@ import {
     convertDistance,
     convertArea,
     isNumber} from '@turf/helpers';
+import * as invariant from '@turf/invariant';
 import {
     getGeom,
     getGeomType,
@@ -28,6 +30,7 @@ import {
     featureOf,
     collectionOf,
     containsNumber} from '@turf/invariant';
+import * as meta from '@turf/meta';
 import {
     coordEach,
     coordReduce,
@@ -41,7 +44,10 @@ import {
     flattenEach,
     flattenReduce,
     segmentEach,
-    segmentReduce} from '@turf/meta';
+    segmentReduce,
+    lineEach, // v4.7.0
+    lineReduce // v4.7.0
+} from '@turf/meta';
 import * as isolines from '@turf/isolines';
 import * as convex from '@turf/convex';
 import * as within from '@turf/within';
@@ -124,6 +130,7 @@ import * as booleanEqual from '@turf/boolean-equal';
 import * as booleanWithin from '@turf/boolean-within'; // 4.7.0
 import * as clone from '@turf/clone';
 import * as cleanCoords from '@turf/clean-coords';
+import * as pointToLineDistance from '@turf/point-to-line-distance'; // v4.7.0
 export {
     isolines,
     convex,
@@ -247,5 +254,11 @@ export {
     segmentEach,
     segmentReduce,
     cleanCoords,
-    isNumber
+    isNumber,
+    pointToLineDistance, // v4.7.0
+    helpers,
+    meta,
+    invariant,
+    lineEach, // v4.7.0
+    lineReduce // v4.7.0
 };

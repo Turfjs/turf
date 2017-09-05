@@ -1,0 +1,37 @@
+{
+	"type": "FeatureCollection",
+	"properties": {
+		"units": "miles",
+		"mercator": true
+	},
+	"features": [
+		{
+			"type": "Feature",
+			"properties": {},
+			"geometry": {
+				"type": "Point",
+				"coordinates": [
+					1,
+					1
+				]
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {},
+			"geometry": {
+				"type": "LineString",
+				"coordinates": [
+					[
+						2,
+						1
+					],
+					[
+						3,
+						1
+					]
+				]
+			}
+		}
+	]
+}
