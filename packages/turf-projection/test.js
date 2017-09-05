@@ -21,7 +21,7 @@ const fromWgs84 = fs.readdirSync(directories.wgs84).map(filename => {
     return {
         filename,
         name: path.parse(filename).name,
-        geojson: load.sync(directories.wgs84 + filename)
+        geojson: truncate(load.sync(directories.wgs84 + filename))
     };
 });
 
@@ -34,10 +34,10 @@ test('to-mercator', t => {
             coord[0] = newCoord[0];
             coord[1] = newCoord[1];
         });
-        const results = toMercator(geojson);
+        const results = truncate(toMercator(geojson));
 
         if (process.env.REGEN) write.sync(directories.out + 'mercator-' + filename, results);
-        t.deepEqual(truncate(results, 7), truncate(expected, 7), name);
+        t.deepEqual(results, truncate(expected), name);
         t.deepEqual(results, load.sync(directories.out + 'mercator-' + filename));
     }
     t.end();
@@ -49,7 +49,7 @@ const fromMercator = fs.readdirSync(directories.mercator).map(filename => {
     return {
         filename,
         name: path.parse(filename).name,
-        geojson: load.sync(directories.mercator + filename)
+        geojson: truncate(load.sync(directories.mercator + filename))
     };
 });
 
@@ -61,11 +61,10 @@ test('to-wgs84', t => {
             coord[0] = newCoord[0];
             coord[1] = newCoord[1];
         });
-        const results = toWgs84(geojson);
+        const results = truncate(toWgs84(geojson));
 
         if (process.env.REGEN) write.sync(directories.out + 'wgs84-' + filename, results);
-        // double truncate to avoid rounding error
-        t.deepEqual(truncate(truncate(results, 10), 7), truncate(truncate(expected, 10), 7), name);
+        t.deepEqual(results, truncate(expected), name);
         t.deepEqual(results, load.sync(directories.out + 'wgs84-' + filename));
     }
     t.end();
