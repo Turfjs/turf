@@ -47,7 +47,7 @@ module.exports = function (featureIn) {
     coordinates.forEach(function (segment1) {
         coordinates.forEach(function (segment2) {
             for (var i = 0; i < segment1.length - 1; i++) {
-                for (var k = 0; k < segment2.length - 1; k++) {
+                for (var k = i; k < segment2.length - 1; k++) {
                     // don't check adjacent sides of a given segment, since of course they intersect in a vertex.
                     if (segment1 === segment2 && (Math.abs(i - k) === 1 || Math.abs(i - k) === segment1.length - 2)) {
                         continue;
