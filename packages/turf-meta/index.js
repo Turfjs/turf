@@ -867,7 +867,7 @@ function lineString(coordinates, properties) {
  * @param {Geometry|Feature<LineString|Polygon|MultiLineString|MultiPolygon>} geojson object
  * @param {Function} callback a method that takes (currentLine, lineIndex, lineSubIndex)
  * @example
- * var mtLn = turf.multiLine([
+ * var mtLn = turf.multiLineString([
  *   turf.lineString([[26, 37], [35, 45]]),
  *   turf.lineString([[36, 53], [38, 50], [41, 55]])
  * ]);

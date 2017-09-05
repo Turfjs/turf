@@ -13,8 +13,7 @@
     "turf.min.js"
   ],
   "scripts": {
-    "test": "tap test.js",
-    "posttest": "tap test.example.js",
+    "test": "tap test.js && tap test.example.js",
     "prepublish": "npm run build",
     "build": "browserify index.js -s turf > turf.js && uglifyjs turf.js -c -m > turf.min.js",
     "size": "browserify index.js --full-paths -s turf | uglifyjs -c -m | discify | hcat"

@@ -28,9 +28,9 @@ var degrees2radians = helpers.degrees2radians;
  * @returns {number} distance between point and line
  * @example
  * var pt = turf.point([0, 0]);
- * var line = turf.lineString([[1, 1],[-1, 1]);
+ * var line = turf.lineString([[1, 1],[-1, 1]]);
  *
- * var d = pointToLineDistance(pt, line, 'miles');
+ * var distance = turf.pointToLineDistance(pt, line, 'miles');
  * //=69.11854715938406
  */
 module.exports = function (point, line, units, mercator) {
