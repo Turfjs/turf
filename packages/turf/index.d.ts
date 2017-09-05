@@ -121,6 +121,7 @@ import * as booleanContains from '@turf/boolean-contains';
 import * as booleanCrosses from '@turf/boolean-crosses';
 import * as booleanClockwise from '@turf/boolean-clockwise';
 import * as booleanEqual from '@turf/boolean-equal';
+import * as booleanWithin from '@turf/boolean-within'; // 4.7.0
 import * as clone from '@turf/clone';
 import * as cleanCoords from '@turf/clean-coords';
 export {
@@ -236,6 +237,7 @@ export {
     bearingToAngle,
     featureReduce,
     geomReduce,
+    booleanWithin,
     booleanDisjoint,
     booleanContains,
     booleanCrosses,
