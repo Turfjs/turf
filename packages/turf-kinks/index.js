@@ -52,7 +52,7 @@ module.exports = function (featureIn) {
                     if (line1 === line2) {
                         // segments are adjacent and always share a vertex, not a kink
                         if (Math.abs(i - k) === 1) {
-                            continue
+                            continue;
                         }
                         // first and last segment in a closed lineString or ring always share a vertex, not a kink
                         if (
@@ -63,7 +63,7 @@ module.exports = function (featureIn) {
                             line1[i][0] === line1[line1.length - 1][0] &&
                             line1[i][1] === line1[line1.length - 1][1]
                         ) {
-                            continue
+                            continue;
                         }
                     }
 
