@@ -47,10 +47,24 @@ module.exports = function (featureIn) {
     coordinates.forEach(function (segment1) {
         coordinates.forEach(function (segment2) {
             for (var i = 0; i < segment1.length - 1; i++) {
+                // start iteration at i, intersections for k < i have already been checked in previous outer loop iterations
                 for (var k = i; k < segment2.length - 1; k++) {
-                    // don't check adjacent sides of a given segment, since of course they intersect in a vertex.
-                    if (segment1 === segment2 && (Math.abs(i - k) === 1 || Math.abs(i - k) === segment1.length - 2)) {
-                        continue;
+                    if (segment1 === segment2) {
+                        // segments are adjacent and always share a vertex, not a kink
+                        if (Math.abs(i - k) === 1) {
+                            continue
+                        }
+                        // first and last segment in a closed lineString or ring always share a vertex, not a kink
+                        if (
+                            // segments are first and last segment of lineString
+                            i === 0 &&
+                            k === segment1.length - 2 &&
+                            // lineString is closed
+                            segment1[i][0] === segment1[segment1.length - 1][0] &&
+                            segment1[i][1] === segment1[segment1.length - 1][1]
+                        ) {
+                            continue
+                        }
                     }
 
                     var intersection = lineIntersects(segment1[i][0], segment1[i][1], segment1[i + 1][0], segment1[i + 1][1],
