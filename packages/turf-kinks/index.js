@@ -44,12 +44,12 @@ module.exports = function (featureIn) {
         throw new Error('Input must be a LineString, MultiLineString, ' +
             'Polygon, or MultiPolygon Feature or Geometry');
     }
-    coordinates.forEach(function (segment1) {
-        coordinates.forEach(function (segment2) {
-            for (var i = 0; i < segment1.length - 1; i++) {
+    coordinates.forEach(function (line1) {
+        coordinates.forEach(function (line2) {
+            for (var i = 0; i < line1.length - 1; i++) {
                 // start iteration at i, intersections for k < i have already been checked in previous outer loop iterations
-                for (var k = i; k < segment2.length - 1; k++) {
-                    if (segment1 === segment2) {
+                for (var k = i; k < line2.length - 1; k++) {
+                    if (line1 === line2) {
                         // segments are adjacent and always share a vertex, not a kink
                         if (Math.abs(i - k) === 1) {
                             continue
@@ -58,17 +58,17 @@ module.exports = function (featureIn) {
                         if (
                             // segments are first and last segment of lineString
                             i === 0 &&
-                            k === segment1.length - 2 &&
+                            k === line1.length - 2 &&
                             // lineString is closed
-                            segment1[i][0] === segment1[segment1.length - 1][0] &&
-                            segment1[i][1] === segment1[segment1.length - 1][1]
+                            line1[i][0] === line1[line1.length - 1][0] &&
+                            line1[i][1] === line1[line1.length - 1][1]
                         ) {
                             continue
                         }
                     }
 
-                    var intersection = lineIntersects(segment1[i][0], segment1[i][1], segment1[i + 1][0], segment1[i + 1][1],
-                        segment2[k][0], segment2[k][1], segment2[k + 1][0], segment2[k + 1][1]);
+                    var intersection = lineIntersects(line1[i][0], line1[i][1], line1[i + 1][0], line1[i + 1][1],
+                        line2[k][0], line2[k][1], line2[k + 1][0], line2[k + 1][1]);
                     if (intersection) {
                         results.features.push(point([intersection[0], intersection[1]]));
                     }
