@@ -45,6 +45,7 @@
   "dependencies": {
     "@turf/center": "^4.6.1",
     "@turf/helpers": "^4.6.0",
+    "@turf/projection": "^4.6.0",
     "@turf/meta": "^4.6.0",
     "d3-geo": "^1.6.3",
     "jsts": "1.3.0"

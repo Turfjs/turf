@@ -3,6 +3,10 @@ var jsts = require('jsts');
 var meta = require('@turf/meta');
 var center = require('@turf/center');
 var helpers = require('@turf/helpers');
+// var projection = require('@turf/projection');
+var projection = require('./../turf-projection');
+var toMercator = projection.toMercator;
+var toWgs84 = projection.toWgs84;
 var feature = helpers.feature;
 var geomEach = meta.geomEach;
 var featureEach = meta.featureEach;
@@ -95,25 +99,39 @@ function buffer(geojson, radius, units, steps) {
 
     // Project GeoJSON to Transverse Mercator projection (convert to Meters)
     var distance = radiansToDistance(distanceToRadians(radius, units), 'meters');
-    var projection = defineProjection(geojson);
-    var projected = {
-        type: geometry.type,
-        coordinates: projectCoords(geometry.coordinates, projection)
-    };
+    // var projection = defineProjection(geojson);
+    // var projected = {
+    //     type: geometry.type,
+    //     coordinates: projectCoords(geometry.coordinates, projection)
+    // };
+
+    var mercator = toMercator(geojson);
+    // JSTS buffer operation
+    var reader1 = new jsts.io.GeoJSONReader();
+    var geom1 = reader1.read(mercator.geometry || mercator);
+    var buffered1 = geom1.buffer(distance);
+    var writer1 = new jsts.io.GeoJSONWriter();
+    buffered1 = writer1.write(buffered1);
+
 
     // JSTS buffer operation
-    var reader = new jsts.io.GeoJSONReader();
-    var geom = reader.read(projected);
-    var buffered = geom.buffer(distance);
-    var writer = new jsts.io.GeoJSONWriter();
-    buffered = writer.write(buffered);
+    // var reader = new jsts.io.GeoJSONReader();
+    // var geom = reader.read(projected);
+    // var buffered = geom.buffer(distance);
+    // var writer = new jsts.io.GeoJSONWriter();
+    // buffered = writer.write(buffered);
 
     // Detect if empty geometries
-    if (coordsIsNaN(buffered.coordinates)) return undefined;
+    // if (coordsIsNaN(buffered.coordinates)) return undefined;
+    if (coordsIsNaN(buffered1.coordinates)) return undefined;
 
     // Unproject coordinates (convert to Degrees)
-    buffered.coordinates = unprojectCoords(buffered.coordinates, projection);
-    return feature(buffered, properties);
+    // buffered.coordinates = unprojectCoords(buffered.coordinates, projection);
+
+    var result = toWgs84(buffered1);
+    // result.properties = properties;
+    return (result.geometry) ? result : feature(result, properties);
+    // return feature(buffered, properties);
 }
 
 /**
