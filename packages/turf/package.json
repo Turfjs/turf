@@ -1,6 +1,6 @@
 {
   "name": "@turf/turf",
-  "version": "4.7.1",
+  "version": "4.7.2",
   "description": "a JavaScript library for performing geospatial operations with GeoJSON",
   "main": "index.js",
   "module": "module.js",
@@ -102,7 +102,7 @@
     "@turf/invariant": "4.7.1",
     "@turf/isobands": "4.7.1",
     "@turf/isolines": "4.7.1",
-    "@turf/kinks": "4.7.1",
+    "@turf/kinks": "4.7.2",
     "@turf/line-arc": "4.7.1",
     "@turf/line-chunk": "4.7.1",
     "@turf/line-distance": "4.7.1",
