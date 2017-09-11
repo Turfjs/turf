@@ -2,6 +2,21 @@
 # yarn lockfile v1
 
 
+"@turf/distance@4.7.1":
+  version "4.7.1"
+  resolved "https://registry.yarnpkg.com/@turf/distance/-/distance-4.7.1.tgz#d8bd48275f7418a98eae2adc0ff3f63548e05bcd"
+  dependencies:
+    "@turf/helpers" "4.7.1"
+    "@turf/invariant" "4.7.1"
+
+"@turf/helpers@4.7.1":
+  version "4.7.1"
+  resolved "https://registry.yarnpkg.com/@turf/helpers/-/helpers-4.7.1.tgz#12cecbfe22b16386338537dae3e3da83de2f3fac"
+
+"@turf/invariant@4.7.1":
+  version "4.7.1"
+  resolved "https://registry.yarnpkg.com/@turf/invariant/-/invariant-4.7.1.tgz#b95bc41a3cc7f1319d9a4c51ad5b3582905f81e4"
+
 balanced-match@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/balanced-match/-/balanced-match-1.0.0.tgz#89b4d199ab2bee49de164ea02b89ce462d71b767"
@@ -84,9 +99,9 @@ function-bind@^1.0.2, function-bind@^1.1.0, function-bind@~1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/function-bind/-/function-bind-1.1.0.tgz#16176714c801798e4e8f2cf7f7529467bb4a5771"
 
-geodesy@1.1.1:
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/geodesy/-/geodesy-1.1.1.tgz#918c414a5cc247c8128332b7624050c467e98a5d"
+geodesy@1.1.2:
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/geodesy/-/geodesy-1.1.2.tgz#84cbdf7e7b98907bd3b13b09ae86c65926391a50"
 
 glob@~7.1.2:
   version "7.1.2"

@@ -46,6 +46,6 @@
   "dependencies": {
     "@turf/helpers": "4.7.1",
     "@turf/invariant": "4.7.1",
-    "geodesy": "1.1.1"
+    "geodesy": "1.1.2"
   }
 }
