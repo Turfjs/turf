@@ -2,6 +2,62 @@
 # yarn lockfile v1
 
 
+"@turf/bbox@4.7.1":
+  version "4.7.1"
+  resolved "https://registry.yarnpkg.com/@turf/bbox/-/bbox-4.7.1.tgz#c2f05ec2bec10b9a3b4e045400aafab35b2f4cff"
+  dependencies:
+    "@turf/meta" "4.7.1"
+
+"@turf/bbox@^4.6.0":
+  version "4.6.0"
+  resolved "https://registry.yarnpkg.com/@turf/bbox/-/bbox-4.6.0.tgz#8c7f68cdd2bee9178de4d9f9bfbcee4235db5fc3"
+  dependencies:
+    "@turf/meta" "^4.6.0"
+
+"@turf/center@^4.6.1":
+  version "4.7.1"
+  resolved "https://registry.yarnpkg.com/@turf/center/-/center-4.7.1.tgz#5c66c56144f07c35e26292ca61b4105b1b53a8d2"
+  dependencies:
+    "@turf/bbox" "4.7.1"
+    "@turf/helpers" "4.7.1"
+
+"@turf/clone@4.7.1":
+  version "4.7.1"
+  resolved "https://registry.yarnpkg.com/@turf/clone/-/clone-4.7.1.tgz#2198da5895057d0adad91712a8170d78197cf9bb"
+
+"@turf/helpers@4.7.1", "@turf/helpers@^4.6.0":
+  version "4.7.1"
+  resolved "https://registry.yarnpkg.com/@turf/helpers/-/helpers-4.7.1.tgz#12cecbfe22b16386338537dae3e3da83de2f3fac"
+
+"@turf/invariant@4.7.1":
+  version "4.7.1"
+  resolved "https://registry.yarnpkg.com/@turf/invariant/-/invariant-4.7.1.tgz#b95bc41a3cc7f1319d9a4c51ad5b3582905f81e4"
+
+"@turf/meta@4.7.1", "@turf/meta@^4.6.0":
+  version "4.7.1"
+  resolved "https://registry.yarnpkg.com/@turf/meta/-/meta-4.7.1.tgz#53a55281ae08a5fa2f414d9ba50a951d38e86ab5"
+
+"@turf/projection@^4.6.0":
+  version "4.7.1"
+  resolved "https://registry.yarnpkg.com/@turf/projection/-/projection-4.7.1.tgz#98368ca413def3ac6a726b6a2f4599b54163f79a"
+  dependencies:
+    "@turf/clone" "4.7.1"
+    "@turf/meta" "4.7.1"
+
+"@turf/rhumb-distance@^4.6.0":
+  version "4.7.1"
+  resolved "https://registry.yarnpkg.com/@turf/rhumb-distance/-/rhumb-distance-4.7.1.tgz#33bd3cef070372a471dc1163c08d1ca9a6e486d8"
+  dependencies:
+    "@turf/helpers" "4.7.1"
+    "@turf/invariant" "4.7.1"
+    geodesy "1.1.1"
+
+"@turf/truncate@^4.6.0":
+  version "4.7.1"
+  resolved "https://registry.yarnpkg.com/@turf/truncate/-/truncate-4.7.1.tgz#75fc7cf282e4cb5bf49c8b787f9da1f5c47d5e5d"
+  dependencies:
+    "@turf/meta" "4.7.1"
+
 balanced-match@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/balanced-match/-/balanced-match-1.0.0.tgz#89b4d199ab2bee49de164ea02b89ce462d71b767"
@@ -93,6 +149,10 @@ fs.realpath@^1.0.0:
 function-bind@^1.0.2, function-bind@^1.1.0, function-bind@~1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/function-bind/-/function-bind-1.1.0.tgz#16176714c801798e4e8f2cf7f7529467bb4a5771"
+
+geodesy@1.1.1:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/geodesy/-/geodesy-1.1.1.tgz#918c414a5cc247c8128332b7624050c467e98a5d"
 
 glob@~7.1.2:
   version "7.1.2"
@@ -284,6 +344,10 @@ tape@^4.6.3:
 through@~2.3.4, through@~2.3.8:
   version "2.3.8"
   resolved "https://registry.yarnpkg.com/through/-/through-2.3.8.tgz#0dd4c9ffaabc357960b1b724115d7e0e86a2e1f5"
+
+utm-converter@^0.1.1:
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/utm-converter/-/utm-converter-0.1.1.tgz#4ecc0e6a35e19f4028157e40a70cab139cc64497"
 
 wrappy@1:
   version "1.0.2"
