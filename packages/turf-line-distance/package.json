@@ -1,6 +1,6 @@
 {
   "name": "@turf/line-distance",
-  "version": "4.6.0",
+  "version": "4.7.1",
   "description": "turf line-distance module",
   "main": "index.js",
   "types": "index.d.ts",
@@ -41,8 +41,8 @@
     "write-json-file": "^2.0.0"
   },
   "dependencies": {
-    "@turf/distance": "^4.6.0",
-    "@turf/helpers": "^4.6.0",
-    "@turf/meta": "^4.6.0"
+    "@turf/distance": "4.7.1",
+    "@turf/helpers": "4.7.1",
+    "@turf/meta": "4.7.1"
   }
 }

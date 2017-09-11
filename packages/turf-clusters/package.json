@@ -1,6 +1,6 @@
 {
   "name": "@turf/clusters",
-  "version": "4.6.1",
+  "version": "4.7.1",
   "description": "turf clusters module",
   "main": "index.js",
   "types": "index.d.ts",
@@ -37,7 +37,7 @@
     "tape": "4.7.0"
   },
   "dependencies": {
-    "@turf/helpers": "^4.6.0",
-    "@turf/meta": "^4.6.0"
+    "@turf/helpers": "4.7.1",
+    "@turf/meta": "4.7.1"
   }
 }
