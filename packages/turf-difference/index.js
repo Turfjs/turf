@@ -65,6 +65,7 @@ module.exports = function (polygon1, polygon2) {
 /**
  * Detect Empty Polygon
  *
+ * @private
  * @param {Geometry<Polygon|MultiPolygon>} geom Geometry Object
  * @returns {Geometry<Polygon|MultiPolygon>|undefined} removed any polygons with no areas
  */

@@ -1,6 +1,6 @@
 # @turf/boolean-within
 
-# booleanWith
+# booleanWithin
 
 Boolean-within returns true if the first geometry is completely within the second geometry.
 The interiors of both geometries must intersect and, the interior and boundary of the primary (geometry a)

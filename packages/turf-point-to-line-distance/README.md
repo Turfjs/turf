@@ -16,9 +16,9 @@ minimum distance between the point and any segment of the `LineString`.
 
 ```javascript
 var pt = turf.point([0, 0]);
-var line = turf.lineString([[1, 1],[-1, 1]);
+var line = turf.lineString([[1, 1],[-1, 1]]);
 
-var d = pointToLineDistance(pt, line, 'miles');
+var distance = turf.pointToLineDistance(pt, line, 'miles');
 //=69.11854715938406
 ```
 
