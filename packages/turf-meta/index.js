@@ -1,18 +1,21 @@
 /**
  * GeoJSON BBox
  *
+ * @private
  * @typedef {[number, number, number, number]} BBox
  */
 
 /**
  * GeoJSON Id
  *
+ * @private
  * @typedef {(number|string)} Id
  */
 
 /**
  * GeoJSON FeatureCollection
  *
+ * @private
  * @typedef {Object} FeatureCollection
  * @property {string} type
  * @property {?Id} id
@@ -23,6 +26,7 @@
 /**
  * GeoJSON Feature
  *
+ * @private
  * @typedef {Object} Feature
  * @property {string} type
  * @property {?Id} id
@@ -34,6 +38,7 @@
 /**
  * GeoJSON Geometry
  *
+ * @private
  * @typedef {Object} Geometry
  * @property {string} type
  * @property {any[]} coordinates
@@ -725,10 +730,9 @@ function flattenReduce(geojson, callback, initialValue) {
  *
  * // Calculate the total number of segments
  * var total = 0;
- * var initialValue = 0;
  * turf.segmentEach(polygon, function () {
  *     total++;
- * }, initialValue);
+ * });
  */
 function segmentEach(geojson, callback) {
     flattenEach(geojson, function (feature, featureIndex) {

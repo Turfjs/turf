@@ -21,7 +21,7 @@ Iterate over coordinates in any GeoJSON object, similar to Array.forEach()
 
 **Parameters**
 
--   `geojson` **([FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects) \| [Geometry](http://geojson.org/geojson-spec.html#geometry) \| [Feature](http://geojson.org/geojson-spec.html#feature-objects))** any GeoJSON object
+-   `geojson` **([FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects) \| [Feature](http://geojson.org/geojson-spec.html#feature-objects) \| [Geometry](http://geojson.org/geojson-spec.html#geometry))** any GeoJSON object
 -   `callback` **[Function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function)** a method that takes (currentCoord, coordIndex, featureIndex, featureSubIndex)
 -   `excludeWrapCoord` **\[[boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)]** whether or not to include the final coordinate of LinearRings that wraps the ring in its iteration. (optional, default `false`)
 
@@ -138,34 +138,6 @@ Callback for propEach
 -   `geojson`  
 -   `callback`  
 
-# propReduceCallback
-
-Callback for propReduce
-
-The first time the callback function is called, the values provided as arguments depend
-on whether the reduce method has an initialValue argument.
-
-If an initialValue is provided to the reduce method:
-
--   The previousValue argument is initialValue.
--   The currentValue argument is the value of the first element present in the array.
-
-If an initialValue is not provided:
-
--   The previousValue argument is the value of the first element present in the array.
--   The currentValue argument is the value of the second element present in the array.
-
-**Parameters**
-
--   `previousValue` **Any** The accumulated value previously returned in the last invocation
-    of the callback, or initialValue, if supplied.
--   `currentProperties` **Any** The current properties being processed.
--   `featureIndex` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** The index of the current element being processed in the
-    array.Starts at index 0, if an initialValue is provided, and at index 1 otherwise.
--   `geojson`  
--   `callback`  
--   `initialValue`  
-
 # propReduce
 
 Reduce properties in any GeoJSON object into a single value,
@@ -196,17 +168,33 @@ turf.propReduce(features, function (previousValue, currentProperties, featureInd
 
 Returns **Any** The value that results from the reduction.
 
-# featureEachCallback
+# propReduceCallback
 
-Callback for featureEach
+Callback for propReduce
+
+The first time the callback function is called, the values provided as arguments depend
+on whether the reduce method has an initialValue argument.
+
+If an initialValue is provided to the reduce method:
+
+-   The previousValue argument is initialValue.
+-   The currentValue argument is the value of the first element present in the array.
+
+If an initialValue is not provided:
+
+-   The previousValue argument is the value of the first element present in the array.
+-   The currentValue argument is the value of the second element present in the array.
 
 **Parameters**
 
--   `currentFeature` **[Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;any>** The current feature being processed.
+-   `previousValue` **Any** The accumulated value previously returned in the last invocation
+    of the callback, or initialValue, if supplied.
+-   `currentProperties` **Any** The current properties being processed.
 -   `featureIndex` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** The index of the current element being processed in the
     array.Starts at index 0, if an initialValue is provided, and at index 1 otherwise.
 -   `geojson`  
 -   `callback`  
+-   `initialValue`  
 
 # featureEach
 
@@ -215,7 +203,7 @@ Array.forEach.
 
 **Parameters**
 
--   `geojson` **([Geometry](http://geojson.org/geojson-spec.html#geometry) \| [FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects) \| [Feature](http://geojson.org/geojson-spec.html#feature-objects))** any GeoJSON object
+-   `geojson` **([FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects) \| [Feature](http://geojson.org/geojson-spec.html#feature-objects) \| [Geometry](http://geojson.org/geojson-spec.html#geometry))** any GeoJSON object
 -   `callback` **[Function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function)** a method that takes (currentFeature, featureIndex)
 
 **Examples**
@@ -231,6 +219,18 @@ turf.featureEach(features, function (currentFeature, featureIndex) {
   //=featureIndex
 });
 ```
+
+# featureEachCallback
+
+Callback for featureEach
+
+**Parameters**
+
+-   `currentFeature` **[Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;any>** The current feature being processed.
+-   `featureIndex` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** The index of the current element being processed in the
+    array.Starts at index 0, if an initialValue is provided, and at index 1 otherwise.
+-   `geojson`  
+-   `callback`  
 
 # featureReduceCallback
 
@@ -266,7 +266,7 @@ Reduce features in any GeoJSON object, similar to Array.reduce().
 
 **Parameters**
 
--   `geojson` **([Geometry](http://geojson.org/geojson-spec.html#geometry) \| [FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects) \| [Feature](http://geojson.org/geojson-spec.html#feature-objects))** any GeoJSON object
+-   `geojson` **([FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects) \| [Feature](http://geojson.org/geojson-spec.html#feature-objects) \| [Geometry](http://geojson.org/geojson-spec.html#geometry))** any GeoJSON object
 -   `callback` **[Function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function)** a method that takes (previousValue, currentFeature, featureIndex)
 -   `initialValue` **\[Any]** Value to use as the first argument to the first call of the callback.
 
@@ -294,7 +294,7 @@ Get all coordinates from any GeoJSON object.
 
 **Parameters**
 
--   `geojson` **([Geometry](http://geojson.org/geojson-spec.html#geometry) \| [FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects) \| [Feature](http://geojson.org/geojson-spec.html#feature-objects))** any GeoJSON object
+-   `geojson` **([FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects) \| [Feature](http://geojson.org/geojson-spec.html#feature-objects) \| [Geometry](http://geojson.org/geojson-spec.html#geometry))** any GeoJSON object
 
 **Examples**
 
@@ -329,7 +329,7 @@ Iterate over each geometry in any GeoJSON object, similar to Array.forEach()
 
 **Parameters**
 
--   `geojson` **([Geometry](http://geojson.org/geojson-spec.html#geometry) \| [FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects) \| [Feature](http://geojson.org/geojson-spec.html#feature-objects))** any GeoJSON object
+-   `geojson` **([FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects) \| [Feature](http://geojson.org/geojson-spec.html#feature-objects) \| [Geometry](http://geojson.org/geojson-spec.html#geometry))** any GeoJSON object
 -   `callback` **[Function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function)** a method that takes (currentGeometry, featureIndex, currentProperties)
 
 **Examples**
@@ -382,7 +382,7 @@ Reduce geometry in any GeoJSON object, similar to Array.reduce().
 
 **Parameters**
 
--   `geojson` **([Geometry](http://geojson.org/geojson-spec.html#geometry) \| [FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects) \| [Feature](http://geojson.org/geojson-spec.html#feature-objects))** any GeoJSON object
+-   `geojson` **([FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects) \| [Feature](http://geojson.org/geojson-spec.html#feature-objects) \| [Geometry](http://geojson.org/geojson-spec.html#geometry))** any GeoJSON object
 -   `callback` **[Function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function)** a method that takes (previousValue, currentGeometry, featureIndex, currentProperties)
 -   `initialValue` **\[Any]** Value to use as the first argument to the first call of the callback.
 
@@ -426,7 +426,7 @@ Array.forEach.
 
 **Parameters**
 
--   `geojson` **([Geometry](http://geojson.org/geojson-spec.html#geometry) \| [FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects) \| [Feature](http://geojson.org/geojson-spec.html#feature-objects))** any GeoJSON object
+-   `geojson` **([FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects) \| [Feature](http://geojson.org/geojson-spec.html#feature-objects) \| [Geometry](http://geojson.org/geojson-spec.html#geometry))** any GeoJSON object
 -   `callback` **[Function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function)** a method that takes (currentFeature, featureIndex, featureSubIndex)
 
 **Examples**
@@ -480,7 +480,7 @@ Reduce flattened features in any GeoJSON object, similar to Array.reduce().
 
 **Parameters**
 
--   `geojson` **([Geometry](http://geojson.org/geojson-spec.html#geometry) \| [FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects) \| [Feature](http://geojson.org/geojson-spec.html#feature-objects))** any GeoJSON object
+-   `geojson` **([FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects) \| [Feature](http://geojson.org/geojson-spec.html#feature-objects) \| [Geometry](http://geojson.org/geojson-spec.html#geometry))** any GeoJSON object
 -   `callback` **[Function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function)** a method that takes (previousValue, currentFeature, featureIndex, featureSubIndex)
 -   `initialValue` **\[Any]** Value to use as the first argument to the first call of the callback.
 
@@ -542,10 +542,9 @@ turf.segmentEach(polygon, function (currentSegment, featureIndex, featureSubInde
 
 // Calculate the total number of segments
 var total = 0;
-var initialValue = 0;
 turf.segmentEach(polygon, function () {
     total++;
-}, initialValue);
+});
 ```
 
 Returns **void** 
@@ -640,7 +639,7 @@ similar to Array.forEach.
 **Examples**
 
 ```javascript
-var mtLn = turf.multiLine([
+var mtLn = turf.multiLineString([
   turf.lineString([[26, 37], [35, 45]]),
   turf.lineString([[36, 53], [38, 50], [41, 55]])
 ]);
