@@ -3,8 +3,12 @@ var jsts = require('jsts');
 var meta = require('@turf/meta');
 var center = require('@turf/center');
 var helpers = require('@turf/helpers');
+var turfBbox = require('@turf/bbox');
+var projection = require('@turf/projection');
+var toWgs84 = projection.toWgs84;
 var feature = helpers.feature;
 var geomEach = meta.geomEach;
+var toMercator = projection.toMercator;
 var featureEach = meta.featureEach;
 var featureCollection = helpers.featureCollection;
 var radiansToDistance = helpers.radiansToDistance;
@@ -38,9 +42,6 @@ module.exports = function (geojson, radius, units, steps) {
     // Allow negative buffers ("erosion") or zero-sized buffers ("repair geometry")
     if (radius === undefined) throw new Error('radius is required');
     if (steps <= 0) throw new Error('steps must be greater than 0');
-
-    // prevent input mutation
-    // geojson = JSON.parse(JSON.stringify(geojson));
 
     // default params
     steps = steps || 64;
@@ -83,8 +84,7 @@ function buffer(geojson, radius, units, steps) {
     var geometry = (geojson.type === 'Feature') ? geojson.geometry : geojson;
 
     // Geometry Types faster than jsts
-    switch (geometry.type) {
-    case 'GeometryCollection':
+    if (geometry.type === 'GeometryCollection') {
         var results = [];
         geomEach(geojson, function (geometry) {
             var buffered = buffer(geometry, radius, units, steps);
@@ -94,16 +94,24 @@ function buffer(geojson, radius, units, steps) {
     }
 
     // Project GeoJSON to Transverse Mercator projection (convert to Meters)
-    var distance = radiansToDistance(distanceToRadians(radius, units), 'meters');
-    var projection = defineProjection(geojson);
-    var projected = {
-        type: geometry.type,
-        coordinates: projectCoords(geometry.coordinates, projection)
-    };
+    var projected;
+    var bbox = turfBbox(geojson);
+    var needsTransverseMercator = bbox[1] > 50 && bbox[3] > 50;
+
+    if (needsTransverseMercator) {
+        var projection = defineProjection(geometry);
+        projected = {
+            type: geometry.type,
+            coordinates: projectCoords(geometry.coordinates, projection)
+        };
+    } else {
+        projected = toMercator(geometry);
+    }
 
     // JSTS buffer operation
     var reader = new jsts.io.GeoJSONReader();
     var geom = reader.read(projected);
+    var distance = radiansToDistance(distanceToRadians(radius, units), 'meters');
     var buffered = geom.buffer(distance);
     var writer = new jsts.io.GeoJSONWriter();
     buffered = writer.write(buffered);
@@ -112,8 +120,17 @@ function buffer(geojson, radius, units, steps) {
     if (coordsIsNaN(buffered.coordinates)) return undefined;
 
     // Unproject coordinates (convert to Degrees)
-    buffered.coordinates = unprojectCoords(buffered.coordinates, projection);
-    return feature(buffered, properties);
+    var result;
+    if (needsTransverseMercator) {
+        result = {
+            type: buffered.type,
+            coordinates: unprojectCoords(buffered.coordinates, projection)
+        };
+    } else {
+        result = toWgs84(buffered);
+    }
+
+    return (result.geometry) ? result : feature(result, properties);
 }
 
 /**

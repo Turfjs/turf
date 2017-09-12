@@ -1,6 +1,6 @@
 {
   "name": "@turf/linestring-to-polygon",
-  "version": "4.7.1",
+  "version": "4.7.3",
   "description": "turf linestring-to-polygon module",
   "main": "index.js",
   "types": "index.d.ts",
@@ -36,8 +36,8 @@
     "write-json-file": "^2.0.0"
   },
   "dependencies": {
-    "@turf/bbox": "4.7.1",
-    "@turf/helpers": "4.7.1",
-    "@turf/invariant": "4.7.1"
+    "@turf/bbox": "^4.7.3",
+    "@turf/helpers": "^4.7.3",
+    "@turf/invariant": "^4.7.3"
   }
 }
