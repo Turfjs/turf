@@ -1,6 +1,6 @@
 {
   "name": "@turf/collect",
-  "version": "4.7.1",
+  "version": "4.7.3",
   "description": "turf collect module",
   "main": "index.js",
   "types": "index.d.ts",
@@ -34,13 +34,13 @@
   ],
   "license": "MIT",
   "devDependencies": {
-    "@turf/helpers": "4.7.1",
+    "@turf/helpers": "^4.7.3",
     "benchmark": "^2.1.4",
     "tape": "^4.6.3"
   },
   "dependencies": {
-    "@turf/bbox": "4.7.1",
-    "@turf/inside": "4.7.1",
+    "@turf/bbox": "^4.7.3",
+    "@turf/inside": "^4.7.3",
     "rbush": "^2.0.1"
   }
 }

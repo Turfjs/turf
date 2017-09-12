@@ -1,6 +1,6 @@
 {
   "name": "@turf/distance",
-  "version": "4.7.1",
+  "version": "4.7.3",
   "description": "turf distance module",
   "main": "index.js",
   "types": "index.d.ts",
@@ -35,7 +35,7 @@
     "write-json-file": "^2.0.0"
   },
   "dependencies": {
-    "@turf/helpers": "4.7.1",
-    "@turf/invariant": "4.7.1"
+    "@turf/helpers": "^4.7.3",
+    "@turf/invariant": "^4.7.3"
   }
 }
