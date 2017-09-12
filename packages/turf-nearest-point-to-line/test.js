@@ -3,7 +3,7 @@ const test = require('tape');
 const path = require('path');
 const load = require('load-json-file');
 const write = require('write-json-file');
-const {featureCollection, point, lineString} = require('@turf/helpers');
+const {featureCollection, point, lineString, round} = require('@turf/helpers');
 const nearestPointToLine = require('./');
 
 const directories = {
@@ -24,6 +24,7 @@ test('turf-nearest-point-to-line', t => {
         const [points, line] = geojson.features;
         let {units} = geojson.properties || {};
         const nearest = nearestPointToLine(points, line, units);
+        nearest.properties.dist = round(nearest.properties.dist, 13);
         nearest.properties = Object.assign(nearest.properties, {
             'marker-color': '#F00',
             'marker-size': 'large',
