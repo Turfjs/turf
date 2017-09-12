@@ -1,6 +1,6 @@
 {
   "name": "@turf/random",
-  "version": "4.7.1",
+  "version": "4.7.3",
   "description": "turf random module",
   "main": "index.js",
   "types": "index.d.ts",
