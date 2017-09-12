@@ -1,0 +1,38 @@
+{
+	"type": "FeatureCollection",
+	"features": [
+		{
+			"type": "Feature",
+			"properties": {
+				"dist": 55.53252986079311,
+				"marker-color": "#F00",
+				"marker-size": "large",
+				"marker-symbol": "star"
+			},
+			"geometry": {
+				"type": "Point",
+				"coordinates": [
+					27.26806640625,
+					14.243086862716888
+				]
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {},
+			"geometry": {
+				"type": "LineString",
+				"coordinates": [
+					[
+						27.015380859374996,
+						15.008463695004872
+					],
+					[
+						29.168701171875,
+						17.256236314156425
+					]
+				]
+			}
+		}
+	]
+}
