@@ -38,6 +38,9 @@
 		"tape": "^4.6.3"
 	},
 	"dependencies": {
-		"@turf/turf": "4.7.1"
+		"@turf/clean-coords": "4.7.1",
+		"@turf/helpers": "4.7.1",
+		"@turf/line-segment": "4.7.1",
+		"@turf/rhumb-bearing": "4.7.1"
 	}
 }
