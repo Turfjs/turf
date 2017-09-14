@@ -5,7 +5,7 @@ var bearingToAngle = require('@turf/helpers').bearingToAngle;
 
 
 /**
- * <DESCRIPTION>
+ * Boolean-Parallel returns True if each segment of `line1` is parallel to the correspondent segment of `line2`
  *
  * @name booleanParallel
  * @param {Geometry|Feature<LineString>} line1 GeoJSON Feature or Geometry
@@ -66,5 +66,5 @@ function isParallel(segment1, segment2) {
 function getType(geojson, name) {
     if (geojson.geometry && geojson.geometry.type) return geojson.geometry.type;
     if (geojson.type) return geojson.type; // if GeoJSON geometry
-    throw new Error('Invalid GeoJSON type for ' + name);
+    throw new Error('Invalid GeoJSON object for ' + name);
 }

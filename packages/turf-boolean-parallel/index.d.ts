@@ -1,10 +1,11 @@
 /// <reference types="geojson" />
 
-type Feature = GeoJSON.Feature<any> | GeoJSON.GeometryObject;
+type Geom = GeoJSON.LineString;
+type Feature<Geom extends GeoJSON.GeometryObject> = GeoJSON.Feature<Geom>;
 
 /**
  * http://turfjs.org/docs/#booleanparallel
  */
-declare function booleanParallel(feature1: Feature, feature2: Feature): boolean;
+declare function booleanParallel(line1: Feature<Geom> | Geom, line2: Feature<Geom> | Geom): boolean;
 declare namespace booleanParallel { }
 export = booleanParallel;
