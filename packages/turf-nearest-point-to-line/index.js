@@ -27,7 +27,9 @@ module.exports = function (points, line, units) {
     // validation
     if (!points) throw new Error('points is required');
     else collectionOf(points, 'Point', 'points');
+
     if (!line) throw new Error('line is required');
+    else if (line.type === 'LineString') line = {type: 'Feature', geometry: line};
     else featureOf(line, 'LineString', 'line');
 
     var dist = Infinity;

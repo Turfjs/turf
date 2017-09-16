@@ -1,20 +1,13 @@
 // (logic of computation inspired by:
 // https://stackoverflow.com/questions/32771458/distance-from-lat-lng-point-to-minor-arc-segment)
 
-var meta = require('@turf/meta');
+var segmentEach = require('@turf/meta').segmentEach;
 var bearing = require('@turf/bearing');
 var helpers = require('@turf/helpers');
 var distance = require('@turf/distance');
-var invariant = require('@turf/invariant');
+var featureOf = require('@turf/invariant').featureOf;
 var rhumbBearing = require('@turf/rhumb-bearing');
 var rhumbDistance = require('@turf/rhumb-distance');
-var turfLine = helpers.lineString;
-var featureOf = invariant.featureOf;
-var turfPoint = helpers.point;
-var segmentEach = meta.segmentEach;
-var bearingToAngle = helpers.bearingToAngle;
-var convertDistance = helpers.convertDistance;
-var degrees2radians = helpers.degrees2radians;
 
 /**
  * Returns the minimum distance between a {@link Point} and a {@link LineString}, being the distance from a line the
@@ -36,10 +29,13 @@ var degrees2radians = helpers.degrees2radians;
 module.exports = function (point, line, units, mercator) {
     // validation
     if (!point) throw new Error('point is required');
-    if (Array.isArray(point)) point = turfPoint(point);
+    if (Array.isArray(point)) point = helpers.point(point);
+    else if (point.type === 'Point') point = {type: 'Feature', geometry: point};
     else featureOf(point, 'Point', 'point');
+
     if (!line) throw new Error('line is required');
-    if (Array.isArray(line)) line = turfLine(line);
+    if (Array.isArray(line)) line = helpers.lineString(line);
+    else if (line.type === 'LineString') line = {type: 'Feature', geometry: line};
     else featureOf(line, 'LineString', 'line');
 
     var distance = Infinity;
@@ -68,8 +64,8 @@ module.exports = function (point, line, units, mercator) {
 function distanceToSegment(p, a, b, units, mercator) {
 
     var distanceAP = (mercator !== true) ? distance(a, p, units) : euclideanDistance(a, p, units);
-    var azimuthAP = bearingToAngle((mercator !== true) ? bearing(a, p) : rhumbBearing(a, p));
-    var azimuthAB = bearingToAngle((mercator !== true) ? bearing(a, b) : rhumbBearing(a, b));
+    var azimuthAP = helpers.bearingToAngle((mercator !== true) ? bearing(a, p) : rhumbBearing(a, p));
+    var azimuthAB = helpers.bearingToAngle((mercator !== true) ? bearing(a, b) : rhumbBearing(a, b));
     var angleA = Math.abs(azimuthAP - azimuthAB);
     // if (angleA > 180) angleA = Math.abs(angleA - 360);
     // if the angle PAB is obtuse its projection on the line extending the segment falls outside the segment
@@ -85,7 +81,7 @@ function distanceToSegment(p, a, b, units, mercator) {
     if (angleA > 90) return distanceAP;
 
     var azimuthBA = (azimuthAB + 180) % 360;
-    var azimuthBP = bearingToAngle((mercator !== true) ? bearing(b, p) : rhumbBearing(b, p));
+    var azimuthBP = helpers.bearingToAngle((mercator !== true) ? bearing(b, p) : rhumbBearing(b, p));
     var angleB = Math.abs(azimuthBP - azimuthBA);
     if (angleB > 180) angleB = Math.abs(angleB - 360);
     // also if the angle ABP is acute the projection of P falls outside the segment, on the other side
@@ -110,7 +106,7 @@ function distanceToSegment(p, a, b, units, mercator) {
         /____________|____\
        A             H     B
     */
-    if (mercator !== true) return distanceAP * Math.sin(degrees2radians(angleA));
+    if (mercator !== true) return distanceAP * Math.sin(helpers.degrees2radians(angleA));
     return mercatorPH(a, b, p, units);
 }
 
@@ -131,7 +127,7 @@ function mercatorPH(a, b, p, units) {
         delta = (a[0] > 0 || b[0] > 0 || p[0] > 0) ? -180 : 180;
     }
 
-    var origin = turfPoint(p);
+    var origin = helpers.point(p);
     var A = toMercator([a[0] + delta, a[1]]);
     var B = toMercator([b[0] + delta, b[1]]);
     var P = toMercator([p[0] + delta, p[1]]);
@@ -194,7 +190,7 @@ function euclideanDistance(from, to, units) {
     var sqr = function (n) { return n * n; };
     var squareD = sqr(p1[0] - p2[0]) + sqr(p1[1] - p2[1]);
     var d = Math.sqrt(squareD);
-    return convertDistance(d, 'meters', units);
+    return helpers.convertDistance(d, 'meters', units);
 }
 
 /**

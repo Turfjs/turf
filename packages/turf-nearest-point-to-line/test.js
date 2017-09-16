@@ -41,7 +41,7 @@ test('turf-nearest-point-to-line', t => {
 
 test('turf-nearest-point-to-line -- throws', t => {
     const points = featureCollection([point([0, 0]), point([0, 1])]);
-    const line = lineString([[1,1], [-1,1]]);
+    const line = lineString([[1, 1], [-1, 1]]);
 
     t.throws(() => nearestPointToLine(null, line), /points is required/, 'missing points');
     t.throws(() => nearestPointToLine(points, null), /line is required/, 'missing line');
@@ -50,5 +50,13 @@ test('turf-nearest-point-to-line -- throws', t => {
     t.throws(() => nearestPointToLine(points, points), /Invalid input to line, Feature with geometry required/, 'invalid line');
     t.throws(() => nearestPointToLine(line, line), /Invalid input to points, FeatureCollection required/, 'invalid points');
 
+    t.end();
+});
+
+test('turf-nearest-point-to-line -- Geometry', t => {
+    const points = featureCollection([point([0, 0]), point([0, 1])]);
+    const line = lineString([[1, 1], [-1, 1]]);
+
+    t.assert(nearestPointToLine(points, line.geometry));
     t.end();
 });
