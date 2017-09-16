@@ -9,7 +9,7 @@ var geomEach = meta.geomEach;
  *
  * @name nearestPointToLine
  * @param {FeatureCollection|GeometryCollection<Point>} points Point Collection
- * @param {Feature<LineString>|LineString} line Line Feature
+ * @param {Feature|Geometry<LineString>} line Line Feature
  * @param {string} [units=kilometers] unit of the output distance property, can be degrees, radians, miles, or kilometer
  * @returns {Feature<Point>} the closest point
  * @example
