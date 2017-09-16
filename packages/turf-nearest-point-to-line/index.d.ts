@@ -1,8 +1,8 @@
 /// <reference types="geojson" />
 
-import { Units } from '@turf/helpers'
+import { Units, FeatureGeometryCollection } from '@turf/helpers'
 
-type Points = GeoJSON.FeatureCollection<GeoJSON.Point>;
+type Points = GeoJSON.FeatureCollection<GeoJSON.Point> | FeatureGeometryCollection;
 type LineString = GeoJSON.Feature<GeoJSON.LineString> | GeoJSON.LineString;
 interface Point extends GeoJSON.Feature<GeoJSON.Point> {
   properties: {

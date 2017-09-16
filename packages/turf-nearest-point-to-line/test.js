@@ -3,7 +3,7 @@ const test = require('tape');
 const path = require('path');
 const load = require('load-json-file');
 const write = require('write-json-file');
-const {featureCollection, point, lineString, round} = require('@turf/helpers');
+const {geometryCollection, featureCollection, point, lineString, round} = require('@turf/helpers');
 const nearestPointToLine = require('./');
 
 const directories = {
@@ -47,16 +47,26 @@ test('turf-nearest-point-to-line -- throws', t => {
     t.throws(() => nearestPointToLine(points, null), /line is required/, 'missing line');
 
     t.throws(() => nearestPointToLine(points, line, 'invalid'), /units is invalid/, 'invalid units');
-    t.throws(() => nearestPointToLine(points, points), /Invalid input to line, Feature with geometry required/, 'invalid line');
-    t.throws(() => nearestPointToLine(line, line), /Invalid input to points, FeatureCollection required/, 'invalid points');
+    t.throws(() => nearestPointToLine(points, points), /line must be a LineString/, 'invalid line');
+    t.throws(() => nearestPointToLine(line, line), /points must be a Point Collection/, 'invalid points');
 
     t.end();
 });
 
 test('turf-nearest-point-to-line -- Geometry', t => {
     const points = featureCollection([point([0, 0]), point([0, 1])]);
+    const geomPoints = geometryCollection([point([0, 0]).geometry, point([0, 1]).geometry]);
     const line = lineString([[1, 1], [-1, 1]]);
 
     t.assert(nearestPointToLine(points, line.geometry));
+    t.assert(nearestPointToLine(geomPoints, line.geometry));
+    t.end();
+});
+
+test('turf-nearest-point-to-line -- Empty FeatureCollection', t => {
+    const points = featureCollection([]);
+    const line = lineString([[1, 1], [-1, 1]]);
+
+    t.throws(() => nearestPointToLine(points, line), /points must contain features/, 'points must contain features');
     t.end();
 });

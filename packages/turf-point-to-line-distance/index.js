@@ -35,7 +35,7 @@ module.exports = function (point, line, units, mercator) {
 
     if (!line) throw new Error('line is required');
     if (Array.isArray(line)) line = helpers.lineString(line);
-    else if (line.type === 'LineString') line = {type: 'Feature', geometry: line};
+    else if (line.type === 'LineString') line = {type: 'Feature', properties: {}, geometry: line};
     else featureOf(line, 'LineString', 'line');
 
     var distance = Infinity;

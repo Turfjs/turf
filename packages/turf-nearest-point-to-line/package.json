@@ -35,13 +35,12 @@
   "devDependencies": {
     "@turf/helpers": "4.7.1",
     "benchmark": "^2.1.4",
-    "write-json-file": "^2.2.0",
     "load-json-file": "^2.0.0",
-    "tape": "^4.6.3"
+    "tape": "^4.6.3",
+    "write-json-file": "^2.2.0"
   },
   "dependencies": {
-    "@turf/point-to-line-distance": "4.7.1",
-    "@turf/meta": "4.7.1",
-    "@turf/invariant": "4.7.1"
+    "@turf/meta": "^4.7.3",
+    "@turf/point-to-line-distance": "^4.7.3"
   }
 }
