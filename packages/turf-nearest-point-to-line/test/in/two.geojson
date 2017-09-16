@@ -2,53 +2,41 @@
 	"type": "FeatureCollection",
 	"features": [
 		{
-			"type": "FeatureCollection",
-			"features": [
-				{
-					"type": "Feature",
-					"properties": {},
-					"geometry": {
+			"type": "Feature",
+			"properties": {},
+			"geometry": {
+				"type": "GeometryCollection",
+				"geometries": [
+					{
 						"type": "Point",
 						"coordinates": [
 							-32.7392578125,
 							28.76765910569123
 						]
-					}
-				},
-				{
-					"type": "Feature",
-					"properties": {},
-					"geometry": {
+					},
+					{
 						"type": "Point",
 						"coordinates": [
 							-36.25488281249999,
 							23.36242859340884
 						]
-					}
-				},
-				{
-					"type": "Feature",
-					"properties": {},
-					"geometry": {
+					},
+					{
 						"type": "Point",
 						"coordinates": [
 							-38.0126953125,
 							26.194876675795218
 						]
-					}
-				},
-				{
-					"type": "Feature",
-					"properties": {},
-					"geometry": {
+					},
+					{
 						"type": "Point",
 						"coordinates": [
 							-39.90234375,
 							27.059125784374068
 						]
 					}
-				}
-			]
+				]
+			}
 		},
 		{
 			"type": "Feature",

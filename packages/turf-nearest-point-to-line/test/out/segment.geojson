@@ -3,8 +3,38 @@
 	"features": [
 		{
 			"type": "Feature",
+			"properties": {},
+			"geometry": {
+				"type": "GeometryCollection",
+				"geometries": [
+					{
+						"type": "Point",
+						"coordinates": [
+							27.26806640625,
+							14.243086862716888
+						]
+					},
+					{
+						"type": "Point",
+						"coordinates": [
+							28.388671875,
+							18.323240460443397
+						]
+					},
+					{
+						"type": "Point",
+						"coordinates": [
+							29.619140624999996,
+							19.228176737766262
+						]
+					}
+				]
+			}
+		},
+		{
+			"type": "Feature",
 			"properties": {
-				"dist": 55.5325298607931,
+				"dist": 89.3709123239481,
 				"marker-color": "#F00",
 				"marker-size": "large",
 				"marker-symbol": "star"

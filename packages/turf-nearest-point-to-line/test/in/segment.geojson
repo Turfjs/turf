@@ -1,46 +1,38 @@
 {
 	"type": "FeatureCollection",
-	"properties": {
+		"properties": {
 		"units": "miles"
 	},
 	"features": [
 		{
-			"type": "FeatureCollection",
-			"features": [
-				{
-					"type": "Feature",
-					"properties": {},
-					"geometry": {
+			"type": "Feature",
+			"properties": {},
+			"geometry": {
+				"type": "GeometryCollection",
+				"geometries": [
+					{
 						"type": "Point",
 						"coordinates": [
 							27.26806640625,
 							14.243086862716888
 						]
-					}
-				},
-				{
-					"type": "Feature",
-					"properties": {},
-					"geometry": {
+					},
+					{
 						"type": "Point",
 						"coordinates": [
 							28.388671875,
 							18.323240460443397
 						]
-					}
-				},
-				{
-					"type": "Feature",
-					"properties": {},
-					"geometry": {
+					},
+					{
 						"type": "Point",
 						"coordinates": [
 							29.619140624999996,
 							19.228176737766262
 						]
 					}
-				}
-			]
+				]
+			}
 		},
 		{
 			"type": "Feature",

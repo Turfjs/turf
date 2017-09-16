@@ -30,7 +30,7 @@ test('turf-nearest-point-to-line', t => {
             'marker-size': 'large',
             'marker-symbol': 'star'
         });
-        const results = featureCollection([nearest, line]);
+        const results = featureCollection([points, nearest, line]);
 
         if (process.env.REGEN) write.sync(directories.out + filename, results);
         t.deepEqual(results, load.sync(directories.out + filename), name);
