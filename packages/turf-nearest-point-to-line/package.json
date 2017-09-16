@@ -35,6 +35,7 @@
   "devDependencies": {
     "@turf/circle": "^4.7.3",
     "@turf/helpers": "4.7.1",
+    "@turf/truncate": "^4.7.3",
     "benchmark": "^2.1.4",
     "load-json-file": "^2.0.0",
     "tape": "^4.6.3",

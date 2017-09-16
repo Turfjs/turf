@@ -4,6 +4,7 @@ const path = require('path');
 const load = require('load-json-file');
 const write = require('write-json-file');
 const circle = require('@turf/circle');
+const truncate = require('@turf/truncate');
 const {geometryCollection, featureCollection, point, lineString, round} = require('@turf/helpers');
 const nearestPointToLine = require('./');
 
@@ -32,7 +33,7 @@ test('turf-nearest-point-to-line', t => {
             'marker-size': 'large',
             'marker-symbol': 'star'
         });
-        const distanceCircle = circle(nearest, distance || 1, null, units, {fill: '#F00'});
+        const distanceCircle = truncate(circle(nearest, distance || 1, null, units, {fill: '#F00'}));
         const results = featureCollection([points, nearest, line, distanceCircle]);
 
         if (process.env.REGEN) write.sync(directories.out + filename, results);
