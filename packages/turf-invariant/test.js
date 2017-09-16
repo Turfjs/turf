@@ -2,7 +2,7 @@ const test = require('tape');
 const {point, lineString, polygon, featureCollection, geometryCollection} = require('@turf/helpers');
 const invariant = require('./');
 
-test('invariant#containsNumber', t => {
+test('invariant -- containsNumber', t => {
     t.equals(invariant.containsNumber([1, 1]), true);
     t.equals(invariant.containsNumber([[1, 1], [1, 1]]), true);
     t.equals(invariant.containsNumber([[[1, 1], [1, 1]], [1, 1]]), true);
@@ -14,7 +14,7 @@ test('invariant#containsNumber', t => {
     t.end();
 });
 
-test('invariant#geojsonType', t => {
+test('invariant -- geojsonType', t => {
     t.throws(() => {
         invariant.geojsonType();
     }, /type and name required/, '.geojsonType() name requirement');
@@ -40,7 +40,7 @@ test('invariant#geojsonType', t => {
     t.end();
 });
 
-test('invariant#featureOf', t => {
+test('invariant -- featureOf', t => {
     t.throws(() => {
         invariant.featureOf({
             type: 'Feature',
@@ -81,7 +81,7 @@ test('invariant#featureOf', t => {
     t.end();
 });
 
-test('invariant#collectionOf', t => {
+test('invariant -- collectionOf', t => {
     t.throws(() => {
         invariant.collectionOf({
             type: 'FeatureCollection',
@@ -125,7 +125,7 @@ test('invariant#collectionOf', t => {
     t.end();
 });
 
-test('invariant#getCoord', t => {
+test('invariant -- getCoord', t => {
     t.throws(() => invariant.getCoord(lineString([[1, 2], [3, 4]])));
     t.throws(() => invariant.getCoord(polygon([[[-75, 40], [-80, 50], [-70, 50], [-75, 40]]])));
 
@@ -138,7 +138,7 @@ test('invariant#getCoord', t => {
     t.end();
 });
 
-test('invariant#getCoord', t => {
+test('invariant -- getCoord', t => {
     t.throws(() => invariant.getCoord({
         type: 'LineString',
         coordinates: [[1, 2], [3, 4]]
@@ -160,7 +160,7 @@ test('invariant#getCoord', t => {
     t.end();
 });
 
-test('invariant#getCoords', t => {
+test('invariant -- getCoords', t => {
     t.throws(() => invariant.getCoords({
         type: 'LineString',
         coordinates: null
@@ -182,7 +182,7 @@ test('invariant#getCoords', t => {
     t.end();
 });
 
-test('invariant#getGeom', t => {
+test('invariant -- getGeom', t => {
     const pt = point([1, 1]);
     const line = lineString([[0, 1], [1, 1]]);
     const collection = featureCollection([pt, line]);
@@ -196,7 +196,7 @@ test('invariant#getGeom', t => {
     t.end();
 });
 
-test('invariant#getGeomType', t => {
+test('invariant -- getGeomType', t => {
     const pt = point([1, 1]);
     const line = lineString([[0, 1], [1, 1]]);
     const collection = featureCollection([pt, line]);
@@ -206,6 +206,20 @@ test('invariant#getGeomType', t => {
     t.deepEqual(invariant.getGeomType(line.geometry), 'LineString');
     t.deepEqual(invariant.getGeomType(geomCollection), 'GeometryCollection');
     t.throws(() => invariant.getGeomType(collection, 'featureCollection not valid'));
+    t.end();
+});
+
+test('invariant -- getType', t => {
+    const pt = point([1, 1]);
+    const line = lineString([[0, 1], [1, 1]]);
+    const collection = featureCollection([pt, line]);
+    const geomCollection = geometryCollection([pt.geometry, line.geometry]);
+
+    t.deepEqual(invariant.getType(pt), 'Point');
+    t.deepEqual(invariant.getType(line.geometry), 'LineString');
+    t.deepEqual(invariant.getType(geomCollection), 'GeometryCollection');
+    t.deepEqual(invariant.getType(collection), 'FeatureCollection');
+    t.throws(() => invariant.getType(null), /geojson is required/, 'geojson is required');
     t.end();
 });
 

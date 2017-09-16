@@ -130,6 +130,7 @@ var turf = {
     featureOf: invariant.featureOf,
     collectionOf: invariant.collectionOf,
     containsNumber: invariant.containsNumber,
+    getType: invariant.getType, // v4.8.0
     getGeom: invariant.getGeom,
     getGeomType: invariant.getGeomType,
     coordEach: meta.coordEach,

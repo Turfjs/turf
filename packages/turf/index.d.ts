@@ -29,7 +29,8 @@ import {
     geojsonType,
     featureOf,
     collectionOf,
-    containsNumber} from '@turf/invariant';
+    containsNumber,
+    getType} from '@turf/invariant';
 import * as meta from '@turf/meta';
 import {
     coordEach,
@@ -260,5 +261,6 @@ export {
     meta,
     invariant,
     lineEach, // v4.7.0
-    lineReduce // v4.7.0
+    lineReduce, // v4.7.0
+    getType // v4.8.0
 };

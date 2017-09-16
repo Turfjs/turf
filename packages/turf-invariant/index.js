@@ -195,6 +195,34 @@ function getGeomType(geojson) {
     if (geom) return geom.type;
 }
 
+/**
+ * Get GeoJSON object's type, Geometry type is prioritize.
+ *
+ * @param {GeoJSON} geojson GeoJSON object
+ * @param {string} [name] of the variable
+ * @returns {string} GeoJSON type
+ * @example
+ * var point = {
+ *   "type": "Feature",
+ *   "properties": {},
+ *   "geometry": {
+ *     "type": "Point",
+ *     "coordinates": [110, 40]
+ *   }
+ * }
+ * var geom = turf.getType(point)
+ * //="Point"
+ */
+function getType(geojson, name) {
+    if (!geojson) throw new Error('geojson is required');
+    // GeoJSON Feature & GeometryCollection
+    if (geojson.geometry && geojson.geometry.type) return geojson.geometry.type;
+    // GeoJSON Geometry & FeatureCollection
+    if (geojson.type) return geojson.type;
+    if (name) throw new Error('Invalid GeoJSON object for ' + name);
+    throw new Error('Invalid GeoJSON object');
+}
+
 module.exports = {
     geojsonType: geojsonType,
     collectionOf: collectionOf,
@@ -203,5 +231,6 @@ module.exports = {
     getCoords: getCoords,
     containsNumber: containsNumber,
     getGeom: getGeom,
-    getGeomType: getGeomType
+    getGeomType: getGeomType,
+    getType: getType
 };
