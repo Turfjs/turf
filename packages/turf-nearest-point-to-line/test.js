@@ -3,6 +3,7 @@ const test = require('tape');
 const path = require('path');
 const load = require('load-json-file');
 const write = require('write-json-file');
+const circle = require('@turf/circle');
 const {geometryCollection, featureCollection, point, lineString, round} = require('@turf/helpers');
 const nearestPointToLine = require('./');
 
@@ -24,13 +25,15 @@ test('turf-nearest-point-to-line', t => {
         const [points, line] = geojson.features;
         let {units} = geojson.properties || {};
         const nearest = nearestPointToLine(points, line, units);
-        nearest.properties.dist = round(nearest.properties.dist, 13);
+        const distance = round(nearest.properties.dist, 13);
+        nearest.properties.dist = distance;
         nearest.properties = Object.assign(nearest.properties, {
             'marker-color': '#F00',
             'marker-size': 'large',
             'marker-symbol': 'star'
         });
-        const results = featureCollection([points, nearest, line]);
+        const distanceCircle = circle(nearest, distance || 1, null, units, {fill: '#F00'});
+        const results = featureCollection([points, nearest, line, distanceCircle]);
 
         if (process.env.REGEN) write.sync(directories.out + filename, results);
         t.deepEqual(results, load.sync(directories.out + filename), name);
