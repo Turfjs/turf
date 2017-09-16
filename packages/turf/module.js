@@ -131,6 +131,8 @@ import * as booleanWithin from '@turf/boolean-within'; // 4.7.0
 import * as clone from '@turf/clone';
 import * as cleanCoords from '@turf/clean-coords';
 import * as pointToLineDistance from '@turf/point-to-line-distance'; // v4.7.0
+import * as booleanParallel from '@turf/boolean-parallel'; // v4.8.0
+import * as nearestPointToLine from '@turf/nearest-point-to-line'; // v4.8.0
 export {
     isolines,
     convex,
@@ -260,5 +262,7 @@ export {
     meta,
     invariant,
     lineEach, // v4.7.0
-    lineReduce // v4.7.0
+    lineReduce, // v4.7.0
+    booleanParallel, // v4.8.0
+    nearestPointToLine // v4.8.0
 };
