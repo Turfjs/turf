@@ -10,9 +10,9 @@ var collectionOf = invariant.collectionOf;
  * The returned point has a `dist` property indicating its distance to the line.
  *
  * @name nearestPointToLine
- * @param {FeatureCollection<Point>} points collection
- * @param {Feature<LineString>} line Feature
- * @param {string} [units=kilometers] can be degrees, radians, miles, or kilometers
+ * @param {FeatureCollection<Point>} points Point Collection
+ * @param {Feature<LineString>|LineString} line Line Feature
+ * @param {string} [units=kilometers] unit of the output distance property, can be degrees, radians, miles, or kilometer
  * @returns {Feature<Point>} the closest point
  * @example
  * var points = featureCollection([point([0, 0]), point([0.5, 0.5])]);
