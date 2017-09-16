@@ -13,7 +13,6 @@ test('turf-boolean-parallel', t => {
         const [line1, line2] = geojson.features;
         const result = booleanParallel(line1, line2);
 
-        if (process.env.SHAPELY) shapely.contains(line1, line2).then(result => t.true(result, '[true] shapely - ' + name));
         t.true(result, '[true] ' + name);
     });
     // False Fixtures
@@ -23,7 +22,6 @@ test('turf-boolean-parallel', t => {
         const [line1, line2] = geojson.features;
         const result = booleanParallel(line1, line2);
 
-        if (process.env.SHAPELY) shapely.contains(line1, line2).then(result => t.false(result, '[false] shapely - ' + name));
         t.false(result, '[false] ' + name);
     });
     t.end();
