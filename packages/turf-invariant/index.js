@@ -173,8 +173,10 @@ function getGeom(geojson) {
 
 /**
  * Get Geometry Type from Feature or Geometry Object
+ * **DEPRECATED** in v5.0.0 in favor of getType
  *
  * @param {Feature|Geometry} geojson GeoJSON Feature or Geometry Object
+ * @param {string} [name] name of the variable to display in error message
  * @returns {string} GeoJSON Geometry Type
  * @throws {Error} if geojson is not a Feature or Geometry Object
  * @example
@@ -189,17 +191,16 @@ function getGeom(geojson) {
  * var geom = turf.getGeomType(point)
  * //="Point"
  */
-function getGeomType(geojson) {
-    if (!geojson) throw new Error('geojson is required');
-    var geom = getGeom(geojson);
-    if (geom) return geom.type;
+function getGeomType(geojson, name) {
+    console.warn('getGeomType will be deprecated in v5.0.0 in favor of getType');
+    return getType(geojson, name);
 }
 
 /**
  * Get GeoJSON object's type, Geometry type is prioritize.
  *
  * @param {GeoJSON} geojson GeoJSON object
- * @param {string} [name] of the variable
+ * @param {string} [name] name of the variable to display in error message
  * @returns {string} GeoJSON type
  * @example
  * var point = {
@@ -214,13 +215,12 @@ function getGeomType(geojson) {
  * //="Point"
  */
 function getType(geojson, name) {
-    if (!geojson) throw new Error('geojson is required');
+    if (!geojson) throw new Error((name || 'geojson') + ' is required');
     // GeoJSON Feature & GeometryCollection
     if (geojson.geometry && geojson.geometry.type) return geojson.geometry.type;
     // GeoJSON Geometry & FeatureCollection
     if (geojson.type) return geojson.type;
-    if (name) throw new Error('Invalid GeoJSON object for ' + name);
-    throw new Error('Invalid GeoJSON object');
+    throw new Error((name || 'geojson') + ' is invalid');
 }
 
 module.exports = {

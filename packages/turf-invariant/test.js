@@ -202,10 +202,10 @@ test('invariant -- getGeomType', t => {
     const collection = featureCollection([pt, line]);
     const geomCollection = geometryCollection([pt.geometry, line.geometry]);
 
-    t.deepEqual(invariant.getGeomType(pt), 'Point');
-    t.deepEqual(invariant.getGeomType(line.geometry), 'LineString');
-    t.deepEqual(invariant.getGeomType(geomCollection), 'GeometryCollection');
-    t.throws(() => invariant.getGeomType(collection, 'featureCollection not valid'));
+    t.equal(invariant.getGeomType(pt), 'Point');
+    t.equal(invariant.getGeomType(line.geometry), 'LineString');
+    t.equal(invariant.getGeomType(geomCollection), 'GeometryCollection');
+    t.equal(invariant.getGeomType(collection), 'FeatureCollection');
     t.end();
 });
 
@@ -236,6 +236,6 @@ test('null geometries', t => {
     t.throws(() => invariant.getCoord(nullFeature), /No valid coordinates/, 'getCoord => No valid coordinates');
 
     t.equal(invariant.getGeom(nullFeature), null, 'getGeom => null');
-    t.equal(invariant.getGeomType(nullFeature), undefined, 'getGeomType => undefined');
+    t.equal(invariant.getGeomType(nullFeature), 'Feature', 'getGeomType => "Feature"');
     t.end();
 });
