@@ -3,7 +3,7 @@
 import {Units} from '@turf/helpers'
 
 type Point = GeoJSON.Feature<GeoJSON.Point> | GeoJSON.Point | number[];
-type LineString = GeoJSON.LineString;
+type LineString = GeoJSON.Feature<GeoJSON.LineString> | GeoJSON.LineString;
 
 /**
  * http://turfjs.org/docs/#pointto-line-distance

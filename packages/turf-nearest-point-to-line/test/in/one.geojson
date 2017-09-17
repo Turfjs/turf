@@ -1,0 +1,63 @@
+{
+	"type": "FeatureCollection",
+	"properties": {
+		"units": "miles"
+	},
+	"features": [
+		{
+			"type": "Feature",
+			"properties": {},
+			"geometry": {
+				"type": "GeometryCollection",
+				"geometries": [
+					{
+						"type": "Point",
+						"coordinates": [
+							29.7509765625,
+							17.5602465032949
+						]
+					},
+					{
+						"type": "Point",
+						"coordinates": [
+							28.388671875,
+							18.323240460443397
+						]
+					},
+					{
+						"type": "Point",
+						"coordinates": [
+							29.619140624999996,
+							19.228176737766262
+						]
+					}
+				]
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {},
+			"geometry": {
+				"type": "LineString",
+				"coordinates": [
+					[
+						27.015380859374996,
+						15.008463695004872
+					],
+					[
+						29.168701171875,
+						17.256236314156425
+					],
+					[
+						32.003173828125,
+						16.36230951024085
+					],
+					[
+						33.2666015625,
+						18.999802829053262
+					]
+				]
+			}
+		}
+	]
+}
