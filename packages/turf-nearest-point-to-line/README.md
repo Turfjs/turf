@@ -14,8 +14,10 @@ The returned point has a `dist` property indicating its distance to the line.
 **Examples**
 
 ```javascript
-var points = featureCollection([point([0, 0]), point([0.5, 0.5])]);
-var line = lineString([[1,1], [-1,1]]);
+var pt1 = turf.point([0, 0]);
+var pt2 = turf.point([0.5, 0.5]);
+var points = turf.featureCollection([pt1, pt2]);
+var line = turf.lineString([[1,1], [-1,1]]);
 
 var nearest = turf.nearestPointToLine(points, line);
 

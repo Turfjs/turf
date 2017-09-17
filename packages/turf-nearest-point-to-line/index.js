@@ -13,8 +13,10 @@ var geomEach = meta.geomEach;
  * @param {string} [units=kilometers] unit of the output distance property, can be degrees, radians, miles, or kilometer
  * @returns {Feature<Point>} the closest point
  * @example
- * var points = featureCollection([point([0, 0]), point([0.5, 0.5])]);
- * var line = lineString([[1,1], [-1,1]]);
+ * var pt1 = turf.point([0, 0]);
+ * var pt2 = turf.point([0.5, 0.5]);
+ * var points = turf.featureCollection([pt1, pt2]);
+ * var line = turf.lineString([[1,1], [-1,1]]);
  *
  * var nearest = turf.nearestPointToLine(points, line);
  *
