@@ -10,7 +10,7 @@ var bearingToAngle = require('@turf/helpers').bearingToAngle;
  * @name booleanParallel
  * @param {Geometry|Feature<LineString>} line1 GeoJSON Feature or Geometry
  * @param {Geometry|Feature<LineString>} line2 GeoJSON Feature or Geometry
- * @returns {Boolean} true/false if the lines are parallel
+ * @returns {boolean} true/false if the lines are parallel
  * @example
  * var line1 = turf.lineString([[0, 0], [0, 1]]);
  * var line2 = turf.lineString([[1, 0], [1, 1]]);

@@ -9,7 +9,7 @@ var polyToLinestring = require('@turf/polygon-to-linestring');
  * @name booleanDisjoint
  * @param {Geometry|Feature<any>} feature1 GeoJSON Feature or Geometry
  * @param {Geometry|Feature<any>} feature2 GeoJSON Feature or Geometry
- * @returns {Boolean} true/false
+ * @returns {boolean} true/false
  * @example
  * const point = turf.point([2, 2]);
  * const line = turf.lineString([[1, 1], [1, 2], [1, 3], [1, 4]]);
@@ -34,7 +34,7 @@ module.exports = function (feature1, feature2) {
  * @private
  * @param {Geometry<any>} geom1 GeoJSON Geometry
  * @param {Geometry<any>} geom2 GeoJSON Geometry
- * @returns {Boolean} true/false
+ * @returns {boolean} true/false
  */
 function disjoint(geom1, geom2) {
     switch (geom1.type) {
@@ -106,7 +106,7 @@ function isLineInPoly(polygon, lineString) {
  * @private
  * @param {Geometry|Feature<Polygon>} feature1 Polygon1
  * @param {Geometry|Feature<Polygon>} feature2 Polygon2
- * @returns {Boolean} true/false
+ * @returns {boolean} true/false
  */
 function isPolyInPoly(feature1, feature2) {
     for (var i = 0; i < feature1.coordinates[0].length; i++) {

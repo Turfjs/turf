@@ -138,7 +138,7 @@ function buffer(geojson, radius, units, steps) {
  *
  * @private
  * @param {Array<any>} coords GeoJSON Coordinates
- * @returns {Boolean} if NaN exists
+ * @returns {boolean} if NaN exists
  */
 function coordsIsNaN(coords) {
     if (Array.isArray(coords[0])) return coordsIsNaN(coords[0]);
