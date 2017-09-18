@@ -31,7 +31,7 @@ module.exports = function (points, line, options) {
     if (typeof options === 'object') {
         units = options.units;
     } else if (options) {
-        console.warn('Optional parameters will now be defined as Objects in v5.0.0');
+        console.warn('Optional parameters will now be defined as Objects in v5.0');
         units = options;
     }
 
