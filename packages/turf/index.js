@@ -11,6 +11,7 @@ var helpers = require('@turf/helpers');
 var invariant = require('@turf/invariant');
 var meta = require('@turf/meta');
 var clusters = require('@turf/clusters');
+var projection = require('@turf/projection'); // v4.7.0
 
 var turf = {
     isolines: require('@turf/isolines'),
@@ -103,9 +104,14 @@ var turf = {
     pointToLineDistance: require('@turf/point-to-line-distance'), // v4.7.0
     booleanParallel: require('@turf/boolean-parallel'), // v4.8.0
     nearestPointToLine: require('@turf/nearest-point-to-line'), // v4.8.0
+    projection: projection, // v4.7.0
+    toMercator: projection.toMercator, // v4.7.0
+    toWgs84: projection.toWgs84, // v4.7.0
+    clusters: clusters, // v4.6.0
     getCluster: clusters.getCluster, // v4.6.0
     clusterEach: clusters.clusterEach, // v4.6.0
     clusterReduce: clusters.clusterReduce, // v4.6.0
+    helpers: helpers,
     point: helpers.point,
     polygon: helpers.polygon,
     lineString: helpers.lineString,
@@ -126,6 +132,7 @@ var turf = {
     isNumber: helpers.isNumber, // 4.7.0
     round: helpers.round,
     convertArea: helpers.convertArea,
+    invariant: invariant,
     getCoord: invariant.getCoord,
     getCoords: invariant.getCoords,
     geojsonType: invariant.geojsonType,
@@ -135,6 +142,7 @@ var turf = {
     getType: invariant.getType, // v4.8.0
     getGeom: invariant.getGeom,
     getGeomType: invariant.getGeomType,
+    meta: meta,
     coordEach: meta.coordEach,
     coordReduce: meta.coordReduce,
     propEach: meta.propEach,
