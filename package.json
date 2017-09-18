@@ -46,7 +46,7 @@
     "url": "https://github.com/Turfjs/turf/issues"
   },
   "devDependencies": {
-    "@types/geojson": "1.0.3",
+    "@types/geojson": "0.0.31",
     "@types/node": "^8.0.28",
     "@types/tape": "^4.2.30",
     "browserify": "^14.4.0",
