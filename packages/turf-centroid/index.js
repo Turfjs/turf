@@ -7,7 +7,7 @@ var point = require('@turf/helpers').point;
  *
  * @name centroid
  * @param {GeoJSON} geojson GeoJSON to be centered
- * @param {Object} [properties] an Object that is used as the {@link Feature}'s properties
+ * @param {Object} [properties={}] an Object that is used as the {@link Feature}'s properties
  * @returns {Feature<Point>} the centroid of the input features
  * @example
  * var polygon = turf.polygon([[[-81, 41], [-88, 36], [-84, 31], [-80, 33], [-77, 39], [-81, 41]]]);

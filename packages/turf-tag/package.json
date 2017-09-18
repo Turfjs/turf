@@ -37,6 +37,8 @@
     "tape": "^4.6.3"
   },
   "dependencies": {
-    "@turf/inside": "^4.7.3"
+    "@turf/clone": "^4.7.3",
+    "@turf/inside": "^4.7.3",
+    "@turf/meta": "^4.7.3"
   }
 }

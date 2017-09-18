@@ -23,6 +23,10 @@ var featureCollection = require('@turf/helpers').featureCollection;
  * });
  */
 module.exports = function (featurecollection, num) {
+    if (!featurecollection) throw new Error('featurecollection is required');
+    if (num === null || num === undefined) throw new Error('num is required');
+    if (typeof num !== 'number') throw new Error('num must be a number');
+
     var outFC = featureCollection(getRandomSubarray(featurecollection.features, num));
     return outFC;
 };
