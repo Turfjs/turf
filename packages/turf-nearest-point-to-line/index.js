@@ -10,7 +10,8 @@ var geomEach = meta.geomEach;
  * @name nearestPointToLine
  * @param {FeatureCollection|GeometryCollection<Point>} points Point Collection
  * @param {Feature|Geometry<LineString>} line Line Feature
- * @param {string} [units=kilometers] unit of the output distance property, can be degrees, radians, miles, or kilometer
+ * @param {Object} [options] Optional parameters
+ * @param {string} [options.units=kilometers] unit of the output distance property, can be degrees, radians, miles, or kilometer
  * @returns {Feature<Point>} the closest point
  * @example
  * var pt1 = turf.point([0, 0]);
@@ -23,7 +24,17 @@ var geomEach = meta.geomEach;
  * //addToMap
  * var addToMap = [nearest, line];
  */
-module.exports = function (points, line, units) {
+module.exports = function (points, line, options) {
+    options = options || {};
+    var units;
+    // Backwards compatible with v4.0 (will be changed in v5.0)
+    if (typeof options === 'object') {
+        units = options.units;
+    } else if (options) {
+        console.warn('Optional parameters will now be defined as Objects in v5.0.0');
+        units = options;
+    }
+
     // validation
     if (!points) throw new Error('points is required');
     points = handleCollection(points);

@@ -10,10 +10,15 @@ interface Point extends GeoJSON.Feature<GeoJSON.Point> {
     [key: string]: any
   }
 }
-
+interface Options {
+  /**
+   * unit of the output distance property, can be degrees, radians, miles, or kilometer
+   */
+  units?: Units
+}
 /**
  * http://turfjs.org/docs/#nearestpointtoline
  */
-declare function nearestPointToLine(points: Points, line: LineString, units?: Units): Point;
+declare function nearestPointToLine(points: Points, line: LineString, options?: Options): Point;
 declare namespace nearestPointToLine { }
 export = nearestPointToLine;
