@@ -6,7 +6,7 @@ var getCoords = invariant.getCoords;
  *
  * @name booleanClockwise
  * @param {Geometry|Feature<LineString>|Array<Array<number>>} line to be evaluated
- * @returns {Boolean} true/false
+ * @returns {boolean} true/false
  * @example
  * var clockwiseRing = turf.lineString([[0,0],[1,1],[1,0],[0,0]]);
  * var counterClockwiseRing = turf.lineString([[0,0],[1,0],[1,1],[0,0]]);
