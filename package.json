@@ -46,24 +46,24 @@
     "url": "https://github.com/Turfjs/turf/issues"
   },
   "devDependencies": {
-    "@types/geojson": "0.0.31",
-    "@types/node": "^6.0.56",
+    "@types/geojson": "1.0.3",
+    "@types/node": "^8.0.28",
     "@types/tape": "^4.2.30",
-    "browserify": "^13.0.0",
+    "browserify": "^14.4.0",
     "camelcase": "^4.1.0",
-    "d3-queue": "3.0.1",
+    "d3-queue": "3.0.7",
     "decamelize": "^1.2.0",
-    "documentation": "4.0.0-beta7",
-    "eslint": "2.0.0",
-    "eslint-config-mourner": "2.0.0",
+    "documentation": "5.3.2",
+    "eslint": "4.7.0",
+    "eslint-config-mourner": "2.0.3",
     "fs-extra": "^4.0.0",
-    "lerna": "2.0.0-beta.34",
-    "load-json-file": "^2.0.0",
+    "lerna": "2.2.0",
+    "load-json-file": "^3.0.0",
     "meow": "^3.7.0",
     "progress": "^2.0.0",
     "tap": "^10.3.2",
     "tape": "^4.6.3",
     "typescript": "^2.4.1",
-    "uglify-js": "~2.4.16"
+    "uglify-js": "~3.1.1"
   }
 }
