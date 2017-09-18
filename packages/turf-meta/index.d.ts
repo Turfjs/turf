@@ -45,7 +45,7 @@ export function coordEach(
  * http://turfjs.org/docs/#propeach
  */
 export function propEach<Props extends any>(
-  geojson: Feature<any> | Features<any>,
+  geojson: Feature<any> | FeatureCollection<any>,
   callback: (currentProperties: Props, featureIndex: number) => void
 ): void;
 
@@ -53,7 +53,7 @@ export function propEach<Props extends any>(
  * http://turfjs.org/docs/#propreduce
  */
 export function propReduce<Reducer extends any, Props extends any>(
-  geojson: Feature<any> | Features<any>,
+  geojson: Feature<any> | FeatureCollection<any>,
   callback: (previousValue: Reducer, currentProperties: Props, featureIndex: number) => Reducer,
   initialValue?: Reducer
 ): Reducer;
@@ -151,7 +151,7 @@ export function flattenEach<Geom extends GeometryObject>(
  * http://turfjs.org/docs/#segmentreduce
  */
 export function segmentReduce<Reducer extends any>(
-  geojson: Feature<any> | Features<any> | GeometryObject | FeatureGeometryCollection,
+  geojson: Feature<any> | FeatureCollection<any> | GeometryObject | FeatureGeometryCollection,
   callback: (previousValue?: Reducer, currentSegment?: Feature<LineString>, featureIndex?: number, featureSubIndex?: number) => Reducer,
   initialValue?: Reducer
 ): Reducer;
@@ -160,7 +160,7 @@ export function segmentReduce<Reducer extends any>(
  * http://turfjs.org/docs/#segmenteach
  */
 export function segmentEach(
-  geojson: Feature<any> | Features<any> | GeometryObject | FeatureGeometryCollection,
+  geojson: Feature<any> | FeatureCollection<any> | GeometryObject | FeatureGeometryCollection,
   allback: (currentSegment?: Feature<LineString>, featureIndex?: number, featureSubIndex?: number) => void
 ): void;
 
