@@ -128,6 +128,7 @@
     "@turf/polygon-tangents": "^4.7.3",
     "@turf/polygon-to-linestring": "^4.7.3",
     "@turf/polygonize": "^4.7.3",
+    "@turf/projection": "^4.7.3",
     "@turf/random": "^4.7.3",
     "@turf/rewind": "^4.7.3",
     "@turf/rhumb-bearing": "^4.7.3",
@@ -152,6 +153,7 @@
   },
   "devDependencies": {
     "browserify": "~9.0.3",
+    "camelcase": "^4.1.0",
     "disc": "^1.3.2",
     "documentation": "^4.0.0-rc.1",
     "glob": "^7.1.2",

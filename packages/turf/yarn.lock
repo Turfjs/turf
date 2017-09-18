@@ -703,6 +703,13 @@
   dependencies:
     polygonize "1.0.1"
 
+"@turf/projection@^4.7.3":
+  version "4.7.3"
+  resolved "https://registry.yarnpkg.com/@turf/projection/-/projection-4.7.3.tgz#c3e45745d89371ee720e43add56f08850e90694a"
+  dependencies:
+    "@turf/clone" "^4.7.3"
+    "@turf/meta" "^4.7.3"
+
 "@turf/random@^4.7.3":
   version "4.7.3"
   resolved "https://registry.yarnpkg.com/@turf/random/-/random-4.7.3.tgz#0a8a3b84a1f15b8916d4dce43566beb2e2bda522"
