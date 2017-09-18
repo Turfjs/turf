@@ -37,7 +37,7 @@ function createBins(geojson, property) {
 * @private
 * @param {*} properties Properties
 * @param {*} filter Filter
-* @returns {Boolean} applied Filter to properties
+* @returns {boolean} applied Filter to properties
 */
 function applyFilter(properties, filter) {
     if (properties === undefined) return false;
@@ -63,7 +63,7 @@ function applyFilter(properties, filter) {
 * @private
 * @param {*} properties Properties
 * @param {Object} filter Filter
-* @returns {Boolean} does filter equal Properties
+* @returns {boolean} does filter equal Properties
 * @example
 * propertiesContainsFilter({foo: 'bar', cluster: 0}, {cluster: 0})
 * //= true
