@@ -62,7 +62,7 @@ function convert(geojson, projection, options) {
     if (typeof options === 'object') {
         mutate = options.mutate;
     } else if (options) {
-        console.warn('Optional parameters will now be defined as Objects in v5.0.0');
+        console.warn('Optional parameters will now be defined as Objects in v5.0');
         mutate = options;
     }
 
