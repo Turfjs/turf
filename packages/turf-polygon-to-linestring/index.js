@@ -9,7 +9,7 @@ var featureCollection = helpers.featureCollection;
  *
  * @name polygonToLineString
  * @param {Feature<Polygon|MultiPolygon>} polygon Feature to convert
- * @param {Object} [properties] translates GeoJSON properties to Feature
+ * @param {Object} [properties={}] translates GeoJSON properties to Feature
  * @returns {FeatureCollection|Feature<LineString|MultiLinestring>} converted (Multi)Polygon to (Multi)LineString
  * @example
  * var poly = turf.polygon([[[125, -30], [145, -30], [145, -20], [125, -20], [125, -30]]]);
