@@ -3,6 +3,7 @@ const path = require('path');
 const glob = require('glob');
 const test = require('tape');
 const documentation = require('documentation');
+const camelcase = require('camelcase');
 const turf = require('./');
 
 // Helpers
@@ -23,7 +24,7 @@ for (const name of fs.readdirSync(directory)) {
 // Exclude main Turf module
 modules = modules.filter(({name}) => name !== 'turf');
 
-test('turf - required files', t => {
+test('turf -- required files', t => {
     for (const {name, dir} of modules) {
         for (const filename of ['test.js', 'bench.js', 'index.js', 'index.d.ts', 'LICENSE', 'README.md', 'yarn.lock']) {
             if (!fs.existsSync(path.join(dir, filename))) t.fail(`${name} ${filename} is required`);
@@ -34,7 +35,7 @@ test('turf - required files', t => {
     t.end();
 });
 
-test('turf - invalid dependencies', t => {
+test('turf -- invalid dependencies', t => {
     for (const {name, dependencies, devDependencies} of modules) {
         for (const invalidDependency of ['load-json-file', 'write-json-file', 'tape', 'benchmark', 'glob', 'lerna', 'documentation', 'uglify-js']) {
             if (dependencies[invalidDependency]) t.fail(`${name} ${invalidDependency} should be defined as devDependencies`);
@@ -46,14 +47,14 @@ test('turf - invalid dependencies', t => {
     t.end();
 });
 
-test('turf - strict version dependencies', t => {
+test('turf -- strict version dependencies', t => {
     for (const {name, dependencies} of modules) {
         if (dependencies['jsts'] && dependencies['jsts'] !== '1.3.0') t.fail(`${name} jsts must use v1.3.0`);
     }
     t.end();
 });
 
-test('turf - duplicate dependencies', t => {
+test('turf -- duplicate dependencies', t => {
     for (const {name, dependencies, devDependencies} of modules) {
         for (const dependency of Object.keys(dependencies)) {
             if (devDependencies[dependency]) t.fail(`${name} ${dependency} is duplicated in devDependencies`);
@@ -62,7 +63,7 @@ test('turf - duplicate dependencies', t => {
     t.end();
 });
 
-test('turf - check if files exists', t => {
+test('turf -- check if files exists', t => {
     for (const {name, dir, pckg} of modules) {
         const {files} = pckg;
         if (!files || !files.length) t.fail(`${name} (files) must be included in package.json`);
@@ -73,7 +74,7 @@ test('turf - check if files exists', t => {
     t.end();
 });
 
-test('turf - MIT license', t => {
+test('turf -- MIT license', t => {
     const text = fs.readFileSync(path.join(__dirname, 'LICENSE'), 'utf8');
     for (const {name, dir, pckg} of modules) {
         const {license} = pckg;
@@ -83,7 +84,7 @@ test('turf - MIT license', t => {
     t.end();
 });
 
-test('turf - contributors', t => {
+test('turf -- contributors', t => {
     for (const {name, pckg} of modules) {
         for (const contributor of pckg.contributors || []) {
             if (!contributor.match(/<@.+>/)) t.fail(`${name} ${contributor} (contributors) should use "Full Name <@GitHub>"`);
@@ -92,7 +93,7 @@ test('turf - contributors', t => {
     t.end();
 });
 
-test('turf - scoped package name', t => {
+test('turf -- scoped package name', t => {
     for (const {name, pckg} of modules) {
         const expected = name.replace('turf-', '@turf/');
         if (pckg.name !== expected) t.fail(`${name} (name) must use ${expected} in package.json`);
@@ -100,7 +101,7 @@ test('turf - scoped package name', t => {
     t.end();
 });
 
-test('turf - pre-defined attributes in package.json', t => {
+test('turf -- pre-defined attributes in package.json', t => {
     for (const {name, pckg} of modules) {
         if (pckg.author !== 'Turf Authors') t.fail(name + ' (author) should be "Turf Authors"');
         if (pckg.main !== 'index.js') t.fail(`${name} (main) must be "index.js" in package.json`);
@@ -111,7 +112,7 @@ test('turf - pre-defined attributes in package.json', t => {
     t.end();
 });
 
-test('turf - parsing dependencies from index.js', t => {
+test('turf -- parsing dependencies from index.js', t => {
     for (const {name, dir, dependencies} of modules) {
         const index = fs.readFileSync(path.join(dir, 'index.js'), 'utf8');
 
@@ -180,6 +181,37 @@ test('turf-${turfName}', t => {
 });
 `;
 }
+
+// Test for missing modules
+test('turf -- missing modules', t => {
+    const files = {
+        typescript: fs.readFileSync(path.join(__dirname, 'index.d.ts')),
+        modules: fs.readFileSync(path.join(__dirname, 'module.js'))
+    };
+
+    modules.forEach(({name}) => {
+        name = camelcase(name.replace('turf-', ''));
+        // name exception with linestring => lineString
+        name = name.replace('linestring', 'lineString').replace('Linestring', 'LineString');
+
+        if (!files.typescript.includes(name)) t.fail(name + ' is missing from index.d.ts');
+        if (!files.modules.includes(name)) t.fail(name + ' is missing from module.js');
+
+        switch (typeof turf[name]) {
+        case 'function': break;
+        case 'object':
+            Object.keys(turf[name]).forEach(method => {
+                if (typeof turf[method] !== 'function') t.fail(name + '.' + method + ' is missing from index.js');
+                if (!files.typescript.includes(method)) t.fail(name + '.' + method + ' is missing from index.d.ts');
+                if (!files.modules.includes(method)) t.fail(name + '.' + method + ' is missing from module.js');
+            });
+            break;
+        case 'undefined':
+            t.fail(name + ' is missing from index.js');
+        }
+    });
+    t.end();
+});
 
 // Iterate over each module and retrieve @example to build tests from them
 glob(turfModulesPath, (err, files) => {

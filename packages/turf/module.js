@@ -49,6 +49,17 @@ import {
     lineEach, // v4.7.0
     lineReduce // v4.7.0
 } from '@turf/meta';
+import * as clusters from '@turf/clusters'; // v4.6.0
+import {
+    clusterEach,
+    clusterReduce,
+    getCluster
+} from '@turf/clusters'; // v4.6.0
+import * as projection from '@turf/projection'; // v4.7.0
+import {
+    toMercator,
+    toWgs84
+} from '@turf/projection'; // v4.7.0
 import * as isolines from '@turf/isolines';
 import * as convex from '@turf/convex';
 import * as within from '@turf/within';
@@ -134,6 +145,11 @@ import * as cleanCoords from '@turf/clean-coords';
 import * as pointToLineDistance from '@turf/point-to-line-distance'; // v4.7.0
 import * as booleanParallel from '@turf/boolean-parallel'; // v4.8.0
 import * as nearestPointToLine from '@turf/nearest-point-to-line'; // v4.8.0
+import * as clustersDbscan from '@turf/clusters-dbscan'; // v4.6.0
+import * as clustersKmeans from '@turf/clusters-kmeans'; // v4.6.0
+import * as interpolate from '@turf/interpolate'; // v4.6.0
+import * as booleanPointOnLine from '@turf/boolean-point-on-line' // v4.6.0
+import * as booleanOverlap from '@turf/boolean-overlap' // v4.6.0
 export {
     isolines,
     convex,
@@ -256,7 +272,7 @@ export {
     clone,
     segmentEach,
     segmentReduce,
-    cleanCoords,
+    cleanCoords, // v4.6.0
     isNumber,
     pointToLineDistance, // v4.7.0
     helpers,
@@ -266,5 +282,17 @@ export {
     lineReduce, // v4.7.0
     getType, // v4.8.0
     booleanParallel, // v4.8.0
-    nearestPointToLine // v4.8.0
+    nearestPointToLine, // v4.8.0
+    clusters, // v4.6.0
+    clustersDbscan, // v4.6.0
+    clustersKmeans, // v4.6.0
+    clusterEach, // v4.6.0
+    clusterReduce, // v4.6.0
+    getCluster, // v4.6.0
+    interpolate, // v4.6.0
+    booleanPointOnLine, // v4.6.0
+    booleanOverlap, // v4.6.0
+    projection, // v4.7.0
+    toMercator, // v4.7.0
+    toWgs84 // v4.7.0
 };
