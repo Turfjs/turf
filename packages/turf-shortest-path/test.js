@@ -20,8 +20,8 @@ const fixtures = fs.readdirSync(directories.in).map(filename => {
 
 test('turf-shortest-path', t => {
     for (const {filename, name, geojson}  of fixtures) {
-        const [feature1, feature2] = geojson.features;
-        const results = shortestPath(feature1, feature2);
+        const {start, end, obstacles, options} = geojson.features;
+        const results = shortestPath(start, end, obstacles, options);
 
         if (process.env.REGEN) write.sync(directories.out + filename, results);
         t.deepEqual(results, load.sync(directories.out + filename), name);

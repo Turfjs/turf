@@ -12,6 +12,16 @@ var lineString = helpers.lineString;
 var inside = require('@turf/inside');
 var isNumber = helpers.isNumber;
 var getCoord = invariant.getCoord;
+var gridToMatrix = require('grid-to-matrix');
+
+
+var ezStar = require('easystarjs');
+var jsastar = require('javascript-astar');
+var Graph = jsastar.Graph;
+var astar = jsastar.astar;
+var pathfinding = require('pathfinding');
+
+
 
 /**
  * Returns the shortest {@link LineString|path} from {@link Point|start} to {@link Point|end} without colliding with
@@ -44,6 +54,7 @@ module.exports = function (start, end, obstacles, options) {
     var units = options.units || 'kilometers';
     var resolution = options.resolution;
     if (!isNumber(resolution) || resolution <= 0) throw new Error('resolution must be a number greater than 0');
+
     var box = bbox(obstacles); // [minX, minY, maxX, maxY]
     box = bbox(scale(bboxPolygon(box), 1.15)); // extend 15%
     if (!resolution) {
@@ -53,16 +64,35 @@ module.exports = function (start, end, obstacles, options) {
 
     var grid = squareGrid(box, resolution, units);
 
+    var closestToStart = null;
+    var closestToEnd = null;
+    var minDistStart = Infinity;
+    var minDistEnd = Infinity;
     for (var i = 0; i < obstacles.features.length; i++) {
         for (var j = 0; j < grid.features.length; j++) {
-
-            var isInside = inside(points.features[j], polygons.features[i]);
-            if (within()) {
-                pointsWithin.features.push(points.features[j]);
-            }
+            var pt = grid.features[j];
+            var poly = obstacles.features[i];
+            // pt.properties.walkable = inside(pt, poly) ? 1 : 0;
+            var isInside = inside(pt, poly);
+            pt.properties.wall = isInside ? 0 : 1;
+            // flag closest grid point to path endpoints
+            var distStart = distance(pt, start);
+            if (distStart < minDistStart) closestToStart = pt;
+            var distEnd = distance(pt, end);
+            if (distEnd < minDistEnd) closestToEnd = pt;
         }
     }
 
-    return true;
+    var matrix = gridToMatrix(grid, 'wall', false, true);
+
+    var graph = new Graph(matrix, {diagonal: true});
+    var startCoords = closestToStart.matrixPosition;
+    var endCoords = closestToEnd.matrixPosition;
+
+    var startOnMatrix = graph.grid[startCoords[0]][startCoords[1]];
+    var endOnMatrix = graph.grid[endCoords[0]][endCoords[1]];
+    var result = astar.search(graph, startOnMatrix, endOnMatrix);
+
+    return lineString([result]);
 };
 
