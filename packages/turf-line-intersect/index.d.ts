@@ -1,7 +1,7 @@
 /// <reference types="geojson" />
 
 type LineTypes = GeoJSON.LineString | GeoJSON.MultiLineString | GeoJSON.Polygon | GeoJSON.MultiPolygon;
-type Line = GeoJSON.Feature<LineTypes> | GeoJSON.FeatureCollection<LineTypes>;
+type Line = GeoJSON.Feature<LineTypes> | GeoJSON.FeatureCollection<LineTypes> | LineTypes;
 type Points = GeoJSON.FeatureCollection<GeoJSON.Point>;
 
 /**
