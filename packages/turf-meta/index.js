@@ -45,6 +45,14 @@
  */
 
 /**
+ * Meta Options
+ *
+ * @private
+ * @typedef {Object} MetaOptions Additional options for Meta module
+ * @property {boolean} [allowNull=false] exclude or include null geometries from callback
+ */
+
+/**
  * Callback for coordEach
  *
  * @callback coordEachCallback
@@ -331,6 +339,8 @@ function propReduce(geojson, callback, initialValue) {
  *
  * @name featureEach
  * @param {(FeatureCollection|Feature|Geometry)} geojson any GeoJSON object
+ * @param {Object} [options] Extra options, if not provided, this param defaults as callback.
+ * @param {boolean} [options.allowNull=false] exclude or include null geometries from callback
  * @param {Function} callback a method that takes (currentFeature, featureIndex)
  * @example
  * var features = turf.featureCollection([
@@ -343,12 +353,23 @@ function propReduce(geojson, callback, initialValue) {
  *   //=featureIndex
  * });
  */
-function featureEach(geojson, callback) {
+function featureEach(geojson, options, callback) {
+    // Backwards compatible v4.0 extra options
+    if (typeof options === 'function' || !callback) {
+        callback = options;
+        options = {};
+    }
+    options = options || {};
+    var allowNull = options.allowNull === true;
+
     if (geojson.type === 'Feature') {
-        callback(geojson, 0);
+        if (allowNull === true) callback(geojson, 0);
+        else if (geojson.geometry !== null) callback(geojson, 0);
     } else if (geojson.type === 'FeatureCollection') {
         for (var i = 0; i < geojson.features.length; i++) {
-            callback(geojson.features[i], i);
+            var feature = geojson.features[i];
+            if (allowNull === true) callback(feature, i);
+            else if (feature.geometry !== null) callback(feature, i);
         }
     }
 }
@@ -380,6 +401,8 @@ function featureEach(geojson, callback) {
  *
  * @name featureReduce
  * @param {(FeatureCollection|Feature|Geometry)} geojson any GeoJSON object
+ * @param {Object} [options] Extra options, if not provided, this param defaults as callback.
+ * @param {boolean} [options.allowNull=false] exclude or include null geometries from callback
  * @param {Function} callback a method that takes (previousValue, currentFeature, featureIndex)
  * @param {*} [initialValue] Value to use as the first argument to the first call of the callback.
  * @returns {*} The value that results from the reduction.
@@ -396,9 +419,15 @@ function featureEach(geojson, callback) {
  *   return currentFeature
  * });
  */
-function featureReduce(geojson, callback, initialValue) {
+function featureReduce(geojson, options, callback, initialValue) {
+    // Backwards compatible v4.0 extra options
+    if (typeof options === 'function' || !callback) {
+        initialValue = callback;
+        callback = options;
+        options = {};
+    }
     var previousValue = initialValue;
-    featureEach(geojson, function (currentFeature, featureIndex) {
+    featureEach(geojson, options, function (currentFeature, featureIndex) {
         if (featureIndex === 0 && initialValue === undefined) previousValue = currentFeature;
         else previousValue = callback(previousValue, currentFeature, featureIndex);
     });
@@ -443,6 +472,8 @@ function coordAll(geojson) {
  *
  * @name geomEach
  * @param {(FeatureCollection|Feature|Geometry)} geojson any GeoJSON object
+ * @param {Object} [options] Extra options, if not provided, this param defaults as callback.
+ * @param {boolean} [options.allowNull=false] exclude or include null geometries from callback
  * @param {Function} callback a method that takes (currentGeometry, featureIndex, currentProperties)
  * @example
  * var features = turf.featureCollection([
@@ -456,15 +487,27 @@ function coordAll(geojson) {
  *   //=currentProperties
  * });
  */
-function geomEach(geojson, callback) {
-    var i, j, g, geometry, stopG,
-        geometryMaybeCollection,
-        isGeometryCollection,
-        geometryProperties,
-        featureIndex = 0,
-        isFeatureCollection = geojson.type === 'FeatureCollection',
-        isFeature = geojson.type === 'Feature',
-        stop = isFeatureCollection ? geojson.features.length : 1;
+function geomEach(geojson, options, callback) {
+    var i;
+    var j;
+    var g;
+    var geometry;
+    var stopG;
+    var geometryMaybeCollection;
+    var isGeometryCollection;
+    var geometryProperties;
+    var featureIndex = -1;
+    var isFeatureCollection = geojson.type === 'FeatureCollection';
+    var isFeature = geojson.type === 'Feature';
+    var stop = isFeatureCollection ? geojson.features.length : 1;
+
+    // Backwards compatible v4.0 extra options
+    if (typeof options === 'function' || !callback) {
+        callback = options;
+        options = {};
+    }
+    options = options || {};
+    var allowNull = options.allowNull === true;
 
     // This logic may look a little weird. The reason why it is that way
     // is because it's trying to be fast. GeoJSON supports multiple kinds
@@ -491,10 +534,12 @@ function geomEach(geojson, callback) {
             geometry = isGeometryCollection ?
                 geometryMaybeCollection.geometries[g] : geometryMaybeCollection;
 
+            // Only increase featureIndex per each feature
+            featureIndex++;
+
             // Handle null Geometry
             if (geometry === null) {
-                callback(null, featureIndex, geometryProperties);
-                featureIndex++;
+                if (allowNull === true) callback(null, featureIndex, geometryProperties);
                 continue;
             }
             switch (geometry.type) {
@@ -505,13 +550,11 @@ function geomEach(geojson, callback) {
             case 'MultiLineString':
             case 'MultiPolygon': {
                 callback(geometry, featureIndex, geometryProperties);
-                featureIndex++;
                 break;
             }
             case 'GeometryCollection': {
                 for (j = 0; j < geometry.geometries.length; j++) {
                     callback(geometry.geometries[j], featureIndex, geometryProperties);
-                    featureIndex++;
                 }
                 break;
             }
@@ -550,6 +593,8 @@ function geomEach(geojson, callback) {
  *
  * @name geomReduce
  * @param {(FeatureCollection|Feature|Geometry)} geojson any GeoJSON object
+ * @param {Object} [options] Extra options, if not provided, this param defaults as callback.
+ * @param {boolean} [options.allowNull=false] exclude or include null geometries from callback
  * @param {Function} callback a method that takes (previousValue, currentGeometry, featureIndex, currentProperties)
  * @param {*} [initialValue] Value to use as the first argument to the first call of the callback.
  * @returns {*} The value that results from the reduction.
@@ -567,9 +612,15 @@ function geomEach(geojson, callback) {
  *   return currentGeometry
  * });
  */
-function geomReduce(geojson, callback, initialValue) {
+function geomReduce(geojson, options, callback, initialValue) {
+    // Backwards compatible v4.0 extra options
+    if (typeof options === 'function' || !callback) {
+        initialValue = callback;
+        callback = options;
+        options = {};
+    }
     var previousValue = initialValue;
-    geomEach(geojson, function (currentGeometry, currentIndex, currentProperties) {
+    geomEach(geojson, options, function (currentGeometry, currentIndex, currentProperties) {
         if (currentIndex === 0 && initialValue === undefined) previousValue = currentGeometry;
         else previousValue = callback(previousValue, currentGeometry, currentIndex, currentProperties);
     });
@@ -593,6 +644,8 @@ function geomReduce(geojson, callback, initialValue) {
  *
  * @name flattenEach
  * @param {(FeatureCollection|Feature|Geometry)} geojson any GeoJSON object
+ * @param {Object} [options] Extra options, if not provided, this param defaults as callback.
+ * @param {boolean} [options.allowNull=false] exclude or include null geometries from callback
  * @param {Function} callback a method that takes (currentFeature, featureIndex, featureSubIndex)
  * @example
  * var features = turf.featureCollection([
@@ -606,8 +659,14 @@ function geomReduce(geojson, callback, initialValue) {
  *   //=featureSubIndex
  * });
  */
-function flattenEach(geojson, callback) {
-    geomEach(geojson, function (geometry, featureIndex, properties) {
+function flattenEach(geojson, options, callback) {
+    // Backwards compatible v4.0 extra options
+    if (typeof options === 'function' || !callback) {
+        callback = options;
+        options = {};
+    }
+
+    geomEach(geojson, options, function (geometry, featureIndex, properties) {
         // Callback for single geometry
         var type = (geometry === null) ? null : geometry.type;
         switch (type) {
@@ -674,6 +733,8 @@ function flattenEach(geojson, callback) {
  *
  * @name flattenReduce
  * @param {(FeatureCollection|Feature|Geometry)} geojson any GeoJSON object
+ * @param {Object} [options] Extra options, if not provided, this param defaults as callback.
+ * @param {boolean} [options.allowNull=false] exclude or include null geometries from callback
  * @param {Function} callback a method that takes (previousValue, currentFeature, featureIndex, featureSubIndex)
  * @param {*} [initialValue] Value to use as the first argument to the first call of the callback.
  * @returns {*} The value that results from the reduction.
@@ -691,9 +752,15 @@ function flattenEach(geojson, callback) {
  *   return currentFeature
  * });
  */
-function flattenReduce(geojson, callback, initialValue) {
+function flattenReduce(geojson, options, callback, initialValue) {
+    // Backwards compatible v4.0 extra options
+    if (typeof options === 'function' || !callback) {
+        initialValue = callback;
+        callback = options;
+        options = {};
+    }
     var previousValue = initialValue;
-    flattenEach(geojson, function (currentFeature, featureIndex, featureSubIndex) {
+    flattenEach(geojson, options, function (currentFeature, featureIndex, featureSubIndex) {
         if (featureIndex === 0 && featureSubIndex === 0 && initialValue === undefined) previousValue = currentFeature;
         else previousValue = callback(previousValue, currentFeature, featureIndex, featureSubIndex);
     });

@@ -3,10 +3,7 @@
 	"features": [
 		{
 			"type": "Feature",
-			"properties": {
-				"marker-color": "#f0f",
-				"marker-size": "small"
-			},
+			"properties": {},
 			"geometry": null
 		},
 		{

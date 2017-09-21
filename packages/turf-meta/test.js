@@ -417,16 +417,22 @@ test('null geometries', t => {
     ]);
 
     // Each operations
-    meta.featureEach(fc, feature => t.equal(feature.geometry, null, 'featureEach'));
-    meta.geomEach(fc, geometry => t.equal(geometry, null), 'geomEach');
-    meta.flattenEach(fc, feature => t.equal(feature.geometry, null, 'flattenEach'));
+    meta.featureEach(fc, () => t.fail('no features should be found -- featureEach'));
+    meta.geomEach(fc, () => t.fail('no features should be found -- geomEach'));
+    meta.flattenEach(fc, () => t.fail('no features should be found -- flattenEach'));
     meta.coordEach(fc, () => t.fail('no coordinates should be found'));
+
+    // Allow Null
+    meta.featureEach(fc, {allowNull: true}, feature => t.equal(feature.geometry, null, 'featureEach'));
+    meta.geomEach(fc, {allowNull: true}, geometry => t.equal(geometry, null), 'geomEach');
+    meta.flattenEach(fc, {allowNull: true}, feature => t.equal(feature.geometry, null, 'flattenEach'));
+    meta.coordEach(fc, {allowNull: true}, () => t.fail('no coordinates should be found'));
 
     // Reduce operations
     /* eslint-disable no-return-assign */
-    t.equal(meta.featureReduce(fc, prev => prev += 1, 0), 2, 'featureReduce');
-    t.equal(meta.geomReduce(fc, prev => prev += 1, 0), 2, 'geomReduce');
-    t.equal(meta.flattenReduce(fc, prev => prev += 1, 0), 2, 'flattenReduce');
+    t.equal(meta.featureReduce(fc, prev => prev += 1, 0), 0, 'featureReduce');
+    t.equal(meta.geomReduce(fc, prev => prev += 1, 0), 0, 'geomReduce');
+    t.equal(meta.flattenReduce(fc, prev => prev += 1, 0), 0, 'flattenReduce');
     t.equal(meta.coordReduce(fc, prev => prev += 1, 0), 0, 'coordReduce');
     /* eslint-enable no-return-assign */
     t.end();
@@ -440,8 +446,8 @@ test('null geometries -- index', t => {
         lineString([[1, 1], [0, 0]]) // index 3
     ]);
     t.deepEqual(meta.coordReduce(fc, (prev, coords, coordIndex) => prev.concat(coordIndex), []), [0, 1, 2], 'coordReduce');
-    t.deepEqual(meta.geomReduce(fc, (prev, geom, featureIndex) => prev.concat(featureIndex), []), [0, 1, 2, 3], 'geomReduce');
-    t.deepEqual(meta.flattenReduce(fc, (prev, feature, featureIndex) => prev.concat(featureIndex), []), [0, 1, 2, 3], 'flattenReduce');
+    t.deepEqual(meta.geomReduce(fc, (prev, geom, featureIndex) => prev.concat(featureIndex), []), [1, 3], 'geomReduce');
+    t.deepEqual(meta.flattenReduce(fc, (prev, feature, featureIndex) => prev.concat(featureIndex), []), [1, 3], 'flattenReduce');
     t.end();
 });
 
