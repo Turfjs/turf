@@ -23,18 +23,25 @@ var astar = jsastar.astar;
 
 /**
  * Returns the shortest {@link LineString|path} from {@link Point|start} to {@link Point|end} without colliding with
- * any {@link Feature} in {@link FeatureCollection| obstacles}
+ * any {@link Feature} in {@link FeatureCollection<Polygon>| obstacles}
  *
  * @name shortestPath
  * @param {Geometry|Feature<Point>} start point
  * @param {Geometry|Feature<Point>} end point
- * @param {GeometryCollection|FeatureCollection} obstacles polygons
- * @param {Object} [options={}] Optional parameters
+ * @param {GeometryCollection|FeatureCollection<Polygon>} obstacles polygons
+ * @param {Object} [options={}] optional parameters
  * @param {string} [options.units="kilometers"] can be degrees, radians, miles, kilometers, ...
- * @param {number} [options.resolution=100] proportional to the distance between matrix points on which the path will be calculated
+ * @param {number} [options.resolution=100] distance between matrix points on which the path will be calculated
  * @returns {Feature<LineString>} shortest path between start and end
  * @example
- * <SIMPLE EXAMPLE>
+ * var start = turf.point([-5, -6]);
+ * var end = turf.point([9, -6]);
+ * var obstacles = turf.featureCollection([turf.polygon([[0,-7],[5,-7],[5,-3],[0,-3],[0,-7]]));
+ *
+ * var path = shortestPath(start, end, obstacles);
+ *
+ * //addToMap
+ * var addToMap = [start, end, obstacles, path];
  */
 module.exports = function (start, end, obstacles, options) {
     // validation
