@@ -49,7 +49,7 @@ test('turf-difference - prevent input mutation', t => {
     t.end();
 });
 
-test('turf-difference - no overlap', t => {
+test('turf-difference - complete overlap', t => {
     const poly = polygon([[[121, -31], [144, -31], [144, -15], [121, -15], [121, -31]]]);
 
     const result = difference(poly, poly);
