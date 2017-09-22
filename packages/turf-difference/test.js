@@ -44,7 +44,16 @@ test('turf-difference - prevent input mutation', t => {
     const before2 = JSON.parse(JSON.stringify(poly2));
 
     difference(poly1, poly2);
-    t.deepEqual(poly1, before1, 'polygon1 shoult not mutate');
-    t.deepEqual(poly2, before2, 'polygon2 shoult not mutate');
+    t.deepEqual(poly1, before1, 'polygon1 should not mutate');
+    t.deepEqual(poly2, before2, 'polygon2 should not mutate');
     t.end();
 });
+
+test('turf-difference - complete overlap', t => {
+    const poly = polygon([[[121, -31], [144, -31], [144, -15], [121, -15], [121, -31]]]);
+
+    const result = difference(poly, poly);
+    t.deepEqual(result, null, 'difference should be null');
+    t.end();
+});
+
