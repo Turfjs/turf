@@ -1,5 +1,5 @@
 import {featureCollection, point, lineString, geometryCollection} from '@turf/helpers'
-import * as truncate from './'
+import truncate from './'
 
 const pt = point([120.1234567, 40.1234567])
 const ptGeom = pt.geometry

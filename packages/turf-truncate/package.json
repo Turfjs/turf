@@ -3,9 +3,11 @@
   "version": "4.7.3",
   "description": "turf truncate module",
   "main": "index.js",
+  "module": "index.mjs",
   "types": "index.d.ts",
   "files": [
     "index.js",
+    "index.mjs",
     "index.d.ts"
   ],
   "scripts": {
@@ -39,6 +41,7 @@
     "write-json-file": "2.2.0"
   },
   "dependencies": {
+    "@std/esm": "^0.10.2",
     "@turf/meta": "^4.7.3"
   }
 }

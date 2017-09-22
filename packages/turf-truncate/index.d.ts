@@ -5,11 +5,8 @@ type Geoms = GeoJSON.Feature<any> | GeoJSON.FeatureCollection<any> | GeoJSON.Geo
 /**
  * http://turfjs.org/docs/#truncate
  */
-declare function truncate<Geom extends Geoms>(
+export default function truncate<Geom extends Geoms>(
     geojson: Geom,
     precision?: number,
     coordinates?: number,
     mutate?: boolean): Geom;
-
-declare namespace truncate { }
-export = truncate;
