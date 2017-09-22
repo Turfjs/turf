@@ -3,9 +3,11 @@
   "version": "4.7.3",
   "description": "turf meta module",
   "main": "index.js",
+  "module": "index.mjs",
   "types": "index.d.ts",
   "files": [
     "index.js",
+    "index.mjs",
     "index.d.ts"
   ],
   "scripts": {
@@ -52,5 +54,8 @@
     "@turf/random": "^4.7.3",
     "benchmark": "2.1.4",
     "tape": "4.8.0"
+  },
+  "dependencies": {
+    "@std/esm": "^0.10.2"
   }
 }
