@@ -101,14 +101,13 @@ function coordEach(geojson, callback, excludeWrapCoord) {
     // few numbers and booleans, rather than any temporary arrays as would
     // be required with the normalization approach.
     for (featureIndex = 0; featureIndex < stop; featureIndex++) {
-        var featureSubIndex = 0;
-
         geometryMaybeCollection = (isFeatureCollection ? geojson.features[featureIndex].geometry :
             (isFeature ? geojson.geometry : geojson));
         isGeometryCollection = (geometryMaybeCollection) ? geometryMaybeCollection.type === 'GeometryCollection' : false;
         stopG = isGeometryCollection ? geometryMaybeCollection.geometries.length : 1;
 
         for (geometryIndex = 0; geometryIndex < stopG; geometryIndex++) {
+            var featureSubIndex = 0;
             geometry = isGeometryCollection ?
                 geometryMaybeCollection.geometries[geometryIndex] : geometryMaybeCollection;
 
@@ -132,26 +131,30 @@ function coordEach(geojson, callback, excludeWrapCoord) {
                 for (j = 0; j < coords.length; j++) {
                     callback(coords[j], coordIndex, featureIndex, featureSubIndex);
                     coordIndex++;
-                    featureSubIndex++;
+                    if (geomType === 'MultiPoint') featureSubIndex++;
                 }
+                if (geomType === 'LineString') featureSubIndex++;
                 break;
             case 'Polygon':
             case 'MultiLineString':
-                for (j = 0; j < coords.length; j++)
+                for (j = 0; j < coords.length; j++) {
                     for (k = 0; k < coords[j].length - wrapShrink; k++) {
                         callback(coords[j][k], coordIndex, featureIndex, featureSubIndex);
                         coordIndex++;
-                        featureSubIndex++;
                     }
+                    if (geomType === 'MultiLineString') featureSubIndex++;
+                }
+                if (geomType === 'Polygon') featureSubIndex++;
                 break;
             case 'MultiPolygon':
-                for (j = 0; j < coords.length; j++)
+                for (j = 0; j < coords.length; j++) {
                     for (k = 0; k < coords[j].length; k++)
                         for (l = 0; l < coords[j][k].length - wrapShrink; l++) {
                             callback(coords[j][k][l], coordIndex, featureIndex, featureSubIndex);
                             coordIndex++;
-                            featureSubIndex++;
                         }
+                    featureSubIndex++;
+                }
                 break;
             case 'GeometryCollection':
                 for (j = 0; j < geometry.geometries.length; j++)
@@ -494,7 +497,6 @@ function geomEach(geojson, callback) {
             // Handle null Geometry
             if (geometry === null) {
                 callback(null, featureIndex, geometryProperties);
-                featureIndex++;
                 continue;
             }
             switch (geometry.type) {
@@ -505,13 +507,11 @@ function geomEach(geojson, callback) {
             case 'MultiLineString':
             case 'MultiPolygon': {
                 callback(geometry, featureIndex, geometryProperties);
-                featureIndex++;
                 break;
             }
             case 'GeometryCollection': {
                 for (j = 0; j < geometry.geometries.length; j++) {
                     callback(geometry.geometries[j], featureIndex, geometryProperties);
-                    featureIndex++;
                 }
                 break;
             }
@@ -519,6 +519,8 @@ function geomEach(geojson, callback) {
                 throw new Error('Unknown Geometry Type');
             }
         }
+        // Only increase `featureIndex` per each feature
+        featureIndex++;
     }
 }
 

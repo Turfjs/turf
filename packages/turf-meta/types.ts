@@ -59,14 +59,14 @@ function featureReduce() {
     meta.featureReduce(poly, (previous, feature) => 1 + 1, 0)
     meta.featureReduce(features, (previous, feature) => feature)
     meta.featureReduce(poly, (previous, feature, index) => feature)
-    // meta.featureReduce(geomCollection, (previous, feature, index) => feature)
+    meta.featureReduce(geomCollection, (previous, feature, index) => feature)
 }
 
 function featureEach() {
     const value: void = meta.featureEach(poly, feature => feature)
     meta.featureEach(features, feature => feature)
     meta.featureEach(poly, (feature, index) => feature)
-    // meta.featureEach(geomCollection, (feature, index) => feature)
+    meta.featureEach(geomCollection, (feature, index) => feature)
 }
 
 function geomReduce() {
@@ -74,14 +74,14 @@ function geomReduce() {
     meta.geomReduce(poly, (previous, geom) => 1 + 1, 0)
     meta.geomReduce(features, (previous, geom) => geom)
     meta.geomReduce(poly, (previous, geom, index, props) => geom)
-    // meta.geomReduce(geomCollection, (previous, geom, index, props) => geom)
+    meta.geomReduce(geomCollection, (previous, geom, index, props) => geom)
 }
 
 function geomEach() {
     const value: void = meta.geomEach(poly, geom => geom)
     meta.geomEach(features, geom => geom)
     meta.geomEach(poly, (geom, index, props) => geom)
-    // meta.geomEach(geomCollection, (geom, index, props) => geom)
+    meta.geomEach(geomCollection, (geom, index, props) => geom)
 }
 
 function flattenReduce() {
@@ -89,14 +89,14 @@ function flattenReduce() {
     meta.flattenReduce(poly, (previous, feature) => 1 + 1, 0)
     meta.flattenReduce(features, (previous, feature) => feature)
     meta.flattenReduce(poly, (previous, feature, index, props) => feature)
-    // meta.flattenReduce(geomCollection, (previous, feature, index, props) => feature)
+    meta.flattenReduce(geomCollection, (previous, feature, index, props) => feature)
 }
 
 function flattenEach() {
     const value: void = meta.flattenEach(poly, feature => feature)
     meta.flattenEach(features, feature => feature)
     meta.flattenEach(poly.geometry, (feature, index, props) => feature)
-    // meta.flattenEach(geomCollection, (feature, index, props) => feature)
+    meta.flattenEach(geomCollection, (feature, index, props) => feature)
 }
 
 function segmentReduce() {
