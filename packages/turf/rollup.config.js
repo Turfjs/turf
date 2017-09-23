@@ -3,7 +3,7 @@ import nodeResolve from 'rollup-plugin-node-resolve';
 
 export default [
     {
-        input: 'module.js',
+        input: 'index.js',
         output: {
             file: 'dist/turf.js',
             format: 'umd',
@@ -14,7 +14,7 @@ export default [
         plugins: [nodeResolve()]
     },
     {
-        input: 'module.js',
+        input: 'index.js',
         output: {
             file: 'dist/turf.min.js',
             format: 'umd',

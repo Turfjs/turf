@@ -13,8 +13,8 @@
     "dist"
   ],
   "scripts": {
-    "test": "tap test.js && tap test.example.js",
-    "build": "rollup -c rollup.config.js"
+    "pretest": "rollup -c rollup.config.js",
+    "test": "tap test.js && tap test.example.js"
   },
   "repository": {
     "type": "git",

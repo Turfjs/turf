@@ -1,5 +1,3 @@
-/*eslint global-require: 0*/
-
 /**
  * Turf is a modular geospatial analysis engine written in JavaScript. It performs geospatial
  * processing tasks with GeoJSON data and can be run on a server or in a browser.
@@ -7,157 +5,142 @@
  * @module turf
  * @summary Geospatial analysis for JavaScript
  */
-var helpers = require('@turf/helpers');
-var invariant = require('@turf/invariant');
-var meta = require('@turf/meta');
-var clusters = require('@turf/clusters');
-var projection = require('@turf/projection'); // v4.7.0
-
-var turf = {
-    isolines: require('@turf/isolines'),
-    convex: require('@turf/convex'),
-    within: require('@turf/within'),
-    concave: require('@turf/concave'),
-    difference: require('@turf/difference'),
-    dissolve: require('@turf/dissolve'),
-    collect: require('@turf/collect'),
-    flip: require('@turf/flip'),
-    simplify: require('@turf/simplify'),
-    bezier: require('@turf/bezier'),
-    tag: require('@turf/tag'),
-    sample: require('@turf/sample'),
-    envelope: require('@turf/envelope'),
-    square: require('@turf/square'),
-    circle: require('@turf/circle'),
-    midpoint: require('@turf/midpoint'),
-    buffer: require('@turf/buffer'),
-    center: require('@turf/center'),
-    centerOfMass: require('@turf/center-of-mass'),
-    centroid: require('@turf/centroid'),
-    combine: require('@turf/combine'),
-    distance: require('@turf/distance'),
-    explode: require('@turf/explode'),
-    bbox: require('@turf/bbox'),
-    tesselate: require('@turf/tesselate'),
-    bboxPolygon: require('@turf/bbox-polygon'),
-    inside: require('@turf/inside'),
-    intersect: require('@turf/intersect'),
-    nearest: require('@turf/nearest'),
-    planepoint: require('@turf/planepoint'),
-    random: require('@turf/random'),
-    tin: require('@turf/tin'),
-    union: require('@turf/union'),
-    bearing: require('@turf/bearing'),
-    destination: require('@turf/destination'),
-    kinks: require('@turf/kinks'),
-    pointOnSurface: require('@turf/point-on-surface'),
-    area: require('@turf/area'),
-    along: require('@turf/along'),
-    lineDistance: require('@turf/line-distance'),
-    lineSlice: require('@turf/line-slice'),
-    lineSliceAlong: require('@turf/line-slice-along'),
-    pointOnLine: require('@turf/point-on-line'),
-    pointGrid: require('@turf/point-grid'),
-    squareGrid: require('@turf/square-grid'),
-    triangleGrid: require('@turf/triangle-grid'),
-    hexGrid: require('@turf/hex-grid'),
-    idw: require('@turf/idw'),
-    truncate: require('@turf/truncate'),
-    flatten: require('@turf/flatten'),
-    lineIntersect: require('@turf/line-intersect'),
-    mask: require('@turf/mask'),
-    lineChunk: require('@turf/line-chunk'),
-    unkinkPolygon: require('@turf/unkink-polygon'),
-    greatCircle: require('@turf/great-circle'),
-    lineSegment: require('@turf/line-segment'),
-    lineSplit: require('@turf/line-split'),
-    lineArc: require('@turf/line-arc'),
-    polygonToLineString: require('@turf/polygon-to-linestring'),
-    lineStringToPolygon: require('@turf/linestring-to-polygon'),
-    bboxClip: require('@turf/bbox-clip'),
-    lineOverlap: require('@turf/line-overlap'),
-    sector: require('@turf/sector'),
-    rhumbBearing: require('@turf/rhumb-bearing'),
-    rhumbDistance: require('@turf/rhumb-distance'),
-    rhumbDestination: require('@turf/rhumb-destination'),
-    polygonTangents: require('@turf/polygon-tangents'),
-    rewind: require('@turf/rewind'),
-    isobands: require('@turf/isobands'),
-    transformRotate: require('@turf/transform-rotate'),
-    transformScale: require('@turf/transform-scale'),
-    transformTranslate: require('@turf/transform-translate'),
-    lineOffset: require('@turf/line-offset'),
-    polygonize: require('@turf/polygonize'),
-    booleanDisjoint: require('@turf/boolean-disjoint'),
-    booleanContains: require('@turf/boolean-contains'),
-    booleanCrosses: require('@turf/boolean-crosses'),
-    booleanClockwise: require('@turf/boolean-clockwise'),
-    booleanOverlap: require('@turf/boolean-overlap'), // v4.6.0
-    booleanPointOnLine: require('@turf/boolean-point-on-line'), // v4.6.0
-    booleanEqual: require('@turf/boolean-equal'), // 4.6.0
-    booleanWithin: require('@turf/boolean-within'), // 4.7.0
-    clone: require('@turf/clone'),
-    cleanCoords: require('@turf/clean-coords'), // v4.6.0
-    interpolate: require('@turf/interpolate'), // v4.6.0
-    clustersDbscan: require('@turf/clusters-dbscan'), // v4.6.0
-    clustersKmeans: require('@turf/clusters-kmeans'), // v4.6.0
-    pointToLineDistance: require('@turf/point-to-line-distance'), // v4.7.0
-    booleanParallel: require('@turf/boolean-parallel'), // v4.8.0
-    nearestPointToLine: require('@turf/nearest-point-to-line'), // v4.8.0
-    projection: projection, // v4.7.0
-    toMercator: projection.toMercator, // v4.7.0
-    toWgs84: projection.toWgs84, // v4.7.0
-    clusters: clusters, // v4.6.0
-    getCluster: clusters.getCluster, // v4.6.0
-    clusterEach: clusters.clusterEach, // v4.6.0
-    clusterReduce: clusters.clusterReduce, // v4.6.0
-    helpers: helpers,
-    point: helpers.point,
-    polygon: helpers.polygon,
-    lineString: helpers.lineString,
-    multiPoint: helpers.multiPoint,
-    multiPolygon: helpers.multiPolygon,
-    multiLineString: helpers.multiLineString,
-    feature: helpers.feature,
-    geometry: helpers.geometry, // v4.6.0
-    featureCollection: helpers.featureCollection,
-    geometryCollection: helpers.geometryCollection,
-    radiansToDistance: helpers.radiansToDistance,
-    distanceToRadians: helpers.distanceToRadians,
-    distanceToDegrees: helpers.distanceToDegrees,
-    bearingToAngle: helpers.bearingToAngle,
-    degrees2radians: helpers.degrees2radians,
-    radians2degrees: helpers.radians2degrees,
-    convertDistance: helpers.convertDistance,
-    isNumber: helpers.isNumber, // 4.7.0
-    round: helpers.round,
-    convertArea: helpers.convertArea,
-    invariant: invariant,
-    getCoord: invariant.getCoord,
-    getCoords: invariant.getCoords,
-    geojsonType: invariant.geojsonType,
-    featureOf: invariant.featureOf,
-    collectionOf: invariant.collectionOf,
-    containsNumber: invariant.containsNumber,
-    getType: invariant.getType, // v4.8.0
-    getGeom: invariant.getGeom,
-    getGeomType: invariant.getGeomType,
-    meta: meta,
-    coordEach: meta.coordEach,
-    coordReduce: meta.coordReduce,
-    propEach: meta.propEach,
-    propReduce: meta.propReduce,
-    featureEach: meta.featureEach,
-    featureReduce: meta.featureReduce,
-    coordAll: meta.coordAll,
-    geomEach: meta.geomEach,
-    geomReduce: meta.geomReduce,
-    flattenEach: meta.flattenEach,
-    flattenReduce: meta.flattenReduce,
-    segmentReduce: meta.segmentReduce, // v4.6.0
-    segmentEach: meta.segmentEach, // v4.6.0
-    lineEach: meta.lineEach, // v4.7.0
-    lineReduce: meta.lineReduce // v4.7.0
-};
-
-module.exports = turf;
+export {default as isolines} from '@turf/isolines';
+export {default as convex} from '@turf/convex';
+export {default as within} from '@turf/within';
+export {default as concave} from '@turf/concave';
+export {default as difference} from '@turf/difference';
+export {default as dissolve} from '@turf/dissolve';
+export {default as collect} from '@turf/collect';
+export {default as flip} from '@turf/flip';
+export {default as simplify} from '@turf/simplify';
+export {default as bezier} from '@turf/bezier';
+export {default as tag} from '@turf/tag';
+export {default as sample} from '@turf/sample';
+export {default as envelope} from '@turf/envelope';
+export {default as square} from '@turf/square';
+export {default as circle} from '@turf/circle';
+export {default as midpoint} from '@turf/midpoint';
+export {default as buffer} from '@turf/buffer';
+export {default as center} from '@turf/center';
+export {default as centerOfMass} from '@turf/center-of-mass';
+export {default as centroid} from '@turf/centroid';
+export {default as combine} from '@turf/combine';
+export {default as distance} from '@turf/distance';
+export {default as explode} from '@turf/explode';
+export {default as bbox} from '@turf/bbox';
+export {default as tesselate} from '@turf/tesselate';
+export {default as bboxPolygon} from '@turf/bbox-polygon';
+export {default as inside} from '@turf/inside';
+export {default as intersect} from '@turf/intersect';
+export {default as nearest} from '@turf/nearest';
+export {default as planepoint} from '@turf/planepoint';
+export {default as random} from '@turf/random';
+export {default as tin} from '@turf/tin';
+export {default as union} from '@turf/union';
+export {default as bearing} from '@turf/bearing';
+export {default as destination} from '@turf/destination';
+export {default as kinks} from '@turf/kinks';
+export {default as pointOnSurface} from '@turf/point-on-surface';
+export {default as area} from '@turf/area';
+export {default as along} from '@turf/along';
+export {default as lineDistance} from '@turf/line-distance';
+export {default as lineSlice} from '@turf/line-slice';
+export {default as lineSliceAlong} from '@turf/line-slice-along';
+export {default as pointOnLine} from '@turf/point-on-line';
+export {default as pointGrid} from '@turf/point-grid';
+export {default as squareGrid} from '@turf/square-grid';
+export {default as triangleGrid} from '@turf/triangle-grid';
+export {default as hexGrid} from '@turf/hex-grid';
+export {default as idw} from '@turf/idw';
+export {default as truncate} from '@turf/truncate';
+export {default as flatten} from '@turf/flatten';
+export {default as lineIntersect} from '@turf/line-intersect';
+export {default as mask} from '@turf/mask';
+export {default as lineChunk} from '@turf/line-chunk';
+export {default as unkinkPolygon} from '@turf/unkink-polygon';
+export {default as greatCircle} from '@turf/great-circle';
+export {default as lineSegment} from '@turf/line-segment';
+export {default as lineSplit} from '@turf/line-split';
+export {default as lineArc} from '@turf/line-arc';
+export {default as polygonToLineString} from '@turf/polygon-to-linestring';
+export {default as lineStringToPolygon} from '@turf/linestring-to-polygon';
+export {default as bboxClip} from '@turf/bbox-clip';
+export {default as lineOverlap} from '@turf/line-overlap';
+export {default as sector} from '@turf/sector';
+export {default as rhumbBearing} from '@turf/rhumb-bearing';
+export {default as rhumbDistance} from '@turf/rhumb-distance';
+export {default as rhumbDestination} from '@turf/rhumb-destination';
+export {default as polygonTangents} from '@turf/polygon-tangents';
+export {default as rewind} from '@turf/rewind';
+export {default as isobands} from '@turf/isobands';
+export {default as transformRotate} from '@turf/transform-rotate';
+export {default as transformScale} from '@turf/transform-scale';
+export {default as transformTranslate} from '@turf/transform-translate';
+export {default as lineOffset} from '@turf/line-offset';
+export {default as polygonize} from '@turf/polygonize';
+export {default as booleanDisjoint} from '@turf/boolean-disjoint';
+export {default as booleanContains} from '@turf/boolean-contains';
+export {default as booleanCrosses} from '@turf/boolean-crosses';
+export {default as booleanClockwise} from '@turf/boolean-clockwise';
+export {default as booleanOverlap} from '@turf/boolean-overlap';
+export {default as booleanPointOnLine} from '@turf/boolean-point-on-line';
+export {default as booleanEqual} from '@turf/boolean-equal';
+export {default as booleanWithin} from '@turf/boolean-within';
+export {default as clone} from '@turf/clone';
+export {default as cleanCoords} from '@turf/clean-coords';
+export {default as interpolate} from '@turf/interpolate';
+export {default as clustersDbscan} from '@turf/clusters-dbscan';
+export {default as clustersKmeans} from '@turf/clusters-kmeans';
+export {default as pointToLineDistance} from '@turf/point-to-line-distance';
+export {default as booleanParallel} from '@turf/boolean-parallel';
+export {default as nearestPointToLine} from '@turf/nearest-point-to-line';
+export {default as projection, toMercator, toWgs84} from '@turf/projection';
+export {default as clusters, getCluster, clusterEach, clusterReduce} from '@turf/clusters';
+export {
+    point,
+    polygon,
+    lineString,
+    multiPoint,
+    multiPolygon,
+    multiLineString,
+    feature,
+    geometry,
+    featureCollection,
+    geometryCollection,
+    radiansToDistance,
+    distanceToRadians,
+    distanceToDegrees,
+    bearingToAngle,
+    degrees2radians,
+    radians2degrees,
+    convertDistance,
+    isNumber,
+    round,
+    convertArea} from '@turf/helpers';
+export {
+    getCoord,
+    getCoords,
+    geojsonType,
+    featureOf,
+    collectionOf,
+    containsNumber,
+    getType,
+    getGeom,
+    getGeomType} from '@turf/invariant';
+export {
+    coordEach,
+    coordReduce,
+    propEach,
+    propReduce,
+    featureEach,
+    featureReduce,
+    coordAll,
+    geomEach,
+    geomReduce,
+    flattenEach,
+    flattenReduce,
+    segmentReduce,
+    segmentEach,
+    lineEach,
+    lineReduce} from '@turf/meta';

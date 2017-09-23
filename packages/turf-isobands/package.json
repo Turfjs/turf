@@ -9,6 +9,8 @@
   "files": [
     "index.js",
     "index.d.ts",
+    "isoBands.js",
+    "gridToMatrix.js",
     "dist"
   ],
   "scripts": {

@@ -2,8 +2,8 @@ import bbox from '@turf/bbox';
 import { coordEach } from '@turf/meta';
 import { multiLineString, featureCollection } from '@turf/helpers';
 import { collectionOf } from '@turf/invariant';
-import gridToMatrix from 'grid-to-matrix';
-import marchingsquares from 'marchingsquares';
+import isoContours from './isoContours';
+import gridToMatrix from './gridToMatrix';
 
 /**
  * Takes a grid {@link FeatureCollection} of {@link Point} features with z-values and an array of
@@ -81,7 +81,7 @@ function createIsoLines(matrix, breaks, zProperty, propertiesToAllIsolines, prop
             propertiesPerIsoline[i]
         );
         properties[zProperty] = threshold;
-        var isoline = multiLineString(marchingsquares.isoContours(matrix, threshold), properties);
+        var isoline = multiLineString(isoContours(matrix, threshold), properties);
 
         isolines.push(isoline);
     }

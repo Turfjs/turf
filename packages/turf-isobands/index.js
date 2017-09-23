@@ -2,10 +2,10 @@ import bbox from '@turf/bbox';
 import area from '@turf/area';
 import inside from '@turf/inside';
 import explode from '@turf/explode';
-import gridToMatrix from 'grid-to-matrix';
-import marchingsquares from 'marchingsquares';
+import isoBands from './isoBands';
 import { polygon, multiPolygon, featureCollection } from '@turf/helpers';
 import { collectionOf } from '@turf/invariant';
+import gridToMatrix from './gridToMatrix';
 
 /**
  * Takes a grid {@link FeatureCollection} of {@link Point} features with z-values and an array of
@@ -98,7 +98,7 @@ function createContourLines(matrix, breaks, property) {
         var lowerBand = +breaks[i - 1]; // make sure the breaks value is a number
         var upperBand = +breaks[i];
 
-        var isobandsCoords = marchingsquares.isoBands(matrix, lowerBand, upperBand - lowerBand);
+        var isobandsCoords = isoBands(matrix, lowerBand, upperBand - lowerBand);
         // as per GeoJson rules for creating a Polygon, make sure the first element
         // in the array of LinearRings represents the exterior ring (i.e. biggest area),
         // and any subsequent elements represent interior rings (i.e. smaller area);
