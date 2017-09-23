@@ -36,8 +36,9 @@
   "devDependencies": {
     "benchmark": "*",
     "load-json-file": "*",
+    "rollup": "*",
     "tape": "*",
-    "rollup": "*"
+    "write-json-file": "*"
   },
   "dependencies": {
     "@turf/bbox": "^4.7.3",
