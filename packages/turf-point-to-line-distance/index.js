@@ -31,7 +31,7 @@ export default function (pt, line, units, mercator) {
     if (!pt) throw new Error('pt is required');
     if (Array.isArray(pt)) pt = point(pt);
     else if (pt.type === 'Point') pt = feature(pt);
-    else featureOf(point, 'Point', 'point');
+    else featureOf(pt, 'Point', 'point');
 
     if (!line) throw new Error('line is required');
     if (Array.isArray(line)) line = lineString(line);
@@ -39,7 +39,7 @@ export default function (pt, line, units, mercator) {
     else featureOf(line, 'LineString', 'line');
 
     var distance = Infinity;
-    var p = point.geometry.coordinates;
+    var p = pt.geometry.coordinates;
     segmentEach(line, function (segment) {
         var a = segment.geometry.coordinates[0];
         var b = segment.geometry.coordinates[1];
