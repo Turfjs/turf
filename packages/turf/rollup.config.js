@@ -3,19 +3,23 @@ import nodeResolve from 'rollup-plugin-node-resolve';
 
 export default [
     {
-        input: 'index.mjs',
+        input: 'module.js',
         output: {
-            file: 'turf.js',
+            file: 'dist/turf.js',
             format: 'umd',
+            extend: true,
+            sourcemap: true,
             name: 'turf'
         },
         plugins: [nodeResolve()]
     },
     {
-        input: 'index.mjs',
+        input: 'module.js',
         output: {
-            file: 'turf.min.js',
+            file: 'dist/turf.min.js',
             format: 'umd',
+            extend: true,
+            sourcemap: true,
             name: 'turf'
         },
         plugins: [nodeResolve(), uglify()]

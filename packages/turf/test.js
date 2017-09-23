@@ -104,7 +104,7 @@ test('turf -- scoped package name', t => {
 test('turf -- pre-defined attributes in package.json', t => {
     for (const {name, pckg} of modules) {
         if (pckg.author !== 'Turf Authors') t.fail(name + ' (author) should be "Turf Authors"');
-        if (pckg.main !== 'index.js') t.fail(`${name} (main) must be "index.js" in package.json`);
+        if (pckg.module !== 'index' && pckg.main !== 'index.js') t.fail(`${name} (main) must be "index.js" in package.json`);
         if (pckg.types !== 'index.d.ts') t.fail(`${name} (types) must be "index.d.ts" in package.json`);
         if (!pckg.bugs || pckg.bugs.url !== 'https://github.com/Turfjs/turf/issues') t.fail(`${name} (bugs.url) must be "https://github.com/Turfjs/turf/issues" in package.json`);
         if (pckg.homepage !== 'https://github.com/Turfjs/turf') t.fail(`${name} (homepage) must be "https://github.com/Turfjs/turf" in package.json`);
@@ -118,7 +118,7 @@ test('turf -- parsing dependencies from index.js', t => {
 
         // Read Depedencies from index.js
         const dependenciesUsed = new Set();
-        for (const dependency of index.match(/require\('[\@\/a-z-\d]+'\)/gi) || []) {
+        for (const dependency of index.match(/(require\(|from )'[@/a-z-\d]+'/gi) || []) {
             const dependencyName = dependency.split(/'/)[1];
             if (!dependencies[dependencyName]) t.fail(`${name} ${dependencyName} is missing from dependencies`);
             if (dependenciesUsed.has(dependencyName)) t.fail(`${name} ${dependencyName} is duplicated in index.js`);

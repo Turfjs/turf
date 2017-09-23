@@ -2,15 +2,15 @@
   "name": "@turf/turf",
   "version": "4.7.3",
   "description": "a JavaScript library for performing geospatial operations with GeoJSON",
-  "main": "turf.js",
-  "module": "index.mjs",
+  "main": "index.js",
+  "module": "module.js",
+  "jsnext:main": "module.js",
   "types": "index.d.ts",
   "files": [
     "index.js",
-    "index.mjs",
     "index.d.ts",
-    "turf.js",
-    "turf.min.js"
+    "module.js",
+    "dist"
   ],
   "scripts": {
     "test": "tap test.js && tap test.example.js",
