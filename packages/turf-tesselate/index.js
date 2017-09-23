@@ -1,6 +1,5 @@
-var polygon = require('@turf/helpers').polygon;
-var earcut = require('earcut');
-
+import earcut from 'earcut';
+import { polygon } from '@turf/helpers';
 
 /**
  * Tesselates a {@link Feature<Polygon>} into a {@link FeatureCollection<Polygon>} of triangles
@@ -16,7 +15,7 @@ var earcut = require('earcut');
  * //addToMap
  * var addToMap = [poly, triangles]
  */
-module.exports = function (poly) {
+export default function (poly) {
     if (!poly.geometry || (poly.geometry.type !== 'Polygon' && poly.geometry.type !== 'MultiPolygon')) {
         throw new Error('input must be a Polygon or MultiPolygon');
     }

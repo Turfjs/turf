@@ -1,11 +1,8 @@
-var meta = require('@turf/meta');
-var rbush = require('geojson-rbush');
-var helpers = require('@turf/helpers');
-var getCoords = require('@turf/invariant').getCoords;
-var lineSegment = require('@turf/line-segment');
-var point = helpers.point;
-var featureEach = meta.featureEach;
-var featureCollection = helpers.featureCollection;
+import { featureEach } from '@turf/meta';
+import rbush from 'geojson-rbush';
+import { point, featureCollection } from '@turf/helpers';
+import { getCoords } from '@turf/invariant';
+import lineSegment from '@turf/line-segment';
 
 /**
  * Takes any LineString or Polygon GeoJSON and returns the intersecting point(s).
@@ -22,7 +19,7 @@ var featureCollection = helpers.featureCollection;
  * //addToMap
  * var addToMap = [line1, line2, intersects]
  */
-module.exports = function (line1, line2) {
+export default function (line1, line2) {
     var unique = {};
     var results = [];
 

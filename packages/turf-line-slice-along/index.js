@@ -1,7 +1,7 @@
-var bearing = require('@turf/bearing');
-var distance = require('@turf/distance');
-var destination = require('@turf/destination');
-var lineString = require('@turf/helpers').lineString;
+import bearing from '@turf/bearing';
+import distance from '@turf/distance';
+import destination from '@turf/destination';
+import { lineString } from '@turf/helpers';
 
 /**
  * Takes a {@link LineString|line}, a specified distance along the line to a start {@link Point},
@@ -25,7 +25,7 @@ var lineString = require('@turf/helpers').lineString;
  * //addToMap
  * var addToMap = [line, start, stop, sliced]
  */
-module.exports = function (line, startDist, stopDist, units) {
+export default function (line, startDist, stopDist, units) {
     var coords;
     var slice = [];
     if (line.type === 'Feature') coords = line.geometry.coordinates;

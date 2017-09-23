@@ -1,5 +1,5 @@
-var linestring = require('@turf/helpers').lineString;
-var pointOnLine = require('@turf/point-on-line');
+import { lineString as linestring } from '@turf/helpers';
+import pointOnLine from '@turf/point-on-line';
 
 /**
  * Takes a {@link LineString|line}, a start {@link Point}, and a stop point
@@ -30,7 +30,7 @@ var pointOnLine = require('@turf/point-on-line');
  * //addToMap
  * var addToMap = [start, stop, line]
  */
-module.exports = function lineSlice(startPt, stopPt, line) {
+export default function lineSlice(startPt, stopPt, line) {
     var coords;
     if (line.type === 'Feature') {
         coords = line.geometry.coordinates;

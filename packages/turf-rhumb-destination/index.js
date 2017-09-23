@@ -1,11 +1,8 @@
 // https://en.wikipedia.org/wiki/Rhumb_line
 // http://www.movable-type.co.uk/scripts/latlong.html#rhumblines
-var helpers = require('@turf/helpers');
-var getCoord = require('@turf/invariant').getCoord;
-var GeodesyLatLon = require('geodesy').LatLonSpherical;
-var point = helpers.point;
-var radiansToDistance = helpers.radiansToDistance;
-var distanceToRadians = helpers.distanceToRadians;
+import { point, radiansToDistance, distanceToRadians } from '@turf/helpers';
+import { getCoord } from '@turf/invariant';
+import { LatLonSpherical } from 'geodesy';
 
 /**
  * Returns the destination {@link Point} having travelled the given distance along a Rhumb line from the
@@ -29,7 +26,7 @@ var distanceToRadians = helpers.distanceToRadians;
  * var addToMap = [point, destination]
  * destination.properties['marker-color'] = '#00F';
  */
-module.exports = function (origin, distance, bearing, units) {
+export default function (origin, distance, bearing, units) {
     // validation
     if (!origin) throw new Error('origin is required');
     if (distance === undefined || distance === null) throw new Error('distance is required');
@@ -39,7 +36,7 @@ module.exports = function (origin, distance, bearing, units) {
     units = units || 'kilometers';
     var distanceInMeters = radiansToDistance(distanceToRadians(distance, units), 'meters');
     var coords = getCoord(origin);
-    var pt = new GeodesyLatLon(coords[1], coords[0]);
+    var pt = new LatLonSpherical(coords[1], coords[0]);
     var destination = pt.rhumbDestinationPoint(distanceInMeters, bearing);
 
     // compensate the crossing of the 180th meridian (https://macwright.org/2016/09/26/the-180th-meridian.html)

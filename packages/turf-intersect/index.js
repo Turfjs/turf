@@ -1,7 +1,7 @@
 // depend on jsts for now http://bjornharrtell.github.io/jsts/
-var jsts = require('jsts');
-var truncate = require('@turf/truncate');
-var feature = require('@turf/helpers').feature;
+import jsts from 'jsts';
+import truncate from '@turf/truncate';
+import { feature } from '@turf/helpers';
 
 /**
  * Takes two {@link Polygon|polygons} and finds their intersection. If they share a border, returns the border; if they don't intersect, returns undefined.
@@ -35,7 +35,7 @@ var feature = require('@turf/helpers').feature;
  * //addToMap
  * var addToMap = [poly1, poly2, intersection];
  */
-module.exports = function (poly1, poly2) {
+export default function (poly1, poly2) {
     var geom1 = (poly1.type === 'Feature') ? poly1.geometry : poly1;
     var geom2 = (poly2.type === 'Feature') ? poly2.geometry : poly2;
 

@@ -1,7 +1,5 @@
-var helpers = require('@turf/helpers');
-var invariant = require('@turf/invariant');
-var getCoords = invariant.getCoords;
-var getGeomType = invariant.getGeomType;
+import { feature } from '@turf/helpers';
+import { getCoords, getGeomType } from '@turf/invariant';
 
 /**
  * Removes redundant coordinates from any GeoJSON Geometry.
@@ -20,7 +18,7 @@ var getGeomType = invariant.getGeomType;
  * turf.cleanCoords(multiPoint).geometry.coordinates;
  * //= [[0, 0], [2, 2]]
  */
-module.exports = function (geojson, mutate) {
+export default function (geojson, mutate) {
     if (!geojson) throw new Error('geojson is required');
     var type = getGeomType(geojson);
 
@@ -106,7 +104,7 @@ function geometry(geojson, type, coordinates) {
  * @returns {Feature} Feature
  */
 function feature(geojson, type, coordinates) {
-    var feat = helpers.feature(geometry(geojson.geometry, type, coordinates), geojson.properties);
+    var feat = feature(geometry(geojson.geometry, type, coordinates), geojson.properties);
     if (geojson.id) feat.id = geojson.id;
     if (geojson.bbox) feat.bbox = geojson.bbox;
     return feat;

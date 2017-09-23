@@ -1,8 +1,5 @@
-var getCoords = require('@turf/invariant').getCoords;
-var helpers = require('@turf/helpers');
-var lineString = helpers.lineString;
-var multiLineString = helpers.multiLineString;
-var featureCollection = helpers.featureCollection;
+import { getCoords, getGeomType } from '@turf/invariant';
+import { lineString, multiLineString, featureCollection } from '@turf/helpers';
 
 /**
  * Converts a {@link Polygon} to {@link LineString|(Multi)LineString} or {@link MultiPolygon} to a {@link FeatureCollection} of {@link LineString|(Multi)LineString}.
@@ -19,7 +16,7 @@ var featureCollection = helpers.featureCollection;
  * //addToMap
  * var addToMap = [line];
  */
-module.exports = function (polygon, properties) {
+export default function (polygon, properties) {
     var geom = getGeomType(polygon);
     var coords = getCoords(polygon);
     properties = properties || polygon.properties || {};
@@ -43,8 +40,4 @@ module.exports = function (polygon, properties) {
 function coordsToLine(coords, properties) {
     if (coords.length > 1) return multiLineString(coords, properties);
     return lineString(coords[0], properties);
-}
-
-function getGeomType(feature) {
-    return (feature.geometry) ? feature.geometry.type : feature.type;
 }

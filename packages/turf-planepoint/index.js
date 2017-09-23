@@ -1,6 +1,4 @@
-var invariant = require('@turf/invariant');
-var getCoord = invariant.getCoord;
-var getGeom = invariant.getGeom;
+import { getCoord, getGeom } from '@turf/invariant';
 
 /**
  * Takes a triangular plane as a {@link Polygon}
@@ -34,7 +32,7 @@ var getGeom = invariant.getGeom;
  * //addToMap
  * var addToMap = [triangle, point];
  */
-module.exports = function (point, triangle) {
+export default function (point, triangle) {
     // Normalize input
     var coord = getCoord(point);
     var geom = getGeom(triangle);

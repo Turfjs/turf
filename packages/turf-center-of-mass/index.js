@@ -1,9 +1,9 @@
-var point = require('@turf/helpers').point;
-var convex = require('@turf/convex');
-var explode = require('@turf/explode');
-var centroid = require('@turf/centroid');
-var getCoord = require('@turf/invariant').getCoord;
-var coordEach = require('@turf/meta').coordEach;
+import convex from '@turf/convex';
+import explode from '@turf/explode';
+import centroid from '@turf/centroid';
+import { point } from '@turf/helpers';
+import { getCoord } from '@turf/invariant';
+import { coordEach } from '@turf/meta';
 
 /**
  * Takes any {@link Feature} or a {@link FeatureCollection} and returns its [center of mass](https://en.wikipedia.org/wiki/Center_of_mass) using this formula: [Centroid of Polygon](https://en.wikipedia.org/wiki/Centroid#Centroid_of_polygon).
@@ -97,4 +97,4 @@ function centerOfMass(geojson, properties) {
     }
 }
 
-module.exports = centerOfMass;
+export default centerOfMass;

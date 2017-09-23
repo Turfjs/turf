@@ -1,6 +1,6 @@
-var turfbbox = require('@turf/bbox');
-var inside = require('@turf/inside');
-var rbush = require('rbush');
+import turfbbox from '@turf/bbox';
+import inside from '@turf/inside';
+import rbush from 'rbush';
 
 /**
  * Merges a specified property from a FeatureCollection of points into a
@@ -32,7 +32,7 @@ var rbush = require('rbush');
  * //addToMap
  * var addToMap = [pointFC, collected]
  */
-module.exports = function (polygons, points, inProperty, outProperty) {
+export default function (polygons, points, inProperty, outProperty) {
     var rtree = rbush(6);
 
     var treeItems = points.features.map(function (item) {

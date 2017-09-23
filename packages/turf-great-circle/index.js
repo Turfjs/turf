@@ -1,5 +1,5 @@
-var arc = require('./arc');
-var getCoord = require('@turf/invariant').getCoord;
+import arc from './arc';
+import { getCoord } from '@turf/invariant';
 
 /**
  * Calculate great circles routes as {@link LineString}
@@ -21,7 +21,7 @@ var getCoord = require('@turf/invariant').getCoord;
  * //addToMap
  * var addToMap = [start, end, greatCircle]
  */
-module.exports = function (start, end, properties, npoints, offset) {
+export default function (start, end, properties, npoints, offset) {
     start = getCoord(start);
     end = getCoord(end);
     properties = properties || {};

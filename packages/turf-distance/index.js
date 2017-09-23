@@ -1,5 +1,6 @@
-var getCoord = require('@turf/invariant').getCoord;
-var radiansToDistance = require('@turf/helpers').radiansToDistance;
+import { getCoord } from '@turf/invariant';
+import { radiansToDistance } from '@turf/helpers';
+
 //http://en.wikipedia.org/wiki/Haversine_formula
 //http://www.movable-type.co.uk/scripts/latlong.html
 
@@ -25,7 +26,7 @@ var radiansToDistance = require('@turf/helpers').radiansToDistance;
  * from.properties.distance = distance;
  * to.properties.distance = distance;
  */
-module.exports = function (from, to, units) {
+export default function (from, to, units) {
     var degrees2radians = Math.PI / 180;
     var coordinates1 = getCoord(from);
     var coordinates2 = getCoord(to);

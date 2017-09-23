@@ -1,9 +1,9 @@
-var turfUnion = require('@turf/union');
-var booleanOverlap = require('@turf/boolean-overlap');
-var turfbbox = require('@turf/bbox');
-var Rbush = require('rbush');
-var gju = require('geojson-utils');
-var getClosest = require('get-closest');
+import turfUnion from '@turf/union';
+import booleanOverlap from '@turf/boolean-overlap';
+import turfbbox from '@turf/bbox';
+import Rbush from 'rbush';
+import gju from 'geojson-utils';
+import getClosest from 'get-closest';
 
 /**
  * Dissolves a FeatureCollection of polygons based on a property. Note that multipart features within the collection are not supported
@@ -24,7 +24,7 @@ var getClosest = require('get-closest');
  * //addToMap
  * var addToMap = [features, dissolved]
  */
-module.exports = function (featureCollection, propertyName) {
+export default function (featureCollection, propertyName) {
 
     var originalIndexOfItemsRemoved = [];
     var treeItems = [];

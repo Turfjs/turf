@@ -1,10 +1,8 @@
-var tin = require('@turf/tin');
-var helpers = require('@turf/helpers');
-var distance = require('@turf/distance');
-var dissolve = require('geojson-dissolve');
-var featureEach = require('@turf/meta').featureEach;
-var feature = helpers.feature;
-var featureCollection = helpers.featureCollection;
+import tin from '@turf/tin';
+import { feature, featureCollection } from '@turf/helpers';
+import distance from '@turf/distance';
+import dissolve from 'geojson-dissolve';
+import { featureEach } from '@turf/meta';
 
 /**
  * Takes a set of {@link Point|points} and returns a concave hull Polygon or MultiPolygon.
@@ -31,7 +29,7 @@ var featureCollection = helpers.featureCollection;
  * //addToMap
  * var addToMap = [points, hull]
  */
-module.exports = function (points, maxEdge, units) {
+export default function (points, maxEdge, units) {
     // validation
     if (!points) throw new Error('points is required');
     if (maxEdge === undefined || maxEdge === null) throw new Error('maxEdge is required');

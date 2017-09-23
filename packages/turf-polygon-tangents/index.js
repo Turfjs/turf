@@ -1,12 +1,11 @@
-var getCoords = require('@turf/invariant').getCoords;
-var helpers = require('@turf/helpers');
-var featureCollection = helpers.featureCollection;
+import { getCoords, getGeomType } from '@turf/invariant';
+import { point, eatureCollection } from '@turf/helpers';
 
 /**
  * Finds the tangents of a {@link Polygon|(Multi)Polygon} from a {@link Point}.
  *
  * @name polygonTangents
- * @param {Feature<Point>} point to calculate the tangent points from
+ * @param {Feature<Point>} pt to calculate the tangent points from
  * @param {Feature<Polygon|MultiPolygon>} polygon to get tangents from
  * @returns {FeatureCollection<Point>} Feature Collection containing the two tangent points
  * @example
@@ -18,12 +17,12 @@ var featureCollection = helpers.featureCollection;
  * //addToMap
  * var addToMap = [tangents, point, polygon];
  */
-module.exports = function (point, polygon) {
+export default function (pt, polygon) {
     var eprev;
     var enext;
     var rtan;
     var ltan;
-    var pointCoords = getCoords(point);
+    var pointCoords = getCoords(pt);
     var polyCoords = getCoords(polygon);
 
     var type = getGeomType(polygon);
@@ -47,7 +46,7 @@ module.exports = function (point, polygon) {
         });
         break;
     }
-    return featureCollection([helpers.point(rtan), helpers.point(ltan)]);
+    return featureCollection([point(rtan), point(ltan)]);
 };
 
 function processPolygon(polygonCoords, ptCoords, eprev, enext, rtan, ltan) {
@@ -83,9 +82,4 @@ function isBelow(point1, point2, point3) {
 
 function isLeft(point1, point2, point3) {
     return (point2[0] - point1[0]) * (point3[1] - point1[1]) - (point3[0] - point1[0]) * (point2[1] - point1[1]);
-}
-
-// will be included in @turf/invariant
-function getGeomType(geojson) {
-    return (geojson.geometry) ? geojson.geometry.type : geojson.type;
 }

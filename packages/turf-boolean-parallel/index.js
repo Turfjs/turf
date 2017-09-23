@@ -1,7 +1,7 @@
-var cleanCoords = require('@turf/clean-coords');
-var lineSegment = require('@turf/line-segment');
-var rhumbBearing = require('@turf/rhumb-bearing');
-var bearingToAngle = require('@turf/helpers').bearingToAngle;
+import cleanCoords from '@turf/clean-coords';
+import lineSegment from '@turf/line-segment';
+import rhumbBearing from '@turf/rhumb-bearing';
+import { bearingToAngle } from '@turf/helpers';
 
 
 /**
@@ -18,7 +18,7 @@ var bearingToAngle = require('@turf/helpers').bearingToAngle;
  * turf.booleanParallel(line1, line2);
  * //=true
  */
-module.exports = function (line1, line2) {
+export default function (line1, line2) {
     // validation
     if (!line1) throw new Error('line1 is required');
     if (!line2) throw new Error('line2 is required');

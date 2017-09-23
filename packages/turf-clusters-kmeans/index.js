@@ -1,10 +1,7 @@
-var meta = require('@turf/meta');
-var clone = require('@turf/clone');
-var skmeans = require('skmeans');
-var invariant = require('@turf/invariant');
-var coordAll = meta.coordAll;
-var featureEach = meta.featureEach;
-var collectionOf = invariant.collectionOf;
+import { coordAll, featureEach } from '@turf/meta';
+import clone from '@turf/clone';
+import skmeans from 'skmeans';
+import { collectionOf } from '@turf/invariant';
 
 /**
  * Takes a set of {@link Point|points} and partition them into clusters using the k-mean .
@@ -28,7 +25,7 @@ var collectionOf = invariant.collectionOf;
  * //addToMap
  * var addToMap = [clustered];
  */
-module.exports = function (points, numberOfClusters, mutate) {
+export default function (points, numberOfClusters, mutate) {
     // Input validation
     collectionOf(points, 'Point', 'Input must contain Points');
 

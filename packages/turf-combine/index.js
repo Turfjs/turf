@@ -1,4 +1,5 @@
-var meta = require('@turf/meta');
+import { feature, featureCollection } from '@turf/helpers';
+import { featureEach } from '@turf/meta';
 
 /**
  * Combines a {@link FeatureCollection} of {@link Point}, {@link LineString}, or {@link Polygon} features
@@ -18,7 +19,7 @@ var meta = require('@turf/meta');
  * //addToMap
  * var addToMap = [combined]
  */
-module.exports = function (fc) {
+export default function (fc) {
     var groups = {
         MultiPoint: {coordinates: [], properties: []},
         MultiLineString: {coordinates: [], properties: []},
@@ -39,7 +40,7 @@ module.exports = function (fc) {
         groups[key].properties.push(feature.properties);
     }
 
-    meta.featureEach(fc, function (feature) {
+    featureEach(fc, function (feature) {
         if (!feature.geometry) return;
         if (groups[feature.geometry.type]) {
             addToGroup(feature, feature.geometry.type, true);

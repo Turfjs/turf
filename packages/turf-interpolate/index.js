@@ -1,14 +1,12 @@
-var meta = require('@turf/meta');
-var bbox = require('@turf/bbox');
-var hexGrid = require('@turf/hex-grid');
-var poinGrid = require('@turf/point-grid');
-var distance = require('@turf/distance');
-var centroid = require('@turf/centroid');
-var invariant = require('@turf/invariant');
-var squareGrid = require('@turf/square-grid');
-var triangleGrid = require('@turf/triangle-grid');
-var featureEach = meta.featureEach;
-var collectionOf = invariant.collectionOf;
+import bbox from '@turf/bbox';
+import hexGrid from '@turf/hex-grid';
+import poinGrid from '@turf/point-grid';
+import distance from '@turf/distance';
+import centroid from '@turf/centroid';
+import squareGrid from '@turf/square-grid';
+import triangleGrid from '@turf/triangle-grid';
+import { featureEach } from '@turf/meta';
+import { collectionOf } from '@turf/invariant';
 
 /**
  * Takes a set of points and estimates their 'property' values on a grid using the [Inverse Distance Weighting (IDW) method](https://en.wikipedia.org/wiki/Inverse_distance_weighting).
@@ -34,7 +32,7 @@ var collectionOf = invariant.collectionOf;
  * //addToMap
  * var addToMap = [grid];
  */
-module.exports = function (points, cellSize, gridType, property, units, weight) {
+export default function (points, cellSize, gridType, property, units, weight) {
     // validation
     if (!points) throw new Error('points is required');
     collectionOf(points, 'Point', 'input must contain Points');

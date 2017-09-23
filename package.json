@@ -7,7 +7,10 @@
     "lint": "eslint packages/turf-*/index.js",
     "postlint": "documentation lint packages/turf-*/index.js",
     "types": "tsc",
-    "docs": "node ./scripts/generate-readmes"
+    "docs": "node ./scripts/generate-readmes",
+    "es6": "npm run es6:import && npm run es6:export",
+    "es6:import": "jscodeshift -t node_modules/5to6-codemod/transforms/cjs.js packages/turf-*/index.js",
+    "es6:export": "jscodeshift -t node_modules/5to6-codemod/transforms/exports.js packages/turf-*/index.js"
   },
   "repository": {
     "type": "git",
@@ -57,6 +60,7 @@
     "eslint": "4.7.2",
     "eslint-config-mourner": "2.0.3",
     "fs-extra": "^4.0.0",
+    "jscodeshift": "^0.3.32",
     "lerna": "2.2.0",
     "load-json-file": "^3.0.0",
     "meow": "^3.7.0",
@@ -66,5 +70,8 @@
     "tape": "^4.6.3",
     "typescript": "^2.4.1",
     "uglify-js": "~3.1.1"
+  },
+  "dependencies": {
+    "5to6-codemod": "^1.7.1"
   }
 }

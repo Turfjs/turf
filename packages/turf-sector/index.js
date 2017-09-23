@@ -1,9 +1,8 @@
-var circle = require('@turf/circle');
-var coordEach = require('@turf/meta').coordEach;
-var helpers = require('@turf/helpers');
-var getCoords = require('@turf/invariant').getCoords;
-var polygon = helpers.polygon;
-var lineArc = require('@turf/line-arc');
+import circle from '@turf/circle';
+import lineArc from '@turf/line-arc';
+import { coordEach } from '@turf/meta';
+import { polygon } from '@turf/helpers';
+import { getCoords } from '@turf/invariant';
 
 /**
  * Creates a circular sector of a circle of given radius and center {@link Point},
@@ -28,7 +27,7 @@ var lineArc = require('@turf/line-arc');
  * //addToMap
  * var addToMap = [center, sector];
  */
-module.exports = function (center, radius, bearing1, bearing2, steps, units) {
+export default function (center, radius, bearing1, bearing2, steps, units) {
     // validation
     if (!center) throw new Error('center is required');
     if (bearing1 === undefined || bearing1 === null) throw new Error('bearing1 is required');

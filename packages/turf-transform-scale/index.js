@@ -1,20 +1,13 @@
-var meta = require('@turf/meta');
-var clone = require('@turf/clone');
-var center = require('@turf/center');
-var helpers = require('@turf/helpers');
-var centroid = require('@turf/centroid');
-var turfBBox = require('@turf/bbox');
-var invariant = require('@turf/invariant');
-var rhumbBearing = require('@turf/rhumb-bearing');
-var rhumbDistance = require('@turf/rhumb-distance');
-var rhumbDestination = require('@turf/rhumb-destination');
-var point = helpers.point;
-var coordEach = meta.coordEach;
-var featureEach = meta.featureEach;
-var getCoord = invariant.getCoord;
-var getCoords = invariant.getCoords;
-var getGeomType = invariant.getGeomType;
-
+import clone from '@turf/clone';
+import center from '@turf/center';
+import centroid from '@turf/centroid';
+import turfBBox from '@turf/bbox';
+import rhumbBearing from '@turf/rhumb-bearing';
+import rhumbDistance from '@turf/rhumb-distance';
+import rhumbDestination from '@turf/rhumb-destination';
+import { coordEach, featureEach } from '@turf/meta';
+import { point } from '@turf/helpers';
+import { getCoord, getCoords, getGeomType} from '@turf/invariant';
 
 /**
  * Scale a GeoJSON from a given point by a factor of scaling (ex: factor=2 would make the GeoJSON 200% larger).
@@ -34,7 +27,7 @@ var getGeomType = invariant.getGeomType;
  * var addToMap = [poly, scaledPoly];
  * scaledPoly.properties = {stroke: '#F00', 'stroke-width': 4};
  */
-module.exports = function (geojson, factor, origin, mutate) {
+export default function (geojson, factor, origin, mutate) {
     // Input validation
     if (!geojson) throw new Error('geojson required');
     if (typeof factor !== 'number' || factor === 0) throw new Error('invalid factor');

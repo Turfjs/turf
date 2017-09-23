@@ -1,13 +1,9 @@
-var bbox = require('@turf/bbox');
-var meta = require('@turf/meta');
-var helpers = require('@turf/helpers');
-var invariant = require('@turf/invariant');
-var gridToMatrix = require('grid-to-matrix');
-var marchingsquares = require('marchingsquares');
-var multiLineString = helpers.multiLineString;
-var coordEach = meta.coordEach;
-var collectionOf = invariant.collectionOf;
-var featureCollection = helpers.featureCollection;
+import bbox from '@turf/bbox';
+import { coordEach } from '@turf/meta';
+import { multiLineString, featureCollection } from '@turf/helpers';
+import { collectionOf } from '@turf/invariant';
+import gridToMatrix from 'grid-to-matrix';
+import marchingsquares from 'marchingsquares';
 
 /**
  * Takes a grid {@link FeatureCollection} of {@link Point} features with z-values and an array of
@@ -37,7 +33,7 @@ var featureCollection = helpers.featureCollection;
  * //addToMap
  * var addToMap = [isolines];
  */
-module.exports = function (pointGrid, breaks, zProperty, propertiesToAllIsolines, propertiesPerIsoline) {
+export default function (pointGrid, breaks, zProperty, propertiesToAllIsolines, propertiesPerIsoline) {
     // Default Params
     zProperty = zProperty || 'elevation';
     propertiesToAllIsolines = propertiesToAllIsolines || {};

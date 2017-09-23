@@ -1,8 +1,6 @@
-var featureEach = require('@turf/meta').featureEach;
-var featureCollection = require('@turf/helpers').featureCollection;
-var utils = require('./utils');
-var applyFilter = utils.applyFilter;
-var createBins = utils.createBins;
+import { featureEach } from '@turf/meta';
+import { featureCollection } from '@turf/helpers';
+import { applyFilter, createBins } from './utils';
 
 /**
  * Get Cluster
@@ -189,7 +187,7 @@ function clusterReduce(geojson, property, callback, initialValue) {
     return previousValue;
 }
 
-module.exports = {
+export default {
     getCluster: getCluster,
     clusterEach: clusterEach,
     clusterReduce: clusterReduce

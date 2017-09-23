@@ -1,6 +1,4 @@
-var invariant = require('@turf/invariant');
-var getCoord = invariant.getCoord;
-var getCoords = invariant.getCoords;
+import { getCoord, getCoords } from '@turf/invariant';
 
 // http://en.wikipedia.org/wiki/Even%E2%80%93odd_rule
 // modified from: https://github.com/substack/point-in-polygon/blob/master/index.js
@@ -28,7 +26,7 @@ var getCoords = invariant.getCoords;
  * turf.inside(pt, poly);
  * //= true
  */
-module.exports = function (point, polygon, ignoreBoundary) {
+export default function (point, polygon, ignoreBoundary) {
     // validation
     if (!point) throw new Error('point is required');
     if (!polygon) throw new Error('polygon is required');

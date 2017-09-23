@@ -1,4 +1,4 @@
-var featureEach = require('@turf/meta').featureEach;
+import { featureEach } from '@turf/meta';
 
 /**
  * Create Bins
@@ -17,7 +17,7 @@ var featureEach = require('@turf/meta').featureEach;
  * createBins(geojson, 'cluster');
  * //= { '0': [ 0 ], '1': [ 1, 3 ] }
  */
-function createBins(geojson, property) {
+export function createBins(geojson, property) {
     var bins = {};
 
     featureEach(geojson, function (feature, i) {
@@ -39,7 +39,7 @@ function createBins(geojson, property) {
 * @param {*} filter Filter
 * @returns {boolean} applied Filter to properties
 */
-function applyFilter(properties, filter) {
+export function applyFilter(properties, filter) {
     if (properties === undefined) return false;
     var filterType = typeof filter;
 
@@ -70,7 +70,7 @@ function applyFilter(properties, filter) {
 * propertiesContainsFilter({foo: 'bar', cluster: 0}, {cluster: 1})
 * //= false
 */
-function propertiesContainsFilter(properties, filter) {
+export function propertiesContainsFilter(properties, filter) {
     var keys = Object.keys(filter);
     for (var i = 0; i < keys.length; i++) {
         var key = keys[i];
@@ -90,7 +90,7 @@ function propertiesContainsFilter(properties, filter) {
 * filterProperties({foo: 'bar', cluster: 0}, ['cluster'])
 * //= {cluster: 0}
 */
-function filterProperties(properties, keys) {
+export function filterProperties(properties, keys) {
     if (!keys) return {};
     if (!keys.length) return {};
 
@@ -101,10 +101,3 @@ function filterProperties(properties, keys) {
     }
     return newProperties;
 }
-
-module.exports = {
-    createBins: createBins,
-    applyFilter: applyFilter,
-    propertiesContainsFilter: propertiesContainsFilter,
-    filterProperties: filterProperties
-};

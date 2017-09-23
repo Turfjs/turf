@@ -1,4 +1,4 @@
-var polygon = require('@turf/helpers').polygon;
+import { polygon } from '@turf/helpers';
 
 /**
  * Takes a bbox and returns an equivalent {@link Polygon|polygon}.
@@ -14,7 +14,7 @@ var polygon = require('@turf/helpers').polygon;
  * //addToMap
  * var addToMap = [poly]
  */
-module.exports = function (bbox) {
+export default function (bbox) {
     var lowLeft = [bbox[0], bbox[1]];
     var topLeft = [bbox[0], bbox[3]];
     var topRight = [bbox[2], bbox[3]];

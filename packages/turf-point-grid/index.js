@@ -1,11 +1,8 @@
-var distance = require('@turf/distance');
-var turfBBox = require('@turf/bbox');
-var helpers = require('@turf/helpers');
-var inside = require('@turf/inside');
-var invariant = require('@turf/invariant');
-var getGeomType = invariant.getGeomType;
-var point = helpers.point;
-var featureCollection = helpers.featureCollection;
+import distance from '@turf/distance';
+import turfBBox from '@turf/bbox';
+import { point, featureCollection } from '@turf/helpers';
+import inside from '@turf/inside';
+import { getGeomType } from '@turf/invariant';
 
 /**
  * Creates a {@link Point} grid from a bounding box, {@link FeatureCollection} or {@link Feature}.
@@ -28,7 +25,7 @@ var featureCollection = helpers.featureCollection;
  * //addToMap
  * var addToMap = [grid];
  */
-module.exports = function (bbox, cellSide, units, centered, bboxIsMask) {
+export default function (bbox, cellSide, units, centered, bboxIsMask) {
     var results = [];
 
     var bboxMask = bbox;

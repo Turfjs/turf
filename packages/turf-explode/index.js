@@ -1,9 +1,5 @@
-var meta = require('@turf/meta');
-var helpers = require('@turf/helpers');
-var point = helpers.point;
-var coordEach = meta.coordEach;
-var featureEach = meta.featureEach;
-var featureCollection = helpers.featureCollection;
+import { coordEach, featureEach } from '@turf/meta';
+import { point, featureCollection } from '@turf/helpers';
 
 /**
  * Takes a feature or set of features and returns all positions as {@link Point|points}.
@@ -20,7 +16,7 @@ var featureCollection = helpers.featureCollection;
  * //addToMap
  * var addToMap = [polygon, explode]
  */
-module.exports = function (geojson) {
+export default function (geojson) {
     var points = [];
     if (geojson.type === 'FeatureCollection') {
         featureEach(geojson, function (feature) {

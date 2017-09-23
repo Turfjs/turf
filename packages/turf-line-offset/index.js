@@ -1,11 +1,7 @@
-var meta = require('@turf/meta');
-var helpers = require('@turf/helpers');
-var getCoords = require('@turf/invariant').getCoords;
-var intersection = require('./intersection');
-var flattenEach = meta.flattenEach;
-var lineString = helpers.lineString;
-var multiLineString = helpers.multiLineString;
-var distanceToDegrees = helpers.distanceToDegrees;
+import intersection from './intersection';
+import { flattenEach } from '@turf/meta';
+import { getCoords } from '@turf/invariant';
+import { lineString, multiLineString, distanceToDegrees } from '@turf/helpers';
 
 /**
  * Takes a {@link LineString|line} and returns a {@link LineString|line} at offset by the specified distance.
@@ -24,7 +20,7 @@ var distanceToDegrees = helpers.distanceToDegrees;
  * var addToMap = [offsetLine, line]
  * offsetLine.properties.stroke = "#00F"
  */
-module.exports = function (geojson, distance, units) {
+export default function (geojson, distance, units) {
     if (!geojson) throw new Error('geojson is required');
     if (distance === undefined || distance === null || isNaN(distance)) throw new Error('distance is required');
     var type = (geojson.type === 'Feature') ? geojson.geometry.type : geojson.type;

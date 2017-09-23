@@ -1,5 +1,5 @@
-var bbox = require('@turf/bbox');
-var bboxPolygon = require('@turf/bbox-polygon');
+import bbox from '@turf/bbox';
+import bboxPolygon from '@turf/bbox-polygon';
 
 /**
  * Takes any number of features and returns a rectangular {@link Polygon} that encompasses all vertices.
@@ -19,6 +19,6 @@ var bboxPolygon = require('@turf/bbox-polygon');
  * //addToMap
  * var addToMap = [features, enveloped];
  */
-module.exports = function (geojson) {
+export default function (geojson) {
     return bboxPolygon(bbox(geojson));
 };

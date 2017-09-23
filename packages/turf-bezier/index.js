@@ -1,5 +1,5 @@
-var linestring = require('@turf/helpers').lineString;
-var Spline = require('./spline.js');
+import { lineString } from '@turf/helpers';
+import Spline from './spline.js';
 
 /**
  * Takes a {@link LineString|line} and returns a curved version
@@ -29,7 +29,7 @@ var Spline = require('./spline.js');
  * var addToMap = [line, curved]
  * curved.properties = { stroke: '#0F0' };
  */
-module.exports = function (line, resolution, sharpness) {
+export default function (line, resolution, sharpness) {
     var coords = [];
 
     var spline = new Spline({
@@ -47,5 +47,5 @@ module.exports = function (line, resolution, sharpness) {
         }
     }
 
-    return linestring(coords, line.properties);
+    return lineString(coords, line.properties);
 };

@@ -1,4 +1,4 @@
-var jsts = require('jsts');
+import jsts from 'jsts';
 
 /**
  * Takes two or more {@link Polygon|polygons} and returns a combined polygon. If the input polygons are not contiguous, this function returns a {@link MultiPolygon} feature.
@@ -27,7 +27,7 @@ var jsts = require('jsts');
  * //addToMap
  * var addToMap = [poly1, poly2, union];
  */
-module.exports = function () {
+export default function () {
     var reader = new jsts.io.GeoJSONReader();
     var result = reader.read(JSON.stringify(arguments[0].geometry));
 

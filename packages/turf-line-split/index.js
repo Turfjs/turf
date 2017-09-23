@@ -1,18 +1,12 @@
-var meta = require('@turf/meta');
-var rbush = require('geojson-rbush');
-var helpers = require('@turf/helpers');
-var flatten = require('@turf/flatten');
-var truncate = require('@turf/truncate');
-var invariant = require('@turf/invariant');
-var lineSegment = require('@turf/line-segment');
-var pointOnLine = require('@turf/point-on-line');
-var lineIntersect = require('@turf/line-intersect');
-var getCoords = invariant.getCoords;
-var lineString = helpers.lineString;
-var getGeomType = invariant.getGeomType;
-var featureEach = meta.featureEach;
-var featureReduce = meta.featureReduce;
-var featureCollection = helpers.featureCollection;
+import { featureEach, featureReduce} from '@turf/meta';
+import rbush from 'geojson-rbush';
+import { lineString, featureCollection } from '@turf/helpers';
+import flatten from '@turf/flatten';
+import truncate from '@turf/truncate';
+import { getCoords, getGeomType } from '@turf/invariant';
+import lineSegment from '@turf/line-segment';
+import pointOnLine from '@turf/point-on-line';
+import lineIntersect from '@turf/line-intersect';
 
 /**
  * Split a LineString by another GeoJSON Feature.
@@ -30,7 +24,7 @@ var featureCollection = helpers.featureCollection;
  * //addToMap
  * var addToMap = [line, splitter]
  */
-module.exports = function (line, splitter) {
+export default function (line, splitter) {
     if (!line) throw new Error('line is required');
     if (!splitter) throw new Error('splitter is required');
 

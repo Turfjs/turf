@@ -1,5 +1,5 @@
-var bbox = require('@turf/bbox');
-var point = require('@turf/helpers').point;
+import bbox from '@turf/bbox';
+import { point } from '@turf/helpers';
 
 /**
  * Takes a {@link Feature} or {@link FeatureCollection} and returns the absolute center point of all features.
@@ -22,7 +22,7 @@ var point = require('@turf/helpers').point;
  * center.properties['marker-size'] = 'large';
  * center.properties['marker-color'] = '#000';
  */
-module.exports = function (geojson, properties) {
+export default function (geojson, properties) {
     var ext = bbox(geojson);
     var x = (ext[0] + ext[2]) / 2;
     var y = (ext[1] + ext[3]) / 2;

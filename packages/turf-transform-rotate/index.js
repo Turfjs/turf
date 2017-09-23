@@ -1,11 +1,9 @@
-var meta = require('@turf/meta');
-var centroid = require('@turf/centroid');
-var invariant = require('@turf/invariant');
-var rhumbBearing = require('@turf/rhumb-bearing');
-var rhumbDistance = require('@turf/rhumb-distance');
-var rhumbDestination = require('@turf/rhumb-destination');
-var coordEach = meta.coordEach;
-var getCoords = invariant.getCoords;
+import centroid from '@turf/centroid';
+import rhumbBearing from '@turf/rhumb-bearing';
+import rhumbDistance from '@turf/rhumb-distance';
+import rhumbDestination from '@turf/rhumb-destination';
+import { coordEach } from '@turf/meta';
+import { getCoords } from '@turf/invariant';
 
 /**
  * Rotates any geojson Feature or Geometry of a specified angle, around its `centroid` or a given `pivot` point;
@@ -25,7 +23,7 @@ var getCoords = invariant.getCoords;
  * var addToMap = [poly, rotatedPoly];
  * rotatedPoly.properties = {stroke: '#F00', 'stroke-width': 4};
  */
-module.exports = function (geojson, angle, pivot, mutate) {
+export default function (geojson, angle, pivot, mutate) {
     // Input validation
     if (!geojson) throw new Error('geojson is required');
     if (angle === undefined || angle === null || isNaN(angle)) throw new Error('angle is required');

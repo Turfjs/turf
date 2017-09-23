@@ -1,4 +1,4 @@
-var random = require('geojson-random');
+import random from 'geojson-random';
 
 /**
  * Generates random {@link GeoJSON} data, including {@link Point|Points} and {@link Polygon|Polygons}, for testing
@@ -29,7 +29,7 @@ var random = require('geojson-random');
  * //addToMap
  * var addToMap = [points, polygons]
  */
-module.exports = function (type, count, options) {
+export default function (type, count, options) {
     options = options || {};
     count = count || 1;
     switch (type) {

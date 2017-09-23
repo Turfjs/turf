@@ -10,7 +10,7 @@
  *
  * var lineCloned = turf.clone(line);
  */
-module.exports = function (geojson) {
+export default function (geojson) {
     if (!geojson) throw new Error('geojson is required');
 
     switch (geojson.type) {

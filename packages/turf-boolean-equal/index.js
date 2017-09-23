@@ -1,7 +1,6 @@
-var GeojsonEquality = require('geojson-equality');
-var cleanCoords = require('@turf/clean-coords');
-var invariant = require('@turf/invariant');
-var getGeomType = invariant.getGeomType;
+import GeojsonEquality from 'geojson-equality';
+import cleanCoords from '@turf/clean-coords';
+import { getGeomType } from '@turf/invariant';
 
 /**
  * Determine whether two geometries of the same type have identical X,Y coordinate values.
@@ -21,7 +20,7 @@ var getGeomType = invariant.getGeomType;
  * turf.booleanEqual(pt2, pt3);
  * //= false
  */
-module.exports = function (feature1, feature2) {
+export default function (feature1, feature2) {
     // validation
     if (!feature1) throw new Error('feature1 is required');
     if (!feature2) throw new Error('feature2 is required');

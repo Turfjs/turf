@@ -1,4 +1,4 @@
-var distance = require('@turf/distance');
+import distance from '@turf/distance';
 
 /**
  * Takes a bounding box and calculates the minimum square bounding box that
@@ -18,7 +18,7 @@ var distance = require('@turf/distance');
  * //addToMap
  * var addToMap = [features]
  */
-module.exports = function (bbox) {
+export default function (bbox) {
     var west = bbox[0];
     var south = bbox[1];
     var east = bbox[2];
