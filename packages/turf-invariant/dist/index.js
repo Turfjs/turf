@@ -1,3 +1,7 @@
+'use strict';
+
+Object.defineProperty(exports, '__esModule', { value: true });
+
 /**
  * Unwrap a coordinate from a Point Feature, Geometry or a single coordinate.
  *
@@ -223,26 +227,12 @@ function getType(geojson, name) {
     throw new Error((name || 'geojson') + ' is invalid');
 }
 
-export {
-    geojsonType,
-    collectionOf,
-    featureOf,
-    getCoord,
-    getCoords,
-    containsNumber,
-    getGeom,
-    getGeomType,
-    getType
-};
-
-export default {
-    geojsonType,
-    collectionOf,
-    featureOf,
-    getCoord,
-    getCoords,
-    containsNumber,
-    getGeom,
-    getGeomType,
-    getType
-};
+exports.getCoord = getCoord;
+exports.getCoords = getCoords;
+exports.containsNumber = containsNumber;
+exports.geojsonType = geojsonType;
+exports.featureOf = featureOf;
+exports.collectionOf = collectionOf;
+exports.getGeom = getGeom;
+exports.getGeomType = getGeomType;
+exports.getType = getType;

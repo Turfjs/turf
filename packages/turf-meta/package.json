@@ -2,15 +2,17 @@
   "name": "@turf/meta",
   "version": "4.7.3",
   "description": "turf meta module",
-  "main": "index.js",
-  "module": "index.mjs",
+  "main": "dist/index",
+  "module": "index",
+  "jsnext:main": "index",
   "types": "index.d.ts",
   "files": [
+    "dist",
     "index.js",
-    "index.mjs",
     "index.d.ts"
   ],
   "scripts": {
+    "pretest": "rollup -c ../../rollup.config.js",
     "test": "node test.js",
     "bench": "node bench.js"
   },
@@ -53,9 +55,8 @@
     "@turf/helpers": "^4.7.3",
     "@turf/random": "^4.7.3",
     "benchmark": "2.1.4",
+    "rollup": "^0.50.0",
     "tape": "4.8.0"
   },
-  "dependencies": {
-    "@std/esm": "^0.10.2"
-  }
+  "dependencies": {}
 }

@@ -1,5 +1,6 @@
-import {coordEach} from '@turf/meta';
-// const coordEach = meta.coordEach;
+'use strict';
+
+var meta = require('@turf/meta');
 
 /**
  * Takes a GeoJSON Feature or FeatureCollection and truncates the precision of the geometry.
@@ -22,7 +23,7 @@ import {coordEach} from '@turf/meta';
  * //addToMap
  * var addToMap = [truncated];
  */
-export default function (geojson, precision, coordinates, mutate) {
+var index = function (geojson, precision, coordinates, mutate) {
     // default params
     precision = (precision === undefined || precision === null || isNaN(precision)) ? 6 : precision;
     coordinates = (coordinates === undefined || coordinates === null || isNaN(coordinates)) ? 3 : coordinates;
@@ -38,11 +39,11 @@ export default function (geojson, precision, coordinates, mutate) {
     var factor = Math.pow(10, precision);
 
     // Truncate Coordinates
-    coordEach(geojson, function (coords) {
+    meta.coordEach(geojson, function (coords) {
         truncate(coords, factor, coordinates);
     });
     return geojson;
-}
+};
 
 /**
  * Truncate Coordinates - Mutates coordinates in place
@@ -63,3 +64,6 @@ function truncate(coords, factor, coordinates) {
     }
     return coords;
 }
+
+module.exports = index;
+//# sourceMappingURL=index.js.map

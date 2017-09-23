@@ -1,3 +1,7 @@
+'use strict';
+
+Object.defineProperty(exports, '__esModule', { value: true });
+
 /**
  * Wraps a GeoJSON {@link Geometry} in a GeoJSON {@link Feature}.
  *
@@ -517,48 +521,24 @@ function isNumber(num) {
     return !isNaN(num) && num !== null && !Array.isArray(num);
 }
 
-export {
-    feature,
-    geometry,
-    featureCollection,
-    geometryCollection,
-    point,
-    multiPoint,
-    lineString,
-    multiLineString,
-    polygon,
-    multiPolygon,
-    radiansToDistance,
-    distanceToRadians,
-    distanceToDegrees,
-    radians2degrees,
-    degrees2radians,
-    bearingToAngle,
-    convertDistance,
-    convertArea,
-    round,
-    isNumber
-};
-
-export default {
-    feature,
-    geometry,
-    featureCollection,
-    geometryCollection,
-    point,
-    multiPoint,
-    lineString,
-    multiLineString,
-    polygon,
-    multiPolygon,
-    radiansToDistance,
-    distanceToRadians,
-    distanceToDegrees,
-    radians2degrees,
-    degrees2radians,
-    bearingToAngle,
-    convertDistance,
-    convertArea,
-    round,
-    isNumber
-};
+exports.feature = feature;
+exports.geometry = geometry;
+exports.point = point;
+exports.polygon = polygon;
+exports.lineString = lineString;
+exports.featureCollection = featureCollection;
+exports.multiLineString = multiLineString;
+exports.multiPoint = multiPoint;
+exports.multiPolygon = multiPolygon;
+exports.geometryCollection = geometryCollection;
+exports.round = round;
+exports.radiansToDistance = radiansToDistance;
+exports.distanceToRadians = distanceToRadians;
+exports.distanceToDegrees = distanceToDegrees;
+exports.bearingToAngle = bearingToAngle;
+exports.radians2degrees = radians2degrees;
+exports.degrees2radians = degrees2radians;
+exports.convertDistance = convertDistance;
+exports.convertArea = convertArea;
+exports.isNumber = isNumber;
+//# sourceMappingURL=index.js.map

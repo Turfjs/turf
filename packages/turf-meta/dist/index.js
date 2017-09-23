@@ -1,3 +1,7 @@
+'use strict';
+
+Object.defineProperty(exports, '__esModule', { value: true });
+
 /**
  * GeoJSON BBox
  *
@@ -969,38 +973,21 @@ function lineReduce(geojson, callback, initialValue) {
     return previousValue;
 }
 
-export {
-    coordEach,
-    coordReduce,
-    propEach,
-    propReduce,
-    featureEach,
-    featureReduce,
-    coordAll,
-    geomEach,
-    geomReduce,
-    flattenEach,
-    flattenReduce,
-    segmentEach,
-    segmentReduce,
-    lineEach,
-    lineReduce
-};
-
-export default {
-    coordEach,
-    coordReduce,
-    propEach,
-    propReduce,
-    featureEach,
-    featureReduce,
-    coordAll,
-    geomEach,
-    geomReduce,
-    flattenEach,
-    flattenReduce,
-    segmentEach,
-    segmentReduce,
-    lineEach,
-    lineReduce
-};
+exports.coordEach = coordEach;
+exports.coordReduce = coordReduce;
+exports.propEach = propEach;
+exports.propReduce = propReduce;
+exports.featureEach = featureEach;
+exports.featureReduce = featureReduce;
+exports.coordAll = coordAll;
+exports.geomEach = geomEach;
+exports.geomReduce = geomReduce;
+exports.flattenEach = flattenEach;
+exports.flattenReduce = flattenReduce;
+exports.segmentEach = segmentEach;
+exports.segmentReduce = segmentReduce;
+exports.feature = feature;
+exports.lineString = lineString;
+exports.lineEach = lineEach;
+exports.lineReduce = lineReduce;
+//# sourceMappingURL=index.js.map
