@@ -2,13 +2,17 @@
   "name": "@turf/isobands",
   "version": "4.7.3",
   "description": "turf isobands module",
-  "main": "index.js",
+  "main": "dist/index",
+  "module": "index",
+  "jsnext:main": "index",
   "types": "index.d.ts",
   "files": [
     "index.js",
-    "index.d.ts"
+    "index.d.ts",
+    "dist"
   ],
   "scripts": {
+    "pretest": "rollup -c ../../rollup.config.js",
     "test": "node test.js",
     "bench": "node bench.js"
   },
@@ -35,15 +39,16 @@
   },
   "homepage": "https://github.com/Turfjs/turf",
   "devDependencies": {
-    "@turf/envelope": "^4.7.3",
-    "@turf/point-grid": "^3.14.0",
-    "@turf/random": "^3.13.0",
-    "benchmark": "^2.1.4",
-    "chroma-js": "1.3.3",
-    "load-json-file": "^2.0.0",
-    "matrix-to-grid": "3.0.0",
-    "tape": "^4.6.3",
-    "write-json-file": "^2.0.0"
+    "@turf/envelope": "*",
+    "@turf/point-grid": "*",
+    "@turf/random": "*",
+    "benchmark": "*",
+    "chroma-js": "*",
+    "load-json-file": "*",
+    "matrix-to-grid": "*",
+    "tape": "*",
+    "write-json-file": "*",
+    "rollup": "*"
   },
   "dependencies": {
     "@turf/area": "^3.7.0",

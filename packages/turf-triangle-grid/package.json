@@ -2,13 +2,17 @@
   "name": "@turf/triangle-grid",
   "version": "4.7.3",
   "description": "turf triangle-grid module",
-  "main": "index.js",
+  "main": "dist/index",
+  "module": "index",
+  "jsnext:main": "index",
   "types": "index.d.ts",
   "files": [
     "index.js",
-    "index.d.ts"
+    "index.d.ts",
+    "dist"
   ],
   "scripts": {
+    "pretest": "rollup -c ../../rollup.config.js",
     "test": "node test.js",
     "bench": "node bench.js"
   },
@@ -31,9 +35,10 @@
   },
   "homepage": "https://github.com/Turfjs/turf",
   "devDependencies": {
-    "@turf/bbox-polygon": "^4.7.3",
-    "benchmark": "^2.1.4",
-    "tape": "^4.6.3"
+    "@turf/bbox-polygon": "*",
+    "benchmark": "*",
+    "tape": "*",
+    "rollup": "*"
   },
   "dependencies": {
     "@turf/distance": "^4.7.3",

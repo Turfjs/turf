@@ -2,13 +2,17 @@
   "name": "@turf/boolean-disjoint",
   "version": "4.7.3",
   "description": "turf boolean-disjoint module",
-  "main": "index.js",
+  "main": "dist/index",
+  "module": "index",
+  "jsnext:main": "index",
   "types": "index.d.ts",
   "files": [
     "index.js",
-    "index.d.ts"
+    "index.d.ts",
+    "dist"
   ],
   "scripts": {
+    "pretest": "rollup -c ../../rollup.config.js",
     "test": "node test.js",
     "bench": "node bench.js"
   },
@@ -33,11 +37,12 @@
   },
   "homepage": "https://github.com/Turfjs/turf",
   "devDependencies": {
-    "@turf/helpers": "^4.7.3",
-    "benchmark": "2.1.4",
-    "boolean-shapely": "0.1.2",
-    "load-json-file": "2.0.0",
-    "tape": "4.7.0"
+    "@turf/helpers": "*",
+    "benchmark": "*",
+    "boolean-shapely": "*",
+    "load-json-file": "*",
+    "tape": "*",
+    "rollup": "*"
   },
   "dependencies": {
     "@turf/inside": "^4.7.3",
