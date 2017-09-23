@@ -61,6 +61,7 @@
     "load-json-file": "^3.0.0",
     "meow": "^3.7.0",
     "progress": "^2.0.0",
+    "rollup": "^0.50.0",
     "tap": "^10.3.2",
     "tape": "^4.6.3",
     "typescript": "^2.4.1",
