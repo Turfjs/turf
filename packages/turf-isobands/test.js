@@ -58,8 +58,8 @@ test('isobands', t => {
         box.properties['stroke-width'] = 1;
         results.features.push(box);
 
-        if (process.env.REGEN) write.sync(directories.out + filename, results);
-        t.deepEqual(results, load.sync(directories.out + filename), name);
+        if (process.env.REGEN) write.sync(directories.out + name + '.geojson', results);
+        t.deepEqual(results, load.sync(directories.out + name + '.geojson'), name);
     });
 
     t.end();

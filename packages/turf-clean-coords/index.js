@@ -66,32 +66,14 @@ export default function (geojson, mutate) {
             geojson.coordinates = newCoords;
             return geojson;
         }
-        return geometry(geojson, type, newCoords);
+        return {type: type, coordinates: newCoords};
     } else {
         if (mutate === true) {
             geojson.geometry.coordinates = newCoords;
             return geojson;
         }
-        return feature(geojson, type, newCoords);
+        return feature({type: type, coordinates: newCoords}, geojson.properties, geojson.bbox, geojson.id);
     }
-}
-
-/**
- * Create Geometry from existing Geometry
- *
- * @private
- * @param {Geometry} geojson Existing Geometry
- * @param {string} type Geometry Type
- * @param {Array<number>} coordinates Coordinates
- * @returns {Geometry} Geometry
- */
-function geometry(geojson, type, coordinates) {
-    var geom = {
-        type: type,
-        coordinates: coordinates
-    };
-    if (geojson.bbox) geom.bbox = geojson.bbox;
-    return geom;
 }
 
 /**

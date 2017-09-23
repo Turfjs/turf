@@ -4,8 +4,8 @@ import inside from '@turf/inside';
 import explode from '@turf/explode';
 import gridToMatrix from 'grid-to-matrix';
 import marchingsquares from 'marchingsquares';
-import { collectionOf } from '@turf/invariant';
 import { polygon, multiPolygon, featureCollection } from '@turf/helpers';
+import { collectionOf } from '@turf/invariant';
 
 /**
  * Takes a grid {@link FeatureCollection} of {@link Point} features with z-values and an array of

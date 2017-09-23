@@ -1,5 +1,3 @@
-'use strict';
-
 var D2R = Math.PI / 180;
 var R2D = 180 / Math.PI;
 
@@ -239,8 +237,8 @@ GreatCircle.prototype.Arc = function (npoints, options) {
     return arc;
 };
 
-module.exports = {
-    Coord: Coord,
-    Arc: Arc,
-    GreatCircle: GreatCircle
+export {
+    Coord,
+    Arc,
+    GreatCircle
 };

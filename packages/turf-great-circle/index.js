@@ -1,4 +1,4 @@
-import arc from './arc';
+import { GreatCircle } from './arc';
 import { getCoord } from '@turf/invariant';
 
 /**
@@ -28,7 +28,8 @@ export default function (start, end, properties, npoints, offset) {
     npoints = npoints || 100;
     offset = offset || 10;
 
-    var generator = new arc.GreatCircle({x: start[0], y: start[1]}, {x: end[0], y: end[1]}, properties);
+    var generator = new GreatCircle({x: start[0], y: start[1]}, {x: end[0], y: end[1]}, properties);
+
     /* eslint-disable */
     var line = generator.Arc(npoints, {offset: offset});
     /* eslint-enable */

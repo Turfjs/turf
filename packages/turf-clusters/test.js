@@ -1,14 +1,15 @@
 const test = require('tape');
 const {featureCollection, point} = require('@turf/helpers');
 const {
+    getCluster,
+    clusterEach,
+    clusterReduce,
+    // below methods are not exposed in @turf/turf
     propertiesContainsFilter,
     filterProperties,
     applyFilter,
-    createBins} = require('./utils');
-const {
-    getCluster,
-    clusterEach,
-    clusterReduce} = require('./');
+    createBins
+} = require('./');
 
 const properties = {foo: 'bar', cluster: 0};
 const geojson = featureCollection([
