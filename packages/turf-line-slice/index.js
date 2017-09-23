@@ -54,4 +54,4 @@ export default function lineSlice(startPt, stopPt, line) {
     }
     clipCoords.push(ends[1].geometry.coordinates);
     return linestring(clipCoords, line.properties);
-};
+}

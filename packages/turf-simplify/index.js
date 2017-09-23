@@ -54,7 +54,7 @@ export default function (geojson, tolerance, highQuality, mutate) {
         simplify(geom, tolerance, highQuality);
     });
     return geojson;
-};
+}
 
 /**
  * Simplifies a feature's coordinates

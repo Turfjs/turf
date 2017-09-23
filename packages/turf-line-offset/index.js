@@ -38,7 +38,7 @@ export default function (geojson, distance, units) {
     default:
         throw new Error('geometry ' + type + ' is not supported');
     }
-};
+}
 
 /**
  * Line Offset

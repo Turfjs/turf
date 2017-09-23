@@ -63,4 +63,4 @@ export default function (points, numberOfClusters, mutate) {
     });
 
     return points;
-};
+}

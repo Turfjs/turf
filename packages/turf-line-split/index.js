@@ -50,7 +50,7 @@ export default function (line, splitter) {
     case 'MultiPolygon':
         return splitLineWithPoints(line, lineIntersect(line, truncatedSplitter));
     }
-};
+}
 
 /**
  * Split LineString with MultiPoint

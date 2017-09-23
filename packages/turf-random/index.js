@@ -47,4 +47,4 @@ export default function (type, count, options) {
     default:
         throw new Error('Unknown type given: valid options are points and polygons');
     }
-};
+}

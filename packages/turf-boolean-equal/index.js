@@ -30,4 +30,4 @@ export default function (feature1, feature2) {
 
     var equality = new GeojsonEquality({precision: 6});
     return equality.compare(cleanCoords(feature1), cleanCoords(feature2));
-};
+}

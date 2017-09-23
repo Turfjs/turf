@@ -48,4 +48,4 @@ export default function (points, polygons) {
         }
     }
     return pointsWithin;
-};
+}

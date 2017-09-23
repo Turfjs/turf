@@ -34,4 +34,4 @@ export default function (start, end, properties, npoints, offset) {
     /* eslint-enable */
 
     return line.json();
-};
+}

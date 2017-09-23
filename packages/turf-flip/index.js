@@ -29,4 +29,4 @@ export default function (geojson, mutate) {
         coord[1] = x;
     });
     return geojson;
-};
+}

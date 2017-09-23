@@ -74,7 +74,7 @@ export default function (geojson, mutate) {
         }
         return feature(geojson, type, newCoords);
     }
-};
+}
 
 /**
  * Create Geometry from existing Geometry
@@ -92,22 +92,6 @@ function geometry(geojson, type, coordinates) {
     };
     if (geojson.bbox) geom.bbox = geojson.bbox;
     return geom;
-}
-
-/**
- * Create Feature from existing Feature
- *
- * @private
- * @param {Feature} geojson Existing Feature
- * @param {string} type Feature Type
- * @param {Array<number>} coordinates Coordinates
- * @returns {Feature} Feature
- */
-function feature(geojson, type, coordinates) {
-    var feat = feature(geometry(geojson.geometry, type, coordinates), geojson.properties);
-    if (geojson.id) feat.id = geojson.id;
-    if (geojson.bbox) feat.bbox = geojson.bbox;
-    return feat;
 }
 
 /**

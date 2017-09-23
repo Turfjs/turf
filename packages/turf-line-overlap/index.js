@@ -83,7 +83,7 @@ export default function (line1, line2, tolerance) {
     if (overlapSegment) features.push(overlapSegment);
 
     return featureCollection(features);
-};
+}
 
 
 /**

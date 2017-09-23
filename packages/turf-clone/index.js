@@ -29,7 +29,7 @@ export default function (geojson) {
     default:
         throw new Error('unknown GeoJSON type');
     }
-};
+}
 
 /**
  * Clone Feature

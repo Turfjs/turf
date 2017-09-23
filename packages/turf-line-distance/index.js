@@ -25,4 +25,4 @@ export default function lineDistance(geojson, units) {
         var coords = segment.geometry.coordinates;
         return previousValue + distance(coords[0], coords[1], units);
     }, 0);
-};
+}

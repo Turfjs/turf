@@ -27,7 +27,7 @@ export default function (point, linestring, ignoreEndVertices) {
         if (isPointOnLineSegment(lineCoords[i], lineCoords[i + 1], pointCoords, ignoreBoundary)) return true;
     }
     return false;
-};
+}
 
 // See http://stackoverflow.com/a/4833823/1979085
 /**

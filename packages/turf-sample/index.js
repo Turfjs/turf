@@ -29,7 +29,7 @@ export default function (featurecollection, num) {
 
     var outFC = featureCollection(getRandomSubarray(featurecollection.features, num));
     return outFC;
-};
+}
 
 function getRandomSubarray(arr, size) {
     var shuffled = arr.slice(0), i = arr.length, min = i - size, temp, index;

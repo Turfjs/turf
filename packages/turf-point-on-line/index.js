@@ -89,4 +89,4 @@ export default function (lines, pt, units) {
     });
 
     return closestPt;
-};
+}

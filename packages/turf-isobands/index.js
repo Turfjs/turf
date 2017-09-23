@@ -76,7 +76,7 @@ export default function (pointGrid, breaks, zProperty, options) {
     });
 
     return featureCollection(multipolygons);
-};
+}
 
 /**
  * Creates the contours lines (featuresCollection of polygon features) from the 2D data grid

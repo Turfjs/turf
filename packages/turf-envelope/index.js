@@ -21,4 +21,4 @@ import bboxPolygon from '@turf/bbox-polygon';
  */
 export default function (geojson) {
     return bboxPolygon(bbox(geojson));
-};
+}

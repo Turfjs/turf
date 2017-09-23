@@ -32,4 +32,4 @@ export default function (line) {
         i++;
     }
     return sum > 0;
-};
+}

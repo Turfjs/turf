@@ -20,4 +20,4 @@ export default function (geojson) {
     return geomReduce(geojson, function (value, geometry) {
         return value + area(geometry);
     }, 0);
-};
+}

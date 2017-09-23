@@ -45,7 +45,7 @@ export default function (geojson, factor, origin, mutate) {
     }
     // Scale Feature/Geometry
     return scale(geojson, factor, origin);
-};
+}
 
 /**
  * Scale Feature/Geometry

@@ -41,4 +41,4 @@ export default function (line, distance, units) {
         }
     }
     return point(coords[coords.length - 1]);
-};
+}

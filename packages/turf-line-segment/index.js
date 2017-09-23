@@ -23,7 +23,7 @@ export default function (geojson) {
         lineSegment(feature, results);
     });
     return featureCollection(results);
-};
+}
 
 /**
  * Line Segment

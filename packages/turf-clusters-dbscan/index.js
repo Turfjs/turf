@@ -68,4 +68,4 @@ export default function (points, maxDistance, units, minPoints) {
     });
 
     return points;
-};
+}

@@ -39,4 +39,4 @@ export default function (center, radius, steps, units, properties) {
     coordinates.push(coordinates[0]);
 
     return polygon([coordinates], properties);
-};
+}

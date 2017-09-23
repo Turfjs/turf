@@ -58,7 +58,7 @@ export default function (point, polygon, ignoreBoundary) {
         }
     }
     return insidePoly;
-};
+}
 
 /**
  * inRing

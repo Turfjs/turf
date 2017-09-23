@@ -89,4 +89,4 @@ export default function (points, cellSize, gridType, property, units, weight) {
     });
 
     return grid;
-};
+}

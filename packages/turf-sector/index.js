@@ -49,7 +49,7 @@ export default function (center, radius, bearing1, bearing2, steps, units) {
     sliceCoords[0].push(coords);
 
     return polygon(sliceCoords);
-};
+}
 
 /**
  * Takes any angle in degrees

@@ -36,7 +36,7 @@ export default function (polygon, mask) {
     // Create masked area
     var masked = buildMask(maskPolygon, polygonOuters, polygonInners);
     return masked;
-};
+}
 
 /**
  * Build Mask

@@ -30,7 +30,7 @@ export default function (pt, line, units, mercator) {
     // validation
     if (!pt) throw new Error('pt is required');
     if (Array.isArray(pt)) pt = point(pt);
-    else if (pt.type === 'Point') pt = feature(geometry);
+    else if (pt.type === 'Point') pt = feature(pt);
     else featureOf(point, 'Point', 'point');
 
     if (!line) throw new Error('line is required');
@@ -47,7 +47,7 @@ export default function (pt, line, units, mercator) {
         if (distance > d) distance = d;
     });
     return distance;
-};
+}
 
 
 /**

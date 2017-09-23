@@ -31,7 +31,7 @@ export default function (poly) {
     }
 
     return fc;
-};
+}
 
 function processPolygon(coordinates) {
     var data = flattenCoords(coordinates);

@@ -50,4 +50,4 @@ export default function (poly1, poly2) {
     var writer = new jsts.io.GeoJSONWriter();
     var geom = writer.write(intersection);
     return feature(geom);
-};
+}

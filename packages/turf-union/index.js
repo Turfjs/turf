@@ -43,4 +43,4 @@ export default function () {
         geometry: result,
         properties: arguments[0].properties
     };
-};
+}

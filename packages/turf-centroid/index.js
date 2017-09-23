@@ -27,4 +27,4 @@ export default function (geojson, properties) {
         len++;
     }, true);
     return point([xSum / len, ySum / len], properties);
-};
+}

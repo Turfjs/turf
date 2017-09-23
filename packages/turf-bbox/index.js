@@ -23,4 +23,4 @@ export default function (geojson) {
         if (bbox[3] < coord[1]) bbox[3] = coord[1];
     });
     return bbox;
-};
+}

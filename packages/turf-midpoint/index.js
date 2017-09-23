@@ -26,4 +26,4 @@ export default function (point1, point2) {
     var midpoint = destination(point1, dist / 2, heading, 'miles');
 
     return midpoint;
-};
+}

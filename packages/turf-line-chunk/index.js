@@ -36,7 +36,7 @@ export default function (geojson, segmentLength, units, reverse) {
         });
     });
     return featureCollection(results);
-};
+}
 
 /**
  * Slice Line Segments

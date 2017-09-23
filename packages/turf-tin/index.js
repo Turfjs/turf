@@ -75,7 +75,7 @@ export default function (points, z) {
         return polygon([[a, b, c, a]], properties);
 
     }));
-};
+}
 
 function Triangle(a, b, c) {
     this.a = a;

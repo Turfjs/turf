@@ -26,4 +26,4 @@ export default function (geojson) {
         });
     });
     return featureCollection(features);
-};
+}

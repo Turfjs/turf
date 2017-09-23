@@ -39,7 +39,7 @@ export default function (lines, properties, autoComplete, orderCoords) {
         return multiPolygon(coords, properties);
     }
     return lineStringToPolygon(lines, properties, autoComplete, orderCoords);
-};
+}
 
 /**
  * LineString to Polygon

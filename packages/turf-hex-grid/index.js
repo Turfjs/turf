@@ -101,7 +101,7 @@ export default function hexGrid(bbox, cellDiameter, units, triangles) {
     }
 
     return fc;
-};
+}
 
 //Center should be [x, y]
 function hexagon(center, rx, ry) {

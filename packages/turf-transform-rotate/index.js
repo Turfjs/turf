@@ -47,4 +47,4 @@ export default function (geojson, angle, pivot, mutate) {
         pointCoords[1] = newCoords[1];
     });
     return geojson;
-};
+}

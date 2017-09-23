@@ -59,7 +59,7 @@ export default function (geojson, radius, units, steps) {
         return featureCollection(results);
     }
     return buffer(geojson, radius, units, steps);
-};
+}
 
 /**
  * Buffer single Feature/Geometry

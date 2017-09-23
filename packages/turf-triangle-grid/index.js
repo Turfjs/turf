@@ -88,5 +88,5 @@ export default function (bbox, cellSize, units) {
         currentX += cellWidth;
     }
     return fc;
-};
+}
 

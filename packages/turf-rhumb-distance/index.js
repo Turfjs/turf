@@ -42,4 +42,4 @@ export default function (from, to, units) {
     var distanceInMeters = origin.rhumbDistanceTo(destination);
     var distance = radiansToDistance(distanceToRadians(distanceInMeters, 'meters'), units);
     return distance;
-};
+}

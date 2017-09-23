@@ -71,4 +71,4 @@ export default function squareGrid(bbox, cellSize, units, completelyWithin) {
         currentX += cellWidth;
     }
     return featureCollection(results);
-};
+}

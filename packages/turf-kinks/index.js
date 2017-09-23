@@ -77,7 +77,7 @@ export default function (featureIn) {
         });
     });
     return results;
-};
+}
 
 
 // modified from http://jsfiddle.net/justin_c_rounds/Gd2S2/light/

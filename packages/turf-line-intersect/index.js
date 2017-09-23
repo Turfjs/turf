@@ -1,8 +1,8 @@
-import { featureEach } from '@turf/meta';
 import rbush from 'geojson-rbush';
-import { point, featureCollection } from '@turf/helpers';
-import { getCoords } from '@turf/invariant';
 import lineSegment from '@turf/line-segment';
+import { getCoords } from '@turf/invariant';
+import { featureEach } from '@turf/meta';
+import { point, featureCollection, feature } from '@turf/helpers';
 
 /**
  * Takes any LineString or Polygon GeoJSON and returns the intersecting point(s).
@@ -25,8 +25,8 @@ export default function (line1, line2) {
 
     // First, normalize geometries to features
     // Then, handle simple 2-vertex segments
-    if (line1.type === 'LineString') line1 = helpers.feature(line1);
-    if (line2.type === 'LineString') line2 = helpers.feature(line2);
+    if (line1.type === 'LineString') line1 = feature(line1);
+    if (line2.type === 'LineString') line2 = feature(line2);
     if (line1.type === 'Feature' &&
         line2.type === 'Feature' &&
         line1.geometry.type === 'LineString' &&
@@ -55,7 +55,7 @@ export default function (line1, line2) {
         });
     });
     return featureCollection(results);
-};
+}
 
 /**
  * Find a point that intersects LineStrings with two coordinates each

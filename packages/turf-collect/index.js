@@ -64,4 +64,4 @@ export default function (polygons, points, inProperty, outProperty) {
     });
 
     return polygons;
-};
+}

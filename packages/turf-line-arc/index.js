@@ -59,7 +59,7 @@ export default function (center, radius, bearing1, bearing2, steps, units) {
         coordinates.push(destination(center, radius, arcEndDegree, units).geometry.coordinates);
     }
     return lineString(coordinates, properties);
-};
+}
 
 
 /**

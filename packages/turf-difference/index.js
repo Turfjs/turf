@@ -60,7 +60,7 @@ export default function (polygon1, polygon2) {
     var geom = writer.write(differenced);
 
     return feature(geom, properties);
-};
+}
 
 /**
  * Detect Empty Polygon

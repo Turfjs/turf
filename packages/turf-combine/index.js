@@ -49,24 +49,14 @@ export default function (fc) {
         }
     });
 
-    return {
-        type: 'FeatureCollection',
-        features: Object.keys(groups)
-            .filter(function (key) {
-                return groups[key].coordinates.length;
-            })
-            .sort()
-            .map(function (key) {
-                return {
-                    type: 'Feature',
-                    properties: {
-                        collectedProperties: groups[key].properties
-                    },
-                    geometry: {
-                        type: key,
-                        coordinates: groups[key].coordinates
-                    }
-                };
-            })
-    };
-};
+    return featureCollection(Object.keys(groups)
+        .filter(function (key) {
+            return groups[key].coordinates.length;
+        })
+        .sort()
+        .map(function (key) {
+            var geometry = { type: key, coordinates: groups[key].coordinates };
+            var properties = { collectedProperties: groups[key].properties };
+            return feature(geometry, properties);
+        }));
+}

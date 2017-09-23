@@ -50,4 +50,4 @@ export default function (points, polygons, field, outField) {
         });
     });
     return points;
-};
+}

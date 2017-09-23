@@ -35,7 +35,7 @@ export default function (polygon, properties) {
     default:
         throw new Error('geom ' + geom + ' not supported');
     }
-};
+}
 
 function coordsToLine(coords, properties) {
     if (coords.length > 1) return multiLineString(coords, properties);

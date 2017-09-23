@@ -70,4 +70,4 @@ export default function (line, startDist, stopDist, units) {
         travelled += distance(coords[i], coords[i + 1], units);
     }
     return lineString(coords[coords.length - 1]);
-};
+}

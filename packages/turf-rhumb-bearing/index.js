@@ -40,4 +40,4 @@ export default function (start, end, final) {
     var bear180 = (bear360 > 180) ? -(360 - bear360) : bear360;
 
     return bear180;
-};
+}

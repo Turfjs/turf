@@ -60,7 +60,7 @@ export default function (points, maxEdge, units) {
         dissolved.type = 'Polygon';
     }
     return feature(dissolved);
-};
+}
 
 /**
  * Removes duplicated points in a collection returning a new collection

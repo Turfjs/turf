@@ -26,7 +26,7 @@ export default function (feature1, feature2) {
         });
     });
     return boolean;
-};
+}
 
 /**
  * Disjoint operation for simple Geometries (Point/LineString/Polygon)

@@ -72,7 +72,7 @@ export default function (feature1, feature2) {
     default:
         throw new Error('feature1 ' + type1 + ' geometry not supported');
     }
-};
+}
 
 function isPointInMultiPoint(multiPoint, point) {
     var i;

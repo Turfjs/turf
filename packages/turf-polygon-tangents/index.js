@@ -1,5 +1,5 @@
 import { getCoords, getGeomType } from '@turf/invariant';
-import { point, eatureCollection } from '@turf/helpers';
+import { point, featureCollection } from '@turf/helpers';
 
 /**
  * Finds the tangents of a {@link Polygon|(Multi)Polygon} from a {@link Point}.
@@ -47,7 +47,7 @@ export default function (pt, polygon) {
         break;
     }
     return featureCollection([point(rtan), point(ltan)]);
-};
+}
 
 function processPolygon(polygonCoords, ptCoords, eprev, enext, rtan, ltan) {
     for (var i = 0; i < polygonCoords.length; i++) {

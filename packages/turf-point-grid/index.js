@@ -76,4 +76,4 @@ export default function (bbox, cellSide, units, centered, bboxIsMask) {
     }
 
     return featureCollection(results);
-};
+}

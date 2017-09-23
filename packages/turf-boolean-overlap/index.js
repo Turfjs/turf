@@ -69,4 +69,4 @@ export default function (feature1, feature2) {
     }
 
     return overlap > 0;
-};
+}

@@ -123,7 +123,7 @@ export default function (featureCollection, propertyName) {
         }
     }
     return featureCollection;
-};
+}
 
 function toLinestring(polygon) {
     if (polygon === null || polygon === undefined) throw new Error('No polygon was passed');

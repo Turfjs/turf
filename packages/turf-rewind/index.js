@@ -50,7 +50,7 @@ export default function (geojson, reverse, mutate) {
     }
     // Support Feature or Geometry Objects
     return rewind(geojson, reverse);
-};
+}
 
 /**
  * Rewind

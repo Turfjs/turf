@@ -47,4 +47,4 @@ export default function (feature) {
         return polygon([ring]);
     }
     return undefined;
-};
+}

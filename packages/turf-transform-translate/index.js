@@ -51,4 +51,4 @@ export default function (geojson, distance, direction, units, zTranslation, muta
         if (zTranslation && pointCoords.length === 3) pointCoords[2] += zTranslation;
     });
     return geojson;
-};
+}

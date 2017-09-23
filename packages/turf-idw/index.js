@@ -52,4 +52,4 @@ export default function (controlPoints, valueField, weight, cellWidth, units) {
         samplingGrid.features[i].properties[valueField] = zw / sw;
     }
     return samplingGrid;
-};
+}

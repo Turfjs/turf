@@ -43,7 +43,7 @@ export default function (points, line, units) {
     });
     pt.properties.dist = dist;
     return pt;
-};
+}
 
 /**
  * Convert Collection to FeatureCollection

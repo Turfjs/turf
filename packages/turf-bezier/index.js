@@ -48,4 +48,4 @@ export default function (line, resolution, sharpness) {
     }
 
     return lineString(coords, line.properties);
-};
+}

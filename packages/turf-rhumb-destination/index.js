@@ -43,4 +43,4 @@ export default function (origin, distance, bearing, units) {
     // solution from https://github.com/mapbox/mapbox-gl-js/issues/3250#issuecomment-294887678
     destination.lon += (destination.lon - coords[0] > 180) ? -360 : (coords[0] - destination.lon > 180) ? 360 : 0;
     return point([destination.lon, destination.lat]);
-};
+}

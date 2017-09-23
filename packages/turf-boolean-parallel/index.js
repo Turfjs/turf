@@ -37,7 +37,7 @@ export default function (line1, line2) {
         if (!isParallel(segment1, segment2)) return false;
     }
     return true;
-};
+}
 
 
 /**

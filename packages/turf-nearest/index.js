@@ -34,4 +34,4 @@ export default function (targetPoint, points) {
         }
     }
     return nearestPoint;
-};
+}

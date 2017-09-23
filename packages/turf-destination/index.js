@@ -41,4 +41,4 @@ export default function (origin, distance, bearing, units) {
         Math.cos(radians) - Math.sin(latitude1) * Math.sin(latitude2));
 
     return point([radians2degrees * longitude2, radians2degrees * latitude2]);
-};
+}

@@ -22,4 +22,4 @@ import polygonize from 'polygonize';
  */
 export default function (geojson) {
     return polygonize(geojson);
-};
+}

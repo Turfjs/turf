@@ -53,7 +53,7 @@ export default function (pointGrid, breaks, zProperty, propertiesToAllIsolines, 
     var scaledIsolines = rescaleIsolines(isolines, matrix, pointGrid);
 
     return featureCollection(scaledIsolines);
-};
+}
 
 /**
  * Creates the isolines lines (featuresCollection of MultiLineString features) from the 2D data grid
