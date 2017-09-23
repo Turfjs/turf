@@ -1,3 +1,4 @@
+package-lock.json
 env
 .nyc_output
 lib-cov

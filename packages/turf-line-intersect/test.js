@@ -4,7 +4,7 @@ const path = require('path');
 const load = require('load-json-file');
 const write = require('write-json-file');
 const truncate = require('@turf/truncate');
-const {featureCollection, geometryCollection, lineString} = require('@turf/helpers');
+const {featureCollection, geometryCollection, lineString, polygon} = require('@turf/helpers');
 const lineIntersect = require('./');
 
 const directories = {
@@ -59,6 +59,15 @@ test('turf-line-intersect - same point #688', t => {
     const line2 = lineString([[8, 49], [8, 50], [8, 51]]);
 
     const results = lineIntersect(line1, line2);
+    t.equal(results.features.length, 1, 'should return single point');
+    t.end();
+});
+
+test('turf-line-intersect - polygon support #586', t => {
+    const poly1 = polygon([[[7, 50], [8, 50], [9, 50], [7, 50]]]);
+    const poly2 = polygon([[[8, 49], [8, 50], [8, 51], [8, 49]]]);
+
+    const results = lineIntersect(poly1, poly2);
     t.equal(results.features.length, 1, 'should return single point');
     t.end();
 });

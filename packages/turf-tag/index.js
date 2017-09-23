@@ -1,4 +1,6 @@
 var inside = require('@turf/inside');
+var featureEach = require('@turf/meta').featureEach;
+var clone = require('@turf/clone');
 
 /**
  * Takes a set of {@link Point|points} and a set of {@link Polygon|polygons} and performs a spatial join.
@@ -37,18 +39,13 @@ var inside = require('@turf/inside');
  */
 module.exports = function (points, polygons, field, outField) {
     // prevent mutations
-    points = JSON.parse(JSON.stringify(points));
-    polygons = JSON.parse(JSON.stringify(polygons));
-    points.features.forEach(function (pt) {
-        if (!pt.properties) {
-            pt.properties = {};
-        }
-        polygons.features.forEach(function (poly) {
+    points = clone(points);
+    polygons = clone(polygons);
+    featureEach(points, function (pt) {
+        if (!pt.properties) pt.properties = {};
+        featureEach(polygons, function (poly) {
             if (pt.properties[outField] === undefined) {
-                var isInside = inside(pt, poly);
-                if (isInside) {
-                    pt.properties[outField] = poly.properties[field];
-                }
+                if (inside(pt, poly)) pt.properties[outField] = poly.properties[field];
             }
         });
     });

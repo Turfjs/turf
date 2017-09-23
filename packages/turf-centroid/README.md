@@ -8,7 +8,7 @@ This lessens the effect of small islands and artifacts when calculating the cent
 **Parameters**
 
 -   `geojson` **[GeoJSON](http://geojson.org/geojson-spec.html#geojson-objects)** GeoJSON to be centered
--   `properties` **\[[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)]** an Object that is used as the [Feature](http://geojson.org/geojson-spec.html#feature-objects)'s properties
+-   `properties` **\[[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)]** an Object that is used as the [Feature](http://geojson.org/geojson-spec.html#feature-objects)'s properties (optional, default `{}`)
 
 **Examples**
 

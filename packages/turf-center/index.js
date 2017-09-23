@@ -6,7 +6,7 @@ var point = require('@turf/helpers').point;
  *
  * @name center
  * @param {GeoJSON} geojson GeoJSON to be centered
- * @param {Object} [properties] an Object that is used as the {@link Feature}'s properties
+ * @param {Object} [properties={}] an Object that is used as the {@link Feature}'s properties
  * @returns {Feature<Point>} a Point feature at the absolute center point of all input features
  * @example
  * var features = turf.featureCollection([
