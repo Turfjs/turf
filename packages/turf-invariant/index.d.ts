@@ -1,8 +1,5 @@
 /// <reference types="geojson" />
 
-import * as invariant from '.';
-export default invariant;
-
 export type GeometryObject = GeoJSON.GeometryObject;
 export type GeometryCollection = GeoJSON.GeometryCollection;
 export type Feature<Geom extends GeometryObject> = GeoJSON.Feature<Geom>;

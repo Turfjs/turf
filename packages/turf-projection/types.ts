@@ -1,5 +1,4 @@
-import projection from './'
-import * as projectionAll from './'
+import * as projection from './'
 import { toMercator, toWgs84 } from './'
 import { point } from '@turf/helpers'
 
@@ -11,7 +10,3 @@ const degrees = toWgs84(projected)
 // default import
 projection.toMercator(pt)
 projection.toWgs84(projected)
-
-// import *
-projectionAll.toMercator(pt)
-projectionAll.toWgs84(projected)

@@ -1,5 +1,4 @@
-import * as invariantAll from './'
-import invariant from './'
+import * as invariant from './'
 import {
     point,
     lineString,
@@ -32,7 +31,6 @@ const fc = featureCollection([pt, line, poly])
  */
 // invariant.getGeom(fc) // Argument of type 'FeatureCollection<any>' is not assignable to parameter of type
 getGeom(gc)
-invariantAll.getGeom(gc)
 invariant.getGeom(gc)
 invariant.getGeom(pt)
 invariant.getGeom(line)
@@ -44,7 +42,6 @@ invariant.getGeom(pt.geometry)
  */
 const type: StringTypes = invariant.getType(pt)
 getType(gc)
-invariantAll.getType(gc)
 invariant.getType(gc)
 invariant.getType(line)
 invariant.getType(poly)

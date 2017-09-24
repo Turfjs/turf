@@ -1,8 +1,5 @@
 /// <reference types="geojson" />
 
-import * as meta from '.';
-export default meta;
-
 export type Point = GeoJSON.Point;
 export type LineString = GeoJSON.LineString;
 export type Polygon = GeoJSON.Polygon;

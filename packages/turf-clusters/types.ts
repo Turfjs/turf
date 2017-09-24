@@ -1,7 +1,6 @@
-import clusters from './'
-import * as clustersAll from './'
-import {featureCollection, point} from '@turf/helpers'
-import {getCluster, clusterEach, clusterReduce} from './'
+import * as clusters from './'
+import { featureCollection, point } from '@turf/helpers'
+import { getCluster, clusterEach, clusterReduce } from './'
 
 /**
  * Fixtures
@@ -17,7 +16,6 @@ const geojson = featureCollection([
 /**
  * Get Cluster
  */
-clustersAll.getCluster(geojson, {cluster: 1});
 clusters.getCluster(geojson, {cluster: 1});
 getCluster(geojson, {cluster: 1});
 getCluster(geojson, {0: 'foo'});
@@ -29,7 +27,6 @@ getCluster(geojson, 0);
 /**
  * ClusterEach
  */
-clustersAll.clusterEach(geojson, 'cluster', () => {});
 clusters.clusterEach(geojson, 'cluster', () => {});
 clusterEach(geojson, 'cluster', (cluster, clusterValue, currentIndex) => {
     //= cluster

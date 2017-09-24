@@ -1,7 +1,5 @@
 import { coordEach } from '@turf/meta';
 import clone from '@turf/clone';
-import * as projection from '.';
-export default projection;
 
 /**
  * Converts a WGS84 GeoJSON object into Mercator (EPSG:900913) projection

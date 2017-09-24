@@ -1,5 +1,4 @@
-import helpers from './'
-import * as helpersAll from './'
+import * as helpers from './'
 import {
     BBox,
     feature,
@@ -21,7 +20,7 @@ import {
     round,
     convertDistance,
     convertArea,
-    isNumber} from './'
+    isNumber } from './'
 
 // Fixtures
 const bbox: BBox = [-180, -90, 180, 90]
@@ -54,13 +53,6 @@ helpers.feature({coordinates: [1, 0], type: 'point'})
 helpers.multiPoint([[0, 1], [2, 3], [0, 1]])
 helpers.multiLineString([[[0, 1], [2, 3], [0, 1]]])
 helpers.multiPolygon([[[[0, 1], [0, 0], [2, 3], [0, 1]]]])
-helpersAll.point([0, 1])
-helpersAll.lineString([[0, 1], [2, 3]])
-helpersAll.polygon([[[0, 1], [0, 0], [2, 3], [0, 1]]])
-helpersAll.feature({coordinates: [1, 0], type: 'point'})
-helpersAll.multiPoint([[0, 1], [2, 3], [0, 1]])
-helpersAll.multiLineString([[[0, 1], [2, 3], [0, 1]]])
-helpersAll.multiPolygon([[[[0, 1], [2, 3], [0, 1]]]])
 
 // Mixed collection is defiend as FeatureCollection<any>
 const mixed = helpers.featureCollection([pt, poly])

@@ -5,10 +5,10 @@ const {
     clusterEach,
     clusterReduce,
     // below methods are not exposed in @turf/turf
+    createBins,
+    applyFilter,
     propertiesContainsFilter,
     filterProperties,
-    applyFilter,
-    createBins
 } = require('./');
 
 const properties = {foo: 'bar', cluster: 0};

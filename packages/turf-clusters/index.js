@@ -1,7 +1,5 @@
 import { featureEach } from '@turf/meta';
 import { featureCollection } from '@turf/helpers';
-import * as clusters from '.';
-export default clusters;
 
 /**
  * Get Cluster

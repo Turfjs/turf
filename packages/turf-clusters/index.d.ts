@@ -1,8 +1,5 @@
 /// <reference types="geojson" />
 
-import * as clusters from '.';
-export default clusters;
-
 type FeatureCollection<T extends GeoJSON.GeometryObject> = GeoJSON.FeatureCollection<T>;
 type Feature<T extends GeoJSON.GeometryObject> = GeoJSON.Feature<T>;
 type GeometryObject = GeoJSON.GeometryObject;

@@ -1,8 +1,5 @@
 /// <reference types='geojson' />
 
-import * as helpers from '.';
-export default helpers;
-
 export type Id = string|number
 export type Points = GeoJSON.FeatureCollection<GeoJSON.Point>;
 export type Point = GeoJSON.Feature<GeoJSON.Point>;
