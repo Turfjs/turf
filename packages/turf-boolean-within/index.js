@@ -1,7 +1,7 @@
 import inside from '@turf/inside';
 import calcBbox from '@turf/bbox';
 import isPointOnLine from '@turf/boolean-point-on-line';
-import { getGeom, getGeomType } from '@turf/invariant';
+import { getGeom, getType } from '@turf/invariant';
 
 /**
  * Boolean-within returns true if the first geometry is completely within the second geometry.
@@ -21,8 +21,8 @@ import { getGeom, getGeomType } from '@turf/invariant';
  * //=true
  */
 export default function (feature1, feature2) {
-    var type1 = getGeomType(feature1);
-    var type2 = getGeomType(feature2);
+    var type1 = getType(feature1);
+    var type2 = getType(feature2);
     var geom1 = getGeom(feature1);
     var geom2 = getGeom(feature2);
 

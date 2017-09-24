@@ -2,7 +2,7 @@ import { point } from '@turf/helpers';
 import inside from '@turf/inside';
 import lineIntersect from '@turf/line-intersect';
 import polyToLinestring from '@turf/polygon-to-linestring';
-import { getGeom, getGeomType } from '@turf/invariant';
+import { getGeom, getType } from '@turf/invariant';
 
 /**
  * Boolean-Crosses returns True if the intersection results in a geometry whose dimension is one less than
@@ -23,8 +23,8 @@ import { getGeom, getGeomType } from '@turf/invariant';
  * //=true
  */
 export default function (feature1, feature2) {
-    var type1 = getGeomType(feature1);
-    var type2 = getGeomType(feature2);
+    var type1 = getType(feature1);
+    var type2 = getType(feature2);
     var geom1 = getGeom(feature1);
     var geom2 = getGeom(feature2);
 

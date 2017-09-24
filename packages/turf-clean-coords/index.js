@@ -1,5 +1,5 @@
 import { feature } from '@turf/helpers';
-import { getCoords, getGeomType } from '@turf/invariant';
+import { getCoords, getType } from '@turf/invariant';
 
 /**
  * Removes redundant coordinates from any GeoJSON Geometry.
@@ -20,7 +20,7 @@ import { getCoords, getGeomType } from '@turf/invariant';
  */
 export default function (geojson, mutate) {
     if (!geojson) throw new Error('geojson is required');
-    var type = getGeomType(geojson);
+    var type = getType(geojson);
 
     // Store new "clean" points in this Array
     var newCoords = [];

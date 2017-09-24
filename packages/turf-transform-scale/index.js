@@ -7,7 +7,7 @@ import rhumbDistance from '@turf/rhumb-distance';
 import rhumbDestination from '@turf/rhumb-destination';
 import { coordEach, featureEach } from '@turf/meta';
 import { point } from '@turf/helpers';
-import { getCoord, getCoords, getGeomType} from '@turf/invariant';
+import { getCoord, getCoords, getType} from '@turf/invariant';
 
 /**
  * Scale a GeoJSON from a given point by a factor of scaling (ex: factor=2 would make the GeoJSON 200% larger).
@@ -58,7 +58,7 @@ export default function (geojson, factor, origin, mutate) {
  */
 function scale(feature, factor, origin) {
     // Default params
-    var isPoint = getGeomType(feature) === 'Point';
+    var isPoint = getType(feature) === 'Point';
     origin = defineOrigin(feature, origin);
 
     // Shortcut no-scaling

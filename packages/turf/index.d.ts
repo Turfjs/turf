@@ -130,7 +130,7 @@ export {
     round,
     convertArea
 } from '@turf/helpers';
-import * as helpers from '@turf/hepers';
+import * as helpers from '@turf/helpers';
 export { helpers };
 export {
     getCoord,

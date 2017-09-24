@@ -3,7 +3,7 @@ var rbush = require('geojson-rbush');
 import { lineString, featureCollection } from '@turf/helpers';
 import flatten from '@turf/flatten';
 import truncate from '@turf/truncate';
-import { getCoords, getGeomType } from '@turf/invariant';
+import { getCoords, getType } from '@turf/invariant';
 import lineSegment from '@turf/line-segment';
 import pointOnLine from '@turf/point-on-line';
 import lineIntersect from '@turf/line-intersect';
@@ -28,8 +28,8 @@ export default function (line, splitter) {
     if (!line) throw new Error('line is required');
     if (!splitter) throw new Error('splitter is required');
 
-    var lineType = getGeomType(line);
-    var splitterType = getGeomType(splitter);
+    var lineType = getType(line);
+    var splitterType = getType(splitter);
 
     if (lineType !== 'LineString') throw new Error('line must be LineString');
     if (splitterType === 'FeatureCollection') throw new Error('splitter cannot be a FeatureCollection');

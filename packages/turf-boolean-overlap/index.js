@@ -1,5 +1,5 @@
 import { coordAll, segmentEach } from '@turf/meta';
-import { getGeomType } from '@turf/invariant';
+import { getType } from '@turf/invariant';
 import lineOverlap from '@turf/line-overlap';
 import lineIntersect from '@turf/line-intersect';
 var GeojsonEquality = require('geojson-equality');
@@ -27,8 +27,8 @@ export default function (feature1, feature2) {
     // validation
     if (!feature1) throw new Error('feature1 is required');
     if (!feature2) throw new Error('feature2 is required');
-    var type1 = getGeomType(feature1);
-    var type2 = getGeomType(feature2);
+    var type1 = getType(feature1);
+    var type2 = getType(feature2);
     if (type1 !== type2) throw new Error('features must be of the same type');
     if (type1 === 'Point') throw new Error('Point geometry not supported');
 

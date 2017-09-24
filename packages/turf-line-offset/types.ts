@@ -1,4 +1,4 @@
-import * as lineOffset from '../'
+import lineOffset from './'
 import {lineString, multiLineString} from '@turf/helpers'
 
 const line = lineString([[0, 0], [10, 10]])

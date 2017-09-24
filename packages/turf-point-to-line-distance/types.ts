@@ -1,5 +1,5 @@
 import { point, lineString } from '@turf/helpers'
-import * as pointToLineDistance from './'
+import pointToLineDistance from './'
 
 const pt = point([0, 0])
 const line = lineString([[1, 1],[-1, 1]])

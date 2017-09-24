@@ -2,7 +2,7 @@ import distance from '@turf/distance';
 import turfBBox from '@turf/bbox';
 import { point, featureCollection } from '@turf/helpers';
 import inside from '@turf/inside';
-import { getGeomType } from '@turf/invariant';
+import { getType } from '@turf/invariant';
 
 /**
  * Creates a {@link Point} grid from a bounding box, {@link FeatureCollection} or {@link Feature}.
@@ -54,7 +54,7 @@ export default function (bbox, cellSide, units, centered, bboxIsMask) {
         var deltaY = (bboxVerticalSide - rows * cellHeight) / 2;
     }
 
-    var isPoly = !Array.isArray(bboxMask) && (getGeomType(bboxMask) === 'Polygon' || getGeomType(bboxMask) === 'MultiPolygon');
+    var isPoly = !Array.isArray(bboxMask) && (getType(bboxMask) === 'Polygon' || getType(bboxMask) === 'MultiPolygon');
 
     var currentX = west;
     if (centered !== false) currentX += deltaX;

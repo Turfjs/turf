@@ -1,4 +1,4 @@
-import { getCoords, getGeomType } from '@turf/invariant';
+import { getCoords, getType } from '@turf/invariant';
 import { point, featureCollection } from '@turf/helpers';
 
 /**
@@ -25,7 +25,7 @@ export default function (pt, polygon) {
     var pointCoords = getCoords(pt);
     var polyCoords = getCoords(polygon);
 
-    var type = getGeomType(polygon);
+    var type = getType(polygon);
     switch (type) {
     case 'Polygon':
         rtan = 0;

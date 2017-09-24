@@ -130,7 +130,7 @@ export {
     round,
     convertArea
 } from '@turf/helpers';
-import * as helpers from '@turf/hepers';
+import * as helpers from '@turf/helpers';
 export { helpers };
 export {
     getCoord,
@@ -159,6 +159,7 @@ export {
     segmentReduce,
     segmentEach,
     lineEach,
-    lineReduce} from '@turf/meta';
+    lineReduce
+} from '@turf/meta';
 import * as meta from '@turf/meta';
 export { meta };

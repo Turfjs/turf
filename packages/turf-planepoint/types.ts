@@ -1,5 +1,5 @@
-import {point, polygon} from '@turf/helpers';
-import * as planepoint from './';
+import { point, polygon } from '@turf/helpers';
+import planepoint from './';
 
 const pt = point([1, 1]);
 const triangle = polygon([[[0, 0, 0], [2, 0, 0], [1, 2, 2], [0, 0, 0]]]);

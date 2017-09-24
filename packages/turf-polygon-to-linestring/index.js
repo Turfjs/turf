@@ -1,4 +1,4 @@
-import { getCoords, getGeomType } from '@turf/invariant';
+import { getCoords, getType } from '@turf/invariant';
 import { lineString, multiLineString, featureCollection } from '@turf/helpers';
 
 /**
@@ -17,7 +17,7 @@ import { lineString, multiLineString, featureCollection } from '@turf/helpers';
  * var addToMap = [line];
  */
 export default function (polygon, properties) {
-    var geom = getGeomType(polygon);
+    var geom = getType(polygon);
     var coords = getCoords(polygon);
     properties = properties || polygon.properties || {};
 
