@@ -6,6 +6,4 @@ type Features = GeoJSON.FeatureCollection<any>;
 /**
  * http://turfjs.org/docs/#area
  */
-declare function area(features: Feature | Features): number;
-declare namespace area { }
-export = area;
+export default function area(features: Feature | Features): number;

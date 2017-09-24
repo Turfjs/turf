@@ -6,6 +6,4 @@ type BBox = Array<number>;
 /**
  * http://turfjs.org/docs/#bboxpolygon
  */
-declare function bboxPolygon(bbox: BBox): Polygon;
-declare namespace bboxPolygon { }
-export = bboxPolygon;
+export default function bboxPolygon(bbox: BBox): Polygon;

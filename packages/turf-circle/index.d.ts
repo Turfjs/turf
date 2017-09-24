@@ -6,6 +6,4 @@ type Polygon = GeoJSON.Feature<GeoJSON.Polygon>;
 /**
  * http://turfjs.org/docs/#circle
  */
-declare function circle(center: Point, radius: number, steps?: number, units?: string, properties?: any): Polygon;
-declare namespace circle { }
-export = circle;
+export default function (center: Point, radius: number, steps?: number, units?: string, properties?: any): Polygon;

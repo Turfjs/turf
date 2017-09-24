@@ -10,4 +10,4 @@ interface BBoxClip {
   (feature: Polygon | MultiPolygon, bbox: BBox): Polygon | MultiPolygon
 }
 declare const bboxClip: BBoxClip;
-export = bboxClip;
+export default bboxClip;

@@ -26,5 +26,4 @@ interface Buffer {
     (feature: Feature<any>|GeometryObject, radius?: number, unit?: Units, steps?: number): Feature<Polygon|MultiPolygon> | undefined;
 }
 declare const buffer: Buffer;
-declare namespace buffer {}
-export = buffer;
+export default buffer;
