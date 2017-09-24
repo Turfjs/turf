@@ -1,7 +1,7 @@
 // https://en.wikipedia.org/wiki/Rhumb_line
 // http://www.movable-type.co.uk/scripts/latlong.html#rhumblines
 import { getCoord } from '@turf/invariant';
-import { LatLonSpherical } from 'geodesy';
+var LatLonSpherical = require('geodesy').LatLonSpherical;
 
 /**
  * Takes two {@link Point|points} and finds the bearing angle between them along a Rhumb line

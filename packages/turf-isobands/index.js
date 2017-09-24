@@ -2,10 +2,10 @@ import bbox from '@turf/bbox';
 import area from '@turf/area';
 import inside from '@turf/inside';
 import explode from '@turf/explode';
-import isoBands from './isoBands';
+var isoBands = require('marchingsquares').isoBands;
 import { polygon, multiPolygon, featureCollection } from '@turf/helpers';
 import { collectionOf } from '@turf/invariant';
-import gridToMatrix from './gridToMatrix';
+var gridToMatrix = require('grid-to-matrix');
 
 /**
  * Takes a grid {@link FeatureCollection} of {@link Point} features with z-values and an array of

@@ -1,5 +1,5 @@
-import d3 from 'd3-geo';
-import jsts from 'jsts';
+var jsts = require('jsts');
+import { geoTransverseMercator } from 'd3-geo';
 import center from '@turf/center';
 import turfBbox from '@turf/bbox';
 import { geomEach, featureEach } from '@turf/meta';
@@ -177,7 +177,7 @@ function unprojectCoords(coords, projection) {
 function defineProjection(geojson) {
     var coords = center(geojson).geometry.coordinates.reverse();
     var rotate = coords.map(function (coord) { return -coord; });
-    var projection = d3.geoTransverseMercator()
+    var projection = geoTransverseMercator()
         .center(coords)
         .rotate(rotate)
         .scale(6373000);

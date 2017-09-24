@@ -1,5 +1,5 @@
 import clone from '@turf/clone';
-import clustering from 'density-clustering';
+var clustering = require('density-clustering');
 import turfDistance from '@turf/distance';
 import { coordAll } from '@turf/meta';
 import { convertDistance } from '@turf/helpers';

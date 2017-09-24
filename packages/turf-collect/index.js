@@ -1,6 +1,6 @@
 import turfbbox from '@turf/bbox';
 import inside from '@turf/inside';
-import rbush from 'rbush';
+var rbush = require('rbush');
 
 /**
  * Merges a specified property from a FeatureCollection of points into a

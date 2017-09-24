@@ -37,15 +37,15 @@
   "homepage": "https://github.com/Turfjs/turf",
   "devDependencies": {
     "benchmark": "*",
-    "write-json-file": "*",
     "load-json-file": "*",
+    "rollup": "*",
     "tape": "*",
-    "rollup": "*"
+    "write-json-file": "*"
   },
   "dependencies": {
-    "@turf/clean-coords": "4.7.1",
-    "@turf/helpers": "4.7.1",
-    "@turf/line-segment": "4.7.1",
-    "@turf/rhumb-bearing": "4.7.1"
+    "@turf/clean-coords": "^4.7.3",
+    "@turf/helpers": "^4.7.3",
+    "@turf/line-segment": "^4.7.3",
+    "@turf/rhumb-bearing": "^4.7.3"
   }
 }

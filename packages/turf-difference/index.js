@@ -1,5 +1,5 @@
 // depend on jsts for now https://github.com/bjornharrtell/jsts/blob/master/examples/overlay.html
-import jsts from 'jsts';
+var jsts = require('jsts');
 import area from '@turf/area';
 import { feature } from '@turf/helpers';
 import { getGeom } from '@turf/invariant';

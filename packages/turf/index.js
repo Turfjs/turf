@@ -95,9 +95,24 @@ export {default as clustersKmeans} from '@turf/clusters-kmeans';
 export {default as pointToLineDistance} from '@turf/point-to-line-distance';
 export {default as booleanParallel} from '@turf/boolean-parallel';
 export {default as nearestPointToLine} from '@turf/nearest-point-to-line';
-export {default as projection, toMercator, toWgs84} from '@turf/projection';
-export {default as clusters, getCluster, clusterEach, clusterReduce} from '@turf/clusters';
 export {
+    default as projection,
+    toMercator,
+    toWgs84,
+    convertToMercator,
+    convertToWgs84,
+    sign} from '@turf/projection';
+export {
+    default as clusters,
+    getCluster,
+    clusterEach,
+    clusterReduce,
+    createBins,
+    applyFilter,
+    propertiesContainsFilter,
+    filterProperties} from '@turf/clusters';
+export {
+    default as helpers,
     point,
     polygon,
     lineString,
@@ -119,6 +134,7 @@ export {
     round,
     convertArea} from '@turf/helpers';
 export {
+    default as invariant,
     getCoord,
     getCoords,
     geojsonType,
@@ -129,6 +145,7 @@ export {
     getGeom,
     getGeomType} from '@turf/invariant';
 export {
+    default as meta,
     coordEach,
     coordReduce,
     propEach,

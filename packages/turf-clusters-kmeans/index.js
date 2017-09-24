@@ -1,6 +1,6 @@
 import { coordAll, featureEach } from '@turf/meta';
 import clone from '@turf/clone';
-import skmeans from 'skmeans';
+var skmeans = require('skmeans');
 import { collectionOf } from '@turf/invariant';
 
 /**

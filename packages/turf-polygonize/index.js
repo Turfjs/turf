@@ -1,4 +1,4 @@
-import polygonize from 'polygonize';
+var polygonize = require('polygonize');
 
 /**
  * Polygonizes {@link LineString|(Multi)LineString(s)} into {@link Polygons}.

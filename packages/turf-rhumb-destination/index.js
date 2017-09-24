@@ -2,7 +2,7 @@
 // http://www.movable-type.co.uk/scripts/latlong.html#rhumblines
 import { point, radiansToDistance, distanceToRadians } from '@turf/helpers';
 import { getCoord } from '@turf/invariant';
-import { LatLonSpherical } from 'geodesy';
+var LatLonSpherical = require('geodesy').LatLonSpherical;
 
 /**
  * Returns the destination {@link Point} having travelled the given distance along a Rhumb line from the

@@ -1,4 +1,4 @@
-import lineclip from 'lineclip';
+var lineclip = require('lineclip');
 import { getCoords } from '@turf/invariant';
 import { lineString, multiLineString, polygon, multiPolygon } from '@turf/helpers';
 

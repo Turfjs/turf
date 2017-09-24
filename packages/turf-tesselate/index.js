@@ -1,4 +1,4 @@
-import earcut from 'earcut';
+var earcut = require('earcut');
 import { polygon } from '@turf/helpers';
 
 /**

@@ -287,3 +287,13 @@ export function filterProperties(properties, keys) {
     }
     return newProperties;
 }
+
+export default {
+    getCluster,
+    clusterEach,
+    clusterReduce,
+    createBins,
+    applyFilter,
+    propertiesContainsFilter,
+    filterProperties
+};

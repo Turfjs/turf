@@ -3,7 +3,6 @@ import lineSegment from '@turf/line-segment';
 import rhumbBearing from '@turf/rhumb-bearing';
 import { bearingToAngle } from '@turf/helpers';
 
-
 /**
  * Boolean-Parallel returns True if each segment of `line1` is parallel to the correspondent segment of `line2`
  *

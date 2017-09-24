@@ -1,4 +1,4 @@
-import jsts from 'jsts';
+var jsts = require('jsts');
 
 /**
  * Takes two or more {@link Polygon|polygons} and returns a combined polygon. If the input polygons are not contiguous, this function returns a {@link MultiPolygon} feature.

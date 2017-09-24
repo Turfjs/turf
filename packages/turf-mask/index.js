@@ -1,4 +1,4 @@
-import rbush from 'rbush';
+var rbush = require('rbush');
 import union from '@turf/union';
 import { polygon, featureCollection } from '@turf/helpers';
 import turfBBox from '@turf/bbox';

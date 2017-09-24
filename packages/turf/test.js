@@ -186,7 +186,7 @@ test('turf-${turfName}', t => {
 test('turf -- missing modules', t => {
     const files = {
         typescript: fs.readFileSync(path.join(__dirname, 'index.d.ts')),
-        modules: fs.readFileSync(path.join(__dirname, 'module.js'))
+        modules: fs.readFileSync(path.join(__dirname, 'index.js'))
     };
 
     modules.forEach(({name}) => {
@@ -195,7 +195,7 @@ test('turf -- missing modules', t => {
         name = name.replace('linestring', 'lineString').replace('Linestring', 'LineString');
 
         if (!files.typescript.includes(name)) t.fail(name + ' is missing from index.d.ts');
-        if (!files.modules.includes(name)) t.fail(name + ' is missing from module.js');
+        if (!files.modules.includes(name)) t.fail(name + ' is missing from index.js');
 
         switch (typeof turf[name]) {
         case 'function': break;
@@ -203,7 +203,7 @@ test('turf -- missing modules', t => {
             Object.keys(turf[name]).forEach(method => {
                 if (typeof turf[method] !== 'function') t.fail(name + '.' + method + ' is missing from index.js');
                 if (!files.typescript.includes(method)) t.fail(name + '.' + method + ' is missing from index.d.ts');
-                if (!files.modules.includes(method)) t.fail(name + '.' + method + ' is missing from module.js');
+                if (!files.modules.includes(method)) t.fail(name + '.' + method + ' is missing from index.js');
             });
             break;
         case 'undefined':

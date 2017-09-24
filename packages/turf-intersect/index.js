@@ -1,5 +1,5 @@
 // depend on jsts for now http://bjornharrtell.github.io/jsts/
-import jsts from 'jsts';
+var jsts = require('jsts');
 import truncate from '@turf/truncate';
 import { feature } from '@turf/helpers';
 

@@ -69,7 +69,7 @@ function convert(geojson, mutate, projection) {
  * @param {Array<number>} lonLat WGS84 point
  * @returns {Array<number>} Mercator [x, y] point
  */
-function convertToMercator(lonLat) {
+export function convertToMercator(lonLat) {
     var D2R = Math.PI / 180,
         // 900913 properties
         A = 6378137.0,
@@ -100,7 +100,7 @@ function convertToMercator(lonLat) {
  * @param {Array<number>} xy Mercator [x, y] point
  * @returns {Array<number>} WGS84 [lon, lat] point
  */
-function convertToWgs84(xy) {
+export function convertToWgs84(xy) {
     // 900913 properties.
     var R2D = 180 / Math.PI,
         A = 6378137.0;
@@ -118,6 +118,14 @@ function convertToWgs84(xy) {
  * @param {number} x input
  * @returns {number} -1|0|1 output
  */
-function sign(x) {
+export function sign(x) {
     return (x < 0) ? -1 : (x > 0) ? 1 : 0;
 }
+
+export default {
+    toMercator,
+    toWgs84,
+    convertToMercator,
+    convertToWgs84,
+    sign,
+};

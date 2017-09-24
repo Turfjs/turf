@@ -1,5 +1,5 @@
 import { featureEach, featureReduce} from '@turf/meta';
-import rbush from 'geojson-rbush';
+var rbush = require('geojson-rbush');
 import { lineString, featureCollection } from '@turf/helpers';
 import flatten from '@turf/flatten';
 import truncate from '@turf/truncate';

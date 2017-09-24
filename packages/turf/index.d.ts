@@ -1,204 +1,118 @@
-import * as helpers from '@turf/helpers';
-import {
-    point,
-    polygon,
-    lineString,
-    multiPoint,
-    multiPolygon,
-    multiLineString,
-    feature,
-    geometry,
-    featureCollection,
-    geometryCollection,
-    radiansToDistance,
-    distanceToRadians,
-    distanceToDegrees,
-    bearingToAngle,
-    radians2degrees,
-    degrees2radians,
-    round,
-    convertDistance,
-    convertArea,
-    isNumber} from '@turf/helpers';
-import * as invariant from '@turf/invariant';
-import {
-    getGeom,
-    getGeomType,
-    getCoord,
-    getCoords,
-    geojsonType,
-    featureOf,
-    collectionOf,
-    containsNumber,
-    getType} from '@turf/invariant';
-import * as meta from '@turf/meta';
-import {
-    coordEach,
-    coordReduce,
-    propEach,
-    propReduce,
-    featureEach,
-    featureReduce,
-    coordAll,
-    geomEach,
-    geomReduce,
-    flattenEach,
-    flattenReduce,
-    segmentEach,
-    segmentReduce,
-    lineEach, // v4.7.0
-    lineReduce // v4.7.0
-} from '@turf/meta';
-import * as clusters from '@turf/clusters'; // v4.6.0
-import {
+/**
+ * Turf is a modular geospatial analysis engine written in JavaScript. It performs geospatial
+ * processing tasks with GeoJSON data and can be run on a server or in a browser.
+ *
+ * @module turf
+ * @summary Geospatial analysis for JavaScript
+ */
+export {default as isolines} from '@turf/isolines';
+export {default as convex} from '@turf/convex';
+export {default as within} from '@turf/within';
+export {default as concave} from '@turf/concave';
+export {default as difference} from '@turf/difference';
+export {default as dissolve} from '@turf/dissolve';
+export {default as collect} from '@turf/collect';
+export {default as flip} from '@turf/flip';
+export {default as simplify} from '@turf/simplify';
+export {default as bezier} from '@turf/bezier';
+export {default as tag} from '@turf/tag';
+export {default as sample} from '@turf/sample';
+export {default as envelope} from '@turf/envelope';
+export {default as square} from '@turf/square';
+export {default as circle} from '@turf/circle';
+export {default as midpoint} from '@turf/midpoint';
+export {default as buffer} from '@turf/buffer';
+export {default as center} from '@turf/center';
+export {default as centerOfMass} from '@turf/center-of-mass';
+export {default as centroid} from '@turf/centroid';
+export {default as combine} from '@turf/combine';
+export {default as distance} from '@turf/distance';
+export {default as explode} from '@turf/explode';
+export {default as bbox} from '@turf/bbox';
+export {default as tesselate} from '@turf/tesselate';
+export {default as bboxPolygon} from '@turf/bbox-polygon';
+export {default as inside} from '@turf/inside';
+export {default as intersect} from '@turf/intersect';
+export {default as nearest} from '@turf/nearest';
+export {default as planepoint} from '@turf/planepoint';
+export {default as random} from '@turf/random';
+export {default as tin} from '@turf/tin';
+export {default as union} from '@turf/union';
+export {default as bearing} from '@turf/bearing';
+export {default as destination} from '@turf/destination';
+export {default as kinks} from '@turf/kinks';
+export {default as pointOnSurface} from '@turf/point-on-surface';
+export {default as area} from '@turf/area';
+export {default as along} from '@turf/along';
+export {default as lineDistance} from '@turf/line-distance';
+export {default as lineSlice} from '@turf/line-slice';
+export {default as lineSliceAlong} from '@turf/line-slice-along';
+export {default as pointOnLine} from '@turf/point-on-line';
+export {default as pointGrid} from '@turf/point-grid';
+export {default as squareGrid} from '@turf/square-grid';
+export {default as triangleGrid} from '@turf/triangle-grid';
+export {default as hexGrid} from '@turf/hex-grid';
+export {default as idw} from '@turf/idw';
+export {default as truncate} from '@turf/truncate';
+export {default as flatten} from '@turf/flatten';
+export {default as lineIntersect} from '@turf/line-intersect';
+export {default as mask} from '@turf/mask';
+export {default as lineChunk} from '@turf/line-chunk';
+export {default as unkinkPolygon} from '@turf/unkink-polygon';
+export {default as greatCircle} from '@turf/great-circle';
+export {default as lineSegment} from '@turf/line-segment';
+export {default as lineSplit} from '@turf/line-split';
+export {default as lineArc} from '@turf/line-arc';
+export {default as polygonToLineString} from '@turf/polygon-to-linestring';
+export {default as lineStringToPolygon} from '@turf/linestring-to-polygon';
+export {default as bboxClip} from '@turf/bbox-clip';
+export {default as lineOverlap} from '@turf/line-overlap';
+export {default as sector} from '@turf/sector';
+export {default as rhumbBearing} from '@turf/rhumb-bearing';
+export {default as rhumbDistance} from '@turf/rhumb-distance';
+export {default as rhumbDestination} from '@turf/rhumb-destination';
+export {default as polygonTangents} from '@turf/polygon-tangents';
+export {default as rewind} from '@turf/rewind';
+export {default as isobands} from '@turf/isobands';
+export {default as transformRotate} from '@turf/transform-rotate';
+export {default as transformScale} from '@turf/transform-scale';
+export {default as transformTranslate} from '@turf/transform-translate';
+export {default as lineOffset} from '@turf/line-offset';
+export {default as polygonize} from '@turf/polygonize';
+export {default as booleanDisjoint} from '@turf/boolean-disjoint';
+export {default as booleanContains} from '@turf/boolean-contains';
+export {default as booleanCrosses} from '@turf/boolean-crosses';
+export {default as booleanClockwise} from '@turf/boolean-clockwise';
+export {default as booleanOverlap} from '@turf/boolean-overlap';
+export {default as booleanPointOnLine} from '@turf/boolean-point-on-line';
+export {default as booleanEqual} from '@turf/boolean-equal';
+export {default as booleanWithin} from '@turf/boolean-within';
+export {default as clone} from '@turf/clone';
+export {default as cleanCoords} from '@turf/clean-coords';
+export {default as interpolate} from '@turf/interpolate';
+export {default as clustersDbscan} from '@turf/clusters-dbscan';
+export {default as clustersKmeans} from '@turf/clusters-kmeans';
+export {default as pointToLineDistance} from '@turf/point-to-line-distance';
+export {default as booleanParallel} from '@turf/boolean-parallel';
+export {default as nearestPointToLine} from '@turf/nearest-point-to-line';
+export {
+    default as projection,
+    toMercator,
+    toWgs84,
+    convertToMercator,
+    convertToWgs84,
+    sign} from '@turf/projection';
+export {
+    default as clusters,
+    getCluster,
     clusterEach,
     clusterReduce,
-    getCluster
-} from '@turf/clusters'; // v4.6.0
-import * as projection from '@turf/projection'; // v4.7.0
-import {
-    toMercator,
-    toWgs84
-} from '@turf/projection'; // v4.7.0
-import * as isolines from '@turf/isolines';
-import * as convex from '@turf/convex';
-import * as within from '@turf/within';
-import * as concave from '@turf/concave';
-import * as difference from '@turf/difference';
-import * as dissolve from '@turf/dissolve';
-import * as collect from '@turf/collect';
-import * as flip from '@turf/flip';
-import * as simplify from '@turf/simplify';
-import * as bezier from '@turf/bezier';
-import * as tag from '@turf/tag';
-import * as sample from '@turf/sample';
-import * as envelope from '@turf/envelope';
-import * as square from '@turf/square';
-import * as circle from '@turf/circle';
-import * as midpoint from '@turf/midpoint';
-import * as buffer from '@turf/buffer';
-import * as center from '@turf/center';
-import * as centerOfMass from '@turf/center-of-mass';
-import * as centroid from '@turf/centroid';
-import * as combine from '@turf/combine';
-import * as distance from '@turf/distance';
-import * as explode from '@turf/explode';
-import * as bbox from '@turf/bbox';
-import * as tesselate from '@turf/tesselate';
-import * as bboxPolygon from '@turf/bbox-polygon';
-import * as inside from '@turf/inside';
-import * as intersect from '@turf/intersect';
-import * as nearest from '@turf/nearest';
-import * as planepoint from '@turf/planepoint';
-import * as random from '@turf/random';
-import * as tin from '@turf/tin';
-import * as union from '@turf/union';
-import * as bearing from '@turf/bearing';
-import * as destination from '@turf/destination';
-import * as kinks from '@turf/kinks';
-import * as pointOnSurface from '@turf/point-on-surface';
-import * as area from '@turf/area';
-import * as along from '@turf/along';
-import * as lineDistance from '@turf/line-distance';
-import * as lineSlice from '@turf/line-slice';
-import * as lineSliceAlong from '@turf/line-slice-along';
-import * as pointOnLine from '@turf/point-on-line';
-import * as pointGrid from '@turf/point-grid';
-import * as squareGrid from '@turf/square-grid';
-import * as triangleGrid from '@turf/triangle-grid';
-import * as hexGrid from '@turf/hex-grid';
-import * as idw from '@turf/idw';
-import * as truncate from '@turf/truncate';
-import * as flatten from '@turf/flatten';
-import * as lineIntersect from '@turf/line-intersect';
-import * as mask from '@turf/mask';
-import * as lineChunk from '@turf/line-chunk';
-import * as unkinkPolygon from '@turf/unkink-polygon';
-import * as greatCircle from '@turf/great-circle';
-import * as lineSegment from '@turf/line-segment';
-import * as lineSplit from '@turf/line-split';
-import * as lineArc from '@turf/line-arc';
-import * as polygonToLineString from '@turf/polygon-to-linestring';
-import * as lineStringToPolygon from '@turf/linestring-to-polygon';
-import * as bboxClip from '@turf/bbox-clip';
-import * as lineOverlap from '@turf/line-overlap';
-import * as sector from '@turf/sector';
-import * as rhumbBearing from '@turf/rhumb-bearing';
-import * as rhumbDistance from '@turf/rhumb-distance';
-import * as rhumbDestination from '@turf/rhumb-destination';
-import * as polygonTangents from '@turf/polygon-tangents';
-import * as rewind from '@turf/rewind';
-import * as isobands from '@turf/isobands';
-import * as transformRotate from '@turf/transform-rotate';
-import * as transformScale from '@turf/transform-scale';
-import * as transformTranslate from '@turf/transform-translate';
-import * as lineOffset from '@turf/line-offset';
-import * as polygonize from '@turf/polygonize';
-import * as booleanDisjoint from '@turf/boolean-disjoint';
-import * as booleanContains from '@turf/boolean-contains';
-import * as booleanCrosses from '@turf/boolean-crosses';
-import * as booleanClockwise from '@turf/boolean-clockwise';
-import * as booleanEqual from '@turf/boolean-equal';
-import * as booleanWithin from '@turf/boolean-within'; // 4.7.0
-import * as clone from '@turf/clone';
-import * as cleanCoords from '@turf/clean-coords';
-import * as pointToLineDistance from '@turf/point-to-line-distance'; // v4.7.0
-import * as booleanParallel from '@turf/boolean-parallel'; // v4.8.0
-import * as nearestPointToLine from '@turf/nearest-point-to-line'; // v4.8.0
-import * as clustersDbscan from '@turf/clusters-dbscan'; // v4.6.0
-import * as clustersKmeans from '@turf/clusters-kmeans'; // v4.6.0
-import * as interpolate from '@turf/interpolate'; // v4.6.0
-import * as booleanPointOnLine from '@turf/boolean-point-on-line' // v4.6.0
-import * as booleanOverlap from '@turf/boolean-overlap' // v4.6.0
+    createBins,
+    applyFilter,
+    propertiesContainsFilter,
+    filterProperties} from '@turf/clusters';
 export {
-    isolines,
-    convex,
-    within,
-    concave,
-    difference,
-    dissolve,
-    collect,
-    flip,
-    simplify,
-    bezier,
-    tag,
-    sample,
-    envelope,
-    square,
-    circle,
-    midpoint,
-    buffer,
-    center,
-    centerOfMass,
-    centroid,
-    combine,
-    distance,
-    explode,
-    bbox,
-    tesselate,
-    bboxPolygon,
-    inside,
-    intersect,
-    nearest,
-    planepoint,
-    random,
-    tin,
-    union,
-    bearing,
-    destination,
-    kinks,
-    pointOnSurface,
-    area,
-    along,
-    lineDistance,
-    lineSlice,
-    lineSliceAlong,
-    pointOnLine,
-    pointGrid,
-    squareGrid,
-    triangleGrid,
-    hexGrid,
-    idw,
+    default as helpers,
     point,
     polygon,
     lineString,
@@ -212,87 +126,38 @@ export {
     radiansToDistance,
     distanceToRadians,
     distanceToDegrees,
+    bearingToAngle,
+    degrees2radians,
+    radians2degrees,
+    convertDistance,
+    isNumber,
+    round,
+    convertArea} from '@turf/helpers';
+export {
+    default as invariant,
     getCoord,
     getCoords,
-    getGeom,
-    getGeomType,
     geojsonType,
     featureOf,
     collectionOf,
     containsNumber,
-    truncate,
-    flatten,
+    getType,
+    getGeom,
+    getGeomType} from '@turf/invariant';
+export {
+    default as meta,
     coordEach,
     coordReduce,
     propEach,
     propReduce,
     featureEach,
+    featureReduce,
     coordAll,
     geomEach,
-    lineIntersect,
-    mask,
-    lineChunk,
-    unkinkPolygon,
-    greatCircle,
-    lineSegment,
-    lineSplit,
-    lineArc,
-    polygonToLineString,
-    lineStringToPolygon,
-    bboxClip,
-    lineOverlap,
-    sector,
-    rhumbBearing,
-    rhumbDistance,
-    rhumbDestination,
-    polygonTangents,
-    rewind,
-    isobands,
-    radians2degrees,
-    degrees2radians,
-    round,
+    geomReduce,
     flattenEach,
     flattenReduce,
-    convertDistance,
-    convertArea,
-    transformRotate,
-    transformScale,
-    transformTranslate,
-    lineOffset,
-    polygonize,
-    bearingToAngle,
-    featureReduce,
-    geomReduce,
-    booleanWithin,
-    booleanDisjoint,
-    booleanContains,
-    booleanCrosses,
-    booleanClockwise,
-    booleanEqual,
-    clone,
-    segmentEach,
     segmentReduce,
-    cleanCoords, // v4.6.0
-    isNumber,
-    pointToLineDistance, // v4.7.0
-    helpers,
-    meta,
-    invariant,
-    lineEach, // v4.7.0
-    lineReduce, // v4.7.0
-    getType, // v4.8.0
-    booleanParallel, // v4.8.0
-    nearestPointToLine, // v4.8.0
-    clusters, // v4.6.0
-    clustersDbscan, // v4.6.0
-    clustersKmeans, // v4.6.0
-    clusterEach, // v4.6.0
-    clusterReduce, // v4.6.0
-    getCluster, // v4.6.0
-    interpolate, // v4.6.0
-    booleanPointOnLine, // v4.6.0
-    booleanOverlap, // v4.6.0
-    projection, // v4.7.0
-    toMercator, // v4.7.0
-    toWgs84 // v4.7.0
-};
+    segmentEach,
+    lineEach,
+    lineReduce} from '@turf/meta';

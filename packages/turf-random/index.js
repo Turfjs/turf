@@ -1,4 +1,4 @@
-import random from 'geojson-random';
+var random = require('geojson-random');
 
 /**
  * Generates random {@link GeoJSON} data, including {@link Point|Points} and {@link Polygon|Polygons}, for testing

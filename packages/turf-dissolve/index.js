@@ -1,9 +1,9 @@
 import turfUnion from '@turf/union';
 import booleanOverlap from '@turf/boolean-overlap';
 import turfbbox from '@turf/bbox';
-import Rbush from 'rbush';
-import gju from 'geojson-utils';
-import getClosest from 'get-closest';
+var Rbush = require('rbush');
+var gju = require('geojson-utils');
+var getClosest = require('get-closest');
 
 /**
  * Dissolves a FeatureCollection of polygons based on a property. Note that multipart features within the collection are not supported

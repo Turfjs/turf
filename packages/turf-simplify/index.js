@@ -1,4 +1,4 @@
-import simplifyJS from 'simplify-js';
+var simplifyJS = require('simplify-js');
 import cleanCoords from '@turf/clean-coords';
 import clone from '@turf/clone';
 import { geomEach } from '@turf/meta';

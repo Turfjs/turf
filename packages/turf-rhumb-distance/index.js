@@ -2,7 +2,7 @@
 // http://www.movable-type.co.uk/scripts/latlong.html#rhumblines
 import { radiansToDistance, distanceToRadians } from '@turf/helpers';
 import { getCoord } from '@turf/invariant';
-import { LatLonSpherical } from 'geodesy';
+var LatLonSpherical = require('geodesy').LatLonSpherical;
 
 /**
  * Calculates the distance along a rhumb line between two {@link Point|points} in degrees, radians,

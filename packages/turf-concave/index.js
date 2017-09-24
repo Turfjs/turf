@@ -1,7 +1,7 @@
 import tin from '@turf/tin';
-import { feature, featureCollection } from '@turf/helpers';
+const dissolve = require('geojson-dissolve');
 import distance from '@turf/distance';
-import dissolve from 'geojson-dissolve';
+import { feature, featureCollection } from '@turf/helpers';
 import { featureEach } from '@turf/meta';
 
 /**

@@ -1,4 +1,4 @@
-import { geometry as area } from '@mapbox/geojson-area';
+var area = require('@mapbox/geojson-area').geometry;
 import { geomReduce } from '@turf/meta';
 
 /**

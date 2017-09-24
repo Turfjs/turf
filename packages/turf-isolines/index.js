@@ -2,8 +2,8 @@ import bbox from '@turf/bbox';
 import { coordEach } from '@turf/meta';
 import { multiLineString, featureCollection } from '@turf/helpers';
 import { collectionOf } from '@turf/invariant';
-import isoContours from './isoContours';
-import gridToMatrix from './gridToMatrix';
+var isoContours = require('marchingsquares').isoContours;
+var gridToMatrix = require('grid-to-matrix');
 
 /**
  * Takes a grid {@link FeatureCollection} of {@link Point} features with z-values and an array of
