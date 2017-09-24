@@ -1,7 +1,7 @@
 /// <reference types="geojson" />
 
-type GeometryObject = GeoJSON.GeometryObject;
-type Feature = GeoJSON.Feature<any>;
+export type GeometryObject = GeoJSON.GeometryObject;
+export type Feature = GeoJSON.Feature<any>;
 
 /**
  * http://turfjs.org/docs/#cleancoords

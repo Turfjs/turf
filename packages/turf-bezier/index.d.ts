@@ -1,6 +1,6 @@
 /// <reference types="geojson" />
 
-type LineString = GeoJSON.Feature<GeoJSON.LineString>;
+export type LineString = GeoJSON.Feature<GeoJSON.LineString>;
 
 /**
  * http://turfjs.org/docs/#bezier

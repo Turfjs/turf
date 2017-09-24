@@ -1,9 +1,9 @@
 /// <reference types="geojson" />
 
-type Feature = GeoJSON.Feature<any>;
-type Features = GeoJSON.FeatureCollection<any>;
+export type Feature = GeoJSON.Feature<any>;
+export type FeatureCollection = GeoJSON.FeatureCollection<any>;
 
 /**
  * http://turfjs.org/docs/#area
  */
-export default function area(features: Feature | Features): number;
+export default function area(features: Feature | FeatureCollection): number;

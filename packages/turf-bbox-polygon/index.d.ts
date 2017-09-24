@@ -1,7 +1,7 @@
 /// <reference types="geojson" />
 
-type Polygon = GeoJSON.Feature<GeoJSON.Polygon>;
-type BBox = Array<number>;
+export type Polygon = GeoJSON.Feature<GeoJSON.Polygon>;
+export type BBox = [number, number, number, number];
 
 /**
  * http://turfjs.org/docs/#bboxpolygon

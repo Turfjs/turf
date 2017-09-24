@@ -1,4 +1,4 @@
-import * as random from './'
+import random from './'
 
 random('points', 3, {bbox: [1, 2, 3, 4]})
 random('point')

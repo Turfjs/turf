@@ -1,6 +1,6 @@
 /// <reference types="geojson" />
 
-type Point = GeoJSON.Feature<GeoJSON.Point> | GeoJSON.Point | number[];
+export type Point = GeoJSON.Feature<GeoJSON.Point> | GeoJSON.Point | number[];
 
 /**
  * http://turfjs.org/docs/#bearing

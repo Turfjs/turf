@@ -1,5 +1,5 @@
-import {featureCollection, point} from '@turf/helpers'
-import * as clustersKmeans from './'
+import { featureCollection, point } from '@turf/helpers'
+import clustersKmeans from './'
 
 // Fixtures
 const points = featureCollection([

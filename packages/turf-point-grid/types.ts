@@ -1,5 +1,4 @@
-import * as pointGrid from './';
-import {BBox} from './';
+import {default as pointGrid, BBox} from './';
 
 const units = 'miles';
 const cellSide = 50;

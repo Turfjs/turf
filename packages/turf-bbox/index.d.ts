@@ -1,8 +1,8 @@
 /// <reference types="geojson" />
 
-type Feature = GeoJSON.Feature<any>;
-type Features = GeoJSON.FeatureCollection<any>;
-type BBox = [number, number, number, number];
+export type Feature = GeoJSON.Feature<any>;
+export type Features = GeoJSON.FeatureCollection<any>;
+export type BBox = [number, number, number, number];
 
 /**
  * http://turfjs.org/docs/#bbox

@@ -1,7 +1,7 @@
 /// <reference types="geojson" />
 
-type Geom = GeoJSON.LineString;
-type Feature<Geom extends GeoJSON.GeometryObject> = GeoJSON.Feature<Geom>;
+export type Geom = GeoJSON.LineString;
+export type Feature<Geom extends GeoJSON.GeometryObject> = GeoJSON.Feature<Geom>;
 
 /**
  * http://turfjs.org/docs/#booleanparallel

@@ -6,17 +6,13 @@ import {
     Polygon, Polygons, MultiPolygon, MultiPolygons,
     Feature, Features} from '@turf/helpers'
 
-interface Flatten {
-    /**
-     * http://turfjs.org/docs/#flatten
-     */
-    (geojson: Point | Points | MultiPoint | MultiPoints): Points;
-    (geojson: LineString | LineStrings | MultiLineString | MultiLineStrings): LineStrings;
-    (geojson: Polygons | Polygons | MultiPolygons | MultiPolygons): Polygons;
-    (geojson: Feature<any> | Features<any>): Features<any>;
-    (geojson: GeoJSON.GeometryCollection | GeoJSON.GeometryObject): Features<any>;
-}
+/**
+ * http://turfjs.org/docs/#flatten
+ */
+declare function flatten(geojson: Point | Points | MultiPoint | MultiPoints): Points;
+declare function flatten(geojson: LineString | LineStrings | MultiLineString | MultiLineStrings): LineStrings;
+declare function flatten(geojson: Polygons | Polygons | MultiPolygons | MultiPolygons): Polygons;
+declare function flatten(geojson: Feature<any> | Features<any>): Features<any>;
+declare function flatten(geojson: GeoJSON.GeometryCollection | GeoJSON.GeometryObject): Features<any>;
 
-declare const flatten: Flatten;
-declare namespace flatten { }
-export = flatten;
+export default flatten;

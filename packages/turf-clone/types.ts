@@ -1,5 +1,5 @@
 import {point, lineString} from '@turf/helpers'
-import * as clone from './'
+import clone from './'
 
 const pt = point([0, 20])
 const ptCloned: GeoJSON.Feature<GeoJSON.Point> = clone(pt)

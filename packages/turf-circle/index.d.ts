@@ -1,7 +1,7 @@
 /// <reference types="geojson" />
 
-type Point = GeoJSON.Feature<GeoJSON.Point> | GeoJSON.Point | number[];
-type Polygon = GeoJSON.Feature<GeoJSON.Polygon>;
+export type Point = GeoJSON.Feature<GeoJSON.Point> | GeoJSON.Point | number[];
+export type Polygon = GeoJSON.Feature<GeoJSON.Polygon>;
 
 /**
  * http://turfjs.org/docs/#circle
