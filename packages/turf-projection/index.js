@@ -1,5 +1,7 @@
 import { coordEach } from '@turf/meta';
 import clone from '@turf/clone';
+import * as projection from '.';
+export default projection;
 
 /**
  * Converts a WGS84 GeoJSON object into Mercator (EPSG:900913) projection
@@ -69,7 +71,7 @@ function convert(geojson, mutate, projection) {
  * @param {Array<number>} lonLat WGS84 point
  * @returns {Array<number>} Mercator [x, y] point
  */
-export function convertToMercator(lonLat) {
+function convertToMercator(lonLat) {
     var D2R = Math.PI / 180,
         // 900913 properties
         A = 6378137.0,
@@ -100,7 +102,7 @@ export function convertToMercator(lonLat) {
  * @param {Array<number>} xy Mercator [x, y] point
  * @returns {Array<number>} WGS84 [lon, lat] point
  */
-export function convertToWgs84(xy) {
+function convertToWgs84(xy) {
     // 900913 properties.
     var R2D = 180 / Math.PI,
         A = 6378137.0;
@@ -118,6 +120,6 @@ export function convertToWgs84(xy) {
  * @param {number} x input
  * @returns {number} -1|0|1 output
  */
-export function sign(x) {
+function sign(x) {
     return (x < 0) ? -1 : (x > 0) ? 1 : 0;
 }

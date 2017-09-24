@@ -34,15 +34,15 @@
     "benchmark": "*",
     "glob": "*",
     "load-json-file": "*",
+    "rollup": "*",
     "tape": "*",
-    "write-json-file": "*",
-    "rollup": "*"
+    "write-json-file": "*"
   },
   "dependencies": {
     "@turf/area": "^4.7.3",
     "@turf/helpers": "^4.7.3",
     "@turf/invariant": "^4.7.3",
     "@turf/meta": "^4.7.3",
-    "jsts": "1.3.0"
+    "jsts": "1.4.0"
   }
 }

@@ -1,5 +1,8 @@
 /// <reference types="geojson" />
 
+import * as projection from '.'
+export default projection;
+
 type Types = GeoJSON.FeatureCollection<any> | GeoJSON.Feature<any> | GeoJSON.GeometryObject | GeoJSON.GeometryCollection;
 
 /**

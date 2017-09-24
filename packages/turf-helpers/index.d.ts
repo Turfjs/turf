@@ -1,5 +1,8 @@
 /// <reference types='geojson' />
 
+import * as helpers from '.';
+export default helpers;
+
 export type Id = string|number
 export type Points = GeoJSON.FeatureCollection<GeoJSON.Point>;
 export type Point = GeoJSON.Feature<GeoJSON.Point>;
@@ -29,11 +32,6 @@ export interface FeatureGeometryCollection extends GeoJSON.Feature<any> {
   geometry: GeometryCollection
 }
 
-export interface FeatureCollection {
-  <Geom extends Geoms>(features: Feature<Geom>[], bbox?: BBox, id?: Id): Features<Geom>;
-  (features: Feature<any>[], bbox?: BBox, id?: Id): Features<any>;
-}
-
 export interface Properties {
   [key: string]: any
 }
@@ -42,6 +40,12 @@ export interface Properties {
  * http://turfjs.org/docs/#feature
  */
 export function feature<Geom extends GeometryObject>(geometry: Geom, properties?: Properties, bbox?: BBox, id?: Id): Feature<Geom>;
+
+/**
+ * http://turfjs.org/docs/#featurecollection
+ */
+export function featureCollection<Geom extends Geoms>(features: Feature<Geom>[], bbox?: BBox, id?: Id): Features<Geom>;
+export function featureCollection(features: Feature<any>[], bbox?: BBox, id?: Id): Features<any>;
 
 /**
  * http://turfjs.org/docs/#geometry
@@ -62,11 +66,6 @@ export function polygon(coordinates: Position[][], properties?: Properties, bbox
  * http://turfjs.org/docs/#linestring
  */
 export function lineString(coordinates: Position[], properties?: Properties, bbox?: BBox, id?: Id): LineString;
-
-/**
- * http://turfjs.org/docs/#featurecollection
- */
-export const featureCollection: FeatureCollection;
 
 /**
  * http://turfjs.org/docs/#multilinestring

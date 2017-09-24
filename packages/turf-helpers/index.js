@@ -1,3 +1,6 @@
+import * as helpers from '.';
+export default helpers;
+
 /**
  * Wraps a GeoJSON {@link Geometry} in a GeoJSON {@link Feature}.
  *

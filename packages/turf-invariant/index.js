@@ -1,3 +1,6 @@
+import * as invariant from '.';
+export default invariant;
+
 /**
  * Unwrap a coordinate from a Point Feature, Geometry or a single coordinate.
  *

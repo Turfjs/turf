@@ -1,3 +1,6 @@
+import * as meta from '.';
+export default meta;
+
 /**
  * GeoJSON BBox
  *

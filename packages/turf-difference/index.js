@@ -1,4 +1,3 @@
-// depend on jsts for now https://github.com/bjornharrtell/jsts/blob/master/examples/overlay.html
 var jsts = require('jsts');
 import area from '@turf/area';
 import { feature } from '@turf/helpers';
