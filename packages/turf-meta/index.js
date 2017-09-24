@@ -970,23 +970,3 @@ export function lineReduce(geojson, callback, initialValue) {
     });
     return previousValue;
 }
-
-export default {
-    coordEach,
-    coordReduce,
-    propEach,
-    propReduce,
-    featureEach,
-    featureReduce,
-    coordAll,
-    geomEach,
-    geomReduce,
-    flattenEach,
-    flattenReduce,
-    segmentEach,
-    segmentReduce,
-    feature,
-    lineString,
-    lineEach,
-    lineReduce
-};
