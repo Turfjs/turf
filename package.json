@@ -3,10 +3,10 @@
   "version": "4.0.0",
   "description": "a node.js library for performing geospatial operations with geojson",
   "scripts": {
-    "test": "npm run lint && lerna bootstrap && lerna run test && npm run types",
     "lint": "eslint packages/turf-*/index.js",
-    "postlint": "documentation lint packages/turf-*/index.js",
-    "types": "tsc",
+    "postlint": "documentation lint packages/turf-*/index.js && tsc",
+    "pretest": "npm run lint && lerna bootstrap && lerna run pretest",
+    "test": "tap packages/turf-*/test.js",
     "docs": "node ./scripts/generate-readmes",
     "es6": "npm run es6:import && npm run es6:export",
     "es6:import": "jscodeshift -t node_modules/5to6-codemod/transforms/cjs.js packages/turf-*/index.js",

@@ -96,23 +96,19 @@ export {default as pointToLineDistance} from '@turf/point-to-line-distance';
 export {default as booleanParallel} from '@turf/boolean-parallel';
 export {default as nearestPointToLine} from '@turf/nearest-point-to-line';
 export {
-    default as projection,
     toMercator,
-    toWgs84,
-    convertToMercator,
-    convertToWgs84,
-    sign} from '@turf/projection';
+    toWgs84
+} from '@turf/projection';
+import * as projection from '@turf/projection';
+export { projection };
 export {
-    default as clusters,
     getCluster,
     clusterEach,
-    clusterReduce,
-    createBins,
-    applyFilter,
-    propertiesContainsFilter,
-    filterProperties} from '@turf/clusters';
+    clusterReduce
+} from '@turf/clusters';
+import * as clusters from '@turf/clusters';
+export { clusters };
 export {
-    default as helpers,
     point,
     polygon,
     lineString,
@@ -132,9 +128,11 @@ export {
     convertDistance,
     isNumber,
     round,
-    convertArea} from '@turf/helpers';
+    convertArea
+} from '@turf/helpers';
+import * as helpers from '@turf/hepers';
+export { helpers };
 export {
-    default as invariant,
     getCoord,
     getCoords,
     geojsonType,
@@ -142,10 +140,11 @@ export {
     collectionOf,
     containsNumber,
     getType,
-    getGeom,
-    getGeomType} from '@turf/invariant';
+    getGeom
+} from '@turf/invariant';
+import * as invariant from '@turf/invariant';
+export { invariant };
 export {
-    default as meta,
     coordEach,
     coordReduce,
     propEach,
@@ -161,3 +160,5 @@ export {
     segmentEach,
     lineEach,
     lineReduce} from '@turf/meta';
+import * as meta from '@turf/meta';
+export { meta };
