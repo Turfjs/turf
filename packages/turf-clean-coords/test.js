@@ -1,15 +1,17 @@
-const fs = require('fs');
-const test = require('tape');
-const path = require('path');
-const load = require('load-json-file');
-const truncate = require('@turf/truncate');
-const point = require('@turf/helpers').point;
-const multiPoint = require('@turf/helpers').multiPoint;
-const lineString = require('@turf/helpers').lineString;
-const multiPolygon = require('@turf/helpers').multiPolygon;
-const polygon = require('@turf/helpers').polygon;
-const write = require('write-json-file');
-const cleanCoords = require('./');
+import fs from 'fs';
+import test from 'tape';
+import path from 'path';
+import load from 'load-json-file';
+import truncate from '@turf/truncate';
+import {
+    point,
+    multiPoint,
+    lineString,
+    multiPolygon,
+    polygon,
+ } from '@turf/helpers';
+import write from 'write-json-file';
+import cleanCoords from '.';
 
 const directories = {
     in: path.join(__dirname, 'test', 'in') + path.sep,

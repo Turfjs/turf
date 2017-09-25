@@ -1,8 +1,8 @@
-var test = require('tape');
-var point = require('@turf/helpers').point;
-var polygon = require('@turf/helpers').polygon;
-var fs = require('fs');
-var inside = require('./');
+import test from 'tape';
+import { point } from '@turf/helpers';
+import { polygon } from '@turf/helpers';
+import fs from 'fs';
+import inside from '.';
 
 test('featureCollection', function (t) {
     // test for a simple polygon

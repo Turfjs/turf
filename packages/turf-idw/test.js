@@ -1,10 +1,10 @@
-const fs = require('fs');
-const path = require('path');
-const test = require('tape');
-const write = require('write-json-file');
-const load = require('load-json-file');
-const {point, featureCollection} = require('@turf/helpers');
-const idw = require('./');
+import fs from 'fs';
+import path from 'path';
+import test from 'tape';
+import write from 'write-json-file';
+import load from 'load-json-file';
+import { point, featureCollection } from '@turf/helpers';
+import idw from '.';
 
 const directories = {
     in: path.join(__dirname, 'test', 'in') + path.sep,

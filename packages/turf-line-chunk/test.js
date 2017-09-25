@@ -1,12 +1,12 @@
-const fs = require('fs');
-const test = require('tape');
-const path = require('path');
-const load = require('load-json-file');
-const write = require('write-json-file');
-const truncate = require('@turf/truncate');
-const {featureEach} = require('@turf/meta');
-const {lineString, featureCollection} = require('@turf/helpers');
-const lineChunk = require('./');
+import fs from 'fs';
+import test from 'tape';
+import path from 'path';
+import load from 'load-json-file';
+import write from 'write-json-file';
+import truncate from '@turf/truncate';
+import { featureEach } from '@turf/meta';
+import { lineString, featureCollection } from '@turf/helpers';
+import lineChunk from '.';
 
 const directories = {
     in: path.join(__dirname, 'test', 'in') + path.sep,

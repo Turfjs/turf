@@ -1,13 +1,13 @@
-const fs = require('fs');
-const test = require('tape');
-const path = require('path');
-const load = require('load-json-file');
-const write = require('write-json-file');
-const centroid = require('@turf/centroid');
-const truncate = require('@turf/truncate');
-const {getCoord} = require('@turf/invariant');
-const {point, lineString, featureCollection, geometryCollection} = require('@turf/helpers');
-const rotate = require('./');
+import fs from 'fs';
+import test from 'tape';
+import path from 'path';
+import load from 'load-json-file';
+import write from 'write-json-file';
+import centroid from '@turf/centroid';
+import truncate from '@turf/truncate';
+import { getCoord } from '@turf/invariant';
+import { point, lineString, featureCollection, geometryCollection } from '@turf/helpers';
+import rotate from '.';
 
 const directories = {
     in: path.join(__dirname, 'test', 'in') + path.sep,

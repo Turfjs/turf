@@ -1,11 +1,11 @@
-const test = require('tape');
-const path = require('path');
-const load = require('load-json-file');
-const write = require('write-json-file');
-const centroid = require('@turf/centroid');
-const distance = require('@turf/distance');
-const truncate = require('@turf/truncate');
-const grid = require('./');
+import test from 'tape';
+import path from 'path';
+import load from 'load-json-file';
+import write from 'write-json-file';
+import centroid from '@turf/centroid';
+import distance from '@turf/distance';
+import truncate from '@turf/truncate';
+import grid from '.';
 
 const directories = {
     in: path.join(__dirname, 'test', 'in') + path.sep,

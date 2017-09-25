@@ -1,9 +1,9 @@
-const test = require('tape');
-const glob = require('glob');
-const path = require('path');
-const load = require('load-json-file');
-const shapely = require('boolean-shapely');
-const crosses = require('./');
+import test from 'tape';
+import glob from 'glob';
+import path from 'path';
+import load from 'load-json-file';
+import shapely from 'boolean-shapely';
+import crosses from '.';
 
 test('turf-boolean-crosses', t => {
     // True Fixtures

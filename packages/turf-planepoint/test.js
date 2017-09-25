@@ -1,8 +1,9 @@
 // http://math.stackexchange.com/questions/28043/finding-the-z-value-on-a-plane-with-x-y-values
 // http://stackoverflow.com/a/13916669/461015
-const test = require('tape');
-const {polygon} = require('@turf/helpers');
-const planepoint = require('./');
+import test from 'tape';
+
+import { polygon } from '@turf/helpers';
+import planepoint from '.';
 
 
 test('turf-planepoint', t => {

@@ -1,7 +1,7 @@
-const fs = require('fs');
-const path = require('path');
-const test = require('tape');
-const tin = require('./');
+import fs from 'fs';
+import path from 'path';
+import test from 'tape';
+import tin from '.';
 
 const points = require(path.join(__dirname,  'test', 'Points.json'));
 

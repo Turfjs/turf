@@ -1,7 +1,7 @@
-const path = require('path');
-const test = require('tape');
-const load = require('load-json-file');
-const tag = require('./');
+import path from 'path';
+import test from 'tape';
+import load from 'load-json-file';
+import tag from '.';
 
 test('tag', t => {
     const points = load.sync(path.join(__dirname, 'test', 'tagPoints.geojson'));

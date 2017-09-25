@@ -1,11 +1,11 @@
-const fs = require('fs');
-const test = require('tape');
-const path = require('path');
-const load = require('load-json-file');
-const write = require('write-json-file');
-const truncate = require('@turf/truncate');
-const {polygon, multiPolygon} = require('@turf/helpers');
-const simplify = require('./');
+import fs from 'fs';
+import test from 'tape';
+import path from 'path';
+import load from 'load-json-file';
+import write from 'write-json-file';
+import truncate from '@turf/truncate';
+import { polygon, multiPolygon } from '@turf/helpers';
+import simplify from '.';
 
 const directories = {
     in: path.join(__dirname, 'test', 'in') + path.sep,

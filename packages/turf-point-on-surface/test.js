@@ -1,7 +1,7 @@
-var test = require('tape');
-var centroid = require('./');
-var fs = require('fs');
-var inside = require('@turf/inside');
+import test from 'tape';
+import centroid from '.';
+import fs from 'fs';
+import inside from '@turf/inside';
 
 test('point-on-surface -- closest vertex on polygons', function (t) {
     var fc = JSON.parse(fs.readFileSync(__dirname + '/test/polygons.geojson'));

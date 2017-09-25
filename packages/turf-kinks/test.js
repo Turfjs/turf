@@ -1,10 +1,10 @@
-const test = require('tape');
-const fs = require('fs');
-const path = require('path');
-const load = require('load-json-file');
-const write = require('write-json-file');
-const featureEach = require('@turf/meta').featureEach;
-const kinks = require('./');
+import test from 'tape';
+import fs from 'fs';
+import path from 'path';
+import load from 'load-json-file';
+import write from 'write-json-file';
+import { featureEach } from '@turf/meta';
+import kinks from '.';
 
 const directories = {
     in: path.join(__dirname, 'test', 'in') + path.sep,

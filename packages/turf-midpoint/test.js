@@ -1,7 +1,7 @@
-var test = require('tape');
-var midpoint = require('./');
-var distance = require('@turf/distance');
-var point = require('@turf/helpers').point;
+import test from 'tape';
+import midpoint from '.';
+import distance from '@turf/distance';
+import { point } from '@turf/helpers';
 
 var units = 'miles';
 

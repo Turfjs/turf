@@ -1,12 +1,12 @@
-const fs = require('fs');
-const test = require('tape');
-const path = require('path');
-const load = require('load-json-file');
-const write = require('write-json-file');
-const circle = require('@turf/circle');
-const truncate = require('@turf/truncate');
-const {geometryCollection, featureCollection, point, lineString, round} = require('@turf/helpers');
-const nearestPointToLine = require('./');
+import fs from 'fs';
+import test from 'tape';
+import path from 'path';
+import load from 'load-json-file';
+import write from 'write-json-file';
+import circle from '@turf/circle';
+import truncate from '@turf/truncate';
+import { geometryCollection, featureCollection, point, lineString, round } from '@turf/helpers';
+import nearestPointToLine from '.';
 
 const directories = {
     in: path.join(__dirname, 'test', 'in') + path.sep,

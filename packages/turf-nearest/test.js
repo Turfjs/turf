@@ -1,6 +1,6 @@
-var test = require('tape');
-var nearest = require('./');
-var fs = require('fs');
+import test from 'tape';
+import nearest from '.';
+import fs from 'fs';
 
 test('distance', function (t) {
     var pt = JSON.parse(fs.readFileSync(__dirname + '/test/pt.geojson'));

@@ -1,7 +1,7 @@
-var test = require('tape');
-var grid = require('./');
-var fs = require('fs');
-var bboxPolygon = require('@turf/bbox-polygon');
+import test from 'tape';
+import grid from '.';
+import fs from 'fs';
+import bboxPolygon from '@turf/bbox-polygon';
 
 test('triangle-grid', function (t) {
     var bbox1 = [

@@ -1,11 +1,11 @@
-const fs = require('fs');
-const test = require('tape');
-const path = require('path');
-const load = require('load-json-file');
-const write = require('write-json-file');
-const {featureEach} = require('@turf/meta');
-const {point, lineString, featureCollection} = require('@turf/helpers');
-const lineSplit = require('./');
+import fs from 'fs';
+import test from 'tape';
+import path from 'path';
+import load from 'load-json-file';
+import write from 'write-json-file';
+import { featureEach } from '@turf/meta';
+import { point, lineString, featureCollection } from '@turf/helpers';
+import lineSplit from '.';
 
 const directories = {
     in: path.join(__dirname, 'test', 'in') + path.sep,

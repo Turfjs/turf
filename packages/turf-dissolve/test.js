@@ -1,8 +1,8 @@
-const test = require('tape');
-const path = require('path');
-const load = require('load-json-file');
-const write = require('write-json-file');
-const dissolve = require('./');
+import test from 'tape';
+import path from 'path';
+import load from 'load-json-file';
+import write from 'write-json-file';
+import dissolve from '.';
 
 const directories = {
     out: path.join(__dirname, 'test', 'out') + path.sep,

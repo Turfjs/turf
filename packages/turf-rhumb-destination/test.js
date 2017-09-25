@@ -1,12 +1,12 @@
-const fs = require('fs');
-const path = require('path');
-const test = require('tape');
-const write = require('write-json-file');
-const load = require('load-json-file');
-const truncate = require('@turf/truncate');
-const {getCoords} = require('@turf/invariant');
-const {featureCollection, lineString, point} = require('@turf/helpers');
-const rhumbDestination = require('./');
+import fs from 'fs';
+import path from 'path';
+import test from 'tape';
+import write from 'write-json-file';
+import load from 'load-json-file';
+import truncate from '@turf/truncate';
+import { getCoords } from '@turf/invariant';
+import { featureCollection, lineString, point } from '@turf/helpers';
+import rhumbDestination from '.';
 
 const directories = {
     in: path.join(__dirname, 'test', 'in') + path.sep,

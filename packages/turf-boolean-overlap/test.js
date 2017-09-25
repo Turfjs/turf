@@ -1,12 +1,10 @@
-const glob = require('glob');
-const path = require('path');
-const test = require('tape');
-const load = require('load-json-file');
-const shapely = require('boolean-shapely');
-const point = require('@turf/helpers').point;
-const lineString = require('@turf/helpers').lineString;
-const polygon = require('@turf/helpers').polygon;
-const overlap = require('./');
+import glob from 'glob';
+import path from 'path';
+import test from 'tape';
+import load from 'load-json-file';
+import shapely from 'boolean-shapely';
+import { point, lineString, polygon } from '@turf/helpers';
+import overlap from '.';
 
 test('turf-boolean-overlap', t => {
     // True Fixtures

@@ -1,12 +1,12 @@
-const test = require('tape');
-const point = require('@turf/helpers').point;
-const multipoint = require('@turf/helpers').multiPoint;
-const linestring = require('@turf/helpers').lineString;
-const multilinestring = require('@turf/helpers').multiLineString;
-const polygon = require('@turf/helpers').polygon;
-const multipolygon = require('@turf/helpers').multiPolygon;
-const featurecollection = require('@turf/helpers').featureCollection;
-const combine = require('./');
+import test from 'tape';
+import { point } from '@turf/helpers';
+import { multiPoint as multipoint } from '@turf/helpers';
+import { lineString as linestring } from '@turf/helpers';
+import { multiLineString as multilinestring } from '@turf/helpers';
+import { polygon } from '@turf/helpers';
+import { multiPolygon as multipolygon } from '@turf/helpers';
+import { featureCollection as featurecollection } from '@turf/helpers';
+import combine from '.';
 
 test('combine -- points', t => {
     // MultiPoint

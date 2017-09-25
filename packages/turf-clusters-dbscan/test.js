@@ -1,15 +1,15 @@
-const fs = require('fs');
-const test = require('tape');
-const path = require('path');
-const load = require('load-json-file');
-const write = require('write-json-file');
-const centroid = require('@turf/centroid');
-const chromatism = require('chromatism');
-const concaveman = require('concaveman');
-const clusters = require('@turf/clusters');
-const meta = require('@turf/meta');
-const helpers = require('@turf/helpers');
-const clustersDbscan = require('./');
+import fs from 'fs';
+import test from 'tape';
+import path from 'path';
+import load from 'load-json-file';
+import write from 'write-json-file';
+import centroid from '@turf/centroid';
+import chromatism from 'chromatism';
+import concaveman from 'concaveman';
+import { point, polygon, featureCollection } from '@turf/helpers';
+import { clusterReduce, clusterEach } from '@turf/clusters';
+import { coordAll, featureEach } from '@turf/meta';
+import clustersDbscan from '.';
 
 const directories = {
     in: path.join(__dirname, 'test', 'in') + path.sep,
@@ -46,14 +46,14 @@ test('clusters-dbscan', t => {
     t.end();
 });
 
-const points = helpers.featureCollection([
-    helpers.point([0, 0], {foo: 'bar'}),
-    helpers.point([2, 4], {foo: 'bar'}),
-    helpers.point([3, 6], {foo: 'bar'})
+const points = featureCollection([
+    point([0, 0], {foo: 'bar'}),
+    point([2, 4], {foo: 'bar'}),
+    point([3, 6], {foo: 'bar'})
 ]);
 
 test('clusters-dbscan -- throws', t => {
-    const poly = helpers.polygon([[[0, 0], [10, 10], [0, 10], [0, 0]]]);
+    const poly = polygon([[[0, 0], [10, 10], [0, 10], [0, 0]]]);
     t.throws(() => clustersDbscan(poly, 1), /Input must contain Points/);
     t.throws(() => clustersDbscan(points), /maxDistance is required/);
     t.throws(() => clustersDbscan(points, -4), /Invalid maxDistance/);
@@ -77,12 +77,12 @@ test('clusters-dbscan -- translate properties', t => {
 
 // style result
 function styleResult(clustered) {
-    const count = clusters.clusterReduce(clustered, 'cluster', i => i + 1, 0);
+    const count = clusterReduce(clustered, 'cluster', i => i + 1, 0);
     const colours = chromatism.adjacent(360 / count, count, '#0000FF').hex;
     const features = [];
 
     // Add all clusterd points
-    meta.featureEach(clustered, function (pt) {
+    featureEach(clustered, function (pt) {
         const dbscan = pt.properties.dbscan;
         const clusterId = pt.properties.cluster;
 
@@ -106,7 +106,7 @@ function styleResult(clustered) {
     });
 
     // Iterate over each Cluster
-    clusters.clusterEach(clustered, 'cluster', (cluster, clusterValue, clusterId) => {
+    clusterEach(clustered, 'cluster', (cluster, clusterValue, clusterId) => {
         const color = chromatism.brightness(-25, colours[clusterId]).hex;
 
         // Add Centroid
@@ -117,11 +117,11 @@ function styleResult(clustered) {
         }));
 
         // Add concave polygon
-        features.push(helpers.polygon([concaveman(meta.coordAll(cluster))], {
+        features.push(polygon([concaveman(coordAll(cluster))], {
             fill: color,
             stroke: color,
             'fill-opacity': 0.3
         }));
     });
-    return helpers.featureCollection(features);
+    return featureCollection(features);
 }

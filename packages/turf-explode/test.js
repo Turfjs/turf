@@ -1,10 +1,10 @@
-const fs = require('fs');
-const path = require('path');
-const tape = require('tape');
-const fixtures = require('geojson-fixtures').all;
-const load = require('load-json-file');
-const write = require('write-json-file');
-const explode = require('.');
+import fs from 'fs';
+import path from 'path';
+import tape from 'tape';
+import { all as fixtures } from 'geojson-fixtures';
+import load from 'load-json-file';
+import write from 'write-json-file';
+import explode from '.';
 
 const directories = {
     in: path.join(__dirname, 'test', 'in') + path.sep,

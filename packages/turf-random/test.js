@@ -1,7 +1,7 @@
-var test = require('tape');
-var random = require('./');
+import test from 'tape';
+import random from '.';
 
-test('random(points)', function (t) {
+test('random(points)', t => {
     var points = random('points');
     t.equal(points.type, 'FeatureCollection', 'is a featurecollection');
     t.equal(points.features.length, 1, 'right number of features');
@@ -9,7 +9,7 @@ test('random(points)', function (t) {
     t.end();
 });
 
-test('random(polygons)', function (t) {
+test('random(polygons)', t => {
     var points = random('polygons');
     t.equal(points.type, 'FeatureCollection', 'is a featurecollection');
     t.equal(points.features.length, 1, 'right number of features');
@@ -17,7 +17,7 @@ test('random(polygons)', function (t) {
     t.end();
 });
 
-test('random(polygons, 10)', function (t) {
+test('random(polygons, 10)', t => {
     var points = random('polygons', 10);
     t.equal(points.type, 'FeatureCollection', 'is a featurecollection');
     t.equal(points.features.length, 10, 'right number of features');
@@ -25,7 +25,7 @@ test('random(polygons, 10)', function (t) {
     t.end();
 });
 
-test('random(polygons, 1, {num_vertices})', function (t) {
+test('random(polygons, 1, {num_vertices})', t => {
     var points = random('polygons', 10, {num_vertices: 23});
     t.equal(points.type, 'FeatureCollection', 'is a featurecollection');
     t.equal(points.features.length, 10, 'right number of features');
@@ -33,7 +33,7 @@ test('random(polygons, 1, {num_vertices})', function (t) {
     t.end();
 });
 
-test('random(points, 10, {bbox})', function (t) {
+test('random(points, 10, {bbox})', t => {
     var points = random('points', 10, { bbox: [0, 0, 0, 0] });
     t.equal(points.type, 'FeatureCollection', 'is a featurecollection');
     t.equal(points.features.length, 10, 'right number of features');

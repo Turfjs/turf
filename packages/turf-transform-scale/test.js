@@ -1,17 +1,17 @@
-const fs = require('fs');
-const test = require('tape');
-const path = require('path');
-const load = require('load-json-file');
-const write = require('write-json-file');
-const center = require('@turf/center');
-const hexGrid = require('@turf/hex-grid');
-const truncate = require('@turf/truncate');
-const turfBBox = require('@turf/bbox');
-const centroid = require('@turf/centroid');
-const {featureEach} = require('@turf/meta');
-const {getCoord} = require('@turf/invariant');
-const {point, lineString, geometryCollection, featureCollection} = require('@turf/helpers');
-const scale = require('./');
+import fs from 'fs';
+import test from 'tape';
+import path from 'path';
+import load from 'load-json-file';
+import write from 'write-json-file';
+import center from '@turf/center';
+import hexGrid from '@turf/hex-grid';
+import truncate from '@turf/truncate';
+import turfBBox from '@turf/bbox';
+import centroid from '@turf/centroid';
+import { featureEach } from '@turf/meta';
+import { getCoord } from '@turf/invariant';
+import { point, lineString, geometryCollection, featureCollection } from '@turf/helpers';
+import scale from '.';
 
 const directories = {
     in: path.join(__dirname, 'test', 'in') + path.sep,

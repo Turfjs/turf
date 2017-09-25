@@ -1,12 +1,12 @@
-const path = require('path');
-const test = require('tape');
-const glob = require('glob');
-const load = require('load-json-file');
-const write = require('write-json-file');
-const getCoords = require('@turf/invariant').getCoords;
-const featureCollection = require('@turf/helpers').featureCollection;
-const lineString = require('@turf/helpers').lineString;
-const destination = require('./');
+import path from 'path';
+import test from 'tape';
+import glob from 'glob';
+import load from 'load-json-file';
+import write from 'write-json-file';
+import { getCoords } from '@turf/invariant';
+import { featureCollection } from '@turf/helpers';
+import { lineString } from '@turf/helpers';
+import destination from '.';
 
 const directories = {
     in: path.join(__dirname, 'test', 'in') + path.sep,

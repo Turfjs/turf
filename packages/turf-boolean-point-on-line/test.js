@@ -1,8 +1,8 @@
-const glob = require('glob');
-const path = require('path');
-const test = require('tape');
-const load = require('load-json-file');
-const pointOnLine = require('./');
+import glob from 'glob';
+import path from 'path';
+import test from 'tape';
+import load from 'load-json-file';
+import pointOnLine from '.';
 
 test('turf-boolean-point-on-line', t => {
     // True Fixtures

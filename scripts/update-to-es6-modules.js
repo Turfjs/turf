@@ -1,8 +1,10 @@
 #!/usr/bin/env node
 
+const fs = require('fs');
 const load = require('load-json-file');
 const write = require('write-json-file');
 const path = require('path');
+const glob = require('glob');
 const {dependencies} = require('../packages/turf/package.json');
 
 function entries(obj) {
@@ -21,6 +23,7 @@ function updateDevDependencies(pckg) {
     return devDependencies;
 }
 
+// Update package.json
 Object.keys(dependencies).forEach(name => {
     const basename = name.replace('@turf/', '');
     const packagePath = path.join(__dirname, '..', 'packages', 'turf-' + basename, 'package.json');
@@ -55,4 +58,11 @@ Object.keys(dependencies).forEach(name => {
         dependencies: pckg.dependencies
     };
     write.sync(packagePath, newPckg, {indent: 2});
+});
+
+// Update test.js
+glob.sync(path.join(__dirname, '..', 'packages', 'turf-*', 'test.js')).forEach(filepath => {
+    var test = fs.readFileSync(filepath, 'utf8');
+    test = test.replace(/'.\/'/g, '\'.\'');
+    fs.writeFileSync(filepath, test);
 });

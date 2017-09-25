@@ -1,13 +1,17 @@
-const path = require('path');
+import path from 'path';
+
 // const {point, lineString, featureCollection} = require('@turf/helpers');
-const {point} = require('@turf/helpers');
+import { point } from '@turf/helpers';
+
 // const rhumbDestination = require('@turf/rhumb-destination');
-const load = require('load-json-file');
-const fs = require('fs');
-const test = require('tape');
-const write = require('write-json-file');
+import load from 'load-json-file';
+
+import fs from 'fs';
+import test from 'tape';
+import write from 'write-json-file';
+
 // const getCoords = require('@turf/invariant').getCoords;
-const rhumbBearing = require('./');
+import rhumbBearing from '.';
 
 const directories = {
     in: path.join(__dirname, 'test', 'in') + path.sep,

@@ -1,7 +1,7 @@
-var test = require('tape');
-var sample = require('./');
-var featureCollection = require('@turf/helpers').featureCollection;
-var point = require('@turf/helpers').point;
+import test from 'tape';
+import sample from '.';
+import { featureCollection } from '@turf/helpers';
+import { point } from '@turf/helpers';
 
 test('remove', function (t) {
     var points = featureCollection(

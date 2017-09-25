@@ -1,10 +1,10 @@
-const fs = require('fs');
-const path = require('path');
-const test = require('tape');
-const load = require('load-json-file');
-const write = require('write-json-file');
-const point = require('@turf/helpers').point;
-const distance = require('./');
+import fs from 'fs';
+import path from 'path';
+import test from 'tape';
+import load from 'load-json-file';
+import write from 'write-json-file';
+import { point } from '@turf/helpers';
+import distance from '.';
 
 const directories = {
     in: path.join(__dirname, 'test', 'in') + path.sep,

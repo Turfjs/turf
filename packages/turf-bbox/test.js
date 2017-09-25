@@ -1,12 +1,13 @@
-const test = require('tape');
-const point = require('@turf/helpers').point;
-const polygon = require('@turf/helpers').polygon;
-const feature = require('@turf/helpers').feature;
-const lineString = require('@turf/helpers').lineString;
-const multiPolygon = require('@turf/helpers').multiPolygon;
-const multiLineString = require('@turf/helpers').multiLineString;
-const featureCollection = require('@turf/helpers').featureCollection;
-const bbox = require('./');
+import test from 'tape';
+import {
+    point,
+    polygon,
+    feature,
+    lineString,
+    multiPolygon,
+    multiLineString,
+    featureCollection} from '@turf/helpers'
+import bbox from '.';
 
 // Fixtures
 const pt  = point([102.0, 0.5]);

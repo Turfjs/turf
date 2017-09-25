@@ -1,15 +1,17 @@
-const fs = require('fs');
-const test = require('tape');
-const path = require('path');
-const load = require('load-json-file');
-const write = require('write-json-file');
-const truncate = require('@turf/truncate');
-const featureEach = require('@turf/meta').featureEach;
-const featureCollection = require('@turf/helpers').featureCollection;
-const point = require('@turf/helpers').point;
-const polygon = require('@turf/helpers').polygon;
-const geometryCollection = require('@turf/helpers').geometryCollection;
-const buffer = require('./');
+import fs from 'fs';
+import test from 'tape';
+import path from 'path';
+import load from 'load-json-file';
+import write from 'write-json-file';
+import truncate from '@turf/truncate';
+import {
+    featureEach,
+    featureCollection,
+    point,
+    polygon,
+    geometryCollection
+} from '@turf/meta';
+import buffer from '.';
 
 const directories = {
     in: path.join(__dirname, 'test', 'in') + path.sep,
