@@ -1,10 +1,13 @@
 /// <reference types="geojson" />
 
-type Feature = GeoJSON.Feature<any> | GeoJSON.GeometryObject;
+type Polygon = GeoJSON.Feature<GeoJSON.Polygon>;
+type FeatureCollection<T extends GeoJSON.Polygon> = GeoJSON.FeatureCollection<T>;
+type Point = GeoJSON.Feature<GeoJSON.Point> | GeoJSON.Point | number[];
+type LineString = GeoJSON.Feature<GeoJSON.LineString> | GeoJSON.LineString;
 
 /**
  * http://turfjs.org/docs/#shortestpath
  */
-declare function shortestPath(feature1: Feature, feature2: Feature): boolean;
+declare function shortestPath(start: Point, end: Point, obstacles: FeatureCollection<Polygon>, options?: Object): LineString;
 declare namespace shortestPath { }
 export = shortestPath;

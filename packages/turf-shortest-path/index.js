@@ -1,23 +1,22 @@
-var helpers = require('@turf/helpers');
-var distance = require('@turf/distance');
 var bbox = require('@turf/bbox');
 var scale = require('@turf/transform-scale');
+var inside = require('@turf/inside');
+var helpers = require('@turf/helpers');
+var distance = require('@turf/distance');
+var invariant = require('@turf/invariant');
 var cleanCoords = require('@turf/clean-coords');
 var bboxPolygon = require('@turf/bbox-polygon');
-var invariant = require('@turf/invariant');
-// var getType = invariant.getType;
-var lineString = helpers.lineString;
 var point = helpers.point;
-var inside = require('@turf/inside');
+// var getType = invariant.getType;
 var isNumber = helpers.isNumber;
 var getCoord = invariant.getCoord;
+var lineString = helpers.lineString;
 
 var jsastar = require('javascript-astar');
 var Graph = jsastar.Graph;
 var astar = jsastar.astar;
 
-// var ezStar = require('easystarjs');
-var pathfinding = require('pathfinding');
+// var aStar = require('astar-andrea');
 
 /**
  * Returns the shortest {@link LineString|path} from {@link Point|start} to {@link Point|end} without colliding with
@@ -104,18 +103,22 @@ module.exports = function (start, end, obstacles, options) {
         var c = 0;
         while (currentX <= east) {
             var pt = point([currentX, currentY]);
+            var isInsideObstacle = isInside(pt, obstacles);
             // feed obstacles matrix
-            matrixRow.push(isInsideObstacle(pt, obstacles));
+            matrixRow.push(isInsideObstacle ? 0 : 1); // with javascript-astar
+            // matrixRow.push(isInsideObstacle ? 1 : 0); // with astar-andrea
             // map point's coords
             pointMatrixRow.push(currentX + '|' + currentY);
             // set closest points
             var distStart = distance(pt, start);
-            if (distStart < minDistStart) {
+            // if (distStart < minDistStart) {
+            if (!isInsideObstacle && distStart < minDistStart) {
                 minDistStart = distStart;
                 closestToStart = {x: c, y: r};
             }
             var distEnd = distance(pt, end);
-            if (distEnd < minDistEnd) {
+            // if (distEnd < minDistEnd) {
+            if (!isInsideObstacle && distEnd < minDistEnd) {
                 minDistEnd = distEnd;
                 closestToEnd = {x: c, y: r};
             }
@@ -128,8 +131,10 @@ module.exports = function (start, end, obstacles, options) {
         r++;
     }
 
-    var graph = new Graph(matrix, {diagonal: true});
+    // find path on matrix grid
 
+    // javascript-astar ----------------------
+    var graph = new Graph(matrix, {diagonal: true});
     var startOnMatrix = graph.grid[closestToStart.y][closestToStart.x];
     var endOnMatrix = graph.grid[closestToEnd.y][closestToEnd.x];
     var result = astar.search(graph, startOnMatrix, endOnMatrix);
@@ -140,29 +145,42 @@ module.exports = function (start, end, obstacles, options) {
         path.push([+coords[0], +coords[1]]); // make sure coords are numbers
     });
     path.push(end.geometry.coordinates);
+    // ---------------------------------------
+
+
+    // astar-andrea ------------------------
+    // var result = aStar(matrix, [closestToStart.x, closestToStart.y], [closestToEnd.x, closestToEnd.y], 'DiagonalFree');
+    // var path = [start.geometry.coordinates];
+    // result.forEach(function (coord) {
+    //     var coords = pointMatrix[coord[1]][coord[0]].split('|');
+    //     path.push([+coords[0], +coords[1]]); // make sure coords are numbers
+    // });
+    // path.push(end.geometry.coordinates);
+    // ---------------------------------------
+
 
     return cleanCoords(lineString(path));
 };
 
 
 /**
- * Returns 0 if Point is inside any of the Polygons, 1 if isn't
+ * Checks if Point is inside any of the Polygons
  *
  * @private
  * @param {Feature<Point>} pt to check
- * @param {Array<Polygon>} polygons features
- * @returns {number} 0 if inside, 1 if not
+ * @param {FeatureCollection<Polygon>} polygons features
+ * @returns {boolean} if inside or not
  */
-function isInsideObstacle(pt, polygons) {
+function isInside(pt, polygons) {
     for (var i = 0; i < polygons.features.length; i++) {
         if (inside(pt, polygons.features[i])) {
-            return 0;
+            return true;
         }
     }
-    return 1;
+    return false;
 }
 
-
+// placeholder for @turf/helpers.getType available in Turf v4.7.4+
 function getType(geojson, name) {
     if (!geojson) throw new Error((name || 'geojson') + ' is required');
     // GeoJSON Feature & GeometryCollection
