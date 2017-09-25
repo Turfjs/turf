@@ -6,7 +6,7 @@ Finds the tangents of a [(Multi)Polygon](http://geojson.org/geojson-spec.html#po
 
 **Parameters**
 
--   `point` **[Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;[Point](http://geojson.org/geojson-spec.html#point)>** to calculate the tangent points from
+-   `pt` **[Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;[Point](http://geojson.org/geojson-spec.html#point)>** to calculate the tangent points from
 -   `polygon` **[Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;([Polygon](http://geojson.org/geojson-spec.html#polygon) \| [MultiPolygon](http://geojson.org/geojson-spec.html#multipolygon))>** to get tangents from
 
 **Examples**
