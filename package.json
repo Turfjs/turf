@@ -5,7 +5,7 @@
   "scripts": {
     "lint": "eslint packages/turf-*/index.js",
     "postlint": "documentation lint packages/turf-*/index.js && tsc",
-    "pretest": "npm run lint && lerna bootstrap && lerna run pretest",
+    "pretest": "lerna bootstrap && npm run lint && lerna run pretest",
     "test": "tap packages/turf-*/test.js",
     "docs": "node ./scripts/generate-readmes",
     "es6": "npm run es6:import && npm run es6:export",
