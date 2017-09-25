@@ -8,7 +8,7 @@ import { getType } from '@turf/invariant';
  * Creates a {@link Point} grid from a bounding box, {@link FeatureCollection} or {@link Feature}.
  *
  * @name pointGrid
- * @param {Array<number>|FeatureCollection|Feature<any>} bbox extent in [minX, minY, maxX, maxY] order
+ * @param {BBox|FeatureCollection|Feature} bbox extent in [minX, minY, maxX, maxY] order
  * @param {number} cellSide the distance between points
  * @param {string} [units=kilometers] used in calculating cellSide, can be degrees, radians, miles, or kilometers
  * @param {boolean} [centered=true] adjust points position to center the grid into bbox. **This parameter is going to be removed** in the next major release, having the output always centered into bbox.

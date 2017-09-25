@@ -1,16 +1,20 @@
 /// <reference types="geojson" />
 
-import { Points, Units } from '@turf/helpers';
-
-export type OutputTypes = 'point' | 'square' | 'hex' | 'triangle';
+import {
+    Point,
+    Units,
+    FeatureCollection,
+    Grid
+} from '@turf/helpers';
 
 /**
  * http://turfjs.org/docs/#interpolate
  */
 export default function interpolate(
-    points: Points,
+    points: FeatureCollection<Point>,
     cellSize: number,
-    outputType: OutputTypes,
+    outputType: Grid,
     property?: string,
     units?: Units,
-    weight?: number): Points;
+    weight?: number
+): FeatureCollection<Point>;

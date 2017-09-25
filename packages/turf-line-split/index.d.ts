@@ -1,12 +1,20 @@
-import { LineString, LineStrings } from '@turf/helpers';
+import {
+    Feature,
+    FeatureCollection,
+    Point,
+    MultiPoint,
+    LineString,
+    MultiLineString,
+    Polygon,
+    MultiPolygon,
+} from '@turf/helpers';
 
-export type Splitter = GeoJSON.Feature<
-  GeoJSON.Point | GeoJSON.MultiPoint |
-  GeoJSON.LineString | GeoJSON.MultiLineString |
-  GeoJSON.Polygon | GeoJSON.MultiPolygon
->
+export type Splitter = Feature<Point|MultiPoint|LineString|MultiLineString|Polygon|MultiPolygon>
 
 /**
  * http://turfjs.org/docs/#linesplit
  */
-export default function lineSplit(line: LineString, splitter: Splitter): LineStrings;
+export default function lineSplit<T extends LineString>(
+    line: Feature<T> | T,
+    splitter: Splitter
+): FeatureCollection<T>;
