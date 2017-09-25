@@ -20,7 +20,10 @@ const fixtures = fs.readdirSync(directories.in).map(filename => {
 });
 
 test('turf-bezier', t => {
-    for (const {filename, name, geojson}  of fixtures) {
+    for (const fixture  of fixtures) {
+        const filename = fixture.filename;
+        const name = fixture.name;
+        const geojson = fixture.geojson;
         const spline = colorize(bezier(geojson));
         const results = featureCollection([spline, geojson]);
 

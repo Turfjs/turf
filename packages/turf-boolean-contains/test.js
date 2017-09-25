@@ -2,18 +2,18 @@ const glob = require('glob');
 const path = require('path');
 const test = require('tape');
 const load = require('load-json-file');
-const {point} = require('@turf/helpers');
+const point = require('@turf/helpers').point;
 const booleanJSTS = require('boolean-jsts');
 const shapely = require('boolean-shapely');
-
 const contains = require('./');
 
 test('turf-boolean-contains', t => {
     // True Fixtures
     glob.sync(path.join(__dirname, 'test', 'true', '**', '*.geojson')).forEach(filepath => {
-        const {name} = path.parse(filepath);
+        const name = path.parse(filepath).name;
         const geojson = load.sync(filepath);
-        const [feature1, feature2] = geojson.features;
+        const feature1 = geojson.features[0];
+        const feature2 = geojson.features[1];
         const result = contains(feature1, feature2);
 
         if (process.env.JSTS) t.true(booleanJSTS('contains', feature1, feature2), '[true] JSTS - ' + name);
@@ -22,9 +22,10 @@ test('turf-boolean-contains', t => {
     });
     // False Fixtures
     glob.sync(path.join(__dirname, 'test', 'false', '**', '*.geojson')).forEach(filepath => {
-        const {name} = path.parse(filepath);
+        const name = path.parse(filepath).name;
         const geojson = load.sync(filepath);
-        const [feature1, feature2] = geojson.features;
+        const feature1 = geojson.features[0];
+        const feature2 = geojson.features[1];
         const result = contains(feature1, feature2);
 
         if (process.env.JSTS) t.false(booleanJSTS('contains', feature1, feature2), '[false] JSTS - ' + name);

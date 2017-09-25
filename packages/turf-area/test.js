@@ -19,7 +19,9 @@ const fixtures = fs.readdirSync(directories.in).map(filename => {
 });
 
 test('turf-area', t => {
-    for (const {name, geojson} of fixtures) {
+    for (const fixture of fixtures) {
+        const name = fixture.name;
+        const geojson = fixture.geojson;
         const results = Math.round(area(geojson));
         if (process.env.REGEN) write.sync(directories.out + name + '.json', results);
         t.equal(results, load.sync(directories.out + name + '.json'), name);

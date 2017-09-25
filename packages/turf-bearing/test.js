@@ -1,5 +1,7 @@
 const path = require('path');
-const {point, lineString, featureCollection} = require('@turf/helpers');
+const point = require('@turf/helpers').point;
+const lineString = require('@turf/helpers').lineString;
+const featureCollection = require('@turf/helpers').featureCollection;
 const destination = require('@turf/destination');
 const test = require('tape');
 const write = require('write-json-file');
