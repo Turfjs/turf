@@ -1,7 +1,5 @@
-var meta = require('@turf/meta');
-var pointToLineDistance = require('@turf/point-to-line-distance');
-var featureEach = meta.featureEach;
-var geomEach = meta.geomEach;
+import pointToLineDistance from '@turf/point-to-line-distance';
+import { featureEach, geomEach } from '@turf/meta';
 
 /**
  * Returns the closest {@link Point|point}, of a {@link FeatureCollection|collection} of points, to a {@link LineString|line}.
@@ -24,17 +22,16 @@ var geomEach = meta.geomEach;
  * //addToMap
  * var addToMap = [nearest, line];
  */
-module.exports = function (points, line, options) {
+export default function (points, line, options) {
     options = options || {};
     var units;
     // Backwards compatible with v4.0 (will be changed in v5.0)
     if (typeof options === 'object') {
         units = options.units;
     } else if (options) {
-        console.warn('Optional parameters will now be defined as Objects in v5.0');
+        console.warn('Optional parameters are now be defined as Objects in v5.0');
         units = options;
     }
-
     // validation
     if (!points) throw new Error('points is required');
     points = handleCollection(points);
@@ -56,7 +53,7 @@ module.exports = function (points, line, options) {
     });
     pt.properties.dist = dist;
     return pt;
-};
+}
 
 /**
  * Convert Collection to FeatureCollection

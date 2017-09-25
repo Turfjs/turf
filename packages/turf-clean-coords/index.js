@@ -1,7 +1,5 @@
-var helpers = require('@turf/helpers');
-var invariant = require('@turf/invariant');
-var getCoords = invariant.getCoords;
-var getGeomType = invariant.getGeomType;
+import { feature } from '@turf/helpers';
+import { getCoords, getType } from '@turf/invariant';
 
 /**
  * Removes redundant coordinates from any GeoJSON Geometry.
@@ -20,9 +18,9 @@ var getGeomType = invariant.getGeomType;
  * turf.cleanCoords(multiPoint).geometry.coordinates;
  * //= [[0, 0], [2, 2]]
  */
-module.exports = function (geojson, mutate) {
+export default function (geojson, mutate) {
     if (!geojson) throw new Error('geojson is required');
-    var type = getGeomType(geojson);
+    var type = getType(geojson);
 
     // Store new "clean" points in this Array
     var newCoords = [];
@@ -68,48 +66,14 @@ module.exports = function (geojson, mutate) {
             geojson.coordinates = newCoords;
             return geojson;
         }
-        return geometry(geojson, type, newCoords);
+        return {type: type, coordinates: newCoords};
     } else {
         if (mutate === true) {
             geojson.geometry.coordinates = newCoords;
             return geojson;
         }
-        return feature(geojson, type, newCoords);
+        return feature({type: type, coordinates: newCoords}, geojson.properties, geojson.bbox, geojson.id);
     }
-};
-
-/**
- * Create Geometry from existing Geometry
- *
- * @private
- * @param {Geometry} geojson Existing Geometry
- * @param {string} type Geometry Type
- * @param {Array<number>} coordinates Coordinates
- * @returns {Geometry} Geometry
- */
-function geometry(geojson, type, coordinates) {
-    var geom = {
-        type: type,
-        coordinates: coordinates
-    };
-    if (geojson.bbox) geom.bbox = geojson.bbox;
-    return geom;
-}
-
-/**
- * Create Feature from existing Feature
- *
- * @private
- * @param {Feature} geojson Existing Feature
- * @param {string} type Feature Type
- * @param {Array<number>} coordinates Coordinates
- * @returns {Feature} Feature
- */
-function feature(geojson, type, coordinates) {
-    var feat = helpers.feature(geometry(geojson.geometry, type, coordinates), geojson.properties);
-    if (geojson.id) feat.id = geojson.id;
-    if (geojson.bbox) feat.bbox = geojson.bbox;
-    return feat;
 }
 
 /**

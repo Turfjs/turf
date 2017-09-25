@@ -1,9 +1,9 @@
-const fs = require('fs');
-const test = require('tape');
-const path = require('path');
-const load = require('load-json-file');
-const write = require('write-json-file');
-const flatten = require('.');
+import fs from 'fs';
+import test from 'tape';
+import path from 'path';
+import load from 'load-json-file';
+import write from 'write-json-file';
+import flatten from '.';
 
 const directories = {
     in: path.join(__dirname, 'test', 'in') + path.sep,
@@ -20,14 +20,17 @@ let fixtures = fs.readdirSync(directories.in).map(filename => {
 // fixtures = fixtures.filter(({name}) => (name === 'FeatureCollection'));
 
 test('flatten', t => {
-    for (const {filename, name, geojson} of fixtures) {
+    fixtures.forEach(fixture => {
+        const filename = fixture.filename;
+        const name = fixture.name;
+        const geojson = fixture.geojson;
+
         const flattened = flatten(geojson);
 
-        if (process.env.REGEN) {
-            write.sync(directories.out + filename, flattened);
-        }
+        if (process.env.REGEN) write.sync(directories.out + filename, flattened);
         t.deepEqual(flattened, load.sync(directories.out + filename), name);
         t.equal(flattened.type, 'FeatureCollection', name + ': feature outputs a featurecollection');
+
         switch (geojson.geometry ? geojson.geometry.type : geojson.type) {
         case 'Point':
         case 'LineString':
@@ -36,6 +39,6 @@ test('flatten', t => {
         default:
             t.true(flattened.features.length > 1, name + ': featureCollection has multiple features with feature input');
         }
-    }
+    });
     t.end();
 });

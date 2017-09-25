@@ -1,12 +1,9 @@
-var meta = require('@turf/meta');
-var clone = require('@turf/clone');
-var helpers = require('@turf/helpers');
-var invariant = require('@turf/invariant');
+import clone from '@turf/clone';
 var clustering = require('density-clustering');
-var turfDistance = require('@turf/distance');
-var coordAll = meta.coordAll;
-var collectionOf = invariant.collectionOf;
-var convertDistance = helpers.convertDistance;
+import turfDistance from '@turf/distance';
+import { coordAll } from '@turf/meta';
+import { convertDistance } from '@turf/helpers';
+import { collectionOf } from '@turf/invariant';
 
 /**
  * Takes a set of {@link Point|points} and partition them into clusters according to {@link DBSCAN's|https://en.wikipedia.org/wiki/DBSCAN} data clustering algorithm.
@@ -31,7 +28,7 @@ var convertDistance = helpers.convertDistance;
  * //addToMap
  * var addToMap = [clustered];
  */
-module.exports = function (points, maxDistance, units, minPoints) {
+export default function (points, maxDistance, units, minPoints) {
     // Input validation
     collectionOf(points, 'Point', 'Input must contain Points');
     if (maxDistance === null || maxDistance === undefined) throw new Error('maxDistance is required');
@@ -71,4 +68,4 @@ module.exports = function (points, maxDistance, units, minPoints) {
     });
 
     return points;
-};
+}

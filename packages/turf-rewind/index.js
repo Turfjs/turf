@@ -1,9 +1,7 @@
-var meta = require('@turf/meta');
-var getCoords = require('@turf/invariant').getCoords;
-var booleanClockwise = require('@turf/boolean-clockwise');
-var featureCollection = require('@turf/helpers').featureCollection;
-var geomEach = meta.geomEach;
-var featureEach = meta.featureEach;
+import booleanClockwise from '@turf/boolean-clockwise';
+import { geomEach, featureEach } from '@turf/meta';
+import { getCoords } from '@turf/invariant';
+import { featureCollection } from '@turf/helpers';
 
 /**
  * Rewind {@link LineString|(Multi)LineString} or {@link Polygon|(Multi)Polygon} outer ring counterclockwise and inner rings clockwise (Uses {@link http://en.wikipedia.org/wiki/Shoelace_formula|Shoelace Formula}).
@@ -21,7 +19,7 @@ var featureEach = meta.featureEach;
  * //addToMap
  * var addToMap = [rewind];
  */
-module.exports = function (geojson, reverse, mutate) {
+export default function (geojson, reverse, mutate) {
     // default params
     reverse = (reverse !== undefined) ? reverse : false;
     mutate = (mutate !== undefined) ? mutate : false;
@@ -52,7 +50,7 @@ module.exports = function (geojson, reverse, mutate) {
     }
     // Support Feature or Geometry Objects
     return rewind(geojson, reverse);
-};
+}
 
 /**
  * Rewind

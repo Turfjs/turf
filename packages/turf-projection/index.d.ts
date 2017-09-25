@@ -1,6 +1,6 @@
 /// <reference types="geojson" />
 
-type Types = GeoJSON.FeatureCollection<any> | GeoJSON.Feature<any> | GeoJSON.GeometryObject | GeoJSON.GeometryCollection;
+export type Types = GeoJSON.FeatureCollection<any> | GeoJSON.Feature<any> | GeoJSON.GeometryObject | GeoJSON.GeometryCollection;
 
 interface Options {
   /**

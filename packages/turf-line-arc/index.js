@@ -1,6 +1,6 @@
-var destination = require('@turf/destination');
-var circle = require('@turf/circle');
-var lineString = require('@turf/helpers').lineString;
+import destination from '@turf/destination';
+import circle from '@turf/circle';
+import { lineString } from '@turf/helpers';
 
 /**
  * Creates a circular arc, of a circle of the given radius and center point, between bearing1 and bearing2;
@@ -25,7 +25,7 @@ var lineString = require('@turf/helpers').lineString;
  * //addToMap
  * var addToMap = [center, arc]
  */
-module.exports = function (center, radius, bearing1, bearing2, steps, units) {
+export default function (center, radius, bearing1, bearing2, steps, units) {
     // validation
     if (!center) throw new Error('center is required');
     if (bearing1 === undefined || bearing1 === null) throw new Error('bearing1 is required');
@@ -59,7 +59,7 @@ module.exports = function (center, radius, bearing1, bearing2, steps, units) {
         coordinates.push(destination(center, radius, arcEndDegree, units).geometry.coordinates);
     }
     return lineString(coordinates, properties);
-};
+}
 
 
 /**

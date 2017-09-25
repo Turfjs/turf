@@ -1,9 +1,8 @@
-// depend on jsts for now https://github.com/bjornharrtell/jsts/blob/master/examples/overlay.html
 var jsts = require('jsts');
-var area = require('@turf/area');
-var feature = require('@turf/helpers').feature;
-var getGeom = require('@turf/invariant').getGeom;
-var flattenEach = require('@turf/meta').flattenEach;
+import area from '@turf/area';
+import { feature } from '@turf/helpers';
+import { getGeom } from '@turf/invariant';
+import { flattenEach } from '@turf/meta';
 
 /**
  * Finds the difference between two {@link Polygon|polygons} by clipping the second polygon from the first.
@@ -39,7 +38,7 @@ var flattenEach = require('@turf/meta').flattenEach;
  * //addToMap
  * var addToMap = [polygon1, polygon2, difference];
  */
-module.exports = function (polygon1, polygon2) {
+export default function (polygon1, polygon2) {
     var geom1 = getGeom(polygon1);
     var geom2 = getGeom(polygon2);
     var properties = polygon1.properties || {};
@@ -60,7 +59,7 @@ module.exports = function (polygon1, polygon2) {
     var geom = writer.write(differenced);
 
     return feature(geom, properties);
-};
+}
 
 /**
  * Detect Empty Polygon

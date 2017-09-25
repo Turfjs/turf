@@ -1,25 +1,27 @@
-const glob = require('glob');
-const path = require('path');
-const test = require('tape');
-const load = require('load-json-file');
-const {lineString, polygon} = require('@turf/helpers');
-const booleanParallel = require('./');
+import glob from 'glob';
+import path from 'path';
+import test from 'tape';
+import load from 'load-json-file';
+import { lineString, polygon } from '@turf/helpers';
+import booleanParallel from '.';
 
 test('turf-boolean-parallel', t => {
     // True Fixtures
     glob.sync(path.join(__dirname, 'test', 'true', '**', '*.geojson')).forEach(filepath => {
-        const {name} = path.parse(filepath);
+        const name = path.parse(filepath).name;
         const geojson = load.sync(filepath);
-        const [line1, line2] = geojson.features;
+        const line1 = geojson.features[0];
+        const line2 = geojson.features[1];
         const result = booleanParallel(line1, line2);
 
         t.true(result, '[true] ' + name);
     });
     // False Fixtures
     glob.sync(path.join(__dirname, 'test', 'false', '**', '*.geojson')).forEach(filepath => {
-        const {name} = path.parse(filepath);
+        const name = path.parse(filepath).name;
         const geojson = load.sync(filepath);
-        const [line1, line2] = geojson.features;
+        const line1 = geojson.features[0];
+        const line2 = geojson.features[1];
         const result = booleanParallel(line1, line2);
 
         t.false(result, '[false] ' + name);

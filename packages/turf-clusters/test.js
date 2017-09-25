@@ -1,14 +1,15 @@
-const test = require('tape');
-const {featureCollection, point} = require('@turf/helpers');
-const {
-    propertiesContainsFilter,
-    filterProperties,
-    applyFilter,
-    createBins} = require('./utils');
-const {
+import test from 'tape';
+import { point, featureCollection } from '@turf/helpers';
+import {
     getCluster,
     clusterEach,
-    clusterReduce} = require('./');
+    clusterReduce,
+    // Below methods are not exposed in @turf/turf
+    createBins,
+    applyFilter,
+    filterProperties,
+    propertiesContainsFilter
+} from '.';
 
 const properties = {foo: 'bar', cluster: 0};
 const geojson = featureCollection([

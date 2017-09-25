@@ -1,5 +1,5 @@
 import {BBox, Polygons} from '@turf/helpers'
-import * as hexGrid from './'
+import hexGrid from './'
 
 const bbox: BBox = [
     -96.6357421875,

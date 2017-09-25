@@ -20,6 +20,6 @@ var polygonize = require('polygonize');
  * @returns {FeatureCollection<Polygon>} Polygons created
  * @throws {Error} if GeoJSON is invalid.
  */
-module.exports = function (geojson) {
+export default function (geojson) {
     return polygonize(geojson);
-};
+}

@@ -2,14 +2,18 @@
   "name": "@turf/boolean-within",
   "version": "4.7.3",
   "description": "turf boolean-within module",
-  "main": "index.js",
+  "main": "index.es5.js",
+  "module": "index.js",
+  "jsnext:main": "index.js",
   "types": "index.d.ts",
   "files": [
     "index.js",
-    "index.d.ts"
+    "index.d.ts",
+    "index.es5.js"
   ],
   "scripts": {
-    "test": "node test.js",
+    "pretest": "rollup -c ../../rollup.config.js",
+    "test": "node test.es5.js",
     "bench": "node bench.js"
   },
   "repository": {
@@ -34,13 +38,14 @@
   },
   "homepage": "https://github.com/Turfjs/turf",
   "devDependencies": {
-    "@turf/helpers": "^4.7.3",
-    "benchmark": "2.1.4",
-    "boolean-jsts": "0.0.1",
-    "boolean-shapely": "0.1.2",
-    "glob": "7.1.2",
-    "load-json-file": "2.0.0",
-    "tape": "4.8.0"
+    "@turf/helpers": "*",
+    "benchmark": "*",
+    "boolean-jsts": "*",
+    "boolean-shapely": "*",
+    "glob": "*",
+    "load-json-file": "*",
+    "tape": "*",
+    "rollup": "*"
   },
   "dependencies": {
     "@turf/bbox": "^4.7.3",

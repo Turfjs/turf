@@ -1,11 +1,11 @@
-const fs = require('fs');
-const test = require('tape');
-const path = require('path');
-const load = require('load-json-file');
-const write = require('write-json-file');
-const {featureEach} = require('@turf/meta');
-const {point, lineString, featureCollection} = require('@turf/helpers');
-const lineSplit = require('./');
+import fs from 'fs';
+import test from 'tape';
+import path from 'path';
+import load from 'load-json-file';
+import write from 'write-json-file';
+import { featureEach } from '@turf/meta';
+import { point, lineString, featureCollection } from '@turf/helpers';
+import lineSplit from '.';
 
 const directories = {
     in: path.join(__dirname, 'test', 'in') + path.sep,
@@ -64,7 +64,7 @@ test('turf-line-split -- lines should only contain 2 vertices #688', t => {
     t.end();
 });
 
-test("turf-line-split -- precision issue #852", t => {
+test('turf-line-split -- precision issue #852', t => {
     const line = lineString([[9.2202022, 49.1438226], [9.2199531, 49.1439048], [9.2196177, 49.1440264]]);
     const startPoint = point([9.2202022, 49.1438226]);
     const middlePoint = point([9.2199531, 49.1439048]);
@@ -85,7 +85,7 @@ test('turf-line-split -- prevent input mutation', t => {
 
     t.deepEqual(line, lineBefore, 'line should be the same');
     t.end();
-})
+});
 
 
 /**

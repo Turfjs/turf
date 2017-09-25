@@ -1,20 +1,20 @@
 // (logic of computation inspired by:
 // https://stackoverflow.com/questions/32771458/distance-from-lat-lng-point-to-minor-arc-segment)
 
-var segmentEach = require('@turf/meta').segmentEach;
-var bearing = require('@turf/bearing');
-var helpers = require('@turf/helpers');
-var distance = require('@turf/distance');
-var featureOf = require('@turf/invariant').featureOf;
-var rhumbBearing = require('@turf/rhumb-bearing');
-var rhumbDistance = require('@turf/rhumb-distance');
+import bearing from '@turf/bearing';
+import distance from '@turf/distance';
+import rhumbBearing from '@turf/rhumb-bearing';
+import rhumbDistance from '@turf/rhumb-distance';
+import { featureOf } from '@turf/invariant';
+import { segmentEach } from '@turf/meta';
+import { point, feature, lineString, bearingToAngle, degrees2radians, convertDistance } from '@turf/helpers';
 
 /**
  * Returns the minimum distance between a {@link Point} and a {@link LineString}, being the distance from a line the
  * minimum distance between the point and any segment of the `LineString`.
  *
  * @name pointToLineDistance
- * @param {Feature<Point>|Array<number>} point Feature or Geometry
+ * @param {Feature<Point>|Array<number>} pt Feature or Geometry
  * @param {Feature<LineString>|Array<Array<number>>} line GeoJSON Feature or Geometry
  * @param {string} [units=kilometers] can be degrees, radians, miles, or kilometers
  * @param {boolean} [mercator=false] if distance should be on Mercator or WGS84 projection
@@ -26,20 +26,20 @@ var rhumbDistance = require('@turf/rhumb-distance');
  * var distance = turf.pointToLineDistance(pt, line, 'miles');
  * //=69.11854715938406
  */
-module.exports = function (point, line, units, mercator) {
+export default function (pt, line, units, mercator) {
     // validation
-    if (!point) throw new Error('point is required');
-    if (Array.isArray(point)) point = helpers.point(point);
-    else if (point.type === 'Point') point = {type: 'Feature', geometry: point};
-    else featureOf(point, 'Point', 'point');
+    if (!pt) throw new Error('pt is required');
+    if (Array.isArray(pt)) pt = point(pt);
+    else if (pt.type === 'Point') pt = feature(pt);
+    else featureOf(pt, 'Point', 'point');
 
     if (!line) throw new Error('line is required');
-    if (Array.isArray(line)) line = helpers.lineString(line);
-    else if (line.type === 'LineString') line = {type: 'Feature', properties: {}, geometry: line};
+    if (Array.isArray(line)) line = lineString(line);
+    else if (line.type === 'LineString') line = feature(line);
     else featureOf(line, 'LineString', 'line');
 
     var distance = Infinity;
-    var p = point.geometry.coordinates;
+    var p = pt.geometry.coordinates;
     segmentEach(line, function (segment) {
         var a = segment.geometry.coordinates[0];
         var b = segment.geometry.coordinates[1];
@@ -47,7 +47,7 @@ module.exports = function (point, line, units, mercator) {
         if (distance > d) distance = d;
     });
     return distance;
-};
+}
 
 
 /**
@@ -64,8 +64,8 @@ module.exports = function (point, line, units, mercator) {
 function distanceToSegment(p, a, b, units, mercator) {
 
     var distanceAP = (mercator !== true) ? distance(a, p, units) : euclideanDistance(a, p, units);
-    var azimuthAP = helpers.bearingToAngle((mercator !== true) ? bearing(a, p) : rhumbBearing(a, p));
-    var azimuthAB = helpers.bearingToAngle((mercator !== true) ? bearing(a, b) : rhumbBearing(a, b));
+    var azimuthAP = bearingToAngle((mercator !== true) ? bearing(a, p) : rhumbBearing(a, p));
+    var azimuthAB = bearingToAngle((mercator !== true) ? bearing(a, b) : rhumbBearing(a, b));
     var angleA = Math.abs(azimuthAP - azimuthAB);
     // if (angleA > 180) angleA = Math.abs(angleA - 360);
     // if the angle PAB is obtuse its projection on the line extending the segment falls outside the segment
@@ -81,7 +81,7 @@ function distanceToSegment(p, a, b, units, mercator) {
     if (angleA > 90) return distanceAP;
 
     var azimuthBA = (azimuthAB + 180) % 360;
-    var azimuthBP = helpers.bearingToAngle((mercator !== true) ? bearing(b, p) : rhumbBearing(b, p));
+    var azimuthBP = bearingToAngle((mercator !== true) ? bearing(b, p) : rhumbBearing(b, p));
     var angleB = Math.abs(azimuthBP - azimuthBA);
     if (angleB > 180) angleB = Math.abs(angleB - 360);
     // also if the angle ABP is acute the projection of P falls outside the segment, on the other side
@@ -106,7 +106,7 @@ function distanceToSegment(p, a, b, units, mercator) {
         /____________|____\
        A             H     B
     */
-    if (mercator !== true) return distanceAP * Math.sin(helpers.degrees2radians(angleA));
+    if (mercator !== true) return distanceAP * Math.sin(degrees2radians(angleA));
     return mercatorPH(a, b, p, units);
 }
 
@@ -127,7 +127,7 @@ function mercatorPH(a, b, p, units) {
         delta = (a[0] > 0 || b[0] > 0 || p[0] > 0) ? -180 : 180;
     }
 
-    var origin = helpers.point(p);
+    var origin = point(p);
     var A = toMercator([a[0] + delta, a[1]]);
     var B = toMercator([b[0] + delta, b[1]]);
     var P = toMercator([p[0] + delta, p[1]]);
@@ -190,7 +190,7 @@ function euclideanDistance(from, to, units) {
     var sqr = function (n) { return n * n; };
     var squareD = sqr(p1[0] - p2[0]) + sqr(p1[1] - p2[1]);
     var d = Math.sqrt(squareD);
-    return helpers.convertDistance(d, 'meters', units);
+    return convertDistance(d, 'meters', units);
 }
 
 /**

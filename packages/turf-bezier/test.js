@@ -1,10 +1,10 @@
-const test = require('tape');
-const fs = require('fs');
-const path = require('path');
-const load = require('load-json-file');
-const write = require('write-json-file');
-const featureCollection = require('@turf/helpers').featureCollection;
-const bezier = require('./');
+import fs from 'fs';
+import test from 'tape';
+import path from 'path';
+import load from 'load-json-file';
+import write from 'write-json-file';
+import { featureCollection } from '@turf/helpers';
+import bezier from '.';
 
 const directories = {
     in: path.join(__dirname, 'test', 'in') + path.sep,
@@ -20,17 +20,22 @@ const fixtures = fs.readdirSync(directories.in).map(filename => {
 });
 
 test('turf-bezier', t => {
-    for (const {filename, name, geojson}  of fixtures) {
+    fixtures.forEach(fixture => {
+        const filename = fixture.filename;
+        const name = fixture.name;
+        const geojson = fixture.geojson;
         const spline = colorize(bezier(geojson));
         const results = featureCollection([spline, geojson]);
 
         if (process.env.REGEN) write.sync(directories.out + filename, results);
         t.deepEquals(results, load.sync(directories.out + filename), name);
-    }
+    });
     t.end();
 });
 
-function colorize(feature, color = '#F00', width = 6) {
+function colorize(feature, color, width) {
+    color = color || '#F00';
+    width = width || 6;
     feature.properties = {
         stroke: color,
         fill: color,

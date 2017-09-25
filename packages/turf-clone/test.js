@@ -1,7 +1,13 @@
-const test = require('tape');
-const {point, lineString, polygon, featureCollection, geometryCollection} = require('@turf/helpers');
-const {coordEach} = require('@turf/meta');
-const clone = require('./');
+import test from 'tape';
+import {
+    point,
+    lineString,
+    polygon,
+    featureCollection,
+    geometryCollection,
+ } from '@turf/helpers';
+import { coordEach } from '@turf/meta';
+import clone from '.';
 
 
 test('turf-clone', t => {

@@ -1,19 +1,19 @@
-const fs = require('fs');
-const test = require('tape');
-const path = require('path');
-const load = require('load-json-file');
-const write = require('write-json-file');
-const truncate = require('@turf/truncate');
-const {featureEach} = require('@turf/meta');
-const {featureCollection, point, polygon, geometryCollection} = require('@turf/helpers');
-const buffer = require('./');
+import fs from 'fs';
+import test from 'tape';
+import path from 'path';
+import load from 'load-json-file';
+import write from 'write-json-file';
+import truncate from '@turf/truncate';
+import { featureEach } from '@turf/meta';
+import { featureCollection, point, polygon, geometryCollection } from '@turf/helpers';
+import buffer from '.';
 
 const directories = {
     in: path.join(__dirname, 'test', 'in') + path.sep,
     out: path.join(__dirname, 'test', 'out') + path.sep
 };
 
-let fixtures = fs.readdirSync(directories.in).map(filename => {
+var fixtures = fs.readdirSync(directories.in).map(filename => {
     return {
         filename,
         name: path.parse(filename).name,
@@ -23,10 +23,14 @@ let fixtures = fs.readdirSync(directories.in).map(filename => {
 // fixtures = fixtures.filter(({name}) => name === 'feature-collection-points');
 
 test('turf-buffer', t => {
-    for (const {filename, name, geojson} of fixtures) {
-        let {radius, units, steps} = geojson.properties || {};
-        radius = radius || 50;
-        units = units || 'miles';
+    fixtures.forEach(fixture => {
+        const filename = fixture.filename;
+        const name = fixture.name;
+        const geojson = fixture.geojson;
+        const properties = geojson.properties || {};
+        const radius = properties.radius || 50;
+        const units = properties.units || 'miles';
+        const steps = properties.steps;
 
         const buffered = truncate(buffer(geojson, radius, units, steps));
 
@@ -37,7 +41,7 @@ test('turf-buffer', t => {
 
         if (process.env.REGEN) write.sync(directories.out + filename, results);
         t.deepEqual(results, load.sync(directories.out + filename), name);
-    }
+    });
     t.end();
 });
 
@@ -89,7 +93,8 @@ test('turf-buffer - morphological closing', t => {
     t.end();
 });
 
-function colorize(feature, color = '#F00') {
+function colorize(feature, color) {
+    color = color || '#F00';
     if (feature.properties) {
         feature.properties.stroke = color;
         feature.properties.fill = color;

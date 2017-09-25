@@ -1,21 +1,16 @@
 /// <reference types="geojson" />
 
-import * as helpers from '@turf/helpers';
+import { Points, Units } from '@turf/helpers';
+
+export type OutputTypes = 'point' | 'square' | 'hex' | 'triangle';
 
 /**
  * http://turfjs.org/docs/#interpolate
  */
-declare function interpolate(
-    points: interpolate.Points,
+export default function interpolate(
+    points: Points,
     cellSize: number,
-    outputType: interpolate.OutputTypes,
+    outputType: OutputTypes,
     property?: string,
-    units?: interpolate.Units,
-    weight?: number): interpolate.Points;
-
-declare namespace interpolate {
-    type OutputTypes = 'point' | 'square' | 'hex' | 'triangle';
-    type Points = helpers.Points;
-    type Units = helpers.Units;
-}
-export = interpolate;
+    units?: Units,
+    weight?: number): Points;

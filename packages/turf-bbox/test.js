@@ -1,25 +1,25 @@
-const test = require('tape');
-const {
+import test from 'tape';
+import {
     point,
-    lineString,
     polygon,
     feature,
-    featureCollection,
+    lineString,
     multiPolygon,
-    multiLineString} = require('@turf/helpers');
-const bbox = require('./');
+    multiLineString,
+    featureCollection} from '@turf/helpers'
+import bbox from '.';
 
 // Fixtures
 const pt  = point([102.0, 0.5]);
 const line = lineString([[102.0, -10.0], [103.0, 1.0], [104.0, 0.0], [130.0, 4.0]]);
 const poly = polygon([[[101.0, 0.0], [101.0, 1.0], [100.0, 1.0], [100.0, 0.0], [101.0, 0.0]]]);
 const multiLine = multiLineString([
-  [[100.0, 0.0], [101.0, 1.0]],
-  [[102.0, 2.0], [103.0, 3.0]]
+    [[100.0, 0.0], [101.0, 1.0]],
+    [[102.0, 2.0], [103.0, 3.0]]
 ]);
 const multiPoly = multiPolygon([
-  [[[102.0, 2.0], [103.0, 2.0], [103.0, 3.0], [102.0, 3.0], [102.0, 2.0]]],
-  [[[100.0, 0.0], [101.0, 0.0], [101.0, 1.0], [100.0, 1.0], [100.0, 0.0]], [[100.2, 0.2], [100.8, 0.2], [100.8, 0.8], [100.2, 0.8], [100.2, 0.2]]]
+    [[[102.0, 2.0], [103.0, 2.0], [103.0, 3.0], [102.0, 3.0], [102.0, 2.0]]],
+    [[[100.0, 0.0], [101.0, 0.0], [101.0, 1.0], [100.0, 1.0], [100.0, 0.0]], [[100.2, 0.2], [100.8, 0.2], [100.8, 0.8], [100.2, 0.8], [100.2, 0.2]]]
 ]);
 const fc = featureCollection([pt, line, poly, multiLine, multiPoly]);
 

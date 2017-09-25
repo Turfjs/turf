@@ -1,20 +1,19 @@
-var test = require('tape');
-var fs = require('fs');
-var tag = require('./');
+import path from 'path';
+import test from 'tape';
+import load from 'load-json-file';
+import tag from '.';
 
-test('tag', function(t){
-  var points = JSON.parse(fs.readFileSync(__dirname + '/test/tagPoints.geojson'));
-  var polygons = JSON.parse(fs.readFileSync(__dirname + '/test/tagPolygons.geojson'));
+test('tag', t => {
+    const points = load.sync(path.join(__dirname, 'test', 'tagPoints.geojson'));
+    const polygons = load.sync(path.join(__dirname, 'test', 'tagPolygons.geojson'));
 
-  var taggedPoints = tag(points, polygons, 'polyID', 'containingPolyID');
+    const taggedPoints = tag(points, polygons, 'polyID', 'containingPolyID');
 
-  t.ok(taggedPoints.features, 'features should be ok');
-  t.equal(taggedPoints.features.length, points.features.length,
-    'tagged points should have the same length as the input points');
+    t.ok(taggedPoints.features, 'features should be ok');
+    t.equal(taggedPoints.features.length, points.features.length,
+        'tagged points should have the same length as the input points');
 
-  var count = taggedPoints.features.filter(function(pt){
-    return (pt.properties.containingPolyID === 4);
-  }).length;
-  t.equal(count, 6, 'polygon 4 should have tagged 6 points');
-  t.end();
+    const count = taggedPoints.features.filter(pt => pt.properties.containingPolyID === 4).length;
+    t.equal(count, 6, 'polygon 4 should have tagged 6 points');
+    t.end();
 });

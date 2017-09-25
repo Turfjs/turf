@@ -1,5 +1,5 @@
-import {polygon, multiPolygon} from '@turf/helpers';
-import * as polygonToLineString from './';
+import { polygon, multiPolygon } from '@turf/helpers';
+import polygonToLineString from './';
 
 const poly = polygon([[[125, -30], [145, -30], [145, -20], [125, -20], [125, -30]]]);
 const multiPoly = multiPolygon([

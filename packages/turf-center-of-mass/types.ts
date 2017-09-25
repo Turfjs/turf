@@ -1,5 +1,5 @@
 import {lineString} from '@turf/helpers'
-import * as centerOfMass from './'
+import centerOfMass from './'
 
 const line = lineString([[0, 0], [10, 10]]);
 

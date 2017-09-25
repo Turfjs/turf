@@ -1,17 +1,18 @@
-const glob = require('glob');
-const path = require('path');
-const test = require('tape');
-const load = require('load-json-file');
-const shapely = require('boolean-shapely');
-const booleanJSTS = require('boolean-jsts');
-const within = require('./');
+import glob from 'glob';
+import path from 'path';
+import test from 'tape';
+import load from 'load-json-file';
+import shapely from 'boolean-shapely';
+import booleanJSTS from 'boolean-jsts';
+import within from '.';
 
 test('turf-boolean-within', t => {
     // True Fixtures
     glob.sync(path.join(__dirname, 'test', 'true', '**', '*.geojson')).forEach(filepath => {
-        const {name} = path.parse(filepath);
+        const name = path.parse(filepath).name;
         const geojson = load.sync(filepath);
-        const [feature1, feature2] = geojson.features;
+        const feature1 = geojson.features[0];
+        const feature2 = geojson.features[1];
         const result = within(feature1, feature2);
         if (process.env.JSTS) t.true(booleanJSTS('within', feature1, feature2), '[true] JSTS - ' + name);
 
@@ -20,9 +21,10 @@ test('turf-boolean-within', t => {
     });
     // False Fixtures
     glob.sync(path.join(__dirname, 'test', 'false', '**', '*.geojson')).forEach(filepath => {
-        const {name} = path.parse(filepath);
+        const name = path.parse(filepath).name;
         const geojson = load.sync(filepath);
-        const [feature1, feature2] = geojson.features;
+        const feature1 = geojson.features[0];
+        const feature2 = geojson.features[1];
         const result = within(feature1, feature2);
         if (process.env.JSTS) t.false(booleanJSTS('within', feature1, feature2), '[false] JSTS - ' + name);
 

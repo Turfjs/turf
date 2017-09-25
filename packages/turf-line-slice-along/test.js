@@ -1,8 +1,8 @@
-var test = require('tape');
-var path = require('path');
-var load = require('load-json-file');
-var along = require('@turf/along');
-var lineSliceAlong = require('./');
+import test from 'tape';
+import path from 'path';
+import load from 'load-json-file';
+import along from '@turf/along';
+import lineSliceAlong from '.';
 
 var line1 = load.sync(path.join(__dirname, 'test', 'fixtures', 'line1.geojson'));
 var route1 = load.sync(path.join(__dirname, 'test', 'fixtures', 'route1.geojson'));

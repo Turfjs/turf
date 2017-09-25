@@ -1,8 +1,6 @@
 //http://en.wikipedia.org/wiki/Delaunay_triangulation
 //https://github.com/ironwallaby/delaunay
-var helpers = require('@turf/helpers');
-var polygon = helpers.polygon;
-var featurecollection = helpers.featureCollection;
+import { polygon, featureCollection } from '@turf/helpers';
 
 /**
  * Takes a set of {@link Point|points} and creates a
@@ -37,11 +35,11 @@ var featurecollection = helpers.featureCollection;
  *   properties.fill = '#' + properties.a + properties.b + properties.c;
  * }
  */
-module.exports = function (points, z) {
+export default function (points, z) {
     if (points.type !== 'FeatureCollection') throw new Error('points must be a FeatureCollection');
     //break down points
     var isPointZ = false;
-    return featurecollection(triangulate(points.features.map(function (p) {
+    return featureCollection(triangulate(points.features.map(function (p) {
         var point = {
             x: p.geometry.coordinates[0],
             y: p.geometry.coordinates[1]
@@ -77,7 +75,7 @@ module.exports = function (points, z) {
         return polygon([[a, b, c, a]], properties);
 
     }));
-};
+}
 
 function Triangle(a, b, c) {
     this.a = a;

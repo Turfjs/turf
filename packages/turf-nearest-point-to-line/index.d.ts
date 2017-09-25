@@ -2,9 +2,9 @@
 
 import { Units, FeatureGeometryCollection } from '@turf/helpers'
 
-type Points = GeoJSON.FeatureCollection<GeoJSON.Point> | FeatureGeometryCollection;
-type LineString = GeoJSON.Feature<GeoJSON.LineString> | GeoJSON.LineString;
-interface Point extends GeoJSON.Feature<GeoJSON.Point> {
+export type Points = GeoJSON.FeatureCollection<GeoJSON.Point> | FeatureGeometryCollection;
+export type LineString = GeoJSON.Feature<GeoJSON.LineString> | GeoJSON.LineString;
+export interface Point extends GeoJSON.Feature<GeoJSON.Point> {
   properties: {
     dist: number
     [key: string]: any
@@ -19,6 +19,4 @@ interface Options {
 /**
  * http://turfjs.org/docs/#nearestpointtoline
  */
-declare function nearestPointToLine(points: Points, line: LineString, options?: Options): Point;
-declare namespace nearestPointToLine { }
-export = nearestPointToLine;
+export default function nearestPointToLine(points: Points, line: LineString, options?: Options): Point;

@@ -1,7 +1,7 @@
-var inside = require('@turf/inside');
-var flattenEach = require('@turf/meta').flattenEach;
-var lineIntersect = require('@turf/line-intersect');
-var polyToLinestring = require('@turf/polygon-to-linestring');
+import inside from '@turf/inside';
+import { flattenEach } from '@turf/meta';
+import lineIntersect from '@turf/line-intersect';
+import polyToLinestring from '@turf/polygon-to-linestring';
 
 /**
  * Boolean-disjoint returns (TRUE) if the intersection of the two geometries is an empty set.
@@ -17,7 +17,7 @@ var polyToLinestring = require('@turf/polygon-to-linestring');
  * turf.booleanDisjoint(line, point);
  * //=true
  */
-module.exports = function (feature1, feature2) {
+export default function (feature1, feature2) {
     var boolean;
     flattenEach(feature1, function (flatten1) {
         flattenEach(feature2, function (flatten2) {
@@ -26,7 +26,7 @@ module.exports = function (feature1, feature2) {
         });
     });
     return boolean;
-};
+}
 
 /**
  * Disjoint operation for simple Geometries (Point/LineString/Polygon)

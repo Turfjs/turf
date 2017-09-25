@@ -1,10 +1,10 @@
-const fs = require('fs');
-const test = require('tape');
-const path = require('path');
-const load = require('load-json-file');
-const write = require('write-json-file');
-const {polygon, point} = require('@turf/helpers');
-const polygonTangents = require('./');
+import fs from 'fs';
+import test from 'tape';
+import path from 'path';
+import load from 'load-json-file';
+import write from 'write-json-file';
+import { polygon, point } from '@turf/helpers';
+import polygonTangents from '.';
 
 const directories = {
     in: path.join(__dirname, 'test', 'in') + path.sep,

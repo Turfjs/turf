@@ -1,11 +1,11 @@
-const fs = require('fs');
-const test = require('tape');
-const path = require('path');
-const load = require('load-json-file');
-const write = require('write-json-file');
-const truncate = require('@turf/truncate');
-const {featureCollection} = require('@turf/helpers');
-const greatCircle = require('./');
+import fs from 'fs';
+import test from 'tape';
+import path from 'path';
+import load from 'load-json-file';
+import write from 'write-json-file';
+import truncate from '@turf/truncate';
+import { featureCollection } from '@turf/helpers';
+import greatCircle from '.';
 
 const directories = {
     in: path.join(__dirname, 'test', 'in') + path.sep,
@@ -21,13 +21,17 @@ let fixtures = fs.readdirSync(directories.in).map(filename => {
 });
 
 test('turf-great-circle', t => {
-    for (const {name, filename, geojson} of fixtures) {
-        const [start, end] = geojson.features;
+    fixtures.forEach(fixture => {
+        const name = fixture.name;
+        const filename = fixture.filename;
+        const geojson = fixture.geojson;
+        const start = geojson.features[0];
+        const end = geojson.features[1];
         const line = truncate(greatCircle(start, end));
         const results = featureCollection([line, start, end]);
 
         if (process.env.REGEN) write.sync(directories.out + filename, results);
         t.deepEquals(results, load.sync(directories.out + filename), name);
-    }
+    });
     t.end();
 });

@@ -1,8 +1,5 @@
-var distance = require('@turf/distance');
-var helpers = require('@turf/helpers');
-var point = helpers.point;
-var polygon = helpers.polygon;
-var featureCollection = helpers.featureCollection;
+import distance from '@turf/distance';
+import { point, polygon, featureCollection } from '@turf/helpers';
 
 // Precompute cosines and sines of angles used in hexagon creation
 // for performance gain
@@ -35,7 +32,7 @@ for (var i = 0; i < 6; i++) {
  * //addToMap
  * var addToMap = [hexgrid];
  */
-module.exports = function hexGrid(bbox, cellDiameter, units, triangles) {
+export default function hexGrid(bbox, cellDiameter, units, triangles) {
     var west = bbox[0];
     var south = bbox[1];
     var east = bbox[2];
@@ -104,7 +101,7 @@ module.exports = function hexGrid(bbox, cellDiameter, units, triangles) {
     }
 
     return fc;
-};
+}
 
 //Center should be [x, y]
 function hexagon(center, rx, ry) {

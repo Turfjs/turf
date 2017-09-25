@@ -1,5 +1,5 @@
-import {polygon} from '@turf/helpers'
-import * as intersect from './'
+import { polygon } from '@turf/helpers'
+import intersect from './'
 
 const poly1 = polygon([[[0, 0], [1, 1], [3, 0], [0, 0]]])
 const poly2 = polygon([[[10, 10], [21, 21], [0, 4], [10, 10]]])

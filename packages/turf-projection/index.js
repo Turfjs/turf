@@ -1,10 +1,5 @@
-var coordEach = require('@turf/meta').coordEach;
-var clone = require('@turf/clone');
-
-module.exports = {
-    toMercator: toMercator,
-    toWgs84: toWgs84
-};
+import { coordEach } from '@turf/meta';
+import clone from '@turf/clone';
 
 /**
  * Converts a WGS84 GeoJSON object into Mercator (EPSG:900913) projection
@@ -21,7 +16,8 @@ module.exports = {
  * //addToMap
  * var addToMap = [pt, converted];
  */
-function toMercator(geojson, options) {
+
+export function toMercator(geojson, options) {
     return convert(geojson, 'mercator', options);
 }
 
@@ -40,7 +36,8 @@ function toMercator(geojson, options) {
  * //addToMap
  * var addToMap = [pt, converted];
  */
-function toWgs84(geojson, options) {
+
+export function toWgs84(geojson, options) {
     return convert(geojson, 'wgs84', options);
 }
 

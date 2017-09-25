@@ -1,14 +1,10 @@
-var meta = require('@turf/meta');
-var helpers = require('@turf/helpers');
-var bearing = require('@turf/bearing');
-var distance = require('@turf/distance');
-var invariant = require('@turf/invariant');
-var destination = require('@turf/destination');
-var lineIntersects = require('@turf/line-intersect');
-var point = helpers.point;
-var getCoords = invariant.getCoords;
-var lineString = helpers.lineString;
-var flattenEach = meta.flattenEach;
+import bearing from '@turf/bearing';
+import distance from '@turf/distance';
+import destination from '@turf/destination';
+import lineIntersects from '@turf/line-intersect';
+import { flattenEach } from '@turf/meta';
+import { point, lineString } from '@turf/helpers';
+import { getCoords } from '@turf/invariant';
 
 /**
  * Takes a {@link Point} and a {@link LineString} and calculates the closest Point on the (Multi)LineString.
@@ -35,7 +31,7 @@ var flattenEach = meta.flattenEach;
  * var addToMap = [line, pt, snapped];
  * snapped.properties['marker-color'] = '#00f';
  */
-module.exports = function (lines, pt, units) {
+export default function (lines, pt, units) {
     // validation
     var type = (lines.geometry) ? lines.geometry.type : lines.type;
     if (type !== 'LineString' && type !== 'MultiLineString') {
@@ -93,4 +89,4 @@ module.exports = function (lines, pt, units) {
     });
 
     return closestPt;
-};
+}

@@ -1,15 +1,15 @@
-const fs = require('fs');
-const test = require('tape');
-const path = require('path');
-const load = require('load-json-file');
-const write = require('write-json-file');
-const centroid = require('@turf/centroid');
-const chromatism = require('chromatism');
-const concaveman = require('concaveman');
-const {clusterEach, clusterReduce} = require('@turf/clusters');
-const {featureEach, coordAll} = require('@turf/meta');
-const {featureCollection, point, polygon} = require('@turf/helpers');
-const clustersDbscan = require('./');
+import fs from 'fs';
+import test from 'tape';
+import path from 'path';
+import load from 'load-json-file';
+import write from 'write-json-file';
+import centroid from '@turf/centroid';
+import chromatism from 'chromatism';
+import concaveman from 'concaveman';
+import { point, polygon, featureCollection } from '@turf/helpers';
+import { clusterReduce, clusterEach } from '@turf/clusters';
+import { coordAll, featureEach } from '@turf/meta';
+import clustersDbscan from '.';
 
 const directories = {
     in: path.join(__dirname, 'test', 'in') + path.sep,
@@ -25,9 +25,14 @@ const fixtures = fs.readdirSync(directories.in).map(filename => {
 });
 
 test('clusters-dbscan', t => {
-    fixtures.forEach(({name, filename, geojson}) => {
-        let {distance, minPoints, units} = geojson.properties || {};
-        distance = distance || 100;
+    fixtures.forEach(fixture => {
+        const name = fixture.name;
+        const filename = fixture.filename;
+        const geojson = fixture.geojson;
+        const properties = geojson.properties || {};
+        const distance = properties.distance || 100;
+        const minPoints = properties.minPoints;
+        const units = properties.units;
 
         // console.log(geojson.features.length);
         const clustered = clustersDbscan(geojson, distance, units, minPoints);

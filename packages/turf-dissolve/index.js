@@ -1,6 +1,6 @@
-var turfUnion = require('@turf/union');
-var booleanOverlap = require('@turf/boolean-overlap');
-var turfbbox = require('@turf/bbox');
+import turfUnion from '@turf/union';
+import booleanOverlap from '@turf/boolean-overlap';
+import turfbbox from '@turf/bbox';
 var Rbush = require('rbush');
 var gju = require('geojson-utils');
 var getClosest = require('get-closest');
@@ -24,7 +24,7 @@ var getClosest = require('get-closest');
  * //addToMap
  * var addToMap = [features, dissolved]
  */
-module.exports = function (featureCollection, propertyName) {
+export default function (featureCollection, propertyName) {
 
     var originalIndexOfItemsRemoved = [];
     var treeItems = [];
@@ -123,7 +123,7 @@ module.exports = function (featureCollection, propertyName) {
         }
     }
     return featureCollection;
-};
+}
 
 function toLinestring(polygon) {
     if (polygon === null || polygon === undefined) throw new Error('No polygon was passed');

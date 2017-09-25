@@ -1,3 +1,5 @@
+*.es5.js
+.esm-cache
 package-lock.json
 env
 .nyc_output

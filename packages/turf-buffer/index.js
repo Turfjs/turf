@@ -1,18 +1,10 @@
-var d3 = require('d3-geo');
 var jsts = require('jsts');
-var meta = require('@turf/meta');
-var center = require('@turf/center');
-var helpers = require('@turf/helpers');
-var turfBbox = require('@turf/bbox');
-var projection = require('@turf/projection');
-var toWgs84 = projection.toWgs84;
-var feature = helpers.feature;
-var geomEach = meta.geomEach;
-var toMercator = projection.toMercator;
-var featureEach = meta.featureEach;
-var featureCollection = helpers.featureCollection;
-var radiansToDistance = helpers.radiansToDistance;
-var distanceToRadians = helpers.distanceToRadians;
+import { geoTransverseMercator } from 'd3-geo';
+import center from '@turf/center';
+import turfBbox from '@turf/bbox';
+import { geomEach, featureEach } from '@turf/meta';
+import { feature, featureCollection, radiansToDistance, distanceToRadians } from '@turf/helpers';
+import { toWgs84, toMercator } from '@turf/projection';
 
 /**
  * Calculates a buffer for input features for a given radius. Units supported are miles, kilometers, and degrees.
@@ -36,7 +28,7 @@ var distanceToRadians = helpers.distanceToRadians;
  * //addToMap
  * var addToMap = [point, buffered]
  */
-module.exports = function (geojson, radius, units, steps) {
+export default function (geojson, radius, units, steps) {
     // validation
     if (!geojson) throw new Error('geojson is required');
     // Allow negative buffers ("erosion") or zero-sized buffers ("repair geometry")
@@ -67,7 +59,7 @@ module.exports = function (geojson, radius, units, steps) {
         return featureCollection(results);
     }
     return buffer(geojson, radius, units, steps);
-};
+}
 
 /**
  * Buffer single Feature/Geometry
@@ -99,10 +91,9 @@ function buffer(geojson, radius, units, steps) {
     var needsTransverseMercator = bbox[1] > 50 && bbox[3] > 50;
 
     if (needsTransverseMercator) {
-        var projection = defineProjection(geometry);
         projected = {
             type: geometry.type,
-            coordinates: projectCoords(geometry.coordinates, projection)
+            coordinates: projectCoords(geometry.coordinates, defineProjection(geometry))
         };
     } else {
         projected = toMercator(geometry);
@@ -124,7 +115,7 @@ function buffer(geojson, radius, units, steps) {
     if (needsTransverseMercator) {
         result = {
             type: buffered.type,
-            coordinates: unprojectCoords(buffered.coordinates, projection)
+            coordinates: unprojectCoords(buffered.coordinates, defineProjection(geometry))
         };
     } else {
         result = toWgs84(buffered);
@@ -150,13 +141,13 @@ function coordsIsNaN(coords) {
  *
  * @private
  * @param {Array<any>} coords to project
- * @param {GeoProjection} projection D3 Geo Projection
+ * @param {GeoProjection} proj D3 Geo Projection
  * @returns {Array<any>} projected coordinates
  */
-function projectCoords(coords, projection) {
-    if (typeof coords[0] !== 'object') return projection(coords);
+function projectCoords(coords, proj) {
+    if (typeof coords[0] !== 'object') return proj(coords);
     return coords.map(function (coord) {
-        return projectCoords(coord, projection);
+        return projectCoords(coord, proj);
     });
 }
 
@@ -165,13 +156,13 @@ function projectCoords(coords, projection) {
  *
  * @private
  * @param {Array<any>} coords to un-project
- * @param {GeoProjection} projection D3 Geo Projection
+ * @param {GeoProjection} proj D3 Geo Projection
  * @returns {Array<any>} un-projected coordinates
  */
-function unprojectCoords(coords, projection) {
-    if (typeof coords[0] !== 'object') return projection.invert(coords);
+function unprojectCoords(coords, proj) {
+    if (typeof coords[0] !== 'object') return proj.invert(coords);
     return coords.map(function (coord) {
-        return unprojectCoords(coord, projection);
+        return unprojectCoords(coord, proj);
     });
 }
 
@@ -185,10 +176,8 @@ function unprojectCoords(coords, projection) {
 function defineProjection(geojson) {
     var coords = center(geojson).geometry.coordinates.reverse();
     var rotate = coords.map(function (coord) { return -coord; });
-    var projection = d3.geoTransverseMercator()
+    return geoTransverseMercator()
         .center(coords)
         .rotate(rotate)
         .scale(6373000);
-
-    return projection;
 }
