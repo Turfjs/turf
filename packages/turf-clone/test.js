@@ -1,6 +1,10 @@
 const test = require('tape');
-const {point, lineString, polygon, featureCollection, geometryCollection} = require('@turf/helpers');
-const {coordEach} = require('@turf/meta');
+const point = require('@turf/helpers').point;
+const lineString = require('@turf/helpers').lineString;
+const polygon = require('@turf/helpers').polygon;
+const featureCollection = require('@turf/helpers').featureCollection;
+const geometryCollection = require('@turf/helpers').geometryCollection;
+const coordEach = require('@turf/meta').coordEach;
 const clone = require('./');
 
 
