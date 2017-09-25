@@ -25,7 +25,8 @@ test('turf-great-circle', t => {
         const name = fixture.name;
         const filename = fixture.filename;
         const geojson = fixture.geojson;
-        const [start, end] = geojson.features;
+        const start = geojson.features[0];
+        const end = geojson.features[1];
         const line = truncate(greatCircle(start, end));
         const results = featureCollection([line, start, end]);
 

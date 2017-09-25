@@ -1,5 +1,5 @@
-import { GreatCircle } from './arc';
 import { getCoord } from '@turf/invariant';
+var GreatCircle = require('arc');
 
 /**
  * Calculate great circles routes as {@link LineString}
