@@ -4,7 +4,8 @@ const glob = require('glob');
 const load = require('load-json-file');
 const write = require('write-json-file');
 const getCoords = require('@turf/invariant').getCoords;
-const {featureCollection, lineString} = require('@turf/helpers');
+const featureCollection = require('@turf/helpers').featureCollection;
+const lineString = require('@turf/helpers').lineString;
 const destination = require('./');
 
 const directories = {
@@ -13,20 +14,21 @@ const directories = {
 };
 
 test('turf-destination', t => {
-    for (const filepath of glob.sync(directories.in + '*.geojson')) {
+    glob.sync(directories.in + '*.geojson').forEach(filepath => {
         const geojson = load.sync(filepath);
-        const {name, base} = path.parse(filepath);
+        const name = path.parse(filepath).name;
+        const base = path.parse(filepath).base;
 
         // Params
-        let {bearing, dist} = geojson.properties || {};
-        bearing = (bearing !== undefined) ? bearing : 180;
-        dist = (dist !== undefined) ? dist : 100;
+        const properties = geojson.properties || {};
+        const bearing = (properties.bearing !== undefined) ? properties.bearing : 180;
+        const dist = (properties.dist !== undefined) ? properties.dist : 100;
 
         const dest = destination(geojson, dist, bearing);
         const result = featureCollection([geojson, dest, lineString([getCoords(geojson), getCoords(dest)])]);
 
         if (process.env.REGEN) write.sync(directories.out + base, result);
         t.deepEqual(result, load.sync(directories.out + base), name);
-    }
+    });
     t.end();
 });

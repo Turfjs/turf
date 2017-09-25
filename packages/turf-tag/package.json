@@ -38,8 +38,9 @@
   "homepage": "https://github.com/Turfjs/turf",
   "devDependencies": {
     "benchmark": "*",
-    "tape": "*",
-    "rollup": "*"
+    "load-json-file": "*",
+    "rollup": "*",
+    "tape": "*"
   },
   "dependencies": {
     "@turf/clone": "^4.7.3",

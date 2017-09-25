@@ -3,8 +3,9 @@ const test = require('tape');
 const path = require('path');
 const load = require('load-json-file');
 const write = require('write-json-file');
-const {point, featureCollection} = require('@turf/helpers');
-const {featureEach} = require('@turf/meta');
+const point = require('@turf/helpers').point;
+const featureCollection = require('@turf/helpers').featureCollection;
+const featureEach = require('@turf/meta').featureEach;
 const concave = require('./');
 
 const directories = {
@@ -21,15 +22,21 @@ const fixtures = fs.readdirSync(directories.in).map(filename => {
 });
 
 test('turf-concave', t => {
-    for (const {filename, name, geojson}  of fixtures) {
-        let {maxEdge, units} = geojson.properties;
-        const hull = concave(geojson, maxEdge || 1, units);
+    fixtures.forEach(fixture => {
+        const filename = fixture.filename;
+        const name = fixture.name;
+        const geojson = fixture.geojson;
+        const properties = geojson.properties || {};
+        const maxEdge = properties.maxEdge || 1;
+        const units = properties.units;
+
+        const hull = concave(geojson, maxEdge, units);
         featureEach(geojson, stylePt);
         const results = featureCollection([...geojson.features, hull]);
 
         if (process.env.REGEN) write.sync(directories.out + filename, results);
         t.deepEquals(results, load.sync(directories.out + filename), name);
-    }
+    });
     t.end();
 });
 

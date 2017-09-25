@@ -3,7 +3,8 @@ const test = require('tape');
 const glob = require('glob');
 const load = require('load-json-file');
 const write = require('write-json-file');
-const {featureCollection, polygon} = require('@turf/helpers');
+const featureCollection = require('@turf/helpers').featureCollection;
+const polygon = require('@turf/helpers').polygon;
 const difference = require('./');
 
 const directories = {
@@ -13,8 +14,12 @@ const directories = {
 
 test('turf-difference', t => {
     glob.sync(directories.in + '*.geojson').forEach(filepath => {
-        const {base, name} = path.parse(filepath);
-        const [polygon1, polygon2] = load.sync(filepath).features;
+        const name = path.parse(filepath).name;
+        const base = path.parse(filepath).base;
+        const features = load.sync(filepath).features;
+        const polygon1 = features[0];
+        const polygon2 = features[0];
+
         const results = featureCollection([polygon1, polygon2]);
 
         const diff = difference(polygon1, polygon2);
