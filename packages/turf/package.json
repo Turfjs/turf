@@ -2,18 +2,18 @@
   "name": "@turf/turf",
   "version": "4.7.3",
   "description": "a JavaScript library for performing geospatial operations with GeoJSON",
-  "main": "dist/turf.js",
-  "module": "index.js",
-  "jsnext:main": "index.js",
+  "main": "turf.js",
+  "module": "index.mjs",
+  "jsnext:main": "index.mjs",
   "types": "index.d.ts",
   "files": [
     "index.js",
     "index.d.ts",
-    "module.js",
     "dist"
   ],
   "scripts": {
-    "pretest": "rollup -c rollup.config.js",
+    "prepublish": "rollup -c rollup.config.js",
+    "pretest": "rollup -c ../../rollup.config.js",
     "test": "tap test.js && tap test.example.js"
   },
   "repository": {

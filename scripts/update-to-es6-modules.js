@@ -29,20 +29,24 @@ Object.keys(dependencies).forEach(name => {
     const packagePath = path.join(__dirname, '..', 'packages', 'turf-' + basename, 'package.json');
     const pckg = load.sync(packagePath);
     const files = new Set(pckg.files);
-    files.add('index.cjs.js');
+    files.add('index.js');
+    files.add('index.mjs');
     files.delete('dist');
+    files.delete('index.cjs.js');
+    files.delete('index.cjs');
+
     const newPckg = {
         name: pckg.name,
         version: pckg.version,
         description: pckg.description,
-        main: 'index.cjs.js',
-        module: 'index.js',
-        'jsnext:main': 'index.js',
+        main: 'index.js',
+        module: 'index.mjs',
+        'jsnext:main': 'index.mjs',
         types: pckg.types,
         files: [...files],
         scripts: {
             'pretest': 'rollup -c ../../rollup.config.js',
-            'test': 'node test.cjs.js',
+            'test': 'node test.js',
             'bench': 'node bench.js'
         },
         repository: {
@@ -67,5 +71,11 @@ Object.keys(dependencies).forEach(name => {
 glob.sync(path.join(__dirname, '..', 'packages', 'turf-*', 'test.js')).forEach(filepath => {
     var test = fs.readFileSync(filepath, 'utf8');
     test = test.replace(/'.\/'/g, '\'.\'');
-    fs.writeFileSync(filepath, test);
+    fs.writeFileSync(filepath.replace('.js', '.mjs'), test);
+});
+
+glob.sync(path.join(__dirname, '..', 'packages', 'turf-*', 'index.js')).forEach(filepath => {
+    var index = fs.readFileSync(filepath, 'utf8');
+    index = index.replace(/'.\/'/g, '\'.\'');
+    fs.writeFileSync(filepath.replace('.js', '.mjs'), index);
 });

@@ -4,7 +4,7 @@ import commonjs from 'rollup-plugin-commonjs';
 
 export default [
     {
-        input: 'index.js',
+        input: 'index.mjs',
         output: {
             file: 'dist/turf.js',
             format: 'umd',
@@ -24,7 +24,7 @@ export default [
         ]
     },
     {
-        input: 'index.js',
+        input: 'index.mjs',
         output: {
             file: 'dist/turf.min.js',
             format: 'umd',

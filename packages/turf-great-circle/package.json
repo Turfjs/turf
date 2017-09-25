@@ -2,19 +2,19 @@
   "name": "@turf/great-circle",
   "version": "4.7.3",
   "description": "turf great-circle module",
-  "main": "index.cjs.js",
-  "module": "index.js",
-  "jsnext:main": "index.js",
+  "main": "index.js",
+  "module": "index.mjs",
+  "jsnext:main": "index.mjs",
   "types": "index.d.ts",
   "files": [
     "index.js",
     "index.d.ts",
     "arc.js",
-    "index.cjs.js"
+    "index.mjs"
   ],
   "scripts": {
     "pretest": "rollup -c ../../rollup.config.js",
-    "test": "node test.cjs.js",
+    "test": "node test.js",
     "bench": "node bench.js"
   },
   "repository": {
