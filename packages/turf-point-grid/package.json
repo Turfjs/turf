@@ -2,18 +2,18 @@
   "name": "@turf/point-grid",
   "version": "4.7.3",
   "description": "turf point-grid module",
-  "main": "index.cjs",
+  "main": "index.cjs.js",
   "module": "index.js",
   "jsnext:main": "index.js",
   "types": "index.d.ts",
   "files": [
     "index.js",
     "index.d.ts",
-    "dist"
+    "index.cjs.js"
   ],
   "scripts": {
     "pretest": "rollup -c ../../rollup.config.js",
-    "test": "node test.cjs",
+    "test": "node test.cjs.js",
     "bench": "node bench.js"
   },
   "repository": {

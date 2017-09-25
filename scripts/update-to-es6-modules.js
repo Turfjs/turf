@@ -28,18 +28,21 @@ Object.keys(dependencies).forEach(name => {
     const basename = name.replace('@turf/', '');
     const packagePath = path.join(__dirname, '..', 'packages', 'turf-' + basename, 'package.json');
     const pckg = load.sync(packagePath);
+    const files = new Set(pckg.files);
+    files.add('index.cjs.js');
+    files.delete('dist');
     const newPckg = {
         name: pckg.name,
         version: pckg.version,
         description: pckg.description,
-        main: 'index.cjs',
+        main: 'index.cjs.js',
         module: 'index.js',
         'jsnext:main': 'index.js',
         types: pckg.types,
-        files: [...new Set(pckg.files).add('dist')],
+        files: [...files],
         scripts: {
             'pretest': 'rollup -c ../../rollup.config.js',
-            'test': 'node test.cjs',
+            'test': 'node test.cjs.js',
             'bench': 'node bench.js'
         },
         repository: {

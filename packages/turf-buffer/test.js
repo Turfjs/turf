@@ -4,13 +4,8 @@ import path from 'path';
 import load from 'load-json-file';
 import write from 'write-json-file';
 import truncate from '@turf/truncate';
-import {
-    featureEach,
-    featureCollection,
-    point,
-    polygon,
-    geometryCollection
-} from '@turf/meta';
+import { featureEach } from '@turf/meta';
+import { featureCollection, point, polygon, geometryCollection } from '@turf/helpers';
 import buffer from '.';
 
 const directories = {

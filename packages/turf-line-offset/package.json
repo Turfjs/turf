@@ -2,7 +2,7 @@
   "name": "@turf/line-offset",
   "version": "4.7.3",
   "description": "turf line-offset module",
-  "main": "index.cjs",
+  "main": "index.cjs.js",
   "module": "index.js",
   "jsnext:main": "index.js",
   "types": "index.d.ts",
@@ -10,11 +10,11 @@
     "index.js",
     "index.d.ts",
     "intersection.js",
-    "dist"
+    "index.cjs.js"
   ],
   "scripts": {
     "pretest": "rollup -c ../../rollup.config.js",
-    "test": "node test.cjs",
+    "test": "node test.cjs.js",
     "bench": "node bench.js"
   },
   "repository": {

@@ -3,8 +3,7 @@ import test from 'tape';
 import glob from 'glob';
 import load from 'load-json-file';
 import write from 'write-json-file';
-import { featureCollection } from '@turf/helpers';
-import { polygon } from '@turf/helpers';
+import { polygon, featureCollection } from '@turf/helpers';
 import difference from '.';
 
 const directories = {

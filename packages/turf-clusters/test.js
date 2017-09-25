@@ -1,6 +1,15 @@
 import test from 'tape';
 import { point, featureCollection } from '@turf/helpers';
-import clusters from '.';
+import {
+    getCluster,
+    clusterEach,
+    clusterReduce,
+    // Below methods are not exposed in @turf/turf
+    createBins,
+    applyFilter,
+    filterProperties,
+    propertiesContainsFilter
+} from '.';
 
 const properties = {foo: 'bar', cluster: 0};
 const geojson = featureCollection([
@@ -14,22 +23,22 @@ const geojson = featureCollection([
 ]);
 
 test('clusters -- getCluster', t => {
-    t.equal(clusters.getCluster(geojson, 0).features.length, 1, 'number1');
-    t.equal(clusters.getCluster(geojson, 1).features.length, 0, 'number2');
-    t.equal(clusters.getCluster(geojson, 'bar').features.length, 1, 'string1');
-    t.equal(clusters.getCluster(geojson, 'cluster').features.length, 3, 'string2');
-    t.equal(clusters.getCluster(geojson, {cluster: 1}).features.length, 2, 'object1');
-    t.equal(clusters.getCluster(geojson, {cluster: 0}).features.length, 1, 'object2');
-    t.equal(clusters.getCluster(geojson, ['cluster', {foo: 'bar'}]).features.length, 1);
-    t.equal(clusters.getCluster(geojson, ['cluster', 'foo']).features.length, 2);
-    t.equal(clusters.getCluster(geojson, ['cluster']).features.length, 3);
+    t.equal(getCluster(geojson, 0).features.length, 1, 'number1');
+    t.equal(getCluster(geojson, 1).features.length, 0, 'number2');
+    t.equal(getCluster(geojson, 'bar').features.length, 1, 'string1');
+    t.equal(getCluster(geojson, 'cluster').features.length, 3, 'string2');
+    t.equal(getCluster(geojson, {cluster: 1}).features.length, 2, 'object1');
+    t.equal(getCluster(geojson, {cluster: 0}).features.length, 1, 'object2');
+    t.equal(getCluster(geojson, ['cluster', {foo: 'bar'}]).features.length, 1);
+    t.equal(getCluster(geojson, ['cluster', 'foo']).features.length, 2);
+    t.equal(getCluster(geojson, ['cluster']).features.length, 3);
     t.end();
 });
 
 test('clusters -- clusterEach', t => {
     const clusters = [];
     let total = 0;
-    clusters.clusterEach(geojson, 'cluster', (cluster) => {
+    clusterEach(geojson, 'cluster', (cluster) => {
         total += cluster.features.length;
         clusters.push(cluster);
         if (!cluster.features[0]) t.fail('if feature is undefined');
@@ -41,7 +50,7 @@ test('clusters -- clusterEach', t => {
 
 test('clusters -- clusterReduce', t => {
     const clusters = [];
-    const total = clusters.clusterReduce(geojson, 'cluster', (previousValue, cluster)  => {
+    const total = clusterReduce(geojson, 'cluster', (previousValue, cluster)  => {
         clusters.push(cluster);
         return previousValue + cluster.features.length;
     }, 0);
@@ -51,29 +60,29 @@ test('clusters -- clusterReduce', t => {
 });
 
 test('clusters.utils -- applyFilter', t => {
-    t.true(clusters.applyFilter(properties, 'cluster'));
-    t.true(clusters.applyFilter(properties, ['cluster']));
-    t.false(clusters.applyFilter(properties, {cluster: 1}));
-    t.true(clusters.applyFilter(properties, {cluster: 0}));
-    t.false(clusters.applyFilter(undefined, {cluster: 0}));
+    t.true(applyFilter(properties, 'cluster'));
+    t.true(applyFilter(properties, ['cluster']));
+    t.false(applyFilter(properties, {cluster: 1}));
+    t.true(applyFilter(properties, {cluster: 0}));
+    t.false(applyFilter(undefined, {cluster: 0}));
     t.end();
 });
 
 test('clusters.utils -- filterProperties', t => {
-    t.deepEqual(clusters.filterProperties(properties, ['cluster']), {cluster: 0});
-    t.deepEqual(clusters.filterProperties(properties, []), {});
-    t.deepEqual(clusters.filterProperties(properties, undefined), {});
+    t.deepEqual(filterProperties(properties, ['cluster']), {cluster: 0});
+    t.deepEqual(filterProperties(properties, []), {});
+    t.deepEqual(filterProperties(properties, undefined), {});
     t.end();
 });
 
 test('clusters.utils -- propertiesContainsFilter', t => {
-    t.deepEqual(clusters.propertiesContainsFilter(properties, {cluster: 0}), true);
-    t.deepEqual(clusters.propertiesContainsFilter(properties, {cluster: 1}), false);
-    t.deepEqual(clusters.propertiesContainsFilter(properties, {bar: 'foo'}), false);
+    t.deepEqual(propertiesContainsFilter(properties, {cluster: 0}), true);
+    t.deepEqual(propertiesContainsFilter(properties, {cluster: 1}), false);
+    t.deepEqual(propertiesContainsFilter(properties, {bar: 'foo'}), false);
     t.end();
 });
 
 test('clusters.utils -- propertiesContainsFilter', t => {
-    t.deepEqual(clusters.createBins(geojson, 'cluster'), {'0': [0], '1': [1, 2]});
+    t.deepEqual(createBins(geojson, 'cluster'), {'0': [0], '1': [1, 2]});
     t.end();
 });

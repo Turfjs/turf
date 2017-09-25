@@ -2,14 +2,14 @@ export default [{
     input: 'index',
     output: {
         extend: true,
-        file: 'index.cjs',
+        file: 'index.cjs.js',
         format: 'cjs'
     }
 }, {
     input: 'test',
     output: {
         extend: true,
-        file: 'test.cjs',
+        file: 'test.cjs.js',
         format: 'cjs'
     }
 }];
