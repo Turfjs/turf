@@ -3,7 +3,7 @@ import test from 'tape';
 import glob from 'glob';
 import load from 'load-json-file';
 import write from 'write-json-file';
-import { polygon, featureCollection } from '@turf/helpers';
+import { featureCollection, polygon } from '@turf/helpers';
 import difference from '.';
 
 const directories = {
@@ -17,7 +17,7 @@ test('turf-difference', t => {
         const base = path.parse(filepath).base;
         const features = load.sync(filepath).features;
         const polygon1 = features[0];
-        const polygon2 = features[0];
+        const polygon2 = features[1];
 
         const results = featureCollection([polygon1, polygon2]);
 
@@ -60,4 +60,3 @@ test('turf-difference - complete overlap', t => {
     t.deepEqual(result, null, 'difference should be null');
     t.end();
 });
-
