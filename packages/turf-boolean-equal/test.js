@@ -3,15 +3,18 @@ const path = require('path');
 const test = require('tape');
 const load = require('load-json-file');
 const shapely = require('boolean-shapely');
-const {point, lineString, polygon} = require('@turf/helpers');
+const point = require('@turf/helpers').point;
+const lineString = require('@turf/helpers').lineString;
+const polygon = require('@turf/helpers').polygon;
 const equal = require('./');
 
 test('turf-boolean-equal', t => {
     // True Fixtures
     glob.sync(path.join(__dirname, 'test', 'true', '**', '*.geojson')).forEach(filepath => {
-        const {name} = path.parse(filepath);
+        const name = path.parse(filepath).name;
         const geojson = load.sync(filepath);
-        const [feature1, feature2] = geojson.features;
+        const feature1 = geojson.features[0];
+        const feature2 = geojson.features[1];
         const result = equal(feature1, feature2);
 
         if (process.env.SHAPELY) shapely.contains(feature1, feature2).then(result => t.true(result, '[true] shapely - ' + name));
@@ -19,9 +22,10 @@ test('turf-boolean-equal', t => {
     });
     // False Fixtures
     glob.sync(path.join(__dirname, 'test', 'false', '**', '*.geojson')).forEach(filepath => {
-        const {name} = path.parse(filepath);
+        const name = path.parse(filepath).name;
         const geojson = load.sync(filepath);
-        const [feature1, feature2] = geojson.features;
+        const feature1 = geojson.features[0];
+        const feature2 = geojson.features[1];
         const result = equal(feature1, feature2);
 
         if (process.env.SHAPELY) shapely.contains(feature1, feature2).then(result => t.false(result, '[false] shapely - ' + name));

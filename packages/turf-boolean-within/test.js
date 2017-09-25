@@ -9,9 +9,10 @@ const within = require('./');
 test('turf-boolean-within', t => {
     // True Fixtures
     glob.sync(path.join(__dirname, 'test', 'true', '**', '*.geojson')).forEach(filepath => {
-        const {name} = path.parse(filepath);
+        const name = path.parse(filepath).name;
         const geojson = load.sync(filepath);
-        const [feature1, feature2] = geojson.features;
+        const feature1 = geojson.features[0];
+        const feature2 = geojson.features[1];
         const result = within(feature1, feature2);
         if (process.env.JSTS) t.true(booleanJSTS('within', feature1, feature2), '[true] JSTS - ' + name);
 
@@ -20,9 +21,10 @@ test('turf-boolean-within', t => {
     });
     // False Fixtures
     glob.sync(path.join(__dirname, 'test', 'false', '**', '*.geojson')).forEach(filepath => {
-        const {name} = path.parse(filepath);
+        const name = path.parse(filepath).name;
         const geojson = load.sync(filepath);
-        const [feature1, feature2] = geojson.features;
+        const feature1 = geojson.features[0];
+        const feature2 = geojson.features[1];
         const result = within(feature1, feature2);
         if (process.env.JSTS) t.false(booleanJSTS('within', feature1, feature2), '[false] JSTS - ' + name);
 

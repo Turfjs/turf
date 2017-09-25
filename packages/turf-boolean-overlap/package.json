@@ -41,10 +41,11 @@
   "devDependencies": {
     "@turf/helpers": "*",
     "benchmark": "*",
+    "boolean-shapely": "^0.1.2",
     "glob": "*",
     "load-json-file": "*",
-    "tape": "*",
-    "rollup": "*"
+    "rollup": "*",
+    "tape": "*"
   },
   "dependencies": {
     "@turf/invariant": "^4.7.3",
