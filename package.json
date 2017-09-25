@@ -3,7 +3,7 @@
   "version": "4.0.0",
   "description": "a node.js library for performing geospatial operations with geojson",
   "scripts": {
-    "lint": "eslint packages/turf-*/index.js",
+    "lint": "eslint packages/turf-*/index.mjs",
     "postlint": "documentation lint packages/turf-*/index.js && tsc",
     "pretest": "lerna bootstrap && npm run lint && lerna run pretest",
     "test": "tap packages/turf-*/test.js",

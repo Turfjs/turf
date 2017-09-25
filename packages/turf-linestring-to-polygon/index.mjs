@@ -1,4 +1,4 @@
-import bbox from '@turf/bbox';
+import turfBBox from '@turf/bbox';
 import { getCoords } from '@turf/invariant';
 import { polygon, multiPolygon, lineString } from '@turf/helpers';
 
@@ -71,7 +71,7 @@ function lineStringToPolygon(line, properties, autoComplete, orderCoords) {
 
             // Largest LineString to be placed in the first position of the coordinates array
             if (orderCoords) {
-                var area = calculateArea(bbox(lineString(coord)));
+                var area = calculateArea(turfBBox(lineString(coord)));
                 if (area > largestArea) {
                     multiCoords.unshift(coord);
                     largestArea = area;

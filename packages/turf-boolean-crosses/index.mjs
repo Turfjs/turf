@@ -138,15 +138,15 @@ function doesMultiPointCrossPoly(multiPoint, polygon) {
  * See http://stackoverflow.com/a/4833823/1979085
  *
  * @private
- * @param {Array} lineSegmentStart coord pair of start of line
- * @param {Array} lineSegmentEnd coord pair of end of line
- * @param {Array} point coord pair of point to check
+ * @param {number[]} lineSegmentStart coord pair of start of line
+ * @param {number[]} lineSegmentEnd coord pair of end of line
+ * @param {number[]} pt coord pair of point to check
  * @param {boolean} incEnd whether the point is allowed to fall on the line ends
  * @returns {boolean} true/false
  */
-function isPointOnLineSegment(lineSegmentStart, lineSegmentEnd, point, incEnd) {
-    var dxc = point[0] - lineSegmentStart[0];
-    var dyc = point[1] - lineSegmentStart[1];
+function isPointOnLineSegment(lineSegmentStart, lineSegmentEnd, pt, incEnd) {
+    var dxc = pt[0] - lineSegmentStart[0];
+    var dyc = pt[1] - lineSegmentStart[1];
     var dxl = lineSegmentEnd[0] - lineSegmentStart[0];
     var dyl = lineSegmentEnd[1] - lineSegmentStart[1];
     var cross = dxc * dyl - dyc * dxl;
@@ -155,13 +155,13 @@ function isPointOnLineSegment(lineSegmentStart, lineSegmentEnd, point, incEnd) {
     }
     if (incEnd) {
         if (Math.abs(dxl) >= Math.abs(dyl)) {
-            return dxl > 0 ? lineSegmentStart[0] <= point[0] && point[0] <= lineSegmentEnd[0] : lineSegmentEnd[0] <= point[0] && point[0] <= lineSegmentStart[0];
+            return dxl > 0 ? lineSegmentStart[0] <= pt[0] && pt[0] <= lineSegmentEnd[0] : lineSegmentEnd[0] <= pt[0] && pt[0] <= lineSegmentStart[0];
         }
-        return dyl > 0 ? lineSegmentStart[1] <= point[1] && point[1] <= lineSegmentEnd[1] : lineSegmentEnd[1] <= point[1] && point[1] <= lineSegmentStart[1];
+        return dyl > 0 ? lineSegmentStart[1] <= pt[1] && pt[1] <= lineSegmentEnd[1] : lineSegmentEnd[1] <= pt[1] && pt[1] <= lineSegmentStart[1];
     } else {
         if (Math.abs(dxl) >= Math.abs(dyl)) {
-            return dxl > 0 ? lineSegmentStart[0] < point[0] && point[0] < lineSegmentEnd[0] : lineSegmentEnd[0] < point[0] && point[0] < lineSegmentStart[0];
+            return dxl > 0 ? lineSegmentStart[0] < pt[0] && pt[0] < lineSegmentEnd[0] : lineSegmentEnd[0] < pt[0] && pt[0] < lineSegmentStart[0];
         }
-        return dyl > 0 ? lineSegmentStart[1] < point[1] && point[1] < lineSegmentEnd[1] : lineSegmentEnd[1] < point[1] && point[1] < lineSegmentStart[1];
+        return dyl > 0 ? lineSegmentStart[1] < pt[1] && pt[1] < lineSegmentEnd[1] : lineSegmentEnd[1] < pt[1] && pt[1] < lineSegmentStart[1];
     }
 }
