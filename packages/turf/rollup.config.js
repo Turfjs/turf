@@ -9,7 +9,6 @@ function assign(options) {
         commonjs({ include: 'node_modules/**' }),
         nodeResolve({ module: true, jsnext: true })
     ].concat(options.plugins || []);
-    console.log(plugins);
     return {
         input: 'index.mjs',
         output: {
