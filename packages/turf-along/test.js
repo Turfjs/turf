@@ -1,10 +1,10 @@
-const fs = require('fs');
-const path = require('path');
-const test = require('tape');
-const featureCollection = require('@turf/helpers').featureCollection;
-const along = require('./');
+import path from 'path';
+import test from 'tape';
+import load from 'load-json-file';
+import { featureCollection } from '@turf/helpers';
+import along from '.';
 
-const line = JSON.parse(fs.readFileSync(path.join(__dirname, 'test', 'fixtures', 'dc-line.geojson')));
+const line = load.sync(path.join(__dirname, 'test', 'fixtures', 'dc-line.geojson'));
 
 test('turf-along', t => {
     const pt1 = along(line, 1, 'miles');

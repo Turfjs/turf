@@ -2,9 +2,9 @@
   "name": "@turf/unkink-polygon",
   "version": "4.7.3",
   "description": "turf unkink-polygon module",
-  "main": "dist/index",
-  "module": "index",
-  "jsnext:main": "index",
+  "main": "index.cjs",
+  "module": "index.js",
+  "jsnext:main": "index.js",
   "types": "index.d.ts",
   "files": [
     "index.js",
@@ -13,7 +13,7 @@
   ],
   "scripts": {
     "pretest": "rollup -c ../../rollup.config.js",
-    "test": "node test.js",
+    "test": "node test.cjs",
     "bench": "node bench.js"
   },
   "repository": {

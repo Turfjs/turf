@@ -1,3 +1,4 @@
+*.cjs
 dist
 .esm-cache
 package-lock.json

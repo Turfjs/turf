@@ -29,14 +29,14 @@ Object.keys(dependencies).forEach(name => {
         name: pckg.name,
         version: pckg.version,
         description: pckg.description,
-        main: 'dist/index',
-        module: 'index',
-        'jsnext:main': 'index',
+        main: 'index.cjs',
+        module: 'index.js',
+        'jsnext:main': 'index.js',
         types: pckg.types,
         files: [...new Set(pckg.files).add('dist')],
         scripts: {
             'pretest': 'rollup -c ../../rollup.config.js',
-            'test': 'node test.js',
+            'test': 'node test.cjs',
             'bench': 'node bench.js'
         },
         repository: {
