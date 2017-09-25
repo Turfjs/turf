@@ -20,7 +20,7 @@ const fixtures = fs.readdirSync(directories.in).map(filename => {
 });
 
 test('turf-bezier', t => {
-    for (const fixture  of fixtures) {
+    fixtures.forEach(fixture => {
         const filename = fixture.filename;
         const name = fixture.name;
         const geojson = fixture.geojson;
@@ -29,11 +29,13 @@ test('turf-bezier', t => {
 
         if (process.env.REGEN) write.sync(directories.out + filename, results);
         t.deepEquals(results, load.sync(directories.out + filename), name);
-    }
+    });
     t.end();
 });
 
-function colorize(feature, color = '#F00', width = 6) {
+function colorize(feature, color, width) {
+    color = color || '#F00';
+    width = width || 6;
     feature.properties = {
         stroke: color,
         fill: color,

@@ -3,7 +3,11 @@ const test = require('tape');
 const path = require('path');
 const load = require('load-json-file');
 const truncate = require('@turf/truncate');
-const {point, multiPoint, lineString, multiPolygon, polygon} = require('@turf/helpers');
+const point = require('@turf/helpers').point;
+const multiPoint = require('@turf/helpers').multiPoint;
+const lineString = require('@turf/helpers').lineString;
+const multiPolygon = require('@turf/helpers').multiPolygon;
+const polygon = require('@turf/helpers').polygon;
 const write = require('write-json-file');
 const cleanCoords = require('./');
 
@@ -21,12 +25,15 @@ const fixtures = fs.readdirSync(directories.in).map(filename => {
 });
 
 test('turf-clean-coords', t => {
-    for (const {filename, name, geojson}  of fixtures) {
+    fixtures.forEach(fixture => {
+        const filename = fixture.filename;
+        const name = fixture.name;
+        const geojson = fixture.geojson;
         const results = cleanCoords(geojson);
 
         if (process.env.REGEN) write.sync(directories.out + filename, results);
         t.deepEqual(results, load.sync(directories.out + filename), name);
-    }
+    });
     t.end();
 });
 

@@ -21,13 +21,20 @@ const fixtures = fs.readdirSync(directories.in).map(filename => {
 });
 
 test('turf-circle', t => {
-    for (const {filename, name, geojson}  of fixtures) {
-        const {radius, steps, units} = geojson.properties;
+    fixtures.forEach(fixture => {
+        const filename = fixture.filename;
+        const name = fixture.name;
+        const geojson = fixture.geojson;
+        const properties = geojson.properties || {};
+        const radius = properties.radius;
+        const steps = properties.steps;
+        const units = properties.units;
+
         const C = truncate(circle(geojson, radius, steps, units));
         const results = featureCollection([geojson, C]);
 
         if (process.env.REGEN) write.sync(directories.out + filename, results);
         t.deepEquals(results, load.sync(directories.out + filename), name);
-    }
+    });
     t.end();
 });
