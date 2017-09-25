@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-const fs = require('fs');
+const fs = require('fs-extra');
 const load = require('load-json-file');
 const write = require('write-json-file');
 const path = require('path');
@@ -29,24 +29,25 @@ Object.keys(dependencies).forEach(name => {
     const packagePath = path.join(__dirname, '..', 'packages', 'turf-' + basename, 'package.json');
     const pckg = load.sync(packagePath);
     const files = new Set(pckg.files);
+    files.add('index.es5.js');
     files.add('index.js');
-    files.add('index.mjs');
     files.delete('dist');
     files.delete('index.cjs.js');
     files.delete('index.cjs');
+    files.delete('index.mjs');
 
     const newPckg = {
         name: pckg.name,
         version: pckg.version,
         description: pckg.description,
-        main: 'index.js',
-        module: 'index.mjs',
-        'jsnext:main': 'index.mjs',
+        main: 'index.es5.js',
+        module: 'index.js',
+        'jsnext:main': 'index.js',
         types: pckg.types,
         files: [...files],
         scripts: {
             'pretest': 'rollup -c ../../rollup.config.js',
-            'test': 'node test.js',
+            'test': 'node test.es5.js',
             'bench': 'node bench.js'
         },
         repository: {
@@ -67,15 +68,10 @@ Object.keys(dependencies).forEach(name => {
     write.sync(packagePath, newPckg, {indent: 2});
 });
 
-// Update test.js
-glob.sync(path.join(__dirname, '..', 'packages', 'turf-*', 'test.js')).forEach(filepath => {
-    var test = fs.readFileSync(filepath, 'utf8');
-    test = test.replace(/'.\/'/g, '\'.\'');
-    fs.writeFileSync(filepath.replace('.js', '.mjs'), test);
-});
-
-glob.sync(path.join(__dirname, '..', 'packages', 'turf-*', 'index.js')).forEach(filepath => {
+// Convert ".mjs" files to ".js"
+glob.sync(path.join(__dirname, '..', 'packages', 'turf*', '*.mjs')).forEach(filepath => {
     var index = fs.readFileSync(filepath, 'utf8');
     index = index.replace(/'.\/'/g, '\'.\'');
-    fs.writeFileSync(filepath.replace('.js', '.mjs'), index);
+    fs.writeFileSync(filepath.replace('.mjs', '.js'), index);
+    fs.removeSync(filepath);
 });

@@ -10,7 +10,7 @@ function assign(options) {
         nodeResolve({ module: true, jsnext: true })
     ].concat(options.plugins || []);
     return {
-        input: 'index.mjs',
+        input: 'index.js',
         output: {
             file: file,
             format: format,

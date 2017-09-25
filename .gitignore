@@ -1,8 +1,4 @@
-packages/turf*/index.js
-packages/turf*/test.js
-*.cjs
-*.cjs.js
-dist
+*.es5.js
 .esm-cache
 package-lock.json
 env
