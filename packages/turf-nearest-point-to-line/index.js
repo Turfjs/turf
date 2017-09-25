@@ -23,15 +23,9 @@ import { featureEach, geomEach } from '@turf/meta';
  * var addToMap = [nearest, line];
  */
 export default function (points, line, options) {
-    options = options || {};
-    var units;
-    // Backwards compatible with v4.0 (will be changed in v5.0)
-    if (typeof options === 'object') {
-        units = options.units;
-    } else if (options) {
-        console.warn('Optional parameters are now be defined as Objects in v5.0');
-        units = options;
-    }
+    // Backwards compatible with v4.0
+    var units = (typeof options === 'object') ? options.units : options;
+
     // validation
     if (!points) throw new Error('points is required');
     points = handleCollection(points);
@@ -45,7 +39,7 @@ export default function (points, line, options) {
     var pt = null;
 
     featureEach(points, function (point) {
-        var d = pointToLineDistance(point, line, units);
+        var d = pointToLineDistance(point, line, { units: units });
         if (d < dist) {
             dist = d;
             pt = point;
