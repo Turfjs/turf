@@ -103,7 +103,7 @@ test('hexagon size - issue #623', t => {
 
     const tile1 = hexgrid.features[0];
     const tile2 = hexgrid.features[1];
-    var dist = distance(centroid(tile1), centroid(tile2), "kilometers");
+    var dist = distance(centroid(tile1), centroid(tile2), 'kilometers');
 
     t.equal(round(dist, 10), round(Math.sqrt(3) * cellDiameter / 2, 10));
 

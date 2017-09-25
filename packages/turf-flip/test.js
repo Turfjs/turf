@@ -30,10 +30,10 @@ test('turf-flip', t => {
 });
 
 test('turf-flip - handle input mutation', t => {
-    const geojson = point([120, 40])
-    flip(geojson)
+    const geojson = point([120, 40]);
+    flip(geojson);
     t.deepEqual(geojson, point([120, 40]), 'does not mutate input');
-    flip(geojson, true)
+    flip(geojson, true);
     t.deepEqual(geojson, point([40, 120]), 'does mutate input');
-    t.end()
-})
+    t.end();
+});

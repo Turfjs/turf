@@ -2,15 +2,15 @@ var test = require('tape');
 var nearest = require('./');
 var fs = require('fs');
 
-test('distance', function(t){
-  var pt = JSON.parse(fs.readFileSync(__dirname+'/test/pt.geojson'));
-  var pts = JSON.parse(fs.readFileSync(__dirname+'/test/pts.geojson'));
+test('distance', function (t) {
+    var pt = JSON.parse(fs.readFileSync(__dirname + '/test/pt.geojson'));
+    var pts = JSON.parse(fs.readFileSync(__dirname + '/test/pts.geojson'));
 
-  var closestPt = nearest(pt, pts);
+    var closestPt = nearest(pt, pts);
 
-  t.ok(closestPt, 'should return a point');
-  t.equal(closestPt.geometry.type, 'Point', 'should be a point');
-  t.equal(closestPt.geometry.coordinates[0], -75.33, 'lon -75.33');
-  t.equal(closestPt.geometry.coordinates[1], 39.44, 'lat 39.44');
-  t.end();
+    t.ok(closestPt, 'should return a point');
+    t.equal(closestPt.geometry.type, 'Point', 'should be a point');
+    t.equal(closestPt.geometry.coordinates[0], -75.33, 'lon -75.33');
+    t.equal(closestPt.geometry.coordinates[1], 39.44, 'lat 39.44');
+    t.end();
 });

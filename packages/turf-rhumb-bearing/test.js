@@ -32,10 +32,10 @@ test('bearing', t => {
         const finalBearing = rhumbBearing(start, end, true);
 
         const result = {
-            "initialBearing": initialBearing,
-            "finalBearing": finalBearing
+            'initialBearing': initialBearing,
+            'finalBearing': finalBearing
         };
-        if (process.env.REGEN) write.sync(directories.out + name +'.json', result);
+        if (process.env.REGEN) write.sync(directories.out + name + '.json', result);
         t.deepEqual(load.sync(directories.out + name + '.json'), result, name);
 
         // TODO adopt the following graphical output once rhumbDestination is published

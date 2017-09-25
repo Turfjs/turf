@@ -64,7 +64,7 @@ test('turf-line-split -- lines should only contain 2 vertices #688', t => {
     t.end();
 });
 
-test("turf-line-split -- precision issue #852", t => {
+test('turf-line-split -- precision issue #852', t => {
     const line = lineString([[9.2202022, 49.1438226], [9.2199531, 49.1439048], [9.2196177, 49.1440264]]);
     const startPoint = point([9.2202022, 49.1438226]);
     const middlePoint = point([9.2199531, 49.1439048]);
@@ -85,7 +85,7 @@ test('turf-line-split -- prevent input mutation', t => {
 
     t.deepEqual(line, lineBefore, 'line should be the same');
     t.end();
-})
+});
 
 
 /**
