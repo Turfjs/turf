@@ -38,7 +38,7 @@ export default function (line, options) {
 
     // validation
     if (typeof options !== 'object') throw new Error('options must be an object');
-    if (typeof resolution !== 'number') throw new Error('options must be an number');
+    if (typeof resolution !== 'number') throw new Error('resolution must be an number');
     if (typeof sharpness !== 'number') throw new Error('sharpness must be an number');
 
     var coords = [];
