@@ -1,22 +1,38 @@
 /// <reference types="geojson" />
 
-// Geometry Types
-export type MultiLineString = GeoJSON.MultiLineString
-export type LineString = GeoJSON.LineString
-export type Polygon = GeoJSON.Polygon
-export type MultiPolygon = GeoJSON.MultiPolygon
-
-// Inputs
-export type Feature = GeoJSON.Feature<LineString | MultiLineString> | LineString | MultiLineString
-export type FeatureCollection = GeoJSON.FeatureCollection<LineString | MultiLineString> | GeoJSON.GeometryCollection
+import {
+    Feature,
+    FeatureCollection,
+    MultiLineString,
+    LineString,
+    Polygon,
+    MultiPolygon,
+    GeometryCollection,
+    FeatureGeometryCollection
+} from '@turf/helpers';
 
 /**
- * Output type changes based on input type
+ * http://turfjs.org/docs/#linestringtopolygon
  *
  * Feature => Polygon
+ */
+declare function lineStringToPolygon<T extends LineString | MultiLineString>(
+    lines: Feature<T> | T,
+    properties?: any,
+    autoComplete?: boolean,
+    orderCoords?: boolean
+): Feature<Polygon>;
+
+/**
+ * http://turfjs.org/docs/#linestringtopolygon
+ *
  * FeatureCollection => MultiPolygon
  */
-declare function lineStringToPolygon(lines: Feature, properties?: any, autoComplete?: boolean, orderCoords?: boolean): GeoJSON.Feature<Polygon>
-declare function lineStringToPolygon(lines: FeatureCollection, properties?: any, autoComplete?: boolean, orderCoords?: boolean): GeoJSON.Feature<MultiPolygon>
+declare function lineStringToPolygon<T extends LineString | MultiLineString>(
+    lines: FeatureCollection<T> | GeometryCollection | FeatureGeometryCollection,
+    properties?: any,
+    autoComplete?: boolean,
+    orderCoords?: boolean
+): Feature<MultiPolygon>
 
 export default lineStringToPolygon;
