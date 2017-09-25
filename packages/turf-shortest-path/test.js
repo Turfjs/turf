@@ -26,7 +26,11 @@ test('turf-shortest-path', t => {
         path.properties['stroke'] = '#F00';
         path.properties['stroke-width'] = 5;
 
-        const results = featureCollection([start, end, obstacles, path]);
+        var features = obstacles.features;
+        features.push(start);
+        features.push(end);
+        features.push(path);
+        const results = featureCollection(features);
 
         if (process.env.REGEN) write.sync(directories.out + filename, results);
         t.deepEqual(results, load.sync(directories.out + filename), name);

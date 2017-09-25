@@ -1,26 +1,42 @@
 const path = require('path');
-const glob = require('glob');
 const load = require('load-json-file');
 const Benchmark = require('benchmark');
+const fs = require('fs');
 const shortestPath = require('./');
+
+const directory = path.join(__dirname, 'test', 'in') + path.sep;
+const fixtures = fs.readdirSync(directory).map(filename => {
+    return {
+        name: path.parse(filename).name,
+        geojson: load.sync(directory + filename)
+    };
+});
+
+/**
+ * Single Process Benchmark
+ *
+ * simple: 57.895ms
+ */
+for (const {name, geojson} of fixtures) {
+    const {start, end, obstacles, options} = geojson;
+    console.time(name);
+    shortestPath(start, end, obstacles, options);
+    console.timeEnd(name);
+}
 
 /**
  * Benchmark Results
  *
- * <Place results here>
+ * simple x 129 ops/sec ±4.53% (65 runs sampled)
  */
-const suite = new Benchmark.Suite('turf-shortest-path');
-glob.sync(path.join(__dirname, 'test', 'in', '*.geojson')).forEach(filepath => {
-    const {name} = path.parse(filepath);
-    const geojson = load.sync(filepath);
-    const [feature1, feature2] = geojson.features;
-    console.time(name);
-    shortestPath(feature1, feature2);
-    console.timeEnd(name);
-    suite.add(name, () => shortestPath(feature1, feature2));
-});
+const suite = new Benchmark.Suite('turf-point-to-line-distance');
+for (const {name, geojson} of fixtures) {
+    const {start, end, obstacles, options} = geojson;
+    suite.add(name, () => shortestPath(start, end, obstacles, options));
+}
 
 suite
     .on('cycle', e => console.log(String(e.target)))
     .on('complete', () => {})
     .run();
+

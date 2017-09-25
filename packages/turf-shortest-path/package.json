@@ -32,15 +32,17 @@
   "homepage": "https://github.com/Turfjs/turf",
   "devDependencies": {
     "benchmark": "^2.1.4",
-    "write-json-file": "^2.2.0",
     "load-json-file": "^2.0.0",
-    "tape": "^4.6.3"
+    "tape": "^4.6.3",
+    "write-json-file": "^2.2.0"
   },
   "dependencies": {
     "@turf/turf": "4.7.3",
     "easystarjs": "0.4.1",
+    "geojson-rbush": "^1.2.0",
     "grid-to-matrix": "1.3.0",
     "javascript-astar": "0.4.1",
-    "pathfinding": "0.4.18"
+    "pathfinding": "0.4.18",
+    "rbush-knn": "^2.0.0"
   }
 }

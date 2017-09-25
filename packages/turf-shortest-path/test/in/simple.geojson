@@ -1,4 +1,5 @@
 {
+	"options": {},
 	"start": {
 		"type": "Feature",
 		"properties": {},
@@ -76,6 +77,5 @@
 				}
 			}
 		]
-	},
-	"options": {}
+	}
 }

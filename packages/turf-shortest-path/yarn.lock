@@ -323,13 +323,13 @@
   dependencies:
     "@turf/invariant" "^4.7.3"
 
+"@turf/helpers@4.7.3", "@turf/helpers@^4.1.0", "@turf/helpers@^4.3.0", "@turf/helpers@^4.7.3":
+  version "4.7.3"
+  resolved "https://registry.yarnpkg.com/@turf/helpers/-/helpers-4.7.3.tgz#bc312ac43cab3c532a483151c4c382c5649429e9"
+
 "@turf/helpers@^3.13.0", "@turf/helpers@^3.6.3":
   version "3.13.0"
   resolved "https://registry.yarnpkg.com/@turf/helpers/-/helpers-3.13.0.tgz#d06078a1464cf56cdb7ea624ea1e13a71b88b806"
-
-"@turf/helpers@^4.1.0", "@turf/helpers@^4.3.0", "@turf/helpers@^4.7.3":
-  version "4.7.3"
-  resolved "https://registry.yarnpkg.com/@turf/helpers/-/helpers-4.7.3.tgz#bc312ac43cab3c532a483151c4c382c5649429e9"
 
 "@turf/hex-grid@^4.7.3":
   version "4.7.3"
@@ -381,13 +381,13 @@
     "@turf/truncate" "^4.7.3"
     jsts "1.3.0"
 
+"@turf/invariant@4.7.3", "@turf/invariant@^4.1.0", "@turf/invariant@^4.3.0", "@turf/invariant@^4.7.3":
+  version "4.7.3"
+  resolved "https://registry.yarnpkg.com/@turf/invariant/-/invariant-4.7.3.tgz#538f367d23c113fc849d70c9a524b8563874601d"
+
 "@turf/invariant@^3.13.0":
   version "3.13.0"
   resolved "https://registry.yarnpkg.com/@turf/invariant/-/invariant-3.13.0.tgz#89243308cd563206e81e5c6162e0d22f61822f90"
-
-"@turf/invariant@^4.1.0", "@turf/invariant@^4.3.0", "@turf/invariant@^4.7.3":
-  version "4.7.3"
-  resolved "https://registry.yarnpkg.com/@turf/invariant/-/invariant-4.7.3.tgz#538f367d23c113fc849d70c9a524b8563874601d"
 
 "@turf/isobands@^4.7.3":
   version "4.7.3"
@@ -531,13 +531,13 @@
     "@turf/union" "^4.7.3"
     rbush "^2.0.1"
 
+"@turf/meta@4.7.3", "@turf/meta@^4.1.0", "@turf/meta@^4.3.0", "@turf/meta@^4.6.0", "@turf/meta@^4.7.3":
+  version "4.7.3"
+  resolved "https://registry.yarnpkg.com/@turf/meta/-/meta-4.7.3.tgz#038970178e90c8e43cf7dfed79d5782298a1080d"
+
 "@turf/meta@^3.14.0", "@turf/meta@^3.7.5":
   version "3.14.0"
   resolved "https://registry.yarnpkg.com/@turf/meta/-/meta-3.14.0.tgz#8d3050c1a0f44bf406a633b6bd28c510f7bcee27"
-
-"@turf/meta@^4.1.0", "@turf/meta@^4.3.0", "@turf/meta@^4.6.0", "@turf/meta@^4.7.3":
-  version "4.7.3"
-  resolved "https://registry.yarnpkg.com/@turf/meta/-/meta-4.7.3.tgz#038970178e90c8e43cf7dfed79d5782298a1080d"
 
 "@turf/midpoint@^4.7.3":
   version "4.7.3"
@@ -1085,7 +1085,7 @@ geojson-random@^0.2.2:
   version "0.2.2"
   resolved "https://registry.yarnpkg.com/geojson-random/-/geojson-random-0.2.2.tgz#ab4838f126adc5e16f8f94e655def820f9119dbc"
 
-geojson-rbush@^1.0.1:
+geojson-rbush@^1.0.1, geojson-rbush@^1.2.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/geojson-rbush/-/geojson-rbush-1.2.0.tgz#eca3b6a3afb899a453ef82d5e2373092e20d77e5"
   dependencies:
@@ -1122,6 +1122,14 @@ grid-to-matrix@1.2.0, grid-to-matrix@^1.2.0:
     "@turf/helpers" "^4.1.0"
     "@turf/invariant" "^4.1.0"
     "@turf/meta" "^4.1.0"
+
+grid-to-matrix@1.3.0:
+  version "1.3.0"
+  resolved "https://registry.yarnpkg.com/grid-to-matrix/-/grid-to-matrix-1.3.0.tgz#d740f6e0af03aada8e3e7318d8a89f564534a591"
+  dependencies:
+    "@turf/helpers" "4.7.3"
+    "@turf/invariant" "4.7.3"
+    "@turf/meta" "4.7.3"
 
 has@^1.0.1, has@~1.0.1:
   version "1.0.1"
@@ -1304,6 +1312,12 @@ quickselect@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/quickselect/-/quickselect-1.0.0.tgz#02630818f9aae4ecab26f0103f98d061c17c58f3"
 
+rbush-knn@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/rbush-knn/-/rbush-knn-2.0.0.tgz#4b6978c7563a2d95dd8b18871a53cb9179de1c54"
+  dependencies:
+    tinyqueue "^1.1.0"
+
 rbush@^2.0.1:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/rbush/-/rbush-2.0.1.tgz#4cfaca28c3064bc0ee75431a1b79990e875eefa9"
@@ -1416,6 +1430,10 @@ tape@^4.6.3:
 through@~2.3.4, through@~2.3.8:
   version "2.3.8"
   resolved "https://registry.yarnpkg.com/through/-/through-2.3.8.tgz#0dd4c9ffaabc357960b1b724115d7e0e86a2e1f5"
+
+tinyqueue@^1.1.0:
+  version "1.2.2"
+  resolved "https://registry.yarnpkg.com/tinyqueue/-/tinyqueue-1.2.2.tgz#947229e5e4197aba988acd27751dcc582e6728ff"
 
 to-utf8@0.0.1:
   version "0.0.1"
