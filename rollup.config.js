@@ -6,7 +6,7 @@ export default [{
         format: 'cjs'
     }
 }, {
-    input: 'test',
+    input: 'test.mjs',
     output: {
         extend: true,
         file: 'test.js',

@@ -1,5 +1,5 @@
-packages/turf-*/index.js
-packages/turf-*/test.js
+packages/turf*/index.js
+packages/turf*/test.js
 *.cjs
 *.cjs.js
 dist
