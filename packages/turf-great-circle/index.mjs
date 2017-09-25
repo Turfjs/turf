@@ -1,5 +1,5 @@
 import { getCoord } from '@turf/invariant';
-var GreatCircle = require('arc');
+var GreatCircle = require('arc').GreatCircle;
 
 /**
  * Calculate great circles routes as {@link LineString}
