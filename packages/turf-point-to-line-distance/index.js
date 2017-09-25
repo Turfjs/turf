@@ -7,7 +7,14 @@ import rhumbBearing from '@turf/rhumb-bearing';
 import rhumbDistance from '@turf/rhumb-distance';
 import { featureOf } from '@turf/invariant';
 import { segmentEach } from '@turf/meta';
-import { point, feature, lineString, bearingToAngle, degrees2radians, convertDistance } from '@turf/helpers';
+import {
+    point,
+    feature,
+    lineString,
+    bearingToAngle,
+    degrees2radians,
+    convertDistance
+} from '@turf/helpers';
 
 /**
  * Returns the minimum distance between a {@link Point} and a {@link LineString}, being the distance from a line the
@@ -16,7 +23,8 @@ import { point, feature, lineString, bearingToAngle, degrees2radians, convertDis
  * @name pointToLineDistance
  * @param {Feature<Point>|Array<number>} pt Feature or Geometry
  * @param {Feature<LineString>|Array<Array<number>>} line GeoJSON Feature or Geometry
- * @param {string} [units=kilometers] can be degrees, radians, miles, or kilometers
+ * @param {Object} [options] Optional parameters
+ * @param {string} [units="kilometers"] can be degrees, radians, miles, or kilometers
  * @param {boolean} [mercator=false] if distance should be on Mercator or WGS84 projection
  * @returns {number} distance between point and line
  * @example
@@ -26,8 +34,14 @@ import { point, feature, lineString, bearingToAngle, degrees2radians, convertDis
  * var distance = turf.pointToLineDistance(pt, line, 'miles');
  * //=69.11854715938406
  */
-export default function (pt, line, units, mercator) {
+export default function (pt, line, options) {
+    // Optional params
+    options = options || {};
+    // var units = options.units;
+    // var mercator = options.mercator;
+
     // validation
+    if (typeof options !== 'object') throw new Error('options must be an object');
     if (!pt) throw new Error('pt is required');
     if (Array.isArray(pt)) pt = point(pt);
     else if (pt.type === 'Point') pt = feature(pt);
@@ -43,7 +57,7 @@ export default function (pt, line, units, mercator) {
     segmentEach(line, function (segment) {
         var a = segment.geometry.coordinates[0];
         var b = segment.geometry.coordinates[1];
-        var d = distanceToSegment(p, a, b, units, mercator);
+        var d = distanceToSegment(p, a, b, options);
         if (distance > d) distance = d;
     });
     return distance;
@@ -57,11 +71,15 @@ export default function (pt, line, units, mercator) {
  * @param {Array<number>} p external point
  * @param {Array<number>} a first segment point
  * @param {Array<number>} b second segment point
+ * @param {Object} [options] Optional parameters
  * @param {string} [units=kilometers] can be degrees, radians, miles, or kilometers
  * @param {boolean} [mercator=false] if distance should be on Mercator or WGS84 projection
  * @returns {number} distance
  */
-function distanceToSegment(p, a, b, units, mercator) {
+function distanceToSegment(p, a, b, options) {
+    options = options || {};
+    var units = options.units;
+    var mercator = options.mercator;
 
     var distanceAP = (mercator !== true) ? distance(a, p, units) : euclideanDistance(a, p, units);
     var azimuthAP = bearingToAngle((mercator !== true) ? bearing(a, p) : rhumbBearing(a, p));
@@ -138,7 +156,6 @@ function mercatorPH(a, b, p, units) {
     return distancePH;
 }
 
-
 /**
  * Returns the point H projection of a point P on a segment AB, on the euclidean plain
  * from https://stackoverflow.com/questions/10301001/perpendicular-on-a-line-segment-from-a-given-point#answer-12499474
@@ -164,7 +181,6 @@ function euclideanIntersection(a, b, p) {
     var x = x1 + u * px, y = y1 + u * py;
     return [x, y]; // H
 }
-
 
 /**
  * Returns euclidean distance between two points
