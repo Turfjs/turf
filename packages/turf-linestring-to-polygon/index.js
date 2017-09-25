@@ -1,9 +1,6 @@
-var bbox = require('@turf/bbox');
-var getCoords = require('@turf/invariant').getCoords;
-var helpers = require('@turf/helpers');
-var polygon = helpers.polygon;
-var multiPolygon = helpers.multiPolygon;
-var lineString = helpers.lineString;
+import bbox from '@turf/bbox';
+import { getCoords } from '@turf/invariant';
+import { polygon, multiPolygon, lineString } from '@turf/helpers';
 
 /**
  * Converts (Multi)LineString(s) to Polygon(s).
@@ -22,7 +19,7 @@ var lineString = helpers.lineString;
  * //addToMap
  * var addToMap = [polygon];
  */
-module.exports = function (lines, properties, autoComplete, orderCoords) {
+export default function (lines, properties, autoComplete, orderCoords) {
     // validation
     if (!lines) throw new Error('lines is required');
 
@@ -42,7 +39,7 @@ module.exports = function (lines, properties, autoComplete, orderCoords) {
         return multiPolygon(coords, properties);
     }
     return lineStringToPolygon(lines, properties, autoComplete, orderCoords);
-};
+}
 
 /**
  * LineString to Polygon

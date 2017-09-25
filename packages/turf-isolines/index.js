@@ -1,13 +1,9 @@
-var bbox = require('@turf/bbox');
-var meta = require('@turf/meta');
-var helpers = require('@turf/helpers');
-var invariant = require('@turf/invariant');
+import bbox from '@turf/bbox';
+import { coordEach } from '@turf/meta';
+import { multiLineString, featureCollection } from '@turf/helpers';
+import { collectionOf } from '@turf/invariant';
+var isoContours = require('marchingsquares').isoContours;
 var gridToMatrix = require('grid-to-matrix');
-var marchingsquares = require('marchingsquares');
-var multiLineString = helpers.multiLineString;
-var coordEach = meta.coordEach;
-var collectionOf = invariant.collectionOf;
-var featureCollection = helpers.featureCollection;
 
 /**
  * Takes a grid {@link FeatureCollection} of {@link Point} features with z-values and an array of
@@ -37,7 +33,7 @@ var featureCollection = helpers.featureCollection;
  * //addToMap
  * var addToMap = [isolines];
  */
-module.exports = function (pointGrid, breaks, zProperty, propertiesToAllIsolines, propertiesPerIsoline) {
+export default function (pointGrid, breaks, zProperty, propertiesToAllIsolines, propertiesPerIsoline) {
     // Default Params
     zProperty = zProperty || 'elevation';
     propertiesToAllIsolines = propertiesToAllIsolines || {};
@@ -57,7 +53,7 @@ module.exports = function (pointGrid, breaks, zProperty, propertiesToAllIsolines
     var scaledIsolines = rescaleIsolines(isolines, matrix, pointGrid);
 
     return featureCollection(scaledIsolines);
-};
+}
 
 /**
  * Creates the isolines lines (featuresCollection of MultiLineString features) from the 2D data grid
@@ -85,7 +81,7 @@ function createIsoLines(matrix, breaks, zProperty, propertiesToAllIsolines, prop
             propertiesPerIsoline[i]
         );
         properties[zProperty] = threshold;
-        var isoline = multiLineString(marchingsquares.isoContours(matrix, threshold), properties);
+        var isoline = multiLineString(isoContours(matrix, threshold), properties);
 
         isolines.push(isoline);
     }

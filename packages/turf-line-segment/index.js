@@ -1,8 +1,6 @@
-var helpers = require('@turf/helpers');
-var getCoords = require('@turf/invariant').getCoords;
-var flattenEach = require('@turf/meta').flattenEach;
-var lineString = helpers.lineString;
-var featureCollection = helpers.featureCollection;
+import { lineString, featureCollection } from '@turf/helpers';
+import { getCoords } from '@turf/invariant';
+import { flattenEach } from '@turf/meta';
 
 /**
  * Creates a {@link FeatureCollection} of 2-vertex {@link LineString} segments from a {@link LineString|(Multi)LineString} or {@link Polygon|(Multi)Polygon}.
@@ -17,7 +15,7 @@ var featureCollection = helpers.featureCollection;
  * //addToMap
  * var addToMap = [polygon, segments]
  */
-module.exports = function (geojson) {
+export default function (geojson) {
     if (!geojson) throw new Error('geojson is required');
 
     var results = [];
@@ -25,7 +23,7 @@ module.exports = function (geojson) {
         lineSegment(feature, results);
     });
     return featureCollection(results);
-};
+}
 
 /**
  * Line Segment

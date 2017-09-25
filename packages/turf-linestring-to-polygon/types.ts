@@ -1,5 +1,5 @@
 import {featureCollection, lineString, multiLineString, Polygon, MultiPolygon} from '@turf/helpers'
-import * as polygonToLineString from './'
+import polygonToLineString from './'
 
 // Fixtures
 const coords = [[125, -30], [145, -30], [145, -20], [125, -20], [125, -30]];

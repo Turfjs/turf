@@ -1,5 +1,5 @@
 import {point} from '@turf/helpers'
-import * as greatCircle from './'
+import greatCircle from './'
 
 const pt1 = point([0, 0])
 const pt2 = point([60, 0])

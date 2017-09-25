@@ -2,13 +2,17 @@
   "name": "@turf/tag",
   "version": "4.7.3",
   "description": "turf tag module",
-  "main": "index.js",
+  "main": "dist/index",
+  "module": "index",
+  "jsnext:main": "index",
   "types": "index.d.ts",
   "files": [
     "index.js",
-    "index.d.ts"
+    "index.d.ts",
+    "dist"
   ],
   "scripts": {
+    "pretest": "rollup -c ../../rollup.config.js",
     "test": "node test.js",
     "bench": "node bench.js"
   },
@@ -33,8 +37,9 @@
   },
   "homepage": "https://github.com/Turfjs/turf",
   "devDependencies": {
-    "benchmark": "^2.1.4",
-    "tape": "^4.6.3"
+    "benchmark": "*",
+    "tape": "*",
+    "rollup": "*"
   },
   "dependencies": {
     "@turf/clone": "^4.7.3",

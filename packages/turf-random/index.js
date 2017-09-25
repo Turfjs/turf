@@ -29,7 +29,7 @@ var random = require('geojson-random');
  * //addToMap
  * var addToMap = [points, polygons]
  */
-module.exports = function (type, count, options) {
+export default function (type, count, options) {
     options = options || {};
     count = count || 1;
     switch (type) {
@@ -47,4 +47,4 @@ module.exports = function (type, count, options) {
     default:
         throw new Error('Unknown type given: valid options are points and polygons');
     }
-};
+}

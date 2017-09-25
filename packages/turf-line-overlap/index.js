@@ -1,14 +1,11 @@
-var meta = require('@turf/meta');
 var equal = require('deep-equal');
 var rbush = require('geojson-rbush');
-var invariant = require('@turf/invariant');
-var lineSegment = require('@turf/line-segment');
-var pointOnLine = require('@turf/point-on-line');
-var booleanPointOnLine = require('@turf/boolean-point-on-line');
-var featureCollection = require('@turf/helpers').featureCollection;
-var getCoords = invariant.getCoords;
-var featureEach = meta.featureEach;
-var segmentEach = meta.segmentEach;
+import lineSegment from '@turf/line-segment';
+import pointOnLine from '@turf/point-on-line';
+import booleanPointOnLine from '@turf/boolean-point-on-line';
+import { getCoords } from '@turf/invariant';
+import { featureCollection } from '@turf/helpers';
+import { featureEach, segmentEach } from '@turf/meta';
 
 /**
  * Takes any LineString or Polygon and returns the overlapping lines between both features.
@@ -27,7 +24,7 @@ var segmentEach = meta.segmentEach;
  * //addToMap
  * var addToMap = [line1, line2, overlapping]
  */
-module.exports = function (line1, line2, tolerance) {
+export default function (line1, line2, tolerance) {
     var features = [];
     tolerance = tolerance || 0;
 
@@ -86,7 +83,7 @@ module.exports = function (line1, line2, tolerance) {
     if (overlapSegment) features.push(overlapSegment);
 
     return featureCollection(features);
-};
+}
 
 
 /**

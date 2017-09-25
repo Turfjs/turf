@@ -1,5 +1,5 @@
 // http://stackoverflow.com/questions/11935175/sampling-a-random-subset-from-an-array
-var featureCollection = require('@turf/helpers').featureCollection;
+import { featureCollection } from '@turf/helpers';
 
 /**
  * Takes a {@link FeatureCollection} and returns a FeatureCollection with given number of {@link Feature|features} at random.
@@ -22,14 +22,14 @@ var featureCollection = require('@turf/helpers').featureCollection;
  *   currentFeature.properties['marker-color'] = '#000';
  * });
  */
-module.exports = function (featurecollection, num) {
+export default function (featurecollection, num) {
     if (!featurecollection) throw new Error('featurecollection is required');
     if (num === null || num === undefined) throw new Error('num is required');
     if (typeof num !== 'number') throw new Error('num must be a number');
 
     var outFC = featureCollection(getRandomSubarray(featurecollection.features, num));
     return outFC;
-};
+}
 
 function getRandomSubarray(arr, size) {
     var shuffled = arr.slice(0), i = arr.length, min = i - size, temp, index;

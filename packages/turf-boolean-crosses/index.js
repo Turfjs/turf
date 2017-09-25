@@ -1,10 +1,8 @@
-var helpers = require('@turf/helpers');
-var inside = require('@turf/inside');
-var lineIntersect = require('@turf/line-intersect');
-var polyToLinestring = require('@turf/polygon-to-linestring');
-var invariant = require('@turf/invariant');
-var getGeom = invariant.getGeom;
-var getGeomType = invariant.getGeomType;
+import { point } from '@turf/helpers';
+import inside from '@turf/inside';
+import lineIntersect from '@turf/line-intersect';
+import polyToLinestring from '@turf/polygon-to-linestring';
+import { getGeom, getType } from '@turf/invariant';
 
 /**
  * Boolean-Crosses returns True if the intersection results in a geometry whose dimension is one less than
@@ -24,9 +22,9 @@ var getGeomType = invariant.getGeomType;
  * var cross = turf.booleanCrosses(line1, line2);
  * //=true
  */
-module.exports = function (feature1, feature2) {
-    var type1 = getGeomType(feature1);
-    var type2 = getGeomType(feature2);
+export default function (feature1, feature2) {
+    var type1 = getType(feature1);
+    var type2 = getType(feature2);
     var geom1 = getGeom(feature1);
     var geom2 = getGeom(feature2);
 
@@ -63,7 +61,7 @@ module.exports = function (feature1, feature2) {
     default:
         throw new Error('feature1 ' + type1 + ' geometry not supported');
     }
-};
+}
 
 function doMultiPointAndLineStringCross(multiPoint, lineString) {
     var foundIntPoint = false;
@@ -123,7 +121,7 @@ function doesMultiPointCrossPoly(multiPoint, polygon) {
     var pointLength = multiPoint.coordinates[0].length;
     var i = 0;
     while (i < pointLength && foundIntPoint && foundExtPoint) {
-        if (isPointInPoly(polygon, helpers.point(multiPoint.coordinates[0][i]), true)) {
+        if (isPointInPoly(polygon, point(multiPoint.coordinates[0][i]), true)) {
             foundIntPoint = true;
         } else {
             foundExtPoint = true;

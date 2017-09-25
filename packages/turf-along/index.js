@@ -1,7 +1,7 @@
-var measureDistance = require('@turf/distance');
-var point = require('@turf/helpers').point;
-var bearing = require('@turf/bearing');
-var destination = require('@turf/destination');
+import measureDistance from '@turf/distance';
+import { point } from '@turf/helpers';
+import bearing from '@turf/bearing';
+import destination from '@turf/destination';
 
 /**
  * Takes a {@link LineString|line} and returns a {@link Point|point} at a specified distance along the line.
@@ -19,7 +19,7 @@ var destination = require('@turf/destination');
  * //addToMap
  * var addToMap = [along, line]
  */
-module.exports = function (line, distance, units) {
+export default function (line, distance, units) {
     var coords;
     if (line.type === 'Feature') coords = line.geometry.coordinates;
     else if (line.type === 'LineString') coords = line.coordinates;
@@ -41,4 +41,4 @@ module.exports = function (line, distance, units) {
         }
     }
     return point(coords[coords.length - 1]);
-};
+}

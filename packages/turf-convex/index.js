@@ -1,6 +1,6 @@
-var each = require('@turf/meta').coordEach,
-    convexHull = require('convex-hull'),
-    polygon = require('@turf/helpers').polygon;
+const convexHull = require('convex-hull');
+import { coordEach as each } from '@turf/meta';
+import { polygon } from '@turf/helpers';
 
 /**
  * Takes a {@link Feature} or a {@link FeatureCollection} and returns a convex hull {@link Polygon}.
@@ -27,7 +27,7 @@ var each = require('@turf/meta').coordEach,
  * //addToMap
  * var addToMap = [points, hull]
  */
-module.exports = function (feature) {
+export default function (feature) {
     var points = [];
 
     // Remove Z in coordinates because it breaks the convexHull algorithm
@@ -47,4 +47,4 @@ module.exports = function (feature) {
         return polygon([ring]);
     }
     return undefined;
-};
+}

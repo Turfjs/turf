@@ -1,5 +1,5 @@
 import {lineString} from '@turf/helpers'
-import * as along from './'
+import along from './'
 
 const line = lineString([[0, 0], [10, 10]]);
 

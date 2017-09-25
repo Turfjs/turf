@@ -1,15 +1,11 @@
-var bbox = require('@turf/bbox');
-var area = require('@turf/area');
-var inside = require('@turf/inside');
-var helpers = require('@turf/helpers');
-var explode = require('@turf/explode');
-var invariant = require('@turf/invariant');
+import bbox from '@turf/bbox';
+import area from '@turf/area';
+import inside from '@turf/inside';
+import explode from '@turf/explode';
+var isoBands = require('marchingsquares').isoBands;
+import { polygon, multiPolygon, featureCollection } from '@turf/helpers';
+import { collectionOf } from '@turf/invariant';
 var gridToMatrix = require('grid-to-matrix');
-var marchingsquares = require('marchingsquares');
-var polygon = helpers.polygon;
-var multiPolygon = helpers.multiPolygon;
-var collectionOf = invariant.collectionOf;
-var featureCollection = helpers.featureCollection;
 
 /**
  * Takes a grid {@link FeatureCollection} of {@link Point} features with z-values and an array of
@@ -39,7 +35,7 @@ var featureCollection = helpers.featureCollection;
  * //addToMap
  * var addToMap = [isobands];
  */
-module.exports = function (pointGrid, breaks, zProperty, options) {
+export default function (pointGrid, breaks, zProperty, options) {
     // Input validation
     var isObject = function (input) {
         return (!!input) && (input.constructor === Object);
@@ -80,7 +76,7 @@ module.exports = function (pointGrid, breaks, zProperty, options) {
     });
 
     return featureCollection(multipolygons);
-};
+}
 
 /**
  * Creates the contours lines (featuresCollection of polygon features) from the 2D data grid
@@ -102,7 +98,7 @@ function createContourLines(matrix, breaks, property) {
         var lowerBand = +breaks[i - 1]; // make sure the breaks value is a number
         var upperBand = +breaks[i];
 
-        var isobandsCoords = marchingsquares.isoBands(matrix, lowerBand, upperBand - lowerBand);
+        var isobandsCoords = isoBands(matrix, lowerBand, upperBand - lowerBand);
         // as per GeoJson rules for creating a Polygon, make sure the first element
         // in the array of LinearRings represents the exterior ring (i.e. biggest area),
         // and any subsequent elements represent interior rings (i.e. smaller area);

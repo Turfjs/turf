@@ -1,7 +1,7 @@
-var bbox = require('@turf/bbox');
-var distance = require('@turf/distance');
-var centroid = require('@turf/centroid');
-var squareGrid = require('@turf/square-grid');
+import bbox from '@turf/bbox';
+import distance from '@turf/distance';
+import centroid from '@turf/centroid';
+import squareGrid from '@turf/square-grid';
 
 /**
  *
@@ -18,7 +18,7 @@ var squareGrid = require('@turf/square-grid');
  * @param {string} [units=kilometers] used in calculating cellSize, can be degrees, radians, miles, or kilometers
  * @returns {FeatureCollection<Polygon>} grid A grid of polygons with a property field named as `valueField`
  */
-module.exports = function (controlPoints, valueField, weight, cellWidth, units) {
+export default function (controlPoints, valueField, weight, cellWidth, units) {
     // validation
     if (!valueField) throw new Error('valueField is required');
     if (weight === undefined || weight === null) throw new Error('weight is required');
@@ -52,4 +52,4 @@ module.exports = function (controlPoints, valueField, weight, cellWidth, units) 
         samplingGrid.features[i].properties[valueField] = zw / sw;
     }
     return samplingGrid;
-};
+}

@@ -44,7 +44,7 @@ test('turf-point-to-line-distance -- throws', t => {
     const pt = point([0, 0]);
     const line = lineString([[1, 1], [-1, 1]]);
 
-    t.throws(() => pointToLineDistance(null, line), /point is required/, 'missing point');
+    t.throws(() => pointToLineDistance(null, line), /pt is required/, 'missing point');
     t.throws(() => pointToLineDistance(pt, null), /line is required/, 'missing line');
     t.throws(() => pointToLineDistance(pt, line, 'invalid'), /units is invalid/, 'invalid units');
     t.throws(() => pointToLineDistance(line, line), /Invalid input to point: must be a Point, given LineString/, 'invalid line');

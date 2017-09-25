@@ -2,15 +2,23 @@
   "name": "@turf/invariant",
   "version": "4.7.3",
   "description": "turf invariant module",
-  "main": "index.js",
+  "main": "dist/index",
+  "module": "index",
+  "jsnext:main": "index",
   "types": "index.d.ts",
   "files": [
+    "dist",
     "index.js",
     "index.d.ts"
   ],
   "scripts": {
+    "pretest": "rollup -c ../../rollup.config.js",
     "test": "node test.js",
     "bench": "node bench.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/Turfjs/turf.git"
   },
   "keywords": [
     "turf",
@@ -18,18 +26,20 @@
     "expectations"
   ],
   "author": "Turf Authors",
+  "contributors": [
+    "Tom MacWright <@tmcw>",
+    "Denis Carriere <@DenisCarriere>"
+  ],
   "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/Turfjs/turf.git"
-  },
-  "homepage": "https://github.com/Turfjs/turf",
   "bugs": {
     "url": "https://github.com/Turfjs/turf/issues"
   },
+  "homepage": "https://github.com/Turfjs/turf",
   "devDependencies": {
-    "@turf/helpers": "^4.7.3",
-    "benchmark": "2.1.4",
-    "tape": "4.8.0"
-  }
+    "@turf/helpers": "*",
+    "benchmark": "*",
+    "rollup": "*",
+    "tape": "*"
+  },
+  "dependencies": {}
 }

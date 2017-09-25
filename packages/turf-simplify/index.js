@@ -1,7 +1,7 @@
 var simplifyJS = require('simplify-js');
-var cleanCoords = require('@turf/clean-coords');
-var geomEach = require('@turf/meta').geomEach;
-var clone = require('@turf/clone');
+import cleanCoords from '@turf/clean-coords';
+import clone from '@turf/clone';
+import { geomEach } from '@turf/meta';
 
 /**
  * Takes a {@link GeoJSON} object and returns a simplified version. Internally uses
@@ -43,7 +43,7 @@ var clone = require('@turf/clone');
  * //addToMap
  * var addToMap = [geojson, simplified]
  */
-module.exports = function (geojson, tolerance, highQuality, mutate) {
+export default function (geojson, tolerance, highQuality, mutate) {
     if (!geojson) throw new Error('geojson is required');
     if (tolerance && tolerance < 0) throw new Error('invalid tolerance');
 
@@ -54,7 +54,7 @@ module.exports = function (geojson, tolerance, highQuality, mutate) {
         simplify(geom, tolerance, highQuality);
     });
     return geojson;
-};
+}
 
 /**
  * Simplifies a feature's coordinates

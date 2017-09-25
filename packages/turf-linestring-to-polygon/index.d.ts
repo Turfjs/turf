@@ -1,14 +1,14 @@
 /// <reference types="geojson" />
 
 // Geometry Types
-type MultiLineString = GeoJSON.MultiLineString
-type LineString = GeoJSON.LineString
-type Polygon = GeoJSON.Polygon
-type MultiPolygon = GeoJSON.MultiPolygon
+export type MultiLineString = GeoJSON.MultiLineString
+export type LineString = GeoJSON.LineString
+export type Polygon = GeoJSON.Polygon
+export type MultiPolygon = GeoJSON.MultiPolygon
 
 // Inputs
-type Feature = GeoJSON.Feature<LineString | MultiLineString> | LineString | MultiLineString
-type FeatureCollection = GeoJSON.FeatureCollection<LineString | MultiLineString> | GeoJSON.GeometryCollection
+export type Feature = GeoJSON.Feature<LineString | MultiLineString> | LineString | MultiLineString
+export type FeatureCollection = GeoJSON.FeatureCollection<LineString | MultiLineString> | GeoJSON.GeometryCollection
 
 /**
  * Output type changes based on input type
@@ -16,9 +16,7 @@ type FeatureCollection = GeoJSON.FeatureCollection<LineString | MultiLineString>
  * Feature => Polygon
  * FeatureCollection => MultiPolygon
  */
-interface lineStringToPolygon {
-  (lines: Feature, properties?: any, autoComplete?: boolean, orderCoords?: boolean): GeoJSON.Feature<Polygon>
-  (lines: FeatureCollection, properties?: any, autoComplete?: boolean, orderCoords?: boolean): GeoJSON.Feature<MultiPolygon>
-}
-declare const lineStringToPolygon: lineStringToPolygon;
-export = lineStringToPolygon;
+declare function lineStringToPolygon(lines: Feature, properties?: any, autoComplete?: boolean, orderCoords?: boolean): GeoJSON.Feature<Polygon>
+declare function lineStringToPolygon(lines: FeatureCollection, properties?: any, autoComplete?: boolean, orderCoords?: boolean): GeoJSON.Feature<MultiPolygon>
+
+export default lineStringToPolygon;

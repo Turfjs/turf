@@ -1,18 +1,10 @@
-var d3 = require('d3-geo');
 var jsts = require('jsts');
-var meta = require('@turf/meta');
-var center = require('@turf/center');
-var helpers = require('@turf/helpers');
-var turfBbox = require('@turf/bbox');
-var projection = require('@turf/projection');
-var toWgs84 = projection.toWgs84;
-var feature = helpers.feature;
-var geomEach = meta.geomEach;
-var toMercator = projection.toMercator;
-var featureEach = meta.featureEach;
-var featureCollection = helpers.featureCollection;
-var radiansToDistance = helpers.radiansToDistance;
-var distanceToRadians = helpers.distanceToRadians;
+import { geoTransverseMercator } from 'd3-geo';
+import center from '@turf/center';
+import turfBbox from '@turf/bbox';
+import { geomEach, featureEach } from '@turf/meta';
+import { feature, featureCollection, radiansToDistance, distanceToRadians } from '@turf/helpers';
+import { toWgs84, toMercator } from '@turf/projection';
 
 /**
  * Calculates a buffer for input features for a given radius. Units supported are miles, kilometers, and degrees.
@@ -36,7 +28,7 @@ var distanceToRadians = helpers.distanceToRadians;
  * //addToMap
  * var addToMap = [point, buffered]
  */
-module.exports = function (geojson, radius, units, steps) {
+export default function (geojson, radius, units, steps) {
     // validation
     if (!geojson) throw new Error('geojson is required');
     // Allow negative buffers ("erosion") or zero-sized buffers ("repair geometry")
@@ -67,7 +59,7 @@ module.exports = function (geojson, radius, units, steps) {
         return featureCollection(results);
     }
     return buffer(geojson, radius, units, steps);
-};
+}
 
 /**
  * Buffer single Feature/Geometry
@@ -185,7 +177,7 @@ function unprojectCoords(coords, projection) {
 function defineProjection(geojson) {
     var coords = center(geojson).geometry.coordinates.reverse();
     var rotate = coords.map(function (coord) { return -coord; });
-    var projection = d3.geoTransverseMercator()
+    var projection = geoTransverseMercator()
         .center(coords)
         .rotate(rotate)
         .scale(6373000);

@@ -1,6 +1,6 @@
-var inside = require('@turf/inside');
-var featureEach = require('@turf/meta').featureEach;
-var clone = require('@turf/clone');
+import inside from '@turf/inside';
+import clone from '@turf/clone';
+import { featureEach } from '@turf/meta';
 
 /**
  * Takes a set of {@link Point|points} and a set of {@link Polygon|polygons} and performs a spatial join.
@@ -37,7 +37,7 @@ var clone = require('@turf/clone');
  * //addToMap
  * var addToMap = [tagged, polygons]
  */
-module.exports = function (points, polygons, field, outField) {
+export default function (points, polygons, field, outField) {
     // prevent mutations
     points = clone(points);
     polygons = clone(polygons);
@@ -50,4 +50,4 @@ module.exports = function (points, polygons, field, outField) {
         });
     });
     return points;
-};
+}

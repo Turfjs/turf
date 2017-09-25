@@ -1,5 +1,5 @@
-import * as pointOnLine from './'
-import {point, lineString, multiLineString} from '@turf/helpers'
+import pointOnLine from './'
+import { point, lineString, multiLineString } from '@turf/helpers'
 
 const units = 'miles'
 const pt = point([1.5, 1.5])

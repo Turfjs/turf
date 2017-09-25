@@ -1,5 +1,5 @@
 var area = require('@mapbox/geojson-area').geometry;
-var geomReduce = require('@turf/meta').geomReduce;
+import { geomReduce } from '@turf/meta';
 
 /**
  * Takes one or more features and returns their area in square meters.
@@ -16,8 +16,8 @@ var geomReduce = require('@turf/meta').geomReduce;
  * var addToMap = [polygon]
  * polygon.properties.area = area
  */
-module.exports = function (geojson) {
+export default function (geojson) {
     return geomReduce(geojson, function (value, geometry) {
         return value + area(geometry);
     }, 0);
-};
+}

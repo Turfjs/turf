@@ -1,4 +1,4 @@
-var getCoords = require('@turf/invariant').getCoords;
+import { getCoords } from '@turf/invariant';
 
 /**
  * Returns true if a point is on a line. Accepts a optional parameter to ignore the start and end vertices of the linestring.
@@ -14,7 +14,7 @@ var getCoords = require('@turf/invariant').getCoords;
  * var isPointOnLine = turf.booleanPointOnLine(pt, line);
  * //=true
  */
-module.exports = function (point, linestring, ignoreEndVertices) {
+export default function (point, linestring, ignoreEndVertices) {
     var pointCoords = getCoords(point);
     var lineCoords = getCoords(linestring);
     for (var i = 0; i < lineCoords.length - 1; i++) {
@@ -27,7 +27,7 @@ module.exports = function (point, linestring, ignoreEndVertices) {
         if (isPointOnLineSegment(lineCoords[i], lineCoords[i + 1], pointCoords, ignoreBoundary)) return true;
     }
     return false;
-};
+}
 
 // See http://stackoverflow.com/a/4833823/1979085
 /**

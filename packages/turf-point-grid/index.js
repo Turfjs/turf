@@ -1,11 +1,8 @@
-var distance = require('@turf/distance');
-var turfBBox = require('@turf/bbox');
-var helpers = require('@turf/helpers');
-var inside = require('@turf/inside');
-var invariant = require('@turf/invariant');
-var getGeomType = invariant.getGeomType;
-var point = helpers.point;
-var featureCollection = helpers.featureCollection;
+import distance from '@turf/distance';
+import turfBBox from '@turf/bbox';
+import { point, featureCollection } from '@turf/helpers';
+import inside from '@turf/inside';
+import { getType } from '@turf/invariant';
 
 /**
  * Creates a {@link Point} grid from a bounding box, {@link FeatureCollection} or {@link Feature}.
@@ -28,7 +25,7 @@ var featureCollection = helpers.featureCollection;
  * //addToMap
  * var addToMap = [grid];
  */
-module.exports = function (bbox, cellSide, units, centered, bboxIsMask) {
+export default function (bbox, cellSide, units, centered, bboxIsMask) {
     var results = [];
 
     var bboxMask = bbox;
@@ -57,7 +54,7 @@ module.exports = function (bbox, cellSide, units, centered, bboxIsMask) {
         var deltaY = (bboxVerticalSide - rows * cellHeight) / 2;
     }
 
-    var isPoly = !Array.isArray(bboxMask) && (getGeomType(bboxMask) === 'Polygon' || getGeomType(bboxMask) === 'MultiPolygon');
+    var isPoly = !Array.isArray(bboxMask) && (getType(bboxMask) === 'Polygon' || getType(bboxMask) === 'MultiPolygon');
 
     var currentX = west;
     if (centered !== false) currentX += deltaX;
@@ -79,4 +76,4 @@ module.exports = function (bbox, cellSide, units, centered, bboxIsMask) {
     }
 
     return featureCollection(results);
-};
+}

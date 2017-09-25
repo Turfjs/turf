@@ -1,5 +1,5 @@
-import {polygon, point, featureCollection, geometryCollection} from '@turf/helpers';
-import * as rotate from './'
+import { polygon, point, featureCollection, geometryCollection } from '@turf/helpers';
+import rotate from './'
 
 const pt = point([15, 15]);
 const poly = polygon([[[0,29],[3.5,29],[2.5,32],[0,29]]]);

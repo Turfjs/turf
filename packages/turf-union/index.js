@@ -27,7 +27,7 @@ var jsts = require('jsts');
  * //addToMap
  * var addToMap = [poly1, poly2, union];
  */
-module.exports = function () {
+export default function () {
     var reader = new jsts.io.GeoJSONReader();
     var result = reader.read(JSON.stringify(arguments[0].geometry));
 
@@ -43,4 +43,4 @@ module.exports = function () {
         geometry: result,
         properties: arguments[0].properties
     };
-};
+}

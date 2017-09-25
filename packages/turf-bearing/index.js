@@ -1,4 +1,4 @@
-var getCoord = require('@turf/invariant').getCoord;
+import { getCoord } from '@turf/invariant';
 //http://en.wikipedia.org/wiki/Haversine_formula
 //http://www.movable-type.co.uk/scripts/latlong.html
 
@@ -58,4 +58,4 @@ function calculateFinalBearing(start, end) {
     return bear;
 }
 
-module.exports = bearing;
+export default bearing;

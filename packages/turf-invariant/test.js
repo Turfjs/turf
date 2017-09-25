@@ -196,19 +196,6 @@ test('invariant -- getGeom', t => {
     t.end();
 });
 
-test('invariant -- getGeomType', t => {
-    const pt = point([1, 1]);
-    const line = lineString([[0, 1], [1, 1]]);
-    const collection = featureCollection([pt, line]);
-    const geomCollection = geometryCollection([pt.geometry, line.geometry]);
-
-    t.equal(invariant.getGeomType(pt), 'Point');
-    t.equal(invariant.getGeomType(line.geometry), 'LineString');
-    t.equal(invariant.getGeomType(geomCollection), 'GeometryCollection');
-    t.equal(invariant.getGeomType(collection), 'FeatureCollection');
-    t.end();
-});
-
 test('invariant -- getType', t => {
     const pt = point([1, 1]);
     const line = lineString([[0, 1], [1, 1]]);
@@ -231,11 +218,9 @@ test('null geometries', t => {
         geometry: null
     };
     t.throws(() => invariant.getGeom(null), /geojson is required/, 'getGeom => geojson is required');
-    t.throws(() => invariant.getGeomType(null), /geojson is required/, 'getGeomType => geojson is required');
     t.throws(() => invariant.getCoords(nullFeature), /No valid coordinates/, 'getCoords => No valid coordinates');
     t.throws(() => invariant.getCoord(nullFeature), /No valid coordinates/, 'getCoord => No valid coordinates');
 
     t.equal(invariant.getGeom(nullFeature), null, 'getGeom => null');
-    t.equal(invariant.getGeomType(nullFeature), 'Feature', 'getGeomType => "Feature"');
     t.end();
 });

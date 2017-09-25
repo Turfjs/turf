@@ -1,5 +1,5 @@
-var destination = require('@turf/destination');
-var polygon = require('@turf/helpers').polygon;
+import destination from '@turf/destination';
+import { polygon } from '@turf/helpers';
 
 /**
  * Takes a {@link Point} and calculates the circle polygon given a radius in degrees, radians, miles, or kilometers; and steps for precision.
@@ -23,7 +23,7 @@ var polygon = require('@turf/helpers').polygon;
  * //addToMap
  * var addToMap = [turf.point(center), circle]
  */
-module.exports = function (center, radius, steps, units, properties) {
+export default function (center, radius, steps, units, properties) {
     // validation
     if (!center) throw new Error('center is required');
     if (!radius) throw new Error('radius is required');
@@ -39,4 +39,4 @@ module.exports = function (center, radius, steps, units, properties) {
     coordinates.push(coordinates[0]);
 
     return polygon([coordinates], properties);
-};
+}

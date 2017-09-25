@@ -1,5 +1,5 @@
-import {BBox, Polygons} from '@turf/helpers'
-import * as triangleGrid from './'
+import { BBox, Polygons } from '@turf/helpers'
+import triangleGrid from './'
 
 const bbox: BBox = [
     -96.6357421875,

@@ -6,6 +6,7 @@ module.exports = {
   rules: {
     strict: [0],
     camelcase: [0],
+    'object-curly-spacing': [0],
     'consistent-return': [0],
     'valid-jsdoc': [2, {
       prefer: {'return': 'returns'},

@@ -131,4 +131,4 @@ Spline.prototype.pos = function (time) {
     return bezier(t1, this.points[n], this.controls[n][1], this.controls[n + 1][0], this.points[n + 1]);
 };
 
-module.exports = Spline;
+export default Spline;

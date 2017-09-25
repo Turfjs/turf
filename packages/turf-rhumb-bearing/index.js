@@ -1,7 +1,7 @@
 // https://en.wikipedia.org/wiki/Rhumb_line
 // http://www.movable-type.co.uk/scripts/latlong.html#rhumblines
-var getCoord = require('@turf/invariant').getCoord;
-var GeodesyLatLon = require('geodesy').LatLonSpherical;
+import { getCoord } from '@turf/invariant';
+var LatLonSpherical = require('geodesy').LatLonSpherical;
 
 /**
  * Takes two {@link Point|points} and finds the bearing angle between them along a Rhumb line
@@ -23,15 +23,15 @@ var GeodesyLatLon = require('geodesy').LatLonSpherical;
  * point1.properties.bearing = bearing
  * point2.properties.bearing = bearing
  */
-module.exports = function (start, end, final) {
+export default function (start, end, final) {
     // validation
     if (!start) throw new Error('start point is required');
     if (!end) throw new Error('end point is required');
 
     var coordsStart = getCoord(start);
     var coordsEnd = getCoord(end);
-    var origin = new GeodesyLatLon(coordsStart[1], coordsStart[0]);
-    var destination = new GeodesyLatLon(coordsEnd[1], coordsEnd[0]);
+    var origin = new LatLonSpherical(coordsStart[1], coordsStart[0]);
+    var destination = new LatLonSpherical(coordsEnd[1], coordsEnd[0]);
     var bear360;
 
     if (final) bear360 = destination.rhumbBearingTo(origin);
@@ -40,4 +40,4 @@ module.exports = function (start, end, final) {
     var bear180 = (bear360 > 180) ? -(360 - bear360) : bear360;
 
     return bear180;
-};
+}
