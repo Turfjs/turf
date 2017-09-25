@@ -9,7 +9,7 @@ const directories = {
     in: path.join(__dirname, 'test', 'in') + path.sep
 };
 
-test('turf-dissolve', function (t) {
+test('turf-dissolve', t => {
     const polys = load.sync(directories.in + 'polys.geojson');
 
     // With Property
