@@ -10,8 +10,9 @@ import Spline from './spline.js';
  *
  * @name bezier
  * @param {Feature<LineString>} line input LineString
- * @param {number} [resolution=10000] time in milliseconds between points
- * @param {number} [sharpness=0.85] a measure of how curvy the path should be between splines
+ * @param {object} [options] Optional parameters
+ * @param {number} [options.resolution=10000] time in milliseconds between points
+ * @param {number} [options.sharpness=0.85] a measure of how curvy the path should be between splines
  * @returns {Feature<LineString>} curved line
  * @example
  * var line = turf.lineString([
@@ -29,9 +30,18 @@ import Spline from './spline.js';
  * var addToMap = [line, curved]
  * curved.properties = { stroke: '#0F0' };
  */
-export default function (line, resolution, sharpness) {
-    var coords = [];
+export default function (line, options) {
+    // Optional params
+    options = options || {};
+    var resolution = options.resolution || 10000;
+    var sharpness = options.sharpness || 0.85;
 
+    // validation
+    if (typeof options !== 'object') throw new Error('options must be an object');
+    if (typeof resolution !== 'number') throw new Error('options must be an number');
+    if (typeof sharpness !== 'number') throw new Error('sharpness must be an number');
+
+    var coords = [];
     var spline = new Spline({
         points: line.geometry.coordinates.map(function (pt) {
             return {x: pt[0], y: pt[1]};

@@ -21,14 +21,11 @@ import { point, isNumber } from '@turf/helpers';
  * var addToMap = [along, line]
  */
 export default function (line, distance, options) {
-    var units;
-    var coords;
-
     // Backwards compatible with v4.0
-    if (typeof options === 'object') units = options.units;
-    else if (options) units = options;
+    var units = (typeof options === 'object') ? options.units : options;
 
     // Validation
+    var coords;
     if (line.type === 'Feature') coords = line.geometry.coordinates;
     else if (line.type === 'LineString') coords = line.coordinates;
     else throw new Error('input must be a LineString Feature or Geometry');
