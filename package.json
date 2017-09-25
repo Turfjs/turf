@@ -3,9 +3,9 @@
   "version": "4.0.0",
   "description": "a node.js library for performing geospatial operations with geojson",
   "scripts": {
-    "lint": "eslint packages/turf-*/index.js",
+    "lint": "eslint packages/turf-*/index.mjs",
     "postlint": "documentation lint packages/turf-*/index.js && tsc",
-    "pretest": "lerna bootstrap && npm run lint && lerna run pretest",
+    "pretest": "lerna bootstrap && lerna run pretest && npm run lint",
     "test": "tap packages/turf-*/test.js",
     "docs": "node ./scripts/generate-readmes",
     "es6": "npm run es6:import && npm run es6:export",

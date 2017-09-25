@@ -2,15 +2,14 @@
   "name": "@turf/great-circle",
   "version": "4.7.3",
   "description": "turf great-circle module",
-  "main": "dist/index",
-  "module": "index",
-  "jsnext:main": "index",
+  "main": "index.js",
+  "module": "index.mjs",
+  "jsnext:main": "index.mjs",
   "types": "index.d.ts",
   "files": [
     "index.js",
     "index.d.ts",
-    "arc.js",
-    "dist"
+    "index.mjs"
   ],
   "scripts": {
     "pretest": "rollup -c ../../rollup.config.js",
@@ -44,11 +43,12 @@
     "@turf/truncate": "*",
     "benchmark": "*",
     "load-json-file": "*",
+    "rollup": "*",
     "tape": "*",
-    "write-json-file": "*",
-    "rollup": "*"
+    "write-json-file": "*"
   },
   "dependencies": {
-    "@turf/invariant": "^4.7.3"
+    "@turf/invariant": "^4.7.3",
+    "arc": "^0.1.0"
   }
 }

@@ -2,6 +2,28 @@
 # yarn lockfile v1
 
 
+"@turf/helpers@*":
+  version "4.7.3"
+  resolved "https://registry.yarnpkg.com/@turf/helpers/-/helpers-4.7.3.tgz#bc312ac43cab3c532a483151c4c382c5649429e9"
+
+"@turf/invariant@^4.7.3":
+  version "4.7.3"
+  resolved "https://registry.yarnpkg.com/@turf/invariant/-/invariant-4.7.3.tgz#538f367d23c113fc849d70c9a524b8563874601d"
+
+"@turf/meta@^4.7.3":
+  version "4.7.3"
+  resolved "https://registry.yarnpkg.com/@turf/meta/-/meta-4.7.3.tgz#038970178e90c8e43cf7dfed79d5782298a1080d"
+
+"@turf/truncate@*":
+  version "4.7.3"
+  resolved "https://registry.yarnpkg.com/@turf/truncate/-/truncate-4.7.3.tgz#827a8df8ff0c9fff9dcf1a4b3145cbdef80fb993"
+  dependencies:
+    "@turf/meta" "^4.7.3"
+
+arc@^0.1.0:
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/arc/-/arc-0.1.0.tgz#00a4132036cfb33869c7f219ef78287a1fa92c75"
+
 balanced-match@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/balanced-match/-/balanced-match-1.0.0.tgz#89b4d199ab2bee49de164ea02b89ce462d71b767"
