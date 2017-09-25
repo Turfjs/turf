@@ -1,15 +1,15 @@
 export default [{
-    input: 'index.mjs',
+    input: 'index.js',
     output: {
         extend: true,
-        file: 'index.js',
+        file: 'index.es5.js',
         format: 'cjs'
     }
 }, {
-    input: 'test.mjs',
+    input: 'test.js',
     output: {
         extend: true,
-        file: 'test.js',
+        file: 'test.es5.js',
         format: 'cjs'
     }
 }];

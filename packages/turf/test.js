@@ -26,7 +26,7 @@ modules = modules.filter(({name}) => name !== 'turf');
 
 test('turf -- required files', t => {
     for (const {name, dir} of modules) {
-        for (const filename of ['test.js', 'bench.js', 'index.js', 'index.d.ts', 'LICENSE', 'README.md', 'yarn.lock']) {
+        for (const filename of ['test.js', 'bench.js', 'index.es5.js', 'index.js', 'index.d.ts', 'LICENSE', 'README.md', 'yarn.lock']) {
             if (!fs.existsSync(path.join(dir, filename))) t.fail(`${name} ${filename} is required`);
         }
         // if (!fs.existsSync(path.join(dir, 'types.ts'))) t.fail(`${name} types.ts is required`);
@@ -104,7 +104,9 @@ test('turf -- scoped package name', t => {
 test('turf -- pre-defined attributes in package.json', t => {
     for (const {name, pckg} of modules) {
         if (pckg.author !== 'Turf Authors') t.fail(name + ' (author) should be "Turf Authors"');
-        if (pckg.module !== 'index' && pckg.main !== 'index.js') t.fail(`${name} (main) must be "index.js" in package.json`);
+        if (pckg.main !== 'index.es5.js') t.fail(`${name} (main) must be "index.es5.js" in package.json`);
+        if (pckg.module !== 'index.js') t.fail(`${name} (module) must be "index.js" in package.json`);
+        if (pckg['jsnext:main'] !== 'index.js') t.fail(`${name} (jsnext:main) must be "index.js" in package.json`);
         if (pckg.types !== 'index.d.ts') t.fail(`${name} (types) must be "index.d.ts" in package.json`);
         if (!pckg.bugs || pckg.bugs.url !== 'https://github.com/Turfjs/turf/issues') t.fail(`${name} (bugs.url) must be "https://github.com/Turfjs/turf/issues" in package.json`);
         if (pckg.homepage !== 'https://github.com/Turfjs/turf') t.fail(`${name} (homepage) must be "https://github.com/Turfjs/turf" in package.json`);
@@ -149,7 +151,7 @@ const turfModulesPath = path.join(__dirname, '..', 'turf-*', 'index.js');
 
 // Test Strings
 const requireString = `const test = require('tape');
-const turf = require('./');
+const turf = require('.');
 `;
 
 /**
