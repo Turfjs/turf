@@ -1,12 +1,16 @@
 /// <reference types="geojson" />
 
-import { Points } from '@turf/helpers';
+import {
+    Point,
+    Feature,
+    FeatureCollection
+} from '@turf/helpers';
 
 export interface Output {
     type: 'FeatureCollection'
-    features: Point[];
+    features: KmeansPoint[];
 }
-export interface Point extends GeoJSON.Feature<GeoJSON.Point> {
+export interface KmeansPoint extends Feature<Point> {
     properties: {
         cluster?: number;
         centroid?: [number, number];
@@ -17,4 +21,8 @@ export interface Point extends GeoJSON.Feature<GeoJSON.Point> {
 /**
  * http://turfjs.org/docs/#clusterskmeans
  */
-export default function (points: Points, numberOfClusters?: number, mutate?: boolean): Output;
+export default function (
+    points: FeatureCollection<Point>,
+    numberOfClusters?: number,
+    mutate?: boolean
+): Output;

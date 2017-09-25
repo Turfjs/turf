@@ -20,7 +20,15 @@ import {
     round,
     convertDistance,
     convertArea,
-    isNumber } from './'
+    isNumber,
+    // Typescript types
+    Point,
+    LineString,
+    Polygon,
+    MultiPoint,
+    MultiLineString,
+    MultiPolygon
+} from './'
 
 // Fixtures
 const bbox: BBox = [-180, -90, 180, 90]
@@ -122,3 +130,11 @@ helpers.isNumber({})
 helpers.isNumber([1, 2, 3])
 helpers.isNumber([])
 helpers.isNumber(helpers.isNumber)
+
+// Geometry
+const ptGeom: Point = geometry('Point', pt.geometry.coordinates);
+const lineGeom: LineString = geometry('LineString', line.geometry.coordinates);
+const polyGeom: Polygon = geometry('Polygon', poly.geometry.coordinates);
+const multiPtGeom: MultiPoint = geometry('MultiPoint', multiPt.geometry.coordinates);
+const multiLineGeom: MultiLineString = geometry('MultiLineString', multiLine.geometry.coordinates);
+const multiPolyGeom: MultiPolygon = geometry('MultiPolygon', multiPoly.geometry.coordinates);

@@ -14,8 +14,8 @@ var gridToMatrix = require('grid-to-matrix');
  * @name isobands
  * @param {FeatureCollection<Point>} pointGrid input points
  * @param {Array<number>} breaks where to draw contours
- * @param {string} [zProperty='elevation'] the property name in `points` from which z-values will be pulled
  * @param {Object} [options={}] options on output
+ * @param {string} [options.zProperty='elevation'] the property name in `points` from which z-values will be pulled
  * @param {Array<Object>} [options.isobandProperties=[]] GeoJSON properties passed, in order, to the correspondent isoband (order defined by breaks)
  * @param {Object} [options.commonProperties={}] GeoJSON properties passed to ALL isobands
  * @returns {FeatureCollection<MultiPolygon>} a FeatureCollection of {@link MultiPolygon} features representing isobands
@@ -35,25 +35,19 @@ var gridToMatrix = require('grid-to-matrix');
  * //addToMap
  * var addToMap = [isobands];
  */
-export default function (pointGrid, breaks, zProperty, options) {
-    // Input validation
-    var isObject = function (input) {
-        return (!!input) && (input.constructor === Object);
-    };
-    collectionOf(pointGrid, 'Point', 'Input must contain Points');
-    if (!breaks || !Array.isArray(breaks)) throw new Error('breaks is required');
+export default function (pointGrid, breaks, options) {
+    // Optional Parameters
     options = options || {};
-    if (options.commonProperties && !isObject(options.commonProperties)) {
-        throw new Error('commonProperties is not an Object');
-    }
-    if (options.isobandProperties && !Array.isArray(options.isobandProperties)) {
-        throw new Error('isobandProperties is not an Array');
-    }
-    if (zProperty && typeof zProperty !== 'string') { throw new Error('zProperty is not a string'); }
-
-    zProperty = zProperty || 'elevation';
+    var zProperty = options.zProperty || 'elevation';
     var commonProperties = options.commonProperties || {};
     var isobandProperties = options.isobandProperties || [];
+
+    // Validation
+    collectionOf(pointGrid, 'Point', 'Input must contain Points');
+    if (!breaks) throw new Error('breaks is required');
+    if (!Array.isArray(breaks)) throw new Error('breaks is not an Array');
+    if (!isObject(commonProperties)) throw new Error('commonProperties is not an Object');
+    if (!Array.isArray(isobandProperties)) throw new Error('isobandProperties is not an Array');
 
     // Isoband methods
     var matrix = gridToMatrix(pointGrid, zProperty, true);
@@ -76,6 +70,17 @@ export default function (pointGrid, breaks, zProperty, options) {
     });
 
     return featureCollection(multipolygons);
+}
+
+/**
+ * isObject (should be replaced by @turf/helpers)
+ *
+ * @private
+ * @param {*} input Object
+ * @returns {boolean} true/false
+ */
+function isObject(input) {
+    return (!!input) && (input.constructor === Object);
 }
 
 /**

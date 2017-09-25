@@ -48,9 +48,10 @@ test('isobands', t => {
             isobandProperties = jsondata.isobandProperties;
         }
 
-        const results = isobands(points, breaks, zProperty, {
-            commonProperties,
-            isobandProperties
+        const results = isobands(points, breaks, {
+            zProperty: zProperty,
+            commonProperties: commonProperties,
+            isobandProperties: isobandProperties
         });
 
         const box = lineString(getCoords(envelope(points))[0]);
@@ -70,7 +71,7 @@ test('isobands -- throws', t => {
 
     t.throws(() => isobands(random('polygon'), [1, 2, 3]), 'invalid points');
     t.throws(() => isobands(points, ''), 'invalid breaks');
-    t.throws(() => isobands(points, [1, 2, 3], 'temp', { isobandProperties: 'hello' }), 'invalid options');
+    t.throws(() => isobands(points, [1, 2, 3], {zProperty: 'temp', isobandProperties: 'hello' }), 'invalid options');
 
     t.end();
 });
