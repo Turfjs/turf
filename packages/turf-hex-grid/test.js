@@ -87,7 +87,9 @@ test('longitude (13141439571036224) - issue #758', t => {
     const coords = [];
     hexgrid.features.forEach(feature => feature.geometry.coordinates[0].forEach(coord => coords.push(coord)));
 
-    for (const [lng, lat] of coords) {
+    for (const coord of coords) {
+        const lng = coord[0];
+        const lat = coord[1];
         if (lng > 1000 || lng < -1000) {
             t.fail(`longitude is +- 1000 [${lng},${lat}]`);
             break;

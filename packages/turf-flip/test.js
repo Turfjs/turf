@@ -1,5 +1,5 @@
-const test = require('tape');
 const fs = require('fs');
+const test = require('tape');
 const path = require('path');
 const load = require('load-json-file');
 const write = require('write-json-file');
@@ -20,12 +20,15 @@ const fixtures = fs.readdirSync(directories.in).map(filename => {
 });
 
 test('turf-flip', t => {
-    for (const {name, filename, geojson} of fixtures) {
+    fixtures.forEach(fixture => {
+        const name = fixture.name;
+        const filename = fixture.filename;
+        const geojson = fixture.geojson;
         const results = flip(geojson);
 
         if (process.env.REGEN) write.sync(directories.out + filename, results);
         t.deepEqual(load.sync(directories.out + filename), results, name);
-    }
+    });
     t.end();
 });
 

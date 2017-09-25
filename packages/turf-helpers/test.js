@@ -1,25 +1,23 @@
 const test = require('tape');
-const {
-    point,
-    polygon,
-    lineString,
-    feature,
-    featureCollection,
-    multiLineString,
-    multiPoint,
-    multiPolygon,
-    geometryCollection,
-    radiansToDistance,
-    distanceToRadians,
-    distanceToDegrees,
-    radians2degrees,
-    degrees2radians,
-    bearingToAngle,
-    convertDistance,
-    convertArea,
-    round,
-    isNumber
-} = require('./');
+const point = require('./').point;
+const polygon = require('./').polygon;
+const lineString = require('./').lineString;
+const feature = require('./').feature;
+const featureCollection = require('./').featureCollection;
+const multiLineString = require('./').multiLineString;
+const multiPoint = require('./').multiPoint;
+const multiPolygon = require('./').multiPolygon;
+const geometryCollection = require('./').geometryCollection;
+const radiansToDistance = require('./').radiansToDistance;
+const distanceToRadians = require('./').distanceToRadians;
+const distanceToDegrees = require('./').distanceToDegrees;
+const radians2degrees = require('./').radians2degrees;
+const degrees2radians = require('./').degrees2radians;
+const bearingToAngle = require('./').bearingToAngle;
+const convertDistance = require('./').convertDistance;
+const convertArea = require('./').convertArea;
+const round = require('./').round;
+const isNumber = require('./').isNumber;
 
 test('point', t => {
     const ptArray = point([5, 10], {name: 'test point'});

@@ -25,9 +25,14 @@ const fixtures = fs.readdirSync(directories.in).map(filename => {
 });
 
 test('clusters-dbscan', t => {
-    fixtures.forEach(({name, filename, geojson}) => {
-        let {distance, minPoints, units} = geojson.properties || {};
-        distance = distance || 100;
+    fixtures.forEach(fixture => {
+        const name = fixture.name;
+        const filename = fixture.filename;
+        const geojson = fixture.geojson;
+        const properties = geojson.properties || {};
+        const distance = properties.distance || 100;
+        const minPoints = properties.minPoints;
+        const units = properties.units;
 
         // console.log(geojson.features.length);
         const clustered = clustersDbscan(geojson, distance, units, minPoints);

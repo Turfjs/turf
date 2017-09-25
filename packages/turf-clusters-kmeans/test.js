@@ -25,8 +25,10 @@ const fixtures = fs.readdirSync(directories.in).map(filename => {
 });
 
 test('clusters-kmeans', t => {
-    fixtures.forEach(({name, geojson}) => {
-        const {numberOfCentroids} = geojson.properties || {};
+    fixtures.forEach(fixture => {
+        const name = fixture.name;
+        const geojson = fixture.geojson;
+        const numberOfCentroids = (geojson.properties || {}).numberOfCentroids;
 
         const clustered = clustersKmeans(geojson, numberOfCentroids);
         const result = styleResult(clustered);

@@ -13,19 +13,19 @@ const directories = {
 
 // Save input fixtures
 if (process.env.REGEN) {
-    for (const name of Object.keys(fixtures)) {
+    Object.keys(fixtures).forEach(name => {
         write.sync(directories.in + name + '.json', fixtures[name]);
-    }
+    });
 }
 
 tape('explode - geojson-fixtures', t => {
-    for (const filename of fs.readdirSync(directories.in)) {
+    fs.readdirSync(directories.in).forEach(filename => {
         const name = filename.replace('.json', '');
         const features = load.sync(directories.in + filename);
         const exploded = explode(features);
         if (process.env.REGEN) { write.sync(directories.out + filename, exploded); }
         t.deepEqual(exploded, load.sync(directories.out + filename), name);
-    }
+    });
     t.end();
 });
 
