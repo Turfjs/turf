@@ -22,19 +22,27 @@ const fixtures = fs.readdirSync(directories.in).map(filename => {
 
 test('turf-point-to-line-distance', t => {
     const results = {};
-    for (const {filename, name, geojson}  of fixtures) {
-        const [point, line] = geojson.features;
-        let {units, mercator} = geojson.properties || {};
-        if (!units) units = 'kilometers';
-        const distance = pointToLineDistance(point, line, units, mercator);
+    fixtures.forEach(fixture => {
+        const filename = fixture.filename;
+        const name = fixture.name;
+        const geojson = fixture.geojson;
+        const point = geojson.features[0];
+        const line = geojson.features[1];
+        const properties = geojson.properties || {};
+        const units = properties.units || 'kilometers';
+        const mercator = properties.mercator;
+
+        // main method
+        const options = {units: units, mercator: mercator};
+        const distance = pointToLineDistance(point, line, options);
 
         // Store results
         results[name] = round(distance, 10);
 
         // debug purposes
-        geojson.features.push(circle(point, distance, 200, units));
+        geojson.features.push(circle(point, distance, {steps: 200, units: units}));
         if (process.env.REGEN) write.sync(directories.out + filename, geojson);
-    }
+    });
     if (process.env.REGEN) write.sync(directories.out + 'distances.json', results);
     t.deepEqual(load.sync(directories.out + 'distances.json'), results);
     t.end();
@@ -46,7 +54,8 @@ test('turf-point-to-line-distance -- throws', t => {
 
     t.throws(() => pointToLineDistance(null, line), /pt is required/, 'missing point');
     t.throws(() => pointToLineDistance(pt, null), /line is required/, 'missing line');
-    t.throws(() => pointToLineDistance(pt, line, 'invalid'), /units is invalid/, 'invalid units');
+    t.throws(() => pointToLineDistance(pt, line, 'invalid'), /options must be an object/, 'invalid options');
+    t.throws(() => pointToLineDistance(pt, line, {units: 'invalid'}), /units is invalid/, 'invalid units');
     t.throws(() => pointToLineDistance(line, line), /Invalid input to point: must be a Point, given LineString/, 'invalid line');
     t.throws(() => pointToLineDistance(pt, pt), /Invalid input to line: must be a LineString, given Point/, 'invalid point');
 

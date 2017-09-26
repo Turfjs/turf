@@ -6,7 +6,8 @@ import { getCoords } from '@turf/invariant';
  * @name booleanPointOnLine
  * @param {Geometry|Feature<Point>} point GeoJSON Feature or Geometry
  * @param {Geometry|Feature<LineString>} linestring GeoJSON Feature or Geometry
- * @param {boolean} [ignoreEndVertices=false] whether to ignore the start and end vertices.
+ * @param {Object} [options] Optional parameters
+ * @param {boolean} [options.ignoreEndVertices=false] whether to ignore the start and end vertices.
  * @returns {boolean} true/false
  * @example
  * var pt = turf.point([0, 0]);
@@ -14,7 +15,10 @@ import { getCoords } from '@turf/invariant';
  * var isPointOnLine = turf.booleanPointOnLine(pt, line);
  * //=true
  */
-export default function (point, linestring, ignoreEndVertices) {
+export default function (point, linestring, options) {
+    // Backwards compatible with v4.0
+    var ignoreEndVertices = (typeof options === 'object') ? options.ignoreEndVertices : options;
+
     var pointCoords = getCoords(point);
     var lineCoords = getCoords(linestring);
     for (var i = 0; i < lineCoords.length - 1; i++) {

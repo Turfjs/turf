@@ -378,14 +378,15 @@ export function round(num, precision) {
  *
  * @name radiansToDistance
  * @param {number} radians in radians across the sphere
- * @param {string} [units=kilometers] can be degrees, radians, miles, or kilometers inches, yards, metres, meters, kilometres, kilometers.
+ * @param {string} [units="kilometers"] can be degrees, radians, miles, or kilometers inches, yards, metres, meters, kilometres, kilometers.
  * @returns {number} distance
  */
 export function radiansToDistance(radians, units) {
     if (radians === undefined || radians === null) throw new Error('radians is required');
 
-    const factor = factors[units || 'kilometers'];
-    if (!factor) throw new Error('units is invalid');
+    if (units && typeof units !== 'string') throw new Error('units must be a string');
+    var factor = factors[units || 'kilometers'];
+    if (!factor) throw new Error(units + ' units is invalid');
     return radians * factor;
 }
 
@@ -401,8 +402,9 @@ export function radiansToDistance(radians, units) {
 export function distanceToRadians(distance, units) {
     if (distance === undefined || distance === null) throw new Error('distance is required');
 
-    const factor = factors[units || 'kilometers'];
-    if (!factor) throw new Error('units is invalid');
+    if (units && typeof units !== 'string') throw new Error('units must be a string');
+    var factor = factors[units || 'kilometers'];
+    if (!factor) throw new Error(units + ' units is invalid');
     return distance / factor;
 }
 

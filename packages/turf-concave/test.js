@@ -32,7 +32,7 @@ test('turf-concave', t => {
 
         const hull = concave(geojson, maxEdge, units);
         featureEach(geojson, stylePt);
-        const results = featureCollection([...geojson.features, hull]);
+        const results = featureCollection(geojson.features.concat(hull));
 
         if (process.env.REGEN) write.sync(directories.out + filename, results);
         t.deepEquals(results, load.sync(directories.out + filename), name);

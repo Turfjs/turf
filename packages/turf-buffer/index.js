@@ -18,8 +18,9 @@ import { toWgs84, toMercator } from '@turf/projection';
  * @name buffer
  * @param {FeatureCollection|Geometry|Feature<any>} geojson input to be buffered
  * @param {number} radius distance to draw the buffer (negative values are allowed)
- * @param {string} [units=kilometers] any of the options supported by turf units
- * @param {number} [steps=64] number of steps
+ * @param {Object} [options] Optional parameters
+ * @param {string} [options.units="kilometers"] any of the options supported by turf units
+ * @param {number} [options.steps=64] number of steps
  * @returns {FeatureCollection|Feature<Polygon|MultiPolygon>|undefined} buffered features
  * @example
  * var point = turf.point([-90.548630, 14.616599]);
@@ -28,9 +29,17 @@ import { toWgs84, toMercator } from '@turf/projection';
  * //addToMap
  * var addToMap = [point, buffered]
  */
-export default function (geojson, radius, units, steps) {
+export default function (geojson, radius, options) {
+    // Optional params
+    options = options || {};
+    var units = options.units;
+    var steps = options.steps || 64;
+
     // validation
     if (!geojson) throw new Error('geojson is required');
+    if (typeof options !== 'object') throw new Error('options must be an object');
+    if (typeof steps !== 'number') throw new Error('steps must be an number');
+
     // Allow negative buffers ("erosion") or zero-sized buffers ("repair geometry")
     if (radius === undefined) throw new Error('radius is required');
     if (steps <= 0) throw new Error('steps must be greater than 0');

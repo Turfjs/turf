@@ -11,8 +11,9 @@ import { lineString } from '@turf/helpers';
  * @param {number} radius radius of the circle
  * @param {number} bearing1 angle, in decimal degrees, of the first radius of the arc
  * @param {number} bearing2 angle, in decimal degrees, of the second radius of the arc
- * @param {number} [steps=64] number of steps
- * @param {string} [units=kilometers] miles, kilometers, degrees, or radians
+ * @param {Object} [options] Optional parameters
+ * @param {number} [options.steps=64] number of steps
+ * @param {string} [options.units="kilometers"] miles, kilometers, degrees, or radians
  * @returns {Feature<LineString>} line arc
  * @example
  * var center = turf.point([-75, 40]);
@@ -25,12 +26,18 @@ import { lineString } from '@turf/helpers';
  * //addToMap
  * var addToMap = [center, arc]
  */
-export default function (center, radius, bearing1, bearing2, steps, units) {
+export default function (center, radius, bearing1, bearing2, options) {
+    // Optional params
+    options = options || {};
+    var steps = options.steps;
+    var units = options.units;
+
     // validation
     if (!center) throw new Error('center is required');
+    if (!radius) throw new Error('radius is required');
     if (bearing1 === undefined || bearing1 === null) throw new Error('bearing1 is required');
     if (bearing2 === undefined || bearing2 === null) throw new Error('bearing2 is required');
-    if (!radius) throw new Error('radius is required');
+    if (typeof options !== 'object') throw new Error('options must be an object');
 
     // default params
     steps = steps || 64;
@@ -41,7 +48,7 @@ export default function (center, radius, bearing1, bearing2, steps, units) {
 
     // handle angle parameters
     if (angle1 === angle2) {
-        return lineString(circle(center, radius, steps, units).geometry.coordinates[0], properties);
+        return lineString(circle(center, radius, options).geometry.coordinates[0], properties);
     }
     var arcStartDegree = angle1;
     var arcEndDegree = (angle1 < angle2) ? angle2 : angle2 + 360;

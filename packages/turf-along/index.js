@@ -1,7 +1,7 @@
-import measureDistance from '@turf/distance';
-import { point } from '@turf/helpers';
 import bearing from '@turf/bearing';
 import destination from '@turf/destination';
+import measureDistance from '@turf/distance';
+import { point, isNumber } from '@turf/helpers';
 
 /**
  * Takes a {@link LineString|line} and returns a {@link Point|point} at a specified distance along the line.
@@ -9,7 +9,8 @@ import destination from '@turf/destination';
  * @name along
  * @param {Feature<LineString>} line input line
  * @param {number} distance distance along the line
- * @param {string} [units=kilometers] can be degrees, radians, miles, or kilometers
+ * @param {Object} [options] Optional parameters
+ * @param {string} [options.units="kilometers"] can be degrees, radians, miles, or kilometers
  * @returns {Feature<Point>} Point `distance` `units` along the line
  * @example
  * var line = turf.lineString([[-83, 30], [-84, 36], [-78, 41]]);
@@ -19,11 +20,16 @@ import destination from '@turf/destination';
  * //addToMap
  * var addToMap = [along, line]
  */
-export default function (line, distance, units) {
+export default function (line, distance, options) {
+    // Backwards compatible with v4.0
+    var units = (typeof options === 'object') ? options.units : options;
+
+    // Validation
     var coords;
     if (line.type === 'Feature') coords = line.geometry.coordinates;
     else if (line.type === 'LineString') coords = line.coordinates;
     else throw new Error('input must be a LineString Feature or Geometry');
+    if (!isNumber(distance)) throw new Error('distance must be a number');
 
     var travelled = 0;
     for (var i = 0; i < coords.length; i++) {

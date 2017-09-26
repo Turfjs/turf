@@ -119,31 +119,8 @@ Returns **([Geometry](http://geojson.org/geojson-spec.html#geometry) | null)** G
 # getGeomType
 
 Get Geometry Type from Feature or Geometry Object
-**DEPRECATED** in v5.0.0 in favor of getType
 
-**Parameters**
-
--   `geojson` **([Feature](http://geojson.org/geojson-spec.html#feature-objects) \| [Geometry](http://geojson.org/geojson-spec.html#geometry))** GeoJSON Feature or Geometry Object
--   `name` **\[[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)]** name of the variable to display in error message
-
-**Examples**
-
-```javascript
-var point = {
-  "type": "Feature",
-  "properties": {},
-  "geometry": {
-    "type": "Point",
-    "coordinates": [110, 40]
-  }
-}
-var geom = turf.getGeomType(point)
-//="Point"
-```
-
--   Throws **[Error](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error)** if geojson is not a Feature or Geometry Object
-
-Returns **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** GeoJSON Geometry Type
+-   Throws **[Error](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error)** **DEPRECATED** in v5.0.0 in favor of getType
 
 # getType
 

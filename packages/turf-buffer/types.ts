@@ -13,8 +13,8 @@ const poly = polygon([[[100, 0], [50, 0], [0, 50], [100, 0]]]);
 buffer(pt, 5);
 buffer(line, 5);
 buffer(poly, 5);
-buffer(pt, 5, 'miles');
-buffer(pt, 10, 'meters', 64);
+buffer(pt, 5, {units: 'miles'});
+buffer(pt, 10, {units: 'meters', steps: 64});
 
 // Multi Geometry
 const multiPt = multiPoint([[100, 0], [0, 100]]);

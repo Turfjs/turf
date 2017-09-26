@@ -22,10 +22,15 @@ const fixtures = fs.readdirSync(directories.in).map(filename => {
 });
 
 test('turf-nearest-point-to-line', t => {
-    for (const {filename, name, geojson}  of fixtures) {
-        const [points, line] = geojson.features;
-        let {units} = geojson.properties || {};
-        const nearest = nearestPointToLine(points, line, units);
+    fixtures.forEach(fixture => {
+        const filename = fixture.filename;
+        const name = fixture.name;
+        const geojson = fixture.geojson;
+        const points = geojson.features[0];
+        const line = geojson.features[1];
+        const units = (geojson.properties || {}).units;
+
+        const nearest = nearestPointToLine(points, line, {units: units});
         const distance = round(nearest.properties.dist, 13);
         nearest.properties.dist = distance;
         nearest.properties = Object.assign(nearest.properties, {
@@ -33,12 +38,12 @@ test('turf-nearest-point-to-line', t => {
             'marker-size': 'large',
             'marker-symbol': 'star'
         });
-        const distanceCircle = truncate(circle(nearest, distance || 1, null, units, {fill: '#F00'}));
+        const distanceCircle = truncate(circle(nearest, distance || 1, { units: units, properties: {fill: '#F00'} }));
         const results = featureCollection([points, nearest, line, distanceCircle]);
 
         if (process.env.REGEN) write.sync(directories.out + filename, results);
         t.deepEqual(results, load.sync(directories.out + filename), name);
-    }
+    });
     t.end();
 });
 
