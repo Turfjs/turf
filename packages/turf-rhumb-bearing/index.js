@@ -82,7 +82,7 @@ LatLon.prototype.rhumbBearingTo = function (point) {
 
     const φ1 = degrees2radians(this.lat);
     const φ2 = degrees2radians(point.lat);
-    const Δλ = degrees2radians((point.lon - this.lon));
+    let Δλ = degrees2radians((point.lon - this.lon));
     // if dLon over 180° take shorter rhumb line across the anti-meridian:
     if (Δλ > Math.PI) Δλ -= 2 * Math.PI;
     if (Δλ < -Math.PI) Δλ += 2 * Math.PI;
