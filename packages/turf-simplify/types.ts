@@ -1,5 +1,5 @@
 import {polygon} from '@turf/helpers'
-import * as simplify from './'
+import simplify from './'
 
 const poly = polygon([[[0, 0], [10, 10], [20, 20], [0, 0]]]);
 

@@ -1,7 +1,7 @@
-var lineSliceAlong = require('@turf/line-slice-along');
-var lineDistance = require('@turf/line-distance');
-var featureCollection = require('@turf/helpers').featureCollection;
-var flattenEach = require('@turf/meta').flattenEach;
+import lineSliceAlong from '@turf/line-slice-along';
+import lineDistance from '@turf/line-distance';
+import { featureCollection } from '@turf/helpers';
+import { flattenEach } from '@turf/meta';
 
 /**
  * Divides a {@link LineString} into chunks of a specified length.
@@ -21,7 +21,7 @@ var flattenEach = require('@turf/meta').flattenEach;
  * //addToMap
  * var addToMap = [chunk];
  */
-module.exports = function (geojson, segmentLength, units, reverse) {
+export default function (geojson, segmentLength, units, reverse) {
     if (!geojson) throw new Error('geojson is required');
     if (segmentLength <= 0) throw new Error('segmentLength must be greater than 0');
     var results = [];
@@ -36,7 +36,7 @@ module.exports = function (geojson, segmentLength, units, reverse) {
         });
     });
     return featureCollection(results);
-};
+}
 
 /**
  * Slice Line Segments

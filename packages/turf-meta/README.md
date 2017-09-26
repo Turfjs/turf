@@ -510,9 +510,9 @@ Callback for segmentEach
 **Parameters**
 
 -   `currentSegment` **[Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;[LineString](http://geojson.org/geojson-spec.html#linestring)>** The current segment being processed.
--   `featureIndex` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** The index of the current element being processed in the array, starts at index 0.
--   `featureSubIndex` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** The subindex of the current element being processed in the
-    array. Starts at index 0 and increases for each iterating line segment.
+-   `segmentIndex` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** The segmentIndex currently being processed, starts at index 0.
+-   `featureIndex` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** The featureIndex currently being processed, starts at index 0.
+-   `featureSubIndex` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** The featureSubIndex currently being processed, starts at index 0.
 -   `geojson`  
 -   `callback`  
 
@@ -536,6 +536,7 @@ var polygon = turf.polygon([[[-50, 5], [-40, -10], [-50, -10], [-40, 5], [-50, 5
 // Iterate over GeoJSON by 2-vertex segments
 turf.segmentEach(polygon, function (currentSegment, featureIndex, featureSubIndex) {
   //= currentSegment
+  //= segmentIndex
   //= featureIndex
   //= featureSubIndex
 });
@@ -571,10 +572,9 @@ If an initialValue is not provided:
 -   `previousValue` **\[Any]** The accumulated value previously returned in the last invocation
     of the callback, or initialValue, if supplied.
 -   `currentSegment` **\[[Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;[LineString](http://geojson.org/geojson-spec.html#linestring)>]** The current segment being processed.
--   `currentIndex` **\[[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)]** The index of the current element being processed in the
-    array. Starts at index 0, if an initialValue is provided, and at index 1 otherwise.
--   `currentSubIndex` **\[[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)]** The subindex of the current element being processed in the
-    array. Starts at index 0 and increases for each iterating line segment.
+-   `segmentIndex` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** The segmentIndex currently being processed, starts at index 0.
+-   `featureIndex` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** The featureIndex currently being processed, starts at index 0.
+-   `featureSubIndex` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** The featureSubIndex currently being processed, starts at index 0.
 -   `geojson`  
 -   `callback`  
 -   `initialValue`  
@@ -596,11 +596,12 @@ Reduce 2-vertex line segment in any GeoJSON object, similar to Array.reduce()
 var polygon = turf.polygon([[[-50, 5], [-40, -10], [-50, -10], [-40, 5], [-50, 5]]]);
 
 // Iterate over GeoJSON by 2-vertex segments
-turf.segmentReduce(polygon, function (previousSegment, currentSegment, currentIndex, currentSubIndex) {
+turf.segmentReduce(polygon, function (previousSegment, currentSegment, segmentIndex, featureIndex, featureSubIndex) {
   //= previousSegment
   //= currentSegment
-  //= currentIndex
-  //= currentSubIndex
+  //= segmentInex
+  //= featureIndex
+  //= featureSubIndex
   return currentSegment
 });
 

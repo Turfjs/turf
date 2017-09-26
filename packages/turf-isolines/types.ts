@@ -1,5 +1,5 @@
-import * as random from '@turf/random'
-import * as isolines from './'
+import random from '@turf/random'
+import isolines from './'
 
 const points = random('point', 100, {
     bbox: [0, 30, 20, 50]

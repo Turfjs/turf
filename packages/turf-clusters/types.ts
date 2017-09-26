@@ -1,5 +1,6 @@
-import {featureCollection, point} from '@turf/helpers'
-import {getCluster, clusterEach, clusterReduce} from './'
+import * as clusters from './'
+import { featureCollection, point } from '@turf/helpers'
+import { getCluster, clusterEach, clusterReduce } from './'
 
 /**
  * Fixtures
@@ -15,6 +16,7 @@ const geojson = featureCollection([
 /**
  * Get Cluster
  */
+clusters.getCluster(geojson, {cluster: 1});
 getCluster(geojson, {cluster: 1});
 getCluster(geojson, {0: 'foo'});
 getCluster(geojson, {'bar': 'foo'});
@@ -25,6 +27,7 @@ getCluster(geojson, 0);
 /**
  * ClusterEach
  */
+clusters.clusterEach(geojson, 'cluster', () => {});
 clusterEach(geojson, 'cluster', (cluster, clusterValue, currentIndex) => {
     //= cluster
     //= clusterValue
@@ -32,13 +35,13 @@ clusterEach(geojson, 'cluster', (cluster, clusterValue, currentIndex) => {
 })
 // Calculate the total number of clusters
 let total = 0
-clusterEach(geojson, 'cluster', function () {
+clusterEach(geojson, 'cluster', () => {
     total++;
 });
 
 // Create an Array of all the values retrieved from the 'cluster' property
 const values: number[] = []
-clusterEach(geojson, 'cluster', function (cluster, clusterValue: number) {
+clusterEach(geojson, 'cluster', (cluster, clusterValue: number) => {
     values.push(clusterValue);
 });
 
@@ -46,6 +49,7 @@ clusterEach(geojson, 'cluster', function (cluster, clusterValue: number) {
  * ClusterReduce
  */
 const initialValue = 0;
+clusterReduce(geojson, 'cluster', () => {});
 clusterReduce(geojson, 'cluster', (previousValue, cluster, clusterValue, currentIndex) => {
     //= previousValue
     //= cluster
@@ -60,5 +64,5 @@ const totalReduce = clusterReduce(geojson, 'cluster', function (previousValue) {
 
 // Create an Array of all the values retrieved from the 'cluster' property
 const valuesReduce = clusterReduce(geojson, 'cluster', function (previousValue, cluster, clusterValue) {
-    return previousValue.push(clusterValue);
+    return previousValue.concat(clusterValue);
 }, []);

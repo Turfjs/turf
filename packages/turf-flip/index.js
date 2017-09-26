@@ -1,4 +1,4 @@
-var coordEach = require('@turf/meta').coordEach;
+import { coordEach } from '@turf/meta';
 
 /**
  * Takes input features and flips all of their coordinates from `[x, y]` to `[y, x]`.
@@ -15,7 +15,7 @@ var coordEach = require('@turf/meta').coordEach;
  * //addToMap
  * var addToMap = [serbia, saudiArabia];
  */
-module.exports = function (geojson, mutate) {
+export default function (geojson, mutate) {
     if (!geojson) throw new Error('geojson is required');
     // ensure that we don't modify features in-place and changes to the
     // output do not change the previous feature, including changes to nested
@@ -29,4 +29,4 @@ module.exports = function (geojson, mutate) {
         coord[1] = x;
     });
     return geojson;
-};
+}

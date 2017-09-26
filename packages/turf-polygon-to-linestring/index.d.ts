@@ -1,17 +1,32 @@
 /// <reference types="geojson" />
 
-type Polygon = GeoJSON.Feature<GeoJSON.Polygon> | GeoJSON.Polygon;
-type MultiPolygon = GeoJSON.Feature<GeoJSON.MultiPolygon> | GeoJSON.MultiPolygon;
-type Feature = GeoJSON.Feature<GeoJSON.LineString | GeoJSON.MultiLineString>;
-type FeatureCollection = GeoJSON.FeatureCollection<GeoJSON.LineString | GeoJSON.MultiLineString>;
+import {
+    Polygon,
+    MultiPolygon,
+    Feature,
+    FeatureCollection,
+    LineString,
+    MultiLineString,
+    GeometryCollection,
+    FeatureGeometryCollection
+} from '@turf/helpers';
 
-interface PolygonToLineString {
-  /**
-   * http://turfjs.org/docs/#polygontolinestring
-   */
-  (polygon: Polygon): Feature;
-  (polygon: MultiPolygon): FeatureCollection;
-}
+/**
+ * http://turfjs.org/docs/#polygontolinestring
+ *
+ * Feature => LineString
+ */
+declare function polygonToLineString<T extends Polygon | MultiPolygon>(
+    polygon: Feature<T> | T
+): Feature<LineString>;
 
-declare const polygonToLineString: PolygonToLineString
-export = polygonToLineString;
+/**
+ * http://turfjs.org/docs/#polygontolinestring
+ *
+ * FeatureCollection => MultiLineString
+ */
+declare function polygonToLineString<T extends Polygon | MultiPolygon>(
+    polygon: FeatureCollection<T> | GeometryCollection | FeatureGeometryCollection
+): Feature<MultiLineString>;
+
+export default polygonToLineString;

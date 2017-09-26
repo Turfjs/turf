@@ -1,5 +1,5 @@
-var distance = require('@turf/distance');
-var segmentReduce = require('@turf/meta').segmentReduce;
+import distance from '@turf/distance';
+import { segmentReduce } from '@turf/meta';
 
 /**
  * Takes a {@link GeoJSON} and measures its length in the specified units, {@link (Multi)Point|Point}'s distance are ignored.
@@ -16,7 +16,7 @@ var segmentReduce = require('@turf/meta').segmentReduce;
  * var addToMap = [line];
  * line.properties.distance = length;
  */
-module.exports = function lineDistance(geojson, units) {
+export default function lineDistance(geojson, units) {
     // Input Validation
     if (!geojson) throw new Error('geojson is required');
 
@@ -25,4 +25,4 @@ module.exports = function lineDistance(geojson, units) {
         var coords = segment.geometry.coordinates;
         return previousValue + distance(coords[0], coords[1], units);
     }, 0);
-};
+}

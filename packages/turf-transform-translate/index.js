@@ -1,8 +1,6 @@
-var meta = require('@turf/meta');
-var invariant = require('@turf/invariant');
-var rhumbDestination = require('@turf/rhumb-destination');
-var coordEach = meta.coordEach;
-var getCoords = invariant.getCoords;
+import { coordEach } from '@turf/meta';
+import { getCoords } from '@turf/invariant';
+import rhumbDestination from '@turf/rhumb-destination';
 
 /**
  * Moves any geojson Feature or Geometry of a specified distance along a Rhumb Line
@@ -24,7 +22,7 @@ var getCoords = invariant.getCoords;
  * var addToMap = [poly, translatedPoly];
  * translatedPoly.properties = {stroke: '#F00', 'stroke-width': 4};
  */
-module.exports = function (geojson, distance, direction, units, zTranslation, mutate) {
+export default function (geojson, distance, direction, units, zTranslation, mutate) {
     // Input validation
     if (!geojson) throw new Error('geojson is required');
     if (distance === undefined || distance === null || isNaN(distance)) throw new Error('distance is required');
@@ -53,4 +51,4 @@ module.exports = function (geojson, distance, direction, units, zTranslation, mu
         if (zTranslation && pointCoords.length === 3) pointCoords[2] += zTranslation;
     });
     return geojson;
-};
+}

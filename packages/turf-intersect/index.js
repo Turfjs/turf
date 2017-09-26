@@ -1,6 +1,7 @@
 // depend on jsts for now http://bjornharrtell.github.io/jsts/
 var jsts = require('jsts');
-var truncate = require('@turf/truncate');
+import truncate from '@turf/truncate';
+import { feature } from '@turf/helpers';
 
 /**
  * Takes two {@link Polygon|polygons} and finds their intersection. If they share a border, returns the border; if they don't intersect, returns undefined.
@@ -8,7 +9,7 @@ var truncate = require('@turf/truncate');
  * @name intersect
  * @param {Feature<Polygon>} poly1 the first polygon
  * @param {Feature<Polygon>} poly2 the second polygon
- * @returns {Feature|undefined} returns a feature representing the point(s) they share (in case of a {@link Point}  or {@link MultiPoint}), the borders they share (in case of a {@link LineString} or a {@link MultiLineString}), the area they share (in case of {@link Polygon} or {@link MultiPolygon}). If they do not share any point, returns `undefined`.
+ * @returns {Feature|null} returns a feature representing the point(s) they share (in case of a {@link Point}  or {@link MultiPoint}), the borders they share (in case of a {@link LineString} or a {@link MultiLineString}), the area they share (in case of {@link Polygon} or {@link MultiPolygon}). If they do not share any point, returns `null`.
  * @example
  * var poly1 = turf.polygon([[
  *   [-122.801742, 45.48565],
@@ -34,7 +35,7 @@ var truncate = require('@turf/truncate');
  * //addToMap
  * var addToMap = [poly1, poly2, intersection];
  */
-module.exports = function (poly1, poly2) {
+export default function (poly1, poly2) {
     var geom1 = (poly1.type === 'Feature') ? poly1.geometry : poly1;
     var geom2 = (poly2.type === 'Feature') ? poly2.geometry : poly2;
 
@@ -43,17 +44,10 @@ module.exports = function (poly1, poly2) {
     var b = reader.read(truncate(geom2));
     var intersection = a.intersection(b);
 
-    if (intersection.isEmpty()) return {
-        type: 'Feature',
-        properties: {},
-        geometry: null
-    };
+    // https://github.com/Turfjs/turf/issues/951
+    if (intersection.isEmpty()) return null;
 
     var writer = new jsts.io.GeoJSONWriter();
-    var geojsonGeometry = writer.write(intersection);
-    return {
-        type: 'Feature',
-        properties: {},
-        geometry: geojsonGeometry
-    };
-};
+    var geom = writer.write(intersection);
+    return feature(geom);
+}

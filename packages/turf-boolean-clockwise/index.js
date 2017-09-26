@@ -1,12 +1,11 @@
-var invariant = require('@turf/invariant');
-var getCoords = invariant.getCoords;
+import { getCoords } from '@turf/invariant';
 
 /**
  * Takes a ring and return true or false whether or not the ring is clockwise or counter-clockwise.
  *
  * @name booleanClockwise
  * @param {Geometry|Feature<LineString>|Array<Array<number>>} line to be evaluated
- * @returns {Boolean} true/false
+ * @returns {boolean} true/false
  * @example
  * var clockwiseRing = turf.lineString([[0,0],[1,1],[1,0],[0,0]]);
  * var counterClockwiseRing = turf.lineString([[0,0],[1,0],[1,1],[0,0]]);
@@ -16,7 +15,7 @@ var getCoords = invariant.getCoords;
  * turf.booleanClockwise(counterClockwiseRing)
  * //=false
  */
-module.exports = function (line) {
+export default function (line) {
     // validation
     if (!line) throw new Error('line is required');
     var type = (line.geometry) ? line.geometry.type : line.type;
@@ -33,4 +32,4 @@ module.exports = function (line) {
         i++;
     }
     return sum > 0;
-};
+}

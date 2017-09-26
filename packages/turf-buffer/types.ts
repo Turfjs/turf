@@ -3,7 +3,7 @@ import {
   multiPoint, multiLineString, multiPolygon,
   featureCollection, geometryCollection
 } from '@turf/helpers'
-import * as buffer from './'
+import buffer from './'
 
 // Standard Geometry
 const pt = point([100, 0]);

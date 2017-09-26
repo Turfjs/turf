@@ -1,15 +1,15 @@
-const fs = require('fs');
-const test = require('tape');
-const path = require('path');
-const load = require('load-json-file');
-const write = require('write-json-file');
-const random = require('@turf/random');
-const envelope = require('@turf/envelope');
-const pointGrid = require('@turf/point-grid');
-const {getCoords} = require('@turf/invariant');
-const matrixToGrid = require('matrix-to-grid');
-const {lineString} = require('@turf/helpers');
-const isolines = require('./');
+import fs from 'fs';
+import test from 'tape';
+import path from 'path';
+import load from 'load-json-file';
+import write from 'write-json-file';
+import random from '@turf/random';
+import envelope from '@turf/envelope';
+import pointGrid from '@turf/point-grid';
+import { getCoords } from '@turf/invariant';
+import matrixToGrid from 'matrix-to-grid';
+import { lineString } from '@turf/helpers';
+import isolines from '.';
 
 const directories = {
     in: path.join(__dirname, 'test', 'in') + path.sep,

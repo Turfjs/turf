@@ -1,11 +1,11 @@
-const test = require('tape');
-const path = require('path');
-const load = require('load-json-file');
-const write = require('write-json-file');
-const centroid = require('@turf/centroid');
-const distance = require('@turf/distance');
-const truncate = require('@turf/truncate');
-const grid = require('./');
+import test from 'tape';
+import path from 'path';
+import load from 'load-json-file';
+import write from 'write-json-file';
+import centroid from '@turf/centroid';
+import distance from '@turf/distance';
+import truncate from '@turf/truncate';
+import grid from '.';
 
 const directories = {
     in: path.join(__dirname, 'test', 'in') + path.sep,
@@ -87,7 +87,9 @@ test('longitude (13141439571036224) - issue #758', t => {
     const coords = [];
     hexgrid.features.forEach(feature => feature.geometry.coordinates[0].forEach(coord => coords.push(coord)));
 
-    for (const [lng, lat] of coords) {
+    for (const coord of coords) {
+        const lng = coord[0];
+        const lat = coord[1];
         if (lng > 1000 || lng < -1000) {
             t.fail(`longitude is +- 1000 [${lng},${lat}]`);
             break;
@@ -103,7 +105,7 @@ test('hexagon size - issue #623', t => {
 
     const tile1 = hexgrid.features[0];
     const tile2 = hexgrid.features[1];
-    var dist = distance(centroid(tile1), centroid(tile2), "kilometers");
+    var dist = distance(centroid(tile1), centroid(tile2), 'kilometers');
 
     t.equal(round(dist, 10), round(Math.sqrt(3) * cellDiameter / 2, 10));
 

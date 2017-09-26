@@ -1,10 +1,8 @@
 // https://en.wikipedia.org/wiki/Rhumb_line
 // http://www.movable-type.co.uk/scripts/latlong.html#rhumblines
-var helpers = require('@turf/helpers');
-var getCoord = require('@turf/invariant').getCoord;
-var GeodesyLatLon = require('geodesy').LatLonSpherical;
-var radiansToDistance = helpers.radiansToDistance;
-var distanceToRadians = helpers.distanceToRadians;
+import { radiansToDistance, distanceToRadians } from '@turf/helpers';
+import { getCoord } from '@turf/invariant';
+var LatLonSpherical = require('geodesy').LatLonSpherical;
 
 /**
  * Calculates the distance along a rhumb line between two {@link Point|points} in degrees, radians,
@@ -26,7 +24,7 @@ var distanceToRadians = helpers.distanceToRadians;
  * from.properties.distance = distance;
  * to.properties.distance = distance;
  */
-module.exports = function (from, to, units) {
+export default function (from, to, units) {
     // validation
     if (!from) throw new Error('from point is required');
     if (!to) throw new Error('to point is required');
@@ -35,8 +33,8 @@ module.exports = function (from, to, units) {
 
     var coordsFrom = getCoord(from);
     var coordsTo = getCoord(to);
-    var origin = new GeodesyLatLon(coordsFrom[1], coordsFrom[0]);
-    var destination = new GeodesyLatLon(coordsTo[1], coordsTo[0]);
+    var origin = new LatLonSpherical(coordsFrom[1], coordsFrom[0]);
+    var destination = new LatLonSpherical(coordsTo[1], coordsTo[0]);
 
     // compensate the crossing of the 180th meridian (https://macwright.org/2016/09/26/the-180th-meridian.html)
     // solution from https://github.com/mapbox/mapbox-gl-js/issues/3250#issuecomment-294887678
@@ -44,4 +42,4 @@ module.exports = function (from, to, units) {
     var distanceInMeters = origin.rhumbDistanceTo(destination);
     var distance = radiansToDistance(distanceToRadians(distanceInMeters, 'meters'), units);
     return distance;
-};
+}

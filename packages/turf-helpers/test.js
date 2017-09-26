@@ -1,5 +1,5 @@
-const test = require('tape');
-const {
+import test from 'tape';
+import {
     point,
     polygon,
     lineString,
@@ -18,8 +18,7 @@ const {
     convertDistance,
     convertArea,
     round,
-    isNumber
-} = require('./');
+    isNumber } from '.';
 
 test('point', t => {
     const ptArray = point([5, 10], {name: 'test point'});

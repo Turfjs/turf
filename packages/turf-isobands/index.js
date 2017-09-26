@@ -1,15 +1,11 @@
-var bbox = require('@turf/bbox');
-var area = require('@turf/area');
-var inside = require('@turf/inside');
-var helpers = require('@turf/helpers');
-var explode = require('@turf/explode');
-var invariant = require('@turf/invariant');
+import bbox from '@turf/bbox';
+import area from '@turf/area';
+import inside from '@turf/inside';
+import explode from '@turf/explode';
+var isoBands = require('marchingsquares').isoBands;
+import { polygon, multiPolygon, featureCollection } from '@turf/helpers';
+import { collectionOf } from '@turf/invariant';
 var gridToMatrix = require('grid-to-matrix');
-var marchingsquares = require('marchingsquares');
-var polygon = helpers.polygon;
-var multiPolygon = helpers.multiPolygon;
-var collectionOf = invariant.collectionOf;
-var featureCollection = helpers.featureCollection;
 
 /**
  * Takes a grid {@link FeatureCollection} of {@link Point} features with z-values and an array of
@@ -18,8 +14,8 @@ var featureCollection = helpers.featureCollection;
  * @name isobands
  * @param {FeatureCollection<Point>} pointGrid input points
  * @param {Array<number>} breaks where to draw contours
- * @param {string} [zProperty='elevation'] the property name in `points` from which z-values will be pulled
  * @param {Object} [options={}] options on output
+ * @param {string} [options.zProperty='elevation'] the property name in `points` from which z-values will be pulled
  * @param {Array<Object>} [options.isobandProperties=[]] GeoJSON properties passed, in order, to the correspondent isoband (order defined by breaks)
  * @param {Object} [options.commonProperties={}] GeoJSON properties passed to ALL isobands
  * @returns {FeatureCollection<MultiPolygon>} a FeatureCollection of {@link MultiPolygon} features representing isobands
@@ -39,25 +35,19 @@ var featureCollection = helpers.featureCollection;
  * //addToMap
  * var addToMap = [isobands];
  */
-module.exports = function (pointGrid, breaks, zProperty, options) {
-    // Input validation
-    var isObject = function (input) {
-        return (!!input) && (input.constructor === Object);
-    };
-    collectionOf(pointGrid, 'Point', 'Input must contain Points');
-    if (!breaks || !Array.isArray(breaks)) throw new Error('breaks is required');
+export default function (pointGrid, breaks, options) {
+    // Optional Parameters
     options = options || {};
-    if (options.commonProperties && !isObject(options.commonProperties)) {
-        throw new Error('commonProperties is not an Object');
-    }
-    if (options.isobandProperties && !Array.isArray(options.isobandProperties)) {
-        throw new Error('isobandProperties is not an Array');
-    }
-    if (zProperty && typeof zProperty !== 'string') { throw new Error('zProperty is not a string'); }
-
-    zProperty = zProperty || 'elevation';
+    var zProperty = options.zProperty || 'elevation';
     var commonProperties = options.commonProperties || {};
     var isobandProperties = options.isobandProperties || [];
+
+    // Validation
+    collectionOf(pointGrid, 'Point', 'Input must contain Points');
+    if (!breaks) throw new Error('breaks is required');
+    if (!Array.isArray(breaks)) throw new Error('breaks is not an Array');
+    if (!isObject(commonProperties)) throw new Error('commonProperties is not an Object');
+    if (!Array.isArray(isobandProperties)) throw new Error('isobandProperties is not an Array');
 
     // Isoband methods
     var matrix = gridToMatrix(pointGrid, zProperty, true);
@@ -80,7 +70,18 @@ module.exports = function (pointGrid, breaks, zProperty, options) {
     });
 
     return featureCollection(multipolygons);
-};
+}
+
+/**
+ * isObject (should be replaced by @turf/helpers)
+ *
+ * @private
+ * @param {*} input Object
+ * @returns {boolean} true/false
+ */
+function isObject(input) {
+    return (!!input) && (input.constructor === Object);
+}
 
 /**
  * Creates the contours lines (featuresCollection of polygon features) from the 2D data grid
@@ -102,7 +103,7 @@ function createContourLines(matrix, breaks, property) {
         var lowerBand = +breaks[i - 1]; // make sure the breaks value is a number
         var upperBand = +breaks[i];
 
-        var isobandsCoords = marchingsquares.isoBands(matrix, lowerBand, upperBand - lowerBand);
+        var isobandsCoords = isoBands(matrix, lowerBand, upperBand - lowerBand);
         // as per GeoJson rules for creating a Polygon, make sure the first element
         // in the array of LinearRings represents the exterior ring (i.e. biggest area),
         // and any subsequent elements represent interior rings (i.e. smaller area);

@@ -1,5 +1,5 @@
-import {BBox, Polygons} from '@turf/helpers'
-import * as hexGrid from './'
+import {BBox, Polygon, FeatureCollection} from '@turf/helpers'
+import hexGrid from './'
 
 const bbox: BBox = [
     -96.6357421875,
@@ -7,4 +7,4 @@ const bbox: BBox = [
     -84.9462890625,
     40.58058466412764
 ]
-const grid: Polygons = hexGrid(bbox, 50, 'miles')
+const grid: FeatureCollection<Polygon> = hexGrid(bbox, 50, 'miles')

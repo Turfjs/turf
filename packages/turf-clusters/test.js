@@ -1,7 +1,15 @@
-const test = require('tape');
-const {featureCollection, point} = require('@turf/helpers');
-const {propertiesContainsFilter, filterProperties, applyFilter, createBins} = require('./'); // Testing Purposes
-const {getCluster, clusterEach, clusterReduce} = require('./');
+import test from 'tape';
+import { point, featureCollection } from '@turf/helpers';
+import {
+    getCluster,
+    clusterEach,
+    clusterReduce,
+    // Below methods are not exposed in @turf/turf
+    createBins,
+    applyFilter,
+    filterProperties,
+    propertiesContainsFilter
+} from '.';
 
 const properties = {foo: 'bar', cluster: 0};
 const geojson = featureCollection([
@@ -51,8 +59,7 @@ test('clusters -- clusterReduce', t => {
     t.end();
 });
 
-// Internal purposes only
-test('clusters -- applyFilter', t => {
+test('clusters.utils -- applyFilter', t => {
     t.true(applyFilter(properties, 'cluster'));
     t.true(applyFilter(properties, ['cluster']));
     t.false(applyFilter(properties, {cluster: 1}));
@@ -61,24 +68,21 @@ test('clusters -- applyFilter', t => {
     t.end();
 });
 
-// Internal purposes only
-test('clusters -- filterProperties', t => {
+test('clusters.utils -- filterProperties', t => {
     t.deepEqual(filterProperties(properties, ['cluster']), {cluster: 0});
     t.deepEqual(filterProperties(properties, []), {});
     t.deepEqual(filterProperties(properties, undefined), {});
     t.end();
 });
 
-// Internal purposes only
-test('clusters -- propertiesContainsFilter', t => {
+test('clusters.utils -- propertiesContainsFilter', t => {
     t.deepEqual(propertiesContainsFilter(properties, {cluster: 0}), true);
     t.deepEqual(propertiesContainsFilter(properties, {cluster: 1}), false);
     t.deepEqual(propertiesContainsFilter(properties, {bar: 'foo'}), false);
     t.end();
 });
 
-// Internal purposes only
-test('clusters -- propertiesContainsFilter', t => {
+test('clusters.utils -- propertiesContainsFilter', t => {
     t.deepEqual(createBins(geojson, 'cluster'), {'0': [0], '1': [1, 2]});
     t.end();
 });

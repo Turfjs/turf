@@ -1,8 +1,7 @@
-var cleanCoords = require('@turf/clean-coords');
-var lineSegment = require('@turf/line-segment');
-var rhumbBearing = require('@turf/rhumb-bearing');
-var bearingToAngle = require('@turf/helpers').bearingToAngle;
-
+import cleanCoords from '@turf/clean-coords';
+import lineSegment from '@turf/line-segment';
+import rhumbBearing from '@turf/rhumb-bearing';
+import { bearingToAngle } from '@turf/helpers';
 
 /**
  * Boolean-Parallel returns True if each segment of `line1` is parallel to the correspondent segment of `line2`
@@ -10,7 +9,7 @@ var bearingToAngle = require('@turf/helpers').bearingToAngle;
  * @name booleanParallel
  * @param {Geometry|Feature<LineString>} line1 GeoJSON Feature or Geometry
  * @param {Geometry|Feature<LineString>} line2 GeoJSON Feature or Geometry
- * @returns {Boolean} true/false if the lines are parallel
+ * @returns {boolean} true/false if the lines are parallel
  * @example
  * var line1 = turf.lineString([[0, 0], [0, 1]]);
  * var line2 = turf.lineString([[1, 0], [1, 1]]);
@@ -18,7 +17,7 @@ var bearingToAngle = require('@turf/helpers').bearingToAngle;
  * turf.booleanParallel(line1, line2);
  * //=true
  */
-module.exports = function (line1, line2) {
+export default function (line1, line2) {
     // validation
     if (!line1) throw new Error('line1 is required');
     if (!line2) throw new Error('line2 is required');
@@ -37,7 +36,7 @@ module.exports = function (line1, line2) {
         if (!isParallel(segment1, segment2)) return false;
     }
     return true;
-};
+}
 
 
 /**

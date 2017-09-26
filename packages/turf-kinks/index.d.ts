@@ -1,10 +1,16 @@
-import {LineString, MultiLineString, Polygon, MultiPolygon, Points} from '@turf/helpers'
-
-type FeatureIn = LineString | MultiLineString | Polygon | MultiPolygon
+import {
+    LineString,
+    MultiLineString,
+    Polygon,
+    MultiPolygon,
+    Point,
+    FeatureCollection,
+    Feature
+} from '@turf/helpers'
 
 /**
  * http://turfjs.org/docs/#kinks
  */
-declare function kinks(featureIn: FeatureIn): Points;
-declare namespace kinks {}
-export = kinks;
+export default function kinks<T extends LineString | MultiLineString | Polygon | MultiPolygon>(
+    featureIn: Feature<T> | T
+): FeatureCollection<Point>;

@@ -1,8 +1,8 @@
 var rbush = require('rbush');
-var union = require('@turf/union');
-var helpers = require('@turf/helpers');
-var turfBBox = require('@turf/bbox');
-var flattenEach = require('@turf/meta').flattenEach;
+import union from '@turf/union';
+import { polygon, featureCollection } from '@turf/helpers';
+import turfBBox from '@turf/bbox';
+import { flattenEach } from '@turf/meta';
 
 /**
  * Takes any type of {@link Polygon|polygon} and an optional mask and returns a {@link Polygon|polygon} exterior ring with holes.
@@ -20,7 +20,7 @@ var flattenEach = require('@turf/meta').flattenEach;
  * //addToMap
  * var addToMap = [masked]
  */
-module.exports = function (polygon, mask) {
+export default function (polygon, mask) {
     // Define mask
     var maskPolygon = createMask(mask);
 
@@ -36,7 +36,7 @@ module.exports = function (polygon, mask) {
     // Create masked area
     var masked = buildMask(maskPolygon, polygonOuters, polygonInners);
     return masked;
-};
+}
 
 /**
  * Build Mask
@@ -58,29 +58,29 @@ function buildMask(maskPolygon, polygonOuters, polygonInners) {
     flattenEach(polygonInners, function (feature) {
         coordinates.push(feature.geometry.coordinates[0]);
     });
-    return helpers.polygon(coordinates);
+    return polygon(coordinates);
 }
 
 /**
  * Separate Polygons to inners & outers
  *
  * @private
- * @param {FeatureCollection|Feature<Polygon|MultiPolygon>} polygon GeoJSON Feature
+ * @param {FeatureCollection|Feature<Polygon|MultiPolygon>} poly GeoJSON Feature
  * @returns {Array<FeatureCollection<Polygon>, FeatureCollection<Polygon>>} Outer & Inner lines
  */
-function separatePolygons(polygon) {
+function separatePolygons(poly) {
     var outers = [];
     var inners = [];
-    flattenEach(polygon, function (feature) {
+    flattenEach(poly, function (feature) {
         var coordinates = feature.geometry.coordinates;
         var featureOuter = coordinates[0];
         var featureInner = coordinates.slice(1);
-        outers.push(helpers.polygon([featureOuter]));
+        outers.push(polygon([featureOuter]));
         featureInner.forEach(function (inner) {
-            inners.push(helpers.polygon([inner]));
+            inners.push(polygon([inner]));
         });
     });
-    return [helpers.featureCollection(outers), helpers.featureCollection(inners)];
+    return [featureCollection(outers), featureCollection(inners)];
 }
 
 /**
@@ -93,7 +93,7 @@ function separatePolygons(polygon) {
 function createMask(mask) {
     var world = [[[180, 90], [-180, 90], [-180, -90], [180, -90], [180, 90]]];
     var coordinates = mask && mask.geometry.coordinates || world;
-    return helpers.polygon(coordinates);
+    return polygon(coordinates);
 }
 
 /**
@@ -142,7 +142,7 @@ function unionPolygons(polygons) {
         results.push(currentFeature);
     });
 
-    return helpers.featureCollection(results);
+    return featureCollection(results);
 }
 
 /**

@@ -1,5 +1,5 @@
-import {point} from '@turf/helpers';
-import * as sector from './';
+import { point } from '@turf/helpers';
+import sector from './';
 
 const center = point([-75.343, 39.984]);
 const unit = 'kilometers';

@@ -1,5 +1,5 @@
-import * as pointGrid from './';
-import {BBox} from './';
+import { BBox } from '@turf/helpers';
+import pointGrid from './';
 
 const units = 'miles';
 const cellSide = 50;

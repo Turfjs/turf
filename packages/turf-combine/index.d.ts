@@ -8,15 +8,12 @@ type MultiLineStrings = GeoJSON.FeatureCollection<GeoJSON.MultiLineString>;
 type MultiPolygons = GeoJSON.FeatureCollection<GeoJSON.MultiPolygon>;
 type Features = GeoJSON.FeatureCollection<any>;
 
-interface CombineStatic {
-    /**
-     * http://turfjs.org/docs/#combine
-     */
-    (features: Points): MultiPoints;
-    (features: LineStrings): MultiLineStrings;
-    (features: Polygons): MultiPolygons;
-    (features: Features): Features;
-}
-declare const combine: CombineStatic;
-declare namespace combine { }
-export = combine;
+/**
+ * http://turfjs.org/docs/#combine
+ */
+declare function combine(features: Points): MultiPoints;
+declare function combine(features: LineStrings): MultiLineStrings;
+declare function combine(features: Polygons): MultiPolygons;
+declare function combine(features: Features): Features;
+
+export default combine;

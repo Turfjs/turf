@@ -1,8 +1,8 @@
-var featureCollection = require('@turf/helpers').featureCollection;
-var centroid = require('@turf/center');
-var distance = require('@turf/distance');
-var inside = require('@turf/inside');
-var explode = require('@turf/explode');
+import centroid from '@turf/center';
+import distance from '@turf/distance';
+import inside from '@turf/inside';
+import explode from '@turf/explode';
+import { featureCollection } from '@turf/helpers';
 
 /**
  * Takes a feature and returns a {@link Point} guaranteed to be on the surface of the feature.
@@ -138,4 +138,4 @@ function pointOnSegment(x, y, x1, y1, x2, y2) {
     }
 }
 
-module.exports = pointOnSurface;
+export default pointOnSurface;

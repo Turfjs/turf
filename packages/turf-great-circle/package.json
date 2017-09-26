@@ -2,15 +2,18 @@
   "name": "@turf/great-circle",
   "version": "4.7.3",
   "description": "turf great-circle module",
-  "main": "index.js",
+  "main": "index.es5.js",
+  "module": "index.js",
+  "jsnext:main": "index.js",
   "types": "index.d.ts",
   "files": [
     "index.js",
     "index.d.ts",
-    "arc.js"
+    "index.es5.js"
   ],
   "scripts": {
-    "test": "node test.js",
+    "pretest": "rollup -c ../../rollup.config.js",
+    "test": "node test.es5.js",
     "bench": "node bench.js"
   },
   "repository": {
@@ -36,14 +39,16 @@
   },
   "homepage": "https://github.com/Turfjs/turf",
   "devDependencies": {
-    "@turf/helpers": "^4.7.3",
-    "@turf/truncate": "^4.7.3",
-    "benchmark": "^2.1.4",
-    "load-json-file": "^2.0.0",
-    "tape": "^4.6.3",
-    "write-json-file": "^2.0.0"
+    "@turf/helpers": "*",
+    "@turf/truncate": "*",
+    "benchmark": "*",
+    "load-json-file": "*",
+    "rollup": "*",
+    "tape": "*",
+    "write-json-file": "*"
   },
   "dependencies": {
-    "@turf/invariant": "^4.7.3"
+    "@turf/invariant": "^4.7.3",
+    "arc": "^0.1.0"
   }
 }

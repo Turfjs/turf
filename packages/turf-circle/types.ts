@@ -1,5 +1,5 @@
 import {point} from '@turf/helpers'
-import * as circle from './'
+import circle from './'
 
 const center = point([-75.343, 39.984]);
 const unit = 'kilometers';

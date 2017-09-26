@@ -17,7 +17,7 @@
  *
  * //=feature
  */
-function feature(geometry, properties, bbox, id) {
+export function feature(geometry, properties, bbox, id) {
     if (geometry === undefined) throw new Error('geometry is required');
     if (properties && properties.constructor !== Object) throw new Error('properties must be an Object');
     if (bbox && bbox.length !== 4) throw new Error('bbox must be an Array of 4 numbers');
@@ -48,7 +48,7 @@ function feature(geometry, properties, bbox, id) {
  *
  * //=geometry
  */
-function geometry(type, coordinates, bbox) {
+export function geometry(type, coordinates, bbox) {
     // Validation
     if (!type) throw new Error('type is required');
     if (!coordinates) throw new Error('coordinates is required');
@@ -83,7 +83,7 @@ function geometry(type, coordinates, bbox) {
  *
  * //=point
  */
-function point(coordinates, properties, bbox, id) {
+export function point(coordinates, properties, bbox, id) {
     if (!coordinates) throw new Error('No coordinates passed');
     if (coordinates.length === undefined) throw new Error('Coordinates must be an array');
     if (coordinates.length < 2) throw new Error('Coordinates must be at least 2 numbers long');
@@ -117,7 +117,7 @@ function point(coordinates, properties, bbox, id) {
  *
  * //=polygon
  */
-function polygon(coordinates, properties, bbox, id) {
+export function polygon(coordinates, properties, bbox, id) {
     if (!coordinates) throw new Error('No coordinates passed');
 
     for (var i = 0; i < coordinates.length; i++) {
@@ -169,7 +169,7 @@ function polygon(coordinates, properties, bbox, id) {
  *
  * //=linestring2
  */
-function lineString(coordinates, properties, bbox, id) {
+export function lineString(coordinates, properties, bbox, id) {
     if (!coordinates) throw new Error('No coordinates passed');
     if (coordinates.length < 2) throw new Error('Coordinates must be an array of two or more positions');
     // Check if first point of LineString contains two numbers
@@ -200,7 +200,7 @@ function lineString(coordinates, properties, bbox, id) {
  *
  * //=collection
  */
-function featureCollection(features, bbox, id) {
+export function featureCollection(features, bbox, id) {
     if (!features) throw new Error('No features passed');
     if (!Array.isArray(features)) throw new Error('features must be an Array');
     if (bbox && bbox.length !== 4) throw new Error('bbox must be an Array of 4 numbers');
@@ -229,7 +229,7 @@ function featureCollection(features, bbox, id) {
  *
  * //=multiLine
  */
-function multiLineString(coordinates, properties, bbox, id) {
+export function multiLineString(coordinates, properties, bbox, id) {
     if (!coordinates) throw new Error('No coordinates passed');
 
     return feature({
@@ -254,7 +254,7 @@ function multiLineString(coordinates, properties, bbox, id) {
  *
  * //=multiPt
  */
-function multiPoint(coordinates, properties, bbox, id) {
+export function multiPoint(coordinates, properties, bbox, id) {
     if (!coordinates) throw new Error('No coordinates passed');
 
     return feature({
@@ -280,7 +280,7 @@ function multiPoint(coordinates, properties, bbox, id) {
  * //=multiPoly
  *
  */
-function multiPolygon(coordinates, properties, bbox, id) {
+export function multiPolygon(coordinates, properties, bbox, id) {
     if (!coordinates) throw new Error('No coordinates passed');
 
     return feature({
@@ -312,7 +312,7 @@ function multiPolygon(coordinates, properties, bbox, id) {
  *
  * //=collection
  */
-function geometryCollection(geometries, properties, bbox, id) {
+export function geometryCollection(geometries, properties, bbox, id) {
     if (!geometries) throw new Error('geometries is required');
     if (!Array.isArray(geometries)) throw new Error('geometries must be an Array');
 
@@ -365,7 +365,7 @@ var areaFactors = {
  * turf.round(120.4321, 2)
  * //=120.43
  */
-function round(num, precision) {
+export function round(num, precision) {
     if (num === undefined || num === null || isNaN(num)) throw new Error('num is required');
     if (precision && !(precision >= 0)) throw new Error('precision must be a positive number');
     var multiplier = Math.pow(10, precision || 0);
@@ -381,7 +381,7 @@ function round(num, precision) {
  * @param {string} [units=kilometers] can be degrees, radians, miles, or kilometers inches, yards, metres, meters, kilometres, kilometers.
  * @returns {number} distance
  */
-function radiansToDistance(radians, units) {
+export function radiansToDistance(radians, units) {
     if (radians === undefined || radians === null) throw new Error('radians is required');
 
     var factor = factors[units || 'kilometers'];
@@ -398,7 +398,7 @@ function radiansToDistance(radians, units) {
  * @param {string} [units=kilometers] can be degrees, radians, miles, or kilometers inches, yards, metres, meters, kilometres, kilometers.
  * @returns {number} radians
  */
-function distanceToRadians(distance, units) {
+export function distanceToRadians(distance, units) {
     if (distance === undefined || distance === null) throw new Error('distance is required');
 
     var factor = factors[units || 'kilometers'];
@@ -415,7 +415,7 @@ function distanceToRadians(distance, units) {
  * @param {string} [units=kilometers] can be degrees, radians, miles, or kilometers inches, yards, metres, meters, kilometres, kilometers.
  * @returns {number} degrees
  */
-function distanceToDegrees(distance, units) {
+export function distanceToDegrees(distance, units) {
     return radians2degrees(distanceToRadians(distance, units));
 }
 
@@ -427,7 +427,7 @@ function distanceToDegrees(distance, units) {
  * @param {number} bearing angle, between -180 and +180 degrees
  * @returns {number} angle between 0 and 360 degrees
  */
-function bearingToAngle(bearing) {
+export function bearingToAngle(bearing) {
     if (bearing === null || bearing === undefined) throw new Error('bearing is required');
 
     var angle = bearing % 360;
@@ -442,7 +442,7 @@ function bearingToAngle(bearing) {
  * @param {number} radians angle in radians
  * @returns {number} degrees between 0 and 360 degrees
  */
-function radians2degrees(radians) {
+export function radians2degrees(radians) {
     if (radians === null || radians === undefined) throw new Error('radians is required');
 
     var degrees = radians % (2 * Math.PI);
@@ -456,7 +456,7 @@ function radians2degrees(radians) {
  * @param {number} degrees angle between 0 and 360 degrees
  * @returns {number} angle in radians
  */
-function degrees2radians(degrees) {
+export function degrees2radians(degrees) {
     if (degrees === null || degrees === undefined) throw new Error('degrees is required');
 
     var radians = degrees % 360;
@@ -473,7 +473,7 @@ function degrees2radians(degrees) {
  * @param {string} [finalUnit=kilometers] returned unit
  * @returns {number} the converted distance
  */
-function convertDistance(distance, originalUnit, finalUnit) {
+export function convertDistance(distance, originalUnit, finalUnit) {
     if (distance === null || distance === undefined) throw new Error('distance is required');
     if (!(distance >= 0)) throw new Error('distance must be a positive number');
 
@@ -489,7 +489,7 @@ function convertDistance(distance, originalUnit, finalUnit) {
  * @param {string} [finalUnit=kilometers] returned unit
  * @returns {number} the converted distance
  */
-function convertArea(area, originalUnit, finalUnit) {
+export function convertArea(area, originalUnit, finalUnit) {
     if (area === null || area === undefined) throw new Error('area is required');
     if (!(area >= 0)) throw new Error('area must be a positive number');
 
@@ -513,29 +513,6 @@ function convertArea(area, originalUnit, finalUnit) {
  * turf.isNumber('foo')
  * //=false
  */
-function isNumber(num) {
+export function isNumber(num) {
     return !isNaN(num) && num !== null && !Array.isArray(num);
 }
-
-module.exports = {
-    feature: feature,
-    geometry: geometry,
-    featureCollection: featureCollection,
-    geometryCollection: geometryCollection,
-    point: point,
-    multiPoint: multiPoint,
-    lineString: lineString,
-    multiLineString: multiLineString,
-    polygon: polygon,
-    multiPolygon: multiPolygon,
-    radiansToDistance: radiansToDistance,
-    distanceToRadians: distanceToRadians,
-    distanceToDegrees: distanceToDegrees,
-    radians2degrees: radians2degrees,
-    degrees2radians: degrees2radians,
-    bearingToAngle: bearingToAngle,
-    convertDistance: convertDistance,
-    convertArea: convertArea,
-    round: round,
-    isNumber: isNumber
-};

@@ -1,5 +1,5 @@
 import {point, polygon, featureCollection} from '@turf/helpers';
-import * as translate from './';
+import translate from './';
 
 const pt = point([0, 0]);
 const poly = polygon([[[0,29],[3.5,29],[2.5,32],[0,29]]]);

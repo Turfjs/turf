@@ -1,5 +1,5 @@
-import {BBox, Polygons} from '@turf/helpers'
-import * as triangleGrid from './'
+import { BBox, Polygon, FeatureCollection } from '@turf/helpers'
+import triangleGrid from './'
 
 const bbox: BBox = [
     -96.6357421875,
@@ -7,4 +7,4 @@ const bbox: BBox = [
     -84.9462890625,
     40.58058466412764
 ]
-const grid: Polygons = triangleGrid(bbox, 50, 'miles')
+const grid: FeatureCollection<Polygon> = triangleGrid(bbox, 50, 'miles')

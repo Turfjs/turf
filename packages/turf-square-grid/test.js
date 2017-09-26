@@ -1,11 +1,11 @@
-const fs = require('fs');
-const test = require('tape');
-const path = require('path');
-const load = require('load-json-file');
-const write = require('write-json-file');
-const mkdirp = require('mkdirp');
-const {featureEach} = require('@turf/meta');
-const squareGrid = require('./');
+import fs from 'fs';
+import test from 'tape';
+import path from 'path';
+import load from 'load-json-file';
+import write from 'write-json-file';
+import mkdirp from 'mkdirp';
+import { featureEach } from '@turf/meta';
+import squareGrid from '.';
 
 
 const directories = {

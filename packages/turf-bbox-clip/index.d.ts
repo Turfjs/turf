@@ -1,13 +1,18 @@
 /// <reference types="geojson" />
 
-import {BBox, LineString, MultiLineString, Polygon, MultiPolygon} from '@turf/helpers'
+import {
+    BBox,
+    LineString,
+    MultiLineString,
+    Polygon,
+    MultiPolygon,
+    Feature
+} from '@turf/helpers'
 
-interface BBoxClip {
-  /**
-   * http://turfjs.org/docs/#bboxclip
-   */
-  (feature: LineString | MultiLineString, bbox: BBox): LineString | MultiLineString
-  (feature: Polygon | MultiPolygon, bbox: BBox): Polygon | MultiPolygon
-}
-declare const bboxClip: BBoxClip;
-export = bboxClip;
+/**
+ * http://turfjs.org/docs/#bboxclip
+ */
+declare function bboxClip(feature: Feature<LineString | MultiLineString> | LineString | MultiLineString, bbox: BBox): Feature<LineString | MultiLineString>;
+declare function bboxClip(feature: Feature<Polygon | MultiPolygon> | Polygon | MultiPolygon, bbox: BBox): Feature<Polygon | MultiPolygon>;
+
+export default bboxClip;

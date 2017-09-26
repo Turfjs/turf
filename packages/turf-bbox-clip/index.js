@@ -1,10 +1,6 @@
-var helpers = require('@turf/helpers');
 var lineclip = require('lineclip');
-var getCoords = require('@turf/invariant').getCoords;
-var lineString = helpers.lineString;
-var multiLineString = helpers.multiLineString;
-var polygon = helpers.polygon;
-var multiPolygon = helpers.multiPolygon;
+import { getCoords } from '@turf/invariant';
+import { lineString, multiLineString, polygon, multiPolygon } from '@turf/helpers';
 
 /**
  * Takes a {@link Feature} and a bbox and clips the feature to the bbox using [lineclip](https://github.com/mapbox/lineclip).
@@ -23,7 +19,7 @@ var multiPolygon = helpers.multiPolygon;
  * //addToMap
  * var addToMap = [bbox, poly, clipped]
  */
-module.exports = function (feature, bbox) {
+export default function (feature, bbox) {
     var geom = getGeom(feature);
     var coords = getCoords(feature);
     var properties = feature.properties;
@@ -47,7 +43,7 @@ module.exports = function (feature, bbox) {
     default:
         throw new Error('geometry ' + geom + ' not supported');
     }
-};
+}
 
 function clipPolygon(rings, bbox) {
     var outRings = [];

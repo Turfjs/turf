@@ -1,5 +1,5 @@
-import * as interpolate from './';
-import {point, featureCollection} from '@turf/helpers';
+import { point, featureCollection } from '@turf/helpers';
+import interpolate from './';
 
 const cellSize = 1;
 const property = 'pressure';

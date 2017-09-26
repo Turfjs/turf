@@ -1,14 +1,14 @@
-const fs = require('fs');
-const test = require('tape');
-const path = require('path');
-const load = require('load-json-file');
-const write = require('write-json-file');
-const along = require('@turf/along');
-const distance = require('@turf/distance');
-const truncate = require('@turf/truncate');
-const lineDistance = require('@turf/line-distance');
-const {lineString, multiLineString, point, featureCollection, round} = require('@turf/helpers');
-const pointOnLine = require('./');
+import fs from 'fs';
+import test from 'tape';
+import path from 'path';
+import load from 'load-json-file';
+import write from 'write-json-file';
+import along from '@turf/along';
+import distance from '@turf/distance';
+import truncate from '@turf/truncate';
+import lineDistance from '@turf/line-distance';
+import { lineString, multiLineString, point, featureCollection, round } from '@turf/helpers';
+import pointOnLine from '.';
 
 const directories = {
     in: path.join(__dirname, 'test', 'in') + path.sep,

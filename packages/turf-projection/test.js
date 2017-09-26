@@ -1,14 +1,14 @@
-const fs = require('fs');
-const test = require('tape');
-const path = require('path');
-const load = require('load-json-file');
-const proj4 = require('proj4');
-const write = require('write-json-file');
-const clone = require('@turf/clone');
-const {point} = require('@turf/helpers');
-const truncate = require('@turf/truncate');
-const {coordEach} = require('@turf/meta');
-const {toMercator, toWgs84} = require('./');
+import fs from 'fs';
+import test from 'tape';
+import path from 'path';
+import load from 'load-json-file';
+import proj4 from 'proj4';
+import write from 'write-json-file';
+import clone from '@turf/clone';
+import { point } from '@turf/helpers';
+import truncate from '@turf/truncate';
+import { coordEach } from '@turf/meta';
+import { toMercator, toWgs84 } from '.';
 
 const directories = {
     mercator: path.join(__dirname, 'test', 'mercator') + path.sep,

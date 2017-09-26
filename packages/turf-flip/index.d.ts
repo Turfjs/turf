@@ -1,10 +1,8 @@
 /// <reference types="geojson" />
 
-type Feature = GeoJSON.Feature<any>;
-type Features = GeoJSON.FeatureCollection<any>;
-type Geometry = GeoJSON.GeometryObject;
-type Geometries = GeoJSON.GeometryCollection;
+export type Feature = GeoJSON.Feature<any>;
+export type Features = GeoJSON.FeatureCollection<any>;
+export type Geometry = GeoJSON.GeometryObject;
+export type Geometries = GeoJSON.GeometryCollection;
 
-declare function flip<T extends Features|Feature|Geometry|Geometries>(geojson: T, mutate?: boolean): T
-declare namespace flip { }
-export = flip;
+export default function flip<T extends Features|Feature|Geometry|Geometries>(geojson: T, mutate?: boolean): T
