@@ -140,3 +140,21 @@ export function lineEach(
     geojson: Feature<Lines> | Lines,
     callback: (currentLine?: Feature<LineString>, featureIndex?: number, featureSubIndex?: number) => void
 ): void;
+
+export default {
+    coordEach,
+    coordReduce,
+    propEach,
+    propReduce,
+    featureEach,
+    featureReduce,
+    coordAll,
+    geomEach,
+    geomReduce,
+    flattenEach,
+    flattenReduce,
+    segmentEach,
+    segmentReduce,
+    lineEach,
+    lineReduce,
+};

@@ -46,3 +46,14 @@ export function getGeom(geojson: GeometryCollection | GeometryObject | Feature<a
  * http://turfjs.org/docs/#gettype
  */
 export function getType(geojson: GeometryCollection | GeometryObject | Feature<any> | FeatureCollection<any>): StringTypes;
+
+export default {
+  getCoord,
+  getCoords,
+  containsNumber,
+  geojsonType,
+  featureOf,
+  collectionOf,
+  getGeom,
+  getType,
+};

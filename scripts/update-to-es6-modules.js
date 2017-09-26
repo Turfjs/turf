@@ -110,10 +110,10 @@ glob.sync(path.join(__dirname, '..', 'packages', 'turf-*', 'package.json')).forE
 //     fs.removeSync(filepath);
 // });
 
-// // Convert ES Module index import
-// glob.sync(path.join(__dirname, '..', 'packages', 'turf*', 'test.js')).forEach(filepath => {
+// Convert ES Module index import
+glob.sync(path.join(__dirname, '..', 'packages', 'turf*', 'test.js')).forEach(filepath => {
 
-//     var index = fs.readFileSync(filepath, 'utf8');
-//     index = index.replace(/'.'/g, '\'./index\'');
-//     fs.writeFileSync(filepath, index);
-// });
+    var index = fs.readFileSync(filepath, 'utf8');
+    index = index.replace(/'.'/g, '\'./index\'');
+    fs.writeFileSync(filepath, index);
+});

@@ -827,7 +827,7 @@ export function segmentReduce(geojson, callback, initialValue) {
  * @param {Object} properties Properties
  * @returns {Feature} GeoJSON Feature
  */
-export function feature(geometry, properties) {
+function feature(geometry, properties) {
     if (geometry === undefined) throw new Error('No geometry passed');
 
     return {
@@ -845,7 +845,7 @@ export function feature(geometry, properties) {
  * @param {Object} properties Properties
  * @returns {Feature<LineString>} GeoJSON LineString Feature
  */
-export function lineString(coordinates, properties) {
+function lineString(coordinates, properties) {
     if (!coordinates) throw new Error('No coordinates passed');
     if (coordinates.length < 2) throw new Error('Coordinates must be an array of two or more positions');
 
@@ -858,7 +858,6 @@ export function lineString(coordinates, properties) {
         }
     };
 }
-
 
 /**
  * Callback for lineEach
@@ -974,3 +973,23 @@ export function lineReduce(geojson, callback, initialValue) {
     });
     return previousValue;
 }
+
+export default {
+    coordEach,
+    coordReduce,
+    propEach,
+    propReduce,
+    featureEach,
+    featureReduce,
+    coordAll,
+    geomEach,
+    geomReduce,
+    flattenEach,
+    flattenReduce,
+    segmentEach,
+    segmentReduce,
+    feature,
+    lineString,
+    lineEach,
+    lineReduce,
+};
