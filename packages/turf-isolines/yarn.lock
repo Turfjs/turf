@@ -2,6 +2,10 @@
 # yarn lockfile v1
 
 
+"@std/esm@*":
+  version "0.11.0"
+  resolved "https://registry.yarnpkg.com/@std/esm/-/esm-0.11.0.tgz#f5562c6723a2eae5d6f95c3b35ff1338c586ae4e"
+
 "@turf/helpers@4.1.0":
   version "4.1.0"
   resolved "https://registry.yarnpkg.com/@turf/helpers/-/helpers-4.1.0.tgz#013a9c53db6a9386e47c7ab445d93ca2035c4b81"
