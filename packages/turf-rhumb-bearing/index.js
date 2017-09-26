@@ -1,5 +1,5 @@
 // https://en.wikipedia.org/wiki/Rhumb_line
-import {getCoord} from '@turf/inconstiant';
+import {getCoord} from '@turf/invariant';
 import {radians2degrees, degrees2radians} from '@turf/helpers';
 
 /**
