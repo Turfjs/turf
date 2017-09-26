@@ -23,6 +23,6 @@ function assign(options) {
 }
 
 export default [
-    assign({file: 'turf.js'}),
-    assign({file: 'turf.min.js', plugins: [uglify()]}),
+    assign({format: 'cjs', file: 'turf.js'}),
+    assign({format: 'umd', file: 'turf.min.js', plugins: [uglify()]}),
 ];

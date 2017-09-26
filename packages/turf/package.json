@@ -16,7 +16,8 @@
   ],
   "scripts": {
     "pretest": "rollup -c rollup.config.js",
-    "test": "node -r @std/esm test.js"
+    "test": "node -r @std/esm test.js",
+    "posttest": "jsdoctest turf.js"
   },
   "repository": {
     "type": "git",
@@ -56,18 +57,17 @@
   },
   "homepage": "https://github.com/Turfjs/turf",
   "devDependencies": {
+    "@std/esm": "*",
+    "benchmark": "*",
     "camelcase": "*",
-    "documentation": "4.0.0-rc.1",
     "glob": "*",
     "jsdoc": "*",
+    "jsdoctest": "*",
     "rollup": "*",
     "rollup-plugin-commonjs": "*",
     "rollup-plugin-node-resolve": "*",
     "rollup-plugin-uglify-es": "*",
-    "tap": "*",
-    "tape": "*",
-    "@std/esm": "*",
-    "benchmark": "*"
+    "tape": "*"
   },
   "dependencies": {
     "@turf/along": "^4.7.3",
