@@ -195,8 +195,8 @@ function doBBoxOverlap(bbox1, bbox2) {
  * compareCoords
  *
  * @private
- * @param {[number, number]} pair1 point [x,y]
- * @param {[number, number]} pair2 point [x,y]
+ * @param {Array<number>} pair1 point [x,y]
+ * @param {Array<number>} pair2 point [x,y]
  * @returns {boolean} true/false if coord pairs match
  */
 function compareCoords(pair1, pair2) {
@@ -207,9 +207,9 @@ function compareCoords(pair1, pair2) {
  * getMidpoint
  *
  * @private
- * @param {[number, number]} pair1 point [x,y]
- * @param {[number, number]} pair2 point [x,y]
- * @returns {[number, number]} midpoint of pair1 and pair2
+ * @param {Array<number>} pair1 point [x,y]
+ * @param {Array<number>} pair2 point [x,y]
+ * @returns {Array<number>} midpoint of pair1 and pair2
  */
 function getMidpoint(pair1, pair2) {
     return [(pair1[0] + pair2[0]) / 2, (pair1[1] + pair2[1]) / 2];

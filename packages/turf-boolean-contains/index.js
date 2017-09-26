@@ -195,8 +195,8 @@ function doBBoxOverlap(bbox1, bbox2) {
  * compareCoords
  *
  * @private
- * @param {[number, number]} pair1 point [x,y]
- * @param {[number, number]} pair2 point [x,y]
+ * @param {Array<number>} pair1 point [x,y]
+ * @param {Array<number>} pair2 point [x,y]
  * @returns {boolean} true/false if coord pairs match
  */
 function compareCoords(pair1, pair2) {
