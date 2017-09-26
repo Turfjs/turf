@@ -134,3 +134,8 @@ export function convertArea(area: number, originalUnit?: Units, finalUnit?: Unit
  * http://turfjs.org/docs/#isnumber
  */
 export function isNumber(num: any): boolean
+
+/**
+ * http://turfjs.org/docs/#isobject
+ */
+export function isObject(input: any): boolean
