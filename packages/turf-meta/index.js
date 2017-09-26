@@ -707,9 +707,9 @@ export function flattenReduce(geojson, callback, initialValue) {
  *
  * @callback segmentEachCallback
  * @param {Feature<LineString>} currentSegment The current segment being processed.
- * @param {number} featureIndex The index of the current element being processed in the array, starts at index 0.
- * @param {number} featureSubIndex The subindex of the current element being processed in the
- * array. Starts at index 0 and increases for each iterating line segment.
+ * @param {number} segmentIndex The segmentIndex currently being processed, starts at index 0.
+ * @param {number} featureIndex The featureIndex currently being processed, starts at index 0.
+ * @param {number} featureSubIndex The featureSubIndex currently being processed, starts at index 0.
  * @returns {void}
  */
 
@@ -726,6 +726,7 @@ export function flattenReduce(geojson, callback, initialValue) {
  * // Iterate over GeoJSON by 2-vertex segments
  * turf.segmentEach(polygon, function (currentSegment, featureIndex, featureSubIndex) {
  *   //= currentSegment
+ *   //= segmentIndex
  *   //= featureIndex
  *   //= featureSubIndex
  * });
@@ -737,8 +738,9 @@ export function flattenReduce(geojson, callback, initialValue) {
  * });
  */
 export function segmentEach(geojson, callback) {
-    flattenEach(geojson, function (feature, featureIndex) {
-        var featureSubIndex = 0;
+    flattenEach(geojson, function (feature, featureIndex, featureSubIndex) {
+        var segmentIndex = 0;
+
         // Exclude null Geometries
         if (!feature.geometry) return;
         // (Multi)Point geometries do not contain segments therefore they are ignored during this operation.
@@ -748,8 +750,8 @@ export function segmentEach(geojson, callback) {
         // Generate 2-vertex line segments
         coordReduce(feature, function (previousCoords, currentCoord) {
             var currentSegment = lineString([previousCoords, currentCoord], feature.properties);
-            callback(currentSegment, featureIndex, featureSubIndex);
-            featureSubIndex++;
+            callback(currentSegment, segmentIndex, featureIndex, featureSubIndex);
+            segmentIndex++;
             return currentCoord;
         });
     });
@@ -773,10 +775,9 @@ export function segmentEach(geojson, callback) {
  * @param {*} [previousValue] The accumulated value previously returned in the last invocation
  * of the callback, or initialValue, if supplied.
  * @param {Feature<LineString>} [currentSegment] The current segment being processed.
- * @param {number} [currentIndex] The index of the current element being processed in the
- * array. Starts at index 0, if an initialValue is provided, and at index 1 otherwise.
- * @param {number} [currentSubIndex] The subindex of the current element being processed in the
- * array. Starts at index 0 and increases for each iterating line segment.
+ * @param {number} segmentIndex The segmentIndex currently being processed, starts at index 0.
+ * @param {number} featureIndex The featureIndex currently being processed, starts at index 0.
+ * @param {number} featureSubIndex The featureSubIndex currently being processed, starts at index 0.
  */
 
 /**
@@ -791,11 +792,12 @@ export function segmentEach(geojson, callback) {
  * var polygon = turf.polygon([[[-50, 5], [-40, -10], [-50, -10], [-40, 5], [-50, 5]]]);
  *
  * // Iterate over GeoJSON by 2-vertex segments
- * turf.segmentReduce(polygon, function (previousSegment, currentSegment, currentIndex, currentSubIndex) {
+ * turf.segmentReduce(polygon, function (previousSegment, currentSegment, segmentIndex, featureIndex, featureSubIndex) {
  *   //= previousSegment
  *   //= currentSegment
- *   //= currentIndex
- *   //= currentSubIndex
+ *   //= segmentInex
+ *   //= featureIndex
+ *   //= featureSubIndex
  *   return currentSegment
  * });
  *
@@ -808,9 +810,11 @@ export function segmentEach(geojson, callback) {
  */
 export function segmentReduce(geojson, callback, initialValue) {
     var previousValue = initialValue;
-    segmentEach(geojson, function (currentSegment, currentIndex, currentSubIndex) {
-        if (currentIndex === 0 && initialValue === undefined) previousValue = currentSegment;
-        else previousValue = callback(previousValue, currentSegment, currentIndex, currentSubIndex);
+    var started = false;
+    segmentEach(geojson, function (currentSegment, segmentIndex, featureIndex, featureSubIndex) {
+        if (started === false && initialValue === undefined) previousValue = currentSegment;
+        else previousValue = callback(previousValue, currentSegment, segmentIndex, featureIndex, featureSubIndex);
+        started = true;
     });
     return previousValue;
 }

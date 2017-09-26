@@ -442,44 +442,64 @@ test('segmentReduce', t => {
     t.end();
 });
 
+test('segmentReduce -- no initialValue', t => {
+    const segments = [];
+    var total = 0;
+    meta.segmentReduce(poly.geometry, (previousValue, currentSegment) => {
+        segments.push(currentSegment);
+        total++;
+    });
+    t.equal(segments[0].geometry.coordinates.length, 2);
+    t.equal(total, 2);
+    t.end();
+});
+
 const geojsonSegments = featureCollection([
-    point([0, 1]),
-    lineString([[0, 0], [2, 2], [4, 4]]), // subIndex = 0, 1
-    polygon([[[5, 5], [0, 0], [2, 2], [4, 4], [5, 5]]]), // subIndex = 0, 1, 2, 3
-    point([0, 1]),
-    lineString([[0, 0], [2, 2], [4, 4]]) // subIndex = 0, 1
+    point([0, 1]), // ignored
+    lineString([[0, 0], [2, 2], [4, 4]]),
+    polygon([[[5, 5], [0, 0], [2, 2], [4, 4], [5, 5]]]),
+    point([0, 1]), // ignored
+    multiLineString([
+        [[0, 0], [2, 2], [4, 4]],
+        [[0, 0], [2, 2], [4, 4]]
+    ])
 ]);
 
 test('segmentEach -- index & subIndex', t => {
-    const index = [];
-    const subIndex = [];
+    const segmentIndexes = [];
+    const featureIndexes = [];
+    const featureSubIndexes = [];
     let total = 0;
 
-    meta.segmentEach(geojsonSegments, (segment, featureIndex, featureSubIndex) => {
-        index.push(featureIndex);
-        subIndex.push(featureSubIndex);
+    meta.segmentEach(geojsonSegments, (segment, segmentIndex, featureIndex, featureSubIndex) => {
+        segmentIndexes.push(segmentIndex);
+        featureIndexes.push(featureIndex);
+        featureSubIndexes.push(featureSubIndex);
         total++;
     });
-    t.equal(total, 8, 'total');
-    t.deepEqual(index, [1, 1, 2, 2, 2, 2, 4, 4], 'index');
-    t.deepEqual(subIndex, [0, 1, 0, 1, 2, 3, 0, 1], 'subIndex');
+    t.equal(total, 10, 'total');
+    t.deepEqual(segmentIndexes, [0, 1, 0, 1, 2, 3, 0, 1, 0, 1], 'segmentEach.segmentIndex');
+    t.deepEqual(featureIndexes, [1, 1, 2, 2, 2, 2, 4, 4, 4, 4], 'segmentEach.featureIndex');
+    t.deepEqual(featureSubIndexes, [0, 0, 0, 0, 0, 0, 0, 0, 1, 1], 'segmentEach.featureSubIndex');
     t.end();
 });
 
 test('segmentReduce -- index & subIndex', t => {
-    const index = [];
-    const subIndex = [];
+    const segmentIndexes = [];
+    const featureIndexes = [];
+    const featureSubIndexes = [];
+    let total = 0;
 
-    const total = meta.segmentReduce(geojsonSegments, (previousValue, segment, featureIndex, featureSubIndex) => {
-        index.push(featureIndex);
-        subIndex.push(featureSubIndex);
-        previousValue++;
-        return previousValue;
-    }, 0);
-
-    t.equal(total, 8, 'total');
-    t.deepEqual(index, [1, 1, 2, 2, 2, 2, 4, 4], 'index');
-    t.deepEqual(subIndex, [0, 1, 0, 1, 2, 3, 0, 1], 'subIndex');
+    meta.segmentReduce(geojsonSegments, (previousValue, segment, segmentIndex, featureIndex, featureSubIndex) => {
+        segmentIndexes.push(segmentIndex);
+        featureIndexes.push(featureIndex);
+        featureSubIndexes.push(featureSubIndex);
+        total++;
+    });
+    t.equal(total, 9, 'total');
+    t.deepEqual(segmentIndexes, [1, 0, 1, 2, 3, 0, 1, 0, 1], 'segmentEach.segmentIndex');
+    t.deepEqual(featureIndexes, [1, 2, 2, 2, 2, 4, 4, 4, 4], 'segmentEach.featureIndex');
+    t.deepEqual(featureSubIndexes, [0, 0, 0, 0, 0, 0, 0, 1, 1], 'segmentEach.featureSubIndex');
     t.end();
 });
 
