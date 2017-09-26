@@ -49,8 +49,7 @@
     "@std/esm": "*"
   },
   "dependencies": {
-    "@turf/invariant": "5.0.0-alpha",
-    "arc": "^0.1.0"
+    "@turf/invariant": "5.0.0-alpha"
   },
   "@std/esm": {
     "esm": "js",
