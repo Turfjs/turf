@@ -9,6 +9,7 @@
   "files": [
     "index.js",
     "index.d.ts",
+    "arc.js",
     "dist"
   ],
   "scripts": {
