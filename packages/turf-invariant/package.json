@@ -1,6 +1,6 @@
 {
   "name": "@turf/invariant",
-  "version": "4.7.3",
+  "version": "5.0.0-alpha",
   "description": "turf invariant module",
   "main": "index.es5.js",
   "module": "index.js",

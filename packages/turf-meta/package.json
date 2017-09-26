@@ -1,6 +1,6 @@
 {
   "name": "@turf/meta",
-  "version": "4.7.4",
+  "version": "5.0.0-alpha",
   "description": "turf meta module",
   "main": "index.es5.js",
   "module": "index.js",
