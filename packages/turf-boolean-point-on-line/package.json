@@ -42,6 +42,6 @@
     "rollup": "*"
   },
   "dependencies": {
-    "@turf/invariant": "^4.7.3"
+    "@turf/invariant": "5.0.0-alpha"
   }
 }

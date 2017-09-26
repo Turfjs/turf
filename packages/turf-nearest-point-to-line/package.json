@@ -38,7 +38,7 @@
   "homepage": "https://github.com/Turfjs/turf",
   "devDependencies": {
     "@turf/circle": "*",
-    "@turf/helpers": "*",
+    "@turf/helpers": "5.0.0-alpha",
     "@turf/truncate": "*",
     "benchmark": "*",
     "load-json-file": "*",
@@ -47,7 +47,7 @@
     "rollup": "*"
   },
   "dependencies": {
-    "@turf/meta": "^4.7.3",
+    "@turf/meta": "5.0.0-alpha",
     "@turf/point-to-line-distance": "^4.7.3"
   }
 }

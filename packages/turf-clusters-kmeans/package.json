@@ -42,7 +42,7 @@
   "devDependencies": {
     "@turf/centroid": "*",
     "@turf/clusters": "*",
-    "@turf/helpers": "*",
+    "@turf/helpers": "5.0.0-alpha",
     "@turf/random": "*",
     "benchmark": "*",
     "chromatism": "*",
@@ -55,8 +55,8 @@
   },
   "dependencies": {
     "@turf/clone": "^4.7.3",
-    "@turf/invariant": "^4.7.3",
-    "@turf/meta": "^4.7.3",
+    "@turf/invariant": "5.0.0-alpha",
+    "@turf/meta": "5.0.0-alpha",
     "skmeans": "0.9.7"
   }
 }

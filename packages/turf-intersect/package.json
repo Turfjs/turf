@@ -39,7 +39,7 @@
     "write-json-file": "*"
   },
   "dependencies": {
-    "@turf/helpers": "^4.7.3",
+    "@turf/helpers": "5.0.0-alpha",
     "@turf/truncate": "^4.7.3",
     "jsts": "1.4.0"
   }

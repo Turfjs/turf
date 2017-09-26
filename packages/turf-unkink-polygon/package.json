@@ -41,8 +41,8 @@
     "rollup": "*"
   },
   "dependencies": {
-    "@turf/helpers": "^4.7.3",
-    "@turf/meta": "^4.7.3",
+    "@turf/helpers": "5.0.0-alpha",
+    "@turf/meta": "5.0.0-alpha",
     "simplepolygon": "1.2.1"
   }
 }
