@@ -1,5 +1,5 @@
 // https://en.wikipedia.org/wiki/Rhumb_line
-import {getCoord} from '@turf/invariant';
+import {getCoord} from '@turf/inconstiant';
 import {radians2degrees, degrees2radians} from '@turf/helpers';
 
 /**
@@ -12,13 +12,13 @@ import {radians2degrees, degrees2radians} from '@turf/helpers';
  * @param {boolean} [final=false] calculates the final bearing if true
  * @returns {number} bearing from north in decimal degrees, between -180 and 180 degrees (positive clockwise)
  * @example
- * var point1 = turf.point([-75.343, 39.984], {"marker-color": "#F00"});
- * var point2 = turf.point([-75.534, 39.123], {"marker-color": "#00F"});
+ * const point1 = turf.point([-75.343, 39.984], {"marker-color": "#F00"});
+ * const point2 = turf.point([-75.534, 39.123], {"marker-color": "#00F"});
  *
- * var bearing = turf.rhumbBearing(point1, point2);
+ * const bearing = turf.rhumbBearing(point1, point2);
  *
  * //addToMap
- * var addToMap = [point1, point2]
+ * const addToMap = [point1, point2]
  * point1.properties.bearing = bearing
  * point2.properties.bearing = bearing
  */
@@ -27,16 +27,16 @@ export default function (start, end, final) {
     if (!start) throw new Error('start point is required');
     if (!end) throw new Error('end point is required');
 
-    var coordsStart = getCoord(start);
-    var coordsEnd = getCoord(end);
-    var origin = new LatLon(coordsStart[1], coordsStart[0]);
-    var destination = new LatLon(coordsEnd[1], coordsEnd[0]);
-    var bear360;
+    const coordsStart = getCoord(start);
+    const coordsEnd = getCoord(end);
+    const origin = new LatLon(coordsStart[1], coordsStart[0]);
+    const destination = new LatLon(coordsEnd[1], coordsEnd[0]);
+    let bear360;
 
     if (final) bear360 = destination.rhumbBearingTo(origin);
     else bear360 = origin.rhumbBearingTo(destination);
 
-    var bear180 = (bear360 > 180) ? -(360 - bear360) : bear360;
+    const bear180 = (bear360 > 180) ? -(360 - bear360) : bear360;
 
     return bear180;
 }
@@ -53,9 +53,8 @@ export default function (start, end, final) {
  * @constructor
  * @param {number} lat - Latitude in degrees.
  * @param {number} lon - Longitude in degrees.
- *
  * @example
- *     var p1 = new LatLon(52.205, 0.119);
+ * const p1 = new LatLon(52.205, 0.119);
  */
 function LatLon(lat, lon) {
     // allow instantiation without 'new'
@@ -71,25 +70,24 @@ function LatLon(lat, lon) {
  * @private
  * @param   {LatLon} point - Latitude/longitude of destination point.
  * @returns {number} Bearing in degrees from north.
- *
  * @example
- *     var p1 = new LatLon(51.127, 1.338);
- *     var p2 = new LatLon(50.964, 1.853);
- *     var d = p1.rhumbBearingTo(p2); // 116.7 m
+ * const p1 = new LatLon(51.127, 1.338);
+ * const p2 = new LatLon(50.964, 1.853);
+ * const d = p1.rhumbBearingTo(p2); // 116.7 m
  */
 LatLon.prototype.rhumbBearingTo = function (point) {
     if (!(point instanceof LatLon)) throw new TypeError('point is not LatLon object');
 
-    var φ1 = degrees2radians(this.lat);
-    var φ2 = degrees2radians(point.lat);
-    var Δλ = degrees2radians((point.lon - this.lon));
+    const φ1 = degrees2radians(this.lat);
+    const φ2 = degrees2radians(point.lat);
+    let Δλ = degrees2radians((point.lon - this.lon));
     // if dLon over 180° take shorter rhumb line across the anti-meridian:
     if (Δλ > Math.PI) Δλ -= 2 * Math.PI;
     if (Δλ < -Math.PI) Δλ += 2 * Math.PI;
 
-    var Δψ = Math.log(Math.tan(φ2 / 2 + Math.PI / 4) / Math.tan(φ1 / 2 + Math.PI / 4));
+    const Δψ = Math.log(Math.tan(φ2 / 2 + Math.PI / 4) / Math.tan(φ1 / 2 + Math.PI / 4));
 
-    var θ = Math.atan2(Δλ, Δψ);
+    const θ = Math.atan2(Δλ, Δψ);
 
     return (radians2degrees(θ) + 360) % 360;
 };
