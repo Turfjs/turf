@@ -27,16 +27,16 @@ export default function (start, end, final) {
     if (!start) throw new Error('start point is required');
     if (!end) throw new Error('end point is required');
 
-    const coordsStart = getCoord(start);
-    const coordsEnd = getCoord(end);
-    const origin = new LatLon(coordsStart[1], coordsStart[0]);
-    const destination = new LatLon(coordsEnd[1], coordsEnd[0]);
-    let bear360;
+    var coordsStart = getCoord(start);
+    var coordsEnd = getCoord(end);
+    var origin = new LatLon(coordsStart[1], coordsStart[0]);
+    var destination = new LatLon(coordsEnd[1], coordsEnd[0]);
+    var bear360;
 
     if (final) bear360 = destination.rhumbBearingTo(origin);
     else bear360 = origin.rhumbBearingTo(destination);
 
-    const bear180 = (bear360 > 180) ? -(360 - bear360) : bear360;
+    var bear180 = (bear360 > 180) ? -(360 - bear360) : bear360;
 
     return bear180;
 }
@@ -80,16 +80,16 @@ function LatLon(lat, lon) {
 LatLon.prototype.rhumbBearingTo = function (point) {
     if (!(point instanceof LatLon)) throw new TypeError('point is not LatLon object');
 
-    const φ1 = degrees2radians(this.lat);
-    const φ2 = degrees2radians(point.lat);
-    let Δλ = degrees2radians((point.lon - this.lon));
+    var φ1 = degrees2radians(this.lat);
+    var φ2 = degrees2radians(point.lat);
+    var Δλ = degrees2radians((point.lon - this.lon));
     // if dLon over 180° take shorter rhumb line across the anti-meridian:
     if (Δλ > Math.PI) Δλ -= 2 * Math.PI;
     if (Δλ < -Math.PI) Δλ += 2 * Math.PI;
 
-    const Δψ = Math.log(Math.tan(φ2 / 2 + Math.PI / 4) / Math.tan(φ1 / 2 + Math.PI / 4));
+    var Δψ = Math.log(Math.tan(φ2 / 2 + Math.PI / 4) / Math.tan(φ1 / 2 + Math.PI / 4));
 
-    const θ = Math.atan2(Δλ, Δψ);
+    var θ = Math.atan2(Δλ, Δψ);
 
     return (radians2degrees(θ) + 360) % 360;
 };
