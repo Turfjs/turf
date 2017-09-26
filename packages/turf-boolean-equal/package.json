@@ -40,7 +40,7 @@
   },
   "homepage": "https://github.com/Turfjs/turf",
   "devDependencies": {
-    "@turf/helpers": "*",
+    "@turf/helpers": "5.0.0-alpha",
     "benchmark": "*",
     "boolean-shapely": "*",
     "glob": "*",
@@ -50,7 +50,7 @@
   },
   "dependencies": {
     "@turf/clean-coords": "^4.7.3",
-    "@turf/invariant": "^4.7.3",
+    "@turf/invariant": "5.0.0-alpha",
     "geojson-equality": "0.1.6"
   }
 }

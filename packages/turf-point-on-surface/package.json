@@ -43,7 +43,7 @@
     "@turf/center": "^4.7.3",
     "@turf/distance": "^4.7.3",
     "@turf/explode": "^4.7.3",
-    "@turf/helpers": "^4.7.3",
+    "@turf/helpers": "5.0.0-alpha",
     "@turf/inside": "^4.7.3"
   }
 }

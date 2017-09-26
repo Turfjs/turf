@@ -18,6 +18,7 @@ import {
     convertDistance,
     convertArea,
     round,
+    isObject,
     isNumber } from '.';
 
 test('point', t => {
@@ -441,5 +442,25 @@ test('turf-helpers -- isNumber', t => {
     t.false(isNumber([1, 2, 3]));
     t.false(isNumber([]));
     t.false(isNumber(isNumber));
+    t.end();
+});
+
+test('turf-helpers -- isObject', t => {
+    // true
+    t.true(isObject({a: 1}));
+    t.true(isObject({}));
+    t.true(point([0, 1]));
+
+    // false
+    t.false(isObject(123));
+    t.false(isObject(Infinity));
+    t.false(isObject(-123));
+    t.false(isObject('foo'));
+    t.false(isObject(NaN));
+    t.false(isObject(undefined));
+    t.false(isObject(null));
+    t.false(isObject([1, 2, 3]));
+    t.false(isObject([]));
+    t.false(isObject(isNumber));
     t.end();
 });

@@ -23,7 +23,7 @@ export function feature(geometry, properties, bbox, id) {
     if (bbox && bbox.length !== 4) throw new Error('bbox must be an Array of 4 numbers');
     if (id && ['string', 'number'].indexOf(typeof id) === -1) throw new Error('id must be a number or a string');
 
-    var feat = {type: 'Feature'};
+    let feat = {type: 'Feature'};
     if (id) feat.id = id;
     if (bbox) feat.bbox = bbox;
     feat.properties = properties || {};
@@ -55,7 +55,7 @@ export function geometry(type, coordinates, bbox) {
     if (!Array.isArray(coordinates)) throw new Error('coordinates must be an Array');
     if (bbox && bbox.length !== 4) throw new Error('bbox must be an Array of 4 numbers');
 
-    var geom;
+    let geom;
     switch (type) {
     case 'Point': geom = point(coordinates).geometry; break;
     case 'LineString': geom = lineString(coordinates).geometry; break;
@@ -120,12 +120,12 @@ export function point(coordinates, properties, bbox, id) {
 export function polygon(coordinates, properties, bbox, id) {
     if (!coordinates) throw new Error('No coordinates passed');
 
-    for (var i = 0; i < coordinates.length; i++) {
-        var ring = coordinates[i];
+    for (let i = 0; i < coordinates.length; i++) {
+        let ring = coordinates[i];
         if (ring.length < 4) {
             throw new Error('Each LinearRing of a Polygon must have 4 or more Positions.');
         }
-        for (var j = 0; j < ring[ring.length - 1].length; j++) {
+        for (let j = 0; j < ring[ring.length - 1].length; j++) {
             // Check if first point of Polygon contains two numbers
             if (i === 0 && j === 0 && !isNumber(ring[0][0]) || !isNumber(ring[0][1])) throw new Error('Coordinates must contain numbers');
             if (ring[ring.length - 1][j] !== ring[0][j]) {
@@ -206,7 +206,7 @@ export function featureCollection(features, bbox, id) {
     if (bbox && bbox.length !== 4) throw new Error('bbox must be an Array of 4 numbers');
     if (id && ['string', 'number'].indexOf(typeof id) === -1) throw new Error('id must be a number or a string');
 
-    var fc = {type: 'FeatureCollection'};
+    const fc = {type: 'FeatureCollection'};
     if (id) fc.id = id;
     if (bbox) fc.bbox = bbox;
     fc.features = features;
@@ -323,7 +323,7 @@ export function geometryCollection(geometries, properties, bbox, id) {
 }
 
 // https://en.wikipedia.org/wiki/Great-circle_distance#Radius_for_spherical_Earth
-var factors = {
+const factors = {
     miles: 3960,
     nauticalmiles: 3441.145,
     degrees: 57.2957795,
@@ -339,7 +339,7 @@ var factors = {
     feet: 20908792.65
 };
 
-var areaFactors = {
+const areaFactors = {
     kilometers: 0.000001,
     kilometres: 0.000001,
     meters: 1,
@@ -368,7 +368,7 @@ var areaFactors = {
 export function round(num, precision) {
     if (num === undefined || num === null || isNaN(num)) throw new Error('num is required');
     if (precision && !(precision >= 0)) throw new Error('precision must be a positive number');
-    var multiplier = Math.pow(10, precision || 0);
+    const multiplier = Math.pow(10, precision || 0);
     return Math.round(num * multiplier) / multiplier;
 }
 
@@ -384,7 +384,7 @@ export function round(num, precision) {
 export function radiansToDistance(radians, units) {
     if (radians === undefined || radians === null) throw new Error('radians is required');
 
-    var factor = factors[units || 'kilometers'];
+    const factor = factors[units || 'kilometers'];
     if (!factor) throw new Error('units is invalid');
     return radians * factor;
 }
@@ -401,7 +401,7 @@ export function radiansToDistance(radians, units) {
 export function distanceToRadians(distance, units) {
     if (distance === undefined || distance === null) throw new Error('distance is required');
 
-    var factor = factors[units || 'kilometers'];
+    const factor = factors[units || 'kilometers'];
     if (!factor) throw new Error('units is invalid');
     return distance / factor;
 }
@@ -430,7 +430,7 @@ export function distanceToDegrees(distance, units) {
 export function bearingToAngle(bearing) {
     if (bearing === null || bearing === undefined) throw new Error('bearing is required');
 
-    var angle = bearing % 360;
+    let angle = bearing % 360;
     if (angle < 0) angle += 360;
     return angle;
 }
@@ -445,7 +445,7 @@ export function bearingToAngle(bearing) {
 export function radians2degrees(radians) {
     if (radians === null || radians === undefined) throw new Error('radians is required');
 
-    var degrees = radians % (2 * Math.PI);
+    const degrees = radians % (2 * Math.PI);
     return degrees * 180 / Math.PI;
 }
 
@@ -459,7 +459,7 @@ export function radians2degrees(radians) {
 export function degrees2radians(degrees) {
     if (degrees === null || degrees === undefined) throw new Error('degrees is required');
 
-    var radians = degrees % 360;
+    const radians = degrees % 360;
     return radians * Math.PI / 180;
 }
 
@@ -477,7 +477,7 @@ export function convertDistance(distance, originalUnit, finalUnit) {
     if (distance === null || distance === undefined) throw new Error('distance is required');
     if (!(distance >= 0)) throw new Error('distance must be a positive number');
 
-    var convertedDistance = radiansToDistance(distanceToRadians(distance, originalUnit), finalUnit || 'kilometers');
+    const convertedDistance = radiansToDistance(distanceToRadians(distance, originalUnit), finalUnit || 'kilometers');
     return convertedDistance;
 }
 
@@ -493,10 +493,10 @@ export function convertArea(area, originalUnit, finalUnit) {
     if (area === null || area === undefined) throw new Error('area is required');
     if (!(area >= 0)) throw new Error('area must be a positive number');
 
-    var startFactor = areaFactors[originalUnit || 'meters'];
+    const startFactor = areaFactors[originalUnit || 'meters'];
     if (!startFactor) throw new Error('invalid original units');
 
-    var finalFactor = areaFactors[finalUnit || 'kilometers'];
+    const finalFactor = areaFactors[finalUnit || 'kilometers'];
     if (!finalFactor) throw new Error('invalid final units');
 
     return (area / startFactor) * finalFactor;
@@ -515,4 +515,19 @@ export function convertArea(area, originalUnit, finalUnit) {
  */
 export function isNumber(num) {
     return !isNaN(num) && num !== null && !Array.isArray(num);
+}
+
+/**
+ * isObject
+ *
+ * @param {*} input variable to validate
+ * @returns {boolean} true/false
+ * @example
+ * turf.isObject({elevation: 10})
+ * //=true
+ * turf.isObject('foo')
+ * //=false
+ */
+export function isObject(input) {
+    return (!!input) && (input.constructor === Object);
 }

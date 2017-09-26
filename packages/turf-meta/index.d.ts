@@ -112,7 +112,7 @@ export function flattenEach<Geom extends GeometryObject>(
  */
 export function segmentReduce<Reducer extends any>(
     geojson: Feature<any> | FeatureCollection<any> | GeometryObject | GeometryCollection | FeatureGeometryCollection,
-    callback: (previousValue?: Reducer, currentSegment?: Feature<LineString>, featureIndex?: number, featureSubIndex?: number) => Reducer,
+    callback: (previousValue?: Reducer, currentSegment?: Feature<LineString>, featureIndex?: number, featureSubIndex?: number, segmentIndex?: number) => Reducer,
     initialValue?: Reducer
 ): Reducer;
 
@@ -121,7 +121,7 @@ export function segmentReduce<Reducer extends any>(
  */
 export function segmentEach(
     geojson: Feature<any> | FeatureCollection<any> | GeometryObject | GeometryCollection | FeatureGeometryCollection,
-    allback: (currentSegment?: Feature<LineString>, featureIndex?: number, featureSubIndex?: number) => void
+    callback: (currentSegment?: Feature<LineString>, featureIndex?: number, featureSubIndex?: number, segmentIndex?: number) => void
 ): void;
 
 /**
