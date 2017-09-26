@@ -2,13 +2,12 @@
   "name": "@turf/turf",
   "version": "4.7.3",
   "description": "a JavaScript library for performing geospatial operations with GeoJSON",
-  "main": "index.es5.js",
-  "module": "index.js",
-  "jsnext:main": "index.js",
+  "main": "turf.js",
+  "module": "index",
+  "jsnext:main": "index",
   "types": "index.d.ts",
   "files": [
     "index.js",
-    "index.es5.js",
     "index.d.ts",
     "turf.js",
     "turf.js.map",
@@ -16,9 +15,8 @@
     "turf.min.js"
   ],
   "scripts": {
-    "prepublish": "rollup -c rollup.config.js",
-    "pretest": "rollup -c ../../rollup.config.js",
-    "test": "tap test.es5.js && tap test.example.js"
+    "prepublish": "rollup -c ../../rollup.config.js",
+    "test": "node -r @std/esm test.js"
   },
   "repository": {
     "type": "git",
@@ -55,6 +53,21 @@
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/Turfjs/turf/issues"
+  },
+  "homepage": "https://github.com/Turfjs/turf",
+  "devDependencies": {
+    "camelcase": "*",
+    "documentation": "*",
+    "glob": "*",
+    "jsdoc": "*",
+    "rollup": "*",
+    "rollup-plugin-commonjs": "*",
+    "rollup-plugin-node-resolve": "*",
+    "rollup-plugin-uglify-es": "*",
+    "tap": "*",
+    "tape": "*",
+    "@std/esm": "*",
+    "benchmark": "*"
   },
   "dependencies": {
     "@turf/along": "^4.7.3",
@@ -153,17 +166,8 @@
     "@turf/unkink-polygon": "^4.7.3",
     "@turf/within": "^4.7.3"
   },
-  "devDependencies": {
-    "camelcase": "^4.1.0",
-    "documentation": "^4.0.0-rc.1",
-    "glob": "^7.1.2",
-    "jsdoc": "^3.3.0-beta1",
-    "rollup": "^0.50.0",
-    "rollup-plugin-commonjs": "^8.2.1",
-    "rollup-plugin-node-resolve": "^3.0.0",
-    "rollup-plugin-uglify-es": "^0.0.1",
-    "tap": "10.7.2",
-    "tape": "^4.7.0"
-  },
-  "homepage": "https://github.com/Turfjs/turf"
+  "@std/esm": {
+    "esm": "js",
+    "cjs": true
+  }
 }
