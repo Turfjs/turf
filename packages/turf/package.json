@@ -15,7 +15,7 @@
     "turf.min.js"
   ],
   "scripts": {
-    "prepublish": "rollup -c ../../rollup.config.js",
+    "pretest": "rollup -c rollup.config.js",
     "test": "node -r @std/esm test.js"
   },
   "repository": {
@@ -57,7 +57,7 @@
   "homepage": "https://github.com/Turfjs/turf",
   "devDependencies": {
     "camelcase": "*",
-    "documentation": "*",
+    "documentation": "4.0.0-rc.1",
     "glob": "*",
     "jsdoc": "*",
     "rollup": "*",

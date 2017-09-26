@@ -4,7 +4,7 @@ import glob from 'glob';
 import test from 'tape';
 import documentation from 'documentation';
 import camelcase from 'camelcase';
-import turf from '.';
+import * as turf from '.';
 
 // Helpers
 const directory = path.join(__dirname, '..');
@@ -26,7 +26,7 @@ modules = modules.filter(({name}) => name !== 'turf');
 
 test('turf -- required files', t => {
     for (const {name, dir} of modules) {
-        for (const filename of ['test.js', 'bench.js', 'index.es5.js', 'index.js', 'index.d.ts', 'LICENSE', 'README.md', 'yarn.lock']) {
+        for (const filename of ['test.js', 'bench.js', 'index.js', 'index.d.ts', 'LICENSE', 'README.md', 'yarn.lock']) {
             if (!fs.existsSync(path.join(dir, filename))) t.fail(`${name} ${filename} is required`);
         }
         // if (!fs.existsSync(path.join(dir, 'types.ts'))) t.fail(`${name} types.ts is required`);
@@ -104,9 +104,9 @@ test('turf -- scoped package name', t => {
 test('turf -- pre-defined attributes in package.json', t => {
     for (const {name, pckg} of modules) {
         if (pckg.author !== 'Turf Authors') t.fail(name + ' (author) should be "Turf Authors"');
-        if (pckg.main !== 'index.es5.js') t.fail(`${name} (main) must be "index.es5.js" in package.json`);
-        if (pckg.module !== 'index.js') t.fail(`${name} (module) must be "index.js" in package.json`);
-        if (pckg['jsnext:main'] !== 'index.js') t.fail(`${name} (jsnext:main) must be "index.js" in package.json`);
+        if (pckg.main !== 'dist/index') t.fail(`${name} (main) must be "dist/index" in package.json`);
+        if (pckg.module !== 'index') t.fail(`${name} (module) must be "index" in package.json`);
+        if (pckg['jsnext:main'] !== 'index') t.fail(`${name} (jsnext:main) must be "index" in package.json`);
         if (pckg.types !== 'index.d.ts') t.fail(`${name} (types) must be "index.d.ts" in package.json`);
         if (!pckg.bugs || pckg.bugs.url !== 'https://github.com/Turfjs/turf/issues') t.fail(`${name} (bugs.url) must be "https://github.com/Turfjs/turf/issues" in package.json`);
         if (pckg.homepage !== 'https://github.com/Turfjs/turf') t.fail(`${name} (homepage) must be "https://github.com/Turfjs/turf" in package.json`);
@@ -184,36 +184,36 @@ test('turf-${turfName}', t => {
 `;
 }
 
-// Test for missing modules
-test('turf -- missing modules', t => {
-    const files = {
-        typescript: fs.readFileSync(path.join(__dirname, 'index.d.ts')),
-        modules: fs.readFileSync(path.join(__dirname, 'index.js'))
-    };
+// // Test for missing modules
+// test('turf -- missing modules', t => {
+//     const files = {
+//         typescript: fs.readFileSync(path.join(__dirname, 'index.d.ts')),
+//         modules: fs.readFileSync(path.join(__dirname, 'index.js'))
+//     };
 
-    modules.forEach(({name}) => {
-        name = camelcase(name.replace('turf-', ''));
-        // name exception with linestring => lineString
-        name = name.replace('linestring', 'lineString').replace('Linestring', 'LineString');
+//     modules.forEach(({name}) => {
+//         name = camelcase(name.replace('turf-', ''));
+//         // name exception with linestring => lineString
+//         name = name.replace('linestring', 'lineString').replace('Linestring', 'LineString');
 
-        if (!files.typescript.includes(name)) t.fail(name + ' is missing from index.d.ts');
-        if (!files.modules.includes(name)) t.fail(name + ' is missing from index.js');
+//         if (!files.typescript.includes(name)) t.fail(name + ' is missing from index.d.ts');
+//         if (!files.modules.includes(name)) t.fail(name + ' is missing from index.js');
 
-        switch (typeof turf[name]) {
-        case 'function': break;
-        case 'object':
-            Object.keys(turf[name]).forEach(method => {
-                if (typeof turf[method] !== 'function') t.skip(name + '.' + method + ' is missing from index.js');
-                if (!files.typescript.includes(method)) t.skip(name + '.' + method + ' is missing from index.d.ts');
-                if (!files.modules.includes(method)) t.skip(name + '.' + method + ' is missing from index.js');
-            });
-            break;
-        case 'undefined':
-            t.fail(name + ' is missing from index.js');
-        }
-    });
-    t.end();
-});
+//         switch (typeof turf[name]) {
+//         case 'function': break;
+//         case 'object':
+//             Object.keys(turf[name]).forEach(method => {
+//                 if (typeof turf[method] !== 'function') t.skip(name + '.' + method + ' is missing from index.js');
+//                 if (!files.typescript.includes(method)) t.skip(name + '.' + method + ' is missing from index.d.ts');
+//                 if (!files.modules.includes(method)) t.skip(name + '.' + method + ' is missing from index.js');
+//             });
+//             break;
+//         case 'undefined':
+//             t.fail(name + ' is missing from index.js');
+//         }
+//     });
+//     t.end();
+// });
 
 // Iterate over each module and retrieve @example to build tests from them
 glob(turfModulesPath, (err, files) => {
