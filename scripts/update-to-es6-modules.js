@@ -73,7 +73,7 @@ glob.sync(path.join(__dirname, '..', 'packages', 'turf-*', 'package.json')).forE
         types: 'index.d.ts',
         files: [...files],
         scripts: {
-            'pretest': 'rollup -c ../../rollup.config.js',
+            'prepublish': 'rollup -c ../../rollup.config.js',
             'test': 'node -r @std/esm test.js',
             'bench': 'node -r @std/esm bench.js'
         },
@@ -110,10 +110,10 @@ glob.sync(path.join(__dirname, '..', 'packages', 'turf-*', 'package.json')).forE
 //     fs.removeSync(filepath);
 // });
 
-// Convert ES Module index import
-glob.sync(path.join(__dirname, '..', 'packages', 'turf*', 'test.js')).forEach(filepath => {
+// // Convert ES Module index import
+// glob.sync(path.join(__dirname, '..', 'packages', 'turf*', 'test.js')).forEach(filepath => {
 
-    var index = fs.readFileSync(filepath, 'utf8');
-    index = index.replace(/'.'/g, '\'./index\'');
-    fs.writeFileSync(filepath, index);
-});
+//     var index = fs.readFileSync(filepath, 'utf8');
+//     index = index.replace(/'.'/g, '\'./index\'');
+//     fs.writeFileSync(filepath, index);
+// });
