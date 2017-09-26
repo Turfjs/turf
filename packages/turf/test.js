@@ -215,29 +215,29 @@ test('turf-${turfName}', t => {
 //     t.end();
 // });
 
-// Iterate over each module and retrieve @example to build tests from them
-glob(turfModulesPath, (err, files) => {
-    if (err) throw err;
+// // Iterate over each module and retrieve @example to build tests from them
+// glob(turfModulesPath, (err, files) => {
+//     if (err) throw err;
 
-    // Read each JSDocs from index.js files
-    documentation.build(files, {}).then(turfFunctions => {
-        if (err) throw err;
+//     // Read each JSDocs from index.js files
+//     documentation.build(files, {}).then(turfFunctions => {
+//         if (err) throw err;
 
-        // Write header of test.js
-        const writeableStream = fs.createWriteStream(testFilePath);
-        writeableStream.write(requireString);
-        writeableStream.on('error', err => { throw err; });
+//         // Write header of test.js
+//         const writeableStream = fs.createWriteStream(testFilePath);
+//         writeableStream.write(requireString);
+//         writeableStream.on('error', err => { throw err; });
 
-        // Retrieve @example
-        turfFunctions.forEach(turfFunction => {
-            if (turfFunction.examples) {
+//         // Retrieve @example
+//         turfFunctions.forEach(turfFunction => {
+//             if (turfFunction.examples) {
 
-                // Save to test.js
-                turfFunction.examples.forEach(example => {
-                    writeableStream.write(testString(turfFunction, example));
-                });
-            }
-        });
-        writeableStream.end();
-    });
-});
+//                 // Save to test.js
+//                 turfFunction.examples.forEach(example => {
+//                     writeableStream.write(testString(turfFunction, example));
+//                 });
+//             }
+//         });
+//         writeableStream.end();
+//     });
+// });
