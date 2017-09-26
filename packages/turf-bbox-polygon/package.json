@@ -2,19 +2,19 @@
   "name": "@turf/bbox-polygon",
   "version": "4.7.3",
   "description": "turf bbox-polygon module",
-  "main": "index.es5.js",
-  "module": "index.js",
-  "jsnext:main": "index.js",
+  "main": "dist/index",
+  "module": "index",
+  "jsnext:main": "index",
   "types": "index.d.ts",
   "files": [
     "index.js",
     "index.d.ts",
-    "index.es5.js"
+    "dist"
   ],
   "scripts": {
     "pretest": "rollup -c ../../rollup.config.js",
-    "test": "node test.es5.js",
-    "bench": "node bench.js"
+    "test": "node -r @std/esm test.js",
+    "bench": "node -r @std/esm bench.js"
   },
   "repository": {
     "type": "git",
@@ -36,9 +36,14 @@
   "devDependencies": {
     "benchmark": "*",
     "tape": "*",
-    "rollup": "*"
+    "rollup": "*",
+    "@std/esm": "*"
   },
   "dependencies": {
     "@turf/helpers": "5.0.0-alpha"
+  },
+  "@std/esm": {
+    "esm": "js",
+    "cjs": true
   }
 }

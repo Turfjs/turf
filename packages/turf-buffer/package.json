@@ -2,19 +2,19 @@
   "name": "@turf/buffer",
   "version": "4.7.4",
   "description": "turf buffer module",
-  "main": "index.es5.js",
-  "module": "index.js",
-  "jsnext:main": "index.js",
+  "main": "dist/index",
+  "module": "index",
+  "jsnext:main": "index",
   "types": "index.d.ts",
   "files": [
     "index.js",
     "index.d.ts",
-    "index.es5.js"
+    "dist"
   ],
   "scripts": {
     "pretest": "rollup -c ../../rollup.config.js",
-    "test": "node test.es5.js",
-    "bench": "node bench.js"
+    "test": "node -r @std/esm test.js",
+    "bench": "node -r @std/esm bench.js"
   },
   "repository": {
     "type": "git",
@@ -46,7 +46,8 @@
     "load-json-file": "*",
     "rollup": "*",
     "tape": "*",
-    "write-json-file": "*"
+    "write-json-file": "*",
+    "@std/esm": "*"
   },
   "dependencies": {
     "@turf/bbox": "^4.7.3",
@@ -56,5 +57,9 @@
     "@turf/projection": "^4.7.3",
     "d3-geo": "^1.7.1",
     "jsts": "1.4.0"
+  },
+  "@std/esm": {
+    "esm": "js",
+    "cjs": true
   }
 }
