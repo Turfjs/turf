@@ -44,7 +44,7 @@
   },
   "dependencies": {
     "@turf/clean-coords": "^4.7.3",
-    "@turf/helpers": "^4.7.3",
+    "@turf/helpers": "5.0.0-alpha",
     "@turf/line-segment": "^4.7.3",
     "@turf/rhumb-bearing": "^4.7.3"
   }

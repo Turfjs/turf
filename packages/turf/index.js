@@ -127,6 +127,7 @@ export {
     radians2degrees,
     convertDistance,
     isNumber,
+    isObject,
     round,
     convertArea
 } from '@turf/helpers';

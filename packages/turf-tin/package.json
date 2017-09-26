@@ -37,6 +37,6 @@
     "rollup": "*"
   },
   "dependencies": {
-    "@turf/helpers": "^4.7.3"
+    "@turf/helpers": "5.0.0-alpha"
   }
 }

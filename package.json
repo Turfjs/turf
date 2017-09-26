@@ -49,6 +49,7 @@
     "url": "https://github.com/Turfjs/turf/issues"
   },
   "devDependencies": {
+    "5to6-codemod": "^1.7.1",
     "@types/geojson": "0.0.31",
     "@types/node": "^8.0.28",
     "@types/tape": "^4.2.30",
@@ -72,8 +73,5 @@
     "tape": "^4.6.3",
     "typescript": "^2.4.1",
     "uglify-js": "~3.1.1"
-  },
-  "dependencies": {
-    "5to6-codemod": "^1.7.1"
   }
 }

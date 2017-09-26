@@ -40,9 +40,9 @@
   },
   "dependencies": {
     "@turf/area": "^4.7.3",
-    "@turf/helpers": "^4.7.3",
-    "@turf/invariant": "^4.7.3",
-    "@turf/meta": "^4.7.3",
+    "@turf/helpers": "5.0.0-alpha",
+    "@turf/invariant": "5.0.0-alpha",
+    "@turf/meta": "5.0.0-alpha",
     "jsts": "1.4.0"
   }
 }

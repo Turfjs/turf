@@ -34,7 +34,7 @@
   },
   "homepage": "https://github.com/Turfjs/turf",
   "devDependencies": {
-    "@turf/meta": "*",
+    "@turf/meta": "5.0.0-alpha",
     "benchmark": "*",
     "mkdirp": "*",
     "tape": "*",
@@ -44,6 +44,6 @@
   "dependencies": {
     "@turf/bbox": "^4.7.3",
     "@turf/distance": "^4.7.3",
-    "@turf/helpers": "^4.7.3"
+    "@turf/helpers": "5.0.0-alpha"
   }
 }
