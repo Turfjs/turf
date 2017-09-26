@@ -11,14 +11,41 @@ function entries(obj) {
     return Object.keys(obj || {}).map(key => [key, obj[key]]);
 }
 
+function updateDependencies(pckg) {
+    const dependencies = {};
+    new Map(entries(pckg.dependencies))
+        .forEach((version, name) => {
+            // Update dependencies to v5.0.0-alpha
+            switch (name) {
+            case '@turf/helpers':
+            case '@turf/invariant':
+            case '@turf/meta':
+                dependencies[name] = '5.0.0-alpha';
+                break;
+            default:
+                dependencies[name] = version;
+            }
+        });
+    return dependencies;
+}
+
 function updateDevDependencies(pckg) {
     const devDependencies = {};
     new Map(entries(pckg.devDependencies))
         .set('rollup', '*')
         .set('tape', '*')
         .set('benchmark', '*').forEach((version, name) => {
-            // Change all devDependencies to *
-            devDependencies[name] = '*';
+            // Update dependencies to v5.0.0-alpha
+            switch (name) {
+            case '@turf/helpers':
+            case '@turf/invariant':
+            case '@turf/meta':
+                devDependencies[name] = '5.0.0-alpha';
+                break;
+            // Change all other devDependencies to *
+            default:
+                devDependencies[name] = '*';
+            }
         });
     return devDependencies;
 }
@@ -63,7 +90,7 @@ Object.keys(dependencies).forEach(name => {
         },
         homepage: 'https://github.com/Turfjs/turf',
         devDependencies: updateDevDependencies(pckg),
-        dependencies: pckg.dependencies
+        dependencies: updateDependencies(pckg)
     };
     write.sync(packagePath, newPckg, {indent: 2});
 });
