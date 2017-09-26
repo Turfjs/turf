@@ -21,6 +21,7 @@ import {
     convertDistance,
     convertArea,
     isNumber,
+    isObject,
     // Typescript types
     Point,
     LineString,
@@ -130,6 +131,23 @@ helpers.isNumber({})
 helpers.isNumber([1, 2, 3])
 helpers.isNumber([])
 helpers.isNumber(helpers.isNumber)
+
+// isObject -- true
+helpers.isObject({a: 1})
+helpers.isObject({})
+helpers.isObject(helpers.point([0, 1]))
+
+// isObject -- false
+helpers.isObject(123)
+helpers.isObject(Infinity)
+helpers.isObject(-123)
+helpers.isObject('foo')
+helpers.isObject(NaN)
+helpers.isObject(undefined)
+helpers.isObject(null)
+helpers.isObject([1, 2, 3])
+helpers.isObject([])
+helpers.isObject(helpers.isNumber)
 
 // Geometry
 const ptGeom: Point = geometry('Point', pt.geometry.coordinates);
