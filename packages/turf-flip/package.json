@@ -33,7 +33,7 @@
   },
   "homepage": "https://github.com/Turfjs/turf",
   "devDependencies": {
-    "@turf/helpers": "*",
+    "@turf/helpers": "5.0.0-alpha",
     "benchmark": "*",
     "load-json-file": "*",
     "tape": "*",
@@ -41,6 +41,6 @@
     "rollup": "*"
   },
   "dependencies": {
-    "@turf/meta": "^4.7.3"
+    "@turf/meta": "5.0.0-alpha"
   }
 }

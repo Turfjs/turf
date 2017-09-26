@@ -45,8 +45,8 @@
   "dependencies": {
     "@turf/bbox": "^4.7.3",
     "@turf/distance": "^4.7.3",
-    "@turf/helpers": "^4.7.3",
+    "@turf/helpers": "5.0.0-alpha",
     "@turf/inside": "^4.7.3",
-    "@turf/invariant": "^4.7.3"
+    "@turf/invariant": "5.0.0-alpha"
   }
 }

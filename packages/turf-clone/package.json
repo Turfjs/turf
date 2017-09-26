@@ -34,10 +34,11 @@
   },
   "homepage": "https://github.com/Turfjs/turf",
   "devDependencies": {
-    "@turf/helpers": "*",
-    "@turf/meta": "*",
+    "@turf/helpers": "5.0.0-alpha",
+    "@turf/meta": "5.0.0-alpha",
     "benchmark": "*",
     "tape": "*",
     "rollup": "*"
-  }
+  },
+  "dependencies": {}
 }

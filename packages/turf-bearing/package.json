@@ -32,13 +32,13 @@
   "homepage": "https://github.com/Turfjs/turf",
   "devDependencies": {
     "@turf/destination": "*",
-    "@turf/helpers": "*",
+    "@turf/helpers": "5.0.0-alpha",
     "benchmark": "*",
     "tape": "*",
     "write-json-file": "*",
     "rollup": "*"
   },
   "dependencies": {
-    "@turf/invariant": "^4.7.3"
+    "@turf/invariant": "5.0.0-alpha"
   }
 }

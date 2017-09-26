@@ -39,7 +39,7 @@
   },
   "homepage": "https://github.com/Turfjs/turf",
   "devDependencies": {
-    "@turf/helpers": "*",
+    "@turf/helpers": "5.0.0-alpha",
     "@turf/truncate": "*",
     "benchmark": "*",
     "load-json-file": "*",
@@ -48,8 +48,8 @@
     "rollup": "*"
   },
   "dependencies": {
-    "@turf/invariant": "^4.7.3",
-    "@turf/meta": "^4.7.3",
+    "@turf/invariant": "5.0.0-alpha",
+    "@turf/meta": "5.0.0-alpha",
     "@turf/rhumb-destination": "^4.7.3"
   }
 }
