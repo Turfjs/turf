@@ -1,7 +1,6 @@
 // https://en.wikipedia.org/wiki/Rhumb_line
-// http://www.movable-type.co.uk/scripts/latlong.html#rhumblines
-import { getCoord } from '@turf/invariant';
-var LatLonSpherical = require('geodesy').LatLonSpherical;
+import {getCoord} from '@turf/invariant';
+import {radians2degrees, degrees2radians} from '@turf/helpers';
 
 /**
  * Takes two {@link Point|points} and finds the bearing angle between them along a Rhumb line
@@ -28,16 +27,69 @@ export default function (start, end, final) {
     if (!start) throw new Error('start point is required');
     if (!end) throw new Error('end point is required');
 
-    var coordsStart = getCoord(start);
-    var coordsEnd = getCoord(end);
-    var origin = new LatLonSpherical(coordsStart[1], coordsStart[0]);
-    var destination = new LatLonSpherical(coordsEnd[1], coordsEnd[0]);
-    var bear360;
+    const coordsStart = getCoord(start);
+    const coordsEnd = getCoord(end);
+    const origin = new LatLon(coordsStart[1], coordsStart[0]);
+    const destination = new LatLon(coordsEnd[1], coordsEnd[0]);
+    let bear360;
 
     if (final) bear360 = destination.rhumbBearingTo(origin);
     else bear360 = origin.rhumbBearingTo(destination);
 
-    var bear180 = (bear360 > 180) ? -(360 - bear360) : bear360;
+    const bear180 = (bear360 > 180) ? -(360 - bear360) : bear360;
 
     return bear180;
 }
+
+
+// The following functions have been taken from Geodesy
+// (https://github.com/chrisveness/geodesy/blob/master/latlon-spherical.js)
+// in order to remove it as dpendency and reduce the final bundle size
+
+/**
+ * Creates a LatLon point on the earth's surface at the specified latitude / longitude.
+ *
+ * @private
+ * @constructor
+ * @param {number} lat - Latitude in degrees.
+ * @param {number} lon - Longitude in degrees.
+ *
+ * @example
+ *     var p1 = new LatLon(52.205, 0.119);
+ */
+function LatLon(lat, lon) {
+    // allow instantiation without 'new'
+    if (!(this instanceof LatLon)) return new LatLon(lat, lon);
+
+    this.lat = Number(lat);
+    this.lon = Number(lon);
+}
+
+/**
+ * Returns the bearing from ‘this’ point to destination point along a rhumb line.
+ *
+ * @private
+ * @param   {LatLon} point - Latitude/longitude of destination point.
+ * @returns {number} Bearing in degrees from north.
+ *
+ * @example
+ *     var p1 = new LatLon(51.127, 1.338);
+ *     var p2 = new LatLon(50.964, 1.853);
+ *     var d = p1.rhumbBearingTo(p2); // 116.7 m
+ */
+LatLon.prototype.rhumbBearingTo = function (point) {
+    if (!(point instanceof LatLon)) throw new TypeError('point is not LatLon object');
+
+    const φ1 = degrees2radians(this.lat);
+    const φ2 = degrees2radians(point.lat);
+    const Δλ = degrees2radians((point.lon - this.lon));
+    // if dLon over 180° take shorter rhumb line across the anti-meridian:
+    if (Δλ > Math.PI) Δλ -= 2 * Math.PI;
+    if (Δλ < -Math.PI) Δλ += 2 * Math.PI;
+
+    const Δψ = Math.log(Math.tan(φ2 / 2 + Math.PI / 4) / Math.tan(φ1 / 2 + Math.PI / 4));
+
+    const θ = Math.atan2(Δλ, Δψ);
+
+    return (radians2degrees(θ) + 360) % 360;
+};

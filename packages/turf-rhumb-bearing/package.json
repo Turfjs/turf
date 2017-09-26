@@ -47,7 +47,7 @@
     "rollup": "*"
   },
   "dependencies": {
-    "@turf/invariant": "^4.7.3",
-    "geodesy": "1.1.2"
+    "@turf/helpers": "^4.7.3",
+    "@turf/invariant": "^4.7.3"
   }
 }
