@@ -40,14 +40,13 @@
   "homepage": "https://github.com/Turfjs/turf",
   "devDependencies": {
     "@turf/destination": "*",
-    "@turf/helpers": "5.0.0-alpha",
     "benchmark": "*",
     "tape": "*",
     "write-json-file": "*",
     "rollup": "*"
   },
   "dependencies": {
-    "@turf/invariant": "5.0.0-alpha",
-    "geodesy": "1.1.2"
+    "@turf/helpers": "5.0.0-alpha",
+    "@turf/invariant": "5.0.0-alpha"
   }
 }

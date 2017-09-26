@@ -2,6 +2,21 @@
 # yarn lockfile v1
 
 
+"@turf/destination@*":
+  version "4.7.3"
+  resolved "https://registry.yarnpkg.com/@turf/destination/-/destination-4.7.3.tgz#f1ea3bb3705cf52fed135a7917d49336e47b8d2e"
+  dependencies:
+    "@turf/helpers" "^4.7.3"
+    "@turf/invariant" "^4.7.3"
+
+"@turf/helpers@^4.7.3":
+  version "4.7.3"
+  resolved "https://registry.yarnpkg.com/@turf/helpers/-/helpers-4.7.3.tgz#bc312ac43cab3c532a483151c4c382c5649429e9"
+
+"@turf/invariant@^4.7.3":
+  version "4.7.3"
+  resolved "https://registry.yarnpkg.com/@turf/invariant/-/invariant-4.7.3.tgz#538f367d23c113fc849d70c9a524b8563874601d"
+
 balanced-match@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/balanced-match/-/balanced-match-1.0.0.tgz#89b4d199ab2bee49de164ea02b89ce462d71b767"
@@ -78,10 +93,6 @@ fs.realpath@^1.0.0:
 function-bind@^1.0.2, function-bind@^1.1.1, function-bind@~1.1.0:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/function-bind/-/function-bind-1.1.1.tgz#a56899d3ea3c9bab874bb9773b7c5ede92f4895d"
-
-geodesy@1.1.2:
-  version "1.1.2"
-  resolved "https://registry.yarnpkg.com/geodesy/-/geodesy-1.1.2.tgz#84cbdf7e7b98907bd3b13b09ae86c65926391a50"
 
 glob@~7.1.2:
   version "7.1.2"
