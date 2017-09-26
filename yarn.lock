@@ -10,6 +10,10 @@
     lodash "^4.17.4"
     recast "^0.12.1"
 
+"@std/esm@^0.11.0":
+  version "0.11.0"
+  resolved "https://registry.yarnpkg.com/@std/esm/-/esm-0.11.0.tgz#f5562c6723a2eae5d6f95c3b35ff1338c586ae4e"
+
 "@types/geojson@0.0.31":
   version "0.0.31"
   resolved "https://registry.yarnpkg.com/@types/geojson/-/geojson-0.0.31.tgz#ad8d4cb76f7bf13c59babc5bed77f2dd2c4175bc"
