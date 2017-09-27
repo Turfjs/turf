@@ -2,7 +2,7 @@ import bbox from '@turf/bbox';
 import { coordEach } from '@turf/meta';
 import { multiLineString, featureCollection } from '@turf/helpers';
 import { collectionOf } from '@turf/invariant';
-var isoContours = require('marchingsquares').isoContours;
+import isoContours from './marchingsquares-isocontours';
 var gridToMatrix = require('grid-to-matrix');
 
 /**

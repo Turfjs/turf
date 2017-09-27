@@ -9,6 +9,7 @@
   "files": [
     "index.js",
     "index.d.ts",
+    "marchingsquares-isocontours.js",
     "dist"
   ],
   "scripts": {
@@ -54,8 +55,7 @@
     "@turf/helpers": "5.0.0-alpha",
     "@turf/invariant": "5.0.0-alpha",
     "@turf/meta": "5.0.0-alpha",
-    "grid-to-matrix": "1.2.0",
-    "marchingsquares": "1.2.0"
+    "grid-to-matrix": "1.2.0"
   },
   "@std/esm": {
     "esm": "js",

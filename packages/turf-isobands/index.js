@@ -2,9 +2,9 @@ import bbox from '@turf/bbox';
 import area from '@turf/area';
 import inside from '@turf/inside';
 import explode from '@turf/explode';
-var isoBands = require('marchingsquares').isoBands;
 import { polygon, multiPolygon, featureCollection } from '@turf/helpers';
 import { collectionOf } from '@turf/invariant';
+import isoBands from './marchingsquares-isobands.js';
 var gridToMatrix = require('grid-to-matrix');
 
 /**
