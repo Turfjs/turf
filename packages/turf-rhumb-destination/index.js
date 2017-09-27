@@ -1,6 +1,6 @@
 // https://en.wikipedia.org/wiki/Rhumb_line
-import { point, convertDistance, degrees2radians } from '@turf/helpers';
-import { getCoord } from '@turf/invariant';
+import {point, convertDistance, degrees2radians} from '@turf/helpers';
+import {getCoord} from '@turf/invariant';
 
 /**
  * Returns the destination {@link Point} having travelled the given distance along a Rhumb line from the
