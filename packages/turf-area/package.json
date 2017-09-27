@@ -41,7 +41,6 @@
     "@std/esm": "*"
   },
   "dependencies": {
-    "@mapbox/geojson-area": "^0.2.2",
     "@turf/meta": "5.0.0-alpha"
   },
   "@std/esm": {
