@@ -1,12 +1,19 @@
-import { point } from '@turf/helpers'
+import { point, Point, Feature } from '@turf/helpers'
 import rhumbDestination from './'
 
-var pt = point([-75.343, 39.984], {"marker-color": "F00"});
-var distance = 50;
-var bearing = 90;
+const pt = point([-75.343, 39.984], {foo: 'bar'})
+const distance = 50
+const bearing = 90
 
-var destination = rhumbDestination(pt, distance, bearing, {units: 'miles'});
+rhumbDestination(pt, distance, bearing)
+rhumbDestination(pt, distance, bearing, {units: 'miles'})
 
-//addToMap
-var addToMap = [pt, destination]
-destination.properties['marker-color'] = '#00F';
+// Allow defining custom properties to output point
+interface CustomPoint extends Feature<Point> {
+  properties: {
+    foo: string
+  }
+}
+const customPoint: CustomPoint = rhumbDestination(pt, distance, bearing)
+customPoint.properties.foo
+// customPoint.properties.hello // [ts] Property 'hello' does not exist on type '{ foo: string; }'.

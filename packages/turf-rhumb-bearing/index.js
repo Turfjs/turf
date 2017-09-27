@@ -7,21 +7,21 @@ import {radians2degrees, degrees2radians} from '@turf/helpers';
  * i.e. the angle measured in degrees start the north line (0 degrees)
  *
  * @name rhumbBearing
- * @param {Geometry|Feature<Point>|Array<number>} start starting Point
- * @param {Geometry|Feature<Point>|Array<number>} end ending Point
+ * @param {(Geometry|Feature<Point>)|Position} start starting Point
+ * @param {(Geometry|Feature<Point>)|Position} end ending Point
  * @param {Object} [options] Optional parameters
  * @param {boolean} [options.final=false] calculates the final bearing if true
  * @returns {number} bearing from north in decimal degrees, between -180 and 180 degrees (positive clockwise)
  * @example
- * const point1 = turf.point([-75.343, 39.984], {"marker-color": "#F00"});
- * const point2 = turf.point([-75.534, 39.123], {"marker-color": "#00F"});
+ * var point1 = turf.point([-75.343, 39.984], {"marker-color": "#F00"});
+ * var point2 = turf.point([-75.534, 39.123], {"marker-color": "#00F"});
  *
- * const bearing = turf.rhumbBearing(point1, point2);
+ * var bearing = turf.rhumbBearing(point1, point2);
  *
  * //addToMap
- * const addToMap = [point1, point2]
- * point1.properties.bearing = bearing
- * point2.properties.bearing = bearing
+ * var addToMap = [point1, point2];
+ * point1.properties.bearing = bearing;
+ * point2.properties.bearing = bearing;
  */
 export default function rhumbBearing(start, end, options) {
     // validation

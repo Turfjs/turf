@@ -7,8 +7,8 @@ import {getCoord} from '@turf/invariant';
  * miles, or kilometers.
  *
  * @name rhumbDistance
- * @param {Geometry|Feature<Point>|Array<number>} from origin point
- * @param {Geometry|Feature<Point>|Array<number>} to destination point
+ * @param {(Geometry|Feature<Point>)|Position} from origin point
+ * @param {(Geometry|Feature<Point>)|Position} to destination point
  * @param {Object} [options] Optional parameters
  * @param {string} [options.units="kilometers"] can be degrees, radians, miles, or kilometers
  * @returns {number} distance between the two points

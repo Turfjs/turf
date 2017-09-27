@@ -1,5 +1,3 @@
-/// <reference types="geojson" />
-
 import { Point, Feature, Units, Position } from '@turf/helpers';
 
 /**

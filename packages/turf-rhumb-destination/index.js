@@ -7,11 +7,11 @@ import { getCoord } from '@turf/invariant';
  * origin Point with the (constant) given bearing.
  *
  * @name rhumbDestination
- * @param {Geometry|Feature<Point>|Array<number>} origin starting point
+ * @param {(Geometry|Feature<Point>)|Position} origin starting point
  * @param {number} distance distance from the starting point
  * @param {number} bearing constant bearing angle ranging from -180 to 180 degrees from north
  * @param {Object} [options] Optional parameters
- * @param {string} [options.units="kilometers"] can be degrees, radians, miles, or kilometers
+ * @param {string} [options.units='kilometers'] can be degrees, radians, miles, or kilometers
  * @returns {Feature<Point>} Destination point.
  * @example
  * var pt = turf.point([-75.343, 39.984], {"marker-color": "F00"});
