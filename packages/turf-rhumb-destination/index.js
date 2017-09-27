@@ -10,7 +10,8 @@ import {getCoord} from '@turf/invariant';
  * @param {Geometry|Feature<Point>|Array<number>} origin starting point
  * @param {number} distance distance from the starting point
  * @param {number} bearing constant bearing angle ranging from -180 to 180 degrees from north
- * @param {string} [units=kilometers] miles, kilometers, degrees, or radians
+ * @param {Object} [options] Optional parameters
+ * @param {string} [options.units="kilometers"] can be degrees, radians, miles, or kilometers
  * @returns {Feature<Point>} Destination point.
  * @example
  * var point = turf.point([-75.343, 39.984], {"marker-color": "F00"});
@@ -24,14 +25,14 @@ import {getCoord} from '@turf/invariant';
  * var addToMap = [point, destination]
  * destination.properties['marker-color'] = '#00F';
  */
-export default function (origin, distance, bearing, units) {
+export default function (origin, distance, bearing, options) {
     // validation
     if (!origin) throw new Error('origin is required');
     if (distance === undefined || distance === null) throw new Error('distance is required');
     if (bearing === undefined || bearing === null) throw new Error('bearing is required');
     if (!(distance >= 0)) throw new Error('distance must be greater than 0');
+    const units = (typeof options === 'object') ? options.units : options || 'kilometers';
 
-    units = units || 'kilometers';
     const distanceInMeters = convertDistance(distance, units, 'meters');
     const coords = getCoord(origin);
     const destination = rhumbDestinationPoint(coords, distanceInMeters, bearing);

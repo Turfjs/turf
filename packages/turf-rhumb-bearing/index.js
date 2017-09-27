@@ -9,7 +9,8 @@ import {radians2degrees, degrees2radians} from '@turf/helpers';
  * @name rhumbBearing
  * @param {Geometry|Feature<Point>|Array<number>} start starting Point
  * @param {Geometry|Feature<Point>|Array<number>} end ending Point
- * @param {boolean} [final=false] calculates the final bearing if true
+ * @param {Object} [options] Optional parameters
+ * @param {boolean} [options.final=false] calculates the final bearing if true
  * @returns {number} bearing from north in decimal degrees, between -180 and 180 degrees (positive clockwise)
  * @example
  * const point1 = turf.point([-75.343, 39.984], {"marker-color": "#F00"});
@@ -22,10 +23,11 @@ import {radians2degrees, degrees2radians} from '@turf/helpers';
  * point1.properties.bearing = bearing
  * point2.properties.bearing = bearing
  */
-export default function (start, end, final) {
+export default function (start, end, options) {
     // validation
     if (!start) throw new Error('start point is required');
     if (!end) throw new Error('end point is required');
+    const final = (typeof options === 'object') ? options.final : options;
 
     let bear360;
 

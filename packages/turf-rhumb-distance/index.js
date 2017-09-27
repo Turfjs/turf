@@ -9,7 +9,8 @@ import {getCoord} from '@turf/invariant';
  * @name rhumbDistance
  * @param {Geometry|Feature<Point>|Array<number>} from origin point
  * @param {Geometry|Feature<Point>|Array<number>} to destination point
- * @param {string} [units=kilometers] can be degrees, radians, miles, or kilometers
+ * @param {Object} [options] Optional parameters
+ * @param {string} [options.units="kilometers"] can be degrees, radians, miles, or kilometers
  * @returns {number} distance between the two points
  * @example
  * var from = turf.point([-75.343, 39.984]);
@@ -22,12 +23,11 @@ import {getCoord} from '@turf/invariant';
  * from.properties.distance = distance;
  * to.properties.distance = distance;
  */
-export default function (from, to, units) {
+export default function (from, to, options) {
     // validation
     if (!from) throw new Error('from point is required');
     if (!to) throw new Error('to point is required');
-
-    units = units || 'kilometers';
+    const units = (typeof options === 'object') ? options.units : options || 'kilometers';
 
     const origin = getCoord(from);
     const destination = getCoord(to);
