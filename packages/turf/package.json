@@ -67,6 +67,7 @@
     "geojson-dissolve": "^3.1.0",
     "geojson-equality": "^0.1.7",
     "geojson-rbush": "^1.2.0",
+    "geojson-utils": "^1.1.0",
     "get-closest": "0.0.4",
     "glob": "*",
     "jsdoc": "*",
