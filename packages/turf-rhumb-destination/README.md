@@ -7,23 +7,23 @@ origin Point with the (constant) given bearing.
 
 **Parameters**
 
--   `origin` **([Geometry](http://geojson.org/geojson-spec.html#geometry) \| [Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;[Point](http://geojson.org/geojson-spec.html#point)> | [Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)>)** starting point
+-   `origin` **(([Geometry](http://geojson.org/geojson-spec.html#geometry) \| [Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;[Point](http://geojson.org/geojson-spec.html#point)>) | Position)** starting point
 -   `distance` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** distance from the starting point
 -   `bearing` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** constant bearing angle ranging from -180 to 180 degrees from north
--   `units` **\[[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)]** miles, kilometers, degrees, or radians (optional, default `kilometers`)
+-   `options` **\[[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)]** Optional parameters
+    -   `options.units` **\[[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)]** can be degrees, radians, miles, or kilometers (optional, default `'kilometers'`)
 
 **Examples**
 
 ```javascript
-var point = turf.point([-75.343, 39.984], {"marker-color": "F00"});
+var pt = turf.point([-75.343, 39.984], {"marker-color": "F00"});
 var distance = 50;
 var bearing = 90;
-var units = 'miles';
 
-var destination = turf.rhumbDestination(point, distance, bearing, units);
+var destination = rhumbDestination(pt, distance, bearing, {units: 'miles'});
 
 //addToMap
-var addToMap = [point, destination]
+var addToMap = [pt, destination]
 destination.properties['marker-color'] = '#00F';
 ```
 
