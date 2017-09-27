@@ -139,3 +139,13 @@ export function isNumber(num: any): boolean
  * http://turfjs.org/docs/#isobject
  */
 export function isObject(input: any): boolean
+
+/**
+ * http://turfjs.org/docs/#wgs84
+ */
+export const wgs84: {
+    RADIUS: number
+    FLATTENING_DENOM: number
+    FLATTENING: number
+    POLAR_RADIUS: number
+}

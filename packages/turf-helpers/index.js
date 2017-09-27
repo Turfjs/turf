@@ -352,6 +352,7 @@ const areaFactors = {
     feet: 10.763910417,
     inches: 1550.003100006
 };
+
 /**
  * Round number to precision
  *
@@ -533,3 +534,20 @@ export function isNumber(num) {
 export function isObject(input) {
     return (!!input) && (input.constructor === Object);
 }
+
+const RADIUS = 6378137;
+const FLATTENING_DENOM = 298.257223563;
+const FLATTENING = 1 / FLATTENING_DENOM;
+const POLAR_RADIUS = RADIUS * (1 - FLATTENING);
+
+/**
+ * WGS84 Provides radius, FLATTENING, and POLAR_RADIUS constants from the reference ellipsoid.
+ *
+ * http://earth-info.nga.mil/GandG/wgs84/gravitymod/egm96/egm96.html
+ */
+export const wgs84 = {
+    RADIUS,
+    FLATTENING_DENOM,
+    FLATTENING,
+    POLAR_RADIUS,
+};

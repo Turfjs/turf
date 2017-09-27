@@ -128,7 +128,8 @@ export {
     convertDistance,
     isNumber,
     round,
-    convertArea
+    convertArea,
+    wgs84
 } from '@turf/helpers';
 import * as helpers from '@turf/helpers';
 export { helpers };
