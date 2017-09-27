@@ -4,7 +4,7 @@ import path from 'path';
 import load from 'load-json-file';
 import write from 'write-json-file';
 import { point } from '@turf/helpers';
-import truncate from '.';
+import truncate from './index';
 
 const directories = {
     in: path.join(__dirname, 'test', 'in') + path.sep,
