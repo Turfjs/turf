@@ -20,7 +20,7 @@ import { point, isNumber } from '@turf/helpers';
  * //addToMap
  * var addToMap = [along, line]
  */
-export default function (line, distance, options) {
+export default function along(line, distance, options) {
     // Backwards compatible with v4.0
     var units = (typeof options === 'object') ? options.units : options;
 

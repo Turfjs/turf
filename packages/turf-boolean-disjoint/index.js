@@ -17,7 +17,7 @@ import polyToLinestring from '@turf/polygon-to-linestring';
  * turf.booleanDisjoint(line, point);
  * //=true
  */
-export default function (feature1, feature2) {
+export default function booleanDisjoint(feature1, feature2) {
     var boolean;
     flattenEach(feature1, function (flatten1) {
         flattenEach(feature2, function (flatten2) {

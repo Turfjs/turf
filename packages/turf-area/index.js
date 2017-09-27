@@ -1,4 +1,4 @@
-var area = require('@mapbox/geojson-area').geometry;
+var geojsonArea = require('@mapbox/geojson-area').geometry;
 import { geomReduce } from '@turf/meta';
 
 /**
@@ -16,8 +16,8 @@ import { geomReduce } from '@turf/meta';
  * var addToMap = [polygon]
  * polygon.properties.area = area
  */
-export default function (geojson) {
+export default function area(geojson) {
     return geomReduce(geojson, function (value, geometry) {
-        return value + area(geometry);
+        return value + geojsonArea(geometry);
     }, 0);
 }

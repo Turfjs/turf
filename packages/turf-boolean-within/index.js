@@ -20,7 +20,7 @@ import { getGeom, getType } from '@turf/invariant';
  * turf.booleanWithin(point, line);
  * //=true
  */
-export default function (feature1, feature2) {
+export default function booleanWithin(feature1, feature2) {
     var type1 = getType(feature1);
     var type2 = getType(feature2);
     var geom1 = getGeom(feature1);

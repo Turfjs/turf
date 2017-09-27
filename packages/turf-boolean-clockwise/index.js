@@ -15,7 +15,7 @@ import { getCoords } from '@turf/invariant';
  * turf.booleanClockwise(counterClockwiseRing)
  * //=false
  */
-export default function (line) {
+export default function booleanClockwise(line) {
     // validation
     if (!line) throw new Error('line is required');
     var type = (line.geometry) ? line.geometry.type : line.type;

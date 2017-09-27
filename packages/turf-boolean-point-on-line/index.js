@@ -15,7 +15,7 @@ import { getCoords } from '@turf/invariant';
  * var isPointOnLine = turf.booleanPointOnLine(pt, line);
  * //=true
  */
-export default function (point, linestring, options) {
+export default function booleanPointOnLine(point, linestring, options) {
     // Backwards compatible with v4.0
     var ignoreEndVertices = (typeof options === 'object') ? options.ignoreEndVertices : options;
 
