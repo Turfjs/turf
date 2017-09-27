@@ -19,6 +19,10 @@
     "@mapbox/geojson-area" "^0.2.2"
     "@turf/meta" "^3.14.0"
 
+"@turf/helpers@5.0.0-alpha":
+  version "5.0.0-alpha"
+  resolved "https://registry.yarnpkg.com/@turf/helpers/-/helpers-5.0.0-alpha.tgz#b9f8d8d57cb7fab79273d1e29ba4771e55ff3ab3"
+
 "@turf/helpers@^3.13.0":
   version "3.13.0"
   resolved "https://registry.yarnpkg.com/@turf/helpers/-/helpers-3.13.0.tgz#d06078a1464cf56cdb7ea624ea1e13a71b88b806"
@@ -42,6 +46,10 @@
 "@turf/invariant@^4.7.3":
   version "4.7.3"
   resolved "https://registry.yarnpkg.com/@turf/invariant/-/invariant-4.7.3.tgz#538f367d23c113fc849d70c9a524b8563874601d"
+
+"@turf/meta@5.0.0-alpha":
+  version "5.0.0-alpha"
+  resolved "https://registry.yarnpkg.com/@turf/meta/-/meta-5.0.0-alpha.tgz#15cf9170bea0e7ed0e22aa3af8ade9c9ed83108e"
 
 "@turf/meta@^3.14.0":
   version "3.14.0"

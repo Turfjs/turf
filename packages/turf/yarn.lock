@@ -6,6 +6,18 @@
   version "0.11.0"
   resolved "https://registry.yarnpkg.com/@std/esm/-/esm-0.11.0.tgz#f5562c6723a2eae5d6f95c3b35ff1338c586ae4e"
 
+"@turf/helpers@5.0.0-alpha":
+  version "5.0.0-alpha"
+  resolved "https://registry.yarnpkg.com/@turf/helpers/-/helpers-5.0.0-alpha.tgz#b9f8d8d57cb7fab79273d1e29ba4771e55ff3ab3"
+
+"@turf/invariant@5.0.0-alpha":
+  version "5.0.0-alpha"
+  resolved "https://registry.yarnpkg.com/@turf/invariant/-/invariant-5.0.0-alpha.tgz#fd0614f8d63f68b6c96442780725a92b7c91c050"
+
+"@turf/meta@5.0.0-alpha":
+  version "5.0.0-alpha"
+  resolved "https://registry.yarnpkg.com/@turf/meta/-/meta-5.0.0-alpha.tgz#15cf9170bea0e7ed0e22aa3af8ade9c9ed83108e"
+
 abbrev@1:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/abbrev/-/abbrev-1.1.0.tgz#d0554c2256636e2f56e7c2e5ad183f859428d81f"
