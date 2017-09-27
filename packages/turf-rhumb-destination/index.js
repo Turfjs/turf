@@ -1,6 +1,6 @@
 // https://en.wikipedia.org/wiki/Rhumb_line
-import {point, convertDistance, degrees2radians} from '@turf/helpers';
-import {getCoord} from '@turf/invariant';
+import { point, convertDistance, degrees2radians } from '@turf/helpers';
+import { getCoord } from '@turf/invariant';
 
 /**
  * Returns the destination {@link Point} having travelled the given distance along a Rhumb line from the
@@ -14,18 +14,17 @@ import {getCoord} from '@turf/invariant';
  * @param {string} [options.units="kilometers"] can be degrees, radians, miles, or kilometers
  * @returns {Feature<Point>} Destination point.
  * @example
- * var point = turf.point([-75.343, 39.984], {"marker-color": "F00"});
+ * var pt = turf.point([-75.343, 39.984], {"marker-color": "F00"});
  * var distance = 50;
  * var bearing = 90;
- * var units = 'miles';
  *
- * var destination = turf.rhumbDestination(point, distance, bearing, units);
+ * var destination = rhumbDestination(pt, distance, bearing, {units: 'miles'});
  *
  * //addToMap
- * var addToMap = [point, destination]
+ * var addToMap = [pt, destination]
  * destination.properties['marker-color'] = '#00F';
  */
-export default function (origin, distance, bearing, options) {
+export default function rhumbDestination(origin, distance, bearing, options) {
     // validation
     if (!origin) throw new Error('origin is required');
     if (distance === undefined || distance === null) throw new Error('distance is required');
