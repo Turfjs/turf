@@ -114,7 +114,7 @@ function autoCompleteCoords(coords) {
  * area - quick approximate area calculation (used to sort)
  *
  * @private
- * @param {[number, number, number, number]} bbox BBox [west, south, east, north]
+ * @param {Array<number>} bbox BBox [west, south, east, north]
  * @returns {number} very quick area calculation
  */
 function calculateArea(bbox) {

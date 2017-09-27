@@ -10,7 +10,7 @@ import {
     geometryCollection,
     featureCollection
 } from '@turf/helpers';
-import meta from '.';
+import * as meta from './index';
 
 const pt = point([0, 0], {a: 1});
 const pt2 = point([1, 1]);

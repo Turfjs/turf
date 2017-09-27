@@ -2,19 +2,19 @@
   "name": "@turf/concave",
   "version": "4.7.3",
   "description": "turf concave module",
-  "main": "index.es5.js",
-  "module": "index.js",
-  "jsnext:main": "index.js",
+  "main": "dist/index",
+  "module": "index",
+  "jsnext:main": "index",
   "types": "index.d.ts",
   "files": [
     "index.js",
     "index.d.ts",
-    "index.es5.js"
+    "dist"
   ],
   "scripts": {
-    "pretest": "rollup -c ../../rollup.config.js",
-    "test": "node test.es5.js",
-    "bench": "node bench.js"
+    "prepublish": "rollup -c ../../rollup.config.js",
+    "test": "node -r @std/esm test.js",
+    "bench": "node -r @std/esm bench.js"
   },
   "repository": {
     "type": "git",
@@ -48,7 +48,8 @@
     "load-json-file": "*",
     "tape": "*",
     "write-json-file": "*",
-    "rollup": "*"
+    "rollup": "*",
+    "@std/esm": "*"
   },
   "dependencies": {
     "@turf/distance": "^4.7.3",
@@ -56,5 +57,9 @@
     "@turf/meta": "5.0.0-alpha",
     "@turf/tin": "^4.7.3",
     "geojson-dissolve": "3.1.0"
+  },
+  "@std/esm": {
+    "esm": "js",
+    "cjs": true
   }
 }

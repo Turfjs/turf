@@ -14,7 +14,7 @@ import { polygon } from '@turf/helpers';
  * //addToMap
  * var addToMap = [poly]
  */
-export default function (bbox) {
+export default function bboxPolygon(bbox) {
     var lowLeft = [bbox[0], bbox[1]];
     var topLeft = [bbox[0], bbox[3]];
     var topRight = [bbox[2], bbox[3]];

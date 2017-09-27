@@ -20,7 +20,7 @@ import { getGeom, getCoords, getType } from '@turf/invariant';
  * turf.booleanContains(line, point);
  * //=true
  */
-export default function (feature1, feature2) {
+export default function booleanContains(feature1, feature2) {
     var type1 = getType(feature1);
     var type2 = getType(feature2);
     var geom1 = getGeom(feature1);
@@ -195,8 +195,8 @@ function doBBoxOverlap(bbox1, bbox2) {
  * compareCoords
  *
  * @private
- * @param {[number, number]} pair1 point [x,y]
- * @param {[number, number]} pair2 point [x,y]
+ * @param {Array<number>} pair1 point [x,y]
+ * @param {Array<number>} pair2 point [x,y]
  * @returns {boolean} true/false if coord pairs match
  */
 function compareCoords(pair1, pair2) {

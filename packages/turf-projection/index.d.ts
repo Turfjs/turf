@@ -18,3 +18,8 @@ export function toMercator<T extends Types>(geojson: T, options?: Options): T;
  * http://turfjs.org/docs/#toWgs84
  */
 export function toWgs84<T extends Types>(geojson: T, options?: Options): T;
+
+export default {
+  toMercator,
+  toWgs84
+};

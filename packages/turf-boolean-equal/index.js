@@ -20,7 +20,7 @@ import { getType } from '@turf/invariant';
  * turf.booleanEqual(pt2, pt3);
  * //= false
  */
-export default function (feature1, feature2) {
+export default function booleanEqual(feature1, feature2) {
     // validation
     if (!feature1) throw new Error('feature1 is required');
     if (!feature2) throw new Error('feature2 is required');

@@ -4,7 +4,7 @@ import path from 'path';
 import load from 'load-json-file';
 import write from 'write-json-file';
 import centroid from '@turf/centroid';
-import chromatism from 'chromatism';
+import * as chromatism from 'chromatism';
 import concaveman from 'concaveman';
 import { point, polygon, featureCollection } from '@turf/helpers';
 import { clusterReduce, clusterEach } from '@turf/clusters';
