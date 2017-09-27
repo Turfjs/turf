@@ -1,11 +1,9 @@
 #!/usr/bin/env node
 
-const fs = require('fs-extra');
 const load = require('load-json-file');
 const write = require('write-json-file');
 const path = require('path');
 const glob = require('glob');
-// const {dependencies} = require('../packages/turf/package.json');
 
 function entries(obj) {
     return Object.keys(obj || {}).map(key => [key, obj[key]]);
@@ -33,6 +31,7 @@ function updateDevDependencies(pckg) {
     const devDependencies = {};
     new Map(entries(pckg.devDependencies))
         .set('rollup', '*')
+        .set('uglify-js', '*')
         .set('tape', '*')
         .set('@std/esm', '*')
         .set('benchmark', '*').forEach((version, name) => {
@@ -73,8 +72,9 @@ glob.sync(path.join(__dirname, '..', 'packages', 'turf-*', 'package.json')).forE
         types: 'index.d.ts',
         files: [...files],
         scripts: {
-            'prepublish': 'rollup -c ../../rollup.config.js',
+            'pretest': 'rollup -c ../../rollup.config.js',
             'test': 'node -r @std/esm test.js',
+            'posttest': 'uglifyjs ./dist/index.js -o ./dist/index.min.js',
             'bench': 'node -r @std/esm bench.js'
         },
         repository: {
@@ -98,22 +98,3 @@ glob.sync(path.join(__dirname, '..', 'packages', 'turf-*', 'package.json')).forE
     };
     write.sync(packagePath, newPckg, {indent: 2});
 });
-
-// // Convert ".js" files => ".mjs"
-// glob.sync(path.join(__dirname, '..', 'packages', 'turf*', 'index.js')).forEach(filepath => {
-//     const outpath = filepath.replace('.js', '.mjs');
-//     if (fs.existsSync(outpath)) return;
-
-//     var index = fs.readFileSync(filepath, 'utf8');
-//     index = index.replace(/'\.\/'/g, '\'.\'');
-//     fs.writeFileSync(outpath, index);
-//     fs.removeSync(filepath);
-// });
-
-// // Convert ES Module index import
-// glob.sync(path.join(__dirname, '..', 'packages', 'turf*', 'test.js')).forEach(filepath => {
-
-//     var index = fs.readFileSync(filepath, 'utf8');
-//     index = index.replace(/'.'/g, '\'./index\'');
-//     fs.writeFileSync(filepath, index);
-// });
