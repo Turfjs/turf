@@ -7,7 +7,7 @@
     "lint": "eslint packages/turf-*/index.js",
     "postlint": "documentation lint packages/turf-*/index.js",
     "pretest": "lerna bootstrap && npm run lint",
-    "test": "lerna run test --parallel",
+    "test": "lerna run prepublish --parallel && lerna run test --parallel",
     "docs": "node ./scripts/generate-readmes"
   },
   "repository": {
