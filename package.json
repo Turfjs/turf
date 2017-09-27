@@ -50,7 +50,7 @@
   },
   "devDependencies": {
     "5to6-codemod": "^1.7.1",
-    "@types/geojson": "0.0.31",
+    "@types/geojson": "1.0.4",
     "@types/node": "^8.0.28",
     "@types/tape": "^4.2.30",
     "browserify": "^14.4.0",
