@@ -50,7 +50,6 @@
   },
   "dependencies": {
     "@turf/helpers": "5.0.0-alpha",
-    "@turf/invariant": "5.0.0-alpha",
-    "geodesy": "1.1.2"
+    "@turf/invariant": "5.0.0-alpha"
   }
 }
