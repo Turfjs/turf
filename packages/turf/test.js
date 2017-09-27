@@ -130,7 +130,12 @@ test('turf -- parsing dependencies from index.js', t => {
         // Read Dependencies from package.json
         for (const dependencyName of Object.keys(dependencies)) {
             // Ignore @turf/helpers since it could be used in Typescript definition
-            if (dependencyName === '@turf/helpers') continue;
+            switch (dependencyName) {
+            case '@turf/helpers':
+            case '@turf/invariant':
+            case '@turf/meta':
+                continue;
+            }
             if (!dependenciesUsed.has(dependencyName)) t.fail(`${name} ${dependencyName} is not required in index.js`);
         }
     }

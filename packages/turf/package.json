@@ -59,6 +59,7 @@
     "@std/esm": "*",
     "benchmark": "*",
     "camelcase": "*",
+    "convex-hull": "*",
     "glob": "*",
     "jsdoc": "*",
     "jsdoctest": "*",

@@ -5,7 +5,7 @@ import load from 'load-json-file';
 import write from 'write-json-file';
 import random from '@turf/random';
 import envelope from '@turf/envelope';
-import { lineString }from '@turf/helpers';
+import { lineString } from '@turf/helpers';
 import { getCoords } from '@turf/invariant';
 import matrixToGrid from 'matrix-to-grid';
 import pointGrid from '@turf/point-grid';
