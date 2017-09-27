@@ -17,7 +17,7 @@ import { bearingToAngle } from '@turf/helpers';
  * turf.booleanParallel(line1, line2);
  * //=true
  */
-export default function (line1, line2) {
+export default function booleanParallel(line1, line2) {
     // validation
     if (!line1) throw new Error('line1 is required');
     if (!line2) throw new Error('line2 is required');

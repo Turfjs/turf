@@ -5,7 +5,7 @@ import load from 'load-json-file';
 import write from 'write-json-file';
 import { round, featureCollection, point } from '@turf/helpers';
 import truncate from '@turf/truncate';
-import chromatism from 'chromatism';
+import * as chromatism from 'chromatism';
 import { featureEach, propEach } from '@turf/meta';
 import interpolate from '.';
 
