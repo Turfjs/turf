@@ -1,6 +1,6 @@
-var {point} = require('@turf/helpers');
-var Benchmark = require('benchmark');
-var rhumbBearing = require('./');
+import { point } from '@turf/helpers';
+import Benchmark from 'benchmark';
+import rhumbBearing from './';
 
 var start = point([-75.4, 39.4]);
 var end = point([-75.534, 39.123]);
