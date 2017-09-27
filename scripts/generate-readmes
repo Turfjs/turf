@@ -1,25 +1,14 @@
 #!/usr/bin/env node
 
-const fs = require('fs');
-const d3 = require('d3-queue');
+const fs = require('fs-extra');
+const glob = require('glob');
 const path = require('path');
 const load = require('load-json-file');
-const ProgressBar = require('progress');
+const write = require('write-json-file');
 const documentation = require('documentation');
 
-const q = d3.queue(1);
+const packages = glob.sync(path.join(__dirname, '..', 'packages', 'turf-*', 'package.json'));
 const postfix = fs.readFileSync(path.join(__dirname, 'postfix.md'), 'utf8');
-const packages = path.join(__dirname, '..', 'packages') + path.sep;
-const bar = new ProgressBar('  progress [:bar] :rate/bps :percent :etas', {
-    complete: '=',
-    incomplete: ' ',
-    width: 20,
-    total: fs.readdirSync(packages).length
-});
-
-fs.readdirSync(packages).forEach(directory => {
-    q.defer(generateDocs, packages + directory);
-});
 
 const paths = {
     GeoJSON: 'http://geojson.org/geojson-spec.html#geojson-objects',
@@ -35,27 +24,26 @@ const paths = {
     FeatureCollection: 'http://geojson.org/geojson-spec.html#feature-collection-objects'
 };
 
-function generateDocs(directory, callback) {
-    const pkgPath = path.join(directory, 'package.json');
-    if (!fs.existsSync(pkgPath)) {
-        bar.tick();
-        return callback(null);
-    }
-    const {name, main} = load.sync(pkgPath);
-    const pkgMain = path.join(directory, main);
+packages.forEach(packagePath => {
+    const directory = path.parse(packagePath).dir;
+    const indexPath = path.join(directory, 'index.js');
+    const pckg = load.sync(packagePath);
+    const name = pckg.name;
 
     // Build Documentation
-    documentation.build(pkgMain, { }, (error, res) => {
-        if (error) throw new Error(error);
-        if (res === undefined) { console.log(directory); }
+    documentation.build(indexPath, {shallow: true}).then(res => {
+        if (res === undefined) return console.warning(packagePath);
+        console.log('Building Docs: ' + name);
 
         // Format Markdown
-        documentation.formats.md(res, {paths}, (error, markdown) => {
-            if (error) throw new Error(error);
+        documentation.formats.md(res, {paths}).then(markdown => {
             markdown = `# ${name}\n\n${markdown}${postfix.replace(/{module}/, name)}`;
             fs.writeFileSync(path.join(directory, 'README.md'), markdown);
-            bar.tick();
-            callback(null);
-        });
-    });
-}
+        }).catch(error => console.warning(error));
+
+        // Format JSON
+        // console.log()
+        // fs.removeSync(path.join(directory, 'README.json'));
+        // write.sync(path.join(directory, 'README.json'), JSON.parse(JSON.stringify(res)));
+    }).catch(error => console.warning(error));
+});

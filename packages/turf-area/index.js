@@ -29,6 +29,7 @@ var RADIUS = 6378137;
 /**
  * Calculate Area
  *
+ * @private
  * @param {GeoJSON} geojson GeoJSON
  * @returns {number} area
  */
@@ -67,20 +68,17 @@ function polygonArea(coords) {
 }
 
 /**
- * Calculate the approximate area of the polygon were it projected onto
- *     the earth.  Note that this area will be positive if ring is oriented
- *     clockwise, otherwise it will be negative.
+ * @private
+ * Calculate the approximate area of the polygon were it projected onto the earth.
+ * Note that this area will be positive if ring is oriented clockwise, otherwise it will be negative.
  *
  * Reference:
- * Robert. G. Chamberlain and William H. Duquette, "Some Algorithms for
- *     Polygons on a Sphere", JPL Publication 07-03, Jet Propulsion
- *     Laboratory, Pasadena, CA, June 2007 http://trs-new.jpl.nasa.gov/dspace/handle/2014/40409
+ * Robert. G. Chamberlain and William H. Duquette, "Some Algorithms for Polygons on a Sphere", JPL Publication 07-03, Jet Propulsion
+ * Laboratory, Pasadena, CA, June 2007 http://trs-new.jpl.nasa.gov/dspace/handle/2014/40409
  *
- * Returns:
- * {float} The approximate signed geodesic area of the polygon in square
- *     meters.
+ * @param {Array<Array<number>>} coords Ring Coordinates
+ * @returns {number} The approximate signed geodesic area of the polygon in square meters.
  */
-
 function ringArea(coords) {
     var p1;
     var p2;
