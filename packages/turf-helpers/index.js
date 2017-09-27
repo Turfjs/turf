@@ -533,27 +533,3 @@ export function isNumber(num) {
 export function isObject(input) {
     return (!!input) && (input.constructor === Object);
 }
-
-export default {
-    feature,
-    geometry,
-    point,
-    polygon,
-    lineString,
-    featureCollection,
-    multiLineString,
-    multiPoint,
-    multiPolygon,
-    geometryCollection,
-    round,
-    radiansToDistance,
-    distanceToRadians,
-    distanceToDegrees,
-    bearingToAngle,
-    radians2degrees,
-    degrees2radians,
-    convertDistance,
-    convertArea,
-    isNumber,
-    isObject,
-};

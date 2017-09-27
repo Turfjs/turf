@@ -5,12 +5,11 @@ import load from 'load-json-file';
 import write from 'write-json-file';
 import random from '@turf/random';
 import envelope from '@turf/envelope';
-import helpers from '@turf/helpers';
-const lineString = helpers.lineString;
+import { lineString }from '@turf/helpers';
 import { getCoords } from '@turf/invariant';
 import matrixToGrid from 'matrix-to-grid';
 import pointGrid from '@turf/point-grid';
-import isobands from '.';
+import isobands from './index';
 
 const directories = {
     in: path.join(__dirname, 'test', 'in') + path.sep,

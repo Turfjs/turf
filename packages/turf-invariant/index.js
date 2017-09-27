@@ -206,14 +206,3 @@ export function getType(geojson, name) {
     if (geojson.type) return geojson.type;
     throw new Error((name || 'geojson') + ' is invalid');
 }
-
-export default {
-    getCoord,
-    getCoords,
-    containsNumber,
-    geojsonType,
-    featureOf,
-    collectionOf,
-    getGeom,
-    getType,
-};

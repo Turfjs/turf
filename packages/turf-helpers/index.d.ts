@@ -139,27 +139,3 @@ export function isNumber(num: any): boolean
  * http://turfjs.org/docs/#isobject
  */
 export function isObject(input: any): boolean
-
-export default {
-    feature,
-    geometry,
-    point,
-    polygon,
-    lineString,
-    featureCollection,
-    multiLineString,
-    multiPoint,
-    multiPolygon,
-    geometryCollection,
-    round,
-    radiansToDistance,
-    distanceToRadians,
-    distanceToDegrees,
-    bearingToAngle,
-    radians2degrees,
-    degrees2radians,
-    convertDistance,
-    convertArea,
-    isNumber,
-    isObject,
-};

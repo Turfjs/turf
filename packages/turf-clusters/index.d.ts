@@ -30,9 +30,3 @@ export function clusterReduce<T extends GeometryObject>(
     callback: (previousValue?: any, cluster?: FeatureCollection<T>, clusterValue?: any, currentIndex?: number) => void,
     initialValue?: any
 ): void;
-
-export default {
-    getCluster,
-    clusterEach,
-    clusterReduce,
-}
