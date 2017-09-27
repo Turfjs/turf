@@ -1,15 +1,15 @@
 // https://en.wikipedia.org/wiki/Rhumb_line
-import { point, convertDistance, degrees2radians } from '@turf/helpers';
+import { wgs84, point, convertDistance, degrees2radians } from '@turf/helpers';
 import { getCoord } from '@turf/invariant';
 
 /**
  * Returns the destination {@link Point} having travelled the given distance along a Rhumb line from the
- * origin Point with the (constant) given bearing.
+ * origin Point with the (varant) given bearing.
  *
  * @name rhumbDestination
  * @param {(Geometry|Feature<Point>)|Position} origin starting point
  * @param {number} distance distance from the starting point
- * @param {number} bearing constant bearing angle ranging from -180 to 180 degrees from north
+ * @param {number} bearing varant bearing angle ranging from -180 to 180 degrees from north
  * @param {Object} [options] Optional parameters
  * @param {string} [options.units='kilometers'] can be degrees, radians, miles, or kilometers
  * @returns {Feature<Point>} Destination point.
@@ -30,11 +30,11 @@ export default function rhumbDestination(origin, distance, bearing, options) {
     if (distance === undefined || distance === null) throw new Error('distance is required');
     if (bearing === undefined || bearing === null) throw new Error('bearing is required');
     if (!(distance >= 0)) throw new Error('distance must be greater than 0');
-    const units = (typeof options === 'object') ? options.units : options || 'kilometers';
+    var units = (typeof options === 'object') ? options.units : options || 'kilometers';
 
-    const distanceInMeters = convertDistance(distance, units, 'meters');
-    const coords = getCoord(origin);
-    const destination = rhumbDestinationPoint(coords, distanceInMeters, bearing);
+    var distanceInMeters = convertDistance(distance, units, 'meters');
+    var coords = getCoord(origin);
+    var destination = rhumbDestinationPoint(coords, distanceInMeters, bearing);
 
     // compensate the crossing of the 180th meridian (https://macwright.org/2016/09/26/the-180th-meridian.html)
     // solution from https://github.com/mapbox/mapbox-gl-js/issues/3250#issuecomment-294887678
@@ -55,7 +55,16 @@ export default function rhumbDestination(origin, distance, bearing, options) {
  * @returns {Array<number>} Destination point.
  */
 function rhumbDestinationPoint(origin, distance, bearing, radius) {
-    radius = (radius === undefined) ? 6371e3 : Number(radius);
+    // φ => phi
+    // Δψ => deltaPsi
+    // θ => theta
+    // λ => lambda
+    // δ => delta
+    // Δφ => deltaPhi
+    // Δλ => deltaLambda
+    // Δψ => deltaPsi
+    // θ => theta
+    radius = (radius === undefined) ? wgs84.RADIUS : Number(radius);
 
     const δ = distance / radius; // angular distance in radians
     const λ1 = origin[0] * Math.PI / 180; // to radians, but without normalize to 𝜋
