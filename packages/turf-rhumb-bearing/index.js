@@ -37,14 +37,9 @@ export default function (start, end, final) {
     return bear180;
 }
 
-
-// The following function has been taken and adapted from Geodesy
-// (https://github.com/chrisveness/geodesy/blob/master/latlon-spherical.js)
-// in order to remove it as dpendency and reduce the final bundle size
-
-
 /**
  * Returns the bearing from ‘this’ point to destination point along a rhumb line.
+ * Adapted from Geodesy: https://github.com/chrisveness/geodesy/blob/master/latlon-spherical.js
  *
  * @private
  * @param   {Array<number>} from - origin point.
