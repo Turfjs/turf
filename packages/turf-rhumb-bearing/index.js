@@ -23,7 +23,7 @@ import {radians2degrees, degrees2radians} from '@turf/helpers';
  * point1.properties.bearing = bearing
  * point2.properties.bearing = bearing
  */
-export default function (start, end, options) {
+export default function rhumbBearing(start, end, options) {
     // validation
     if (!start) throw new Error('start point is required');
     if (!end) throw new Error('end point is required');
@@ -31,8 +31,8 @@ export default function (start, end, options) {
 
     let bear360;
 
-    if (final) bear360 = rhumbBearing(getCoord(end), getCoord(start));
-    else bear360 = rhumbBearing(getCoord(start), getCoord(end));
+    if (final) bear360 = calculateRhumbBearing(getCoord(end), getCoord(start));
+    else bear360 = calculateRhumbBearing(getCoord(start), getCoord(end));
 
     const bear180 = (bear360 > 180) ? -(360 - bear360) : bear360;
 
@@ -52,7 +52,7 @@ export default function (start, end, options) {
  * const p2 = new LatLon(50.964, 1.853);
  * const d = p1.rhumbBearingTo(p2); // 116.7 m
  */
-function rhumbBearing(from, to) {
+function calculateRhumbBearing(from, to) {
     const φ1 = degrees2radians(from[1]);
     const φ2 = degrees2radians(to[1]);
     let Δλ = degrees2radians((to[0] - from[0]));
