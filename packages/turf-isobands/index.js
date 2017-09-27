@@ -4,8 +4,8 @@ import inside from '@turf/inside';
 import explode from '@turf/explode';
 import { polygon, multiPolygon, featureCollection } from '@turf/helpers';
 import { collectionOf } from '@turf/invariant';
-import isoBands from './marchingsquares-isobands.js';
-var gridToMatrix = require('grid-to-matrix');
+import gridToMatrix from './grid-to-matrix';
+import isoBands from './marchingsquares-isobands';
 
 /**
  * Takes a grid {@link FeatureCollection} of {@link Point} features with z-values and an array of

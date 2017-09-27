@@ -3,7 +3,7 @@ import { coordEach } from '@turf/meta';
 import { multiLineString, featureCollection } from '@turf/helpers';
 import { collectionOf } from '@turf/invariant';
 import isoContours from './marchingsquares-isocontours';
-var gridToMatrix = require('grid-to-matrix');
+import gridToMatrix from './grid-to-matrix';
 
 /**
  * Takes a grid {@link FeatureCollection} of {@link Point} features with z-values and an array of
