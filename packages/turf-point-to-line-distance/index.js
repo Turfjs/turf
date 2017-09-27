@@ -24,8 +24,8 @@ import {
  * @param {Feature<Point>|Array<number>} pt Feature or Geometry
  * @param {Feature<LineString>|Array<Array<number>>} line GeoJSON Feature or Geometry
  * @param {Object} [options] Optional parameters
- * @param {string} [units="kilometers"] can be degrees, radians, miles, or kilometers
- * @param {boolean} [mercator=false] if distance should be on Mercator or WGS84 projection
+ * @param {string} [options.units='kilometers'] can be degrees, radians, miles, or kilometers
+ * @param {boolean} [options.mercator=false] if distance should be on Mercator or WGS84 projection
  * @returns {number} distance between point and line
  * @example
  * var pt = turf.point([0, 0]);
@@ -72,8 +72,8 @@ export default function (pt, line, options) {
  * @param {Array<number>} a first segment point
  * @param {Array<number>} b second segment point
  * @param {Object} [options] Optional parameters
- * @param {string} [units=kilometers] can be degrees, radians, miles, or kilometers
- * @param {boolean} [mercator=false] if distance should be on Mercator or WGS84 projection
+ * @param {string} [options.units='kilometers'] can be degrees, radians, miles, or kilometers
+ * @param {boolean} [options.mercator=false] if distance should be on Mercator or WGS84 projection
  * @returns {number} distance
  */
 function distanceToSegment(p, a, b, options) {
@@ -135,7 +135,7 @@ function distanceToSegment(p, a, b, options) {
  * @param {Array<number>} a first segment point
  * @param {Array<number>} b second segment point
  * @param {Array<number>} p external point
- * @param {string} [units=kilometers] can be degrees, radians, miles, or kilometers
+ * @param {string} [units='kilometers'] can be degrees, radians, miles, or kilometers
  * @returns {number} distance
  */
 function mercatorPH(a, b, p, units) {
@@ -188,7 +188,7 @@ function euclideanIntersection(a, b, p) {
  * @private
  * @param {Object} from first point
  * @param {Object} to second point
- * @param {string} units can be degrees, radians, miles, or kilometers
+ * @param {string} [units='kilometers'] can be degrees, radians, miles, or kilometers
  * @returns {number} squared distance
  */
 function euclideanDistance(from, to, units) {

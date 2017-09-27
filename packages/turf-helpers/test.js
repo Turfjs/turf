@@ -19,7 +19,7 @@ import {
     convertArea,
     round,
     isObject,
-    isNumber } from '.';
+    isNumber } from './index';
 
 test('point', t => {
     const ptArray = point([5, 10], {name: 'test point'});

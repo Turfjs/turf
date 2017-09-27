@@ -1,4 +1,4 @@
-import {coordEach} from '@turf/meta';
+import { coordEach } from '@turf/meta';
 
 /**
  * Takes a GeoJSON Feature or FeatureCollection and truncates the precision of the geometry.
@@ -21,7 +21,7 @@ import {coordEach} from '@turf/meta';
  * //addToMap
  * var addToMap = [truncated];
  */
-export default function (geojson, precision, coordinates, mutate) {
+export default function truncate(geojson, precision, coordinates, mutate) {
     // default params
     precision = (precision === undefined || precision === null || isNaN(precision)) ? 6 : precision;
     coordinates = (coordinates === undefined || coordinates === null || isNaN(coordinates)) ? 3 : coordinates;
@@ -38,7 +38,7 @@ export default function (geojson, precision, coordinates, mutate) {
 
     // Truncate Coordinates
     coordEach(geojson, function (coords) {
-        truncate(coords, factor, coordinates);
+        truncateCoords(coords, factor, coordinates);
     });
     return geojson;
 }
@@ -52,7 +52,7 @@ export default function (geojson, precision, coordinates, mutate) {
  * @param {number} coordinates maximum number of coordinates (primarly used to remove z coordinates)
  * @returns {Array<any>} mutated coordinates
  */
-function truncate(coords, factor, coordinates) {
+function truncateCoords(coords, factor, coordinates) {
     // Remove extra coordinates (usually elevation coordinates and more)
     if (coords.length > coordinates) coords.splice(coordinates, coords.length);
 

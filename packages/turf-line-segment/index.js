@@ -75,8 +75,8 @@ function createSegments(coords, properties) {
  * Create BBox between two coordinates (faster than @turf/bbox)
  *
  * @private
- * @param {[number, number]} coords1 Point coordinate
- * @param {[number, number]} coords2 Point coordinate
+ * @param {Array<number>} coords1 Point coordinate
+ * @param {Array<number>} coords2 Point coordinate
  * @returns {BBox} [west, south, east, north]
  */
 function bbox(coords1, coords2) {

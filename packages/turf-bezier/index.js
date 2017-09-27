@@ -30,7 +30,7 @@ import Spline from './spline.js';
  * var addToMap = [line, curved]
  * curved.properties = { stroke: '#0F0' };
  */
-export default function (line, options) {
+export default function bezier(line, options) {
     // Optional params
     options = options || {};
     var resolution = options.resolution || 10000;

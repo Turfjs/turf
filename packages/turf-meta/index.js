@@ -1,50 +1,4 @@
 /**
- * GeoJSON BBox
- *
- * @private
- * @typedef {[number, number, number, number]} BBox
- */
-
-/**
- * GeoJSON Id
- *
- * @private
- * @typedef {(number|string)} Id
- */
-
-/**
- * GeoJSON FeatureCollection
- *
- * @private
- * @typedef {Object} FeatureCollection
- * @property {string} type
- * @property {?Id} id
- * @property {?BBox} bbox
- * @property {Feature[]} features
- */
-
-/**
- * GeoJSON Feature
- *
- * @private
- * @typedef {Object} Feature
- * @property {string} type
- * @property {?Id} id
- * @property {?BBox} bbox
- * @property {*} properties
- * @property {Geometry} geometry
- */
-
-/**
- * GeoJSON Geometry
- *
- * @private
- * @typedef {Object} Geometry
- * @property {string} type
- * @property {any[]} coordinates
- */
-
-/**
  * Callback for coordEach
  *
  * @callback coordEachCallback
@@ -827,7 +781,7 @@ export function segmentReduce(geojson, callback, initialValue) {
  * @param {Object} properties Properties
  * @returns {Feature} GeoJSON Feature
  */
-export function feature(geometry, properties) {
+function feature(geometry, properties) {
     if (geometry === undefined) throw new Error('No geometry passed');
 
     return {
@@ -845,7 +799,7 @@ export function feature(geometry, properties) {
  * @param {Object} properties Properties
  * @returns {Feature<LineString>} GeoJSON LineString Feature
  */
-export function lineString(coordinates, properties) {
+function lineString(coordinates, properties) {
     if (!coordinates) throw new Error('No coordinates passed');
     if (coordinates.length < 2) throw new Error('Coordinates must be an array of two or more positions');
 
@@ -858,7 +812,6 @@ export function lineString(coordinates, properties) {
         }
     };
 }
-
 
 /**
  * Callback for lineEach

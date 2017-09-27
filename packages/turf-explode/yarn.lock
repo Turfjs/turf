@@ -2,6 +2,18 @@
 # yarn lockfile v1
 
 
+"@std/esm@*":
+  version "0.11.0"
+  resolved "https://registry.yarnpkg.com/@std/esm/-/esm-0.11.0.tgz#f5562c6723a2eae5d6f95c3b35ff1338c586ae4e"
+
+"@turf/helpers@5.0.0-alpha":
+  version "5.0.0-alpha"
+  resolved "https://registry.yarnpkg.com/@turf/helpers/-/helpers-5.0.0-alpha.tgz#b9f8d8d57cb7fab79273d1e29ba4771e55ff3ab3"
+
+"@turf/meta@5.0.0-alpha":
+  version "5.0.0-alpha"
+  resolved "https://registry.yarnpkg.com/@turf/meta/-/meta-5.0.0-alpha.tgz#15cf9170bea0e7ed0e22aa3af8ade9c9ed83108e"
+
 "JSV@>= 4.0.x":
   version "4.0.2"
   resolved "https://registry.yarnpkg.com/JSV/-/JSV-4.0.2.tgz#d077f6825571f82132f9dffaed587b4029feff57"

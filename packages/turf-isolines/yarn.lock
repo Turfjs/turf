@@ -2,21 +2,25 @@
 # yarn lockfile v1
 
 
+"@std/esm@*":
+  version "0.11.0"
+  resolved "https://registry.yarnpkg.com/@std/esm/-/esm-0.11.0.tgz#f5562c6723a2eae5d6f95c3b35ff1338c586ae4e"
+
 "@turf/helpers@4.1.0":
   version "4.1.0"
   resolved "https://registry.yarnpkg.com/@turf/helpers/-/helpers-4.1.0.tgz#013a9c53db6a9386e47c7ab445d93ca2035c4b81"
 
-"@turf/helpers@^4.1.0":
-  version "4.7.3"
-  resolved "https://registry.yarnpkg.com/@turf/helpers/-/helpers-4.7.3.tgz#bc312ac43cab3c532a483151c4c382c5649429e9"
+"@turf/helpers@5.0.0-alpha":
+  version "5.0.0-alpha"
+  resolved "https://registry.yarnpkg.com/@turf/helpers/-/helpers-5.0.0-alpha.tgz#b9f8d8d57cb7fab79273d1e29ba4771e55ff3ab3"
 
-"@turf/invariant@^4.1.0":
-  version "4.7.3"
-  resolved "https://registry.yarnpkg.com/@turf/invariant/-/invariant-4.7.3.tgz#538f367d23c113fc849d70c9a524b8563874601d"
+"@turf/invariant@5.0.0-alpha":
+  version "5.0.0-alpha"
+  resolved "https://registry.yarnpkg.com/@turf/invariant/-/invariant-5.0.0-alpha.tgz#fd0614f8d63f68b6c96442780725a92b7c91c050"
 
-"@turf/meta@^4.1.0":
-  version "4.7.4"
-  resolved "https://registry.yarnpkg.com/@turf/meta/-/meta-4.7.4.tgz#6de2f1e9890b8f64b669e4b47c09b20893063977"
+"@turf/meta@5.0.0-alpha":
+  version "5.0.0-alpha"
+  resolved "https://registry.yarnpkg.com/@turf/meta/-/meta-5.0.0-alpha.tgz#15cf9170bea0e7ed0e22aa3af8ade9c9ed83108e"
 
 balanced-match@^1.0.0:
   version "1.0.0"
@@ -120,14 +124,6 @@ graceful-fs@^4.1.11, graceful-fs@^4.1.2:
   version "4.1.11"
   resolved "https://registry.yarnpkg.com/graceful-fs/-/graceful-fs-4.1.11.tgz#0e8bdfe4d1ddb8854d64e04ea7c00e2a026e5658"
 
-grid-to-matrix@1.2.0:
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/grid-to-matrix/-/grid-to-matrix-1.2.0.tgz#b016df4d76f996e6b74663eab9ceb913546657e9"
-  dependencies:
-    "@turf/helpers" "^4.1.0"
-    "@turf/invariant" "^4.1.0"
-    "@turf/meta" "^4.1.0"
-
 has@^1.0.1, has@~1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/has/-/has-1.0.1.tgz#8461733f538b0837c9361e39a9ab9e9704dc2f28"
@@ -197,10 +193,6 @@ make-dir@^1.0.0:
   resolved "https://registry.yarnpkg.com/make-dir/-/make-dir-1.0.0.tgz#97a011751e91dd87cfadef58832ebb04936de978"
   dependencies:
     pify "^2.3.0"
-
-marchingsquares@1.2.0:
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/marchingsquares/-/marchingsquares-1.2.0.tgz#36ae2dcc170be576d42579aac3c46da89ab650e6"
 
 matrix-to-grid@*:
   version "3.0.1"

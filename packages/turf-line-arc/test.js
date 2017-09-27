@@ -1,11 +1,11 @@
-import test from 'tape';
 import fs from 'fs';
+import test from 'tape';
 import path from 'path';
 import load from 'load-json-file';
 import write from 'write-json-file';
 import truncate from '@turf/truncate';
 import { featureCollection } from '@turf/helpers';
-import lineArc from '.';
+import lineArc from './index';
 
 const directories = {
     in: path.join(__dirname, 'test', 'in') + path.sep,

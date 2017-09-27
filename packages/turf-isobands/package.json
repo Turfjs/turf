@@ -2,19 +2,21 @@
   "name": "@turf/isobands",
   "version": "4.7.3",
   "description": "turf isobands module",
-  "main": "index.es5.js",
-  "module": "index.js",
-  "jsnext:main": "index.js",
+  "main": "dist/index",
+  "module": "index",
+  "jsnext:main": "index",
   "types": "index.d.ts",
   "files": [
     "index.js",
     "index.d.ts",
-    "index.es5.js"
+    "marchingsquares-isobands.js",
+    "grid-to-matrix.js",
+    "dist"
   ],
   "scripts": {
-    "pretest": "rollup -c ../../rollup.config.js",
-    "test": "node test.es5.js",
-    "bench": "node bench.js"
+    "prepublish": "rollup -c ../../rollup.config.js",
+    "test": "node -r @std/esm test.js",
+    "bench": "node -r @std/esm bench.js"
   },
   "repository": {
     "type": "git",
@@ -48,7 +50,8 @@
     "matrix-to-grid": "*",
     "rollup": "*",
     "tape": "*",
-    "write-json-file": "*"
+    "write-json-file": "*",
+    "@std/esm": "*"
   },
   "dependencies": {
     "@turf/area": "^4.7.3",
@@ -57,7 +60,10 @@
     "@turf/helpers": "5.0.0-alpha",
     "@turf/inside": "^4.7.3",
     "@turf/invariant": "5.0.0-alpha",
-    "grid-to-matrix": "^1.3.0",
-    "marchingsquares": "^1.2.0"
+    "@turf/meta": "^5.0.0-alpha"
+  },
+  "@std/esm": {
+    "esm": "js",
+    "cjs": true
   }
 }

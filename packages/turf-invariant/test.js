@@ -1,6 +1,6 @@
 import test from 'tape';
 import { point, lineString, polygon, featureCollection, geometryCollection } from '@turf/helpers';
-import invariant from '.';
+import * as invariant from './index';
 
 test('invariant -- containsNumber', t => {
     t.equals(invariant.containsNumber([1, 1]), true);
