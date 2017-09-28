@@ -141,6 +141,6 @@ export function isNumber(num: any): boolean
 export function isObject(input: any): boolean
 
 /**
- * http://turfjs.org/docs/
+ * Earth Radius used with the Harvesine formula and approximates using a spherical (non-ellipsoid) Earth.
  */
 export const earthRadius: number;

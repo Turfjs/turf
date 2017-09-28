@@ -130,7 +130,7 @@ export {
     isObject,
     round,
     convertArea,
-    wgs84
+    earthRadius
 } from '@turf/helpers';
 import * as helpers from '@turf/helpers';
 export { helpers };

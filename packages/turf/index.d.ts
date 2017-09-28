@@ -127,9 +127,10 @@ export {
     radians2degrees,
     convertDistance,
     isNumber,
+    isObject,
     round,
     convertArea,
-    wgs84
+    earthRadius
 } from '@turf/helpers';
 import * as helpers from '@turf/helpers';
 export { helpers };
@@ -160,6 +161,7 @@ export {
     segmentReduce,
     segmentEach,
     lineEach,
-    lineReduce} from '@turf/meta';
+    lineReduce
+} from '@turf/meta';
 import * as meta from '@turf/meta';
 export { meta };

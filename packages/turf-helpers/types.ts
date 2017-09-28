@@ -22,7 +22,7 @@ import {
     convertArea,
     isNumber,
     isObject,
-    wgs84,
+    earthRadius,
     // Typescript types
     Point,
     LineString,
@@ -157,9 +157,3 @@ const polyGeom: Polygon = geometry('Polygon', poly.geometry.coordinates);
 const multiPtGeom: MultiPoint = geometry('MultiPoint', multiPt.geometry.coordinates);
 const multiLineGeom: MultiLineString = geometry('MultiLineString', multiLine.geometry.coordinates);
 const multiPolyGeom: MultiPolygon = geometry('MultiPolygon', multiPoly.geometry.coordinates);
-
-// WGS84
-wgs84.FLATTENING
-wgs84.FLATTENING_DENOM
-wgs84.POLAR_RADIUS
-wgs84.RADIUS
