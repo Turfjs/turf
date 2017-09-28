@@ -1,14 +1,8 @@
-// import distance from '@turf/distance';
-// import turfBBox from '@turf/bbox';
-// import { point, featureCollection } from '@turf/helpers';
-// import inside from '@turf/inside';
-// import { getType } from '@turf/invariant';
-var distance  = require('@turf/distance');
-var turfBBox  = require('@turf/bbox');
-var point  = require('@turf/helpers').point;
-var featureCollection = require('@turf/helpers').featureCollection;
-var inside  = require('@turf/inside');
-var getType = require('@turf/invariant').getType;
+import distance from '@turf/distance';
+import turfBBox from '@turf/bbox';
+import { point, featureCollection } from '@turf/helpers';
+import inside from '@turf/inside';
+import { getType } from '@turf/invariant';
 
 /**
  * Creates a {@link Point} grid from a bounding box, {@link FeatureCollection} or {@link Feature}.

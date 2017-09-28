@@ -1,16 +1,9 @@
-// import fs from 'fs';
-// import test from 'tape';
-// import path from 'path';
-// import load from 'load-json-file';
-// import write from 'write-json-file';
-// import pointGrid from '.';
-
-var fs = require('fs');
-var test = require('tape');
-var path = require('path');
-var load = require('load-json-file');
-var write = require('write-json-file');
-var pointGrid = require('./');
+import fs from 'fs';
+import test from 'tape';
+import path from 'path';
+import load from 'load-json-file';
+import write from 'write-json-file';
+import pointGrid from '.';
 
 const directories = {
     in: path.join(__dirname, 'test', 'in') + path.sep,
