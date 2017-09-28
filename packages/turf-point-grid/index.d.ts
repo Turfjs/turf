@@ -8,13 +8,17 @@ import {
     Point
 } from '@turf/helpers';
 
+interface Options {
+    units?: Units,
+    properties?: object,
+    bboxIsMask?: boolean;
+}
+
 /**
  * http://turfjs.org/docs/#pointgrid
  */
 export default function pointGrid(
     bbox: BBox | Feature<any> | FeatureCollection<any>,
     cellSide: number,
-    units?: Units,
-    centered?: boolean,
-    bboxIsMask?: boolean
+    options?: Options
 ): FeatureCollection<Point>;

@@ -10,19 +10,18 @@ Creates a [Point](http://geojson.org/geojson-spec.html#point) grid from a boundi
 
 -   `bbox` **(BBox | [FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects) \| [Feature](http://geojson.org/geojson-spec.html#feature-objects))** extent in [minX, minY, maxX, maxY] order
 -   `cellSide` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** the distance between points
--   `units` **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** used in calculating cellSide, can be degrees, radians, miles, or kilometers (optional, default `kilometers`)
--   `centered` **[boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** adjust points position to center the grid into bbox. **This parameter is going to be removed** in the next major release, having the output always centered into bbox. (optional, default `true`)
--   `bboxIsMask` **[boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** if true, and bbox is a Polygon or MultiPolygon, the grid Point will be created
-    only if inside the bbox Polygon(s) (optional, default `false`)
+-   `options` **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)** Optional parameters (optional, default `{}`)
+    -   `options.units` **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** used in calculating cellSide, can be degrees, radians, miles, or kilometers (optional, default `"kilometers"`)
+    -   `options.bboxIsMask` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** if true, and bbox is a Polygon or MultiPolygon, the grid Point will be created
+        only if inside the bbox Polygon(s) (optional, default `false`)
 
 **Examples**
 
 ```javascript
 var extent = [-70.823364, -33.553984, -70.473175, -33.302986];
 var cellSide = 3;
-var units = 'miles';
 
-var grid = turf.pointGrid(extent, cellSide, units);
+var grid = turf.pointGrid(extent, cellSide, {units: 'miles'});
 
 //addToMap
 var addToMap = [grid];

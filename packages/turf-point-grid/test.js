@@ -1,9 +1,16 @@
-import fs from 'fs';
-import test from 'tape';
-import path from 'path';
-import load from 'load-json-file';
-import write from 'write-json-file';
-import pointGrid from '.';
+// import fs from 'fs';
+// import test from 'tape';
+// import path from 'path';
+// import load from 'load-json-file';
+// import write from 'write-json-file';
+// import pointGrid from '.';
+
+var fs = require('fs');
+var test = require('tape');
+var path = require('path');
+var load = require('load-json-file');
+var write = require('write-json-file');
+var pointGrid = require('./');
 
 const directories = {
     in: path.join(__dirname, 'test', 'in') + path.sep,
@@ -21,8 +28,12 @@ let fixtures = fs.readdirSync(directories.in).map(filename => {
 
 test('turf-point-grid', t => {
     for (const {name, geojson} of fixtures) {
-        const {cellSide, units, centered, bboxIsMask} = geojson.properties;
-        const result = pointGrid(geojson, cellSide, units, centered, bboxIsMask);
+        const {cellSide, units, bboxIsMask, props} = geojson.properties;
+        const result = pointGrid(geojson, cellSide, {
+            units,
+            bboxIsMask,
+            properties: props,
+        });
 
         // Add styled GeoJSON to the result
         geojson.properties = {
