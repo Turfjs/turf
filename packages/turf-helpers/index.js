@@ -466,7 +466,6 @@ export function degrees2radians(degrees) {
     return radians * Math.PI / 180;
 }
 
-
 /**
  * Converts a distance to the requested unit.
  * Valid units: miles, nauticalmiles, inches, yards, meters, metres, kilometers, centimeters, feet
@@ -535,19 +534,7 @@ export function isObject(input) {
     return (!!input) && (input.constructor === Object);
 }
 
-var RADIUS = 6378137;
-var FLATTENING_DENOM = 298.257223563;
-var FLATTENING = 1 / FLATTENING_DENOM;
-var POLAR_RADIUS = RADIUS * (1 - FLATTENING);
-
 /**
- * WGS84 Provides radius, FLATTENING, and POLAR_RADIUS constants from the reference ellipsoid.
- *
- * http://earth-info.nga.mil/GandG/wgs84/gravitymod/egm96/egm96.html
+ * Earth Radius used with the Harvesine formula and approximates using a spherical (non-ellipsoid) Earth.
  */
-export var wgs84 = {
-    RADIUS: RADIUS,
-    FLATTENING_DENOM: FLATTENING_DENOM,
-    FLATTENING: FLATTENING,
-    POLAR_RADIUS: POLAR_RADIUS,
-};
+export var earthRadius = 6371008.8;

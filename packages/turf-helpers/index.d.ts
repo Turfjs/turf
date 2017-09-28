@@ -141,11 +141,6 @@ export function isNumber(num: any): boolean
 export function isObject(input: any): boolean
 
 /**
- * http://turfjs.org/docs/#wgs84
+ * http://turfjs.org/docs/
  */
-export const wgs84: {
-    RADIUS: number
-    FLATTENING_DENOM: number
-    FLATTENING: number
-    POLAR_RADIUS: number
-}
+export const earthRadius: number;
