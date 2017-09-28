@@ -20,7 +20,6 @@ var getType = require('@turf/invariant').getType;
  * @param {string} [options.units="kilometers"] used in calculating cellSide, can be degrees, radians, miles, or kilometers
  * @param {number} [options.bboxIsMask=false] if true, and bbox is a Polygon or MultiPolygon, the grid Point will be created
  * @param {Object} [options.properties={}] passed to each point of the grid
- * only if inside the bbox Polygon(s)
  * @returns {FeatureCollection<Point>} grid of points
  * @example
  * var extent = [-70.823364, -33.553984, -70.473175, -33.302986];
