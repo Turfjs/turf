@@ -1,6 +1,6 @@
 // https://en.wikipedia.org/wiki/Rhumb_line
-import {convertDistance} from '@turf/helpers';
-import {getCoord} from '@turf/invariant';
+import { convertDistance, wgs84 } from '@turf/helpers';
+import { getCoord } from '@turf/invariant';
 
 /**
  * Calculates the distance along a rhumb line between two {@link Point|points} in degrees, radians,
@@ -56,26 +56,32 @@ export default function (from, to, options) {
  *     var d = p1.distanceTo(p2); // 40.31 km
  */
 function rhumbDistance(origin, destination, radius) {
-    radius = (radius === undefined) ? 6371e3 : Number(radius);
+    // φ => phi
+    // λ => lambda
+    // ψ => psi
+    // Δ => Delta
+    // δ => delta
+    // θ => theta
 
+    radius = (radius === undefined) ? wgs84.RADIUS : Number(radius);
     // see www.edwilliams.org/avform.htm#Rhumb
 
     var R = radius;
-    var φ1 = origin[1] * Math.PI / 180;
-    var φ2 = destination[1] * Math.PI / 180;
-    var Δφ = φ2 - φ1;
-    let Δλ = Math.abs(destination[0] - origin[0]) * Math.PI / 180;
+    var phi1 = origin[1] * Math.PI / 180;
+    var phi2 = destination[1] * Math.PI / 180;
+    var DeltaPhi = phi2 - phi1;
+    var DeltaLambda = Math.abs(destination[0] - origin[0]) * Math.PI / 180;
     // if dLon over 180° take shorter rhumb line across the anti-meridian:
-    if (Δλ > Math.PI) Δλ -= 2 * Math.PI;
+    if (DeltaLambda > Math.PI) DeltaLambda -= 2 * Math.PI;
 
     // on Mercator projection, longitude distances shrink by latitude; q is the 'stretch factor'
     // q becomes ill-conditioned along E-W line (0/0); use empirical tolerance to avoid it
-    var Δψ = Math.log(Math.tan(φ2 / 2 + Math.PI / 4) / Math.tan(φ1 / 2 + Math.PI / 4));
-    var q = Math.abs(Δψ) > 10e-12 ? Δφ / Δψ : Math.cos(φ1);
+    var DeltaPsi = Math.log(Math.tan(phi2 / 2 + Math.PI / 4) / Math.tan(phi1 / 2 + Math.PI / 4));
+    var q = Math.abs(DeltaPsi) > 10e-12 ? DeltaPhi / DeltaPsi : Math.cos(phi1);
 
     // distance is pythagoras on 'stretched' Mercator projection
-    var δ = Math.sqrt(Δφ * Δφ + q * q * Δλ * Δλ); // angular distance in radians
-    var dist = δ * R;
+    var delta = Math.sqrt(DeltaPhi * DeltaPhi + q * q * DeltaLambda * DeltaLambda); // angular distance in radians
+    var dist = delta * R;
 
     return dist;
 }

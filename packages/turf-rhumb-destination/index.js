@@ -56,32 +56,30 @@ export default function rhumbDestination(origin, distance, bearing, options) {
  */
 function rhumbDestinationPoint(origin, distance, bearing, radius) {
     // φ => phi
-    // Δψ => deltaPsi
-    // θ => theta
     // λ => lambda
+    // ψ => psi
+    // Δ => Delta
     // δ => delta
-    // Δφ => deltaPhi
-    // Δλ => deltaLambda
-    // Δψ => deltaPsi
     // θ => theta
+
     radius = (radius === undefined) ? wgs84.RADIUS : Number(radius);
 
-    const δ = distance / radius; // angular distance in radians
-    const λ1 = origin[0] * Math.PI / 180; // to radians, but without normalize to 𝜋
-    const φ1 = degrees2radians(origin[1]);
-    const θ = degrees2radians(bearing);
+    var delta = distance / radius; // angular distance in radians
+    var lambda1 = origin[0] * Math.PI / 180; // to radians, but without normalize to 𝜋
+    var phi1 = degrees2radians(origin[1]);
+    var theta = degrees2radians(bearing);
 
-    const Δφ = δ * Math.cos(θ);
-    let φ2 = φ1 + Δφ;
+    var DeltaPhi = delta * Math.cos(theta);
+    var phi2 = phi1 + DeltaPhi;
 
     // check for some daft bugger going past the pole, normalise latitude if so
-    if (Math.abs(φ2) > Math.PI / 2) φ2 = φ2 > 0 ? Math.PI - φ2 : -Math.PI - φ2;
+    if (Math.abs(phi2) > Math.PI / 2) phi2 = phi2 > 0 ? Math.PI - phi2 : -Math.PI - phi2;
 
-    const Δψ = Math.log(Math.tan(φ2 / 2 + Math.PI / 4) / Math.tan(φ1 / 2 + Math.PI / 4));
-    const q = Math.abs(Δψ) > 10e-12 ? Δφ / Δψ : Math.cos(φ1); // E-W course becomes ill-conditioned with 0/0
+    var DeltaPsi = Math.log(Math.tan(phi2 / 2 + Math.PI / 4) / Math.tan(phi1 / 2 + Math.PI / 4));
+    var q = Math.abs(DeltaPsi) > 10e-12 ? DeltaPhi / DeltaPsi : Math.cos(phi1); // E-W course becomes ill-conditioned with 0/0
 
-    const Δλ = δ * Math.sin(θ) / q;
-    const λ2 = λ1 + Δλ;
+    var DeltaLambda = delta * Math.sin(theta) / q;
+    var lambda2 = lambda1 + DeltaLambda;
 
-    return [((λ2 * 180 / Math.PI) + 540) % 360 - 180, φ2 * 180 / Math.PI]; // normalise to −180..+180°
+    return [((lambda2 * 180 / Math.PI) + 540) % 360 - 180, phi2 * 180 / Math.PI]; // normalise to −180..+180°
 }
