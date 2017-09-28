@@ -1,4 +1,4 @@
-const convexHull = require('convex-hull');
+var convexHull = require('convex-hull');
 import { coordEach as each } from '@turf/meta';
 import { polygon } from '@turf/helpers';
 

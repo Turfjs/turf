@@ -1,5 +1,5 @@
 // https://en.wikipedia.org/wiki/Rhumb_line
-import { wgs84, point, convertDistance, degrees2radians } from '@turf/helpers';
+import { earthRadius, point, convertDistance, degrees2radians } from '@turf/helpers';
 import { getCoord } from '@turf/invariant';
 
 /**
@@ -62,7 +62,7 @@ function rhumbDestinationPoint(origin, distance, bearing, radius) {
     // δ => delta
     // θ => theta
 
-    radius = (radius === undefined) ? wgs84.RADIUS : Number(radius);
+    radius = (radius === undefined) ? earthRadius : Number(radius);
 
     var delta = distance / radius; // angular distance in radians
     var lambda1 = origin[0] * Math.PI / 180; // to radians, but without normalize to 𝜋

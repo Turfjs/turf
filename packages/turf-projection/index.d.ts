@@ -1,25 +1,28 @@
-/// <reference types="geojson" />
+import {
+    Feature,
+    FeatureCollection,
+    GeometryObject,
+    GeometryCollection
+} from '@turf/helpers';
 
-export type Types = GeoJSON.FeatureCollection<any> | GeoJSON.Feature<any> | GeoJSON.GeometryObject | GeoJSON.GeometryCollection;
-
-interface Options {
-  /**
-   * allows GeoJSON input to be mutated (significant performance increase if true)
-   */
-  mutate?: boolean
-}
+type Types = Feature<any> | FeatureCollection<any> | GeometryObject | GeometryCollection
 
 /**
  * http://turfjs.org/docs/#toMercator
  */
-export function toMercator<T extends Types>(geojson: T, options?: Options): T;
+export function toMercator<T extends Types>(
+    geojson: T,
+    options?: {
+        mutate?: boolean
+    }
+): T;
 
 /**
  * http://turfjs.org/docs/#toWgs84
  */
-export function toWgs84<T extends Types>(geojson: T, options?: Options): T;
-
-export default {
-  toMercator,
-  toWgs84
-};
+export function toWgs84<T extends Types>(
+    geojson: T,
+    options?: {
+        mutate?: boolean
+    }
+): T;

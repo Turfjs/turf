@@ -1,5 +1,5 @@
 // https://en.wikipedia.org/wiki/Rhumb_line
-import { convertDistance, wgs84 } from '@turf/helpers';
+import { convertDistance, earthRadius } from '@turf/helpers';
 import { getCoord } from '@turf/invariant';
 
 /**
@@ -63,7 +63,7 @@ function rhumbDistance(origin, destination, radius) {
     // δ => delta
     // θ => theta
 
-    radius = (radius === undefined) ? wgs84.RADIUS : Number(radius);
+    radius = (radius === undefined) ? earthRadius : Number(radius);
     // see www.edwilliams.org/avform.htm#Rhumb
 
     var R = radius;
