@@ -1,5 +1,5 @@
 import tin from '@turf/tin';
-const dissolve = require('geojson-dissolve');
+var dissolve = require('geojson-dissolve');
 import distance from '@turf/distance';
 import { feature, featureCollection } from '@turf/helpers';
 import { featureEach } from '@turf/meta';

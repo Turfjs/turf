@@ -27,14 +27,14 @@ export default function rhumbBearing(start, end, options) {
     // validation
     if (!start) throw new Error('start point is required');
     if (!end) throw new Error('end point is required');
-    const final = (typeof options === 'object') ? options.final : options;
+    var final = (typeof options === 'object') ? options.final : options;
 
-    let bear360;
+    var bear360;
 
     if (final) bear360 = calculateRhumbBearing(getCoord(end), getCoord(start));
     else bear360 = calculateRhumbBearing(getCoord(start), getCoord(end));
 
-    const bear180 = (bear360 > 180) ? -(360 - bear360) : bear360;
+    var bear180 = (bear360 > 180) ? -(360 - bear360) : bear360;
 
     return bear180;
 }
@@ -48,21 +48,25 @@ export default function rhumbBearing(start, end, options) {
  * @param   {Array<number>} to - destination point.
  * @returns {number} Bearing in degrees from north.
  * @example
- * const p1 = new LatLon(51.127, 1.338);
- * const p2 = new LatLon(50.964, 1.853);
- * const d = p1.rhumbBearingTo(p2); // 116.7 m
+ * var p1 = new LatLon(51.127, 1.338);
+ * var p2 = new LatLon(50.964, 1.853);
+ * var d = p1.rhumbBearingTo(p2); // 116.7 m
  */
 function calculateRhumbBearing(from, to) {
-    const φ1 = degrees2radians(from[1]);
-    const φ2 = degrees2radians(to[1]);
-    let Δλ = degrees2radians((to[0] - from[0]));
-    // if dLon over 180° take shorter rhumb line across the anti-meridian:
-    if (Δλ > Math.PI) Δλ -= 2 * Math.PI;
-    if (Δλ < -Math.PI) Δλ += 2 * Math.PI;
+    // φ => phi
+    // Δλ => deltaLambda
+    // Δψ => deltaPsi
+    // θ => theta
+    var phi1 = degrees2radians(from[1]);
+    var phi2 = degrees2radians(to[1]);
+    var deltaLambda = degrees2radians((to[0] - from[0]));
+    // if deltaLambdaon over 180° take shorter rhumb line across the anti-meridian:
+    if (deltaLambda > Math.PI) deltaLambda -= 2 * Math.PI;
+    if (deltaLambda < -Math.PI) deltaLambda += 2 * Math.PI;
 
-    const Δψ = Math.log(Math.tan(φ2 / 2 + Math.PI / 4) / Math.tan(φ1 / 2 + Math.PI / 4));
+    var deltaPsi = Math.log(Math.tan(phi2 / 2 + Math.PI / 4) / Math.tan(phi1 / 2 + Math.PI / 4));
 
-    const θ = Math.atan2(Δλ, Δψ);
+    var theta = Math.atan2(deltaLambda, deltaPsi);
 
-    return (radians2degrees(θ) + 360) % 360;
+    return (radians2degrees(theta) + 360) % 360;
 }

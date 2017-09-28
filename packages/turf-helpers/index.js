@@ -23,7 +23,7 @@ export function feature(geometry, properties, bbox, id) {
     if (bbox && bbox.length !== 4) throw new Error('bbox must be an Array of 4 numbers');
     if (id && ['string', 'number'].indexOf(typeof id) === -1) throw new Error('id must be a number or a string');
 
-    let feat = {type: 'Feature'};
+    var feat = {type: 'Feature'};
     if (id) feat.id = id;
     if (bbox) feat.bbox = bbox;
     feat.properties = properties || {};
@@ -55,7 +55,7 @@ export function geometry(type, coordinates, bbox) {
     if (!Array.isArray(coordinates)) throw new Error('coordinates must be an Array');
     if (bbox && bbox.length !== 4) throw new Error('bbox must be an Array of 4 numbers');
 
-    let geom;
+    var geom;
     switch (type) {
     case 'Point': geom = point(coordinates).geometry; break;
     case 'LineString': geom = lineString(coordinates).geometry; break;
@@ -120,12 +120,12 @@ export function point(coordinates, properties, bbox, id) {
 export function polygon(coordinates, properties, bbox, id) {
     if (!coordinates) throw new Error('No coordinates passed');
 
-    for (let i = 0; i < coordinates.length; i++) {
-        let ring = coordinates[i];
+    for (var i = 0; i < coordinates.length; i++) {
+        var ring = coordinates[i];
         if (ring.length < 4) {
             throw new Error('Each LinearRing of a Polygon must have 4 or more Positions.');
         }
-        for (let j = 0; j < ring[ring.length - 1].length; j++) {
+        for (var j = 0; j < ring[ring.length - 1].length; j++) {
             // Check if first point of Polygon contains two numbers
             if (i === 0 && j === 0 && !isNumber(ring[0][0]) || !isNumber(ring[0][1])) throw new Error('Coordinates must contain numbers');
             if (ring[ring.length - 1][j] !== ring[0][j]) {
@@ -206,7 +206,7 @@ export function featureCollection(features, bbox, id) {
     if (bbox && bbox.length !== 4) throw new Error('bbox must be an Array of 4 numbers');
     if (id && ['string', 'number'].indexOf(typeof id) === -1) throw new Error('id must be a number or a string');
 
-    const fc = {type: 'FeatureCollection'};
+    var fc = {type: 'FeatureCollection'};
     if (id) fc.id = id;
     if (bbox) fc.bbox = bbox;
     fc.features = features;
@@ -323,7 +323,7 @@ export function geometryCollection(geometries, properties, bbox, id) {
 }
 
 // https://en.wikipedia.org/wiki/Great-circle_distance#Radius_for_spherical_Earth
-const factors = {
+var factors = {
     miles: 3960,
     nauticalmiles: 3441.145,
     degrees: 57.2957795,
@@ -339,7 +339,7 @@ const factors = {
     feet: 20908792.65
 };
 
-const areaFactors = {
+var areaFactors = {
     kilometers: 0.000001,
     kilometres: 0.000001,
     meters: 1,
@@ -369,7 +369,7 @@ const areaFactors = {
 export function round(num, precision) {
     if (num === undefined || num === null || isNaN(num)) throw new Error('num is required');
     if (precision && !(precision >= 0)) throw new Error('precision must be a positive number');
-    const multiplier = Math.pow(10, precision || 0);
+    var multiplier = Math.pow(10, precision || 0);
     return Math.round(num * multiplier) / multiplier;
 }
 
@@ -433,7 +433,7 @@ export function distanceToDegrees(distance, units) {
 export function bearingToAngle(bearing) {
     if (bearing === null || bearing === undefined) throw new Error('bearing is required');
 
-    let angle = bearing % 360;
+    var angle = bearing % 360;
     if (angle < 0) angle += 360;
     return angle;
 }
@@ -448,7 +448,7 @@ export function bearingToAngle(bearing) {
 export function radians2degrees(radians) {
     if (radians === null || radians === undefined) throw new Error('radians is required');
 
-    const degrees = radians % (2 * Math.PI);
+    var degrees = radians % (2 * Math.PI);
     return degrees * 180 / Math.PI;
 }
 
@@ -462,10 +462,9 @@ export function radians2degrees(radians) {
 export function degrees2radians(degrees) {
     if (degrees === null || degrees === undefined) throw new Error('degrees is required');
 
-    const radians = degrees % 360;
+    var radians = degrees % 360;
     return radians * Math.PI / 180;
 }
-
 
 /**
  * Converts a distance to the requested unit.
@@ -480,7 +479,7 @@ export function convertDistance(distance, originalUnit, finalUnit) {
     if (distance === null || distance === undefined) throw new Error('distance is required');
     if (!(distance >= 0)) throw new Error('distance must be a positive number');
 
-    const convertedDistance = radiansToDistance(distanceToRadians(distance, originalUnit), finalUnit || 'kilometers');
+    var convertedDistance = radiansToDistance(distanceToRadians(distance, originalUnit), finalUnit || 'kilometers');
     return convertedDistance;
 }
 
@@ -496,10 +495,10 @@ export function convertArea(area, originalUnit, finalUnit) {
     if (area === null || area === undefined) throw new Error('area is required');
     if (!(area >= 0)) throw new Error('area must be a positive number');
 
-    const startFactor = areaFactors[originalUnit || 'meters'];
+    var startFactor = areaFactors[originalUnit || 'meters'];
     if (!startFactor) throw new Error('invalid original units');
 
-    const finalFactor = areaFactors[finalUnit || 'kilometers'];
+    var finalFactor = areaFactors[finalUnit || 'kilometers'];
     if (!finalFactor) throw new Error('invalid final units');
 
     return (area / startFactor) * finalFactor;
@@ -535,19 +534,7 @@ export function isObject(input) {
     return (!!input) && (input.constructor === Object);
 }
 
-const RADIUS = 6378137;
-const FLATTENING_DENOM = 298.257223563;
-const FLATTENING = 1 / FLATTENING_DENOM;
-const POLAR_RADIUS = RADIUS * (1 - FLATTENING);
-
 /**
- * WGS84 Provides radius, FLATTENING, and POLAR_RADIUS constants from the reference ellipsoid.
- *
- * http://earth-info.nga.mil/GandG/wgs84/gravitymod/egm96/egm96.html
+ * Earth Radius used with the Harvesine formula and approximates using a spherical (non-ellipsoid) Earth.
  */
-export const wgs84 = {
-    RADIUS,
-    FLATTENING_DENOM,
-    FLATTENING,
-    POLAR_RADIUS,
-};
+export var earthRadius = 6371008.8;

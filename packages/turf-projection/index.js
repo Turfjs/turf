@@ -16,7 +16,6 @@ import clone from '@turf/clone';
  * //addToMap
  * var addToMap = [pt, converted];
  */
-
 export function toMercator(geojson, options) {
     return convert(geojson, 'mercator', options);
 }
@@ -36,7 +35,6 @@ export function toMercator(geojson, options) {
  * //addToMap
  * var addToMap = [pt, converted];
  */
-
 export function toWgs84(geojson, options) {
     return convert(geojson, 'wgs84', options);
 }
@@ -117,8 +115,8 @@ function convertToMercator(lonLat) {
  */
 function convertToWgs84(xy) {
     // 900913 properties.
-    var R2D = 180 / Math.PI,
-        A = 6378137.0;
+    var R2D = 180 / Math.PI;
+    var A = 6378137.0;
 
     return [
         (xy[0] * R2D / A),
@@ -137,7 +135,3 @@ function sign(x) {
     return (x < 0) ? -1 : (x > 0) ? 1 : 0;
 }
 
-export default {
-    toMercator,
-    toWgs84
-};

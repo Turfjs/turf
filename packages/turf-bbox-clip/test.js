@@ -5,7 +5,7 @@ import load from 'load-json-file';
 import write from 'write-json-file';
 import { point, feature, featureCollection } from '@turf/helpers';
 import turfBBox from '@turf/bbox';
-import bboxClip from '.';
+import bboxClip from './index';
 
 const directories = {
     in: path.join(__dirname, 'test', 'in') + path.sep,
