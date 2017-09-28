@@ -85,6 +85,7 @@ function colorize(grid, property) {
         if (value < min) min = value;
     });
     const delta = (max - min);
+    if (delta === 0) throw new Error('data must provide a z elevation difference');
 
     featureEach(grid, function (feature) {
         const value = feature.properties[property];
