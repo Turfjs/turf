@@ -7,4 +7,4 @@ const bbox: BBox = [-95, 30, -85, 40];
 pointGrid(bbox, cellSide);
 pointGrid(bbox, cellSide, {units: 'miles'});
 pointGrid(bbox, cellSide, {units: 'miles', bboxIsMask: true});
-pointGrid(bbox, cellSide, {units: 'miles', bboxIsMask: true, properties: {}});
+pointGrid(bbox, cellSide, {units: 'miles', bboxIsMask: true, properties: {foo: 'bar'}});

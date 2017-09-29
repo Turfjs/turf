@@ -1,5 +1,3 @@
-/// <reference types="geojson" />
-
 import {
     Units,
     BBox,
@@ -8,17 +6,15 @@ import {
     Point
 } from '@turf/helpers';
 
-interface Options {
-    units?: Units,
-    properties?: object,
-    bboxIsMask?: boolean;
-}
-
 /**
  * http://turfjs.org/docs/#pointgrid
  */
 export default function pointGrid(
     bbox: BBox | Feature<any> | FeatureCollection<any>,
     cellSide: number,
-    options?: Options
+    options?: {
+        units?: Units,
+        properties?: object,
+        bboxIsMask?: boolean;
+    }
 ): FeatureCollection<Point>;

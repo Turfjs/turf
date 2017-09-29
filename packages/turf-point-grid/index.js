@@ -1,6 +1,6 @@
 import distance from '@turf/distance';
 import turfBBox from '@turf/bbox';
-import { point, featureCollection } from '@turf/helpers';
+import { point, featureCollection, isObject } from '@turf/helpers';
 import inside from '@turf/inside';
 import { getType } from '@turf/invariant';
 
@@ -25,14 +25,16 @@ import { getType } from '@turf/invariant';
  * var addToMap = [grid];
  */
 export default function pointGrid(bbox, cellSide, options) {
+    options = options || {};
     var  results = [];
-
     var  bboxMask = bbox;
+
     // validation
     if (!bbox) throw new Error('bbox is required');
     if (!Array.isArray(bbox)) bbox = turfBBox(bbox); // Convert GeoJSON to bbox
     if (bbox.length !== 4) throw new Error('bbox must contain 4 numbers');
-    options = options || {};
+    if (!isObject(options)) throw new Error('options is invalid');
+
     var  units = options.units;
     var  bboxIsMask = options.bboxIsMask || false;
     var  properties = options.properties || {};
