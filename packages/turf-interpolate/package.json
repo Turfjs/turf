@@ -36,19 +36,20 @@
   },
   "homepage": "https://github.com/Turfjs/turf",
   "devDependencies": {
+    "@std/esm": "*",
     "@turf/truncate": "*",
     "benchmark": "*",
     "chromatism": "*",
     "load-json-file": "*",
-    "tape": "*",
-    "write-json-file": "*",
     "rollup": "*",
-    "@std/esm": "*",
-    "uglify-js": "*"
+    "tape": "*",
+    "uglify-js": "*",
+    "write-json-file": "*"
   },
   "dependencies": {
     "@turf/bbox": "^4.7.3",
     "@turf/centroid": "^4.7.3",
+    "@turf/clone": "^4.7.3",
     "@turf/distance": "^4.7.3",
     "@turf/helpers": "5.0.0-alpha",
     "@turf/hex-grid": "^4.7.3",
