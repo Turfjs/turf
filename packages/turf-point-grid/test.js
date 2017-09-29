@@ -21,8 +21,12 @@ let fixtures = fs.readdirSync(directories.in).map(filename => {
 
 test('turf-point-grid', t => {
     for (const {name, geojson} of fixtures) {
-        const {cellSide, units, centered, bboxIsMask} = geojson.properties;
-        const result = pointGrid(geojson, cellSide, units, centered, bboxIsMask);
+        const {cellSide, units, bboxIsMask, props} = geojson.properties;
+        const result = pointGrid(geojson, cellSide, {
+            units,
+            bboxIsMask,
+            properties: props,
+        });
 
         // Add styled GeoJSON to the result
         geojson.properties = {

@@ -14,13 +14,14 @@ const directories = {
     out: path.join(__dirname, 'test', 'out') + path.sep
 };
 
-const fixtures = fs.readdirSync(directories.in).map(filename => {
+var fixtures = fs.readdirSync(directories.in).map(filename => {
     return {
         filename,
         name: path.parse(filename).name,
         geojson: load.sync(directories.in + filename)
     };
 });
+// fixtures = fixtures.filter(fixture => fixture.name === 'points-random')
 
 test('turf-interpolate', t => {
     for (const {filename, name, geojson}  of fixtures) {
@@ -28,17 +29,17 @@ test('turf-interpolate', t => {
         property = property || 'elevation';
 
         // Truncate coordinates & elevation (property) to 6 precision
-        let grid = truncate(interpolate(geojson, cellSize, gridType, property, units, weight));
-        propEach(grid, props => { props[property] = round(props[property]); });
-        const result = colorize(grid, property);
+        let result = truncate(interpolate(geojson, cellSize, gridType, property, units, weight));
+        propEach(result, (properties, featureIndex) => {
+            properties[property] = round(properties[property]);
+        });
+        result = colorize(result, property, name);
 
         if (process.env.REGEN) write.sync(directories.out + filename, result);
         t.deepEquals(result, load.sync(directories.out + filename), name);
     }
     t.end();
 });
-
-
 
 test('turf-interpolate -- throws errors', t => {
     const cellSize = 1;
@@ -75,18 +76,19 @@ test('turf-interpolate -- zValue from 3rd coordinate', t => {
 });
 
 // style result
-function colorize(grid, property) {
+function colorize(grid, property, name) {
     property = property || 'elevation';
     let max = -Infinity;
     let min = Infinity;
-    featureEach(grid, function (feature) {
-        const value = feature.properties[property];
+    propEach(grid, properties => {
+        const value = properties[property];
         if (value > max) max = value;
         if (value < min) min = value;
     });
     const delta = (max - min);
+    if (delta === 0) throw new Error(name + ' delta is invalid');
 
-    featureEach(grid, function (feature) {
+    featureEach(grid, feature => {
         const value = feature.properties[property];
         const percent = round((value - min - delta / 2) / delta * 100);
         // darker corresponds to higher values

@@ -1,5 +1,3 @@
-/// <reference types="geojson" />
-
 import {
     Units,
     BBox,
@@ -14,7 +12,9 @@ import {
 export default function pointGrid(
     bbox: BBox | Feature<any> | FeatureCollection<any>,
     cellSide: number,
-    units?: Units,
-    centered?: boolean,
-    bboxIsMask?: boolean
+    options?: {
+        units?: Units,
+        properties?: object,
+        bboxIsMask?: boolean;
+    }
 ): FeatureCollection<Point>;

@@ -1,6 +1,6 @@
 import distance from '@turf/distance';
 import turfBBox from '@turf/bbox';
-import { point, featureCollection } from '@turf/helpers';
+import { point, featureCollection, isObject } from '@turf/helpers';
 import inside from '@turf/inside';
 import { getType } from '@turf/invariant';
 
@@ -10,60 +10,61 @@ import { getType } from '@turf/invariant';
  * @name pointGrid
  * @param {BBox|FeatureCollection|Feature} bbox extent in [minX, minY, maxX, maxY] order
  * @param {number} cellSide the distance between points
- * @param {string} [units=kilometers] used in calculating cellSide, can be degrees, radians, miles, or kilometers
- * @param {boolean} [centered=true] adjust points position to center the grid into bbox. **This parameter is going to be removed** in the next major release, having the output always centered into bbox.
- * @param {boolean} [bboxIsMask=false] if true, and bbox is a Polygon or MultiPolygon, the grid Point will be created
- * only if inside the bbox Polygon(s)
+ * @param {Object} [options={}] Optional parameters
+ * @param {string} [options.units="kilometers"] used in calculating cellSide, can be degrees, radians, miles, or kilometers
+ * @param {number} [options.bboxIsMask=false] if true, and bbox is a Polygon or MultiPolygon, the grid Point will be created
+ * @param {Object} [options.properties={}] passed to each point of the grid
  * @returns {FeatureCollection<Point>} grid of points
  * @example
  * var extent = [-70.823364, -33.553984, -70.473175, -33.302986];
  * var cellSide = 3;
- * var units = 'miles';
  *
- * var grid = turf.pointGrid(extent, cellSide, units);
+ * var grid = turf.pointGrid(extent, cellSide, {units: 'miles'});
  *
  * //addToMap
  * var addToMap = [grid];
  */
-export default function (bbox, cellSide, units, centered, bboxIsMask) {
-    var results = [];
+export default function pointGrid(bbox, cellSide, options) {
+    options = options || {};
+    var  results = [];
+    var  bboxMask = bbox;
 
-    var bboxMask = bbox;
     // validation
     if (!bbox) throw new Error('bbox is required');
     if (!Array.isArray(bbox)) bbox = turfBBox(bbox); // Convert GeoJSON to bbox
     if (bbox.length !== 4) throw new Error('bbox must contain 4 numbers');
+    if (!isObject(options)) throw new Error('options is invalid');
 
-    var west = bbox[0];
-    var south = bbox[1];
-    var east = bbox[2];
-    var north = bbox[3];
+    var  units = options.units;
+    var  bboxIsMask = options.bboxIsMask || false;
+    var  properties = options.properties || {};
 
-    var xFraction = cellSide / (distance(point([west, south]), point([east, south]), units));
-    var cellWidth = xFraction * (east - west);
-    var yFraction = cellSide / (distance(point([west, south]), point([west, north]), units));
-    var cellHeight = yFraction * (north - south);
+    var  west = bbox[0];
+    var  south = bbox[1];
+    var  east = bbox[2];
+    var  north = bbox[3];
 
-    if (centered !== false) {
-        var bboxHorizontalSide = (east - west);
-        var bboxVerticalSide = (north - south);
-        var columns = Math.floor(bboxHorizontalSide / cellWidth);
-        var rows = Math.floor(bboxVerticalSide / cellHeight);
-        // adjust origin of the grid
-        var deltaX = (bboxHorizontalSide - columns * cellWidth) / 2;
-        var deltaY = (bboxVerticalSide - rows * cellHeight) / 2;
-    }
+    var  xFraction = cellSide / (distance(point([west, south]), point([east, south]), units));
+    var  cellWidth = xFraction * (east - west);
+    var  yFraction = cellSide / (distance(point([west, south]), point([west, north]), units));
+    var  cellHeight = yFraction * (north - south);
 
-    var isPoly = !Array.isArray(bboxMask) && (getType(bboxMask) === 'Polygon' || getType(bboxMask) === 'MultiPolygon');
+    var  bboxHorizontalSide = (east - west);
+    var  bboxVerticalSide = (north - south);
+    var  columns = Math.floor(bboxHorizontalSide / cellWidth);
+    var  rows = Math.floor(bboxVerticalSide / cellHeight);
+    // adjust origin of the grid
+    var  deltaX = (bboxHorizontalSide - columns * cellWidth) / 2;
+    var  deltaY = (bboxVerticalSide - rows * cellHeight) / 2;
 
-    var currentX = west;
-    if (centered !== false) currentX += deltaX;
+    var  bboxIsPoly = !Array.isArray(bboxMask) && (getType(bboxMask) === 'Polygon' || getType(bboxMask) === 'MultiPolygon');
+
+    var  currentX = west + deltaX;
     while (currentX <= east) {
-        var currentY = south;
-        if (centered !== false) currentY += deltaY;
+        var  currentY = south + deltaY;
         while (currentY <= north) {
-            var pt = point([currentX, currentY]);
-            if (bboxIsMask === true && isPoly) {
+            var  pt = point([currentX, currentY], properties);
+            if (bboxIsMask === true && bboxIsPoly) {
                 if (inside(pt, bboxMask)) {
                     results.push(pt);
                 }

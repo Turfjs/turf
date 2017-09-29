@@ -5,6 +5,8 @@ import distance from '@turf/distance';
 import centroid from '@turf/centroid';
 import squareGrid from '@turf/square-grid';
 import triangleGrid from '@turf/triangle-grid';
+import clone from '@turf/clone';
+import { featureCollection } from '@turf/helpers';
 import { featureEach } from '@turf/meta';
 import { collectionOf } from '@turf/invariant';
 
@@ -49,7 +51,7 @@ export default function (points, cellSize, gridType, property, units, weight) {
     switch (gridType) {
     case 'point':
     case 'points':
-        grid = poinGrid(box, cellSize, units, true);
+        grid = poinGrid(box, cellSize, {units: units, bboxIsMask: true});
         break;
     case 'square':
     case 'squares':
@@ -66,7 +68,7 @@ export default function (points, cellSize, gridType, property, units, weight) {
     default:
         throw new Error('invalid gridType');
     }
-
+    var results = [];
     featureEach(grid, function (gridFeature) {
         var zw = 0;
         var sw = 0;
@@ -85,8 +87,9 @@ export default function (points, cellSize, gridType, property, units, weight) {
             zw += w * zValue;
         });
         // write interpolated value for each grid point
-        gridFeature.properties[property] = zw / sw;
+        var newFeature = clone(gridFeature);
+        newFeature.properties[property] = zw / sw;
+        results.push(newFeature);
     });
-
-    return grid;
+    return featureCollection(results);
 }
