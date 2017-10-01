@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 
+const fs = require('fs-extra');
 const load = require('load-json-file');
 const write = require('write-json-file');
 const path = require('path');
@@ -29,8 +30,9 @@ function updateDependencies(pckg) {
 
 function updateDevDependencies(pckg) {
     const devDependencies = {};
-    new Map(entries(pckg.devDependencies))
-        .set('rollup', '*')
+    const dev = new Map(entries(pckg.devDependencies));
+    dev.delete('rollup-plugin-uglify', '*')
+    dev.set('rollup', '*')
         .set('uglify-js', '*')
         .set('tape', '*')
         .set('@std/esm', '*')
@@ -54,9 +56,12 @@ function updateDevDependencies(pckg) {
 glob.sync(path.join(__dirname, '..', 'packages', 'turf-*', 'package.json')).forEach(packagePath => {
     const pckg = load.sync(packagePath);
     const files = new Set(pckg.files);
-    files.add('dist');
     files.add('index.js');
     files.add('index.d.ts');
+    files.add('main.js');
+    files.delete('main.min.js');
+    files.delete('dist');
+    files.delete('dist/index.js');
     files.delete('index.es5.js');
     files.delete('index.mjs');
     files.delete('index.cjs.js');
@@ -66,7 +71,7 @@ glob.sync(path.join(__dirname, '..', 'packages', 'turf-*', 'package.json')).forE
         name: pckg.name,
         version: pckg.version,
         description: pckg.description,
-        main: 'dist/index',
+        main: 'main',
         module: 'index',
         'jsnext:main': 'index',
         types: 'index.d.ts',
@@ -74,7 +79,7 @@ glob.sync(path.join(__dirname, '..', 'packages', 'turf-*', 'package.json')).forE
         scripts: {
             'pretest': 'rollup -c ../../rollup.config.js',
             'test': 'node -r @std/esm test.js',
-            'posttest': 'uglifyjs ./dist/index.js -o ./dist/index.min.js',
+            'posttest': 'uglifyjs main.js -o main.min.js',
             'bench': 'node -r @std/esm bench.js'
         },
         repository: {
@@ -96,5 +101,6 @@ glob.sync(path.join(__dirname, '..', 'packages', 'turf-*', 'package.json')).forE
             cjs: true
         }
     };
+    // Update package.json
     write.sync(packagePath, newPckg, {indent: 2});
 });

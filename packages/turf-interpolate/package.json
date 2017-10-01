@@ -2,19 +2,19 @@
   "name": "@turf/interpolate",
   "version": "4.7.3",
   "description": "turf interpolate module",
-  "main": "dist/index",
+  "main": "main",
   "module": "index",
   "jsnext:main": "index",
   "types": "index.d.ts",
   "files": [
     "index.js",
     "index.d.ts",
-    "dist"
+    "main.js"
   ],
   "scripts": {
     "pretest": "rollup -c ../../rollup.config.js",
     "test": "node -r @std/esm test.js",
-    "posttest": "uglifyjs ./dist/index.js -o ./dist/index.min.js",
+    "posttest": "uglifyjs main.js -o main.min.js",
     "bench": "node -r @std/esm bench.js"
   },
   "repository": {
@@ -43,8 +43,8 @@
     "load-json-file": "*",
     "rollup": "*",
     "tape": "*",
-    "uglify-js": "*",
-    "write-json-file": "*"
+    "write-json-file": "*",
+    "uglify-js": "*"
   },
   "dependencies": {
     "@turf/bbox": "^4.7.3",

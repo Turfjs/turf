@@ -68,6 +68,8 @@ test('turf -- check if files exists', t => {
         const {files} = pckg;
         if (!files || !files.length) t.fail(`${name} (files) must be included in package.json`);
         for (const file of files) {
+            // ignore Rollup bundle
+            if (file === 'main.js') continue;
             if (!fs.existsSync(path.join(dir, file))) t.fail(`${name} missing file ${file} in "files"`);
         }
     }
@@ -104,7 +106,7 @@ test('turf -- scoped package name', t => {
 test('turf -- pre-defined attributes in package.json', t => {
     for (const {name, pckg} of modules) {
         if (pckg.author !== 'Turf Authors') t.fail(name + ' (author) should be "Turf Authors"');
-        if (pckg.main !== 'dist/index') t.fail(`${name} (main) must be "dist/index" in package.json`);
+        if (pckg.main !== 'main') t.fail(`${name} (main) must be "main" in package.json`);
         if (pckg.module !== 'index') t.fail(`${name} (module) must be "index" in package.json`);
         if (pckg['jsnext:main'] !== 'index') t.fail(`${name} (jsnext:main) must be "index" in package.json`);
         if (pckg.types !== 'index.d.ts') t.fail(`${name} (types) must be "index.d.ts" in package.json`);

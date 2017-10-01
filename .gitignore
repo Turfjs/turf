@@ -1,4 +1,6 @@
 dist
+main.js
+main.min.js
 *.es5.js
 .esm-cache
 package-lock.json

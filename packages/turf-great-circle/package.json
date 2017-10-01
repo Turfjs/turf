@@ -2,7 +2,7 @@
   "name": "@turf/great-circle",
   "version": "4.7.3",
   "description": "turf great-circle module",
-  "main": "dist/index",
+  "main": "main",
   "module": "index",
   "jsnext:main": "index",
   "types": "index.d.ts",
@@ -10,12 +10,12 @@
     "index.js",
     "index.d.ts",
     "arc.js",
-    "dist"
+    "main.js"
   ],
   "scripts": {
     "pretest": "rollup -c ../../rollup.config.js",
     "test": "node -r @std/esm test.js",
-    "posttest": "uglifyjs ./dist/index.js -o ./dist/index.min.js",
+    "posttest": "uglifyjs main.js -o main.min.js",
     "bench": "node -r @std/esm bench.js"
   },
   "repository": {

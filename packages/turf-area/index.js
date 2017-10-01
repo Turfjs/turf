@@ -15,7 +15,7 @@ import { geomReduce } from '@turf/meta';
  * var addToMap = [polygon]
  * polygon.properties.area = area
  */
-export default function area(geojson) {
+function area(geojson) {
     return geomReduce(geojson, function (value, geom) {
         return value + calculateArea(geom);
     }, 0);
@@ -120,3 +120,6 @@ function ringArea(coords) {
 function rad(_) {
     return _ * Math.PI / 180;
 }
+
+export default area;
+module.exports.default = area;
