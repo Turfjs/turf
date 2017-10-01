@@ -1,6 +1,5 @@
 #!/usr/bin/env node
 
-const fs = require('fs-extra');
 const load = require('load-json-file');
 const write = require('write-json-file');
 const path = require('path');
@@ -31,7 +30,7 @@ function updateDependencies(pckg) {
 function updateDevDependencies(pckg) {
     const devDependencies = {};
     const dev = new Map(entries(pckg.devDependencies));
-    dev.delete('rollup-plugin-uglify', '*')
+    dev.delete('rollup-plugin-uglify', '*');
     dev.set('rollup', '*')
         .set('uglify-js', '*')
         .set('tape', '*')

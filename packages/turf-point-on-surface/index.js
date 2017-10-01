@@ -139,3 +139,4 @@ function pointOnSegment(x, y, x1, y1, x2, y2) {
 }
 
 export default pointOnSurface;
+module.exports.default = pointOnSurface;
