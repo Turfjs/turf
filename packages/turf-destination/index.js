@@ -10,7 +10,8 @@ import { point, distanceToRadians } from '@turf/helpers';
  * @param {Geometry|Feature<Point>|Array<number>} origin starting point
  * @param {number} distance distance from the origin point
  * @param {number} bearing ranging from -180 to 180
- * @param {string} [units=kilometers] miles, kilometers, degrees, or radians
+ * @param {Object} [options={}] Optional parameters
+ * @param {string} [options.units='kilometers'] miles, kilometers, degrees, or radians
  * @returns {Feature<Point>} destination point
  * @example
  * var point = turf.point([-75.343, 39.984]);
@@ -25,7 +26,10 @@ import { point, distanceToRadians } from '@turf/helpers';
  * destination.properties['marker-color'] = '#f00';
  * point.properties['marker-color'] = '#0f0';
  */
-function destination(origin, distance, bearing, units) {
+function destination(origin, distance, bearing, options) {
+    // Backwards compatible with v4.0
+    var units = (typeof options === 'object') ? options.units : options;
+
     var degrees2radians = Math.PI / 180;
     var radians2degrees = 180 / Math.PI;
     var coordinates1 = getCoord(origin);

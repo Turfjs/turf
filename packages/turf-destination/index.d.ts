@@ -1,10 +1,13 @@
-/// <reference types="geojson" />
-
-import {Units} from '@turf/helpers'
-
-export type Point = GeoJSON.Feature<GeoJSON.Point> | GeoJSON.Point | number[];
+import { Feature, Point, Units, Position } from '@turf/helpers'
 
 /**
  * http://turfjs.org/docs/#destination
  */
-export default function destination(origin: Point, distance: number, bearing: number, units?: Units): GeoJSON.Feature<GeoJSON.Point>;
+export default function destination(
+    origin: Feature<Point> | Point | Position,
+    distance: number,
+    bearing: number,
+    options?: {
+        units?: Units
+    }
+): Feature<Point>;

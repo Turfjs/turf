@@ -13,8 +13,13 @@ function updateDependencies(pckg) {
     const dependencies = {};
     new Map(entries(pckg.dependencies))
         .forEach((version, name) => {
-            // Update dependencies to v5.0.0-alpha
+            // Update dependencies to v5.0.0
             switch (name) {
+            case '@turf/bearing':
+            case '@turf/destination':
+            case '@turf/distance':
+            case '@turf/line-intersect':
+            case '@turf/line-segment':
             case '@turf/helpers':
             case '@turf/invariant':
             case '@turf/meta':

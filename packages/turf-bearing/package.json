@@ -1,6 +1,6 @@
 {
   "name": "@turf/bearing",
-  "version": "4.7.3",
+  "version": "5.0.0",
   "description": "turf bearing module",
   "main": "main",
   "module": "index",

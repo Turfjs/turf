@@ -1,6 +1,6 @@
 {
   "name": "@turf/destination",
-  "version": "4.7.3",
+  "version": "5.0.0",
   "description": "turf destination module",
   "main": "main",
   "module": "index",

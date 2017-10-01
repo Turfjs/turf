@@ -1,12 +1,12 @@
-/// <reference types="geojson" />
-
-export type Point = GeoJSON.Feature<GeoJSON.Point> | GeoJSON.Point | number[];
-
-interface Options {
-    final?: boolean
-}
+import { Point, Feature, Position } from '@turf/helpers'
 
 /**
  * http://turfjs.org/docs/#bearing
  */
-export default function bearing(start: Point, end: Point, options?: Options): number;
+export default function bearing(
+    start: Feature<Point> | Point | Position,
+    end: Feature<Point> | Point | Position,
+    options?: {
+        final?: boolean
+    }
+): number;
