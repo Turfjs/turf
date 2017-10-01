@@ -49,7 +49,7 @@
     "@turf/clean-coords": "^4.7.3",
     "@turf/helpers": "5.0.0",
     "@turf/line-segment": "5.0.0",
-    "@turf/rhumb-bearing": "^4.7.3"
+    "@turf/rhumb-bearing": "5.0.0"
   },
   "@std/esm": {
     "esm": "js",

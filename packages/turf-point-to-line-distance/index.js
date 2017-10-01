@@ -23,7 +23,7 @@ import {
  * @name pointToLineDistance
  * @param {Feature<Point>|Array<number>} pt Feature or Geometry
  * @param {Feature<LineString>|Array<Array<number>>} line GeoJSON Feature or Geometry
- * @param {Object} [options] Optional parameters
+ * @param {Object} [options={}] Optional parameters
  * @param {string} [options.units='kilometers'] can be degrees, radians, miles, or kilometers
  * @param {boolean} [options.mercator=false] if distance should be on Mercator or WGS84 projection
  * @returns {number} distance between point and line

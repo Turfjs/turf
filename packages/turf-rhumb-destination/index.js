@@ -10,7 +10,7 @@ import { getCoord } from '@turf/invariant';
  * @param {(Geometry|Feature<Point>)|Position} origin starting point
  * @param {number} distance distance from the starting point
  * @param {number} bearing varant bearing angle ranging from -180 to 180 degrees from north
- * @param {Object} [options] Optional parameters
+ * @param {Object} [options={}] Optional parameters
  * @param {string} [options.units='kilometers'] can be degrees, radians, miles, or kilometers
  * @returns {Feature<Point>} Destination point.
  * @example

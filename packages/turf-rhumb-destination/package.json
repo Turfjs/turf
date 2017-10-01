@@ -1,6 +1,6 @@
 {
   "name": "@turf/rhumb-destination",
-  "version": "4.7.3",
+  "version": "5.0.0",
   "description": "turf rhumb-destination module",
   "main": "main",
   "module": "index",
