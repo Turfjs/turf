@@ -1,3 +1,4 @@
+// https://github.com/Turfjs/turf/pull/986
 function typescriptExportsDefault() {
     return {
         name: 'typescript-default-export',
