@@ -31,7 +31,12 @@ glob.sync(path.join(__dirname, '..', 'packages', 'turf-*', 'index.js')).forEach(
         index += `\nmodule.exports.default = ${name};\n`;
         fs.writeFileSync(filepath, index);
     }
-    if (index.includes('export default') && !index.includes('module.exports.default')) {
-        throw new Error('missing module.exports.default =', name);
+    if (index.includes('module.exports.default')) {
+        console.log(name);
+        // throw new Error('invalid module.exports.default =', name);
     }
+    // Remove module.exports.default (will be handled with Rollup)
+    index = index.replace(`module.exports.default = ${name};`, '');
+    index = index.trim() + '\n';
+    fs.writeFileSync(filepath, index);
 });
