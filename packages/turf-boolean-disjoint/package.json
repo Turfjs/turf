@@ -49,7 +49,7 @@
   },
   "dependencies": {
     "@turf/inside": "^4.7.3",
-    "@turf/line-intersect": "^4.7.3",
+    "@turf/line-intersect": "5.0.0",
     "@turf/meta": "5.0.0",
     "@turf/polygon-to-linestring": "^4.7.3"
   },

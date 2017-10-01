@@ -48,7 +48,7 @@
   "dependencies": {
     "@turf/clean-coords": "^4.7.3",
     "@turf/helpers": "5.0.0",
-    "@turf/line-segment": "^4.7.3",
+    "@turf/line-segment": "5.0.0",
     "@turf/rhumb-bearing": "^4.7.3"
   },
   "@std/esm": {

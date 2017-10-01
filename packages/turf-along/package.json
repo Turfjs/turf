@@ -43,9 +43,9 @@
     "uglify-js": "*"
   },
   "dependencies": {
-    "@turf/bearing": "^4.7.3",
-    "@turf/destination": "^4.7.3",
-    "@turf/distance": "^4.7.3",
+    "@turf/bearing": "5.0.0",
+    "@turf/destination": "5.0.0",
+    "@turf/distance": "5.0.0",
     "@turf/helpers": "5.0.0"
   },
   "@std/esm": {

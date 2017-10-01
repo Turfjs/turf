@@ -46,7 +46,7 @@
   },
   "dependencies": {
     "@turf/bbox": "^4.7.3",
-    "@turf/distance": "^4.7.3",
+    "@turf/distance": "5.0.0",
     "@turf/helpers": "5.0.0"
   },
   "@std/esm": {
