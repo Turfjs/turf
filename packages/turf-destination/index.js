@@ -25,7 +25,7 @@ import { point, distanceToRadians } from '@turf/helpers';
  * destination.properties['marker-color'] = '#f00';
  * point.properties['marker-color'] = '#0f0';
  */
-export default function (origin, distance, bearing, units) {
+function destination(origin, distance, bearing, units) {
     var degrees2radians = Math.PI / 180;
     var radians2degrees = 180 / Math.PI;
     var coordinates1 = getCoord(origin);
@@ -42,3 +42,6 @@ export default function (origin, distance, bearing, units) {
 
     return point([radians2degrees * longitude2, radians2degrees * latitude2]);
 }
+
+export default destination;
+module.exports.default = destination;

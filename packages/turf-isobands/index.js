@@ -35,7 +35,7 @@ import isoBands from './marchingsquares-isobands';
  * //addToMap
  * var addToMap = [isobands];
  */
-export default function (pointGrid, breaks, options) {
+function isobands(pointGrid, breaks, options) {
     // Optional Parameters
     options = options || {};
     var zProperty = options.zProperty || 'elevation';
@@ -269,3 +269,6 @@ function allGrouped(list) {
     }
     return true;
 }
+
+export default isobands;
+module.exports.default = isobands;

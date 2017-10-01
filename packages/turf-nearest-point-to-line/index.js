@@ -22,7 +22,7 @@ import { featureEach, geomEach } from '@turf/meta';
  * //addToMap
  * var addToMap = [nearest, line];
  */
-export default function (points, line, options) {
+function nearestPointToLine(points, line, options) {
     // Backwards compatible with v4.0
     var units = (typeof options === 'object') ? options.units : options;
 
@@ -74,3 +74,6 @@ function handleCollection(points) {
         throw new Error('points must be a Point Collection');
     }
 }
+
+export default nearestPointToLine;
+module.exports.default = nearestPointToLine;

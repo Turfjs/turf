@@ -29,7 +29,7 @@ import { featureEach } from '@turf/meta';
  * //addToMap
  * var addToMap = [points, hull]
  */
-export default function (points, maxEdge, units) {
+function concave(points, maxEdge, units) {
     // validation
     if (!points) throw new Error('points is required');
     if (maxEdge === undefined || maxEdge === null) throw new Error('maxEdge is required');
@@ -83,3 +83,6 @@ function removeDuplicates(points) {
     });
     return featureCollection(cleaned);
 }
+
+export default concave;
+module.exports.default = concave;

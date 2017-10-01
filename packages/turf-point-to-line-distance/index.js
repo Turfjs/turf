@@ -34,7 +34,7 @@ import {
  * var distance = turf.pointToLineDistance(pt, line, 'miles');
  * //=69.11854715938406
  */
-export default function (pt, line, options) {
+function pointToLineDistance(pt, line, options) {
     // Optional params
     options = options || {};
     // var units = options.units;
@@ -253,3 +253,6 @@ function toWGS84(xy) {
         ((Math.PI * 0.5) - 2.0 * Math.atan(Math.exp(-xy[1] / A))) * R2D
     ];
 }
+
+export default pointToLineDistance;
+module.exports.default = pointToLineDistance;

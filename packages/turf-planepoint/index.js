@@ -32,7 +32,7 @@ import { getCoord, getGeom } from '@turf/invariant';
  * //addToMap
  * var addToMap = [triangle, point];
  */
-export default function (point, triangle) {
+function planepoint(point, triangle) {
     // Normalize input
     var coord = getCoord(point);
     var geom = getGeom(triangle);
@@ -63,3 +63,6 @@ export default function (point, triangle) {
 
     return z;
 }
+
+export default planepoint;
+module.exports.default = planepoint;

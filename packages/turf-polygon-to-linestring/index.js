@@ -16,7 +16,7 @@ import { lineString, multiLineString, featureCollection } from '@turf/helpers';
  * //addToMap
  * var addToMap = [line];
  */
-export default function (polygon, properties) {
+function polygonToLinestring(polygon, properties) {
     var geom = getType(polygon);
     var coords = getCoords(polygon);
     properties = properties || polygon.properties || {};
@@ -41,3 +41,6 @@ function coordsToLine(coords, properties) {
     if (coords.length > 1) return multiLineString(coords, properties);
     return lineString(coords[0], properties);
 }
+
+export default polygonToLinestring;
+module.exports.default = polygonToLinestring;

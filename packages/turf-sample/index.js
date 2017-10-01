@@ -22,7 +22,7 @@ import { featureCollection } from '@turf/helpers';
  *   currentFeature.properties['marker-color'] = '#000';
  * });
  */
-export default function (featurecollection, num) {
+function sample(featurecollection, num) {
     if (!featurecollection) throw new Error('featurecollection is required');
     if (num === null || num === undefined) throw new Error('num is required');
     if (typeof num !== 'number') throw new Error('num must be a number');
@@ -41,3 +41,6 @@ function getRandomSubarray(arr, size) {
     }
     return shuffled.slice(min);
 }
+
+export default sample;
+module.exports.default = sample;

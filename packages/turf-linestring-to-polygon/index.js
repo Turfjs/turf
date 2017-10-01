@@ -19,7 +19,7 @@ import { polygon, multiPolygon, lineString } from '@turf/helpers';
  * //addToMap
  * var addToMap = [polygon];
  */
-export default function (lines, properties, autoComplete, orderCoords) {
+function linestringToPolygon(lines, properties, autoComplete, orderCoords) {
     // validation
     if (!lines) throw new Error('lines is required');
 
@@ -124,3 +124,6 @@ function calculateArea(bbox) {
     var north = bbox[3];
     return Math.abs(west - east) * Math.abs(south - north);
 }
+
+export default linestringToPolygon;
+module.exports.default = linestringToPolygon;

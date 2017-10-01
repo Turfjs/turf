@@ -16,7 +16,7 @@ import { point, featureCollection } from '@turf/helpers';
  * //addToMap
  * var addToMap = [polygon, explode]
  */
-export default function (geojson) {
+function explode(geojson) {
     var points = [];
     if (geojson.type === 'FeatureCollection') {
         featureEach(geojson, function (feature) {
@@ -31,3 +31,6 @@ export default function (geojson) {
     }
     return featureCollection(points);
 }
+
+export default explode;
+module.exports.default = explode;

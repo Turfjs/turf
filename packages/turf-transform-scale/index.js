@@ -27,7 +27,7 @@ import { getCoord, getCoords, getType} from '@turf/invariant';
  * var addToMap = [poly, scaledPoly];
  * scaledPoly.properties = {stroke: '#F00', 'stroke-width': 4};
  */
-export default function (geojson, factor, origin, mutate) {
+function transformScale(geojson, factor, origin, mutate) {
     // Input validation
     if (!geojson) throw new Error('geojson required');
     if (typeof factor !== 'number' || factor === 0) throw new Error('invalid factor');
@@ -131,3 +131,6 @@ function defineOrigin(geojson, origin) {
         throw new Error('invalid origin');
     }
 }
+
+export default transformScale;
+module.exports.default = transformScale;

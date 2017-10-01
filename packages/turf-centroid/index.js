@@ -17,7 +17,7 @@ import { point } from '@turf/helpers';
  * //addToMap
  * var addToMap = [polygon, centroid]
  */
-export default function (geojson, properties) {
+function centroid(geojson, properties) {
     var xSum = 0;
     var ySum = 0;
     var len = 0;
@@ -28,3 +28,6 @@ export default function (geojson, properties) {
     }, true);
     return point([xSum / len, ySum / len], properties);
 }
+
+export default centroid;
+module.exports.default = centroid;

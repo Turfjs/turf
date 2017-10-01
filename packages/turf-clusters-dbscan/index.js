@@ -28,7 +28,7 @@ import { collectionOf } from '@turf/invariant';
  * //addToMap
  * var addToMap = [clustered];
  */
-export default function (points, maxDistance, units, minPoints) {
+function clustersDbscan(points, maxDistance, units, minPoints) {
     // Input validation
     collectionOf(points, 'Point', 'Input must contain Points');
     if (maxDistance === null || maxDistance === undefined) throw new Error('maxDistance is required');
@@ -69,3 +69,6 @@ export default function (points, maxDistance, units, minPoints) {
 
     return points;
 }
+
+export default clustersDbscan;
+module.exports.default = clustersDbscan;

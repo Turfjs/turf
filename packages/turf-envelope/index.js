@@ -19,6 +19,9 @@ import bboxPolygon from '@turf/bbox-polygon';
  * //addToMap
  * var addToMap = [features, enveloped];
  */
-export default function (geojson) {
+function envelope(geojson) {
     return bboxPolygon(bbox(geojson));
 }
+
+export default envelope;
+module.exports.default = envelope;

@@ -38,7 +38,7 @@ import { flattenEach } from '@turf/meta';
  * //addToMap
  * var addToMap = [polygon1, polygon2, difference];
  */
-export default function (polygon1, polygon2) {
+function difference(polygon1, polygon2) {
     var geom1 = getGeom(polygon1);
     var geom2 = getGeom(polygon2);
     var properties = polygon1.properties || {};
@@ -81,3 +81,6 @@ function removeEmptyPolygon(geom) {
         if (coordinates.length) return {type: 'MultiPolygon', coordinates: coordinates};
     }
 }
+
+export default difference;
+module.exports.default = difference;

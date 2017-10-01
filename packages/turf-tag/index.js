@@ -37,7 +37,7 @@ import { featureEach } from '@turf/meta';
  * //addToMap
  * var addToMap = [tagged, polygons]
  */
-export default function (points, polygons, field, outField) {
+function tag(points, polygons, field, outField) {
     // prevent mutations
     points = clone(points);
     polygons = clone(polygons);
@@ -51,3 +51,6 @@ export default function (points, polygons, field, outField) {
     });
     return points;
 }
+
+export default tag;
+module.exports.default = tag;

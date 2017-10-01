@@ -26,7 +26,7 @@ import { getCoord, getCoords } from '@turf/invariant';
  * turf.inside(pt, poly);
  * //= true
  */
-export default function (point, polygon, ignoreBoundary) {
+function inside(point, polygon, ignoreBoundary) {
     // validation
     if (!point) throw new Error('point is required');
     if (!polygon) throw new Error('polygon is required');
@@ -100,3 +100,6 @@ function inBBox(pt, bbox) {
            bbox[2] >= pt[0] &&
            bbox[3] >= pt[1];
 }
+
+export default inside;
+module.exports.default = inside;

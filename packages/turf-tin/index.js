@@ -35,7 +35,7 @@ import { polygon, featureCollection } from '@turf/helpers';
  *   properties.fill = '#' + properties.a + properties.b + properties.c;
  * }
  */
-export default function (points, z) {
+function tin(points, z) {
     if (points.type !== 'FeatureCollection') throw new Error('points must be a FeatureCollection');
     //break down points
     var isPointZ = false;
@@ -255,3 +255,6 @@ function triangulate(vertices) {
 
     return closed;
 }
+
+export default tin;
+module.exports.default = tin;

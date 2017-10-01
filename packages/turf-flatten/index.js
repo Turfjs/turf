@@ -19,7 +19,7 @@ import { featureCollection } from '@turf/helpers';
  * //addToMap
  * var addToMap = [flatten]
  */
-export default function (geojson) {
+function flatten(geojson) {
     if (!geojson) throw new Error('geojson is required');
 
     var results = [];
@@ -28,3 +28,6 @@ export default function (geojson) {
     });
     return featureCollection(results);
 }
+
+export default flatten;
+module.exports.default = flatten;

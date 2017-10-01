@@ -24,7 +24,7 @@ import distance from '@turf/distance';
  * var addToMap = [targetPoint, points, nearest];
  * nearest.properties['marker-color'] = '#F00';
  */
-export default function (targetPoint, points) {
+function nearest(targetPoint, points) {
     var nearestPoint, minDist = Infinity;
     for (var i = 0; i < points.features.length; i++) {
         var distanceToPoint = distance(targetPoint, points.features[i], 'miles');
@@ -35,3 +35,6 @@ export default function (targetPoint, points) {
     }
     return nearestPoint;
 }
+
+export default nearest;
+module.exports.default = nearest;

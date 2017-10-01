@@ -21,7 +21,7 @@ import { flattenEach } from '@turf/meta';
  * //addToMap
  * var addToMap = [chunk];
  */
-export default function (geojson, segmentLength, units, reverse) {
+function lineChunk(geojson, segmentLength, units, reverse) {
     if (!geojson) throw new Error('geojson is required');
     if (segmentLength <= 0) throw new Error('segmentLength must be greater than 0');
     var results = [];
@@ -60,3 +60,6 @@ function sliceLineSegments(line, segmentLength, units, callback) {
         callback(outline, i);
     }
 }
+
+export default lineChunk;
+module.exports.default = lineChunk;

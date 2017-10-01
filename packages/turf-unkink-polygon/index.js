@@ -17,7 +17,7 @@ import { polygon, featureCollection } from '@turf/helpers';
  * //addToMap
  * var addToMap = [poly, result]
  */
-export default function (geojson) {
+function unkinkPolygon(geojson) {
     var features = [];
     flattenEach(geojson, function (feature) {
         if (feature.geometry.type !== 'Polygon') return;
@@ -27,3 +27,6 @@ export default function (geojson) {
     });
     return featureCollection(features);
 }
+
+export default unkinkPolygon;
+module.exports.default = unkinkPolygon;

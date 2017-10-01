@@ -19,7 +19,7 @@ import { polygon, featureCollection } from '@turf/helpers';
  * //addToMap
  * var addToMap = [triangleGrid];
  */
-export default function (bbox, cellSize, units) {
+function triangleGrid(bbox, cellSize, units) {
     var fc = featureCollection([]);
     var xFraction = cellSize / (distance([bbox[0], bbox[1]], [bbox[2], bbox[1]], units));
     var cellWidth = xFraction * (bbox[2] - bbox[0]);
@@ -90,3 +90,6 @@ export default function (bbox, cellSize, units) {
     return fc;
 }
 
+
+export default triangleGrid;
+module.exports.default = triangleGrid;

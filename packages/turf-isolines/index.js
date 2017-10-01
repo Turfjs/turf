@@ -33,7 +33,7 @@ import gridToMatrix from './grid-to-matrix';
  * //addToMap
  * var addToMap = [isolines];
  */
-export default function (pointGrid, breaks, zProperty, propertiesToAllIsolines, propertiesPerIsoline) {
+function isolines(pointGrid, breaks, zProperty, propertiesToAllIsolines, propertiesPerIsoline) {
     // Default Params
     zProperty = zProperty || 'elevation';
     propertiesToAllIsolines = propertiesToAllIsolines || {};
@@ -138,3 +138,6 @@ function rescaleIsolines(isolines, matrix, points) {
 function isObject(input) {
     return (!!input) && (input.constructor === Object);
 }
+
+export default isolines;
+module.exports.default = isolines;

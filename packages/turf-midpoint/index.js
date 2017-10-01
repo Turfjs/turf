@@ -20,10 +20,13 @@ import distance from '@turf/distance';
  * var addToMap = [point1, point2, midpoint];
  * midpoint.properties['marker-color'] = '#f00';
  */
-export default function (point1, point2) {
+function midpoint(point1, point2) {
     var dist = distance(point1, point2, 'miles');
     var heading = bearing(point1, point2);
     var midpoint = destination(point1, dist / 2, heading, 'miles');
 
     return midpoint;
 }
+
+export default midpoint;
+module.exports.default = midpoint;

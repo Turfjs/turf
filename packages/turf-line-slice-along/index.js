@@ -25,7 +25,7 @@ import { lineString } from '@turf/helpers';
  * //addToMap
  * var addToMap = [line, start, stop, sliced]
  */
-export default function (line, startDist, stopDist, units) {
+function lineSliceAlong(line, startDist, stopDist, units) {
     var coords;
     var slice = [];
     if (line.type === 'Feature') coords = line.geometry.coordinates;
@@ -71,3 +71,6 @@ export default function (line, startDist, stopDist, units) {
     }
     return lineString(coords[coords.length - 1]);
 }
+
+export default lineSliceAlong;
+module.exports.default = lineSliceAlong;

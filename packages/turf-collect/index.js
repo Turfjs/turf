@@ -32,7 +32,7 @@ var rbush = require('rbush');
  * //addToMap
  * var addToMap = [pointFC, collected]
  */
-export default function (polygons, points, inProperty, outProperty) {
+function collect(polygons, points, inProperty, outProperty) {
     var rtree = rbush(6);
 
     var treeItems = points.features.map(function (item) {
@@ -65,3 +65,6 @@ export default function (polygons, points, inProperty, outProperty) {
 
     return polygons;
 }
+
+export default collect;
+module.exports.default = collect;
