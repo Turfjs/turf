@@ -16,7 +16,7 @@ import { segmentReduce } from '@turf/meta';
  * var addToMap = [line];
  * line.properties.distance = length;
  */
-export default function lineDistance(geojson, units) {
+function lineDistance(geojson, units) {
     // Input Validation
     if (!geojson) throw new Error('geojson is required');
 
@@ -26,3 +26,6 @@ export default function lineDistance(geojson, units) {
         return previousValue + distance(coords[0], coords[1], units);
     }, 0);
 }
+
+export default lineDistance;
+module.exports.default = lineDistance;

@@ -20,7 +20,7 @@ import { getType } from '@turf/invariant';
  * turf.booleanEqual(pt2, pt3);
  * //= false
  */
-export default function booleanEqual(feature1, feature2) {
+function booleanEqual(feature1, feature2) {
     // validation
     if (!feature1) throw new Error('feature1 is required');
     if (!feature2) throw new Error('feature2 is required');
@@ -31,3 +31,6 @@ export default function booleanEqual(feature1, feature2) {
     var equality = new GeojsonEquality({precision: 6});
     return equality.compare(cleanCoords(feature1), cleanCoords(feature2));
 }
+
+export default booleanEqual;
+module.exports.default = booleanEqual;

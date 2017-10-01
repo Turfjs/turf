@@ -24,7 +24,7 @@ import { getType } from '@turf/invariant';
  * //addToMap
  * var addToMap = [grid];
  */
-export default function pointGrid(bbox, cellSide, options) {
+function pointGrid(bbox, cellSide, options) {
     options = options || {};
     var  results = [];
     var  bboxMask = bbox;
@@ -78,3 +78,6 @@ export default function pointGrid(bbox, cellSide, options) {
 
     return featureCollection(results);
 }
+
+export default pointGrid;
+module.exports.default = pointGrid;

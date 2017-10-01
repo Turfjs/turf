@@ -21,7 +21,7 @@ import { point, polygon, featureCollection } from '@turf/helpers';
  * //addToMap
  * var addToMap = [squareGrid]
  */
-export default function squareGrid(bbox, cellSize, units, completelyWithin) {
+function squareGrid(bbox, cellSize, units, completelyWithin) {
     var results = [];
 
     // validation
@@ -72,3 +72,6 @@ export default function squareGrid(bbox, cellSize, units, completelyWithin) {
     }
     return featureCollection(results);
 }
+
+export default squareGrid;
+module.exports.default = squareGrid;
