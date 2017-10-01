@@ -167,4 +167,3 @@ function isPointOnLineSegment(lineSegmentStart, lineSegmentEnd, pt, incEnd) {
 }
 
 export default booleanCrosses;
-module.exports.default = booleanCrosses;

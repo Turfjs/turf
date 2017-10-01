@@ -72,4 +72,3 @@ function booleanOverlap(feature1, feature2) {
 }
 
 export default booleanOverlap;
-module.exports.default = booleanOverlap;

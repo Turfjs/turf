@@ -25,4 +25,3 @@ function polygonize(geojson) {
 }
 
 export default polygonize;
-module.exports.default = polygonize;

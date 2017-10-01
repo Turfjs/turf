@@ -33,4 +33,3 @@ function booleanEqual(feature1, feature2) {
 }
 
 export default booleanEqual;
-module.exports.default = booleanEqual;

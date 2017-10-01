@@ -53,4 +53,3 @@ function tag(points, polygons, field, outField) {
 }
 
 export default tag;
-module.exports.default = tag;

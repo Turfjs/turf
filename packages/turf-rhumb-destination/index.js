@@ -85,4 +85,3 @@ function calculateRhumbDestination(origin, distance, bearing, radius) {
 }
 
 export default rhumbDestination;
-module.exports.default = rhumbDestination;

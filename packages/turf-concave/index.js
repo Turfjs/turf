@@ -85,4 +85,3 @@ function removeDuplicates(points) {
 }
 
 export default concave;
-module.exports.default = concave;

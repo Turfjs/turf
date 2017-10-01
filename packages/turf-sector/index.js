@@ -70,4 +70,3 @@ function convertAngleTo360(alfa) {
 }
 
 export default sector;
-module.exports.default = sector;

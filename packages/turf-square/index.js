@@ -46,4 +46,3 @@ function square(bbox) {
 }
 
 export default square;
-module.exports.default = square;

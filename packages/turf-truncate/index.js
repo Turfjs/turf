@@ -64,4 +64,3 @@ function truncateCoords(coords, factor, coordinates) {
 }
 
 export default truncate;
-module.exports.default = truncate;

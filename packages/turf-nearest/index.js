@@ -37,4 +37,3 @@ function nearest(targetPoint, points) {
 }
 
 export default nearest;
-module.exports.default = nearest;

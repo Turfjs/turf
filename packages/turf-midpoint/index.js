@@ -29,4 +29,3 @@ function midpoint(point1, point2) {
 }
 
 export default midpoint;
-module.exports.default = midpoint;

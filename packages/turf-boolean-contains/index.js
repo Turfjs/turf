@@ -208,4 +208,3 @@ function getMidpoint(pair1, pair2) {
 }
 
 export default booleanContains;
-module.exports.default = booleanContains;

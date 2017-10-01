@@ -62,4 +62,3 @@ function combine(fc) {
 }
 
 export default combine;
-module.exports.default = combine;

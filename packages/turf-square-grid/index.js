@@ -74,4 +74,3 @@ function squareGrid(bbox, cellSize, units, completelyWithin) {
 }
 
 export default squareGrid;
-module.exports.default = squareGrid;

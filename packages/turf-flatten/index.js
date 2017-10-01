@@ -30,4 +30,3 @@ function flatten(geojson) {
 }
 
 export default flatten;
-module.exports.default = flatten;

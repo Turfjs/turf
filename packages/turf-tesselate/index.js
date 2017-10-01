@@ -74,4 +74,3 @@ function flattenCoords(data) {
 }
 
 export default tesselate;
-module.exports.default = tesselate;

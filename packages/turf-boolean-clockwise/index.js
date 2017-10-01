@@ -35,4 +35,3 @@ function booleanClockwise(line) {
 }
 
 export default booleanClockwise;
-module.exports.default = booleanClockwise;

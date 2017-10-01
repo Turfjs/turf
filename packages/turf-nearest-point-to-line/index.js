@@ -76,4 +76,3 @@ function handleCollection(points) {
 }
 
 export default nearestPointToLine;
-module.exports.default = nearestPointToLine;

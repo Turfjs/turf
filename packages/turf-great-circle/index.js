@@ -38,4 +38,3 @@ function greatCircle(start, end, properties, npoints, offset) {
 }
 
 export default greatCircle;
-module.exports.default = greatCircle;

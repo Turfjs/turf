@@ -75,4 +75,3 @@ function isPointOnLineSegment(lineSegmentStart, lineSegmentEnd, point, excludeBo
 }
 
 export default booleanPointOnLine;
-module.exports.default = booleanPointOnLine;

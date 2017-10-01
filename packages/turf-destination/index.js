@@ -44,4 +44,3 @@ function destination(origin, distance, bearing, units) {
 }
 
 export default destination;
-module.exports.default = destination;

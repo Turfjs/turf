@@ -102,4 +102,3 @@ function inBBox(pt, bbox) {
 }
 
 export default inside;
-module.exports.default = inside;

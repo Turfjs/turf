@@ -66,4 +66,3 @@ function getGeom(feature) {
 }
 
 export default bboxClip;
-module.exports.default = bboxClip;

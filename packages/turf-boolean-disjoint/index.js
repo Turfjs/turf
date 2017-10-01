@@ -157,4 +157,3 @@ function compareCoords(pair1, pair2) {
 }
 
 export default booleanDisjoint;
-module.exports.default = booleanDisjoint;

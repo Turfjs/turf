@@ -50,4 +50,3 @@ function transformRotate(geojson, angle, pivot, mutate) {
 }
 
 export default transformRotate;
-module.exports.default = transformRotate;

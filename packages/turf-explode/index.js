@@ -33,4 +33,3 @@ function explode(geojson) {
 }
 
 export default explode;
-module.exports.default = explode;

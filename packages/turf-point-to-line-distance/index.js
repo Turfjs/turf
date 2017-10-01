@@ -255,4 +255,3 @@ function toWGS84(xy) {
 }
 
 export default pointToLineDistance;
-module.exports.default = pointToLineDistance;

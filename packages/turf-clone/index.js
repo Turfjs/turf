@@ -144,4 +144,3 @@ function deepSlice(coords) {
 }
 
 export default clone;
-module.exports.default = clone;

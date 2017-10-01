@@ -28,4 +28,3 @@ function lineDistance(geojson, units) {
 }
 
 export default lineDistance;
-module.exports.default = lineDistance;

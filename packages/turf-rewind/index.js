@@ -126,4 +126,3 @@ function rewindPolygon(coords, reverse) {
 }
 
 export default rewind;
-module.exports.default = rewind;

@@ -30,4 +30,3 @@ function center(geojson, properties) {
 }
 
 export default center;
-module.exports.default = center;

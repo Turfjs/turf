@@ -126,4 +126,3 @@ function lineIntersects(line1StartX, line1StartY, line1EndX, line1EndY, line2Sta
 }
 
 export default kinks;
-module.exports.default = kinks;

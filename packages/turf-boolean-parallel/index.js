@@ -69,4 +69,3 @@ function getType(geojson, name) {
 }
 
 export default booleanParallel;
-module.exports.default = booleanParallel;

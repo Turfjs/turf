@@ -194,4 +194,3 @@ function pointsEquals(pt1, pt2) {
 }
 
 export default lineSplit;
-module.exports.default = lineSplit;

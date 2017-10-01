@@ -105,4 +105,3 @@ function intersects(line1, line2) {
 }
 
 export default lineIntersect;
-module.exports.default = lineIntersect;

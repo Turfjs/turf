@@ -55,4 +55,3 @@ function idw(controlPoints, valueField, weight, cellWidth, units) {
 }
 
 export default idw;
-module.exports.default = idw;

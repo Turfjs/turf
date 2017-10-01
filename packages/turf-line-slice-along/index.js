@@ -73,4 +73,3 @@ function lineSliceAlong(line, startDist, stopDist, units) {
 }
 
 export default lineSliceAlong;
-module.exports.default = lineSliceAlong;

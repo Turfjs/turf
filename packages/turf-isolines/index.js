@@ -140,4 +140,3 @@ function isObject(input) {
 }
 
 export default isolines;
-module.exports.default = isolines;

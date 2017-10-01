@@ -98,4 +98,3 @@ function centerOfMass(geojson, properties) {
 }
 
 export default centerOfMass;
-module.exports.default = centerOfMass;

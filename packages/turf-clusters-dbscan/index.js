@@ -71,4 +71,3 @@ function clustersDbscan(points, maxDistance, units, minPoints) {
 }
 
 export default clustersDbscan;
-module.exports.default = clustersDbscan;

@@ -67,4 +67,3 @@ function collect(polygons, points, inProperty, outProperty) {
 }
 
 export default collect;
-module.exports.default = collect;

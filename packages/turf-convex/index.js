@@ -50,4 +50,3 @@ function convex(feature) {
 }
 
 export default convex;
-module.exports.default = convex;

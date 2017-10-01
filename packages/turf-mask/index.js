@@ -183,4 +183,3 @@ function createIndex(features) {
 }
 
 export default mask;
-module.exports.default = mask;

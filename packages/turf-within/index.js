@@ -51,4 +51,3 @@ function within(points, polygons) {
 }
 
 export default within;
-module.exports.default = within;

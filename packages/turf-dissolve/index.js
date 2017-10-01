@@ -134,4 +134,3 @@ function toLinestring(polygon) {
 }
 
 export default dissolve;
-module.exports.default = dissolve;

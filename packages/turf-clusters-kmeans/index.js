@@ -66,4 +66,3 @@ function clustersKmeans(points, numberOfClusters, mutate) {
 }
 
 export default clustersKmeans;
-module.exports.default = clustersKmeans;

@@ -51,4 +51,3 @@ function circle(center, radius, options) {
 }
 
 export default circle;
-module.exports.default = circle;

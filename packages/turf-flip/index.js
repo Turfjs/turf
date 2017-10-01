@@ -32,4 +32,3 @@ function flip(geojson, mutate) {
 }
 
 export default flip;
-module.exports.default = flip;

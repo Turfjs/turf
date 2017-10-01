@@ -46,4 +46,3 @@ function union() {
 }
 
 export default union;
-module.exports.default = union;

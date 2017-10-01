@@ -126,4 +126,3 @@ function calculateArea(bbox) {
 }
 
 export default linestringToPolygon;
-module.exports.default = linestringToPolygon;

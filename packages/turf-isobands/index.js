@@ -271,4 +271,3 @@ function allGrouped(list) {
 }
 
 export default isobands;
-module.exports.default = isobands;

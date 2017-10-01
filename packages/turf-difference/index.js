@@ -83,4 +83,3 @@ function removeEmptyPolygon(geom) {
 }
 
 export default difference;
-module.exports.default = difference;

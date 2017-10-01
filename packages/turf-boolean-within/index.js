@@ -216,4 +216,3 @@ function getMidpoint(pair1, pair2) {
 }
 
 export default booleanWithin;
-module.exports.default = booleanWithin;

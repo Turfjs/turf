@@ -57,4 +57,3 @@ function lineSlice(startPt, stopPt, line) {
 }
 
 export default lineSlice;
-module.exports.default = lineSlice;

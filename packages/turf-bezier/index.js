@@ -61,4 +61,3 @@ function bezier(line, options) {
 }
 
 export default bezier;
-module.exports.default = bezier;

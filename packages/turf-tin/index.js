@@ -257,4 +257,3 @@ function triangulate(vertices) {
 }
 
 export default tin;
-module.exports.default = tin;

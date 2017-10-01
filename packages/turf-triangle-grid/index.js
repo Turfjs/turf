@@ -92,4 +92,3 @@ function triangleGrid(bbox, cellSize, units) {
 
 
 export default triangleGrid;
-module.exports.default = triangleGrid;

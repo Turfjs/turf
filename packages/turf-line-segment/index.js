@@ -92,4 +92,3 @@ function bbox(coords1, coords2) {
 }
 
 export default lineSegment;
-module.exports.default = lineSegment;

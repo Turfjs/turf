@@ -43,4 +43,3 @@ function getRandomSubarray(arr, size) {
 }
 
 export default sample;
-module.exports.default = sample;

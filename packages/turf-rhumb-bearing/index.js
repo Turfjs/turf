@@ -72,4 +72,3 @@ function calculateRhumbBearing(from, to) {
 }
 
 export default rhumbBearing;
-module.exports.default = rhumbBearing;

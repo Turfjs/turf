@@ -24,4 +24,3 @@ function envelope(geojson) {
 }
 
 export default envelope;
-module.exports.default = envelope;

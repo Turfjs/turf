@@ -43,4 +43,3 @@ function coordsToLine(coords, properties) {
 }
 
 export default polygonToLinestring;
-module.exports.default = polygonToLinestring;

@@ -80,4 +80,3 @@ function pointGrid(bbox, cellSide, options) {
 }
 
 export default pointGrid;
-module.exports.default = pointGrid;

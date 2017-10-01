@@ -86,4 +86,3 @@ function convertAngleTo360(alfa) {
 }
 
 export default lineArc;
-module.exports.default = lineArc;

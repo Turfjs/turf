@@ -192,4 +192,3 @@ function defineProjection(geojson) {
 }
 
 export default buffer;
-module.exports.default = buffer;

@@ -42,4 +42,3 @@ function distance(from, to, units) {
 }
 
 export default distance;
-module.exports.default = distance;

@@ -95,4 +95,3 @@ function interpolate(points, cellSize, gridType, property, units, weight) {
 }
 
 export default interpolate;
-module.exports.default = interpolate;

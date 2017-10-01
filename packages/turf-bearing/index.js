@@ -62,4 +62,3 @@ function calculateFinalBearing(start, end) {
 }
 
 export default bearing;
-module.exports.default = bearing;

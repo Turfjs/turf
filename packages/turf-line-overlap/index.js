@@ -109,4 +109,3 @@ function concatSegment(line, segment) {
 }
 
 export default lineOverlap;
-module.exports.default = lineOverlap;

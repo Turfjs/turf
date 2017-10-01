@@ -87,4 +87,3 @@ function calculateRhumbDistance(origin, destination, radius) {
 }
 
 export default rhumbDistance;
-module.exports.default = rhumbDistance;

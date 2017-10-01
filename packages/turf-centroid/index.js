@@ -30,4 +30,3 @@ function centroid(geojson, properties) {
 }
 
 export default centroid;
-module.exports.default = centroid;

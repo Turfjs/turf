@@ -145,4 +145,3 @@ function isPointOnLineSegment(start, end, point) {
 }
 
 export default cleanCoords;
-module.exports.default = cleanCoords;

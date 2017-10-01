@@ -85,4 +85,3 @@ function isLeft(point1, point2, point3) {
 }
 
 export default polygonTangents;
-module.exports.default = polygonTangents;

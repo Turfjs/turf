@@ -92,4 +92,3 @@ function pointOnLine(lines, pt, units) {
 }
 
 export default pointOnLine;
-module.exports.default = pointOnLine;

@@ -165,4 +165,3 @@ function checkValidity(ring) {
 }
 
 export default simplify;
-module.exports.default = simplify;

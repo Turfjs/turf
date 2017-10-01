@@ -53,4 +53,3 @@ function intersect(poly1, poly2) {
 }
 
 export default intersect;
-module.exports.default = intersect;

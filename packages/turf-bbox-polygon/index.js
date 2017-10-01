@@ -30,4 +30,3 @@ function bboxPolygon(bbox) {
 }
 
 export default bboxPolygon;
-module.exports.default = bboxPolygon;

@@ -133,4 +133,3 @@ function defineOrigin(geojson, origin) {
 }
 
 export default transformScale;
-module.exports.default = transformScale;

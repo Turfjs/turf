@@ -54,4 +54,3 @@ function transformTranslate(geojson, distance, direction, units, zTranslation, m
 }
 
 export default transformTranslate;
-module.exports.default = transformTranslate;

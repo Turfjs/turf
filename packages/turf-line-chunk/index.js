@@ -62,4 +62,3 @@ function sliceLineSegments(line, segmentLength, units, callback) {
 }
 
 export default lineChunk;
-module.exports.default = lineChunk;

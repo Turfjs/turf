@@ -65,4 +65,3 @@ function planepoint(point, triangle) {
 }
 
 export default planepoint;
-module.exports.default = planepoint;

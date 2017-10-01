@@ -29,4 +29,3 @@ function unkinkPolygon(geojson) {
 }
 
 export default unkinkPolygon;
-module.exports.default = unkinkPolygon;

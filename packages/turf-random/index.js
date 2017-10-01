@@ -50,4 +50,3 @@ function random(type, count, options) {
 }
 
 export default random;
-module.exports.default = random;

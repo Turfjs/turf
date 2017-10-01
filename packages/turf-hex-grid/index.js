@@ -137,4 +137,3 @@ function hexTriangles(center, rx, ry) {
 }
 
 export default hexGrid;
-module.exports.default = hexGrid;
