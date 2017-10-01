@@ -47,7 +47,7 @@
     "uglify-js": "*"
   },
   "dependencies": {
-    "@turf/helpers": "5.0.0-alpha",
+    "@turf/helpers": "5.0.0",
     "@turf/point-on-line": "^4.7.3"
   },
   "@std/esm": {

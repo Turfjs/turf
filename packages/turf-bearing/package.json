@@ -33,7 +33,7 @@
   "homepage": "https://github.com/Turfjs/turf",
   "devDependencies": {
     "@turf/destination": "*",
-    "@turf/helpers": "5.0.0-alpha",
+    "@turf/helpers": "5.0.0",
     "benchmark": "*",
     "tape": "*",
     "write-json-file": "*",
@@ -42,7 +42,7 @@
     "uglify-js": "*"
   },
   "dependencies": {
-    "@turf/invariant": "5.0.0-alpha"
+    "@turf/invariant": "5.0.0"
   },
   "@std/esm": {
     "esm": "js",

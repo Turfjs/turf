@@ -18,7 +18,10 @@ function updateDependencies(pckg) {
             case '@turf/helpers':
             case '@turf/invariant':
             case '@turf/meta':
-                dependencies[name] = '5.0.0-alpha';
+                dependencies[name] = '5.0.0';
+                break;
+            case 'jsts':
+                dependencies[name] = '1.4.0';
                 break;
             default:
                 dependencies[name] = version;
@@ -41,7 +44,7 @@ function updateDevDependencies(pckg) {
             case '@turf/helpers':
             case '@turf/invariant':
             case '@turf/meta':
-                devDependencies[name] = '5.0.0-alpha';
+                devDependencies[name] = '5.0.0';
                 break;
             // Change all other devDependencies to *
             default:

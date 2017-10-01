@@ -55,9 +55,9 @@
   },
   "dependencies": {
     "@turf/bbox": "^4.7.3",
-    "@turf/helpers": "5.0.0-alpha",
-    "@turf/invariant": "5.0.0-alpha",
-    "@turf/meta": "5.0.0-alpha"
+    "@turf/helpers": "5.0.0",
+    "@turf/invariant": "5.0.0",
+    "@turf/meta": "5.0.0"
   },
   "@std/esm": {
     "esm": "js",

@@ -36,7 +36,7 @@
   },
   "homepage": "https://github.com/Turfjs/turf",
   "devDependencies": {
-    "@turf/helpers": "5.0.0-alpha",
+    "@turf/helpers": "5.0.0",
     "benchmark": "*",
     "tape": "*",
     "rollup": "*",
@@ -44,7 +44,7 @@
     "uglify-js": "*"
   },
   "dependencies": {
-    "@turf/meta": "5.0.0-alpha"
+    "@turf/meta": "5.0.0"
   },
   "@std/esm": {
     "esm": "js",
