@@ -49,7 +49,7 @@ test('turf -- invalid dependencies', t => {
 
 test('turf -- strict version dependencies', t => {
     for (const {name, dependencies} of modules) {
-        if (dependencies['jsts'] && dependencies['jsts'] !== '1.4.0') t.fail(`${name} jsts must use v1.3.0`);
+        if (dependencies['jsts'] && dependencies['jsts'] !== '1.4.0') t.fail(name + ' jsts must use v1.4.0');
     }
     t.end();
 });
