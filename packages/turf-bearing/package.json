@@ -2,19 +2,18 @@
   "name": "@turf/bearing",
   "version": "4.7.3",
   "description": "turf bearing module",
-  "main": "dist/index",
+  "main": "main",
   "module": "index",
   "jsnext:main": "index",
   "types": "index.d.ts",
   "files": [
     "index.js",
     "index.d.ts",
-    "dist"
+    "main.js"
   ],
   "scripts": {
-    "pretest": "rollup -c ../../rollup.config.js",
+    "pretest": "rollup -c rollup.config.js",
     "test": "node -r @std/esm test.js",
-    "posttest": "uglifyjs ./dist/index.js -o ./dist/index.min.js",
     "bench": "node -r @std/esm bench.js"
   },
   "repository": {
@@ -39,7 +38,7 @@
     "write-json-file": "*",
     "rollup": "*",
     "@std/esm": "*",
-    "uglify-js": "*"
+    "rollup-plugin-uglify": "*"
   },
   "dependencies": {
     "@turf/invariant": "5.0.0-alpha"

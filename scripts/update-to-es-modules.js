@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 
+const fs = require('fs-extra');
 const load = require('load-json-file');
 const write = require('write-json-file');
 const path = require('path');
@@ -29,9 +30,10 @@ function updateDependencies(pckg) {
 
 function updateDevDependencies(pckg) {
     const devDependencies = {};
-    new Map(entries(pckg.devDependencies))
-        .set('rollup', '*')
-        .set('uglify-js', '*')
+    const dev = new Map(entries(pckg.devDependencies));
+    dev.delete('uglify-js');
+    dev.set('rollup', '*')
+        .set('rollup-plugin-uglify', '*')
         .set('tape', '*')
         .set('@std/esm', '*')
         .set('benchmark', '*').forEach((version, name) => {
@@ -54,9 +56,12 @@ function updateDevDependencies(pckg) {
 glob.sync(path.join(__dirname, '..', 'packages', 'turf-*', 'package.json')).forEach(packagePath => {
     const pckg = load.sync(packagePath);
     const files = new Set(pckg.files);
-    files.add('dist');
     files.add('index.js');
     files.add('index.d.ts');
+    files.add('main.js');
+    files.delete('main.min.js');
+    files.delete('dist');
+    files.delete('dist/index.js');
     files.delete('index.es5.js');
     files.delete('index.mjs');
     files.delete('index.cjs.js');
@@ -66,15 +71,14 @@ glob.sync(path.join(__dirname, '..', 'packages', 'turf-*', 'package.json')).forE
         name: pckg.name,
         version: pckg.version,
         description: pckg.description,
-        main: 'dist/index',
+        main: 'main',
         module: 'index',
         'jsnext:main': 'index',
         types: 'index.d.ts',
         files: [...files],
         scripts: {
-            'pretest': 'rollup -c ../../rollup.config.js',
+            'pretest': 'rollup -c rollup.config.js',
             'test': 'node -r @std/esm test.js',
-            'posttest': 'uglifyjs ./dist/index.js -o ./dist/index.min.js',
             'bench': 'node -r @std/esm bench.js'
         },
         repository: {
@@ -96,5 +100,10 @@ glob.sync(path.join(__dirname, '..', 'packages', 'turf-*', 'package.json')).forE
             cjs: true
         }
     };
+    // Update package.json
     write.sync(packagePath, newPckg, {indent: 2});
+
+    // Copy rollup.config.js (root) => (module)
+    const rollupPath = path.join(path.parse(packagePath).dir, 'rollup.config.js');
+    fs.copySync(path.join(__dirname, '..', 'rollup.config.js'), rollupPath);
 });

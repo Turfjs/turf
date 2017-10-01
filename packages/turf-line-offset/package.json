@@ -2,7 +2,7 @@
   "name": "@turf/line-offset",
   "version": "4.7.3",
   "description": "turf line-offset module",
-  "main": "dist/index",
+  "main": "main",
   "module": "index",
   "jsnext:main": "index",
   "types": "index.d.ts",
@@ -10,12 +10,11 @@
     "index.js",
     "index.d.ts",
     "intersection.js",
-    "dist"
+    "main.js"
   ],
   "scripts": {
-    "pretest": "rollup -c ../../rollup.config.js",
+    "pretest": "rollup -c rollup.config.js",
     "test": "node -r @std/esm test.js",
-    "posttest": "uglifyjs ./dist/index.js -o ./dist/index.min.js",
     "bench": "node -r @std/esm bench.js"
   },
   "repository": {
@@ -47,7 +46,7 @@
     "write-json-file": "*",
     "rollup": "*",
     "@std/esm": "*",
-    "uglify-js": "*"
+    "rollup-plugin-uglify": "*"
   },
   "dependencies": {
     "@turf/helpers": "5.0.0-alpha",

@@ -2,19 +2,18 @@
   "name": "@turf/triangle-grid",
   "version": "4.7.3",
   "description": "turf triangle-grid module",
-  "main": "dist/index",
+  "main": "main",
   "module": "index",
   "jsnext:main": "index",
   "types": "index.d.ts",
   "files": [
     "index.js",
     "index.d.ts",
-    "dist"
+    "main.js"
   ],
   "scripts": {
-    "pretest": "rollup -c ../../rollup.config.js",
+    "pretest": "rollup -c rollup.config.js",
     "test": "node -r @std/esm test.js",
-    "posttest": "uglifyjs ./dist/index.js -o ./dist/index.min.js",
     "bench": "node -r @std/esm bench.js"
   },
   "repository": {
@@ -41,7 +40,7 @@
     "tape": "*",
     "rollup": "*",
     "@std/esm": "*",
-    "uglify-js": "*"
+    "rollup-plugin-uglify": "*"
   },
   "dependencies": {
     "@turf/distance": "^4.7.3",
