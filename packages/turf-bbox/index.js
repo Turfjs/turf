@@ -14,16 +14,15 @@ import { coordEach } from '@turf/meta';
  * //addToMap
  * var addToMap = [line, bboxPolygon]
  */
-function turfBBox(geojson) {
-    var bbox = [Infinity, Infinity, -Infinity, -Infinity];
+function bbox(geojson) {
+    var BBox = [Infinity, Infinity, -Infinity, -Infinity];
     coordEach(geojson, function (coord) {
-        if (bbox[0] > coord[0]) bbox[0] = coord[0];
-        if (bbox[1] > coord[1]) bbox[1] = coord[1];
-        if (bbox[2] < coord[0]) bbox[2] = coord[0];
-        if (bbox[3] < coord[1]) bbox[3] = coord[1];
+        if (BBox[0] > coord[0]) BBox[0] = coord[0];
+        if (BBox[1] > coord[1]) BBox[1] = coord[1];
+        if (BBox[2] < coord[0]) BBox[2] = coord[0];
+        if (BBox[3] < coord[1]) BBox[3] = coord[1];
     });
-    return bbox;
+    return BBox;
 }
 
-export default turfBBox;
-module.exports.default = turfBBox;
+export default bbox;
