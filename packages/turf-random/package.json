@@ -12,8 +12,9 @@
     "main.js"
   ],
   "scripts": {
-    "pretest": "rollup -c rollup.config.js",
+    "pretest": "rollup -c ../../rollup.config.js",
     "test": "node -r @std/esm test.js",
+    "posttest": "uglifyjs main.js -o main.min.js",
     "bench": "node -r @std/esm bench.js"
   },
   "repository": {
@@ -36,7 +37,7 @@
     "tape": "*",
     "rollup": "*",
     "@std/esm": "*",
-    "rollup-plugin-uglify": "*"
+    "uglify-js": "*"
   },
   "dependencies": {
     "geojson-random": "^0.2.2"

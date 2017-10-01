@@ -31,9 +31,9 @@ function updateDependencies(pckg) {
 function updateDevDependencies(pckg) {
     const devDependencies = {};
     const dev = new Map(entries(pckg.devDependencies));
-    dev.delete('uglify-js');
+    dev.delete('rollup-plugin-uglify', '*')
     dev.set('rollup', '*')
-        .set('rollup-plugin-uglify', '*')
+        .set('uglify-js', '*')
         .set('tape', '*')
         .set('@std/esm', '*')
         .set('benchmark', '*').forEach((version, name) => {
@@ -77,8 +77,9 @@ glob.sync(path.join(__dirname, '..', 'packages', 'turf-*', 'package.json')).forE
         types: 'index.d.ts',
         files: [...files],
         scripts: {
-            'pretest': 'rollup -c rollup.config.js',
+            'pretest': 'rollup -c ../../rollup.config.js',
             'test': 'node -r @std/esm test.js',
+            'posttest': 'uglifyjs main.js -o main.min.js',
             'bench': 'node -r @std/esm bench.js'
         },
         repository: {
@@ -102,10 +103,4 @@ glob.sync(path.join(__dirname, '..', 'packages', 'turf-*', 'package.json')).forE
     };
     // Update package.json
     write.sync(packagePath, newPckg, {indent: 2});
-
-    // Create symbolic link
-    // root => module
-    // ../../rollup.config.js => ./packages/turf-<module>/rollup.config.js
-    const rollupPath = path.join(path.parse(packagePath).dir, 'rollup.config.js');
-    if (!fs.existsSync(rollupPath)) fs.symlinkSync(path.join('..', '..', 'rollup.config.js'), rollupPath);
 });
