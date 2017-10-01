@@ -1,4 +1,4 @@
-var polygonize = require('polygonize');
+var polygonizeSource = require('polygonize');
 
 /**
  * Polygonizes {@link LineString|(Multi)LineString(s)} into {@link Polygons}.
@@ -21,7 +21,7 @@ var polygonize = require('polygonize');
  * @throws {Error} if GeoJSON is invalid.
  */
 function polygonize(geojson) {
-    return polygonize(geojson);
+    return polygonizeSource(geojson);
 }
 
 export default polygonize;
