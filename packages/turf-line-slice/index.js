@@ -30,7 +30,7 @@ import pointOnLine from '@turf/point-on-line';
  * //addToMap
  * var addToMap = [start, stop, line]
  */
-export default function lineSlice(startPt, stopPt, line) {
+function lineSlice(startPt, stopPt, line) {
     var coords;
     if (line.type === 'Feature') {
         coords = line.geometry.coordinates;
@@ -55,3 +55,5 @@ export default function lineSlice(startPt, stopPt, line) {
     clipCoords.push(ends[1].geometry.coordinates);
     return linestring(clipCoords, line.properties);
 }
+
+export default lineSlice;

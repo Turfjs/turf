@@ -20,7 +20,7 @@ import { flattenEach } from '@turf/meta';
  * //addToMap
  * var addToMap = [masked]
  */
-export default function (polygon, mask) {
+function mask(polygon, mask) {
     // Define mask
     var maskPolygon = createMask(mask);
 
@@ -181,3 +181,5 @@ function createIndex(features) {
     tree.load(load);
     return tree;
 }
+
+export default mask;

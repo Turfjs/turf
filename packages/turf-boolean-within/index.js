@@ -20,7 +20,7 @@ import { getGeom, getType } from '@turf/invariant';
  * turf.booleanWithin(point, line);
  * //=true
  */
-export default function booleanWithin(feature1, feature2) {
+function booleanWithin(feature1, feature2) {
     var type1 = getType(feature1);
     var type2 = getType(feature2);
     var geom1 = getGeom(feature1);
@@ -214,3 +214,5 @@ function compareCoords(pair1, pair2) {
 function getMidpoint(pair1, pair2) {
     return [(pair1[0] + pair2[0]) / 2, (pair1[1] + pair2[1]) / 2];
 }
+
+export default booleanWithin;

@@ -24,7 +24,7 @@ import { featureEach, segmentEach } from '@turf/meta';
  * //addToMap
  * var addToMap = [line1, line2, overlapping]
  */
-export default function (line1, line2, tolerance) {
+function lineOverlap(line1, line2, tolerance) {
     var features = [];
     tolerance = tolerance || 0;
 
@@ -107,3 +107,5 @@ function concatSegment(line, segment) {
     else if (equal(coords[1], end)) geom.push(coords[0]);
     return line;
 }
+
+export default lineOverlap;

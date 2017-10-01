@@ -1,4 +1,4 @@
-var polygonize = require('polygonize');
+var polygonizeSource = require('polygonize');
 
 /**
  * Polygonizes {@link LineString|(Multi)LineString(s)} into {@link Polygons}.
@@ -20,6 +20,8 @@ var polygonize = require('polygonize');
  * @returns {FeatureCollection<Polygon>} Polygons created
  * @throws {Error} if GeoJSON is invalid.
  */
-export default function (geojson) {
-    return polygonize(geojson);
+function polygonize(geojson) {
+    return polygonizeSource(geojson);
 }
+
+export default polygonize;

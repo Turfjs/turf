@@ -35,7 +35,7 @@ import { feature } from '@turf/helpers';
  * //addToMap
  * var addToMap = [poly1, poly2, intersection];
  */
-export default function (poly1, poly2) {
+function intersect(poly1, poly2) {
     var geom1 = (poly1.type === 'Feature') ? poly1.geometry : poly1;
     var geom2 = (poly2.type === 'Feature') ? poly2.geometry : poly2;
 
@@ -51,3 +51,5 @@ export default function (poly1, poly2) {
     var geom = writer.write(intersection);
     return feature(geom);
 }
+
+export default intersect;

@@ -32,7 +32,7 @@ for (var i = 0; i < 6; i++) {
  * //addToMap
  * var addToMap = [hexgrid];
  */
-export default function hexGrid(bbox, cellDiameter, units, triangles) {
+function hexGrid(bbox, cellDiameter, units, triangles) {
     var west = bbox[0];
     var south = bbox[1];
     var east = bbox[2];
@@ -135,3 +135,5 @@ function hexTriangles(center, rx, ry) {
     }
     return triangles;
 }
+
+export default hexGrid;

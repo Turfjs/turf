@@ -18,7 +18,7 @@ import { getCoords, getType } from '@turf/invariant';
  * turf.cleanCoords(multiPoint).geometry.coordinates;
  * //= [[0, 0], [2, 2]]
  */
-export default function (geojson, mutate) {
+function cleanCoords(geojson, mutate) {
     if (!geojson) throw new Error('geojson is required');
     var type = getType(geojson);
 
@@ -27,19 +27,19 @@ export default function (geojson, mutate) {
 
     switch (type) {
     case 'LineString':
-        newCoords = cleanCoords(geojson);
+        newCoords = cleanLine(geojson);
         break;
     case 'MultiLineString':
     case 'Polygon':
         getCoords(geojson).forEach(function (line) {
-            newCoords.push(cleanCoords(line));
+            newCoords.push(cleanLine(line));
         });
         break;
     case 'MultiPolygon':
         getCoords(geojson).forEach(function (polygons) {
             var polyPoints = [];
             polygons.forEach(function (ring) {
-                polyPoints.push(cleanCoords(ring));
+                polyPoints.push(cleanLine(ring));
             });
             newCoords.push(polyPoints);
         });
@@ -83,7 +83,7 @@ export default function (geojson, mutate) {
  * @param {Array<number>|LineString} line Line
  * @returns {Array<number>} Cleaned coordinates
  */
-function cleanCoords(line) {
+function cleanLine(line) {
     var points = getCoords(line);
     // handle "clean" segment
     if (points.length === 2 && !equals(points[0], points[1])) return points;
@@ -143,3 +143,5 @@ function isPointOnLineSegment(start, end, point) {
     else if (Math.abs(dxl) >= Math.abs(dyl)) return dxl > 0 ? startX <= x && x <= endX : endX <= x && x <= startX;
     else return dyl > 0 ? startY <= y && y <= endY : endY <= y && y <= startY;
 }
+
+export default cleanCoords;

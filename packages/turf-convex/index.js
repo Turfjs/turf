@@ -27,7 +27,7 @@ import { polygon } from '@turf/helpers';
  * //addToMap
  * var addToMap = [points, hull]
  */
-export default function (feature) {
+function convex(feature) {
     var points = [];
 
     // Remove Z in coordinates because it breaks the convexHull algorithm
@@ -48,3 +48,5 @@ export default function (feature) {
     }
     return undefined;
 }
+
+export default convex;

@@ -15,7 +15,7 @@ import { getCoords } from '@turf/invariant';
  * turf.booleanClockwise(counterClockwiseRing)
  * //=false
  */
-export default function booleanClockwise(line) {
+function booleanClockwise(line) {
     // validation
     if (!line) throw new Error('line is required');
     var type = (line.geometry) ? line.geometry.type : line.type;
@@ -33,3 +33,5 @@ export default function booleanClockwise(line) {
     }
     return sum > 0;
 }
+
+export default booleanClockwise;

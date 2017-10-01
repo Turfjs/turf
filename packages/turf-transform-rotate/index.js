@@ -23,7 +23,7 @@ import { getCoords } from '@turf/invariant';
  * var addToMap = [poly, rotatedPoly];
  * rotatedPoly.properties = {stroke: '#F00', 'stroke-width': 4};
  */
-export default function (geojson, angle, pivot, mutate) {
+function transformRotate(geojson, angle, pivot, mutate) {
     // Input validation
     if (!geojson) throw new Error('geojson is required');
     if (angle === undefined || angle === null || isNaN(angle)) throw new Error('angle is required');
@@ -48,3 +48,5 @@ export default function (geojson, angle, pivot, mutate) {
     });
     return geojson;
 }
+
+export default transformRotate;

@@ -34,7 +34,7 @@ import { collectionOf } from '@turf/invariant';
  * //addToMap
  * var addToMap = [grid];
  */
-export default function (points, cellSize, gridType, property, units, weight) {
+function interpolate(points, cellSize, gridType, property, units, weight) {
     // validation
     if (!points) throw new Error('points is required');
     collectionOf(points, 'Point', 'input must contain Points');
@@ -93,3 +93,5 @@ export default function (points, cellSize, gridType, property, units, weight) {
     });
     return featureCollection(results);
 }
+
+export default interpolate;

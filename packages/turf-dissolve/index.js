@@ -24,7 +24,7 @@ var getClosest = require('get-closest');
  * //addToMap
  * var addToMap = [features, dissolved]
  */
-export default function (featureCollection, propertyName) {
+function dissolve(featureCollection, propertyName) {
 
     var originalIndexOfItemsRemoved = [];
     var treeItems = [];
@@ -132,3 +132,5 @@ function toLinestring(polygon) {
     polygon.geometry.coordinates = flat_arr;
     return polygon;
 }
+
+export default dissolve;

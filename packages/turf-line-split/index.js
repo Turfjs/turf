@@ -24,7 +24,7 @@ import lineIntersect from '@turf/line-intersect';
  * //addToMap
  * var addToMap = [line, splitter]
  */
-export default function (line, splitter) {
+function lineSplit(line, splitter) {
     if (!line) throw new Error('line is required');
     if (!splitter) throw new Error('splitter is required');
 
@@ -192,3 +192,5 @@ function findClosestFeature(point, lines) {
 function pointsEquals(pt1, pt2) {
     return pt1[0] === pt2[0] && pt1[1] === pt2[1];
 }
+
+export default lineSplit;

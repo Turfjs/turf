@@ -26,7 +26,7 @@ import { lineString } from '@turf/helpers';
  * //addToMap
  * var addToMap = [center, arc]
  */
-export default function lineArc(center, radius, bearing1, bearing2, options) {
+function lineArc(center, radius, bearing1, bearing2, options) {
     // Optional params
     options = options || {};
     var steps = options.steps;
@@ -84,3 +84,5 @@ function convertAngleTo360(alfa) {
     }
     return beta;
 }
+
+export default lineArc;

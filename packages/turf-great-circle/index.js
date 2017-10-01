@@ -21,7 +21,7 @@ import { GreatCircle } from './arc';
  * //addToMap
  * var addToMap = [start, end, greatCircle]
  */
-export default function (start, end, properties, npoints, offset) {
+function greatCircle(start, end, properties, npoints, offset) {
     start = getCoord(start);
     end = getCoord(end);
     properties = properties || {};
@@ -36,3 +36,5 @@ export default function (start, end, properties, npoints, offset) {
 
     return line.json();
 }
+
+export default greatCircle;

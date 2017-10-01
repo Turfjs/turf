@@ -23,7 +23,7 @@ import {radians2degrees, degrees2radians} from '@turf/helpers';
  * point1.properties.bearing = bearing;
  * point2.properties.bearing = bearing;
  */
-export default function rhumbBearing(start, end, options) {
+function rhumbBearing(start, end, options) {
     // validation
     if (!start) throw new Error('start point is required');
     if (!end) throw new Error('end point is required');
@@ -70,3 +70,5 @@ function calculateRhumbBearing(from, to) {
 
     return (radians2degrees(theta) + 360) % 360;
 }
+
+export default rhumbBearing;

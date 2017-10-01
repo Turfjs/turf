@@ -1,4 +1,4 @@
-var random = require('geojson-random');
+var geojsonRandom = require('geojson-random');
 
 /**
  * Generates random {@link GeoJSON} data, including {@link Point|Points} and {@link Polygon|Polygons}, for testing
@@ -29,17 +29,17 @@ var random = require('geojson-random');
  * //addToMap
  * var addToMap = [points, polygons]
  */
-export default function (type, count, options) {
+function random(type, count, options) {
     options = options || {};
     count = count || 1;
     switch (type) {
     case 'point':
     case 'points':
     case undefined:
-        return random.point(count, options.bbox);
+        return geojsonRandom.point(count, options.bbox);
     case 'polygon':
     case 'polygons':
-        return random.polygon(
+        return geojsonRandom.polygon(
             count,
             options.num_vertices,
             options.max_radial_length,
@@ -48,3 +48,5 @@ export default function (type, count, options) {
         throw new Error('Unknown type given: valid options are points and polygons');
     }
 }
+
+export default random;

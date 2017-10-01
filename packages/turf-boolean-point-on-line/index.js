@@ -15,7 +15,7 @@ import { getCoords } from '@turf/invariant';
  * var isPointOnLine = turf.booleanPointOnLine(pt, line);
  * //=true
  */
-export default function booleanPointOnLine(point, linestring, options) {
+function booleanPointOnLine(point, linestring, options) {
     // Backwards compatible with v4.0
     var ignoreEndVertices = (typeof options === 'object') ? options.ignoreEndVertices : options;
 
@@ -73,3 +73,5 @@ function isPointOnLineSegment(lineSegmentStart, lineSegmentEnd, point, excludeBo
         return dyl > 0 ? lineSegmentStart[1] < point[1] && point[1] < lineSegmentEnd[1] : lineSegmentEnd[1] < point[1] && point[1] < lineSegmentStart[1];
     }
 }
+
+export default booleanPointOnLine;

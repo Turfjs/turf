@@ -17,7 +17,7 @@ import { bearingToAngle } from '@turf/helpers';
  * turf.booleanParallel(line1, line2);
  * //=true
  */
-export default function booleanParallel(line1, line2) {
+function booleanParallel(line1, line2) {
     // validation
     if (!line1) throw new Error('line1 is required');
     if (!line2) throw new Error('line2 is required');
@@ -67,3 +67,5 @@ function getType(geojson, name) {
     if (geojson.type) return geojson.type; // if GeoJSON geometry
     throw new Error('Invalid GeoJSON object for ' + name);
 }
+
+export default booleanParallel;

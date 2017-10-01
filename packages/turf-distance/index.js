@@ -26,7 +26,7 @@ import { radiansToDistance } from '@turf/helpers';
  * from.properties.distance = distance;
  * to.properties.distance = distance;
  */
-export default function (from, to, units) {
+function distance(from, to, units) {
     var degrees2radians = Math.PI / 180;
     var coordinates1 = getCoord(from);
     var coordinates2 = getCoord(to);
@@ -40,3 +40,5 @@ export default function (from, to, units) {
 
     return radiansToDistance(2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a)), units);
 }
+
+export default distance;

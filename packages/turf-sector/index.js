@@ -28,7 +28,7 @@ import { getCoords } from '@turf/invariant';
  * //addToMap
  * var addToMap = [center, sector];
  */
-export default function (center, radius, bearing1, bearing2, options) {
+function sector(center, radius, bearing1, bearing2, options) {
     // Optional params
     options = options || {};
 
@@ -68,3 +68,5 @@ function convertAngleTo360(alfa) {
     }
     return beta;
 }
+
+export default sector;

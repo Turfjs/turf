@@ -19,7 +19,7 @@ import { lineString, multiLineString, polygon, multiPolygon } from '@turf/helper
  * //addToMap
  * var addToMap = [bbox, poly, clipped]
  */
-export default function bboxClip(feature, bbox) {
+function bboxClip(feature, bbox) {
     var geom = getGeom(feature);
     var coords = getCoords(feature);
     var properties = feature.properties;
@@ -64,3 +64,5 @@ function clipPolygon(rings, bbox) {
 function getGeom(feature) {
     return (feature.geometry) ? feature.geometry.type : feature.type;
 }
+
+export default bboxClip;

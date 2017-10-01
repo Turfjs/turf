@@ -18,7 +18,7 @@ import squareGrid from '@turf/square-grid';
  * @param {string} [units=kilometers] used in calculating cellSize, can be degrees, radians, miles, or kilometers
  * @returns {FeatureCollection<Polygon>} grid A grid of polygons with a property field named as `valueField`
  */
-export default function (controlPoints, valueField, weight, cellWidth, units) {
+function idw(controlPoints, valueField, weight, cellWidth, units) {
     // validation
     if (!valueField) throw new Error('valueField is required');
     if (weight === undefined || weight === null) throw new Error('weight is required');
@@ -53,3 +53,5 @@ export default function (controlPoints, valueField, weight, cellWidth, units) {
     }
     return samplingGrid;
 }
+
+export default idw;

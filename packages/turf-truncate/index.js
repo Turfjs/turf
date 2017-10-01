@@ -21,7 +21,7 @@ import { coordEach } from '@turf/meta';
  * //addToMap
  * var addToMap = [truncated];
  */
-export default function truncate(geojson, precision, coordinates, mutate) {
+function truncate(geojson, precision, coordinates, mutate) {
     // default params
     precision = (precision === undefined || precision === null || isNaN(precision)) ? 6 : precision;
     coordinates = (coordinates === undefined || coordinates === null || isNaN(coordinates)) ? 3 : coordinates;
@@ -62,3 +62,5 @@ function truncateCoords(coords, factor, coordinates) {
     }
     return coords;
 }
+
+export default truncate;

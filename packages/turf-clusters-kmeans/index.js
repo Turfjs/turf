@@ -25,7 +25,7 @@ import { collectionOf } from '@turf/invariant';
  * //addToMap
  * var addToMap = [clustered];
  */
-export default function (points, numberOfClusters, mutate) {
+function clustersKmeans(points, numberOfClusters, mutate) {
     // Input validation
     collectionOf(points, 'Point', 'Input must contain Points');
 
@@ -64,3 +64,5 @@ export default function (points, numberOfClusters, mutate) {
 
     return points;
 }
+
+export default clustersKmeans;

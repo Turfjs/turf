@@ -22,7 +22,7 @@ import rhumbDestination from '@turf/rhumb-destination';
  * var addToMap = [poly, translatedPoly];
  * translatedPoly.properties = {stroke: '#F00', 'stroke-width': 4};
  */
-export default function (geojson, distance, direction, units, zTranslation, mutate) {
+function transformTranslate(geojson, distance, direction, units, zTranslation, mutate) {
     // Input validation
     if (!geojson) throw new Error('geojson is required');
     if (distance === undefined || distance === null || isNaN(distance)) throw new Error('distance is required');
@@ -52,3 +52,5 @@ export default function (geojson, distance, direction, units, zTranslation, muta
     });
     return geojson;
 }
+
+export default transformTranslate;

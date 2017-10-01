@@ -31,7 +31,7 @@ import { getCoords } from '@turf/invariant';
  * var addToMap = [line, pt, snapped];
  * snapped.properties['marker-color'] = '#00f';
  */
-export default function (lines, pt, units) {
+function pointOnLine(lines, pt, units) {
     // validation
     var type = (lines.geometry) ? lines.geometry.type : lines.type;
     if (type !== 'LineString' && type !== 'MultiLineString') {
@@ -90,3 +90,5 @@ export default function (lines, pt, units) {
 
     return closestPt;
 }
+
+export default pointOnLine;

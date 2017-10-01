@@ -24,7 +24,7 @@ import { polygon } from '@turf/helpers';
  * //addToMap
  * var addToMap = [turf.point(center), circle]
  */
-export default function (center, radius, options) {
+function circle(center, radius, options) {
     // Optional params
     options = options || {};
     var steps = options.steps || 64;
@@ -49,3 +49,5 @@ export default function (center, radius, options) {
 
     return polygon([coordinates], properties);
 }
+
+export default circle;

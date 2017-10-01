@@ -37,7 +37,7 @@ import { featureCollection } from '@turf/helpers';
  *   currentFeature.properties['marker-color'] = '#000';
  * });
  */
-export default function (points, polygons) {
+function within(points, polygons) {
     var pointsWithin = featureCollection([]);
     for (var i = 0; i < polygons.features.length; i++) {
         for (var j = 0; j < points.features.length; j++) {
@@ -49,3 +49,5 @@ export default function (points, polygons) {
     }
     return pointsWithin;
 }
+
+export default within;

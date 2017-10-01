@@ -24,7 +24,7 @@ import { getCoord } from '@turf/invariant';
  * var addToMap = [pt, destination]
  * destination.properties['marker-color'] = '#00F';
  */
-export default function rhumbDestination(origin, distance, bearing, options) {
+function rhumbDestination(origin, distance, bearing, options) {
     // validation
     if (!origin) throw new Error('origin is required');
     if (distance === undefined || distance === null) throw new Error('distance is required');
@@ -34,7 +34,7 @@ export default function rhumbDestination(origin, distance, bearing, options) {
 
     var distanceInMeters = convertDistance(distance, units, 'meters');
     var coords = getCoord(origin);
-    var destination = rhumbDestinationPoint(coords, distanceInMeters, bearing);
+    var destination = calculateRhumbDestination(coords, distanceInMeters, bearing);
 
     // compensate the crossing of the 180th meridian (https://macwright.org/2016/09/26/the-180th-meridian.html)
     // solution from https://github.com/mapbox/mapbox-gl-js/issues/3250#issuecomment-294887678
@@ -54,7 +54,7 @@ export default function rhumbDestination(origin, distance, bearing, options) {
  * @param   {number} [radius=6371e3] - (Mean) radius of earth (defaults to radius in metres).
  * @returns {Array<number>} Destination point.
  */
-function rhumbDestinationPoint(origin, distance, bearing, radius) {
+function calculateRhumbDestination(origin, distance, bearing, radius) {
     // φ => phi
     // λ => lambda
     // ψ => psi
@@ -83,3 +83,5 @@ function rhumbDestinationPoint(origin, distance, bearing, radius) {
 
     return [((lambda2 * 180 / Math.PI) + 540) % 360 - 180, phi2 * 180 / Math.PI]; // normalise to −180..+180°
 }
+
+export default rhumbDestination;

@@ -122,4 +122,3 @@ function rad(_) {
 }
 
 export default area;
-module.exports.default = area;

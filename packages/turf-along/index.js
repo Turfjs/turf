@@ -50,4 +50,3 @@ function along(line, distance, options) {
 }
 
 export default along;
-module.exports.default = along;
