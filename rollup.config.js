@@ -1,4 +1,4 @@
-function typesciptDefaultExport() {
+function typescriptExportsDefault() {
     return {
         name: 'typescript-default-export',
         transformBundle(code) {
@@ -17,5 +17,5 @@ export default {
         file: 'main.js',
         format: 'cjs'
     },
-    plugins: [typesciptDefaultExport()]
+    plugins: [typescriptExportsDefault()]
 };
