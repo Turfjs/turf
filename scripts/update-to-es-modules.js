@@ -103,7 +103,9 @@ glob.sync(path.join(__dirname, '..', 'packages', 'turf-*', 'package.json')).forE
     // Update package.json
     write.sync(packagePath, newPckg, {indent: 2});
 
-    // Copy rollup.config.js (root) => (module)
+    // Create symbolic link
+    // root => module
+    // ../../rollup.config.js => ./packages/turf-<module>/rollup.config.js
     const rollupPath = path.join(path.parse(packagePath).dir, 'rollup.config.js');
-    fs.copySync(path.join(__dirname, '..', 'rollup.config.js'), rollupPath);
+    if (!fs.existsSync(rollupPath)) fs.symlinkSync(path.join('..', '..', 'rollup.config.js'), rollupPath);
 });
