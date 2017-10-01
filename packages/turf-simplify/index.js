@@ -43,7 +43,7 @@ import { geomEach } from '@turf/meta';
  * //addToMap
  * var addToMap = [geojson, simplified]
  */
-export default function (geojson, tolerance, highQuality, mutate) {
+function simplify(geojson, tolerance, highQuality, mutate) {
     if (!geojson) throw new Error('geojson is required');
     if (tolerance && tolerance < 0) throw new Error('invalid tolerance');
 
@@ -51,7 +51,7 @@ export default function (geojson, tolerance, highQuality, mutate) {
     if (mutate !== true) geojson = clone(geojson);
 
     geomEach(geojson, function (geom) {
-        simplify(geom, tolerance, highQuality);
+        simplifyGeom(geom, tolerance, highQuality);
     });
     return geojson;
 }
@@ -65,7 +65,7 @@ export default function (geojson, tolerance, highQuality, mutate) {
  * @param {boolean} [highQuality=false] whether or not to spend more time to create a higher-quality simplification with a different algorithm
  * @returns {Geometry} output
  */
-function simplify(geometry, tolerance, highQuality) {
+function simplifyGeom(geometry, tolerance, highQuality) {
     var type = geometry.type;
 
     // "unsimplyfiable" geometry types
@@ -163,3 +163,6 @@ function checkValidity(ring) {
     //if the last point is the same as the first, it's not a triangle
     return !(ring.length === 3 && ((ring[2][0] === ring[0][0]) && (ring[2][1] === ring[0][1])));
 }
+
+export default simplify;
+module.exports.default = simplify;

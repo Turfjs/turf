@@ -19,7 +19,7 @@ import { featureCollection } from '@turf/helpers';
  * //addToMap
  * var addToMap = [rewind];
  */
-export default function (geojson, reverse, mutate) {
+function rewind(geojson, reverse, mutate) {
     // default params
     reverse = (reverse !== undefined) ? reverse : false;
     mutate = (mutate !== undefined) ? mutate : false;
@@ -37,19 +37,19 @@ export default function (geojson, reverse, mutate) {
     switch (geojson.type) {
     case 'GeometryCollection':
         geomEach(geojson, function (geometry) {
-            rewind(geometry, reverse);
+            rewindFeature(geometry, reverse);
         });
         return geojson;
     case 'FeatureCollection':
         featureEach(geojson, function (feature) {
-            featureEach(rewind(feature, reverse), function (result) {
+            featureEach(rewindFeature(feature, reverse), function (result) {
                 results.push(result);
             });
         });
         return featureCollection(results);
     }
     // Support Feature or Geometry Objects
-    return rewind(geojson, reverse);
+    return rewindFeature(geojson, reverse);
 }
 
 /**
@@ -60,14 +60,14 @@ export default function (geojson, reverse, mutate) {
  * @param {Boolean} [reverse=false] enable reverse winding
  * @returns {Geometry|Feature<any>} rewind Geometry or Feature
  */
-function rewind(geojson, reverse) {
+function rewindFeature(geojson, reverse) {
     var type = (geojson.type === 'Feature') ? geojson.geometry.type : geojson.type;
 
     // Support all GeoJSON Geometry Objects
     switch (type) {
     case 'GeometryCollection':
         geomEach(geojson, function (geometry) {
-            rewind(geometry, reverse);
+            rewindFeature(geometry, reverse);
         });
         return geojson;
     case 'LineString':
@@ -124,3 +124,6 @@ function rewindPolygon(coords, reverse) {
         }
     }
 }
+
+export default rewind;
+module.exports.default = rewind;

@@ -24,7 +24,7 @@ import { getCoord } from '@turf/invariant';
  * point2.properties['marker-color'] = '#0f0'
  * point1.properties.bearing = bearing
  */
-export default function bearing(start, end, options) {
+function bearing(start, end, options) {
     // Backwards compatible with v4.0
     var final = (typeof options === 'object') ? options.final : options;
     if (final === true) return calculateFinalBearing(start, end);
@@ -61,3 +61,5 @@ function calculateFinalBearing(start, end) {
     return bear;
 }
 
+export default bearing;
+module.exports.default = bearing;

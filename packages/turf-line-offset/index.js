@@ -20,7 +20,7 @@ import { lineString, multiLineString, distanceToDegrees } from '@turf/helpers';
  * var addToMap = [offsetLine, line]
  * offsetLine.properties.stroke = "#00F"
  */
-export default function (geojson, distance, units) {
+function lineOffset(geojson, distance, units) {
     if (!geojson) throw new Error('geojson is required');
     if (distance === undefined || distance === null || isNaN(distance)) throw new Error('distance is required');
     var type = (geojson.type === 'Feature') ? geojson.geometry.type : geojson.type;
@@ -28,11 +28,11 @@ export default function (geojson, distance, units) {
 
     switch (type) {
     case 'LineString':
-        return lineOffset(geojson, distance, units);
+        return lineOffsetFeature(geojson, distance, units);
     case 'MultiLineString':
         var coords = [];
         flattenEach(geojson, function (feature) {
-            coords.push(lineOffset(feature, distance, units).geometry.coordinates);
+            coords.push(lineOffsetFeature(feature, distance, units).geometry.coordinates);
         });
         return multiLineString(coords, properties);
     default:
@@ -49,7 +49,7 @@ export default function (geojson, distance, units) {
  * @param {string} [units=kilometers] units
  * @returns {Feature<LineString>} Line offset from the input line
  */
-function lineOffset(line, distance, units) {
+function lineOffsetFeature(line, distance, units) {
     var segments = [];
     var offsetDegrees = distanceToDegrees(distance, units);
     var coords = getCoords(line);
@@ -103,3 +103,6 @@ function processSegment(point1, point2, offset) {
     var out2y = point2[1] + offset * (point1[0] - point2[0]) / L;
     return [[out1x, out1y], [out2x, out2y]];
 }
+
+export default lineOffset;
+module.exports.default = lineOffset;

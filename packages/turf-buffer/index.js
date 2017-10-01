@@ -29,7 +29,7 @@ import { toWgs84, toMercator } from '@turf/projection';
  * //addToMap
  * var addToMap = [point, buffered]
  */
-export default function (geojson, radius, options) {
+function buffer(geojson, radius, options) {
     // Optional params
     options = options || {};
     var units = options.units;
@@ -52,13 +52,13 @@ export default function (geojson, radius, options) {
     switch (geojson.type) {
     case 'GeometryCollection':
         geomEach(geojson, function (geometry) {
-            var buffered = buffer(geometry, radius, units, steps);
+            var buffered = bufferFeature(geometry, radius, units, steps);
             if (buffered) results.push(buffered);
         });
         return featureCollection(results);
     case 'FeatureCollection':
         featureEach(geojson, function (feature) {
-            var multiBuffered = buffer(feature, radius, units, steps);
+            var multiBuffered = bufferFeature(feature, radius, units, steps);
             if (multiBuffered) {
                 featureEach(multiBuffered, function (buffered) {
                     if (buffered) results.push(buffered);
@@ -67,7 +67,7 @@ export default function (geojson, radius, options) {
         });
         return featureCollection(results);
     }
-    return buffer(geojson, radius, units, steps);
+    return bufferFeature(geojson, radius, units, steps);
 }
 
 /**
@@ -80,7 +80,7 @@ export default function (geojson, radius, options) {
  * @param {number} [steps=64] number of steps
  * @returns {Feature<Polygon|MultiPolygon>} buffered feature
  */
-function buffer(geojson, radius, units, steps) {
+function bufferFeature(geojson, radius, units, steps) {
     var properties = geojson.properties || {};
     var geometry = (geojson.type === 'Feature') ? geojson.geometry : geojson;
 
@@ -88,7 +88,7 @@ function buffer(geojson, radius, units, steps) {
     if (geometry.type === 'GeometryCollection') {
         var results = [];
         geomEach(geojson, function (geometry) {
-            var buffered = buffer(geometry, radius, units, steps);
+            var buffered = bufferFeature(geometry, radius, units, steps);
             if (buffered) results.push(buffered);
         });
         return featureCollection(results);
@@ -190,3 +190,6 @@ function defineProjection(geojson) {
         .rotate(rotate)
         .scale(6373000);
 }
+
+export default buffer;
+module.exports.default = buffer;

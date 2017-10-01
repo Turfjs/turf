@@ -15,12 +15,12 @@ import { flattenEach } from '@turf/meta';
  * //addToMap
  * var addToMap = [polygon, segments]
  */
-export default function (geojson) {
+function lineSegment(geojson) {
     if (!geojson) throw new Error('geojson is required');
 
     var results = [];
     flattenEach(geojson, function (feature) {
-        lineSegment(feature, results);
+        lineSegmentFeature(feature, results);
     });
     return featureCollection(results);
 }
@@ -33,7 +33,7 @@ export default function (geojson) {
  * @param {Array} results push to results
  * @returns {void}
  */
-function lineSegment(geojson, results) {
+function lineSegmentFeature(geojson, results) {
     var coords = [];
     var geometry = geojson.geometry;
     switch (geometry.type) {
@@ -90,3 +90,6 @@ function bbox(coords1, coords2) {
     var north = (y1 > y2) ? y1 : y2;
     return [west, south, east, north];
 }
+
+export default lineSegment;
+module.exports.default = lineSegment;

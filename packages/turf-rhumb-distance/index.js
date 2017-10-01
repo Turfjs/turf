@@ -23,7 +23,7 @@ import { getCoord } from '@turf/invariant';
  * from.properties.distance = distance;
  * to.properties.distance = distance;
  */
-export default function (from, to, options) {
+function rhumbDistance(from, to, options) {
     // validation
     if (!from) throw new Error('from point is required');
     if (!to) throw new Error('to point is required');
@@ -35,7 +35,7 @@ export default function (from, to, options) {
     // compensate the crossing of the 180th meridian (https://macwright.org/2016/09/26/the-180th-meridian.html)
     // solution from https://github.com/mapbox/mapbox-gl-js/issues/3250#issuecomment-294887678
     destination[0] += (destination[0] - origin[0] > 180) ? -360 : (origin[0] - destination[0] > 180) ? 360 : 0;
-    var distanceInMeters = rhumbDistance(origin, destination);
+    var distanceInMeters = calculateRhumbDistance(origin, destination);
     var distance = convertDistance(distanceInMeters, 'meters', units);
     return distance;
 }
@@ -55,7 +55,7 @@ export default function (from, to, options) {
  *     var p2 = new LatLon(50.964, 1.853);
  *     var d = p1.distanceTo(p2); // 40.31 km
  */
-function rhumbDistance(origin, destination, radius) {
+function calculateRhumbDistance(origin, destination, radius) {
     // φ => phi
     // λ => lambda
     // ψ => psi
@@ -85,3 +85,6 @@ function rhumbDistance(origin, destination, radius) {
 
     return dist;
 }
+
+export default rhumbDistance;
+module.exports.default = rhumbDistance;
