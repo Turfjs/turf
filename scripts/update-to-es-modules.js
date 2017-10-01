@@ -49,7 +49,7 @@ function updateDevDependencies(pckg) {
             case '@turf/helpers':
             case '@turf/invariant':
             case '@turf/meta':
-                devDependencies[name] = '5.0.0';
+                devDependencies[name] = '*';
                 break;
             // Change all other devDependencies to *
             default:

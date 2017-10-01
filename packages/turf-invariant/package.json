@@ -37,7 +37,7 @@
   },
   "homepage": "https://github.com/Turfjs/turf",
   "devDependencies": {
-    "@turf/helpers": "5.0.0",
+    "@turf/helpers": "*",
     "benchmark": "*",
     "rollup": "*",
     "tape": "*",

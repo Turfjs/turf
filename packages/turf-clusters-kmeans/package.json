@@ -43,7 +43,7 @@
   "devDependencies": {
     "@turf/centroid": "*",
     "@turf/clusters": "*",
-    "@turf/helpers": "5.0.0",
+    "@turf/helpers": "*",
     "@turf/random": "*",
     "benchmark": "*",
     "chromatism": "*",
