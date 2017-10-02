@@ -1,6 +1,6 @@
 {
   "name": "@turf/line-overlap",
-  "version": "4.7.3",
+  "version": "5.0.0",
   "description": "turf line-overlap module",
   "main": "main",
   "module": "index",
@@ -9,7 +9,8 @@
   "files": [
     "index.js",
     "index.d.ts",
-    "main.js"
+    "main.js",
+    "deep-equal.js"
   ],
   "scripts": {
     "pretest": "rollup -c ../../rollup.config.js",
@@ -38,13 +39,13 @@
   },
   "homepage": "https://github.com/Turfjs/turf",
   "devDependencies": {
+    "@std/esm": "*",
     "benchmark": "*",
     "load-json-file": "*",
-    "tape": "*",
-    "write-json-file": "*",
     "rollup": "*",
-    "@std/esm": "*",
-    "uglify-js": "*"
+    "tape": "*",
+    "uglify-js": "*",
+    "write-json-file": "*"
   },
   "dependencies": {
     "@turf/boolean-point-on-line": "^4.7.3",
@@ -53,8 +54,7 @@
     "@turf/line-segment": "5.0.0",
     "@turf/meta": "5.0.0",
     "@turf/point-on-line": "5.0.0",
-    "deep-equal": "^1.0.1",
-    "geojson-rbush": "^1.0.1"
+    "geojson-rbush": "^2.0.1"
   },
   "@std/esm": {
     "esm": "js",
