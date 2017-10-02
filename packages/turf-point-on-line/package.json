@@ -1,6 +1,6 @@
 {
   "name": "@turf/point-on-line",
-  "version": "5.0.0",
+  "version": "5.0.2",
   "description": "turf point-on-line module",
   "main": "main",
   "module": "index",
@@ -28,16 +28,16 @@
   },
   "homepage": "https://github.com/Turfjs/turf",
   "devDependencies": {
+    "@std/esm": "*",
     "@turf/along": "*",
     "@turf/line-distance": "*",
     "@turf/truncate": "*",
     "benchmark": "*",
     "load-json-file": "*",
-    "tape": "*",
-    "write-json-file": "*",
     "rollup": "*",
-    "@std/esm": "*",
-    "uglify-js": "*"
+    "tape": "*",
+    "uglify-js": "*",
+    "write-json-file": "*"
   },
   "dependencies": {
     "@turf/bearing": "5.0.0",
@@ -45,7 +45,7 @@
     "@turf/distance": "5.0.0",
     "@turf/helpers": "5.0.0",
     "@turf/invariant": "5.0.0",
-    "@turf/line-intersect": "5.0.0",
+    "@turf/line-intersect": "^5.0.2",
     "@turf/meta": "5.0.0"
   },
   "@std/esm": {
