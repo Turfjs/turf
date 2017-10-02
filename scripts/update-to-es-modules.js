@@ -16,6 +16,10 @@ function updateDependencies(pckg) {
             // Update dependencies to v5.0.0
             switch (name) {
             case '@turf/point-on-line':
+            case '@turf/circle':
+            case '@turf/bbox':
+            case '@turf/linestring-to-polygon':
+            case '@turf/polygon-to-linestring':
             case '@turf/point-to-line-distance':
             case '@turf/rhumb-bearing':
             case '@turf/rhumb-destination':

@@ -43,7 +43,7 @@
     "uglify-js": "*"
   },
   "dependencies": {
-    "@turf/bbox": "^4.7.3",
+    "@turf/bbox": "5.0.0",
     "@turf/helpers": "5.0.0",
     "@turf/meta": "5.0.0",
     "@turf/union": "^4.7.3",

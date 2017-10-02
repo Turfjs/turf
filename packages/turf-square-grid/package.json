@@ -45,7 +45,7 @@
     "uglify-js": "*"
   },
   "dependencies": {
-    "@turf/bbox": "^4.7.3",
+    "@turf/bbox": "5.0.0",
     "@turf/distance": "5.0.0",
     "@turf/helpers": "5.0.0"
   },
