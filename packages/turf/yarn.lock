@@ -212,6 +212,13 @@
     "@turf/destination" "^4.7.3"
     "@turf/helpers" "^4.7.3"
 
+"@turf/circle@^5.0.0":
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/@turf/circle/-/circle-5.0.0.tgz#d426a7639692e5e8de57e4baf94646e269e71a6a"
+  dependencies:
+    "@turf/destination" "5.0.0"
+    "@turf/helpers" "5.0.0"
+
 "@turf/clean-coords@4.7.1":
   version "4.7.1"
   resolved "https://registry.yarnpkg.com/@turf/clean-coords/-/clean-coords-4.7.1.tgz#c4120f7a4eba47341c49f85d943f6eaea116c5e8"
@@ -557,6 +564,18 @@
     deep-equal "^1.0.1"
     geojson-rbush "^1.0.1"
 
+"@turf/line-overlap@^5.0.1":
+  version "5.0.1"
+  resolved "https://registry.yarnpkg.com/@turf/line-overlap/-/line-overlap-5.0.1.tgz#1c88fa0426e98112e63504571faf5c46b5c613bb"
+  dependencies:
+    "@turf/boolean-point-on-line" "^4.7.3"
+    "@turf/helpers" "5.0.0"
+    "@turf/invariant" "5.0.0"
+    "@turf/line-segment" "5.0.0"
+    "@turf/meta" "5.0.0"
+    "@turf/point-on-line" "5.0.0"
+    geojson-rbush "^2.0.1"
+
 "@turf/line-segment@4.7.1":
   version "4.7.1"
   resolved "https://registry.yarnpkg.com/@turf/line-segment/-/line-segment-4.7.1.tgz#04ea6e88bd128e4bc80a88fa705ef5e150433b2f"
@@ -629,6 +648,10 @@
     "@turf/union" "^4.7.3"
     rbush "^2.0.1"
 
+"@turf/meta@*", "@turf/meta@5.0.0":
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/@turf/meta/-/meta-5.0.0.tgz#75b100e9854cd7b2fa63e68561e1298dac09d7b4"
+
 "@turf/meta@4.7.1":
   version "4.7.1"
   resolved "https://registry.yarnpkg.com/@turf/meta/-/meta-4.7.1.tgz#53a55281ae08a5fa2f414d9ba50a951d38e86ab5"
@@ -636,10 +659,6 @@
 "@turf/meta@4.7.3":
   version "4.7.3"
   resolved "https://registry.yarnpkg.com/@turf/meta/-/meta-4.7.3.tgz#038970178e90c8e43cf7dfed79d5782298a1080d"
-
-"@turf/meta@5.0.0":
-  version "5.0.0"
-  resolved "https://registry.yarnpkg.com/@turf/meta/-/meta-5.0.0.tgz#75b100e9854cd7b2fa63e68561e1298dac09d7b4"
 
 "@turf/meta@^3.14.0", "@turf/meta@^3.7.5":
   version "3.14.0"
@@ -1342,6 +1361,12 @@ geojson-rbush@^1.0.1, geojson-rbush@^1.2.0:
   dependencies:
     "@turf/meta" "^4.6.0"
     rbush "^2.0.1"
+
+geojson-rbush@^2.0.1:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/geojson-rbush/-/geojson-rbush-2.0.1.tgz#3b211decf02a6e2c21fb8c3de59b4de5b61679d9"
+  dependencies:
+    "@turf/meta" "*"
 
 geojson-stream@0.0.1:
   version "0.0.1"
