@@ -1,15 +1,14 @@
-/// <reference types="geojson" />
-
-export type Point = GeoJSON.Feature<GeoJSON.Point> | GeoJSON.Point | number[];
-export type Polygon = GeoJSON.Feature<GeoJSON.Polygon>;
-
-interface Options {
-  steps?: number;
-  units?: string;
-  properties?: { [key: string]: any };
-}
+import { Feature, Point, Polygon, Units, Position } from '@turf/helpers'
 
 /**
  * http://turfjs.org/docs/#circle
  */
-export default function (center: Point, radius: number, options?: Options): Polygon;
+export default function (
+  center: Feature<Point> | Point | Position,
+  radius: number,
+  options?: {
+    steps?: number;
+    units?: Units;
+    properties?: object;
+  }
+): Feature<Polygon>;

@@ -7,10 +7,10 @@ import { polygon } from '@turf/helpers';
  * @name circle
  * @param {Feature<Point>|number[]} center center point
  * @param {number} radius radius of the circle
- * @param {Object} [options] Optional parameters
- * @param {number} [steps=64] number of steps
- * @param {string} [units="kilometers"] miles, kilometers, degrees, or radians
- * @param {Object} [properties={}] properties
+ * @param {Object} [options={}] Optional parameters
+ * @param {number} [options.steps=64] number of steps
+ * @param {string} [options.units='kilometers'] miles, kilometers, degrees, or radians
+ * @param {Object} [options.properties={}] properties
  * @returns {Feature<Polygon>} circle polygon
  * @example
  * var center = [-75.343, 39.984];
