@@ -26,7 +26,7 @@ function greatCircle(start, end, options) {
     // Optional parameters
     options = options || {};
     if (typeof options !== 'object') throw new Error('options is invalid');
-    var properties = options.minPoints;
+    var properties = options.properties;
     var npoints = options.npoints;
     var offset = options.offset;
 
