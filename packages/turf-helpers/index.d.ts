@@ -40,7 +40,7 @@ export function feature<T extends GeometryObject>(geometry: T, properties?: Prop
 /**
  * http://turfjs.org/docs/#featurecollection
  */
-export function featureCollection<T extends GeometryObject>(features: Feature<T>[], bbox?: BBox, id?: Id): FeatureCollection<T>;
+export function featureCollection<Geom extends GeometryObject>(features: Feature<Geom>[], bbox?: BBox, id?: Id): FeatureCollection<Geom>;
 export function featureCollection(features: Feature<any>[], bbox?: BBox, id?: Id): FeatureCollection<any>;
 
 /**
