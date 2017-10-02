@@ -1,6 +1,6 @@
 {
   "name": "@turf/polygon-to-linestring",
-  "version": "4.7.3",
+  "version": "5.0.0",
   "description": "turf polygon-to-linestring module",
   "main": "main",
   "module": "index",
