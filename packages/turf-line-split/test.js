@@ -33,6 +33,16 @@ test('turf-line-split', t => {
     t.end();
 });
 
+test('turf-line-split -- lines should split the same feature 1 with 2 as 2 with 1', t => {
+    const geojson = load.sync(directories.in + 'linestrings.geojson');
+    const featureOne = geojson.features[0];
+    const featureTwo = geojson.features[1];
+
+    const resultsOne = lineSplit(featureOne, featureTwo);
+    const resultsTwo = lineSplit(featureTwo, featureOne)
+    t.deepEquals(resultsOne, resultsTwo, 'Splits were made in different locations')
+})
+
 test('turf-line-split -- throws', t => {
     const pt = point([9, 50]);
     const line = lineString([[7, 50], [8, 50], [9, 50]]);
