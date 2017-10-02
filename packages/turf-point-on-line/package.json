@@ -1,6 +1,6 @@
 {
   "name": "@turf/point-on-line",
-  "version": "5.0.2",
+  "version": "5.0.3",
   "description": "turf point-on-line module",
   "main": "main",
   "module": "index",
@@ -45,7 +45,7 @@
     "@turf/distance": "5.0.0",
     "@turf/helpers": "5.0.0",
     "@turf/invariant": "5.0.0",
-    "@turf/line-intersect": "^5.0.2",
+    "@turf/line-intersect": "^5.0.3",
     "@turf/meta": "5.0.0"
   },
   "@std/esm": {

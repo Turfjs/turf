@@ -1,6 +1,6 @@
 {
   "name": "@turf/line-intersect",
-  "version": "5.0.2",
+  "version": "5.0.3",
   "description": "turf line-intersect module",
   "main": "main",
   "module": "index",
@@ -53,7 +53,7 @@
     "@turf/invariant": "5.0.0",
     "@turf/line-segment": "5.0.0",
     "@turf/meta": "5.0.0",
-    "geojson-rbush": "^1.0.1"
+    "geojson-rbush": "^2.0.1"
   },
   "@std/esm": {
     "esm": "js",
