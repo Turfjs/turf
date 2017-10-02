@@ -5,7 +5,8 @@ import { coordEach } from '@turf/meta';
  *
  * @name flip
  * @param {FeatureCollection|Feature<any>} geojson input features
- * @param {boolean} [mutate=false] allows GeoJSON input to be mutated (significant performance increase if true)
+ * @param {Object} [options={}] Optional parameters
+ * @param {boolean} [options.mutate=false] allows GeoJSON input to be mutated (significant performance increase if true)
  * @returns {FeatureCollection|Feature<any>} a feature or set of features of the same type as `input` with flipped coordinates
  * @example
  * var serbia = turf.point([20.566406, 43.421008]);
@@ -15,7 +16,10 @@ import { coordEach } from '@turf/meta';
  * //addToMap
  * var addToMap = [serbia, saudiArabia];
  */
-function flip(geojson, mutate) {
+function flip(geojson, options) {
+    // Backwards compatible with v4.0
+    var mutate = (typeof options === 'object') ? options.mutate : options;
+
     if (!geojson) throw new Error('geojson is required');
     // ensure that we don't modify features in-place and changes to the
     // output do not change the previous feature, including changes to nested

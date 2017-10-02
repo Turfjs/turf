@@ -1,7 +1,7 @@
 {
 	"type": "FeatureCollection",
 	"properties": {
-		"numberOfCentroids": 3
+		"numberOfClusters": 3
 	},
 	"features": [
 		{

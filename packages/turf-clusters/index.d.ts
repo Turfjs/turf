@@ -1,9 +1,4 @@
-/// <reference types="geojson" />
-
-export type FeatureCollection<T extends GeoJSON.GeometryObject> = GeoJSON.FeatureCollection<T>;
-export type Feature<T extends GeoJSON.GeometryObject> = GeoJSON.Feature<T>;
-export type GeometryObject = GeoJSON.GeometryObject;
-
+import { FeatureCollection, GeometryObject, Feature } from '@turf/helpers'
 /**
  * http://turfjs.org/docs/#getcluster
  */

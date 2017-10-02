@@ -11,9 +11,9 @@ import { featureEach } from '@turf/meta';
  * @name concave
  * @param {FeatureCollection<Point>} points input points
  * @param {number} maxEdge the length (in 'units') of an edge necessary for part of the hull to become concave
- * @param {string} [units=kilometers] can be degrees, radians, miles, or kilometers
- * @returns {Feature<(Polygon|MultiPolygon)>} a concave hull
- * @throws {Error} if maxEdge parameter is missing or unable to compute hull
+ * @param {Object} [options={}] Optional parameters
+ * @param {string} [options.units='kilometers'] can be degrees, radians, miles, or kilometers
+ * @returns {Feature<(Polygon|MultiPolygon)>|null} a concave hull (null value is returned if unable to compute hull)
  * @example
  * var points = turf.featureCollection([
  *   turf.point([-63.601226, 44.642643]),
@@ -29,7 +29,10 @@ import { featureEach } from '@turf/meta';
  * //addToMap
  * var addToMap = [points, hull]
  */
-function concave(points, maxEdge, units) {
+function concave(points, maxEdge, options) {
+    // Backwards compatible with v4.0
+    var units = (typeof options === 'object') ? options.units : options;
+
     // validation
     if (!points) throw new Error('points is required');
     if (maxEdge === undefined || maxEdge === null) throw new Error('maxEdge is required');
@@ -50,7 +53,7 @@ function concave(points, maxEdge, units) {
         return (dist1 <= maxEdge && dist2 <= maxEdge && dist3 <= maxEdge);
     });
 
-    if (tinPolys.features.length < 1) throw new Error('too few polygons found to compute concave hull');
+    if (tinPolys.features.length < 1) return null;
 
     // merge the adjacent triangles
     var dissolved = dissolve(tinPolys.features);

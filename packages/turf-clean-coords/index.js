@@ -6,7 +6,8 @@ import { getCoords, getType } from '@turf/invariant';
  *
  * @name cleanCoords
  * @param {Geometry|Feature} geojson Feature or Geometry
- * @param {boolean} [mutate=false] allows GeoJSON input to be mutated
+ * @param {Object} [options={}] Optional parameters
+ * @param {boolean} [options.mutate=false] allows GeoJSON input to be mutated
  * @returns {Geometry|Feature} the cleaned input Feature/Geometry
  * @example
  * var line = turf.lineString([[0, 0], [0, 2], [0, 5], [0, 8], [0, 8], [0, 10]]);
@@ -18,7 +19,9 @@ import { getCoords, getType } from '@turf/invariant';
  * turf.cleanCoords(multiPoint).geometry.coordinates;
  * //= [[0, 0], [2, 2]]
  */
-function cleanCoords(geojson, mutate) {
+function cleanCoords(geojson, options) {
+    // Backwards compatible with v4.0
+    var mutate = (typeof options === 'object') ? options.mutate : options;
     if (!geojson) throw new Error('geojson is required');
     var type = getType(geojson);
 
