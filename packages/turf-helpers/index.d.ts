@@ -27,6 +27,10 @@ export type Feature<T extends GeometryObject> = GeoJSON.Feature<T>;
 export interface FeatureGeometryCollection extends Feature<any> {
     geometry: GeometryCollection;
 }
+export interface ExtendedFeatureCollection<Feat extends Feature<any>> {
+    type: 'FeatureCollection';
+    features: Feat[];
+}
 
 /**
  * http://turfjs.org/docs/#feature
@@ -36,7 +40,7 @@ export function feature<T extends GeometryObject>(geometry: T, properties?: Prop
 /**
  * http://turfjs.org/docs/#featurecollection
  */
-export function featureCollection<T extends GeometryObject>(features: Feature<T>[], bbox?: BBox, id?: Id): FeatureCollection<T>;
+export function featureCollection<Geom extends GeometryObject>(features: Feature<Geom>[], bbox?: BBox, id?: Id): FeatureCollection<Geom>;
 export function featureCollection(features: Feature<any>[], bbox?: BBox, id?: Id): FeatureCollection<any>;
 
 /**

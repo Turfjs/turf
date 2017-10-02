@@ -16,6 +16,10 @@ export type AllGeoJSON = Feature<any> | FeatureCollection<any> | GeometryObject 
 export interface FeatureGeometryCollection extends GeoJSON.Feature<any> {
     geometry: GeometryCollection;
 }
+export interface ExtendedFeatureCollection<Feat extends Feature<any>> {
+    type: 'FeatureCollection';
+    features: Feat[];
+}
 
 /**
  * http://turfjs.org/docs/#coordreduce
@@ -59,6 +63,11 @@ export function featureReduce<Reducer extends any, Geom extends GeometryObject>(
     callback: (previousValue: Reducer, currentFeature: Feature<Geom>, featureIndex: number) => Reducer,
     initialValue?: Reducer
 ): Reducer;
+export function featureReduce<Reducer extends any, Feat extends Feature<any>>(
+    geojson: Feat | ExtendedFeatureCollection<Feat>,
+    callback: (previousValue: Reducer, currentFeature: Feat, featureIndex: number) => Reducer,
+    initialValue?: Reducer
+): Reducer;
 
 /**
  * http://turfjs.org/docs/#featureeach
@@ -66,6 +75,10 @@ export function featureReduce<Reducer extends any, Geom extends GeometryObject>(
 export function featureEach<Geom extends GeometryObject>(
     geojson: Feature<Geom> | FeatureCollection<Geom> | FeatureGeometryCollection,
     callback: (currentFeature: Feature<Geom>, featureIndex: number) => void
+): void;
+export function featureEach<Feat extends Feature<any>>(
+    geojson: Feat | ExtendedFeatureCollection<Feat>,
+    callback: (currentFeature: Feat, featureIndex: number) => void
 ): void;
 
 /**

@@ -1,4 +1,10 @@
 import * as helpers from '@turf/helpers'
+import {
+    featureCollection,
+    point,
+    Feature,
+    Point
+} from '@turf/helpers'
 import * as meta from './'
 import {
     coordReduce,
@@ -15,7 +21,8 @@ import {
     segmentReduce,
     segmentEach,
     lineReduce,
-    lineEach } from './'
+    lineEach
+} from './'
 
 // Fixtures
 const pt = helpers.point([0, 0])
@@ -189,3 +196,26 @@ meta.lineReduce(poly, (previousValue, currentLine, currentIndex) => currentLine)
 meta.lineReduce(poly, (previousValue, currentLine, currentIndex) => 1 + 1, 1)
 meta.lineReduce(multiPoly, (previousValue, currentLine, currentIndex, currentSubIndex) => currentLine)
 meta.lineReduce(multiPoly, (previousValue, currentLine, currentIndex, currentSubIndex) => 1 + 1, 1)
+
+/**
+ * Translate Feature Properties
+ */
+interface CustomPoint extends Feature<Point> {
+    properties: {
+        foo: string
+        bar: number
+        [key: string]: any
+    }
+}
+
+interface CustomPoints {
+    type: 'FeatureCollection';
+    features: CustomPoint[]
+}
+
+const customPoint = point([10, 20], {foo: 'abc', bar: 123})
+const customPoints: CustomPoints = featureCollection([customPoint, point([0, 0])])
+
+featureEach(customPoints, pt => {
+    pt.properties.bar
+})
