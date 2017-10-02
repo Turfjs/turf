@@ -13,12 +13,29 @@ function updateDependencies(pckg) {
     const dependencies = {};
     new Map(entries(pckg.dependencies))
         .forEach((version, name) => {
-            // Update dependencies to v5.0.0-alpha
+            // Update dependencies to v5.0.0
             switch (name) {
+            case '@turf/point-on-line':
+            case '@turf/circle':
+            case '@turf/bbox':
+            case '@turf/linestring-to-polygon':
+            case '@turf/polygon-to-linestring':
+            case '@turf/point-to-line-distance':
+            case '@turf/rhumb-bearing':
+            case '@turf/rhumb-destination':
+            case '@turf/rhumb-distance':
+            case '@turf/bearing':
+            case '@turf/destination':
+            case '@turf/distance':
+            case '@turf/line-intersect':
+            case '@turf/line-segment':
             case '@turf/helpers':
             case '@turf/invariant':
             case '@turf/meta':
                 dependencies[name] = '5.0.0';
+                break;
+            case '@turf/line-overlap':
+                dependencies[name] = '^5.0.1';
                 break;
             case 'jsts':
                 dependencies[name] = '1.4.0';
@@ -44,7 +61,7 @@ function updateDevDependencies(pckg) {
             case '@turf/helpers':
             case '@turf/invariant':
             case '@turf/meta':
-                devDependencies[name] = '5.0.0';
+                devDependencies[name] = '*';
                 break;
             // Change all other devDependencies to *
             default:

@@ -1,5 +1,5 @@
-var equal = require('deep-equal');
-var rbush = require('geojson-rbush');
+import equal from './deep-equal';
+import rbush from 'geojson-rbush';
 import lineSegment from '@turf/line-segment';
 import pointOnLine from '@turf/point-on-line';
 import booleanPointOnLine from '@turf/boolean-point-on-line';

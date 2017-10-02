@@ -38,7 +38,7 @@
   },
   "homepage": "https://github.com/Turfjs/turf",
   "devDependencies": {
-    "@turf/helpers": "5.0.0",
+    "@turf/helpers": "*",
     "benchmark": "*",
     "boolean-jsts": "*",
     "boolean-shapely": "*",
@@ -50,7 +50,7 @@
     "uglify-js": "*"
   },
   "dependencies": {
-    "@turf/bbox": "^4.7.3",
+    "@turf/bbox": "5.0.0",
     "@turf/boolean-point-on-line": "^4.7.3",
     "@turf/inside": "^4.7.3",
     "@turf/invariant": "5.0.0"

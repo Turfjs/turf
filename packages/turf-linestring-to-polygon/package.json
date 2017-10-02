@@ -1,6 +1,6 @@
 {
   "name": "@turf/linestring-to-polygon",
-  "version": "4.7.3",
+  "version": "5.0.0",
   "description": "turf linestring-to-polygon module",
   "main": "main",
   "module": "index",
@@ -44,7 +44,7 @@
     "uglify-js": "*"
   },
   "dependencies": {
-    "@turf/bbox": "^4.7.3",
+    "@turf/bbox": "5.0.0",
     "@turf/helpers": "5.0.0",
     "@turf/invariant": "5.0.0"
   },

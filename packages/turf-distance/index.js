@@ -13,7 +13,8 @@ import { radiansToDistance } from '@turf/helpers';
  * @name distance
  * @param {Geometry|Feature<Point>|Array<number>} from origin point
  * @param {Geometry|Feature<Point>|Array<number>} to destination point
- * @param {string} [units=kilometers] can be degrees, radians, miles, or kilometers
+ * @param {Object} [options={}] Optional parameters
+ * @param {string} [options.units='kilometers'] can be degrees, radians, miles, or kilometers
  * @returns {number} distance between the two points
  * @example
  * var from = turf.point([-75.343, 39.984]);
@@ -26,7 +27,10 @@ import { radiansToDistance } from '@turf/helpers';
  * from.properties.distance = distance;
  * to.properties.distance = distance;
  */
-function distance(from, to, units) {
+function distance(from, to, options) {
+    // Backwards compatible with v4.0
+    var units = (typeof options === 'object') ? options.units : options;
+
     var degrees2radians = Math.PI / 180;
     var coordinates1 = getCoord(from);
     var coordinates2 = getCoord(to);

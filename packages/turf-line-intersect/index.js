@@ -1,4 +1,4 @@
-var rbush = require('geojson-rbush');
+import rbush from 'geojson-rbush';
 import lineSegment from '@turf/line-segment';
 import { getCoords } from '@turf/invariant';
 import { featureEach } from '@turf/meta';

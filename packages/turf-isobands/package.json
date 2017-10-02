@@ -57,7 +57,7 @@
   },
   "dependencies": {
     "@turf/area": "^4.7.3",
-    "@turf/bbox": "^4.7.3",
+    "@turf/bbox": "5.0.0",
     "@turf/explode": "^4.7.3",
     "@turf/helpers": "5.0.0",
     "@turf/inside": "^4.7.3",

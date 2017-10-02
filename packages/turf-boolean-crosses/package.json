@@ -51,8 +51,8 @@
     "@turf/helpers": "5.0.0",
     "@turf/inside": "^4.7.3",
     "@turf/invariant": "5.0.0",
-    "@turf/line-intersect": "^4.7.3",
-    "@turf/polygon-to-linestring": "^4.7.3"
+    "@turf/line-intersect": "5.0.0",
+    "@turf/polygon-to-linestring": "5.0.0"
   },
   "@std/esm": {
     "esm": "js",

@@ -14,7 +14,7 @@ pointOnLine(line, pt)
 pointOnLine(multiLine, pt)
 pointOnLine(line.geometry, pt)
 pointOnLine(multiLine.geometry, pt)
-pointOnLine(line, pt, units)
+pointOnLine(line, pt, {units: 'miles'})
 
 // Output can be used as Input
 const output = pointOnLine(line, pt)
