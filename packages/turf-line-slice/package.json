@@ -48,7 +48,7 @@
   },
   "dependencies": {
     "@turf/helpers": "5.0.0",
-    "@turf/point-on-line": "^4.7.3"
+    "@turf/point-on-line": "5.0.0"
   },
   "@std/esm": {
     "esm": "js",

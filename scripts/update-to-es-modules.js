@@ -15,6 +15,7 @@ function updateDependencies(pckg) {
         .forEach((version, name) => {
             // Update dependencies to v5.0.0
             switch (name) {
+            case '@turf/point-on-line':
             case '@turf/point-to-line-distance':
             case '@turf/rhumb-bearing':
             case '@turf/rhumb-destination':

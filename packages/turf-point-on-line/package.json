@@ -1,6 +1,6 @@
 {
   "name": "@turf/point-on-line",
-  "version": "4.7.3",
+  "version": "5.0.0",
   "description": "turf point-on-line module",
   "main": "main",
   "module": "index",

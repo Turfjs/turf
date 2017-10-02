@@ -12,7 +12,8 @@ import { getCoords } from '@turf/invariant';
  * @name pointOnLine
  * @param {Geometry|Feature<LineString|MultiLineString>} lines lines to snap to
  * @param {Geometry|Feature<Point>|number[]} pt point to snap from
- * @param {string} [units=kilometers] can be degrees, radians, miles, or kilometers
+ * @param {Object} [options={}] Optional parameters
+ * @param {string} [options.units='kilometers'] can be degrees, radians, miles, or kilometers
  * @returns {Feature<Point>} closest point on the `line` to `point`. The properties object will contain three values: `index`: closest point was found on nth line part, `dist`: distance between pt and the closest point, `location`: distance along the line between start and the closest point.
  * @example
  * var line = turf.lineString([
@@ -31,7 +32,10 @@ import { getCoords } from '@turf/invariant';
  * var addToMap = [line, pt, snapped];
  * snapped.properties['marker-color'] = '#00f';
  */
-function pointOnLine(lines, pt, units) {
+function pointOnLine(lines, pt, options) {
+    // Backwards compatible with v4.0
+    var units = (typeof options === 'object') ? options.units : options;
+
     // validation
     var type = (lines.geometry) ? lines.geometry.type : lines.type;
     if (type !== 'LineString' && type !== 'MultiLineString') {
