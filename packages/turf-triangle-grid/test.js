@@ -1,5 +1,5 @@
 import test from 'tape';
-import grid from '.';
+import triangleGrid from '.';
 import fs from 'fs';
 import bboxPolygon from '@turf/bbox-polygon';
 
@@ -29,10 +29,10 @@ test('triangle-grid', function (t) {
         47.754097979680026
     ];
 
-    var grid1 = grid(bbox1, 50, 'miles');
-    var grid2 = grid(bbox2, 5, 'miles');
-    var grid3 = grid(bbox3, 2, 'miles');
-    var grid4 = grid(bbox4, 50, 'miles');
+    var grid1 = triangleGrid(bbox1, 50, {units: 'miles'});
+    var grid2 = triangleGrid(bbox2, 5, {units: 'miles'});
+    var grid3 = triangleGrid(bbox3, 2, {units: 'miles'});
+    var grid4 = triangleGrid(bbox4, 50, {units: 'miles'});
 
     grid1.features.push(referencePoly(bbox1));
     grid2.features.push(referencePoly(bbox2));

@@ -16,10 +16,11 @@ import { collectionOf } from '@turf/invariant';
  * @name interpolate
  * @param {FeatureCollection<Point>} points with known value
  * @param {number} cellSize the distance across each grid point
- * @param {string} [gridType='square'] defines the output format based on a Grid Type (options: 'square' | 'point' | 'hex' | 'triangle')
- * @param {string} [property='elevation'] the property name in `points` from which z-values will be pulled, zValue fallbacks to 3rd coordinate if no property exists.
- * @param {string} [units=kilometers] used in calculating cellSize, can be degrees, radians, miles, or kilometers
- * @param {number} [weight=1] exponent regulating the distance-decay weighting
+ * @param {Object} [options={}] Optional parameters
+ * @param {string} [options.gridType='square'] defines the output format based on a Grid Type (options: 'square' | 'point' | 'hex' | 'triangle')
+ * @param {string} [options.property='elevation'] the property name in `points` from which z-values will be pulled, zValue fallbacks to 3rd coordinate if no property exists.
+ * @param {string} [options.units='kilometers'] used in calculating cellSize, can be degrees, radians, miles, or kilometers
+ * @param {number} [options.weight=1] exponent regulating the distance-decay weighting
  * @returns {FeatureCollection<Point|Polygon>} grid of points or polygons with interpolated 'property'
  * @example
  * var points = turf.random('points', 30, {
@@ -34,7 +35,15 @@ import { collectionOf } from '@turf/invariant';
  * //addToMap
  * var addToMap = [grid];
  */
-function interpolate(points, cellSize, gridType, property, units, weight) {
+function interpolate(points, cellSize, options) {
+    // Optional parameters
+    options = options || {};
+    if (typeof options !== 'object') throw new Error('options is invalid');
+    var gridType = options.gridType;
+    var property = options.property;
+    var units = options.units;
+    var weight = options.weight;
+
     // validation
     if (!points) throw new Error('points is required');
     collectionOf(points, 'Point', 'input must contain Points');
@@ -55,15 +64,15 @@ function interpolate(points, cellSize, gridType, property, units, weight) {
         break;
     case 'square':
     case 'squares':
-        grid = squareGrid(box, cellSize, units);
+        grid = squareGrid(box, cellSize, {units: units});
         break;
     case 'hex':
     case 'hexes':
-        grid = hexGrid(box, cellSize, units);
+        grid = hexGrid(box, cellSize, {units: units});
         break;
     case 'triangle':
     case 'triangles':
-        grid = triangleGrid(box, cellSize, units);
+        grid = triangleGrid(box, cellSize, {units: units});
         break;
     default:
         throw new Error('invalid gridType');

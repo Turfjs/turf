@@ -8,8 +8,9 @@ import { point, polygon, featureCollection } from '@turf/helpers';
  * @name squareGrid
  * @param {Array<number>|FeatureCollection|Feature<any>} bbox extent in [minX, minY, maxX, maxY] order
  * @param {number} cellSize width of each cell
- * @param {string} [units=kilometers] used in calculating cellSize, can be degrees, radians, miles, or kilometers
- * @param {boolean} [completelyWithin=false] adjust width & height cellSize to fit exactly within bbox
+ * @param {Object} [options={}] Optional parameters
+ * @param {string} [options.units='kilometers'] used in calculating cellSize, can be degrees, radians, miles, or kilometers
+ * @param {boolean} [options.completelyWithin=false] adjust width & height cellSize to fit exactly within bbox
  * @returns {FeatureCollection<Polygon>} grid a grid of polygons
  * @example
  * var bbox = [-95, 30 ,-85, 40];
@@ -21,7 +22,14 @@ import { point, polygon, featureCollection } from '@turf/helpers';
  * //addToMap
  * var addToMap = [squareGrid]
  */
-function squareGrid(bbox, cellSize, units, completelyWithin) {
+function squareGrid(bbox, cellSize, options) {
+    // Optional parameters
+    options = options || {};
+    if (typeof options !== 'object') throw new Error('options is invalid');
+    var units = options.units;
+    var completelyWithin = options.completelyWithin;
+
+    // Containers
     var results = [];
 
     // validation
