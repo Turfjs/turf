@@ -113,7 +113,7 @@ test('scale -- mutated FeatureCollection', t => {
 });
 
 test('scale -- Issue #895', t => {
-    const grid = hexGrid([-122.930, 45.385, -122.294, 45.772], 5, 'miles');
+    const grid = hexGrid([-122.930, 45.385, -122.294, 45.772], 5, {units: 'miles'});
     featureEach(grid, (feature, index) => {
         const factor = (index % 2 === 0) ? 0.4 : 0.6;
         scale(feature, factor, 'centroid', true);
