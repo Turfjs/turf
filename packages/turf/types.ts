@@ -1,10 +1,11 @@
 import * as turf from './'
 
-// Helpers
-turf.point([10, 20])
-
-// Meta
+// Check for valid entry points
+turf.point
+turf.helpers.point
 turf.featureEach
-
-// Invariant
+turf.meta.featureEach
 turf.featureOf
+turf.invariant.featureOf
+turf.clustersDbscan
+turf.clustersKmeans
