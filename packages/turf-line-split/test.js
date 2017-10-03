@@ -4,7 +4,8 @@ import path from 'path';
 import load from 'load-json-file';
 import write from 'write-json-file';
 import { featureEach } from '@turf/meta';
-import { point, lineString, featureCollection } from '@turf/helpers';
+import { point, lineString, featureCollection, round } from '@turf/helpers';
+import { getCoords } from '@turf/invariant';
 import lineSplit from '.';
 
 const directories = {
@@ -30,6 +31,25 @@ test('turf-line-split', t => {
         if (process.env.REGEN) write.sync(directories.out + filename, results);
         t.deepEquals(results, load.sync(directories.out + filename), name);
     }
+    t.end();
+});
+
+test('turf-line-split -- lines should split the same feature 1 with 2 as 2 with 1', t => {
+    const featureOne = lineString([[114.58215786065353825, -14.82470576519326144], [137.21678649707752129, -16.71692980416107588]]);
+    const featureTwo = lineString([[119.1412061636556956, -19.83670052919270788], [133.06640625, -12.64033830684678961]]);
+
+    const resultsOne = lineSplit(featureOne, featureTwo);
+    const resultsTwo = lineSplit(featureTwo, featureOne);
+
+    const midCoordOne = getCoords(resultsOne.features[0])[1];
+    const midCoordTwo = getCoords(resultsTwo.features[1])[0];
+
+    // Round precision to 6 decimals
+    midCoordOne[0] = round(midCoordOne[0], 6);
+    midCoordOne[1] = round(midCoordOne[1], 6);
+    midCoordTwo[0] = round(midCoordTwo[0], 6);
+    midCoordTwo[1] = round(midCoordTwo[1], 6);
+    t.deepEquals(midCoordOne, midCoordTwo, 'Splits were made in different locations');
     t.end();
 });
 
