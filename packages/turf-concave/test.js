@@ -30,7 +30,7 @@ test('turf-concave', t => {
         const maxEdge = properties.maxEdge || 1;
         const units = properties.units;
 
-        const hull = concave(geojson, maxEdge, units);
+        const hull = concave(geojson, maxEdge, {units: units});
         featureEach(geojson, stylePt);
         const results = featureCollection(geojson.features.concat(hull));
 
@@ -45,12 +45,11 @@ const points = featureCollection([point([0, 0]), point([1, 1]), point([1, 0])]);
 const onePoint = featureCollection([point([0, 0])]);
 
 test('concave -- throw', t => {
-    t.throws(() => concave(onePoint, 5.5, 'miles'), /too few polygons found to compute concave hull/, 'too few points');
-    t.throws(() => concave(onePoint, 0), /too few polygons found to compute concave hull/, 'maxEdge too small');
-
+    t.equal(concave(onePoint, 5.5, {units: 'miles'}), null, 'too few polygons found to compute concave hull');
+    t.equal(concave(onePoint, 0), null, 'too few polygons found to compute concave hull -- maxEdge too small');
     t.throws(() => concave(null, 0), /points is required/, 'no points');
     t.throws(() => concave(points, null), /maxEdge is required/, 'no maxEdge');
-    t.throws(() => concave(points, 1, 'foo'), /units is invalid/, 'invalid units');
+    t.throws(() => concave(points, 1, {units: 'foo'}), /units is invalid/, 'invalid units');
 
     t.end();
 });

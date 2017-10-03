@@ -19,20 +19,26 @@ for (var i = 0; i < 6; i++) {
  * @name hexGrid
  * @param {Array<number>} bbox extent in [minX, minY, maxX, maxY] order
  * @param {number} cellDiameter diameter of the circumcircle of the hexagons, in specified units
- * @param {string} [units=kilometers] used in calculating cell size, can be degrees, radians, miles, or kilometers
- * @param {boolean} [triangles=false] whether to return as triangles instead of hexagons
+ * @param {Object} [options={}] Optional parameters
+ * @param {string} [options.units='kilometers'] used in calculating cell size, can be degrees, radians, miles, or kilometers
+ * @param {boolean} [options.triangles=false] whether to return as triangles instead of hexagons
  * @returns {FeatureCollection<Polygon>} a hexagonal grid
  * @example
  * var bbox = [-96,31,-84,40];
  * var cellDiameter = 50;
- * var units = 'miles';
  *
- * var hexgrid = turf.hexGrid(bbox, cellDiameter, units);
+ * var hexgrid = turf.hexGrid(bbox, cellDiameter, {units: 'miles'});
  *
  * //addToMap
  * var addToMap = [hexgrid];
  */
-function hexGrid(bbox, cellDiameter, units, triangles) {
+function hexGrid(bbox, cellDiameter, options) {
+    // Optional parameters
+    options = options || {};
+    if (typeof options !== 'object') throw new Error('options is invalid');
+    var units = options.units;
+    var triangles = options.triangles;
+
     var west = bbox[0];
     var south = bbox[1];
     var east = bbox[2];

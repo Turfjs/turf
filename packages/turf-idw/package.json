@@ -41,12 +41,7 @@
     "@std/esm": "*",
     "uglify-js": "*"
   },
-  "dependencies": {
-    "@turf/bbox": "5.0.0",
-    "@turf/centroid": "^4.7.3",
-    "@turf/distance": "5.0.0",
-    "@turf/square-grid": "^4.7.3"
-  },
+  "dependencies": {},
   "@std/esm": {
     "esm": "js",
     "cjs": true

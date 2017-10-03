@@ -25,11 +25,12 @@ var fixtures = fs.readdirSync(directories.in).map(filename => {
 
 test('turf-interpolate', t => {
     for (const {filename, name, geojson}  of fixtures) {
-        let {property, cellSize, gridType, units, weight} = geojson.properties;
-        property = property || 'elevation';
+        const options = geojson.properties;
+        const cellSize = options.cellSize;
+        const property = options.property || 'elevation';
 
         // Truncate coordinates & elevation (property) to 6 precision
-        let result = truncate(interpolate(geojson, cellSize, gridType, property, units, weight));
+        let result = truncate(interpolate(geojson, cellSize, options));
         propEach(result, (properties, featureIndex) => {
             properties[property] = round(properties[property]);
         });
@@ -53,14 +54,13 @@ test('turf-interpolate -- throws errors', t => {
         point([1.5, 1.5], {elevation: 400})
     ]);
 
-    t.assert(interpolate(points, cellSize, gridType, undefined, units, weight).features.length);
-    t.throws(() => interpolate(points, undefined, gridType), /cellSize is required/, 'cellSize is required');
-    t.throws(() => interpolate(undefined, cellSize, gridType), /points is required/, 'points is required');
-    t.throws(() => interpolate(points, cellSize, 'foo', property, units), /invalid gridType/, 'invalid gridType');
-    t.throws(() => interpolate(points, cellSize, gridType, property, 'foo'), 'invalid units');
-    t.throws(() => interpolate(points, cellSize, gridType, property, units, 'foo'), /weight must be a number/, 'weight must be a number');
-    t.throws(() => interpolate(points, cellSize, gridType, 'foo'), /zValue is missing/, 'zValue is missing');
-    t.throws(() => interpolate(points, cellSize, gridType, property, units, 'foo'), /weight must be a number/, 'weight must be a number');
+    t.assert(interpolate(points, cellSize, {gridType: gridType, units: units, weight: weight}).features.length);
+    t.throws(() => interpolate(points, undefined), /cellSize is required/, 'cellSize is required');
+    t.throws(() => interpolate(undefined, cellSize), /points is required/, 'points is required');
+    t.throws(() => interpolate(points, cellSize, {gridType: 'foo'}), /invalid gridType/, 'invalid gridType');
+    t.throws(() => interpolate(points, cellSize, {units: 'foo'}), 'invalid units');
+    t.throws(() => interpolate(points, cellSize, {weight: 'foo'}), /weight must be a number/, 'weight must be a number');
+    t.throws(() => interpolate(points, cellSize, {property: 'foo'}), /zValue is missing/, 'zValue is missing');
     t.end();
 });
 

@@ -10,7 +10,8 @@ var getClosest = require('get-closest');
  *
  * @name dissolve
  * @param {FeatureCollection<Polygon>} featureCollection input feature collection to be dissolved
- * @param {string} [propertyName] property name on which to dissolve features
+ * @param {Object} [options={}] Optional parameters
+ * @param {string} [options.propertyName] property name on which to dissolve features
  * @returns {FeatureCollection<Polygon>} a FeatureCollection containing the dissolved polygons
  * @example
  * var features = turf.featureCollection([
@@ -24,7 +25,9 @@ var getClosest = require('get-closest');
  * //addToMap
  * var addToMap = [features, dissolved]
  */
-function dissolve(featureCollection, propertyName) {
+function dissolve(featureCollection, options) {
+    // Backwards compatible with v4.0
+    var propertyName = (typeof options === 'object') ? options.propertyName : options;
 
     var originalIndexOfItemsRemoved = [];
     var treeItems = [];

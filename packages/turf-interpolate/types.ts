@@ -3,7 +3,7 @@ import interpolate from './';
 
 const cellSize = 1;
 const property = 'pressure';
-const outputType = 'square';
+const gridType = 'square';
 const weight = 0.5;
 const units = 'miles';
 const points = featureCollection([
@@ -12,10 +12,11 @@ const points = featureCollection([
     point([23, 22]),
 ]);
 
-const grid = interpolate(points, cellSize, outputType, property, units, weight);
+const grid = interpolate(points, cellSize, {gridType, property, units, weight});
 grid.features[0].properties.pressure;
 
 // Optional properties
-interpolate(points, cellSize, outputType, property, units);
-interpolate(points, cellSize, outputType, property);
-interpolate(points, cellSize, outputType);
+interpolate(points, cellSize, {gridType, property, units});
+interpolate(points, cellSize, {gridType, property});
+interpolate(points, cellSize, {gridType});
+interpolate(points, cellSize, {gridType: 'point'});
