@@ -7,7 +7,6 @@ import mkdirp from 'mkdirp';
 import { featureEach } from '@turf/meta';
 import squareGrid from '.';
 
-
 const directories = {
     in: path.join(__dirname, 'test', 'in') + path.sep,
     out: path.join(__dirname, 'test', 'out') + path.sep
@@ -25,9 +24,9 @@ let fixtures = fs.readdirSync(directories.in).map(filename => {
 
 test('square-grid', t => {
     for (const {name, geojson} of fixtures) {
-        const grid5 = squareGrid(geojson, 5, 'miles');
-        const grid20 = squareGrid(geojson, 20, 'miles');
-        const completelyWithin = squareGrid(geojson, 5, 'miles', true);
+        const grid5 = squareGrid(geojson, 5, {units: 'miles'});
+        const grid20 = squareGrid(geojson, 20, {units: 'miles'});
+        const completelyWithin = squareGrid(geojson, 5, {units: 'miles', completelyWithin: true});
 
         // Add current GeoJSON to grid results
         featureEach(geojson, feature => {

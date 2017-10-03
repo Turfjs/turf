@@ -13,7 +13,7 @@ test('turf-dissolve', t => {
     const polys = load.sync(directories.in + 'polys.geojson');
 
     // With Property
-    const polysByProperty = dissolve(polys, 'combine');
+    const polysByProperty = dissolve(polys, {propertyName: 'combine'});
     if (process.env.REGEN) write.sync(directories.out + 'polysByProperty.geojson', polysByProperty);
     t.equal(polysByProperty.features.length, 3);
     t.deepEqual(polysByProperty, load.sync(directories.out + 'polysByProperty.geojson'));

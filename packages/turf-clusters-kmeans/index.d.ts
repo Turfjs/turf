@@ -1,21 +1,16 @@
-/// <reference types="geojson" />
+import { Point, Feature, FeatureCollection } from '@turf/helpers';
 
-import {
-    Point,
-    Feature,
-    FeatureCollection
-} from '@turf/helpers';
-
-export interface Output {
-    type: 'FeatureCollection'
-    features: KmeansPoint[];
+export interface KmeansProps {
+    cluster?: number;
+    centroid?: [number, number];
+    [key: string]: any;
 }
 export interface KmeansPoint extends Feature<Point> {
-    properties: {
-        cluster?: number;
-        centroid?: [number, number];
-        [key: string]: any;
-    }
+    properties: KmeansProps
+}
+export interface KmeansPoints {
+    type: 'FeatureCollection'
+    features: KmeansPoint[];
 }
 
 /**
@@ -23,6 +18,8 @@ export interface KmeansPoint extends Feature<Point> {
  */
 export default function (
     points: FeatureCollection<Point>,
-    numberOfClusters?: number,
-    mutate?: boolean
-): Output;
+    options?: {
+        numberOfClusters?: number,
+        mutate?: boolean
+    }
+): KmeansPoints;

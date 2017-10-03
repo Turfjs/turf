@@ -24,5 +24,5 @@ clustersDbscan(output, maxDistance);
 const minPoints = 3;
 const units = 'miles';
 clustersDbscan(points, maxDistance);
-clustersDbscan(points, maxDistance, units);
-clustersDbscan(points, maxDistance, units, minPoints);
+clustersDbscan(points, maxDistance, {units});
+clustersDbscan(points, maxDistance, {units, minPoints});

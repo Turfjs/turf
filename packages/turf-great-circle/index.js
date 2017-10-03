@@ -7,9 +7,10 @@ import { GreatCircle } from './arc';
  * @name greatCircle
  * @param {Geometry|Feature<Point>|Array<number>} start source point feature
  * @param {Geometry|Feature<Point>|Array<number>} end destination point feature
- * @param {Object} [properties={}] line feature properties
- * @param {number} [npoints=100] number of points
- * @param {number} [offset=10] offset controls the likelyhood that lines will
+ * @param {Object} [options={}] Optional parameters
+ * @param {Object} [options.properties={}] line feature properties
+ * @param {number} [options.npoints=100] number of points
+ * @param {number} [options.offset=10] offset controls the likelyhood that lines will
  * be split which cross the dateline. The higher the number the more likely.
  * @returns {Feature<LineString>} great circle line feature
  * @example
@@ -21,7 +22,14 @@ import { GreatCircle } from './arc';
  * //addToMap
  * var addToMap = [start, end, greatCircle]
  */
-function greatCircle(start, end, properties, npoints, offset) {
+function greatCircle(start, end, options) {
+    // Optional parameters
+    options = options || {};
+    if (typeof options !== 'object') throw new Error('options is invalid');
+    var properties = options.properties;
+    var npoints = options.npoints;
+    var offset = options.offset;
+
     start = getCoord(start);
     end = getCoord(end);
     properties = properties || {};

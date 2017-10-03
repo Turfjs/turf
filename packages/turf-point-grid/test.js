@@ -23,8 +23,8 @@ test('turf-point-grid', t => {
     for (const {name, geojson} of fixtures) {
         const {cellSide, units, bboxIsMask, props} = geojson.properties;
         const result = pointGrid(geojson, cellSide, {
-            units,
-            bboxIsMask,
+            units: units,
+            bboxIsMask: bboxIsMask,
             properties: props,
         });
 

@@ -25,19 +25,22 @@ import { getType } from '@turf/invariant';
  * var addToMap = [grid];
  */
 function pointGrid(bbox, cellSide, options) {
+    // Optional parameters
     options = options || {};
-    var  results = [];
-    var  bboxMask = bbox;
+    if (typeof options !== 'object') throw new Error('options is invalid');
+    var units = options.units;
+    var bboxIsMask = options.bboxIsMask || false;
+    var properties = options.properties || {};
+
+    // Containers
+    var results = [];
+    var bboxMask = bbox;
 
     // validation
     if (!bbox) throw new Error('bbox is required');
     if (!Array.isArray(bbox)) bbox = turfBBox(bbox); // Convert GeoJSON to bbox
     if (bbox.length !== 4) throw new Error('bbox must contain 4 numbers');
     if (!isObject(options)) throw new Error('options is invalid');
-
-    var  units = options.units;
-    var  bboxIsMask = options.bboxIsMask || false;
-    var  properties = options.properties || {};
 
     var  west = bbox[0];
     var  south = bbox[1];

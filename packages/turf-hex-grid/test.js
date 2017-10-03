@@ -5,7 +5,7 @@ import write from 'write-json-file';
 import centroid from '@turf/centroid';
 import distance from '@turf/distance';
 import truncate from '@turf/truncate';
-import grid from '.';
+import hexGrid from '.';
 
 const directories = {
     in: path.join(__dirname, 'test', 'in') + path.sep,
@@ -19,11 +19,11 @@ const bbox4 = require(directories.in + 'bbox4.json');
 const bbox5 = require(directories.in + 'bbox5.json');
 
 test('hex-grid', t => {
-    const grid1 = truncate(grid(bbox1, 50, 'miles'));
-    const grid2 = truncate(grid(bbox2, 5, 'miles'));
-    const grid3 = truncate(grid(bbox3, 2, 'miles'));
-    const grid4 = truncate(grid(bbox4, 50, 'kilometers'));
-    const grid5 = truncate(grid(bbox5, 500, 'kilometers'));
+    const grid1 = truncate(hexGrid(bbox1, 50, {units: 'miles'}));
+    const grid2 = truncate(hexGrid(bbox2, 5, {units: 'miles'}));
+    const grid3 = truncate(hexGrid(bbox3, 2, {units: 'miles'}));
+    const grid4 = truncate(hexGrid(bbox4, 50, {units: 'kilometers'}));
+    const grid5 = truncate(hexGrid(bbox5, 500, {units: 'kilometers'}));
 
     t.ok(grid1.features.length, '50mi grid');
     t.ok(grid2.features.length, '5mi grid');
@@ -31,7 +31,7 @@ test('hex-grid', t => {
     t.ok(grid4.features.length, '50km grid');
     t.ok(grid5.features.length, '500km grid');
 
-    t.equal(grid(bbox1, 100, 'miles').features.length, 85);
+    t.equal(hexGrid(bbox1, 100, {units: 'miles'}).features.length, 85);
 
     if (process.env.REGEN) {
         write.sync(directories.out + 'grid1.geojson', grid1);
@@ -50,11 +50,11 @@ test('hex-grid', t => {
 });
 
 test('hex-tri-grid', t => {
-    const grid1 = truncate(grid(bbox1, 50, 'miles', true));
-    const grid2 = truncate(grid(bbox2, 5, 'miles', true));
-    const grid3 = truncate(grid(bbox3, 2, 'miles', true));
-    const grid4 = truncate(grid(bbox4, 50, 'kilometers', true));
-    const grid5 = truncate(grid(bbox5, 500, 'kilometers', true));
+    const grid1 = truncate(hexGrid(bbox1, 50, {units: 'miles', triangles: true}));
+    const grid2 = truncate(hexGrid(bbox2, 5, {units: 'miles', triangles: true}));
+    const grid3 = truncate(hexGrid(bbox3, 2, {units: 'miles', triangles: true}));
+    const grid4 = truncate(hexGrid(bbox4, 50, {units: 'kilometers', triangles: true}));
+    const grid5 = truncate(hexGrid(bbox5, 500, {units: 'kilometers', triangles: true}));
 
     t.ok(grid1.features.length, '50mi grid');
     t.ok(grid2.features.length, '5mi grid');
@@ -62,7 +62,7 @@ test('hex-tri-grid', t => {
     t.ok(grid4.features.length, '50km grid');
     t.ok(grid5.features.length, '500km grid');
 
-    t.equal(grid(bbox1, 100, 'miles').features.length, 85);
+    t.equal(hexGrid(bbox1, 100, {units: 'miles'}).features.length, 85);
 
     if (process.env.REGEN) {
         write.sync(directories.out + 'trigrid1.geojson', grid1);
@@ -82,10 +82,10 @@ test('hex-tri-grid', t => {
 
 test('longitude (13141439571036224) - issue #758', t => {
     const bbox = [-179, -90, 179, 90];
-    const hexgrid = grid(bbox, 500, 'kilometers');
+    const grid = hexGrid(bbox, 500, {units: 'kilometers'});
 
     const coords = [];
-    hexgrid.features.forEach(feature => feature.geometry.coordinates[0].forEach(coord => coords.push(coord)));
+    grid.features.forEach(feature => feature.geometry.coordinates[0].forEach(coord => coords.push(coord)));
 
     for (const coord of coords) {
         const lng = coord[0];
@@ -101,17 +101,16 @@ test('longitude (13141439571036224) - issue #758', t => {
 test('hexagon size - issue #623', t => {
     const bbox = [9.244, 45.538, 9.115, 45.439];
     const cellDiameter = 1;
-    const hexgrid = grid(bbox, 1, 'kilometers');
+    const grid = hexGrid(bbox, 1, {units: 'kilometers'});
 
-    const tile1 = hexgrid.features[0];
-    const tile2 = hexgrid.features[1];
+    const tile1 = grid.features[0];
+    const tile2 = grid.features[1];
     var dist = distance(centroid(tile1), centroid(tile2), 'kilometers');
 
     t.equal(round(dist, 10), round(Math.sqrt(3) * cellDiameter / 2, 10));
 
     t.end();
 });
-
 
 function round(value, places) {
     var multiplier = Math.pow(10, places);

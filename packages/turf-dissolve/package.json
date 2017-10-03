@@ -46,6 +46,7 @@
   "dependencies": {
     "@turf/bbox": "5.0.0",
     "@turf/boolean-overlap": "^4.7.3",
+    "@turf/helpers": "^5.0.0",
     "@turf/union": "^4.7.3",
     "geojson-utils": "^1.1.0",
     "get-closest": "^0.0.4",

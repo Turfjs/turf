@@ -6,6 +6,8 @@ import { Units, BBox, Polygon, Feature, FeatureCollection } from '@turf/helpers'
 export default function squareGrid(
     bbox: BBox | Feature<any> | FeatureCollection<any>,
     cellSize: number,
-    units?: Units,
-    completelyWithin?: boolean
+    options?: {
+        units?: Units,
+        completelyWithin?: boolean
+    }
 ): FeatureCollection<Polygon>;

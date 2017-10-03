@@ -1,10 +1,4 @@
-import {
-    Units,
-    BBox,
-    Feature,
-    FeatureCollection,
-    Point
-} from '@turf/helpers';
+import { Units, BBox, Feature, FeatureCollection, Point } from '@turf/helpers';
 
 /**
  * http://turfjs.org/docs/#pointgrid
