@@ -36,14 +36,15 @@
   },
   "homepage": "https://github.com/Turfjs/turf",
   "devDependencies": {
+    "@mapbox/geojsonhint": "*",
+    "@std/esm": "*",
     "@turf/truncate": "*",
     "benchmark": "*",
     "load-json-file": "*",
-    "tape": "*",
-    "write-json-file": "*",
     "rollup": "*",
-    "@std/esm": "*",
-    "uglify-js": "*"
+    "tape": "*",
+    "uglify-js": "*",
+    "write-json-file": "*"
   },
   "dependencies": {
     "@turf/destination": "5.0.0",
