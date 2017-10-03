@@ -26,9 +26,8 @@ for (var i = 0; i < 6; i++) {
  * @example
  * var bbox = [-96,31,-84,40];
  * var cellDiameter = 50;
- * var units = 'miles';
  *
- * var hexgrid = turf.hexGrid(bbox, cellDiameter, units);
+ * var hexgrid = turf.hexGrid(bbox, cellDiameter, {units: 'miles'});
  *
  * //addToMap
  * var addToMap = [hexgrid];
