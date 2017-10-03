@@ -1,16 +1,18 @@
+import clone from '@turf/clone';
 import booleanClockwise from '@turf/boolean-clockwise';
 import { geomEach, featureEach } from '@turf/meta';
 import { getCoords } from '@turf/invariant';
-import { featureCollection } from '@turf/helpers';
+import { featureCollection, isObject } from '@turf/helpers';
 
 /**
  * Rewind {@link LineString|(Multi)LineString} or {@link Polygon|(Multi)Polygon} outer ring counterclockwise and inner rings clockwise (Uses {@link http://en.wikipedia.org/wiki/Shoelace_formula|Shoelace Formula}).
  *
  * @name rewind
- * @param {FeatureCollection|Geometry|Feature<Polygon|MultiPolygon|LineString|MultiLineString>} geojson input GeoJSON Polygon
- * @param {Boolean} [reverse=false] enable reverse winding
- * @param {boolean} [mutate=false] allows GeoJSON input to be mutated (significant performance increase if true)
- * @returns {FeatureCollection|Geometry|Feature<Polygon|MultiPolygon|LineString|MultiLineString>} rewind Polygon
+ * @param {GeoJSON} geojson input GeoJSON Polygon
+ * @param {Object} [options={}] Optional parameters
+ * @param {boolean} [options.reverse=false] enable reverse winding
+ * @param {boolean} [options.mutate=false] allows GeoJSON input to be mutated (significant performance increase if true)
+ * @returns {GeoJSON} rewind Polygon
  * @example
  * var polygon = turf.polygon([[[121, -29], [138, -29], [138, -18], [121, -18], [121, -29]]]);
  *
@@ -19,10 +21,12 @@ import { featureCollection } from '@turf/helpers';
  * //addToMap
  * var addToMap = [rewind];
  */
-function rewind(geojson, reverse, mutate) {
-    // default params
-    reverse = (reverse !== undefined) ? reverse : false;
-    mutate = (mutate !== undefined) ? mutate : false;
+function rewind(geojson, options) {
+    // Optional parameters
+    options = options || {};
+    if (!isObject(options)) throw new Error('options is invalid');
+    var reverse = options.reverse || false;
+    var mutate = options.mutate || false;
 
     // validation
     if (!geojson) throw new Error('<geojson> is required');
@@ -30,7 +34,7 @@ function rewind(geojson, reverse, mutate) {
     if (typeof mutate !== 'boolean') throw new Error('<mutate> must be a boolean');
 
     // prevent input mutation
-    if (mutate === false || mutate === undefined) geojson = JSON.parse(JSON.stringify(geojson));
+    if (mutate === false) geojson = clone(geojson);
 
     // Support Feature Collection or Geometry Collection
     var results = [];
