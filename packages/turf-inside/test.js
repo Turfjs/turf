@@ -146,7 +146,7 @@ test('Boundary test', function (t) {
         var testTitle = 'Boundary ' + (ignoreBoundary ? 'ignored ' : '') + 'test number ';
         for (var i = 0; i < tests.length; i++) {
             var item = tests[i];
-            t.true(inside(item[1], item[0], ignoreBoundary) == item[2], testTitle + i);
+            t.true(inside(item[1], item[0], {ignoreBoundary: ignoreBoundary}) == item[2], testTitle + i);
         }
     }
     runTest(t, false);

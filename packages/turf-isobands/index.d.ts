@@ -1,16 +1,4 @@
-import {
-    Point,
-    MultiPolygon,
-    FeatureCollection,
-    Feature,
-    Properties
-} from '@turf/helpers'
-
-interface Options {
-    zProperty?: string;
-    isobandProperties?: Properties[];
-    commonProperties?: Properties;
-}
+import { Point, MultiPolygon, FeatureCollection, Feature, Properties } from '@turf/helpers'
 
 /**
  * http://turfjs.org/docs/#isobands
@@ -18,5 +6,9 @@ interface Options {
 export default function isobands(
     points: FeatureCollection<Point>,
     breaks: number[],
-    options?: Options
+    options?: {
+        zProperty?: string;
+        commonProperties?: Properties;
+        breaksProperties?: Properties[];
+    }
 ): FeatureCollection<MultiPolygon>;
