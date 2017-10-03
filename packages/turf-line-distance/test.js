@@ -20,7 +20,7 @@ const fixtures = fs.readdirSync(directories.in).map(filename => {
 
 test('turf-line-distance', t => {
     for (const {name, geojson} of fixtures) {
-        const results = Math.round(lineDistance(geojson, 'feet'));
+        const results = Math.round(lineDistance(geojson, {units: 'feet'}));
         if (process.env.REGEN) write.sync(directories.out + name + '.json', results);
         t.equal(results, load.sync(directories.out + name + '.json'), name);
     }

@@ -15,7 +15,10 @@ import {
  * Feature => LineString
  */
 declare function polygonToLineString<T extends Polygon | MultiPolygon>(
-    polygon: Feature<T> | T
+    polygon: Feature<T> | T,
+    options?: {
+        properties?: object
+    }
 ): Feature<LineString>;
 
 /**
@@ -24,7 +27,10 @@ declare function polygonToLineString<T extends Polygon | MultiPolygon>(
  * FeatureCollection => MultiLineString
  */
 declare function polygonToLineString<T extends Polygon | MultiPolygon>(
-    polygon: FeatureCollection<T> | GeometryCollection | FeatureGeometryCollection
+    polygon: FeatureCollection<T> | GeometryCollection | FeatureGeometryCollection,
+    options?: {
+        properties?: object
+    }
 ): Feature<MultiLineString>;
 
 export default polygonToLineString;

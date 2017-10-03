@@ -5,6 +5,9 @@ export type Id = string | number;
 export type Properties = {[key: string]: any};
 export type BBox = [number, number, number, number];
 
+// TurfJS Combined Types
+export type Coord = Feature<Point> | Point | Position;
+
 // TurfJS String Types
 export type Units = 'miles' | 'nauticalmiles' | 'degrees' | 'radians' | 'inches' | 'yards' | 'meters' | 'metres' | 'kilometers' | 'kilometres';
 export type Geometry = 'Point' | 'LineString' | 'Polygon' | 'MultiPoint' | 'MultiLineString' | 'MultiPolygon';

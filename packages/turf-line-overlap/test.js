@@ -23,9 +23,8 @@ let fixtures = fs.readdirSync(directories.in).map(filename => {
 
 test('turf-line-overlap', t => {
     for (const {filename, name, geojson}  of fixtures) {
-        const {proximity} = geojson.properties || {};
         const [source, target] = geojson.features;
-        const shared = colorize(lineOverlap(source, target, proximity), '#0F0');
+        const shared = colorize(lineOverlap(source, target, geojson.properties), '#0F0');
         const results = featureCollection(shared.features.concat([source, target]));
 
         if (process.env.REGEN) write.sync(directories.out + filename, results);

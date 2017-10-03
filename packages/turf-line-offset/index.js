@@ -1,7 +1,7 @@
 import intersection from './intersection';
 import { flattenEach } from '@turf/meta';
-import { getCoords } from '@turf/invariant';
-import { lineString, multiLineString, distanceToDegrees } from '@turf/helpers';
+import { getCoords, getType } from '@turf/invariant';
+import { isObject, lineString, multiLineString, distanceToDegrees } from '@turf/helpers';
 
 /**
  * Takes a {@link LineString|line} and returns a {@link LineString|line} at offset by the specified distance.
@@ -9,7 +9,8 @@ import { lineString, multiLineString, distanceToDegrees } from '@turf/helpers';
  * @name lineOffset
  * @param {Geometry|Feature<LineString|MultiLineString>} geojson input GeoJSON
  * @param {number} distance distance to offset the line (can be of negative value)
- * @param {string} [units=kilometers] can be degrees, radians, miles, kilometers, inches, yards, meters
+ * @param {Object} [options={}] Optional parameters
+ * @param {string} [options.units='kilometers'] can be degrees, radians, miles, kilometers, inches, yards, meters
  * @returns {Feature<LineString|MultiLineString>} Line offset from the input line
  * @example
  * var line = turf.lineString([[-83, 30], [-84, 36], [-78, 41]], { "stroke": "#F00" });
@@ -20,10 +21,17 @@ import { lineString, multiLineString, distanceToDegrees } from '@turf/helpers';
  * var addToMap = [offsetLine, line]
  * offsetLine.properties.stroke = "#00F"
  */
-function lineOffset(geojson, distance, units) {
+function lineOffset(geojson, distance, options) {
+    // Optional parameters
+    options = options || {};
+    if (!isObject(options)) throw new Error('options is invalid');
+    var units = options.units;
+
+    // Valdiation
     if (!geojson) throw new Error('geojson is required');
     if (distance === undefined || distance === null || isNaN(distance)) throw new Error('distance is required');
-    var type = (geojson.type === 'Feature') ? geojson.geometry.type : geojson.type;
+
+    var type = getType(geojson);
     var properties = geojson.properties;
 
     switch (type) {
