@@ -4,7 +4,7 @@ import path from 'path';
 import load from 'load-json-file';
 import write from 'write-json-file';
 import { featureEach } from '@turf/meta';
-import { point, lineString, featureCollection } from '@turf/helpers';
+import { point, lineString, featureCollection, round } from '@turf/helpers';
 import { getCoords } from '@turf/invariant';
 import lineSplit from '.';
 
@@ -21,18 +21,18 @@ const fixtures = fs.readdirSync(directories.in).map(filename => {
     };
 });
 
-// test('turf-line-split', t => {
-//     for (const {filename, name, geojson}  of fixtures) {
-//         const line = geojson.features[0];
-//         const splitter = geojson.features[1];
-//         const results = colorize(lineSplit(line, splitter));
-//         featureEach(geojson, feature => results.features.push(feature));
+test('turf-line-split', t => {
+    for (const {filename, name, geojson}  of fixtures) {
+        const line = geojson.features[0];
+        const splitter = geojson.features[1];
+        const results = colorize(lineSplit(line, splitter));
+        featureEach(geojson, feature => results.features.push(feature));
 
-//         if (process.env.REGEN) write.sync(directories.out + filename, results);
-//         t.deepEquals(results, load.sync(directories.out + filename), name);
-//     }
-//     t.end();
-// });
+        if (process.env.REGEN) write.sync(directories.out + filename, results);
+        t.deepEquals(results, load.sync(directories.out + filename), name);
+    }
+    t.end();
+});
 
 test('turf-line-split -- lines should split the same feature 1 with 2 as 2 with 1', t => {
     const featureOne = lineString([[114.58215786065353825, -14.82470576519326144], [137.21678649707752129, -16.71692980416107588]]);
@@ -43,9 +43,15 @@ test('turf-line-split -- lines should split the same feature 1 with 2 as 2 with 
 
     const midCoordOne = getCoords(resultsOne.features[0])[1];
     const midCoordTwo = getCoords(resultsTwo.features[1])[0];
-    t.deepEquals(midCoordOne, midCoordTwo, 'Splits were made in different locations')
+
+    // Round precision to 6 decimals
+    midCoordOne[0] = round(midCoordOne[0], 6);
+    midCoordOne[1] = round(midCoordOne[1], 6);
+    midCoordTwo[0] = round(midCoordTwo[0], 6);
+    midCoordTwo[1] = round(midCoordTwo[1], 6);
+    t.deepEquals(midCoordOne, midCoordTwo, 'Splits were made in different locations');
     t.end();
-})
+});
 
 test('turf-line-split -- throws', t => {
     const pt = point([9, 50]);
