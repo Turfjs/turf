@@ -54,7 +54,7 @@ test('turf-point-to-line-distance -- throws', t => {
 
     t.throws(() => pointToLineDistance(null, line), /pt is required/, 'missing point');
     t.throws(() => pointToLineDistance(pt, null), /line is required/, 'missing line');
-    t.throws(() => pointToLineDistance(pt, line, 'invalid'), /options must be an object/, 'invalid options');
+    t.throws(() => pointToLineDistance(pt, line, 'invalid'), /options is invalid/, 'invalid options');
     t.throws(() => pointToLineDistance(pt, line, {units: 'invalid'}), /units is invalid/, 'invalid units');
     t.throws(() => pointToLineDistance(line, line), /Invalid input to point: must be a Point, given LineString/, 'invalid line');
     t.throws(() => pointToLineDistance(pt, pt), /Invalid input to line: must be a LineString, given Point/, 'invalid point');

@@ -1,11 +1,6 @@
-import {
-    Feature,
-    FeatureCollection,
-    GeometryObject,
-    GeometryCollection
-} from '@turf/helpers';
+import { Feature, FeatureCollection, GeometryObject, GeometryCollection, FeatureGeometryCollection, Position} from '@turf/helpers';
 
-type Types = Feature<any> | FeatureCollection<any> | GeometryObject | GeometryCollection
+type Types = Feature<any> | FeatureCollection<any> | GeometryObject | GeometryCollection | FeatureGeometryCollection | Position;
 
 /**
  * http://turfjs.org/docs/#toMercator

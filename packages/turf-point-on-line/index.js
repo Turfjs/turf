@@ -3,7 +3,7 @@ import distance from '@turf/distance';
 import destination from '@turf/destination';
 import lineIntersects from '@turf/line-intersect';
 import { flattenEach } from '@turf/meta';
-import { point, lineString } from '@turf/helpers';
+import { point, lineString, isObject } from '@turf/helpers';
 import { getCoords } from '@turf/invariant';
 
 /**
@@ -33,8 +33,10 @@ import { getCoords } from '@turf/invariant';
  * snapped.properties['marker-color'] = '#00f';
  */
 function pointOnLine(lines, pt, options) {
-    // Backwards compatible with v4.0
-    var units = (typeof options === 'object') ? options.units : options;
+    // Optional parameters
+    options = options || {};
+    if (!isObject(options)) throw new Error('options is invalid');
+    var units = options.units;
 
     // validation
     var type = (lines.geometry) ? lines.geometry.type : lines.type;

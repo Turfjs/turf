@@ -1,11 +1,12 @@
 import { coordEach } from '@turf/meta';
+import { isObject, isNumber } from '@turf/helpers';
 import clone from '@turf/clone';
 
 /**
  * Converts a WGS84 GeoJSON object into Mercator (EPSG:900913) projection
  *
  * @name toMercator
- * @param {GeoJSON} geojson WGS84 GeoJSON object
+ * @param {GeoJSON|Position} geojson WGS84 GeoJSON object
  * @param {Object} [options] Optional parameters
  * @param {boolean} [options.mutate=false] allows GeoJSON input to be mutated (significant performance increase if true)
  * @returns {GeoJSON} true/false
@@ -24,7 +25,7 @@ export function toMercator(geojson, options) {
  * Converts a Mercator (EPSG:900913) GeoJSON object into WGS84 projection
  *
  * @name toWgs84
- * @param {GeoJSON} geojson Mercator GeoJSON object
+ * @param {GeoJSON|Position} geojson Mercator GeoJSON object
  * @param {Object} [options] Optional parameters
  * @param {boolean} [options.mutate=false] allows GeoJSON input to be mutated (significant performance increase if true)
  * @returns {GeoJSON} true/false
@@ -51,26 +52,28 @@ export function toWgs84(geojson, options) {
  * @returns {GeoJSON} true/false
  */
 function convert(geojson, projection, options) {
+    // Optional parameters
     options = options || {};
-    var mutate;
-    // Backwards compatible with v4.0 (will be changed in v5.0)
-    if (typeof options === 'object') {
-        mutate = options.mutate;
-    } else if (options) {
-        console.warn('Optional parameters will now be defined as Objects in v5.0');
-        mutate = options;
-    }
+    if (!isObject(options)) throw new Error('options is invalid');
+    var mutate = options.mutate;
 
+    // Validation
     if (!geojson) throw new Error('geojson is required');
 
-    if (mutate !== true) geojson = clone(geojson);
+    // Handle Position
+    if (Array.isArray(geojson) && isNumber(geojson[0])) geojson = (projection === 'mercator') ? convertToMercator(geojson) : convertToWgs84(geojson);
 
-    coordEach(geojson, function (coord) {
-        var newCoord = (projection === 'mercator') ? convertToMercator(coord) : convertToWgs84(coord);
-        coord[0] = newCoord[0];
-        coord[1] = newCoord[1];
-    });
+    // Handle GeoJSON
+    else {
+        // Handle possible data mutation
+        if (mutate !== true) geojson = clone(geojson);
 
+        coordEach(geojson, function (coord) {
+            var newCoord = (projection === 'mercator') ? convertToMercator(coord) : convertToWgs84(coord);
+            coord[0] = newCoord[0];
+            coord[1] = newCoord[1];
+        });
+    }
     return geojson;
 }
 
