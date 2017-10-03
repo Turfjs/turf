@@ -1,11 +1,11 @@
-/// <reference types="geojson" />
-
-export type GeometryObject = GeoJSON.GeometryObject;
-export type GeometryCollection = GeoJSON.GeometryCollection;
-export type Feature<Geom extends GeometryObject> = GeoJSON.Feature<Geom>;
-export type FeatureCollection<Geom extends GeometryObject> = GeoJSON.FeatureCollection<Geom>;
-export type StringGeomTypes = 'Point' | 'LineString' | 'Polygon' | 'MultiPoint' | 'MultiLineString' | 'MultiPolygon' | 'GeometryCollection'
-export type StringTypes = StringGeomTypes | 'Feature' | 'FeatureCollection'
+import {
+    GeometryObject,
+    GeometryCollection,
+    Feature,
+    FeatureCollection,
+    Geometry,
+    Types
+} from '@turf/helpers'
 
 /**
  * http://turfjs.org/docs/#getcoords
@@ -45,4 +45,5 @@ export function getGeom(geojson: GeometryCollection | GeometryObject | Feature<a
 /**
  * http://turfjs.org/docs/#gettype
  */
-export function getType(geojson: GeometryCollection | GeometryObject | Feature<any> | FeatureCollection<any>): StringTypes;
+export function getType(geojson: GeometryObject | Feature<any>): Geometry;
+export function getType(geojson: GeometryCollection | GeometryObject | Feature<any> | FeatureCollection<any>): Types;

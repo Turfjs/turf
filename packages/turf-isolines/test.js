@@ -3,12 +3,12 @@ import test from 'tape';
 import path from 'path';
 import load from 'load-json-file';
 import write from 'write-json-file';
-import random from '@turf/random';
 import envelope from '@turf/envelope';
 import pointGrid from '@turf/point-grid';
+import { randomPolygon } from '@turf/random';
 import { getCoords } from '@turf/invariant';
 import matrixToGrid from 'matrix-to-grid';
-import { lineString } from '@turf/helpers';
+import { lineString, polygon } from '@turf/helpers';
 import isolines from '.';
 
 const directories = {
@@ -58,7 +58,7 @@ test('isolines', t => {
 test('isolines -- throws', t => {
     const points = pointGrid([-70.823364, -33.553984, -70.473175, -33.302986], 5);
 
-    t.throws(() => isolines(random('polygon'), [1, 2, 3]), 'invalid points');
+    t.throws(() => isolines(randomPolygon()), 'invalid points');
     t.throws(() => isolines(points), /breaks is required/);
     t.throws(() => isolines(points, 'string'), /breaks must be an Array/);
     t.throws(() => isolines(points, [1, 2, 3], 5), /zProperty must be a string/);

@@ -1,21 +1,41 @@
-/// <reference types="geojson" />
-
-export type Points = GeoJSON.FeatureCollection<GeoJSON.Point>;
-export type Polygons = GeoJSON.FeatureCollection<GeoJSON.Polygon>;
-export type Features = GeoJSON.FeatureCollection<any>;
-export type BBox = Array<number>;
-
-export interface Options {
-    bbox?: BBox
-    num_vertices?: number
-    max_radial_length?: number
-}
+import { BBox, FeatureCollection, Feature, Point, LineString, Polygon, Position } from '@turf/helpers';
 
 /**
- * http://turfjs.org/docs/#random
+ * http://turfjs.org/docs/#randomposition
  */
-declare function random(type?: 'point' | 'points', count?: number, options?: Options): Points;
-declare function random(type?: 'polygon' | 'polygons', count?: number, options?: Options): Polygons;
+export function randomPosition(bbox?: BBox | {bbox?: BBox}): Position
 
-export default random;
+/**
+ * http://turfjs.org/docs/#randompoint
+ */
+export function randomPoint(
+    count?: number,
+    options?: {
+        bbox?: BBox
+    }
+): FeatureCollection<Point>
 
+/**
+ * http://turfjs.org/docs/#randomlinestring
+ */
+export function randomLineString(
+    count?: number,
+    options?: {
+        bbox?: BBox,
+        num_vertices?: number,
+        max_length?: number,
+        max_rotation?: number
+    }
+): FeatureCollection<LineString>
+
+/**
+ * http://turfjs.org/docs/#randompolygon
+ */
+export function randomPolygon(
+    count?: number,
+    options?: {
+        bbox?: BBox,
+        num_vertices?: number,
+        max_radial_length?: number
+    }
+): FeatureCollection<LineString>

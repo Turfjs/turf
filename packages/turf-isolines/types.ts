@@ -1,7 +1,7 @@
-import random from '@turf/random'
+import { randomPoint } from '@turf/random'
 import isolines from './'
 
-const points = random('point', 100, {
+const points = randomPoint(100, {
     bbox: [0, 30, 20, 50]
 })
 for (let i = 0; i < points.features.length; i++) {
