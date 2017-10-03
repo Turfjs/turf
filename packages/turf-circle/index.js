@@ -43,7 +43,7 @@ function circle(center, radius, options) {
 
     var coordinates = [];
     for (var i = 0; i < steps; i++) {
-        coordinates.push(destination(center, radius, i * 360 / steps, units).geometry.coordinates);
+        coordinates.push(destination(center, radius, i * -360 / steps, units).geometry.coordinates);
     }
     coordinates.push(coordinates[0]);
 
