@@ -3,7 +3,7 @@ import path from 'path';
 import fs from 'fs';
 import load from 'load-json-file';
 import write from 'write-json-file';
-import random from '@turf/random';
+import { randomPolygon }  from '@turf/random';
 import envelope from '@turf/envelope';
 import { lineString } from '@turf/helpers';
 import { getCoords } from '@turf/invariant';
@@ -68,7 +68,7 @@ test('isobands', t => {
 test('isobands -- throws', t => {
     const points = pointGrid([-70.823364, -33.553984, -70.473175, -33.302986], 5);
 
-    t.throws(() => isobands(random('polygon'), [1, 2, 3]), 'invalid points');
+    t.throws(() => isobands(randomPolygon(), [1, 2, 3]), 'invalid points');
     t.throws(() => isobands(points, ''), 'invalid breaks');
     t.throws(() => isobands(points, [1, 2, 3], {zProperty: 'temp', isobandProperties: 'hello' }), 'invalid options');
 

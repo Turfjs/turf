@@ -35,7 +35,6 @@ export {default as inside} from '@turf/inside';
 export {default as intersect} from '@turf/intersect';
 export {default as nearest} from '@turf/nearest';
 export {default as planepoint} from '@turf/planepoint';
-export {default as random} from '@turf/random';
 export {default as tin} from '@turf/tin';
 export {default as union} from '@turf/union';
 export {default as bearing} from '@turf/bearing';
@@ -95,73 +94,9 @@ export {default as clustersKmeans} from '@turf/clusters-kmeans';
 export {default as pointToLineDistance} from '@turf/point-to-line-distance';
 export {default as booleanParallel} from '@turf/boolean-parallel';
 export {default as nearestPointToLine} from '@turf/nearest-point-to-line';
-export {
-    toMercator,
-    toWgs84
-} from '@turf/projection';
-import * as projection from '@turf/projection';
-export { projection };
-export {
-    getCluster,
-    clusterEach,
-    clusterReduce
-} from '@turf/clusters';
-import * as clusters from '@turf/clusters';
-export { clusters };
-export {
-    point,
-    polygon,
-    lineString,
-    multiPoint,
-    multiPolygon,
-    multiLineString,
-    feature,
-    geometry,
-    featureCollection,
-    geometryCollection,
-    radiansToDistance,
-    distanceToRadians,
-    distanceToDegrees,
-    bearingToAngle,
-    degrees2radians,
-    radians2degrees,
-    convertDistance,
-    isNumber,
-    isObject,
-    round,
-    convertArea,
-    earthRadius
-} from '@turf/helpers';
-import * as helpers from '@turf/helpers';
-export { helpers };
-export {
-    getCoord,
-    getCoords,
-    geojsonType,
-    featureOf,
-    collectionOf,
-    containsNumber,
-    getType,
-    getGeom
-} from '@turf/invariant';
-import * as invariant from '@turf/invariant';
-export { invariant };
-export {
-    coordEach,
-    coordReduce,
-    propEach,
-    propReduce,
-    featureEach,
-    featureReduce,
-    coordAll,
-    geomEach,
-    geomReduce,
-    flattenEach,
-    flattenReduce,
-    segmentReduce,
-    segmentEach,
-    lineEach,
-    lineReduce
-} from '@turf/meta';
-import * as meta from '@turf/meta';
-export { meta };
+export * from '@turf/projection';
+export * from '@turf/random';
+export * from '@turf/clusters';
+export * from '@turf/helpers';
+export * from '@turf/invariant';
+export * from '@turf/meta';

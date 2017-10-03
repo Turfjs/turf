@@ -1,25 +1,18 @@
-/// <reference types="geojson" />
-
-export type Point = GeoJSON.Point;
-export type LineString = GeoJSON.LineString;
-export type Polygon = GeoJSON.Polygon;
-export type MultiPoint = GeoJSON.MultiPoint;
-export type MultiLineString = GeoJSON.MultiLineString;
-export type MultiPolygon = GeoJSON.MultiPolygon;
-export type FeatureCollection<Geom extends GeometryObject> = GeoJSON.FeatureCollection<Geom>;
-export type Feature<Geom extends GeometryObject> = GeoJSON.Feature<Geom>;
-export type GeometryObject = GeoJSON.GeometryObject;
-export type GeometryCollection = GeoJSON.GeometryCollection;
-export type Geoms = Point | LineString | Polygon | MultiPoint | MultiLineString | MultiPolygon;
-export type Lines = LineString | Polygon | MultiLineString | MultiPolygon;
-export type AllGeoJSON = Feature<any> | FeatureCollection<any> | GeometryObject | GeometryCollection;
-export interface FeatureGeometryCollection extends GeoJSON.Feature<any> {
-    geometry: GeometryCollection;
-}
-export interface ExtendedFeatureCollection<Feat extends Feature<any>> {
-    type: 'FeatureCollection';
-    features: Feat[];
-}
+import {
+    Point,
+    LineString,
+    Polygon,
+    MultiPoint,
+    MultiLineString,
+    MultiPolygon,
+    FeatureCollection,
+    Feature,
+    GeometryObject,
+    GeometryCollection,
+    AllGeoJSON,
+    FeatureGeometryCollection,
+    ExtendedFeatureCollection
+} from '@turf/helpers';
 
 /**
  * http://turfjs.org/docs/#coordreduce
@@ -140,8 +133,8 @@ export function segmentEach(
 /**
  * http://turfjs.org/docs/#linereduce
  */
-export function lineReduce<Reducer extends any>(
-    geojson: Feature<Lines> | Lines,
+export function lineReduce<Reducer extends any, Geom extends LineString | MultiLineString | Polygon | MultiPolygon>(
+    geojson: Feature<Geom> | Geom,
     callback: (previousValue?: Reducer, currentLine?: Feature<LineString>, featureIndex?: number, featureSubIndex?: number) => Reducer,
     initialValue?: Reducer
 ): Reducer;
@@ -149,7 +142,7 @@ export function lineReduce<Reducer extends any>(
 /**
  * http://turfjs.org/docs/#lineeach
  */
-export function lineEach(
-    geojson: Feature<Lines> | Lines,
+export function lineEach<Geom extends LineString | MultiLineString | Polygon | MultiPolygon>(
+    geojson: Feature<Geom> | Geom,
     callback: (currentLine?: Feature<LineString>, featureIndex?: number, featureSubIndex?: number) => void
 ): void;
