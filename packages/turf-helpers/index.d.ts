@@ -12,6 +12,7 @@ export type Coord = Feature<Point> | Point | Position;
 export type Units = 'miles' | 'nauticalmiles' | 'degrees' | 'radians' | 'inches' | 'yards' | 'meters' | 'metres' | 'kilometers' | 'kilometres';
 export type Geometry = 'Point' | 'LineString' | 'Polygon' | 'MultiPoint' | 'MultiLineString' | 'MultiPolygon';
 export type Grid = 'point' | 'square' | 'hex' | 'triangle';
+export type Types = Geometry | 'Feature' | 'FeatureCollection'
 
 // GeoJSON Geometry Types
 export type Position = GeoJSON.Position;
@@ -34,6 +35,7 @@ export interface ExtendedFeatureCollection<Feat extends Feature<any>> {
     type: 'FeatureCollection';
     features: Feat[];
 }
+export type AllGeoJSON = Feature<any> | FeatureCollection<any> | FeatureGeometryCollection | GeometryObject | GeometryCollection;
 
 /**
  * http://turfjs.org/docs/#feature

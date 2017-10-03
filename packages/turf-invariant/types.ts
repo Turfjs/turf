@@ -4,7 +4,10 @@ import {
     lineString,
     polygon,
     geometryCollection,
-    featureCollection} from '@turf/helpers'
+    featureCollection,
+    Geometry,
+    Types
+} from '@turf/helpers'
 import {
     getCoord,
     getCoords,
@@ -13,9 +16,8 @@ import {
     collectionOf,
     containsNumber,
     getGeom,
-    getType,
-    StringGeomTypes,
-    StringTypes} from './'
+    getType
+} from './'
 
 /**
  * Fixtures
@@ -40,7 +42,7 @@ invariant.getGeom(pt.geometry)
 /**
  * invariant.getType
  */
-const type: StringTypes = invariant.getType(pt)
+const type: Geometry = invariant.getType(pt)
 getType(gc)
 invariant.getType(gc)
 invariant.getType(line)

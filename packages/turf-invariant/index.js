@@ -1,3 +1,5 @@
+import { isNumber } from '@turf/helpers';
+
 /**
  * Unwrap a coordinate from a Point Feature, Geometry or a single coordinate.
  *
@@ -16,9 +18,7 @@ export function getCoord(obj) {
     var coordinates = getCoords(obj);
 
     // getCoord() must contain at least two numbers (Point)
-    if (coordinates.length > 1 &&
-        typeof coordinates[0] === 'number' &&
-        typeof coordinates[1] === 'number') {
+    if (coordinates.length > 1 && isNumber(coordinates[0]) && isNumber(coordinates[1])) {
         return coordinates;
     } else {
         throw new Error('Coordinate is not a valid Point');
@@ -69,9 +69,7 @@ export function getCoords(obj) {
  * @returns {boolean} true if Array contains a number
  */
 export function containsNumber(coordinates) {
-    if (coordinates.length > 1 &&
-        typeof coordinates[0] === 'number' &&
-        typeof coordinates[1] === 'number') {
+    if (coordinates.length > 1 && isNumber(coordinates[0]) && isNumber(coordinates[1])) {
         return true;
     }
 
