@@ -1,6 +1,6 @@
 import distance from '@turf/distance';
 import turfBBox from '@turf/bbox';
-import { point, polygon, featureCollection } from '@turf/helpers';
+import { point, polygon, featureCollection, isObject } from '@turf/helpers';
 
 /**
  * Creates a square grid from a bounding box, {@link Feature} or {@link FeatureCollection}.
@@ -25,7 +25,7 @@ import { point, polygon, featureCollection } from '@turf/helpers';
 function squareGrid(bbox, cellSize, options) {
     // Optional parameters
     options = options || {};
-    if (typeof options !== 'object') throw new Error('options is invalid');
+    if (!isObject(options)) throw new Error('options is invalid');
     var units = options.units;
     var completelyWithin = options.completelyWithin;
 

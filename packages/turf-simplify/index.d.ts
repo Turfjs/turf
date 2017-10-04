@@ -5,7 +5,7 @@ import { AllGeoJSON } from '@turf/helpers'
  */
 export default function simplify<T extends AllGeoJSON>(
     geojson: T,
-    options: {
+    options?: {
         tolerance?: number,
         highQuality?: boolean,
         mutate?: boolean

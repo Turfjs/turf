@@ -1,15 +1,13 @@
-/// <reference types="geojson" />
-
-export type Geoms = GeoJSON.Feature<any> | GeoJSON.FeatureCollection<any> | GeoJSON.GeometryObject | GeoJSON.GeometryCollection;
-export type Point = GeoJSON.Feature<GeoJSON.Point> | GeoJSON.Point | number[];
-export type Corners = 'sw' | 'se' | 'nw' | 'ne' | 'center' | 'centroid' | undefined | null;
+import { Corners, Coord, AllGeoJSON } from '@turf/helpers'
 
 /**
- * http://turfjs.org/docs/#transform-scale
+ * http://turfjs.org/docs/#transformscale
  */
-export default function transformScale<Geom extends Geoms>(
-    geojson: Geom,
+export default function transformScale<T extends AllGeoJSON>(
+    geojson: T,
     factor: number,
-    origin?: Corners | Point,
-    mutate?: boolean
-): Geom;
+    options?: {
+        origin?: Corners | Coord,
+        mutate?: boolean
+    }
+): T;

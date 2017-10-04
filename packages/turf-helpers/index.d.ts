@@ -13,6 +13,8 @@ export type Units = 'miles' | 'nauticalmiles' | 'degrees' | 'radians' | 'inches'
 export type Geometry = 'Point' | 'LineString' | 'Polygon' | 'MultiPoint' | 'MultiLineString' | 'MultiPolygon';
 export type Grid = 'point' | 'square' | 'hex' | 'triangle';
 export type Types = Geometry | 'Feature' | 'FeatureCollection'
+export type Corners = 'sw' | 'se' | 'nw' | 'ne' | 'center' | 'centroid';
+
 
 // GeoJSON Geometry Types
 export type Position = GeoJSON.Position;

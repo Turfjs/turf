@@ -15,5 +15,5 @@ scale(featureCollection([poly]), 1.5);
 
 // All params
 scale(poly, 1.5);
-scale(poly, 1.5, undefined);
-scale(poly, 1.5, 'ne', true);
+scale(poly, 1.5, {origin: [10, 10]});
+scale(poly, 1.5, {origin: 'ne', mutate: true});
