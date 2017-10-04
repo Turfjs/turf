@@ -1,5 +1,5 @@
-import typescriptExport from './scripts/rollup-plugin-typescript-export';
-import validES5 from './scripts/rollup-plugin-valid-es5';
+import typescriptExport from './rollup-plugins/typescript-export';
+import validES5 from './rollup-plugins/valid-es5';
 
 export default {
     input: 'index.js',
