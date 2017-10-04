@@ -1,5 +1,3 @@
-/// <reference types="geojson" />
-
 import { Point, Feature, Units, Position, LineString, MultiLineString } from '@turf/helpers'
 
 export interface PointOnLine extends Feature<Point> {

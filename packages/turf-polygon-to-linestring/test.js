@@ -5,7 +5,7 @@ import load from 'load-json-file';
 import write from 'write-json-file';
 import { point } from '@turf/helpers';
 import { polygon } from '@turf/helpers';
-import polyToLineString from '.';
+import polygonToLineString from '.';
 
 const directories = {
     in: path.join(__dirname, 'test', 'in') + path.sep,
@@ -22,14 +22,14 @@ const fixtures = fs.readdirSync(directories.in).map(filename => {
 
 test('turf-polygon-to-linestring', t => {
     for (const {name, filename, geojson} of fixtures) {
-        const results = polyToLineString(geojson);
+        const results = polygonToLineString(geojson);
 
         if (process.env.REGEN) write.sync(directories.out + filename, results);
         t.deepEqual(load.sync(directories.out + filename), results, name);
     }
     // Handle Errors
-    t.throws(() => polyToLineString(point([10, 5])), 'throws - invalid geometry');
-    t.throws(() => polyToLineString(polygon([])), 'throws - empty coordinates');
+    t.throws(() => polygonToLineString(point([10, 5])), 'throws - invalid geometry');
+    t.throws(() => polygonToLineString(polygon([])), 'throws - empty coordinates');
     t.end();
 });
 

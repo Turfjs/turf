@@ -1,6 +1,6 @@
 import lineSliceAlong from '@turf/line-slice-along';
 import lineDistance from '@turf/line-distance';
-import { featureCollection } from '@turf/helpers';
+import { featureCollection, isObject } from '@turf/helpers';
 import { flattenEach } from '@turf/meta';
 
 /**
@@ -10,20 +10,30 @@ import { flattenEach } from '@turf/meta';
  * @name lineChunk
  * @param {FeatureCollection|Geometry|Feature<LineString|MultiLineString>} geojson the lines to split
  * @param {number} segmentLength how long to make each segment
- * @param {string}[units='kilometers'] units can be degrees, radians, miles, or kilometers
- * @param {boolean}[reverse=false] reverses coordinates to start the first chunked segment at the end
+ * @param {Object} [options={}] Optional parameters
+ * @param {string} [options.units='kilometers'] units can be degrees, radians, miles, or kilometers
+ * @param {boolean} [options.reverse=false] reverses coordinates to start the first chunked segment at the end
  * @returns {FeatureCollection<LineString>} collection of line segments
  * @example
  * var line = turf.lineString([[-95, 40], [-93, 45], [-85, 50]]);
  *
- * var chunk = turf.lineChunk(line, 15, 'miles');
+ * var chunk = turf.lineChunk(line, 15, {units: 'miles'});
  *
  * //addToMap
  * var addToMap = [chunk];
  */
-function lineChunk(geojson, segmentLength, units, reverse) {
+function lineChunk(geojson, segmentLength, options) {
+    // Optional parameters
+    options = options || {};
+    if (!isObject(options)) throw new Error('options is invalid');
+    var units = options.units;
+    var reverse = options.reverse;
+
+    // Validation
     if (!geojson) throw new Error('geojson is required');
     if (segmentLength <= 0) throw new Error('segmentLength must be greater than 0');
+
+    // Container
     var results = [];
 
     // Flatten each feature to simple LineString
@@ -49,14 +59,14 @@ function lineChunk(geojson, segmentLength, units, reverse) {
  * @returns {void}
  */
 function sliceLineSegments(line, segmentLength, units, callback) {
-    var lineLength = lineDistance(line, units);
+    var lineLength = lineDistance(line, {units: units});
 
     // If the line is shorter than the segment length then the orginal line is returned.
     if (lineLength <= segmentLength) return callback(line);
 
     var numberOfSegments = Math.floor(lineLength / segmentLength) + 1;
     for (var i = 0; i < numberOfSegments; i++) {
-        var outline = lineSliceAlong(line, segmentLength * i, segmentLength * (i + 1), units);
+        var outline = lineSliceAlong(line, segmentLength * i, segmentLength * (i + 1), {units: units});
         callback(outline, i);
     }
 }

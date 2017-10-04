@@ -1,5 +1,5 @@
 import { featureEach, featureReduce} from '@turf/meta';
-var rbush = require('geojson-rbush');
+import rbush from 'geojson-rbush';
 import { lineString, featureCollection } from '@turf/helpers';
 import flatten from '@turf/flatten';
 import truncate from '@turf/truncate';
@@ -37,7 +37,7 @@ function lineSplit(line, splitter) {
 
     // remove excessive decimals from splitter
     // to avoid possible approximation issues in rbush
-    var truncatedSplitter = truncate(splitter, 7);
+    var truncatedSplitter = truncate(splitter, {precision: 7});
 
     switch (splitterType) {
     case 'Point':

@@ -1,12 +1,4 @@
-/// <reference types="geojson" />
-
-import {
-    Point,
-    Position,
-    Feature,
-    LineString,
-    Units
-} from '@turf/helpers';
+import { Point, Position, Feature, LineString, Units } from '@turf/helpers';
 
 /**
  * http://turfjs.org/docs/#linearc
@@ -16,6 +8,8 @@ export default function lineArc(
     radius: number,
     bearing1: number,
     bearing2: number,
-    steps?: number,
-    units?: string
-): LineString;
+    options?: {
+        steps?: number,
+        units?: Units
+    }
+): Feature<LineString>;

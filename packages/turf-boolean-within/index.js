@@ -32,9 +32,9 @@ function booleanWithin(feature1, feature2) {
         case 'MultiPoint':
             return isPointInMultiPoint(geom1, geom2);
         case 'LineString':
-            return isPointOnLine(geom1, geom2, true);
+            return isPointOnLine(geom1, geom2, {ignoreEndVertices: true});
         case 'Polygon':
-            return inside(geom1, geom2, true);
+            return inside(geom1, geom2, {ignoreBoundary: true});
         default:
             throw new Error('feature2 ' + type2 + ' geometry not supported');
         }
@@ -105,7 +105,7 @@ function isMultiPointOnLine(multiPoint, lineString) {
             return false;
         }
         if (!foundInsidePoint) {
-            foundInsidePoint = isPointOnLine(multiPoint.coordinates[i], lineString, true);
+            foundInsidePoint = isPointOnLine(multiPoint.coordinates[i], lineString, {ignoreEndVertices: true});
         }
     }
     return foundInsidePoint;
@@ -121,7 +121,7 @@ function isMultiPointInPoly(multiPoint, polygon) {
             break;
         }
         if (!oneInside) {
-            isInside = inside(multiPoint.coordinates[1], polygon, true);
+            isInside = inside(multiPoint.coordinates[1], polygon, {ignoreBoundary: true});
         }
     }
     return output && isInside;
@@ -149,11 +149,11 @@ function isLineInPoly(linestring, polygon) {
             return false;
         }
         if (!foundInsidePoint) {
-            foundInsidePoint = inside(linestring.coordinates[i], polygon, true);
+            foundInsidePoint = inside(linestring.coordinates[i], polygon, {ignoreBoundary: true});
         }
         if (!foundInsidePoint) {
             var midpoint = getMidpoint(linestring.coordinates[i], linestring.coordinates[i + 1]);
-            foundInsidePoint = inside(midpoint, polygon, true);
+            foundInsidePoint = inside(midpoint, polygon, {ignoreBoundary: true});
 
         }
     }

@@ -11,7 +11,8 @@ import { getCoord, getCoords } from '@turf/invariant';
  * @name inside
  * @param {Feature<Point>} point input point
  * @param {Feature<Polygon|MultiPolygon>} polygon input polygon or multipolygon
- * @param {boolean} [ignoreBoundary=false] True if polygon boundary should be ignored when determining if the point is inside the polygon otherwise false.
+ * @param {Object} [options={}] Optional parameters
+ * @param {boolean} [options.ignoreBoundary=false] True if polygon boundary should be ignored when determining if the point is inside the polygon otherwise false.
  * @returns {boolean} `true` if the Point is inside the Polygon; `false` if the Point is not inside the Polygon
  * @example
  * var pt = turf.point([-77, 44]);
@@ -26,7 +27,12 @@ import { getCoord, getCoords } from '@turf/invariant';
  * turf.inside(pt, poly);
  * //= true
  */
-function inside(point, polygon, ignoreBoundary) {
+function inside(point, polygon, options) {
+    // Optional parameters
+    options = options || {};
+    if (typeof options !== 'object') throw new Error('options is invalid');
+    var ignoreBoundary = options.ignoreBoundary;
+
     // validation
     if (!point) throw new Error('point is required');
     if (!polygon) throw new Error('polygon is required');

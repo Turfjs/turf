@@ -1,6 +1,6 @@
 import destination from '@turf/destination';
 import circle from '@turf/circle';
-import { lineString } from '@turf/helpers';
+import { lineString, isObject } from '@turf/helpers';
 
 /**
  * Creates a circular arc, of a circle of the given radius and center point, between bearing1 and bearing2;
@@ -11,9 +11,9 @@ import { lineString } from '@turf/helpers';
  * @param {number} radius radius of the circle
  * @param {number} bearing1 angle, in decimal degrees, of the first radius of the arc
  * @param {number} bearing2 angle, in decimal degrees, of the second radius of the arc
- * @param {Object} [options] Optional parameters
+ * @param {Object} [options={}] Optional parameters
  * @param {number} [options.steps=64] number of steps
- * @param {string} [options.units="kilometers"] miles, kilometers, degrees, or radians
+ * @param {string} [options.units='kilometers'] miles, kilometers, degrees, or radians
  * @returns {Feature<LineString>} line arc
  * @example
  * var center = turf.point([-75, 40]);
@@ -27,8 +27,9 @@ import { lineString } from '@turf/helpers';
  * var addToMap = [center, arc]
  */
 function lineArc(center, radius, bearing1, bearing2, options) {
-    // Optional params
+    // Optional parameters
     options = options || {};
+    if (!isObject(options)) throw new Error('options is invalid');
     var steps = options.steps;
     var units = options.units;
 

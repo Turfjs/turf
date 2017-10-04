@@ -29,8 +29,8 @@ test('isolines', t => {
         const {
             breaks,
             zProperty,
-            propertiesPerIsoline,
-            propertiesToAllIsolines,
+            commonProperties,
+            breaksProperties,
             matrix,
             cellSize,
             units,
@@ -41,7 +41,11 @@ test('isolines', t => {
         if (filename.includes('geojson')) points = jsondata;
         else points = matrixToGrid(matrix, origin, cellSize, {zProperty, units});
 
-        const results = isolines(points, breaks, zProperty, propertiesToAllIsolines, propertiesPerIsoline);
+        const results = isolines(points, breaks, {
+            zProperty: zProperty,
+            breaksProperties: breaksProperties,
+            commonProperties: commonProperties
+        });
 
         const box = lineString(getCoords(envelope(points))[0]);
         box.properties['stroke'] = '#F00';
@@ -61,19 +65,24 @@ test('isolines -- throws', t => {
     t.throws(() => isolines(randomPolygon()), 'invalid points');
     t.throws(() => isolines(points), /breaks is required/);
     t.throws(() => isolines(points, 'string'), /breaks must be an Array/);
-    t.throws(() => isolines(points, [1, 2, 3], 5), /zProperty must be a string/);
-    t.throws(() => isolines(points, [1, 2, 3], 'temp', 'string'), /propertiesToAllIsolines must be an Object/);
-    t.throws(() => isolines(points, [1, 2, 3], 'temp', {}, 'string'), /propertiesPerIsoline must be an Array/);
+    t.throws(() => isolines(points, [1, 2, 3], {commonProperties: 'foo'}), /commonProperties must be an Object/);
+    t.throws(() => isolines(points, [1, 2, 3], {breaksProperties: 'foo'}), /breaksProperties must be an Array/);
 
+    // Updated tests since Turf 5.0
+    t.assert(isolines(points, [1, 2, 3], {zProperty: 5}), 'zProperty can be a string');
     t.end();
 });
 
 test('isolines -- handling properties', t => {
     const points = pointGrid([-70.823364, -33.553984, -70.473175, -33.302986], 5);
-    const propertiesToAllIsolines = {name: 'unknown', source: 'foobar'};
-    const propertiesPerIsoline = [{name: 'break1'}, {name: 'break2'}, {name: 'break3'}];
+    const commonProperties = {name: 'unknown', source: 'foobar'};
+    const breaksProperties = [{name: 'break1'}, {name: 'break2'}, {name: 'break3'}];
 
-    const lines = isolines(points, [1, 2, 3], 'z', propertiesToAllIsolines, propertiesPerIsoline);
+    const lines = isolines(points, [1, 2, 3], {
+        zProperty: 'z',
+        commonProperties: commonProperties,
+        breaksProperties: breaksProperties
+    });
     t.equal(lines.features[0].properties.name, 'break2');
     t.equal(lines.features[0].properties.source, 'foobar');
     t.end();

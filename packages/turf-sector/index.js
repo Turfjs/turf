@@ -1,7 +1,7 @@
 import circle from '@turf/circle';
 import lineArc from '@turf/line-arc';
 import { coordEach } from '@turf/meta';
-import { polygon } from '@turf/helpers';
+import { polygon, isObject } from '@turf/helpers';
 import { getCoords } from '@turf/invariant';
 
 /**
@@ -13,9 +13,9 @@ import { getCoords } from '@turf/invariant';
  * @param {number} radius radius of the circle
  * @param {number} bearing1 angle, in decimal degrees, of the first radius of the sector
  * @param {number} bearing2 angle, in decimal degrees, of the second radius of the sector
- * @param {Object} [options] Optional parameters
+ * @param {Object} [options={}] Optional parameters
+ * @param {string} [options.units='kilometers'] miles, kilometers, degrees, or radians
  * @param {number} [options.steps=64] number of steps
- * @param {string} [options.units="kilometers"] miles, kilometers, degrees, or radians
  * @returns {Feature<Polygon>} sector polygon
  * @example
  * var center = turf.point([-75, 40]);
@@ -29,8 +29,9 @@ import { getCoords } from '@turf/invariant';
  * var addToMap = [center, sector];
  */
 function sector(center, radius, bearing1, bearing2, options) {
-    // Optional params
+    // Optional parameters
     options = options || {};
+    if (!isObject(options)) throw new Error('options is invalid');
 
     // validation
     if (!center) throw new Error('center is required');
@@ -63,9 +64,7 @@ function sector(center, radius, bearing1, bearing2, options) {
  */
 function convertAngleTo360(alfa) {
     var beta = alfa % 360;
-    if (beta < 0) {
-        beta += 360;
-    }
+    if (beta < 0) beta += 360;
     return beta;
 }
 

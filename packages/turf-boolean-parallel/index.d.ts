@@ -1,9 +1,9 @@
-/// <reference types="geojson" />
-
-export type Geom = GeoJSON.LineString;
-export type Feature<Geom extends GeoJSON.GeometryObject> = GeoJSON.Feature<Geom>;
+import { Feature, LineString } from '@turf/helpers'
 
 /**
  * http://turfjs.org/docs/#booleanparallel
  */
-export default function (line1: Feature<Geom> | Geom, line2: Feature<Geom> | Geom): boolean;
+export default function (
+    feature1: Feature<LineString> | LineString,
+    feature2: Feature<LineString> | LineString
+): boolean;

@@ -12,9 +12,8 @@
     "main.js"
   ],
   "scripts": {
-    "pretest": "rollup -c ../../rollup.config.js",
     "test": "node -r @std/esm test.js",
-    "posttest": "uglifyjs main.js -o main.min.js",
+    "posttest": "rollup -c ../../rollup.config.js",
     "bench": "node -r @std/esm bench.js"
   },
   "repository": {
@@ -39,12 +38,11 @@
     "@std/esm": "*",
     "benchmark": "*",
     "rollup": "*",
-    "tape": "*",
-    "uglify-js": "*"
+    "tape": "*"
   },
   "dependencies": {
-    "@turf/helpers": "5.0.0",
-    "@turf/meta": "5.0.0"
+    "@turf/helpers": "^5.0.0",
+    "@turf/meta": "^5.0.0"
   },
   "@std/esm": {
     "esm": "js",

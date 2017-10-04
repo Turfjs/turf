@@ -6,7 +6,7 @@ import rhumbBearing from '@turf/rhumb-bearing';
 import rhumbDistance from '@turf/rhumb-distance';
 import rhumbDestination from '@turf/rhumb-destination';
 import { coordEach, featureEach } from '@turf/meta';
-import { point } from '@turf/helpers';
+import { point, isObject } from '@turf/helpers';
 import { getCoord, getCoords, getType} from '@turf/invariant';
 
 /**
@@ -16,8 +16,9 @@ import { getCoord, getCoords, getType} from '@turf/invariant';
  * @name transformScale
  * @param {GeoJSON} geojson GeoJSON to be scaled
  * @param {number} factor of scaling, positive or negative values greater than 0
- * @param {string|Geometry|Feature<Point>|Array<number>} [origin="centroid"] Point from which the scaling will occur (string options: sw/se/nw/ne/center/centroid)
- * @param {boolean} [mutate=false] allows GeoJSON input to be mutated (significant performance increase if true)
+ * @param {Object} [options={}] Optional parameters
+ * @param {string|Geometry|Feature<Point>|Array<number>} [options.origin='centroid'] Point from which the scaling will occur (string options: sw/se/nw/ne/center/centroid)
+ * @param {boolean} [options.mutate=false] allows GeoJSON input to be mutated (significant performance increase if true)
  * @returns {GeoJSON} scaled GeoJSON
  * @example
  * var poly = turf.polygon([[[0,29],[3.5,29],[2.5,32],[0,29]]]);
@@ -27,7 +28,13 @@ import { getCoord, getCoords, getType} from '@turf/invariant';
  * var addToMap = [poly, scaledPoly];
  * scaledPoly.properties = {stroke: '#F00', 'stroke-width': 4};
  */
-function transformScale(geojson, factor, origin, mutate) {
+function transformScale(geojson, factor, options) {
+    // Optional parameters
+    options = options || {};
+    if (!isObject(options)) throw new Error('options is invalid');
+    var origin = options.origin;
+    var mutate = options.mutate;
+
     // Input validation
     if (!geojson) throw new Error('geojson required');
     if (typeof factor !== 'number' || factor === 0) throw new Error('invalid factor');

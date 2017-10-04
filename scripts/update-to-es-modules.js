@@ -32,10 +32,8 @@ function updateDependencies(pckg) {
             case '@turf/helpers':
             case '@turf/invariant':
             case '@turf/meta':
-                dependencies[name] = '5.0.0';
-                break;
             case '@turf/line-overlap':
-                dependencies[name] = '^5.0.1';
+                dependencies[name] = '^5.0.0';
                 break;
             case 'jsts':
                 dependencies[name] = '1.4.0';
@@ -51,8 +49,8 @@ function updateDevDependencies(pckg) {
     const devDependencies = {};
     const dev = new Map(entries(pckg.devDependencies));
     dev.delete('rollup-plugin-uglify', '*');
+    dev.delete('uglify-js', '*');
     dev.set('rollup', '*')
-        .set('uglify-js', '*')
         .set('tape', '*')
         .set('@std/esm', '*')
         .set('benchmark', '*').forEach((version, name) => {
@@ -96,9 +94,8 @@ glob.sync(path.join(__dirname, '..', 'packages', 'turf-*', 'package.json')).forE
         types: 'index.d.ts',
         files: [...files],
         scripts: {
-            'pretest': 'rollup -c ../../rollup.config.js',
             'test': 'node -r @std/esm test.js',
-            'posttest': 'uglifyjs main.js -o main.min.js',
+            'posttest': 'rollup -c ../../rollup.config.js',
             'bench': 'node -r @std/esm bench.js'
         },
         repository: {

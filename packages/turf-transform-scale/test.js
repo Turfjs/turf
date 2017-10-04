@@ -31,9 +31,12 @@ test('scale', t => {
         let {factor, origin, mutate} = geojson.properties || {};
         factor = factor || 2;
 
-        const scaled = scale(geojson, factor, origin, mutate);
+        const scaled = scale(geojson, factor, {
+            origin: origin,
+            mutate: mutate
+        });
         const result = featureCollection([]);
-        featureEach(colorize(truncate(scaled, 6, 3)), feature => result.features.push(feature));
+        featureEach(colorize(truncate(scaled, {precision: 6, coordinates: 3})), feature => result.features.push(feature));
         featureEach(geojson, feature => result.features.push(feature));
         featureEach(geojson, feature => result.features.push(markedOrigin(feature, origin)));
 
@@ -50,8 +53,8 @@ test('scale -- throws', t => {
     t.throws(() => scale(null, 1.5), /geojson required/);
     t.throws(() => scale(line, null), /invalid factor/);
     t.throws(() => scale(line, 0), /invalid factor/);
-    t.throws(() => scale(line, 1.5, 'foobar'), /invalid origin/);
-    t.throws(() => scale(line, 1.5, 2), /invalid origin/);
+    t.throws(() => scale(line, 1.5, {origin: 'foobar'}), /invalid origin/);
+    t.throws(() => scale(line, 1.5, {origin: 2}), /invalid origin/);
 
     t.end();
 });
@@ -60,13 +63,13 @@ test('scale -- additional params', t => {
     const line = lineString([[10, 10], [12, 15]]);
     const bbox = [-180, -90, 180, 90];
 
-    t.assert(scale(line, 1.5, 'sw'));
-    t.assert(scale(line, 1.5, 'se'));
-    t.assert(scale(line, 1.5, 'nw'));
-    t.assert(scale(line, 1.5, 'ne'));
-    t.assert(scale(line, 1.5, 'center'));
-    t.assert(scale(line, 1.5, 'centroid'));
-    t.assert(scale(line, 1.5, null));
+    t.assert(scale(line, 1.5, {origin: 'sw'}));
+    t.assert(scale(line, 1.5, {origin: 'se'}));
+    t.assert(scale(line, 1.5, {origin: 'nw'}));
+    t.assert(scale(line, 1.5, {origin: 'ne'}));
+    t.assert(scale(line, 1.5, {origin: 'center'}));
+    t.assert(scale(line, 1.5, {origin: 'centroid'}));
+    t.assert(scale(line, 1.5, {origin: null}));
     line.bbox = bbox;
     t.assert(scale(line, 1.5));
     t.end();
@@ -86,13 +89,13 @@ test('scale -- mutated input', t => {
 
     scale(line, 1.5);
     t.deepEqual(line, lineBefore, 'mutate = undefined - input should NOT be mutated');
-    scale(line, 1.5, 'centroid', false);
+    scale(line, 1.5, {origin: 'centroid', mutate: false});
     t.deepEqual(line, lineBefore, 'mutate = false - input should NOT be mutated');
-    scale(line, 1.5, 'centroid', 'nonBoolean');
+    scale(line, 1.5, {orgin: 'centroid', muate: 'nonBoolean'});
     t.deepEqual(line, lineBefore, 'non-boolean mutate - input should NOT be mutated');
 
-    scale(line, 1.5, 'centroid', true);
-    t.deepEqual(truncate(line, 1), lineString([[9.5, 8.8], [12.5, 16.2]]), 'mutate = true - input should be mutated');
+    scale(line, 1.5, {origin: 'centroid', mutate: true});
+    t.deepEqual(truncate(line, {precision: 1}), lineString([[9.5, 8.8], [12.5, 16.2]]), 'mutate = true - input should be mutated');
     t.end();
 });
 
@@ -105,9 +108,9 @@ test('scale -- mutated FeatureCollection', t => {
     const lineBefore = JSON.parse(JSON.stringify(line));
     scale(line, 1.5);
     t.deepEqual(line, lineBefore, 'mutate = undefined - input should NOT be mutated');
-    scale(line, 1.5, 'centroid', false);
+    scale(line, 1.5, {origin: 'centroid', mutate: false});
     t.deepEqual(line, lineBefore, 'mutate = false - input should NOT be mutated');
-    scale(line, 1.5, 'centroid', 'nonBoolean');
+    scale(line, 1.5, {origin: 'centroid', mutate: 'nonBoolean'});
     t.deepEqual(line, lineBefore, 'non-boolean mutate - input should NOT be mutated');
     t.end();
 });
@@ -116,7 +119,7 @@ test('scale -- Issue #895', t => {
     const grid = hexGrid([-122.930, 45.385, -122.294, 45.772], 5, {units: 'miles'});
     featureEach(grid, (feature, index) => {
         const factor = (index % 2 === 0) ? 0.4 : 0.6;
-        scale(feature, factor, 'centroid', true);
+        scale(feature, factor, {origin: 'centroid', mutate: true});
     });
     const output = directories.out + 'issue-#895.geojson';
     if (process.env.REGEN) write.sync(output, grid);
@@ -134,9 +137,9 @@ test('scale -- geometry support', t => {
     t.assert(scale(line.geometry, 1.5), 'geometry line support');
     t.assert(scale(pt.geometry, 1.5), 'geometry point support');
     t.assert(scale(pt, 1.5), 'geometry point support');
-    t.assert(scale(pt, 1.5, pt), 'feature point support');
-    t.assert(scale(pt, 1.5, pt.geometry), 'geometry point support');
-    t.assert(scale(pt, 1.5, pt.geometry.coordinates), 'coordinate point support');
+    t.assert(scale(pt, 1.5, { origin: pt }), 'feature point support');
+    t.assert(scale(pt, 1.5, { origin: pt.geometry }), 'geometry point support');
+    t.assert(scale(pt, 1.5, { origin: pt.geometry.coordinates }), 'coordinate point support');
 
     t.end();
 });

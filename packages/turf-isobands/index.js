@@ -2,7 +2,7 @@ import bbox from '@turf/bbox';
 import area from '@turf/area';
 import inside from '@turf/inside';
 import explode from '@turf/explode';
-import { polygon, multiPolygon, featureCollection } from '@turf/helpers';
+import { polygon, multiPolygon, featureCollection, isObject } from '@turf/helpers';
 import { collectionOf } from '@turf/invariant';
 import gridToMatrix from './grid-to-matrix';
 import isoBands from './marchingsquares-isobands';
@@ -16,8 +16,8 @@ import isoBands from './marchingsquares-isobands';
  * @param {Array<number>} breaks where to draw contours
  * @param {Object} [options={}] options on output
  * @param {string} [options.zProperty='elevation'] the property name in `points` from which z-values will be pulled
- * @param {Array<Object>} [options.isobandProperties=[]] GeoJSON properties passed, in order, to the correspondent isoband (order defined by breaks)
  * @param {Object} [options.commonProperties={}] GeoJSON properties passed to ALL isobands
+ * @param {Array<Object>} [options.breaksProperties=[]] GeoJSON properties passed, in order, to the correspondent isoband (order defined by breaks)
  * @returns {FeatureCollection<MultiPolygon>} a FeatureCollection of {@link MultiPolygon} features representing isobands
  * @example
  * // create a grid of points with random z-values in their properties
@@ -36,18 +36,19 @@ import isoBands from './marchingsquares-isobands';
  * var addToMap = [isobands];
  */
 function isobands(pointGrid, breaks, options) {
-    // Optional Parameters
+    // Optional parameters
     options = options || {};
+    if (!isObject(options)) throw new Error('options is invalid');
     var zProperty = options.zProperty || 'elevation';
     var commonProperties = options.commonProperties || {};
-    var isobandProperties = options.isobandProperties || [];
+    var breaksProperties = options.breaksProperties || [];
 
     // Validation
     collectionOf(pointGrid, 'Point', 'Input must contain Points');
     if (!breaks) throw new Error('breaks is required');
     if (!Array.isArray(breaks)) throw new Error('breaks is not an Array');
     if (!isObject(commonProperties)) throw new Error('commonProperties is not an Object');
-    if (!Array.isArray(isobandProperties)) throw new Error('isobandProperties is not an Array');
+    if (!Array.isArray(breaksProperties)) throw new Error('breaksProperties is not an Array');
 
     // Isoband methods
     var matrix = gridToMatrix(pointGrid, zProperty, true);
@@ -55,14 +56,14 @@ function isobands(pointGrid, breaks, options) {
     contours = rescaleContours(contours, matrix, pointGrid);
 
     var multipolygons = contours.map(function (contour, index) {
-        if (isobandProperties[index] && !isObject(isobandProperties[index])) {
+        if (breaksProperties[index] && !isObject(breaksProperties[index])) {
             throw new Error('Each mappedProperty is required to be an Object');
         }
         // collect all properties
         var contourProperties = Object.assign(
             {},
             commonProperties,
-            isobandProperties[index]
+            breaksProperties[index]
         );
         contourProperties[zProperty] = contour[zProperty];
         var multiP = multiPolygon(contour.groupedRings, contourProperties);
@@ -70,17 +71,6 @@ function isobands(pointGrid, breaks, options) {
     });
 
     return featureCollection(multipolygons);
-}
-
-/**
- * isObject (should be replaced by @turf/helpers)
- *
- * @private
- * @param {*} input Object
- * @returns {boolean} true/false
- */
-function isObject(input) {
-    return (!!input) && (input.constructor === Object);
 }
 
 /**

@@ -1,14 +1,12 @@
-/// <reference types="geojson" />
-
-import { Units } from '@turf/helpers';
-export type LineString = GeoJSON.Feature<GeoJSON.LineString>;
-export type Point = GeoJSON.Feature<GeoJSON.Point>;
-
-interface Options {
-    units?: Units;
-}
+import { Feature, Units, LineString, Point } from '@turf/helpers';
 
 /**
  * http://turfjs.org/docs/#along
  */
-export default function along(line: LineString, distance: number, options?: Options): Point;
+export default function (
+    line: Feature<LineString> | LineString,
+    distance: number,
+    options?: {
+        units?: Units;
+    }
+): Feature<Point>;

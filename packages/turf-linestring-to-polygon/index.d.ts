@@ -6,7 +6,8 @@ import {
     Polygon,
     MultiPolygon,
     GeometryCollection,
-    FeatureGeometryCollection
+    FeatureGeometryCollection,
+    Properties
 } from '@turf/helpers';
 
 /**
@@ -16,9 +17,11 @@ import {
  */
 declare function lineStringToPolygon<T extends LineString | MultiLineString>(
     lines: Feature<T> | T,
-    properties?: any,
-    autoComplete?: boolean,
-    orderCoords?: boolean
+    options?: {
+        properties?: Properties,
+        autoComplete?: boolean,
+        orderCoords?: boolean
+    }
 ): Feature<Polygon>;
 
 /**
@@ -28,9 +31,11 @@ declare function lineStringToPolygon<T extends LineString | MultiLineString>(
  */
 declare function lineStringToPolygon<T extends LineString | MultiLineString>(
     lines: FeatureCollection<T> | GeometryCollection | FeatureGeometryCollection,
-    properties?: any,
-    autoComplete?: boolean,
-    orderCoords?: boolean
+    options?: {
+        properties?: Properties,
+        autoComplete?: boolean,
+        orderCoords?: boolean
+    }
 ): Feature<MultiPolygon>
 
 export default lineStringToPolygon;

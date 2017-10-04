@@ -1,6 +1,6 @@
 import bbox from '@turf/bbox';
 import { coordEach } from '@turf/meta';
-import { multiLineString, featureCollection } from '@turf/helpers';
+import { multiLineString, featureCollection, isObject } from '@turf/helpers';
 import { collectionOf } from '@turf/invariant';
 import isoContours from './marchingsquares-isocontours';
 import gridToMatrix from './grid-to-matrix';
@@ -12,9 +12,10 @@ import gridToMatrix from './grid-to-matrix';
  * @name isolines
  * @param {FeatureCollection<Point>} pointGrid input points
  * @param {Array<number>} breaks values of `zProperty` where to draw isolines
- * @param {string} [zProperty='elevation'] the property name in `points` from which z-values will be pulled
- * @param {Object} [propertiesToAllIsolines={}] GeoJSON properties passed to ALL isolines
- * @param {Array<Object>} [propertiesPerIsoline=[]] GeoJSON properties passed, in order, to the correspondent isoline;
+ * @param {Object} [options={}] Optional parameters
+ * @param {string} [options.zProperty='elevation'] the property name in `points` from which z-values will be pulled
+ * @param {Object} [options.commonProperties={}] GeoJSON properties passed to ALL isolines
+ * @param {Array<Object>} [options.breaksProperties=[]] GeoJSON properties passed, in order, to the correspondent isoline;
  * the breaks array will define the order in which the isolines are created
  * @returns {FeatureCollection<MultiLineString>} a FeatureCollection of {@link MultiLineString} features representing isolines
  * @example
@@ -33,23 +34,24 @@ import gridToMatrix from './grid-to-matrix';
  * //addToMap
  * var addToMap = [isolines];
  */
-function isolines(pointGrid, breaks, zProperty, propertiesToAllIsolines, propertiesPerIsoline) {
-    // Default Params
-    zProperty = zProperty || 'elevation';
-    propertiesToAllIsolines = propertiesToAllIsolines || {};
-    propertiesPerIsoline = propertiesPerIsoline || [];
+function isolines(pointGrid, breaks, options) {
+    // Optional parameters
+    options = options || {};
+    if (!isObject(options)) throw new Error('options is invalid');
+    var zProperty = options.zProperty || 'elevation';
+    var commonProperties = options.commonProperties || {};
+    var breaksProperties = options.breaksProperties || [];
 
     // Input validation
     collectionOf(pointGrid, 'Point', 'Input must contain Points');
     if (!breaks) throw new Error('breaks is required');
     if (!Array.isArray(breaks)) throw new Error('breaks must be an Array');
-    if (!isObject(propertiesToAllIsolines)) throw new Error('propertiesToAllIsolines must be an Object');
-    if (!Array.isArray(propertiesPerIsoline)) throw new Error('propertiesPerIsoline must be an Array');
-    if (typeof zProperty !== 'string') throw new Error('zProperty must be a string');
+    if (!isObject(commonProperties)) throw new Error('commonProperties must be an Object');
+    if (!Array.isArray(breaksProperties)) throw new Error('breaksProperties must be an Array');
 
     // Isoline methods
     var matrix = gridToMatrix(pointGrid, zProperty, true);
-    var isolines = createIsoLines(matrix, breaks, zProperty, propertiesToAllIsolines, propertiesPerIsoline);
+    var isolines = createIsoLines(matrix, breaks, zProperty, commonProperties, breaksProperties);
     var scaledIsolines = rescaleIsolines(isolines, matrix, pointGrid);
 
     return featureCollection(scaledIsolines);
@@ -66,19 +68,19 @@ function isolines(pointGrid, breaks, zProperty, propertiesToAllIsolines, propert
  * @param {Array<Array<number>>} matrix Grid Data
  * @param {Array<number>} breaks Breaks
  * @param {string} zProperty name of the z-values property
- * @param {Object} [propertiesToAllIsolines={}] GeoJSON properties passed to ALL isolines
- * @param {Object} [propertiesPerIsoline=[]] GeoJSON properties passed to the correspondent isoline
+ * @param {Object} [commonProperties={}] GeoJSON properties passed to ALL isolines
+ * @param {Object} [breaksProperties=[]] GeoJSON properties passed to the correspondent isoline
  * @returns {Array<MultiLineString>} isolines
  */
-function createIsoLines(matrix, breaks, zProperty, propertiesToAllIsolines, propertiesPerIsoline) {
+function createIsoLines(matrix, breaks, zProperty, commonProperties, breaksProperties) {
     var isolines = [];
     for (var i = 1; i < breaks.length; i++) {
         var threshold = +breaks[i]; // make sure it's a number
 
         var properties = Object.assign(
             {},
-            propertiesToAllIsolines,
-            propertiesPerIsoline[i]
+            commonProperties,
+            breaksProperties[i]
         );
         properties[zProperty] = threshold;
         var isoline = multiLineString(isoContours(matrix, threshold), properties);
@@ -126,17 +128,6 @@ function rescaleIsolines(isolines, matrix, points) {
         coordEach(isoline, resize);
     });
     return isolines;
-}
-
-/**
- * Checks input type
- *
- * @private
- * @param {*} input to be checked
- * @returns {boolean} true if the input is an Object
- */
-function isObject(input) {
-    return (!!input) && (input.constructor === Object);
 }
 
 export default isolines;

@@ -14,9 +14,8 @@
     "main.js"
   ],
   "scripts": {
-    "pretest": "rollup -c ../../rollup.config.js",
     "test": "node -r @std/esm test.js",
-    "posttest": "uglifyjs main.js -o main.min.js",
+    "posttest": "rollup -c ../../rollup.config.js",
     "bench": "node -r @std/esm bench.js"
   },
   "repository": {
@@ -52,17 +51,16 @@
     "rollup": "*",
     "tape": "*",
     "write-json-file": "*",
-    "@std/esm": "*",
-    "uglify-js": "*"
+    "@std/esm": "*"
   },
   "dependencies": {
     "@turf/area": "^4.7.3",
-    "@turf/bbox": "5.0.0",
+    "@turf/bbox": "^5.0.0",
     "@turf/explode": "^4.7.3",
-    "@turf/helpers": "5.0.0",
+    "@turf/helpers": "^5.0.0",
     "@turf/inside": "^4.7.3",
-    "@turf/invariant": "5.0.0",
-    "@turf/meta": "5.0.0"
+    "@turf/invariant": "^5.0.0",
+    "@turf/meta": "^5.0.0"
   },
   "@std/esm": {
     "esm": "js",

@@ -16,7 +16,6 @@ const directories = {
     out: path.join(__dirname, 'test', 'out') + path.sep
 };
 
-
 const fromWgs84 = fs.readdirSync(directories.wgs84).map(filename => {
     return {
         filename,
@@ -24,7 +23,6 @@ const fromWgs84 = fs.readdirSync(directories.wgs84).map(filename => {
         geojson: truncate(load.sync(directories.wgs84 + filename))
     };
 });
-
 
 test('to-mercator', t => {
     for (const {filename, name, geojson}  of fromWgs84) {
@@ -42,8 +40,6 @@ test('to-mercator', t => {
     }
     t.end();
 });
-
-
 
 const fromMercator = fs.readdirSync(directories.mercator).map(filename => {
     return {
@@ -78,8 +74,6 @@ test('projection -- throws', t => {
     t.end();
 });
 
-
-
 test('projection -- verify mutation', t => {
     const pt1 = point([10, 10]);
     const pt2 = point([15, 15]);
@@ -87,18 +81,26 @@ test('projection -- verify mutation', t => {
     const pt2Before = clone(pt2);
 
     toMercator(pt1);
-    toMercator(pt1, false);
+    toMercator(pt1, {mutate: false});
     t.deepEqual(pt1, pt1Before, 'mutate = undefined - input should NOT be mutated');
     t.deepEqual(pt1, pt1Before, 'mutate = false - input should NOT be mutated');
-    toMercator(pt1, true);
+    toMercator(pt1, {mutate: true});
     t.notEqual(pt1, pt1Before, 'input should be mutated');
 
     toWgs84(pt2);
-    toWgs84(pt2, false);
+    toWgs84(pt2, {mutate: false});
     t.deepEqual(pt2, pt2Before, 'mutate = undefined - input should NOT be mutated');
     t.deepEqual(pt2, pt2Before, 'mutate = false - input should NOT be mutated');
-    toWgs84(pt2, true);
+    toWgs84(pt2, {mutate: true});
     t.notEqual(pt2, pt2Before, 'input should be mutated');
 
+    t.end();
+});
+
+test('projection -- handle Position', t => {
+    const coord = [10, 40];
+    const mercator = toMercator(coord);
+    const wgs84 = toWgs84(mercator);
+    t.deepEqual(coord, wgs84, 'coord equal same as wgs84');
     t.end();
 });

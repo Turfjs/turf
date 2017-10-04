@@ -50,6 +50,7 @@ test('turf -- invalid dependencies', t => {
 test('turf -- strict version dependencies', t => {
     for (const {name, dependencies} of modules) {
         if (dependencies['jsts'] && dependencies['jsts'] !== '1.4.0') t.fail(name + ' jsts must use v1.4.0');
+        if (dependencies['geojson-rbush'] && dependencies['geojson-rbush'] !== '2.0.1') t.fail(name + ' geojson-rbush must use v2.0.1');
     }
     t.end();
 });

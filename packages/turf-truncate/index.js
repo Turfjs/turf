@@ -1,13 +1,15 @@
 import { coordEach } from '@turf/meta';
+import { isObject } from '@turf/helpers';
 
 /**
  * Takes a GeoJSON Feature or FeatureCollection and truncates the precision of the geometry.
  *
  * @name truncate
  * @param {FeatureCollection|Feature<any>} geojson any GeoJSON Feature, FeatureCollection, Geometry or GeometryCollection.
- * @param {number} [precision=6] coordinate decimal precision
- * @param {number} [coordinates=3] maximum number of coordinates (primarly used to remove z coordinates)
- * @param {boolean} [mutate=false] allows GeoJSON input to be mutated (significant performance increase if true)
+ * @param {Object} [options={}] Optional parameters
+ * @param {number} [options.precision=6] coordinate decimal precision
+ * @param {number} [options.coordinates=3] maximum number of coordinates (primarly used to remove z coordinates)
+ * @param {boolean} [options.mutate=false] allows GeoJSON input to be mutated (significant performance increase if true)
  * @returns {FeatureCollection|Feature<any>} layer with truncated geometry
  * @example
  * var point = turf.point([
@@ -21,7 +23,14 @@ import { coordEach } from '@turf/meta';
  * //addToMap
  * var addToMap = [truncated];
  */
-function truncate(geojson, precision, coordinates, mutate) {
+function truncate(geojson, options) {
+    // Optional parameters
+    options = options || {};
+    if (!isObject(options)) throw new Error('options is invalid');
+    var precision = options.precision;
+    var coordinates = options.coordinates;
+    var mutate = options.mutate;
+
     // default params
     precision = (precision === undefined || precision === null || isNaN(precision)) ? 6 : precision;
     coordinates = (coordinates === undefined || coordinates === null || isNaN(coordinates)) ? 3 : coordinates;

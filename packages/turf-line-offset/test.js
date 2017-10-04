@@ -22,16 +22,20 @@ let fixtures = fs.readdirSync(directories.in).map(filename => {
 // fixtures = fixtures.filter(fixture => fixture.name === 'polygon');
 
 test('turf-line-offset', t => {
-    for (const {name, geojson} of fixtures) {
-        let {distance, units} = geojson.properties || {};
-        distance = distance || 50;
-        const output = truncate(lineOffset(geojson, distance, units), 4);
+    fixtures.forEach(fixture => {
+        const name = fixture.name;
+        const geojson = fixture.geojson;
+        const properties = geojson.properties || {};
+        const distance = properties.distance || 50;
+        const units = properties.units;
+
+        const output = truncate(lineOffset(geojson, distance, {units: units}), {precision: 4});
         output.properties.stroke = '#00F';
         const results = featureCollection([output, geojson]);
 
         if (process.env.REGEN) write.sync(directories.out + name + '.geojson', results);
         t.deepEqual(results, load.sync(directories.out + name + '.geojson'), name);
-    }
+    })
     t.end();
 });
 
