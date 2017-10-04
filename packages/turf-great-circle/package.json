@@ -13,9 +13,8 @@
     "main.js"
   ],
   "scripts": {
-    "pretest": "rollup -c ../../rollup.config.js",
+    "prepublish": "rollup -c ../../rollup.config.js",
     "test": "node -r @std/esm test.js",
-    "posttest": "uglifyjs main.js -o main.min.js",
     "bench": "node -r @std/esm bench.js"
   },
   "repository": {
@@ -47,8 +46,7 @@
     "rollup": "*",
     "tape": "*",
     "write-json-file": "*",
-    "@std/esm": "*",
-    "uglify-js": "*"
+    "@std/esm": "*"
   },
   "dependencies": {
     "@turf/helpers": "^5.0.0",

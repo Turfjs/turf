@@ -49,8 +49,8 @@ function updateDevDependencies(pckg) {
     const devDependencies = {};
     const dev = new Map(entries(pckg.devDependencies));
     dev.delete('rollup-plugin-uglify', '*');
+    dev.delete('uglify-js', '*');
     dev.set('rollup', '*')
-        .set('uglify-js', '*')
         .set('tape', '*')
         .set('@std/esm', '*')
         .set('benchmark', '*').forEach((version, name) => {
@@ -94,9 +94,8 @@ glob.sync(path.join(__dirname, '..', 'packages', 'turf-*', 'package.json')).forE
         types: 'index.d.ts',
         files: [...files],
         scripts: {
-            'pretest': 'rollup -c ../../rollup.config.js',
+            'prepublish': 'rollup -c ../../rollup.config.js',
             'test': 'node -r @std/esm test.js',
-            'posttest': 'uglifyjs main.js -o main.min.js',
             'bench': 'node -r @std/esm bench.js'
         },
         repository: {
