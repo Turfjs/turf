@@ -17,7 +17,7 @@ export default function () {
 
 function removeComments(code) {
     // Remove comments block comments
-    code = code.replace(/\/\*\*[\w\s*\.@{}|<>,=()[\];\/-]+\*\//g, '');
+    code = code.replace(/\/\*\*[\w\s*\.@{}|<>,=()[\];\/\-:]+\*\//g, '');
     // Remove inline comments
     code = code.replace(/(\/\/[\s\w()\*\/\\]*)\n/g, '\n');
     return code;
