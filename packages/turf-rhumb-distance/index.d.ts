@@ -1,11 +1,11 @@
-import { Position, Point, Feature, Units } from '@turf/helpers';
+import { Coord, Units } from '@turf/helpers';
 
 /**
- * http://turfjs.org/docs/#rhumb-distance
+ * http://turfjs.org/docs/#rhumbdistance
  */
 export default function rhumbDistance(
-    from: Feature<Point> | Point | Position,
-    to: Feature<Point> | Point | Position,
+    from: Coord,
+    to: Coord,
     options?: {
         units?: Units;
     }

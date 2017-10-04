@@ -1,11 +1,11 @@
-import { Point, Feature, Position } from '@turf/helpers'
+import { Coord } from '@turf/helpers'
 
 /**
- * http://turfjs.org/docs/#rhumb-bearing
+ * http://turfjs.org/docs/#rhumbbearing
  */
 export default function rhumbBearing(
-    start: Feature<Point> | Point | Position,
-    end: Feature<Point> | Point | Position,
+    start: Coord,
+    end: Coord,
     options?: {
         final?: boolean;
     }
