@@ -42,11 +42,11 @@
     "uglify-js": "*"
   },
   "dependencies": {
-    "@turf/circle": "5.0.0",
-    "@turf/helpers": "5.0.0",
-    "@turf/invariant": "5.0.0",
+    "@turf/circle": "^5.0.0",
+    "@turf/helpers": "^5.0.0",
+    "@turf/invariant": "^5.0.0",
     "@turf/line-arc": "^4.7.3",
-    "@turf/meta": "5.0.0"
+    "@turf/meta": "^5.0.0"
   },
   "@std/esm": {
     "esm": "js",

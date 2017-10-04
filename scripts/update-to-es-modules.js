@@ -32,10 +32,8 @@ function updateDependencies(pckg) {
             case '@turf/helpers':
             case '@turf/invariant':
             case '@turf/meta':
-                dependencies[name] = '5.0.0';
-                break;
             case '@turf/line-overlap':
-                dependencies[name] = '^5.0.1';
+                dependencies[name] = '^5.0.0';
                 break;
             case 'jsts':
                 dependencies[name] = '1.4.0';

@@ -51,10 +51,10 @@
     "uglify-js": "*"
   },
   "dependencies": {
-    "@turf/invariant": "5.0.0",
-    "@turf/line-intersect": "5.0.0",
-    "@turf/line-overlap": "^5.0.1",
-    "@turf/meta": "5.0.0",
+    "@turf/invariant": "^5.0.0",
+    "@turf/line-intersect": "^5.0.0",
+    "@turf/line-overlap": "^5.0.0",
+    "@turf/meta": "^5.0.0",
     "geojson-equality": "0.1.6"
   },
   "@std/esm": {

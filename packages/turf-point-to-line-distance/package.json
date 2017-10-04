@@ -46,14 +46,14 @@
     "uglify-js": "*"
   },
   "dependencies": {
-    "@turf/bearing": "5.0.0",
-    "@turf/distance": "5.0.0",
-    "@turf/helpers": "5.0.0",
-    "@turf/invariant": "5.0.0",
-    "@turf/meta": "5.0.0",
+    "@turf/bearing": "^5.0.0",
+    "@turf/distance": "^5.0.0",
+    "@turf/helpers": "^5.0.0",
+    "@turf/invariant": "^5.0.0",
+    "@turf/meta": "^5.0.0",
     "@turf/projection": "^4.7.3",
-    "@turf/rhumb-bearing": "5.0.0",
-    "@turf/rhumb-distance": "5.0.0"
+    "@turf/rhumb-bearing": "^5.0.0",
+    "@turf/rhumb-distance": "^5.0.0"
   },
   "@std/esm": {
     "esm": "js",

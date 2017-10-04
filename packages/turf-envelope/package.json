@@ -43,7 +43,7 @@
     "uglify-js": "*"
   },
   "dependencies": {
-    "@turf/bbox": "5.0.0",
+    "@turf/bbox": "^5.0.0",
     "@turf/bbox-polygon": "^4.7.3"
   },
   "@std/esm": {

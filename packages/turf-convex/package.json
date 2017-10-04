@@ -40,8 +40,8 @@
     "uglify-js": "*"
   },
   "dependencies": {
-    "@turf/helpers": "5.0.0",
-    "@turf/meta": "5.0.0",
+    "@turf/helpers": "^5.0.0",
+    "@turf/meta": "^5.0.0",
     "convex-hull": "^1.0.3"
   },
   "@std/esm": {

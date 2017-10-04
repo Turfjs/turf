@@ -42,9 +42,9 @@
     "uglify-js": "*"
   },
   "dependencies": {
-    "@turf/helpers": "5.0.0",
-    "@turf/invariant": "5.0.0",
-    "@turf/meta": "5.0.0"
+    "@turf/helpers": "^5.0.0",
+    "@turf/invariant": "^5.0.0",
+    "@turf/meta": "^5.0.0"
   },
   "@std/esm": {
     "esm": "js",

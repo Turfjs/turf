@@ -44,7 +44,7 @@
     "uglify-js": "*"
   },
   "dependencies": {
-    "@turf/bbox": "5.0.0",
+    "@turf/bbox": "^5.0.0",
     "@turf/boolean-overlap": "^4.7.3",
     "@turf/helpers": "^5.0.0",
     "@turf/union": "^4.7.3",

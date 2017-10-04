@@ -42,7 +42,7 @@
     "uglify-js": "*"
   },
   "dependencies": {
-    "@turf/helpers": "5.0.0",
+    "@turf/helpers": "^5.0.0",
     "@turf/truncate": "^4.7.3",
     "jsts": "1.4.0"
   },

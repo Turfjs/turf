@@ -50,8 +50,8 @@
     "uglify-js": "*"
   },
   "dependencies": {
-    "@turf/helpers": "5.0.0",
-    "@turf/invariant": "5.0.0",
+    "@turf/helpers": "^5.0.0",
+    "@turf/invariant": "^5.0.0",
     "lineclip": "^1.1.5"
   },
   "@std/esm": {

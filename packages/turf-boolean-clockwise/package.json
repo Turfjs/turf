@@ -49,7 +49,7 @@
     "uglify-js": "*"
   },
   "dependencies": {
-    "@turf/invariant": "5.0.0"
+    "@turf/invariant": "^5.0.0"
   },
   "@std/esm": {
     "esm": "js",
