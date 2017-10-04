@@ -14,8 +14,8 @@ import { getGeom, getCoords, getType } from '@turf/invariant';
  * @param {Geometry|Feature<any>} feature2 GeoJSON Feature or Geometry
  * @returns {boolean} true/false
  * @example
- * const line = turf.lineString([[1, 1], [1, 2], [1, 3], [1, 4]]);
- * const point = turf.point([1, 2]);
+ * var line = turf.lineString([[1, 1], [1, 2], [1, 3], [1, 4]]);
+ * var point = turf.point([1, 2]);
  *
  * turf.booleanContains(line, point);
  * //=true

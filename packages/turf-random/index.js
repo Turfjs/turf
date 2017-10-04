@@ -13,7 +13,7 @@ import {
  * @param {Array<number>} [bbox=[-180, -90, 180, 90]] a bounding box inside of which positions are placed.
  * @returns {Array<number>} Position [longitude, latitude]
  * @example
- * const position = turf.randomPosition([-180, -90, 180, 90])
+ * var position = turf.randomPosition([-180, -90, 180, 90])
  * //=position
  */
 export function randomPosition(bbox) {
@@ -31,7 +31,7 @@ export function randomPosition(bbox) {
  * @param {Array<number>} [options.bbox=[-180, -90, 180, 90]] a bounding box inside of which geometries are placed.
  * @returns {FeatureCollection<Point>} GeoJSON FeatureCollection of points
  * @example
- * const points = turf.randomPoint(25, {bbox: [-180, -90, 180, 90]})
+ * var points = turf.randomPoint(25, {bbox: [-180, -90, 180, 90]})
  * //=points
  */
 export function randomPoint(count, options) {
@@ -58,7 +58,7 @@ export function randomPoint(count, options) {
  * @param {number} [options.max_radial_length=10] is the maximum number of decimal degrees latitude or longitude that a vertex can reach out of the center of the Polygon.
  * @returns {FeatureCollection<Point>} GeoJSON FeatureCollection of points
  * @example
- * const polygons = turf.randomPolygon(25, {bbox: [-180, -90, 180, 90]})
+ * var polygons = turf.randomPolygon(25, {bbox: [-180, -90, 180, 90]})
  * //=polygons
  */
 export function randomPolygon(count, options) {
@@ -116,7 +116,7 @@ export function randomPolygon(count, options) {
  * @param {number} [options.max_rotation=Math.PI / 8] is the maximum number of radians that a line segment can turn from the previous segment.
  * @returns {FeatureCollection<Point>} GeoJSON FeatureCollection of points
  * @example
- * const lineStrings = turf.randomLineString(25, {bbox: [-180, -90, 180, 90]})
+ * var lineStrings = turf.randomLineString(25, {bbox: [-180, -90, 180, 90]})
  * //=lineStrings
  */
 export function randomLineString(count, options) {
