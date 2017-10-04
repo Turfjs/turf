@@ -194,7 +194,7 @@ export function clusterReduce(geojson, property, callback, initialValue) {
  * @param {string|number} property Property values are used to create bins
  * @returns {Object} bins with Feature IDs
  * @example
- * const geojson = turf.featureCollection([
+ * var geojson = turf.featureCollection([
  *     turf.point([0, 0], {cluster: 0, foo: 'null'}),
  *     turf.point([2, 4], {cluster: 1, foo: 'bar'}),
  *     turf.point([5, 1], {0: 'foo'}),
