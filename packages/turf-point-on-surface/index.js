@@ -15,7 +15,7 @@ import { featureCollection } from '@turf/helpers';
  * @returns {Feature} a point on the surface of `input`
  * @example
  * // create a random polygon
- * var polygon = turf.random('polygon');
+ * var polygon = turf.randomPolygon();
  *
  * var pointOnPolygon = turf.pointOnSurface(polygon);
  *

@@ -18,7 +18,7 @@ import { getCoord } from '@turf/invariant';
  * var distance = 50;
  * var bearing = 90;
  *
- * var destination = rhumbDestination(pt, distance, bearing, {units: 'miles'});
+ * var destination = turf.rhumbDestination(pt, distance, bearing, {units: 'miles'});
  *
  * //addToMap
  * var addToMap = [pt, destination]

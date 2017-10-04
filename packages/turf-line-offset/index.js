@@ -15,7 +15,7 @@ import { isObject, lineString, multiLineString, distanceToDegrees } from '@turf/
  * @example
  * var line = turf.lineString([[-83, 30], [-84, 36], [-78, 41]], { "stroke": "#F00" });
  *
- * var offsetLine = turf.lineOffset(line, 2, "miles");
+ * var offsetLine = turf.lineOffset(line, 2, {units: 'miles'});
  *
  * //addToMap
  * var addToMap = [offsetLine, line]

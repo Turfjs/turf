@@ -33,7 +33,7 @@ import {
  * var pt = turf.point([0, 0]);
  * var line = turf.lineString([[1, 1],[-1, 1]]);
  *
- * var distance = turf.pointToLineDistance(pt, line, 'miles');
+ * var distance = turf.pointToLineDistance(pt, line, {units: 'miles'});
  * //=69.11854715938406
  */
 function pointToLineDistance(pt, line, options) {

@@ -26,7 +26,7 @@ import { getCoords } from '@turf/invariant';
  * ]);
  * var pt = turf.point([-77.037076, 38.884017]);
  *
- * var snapped = turf.pointOnLine(line, pt, 'miles');
+ * var snapped = turf.pointOnLine(line, pt, {units: 'miles'});
  *
  * //addToMap
  * var addToMap = [line, pt, snapped];

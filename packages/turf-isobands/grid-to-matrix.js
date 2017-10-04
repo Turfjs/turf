@@ -13,10 +13,9 @@ import { featureEach } from '@turf/meta';
  * the grid points with coordinates on the matrix
  * @returns {Array<Array<number>>} matrix of property values
  * @example
- *   var pointGrid = require('@turf/point-grid');
  *   var extent = [-70.823364, -33.553984, -70.473175, -33.302986];
  *   var cellSize = 3;
- *   var grid = pointGrid(extent, cellSize);
+ *   var grid = turf.pointGrid(extent, cellSize);
  *   // add a random property to each point between 0 and 60
  *   for (var i = 0; i < grid.features.length; i++) {
  *     grid.features[i].properties.elevation = (Math.random() * 60);

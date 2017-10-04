@@ -15,11 +15,8 @@ import { polygon } from '@turf/helpers';
  * @example
  * var center = [-75.343, 39.984];
  * var radius = 5;
- * var steps = 10;
- * var units = 'kilometers';
- * var properties = {foo: 'bar'};
- *
- * var circle = turf.circle(center, radius, steps, units, properties);
+ * var options = {steps: 10, units: 'kilometers', properties: {foo: 'bar'}};
+ * var circle = turf.circle(center, radius, options);
  *
  * //addToMap
  * var addToMap = [turf.point(center), circle]

@@ -38,9 +38,8 @@ import { isObject } from '@turf/helpers';
  *   [-70.594711, -33.406224],
  *   [-70.603637, -33.399918]
  * ]]);
- * var tolerance = 0.01;
- *
- * var simplified = turf.simplify(geojson, tolerance, false);
+ * var options = {tolerance: 0.01, highQuality: false};
+ * var simplified = turf.simplify(geojson, options);
  *
  * //addToMap
  * var addToMap = [geojson, simplified]

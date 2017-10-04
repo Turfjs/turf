@@ -13,9 +13,8 @@ import { polygon, featureCollection } from '@turf/helpers';
  * @example
  * var bbox = [-95, 30 ,-85, 40];
  * var cellSize = 50;
- * var units = 'miles';
  *
- * var triangleGrid = turf.triangleGrid(bbox, cellSize, units);
+ * var triangleGrid = turf.triangleGrid(bbox, cellSize, {units: 'miles'});
  *
  * //addToMap
  * var addToMap = [triangleGrid];

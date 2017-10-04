@@ -20,11 +20,9 @@ import { collectionOf } from '@turf/invariant';
  * - {string} dbscan - type of point it has been classified as ('core'|'edge'|'noise')
  * @example
  * // create random points with random z-values in their properties
- * var points = turf.random('point', 100, {
- *   bbox: [0, 30, 20, 50]
- * });
- * var distance = 100;
- * var clustered = turf.clustersDbscan(points, distance);
+ * var points = turf.randomPoint(100, {bbox: [0, 30, 20, 50]});
+ * var maxDistance = 100;
+ * var clustered = turf.clustersDbscan(points, maxDistance);
  *
  * //addToMap
  * var addToMap = [clustered];

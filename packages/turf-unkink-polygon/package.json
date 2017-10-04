@@ -9,7 +9,9 @@
   "files": [
     "index.js",
     "index.d.ts",
-    "main.js"
+    "main.js",
+    "simplepolygon.js",
+    "geojson-polygon-self-intersections.js"
   ],
   "scripts": {
     "test": "node -r @std/esm test.js",
@@ -42,9 +44,11 @@
     "@std/esm": "*"
   },
   "dependencies": {
+    "@turf/area": "^4.7.3",
     "@turf/helpers": "^5.0.0",
+    "@turf/inside": "^4.7.3",
     "@turf/meta": "^5.0.0",
-    "simplepolygon": "1.2.1"
+    "rbush": "^2.0.1"
   },
   "@std/esm": {
     "esm": "js",

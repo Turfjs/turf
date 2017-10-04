@@ -119,14 +119,16 @@ test('turf -- pre-defined attributes in package.json', t => {
 
 test('turf -- parsing dependencies from index.js', t => {
     for (const {name, dir, dependencies} of modules) {
-        const index = fs.readFileSync(path.join(dir, 'index.js'), 'utf8');
+        var index
+        if (fs.existsSync(path.join(dir, 'main.js'))) index = fs.readFileSync(path.join(dir, 'main.js'), 'utf8');
+        else index = fs.readFileSync(path.join(dir, 'index.js'), 'utf8');
 
         // Read Depedencies from index.js
         const dependenciesUsed = new Set();
         for (const dependency of index.match(/(require\(|from )'[@/a-z-\d]+'/gi) || []) {
             const dependencyName = dependency.split(/'/)[1];
             if (!dependencies[dependencyName]) t.fail(`${name} ${dependencyName} is missing from dependencies`);
-            if (dependenciesUsed.has(dependencyName)) t.fail(`${name} ${dependencyName} is duplicated in index.js`);
+            // if (dependenciesUsed.has(dependencyName)) t.fail(`${name} ${dependencyName} is duplicated in index.js`);
             dependenciesUsed.add(dependencyName);
         }
 
@@ -137,6 +139,7 @@ test('turf -- parsing dependencies from index.js', t => {
             case '@turf/helpers':
             case '@turf/invariant':
             case '@turf/meta':
+            case 'rbush':
                 continue;
             }
             if (!dependenciesUsed.has(dependencyName)) t.fail(`${name} ${dependencyName} is not required in index.js`);
@@ -174,14 +177,14 @@ function testString(turfFunction, example) {
     const testFunctionName = turfName + 'Test';
 
     // New modules will be excluded from tests
-    if (!turf.hasOwnProperty(turfName)) return `
-test('turf-${turfName}', t => {
+    if (!turf[turfName]) return `
+test('turf-example-${turfName}', t => {
     t.skip('${turfName}');
     t.end();
 });
 `;
     return `
-test('turf-${turfName}', t => {
+test('turf-example-${turfName}', t => {
     const ${testFunctionName} = () => {
         ${example.description}
     }
@@ -192,60 +195,56 @@ test('turf-${turfName}', t => {
 `;
 }
 
-// // Test for missing modules
-// test('turf -- missing modules', t => {
-//     const files = {
-//         typescript: fs.readFileSync(path.join(__dirname, 'index.d.ts')),
-//         modules: fs.readFileSync(path.join(__dirname, 'index.js'))
-//     };
+// Test for missing modules
+test('turf -- missing modules', t => {
+    const files = {
+        typescript: fs.readFileSync(path.join(__dirname, 'index.d.ts')),
+        modules: fs.readFileSync(path.join(__dirname, 'index.js'))
+    };
 
-//     modules.forEach(({name}) => {
-//         name = camelcase(name.replace('turf-', ''));
-//         // name exception with linestring => lineString
-//         name = name.replace('linestring', 'lineString').replace('Linestring', 'LineString');
+    modules.forEach(({name}) => {
+        name = camelcase(name.replace('turf-', ''));
+        // name exception with linestring => lineString
+        name = name.replace('linestring', 'lineString').replace('Linestring', 'LineString');
 
-//         if (!files.typescript.includes(name)) t.fail(name + ' is missing from index.d.ts');
-//         if (!files.modules.includes(name)) t.fail(name + ' is missing from index.js');
+        if (!files.typescript.includes(name)) t.fail(name + ' is missing from index.d.ts');
+        if (!files.modules.includes(name)) t.fail(name + ' is missing from index.js');
 
-//         switch (typeof turf[name]) {
-//         case 'function': break;
-//         case 'object':
-//             Object.keys(turf[name]).forEach(method => {
-//                 if (typeof turf[method] !== 'function') t.skip(name + '.' + method + ' is missing from index.js');
-//                 if (!files.typescript.includes(method)) t.skip(name + '.' + method + ' is missing from index.d.ts');
-//                 if (!files.modules.includes(method)) t.skip(name + '.' + method + ' is missing from index.js');
-//             });
-//             break;
-//         case 'undefined':
-//             t.fail(name + ' is missing from index.js');
-//         }
-//     });
-//     t.end();
-// });
+        switch (typeof turf[name]) {
+        case 'function': break;
+        case 'object': break;
+        case 'undefined':
+            t.fail(name + ' is missing from index.js');
+        }
+    });
+    t.end();
+});
 
-// // Iterate over each module and retrieve @example to build tests from them
-// glob(turfModulesPath, (err, files) => {
-//     if (err) throw err;
+// /// <reference types="geojson" />
 
-//     // Read each JSDocs from index.js files
-//     documentation.build(files, {}).then(turfFunctions => {
-//         if (err) throw err;
+// Iterate over each module and retrieve @example to build tests from them
+glob(turfModulesPath, (err, files) => {
+    if (err) throw err;
 
-//         // Write header of test.js
-//         const writeableStream = fs.createWriteStream(testFilePath);
-//         writeableStream.write(requireString);
-//         writeableStream.on('error', err => { throw err; });
+    // Read each JSDocs from index.js files
+    documentation.build(files, {}).then(turfFunctions => {
+        if (err) throw err;
 
-//         // Retrieve @example
-//         turfFunctions.forEach(turfFunction => {
-//             if (turfFunction.examples) {
+        // Write header of test.js
+        const writeableStream = fs.createWriteStream(testFilePath);
+        writeableStream.write(requireString);
+        writeableStream.on('error', err => { throw err; });
 
-//                 // Save to test.js
-//                 turfFunction.examples.forEach(example => {
-//                     writeableStream.write(testString(turfFunction, example));
-//                 });
-//             }
-//         });
-//         writeableStream.end();
-//     });
-// });
+        // Retrieve @example
+        turfFunctions.forEach(turfFunction => {
+            if (turfFunction.examples) {
+
+                // Save to test.js
+                turfFunction.examples.forEach(example => {
+                    writeableStream.write(testString(turfFunction, example));
+                });
+            }
+        });
+        writeableStream.end();
+    });
+});

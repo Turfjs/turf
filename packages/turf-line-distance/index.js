@@ -12,7 +12,7 @@ import { isObject } from '@turf/helpers';
  * @returns {number} length of GeoJSON
  * @example
  * var line = turf.lineString([[115, -32], [131, -22], [143, -25], [150, -34]]);
- * var length = turf.lineDistance(line, 'miles');
+ * var length = turf.lineDistance(line, {units: 'miles'});
  *
  * //addToMap
  * var addToMap = [line];
