@@ -19,7 +19,8 @@ import { isObject } from '@turf/helpers';
  * @returns {GeoJSON} the rotated GeoJSON feature
  * @example
  * var poly = turf.polygon([[[0,29],[3.5,29],[2.5,32],[0,29]]]);
- * var rotatedPoly = turf.transformRotate(poly, 10, [0, 25]);
+ * var options = {pivot: [0, 25]};
+ * var rotatedPoly = turf.transformRotate(poly, 10, options);
  *
  * //addToMap
  * var addToMap = [poly, rotatedPoly];

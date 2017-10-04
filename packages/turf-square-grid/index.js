@@ -15,9 +15,8 @@ import { point, polygon, featureCollection, isObject } from '@turf/helpers';
  * @example
  * var bbox = [-95, 30 ,-85, 40];
  * var cellSize = 50;
- * var units = 'miles';
  *
- * var squareGrid = turf.squareGrid(bbox, cellSize, units);
+ * var squareGrid = turf.squareGrid(bbox, cellSize, {units: 'miles'});
  *
  * //addToMap
  * var addToMap = [squareGrid]

@@ -16,7 +16,7 @@
   ],
   "scripts": {
     "pretest": "rollup -c rollup.config.js",
-    "test": "node -r @std/esm test.js"
+    "test": "node -r @std/esm test.js && node -r @std/esm test.example.js"
   },
   "repository": {
     "type": "git",

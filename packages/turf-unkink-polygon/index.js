@@ -1,4 +1,4 @@
-var simplepolygon = require('simplepolygon');
+import simplepolygon from './simplepolygon';
 import { flattenEach, featureEach } from '@turf/meta';
 import { polygon, featureCollection } from '@turf/helpers';
 

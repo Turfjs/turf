@@ -17,11 +17,9 @@ import { collectionOf } from '@turf/invariant';
  * - {[number, number]} centroid - Centroid of the cluster [Longitude, Latitude]
  * @example
  * // create random points with random z-values in their properties
- * var points = turf.random('point', 100, {
- *   bbox: [0, 30, 20, 50]
- * });
- * var numberOfClusters = 7;
- * var clustered = turf.clustersKmeans(points, numberOfClusters);
+ * var points = turf.randomPoint(100, {bbox: [0, 30, 20, 50]});
+ * var options = {numberOfClusters: 7};
+ * var clustered = turf.clustersKmeans(points, options);
  *
  * //addToMap
  * var addToMap = [clustered];

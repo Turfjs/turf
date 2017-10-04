@@ -23,14 +23,14 @@ import { collectionOf } from '@turf/invariant';
  * @param {number} [options.weight=1] exponent regulating the distance-decay weighting
  * @returns {FeatureCollection<Point|Polygon>} grid of points or polygons with interpolated 'property'
  * @example
- * var points = turf.random('points', 30, {
- *     bbox: [50, 30, 70, 50]
- * });
+ * var points = turf.randomPoint(30, {bbox: [50, 30, 70, 50]});
+ *
  * // add a random property to each point
  * turf.featureEach(points, function(point) {
  *     point.properties.solRad = Math.random() * 50;
  * });
- * var grid = turf.interpolate(points, 100, 'points', 'solRad', 'miles');
+ * var options = {gridType: 'points', property: 'solRad', units: 'miles'};
+ * var grid = turf.interpolate(points, 100, options);
  *
  * //addToMap
  * var addToMap = [grid];

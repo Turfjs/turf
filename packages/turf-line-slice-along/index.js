@@ -21,7 +21,7 @@ import { lineString, isObject } from '@turf/helpers';
  * var line = turf.lineString([[7, 45], [9, 45], [14, 40], [14, 41]]);
  * var start = 12.5;
  * var stop = 25;
- * var sliced = turf.lineSliceAlong(line, start, stop, 'miles');
+ * var sliced = turf.lineSliceAlong(line, start, stop, {units: 'miles'});
  *
  * //addToMap
  * var addToMap = [line, start, stop, sliced]

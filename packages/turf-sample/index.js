@@ -9,9 +9,7 @@ import { featureCollection } from '@turf/helpers';
  * @param {number} num number of features to select
  * @returns {FeatureCollection} a FeatureCollection with `n` features
  * @example
- * var points = turf.random('points', 100, {
- *   bbox: [-80, 30, -60, 60]
- * });
+ * var points = turf.randomPoint(100, {bbox: [-80, 30, -60, 60]});
  *
  * var sample = turf.sample(points, 5);
  *

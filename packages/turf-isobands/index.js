@@ -23,8 +23,7 @@ import isoBands from './marchingsquares-isobands';
  * // create a grid of points with random z-values in their properties
  * var extent = [-70.823364, -33.553984, -69.823364, -32.553984];
  * var cellWidth = 5;
- * var units = 'miles';
- * var pointGrid = turf.pointGrid(extent, cellWidth, units);
+ * var pointGrid = turf.pointGrid(extent, cellWidth, {units: 'miles'});
  * for (var i = 0; i < pointGrid.features.length; i++) {
  *     pointGrid.features[i].properties.elevation = Math.random() * 10;
  * }
