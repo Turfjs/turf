@@ -1,5 +1,3 @@
-/// <reference types="geojson" />
-
 import { Polygon, MultiPolygon, Feature, FeatureCollection } from '@turf/helpers';
 
 /**

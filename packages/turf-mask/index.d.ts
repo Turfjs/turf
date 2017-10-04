@@ -1,11 +1,9 @@
-/// <reference types="geojson" />
-
-export type Geom = GeoJSON.Polygon | GeoJSON.MultiPolygon;
-export type Poly = GeoJSON.FeatureCollection<Geom> | GeoJSON.Feature<Geom> | Geom;
-export type Polygon = GeoJSON.Feature<GeoJSON.Polygon>;
-export type Mask = GeoJSON.Feature<GeoJSON.Polygon> | GeoJSON.Polygon;
+import { Feature, Polygon, MultiPolygon, FeatureCollection } from '@turf/helpers'
 
 /**
  * http://turfjs.org/docs/#mask
  */
-export default function mask(poly: Poly, mask?: Mask): Polygon;
+export default function <T extends Polygon | MultiPolygon>(
+    poly: Feature<T> | FeatureCollection<T> | T,
+    mask?: Feature<Polygon> | Polygon
+): Feature<Polygon>;

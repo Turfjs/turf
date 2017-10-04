@@ -1,10 +1,9 @@
-/// <reference types="geojson" />
-
-export type BBox = Array<number>;
-export type Points = GeoJSON.FeatureCollection<GeoJSON.Point>;
-export type Polygons = GeoJSON.FeatureCollection<GeoJSON.Polygon>;
+import { FeatureCollection, Polygon, Point } from '@turf/helpers'
 
 /**
  * http://turfjs.org/docs/#within
  */
-export default function within(points: Points, polygons: Polygons): Points;
+export default function within(
+    points: FeatureCollection<Point>,
+    polygons: FeatureCollection<Polygon>
+): FeatureCollection<Point>;

@@ -1,9 +1,11 @@
-/// <reference types="geojson" />
-
-export type Polygons = GeoJSON.FeatureCollection<GeoJSON.Polygon>;
-export type Points = GeoJSON.FeatureCollection<GeoJSON.Point>;
+import { FeatureCollection, Polygon, Feature, Point } from '@turf/helpers';
 
 /**
  * http://turfjs.org/docs/#collect
  */
-export default function (polygons: Polygons, points: Points, inProperty: string, outProperty: string): Polygons;
+export default function (
+    polygons: FeatureCollection<Polygon>,
+    points: FeatureCollection<Point>,
+    inProperty: string,
+    outProperty: string
+): FeatureCollection<Polygon>;
