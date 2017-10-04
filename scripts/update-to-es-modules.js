@@ -94,7 +94,7 @@ glob.sync(path.join(__dirname, '..', 'packages', 'turf-*', 'package.json')).forE
         types: 'index.d.ts',
         files: [...files],
         scripts: {
-            'prepublish': 'rollup -c ../../rollup.config.js',
+            'pretest': 'rollup -c ../../rollup.config.js',
             'test': 'node -r @std/esm test.js',
             'bench': 'node -r @std/esm bench.js'
         },
