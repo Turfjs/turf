@@ -27,7 +27,7 @@ test('rotate', t => {
         const {angle, pivot} = geojson.properties || {};
 
         const rotated = rotate(geojson, angle, {pivot: pivot});
-        const result = featureCollection([colorize(truncate(rotated, 6, 3)), geojson, makePivot(pivot, geojson)]);
+        const result = featureCollection([colorize(truncate(rotated, {precision: 6, coordinates: 3})), geojson, makePivot(pivot, geojson)]);
 
         if (process.env.REGEN) write.sync(directories.out + filename, result);
         t.deepEqual(result, load.sync(directories.out + filename), name);
@@ -53,7 +53,7 @@ test('rotate -- mutated input', t => {
     t.deepEqual(line, lineBefore, 'input should NOT be mutated');
 
     rotate(line, 100, {mutate: true});
-    t.deepEqual(truncate(line, 1), lineString([[8.6, 13.9], [13.3, 11.1]]), 'input should be mutated');
+    t.deepEqual(truncate(line, {precision: 1}), lineString([[8.6, 13.9], [13.3, 11.1]]), 'input should be mutated');
     t.end();
 });
 

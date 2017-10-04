@@ -25,7 +25,7 @@ test('translate', t => {
         let {distance, direction, units, zTranslation} = geojson.properties || {};
 
         const translated = translate(geojson, distance, direction, {units, zTranslation});
-        const result = featureCollection([colorize(truncate(translated, 6, 3)), geojson]);
+        const result = featureCollection([colorize(truncate(translated, {precision: 6, coordiantes: 3})), geojson]);
 
         if (process.env.REGEN) write.sync(directories.out + filename, result);
         t.deepEqual(result, load.sync(directories.out + filename), name);
@@ -54,7 +54,7 @@ test('rotate -- mutated input', t => {
     t.deepEqual(line, lineBefore, 'input should NOT be mutated');
 
     translate(line, 100, 50, {units: 'kilometers', mutate: true});
-    t.deepEqual(truncate(line, 1), lineString([[10.7, 10.6], [12.7, 15.6]]), 'input should be mutated');
+    t.deepEqual(truncate(line, {precision: 1}), lineString([[10.7, 10.6], [12.7, 15.6]]), 'input should be mutated');
     t.end();
 });
 

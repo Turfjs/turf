@@ -1,9 +1,8 @@
-/// <reference types="geojson" />
-
-export type Feature = GeoJSON.Feature<any>;
-export type FeatureCollection = GeoJSON.FeatureCollection<any>;
+import { AllGeoJSON } from '@turf/helpers'
 
 /**
  * http://turfjs.org/docs/#area
  */
-export default function area(features: Feature | FeatureCollection): number;
+export default function area(
+    geojson: AllGeoJSON
+): number;
