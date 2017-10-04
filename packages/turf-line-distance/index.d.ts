@@ -1,10 +1,10 @@
-import { Units, Feature, FeatureCollection, GeometryObject, GeometryCollection, FeatureGeometryCollection } from '@turf/helpers'
+import { Units, AllGeoJSON } from '@turf/helpers'
 
 /**
  * http://turfjs.org/docs/#linedistance
  */
 export default function lineDistance(
-    geojson: Feature<any> | FeatureCollection<any> | GeometryObject | GeometryCollection | FeatureGeometryCollection,
+    geojson: AllGeoJSON,
     options?: {
         units?: Units
     }

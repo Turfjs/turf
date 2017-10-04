@@ -2,7 +2,7 @@
 
 // GeoJSON Foreign Members
 export type Id = string | number;
-export type Properties = {[key: string]: any};
+export type Properties = object;
 export type BBox = [number, number, number, number];
 
 // TurfJS Combined Types
