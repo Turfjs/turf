@@ -48,7 +48,7 @@ function booleanContains(feature1, feature2) {
     case 'LineString':
         switch (type2) {
         case 'Point':
-            return isPointOnLine(geom2, geom1, true);
+            return isPointOnLine(geom2, geom1, {ignoreEndVertices: true});
         case 'LineString':
             return isLineOnLine(geom1, geom2);
         case 'MultiPoint':
@@ -59,7 +59,7 @@ function booleanContains(feature1, feature2) {
     case 'Polygon':
         switch (type2) {
         case 'Point':
-            return inside(geom2, geom1, true);
+            return inside(geom2, geom1, {ignoreBoundary: true});
         case 'LineString':
             return isLineInPoly(geom1, geom2);
         case 'Polygon':
@@ -106,7 +106,7 @@ function isMultiPointInMultiPoint(multiPoint1, multiPoint2) {
 function isMultiPointOnLine(lineString, multiPoint) {
     var haveFoundInteriorPoint = false;
     for (var i = 0; i < multiPoint.coordinates.length; i++) {
-        if (isPointOnLine(multiPoint.coordinates[i], lineString, true)) {
+        if (isPointOnLine(multiPoint.coordinates[i], lineString, {ignoreEndVertices: true})) {
             haveFoundInteriorPoint = true;
         }
         if (!isPointOnLine(multiPoint.coordinates[i], lineString)) {
@@ -121,7 +121,7 @@ function isMultiPointOnLine(lineString, multiPoint) {
 
 function isMultiPointInPoly(polygon, multiPoint) {
     for (var i = 0; i < multiPoint.coordinates.length; i++) {
-        if (!inside(multiPoint.coordinates[i], polygon, true)) {
+        if (!inside(multiPoint.coordinates[i], polygon, {ignoreBoundary: true})) {
             return false;
         }
     }
@@ -131,10 +131,10 @@ function isMultiPointInPoly(polygon, multiPoint) {
 function isLineOnLine(lineString1, lineString2) {
     var haveFoundInteriorPoint = false;
     for (var i = 0; i < lineString2.coordinates.length; i++) {
-        if (isPointOnLine({type: 'Point', coordinates: lineString2.coordinates[i]}, lineString1, true)) {
+        if (isPointOnLine({type: 'Point', coordinates: lineString2.coordinates[i]}, lineString1, { ignoreEndVertices: true })) {
             haveFoundInteriorPoint = true;
         }
-        if (!isPointOnLine({type: 'Point', coordinates: lineString2.coordinates[i]}, lineString1, false)) {
+        if (!isPointOnLine({type: 'Point', coordinates: lineString2.coordinates[i]}, lineString1, {ignoreEndVertices: false })) {
             return false;
         }
     }
@@ -152,7 +152,7 @@ function isLineInPoly(polygon, linestring) {
     }
     for (i; i < linestring.coordinates.length - 1; i++) {
         var midPoint = getMidpoint(linestring.coordinates[i], linestring.coordinates[i + 1]);
-        if (inside({type: 'Point', coordinates: midPoint}, polygon, true)) {
+        if (inside({type: 'Point', coordinates: midPoint}, polygon, { ignoreBoundary: true })) {
             output = true;
             break;
         }
