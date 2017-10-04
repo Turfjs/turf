@@ -12,8 +12,8 @@
     "main.js"
   ],
   "scripts": {
-    "pretest": "rollup -c ../../rollup.config.js",
     "test": "node -r @std/esm test.js",
+    "posttest": "rollup -c ../../rollup.config.js",
     "bench": "node -r @std/esm bench.js"
   },
   "repository": {
@@ -53,7 +53,7 @@
     "@turf/meta": "^5.0.0",
     "@turf/point-on-line": "^5.0.0",
     "@turf/truncate": "^4.7.3",
-    "geojson-rbush": "^1.0.1"
+    "geojson-rbush": "2.0.1"
   },
   "@std/esm": {
     "esm": "js",
