@@ -1,5 +1,3 @@
-/// <reference types="geojson" />
-
 import { Units, FeatureCollection, Point, Feature } from '@turf/helpers';
 
 export type Dbscan = 'core' | 'edge' | 'noise'

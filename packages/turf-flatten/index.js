@@ -5,7 +5,7 @@ import { featureCollection } from '@turf/helpers';
  * Flattens any {@link GeoJSON} to a {@link FeatureCollection} inspired by [geojson-flatten](https://github.com/tmcw/geojson-flatten).
  *
  * @name flatten
- * @param {FeatureCollection|Geometry|Feature<any>} geojson any valid GeoJSON Object
+ * @param {GeoJSON} geojson any valid GeoJSON Object
  * @returns {FeatureCollection<any>} all Multi-Geometries are flattened into single Features
  * @example
  * var multiGeometry = turf.multiPolygon([

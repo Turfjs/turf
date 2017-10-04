@@ -1,10 +1,9 @@
-/// <reference types="geojson" />
-
-export type Feature = GeoJSON.Feature<any>;
-export type Features = GeoJSON.FeatureCollection<any>;
-export type Point = GeoJSON.Feature<GeoJSON.Point>;
+import { AllGeoJSON, Feature, Point, Properties } from '@turf/helpers';
 
 /**
- * http://turfjs.org/docs/#center
+ * http://turfjs.org/docs/#centerofmass
  */
-export default function (features: Feature | Features, properties?: any): Point;
+export default function (
+    features: AllGeoJSON,
+    properties?: Properties
+): Feature<Point>;

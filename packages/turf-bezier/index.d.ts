@@ -1,13 +1,12 @@
-/// <reference types="geojson" />
-
-export type LineString = GeoJSON.Feature<GeoJSON.LineString>;
-
-interface Options {
-    resolution?: number;
-    sharpness?: number;
-}
+import { LineString, Feature } from '@turf/helpers'
 
 /**
  * http://turfjs.org/docs/#bezier
  */
-export default function bezier(line: LineString, options?: Options): LineString;
+export default function bezier(
+    line: Feature<LineString> | LineString,
+    options?: {
+        resolution?: number;
+        sharpness?: number;
+    }
+): Feature<LineString>;

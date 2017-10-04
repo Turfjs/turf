@@ -159,6 +159,7 @@ test('turf -- parsing dependencies from index.js', t => {
 // File Paths
 const testFilePath = path.join(__dirname, 'test.example.js');
 const turfModulesPath = path.join(__dirname, '..', 'turf-*', 'index.js');
+const turfTypescriptPath = path.join(__dirname, '..', 'turf-*', 'index.d.ts');
 
 // Test Strings
 const requireString = `const test = require('tape');
@@ -220,7 +221,14 @@ test('turf -- missing modules', t => {
     t.end();
 });
 
-// /// <reference types="geojson" />
+// TurfJS v5.0 Typescript definition uses @turf/helpers
+test('turf -- update to newer Typescript definitions', t => {
+    glob.sync(turfTypescriptPath).forEach(filepath => {
+        const typescript = fs.readFileSync(filepath, 'utf8');
+        if (typescript.includes('reference types="geojson"')) t.skip(filepath + ' update Typescript definition v5.0')
+    })
+    t.end()
+});
 
 // Iterate over each module and retrieve @example to build tests from them
 glob(turfModulesPath, (err, files) => {

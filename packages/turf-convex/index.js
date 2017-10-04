@@ -1,5 +1,5 @@
 var convexHull = require('convex-hull');
-import { coordEach as each } from '@turf/meta';
+import { coordEach } from '@turf/meta';
 import { polygon } from '@turf/helpers';
 
 /**
@@ -10,7 +10,7 @@ import { polygon } from '@turf/helpers';
  * implements a [monotone chain hull](http://en.wikibooks.org/wiki/Algorithm_Implementation/Geometry/Convex_hull/Monotone_chain).
  *
  * @name convex
- * @param {Feature|FeatureCollection} feature input Feature or FeatureCollection
+ * @param {GeoJSON} geojson input Feature or FeatureCollection
  * @returns {Feature<Polygon>} a convex hull
  * @example
  * var points = turf.featureCollection([
@@ -27,11 +27,11 @@ import { polygon } from '@turf/helpers';
  * //addToMap
  * var addToMap = [points, hull]
  */
-function convex(feature) {
+function convex(geojson) {
     var points = [];
 
     // Remove Z in coordinates because it breaks the convexHull algorithm
-    each(feature, function (coord) {
+    coordEach(geojson, function (coord) {
         points.push([coord[0], coord[1]]);
     });
 

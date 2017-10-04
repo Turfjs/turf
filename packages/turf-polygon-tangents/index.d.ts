@@ -1,11 +1,9 @@
-/// <reference types="geojson" />
-
-export type Point = GeoJSON.Feature<GeoJSON.Point> | GeoJSON.Point;
-export type Polygon = GeoJSON.Feature<GeoJSON.Polygon> | GeoJSON.Polygon;
-export type MultiPolygon = GeoJSON.Feature<GeoJSON.MultiPolygon> | GeoJSON.MultiPolygon;
-export type FeatureCollection = GeoJSON.FeatureCollection<GeoJSON.Point>;
+import { Feature, FeatureCollection, Coord, Point, Polygon, MultiPolygon } from '@turf/helpers'
 
 /**
- * http://turfjs.org/docs/#polygonTangents
+ * http://turfjs.org/docs/#polygontangents
  */
-export default function polygonTangents(point: Point, polygon: Polygon | MultiPolygon): FeatureCollection;
+export default function <T extends Polygon | MultiPolygon>(
+    point: Coord,
+    polygon: Feature<T> | T
+): FeatureCollection<Point>;

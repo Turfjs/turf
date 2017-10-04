@@ -1,4 +1,5 @@
 import { lineString } from '@turf/helpers';
+import { getGeom } from '@turf/invariant';
 import Spline from './spline.js';
 
 /**
@@ -9,7 +10,7 @@ import Spline from './spline.js';
  * The bezier spline implementation is by [Leszek Rybicki](http://leszek.rybicki.cc/).
  *
  * @name bezier
- * @param {Feature<LineString>} line input LineString
+ * @param {Geometry|Feature<LineString>} line input LineString
  * @param {object} [options] Optional parameters
  * @param {number} [options.resolution=10000] time in milliseconds between points
  * @param {number} [options.sharpness=0.85] a measure of how curvy the path should be between splines
@@ -43,7 +44,7 @@ function bezier(line, options) {
 
     var coords = [];
     var spline = new Spline({
-        points: line.geometry.coordinates.map(function (pt) {
+        points: getGeom(line).coordinates.map(function (pt) {
             return {x: pt[0], y: pt[1]};
         }),
         duration: resolution,
