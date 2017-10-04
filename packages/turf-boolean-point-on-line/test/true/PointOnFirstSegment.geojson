@@ -1,11 +1,12 @@
 {
   "type": "FeatureCollection",
+  "properties": {
+      "ignoreEndVertices": true
+  },
   "features": [
     {
       "type": "Feature",
-      "properties": {
-          "ignoreEndPoint": true
-      },
+      "properties": {},
       "geometry": {
         "type": "Point",
         "coordinates": [
