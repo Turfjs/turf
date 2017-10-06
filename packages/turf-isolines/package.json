@@ -44,6 +44,7 @@
     "@turf/envelope": "*",
     "@turf/point-grid": "*",
     "@turf/random": "*",
+    "@turf/rhumb-destination": "^5.0.0",
     "@turf/truncate": "*",
     "benchmark": "*",
     "load-json-file": "*",
