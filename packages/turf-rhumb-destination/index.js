@@ -1,5 +1,5 @@
 // https://en.wikipedia.org/wiki/Rhumb_line
-import { earthRadius, point, convertDistance, degrees2radians } from '@turf/helpers';
+import { earthRadius, point, convertDistance, degrees2radians, isObject } from '@turf/helpers';
 import { getCoord } from '@turf/invariant';
 
 /**
@@ -12,6 +12,7 @@ import { getCoord } from '@turf/invariant';
  * @param {number} bearing varant bearing angle ranging from -180 to 180 degrees from north
  * @param {Object} [options={}] Optional parameters
  * @param {string} [options.units='kilometers'] can be degrees, radians, miles, or kilometers
+ * @param {Object} [options.properties={}] translate properties to destination point
  * @returns {Feature<Point>} Destination point.
  * @example
  * var pt = turf.point([-75.343, 39.984], {"marker-color": "F00"});
@@ -25,12 +26,17 @@ import { getCoord } from '@turf/invariant';
  * destination.properties['marker-color'] = '#00F';
  */
 function rhumbDestination(origin, distance, bearing, options) {
+    // Optional parameters
+    options = options || {};
+    if (!isObject(options)) throw new Error('options is invalid');
+    var units = options.units;
+    var properties = options.properties;
+
     // validation
     if (!origin) throw new Error('origin is required');
     if (distance === undefined || distance === null) throw new Error('distance is required');
     if (bearing === undefined || bearing === null) throw new Error('bearing is required');
     if (!(distance >= 0)) throw new Error('distance must be greater than 0');
-    var units = (typeof options === 'object') ? options.units : options || 'kilometers';
 
     var distanceInMeters = convertDistance(distance, units, 'meters');
     var coords = getCoord(origin);
@@ -39,7 +45,7 @@ function rhumbDestination(origin, distance, bearing, options) {
     // compensate the crossing of the 180th meridian (https://macwright.org/2016/09/26/the-180th-meridian.html)
     // solution from https://github.com/mapbox/mapbox-gl-js/issues/3250#issuecomment-294887678
     destination[0] += (destination[0] - coords[0] > 180) ? -360 : (coords[0] - destination[0] > 180) ? 360 : 0;
-    return point(destination);
+    return point(destination, properties);
 }
 
 /**
