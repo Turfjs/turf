@@ -7,8 +7,8 @@ import envelope from '@turf/envelope';
 import pointGrid from '@turf/point-grid';
 import { randomPolygon } from '@turf/random';
 import { getCoords } from '@turf/invariant';
+import matrixToGrid from 'matrix-to-grid';
 import { lineString, polygon } from '@turf/helpers';
-import matrixToGrid from './matrix-to-grid';
 import isolines from '.';
 
 const directories = {

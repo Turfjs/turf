@@ -41,18 +41,17 @@
   },
   "homepage": "https://github.com/Turfjs/turf",
   "devDependencies": {
-    "@std/esm": "*",
     "@turf/envelope": "*",
     "@turf/point-grid": "*",
     "@turf/random": "*",
-    "@turf/rhumb-destination": "^5.0.0",
     "benchmark": "*",
     "chroma-js": "*",
     "load-json-file": "*",
-    "matrix-to-grid": "^3.0.1",
+    "matrix-to-grid": "*",
     "rollup": "*",
     "tape": "*",
-    "write-json-file": "*"
+    "write-json-file": "*",
+    "@std/esm": "*"
   },
   "dependencies": {
     "@turf/area": "^4.7.3",
