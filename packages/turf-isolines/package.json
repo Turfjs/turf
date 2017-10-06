@@ -40,16 +40,17 @@
   },
   "homepage": "https://github.com/Turfjs/turf",
   "devDependencies": {
+    "@std/esm": "*",
     "@turf/envelope": "*",
     "@turf/point-grid": "*",
     "@turf/random": "*",
+    "@turf/truncate": "*",
     "benchmark": "*",
     "load-json-file": "*",
     "matrix-to-grid": "*",
-    "tape": "*",
-    "write-json-file": "*",
     "rollup": "*",
-    "@std/esm": "*"
+    "tape": "*",
+    "write-json-file": "*"
   },
   "dependencies": {
     "@turf/bbox": "^5.0.0",

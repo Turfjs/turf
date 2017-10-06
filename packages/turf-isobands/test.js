@@ -28,23 +28,20 @@ const fixtures = fs.readdirSync(directories.in).map(filename => {
 
 test('isobands', t => {
     fixtures.forEach(({name, json, filename}) => {
-        const { breaks, zProperty, breaksProperties, commonProperties, units, matrix, origin, cellSize } = json.properties ? json.properties : json;
+        const options = json.properties || json
+        const { breaks, matrix, origin, cellSize } = options;
 
         // allow GeoJSON featureCollection or matrix
-        let points;
-        if (json.properties) points = json;
-        else points = matrixToGrid(matrix, origin, cellSize, { zProperty, units });
+        let points = json.properties ? json : matrixToGrid(matrix, origin, cellSize, options);
 
-        const results = truncate(isobands(points, breaks, {
-            zProperty: zProperty,
-            commonProperties: commonProperties,
-            breaksProperties: breaksProperties
+        // Results
+        const results = truncate(isobands(points, breaks, options));
+
+        // Add red line around point data
+        results.features.push(lineString(getCoords(envelope(points))[0], {
+            stroke: '#F00',
+            'stroke-width': 1
         }));
-
-        const box = lineString(getCoords(envelope(points))[0]);
-        box.properties['stroke'] = '#F00';
-        box.properties['stroke-width'] = 1;
-        results.features.push(box);
 
         if (process.env.REGEN) write.sync(directories.out + name + '.geojson', results);
         t.deepEqual(results, load.sync(directories.out + name + '.geojson'), name);

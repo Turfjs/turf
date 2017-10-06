@@ -45,7 +45,7 @@
     "@turf/envelope": "*",
     "@turf/point-grid": "*",
     "@turf/random": "*",
-    "@turf/truncate": "^4.7.3",
+    "@turf/truncate": "*",
     "benchmark": "*",
     "chroma-js": "*",
     "load-json-file": "*",
