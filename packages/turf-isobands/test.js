@@ -1,15 +1,17 @@
+import fs from 'fs';
 import test from 'tape';
 import path from 'path';
-import fs from 'fs';
 import load from 'load-json-file';
 import write from 'write-json-file';
-import { randomPolygon }  from '@turf/random';
 import envelope from '@turf/envelope';
-import { lineString } from '@turf/helpers';
-import { getCoords } from '@turf/invariant';
-import matrixToGrid from 'matrix-to-grid';
 import pointGrid from '@turf/point-grid';
+import truncate from '@turf/truncate';
+import { getCoords } from '@turf/invariant';
+import { lineString } from '@turf/helpers';
+import { featureEach } from '@turf/meta';
+import { randomPolygon }  from '@turf/random';
 import isobands from './index';
+import matrixToGrid from './matrix-to-grid';
 
 const directories = {
     in: path.join(__dirname, 'test', 'in') + path.sep,
@@ -20,38 +22,24 @@ const fixtures = fs.readdirSync(directories.in).map(filename => {
     return {
         filename,
         name: path.parse(filename).name,
-        jsondata: load.sync(directories.in + filename)
+        json: load.sync(directories.in + filename)
     };
 });
 
 test('isobands', t => {
-    fixtures.forEach(({name, jsondata, filename}) => {
+    fixtures.forEach(({name, json, filename}) => {
+        const { breaks, zProperty, breaksProperties, commonProperties, units, matrix, origin, cellSize } = json.properties ? json.properties : json;
 
-        let breaks, points, zProperty, breaksProperties, commonProperties;
-        // allow geojson featureCollection...
-        if (filename.includes('geojson')) {
-            breaks = jsondata.properties.breaks;
-            zProperty = jsondata.properties.zProperty;
-            commonProperties = jsondata.properties.commonProperties;
-            breaksProperties = jsondata.properties.breaksProperties;
-            points = jsondata;
-        } else {
-            // ...or matrix input
-            const matrix = jsondata.matrix;
-            const cellSize = jsondata.cellSize;
-            const origin = jsondata.origin;
-            breaks = jsondata.breaks;
-            zProperty = jsondata.zProperty;
-            points = matrixToGrid(matrix, origin, cellSize, { zProperty, units: jsondata.units });
-            commonProperties = jsondata.commonProperties;
-            breaksProperties = jsondata.breaksProperties;
-        }
+        // allow GeoJSON featureCollection or matrix
+        let points;
+        if (json.properties) points = json;
+        else points = matrixToGrid(matrix, origin, cellSize, { zProperty, units });
 
-        const results = isobands(points, breaks, {
+        const results = truncate(isobands(points, breaks, {
             zProperty: zProperty,
             commonProperties: commonProperties,
             breaksProperties: breaksProperties
-        });
+        }));
 
         const box = lineString(getCoords(envelope(points))[0]);
         box.properties['stroke'] = '#F00';
