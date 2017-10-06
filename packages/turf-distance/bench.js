@@ -1,8 +1,8 @@
-var distance = require('./');
-var Benchmark = require('benchmark');
-var fs = require('fs');
+import Benchmark from 'benchmark';
+import fs from 'fs';
+import distance from './';
 
-var pt1 = { 
+var pt1 = {
     type: "Feature",
     geometry: {type: "Point", coordinates: [-75.4, 39.4]}
   };
@@ -20,6 +20,5 @@ suite
     console.log(String(event.target));
   })
   .on('complete', function () {
-    
   })
   .run();

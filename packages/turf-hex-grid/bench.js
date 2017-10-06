@@ -1,5 +1,5 @@
-var Benchmark = require('benchmark');
-var grid = require('.');
+import Benchmark from 'benchmark';
+import grid from '.';
 
 var bbox = [
     -96.6357421875,

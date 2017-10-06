@@ -1,6 +1,6 @@
-var Benchmark = require('benchmark');
-var point = require('@turf/helpers').point;
-var bearing = require('./');
+import Benchmark from 'benchmark';
+import { point } from '@turf/helpers';
+import bearing from './';
 
 var start = point([-75.4, 39.4]);
 var end = point([-75.534, 39.123]);

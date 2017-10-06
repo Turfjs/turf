@@ -1,6 +1,6 @@
-var grid = require('./');
-var Benchmark = require('benchmark');
-var fs = require('fs');
+import fs from 'fs';
+import Benchmark from 'benchmark';
+import grid from './';
 
 var bbox1 = [
         -96.6357421875,
@@ -27,6 +27,6 @@ suite
     console.log(String(event.target));
   })
   .on('complete', function () {
-    
+
   })
   .run();

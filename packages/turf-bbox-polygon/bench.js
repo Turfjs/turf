@@ -1,6 +1,6 @@
-var bboxpolygon = require('./');
-var Benchmark = require('benchmark');
-var fs = require('fs');
+import fs from 'fs';
+import Benchmark from 'benchmark';
+import bboxpolygon from './';
 
 var suite = new Benchmark.Suite('turf-bbox-polygon');
 suite
@@ -11,6 +11,6 @@ suite
     console.log(String(event.target));
   })
   .on('complete', function () {
-    
+
   })
   .run();

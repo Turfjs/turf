@@ -1,6 +1,6 @@
-var tag = require('./');
-var Benchmark = require('benchmark');
-var fs = require('fs');
+import fs from 'fs';
+import Benchmark from 'benchmark';
+import tag from './';
 
 var points = JSON.parse(fs.readFileSync('./test/tagPoints.geojson'));
 var polygons = JSON.parse(fs.readFileSync('./test/tagPolygons.geojson'));
@@ -14,6 +14,6 @@ suite
     console.log(String(event.target));
   })
   .on('complete', function () {
-    
+
   })
   .run();

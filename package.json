@@ -8,7 +8,8 @@
     "postlint": "documentation lint packages/turf-*/index.js",
     "pretest": "lerna bootstrap && npm run lint",
     "test": "lerna run test",
-    "docs": "node ./scripts/generate-readmes"
+    "docs": "node ./scripts/generate-readmes",
+    "5to6": "jscodeshift -t node_modules/5to6-codemod/transforms/cjs.js packages/turf-*/bench.js"
   },
   "repository": {
     "type": "git",
@@ -47,6 +48,7 @@
     "url": "https://github.com/Turfjs/turf/issues"
   },
   "devDependencies": {
+    "5to6-codemod": "*",
     "@std/esm": "*",
     "@types/geojson": "*",
     "@types/node": "*",
@@ -58,6 +60,7 @@
     "eslint": "*",
     "eslint-config-mourner": "*",
     "fs-extra": "*",
+    "jscodeshift": "*",
     "lerna": "*",
     "load-json-file": "*",
     "meow": "*",

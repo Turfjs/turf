@@ -1,8 +1,8 @@
-const fs = require('fs');
-const path = require('path');
-const Benchmark = require('benchmark');
-const load = require('load-json-file');
-const lineChunk = require('./');
+import fs from 'fs';
+import path from 'path';
+import load from 'load-json-file';
+import Benchmark from 'benchmark';
+import lineChunk from './';
 
 const directories = {
     in: path.join(__dirname, 'test', 'in') + path.sep,

@@ -1,8 +1,8 @@
-const load = require('load-json-file');
-const path = require('path');
-const Benchmark = require('benchmark');
-const fs = require('fs');
-const union = require('.');
+import fs from 'fs';
+import path from 'path';
+import load from 'load-json-file';
+import Benchmark from 'benchmark';
+import union from '.';
 
 const directories = {
     in: path.join(__dirname, 'test', 'in') + path.sep,
