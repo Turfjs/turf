@@ -50,7 +50,7 @@ function isobands(pointGrid, breaks, options) {
     if (!Array.isArray(breaksProperties)) throw new Error('breaksProperties is not an Array');
 
     // Isoband methods
-    var matrix = gridToMatrix(pointGrid, zProperty, true);
+    var matrix = gridToMatrix(pointGrid, {zProperty: zProperty, flip: true});
     var contours = createContourLines(matrix, breaks, zProperty);
     contours = rescaleContours(contours, matrix, pointGrid);
 

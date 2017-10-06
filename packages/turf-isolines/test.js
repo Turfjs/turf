@@ -4,11 +4,12 @@ import path from 'path';
 import load from 'load-json-file';
 import write from 'write-json-file';
 import envelope from '@turf/envelope';
+import truncate from '@turf/truncate';
 import pointGrid from '@turf/point-grid';
-import { randomPolygon } from '@turf/random';
 import { getCoords } from '@turf/invariant';
-import matrixToGrid from 'matrix-to-grid';
+import { randomPolygon } from '@turf/random';
 import { lineString, polygon } from '@turf/helpers';
+import matrixToGrid from './matrix-to-grid';
 import isolines from '.';
 
 const directories = {
@@ -20,37 +21,26 @@ const fixtures = fs.readdirSync(directories.in).map(filename => {
     return {
         filename,
         name: path.parse(filename).name,
-        jsondata: load.sync(directories.in + filename)
+        json: load.sync(directories.in + filename)
     };
 });
 
 test('isolines', t => {
-    fixtures.forEach(({name, jsondata, filename}) => {
-        const {
-            breaks,
-            zProperty,
-            commonProperties,
-            breaksProperties,
-            matrix,
-            cellSize,
-            units,
-            origin} = jsondata.properties || jsondata;
+    fixtures.forEach(({name, json, filename}) => {
+        const options = json.properties || json;
+        const { breaks, matrix, cellSize, origin} = options;
 
-        // allow GeoJSON FeatureCollection or Matrix
-        let points;
-        if (filename.includes('geojson')) points = jsondata;
-        else points = matrixToGrid(matrix, origin, cellSize, {zProperty, units});
+        // allow GeoJSON featureCollection or matrix
+        let points = json.properties ? json : matrixToGrid(matrix, origin, cellSize, options);
 
-        const results = isolines(points, breaks, {
-            zProperty: zProperty,
-            breaksProperties: breaksProperties,
-            commonProperties: commonProperties
-        });
+        // Results
+        const results = truncate(isolines(points, breaks, options));
 
-        const box = lineString(getCoords(envelope(points))[0]);
-        box.properties['stroke'] = '#F00';
-        box.properties['stroke-width'] = 1;
-        results.features.push(box);
+        // Add red line around point data
+        results.features.push(lineString(getCoords(envelope(points))[0], {
+            stroke: '#F00',
+            'stroke-width': 1
+        }));
 
         if (process.env.REGEN) write.sync(directories.out + name + '.geojson', results);
         t.deepEqual(results, load.sync(directories.out + name + '.geojson'), name);
