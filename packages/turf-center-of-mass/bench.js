@@ -1,9 +1,9 @@
-const fs = require('fs');
-const path = require('path');
-const glob = require('glob');
-const load = require('load-json-file');
-const Benchmark = require('benchmark');
-const centerOfMass = require('./');
+import fs from 'fs';
+import path from 'path';
+import glob from 'glob';
+import load from 'load-json-file';
+import Benchmark from 'benchmark';
+import centerOfMass from './';
 
 const fixtures = glob.sync(path.join(__dirname, 'test', 'in', '*.geojson')).map(input => {
     return {

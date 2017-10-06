@@ -1,7 +1,7 @@
-const fs = require('fs');
-const path = require('path');
-const Benchmark = require('benchmark');
-const intersect = require('./');
+import fs from 'fs';
+import path from 'path';
+import Benchmark from 'benchmark';
+import intersect from './';
 
 const armenia = JSON.parse(fs.readFileSync(path.join(__dirname, 'test', 'fixtures', 'in', 'armenia.json')));
 const simple = JSON.parse(fs.readFileSync(path.join(__dirname, 'test', 'fixtures', 'in', 'Intersect1.json')));

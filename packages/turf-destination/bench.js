@@ -1,6 +1,6 @@
-var destination = require('./');
-var Benchmark = require('benchmark');
-var fs = require('fs');
+import fs from 'fs';
+import Benchmark from 'benchmark';
+import destination from './';
 
 var pt1 = {
     type: "Feature",
@@ -18,6 +18,6 @@ suite
     console.log(String(event.target));
   })
   .on('complete', function () {
-    
+
   })
   .run();

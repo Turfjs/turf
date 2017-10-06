@@ -1,6 +1,6 @@
-var nearest = require('./');
-var Benchmark = require('benchmark');
-var fs = require('fs');
+import fs from 'fs';
+import Benchmark from 'benchmark';
+import nearest from './';
 
 var pt = JSON.parse(fs.readFileSync(__dirname+'/test/pt.geojson'));
 var pts = JSON.parse(fs.readFileSync(__dirname+'/test/pts.geojson'));
@@ -14,6 +14,6 @@ suite
     console.log(String(event.target));
   })
   .on('complete', function () {
-    
+
   })
   .run();

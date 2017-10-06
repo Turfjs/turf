@@ -1,6 +1,6 @@
-var grid = require('./');
-var polygon = require('@turf/helpers').polygon;
-var Benchmark = require('benchmark');
+import Benchmark from 'benchmark';
+import { polygon } from '@turf/helpers';
+import grid from './';
 
 var bbox = [-95, 30, -85, 40];
 var mask = polygon([[[6.5, 44.6 ], [ 9.2, 44.8 ], [ 8.3, 46.4 ], [ 6.5, 44.6 ]]]);

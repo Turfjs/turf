@@ -1,15 +1,15 @@
-import test from 'tape';
-import path from 'path';
 import fs from 'fs';
+import path from 'path';
+import test from 'tape';
 import load from 'load-json-file';
 import write from 'write-json-file';
-import { randomPolygon }  from '@turf/random';
 import envelope from '@turf/envelope';
+import { randomPolygon }  from '@turf/random';
 import { lineString } from '@turf/helpers';
 import { getCoords } from '@turf/invariant';
-import matrixToGrid from 'matrix-to-grid';
 import pointGrid from '@turf/point-grid';
-import isobands from './index';
+import matrixToGrid from './matrix-to-grid';
+import isobands from './';
 
 const directories = {
     in: path.join(__dirname, 'test', 'in') + path.sep,

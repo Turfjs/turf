@@ -1,6 +1,6 @@
-var convex = require('./');
-var Benchmark = require('benchmark');
-var fs = require('fs');
+import fs from 'fs';
+import Benchmark from 'benchmark';
+import convex from './';
 
 var fc = JSON.parse(fs.readFileSync(__dirname+'/test/fixtures/in/elevation1.geojson'));
 var suite = new Benchmark.Suite('turf-convex');
@@ -12,6 +12,6 @@ suite
     console.log(String(event.target));
   })
   .on('complete', function () {
-    
+
   })
   .run();

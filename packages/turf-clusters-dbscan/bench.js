@@ -1,8 +1,8 @@
-const fs = require('fs');
-const path = require('path');
-const load = require('load-json-file');
-const Benchmark = require('benchmark');
-const clustersDbscan = require('./');
+import fs from 'fs';
+import path from 'path';
+import load from 'load-json-file';
+import Benchmark from 'benchmark';
+import clustersDbscan from './';
 
 // Define Fixtures
 const directory = path.join(__dirname, 'test', 'in') + path.sep;

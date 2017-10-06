@@ -1,8 +1,8 @@
-const path = require('path');
-const glob = require('glob');
-const load = require('load-json-file');
-const Benchmark = require('benchmark');
-const disjoint = require('./');
+import path from 'path';
+import glob from 'glob';
+import load from 'load-json-file';
+import Benchmark from 'benchmark';
+import disjoint from './';
 
 /**
  * Benchmark Results

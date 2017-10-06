@@ -1,5 +1,5 @@
-var random = require('./');
-var Benchmark = require('benchmark');
+import random from './';
+import Benchmark from 'benchmark';
 
 var suite = new Benchmark.Suite('turf-random');
 suite
@@ -10,6 +10,5 @@ suite
     console.log(String(event.target));
   })
   .on('complete', function () {
-    
   })
   .run();

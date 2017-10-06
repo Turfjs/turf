@@ -32,7 +32,7 @@ import { featureEach } from '@turf/meta';
  *     [18, 13, 10,  9, 78, 13, 18]
  *   ]
  */
-export default function gridToMatrix(grid, property, flip, flags) {
+function gridToMatrix(grid, property, flip, flags) {
     // validation
     collectionOf(grid, 'Point', 'input must contain Points');
     property = property || 'elevation';
@@ -94,3 +94,5 @@ function sortPointsByLatLng(points, flip) {
 
     return pointMatrix;
 }
+
+export default gridToMatrix;

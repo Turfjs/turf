@@ -1,7 +1,7 @@
-const path = require('path');
-const Benchmark = require('benchmark');
-const load = require('load-json-file');
-const dissolve = require('.');
+import path from 'path';
+import load from 'load-json-file';
+import Benchmark from 'benchmark';
+import dissolve from '.';
 
 const polys = load.sync(path.join(__dirname, 'test', 'in', 'polys.geojson'));
 
