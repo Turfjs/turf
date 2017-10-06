@@ -1,4 +1,4 @@
-import { Point, Feature, Units, Coord } from '@turf/helpers';
+import { Point, Feature, Units, Coord, Properties } from '@turf/helpers';
 
 /**
  * http://turfjs.org/docs/#rhumbdestination
@@ -8,6 +8,7 @@ export default function rhumbDestination(
     distance: number,
     bearing: number,
     options?: {
-        units?: Units
+        units?: Units,
+        properties?: Properties
     }
 ): Feature<Point>;
