@@ -394,7 +394,7 @@ export function coordAll(geojson) {
  * @param {Geometry} currentGeometry The current geometry being processed.
  * @param {number} featureIndex The index of the current element being processed in the
  * array. Starts at index 0, if an initialValue is provided, and at index 1 otherwise.
- * @param {object} featureProperties The current feature properties being processed.
+ * @param {Object} featureProperties The current feature properties being processed.
  * @param {Array<number>} featureBBox The current feature BBox being processed.
  * @param {number|string} featureId The current feature Id being processed.
  */
