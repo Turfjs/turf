@@ -135,7 +135,7 @@ export function segmentEach(
  */
 export function lineReduce<Reducer extends any, Geom extends LineString | MultiLineString | Polygon | MultiPolygon>(
     geojson: Feature<Geom> | Geom,
-    callback: (previousValue?: Reducer, currentLine?: Feature<LineString>, featureIndex?: number, featureSubIndex?: number) => Reducer,
+    callback: (previousValue?: Reducer, currentLine?: Feature<LineString>, featureIndex?: number, featureSubIndex?: number, lineIndex?: number) => Reducer,
     initialValue?: Reducer
 ): Reducer;
 
@@ -144,5 +144,5 @@ export function lineReduce<Reducer extends any, Geom extends LineString | MultiL
  */
 export function lineEach<Geom extends LineString | MultiLineString | Polygon | MultiPolygon>(
     geojson: Feature<Geom> | Geom,
-    callback: (currentLine?: Feature<LineString>, featureIndex?: number, featureSubIndex?: number) => void
+    callback: (currentLine?: Feature<LineString>, featureIndex?: number, featureSubIndex?: number, lineIndex?: number) => void
 ): void;

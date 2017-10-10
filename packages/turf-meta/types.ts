@@ -175,10 +175,10 @@ meta.segmentEach(geomCollection, (currentSegment, currentIndex, currentSubIndex)
 const lineEachValue: void = meta.lineEach(line, () => {})
 lineEach(line, currentLine => currentLine)
 meta.lineEach(line, currentLine => currentLine)
-meta.lineEach(multiLine, (currentLine, currentIndex) => currentLine)
+meta.lineEach(multiLine, (currentLine, featureIndex, featureSubIndex) => currentLine)
 meta.lineEach(poly, currentLine => currentLine)
-meta.lineEach(poly, (currentLine, currentIndex) => currentLine)
-meta.lineEach(multiPoly, (currentLine, currentIndex, currentSubIndex) => currentLine)
+meta.lineEach(poly, (currentLine, featureIndex, featureSubIndex, lineIndex) => currentLine)
+meta.lineEach(multiPoly, (currentLine, featureIndex, featureSubIndex, lineIndex) => currentLine)
 
 /**
  * meta.lineReduce
@@ -190,12 +190,12 @@ meta.lineReduce(line, previousValue => previousValue)
 meta.lineReduce(line, (previousValue, currentLine) => currentLine)
 meta.lineReduce(line, (previousValue, currentLine) => 1 + 1, 0)
 meta.lineReduce(multiLine, (previousValue, currentLine) => currentLine)
-meta.lineReduce(multiLine, (previousValue, currentLine, currentIndex) => currentLine)
+meta.lineReduce(multiLine, (previousValue, currentLine, featureIndex, featureSubIndex) => currentLine)
 meta.lineReduce(poly, (previousValue, currentLine) => currentLine)
-meta.lineReduce(poly, (previousValue, currentLine, currentIndex) => currentLine)
-meta.lineReduce(poly, (previousValue, currentLine, currentIndex) => 1 + 1, 1)
-meta.lineReduce(multiPoly, (previousValue, currentLine, currentIndex, currentSubIndex) => currentLine)
-meta.lineReduce(multiPoly, (previousValue, currentLine, currentIndex, currentSubIndex) => 1 + 1, 1)
+meta.lineReduce(poly, (previousValue, currentLine, featureIndex, featureSubIndex) => currentLine)
+meta.lineReduce(poly, (previousValue, currentLine, featureIndex, featureSubIndex) => 1 + 1, 1)
+meta.lineReduce(multiPoly, (previousValue, currentLine, featureIndex, featureSubIndex, lineIndex) => currentLine)
+meta.lineReduce(multiPoly, (previousValue, currentLine, featureIndex, featureSubIndex, lineIndex) => 1 + 1, 1)
 
 /**
  * Translate Feature Properties

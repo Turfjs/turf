@@ -828,50 +828,39 @@ function lineString(coordinates, properties) {
  *
  * @name lineEach
  * @param {Geometry|Feature<LineString|Polygon|MultiLineString|MultiPolygon>} geojson object
- * @param {Function} callback a method that takes (currentLine, lineIndex, lineSubIndex)
+ * @param {Function} callback a method that takes (currentLine, featureIndex, featureSubIndex, lineIndex)
  * @example
- * var mtLn = turf.multiLineString([
- *   turf.lineString([[26, 37], [35, 45]]),
- *   turf.lineString([[36, 53], [38, 50], [41, 55]])
+ * var multiLine = turf.multiLineString([
+ *   [[26, 37], [35, 45]],
+ *   [[36, 53], [38, 50], [41, 55]]
  * ]);
  *
- * turf.lineEach(mtLn, function (currentLine, lineIndex) {
+ * turf.lineEach(multiLine, function (currentLine, featureIndex, featureSubIndex, lineIndex) {
  *   //=currentLine
+ *   //=featureIndex
+ *   //=featureSubIndex
  *   //=lineIndex
  * });
  */
 export function lineEach(geojson, callback) {
     // validation
     if (!geojson) throw new Error('geojson is required');
-    var type = geojson.geometry ? geojson.geometry.type : geojson.type;
-    if (!type) throw new Error('invalid geojson');
-    if (type === 'FeatureCollection') throw new Error('FeatureCollection is not supported');
-    if (type === 'GeometryCollection') throw new Error('GeometryCollection is not supported');
-    var coordinates = geojson.geometry ? geojson.geometry.coordinates : geojson.coordinates;
-    if (!coordinates) throw new Error('geojson must contain coordinates');
 
-    switch (type) {
-    case 'LineString':
-        callback(coordinates, 0, 0);
-        return;
-    case 'Polygon':
-    case 'MultiLineString':
-        var subIndex = 0;
-        for (var line = 0; line < coordinates.length; line++) {
-            if (type === 'MultiLineString') subIndex = line;
-            callback(coordinates[line], line, subIndex);
-        }
-        return;
-    case 'MultiPolygon':
-        for (var multi = 0; multi < coordinates.length; multi++) {
-            for (var ring = 0; ring < coordinates[multi].length; ring++) {
-                callback(coordinates[multi][ring], ring, multi);
+    flattenEach(geojson, function (feature, featureIndex, featureSubIndex) {
+        if (feature.geometry === null) return;
+        var type = feature.geometry.type;
+        var coords = feature.geometry.coordinates;
+        switch (type) {
+        case 'LineString':
+            callback(coords, featureIndex, featureSubIndex, 0);
+            break;
+        case 'Polygon':
+            for (var lineIndex = 0; lineIndex < coords.length; lineIndex++) {
+                callback(coords[lineIndex], featureIndex, featureSubIndex, lineIndex);
             }
+            break;
         }
-        return;
-    default:
-        throw new Error(type + ' geometry not supported');
-    }
+    });
 }
 
 /**
