@@ -1,10 +1,14 @@
 import {
     GeometryObject,
     GeometryCollection,
+    FeatureGeometryCollection,
     Feature,
     FeatureCollection,
     Geometry,
-    Types
+    Types,
+    Collection,
+    AllGeoJSON,
+    Geometries
 } from '@turf/helpers'
 
 /**
@@ -20,7 +24,7 @@ export function getCoords(obj: Feature<any> | GeometryObject | any[]): any[];
 /**
  * http://turfjs.org/docs/#geojsontype
  */
-export function geojsonType(value: FeatureCollection<any>, type: string, name: string): void;
+export function geojsonType(value: AllGeoJSON, type: string, name: string): void;
 
 /**
  * http://turfjs.org/docs/#featureof
@@ -40,10 +44,14 @@ export function containsNumber(coordinates: any[]): boolean;
 /**
  * http://turfjs.org/docs/#getgeom
  */
-export function getGeom(geojson: GeometryCollection | GeometryObject | Feature<any>): GeometryObject;
+export function getGeom<T extends Geometries>(geojson: T | Feature<T>): T;
+export function getGeom(geojson: GeometryObject | Feature<Geometries>): GeometryObject;
+export function getGeom(geojson: FeatureGeometryCollection | GeometryCollection): GeometryCollection;
+export function getGeom(geojson: Feature<any>): GeometryObject | GeometryCollection;
 
 /**
  * http://turfjs.org/docs/#gettype
  */
-export function getType(geojson: GeometryObject | Feature<any>): Geometry;
-export function getType(geojson: GeometryCollection | GeometryObject | Feature<any> | FeatureCollection<any>): Types;
+export function getType(geojson: GeometryObject | Feature<Geometries>): Geometry;
+export function getType(geojson: FeatureCollection<any> | FeatureGeometryCollection | GeometryCollection): Collection;
+export function getType(geojson: AllGeoJSON): Types;

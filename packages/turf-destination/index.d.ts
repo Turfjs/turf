@@ -1,10 +1,10 @@
-import { Feature, Point, Units, Position } from '@turf/helpers'
+import { Feature, Point, Units, Coord } from '@turf/helpers'
 
 /**
  * http://turfjs.org/docs/#destination
  */
 export default function destination(
-    origin: Feature<Point> | Point | Position,
+    origin: Coord,
     distance: number,
     bearing: number,
     options?: {

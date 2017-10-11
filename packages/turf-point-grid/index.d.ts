@@ -1,4 +1,4 @@
-import { Units, BBox, Feature, FeatureCollection, Point } from '@turf/helpers';
+import { Units, BBox, Feature, FeatureCollection, Point, Properties} from '@turf/helpers';
 
 /**
  * http://turfjs.org/docs/#pointgrid
@@ -8,7 +8,7 @@ export default function pointGrid(
     cellSide: number,
     options?: {
         units?: Units,
-        properties?: object,
+        properties?: Properties,
         bboxIsMask?: boolean;
     }
 ): FeatureCollection<Point>;

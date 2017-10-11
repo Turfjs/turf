@@ -1,14 +1,14 @@
-import { Feature, Point, Polygon, Units, Position } from '@turf/helpers'
+import { Feature, Coord, Polygon, Units, Properties } from '@turf/helpers'
 
 /**
  * http://turfjs.org/docs/#circle
  */
 export default function (
-  center: Feature<Point> | Point | Position,
-  radius: number,
-  options?: {
-    steps?: number;
-    units?: Units;
-    properties?: object;
-  }
+    center: Coord,
+    radius: number,
+    options?: {
+        steps?: number;
+        units?: Units;
+        properties?: Properties;
+    }
 ): Feature<Polygon>;
