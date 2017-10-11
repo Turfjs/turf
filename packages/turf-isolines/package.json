@@ -14,8 +14,8 @@
     "main.js"
   ],
   "scripts": {
+    "pretest": "rollup -c ../../rollup.config.js",
     "test": "node -r @std/esm test.js",
-    "posttest": "rollup -c ../../rollup.config.js",
     "bench": "node -r @std/esm bench.js"
   },
   "repository": {
@@ -44,7 +44,7 @@
     "@turf/envelope": "*",
     "@turf/point-grid": "*",
     "@turf/random": "*",
-    "@turf/rhumb-destination": "^5.0.0",
+    "@turf/rhumb-destination": "*",
     "@turf/truncate": "*",
     "benchmark": "*",
     "load-json-file": "*",
