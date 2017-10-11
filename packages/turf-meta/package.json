@@ -1,6 +1,6 @@
 {
   "name": "@turf/meta",
-  "version": "5.0.1",
+  "version": "5.0.2",
   "description": "turf meta module",
   "main": "main",
   "module": "index",
