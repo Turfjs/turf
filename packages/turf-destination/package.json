@@ -35,13 +35,14 @@
   },
   "homepage": "https://github.com/Turfjs/turf",
   "devDependencies": {
+    "@std/esm": "*",
+    "@turf/truncate": "^4.7.3",
     "benchmark": "*",
     "glob": "*",
     "load-json-file": "*",
-    "tape": "*",
-    "write-json-file": "*",
     "rollup": "*",
-    "@std/esm": "*"
+    "tape": "*",
+    "write-json-file": "*"
   },
   "dependencies": {
     "@turf/helpers": "^5.0.0",
