@@ -1,7 +1,7 @@
 import tin from '@turf/tin';
 var dissolve = require('geojson-dissolve');
 import distance from '@turf/distance';
-import { feature, featureCollection } from '@turf/helpers';
+import { feature, featureCollection, isObject } from '@turf/helpers';
 import { featureEach } from '@turf/meta';
 
 /**
@@ -30,8 +30,9 @@ import { featureEach } from '@turf/meta';
  * var addToMap = [points, hull]
  */
 function concave(points, maxEdge, options) {
-    // Backwards compatible with v4.0
-    var units = (typeof options === 'object') ? options.units : options;
+    // Optional parameters
+    options = options || {};
+    if (!isObject(options)) throw new Error('options is invalid');
 
     // validation
     if (!points) throw new Error('points is required');
@@ -47,9 +48,9 @@ function concave(points, maxEdge, options) {
         var pt1 = triangle.geometry.coordinates[0][0];
         var pt2 = triangle.geometry.coordinates[0][1];
         var pt3 = triangle.geometry.coordinates[0][2];
-        var dist1 = distance(pt1, pt2, units);
-        var dist2 = distance(pt2, pt3, units);
-        var dist3 = distance(pt1, pt3, units);
+        var dist1 = distance(pt1, pt2, options);
+        var dist2 = distance(pt2, pt3, options);
+        var dist3 = distance(pt1, pt3, options);
         return (dist1 <= maxEdge && dist2 <= maxEdge && dist3 <= maxEdge);
     });
 

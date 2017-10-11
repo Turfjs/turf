@@ -36,7 +36,6 @@ function hexGrid(bbox, cellDiameter, options) {
     // Optional parameters
     options = options || {};
     if (typeof options !== 'object') throw new Error('options is invalid');
-    var units = options.units;
     var triangles = options.triangles;
 
     var west = bbox[0];
@@ -47,9 +46,9 @@ function hexGrid(bbox, cellDiameter, options) {
     var centerX = (west + east) / 2;
 
     // https://github.com/Turfjs/turf/issues/758
-    var xFraction = cellDiameter / (distance(point([west, centerY]), point([east, centerY]), units));
+    var xFraction = cellDiameter / (distance(point([west, centerY]), point([east, centerY]), options));
     var cellWidth = xFraction * (east - west);
-    var yFraction = cellDiameter / (distance(point([centerX, south]), point([centerX, north]), units));
+    var yFraction = cellDiameter / (distance(point([centerX, south]), point([centerX, north]), options));
     var cellHeight = yFraction * (north - south);
     var radius = cellWidth / 2;
 

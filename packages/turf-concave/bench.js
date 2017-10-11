@@ -26,7 +26,7 @@ const fixtures = fs.readdirSync(directory).map(filename => {
 for (const {name, geojson} of fixtures) {
     const {maxEdge, units} = geojson.properties || {maxEdge: 1};
     console.time(name);
-    concave(geojson, maxEdge, units);
+    concave(geojson, maxEdge, {units});
     console.timeEnd(name);
 }
 
@@ -44,7 +44,7 @@ for (const {name, geojson} of fixtures) {
 const suite = new Benchmark.Suite('turf-transform-scale');
 for (const {name, geojson} of fixtures) {
     const {maxEdge, units} = geojson.properties || {maxEdge: 1};
-    suite.add(name, () => concave(geojson, maxEdge, units));
+    suite.add(name, () => concave(geojson, maxEdge, {units}));
 }
 
 suite
