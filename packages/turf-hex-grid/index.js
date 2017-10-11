@@ -18,21 +18,21 @@ for (var i = 0; i < 6; i++) {
  *
  * @name hexGrid
  * @param {Array<number>} bbox extent in [minX, minY, maxX, maxY] order
- * @param {number} cellDiameter diameter of the circumcircle of the hexagons, in specified units
+ * @param {number} cellSide length of the side of the the hexagons or triangles, in specified units. It will also coincide with the radius of the circumcircle of the hexagons.
  * @param {Object} [options={}] Optional parameters
  * @param {string} [options.units='kilometers'] used in calculating cell size, can be degrees, radians, miles, or kilometers
  * @param {boolean} [options.triangles=false] whether to return as triangles instead of hexagons
  * @returns {FeatureCollection<Polygon>} a hexagonal grid
  * @example
  * var bbox = [-96,31,-84,40];
- * var cellDiameter = 50;
+ * var cellSide = 50;
  *
- * var hexgrid = turf.hexGrid(bbox, cellDiameter, {units: 'miles'});
+ * var hexgrid = turf.hexGrid(bbox, cellSide, {units: 'miles'});
  *
  * //addToMap
  * var addToMap = [hexgrid];
  */
-function hexGrid(bbox, cellDiameter, options) {
+function hexGrid(bbox, cellSide, options) {
     // Optional parameters
     options = options || {};
     if (typeof options !== 'object') throw new Error('options is invalid');
@@ -47,9 +47,9 @@ function hexGrid(bbox, cellDiameter, options) {
     var centerX = (west + east) / 2;
 
     // https://github.com/Turfjs/turf/issues/758
-    var xFraction = cellDiameter / (distance(point([west, centerY]), point([east, centerY]), units));
+    var xFraction = cellSide * 2 / (distance(point([west, centerY]), point([east, centerY]), units));
     var cellWidth = xFraction * (east - west);
-    var yFraction = cellDiameter / (distance(point([centerX, south]), point([centerX, north]), units));
+    var yFraction = cellSide * 2 / (distance(point([centerX, south]), point([centerX, north]), units));
     var cellHeight = yFraction * (north - south);
     var radius = cellWidth / 2;
 

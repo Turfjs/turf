@@ -43,7 +43,6 @@
   },
   "homepage": "https://github.com/Turfjs/turf",
   "devDependencies": {
-    "@turf/centroid": "*",
     "@turf/truncate": "*",
     "benchmark": "*",
     "load-json-file": "*",

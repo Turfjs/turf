@@ -10,7 +10,7 @@ import {
  */
 export default function hexGrid(
     bbox: BBox,
-    cellDiameter: number,
+    cellSide: number,
     units?: Units,
     triangles?: boolean
 ): FeatureCollection<Polygon>;

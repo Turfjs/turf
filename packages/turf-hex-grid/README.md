@@ -11,7 +11,7 @@ described in [Hexagonal Grids](http://www.redblobgames.com/grids/hexagons/).
 **Parameters**
 
 -   `bbox` **[Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)>** extent in [minX, minY, maxX, maxY] order
--   `cellDiameter` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** diameter of the circumcircle of the hexagons, in specified units
+-   `cellSide` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** diameter of the circumcircle of the hexagons, in specified units. This will coincide with the side of the hexagon or the triangle.
 -   `units` **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** used in calculating cell size, can be degrees, radians, miles, or kilometers (optional, default `kilometers`)
 -   `triangles` **[boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** whether to return as triangles instead of hexagons (optional, default `false`)
 
@@ -19,10 +19,10 @@ described in [Hexagonal Grids](http://www.redblobgames.com/grids/hexagons/).
 
 ```javascript
 var bbox = [-96,31,-84,40];
-var cellDiameter = 50;
+var cellSide = 50;
 var units = 'miles';
 
-var hexgrid = turf.hexGrid(bbox, cellDiameter, units);
+var hexgrid = turf.hexGrid(bbox, cellSide, units);
 
 //addToMap
 var addToMap = [hexgrid];
