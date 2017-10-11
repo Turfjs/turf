@@ -1,8 +1,8 @@
-import { Feature, FeatureCollection, GeometryObject, GeometryCollection, FeatureGeometryCollection } from '@turf/helpers'
+import { AllGeoJSON } from '@turf/helpers'
 
-export default function flip<T extends Feature<any> | FeatureCollection<any> | GeometryObject | GeometryCollection | FeatureGeometryCollection>(
+export default function flip<T extends AllGeoJSON>(
     geojson: T,
     options?: {
-      mutate?: boolean
+        mutate?: boolean
     }
 ): T

@@ -12,7 +12,8 @@ export type Coord = Feature<Point> | Point | Position;
 export type Units = 'miles' | 'nauticalmiles' | 'degrees' | 'radians' | 'inches' | 'yards' | 'meters' | 'metres' | 'kilometers' | 'kilometres';
 export type Geometry = 'Point' | 'LineString' | 'Polygon' | 'MultiPoint' | 'MultiLineString' | 'MultiPolygon';
 export type Grid = 'point' | 'square' | 'hex' | 'triangle';
-export type Types = Geometry | 'Feature' | 'FeatureCollection'
+export type Collection = 'FeatureCollection' | 'GeometryCollection';
+export type Types = 'Feature' | Geometry | Collection;
 export type Corners = 'sw' | 'se' | 'nw' | 'ne' | 'center' | 'centroid';
 
 
@@ -24,6 +25,7 @@ export type MultiLineString = GeoJSON.MultiLineString;
 export type LineString = GeoJSON.LineString;
 export type Polygon = GeoJSON.Polygon;
 export type MultiPolygon = GeoJSON.MultiPolygon;
+export type Geometries = Point | MultiPoint | LineString | MultiLineString | Polygon | MultiPolygon;
 export type GeometryObject = GeoJSON.GeometryObject;
 export type GeometryCollection = GeoJSON.GeometryCollection;
 
