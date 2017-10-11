@@ -12,8 +12,8 @@
     "main.js"
   ],
   "scripts": {
+    "pretest": "rollup -c ../../rollup.config.js",
     "test": "node -r @std/esm test.js",
-    "posttest": "rollup -c ../../rollup.config.js",
     "bench": "node -r @std/esm bench.js"
   },
   "repository": {
