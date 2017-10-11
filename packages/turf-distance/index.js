@@ -1,5 +1,5 @@
 import { getCoord } from '@turf/invariant';
-import { radiansToDistance } from '@turf/helpers';
+import { radiansToDistance, isObject } from '@turf/helpers';
 
 //http://en.wikipedia.org/wiki/Haversine_formula
 //http://www.movable-type.co.uk/scripts/latlong.html
@@ -28,8 +28,10 @@ import { radiansToDistance } from '@turf/helpers';
  * to.properties.distance = distance;
  */
 function distance(from, to, options) {
-    // Backwards compatible with v4.0
-    var units = (typeof options === 'object') ? options.units : options;
+    // Optional parameters
+    options = options || {};
+    if (!isObject(options)) throw new Error('options is invalid');
+    var units = options.units;
 
     var degrees2radians = Math.PI / 180;
     var coordinates1 = getCoord(from);

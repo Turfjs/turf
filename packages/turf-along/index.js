@@ -1,7 +1,7 @@
 import bearing from '@turf/bearing';
 import destination from '@turf/destination';
 import measureDistance from '@turf/distance';
-import { point, isNumber } from '@turf/helpers';
+import { point, isNumber, isObject } from '@turf/helpers';
 
 /**
  * Takes a {@link LineString|line} and returns a {@link Point|point} at a specified distance along the line.
@@ -21,8 +21,10 @@ import { point, isNumber } from '@turf/helpers';
  * var addToMap = [along, line]
  */
 function along(line, distance, options) {
-    // Backwards compatible with v4.0
-    var units = (typeof options === 'object') ? options.units : options;
+    // Optional parameters
+    options = options || {};
+    if (!isObject(options)) throw new Error('options is invalid');
+    var units = options.units;
 
     // Validation
     var coords;

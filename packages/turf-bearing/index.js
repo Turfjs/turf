@@ -1,4 +1,6 @@
 import { getCoord } from '@turf/invariant';
+import { isObject } from '@turf/helpers';
+
 //http://en.wikipedia.org/wiki/Haversine_formula
 //http://www.movable-type.co.uk/scripts/latlong.html
 
@@ -25,8 +27,12 @@ import { getCoord } from '@turf/invariant';
  * point1.properties.bearing = bearing
  */
 function bearing(start, end, options) {
-    // Backwards compatible with v4.0
-    var final = (typeof options === 'object') ? options.final : options;
+    // Optional parameters
+    options = options || {};
+    if (!isObject(options)) throw new Error('options is invalid');
+    var final = options.final;
+
+    // Reverse calculation
     if (final === true) return calculateFinalBearing(start, end);
 
     var degrees2radians = Math.PI / 180;

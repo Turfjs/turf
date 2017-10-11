@@ -1,6 +1,7 @@
 import turfUnion from '@turf/union';
 import booleanOverlap from '@turf/boolean-overlap';
 import turfbbox from '@turf/bbox';
+import clone from '@turf/clone';
 var Rbush = require('rbush');
 var gju = require('geojson-utils');
 var getClosest = require('get-closest');
@@ -89,10 +90,8 @@ function dissolve(featureCollection, options) {
             var overlapCheck = booleanOverlap(polygon, matchFeature);
 
             if (!overlapCheck) {
-                var polyClone = JSON.stringify(polygon);
-                var polyBeingCheckedClone = JSON.stringify(matchFeature);
-                var linestring1 = toLinestring(JSON.parse(polyClone));
-                var linestring2 = toLinestring(JSON.parse(polyBeingCheckedClone));
+                var linestring1 = toLinestring(clone(polygon));
+                var linestring2 = toLinestring(clone(matchFeature));
                 overlapCheck = gju.lineStringsIntersect(linestring1.geometry, linestring2.geometry);
             }
             if (!overlapCheck) {

@@ -1,6 +1,6 @@
 // https://en.wikipedia.org/wiki/Rhumb_line
 import {getCoord} from '@turf/invariant';
-import {radians2degrees, degrees2radians} from '@turf/helpers';
+import {radians2degrees, degrees2radians, isObject} from '@turf/helpers';
 
 /**
  * Takes two {@link Point|points} and finds the bearing angle between them along a Rhumb line
@@ -24,10 +24,14 @@ import {radians2degrees, degrees2radians} from '@turf/helpers';
  * point2.properties.bearing = bearing;
  */
 function rhumbBearing(start, end, options) {
+    // Optional parameters
+    options = options || {};
+    if (!isObject(options)) throw new Error('options is invalid');
+    var final = options.final;
+
     // validation
     if (!start) throw new Error('start point is required');
     if (!end) throw new Error('end point is required');
-    var final = (typeof options === 'object') ? options.final : options;
 
     var bear360;
 
