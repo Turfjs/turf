@@ -155,3 +155,50 @@ export function isObject(input: any): boolean
  * Earth Radius used with the Harvesine formula and approximates using a spherical (non-ellipsoid) Earth.
  */
 export const earthRadius: number;
+
+/**
+ * Unit of measurement factors using a spherical (non-ellipsoid) earth radius.
+ */
+export const factors: {
+    meters: number
+    millimeters: number
+    centimeters: number
+    kilometers: number
+    miles: number
+    nauticalmiles: number
+    inches: number
+    yards: number
+    feet: number
+}
+
+/**
+ * Units of measurement factors based on 1 meter.
+ */
+export const unitsFactors: {
+    meters: number
+    millimeters: number
+    centimeters: number
+    kilometers: number
+    miles: number
+    nauticalmiles: number
+    inches: number
+    yards: number
+    feet: number
+    radians: number
+    degrees: number
+};
+
+/**
+ * Area of measurement factors based on 1 square meter.
+ */
+export const areaFactors: {
+    meters: number
+    millimeters: number
+    centimeters: number
+    kilometers: number
+    acres: number
+    miles: number
+    yards: number
+    feet: number
+    inches: number
+};

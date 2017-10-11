@@ -181,7 +181,7 @@ test('turf-point-on-line - check dist and index', t => {
     const snapped = truncate(pointOnLine(line, pt));
 
     t.equal(snapped.properties.index, 8, 'properties.index');
-    t.equal(Number(snapped.properties.dist.toFixed(6)), 0.824059, 'properties.dist');
+    t.equal(Number(snapped.properties.dist.toFixed(6)), 0.823802, 'properties.dist');
     t.deepEqual(snapped.geometry.coordinates, [-92.100791, 41.040002], 'coordinates');
 
     t.end();
