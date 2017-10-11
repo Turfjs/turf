@@ -25,7 +25,6 @@ function squareGrid(bbox, cellSize, options) {
     // Optional parameters
     options = options || {};
     if (!isObject(options)) throw new Error('options is invalid');
-    var units = options.units;
     var completelyWithin = options.completelyWithin;
 
     // Containers
@@ -42,8 +41,8 @@ function squareGrid(bbox, cellSize, options) {
     var north = bbox[3];
 
     // distance
-    var xDistance = distance(point([west, south]), point([east, south]), units);
-    var yDistance = distance(point([west, south]), point([west, north]), units);
+    var xDistance = distance(point([west, south]), point([east, south]), options);
+    var yDistance = distance(point([west, south]), point([west, north]), options);
 
     // rows & columns
     var columns = Math.ceil(xDistance / cellSize);

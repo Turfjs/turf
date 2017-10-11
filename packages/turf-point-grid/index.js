@@ -8,7 +8,7 @@ import { getType } from '@turf/invariant';
  * Creates a {@link Point} grid from a bounding box, {@link FeatureCollection} or {@link Feature}.
  *
  * @name pointGrid
- * @param {BBox|FeatureCollection|Feature} bbox extent in [minX, minY, maxX, maxY] order
+ * @param {BBox|GeoJSON} bbox extent in [minX, minY, maxX, maxY] order
  * @param {number} cellSide the distance between points
  * @param {Object} [options={}] Optional parameters
  * @param {string} [options.units="kilometers"] used in calculating cellSide, can be degrees, radians, miles, or kilometers
@@ -28,7 +28,6 @@ function pointGrid(bbox, cellSide, options) {
     // Optional parameters
     options = options || {};
     if (typeof options !== 'object') throw new Error('options is invalid');
-    var units = options.units;
     var bboxIsMask = options.bboxIsMask || false;
     var properties = options.properties || {};
 
@@ -47,9 +46,9 @@ function pointGrid(bbox, cellSide, options) {
     var  east = bbox[2];
     var  north = bbox[3];
 
-    var  xFraction = cellSide / (distance(point([west, south]), point([east, south]), units));
+    var  xFraction = cellSide / (distance(point([west, south]), point([east, south]), options));
     var  cellWidth = xFraction * (east - west);
-    var  yFraction = cellSide / (distance(point([west, south]), point([west, north]), units));
+    var  yFraction = cellSide / (distance(point([west, south]), point([west, north]), options));
     var  cellHeight = yFraction * (north - south);
 
     var  bboxHorizontalSide = (east - west);

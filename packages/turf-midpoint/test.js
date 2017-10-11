@@ -3,15 +3,13 @@ import midpoint from '.';
 import distance from '@turf/distance';
 import { point } from '@turf/helpers';
 
-var units = 'miles';
-
 test('midpoint -- horizontal equator', function (t) {
     var pt1 = point([0, 0]);
     var pt2 = point([10, 0]);
 
     var mid = midpoint(pt1, pt2);
 
-    t.equal(distance(pt1, mid, units).toFixed(6), distance(pt2, mid, units).toFixed(6));
+    t.equal(distance(pt1, mid).toFixed(6), distance(pt2, mid).toFixed(6));
 
     t.end();
 });
@@ -22,7 +20,7 @@ test('midpoint -- vertical from equator', function (t) {
 
     var mid = midpoint(pt1, pt2);
 
-    t.equal(distance(pt1, mid, units).toFixed(6), distance(pt2, mid, units).toFixed(6));
+    t.equal(distance(pt1, mid).toFixed(6), distance(pt2, mid).toFixed(6));
 
     t.end();
 });
@@ -33,7 +31,7 @@ test('midpoint -- vertical to equator', function (t) {
 
     var mid = midpoint(pt1, pt2);
 
-    t.equal(distance(pt1, mid, units).toFixed(6), distance(pt2, mid, units).toFixed(6));
+    t.equal(distance(pt1, mid).toFixed(6), distance(pt2, mid).toFixed(6));
 
     t.end();
 });
@@ -44,7 +42,7 @@ test('midpoint -- diagonal back over equator', function (t) {
 
     var mid = midpoint(pt1, pt2);
 
-    t.equal(distance(pt1, mid, units).toFixed(6), distance(pt2, mid, units).toFixed(6));
+    t.equal(distance(pt1, mid).toFixed(6), distance(pt2, mid).toFixed(6));
 
     t.end();
 });
@@ -55,7 +53,7 @@ test('midpoint -- diagonal forward over equator', function (t) {
 
     var mid = midpoint(pt1, pt2);
 
-    t.equal(distance(pt1, mid, units).toFixed(6), distance(pt2, mid, units).toFixed(6));
+    t.equal(distance(pt1, mid).toFixed(6), distance(pt2, mid).toFixed(6));
 
     t.end();
 });
@@ -66,7 +64,7 @@ test('midpoint -- long distance', function (t) {
 
     var mid = midpoint(pt1, pt2);
 
-    t.equal(distance(pt1, mid, units).toFixed(6), distance(pt2, mid, units).toFixed(6));
+    t.equal(distance(pt1, mid).toFixed(6), distance(pt2, mid).toFixed(6));
 
     t.end();
 });

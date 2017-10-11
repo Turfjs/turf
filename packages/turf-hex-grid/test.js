@@ -22,8 +22,8 @@ test('hex-grid', t => {
     const grid1 = truncate(hexGrid(bbox1, 50, {units: 'miles'}));
     const grid2 = truncate(hexGrid(bbox2, 5, {units: 'miles'}));
     const grid3 = truncate(hexGrid(bbox3, 2, {units: 'miles'}));
-    const grid4 = truncate(hexGrid(bbox4, 50, {units: 'kilometers'}));
-    const grid5 = truncate(hexGrid(bbox5, 500, {units: 'kilometers'}));
+    const grid4 = truncate(hexGrid(bbox4, 50));
+    const grid5 = truncate(hexGrid(bbox5, 500));
 
     t.ok(grid1.features.length, '50mi grid');
     t.ok(grid2.features.length, '5mi grid');
@@ -82,7 +82,7 @@ test('hex-tri-grid', t => {
 
 test('longitude (13141439571036224) - issue #758', t => {
     const bbox = [-179, -90, 179, 90];
-    const grid = hexGrid(bbox, 500, {units: 'kilometers'});
+    const grid = hexGrid(bbox, 500);
 
     const coords = [];
     grid.features.forEach(feature => feature.geometry.coordinates[0].forEach(coord => coords.push(coord)));
@@ -101,11 +101,11 @@ test('longitude (13141439571036224) - issue #758', t => {
 test('hexagon size - issue #623', t => {
     const bbox = [9.244, 45.538, 9.115, 45.439];
     const cellDiameter = 1;
-    const grid = hexGrid(bbox, 1, {units: 'kilometers'});
+    const grid = hexGrid(bbox, 1);
 
     const tile1 = grid.features[0];
     const tile2 = grid.features[1];
-    var dist = distance(centroid(tile1), centroid(tile2), 'kilometers');
+    var dist = distance(centroid(tile1), centroid(tile2));
 
     t.equal(round(dist, 10), round(Math.sqrt(3) * cellDiameter / 2, 10));
 

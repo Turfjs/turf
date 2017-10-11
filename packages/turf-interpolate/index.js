@@ -1,6 +1,6 @@
 import bbox from '@turf/bbox';
 import hexGrid from '@turf/hex-grid';
-import poinGrid from '@turf/point-grid';
+import pointGrid from '@turf/point-grid';
 import distance from '@turf/distance';
 import centroid from '@turf/centroid';
 import squareGrid from '@turf/square-grid';
@@ -41,7 +41,6 @@ function interpolate(points, cellSize, options) {
     if (typeof options !== 'object') throw new Error('options is invalid');
     var gridType = options.gridType;
     var property = options.property;
-    var units = options.units;
     var weight = options.weight;
 
     // validation
@@ -60,19 +59,19 @@ function interpolate(points, cellSize, options) {
     switch (gridType) {
     case 'point':
     case 'points':
-        grid = poinGrid(box, cellSize, {units: units, bboxIsMask: true});
+        grid = pointGrid(box, cellSize, options);
         break;
     case 'square':
     case 'squares':
-        grid = squareGrid(box, cellSize, {units: units});
+        grid = squareGrid(box, cellSize, options);
         break;
     case 'hex':
     case 'hexes':
-        grid = hexGrid(box, cellSize, {units: units});
+        grid = hexGrid(box, cellSize, options);
         break;
     case 'triangle':
     case 'triangles':
-        grid = triangleGrid(box, cellSize, {units: units});
+        grid = triangleGrid(box, cellSize, options);
         break;
     default:
         throw new Error('invalid gridType');
@@ -84,7 +83,7 @@ function interpolate(points, cellSize, options) {
         // calculate the distance from each input point to the grid points
         featureEach(points, function (point) {
             var gridPoint = (gridType === 'point') ? gridFeature : centroid(gridFeature);
-            var d = distance(gridPoint, point, units);
+            var d = distance(gridPoint, point, options);
             var zValue;
             // property has priority for zValue, fallbacks to 3rd coordinate from geometry
             if (property !== undefined) zValue = point.properties[property];

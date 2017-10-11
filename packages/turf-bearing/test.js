@@ -14,7 +14,7 @@ test('bearing', t => {
     const initialBearing = bearing(start, end);
     t.equal(initialBearing.toFixed(2), '37.75', 'initial bearing');
 
-    const finalBearing = bearing(start, end, true);
+    const finalBearing = bearing(start, end, {final: true});
     t.equal(finalBearing.toFixed(2), '120.01', 'final bearing');
     t.end();
 

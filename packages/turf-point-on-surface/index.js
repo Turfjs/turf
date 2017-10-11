@@ -1,5 +1,5 @@
 import centroid from '@turf/center';
-import distance from '@turf/distance';
+import nearest from '@turf/nearest';
 import inside from '@turf/inside';
 import explode from '@turf/explode';
 import { featureCollection } from '@turf/helpers';
@@ -116,16 +116,7 @@ function pointOnSurface(fc) {
         for (i = 0; i < fc.features.length; i++) {
             vertices.features = vertices.features.concat(explode(fc.features[i]).features);
         }
-        var closestVertex;
-        var closestDistance = Infinity;
-        for (i = 0; i < vertices.features.length; i++) {
-            var dist = distance(cent, vertices.features[i], 'miles');
-            if (dist < closestDistance) {
-                closestDistance = dist;
-                closestVertex = vertices.features[i];
-            }
-        }
-        return closestVertex;
+        return nearest(cent, vertices);
     }
 }
 

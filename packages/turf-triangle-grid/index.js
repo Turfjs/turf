@@ -8,7 +8,7 @@ import { polygon, featureCollection } from '@turf/helpers';
  * @param {Array<number>} bbox extent in [minX, minY, maxX, maxY] order
  * @param {number} cellSize dimension of each cell
  * @param {Object} [options={}] Optional parameters
- * @param {string} [units=kilometers] used in calculating cellSize, can be degrees, radians, miles, or kilometers
+ * @param {string} [units='kilometers'] used in calculating cellSize, can be degrees, radians, miles, or kilometers
  * @returns {FeatureCollection<Polygon>} grid of polygons
  * @example
  * var bbox = [-95, 30 ,-85, 40];
@@ -23,12 +23,11 @@ function triangleGrid(bbox, cellSize, options) {
     // Optional parameters
     options = options || {};
     if (typeof options !== 'object') throw new Error('options is invalid');
-    var units = options.units;
 
     var fc = featureCollection([]);
-    var xFraction = cellSize / (distance([bbox[0], bbox[1]], [bbox[2], bbox[1]], units));
+    var xFraction = cellSize / (distance([bbox[0], bbox[1]], [bbox[2], bbox[1]], options));
     var cellWidth = xFraction * (bbox[2] - bbox[0]);
-    var yFraction = cellSize / (distance([bbox[0], bbox[1]], [bbox[0], bbox[3]], units));
+    var yFraction = cellSize / (distance([bbox[0], bbox[1]], [bbox[0], bbox[3]], options));
     var cellHeight = yFraction * (bbox[3] - bbox[1]);
 
     var xi = 0;
