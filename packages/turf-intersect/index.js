@@ -1,7 +1,9 @@
 // depend on jsts for now http://bjornharrtell.github.io/jsts/
 var jsts = require('jsts');
 import truncate from '@turf/truncate';
+import { getGeom } from '@turf/invariant';
 import { feature } from '@turf/helpers';
+import cleanCoords from '@turf/clean-coords';
 
 /**
  * Takes two {@link Polygon|polygons} and finds their intersection. If they share a border, returns the border; if they don't intersect, returns undefined.
@@ -36,8 +38,15 @@ import { feature } from '@turf/helpers';
  * var addToMap = [poly1, poly2, intersection];
  */
 function intersect(poly1, poly2) {
-    var geom1 = (poly1.type === 'Feature') ? poly1.geometry : poly1;
-    var geom2 = (poly2.type === 'Feature') ? poly2.geometry : poly2;
+    var geom1 = getGeom(poly1);
+    var geom2 = getGeom(poly2);
+
+    // Return null if geometry is too narrow in coordinate precision
+    // fixes topology errors with JSTS
+    // https://github.com/Turfjs/turf/issues/463
+    // https://github.com/Turfjs/turf/pull/1004
+    if (cleanCoords(truncate(geom2, {precision: 4})).coordinates[0].length < 4) return null;
+    if (cleanCoords(truncate(geom1, {precision: 4})).coordinates[0].length < 4) return null;
 
     var reader = new jsts.io.GeoJSONReader();
     var a = reader.read(truncate(geom1));
