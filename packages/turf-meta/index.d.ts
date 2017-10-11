@@ -11,7 +11,10 @@ import {
     GeometryCollection,
     AllGeoJSON,
     FeatureGeometryCollection,
-    ExtendedFeatureCollection
+    ExtendedFeatureCollection,
+    Properties,
+    BBox,
+    Id
 } from '@turf/helpers';
 
 /**
@@ -34,7 +37,7 @@ export function coordEach(
 /**
  * http://turfjs.org/docs/#propeach
  */
-export function propEach<Props extends any>(
+export function propEach<Props extends Properties>(
     geojson: Feature<any> | FeatureCollection<any>,
     callback: (currentProperties: Props, featureIndex: number) => void
 ): void;
@@ -42,7 +45,7 @@ export function propEach<Props extends any>(
 /**
  * http://turfjs.org/docs/#propreduce
  */
-export function propReduce<Reducer extends any, Props extends any>(
+export function propReduce<Reducer extends any, Props extends Properties>(
     geojson: Feature<any> | FeatureCollection<any>,
     callback: (previousValue: Reducer, currentProperties: Props, featureIndex: number) => Reducer,
     initialValue?: Reducer
@@ -84,7 +87,7 @@ export function coordAll(geojson: AllGeoJSON): number[][];
  */
 export function geomReduce<Reducer extends any, Geom extends GeometryObject>(
     geojson: Feature<Geom> | FeatureCollection<Geom> | Geom | GeometryCollection | FeatureGeometryCollection,
-    callback: (previousValue: Reducer, currentGeometry: Geom, featureIndex: number, currentProperties: any) => Reducer,
+    callback: (previousValue: Reducer, currentGeometry: Geom, featureIndex: number, currentProperties: Properties, currentBBox: BBox, currentId: Id) => Reducer,
     initialValue?: Reducer
 ): Reducer;
 
@@ -93,7 +96,7 @@ export function geomReduce<Reducer extends any, Geom extends GeometryObject>(
  */
 export function geomEach<Geom extends GeometryObject>(
     geojson: Feature<Geom> | FeatureCollection<Geom> | Geom | GeometryCollection | FeatureGeometryCollection,
-    callback: (currentGeometry: Geom, featureIndex: number, currentProperties: any) => void
+    callback: (currentGeometry: Geom, featureIndex: number, currentProperties: Properties, currentBBox: BBox, currentId: Id) => void
 ): void;
 
 /**
