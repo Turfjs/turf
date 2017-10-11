@@ -14,8 +14,9 @@ import { point, isNumber, isObject } from '@turf/helpers';
  * @returns {Feature<Point>} Point `distance` `units` along the line
  * @example
  * var line = turf.lineString([[-83, 30], [-84, 36], [-78, 41]]);
+ * var options = {units: 'miles'};
  *
- * var along = turf.along(line, 200, 'miles');
+ * var along = turf.along(line, 200, options);
  *
  * //addToMap
  * var addToMap = [along, line]
@@ -24,7 +25,6 @@ function along(line, distance, options) {
     // Optional parameters
     options = options || {};
     if (!isObject(options)) throw new Error('options is invalid');
-    var units = options.units;
 
     // Validation
     var coords;
@@ -41,11 +41,11 @@ function along(line, distance, options) {
             if (!overshot) return point(coords[i]);
             else {
                 var direction = bearing(coords[i], coords[i - 1]) - 180;
-                var interpolated = destination(coords[i], overshot, direction, units);
+                var interpolated = destination(coords[i], overshot, direction, options);
                 return interpolated;
             }
         } else {
-            travelled += measureDistance(coords[i], coords[i + 1], units);
+            travelled += measureDistance(coords[i], coords[i + 1], options);
         }
     }
     return point(coords[coords.length - 1]);

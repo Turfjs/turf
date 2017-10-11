@@ -19,8 +19,9 @@ import { radiansToDistance, isObject } from '@turf/helpers';
  * @example
  * var from = turf.point([-75.343, 39.984]);
  * var to = turf.point([-75.534, 39.123]);
+ * var options = {units: 'miles'};
  *
- * var distance = turf.distance(from, to, "miles");
+ * var distance = turf.distance(from, to, options);
  *
  * //addToMap
  * var addToMap = [from, to];

@@ -15,8 +15,9 @@ import { getCoord } from '@turf/invariant';
  * @example
  * var from = turf.point([-75.343, 39.984]);
  * var to = turf.point([-75.534, 39.123]);
+ * var options = {units: 'miles'};
  *
- * var distance = turf.rhumbDistance(from, to, "miles");
+ * var distance = turf.rhumbDistance(from, to, options);
  *
  * //addToMap
  * var addToMap = [from, to];

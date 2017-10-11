@@ -30,7 +30,6 @@ function lineSliceAlong(line, startDist, stopDist, options) {
     // Optional parameters
     options = options || {};
     if (!isObject(options)) throw new Error('options is invalid');
-    var units = options.units;
 
     var coords;
     var slice = [];
@@ -51,7 +50,7 @@ function lineSliceAlong(line, startDist, stopDist, options) {
                 return lineString(slice);
             }
             direction = bearing(coords[i], coords[i - 1]) - 180;
-            interpolated = destination(coords[i], overshot, direction, units);
+            interpolated = destination(coords[i], overshot, direction, options);
             slice.push(interpolated.geometry.coordinates);
         }
 
@@ -62,7 +61,7 @@ function lineSliceAlong(line, startDist, stopDist, options) {
                 return lineString(slice);
             }
             direction = bearing(coords[i], coords[i - 1]) - 180;
-            interpolated = destination(coords[i], overshot, direction, units);
+            interpolated = destination(coords[i], overshot, direction, options);
             slice.push(interpolated.geometry.coordinates);
             return lineString(slice);
         }
@@ -75,7 +74,7 @@ function lineSliceAlong(line, startDist, stopDist, options) {
             return lineString(slice);
         }
 
-        travelled += distance(coords[i], coords[i + 1], units);
+        travelled += distance(coords[i], coords[i + 1], options);
     }
     return lineString(coords[coords.length - 1]);
 }

@@ -23,8 +23,9 @@ import { featureEach } from '@turf/meta';
  *   turf.point([-63.587665, 44.64533]),
  *   turf.point([-63.595218, 44.64765])
  * ]);
+ * var options = {units: 'miles'};
  *
- * var hull = turf.concave(points, 1, 'miles');
+ * var hull = turf.concave(points, 1, options);
  *
  * //addToMap
  * var addToMap = [points, hull]

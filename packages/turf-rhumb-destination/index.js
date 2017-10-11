@@ -18,8 +18,9 @@ import { getCoord } from '@turf/invariant';
  * var pt = turf.point([-75.343, 39.984], {"marker-color": "F00"});
  * var distance = 50;
  * var bearing = 90;
+ * var options = {units: 'miles'};
  *
- * var destination = turf.rhumbDestination(pt, distance, bearing, {units: 'miles'});
+ * var destination = turf.rhumbDestination(pt, distance, bearing, options);
  *
  * //addToMap
  * var addToMap = [pt, destination]

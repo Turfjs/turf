@@ -1,7 +1,8 @@
-import turfUnion from '@turf/union';
-import booleanOverlap from '@turf/boolean-overlap';
-import turfbbox from '@turf/bbox';
 import clone from '@turf/clone';
+import turfUnion from '@turf/union';
+import turfbbox from '@turf/bbox';
+import booleanOverlap from '@turf/boolean-overlap';
+import { isObject } from '@turf/helpers';
 var Rbush = require('rbush');
 var gju = require('geojson-utils');
 var getClosest = require('get-closest');
@@ -20,15 +21,18 @@ var getClosest = require('get-closest');
  *   turf.polygon([[[0, -1], [0, 0], [1, 0], [1, -1], [0,-1]]], {"combine": "yes"}),
  *   turf.polygon([[[1,-1],[1, 0], [2, 0], [2, -1], [1, -1]]], {"combine": "no"}),
  * ]);
+ * var options = {propertyName: 'combine'};
  *
- * var dissolved = turf.dissolve(features, 'combine');
+ * var dissolved = turf.dissolve(features, options);
  *
  * //addToMap
  * var addToMap = [features, dissolved]
  */
 function dissolve(featureCollection, options) {
-    // Backwards compatible with v4.0
-    var propertyName = (typeof options === 'object') ? options.propertyName : options;
+    // Optional parameters
+    options = options || {};
+    if (!isObject(options)) throw new Error('options is invalid');
+    var propertyName = options.propertyName;
 
     var originalIndexOfItemsRemoved = [];
     var treeItems = [];

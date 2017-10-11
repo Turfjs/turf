@@ -17,9 +17,9 @@ import { point, distanceToRadians, isObject } from '@turf/helpers';
  * var point = turf.point([-75.343, 39.984]);
  * var distance = 50;
  * var bearing = 90;
- * var units = 'miles';
+ * var options = {units: 'miles'};
  *
- * var destination = turf.destination(point, distance, bearing, units);
+ * var destination = turf.destination(point, distance, bearing, options);
  *
  * //addToMap
  * var addToMap = [point, destination]

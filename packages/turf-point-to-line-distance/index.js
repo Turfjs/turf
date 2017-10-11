@@ -23,8 +23,8 @@ import {
  * minimum distance between the point and any segment of the `LineString`.
  *
  * @name pointToLineDistance
- * @param {Feature<Point>|Array<number>} pt Feature or Geometry
- * @param {Feature<LineString>|Array<Array<number>>} line GeoJSON Feature or Geometry
+ * @param {Geometry|Feature<Point>|Array<number>} pt Feature or Geometry
+ * @param {Geometry|Feature<LineString>|Array<Array<number>>} line GeoJSON Feature or Geometry
  * @param {Object} [options={}] Optional parameters
  * @param {string} [options.units='kilometers'] can be degrees, radians, miles, or kilometers
  * @param {boolean} [options.mercator=false] if distance should be on Mercator or WGS84 projection
@@ -40,8 +40,6 @@ function pointToLineDistance(pt, line, options) {
     // Optional parameters
     options = options || {};
     if (!isObject(options)) throw new Error('options is invalid');
-    var units = options.units;
-    var mercator = options.mercator;
 
     // validation
     if (!pt) throw new Error('pt is required');
@@ -59,7 +57,7 @@ function pointToLineDistance(pt, line, options) {
     segmentEach(line, function (segment) {
         var a = segment.geometry.coordinates[0];
         var b = segment.geometry.coordinates[1];
-        var d = distanceToSegment(p, a, b, units, mercator);
+        var d = distanceToSegment(p, a, b, options);
         if (distance > d) distance = d;
     });
     return distance;
@@ -73,12 +71,14 @@ function pointToLineDistance(pt, line, options) {
  * @param {Array<number>} p external point
  * @param {Array<number>} a first segment point
  * @param {Array<number>} b second segment point
- * @param {string} [units='kilometers'] can be degrees, radians, miles, or kilometers
- * @param {boolean} [mercator=false] if distance should be on Mercator or WGS84 projection
+ * @param {Object} [options={}] Optional parameters
+ * @param {string} [options.units='kilometers'] can be degrees, radians, miles, or kilometers
+ * @param {boolean} [options.mercator=false] if distance should be on Mercator or WGS84 projection
  * @returns {number} distance
  */
-function distanceToSegment(p, a, b, units, mercator) {
-    var distanceAP = (mercator !== true) ? distance(a, p, units) : euclideanDistance(a, p, units);
+function distanceToSegment(p, a, b, options) {
+    var mercator = options.mercator;
+    var distanceAP = (mercator !== true) ? distance(a, p, options) : euclideanDistance(a, p, options);
     var azimuthAP = bearingToAngle((mercator !== true) ? bearing(a, p) : rhumbBearing(a, p));
     var azimuthAB = bearingToAngle((mercator !== true) ? bearing(a, b) : rhumbBearing(a, b));
     var angleA = Math.abs(azimuthAP - azimuthAB);
@@ -109,7 +109,7 @@ function distanceToSegment(p, a, b, units, mercator) {
         /______________/    |
        A               B    H
     */
-    if (angleB > 90) return (mercator !== true) ? distance(p, b, units) : euclideanDistance(p, b, units);
+    if (angleB > 90) return (mercator !== true) ? distance(p, b, options) : euclideanDistance(p, b, options);
     // finally if the projection falls inside the segment
     // return the distance between P and the segment
     /*
@@ -122,7 +122,7 @@ function distanceToSegment(p, a, b, units, mercator) {
        A             H     B
     */
     if (mercator !== true) return distanceAP * Math.sin(degrees2radians(angleA));
-    return mercatorPH(a, b, p, units);
+    return mercatorPH(a, b, p, options);
 }
 
 /**
@@ -132,10 +132,11 @@ function distanceToSegment(p, a, b, units, mercator) {
  * @param {Array<number>} a first segment point
  * @param {Array<number>} b second segment point
  * @param {Array<number>} p external point
- * @param {string} [units='kilometers'] can be degrees, radians, miles, or kilometers
+ * @param {Object} [options={}] Optional parameters
+ * @param {string} [options.units='kilometers'] can be degrees, radians, miles, or kilometers
  * @returns {number} distance
  */
-function mercatorPH(a, b, p, units) {
+function mercatorPH(a, b, p, options) {
     var delta = 0;
     // translate points if any is crossing the 180th meridian
     if (Math.abs(a[0]) >= 180 || Math.abs(b[0]) >= 180 || Math.abs(p[0]) >= 180) {
@@ -149,7 +150,7 @@ function mercatorPH(a, b, p, units) {
     var h = toWgs84(euclideanIntersection(A, B, P));
 
     if (delta !== 0) h[0] -= delta; // translate back to original position
-    var distancePH = rhumbDistance(origin, h, units);
+    var distancePH = rhumbDistance(origin, h, options);
     return distancePH;
 }
 
@@ -185,10 +186,12 @@ function euclideanIntersection(a, b, p) {
  * @private
  * @param {Object} from first point
  * @param {Object} to second point
- * @param {string} [units='kilometers'] can be degrees, radians, miles, or kilometers
+ * @param {Object} [options={}] Optional parameters
+ * @param {string} [options.units='kilometers'] can be degrees, radians, miles, or kilometers
  * @returns {number} squared distance
  */
-function euclideanDistance(from, to, units) {
+function euclideanDistance(from, to, options) {
+    var units = options.units;
     // translate points if any is crossing the 180th meridian
     var delta = 0;
     if (Math.abs(from[0]) >= 180) {
