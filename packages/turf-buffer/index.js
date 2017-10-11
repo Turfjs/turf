@@ -3,7 +3,7 @@ import { geoTransverseMercator } from 'd3-geo';
 import center from '@turf/center';
 import turfBbox from '@turf/bbox';
 import { geomEach, featureEach } from '@turf/meta';
-import { feature, featureCollection, radiansToDistance, distanceToRadians } from '@turf/helpers';
+import { feature, featureCollection, radiansToDistance, distanceToRadians, earthRadius } from '@turf/helpers';
 import { toWgs84, toMercator } from '@turf/projection';
 
 /**
@@ -188,7 +188,7 @@ function defineProjection(geojson) {
     return geoTransverseMercator()
         .center(coords)
         .rotate(rotate)
-        .scale(6373000);
+        .scale(earthRadius);
 }
 
 export default buffer;
