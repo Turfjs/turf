@@ -25,7 +25,7 @@ var points = turf.featureCollection([
   turf.point([-63.595218, 44.64765])
 ]);
 
-var hull = turf.concave(points, 1, 'miles');
+var hull = turf.concave(points, {units: 'miles', maxEdge: 1});
 
 //addToMap
 var addToMap = [points, hull]

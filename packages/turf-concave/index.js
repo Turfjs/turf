@@ -1,7 +1,7 @@
 import tin from '@turf/tin';
 var dissolve = require('geojson-dissolve');
 import distance from '@turf/distance';
-import { feature, featureCollection, isObject } from '@turf/helpers';
+import { feature, featureCollection, isObject, isNumber } from '@turf/helpers';
 import { featureEach } from '@turf/meta';
 
 /**
@@ -10,8 +10,8 @@ import { featureEach } from '@turf/meta';
  *
  * @name concave
  * @param {FeatureCollection<Point>} points input points
- * @param {number} maxEdge the length (in 'units') of an edge necessary for part of the hull to become concave
  * @param {Object} [options={}] Optional parameters
+ * @param {number} [options.maxEdge=Infinity] the length (in 'units') of an edge necessary for part of the hull to become concave.
  * @param {string} [options.units='kilometers'] can be degrees, radians, miles, or kilometers
  * @returns {Feature<(Polygon|MultiPolygon)>|null} a concave hull (null value is returned if unable to compute hull)
  * @example
@@ -23,22 +23,22 @@ import { featureEach } from '@turf/meta';
  *   turf.point([-63.587665, 44.64533]),
  *   turf.point([-63.595218, 44.64765])
  * ]);
- * var options = {units: 'miles'};
+ * var options = {units: 'miles', maxEdge: 1};
  *
- * var hull = turf.concave(points, 1, options);
+ * var hull = turf.concave(points, options);
  *
  * //addToMap
  * var addToMap = [points, hull]
  */
-function concave(points, maxEdge, options) {
+function concave(points, options) {
     // Optional parameters
     options = options || {};
     if (!isObject(options)) throw new Error('options is invalid');
 
     // validation
     if (!points) throw new Error('points is required');
-    if (maxEdge === undefined || maxEdge === null) throw new Error('maxEdge is required');
-    if (typeof maxEdge !== 'number') throw new Error('invalid maxEdge');
+    var maxEdge = options.maxEdge || Infinity;
+    if (!isNumber(maxEdge)) throw new Error('maxEdge is invalid');
 
     var cleaned = removeDuplicates(points);
 
