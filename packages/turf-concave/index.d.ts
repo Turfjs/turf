@@ -6,7 +6,7 @@ import { Point, Feature, FeatureCollection, MultiPolygon, Polygon, Units} from '
 export default function concave(
     points: FeatureCollection<Point>,
     options?: {
-        maxEdge: number,
+        maxEdge?: number,
         units?: Units
     }
 ): Feature<Polygon | MultiPolygon>;
