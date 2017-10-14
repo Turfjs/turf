@@ -8,7 +8,7 @@ import { polygon, featureCollection } from '@turf/helpers';
  * @param {Array<number>} bbox extent in [minX, minY, maxX, maxY] order
  * @param {number} cellSize dimension of each cell
  * @param {Object} [options={}] Optional parameters
- * @param {string} [units='kilometers'] used in calculating cellSize, can be degrees, radians, miles, or kilometers
+ * @param {string} [options.units='kilometers'] used in calculating cellSize, can be degrees, radians, miles, or kilometers
  * @returns {FeatureCollection<Polygon>} grid of polygons
  * @example
  * var bbox = [-95, 30 ,-85, 40];

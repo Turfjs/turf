@@ -15,7 +15,7 @@ import { lineString, isObject } from '@turf/helpers';
  * @param {number} startDist distance along the line to starting point
  * @param {number} stopDist distance along the line to ending point
  * @param {Object} [options={}] Optional parameters
- * @param {string} [units='kilometers'] can be degrees, radians, miles, or kilometers
+ * @param {string} [options.units='kilometers'] can be degrees, radians, miles, or kilometers
  * @returns {Feature<LineString>} sliced line
  * @example
  * var line = turf.lineString([[7, 45], [9, 45], [14, 40], [14, 41]]);
