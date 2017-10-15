@@ -8,6 +8,6 @@ export default function squareGrid(
     cellSize: number,
     options?: {
         units?: Units,
-        completelyWithin?: boolean
+        properties?: object
     }
 ): FeatureCollection<Polygon>;

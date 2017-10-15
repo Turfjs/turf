@@ -1,6 +1,9 @@
 {
   "type": "Feature",
-  "properties": {},
+  "properties": {
+    "units": "miles",
+    "cellSide": 5
+  },
   "geometry": {
     "type": "Polygon",
     "coordinates": [

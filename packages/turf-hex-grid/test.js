@@ -72,3 +72,15 @@ test('longitude (13141439571036224) - issue #758', t => {
     }
     t.end();
 });
+
+
+test('hex-grid -- throw', t => {
+    const bbox = [0, 0, 1, 1];
+    t.throws(() => hexGrid(null, 0), /bbox is required/, 'missing bbox');
+    t.throws(() => hexGrid([0, 2], 1), /bbox must contain 4 numbers/, 'invalid bbox');
+    t.throws(() => hexGrid(bbox, null), /cellSide is required/, 'missing cellSide');
+    t.throws(() => hexGrid(bbox, 'string'), /cellSide is invalid/, 'invalid cellSide');
+    t.throws(() => hexGrid(bbox, 1, 'string'), /options is invalid/, 'invalid options');
+    t.end();
+});
+

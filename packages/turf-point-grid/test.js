@@ -17,7 +17,6 @@ let fixtures = fs.readdirSync(directories.in).map(filename => {
         geojson: load.sync(directories.in + filename)
     };
 });
-// fixtures = fixtures.filter(({name}) => name === 'resolute');
 
 test('turf-point-grid', t => {
     for (const {name, geojson} of fixtures) {
@@ -42,8 +41,13 @@ test('turf-point-grid', t => {
     t.end();
 });
 
-test('turf-point-grid -- throws', t => {
-    t.throws(() => pointGrid(null, 10), /bbox is required/, 'missing bbox');
-    t.throws(() => pointGrid([-95, 30, 40], 10), /bbox must contain 4 numbers/, 'invalid bbox');
+
+test('point-grid -- throw', t => {
+    const bbox = [0, 0, 1, 1];
+    t.throws(() => pointGrid(null, 0), /bbox is required/, 'missing bbox');
+    t.throws(() => pointGrid([0, 2], 1), /bbox must contain 4 numbers/, 'invalid bbox');
+    t.throws(() => pointGrid(bbox, null), /cellSide is required/, 'missing cellSide');
+    t.throws(() => pointGrid(bbox, 'string'), /cellSide is invalid/, 'invalid cellSide');
+    t.throws(() => pointGrid(bbox, 1, 'string'), /options is invalid/, 'invalid options');
     t.end();
 });
