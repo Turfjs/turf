@@ -11,7 +11,8 @@ be convex or concave. The function accounts for holes.
 
 -   `point` **[Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;[Point](http://geojson.org/geojson-spec.html#point)>** input point
 -   `polygon` **[Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;([Polygon](http://geojson.org/geojson-spec.html#polygon) \| [MultiPolygon](http://geojson.org/geojson-spec.html#multipolygon))>** input polygon or multipolygon
--   `ignoreBoundary` **[boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** True if polygon boundary should be ignored when determining if the point is inside the polygon otherwise false. (optional, default `false`)
+-   `options` **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)** Optional parameters (optional, default `{}`)
+    -   `options.ignoreBoundary` **[boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** True if polygon boundary should be ignored when determining if the point is inside the polygon otherwise false. (optional, default `false`)
 
 **Examples**
 

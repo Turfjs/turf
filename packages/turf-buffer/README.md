@@ -24,7 +24,7 @@ the input, or even be empty.
 
 ```javascript
 var point = turf.point([-90.548630, 14.616599]);
-var buffered = turf.buffer(point, 500, 'miles');
+var buffered = turf.buffer(point, 500, {units: 'miles'});
 
 //addToMap
 var addToMap = [point, buffered]

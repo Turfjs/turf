@@ -13,9 +13,9 @@ Creates a circular arc, of a circle of the given radius and center point, betwee
 -   `radius` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** radius of the circle
 -   `bearing1` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** angle, in decimal degrees, of the first radius of the arc
 -   `bearing2` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** angle, in decimal degrees, of the second radius of the arc
--   `options` **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)?** Optional parameters
+-   `options` **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)** Optional parameters (optional, default `{}`)
     -   `options.steps` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** number of steps (optional, default `64`)
-    -   `options.units` **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** miles, kilometers, degrees, or radians (optional, default `"kilometers"`)
+    -   `options.units` **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** miles, kilometers, degrees, or radians (optional, default `'kilometers'`)
 
 **Examples**
 

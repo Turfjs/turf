@@ -11,7 +11,8 @@ Takes a [Point](http://geojson.org/geojson-spec.html#point) and calculates the l
 -   `origin` **([Geometry](http://geojson.org/geojson-spec.html#geometry) \| [Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;[Point](http://geojson.org/geojson-spec.html#point)> | [Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)>)** starting point
 -   `distance` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** distance from the origin point
 -   `bearing` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** ranging from -180 to 180
--   `units` **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** miles, kilometers, degrees, or radians (optional, default `kilometers`)
+-   `options` **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)** Optional parameters (optional, default `{}`)
+    -   `options.units` **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** miles, kilometers, degrees, or radians (optional, default `'kilometers'`)
 
 **Examples**
 
@@ -19,9 +20,9 @@ Takes a [Point](http://geojson.org/geojson-spec.html#point) and calculates the l
 var point = turf.point([-75.343, 39.984]);
 var distance = 50;
 var bearing = 90;
-var units = 'miles';
+var options = {units: 'miles'};
 
-var destination = turf.destination(point, distance, bearing, units);
+var destination = turf.destination(point, distance, bearing, options);
 
 //addToMap
 var addToMap = [point, destination]

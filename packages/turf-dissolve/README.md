@@ -9,7 +9,8 @@ Dissolves a FeatureCollection of polygons based on a property. Note that multipa
 **Parameters**
 
 -   `featureCollection` **[FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects)&lt;[Polygon](http://geojson.org/geojson-spec.html#polygon)>** input feature collection to be dissolved
--   `propertyName` **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)?** property name on which to dissolve features
+-   `options` **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)** Optional parameters (optional, default `{}`)
+    -   `options.propertyName` **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)?** property name on which to dissolve features
 
 **Examples**
 
@@ -19,8 +20,9 @@ var features = turf.featureCollection([
   turf.polygon([[[0, -1], [0, 0], [1, 0], [1, -1], [0,-1]]], {"combine": "yes"}),
   turf.polygon([[[1,-1],[1, 0], [2, 0], [2, -1], [1, -1]]], {"combine": "no"}),
 ]);
+var options = {propertyName: 'combine'};
 
-var dissolved = turf.dissolve(features, 'combine');
+var dissolved = turf.dissolve(features, options);
 
 //addToMap
 var addToMap = [features, dissolved]

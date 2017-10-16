@@ -10,9 +10,10 @@ Takes a [GeoJSON](http://geojson.org/geojson-spec.html#geojson-objects) object a
 **Parameters**
 
 -   `geojson` **[GeoJSON](http://geojson.org/geojson-spec.html#geojson-objects)** object to be simplified
--   `tolerance` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** simplification tolerance (optional, default `1`)
--   `highQuality` **[boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** whether or not to spend more time to create a higher-quality simplification with a different algorithm (optional, default `false`)
--   `mutate` **[boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** allows GeoJSON input to be mutated (significant performance increase if true) (optional, default `false`)
+-   `options` **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)** Optional parameters (optional, default `{}`)
+    -   `options.tolerance` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** simplification tolerance (optional, default `1`)
+    -   `options.highQuality` **[boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** whether or not to spend more time to create a higher-quality simplification with a different algorithm (optional, default `false`)
+    -   `options.mutate` **[boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** allows GeoJSON input to be mutated (significant performance increase if true) (optional, default `false`)
 
 **Examples**
 
@@ -39,9 +40,8 @@ var geojson = turf.polygon([[
   [-70.594711, -33.406224],
   [-70.603637, -33.399918]
 ]]);
-var tolerance = 0.01;
-
-var simplified = turf.simplify(geojson, tolerance, false);
+var options = {tolerance: 0.01, highQuality: false};
+var simplified = turf.simplify(geojson, options);
 
 //addToMap
 var addToMap = [geojson, simplified]

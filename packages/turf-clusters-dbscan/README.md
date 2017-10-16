@@ -10,19 +10,18 @@ Takes a set of [points](http://geojson.org/geojson-spec.html#point) and partitio
 
 -   `points` **[FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects)&lt;[Point](http://geojson.org/geojson-spec.html#point)>** to be clustered
 -   `maxDistance` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** Maximum Distance between any point of the cluster to generate the clusters (kilometers only)
--   `units` **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** in which `maxDistance` is expressed, can be degrees, radians, miles, or kilometers (optional, default `kilometers`)
--   `minPoints` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** Minimum number of points to generate a single cluster,
-    points which do not meet this requirement will be classified as an 'edge' or 'noise'. (optional, default `3`)
+-   `options` **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)** Optional parameters (optional, default `{}`)
+    -   `options.units` **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** in which `maxDistance` is expressed, can be degrees, radians, miles, or kilometers (optional, default `kilometers`)
+    -   `options.minPoints` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** Minimum number of points to generate a single cluster,
+        points which do not meet this requirement will be classified as an 'edge' or 'noise'. (optional, default `3`)
 
 **Examples**
 
 ```javascript
 // create random points with random z-values in their properties
-var points = turf.random('point', 100, {
-  bbox: [0, 30, 20, 50]
-});
-var distance = 100;
-var clustered = turf.clustersDbscan(points, distance);
+var points = turf.randomPoint(100, {bbox: [0, 30, 20, 50]});
+var maxDistance = 100;
+var clustered = turf.clustersDbscan(points, maxDistance);
 
 //addToMap
 var addToMap = [clustered];

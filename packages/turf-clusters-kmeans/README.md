@@ -10,18 +10,17 @@ It uses the [k-means algorithm](https://en.wikipedia.org/wiki/K-means_clustering
 **Parameters**
 
 -   `points` **[FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects)&lt;[Point](http://geojson.org/geojson-spec.html#point)>** to be clustered
--   `numberOfClusters` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** numberOfClusters that will be generated (optional, default `Math.sqrt(numberOfPoints/2)`)
--   `mutate` **[boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** allows GeoJSON input to be mutated (significant performance increase if true) (optional, default `false`)
+-   `options` **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)** Optional parameters (optional, default `{}`)
+    -   `options.numberOfClusters` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** numberOfClusters that will be generated (optional, default `Math.sqrt(numberOfPoints/2)`)
+    -   `options.mutate` **[boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** allows GeoJSON input to be mutated (significant performance increase if true) (optional, default `false`)
 
 **Examples**
 
 ```javascript
 // create random points with random z-values in their properties
-var points = turf.random('point', 100, {
-  bbox: [0, 30, 20, 50]
-});
-var numberOfClusters = 7;
-var clustered = turf.clustersKmeans(points, numberOfClusters);
+var points = turf.randomPoint(100, {bbox: [0, 30, 20, 50]});
+var options = {numberOfClusters: 7};
+var clustered = turf.clustersKmeans(points, options);
 
 //addToMap
 var addToMap = [clustered];

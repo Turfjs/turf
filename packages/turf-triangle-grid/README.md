@@ -10,16 +10,16 @@ Takes a bounding box and a cell depth and returns a set of triangular [polygons]
 
 -   `bbox` **[Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)>** extent in [minX, minY, maxX, maxY] order
 -   `cellSize` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** dimension of each cell
--   `units` **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** used in calculating cellSize, can be degrees, radians, miles, or kilometers (optional, default `kilometers`)
+-   `options` **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)** Optional parameters (optional, default `{}`)
+    -   `options.units` **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** used in calculating cellSize, can be degrees, radians, miles, or kilometers (optional, default `'kilometers'`)
 
 **Examples**
 
 ```javascript
 var bbox = [-95, 30 ,-85, 40];
 var cellSize = 50;
-var units = 'miles';
 
-var triangleGrid = turf.triangleGrid(bbox, cellSize, units);
+var triangleGrid = turf.triangleGrid(bbox, cellSize, {units: 'miles'});
 
 //addToMap
 var addToMap = [triangleGrid];
