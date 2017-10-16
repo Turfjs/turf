@@ -38,6 +38,9 @@ function updateDependencies(pckg) {
             case 'jsts':
                 dependencies[name] = '1.4.0';
                 break;
+            case 'geojson-rbush':
+                dependencies[name] = '2.1.0';
+                break;
             default:
                 dependencies[name] = version;
             }
