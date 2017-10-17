@@ -1,4 +1,4 @@
-import convex from '@turf/convex';
+var convex = require('@turf/convex');
 import explode from '@turf/explode';
 import centroid from '@turf/centroid';
 import { point } from '@turf/helpers';
