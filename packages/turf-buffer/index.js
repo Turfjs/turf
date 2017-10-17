@@ -1,10 +1,21 @@
-var jsts = require('jsts');
-import { geoTransverseMercator } from 'd3-geo';
 import center from '@turf/center';
+import extend from 'jsts/extend';
 import turfBbox from '@turf/bbox';
-import { geomEach, featureEach } from '@turf/meta';
-import { feature, featureCollection, radiansToDistance, distanceToRadians, earthRadius } from '@turf/helpers';
+import Geometry from 'jsts/org/locationtech/jts/geom/Geometry';
+import GeoJSONReader from 'jsts/org/locationtech/jts/io/GeoJSONReader';
+import GeoJSONWriter from 'jsts/org/locationtech/jts/io/GeoJSONWriter';
+import { BufferOp } from 'jsts/org/locationtech/jts/operation/buffer';
 import { toWgs84, toMercator } from '@turf/projection';
+import { geomEach, featureEach } from '@turf/meta';
+import { geoTransverseMercator } from 'd3-geo';
+import { feature, featureCollection, radiansToDistance, distanceToRadians, earthRadius } from '@turf/helpers';
+
+// monkey jsts buffer operation
+extend(Geometry.prototype, {
+    buffer(distance) {
+        return BufferOp.bufferOp(distance);
+    }
+});
 
 /**
  * Calculates a buffer for input features for a given radius. Units supported are miles, kilometers, and degrees.
@@ -109,11 +120,11 @@ function bufferFeature(geojson, radius, units, steps) {
     }
 
     // JSTS buffer operation
-    var reader = new jsts.io.GeoJSONReader();
+    var reader = new GeoJSONReader();
     var geom = reader.read(projected);
     var distance = radiansToDistance(distanceToRadians(radius, units), 'meters');
     var buffered = geom.buffer(distance);
-    var writer = new jsts.io.GeoJSONWriter();
+    var writer = new GeoJSONWriter();
     buffered = writer.write(buffered);
 
     // Detect if empty geometries
