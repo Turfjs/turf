@@ -2,11 +2,11 @@ import center from '@turf/center';
 import turfBbox from '@turf/bbox';
 import GeoJSONReader from 'jsts/org/locationtech/jts/io/GeoJSONReader';
 import GeoJSONWriter from 'jsts/org/locationtech/jts/io/GeoJSONWriter';
+import { BufferOp } from 'jsts/org/locationtech/jts/operation/buffer';
 import { toWgs84, toMercator } from '@turf/projection';
 import { geomEach, featureEach } from '@turf/meta';
 import { geoTransverseMercator } from 'd3-geo';
 import { feature, featureCollection, radiansToDistance, distanceToRadians, earthRadius } from '@turf/helpers';
-import './jsts-monkey';
 
 /**
  * Calculates a buffer for input features for a given radius. Units supported are miles, kilometers, and degrees.
@@ -114,7 +114,7 @@ function bufferFeature(geojson, radius, units, steps) {
     var reader = new GeoJSONReader();
     var geom = reader.read(projected);
     var distance = radiansToDistance(distanceToRadians(radius, units), 'meters');
-    var buffered = geom.buffer(distance);
+    var buffered = BufferOp.bufferOp(geom, distance);
     var writer = new GeoJSONWriter();
     buffered = writer.write(buffered);
 
