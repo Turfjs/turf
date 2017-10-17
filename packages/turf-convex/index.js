@@ -1,4 +1,4 @@
-import hull from 'hull.js';
+import concaveman from 'concaveman';
 import { coordEach } from '@turf/meta';
 import { polygon, isObject } from '@turf/helpers';
 
@@ -40,8 +40,9 @@ function convex(geojson, options) {
     coordEach(geojson, function (coord) {
         points.push([coord[0], coord[1]]);
     });
+    if (!points.length) return null;
 
-    var convexHull = hull(points, concavity);
+    var convexHull = concaveman(points, concavity);
 
     // Convex hull should have at least 3 different vertices in order to create a valid polygon
     if (convexHull.length >= 3) {

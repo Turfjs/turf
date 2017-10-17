@@ -35,14 +35,14 @@
     "benchmark": "*",
     "glob": "*",
     "load-json-file": "*",
-    "write-json-file": "*",
     "rollup": "*",
-    "tape": "*"
+    "tape": "*",
+    "write-json-file": "*"
   },
   "dependencies": {
     "@turf/helpers": "^5.0.0",
     "@turf/meta": "^5.0.0",
-    "hull.js": "^0.2.10"
+    "concaveman": "*"
   },
   "@std/esm": {
     "esm": "js",
