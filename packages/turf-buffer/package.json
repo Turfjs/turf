@@ -9,7 +9,8 @@
   "files": [
     "index.js",
     "index.d.ts",
-    "main.js"
+    "main.js",
+    "jsts-monkey.js"
   ],
   "scripts": {
     "pretest": "rollup -c ../../rollup.config.js",

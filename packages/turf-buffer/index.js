@@ -1,21 +1,12 @@
 import center from '@turf/center';
-import extend from 'jsts/extend';
 import turfBbox from '@turf/bbox';
-import Geometry from 'jsts/org/locationtech/jts/geom/Geometry';
 import GeoJSONReader from 'jsts/org/locationtech/jts/io/GeoJSONReader';
 import GeoJSONWriter from 'jsts/org/locationtech/jts/io/GeoJSONWriter';
-import { BufferOp } from 'jsts/org/locationtech/jts/operation/buffer';
 import { toWgs84, toMercator } from '@turf/projection';
 import { geomEach, featureEach } from '@turf/meta';
 import { geoTransverseMercator } from 'd3-geo';
 import { feature, featureCollection, radiansToDistance, distanceToRadians, earthRadius } from '@turf/helpers';
-
-// monkey jsts buffer operation
-extend(Geometry.prototype, {
-    buffer(distance) {
-        return BufferOp.bufferOp(distance);
-    }
-});
+import './jsts-monkey';
 
 /**
  * Calculates a buffer for input features for a given radius. Units supported are miles, kilometers, and degrees.
