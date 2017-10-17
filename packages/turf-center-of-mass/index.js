@@ -1,7 +1,7 @@
 import convex from '@turf/convex';
 import centroid from '@turf/centroid';
 import { point } from '@turf/helpers';
-import { getCoord, getType } from '@turf/invariant';
+import { getType } from '@turf/invariant';
 import { coordEach } from '@turf/meta';
 
 /**
