@@ -31,16 +31,18 @@
   },
   "homepage": "https://github.com/Turfjs/turf",
   "devDependencies": {
+    "@std/esm": "*",
     "benchmark": "*",
     "glob": "*",
-    "tape": "*",
+    "load-json-file": "*",
+    "write-json-file": "*",
     "rollup": "*",
-    "@std/esm": "*"
+    "tape": "*"
   },
   "dependencies": {
     "@turf/helpers": "^5.0.0",
     "@turf/meta": "^5.0.0",
-    "convex-hull": "^1.0.3"
+    "hull.js": "^0.2.10"
   },
   "@std/esm": {
     "esm": "js",

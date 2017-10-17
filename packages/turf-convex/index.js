@@ -1,6 +1,6 @@
-var convexHull = require('convex-hull');
+import hull from 'hull.js';
 import { coordEach } from '@turf/meta';
-import { polygon } from '@turf/helpers';
+import { polygon, isObject } from '@turf/helpers';
 
 /**
  * Takes a {@link Feature} or a {@link FeatureCollection} and returns a convex hull {@link Polygon}.
@@ -11,6 +11,8 @@ import { polygon } from '@turf/helpers';
  *
  * @name convex
  * @param {GeoJSON} geojson input Feature or FeatureCollection
+ * @param {Object} [options={}] Optional parameters
+ * @param {number} [options.concavity=Infinity] 1 - thin shape. Infinity - convex hull.
  * @returns {Feature<Polygon>} a convex hull
  * @example
  * var points = turf.featureCollection([
@@ -27,26 +29,25 @@ import { polygon } from '@turf/helpers';
  * //addToMap
  * var addToMap = [points, hull]
  */
-function convex(geojson) {
+function convex(geojson, options) {
+    // Optional parameters
+    options = options || {};
+    if (!isObject(options)) throw new Error('options is invalid');
+    var concavity = options.concavity || Infinity;
     var points = [];
 
-    // Remove Z in coordinates because it breaks the convexHull algorithm
+    // Convert all points to flat 2D coordinate Array
     coordEach(geojson, function (coord) {
         points.push([coord[0], coord[1]]);
     });
 
-    var hull = convexHull(points);
+    var convexHull = hull(points, concavity);
 
-    // Hull should have at least 3 different vertices in order to create a valid polygon
-    if (hull.length >= 3) {
-        var ring = [];
-        for (var i = 0; i < hull.length; i++) {
-            ring.push(points[hull[i][0]]);
-        }
-        ring.push(points[hull[hull.length - 1][1]]);
-        return polygon([ring]);
+    // Convex hull should have at least 3 different vertices in order to create a valid polygon
+    if (convexHull.length >= 3) {
+        return polygon([convexHull]);
     }
-    return undefined;
+    return null;
 }
 
 export default convex;
