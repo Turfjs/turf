@@ -74,6 +74,7 @@
     "glob": "*",
     "jsdoc": "*",
     "jsdoctest": "*",
+    "jsts": "*",
     "lineclip": "*",
     "polygonize": "*",
     "rbush": "*",
