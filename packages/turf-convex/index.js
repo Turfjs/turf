@@ -45,7 +45,7 @@ function convex(geojson, options) {
     var convexHull = concaveman(points, concavity);
 
     // Convex hull should have at least 3 different vertices in order to create a valid polygon
-    if (convexHull.length >= 3) {
+    if (convexHull.length > 3) {
         return polygon([convexHull]);
     }
     return null;
