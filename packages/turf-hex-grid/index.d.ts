@@ -13,6 +13,7 @@ export default function hexGrid(
     cellSide: number,
     options?: {
         units?: Units,
+        triangles?: boolean,
         properties?: object,
     }
 ): FeatureCollection<Polygon>;

@@ -7,4 +7,8 @@ const bbox: BBox = [
     -84.9462890625,
     40.58058466412764
 ]
-const grid: FeatureCollection<Polygon> = hexGrid(bbox, 50, 'miles')
+
+hexGrid(bbox, 50)
+hexGrid(bbox, 50, {units: 'miles'})
+hexGrid(bbox, 50, {units: 'miles', triangles: true})
+hexGrid(bbox, 50, {units: 'miles', triangles: true, properties: {foo: 'bar'}})
