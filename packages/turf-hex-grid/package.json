@@ -44,6 +44,7 @@
   "homepage": "https://github.com/Turfjs/turf",
   "devDependencies": {
     "@turf/truncate": "*",
+    "@turf/bbox-polygon": "*",
     "benchmark": "*",
     "load-json-file": "*",
     "tape": "*",
@@ -53,6 +54,7 @@
   },
   "dependencies": {
     "@turf/distance": "^5.0.0",
+    "@turf/bbox": "^5.0.0",
     "@turf/helpers": "^5.0.0"
   },
   "@std/esm": {

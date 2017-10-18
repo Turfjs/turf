@@ -11,6 +11,8 @@ import {
 export default function hexGrid(
     bbox: BBox,
     cellSide: number,
-    units?: Units,
-    triangles?: boolean
+    options?: {
+        units?: Units,
+        properties?: object,
+    }
 ): FeatureCollection<Polygon>;

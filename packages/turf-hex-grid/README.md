@@ -12,17 +12,18 @@ described in [Hexagonal Grids](http://www.redblobgames.com/grids/hexagons/).
 
 -   `bbox` **[Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)>** extent in [minX, minY, maxX, maxY] order
 -   `cellSide` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** diameter of the circumcircle of the hexagons, in specified units. This will coincide with the side of the hexagon or the triangle.
--   `units` **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** used in calculating cell size, can be degrees, radians, miles, or kilometers (optional, default `kilometers`)
--   `triangles` **[boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** whether to return as triangles instead of hexagons (optional, default `false`)
+-   `options` **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)** Optional parameters (optional, default `{}`)
+    -   `options.units` **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** used in calculating cellSide, can be degrees, radians, miles, or kilometers (optional, default `"kilometers"`)
+    -   `options.triangles` **[boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** whether to return as triangles instead of hexagons (optional, default `false`)
+    -   `options.properties` **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)** passed to each point of the grid (optional, default `{}`)
 
 **Examples**
 
 ```javascript
 var bbox = [-96,31,-84,40];
 var cellSide = 50;
-var units = 'miles';
 
-var hexgrid = turf.hexGrid(bbox, cellSide, units);
+var hexgrid = turf.hexGrid(bbox, cellSide, {units: 'miles'});
 
 //addToMap
 var addToMap = [hexgrid];

@@ -4,6 +4,7 @@ import path from 'path';
 import load from 'load-json-file';
 import write from 'write-json-file';
 import truncate from '@turf/truncate';
+import bboxPoly from '@turf/bbox-polygon';
 import hexGrid from '.';
 
 const directories = {
@@ -24,36 +25,32 @@ test('hex-grid', t => {
         const bbox = json.bbox;
         const cellSide = json.cellSide;
         const units = json.units || 'kilometers';
+        const triangles = json.triangles;
 
-        const results = truncate(hexGrid(bbox, cellSide, {units}));
+        const results = truncate(hexGrid(bbox, cellSide, {units, triangles}));
+        const poly = bboxPoly(bbox);
+        poly.properties = {
+            stroke: '#F00',
+            'stroke-width': 6,
+            'fill-opacity': 0
+        };
+        results.features.push(poly);
 
-        if (process.env.REGEN) write.sync(directories.out + name + '-grid.geojson', results);
-        t.deepEqual(results, load.sync(directories.out + name + '-grid.geojson'), name);
+        if (process.env.REGEN) write.sync(directories.out + name + '.geojson', results);
+        t.deepEqual(results, load.sync(directories.out + name + '.geojson'), name);
     });
     t.end();
 });
 
-test('triangle-grid', t => {
-    fixtures.forEach(({name, json, filename}) => {
-        const bbox = json.bbox;
-        const cellSide = json.cellSide;
-        const units = json.units || 'kilometers';
-
-        const results = truncate(hexGrid(bbox, cellSide, {units, triangles: true}));
-
-        if (process.env.REGEN) write.sync(directories.out + name + '-trigrid.geojson', results);
-        t.deepEqual(results, load.sync(directories.out + name + '-trigrid.geojson'), name);
-    });
-    t.end();
-});
 
 test('grid tiles count', t => {
     const bbox1 = require(directories.in + 'bbox1.json').bbox;
-    t.equal(hexGrid(bbox1, 50, {units: 'miles'}).features.length, 85);
-    t.equal(hexGrid(bbox1, 50, {units: 'miles', triangles: true}).features.length, 510);
+    t.equal(hexGrid(bbox1, 50, {units: 'miles'}).features.length, 52);
+    t.equal(hexGrid(bbox1, 50, {units: 'miles', triangles: true}).features.length, 312);
 
     t.end();
 });
+
 
 test('longitude (13141439571036224) - issue #758', t => {
     const bbox = [-179, -90, 179, 90];

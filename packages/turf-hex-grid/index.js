@@ -1,16 +1,6 @@
 import distance from '@turf/distance';
 import turfBBox from '@turf/bbox';
-import { point, polygon, featureCollection, isObject, isNumber } from '@turf/helpers';
-
-// Precompute cosines and sines of angles used in hexagon creation
-// for performance gain
-var cosines = [];
-var sines = [];
-for (var i = 0; i < 6; i++) {
-    var angle = 2 * Math.PI / 6 * i;
-    cosines.push(Math.cos(angle));
-    sines.push(Math.sin(angle));
-}
+import {point, polygon, featureCollection, isObject, isNumber} from '@turf/helpers';
 
 /**
  * Takes a bounding box and the diameter of the cell and returns a {@link FeatureCollection} of flat-topped
@@ -19,7 +9,8 @@ for (var i = 0; i < 6; i++) {
  *
  * @name hexGrid
  * @param {Array<number>|FeatureCollection|Feature<any>} bbox extent in [minX, minY, maxX, maxY] order
- * @param {number} cellSide length of the side of the the hexagons or triangles, in units. It will also coincide with the radius of the circumcircle of the hexagons.
+ * @param {number} cellSide length of the side of the the hexagons or triangles, in units. It will also coincide with the
+ * radius of the circumcircle of the hexagons.
  * @param {Object} [options={}] Optional parameters
  * @param {string} [options.units='kilometers'] used in calculating cell size, can be degrees, radians, miles, or kilometers
  * @param {Object} [options.properties={}] passed to each hexagon or triangle of the grid
@@ -72,15 +63,14 @@ function hexGrid(bbox, cellSide, options) {
     var x_interval = 3 / 4 * hex_width;
     var y_interval = hex_height;
 
-    var x_span = box_width / (hex_width - radius / 2);
+    // adjust box_width so all hexagons will be inside the bbox
+    var x_span = (box_width - hex_width) / (hex_width - radius / 2);
     var x_count = Math.floor(x_span);
-    if (Math.round(x_span) === x_count) {
-        x_count++;
-    }
 
-    var x_adjust = ((x_count * x_interval - radius / 2) - box_width) / 2 - radius / 2;
+    var x_adjust = ((x_count * x_interval - radius / 2) - box_width) / 2 - radius / 2 + x_interval / 2;
 
-    var y_count = Math.floor(box_height / hex_height);
+    // adjust box_height so all hexagons will be inside the bbox
+    var y_count = Math.floor((box_height - hex_height) / hex_height);
 
     var y_adjust = (box_height - y_count * hex_height) / 2;
 
@@ -89,8 +79,17 @@ function hexGrid(bbox, cellSide, options) {
         y_adjust -= hex_height / 4;
     }
 
+    // Precompute cosines and sines of angles used in hexagon creation for performance gain
+    var cosines = [];
+    var sines = [];
+    for (var i = 0; i < 6; i++) {
+        var angle = 2 * Math.PI / 6 * i;
+        cosines.push(Math.cos(angle));
+        sines.push(Math.sin(angle));
+    }
+
     var fc = featureCollection([]);
-    for (var x = 0; x < x_count; x++) {
+    for (var x = 0; x <= x_count; x++) {
         for (var y = 0; y <= y_count; y++) {
 
             var isOdd = x % 2 === 1;
@@ -103,10 +102,25 @@ function hexGrid(bbox, cellSide, options) {
             if (isOdd) {
                 center_y -= hex_height / 2;
             }
+
             if (triangles) {
-                fc.features.push.apply(fc.features, hexTriangles([center_x, center_y], cellWidth / 2, cellHeight / 2, properties));
+                fc.features.push.apply(fc.features, hexTriangles(
+                    [center_x, center_y],
+                    cellWidth / 2,
+                    cellHeight / 2,
+                    properties,
+                    cosines,
+                    sines
+                );
             } else {
-                fc.features.push(hexagon([center_x, center_y], cellWidth / 2, cellHeight / 2, properties));
+                fc.features.push(hexagon(
+                    [center_x, center_y],
+                    cellWidth / 2,
+                    cellHeight / 2,
+                    properties,
+                    cosines,
+                    sines
+                );
             }
         }
     }
@@ -114,8 +128,19 @@ function hexGrid(bbox, cellSide, options) {
     return fc;
 }
 
-//Center should be [x, y]
-function hexagon(center, rx, ry, properties) {
+/**
+ * Creates hexagon
+ *
+ * @private
+ * @param {Array<number>} center of the hexagon
+ * @param {number} rx half hexagon width
+ * @param {number} ry half hexagon height
+ * @param {Object} properties passed to each hexagon
+ * @param {Array<number>} cosines precomputed
+ * @param {Array<number>} sines precomputed
+ * @returns {Feature<Polygon>} hexagon
+ */
+function hexagon(center, rx, ry, properties, cosines, sines) {
     var vertices = [];
     for (var i = 0; i < 6; i++) {
         var x = center[0] + rx * cosines[i];
@@ -127,8 +152,19 @@ function hexagon(center, rx, ry, properties) {
     return polygon([vertices], properties);
 }
 
-//Center should be [x, y]
-function hexTriangles(center, rx, ry, properties) {
+/**
+ * Creates triangles composing an hexagon
+ *
+ * @private
+ * @param {Array<number>} center of the hexagon
+ * @param {number} rx half triangle width
+ * @param {number} ry half triangle height
+ * @param {Object} properties passed to each triangle
+ * @param {Array<number>} cosines precomputed
+ * @param {Array<number>} sines precomputed
+ * @returns {Array<Feature<Polygon>>} triangles
+ */
+function hexTriangles(center, rx, ry, properties, cosines, sines) {
     var triangles = [];
     for (var i = 0; i < 6; i++) {
         var vertices = [];
