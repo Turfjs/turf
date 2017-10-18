@@ -103,7 +103,7 @@ function hexGrid(bbox, cellSide, options) {
                 center_y -= hex_height / 2;
             }
 
-            if (triangles) {
+            if (triangles === true) {
                 fc.features.push.apply(fc.features, hexTriangles(
                     [center_x, center_y],
                     cellWidth / 2,
@@ -111,7 +111,7 @@ function hexGrid(bbox, cellSide, options) {
                     properties,
                     cosines,
                     sines
-                );
+                ));
             } else {
                 fc.features.push(hexagon(
                     [center_x, center_y],
@@ -120,7 +120,7 @@ function hexGrid(bbox, cellSide, options) {
                     properties,
                     cosines,
                     sines
-                );
+                ));
             }
         }
     }
