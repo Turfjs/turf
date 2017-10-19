@@ -1,7 +1,7 @@
 import tin from '@turf/tin';
 var dissolve = require('geojson-dissolve');
 import distance from '@turf/distance';
-import { feature, featureCollection } from '@turf/helpers';
+import { feature, featureCollection, isObject, isNumber } from '@turf/helpers';
 import { featureEach } from '@turf/meta';
 
 /**
@@ -10,8 +10,8 @@ import { featureEach } from '@turf/meta';
  *
  * @name concave
  * @param {FeatureCollection<Point>} points input points
- * @param {number} maxEdge the length (in 'units') of an edge necessary for part of the hull to become concave
  * @param {Object} [options={}] Optional parameters
+ * @param {number} [options.maxEdge=Infinity] the length (in 'units') of an edge necessary for part of the hull to become concave.
  * @param {string} [options.units='kilometers'] can be degrees, radians, miles, or kilometers
  * @returns {Feature<(Polygon|MultiPolygon)>|null} a concave hull (null value is returned if unable to compute hull)
  * @example
@@ -23,20 +23,22 @@ import { featureEach } from '@turf/meta';
  *   turf.point([-63.587665, 44.64533]),
  *   turf.point([-63.595218, 44.64765])
  * ]);
+ * var options = {units: 'miles', maxEdge: 1};
  *
- * var hull = turf.concave(points, 1, 'miles');
+ * var hull = turf.concave(points, options);
  *
  * //addToMap
  * var addToMap = [points, hull]
  */
-function concave(points, maxEdge, options) {
-    // Backwards compatible with v4.0
-    var units = (typeof options === 'object') ? options.units : options;
+function concave(points, options) {
+    // Optional parameters
+    options = options || {};
+    if (!isObject(options)) throw new Error('options is invalid');
 
     // validation
     if (!points) throw new Error('points is required');
-    if (maxEdge === undefined || maxEdge === null) throw new Error('maxEdge is required');
-    if (typeof maxEdge !== 'number') throw new Error('invalid maxEdge');
+    var maxEdge = options.maxEdge || Infinity;
+    if (!isNumber(maxEdge)) throw new Error('maxEdge is invalid');
 
     var cleaned = removeDuplicates(points);
 
@@ -47,9 +49,9 @@ function concave(points, maxEdge, options) {
         var pt1 = triangle.geometry.coordinates[0][0];
         var pt2 = triangle.geometry.coordinates[0][1];
         var pt3 = triangle.geometry.coordinates[0][2];
-        var dist1 = distance(pt1, pt2, units);
-        var dist2 = distance(pt2, pt3, units);
-        var dist3 = distance(pt1, pt3, units);
+        var dist1 = distance(pt1, pt2, options);
+        var dist2 = distance(pt2, pt3, options);
+        var dist3 = distance(pt1, pt3, options);
         return (dist1 <= maxEdge && dist2 <= maxEdge && dist3 <= maxEdge);
     });
 

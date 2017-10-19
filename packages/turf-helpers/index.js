@@ -1,4 +1,70 @@
 /**
+ * Earth Radius used with the Harvesine formula and approximates using a spherical (non-ellipsoid) Earth.
+ */
+export var earthRadius = 6371008.8;
+
+/**
+ * Unit of measurement factors using a spherical (non-ellipsoid) earth radius.
+ */
+export var factors = {
+    meters: earthRadius,
+    metres: earthRadius,
+    millimeters: earthRadius * 1000,
+    millimetres: earthRadius * 1000,
+    centimeters: earthRadius * 100,
+    centimetres: earthRadius * 100,
+    kilometers: earthRadius / 1000,
+    kilometres: earthRadius / 1000,
+    miles: earthRadius / 1609.344,
+    nauticalmiles: earthRadius / 1852,
+    inches: earthRadius * 39.370,
+    yards: earthRadius / 1.0936,
+    feet: earthRadius * 3.28084,
+    radians: 1,
+    degrees: earthRadius / 111325,
+};
+
+/**
+ * Units of measurement factors based on 1 meter.
+ */
+export var unitsFactors = {
+    meters: 1,
+    metres: 1,
+    millimeters: 1000,
+    millimetres: 1000,
+    centimeters: 100,
+    centimetres: 100,
+    kilometers: 1 / 1000,
+    kilometres: 1 / 1000,
+    miles: 1 / 1609.344,
+    nauticalmiles: 1 / 1852,
+    inches: 39.370,
+    yards: 1 / 1.0936,
+    feet: 3.28084,
+    radians: 1 / earthRadius,
+    degrees: 1 / 111325,
+};
+
+/**
+ * Area of measurement factors based on 1 square meter.
+ */
+export var areaFactors = {
+    meters: 1,
+    metres: 1,
+    millimeters: 1000000,
+    millimetres: 1000000,
+    centimeters: 10000,
+    centimetres: 10000,
+    kilometers: 0.000001,
+    kilometres: 0.000001,
+    acres: 0.000247105,
+    miles: 3.86e-7,
+    yards: 1.195990046,
+    feet: 10.763910417,
+    inches: 1550.003100006
+};
+
+/**
  * Wraps a GeoJSON {@link Geometry} in a GeoJSON {@link Feature}.
  *
  * @name feature
@@ -322,37 +388,6 @@ export function geometryCollection(geometries, properties, bbox, id) {
     }, properties, bbox, id);
 }
 
-// https://en.wikipedia.org/wiki/Great-circle_distance#Radius_for_spherical_Earth
-var factors = {
-    miles: 3960,
-    nauticalmiles: 3441.145,
-    degrees: 57.2957795,
-    radians: 1,
-    inches: 250905600,
-    yards: 6969600,
-    meters: 6373000,
-    metres: 6373000,
-    centimeters: 6.373e+8,
-    centimetres: 6.373e+8,
-    kilometers: 6373,
-    kilometres: 6373,
-    feet: 20908792.65
-};
-
-var areaFactors = {
-    kilometers: 0.000001,
-    kilometres: 0.000001,
-    meters: 1,
-    metres: 1,
-    centimetres: 10000,
-    millimeter: 1000000,
-    acres: 0.000247105,
-    miles: 3.86e-7,
-    yards: 1.195990046,
-    feet: 10.763910417,
-    inches: 1550.003100006
-};
-
 /**
  * Round number to precision
  *
@@ -379,7 +414,7 @@ export function round(num, precision) {
  *
  * @name radiansToDistance
  * @param {number} radians in radians across the sphere
- * @param {string} [units="kilometers"] can be degrees, radians, miles, or kilometers inches, yards, metres, meters, kilometres, kilometers.
+ * @param {string} [units='kilometers'] can be degrees, radians, miles, or kilometers inches, yards, metres, meters, kilometres, kilometers.
  * @returns {number} distance
  */
 export function radiansToDistance(radians, units) {
@@ -397,7 +432,7 @@ export function radiansToDistance(radians, units) {
  *
  * @name distanceToRadians
  * @param {number} distance in real units
- * @param {string} [units=kilometers] can be degrees, radians, miles, or kilometers inches, yards, metres, meters, kilometres, kilometers.
+ * @param {string} [units='kilometers'] can be degrees, radians, miles, or kilometers inches, yards, metres, meters, kilometres, kilometers.
  * @returns {number} radians
  */
 export function distanceToRadians(distance, units) {
@@ -415,7 +450,7 @@ export function distanceToRadians(distance, units) {
  *
  * @name distanceToDegrees
  * @param {number} distance in real units
- * @param {string} [units=kilometers] can be degrees, radians, miles, or kilometers inches, yards, metres, meters, kilometres, kilometers.
+ * @param {string} [units='kilometers'] can be degrees, radians, miles, or kilometers inches, yards, metres, meters, kilometres, kilometers.
  * @returns {number} degrees
  */
 export function distanceToDegrees(distance, units) {
@@ -472,7 +507,7 @@ export function degrees2radians(degrees) {
  *
  * @param {number} distance to be converted
  * @param {string} originalUnit of the distance
- * @param {string} [finalUnit=kilometers] returned unit
+ * @param {string} [finalUnit='kilometers'] returned unit
  * @returns {number} the converted distance
  */
 export function convertDistance(distance, originalUnit, finalUnit) {
@@ -487,8 +522,8 @@ export function convertDistance(distance, originalUnit, finalUnit) {
  * Converts a area to the requested unit.
  * Valid units: kilometers, kilometres, meters, metres, centimetres, millimeter, acre, mile, yard, foot, inch
  * @param {number} area to be converted
- * @param {string} [originalUnit=meters] of the distance
- * @param {string} [finalUnit=kilometers] returned unit
+ * @param {string} [originalUnit='meters'] of the distance
+ * @param {string} [finalUnit='kilometers'] returned unit
  * @returns {number} the converted distance
  */
 export function convertArea(area, originalUnit, finalUnit) {
@@ -533,8 +568,3 @@ export function isNumber(num) {
 export function isObject(input) {
     return (!!input) && (input.constructor === Object);
 }
-
-/**
- * Earth Radius used with the Harvesine formula and approximates using a spherical (non-ellipsoid) Earth.
- */
-export var earthRadius = 6371008.8;

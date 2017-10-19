@@ -17,8 +17,9 @@ Takes a [line](http://geojson.org/geojson-spec.html#linestring) and returns a [p
 
 ```javascript
 var line = turf.lineString([[-83, 30], [-84, 36], [-78, 41]]);
+var options = {units: 'miles'};
 
-var along = turf.along(line, 200, 'miles');
+var along = turf.along(line, 200, options);
 
 //addToMap
 var addToMap = [along, line]

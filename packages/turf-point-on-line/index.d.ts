@@ -1,4 +1,4 @@
-import { Point, Feature, Units, Position, LineString, MultiLineString } from '@turf/helpers'
+import { Point, Feature, Units, Coord, LineString, MultiLineString } from '@turf/helpers'
 
 export interface PointOnLine extends Feature<Point> {
     properties: {
@@ -14,7 +14,7 @@ export interface PointOnLine extends Feature<Point> {
  */
 export default function pointOnLine<T extends MultiLineString | LineString>(
     line: Feature<T> | T,
-    point: Feature<Point> | Point | Position,
+    point: Coord,
     options?: {
         units?: Units
     }

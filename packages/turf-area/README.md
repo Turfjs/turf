@@ -8,7 +8,7 @@ Takes one or more features and returns their area in square meters.
 
 **Parameters**
 
--   `geojson` **([FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects) \| [Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;any>)** input GeoJSON feature(s)
+-   `geojson` **[GeoJSON](http://geojson.org/geojson-spec.html#geojson-objects)** input GeoJSON feature(s)
 
 **Examples**
 

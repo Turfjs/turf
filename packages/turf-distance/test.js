@@ -26,11 +26,11 @@ test('distance', t => {
         const pt1 = geojson.features[0];
         const pt2 = geojson.features[1];
         const distances = {
-            miles: distance(pt1, pt2, 'miles'),
-            nauticalmiles: distance(pt1, pt2, 'nauticalmiles'),
-            kilometers: distance(pt1, pt2, 'kilometers'),
-            radians: distance(pt1, pt2, 'radians'),
-            degrees: distance(pt1, pt2, 'degrees')
+            miles: distance(pt1, pt2, {units: 'miles'}),
+            nauticalmiles: distance(pt1, pt2, {units: 'nauticalmiles'}),
+            kilometers: distance(pt1, pt2, {units: 'kilometers'}),
+            radians: distance(pt1, pt2, {units: 'radians'}),
+            degrees: distance(pt1, pt2, {units: 'degrees'})
         };
         if (process.env.REGEN) write.sync(directories.out + name + '.json', distances);
         t.deepEqual(distances, load.sync(directories.out + name + '.json'), name);
@@ -45,6 +45,6 @@ test('distance -- Issue #758', t => {
 });
 
 test('distance -- throws', t => {
-    t.throws(() => distance(point([0, 0]), point([10, 10]), 'blah'), /units is invalid/);
+    t.throws(() => distance(point([0, 0]), point([10, 10]), {units: 'foo'}), /units is invalid/);
     t.end();
 });

@@ -10,14 +10,15 @@ Takes a [line](http://geojson.org/geojson-spec.html#linestring) and returns a [l
 
 -   `geojson` **([Geometry](http://geojson.org/geojson-spec.html#geometry) \| [Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;([LineString](http://geojson.org/geojson-spec.html#linestring) \| [MultiLineString](http://geojson.org/geojson-spec.html#multilinestring))>)** input GeoJSON
 -   `distance` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** distance to offset the line (can be of negative value)
--   `units` **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** can be degrees, radians, miles, kilometers, inches, yards, meters (optional, default `kilometers`)
+-   `options` **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)** Optional parameters (optional, default `{}`)
+    -   `options.units` **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** can be degrees, radians, miles, kilometers, inches, yards, meters (optional, default `'kilometers'`)
 
 **Examples**
 
 ```javascript
 var line = turf.lineString([[-83, 30], [-84, 36], [-78, 41]], { "stroke": "#F00" });
 
-var offsetLine = turf.lineOffset(line, 2, "miles");
+var offsetLine = turf.lineOffset(line, 2, {units: 'miles'});
 
 //addToMap
 var addToMap = [offsetLine, line]

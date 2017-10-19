@@ -1,4 +1,4 @@
-import {BBox, Polygon, FeatureCollection} from '@turf/helpers'
+import {BBox} from '@turf/helpers'
 import hexGrid from './'
 
 const bbox: BBox = [

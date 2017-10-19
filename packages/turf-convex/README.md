@@ -12,7 +12,7 @@ implements a [monotone chain hull](http://en.wikibooks.org/wiki/Algorithm_Implem
 
 **Parameters**
 
--   `feature` **([Feature](http://geojson.org/geojson-spec.html#feature-objects) \| [FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects))** input Feature or FeatureCollection
+-   `geojson` **[GeoJSON](http://geojson.org/geojson-spec.html#geojson-objects)** input Feature or FeatureCollection
 
 **Examples**
 

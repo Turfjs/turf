@@ -2,6 +2,7 @@ import centroid from '@turf/centroid';
 import rhumbBearing from '@turf/rhumb-bearing';
 import rhumbDistance from '@turf/rhumb-distance';
 import rhumbDestination from '@turf/rhumb-destination';
+import clone from '@turf/clone';
 import { coordEach } from '@turf/meta';
 import { getCoords } from '@turf/invariant';
 import { isObject } from '@turf/helpers';
@@ -44,7 +45,7 @@ function transformRotate(geojson, angle, options) {
     if (!pivot) pivot = centroid(geojson);
 
     // Clone geojson to avoid side effects
-    if (mutate === false || mutate === undefined) geojson = JSON.parse(JSON.stringify(geojson));
+    if (mutate === false || mutate === undefined) geojson = clone(geojson);
 
     // Rotate each coordinate
     coordEach(geojson, function (pointCoords) {

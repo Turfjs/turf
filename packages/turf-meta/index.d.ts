@@ -38,7 +38,7 @@ export function coordEach(
  * http://turfjs.org/docs/#propeach
  */
 export function propEach<Props extends Properties>(
-    geojson: Feature<any> | FeatureCollection<any>,
+    geojson: Feature<any> | FeatureCollection<any> | FeatureGeometryCollection,
     callback: (currentProperties: Props, featureIndex: number) => void
 ): void;
 
@@ -46,7 +46,7 @@ export function propEach<Props extends Properties>(
  * http://turfjs.org/docs/#propreduce
  */
 export function propReduce<Reducer extends any, Props extends Properties>(
-    geojson: Feature<any> | FeatureCollection<any>,
+    geojson: Feature<any> | FeatureCollection<any> | FeatureGeometryCollection,
     callback: (previousValue: Reducer, currentProperties: Props, featureIndex: number) => Reducer,
     initialValue?: Reducer
 ): Reducer;
@@ -136,8 +136,8 @@ export function segmentEach(
 /**
  * http://turfjs.org/docs/#linereduce
  */
-export function lineReduce<Reducer extends any, Geom extends LineString | MultiLineString | Polygon | MultiPolygon>(
-    geojson: Feature<Geom> | Geom,
+export function lineReduce<Reducer extends any>(
+    geojson: AllGeoJSON,
     callback: (previousValue?: Reducer, currentLine?: Feature<LineString>, featureIndex?: number, featureSubIndex?: number, lineIndex?: number) => Reducer,
     initialValue?: Reducer
 ): Reducer;
@@ -145,7 +145,15 @@ export function lineReduce<Reducer extends any, Geom extends LineString | MultiL
 /**
  * http://turfjs.org/docs/#lineeach
  */
-export function lineEach<Geom extends LineString | MultiLineString | Polygon | MultiPolygon>(
-    geojson: Feature<Geom> | Geom,
+export function lineEach<T extends LineString | MultiLineString | Polygon | MultiPolygon>(
+    geojson: Feature<T> | T,
+    callback: (currentLine?: Feature<LineString>, featureIndex?: number, featureSubIndex?: number, lineIndex?: number) => void
+): void;
+export function lineEach<Feat extends Feature<LineString>>(
+    geojson: Feat | ExtendedFeatureCollection<Feat>,
+    callback: (currentLine?: Feat, featureIndex?: number, featureSubIndex?: number, lineIndex?: number) => void
+): void;
+export function lineEach<Feat extends Feature<MultiLineString | Polygon | MultiPolygon>>(
+    geojson: Feat | ExtendedFeatureCollection<Feat>,
     callback: (currentLine?: Feature<LineString>, featureIndex?: number, featureSubIndex?: number, lineIndex?: number) => void
 ): void;

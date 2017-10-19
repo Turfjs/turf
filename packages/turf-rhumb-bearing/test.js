@@ -36,7 +36,7 @@ test('bearing', t => {
         const end = geojson.features[1];
 
         const initialBearing = rhumbBearing(start, end);
-        const finalBearing = rhumbBearing(start, end, true);
+        const finalBearing = rhumbBearing(start, end, {final: true});
 
         const result = {
             'initialBearing': initialBearing,

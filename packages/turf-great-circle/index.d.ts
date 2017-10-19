@@ -1,13 +1,13 @@
-import { Point, LineString, Feature, Position } from '@turf/helpers'
+import { LineString, Feature, Coord, Properties } from '@turf/helpers'
 
 /**
  * http://turfjs.org/docs/#greatcircle
  */
 export default function greatCircle(
-    start: Feature<Point> | Point | Position,
-    end: Feature<Point> | Point | Position,
+    start: Coord,
+    end: Coord,
     options?: {
-        properties?: object,
+        properties?: Properties,
         npoints?: number,
         offset?: number
     }

@@ -10,7 +10,8 @@ Takes a [Point](http://geojson.org/geojson-spec.html#point) and a [LineString](h
 
 -   `lines` **([Geometry](http://geojson.org/geojson-spec.html#geometry) \| [Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;([LineString](http://geojson.org/geojson-spec.html#linestring) \| [MultiLineString](http://geojson.org/geojson-spec.html#multilinestring))>)** lines to snap to
 -   `pt` **([Geometry](http://geojson.org/geojson-spec.html#geometry) \| [Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;[Point](http://geojson.org/geojson-spec.html#point)> | [Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)>)** point to snap from
--   `units` **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** can be degrees, radians, miles, or kilometers (optional, default `kilometers`)
+-   `options` **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)** Optional parameters (optional, default `{}`)
+    -   `options.units` **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** can be degrees, radians, miles, or kilometers (optional, default `'kilometers'`)
 
 **Examples**
 
@@ -25,7 +26,7 @@ var line = turf.lineString([
 ]);
 var pt = turf.point([-77.037076, 38.884017]);
 
-var snapped = turf.pointOnLine(line, pt, 'miles');
+var snapped = turf.pointOnLine(line, pt, {units: 'miles'});
 
 //addToMap
 var addToMap = [line, pt, snapped];
