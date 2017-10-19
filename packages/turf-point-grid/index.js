@@ -1,5 +1,4 @@
 import distance from '@turf/distance';
-import turfBBox from '@turf/bbox';
 import {point, featureCollection, isObject, isNumber} from '@turf/helpers';
 import inside from '@turf/inside';
 import {getType} from '@turf/invariant';
@@ -8,11 +7,11 @@ import {getType} from '@turf/invariant';
  * Creates a {@link Point} grid from a bounding box, {@link FeatureCollection} or {@link Feature}.
  *
  * @name pointGrid
- * @param {Array<number>|FeatureCollection|Feature<any>} bbox extent in [minX, minY, maxX, maxY] order
+ * @param {Array<number>} bbox extent in [minX, minY, maxX, maxY] order
  * @param {number} cellSide the distance between points, in units
  * @param {Object} [options={}] Optional parameters
  * @param {string} [options.units="kilometers"] used in calculating cellSide, can be degrees, radians, miles, or kilometers
- * @param {number} [options.bboxIsMask=false] if true, and bbox is a Polygon or MultiPolygon, the grid Point will be created
+ * @param {Feature<Polygon|MultiPolygon>} [options.mask=undefined] if passed a Polygon or MultiPolygon, the grid Points will be created only inside it
  * @param {Object} [options.properties={}] passed to each point of the grid
  * @returns {FeatureCollection<Point>} grid of points
  * @example
@@ -29,18 +28,17 @@ function pointGrid(bbox, cellSide, options) {
     options = options || {};
     if (!isObject(options)) throw new Error('options is invalid');
     var units = options.units;
-    var bboxIsMask = options.bboxIsMask || false;
-    var properties = options.properties || {};
+    var maskIsPoly = options.mask && (getType(options.mask) === 'Polygon' || getType(options.mask) === 'MultiPolygon');
+    var properties = (options.properties || {});
 
     // Containers
     var results = [];
-    var bboxMask = bbox;
 
     // validation
     if (cellSide === null || cellSide === undefined) throw new Error('cellSide is required');
     if (!isNumber(cellSide)) throw new Error('cellSide is invalid');
     if (!bbox) throw new Error('bbox is required');
-    if (!Array.isArray(bbox)) bbox = turfBBox(bbox); // Convert GeoJSON to bbox
+    if (!Array.isArray(bbox)) throw new Error('bbox must be array');
     if (bbox.length !== 4) throw new Error('bbox must contain 4 numbers');
 
     var west = bbox[0];
@@ -61,15 +59,13 @@ function pointGrid(bbox, cellSide, options) {
     var deltaX = (bboxWidth - columns * cellWidth) / 2;
     var deltaY = (bboxHeight - rows * cellHeight) / 2;
 
-    var bboxIsPoly = !Array.isArray(bboxMask) && (getType(bboxMask) === 'Polygon' || getType(bboxMask) === 'MultiPolygon');
-
     var currentX = west + deltaX;
     while (currentX <= east) {
         var currentY = south + deltaY;
         while (currentY <= north) {
             var pt = point([currentX, currentY], properties);
-            if (bboxIsMask === true && bboxIsPoly) {
-                if (inside(pt, bboxMask)) {
+            if (maskIsPoly) {
+                if (inside(pt, options.mask)) {
                     results.push(pt);
                 }
             } else {

@@ -1,12 +1,11 @@
 import distance from '@turf/distance';
-import turfBBox from '@turf/bbox';
 import {point, polygon, featureCollection, isObject, isNumber} from '@turf/helpers';
 
 /**
  * Creates a square grid from a bounding box, {@link Feature} or {@link FeatureCollection}.
  *
  * @name squareGrid
- * @param {Array<number>|FeatureCollection|Feature<any>} bbox extent in [minX, minY, maxX, maxY] order
+ * @param {Array<number>} bbox extent in [minX, minY, maxX, maxY] order
  * @param {number} cellSide of each cell, in units
  * @param {Object} [options={}] Optional parameters
  * @param {string} [options.units='kilometers'] used in calculating cellSize, can be degrees, radians, miles, or kilometers
@@ -35,7 +34,7 @@ function squareGrid(bbox, cellSide, options) {
     if (cellSide === null || cellSide === undefined) throw new Error('cellSide is required');
     if (!isNumber(cellSide)) throw new Error('cellSide is invalid');
     if (!bbox) throw new Error('bbox is required');
-    if (!Array.isArray(bbox)) bbox = turfBBox(bbox); // Convert GeoJSON to bbox
+    if (!Array.isArray(bbox)) throw new Error('bbox must be array');
     if (bbox.length !== 4) throw new Error('bbox must contain 4 numbers');
 
     var west = bbox[0];
