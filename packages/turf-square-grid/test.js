@@ -3,6 +3,8 @@ import test from 'tape';
 import path from 'path';
 import load from 'load-json-file';
 import write from 'write-json-file';
+import bboxPoly from '@turf/bbox-polygon';
+import turfBbox from '@turf/bbox';
 import squareGrid from '.';
 
 const directories = {
@@ -14,24 +16,25 @@ let fixtures = fs.readdirSync(directories.in).map(filename => {
     return {
         filename,
         name: path.parse(filename).name,
-        geojson: load.sync(directories.in + filename)
+        json: load.sync(directories.in + filename)
     };
 });
 
 test('square-grid', t => {
-    for (const {name, geojson} of fixtures) {
-        const {cellSide, units, props} = geojson.properties;
-        const result = squareGrid(geojson, cellSide, {
-            units: units,
-            properties: props,
+    for (const {name, json} of fixtures) {
+        const {bbox, cellSide, units, properties} = json;
+        const result = squareGrid(bbox, cellSide, {
+            units, properties,
         });
+
         // Add styled GeoJSON to the result
-        geojson.properties = {
+        const poly = bboxPoly(bbox);
+        poly.properties = {
             stroke: '#F00',
             'stroke-width': 6,
             'fill-opacity': 0
         };
-        result.features.push(geojson);
+        result.features.push(poly);
 
         if (process.env.REGEN) write.sync(directories.out + name + '.geojson', result);
         t.deepEqual(result, load.sync(directories.out + name + '.geojson'), name);
