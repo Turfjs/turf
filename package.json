@@ -65,6 +65,8 @@
     "load-json-file": "*",
     "meow": "*",
     "progress": "*",
+    "rollup-plugin-node-resolve": "*",
+    "rollup-plugin-uglify-es": "*",
     "tape": "*",
     "typescript": "*"
   },

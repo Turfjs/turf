@@ -1,4 +1,6 @@
-var jsts = require('jsts');
+import GeoJSONReader from 'jsts/org/locationtech/jts/io/GeoJSONReader';
+import GeoJSONWriter from 'jsts/org/locationtech/jts/io/GeoJSONWriter';
+import UnionOp from 'jsts/org/locationtech/jts/operation/union/UnionOp';
 
 /**
  * Takes two or more {@link Polygon|polygons} and returns a combined polygon. If the input polygons are not contiguous, this function returns a {@link MultiPolygon} feature.
@@ -28,14 +30,14 @@ var jsts = require('jsts');
  * var addToMap = [poly1, poly2, union];
  */
 function union() {
-    var reader = new jsts.io.GeoJSONReader();
+    var reader = new GeoJSONReader();
     var result = reader.read(JSON.stringify(arguments[0].geometry));
 
     for (var i = 1; i < arguments.length; i++) {
-        result = result.union(reader.read(JSON.stringify(arguments[i].geometry)));
+        result = UnionOp.union(result, reader.read(JSON.stringify(arguments[i].geometry)));
     }
 
-    var writer = new jsts.io.GeoJSONWriter();
+    var writer = new GeoJSONWriter();
     result = writer.write(result);
 
     return {
