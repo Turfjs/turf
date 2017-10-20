@@ -31,6 +31,10 @@ function updateDependencies(pckg) {
             case '@turf/line-segment':
             case '@turf/helpers':
             case '@turf/invariant':
+            case '@turf/bbox-polygon':
+            case '@turf/envelope':
+            case '@turf/inside':
+            case '@turf/polygonize':
             case '@turf/meta':
             case '@turf/line-overlap':
                 dependencies[name] = '^5.0.0';

@@ -41,7 +41,7 @@
   },
   "dependencies": {
     "@turf/helpers": "^5.0.0",
-    "@turf/inside": "^4.7.3"
+    "@turf/inside": "^5.0.0"
   },
   "@std/esm": {
     "esm": "js",

@@ -50,7 +50,7 @@
     "@turf/bbox": "^5.0.0",
     "@turf/boolean-point-on-line": "^4.7.3",
     "@turf/helpers": "^5.0.0",
-    "@turf/inside": "^4.7.3",
+    "@turf/inside": "^5.0.0",
     "@turf/invariant": "^5.0.0"
   },
   "@std/esm": {
