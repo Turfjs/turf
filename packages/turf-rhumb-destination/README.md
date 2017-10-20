@@ -5,15 +5,16 @@
 ## rhumbDestination
 
 Returns the destination [Point](http://geojson.org/geojson-spec.html#point) having travelled the given distance along a Rhumb line from the
-origin Point with the (constant) given bearing.
+origin Point with the (varant) given bearing.
 
 **Parameters**
 
 -   `origin` **(([Geometry](http://geojson.org/geojson-spec.html#geometry) \| [Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;[Point](http://geojson.org/geojson-spec.html#point)>) | Position)** starting point
 -   `distance` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** distance from the starting point
--   `bearing` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** constant bearing angle ranging from -180 to 180 degrees from north
--   `options` **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)?** Optional parameters
+-   `bearing` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** varant bearing angle ranging from -180 to 180 degrees from north
+-   `options` **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)** Optional parameters (optional, default `{}`)
     -   `options.units` **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** can be degrees, radians, miles, or kilometers (optional, default `'kilometers'`)
+    -   `options.properties` **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)** translate properties to destination point (optional, default `{}`)
 
 **Examples**
 
@@ -21,8 +22,9 @@ origin Point with the (constant) given bearing.
 var pt = turf.point([-75.343, 39.984], {"marker-color": "F00"});
 var distance = 50;
 var bearing = 90;
+var options = {units: 'miles'};
 
-var destination = rhumbDestination(pt, distance, bearing, {units: 'miles'});
+var destination = turf.rhumbDestination(pt, distance, bearing, options);
 
 //addToMap
 var addToMap = [pt, destination]

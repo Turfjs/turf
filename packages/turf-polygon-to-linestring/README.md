@@ -9,7 +9,8 @@ Converts a [Polygon](http://geojson.org/geojson-spec.html#polygon) to [(Multi)Li
 **Parameters**
 
 -   `polygon` **[Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;([Polygon](http://geojson.org/geojson-spec.html#polygon) \| [MultiPolygon](http://geojson.org/geojson-spec.html#multipolygon))>** Feature to convert
--   `properties` **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)** translates GeoJSON properties to Feature (optional, default `{}`)
+-   `options` **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)** Optional parameters (optional, default `{}`)
+    -   `options.properties` **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)** translates GeoJSON properties to Feature (optional, default `{}`)
 
 **Examples**
 

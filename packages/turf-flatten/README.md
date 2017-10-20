@@ -8,7 +8,7 @@ Flattens any [GeoJSON](http://geojson.org/geojson-spec.html#geojson-objects) to 
 
 **Parameters**
 
--   `geojson` **([FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects) \| [Geometry](http://geojson.org/geojson-spec.html#geometry) \| [Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;any>)** any valid GeoJSON Object
+-   `geojson` **[GeoJSON](http://geojson.org/geojson-spec.html#geojson-objects)** any valid GeoJSON Object
 
 **Examples**
 

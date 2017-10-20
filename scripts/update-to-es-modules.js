@@ -38,6 +38,9 @@ function updateDependencies(pckg) {
             case 'jsts':
                 dependencies[name] = '1.4.0';
                 break;
+            case 'geojson-rbush':
+                dependencies[name] = '2.1.0';
+                break;
             default:
                 dependencies[name] = version;
             }
@@ -94,8 +97,8 @@ glob.sync(path.join(__dirname, '..', 'packages', 'turf-*', 'package.json')).forE
         types: 'index.d.ts',
         files: [...files],
         scripts: {
+            'pretest': 'rollup -c ../../rollup.config.js',
             'test': 'node -r @std/esm test.js',
-            'posttest': 'rollup -c ../../rollup.config.js',
             'bench': 'node -r @std/esm bench.js'
         },
         repository: {

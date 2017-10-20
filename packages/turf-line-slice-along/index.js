@@ -15,7 +15,7 @@ import { lineString, isObject } from '@turf/helpers';
  * @param {number} startDist distance along the line to starting point
  * @param {number} stopDist distance along the line to ending point
  * @param {Object} [options={}] Optional parameters
- * @param {string} [units='kilometers'] can be degrees, radians, miles, or kilometers
+ * @param {string} [options.units='kilometers'] can be degrees, radians, miles, or kilometers
  * @returns {Feature<LineString>} sliced line
  * @example
  * var line = turf.lineString([[7, 45], [9, 45], [14, 40], [14, 41]]);
@@ -30,7 +30,6 @@ function lineSliceAlong(line, startDist, stopDist, options) {
     // Optional parameters
     options = options || {};
     if (!isObject(options)) throw new Error('options is invalid');
-    var units = options.units;
 
     var coords;
     var slice = [];
@@ -51,7 +50,7 @@ function lineSliceAlong(line, startDist, stopDist, options) {
                 return lineString(slice);
             }
             direction = bearing(coords[i], coords[i - 1]) - 180;
-            interpolated = destination(coords[i], overshot, direction, units);
+            interpolated = destination(coords[i], overshot, direction, options);
             slice.push(interpolated.geometry.coordinates);
         }
 
@@ -62,7 +61,7 @@ function lineSliceAlong(line, startDist, stopDist, options) {
                 return lineString(slice);
             }
             direction = bearing(coords[i], coords[i - 1]) - 180;
-            interpolated = destination(coords[i], overshot, direction, units);
+            interpolated = destination(coords[i], overshot, direction, options);
             slice.push(interpolated.geometry.coordinates);
             return lineString(slice);
         }
@@ -75,7 +74,7 @@ function lineSliceAlong(line, startDist, stopDist, options) {
             return lineString(slice);
         }
 
-        travelled += distance(coords[i], coords[i + 1], units);
+        travelled += distance(coords[i], coords[i + 1], options);
     }
     return lineString(coords[coords.length - 1]);
 }

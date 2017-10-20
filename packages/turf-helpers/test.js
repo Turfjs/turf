@@ -19,7 +19,9 @@ import {
     convertArea,
     round,
     isObject,
-    isNumber } from './index';
+    isNumber,
+    earthRadius
+} from './';
 
 test('point', t => {
     const ptArray = point([5, 10], {name: 'test point'});
@@ -308,24 +310,24 @@ test('geometrycollection', t => {
 
 test('radiansToDistance', t => {
     t.equal(radiansToDistance(1, 'radians'), 1);
-    t.equal(radiansToDistance(1, 'kilometers'), 6373);
-    t.equal(radiansToDistance(1, 'miles'), 3960);
+    t.equal(radiansToDistance(1, 'kilometers'), earthRadius / 1000);
+    t.equal(radiansToDistance(1, 'miles'), earthRadius / 1609.344);
     t.throws(() => radiansToDistance(1, 'foo'), 'invalid units');
     t.end();
 });
 
 test('distanceToRadians', t => {
     t.equal(distanceToRadians(1, 'radians'), 1);
-    t.equal(distanceToRadians(6373, 'kilometers'), 1);
-    t.equal(distanceToRadians(3960, 'miles'), 1);
+    t.equal(distanceToRadians(earthRadius / 1000, 'kilometers'), 1);
+    t.equal(distanceToRadians(earthRadius / 1609.344, 'miles'), 1);
     t.throws(() => distanceToRadians(1, 'foo'), 'invalid units');
     t.end();
 });
 
 test('distanceToDegrees', t => {
     t.equal(distanceToDegrees(1, 'radians'), 57.29577951308232);
-    t.equal(distanceToDegrees(100, 'kilometers'), 0.8990393772647469);
-    t.equal(distanceToDegrees(10, 'miles'), 0.14468631190172304);
+    t.equal(distanceToDegrees(100, 'kilometers'), 0.899320363724538);
+    t.equal(distanceToDegrees(10, 'miles'), 0.1447315831437903);
     t.throws(() => distanceToRadians(1, 'foo'), 'invalid units');
     t.end();
 });
@@ -364,10 +366,10 @@ test('round', t => {
 
 test('convertDistance', t => {
     t.equal(convertDistance(1000, 'meters'), 1);
-    t.equal(convertDistance(1, 'kilometers', 'miles'), 0.6213714106386318);
-    t.equal(convertDistance(1, 'miles', 'kilometers'), 1.6093434343434343);
-    t.equal(convertDistance(1, 'nauticalmiles'), 1.851999843075488);
-    t.equal(convertDistance(1, 'meters', 'centimeters'), 100);
+    t.equal(convertDistance(1, 'kilometers', 'miles'), 0.621371192237334);
+    t.equal(convertDistance(1, 'miles', 'kilometers'), 1.609344);
+    t.equal(convertDistance(1, 'nauticalmiles'), 1.852);
+    t.equal(convertDistance(1, 'meters', 'centimeters'), 100.00000000000001);
     t.throws(() => convertDistance(1, 'foo'), 'invalid units');
     t.end();
 });

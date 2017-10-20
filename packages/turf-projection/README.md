@@ -8,7 +8,7 @@ Converts a WGS84 GeoJSON object into Mercator (EPSG:900913) projection
 
 **Parameters**
 
--   `geojson` **[GeoJSON](http://geojson.org/geojson-spec.html#geojson-objects)** WGS84 GeoJSON object
+-   `geojson` **([GeoJSON](http://geojson.org/geojson-spec.html#geojson-objects) | Position)** WGS84 GeoJSON object
 -   `options` **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)?** Optional parameters
     -   `options.mutate` **[boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** allows GeoJSON input to be mutated (significant performance increase if true) (optional, default `false`)
 
@@ -30,7 +30,7 @@ Converts a Mercator (EPSG:900913) GeoJSON object into WGS84 projection
 
 **Parameters**
 
--   `geojson` **[GeoJSON](http://geojson.org/geojson-spec.html#geojson-objects)** Mercator GeoJSON object
+-   `geojson` **([GeoJSON](http://geojson.org/geojson-spec.html#geojson-objects) | Position)** Mercator GeoJSON object
 -   `options` **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)?** Optional parameters
     -   `options.mutate` **[boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** allows GeoJSON input to be mutated (significant performance increase if true) (optional, default `false`)
 

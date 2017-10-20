@@ -12,7 +12,8 @@ export type Coord = Feature<Point> | Point | Position;
 export type Units = 'miles' | 'nauticalmiles' | 'degrees' | 'radians' | 'inches' | 'yards' | 'meters' | 'metres' | 'kilometers' | 'kilometres';
 export type Geometry = 'Point' | 'LineString' | 'Polygon' | 'MultiPoint' | 'MultiLineString' | 'MultiPolygon';
 export type Grid = 'point' | 'square' | 'hex' | 'triangle';
-export type Types = Geometry | 'Feature' | 'FeatureCollection'
+export type Collection = 'FeatureCollection' | 'GeometryCollection';
+export type Types = 'Feature' | Geometry | Collection;
 export type Corners = 'sw' | 'se' | 'nw' | 'ne' | 'center' | 'centroid';
 
 
@@ -24,6 +25,7 @@ export type MultiLineString = GeoJSON.MultiLineString;
 export type LineString = GeoJSON.LineString;
 export type Polygon = GeoJSON.Polygon;
 export type MultiPolygon = GeoJSON.MultiPolygon;
+export type Geometries = Point | MultiPoint | LineString | MultiLineString | Polygon | MultiPolygon;
 export type GeometryObject = GeoJSON.GeometryObject;
 export type GeometryCollection = GeoJSON.GeometryCollection;
 
@@ -155,3 +157,50 @@ export function isObject(input: any): boolean
  * Earth Radius used with the Harvesine formula and approximates using a spherical (non-ellipsoid) Earth.
  */
 export const earthRadius: number;
+
+/**
+ * Unit of measurement factors using a spherical (non-ellipsoid) earth radius.
+ */
+export const factors: {
+    meters: number
+    millimeters: number
+    centimeters: number
+    kilometers: number
+    miles: number
+    nauticalmiles: number
+    inches: number
+    yards: number
+    feet: number
+}
+
+/**
+ * Units of measurement factors based on 1 meter.
+ */
+export const unitsFactors: {
+    meters: number
+    millimeters: number
+    centimeters: number
+    kilometers: number
+    miles: number
+    nauticalmiles: number
+    inches: number
+    yards: number
+    feet: number
+    radians: number
+    degrees: number
+};
+
+/**
+ * Area of measurement factors based on 1 square meter.
+ */
+export const areaFactors: {
+    meters: number
+    millimeters: number
+    centimeters: number
+    kilometers: number
+    acres: number
+    miles: number
+    yards: number
+    feet: number
+    inches: number
+};

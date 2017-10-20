@@ -12,8 +12,8 @@
     "main.js"
   ],
   "scripts": {
+    "pretest": "rollup -c ../../rollup.config.js",
     "test": "node -r @std/esm test.js",
-    "posttest": "rollup -c ../../rollup.config.js",
     "bench": "node -r @std/esm bench.js"
   },
   "repository": {
@@ -48,6 +48,7 @@
     "@std/esm": "*"
   },
   "dependencies": {
+    "@turf/clone": "^4.7.3",
     "@turf/helpers": "^5.0.0",
     "@turf/invariant": "^5.0.0",
     "@turf/meta": "^5.0.0",

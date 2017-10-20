@@ -8,14 +8,15 @@ Takes a [GeoJSON](http://geojson.org/geojson-spec.html#geojson-objects) and meas
 
 **Parameters**
 
--   `geojson` **([FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects) \| [Feature](http://geojson.org/geojson-spec.html#feature-objects) \| [Geometry](http://geojson.org/geojson-spec.html#geometry))** GeoJSON to measure
--   `units` **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** can be degrees, radians, miles, or kilometers (optional, default `kilometers`)
+-   `geojson` **[GeoJSON](http://geojson.org/geojson-spec.html#geojson-objects)** GeoJSON to measure
+-   `options` **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)** Optional parameters (optional, default `{}`)
+    -   `options.units` **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** can be degrees, radians, miles, or kilometers (optional, default `kilometers`)
 
 **Examples**
 
 ```javascript
 var line = turf.lineString([[115, -32], [131, -22], [143, -25], [150, -34]]);
-var length = turf.lineDistance(line, 'miles');
+var length = turf.lineDistance(line, {units: 'miles'});
 
 //addToMap
 var addToMap = [line];

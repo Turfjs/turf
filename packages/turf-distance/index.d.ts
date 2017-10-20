@@ -1,11 +1,11 @@
-import { Units, Point, Feature, Position } from '@turf/helpers'
+import { Units, Coord } from '@turf/helpers'
 
 /**
  * http://turfjs.org/docs/#distance
  */
 export default function distance(
-    from: Feature<Point> | Point | Position,
-    to: Feature<Point> | Point | Position,
+    from: Coord,
+    to: Coord,
     options?: {
         units?: Units
     }

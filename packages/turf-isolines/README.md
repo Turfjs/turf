@@ -11,10 +11,11 @@ value breaks and generates [isolines](http://en.wikipedia.org/wiki/Isoline).
 
 -   `pointGrid` **[FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects)&lt;[Point](http://geojson.org/geojson-spec.html#point)>** input points
 -   `breaks` **[Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)>** values of `zProperty` where to draw isolines
--   `zProperty` **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** the property name in `points` from which z-values will be pulled (optional, default `'elevation'`)
--   `propertiesToAllIsolines` **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)** GeoJSON properties passed to ALL isolines (optional, default `{}`)
--   `propertiesPerIsoline` **[Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)>** GeoJSON properties passed, in order, to the correspondent isoline;
-    the breaks array will define the order in which the isolines are created (optional, default `[]`)
+-   `options` **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)** Optional parameters (optional, default `{}`)
+    -   `options.zProperty` **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** the property name in `points` from which z-values will be pulled (optional, default `'elevation'`)
+    -   `options.commonProperties` **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)** GeoJSON properties passed to ALL isolines (optional, default `{}`)
+    -   `options.breaksProperties` **[Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)>** GeoJSON properties passed, in order, to the correspondent isoline;
+        the breaks array will define the order in which the isolines are created (optional, default `[]`)
 
 **Examples**
 
@@ -22,14 +23,13 @@ value breaks and generates [isolines](http://en.wikipedia.org/wiki/Isoline).
 // create a grid of points with random z-values in their properties
 var extent = [0, 30, 20, 50];
 var cellWidth = 100;
-var units = 'miles';
-var pointGrid = turf.pointGrid(extent, cellWidth, units);
+var pointGrid = turf.pointGrid(extent, cellWidth, {units: 'miles'});
 for (var i = 0; i < pointGrid.features.length; i++) {
     pointGrid.features[i].properties.temperature = Math.random() * 10;
 }
 var breaks = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
-var isolines = turf.isolines(pointGrid, breaks, 'temperature');
+var isolines = turf.isolines(pointGrid, breaks, {zProperty: 'temperature'});
 
 //addToMap
 var addToMap = [isolines];

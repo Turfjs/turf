@@ -1,6 +1,6 @@
-var along = require('./');
-var Benchmark = require('benchmark');
-var fs = require('fs');
+import fs from 'fs';
+import Benchmark from 'benchmark';
+import along from './';
 
 var line = {
   type: "Feature",
@@ -59,6 +59,6 @@ suite
     console.log(String(event.target));
   })
   .on('complete', function () {
-    
+
   })
   .run();

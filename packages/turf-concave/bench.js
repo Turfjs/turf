@@ -1,8 +1,8 @@
-const fs = require('fs');
-const path = require('path');
-const load = require('load-json-file');
-const Benchmark = require('benchmark');
-const concave = require('./');
+import fs from 'fs';
+import path from 'path';
+import load from 'load-json-file';
+import Benchmark from 'benchmark';
+import concave from './';
 
 const directory = path.join(__dirname, 'test', 'in') + path.sep;
 const fixtures = fs.readdirSync(directory).map(filename => {
@@ -24,27 +24,28 @@ const fixtures = fs.readdirSync(directory).map(filename => {
  * pts3: 0.375ms
  */
 for (const {name, geojson} of fixtures) {
-    const {maxEdge, units} = geojson.properties || {maxEdge: 1};
     console.time(name);
-    concave(geojson, maxEdge, units);
+    concave(geojson, geojson.properties);
     console.timeEnd(name);
 }
 
 /**
  * Benchmark Results
  *
- * concave-hull x 812 ops/sec ±4.31% (83 runs sampled)
- * fiji x 2,640 ops/sec ±0.96% (90 runs sampled)
- * hole x 1,071 ops/sec ±1.15% (89 runs sampled)
- * issue-333 x 240 ops/sec ±3.62% (78 runs sampled)
- * pts1 x 4,003 ops/sec ±2.25% (84 runs sampled)
- * pts2 x 182 ops/sec ±1.95% (77 runs sampled)
- * pts3 x 11,262 ops/sec ±3.38% (83 runs sampled)
+ * concave-hull x 616 ops/sec ±5.02% (77 runs sampled)
+ * fiji x 1,815 ops/sec ±5.09% (80 runs sampled)
+ * hole x 801 ops/sec ±2.29% (84 runs sampled)
+ * issue-333 x 163 ops/sec ±10.20% (67 runs sampled)
+ * pts1 x 2,697 ops/sec ±5.40% (79 runs sampled)
+ * pts2 x 148 ops/sec ±2.66% (73 runs sampled)
+ * pts3 x 6,938 ops/sec ±6.21% (71 runs sampled)
+ * support-null-geometry x 3,110 ops/sec ±4.75% (74 runs sampled)
  */
 const suite = new Benchmark.Suite('turf-transform-scale');
 for (const {name, geojson} of fixtures) {
-    const {maxEdge, units} = geojson.properties || {maxEdge: 1};
-    suite.add(name, () => concave(geojson, maxEdge, units));
+    const options = geojson.properties;
+    options.mutate = true;
+    suite.add(name, () => concave(geojson, options));
 }
 
 suite

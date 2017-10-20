@@ -1,6 +1,7 @@
 import { coordEach } from '@turf/meta';
 import { isObject } from '@turf/helpers';
 import { getCoords } from '@turf/invariant';
+import clone from '@turf/clone';
 import rhumbDestination from '@turf/rhumb-destination';
 
 /**
@@ -50,11 +51,11 @@ function transformTranslate(geojson, distance, direction, options) {
     }
 
     // Clone geojson to avoid side effects
-    if (mutate === false || mutate === undefined) geojson = JSON.parse(JSON.stringify(geojson));
+    if (mutate === false || mutate === undefined) geojson = clone(geojson);
 
     // Translate each coordinate
     coordEach(geojson, function (pointCoords) {
-        var newCoords = getCoords(rhumbDestination(pointCoords, distance, direction, units));
+        var newCoords = getCoords(rhumbDestination(pointCoords, distance, direction, {units: units}));
         pointCoords[0] = newCoords[0];
         pointCoords[1] = newCoords[1];
         if (zTranslation && pointCoords.length === 3) pointCoords[2] += zTranslation;

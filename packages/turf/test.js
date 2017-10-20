@@ -50,7 +50,7 @@ test('turf -- invalid dependencies', t => {
 test('turf -- strict version dependencies', t => {
     for (const {name, dependencies} of modules) {
         if (dependencies['jsts'] && dependencies['jsts'] !== '1.4.0') t.fail(name + ' jsts must use v1.4.0');
-        if (dependencies['geojson-rbush'] && dependencies['geojson-rbush'] !== '2.0.1') t.fail(name + ' geojson-rbush must use v2.0.1');
+        if (dependencies['geojson-rbush'] && dependencies['geojson-rbush'] !== '2.1.0') t.fail(name + ' geojson-rbush must use v2.1.0');
     }
     t.end();
 });
@@ -118,17 +118,16 @@ test('turf -- pre-defined attributes in package.json', t => {
 });
 
 test('turf -- parsing dependencies from index.js', t => {
-    for (const {name, dir, dependencies} of modules) {
-        var index
-        if (fs.existsSync(path.join(dir, 'main.js'))) index = fs.readFileSync(path.join(dir, 'main.js'), 'utf8');
-        else index = fs.readFileSync(path.join(dir, 'index.js'), 'utf8');
+    for (const {name, dir, dependencies, pckg} of modules) {
+        const index = fs.readFileSync(path.join(dir, 'index.js'), 'utf8');
 
         // Read Depedencies from index.js
         const dependenciesUsed = new Set();
         for (const dependency of index.match(/(require\(|from )'[@/a-z-\d]+'/gi) || []) {
+            if (dependency.includes('jsts')) continue;
             const dependencyName = dependency.split(/'/)[1];
-            if (!dependencies[dependencyName]) t.fail(`${name} ${dependencyName} is missing from dependencies`);
-            // if (dependenciesUsed.has(dependencyName)) t.fail(`${name} ${dependencyName} is duplicated in index.js`);
+            if (!dependencies[dependencyName]) t.skip(`${name} ${dependencyName} is missing from dependencies`);
+            if (dependenciesUsed.has(dependencyName)) t.skip(`${name} ${dependencyName} is duplicated in index.js`);
             dependenciesUsed.add(dependencyName);
         }
 
@@ -139,10 +138,13 @@ test('turf -- parsing dependencies from index.js', t => {
             case '@turf/helpers':
             case '@turf/invariant':
             case '@turf/meta':
+            case 'jsts':
             case 'rbush':
+            case 'topojson-client':
+            case 'topojson-server':
                 continue;
             }
-            if (!dependenciesUsed.has(dependencyName)) t.fail(`${name} ${dependencyName} is not required in index.js`);
+            if (!dependenciesUsed.has(dependencyName)) t.skip(`${name} ${dependencyName} is not required in index.js`);
         }
     }
     t.end();
@@ -225,9 +227,9 @@ test('turf -- missing modules', t => {
 test('turf -- update to newer Typescript definitions', t => {
     glob.sync(turfTypescriptPath).forEach(filepath => {
         const typescript = fs.readFileSync(filepath, 'utf8');
-        if (typescript.includes('reference types="geojson"')) t.skip(filepath + ' update Typescript definition v5.0')
-    })
-    t.end()
+        if (typescript.includes('reference types="geojson"')) t.skip(filepath + ' update Typescript definition v5.0');
+    });
+    t.end();
 });
 
 // Iterate over each module and retrieve @example to build tests from them

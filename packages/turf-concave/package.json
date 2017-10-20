@@ -9,11 +9,14 @@
   "files": [
     "index.js",
     "index.d.ts",
-    "main.js"
+    "main.js",
+    "turf-dissolve.js",
+    "turf-line-dissolve.js",
+    "turf-polygon-dissolve.js"
   ],
   "scripts": {
+    "pretest": "rollup -c ../../rollup.config.js",
     "test": "node -r @std/esm test.js",
-    "posttest": "rollup -c ../../rollup.config.js",
     "bench": "node -r @std/esm bench.js"
   },
   "repository": {
@@ -44,19 +47,22 @@
   },
   "homepage": "https://github.com/Turfjs/turf",
   "devDependencies": {
+    "@std/esm": "*",
     "benchmark": "*",
     "load-json-file": "*",
-    "tape": "*",
-    "write-json-file": "*",
     "rollup": "*",
-    "@std/esm": "*"
+    "tape": "*",
+    "write-json-file": "*"
   },
   "dependencies": {
+    "@turf/clone": "^4.7.3",
     "@turf/distance": "^5.0.0",
     "@turf/helpers": "^5.0.0",
+    "@turf/invariant": "^5.0.0",
     "@turf/meta": "^5.0.0",
     "@turf/tin": "^4.7.3",
-    "geojson-dissolve": "3.1.0"
+    "topojson-client": "^3.0.0",
+    "topojson-server": "^3.0.0"
   },
   "@std/esm": {
     "esm": "js",

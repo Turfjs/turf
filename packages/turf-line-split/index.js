@@ -1,12 +1,12 @@
-import { featureEach, featureReduce} from '@turf/meta';
 import rbush from 'geojson-rbush';
-import { lineString, featureCollection } from '@turf/helpers';
 import flatten from '@turf/flatten';
 import truncate from '@turf/truncate';
-import { getCoords, getType } from '@turf/invariant';
 import lineSegment from '@turf/line-segment';
 import pointOnLine from '@turf/point-on-line';
 import lineIntersect from '@turf/line-intersect';
+import { getCoords, getType } from '@turf/invariant';
+import { featureEach, featureReduce} from '@turf/meta';
+import { lineString, featureCollection } from '@turf/helpers';
 
 /**
  * Split a LineString by another GeoJSON Feature.

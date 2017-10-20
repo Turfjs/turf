@@ -8,7 +8,7 @@ Takes a feature or set of features and returns all positions as [points](http://
 
 **Parameters**
 
--   `geojson` **([FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects) \| [Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;any>)** input features
+-   `geojson` **[GeoJSON](http://geojson.org/geojson-spec.html#geojson-objects)** input features
 
 **Examples**
 

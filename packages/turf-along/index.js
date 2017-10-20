@@ -1,7 +1,7 @@
 import bearing from '@turf/bearing';
 import destination from '@turf/destination';
 import measureDistance from '@turf/distance';
-import { point, isNumber } from '@turf/helpers';
+import { point, isNumber, isObject } from '@turf/helpers';
 
 /**
  * Takes a {@link LineString|line} and returns a {@link Point|point} at a specified distance along the line.
@@ -14,15 +14,17 @@ import { point, isNumber } from '@turf/helpers';
  * @returns {Feature<Point>} Point `distance` `units` along the line
  * @example
  * var line = turf.lineString([[-83, 30], [-84, 36], [-78, 41]]);
+ * var options = {units: 'miles'};
  *
- * var along = turf.along(line, 200, 'miles');
+ * var along = turf.along(line, 200, options);
  *
  * //addToMap
  * var addToMap = [along, line]
  */
 function along(line, distance, options) {
-    // Backwards compatible with v4.0
-    var units = (typeof options === 'object') ? options.units : options;
+    // Optional parameters
+    options = options || {};
+    if (!isObject(options)) throw new Error('options is invalid');
 
     // Validation
     var coords;
@@ -39,11 +41,11 @@ function along(line, distance, options) {
             if (!overshot) return point(coords[i]);
             else {
                 var direction = bearing(coords[i], coords[i - 1]) - 180;
-                var interpolated = destination(coords[i], overshot, direction, units);
+                var interpolated = destination(coords[i], overshot, direction, options);
                 return interpolated;
             }
         } else {
-            travelled += measureDistance(coords[i], coords[i + 1], units);
+            travelled += measureDistance(coords[i], coords[i + 1], options);
         }
     }
     return point(coords[coords.length - 1]);

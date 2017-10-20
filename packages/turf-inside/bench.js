@@ -1,8 +1,7 @@
-var inside = require('./');
-var fs = require('fs');
-var Benchmark = require('benchmark');
-var point = require('@turf/helpers').point;
-var polygon = require('@turf/helpers').polygon;
+import fs from 'fs';
+import Benchmark from 'benchmark';
+import { point, polygon } from '@turf/helpers';
+import inside from './';
 
 var poly = polygon([[[0, 0], [0, 100], [100, 100], [100, 0], [0, 0]]]);
 var ptIn = point([50, 50]);

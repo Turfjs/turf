@@ -1,4 +1,6 @@
-var jsts = require('jsts');
+import GeoJSONReader from 'jsts/org/locationtech/jts/io/GeoJSONReader';
+import GeoJSONWriter from 'jsts/org/locationtech/jts/io/GeoJSONWriter';
+import OverlayOp from 'jsts/org/locationtech/jts/operation/overlay/OverlayOp';
 import area from '@turf/area';
 import { feature } from '@turf/helpers';
 import { getGeom } from '@turf/invariant';
@@ -50,12 +52,12 @@ function difference(polygon1, polygon2) {
     if (!geom2) return feature(geom1, properties);
 
     // JSTS difference operation
-    var reader = new jsts.io.GeoJSONReader();
+    var reader = new GeoJSONReader();
     var a = reader.read(geom1);
     var b = reader.read(geom2);
-    var differenced = a.difference(b);
+    var differenced = OverlayOp.difference(a, b);
     if (differenced.isEmpty()) return null;
-    var writer = new jsts.io.GeoJSONWriter();
+    var writer = new GeoJSONWriter();
     var geom = writer.write(differenced);
 
     return feature(geom, properties);

@@ -1,7 +1,9 @@
-import fs from 'fs';
 import test from 'tape';
 import glob from 'glob';
 import path from 'path';
+import write from 'write-json-file';
+import load from 'load-json-file';
+import { featureCollection } from '@turf/helpers';
 import convex from '.';
 
 const directories = {
@@ -10,13 +12,20 @@ const directories = {
 };
 
 test('convex hull', t => {
-    t.deepEqual(convex({ type: 'FeatureCollection', features: [] }),
-        undefined, 'corner case: undefined hull');
-    glob.sync(directories.in + '*.geojson').forEach(function (input) {
-        var fcs = JSON.parse(fs.readFileSync(input));
-        var output = convex(fcs);
-        if (process.env.REGEN) fs.writeFileSync(input.replace('/in/', '/out/'), JSON.stringify(output));
-        t.deepEqual(output, JSON.parse(fs.readFileSync(input.replace('/in/', '/out/'))), input);
+    glob.sync(directories.in + '*.geojson').forEach(filepath => {
+        const fileout = filepath.replace('/in/', '/out/');
+        const geojson = load.sync(filepath);
+
+        const convexHull = convex(geojson);
+        geojson.features.push(convexHull);
+
+        if (process.env.REGEN) write.sync(fileout, geojson);
+        t.deepEqual(geojson, load.sync(fileout), path.parse(filepath).name);
     });
+    t.end();
+});
+
+test('turf-convex -- empty', t => {
+    t.deepEqual(convex(featureCollection([])), null, 'corner case: null hull');
     t.end();
 });

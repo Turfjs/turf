@@ -9,8 +9,8 @@
     wgs84 "0.0.0"
 
 "@std/esm@*":
-  version "0.11.0"
-  resolved "https://registry.yarnpkg.com/@std/esm/-/esm-0.11.0.tgz#f5562c6723a2eae5d6f95c3b35ff1338c586ae4e"
+  version "0.11.3"
+  resolved "https://registry.yarnpkg.com/@std/esm/-/esm-0.11.3.tgz#78afd0edb3546e36e68e73d0128cf930e4817606"
 
 "@turf/along@^4.7.3":
   version "4.7.3"
@@ -55,6 +55,13 @@
   dependencies:
     "@turf/meta" "4.7.1"
 
+"@turf/bbox@5.0.0", "@turf/bbox@^5.0.0":
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/@turf/bbox/-/bbox-5.0.0.tgz#c179e533328120ca29b5dbd215a5f54e5c7940d3"
+  dependencies:
+    "@turf/helpers" "5.0.0"
+    "@turf/meta" "5.0.0"
+
 "@turf/bbox@^3.14.0":
   version "3.14.0"
   resolved "https://registry.yarnpkg.com/@turf/bbox/-/bbox-3.14.0.tgz#cee5f396dde78aca9cede05e1122db18bc504635"
@@ -67,7 +74,7 @@
   dependencies:
     "@turf/meta" "^4.7.3"
 
-"@turf/bearing@5.0.0":
+"@turf/bearing@5.0.0", "@turf/bearing@^5.0.0":
   version "5.0.0"
   resolved "https://registry.yarnpkg.com/@turf/bearing/-/bearing-5.0.0.tgz#448a2d1c7c6fde2b777c79886bf706256758e309"
   dependencies:
@@ -296,7 +303,7 @@
     "@turf/meta" "^4.7.3"
     convex-hull "^1.0.3"
 
-"@turf/destination@5.0.0":
+"@turf/destination@5.0.0", "@turf/destination@^5.0.0":
   version "5.0.0"
   resolved "https://registry.yarnpkg.com/@turf/destination/-/destination-5.0.0.tgz#9b1c3fc3bcb4fe631a5cb9e14dbc00baeb788770"
   dependencies:
@@ -331,7 +338,7 @@
     get-closest "^0.0.4"
     rbush "^2.0.1"
 
-"@turf/distance@5.0.0":
+"@turf/distance@5.0.0", "@turf/distance@^5.0.0":
   version "5.0.0"
   resolved "https://registry.yarnpkg.com/@turf/distance/-/distance-5.0.0.tgz#f4db3dcfa160213fdaaf82b2153e1a479efaba6b"
   dependencies:
@@ -385,21 +392,21 @@
   dependencies:
     "@turf/invariant" "^4.7.3"
 
+"@turf/helpers@*", "@turf/helpers@5.0.0", "@turf/helpers@5.x", "@turf/helpers@^5.0.0":
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/@turf/helpers/-/helpers-5.0.0.tgz#732cb570e6aebca9ef7375e8e42fafa8e16e5d47"
+
 "@turf/helpers@4.7.1":
   version "4.7.1"
   resolved "https://registry.yarnpkg.com/@turf/helpers/-/helpers-4.7.1.tgz#12cecbfe22b16386338537dae3e3da83de2f3fac"
 
-"@turf/helpers@4.7.3", "@turf/helpers@^4.1.0", "@turf/helpers@^4.3.0", "@turf/helpers@^4.5.0", "@turf/helpers@^4.7.3":
-  version "4.7.3"
-  resolved "https://registry.yarnpkg.com/@turf/helpers/-/helpers-4.7.3.tgz#bc312ac43cab3c532a483151c4c382c5649429e9"
-
-"@turf/helpers@5.0.0":
-  version "5.0.0"
-  resolved "https://registry.yarnpkg.com/@turf/helpers/-/helpers-5.0.0.tgz#732cb570e6aebca9ef7375e8e42fafa8e16e5d47"
-
 "@turf/helpers@^3.13.0", "@turf/helpers@^3.6.3":
   version "3.13.0"
   resolved "https://registry.yarnpkg.com/@turf/helpers/-/helpers-3.13.0.tgz#d06078a1464cf56cdb7ea624ea1e13a71b88b806"
+
+"@turf/helpers@^4.1.0", "@turf/helpers@^4.3.0", "@turf/helpers@^4.5.0", "@turf/helpers@^4.7.3":
+  version "4.7.3"
+  resolved "https://registry.yarnpkg.com/@turf/helpers/-/helpers-4.7.3.tgz#bc312ac43cab3c532a483151c4c382c5649429e9"
 
 "@turf/hex-grid@^4.7.3":
   version "4.7.3"
@@ -456,17 +463,17 @@
   version "4.7.1"
   resolved "https://registry.yarnpkg.com/@turf/invariant/-/invariant-4.7.1.tgz#b95bc41a3cc7f1319d9a4c51ad5b3582905f81e4"
 
-"@turf/invariant@4.7.3", "@turf/invariant@^4.1.0", "@turf/invariant@^4.3.0", "@turf/invariant@^4.7.3":
-  version "4.7.3"
-  resolved "https://registry.yarnpkg.com/@turf/invariant/-/invariant-4.7.3.tgz#538f367d23c113fc849d70c9a524b8563874601d"
-
-"@turf/invariant@5.0.0":
+"@turf/invariant@5.0.0", "@turf/invariant@5.x", "@turf/invariant@^5.0.0":
   version "5.0.0"
   resolved "https://registry.yarnpkg.com/@turf/invariant/-/invariant-5.0.0.tgz#da9b4d7b044cffa300d654b3e0444969fc19d850"
 
 "@turf/invariant@^3.13.0":
   version "3.13.0"
   resolved "https://registry.yarnpkg.com/@turf/invariant/-/invariant-3.13.0.tgz#89243308cd563206e81e5c6162e0d22f61822f90"
+
+"@turf/invariant@^4.1.0", "@turf/invariant@^4.3.0", "@turf/invariant@^4.7.3":
+  version "4.7.3"
+  resolved "https://registry.yarnpkg.com/@turf/invariant/-/invariant-4.7.3.tgz#538f367d23c113fc849d70c9a524b8563874601d"
 
 "@turf/isobands@^4.7.3":
   version "4.7.3"
@@ -543,6 +550,16 @@
     "@turf/meta" "^4.7.3"
     geojson-rbush "^1.0.1"
 
+"@turf/line-intersect@^5.0.0", "@turf/line-intersect@^5.0.3":
+  version "5.0.3"
+  resolved "https://registry.yarnpkg.com/@turf/line-intersect/-/line-intersect-5.0.3.tgz#a15df3bc99a9cae028532349a4e3a011c1789044"
+  dependencies:
+    "@turf/helpers" "5.0.0"
+    "@turf/invariant" "5.0.0"
+    "@turf/line-segment" "5.0.0"
+    "@turf/meta" "5.0.0"
+    geojson-rbush "^2.0.1"
+
 "@turf/line-offset@^4.7.3":
   version "4.7.3"
   resolved "https://registry.yarnpkg.com/@turf/line-offset/-/line-offset-4.7.3.tgz#a3e24d1c1d990cbfa32b9d9f3cd16446a7ec08d5"
@@ -584,7 +601,7 @@
     "@turf/invariant" "4.7.1"
     "@turf/meta" "4.7.1"
 
-"@turf/line-segment@5.0.0":
+"@turf/line-segment@5.0.0", "@turf/line-segment@^5.0.0":
   version "5.0.0"
   resolved "https://registry.yarnpkg.com/@turf/line-segment/-/line-segment-5.0.0.tgz#983569e93eda49b76442def4e5249cd9d0dd79ce"
   dependencies:
@@ -630,13 +647,13 @@
     "@turf/truncate" "^4.7.3"
     geojson-rbush "^1.0.1"
 
-"@turf/linestring-to-polygon@^4.7.3":
-  version "4.7.3"
-  resolved "https://registry.yarnpkg.com/@turf/linestring-to-polygon/-/linestring-to-polygon-4.7.3.tgz#f45fef8c544d8b288f5ba58c2bae349a18fb597f"
+"@turf/linestring-to-polygon@^5.0.0":
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/@turf/linestring-to-polygon/-/linestring-to-polygon-5.0.0.tgz#d8c33d879fcbc71224fd6a69d41978562d2005e8"
   dependencies:
-    "@turf/bbox" "^4.7.3"
-    "@turf/helpers" "^4.7.3"
-    "@turf/invariant" "^4.7.3"
+    "@turf/bbox" "5.0.0"
+    "@turf/helpers" "5.0.0"
+    "@turf/invariant" "5.0.0"
 
 "@turf/mask@^4.7.3":
   version "4.7.3"
@@ -648,17 +665,19 @@
     "@turf/union" "^4.7.3"
     rbush "^2.0.1"
 
-"@turf/meta@*", "@turf/meta@5.0.0":
-  version "5.0.0"
-  resolved "https://registry.yarnpkg.com/@turf/meta/-/meta-5.0.0.tgz#75b100e9854cd7b2fa63e68561e1298dac09d7b4"
+"@turf/meta@*", "@turf/meta@5.x", "@turf/meta@^5.0.0":
+  version "5.0.2"
+  resolved "https://registry.yarnpkg.com/@turf/meta/-/meta-5.0.2.tgz#712ff485cdaa6024d1f97d6fbed69d3f8e31e686"
+  dependencies:
+    "@turf/helpers" "^5.0.0"
 
 "@turf/meta@4.7.1":
   version "4.7.1"
   resolved "https://registry.yarnpkg.com/@turf/meta/-/meta-4.7.1.tgz#53a55281ae08a5fa2f414d9ba50a951d38e86ab5"
 
-"@turf/meta@4.7.3":
-  version "4.7.3"
-  resolved "https://registry.yarnpkg.com/@turf/meta/-/meta-4.7.3.tgz#038970178e90c8e43cf7dfed79d5782298a1080d"
+"@turf/meta@5.0.0":
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/@turf/meta/-/meta-5.0.0.tgz#75b100e9854cd7b2fa63e68561e1298dac09d7b4"
 
 "@turf/meta@^3.14.0", "@turf/meta@^3.7.5":
   version "3.14.0"
@@ -729,6 +748,18 @@
     "@turf/line-intersect" "^4.7.3"
     "@turf/meta" "^4.7.3"
 
+"@turf/point-on-line@^5.0.0":
+  version "5.0.3"
+  resolved "https://registry.yarnpkg.com/@turf/point-on-line/-/point-on-line-5.0.3.tgz#cb7d5f99a03a0d6338f6f8e3d4b3cca56b46bd45"
+  dependencies:
+    "@turf/bearing" "5.0.0"
+    "@turf/destination" "5.0.0"
+    "@turf/distance" "5.0.0"
+    "@turf/helpers" "5.0.0"
+    "@turf/invariant" "5.0.0"
+    "@turf/line-intersect" "^5.0.3"
+    "@turf/meta" "5.0.0"
+
 "@turf/point-on-surface@^4.7.3":
   version "4.7.3"
   resolved "https://registry.yarnpkg.com/@turf/point-on-surface/-/point-on-surface-4.7.3.tgz#25ec360bec7f9fa612d705808cf0310d72c2be5f"
@@ -738,18 +769,6 @@
     "@turf/explode" "^4.7.3"
     "@turf/helpers" "^4.7.3"
     "@turf/inside" "^4.7.3"
-
-"@turf/point-to-line-distance@5.0.0":
-  version "5.0.0"
-  resolved "https://registry.yarnpkg.com/@turf/point-to-line-distance/-/point-to-line-distance-5.0.0.tgz#ce5ef069d844469071fed40a6e04ce82ab5259b9"
-  dependencies:
-    "@turf/bearing" "5.0.0"
-    "@turf/distance" "5.0.0"
-    "@turf/helpers" "5.0.0"
-    "@turf/invariant" "5.0.0"
-    "@turf/meta" "5.0.0"
-    "@turf/rhumb-bearing" "5.0.0"
-    "@turf/rhumb-distance" "5.0.0"
 
 "@turf/point-to-line-distance@^4.7.3":
   version "4.7.3"
@@ -762,6 +781,18 @@
     "@turf/meta" "^4.7.3"
     "@turf/rhumb-bearing" "^4.7.3"
     "@turf/rhumb-distance" "^4.7.3"
+
+"@turf/point-to-line-distance@^5.0.0":
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/@turf/point-to-line-distance/-/point-to-line-distance-5.0.0.tgz#ce5ef069d844469071fed40a6e04ce82ab5259b9"
+  dependencies:
+    "@turf/bearing" "5.0.0"
+    "@turf/distance" "5.0.0"
+    "@turf/helpers" "5.0.0"
+    "@turf/invariant" "5.0.0"
+    "@turf/meta" "5.0.0"
+    "@turf/rhumb-bearing" "5.0.0"
+    "@turf/rhumb-distance" "5.0.0"
 
 "@turf/polygon-tangents@^4.7.3":
   version "4.7.3"
@@ -776,6 +807,13 @@
   dependencies:
     "@turf/helpers" "^4.7.3"
     "@turf/invariant" "^4.7.3"
+
+"@turf/polygon-to-linestring@^5.0.0":
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/@turf/polygon-to-linestring/-/polygon-to-linestring-5.0.0.tgz#6c525b9dea4f76f7cd7785a4752891e74ada8551"
+  dependencies:
+    "@turf/helpers" "5.0.0"
+    "@turf/invariant" "5.0.0"
 
 "@turf/polygonize@^4.7.3":
   version "4.7.3"
@@ -812,7 +850,7 @@
     "@turf/invariant" "4.7.1"
     geodesy "1.1.1"
 
-"@turf/rhumb-bearing@5.0.0":
+"@turf/rhumb-bearing@5.0.0", "@turf/rhumb-bearing@^5.0.0":
   version "5.0.0"
   resolved "https://registry.yarnpkg.com/@turf/rhumb-bearing/-/rhumb-bearing-5.0.0.tgz#367b2d70f2c77c7d4c0fa3f7107cdcaff488b23f"
   dependencies:
@@ -826,13 +864,6 @@
     "@turf/invariant" "^4.7.3"
     geodesy "1.1.2"
 
-"@turf/rhumb-destination@5.0.0":
-  version "5.0.0"
-  resolved "https://registry.yarnpkg.com/@turf/rhumb-destination/-/rhumb-destination-5.0.0.tgz#a776590ed71a27a3ba1e26081102c280c76eb314"
-  dependencies:
-    "@turf/helpers" "5.0.0"
-    "@turf/invariant" "5.0.0"
-
 "@turf/rhumb-destination@^4.7.3":
   version "4.7.3"
   resolved "https://registry.yarnpkg.com/@turf/rhumb-destination/-/rhumb-destination-4.7.3.tgz#1b74188c282a790d302e7d8447a077a5e1242aee"
@@ -841,7 +872,14 @@
     "@turf/invariant" "^4.7.3"
     geodesy "1.1.2"
 
-"@turf/rhumb-distance@5.0.0":
+"@turf/rhumb-destination@^5.0.0":
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/@turf/rhumb-destination/-/rhumb-destination-5.0.0.tgz#a776590ed71a27a3ba1e26081102c280c76eb314"
+  dependencies:
+    "@turf/helpers" "5.0.0"
+    "@turf/invariant" "5.0.0"
+
+"@turf/rhumb-distance@5.0.0", "@turf/rhumb-distance@^5.0.0":
   version "5.0.0"
   resolved "https://registry.yarnpkg.com/@turf/rhumb-distance/-/rhumb-distance-5.0.0.tgz#254cd96cd1393b2e0889a106e4c5c343b3f3505a"
   dependencies:
@@ -998,8 +1036,8 @@ JSONStream@^1.0.0:
     through ">=2.2.7 <3"
 
 abbrev@1:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/abbrev/-/abbrev-1.1.0.tgz#d0554c2256636e2f56e7c2e5ad183f859428d81f"
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/abbrev/-/abbrev-1.1.1.tgz#f8f2c887ad10bf67f634f005b6987fed3179aac8"
 
 acorn@^5.1.1:
   version "5.1.2"
@@ -1055,8 +1093,8 @@ bit-twiddle@^1.0.0:
   resolved "https://registry.yarnpkg.com/bit-twiddle/-/bit-twiddle-1.0.2.tgz#0c6c1fabe2b23d17173d9a61b7b7093eb9e1769e"
 
 bluebird@^3.0.5, bluebird@~3.5.0:
-  version "3.5.0"
-  resolved "https://registry.yarnpkg.com/bluebird/-/bluebird-3.5.0.tgz#791420d7f551eea2897453a8a77653f96606d67c"
+  version "3.5.1"
+  resolved "https://registry.yarnpkg.com/bluebird/-/bluebird-3.5.1.tgz#d9551f9de98f1fcda1e683d17ee91a0602ee2eb9"
 
 bops@0.0.6:
   version "0.0.6"
@@ -1120,6 +1158,16 @@ concat-stream@~1.2.1:
   dependencies:
     bops "0.0.6"
 
+concaveman@*:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/concaveman/-/concaveman-1.1.1.tgz#6c2482580b2523cef82fc2bec00a0415e6e68162"
+  dependencies:
+    monotone-convex-hull-2d "^1.0.1"
+    point-in-polygon "^1.0.1"
+    rbush "^2.0.1"
+    robust-orientation "^1.1.3"
+    tinyqueue "^1.1.0"
+
 config-chain@~1.1.5:
   version "1.1.11"
   resolved "https://registry.yarnpkg.com/config-chain/-/config-chain-1.1.11.tgz#aba09747dfbe4c3e70e766a6e41586e1859fc6f2"
@@ -1144,8 +1192,8 @@ d3-array@1:
   resolved "https://registry.yarnpkg.com/d3-array/-/d3-array-1.2.1.tgz#d1ca33de2f6ac31efadb8e050a021d7e2396d5dc"
 
 d3-geo@^1.6.3:
-  version "1.8.1"
-  resolved "https://registry.yarnpkg.com/d3-geo/-/d3-geo-1.8.1.tgz#50615c33454487e350db71059f84f71cda2dd983"
+  version "1.9.0"
+  resolved "https://registry.yarnpkg.com/d3-geo/-/d3-geo-1.9.0.tgz#15c7d7a8ea9346e59ed150dc7b1f7f95479056e9"
   dependencies:
     d3-array "1"
 
@@ -1155,7 +1203,7 @@ debug@^2.6.3:
   dependencies:
     ms "2.0.0"
 
-deep-equal@^1.0.0, deep-equal@^1.0.1, deep-equal@~1.0.1:
+deep-equal@*, deep-equal@^1.0.0, deep-equal@^1.0.1, deep-equal@~1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/deep-equal/-/deep-equal-1.0.1.tgz#f5d260292b660e084eff4cdbc9f08ad3247448b5"
 
@@ -1170,7 +1218,7 @@ defined@~1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/defined/-/defined-1.0.0.tgz#c98d9bcef75674188e110969151199e39b1fa693"
 
-density-clustering@1.3.0, density-clustering@^1.3.0:
+density-clustering@*, density-clustering@1.3.0:
   version "1.3.0"
   resolved "https://registry.yarnpkg.com/density-clustering/-/density-clustering-1.3.0.tgz#dc9f59c8f0ab97e1624ac64930fd3194817dcac5"
 
@@ -1182,7 +1230,7 @@ dox@^0.9.0:
     jsdoctypeparser "^1.2.0"
     markdown-it "~7.0.0"
 
-earcut@^2.0.0, earcut@^2.1.1:
+earcut@*, earcut@^2.0.0:
   version "2.1.1"
   resolved "https://registry.yarnpkg.com/earcut/-/earcut-2.1.1.tgz#157634e5f3ebb42224e475016e86a5b6ce556b45"
 
@@ -1201,8 +1249,8 @@ entities@~1.1.1:
   resolved "https://registry.yarnpkg.com/entities/-/entities-1.1.1.tgz#6e5c2d0a5621b5dadaecef80b90edfb5cd7772f0"
 
 es-abstract@^1.5.0:
-  version "1.8.2"
-  resolved "https://registry.yarnpkg.com/es-abstract/-/es-abstract-1.8.2.tgz#25103263dc4decbda60e0c737ca32313518027ee"
+  version "1.9.0"
+  resolved "https://registry.yarnpkg.com/es-abstract/-/es-abstract-1.9.0.tgz#690829a07cae36b222e7fd9b75c0d0573eb25227"
   dependencies:
     es-to-primitive "^1.1.1"
     function-bind "^1.1.1"
@@ -1301,11 +1349,11 @@ geodesy@1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/geodesy/-/geodesy-1.1.1.tgz#918c414a5cc247c8128332b7624050c467e98a5d"
 
-geodesy@1.1.2, geodesy@^1.1.2:
+geodesy@1.1.2:
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/geodesy/-/geodesy-1.1.2.tgz#84cbdf7e7b98907bd3b13b09ae86c65926391a50"
 
-geojson-dissolve@3.1.0, geojson-dissolve@^3.1.0:
+geojson-dissolve@*, geojson-dissolve@3.1.0:
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/geojson-dissolve/-/geojson-dissolve-3.1.0.tgz#86823271680a1a381f3e72f02648bbcc710ecda1"
   dependencies:
@@ -1315,15 +1363,15 @@ geojson-dissolve@3.1.0, geojson-dissolve@^3.1.0:
     topojson-client "^3.0.0"
     topojson-server "^3.0.0"
 
-geojson-equality@0.1.6:
-  version "0.1.6"
-  resolved "https://registry.yarnpkg.com/geojson-equality/-/geojson-equality-0.1.6.tgz#a171374ef043e5d4797995840bae4648e0752d72"
+geojson-equality@*:
+  version "0.1.7"
+  resolved "https://registry.yarnpkg.com/geojson-equality/-/geojson-equality-0.1.7.tgz#621f5ef0e0c4035f351a805bfae2d73bcdb33b42"
   dependencies:
     deep-equal "^1.0.0"
 
-geojson-equality@^0.1.7:
-  version "0.1.7"
-  resolved "https://registry.yarnpkg.com/geojson-equality/-/geojson-equality-0.1.7.tgz#621f5ef0e0c4035f351a805bfae2d73bcdb33b42"
+geojson-equality@0.1.6:
+  version "0.1.6"
+  resolved "https://registry.yarnpkg.com/geojson-equality/-/geojson-equality-0.1.6.tgz#a171374ef043e5d4797995840bae4648e0752d72"
   dependencies:
     deep-equal "^1.0.0"
 
@@ -1344,29 +1392,31 @@ geojson-polygon-self-intersections@^1.1.2:
   dependencies:
     rbush "^2.0.1"
 
-geojson-random@^0.2.2:
-  version "0.2.2"
-  resolved "https://registry.yarnpkg.com/geojson-random/-/geojson-random-0.2.2.tgz#ab4838f126adc5e16f8f94e655def820f9119dbc"
-
-geojson-random@^0.4.0:
+geojson-random@*:
   version "0.4.0"
   resolved "https://registry.yarnpkg.com/geojson-random/-/geojson-random-0.4.0.tgz#6a1537c0bfdbbad6508cc9e90b43d65faeb0b8dc"
   dependencies:
     from2 "^2.1.0"
     geojson-stream "0.0.1"
 
-geojson-rbush@^1.0.1, geojson-rbush@^1.2.0:
+geojson-random@^0.2.2:
+  version "0.2.2"
+  resolved "https://registry.yarnpkg.com/geojson-random/-/geojson-random-0.2.2.tgz#ab4838f126adc5e16f8f94e655def820f9119dbc"
+
+geojson-rbush@*, geojson-rbush@^2.0.1:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/geojson-rbush/-/geojson-rbush-2.1.0.tgz#3bd73be391fc10b0ae693d9b8acea2aae0b83a8d"
+  dependencies:
+    "@turf/helpers" "*"
+    "@turf/meta" "*"
+    rbush "*"
+
+geojson-rbush@^1.0.1:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/geojson-rbush/-/geojson-rbush-1.2.0.tgz#eca3b6a3afb899a453ef82d5e2373092e20d77e5"
   dependencies:
     "@turf/meta" "^4.6.0"
     rbush "^2.0.1"
-
-geojson-rbush@^2.0.1:
-  version "2.0.1"
-  resolved "https://registry.yarnpkg.com/geojson-rbush/-/geojson-rbush-2.0.1.tgz#3b211decf02a6e2c21fb8c3de59b4de5b61679d9"
-  dependencies:
-    "@turf/meta" "*"
 
 geojson-stream@0.0.1:
   version "0.0.1"
@@ -1375,11 +1425,11 @@ geojson-stream@0.0.1:
     JSONStream "^1.0.0"
     through "^2.3.4"
 
-geojson-utils@^1.1.0:
+geojson-utils@*, geojson-utils@^1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/geojson-utils/-/geojson-utils-1.1.0.tgz#e8ffb4c81c0a75b3e306f5187265d6f23040f50b"
 
-get-closest@0.0.4, get-closest@^0.0.4:
+get-closest@*, get-closest@^0.0.4:
   version "0.0.4"
   resolved "https://registry.yarnpkg.com/get-closest/-/get-closest-0.0.4.tgz#269ac776d1e6022aa0fd586dd708e8a7d32269af"
 
@@ -1424,12 +1474,12 @@ grid-to-matrix@1.2.0:
     "@turf/meta" "^4.1.0"
 
 grid-to-matrix@^1.2.0:
-  version "1.3.0"
-  resolved "https://registry.yarnpkg.com/grid-to-matrix/-/grid-to-matrix-1.3.0.tgz#d740f6e0af03aada8e3e7318d8a89f564534a591"
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/grid-to-matrix/-/grid-to-matrix-1.4.0.tgz#0315867cf830dcf1bb875fab0710bab228141c78"
   dependencies:
-    "@turf/helpers" "4.7.3"
-    "@turf/invariant" "4.7.3"
-    "@turf/meta" "4.7.3"
+    "@turf/helpers" "5.x"
+    "@turf/invariant" "5.x"
+    "@turf/meta" "5.x"
 
 has@^1.0.1, has@~1.0.1:
   version "1.0.1"
@@ -1544,8 +1594,8 @@ isobject@^2.0.0:
     isarray "1.0.0"
 
 js-beautify@^1.5.4:
-  version "1.7.3"
-  resolved "https://registry.yarnpkg.com/js-beautify/-/js-beautify-1.7.3.tgz#3f563067162cd0635c8611686d1fa0bb1448773a"
+  version "1.7.4"
+  resolved "https://registry.yarnpkg.com/js-beautify/-/js-beautify-1.7.4.tgz#fa0dfa8fef594d6a6253755fe26af5d0a22cbd90"
   dependencies:
     config-chain "~1.1.5"
     editorconfig "^0.13.2"
@@ -1600,10 +1650,6 @@ jsts@1.3.0:
   version "1.3.0"
   resolved "https://registry.yarnpkg.com/jsts/-/jsts-1.3.0.tgz#e93a76f97ac9bda7d4625d9d6470f0d60ac80e45"
 
-jsts@^1.4.0:
-  version "1.4.0"
-  resolved "https://registry.yarnpkg.com/jsts/-/jsts-1.4.0.tgz#10ac081014da89bd169c12378bcff702cacf65d4"
-
 kind-of@^3.0.2:
   version "3.2.2"
   resolved "https://registry.yarnpkg.com/kind-of/-/kind-of-3.2.2.tgz#31ea21a734bab9bbb0f32466d893aea51e4a3c64"
@@ -1622,7 +1668,7 @@ klaw@~2.0.0:
   dependencies:
     graceful-fs "^4.1.9"
 
-lineclip@^1.1.5:
+lineclip@*, lineclip@^1.1.5:
   version "1.1.5"
   resolved "https://registry.yarnpkg.com/lineclip/-/lineclip-1.1.5.tgz#2bf26067d94354feabf91e42768236db5616fd13"
 
@@ -1780,9 +1826,13 @@ platform@^1.3.3:
   version "1.3.4"
   resolved "https://registry.yarnpkg.com/platform/-/platform-1.3.4.tgz#6f0fb17edaaa48f21442b3a975c063130f1c3ebd"
 
-polygonize@1.0.1:
+point-in-polygon@^1.0.1:
   version "1.0.1"
-  resolved "https://registry.yarnpkg.com/polygonize/-/polygonize-1.0.1.tgz#51fb7040914be0fbc43b0bd54d421d75fc2ae7a6"
+  resolved "https://registry.yarnpkg.com/point-in-polygon/-/point-in-polygon-1.0.1.tgz#d59b64e8fee41c49458aac82b56718c5957b2af7"
+
+polygonize@*:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/polygonize/-/polygonize-1.0.3.tgz#26994d4789ac1d9ca0c0a4b0aedba89268330e8f"
   dependencies:
     "@turf/envelope" "^4.3.0"
     "@turf/helpers" "^4.3.0"
@@ -1790,9 +1840,9 @@ polygonize@1.0.1:
     "@turf/invariant" "^4.3.0"
     "@turf/meta" "^4.3.0"
 
-polygonize@^1.0.3:
-  version "1.0.3"
-  resolved "https://registry.yarnpkg.com/polygonize/-/polygonize-1.0.3.tgz#26994d4789ac1d9ca0c0a4b0aedba89268330e8f"
+polygonize@1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/polygonize/-/polygonize-1.0.1.tgz#51fb7040914be0fbc43b0bd54d421d75fc2ae7a6"
   dependencies:
     "@turf/envelope" "^4.3.0"
     "@turf/helpers" "^4.3.0"
@@ -1827,7 +1877,7 @@ randomatic@^1.1.3:
     is-number "^3.0.0"
     kind-of "^4.0.0"
 
-rbush@^2.0.1:
+rbush@*, rbush@^2.0.1:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/rbush/-/rbush-2.0.1.tgz#4cfaca28c3064bc0ee75431a1b79990e875eefa9"
   dependencies:
@@ -1995,6 +2045,18 @@ sigmund@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/sigmund/-/sigmund-1.0.1.tgz#3ff21f198cad2175f9f3b781853fd94d0d19b590"
 
+simplepolygon@*:
+  version "1.2.2"
+  resolved "https://registry.yarnpkg.com/simplepolygon/-/simplepolygon-1.2.2.tgz#5a68d8cd6bb10e48baa489dd1ad8730d412a033a"
+  dependencies:
+    "@turf/area" "^4.5.0"
+    "@turf/helpers" "^4.5.0"
+    "@turf/inside" "^4.5.2"
+    "@turf/within" "^4.5.0"
+    debug "^2.6.3"
+    geojson-polygon-self-intersections "^1.1.2"
+    rbush "^2.0.1"
+
 simplepolygon@1.2.1:
   version "1.2.1"
   resolved "https://registry.yarnpkg.com/simplepolygon/-/simplepolygon-1.2.1.tgz#48250a6a853275e96e42c7105f507da00dc67d64"
@@ -2007,18 +2069,6 @@ simplepolygon@1.2.1:
     geojson-polygon-self-intersections "^1.1.2"
     rbush "^2.0.1"
 
-simplepolygon@^1.2.2:
-  version "1.2.2"
-  resolved "https://registry.yarnpkg.com/simplepolygon/-/simplepolygon-1.2.2.tgz#5a68d8cd6bb10e48baa489dd1ad8730d412a033a"
-  dependencies:
-    "@turf/area" "^4.5.0"
-    "@turf/helpers" "^4.5.0"
-    "@turf/inside" "^4.5.2"
-    "@turf/within" "^4.5.0"
-    debug "^2.6.3"
-    geojson-polygon-self-intersections "^1.1.2"
-    rbush "^2.0.1"
-
 simplicial-complex@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/simplicial-complex/-/simplicial-complex-1.0.0.tgz#6c33a4ed69fcd4d91b7bcadd3b30b63683eae241"
@@ -2026,11 +2076,11 @@ simplicial-complex@^1.0.0:
     bit-twiddle "^1.0.0"
     union-find "^1.0.0"
 
-simplify-js@^1.2.1:
+simplify-js@*, simplify-js@^1.2.1:
   version "1.2.1"
   resolved "https://registry.yarnpkg.com/simplify-js/-/simplify-js-1.2.1.tgz#fa216b40454f48175450e0fea1bd1e6ab39fcbc0"
 
-skmeans@0.9.7, skmeans@^0.9.7:
+skmeans@*, skmeans@0.9.7:
   version "0.9.7"
   resolved "https://registry.yarnpkg.com/skmeans/-/skmeans-0.9.7.tgz#72670cebb728508f56e29c0e10d11e623529ce5d"
 
@@ -2086,6 +2136,10 @@ tape@*:
   version "2.3.8"
   resolved "https://registry.yarnpkg.com/through/-/through-2.3.8.tgz#0dd4c9ffaabc357960b1b724115d7e0e86a2e1f5"
 
+tinyqueue@^1.1.0:
+  version "1.2.3"
+  resolved "https://registry.yarnpkg.com/tinyqueue/-/tinyqueue-1.2.3.tgz#b6a61de23060584da29f82362e45df1ec7353f3d"
+
 to-utf8@0.0.1:
   version "0.0.1"
   resolved "https://registry.yarnpkg.com/to-utf8/-/to-utf8-0.0.1.tgz#d17aea72ff2fba39b9e43601be7b3ff72e089852"
@@ -2124,8 +2178,8 @@ uglify-es@3.0.3:
     uglify-to-browserify "~1.0.0"
 
 uglify-js@^3.0.13:
-  version "3.1.2"
-  resolved "https://registry.yarnpkg.com/uglify-js/-/uglify-js-3.1.2.tgz#b50bcf15a5fd9e9ed40afbcdef3b59d6891b291f"
+  version "3.1.3"
+  resolved "https://registry.yarnpkg.com/uglify-js/-/uglify-js-3.1.3.tgz#d61f0453b4718cab01581f3162aa90bab7520b42"
   dependencies:
     commander "~2.11.0"
     source-map "~0.5.1"
@@ -2157,8 +2211,8 @@ util-deprecate@~1.0.1:
   resolved "https://registry.yarnpkg.com/util-deprecate/-/util-deprecate-1.0.2.tgz#450d4dc9fa70de732762fbd2d4a28981419a0ccf"
 
 vlq@^0.2.1:
-  version "0.2.2"
-  resolved "https://registry.yarnpkg.com/vlq/-/vlq-0.2.2.tgz#e316d5257b40b86bb43cb8d5fea5d7f54d6b0ca1"
+  version "0.2.3"
+  resolved "https://registry.yarnpkg.com/vlq/-/vlq-0.2.3.tgz#8f3e4328cf63b1540c0d67e1b2778386f8975b26"
 
 wgs84@0.0.0:
   version "0.0.0"

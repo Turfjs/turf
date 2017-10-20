@@ -18,7 +18,7 @@ Takes a feature and returns a [Point](http://geojson.org/geojson-spec.html#point
 
 ```javascript
 // create a random polygon
-var polygon = turf.random('polygon');
+var polygon = turf.randomPolygon();
 
 var pointOnPolygon = turf.pointOnSurface(polygon);
 

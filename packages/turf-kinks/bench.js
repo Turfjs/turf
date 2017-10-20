@@ -1,8 +1,8 @@
-const Benchmark = require('benchmark');
-const load = require('load-json-file');
-const path = require('path');
-const fs = require('fs');
-const kinks = require('./');
+import fs from 'fs';
+import path from 'path';
+import load from 'load-json-file';
+import Benchmark from 'benchmark';
+import kinks from './';
 
 const suite = new Benchmark.Suite('turf-kinks');
 

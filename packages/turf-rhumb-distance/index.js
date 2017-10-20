@@ -1,5 +1,5 @@
 // https://en.wikipedia.org/wiki/Rhumb_line
-import { convertDistance, earthRadius } from '@turf/helpers';
+import { convertDistance, earthRadius, isObject } from '@turf/helpers';
 import { getCoord } from '@turf/invariant';
 
 /**
@@ -15,8 +15,9 @@ import { getCoord } from '@turf/invariant';
  * @example
  * var from = turf.point([-75.343, 39.984]);
  * var to = turf.point([-75.534, 39.123]);
+ * var options = {units: 'miles'};
  *
- * var distance = turf.rhumbDistance(from, to, "miles");
+ * var distance = turf.rhumbDistance(from, to, options);
  *
  * //addToMap
  * var addToMap = [from, to];
@@ -24,10 +25,14 @@ import { getCoord } from '@turf/invariant';
  * to.properties.distance = distance;
  */
 function rhumbDistance(from, to, options) {
+    // Optional parameters
+    options = options || {};
+    if (!isObject(options)) throw new Error('options is invalid');
+    var units = options.units;
+
     // validation
     if (!from) throw new Error('from point is required');
     if (!to) throw new Error('to point is required');
-    var units = (typeof options === 'object') ? options.units : options || 'kilometers';
 
     var origin = getCoord(from);
     var destination = getCoord(to);

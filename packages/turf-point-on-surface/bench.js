@@ -1,6 +1,6 @@
-var centroid = require('./');
-var Benchmark = require('benchmark');
-var fs = require('fs');
+import fs from 'fs';
+import Benchmark from 'benchmark';
+import centroid from './';
 
 var fc = JSON.parse(fs.readFileSync(__dirname + '/test/polygons.geojson'));
 
@@ -13,6 +13,6 @@ suite
     console.log(String(event.target));
   })
   .on('complete', function () {
-    
+
   })
   .run();

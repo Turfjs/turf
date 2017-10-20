@@ -27,7 +27,7 @@ import distance from '@turf/distance';
 function nearest(targetPoint, points) {
     var nearestPoint, minDist = Infinity;
     for (var i = 0; i < points.features.length; i++) {
-        var distanceToPoint = distance(targetPoint, points.features[i], 'miles');
+        var distanceToPoint = distance(targetPoint, points.features[i]);
         if (distanceToPoint < minDist) {
             nearestPoint = points.features[i];
             minDist = distanceToPoint;

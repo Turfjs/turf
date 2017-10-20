@@ -1,8 +1,8 @@
-const load = require('load-json-file');
-const fs = require('fs');
-const path = require('path');
-const Benchmark = require('benchmark');
-const unkink = require('.');
+import fs from 'fs';
+import path from 'path';
+import load from 'load-json-file';
+import Benchmark from 'benchmark';
+import unkink from '.';
 
 const directories = {
     in: path.join(__dirname, 'test', 'in') + path.sep

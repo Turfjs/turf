@@ -4,8 +4,8 @@ import glob from 'glob';
 import load from 'load-json-file';
 import write from 'write-json-file';
 import { getCoords } from '@turf/invariant';
-import { featureCollection } from '@turf/helpers';
-import { lineString } from '@turf/helpers';
+import { lineString, featureCollection, round } from '@turf/helpers';
+import truncate from '@turf/truncate';
 import destination from '.';
 
 const directories = {
@@ -24,7 +24,7 @@ test('turf-destination', t => {
         const bearing = (properties.bearing !== undefined) ? properties.bearing : 180;
         const dist = (properties.dist !== undefined) ? properties.dist : 100;
 
-        const dest = destination(geojson, dist, bearing);
+        const dest = truncate(destination(geojson, dist, bearing));
         const result = featureCollection([geojson, dest, lineString([getCoords(geojson), getCoords(dest)])]);
 
         if (process.env.REGEN) write.sync(directories.out + base, result);

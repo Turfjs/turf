@@ -7,14 +7,15 @@ import along from '.';
 const line = load.sync(path.join(__dirname, 'test', 'fixtures', 'dc-line.geojson'));
 
 test('turf-along', t => {
-    const pt1 = along(line, 1, 'miles');
-    const pt2 = along(line.geometry, 1.2, 'miles');
-    const pt3 = along(line, 1.4, 'miles');
-    const pt4 = along(line.geometry, 1.6, 'miles');
-    const pt5 = along(line, 1.8, 'miles');
-    const pt6 = along(line.geometry, 2, 'miles');
-    const pt7 = along(line, 100, 'miles');
-    const pt8 = along(line.geometry, 0, 'miles');
+    const options = {units: 'miles'}
+    const pt1 = along(line, 1, options);
+    const pt2 = along(line.geometry, 1.2, options);
+    const pt3 = along(line, 1.4, options);
+    const pt4 = along(line.geometry, 1.6, options);
+    const pt5 = along(line, 1.8, options);
+    const pt6 = along(line.geometry, 2, options);
+    const pt7 = along(line, 100, options);
+    const pt8 = along(line.geometry, 0, options);
     const fc = featureCollection([pt1, pt2, pt3, pt4, pt5, pt6, pt7, pt8]);
 
     fc.features.forEach(f => {

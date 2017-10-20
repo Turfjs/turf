@@ -1,12 +1,12 @@
-import { Point, MultiPolygon, Polygon, Feature, Position } from '@turf/helpers'
+import { MultiPolygon, Polygon, Feature, Coord } from '@turf/helpers'
 
 /**
  * http://turfjs.org/docs/#inside
  */
 export default function inside<T extends Polygon | MultiPolygon>(
-    point: Feature<Point> | Point | Position,
+    point: Coord,
     polygon: Feature<T> | T,
     options?: {
-      ignoreBoundary?: boolean
+        ignoreBoundary?: boolean
     }
 ): boolean;

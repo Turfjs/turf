@@ -8,7 +8,7 @@ Creates a [Point](http://geojson.org/geojson-spec.html#point) grid from a boundi
 
 **Parameters**
 
--   `bbox` **(BBox | [FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects) \| [Feature](http://geojson.org/geojson-spec.html#feature-objects))** extent in [minX, minY, maxX, maxY] order
+-   `bbox` **(BBox | [GeoJSON](http://geojson.org/geojson-spec.html#geojson-objects))** extent in [minX, minY, maxX, maxY] order
 -   `cellSide` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** the distance between points
 -   `options` **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)** Optional parameters (optional, default `{}`)
     -   `options.units` **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** used in calculating cellSide, can be degrees, radians, miles, or kilometers (optional, default `"kilometers"`)

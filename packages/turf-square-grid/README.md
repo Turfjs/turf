@@ -10,17 +10,17 @@ Creates a square grid from a bounding box, [Feature](http://geojson.org/geojson-
 
 -   `bbox` **([Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)> | [FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects) \| [Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;any>)** extent in [minX, minY, maxX, maxY] order
 -   `cellSize` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** width of each cell
--   `units` **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** used in calculating cellSize, can be degrees, radians, miles, or kilometers (optional, default `kilometers`)
--   `completelyWithin` **[boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** adjust width & height cellSize to fit exactly within bbox (optional, default `false`)
+-   `options` **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)** Optional parameters (optional, default `{}`)
+    -   `options.units` **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** used in calculating cellSize, can be degrees, radians, miles, or kilometers (optional, default `'kilometers'`)
+    -   `options.completelyWithin` **[boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** adjust width & height cellSize to fit exactly within bbox (optional, default `false`)
 
 **Examples**
 
 ```javascript
 var bbox = [-95, 30 ,-85, 40];
 var cellSize = 50;
-var units = 'miles';
 
-var squareGrid = turf.squareGrid(bbox, cellSize, units);
+var squareGrid = turf.squareGrid(bbox, cellSize, {units: 'miles'});
 
 //addToMap
 var addToMap = [squareGrid]

@@ -1,6 +1,6 @@
-const {polygon} = require('@turf/helpers');
-const Benchmark = require('benchmark');
-const planepoint = require('./');
+import Benchmark from 'benchmark';
+import { polygon } from '@turf/helpers';
+import planepoint from './';
 
 const point = [1, 1];
 const triangle = polygon([[[0, 0, 0], [2, 0, 0], [1, 2, 2], [0, 0, 0]]], {a: 0, b: 0, c: 2});

@@ -1,9 +1,9 @@
-import { Feature, FeatureCollection, GeometryObject, GeometryCollection, FeatureGeometryCollection, Position} from '@turf/helpers';
+import { AllGeoJSON, Position} from '@turf/helpers';
 
 /**
  * http://turfjs.org/docs/#toMercator
  */
-export function toMercator<T extends Feature<any> | FeatureCollection<any> | GeometryObject | GeometryCollection>(
+export function toMercator<T extends AllGeoJSON | Position>(
     geojson: T,
     options?: {
         mutate?: boolean
@@ -13,7 +13,7 @@ export function toMercator<T extends Feature<any> | FeatureCollection<any> | Geo
 /**
  * http://turfjs.org/docs/#toWgs84
  */
-export function toWgs84<T extends Feature<any> | FeatureCollection<any> | GeometryObject | GeometryCollection>(
+export function toWgs84<T extends AllGeoJSON | Position>(
     geojson: T,
     options?: {
         mutate?: boolean

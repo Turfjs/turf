@@ -14,8 +14,8 @@
     "main.js"
   ],
   "scripts": {
+    "pretest": "rollup -c ../../rollup.config.js",
     "test": "node -r @std/esm test.js",
-    "posttest": "rollup -c ../../rollup.config.js",
     "bench": "node -r @std/esm bench.js"
   },
   "repository": {
@@ -41,17 +41,19 @@
   },
   "homepage": "https://github.com/Turfjs/turf",
   "devDependencies": {
+    "@std/esm": "*",
     "@turf/envelope": "*",
     "@turf/point-grid": "*",
     "@turf/random": "*",
+    "@turf/rhumb-destination": "*",
+    "@turf/truncate": "*",
     "benchmark": "*",
     "chroma-js": "*",
     "load-json-file": "*",
     "matrix-to-grid": "*",
     "rollup": "*",
     "tape": "*",
-    "write-json-file": "*",
-    "@std/esm": "*"
+    "write-json-file": "*"
   },
   "dependencies": {
     "@turf/area": "^4.7.3",

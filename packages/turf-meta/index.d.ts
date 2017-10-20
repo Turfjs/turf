@@ -11,7 +11,10 @@ import {
     GeometryCollection,
     AllGeoJSON,
     FeatureGeometryCollection,
-    ExtendedFeatureCollection
+    ExtendedFeatureCollection,
+    Properties,
+    BBox,
+    Id
 } from '@turf/helpers';
 
 /**
@@ -34,16 +37,16 @@ export function coordEach(
 /**
  * http://turfjs.org/docs/#propeach
  */
-export function propEach<Props extends any>(
-    geojson: Feature<any> | FeatureCollection<any>,
+export function propEach<Props extends Properties>(
+    geojson: Feature<any> | FeatureCollection<any> | FeatureGeometryCollection,
     callback: (currentProperties: Props, featureIndex: number) => void
 ): void;
 
 /**
  * http://turfjs.org/docs/#propreduce
  */
-export function propReduce<Reducer extends any, Props extends any>(
-    geojson: Feature<any> | FeatureCollection<any>,
+export function propReduce<Reducer extends any, Props extends Properties>(
+    geojson: Feature<any> | FeatureCollection<any> | FeatureGeometryCollection,
     callback: (previousValue: Reducer, currentProperties: Props, featureIndex: number) => Reducer,
     initialValue?: Reducer
 ): Reducer;
@@ -84,7 +87,7 @@ export function coordAll(geojson: AllGeoJSON): number[][];
  */
 export function geomReduce<Reducer extends any, Geom extends GeometryObject>(
     geojson: Feature<Geom> | FeatureCollection<Geom> | Geom | GeometryCollection | FeatureGeometryCollection,
-    callback: (previousValue: Reducer, currentGeometry: Geom, featureIndex: number, currentProperties: any) => Reducer,
+    callback: (previousValue: Reducer, currentGeometry: Geom, featureIndex: number, currentProperties: Properties, currentBBox: BBox, currentId: Id) => Reducer,
     initialValue?: Reducer
 ): Reducer;
 
@@ -93,7 +96,7 @@ export function geomReduce<Reducer extends any, Geom extends GeometryObject>(
  */
 export function geomEach<Geom extends GeometryObject>(
     geojson: Feature<Geom> | FeatureCollection<Geom> | Geom | GeometryCollection | FeatureGeometryCollection,
-    callback: (currentGeometry: Geom, featureIndex: number, currentProperties: any) => void
+    callback: (currentGeometry: Geom, featureIndex: number, currentProperties: Properties, currentBBox: BBox, currentId: Id) => void
 ): void;
 
 /**
@@ -133,16 +136,24 @@ export function segmentEach(
 /**
  * http://turfjs.org/docs/#linereduce
  */
-export function lineReduce<Reducer extends any, Geom extends LineString | MultiLineString | Polygon | MultiPolygon>(
-    geojson: Feature<Geom> | Geom,
-    callback: (previousValue?: Reducer, currentLine?: Feature<LineString>, featureIndex?: number, featureSubIndex?: number) => Reducer,
+export function lineReduce<Reducer extends any>(
+    geojson: AllGeoJSON,
+    callback: (previousValue?: Reducer, currentLine?: Feature<LineString>, featureIndex?: number, featureSubIndex?: number, lineIndex?: number) => Reducer,
     initialValue?: Reducer
 ): Reducer;
 
 /**
  * http://turfjs.org/docs/#lineeach
  */
-export function lineEach<Geom extends LineString | MultiLineString | Polygon | MultiPolygon>(
-    geojson: Feature<Geom> | Geom,
-    callback: (currentLine?: Feature<LineString>, featureIndex?: number, featureSubIndex?: number) => void
+export function lineEach<T extends LineString | MultiLineString | Polygon | MultiPolygon>(
+    geojson: Feature<T> | T,
+    callback: (currentLine?: Feature<LineString>, featureIndex?: number, featureSubIndex?: number, lineIndex?: number) => void
+): void;
+export function lineEach<Feat extends Feature<LineString>>(
+    geojson: Feat | ExtendedFeatureCollection<Feat>,
+    callback: (currentLine?: Feat, featureIndex?: number, featureSubIndex?: number, lineIndex?: number) => void
+): void;
+export function lineEach<Feat extends Feature<MultiLineString | Polygon | MultiPolygon>>(
+    geojson: Feat | ExtendedFeatureCollection<Feat>,
+    callback: (currentLine?: Feature<LineString>, featureIndex?: number, featureSubIndex?: number, lineIndex?: number) => void
 ): void;

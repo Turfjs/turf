@@ -49,7 +49,7 @@ function isolines(pointGrid, breaks, options) {
     if (!Array.isArray(breaksProperties)) throw new Error('breaksProperties must be an Array');
 
     // Isoline methods
-    var matrix = gridToMatrix(pointGrid, zProperty, true);
+    var matrix = gridToMatrix(pointGrid, {zProperty: zProperty, flip: true});
     var isolines = createIsoLines(matrix, breaks, zProperty, commonProperties, breaksProperties);
     var scaledIsolines = rescaleIsolines(isolines, matrix, pointGrid);
 

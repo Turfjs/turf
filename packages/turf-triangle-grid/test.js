@@ -1,7 +1,7 @@
-import test from 'tape';
-import triangleGrid from '.';
 import fs from 'fs';
+import test from 'tape';
 import bboxPolygon from '@turf/bbox-polygon';
+import triangleGrid from '.';
 
 test('triangle-grid', function (t) {
     var bbox1 = [
