@@ -1,4 +1,4 @@
-import concaveman from 'concaveman';
+const concaveman = require('concaveman');
 import { coordEach } from '@turf/meta';
 import { polygon, isObject } from '@turf/helpers';
 
