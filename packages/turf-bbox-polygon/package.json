@@ -1,6 +1,6 @@
 {
   "name": "@turf/bbox-polygon",
-  "version": "4.7.3",
+  "version": "5.0.0",
   "description": "turf bbox-polygon module",
   "main": "main",
   "module": "index",
