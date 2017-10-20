@@ -42,7 +42,6 @@
   "dependencies": {
     "@turf/centroid": "^4.7.3",
     "@turf/convex": "^4.7.3",
-    "@turf/explode": "^4.7.3",
     "@turf/helpers": "^5.0.0",
     "@turf/invariant": "^5.0.0",
     "@turf/meta": "^5.0.0"

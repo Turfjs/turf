@@ -119,7 +119,7 @@ test('turf -- pre-defined attributes in package.json', t => {
 
 test('turf -- parsing dependencies from index.js', t => {
     for (const {name, dir, dependencies} of modules) {
-        var index
+        var index;
         if (fs.existsSync(path.join(dir, 'main.js'))) index = fs.readFileSync(path.join(dir, 'main.js'), 'utf8');
         else index = fs.readFileSync(path.join(dir, 'index.js'), 'utf8');
 
@@ -140,6 +140,8 @@ test('turf -- parsing dependencies from index.js', t => {
             case '@turf/invariant':
             case '@turf/meta':
             case 'rbush':
+            case 'topojson-client':
+            case 'topojson-server':
                 continue;
             }
             if (!dependenciesUsed.has(dependencyName)) t.fail(`${name} ${dependencyName} is not required in index.js`);
@@ -225,9 +227,9 @@ test('turf -- missing modules', t => {
 test('turf -- update to newer Typescript definitions', t => {
     glob.sync(turfTypescriptPath).forEach(filepath => {
         const typescript = fs.readFileSync(filepath, 'utf8');
-        if (typescript.includes('reference types="geojson"')) t.skip(filepath + ' update Typescript definition v5.0')
-    })
-    t.end()
+        if (typescript.includes('reference types="geojson"')) t.skip(filepath + ' update Typescript definition v5.0');
+    });
+    t.end();
 });
 
 // Iterate over each module and retrieve @example to build tests from them

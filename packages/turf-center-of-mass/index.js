@@ -1,8 +1,7 @@
-var convex = require('@turf/convex');
-import explode from '@turf/explode';
+import convex from '@turf/convex';
 import centroid from '@turf/centroid';
 import { point } from '@turf/helpers';
-import { getCoord } from '@turf/invariant';
+import { getType } from '@turf/invariant';
 import { coordEach } from '@turf/meta';
 
 /**
@@ -21,11 +20,9 @@ import { coordEach } from '@turf/meta';
  * var addToMap = [polygon, center]
  */
 function centerOfMass(geojson, properties) {
-    var type = (geojson.geometry) ? geojson.geometry.type : geojson.type;
-
-    switch (type) {
+    switch (getType(geojson)) {
     case 'Point':
-        return point(getCoord(geojson), properties);
+        return geojson;
     case 'Polygon':
         var coords = [];
         coordEach(geojson, function (coord) {
@@ -86,14 +83,11 @@ function centerOfMass(geojson, properties) {
         }
     default:
         // Not a polygon: Compute the convex hull and work with that
-        var hull = convex(explode(geojson));
+        var hull = convex(geojson);
 
-        if (hull) {
-            return centerOfMass(hull, properties);
-        } else {
-            // Hull is empty: fallback on the centroid
-            return centroid(geojson, properties);
-        }
+        if (hull) return centerOfMass(hull, properties);
+        // Hull is empty: fallback on the centroid
+        else return centroid(geojson, properties);
     }
 }
 
