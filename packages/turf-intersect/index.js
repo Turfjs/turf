@@ -1,5 +1,7 @@
 // depend on jsts for now http://bjornharrtell.github.io/jsts/
-var jsts = require('jsts');
+import GeoJSONReader from 'jsts/org/locationtech/jts/io/GeoJSONReader';
+import GeoJSONWriter from 'jsts/org/locationtech/jts/io/GeoJSONWriter';
+import OverlayOp from 'jsts/org/locationtech/jts/operation/overlay/OverlayOp';
 import truncate from '@turf/truncate';
 import { getGeom } from '@turf/invariant';
 import { feature } from '@turf/helpers';
@@ -48,15 +50,15 @@ function intersect(poly1, poly2) {
     if (cleanCoords(truncate(geom2, {precision: 4})).coordinates[0].length < 4) return null;
     if (cleanCoords(truncate(geom1, {precision: 4})).coordinates[0].length < 4) return null;
 
-    var reader = new jsts.io.GeoJSONReader();
+    var reader = new GeoJSONReader();
     var a = reader.read(truncate(geom1));
     var b = reader.read(truncate(geom2));
-    var intersection = a.intersection(b);
+    var intersection = OverlayOp.intersection(a, b);
 
     // https://github.com/Turfjs/turf/issues/951
     if (intersection.isEmpty()) return null;
 
-    var writer = new jsts.io.GeoJSONWriter();
+    var writer = new GeoJSONWriter();
     var geom = writer.write(intersection);
     return feature(geom);
 }
