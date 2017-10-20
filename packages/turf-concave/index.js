@@ -1,5 +1,5 @@
 import tin from '@turf/tin';
-var dissolve = require('geojson-dissolve');
+import dissolve from './turf-dissolve';
 import distance from '@turf/distance';
 import { feature, featureCollection, isObject, isNumber } from '@turf/helpers';
 import { featureEach } from '@turf/meta';
@@ -58,7 +58,8 @@ function concave(points, options) {
     if (tinPolys.features.length < 1) return null;
 
     // merge the adjacent triangles
-    var dissolved = dissolve(tinPolys.features);
+    var dissolved = dissolve(tinPolys, options);
+
     // geojson-dissolve always returns a MultiPolygon
     if (dissolved.coordinates.length === 1) {
         dissolved.coordinates = dissolved.coordinates[0];
