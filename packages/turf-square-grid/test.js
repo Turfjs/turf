@@ -4,7 +4,7 @@ import path from 'path';
 import load from 'load-json-file';
 import write from 'write-json-file';
 import bboxPoly from '@turf/bbox-polygon';
-import turfBbox from '@turf/bbox';
+import truncate from '@turf/truncate';
 import squareGrid from '.';
 
 const directories = {
@@ -22,10 +22,13 @@ let fixtures = fs.readdirSync(directories.in).map(filename => {
 
 test('square-grid', t => {
     for (const {name, json} of fixtures) {
-        const {bbox, cellSide, units, properties} = json;
-        const result = squareGrid(bbox, cellSide, {
-            units, properties,
-        });
+        const {bbox, cellSide, units, properties, mask} = json;
+        const options = {
+            mask,
+            units,
+            properties,
+        }
+        const result = truncate(squareGrid(bbox, cellSide, options));
 
         // Add styled GeoJSON to the result
         const poly = bboxPoly(bbox);

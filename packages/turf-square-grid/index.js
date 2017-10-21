@@ -1,5 +1,7 @@
 import distance from '@turf/distance';
-import {point, polygon, featureCollection, isObject, isNumber} from '@turf/helpers';
+import overlap from '@turf/boolean-overlap';
+import {getType} from '@turf/invariant';
+import {polygon, featureCollection, isObject, isNumber} from '@turf/helpers';
 
 /**
  * Creates a square grid from a bounding box, {@link Feature} or {@link FeatureCollection}.
@@ -9,7 +11,8 @@ import {point, polygon, featureCollection, isObject, isNumber} from '@turf/helpe
  * @param {number} cellSide of each cell, in units
  * @param {Object} [options={}] Optional parameters
  * @param {string} [options.units='kilometers'] used in calculating cellSide, can be degrees, radians, miles, or kilometers
- * @param {Object} [options.properties={}] passed to each square of the grid
+ * @param {Feature<Polygon|MultiPolygon>} [options.mask] if passed a Polygon or MultiPolygon, the grid Points will be created only inside it
+ * @param {Object} [options.properties={}] passed to each point of the grid
  * @returns {FeatureCollection<Polygon>} grid a grid of polygons
  * @example
  * var bbox = [-95, 30 ,-85, 40];
@@ -24,27 +27,29 @@ function squareGrid(bbox, cellSide, options) {
     // Optional parameters
     options = options || {};
     if (!isObject(options)) throw new Error('options is invalid');
-    var units = options.units;
-    var properties = options.properties || {};
+    // var units = options.units;
+    var properties = options.properties;
+    var mask = options.mask;
 
     // Containers
     var results = [];
 
-    // validation
+    // Input Validation
     if (cellSide === null || cellSide === undefined) throw new Error('cellSide is required');
     if (!isNumber(cellSide)) throw new Error('cellSide is invalid');
     if (!bbox) throw new Error('bbox is required');
     if (!Array.isArray(bbox)) throw new Error('bbox must be array');
     if (bbox.length !== 4) throw new Error('bbox must contain 4 numbers');
+    if (mask && ['Polygon', 'MultiPolygon'].indexOf(getType(mask)) === -1) throw new Error('options.mask must be a (Multi)Polygon');
 
     var west = bbox[0];
     var south = bbox[1];
     var east = bbox[2];
     var north = bbox[3];
 
-    var xFraction = cellSide / (distance(point([west, south]), point([east, south]), units));
+    var xFraction = cellSide / (distance([west, south], [east, south], options));
     var cellWidth = xFraction * (east - west);
-    var yFraction = cellSide / (distance(point([west, south]), point([west, north]), units));
+    var yFraction = cellSide / (distance([west, south], [west, north], options));
     var cellHeight = yFraction * (north - south);
 
     // rows & columns
@@ -69,7 +74,11 @@ function squareGrid(bbox, cellSide, options) {
                 [currentX + cellWidth, currentY],
                 [currentX, currentY]
             ]], properties);
-            results.push(cellPoly);
+            if (mask) {
+                if (overlap(cellPoly, mask)) results.push(cellPoly);
+            } else {
+                results.push(cellPoly);
+            }
 
             currentY += cellHeight;
         }
