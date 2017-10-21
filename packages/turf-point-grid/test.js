@@ -5,6 +5,7 @@ import load from 'load-json-file';
 import write from 'write-json-file';
 import bboxPoly from '@turf/bbox-polygon';
 import truncate from '@turf/truncate';
+import {point} from '@turf/helpers';
 import pointGrid from '.';
 
 const directories = {
@@ -58,10 +59,11 @@ test('turf-point-grid', t => {
 test('point-grid -- throw', t => {
     const bbox = [0, 0, 1, 1];
     t.throws(() => pointGrid(null, 0), /bbox is required/, 'missing bbox');
-    t.throws(() => pointGrid('string', 0), /bbox must be array/, 'invalid bbox');
+    t.throws(() => pointGrid('foo', 0), /bbox must be array/, 'invalid bbox');
     t.throws(() => pointGrid([0, 2], 1), /bbox must contain 4 numbers/, 'invalid bbox');
     t.throws(() => pointGrid(bbox, null), /cellSide is required/, 'missing cellSide');
-    t.throws(() => pointGrid(bbox, 'string'), /cellSide is invalid/, 'invalid cellSide');
-    t.throws(() => pointGrid(bbox, 1, 'string'), /options is invalid/, 'invalid options');
+    t.throws(() => pointGrid(bbox, 'foo'), /cellSide is invalid/, 'invalid cellSide');
+    t.throws(() => pointGrid(bbox, 1, 'foo'), /options is invalid/, 'invalid options');
+    t.throws(() => pointGrid(bbox, 1, {mask: point([0, 10])}), /options.mask must be a \(Multi\)Polygon/, 'invalid options.mask');
     t.end();
 });

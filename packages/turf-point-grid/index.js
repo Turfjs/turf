@@ -29,8 +29,9 @@ function pointGrid(bbox, cellSide, options) {
     options = options || {};
     if (!isObject(options)) throw new Error('options is invalid');
     // var units = options.units;
-    var maskIsPoly = options.mask && (getType(options.mask) === 'Polygon' || getType(options.mask) === 'MultiPolygon');
-    var properties = (options.properties || {});
+    var mask = options.mask;
+    var maskIsPoly = options.mask && (['Polygon', 'MultiPolygon'].indexOf(getType(options.mask)) !== -1);
+    var properties = options.properties || {};
 
     // Containers
     var results = [];
@@ -41,6 +42,7 @@ function pointGrid(bbox, cellSide, options) {
     if (!bbox) throw new Error('bbox is required');
     if (!Array.isArray(bbox)) throw new Error('bbox must be array');
     if (bbox.length !== 4) throw new Error('bbox must contain 4 numbers');
+    if (mask && !maskIsPoly) throw new Error('options.mask must be a (Multi)Polygon');
 
     var west = bbox[0];
     var south = bbox[1];
@@ -65,10 +67,8 @@ function pointGrid(bbox, cellSide, options) {
         var currentY = south + deltaY;
         while (currentY <= north) {
             var pt = point([currentX, currentY], properties);
-            if (maskIsPoly) {
-                if (inside(pt, options.mask)) {
-                    results.push(pt);
-                }
+            if (mask) {
+                if (inside(pt, mask)) results.push(pt);
             } else {
                 results.push(pt);
             }
