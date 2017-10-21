@@ -10,8 +10,8 @@ import {getType} from '@turf/invariant';
  * @param {Array<number>} bbox extent in [minX, minY, maxX, maxY] order
  * @param {number} cellSide the distance between points, in units
  * @param {Object} [options={}] Optional parameters
- * @param {string} [options.units="kilometers"] used in calculating cellSide, can be degrees, radians, miles, or kilometers
- * @param {Feature<Polygon|MultiPolygon>} [options.mask=undefined] if passed a Polygon or MultiPolygon, the grid Points will be created only inside it
+ * @param {string} [options.units='kilometers'] used in calculating cellSide, can be degrees, radians, miles, or kilometers
+ * @param {Feature<Polygon|MultiPolygon>} [options.mask] if passed a Polygon or MultiPolygon, the grid Points will be created only inside it
  * @param {Object} [options.properties={}] passed to each point of the grid
  * @returns {FeatureCollection<Point>} grid of points
  * @example

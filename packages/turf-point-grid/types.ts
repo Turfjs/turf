@@ -3,7 +3,7 @@ import pointGrid from './';
 
 const cellSide = 50;
 const bbox: BBox = [-95, 30, -85, 40];
-const poly: Polygon = polygon([[[20, 30], [10, 10], [20, 20], [20, 30]]]);
+const poly = polygon([[[20, 30], [10, 10], [20, 20], [20, 30]]]);
 
 pointGrid(bbox, cellSide);
 pointGrid(bbox, cellSide, {units: 'miles'});
