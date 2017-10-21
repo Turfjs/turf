@@ -1,7 +1,7 @@
-import distance from '@turf/distance';
-import {point, featureCollection, isObject, isNumber} from '@turf/helpers';
 import inside from '@turf/inside';
+import distance from '@turf/distance';
 import {getType} from '@turf/invariant';
+import {point, featureCollection, isObject, isNumber} from '@turf/helpers';
 
 /**
  * Creates a {@link Point} grid from a bounding box, {@link FeatureCollection} or {@link Feature}.
@@ -30,19 +30,18 @@ function pointGrid(bbox, cellSide, options) {
     if (!isObject(options)) throw new Error('options is invalid');
     // var units = options.units;
     var mask = options.mask;
-    var maskIsPoly = options.mask && (['Polygon', 'MultiPolygon'].indexOf(getType(options.mask)) !== -1);
-    var properties = options.properties || {};
+    var properties = options.properties;
 
     // Containers
     var results = [];
 
-    // validation
+    // Input Validation
     if (cellSide === null || cellSide === undefined) throw new Error('cellSide is required');
     if (!isNumber(cellSide)) throw new Error('cellSide is invalid');
     if (!bbox) throw new Error('bbox is required');
     if (!Array.isArray(bbox)) throw new Error('bbox must be array');
     if (bbox.length !== 4) throw new Error('bbox must contain 4 numbers');
-    if (mask && !maskIsPoly) throw new Error('options.mask must be a (Multi)Polygon');
+    if (mask && ['Polygon', 'MultiPolygon'].indexOf(getType(mask)) === -1) throw new Error('options.mask must be a (Multi)Polygon');
 
     var west = bbox[0];
     var south = bbox[1];
