@@ -1,12 +1,14 @@
-import { Units, BBox, FeatureCollection, Polygon } from '@turf/helpers'
+import { Units, BBox, Polygon, Feature, MultiPolygon, Properties, FeatureCollection } from '@turf/helpers'
 
 /**
- * http://turfjs.org/docs/#trianglegrid
+ * http://turfjs.org/docs/#squaretriangle
  */
 export default function triangleGrid(
     bbox: BBox,
     cellSide: number,
     options?: {
-        units?: Units
+        units?: Units,
+        properties?: Properties,
+        mask?: Feature<Polygon | MultiPolygon> | Polygon | MultiPolygon
     }
 ): FeatureCollection<Polygon>;
