@@ -1,4 +1,4 @@
-import inside from '@turf/inside';
+import within from '@turf/boolean-within';
 import distance from '@turf/distance';
 import {getType} from '@turf/invariant';
 import {point, featureCollection, isObject, isNumber} from '@turf/helpers';
@@ -65,11 +65,11 @@ function pointGrid(bbox, cellSide, options) {
     while (currentX <= east) {
         var currentY = south + deltaY;
         while (currentY <= north) {
-            var pt = point([currentX, currentY], properties);
+            var cellPt = point([currentX, currentY], properties);
             if (mask) {
-                if (inside(pt, mask)) results.push(pt);
+                if (within(cellPt, mask)) results.push(cellPt);
             } else {
-                results.push(pt);
+                results.push(cellPt);
             }
             currentY += cellHeight;
         }

@@ -47,9 +47,9 @@
     "write-json-file": "*"
   },
   "dependencies": {
+    "@turf/boolean-within": "^4.7.3",
     "@turf/distance": "5.x",
     "@turf/helpers": "5.x",
-    "@turf/inside": "5.x",
     "@turf/invariant": "5.x"
   },
   "@std/esm": {
