@@ -46,12 +46,12 @@
   },
   "dependencies": {
     "@turf/flatten": "^4.7.3",
-    "@turf/helpers": "^5.0.0",
-    "@turf/invariant": "^5.0.0",
-    "@turf/line-intersect": "^5.0.0",
-    "@turf/line-segment": "^5.0.0",
-    "@turf/meta": "^5.0.0",
-    "@turf/point-on-line": "^5.0.0",
+    "@turf/helpers": "5.x",
+    "@turf/invariant": "5.x",
+    "@turf/line-intersect": "5.x",
+    "@turf/line-segment": "5.x",
+    "@turf/meta": "5.x",
+    "@turf/point-on-line": "5.x",
     "@turf/truncate": "^4.7.3",
     "geojson-rbush": "2.1.0"
   },

@@ -38,13 +38,13 @@
     "write-json-file": "*"
   },
   "dependencies": {
-    "@turf/bearing": "^5.0.0",
-    "@turf/destination": "^5.0.0",
-    "@turf/distance": "^5.0.0",
-    "@turf/helpers": "^5.0.0",
-    "@turf/invariant": "^5.0.0",
-    "@turf/line-intersect": "^5.0.0",
-    "@turf/meta": "^5.0.0"
+    "@turf/bearing": "5.x",
+    "@turf/destination": "5.x",
+    "@turf/distance": "5.x",
+    "@turf/helpers": "5.x",
+    "@turf/invariant": "5.x",
+    "@turf/line-intersect": "5.x",
+    "@turf/meta": "5.x"
   },
   "@std/esm": {
     "esm": "js",

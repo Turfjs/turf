@@ -41,8 +41,8 @@
   },
   "dependencies": {
     "@turf/clean-coords": "*",
-    "@turf/helpers": "^5.0.0",
-    "@turf/invariant": "^5.0.0",
+    "@turf/helpers": "5.x",
+    "@turf/invariant": "5.x",
     "@turf/truncate": "^4.7.3",
     "jsts": "1.4.0"
   },

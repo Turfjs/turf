@@ -40,9 +40,9 @@
     "@std/esm": "*"
   },
   "dependencies": {
-    "@turf/circle": "^5.0.0",
-    "@turf/destination": "^5.0.0",
-    "@turf/helpers": "^5.0.0"
+    "@turf/circle": "5.x",
+    "@turf/destination": "5.x",
+    "@turf/helpers": "5.x"
   },
   "@std/esm": {
     "esm": "js",

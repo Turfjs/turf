@@ -43,8 +43,8 @@
   "dependencies": {
     "@turf/center": "^4.7.3",
     "@turf/explode": "^4.7.3",
-    "@turf/helpers": "^5.0.0",
-    "@turf/inside": "^4.7.3",
+    "@turf/helpers": "5.x",
+    "@turf/inside": "5.x",
     "@turf/nearest": "^4.7.3"
   },
   "@std/esm": {

@@ -44,9 +44,9 @@
     "@std/esm": "*"
   },
   "dependencies": {
-    "@turf/bbox": "^5.0.0",
-    "@turf/helpers": "^5.0.0",
-    "@turf/inside": "^4.7.3",
+    "@turf/bbox": "5.x",
+    "@turf/helpers": "5.x",
+    "@turf/inside": "5.x",
     "rbush": "^2.0.1"
   },
   "@std/esm": {

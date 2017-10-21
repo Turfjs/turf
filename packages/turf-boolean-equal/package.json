@@ -51,7 +51,7 @@
   },
   "dependencies": {
     "@turf/clean-coords": "^4.7.3",
-    "@turf/invariant": "^5.0.0",
+    "@turf/invariant": "5.x",
     "geojson-equality": "0.1.6"
   },
   "@std/esm": {

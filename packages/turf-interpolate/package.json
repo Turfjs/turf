@@ -45,14 +45,14 @@
     "write-json-file": "*"
   },
   "dependencies": {
-    "@turf/bbox": "^5.0.0",
+    "@turf/bbox": "5.x",
     "@turf/centroid": "^4.7.3",
     "@turf/clone": "^4.7.3",
-    "@turf/distance": "^5.0.0",
-    "@turf/helpers": "^5.0.0",
+    "@turf/distance": "5.x",
+    "@turf/helpers": "5.x",
     "@turf/hex-grid": "^4.7.3",
-    "@turf/invariant": "^5.0.0",
-    "@turf/meta": "^5.0.0",
+    "@turf/invariant": "5.x",
+    "@turf/meta": "5.x",
     "@turf/point-grid": "^4.7.3",
     "@turf/square-grid": "^4.7.3",
     "@turf/triangle-grid": "^4.7.3"

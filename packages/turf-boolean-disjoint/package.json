@@ -46,10 +46,10 @@
     "@std/esm": "*"
   },
   "dependencies": {
-    "@turf/inside": "^4.7.3",
-    "@turf/line-intersect": "^5.0.0",
-    "@turf/meta": "^5.0.0",
-    "@turf/polygon-to-linestring": "^5.0.0"
+    "@turf/inside": "5.x",
+    "@turf/line-intersect": "5.x",
+    "@turf/meta": "5.x",
+    "@turf/polygon-to-linestring": "5.x"
   },
   "@std/esm": {
     "esm": "js",

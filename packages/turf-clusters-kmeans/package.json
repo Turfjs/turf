@@ -56,8 +56,8 @@
   },
   "dependencies": {
     "@turf/clone": "^4.7.3",
-    "@turf/invariant": "^5.0.0",
-    "@turf/meta": "^5.0.0",
+    "@turf/invariant": "5.x",
+    "@turf/meta": "5.x",
     "skmeans": "0.9.7"
   },
   "@std/esm": {
