@@ -47,7 +47,7 @@
     "@std/esm": "*"
   },
   "dependencies": {
-    "@turf/helpers": "^5.0.0",
+    "@turf/helpers": "5.x",
     "earcut": "^2.0.0"
   },
   "@std/esm": {

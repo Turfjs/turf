@@ -1,6 +1,6 @@
 {
   "name": "@turf/bbox-polygon",
-  "version": "4.7.3",
+  "version": "5.0.0",
   "description": "turf bbox-polygon module",
   "main": "main",
   "module": "index",
@@ -40,7 +40,7 @@
     "@std/esm": "*"
   },
   "dependencies": {
-    "@turf/helpers": "^5.0.0"
+    "@turf/helpers": "5.x"
   },
   "@std/esm": {
     "esm": "js",

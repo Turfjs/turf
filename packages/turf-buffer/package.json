@@ -12,7 +12,7 @@
     "main.js"
   ],
   "scripts": {
-    "pretest": "rollup -c ../../rollup.config.js",
+    "pretest": "rollup -c ../../rollup.config.es6.js",
     "test": "node -r @std/esm test.js",
     "bench": "node -r @std/esm bench.js"
   },
@@ -50,10 +50,10 @@
     "@std/esm": "*"
   },
   "dependencies": {
-    "@turf/bbox": "^5.0.0",
+    "@turf/bbox": "5.x",
     "@turf/center": "^4.7.3",
-    "@turf/helpers": "^5.0.0",
-    "@turf/meta": "^5.0.0",
+    "@turf/helpers": "5.x",
+    "@turf/meta": "5.x",
     "@turf/projection": "^4.7.3",
     "d3-geo": "^1.7.1",
     "jsts": "1.4.0"

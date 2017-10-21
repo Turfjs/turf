@@ -3,8 +3,8 @@
 
 
 "@std/esm@*":
-  version "0.11.0"
-  resolved "https://registry.yarnpkg.com/@std/esm/-/esm-0.11.0.tgz#f5562c6723a2eae5d6f95c3b35ff1338c586ae4e"
+  version "0.12.1"
+  resolved "https://registry.yarnpkg.com/@std/esm/-/esm-0.12.1.tgz#d07b7c5e2701beade1e7db74b95484f5d91c46bf"
 
 balanced-match@^1.0.0:
   version "1.0.0"
@@ -44,8 +44,8 @@ defined@~1.0.0:
   resolved "https://registry.yarnpkg.com/defined/-/defined-1.0.0.tgz#c98d9bcef75674188e110969151199e39b1fa693"
 
 es-abstract@^1.5.0:
-  version "1.8.2"
-  resolved "https://registry.yarnpkg.com/es-abstract/-/es-abstract-1.8.2.tgz#25103263dc4decbda60e0c737ca32313518027ee"
+  version "1.9.0"
+  resolved "https://registry.yarnpkg.com/es-abstract/-/es-abstract-1.9.0.tgz#690829a07cae36b222e7fd9b75c0d0573eb25227"
   dependencies:
     es-to-primitive "^1.1.1"
     function-bind "^1.1.1"
