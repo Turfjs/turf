@@ -6,11 +6,11 @@
   version "0.12.1"
   resolved "https://registry.yarnpkg.com/@std/esm/-/esm-0.12.1.tgz#d07b7c5e2701beade1e7db74b95484f5d91c46bf"
 
-"@turf/bbox-polygon@^4.7.3":
-  version "4.7.3"
-  resolved "https://registry.yarnpkg.com/@turf/bbox-polygon/-/bbox-polygon-4.7.3.tgz#358890fd1f1a6cad9a9cb50799e37325fb88017a"
+"@turf/bbox-polygon@*":
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/@turf/bbox-polygon/-/bbox-polygon-5.0.0.tgz#3f89c1a268dc72ea9257e6fe8f94597f9fcea7f8"
   dependencies:
-    "@turf/helpers" "^4.7.3"
+    "@turf/helpers" "^5.0.0"
 
 "@turf/bearing@^4.7.3":
   version "4.7.3"
@@ -55,7 +55,7 @@
     "@turf/helpers" "^4.7.3"
     "@turf/invariant" "^4.7.3"
 
-"@turf/helpers@5.0.0", "@turf/helpers@5.x":
+"@turf/helpers@5.0.0", "@turf/helpers@5.x", "@turf/helpers@^5.0.0":
   version "5.0.0"
   resolved "https://registry.yarnpkg.com/@turf/helpers/-/helpers-5.0.0.tgz#732cb570e6aebca9ef7375e8e42fafa8e16e5d47"
 

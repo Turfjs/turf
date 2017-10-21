@@ -39,15 +39,7 @@ test('turf-point-grid', t => {
             'fill-opacity': 0
         };
         result.features.push(poly);
-
-        if (mask) {
-            mask.properties = {
-                stroke: '#00F',
-                'stroke-width': 4,
-                'fill-opacity': 0
-            };
-            result.features.push(mask);
-        }
+        if (mask) result.features.push(mask);
 
         if (process.env.REGEN) write.sync(directories.out + name + '.geojson', result);
         t.deepEqual(result, load.sync(directories.out + name + '.geojson'), name);

@@ -5,6 +5,6 @@
 		-94.031982421875,
 		74.90226611990785
 	],
-	"units": "miles",
-	"cellSide": 7
+	"cellSide": 12.5,
+	"units": "miles"
 }

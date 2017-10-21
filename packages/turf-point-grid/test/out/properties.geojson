@@ -337,11 +337,7 @@
 		},
 		{
 			"type": "Feature",
-			"properties": {
-				"stroke": "#00F",
-				"stroke-width": 4,
-				"fill-opacity": 0
-			},
+			"properties": {},
 			"geometry": {
 				"type": "Polygon",
 				"coordinates": [
