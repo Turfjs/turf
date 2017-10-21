@@ -4,6 +4,7 @@ import path from 'path';
 import load from 'load-json-file';
 import write from 'write-json-file';
 import bboxPoly from '@turf/bbox-polygon';
+import truncate from '@turf/truncate';
 import pointGrid from '.';
 
 const directories = {
@@ -22,9 +23,12 @@ let fixtures = fs.readdirSync(directories.in).map(filename => {
 test('turf-point-grid', t => {
     for (const {name, json} of fixtures) {
         const {bbox, cellSide, units, mask, properties} = json;
-        const result = pointGrid(bbox, cellSide, {
-            units, mask, properties,
-        });
+        const options = {
+            units,
+            mask,
+            properties,
+        }
+        const result = truncate(pointGrid(bbox, cellSide, options));
 
         // Add styled GeoJSON to the result
         const poly = bboxPoly(bbox);

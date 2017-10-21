@@ -28,7 +28,7 @@ function pointGrid(bbox, cellSide, options) {
     // Optional parameters
     options = options || {};
     if (!isObject(options)) throw new Error('options is invalid');
-    var units = options.units;
+    // var units = options.units;
     var maskIsPoly = options.mask && (getType(options.mask) === 'Polygon' || getType(options.mask) === 'MultiPolygon');
     var properties = (options.properties || {});
 
@@ -47,9 +47,9 @@ function pointGrid(bbox, cellSide, options) {
     var east = bbox[2];
     var north = bbox[3];
 
-    var xFraction = cellSide / (distance(point([west, south]), point([east, south]), units));
+    var xFraction = cellSide / (distance([west, south], [east, south], options));
     var cellWidth = xFraction * (east - west);
-    var yFraction = cellSide / (distance(point([west, south]), point([west, north]), units));
+    var yFraction = cellSide / (distance([west, south], [west, north], options));
     var cellHeight = yFraction * (north - south);
 
     var bboxWidth = (east - west);
