@@ -45,8 +45,8 @@
     "write-json-file": "*"
   },
   "dependencies": {
-    "@turf/helpers": "^5.0.0",
-    "@turf/invariant": "^5.0.0"
+    "@turf/helpers": "5.x",
+    "@turf/invariant": "5.x"
   },
   "@std/esm": {
     "esm": "js",

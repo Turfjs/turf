@@ -41,9 +41,9 @@
     "@std/esm": "*"
   },
   "dependencies": {
-    "@turf/bbox": "^5.0.0",
-    "@turf/bbox-polygon": "^5.0.0",
-    "@turf/helpers": "^5.0.0"
+    "@turf/bbox": "5.x",
+    "@turf/bbox-polygon": "5.x",
+    "@turf/helpers": "5.x"
   },
   "@std/esm": {
     "esm": "js",

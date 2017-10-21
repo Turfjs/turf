@@ -39,7 +39,7 @@
     "@std/esm": "*"
   },
   "dependencies": {
-    "@turf/distance": "^5.0.0"
+    "@turf/distance": "5.x"
   },
   "@std/esm": {
     "esm": "js",

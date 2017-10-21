@@ -49,10 +49,10 @@
     "@std/esm": "*"
   },
   "dependencies": {
-    "@turf/helpers": "^5.0.0",
+    "@turf/helpers": "5.x",
     "@turf/line-distance": "^4.7.3",
     "@turf/line-slice-along": "^4.7.3",
-    "@turf/meta": "^5.0.0"
+    "@turf/meta": "5.x"
   },
   "@std/esm": {
     "esm": "js",

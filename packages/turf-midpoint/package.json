@@ -41,9 +41,9 @@
     "@std/esm": "*"
   },
   "dependencies": {
-    "@turf/bearing": "^5.0.0",
-    "@turf/destination": "^5.0.0",
-    "@turf/distance": "^5.0.0"
+    "@turf/bearing": "5.x",
+    "@turf/destination": "5.x",
+    "@turf/distance": "5.x"
   },
   "@std/esm": {
     "esm": "js",

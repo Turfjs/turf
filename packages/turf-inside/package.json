@@ -42,7 +42,7 @@
     "@std/esm": "*"
   },
   "dependencies": {
-    "@turf/invariant": "^5.0.0"
+    "@turf/invariant": "5.x"
   },
   "@std/esm": {
     "esm": "js",
