@@ -6,28 +6,29 @@ import { polygon, featureCollection } from '@turf/helpers';
  *
  * @name triangleGrid
  * @param {Array<number>} bbox extent in [minX, minY, maxX, maxY] order
- * @param {number} cellSize dimension of each cell
+ * @param {number} cellSide dimension of each cell
  * @param {Object} [options={}] Optional parameters
- * @param {string} [options.units='kilometers'] used in calculating cellSize, can be degrees, radians, miles, or kilometers
+ * @param {string} [options.units='kilometers'] used in calculating cellSide, can be degrees, radians, miles, or kilometers
  * @returns {FeatureCollection<Polygon>} grid of polygons
  * @example
  * var bbox = [-95, 30 ,-85, 40];
- * var cellSize = 50;
+ * var cellSide = 50;
+ * var options = {units: 'miles'};
  *
- * var triangleGrid = turf.triangleGrid(bbox, cellSize, {units: 'miles'});
+ * var triangleGrid = turf.triangleGrid(bbox, cellSide, options);
  *
  * //addToMap
  * var addToMap = [triangleGrid];
  */
-function triangleGrid(bbox, cellSize, options) {
+function triangleGrid(bbox, cellSide, options) {
     // Optional parameters
     options = options || {};
     if (typeof options !== 'object') throw new Error('options is invalid');
 
     var fc = featureCollection([]);
-    var xFraction = cellSize / (distance([bbox[0], bbox[1]], [bbox[2], bbox[1]], options));
+    var xFraction = cellSide / (distance([bbox[0], bbox[1]], [bbox[2], bbox[1]], options));
     var cellWidth = xFraction * (bbox[2] - bbox[0]);
-    var yFraction = cellSize / (distance([bbox[0], bbox[1]], [bbox[0], bbox[3]], options));
+    var yFraction = cellSide / (distance([bbox[0], bbox[1]], [bbox[0], bbox[3]], options));
     var cellHeight = yFraction * (bbox[3] - bbox[1]);
 
     var xi = 0;

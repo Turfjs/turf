@@ -8,14 +8,14 @@ import {point, polygon, featureCollection, isObject, isNumber} from '@turf/helpe
  * @param {Array<number>} bbox extent in [minX, minY, maxX, maxY] order
  * @param {number} cellSide of each cell, in units
  * @param {Object} [options={}] Optional parameters
- * @param {string} [options.units='kilometers'] used in calculating cellSize, can be degrees, radians, miles, or kilometers
+ * @param {string} [options.units='kilometers'] used in calculating cellSide, can be degrees, radians, miles, or kilometers
  * @param {Object} [options.properties={}] passed to each square of the grid
  * @returns {FeatureCollection<Polygon>} grid a grid of polygons
  * @example
  * var bbox = [-95, 30 ,-85, 40];
- * var cellSize = 50;
- *
- * var squareGrid = turf.squareGrid(bbox, cellSize, {units: 'miles'});
+ * var cellSide = 50;
+ * var options = {units: 'miles'};
+ * var squareGrid = turf.squareGrid(bbox, cellSide, options);
  *
  * //addToMap
  * var addToMap = [squareGrid]

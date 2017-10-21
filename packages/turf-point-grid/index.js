@@ -17,8 +17,9 @@ import {getType} from '@turf/invariant';
  * @example
  * var extent = [-70.823364, -33.553984, -70.473175, -33.302986];
  * var cellSide = 3;
+ * var options = {units: 'miles'};
  *
- * var grid = turf.pointGrid(extent, cellSide, {units: 'miles'});
+ * var grid = turf.pointGrid(extent, cellSide, options);
  *
  * //addToMap
  * var addToMap = [grid];

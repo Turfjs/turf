@@ -5,7 +5,7 @@ import { Units, BBox, FeatureCollection, Polygon } from '@turf/helpers'
  */
 export default function triangleGrid(
     bbox: BBox,
-    cellSize: number,
+    cellSide: number,
     options?: {
         units?: Units
     }

@@ -18,8 +18,9 @@ import {point, polygon, featureCollection, isObject, isNumber} from '@turf/helpe
  * @example
  * var bbox = [-96,31,-84,40];
  * var cellSide = 50;
+ * var options = {units: 'miles'};
  *
- * var hexgrid = turf.hexGrid(bbox, cellSide, {units: 'miles'});
+ * var hexgrid = turf.hexGrid(bbox, cellSide, options);
  *
  * //addToMap
  * var addToMap = [hexgrid];

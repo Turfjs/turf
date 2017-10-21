@@ -8,19 +8,19 @@ Creates a square grid from a bounding box, [Feature](http://geojson.org/geojson-
 
 **Parameters**
 
--   `bbox` **([Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)> | [FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects) \| [Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;any>)** extent in [minX, minY, maxX, maxY] order
--   `cellSize` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** width of each cell
+-   `bbox` **[Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)>** extent in [minX, minY, maxX, maxY] order
+-   `cellSide` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** of each cell, in units
 -   `options` **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)** Optional parameters (optional, default `{}`)
-    -   `options.units` **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** used in calculating cellSide, can be degrees, radians, miles, or kilometers (optional, default `"kilometers"`)
-    -   `options.properties` **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)** passed to each point of the grid (optional, default `{}`)
+    -   `options.units` **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** used in calculating cellSide, can be degrees, radians, miles, or kilometers (optional, default `'kilometers'`)
+    -   `options.properties` **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)** passed to each square of the grid (optional, default `{}`)
 
 **Examples**
 
 ```javascript
 var bbox = [-95, 30 ,-85, 40];
-var cellSize = 50;
-
-var squareGrid = turf.squareGrid(bbox, cellSize, {units: 'miles'});
+var cellSide = 50;
+var options = {units: 'miles'};
+var squareGrid = turf.squareGrid(bbox, cellSide, options);
 
 //addToMap
 var addToMap = [squareGrid]
