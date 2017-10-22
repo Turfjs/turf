@@ -1,5 +1,5 @@
 import distance from '@turf/distance';
-// import overlap from '@turf/boolean-overlap';
+import overlap from '@turf/boolean-overlap';
 import {getType} from '@turf/invariant';
 import {polygon, featureCollection, isObject, isNumber} from '@turf/helpers';
 
@@ -55,55 +55,70 @@ function triangleGrid(bbox, cellSide, options) {
         var yi = 0;
         var currentY = bbox[1];
         while (currentY <= bbox[3]) {
+            var cellTriangle1 = null;
+            var cellTriangle2 = null;
+
             if (xi % 2 === 0 && yi % 2 === 0) {
-                results.push(polygon([[
+                cellTriangle1 = polygon([[
                     [currentX, currentY],
                     [currentX, currentY + cellHeight],
                     [currentX + cellWidth, currentY],
                     [currentX, currentY]
-                ]], properties), polygon([[
+                ]], properties);
+                cellTriangle2 = polygon([[
                     [currentX, currentY + cellHeight],
                     [currentX + cellWidth, currentY + cellHeight],
                     [currentX + cellWidth, currentY],
                     [currentX, currentY + cellHeight]
-                ]], properties));
+                ]], properties);
             } else if (xi % 2 === 0 && yi % 2 === 1) {
-                results.push(polygon([[
+                cellTriangle1 = polygon([[
                     [currentX, currentY],
                     [currentX + cellWidth, currentY + cellHeight],
                     [currentX + cellWidth, currentY],
                     [currentX, currentY]
-                ]], properties), polygon([[
+                ]], properties);
+                cellTriangle2 = polygon([[
                     [currentX, currentY],
                     [currentX, currentY + cellHeight],
                     [currentX + cellWidth, currentY + cellHeight],
                     [currentX, currentY]
-                ]], properties));
+                ]], properties);
             } else if (yi % 2 === 0 && xi % 2 === 1) {
-                results.push(polygon([[
+                cellTriangle1 = polygon([[
                     [currentX, currentY],
                     [currentX, currentY + cellHeight],
                     [currentX + cellWidth, currentY + cellHeight],
                     [currentX, currentY]
-                ]], properties), polygon([[
+                ]], properties);
+                cellTriangle2 = polygon([[
                     [currentX, currentY],
                     [currentX + cellWidth, currentY + cellHeight],
                     [currentX + cellWidth, currentY],
                     [currentX, currentY]
-                ]], properties));
+                ]], properties);
             } else if (yi % 2 === 1 && xi % 2 === 1) {
-                results.push(polygon([[
+                cellTriangle1 = polygon([[
                     [currentX, currentY],
                     [currentX, currentY + cellHeight],
                     [currentX + cellWidth, currentY],
                     [currentX, currentY]
-                ]], properties), polygon([[
+                ]], properties);
+                cellTriangle2 = polygon([[
                     [currentX, currentY + cellHeight],
                     [currentX + cellWidth, currentY + cellHeight],
                     [currentX + cellWidth, currentY],
                     [currentX, currentY + cellHeight]
-                ]], properties));
+                ]], properties);
             }
+            if (mask) {
+                if (overlap(cellTriangle1, mask)) results.push(cellTriangle1);
+                if (overlap(cellTriangle2, mask)) results.push(cellTriangle2);
+            } else {
+                results.push(cellTriangle1);
+                results.push(cellTriangle2);
+            }
+
             currentY += cellHeight;
             yi++;
         }
