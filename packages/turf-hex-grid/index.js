@@ -1,4 +1,5 @@
 import distance from '@turf/distance';
+import intersect from '@turf/intersect';
 import {getType} from '@turf/invariant';
 import {polygon, featureCollection, isObject, isNumber} from '@turf/helpers';
 
@@ -108,25 +109,34 @@ function hexGrid(bbox, cellSide, options) {
             }
 
             if (triangles === true) {
-                hexTriangles(
+                for (var triangle of hexTriangles(
                     [center_x, center_y],
                     cellWidth / 2,
                     cellHeight / 2,
                     properties,
                     cosines,
                     sines
-                ).forEach(function (triangle) {
-                    results.push(triangle);
-                });
+                )) {
+                    if (mask) {
+                        if (intersect(mask, triangle)) results.push(triangle);
+                    } else {
+                        results.push(triangle);
+                    }
+                }
             } else {
-                results.push(hexagon(
+                var hex = hexagon(
                     [center_x, center_y],
                     cellWidth / 2,
                     cellHeight / 2,
                     properties,
                     cosines,
                     sines
-                ));
+                );
+                if (mask) {
+                    if (intersect(mask, hex)) results.push(hex);
+                } else {
+                    results.push(hex);
+                }
             }
         }
     }

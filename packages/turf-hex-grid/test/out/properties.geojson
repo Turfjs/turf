@@ -134,47 +134,6 @@
 				"coordinates": [
 					[
 						[
-							2.163995,
-							41.434484
-						],
-						[
-							2.157999,
-							41.442273
-						],
-						[
-							2.146008,
-							41.442273
-						],
-						[
-							2.140012,
-							41.434484
-						],
-						[
-							2.146008,
-							41.426696
-						],
-						[
-							2.157999,
-							41.426696
-						],
-						[
-							2.163995,
-							41.434484
-						]
-					]
-				]
-			}
-		},
-		{
-			"type": "Feature",
-			"properties": {
-				"marker-color": "#0ff"
-			},
-			"geometry": {
-				"type": "Polygon",
-				"coordinates": [
-					[
-						[
 							2.181981,
 							41.395543
 						],
@@ -612,7 +571,11 @@
 		},
 		{
 			"type": "Feature",
-			"properties": {},
+			"properties": {
+				"stroke": "#00F",
+				"stroke-width": 6,
+				"fill-opacity": 0
+			},
 			"geometry": {
 				"type": "Polygon",
 				"coordinates": [
