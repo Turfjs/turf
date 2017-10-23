@@ -1,6 +1,5 @@
 import distance from '@turf/distance';
-import overlap from '@turf/boolean-overlap';
-import contains from '@turf/boolean-contains';
+import intersect from '@turf/intersect';
 import {getType} from '@turf/invariant';
 import {polygon, featureCollection, isObject, isNumber} from '@turf/helpers';
 
@@ -76,7 +75,7 @@ function squareGrid(bbox, cellSide, options) {
                 [currentX, currentY]
             ]], properties);
             if (mask) {
-                if (contains(mask, cellPoly) || overlap(cellPoly, mask)) results.push(cellPoly);
+                if (intersect(mask, cellPoly)) results.push(cellPoly);
             } else {
                 results.push(cellPoly);
             }

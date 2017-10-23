@@ -1,6 +1,5 @@
 import distance from '@turf/distance';
-import contains from '@turf/boolean-contains';
-import overlap from '@turf/boolean-overlap';
+import intersect from '@turf/intersect';
 import {getType} from '@turf/invariant';
 import {polygon, featureCollection, isObject, isNumber} from '@turf/helpers';
 
@@ -113,8 +112,8 @@ function triangleGrid(bbox, cellSide, options) {
                 ]], properties);
             }
             if (mask) {
-                if (contains(mask, cellTriangle1) || overlap(mask, cellTriangle1)) results.push(cellTriangle1);
-                if (contains(mask, cellTriangle2) || overlap(mask, cellTriangle2)) results.push(cellTriangle2);
+                if (intersect(mask, cellTriangle1)) results.push(cellTriangle1);
+                if (intersect(mask, cellTriangle2)) results.push(cellTriangle2);
             } else {
                 results.push(cellTriangle1);
                 results.push(cellTriangle2);
