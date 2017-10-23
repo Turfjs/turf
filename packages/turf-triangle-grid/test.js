@@ -22,12 +22,7 @@ let fixtures = fs.readdirSync(directories.in).map(filename => {
 
 test('triangle-grid', t => {
     for (const {name, json} of fixtures) {
-        const {bbox, cellSide, units, properties, mask} = json;
-        const options = {
-            mask,
-            units,
-            properties,
-        }
+        const {bbox, cellSide} = json;
         const result = truncate(triangleGrid(bbox, cellSide, options));
 
         // Add styled GeoJSON to the result
@@ -38,7 +33,7 @@ test('triangle-grid', t => {
             'fill-opacity': 0
         };
         result.features.push(poly);
-        if (mask) result.features.push(mask);
+        if (options.mask) result.features.push(options.mask);
 
         if (process.env.REGEN) write.sync(directories.out + name + '.geojson', result);
         t.deepEqual(result, load.sync(directories.out + name + '.geojson'), name);

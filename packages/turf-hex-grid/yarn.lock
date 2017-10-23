@@ -12,14 +12,14 @@
   dependencies:
     "@turf/helpers" "^4.7.3"
 
-"@turf/distance@^5.0.0":
+"@turf/distance@5.x":
   version "5.0.0"
   resolved "https://registry.yarnpkg.com/@turf/distance/-/distance-5.0.0.tgz#f4db3dcfa160213fdaaf82b2153e1a479efaba6b"
   dependencies:
     "@turf/helpers" "5.0.0"
     "@turf/invariant" "5.0.0"
 
-"@turf/helpers@5.0.0", "@turf/helpers@^5.0.0":
+"@turf/helpers@5.0.0", "@turf/helpers@5.x":
   version "5.0.0"
   resolved "https://registry.yarnpkg.com/@turf/helpers/-/helpers-5.0.0.tgz#732cb570e6aebca9ef7375e8e42fafa8e16e5d47"
 
@@ -27,7 +27,7 @@
   version "4.7.3"
   resolved "https://registry.yarnpkg.com/@turf/helpers/-/helpers-4.7.3.tgz#bc312ac43cab3c532a483151c4c382c5649429e9"
 
-"@turf/invariant@5.0.0":
+"@turf/invariant@5.0.0", "@turf/invariant@5.x":
   version "5.0.0"
   resolved "https://registry.yarnpkg.com/@turf/invariant/-/invariant-5.0.0.tgz#da9b4d7b044cffa300d654b3e0444969fc19d850"
 

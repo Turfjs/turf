@@ -1,5 +1,6 @@
 import distance from '@turf/distance';
-import {point, polygon, featureCollection, isObject, isNumber} from '@turf/helpers';
+import {getType} from '@turf/invariant';
+import {polygon, featureCollection, isObject, isNumber} from '@turf/helpers';
 
 /**
  * Takes a bounding box and the diameter of the cell and returns a {@link FeatureCollection} of flat-topped
@@ -13,6 +14,7 @@ import {point, polygon, featureCollection, isObject, isNumber} from '@turf/helpe
  * @param {Object} [options={}] Optional parameters
  * @param {string} [options.units='kilometers'] used in calculating cell size, can be degrees, radians, miles, or kilometers
  * @param {Object} [options.properties={}] passed to each hexagon or triangle of the grid
+ * @param {Feature<Polygon|MultiPolygon>} [options.mask] if passed a Polygon or MultiPolygon, the grid Points will be created only inside it
  * @param {boolean} [options.triangles=false] whether to return as triangles instead of hexagons
  * @returns {FeatureCollection<Polygon>} a hexagonal grid
  * @example
@@ -29,9 +31,10 @@ function hexGrid(bbox, cellSide, options) {
     // Optional parameters
     options = options || {};
     if (!isObject(options)) throw new Error('options is invalid');
-    var units = options.units;
+    // var units = options.units;
     var properties = options.properties || {};
     var triangles = options.triangles;
+    var mask = options.mask;
 
     // validation
     if (cellSide === null || cellSide === undefined) throw new Error('cellSide is required');
@@ -39,6 +42,7 @@ function hexGrid(bbox, cellSide, options) {
     if (!bbox) throw new Error('bbox is required');
     if (!Array.isArray(bbox)) throw new Error('bbox must be array');
     if (bbox.length !== 4) throw new Error('bbox must contain 4 numbers');
+    if (mask && ['Polygon', 'MultiPolygon'].indexOf(getType(mask)) === -1) throw new Error('options.mask must be a (Multi)Polygon');
 
     var west = bbox[0];
     var south = bbox[1];
@@ -48,9 +52,9 @@ function hexGrid(bbox, cellSide, options) {
     var centerX = (west + east) / 2;
 
     // https://github.com/Turfjs/turf/issues/758
-    var xFraction = cellSide * 2 / (distance(point([west, centerY]), point([east, centerY]), units));
+    var xFraction = cellSide * 2 / (distance([west, centerY], [east, centerY], options));
     var cellWidth = xFraction * (east - west);
-    var yFraction = cellSide * 2 / (distance(point([centerX, south]), point([centerX, north]), units));
+    var yFraction = cellSide * 2 / (distance([centerX, south], [centerX, north], options));
     var cellHeight = yFraction * (north - south);
     var radius = cellWidth / 2;
 
@@ -88,7 +92,7 @@ function hexGrid(bbox, cellSide, options) {
         sines.push(Math.sin(angle));
     }
 
-    var fc = featureCollection([]);
+    var results = [];
     for (var x = 0; x <= x_count; x++) {
         for (var y = 0; y <= y_count; y++) {
 
@@ -104,16 +108,18 @@ function hexGrid(bbox, cellSide, options) {
             }
 
             if (triangles === true) {
-                fc.features.push.apply(fc.features, hexTriangles(
+                hexTriangles(
                     [center_x, center_y],
                     cellWidth / 2,
                     cellHeight / 2,
                     properties,
                     cosines,
                     sines
-                ));
+                ).forEach(function (triangle) {
+                    results.push(triangle);
+                });
             } else {
-                fc.features.push(hexagon(
+                results.push(hexagon(
                     [center_x, center_y],
                     cellWidth / 2,
                     cellHeight / 2,
@@ -125,7 +131,7 @@ function hexGrid(bbox, cellSide, options) {
         }
     }
 
-    return fc;
+    return featureCollection(results);
 }
 
 /**

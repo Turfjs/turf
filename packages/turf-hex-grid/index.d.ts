@@ -1,4 +1,4 @@
-import { Units, BBox,  Polygon,  Properties,  FeatureCollection } from '@turf/helpers'
+import { Units, BBox, Polygon, MultiPolygon, Feature, FeatureCollection, Point, Properties } from '@turf/helpers';
 
 /**
  * http://turfjs.org/docs/#hexgrid
@@ -10,5 +10,6 @@ export default function hexGrid(
         units?: Units,
         triangles?: boolean,
         properties?: Properties,
+        mask?: Feature<Polygon | MultiPolygon> | Polygon | MultiPolygon;
     }
 ): FeatureCollection<Polygon>;

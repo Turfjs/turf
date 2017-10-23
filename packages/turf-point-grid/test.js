@@ -23,12 +23,8 @@ let fixtures = fs.readdirSync(directories.in).map(filename => {
 
 test('turf-point-grid', t => {
     for (const {name, json} of fixtures) {
-        const {bbox, cellSide, units, mask, properties} = json;
-        const options = {
-            units,
-            mask,
-            properties,
-        }
+        const {bbox, cellSide} = json;
+        const options = json;
         const result = truncate(pointGrid(bbox, cellSide, options));
 
         // Add styled GeoJSON to the result
@@ -39,7 +35,7 @@ test('turf-point-grid', t => {
             'fill-opacity': 0
         };
         result.features.push(poly);
-        if (mask) result.features.push(mask);
+        if (options.mask) result.features.push(options.mask);
 
         if (process.env.REGEN) write.sync(directories.out + name + '.geojson', result);
         t.deepEqual(result, load.sync(directories.out + name + '.geojson'), name);

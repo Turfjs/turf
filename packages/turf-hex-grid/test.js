@@ -22,12 +22,10 @@ const fixtures = fs.readdirSync(directories.in).map(filename => {
 
 test('hex-grid', t => {
     fixtures.forEach(({name, json, filename}) => {
-        const bbox = json.bbox;
-        const cellSide = json.cellSide;
-        const units = json.units || 'kilometers';
-        const triangles = json.triangles;
+        const {bbox, cellSide} = json;
+        const options = json;
 
-        const results = truncate(hexGrid(bbox, cellSide, {units, triangles}));
+        const results = truncate(hexGrid(bbox, cellSide, options));
         const poly = bboxPoly(bbox);
         poly.properties = {
             stroke: '#F00',
@@ -35,6 +33,7 @@ test('hex-grid', t => {
             'fill-opacity': 0
         };
         results.features.push(poly);
+        if (options.mask) results.features.push(options.mask);
 
         if (process.env.REGEN) write.sync(directories.out + name + '.geojson', results);
         t.deepEqual(results, load.sync(directories.out + name + '.geojson'), name);

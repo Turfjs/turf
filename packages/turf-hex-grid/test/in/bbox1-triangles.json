@@ -6,6 +6,6 @@
 		40.58058466412764
 	],
 	"cellSide": 25,
-	"triangles": true,
-	"units": "kilometers"
+	"units": "miles",
+	"triangles": true
 }
