@@ -12,10 +12,25 @@
   dependencies:
     "@turf/helpers" "^5.0.0"
 
+"@turf/bbox@^4.7.3":
+  version "4.7.3"
+  resolved "https://registry.yarnpkg.com/@turf/bbox/-/bbox-4.7.3.tgz#e3ad4f10a7e9b41b522880d33083198199059067"
+  dependencies:
+    "@turf/meta" "^4.7.3"
+
 "@turf/bearing@^4.7.3":
   version "4.7.3"
   resolved "https://registry.yarnpkg.com/@turf/bearing/-/bearing-4.7.3.tgz#efd1a8a5c8ca0cdbecbcc02172c41ed216dff8f9"
   dependencies:
+    "@turf/invariant" "^4.7.3"
+
+"@turf/boolean-contains@^4.7.3":
+  version "4.7.3"
+  resolved "https://registry.yarnpkg.com/@turf/boolean-contains/-/boolean-contains-4.7.3.tgz#1d64057590d757516f5297ca7d90c18cbd864c98"
+  dependencies:
+    "@turf/bbox" "^4.7.3"
+    "@turf/boolean-point-on-line" "^4.7.3"
+    "@turf/inside" "^4.7.3"
     "@turf/invariant" "^4.7.3"
 
 "@turf/boolean-overlap@^4.7.3":
@@ -62,6 +77,12 @@
 "@turf/helpers@^4.7.3":
   version "4.7.3"
   resolved "https://registry.yarnpkg.com/@turf/helpers/-/helpers-4.7.3.tgz#bc312ac43cab3c532a483151c4c382c5649429e9"
+
+"@turf/inside@^4.7.3":
+  version "4.7.3"
+  resolved "https://registry.yarnpkg.com/@turf/inside/-/inside-4.7.3.tgz#e4a84969f2886891b343b11b83fda3095fba542c"
+  dependencies:
+    "@turf/invariant" "^4.7.3"
 
 "@turf/invariant@5.0.0", "@turf/invariant@5.x":
   version "5.0.0"

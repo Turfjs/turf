@@ -43,6 +43,7 @@
     "write-json-file": "*"
   },
   "dependencies": {
+    "@turf/boolean-contains": "^4.7.3",
     "@turf/boolean-overlap": "^4.7.3",
     "@turf/distance": "5.x",
     "@turf/helpers": "5.x",
