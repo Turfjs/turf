@@ -16,6 +16,7 @@ described in [Hexagonal Grids](http://www.redblobgames.com/grids/hexagons/).
 -   `options` **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)** Optional parameters (optional, default `{}`)
     -   `options.units` **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** used in calculating cell size, can be degrees, radians, miles, or kilometers (optional, default `'kilometers'`)
     -   `options.properties` **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)** passed to each hexagon or triangle of the grid (optional, default `{}`)
+    -   `options.mask` **[Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;([Polygon](http://geojson.org/geojson-spec.html#polygon) \| [MultiPolygon](http://geojson.org/geojson-spec.html#multipolygon))>?** if passed a Polygon or MultiPolygon, the grid Points will be created only inside it
     -   `options.triangles` **[boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** whether to return as triangles instead of hexagons (optional, default `false`)
 
 **Examples**

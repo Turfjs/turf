@@ -12,6 +12,8 @@ Takes a bounding box and a cell depth and returns a set of triangular [polygons]
 -   `cellSide` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** dimension of each cell
 -   `options` **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)** Optional parameters (optional, default `{}`)
     -   `options.units` **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** used in calculating cellSide, can be degrees, radians, miles, or kilometers (optional, default `'kilometers'`)
+    -   `options.mask` **[Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;([Polygon](http://geojson.org/geojson-spec.html#polygon) \| [MultiPolygon](http://geojson.org/geojson-spec.html#multipolygon))>?** if passed a Polygon or MultiPolygon, the grid Points will be created only inside it
+    -   `options.properties` **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)** passed to each point of the grid (optional, default `{}`)
 
 **Examples**
 
