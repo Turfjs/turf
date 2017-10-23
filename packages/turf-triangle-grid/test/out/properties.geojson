@@ -2010,7 +2010,11 @@
 		},
 		{
 			"type": "Feature",
-			"properties": {},
+			"properties": {
+				"stroke": "#00F",
+				"stroke-width": 6,
+				"fill-opacity": 0
+			},
 			"geometry": {
 				"type": "Polygon",
 				"coordinates": [

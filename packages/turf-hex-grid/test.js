@@ -25,25 +25,25 @@ test('hex-grid', t => {
         const {bbox, cellSide} = json;
         const options = json;
 
-        const results = truncate(hexGrid(bbox, cellSide, options));
+        const result = truncate(hexGrid(bbox, cellSide, options));
         const poly = bboxPoly(bbox);
         poly.properties = {
             stroke: '#F00',
             'stroke-width': 6,
             'fill-opacity': 0
         };
-        results.features.push(poly);
+        result.features.push(poly);
         if (options.mask) {
             options.mask.properties = {
                 "stroke": "#00F",
                 "stroke-width": 6,
                 "fill-opacity": 0
             };
-            results.features.push(options.mask);
+            result.features.push(options.mask);
         }
 
-        if (process.env.REGEN) write.sync(directories.out + name + '.geojson', results);
-        t.deepEqual(results, load.sync(directories.out + name + '.geojson'), name);
+        if (process.env.REGEN) write.sync(directories.out + name + '.geojson', result);
+        t.deepEqual(result, load.sync(directories.out + name + '.geojson'), name);
     });
     t.end();
 });

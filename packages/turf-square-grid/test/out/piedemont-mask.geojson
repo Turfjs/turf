@@ -2893,8 +2893,7 @@
 			"properties": {
 				"stroke": "#00F",
 				"stroke-width": 6,
-				"fill-opacity": 0.3,
-				"fill": "#00F"
+				"fill-opacity": 0
 			},
 			"geometry": {
 				"type": "Polygon",
