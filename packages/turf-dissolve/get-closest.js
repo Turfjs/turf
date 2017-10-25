@@ -10,7 +10,7 @@
  * Get the closest number in an array
  *
  * @private
- * @param {Number} item the base number
+ * @param {number} item the base number
  * @param {Array} array the array to search into
  * @param {Function} getDiff returns the difference between the base number and
  *   and the currently read item in the array. The item which returned the smallest difference wins.
@@ -40,9 +40,9 @@ function _getClosest(item, array, getDiff) {
  * Get the closest number in an array given a base number
  *
  * @private
- * @param {Number} item the base number
- * @param {Array} array the array of numbers to search into
- * @returns {Number} the index of the closest item in the array
+ * @param {number} item the base number
+ * @param {Array<number>} array the array of numbers to search into
+ * @returns {number} the index of the closest item in the array
  * @example
  * closestNumber(30, [20, 0, 50, 29])
  * //= will return 3 as 29 is the closest item
@@ -57,9 +57,9 @@ export function closestNumber(item, array) {
  * Get the closest greater number in an array given a base number
  *
  * @private
- * @param {Number} item the base number
- * @param {Array} array the array of numbers to search into
- * @returns {Number} the index of the closest item in the array
+ * @param {number} item the base number
+ * @param {Array<number>} array the array of numbers to search into
+ * @returns {number} the index of the closest item in the array
  * @example
  * closestGreaterNumber(30, [20, 0, 50, 29])
  * //= will return 2 as 50 is the closest greater item
@@ -74,9 +74,9 @@ export function closestGreaterNumber(item, array) {
  * Get the closest lower number in an array given a base number
  *
  * @private
- * @param {Number} item the base number
- * @param {Array} array the array of numbers to search into
- * @returns {Number} the index of the closest item in the array
+ * @param {number} item the base number
+ * @param {Array<number>} array the array of numbers to search into
+ * @returns {number} the index of the closest item in the array
  * @example
  * closestLowerNumber(30, [20, 0, 50, 29])
  * //= will return 0 as 20 is the closest lower item
