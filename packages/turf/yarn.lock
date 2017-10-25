@@ -2,7 +2,7 @@
 # yarn lockfile v1
 
 
-"@mapbox/geojson-area@^0.2.2":
+"@mapbox/geojson-area@*", "@mapbox/geojson-area@^0.2.2":
   version "0.2.2"
   resolved "https://registry.yarnpkg.com/@mapbox/geojson-area/-/geojson-area-0.2.2.tgz#18d7814aa36bf23fbbcc379f8e26a22927debf10"
   dependencies:
@@ -43,7 +43,7 @@
     "@turf/invariant" "^4.7.3"
     lineclip "^1.1.5"
 
-"@turf/bbox-polygon@*", "@turf/bbox-polygon@^5.0.0":
+"@turf/bbox-polygon@*", "@turf/bbox-polygon@5.x", "@turf/bbox-polygon@^5.0.0":
   version "5.0.0"
   resolved "https://registry.yarnpkg.com/@turf/bbox-polygon/-/bbox-polygon-5.0.0.tgz#3f89c1a268dc72ea9257e6fe8f94597f9fcea7f8"
   dependencies:
@@ -55,7 +55,7 @@
   dependencies:
     "@turf/helpers" "^4.7.3"
 
-"@turf/bbox@*", "@turf/bbox@5.0.0", "@turf/bbox@^5.0.0":
+"@turf/bbox@*", "@turf/bbox@5.0.0", "@turf/bbox@5.x", "@turf/bbox@^5.0.0":
   version "5.0.0"
   resolved "https://registry.yarnpkg.com/@turf/bbox/-/bbox-5.0.0.tgz#c179e533328120ca29b5dbd215a5f54e5c7940d3"
   dependencies:
@@ -344,7 +344,7 @@
     get-closest "^0.0.4"
     rbush "^2.0.1"
 
-"@turf/distance@*", "@turf/distance@5.0.0":
+"@turf/distance@*", "@turf/distance@5.0.0", "@turf/distance@5.x":
   version "5.0.0"
   resolved "https://registry.yarnpkg.com/@turf/distance/-/distance-5.0.0.tgz#f4db3dcfa160213fdaaf82b2153e1a479efaba6b"
   dependencies:
@@ -438,7 +438,7 @@
     "@turf/distance" "^4.7.3"
     "@turf/square-grid" "^4.7.3"
 
-"@turf/inside@*":
+"@turf/inside@*", "@turf/inside@5.x":
   version "5.0.0"
   resolved "https://registry.yarnpkg.com/@turf/inside/-/inside-5.0.0.tgz#31193c7f1429469bfaa16c6685f54234e59131a0"
   dependencies:
@@ -929,6 +929,19 @@
     "@turf/invariant" "^4.7.3"
     "@turf/line-arc" "^4.7.3"
     "@turf/meta" "^4.7.3"
+
+"@turf/shortest-path@*":
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/@turf/shortest-path/-/shortest-path-5.0.0.tgz#affa13564f5e24df09999f791fd9aa630e466bee"
+  dependencies:
+    "@turf/bbox" "5.x"
+    "@turf/bbox-polygon" "5.x"
+    "@turf/clean-coords" "*"
+    "@turf/distance" "5.x"
+    "@turf/helpers" "5.x"
+    "@turf/inside" "5.x"
+    "@turf/invariant" "5.x"
+    "@turf/transform-scale" "*"
 
 "@turf/simplify@*":
   version "4.7.3"

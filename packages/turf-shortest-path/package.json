@@ -1,0 +1,62 @@
+{
+  "name": "@turf/shortest-path",
+  "version": "5.0.0",
+  "description": "turf shortest-path module",
+  "main": "main",
+  "module": "index",
+  "jsnext:main": "index",
+  "types": "index.d.ts",
+  "files": [
+    "index.js",
+    "index.d.ts",
+    "main.js",
+    "javascript-astar.js"
+  ],
+  "scripts": {
+    "pretest": "rollup -c ../../rollup.config.js",
+    "test": "node -r @std/esm test.js",
+    "bench": "node -r @std/esm bench.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/Turfjs/turf.git"
+  },
+  "keywords": [
+    "turf",
+    "shortest-path",
+    "path"
+  ],
+  "author": "Turf Authors",
+  "contributors": [
+    "Stefano Borghi <@stebogit>",
+    "Denis Carriere <@DenisCarriere>"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Turfjs/turf/issues"
+  },
+  "homepage": "https://github.com/Turfjs/turf",
+  "devDependencies": {
+    "@std/esm": "*",
+    "benchmark": "*",
+    "load-json-file": "*",
+    "rollup": "*",
+    "tape": "*",
+    "write-json-file": "*"
+  },
+  "dependencies": {
+    "@turf/bbox": "5.x",
+    "@turf/bbox-polygon": "5.x",
+    "@turf/clean-coords": "*",
+    "@turf/distance": "5.x",
+    "@turf/helpers": "5.x",
+    "@turf/inside": "5.x",
+    "@turf/invariant": "5.x",
+    "@turf/meta": "*",
+    "@turf/transform-scale": "*"
+  },
+  "@std/esm": {
+    "esm": "js",
+    "cjs": true
+  }
+}

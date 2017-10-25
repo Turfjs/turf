@@ -169,6 +169,7 @@
     "@turf/rhumb-distance": "*",
     "@turf/sample": "*",
     "@turf/sector": "*",
+    "@turf/shortest-path": "*",
     "@turf/simplify": "*",
     "@turf/square": "*",
     "@turf/square-grid": "*",
