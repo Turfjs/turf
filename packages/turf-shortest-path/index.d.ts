@@ -7,7 +7,8 @@ export default function shortestPath(
     start: Coord,
     end: Coord,
     options?: {
-        obstacles: Polygon | Feature<Polygon> | FeatureCollection<Polygon>,
+        obstacles?: Polygon | Feature<Polygon> | FeatureCollection<Polygon>,
+        minDistance?: number
         units?: Units
         resolution?: number
     }

@@ -16,8 +16,9 @@ import { Graph, astar } from './javascript-astar';
  * @param {Coord} start point
  * @param {Coord} end point
  * @param {Object} [options={}] optional parameters
- * @param {Geometry|Feature|FeatureCollection<Polygon>} [options.obstacles] polygons
- * @param {string} [options.units="kilometers"] unit in which resolution will be expressed in; it can be degrees, radians, miles, kilometers, ...
+ * @param {Geometry|Feature|FeatureCollection<Polygon>} [options.obstacles] areas which path cannot travel
+ * @param {number} [options.minDistance] minimum distance between shortest path and obstacles
+ * @param {string} [options.units='kilometers'] unit in which resolution & minimum distance will be expressed in; it can be degrees, radians, miles, kilometers, ...
  * @param {number} [options.resolution=100] distance between matrix points on which the path will be calculated
  * @returns {Feature<LineString>} shortest path between start and end
  * @example
@@ -37,12 +38,14 @@ function shortestPath(start, end, options) {
     options = options || {};
     if (!isObject(options)) throw new Error('options is invalid');
     var resolution = options.resolution;
+    var minDistance = options.minDistance;
     var obstacles = options.obstacles || featureCollection([]);
 
     // validation
     if (!start) throw new Error('start is required');
     if (!end) throw new Error('end is required');
-    if (resolution && !isNumber(resolution) || resolution <= 0) throw new Error('resolution must be a number, greater than 0');
+    if (resolution && !isNumber(resolution) || resolution <= 0) throw new Error('options.resolution must be a number, greater than 0');
+    if (minDistance) throw new Error('options.minDistance is not yet implemented');
 
     // Normalize Inputs
     var startCoord = getCoord(start);

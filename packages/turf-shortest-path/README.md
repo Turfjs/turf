@@ -12,8 +12,9 @@ any [Feature](http://geojson.org/geojson-spec.html#feature-objects) in [ obstacl
 -   `start` **Coord** point
 -   `end` **Coord** point
 -   `options` **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)** optional parameters (optional, default `{}`)
-    -   `options.obstacles` **([Geometry](http://geojson.org/geojson-spec.html#geometry) \| [Feature](http://geojson.org/geojson-spec.html#feature-objects) \| [FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects)&lt;[Polygon](http://geojson.org/geojson-spec.html#polygon)>)?** polygons
-    -   `options.units` **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** unit in which resolution will be expressed in; it can be degrees, radians, miles, kilometers, ... (optional, default `"kilometers"`)
+    -   `options.obstacles` **([Geometry](http://geojson.org/geojson-spec.html#geometry) \| [Feature](http://geojson.org/geojson-spec.html#feature-objects) \| [FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects)&lt;[Polygon](http://geojson.org/geojson-spec.html#polygon)>)?** areas which path cannot travel
+    -   `options.minDistance` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)?** minimum distance between shortest path and obstacles
+    -   `options.units` **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** unit in which resolution & minimum distance will be expressed in; it can be degrees, radians, miles, kilometers, ... (optional, default `'kilometers'`)
     -   `options.resolution` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** distance between matrix points on which the path will be calculated (optional, default `100`)
 
 **Examples**
