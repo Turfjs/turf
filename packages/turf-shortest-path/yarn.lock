@@ -135,6 +135,12 @@
     "@turf/rhumb-destination" "^4.7.3"
     "@turf/rhumb-distance" "^4.7.3"
 
+"@turf/truncate@*":
+  version "4.7.3"
+  resolved "https://registry.yarnpkg.com/@turf/truncate/-/truncate-4.7.3.tgz#827a8df8ff0c9fff9dcf1a4b3145cbdef80fb993"
+  dependencies:
+    "@turf/meta" "^4.7.3"
+
 balanced-match@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/balanced-match/-/balanced-match-1.0.0.tgz#89b4d199ab2bee49de164ea02b89ce462d71b767"

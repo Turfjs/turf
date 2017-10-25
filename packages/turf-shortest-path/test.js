@@ -3,6 +3,7 @@ import test from 'tape';
 import path from 'path';
 import load from 'load-json-file';
 import write from 'write-json-file';
+import truncate from '@turf/truncate';
 import { featureCollection, point } from '@turf/helpers';
 import { getCoord } from '@turf/invariant';
 import { featureEach } from '@turf/meta';
@@ -31,7 +32,7 @@ test('turf-shortest-path', t => {
         const options = geojson.properties;
         options.obstacles = obstacles;
 
-        const path = shortestPath(start, end, options);
+        const path = truncate(shortestPath(start, end, options));
         path.properties['stroke'] = '#F00';
         path.properties['stroke-width'] = 5;
 
