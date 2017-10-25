@@ -23,9 +23,8 @@ import { Graph, astar } from './javascript-astar';
  * @example
  * var start = turf.point([-5, -6]);
  * var end = turf.point([9, -6]);
- * var obstacles = turf.featureCollection([turf.polygon([[0,-7],[5,-7],[5,-3],[0,-3],[0,-7]]));
- *
- * var path = shortestPath(start, end, obstacles);
+ * var obstacles = turf.featureCollection([turf.polygon([[[0, -7], [5, -7], [5, -3], [0, -3], [0, -7]]])]);
+ * var path = turf.shortestPath(start, end, obstacles);
  *
  * //addToMap
  * var addToMap = [start, end, obstacles, path];

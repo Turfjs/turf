@@ -28,7 +28,8 @@
   ],
   "author": "Turf Authors",
   "contributors": [
-    "Stefano Borghi <@stebogit>"
+    "Stefano Borghi <@stebogit>",
+    "Denis Carriere <@DenisCarriere>"
   ],
   "license": "MIT",
   "bugs": {
@@ -36,12 +37,12 @@
   },
   "homepage": "https://github.com/Turfjs/turf",
   "devDependencies": {
+    "@std/esm": "*",
     "benchmark": "*",
     "load-json-file": "*",
-    "tape": "*",
-    "write-json-file": "*",
     "rollup": "*",
-    "@std/esm": "*"
+    "tape": "*",
+    "write-json-file": "*"
   },
   "dependencies": {
     "@turf/bbox": "5.x",
