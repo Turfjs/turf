@@ -1,5 +1,6 @@
 {
 	"type": "FeatureCollection",
+	"propertyName": "combine",
 	"features": [
 		{
 			"type": "Feature",
