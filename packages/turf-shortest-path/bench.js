@@ -1,8 +1,8 @@
-const path = require('path');
-const load = require('load-json-file');
-const Benchmark = require('benchmark');
-const fs = require('fs');
-const shortestPath = require('./');
+import fs from 'fs';
+import path from 'path';
+import load from 'load-json-file';
+import Benchmark from 'benchmark';
+import shortestPath from './';
 
 const directory = path.join(__dirname, 'test', 'in') + path.sep;
 const fixtures = fs.readdirSync(directory).map(filename => {
@@ -29,7 +29,7 @@ for (const {name, geojson} of fixtures) {
  *
  * simple x 129 ops/sec ±4.53% (65 runs sampled)
  */
-const suite = new Benchmark.Suite('turf-point-to-line-distance');
+const suite = new Benchmark.Suite('turf-shortest-path');
 for (const {name, geojson} of fixtures) {
     const {start, end, obstacles, options} = geojson;
     suite.add(name, () => shortestPath(start, end, obstacles, options));

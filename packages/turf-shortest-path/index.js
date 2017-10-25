@@ -1,30 +1,20 @@
-var bbox = require('@turf/bbox');
-var scale = require('@turf/transform-scale');
-var inside = require('@turf/inside');
-var helpers = require('@turf/helpers');
-var distance = require('@turf/distance');
-var invariant = require('@turf/invariant');
-var cleanCoords = require('@turf/clean-coords');
-var bboxPolygon = require('@turf/bbox-polygon');
-var point = helpers.point;
-// var getType = invariant.getType;
-var isNumber = helpers.isNumber;
-var getCoord = invariant.getCoord;
-var lineString = helpers.lineString;
-
-var jsastar = require('javascript-astar');
-var Graph = jsastar.Graph;
-var astar = jsastar.astar;
-
-// var aStar = require('astar-andrea');
+import bbox from '@turf/bbox';
+import inside from '@turf/inside';
+import distance from '@turf/distance';
+import scale from '@turf/transform-scale';
+import cleanCoords from '@turf/clean-coords';
+import bboxPolygon from '@turf/bbox-polygon';
+import { getCoord, getType } from '@turf/invariant';
+import { point, isNumber, lineString } from '@turf/helpers';
+import { Graph, astar } from './javascript-astar';
 
 /**
  * Returns the shortest {@link LineString|path} from {@link Point|start} to {@link Point|end} without colliding with
  * any {@link Feature} in {@link FeatureCollection<Polygon>| obstacles}
  *
  * @name shortestPath
- * @param {Geometry|Feature<Point>} start point
- * @param {Geometry|Feature<Point>} end point
+ * @param {Geometry|Feature<Point>|Array<number>} start point
+ * @param {Geometry|Feature<Point>|Array<number>} end point
  * @param {GeometryCollection|FeatureCollection<Polygon>} obstacles polygons
  * @param {Object} [options={}] optional parameters
  * @param {string} [options.units="kilometers"] unit in which resolution will be expressed in; it can be degrees, radians, miles, kilometers, ...
@@ -40,7 +30,7 @@ var astar = jsastar.astar;
  * //addToMap
  * var addToMap = [start, end, obstacles, path];
  */
-module.exports = function (start, end, obstacles, options) {
+function shortestPath(start, end, obstacles, options) {
     // validation
     if (getType(start, 'start') !== 'Point') throw new Error('start must be Point');
     if (getType(end, 'end') !== 'Point') throw new Error('end must be Point');
@@ -160,8 +150,7 @@ module.exports = function (start, end, obstacles, options) {
 
 
     return cleanCoords(lineString(path));
-};
-
+}
 
 /**
  * Checks if Point is inside any of the Polygons
@@ -180,12 +169,4 @@ function isInside(pt, polygons) {
     return false;
 }
 
-// placeholder for @turf/helpers.getType available in Turf v4.7.4+
-function getType(geojson, name) {
-    if (!geojson) throw new Error((name || 'geojson') + ' is required');
-    // GeoJSON Feature & GeometryCollection
-    if (geojson.geometry && geojson.geometry.type) return geojson.geometry.type;
-    // GeoJSON Geometry & FeatureCollection
-    if (geojson.type) return geojson.type;
-    throw new Error((name || 'geojson') + ' is invalid');
-}
+export default shortestPath;
