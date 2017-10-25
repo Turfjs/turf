@@ -1,22 +1,19 @@
-var combine = require('./');
-var Benchmark = require('benchmark');
-var fs = require('fs');
-var point = require('@turf/helpers').point;
-var linestring = require('@turf/helpers').lineString;
-var polygon = require('@turf/helpers').polygon;
-var featurecollection = require('@turf/helpers').featureCollection;
+import fs from 'fs';
+import Benchmark from 'benchmark';
+import { point, polygon, lineString, featureCollection } from '@turf/helpers';
+import combine from './';
 
 // MultiPoint
 var pt1 = point(50, 51)
 var pt2 = point(100, 101)
 
 // MultiLineString
-var l1 = linestring([
+var l1 = lineString([
 [102.0,
 -10.0],
 [130.0,
 4.0]])
-var l2 = linestring([
+var l2 = lineString([
 [40.0,
 -20.0],
 [150.0,
@@ -45,18 +42,18 @@ var p2 = polygon([
 var suite = new Benchmark.Suite('turf-combine');
 suite
   .add('turf-combine#point',function() {
-    combine(featurecollection([pt1, pt2]))
+    combine(featureCollection([pt1, pt2]))
   })
   .add('turf-combine#line',function() {
-    combine(featurecollection([l1, l2]))
+    combine(featureCollection([l1, l2]))
   })
   .add('turf-combine#polygon',function() {
-    combine(featurecollection([p1, p2]))
+    combine(featureCollection([p1, p2]))
   })
   .on('cycle', function(event) {
     console.log(String(event.target));
   })
   .on('complete', function() {
-    
+
   })
   .run();

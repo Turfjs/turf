@@ -1,5 +1,5 @@
-const test = require('tape');
-const bboxPolygon = require('./');
+import test from 'tape';
+import bboxPolygon from '.';
 
 test('bboxPolygon', t => {
     t.plan(2);

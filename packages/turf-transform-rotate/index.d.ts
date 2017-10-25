@@ -1,16 +1,13 @@
-/// <reference types="geojson" />
-
-type Point = GeoJSON.Feature<GeoJSON.Point> | GeoJSON.Point | number[];
-type Geoms = GeoJSON.Feature<any> | GeoJSON.FeatureCollection<any> | GeoJSON.GeometryObject | GeoJSON.GeometryCollection;
+import { AllGeoJSON, Coord } from '@turf/helpers';
 
 /**
- * http://turfjs.org/docs/#transform-rotate
+ * http://turfjs.org/docs/#transformrotate
  */
-declare function transformRotate<Geom extends Geoms>(
-    geojson: Geom,
+export default function transformRotate<T extends AllGeoJSON>(
+    geojson: T,
     angle: number,
-    pivot?: Point,
-    mutate?: boolean): Geom;
-
-declare namespace transformRotate { }
-export = transformRotate;
+    options?: {
+        pivot?: Coord,
+        mutate?: boolean
+    }
+): T;

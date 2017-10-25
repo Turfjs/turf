@@ -1,10 +1,9 @@
-/// <reference types="geojson" />
-
-type Feature = GeoJSON.Feature<any> | GeoJSON.GeometryObject
+import { Feature, GeometryObject } from '@turf/helpers'
 
 /**
- * http://turfjs.org/docs/#boolean-equal
+ * http://turfjs.org/docs/#booleanequal
  */
-declare function equal(feature1: Feature, feature2: Feature): boolean;
-declare namespace equal {}
-export = equal;
+export default function (
+    feature1: Feature<any> | GeometryObject,
+    feature2: Feature<any> | GeometryObject
+): boolean;

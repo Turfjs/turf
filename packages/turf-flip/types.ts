@@ -1,5 +1,5 @@
 import {featureCollection, point, lineString, geometryCollection} from '@turf/helpers'
-import * as flip from './'
+import flip from './'
 
 const pt = point([120.1234567, 40.1234567])
 const ptGeom = pt.geometry
@@ -15,5 +15,5 @@ flip(line)
 flip(lineGeom)
 flip(lines)
 flip(points)
-flip(geomCollection)
+flip(geomCollection, {mutate: true})
 

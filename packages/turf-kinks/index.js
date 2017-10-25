@@ -1,4 +1,4 @@
-var point = require('@turf/helpers').point;
+import { point } from '@turf/helpers';
 
 /**
  * Takes a {@link LineString|linestring}, {@link MultiLineString|multi-linestring}, {@link MultiPolygon|multi-polygon}, or {@link Polygon|polygon} and returns {@link Point|points} at all self-intersections.
@@ -20,7 +20,7 @@ var point = require('@turf/helpers').point;
  * //addToMap
  * var addToMap = [poly, kinks]
  */
-module.exports = function (featureIn) {
+function kinks(featureIn) {
     var coordinates;
     var feature;
     var results = {
@@ -44,17 +44,31 @@ module.exports = function (featureIn) {
         throw new Error('Input must be a LineString, MultiLineString, ' +
             'Polygon, or MultiPolygon Feature or Geometry');
     }
-    coordinates.forEach(function (segment1) {
-        coordinates.forEach(function (segment2) {
-            for (var i = 0; i < segment1.length - 1; i++) {
-                for (var k = 0; k < segment2.length - 1; k++) {
-                    // don't check adjacent sides of a given segment, since of course they intersect in a vertex.
-                    if (segment1 === segment2 && (Math.abs(i - k) === 1 || Math.abs(i - k) === segment1.length - 2)) {
-                        continue;
+    coordinates.forEach(function (line1) {
+        coordinates.forEach(function (line2) {
+            for (var i = 0; i < line1.length - 1; i++) {
+                // start iteration at i, intersections for k < i have already been checked in previous outer loop iterations
+                for (var k = i; k < line2.length - 1; k++) {
+                    if (line1 === line2) {
+                        // segments are adjacent and always share a vertex, not a kink
+                        if (Math.abs(i - k) === 1) {
+                            continue;
+                        }
+                        // first and last segment in a closed lineString or ring always share a vertex, not a kink
+                        if (
+                            // segments are first and last segment of lineString
+                            i === 0 &&
+                            k === line1.length - 2 &&
+                            // lineString is closed
+                            line1[i][0] === line1[line1.length - 1][0] &&
+                            line1[i][1] === line1[line1.length - 1][1]
+                        ) {
+                            continue;
+                        }
                     }
 
-                    var intersection = lineIntersects(segment1[i][0], segment1[i][1], segment1[i + 1][0], segment1[i + 1][1],
-                        segment2[k][0], segment2[k][1], segment2[k + 1][0], segment2[k + 1][1]);
+                    var intersection = lineIntersects(line1[i][0], line1[i][1], line1[i + 1][0], line1[i + 1][1],
+                        line2[k][0], line2[k][1], line2[k + 1][0], line2[k + 1][1]);
                     if (intersection) {
                         results.features.push(point([intersection[0], intersection[1]]));
                     }
@@ -63,7 +77,7 @@ module.exports = function (featureIn) {
         });
     });
     return results;
-};
+}
 
 
 // modified from http://jsfiddle.net/justin_c_rounds/Gd2S2/light/
@@ -110,3 +124,5 @@ function lineIntersects(line1StartX, line1StartY, line1EndX, line1EndY, line2Sta
         return false;
     }
 }
+
+export default kinks;

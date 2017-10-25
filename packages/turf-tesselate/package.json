@@ -1,16 +1,20 @@
 {
   "name": "@turf/tesselate",
-  "version": "4.6.0",
+  "version": "4.7.3",
   "description": "turf tesselate module",
-  "main": "index.js",
+  "main": "main",
+  "module": "index",
+  "jsnext:main": "index",
   "types": "index.d.ts",
   "files": [
     "index.js",
-    "index.d.ts"
+    "index.d.ts",
+    "main.js"
   ],
   "scripts": {
-    "test": "node test.js",
-    "bench": "node bench.js"
+    "pretest": "rollup -c ../../rollup.config.js",
+    "test": "node -r @std/esm test.js",
+    "bench": "node -r @std/esm bench.js"
   },
   "repository": {
     "type": "git",
@@ -37,11 +41,17 @@
   },
   "homepage": "https://github.com/Turfjs/turf",
   "devDependencies": {
-    "benchmark": "^2.1.4",
-    "tape": "^4.6.3"
+    "benchmark": "*",
+    "tape": "*",
+    "rollup": "*",
+    "@std/esm": "*"
   },
   "dependencies": {
-    "@turf/helpers": "^4.6.0",
+    "@turf/helpers": "5.x",
     "earcut": "^2.0.0"
+  },
+  "@std/esm": {
+    "esm": "js",
+    "cjs": true
   }
 }

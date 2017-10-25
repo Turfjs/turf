@@ -1,21 +1,14 @@
-var intersect = require('./');
-var Benchmark = require('benchmark');
-var fs = require('fs');
+import fs from 'fs';
+import path from 'path';
+import Benchmark from 'benchmark';
+import intersect from './';
 
-var armenia = JSON.parse(fs.readFileSync(__dirname+'/test/fixtures/in/armenia.json'));
-var simple = JSON.parse(fs.readFileSync(__dirname+'/test/fixtures/in/Intersect1.json'));
-var suite = new Benchmark.Suite('turf-intersect');
+const armenia = JSON.parse(fs.readFileSync(path.join(__dirname, 'test', 'fixtures', 'in', 'armenia.json')));
+const simple = JSON.parse(fs.readFileSync(path.join(__dirname, 'test', 'fixtures', 'in', 'Intersect1.json')));
+const suite = new Benchmark.Suite('turf-intersect');
 suite
-  .add('turf-intersect#simple',function () {
-    intersect(simple[0], simple[1]);
-  })
-  .add('turf-intersect#armenia',function () {
-    intersect(armenia[0], armenia[1]);
-  })
-  .on('cycle', function (event) {
-    console.log(String(event.target));
-  })
-  .on('complete', function () {
-    
-  })
-  .run();
+    .add('turf-intersect#simple', () => intersect(simple[0], simple[1]))
+    .add('turf-intersect#armenia', () => intersect(armenia[0], armenia[1]))
+    .on('cycle', event => console.log(String(event.target)))
+    .on('complete', () => {})
+    .run();

@@ -1,5 +1,5 @@
-import {featureCollection, point} from '@turf/helpers'
-import * as clustersKmeans from './'
+import { featureCollection, point } from '@turf/helpers'
+import clustersKmeans from './'
 
 // Fixtures
 const points = featureCollection([
@@ -9,7 +9,7 @@ const points = featureCollection([
 
 // Default
 const numberOfClusters = 5;
-const clustered = clustersKmeans(points, numberOfClusters)
+const clustered = clustersKmeans(points, {numberOfClusters})
 let {cluster, centroid} = clustered.features[0].properties
 cluster = 2
 centroid = [-110, 85]
@@ -18,5 +18,5 @@ centroid = [-110, 85]
 
 // Properties option
 clustersKmeans(points)
-clustersKmeans(points, numberOfClusters)
-clustersKmeans(points, numberOfClusters, true)
+clustersKmeans(points, {numberOfClusters})
+clustersKmeans(points, {numberOfClusters, mutate: true})

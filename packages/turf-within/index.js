@@ -1,5 +1,5 @@
-var inside = require('@turf/inside');
-var featureCollection = require('@turf/helpers').featureCollection;
+import inside from '@turf/inside';
+import { featureCollection } from '@turf/helpers';
 
 /**
  * Takes a set of {@link Point|points} and a set of {@link Polygon|polygons} and returns the points that fall within the polygons.
@@ -37,7 +37,7 @@ var featureCollection = require('@turf/helpers').featureCollection;
  *   currentFeature.properties['marker-color'] = '#000';
  * });
  */
-module.exports = function (points, polygons) {
+function within(points, polygons) {
     var pointsWithin = featureCollection([]);
     for (var i = 0; i < polygons.features.length; i++) {
         for (var j = 0; j < points.features.length; j++) {
@@ -48,4 +48,6 @@ module.exports = function (points, polygons) {
         }
     }
     return pointsWithin;
-};
+}
+
+export default within;

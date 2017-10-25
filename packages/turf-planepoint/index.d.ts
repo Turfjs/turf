@@ -1,11 +1,9 @@
-/// <reference types="geojson" />
-
-type Point = GeoJSON.Feature<GeoJSON.Point> | GeoJSON.Point | number[];
-type Polygon = GeoJSON.Feature<GeoJSON.Polygon> | GeoJSON.Polygon;
+import { Feature, Coord, Polygon } from '@turf/helpers'
 
 /**
  * http://turfjs.org/docs/#planepoint
  */
-declare function planepoint(point: Point, triangle: Polygon): number;
-declare namespace planepoint { }
-export = planepoint;
+export default function planepoint(
+    point: Coord,
+    triangle: Feature<Polygon> | Polygon
+): number;

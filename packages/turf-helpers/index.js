@@ -1,4 +1,70 @@
 /**
+ * Earth Radius used with the Harvesine formula and approximates using a spherical (non-ellipsoid) Earth.
+ */
+export var earthRadius = 6371008.8;
+
+/**
+ * Unit of measurement factors using a spherical (non-ellipsoid) earth radius.
+ */
+export var factors = {
+    meters: earthRadius,
+    metres: earthRadius,
+    millimeters: earthRadius * 1000,
+    millimetres: earthRadius * 1000,
+    centimeters: earthRadius * 100,
+    centimetres: earthRadius * 100,
+    kilometers: earthRadius / 1000,
+    kilometres: earthRadius / 1000,
+    miles: earthRadius / 1609.344,
+    nauticalmiles: earthRadius / 1852,
+    inches: earthRadius * 39.370,
+    yards: earthRadius / 1.0936,
+    feet: earthRadius * 3.28084,
+    radians: 1,
+    degrees: earthRadius / 111325,
+};
+
+/**
+ * Units of measurement factors based on 1 meter.
+ */
+export var unitsFactors = {
+    meters: 1,
+    metres: 1,
+    millimeters: 1000,
+    millimetres: 1000,
+    centimeters: 100,
+    centimetres: 100,
+    kilometers: 1 / 1000,
+    kilometres: 1 / 1000,
+    miles: 1 / 1609.344,
+    nauticalmiles: 1 / 1852,
+    inches: 39.370,
+    yards: 1 / 1.0936,
+    feet: 3.28084,
+    radians: 1 / earthRadius,
+    degrees: 1 / 111325,
+};
+
+/**
+ * Area of measurement factors based on 1 square meter.
+ */
+export var areaFactors = {
+    meters: 1,
+    metres: 1,
+    millimeters: 1000000,
+    millimetres: 1000000,
+    centimeters: 10000,
+    centimetres: 10000,
+    kilometers: 0.000001,
+    kilometres: 0.000001,
+    acres: 0.000247105,
+    miles: 3.86e-7,
+    yards: 1.195990046,
+    feet: 10.763910417,
+    inches: 1550.003100006
+};
+
+/**
  * Wraps a GeoJSON {@link Geometry} in a GeoJSON {@link Feature}.
  *
  * @name feature
@@ -17,7 +83,7 @@
  *
  * //=feature
  */
-function feature(geometry, properties, bbox, id) {
+export function feature(geometry, properties, bbox, id) {
     if (geometry === undefined) throw new Error('geometry is required');
     if (properties && properties.constructor !== Object) throw new Error('properties must be an Object');
     if (bbox && bbox.length !== 4) throw new Error('bbox must be an Array of 4 numbers');
@@ -48,7 +114,7 @@ function feature(geometry, properties, bbox, id) {
  *
  * //=geometry
  */
-function geometry(type, coordinates, bbox) {
+export function geometry(type, coordinates, bbox) {
     // Validation
     if (!type) throw new Error('type is required');
     if (!coordinates) throw new Error('coordinates is required');
@@ -83,7 +149,7 @@ function geometry(type, coordinates, bbox) {
  *
  * //=point
  */
-function point(coordinates, properties, bbox, id) {
+export function point(coordinates, properties, bbox, id) {
     if (!coordinates) throw new Error('No coordinates passed');
     if (coordinates.length === undefined) throw new Error('Coordinates must be an array');
     if (coordinates.length < 2) throw new Error('Coordinates must be at least 2 numbers long');
@@ -117,7 +183,7 @@ function point(coordinates, properties, bbox, id) {
  *
  * //=polygon
  */
-function polygon(coordinates, properties, bbox, id) {
+export function polygon(coordinates, properties, bbox, id) {
     if (!coordinates) throw new Error('No coordinates passed');
 
     for (var i = 0; i < coordinates.length; i++) {
@@ -169,7 +235,7 @@ function polygon(coordinates, properties, bbox, id) {
  *
  * //=linestring2
  */
-function lineString(coordinates, properties, bbox, id) {
+export function lineString(coordinates, properties, bbox, id) {
     if (!coordinates) throw new Error('No coordinates passed');
     if (coordinates.length < 2) throw new Error('Coordinates must be an array of two or more positions');
     // Check if first point of LineString contains two numbers
@@ -200,7 +266,7 @@ function lineString(coordinates, properties, bbox, id) {
  *
  * //=collection
  */
-function featureCollection(features, bbox, id) {
+export function featureCollection(features, bbox, id) {
     if (!features) throw new Error('No features passed');
     if (!Array.isArray(features)) throw new Error('features must be an Array');
     if (bbox && bbox.length !== 4) throw new Error('bbox must be an Array of 4 numbers');
@@ -229,7 +295,7 @@ function featureCollection(features, bbox, id) {
  *
  * //=multiLine
  */
-function multiLineString(coordinates, properties, bbox, id) {
+export function multiLineString(coordinates, properties, bbox, id) {
     if (!coordinates) throw new Error('No coordinates passed');
 
     return feature({
@@ -254,7 +320,7 @@ function multiLineString(coordinates, properties, bbox, id) {
  *
  * //=multiPt
  */
-function multiPoint(coordinates, properties, bbox, id) {
+export function multiPoint(coordinates, properties, bbox, id) {
     if (!coordinates) throw new Error('No coordinates passed');
 
     return feature({
@@ -280,7 +346,7 @@ function multiPoint(coordinates, properties, bbox, id) {
  * //=multiPoly
  *
  */
-function multiPolygon(coordinates, properties, bbox, id) {
+export function multiPolygon(coordinates, properties, bbox, id) {
     if (!coordinates) throw new Error('No coordinates passed');
 
     return feature({
@@ -312,7 +378,7 @@ function multiPolygon(coordinates, properties, bbox, id) {
  *
  * //=collection
  */
-function geometryCollection(geometries, properties, bbox, id) {
+export function geometryCollection(geometries, properties, bbox, id) {
     if (!geometries) throw new Error('geometries is required');
     if (!Array.isArray(geometries)) throw new Error('geometries must be an Array');
 
@@ -322,36 +388,6 @@ function geometryCollection(geometries, properties, bbox, id) {
     }, properties, bbox, id);
 }
 
-// https://en.wikipedia.org/wiki/Great-circle_distance#Radius_for_spherical_Earth
-var factors = {
-    miles: 3960,
-    nauticalmiles: 3441.145,
-    degrees: 57.2957795,
-    radians: 1,
-    inches: 250905600,
-    yards: 6969600,
-    meters: 6373000,
-    metres: 6373000,
-    centimeters: 6.373e+8,
-    centimetres: 6.373e+8,
-    kilometers: 6373,
-    kilometres: 6373,
-    feet: 20908792.65
-};
-
-var areaFactors = {
-    kilometers: 0.000001,
-    kilometres: 0.000001,
-    meters: 1,
-    metres: 1,
-    centimetres: 10000,
-    millimeter: 1000000,
-    acres: 0.000247105,
-    miles: 3.86e-7,
-    yards: 1.195990046,
-    feet: 10.763910417,
-    inches: 1550.003100006
-};
 /**
  * Round number to precision
  *
@@ -365,7 +401,7 @@ var areaFactors = {
  * turf.round(120.4321, 2)
  * //=120.43
  */
-function round(num, precision) {
+export function round(num, precision) {
     if (num === undefined || num === null || isNaN(num)) throw new Error('num is required');
     if (precision && !(precision >= 0)) throw new Error('precision must be a positive number');
     var multiplier = Math.pow(10, precision || 0);
@@ -378,14 +414,15 @@ function round(num, precision) {
  *
  * @name radiansToDistance
  * @param {number} radians in radians across the sphere
- * @param {string} [units=kilometers] can be degrees, radians, miles, or kilometers inches, yards, metres, meters, kilometres, kilometers.
+ * @param {string} [units='kilometers'] can be degrees, radians, miles, or kilometers inches, yards, metres, meters, kilometres, kilometers.
  * @returns {number} distance
  */
-function radiansToDistance(radians, units) {
+export function radiansToDistance(radians, units) {
     if (radians === undefined || radians === null) throw new Error('radians is required');
 
+    if (units && typeof units !== 'string') throw new Error('units must be a string');
     var factor = factors[units || 'kilometers'];
-    if (!factor) throw new Error('units is invalid');
+    if (!factor) throw new Error(units + ' units is invalid');
     return radians * factor;
 }
 
@@ -395,14 +432,15 @@ function radiansToDistance(radians, units) {
  *
  * @name distanceToRadians
  * @param {number} distance in real units
- * @param {string} [units=kilometers] can be degrees, radians, miles, or kilometers inches, yards, metres, meters, kilometres, kilometers.
+ * @param {string} [units='kilometers'] can be degrees, radians, miles, or kilometers inches, yards, metres, meters, kilometres, kilometers.
  * @returns {number} radians
  */
-function distanceToRadians(distance, units) {
+export function distanceToRadians(distance, units) {
     if (distance === undefined || distance === null) throw new Error('distance is required');
 
+    if (units && typeof units !== 'string') throw new Error('units must be a string');
     var factor = factors[units || 'kilometers'];
-    if (!factor) throw new Error('units is invalid');
+    if (!factor) throw new Error(units + ' units is invalid');
     return distance / factor;
 }
 
@@ -412,10 +450,10 @@ function distanceToRadians(distance, units) {
  *
  * @name distanceToDegrees
  * @param {number} distance in real units
- * @param {string} [units=kilometers] can be degrees, radians, miles, or kilometers inches, yards, metres, meters, kilometres, kilometers.
+ * @param {string} [units='kilometers'] can be degrees, radians, miles, or kilometers inches, yards, metres, meters, kilometres, kilometers.
  * @returns {number} degrees
  */
-function distanceToDegrees(distance, units) {
+export function distanceToDegrees(distance, units) {
     return radians2degrees(distanceToRadians(distance, units));
 }
 
@@ -427,7 +465,7 @@ function distanceToDegrees(distance, units) {
  * @param {number} bearing angle, between -180 and +180 degrees
  * @returns {number} angle between 0 and 360 degrees
  */
-function bearingToAngle(bearing) {
+export function bearingToAngle(bearing) {
     if (bearing === null || bearing === undefined) throw new Error('bearing is required');
 
     var angle = bearing % 360;
@@ -442,7 +480,7 @@ function bearingToAngle(bearing) {
  * @param {number} radians angle in radians
  * @returns {number} degrees between 0 and 360 degrees
  */
-function radians2degrees(radians) {
+export function radians2degrees(radians) {
     if (radians === null || radians === undefined) throw new Error('radians is required');
 
     var degrees = radians % (2 * Math.PI);
@@ -456,13 +494,12 @@ function radians2degrees(radians) {
  * @param {number} degrees angle between 0 and 360 degrees
  * @returns {number} angle in radians
  */
-function degrees2radians(degrees) {
+export function degrees2radians(degrees) {
     if (degrees === null || degrees === undefined) throw new Error('degrees is required');
 
     var radians = degrees % 360;
     return radians * Math.PI / 180;
 }
-
 
 /**
  * Converts a distance to the requested unit.
@@ -470,10 +507,10 @@ function degrees2radians(degrees) {
  *
  * @param {number} distance to be converted
  * @param {string} originalUnit of the distance
- * @param {string} [finalUnit=kilometers] returned unit
+ * @param {string} [finalUnit='kilometers'] returned unit
  * @returns {number} the converted distance
  */
-function convertDistance(distance, originalUnit, finalUnit) {
+export function convertDistance(distance, originalUnit, finalUnit) {
     if (distance === null || distance === undefined) throw new Error('distance is required');
     if (!(distance >= 0)) throw new Error('distance must be a positive number');
 
@@ -485,11 +522,11 @@ function convertDistance(distance, originalUnit, finalUnit) {
  * Converts a area to the requested unit.
  * Valid units: kilometers, kilometres, meters, metres, centimetres, millimeter, acre, mile, yard, foot, inch
  * @param {number} area to be converted
- * @param {string} [originalUnit=meters] of the distance
- * @param {string} [finalUnit=kilometers] returned unit
+ * @param {string} [originalUnit='meters'] of the distance
+ * @param {string} [finalUnit='kilometers'] returned unit
  * @returns {number} the converted distance
  */
-function convertArea(area, originalUnit, finalUnit) {
+export function convertArea(area, originalUnit, finalUnit) {
     if (area === null || area === undefined) throw new Error('area is required');
     if (!(area >= 0)) throw new Error('area must be a positive number');
 
@@ -513,29 +550,21 @@ function convertArea(area, originalUnit, finalUnit) {
  * turf.isNumber('foo')
  * //=false
  */
-function isNumber(num) {
+export function isNumber(num) {
     return !isNaN(num) && num !== null && !Array.isArray(num);
 }
 
-module.exports = {
-    feature: feature,
-    geometry: geometry,
-    featureCollection: featureCollection,
-    geometryCollection: geometryCollection,
-    point: point,
-    multiPoint: multiPoint,
-    lineString: lineString,
-    multiLineString: multiLineString,
-    polygon: polygon,
-    multiPolygon: multiPolygon,
-    radiansToDistance: radiansToDistance,
-    distanceToRadians: distanceToRadians,
-    distanceToDegrees: distanceToDegrees,
-    radians2degrees: radians2degrees,
-    degrees2radians: degrees2radians,
-    bearingToAngle: bearingToAngle,
-    convertDistance: convertDistance,
-    convertArea: convertArea,
-    round: round,
-    isNumber: isNumber
-};
+/**
+ * isObject
+ *
+ * @param {*} input variable to validate
+ * @returns {boolean} true/false
+ * @example
+ * turf.isObject({elevation: 10})
+ * //=true
+ * turf.isObject('foo')
+ * //=false
+ */
+export function isObject(input) {
+    return (!!input) && (input.constructor === Object);
+}

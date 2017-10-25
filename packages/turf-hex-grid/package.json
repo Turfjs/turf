@@ -1,16 +1,20 @@
 {
   "name": "@turf/hex-grid",
-  "version": "4.6.1",
+  "version": "4.7.3",
   "description": "turf hex-grid module",
-  "main": "index.js",
+  "main": "main",
+  "module": "index",
+  "jsnext:main": "index",
   "types": "index.d.ts",
   "files": [
     "index.js",
-    "index.d.ts"
+    "index.d.ts",
+    "main.js"
   ],
   "scripts": {
-    "test": "node test.js",
-    "bench": "node bench.js"
+    "pretest": "rollup -c ../../rollup.config.js",
+    "test": "node -r @std/esm test.js",
+    "bench": "node -r @std/esm bench.js"
   },
   "repository": {
     "type": "git",
@@ -39,15 +43,23 @@
   },
   "homepage": "https://github.com/Turfjs/turf",
   "devDependencies": {
-    "@turf/centroid": "^4.6.1",
-    "@turf/truncate": "^4.6.0",
-    "benchmark": "^2.1.4",
-    "load-json-file": "^2.0.0",
-    "tape": "^4.6.3",
-    "write-json-file": "^2.0.0"
+    "@std/esm": "*",
+    "@turf/bbox-polygon": "*",
+    "@turf/truncate": "*",
+    "benchmark": "*",
+    "load-json-file": "*",
+    "rollup": "*",
+    "tape": "*",
+    "write-json-file": "*"
   },
   "dependencies": {
-    "@turf/distance": "^4.6.0",
-    "@turf/helpers": "^4.6.0"
+    "@turf/distance": "5.x",
+    "@turf/helpers": "5.x",
+    "@turf/intersect": "^4.7.4",
+    "@turf/invariant": "5.x"
+  },
+  "@std/esm": {
+    "esm": "js",
+    "cjs": true
   }
 }

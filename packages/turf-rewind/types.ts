@@ -1,5 +1,5 @@
-import {polygon, lineString, multiLineString, multiPolygon} from '@turf/helpers'
-import * as rewind from './'
+import { polygon, lineString, multiLineString, multiPolygon } from '@turf/helpers'
+import rewind from './'
 
 const coords = [[121, -29], [138, -29], [138, -18], [121, -18], [121, -29]]
 const poly = polygon([coords])
@@ -11,5 +11,5 @@ rewind(line)
 rewind(poly)
 rewind(multiPoly)
 rewind(multiLine)
-rewind(poly, true)
-rewind(poly, true, true)
+rewind(poly, {mutate: true})
+rewind(poly, {mutate: true, reversed: true})

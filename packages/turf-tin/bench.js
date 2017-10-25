@@ -1,7 +1,7 @@
-const Benchmark = require('benchmark');
-const fs = require('fs');
-const path = require('path');
-const tin = require('./');
+import fs from 'fs';
+import path from 'path';
+import Benchmark from 'benchmark';
+import tin from './';
 
 const points = JSON.parse(fs.readFileSync(path.join(__dirname, 'test', 'Points.json')));
 

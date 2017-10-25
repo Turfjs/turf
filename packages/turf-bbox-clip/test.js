@@ -1,12 +1,11 @@
-const fs = require('fs');
-const test = require('tape');
-const path = require('path');
-const load = require('load-json-file');
-const write = require('write-json-file');
-const {point, feature} = require('@turf/helpers');
-const turfBBox = require('@turf/bbox');
-const {featureCollection} = require('@turf/helpers');
-const bboxClip = require('./');
+import fs from 'fs';
+import test from 'tape';
+import path from 'path';
+import load from 'load-json-file';
+import write from 'write-json-file';
+import { point, feature, featureCollection } from '@turf/helpers';
+import turfBBox from '@turf/bbox';
+import bboxClip from './index';
 
 const directories = {
     in: path.join(__dirname, 'test', 'in') + path.sep,
@@ -22,7 +21,10 @@ const fixtures = fs.readdirSync(directories.in).map(filename => {
 });
 
 test('turf-bbox-clip', t => {
-    for (const {filename, name, geojson}  of fixtures) {
+    for (const fixture  of fixtures) {
+        const filename = fixture.filename;
+        const name = fixture.name;
+        const geojson = fixture.geojson;
         const feature = geojson.features[0];
         const bbox = turfBBox(geojson.features[1]);
         const clipped = bboxClip(feature, bbox);
@@ -39,7 +41,9 @@ test('turf-bbox-clip -- throws', t => {
     t.end();
 });
 
-function colorize(feature, color = '#F00', width = 6) {
+function colorize(feature, color, width) {
+    color = color || '#F00';
+    width = width || 6;
     feature.properties = {
         stroke: color,
         fill: color,

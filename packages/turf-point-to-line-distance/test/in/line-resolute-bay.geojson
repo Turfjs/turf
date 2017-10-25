@@ -1,0 +1,41 @@
+{
+	"type": "FeatureCollection",
+	"properties": {
+		"units": "miles",
+		"mercator": true
+	},
+	"features": [
+		{
+			"type": "Feature",
+			"properties": {},
+			"geometry": {
+				"type": "Point",
+				"coordinates": [
+					-7.734374999999999,
+					70.4367988185464
+				]
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {},
+			"geometry": {
+				"type": "LineString",
+				"coordinates": [
+					[
+						-60.8203125,
+						64.99793920061401
+					],
+					[
+						-31.640625,
+						76.96033358827414
+					],
+					[
+						-5.625,
+						76.55774293896555
+					]
+				]
+			}
+		}
+	]
+}

@@ -10,7 +10,7 @@
  *
  * var lineCloned = turf.clone(line);
  */
-module.exports = function (geojson) {
+function clone(geojson) {
     if (!geojson) throw new Error('geojson is required');
 
     switch (geojson.type) {
@@ -29,7 +29,7 @@ module.exports = function (geojson) {
     default:
         throw new Error('unknown GeoJSON type');
     }
-};
+}
 
 /**
  * Clone Feature
@@ -60,6 +60,7 @@ function cloneFeature(geojson) {
 /**
  * Clone Properties
  *
+ * @private
  * @param {Object} properties GeoJSON Properties
  * @returns {Object} cloned Properties
  */
@@ -141,3 +142,5 @@ function deepSlice(coords) {
         return deepSlice(coord);
     });
 }
+
+export default clone;

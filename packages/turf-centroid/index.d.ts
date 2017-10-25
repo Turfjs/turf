@@ -1,12 +1,9 @@
-/// <reference types="geojson" />
-
-type Feature = GeoJSON.Feature<any>;
-type Features = GeoJSON.FeatureCollection<any>;
-type Point = GeoJSON.Feature<GeoJSON.Point>;
+import { AllGeoJSON, Feature, Point, Properties } from '@turf/helpers';
 
 /**
  * http://turfjs.org/docs/#centroid
  */
-declare function centroid(features: Feature | Features, properties?: any): Point;
-declare namespace centroid { }
-export = centroid;
+export default function (
+    features: AllGeoJSON,
+    properties?: Properties
+): Feature<Point>;

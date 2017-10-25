@@ -1,4 +1,4 @@
-var distance = require('@turf/distance');
+import distance from '@turf/distance';
 
 /**
  * Takes a reference {@link Point|point} and a FeatureCollection of Features
@@ -24,14 +24,16 @@ var distance = require('@turf/distance');
  * var addToMap = [targetPoint, points, nearest];
  * nearest.properties['marker-color'] = '#F00';
  */
-module.exports = function (targetPoint, points) {
+function nearest(targetPoint, points) {
     var nearestPoint, minDist = Infinity;
     for (var i = 0; i < points.features.length; i++) {
-        var distanceToPoint = distance(targetPoint, points.features[i], 'miles');
+        var distanceToPoint = distance(targetPoint, points.features[i]);
         if (distanceToPoint < minDist) {
             nearestPoint = points.features[i];
             minDist = distanceToPoint;
         }
     }
     return nearestPoint;
-};
+}
+
+export default nearest;

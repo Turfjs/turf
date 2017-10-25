@@ -27,28 +27,6 @@
 			"type": "Feature",
 			"properties": {},
 			"geometry": {
-				"type": "Point",
-				"coordinates": [
-					-39.7705078125,
-					-4.083452772038619
-				]
-			}
-		},
-		{
-			"type": "Feature",
-			"properties": {},
-			"geometry": {
-				"type": "Point",
-				"coordinates": [
-					-45,
-					-8.798225459016345
-				]
-			}
-		},
-		{
-			"type": "Feature",
-			"properties": {},
-			"geometry": {
 				"type": "MultiPolygon",
 				"coordinates": [
 					[

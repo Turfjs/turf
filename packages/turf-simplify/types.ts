@@ -1,5 +1,5 @@
 import {polygon} from '@turf/helpers'
-import * as simplify from './'
+import simplify from './'
 
 const poly = polygon([[[0, 0], [10, 10], [20, 20], [0, 0]]]);
 
@@ -7,5 +7,5 @@ const poly = polygon([[[0, 0], [10, 10], [20, 20], [0, 0]]]);
 const simple: GeoJSON.Feature<GeoJSON.Polygon> = simplify(poly);
 
 // Extra params
-simplify(poly, 1);
-simplify(poly, 1, true);
+simplify(poly, {tolerance: 1});
+simplify(poly, {tolerance: 1, highQuality: true});

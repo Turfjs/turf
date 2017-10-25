@@ -1,10 +1,8 @@
-var tin = require('@turf/tin');
-var helpers = require('@turf/helpers');
-var distance = require('@turf/distance');
-var dissolve = require('geojson-dissolve');
-var featureEach = require('@turf/meta').featureEach;
-var feature = helpers.feature;
-var featureCollection = helpers.featureCollection;
+import tin from '@turf/tin';
+import dissolve from './turf-dissolve';
+import distance from '@turf/distance';
+import { feature, featureCollection, isObject, isNumber } from '@turf/helpers';
+import { featureEach } from '@turf/meta';
 
 /**
  * Takes a set of {@link Point|points} and returns a concave hull Polygon or MultiPolygon.
@@ -12,10 +10,10 @@ var featureCollection = helpers.featureCollection;
  *
  * @name concave
  * @param {FeatureCollection<Point>} points input points
- * @param {number} maxEdge the length (in 'units') of an edge necessary for part of the hull to become concave
- * @param {string} [units=kilometers] can be degrees, radians, miles, or kilometers
- * @returns {Feature<(Polygon|MultiPolygon)>} a concave hull
- * @throws {Error} if maxEdge parameter is missing or unable to compute hull
+ * @param {Object} [options={}] Optional parameters
+ * @param {number} [options.maxEdge=Infinity] the length (in 'units') of an edge necessary for part of the hull to become concave.
+ * @param {string} [options.units='kilometers'] can be degrees, radians, miles, or kilometers
+ * @returns {Feature<(Polygon|MultiPolygon)>|null} a concave hull (null value is returned if unable to compute hull)
  * @example
  * var points = turf.featureCollection([
  *   turf.point([-63.601226, 44.642643]),
@@ -25,17 +23,22 @@ var featureCollection = helpers.featureCollection;
  *   turf.point([-63.587665, 44.64533]),
  *   turf.point([-63.595218, 44.64765])
  * ]);
+ * var options = {units: 'miles', maxEdge: 1};
  *
- * var hull = turf.concave(points, 1, 'miles');
+ * var hull = turf.concave(points, options);
  *
  * //addToMap
  * var addToMap = [points, hull]
  */
-module.exports = function (points, maxEdge, units) {
+function concave(points, options) {
+    // Optional parameters
+    options = options || {};
+    if (!isObject(options)) throw new Error('options is invalid');
+
     // validation
     if (!points) throw new Error('points is required');
-    if (maxEdge === undefined || maxEdge === null) throw new Error('maxEdge is required');
-    if (typeof maxEdge !== 'number') throw new Error('invalid maxEdge');
+    var maxEdge = options.maxEdge || Infinity;
+    if (!isNumber(maxEdge)) throw new Error('maxEdge is invalid');
 
     var cleaned = removeDuplicates(points);
 
@@ -46,23 +49,24 @@ module.exports = function (points, maxEdge, units) {
         var pt1 = triangle.geometry.coordinates[0][0];
         var pt2 = triangle.geometry.coordinates[0][1];
         var pt3 = triangle.geometry.coordinates[0][2];
-        var dist1 = distance(pt1, pt2, units);
-        var dist2 = distance(pt2, pt3, units);
-        var dist3 = distance(pt1, pt3, units);
+        var dist1 = distance(pt1, pt2, options);
+        var dist2 = distance(pt2, pt3, options);
+        var dist3 = distance(pt1, pt3, options);
         return (dist1 <= maxEdge && dist2 <= maxEdge && dist3 <= maxEdge);
     });
 
-    if (tinPolys.features.length < 1) throw new Error('too few polygons found to compute concave hull');
+    if (tinPolys.features.length < 1) return null;
 
     // merge the adjacent triangles
-    var dissolved = dissolve(tinPolys.features);
+    var dissolved = dissolve(tinPolys, options);
+
     // geojson-dissolve always returns a MultiPolygon
     if (dissolved.coordinates.length === 1) {
         dissolved.coordinates = dissolved.coordinates[0];
         dissolved.type = 'Polygon';
     }
     return feature(dissolved);
-};
+}
 
 /**
  * Removes duplicated points in a collection returning a new collection
@@ -85,3 +89,5 @@ function removeDuplicates(points) {
     });
     return featureCollection(cleaned);
 }
+
+export default concave;

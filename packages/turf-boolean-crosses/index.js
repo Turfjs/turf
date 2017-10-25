@@ -1,10 +1,8 @@
-var helpers = require('@turf/helpers');
-var inside = require('@turf/inside');
-var lineIntersect = require('@turf/line-intersect');
-var polyToLinestring = require('@turf/polygon-to-linestring');
-var invariant = require('@turf/invariant');
-var getGeom = invariant.getGeom;
-var getGeomType = invariant.getGeomType;
+import { point } from '@turf/helpers';
+import inside from '@turf/inside';
+import lineIntersect from '@turf/line-intersect';
+import polyToLinestring from '@turf/polygon-to-linestring';
+import { getGeom, getType } from '@turf/invariant';
 
 /**
  * Boolean-Crosses returns True if the intersection results in a geometry whose dimension is one less than
@@ -24,9 +22,9 @@ var getGeomType = invariant.getGeomType;
  * var cross = turf.booleanCrosses(line1, line2);
  * //=true
  */
-module.exports = function (feature1, feature2) {
-    var type1 = getGeomType(feature1);
-    var type2 = getGeomType(feature2);
+function booleanCrosses(feature1, feature2) {
+    var type1 = getType(feature1);
+    var type2 = getType(feature2);
     var geom1 = getGeom(feature1);
     var geom2 = getGeom(feature2);
 
@@ -63,7 +61,7 @@ module.exports = function (feature1, feature2) {
     default:
         throw new Error('feature1 ' + type1 + ' geometry not supported');
     }
-};
+}
 
 function doMultiPointAndLineStringCross(multiPoint, lineString) {
     var foundIntPoint = false;
@@ -123,7 +121,7 @@ function doesMultiPointCrossPoly(multiPoint, polygon) {
     var pointLength = multiPoint.coordinates[0].length;
     var i = 0;
     while (i < pointLength && foundIntPoint && foundExtPoint) {
-        if (isPointInPoly(polygon, helpers.point(multiPoint.coordinates[0][i]), true)) {
+        if (isPointInPoly(polygon, point(multiPoint.coordinates[0][i]), true)) {
             foundIntPoint = true;
         } else {
             foundExtPoint = true;
@@ -140,15 +138,15 @@ function doesMultiPointCrossPoly(multiPoint, polygon) {
  * See http://stackoverflow.com/a/4833823/1979085
  *
  * @private
- * @param {Array} lineSegmentStart coord pair of start of line
- * @param {Array} lineSegmentEnd coord pair of end of line
- * @param {Array} point coord pair of point to check
+ * @param {number[]} lineSegmentStart coord pair of start of line
+ * @param {number[]} lineSegmentEnd coord pair of end of line
+ * @param {number[]} pt coord pair of point to check
  * @param {boolean} incEnd whether the point is allowed to fall on the line ends
  * @returns {boolean} true/false
  */
-function isPointOnLineSegment(lineSegmentStart, lineSegmentEnd, point, incEnd) {
-    var dxc = point[0] - lineSegmentStart[0];
-    var dyc = point[1] - lineSegmentStart[1];
+function isPointOnLineSegment(lineSegmentStart, lineSegmentEnd, pt, incEnd) {
+    var dxc = pt[0] - lineSegmentStart[0];
+    var dyc = pt[1] - lineSegmentStart[1];
     var dxl = lineSegmentEnd[0] - lineSegmentStart[0];
     var dyl = lineSegmentEnd[1] - lineSegmentStart[1];
     var cross = dxc * dyl - dyc * dxl;
@@ -157,13 +155,15 @@ function isPointOnLineSegment(lineSegmentStart, lineSegmentEnd, point, incEnd) {
     }
     if (incEnd) {
         if (Math.abs(dxl) >= Math.abs(dyl)) {
-            return dxl > 0 ? lineSegmentStart[0] <= point[0] && point[0] <= lineSegmentEnd[0] : lineSegmentEnd[0] <= point[0] && point[0] <= lineSegmentStart[0];
+            return dxl > 0 ? lineSegmentStart[0] <= pt[0] && pt[0] <= lineSegmentEnd[0] : lineSegmentEnd[0] <= pt[0] && pt[0] <= lineSegmentStart[0];
         }
-        return dyl > 0 ? lineSegmentStart[1] <= point[1] && point[1] <= lineSegmentEnd[1] : lineSegmentEnd[1] <= point[1] && point[1] <= lineSegmentStart[1];
+        return dyl > 0 ? lineSegmentStart[1] <= pt[1] && pt[1] <= lineSegmentEnd[1] : lineSegmentEnd[1] <= pt[1] && pt[1] <= lineSegmentStart[1];
     } else {
         if (Math.abs(dxl) >= Math.abs(dyl)) {
-            return dxl > 0 ? lineSegmentStart[0] < point[0] && point[0] < lineSegmentEnd[0] : lineSegmentEnd[0] < point[0] && point[0] < lineSegmentStart[0];
+            return dxl > 0 ? lineSegmentStart[0] < pt[0] && pt[0] < lineSegmentEnd[0] : lineSegmentEnd[0] < pt[0] && pt[0] < lineSegmentStart[0];
         }
-        return dyl > 0 ? lineSegmentStart[1] < point[1] && point[1] < lineSegmentEnd[1] : lineSegmentEnd[1] < point[1] && point[1] < lineSegmentStart[1];
+        return dyl > 0 ? lineSegmentStart[1] < pt[1] && pt[1] < lineSegmentEnd[1] : lineSegmentEnd[1] < pt[1] && pt[1] < lineSegmentStart[1];
     }
 }
+
+export default booleanCrosses;

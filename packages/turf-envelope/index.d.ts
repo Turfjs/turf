@@ -1,12 +1,8 @@
-/// <reference types="geojson" />
-
-type Feature = GeoJSON.Feature<any>;
-type Features = GeoJSON.FeatureCollection<any>;
-type Polygon = GeoJSON.Feature<GeoJSON.Polygon>;
+import { Feature, AllGeoJSON, Polygon } from '@turf/helpers'
 
 /**
  * http://turfjs.org/docs/#envelope
  */
-declare function envelope(features: Feature | Features): Polygon;
-declare namespace envelope { }
-export = envelope;
+export default function envelope(
+    features: AllGeoJSON
+): Feature<Polygon>;

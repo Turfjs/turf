@@ -3,9 +3,7 @@
   "features": [
     {
       "type": "Feature",
-      "properties": {
-          "ignoreEndPoint": false
-      },
+      "properties": {},
       "geometry": {
         "type": "Point",
         "coordinates": [

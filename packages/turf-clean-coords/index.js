@@ -1,14 +1,13 @@
-var helpers = require('@turf/helpers');
-var invariant = require('@turf/invariant');
-var getCoords = invariant.getCoords;
-var getGeomType = invariant.getGeomType;
+import { feature } from '@turf/helpers';
+import { getCoords, getType } from '@turf/invariant';
 
 /**
  * Removes redundant coordinates from any GeoJSON Geometry.
  *
  * @name cleanCoords
  * @param {Geometry|Feature} geojson Feature or Geometry
- * @param {boolean} [mutate=false] allows GeoJSON input to be mutated
+ * @param {Object} [options={}] Optional parameters
+ * @param {boolean} [options.mutate=false] allows GeoJSON input to be mutated
  * @returns {Geometry|Feature} the cleaned input Feature/Geometry
  * @example
  * var line = turf.lineString([[0, 0], [0, 2], [0, 5], [0, 8], [0, 8], [0, 10]]);
@@ -20,28 +19,30 @@ var getGeomType = invariant.getGeomType;
  * turf.cleanCoords(multiPoint).geometry.coordinates;
  * //= [[0, 0], [2, 2]]
  */
-module.exports = function (geojson, mutate) {
+function cleanCoords(geojson, options) {
+    // Backwards compatible with v4.0
+    var mutate = (typeof options === 'object') ? options.mutate : options;
     if (!geojson) throw new Error('geojson is required');
-    var type = getGeomType(geojson);
+    var type = getType(geojson);
 
     // Store new "clean" points in this Array
     var newCoords = [];
 
     switch (type) {
     case 'LineString':
-        newCoords = cleanCoords(geojson);
+        newCoords = cleanLine(geojson);
         break;
     case 'MultiLineString':
     case 'Polygon':
         getCoords(geojson).forEach(function (line) {
-            newCoords.push(cleanCoords(line));
+            newCoords.push(cleanLine(line));
         });
         break;
     case 'MultiPolygon':
         getCoords(geojson).forEach(function (polygons) {
             var polyPoints = [];
             polygons.forEach(function (ring) {
-                polyPoints.push(cleanCoords(ring));
+                polyPoints.push(cleanLine(ring));
             });
             newCoords.push(polyPoints);
         });
@@ -68,48 +69,14 @@ module.exports = function (geojson, mutate) {
             geojson.coordinates = newCoords;
             return geojson;
         }
-        return geometry(geojson, type, newCoords);
+        return {type: type, coordinates: newCoords};
     } else {
         if (mutate === true) {
             geojson.geometry.coordinates = newCoords;
             return geojson;
         }
-        return feature(geojson, type, newCoords);
+        return feature({type: type, coordinates: newCoords}, geojson.properties, geojson.bbox, geojson.id);
     }
-};
-
-/**
- * Create Geometry from existing Geometry
- *
- * @private
- * @param {Geometry} geojson Existing Geometry
- * @param {string} type Geometry Type
- * @param {Array<number>} coordinates Coordinates
- * @returns {Geometry} Geometry
- */
-function geometry(geojson, type, coordinates) {
-    var geom = {
-        type: type,
-        coordinates: coordinates
-    };
-    if (geojson.bbox) geom.bbox = geojson.bbox;
-    return geom;
-}
-
-/**
- * Create Feature from existing Feature
- *
- * @private
- * @param {Feature} geojson Existing Feature
- * @param {string} type Feature Type
- * @param {Array<number>} coordinates Coordinates
- * @returns {Feature} Feature
- */
-function feature(geojson, type, coordinates) {
-    var feat = helpers.feature(geometry(geojson.geometry, type, coordinates), geojson.properties);
-    if (geojson.id) feat.id = geojson.id;
-    if (geojson.bbox) feat.bbox = geojson.bbox;
-    return feat;
 }
 
 /**
@@ -119,7 +86,7 @@ function feature(geojson, type, coordinates) {
  * @param {Array<number>|LineString} line Line
  * @returns {Array<number>} Cleaned coordinates
  */
-function cleanCoords(line) {
+function cleanLine(line) {
     var points = getCoords(line);
     // handle "clean" segment
     if (points.length === 2 && !equals(points[0], points[1])) return points;
@@ -179,3 +146,5 @@ function isPointOnLineSegment(start, end, point) {
     else if (Math.abs(dxl) >= Math.abs(dyl)) return dxl > 0 ? startX <= x && x <= endX : endX <= x && x <= startX;
     else return dyl > 0 ? startY <= y && y <= endY : endY <= y && y <= startY;
 }
+
+export default cleanCoords;

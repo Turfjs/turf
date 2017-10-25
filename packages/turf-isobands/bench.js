@@ -1,9 +1,9 @@
-const path = require('path');
-const Benchmark = require('benchmark');
-const load = require('load-json-file');
-const fs = require('fs');
-const matrixToGrid = require('matrix-to-grid');
-const isobands = require('./');
+import fs from 'fs';
+import path from 'path';
+import load from 'load-json-file';
+import Benchmark from 'benchmark';
+import matrixToGrid from './matrix-to-grid';
+import isobands from './';
 
 // Define Fixtures
 const directory = path.join(__dirname, 'test', 'in') + path.sep;
@@ -46,13 +46,15 @@ for (const {name, jsondata, filename} of fixtures) {
         isobandProperties = jsondata.isobandProperties;
     }
 
-    isobands(points, breaks, zProperty, {
+    isobands(points, breaks, {
+        zProperty,
         commonProperties,
         isobandProperties
     });
 
     // isobands(geojson, 'elevation', [5, 45, 55, 65, 85,  95, 105, 120, 180]);
-    suite.add(name, () => isobands(points, breaks, zProperty, {
+    suite.add(name, () => isobands(points, breaks, {
+            zProperty,
             commonProperties,
             isobandProperties
         })

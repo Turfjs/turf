@@ -1,17 +1,18 @@
-const fs = require('fs');
-const test = require('tape');
-const path = require('path');
-const load = require('load-json-file');
-const write = require('write-json-file');
-const center = require('@turf/center');
-const hexGrid = require('@turf/hex-grid');
-const truncate = require('@turf/truncate');
-const turfBBox = require('@turf/bbox');
-const centroid = require('@turf/centroid');
-const {featureEach} = require('@turf/meta');
-const {getCoord} = require('@turf/invariant');
-const {point, lineString, geometryCollection, featureCollection} = require('@turf/helpers');
-const scale = require('./');
+import fs from 'fs';
+import test from 'tape';
+import path from 'path';
+import load from 'load-json-file';
+import write from 'write-json-file';
+import center from '@turf/center';
+import hexGrid from '@turf/hex-grid';
+import truncate from '@turf/truncate';
+import turfBBox from '@turf/bbox';
+import bboxPolygon from '@turf/bbox-polygon';
+import centroid from '@turf/centroid';
+import { featureEach } from '@turf/meta';
+import { getCoord } from '@turf/invariant';
+import { point, lineString, geometryCollection, featureCollection } from '@turf/helpers';
+import scale from '.';
 
 const directories = {
     in: path.join(__dirname, 'test', 'in') + path.sep,
@@ -31,9 +32,12 @@ test('scale', t => {
         let {factor, origin, mutate} = geojson.properties || {};
         factor = factor || 2;
 
-        const scaled = scale(geojson, factor, origin, mutate);
+        const scaled = scale(geojson, factor, {
+            origin: origin,
+            mutate: mutate
+        });
         const result = featureCollection([]);
-        featureEach(colorize(truncate(scaled, 6, 3)), feature => result.features.push(feature));
+        featureEach(colorize(truncate(scaled, {precision: 6, coordinates: 3})), feature => result.features.push(feature));
         featureEach(geojson, feature => result.features.push(feature));
         featureEach(geojson, feature => result.features.push(markedOrigin(feature, origin)));
 
@@ -50,8 +54,8 @@ test('scale -- throws', t => {
     t.throws(() => scale(null, 1.5), /geojson required/);
     t.throws(() => scale(line, null), /invalid factor/);
     t.throws(() => scale(line, 0), /invalid factor/);
-    t.throws(() => scale(line, 1.5, 'foobar'), /invalid origin/);
-    t.throws(() => scale(line, 1.5, 2), /invalid origin/);
+    t.throws(() => scale(line, 1.5, {origin: 'foobar'}), /invalid origin/);
+    t.throws(() => scale(line, 1.5, {origin: 2}), /invalid origin/);
 
     t.end();
 });
@@ -60,13 +64,13 @@ test('scale -- additional params', t => {
     const line = lineString([[10, 10], [12, 15]]);
     const bbox = [-180, -90, 180, 90];
 
-    t.assert(scale(line, 1.5, 'sw'));
-    t.assert(scale(line, 1.5, 'se'));
-    t.assert(scale(line, 1.5, 'nw'));
-    t.assert(scale(line, 1.5, 'ne'));
-    t.assert(scale(line, 1.5, 'center'));
-    t.assert(scale(line, 1.5, 'centroid'));
-    t.assert(scale(line, 1.5, null));
+    t.assert(scale(line, 1.5, {origin: 'sw'}));
+    t.assert(scale(line, 1.5, {origin: 'se'}));
+    t.assert(scale(line, 1.5, {origin: 'nw'}));
+    t.assert(scale(line, 1.5, {origin: 'ne'}));
+    t.assert(scale(line, 1.5, {origin: 'center'}));
+    t.assert(scale(line, 1.5, {origin: 'centroid'}));
+    t.assert(scale(line, 1.5, {origin: null}));
     line.bbox = bbox;
     t.assert(scale(line, 1.5));
     t.end();
@@ -86,13 +90,13 @@ test('scale -- mutated input', t => {
 
     scale(line, 1.5);
     t.deepEqual(line, lineBefore, 'mutate = undefined - input should NOT be mutated');
-    scale(line, 1.5, 'centroid', false);
+    scale(line, 1.5, {origin: 'centroid', mutate: false});
     t.deepEqual(line, lineBefore, 'mutate = false - input should NOT be mutated');
-    scale(line, 1.5, 'centroid', 'nonBoolean');
+    scale(line, 1.5, {orgin: 'centroid', muate: 'nonBoolean'});
     t.deepEqual(line, lineBefore, 'non-boolean mutate - input should NOT be mutated');
 
-    scale(line, 1.5, 'centroid', true);
-    t.deepEqual(truncate(line, 1), lineString([[9.5, 8.8], [12.5, 16.2]]), 'mutate = true - input should be mutated');
+    scale(line, 1.5, {origin: 'centroid', mutate: true});
+    t.deepEqual(truncate(line, {precision: 1}), lineString([[9.5, 8.8], [12.5, 16.2]]), 'mutate = true - input should be mutated');
     t.end();
 });
 
@@ -105,19 +109,28 @@ test('scale -- mutated FeatureCollection', t => {
     const lineBefore = JSON.parse(JSON.stringify(line));
     scale(line, 1.5);
     t.deepEqual(line, lineBefore, 'mutate = undefined - input should NOT be mutated');
-    scale(line, 1.5, 'centroid', false);
+    scale(line, 1.5, {origin: 'centroid', mutate: false});
     t.deepEqual(line, lineBefore, 'mutate = false - input should NOT be mutated');
-    scale(line, 1.5, 'centroid', 'nonBoolean');
+    scale(line, 1.5, {origin: 'centroid', mutate: 'nonBoolean'});
     t.deepEqual(line, lineBefore, 'non-boolean mutate - input should NOT be mutated');
     t.end();
 });
 
 test('scale -- Issue #895', t => {
-    const grid = hexGrid([-122.930, 45.385, -122.294, 45.772], 5, 'miles');
+    const bbox = [-122.930, 45.385, -122.294, 45.772];
+    const grid = hexGrid(bbox, 2, {units: 'miles'});
     featureEach(grid, (feature, index) => {
         const factor = (index % 2 === 0) ? 0.4 : 0.6;
-        scale(feature, factor, 'centroid', true);
+        scale(feature, factor, {origin: 'centroid', mutate: true});
     });
+    // Add styled GeoJSON to the result
+    const poly = bboxPolygon(bbox);
+    poly.properties = {
+        stroke: '#F00',
+        'stroke-width': 6,
+        'fill-opacity': 0
+    };
+    grid.features.push(poly);
     const output = directories.out + 'issue-#895.geojson';
     if (process.env.REGEN) write.sync(output, grid);
     t.deepEqual(grid, load.sync(output));
@@ -134,9 +147,9 @@ test('scale -- geometry support', t => {
     t.assert(scale(line.geometry, 1.5), 'geometry line support');
     t.assert(scale(pt.geometry, 1.5), 'geometry point support');
     t.assert(scale(pt, 1.5), 'geometry point support');
-    t.assert(scale(pt, 1.5, pt), 'feature point support');
-    t.assert(scale(pt, 1.5, pt.geometry), 'geometry point support');
-    t.assert(scale(pt, 1.5, pt.geometry.coordinates), 'coordinate point support');
+    t.assert(scale(pt, 1.5, { origin: pt }), 'feature point support');
+    t.assert(scale(pt, 1.5, { origin: pt.geometry }), 'geometry point support');
+    t.assert(scale(pt, 1.5, { origin: pt.geometry.coordinates }), 'coordinate point support');
 
     t.end();
 });

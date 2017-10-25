@@ -1,0 +1,61 @@
+{
+  "name": "@turf/boolean-within",
+  "version": "4.7.3",
+  "description": "turf boolean-within module",
+  "main": "main",
+  "module": "index",
+  "jsnext:main": "index",
+  "types": "index.d.ts",
+  "files": [
+    "index.js",
+    "index.d.ts",
+    "main.js"
+  ],
+  "scripts": {
+    "pretest": "rollup -c ../../rollup.config.js",
+    "test": "node -r @std/esm test.js",
+    "bench": "node -r @std/esm bench.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/Turfjs/turf.git"
+  },
+  "keywords": [
+    "turf",
+    "gis",
+    "boolean",
+    "de-9im",
+    "within",
+    "boolean-within"
+  ],
+  "author": "Turf Authors",
+  "contributors": [
+    "Rowan Winsemius <@rowanwins>"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Turfjs/turf/issues"
+  },
+  "homepage": "https://github.com/Turfjs/turf",
+  "devDependencies": {
+    "@turf/helpers": "*",
+    "benchmark": "*",
+    "boolean-jsts": "*",
+    "boolean-shapely": "*",
+    "glob": "*",
+    "load-json-file": "*",
+    "tape": "*",
+    "rollup": "*",
+    "@std/esm": "*"
+  },
+  "dependencies": {
+    "@turf/bbox": "5.x",
+    "@turf/boolean-point-on-line": "^4.7.3",
+    "@turf/inside": "5.x",
+    "@turf/invariant": "5.x"
+  },
+  "@std/esm": {
+    "esm": "js",
+    "cjs": true
+  }
+}

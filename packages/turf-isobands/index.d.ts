@@ -1,8 +1,14 @@
-import {Points, MultiPolygons} from '@turf/helpers'
+import { Point, MultiPolygon, FeatureCollection, Feature, Properties } from '@turf/helpers'
 
 /**
  * http://turfjs.org/docs/#isobands
  */
-declare function isobands(points: Points, breaks: Array<number>, property?: string): MultiPolygons;
-declare namespace isobands { }
-export = isobands;
+export default function isobands(
+    points: FeatureCollection<Point>,
+    breaks: number[],
+    options?: {
+        zProperty?: string;
+        commonProperties?: Properties;
+        breaksProperties?: Properties[];
+    }
+): FeatureCollection<MultiPolygon>;

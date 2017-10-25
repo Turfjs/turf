@@ -1,11 +1,8 @@
-/// <reference types="geojson" />
-
-type Line = GeoJSON.Feature<GeoJSON.LineString> | GeoJSON.LineString | Array<Array<number>>;
+import { Feature, LineString } from '@turf/helpers'
 
 /**
- * http://turfjs.org/docs/#boolean-clockwise
+ * http://turfjs.org/docs/#booleanclockwise
  */
-declare function clockwise(line: Line): boolean;
-declare namespace clockwise {
-}
-export = clockwise;
+export default function (
+    line: Feature<LineString> | LineString | number[][]
+): boolean;

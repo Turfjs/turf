@@ -1,18 +1,12 @@
-var meta = require('@turf/meta');
-var rbush = require('geojson-rbush');
-var helpers = require('@turf/helpers');
-var flatten = require('@turf/flatten');
-var truncate = require('@turf/truncate');
-var invariant = require('@turf/invariant');
-var lineSegment = require('@turf/line-segment');
-var pointOnLine = require('@turf/point-on-line');
-var lineIntersect = require('@turf/line-intersect');
-var getCoords = invariant.getCoords;
-var lineString = helpers.lineString;
-var getGeomType = invariant.getGeomType;
-var featureEach = meta.featureEach;
-var featureReduce = meta.featureReduce;
-var featureCollection = helpers.featureCollection;
+import rbush from 'geojson-rbush';
+import flatten from '@turf/flatten';
+import truncate from '@turf/truncate';
+import lineSegment from '@turf/line-segment';
+import pointOnLine from '@turf/point-on-line';
+import lineIntersect from '@turf/line-intersect';
+import { getCoords, getType } from '@turf/invariant';
+import { featureEach, featureReduce} from '@turf/meta';
+import { lineString, featureCollection } from '@turf/helpers';
 
 /**
  * Split a LineString by another GeoJSON Feature.
@@ -30,12 +24,12 @@ var featureCollection = helpers.featureCollection;
  * //addToMap
  * var addToMap = [line, splitter]
  */
-module.exports = function (line, splitter) {
+function lineSplit(line, splitter) {
     if (!line) throw new Error('line is required');
     if (!splitter) throw new Error('splitter is required');
 
-    var lineType = getGeomType(line);
-    var splitterType = getGeomType(splitter);
+    var lineType = getType(line);
+    var splitterType = getType(splitter);
 
     if (lineType !== 'LineString') throw new Error('line must be LineString');
     if (splitterType === 'FeatureCollection') throw new Error('splitter cannot be a FeatureCollection');
@@ -43,7 +37,7 @@ module.exports = function (line, splitter) {
 
     // remove excessive decimals from splitter
     // to avoid possible approximation issues in rbush
-    var truncatedSplitter = truncate(splitter, 7);
+    var truncatedSplitter = truncate(splitter, {precision: 7});
 
     switch (splitterType) {
     case 'Point':
@@ -56,7 +50,7 @@ module.exports = function (line, splitter) {
     case 'MultiPolygon':
         return splitLineWithPoints(line, lineIntersect(line, truncatedSplitter));
     }
-};
+}
 
 /**
  * Split LineString with MultiPoint
@@ -198,3 +192,5 @@ function findClosestFeature(point, lines) {
 function pointsEquals(pt1, pt2) {
     return pt1[0] === pt2[0] && pt1[1] === pt2[1];
 }
+
+export default lineSplit;

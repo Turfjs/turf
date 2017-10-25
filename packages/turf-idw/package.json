@@ -1,16 +1,20 @@
 {
   "name": "@turf/idw",
-  "version": "4.6.1",
+  "version": "4.7.3",
   "description": "turf idw module",
-  "main": "index.js",
+  "main": "main",
+  "module": "index",
+  "jsnext:main": "index",
   "types": "index.d.ts",
   "files": [
     "index.js",
-    "index.d.ts"
+    "index.d.ts",
+    "main.js"
   ],
   "scripts": {
-    "test": "node test.js",
-    "bench": "node bench.js"
+    "pretest": "rollup -c ../../rollup.config.js",
+    "test": "node -r @std/esm test.js",
+    "bench": "node -r @std/esm bench.js"
   },
   "repository": {
     "type": "git",
@@ -27,16 +31,17 @@
   },
   "homepage": "https://github.com/Turfjs/turf",
   "devDependencies": {
-    "@turf/helpers": "^4.6.0",
-    "benchmark": "^2.1.4",
-    "load-json-file": "^2.0.0",
-    "tape": "^4.6.3",
-    "write-json-file": "^2.2.0"
+    "@turf/helpers": "*",
+    "benchmark": "*",
+    "load-json-file": "*",
+    "tape": "*",
+    "write-json-file": "*",
+    "rollup": "*",
+    "@std/esm": "*"
   },
-  "dependencies": {
-    "@turf/bbox": "^4.6.0",
-    "@turf/centroid": "^4.6.1",
-    "@turf/distance": "^4.6.0",
-    "@turf/square-grid": "^4.6.0"
+  "dependencies": {},
+  "@std/esm": {
+    "esm": "js",
+    "cjs": true
   }
 }

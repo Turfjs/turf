@@ -1,6 +1,11 @@
 // depend on jsts for now http://bjornharrtell.github.io/jsts/
-var jsts = require('jsts');
-var truncate = require('@turf/truncate');
+import GeoJSONReader from 'jsts/org/locationtech/jts/io/GeoJSONReader';
+import GeoJSONWriter from 'jsts/org/locationtech/jts/io/GeoJSONWriter';
+import OverlayOp from 'jsts/org/locationtech/jts/operation/overlay/OverlayOp';
+import truncate from '@turf/truncate';
+import { getGeom } from '@turf/invariant';
+import { feature } from '@turf/helpers';
+import cleanCoords from '@turf/clean-coords';
 
 /**
  * Takes two {@link Polygon|polygons} and finds their intersection. If they share a border, returns the border; if they don't intersect, returns undefined.
@@ -8,7 +13,7 @@ var truncate = require('@turf/truncate');
  * @name intersect
  * @param {Feature<Polygon>} poly1 the first polygon
  * @param {Feature<Polygon>} poly2 the second polygon
- * @returns {Feature|undefined} returns a feature representing the point(s) they share (in case of a {@link Point}  or {@link MultiPoint}), the borders they share (in case of a {@link LineString} or a {@link MultiLineString}), the area they share (in case of {@link Polygon} or {@link MultiPolygon}). If they do not share any point, returns `undefined`.
+ * @returns {Feature|null} returns a feature representing the point(s) they share (in case of a {@link Point}  or {@link MultiPoint}), the borders they share (in case of a {@link LineString} or a {@link MultiLineString}), the area they share (in case of {@link Polygon} or {@link MultiPolygon}). If they do not share any point, returns `null`.
  * @example
  * var poly1 = turf.polygon([[
  *   [-122.801742, 45.48565],
@@ -34,26 +39,28 @@ var truncate = require('@turf/truncate');
  * //addToMap
  * var addToMap = [poly1, poly2, intersection];
  */
-module.exports = function (poly1, poly2) {
-    var geom1 = (poly1.type === 'Feature') ? poly1.geometry : poly1;
-    var geom2 = (poly2.type === 'Feature') ? poly2.geometry : poly2;
+function intersect(poly1, poly2) {
+    var geom1 = getGeom(poly1);
+    var geom2 = getGeom(poly2);
 
-    var reader = new jsts.io.GeoJSONReader();
+    // Return null if geometry is too narrow in coordinate precision
+    // fixes topology errors with JSTS
+    // https://github.com/Turfjs/turf/issues/463
+    // https://github.com/Turfjs/turf/pull/1004
+    if (cleanCoords(truncate(geom2, {precision: 4})).coordinates[0].length < 4) return null;
+    if (cleanCoords(truncate(geom1, {precision: 4})).coordinates[0].length < 4) return null;
+
+    var reader = new GeoJSONReader();
     var a = reader.read(truncate(geom1));
     var b = reader.read(truncate(geom2));
-    var intersection = a.intersection(b);
+    var intersection = OverlayOp.intersection(a, b);
 
-    if (intersection.isEmpty()) return {
-        type: 'Feature',
-        properties: {},
-        geometry: null
-    };
+    // https://github.com/Turfjs/turf/issues/951
+    if (intersection.isEmpty()) return null;
 
-    var writer = new jsts.io.GeoJSONWriter();
-    var geojsonGeometry = writer.write(intersection);
-    return {
-        type: 'Feature',
-        properties: {},
-        geometry: geojsonGeometry
-    };
-};
+    var writer = new GeoJSONWriter();
+    var geom = writer.write(intersection);
+    return feature(geom);
+}
+
+export default intersect;

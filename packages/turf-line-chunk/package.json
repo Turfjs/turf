@@ -1,25 +1,25 @@
 {
   "name": "@turf/line-chunk",
-  "version": "4.6.0",
+  "version": "4.7.3",
   "description": "turf line-chunk module",
-  "main": "index.js",
+  "main": "main",
+  "module": "index",
+  "jsnext:main": "index",
   "types": "index.d.ts",
   "files": [
     "index.js",
-    "index.d.ts"
+    "index.d.ts",
+    "main.js"
   ],
   "scripts": {
-    "bench": "node bench.js",
-    "test": "node test.js"
+    "pretest": "rollup -c ../../rollup.config.js",
+    "test": "node -r @std/esm test.js",
+    "bench": "node -r @std/esm bench.js"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/Turfjs/turf.git"
+    "url": "git://github.com/Turfjs/turf.git"
   },
-  "bugs": {
-    "url": "https://github.com/Turfjs/turf/issues"
-  },
-  "homepage": "https://github.com/Turfjs/turf",
   "keywords": [
     "turf",
     "gis",
@@ -35,17 +35,27 @@
     "Daniel Pulido <@dpmcmlxxvi>"
   ],
   "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Turfjs/turf/issues"
+  },
+  "homepage": "https://github.com/Turfjs/turf",
   "devDependencies": {
-    "@turf/truncate": "^4.6.0",
-    "benchmark": "^2.1.4",
-    "load-json-file": "^2.0.0",
-    "tape": "^4.6.3",
-    "write-json-file": "^2.0.0"
+    "@turf/truncate": "*",
+    "benchmark": "*",
+    "load-json-file": "*",
+    "tape": "*",
+    "write-json-file": "*",
+    "rollup": "*",
+    "@std/esm": "*"
   },
   "dependencies": {
-    "@turf/helpers": "^4.6.0",
-    "@turf/line-distance": "^4.6.0",
-    "@turf/line-slice-along": "^4.6.0",
-    "@turf/meta": "^4.6.0"
+    "@turf/helpers": "5.x",
+    "@turf/line-distance": "^4.7.3",
+    "@turf/line-slice-along": "^4.7.3",
+    "@turf/meta": "5.x"
+  },
+  "@std/esm": {
+    "esm": "js",
+    "cjs": true
   }
 }

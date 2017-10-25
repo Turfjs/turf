@@ -1,4 +1,4 @@
-var coordEach = require('@turf/meta').coordEach;
+import { coordEach } from '@turf/meta';
 
 /**
  * Takes a set of features, calculates the bbox of all input features, and returns a bounding box.
@@ -14,13 +14,15 @@ var coordEach = require('@turf/meta').coordEach;
  * //addToMap
  * var addToMap = [line, bboxPolygon]
  */
-module.exports = function (geojson) {
-    var bbox = [Infinity, Infinity, -Infinity, -Infinity];
+function bbox(geojson) {
+    var BBox = [Infinity, Infinity, -Infinity, -Infinity];
     coordEach(geojson, function (coord) {
-        if (bbox[0] > coord[0]) bbox[0] = coord[0];
-        if (bbox[1] > coord[1]) bbox[1] = coord[1];
-        if (bbox[2] < coord[0]) bbox[2] = coord[0];
-        if (bbox[3] < coord[1]) bbox[3] = coord[1];
+        if (BBox[0] > coord[0]) BBox[0] = coord[0];
+        if (BBox[1] > coord[1]) BBox[1] = coord[1];
+        if (BBox[2] < coord[0]) BBox[2] = coord[0];
+        if (BBox[3] < coord[1]) BBox[3] = coord[1];
     });
-    return bbox;
-};
+    return BBox;
+}
+
+export default bbox;

@@ -1,6 +1,6 @@
-var lineSliceAlong = require('./');
-var Benchmark = require('benchmark');
-var fs = require('fs');
+import fs from 'fs';
+import Benchmark from 'benchmark';
+import lineSliceAlong from './';
 
 var line1 = JSON.parse(fs.readFileSync(__dirname + '/test/fixtures/line1.geojson'));
 var route1 = JSON.parse(fs.readFileSync(__dirname + '/test/fixtures/route1.geojson'));

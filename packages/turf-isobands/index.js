@@ -1,15 +1,11 @@
-var bbox = require('@turf/bbox');
-var area = require('@turf/area');
-var inside = require('@turf/inside');
-var helpers = require('@turf/helpers');
-var explode = require('@turf/explode');
-var invariant = require('@turf/invariant');
-var gridToMatrix = require('grid-to-matrix');
-var marchingsquares = require('marchingsquares');
-var polygon = helpers.polygon;
-var multiPolygon = helpers.multiPolygon;
-var collectionOf = invariant.collectionOf;
-var featureCollection = helpers.featureCollection;
+import bbox from '@turf/bbox';
+import area from '@turf/area';
+import inside from '@turf/inside';
+import explode from '@turf/explode';
+import { polygon, multiPolygon, featureCollection, isObject } from '@turf/helpers';
+import { collectionOf } from '@turf/invariant';
+import gridToMatrix from './grid-to-matrix';
+import isoBands from './marchingsquares-isobands';
 
 /**
  * Takes a grid {@link FeatureCollection} of {@link Point} features with z-values and an array of
@@ -18,17 +14,16 @@ var featureCollection = helpers.featureCollection;
  * @name isobands
  * @param {FeatureCollection<Point>} pointGrid input points
  * @param {Array<number>} breaks where to draw contours
- * @param {string} [zProperty='elevation'] the property name in `points` from which z-values will be pulled
  * @param {Object} [options={}] options on output
- * @param {Array<Object>} [options.isobandProperties=[]] GeoJSON properties passed, in order, to the correspondent isoband (order defined by breaks)
+ * @param {string} [options.zProperty='elevation'] the property name in `points` from which z-values will be pulled
  * @param {Object} [options.commonProperties={}] GeoJSON properties passed to ALL isobands
+ * @param {Array<Object>} [options.breaksProperties=[]] GeoJSON properties passed, in order, to the correspondent isoband (order defined by breaks)
  * @returns {FeatureCollection<MultiPolygon>} a FeatureCollection of {@link MultiPolygon} features representing isobands
  * @example
  * // create a grid of points with random z-values in their properties
  * var extent = [-70.823364, -33.553984, -69.823364, -32.553984];
  * var cellWidth = 5;
- * var units = 'miles';
- * var pointGrid = turf.pointGrid(extent, cellWidth, units);
+ * var pointGrid = turf.pointGrid(extent, cellWidth, {units: 'miles'});
  * for (var i = 0; i < pointGrid.features.length; i++) {
  *     pointGrid.features[i].properties.elevation = Math.random() * 10;
  * }
@@ -39,40 +34,35 @@ var featureCollection = helpers.featureCollection;
  * //addToMap
  * var addToMap = [isobands];
  */
-module.exports = function (pointGrid, breaks, zProperty, options) {
-    // Input validation
-    var isObject = function (input) {
-        return (!!input) && (input.constructor === Object);
-    };
-    collectionOf(pointGrid, 'Point', 'Input must contain Points');
-    if (!breaks || !Array.isArray(breaks)) throw new Error('breaks is required');
+function isobands(pointGrid, breaks, options) {
+    // Optional parameters
     options = options || {};
-    if (options.commonProperties && !isObject(options.commonProperties)) {
-        throw new Error('commonProperties is not an Object');
-    }
-    if (options.isobandProperties && !Array.isArray(options.isobandProperties)) {
-        throw new Error('isobandProperties is not an Array');
-    }
-    if (zProperty && typeof zProperty !== 'string') { throw new Error('zProperty is not a string'); }
-
-    zProperty = zProperty || 'elevation';
+    if (!isObject(options)) throw new Error('options is invalid');
+    var zProperty = options.zProperty || 'elevation';
     var commonProperties = options.commonProperties || {};
-    var isobandProperties = options.isobandProperties || [];
+    var breaksProperties = options.breaksProperties || [];
+
+    // Validation
+    collectionOf(pointGrid, 'Point', 'Input must contain Points');
+    if (!breaks) throw new Error('breaks is required');
+    if (!Array.isArray(breaks)) throw new Error('breaks is not an Array');
+    if (!isObject(commonProperties)) throw new Error('commonProperties is not an Object');
+    if (!Array.isArray(breaksProperties)) throw new Error('breaksProperties is not an Array');
 
     // Isoband methods
-    var matrix = gridToMatrix(pointGrid, zProperty, true);
+    var matrix = gridToMatrix(pointGrid, {zProperty: zProperty, flip: true});
     var contours = createContourLines(matrix, breaks, zProperty);
     contours = rescaleContours(contours, matrix, pointGrid);
 
     var multipolygons = contours.map(function (contour, index) {
-        if (isobandProperties[index] && !isObject(isobandProperties[index])) {
+        if (breaksProperties[index] && !isObject(breaksProperties[index])) {
             throw new Error('Each mappedProperty is required to be an Object');
         }
         // collect all properties
         var contourProperties = Object.assign(
             {},
             commonProperties,
-            isobandProperties[index]
+            breaksProperties[index]
         );
         contourProperties[zProperty] = contour[zProperty];
         var multiP = multiPolygon(contour.groupedRings, contourProperties);
@@ -80,7 +70,7 @@ module.exports = function (pointGrid, breaks, zProperty, options) {
     });
 
     return featureCollection(multipolygons);
-};
+}
 
 /**
  * Creates the contours lines (featuresCollection of polygon features) from the 2D data grid
@@ -102,7 +92,7 @@ function createContourLines(matrix, breaks, property) {
         var lowerBand = +breaks[i - 1]; // make sure the breaks value is a number
         var upperBand = +breaks[i];
 
-        var isobandsCoords = marchingsquares.isoBands(matrix, lowerBand, upperBand - lowerBand);
+        var isobandsCoords = isoBands(matrix, lowerBand, upperBand - lowerBand);
         // as per GeoJson rules for creating a Polygon, make sure the first element
         // in the array of LinearRings represents the exterior ring (i.e. biggest area),
         // and any subsequent elements represent interior rings (i.e. smaller area);
@@ -268,3 +258,5 @@ function allGrouped(list) {
     }
     return true;
 }
+
+export default isobands;

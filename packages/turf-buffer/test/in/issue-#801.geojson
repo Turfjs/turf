@@ -1,0 +1,57 @@
+{
+  "type": "FeatureCollection",
+  "properties": {
+    "radius": 1,
+    "units": "miles"
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "stroke": "#555555",
+        "stroke-width": 2,
+        "stroke-opacity": 1,
+        "fill": "#0000ff",
+        "fill-opacity": 0.5
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              5.832694172859192,
+              50.74689044349633
+            ],
+            [
+              5.832699537277222,
+              50.74686838040257
+            ],
+            [
+              5.832734405994415,
+              50.746881957692274
+            ],
+            [
+              5.832734405994415,
+              50.746898929298894
+            ],
+            [
+              5.832694172859192,
+              50.74689044349633
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {},
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.83271563053131,
+          50.746887049174894
+        ]
+      }
+    }
+  ]
+}

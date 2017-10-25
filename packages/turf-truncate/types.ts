@@ -1,5 +1,5 @@
-import {featureCollection, point, lineString, geometryCollection} from '@turf/helpers'
-import * as truncate from './'
+import { featureCollection, point, lineString, geometryCollection } from '@turf/helpers'
+import truncate from './'
 
 const pt = point([120.1234567, 40.1234567])
 const ptGeom = pt.geometry
@@ -16,10 +16,6 @@ truncate(lineGeom)
 truncate(lines)
 truncate(points)
 truncate(geomCollection)
-truncate(pt, 6)
-truncate(pt, 3, 2)
-truncate(pt, 3, 2, false)
-truncate(pt, 3, 2, true)
-truncate(points, 6)
-
-
+truncate(pt, {precision: 6})
+truncate(pt, {precision: 3, coordinates: 2})
+truncate(pt, {precision: 3, coordinates: 2, mutate: false})

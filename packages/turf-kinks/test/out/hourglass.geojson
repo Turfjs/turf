@@ -16,17 +16,6 @@
 			"type": "Feature",
 			"properties": {},
 			"geometry": {
-				"type": "Point",
-				"coordinates": [
-					-45,
-					-2.5
-				]
-			}
-		},
-		{
-			"type": "Feature",
-			"properties": {},
-			"geometry": {
 				"type": "Polygon",
 				"coordinates": [
 					[

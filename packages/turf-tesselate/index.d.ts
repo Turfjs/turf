@@ -1,11 +1,6 @@
-/// <reference types="geojson" />
-
-type Polygon = GeoJSON.Feature<GeoJSON.Polygon>;
-type Polygons = GeoJSON.FeatureCollection<GeoJSON.Polygon>;
+import { Feature, FeatureCollection, Polygon } from '@turf/helpers'
 
 /**
  * http://turfjs.org/docs/#tesselate
  */
-declare function tesselate(polygon: Polygon): Polygons;
-declare namespace tesselate { }
-export = tesselate;
+export default function (polygon: Feature<Polygon>): FeatureCollection<Polygon>;

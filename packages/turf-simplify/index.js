@@ -1,7 +1,8 @@
 var simplifyJS = require('simplify-js');
-var cleanCoords = require('@turf/clean-coords');
-var geomEach = require('@turf/meta').geomEach;
-var clone = require('@turf/clone');
+import cleanCoords from '@turf/clean-coords';
+import clone from '@turf/clone';
+import { geomEach } from '@turf/meta';
+import { isObject } from '@turf/helpers';
 
 /**
  * Takes a {@link GeoJSON} object and returns a simplified version. Internally uses
@@ -9,9 +10,10 @@ var clone = require('@turf/clone');
  *
  * @name simplify
  * @param {GeoJSON} geojson object to be simplified
- * @param {number} [tolerance=1] simplification tolerance
- * @param {boolean} [highQuality=false] whether or not to spend more time to create a higher-quality simplification with a different algorithm
- * @param {boolean} [mutate=false] allows GeoJSON input to be mutated (significant performance increase if true)
+ * @param {Object} [options={}] Optional parameters
+ * @param {number} [options.tolerance=1] simplification tolerance
+ * @param {boolean} [options.highQuality=false] whether or not to spend more time to create a higher-quality simplification with a different algorithm
+ * @param {boolean} [options.mutate=false] allows GeoJSON input to be mutated (significant performance increase if true)
  * @returns {GeoJSON} a simplified GeoJSON
  * @example
  * var geojson = turf.polygon([[
@@ -36,14 +38,20 @@ var clone = require('@turf/clone');
  *   [-70.594711, -33.406224],
  *   [-70.603637, -33.399918]
  * ]]);
- * var tolerance = 0.01;
- *
- * var simplified = turf.simplify(geojson, tolerance, false);
+ * var options = {tolerance: 0.01, highQuality: false};
+ * var simplified = turf.simplify(geojson, options);
  *
  * //addToMap
  * var addToMap = [geojson, simplified]
  */
-module.exports = function (geojson, tolerance, highQuality, mutate) {
+function simplify(geojson, options) {
+    // Optional parameters
+    options = options || {};
+    if (!isObject(options)) throw new Error('options is invalid');
+    var tolerance = options.tolerance;
+    var highQuality = options.highQuality;
+    var mutate = options.mutate;
+
     if (!geojson) throw new Error('geojson is required');
     if (tolerance && tolerance < 0) throw new Error('invalid tolerance');
 
@@ -51,10 +59,10 @@ module.exports = function (geojson, tolerance, highQuality, mutate) {
     if (mutate !== true) geojson = clone(geojson);
 
     geomEach(geojson, function (geom) {
-        simplify(geom, tolerance, highQuality);
+        simplifyGeom(geom, tolerance, highQuality);
     });
     return geojson;
-};
+}
 
 /**
  * Simplifies a feature's coordinates
@@ -65,7 +73,7 @@ module.exports = function (geojson, tolerance, highQuality, mutate) {
  * @param {boolean} [highQuality=false] whether or not to spend more time to create a higher-quality simplification with a different algorithm
  * @returns {Geometry} output
  */
-function simplify(geometry, tolerance, highQuality) {
+function simplifyGeom(geometry, tolerance, highQuality) {
     var type = geometry.type;
 
     // "unsimplyfiable" geometry types
@@ -163,3 +171,5 @@ function checkValidity(ring) {
     //if the last point is the same as the first, it's not a triangle
     return !(ring.length === 3 && ((ring[2][0] === ring[0][0]) && (ring[2][1] === ring[0][1])));
 }
+
+export default simplify;

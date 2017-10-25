@@ -1,8 +1,8 @@
-const fs = require('fs');
-const path = require('path');
-const load = require('load-json-file');
-const Benchmark = require('benchmark');
-const turfMask = require('.');
+import fs from 'fs';
+import path from 'path';
+import load from 'load-json-file';
+import Benchmark from 'benchmark';
+import turfMask from '.';
 
 const suite = new Benchmark.Suite('turf-mask');
 

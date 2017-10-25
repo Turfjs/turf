@@ -1,12 +1,11 @@
-/// <reference types="geojson" />
-
-type BBox = Array<number>;
-type Points = GeoJSON.FeatureCollection<GeoJSON.Point>;
-type Polygons = GeoJSON.FeatureCollection<GeoJSON.Polygon>;
+import { BBox, Point, FeatureCollection, Polygon } from '@turf/helpers'
 
 /**
  * http://turfjs.org/docs/#tag
  */
-declare function tag(points: Points, polygons: Polygons, field: string, outField: string): Points;
-declare namespace tag { }
-export = tag;
+export default function tag(
+    points: FeatureCollection<Point>,
+    polygons: FeatureCollection<Polygon>,
+    field: string,
+    outField: string
+): FeatureCollection<Point>;

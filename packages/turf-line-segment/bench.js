@@ -1,8 +1,8 @@
-const Benchmark = require('benchmark');
-const load = require('load-json-file');
-const path = require('path');
-const fs = require('fs');
-const lineSegment = require('./');
+import fs from 'fs';
+import path from 'path';
+import load from 'load-json-file';
+import Benchmark from 'benchmark';
+import lineSegment from './';
 
 // Fixtures
 const directory = path.join(__dirname, 'test', 'in') + path.sep;

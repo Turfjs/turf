@@ -1,11 +1,12 @@
-const fs = require('fs');
-const test = require('tape');
-const path = require('path');
-const load = require('load-json-file');
-const write = require('write-json-file');
-const {featureEach} = require('@turf/meta');
-const {point, lineString, featureCollection} = require('@turf/helpers');
-const lineSplit = require('./');
+import fs from 'fs';
+import test from 'tape';
+import path from 'path';
+import load from 'load-json-file';
+import write from 'write-json-file';
+import { featureEach } from '@turf/meta';
+import { point, lineString, featureCollection, round } from '@turf/helpers';
+import { getCoords } from '@turf/invariant';
+import lineSplit from '.';
 
 const directories = {
     in: path.join(__dirname, 'test', 'in') + path.sep,
@@ -30,6 +31,25 @@ test('turf-line-split', t => {
         if (process.env.REGEN) write.sync(directories.out + filename, results);
         t.deepEquals(results, load.sync(directories.out + filename), name);
     }
+    t.end();
+});
+
+test('turf-line-split -- lines should split the same feature 1 with 2 as 2 with 1', t => {
+    const featureOne = lineString([[114.58215786065353825, -14.82470576519326144], [137.21678649707752129, -16.71692980416107588]]);
+    const featureTwo = lineString([[119.1412061636556956, -19.83670052919270788], [133.06640625, -12.64033830684678961]]);
+
+    const resultsOne = lineSplit(featureOne, featureTwo);
+    const resultsTwo = lineSplit(featureTwo, featureOne);
+
+    const midCoordOne = getCoords(resultsOne.features[0])[1];
+    const midCoordTwo = getCoords(resultsTwo.features[1])[0];
+
+    // Round precision to 6 decimals
+    midCoordOne[0] = round(midCoordOne[0], 6);
+    midCoordOne[1] = round(midCoordOne[1], 6);
+    midCoordTwo[0] = round(midCoordTwo[0], 6);
+    midCoordTwo[1] = round(midCoordTwo[1], 6);
+    t.deepEquals(midCoordOne, midCoordTwo, 'Splits were made in different locations');
     t.end();
 });
 
@@ -64,7 +84,7 @@ test('turf-line-split -- lines should only contain 2 vertices #688', t => {
     t.end();
 });
 
-test("turf-line-split -- precision issue #852", t => {
+test('turf-line-split -- precision issue #852', t => {
     const line = lineString([[9.2202022, 49.1438226], [9.2199531, 49.1439048], [9.2196177, 49.1440264]]);
     const startPoint = point([9.2202022, 49.1438226]);
     const middlePoint = point([9.2199531, 49.1439048]);
@@ -85,7 +105,7 @@ test('turf-line-split -- prevent input mutation', t => {
 
     t.deepEqual(line, lineBefore, 'line should be the same');
     t.end();
-})
+});
 
 
 /**

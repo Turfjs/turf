@@ -1,12 +1,12 @@
-const fs = require('fs');
-const test = require('tape');
-const path = require('path');
-const load = require('load-json-file');
-const write = require('write-json-file');
-const truncate = require('@turf/truncate');
-const {featureEach} = require('@turf/meta');
-const {lineString, featureCollection} = require('@turf/helpers');
-const lineChunk = require('./');
+import fs from 'fs';
+import test from 'tape';
+import path from 'path';
+import load from 'load-json-file';
+import write from 'write-json-file';
+import truncate from '@turf/truncate';
+import { featureEach } from '@turf/meta';
+import { lineString, featureCollection } from '@turf/helpers';
+import lineChunk from '.';
 
 const directories = {
     in: path.join(__dirname, 'test', 'in') + path.sep,
@@ -19,7 +19,7 @@ const fixtures = fs.readdirSync(directories.in).map(filename => {
 
 test('turf-line-chunk: shorter', t => {
     for (let {filename, geojson} of fixtures) {
-        const chunked = colorize(truncate(lineChunk(geojson, 5, 'miles')));
+        const chunked = colorize(truncate(lineChunk(geojson, 5, {units: 'miles'})));
         filename = filename.replace('.geojson', '.shorter.geojson');
         if (process.env.REGEN) { write.sync(directories.out + filename, chunked); }
 
@@ -31,7 +31,7 @@ test('turf-line-chunk: shorter', t => {
 
 test('turf-line-chunk: longer', t => {
     for (let {filename, geojson} of fixtures) {
-        const chunked = colorize(truncate(lineChunk(geojson, 50, 'miles')));
+        const chunked = colorize(truncate(lineChunk(geojson, 50, {units: 'miles'})));
         filename = filename.replace('.geojson', '.longer.geojson');
         if (process.env.REGEN) { write.sync(directories.out + filename, chunked); }
 
@@ -43,9 +43,9 @@ test('turf-line-chunk: longer', t => {
 
 test('turf-line-chunk: reverse', t => {
     for (let {filename, geojson} of fixtures) {
-        const chunked = colorize(truncate(lineChunk(geojson, 5, 'miles', true)));
+        const chunked = colorize(truncate(lineChunk(geojson, 5, {units: 'miles', reverse: true})));
         filename = filename.replace('.geojson', '.reverse.geojson');
-        if (process.env.REGEN) { write.sync(directories.out + filename, chunked); }
+        if (process.env.REGEN) write.sync(directories.out + filename, chunked);
 
         const expected = load.sync(directories.out + filename);
         t.deepEquals(chunked, expected, path.parse(filename).name);

@@ -1,13 +1,6 @@
-/// <reference types="geojson" />
+import { Point, Feature, Units, Coord, LineString, MultiLineString } from '@turf/helpers'
 
-import {Units} from '@turf/helpers'
-
-type Point = GeoJSON.Feature<GeoJSON.Point> | GeoJSON.Point | number[];
-type LineString = GeoJSON.LineString;
-type MultiLineString = GeoJSON.MultiLineString;
-type Line = GeoJSON.Feature<LineString | MultiLineString> | LineString | MultiLineString;
-
-interface PointOnLine extends GeoJSON.Feature<GeoJSON.Point> {
+export interface PointOnLine extends Feature<Point> {
     properties: {
         index?: number
         dist?: number
@@ -19,10 +12,10 @@ interface PointOnLine extends GeoJSON.Feature<GeoJSON.Point> {
 /**
  * http://turfjs.org/docs/#pointonline
  */
-declare function pointOnLine(
-    line: Line,
-    point: Point,
-    units?: Units): PointOnLine;
-
-declare namespace pointOnLine { }
-export = pointOnLine;
+export default function pointOnLine<T extends MultiLineString | LineString>(
+    line: Feature<T> | T,
+    point: Coord,
+    options?: {
+        units?: Units
+    }
+): PointOnLine;

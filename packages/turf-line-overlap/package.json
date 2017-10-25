@@ -1,16 +1,21 @@
 {
   "name": "@turf/line-overlap",
-  "version": "4.6.0",
+  "version": "5.0.1",
   "description": "turf line-overlap module",
-  "main": "index.js",
+  "main": "main",
+  "module": "index",
+  "jsnext:main": "index",
   "types": "index.d.ts",
   "files": [
     "index.js",
-    "index.d.ts"
+    "index.d.ts",
+    "main.js",
+    "deep-equal.js"
   ],
   "scripts": {
-    "test": "node test.js",
-    "bench": "node bench.js"
+    "pretest": "rollup -c ../../rollup.config.js",
+    "test": "node -r @std/esm test.js",
+    "bench": "node -r @std/esm bench.js"
   },
   "repository": {
     "type": "git",
@@ -33,19 +38,24 @@
   },
   "homepage": "https://github.com/Turfjs/turf",
   "devDependencies": {
-    "benchmark": "^2.1.4",
-    "load-json-file": "^2.0.0",
-    "tape": "^4.6.3",
-    "write-json-file": "^2.0.0"
+    "@std/esm": "*",
+    "benchmark": "*",
+    "load-json-file": "*",
+    "rollup": "*",
+    "tape": "*",
+    "write-json-file": "*"
   },
   "dependencies": {
-    "@turf/boolean-point-on-line": "^4.6.1",
-    "@turf/helpers": "^4.6.0",
-    "@turf/invariant": "^4.6.0",
-    "@turf/line-segment": "^4.6.0",
-    "@turf/meta": "^4.6.0",
-    "@turf/point-on-line": "^4.6.0",
-    "deep-equal": "^1.0.1",
-    "geojson-rbush": "^1.0.1"
+    "@turf/boolean-point-on-line": "^4.7.3",
+    "@turf/helpers": "5.x",
+    "@turf/invariant": "5.x",
+    "@turf/line-segment": "5.x",
+    "@turf/meta": "5.x",
+    "@turf/point-on-line": "5.x",
+    "geojson-rbush": "2.1.0"
+  },
+  "@std/esm": {
+    "esm": "js",
+    "cjs": true
   }
 }

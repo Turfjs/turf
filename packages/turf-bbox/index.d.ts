@@ -1,12 +1,8 @@
-/// <reference types="geojson" />
-
-type Feature = GeoJSON.Feature<any>;
-type Features = GeoJSON.FeatureCollection<any>;
-type BBox = [number, number, number, number];
+import { Feature, FeatureCollection, BBox } from '@turf/helpers'
 
 /**
  * http://turfjs.org/docs/#bbox
  */
-declare function bbox(features: Feature | Features): BBox;
-declare namespace bbox { }
-export = bbox;
+export default function bbox(
+    features: Feature<any> | FeatureCollection<any>
+): BBox;

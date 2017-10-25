@@ -1,11 +1,8 @@
-var meta = require('@turf/meta');
-var rbush = require('geojson-rbush');
-var helpers = require('@turf/helpers');
-var getCoords = require('@turf/invariant').getCoords;
-var lineSegment = require('@turf/line-segment');
-var point = helpers.point;
-var featureEach = meta.featureEach;
-var featureCollection = helpers.featureCollection;
+import rbush from 'geojson-rbush';
+import lineSegment from '@turf/line-segment';
+import { getCoords } from '@turf/invariant';
+import { featureEach } from '@turf/meta';
+import { point, featureCollection, feature } from '@turf/helpers';
 
 /**
  * Takes any LineString or Polygon GeoJSON and returns the intersecting point(s).
@@ -22,14 +19,14 @@ var featureCollection = helpers.featureCollection;
  * //addToMap
  * var addToMap = [line1, line2, intersects]
  */
-module.exports = function (line1, line2) {
+function lineIntersect(line1, line2) {
     var unique = {};
     var results = [];
 
     // First, normalize geometries to features
     // Then, handle simple 2-vertex segments
-    if (line1.type === 'LineString') line1 = helpers.feature(line1);
-    if (line2.type === 'LineString') line2 = helpers.feature(line2);
+    if (line1.type === 'LineString') line1 = feature(line1);
+    if (line2.type === 'LineString') line2 = feature(line2);
     if (line1.type === 'Feature' &&
         line2.type === 'Feature' &&
         line1.geometry.type === 'LineString' &&
@@ -58,7 +55,7 @@ module.exports = function (line1, line2) {
         });
     });
     return featureCollection(results);
-};
+}
 
 /**
  * Find a point that intersects LineStrings with two coordinates each
@@ -106,3 +103,5 @@ function intersects(line1, line2) {
     }
     return null;
 }
+
+export default lineIntersect;

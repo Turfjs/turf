@@ -1,64 +1,62 @@
-var test = require('tape');
-var grid = require('./');
-var fs = require('fs');
-var bboxPolygon = require('@turf/bbox-polygon');
+import fs from 'fs';
+import test from 'tape';
+import path from 'path';
+import load from 'load-json-file';
+import write from 'write-json-file';
+import bboxPoly from '@turf/bbox-polygon';
+import truncate from '@turf/truncate';
+import triangleGrid from '.';
 
-test('triangle-grid', function (t) {
-  var bbox1 = [
-        -96.6357421875,
-        31.12819929911196,
-        -84.9462890625,
-        40.58058466412764
-      ];
-  var bbox2 = [
-          -81.650390625,
-          24.926294766395593,
-          -79.8486328125,
-          26.43122806450644
-        ];
-  var bbox3 = [
-        -77.3876953125,
-        38.71980474264239,
-        -76.9482421875,
-        39.027718840211605
-      ];
-  var bbox4 = [
-    63.6328125,
-    11.867350911459308,
-    75.234375,
-    47.754097979680026
-  ];
+const directories = {
+    in: path.join(__dirname, 'test', 'in') + path.sep,
+    out: path.join(__dirname, 'test', 'out') + path.sep
+};
 
-  var grid1 = grid(bbox1, 50, 'miles');
-  var grid2 = grid(bbox2, 5, 'miles');
-  var grid3 = grid(bbox3, 2, 'miles');
-  var grid4 = grid(bbox4, 50, 'miles');
-
-  grid1.features.push(referencePoly(bbox1));
-  grid2.features.push(referencePoly(bbox2));
-  grid3.features.push(referencePoly(bbox3));
-  grid4.features.push(referencePoly(bbox4));
-
-  if (process.env.REGEN) {
-    fs.writeFileSync(__dirname+'/test/out/grid1.geojson', JSON.stringify(grid1,null,2));
-    fs.writeFileSync(__dirname+'/test/out/grid2.geojson', JSON.stringify(grid2,null,2));
-    fs.writeFileSync(__dirname+'/test/out/grid3.geojson', JSON.stringify(grid3,null,2));
-    fs.writeFileSync(__dirname+'/test/out/grid4.geojson', JSON.stringify(grid4,null,2));
-  }
-
-  t.deepEqual(JSON.parse(fs.readFileSync(__dirname+'/test/out/grid1.geojson')), grid1, 'grid is correct');
-  t.deepEqual(JSON.parse(fs.readFileSync(__dirname+'/test/out/grid2.geojson')), grid2, 'grid is correct');
-  t.deepEqual(JSON.parse(fs.readFileSync(__dirname+'/test/out/grid3.geojson')), grid3, 'grid is correct');
-  t.deepEqual(JSON.parse(fs.readFileSync(__dirname+'/test/out/grid4.geojson')), grid4, 'grid is correct');
-
-  t.end();
+let fixtures = fs.readdirSync(directories.in).map(filename => {
+    return {
+        filename,
+        name: path.parse(filename).name,
+        json: load.sync(directories.in + filename)
+    };
 });
 
-function referencePoly (bbox) {
-  var poly = bboxPolygon(bbox);
-  poly.properties = {
-    'fill-opacity': 0,
-    stroke: '#0ff'
-  };
-  return poly;
-}
+test('triangle-grid', t => {
+    for (const {name, json} of fixtures) {
+        const {bbox, cellSide} = json;
+        const options = json;
+        const result = truncate(triangleGrid(bbox, cellSide, options));
+
+        // Add styled GeoJSON to the result
+        const poly = bboxPoly(bbox);
+        poly.properties = {
+            stroke: '#F00',
+            'stroke-width': 6,
+            'fill-opacity': 0
+        };
+        result.features.push(poly);
+        if (options.mask) {
+            options.mask.properties = {
+                "stroke": "#00F",
+                "stroke-width": 6,
+                "fill-opacity": 0
+            };
+            result.features.push(options.mask);
+        }
+
+        if (process.env.REGEN) write.sync(directories.out + name + '.geojson', result);
+        t.deepEqual(result, load.sync(directories.out + name + '.geojson'), name);
+    }
+    t.end();
+});
+
+
+test('square-grid -- throw', t => {
+    const bbox = [0, 0, 1, 1];
+    t.throws(() => triangleGrid(null, 0), /bbox is required/, 'missing bbox');
+    t.throws(() => triangleGrid('string', 0), /bbox must be array/, 'invalid bbox');
+    t.throws(() => triangleGrid([0, 2], 0), /bbox must contain 4 numbers/, 'invalid bbox');
+    t.throws(() => triangleGrid(bbox, null), /cellSide is required/, 'missing cellSide');
+    t.throws(() => triangleGrid(bbox, 'string'), /cellSide is invalid/, 'invalid cellSide');
+    t.throws(() => triangleGrid(bbox, 1, 'string'), /options is invalid/, 'invalid options');
+    t.end();
+});

@@ -1,12 +1,8 @@
-/// <reference types="geojson" />
-
-type Point = GeoJSON.Feature<GeoJSON.Point>;
-type Feature = GeoJSON.Feature<any>;
-type Features = GeoJSON.FeatureCollection<any>;
+import {Feature, FeatureCollection, Point} from '@turf/helpers';
 
 /**
  * http://turfjs.org/docs/#pointonsurface
  */
-declare function pointOnSurface(features: Feature | Features): Point;
-declare namespace pointOnSurface { }
-export = pointOnSurface;
+export default function pointOnSurface(
+    features: Feature<any> | FeatureCollection<any>
+): Feature<Point>;

@@ -1,29 +1,28 @@
-/// <reference types="geojson" />
+import { Units, FeatureCollection, Point, Feature } from '@turf/helpers';
 
-import {Units, Points} from '@turf/helpers';
-
-interface Output {
+export type Dbscan = 'core' | 'edge' | 'noise'
+export interface DbscanProps {
+    dbscan?: Dbscan;
+    cluster?: number;
+    [key: string]: any;
+}
+export interface DbscanPoint extends Feature<Point> {
+    properties: DbscanProps
+}
+export interface DbscanPoints {
     type: 'FeatureCollection'
-    features: clustersDbscan.Point[];
+    features: DbscanPoint[];
 }
 
 /**
  * http://turfjs.org/docs/#clustersdbscans
  */
-declare function clustersDbscan(
-    points: Points,
+export default function (
+    points: FeatureCollection<Point>,
     maxDistance: number,
-    units?: Units,
-    minPoints?: number): Output;
-
-declare namespace clustersDbscan {
-    type Dbscan = 'core' | 'edge' | 'noise'
-    interface Point extends GeoJSON.Feature<GeoJSON.Point> {
-        properties: {
-            dbscan?: Dbscan;
-            cluster?: number;
-            [key: string]: any;
-        }
+    options?: {
+        units?: Units,
+        minPoints?: number
     }
-}
-export = clustersDbscan;
+): DbscanPoints;
+

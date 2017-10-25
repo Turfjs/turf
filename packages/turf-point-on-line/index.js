@@ -1,14 +1,10 @@
-var meta = require('@turf/meta');
-var helpers = require('@turf/helpers');
-var bearing = require('@turf/bearing');
-var distance = require('@turf/distance');
-var invariant = require('@turf/invariant');
-var destination = require('@turf/destination');
-var lineIntersects = require('@turf/line-intersect');
-var point = helpers.point;
-var getCoords = invariant.getCoords;
-var lineString = helpers.lineString;
-var flattenEach = meta.flattenEach;
+import bearing from '@turf/bearing';
+import distance from '@turf/distance';
+import destination from '@turf/destination';
+import lineIntersects from '@turf/line-intersect';
+import { flattenEach } from '@turf/meta';
+import { point, lineString, isObject } from '@turf/helpers';
+import { getCoords } from '@turf/invariant';
 
 /**
  * Takes a {@link Point} and a {@link LineString} and calculates the closest Point on the (Multi)LineString.
@@ -16,7 +12,8 @@ var flattenEach = meta.flattenEach;
  * @name pointOnLine
  * @param {Geometry|Feature<LineString|MultiLineString>} lines lines to snap to
  * @param {Geometry|Feature<Point>|number[]} pt point to snap from
- * @param {string} [units=kilometers] can be degrees, radians, miles, or kilometers
+ * @param {Object} [options={}] Optional parameters
+ * @param {string} [options.units='kilometers'] can be degrees, radians, miles, or kilometers
  * @returns {Feature<Point>} closest point on the `line` to `point`. The properties object will contain three values: `index`: closest point was found on nth line part, `dist`: distance between pt and the closest point, `location`: distance along the line between start and the closest point.
  * @example
  * var line = turf.lineString([
@@ -29,13 +26,17 @@ var flattenEach = meta.flattenEach;
  * ]);
  * var pt = turf.point([-77.037076, 38.884017]);
  *
- * var snapped = turf.pointOnLine(line, pt, 'miles');
+ * var snapped = turf.pointOnLine(line, pt, {units: 'miles'});
  *
  * //addToMap
  * var addToMap = [line, pt, snapped];
  * snapped.properties['marker-color'] = '#00f';
  */
-module.exports = function (lines, pt, units) {
+function pointOnLine(lines, pt, options) {
+    // Optional parameters
+    options = options || {};
+    if (!isObject(options)) throw new Error('options is invalid');
+
     // validation
     var type = (lines.geometry) ? lines.geometry.type : lines.type;
     if (type !== 'LineString' && type !== 'MultiLineString') {
@@ -53,23 +54,26 @@ module.exports = function (lines, pt, units) {
         for (var i = 0; i < coords.length - 1; i++) {
             //start
             var start = point(coords[i]);
-            start.properties.dist = distance(pt, start, units);
+            start.properties.dist = distance(pt, start, options);
             //stop
             var stop = point(coords[i + 1]);
-            stop.properties.dist = distance(pt, stop, units);
+            stop.properties.dist = distance(pt, stop, options);
             // sectionLength
-            var sectionLength = distance(start, stop, units);
+            var sectionLength = distance(start, stop, options);
             //perpendicular
             var heightDistance = Math.max(start.properties.dist, stop.properties.dist);
             var direction = bearing(start, stop);
-            var perpendicularPt1 = destination(pt, heightDistance, direction + 90, units);
-            var perpendicularPt2 = destination(pt, heightDistance, direction - 90, units);
-            var intersect = lineIntersects(lineString([perpendicularPt1.geometry.coordinates, perpendicularPt2.geometry.coordinates]), lineString([start.geometry.coordinates, stop.geometry.coordinates]));
+            var perpendicularPt1 = destination(pt, heightDistance, direction + 90, options);
+            var perpendicularPt2 = destination(pt, heightDistance, direction - 90, options);
+            var intersect = lineIntersects(
+                lineString([perpendicularPt1.geometry.coordinates, perpendicularPt2.geometry.coordinates]),
+                lineString([start.geometry.coordinates, stop.geometry.coordinates])
+            );
             var intersectPt = null;
             if (intersect.features.length > 0) {
                 intersectPt = intersect.features[0];
-                intersectPt.properties.dist = distance(pt, intersectPt, units);
-                intersectPt.properties.location = length + distance(start, intersectPt, units);
+                intersectPt.properties.dist = distance(pt, intersectPt, options);
+                intersectPt.properties.location = length + distance(start, intersectPt, options);
             }
 
             if (start.properties.dist < closestPt.properties.dist) {
@@ -93,4 +97,6 @@ module.exports = function (lines, pt, units) {
     });
 
     return closestPt;
-};
+}
+
+export default pointOnLine;

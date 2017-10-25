@@ -1,16 +1,20 @@
 {
   "name": "@turf/intersect",
-  "version": "4.6.0",
+  "version": "4.7.4",
   "description": "turf intersect module",
-  "main": "index.js",
+  "main": "main",
+  "module": "index",
+  "jsnext:main": "index",
   "types": "index.d.ts",
   "files": [
     "index.js",
-    "index.d.ts"
+    "index.d.ts",
+    "main.js"
   ],
   "scripts": {
-    "test": "node test.js",
-    "bench": "node bench.js"
+    "pretest": "rollup -c ../../rollup.config.es6.js",
+    "test": "node -r @std/esm test.js",
+    "bench": "node -r @std/esm bench.js"
   },
   "repository": {
     "type": "git",
@@ -28,13 +32,22 @@
   },
   "homepage": "https://github.com/Turfjs/turf",
   "devDependencies": {
-    "benchmark": "^2.1.4",
-    "load-json-file": "^2.0.0",
-    "tape": "^4.6.3",
-    "write-json-file": "^2.0.0"
+    "@std/esm": "*",
+    "benchmark": "*",
+    "load-json-file": "*",
+    "rollup": "*",
+    "tape": "*",
+    "write-json-file": "*"
   },
   "dependencies": {
-    "@turf/truncate": "^4.6.0",
-    "jsts": "1.3.0"
+    "@turf/clean-coords": "*",
+    "@turf/helpers": "5.x",
+    "@turf/invariant": "5.x",
+    "@turf/truncate": "^4.7.3",
+    "jsts": "1.4.0"
+  },
+  "@std/esm": {
+    "esm": "js",
+    "cjs": true
   }
 }

@@ -1,15 +1,13 @@
-/// <reference types="geojson" />
-
-type Geoms = GeoJSON.Feature<any> | GeoJSON.FeatureCollection<any> | GeoJSON.GeometryObject | GeoJSON.GeometryCollection;
+import { AllGeoJSON } from '@turf/helpers';
 
 /**
  * http://turfjs.org/docs/#truncate
  */
-declare function truncate<Geom extends Geoms>(
-    geojson: Geom,
-    precision?: number,
-    coordinates?: number,
-    mutate?: boolean): Geom;
-
-declare namespace truncate { }
-export = truncate;
+export default function truncate<T extends AllGeoJSON>(
+    geojson: T,
+    options?: {
+        precision?: number,
+        coordinates?: number,
+        mutate?: boolean
+    }
+): T;

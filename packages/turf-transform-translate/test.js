@@ -1,11 +1,11 @@
-const fs = require('fs');
-const test = require('tape');
-const path = require('path');
-const load = require('load-json-file');
-const write = require('write-json-file');
-const truncate = require('@turf/truncate');
-const {point, lineString, geometryCollection, featureCollection} = require('@turf/helpers');
-const translate = require('./');
+import fs from 'fs';
+import test from 'tape';
+import path from 'path';
+import load from 'load-json-file';
+import write from 'write-json-file';
+import truncate from '@turf/truncate';
+import { point, lineString, geometryCollection, featureCollection } from '@turf/helpers';
+import translate from '.';
 
 const directories = {
     in: path.join(__dirname, 'test', 'in') + path.sep,
@@ -24,8 +24,8 @@ test('translate', t => {
     for (const {filename, name, geojson} of fixtures) {
         let {distance, direction, units, zTranslation} = geojson.properties || {};
 
-        const translated = translate(geojson, distance, direction, units, zTranslation);
-        const result = featureCollection([colorize(truncate(translated, 6, 3)), geojson]);
+        const translated = translate(geojson, distance, direction, {units, zTranslation});
+        const result = featureCollection([colorize(truncate(translated, {precision: 6, coordiantes: 3})), geojson]);
 
         if (process.env.REGEN) write.sync(directories.out + filename, result);
         t.deepEqual(result, load.sync(directories.out + filename), name);
@@ -40,8 +40,8 @@ test('translate -- throws', t => {
     t.throws(() => translate(null, 100, -29), 'missing geojson');
     t.throws(() => translate(pt, null, 98), 'missing distance');
     t.throws(() => translate(pt, 23, null), 'missing direction');
-    t.throws(() => translate(pt, 56, 57, 'notAunit'), 'invalid units');
-    t.throws(() => translate(pt, 56, 57, 'miles', 'zTrans'), 'invalid zTranslation');
+    t.throws(() => translate(pt, 56, 57, {units: 'foo'}), 'invalid units');
+    t.throws(() => translate(pt, 56, 57, {zTranslation: 'foo'}), 'invalid zTranslation');
 
     t.end();
 });
@@ -53,8 +53,8 @@ test('rotate -- mutated input', t => {
     translate(line, 100, 50);
     t.deepEqual(line, lineBefore, 'input should NOT be mutated');
 
-    translate(line, 100, 50, 'kilometers', undefined, true);
-    t.deepEqual(truncate(line, 1), lineString([[10.7, 10.6], [12.7, 15.6]]), 'input should be mutated');
+    translate(line, 100, 50, {units: 'kilometers', mutate: true});
+    t.deepEqual(truncate(line, {precision: 1}), lineString([[10.7, 10.6], [12.7, 15.6]]), 'input should be mutated');
     t.end();
 });
 

@@ -1,11 +1,11 @@
-var flattenEach = require('@turf/meta').flattenEach;
-var featureCollection = require('@turf/helpers').featureCollection;
+import { flattenEach } from '@turf/meta';
+import { featureCollection } from '@turf/helpers';
 
 /**
  * Flattens any {@link GeoJSON} to a {@link FeatureCollection} inspired by [geojson-flatten](https://github.com/tmcw/geojson-flatten).
  *
  * @name flatten
- * @param {FeatureCollection|Geometry|Feature<any>} geojson any valid GeoJSON Object
+ * @param {GeoJSON} geojson any valid GeoJSON Object
  * @returns {FeatureCollection<any>} all Multi-Geometries are flattened into single Features
  * @example
  * var multiGeometry = turf.multiPolygon([
@@ -19,7 +19,7 @@ var featureCollection = require('@turf/helpers').featureCollection;
  * //addToMap
  * var addToMap = [flatten]
  */
-module.exports = function (geojson) {
+function flatten(geojson) {
     if (!geojson) throw new Error('geojson is required');
 
     var results = [];
@@ -27,4 +27,6 @@ module.exports = function (geojson) {
         results.push(feature);
     });
     return featureCollection(results);
-};
+}
+
+export default flatten;

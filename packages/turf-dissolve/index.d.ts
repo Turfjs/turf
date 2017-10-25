@@ -1,10 +1,11 @@
-/// <reference types="geojson" />
-
-type Polygons = GeoJSON.FeatureCollection<GeoJSON.Polygon>;
+import { FeatureCollection, Polygon } from '@turf/helpers'
 
 /**
  * http://turfjs.org/docs.html#dissolve
  */
-declare function dissolve(featureCollection: Polygons, propertyName?: string): Polygons;
-declare namespace dissolve { }
-export = dissolve;
+export default function dissolve(
+    featureCollection: FeatureCollection<Polygon>,
+    options?: {
+      propertyName?: string
+    }
+): FeatureCollection<Polygon>;

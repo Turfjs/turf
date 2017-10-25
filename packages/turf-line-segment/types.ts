@@ -1,5 +1,5 @@
-import {lineString, polygon, featureCollection, geometryCollection} from '@turf/helpers'
-import * as lineSegment from './'
+import { lineString, polygon, featureCollection, geometryCollection } from '@turf/helpers'
+import lineSegment from './'
 
 const poly = polygon([[[-50, 5], [-40, -10], [-50, -10], [-40, 5], [-50, 5]]]);
 const line = lineString([[-50, 5], [-40, -10], [-50, -10], [-40, 5], [-50, 5]]);

@@ -1,11 +1,8 @@
-/// <reference types="geojson" />
-
-type Polygons = GeoJSON.FeatureCollection<GeoJSON.Polygon>;
-type Geoms = GeoJSON.LineString | GeoJSON.MultiLineString;
+import { Feature, FeatureCollection, Coord, Polygon, LineString, MultiLineString } from '@turf/helpers'
 
 /**
  * http://turfjs.org/docs/#polygonize
  */
-declare function polygonize<Geom extends Geoms>(geojson: GeoJSON.Feature<Geom> | GeoJSON.FeatureCollection<Geom> | Geom): Polygons;
-declare namespace polygonize { }
-export = polygonize;
+export default function <T extends LineString | MultiLineString>(
+    geojson: Feature<T> | FeatureCollection<T> | T
+): FeatureCollection<Polygon>;

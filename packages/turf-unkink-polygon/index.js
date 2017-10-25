@@ -1,10 +1,6 @@
-var meta = require('@turf/meta');
-var helpers = require('@turf/helpers');
-var simplepolygon = require('simplepolygon');
-var flattenEach = meta.flattenEach;
-var featureEach = meta.featureEach;
-var polygon = helpers.polygon;
-var featureCollection = helpers.featureCollection;
+import simplepolygon from './simplepolygon';
+import { flattenEach, featureEach } from '@turf/meta';
+import { polygon, featureCollection } from '@turf/helpers';
 
 /**
  * Takes a kinked polygon and returns a feature collection of polygons that have no kinks.
@@ -21,7 +17,7 @@ var featureCollection = helpers.featureCollection;
  * //addToMap
  * var addToMap = [poly, result]
  */
-module.exports = function (geojson) {
+function unkinkPolygon(geojson) {
     var features = [];
     flattenEach(geojson, function (feature) {
         if (feature.geometry.type !== 'Polygon') return;
@@ -30,4 +26,6 @@ module.exports = function (geojson) {
         });
     });
     return featureCollection(features);
-};
+}
+
+export default unkinkPolygon;

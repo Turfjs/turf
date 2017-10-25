@@ -1,15 +1,12 @@
-var meta = require('@turf/meta');
-var rbush = require('geojson-rbush');
-var clone = require('@turf/clone');
-var overlap = require('@turf/boolean-overlap');
-var helpers = require('@turf/helpers');
-var invariant = require('@turf/invariant');
-var turfUnion = require('@turf/union');
-var getClosest = require('get-closest');
-var lineIntersect = require('@turf/line-intersect');
-var coordAll = meta.coordAll;
-var lineString = helpers.lineString;
-var collectionOf = invariant.collectionOf;
+import rbush from 'geojson-rbush';
+import clone from '@turf/clone';
+import overlap from '@turf/boolean-overlap';
+import turfUnion from '@turf/union';
+import lineIntersect from '@turf/line-intersect';
+import { coordAll } from '@turf/meta';
+import { collectionOf } from '@turf/invariant';
+import { lineString, isObject } from '@turf/helpers';
+import { closestGreaterNumber } from './get-closest';
 
 /**
  * Dissolves a FeatureCollection of polygons, filtered by an optional property name:value.
@@ -17,7 +14,8 @@ var collectionOf = invariant.collectionOf;
  *
  * @name dissolve
  * @param {FeatureCollection<Polygon>} featureCollection input feature collection to be dissolved
- * @param {string} [propertyName] features with equals 'propertyName' in `properties` will be merged
+ * @param {Object} [options={}] Optional parameters
+ * @param {string} [options.propertyName] features with equals 'propertyName' in `properties` will be merged
  * @returns {FeatureCollection<Polygon>} a FeatureCollection containing the dissolved polygons
  * @example
  * var features = turf.featureCollection([
@@ -26,14 +24,21 @@ var collectionOf = invariant.collectionOf;
  *   turf.polygon([[[1,-1],[1, 0], [2, 0], [2, -1], [1, -1]]], {combine: 'no'}),
  * ]);
  *
- * var dissolved = turf.dissolve(features, 'combine');
+ * var dissolved = turf.dissolve(features, {propertyName: 'combine'});
  *
  * //addToMap
  * var addToMap = [features, dissolved]
  */
-module.exports = function (featureCollection, propertyName) {
+function dissolve(featureCollection, options) {
+    // Optional parameters
+    options = options || {};
+    if (!isObject(options)) throw new Error('options is invalid');
+    var propertyName = options.propertyName;
+
+    // Input validation
     collectionOf(featureCollection, 'Polygon', 'dissolve');
 
+    // Main
     var fc = clone(featureCollection);
     var features = fc.features;
 
@@ -59,7 +64,7 @@ module.exports = function (featureCollection, propertyName) {
                 if (matchFeaturePosition > originalIndexOfItemsRemoved[originalIndexOfItemsRemoved.length - 1]) {
                     matchFeaturePosition = matchFeaturePosition - (originalIndexOfItemsRemoved.length);
                 } else {
-                    var closestNumber = getClosest.greaterNumber(matchFeaturePosition, originalIndexOfItemsRemoved);
+                    var closestNumber = closestGreaterNumber(matchFeaturePosition, originalIndexOfItemsRemoved);
                     if (closestNumber !== 0) {
                         matchFeaturePosition = matchFeaturePosition - closestNumber;
                     }
@@ -104,8 +109,7 @@ module.exports = function (featureCollection, propertyName) {
     });
 
     return fc;
-};
-
+}
 
 function ringsIntersect(poly1, poly2) {
     var line1 = lineString(coordAll(poly1));
@@ -113,3 +117,5 @@ function ringsIntersect(poly1, poly2) {
     var points = lineIntersect(line1, line2).features;
     return points.length > 0;
 }
+
+export default dissolve;

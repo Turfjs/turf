@@ -1,12 +1,12 @@
-/// <reference types="geojson" />
-
-import {Units} from '@turf/helpers';
-
-type Point = GeoJSON.Feature<GeoJSON.Point> | GeoJSON.Point | number[];
+import { Coord, Units } from '@turf/helpers';
 
 /**
- * http://turfjs.org/docs/#rhumb-distance
+ * http://turfjs.org/docs/#rhumbdistance
  */
-declare function rhumbDistance(from: Point, to: Point, units?: Units): number;
-declare namespace rhumbDistance { }
-export = rhumbDistance;
+export default function rhumbDistance(
+    from: Coord,
+    to: Coord,
+    options?: {
+        units?: Units;
+    }
+): number;

@@ -1,14 +1,11 @@
-var meta = require('@turf/meta');
-var equal = require('deep-equal');
-var rbush = require('geojson-rbush');
-var invariant = require('@turf/invariant');
-var lineSegment = require('@turf/line-segment');
-var pointOnLine = require('@turf/point-on-line');
-var booleanPointOnLine = require('@turf/boolean-point-on-line');
-var featureCollection = require('@turf/helpers').featureCollection;
-var getCoords = invariant.getCoords;
-var featureEach = meta.featureEach;
-var segmentEach = meta.segmentEach;
+import equal from './deep-equal';
+import rbush from 'geojson-rbush';
+import lineSegment from '@turf/line-segment';
+import pointOnLine from '@turf/point-on-line';
+import booleanPointOnLine from '@turf/boolean-point-on-line';
+import { getCoords } from '@turf/invariant';
+import { featureCollection, isObject } from '@turf/helpers';
+import { featureEach, segmentEach } from '@turf/meta';
 
 /**
  * Takes any LineString or Polygon and returns the overlapping lines between both features.
@@ -16,7 +13,8 @@ var segmentEach = meta.segmentEach;
  * @name lineOverlap
  * @param {Geometry|Feature<LineString|MultiLineString|Polygon|MultiPolygon>} line1 any LineString or Polygon
  * @param {Geometry|Feature<LineString|MultiLineString|Polygon|MultiPolygon>} line2 any LineString or Polygon
- * @param {number} [tolerance=0] Tolerance distance to match overlapping line segments (in kilometers)
+ * @param {Object} [options={}] Optional parameters
+ * @param {number} [options.tolerance=0] Tolerance distance to match overlapping line segments (in kilometers)
  * @returns {FeatureCollection<LineString>} lines(s) that are overlapping between both features
  * @example
  * var line1 = turf.lineString([[115, -35], [125, -30], [135, -30], [145, -35]]);
@@ -27,9 +25,14 @@ var segmentEach = meta.segmentEach;
  * //addToMap
  * var addToMap = [line1, line2, overlapping]
  */
-module.exports = function (line1, line2, tolerance) {
+function lineOverlap(line1, line2, options) {
+    // Optional parameters
+    options = options || {};
+    if (!isObject(options)) throw new Error('options is invalid');
+    var tolerance = options.tolerance || 0;
+
+    // Containers
     var features = [];
-    tolerance = tolerance || 0;
 
     // Create Spatial Index
     var tree = rbush();
@@ -57,19 +60,17 @@ module.exports = function (line1, line2, tolerance) {
                 // Match segments which don't share nodes (Issue #901)
                 } else if (
                     (tolerance === 0) ?
-                    booleanPointOnLine(coordsSegment[0], match) &&
-                    booleanPointOnLine(coordsSegment[1], match) :
-                    pointOnLine(match, coordsSegment[0]).properties.dist <= tolerance &&
-                    pointOnLine(match, coordsSegment[1]).properties.dist <= tolerance) {
+                        booleanPointOnLine(coordsSegment[0], match) && booleanPointOnLine(coordsSegment[1], match) :
+                        pointOnLine(match, coordsSegment[0]).properties.dist <= tolerance &&
+                        pointOnLine(match, coordsSegment[1]).properties.dist <= tolerance) {
                     doesOverlaps = true;
                     if (overlapSegment) overlapSegment = concatSegment(overlapSegment, segment);
                     else overlapSegment = segment;
                 } else if (
                     (tolerance === 0) ?
-                    booleanPointOnLine(coordsMatch[0], segment) &&
-                    booleanPointOnLine(coordsMatch[1], segment) :
-                    pointOnLine(segment, coordsMatch[0]).properties.dist <= tolerance &&
-                    pointOnLine(segment, coordsMatch[1]).properties.dist <= tolerance) {
+                        booleanPointOnLine(coordsMatch[0], segment) && booleanPointOnLine(coordsMatch[1], segment) :
+                        pointOnLine(segment, coordsMatch[0]).properties.dist <= tolerance &&
+                        pointOnLine(segment, coordsMatch[1]).properties.dist <= tolerance) {
                     // Do not define (doesOverlap = true) since more matches can occur within the same segment
                     // doesOverlaps = true;
                     if (overlapSegment) overlapSegment = concatSegment(overlapSegment, match);
@@ -88,7 +89,7 @@ module.exports = function (line1, line2, tolerance) {
     if (overlapSegment) features.push(overlapSegment);
 
     return featureCollection(features);
-};
+}
 
 
 /**
@@ -112,3 +113,5 @@ function concatSegment(line, segment) {
     else if (equal(coords[1], end)) geom.push(coords[0]);
     return line;
 }
+
+export default lineOverlap;

@@ -1,8 +1,6 @@
 //http://en.wikipedia.org/wiki/Delaunay_triangulation
 //https://github.com/ironwallaby/delaunay
-var helpers = require('@turf/helpers');
-var polygon = helpers.polygon;
-var featurecollection = helpers.featureCollection;
+import { polygon, featureCollection } from '@turf/helpers';
 
 /**
  * Takes a set of {@link Point|points} and creates a
@@ -21,9 +19,8 @@ var featurecollection = helpers.featureCollection;
  * @returns {FeatureCollection<Polygon>} TIN output
  * @example
  * // generate some random point data
- * var points = turf.random('points', 30, {
- *   bbox: [50, 30, 70, 50]
- * });
+ * var points = turf.randomPoint(30, {bbox: [50, 30, 70, 50]});
+ *
  * // add a random property to each point between 0 and 9
  * for (var i = 0; i < points.features.length; i++) {
  *   points.features[i].properties.z = ~~(Math.random() * 9);
@@ -37,11 +34,11 @@ var featurecollection = helpers.featureCollection;
  *   properties.fill = '#' + properties.a + properties.b + properties.c;
  * }
  */
-module.exports = function (points, z) {
+function tin(points, z) {
     if (points.type !== 'FeatureCollection') throw new Error('points must be a FeatureCollection');
     //break down points
     var isPointZ = false;
-    return featurecollection(triangulate(points.features.map(function (p) {
+    return featureCollection(triangulate(points.features.map(function (p) {
         var point = {
             x: p.geometry.coordinates[0],
             y: p.geometry.coordinates[1]
@@ -77,7 +74,7 @@ module.exports = function (points, z) {
         return polygon([[a, b, c, a]], properties);
 
     }));
-};
+}
 
 function Triangle(a, b, c) {
     this.a = a;
@@ -111,21 +108,21 @@ function dedup(edges) {
         a, b, i, m, n;
 
     outer:
-  while (j) {
-      b = edges[--j];
-      a = edges[--j];
-      i = j;
-      while (i) {
-          n = edges[--i];
-          m = edges[--i];
-          if ((a === m && b === n) || (a === n && b === m)) {
-              edges.splice(j, 2);
-              edges.splice(i, 2);
-              j -= 2;
-              continue outer;
-          }
-      }
-  }
+    while (j) {
+        b = edges[--j];
+        a = edges[--j];
+        i = j;
+        while (i) {
+            n = edges[--i];
+            m = edges[--i];
+            if ((a === m && b === n) || (a === n && b === m)) {
+                edges.splice(j, 2);
+                edges.splice(i, 2);
+                j -= 2;
+                continue outer;
+            }
+        }
+    }
 }
 
 function triangulate(vertices) {
@@ -186,7 +183,7 @@ function triangulate(vertices) {
                 y: ymid - dmax,
                 __sentinel: true
             }
-        )],
+            )],
         closed = [],
         edges = [],
         j;
@@ -217,10 +214,10 @@ function triangulate(vertices) {
 
             // Remove the triangle and add it's edges to the edge list.
             edges.push(
-        open[j].a, open[j].b,
-        open[j].b, open[j].c,
-        open[j].c, open[j].a
-      );
+                open[j].a, open[j].b,
+                open[j].b, open[j].c,
+                open[j].c, open[j].a
+            );
             open.splice(j, 1);
         }
 
@@ -251,9 +248,11 @@ function triangulate(vertices) {
     i = closed.length;
     while (i--)
         if (closed[i].a.__sentinel ||
-      closed[i].b.__sentinel ||
-      closed[i].c.__sentinel)
+            closed[i].b.__sentinel ||
+            closed[i].c.__sentinel)
             closed.splice(i, 1);
 
     return closed;
 }
+
+export default tin;

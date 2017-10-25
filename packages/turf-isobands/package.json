@@ -1,16 +1,22 @@
 {
   "name": "@turf/isobands",
-  "version": "4.6.0",
+  "version": "4.7.3",
   "description": "turf isobands module",
-  "main": "index.js",
+  "main": "main",
+  "module": "index",
+  "jsnext:main": "index",
   "types": "index.d.ts",
   "files": [
     "index.js",
-    "index.d.ts"
+    "index.d.ts",
+    "marchingsquares-isobands.js",
+    "grid-to-matrix.js",
+    "main.js"
   ],
   "scripts": {
-    "test": "node test.js",
-    "bench": "node bench.js"
+    "pretest": "rollup -c ../../rollup.config.js",
+    "test": "node -r @std/esm test.js",
+    "bench": "node -r @std/esm bench.js"
   },
   "repository": {
     "type": "git",
@@ -35,24 +41,31 @@
   },
   "homepage": "https://github.com/Turfjs/turf",
   "devDependencies": {
-    "@turf/envelope": "^4.6.0",
-    "@turf/point-grid": "^3.14.0",
-    "@turf/random": "^3.13.0",
-    "benchmark": "^2.1.4",
-    "chroma-js": "1.3.3",
-    "load-json-file": "^2.0.0",
-    "matrix-to-grid": "3.0.0",
-    "tape": "^4.6.3",
-    "write-json-file": "^2.0.0"
+    "@std/esm": "*",
+    "@turf/envelope": "*",
+    "@turf/point-grid": "*",
+    "@turf/random": "*",
+    "@turf/rhumb-destination": "*",
+    "@turf/truncate": "*",
+    "benchmark": "*",
+    "chroma-js": "*",
+    "load-json-file": "*",
+    "matrix-to-grid": "*",
+    "rollup": "*",
+    "tape": "*",
+    "write-json-file": "*"
   },
   "dependencies": {
-    "@turf/area": "^3.7.0",
-    "@turf/bbox": "^3.14.0",
-    "@turf/explode": "^3.7.0",
-    "@turf/helpers": "^3.6.3",
-    "@turf/inside": "^3.7.0",
-    "@turf/invariant": "^3.13.0",
-    "grid-to-matrix": "^1.2.0",
-    "marchingsquares": "^1.2.0"
+    "@turf/area": "^4.7.3",
+    "@turf/bbox": "5.x",
+    "@turf/explode": "^4.7.3",
+    "@turf/helpers": "5.x",
+    "@turf/inside": "5.x",
+    "@turf/invariant": "5.x",
+    "@turf/meta": "5.x"
+  },
+  "@std/esm": {
+    "esm": "js",
+    "cjs": true
   }
 }

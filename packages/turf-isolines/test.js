@@ -1,15 +1,16 @@
-const fs = require('fs');
-const test = require('tape');
-const path = require('path');
-const load = require('load-json-file');
-const write = require('write-json-file');
-const random = require('@turf/random');
-const envelope = require('@turf/envelope');
-const pointGrid = require('@turf/point-grid');
-const {getCoords} = require('@turf/invariant');
-const matrixToGrid = require('matrix-to-grid');
-const {lineString} = require('@turf/helpers');
-const isolines = require('./');
+import fs from 'fs';
+import test from 'tape';
+import path from 'path';
+import load from 'load-json-file';
+import write from 'write-json-file';
+import envelope from '@turf/envelope';
+import truncate from '@turf/truncate';
+import pointGrid from '@turf/point-grid';
+import { getCoords } from '@turf/invariant';
+import { randomPolygon } from '@turf/random';
+import { lineString, polygon } from '@turf/helpers';
+import matrixToGrid from './matrix-to-grid';
+import isolines from '.';
 
 const directories = {
     in: path.join(__dirname, 'test', 'in') + path.sep,
@@ -20,33 +21,26 @@ const fixtures = fs.readdirSync(directories.in).map(filename => {
     return {
         filename,
         name: path.parse(filename).name,
-        jsondata: load.sync(directories.in + filename)
+        json: load.sync(directories.in + filename)
     };
 });
 
 test('isolines', t => {
-    fixtures.forEach(({name, jsondata, filename}) => {
-        const {
-            breaks,
-            zProperty,
-            propertiesPerIsoline,
-            propertiesToAllIsolines,
-            matrix,
-            cellSize,
-            units,
-            origin} = jsondata.properties || jsondata;
+    fixtures.forEach(({name, json, filename}) => {
+        const options = json.properties || json;
+        const { breaks, matrix, cellSize, origin} = options;
 
-        // allow GeoJSON FeatureCollection or Matrix
-        let points;
-        if (filename.includes('geojson')) points = jsondata;
-        else points = matrixToGrid(matrix, origin, cellSize, {zProperty, units});
+        // allow GeoJSON featureCollection or matrix
+        let points = json.properties ? json : matrixToGrid(matrix, origin, cellSize, options);
 
-        const results = isolines(points, breaks, zProperty, propertiesToAllIsolines, propertiesPerIsoline);
+        // Results
+        const results = truncate(isolines(points, breaks, options));
 
-        const box = lineString(getCoords(envelope(points))[0]);
-        box.properties['stroke'] = '#F00';
-        box.properties['stroke-width'] = 1;
-        results.features.push(box);
+        // Add red line around point data
+        results.features.push(lineString(getCoords(envelope(points))[0], {
+            stroke: '#F00',
+            'stroke-width': 1
+        }));
 
         if (process.env.REGEN) write.sync(directories.out + name + '.geojson', results);
         t.deepEqual(results, load.sync(directories.out + name + '.geojson'), name);
@@ -58,22 +52,27 @@ test('isolines', t => {
 test('isolines -- throws', t => {
     const points = pointGrid([-70.823364, -33.553984, -70.473175, -33.302986], 5);
 
-    t.throws(() => isolines(random('polygon'), [1, 2, 3]), 'invalid points');
+    t.throws(() => isolines(randomPolygon()), 'invalid points');
     t.throws(() => isolines(points), /breaks is required/);
     t.throws(() => isolines(points, 'string'), /breaks must be an Array/);
-    t.throws(() => isolines(points, [1, 2, 3], 5), /zProperty must be a string/);
-    t.throws(() => isolines(points, [1, 2, 3], 'temp', 'string'), /propertiesToAllIsolines must be an Object/);
-    t.throws(() => isolines(points, [1, 2, 3], 'temp', {}, 'string'), /propertiesPerIsoline must be an Array/);
+    t.throws(() => isolines(points, [1, 2, 3], {commonProperties: 'foo'}), /commonProperties must be an Object/);
+    t.throws(() => isolines(points, [1, 2, 3], {breaksProperties: 'foo'}), /breaksProperties must be an Array/);
 
+    // Updated tests since Turf 5.0
+    t.assert(isolines(points, [1, 2, 3], {zProperty: 5}), 'zProperty can be a string');
     t.end();
 });
 
 test('isolines -- handling properties', t => {
     const points = pointGrid([-70.823364, -33.553984, -70.473175, -33.302986], 5);
-    const propertiesToAllIsolines = {name: 'unknown', source: 'foobar'};
-    const propertiesPerIsoline = [{name: 'break1'}, {name: 'break2'}, {name: 'break3'}];
+    const commonProperties = {name: 'unknown', source: 'foobar'};
+    const breaksProperties = [{name: 'break1'}, {name: 'break2'}, {name: 'break3'}];
 
-    const lines = isolines(points, [1, 2, 3], 'z', propertiesToAllIsolines, propertiesPerIsoline);
+    const lines = isolines(points, [1, 2, 3], {
+        zProperty: 'z',
+        commonProperties: commonProperties,
+        breaksProperties: breaksProperties
+    });
     t.equal(lines.features[0].properties.name, 'break2');
     t.equal(lines.features[0].properties.source, 'foobar');
     t.end();

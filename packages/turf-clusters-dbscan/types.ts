@@ -1,5 +1,5 @@
-import {featureCollection, point} from '@turf/helpers'
-import * as clustersDbscan from './'
+import { featureCollection, point } from '@turf/helpers'
+import clustersDbscan from './'
 
 // Fixtures
 const points = featureCollection([
@@ -24,5 +24,5 @@ clustersDbscan(output, maxDistance);
 const minPoints = 3;
 const units = 'miles';
 clustersDbscan(points, maxDistance);
-clustersDbscan(points, maxDistance, units);
-clustersDbscan(points, maxDistance, units, minPoints);
+clustersDbscan(points, maxDistance, {units});
+clustersDbscan(points, maxDistance, {units, minPoints});

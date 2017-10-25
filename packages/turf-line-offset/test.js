@@ -1,11 +1,11 @@
-const fs = require('fs');
-const test = require('tape');
-const path = require('path');
-const load = require('load-json-file');
-const write = require('write-json-file');
-const truncate = require('@turf/truncate');
-const {featureCollection, lineString} = require('@turf/helpers');
-const lineOffset = require('./');
+import fs from 'fs';
+import test from 'tape';
+import path from 'path';
+import load from 'load-json-file';
+import write from 'write-json-file';
+import truncate from '@turf/truncate';
+import { featureCollection, lineString } from '@turf/helpers';
+import lineOffset from '.';
 
 const directories = {
     in: path.join(__dirname, 'test', 'in') + path.sep,
@@ -22,16 +22,20 @@ let fixtures = fs.readdirSync(directories.in).map(filename => {
 // fixtures = fixtures.filter(fixture => fixture.name === 'polygon');
 
 test('turf-line-offset', t => {
-    for (const {name, geojson} of fixtures) {
-        let {distance, units} = geojson.properties || {};
-        distance = distance || 50;
-        const output = truncate(lineOffset(geojson, distance, units), 4);
+    fixtures.forEach(fixture => {
+        const name = fixture.name;
+        const geojson = fixture.geojson;
+        const properties = geojson.properties || {};
+        const distance = properties.distance || 50;
+        const units = properties.units;
+
+        const output = truncate(lineOffset(geojson, distance, {units: units}), {precision: 4});
         output.properties.stroke = '#00F';
         const results = featureCollection([output, geojson]);
 
         if (process.env.REGEN) write.sync(directories.out + name + '.geojson', results);
         t.deepEqual(results, load.sync(directories.out + name + '.geojson'), name);
-    }
+    })
     t.end();
 });
 

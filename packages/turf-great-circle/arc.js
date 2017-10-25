@@ -1,5 +1,3 @@
-'use strict';
-
 var D2R = Math.PI / 180;
 var R2D = 180 / Math.PI;
 
@@ -37,21 +35,21 @@ var Arc = function (properties) {
 
 Arc.prototype.json = function () {
     if (this.geometries.length <= 0) {
-        return {'geometry': {'type': 'LineString', 'coordinates': null},
-                'type': 'Feature', 'properties': this.properties
-               };
+        return {'geometry': { 'type': 'LineString', 'coordinates': null },
+            'type': 'Feature', 'properties': this.properties
+        };
     } else if (this.geometries.length === 1) {
-        return {'geometry': {'type': 'LineString', 'coordinates': this.geometries[0].coords},
-                'type': 'Feature', 'properties': this.properties
-               };
+        return {'geometry': { 'type': 'LineString', 'coordinates': this.geometries[0].coords },
+            'type': 'Feature', 'properties': this.properties
+        };
     } else {
         var multiline = [];
         for (var i = 0; i < this.geometries.length; i++) {
             multiline.push(this.geometries[i].coords);
         }
-        return {'geometry': {'type': 'MultiLineString', 'coordinates': multiline},
-                'type': 'Feature', 'properties': this.properties
-               };
+        return {'geometry': { 'type': 'MultiLineString', 'coordinates': multiline },
+            'type': 'Feature', 'properties': this.properties
+        };
     }
 };
 
@@ -202,6 +200,7 @@ GreatCircle.prototype.Arc = function (npoints, options) {
                 if (dfX1 > dfLeftBorderX && dfX2 < dfRightBorderX) {
                     dfX2 += 360;
                 }
+
                 if (dfX1 <= 180 && dfX2 >= 180 && dfX1 < dfX2) {
                     var dfRatio = (180 - dfX1) / (dfX2 - dfX1);
                     var dfY = dfRatio * dfY2 + (1 - dfRatio) * dfY1;
@@ -239,8 +238,14 @@ GreatCircle.prototype.Arc = function (npoints, options) {
     return arc;
 };
 
-module.exports = {
-    Coord: Coord,
-    Arc: Arc,
-    GreatCircle: GreatCircle
+export {
+    Coord,
+    Arc,
+    GreatCircle
+};
+
+export default {
+    Coord,
+    Arc,
+    GreatCircle
 };

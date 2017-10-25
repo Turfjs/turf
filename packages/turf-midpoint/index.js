@@ -1,6 +1,6 @@
-var bearing = require('@turf/bearing');
-var destination = require('@turf/destination');
-var distance = require('@turf/distance');
+import bearing from '@turf/bearing';
+import destination from '@turf/destination';
+import distance from '@turf/distance';
 
 /**
  * Takes two {@link Point|points} and returns a point midway between them.
@@ -20,10 +20,12 @@ var distance = require('@turf/distance');
  * var addToMap = [point1, point2, midpoint];
  * midpoint.properties['marker-color'] = '#f00';
  */
-module.exports = function (point1, point2) {
-    var dist = distance(point1, point2, 'miles');
+function midpoint(point1, point2) {
+    var dist = distance(point1, point2);
     var heading = bearing(point1, point2);
-    var midpoint = destination(point1, dist / 2, heading, 'miles');
+    var midpoint = destination(point1, dist / 2, heading);
 
     return midpoint;
-};
+}
+
+export default midpoint;

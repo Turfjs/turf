@@ -1,9 +1,4 @@
-/// <reference types="geojson" />
-
-type FeatureCollection<T extends GeoJSON.GeometryObject> = GeoJSON.FeatureCollection<T>;
-type Feature<T extends GeoJSON.GeometryObject> = GeoJSON.Feature<T>;
-type GeometryObject = GeoJSON.GeometryObject;
-
+import { FeatureCollection, GeometryObject, Feature } from '@turf/helpers'
 /**
  * http://turfjs.org/docs/#getcluster
  */
@@ -28,5 +23,5 @@ export function clusterReduce<T extends GeometryObject>(
     geojson: FeatureCollection<T>,
     property: number | string,
     callback: (previousValue?: any, cluster?: FeatureCollection<T>, clusterValue?: any, currentIndex?: number) => void,
-    initialValue: any
+    initialValue?: any
 ): void;

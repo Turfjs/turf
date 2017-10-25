@@ -1,11 +1,8 @@
-/// <reference types="geojson" />
-
-type Polygon = GeoJSON.Feature<GeoJSON.Polygon>;
-type MultiPolygon = GeoJSON.Feature<GeoJSON.MultiPolygon>;
+import { Feature, Polygon, MultiPolygon } from '@turf/helpers'
 
 /**
  * http://turfjs.org/docs/#union
  */
-declare function union(...features: Polygon[]): Polygon | MultiPolygon;
-declare namespace union {}
-export = union
+export default function (
+    ...features: Feature<Polygon>[]
+): Feature<Polygon | MultiPolygon>;

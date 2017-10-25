@@ -1,16 +1,24 @@
 {
   "name": "@turf/meta",
-  "version": "4.6.0",
+  "version": "5.0.2",
   "description": "turf meta module",
-  "main": "index.js",
+  "main": "main",
+  "module": "index",
+  "jsnext:main": "index",
   "types": "index.d.ts",
   "files": [
     "index.js",
-    "index.d.ts"
+    "index.d.ts",
+    "main.js"
   ],
   "scripts": {
-    "test": "node test.js",
-    "bench": "node bench.js"
+    "pretest": "rollup -c ../../rollup.config.js",
+    "test": "node -r @std/esm test.js",
+    "bench": "node -r @std/esm bench.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/Turfjs/turf.git"
   },
   "keywords": [
     "functional",
@@ -30,7 +38,9 @@
     "featureReduce",
     "coordAll",
     "geomEach",
-    "geomReduce"
+    "geomReduce",
+    "lineEeach",
+    "lineReduce"
   ],
   "author": "Turf Authors",
   "contributors": [
@@ -39,18 +49,22 @@
     "Denis Carriere <@DenisCarriere>"
   ],
   "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/Turfjs/turf.git"
-  },
-  "homepage": "https://github.com/Turfjs/turf",
   "bugs": {
     "url": "https://github.com/Turfjs/turf/issues"
   },
+  "homepage": "https://github.com/Turfjs/turf",
   "devDependencies": {
-    "@turf/helpers": "^4.6.0",
-    "@turf/random": "^4.5.2",
-    "benchmark": "^2.1.4",
-    "tape": "^4.6.3"
+    "@turf/random": "*",
+    "benchmark": "*",
+    "rollup": "*",
+    "tape": "*",
+    "@std/esm": "*"
+  },
+  "dependencies": {
+    "@turf/helpers": "5.x"
+  },
+  "@std/esm": {
+    "esm": "js",
+    "cjs": true
   }
 }

@@ -1,8 +1,7 @@
-const fs = require('fs');
-const path = require('path');
-const load = require('load-json-file');
-const Benchmark = require('benchmark');
-const dissolve = require('./');
+import path from 'path';
+import load from 'load-json-file';
+import Benchmark from 'benchmark';
+import dissolve from '.';
 
 const directory = path.join(__dirname, 'test', 'in') + path.sep;
 const fixtures = fs.readdirSync(directory).map(filename => {

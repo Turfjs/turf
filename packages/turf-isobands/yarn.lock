@@ -2,102 +2,30 @@
 # yarn lockfile v1
 
 
-"@mapbox/geojson-area@^0.2.2":
-  version "0.2.2"
-  resolved "https://registry.yarnpkg.com/@mapbox/geojson-area/-/geojson-area-0.2.2.tgz#18d7814aa36bf23fbbcc379f8e26a22927debf10"
+"@std/esm@*":
+  version "0.12.1"
+  resolved "https://registry.yarnpkg.com/@std/esm/-/esm-0.12.1.tgz#d07b7c5e2701beade1e7db74b95484f5d91c46bf"
+
+"@turf/helpers@5.0.0", "@turf/helpers@5.x":
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/@turf/helpers/-/helpers-5.0.0.tgz#732cb570e6aebca9ef7375e8e42fafa8e16e5d47"
+
+"@turf/invariant@5.0.0":
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/@turf/invariant/-/invariant-5.0.0.tgz#da9b4d7b044cffa300d654b3e0444969fc19d850"
+
+"@turf/rhumb-destination@5.x":
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/@turf/rhumb-destination/-/rhumb-destination-5.0.0.tgz#a776590ed71a27a3ba1e26081102c280c76eb314"
   dependencies:
-    wgs84 "0.0.0"
-
-"@turf/area@^3.7.0":
-  version "3.14.0"
-  resolved "https://registry.yarnpkg.com/@turf/area/-/area-3.14.0.tgz#f3197ed4e9710d02cd8bbd551b25c476fe47e89b"
-  dependencies:
-    "@mapbox/geojson-area" "^0.2.2"
-    "@turf/meta" "^3.14.0"
-
-"@turf/bbox@^3.13.0", "@turf/bbox@^3.14.0":
-  version "3.14.0"
-  resolved "https://registry.yarnpkg.com/@turf/bbox/-/bbox-3.14.0.tgz#cee5f396dde78aca9cede05e1122db18bc504635"
-  dependencies:
-    "@turf/meta" "^3.14.0"
-
-"@turf/center@^3.13.0":
-  version "3.14.0"
-  resolved "https://registry.yarnpkg.com/@turf/center/-/center-3.14.0.tgz#1083aca4f137d3c4988955740c7d440c45cc9ecc"
-  dependencies:
-    "@turf/bbox" "^3.14.0"
-    "@turf/helpers" "^3.13.0"
-
-"@turf/distance@^3.14.0":
-  version "3.14.0"
-  resolved "https://registry.yarnpkg.com/@turf/distance/-/distance-3.14.0.tgz#71b0c6f265d23bb3004198e6da32f82964f42f8b"
-  dependencies:
-    "@turf/helpers" "^3.13.0"
-    "@turf/invariant" "^3.13.0"
-
-"@turf/explode@^3.7.0":
-  version "3.14.0"
-  resolved "https://registry.yarnpkg.com/@turf/explode/-/explode-3.14.0.tgz#f2cc1e46a39700d5602466ccd50f59a52341b92c"
-  dependencies:
-    "@turf/helpers" "^3.13.0"
-    "@turf/meta" "^3.14.0"
-
-"@turf/helpers@4.1.0", "@turf/helpers@^4.1.0":
-  version "4.1.0"
-  resolved "https://registry.yarnpkg.com/@turf/helpers/-/helpers-4.1.0.tgz#013a9c53db6a9386e47c7ab445d93ca2035c4b81"
-
-"@turf/helpers@^3.13.0", "@turf/helpers@^3.6.3":
-  version "3.13.0"
-  resolved "https://registry.yarnpkg.com/@turf/helpers/-/helpers-3.13.0.tgz#d06078a1464cf56cdb7ea624ea1e13a71b88b806"
-
-"@turf/inside@^3.7.0":
-  version "3.14.0"
-  resolved "https://registry.yarnpkg.com/@turf/inside/-/inside-3.14.0.tgz#d6b6af55882cbdb8f9a558dca98689c67bd3c590"
-  dependencies:
-    "@turf/invariant" "^3.13.0"
-
-"@turf/invariant@^3.13.0":
-  version "3.13.0"
-  resolved "https://registry.yarnpkg.com/@turf/invariant/-/invariant-3.13.0.tgz#89243308cd563206e81e5c6162e0d22f61822f90"
-
-"@turf/invariant@^4.1.0":
-  version "4.6.0"
-  resolved "https://registry.yarnpkg.com/@turf/invariant/-/invariant-4.6.0.tgz#ba61401d537543f81ccfc588e12bb0d8e653dd80"
-
-"@turf/meta@^3.14.0":
-  version "3.14.0"
-  resolved "https://registry.yarnpkg.com/@turf/meta/-/meta-3.14.0.tgz#8d3050c1a0f44bf406a633b6bd28c510f7bcee27"
-
-"@turf/meta@^4.1.0":
-  version "4.6.0"
-  resolved "https://registry.yarnpkg.com/@turf/meta/-/meta-4.6.0.tgz#0d3f9a218e58d1c5e5deedf467c3321dd61203f3"
-
-"@turf/point-grid@^3.14.0":
-  version "3.14.0"
-  resolved "https://registry.yarnpkg.com/@turf/point-grid/-/point-grid-3.14.0.tgz#321af655a5093a1b5e76a4cc34c0205aaccc1533"
-  dependencies:
-    "@turf/bbox" "^3.14.0"
-    "@turf/distance" "^3.14.0"
-    "@turf/helpers" "^3.13.0"
-
-"@turf/random@^3.13.0":
-  version "3.14.0"
-  resolved "https://registry.yarnpkg.com/@turf/random/-/random-3.14.0.tgz#ea1fa68321b8ff1873bf6f9a2d4f3f6bd7aba163"
-  dependencies:
-    geojson-random "^0.2.2"
+    "@turf/helpers" "5.0.0"
+    "@turf/invariant" "5.0.0"
 
 balanced-match@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/balanced-match/-/balanced-match-1.0.0.tgz#89b4d199ab2bee49de164ea02b89ce462d71b767"
 
-bbox-dateline@^1.1.1:
-  version "1.2.1"
-  resolved "https://registry.yarnpkg.com/bbox-dateline/-/bbox-dateline-1.2.1.tgz#4bd2e4ea928f90406b0882d4504e956bc7fb094c"
-  dependencies:
-    "@turf/bbox" "^3.13.0"
-    "@turf/center" "^3.13.0"
-
-benchmark@^2.1.4:
+benchmark@*:
   version "2.1.4"
   resolved "https://registry.yarnpkg.com/benchmark/-/benchmark-2.1.4.tgz#09f3de31c916425d498cc2ee565a0ebf3c2a5629"
   dependencies:
@@ -111,9 +39,9 @@ brace-expansion@^1.1.7:
     balanced-match "^1.0.0"
     concat-map "0.0.1"
 
-chroma-js@1.3.3:
-  version "1.3.3"
-  resolved "https://registry.yarnpkg.com/chroma-js/-/chroma-js-1.3.3.tgz#91b3a2b3856c18443ebd8c9719faea108b56263b"
+chroma-js@*:
+  version "1.3.4"
+  resolved "https://registry.yarnpkg.com/chroma-js/-/chroma-js-1.3.4.tgz#93a7c19f287960285cc3fdebb205b8ea1a0f04f9"
 
 concat-map@0.0.1:
   version "0.0.1"
@@ -138,20 +66,21 @@ detect-indent@^5.0.0:
   version "5.0.0"
   resolved "https://registry.yarnpkg.com/detect-indent/-/detect-indent-5.0.0.tgz#3871cc0a6a002e8c3e5b3cf7f336264675f06b9d"
 
-error-ex@^1.2.0:
+error-ex@^1.3.1:
   version "1.3.1"
   resolved "https://registry.yarnpkg.com/error-ex/-/error-ex-1.3.1.tgz#f855a86ce61adc4e8621c3cda21e7a7612c3a8dc"
   dependencies:
     is-arrayish "^0.2.1"
 
 es-abstract@^1.5.0:
-  version "1.7.0"
-  resolved "https://registry.yarnpkg.com/es-abstract/-/es-abstract-1.7.0.tgz#dfade774e01bfcd97f96180298c449c8623fb94c"
+  version "1.9.0"
+  resolved "https://registry.yarnpkg.com/es-abstract/-/es-abstract-1.9.0.tgz#690829a07cae36b222e7fd9b75c0d0573eb25227"
   dependencies:
     es-to-primitive "^1.1.1"
-    function-bind "^1.1.0"
+    function-bind "^1.1.1"
+    has "^1.0.1"
     is-callable "^1.1.3"
-    is-regex "^1.0.3"
+    is-regex "^1.0.4"
 
 es-to-primitive@^1.1.1:
   version "1.1.1"
@@ -175,13 +104,9 @@ fs.realpath@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/fs.realpath/-/fs.realpath-1.0.0.tgz#1504ad2523158caa40db4a2787cb01411994ea4f"
 
-function-bind@^1.0.2, function-bind@^1.1.0, function-bind@~1.1.0:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/function-bind/-/function-bind-1.1.0.tgz#16176714c801798e4e8f2cf7f7529467bb4a5771"
-
-geojson-random@^0.2.2:
-  version "0.2.2"
-  resolved "https://registry.yarnpkg.com/geojson-random/-/geojson-random-0.2.2.tgz#ab4838f126adc5e16f8f94e655def820f9119dbc"
+function-bind@^1.0.2, function-bind@^1.1.1, function-bind@~1.1.0:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/function-bind/-/function-bind-1.1.1.tgz#a56899d3ea3c9bab874bb9773b7c5ede92f4895d"
 
 glob@~7.1.2:
   version "7.1.2"
@@ -194,23 +119,9 @@ glob@~7.1.2:
     once "^1.3.0"
     path-is-absolute "^1.0.0"
 
-global-mercator@2.7.0:
-  version "2.7.0"
-  resolved "https://registry.yarnpkg.com/global-mercator/-/global-mercator-2.7.0.tgz#72975ed01b25d2f43d88f73468e1a9aee7685207"
-  dependencies:
-    bbox-dateline "^1.1.1"
-
 graceful-fs@^4.1.11, graceful-fs@^4.1.2:
   version "4.1.11"
   resolved "https://registry.yarnpkg.com/graceful-fs/-/graceful-fs-4.1.11.tgz#0e8bdfe4d1ddb8854d64e04ea7c00e2a026e5658"
-
-grid-to-matrix@^1.2.0:
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/grid-to-matrix/-/grid-to-matrix-1.2.0.tgz#b016df4d76f996e6b74663eab9ceb913546657e9"
-  dependencies:
-    "@turf/helpers" "^4.1.0"
-    "@turf/invariant" "^4.1.0"
-    "@turf/meta" "^4.1.0"
 
 has@^1.0.1, has@~1.0.1:
   version "1.0.1"
@@ -253,7 +164,7 @@ is-plain-obj@^1.0.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/is-plain-obj/-/is-plain-obj-1.1.0.tgz#71a50c8429dfca773c92a390a4a03b39fcd51d3e"
 
-is-regex@^1.0.3:
+is-regex@^1.0.4:
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/is-regex/-/is-regex-1.0.4.tgz#5517489b547091b0930e095654ced25ee97e9491"
   dependencies:
@@ -263,12 +174,12 @@ is-symbol@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/is-symbol/-/is-symbol-1.0.1.tgz#3cc59f00025194b6ab2e38dbae6689256b660572"
 
-load-json-file@^2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/load-json-file/-/load-json-file-2.0.0.tgz#7947e42149af80d696cbf797bcaabcfe1fe29ca8"
+load-json-file@*:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/load-json-file/-/load-json-file-3.0.0.tgz#7eb3735d983a7ed2262ade4ff769af5369c5c440"
   dependencies:
     graceful-fs "^4.1.2"
-    parse-json "^2.2.0"
+    parse-json "^3.0.0"
     pify "^2.0.0"
     strip-bom "^3.0.0"
 
@@ -282,16 +193,12 @@ make-dir@^1.0.0:
   dependencies:
     pify "^2.3.0"
 
-marchingsquares@^1.2.0:
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/marchingsquares/-/marchingsquares-1.2.0.tgz#36ae2dcc170be576d42579aac3c46da89ab650e6"
-
-matrix-to-grid@3.0.0:
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/matrix-to-grid/-/matrix-to-grid-3.0.0.tgz#7854792a0a439a5155bd0701e05daa745fe3dcbb"
+matrix-to-grid@*:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/matrix-to-grid/-/matrix-to-grid-4.0.0.tgz#9b22e2ff1cb53629597f1aa51975708620adf2d4"
   dependencies:
-    "@turf/helpers" "4.1.0"
-    global-mercator "2.7.0"
+    "@turf/helpers" "5.x"
+    "@turf/rhumb-destination" "5.x"
 
 minimatch@^3.0.4:
   version "3.0.4"
@@ -317,11 +224,11 @@ once@^1.3.0:
   dependencies:
     wrappy "1"
 
-parse-json@^2.2.0:
-  version "2.2.0"
-  resolved "https://registry.yarnpkg.com/parse-json/-/parse-json-2.2.0.tgz#f480f40434ef80741f8469099f8dea18f55a4dc9"
+parse-json@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/parse-json/-/parse-json-3.0.0.tgz#fa6f47b18e23826ead32f263e744d0e1e847fb13"
   dependencies:
-    error-ex "^1.2.0"
+    error-ex "^1.3.1"
 
 path-is-absolute@^1.0.0:
   version "1.0.1"
@@ -334,6 +241,10 @@ path-parse@^1.0.5:
 pify@^2.0.0, pify@^2.3.0:
   version "2.3.0"
   resolved "https://registry.yarnpkg.com/pify/-/pify-2.3.0.tgz#ed141a6ac043a849ea588498e7dca8b15330e90c"
+
+pify@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/pify/-/pify-3.0.0.tgz#e5a4acd2c101fdf3d9a4d07f0dbc4db49dd28176"
 
 platform@^1.3.3:
   version "1.3.4"
@@ -351,13 +262,17 @@ resumer@~0.0.0:
   dependencies:
     through "~2.3.4"
 
-slide@^1.1.5:
-  version "1.1.6"
-  resolved "https://registry.yarnpkg.com/slide/-/slide-1.1.6.tgz#56eb027d65b4d2dce6cb2e2d32c4d4afc9e1d707"
+rollup@*:
+  version "0.50.0"
+  resolved "https://registry.yarnpkg.com/rollup/-/rollup-0.50.0.tgz#4c158f4e780e6cb33ff0dbfc184a52cc58cd5f3b"
 
-sort-keys@^1.1.1:
-  version "1.1.2"
-  resolved "https://registry.yarnpkg.com/sort-keys/-/sort-keys-1.1.2.tgz#441b6d4d346798f1b4e49e8920adfba0e543f9ad"
+signal-exit@^3.0.2:
+  version "3.0.2"
+  resolved "https://registry.yarnpkg.com/signal-exit/-/signal-exit-3.0.2.tgz#b5fdc08f1287ea1178628e415e25132b73646c6d"
+
+sort-keys@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/sort-keys/-/sort-keys-2.0.0.tgz#658535584861ec97d730d6cf41822e1f56684128"
   dependencies:
     is-plain-obj "^1.0.0"
 
@@ -373,7 +288,7 @@ strip-bom@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/strip-bom/-/strip-bom-3.0.0.tgz#2334c18e9c759f7bdd56fdef7e9ae3d588e68ed3"
 
-tape@^4.6.3:
+tape@*:
   version "4.8.0"
   resolved "https://registry.yarnpkg.com/tape/-/tape-4.8.0.tgz#f6a9fec41cc50a1de50fa33603ab580991f6068e"
   dependencies:
@@ -395,29 +310,25 @@ through@~2.3.4, through@~2.3.8:
   version "2.3.8"
   resolved "https://registry.yarnpkg.com/through/-/through-2.3.8.tgz#0dd4c9ffaabc357960b1b724115d7e0e86a2e1f5"
 
-wgs84@0.0.0:
-  version "0.0.0"
-  resolved "https://registry.yarnpkg.com/wgs84/-/wgs84-0.0.0.tgz#34fdc555917b6e57cf2a282ed043710c049cdc76"
-
 wrappy@1:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/wrappy/-/wrappy-1.0.2.tgz#b5243d8f3ec1aa35f1364605bc0d1036e30ab69f"
 
 write-file-atomic@^2.0.0:
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/write-file-atomic/-/write-file-atomic-2.1.0.tgz#1769f4b551eedce419f0505deae2e26763542d37"
+  version "2.3.0"
+  resolved "https://registry.yarnpkg.com/write-file-atomic/-/write-file-atomic-2.3.0.tgz#1ff61575c2e2a4e8e510d6fa4e243cce183999ab"
   dependencies:
     graceful-fs "^4.1.11"
     imurmurhash "^0.1.4"
-    slide "^1.1.5"
+    signal-exit "^3.0.2"
 
-write-json-file@^2.0.0:
-  version "2.2.0"
-  resolved "https://registry.yarnpkg.com/write-json-file/-/write-json-file-2.2.0.tgz#51862506bbb3b619eefab7859f1fd6c6d0530876"
+write-json-file@*:
+  version "2.3.0"
+  resolved "https://registry.yarnpkg.com/write-json-file/-/write-json-file-2.3.0.tgz#2b64c8a33004d54b8698c76d585a77ceb61da32f"
   dependencies:
     detect-indent "^5.0.0"
     graceful-fs "^4.1.2"
     make-dir "^1.0.0"
-    pify "^2.0.0"
-    sort-keys "^1.1.1"
+    pify "^3.0.0"
+    sort-keys "^2.0.0"
     write-file-atomic "^2.0.0"

@@ -1,20 +1,13 @@
-var meta = require('@turf/meta');
-var clone = require('@turf/clone');
-var center = require('@turf/center');
-var helpers = require('@turf/helpers');
-var centroid = require('@turf/centroid');
-var turfBBox = require('@turf/bbox');
-var invariant = require('@turf/invariant');
-var rhumbBearing = require('@turf/rhumb-bearing');
-var rhumbDistance = require('@turf/rhumb-distance');
-var rhumbDestination = require('@turf/rhumb-destination');
-var point = helpers.point;
-var coordEach = meta.coordEach;
-var featureEach = meta.featureEach;
-var getCoord = invariant.getCoord;
-var getCoords = invariant.getCoords;
-var getGeomType = invariant.getGeomType;
-
+import clone from '@turf/clone';
+import center from '@turf/center';
+import centroid from '@turf/centroid';
+import turfBBox from '@turf/bbox';
+import rhumbBearing from '@turf/rhumb-bearing';
+import rhumbDistance from '@turf/rhumb-distance';
+import rhumbDestination from '@turf/rhumb-destination';
+import { coordEach, featureEach } from '@turf/meta';
+import { point, isObject } from '@turf/helpers';
+import { getCoord, getCoords, getType} from '@turf/invariant';
 
 /**
  * Scale a GeoJSON from a given point by a factor of scaling (ex: factor=2 would make the GeoJSON 200% larger).
@@ -23,8 +16,9 @@ var getGeomType = invariant.getGeomType;
  * @name transformScale
  * @param {GeoJSON} geojson GeoJSON to be scaled
  * @param {number} factor of scaling, positive or negative values greater than 0
- * @param {string|Geometry|Feature<Point>|Array<number>} [origin="centroid"] Point from which the scaling will occur (string options: sw/se/nw/ne/center/centroid)
- * @param {boolean} [mutate=false] allows GeoJSON input to be mutated (significant performance increase if true)
+ * @param {Object} [options={}] Optional parameters
+ * @param {string|Geometry|Feature<Point>|Array<number>} [options.origin='centroid'] Point from which the scaling will occur (string options: sw/se/nw/ne/center/centroid)
+ * @param {boolean} [options.mutate=false] allows GeoJSON input to be mutated (significant performance increase if true)
  * @returns {GeoJSON} scaled GeoJSON
  * @example
  * var poly = turf.polygon([[[0,29],[3.5,29],[2.5,32],[0,29]]]);
@@ -34,7 +28,13 @@ var getGeomType = invariant.getGeomType;
  * var addToMap = [poly, scaledPoly];
  * scaledPoly.properties = {stroke: '#F00', 'stroke-width': 4};
  */
-module.exports = function (geojson, factor, origin, mutate) {
+function transformScale(geojson, factor, options) {
+    // Optional parameters
+    options = options || {};
+    if (!isObject(options)) throw new Error('options is invalid');
+    var origin = options.origin;
+    var mutate = options.mutate;
+
     // Input validation
     if (!geojson) throw new Error('geojson required');
     if (typeof factor !== 'number' || factor === 0) throw new Error('invalid factor');
@@ -52,7 +52,7 @@ module.exports = function (geojson, factor, origin, mutate) {
     }
     // Scale Feature/Geometry
     return scale(geojson, factor, origin);
-};
+}
 
 /**
  * Scale Feature/Geometry
@@ -65,7 +65,7 @@ module.exports = function (geojson, factor, origin, mutate) {
  */
 function scale(feature, factor, origin) {
     // Default params
-    var isPoint = getGeomType(feature) === 'Point';
+    var isPoint = getType(feature) === 'Point';
     origin = defineOrigin(feature, origin);
 
     // Shortcut no-scaling
@@ -138,3 +138,5 @@ function defineOrigin(geojson, origin) {
         throw new Error('invalid origin');
     }
 }
+
+export default transformScale;

@@ -1,16 +1,20 @@
 {
   "name": "@turf/boolean-disjoint",
-  "version": "4.6.1",
+  "version": "4.7.3",
   "description": "turf boolean-disjoint module",
-  "main": "index.js",
+  "main": "main",
+  "module": "index",
+  "jsnext:main": "index",
   "types": "index.d.ts",
   "files": [
     "index.js",
-    "index.d.ts"
+    "index.d.ts",
+    "main.js"
   ],
   "scripts": {
-    "test": "node test.js",
-    "bench": "node bench.js"
+    "pretest": "rollup -c ../../rollup.config.js",
+    "test": "node -r @std/esm test.js",
+    "bench": "node -r @std/esm bench.js"
   },
   "repository": {
     "type": "git",
@@ -33,16 +37,22 @@
   },
   "homepage": "https://github.com/Turfjs/turf",
   "devDependencies": {
-    "@turf/helpers": "^4.6.0",
-    "benchmark": "2.1.4",
-    "boolean-shapely": "0.1.2",
-    "load-json-file": "2.0.0",
-    "tape": "4.7.0"
+    "@turf/helpers": "*",
+    "benchmark": "*",
+    "boolean-shapely": "*",
+    "load-json-file": "*",
+    "tape": "*",
+    "rollup": "*",
+    "@std/esm": "*"
   },
   "dependencies": {
-    "@turf/inside": "^4.6.0",
-    "@turf/line-intersect": "^4.6.0",
-    "@turf/meta": "^4.6.0",
-    "@turf/polygon-to-linestring": "^4.6.0"
+    "@turf/inside": "5.x",
+    "@turf/line-intersect": "5.x",
+    "@turf/meta": "5.x",
+    "@turf/polygon-to-linestring": "5.x"
+  },
+  "@std/esm": {
+    "esm": "js",
+    "cjs": true
   }
 }

@@ -1,13 +1,13 @@
-const fs = require('fs');
-const test = require('tape');
-const path = require('path');
-const load = require('load-json-file');
-const write = require('write-json-file');
-const centroid = require('@turf/centroid');
-const truncate = require('@turf/truncate');
-const {getCoord} = require('@turf/invariant');
-const {point, lineString, featureCollection, geometryCollection} = require('@turf/helpers');
-const rotate = require('./');
+import fs from 'fs';
+import test from 'tape';
+import path from 'path';
+import load from 'load-json-file';
+import write from 'write-json-file';
+import centroid from '@turf/centroid';
+import truncate from '@turf/truncate';
+import { getCoord } from '@turf/invariant';
+import { point, lineString, featureCollection, geometryCollection } from '@turf/helpers';
+import rotate from '.';
 
 const directories = {
     in: path.join(__dirname, 'test', 'in') + path.sep,
@@ -26,8 +26,8 @@ test('rotate', t => {
     for (const {filename, name, geojson}  of fixtures) {
         const {angle, pivot} = geojson.properties || {};
 
-        const rotated = rotate(geojson, angle, pivot);
-        const result = featureCollection([colorize(truncate(rotated, 6, 3)), geojson, makePivot(pivot, geojson)]);
+        const rotated = rotate(geojson, angle, {pivot: pivot});
+        const result = featureCollection([colorize(truncate(rotated, {precision: 6, coordinates: 3})), geojson, makePivot(pivot, geojson)]);
 
         if (process.env.REGEN) write.sync(directories.out + filename, result);
         t.deepEqual(result, load.sync(directories.out + filename), name);
@@ -41,7 +41,7 @@ test('rotate -- throws', t => {
 
     t.throws(() => rotate(null, 100), /geojson is required/, 'missing geojson');
     t.throws(() => rotate(line, null), /angle is required/, 'missing angle');
-    t.throws(() => rotate(line, 56, 'notApoint'), /coordinates must only contain numbers/, 'invalid pivot');
+    t.throws(() => rotate(line, 56, {pivot: 'notApoint'}), /coordinates must only contain numbers/, 'invalid pivot');
     t.end();
 });
 
@@ -52,8 +52,8 @@ test('rotate -- mutated input', t => {
     rotate(line, 100);
     t.deepEqual(line, lineBefore, 'input should NOT be mutated');
 
-    rotate(line, 100, undefined, true);
-    t.deepEqual(truncate(line, 1), lineString([[8.6, 13.9], [13.3, 11.1]]), 'input should be mutated');
+    rotate(line, 100, {mutate: true});
+    t.deepEqual(truncate(line, {precision: 1}), lineString([[8.6, 13.9], [13.3, 11.1]]), 'input should be mutated');
     t.end();
 });
 
@@ -65,8 +65,8 @@ test('rotate -- geometry support', t => {
     t.assert(rotate(geometryCollection([line.geometry]).geometry, 100), 'geometryCollection support');
     t.assert(rotate(featureCollection([line]), 100), 'featureCollection support');
     t.assert(rotate(line.geometry, 100), 'geometry line support');
-    t.assert(rotate(line.geometry, 100, pt.geometry), 'geometry pt support');
-    t.assert(rotate(line.geometry, 100, pt.geometry.coordinates), 'pt coordinate support');
+    t.assert(rotate(line.geometry, 100, {pivot: pt.geometry}), 'geometry pt support');
+    t.assert(rotate(line.geometry, 100, {pivot: pt.geometry.coordinates}), 'pt coordinate support');
     t.end();
 });
 

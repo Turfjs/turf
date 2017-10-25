@@ -1,12 +1,9 @@
-/// <reference types="geojson" />
+import { AllGeoJSON, FeatureCollection, Point } from '@turf/helpers'
 
-type Feature = GeoJSON.Feature<any>;
-type Features = GeoJSON.FeatureCollection<any>;
-type Points = GeoJSON.FeatureCollection<GeoJSON.Point>;
 
 /**
  * http://turfjs.org/docs/#explode
  */
-declare function explode(features: Feature | Features): Points;
-declare namespace explode { }
-export = explode;
+export default function explode(
+    features: AllGeoJSON
+): FeatureCollection<Point>;

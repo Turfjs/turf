@@ -1,11 +1,11 @@
-const fs = require('fs');
-const path = require('path');
-const test = require('tape');
-const load = require('load-json-file');
-const write = require('write-json-file');
-const featureEach = require('@turf/meta').featureEach;
-const featureCollection = require('@turf/helpers').featureCollection;
-const unkink = require('./');
+import fs from 'fs';
+import path from 'path';
+import test from 'tape';
+import load from 'load-json-file';
+import write from 'write-json-file';
+import { featureEach } from '@turf/meta';
+import { featureCollection } from '@turf/helpers';
+import unkink from '.';
 
 const directories = {
     in: path.join(__dirname, 'test', 'in') + path.sep,

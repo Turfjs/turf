@@ -1,14 +1,14 @@
-const fs = require('fs');
-const test = require('tape');
-const path = require('path');
-const load = require('load-json-file');
-const write = require('write-json-file');
-const along = require('@turf/along');
-const distance = require('@turf/distance');
-const truncate = require('@turf/truncate');
-const lineDistance = require('@turf/line-distance');
-const {lineString, multiLineString, point, featureCollection, round} = require('@turf/helpers');
-const pointOnLine = require('./');
+import fs from 'fs';
+import test from 'tape';
+import path from 'path';
+import load from 'load-json-file';
+import write from 'write-json-file';
+import along from '@turf/along';
+import distance from '@turf/distance';
+import truncate from '@turf/truncate';
+import lineDistance from '@turf/line-distance';
+import { lineString, multiLineString, point, featureCollection, round } from '@turf/helpers';
+import pointOnLine from '.';
 
 const directories = {
     in: path.join(__dirname, 'test', 'in') + path.sep,
@@ -126,13 +126,13 @@ test('turf-point-on-line - points on top of line', t => {
     const line = lineString([[-0.109198, 51.522042], [-0.109230, 51.521942], [-0.109165, 51.521862], [-0.109047, 51.521775], [-0.108865, 51.521601], [-0.108747, 51.521381], [-0.108554, 51.520687], [-0.108436, 51.520279], [-0.108393, 51.519952], [-0.108178, 51.519578], [-0.108146, 51.519285], [-0.107899, 51.518624], [-0.107599, 51.517782]]);
     const expectedLocation = [];
 
-    const dist = lineDistance(line, 'miles');
+    const dist = lineDistance(line, {units: 'miles'});
     const increment = dist / 10;
 
     for (let i = 0; i < 10; i++) {
-        const pt = along(line, increment * i, 'miles');
-        const snapped = pointOnLine(line, pt, 'miles');
-        const shift = distance(pt, snapped, 'miles');
+        const pt = along(line, increment * i, {units: 'miles'});
+        const snapped = pointOnLine(line, pt, {units: 'miles'});
+        const shift = distance(pt, snapped, {units: 'miles'});
         t.true(shift < 0.000001, 'pt did not shift far');
         expectedLocation.push(Number(snapped.properties.location.toFixed(6)));
     }
@@ -146,9 +146,9 @@ test('turf-point-on-line - points on top of line', t => {
 test('turf-point-on-line - point along line', t => {
     const line = lineString([[-122.457175, 37.720033], [-122.457175, 37.718242]]);
 
-    const pt = along(line, 0.019, 'miles');
+    const pt = along(line, 0.019, {units: 'miles'});
     const snapped = pointOnLine(line, pt);
-    const shift = distance(pt, snapped, 'miles');
+    const shift = distance(pt, snapped, {units: 'miles'});
 
     t.true(shift < 0.00001, 'pt did not shift far');
 
@@ -181,7 +181,7 @@ test('turf-point-on-line - check dist and index', t => {
     const snapped = truncate(pointOnLine(line, pt));
 
     t.equal(snapped.properties.index, 8, 'properties.index');
-    t.equal(Number(snapped.properties.dist.toFixed(6)), 0.824059, 'properties.dist');
+    t.equal(Number(snapped.properties.dist.toFixed(6)), 0.823802, 'properties.dist');
     t.deepEqual(snapped.geometry.coordinates, [-92.100791, 41.040002], 'coordinates');
 
     t.end();

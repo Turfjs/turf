@@ -1,8 +1,6 @@
-var helpers = require('@turf/helpers');
-var getCoords = require('@turf/invariant').getCoords;
-var flattenEach = require('@turf/meta').flattenEach;
-var lineString = helpers.lineString;
-var featureCollection = helpers.featureCollection;
+import { lineString, featureCollection } from '@turf/helpers';
+import { getCoords } from '@turf/invariant';
+import { flattenEach } from '@turf/meta';
 
 /**
  * Creates a {@link FeatureCollection} of 2-vertex {@link LineString} segments from a {@link LineString|(Multi)LineString} or {@link Polygon|(Multi)Polygon}.
@@ -17,15 +15,15 @@ var featureCollection = helpers.featureCollection;
  * //addToMap
  * var addToMap = [polygon, segments]
  */
-module.exports = function (geojson) {
+function lineSegment(geojson) {
     if (!geojson) throw new Error('geojson is required');
 
     var results = [];
     flattenEach(geojson, function (feature) {
-        lineSegment(feature, results);
+        lineSegmentFeature(feature, results);
     });
     return featureCollection(results);
-};
+}
 
 /**
  * Line Segment
@@ -35,7 +33,7 @@ module.exports = function (geojson) {
  * @param {Array} results push to results
  * @returns {void}
  */
-function lineSegment(geojson, results) {
+function lineSegmentFeature(geojson, results) {
     var coords = [];
     var geometry = geojson.geometry;
     switch (geometry.type) {
@@ -77,8 +75,8 @@ function createSegments(coords, properties) {
  * Create BBox between two coordinates (faster than @turf/bbox)
  *
  * @private
- * @param {[number, number]} coords1 Point coordinate
- * @param {[number, number]} coords2 Point coordinate
+ * @param {Array<number>} coords1 Point coordinate
+ * @param {Array<number>} coords2 Point coordinate
  * @returns {BBox} [west, south, east, north]
  */
 function bbox(coords1, coords2) {
@@ -92,3 +90,5 @@ function bbox(coords1, coords2) {
     var north = (y1 > y2) ? y1 : y2;
     return [west, south, east, north];
 }
+
+export default lineSegment;

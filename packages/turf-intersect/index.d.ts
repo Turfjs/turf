@@ -1,11 +1,9 @@
-/// <reference types="geojson" />
-
-type Polygon = GeoJSON.Feature<GeoJSON.Polygon>;
-type Feature = GeoJSON.Feature<any>;
+import { Feature, Polygon } from '@turf/helpers'
 
 /**
  * http://turfjs.org/docs/#intersect
  */
-declare function intersect(poly1: Polygon, poly2: Polygon): Feature;
-declare namespace intersect { }
-export = intersect;
+export default function <T extends Polygon>(
+    poly1: Feature<T> | T,
+    poly2: Feature<T> | T
+): Feature<any> | null;

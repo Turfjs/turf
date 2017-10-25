@@ -1,14 +1,12 @@
-/// <reference types="geojson" />
-
-import {Units} from '@turf/helpers';
-
-type GeometryObject = GeoJSON.GeometryObject;
-type Feature<Geom extends GeometryObject> = GeoJSON.Feature<Geom>;
-type Geoms = GeoJSON.LineString | GeoJSON.MultiLineString;
+import { Units, Feature, LineString, MultiLineString } from '@turf/helpers';
 
 /**
  * http://turfjs.org/docs/#lineoffset
  */
-declare function lineOffset<Geom extends Geoms>(line: Feature<Geom> | Geom, distance: number, units?: Units): Feature<Geom>;
-declare namespace lineOffset { }
-export = lineOffset;
+export default function lineOffset<T extends LineString | MultiLineString>(
+    line: Feature<T> | T,
+    distance: number,
+    options?: {
+        units?: Units
+    }
+): Feature<T>;

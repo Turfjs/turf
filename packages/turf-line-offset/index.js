@@ -1,11 +1,7 @@
-var meta = require('@turf/meta');
-var helpers = require('@turf/helpers');
-var getCoords = require('@turf/invariant').getCoords;
-var intersection = require('./intersection');
-var flattenEach = meta.flattenEach;
-var lineString = helpers.lineString;
-var multiLineString = helpers.multiLineString;
-var distanceToDegrees = helpers.distanceToDegrees;
+import intersection from './intersection';
+import { flattenEach } from '@turf/meta';
+import { getCoords, getType } from '@turf/invariant';
+import { isObject, lineString, multiLineString, distanceToDegrees } from '@turf/helpers';
 
 /**
  * Takes a {@link LineString|line} and returns a {@link LineString|line} at offset by the specified distance.
@@ -13,36 +9,44 @@ var distanceToDegrees = helpers.distanceToDegrees;
  * @name lineOffset
  * @param {Geometry|Feature<LineString|MultiLineString>} geojson input GeoJSON
  * @param {number} distance distance to offset the line (can be of negative value)
- * @param {string} [units=kilometers] can be degrees, radians, miles, kilometers, inches, yards, meters
+ * @param {Object} [options={}] Optional parameters
+ * @param {string} [options.units='kilometers'] can be degrees, radians, miles, kilometers, inches, yards, meters
  * @returns {Feature<LineString|MultiLineString>} Line offset from the input line
  * @example
  * var line = turf.lineString([[-83, 30], [-84, 36], [-78, 41]], { "stroke": "#F00" });
  *
- * var offsetLine = turf.lineOffset(line, 2, "miles");
+ * var offsetLine = turf.lineOffset(line, 2, {units: 'miles'});
  *
  * //addToMap
  * var addToMap = [offsetLine, line]
  * offsetLine.properties.stroke = "#00F"
  */
-module.exports = function (geojson, distance, units) {
+function lineOffset(geojson, distance, options) {
+    // Optional parameters
+    options = options || {};
+    if (!isObject(options)) throw new Error('options is invalid');
+    var units = options.units;
+
+    // Valdiation
     if (!geojson) throw new Error('geojson is required');
     if (distance === undefined || distance === null || isNaN(distance)) throw new Error('distance is required');
-    var type = (geojson.type === 'Feature') ? geojson.geometry.type : geojson.type;
+
+    var type = getType(geojson);
     var properties = geojson.properties;
 
     switch (type) {
     case 'LineString':
-        return lineOffset(geojson, distance, units);
+        return lineOffsetFeature(geojson, distance, units);
     case 'MultiLineString':
         var coords = [];
         flattenEach(geojson, function (feature) {
-            coords.push(lineOffset(feature, distance, units).geometry.coordinates);
+            coords.push(lineOffsetFeature(feature, distance, units).geometry.coordinates);
         });
         return multiLineString(coords, properties);
     default:
         throw new Error('geometry ' + type + ' is not supported');
     }
-};
+}
 
 /**
  * Line Offset
@@ -53,7 +57,7 @@ module.exports = function (geojson, distance, units) {
  * @param {string} [units=kilometers] units
  * @returns {Feature<LineString>} Line offset from the input line
  */
-function lineOffset(line, distance, units) {
+function lineOffsetFeature(line, distance, units) {
     var segments = [];
     var offsetDegrees = distanceToDegrees(distance, units);
     var coords = getCoords(line);
@@ -107,3 +111,5 @@ function processSegment(point1, point2, offset) {
     var out2y = point2[1] + offset * (point1[0] - point2[0]) / L;
     return [[out1x, out1y], [out2x, out2y]];
 }
+
+export default lineOffset;

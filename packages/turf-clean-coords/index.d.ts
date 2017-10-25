@@ -1,11 +1,11 @@
-/// <reference types="geojson" />
-
-type GeometryObject = GeoJSON.GeometryObject;
-type Feature = GeoJSON.Feature<any>;
+import { Feature, GeometryObject } from '@turf/helpers'
 
 /**
  * http://turfjs.org/docs/#cleancoords
  */
-declare function cleanCoords<T extends GeometryObject|Feature>(feature: T, mutate?: boolean): T;
-declare namespace cleanCoords {}
-export = cleanCoords;
+export default function <T extends GeometryObject | Feature<any>>(
+    feature: T,
+    options?: {
+      mutate?: boolean
+    }
+): T;

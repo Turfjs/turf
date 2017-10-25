@@ -1,6 +1,6 @@
-var each = require('@turf/meta').coordEach,
-    convexHull = require('convex-hull'),
-    polygon = require('@turf/helpers').polygon;
+var concaveman = require('concaveman');
+import { coordEach } from '@turf/meta';
+import { polygon, isObject } from '@turf/helpers';
 
 /**
  * Takes a {@link Feature} or a {@link FeatureCollection} and returns a convex hull {@link Polygon}.
@@ -10,7 +10,9 @@ var each = require('@turf/meta').coordEach,
  * implements a [monotone chain hull](http://en.wikibooks.org/wiki/Algorithm_Implementation/Geometry/Convex_hull/Monotone_chain).
  *
  * @name convex
- * @param {Feature|FeatureCollection} feature input Feature or FeatureCollection
+ * @param {GeoJSON} geojson input Feature or FeatureCollection
+ * @param {Object} [options={}] Optional parameters
+ * @param {number} [options.concavity=Infinity] 1 - thin shape. Infinity - convex hull.
  * @returns {Feature<Polygon>} a convex hull
  * @example
  * var points = turf.featureCollection([
@@ -27,24 +29,26 @@ var each = require('@turf/meta').coordEach,
  * //addToMap
  * var addToMap = [points, hull]
  */
-module.exports = function (feature) {
+function convex(geojson, options) {
+    // Optional parameters
+    options = options || {};
+    if (!isObject(options)) throw new Error('options is invalid');
+    var concavity = options.concavity || Infinity;
     var points = [];
 
-    // Remove Z in coordinates because it breaks the convexHull algorithm
-    each(feature, function (coord) {
+    // Convert all points to flat 2D coordinate Array
+    coordEach(geojson, function (coord) {
         points.push([coord[0], coord[1]]);
     });
+    if (!points.length) return null;
 
-    var hull = convexHull(points);
+    var convexHull = concaveman(points, concavity);
 
-    // Hull should have at least 3 different vertices in order to create a valid polygon
-    if (hull.length >= 3) {
-        var ring = [];
-        for (var i = 0; i < hull.length; i++) {
-            ring.push(points[hull[i][0]]);
-        }
-        ring.push(points[hull[hull.length - 1][1]]);
-        return polygon([ring]);
+    // Convex hull should have at least 3 different vertices in order to create a valid polygon
+    if (convexHull.length > 3) {
+        return polygon([convexHull]);
     }
-    return undefined;
-};
+    return null;
+}
+
+export default convex;

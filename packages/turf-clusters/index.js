@@ -1,5 +1,5 @@
-var featureEach = require('@turf/meta').featureEach;
-var featureCollection = require('@turf/helpers').featureCollection;
+import { featureEach } from '@turf/meta';
+import { featureCollection } from '@turf/helpers';
 
 /**
  * Get Cluster
@@ -30,7 +30,7 @@ var featureCollection = require('@turf/helpers').featureCollection;
  * turf.getCluster(clustered, {'marker-symbol': 'square'}).length;
  * //= 1
  */
-function getCluster(geojson, filter) {
+export function getCluster(geojson, filter) {
     // Validation
     if (!geojson) throw new Error('geojson is required');
     if (geojson.type !== 'FeatureCollection') throw new Error('geojson must be a FeatureCollection');
@@ -93,7 +93,7 @@ function getCluster(geojson, filter) {
  *     values.push(clusterValue);
  * });
  */
-function clusterEach(geojson, property, callback) {
+export function clusterEach(geojson, property, callback) {
     // Validation
     if (!geojson) throw new Error('geojson is required');
     if (geojson.type !== 'FeatureCollection') throw new Error('geojson must be a FeatureCollection');
@@ -177,7 +177,7 @@ function clusterEach(geojson, property, callback) {
  *     return previousValue.concat(clusterValue);
  * }, []);
  */
-function clusterReduce(geojson, property, callback, initialValue) {
+export function clusterReduce(geojson, property, callback, initialValue) {
     var previousValue = initialValue;
     clusterEach(geojson, property, function (cluster, clusterValue, currentIndex) {
         if (currentIndex === 0 && initialValue === undefined) previousValue = cluster;
@@ -194,7 +194,7 @@ function clusterReduce(geojson, property, callback, initialValue) {
  * @param {string|number} property Property values are used to create bins
  * @returns {Object} bins with Feature IDs
  * @example
- * const geojson = turf.featureCollection([
+ * var geojson = turf.featureCollection([
  *     turf.point([0, 0], {cluster: 0, foo: 'null'}),
  *     turf.point([2, 4], {cluster: 1, foo: 'bar'}),
  *     turf.point([5, 1], {0: 'foo'}),
@@ -203,7 +203,7 @@ function clusterReduce(geojson, property, callback, initialValue) {
  * createBins(geojson, 'cluster');
  * //= { '0': [ 0 ], '1': [ 1, 3 ] }
  */
-function createBins(geojson, property) {
+export function createBins(geojson, property) {
     var bins = {};
 
     featureEach(geojson, function (feature, i) {
@@ -223,9 +223,9 @@ function createBins(geojson, property) {
  * @private
  * @param {*} properties Properties
  * @param {*} filter Filter
- * @returns {Boolean} applied Filter to properties
+ * @returns {boolean} applied Filter to properties
  */
-function applyFilter(properties, filter) {
+export function applyFilter(properties, filter) {
     if (properties === undefined) return false;
     var filterType = typeof filter;
 
@@ -249,14 +249,14 @@ function applyFilter(properties, filter) {
  * @private
  * @param {*} properties Properties
  * @param {Object} filter Filter
- * @returns {Boolean} does filter equal Properties
+ * @returns {boolean} does filter equal Properties
  * @example
  * propertiesContainsFilter({foo: 'bar', cluster: 0}, {cluster: 0})
  * //= true
  * propertiesContainsFilter({foo: 'bar', cluster: 0}, {cluster: 1})
  * //= false
  */
-function propertiesContainsFilter(properties, filter) {
+export function propertiesContainsFilter(properties, filter) {
     var keys = Object.keys(filter);
     for (var i = 0; i < keys.length; i++) {
         var key = keys[i];
@@ -276,7 +276,7 @@ function propertiesContainsFilter(properties, filter) {
  * filterProperties({foo: 'bar', cluster: 0}, ['cluster'])
  * //= {cluster: 0}
  */
-function filterProperties(properties, keys) {
+export function filterProperties(properties, keys) {
     if (!keys) return {};
     if (!keys.length) return {};
 
@@ -287,13 +287,3 @@ function filterProperties(properties, keys) {
     }
     return newProperties;
 }
-
-module.exports = {
-    getCluster: getCluster,
-    clusterEach: clusterEach,
-    clusterReduce: clusterReduce,
-    createBins: createBins, // Not exposed in @turf/turf - Internal purposes only
-    applyFilter: applyFilter, // Not exposed in @turf/turf - Internal purposes only
-    propertiesContainsFilter: propertiesContainsFilter, // Not exposed in @turf/turf - Internal purposes only
-    filterProperties: filterProperties // Not exposed in @turf/turf - Internal purposes only
-};

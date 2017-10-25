@@ -1,8 +1,8 @@
-var featureCollection = require('@turf/helpers').featureCollection;
-var centroid = require('@turf/center');
-var distance = require('@turf/distance');
-var inside = require('@turf/inside');
-var explode = require('@turf/explode');
+import centroid from '@turf/center';
+import nearest from '@turf/nearest';
+import inside from '@turf/inside';
+import explode from '@turf/explode';
+import { featureCollection } from '@turf/helpers';
 
 /**
  * Takes a feature and returns a {@link Point} guaranteed to be on the surface of the feature.
@@ -15,7 +15,7 @@ var explode = require('@turf/explode');
  * @returns {Feature} a point on the surface of `input`
  * @example
  * // create a random polygon
- * var polygon = turf.random('polygon');
+ * var polygon = turf.randomPolygon();
  *
  * var pointOnPolygon = turf.pointOnSurface(polygon);
  *
@@ -116,16 +116,7 @@ function pointOnSurface(fc) {
         for (i = 0; i < fc.features.length; i++) {
             vertices.features = vertices.features.concat(explode(fc.features[i]).features);
         }
-        var closestVertex;
-        var closestDistance = Infinity;
-        for (i = 0; i < vertices.features.length; i++) {
-            var dist = distance(cent, vertices.features[i], 'miles');
-            if (dist < closestDistance) {
-                closestDistance = dist;
-                closestVertex = vertices.features[i];
-            }
-        }
-        return closestVertex;
+        return nearest(cent, vertices);
     }
 }
 
@@ -138,4 +129,4 @@ function pointOnSegment(x, y, x1, y1, x2, y2) {
     }
 }
 
-module.exports = pointOnSurface;
+export default pointOnSurface;

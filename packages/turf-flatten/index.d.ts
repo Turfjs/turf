@@ -1,22 +1,21 @@
-/// <reference types="geojson" />
-
 import {
-    Point, Points, MultiPoint, MultiPoints,
-    LineString, LineStrings, MultiLineString, MultiLineStrings,
-    Polygon, Polygons, MultiPolygon, MultiPolygons,
-    Feature, Features} from '@turf/helpers'
+    Point,
+    MultiPoint,
+    LineString,
+    MultiLineString,
+    Polygon,
+    MultiPolygon,
+    Feature,
+    FeatureCollection,
+    AllGeoJSON
+} from '@turf/helpers'
 
-interface Flatten {
-    /**
-     * http://turfjs.org/docs/#flatten
-     */
-    (geojson: Point | Points | MultiPoint | MultiPoints): Points;
-    (geojson: LineString | LineStrings | MultiLineString | MultiLineStrings): LineStrings;
-    (geojson: Polygons | Polygons | MultiPolygons | MultiPolygons): Polygons;
-    (geojson: Feature<any> | Features<any>): Features<any>;
-    (geojson: GeoJSON.GeometryCollection | GeoJSON.GeometryObject): Features<any>;
-}
+/**
+ * http://turfjs.org/docs/#flatten
+ */
+declare function flatten<T extends Point | MultiPoint>(geojson: Feature<T> | FeatureCollection<T> | T): FeatureCollection<Point>;
+declare function flatten<T extends LineString | MultiLineString>(geojson: Feature<T> | FeatureCollection<T> | T): FeatureCollection<LineString>;
+declare function flatten<T extends Polygon | MultiPolygon>(geojson: Feature<T> | FeatureCollection<T> | T): FeatureCollection<Polygon>;
+declare function flatten(geojson: AllGeoJSON): FeatureCollection<any>;
 
-declare const flatten: Flatten;
-declare namespace flatten { }
-export = flatten;
+export default flatten;

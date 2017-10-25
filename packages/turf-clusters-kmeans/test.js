@@ -1,15 +1,15 @@
-const fs = require('fs');
-const test = require('tape');
-const path = require('path');
-const load = require('load-json-file');
-const write = require('write-json-file');
-const centroid = require('@turf/centroid');
-const chromatism = require('chromatism');
-const concaveman = require('concaveman');
-const {featureEach, coordAll} = require('@turf/meta');
-const {clusterEach, clusterReduce} = require('@turf/clusters');
-const {featureCollection, point, polygon} = require('@turf/helpers');
-const clustersKmeans = require('./');
+import fs from 'fs';
+import test from 'tape';
+import path from 'path';
+import load from 'load-json-file';
+import write from 'write-json-file';
+import centroid from '@turf/centroid';
+import * as chromatism from 'chromatism';
+import concaveman from 'concaveman';
+import { point, polygon, featureCollection } from '@turf/helpers';
+import { clusterReduce, clusterEach } from '@turf/clusters';
+import { coordAll, featureEach } from '@turf/meta';
+import clustersKmeans from '.';
 
 const directories = {
     in: path.join(__dirname, 'test', 'in') + path.sep,
@@ -25,10 +25,12 @@ const fixtures = fs.readdirSync(directories.in).map(filename => {
 });
 
 test('clusters-kmeans', t => {
-    fixtures.forEach(({name, geojson}) => {
-        const {numberOfCentroids} = geojson.properties || {};
+    fixtures.forEach(fixture => {
+        const name = fixture.name;
+        const geojson = fixture.geojson;
+        const numberOfClusters = (geojson.properties || {}).numberOfClusters;
 
-        const clustered = clustersKmeans(geojson, numberOfCentroids);
+        const clustered = clustersKmeans(geojson, {numberOfClusters: numberOfClusters});
         const result = styleResult(clustered);
 
         if (process.env.REGEN) write.sync(directories.out + name + '.geojson', result);
@@ -53,13 +55,13 @@ test('clusters-kmeans -- prevent input mutation', t => {
 
 test('clusters-kmeans -- throws', t => {
     const poly = polygon([[[0, 0], [10, 10], [0, 10], [0, 0]]]);
-    t.throws(() => clustersKmeans(poly, 1), /Input must contain Points/);
+    t.throws(() => clustersKmeans(poly, {numberOfClusters: 1}), /Input must contain Points/);
     // t.throws(() => clustersKmeans(points, 5), /numberOfClusters can't be greater than the number of points/);
     t.end();
 });
 
 test('clusters-kmeans -- translate properties', t => {
-    t.equal(clustersKmeans(points, 2).features[0].properties.foo, 'bar');
+    t.equal(clustersKmeans(points, {numberOfClusters: 2}).features[0].properties.foo, 'bar');
     t.end();
 });
 

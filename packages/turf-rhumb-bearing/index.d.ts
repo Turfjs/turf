@@ -1,10 +1,12 @@
-/// <reference types="geojson" />
-
-type Point = GeoJSON.Feature<GeoJSON.Point> | GeoJSON.Point | number[];
+import { Coord } from '@turf/helpers'
 
 /**
- * http://turfjs.org/docs/#rhumb-bearing
+ * http://turfjs.org/docs/#rhumbbearing
  */
-declare function rhumbBearing(start: Point, end: Point, final?: boolean): number;
-declare namespace rhumbBearing { }
-export = rhumbBearing;
+export default function rhumbBearing(
+    start: Coord,
+    end: Coord,
+    options?: {
+        final?: boolean;
+    }
+): number;

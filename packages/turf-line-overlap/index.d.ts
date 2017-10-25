@@ -1,17 +1,14 @@
-/// <reference types="geojson" />
+import { Feature, FeatureCollection, LineString, MultiLineString, Polygon, MultiPolygon } from '@turf/helpers'
 
-type LineStrings = GeoJSON.FeatureCollection<GeoJSON.LineString>;
-type Geoms = GeoJSON.LineString | GeoJSON.MultiLineString | GeoJSON.Polygon | GeoJSON.MultiPolygon;
-type Feature<Geom extends GeoJSON.GeometryObject> = GeoJSON.Feature<Geom>;
+type Geoms = LineString | MultiLineString | Polygon | MultiPolygon;
 
 /**
  * http://turfjs.org/docs/#lineoverlap
  */
-declare function lineOverlap(
-  source: Feature<Geoms> | Geoms,
-  target: Feature<Geoms> | Geoms,
-  tolerance?: number
-): LineStrings;
-
-declare namespace lineOverlap {}
-export = lineOverlap;
+export default function lineOverlap(
+    source: Feature<Geoms> | Geoms,
+    target: Feature<Geoms> | Geoms,
+    options?: {
+        tolerance?: number
+    }
+): FeatureCollection<LineString>;
