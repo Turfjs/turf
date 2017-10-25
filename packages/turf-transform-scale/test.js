@@ -7,6 +7,7 @@ import center from '@turf/center';
 import hexGrid from '@turf/hex-grid';
 import truncate from '@turf/truncate';
 import turfBBox from '@turf/bbox';
+import bboxPolygon from '@turf/bbox-polygon';
 import centroid from '@turf/centroid';
 import { featureEach } from '@turf/meta';
 import { getCoord } from '@turf/invariant';
@@ -116,11 +117,20 @@ test('scale -- mutated FeatureCollection', t => {
 });
 
 test('scale -- Issue #895', t => {
-    const grid = hexGrid([-122.930, 45.385, -122.294, 45.772], 5, {units: 'miles'});
+    const bbox = [-122.930, 45.385, -122.294, 45.772];
+    const grid = hexGrid(bbox, 2, {units: 'miles'});
     featureEach(grid, (feature, index) => {
         const factor = (index % 2 === 0) ? 0.4 : 0.6;
         scale(feature, factor, {origin: 'centroid', mutate: true});
     });
+    // Add styled GeoJSON to the result
+    const poly = bboxPolygon(bbox);
+    poly.properties = {
+        stroke: '#F00',
+        'stroke-width': 6,
+        'fill-opacity': 0
+    };
+    grid.features.push(poly);
     const output = directories.out + 'issue-#895.geojson';
     if (process.env.REGEN) write.sync(output, grid);
     t.deepEqual(grid, load.sync(output));

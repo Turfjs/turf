@@ -8,11 +8,11 @@ Creates a [Point](http://geojson.org/geojson-spec.html#point) grid from a boundi
 
 **Parameters**
 
--   `bbox` **(BBox | [GeoJSON](http://geojson.org/geojson-spec.html#geojson-objects))** extent in [minX, minY, maxX, maxY] order
--   `cellSide` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** the distance between points
+-   `bbox` **[Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)>** extent in [minX, minY, maxX, maxY] order
+-   `cellSide` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** the distance between points, in units
 -   `options` **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)** Optional parameters (optional, default `{}`)
-    -   `options.units` **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** used in calculating cellSide, can be degrees, radians, miles, or kilometers (optional, default `"kilometers"`)
-    -   `options.bboxIsMask` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** if true, and bbox is a Polygon or MultiPolygon, the grid Point will be created (optional, default `false`)
+    -   `options.units` **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** used in calculating cellSide, can be degrees, radians, miles, or kilometers (optional, default `'kilometers'`)
+    -   `options.mask` **[Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;([Polygon](http://geojson.org/geojson-spec.html#polygon) \| [MultiPolygon](http://geojson.org/geojson-spec.html#multipolygon))>?** if passed a Polygon or MultiPolygon, the grid Points will be created only inside it
     -   `options.properties` **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)** passed to each point of the grid (optional, default `{}`)
 
 **Examples**
@@ -20,8 +20,9 @@ Creates a [Point](http://geojson.org/geojson-spec.html#point) grid from a boundi
 ```javascript
 var extent = [-70.823364, -33.553984, -70.473175, -33.302986];
 var cellSide = 3;
+var options = {units: 'miles'};
 
-var grid = turf.pointGrid(extent, cellSide, {units: 'miles'});
+var grid = turf.pointGrid(extent, cellSide, options);
 
 //addToMap
 var addToMap = [grid];

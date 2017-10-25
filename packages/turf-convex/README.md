@@ -13,6 +13,8 @@ implements a [monotone chain hull](http://en.wikibooks.org/wiki/Algorithm_Implem
 **Parameters**
 
 -   `geojson` **[GeoJSON](http://geojson.org/geojson-spec.html#geojson-objects)** input Feature or FeatureCollection
+-   `options` **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)** Optional parameters (optional, default `{}`)
+    -   `options.concavity` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** 1 - thin shape. Infinity - convex hull. (optional, default `Infinity`)
 
 **Examples**
 

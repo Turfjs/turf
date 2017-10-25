@@ -41,14 +41,15 @@
   },
   "homepage": "https://github.com/Turfjs/turf",
   "devDependencies": {
+    "@std/esm": "*",
+    "@turf/bbox-polygon": "^5.0.0",
     "@turf/hex-grid": "*",
     "@turf/truncate": "*",
     "benchmark": "*",
     "load-json-file": "*",
-    "tape": "*",
-    "write-json-file": "*",
     "rollup": "*",
-    "@std/esm": "*"
+    "tape": "*",
+    "write-json-file": "*"
   },
   "dependencies": {
     "@turf/bbox": "5.x",

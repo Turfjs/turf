@@ -1,13 +1,14 @@
-import { Units, BBox, Polygon, Feature, FeatureCollection } from '@turf/helpers'
+import { Units, BBox, Polygon, Feature, MultiPolygon, Properties, FeatureCollection } from '@turf/helpers'
 
 /**
  * http://turfjs.org/docs/#squaregrid
  */
 export default function squareGrid(
-    bbox: BBox | Feature<any> | FeatureCollection<any>,
-    cellSize: number,
+    bbox: BBox,
+    cellSide: number,
     options?: {
         units?: Units,
-        completelyWithin?: boolean
+        properties?: Properties,
+        mask?: Feature<Polygon | MultiPolygon> | Polygon | MultiPolygon
     }
 ): FeatureCollection<Polygon>;

@@ -3,9 +3,9 @@ import test from 'tape';
 import path from 'path';
 import load from 'load-json-file';
 import write from 'write-json-file';
-import { round, featureCollection, point } from '@turf/helpers';
 import truncate from '@turf/truncate';
-import * as chromatism from 'chromatism';
+import { brightness } from 'chromatism';
+import { round, featureCollection, point } from '@turf/helpers';
 import { featureEach, propEach } from '@turf/meta';
 import interpolate from '.';
 
@@ -92,7 +92,7 @@ function colorize(grid, property, name) {
         const value = feature.properties[property];
         const percent = round((value - min - delta / 2) / delta * 100);
         // darker corresponds to higher values
-        const color = chromatism.brightness(-percent, '#0086FF').hex;
+        const color = brightness(-percent, '#0086FF').hex;
         if (feature.geometry.type === 'Point') feature.properties['marker-color'] = color;
         else {
             feature.properties['stroke'] = color;
