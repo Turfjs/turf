@@ -6,8 +6,8 @@ import { Polygon, Feature, FeatureCollection, Coord, LineString, Units } from '@
 export default function shortestPath(
     start: Coord,
     end: Coord,
-    obstacles: FeatureCollection<Polygon>,
     options?: {
+        obstacles: Polygon | Feature<Polygon> | FeatureCollection<Polygon>,
         units?: Units
         resolution?: number
     }

@@ -9,10 +9,10 @@ any [Feature](http://geojson.org/geojson-spec.html#feature-objects) in [ obstacl
 
 **Parameters**
 
--   `start` **([Geometry](http://geojson.org/geojson-spec.html#geometry) \| [Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;[Point](http://geojson.org/geojson-spec.html#point)> | [Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)>)** point
--   `end` **([Geometry](http://geojson.org/geojson-spec.html#geometry) \| [Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;[Point](http://geojson.org/geojson-spec.html#point)> | [Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)>)** point
--   `obstacles` **([GeometryCollection](http://geojson.org/geojson-spec.html#geometrycollection) \| [FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects)&lt;[Polygon](http://geojson.org/geojson-spec.html#polygon)>)** polygons
+-   `start` **Coord** point
+-   `end` **Coord** point
 -   `options` **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)** optional parameters (optional, default `{}`)
+    -   `options.obstacles` **([Geometry](http://geojson.org/geojson-spec.html#geometry) \| [Feature](http://geojson.org/geojson-spec.html#feature-objects) \| [FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects)&lt;[Polygon](http://geojson.org/geojson-spec.html#polygon)>)?** polygons
     -   `options.units` **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** unit in which resolution will be expressed in; it can be degrees, radians, miles, kilometers, ... (optional, default `"kilometers"`)
     -   `options.resolution` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** distance between matrix points on which the path will be calculated (optional, default `100`)
 
@@ -21,12 +21,14 @@ any [Feature](http://geojson.org/geojson-spec.html#feature-objects) in [ obstacl
 ```javascript
 var start = turf.point([-5, -6]);
 var end = turf.point([9, -6]);
-var obstacles = turf.featureCollection([turf.polygon([[0,-7],[5,-7],[5,-3],[0,-3],[0,-7]]));
+var options = {
+  obstacles: turf.polygon([[[0, -7], [5, -7], [5, -3], [0, -3], [0, -7]]])
+};
 
-var path = shortestPath(start, end, obstacles);
+var path = turf.shortestPath(start, end, options);
 
 //addToMap
-var addToMap = [start, end, obstacles, path];
+var addToMap = [start, end, options.obstacles, path];
 ```
 
 Returns **[Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;[LineString](http://geojson.org/geojson-spec.html#linestring)>** shortest path between start and end

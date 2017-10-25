@@ -4,8 +4,8 @@ import distance from '@turf/distance';
 import scale from '@turf/transform-scale';
 import cleanCoords from '@turf/clean-coords';
 import bboxPolygon from '@turf/bbox-polygon';
-import { getCoord, getType } from '@turf/invariant';
-import { point, isNumber, lineString, isObject } from '@turf/helpers';
+import { getCoord, getType, getGeom } from '@turf/invariant';
+import { point, isNumber, lineString, isObject, featureCollection, feature } from '@turf/helpers';
 import { Graph, astar } from './javascript-astar';
 
 /**
@@ -13,38 +13,54 @@ import { Graph, astar } from './javascript-astar';
  * any {@link Feature} in {@link FeatureCollection<Polygon>| obstacles}
  *
  * @name shortestPath
- * @param {Geometry|Feature<Point>|Array<number>} start point
- * @param {Geometry|Feature<Point>|Array<number>} end point
- * @param {GeometryCollection|FeatureCollection<Polygon>} obstacles polygons
+ * @param {Coord} start point
+ * @param {Coord} end point
  * @param {Object} [options={}] optional parameters
+ * @param {Geometry|Feature|FeatureCollection<Polygon>} [options.obstacles] polygons
  * @param {string} [options.units="kilometers"] unit in which resolution will be expressed in; it can be degrees, radians, miles, kilometers, ...
  * @param {number} [options.resolution=100] distance between matrix points on which the path will be calculated
  * @returns {Feature<LineString>} shortest path between start and end
  * @example
  * var start = turf.point([-5, -6]);
  * var end = turf.point([9, -6]);
- * var obstacles = turf.featureCollection([turf.polygon([[[0, -7], [5, -7], [5, -3], [0, -3], [0, -7]]])]);
- * var path = turf.shortestPath(start, end, obstacles);
+ * var options = {
+ *   obstacles: turf.polygon([[[0, -7], [5, -7], [5, -3], [0, -3], [0, -7]]])
+ * };
+ *
+ * var path = turf.shortestPath(start, end, options);
  *
  * //addToMap
- * var addToMap = [start, end, obstacles, path];
+ * var addToMap = [start, end, options.obstacles, path];
  */
-function shortestPath(start, end, obstacles, options) {
+function shortestPath(start, end, options) {
     // Optional parameters
     options = options || {};
-    // var units = options.units;
+    if (!isObject(options)) throw new Error('options is invalid');
     var resolution = options.resolution;
+    var obstacles = options.obstacles || featureCollection([]);
 
     // validation
-    if (getType(start, 'start') !== 'Point') throw new Error('start must be Point');
-    if (getType(end, 'end') !== 'Point') throw new Error('end must be Point');
-    if (obstacles && getType(obstacles) !== 'FeatureCollection') throw new Error('obstacles must be FeatureCollection');
-    if (!isObject(options)) throw new Error('options is invalid');
-
-    // no obstacles
-    if (!obstacles || obstacles.features.length === 0) return lineString([getCoord(start), getCoord(end)]);
-
+    if (!start) throw new Error('start is required');
+    if (!end) throw new Error('end is required');
     if (resolution && !isNumber(resolution) || resolution <= 0) throw new Error('resolution must be a number, greater than 0');
+
+    // Normalize Inputs
+    var startCoord = getCoord(start);
+    var endCoord = getCoord(end);
+    start = point(startCoord);
+    end = point(endCoord);
+
+    // Handle obstacles
+    switch (getType(obstacles)) {
+    case 'FeatureCollection':
+        if (obstacles.features.length === 0) return lineString([startCoord, endCoord]);
+        break;
+    case 'Polygon':
+        obstacles = featureCollection([feature(getGeom(obstacles))]);
+        break;
+    default:
+        throw new Error('invalid obstacles');
+    }
 
     // define path grid area
     var collection = obstacles;
@@ -131,12 +147,12 @@ function shortestPath(start, end, obstacles, options) {
     var endOnMatrix = graph.grid[closestToEnd.y][closestToEnd.x];
     var result = astar.search(graph, startOnMatrix, endOnMatrix);
 
-    var path = [start.geometry.coordinates];
+    var path = [startCoord];
     result.forEach(function (coord) {
         var coords = pointMatrix[coord.x][coord.y].split('|');
         path.push([+coords[0], +coords[1]]); // make sure coords are numbers
     });
-    path.push(end.geometry.coordinates);
+    path.push(endCoord);
     // ---------------------------------------
 
 
