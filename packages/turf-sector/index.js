@@ -1,7 +1,7 @@
 import circle from '@turf/circle';
 import lineArc from '@turf/line-arc';
 import { coordEach } from '@turf/meta';
-import { polygon } from '@turf/helpers';
+import { polygon, isObject } from '@turf/helpers';
 import { getCoords } from '@turf/invariant';
 
 /**
@@ -13,8 +13,9 @@ import { getCoords } from '@turf/invariant';
  * @param {number} radius radius of the circle
  * @param {number} bearing1 angle, in decimal degrees, of the first radius of the sector
  * @param {number} bearing2 angle, in decimal degrees, of the second radius of the sector
- * @param {number} [steps=64] number of steps
- * @param {string} [units=kilometers] miles, kilometers, degrees, or radians
+ * @param {Object} [options={}] Optional parameters
+ * @param {string} [options.units='kilometers'] miles, kilometers, degrees, or radians
+ * @param {number} [options.steps=64] number of steps
  * @returns {Feature<Polygon>} sector polygon
  * @example
  * var center = turf.point([-75, 40]);
@@ -27,21 +28,23 @@ import { getCoords } from '@turf/invariant';
  * //addToMap
  * var addToMap = [center, sector];
  */
-export default function (center, radius, bearing1, bearing2, steps, units) {
+function sector(center, radius, bearing1, bearing2, options) {
+    // Optional parameters
+    options = options || {};
+    if (!isObject(options)) throw new Error('options is invalid');
+
     // validation
     if (!center) throw new Error('center is required');
     if (bearing1 === undefined || bearing1 === null) throw new Error('bearing1 is required');
     if (bearing2 === undefined || bearing2 === null) throw new Error('bearing2 is required');
     if (!radius) throw new Error('radius is required');
-
-    // default params
-    steps = steps || 64;
+    if (typeof options !== 'object') throw new Error('options must be an object');
 
     if (convertAngleTo360(bearing1) === convertAngleTo360(bearing2)) {
-        return circle(center, radius, steps, units);
+        return circle(center, radius, options);
     }
     var coords = getCoords(center);
-    var arc = lineArc(center, radius, bearing1, bearing2, steps, units);
+    var arc = lineArc(center, radius, bearing1, bearing2, options);
     var sliceCoords = [[coords]];
     coordEach(arc, function (currentCoords) {
         sliceCoords[0].push(currentCoords);
@@ -61,8 +64,8 @@ export default function (center, radius, bearing1, bearing2, steps, units) {
  */
 function convertAngleTo360(alfa) {
     var beta = alfa % 360;
-    if (beta < 0) {
-        beta += 360;
-    }
+    if (beta < 0) beta += 360;
     return beta;
 }
+
+export default sector;

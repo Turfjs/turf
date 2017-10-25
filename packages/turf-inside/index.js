@@ -11,7 +11,8 @@ import { getCoord, getCoords } from '@turf/invariant';
  * @name inside
  * @param {Feature<Point>} point input point
  * @param {Feature<Polygon|MultiPolygon>} polygon input polygon or multipolygon
- * @param {boolean} [ignoreBoundary=false] True if polygon boundary should be ignored when determining if the point is inside the polygon otherwise false.
+ * @param {Object} [options={}] Optional parameters
+ * @param {boolean} [options.ignoreBoundary=false] True if polygon boundary should be ignored when determining if the point is inside the polygon otherwise false.
  * @returns {boolean} `true` if the Point is inside the Polygon; `false` if the Point is not inside the Polygon
  * @example
  * var pt = turf.point([-77, 44]);
@@ -26,7 +27,12 @@ import { getCoord, getCoords } from '@turf/invariant';
  * turf.inside(pt, poly);
  * //= true
  */
-export default function (point, polygon, ignoreBoundary) {
+function inside(point, polygon, options) {
+    // Optional parameters
+    options = options || {};
+    if (typeof options !== 'object') throw new Error('options is invalid');
+    var ignoreBoundary = options.ignoreBoundary;
+
     // validation
     if (!point) throw new Error('point is required');
     if (!polygon) throw new Error('polygon is required');
@@ -64,8 +70,8 @@ export default function (point, polygon, ignoreBoundary) {
  * inRing
  *
  * @private
- * @param {[number, number]} pt [x,y]
- * @param {Array<[number, number]>} ring [[x,y], [x,y],..]
+ * @param {Array<number>} pt [x,y]
+ * @param {Array<Array<number>>} ring [[x,y], [x,y],..]
  * @param {boolean} ignoreBoundary ignoreBoundary
  * @returns {boolean} inRing
  */
@@ -90,8 +96,8 @@ function inRing(pt, ring, ignoreBoundary) {
  * inBBox
  *
  * @private
- * @param {[number, number]} pt point [x,y]
- * @param {[number, number, number, number]} bbox BBox [west, south, east, north]
+ * @param {Array<number>} pt point [x,y]
+ * @param {Array<number>} bbox BBox [west, south, east, north]
  * @returns {boolean} true/false if point is inside BBox
  */
 function inBBox(pt, bbox) {
@@ -100,3 +106,5 @@ function inBBox(pt, bbox) {
            bbox[2] >= pt[0] &&
            bbox[3] >= pt[1];
 }
+
+export default inside;

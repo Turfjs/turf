@@ -1,8 +1,6 @@
-/// <reference types="geojson" />
-
-export type Types = GeoJSON.FeatureCollection<any> | GeoJSON.Feature<any> | GeoJSON.GeometryObject | GeoJSON.GeometryCollection;
+import { AllGeoJSON } from '@turf/helpers';
 
 /**
  * http://turfjs.org/docs/#clone
  */
-export default function <T extends Types>(geojson: T): T;
+export default function <T extends AllGeoJSON>(geojson: T): T;

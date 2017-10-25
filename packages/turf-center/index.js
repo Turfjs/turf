@@ -22,9 +22,11 @@ import { point } from '@turf/helpers';
  * center.properties['marker-size'] = 'large';
  * center.properties['marker-color'] = '#000';
  */
-export default function (geojson, properties) {
+function center(geojson, properties) {
     var ext = bbox(geojson);
     var x = (ext[0] + ext[2]) / 2;
     var y = (ext[1] + ext[3]) / 2;
     return point([x, y], properties);
 }
+
+export default center;

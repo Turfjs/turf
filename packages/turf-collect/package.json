@@ -2,19 +2,19 @@
   "name": "@turf/collect",
   "version": "4.7.3",
   "description": "turf collect module",
-  "main": "index.es5.js",
-  "module": "index.js",
-  "jsnext:main": "index.js",
+  "main": "main",
+  "module": "index",
+  "jsnext:main": "index",
   "types": "index.d.ts",
   "files": [
     "index.js",
     "index.d.ts",
-    "index.es5.js"
+    "main.js"
   ],
   "scripts": {
     "pretest": "rollup -c ../../rollup.config.js",
-    "test": "node test.es5.js",
-    "bench": "node bench.js"
+    "test": "node -r @std/esm test.js",
+    "bench": "node -r @std/esm bench.js"
   },
   "repository": {
     "type": "git",
@@ -38,14 +38,19 @@
   },
   "homepage": "https://github.com/Turfjs/turf",
   "devDependencies": {
-    "@turf/helpers": "5.0.0-alpha",
     "benchmark": "*",
     "tape": "*",
-    "rollup": "*"
+    "rollup": "*",
+    "@std/esm": "*"
   },
   "dependencies": {
-    "@turf/bbox": "^4.7.3",
-    "@turf/inside": "^4.7.3",
+    "@turf/bbox": "5.x",
+    "@turf/helpers": "5.x",
+    "@turf/inside": "5.x",
     "rbush": "^2.0.1"
+  },
+  "@std/esm": {
+    "esm": "js",
+    "cjs": true
   }
 }

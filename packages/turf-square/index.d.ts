@@ -1,8 +1,6 @@
-/// <reference types="geojson" />
-
-export type BBox = [number, number, number, number];
+import { BBox } from '@turf/helpers'
 
 /**
  * http://turfjs.org/docs/#square
  */
-export default function square(bbox: BBox): BBox;
+export default function (bbox: BBox): BBox;

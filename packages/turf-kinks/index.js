@@ -20,7 +20,7 @@ import { point } from '@turf/helpers';
  * //addToMap
  * var addToMap = [poly, kinks]
  */
-export default function (featureIn) {
+function kinks(featureIn) {
     var coordinates;
     var feature;
     var results = {
@@ -124,3 +124,5 @@ function lineIntersects(line1StartX, line1StartY, line1EndX, line1EndY, line2Sta
         return false;
     }
 }
+
+export default kinks;

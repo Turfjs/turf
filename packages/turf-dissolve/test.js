@@ -1,28 +1,43 @@
+import fs from 'fs';
 import test from 'tape';
 import path from 'path';
 import load from 'load-json-file';
 import write from 'write-json-file';
-import dissolve from '.';
+import {polygon, point, featureCollection} from '@turf/helpers';
+import dissolve from './';
 
 const directories = {
-    out: path.join(__dirname, 'test', 'out') + path.sep,
-    in: path.join(__dirname, 'test', 'in') + path.sep
+    in: path.join(__dirname, 'test', 'in') + path.sep,
+    out: path.join(__dirname, 'test', 'out') + path.sep
 };
 
+const fixtures = fs.readdirSync(directories.in).map(filename => {
+    return {
+        filename,
+        name: path.parse(filename).name,
+        geojson: load.sync(directories.in + filename)
+    };
+});
+
+
 test('turf-dissolve', t => {
-    const polys = load.sync(directories.in + 'polys.geojson');
+    for (const {filename, name, geojson}  of fixtures) {
+        const propertyName = geojson.propertyName;
+        const results = dissolve(geojson, {propertyName});
 
-    // With Property
-    const polysByProperty = dissolve(polys, 'combine');
-    if (process.env.REGEN) write.sync(directories.out + 'polysByProperty.geojson', polysByProperty);
-    t.equal(polysByProperty.features.length, 3);
-    t.deepEqual(polysByProperty, load.sync(directories.out + 'polysByProperty.geojson'));
+        if (process.env.REGEN) write.sync(directories.out + filename, results);
+        t.deepEquals(results, load.sync(directories.out + filename), name);
+    }
+    t.end();
+});
 
-    // Without Property
-    const polysWithoutProperty = dissolve(polys);
-    if (process.env.REGEN) write.sync(directories.out + 'polysWithoutProperty.geojson', polysWithoutProperty);
-    t.equal(polysWithoutProperty.features.length, 2);
-    t.deepEqual(polysWithoutProperty, load.sync(directories.out + 'polysWithoutProperty.geojson'));
 
+test('dissolve -- throw', t => {
+    const poly = polygon([[[-61,27],[-59,27],[-59,29],[-61,29],[-61,27]]]);
+    const pt = point([-62,29]);
+
+    t.throws(() => dissolve(null), /No featureCollection passed/, 'missing featureCollection');
+    t.throws(() => dissolve(poly), /Invalid input to dissolve, FeatureCollection required/, 'invalid featureCollection');
+    t.throws(() => dissolve(featureCollection([poly, pt])), /Invalid input to dissolve: must be a Polygon, given Point/, 'invalid collection type');
     t.end();
 });

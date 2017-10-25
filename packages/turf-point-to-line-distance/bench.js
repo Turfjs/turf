@@ -1,8 +1,8 @@
-const path = require('path');
-const load = require('load-json-file');
-const Benchmark = require('benchmark');
-const fs = require('fs');
-const pointToLineDistance = require('./');
+import fs from 'fs';
+import path from 'path';
+import load from 'load-json-file';
+import Benchmark from 'benchmark';
+import pointToLineDistance from './';
 
 
 const directory = path.join(__dirname, 'test', 'in') + path.sep;

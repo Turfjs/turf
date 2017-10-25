@@ -19,9 +19,8 @@ import { polygon, featureCollection } from '@turf/helpers';
  * @returns {FeatureCollection<Polygon>} TIN output
  * @example
  * // generate some random point data
- * var points = turf.random('points', 30, {
- *   bbox: [50, 30, 70, 50]
- * });
+ * var points = turf.randomPoint(30, {bbox: [50, 30, 70, 50]});
+ *
  * // add a random property to each point between 0 and 9
  * for (var i = 0; i < points.features.length; i++) {
  *   points.features[i].properties.z = ~~(Math.random() * 9);
@@ -35,7 +34,7 @@ import { polygon, featureCollection } from '@turf/helpers';
  *   properties.fill = '#' + properties.a + properties.b + properties.c;
  * }
  */
-export default function (points, z) {
+function tin(points, z) {
     if (points.type !== 'FeatureCollection') throw new Error('points must be a FeatureCollection');
     //break down points
     var isPointZ = false;
@@ -255,3 +254,5 @@ function triangulate(vertices) {
 
     return closed;
 }
+
+export default tin;

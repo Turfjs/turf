@@ -1,5 +1,3 @@
-/// <reference types="geojson" />
-
 import {
     Polygon,
     MultiPolygon,
@@ -8,7 +6,8 @@ import {
     LineString,
     MultiLineString,
     GeometryCollection,
-    FeatureGeometryCollection
+    FeatureGeometryCollection,
+    Properties
 } from '@turf/helpers';
 
 /**
@@ -17,7 +16,10 @@ import {
  * Feature => LineString
  */
 declare function polygonToLineString<T extends Polygon | MultiPolygon>(
-    polygon: Feature<T> | T
+    polygon: Feature<T> | T,
+    options?: {
+        properties?: Properties
+    }
 ): Feature<LineString>;
 
 /**
@@ -26,7 +28,10 @@ declare function polygonToLineString<T extends Polygon | MultiPolygon>(
  * FeatureCollection => MultiLineString
  */
 declare function polygonToLineString<T extends Polygon | MultiPolygon>(
-    polygon: FeatureCollection<T> | GeometryCollection | FeatureGeometryCollection
+    polygon: FeatureCollection<T> | GeometryCollection | FeatureGeometryCollection,
+    options?: {
+        properties?: Properties
+    }
 ): Feature<MultiLineString>;
 
 export default polygonToLineString;

@@ -1,7 +1,6 @@
-const fs = require('fs');
-const {point} = require('@turf/helpers');
-const Benchmark = require('benchmark');
-const destination = require('./');
+import { point } from '@turf/helpers';
+import Benchmark from 'benchmark';
+import destination from './';
 
 const pt1 = point([-75.0, 39.0]);
 const distance = 100;
@@ -14,7 +13,7 @@ const bearing = 180;
  */
 const suite = new Benchmark.Suite('turf-rhumb-destination');
 suite
-  .add('turf-rhumb-destination', () => destination(pt1, distance, bearing, 'kilometers'))
-  .on('cycle', e => console.log(String(e.target)))
-  .on('complete', () => {})
-  .run();
+    .add('turf-rhumb-destination', () => destination(pt1, distance, bearing, 'kilometers'))
+    .on('cycle', e => console.log(String(e.target)))
+    .on('complete', () => {})
+    .run();

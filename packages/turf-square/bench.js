@@ -1,6 +1,6 @@
-var square = require('./');
-var Benchmark = require('benchmark');
-var fs = require('fs');
+import fs from 'fs';
+import Benchmark from 'benchmark';
+import square from './';
 
 var bbox = [0,0,5,10];
 
@@ -13,6 +13,6 @@ suite
     console.log(String(event.target));
   })
   .on('complete', function () {
-    
+
   })
   .run();

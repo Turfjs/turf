@@ -18,7 +18,7 @@ import distance from '@turf/distance';
  * //addToMap
  * var addToMap = [features]
  */
-export default function (bbox) {
+function square(bbox) {
     var west = bbox[0];
     var south = bbox[1];
     var east = bbox[2];
@@ -44,3 +44,5 @@ export default function (bbox) {
         ];
     }
 }
+
+export default square;

@@ -24,10 +24,10 @@ import distance from '@turf/distance';
  * var addToMap = [targetPoint, points, nearest];
  * nearest.properties['marker-color'] = '#F00';
  */
-export default function (targetPoint, points) {
+function nearest(targetPoint, points) {
     var nearestPoint, minDist = Infinity;
     for (var i = 0; i < points.features.length; i++) {
-        var distanceToPoint = distance(targetPoint, points.features[i], 'miles');
+        var distanceToPoint = distance(targetPoint, points.features[i]);
         if (distanceToPoint < minDist) {
             nearestPoint = points.features[i];
             minDist = distanceToPoint;
@@ -35,3 +35,5 @@ export default function (targetPoint, points) {
     }
     return nearestPoint;
 }
+
+export default nearest;

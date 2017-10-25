@@ -1,13 +1,21 @@
-/// <reference types="geojson" />
-
-export type Types = GeoJSON.FeatureCollection<any> | GeoJSON.Feature<any> | GeoJSON.GeometryObject | GeoJSON.GeometryCollection;
+import { AllGeoJSON, Position} from '@turf/helpers';
 
 /**
  * http://turfjs.org/docs/#toMercator
  */
-export function toMercator<T extends Types>(geojson: T, mutate?: boolean): T;
+export function toMercator<T extends AllGeoJSON | Position>(
+    geojson: T,
+    options?: {
+        mutate?: boolean
+    }
+): T;
 
 /**
  * http://turfjs.org/docs/#toWgs84
  */
-export function toWgs84<T extends Types>(geojson: T, mutate?: boolean): T;
+export function toWgs84<T extends AllGeoJSON | Position>(
+    geojson: T,
+    options?: {
+        mutate?: boolean
+    }
+): T;

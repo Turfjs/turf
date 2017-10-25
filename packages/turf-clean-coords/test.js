@@ -48,7 +48,7 @@ test('turf-clean-coords -- extras', t => {
 });
 
 test('turf-clean-coords -- truncate', t => {
-    t.equal(cleanCoords(truncate(lineString([[0, 0], [1.1, 1.123], [2.12, 2.32], [3, 3]]), 0)).geometry.coordinates.length, 2);
+    t.equal(cleanCoords(truncate(lineString([[0, 0], [1.1, 1.123], [2.12, 2.32], [3, 3]]), {precision: 0})).geometry.coordinates.length, 2);
     t.end();
 });
 

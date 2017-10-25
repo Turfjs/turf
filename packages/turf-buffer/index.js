@@ -1,10 +1,12 @@
-var jsts = require('jsts');
-import { geoTransverseMercator } from 'd3-geo';
 import center from '@turf/center';
 import turfBbox from '@turf/bbox';
-import { geomEach, featureEach } from '@turf/meta';
-import { feature, featureCollection, radiansToDistance, distanceToRadians } from '@turf/helpers';
+import GeoJSONReader from 'jsts/org/locationtech/jts/io/GeoJSONReader';
+import GeoJSONWriter from 'jsts/org/locationtech/jts/io/GeoJSONWriter';
+import { BufferOp } from 'jsts/org/locationtech/jts/operation/buffer';
 import { toWgs84, toMercator } from '@turf/projection';
+import { geomEach, featureEach } from '@turf/meta';
+import { geoTransverseMercator } from 'd3-geo';
+import { feature, featureCollection, radiansToDistance, distanceToRadians, earthRadius } from '@turf/helpers';
 
 /**
  * Calculates a buffer for input features for a given radius. Units supported are miles, kilometers, and degrees.
@@ -18,19 +20,28 @@ import { toWgs84, toMercator } from '@turf/projection';
  * @name buffer
  * @param {FeatureCollection|Geometry|Feature<any>} geojson input to be buffered
  * @param {number} radius distance to draw the buffer (negative values are allowed)
- * @param {string} [units=kilometers] any of the options supported by turf units
- * @param {number} [steps=64] number of steps
+ * @param {Object} [options] Optional parameters
+ * @param {string} [options.units="kilometers"] any of the options supported by turf units
+ * @param {number} [options.steps=64] number of steps
  * @returns {FeatureCollection|Feature<Polygon|MultiPolygon>|undefined} buffered features
  * @example
  * var point = turf.point([-90.548630, 14.616599]);
- * var buffered = turf.buffer(point, 500, 'miles');
+ * var buffered = turf.buffer(point, 500, {units: 'miles'});
  *
  * //addToMap
  * var addToMap = [point, buffered]
  */
-export default function (geojson, radius, units, steps) {
+function buffer(geojson, radius, options) {
+    // Optional params
+    options = options || {};
+    var units = options.units;
+    var steps = options.steps || 64;
+
     // validation
     if (!geojson) throw new Error('geojson is required');
+    if (typeof options !== 'object') throw new Error('options must be an object');
+    if (typeof steps !== 'number') throw new Error('steps must be an number');
+
     // Allow negative buffers ("erosion") or zero-sized buffers ("repair geometry")
     if (radius === undefined) throw new Error('radius is required');
     if (steps <= 0) throw new Error('steps must be greater than 0');
@@ -43,13 +54,13 @@ export default function (geojson, radius, units, steps) {
     switch (geojson.type) {
     case 'GeometryCollection':
         geomEach(geojson, function (geometry) {
-            var buffered = buffer(geometry, radius, units, steps);
+            var buffered = bufferFeature(geometry, radius, units, steps);
             if (buffered) results.push(buffered);
         });
         return featureCollection(results);
     case 'FeatureCollection':
         featureEach(geojson, function (feature) {
-            var multiBuffered = buffer(feature, radius, units, steps);
+            var multiBuffered = bufferFeature(feature, radius, units, steps);
             if (multiBuffered) {
                 featureEach(multiBuffered, function (buffered) {
                     if (buffered) results.push(buffered);
@@ -58,7 +69,7 @@ export default function (geojson, radius, units, steps) {
         });
         return featureCollection(results);
     }
-    return buffer(geojson, radius, units, steps);
+    return bufferFeature(geojson, radius, units, steps);
 }
 
 /**
@@ -71,7 +82,7 @@ export default function (geojson, radius, units, steps) {
  * @param {number} [steps=64] number of steps
  * @returns {Feature<Polygon|MultiPolygon>} buffered feature
  */
-function buffer(geojson, radius, units, steps) {
+function bufferFeature(geojson, radius, units, steps) {
     var properties = geojson.properties || {};
     var geometry = (geojson.type === 'Feature') ? geojson.geometry : geojson;
 
@@ -79,7 +90,7 @@ function buffer(geojson, radius, units, steps) {
     if (geometry.type === 'GeometryCollection') {
         var results = [];
         geomEach(geojson, function (geometry) {
-            var buffered = buffer(geometry, radius, units, steps);
+            var buffered = bufferFeature(geometry, radius, units, steps);
             if (buffered) results.push(buffered);
         });
         return featureCollection(results);
@@ -100,11 +111,11 @@ function buffer(geojson, radius, units, steps) {
     }
 
     // JSTS buffer operation
-    var reader = new jsts.io.GeoJSONReader();
+    var reader = new GeoJSONReader();
     var geom = reader.read(projected);
     var distance = radiansToDistance(distanceToRadians(radius, units), 'meters');
-    var buffered = geom.buffer(distance);
-    var writer = new jsts.io.GeoJSONWriter();
+    var buffered = BufferOp.bufferOp(geom, distance);
+    var writer = new GeoJSONWriter();
     buffered = writer.write(buffered);
 
     // Detect if empty geometries
@@ -179,5 +190,7 @@ function defineProjection(geojson) {
     return geoTransverseMercator()
         .center(coords)
         .rotate(rotate)
-        .scale(6373000);
+        .scale(earthRadius);
 }
+
+export default buffer;

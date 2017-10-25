@@ -17,7 +17,7 @@ import polyToLinestring from '@turf/polygon-to-linestring';
  * turf.booleanDisjoint(line, point);
  * //=true
  */
-export default function (feature1, feature2) {
+function booleanDisjoint(feature1, feature2) {
     var boolean;
     flattenEach(feature1, function (flatten1) {
         flattenEach(feature2, function (flatten2) {
@@ -148,10 +148,12 @@ function isPointOnLineSegment(LineSegmentStart, LineSegmentEnd, Point) {
  * compareCoords
  *
  * @private
- * @param {[number, number]} pair1 point [x,y]
- * @param {[number, number]} pair2 point [x,y]
+ * @param {Array<number>} pair1 point [x,y]
+ * @param {Array<number>} pair2 point [x,y]
  * @returns {boolean} true/false if coord pairs match
  */
 function compareCoords(pair1, pair2) {
     return pair1[0] === pair2[0] && pair1[1] === pair2[1];
 }
+
+export default booleanDisjoint;

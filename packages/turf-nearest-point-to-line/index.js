@@ -8,7 +8,8 @@ import { featureEach, geomEach } from '@turf/meta';
  * @name nearestPointToLine
  * @param {FeatureCollection|GeometryCollection<Point>} points Point Collection
  * @param {Feature|Geometry<LineString>} line Line Feature
- * @param {string} [units=kilometers] unit of the output distance property, can be degrees, radians, miles, or kilometer
+ * @param {Object} [options] Optional parameters
+ * @param {string} [options.units=kilometers] unit of the output distance property, can be degrees, radians, miles, or kilometer
  * @returns {Feature<Point>} the closest point
  * @example
  * var pt1 = turf.point([0, 0]);
@@ -21,7 +22,10 @@ import { featureEach, geomEach } from '@turf/meta';
  * //addToMap
  * var addToMap = [nearest, line];
  */
-export default function (points, line, units) {
+function nearestPointToLine(points, line, options) {
+    // Backwards compatible with v4.0
+    var units = (typeof options === 'object') ? options.units : options;
+
     // validation
     if (!points) throw new Error('points is required');
     points = handleCollection(points);
@@ -35,7 +39,7 @@ export default function (points, line, units) {
     var pt = null;
 
     featureEach(points, function (point) {
-        var d = pointToLineDistance(point, line, units);
+        var d = pointToLineDistance(point, line, { units: units });
         if (d < dist) {
             dist = d;
             pt = point;
@@ -70,3 +74,5 @@ function handleCollection(points) {
         throw new Error('points must be a Point Collection');
     }
 }
+
+export default nearestPointToLine;

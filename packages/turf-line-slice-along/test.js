@@ -11,11 +11,11 @@ var route2 = load.sync(path.join(__dirname, 'test', 'fixtures', 'route2.geojson'
 test('turf-line-slice -- line1', function (t) {
     var start = 500;
     var stop = 750;
-    var units = 'miles';
+    var options = {units: 'miles'};
 
-    var start_point = along(line1, start, units);
-    var end_point = along(line1, stop, units);
-    var sliced = lineSliceAlong(line1, start, stop, units);
+    var start_point = along(line1, start, options);
+    var end_point = along(line1, stop, options);
+    var sliced = lineSliceAlong(line1, start, stop, options);
     t.equal(sliced.type, 'Feature');
     t.equal(sliced.geometry.type, 'LineString');
     t.deepEqual(sliced.geometry.coordinates[0], start_point.geometry.coordinates);
@@ -26,11 +26,11 @@ test('turf-line-slice -- line1', function (t) {
 test('turf-line-slice -- line1 overshoot', function (t) {
     var start = 500;
     var stop = 1500;
-    var units = 'miles';
+    var options = {units: 'miles'};
 
-    var start_point = along(line1, start, units);
-    var end_point = along(line1, stop, units);
-    var sliced = lineSliceAlong(line1, start, stop, units);
+    var start_point = along(line1, start, options);
+    var end_point = along(line1, stop, options);
+    var sliced = lineSliceAlong(line1, start, stop, options);
     t.equal(sliced.type, 'Feature');
     t.equal(sliced.geometry.type, 'LineString');
     t.deepEqual(sliced.geometry.coordinates[0], start_point.geometry.coordinates);
@@ -41,11 +41,11 @@ test('turf-line-slice -- line1 overshoot', function (t) {
 test('turf-line-slice-along -- route1', function (t) {
     var start = 500;
     var stop = 750;
-    var units = 'miles';
+    var options = {units: 'miles'};
 
-    var start_point = along(route1, start, units);
-    var end_point = along(route1, stop, units);
-    var sliced = lineSliceAlong(route1, start, stop, units);
+    var start_point = along(route1, start, options);
+    var end_point = along(route1, stop, options);
+    var sliced = lineSliceAlong(route1, start, stop, options);
     t.equal(sliced.type, 'Feature');
     t.equal(sliced.geometry.type, 'LineString');
     t.deepEqual(sliced.geometry.coordinates[0], start_point.geometry.coordinates);
@@ -56,11 +56,11 @@ test('turf-line-slice-along -- route1', function (t) {
 test('turf-line-slice-along -- route2', function (t) {
     var start = 25;
     var stop = 50;
-    var units = 'miles';
+    var options = {units: 'miles'};
 
-    var start_point = along(route2, start, units);
-    var end_point = along(route2, stop, units);
-    var sliced = lineSliceAlong(route2, start, stop, units);
+    var start_point = along(route2, start, options);
+    var end_point = along(route2, stop, options);
+    var sliced = lineSliceAlong(route2, start, stop, options);
     t.equal(sliced.type, 'Feature');
     t.equal(sliced.geometry.type, 'LineString');
     t.deepEqual(sliced.geometry.coordinates[0], start_point.geometry.coordinates);

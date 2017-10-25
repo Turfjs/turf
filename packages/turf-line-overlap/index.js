@@ -1,10 +1,10 @@
-var equal = require('deep-equal');
-var rbush = require('geojson-rbush');
+import equal from './deep-equal';
+import rbush from 'geojson-rbush';
 import lineSegment from '@turf/line-segment';
 import pointOnLine from '@turf/point-on-line';
 import booleanPointOnLine from '@turf/boolean-point-on-line';
 import { getCoords } from '@turf/invariant';
-import { featureCollection } from '@turf/helpers';
+import { featureCollection, isObject } from '@turf/helpers';
 import { featureEach, segmentEach } from '@turf/meta';
 
 /**
@@ -13,7 +13,8 @@ import { featureEach, segmentEach } from '@turf/meta';
  * @name lineOverlap
  * @param {Geometry|Feature<LineString|MultiLineString|Polygon|MultiPolygon>} line1 any LineString or Polygon
  * @param {Geometry|Feature<LineString|MultiLineString|Polygon|MultiPolygon>} line2 any LineString or Polygon
- * @param {number} [tolerance=0] Tolerance distance to match overlapping line segments (in kilometers)
+ * @param {Object} [options={}] Optional parameters
+ * @param {number} [options.tolerance=0] Tolerance distance to match overlapping line segments (in kilometers)
  * @returns {FeatureCollection<LineString>} lines(s) that are overlapping between both features
  * @example
  * var line1 = turf.lineString([[115, -35], [125, -30], [135, -30], [145, -35]]);
@@ -24,9 +25,14 @@ import { featureEach, segmentEach } from '@turf/meta';
  * //addToMap
  * var addToMap = [line1, line2, overlapping]
  */
-export default function (line1, line2, tolerance) {
+function lineOverlap(line1, line2, options) {
+    // Optional parameters
+    options = options || {};
+    if (!isObject(options)) throw new Error('options is invalid');
+    var tolerance = options.tolerance || 0;
+
+    // Containers
     var features = [];
-    tolerance = tolerance || 0;
 
     // Create Spatial Index
     var tree = rbush();
@@ -107,3 +113,5 @@ function concatSegment(line, segment) {
     else if (equal(coords[1], end)) geom.push(coords[0]);
     return line;
 }
+
+export default lineOverlap;

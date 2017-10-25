@@ -1,4 +1,70 @@
 /**
+ * Earth Radius used with the Harvesine formula and approximates using a spherical (non-ellipsoid) Earth.
+ */
+export var earthRadius = 6371008.8;
+
+/**
+ * Unit of measurement factors using a spherical (non-ellipsoid) earth radius.
+ */
+export var factors = {
+    meters: earthRadius,
+    metres: earthRadius,
+    millimeters: earthRadius * 1000,
+    millimetres: earthRadius * 1000,
+    centimeters: earthRadius * 100,
+    centimetres: earthRadius * 100,
+    kilometers: earthRadius / 1000,
+    kilometres: earthRadius / 1000,
+    miles: earthRadius / 1609.344,
+    nauticalmiles: earthRadius / 1852,
+    inches: earthRadius * 39.370,
+    yards: earthRadius / 1.0936,
+    feet: earthRadius * 3.28084,
+    radians: 1,
+    degrees: earthRadius / 111325,
+};
+
+/**
+ * Units of measurement factors based on 1 meter.
+ */
+export var unitsFactors = {
+    meters: 1,
+    metres: 1,
+    millimeters: 1000,
+    millimetres: 1000,
+    centimeters: 100,
+    centimetres: 100,
+    kilometers: 1 / 1000,
+    kilometres: 1 / 1000,
+    miles: 1 / 1609.344,
+    nauticalmiles: 1 / 1852,
+    inches: 39.370,
+    yards: 1 / 1.0936,
+    feet: 3.28084,
+    radians: 1 / earthRadius,
+    degrees: 1 / 111325,
+};
+
+/**
+ * Area of measurement factors based on 1 square meter.
+ */
+export var areaFactors = {
+    meters: 1,
+    metres: 1,
+    millimeters: 1000000,
+    millimetres: 1000000,
+    centimeters: 10000,
+    centimetres: 10000,
+    kilometers: 0.000001,
+    kilometres: 0.000001,
+    acres: 0.000247105,
+    miles: 3.86e-7,
+    yards: 1.195990046,
+    feet: 10.763910417,
+    inches: 1550.003100006
+};
+
+/**
  * Wraps a GeoJSON {@link Geometry} in a GeoJSON {@link Feature}.
  *
  * @name feature
@@ -23,7 +89,7 @@ export function feature(geometry, properties, bbox, id) {
     if (bbox && bbox.length !== 4) throw new Error('bbox must be an Array of 4 numbers');
     if (id && ['string', 'number'].indexOf(typeof id) === -1) throw new Error('id must be a number or a string');
 
-    let feat = {type: 'Feature'};
+    var feat = {type: 'Feature'};
     if (id) feat.id = id;
     if (bbox) feat.bbox = bbox;
     feat.properties = properties || {};
@@ -55,7 +121,7 @@ export function geometry(type, coordinates, bbox) {
     if (!Array.isArray(coordinates)) throw new Error('coordinates must be an Array');
     if (bbox && bbox.length !== 4) throw new Error('bbox must be an Array of 4 numbers');
 
-    let geom;
+    var geom;
     switch (type) {
     case 'Point': geom = point(coordinates).geometry; break;
     case 'LineString': geom = lineString(coordinates).geometry; break;
@@ -120,12 +186,12 @@ export function point(coordinates, properties, bbox, id) {
 export function polygon(coordinates, properties, bbox, id) {
     if (!coordinates) throw new Error('No coordinates passed');
 
-    for (let i = 0; i < coordinates.length; i++) {
-        let ring = coordinates[i];
+    for (var i = 0; i < coordinates.length; i++) {
+        var ring = coordinates[i];
         if (ring.length < 4) {
             throw new Error('Each LinearRing of a Polygon must have 4 or more Positions.');
         }
-        for (let j = 0; j < ring[ring.length - 1].length; j++) {
+        for (var j = 0; j < ring[ring.length - 1].length; j++) {
             // Check if first point of Polygon contains two numbers
             if (i === 0 && j === 0 && !isNumber(ring[0][0]) || !isNumber(ring[0][1])) throw new Error('Coordinates must contain numbers');
             if (ring[ring.length - 1][j] !== ring[0][j]) {
@@ -206,7 +272,7 @@ export function featureCollection(features, bbox, id) {
     if (bbox && bbox.length !== 4) throw new Error('bbox must be an Array of 4 numbers');
     if (id && ['string', 'number'].indexOf(typeof id) === -1) throw new Error('id must be a number or a string');
 
-    const fc = {type: 'FeatureCollection'};
+    var fc = {type: 'FeatureCollection'};
     if (id) fc.id = id;
     if (bbox) fc.bbox = bbox;
     fc.features = features;
@@ -322,36 +388,6 @@ export function geometryCollection(geometries, properties, bbox, id) {
     }, properties, bbox, id);
 }
 
-// https://en.wikipedia.org/wiki/Great-circle_distance#Radius_for_spherical_Earth
-const factors = {
-    miles: 3960,
-    nauticalmiles: 3441.145,
-    degrees: 57.2957795,
-    radians: 1,
-    inches: 250905600,
-    yards: 6969600,
-    meters: 6373000,
-    metres: 6373000,
-    centimeters: 6.373e+8,
-    centimetres: 6.373e+8,
-    kilometers: 6373,
-    kilometres: 6373,
-    feet: 20908792.65
-};
-
-const areaFactors = {
-    kilometers: 0.000001,
-    kilometres: 0.000001,
-    meters: 1,
-    metres: 1,
-    centimetres: 10000,
-    millimeter: 1000000,
-    acres: 0.000247105,
-    miles: 3.86e-7,
-    yards: 1.195990046,
-    feet: 10.763910417,
-    inches: 1550.003100006
-};
 /**
  * Round number to precision
  *
@@ -368,7 +404,7 @@ const areaFactors = {
 export function round(num, precision) {
     if (num === undefined || num === null || isNaN(num)) throw new Error('num is required');
     if (precision && !(precision >= 0)) throw new Error('precision must be a positive number');
-    const multiplier = Math.pow(10, precision || 0);
+    var multiplier = Math.pow(10, precision || 0);
     return Math.round(num * multiplier) / multiplier;
 }
 
@@ -378,14 +414,15 @@ export function round(num, precision) {
  *
  * @name radiansToDistance
  * @param {number} radians in radians across the sphere
- * @param {string} [units=kilometers] can be degrees, radians, miles, or kilometers inches, yards, metres, meters, kilometres, kilometers.
+ * @param {string} [units='kilometers'] can be degrees, radians, miles, or kilometers inches, yards, metres, meters, kilometres, kilometers.
  * @returns {number} distance
  */
 export function radiansToDistance(radians, units) {
     if (radians === undefined || radians === null) throw new Error('radians is required');
 
-    const factor = factors[units || 'kilometers'];
-    if (!factor) throw new Error('units is invalid');
+    if (units && typeof units !== 'string') throw new Error('units must be a string');
+    var factor = factors[units || 'kilometers'];
+    if (!factor) throw new Error(units + ' units is invalid');
     return radians * factor;
 }
 
@@ -395,14 +432,15 @@ export function radiansToDistance(radians, units) {
  *
  * @name distanceToRadians
  * @param {number} distance in real units
- * @param {string} [units=kilometers] can be degrees, radians, miles, or kilometers inches, yards, metres, meters, kilometres, kilometers.
+ * @param {string} [units='kilometers'] can be degrees, radians, miles, or kilometers inches, yards, metres, meters, kilometres, kilometers.
  * @returns {number} radians
  */
 export function distanceToRadians(distance, units) {
     if (distance === undefined || distance === null) throw new Error('distance is required');
 
-    const factor = factors[units || 'kilometers'];
-    if (!factor) throw new Error('units is invalid');
+    if (units && typeof units !== 'string') throw new Error('units must be a string');
+    var factor = factors[units || 'kilometers'];
+    if (!factor) throw new Error(units + ' units is invalid');
     return distance / factor;
 }
 
@@ -412,7 +450,7 @@ export function distanceToRadians(distance, units) {
  *
  * @name distanceToDegrees
  * @param {number} distance in real units
- * @param {string} [units=kilometers] can be degrees, radians, miles, or kilometers inches, yards, metres, meters, kilometres, kilometers.
+ * @param {string} [units='kilometers'] can be degrees, radians, miles, or kilometers inches, yards, metres, meters, kilometres, kilometers.
  * @returns {number} degrees
  */
 export function distanceToDegrees(distance, units) {
@@ -430,7 +468,7 @@ export function distanceToDegrees(distance, units) {
 export function bearingToAngle(bearing) {
     if (bearing === null || bearing === undefined) throw new Error('bearing is required');
 
-    let angle = bearing % 360;
+    var angle = bearing % 360;
     if (angle < 0) angle += 360;
     return angle;
 }
@@ -445,7 +483,7 @@ export function bearingToAngle(bearing) {
 export function radians2degrees(radians) {
     if (radians === null || radians === undefined) throw new Error('radians is required');
 
-    const degrees = radians % (2 * Math.PI);
+    var degrees = radians % (2 * Math.PI);
     return degrees * 180 / Math.PI;
 }
 
@@ -459,10 +497,9 @@ export function radians2degrees(radians) {
 export function degrees2radians(degrees) {
     if (degrees === null || degrees === undefined) throw new Error('degrees is required');
 
-    const radians = degrees % 360;
+    var radians = degrees % 360;
     return radians * Math.PI / 180;
 }
-
 
 /**
  * Converts a distance to the requested unit.
@@ -470,14 +507,14 @@ export function degrees2radians(degrees) {
  *
  * @param {number} distance to be converted
  * @param {string} originalUnit of the distance
- * @param {string} [finalUnit=kilometers] returned unit
+ * @param {string} [finalUnit='kilometers'] returned unit
  * @returns {number} the converted distance
  */
 export function convertDistance(distance, originalUnit, finalUnit) {
     if (distance === null || distance === undefined) throw new Error('distance is required');
     if (!(distance >= 0)) throw new Error('distance must be a positive number');
 
-    const convertedDistance = radiansToDistance(distanceToRadians(distance, originalUnit), finalUnit || 'kilometers');
+    var convertedDistance = radiansToDistance(distanceToRadians(distance, originalUnit), finalUnit || 'kilometers');
     return convertedDistance;
 }
 
@@ -485,18 +522,18 @@ export function convertDistance(distance, originalUnit, finalUnit) {
  * Converts a area to the requested unit.
  * Valid units: kilometers, kilometres, meters, metres, centimetres, millimeter, acre, mile, yard, foot, inch
  * @param {number} area to be converted
- * @param {string} [originalUnit=meters] of the distance
- * @param {string} [finalUnit=kilometers] returned unit
+ * @param {string} [originalUnit='meters'] of the distance
+ * @param {string} [finalUnit='kilometers'] returned unit
  * @returns {number} the converted distance
  */
 export function convertArea(area, originalUnit, finalUnit) {
     if (area === null || area === undefined) throw new Error('area is required');
     if (!(area >= 0)) throw new Error('area must be a positive number');
 
-    const startFactor = areaFactors[originalUnit || 'meters'];
+    var startFactor = areaFactors[originalUnit || 'meters'];
     if (!startFactor) throw new Error('invalid original units');
 
-    const finalFactor = areaFactors[finalUnit || 'kilometers'];
+    var finalFactor = areaFactors[finalUnit || 'kilometers'];
     if (!finalFactor) throw new Error('invalid final units');
 
     return (area / startFactor) * finalFactor;

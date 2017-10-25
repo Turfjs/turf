@@ -9,5 +9,5 @@ const steps = 10;
 const units = 'miles'
 
 linearc(center, radius, bearing1, bearing2);
-linearc(center, radius, bearing1, bearing2, steps);
-linearc(center, radius, bearing1, bearing2, steps, units);
+linearc(center, radius, bearing1, bearing2, {steps});
+linearc(center, radius, bearing1, bearing2, {steps, units});

@@ -1,4 +1,4 @@
-var simplepolygon = require('simplepolygon');
+import simplepolygon from './simplepolygon';
 import { flattenEach, featureEach } from '@turf/meta';
 import { polygon, featureCollection } from '@turf/helpers';
 
@@ -17,7 +17,7 @@ import { polygon, featureCollection } from '@turf/helpers';
  * //addToMap
  * var addToMap = [poly, result]
  */
-export default function (geojson) {
+function unkinkPolygon(geojson) {
     var features = [];
     flattenEach(geojson, function (feature) {
         if (feature.geometry.type !== 'Polygon') return;
@@ -27,3 +27,5 @@ export default function (geojson) {
     });
     return featureCollection(features);
 }
+
+export default unkinkPolygon;

@@ -1,24 +1,17 @@
-/// <reference types="geojson" />
-
-import {
-    Units,
-    FeatureCollection,
-    Point,
-    Feature
-} from '@turf/helpers';
-
-export interface Output {
-    type: 'FeatureCollection'
-    features: DbscanPoint[];
-}
+import { Units, FeatureCollection, Point, Feature } from '@turf/helpers';
 
 export type Dbscan = 'core' | 'edge' | 'noise'
+export interface DbscanProps {
+    dbscan?: Dbscan;
+    cluster?: number;
+    [key: string]: any;
+}
 export interface DbscanPoint extends Feature<Point> {
-    properties: {
-        dbscan?: Dbscan;
-        cluster?: number;
-        [key: string]: any;
-    }
+    properties: DbscanProps
+}
+export interface DbscanPoints {
+    type: 'FeatureCollection'
+    features: DbscanPoint[];
 }
 
 /**
@@ -27,7 +20,9 @@ export interface DbscanPoint extends Feature<Point> {
 export default function (
     points: FeatureCollection<Point>,
     maxDistance: number,
-    units?: Units,
-    minPoints?: number
-): Output;
+    options?: {
+        units?: Units,
+        minPoints?: number
+    }
+): DbscanPoints;
 

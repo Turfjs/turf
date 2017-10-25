@@ -1,16 +1,13 @@
-/// <reference types="geojson" />
-
-import {Units} from '@turf/helpers'
-
-export { Units }
-export type Point = GeoJSON.Feature<GeoJSON.Point> | GeoJSON.Point | number[];
-export type LineString = GeoJSON.Feature<GeoJSON.LineString> | GeoJSON.LineString;
+import { Feature, LineString, Units, Coord } from '@turf/helpers'
 
 /**
- * http://turfjs.org/docs/#pointto-line-distance
+ * http://turfjs.org/docs/#pointtolinedistance
  */
 export default function pointToLineDistance(
-    point: Point,
-    line: LineString,
-    units?: Units,
-    mercator?: boolean): number;
+    pt: Coord,
+    line: Feature<LineString> | LineString,
+    options?: {
+        units?: Units,
+        mercator?: boolean
+    }
+): number;

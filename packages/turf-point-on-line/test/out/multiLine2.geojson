@@ -84,9 +84,9 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"dist": 391.064911,
+				"dist": 390.942725,
 				"index": 0,
-				"location": 1656.657319,
+				"location": 1656.139708,
 				"marker-color": "#F0F"
 			},
 			"geometry": {

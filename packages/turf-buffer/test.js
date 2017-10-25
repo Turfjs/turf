@@ -32,7 +32,7 @@ test('turf-buffer', t => {
         const units = properties.units || 'miles';
         const steps = properties.steps;
 
-        const buffered = truncate(buffer(geojson, radius, units, steps));
+        const buffered = truncate(buffer(geojson, radius, {units: units, steps: steps}));
 
         // Add Results to FeatureCollection
         const results = featureCollection([]);
@@ -88,8 +88,8 @@ test('turf-buffer - Prevent Input Mutation', t => {
 test('turf-buffer - morphological closing', t => {
     const poly = polygon([[[11, 0], [22, 4], [31, 0], [31, 11], [21, 15], [11, 11], [11, 0]]]);
 
-    t.equal(buffer(poly, -500, 'miles'), undefined, 'empty geometry should be undefined');
-    t.deepEqual(buffer(featureCollection([poly]), -500, 'miles'), featureCollection([]), 'empty geometries should be an empty FeatureCollection');
+    t.equal(buffer(poly, -500, {units: 'miles'}), undefined, 'empty geometry should be undefined');
+    t.deepEqual(buffer(featureCollection([poly]), -500, {units: 'miles'}), featureCollection([]), 'empty geometries should be an empty FeatureCollection');
     t.end();
 });
 

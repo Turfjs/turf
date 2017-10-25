@@ -1,48 +1,4 @@
-/**
- * GeoJSON BBox
- *
- * @private
- * @typedef {[number, number, number, number]} BBox
- */
-
-/**
- * GeoJSON Id
- *
- * @private
- * @typedef {(number|string)} Id
- */
-
-/**
- * GeoJSON FeatureCollection
- *
- * @private
- * @typedef {Object} FeatureCollection
- * @property {string} type
- * @property {?Id} id
- * @property {?BBox} bbox
- * @property {Feature[]} features
- */
-
-/**
- * GeoJSON Feature
- *
- * @private
- * @typedef {Object} Feature
- * @property {string} type
- * @property {?Id} id
- * @property {?BBox} bbox
- * @property {*} properties
- * @property {Geometry} geometry
- */
-
-/**
- * GeoJSON Geometry
- *
- * @private
- * @typedef {Object} Geometry
- * @property {string} type
- * @property {any[]} coordinates
- */
+import { feature, lineString } from '@turf/helpers';
 
 /**
  * Callback for coordEach
@@ -436,9 +392,11 @@ export function coordAll(geojson) {
  *
  * @callback geomEachCallback
  * @param {Geometry} currentGeometry The current geometry being processed.
- * @param {number} currentIndex The index of the current element being processed in the
+ * @param {number} featureIndex The index of the current element being processed in the
  * array. Starts at index 0, if an initialValue is provided, and at index 1 otherwise.
- * @param {number} currentProperties The current feature properties being processed.
+ * @param {Object} featureProperties The current feature properties being processed.
+ * @param {Array<number>} featureBBox The current feature BBox being processed.
+ * @param {number|string} featureId The current feature Id being processed.
  */
 
 /**
@@ -463,7 +421,9 @@ export function geomEach(geojson, callback) {
     var i, j, g, geometry, stopG,
         geometryMaybeCollection,
         isGeometryCollection,
-        geometryProperties,
+        featureProperties,
+        featureBBox,
+        featureId,
         featureIndex = 0,
         isFeatureCollection = geojson.type === 'FeatureCollection',
         isFeature = geojson.type === 'Feature',
@@ -485,8 +445,12 @@ export function geomEach(geojson, callback) {
 
         geometryMaybeCollection = (isFeatureCollection ? geojson.features[i].geometry :
             (isFeature ? geojson.geometry : geojson));
-        geometryProperties = (isFeatureCollection ? geojson.features[i].properties :
+        featureProperties = (isFeatureCollection ? geojson.features[i].properties :
             (isFeature ? geojson.properties : {}));
+        featureBBox = (isFeatureCollection ? geojson.features[i].bbox :
+            (isFeature ? geojson.bbox : undefined));
+        featureId = (isFeatureCollection ? geojson.features[i].id :
+            (isFeature ? geojson.id : undefined));
         isGeometryCollection = (geometryMaybeCollection) ? geometryMaybeCollection.type === 'GeometryCollection' : false;
         stopG = isGeometryCollection ? geometryMaybeCollection.geometries.length : 1;
 
@@ -496,7 +460,7 @@ export function geomEach(geojson, callback) {
 
             // Handle null Geometry
             if (geometry === null) {
-                callback(null, featureIndex, geometryProperties);
+                callback(null, featureIndex, featureProperties, featureBBox, featureId);
                 continue;
             }
             switch (geometry.type) {
@@ -506,12 +470,12 @@ export function geomEach(geojson, callback) {
             case 'Polygon':
             case 'MultiLineString':
             case 'MultiPolygon': {
-                callback(geometry, featureIndex, geometryProperties);
+                callback(geometry, featureIndex, featureProperties, featureBBox, featureId);
                 break;
             }
             case 'GeometryCollection': {
                 for (j = 0; j < geometry.geometries.length; j++) {
-                    callback(geometry.geometries[j], featureIndex, geometryProperties);
+                    callback(geometry.geometries[j], featureIndex, featureProperties, featureBBox, featureId);
                 }
                 break;
             }
@@ -609,7 +573,7 @@ export function geomReduce(geojson, callback, initialValue) {
  * });
  */
 export function flattenEach(geojson, callback) {
-    geomEach(geojson, function (geometry, featureIndex, properties) {
+    geomEach(geojson, function (geometry, featureIndex, properties, bbox, id) {
         // Callback for single geometry
         var type = (geometry === null) ? null : geometry.type;
         switch (type) {
@@ -617,7 +581,7 @@ export function flattenEach(geojson, callback) {
         case 'Point':
         case 'LineString':
         case 'Polygon':
-            callback(feature(geometry, properties), featureIndex, 0);
+            callback(feature(geometry, properties, bbox, id), featureIndex, 0);
             return;
         }
 
@@ -820,53 +784,13 @@ export function segmentReduce(geojson, callback, initialValue) {
 }
 
 /**
- * Create Feature
- *
- * @private
- * @param {Geometry} geometry GeoJSON Geometry
- * @param {Object} properties Properties
- * @returns {Feature} GeoJSON Feature
- */
-export function feature(geometry, properties) {
-    if (geometry === undefined) throw new Error('No geometry passed');
-
-    return {
-        type: 'Feature',
-        properties: properties || {},
-        geometry: geometry
-    };
-}
-
-/**
- * Create LineString
- *
- * @private
- * @param {Array<Array<number>>} coordinates Line Coordinates
- * @param {Object} properties Properties
- * @returns {Feature<LineString>} GeoJSON LineString Feature
- */
-export function lineString(coordinates, properties) {
-    if (!coordinates) throw new Error('No coordinates passed');
-    if (coordinates.length < 2) throw new Error('Coordinates must be an array of two or more positions');
-
-    return {
-        type: 'Feature',
-        properties: properties || {},
-        geometry: {
-            type: 'LineString',
-            coordinates: coordinates
-        }
-    };
-}
-
-
-/**
  * Callback for lineEach
  *
  * @callback lineEachCallback
  * @param {Feature<LineString>} currentLine The current LineString|LinearRing being processed.
- * @param {number} lineIndex The index of the current element being processed in the array, starts at index 0.
- * @param {number} lineSubIndex The sub-index of the current line being processed at index 0
+ * @param {number} featureIndex The feature index of the current element being processed in the array, starts at index 0.
+ * @param {number} featureSubIndex The feature sub-index of the current line being processed at index 0
+ * @param {number} lineIndex The current line being processed at index 0
  */
 
 /**
@@ -875,50 +799,39 @@ export function lineString(coordinates, properties) {
  *
  * @name lineEach
  * @param {Geometry|Feature<LineString|Polygon|MultiLineString|MultiPolygon>} geojson object
- * @param {Function} callback a method that takes (currentLine, lineIndex, lineSubIndex)
+ * @param {Function} callback a method that takes (currentLine, featureIndex, featureSubIndex, lineIndex)
  * @example
- * var mtLn = turf.multiLineString([
- *   turf.lineString([[26, 37], [35, 45]]),
- *   turf.lineString([[36, 53], [38, 50], [41, 55]])
+ * var multiLine = turf.multiLineString([
+ *   [[26, 37], [35, 45]],
+ *   [[36, 53], [38, 50], [41, 55]]
  * ]);
  *
- * turf.lineEach(mtLn, function (currentLine, lineIndex) {
+ * turf.lineEach(multiLine, function (currentLine, featureIndex, featureSubIndex, lineIndex) {
  *   //=currentLine
+ *   //=featureIndex
+ *   //=featureSubIndex
  *   //=lineIndex
  * });
  */
 export function lineEach(geojson, callback) {
     // validation
     if (!geojson) throw new Error('geojson is required');
-    var type = geojson.geometry ? geojson.geometry.type : geojson.type;
-    if (!type) throw new Error('invalid geojson');
-    if (type === 'FeatureCollection') throw new Error('FeatureCollection is not supported');
-    if (type === 'GeometryCollection') throw new Error('GeometryCollection is not supported');
-    var coordinates = geojson.geometry ? geojson.geometry.coordinates : geojson.coordinates;
-    if (!coordinates) throw new Error('geojson must contain coordinates');
 
-    switch (type) {
-    case 'LineString':
-        callback(coordinates, 0, 0);
-        return;
-    case 'Polygon':
-    case 'MultiLineString':
-        var subIndex = 0;
-        for (var line = 0; line < coordinates.length; line++) {
-            if (type === 'MultiLineString') subIndex = line;
-            callback(coordinates[line], line, subIndex);
-        }
-        return;
-    case 'MultiPolygon':
-        for (var multi = 0; multi < coordinates.length; multi++) {
-            for (var ring = 0; ring < coordinates[multi].length; ring++) {
-                callback(coordinates[multi][ring], ring, multi);
+    flattenEach(geojson, function (feature, featureIndex, featureSubIndex) {
+        if (feature.geometry === null) return;
+        var type = feature.geometry.type;
+        var coords = feature.geometry.coordinates;
+        switch (type) {
+        case 'LineString':
+            callback(feature, featureIndex, featureSubIndex, 0);
+            break;
+        case 'Polygon':
+            for (var lineIndex = 0; lineIndex < coords.length; lineIndex++) {
+                callback(lineString(coords[lineIndex], feature.properties), featureIndex, featureSubIndex, lineIndex);
             }
+            break;
         }
-        return;
-    default:
-        throw new Error(type + ' geometry not supported');
-    }
+    });
 }
 
 /**
@@ -939,9 +852,9 @@ export function lineEach(geojson, callback) {
  * @param {*} previousValue The accumulated value previously returned in the last invocation
  * of the callback, or initialValue, if supplied.
  * @param {Feature<LineString>} currentLine The current LineString|LinearRing being processed.
- * @param {number} lineIndex The index of the current element being processed in the
- * array. Starts at index 0, if an initialValue is provided, and at index 1 otherwise.
- * @param {number} lineSubIndex The sub-index of the current line being processed at index 0
+ * @param {number} featureIndex The feature index of the current element being processed in the array, starts at index 0.
+ * @param {number} featureSubIndex The feature sub-index of the current line being processed at index 0
+ * @param {number} lineIndex The current line being processed at index 0
  */
 
 /**
@@ -958,19 +871,20 @@ export function lineEach(geojson, callback) {
  *   turf.polygon([[[5, 5], [0, 0], [2, 2], [4, 4], [5, 5]]])
  * ]);
  *
- * turf.lineReduce(mtp, function (previousValue, currentLine, lineIndex, lineSubIndex) {
+ * turf.lineReduce(mtp, function (previousValue, currentLine, featureIndex, featureSubIndex, lineIndex) {
  *   //=previousValue
  *   //=currentLine
+ *   //=featureIndex
+ *   //=featureSubIndex
  *   //=lineIndex
- *   //=lineSubIndex
  *   return currentLine
  * }, 2);
  */
 export function lineReduce(geojson, callback, initialValue) {
     var previousValue = initialValue;
-    lineEach(geojson, function (currentLine, lineIndex, lineSubIndex) {
-        if (lineIndex === 0 && initialValue === undefined) previousValue = currentLine;
-        else previousValue = callback(previousValue, currentLine, lineIndex, lineSubIndex);
+    lineEach(geojson, function (currentLine, featureIndex, featureSubIndex, lineIndex) {
+        if (featureIndex === 0 && initialValue === undefined) previousValue = currentLine;
+        else previousValue = callback(previousValue, currentLine, featureIndex, featureSubIndex, lineIndex);
     });
     return previousValue;
 }

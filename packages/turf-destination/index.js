@@ -1,7 +1,7 @@
 //http://en.wikipedia.org/wiki/Haversine_formula
 //http://www.movable-type.co.uk/scripts/latlong.html
 import { getCoord } from '@turf/invariant';
-import { point, distanceToRadians } from '@turf/helpers';
+import { point, distanceToRadians, isObject } from '@turf/helpers';
 
 /**
  * Takes a {@link Point} and calculates the location of a destination point given a distance in degrees, radians, miles, or kilometers; and bearing in degrees. This uses the [Haversine formula](http://en.wikipedia.org/wiki/Haversine_formula) to account for global curvature.
@@ -10,22 +10,28 @@ import { point, distanceToRadians } from '@turf/helpers';
  * @param {Geometry|Feature<Point>|Array<number>} origin starting point
  * @param {number} distance distance from the origin point
  * @param {number} bearing ranging from -180 to 180
- * @param {string} [units=kilometers] miles, kilometers, degrees, or radians
+ * @param {Object} [options={}] Optional parameters
+ * @param {string} [options.units='kilometers'] miles, kilometers, degrees, or radians
  * @returns {Feature<Point>} destination point
  * @example
  * var point = turf.point([-75.343, 39.984]);
  * var distance = 50;
  * var bearing = 90;
- * var units = 'miles';
+ * var options = {units: 'miles'};
  *
- * var destination = turf.destination(point, distance, bearing, units);
+ * var destination = turf.destination(point, distance, bearing, options);
  *
  * //addToMap
  * var addToMap = [point, destination]
  * destination.properties['marker-color'] = '#f00';
  * point.properties['marker-color'] = '#0f0';
  */
-export default function (origin, distance, bearing, units) {
+function destination(origin, distance, bearing, options) {
+    // Optional parameters
+    options = options || {};
+    if (!isObject(options)) throw new Error('options is invalid');
+    var units = options.units;
+
     var degrees2radians = Math.PI / 180;
     var radians2degrees = 180 / Math.PI;
     var coordinates1 = getCoord(origin);
@@ -42,3 +48,5 @@ export default function (origin, distance, bearing, units) {
 
     return point([radians2degrees * longitude2, radians2degrees * latitude2]);
 }
+
+export default destination;

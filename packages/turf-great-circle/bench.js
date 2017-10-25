@@ -1,6 +1,6 @@
-const Benchmark = require('benchmark');
-const {point} = require('@turf/helpers');
-const greatCircle = require('./');
+import Benchmark from 'benchmark';
+import { point } from '@turf/helpers';
+import greatCircle from './';
 
 const point1 = point([-75, 45]);
 const point2 = point([30, 45]);

@@ -1,27 +1,21 @@
-/// <reference types="geojson" />
-
-import { Units } from '@turf/helpers'
-
-export type LineString = GeoJSON.LineString;
-export type MultiLineString = GeoJSON.MultiLineString;
-export type GeometryObject = GeoJSON.GeometryObject;
-export type GeometryCollection = GeoJSON.GeometryCollection;
-export type Feature<Geom extends GeometryObject> = GeoJSON.Feature<Geom>;
-export type FeatureCollection<Geom extends GeometryObject> = GeoJSON.FeatureCollection<Geom>;
-export type Geoms = LineString | MultiLineString;
-export interface FeatureGeometryCollection extends GeoJSON.Feature<any> {
-  geometry: GeometryCollection
-}
-
-// Input & Output
-export type Input = Feature<Geoms> | FeatureCollection<Geoms> | Geoms | GeometryCollection | FeatureGeometryCollection;
-export type Output = FeatureCollection<LineString>;
+import {
+    LineString,
+    MultiLineString,
+    GeometryCollection,
+    Units,
+    Feature,
+    FeatureCollection,
+    FeatureGeometryCollection
+} from '@turf/helpers'
 
 /**
  * http://turfjs.org/docs/#linechunk
  */
-export default function lineChunk(
-    geojson: Input,
+export default function lineChunk<T extends LineString | MultiLineString>(
+    geojson: Feature<T> | FeatureCollection<T> | T | GeometryCollection| FeatureGeometryCollection,
     segmentLength: number,
-    unit?: Units,
-    reverse?: boolean): Output;
+    options?: {
+        units?: Units,
+        reverse?: boolean
+    }
+): FeatureCollection<LineString>;

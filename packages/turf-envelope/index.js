@@ -5,7 +5,7 @@ import bboxPolygon from '@turf/bbox-polygon';
  * Takes any number of features and returns a rectangular {@link Polygon} that encompasses all vertices.
  *
  * @name envelope
- * @param {FeatureCollection|Feature<any>} geojson input features
+ * @param {GeoJSON} geojson input features
  * @returns {Feature<Polygon>} a rectangular Polygon feature that encompasses all vertices
  * @example
  * var features = turf.featureCollection([
@@ -19,6 +19,8 @@ import bboxPolygon from '@turf/bbox-polygon';
  * //addToMap
  * var addToMap = [features, enveloped];
  */
-export default function (geojson) {
+function envelope(geojson) {
     return bboxPolygon(bbox(geojson));
 }
+
+export default envelope;

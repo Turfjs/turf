@@ -4,7 +4,7 @@ import path from 'path';
 import load from 'load-json-file';
 import write from 'write-json-file';
 import centroid from '@turf/centroid';
-import chromatism from 'chromatism';
+import * as chromatism from 'chromatism';
 import concaveman from 'concaveman';
 import { point, polygon, featureCollection } from '@turf/helpers';
 import { clusterReduce, clusterEach } from '@turf/clusters';
@@ -35,8 +35,7 @@ test('clusters-dbscan', t => {
         const units = properties.units;
 
         // console.log(geojson.features.length);
-        const clustered = clustersDbscan(geojson, distance, units, minPoints);
-        // console.log(clustered.points.features.length);
+        const clustered = clustersDbscan(geojson, distance, {units: units, minPoints: minPoints});
         const result = styleResult(clustered);
 
         if (process.env.REGEN) write.sync(directories.out + filename, result);
@@ -58,20 +57,20 @@ test('clusters-dbscan -- throws', t => {
     t.throws(() => clustersDbscan(points), /maxDistance is required/);
     t.throws(() => clustersDbscan(points, -4), /Invalid maxDistance/);
     t.throws(() => clustersDbscan(points, 'foo'), /Invalid maxDistance/);
-    t.throws(() => clustersDbscan(points, 1, 'nanometers'), /units is invalid/);
-    t.throws(() => clustersDbscan(points, 1, null, 0), /Invalid minPoints/);
-    t.throws(() => clustersDbscan(points, 1, 'miles', 'baz'), /Invalid minPoints/);
+    t.throws(() => clustersDbscan(points, 1, {units: 'nanometers'}), /units is invalid/);
+    t.throws(() => clustersDbscan(points, 1, {units: null, minPoints: 0}), /Invalid minPoints/);
+    t.throws(() => clustersDbscan(points, 1, {units: 'miles', minPoints: 'baz'}), /Invalid minPoints/);
     t.end();
 });
 
 test('clusters-dbscan -- prevent input mutation', t => {
-    clustersDbscan(points, 2, 'kilometers', 1);
+    clustersDbscan(points, 2, {units: 'kilometers', minPoints: 1});
     t.true(points.features[0].properties.cluster === undefined, 'cluster properties should be undefined');
     t.end();
 });
 
 test('clusters-dbscan -- translate properties', t => {
-    t.equal(clustersDbscan(points, 2, 'kilometers', 1).features[0].properties.foo, 'bar');
+    t.equal(clustersDbscan(points, 2, {units: 'kilometers', minPoints: 1}).features[0].properties.foo, 'bar');
     t.end();
 });
 

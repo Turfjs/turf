@@ -2,19 +2,19 @@
   "name": "@turf/clusters-kmeans",
   "version": "4.7.3",
   "description": "turf clusters-kmeans module",
-  "main": "index.es5.js",
-  "module": "index.js",
-  "jsnext:main": "index.js",
+  "main": "main",
+  "module": "index",
+  "jsnext:main": "index",
   "types": "index.d.ts",
   "files": [
     "index.js",
     "index.d.ts",
-    "index.es5.js"
+    "main.js"
   ],
   "scripts": {
     "pretest": "rollup -c ../../rollup.config.js",
-    "test": "node test.es5.js",
-    "bench": "node bench.js"
+    "test": "node -r @std/esm test.js",
+    "bench": "node -r @std/esm bench.js"
   },
   "repository": {
     "type": "git",
@@ -42,7 +42,7 @@
   "devDependencies": {
     "@turf/centroid": "*",
     "@turf/clusters": "*",
-    "@turf/helpers": "5.0.0-alpha",
+    "@turf/helpers": "*",
     "@turf/random": "*",
     "benchmark": "*",
     "chromatism": "*",
@@ -51,12 +51,17 @@
     "matrix-to-grid": "*",
     "tape": "*",
     "write-json-file": "*",
-    "rollup": "*"
+    "rollup": "*",
+    "@std/esm": "*"
   },
   "dependencies": {
     "@turf/clone": "^4.7.3",
-    "@turf/invariant": "5.0.0-alpha",
-    "@turf/meta": "5.0.0-alpha",
+    "@turf/invariant": "5.x",
+    "@turf/meta": "5.x",
     "skmeans": "0.9.7"
+  },
+  "@std/esm": {
+    "esm": "js",
+    "cjs": true
   }
 }

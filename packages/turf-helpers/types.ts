@@ -22,6 +22,7 @@ import {
     convertArea,
     isNumber,
     isObject,
+    earthRadius,
     // Typescript types
     Point,
     LineString,

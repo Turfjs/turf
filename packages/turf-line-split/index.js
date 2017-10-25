@@ -1,12 +1,12 @@
-import { featureEach, featureReduce} from '@turf/meta';
-var rbush = require('geojson-rbush');
-import { lineString, featureCollection } from '@turf/helpers';
+import rbush from 'geojson-rbush';
 import flatten from '@turf/flatten';
 import truncate from '@turf/truncate';
-import { getCoords, getType } from '@turf/invariant';
 import lineSegment from '@turf/line-segment';
 import pointOnLine from '@turf/point-on-line';
 import lineIntersect from '@turf/line-intersect';
+import { getCoords, getType } from '@turf/invariant';
+import { featureEach, featureReduce} from '@turf/meta';
+import { lineString, featureCollection } from '@turf/helpers';
 
 /**
  * Split a LineString by another GeoJSON Feature.
@@ -24,7 +24,7 @@ import lineIntersect from '@turf/line-intersect';
  * //addToMap
  * var addToMap = [line, splitter]
  */
-export default function (line, splitter) {
+function lineSplit(line, splitter) {
     if (!line) throw new Error('line is required');
     if (!splitter) throw new Error('splitter is required');
 
@@ -37,7 +37,7 @@ export default function (line, splitter) {
 
     // remove excessive decimals from splitter
     // to avoid possible approximation issues in rbush
-    var truncatedSplitter = truncate(splitter, 7);
+    var truncatedSplitter = truncate(splitter, {precision: 7});
 
     switch (splitterType) {
     case 'Point':
@@ -192,3 +192,5 @@ function findClosestFeature(point, lines) {
 function pointsEquals(pt1, pt2) {
     return pt1[0] === pt2[0] && pt1[1] === pt2[1];
 }
+
+export default lineSplit;

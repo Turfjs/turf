@@ -1,6 +1,6 @@
-const Benchmark = require('benchmark');
-const {point, lineString, polygon, featureCollection} = require('@turf/helpers');
-const clone = require('./');
+import Benchmark from 'benchmark';
+import { point, lineString, polygon, featureCollection } from '@turf/helpers';
+import clone from './';
 
 const fixtures = [
     point([0, 20]),

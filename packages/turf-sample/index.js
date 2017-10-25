@@ -9,9 +9,7 @@ import { featureCollection } from '@turf/helpers';
  * @param {number} num number of features to select
  * @returns {FeatureCollection} a FeatureCollection with `n` features
  * @example
- * var points = turf.random('points', 100, {
- *   bbox: [-80, 30, -60, 60]
- * });
+ * var points = turf.randomPoint(100, {bbox: [-80, 30, -60, 60]});
  *
  * var sample = turf.sample(points, 5);
  *
@@ -22,7 +20,7 @@ import { featureCollection } from '@turf/helpers';
  *   currentFeature.properties['marker-color'] = '#000';
  * });
  */
-export default function (featurecollection, num) {
+function sample(featurecollection, num) {
     if (!featurecollection) throw new Error('featurecollection is required');
     if (num === null || num === undefined) throw new Error('num is required');
     if (typeof num !== 'number') throw new Error('num must be a number');
@@ -41,3 +39,5 @@ function getRandomSubarray(arr, size) {
     }
     return shuffled.slice(min);
 }
+
+export default sample;

@@ -15,7 +15,7 @@ import { polygon } from '@turf/helpers';
  * //addToMap
  * var addToMap = [poly, triangles]
  */
-export default function (poly) {
+function tesselate(poly) {
     if (!poly.geometry || (poly.geometry.type !== 'Polygon' && poly.geometry.type !== 'MultiPolygon')) {
         throw new Error('input must be a Polygon or MultiPolygon');
     }
@@ -72,3 +72,5 @@ function flattenCoords(data) {
 
     return result;
 }
+
+export default tesselate;

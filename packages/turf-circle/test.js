@@ -1,10 +1,11 @@
-import test from 'tape';
 import fs from 'fs';
+import test from 'tape';
 import path from 'path';
 import load from 'load-json-file';
 import write from 'write-json-file';
 import truncate from '@turf/truncate';
 import { featureCollection } from '@turf/helpers';
+import geojsonhint from '@mapbox/geojsonhint';
 import circle from '.';
 
 const directories = {
@@ -27,14 +28,20 @@ test('turf-circle', t => {
         const geojson = fixture.geojson;
         const properties = geojson.properties || {};
         const radius = properties.radius;
-        const steps = properties.steps;
+        const steps = properties.steps || 64;
         const units = properties.units;
 
-        const C = truncate(circle(geojson, radius, steps, units));
+        const C = truncate(circle(geojson, radius, {steps: steps, units: units}));
         const results = featureCollection([geojson, C]);
 
         if (process.env.REGEN) write.sync(directories.out + filename, results);
         t.deepEquals(results, load.sync(directories.out + filename), name);
     });
+    t.end();
+});
+
+test('turf-circle -- validate geojson', t => {
+    const C = circle([0, 0], 100);
+    geojsonhint.hint(C).forEach(hint => t.fail(hint.message));
     t.end();
 });

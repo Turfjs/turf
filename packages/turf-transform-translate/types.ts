@@ -14,6 +14,6 @@ translate(poly.geometry, 100, 35);
 translate(featureCollection([poly]), 100, 35);
 
 // All params
-translate(poly, 100, 35, 'kilometers');
-translate(poly, 100, 35, 'kilometers', 10);
-translate(poly, 100, 35, 'kilometers', 10, true);
+translate(poly, 100, 35, {units: 'kilometers'});
+translate(poly, 100, 35, {units: 'kilometers', zTranslation: 10});
+translate(poly, 100, 35, {units: 'kilometers', zTranslation: 10, mutate: true});

@@ -5,7 +5,7 @@ import { point, featureCollection } from '@turf/helpers';
  * Takes a feature or set of features and returns all positions as {@link Point|points}.
  *
  * @name explode
- * @param {FeatureCollection|Feature<any>} geojson input features
+ * @param {GeoJSON} geojson input features
  * @returns {FeatureCollection<point>} points representing the exploded input features
  * @throws {Error} if it encounters an unknown geometry type
  * @example
@@ -16,7 +16,7 @@ import { point, featureCollection } from '@turf/helpers';
  * //addToMap
  * var addToMap = [polygon, explode]
  */
-export default function (geojson) {
+function explode(geojson) {
     var points = [];
     if (geojson.type === 'FeatureCollection') {
         featureEach(geojson, function (feature) {
@@ -31,3 +31,5 @@ export default function (geojson) {
     }
     return featureCollection(points);
 }
+
+export default explode;

@@ -1,16 +1,15 @@
 {
   "private": true,
-  "version": "4.0.0",
+  "version": "5.0.0",
   "description": "a node.js library for performing geospatial operations with geojson",
   "scripts": {
-    "lint": "eslint packages/turf-*/index.mjs",
-    "postlint": "documentation lint packages/turf-*/index.es5.js && tsc",
-    "pretest": "lerna bootstrap && lerna run pretest && npm run lint",
-    "test": "tap packages/turf-*/test.es5.js",
+    "prelint": "tsc",
+    "lint": "eslint packages/turf-*/index.js",
+    "postlint": "documentation lint packages/turf-*/index.js",
+    "pretest": "lerna bootstrap && npm run lint",
+    "test": "lerna run test",
     "docs": "node ./scripts/generate-readmes",
-    "es6": "npm run es6:import && npm run es6:export",
-    "es6:import": "jscodeshift -t node_modules/5to6-codemod/transforms/cjs.js packages/turf-*/index.js",
-    "es6:export": "jscodeshift -t node_modules/5to6-codemod/transforms/exports.js packages/turf-*/index.js"
+    "5to6": "jscodeshift -t node_modules/5to6-codemod/transforms/cjs.js packages/turf-*/bench.js"
   },
   "repository": {
     "type": "git",
@@ -49,29 +48,30 @@
     "url": "https://github.com/Turfjs/turf/issues"
   },
   "devDependencies": {
-    "5to6-codemod": "^1.7.1",
-    "@types/geojson": "0.0.31",
-    "@types/node": "^8.0.28",
-    "@types/tape": "^4.2.30",
-    "browserify": "^14.4.0",
-    "camelcase": "^4.1.0",
-    "d3-queue": "3.0.7",
-    "decamelize": "^1.2.0",
-    "documentation": "4.0.0-beta7",
-    "eslint": "4.7.2",
-    "eslint-config-mourner": "2.0.3",
-    "fs-extra": "^4.0.0",
-    "jscodeshift": "^0.3.32",
-    "lerna": "2.2.0",
-    "load-json-file": "^3.0.0",
-    "meow": "^3.7.0",
-    "progress": "^2.0.0",
-    "rollup": "^0.50.0",
-    "rollup-plugin-commonjs": "^8.2.1",
-    "rollup-plugin-node-resolve": "^3.0.0",
-    "tap": "^10.3.2",
-    "tape": "^4.6.3",
-    "typescript": "^2.4.1",
-    "uglify-js": "~3.1.1"
+    "5to6-codemod": "*",
+    "@std/esm": "*",
+    "@types/geojson": "*",
+    "@types/node": "*",
+    "@types/tape": "*",
+    "camelcase": "*",
+    "d3-queue": "*",
+    "decamelize": "*",
+    "documentation": "*",
+    "eslint": "*",
+    "eslint-config-mourner": "*",
+    "fs-extra": "*",
+    "jscodeshift": "*",
+    "lerna": "*",
+    "load-json-file": "*",
+    "meow": "*",
+    "progress": "*",
+    "rollup-plugin-node-resolve": "*",
+    "rollup-plugin-uglify-es": "*",
+    "tape": "*",
+    "typescript": "*"
+  },
+  "@std/esm": {
+    "esm": "js",
+    "cjs": true
   }
 }

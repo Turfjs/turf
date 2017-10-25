@@ -1,9 +1,10 @@
-/// <reference types="geojson" />
-
-export type LineString = GeoJSON.Feature<GeoJSON.LineString>;
-export type Point = GeoJSON.Feature<GeoJSON.Point>;
+import { Feature, LineString, Coord } from '@turf/helpers'
 
 /**
  * http://turfjs.org/docs/#lineslice
  */
-export default function lineSlice(startPt: Point, stopPt: Point, line: LineString | GeoJSON.LineString): LineString;
+export default function lineSlice(
+    startPt: Coord,
+    stopPt: Coord,
+    line: Feature<LineString> | LineString
+): Feature<LineString>;

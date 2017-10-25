@@ -17,7 +17,7 @@ import { point, featureCollection } from '@turf/helpers';
  * //addToMap
  * var addToMap = [tangents, point, polygon];
  */
-export default function (pt, polygon) {
+function polygonTangents(pt, polygon) {
     var eprev;
     var enext;
     var rtan;
@@ -83,3 +83,5 @@ function isBelow(point1, point2, point3) {
 function isLeft(point1, point2, point3) {
     return (point2[0] - point1[0]) * (point3[1] - point1[1]) - (point3[0] - point1[0]) * (point2[1] - point1[1]);
 }
+
+export default polygonTangents;

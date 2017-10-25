@@ -15,5 +15,5 @@ flip(line)
 flip(lineGeom)
 flip(lines)
 flip(points)
-flip(geomCollection)
+flip(geomCollection, {mutate: true})
 

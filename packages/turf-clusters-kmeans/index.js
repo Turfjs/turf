@@ -9,23 +9,28 @@ import { collectionOf } from '@turf/invariant';
  *
  * @name clustersKmeans
  * @param {FeatureCollection<Point>} points to be clustered
- * @param {number} [numberOfClusters=Math.sqrt(numberOfPoints/2)] numberOfClusters that will be generated
- * @param {boolean} [mutate=false] allows GeoJSON input to be mutated (significant performance increase if true)
+ * @param {Object} [options={}] Optional parameters
+ * @param {number} [options.numberOfClusters=Math.sqrt(numberOfPoints/2)] numberOfClusters that will be generated
+ * @param {boolean} [options.mutate=false] allows GeoJSON input to be mutated (significant performance increase if true)
  * @returns {FeatureCollection<Point>} Clustered Points with an additional two properties associated to each Feature:
  * - {number} cluster - the associated clusterId
  * - {[number, number]} centroid - Centroid of the cluster [Longitude, Latitude]
  * @example
  * // create random points with random z-values in their properties
- * var points = turf.random('point', 100, {
- *   bbox: [0, 30, 20, 50]
- * });
- * var numberOfClusters = 7;
- * var clustered = turf.clustersKmeans(points, numberOfClusters);
+ * var points = turf.randomPoint(100, {bbox: [0, 30, 20, 50]});
+ * var options = {numberOfClusters: 7};
+ * var clustered = turf.clustersKmeans(points, options);
  *
  * //addToMap
  * var addToMap = [clustered];
  */
-export default function (points, numberOfClusters, mutate) {
+function clustersKmeans(points, options) {
+    // Optional parameters
+    options = options || {};
+    if (typeof options !== 'object') throw new Error('options is invalid');
+    var numberOfClusters = options.numberOfClusters;
+    var mutate = options.mutate;
+
     // Input validation
     collectionOf(points, 'Point', 'Input must contain Points');
 
@@ -64,3 +69,5 @@ export default function (points, numberOfClusters, mutate) {
 
     return points;
 }
+
+export default clustersKmeans;

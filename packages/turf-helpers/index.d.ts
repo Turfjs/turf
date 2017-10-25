@@ -2,13 +2,20 @@
 
 // GeoJSON Foreign Members
 export type Id = string | number;
-export type Properties = {[key: string]: any};
+export type Properties = object;
 export type BBox = [number, number, number, number];
+
+// TurfJS Combined Types
+export type Coord = Feature<Point> | Point | Position;
 
 // TurfJS String Types
 export type Units = 'miles' | 'nauticalmiles' | 'degrees' | 'radians' | 'inches' | 'yards' | 'meters' | 'metres' | 'kilometers' | 'kilometres';
 export type Geometry = 'Point' | 'LineString' | 'Polygon' | 'MultiPoint' | 'MultiLineString' | 'MultiPolygon';
 export type Grid = 'point' | 'square' | 'hex' | 'triangle';
+export type Collection = 'FeatureCollection' | 'GeometryCollection';
+export type Types = 'Feature' | Geometry | Collection;
+export type Corners = 'sw' | 'se' | 'nw' | 'ne' | 'center' | 'centroid';
+
 
 // GeoJSON Geometry Types
 export type Position = GeoJSON.Position;
@@ -18,6 +25,7 @@ export type MultiLineString = GeoJSON.MultiLineString;
 export type LineString = GeoJSON.LineString;
 export type Polygon = GeoJSON.Polygon;
 export type MultiPolygon = GeoJSON.MultiPolygon;
+export type Geometries = Point | MultiPoint | LineString | MultiLineString | Polygon | MultiPolygon;
 export type GeometryObject = GeoJSON.GeometryObject;
 export type GeometryCollection = GeoJSON.GeometryCollection;
 
@@ -27,6 +35,11 @@ export type Feature<T extends GeometryObject> = GeoJSON.Feature<T>;
 export interface FeatureGeometryCollection extends Feature<any> {
     geometry: GeometryCollection;
 }
+export interface ExtendedFeatureCollection<Feat extends Feature<any>> {
+    type: 'FeatureCollection';
+    features: Feat[];
+}
+export type AllGeoJSON = Feature<any> | FeatureCollection<any> | FeatureGeometryCollection | GeometryObject | GeometryCollection;
 
 /**
  * http://turfjs.org/docs/#feature
@@ -36,7 +49,7 @@ export function feature<T extends GeometryObject>(geometry: T, properties?: Prop
 /**
  * http://turfjs.org/docs/#featurecollection
  */
-export function featureCollection<T extends GeometryObject>(features: Feature<T>[], bbox?: BBox, id?: Id): FeatureCollection<T>;
+export function featureCollection<Geom extends GeometryObject>(features: Feature<Geom>[], bbox?: BBox, id?: Id): FeatureCollection<Geom>;
 export function featureCollection(features: Feature<any>[], bbox?: BBox, id?: Id): FeatureCollection<any>;
 
 /**
@@ -139,3 +152,55 @@ export function isNumber(num: any): boolean
  * http://turfjs.org/docs/#isobject
  */
 export function isObject(input: any): boolean
+
+/**
+ * Earth Radius used with the Harvesine formula and approximates using a spherical (non-ellipsoid) Earth.
+ */
+export const earthRadius: number;
+
+/**
+ * Unit of measurement factors using a spherical (non-ellipsoid) earth radius.
+ */
+export const factors: {
+    meters: number
+    millimeters: number
+    centimeters: number
+    kilometers: number
+    miles: number
+    nauticalmiles: number
+    inches: number
+    yards: number
+    feet: number
+}
+
+/**
+ * Units of measurement factors based on 1 meter.
+ */
+export const unitsFactors: {
+    meters: number
+    millimeters: number
+    centimeters: number
+    kilometers: number
+    miles: number
+    nauticalmiles: number
+    inches: number
+    yards: number
+    feet: number
+    radians: number
+    degrees: number
+};
+
+/**
+ * Area of measurement factors based on 1 square meter.
+ */
+export const areaFactors: {
+    meters: number
+    millimeters: number
+    centimeters: number
+    kilometers: number
+    acres: number
+    miles: number
+    yards: number
+    feet: number
+    inches: number
+};

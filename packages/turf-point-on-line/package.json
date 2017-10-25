@@ -1,20 +1,20 @@
 {
   "name": "@turf/point-on-line",
-  "version": "4.7.3",
+  "version": "5.0.3",
   "description": "turf point-on-line module",
-  "main": "index.es5.js",
-  "module": "index.js",
-  "jsnext:main": "index.js",
+  "main": "main",
+  "module": "index",
+  "jsnext:main": "index",
   "types": "index.d.ts",
   "files": [
     "index.js",
     "index.d.ts",
-    "index.es5.js"
+    "main.js"
   ],
   "scripts": {
     "pretest": "rollup -c ../../rollup.config.js",
-    "test": "node test.es5.js",
-    "bench": "node bench.js"
+    "test": "node -r @std/esm test.js",
+    "bench": "node -r @std/esm bench.js"
   },
   "repository": {
     "type": "git",
@@ -27,22 +27,27 @@
   },
   "homepage": "https://github.com/Turfjs/turf",
   "devDependencies": {
+    "@std/esm": "*",
     "@turf/along": "*",
     "@turf/line-distance": "*",
     "@turf/truncate": "*",
     "benchmark": "*",
     "load-json-file": "*",
+    "rollup": "*",
     "tape": "*",
-    "write-json-file": "*",
-    "rollup": "*"
+    "write-json-file": "*"
   },
   "dependencies": {
-    "@turf/bearing": "^4.7.3",
-    "@turf/destination": "^4.7.3",
-    "@turf/distance": "^4.7.3",
-    "@turf/helpers": "5.0.0-alpha",
-    "@turf/invariant": "5.0.0-alpha",
-    "@turf/line-intersect": "^4.7.3",
-    "@turf/meta": "5.0.0-alpha"
+    "@turf/bearing": "5.x",
+    "@turf/destination": "5.x",
+    "@turf/distance": "5.x",
+    "@turf/helpers": "5.x",
+    "@turf/invariant": "5.x",
+    "@turf/line-intersect": "5.x",
+    "@turf/meta": "5.x"
+  },
+  "@std/esm": {
+    "esm": "js",
+    "cjs": true
   }
 }

@@ -10,7 +10,7 @@ import {
     geometryCollection,
     featureCollection
 } from '@turf/helpers';
-import meta from '.';
+import * as meta from './index';
 
 const pt = point([0, 0], {a: 1});
 const pt2 = point([1, 1]);
@@ -504,108 +504,194 @@ test('segmentReduce -- index & subIndex', t => {
 });
 
 test('lineEach -- lineString', t => {
-    const l = lineString([[0, 0], [2, 2], [4, 4]]);
-    const index = [];
-    const subIndex = [];
+    const line = lineString([[0, 0], [2, 2], [4, 4]]);
+    const featureIndexes = [];
+    const featureSubIndexes = [];
+    const lineIndexes = [];
     let total = 0;
 
-    meta.lineEach(l, (line, lineIndex, lineSubIndex) => {
-        index.push(lineIndex);
-        subIndex.push(lineSubIndex);
+    meta.lineEach(line, (currentLine, featureIndex, featureSubIndex, lineIndex) => {
+        featureIndexes.push(featureIndex);
+        featureSubIndexes.push(featureSubIndex);
+        lineIndexes.push(lineIndex);
         total++;
     });
     t.equal(total, 1, 'total');
-    t.deepEqual(index, [0], 'index');
-    t.deepEqual(subIndex, [0], 'subIndex');
+    t.deepEqual(featureIndexes, [0], 'featureIndex');
+    t.deepEqual(featureSubIndexes, [0], 'featureSubIndex');
+    t.deepEqual(lineIndexes, [0], 'lineIndex');
     t.end();
 });
 
 test('lineEach -- multiLineString', t => {
-    const mls = multiLineString([[[0, 0], [2, 2], [4, 4]], [[1, 1], [3, 3], [5, 5]]]);
-    const index = [];
-    const subIndex = [];
+    const multiLine = multiLineString([
+        [[0, 0], [2, 2], [4, 4]],
+        [[1, 1], [3, 3], [5, 5]]
+    ]);
+    const featureIndexes = [];
+    const featureSubIndexes = [];
+    const lineIndexes = [];
     let total = 0;
 
-    meta.lineEach(mls, (line, lineIndex, lineSubIndex) => {
-        index.push(lineIndex);
-        subIndex.push(lineSubIndex);
+    meta.lineEach(multiLine, (currentLine, featureIndex, featureSubIndex, lineIndex) => {
+        featureIndexes.push(featureIndex);
+        featureSubIndexes.push(featureSubIndex);
+        lineIndexes.push(lineIndex);
         total++;
     });
     t.equal(total, 2, 'total');
-    t.deepEqual(index, [0, 1], 'index');
-    t.deepEqual(subIndex, [0, 1], 'subIndex');
+    t.deepEqual(featureIndexes, [0, 0], 'featureIndex');
+    t.deepEqual(featureSubIndexes, [0, 1], 'featureSubIndex');
+    t.deepEqual(lineIndexes, [0, 0], 'lineIndex');
     t.end();
 });
 
 test('lineEach -- multiPolygon', t => {
-    const mp = multiPolygon([
-        [[[12, 48], [2, 41], [24, 38], [12, 48]], [[9, 44], [13, 41], [13, 45], [9, 44]]],
-        [[[5, 5], [0, 0], [2, 2], [4, 4], [5, 5]]]
+    const multiPoly = multiPolygon([
+        [
+            [[12, 48], [2, 41], [24, 38], [12, 48]], // outer
+            [[9, 44], [13, 41], [13, 45], [9, 44]] // inner
+        ],
+        [
+            [[5, 5], [0, 0], [2, 2], [4, 4], [5, 5]] // outer
+        ]
     ]);
-    const index = [];
-    const subIndex = [];
+    const featureIndexes = [];
+    const featureSubIndexes = [];
+    const lineIndexes = [];
     let total = 0;
 
-    meta.lineEach(mp, (ring, ringIndex, ringSubIndex) => {
-        index.push(ringIndex);
-        subIndex.push(ringSubIndex);
+    meta.lineEach(multiPoly, (currentLine, featureIndex, featureSubIndex, lineIndex) => {
+        featureIndexes.push(featureIndex);
+        featureSubIndexes.push(featureSubIndex);
+        lineIndexes.push(lineIndex);
         total++;
     });
     t.equal(total, 3, 'total');
-    t.deepEqual(index, [0, 1, 0], 'index');
-    t.deepEqual(subIndex, [0, 0, 1], 'subIndex');
+    t.deepEqual(featureIndexes, [0, 0, 0], 'featureIndex');
+    t.deepEqual(featureSubIndexes, [0, 0, 1], 'featureSubIndex');
+    t.deepEqual(lineIndexes, [0, 1, 0], 'lineIndex');
     t.end();
 });
 
+test('lineEach -- featureCollection', t => {
+    const line = lineString([[0, 0], [2, 2], [4, 4]]);
+    const multiLine = multiLineString([
+        [[0, 0], [2, 2], [4, 4]],
+        [[1, 1], [3, 3], [5, 5]]
+    ]);
+    const multiPoly = multiPolygon([
+        [
+            [[12, 48], [2, 41], [24, 38], [12, 48]], // outer
+            [[9, 44], [13, 41], [13, 45], [9, 44]] // inner
+        ],
+        [
+            [[5, 5], [0, 0], [2, 2], [4, 4], [5, 5]] // outer
+        ]
+    ]);
+    const featureIndexes = [];
+    const featureSubIndexes = [];
+    const lineIndexes = [];
+    let total = 0;
+
+    meta.lineEach(featureCollection([line, multiLine, multiPoly]), (currentLine, featureIndex, featureSubIndex, lineIndex) => {
+        featureIndexes.push(featureIndex);
+        featureSubIndexes.push(featureSubIndex);
+        lineIndexes.push(lineIndex);
+        total++;
+    });
+    t.equal(total, 6, 'total');
+    t.deepEqual(featureIndexes, [0, 1, 1, 2, 2, 2], 'featureIndex');
+    t.deepEqual(featureSubIndexes, [0, 0, 1, 0, 0, 1], 'featureSubIndex');
+    t.deepEqual(lineIndexes, [0, 0, 0, 0, 1, 0], 'lineIndex');
+    t.end();
+});
 
 test('lineReduce -- multiLineString', t => {
-    const mls = multiLineString([[[0, 0], [2, 2], [4, 4]], [[1, 1], [3, 3], [5, 5]]]);
-    const index = [];
-    const subIndex = [];
+    const multiLine = multiLineString([
+        [[0, 0], [2, 2], [4, 4]],
+        [[1, 1], [3, 3], [5, 5]]
+    ]);
 
-    const total = meta.lineReduce(mls, (previousValue, line, lineIndex, lineSubIndex) => {
-        index.push(lineIndex);
-        subIndex.push(lineSubIndex);
+    const total = meta.lineReduce(multiLine, previousValue => {
         previousValue++;
         return previousValue;
-    }, 1);
+    }, 0);
 
-    t.equal(total, 3, 'total');
-    t.deepEqual(index, [0, 1], 'index');
-    t.deepEqual(subIndex, [0, 1], 'subIndex');
+    t.equal(total, 2, 'total');
     t.end();
 });
 
 test('lineReduce -- multiPolygon', t => {
-    const mp = multiPolygon([
-        [[[12, 48], [2, 41], [24, 38], [12, 48]],  [[9, 44], [13, 41], [13, 45], [9, 44]]],
-        [[[5, 5], [0, 0], [2, 2], [4, 4], [5, 5]]]
+    const multiPoly = multiPolygon([
+        [
+            [[12, 48], [2, 41], [24, 38], [12, 48]], // outer
+            [[9, 44], [13, 41], [13, 45], [9, 44]]], // inner
+        [
+            [[5, 5], [0, 0], [2, 2], [4, 4], [5, 5]] // outer
+        ]
     ]);
-    const index = [];
-    const subIndex = [];
 
-    const total = meta.lineReduce(mp, (previousValue, line, lineIndex, lineSubIndex) => {
-        index.push(lineIndex);
-        subIndex.push(lineSubIndex);
+    const total = meta.lineReduce(multiPoly, previousValue => {
         previousValue++;
         return previousValue;
-    }, 3);
+    }, 0);
 
-    t.equal(total, 6, 'total');
-    t.deepEqual(index, [0, 1, 0], 'index');
-    t.deepEqual(subIndex, [0, 0, 1], 'subIndex');
+    t.equal(total, 3, 'total');
     t.end();
 });
 
-test('lineEach & lineReduce -- throws', t => {
+test('lineEach & lineReduce -- assert', t => {
     const pt = point([0, 0]);
     const multiPt = multiPoint([[0, 0], [10, 10]]);
-    t.throws(() => meta.lineEach(pt, () => {}), /Point geometry not supported/, 'Point geometry not supported');
-    t.throws(() => meta.lineEach(multiPt, () => {}), /MultiPoint geometry not supported/, 'MultiPoint geometry not supported');
-    t.throws(() => meta.lineReduce(pt, () => {}), /Point geometry not supported/, 'Point geometry not supported');
-    t.throws(() => meta.lineReduce(multiPt, () => {}), /MultiPoint geometry not supported/, 'MultiPoint geometry not supported');
-    t.throws(() => meta.lineReduce(geomCollection, () => {}), /GeometryCollection is not supported/, 'GeometryCollection is not supported');
-    t.throws(() => meta.lineReduce(featureCollection([lineString([[10, 10], [0, 0]])]), () => {}), /FeatureCollection is not supported/, 'FeatureCollection is not supported');
-    t.throws(() => meta.lineReduce(feature(null), () => {}), /geojson must contain coordinates/, 'geojson must contain coordinates');
+    meta.lineEach(pt, () => {}); // Point geometry is supported
+    meta.lineEach(multiPt, () => {}); // MultiPoint geometry is supported
+    meta.lineReduce(pt, () => {}); // Point geometry is supported
+    meta.lineReduce(multiPt, () => {}); // MultiPoint geometry is supported
+    meta.lineReduce(geomCollection, () => {}); // GeometryCollection is is supported
+    meta.lineReduce(featureCollection([lineString([[10, 10], [0, 0]])]), () => {}); // FeatureCollection is is supported
+    meta.lineReduce(feature(null), () => {}); // Feature with null geometry is supported
+    t.end();
+});
+
+test('geomEach -- callback BBox & Id', t => {
+    const properties = {foo: 'bar'};
+    const bbox = [0, 0, 0, 0];
+    const id = 'foo';
+    const pt = point([0, 0], properties, bbox, id);
+
+    meta.geomEach(pt, (currentGeometry, featureIndex, currentProperties, currentBBox, currentId) => {
+        t.equal(featureIndex, 0, 'featureIndex');
+        t.deepEqual(currentProperties, properties, 'currentProperties');
+        t.deepEqual(currentBBox, bbox, 'currentBBox');
+        t.deepEqual(currentId, id, 'currentId');
+    });
+    t.end();
+});
+
+test('lineEach -- callback BBox & Id', t => {
+    const properties = {foo: 'bar'};
+    const bbox = [0, 0, 10, 10];
+    const id = 'foo';
+    const line = lineString([[0, 0], [10, 10]], properties, bbox, id);
+
+    meta.lineEach(line, (currentLine, featureIndex) => {
+        t.equal(featureIndex, 0, 'featureIndex');
+        t.deepEqual(currentLine.properties, properties, 'currentProperties');
+        t.deepEqual(currentLine.bbox, bbox, 'currentBBox');
+        t.deepEqual(currentLine.id, id, 'currentId');
+    });
+    t.end();
+});
+
+test('lineEach -- return lineString', t => {
+    const properties = {foo: 'bar'};
+    const bbox = [0, 0, 10, 10];
+    const id = 'foo';
+    const line = lineString([[0, 0], [10, 10]], properties, bbox, id);
+
+    meta.lineEach(line, (currentLine) => {
+        t.deepEqual(line, currentLine, 'return itself');
+    });
     t.end();
 });

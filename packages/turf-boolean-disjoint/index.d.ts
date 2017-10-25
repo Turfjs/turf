@@ -1,8 +1,9 @@
-/// <reference types="geojson" />
-
-export type Feature = GeoJSON.Feature<any> | GeoJSON.GeometryObject;
+import { Feature, GeometryObject } from '@turf/helpers'
 
 /**
- * http://turfjs.org/docs/#boolean-disjoint
+ * http://turfjs.org/docs/#booleandisjoint
  */
-export default function booleanDisjoint(feature1: Feature, feature2: Feature): boolean;
+export default function (
+    feature1: Feature<any> | GeometryObject,
+    feature2: Feature<any> | GeometryObject
+): boolean;

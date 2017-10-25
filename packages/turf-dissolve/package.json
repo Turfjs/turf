@@ -2,19 +2,20 @@
   "name": "@turf/dissolve",
   "version": "4.7.3",
   "description": "turf dissolve module",
-  "main": "index.es5.js",
-  "module": "index.js",
-  "jsnext:main": "index.js",
+  "main": "main",
+  "module": "index",
+  "jsnext:main": "index",
   "types": "index.d.ts",
   "files": [
     "index.js",
     "index.d.ts",
-    "index.es5.js"
+    "main.js",
+    "get-closest.js"
   ],
   "scripts": {
     "pretest": "rollup -c ../../rollup.config.js",
-    "test": "node test.es5.js",
-    "bench": "node bench.js"
+    "test": "node -r @std/esm test.js",
+    "bench": "node -r @std/esm bench.js"
   },
   "repository": {
     "type": "git",
@@ -34,6 +35,7 @@
   },
   "homepage": "https://github.com/Turfjs/turf",
   "devDependencies": {
+    "@std/esm": "*",
     "benchmark": "*",
     "load-json-file": "*",
     "rollup": "*",
@@ -41,11 +43,18 @@
     "write-json-file": "*"
   },
   "dependencies": {
-    "@turf/bbox": "^4.7.3",
-    "@turf/boolean-overlap": "^4.7.3",
-    "@turf/union": "^4.7.3",
-    "geojson-utils": "^1.1.0",
-    "get-closest": "^0.0.4",
-    "rbush": "^2.0.1"
+    "@turf/boolean-overlap": "*",
+    "@turf/clone": "*",
+    "@turf/helpers": "*",
+    "@turf/invariant": "*",
+    "@turf/line-intersect": "*",
+    "@turf/meta": "*",
+    "@turf/union": "*",
+    "geojson-rbush": "2.1.0",
+    "get-closest": "*"
+  },
+  "@std/esm": {
+    "esm": "js",
+    "cjs": true
   }
 }

@@ -1,19 +1,20 @@
-/// <reference types="geojson" />
-
-type Points = GeoJSON.FeatureCollection<GeoJSON.Point>;
-type LineStrings = GeoJSON.FeatureCollection<GeoJSON.LineString>;
-type Polygons = GeoJSON.FeatureCollection<GeoJSON.Polygon>;
-type MultiPoints = GeoJSON.FeatureCollection<GeoJSON.MultiPoint>;
-type MultiLineStrings = GeoJSON.FeatureCollection<GeoJSON.MultiLineString>;
-type MultiPolygons = GeoJSON.FeatureCollection<GeoJSON.MultiPolygon>;
-type Features = GeoJSON.FeatureCollection<any>;
+import {
+    Point,
+    LineString,
+    Polygon,
+    MultiPoint,
+    MultiLineString,
+    MultiPolygon,
+    Feature,
+    FeatureCollection
+} from '@turf/helpers'
 
 /**
  * http://turfjs.org/docs/#combine
  */
-declare function combine(features: Points): MultiPoints;
-declare function combine(features: LineStrings): MultiLineStrings;
-declare function combine(features: Polygons): MultiPolygons;
-declare function combine(features: Features): Features;
+declare function combine(features: FeatureCollection<Point>): MultiPoint;
+declare function combine(features: FeatureCollection<LineString>): MultiLineString;
+declare function combine(features: FeatureCollection<Polygon>): MultiPolygon;
+declare function combine(features: FeatureCollection<any>): Feature<any>;
 
 export default combine;

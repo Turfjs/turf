@@ -1,15 +1,15 @@
 import test from 'tape';
 import { point, lineString, polygon, featureCollection, geometryCollection } from '@turf/helpers';
-import invariant from '.';
+import * as invariant from './index';
 
 test('invariant -- containsNumber', t => {
     t.equals(invariant.containsNumber([1, 1]), true);
     t.equals(invariant.containsNumber([[1, 1], [1, 1]]), true);
     t.equals(invariant.containsNumber([[[1, 1], [1, 1]], [1, 1]]), true);
 
-    //# Ensure recusive call handles Max callstack exceeded
+    //# Ensure recursive call handles Max callstack exceeded
     t.throws(() => {
-        invariant.containsNumber(['1', 1]);
+        invariant.containsNumber(['foo', 1]);
     }, /coordinates must only contain numbers/, 'Must only contain numbers');
     t.end();
 });

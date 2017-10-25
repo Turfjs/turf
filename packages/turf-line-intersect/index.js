@@ -1,4 +1,4 @@
-var rbush = require('geojson-rbush');
+import rbush from 'geojson-rbush';
 import lineSegment from '@turf/line-segment';
 import { getCoords } from '@turf/invariant';
 import { featureEach } from '@turf/meta';
@@ -19,7 +19,7 @@ import { point, featureCollection, feature } from '@turf/helpers';
  * //addToMap
  * var addToMap = [line1, line2, intersects]
  */
-export default function (line1, line2) {
+function lineIntersect(line1, line2) {
     var unique = {};
     var results = [];
 
@@ -103,3 +103,5 @@ function intersects(line1, line2) {
     }
     return null;
 }
+
+export default lineIntersect;

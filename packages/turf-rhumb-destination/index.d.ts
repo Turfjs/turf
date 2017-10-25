@@ -1,11 +1,14 @@
-/// <reference types="geojson" />
-
-import { Units } from '@turf/helpers';
-
-export { Units }
-export type Point = GeoJSON.Feature<GeoJSON.Point> | GeoJSON.Point | number[];
+import { Point, Feature, Units, Coord, Properties } from '@turf/helpers';
 
 /**
- * http://turfjs.org/docs/#rhumb-destination
+ * http://turfjs.org/docs/#rhumbdestination
  */
-export default function rhumbDestination(origin: Point, distance: number, bearing: number, units?: Units): GeoJSON.Feature<GeoJSON.Point>;
+export default function rhumbDestination(
+    origin: Coord,
+    distance: number,
+    bearing: number,
+    options?: {
+        units?: Units,
+        properties?: Properties
+    }
+): Feature<Point>;

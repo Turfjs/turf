@@ -2,19 +2,21 @@
   "name": "@turf/isobands",
   "version": "4.7.3",
   "description": "turf isobands module",
-  "main": "index.es5.js",
-  "module": "index.js",
-  "jsnext:main": "index.js",
+  "main": "main",
+  "module": "index",
+  "jsnext:main": "index",
   "types": "index.d.ts",
   "files": [
     "index.js",
     "index.d.ts",
-    "index.es5.js"
+    "marchingsquares-isobands.js",
+    "grid-to-matrix.js",
+    "main.js"
   ],
   "scripts": {
     "pretest": "rollup -c ../../rollup.config.js",
-    "test": "node test.es5.js",
-    "bench": "node bench.js"
+    "test": "node -r @std/esm test.js",
+    "bench": "node -r @std/esm bench.js"
   },
   "repository": {
     "type": "git",
@@ -39,9 +41,12 @@
   },
   "homepage": "https://github.com/Turfjs/turf",
   "devDependencies": {
+    "@std/esm": "*",
     "@turf/envelope": "*",
     "@turf/point-grid": "*",
     "@turf/random": "*",
+    "@turf/rhumb-destination": "*",
+    "@turf/truncate": "*",
     "benchmark": "*",
     "chroma-js": "*",
     "load-json-file": "*",
@@ -52,12 +57,15 @@
   },
   "dependencies": {
     "@turf/area": "^4.7.3",
-    "@turf/bbox": "^4.7.3",
+    "@turf/bbox": "5.x",
     "@turf/explode": "^4.7.3",
-    "@turf/helpers": "5.0.0-alpha",
-    "@turf/inside": "^4.7.3",
-    "@turf/invariant": "5.0.0-alpha",
-    "grid-to-matrix": "^1.3.0",
-    "marchingsquares": "^1.2.0"
+    "@turf/helpers": "5.x",
+    "@turf/inside": "5.x",
+    "@turf/invariant": "5.x",
+    "@turf/meta": "5.x"
+  },
+  "@std/esm": {
+    "esm": "js",
+    "cjs": true
   }
 }

@@ -5,28 +5,42 @@ import bearing from '@turf/bearing';
 import distance from '@turf/distance';
 import rhumbBearing from '@turf/rhumb-bearing';
 import rhumbDistance from '@turf/rhumb-distance';
+import { toMercator, toWgs84 } from '@turf/projection';
 import { featureOf } from '@turf/invariant';
 import { segmentEach } from '@turf/meta';
-import { point, feature, lineString, bearingToAngle, degrees2radians, convertDistance } from '@turf/helpers';
+import {
+    point,
+    feature,
+    lineString,
+    bearingToAngle,
+    degrees2radians,
+    convertDistance,
+    isObject
+} from '@turf/helpers';
 
 /**
  * Returns the minimum distance between a {@link Point} and a {@link LineString}, being the distance from a line the
  * minimum distance between the point and any segment of the `LineString`.
  *
  * @name pointToLineDistance
- * @param {Feature<Point>|Array<number>} pt Feature or Geometry
- * @param {Feature<LineString>|Array<Array<number>>} line GeoJSON Feature or Geometry
- * @param {string} [units=kilometers] can be degrees, radians, miles, or kilometers
- * @param {boolean} [mercator=false] if distance should be on Mercator or WGS84 projection
+ * @param {Geometry|Feature<Point>|Array<number>} pt Feature or Geometry
+ * @param {Geometry|Feature<LineString>|Array<Array<number>>} line GeoJSON Feature or Geometry
+ * @param {Object} [options={}] Optional parameters
+ * @param {string} [options.units='kilometers'] can be degrees, radians, miles, or kilometers
+ * @param {boolean} [options.mercator=false] if distance should be on Mercator or WGS84 projection
  * @returns {number} distance between point and line
  * @example
  * var pt = turf.point([0, 0]);
  * var line = turf.lineString([[1, 1],[-1, 1]]);
  *
- * var distance = turf.pointToLineDistance(pt, line, 'miles');
+ * var distance = turf.pointToLineDistance(pt, line, {units: 'miles'});
  * //=69.11854715938406
  */
-export default function (pt, line, units, mercator) {
+function pointToLineDistance(pt, line, options) {
+    // Optional parameters
+    options = options || {};
+    if (!isObject(options)) throw new Error('options is invalid');
+
     // validation
     if (!pt) throw new Error('pt is required');
     if (Array.isArray(pt)) pt = point(pt);
@@ -43,7 +57,7 @@ export default function (pt, line, units, mercator) {
     segmentEach(line, function (segment) {
         var a = segment.geometry.coordinates[0];
         var b = segment.geometry.coordinates[1];
-        var d = distanceToSegment(p, a, b, units, mercator);
+        var d = distanceToSegment(p, a, b, options);
         if (distance > d) distance = d;
     });
     return distance;
@@ -57,13 +71,14 @@ export default function (pt, line, units, mercator) {
  * @param {Array<number>} p external point
  * @param {Array<number>} a first segment point
  * @param {Array<number>} b second segment point
- * @param {string} [units=kilometers] can be degrees, radians, miles, or kilometers
- * @param {boolean} [mercator=false] if distance should be on Mercator or WGS84 projection
+ * @param {Object} [options={}] Optional parameters
+ * @param {string} [options.units='kilometers'] can be degrees, radians, miles, or kilometers
+ * @param {boolean} [options.mercator=false] if distance should be on Mercator or WGS84 projection
  * @returns {number} distance
  */
-function distanceToSegment(p, a, b, units, mercator) {
-
-    var distanceAP = (mercator !== true) ? distance(a, p, units) : euclideanDistance(a, p, units);
+function distanceToSegment(p, a, b, options) {
+    var mercator = options.mercator;
+    var distanceAP = (mercator !== true) ? distance(a, p, options) : euclideanDistance(a, p, options);
     var azimuthAP = bearingToAngle((mercator !== true) ? bearing(a, p) : rhumbBearing(a, p));
     var azimuthAB = bearingToAngle((mercator !== true) ? bearing(a, b) : rhumbBearing(a, b));
     var angleA = Math.abs(azimuthAP - azimuthAB);
@@ -94,7 +109,7 @@ function distanceToSegment(p, a, b, units, mercator) {
         /______________/    |
        A               B    H
     */
-    if (angleB > 90) return (mercator !== true) ? distance(p, b, units) : euclideanDistance(p, b, units);
+    if (angleB > 90) return (mercator !== true) ? distance(p, b, options) : euclideanDistance(p, b, options);
     // finally if the projection falls inside the segment
     // return the distance between P and the segment
     /*
@@ -107,7 +122,7 @@ function distanceToSegment(p, a, b, units, mercator) {
        A             H     B
     */
     if (mercator !== true) return distanceAP * Math.sin(degrees2radians(angleA));
-    return mercatorPH(a, b, p, units);
+    return mercatorPH(a, b, p, options);
 }
 
 /**
@@ -117,10 +132,11 @@ function distanceToSegment(p, a, b, units, mercator) {
  * @param {Array<number>} a first segment point
  * @param {Array<number>} b second segment point
  * @param {Array<number>} p external point
- * @param {string} [units=kilometers] can be degrees, radians, miles, or kilometers
+ * @param {Object} [options={}] Optional parameters
+ * @param {string} [options.units='kilometers'] can be degrees, radians, miles, or kilometers
  * @returns {number} distance
  */
-function mercatorPH(a, b, p, units) {
+function mercatorPH(a, b, p, options) {
     var delta = 0;
     // translate points if any is crossing the 180th meridian
     if (Math.abs(a[0]) >= 180 || Math.abs(b[0]) >= 180 || Math.abs(p[0]) >= 180) {
@@ -131,13 +147,12 @@ function mercatorPH(a, b, p, units) {
     var A = toMercator([a[0] + delta, a[1]]);
     var B = toMercator([b[0] + delta, b[1]]);
     var P = toMercator([p[0] + delta, p[1]]);
-    var h = toWGS84(euclideanIntersection(A, B, P));
+    var h = toWgs84(euclideanIntersection(A, B, P));
 
     if (delta !== 0) h[0] -= delta; // translate back to original position
-    var distancePH = rhumbDistance(origin, h, units);
+    var distancePH = rhumbDistance(origin, h, options);
     return distancePH;
 }
-
 
 /**
  * Returns the point H projection of a point P on a segment AB, on the euclidean plain
@@ -165,17 +180,18 @@ function euclideanIntersection(a, b, p) {
     return [x, y]; // H
 }
 
-
 /**
  * Returns euclidean distance between two points
  *
  * @private
  * @param {Object} from first point
  * @param {Object} to second point
- * @param {string} units can be degrees, radians, miles, or kilometers
+ * @param {Object} [options={}] Optional parameters
+ * @param {string} [options.units='kilometers'] can be degrees, radians, miles, or kilometers
  * @returns {number} squared distance
  */
-function euclideanDistance(from, to, units) {
+function euclideanDistance(from, to, options) {
+    var units = options.units;
     // translate points if any is crossing the 180th meridian
     var delta = 0;
     if (Math.abs(from[0]) >= 180) {
@@ -193,47 +209,4 @@ function euclideanDistance(from, to, units) {
     return convertDistance(d, 'meters', units);
 }
 
-/**
- * Convert lon/lat values to 900913 x/y.
- * from https://github.com/mapbox/sphericalmercator
- *
- * @private
- * @param {Array<number>} lonLat WGS84 point
- * @returns {Array<number>} Mercator [x, y] point
- */
-function toMercator(lonLat) {
-    var D2R = Math.PI / 180,
-        // 900913 properties.
-        A = 6378137.0,
-        MAXEXTENT = 20037508.342789244;
-
-    var xy = [
-        A * lonLat[0] * D2R,
-        A * Math.log(Math.tan((Math.PI * 0.25) + (0.5 * lonLat[1] * D2R)))
-    ];
-    // if xy value is beyond maxextent (e.g. poles), return maxextent.
-    if (xy[0] > MAXEXTENT) xy[0] = MAXEXTENT;
-    if (xy[0] < -MAXEXTENT) xy[0] = -MAXEXTENT;
-    if (xy[1] > MAXEXTENT) xy[1] = MAXEXTENT;
-    if (xy[1] < -MAXEXTENT) xy[1] = -MAXEXTENT;
-    return xy;
-}
-
-/**
- * Convert 900913 x/y values to lon/lat.
- * from https://github.com/mapbox/sphericalmercator
- *
- * @private
- * @param {Array<number>} xy Mercator [x, y] point
- * @returns {Array<number>} WGS84 [lon, lat] point
- */
-function toWGS84(xy) {
-    // 900913 properties.
-    var R2D = 180 / Math.PI,
-        A = 6378137.0;
-
-    return [
-        (xy[0] * R2D / A),
-        ((Math.PI * 0.5) - 2.0 * Math.atan(Math.exp(-xy[1] / A))) * R2D
-    ];
-}
+export default pointToLineDistance;

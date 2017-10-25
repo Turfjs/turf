@@ -1,11 +1,12 @@
-/// <reference types="geojson" />
-
-import {Units} from '@turf/helpers'
-
-export type Points = GeoJSON.FeatureCollection<GeoJSON.Point>;
-export type Polygon = GeoJSON.Feature<GeoJSON.Polygon | GeoJSON.MultiPolygon>;
+import { Point, Feature, FeatureCollection, MultiPolygon, Polygon, Units} from '@turf/helpers'
 
 /**
  * http://turfjs.org/docs/#concave
  */
-export default function concave(points: Points, maxEdge: number, units?: Units): Polygon;
+export default function concave(
+    points: FeatureCollection<Point>,
+    options?: {
+        maxEdge?: number,
+        units?: Units
+    }
+): Feature<Polygon | MultiPolygon>;

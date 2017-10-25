@@ -19,7 +19,7 @@ import { featureEach } from '@turf/meta';
  * //addToMap
  * var addToMap = [combined]
  */
-export default function (fc) {
+function combine(fc) {
     var groups = {
         MultiPoint: {coordinates: [], properties: []},
         MultiLineString: {coordinates: [], properties: []},
@@ -60,3 +60,5 @@ export default function (fc) {
             return feature(geometry, properties);
         }));
 }
+
+export default combine;

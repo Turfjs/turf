@@ -22,7 +22,7 @@ import { getGeom, getType } from '@turf/invariant';
  * var cross = turf.booleanCrosses(line1, line2);
  * //=true
  */
-export default function (feature1, feature2) {
+function booleanCrosses(feature1, feature2) {
     var type1 = getType(feature1);
     var type2 = getType(feature2);
     var geom1 = getGeom(feature1);
@@ -165,3 +165,5 @@ function isPointOnLineSegment(lineSegmentStart, lineSegmentEnd, pt, incEnd) {
         return dyl > 0 ? lineSegmentStart[1] < pt[1] && pt[1] < lineSegmentEnd[1] : lineSegmentEnd[1] < pt[1] && pt[1] < lineSegmentStart[1];
     }
 }
+
+export default booleanCrosses;

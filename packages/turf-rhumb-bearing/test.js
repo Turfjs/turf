@@ -27,13 +27,16 @@ let fixtures = fs.readdirSync(directories.in).map(filename => {
 });
 
 test('bearing', t => {
-    for (const {name, filename, geojson} of fixtures) {
+    fixtures.forEach(fixture => {
+        const name = fixture.name;
+        const filename = fixture.filename;
+        const geojson = fixture.geojson;
 
         const start = geojson.features[0];
         const end = geojson.features[1];
 
         const initialBearing = rhumbBearing(start, end);
-        const finalBearing = rhumbBearing(start, end, true);
+        const finalBearing = rhumbBearing(start, end, {final: true});
 
         const result = {
             'initialBearing': initialBearing,
@@ -60,9 +63,8 @@ test('bearing', t => {
         //
         // if (process.env.REGEN) write.sync(directories.out + filename, result);
         // t.deepEqual(load.sync(directories.out + filename), result, name);
-    }
+    });
 
     t.throws(() => { rhumbBearing(point([12, -54]), 'point'); }, 'invalid point');
-
     t.end();
 });

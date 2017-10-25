@@ -4,7 +4,14 @@ import {
     lineString,
     polygon,
     geometryCollection,
-    featureCollection} from '@turf/helpers'
+    featureCollection,
+    Geometry,
+    Types,
+    GeometryCollection,
+    Point,
+    LineString,
+    Polygon
+} from '@turf/helpers'
 import {
     getCoord,
     getCoords,
@@ -13,9 +20,8 @@ import {
     collectionOf,
     containsNumber,
     getGeom,
-    getType,
-    StringGeomTypes,
-    StringTypes} from './'
+    getType
+} from './'
 
 /**
  * Fixtures
@@ -31,18 +37,18 @@ const fc = featureCollection([pt, line, poly])
  */
 // invariant.getGeom(fc) // Argument of type 'FeatureCollection<any>' is not assignable to parameter of type
 getGeom(gc)
-invariant.getGeom(gc)
-invariant.getGeom(pt)
-invariant.getGeom(line)
-invariant.getGeom(poly)
+const gcGeom: GeometryCollection  = invariant.getGeom(gc)
+const pointGeom: Point = invariant.getGeom(pt)
+const lineGeom: LineString = invariant.getGeom(line)
+const polyGeom: Polygon = invariant.getGeom(poly)
 invariant.getGeom(pt.geometry)
 
 /**
  * invariant.getType
  */
-const type: StringTypes = invariant.getType(pt)
-getType(gc)
-invariant.getType(gc)
-invariant.getType(line)
-invariant.getType(poly)
-invariant.getType(pt.geometry)
+const type: Geometry = invariant.getType(pt)
+if (getType(gc) === 'GeometryCollection') console;
+if (getType(line) === 'LineString') console;
+if (getType(poly) === 'Polygon') console;
+if (getType(pt.geometry) === 'Point') console;
+if (getType(fc) === 'FeatureCollection') console;
