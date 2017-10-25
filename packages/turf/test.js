@@ -118,7 +118,7 @@ test('turf -- pre-defined attributes in package.json', t => {
 });
 
 test('turf -- parsing dependencies from index.js', t => {
-    for (const {name, dir, dependencies, pckg} of modules) {
+    for (const {name, dir, dependencies} of modules) {
         const index = fs.readFileSync(path.join(dir, 'index.js'), 'utf8');
 
         // Read Depedencies from index.js

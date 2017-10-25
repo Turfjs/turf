@@ -21,11 +21,16 @@ function getHeap() {
     });
 }
 
+/**
+ * Astar
+ * @private
+ */
 export var astar = {
     /**
      * Perform an A* Search on a graph given a start and end node.
      *
      * @private
+     * @memberof astar
      * @param {Graph} graph Graph
      * @param {GridNode} start Start
      * @param {GridNode} end End
