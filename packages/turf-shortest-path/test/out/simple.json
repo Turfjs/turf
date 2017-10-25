@@ -54,7 +54,9 @@
 		},
 		{
 			"type": "Feature",
-			"properties": {},
+			"properties": {
+				"type": "start"
+			},
 			"geometry": {
 				"type": "Point",
 				"coordinates": [
@@ -65,7 +67,9 @@
 		},
 		{
 			"type": "Feature",
-			"properties": {},
+			"properties": {
+				"type": "end"
+			},
 			"geometry": {
 				"type": "Point",
 				"coordinates": [
