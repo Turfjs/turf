@@ -36,6 +36,19 @@ test('rotate', t => {
     t.end();
 });
 
+test('rotate -- mutate samples', t => {
+    for (const {filename, name, geojson}  of fixtures) {
+        const {angle, pivot} = geojson.properties || {};
+
+        const rotated = rotate(geojson, angle, {pivot: pivot, mutate: true});
+        const result = featureCollection([colorize(truncate(rotated, {precision: 6, coordinates: 3})), geojson, makePivot(pivot, geojson)]);
+
+        t.deepEqual(result, load.sync(directories.out + filename), name);
+    }
+
+    t.end();
+});
+
 test('rotate -- throws', t => {
     const line = lineString([[10, 10], [12, 15]]);
 
