@@ -5,7 +5,7 @@ import scale from '@turf/transform-scale';
 import cleanCoords from '@turf/clean-coords';
 import bboxPolygon from '@turf/bbox-polygon';
 import { getCoord, getType } from '@turf/invariant';
-import { point, isNumber, lineString } from '@turf/helpers';
+import { point, isNumber, lineString, isObject } from '@turf/helpers';
 import { Graph, astar } from './javascript-astar';
 
 /**
@@ -31,17 +31,20 @@ import { Graph, astar } from './javascript-astar';
  * var addToMap = [start, end, obstacles, path];
  */
 function shortestPath(start, end, obstacles, options) {
+    // Optional parameters
+    options = options || {};
+    // var units = options.units;
+    var resolution = options.resolution;
+
     // validation
     if (getType(start, 'start') !== 'Point') throw new Error('start must be Point');
     if (getType(end, 'end') !== 'Point') throw new Error('end must be Point');
     if (obstacles && getType(obstacles) !== 'FeatureCollection') throw new Error('obstacles must be FeatureCollection');
+    if (!isObject(options)) throw new Error('options is invalid');
 
     // no obstacles
     if (!obstacles || obstacles.features.length === 0) return lineString([getCoord(start), getCoord(end)]);
 
-    options = options || {};
-    var units = options.units || 'kilometers';
-    var resolution = options.resolution;
     if (resolution && !isNumber(resolution) || resolution <= 0) throw new Error('resolution must be a number, greater than 0');
 
     // define path grid area
@@ -50,7 +53,7 @@ function shortestPath(start, end, obstacles, options) {
     collection.features.push(end);
     var box = bbox(scale(bboxPolygon(bbox(collection)), 1.15)); // extend 15%
     if (!resolution) {
-        var width = distance([box[0], box[1]], [box[2], box[1]], units);
+        var width = distance([box[0], box[1]], [box[2], box[1]], options);
         resolution = width / 100;
     }
     collection.features.pop();
@@ -61,9 +64,9 @@ function shortestPath(start, end, obstacles, options) {
     var east = box[2];
     var north = box[3];
 
-    var xFraction = resolution / (distance(point([west, south]), point([east, south]), units));
+    var xFraction = resolution / (distance([west, south], [east, south], options));
     var cellWidth = xFraction * (east - west);
-    var yFraction = resolution / (distance(point([west, south]), point([west, north]), units));
+    var yFraction = resolution / (distance([west, south], [west, north], options));
     var cellHeight = yFraction * (north - south);
 
     var bboxHorizontalSide = (east - west);
