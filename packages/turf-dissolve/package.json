@@ -50,7 +50,7 @@
     "@turf/line-intersect": "*",
     "@turf/meta": "*",
     "@turf/union": "*",
-    "geojson-rbush": "*",
+    "geojson-rbush": "2.1.0",
     "get-closest": "*"
   },
   "@std/esm": {
