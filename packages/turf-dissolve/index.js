@@ -74,6 +74,7 @@ function dissolve(featureCollection, options) {
             if (matchFeaturePosition === +i) continue;
 
             var matchFeature = features[matchFeaturePosition];
+            if (!matchFeature || !polygon) continue;
 
             if (propertyName !== undefined &&
                 matchFeature.properties[propertyName] !== polygon.properties[propertyName]) continue;
@@ -97,6 +98,7 @@ function dissolve(featureCollection, options) {
         }
 
         if (featureChanged) {
+            if (!polygon) continue;
             polygon.properties.origIndexPosition = i;
             tree.insert(polygon);
             i--;

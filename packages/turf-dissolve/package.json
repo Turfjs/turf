@@ -9,7 +9,8 @@
   "files": [
     "index.js",
     "index.d.ts",
-    "main.js"
+    "main.js",
+    "get-closest.js"
   ],
   "scripts": {
     "pretest": "rollup -c ../../rollup.config.js",
@@ -34,12 +35,12 @@
   },
   "homepage": "https://github.com/Turfjs/turf",
   "devDependencies": {
+    "@std/esm": "*",
     "benchmark": "*",
     "load-json-file": "*",
     "rollup": "*",
     "tape": "*",
-    "write-json-file": "*",
-    "@std/esm": "*"
+    "write-json-file": "*"
   },
   "dependencies": {
     "@turf/boolean-overlap": "*",

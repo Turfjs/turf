@@ -12,7 +12,7 @@
   dependencies:
     "@turf/invariant" "^4.7.3"
 
-"@turf/boolean-overlap@*":
+"@turf/boolean-overlap@^4.7.3":
   version "4.7.3"
   resolved "https://registry.yarnpkg.com/@turf/boolean-overlap/-/boolean-overlap-4.7.3.tgz#8f8a5168d37ace5158cff6f4b0c234dd376c1b48"
   dependencies:
