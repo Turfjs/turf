@@ -1,7 +1,7 @@
 {
   "name": "@turf/voronoi",
-  "version": "0.1.0",
-  "description": "turf module to generate Voronoi polygons from a set of points and a bounding box",
+  "version": "5.0.0",
+  "description": "turf voronoi module",
   "main": "main",
   "module": "index",
   "jsnext:main": "index",
@@ -25,7 +25,9 @@
     "points"
   ],
   "author": "Turf Authors",
-  "contributors": ["Steve Bennett <@stevage1>"],
+  "contributors": [
+    "Steve Bennett <@stevage1>"
+  ],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/Turfjs/turf/issues"
@@ -40,9 +42,10 @@
     "@std/esm": "*"
   },
   "dependencies": {
-    "@turf/linestring-to-polygon": "^5.0.0",
+    "@turf/invariant": "5.x",
+    "@turf/linestring-to-polygon": "5.x",
     "d3-voronoi": "^1.1.2",
-    "turf-helpers": "^3.x"
+    "@turf/helpers": "5.x"
   },
   "@std/esm": {
     "esm": "js",
