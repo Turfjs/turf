@@ -22,13 +22,13 @@
 
 ## Installation
 
-**In Node.js:**
+### In Node.js
 
 ```bash
 npm install @turf/turf
 ```
 
-**In browser:**
+### In browser
 
 Download the [minified file](https://npmcdn.com/@turf/turf/turf.min.js), and include it in a script tag. This will expose a global variable named `turf`.
 
@@ -38,7 +38,7 @@ Download the [minified file](https://npmcdn.com/@turf/turf/turf.min.js), and inc
 
 You can create light-weight turf builds with only the functions you need using the [turfjs-builder UI](https://turfjs-builder.herokuapp.com/) or using browserify as described below.
 
-**Browserify:**
+### Browserify
 
 All of Turf's functions can also be installed as separate modules. This works well with tools like [browserify](http://browserify.org/) where you want to install only the code you need. It also allows you to mix and match modules. This is the recommended usage pattern for most production environments. For example, to install the *point* and *buffer* modules use:
 
@@ -46,17 +46,21 @@ All of Turf's functions can also be installed as separate modules. This works we
 npm install @turf/helpers @turf/buffer
 ```
 
-**Bower [NOTE: Bower support has been dropped Jan 1st 2017]:**
+### Bower [NOTE: Bower support has been dropped Jan 1st 2017]
 
-_Not recommend. Please don't use Bower. Use Browserify, Webpack, or the CDN instead._
+_Not recommended. Please don't use Bower. Use Browserify, Webpack, or the CDN instead._
 
-**TypeScript**
+### TypeScript
 
 TypeScript is supported internally within each module, no installs required.
 
+### Other languages
+
+Ports of Turf.js are underway [in Swift](https://github.com/mapbox/turf-swift/) (for iOS and macOS) and [in Java](https://github.com/mapbox/mapbox-java/tree/master/mapbox/libjava-services/src/main/java/com/mapbox/services/api/utils/turf/) (for Android and Java SE).
+
 - - -
 
-### Data in Turf
+## Data in Turf
 
 Turf uses <a href='http://geojson.org/'>GeoJSON</a> for all geographic data. Turf expects the data to be standard <a href='http://en.wikipedia.org/wiki/World_Geodetic_System'>WGS84</a> longitude, latitude coordinates. Check out <a href='http://geojson.io/#id=gist:anonymous/844f013aae8354eb889c&map=12/38.8955/-77.0135'>geojson.io</a> for a tool to easily create this data.
 
