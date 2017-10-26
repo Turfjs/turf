@@ -25,6 +25,7 @@
     "points"
   ],
   "author": "Turf Authors",
+  "contributors": ["Steve Bennett <@stevage1>"],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/Turfjs/turf/issues"
