@@ -64,7 +64,12 @@ function sliceLineSegments(line, segmentLength, units, callback) {
     // If the line is shorter than the segment length then the orginal line is returned.
     if (lineLength <= segmentLength) return callback(line);
 
-    var numberOfSegments = Math.floor(lineLength / segmentLength) + 1;
+    var numberOfSegments = lineLength / segmentLength;
+    // If numberOfSegments is integer, no need to plus 1
+    if(!Number.isInteger(numberOfSegments)){
+        numberOfSegments = Math.floor(numberOfSegments) + 1;
+    }
+    
     for (var i = 0; i < numberOfSegments; i++) {
         var outline = lineSliceAlong(line, segmentLength * i, segmentLength * (i + 1), {units: units});
         callback(outline, i);
