@@ -4,7 +4,7 @@
     {
       "type": "Feature",
       "properties": {
-        "bbox": [140, -40, 160, -30]
+        "bbox": [143, -38, 146, -35]
       },
       "geometry": {
         "type": "Point",
