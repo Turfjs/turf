@@ -24,7 +24,7 @@ function coordsToPolygon(coords) {
  * @returns {FeatureCollection<Polygon>} a set of polygons, one per input polygon.
  * @example
  * var bbox = [-70, 40, -60, 60];
- * var points = turf.randomPoints(100, { bbox: bbox });
+ * var points = turf.randomPoint(100, { bbox: bbox });
  * var voronoiPolygons = turf.voronoi(points, bbox);
  */
 function voronoi(points, bbox) {
