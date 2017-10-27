@@ -1,0 +1,57 @@
+{
+  "name": "@turf/voronoi",
+  "version": "5.0.0",
+  "description": "turf voronoi module",
+  "main": "main",
+  "module": "index",
+  "jsnext:main": "index",
+  "types": "index.d.ts",  
+  "files": [
+    "index.js",
+    "index.d.ts",
+    "main.js"
+  ],
+  "scripts": {
+    "pretest": "rollup -c ../../rollup.config.js",
+    "test": "node -r @std/esm test.js",
+    "bench": "node -r @std/esm bench.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/Turfjs/turf.git"
+  },
+  "keywords": [
+    "turf",
+    "geometry",
+    "voronoi",
+    "polygons",
+    "points"
+  ],
+  "author": "Turf Authors",
+  "contributors": [
+    "Mike Bostock <@mbostock>",
+    "Steve Bennett <@stevage1>"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Turfjs/turf/issues"
+  },
+  "homepage": "https://github.com/Turfjs/turf",
+  "devDependencies": {
+    "benchmark": "*",
+    "load-json-file": "*",
+    "tape": "*",
+    "write-json-file": "*",
+    "rollup": "*",
+    "@std/esm": "*"
+  },
+  "dependencies": {
+    "@turf/invariant": "5.x",
+    "d3-voronoi": "^1.1.2",
+    "@turf/helpers": "5.x"
+  },
+  "@std/esm": {
+    "esm": "js",
+    "cjs": true
+  }
+}

@@ -183,6 +183,7 @@
     "@turf/truncate": "*",
     "@turf/union": "*",
     "@turf/unkink-polygon": "*",
+    "@turf/voronoi": "*",
     "@turf/within": "*"
   },
   "@std/esm": {
