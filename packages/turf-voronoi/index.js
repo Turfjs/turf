@@ -1,7 +1,7 @@
 import lineStringToPolygon from '@turf/linestring-to-polygon';
 import { lineString, featureCollection } from '@turf/helpers';
 import { getCoords, collectionOf } from '@turf/invariant';
-import d3voronoi from 'd3-voronoi';
+import * as d3voronoi from 'd3-voronoi';
 
 /**
  * @param {Array<Array<number>>} coords representing a polygon
