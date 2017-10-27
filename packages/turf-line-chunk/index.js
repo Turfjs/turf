@@ -70,7 +70,7 @@ function sliceLineSegments(line, segmentLength, units, callback) {
     if (!Number.isInteger(numberOfSegments)) {
         numberOfSegments = Math.floor(numberOfSegments) + 1;
     }
-    
+
     for (var i = 0; i < numberOfSegments; i++) {
         var outline = lineSliceAlong(line, segmentLength * i, segmentLength * (i + 1), {units: units});
         callback(outline, i);
