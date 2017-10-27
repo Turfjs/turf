@@ -95,6 +95,7 @@ export {default as pointToLineDistance} from '@turf/point-to-line-distance';
 export {default as booleanParallel} from '@turf/boolean-parallel';
 export {default as nearestPointToLine} from '@turf/nearest-point-to-line';
 export {default as shortestPath} from '@turf/shortest-path';
+export {default as voronoi} from '@turf/voronoi';
 export * from '@turf/projection';
 export * from '@turf/random';
 export * from '@turf/clusters';
