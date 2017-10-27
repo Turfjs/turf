@@ -17,7 +17,7 @@ function coordsToPolygon(coords) {
  * 
  * The Voronoi algorithim used comes from the d3-voronoi package.
  *
- * @name turfVoronoi
+ * @name voronoi
  * @param {FeatureCollection<Point>} points to find the Voronoi polygons around.
  * @param {number[]} bbox clipping rectangle, in [minX, minY, maxX, MaxY] order.
  * @returns {FeatureCollection<Polygon>} a set of polygons, one per input polygon.
