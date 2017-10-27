@@ -6,32 +6,13 @@
   version "0.12.1"
   resolved "https://registry.yarnpkg.com/@std/esm/-/esm-0.12.1.tgz#d07b7c5e2701beade1e7db74b95484f5d91c46bf"
 
-"@turf/bbox@5.0.0":
-  version "5.0.0"
-  resolved "https://registry.yarnpkg.com/@turf/bbox/-/bbox-5.0.0.tgz#c179e533328120ca29b5dbd215a5f54e5c7940d3"
-  dependencies:
-    "@turf/helpers" "5.0.0"
-    "@turf/meta" "5.0.0"
+"@turf/helpers@5.x":
+  version "5.0.1"
+  resolved "https://registry.yarnpkg.com/@turf/helpers/-/helpers-5.0.1.tgz#d950df25b10c9ed347f7811927ec14e72ccc58b2"
 
-"@turf/helpers@5.0.0":
-  version "5.0.0"
-  resolved "https://registry.yarnpkg.com/@turf/helpers/-/helpers-5.0.0.tgz#732cb570e6aebca9ef7375e8e42fafa8e16e5d47"
-
-"@turf/invariant@5.0.0":
+"@turf/invariant@5.x":
   version "5.0.0"
   resolved "https://registry.yarnpkg.com/@turf/invariant/-/invariant-5.0.0.tgz#da9b4d7b044cffa300d654b3e0444969fc19d850"
-
-"@turf/linestring-to-polygon@^5.0.0":
-  version "5.0.0"
-  resolved "https://registry.yarnpkg.com/@turf/linestring-to-polygon/-/linestring-to-polygon-5.0.0.tgz#d8c33d879fcbc71224fd6a69d41978562d2005e8"
-  dependencies:
-    "@turf/bbox" "5.0.0"
-    "@turf/helpers" "5.0.0"
-    "@turf/invariant" "5.0.0"
-
-"@turf/meta@5.0.0":
-  version "5.0.0"
-  resolved "https://registry.yarnpkg.com/@turf/meta/-/meta-5.0.0.tgz#75b100e9854cd7b2fa63e68561e1298dac09d7b4"
 
 balanced-match@^1.0.0:
   version "1.0.0"
@@ -314,10 +295,6 @@ tape@*:
 through@~2.3.4, through@~2.3.8:
   version "2.3.8"
   resolved "https://registry.yarnpkg.com/through/-/through-2.3.8.tgz#0dd4c9ffaabc357960b1b724115d7e0e86a2e1f5"
-
-turf-helpers@^3.x:
-  version "3.0.12"
-  resolved "https://registry.yarnpkg.com/turf-helpers/-/turf-helpers-3.0.12.tgz#dd4272e74b3ad7c96eecb7ae5c57fe8eca544b7b"
 
 wrappy@1:
   version "1.0.2"

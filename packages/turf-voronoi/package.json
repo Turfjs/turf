@@ -5,7 +5,7 @@
   "main": "main",
   "module": "index",
   "jsnext:main": "index",
-  "types": "index.d.ts",  
+  "types": "index.d.ts",
   "files": [
     "index.js",
     "index.d.ts",
