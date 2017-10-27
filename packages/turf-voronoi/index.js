@@ -1,6 +1,6 @@
 import lineStringToPolygon from '@turf/linestring-to-polygon';
 import { lineString, featureCollection } from '@turf/helpers';
-import { getCoords } from '@turf/invariant';
+import { getCoords, collectionOf } from '@turf/invariant';
 import d3voronoi from 'd3-voronoi';
 
 /**
@@ -13,8 +13,8 @@ function coordsToPolygon(coords) {
 
 /**
  * Takes a FeatureCollection of points, and a bounding box, and returns a FeatureCollection
- * of Voronoi polygons. 
- * 
+ * of Voronoi polygons.
+ *
  * The Voronoi algorithim used comes from the d3-voronoi package.
  *
  * @name voronoi
@@ -23,22 +23,25 @@ function coordsToPolygon(coords) {
  * @returns {FeatureCollection<Polygon>} a set of polygons, one per input polygon.
  * @example
  * var bbox = [-70, 40, -60, 60];
- * var points = turf.randomPoints(100, { bbox: bbox }); 
+ * var points = turf.randomPoints(100, { bbox: bbox });
  * var voronoiPolygons = turf.voronoi(points, bbox);
  */
 function voronoi(points, bbox) {
     if (!points) throw new Error('points is required');
     if (!bbox) throw new Error('bbox is required');
     if (!Array.isArray(bbox)) throw new Error('bbox is invalid');
+    collectionOf(points, 'Point', 'points');
 
-    var d3v = d3voronoi.voronoi().extent([[bbox[0], bbox[1]], [bbox[2], bbox[3]]]);
-
-    // convert points into simple array of coordinates, expected by D3    
+    // Inputs
+    var extent = [[bbox[0], bbox[1]], [bbox[2], bbox[3]]];
     var coords = points.features.map(getCoords);
 
-    var polygonsd3 = d3v(coords).polygons();
-
-    return featureCollection(polygonsd3.map(coordsToPolygon));
+    return featureCollection(
+        d3voronoi.voronoi()
+            .extent(extent)(coords)
+            .polygons()
+            .map(coordsToPolygon)
+    );
 }
 
 export default voronoi;
