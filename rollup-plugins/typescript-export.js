@@ -4,7 +4,7 @@ export default function () {
         name: 'typescript-export',
         transformBundle(code) {
             code = code.trim();
-            const name = code.match(/module.exports = (\w+)/);
+            const name = code.match(/module.exports = ([\w$]+);/);
             if (name) code += `\nmodule.exports.default = ${name[1]};\n`;
             return code;
         }
