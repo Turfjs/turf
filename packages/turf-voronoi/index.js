@@ -1,5 +1,4 @@
-import lineStringToPolygon from '@turf/linestring-to-polygon';
-import { lineString, featureCollection } from '@turf/helpers';
+import { polygon, featureCollection } from '@turf/helpers';
 import { getCoords, collectionOf } from '@turf/invariant';
 import * as d3voronoi from 'd3-voronoi';
 
@@ -8,7 +7,9 @@ import * as d3voronoi from 'd3-voronoi';
  * @returns {Feature<Polygon>} polygon
  */
 function coordsToPolygon(coords) {
-    return lineStringToPolygon(lineString(coords.slice(0)));
+    coords = coords.slice();
+    coords.push(coords[0]);
+    return polygon([coords]);
 }
 
 /**
