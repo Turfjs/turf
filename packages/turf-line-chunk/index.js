@@ -65,8 +65,9 @@ function sliceLineSegments(line, segmentLength, units, callback) {
     if (lineLength <= segmentLength) return callback(line);
 
     var numberOfSegments = lineLength / segmentLength;
+
     // If numberOfSegments is integer, no need to plus 1
-    if(!Number.isInteger(numberOfSegments)){
+    if (!Number.isInteger(numberOfSegments)) {
         numberOfSegments = Math.floor(numberOfSegments) + 1;
     }
     
