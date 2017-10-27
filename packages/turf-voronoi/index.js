@@ -1,5 +1,5 @@
 import { polygon, featureCollection } from '@turf/helpers';
-import { getCoords, collectionOf } from '@turf/invariant';
+import { collectionOf } from '@turf/invariant';
 import * as d3voronoi from 'd3-voronoi';
 
 /**
@@ -35,11 +35,12 @@ function voronoi(points, bbox) {
 
     // Inputs
     var extent = [[bbox[0], bbox[1]], [bbox[2], bbox[3]]];
-    var coords = points.features.map(getCoords);
 
     return featureCollection(
         d3voronoi.voronoi()
-            .extent(extent)(coords)
+            .x(function(feature) { return feature.geometry.coordinates[0]; })
+            .y(function(feature) { return feature.geometry.coordinates[1]; })
+            .extent(extent)(points.features)
             .polygons()
             .map(coordsToPolygon)
     );
