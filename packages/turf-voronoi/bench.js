@@ -15,8 +15,8 @@ const fixtures = fs.readdirSync(directory).map(filename => {
 
 /**
  * Benchmark Results
- * ninepoints x 18,507 ops/sec ±1.68% (86 runs sampled)
- * simple x 122,562 ops/sec ±2.66% (83 runs sampled)
+ * ninepoints x 22,169 ops/sec ±1.47% (88 runs sampled)
+ * simple x 142,285 ops/sec ±3.02% (73 runs sampled)
  */
 const suite = new Benchmark.Suite('turf-voronoi');
 for (const {name, geojson} of fixtures) {
