@@ -1,19 +1,18 @@
 import uglify from 'rollup-plugin-uglify-es';
-import nodeResolve from 'rollup-plugin-node-resolve';
 import commonjs from 'rollup-plugin-commonjs';
+import nodeResolve from 'rollup-plugin-node-resolve';
 
-function assign(options) {
-    const file = options.file;
-    const format = options.format || 'umd';
-    const plugins = [
+function config(file, format, plugins) {
+    plugins = [
         commonjs({ include: 'node_modules/**' }),
         nodeResolve({ module: true, jsnext: true })
-    ].concat(options.plugins || []);
+    ].concat(plugins || []);
+
     return {
         input: 'index.js',
         output: {
-            file: file,
-            format: format,
+            file,
+            format,
             extend: true,
             sourcemap: true,
             name: 'turf'
@@ -23,6 +22,6 @@ function assign(options) {
 }
 
 export default [
-    assign({format: 'umd', file: 'turf.js'}),
-    assign({format: 'umd', file: 'turf.min.js', plugins: [uglify()]}),
+    config('turf.js', 'umd'),
+    config('turf.min.js', 'umd', [uglify()]),
 ];
