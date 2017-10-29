@@ -17,7 +17,7 @@ function config(file, format, plugins) {
             sourcemap: true,
             name: 'turf'
         },
-        plugins: plugins,
+        plugins,
     };
 }
 
