@@ -10,24 +10,30 @@
 
 Returns **[Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;[Polygon](http://geojson.org/geojson-spec.html#polygon)>** polygon
 
-## turfVoronoi
+## voronoi
 
 Takes a FeatureCollection of points, and a bounding box, and returns a FeatureCollection
-of Voronoi polygons. 
+of Voronoi polygons.
 
 The Voronoi algorithim used comes from the d3-voronoi package.
 
 **Parameters**
 
 -   `points` **[FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects)&lt;[Point](http://geojson.org/geojson-spec.html#point)>** to find the Voronoi polygons around.
--   `bbox` **[Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)>** clipping rectangle, in [minX, minY, maxX, MaxY] order.
+-   `options` **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)** Optional parameters (optional, default `{}`)
+    -   `options.bbox` **[Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)>** clipping rectangle, in [minX, minY, maxX, MaxY] order. (optional, default `[-180,-85,180,-85]`)
 
 **Examples**
 
 ```javascript
-var bbox = [-70, 40, -60, 60];
-var points = turf.randomPoints(100, { bbox: bbox }); 
-var voronoiPolygons = turf.voronoi(points, bbox);
+var options = {
+  bbox: [-70, 40, -60, 60]
+};
+var points = turf.randomPoint(100, options);
+var voronoiPolygons = turf.voronoi(points, options);
+
+//addToMap
+var addToMap = [voronoiPolygons, points];
 ```
 
 Returns **[FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects)&lt;[Polygon](http://geojson.org/geojson-spec.html#polygon)>** a set of polygons, one per input polygon.
