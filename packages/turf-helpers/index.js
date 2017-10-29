@@ -461,11 +461,11 @@ export function lengthToDegrees(distance, units) {
  * Converts any bearing angle from the north line direction (positive clockwise)
  * and returns an angle between 0-360 degrees (positive clockwise), 0 being the north line
  *
- * @name bearingToAngle
+ * @name bearingToAzimuth
  * @param {number} bearing angle, between -180 and +180 degrees
  * @returns {number} angle between 0 and 360 degrees
  */
-export function bearingToAngle(bearing) {
+export function bearingToAzimuth(bearing) {
     if (bearing === null || bearing === undefined) throw new Error('bearing is required');
 
     var angle = bearing % 360;
@@ -571,21 +571,25 @@ export function isObject(input) {
 
 // Deprecated methods
 export function radians2degrees() {
-    throw new Error('Method deprecated in favor of radiansToDegrees');
+    throw new Error('Method deprecated in favor of helpers.radiansToDegrees');
 }
 
 export function degrees2radians() {
-    throw new Error('Method deprecated in favor of degreesToRadians');
+    throw new Error('Method deprecated in favor of helpers.degreesToRadians');
 }
 
 export function distanceToDegrees() {
-    throw new Error('Method deprecated in favor of lengthToDegrees');
+    throw new Error('Method deprecated in favor of helpers.lengthToDegrees');
 }
 
 export function distanceToRadians() {
-    throw new Error('Method deprecated in favor of lengthToRadians');
+    throw new Error('Method deprecated in favor of helpers.lengthToRadians');
 }
 
 export function radiansToDistance() {
-    throw new Error('Method deprecated in favor of radiansToLength');
+    throw new Error('Method deprecated in favor of helpers.radiansToLength');
+}
+
+export function bearingToAngle() {
+    throw new Error('Method deprecated in favor of helpers.bearingToAzimuth');
 }

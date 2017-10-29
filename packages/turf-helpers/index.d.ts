@@ -114,9 +114,9 @@ export function lengthToRadians(distance: number, units?: Units): number
 export function lengthToDegrees(distance: number, units?: Units): number
 
 /**
- * http://turfjs.org/docs/#bearingtoangle
+ * http://turfjs.org/docs/#bearingtoazimuth
  */
-export function bearingToAngle(bearing: number): number
+export function bearingToAzimuth(bearing: number): number
 
 /**
  * http://turfjs.org/docs/#radianstodegrees

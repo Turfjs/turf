@@ -14,7 +14,7 @@ import {
     radiansToLength,
     lengthToRadians,
     lengthToDegrees,
-    bearingToAngle,
+    bearingToAzimuth,
     radiansToDegrees,
     degreesToRadians,
     round,
