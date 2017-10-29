@@ -5,20 +5,20 @@ import { isObject } from '@turf/helpers';
 /**
  * Takes a {@link GeoJSON} and measures its length in the specified units, {@link (Multi)Point|Point}'s distance are ignored.
  *
- * @name lineDistance
+ * @name length
  * @param {GeoJSON} geojson GeoJSON to measure
  * @param {Object} [options={}] Optional parameters
  * @param {string} [options.units=kilometers] can be degrees, radians, miles, or kilometers
  * @returns {number} length of GeoJSON
  * @example
  * var line = turf.lineString([[115, -32], [131, -22], [143, -25], [150, -34]]);
- * var length = turf.lineDistance(line, {units: 'miles'});
+ * var length = turf.length(line, {units: 'miles'});
  *
  * //addToMap
  * var addToMap = [line];
  * line.properties.distance = length;
  */
-function lineDistance(geojson, options) {
+function length(geojson, options) {
     // Optional parameters
     options = options || {};
     if (!isObject(options)) throw new Error('options is invalid');
@@ -33,4 +33,4 @@ function lineDistance(geojson, options) {
     }, 0);
 }
 
-export default lineDistance;
+export default length;

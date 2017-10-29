@@ -1,7 +1,7 @@
 {
-  "name": "@turf/line-distance",
-  "version": "4.7.3",
-  "description": "turf line-distance module",
+  "name": "@turf/length",
+  "version": "5.0.0",
+  "description": "turf length module",
   "main": "main",
   "module": "index",
   "jsnext:main": "index",

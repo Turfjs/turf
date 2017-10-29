@@ -2,7 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import load from 'load-json-file';
 import Benchmark from 'benchmark';
-import lineDistance from './';
+import length from './';
 
 // Define fixtures
 const directory = path.join(__dirname, 'test', 'in') + path.sep;
@@ -28,7 +28,7 @@ const fixtures = fs.readdirSync(directory).map(filename => {
 // Define benchmark
 const suite = new Benchmark.Suite('turf-line-distance');
 for (const {name, geojson} of fixtures) {
-    suite.add(name, () => lineDistance(geojson));
+    suite.add(name, () => length(geojson));
 }
 suite
   .on('cycle', e => console.log(String(e.target)))

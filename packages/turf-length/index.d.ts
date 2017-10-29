@@ -1,9 +1,9 @@
 import { Units, AllGeoJSON } from '@turf/helpers'
 
 /**
- * http://turfjs.org/docs/#linedistance
+ * http://turfjs.org/docs/#length
  */
-export default function lineDistance(
+export default function length(
     geojson: AllGeoJSON,
     options?: {
         units?: Units
