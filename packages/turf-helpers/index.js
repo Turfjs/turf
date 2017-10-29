@@ -412,12 +412,12 @@ export function round(num, precision) {
  * Convert a distance measurement (assuming a spherical Earth) from radians to a more friendly unit.
  * Valid units: miles, nauticalmiles, inches, yards, meters, metres, kilometers, centimeters, feet
  *
- * @name radiansToDistance
+ * @name radiansToLength
  * @param {number} radians in radians across the sphere
  * @param {string} [units='kilometers'] can be degrees, radians, miles, or kilometers inches, yards, metres, meters, kilometres, kilometers.
  * @returns {number} distance
  */
-export function radiansToDistance(radians, units) {
+export function radiansToLength(radians, units) {
     if (radians === undefined || radians === null) throw new Error('radians is required');
 
     if (units && typeof units !== 'string') throw new Error('units must be a string');
@@ -430,12 +430,12 @@ export function radiansToDistance(radians, units) {
  * Convert a distance measurement (assuming a spherical Earth) from a real-world unit into radians
  * Valid units: miles, nauticalmiles, inches, yards, meters, metres, kilometers, centimeters, feet
  *
- * @name distanceToRadians
+ * @name lengthToRadians
  * @param {number} distance in real units
  * @param {string} [units='kilometers'] can be degrees, radians, miles, or kilometers inches, yards, metres, meters, kilometres, kilometers.
  * @returns {number} radians
  */
-export function distanceToRadians(distance, units) {
+export function lengthToRadians(distance, units) {
     if (distance === undefined || distance === null) throw new Error('distance is required');
 
     if (units && typeof units !== 'string') throw new Error('units must be a string');
@@ -448,13 +448,13 @@ export function distanceToRadians(distance, units) {
  * Convert a distance measurement (assuming a spherical Earth) from a real-world unit into degrees
  * Valid units: miles, nauticalmiles, inches, yards, meters, metres, centimeters, kilometres, feet
  *
- * @name distanceToDegrees
+ * @name lengthToDegrees
  * @param {number} distance in real units
  * @param {string} [units='kilometers'] can be degrees, radians, miles, or kilometers inches, yards, metres, meters, kilometres, kilometers.
  * @returns {number} degrees
  */
-export function distanceToDegrees(distance, units) {
-    return radians2degrees(distanceToRadians(distance, units));
+export function lengthToDegrees(distance, units) {
+    return radiansToDegrees(lengthToRadians(distance, units));
 }
 
 /**
@@ -476,11 +476,11 @@ export function bearingToAngle(bearing) {
 /**
  * Converts an angle in radians to degrees
  *
- * @name radians2degrees
+ * @name radiansToDegrees
  * @param {number} radians angle in radians
  * @returns {number} degrees between 0 and 360 degrees
  */
-export function radians2degrees(radians) {
+export function radiansToDegrees(radians) {
     if (radians === null || radians === undefined) throw new Error('radians is required');
 
     var degrees = radians % (2 * Math.PI);
@@ -490,11 +490,11 @@ export function radians2degrees(radians) {
 /**
  * Converts an angle in degrees to radians
  *
- * @name degrees2radians
+ * @name degreesToradians
  * @param {number} degrees angle between 0 and 360 degrees
  * @returns {number} angle in radians
  */
-export function degrees2radians(degrees) {
+export function degreesToRadians(degrees) {
     if (degrees === null || degrees === undefined) throw new Error('degrees is required');
 
     var radians = degrees % 360;
@@ -514,7 +514,7 @@ export function convertDistance(distance, originalUnit, finalUnit) {
     if (distance === null || distance === undefined) throw new Error('distance is required');
     if (!(distance >= 0)) throw new Error('distance must be a positive number');
 
-    var convertedDistance = radiansToDistance(distanceToRadians(distance, originalUnit), finalUnit || 'kilometers');
+    var convertedDistance = radiansToLength(lengthToRadians(distance, originalUnit), finalUnit || 'kilometers');
     return convertedDistance;
 }
 
@@ -567,4 +567,25 @@ export function isNumber(num) {
  */
 export function isObject(input) {
     return (!!input) && (input.constructor === Object);
+}
+
+// Deprecated methods
+export function radians2degrees() {
+    throw new Error('Method deprecated in favor of radiansToDegrees');
+}
+
+export function degrees2radians() {
+    throw new Error('Method deprecated in favor of degreesToRadians');
+}
+
+export function distanceToDegrees() {
+    throw new Error('Method deprecated in favor of lengthToDegrees');
+}
+
+export function distanceToRadians() {
+    throw new Error('Method deprecated in favor of lengthToRadians');
+}
+
+export function radiansToDistance() {
+    throw new Error('Method deprecated in favor of radiansToLength');
 }

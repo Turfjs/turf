@@ -9,11 +9,11 @@ import {
     multiPoint,
     multiPolygon,
     geometryCollection,
-    radiansToDistance,
-    distanceToRadians,
-    distanceToDegrees,
-    radians2degrees,
-    degrees2radians,
+    radiansToLength,
+    lengthToRadians,
+    lengthToDegrees,
+    radiansToDegrees,
+    degreesToRadians,
     bearingToAngle,
     convertDistance,
     convertArea,
@@ -308,41 +308,41 @@ test('geometrycollection', t => {
     t.end();
 });
 
-test('radiansToDistance', t => {
-    t.equal(radiansToDistance(1, 'radians'), 1);
-    t.equal(radiansToDistance(1, 'kilometers'), earthRadius / 1000);
-    t.equal(radiansToDistance(1, 'miles'), earthRadius / 1609.344);
-    t.throws(() => radiansToDistance(1, 'foo'), 'invalid units');
+test('radiansToLength', t => {
+    t.equal(radiansToLength(1, 'radians'), 1);
+    t.equal(radiansToLength(1, 'kilometers'), earthRadius / 1000);
+    t.equal(radiansToLength(1, 'miles'), earthRadius / 1609.344);
+    t.throws(() => radiansToLength(1, 'foo'), 'invalid units');
     t.end();
 });
 
-test('distanceToRadians', t => {
-    t.equal(distanceToRadians(1, 'radians'), 1);
-    t.equal(distanceToRadians(earthRadius / 1000, 'kilometers'), 1);
-    t.equal(distanceToRadians(earthRadius / 1609.344, 'miles'), 1);
-    t.throws(() => distanceToRadians(1, 'foo'), 'invalid units');
+test('lengthToRadians', t => {
+    t.equal(lengthToRadians(1, 'radians'), 1);
+    t.equal(lengthToRadians(earthRadius / 1000, 'kilometers'), 1);
+    t.equal(lengthToRadians(earthRadius / 1609.344, 'miles'), 1);
+    t.throws(() => lengthToRadians(1, 'foo'), 'invalid units');
     t.end();
 });
 
-test('distanceToDegrees', t => {
-    t.equal(distanceToDegrees(1, 'radians'), 57.29577951308232);
-    t.equal(distanceToDegrees(100, 'kilometers'), 0.899320363724538);
-    t.equal(distanceToDegrees(10, 'miles'), 0.1447315831437903);
-    t.throws(() => distanceToRadians(1, 'foo'), 'invalid units');
+test('lengthToDegrees', t => {
+    t.equal(lengthToDegrees(1, 'radians'), 57.29577951308232);
+    t.equal(lengthToDegrees(100, 'kilometers'), 0.899320363724538);
+    t.equal(lengthToDegrees(10, 'miles'), 0.1447315831437903);
+    t.throws(() => lengthToRadians(1, 'foo'), 'invalid units');
     t.end();
 });
 
-test('radians2degrees', t => {
-    t.equal(round(radians2degrees(Math.PI / 3), 6), 60, 'radiance conversion PI/3');
-    t.equal(radians2degrees(3.5 * Math.PI), 270, 'radiance conversion 3.5PI');
-    t.equal(radians2degrees(-Math.PI), -180, 'radiance conversion -PI');
+test('radiansToDegrees', t => {
+    t.equal(round(radiansToDegrees(Math.PI / 3), 6), 60, 'radiance conversion PI/3');
+    t.equal(radiansToDegrees(3.5 * Math.PI), 270, 'radiance conversion 3.5PI');
+    t.equal(radiansToDegrees(-Math.PI), -180, 'radiance conversion -PI');
     t.end();
 });
 
-test('radians2degrees', t => {
-    t.equal(degrees2radians(60), Math.PI / 3, 'degrees conversion 60');
-    t.equal(degrees2radians(270), 1.5 * Math.PI, 'degrees conversion 270');
-    t.equal(degrees2radians(-180), -Math.PI, 'degrees conversion -180');
+test('radiansToDegrees', t => {
+    t.equal(degreesToRadians(60), Math.PI / 3, 'degrees conversion 60');
+    t.equal(degreesToRadians(270), 1.5 * Math.PI, 'degrees conversion 270');
+    t.equal(degreesToRadians(-180), -Math.PI, 'degrees conversion -180');
     t.end();
 });
 

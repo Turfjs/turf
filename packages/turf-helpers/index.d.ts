@@ -99,19 +99,19 @@ export function multiPolygon(coordinates: Position[][][], properties?: Propertie
 export function geometryCollection(geometries: GeometryObject[], properties?: Properties, bbox?: BBox, id?: Id): FeatureGeometryCollection;
 
 /**
- * http://turfjs.org/docs/#radianstodistance
+ * http://turfjs.org/docs/#radianstolength
  */
-export function radiansToDistance(radians: number, units?: Units): number
+export function radiansToLength(radians: number, units?: Units): number
 
 /**
- * http://turfjs.org/docs/#distancetoradians
+ * http://turfjs.org/docs/#lengthtoradians
  */
-export function distanceToRadians(distance: number, units?: Units): number
+export function lengthToRadians(distance: number, units?: Units): number
 
 /**
- * http://turfjs.org/docs/#distancetodegrees
+ * http://turfjs.org/docs/#lengthtodegrees
  */
-export function distanceToDegrees(distance: number, units?: Units): number
+export function lengthToDegrees(distance: number, units?: Units): number
 
 /**
  * http://turfjs.org/docs/#bearingtoangle
@@ -119,14 +119,14 @@ export function distanceToDegrees(distance: number, units?: Units): number
 export function bearingToAngle(bearing: number): number
 
 /**
- * http://turfjs.org/docs/#radians2degrees
+ * http://turfjs.org/docs/#radianstodegrees
  */
-export function radians2degrees(radians: number): number
+export function radiansToDegrees(radians: number): number
 
 /**
- * http://turfjs.org/docs/#degrees2radians
+ * http://turfjs.org/docs/#degreestoradians
  */
-export function degrees2radians(degrees: number): number
+export function degreesToRadians(degrees: number): number
 
 /**
  * http://turfjs.org/docs/#round
