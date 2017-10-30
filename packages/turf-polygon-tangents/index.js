@@ -18,27 +18,28 @@ import { point, featureCollection } from '@turf/helpers';
  * var addToMap = [tangents, point, polygon];
  */
 function polygonTangents(pt, polygon) {
-    var eprev;
-    var enext;
-    var rtan;
-    var ltan;
     var pointCoords = getCoords(pt);
     var polyCoords = getCoords(polygon);
+
+    var rtan;
+    var ltan;
+    var enext;
+    var eprev;
 
     var type = getType(polygon);
     switch (type) {
     case 'Polygon':
-        rtan = 0;
-        ltan = 0;
-        eprev = isLeft(polyCoords[0][0], polyCoords[0][1], pointCoords);
+        rtan = polyCoords[0][0];
+        ltan = polyCoords[0][0];
+        eprev = isLeft(polyCoords[0][0], polyCoords[0][polyCoords[0].length - 1], pointCoords);
         var out = processPolygon(polyCoords[0], pointCoords, eprev, enext, rtan, ltan);
         rtan = out[0];
         ltan = out[1];
         break;
     case 'MultiPolygon':
-        rtan = 0;
-        ltan = 0;
-        eprev = isLeft(polyCoords[0][0][0], polyCoords[0][0][1], pointCoords);
+        rtan = polyCoords[0][0][0];
+        ltan = polyCoords[0][0][0];
+        eprev = isLeft(polyCoords[0][0][0], polyCoords[0][0][polyCoords[0][0].length - 1], pointCoords);
         polyCoords.forEach(function (ring) {
             var out = processPolygon(ring[0], pointCoords, eprev, enext, rtan, ltan);
             rtan = out[0];
@@ -61,8 +62,7 @@ function processPolygon(polygonCoords, ptCoords, eprev, enext, rtan, ltan) {
             if (!isBelow(ptCoords, currentCoords, rtan)) {
                 rtan = currentCoords;
             }
-        }
-        if (eprev > 0 && enext <= 0) {
+        } else if (eprev > 0 && enext <= 0) {
             if (!isAbove(ptCoords, currentCoords, ltan)) {
                 ltan = currentCoords;
             }
@@ -73,11 +73,11 @@ function processPolygon(polygonCoords, ptCoords, eprev, enext, rtan, ltan) {
 }
 
 function isAbove(point1, point2, point3) {
-    return isLeft(point1, point2, point3) >= 0;
+    return isLeft(point1, point2, point3) > 0;
 }
 
 function isBelow(point1, point2, point3) {
-    return isLeft(point1, point2, point3) <= 0;
+    return isLeft(point1, point2, point3) < 0;
 }
 
 function isLeft(point1, point2, point3) {
