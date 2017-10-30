@@ -1,5 +1,5 @@
 import centroid from '@turf/center';
-import nearest from '@turf/nearest';
+import nearestPoint from '@turf/nearest-point';
 import inside from '@turf/inside';
 import explode from '@turf/explode';
 import { featureCollection } from '@turf/helpers';
@@ -116,7 +116,7 @@ function pointOnSurface(fc) {
         for (i = 0; i < fc.features.length; i++) {
             vertices.features = vertices.features.concat(explode(fc.features[i]).features);
         }
-        return nearest(cent, vertices);
+        return nearestPoint(cent, vertices);
     }
 }
 

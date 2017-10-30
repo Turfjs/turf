@@ -53,7 +53,7 @@
     "@turf/helpers": "5.x",
     "@turf/inside": "5.x",
     "@turf/invariant": "5.x",
-    "@turf/meta": "*",
+    "@turf/meta": "5.x",
     "@turf/transform-scale": "*"
   },
   "@std/esm": {

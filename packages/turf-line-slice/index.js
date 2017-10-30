@@ -1,5 +1,5 @@
 import { lineString as linestring } from '@turf/helpers';
-import pointOnLine from '@turf/point-on-line';
+import nearestPointOnLine from '@turf/nearest-point-on-line';
 
 /**
  * Takes a {@link LineString|line}, a start {@link Point}, and a stop point
@@ -40,8 +40,8 @@ function lineSlice(startPt, stopPt, line) {
         throw new Error('input must be a LineString Feature or Geometry');
     }
 
-    var startVertex = pointOnLine(line, startPt);
-    var stopVertex = pointOnLine(line, stopPt);
+    var startVertex = nearestPointOnLine(line, startPt);
+    var stopVertex = nearestPointOnLine(line, stopPt);
     var ends;
     if (startVertex.properties.index <= stopVertex.properties.index) {
         ends = [startVertex, stopVertex];

@@ -1,6 +1,6 @@
 {
   "name": "@turf/truncate",
-  "version": "4.7.3",
+  "version": "5.0.0",
   "description": "turf truncate module",
   "main": "main",
   "module": "index",

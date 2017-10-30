@@ -1,7 +1,7 @@
-import test from 'tape';
-import centroid from '.';
 import fs from 'fs';
+import test from 'tape';
 import inside from '@turf/inside';
+import centroid from './';
 
 test('point-on-surface -- closest vertex on polygons', function (t) {
     var fc = JSON.parse(fs.readFileSync(__dirname + '/test/polygons.geojson'));

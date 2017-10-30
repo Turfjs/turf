@@ -3,12 +3,12 @@
 
 
 "@std/esm@*":
-  version "0.12.1"
-  resolved "https://registry.yarnpkg.com/@std/esm/-/esm-0.12.1.tgz#d07b7c5e2701beade1e7db74b95484f5d91c46bf"
+  version "0.12.5"
+  resolved "https://registry.yarnpkg.com/@std/esm/-/esm-0.12.5.tgz#b38a9bc70462df18a09b16f653141b9ab5557635"
 
 "@turf/clone@5.x":
-  version "4.7.3"
-  resolved "https://registry.yarnpkg.com/@turf/clone/-/clone-4.7.3.tgz#6e507be4d648fa62c5e6ce926f7e83a22f53ae69"
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/@turf/clone/-/clone-5.0.0.tgz#0cbed2e4acb523c4f13b6e49f367960ad7bded9d"
 
 "@turf/distance@5.x":
   version "5.0.0"

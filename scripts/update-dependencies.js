@@ -23,7 +23,7 @@ function updateDependencies(pckg) {
         .forEach((version, name) => {
             // Update dependencies to v5.0.0
             switch (name) {
-            case '@turf/point-on-line':
+            case '@turf/nearest-point-on-line':
             case '@turf/circle':
             case '@turf/bbox':
             case '@turf/linestring-to-polygon':
@@ -45,6 +45,9 @@ function updateDependencies(pckg) {
             case '@turf/polygonize':
             case '@turf/meta':
             case '@turf/line-overlap':
+            case '@turf/clone':
+            case '@turf/nearest-point':
+            case '@turf/truncate':
                 dependencies[name] = '5.x';
                 break;
             case 'jsts':
@@ -53,6 +56,10 @@ function updateDependencies(pckg) {
             case 'geojson-rbush':
                 dependencies[name] = '2.1.0';
                 break;
+            case '@turf/line-distance':
+            case '@turf/point-on-line':
+            case '@turf/nearest':
+                throw new Error(`${pckg.name} module has invalid dependency ${name}`);
             default:
                 dependencies[name] = version;
             }

@@ -53,7 +53,7 @@
     "@std/esm": "*"
   },
   "dependencies": {
-    "@turf/clone": "^4.7.3",
+    "@turf/clone": "5.x",
     "@turf/distance": "5.x",
     "@turf/helpers": "5.x",
     "@turf/invariant": "5.x",

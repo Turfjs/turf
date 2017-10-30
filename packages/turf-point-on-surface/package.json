@@ -45,7 +45,7 @@
     "@turf/explode": "^4.7.3",
     "@turf/helpers": "5.x",
     "@turf/inside": "5.x",
-    "@turf/nearest": "^4.7.3"
+    "@turf/nearest-point": "5.x"
   },
   "@std/esm": {
     "esm": "js",
