@@ -186,6 +186,8 @@ test('turf -- check for deprecated modules', t => {
             case '@turf/line-distance':
             case '@turf/point-on-line':
             case '@turf/bezier':
+            case '@turf/within':
+            case '@turf/inside':
             case '@turf/nearest':
                 throw new Error(`${name} module has deprecated dependency ${dependency}`);
             }

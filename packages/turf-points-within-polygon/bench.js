@@ -1,7 +1,7 @@
 import fs from 'fs';
 import Benchmark from 'benchmark';
 import { featureCollection, point, polygon } from '@turf/helpers';
-import within from './';
+import pointsWithinPolygon from './';
 
 var poly1 = polygon([[[0, 0], [10, 0], [10, 10], [0, 0]]]);
 var poly2 = polygon([[[10, 0], [20, 10], [20, 20], [10, 0]]]);
@@ -14,19 +14,9 @@ var pt5 = point([19, 7], {population: 200});
 var pt6 = point([100, 7], {population: 200});
 var ptFC = featureCollection([pt1, pt2, pt3, pt4, pt5, pt6]);
 
-global.within = within;
-global.polyFC = polyFC;
-global.ptFC = ptFC;
-
-var suite = new Benchmark.Suite('turf-within');
+var suite = new Benchmark.Suite('turf-points-within-polygon');
 suite
-  .add('turf-within',function () {
-    global.within(global.ptFC, global.polyFC);
-  })
-  .on('cycle', function (event) {
-    console.log(String(event.target));
-  })
-  .on('complete', function () {
-
-  })
+  .add('turf-points-within-polygon', () => pointsWithinPolygon(ptFC, polyFC))
+  .on('cycle', e => console.log(String(e.target)))
+  .on('complete', () => {})
   .run();

@@ -1,10 +1,10 @@
 import test from 'tape';
-import within from '.';
 import { point } from '@turf/helpers';
 import { polygon } from '@turf/helpers';
 import { featureCollection } from '@turf/helpers';
+import pointsWithinPolygon from '.';
 
-test('within', function (t) {
+test('turf-points-within-polygon', t => {
     t.plan(4);
 
     // test with a single point
@@ -13,7 +13,7 @@ test('within', function (t) {
     var polyFC = featureCollection([poly]);
     var ptFC = featureCollection([pt]);
 
-    var counted = within(ptFC, polyFC);
+    var counted = pointsWithinPolygon(ptFC, polyFC);
 
     t.ok(counted, 'returns a featurecollection');
     t.equal(counted.features.length, 1, '1 point in 1 polygon');
@@ -30,7 +30,7 @@ test('within', function (t) {
     var pt6 = point([100, 7], {population: 200});
     var ptFC = featureCollection([pt1, pt2, pt3, pt4, pt5, pt6]);
 
-    var counted = within(ptFC, polyFC);
+    var counted = pointsWithinPolygon(ptFC, polyFC);
     t.ok(counted, 'returns a featurecollection');
     t.equal(counted.features.length, 5, 'multiple points in multiple polygons');
 });
