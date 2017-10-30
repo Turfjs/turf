@@ -305,7 +305,7 @@ turf.round(120.4321, 2)
 
 Returns **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** rounded number
 
-## radiansToDistance
+## radiansToLength
 
 Convert a distance measurement (assuming a spherical Earth) from radians to a more friendly unit.
 Valid units: miles, nauticalmiles, inches, yards, meters, metres, kilometers, centimeters, feet
@@ -317,7 +317,7 @@ Valid units: miles, nauticalmiles, inches, yards, meters, metres, kilometers, ce
 
 Returns **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** distance
 
-## distanceToRadians
+## lengthToRadians
 
 Convert a distance measurement (assuming a spherical Earth) from a real-world unit into radians
 Valid units: miles, nauticalmiles, inches, yards, meters, metres, kilometers, centimeters, feet
@@ -329,7 +329,7 @@ Valid units: miles, nauticalmiles, inches, yards, meters, metres, kilometers, ce
 
 Returns **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** radians
 
-## distanceToDegrees
+## lengthToDegrees
 
 Convert a distance measurement (assuming a spherical Earth) from a real-world unit into degrees
 Valid units: miles, nauticalmiles, inches, yards, meters, metres, centimeters, kilometres, feet
@@ -341,7 +341,7 @@ Valid units: miles, nauticalmiles, inches, yards, meters, metres, centimeters, k
 
 Returns **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** degrees
 
-## bearingToAngle
+## bearingToAzimuth
 
 Converts any bearing angle from the north line direction (positive clockwise)
 and returns an angle between 0-360 degrees (positive clockwise), 0 being the north line
@@ -352,7 +352,7 @@ and returns an angle between 0-360 degrees (positive clockwise), 0 being the nor
 
 Returns **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** angle between 0 and 360 degrees
 
-## radians2degrees
+## radiansToDegrees
 
 Converts an angle in radians to degrees
 
@@ -362,7 +362,7 @@ Converts an angle in radians to degrees
 
 Returns **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** degrees between 0 and 360 degrees
 
-## degrees2radians
+## degreesToradians
 
 Converts an angle in degrees to radians
 
