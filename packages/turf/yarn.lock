@@ -520,6 +520,14 @@
   dependencies:
     "@turf/helpers" "^4.7.3"
 
+"@turf/length@*":
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/@turf/length/-/length-5.0.0.tgz#0be69532efc8dea65f1d3f12fbeac9a520cc255c"
+  dependencies:
+    "@turf/distance" "5.x"
+    "@turf/helpers" "5.x"
+    "@turf/meta" "5.x"
+
 "@turf/line-arc@*", "@turf/line-arc@^4.7.3":
   version "4.7.3"
   resolved "https://registry.yarnpkg.com/@turf/line-arc/-/line-arc-4.7.3.tgz#32d6c2331bf63bcacf63c17fc619baa729fdce3f"

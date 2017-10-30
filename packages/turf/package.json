@@ -136,6 +136,7 @@
     "@turf/isobands": "*",
     "@turf/isolines": "*",
     "@turf/kinks": "*",
+    "@turf/length": "*",
     "@turf/line-arc": "*",
     "@turf/line-chunk": "*",
     "@turf/line-intersect": "*",
