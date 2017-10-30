@@ -1,5 +1,5 @@
 // https://en.wikipedia.org/wiki/Rhumb_line
-import { earthRadius, point, convertDistance, degrees2radians, isObject } from '@turf/helpers';
+import { earthRadius, point, convertLength, degreesToRadians, isObject } from '@turf/helpers';
 import { getCoord } from '@turf/invariant';
 
 /**
@@ -7,7 +7,7 @@ import { getCoord } from '@turf/invariant';
  * origin Point with the (varant) given bearing.
  *
  * @name rhumbDestination
- * @param {(Geometry|Feature<Point>)|Position} origin starting point
+ * @param {Coord} origin starting point
  * @param {number} distance distance from the starting point
  * @param {number} bearing varant bearing angle ranging from -180 to 180 degrees from north
  * @param {Object} [options={}] Optional parameters
@@ -39,7 +39,7 @@ function rhumbDestination(origin, distance, bearing, options) {
     if (bearing === undefined || bearing === null) throw new Error('bearing is required');
     if (!(distance >= 0)) throw new Error('distance must be greater than 0');
 
-    var distanceInMeters = convertDistance(distance, units, 'meters');
+    var distanceInMeters = convertLength(distance, units, 'meters');
     var coords = getCoord(origin);
     var destination = calculateRhumbDestination(coords, distanceInMeters, bearing);
 
@@ -73,8 +73,8 @@ function calculateRhumbDestination(origin, distance, bearing, radius) {
 
     var delta = distance / radius; // angular distance in radians
     var lambda1 = origin[0] * Math.PI / 180; // to radians, but without normalize to 𝜋
-    var phi1 = degrees2radians(origin[1]);
-    var theta = degrees2radians(bearing);
+    var phi1 = degreesToRadians(origin[1]);
+    var theta = degreesToRadians(bearing);
 
     var DeltaPhi = delta * Math.cos(theta);
     var phi2 = phi1 + DeltaPhi;

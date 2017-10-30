@@ -1,5 +1,5 @@
 import { getCoord } from '@turf/invariant';
-import { radiansToLength, isObject } from '@turf/helpers';
+import { radiansToLength, isObject, degreesToRadians } from '@turf/helpers';
 
 //http://en.wikipedia.org/wiki/Haversine_formula
 //http://www.movable-type.co.uk/scripts/latlong.html
@@ -34,13 +34,12 @@ function distance(from, to, options) {
     if (!isObject(options)) throw new Error('options is invalid');
     var units = options.units;
 
-    var degrees2radians = Math.PI / 180;
     var coordinates1 = getCoord(from);
     var coordinates2 = getCoord(to);
-    var dLat = degrees2radians * (coordinates2[1] - coordinates1[1]);
-    var dLon = degrees2radians * (coordinates2[0] - coordinates1[0]);
-    var lat1 = degrees2radians * coordinates1[1];
-    var lat2 = degrees2radians * coordinates2[1];
+    var dLat = degreesToRadians((coordinates2[1] - coordinates1[1]));
+    var dLon = degreesToRadians((coordinates2[0] - coordinates1[0]));
+    var lat1 = degreesToRadians(coordinates1[1]);
+    var lat2 = degreesToRadians(coordinates2[1]);
 
     var a = Math.pow(Math.sin(dLat / 2), 2) +
           Math.pow(Math.sin(dLon / 2), 2) * Math.cos(lat1) * Math.cos(lat2);

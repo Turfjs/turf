@@ -11,12 +11,15 @@ const directory = path.join(__dirname, '..');
 let modules = [];
 for (const name of fs.readdirSync(directory)) {
     const pckgPath = path.join(directory, name, 'package.json');
+    const indexPath = path.join(directory, name, 'index.js');
+
     if (!fs.existsSync(pckgPath)) continue;
     const pckg = JSON.parse(fs.readFileSync(pckgPath));
     modules.push({
         name,
         dir: path.join(directory, name),
         pckg,
+        index: fs.readFileSync(indexPath, 'utf8'),
         dependencies: pckg.dependencies || {},
         devDependencies: pckg.devDependencies || {}
     });
@@ -220,6 +223,41 @@ test('turf -- missing modules', t => {
             t.fail(name + ' is missing from index.js');
         }
     });
+    t.end();
+});
+
+test('turf -- check for deprecated modules', t => {
+    for (const {name, dependencies, devDependencies} of modules) {
+        for (const dependency of [...Object.keys(dependencies), ...Object.keys(devDependencies)]) {
+            switch (dependency) {
+            case '@turf/idw':
+            case '@turf/line-distance':
+            case '@turf/point-on-line':
+            case '@turf/nearest':
+                throw new Error(`${name} module has deprecated dependency ${dependency}`);
+            }
+        }
+    }
+    t.end();
+});
+
+test('turf -- check for deprecated methods', t => {
+    const deprecatedMethods = [
+        'radians2degrees',
+        'degrees2radians',
+        'distanceToDegrees',
+        'distanceToRadians',
+        'radiansToDistance',
+        'bearingToAngle',
+        'convertDistance'
+    ]
+    for (const {name, index} of modules) {
+        // Exclude @turf/helpers from this test
+        if (name === 'turf-helpers') continue
+        for (const method of deprecatedMethods) {
+            if (index.match(method)) throw new Error(`${name} module has deprecated method ${method}`);
+        }
+    }
     t.end();
 });
 

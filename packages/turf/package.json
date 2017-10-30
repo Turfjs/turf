@@ -16,8 +16,8 @@
   ],
   "scripts": {
     "pretest": "rollup -c rollup.config.js",
-    "build": "browserify main.js -s turf > turf.js && uglifyjs turf.js -c -m > turf.min.js",
-    "test": "node -r @std/esm test.js && node -r @std/esm test.example.js"
+    "test": "node -r @std/esm test.js && node -r @std/esm test.example.js",
+    "build": "browserify main.js -s turf > turf.js && uglifyjs turf.js -c -m > turf.min.js"
   },
   "repository": {
     "type": "git",

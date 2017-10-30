@@ -9,8 +9,8 @@
   "files": [
     "index.js",
     "index.d.ts",
-    "intersection.js",
-    "main.js"
+    "main.js",
+    "lib"
   ],
   "scripts": {
     "pretest": "rollup -c ../../rollup.config.js",

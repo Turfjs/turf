@@ -1,5 +1,5 @@
 // https://en.wikipedia.org/wiki/Rhumb_line
-import { convertDistance, earthRadius, isObject } from '@turf/helpers';
+import { convertLength, earthRadius, isObject } from '@turf/helpers';
 import { getCoord } from '@turf/invariant';
 
 /**
@@ -7,8 +7,8 @@ import { getCoord } from '@turf/invariant';
  * miles, or kilometers.
  *
  * @name rhumbDistance
- * @param {(Geometry|Feature<Point>)|Position} from origin point
- * @param {(Geometry|Feature<Point>)|Position} to destination point
+ * @param {Coord} from origin point
+ * @param {Coord} to destination point
  * @param {Object} [options] Optional parameters
  * @param {string} [options.units="kilometers"] can be degrees, radians, miles, or kilometers
  * @returns {number} distance between the two points
@@ -41,7 +41,7 @@ function rhumbDistance(from, to, options) {
     // solution from https://github.com/mapbox/mapbox-gl-js/issues/3250#issuecomment-294887678
     destination[0] += (destination[0] - origin[0] > 180) ? -360 : (origin[0] - destination[0] > 180) ? 360 : 0;
     var distanceInMeters = calculateRhumbDistance(origin, destination);
-    var distance = convertDistance(distanceInMeters, 'meters', units);
+    var distance = convertLength(distanceInMeters, 'meters', units);
     return distance;
 }
 
