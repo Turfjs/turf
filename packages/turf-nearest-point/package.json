@@ -41,6 +41,7 @@
     "tape": "*"
   },
   "dependencies": {
+    "@turf/clone": "5.x",
     "@turf/distance": "5.x",
     "@turf/helpers": "5.x",
     "@turf/meta": "5.x"

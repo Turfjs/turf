@@ -86,7 +86,10 @@ export var areaFactors = {
 export function feature(geometry, properties, bbox, id) {
     if (geometry === undefined) throw new Error('geometry is required');
     if (properties && properties.constructor !== Object) throw new Error('properties must be an Object');
-    if (bbox && bbox.length !== 4) throw new Error('bbox must be an Array of 4 numbers');
+    if (bbox) {
+        if (!Array.isArray(bbox)) throw new Error('bbox must be an Array');
+        if (bbox.length !== 4) throw new Error('bbox must be an Array of 4 numbers');
+    }
     if (id && ['string', 'number'].indexOf(typeof id) === -1) throw new Error('id must be a number or a string');
 
     var feat = {type: 'Feature'};
@@ -151,7 +154,7 @@ export function geometry(type, coordinates, bbox) {
  */
 export function point(coordinates, properties, bbox, id) {
     if (!coordinates) throw new Error('No coordinates passed');
-    if (coordinates.length === undefined) throw new Error('Coordinates must be an array');
+    if (!Array.isArray(coordinates)) throw new Error('Coordinates must be an Array');
     if (coordinates.length < 2) throw new Error('Coordinates must be at least 2 numbers long');
     if (!isNumber(coordinates[0]) || !isNumber(coordinates[1])) throw new Error('Coordinates must contain numbers');
 

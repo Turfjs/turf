@@ -1,6 +1,6 @@
+import clone from '@turf/clone';
 import distance from '@turf/distance';
 import { featureEach } from '@turf/meta';
-import { point } from '@turf/helpers';
 
 /**
  * Takes a reference {@link Point|point} and a FeatureCollection of Features
@@ -36,10 +36,9 @@ function nearestPoint(targetPoint, points) {
     featureEach(points, function (pt, featureIndex) {
         var distanceToPoint = distance(targetPoint, pt);
         if (distanceToPoint < minDist) {
-            nearest = point(pt, {
-                featureIndex: featureIndex,
-                distanceToPoint: distanceToPoint
-            });
+            nearest = clone(pt);
+            nearest.properties.featureIndex = featureIndex;
+            nearest.properties.distanceToPoint = distanceToPoint;
             minDist = distanceToPoint;
         }
 

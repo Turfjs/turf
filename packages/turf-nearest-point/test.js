@@ -1,17 +1,47 @@
 import fs from 'fs';
-import path from 'path';
 import test from 'tape';
-import nearestPoint from '.';
+import glob from 'glob';
+import path from 'path';
+import load from 'load-json-file';
+import write from 'write-json-file';
+import {featureCollection, point, lineString} from '@turf/helpers';
+import nearestPoint from './';
 
-test('nearest-point', t => {
-    var pt = JSON.parse(fs.readFileSync(path.join(__dirname, 'test', 'pt.geojson')));
-    var pts = JSON.parse(fs.readFileSync(path.join(__dirname, 'test', 'pts.geojson')));
+test('turf-nearest-point', t => {
+    glob.sync(path.join(__dirname, 'test', 'in', '*.json')).forEach(filepath => {
+        const {name} = path.parse(filepath);
+        const points = load.sync(filepath);
+        const targetPoint = point(points.properties.targetPoint);
+        const nearestPt = nearestPoint(targetPoint, points);
 
-    var closestPt = nearestPoint(pt, pts);
+        // Style results
+        const lineProperties = {stroke: '#F00', 'stroke-width': 3, distanceToPoint: nearestPt.properties.distanceToPoint}
+        const line = lineString([nearestPt.geometry.coordinates, targetPoint.geometry.coordinates], lineProperties)
+        nearestPt.properties['marker-color'] = '#F00';
+        nearestPt.properties['marker-symbol'] = 'star';
+        targetPoint.properties['marker-color'] = '#00F';
+        targetPoint.properties['marker-symbol'] = 'circle';
+        const results = featureCollection([...points.features, line, targetPoint, nearestPt])
 
-    t.ok(closestPt, 'should return a point');
-    t.equal(closestPt.geometry.type, 'Point', 'should be a point');
-    t.equal(closestPt.geometry.coordinates[0], -75.33, 'lon -75.33');
-    t.equal(closestPt.geometry.coordinates[1], 39.44, 'lat 39.44');
+        // Save output
+        const out = filepath.replace(path.join('test', 'in'), path.join('test', 'out'))
+        if (process.env.REGEN) write.sync(out, results);
+        t.deepEqual(results, load.sync(out), name);
+    });
     t.end();
 });
+
+test('nearest-point -- prevent input mutation', t => {
+    const pt1 = point([40, 50], {featureIndex: 'foo'})
+    const pt2 = point([20, -10], {distanceToPoint: 'bar'})
+    const pts = featureCollection([pt1, pt2]);
+    const nearestPt = nearestPoint([0, 0], pts)
+
+    // Check if featureIndex properties was added to properties
+    t.equal(nearestPt.properties.featureIndex, 1)
+
+    // Check if previous input points have been modified
+    t.deepEqual(pt1.properties, {featureIndex: 'foo'})
+    t.deepEqual(pt2.properties, {distanceToPoint: 'bar'})
+    t.end();
+})
