@@ -1,4 +1,6 @@
 import distance from '@turf/distance';
+import { featureEach } from '@turf/meta';
+import { point } from '@turf/helpers';
 
 /**
  * Takes a reference {@link Point|point} and a FeatureCollection of Features
@@ -6,8 +8,8 @@ import distance from '@turf/distance';
  * point from the FeatureCollection closest to the reference. This calculation
  * is geodesic.
  *
- * @name nearest
- * @param {Geometry|Feature<Point>|Array<number>} targetPoint the reference point
+ * @name nearestPoint
+ * @param {Coord} targetPoint the reference point
  * @param {FeatureCollection<Point>} points against input point set
  * @returns {Feature<Point>} the closest point in the set to the reference point
  * @example
@@ -24,16 +26,25 @@ import distance from '@turf/distance';
  * var addToMap = [targetPoint, points, nearest];
  * nearest.properties['marker-color'] = '#F00';
  */
-function nearest(targetPoint, points) {
-    var nearestPoint, minDist = Infinity;
-    for (var i = 0; i < points.features.length; i++) {
-        var distanceToPoint = distance(targetPoint, points.features[i]);
+function nearestPoint(targetPoint, points) {
+    // Input validation
+    if (!targetPoint) throw new Error('targetPoint is required');
+    if (!points) throw new Error('points is required');
+
+    var nearest;
+    var minDist = Infinity;
+    featureEach(points, function (pt, featureIndex) {
+        var distanceToPoint = distance(targetPoint, pt);
         if (distanceToPoint < minDist) {
-            nearestPoint = points.features[i];
+            nearest = point(pt, {
+                featureIndex: featureIndex,
+                distanceToPoint: distanceToPoint
+            });
             minDist = distanceToPoint;
         }
-    }
-    return nearestPoint;
+
+    });
+    return nearest;
 }
 
-export default nearest;
+export default nearestPoint;
