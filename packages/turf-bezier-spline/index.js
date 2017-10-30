@@ -25,7 +25,7 @@ import Spline from './lib/spline';
  *   [-73.157958, 20.210656]
  * ]);
  *
- * var curved = turf.bezier(line);
+ * var curved = turf.bezierSpline(line);
  *
  * //addToMap
  * var addToMap = [line, curved]

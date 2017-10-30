@@ -20,7 +20,7 @@ import { featureEach } from '@turf/meta';
  *     turf.point([28.938674, 41.013324])
  * ]);
  *
- * var nearest = turf.nearest(targetPoint, points);
+ * var nearest = turf.nearestPoint(targetPoint, points);
  *
  * //addToMap
  * var addToMap = [targetPoint, points, nearest];

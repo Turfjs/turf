@@ -153,54 +153,6 @@ test('turf -- parsing dependencies from index.js', t => {
     t.end();
 });
 
-
-/**
- * =========================
- * Builds => test.example.js
- * =========================
- * will be run as `posttest`
- */
-
-// File Paths
-const testFilePath = path.join(__dirname, 'test.example.js');
-const turfModulesPath = path.join(__dirname, '..', 'turf-*', 'index.js');
-const turfTypescriptPath = path.join(__dirname, '..', 'turf-*', 'index.d.ts');
-
-// Test Strings
-const requireString = `const test = require('tape');
-const turf = require('./main');
-`;
-
-/**
- * Generate Test String
- *
- * @param {Object} turfFunction Documentation function object
- * @param {Object} example Documentation example object
- * @returns {string} Test String
- */
-function testString(turfFunction, example) {
-    const turfName = turfFunction.name;
-    const testFunctionName = turfName + 'Test';
-
-    // New modules will be excluded from tests
-    if (!turf[turfName]) return `
-test('turf-example-${turfName}', t => {
-    t.skip('${turfName}');
-    t.end();
-});
-`;
-    return `
-test('turf-example-${turfName}', t => {
-    const ${testFunctionName} = () => {
-        ${example.description}
-    }
-    ${testFunctionName}();
-    t.pass('${turfName}');
-    t.end();
-});
-`;
-}
-
 // Test for missing modules
 test('turf -- missing modules', t => {
     const files = {
@@ -233,6 +185,7 @@ test('turf -- check for deprecated modules', t => {
             case '@turf/idw':
             case '@turf/line-distance':
             case '@turf/point-on-line':
+            case '@turf/bezier':
             case '@turf/nearest':
                 throw new Error(`${name} module has deprecated dependency ${dependency}`);
             }
@@ -269,6 +222,64 @@ test('turf -- update to newer Typescript definitions', t => {
     });
     t.end();
 });
+
+/**
+ * =========================
+ * Builds => test.example.js
+ * =========================
+ * will be run as `posttest`
+ */
+
+// File Paths
+const testFilePath = path.join(__dirname, 'test.example.js');
+const turfModulesPath = path.join(__dirname, '..', 'turf-*', 'index.js');
+const turfTypescriptPath = path.join(__dirname, '..', 'turf-*', 'index.d.ts');
+
+// Test Strings
+const requireString = `const test = require('tape');
+const turf = require('./main');
+`;
+
+/**
+ * Generate Test String
+ *
+ * @param {Object} turfFunction Documentation function object
+ * @param {Object} example Documentation example object
+ * @returns {string} Test String
+ */
+function testString(turfFunction, example) {
+    const turfName = turfFunction.name;
+    const testFunctionName = turfName + 'Test';
+
+    // New modules will be excluded from tests
+    if (!turf[turfName]) return `
+test('turf-example-${turfName}', t => {
+    t.skip('${turfName}');
+    t.end();
+});
+`;
+    // Specific moduels will exclude testing @example
+    switch (turfName) {
+    case 'isolines':
+    case 'isobands':
+        return `
+        test('turf-example-${turfName}', t => {
+            t.skip('${turfName}');
+            t.end();
+        });
+        `;
+    }
+    return `
+test('turf-example-${turfName}', t => {
+    const ${testFunctionName} = () => {
+        ${example.description}
+    }
+    ${testFunctionName}();
+    t.pass('${turfName}');
+    t.end();
+});
+`;
+}
 
 // Iterate over each module and retrieve @example to build tests from them
 glob(turfModulesPath, (err, files) => {
