@@ -1,5 +1,5 @@
 import lineSliceAlong from '@turf/line-slice-along';
-import lineDistance from '@turf/line-distance';
+import length from '@turf/length';
 import { featureCollection, isObject } from '@turf/helpers';
 import { flattenEach } from '@turf/meta';
 
@@ -59,7 +59,7 @@ function lineChunk(geojson, segmentLength, options) {
  * @returns {void}
  */
 function sliceLineSegments(line, segmentLength, units, callback) {
-    var lineLength = lineDistance(line, {units: units});
+    var lineLength = length(line, {units: units});
 
     // If the line is shorter than the segment length then the orginal line is returned.
     if (lineLength <= segmentLength) return callback(line);
