@@ -21,7 +21,7 @@ function updateDependencies(pckg) {
     const dependencies = {};
     new Map(entries(pckg.dependencies))
         .forEach((version, name) => {
-            // Update dependencies to v5.0.0
+            // Update dependencies to v5.x
             switch (name) {
             case '@turf/nearest-point-on-line':
             case '@turf/circle':

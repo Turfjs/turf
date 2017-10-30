@@ -1,7 +1,7 @@
 import cleanCoords from '@turf/clean-coords';
 import lineSegment from '@turf/line-segment';
 import rhumbBearing from '@turf/rhumb-bearing';
-import { bearingToAngle } from '@turf/helpers';
+import { bearingToAzimuth } from '@turf/helpers';
 
 /**
  * Boolean-Parallel returns True if each segment of `line1` is parallel to the correspondent segment of `line2`
@@ -48,8 +48,8 @@ function booleanParallel(line1, line2) {
  * @returns {boolean} if slopes are equal
  */
 function isParallel(segment1, segment2) {
-    var slope1 = bearingToAngle(rhumbBearing(segment1[0], segment1[1]));
-    var slope2 = bearingToAngle(rhumbBearing(segment2[0], segment2[1]));
+    var slope1 = bearingToAzimuth(rhumbBearing(segment1[0], segment1[1]));
+    var slope2 = bearingToAzimuth(rhumbBearing(segment2[0], segment2[1]));
     return slope1 === slope2;
 }
 
