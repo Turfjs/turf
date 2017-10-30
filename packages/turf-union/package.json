@@ -12,7 +12,7 @@
     "main.js"
   ],
   "scripts": {
-    "pretest": "rollup -c ../../rollup.config.es6.js",
+    "pretest": "rollup -c ../../rollup.config.js",
     "test": "node -r @std/esm test.js",
     "bench": "node -r @std/esm bench.js"
   },
@@ -41,7 +41,7 @@
     "@std/esm": "*"
   },
   "dependencies": {
-    "jsts": "1.4.0"
+    "jsts-es": "*"
   },
   "@std/esm": {
     "esm": "js",

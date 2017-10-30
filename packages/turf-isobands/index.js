@@ -19,20 +19,6 @@ import isoBands from './marchingsquares-isobands';
  * @param {Object} [options.commonProperties={}] GeoJSON properties passed to ALL isobands
  * @param {Array<Object>} [options.breaksProperties=[]] GeoJSON properties passed, in order, to the correspondent isoband (order defined by breaks)
  * @returns {FeatureCollection<MultiPolygon>} a FeatureCollection of {@link MultiPolygon} features representing isobands
- * @example
- * // create a grid of points with random z-values in their properties
- * var extent = [-70.823364, -33.553984, -69.823364, -32.553984];
- * var cellWidth = 5;
- * var pointGrid = turf.pointGrid(extent, cellWidth, {units: 'miles'});
- * for (var i = 0; i < pointGrid.features.length; i++) {
- *     pointGrid.features[i].properties.elevation = Math.random() * 10;
- * }
- * var breaks = [0, 5, 8.5];
- *
- * var isobands = turf.isobands(pointGrid, breaks);
- *
- * //addToMap
- * var addToMap = [isobands];
  */
 function isobands(pointGrid, breaks, options) {
     // Optional parameters

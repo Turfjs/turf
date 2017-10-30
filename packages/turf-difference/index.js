@@ -1,6 +1,4 @@
-import GeoJSONReader from 'jsts/org/locationtech/jts/io/GeoJSONReader';
-import GeoJSONWriter from 'jsts/org/locationtech/jts/io/GeoJSONWriter';
-import OverlayOp from 'jsts/org/locationtech/jts/operation/overlay/OverlayOp';
+import { GeoJSONReader, GeoJSONWriter, OverlayOp } from 'jsts-es';
 import area from '@turf/area';
 import { feature } from '@turf/helpers';
 import { getGeom } from '@turf/invariant';

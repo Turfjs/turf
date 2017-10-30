@@ -1,6 +1,4 @@
-import GeoJSONReader from 'jsts/org/locationtech/jts/io/GeoJSONReader';
-import GeoJSONWriter from 'jsts/org/locationtech/jts/io/GeoJSONWriter';
-import UnionOp from 'jsts/org/locationtech/jts/operation/union/UnionOp';
+import { GeoJSONReader, GeoJSONWriter, UnionOp } from 'jsts-es';
 
 /**
  * Takes two or more {@link Polygon|polygons} and returns a combined polygon. If the input polygons are not contiguous, this function returns a {@link MultiPolygon} feature.
