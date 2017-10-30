@@ -2,7 +2,7 @@
   "name": "@turf/turf",
   "version": "4.7.3",
   "description": "a JavaScript library for performing geospatial operations with GeoJSON",
-  "main": "turf",
+  "main": "main",
   "module": "index",
   "jsnext:main": "index",
   "types": "index.d.ts",
@@ -16,6 +16,7 @@
   ],
   "scripts": {
     "pretest": "rollup -c rollup.config.js",
+    "build": "browserify main.js -s turf > turf.js && uglifyjs turf.js -c -m > turf.min.js",
     "test": "node -r @std/esm test.js && node -r @std/esm test.example.js"
   },
   "repository": {
@@ -58,7 +59,10 @@
   "devDependencies": {
     "@mapbox/geojson-area": "*",
     "@std/esm": "*",
+    "babel-cli": "*",
+    "babel-preset-env": "*",
     "benchmark": "*",
+    "browserify": "*",
     "camelcase": "*",
     "concaveman": "*",
     "convex-hull": "*",
