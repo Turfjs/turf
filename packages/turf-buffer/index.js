@@ -1,8 +1,6 @@
 import center from '@turf/center';
 import turfBbox from '@turf/bbox';
-import GeoJSONReader from 'jsts/org/locationtech/jts/io/GeoJSONReader';
-import GeoJSONWriter from 'jsts/org/locationtech/jts/io/GeoJSONWriter';
-import { BufferOp } from 'jsts/org/locationtech/jts/operation/buffer';
+import { BufferOp, GeoJSONReader, GeoJSONWriter } from 'jsts-es';
 import { toWgs84, toMercator } from '@turf/projection';
 import { geomEach, featureEach } from '@turf/meta';
 import { geoTransverseMercator } from 'd3-geo';

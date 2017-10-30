@@ -29,8 +29,10 @@
   ],
   "author": "Turf Authors",
   "contributors": [
+    "Philippe Riviere <@Fil>",
     "Mike Bostock <@mbostock>",
-    "Steve Bennett <@stevage1>"
+    "Steve Bennett <@stevage1>",
+    "Denis Carriere <@DenisCarriere>"
   ],
   "license": "MIT",
   "bugs": {
@@ -38,17 +40,18 @@
   },
   "homepage": "https://github.com/Turfjs/turf",
   "devDependencies": {
+    "@std/esm": "*",
     "benchmark": "*",
+    "glob": "*",
     "load-json-file": "*",
-    "tape": "*",
-    "write-json-file": "*",
     "rollup": "*",
-    "@std/esm": "*"
+    "tape": "*",
+    "write-json-file": "*"
   },
   "dependencies": {
+    "@turf/helpers": "5.x",
     "@turf/invariant": "5.x",
-    "d3-voronoi": "^1.1.2",
-    "@turf/helpers": "5.x"
+    "d3-voronoi": "1.1.2"
   },
   "@std/esm": {
     "esm": "js",
