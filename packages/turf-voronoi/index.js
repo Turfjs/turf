@@ -1,4 +1,4 @@
-import { polygon, featureCollection } from '@turf/helpers';
+import { polygon, featureCollection, isObject } from '@turf/helpers';
 import { collectionOf } from '@turf/invariant';
 import * as d3voronoi from 'd3-voronoi';
 
@@ -20,28 +20,37 @@ function coordsToPolygon(coords) {
  *
  * @name voronoi
  * @param {FeatureCollection<Point>} points to find the Voronoi polygons around.
- * @param {number[]} bbox clipping rectangle, in [minX, minY, maxX, MaxY] order.
- * @returns {FeatureCollection<Polygon>} a set of polygons, one per input polygon.
+ * @param {Object} [options={}] Optional parameters
+ * @param {number[]} [options.bbox=[-180, -85, 180, -85]] clipping rectangle, in [minX, minY, maxX, MaxY] order.
+ * @returns {FeatureCollection<Polygon>} a set of polygons, one per input point.
  * @example
- * var bbox = [-70, 40, -60, 60];
- * var points = turf.randomPoint(100, { bbox: bbox });
- * var voronoiPolygons = turf.voronoi(points, bbox);
+ * var options = {
+ *   bbox: [-70, 40, -60, 60]
+ * };
+ * var points = turf.randomPoint(100, options);
+ * var voronoiPolygons = turf.voronoi(points, options);
+ *
+ * //addToMap
+ * var addToMap = [voronoiPolygons, points];
  */
-function voronoi(points, bbox) {
+function voronoi(points, options) {
+    // Optional params
+    options = options || {};
+    if (!isObject(options)) throw new Error('options is invalid');
+    var bbox = options.bbox || [-180, -85, 180, 85];
+
+    // Input Validation
     if (!points) throw new Error('points is required');
-    if (!bbox) throw new Error('bbox is required');
     if (!Array.isArray(bbox)) throw new Error('bbox is invalid');
     collectionOf(points, 'Point', 'points');
 
-    // Inputs
-    var extent = [[bbox[0], bbox[1]], [bbox[2], bbox[3]]];
-
+    // Main
     return featureCollection(
         d3voronoi.voronoi()
             .x(function (feature) { return feature.geometry.coordinates[0]; })
             .y(function (feature) { return feature.geometry.coordinates[1]; })
-            .extent(extent)(points.features)
-            .polygons()
+            .extent([[bbox[0], bbox[1]], [bbox[2], bbox[3]]])
+            .polygons(points.features)
             .map(coordsToPolygon)
     );
 }

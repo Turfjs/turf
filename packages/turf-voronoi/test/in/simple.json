@@ -1,11 +1,10 @@
 {
     "type": "FeatureCollection",
+    "bbox": [140, -40, 160, -30],
     "features": [
         {
             "type": "Feature",
-            "properties": {
-                "bbox": [140, -40, 160, -30]
-            },
+            "properties": {},
             "geometry": {
                 "type": "Point",
                 "coordinates": [
