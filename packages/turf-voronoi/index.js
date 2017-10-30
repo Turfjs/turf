@@ -22,7 +22,7 @@ function coordsToPolygon(coords) {
  * @param {FeatureCollection<Point>} points to find the Voronoi polygons around.
  * @param {Object} [options={}] Optional parameters
  * @param {number[]} [options.bbox=[-180, -85, 180, -85]] clipping rectangle, in [minX, minY, maxX, MaxY] order.
- * @returns {FeatureCollection<Polygon>} a set of polygons, one per input polygon.
+ * @returns {FeatureCollection<Polygon>} a set of polygons, one per input point.
  * @example
  * var options = {
  *   bbox: [-70, 40, -60, 60]
