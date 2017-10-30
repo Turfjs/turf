@@ -98,7 +98,7 @@
     "@turf/bbox-clip": "*",
     "@turf/bbox-polygon": "*",
     "@turf/bearing": "*",
-    "@turf/bezier": "*",
+    "@turf/bezier-spline": "*",
     "@turf/boolean-clockwise": "*",
     "@turf/boolean-contains": "*",
     "@turf/boolean-crosses": "*",

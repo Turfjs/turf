@@ -14,7 +14,7 @@ export {default as dissolve} from '@turf/dissolve';
 export {default as collect} from '@turf/collect';
 export {default as flip} from '@turf/flip';
 export {default as simplify} from '@turf/simplify';
-export {default as bezier} from '@turf/bezier';
+export {default as bezierSpline} from '@turf/bezier-spline';
 export {default as tag} from '@turf/tag';
 export {default as sample} from '@turf/sample';
 export {default as envelope} from '@turf/envelope';

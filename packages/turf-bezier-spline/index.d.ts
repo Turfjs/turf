@@ -1,9 +1,9 @@
 import { LineString, Feature } from '@turf/helpers'
 
 /**
- * http://turfjs.org/docs/#bezier
+ * http://turfjs.org/docs/#bezierspline
  */
-export default function bezier(
+export default function bezierSpline(
     line: Feature<LineString> | LineString,
     options?: {
         resolution?: number;

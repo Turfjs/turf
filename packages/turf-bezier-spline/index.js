@@ -1,6 +1,6 @@
-import { lineString } from '@turf/helpers';
+import { lineString, isObject, isNumber } from '@turf/helpers';
 import { getGeom } from '@turf/invariant';
-import Spline from './spline.js';
+import Spline from './lib/spline';
 
 /**
  * Takes a {@link LineString|line} and returns a curved version
@@ -11,7 +11,7 @@ import Spline from './spline.js';
  *
  * @name bezier
  * @param {Geometry|Feature<LineString>} line input LineString
- * @param {object} [options] Optional parameters
+ * @param {Object} [options={}] Optional parameters
  * @param {number} [options.resolution=10000] time in milliseconds between points
  * @param {number} [options.sharpness=0.85] a measure of how curvy the path should be between splines
  * @returns {Feature<LineString>} curved line
@@ -34,13 +34,14 @@ import Spline from './spline.js';
 function bezier(line, options) {
     // Optional params
     options = options || {};
+    if (!isObject(options)) throw new Error('options is invalid');
     var resolution = options.resolution || 10000;
     var sharpness = options.sharpness || 0.85;
 
     // validation
-    if (typeof options !== 'object') throw new Error('options must be an object');
-    if (typeof resolution !== 'number') throw new Error('resolution must be an number');
-    if (typeof sharpness !== 'number') throw new Error('sharpness must be an number');
+    if (!line) throw new Error('line is required');
+    if (!isNumber(resolution)) throw new Error('resolution must be an number');
+    if (!isNumber(sharpness)) throw new Error('sharpness must be an number');
 
     var coords = [];
     var spline = new Spline({

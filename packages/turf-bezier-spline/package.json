@@ -1,7 +1,7 @@
 {
-  "name": "@turf/bezier",
-  "version": "4.7.3",
-  "description": "turf bezier module",
+  "name": "@turf/bezier-spline",
+  "version": "5.0.0",
+  "description": "turf bezier-spline module",
   "main": "main",
   "module": "index",
   "jsnext:main": "index",
@@ -9,8 +9,8 @@
   "files": [
     "index.js",
     "index.d.ts",
-    "spline.js",
-    "main.js"
+    "main.js",
+    "lib"
   ],
   "scripts": {
     "pretest": "rollup -c ../../rollup.config.js",
