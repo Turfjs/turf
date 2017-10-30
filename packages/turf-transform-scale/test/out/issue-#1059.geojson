@@ -1,0 +1,89 @@
+{
+	"type": "FeatureCollection",
+	"features": [
+		{
+			"type": "Feature",
+			"properties": {
+				"factor": 2,
+				"name": "Europe",
+				"stroke": "#F00",
+				"stroke-width": 4
+			},
+			"geometry": {
+				"type": "Polygon",
+				"coordinates": [
+					[
+						[
+							-53.292048,
+							15.043169
+						],
+						[
+							69.112361,
+							15.043169
+						],
+						[
+							-132.621875,
+							89.647844
+						],
+						[
+							148.442187,
+							89.647844
+						],
+						[
+							-53.292048,
+							15.043169
+						]
+					]
+				]
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {
+				"factor": 2,
+				"name": "Europe"
+			},
+			"geometry": {
+				"type": "Polygon",
+				"coordinates": [
+					[
+						[
+							-26.19140625,
+							33.87041555094183
+						],
+						[
+							42.01171875,
+							33.87041555094183
+						],
+						[
+							42.01171875,
+							71.52490903732816
+						],
+						[
+							-26.19140625,
+							71.52490903732816
+						],
+						[
+							-26.19140625,
+							33.87041555094183
+						]
+					]
+				]
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {
+				"marker-color": "#00F",
+				"marker-symbol": "circle"
+			},
+			"geometry": {
+				"type": "Point",
+				"coordinates": [
+					7.91015625,
+					52.697662294134986
+				]
+			}
+		}
+	]
+}
