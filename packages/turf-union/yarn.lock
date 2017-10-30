@@ -3,8 +3,12 @@
 
 
 "@std/esm@*":
-  version "0.12.1"
-  resolved "https://registry.yarnpkg.com/@std/esm/-/esm-0.12.1.tgz#d07b7c5e2701beade1e7db74b95484f5d91c46bf"
+  version "0.12.4"
+  resolved "https://registry.yarnpkg.com/@std/esm/-/esm-0.12.4.tgz#01e06a392ba577205a691d97916490406c39ef26"
+
+"@turf/helpers@*":
+  version "5.0.1"
+  resolved "https://registry.yarnpkg.com/@turf/helpers/-/helpers-5.0.1.tgz#d950df25b10c9ed347f7811927ec14e72ccc58b2"
 
 balanced-match@^1.0.0:
   version "1.0.0"
@@ -155,9 +159,9 @@ is-symbol@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/is-symbol/-/is-symbol-1.0.1.tgz#3cc59f00025194b6ab2e38dbae6689256b660572"
 
-jsts@1.4.0:
-  version "1.4.0"
-  resolved "https://registry.yarnpkg.com/jsts/-/jsts-1.4.0.tgz#10ac081014da89bd169c12378bcff702cacf65d4"
+jsts-es@*:
+  version "1.5.2"
+  resolved "https://registry.yarnpkg.com/jsts-es/-/jsts-es-1.5.2.tgz#cd197bb1adbceb6efd4a44cc8ec24155e32e50a6"
 
 load-json-file@*:
   version "3.0.0"
@@ -173,10 +177,10 @@ lodash@^4.17.4:
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.4.tgz#78203a4d1c328ae1d86dca6460e369b57f4055ae"
 
 make-dir@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/make-dir/-/make-dir-1.0.0.tgz#97a011751e91dd87cfadef58832ebb04936de978"
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/make-dir/-/make-dir-1.1.0.tgz#19b4369fe48c116f53c2af95ad102c0e39e85d51"
   dependencies:
-    pify "^2.3.0"
+    pify "^3.0.0"
 
 minimatch@^3.0.4:
   version "3.0.4"
@@ -216,7 +220,7 @@ path-parse@^1.0.5:
   version "1.0.5"
   resolved "https://registry.yarnpkg.com/path-parse/-/path-parse-1.0.5.tgz#3c1adf871ea9cd6c9431b6ea2bd74a0ff055c4c1"
 
-pify@^2.0.0, pify@^2.3.0:
+pify@^2.0.0:
   version "2.3.0"
   resolved "https://registry.yarnpkg.com/pify/-/pify-2.3.0.tgz#ed141a6ac043a849ea588498e7dca8b15330e90c"
 

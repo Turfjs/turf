@@ -2,9 +2,40 @@
 # yarn lockfile v1
 
 
+"@mapbox/geojson-area@^0.2.2":
+  version "0.2.2"
+  resolved "https://registry.yarnpkg.com/@mapbox/geojson-area/-/geojson-area-0.2.2.tgz#18d7814aa36bf23fbbcc379f8e26a22927debf10"
+  dependencies:
+    wgs84 "0.0.0"
+
 "@std/esm@*":
-  version "0.12.1"
-  resolved "https://registry.yarnpkg.com/@std/esm/-/esm-0.12.1.tgz#d07b7c5e2701beade1e7db74b95484f5d91c46bf"
+  version "0.12.4"
+  resolved "https://registry.yarnpkg.com/@std/esm/-/esm-0.12.4.tgz#01e06a392ba577205a691d97916490406c39ef26"
+
+"@turf/area@^4.7.3":
+  version "4.7.3"
+  resolved "https://registry.yarnpkg.com/@turf/area/-/area-4.7.3.tgz#5cc45b5a524e98e1c171e7190709c669ca699305"
+  dependencies:
+    "@mapbox/geojson-area" "^0.2.2"
+    "@turf/meta" "^4.7.3"
+
+"@turf/helpers@5.x", "@turf/helpers@^5.0.0":
+  version "5.0.1"
+  resolved "https://registry.yarnpkg.com/@turf/helpers/-/helpers-5.0.1.tgz#d950df25b10c9ed347f7811927ec14e72ccc58b2"
+
+"@turf/invariant@5.x":
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/@turf/invariant/-/invariant-5.0.0.tgz#da9b4d7b044cffa300d654b3e0444969fc19d850"
+
+"@turf/meta@5.x":
+  version "5.0.2"
+  resolved "https://registry.yarnpkg.com/@turf/meta/-/meta-5.0.2.tgz#712ff485cdaa6024d1f97d6fbed69d3f8e31e686"
+  dependencies:
+    "@turf/helpers" "^5.0.0"
+
+"@turf/meta@^4.7.3":
+  version "4.7.4"
+  resolved "https://registry.yarnpkg.com/@turf/meta/-/meta-4.7.4.tgz#6de2f1e9890b8f64b669e4b47c09b20893063977"
 
 balanced-match@^1.0.0:
   version "1.0.0"
@@ -155,9 +186,9 @@ is-symbol@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/is-symbol/-/is-symbol-1.0.1.tgz#3cc59f00025194b6ab2e38dbae6689256b660572"
 
-jsts@1.4.0:
-  version "1.4.0"
-  resolved "https://registry.yarnpkg.com/jsts/-/jsts-1.4.0.tgz#10ac081014da89bd169c12378bcff702cacf65d4"
+jsts-es@*:
+  version "1.5.2"
+  resolved "https://registry.yarnpkg.com/jsts-es/-/jsts-es-1.5.2.tgz#cd197bb1adbceb6efd4a44cc8ec24155e32e50a6"
 
 load-json-file@*:
   version "3.0.0"
@@ -173,10 +204,10 @@ lodash@^4.17.4:
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.4.tgz#78203a4d1c328ae1d86dca6460e369b57f4055ae"
 
 make-dir@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/make-dir/-/make-dir-1.0.0.tgz#97a011751e91dd87cfadef58832ebb04936de978"
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/make-dir/-/make-dir-1.1.0.tgz#19b4369fe48c116f53c2af95ad102c0e39e85d51"
   dependencies:
-    pify "^2.3.0"
+    pify "^3.0.0"
 
 minimatch@^3.0.4:
   version "3.0.4"
@@ -216,7 +247,7 @@ path-parse@^1.0.5:
   version "1.0.5"
   resolved "https://registry.yarnpkg.com/path-parse/-/path-parse-1.0.5.tgz#3c1adf871ea9cd6c9431b6ea2bd74a0ff055c4c1"
 
-pify@^2.0.0, pify@^2.3.0:
+pify@^2.0.0:
   version "2.3.0"
   resolved "https://registry.yarnpkg.com/pify/-/pify-2.3.0.tgz#ed141a6ac043a849ea588498e7dca8b15330e90c"
 
@@ -287,6 +318,10 @@ tape@*:
 through@~2.3.4, through@~2.3.8:
   version "2.3.8"
   resolved "https://registry.yarnpkg.com/through/-/through-2.3.8.tgz#0dd4c9ffaabc357960b1b724115d7e0e86a2e1f5"
+
+wgs84@0.0.0:
+  version "0.0.0"
+  resolved "https://registry.yarnpkg.com/wgs84/-/wgs84-0.0.0.tgz#34fdc555917b6e57cf2a282ed043710c049cdc76"
 
 wrappy@1:
   version "1.0.2"
