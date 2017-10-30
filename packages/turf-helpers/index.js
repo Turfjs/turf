@@ -505,20 +505,19 @@ export function degreesToRadians(degrees) {
 }
 
 /**
- * Converts a distance to the requested unit.
+ * Converts a length to the requested unit.
  * Valid units: miles, nauticalmiles, inches, yards, meters, metres, kilometers, centimeters, feet
  *
- * @param {number} distance to be converted
- * @param {string} originalUnit of the distance
+ * @param {number} length to be converted
+ * @param {string} originalUnit of the length
  * @param {string} [finalUnit='kilometers'] returned unit
- * @returns {number} the converted distance
+ * @returns {number} the converted length
  */
-export function convertDistance(distance, originalUnit, finalUnit) {
-    if (distance === null || distance === undefined) throw new Error('distance is required');
-    if (!(distance >= 0)) throw new Error('distance must be a positive number');
+export function convertLength(length, originalUnit, finalUnit) {
+    if (length === null || length === undefined) throw new Error('length is required');
+    if (!(length >= 0)) throw new Error('length must be a positive number');
 
-    var convertedDistance = radiansToLength(lengthToRadians(distance, originalUnit), finalUnit || 'kilometers');
-    return convertedDistance;
+    return radiansToLength(lengthToRadians(length, originalUnit), finalUnit || 'kilometers');
 }
 
 /**
@@ -595,4 +594,8 @@ export function radiansToDistance() {
 
 export function bearingToAngle() {
     throw new Error('Method deprecated in favor of helpers.bearingToAzimuth');
+}
+
+export function convertDistance() {
+    throw new Error('Method deprecated in favor of helpers.convertLength');
 }

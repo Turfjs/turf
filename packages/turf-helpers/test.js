@@ -15,7 +15,7 @@ import {
     radiansToDegrees,
     degreesToRadians,
     bearingToAzimuth,
-    convertDistance,
+    convertLength,
     convertArea,
     round,
     isObject,
@@ -364,13 +364,13 @@ test('round', t => {
     t.end();
 });
 
-test('convertDistance', t => {
-    t.equal(convertDistance(1000, 'meters'), 1);
-    t.equal(convertDistance(1, 'kilometers', 'miles'), 0.621371192237334);
-    t.equal(convertDistance(1, 'miles', 'kilometers'), 1.609344);
-    t.equal(convertDistance(1, 'nauticalmiles'), 1.852);
-    t.equal(convertDistance(1, 'meters', 'centimeters'), 100.00000000000001);
-    t.throws(() => convertDistance(1, 'foo'), 'invalid units');
+test('convertLength', t => {
+    t.equal(convertLength(1000, 'meters'), 1);
+    t.equal(convertLength(1, 'kilometers', 'miles'), 0.621371192237334);
+    t.equal(convertLength(1, 'miles', 'kilometers'), 1.609344);
+    t.equal(convertLength(1, 'nauticalmiles'), 1.852);
+    t.equal(convertLength(1, 'meters', 'centimeters'), 100.00000000000001);
+    t.throws(() => convertLength(1, 'foo'), 'invalid units');
     t.end();
 });
 
@@ -383,8 +383,8 @@ test('convertArea', t => {
     t.equal(convertArea(100, null, 'yards'), 119.59900459999999);
     t.equal(convertArea(100, 'metres', 'feet'), 1076.3910417);
     t.equal(convertArea(100000, 'feet', null), 0.009290303999749462);
-    t.throws(() => convertDistance(1, 'foo'), 'invalid original units');
-    t.throws(() => convertDistance(1, 'meters', 'foo'), 'invalid final units');
+    t.throws(() => convertLength(1, 'foo'), 'invalid original units');
+    t.throws(() => convertLength(1, 'meters', 'foo'), 'invalid final units');
 
     t.end();
 });

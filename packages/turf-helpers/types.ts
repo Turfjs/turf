@@ -18,7 +18,7 @@ import {
     radiansToDegrees,
     degreesToRadians,
     round,
-    convertDistance,
+    convertLength,
     convertArea,
     isNumber,
     isObject,
