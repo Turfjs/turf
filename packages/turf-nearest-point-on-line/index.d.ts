@@ -1,6 +1,6 @@
 import { Point, Feature, Units, Coord, LineString, MultiLineString } from '@turf/helpers'
 
-export interface PointOnLine extends Feature<Point> {
+export interface NearestPointOnLine extends Feature<Point> {
     properties: {
         index?: number
         dist?: number
@@ -10,12 +10,12 @@ export interface PointOnLine extends Feature<Point> {
 }
 
 /**
- * http://turfjs.org/docs/#pointonline
+ * http://turfjs.org/docs/#nearestpointonline
  */
-export default function pointOnLine<T extends MultiLineString | LineString>(
+export default function nearestPointOnLine<T extends MultiLineString | LineString>(
     line: Feature<T> | T,
     point: Coord,
     options?: {
         units?: Units
     }
-): PointOnLine;
+): NearestPointOnLine;

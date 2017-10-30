@@ -6,9 +6,9 @@ import write from 'write-json-file';
 import along from '@turf/along';
 import distance from '@turf/distance';
 import truncate from '@turf/truncate';
-import lineDistance from '@turf/line-distance';
+import length from '@turf/length';
 import { lineString, multiLineString, point, featureCollection, round } from '@turf/helpers';
-import pointOnLine from '.';
+import nearestPointOnLine from '.';
 
 const directories = {
     in: path.join(__dirname, 'test', 'in') + path.sep,
@@ -26,7 +26,7 @@ const fixtures = fs.readdirSync(directories.in).map(filename => {
 test('turf-linestring-to-polygon', t => {
     for (const {name, filename, geojson} of fixtures) {
         const [line, point] = geojson.features;
-        const onLine = pointOnLine(line, point);
+        const onLine = nearestPointOnLine(line, point);
         onLine.properties['marker-color'] = '#F0F';
         onLine.properties.dist = round(onLine.properties.dist, 6);
         onLine.properties.location = round(onLine.properties.location, 6);
@@ -43,7 +43,7 @@ test('turf-point-on-line - first point', t => {
     const line = lineString([[-122.457175, 37.720033], [-122.457175, 37.718242]]);
     const pt = point([-122.457175, 37.720033]);
 
-    const snapped = truncate(pointOnLine(line, pt));
+    const snapped = truncate(nearestPointOnLine(line, pt));
 
     t.deepEqual(pt.geometry.coordinates, snapped.geometry.coordinates, 'pt on start does not move');
     t.equal(Number(snapped.properties.location.toFixed(6)), 0, 'properties.location');
@@ -63,7 +63,7 @@ test('turf-point-on-line - points behind first point', t => {
     const expectedLocation = [0, 0, 0, 0];
 
     pts.forEach(pt => {
-        const snapped = truncate(pointOnLine(line, pt));
+        const snapped = truncate(nearestPointOnLine(line, pt));
         t.deepEqual(first.geometry.coordinates, snapped.geometry.coordinates, 'pt behind start moves to first vertex');
         expectedLocation.push(Number(snapped.properties.location.toFixed(6)));
     });
@@ -86,7 +86,7 @@ test('turf-point-on-line - points in front of last point', t => {
     const expectedLocation = [];
 
     pts.forEach(pt => {
-        const snapped = truncate(pointOnLine(line, pt));
+        const snapped = truncate(nearestPointOnLine(line, pt));
         t.deepEqual(last.geometry.coordinates, snapped.geometry.coordinates, 'pt behind start moves to last vertex');
         expectedLocation.push(Number(snapped.properties.location.toFixed(6)));
     });
@@ -109,7 +109,7 @@ test('turf-point-on-line - points on joints', t => {
         line.geometry.coordinates.map(coord => {
             return point(coord);
         }).forEach((pt, j) => {
-            const snapped = truncate(pointOnLine(line, pt));
+            const snapped = truncate(nearestPointOnLine(line, pt));
             t.deepEqual(pt.geometry.coordinates, snapped.geometry.coordinates, 'pt on joint stayed in place');
             if (!expectedLocation[i]) expectedLocation[i] = [];
             expectedLocation[i][j] = Number(snapped.properties.location.toFixed(6));
@@ -126,12 +126,12 @@ test('turf-point-on-line - points on top of line', t => {
     const line = lineString([[-0.109198, 51.522042], [-0.109230, 51.521942], [-0.109165, 51.521862], [-0.109047, 51.521775], [-0.108865, 51.521601], [-0.108747, 51.521381], [-0.108554, 51.520687], [-0.108436, 51.520279], [-0.108393, 51.519952], [-0.108178, 51.519578], [-0.108146, 51.519285], [-0.107899, 51.518624], [-0.107599, 51.517782]]);
     const expectedLocation = [];
 
-    const dist = lineDistance(line, {units: 'miles'});
+    const dist = length(line, {units: 'miles'});
     const increment = dist / 10;
 
     for (let i = 0; i < 10; i++) {
         const pt = along(line, increment * i, {units: 'miles'});
-        const snapped = pointOnLine(line, pt, {units: 'miles'});
+        const snapped = nearestPointOnLine(line, pt, {units: 'miles'});
         const shift = distance(pt, snapped, {units: 'miles'});
         t.true(shift < 0.000001, 'pt did not shift far');
         expectedLocation.push(Number(snapped.properties.location.toFixed(6)));
@@ -147,7 +147,7 @@ test('turf-point-on-line - point along line', t => {
     const line = lineString([[-122.457175, 37.720033], [-122.457175, 37.718242]]);
 
     const pt = along(line, 0.019, {units: 'miles'});
-    const snapped = pointOnLine(line, pt);
+    const snapped = nearestPointOnLine(line, pt);
     const shift = distance(pt, snapped, {units: 'miles'});
 
     t.true(shift < 0.00001, 'pt did not shift far');
@@ -167,7 +167,7 @@ test('turf-point-on-line - points on sides of lines', t => {
     ];
 
     pts.forEach(pt => {
-        const snapped = pointOnLine(line, pt);
+        const snapped = nearestPointOnLine(line, pt);
         t.notDeepEqual(snapped.geometry.coordinates, first, 'pt did not snap to first vertex');
         t.notDeepEqual(snapped.geometry.coordinates, last, 'pt did not snap to last vertex');
     });
@@ -178,7 +178,7 @@ test('turf-point-on-line - points on sides of lines', t => {
 test('turf-point-on-line - check dist and index', t => {
     const line = lineString([[-92.090492, 41.102897], [-92.191085, 41.079868], [-92.228507, 41.056055], [-92.237091, 41.008143], [-92.225761, 40.966937], [-92.150230, 40.936858], [-92.112464, 40.977565], [-92.062683, 41.034564], [-92.100791, 41.040002]]);
     const pt = point([-92.110576, 41.040649]);
-    const snapped = truncate(pointOnLine(line, pt));
+    const snapped = truncate(nearestPointOnLine(line, pt));
 
     t.equal(snapped.properties.index, 8, 'properties.index');
     t.equal(Number(snapped.properties.dist.toFixed(6)), 0.823802, 'properties.dist');
@@ -190,7 +190,7 @@ test('turf-point-on-line - check dist and index', t => {
 test('turf-point-on-line -- Issue #691', t => {
     const line1 = lineString([[7, 50], [8, 50], [9, 50]]);
     const pointAlong = along(line1, 10);
-    const {location} = pointOnLine(line1, pointAlong).properties;
+    const {location} = nearestPointOnLine(line1, pointAlong).properties;
 
     t.false(isNaN(location));
     t.end();
@@ -203,9 +203,9 @@ test('turf-point-on-line -- Geometry Support', t => {
         [[7, 50], [8, 50], [9, 50]],
         [[17, 30], [4, 30], [2, 30]]
     ]);
-    t.assert(pointOnLine(line.geometry, pt), 'line Geometry');
-    t.assert(pointOnLine(multiLine.geometry, pt), 'multiLine Geometry');
-    t.assert(pointOnLine(line, pt.geometry), 'point Geometry');
-    t.assert(pointOnLine(line, pt.geometry.coordinates), 'point Coordinates');
+    t.assert(nearestPointOnLine(line.geometry, pt), 'line Geometry');
+    t.assert(nearestPointOnLine(multiLine.geometry, pt), 'multiLine Geometry');
+    t.assert(nearestPointOnLine(line, pt.geometry), 'point Geometry');
+    t.assert(nearestPointOnLine(line, pt.geometry.coordinates), 'point Coordinates');
     t.end();
 });

@@ -1,4 +1,4 @@
-import pointOnLine from './'
+import nearestPointOnLine from './'
 import { point, lineString, multiLineString } from '@turf/helpers'
 
 const units = 'miles'
@@ -10,15 +10,15 @@ const multiLine = multiLineString([[
 ]])
 
 // All combinations of parameters
-pointOnLine(line, pt)
-pointOnLine(multiLine, pt)
-pointOnLine(line.geometry, pt)
-pointOnLine(multiLine.geometry, pt)
-pointOnLine(line, pt, {units: 'miles'})
+nearestPointOnLine(line, pt)
+nearestPointOnLine(multiLine, pt)
+nearestPointOnLine(line.geometry, pt)
+nearestPointOnLine(multiLine.geometry, pt)
+nearestPointOnLine(line, pt, {units: 'miles'})
 
 // Output can be used as Input
-const output = pointOnLine(line, pt)
-pointOnLine(line, output)
+const output = nearestPointOnLine(line, pt)
+nearestPointOnLine(line, output)
 
 // Extra properties being generated from module
 output.properties.dist

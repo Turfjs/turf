@@ -9,7 +9,7 @@ import { getCoords } from '@turf/invariant';
 /**
  * Takes a {@link Point} and a {@link LineString} and calculates the closest Point on the (Multi)LineString.
  *
- * @name pointOnLine
+ * @name nearestPointOnLine
  * @param {Geometry|Feature<LineString|MultiLineString>} lines lines to snap to
  * @param {Geometry|Feature<Point>|number[]} pt point to snap from
  * @param {Object} [options={}] Optional parameters
@@ -26,13 +26,13 @@ import { getCoords } from '@turf/invariant';
  * ]);
  * var pt = turf.point([-77.037076, 38.884017]);
  *
- * var snapped = turf.pointOnLine(line, pt, {units: 'miles'});
+ * var snapped = turf.nearestPointOnLine(line, pt, {units: 'miles'});
  *
  * //addToMap
  * var addToMap = [line, pt, snapped];
  * snapped.properties['marker-color'] = '#00f';
  */
-function pointOnLine(lines, pt, options) {
+function nearestPointOnLine(lines, pt, options) {
     // Optional parameters
     options = options || {};
     if (!isObject(options)) throw new Error('options is invalid');
@@ -99,4 +99,4 @@ function pointOnLine(lines, pt, options) {
     return closestPt;
 }
 
-export default pointOnLine;
+export default nearestPointOnLine;

@@ -2,7 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import load from 'load-json-file';
 import Benchmark from 'benchmark';
-import pointOnLine from './';
+import nearestPointOnLine from './';
 
 const directory = path.join(__dirname, 'test', 'in') + path.sep;
 const fixtures = fs.readdirSync(directory).map(filename => {
@@ -26,10 +26,10 @@ const fixtures = fs.readdirSync(directory).map(filename => {
  * route1 x 195 ops/sec ±2.23% (80 runs sampled)
  * route2 x 218 ops/sec ±2.42% (78 runs sampled)
  */
-const suite = new Benchmark.Suite('turf-linestring-to-polygon');
+const suite = new Benchmark.Suite('turf-nearest-point-on-line');
 for (const {name, geojson} of fixtures) {
     const [line, point] = geojson.features;
-    suite.add(name, () => pointOnLine(line, point));
+    suite.add(name, () => nearestPointOnLine(line, point));
 }
 
 suite
