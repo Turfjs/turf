@@ -1,5 +1,5 @@
 import { getCoord } from '@turf/invariant';
-import { radiansToDistance, isObject } from '@turf/helpers';
+import { radiansToLength, isObject } from '@turf/helpers';
 
 //http://en.wikipedia.org/wiki/Haversine_formula
 //http://www.movable-type.co.uk/scripts/latlong.html
@@ -11,8 +11,8 @@ import { radiansToDistance, isObject } from '@turf/helpers';
  * to account for global curvature.
  *
  * @name distance
- * @param {Geometry|Feature<Point>|Array<number>} from origin point
- * @param {Geometry|Feature<Point>|Array<number>} to destination point
+ * @param {Coord} from origin point
+ * @param {Coord} to destination point
  * @param {Object} [options={}] Optional parameters
  * @param {string} [options.units='kilometers'] can be degrees, radians, miles, or kilometers
  * @returns {number} distance between the two points
@@ -45,7 +45,7 @@ function distance(from, to, options) {
     var a = Math.pow(Math.sin(dLat / 2), 2) +
           Math.pow(Math.sin(dLon / 2), 2) * Math.cos(lat1) * Math.cos(lat2);
 
-    return radiansToDistance(2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a)), units);
+    return radiansToLength(2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a)), units);
 }
 
 export default distance;
