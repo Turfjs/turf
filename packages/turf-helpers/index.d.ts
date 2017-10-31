@@ -99,34 +99,34 @@ export function multiPolygon(coordinates: Position[][][], properties?: Propertie
 export function geometryCollection(geometries: GeometryObject[], properties?: Properties, bbox?: BBox, id?: Id): FeatureGeometryCollection;
 
 /**
- * http://turfjs.org/docs/#radianstodistance
+ * http://turfjs.org/docs/#radianstolength
  */
-export function radiansToDistance(radians: number, units?: Units): number
+export function radiansToLength(radians: number, units?: Units): number
 
 /**
- * http://turfjs.org/docs/#distancetoradians
+ * http://turfjs.org/docs/#lengthtoradians
  */
-export function distanceToRadians(distance: number, units?: Units): number
+export function lengthToRadians(distance: number, units?: Units): number
 
 /**
- * http://turfjs.org/docs/#distancetodegrees
+ * http://turfjs.org/docs/#lengthtodegrees
  */
-export function distanceToDegrees(distance: number, units?: Units): number
+export function lengthToDegrees(distance: number, units?: Units): number
 
 /**
- * http://turfjs.org/docs/#bearingtoangle
+ * http://turfjs.org/docs/#bearingtoazimuth
  */
-export function bearingToAngle(bearing: number): number
+export function bearingToAzimuth(bearing: number): number
 
 /**
- * http://turfjs.org/docs/#radians2degrees
+ * http://turfjs.org/docs/#radianstodegrees
  */
-export function radians2degrees(radians: number): number
+export function radiansToDegrees(radians: number): number
 
 /**
- * http://turfjs.org/docs/#degrees2radians
+ * http://turfjs.org/docs/#degreestoradians
  */
-export function degrees2radians(degrees: number): number
+export function degreesToRadians(degrees: number): number
 
 /**
  * http://turfjs.org/docs/#round
@@ -134,9 +134,9 @@ export function degrees2radians(degrees: number): number
 export function round(num: number, precision?: number): number
 
 /**
- * http://turfjs.org/docs/#convertdistance
+ * http://turfjs.org/docs/#convertlength
  */
-export function convertDistance(distance: number, originalUnit: Units, finalUnit?: Units): number
+export function convertLength(length: number, originalUnit: Units, finalUnit?: Units): number
 
 /**
  * http://turfjs.org/docs/#convertarea

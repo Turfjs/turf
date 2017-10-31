@@ -6,6 +6,10 @@
   version "0.12.1"
   resolved "https://registry.yarnpkg.com/@std/esm/-/esm-0.12.1.tgz#d07b7c5e2701beade1e7db74b95484f5d91c46bf"
 
+"@turf/clone@^4.7.3":
+  version "4.7.3"
+  resolved "https://registry.yarnpkg.com/@turf/clone/-/clone-4.7.3.tgz#6e507be4d648fa62c5e6ce926f7e83a22f53ae69"
+
 balanced-match@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/balanced-match/-/balanced-match-1.0.0.tgz#89b4d199ab2bee49de164ea02b89ce462d71b767"

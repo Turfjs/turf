@@ -1,9 +1,9 @@
 import clone from '@turf/clone';
-var clustering = require('density-clustering');
-import turfDistance from '@turf/distance';
+import distance from '@turf/distance';
 import { coordAll } from '@turf/meta';
-import { convertDistance } from '@turf/helpers';
+import { convertLength } from '@turf/helpers';
 import { collectionOf } from '@turf/invariant';
+var clustering = require('density-clustering');
 
 /**
  * Takes a set of {@link Point|points} and partition them into clusters according to {@link DBSCAN's|https://en.wikipedia.org/wiki/DBSCAN} data clustering algorithm.
@@ -48,7 +48,7 @@ function clustersDbscan(points, maxDistance, options) {
 
     // create clustered ids
     var dbscan = new clustering.DBSCAN();
-    var clusteredIds = dbscan.run(coordAll(points), convertDistance(maxDistance, units), minPoints, turfDistance);
+    var clusteredIds = dbscan.run(coordAll(points), convertLength(maxDistance, units), minPoints, distance);
 
     // Tag points to Clusters ID
     var clusterId = -1;

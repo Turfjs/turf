@@ -43,7 +43,7 @@
     "@turf/clean-coords": "*",
     "@turf/helpers": "5.x",
     "@turf/invariant": "5.x",
-    "@turf/truncate": "^4.7.3",
+    "@turf/truncate": "5.x",
     "jsts-es": "*"
   },
   "@std/esm": {

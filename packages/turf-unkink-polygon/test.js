@@ -5,7 +5,7 @@ import load from 'load-json-file';
 import write from 'write-json-file';
 import { featureEach } from '@turf/meta';
 import { featureCollection } from '@turf/helpers';
-import unkink from '.';
+import unkinkPolygon from '.';
 
 const directories = {
     in: path.join(__dirname, 'test', 'in') + path.sep,
@@ -18,7 +18,7 @@ const fixtures = fs.readdirSync(directories.in).map(filename => {
 
 test('unkink-polygon', t => {
     for (const {filename, geojson} of fixtures) {
-        const unkinked = colorize(unkink(geojson));
+        const unkinked = colorize(unkinkPolygon(geojson));
 
         if (process.env.REGEN) write.sync(directories.out + filename, unkinked);
 

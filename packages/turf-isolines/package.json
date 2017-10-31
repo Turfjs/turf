@@ -9,9 +9,8 @@
   "files": [
     "index.js",
     "index.d.ts",
-    "marchingsquares-isocontours.js",
-    "grid-to-matrix.js",
-    "main.js"
+    "main.js",
+    "lib"
   ],
   "scripts": {
     "pretest": "rollup -c ../../rollup.config.js",

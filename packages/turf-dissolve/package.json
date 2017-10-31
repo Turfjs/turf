@@ -44,11 +44,11 @@
   },
   "dependencies": {
     "@turf/boolean-overlap": "*",
-    "@turf/clone": "*",
-    "@turf/helpers": "*",
-    "@turf/invariant": "*",
-    "@turf/line-intersect": "*",
-    "@turf/meta": "*",
+    "@turf/clone": "5.x",
+    "@turf/helpers": "5.x",
+    "@turf/invariant": "5.x",
+    "@turf/line-intersect": "5.x",
+    "@turf/meta": "5.x",
     "@turf/union": "*",
     "geojson-rbush": "2.1.0",
     "get-closest": "*"

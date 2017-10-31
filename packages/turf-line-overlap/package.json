@@ -10,7 +10,7 @@
     "index.js",
     "index.d.ts",
     "main.js",
-    "deep-equal.js"
+    "lib"
   ],
   "scripts": {
     "pretest": "rollup -c ../../rollup.config.js",
@@ -51,7 +51,7 @@
     "@turf/invariant": "5.x",
     "@turf/line-segment": "5.x",
     "@turf/meta": "5.x",
-    "@turf/point-on-line": "5.x",
+    "@turf/nearest-point-on-line": "5.x",
     "geojson-rbush": "2.1.0"
   },
   "@std/esm": {

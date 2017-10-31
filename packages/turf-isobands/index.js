@@ -1,11 +1,11 @@
 import bbox from '@turf/bbox';
 import area from '@turf/area';
-import inside from '@turf/inside';
+import booleanPointInPolygon from '@turf/boolean-point-in-polygon';
 import explode from '@turf/explode';
-import { polygon, multiPolygon, featureCollection, isObject } from '@turf/helpers';
 import { collectionOf } from '@turf/invariant';
-import gridToMatrix from './grid-to-matrix';
-import isoBands from './marchingsquares-isobands';
+import { polygon, multiPolygon, featureCollection, isObject } from '@turf/helpers';
+import gridToMatrix from './lib/grid-to-matrix';
+import isoBands from './lib/marchingsquares-isobands';
 
 /**
  * Takes a grid {@link FeatureCollection} of {@link Point} features with z-values and an array of
@@ -224,7 +224,7 @@ function groupNestedRings(orderedLinearRings) {
 function isInside(testPolygon, targetPolygon) {
     var points = explode(testPolygon);
     for (var i = 0; i < points.features.length; i++) {
-        if (!inside(points.features[i], targetPolygon)) {
+        if (!booleanPointInPolygon(points.features[i], targetPolygon)) {
             return false;
         }
     }

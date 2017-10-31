@@ -3,8 +3,32 @@
 
 
 "@std/esm@*":
-  version "0.12.1"
-  resolved "https://registry.yarnpkg.com/@std/esm/-/esm-0.12.1.tgz#d07b7c5e2701beade1e7db74b95484f5d91c46bf"
+  version "0.12.5"
+  resolved "https://registry.yarnpkg.com/@std/esm/-/esm-0.12.5.tgz#b38a9bc70462df18a09b16f653141b9ab5557635"
+
+"@turf/boolean-point-in-polygon@5.x":
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/@turf/boolean-point-in-polygon/-/boolean-point-in-polygon-5.0.0.tgz#adc998d5f1cec116c024281d62abd85fdc2c948a"
+  dependencies:
+    "@turf/invariant" "5.x"
+
+"@turf/clone@5.x":
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/@turf/clone/-/clone-5.0.0.tgz#0cbed2e4acb523c4f13b6e49f367960ad7bded9d"
+
+"@turf/helpers@5.x", "@turf/helpers@^5.0.0":
+  version "5.0.1"
+  resolved "https://registry.yarnpkg.com/@turf/helpers/-/helpers-5.0.1.tgz#d950df25b10c9ed347f7811927ec14e72ccc58b2"
+
+"@turf/invariant@5.x":
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/@turf/invariant/-/invariant-5.0.0.tgz#da9b4d7b044cffa300d654b3e0444969fc19d850"
+
+"@turf/meta@5.x":
+  version "5.0.2"
+  resolved "https://registry.yarnpkg.com/@turf/meta/-/meta-5.0.2.tgz#712ff485cdaa6024d1f97d6fbed69d3f8e31e686"
+  dependencies:
+    "@turf/helpers" "^5.0.0"
 
 balanced-match@^1.0.0:
   version "1.0.0"

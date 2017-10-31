@@ -11,12 +11,17 @@ const directory = path.join(__dirname, '..');
 let modules = [];
 for (const name of fs.readdirSync(directory)) {
     const pckgPath = path.join(directory, name, 'package.json');
+    const index = fs.readFileSync(path.join(directory, name, 'index.js'), 'utf8');
+    const test = fs.readFileSync(path.join(directory, name, 'index.js'), 'utf8');
+
     if (!fs.existsSync(pckgPath)) continue;
     const pckg = JSON.parse(fs.readFileSync(pckgPath));
     modules.push({
         name,
-        dir: path.join(directory, name),
         pckg,
+        index,
+        test,
+        dir: path.join(directory, name),
         dependencies: pckg.dependencies || {},
         devDependencies: pckg.devDependencies || {}
     });
@@ -150,6 +155,82 @@ test('turf -- parsing dependencies from index.js', t => {
     t.end();
 });
 
+// Test for missing modules
+test('turf -- missing modules', t => {
+    const files = {
+        typescript: fs.readFileSync(path.join(__dirname, 'index.d.ts')),
+        modules: fs.readFileSync(path.join(__dirname, 'index.js'))
+    };
+
+    modules.forEach(({name}) => {
+        name = camelcase(name.replace('turf-', ''));
+        // name exception with linestring => lineString
+        name = name.replace('linestring', 'lineString').replace('Linestring', 'LineString');
+
+        if (!files.typescript.includes(name)) t.fail(name + ' is missing from index.d.ts');
+        if (!files.modules.includes(name)) t.fail(name + ' is missing from index.js');
+
+        switch (typeof turf[name]) {
+        case 'function': break;
+        case 'object': break;
+        case 'undefined':
+            t.fail(name + ' is missing from index.js');
+        }
+    });
+    t.end();
+});
+
+const deprecated = {
+    modules: [
+        '@turf/idw',
+        '@turf/line-distance',
+        '@turf/point-on-line',
+        '@turf/bezier',
+        '@turf/within',
+        '@turf/inside',
+        '@turf/nearest'
+    ],
+    methods: [
+        'radians2degrees',
+        'degrees2radians',
+        'distanceToDegrees',
+        'distanceToRadians',
+        'radiansToDistance',
+        'bearingToAngle',
+        'convertDistance'
+    ]
+}
+
+test('turf -- check for deprecated modules', t => {
+    for (const {name, dependencies, devDependencies} of modules) {
+        for (const dependency of [...Object.keys(dependencies), ...Object.keys(devDependencies)]) {
+            if (deprecated.modules.indexOf(dependency) !== -1) {
+                throw new Error(`${name} module has deprecated dependency ${dependency}`);
+            }
+        }
+    }
+    t.end();
+});
+
+test('turf -- check for deprecated methods', t => {
+    for (const {name, index, test} of modules) {
+        // Exclude @turf/helpers from this test
+        if (name === 'turf-helpers') continue
+        for (const method of deprecated.methods) {
+            if ((test + index).match(method)) throw new Error(`${name} repo has deprecated method ${method}`);
+        }
+    }
+    t.end();
+});
+
+// TurfJS v5.0 Typescript definition uses @turf/helpers
+test('turf -- update to newer Typescript definitions', t => {
+    glob.sync(turfTypescriptPath).forEach(filepath => {
+        const typescript = fs.readFileSync(filepath, 'utf8');
+        if (typescript.includes('reference types="geojson"')) t.skip(filepath + ' update Typescript definition v5.0');
+    });
+    t.end();
+});
 
 /**
  * =========================
@@ -186,6 +267,17 @@ test('turf-example-${turfName}', t => {
     t.end();
 });
 `;
+    // Specific moduels will exclude testing @example
+    switch (turfName) {
+    case 'isolines':
+    case 'isobands':
+        return `
+        test('turf-example-${turfName}', t => {
+            t.skip('${turfName}');
+            t.end();
+        });
+        `;
+    }
     return `
 test('turf-example-${turfName}', t => {
     const ${testFunctionName} = () => {
@@ -197,40 +289,6 @@ test('turf-example-${turfName}', t => {
 });
 `;
 }
-
-// Test for missing modules
-test('turf -- missing modules', t => {
-    const files = {
-        typescript: fs.readFileSync(path.join(__dirname, 'index.d.ts')),
-        modules: fs.readFileSync(path.join(__dirname, 'index.js'))
-    };
-
-    modules.forEach(({name}) => {
-        name = camelcase(name.replace('turf-', ''));
-        // name exception with linestring => lineString
-        name = name.replace('linestring', 'lineString').replace('Linestring', 'LineString');
-
-        if (!files.typescript.includes(name)) t.fail(name + ' is missing from index.d.ts');
-        if (!files.modules.includes(name)) t.fail(name + ' is missing from index.js');
-
-        switch (typeof turf[name]) {
-        case 'function': break;
-        case 'object': break;
-        case 'undefined':
-            t.fail(name + ' is missing from index.js');
-        }
-    });
-    t.end();
-});
-
-// TurfJS v5.0 Typescript definition uses @turf/helpers
-test('turf -- update to newer Typescript definitions', t => {
-    glob.sync(turfTypescriptPath).forEach(filepath => {
-        const typescript = fs.readFileSync(filepath, 'utf8');
-        if (typescript.includes('reference types="geojson"')) t.skip(filepath + ' update Typescript definition v5.0');
-    });
-    t.end();
-});
 
 // Iterate over each module and retrieve @example to build tests from them
 glob(turfModulesPath, (err, files) => {

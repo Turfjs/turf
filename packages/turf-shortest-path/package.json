@@ -51,9 +51,9 @@
     "@turf/clean-coords": "*",
     "@turf/distance": "5.x",
     "@turf/helpers": "5.x",
-    "@turf/inside": "5.x",
+    "@turf/boolean-point-in-polygon": "5.x",
     "@turf/invariant": "5.x",
-    "@turf/meta": "*",
+    "@turf/meta": "5.x",
     "@turf/transform-scale": "*"
   },
   "@std/esm": {

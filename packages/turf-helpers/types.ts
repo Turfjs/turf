@@ -11,14 +11,14 @@ import {
     multiPoint,
     multiPolygon,
     geometryCollection,
-    radiansToDistance,
-    distanceToRadians,
-    distanceToDegrees,
-    bearingToAngle,
-    radians2degrees,
-    degrees2radians,
+    radiansToLength,
+    lengthToRadians,
+    lengthToDegrees,
+    bearingToAzimuth,
+    radiansToDegrees,
+    degreesToRadians,
     round,
-    convertDistance,
+    convertLength,
     convertArea,
     isNumber,
     isObject,
@@ -43,10 +43,10 @@ const multiPt = multiPoint([[0, 1], [2, 3], [0, 1]])
 const multiLine = multiLineString([[[0, 1], [2, 3], [0, 1]]])
 const multiPoly = multiPolygon([[[[0, 1], [0, 0], [2, 3], [0, 1]]]])
 
-// radiansToDistance & distanceToRadians
-helpers.radiansToDistance(5)
-helpers.distanceToRadians(10)
-helpers.distanceToDegrees(45)
+// radiansToLength & lengthToRadians
+helpers.radiansToLength(5)
+helpers.lengthToRadians(10)
+helpers.lengthToDegrees(45)
 
 // default import & import * as
 point([0, 1])

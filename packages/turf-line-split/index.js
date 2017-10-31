@@ -2,7 +2,7 @@ import rbush from 'geojson-rbush';
 import flatten from '@turf/flatten';
 import truncate from '@turf/truncate';
 import lineSegment from '@turf/line-segment';
-import pointOnLine from '@turf/point-on-line';
+import nearestPointOnLine from '@turf/nearest-point-on-line';
 import lineIntersect from '@turf/line-intersect';
 import { getCoords, getType } from '@turf/invariant';
 import { featureEach, featureReduce} from '@turf/meta';
@@ -171,7 +171,7 @@ function findClosestFeature(point, lines) {
     var closestFeature;
     var closestDistance = Infinity;
     featureEach(lines, function (segment) {
-        var pt = pointOnLine(segment, point);
+        var pt = nearestPointOnLine(segment, point);
         var dist = pt.properties.dist;
         if (dist < closestDistance) {
             closestFeature = segment;

@@ -56,7 +56,7 @@
   },
   "dependencies": {
     "@turf/helpers": "5.x",
-    "@turf/clone": "^4.7.3",
+    "@turf/clone": "5.x",
     "@turf/meta": "5.x"
   },
   "@std/esm": {

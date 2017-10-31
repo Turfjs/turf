@@ -9,9 +9,8 @@
   "files": [
     "index.js",
     "index.d.ts",
-    "marchingsquares-isobands.js",
-    "grid-to-matrix.js",
-    "main.js"
+    "main.js",
+    "lib"
   ],
   "scripts": {
     "pretest": "rollup -c ../../rollup.config.js",
@@ -60,7 +59,7 @@
     "@turf/bbox": "5.x",
     "@turf/explode": "^4.7.3",
     "@turf/helpers": "5.x",
-    "@turf/inside": "5.x",
+    "@turf/boolean-point-in-polygon": "5.x",
     "@turf/invariant": "5.x",
     "@turf/meta": "5.x"
   },

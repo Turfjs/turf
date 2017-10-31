@@ -9,7 +9,7 @@ import pointGrid from '@turf/point-grid';
 import { getCoords } from '@turf/invariant';
 import { randomPolygon } from '@turf/random';
 import { lineString, polygon } from '@turf/helpers';
-import matrixToGrid from './matrix-to-grid';
+import matrixToGrid from './lib/matrix-to-grid';
 import isolines from '.';
 
 const directories = {

@@ -16,8 +16,8 @@
   ],
   "scripts": {
     "pretest": "rollup -c rollup.config.js",
-    "build": "browserify main.js -s turf > turf.js && uglifyjs turf.js -c -m > turf.min.js",
-    "test": "node -r @std/esm test.js && node -r @std/esm test.example.js"
+    "test": "node -r @std/esm test.js && node -r @std/esm test.example.js",
+    "build": "browserify main.js -s turf > turf.js && uglifyjs turf.js -c -m > turf.min.js"
   },
   "repository": {
     "type": "git",
@@ -98,7 +98,7 @@
     "@turf/bbox-clip": "*",
     "@turf/bbox-polygon": "*",
     "@turf/bearing": "*",
-    "@turf/bezier": "*",
+    "@turf/bezier-spline": "*",
     "@turf/boolean-clockwise": "*",
     "@turf/boolean-contains": "*",
     "@turf/boolean-crosses": "*",
@@ -133,17 +133,16 @@
     "@turf/great-circle": "*",
     "@turf/helpers": "*",
     "@turf/hex-grid": "*",
-    "@turf/idw": "*",
-    "@turf/inside": "*",
+    "@turf/boolean-point-in-polygon": "*",
     "@turf/interpolate": "*",
     "@turf/intersect": "*",
     "@turf/invariant": "*",
     "@turf/isobands": "*",
     "@turf/isolines": "*",
     "@turf/kinks": "*",
+    "@turf/length": "*",
     "@turf/line-arc": "*",
     "@turf/line-chunk": "*",
-    "@turf/line-distance": "*",
     "@turf/line-intersect": "*",
     "@turf/line-offset": "*",
     "@turf/line-overlap": "*",
@@ -155,11 +154,11 @@
     "@turf/mask": "*",
     "@turf/meta": "*",
     "@turf/midpoint": "*",
-    "@turf/nearest": "*",
+    "@turf/nearest-point": "*",
+    "@turf/nearest-point-on-line": "*",
     "@turf/nearest-point-to-line": "*",
     "@turf/planepoint": "*",
     "@turf/point-grid": "*",
-    "@turf/point-on-line": "*",
     "@turf/point-on-surface": "*",
     "@turf/point-to-line-distance": "*",
     "@turf/polygon-tangents": "*",
@@ -188,7 +187,7 @@
     "@turf/union": "*",
     "@turf/unkink-polygon": "*",
     "@turf/voronoi": "*",
-    "@turf/within": "*"
+    "@turf/points-within-polygon": "*"
   },
   "@std/esm": {
     "esm": "js",
