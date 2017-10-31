@@ -160,6 +160,12 @@
     "@turf/line-segment" "4.7.1"
     "@turf/rhumb-bearing" "4.7.1"
 
+"@turf/boolean-point-in-polygon@*":
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/@turf/boolean-point-in-polygon/-/boolean-point-in-polygon-5.0.0.tgz#adc998d5f1cec116c024281d62abd85fdc2c948a"
+  dependencies:
+    "@turf/invariant" "5.x"
+
 "@turf/boolean-point-on-line@*", "@turf/boolean-point-on-line@^4.7.3":
   version "4.7.3"
   resolved "https://registry.yarnpkg.com/@turf/boolean-point-on-line/-/boolean-point-on-line-4.7.3.tgz#68ee97b70bc6255f67cd1e51a45658411bcb9799"
@@ -247,7 +253,11 @@
     "@turf/helpers" "4.7.1"
     "@turf/invariant" "4.7.1"
 
-"@turf/clone@*", "@turf/clone@^4.7.3":
+"@turf/clone@*":
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/@turf/clone/-/clone-5.0.0.tgz#0cbed2e4acb523c4f13b6e49f367960ad7bded9d"
+
+"@turf/clone@^4.7.3":
   version "4.7.3"
   resolved "https://registry.yarnpkg.com/@turf/clone/-/clone-4.7.3.tgz#6e507be4d648fa62c5e6ce926f7e83a22f53ae69"
 
@@ -820,6 +830,13 @@
     "@turf/rhumb-bearing" "^4.7.3"
     "@turf/rhumb-distance" "^4.7.3"
 
+"@turf/points-within-polygon@*":
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/@turf/points-within-polygon/-/points-within-polygon-5.0.0.tgz#d0af45a01ecc6fb8028c45e555ebd0d32c3bbf3a"
+  dependencies:
+    "@turf/helpers" "5.x"
+    "@turf/inside" "5.x"
+
 "@turf/polygon-tangents@*":
   version "4.7.3"
   resolved "https://registry.yarnpkg.com/@turf/polygon-tangents/-/polygon-tangents-4.7.3.tgz#9ddfac9b9b3840f4c43be65d69321f1cd47a7b24"
@@ -1034,7 +1051,14 @@
     "@turf/distance" "^4.7.3"
     "@turf/helpers" "^4.7.3"
 
-"@turf/truncate@*", "@turf/truncate@^4.7.3":
+"@turf/truncate@*":
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/@turf/truncate/-/truncate-5.0.0.tgz#f11a2bd3b05f43600a985937cd1d7baf3f57db52"
+  dependencies:
+    "@turf/helpers" "5.x"
+    "@turf/meta" "5.x"
+
+"@turf/truncate@^4.7.3":
   version "4.7.3"
   resolved "https://registry.yarnpkg.com/@turf/truncate/-/truncate-4.7.3.tgz#827a8df8ff0c9fff9dcf1a4b3145cbdef80fb993"
   dependencies:
@@ -1063,19 +1087,19 @@
     "@turf/linestring-to-polygon" "5.x"
     d3-voronoi "^1.1.2"
 
-"@turf/within@*", "@turf/within@^4.5.0":
-  version "4.7.3"
-  resolved "https://registry.yarnpkg.com/@turf/within/-/within-4.7.3.tgz#41ab3c152f6a8c05caa5a345c97dd334d49aef13"
-  dependencies:
-    "@turf/helpers" "^4.7.3"
-    "@turf/inside" "^4.7.3"
-
 "@turf/within@^3.13.0":
   version "3.14.0"
   resolved "https://registry.yarnpkg.com/@turf/within/-/within-3.14.0.tgz#891a578323c292b9792269032dd74870e0e14c53"
   dependencies:
     "@turf/helpers" "^3.13.0"
     "@turf/inside" "^3.14.0"
+
+"@turf/within@^4.5.0":
+  version "4.7.3"
+  resolved "https://registry.yarnpkg.com/@turf/within/-/within-4.7.3.tgz#41ab3c152f6a8c05caa5a345c97dd334d49aef13"
+  dependencies:
+    "@turf/helpers" "^4.7.3"
+    "@turf/inside" "^4.7.3"
 
 JSONStream@^1.0.0, JSONStream@^1.0.3:
   version "1.3.1"

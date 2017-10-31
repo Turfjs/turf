@@ -133,7 +133,7 @@
     "@turf/great-circle": "*",
     "@turf/helpers": "*",
     "@turf/hex-grid": "*",
-    "@turf/inside": "*",
+    "@turf/boolean-point-in-polygon": "*",
     "@turf/interpolate": "*",
     "@turf/intersect": "*",
     "@turf/invariant": "*",
@@ -187,7 +187,7 @@
     "@turf/union": "*",
     "@turf/unkink-polygon": "*",
     "@turf/voronoi": "*",
-    "@turf/within": "*"
+    "@turf/points-within-polygon": "*"
   },
   "@std/esm": {
     "esm": "js",
