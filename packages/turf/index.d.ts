@@ -108,3 +108,25 @@ import * as helpers from '@turf/helpers';
 import * as invariant from '@turf/invariant';
 import * as meta from '@turf/meta';
 export {projection, random, clusters, helpers, invariant, meta};
+
+// Renamed modules (Backwards compatitble with v4.0)
+export {default as pointOnSurface} from '@turf/point-on-feature';
+export {default as polygonToLineString} from '@turf/polygon-to-line';
+export {default as lineStringToPolygon} from '@turf/line-to-polygon';
+export {default as inside} from '@turf/boolean-point-in-polygon';
+export {default as within} from '@turf/points-within-polygon';
+export {default as bezier} from '@turf/bezier-spline';
+export {default as nearest} from '@turf/nearest-point';
+export {default as pointOnLine} from '@turf/nearest-point-on-line';
+export {default as lineDistance} from '@turf/length';
+
+// Renamed methods (Backwards compatitble with v4.0)
+export {
+    radiansToDegrees as radians2degrees,
+    degreesToRadians as degrees2radians,
+    lengthToDegrees as distanceToDegrees,
+    lengthToRadians as distanceToRadians,
+    radiansToLength as radiansToDistance,
+    bearingToAzimuth as bearingToAngle,
+    convertLength as convertDistance
+} from '@turf/helpers';
