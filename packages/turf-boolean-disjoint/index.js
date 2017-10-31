@@ -1,7 +1,7 @@
 import booleanPointInPolygon from '@turf/boolean-point-in-polygon';
 import { flattenEach } from '@turf/meta';
 import lineIntersect from '@turf/line-intersect';
-import polyToLinestring from '@turf/polygon-to-linestring';
+import polygonToLine from '@turf/polygon-to-line';
 
 /**
  * Boolean-disjoint returns (TRUE) if the intersection of the two geometries is an empty set.
@@ -91,7 +91,7 @@ function isLineOnLine(lineString1, lineString2) {
 }
 
 function isLineInPoly(polygon, lineString) {
-    var doLinesIntersect = lineIntersect(lineString, polyToLinestring(polygon));
+    var doLinesIntersect = lineIntersect(lineString, polygonToLine(polygon));
     if (doLinesIntersect.features.length > 0) {
         return true;
     }

@@ -681,7 +681,15 @@
     "@turf/truncate" "^4.7.3"
     geojson-rbush "^1.0.1"
 
-"@turf/linestring-to-polygon@*", "@turf/linestring-to-polygon@5.x":
+"@turf/line-to-polygon@*":
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/@turf/line-to-polygon/-/line-to-polygon-5.0.0.tgz#db70a29f31088d90bba39c4dba6a15086661cab7"
+  dependencies:
+    "@turf/bbox" "5.x"
+    "@turf/helpers" "5.x"
+    "@turf/invariant" "5.x"
+
+"@turf/linestring-to-polygon@5.x":
   version "5.0.0"
   resolved "https://registry.yarnpkg.com/@turf/linestring-to-polygon/-/linestring-to-polygon-5.0.0.tgz#d8c33d879fcbc71224fd6a69d41978562d2005e8"
   dependencies:
@@ -844,12 +852,12 @@
     "@turf/helpers" "^4.7.3"
     "@turf/invariant" "^4.7.3"
 
-"@turf/polygon-to-linestring@*":
+"@turf/polygon-to-line@*":
   version "5.0.0"
-  resolved "https://registry.yarnpkg.com/@turf/polygon-to-linestring/-/polygon-to-linestring-5.0.0.tgz#6c525b9dea4f76f7cd7785a4752891e74ada8551"
+  resolved "https://registry.yarnpkg.com/@turf/polygon-to-line/-/polygon-to-line-5.0.0.tgz#0e6029e5718ae5630fcc61f63ad4e8e9017e84db"
   dependencies:
-    "@turf/helpers" "5.0.0"
-    "@turf/invariant" "5.0.0"
+    "@turf/helpers" "5.x"
+    "@turf/invariant" "5.x"
 
 "@turf/polygon-to-linestring@^4.7.3":
   version "4.7.3"
@@ -1192,8 +1200,8 @@ array-unique@^0.2.1:
   resolved "https://registry.yarnpkg.com/array-unique/-/array-unique-0.2.1.tgz#a1d97ccafcbc2625cc70fadceb36a50c58b01a53"
 
 asn1.js@^4.0.0:
-  version "4.9.1"
-  resolved "https://registry.yarnpkg.com/asn1.js/-/asn1.js-4.9.1.tgz#48ba240b45a9280e94748990ba597d216617fd40"
+  version "4.10.0"
+  resolved "https://registry.yarnpkg.com/asn1.js/-/asn1.js-4.10.0.tgz#60bf436e1f11f313147ae644341da37f23babd66"
   dependencies:
     bn.js "^4.0.0"
     inherits "^2.0.1"
