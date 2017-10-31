@@ -1,7 +1,7 @@
 {
-  "name": "@turf/polygon-to-linestring",
+  "name": "@turf/polygon-to-line",
   "version": "5.0.0",
-  "description": "turf polygon-to-linestring module",
+  "description": "turf polygon-to-line module",
   "main": "main",
   "module": "index",
   "jsnext:main": "index",
@@ -22,7 +22,10 @@
   },
   "keywords": [
     "turf",
-    "gis"
+    "gis",
+    "line",
+    "linestring",
+    "polygon"
   ],
   "author": "Turf Authors",
   "license": "MIT",

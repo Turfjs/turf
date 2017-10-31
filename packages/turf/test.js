@@ -188,7 +188,9 @@ const deprecated = {
         '@turf/bezier',
         '@turf/within',
         '@turf/inside',
-        '@turf/nearest'
+        '@turf/nearest',
+        '@turf/polygon-to-linestring',
+        '@turf/linestring-to-polygon'
     ],
     methods: [
         'radians2degrees',

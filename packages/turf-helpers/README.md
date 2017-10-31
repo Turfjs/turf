@@ -372,18 +372,18 @@ Converts an angle in degrees to radians
 
 Returns **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** angle in radians
 
-## convertDistance
+## convertLength
 
-Converts a distance to the requested unit.
+Converts a length to the requested unit.
 Valid units: miles, nauticalmiles, inches, yards, meters, metres, kilometers, centimeters, feet
 
 **Parameters**
 
--   `distance` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** to be converted
--   `originalUnit` **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** of the distance
+-   `length` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** to be converted
+-   `originalUnit` **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** of the length
 -   `finalUnit` **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** returned unit (optional, default `'kilometers'`)
 
-Returns **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** the converted distance
+Returns **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** the converted length
 
 ## convertArea
 
