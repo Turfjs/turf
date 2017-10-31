@@ -33,16 +33,14 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"featureIndex": 3,
-				"distanceToPoint": 1035.5849477111747,
 				"marker-color": "#F00",
 				"marker-style": "star"
 			},
 			"geometry": {
 				"type": "Point",
 				"coordinates": [
-					48.1640625,
-					37.71859032558816
+					48.164063,
+					37.71859
 				]
 			}
 		}

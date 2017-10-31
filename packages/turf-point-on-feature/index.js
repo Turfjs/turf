@@ -2,7 +2,7 @@ import explode from '@turf/explode';
 import centroid from '@turf/center';
 import nearestPoint from '@turf/nearest-point';
 import booleanPointInPolygon from '@turf/boolean-point-in-polygon';
-import { featureCollection, feature } from '@turf/helpers';
+import { featureCollection, feature, point } from '@turf/helpers';
 
 /**
  * Takes a Feature or FeatureCollection and returns a {@link Point} guaranteed to be on the surface of the feature.
@@ -103,7 +103,8 @@ function pointOnFeature(geojson) {
         for (i = 0; i < fc.features.length; i++) {
             vertices.features = vertices.features.concat(explode(fc.features[i]).features);
         }
-        return nearestPoint(cent, vertices);
+        // Remove distanceToPoint properties from nearestPoint()
+        return point(nearestPoint(cent, vertices).geometry.coordinates);
     }
 }
 

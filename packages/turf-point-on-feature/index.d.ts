@@ -1,4 +1,4 @@
-import {Feature, Point, FeatureCollection, GeometryObject} from '@turf/helpers';
+import { Feature, Point, FeatureCollection, GeometryObject } from '@turf/helpers';
 
 /**
  * http://turfjs.org/docs/#pointonfeature

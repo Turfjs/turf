@@ -73,6 +73,13 @@
     "@turf/helpers" "5.x"
     "@turf/meta" "5.x"
 
+"@turf/truncate@*":
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/@turf/truncate/-/truncate-5.0.0.tgz#f11a2bd3b05f43600a985937cd1d7baf3f57db52"
+  dependencies:
+    "@turf/helpers" "5.x"
+    "@turf/meta" "5.x"
+
 balanced-match@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/balanced-match/-/balanced-match-1.0.0.tgz#89b4d199ab2bee49de164ea02b89ce462d71b767"

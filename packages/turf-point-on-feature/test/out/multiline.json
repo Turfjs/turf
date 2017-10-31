@@ -119,8 +119,6 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"featureIndex": 5,
-				"distanceToPoint": 74.58365728006412,
 				"marker-color": "#F00",
 				"marker-style": "star"
 			},
@@ -128,7 +126,7 @@
 				"type": "Point",
 				"coordinates": [
 					98.4375,
-					50.51342652633956
+					50.513427
 				]
 			}
 		}

@@ -4,6 +4,7 @@ import glob from 'glob';
 import path from 'path';
 import load from 'load-json-file';
 import write from 'write-json-file';
+import truncate from '@turf/truncate';
 import { featureEach } from '@turf/meta';
 import { featureCollection } from '@turf/helpers';
 import pointOnFeature from '.';
@@ -19,7 +20,7 @@ test('turf-point-on-feature', t => {
         featureEach(geojson, feature => results.features.push(feature));
         ptOnFeature.properties['marker-color'] = '#F00'
         ptOnFeature.properties['marker-style'] = 'star'
-        results.features.push(ptOnFeature);
+        results.features.push(truncate(ptOnFeature));
 
         // Save Tests
         const out = filepath.replace(path.join('test', 'in'), path.join('test', 'out'))

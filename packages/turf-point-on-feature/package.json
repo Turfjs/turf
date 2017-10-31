@@ -37,6 +37,7 @@
   "devDependencies": {
     "@std/esm": "*",
     "@turf/meta": "*",
+    "@turf/truncate": "*",
     "benchmark": "*",
     "rollup": "*",
     "tape": "*"
