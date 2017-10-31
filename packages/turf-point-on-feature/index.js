@@ -1,41 +1,33 @@
+import explode from '@turf/explode';
 import centroid from '@turf/center';
 import nearestPoint from '@turf/nearest-point';
 import booleanPointInPolygon from '@turf/boolean-point-in-polygon';
-import explode from '@turf/explode';
-import { featureCollection } from '@turf/helpers';
+import { featureCollection, feature, point } from '@turf/helpers';
 
 /**
- * Takes a feature and returns a {@link Point} guaranteed to be on the surface of the feature.
+ * Takes a Feature or FeatureCollection and returns a {@link Point} guaranteed to be on the surface of the feature.
  *
  * * Given a {@link Polygon}, the point will be in the area of the polygon
  * * Given a {@link LineString}, the point will be along the string
  * * Given a {@link Point}, the point will the same as the input
  *
- * @param {(Feature|FeatureCollection)} fc any feature or set of features
- * @returns {Feature} a point on the surface of `input`
+ * @name pointOnFeature
+ * @param {Feature|FeatureCollection} geojson any Feature or FeatureCollection
+ * @returns {Feature<Point>} a point on the surface of `input`
  * @example
  * // create a random polygon
  * var polygon = turf.randomPolygon();
  *
- * var pointOnPolygon = turf.pointOnSurface(polygon);
+ * var pointOnPolygon = turf.pointOnFeature(polygon);
  *
  * //addToMap
  * var addToMap = [polygon, pointOnPolygon];
  */
-function pointOnSurface(fc) {
+function pointOnFeature(geojson) {
     // normalize
-    if (fc.type !== 'FeatureCollection') {
-        if (fc.type !== 'Feature') {
-            fc = {
-                type: 'Feature',
-                geometry: fc,
-                properties: {}
-            };
-        }
-        fc = featureCollection([fc]);
-    }
+    var fc = normalize(geojson);
 
-    //get centroid
+    // get centroid
     var cent = centroid(fc);
 
     // check to see if centroid is on surface
@@ -47,7 +39,7 @@ function pointOnSurface(fc) {
         var onLine = false;
         if (geom.type === 'Point') {
             if (cent.geometry.coordinates[0] === geom.coordinates[0] &&
-        cent.geometry.coordinates[1] === geom.coordinates[1]) {
+                cent.geometry.coordinates[1] === geom.coordinates[1]) {
                 onSurface = true;
             }
         } else if (geom.type === 'MultiPoint') {
@@ -98,12 +90,7 @@ function pointOnSurface(fc) {
                 j++;
             }
         } else if (geom.type === 'Polygon' || geom.type === 'MultiPolygon') {
-            var f = {
-                type: 'Feature',
-                geometry: geom,
-                properties: {}
-            };
-            if (booleanPointInPolygon(cent, f)) {
+            if (booleanPointInPolygon(cent, geom)) {
                 onSurface = true;
             }
         }
@@ -116,17 +103,33 @@ function pointOnSurface(fc) {
         for (i = 0; i < fc.features.length; i++) {
             vertices.features = vertices.features.concat(explode(fc.features[i]).features);
         }
-        return nearestPoint(cent, vertices);
+        // Remove distanceToPoint properties from nearestPoint()
+        return point(nearestPoint(cent, vertices).geometry.coordinates);
     }
+}
+
+/**
+ * Normalizes any GeoJSON to a FeatureCollection
+ *
+ * @name normalize
+ * @param {GeoJSON} geojson Any GeoJSON
+ * @returns {FeatureCollection} FeatureCollection
+ */
+function normalize(geojson) {
+    if (geojson.type !== 'FeatureCollection') {
+        if (geojson.type !== 'Feature') {
+            return featureCollection([feature(geojson)]);
+        }
+        return featureCollection([geojson]);
+    }
+    return geojson;
 }
 
 function pointOnSegment(x, y, x1, y1, x2, y2) {
     var ab = Math.sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1));
     var ap = Math.sqrt((x - x1) * (x - x1) + (y - y1) * (y - y1));
     var pb = Math.sqrt((x2 - x) * (x2 - x) + (y2 - y) * (y2 - y));
-    if (ab === ap + pb) {
-        return true;
-    }
+    return ab === ap + pb;
 }
 
-export default pointOnSurface;
+export default pointOnFeature;

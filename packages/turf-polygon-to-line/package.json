@@ -1,7 +1,7 @@
 {
-  "name": "@turf/point-on-surface",
-  "version": "4.7.3",
-  "description": "turf point-on-surface module",
+  "name": "@turf/polygon-to-line",
+  "version": "5.0.0",
+  "description": "turf polygon-to-line module",
   "main": "main",
   "module": "index",
   "jsnext:main": "index",
@@ -22,10 +22,9 @@
   },
   "keywords": [
     "turf",
-    "centroid",
-    "geojson",
-    "point",
-    "surface",
+    "gis",
+    "line",
+    "linestring",
     "polygon"
   ],
   "author": "Turf Authors",
@@ -36,16 +35,15 @@
   "homepage": "https://github.com/Turfjs/turf",
   "devDependencies": {
     "benchmark": "*",
+    "load-json-file": "*",
     "tape": "*",
+    "write-json-file": "*",
     "rollup": "*",
     "@std/esm": "*"
   },
   "dependencies": {
-    "@turf/center": "^4.7.3",
-    "@turf/explode": "^4.7.3",
     "@turf/helpers": "5.x",
-    "@turf/boolean-point-in-polygon": "5.x",
-    "@turf/nearest-point": "5.x"
+    "@turf/invariant": "5.x"
   },
   "@std/esm": {
     "esm": "js",

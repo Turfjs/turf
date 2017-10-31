@@ -1,7 +1,7 @@
 {
-  "name": "@turf/polygon-to-linestring",
+  "name": "@turf/line-to-polygon",
   "version": "5.0.0",
-  "description": "turf polygon-to-linestring module",
+  "description": "turf line-to-polygon module",
   "main": "main",
   "module": "index",
   "jsnext:main": "index",
@@ -22,9 +22,15 @@
   },
   "keywords": [
     "turf",
-    "gis"
+    "gis",
+    "polygon",
+    "linestring",
+    "line"
   ],
   "author": "Turf Authors",
+  "contributors": [
+    "Denis Carriere <@DenisCarriere>"
+  ],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/Turfjs/turf/issues"
@@ -39,6 +45,7 @@
     "@std/esm": "*"
   },
   "dependencies": {
+    "@turf/bbox": "5.x",
     "@turf/helpers": "5.x",
     "@turf/invariant": "5.x"
   },

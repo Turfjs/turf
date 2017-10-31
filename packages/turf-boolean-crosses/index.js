@@ -1,7 +1,7 @@
 import { point } from '@turf/helpers';
 import booleanPointInPolygon from '@turf/boolean-point-in-polygon';
 import lineIntersect from '@turf/line-intersect';
-import polyToLinestring from '@turf/polygon-to-linestring';
+import polygonToLine from '@turf/polygon-to-line';
 import { getGeom, getType } from '@turf/invariant';
 
 /**
@@ -104,7 +104,7 @@ function doLineStringsCross(lineString1, lineString2) {
 }
 
 function doLineStringAndPolygonCross(lineString, polygon) {
-    var doLinesIntersect = lineIntersect(lineString, polyToLinestring(polygon));
+    var doLinesIntersect = lineIntersect(lineString, polygonToLine(polygon));
     if (doLinesIntersect.features.length > 0) {
         return true;
     }

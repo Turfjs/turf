@@ -55,7 +55,7 @@
   version "5.0.0"
   resolved "https://registry.yarnpkg.com/@turf/invariant/-/invariant-5.0.0.tgz#da9b4d7b044cffa300d654b3e0444969fc19d850"
 
-"@turf/meta@5.x":
+"@turf/meta@*", "@turf/meta@5.x":
   version "5.0.2"
   resolved "https://registry.yarnpkg.com/@turf/meta/-/meta-5.0.2.tgz#712ff485cdaa6024d1f97d6fbed69d3f8e31e686"
   dependencies:
@@ -70,6 +70,13 @@
   resolved "https://registry.yarnpkg.com/@turf/nearest-point/-/nearest-point-5.0.0.tgz#c3816ad0a4b2969f2d77f74dba7d918c81321c76"
   dependencies:
     "@turf/distance" "5.x"
+    "@turf/helpers" "5.x"
+    "@turf/meta" "5.x"
+
+"@turf/truncate@*":
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/@turf/truncate/-/truncate-5.0.0.tgz#f11a2bd3b05f43600a985937cd1d7baf3f57db52"
+  dependencies:
     "@turf/helpers" "5.x"
     "@turf/meta" "5.x"
 

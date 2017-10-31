@@ -1,7 +1,7 @@
 {
-  "name": "@turf/linestring-to-polygon",
+  "name": "@turf/point-on-feature",
   "version": "5.0.0",
-  "description": "turf linestring-to-polygon module",
+  "description": "turf point-on-feature module",
   "main": "main",
   "module": "index",
   "jsnext:main": "index",
@@ -22,29 +22,32 @@
   },
   "keywords": [
     "turf",
-    "gis"
+    "centroid",
+    "geojson",
+    "point",
+    "surface",
+    "polygon"
   ],
   "author": "Turf Authors",
-  "contributors": [
-    "Denis Carriere <@DenisCarriere>"
-  ],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/Turfjs/turf/issues"
   },
   "homepage": "https://github.com/Turfjs/turf",
   "devDependencies": {
+    "@std/esm": "*",
+    "@turf/meta": "*",
+    "@turf/truncate": "*",
     "benchmark": "*",
-    "load-json-file": "*",
-    "tape": "*",
-    "write-json-file": "*",
     "rollup": "*",
-    "@std/esm": "*"
+    "tape": "*"
   },
   "dependencies": {
-    "@turf/bbox": "5.x",
+    "@turf/boolean-point-in-polygon": "5.x",
+    "@turf/center": "^4.7.3",
+    "@turf/explode": "^4.7.3",
     "@turf/helpers": "5.x",
-    "@turf/invariant": "5.x"
+    "@turf/nearest-point": "5.x"
   },
   "@std/esm": {
     "esm": "js",

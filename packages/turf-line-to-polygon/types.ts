@@ -2,7 +2,6 @@ import {
     featureCollection,
     lineString,
     multiLineString,
-    // Typescript Definitions
     Polygon,
     LineString,
     MultiLineString,
@@ -10,7 +9,7 @@ import {
     Feature,
     FeatureCollection
 } from '@turf/helpers'
-import lineStringToPolygon from './'
+import lineToPolygon from './'
 
 // Fixtures
 const coords = [[125, -30], [145, -30], [145, -20], [125, -20], [125, -30]];
@@ -19,6 +18,6 @@ const multiLine = multiLineString([coords, coords]);
 const fc = featureCollection([line, multiLine]);
 
 // Assert results with types
-const poly1: Feature<Polygon> = lineStringToPolygon(line);
-const poly2: Feature<Polygon> = lineStringToPolygon(multiLine);
-const poly3: Feature<MultiPolygon> = lineStringToPolygon(fc);
+const poly1: Feature<Polygon> = lineToPolygon(line);
+const poly2: Feature<Polygon> = lineToPolygon(multiLine);
+const poly3: Feature<MultiPolygon> = lineToPolygon(fc);

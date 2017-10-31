@@ -50,7 +50,7 @@
     "@turf/boolean-point-in-polygon": "5.x",
     "@turf/invariant": "5.x",
     "@turf/line-intersect": "5.x",
-    "@turf/polygon-to-linestring": "5.x"
+    "@turf/polygon-to-line": "5.x"
   },
   "@std/esm": {
     "esm": "js",

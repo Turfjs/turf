@@ -11,11 +11,11 @@ import {
 } from '@turf/helpers';
 
 /**
- * http://turfjs.org/docs/#polygontolinestring
+ * http://turfjs.org/docs/#polygontoline
  *
  * Feature => LineString
  */
-declare function polygonToLineString<T extends Polygon | MultiPolygon>(
+declare function polygonToLine<T extends Polygon | MultiPolygon>(
     polygon: Feature<T> | T,
     options?: {
         properties?: Properties
@@ -23,15 +23,15 @@ declare function polygonToLineString<T extends Polygon | MultiPolygon>(
 ): Feature<LineString>;
 
 /**
- * http://turfjs.org/docs/#polygontolinestring
+ * http://turfjs.org/docs/#polygontoline
  *
  * FeatureCollection => MultiLineString
  */
-declare function polygonToLineString<T extends Polygon | MultiPolygon>(
+declare function polygonToLine<T extends Polygon | MultiPolygon>(
     polygon: FeatureCollection<T> | GeometryCollection | FeatureGeometryCollection,
     options?: {
         properties?: Properties
     }
 ): Feature<MultiLineString>;
 
-export default polygonToLineString;
+export default polygonToLine;

@@ -5,7 +5,7 @@ import { polygon, multiPolygon, lineString, isObject } from '@turf/helpers';
 /**
  * Converts (Multi)LineString(s) to Polygon(s).
  *
- * @name lineStringToPolygon
+ * @name lineToPolygon
  * @param {FeatureCollection|Feature<LineString|MultiLineString>} lines Features to convert
  * @param {Object} [options={}] Optional parameters
  * @param {Object} [options.properties={}] translates GeoJSON properties to Feature
@@ -15,12 +15,12 @@ import { polygon, multiPolygon, lineString, isObject } from '@turf/helpers';
  * @example
  * var line = turf.lineString([[125, -30], [145, -30], [145, -20], [125, -20], [125, -30]]);
  *
- * var polygon = turf.lineStringToPolygon(line);
+ * var polygon = turf.lineToPolygon(line);
  *
  * //addToMap
  * var addToMap = [polygon];
  */
-function linestringToPolygon(lines, options) {
+function lineToPolygon(lines, options) {
     // Optional parameters
     options = options || {};
     if (!isObject(options)) throw new Error('options is invalid');
@@ -129,4 +129,4 @@ function calculateArea(bbox) {
     return Math.abs(west - east) * Math.abs(south - north);
 }
 
-export default linestringToPolygon;
+export default lineToPolygon;

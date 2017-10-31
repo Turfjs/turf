@@ -4,7 +4,7 @@ import { lineString, multiLineString, featureCollection, isObject } from '@turf/
 /**
  * Converts a {@link Polygon} to {@link LineString|(Multi)LineString} or {@link MultiPolygon} to a {@link FeatureCollection} of {@link LineString|(Multi)LineString}.
  *
- * @name polygonToLineString
+ * @name polygonToLine
  * @param {Feature<Polygon|MultiPolygon>} polygon Feature to convert
  * @param {Object} [options={}] Optional parameters
  * @param {Object} [options.properties={}] translates GeoJSON properties to Feature
@@ -12,12 +12,12 @@ import { lineString, multiLineString, featureCollection, isObject } from '@turf/
  * @example
  * var poly = turf.polygon([[[125, -30], [145, -30], [145, -20], [125, -20], [125, -30]]]);
  *
- * var line = turf.polygonToLineString(poly);
+ * var line = turf.polygonToLine(poly);
  *
  * //addToMap
  * var addToMap = [line];
  */
-function polygonToLinestring(polygon, options) {
+function polygonToLine(polygon, options) {
     // Optional parameters
     options = options || {};
     if (!isObject(options)) throw new Error('options is invalid');
@@ -49,4 +49,4 @@ function coordsToLine(coords, properties) {
     return lineString(coords[0], properties);
 }
 
-export default polygonToLinestring;
+export default polygonToLine;
