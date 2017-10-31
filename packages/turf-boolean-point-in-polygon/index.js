@@ -8,7 +8,7 @@ import { getCoord, getCoords } from '@turf/invariant';
  * Takes a {@link Point} and a {@link Polygon} or {@link MultiPolygon} and determines if the point resides inside the polygon. The polygon can
  * be convex or concave. The function accounts for holes.
  *
- * @name inside
+ * @name booleanPointInPolygon
  * @param {Feature<Point>} point input point
  * @param {Feature<Polygon|MultiPolygon>} polygon input polygon or multipolygon
  * @param {Object} [options={}] Optional parameters
@@ -24,10 +24,10 @@ import { getCoord, getCoords } from '@turf/invariant';
  *   [-81, 41]
  * ]]);
  *
- * turf.inside(pt, poly);
+ * turf.booleanPointInPolygon(pt, poly);
  * //= true
  */
-function inside(point, polygon, options) {
+function booleanPointInPolygon(point, polygon, options) {
     // Optional parameters
     options = options || {};
     if (typeof options !== 'object') throw new Error('options is invalid');
@@ -107,4 +107,4 @@ function inBBox(pt, bbox) {
            bbox[3] >= pt[1];
 }
 
-export default inside;
+export default booleanPointInPolygon;

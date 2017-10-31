@@ -1,9 +1,9 @@
 import { MultiPolygon, Polygon, Feature, Coord } from '@turf/helpers'
 
 /**
- * http://turfjs.org/docs/#inside
+ * http://turfjs.org/docs/#booleanpointinpolygon
  */
-export default function inside<T extends Polygon | MultiPolygon>(
+export default function booleanPointInPolygon<T extends Polygon | MultiPolygon>(
     point: Coord,
     polygon: Feature<T> | T,
     options?: {

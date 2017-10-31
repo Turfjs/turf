@@ -2,58 +2,58 @@ import test from 'tape';
 import { point } from '@turf/helpers';
 import { polygon } from '@turf/helpers';
 import fs from 'fs';
-import inside from '.';
+import booleanPointInPolygon from '.';
 
-test('featureCollection', function (t) {
+test('boolean-point-in-polygon -- featureCollection', function (t) {
     // test for a simple polygon
     var poly = polygon([[[0, 0], [0, 100], [100, 100], [100, 0], [0, 0]]]);
     var ptIn = point([50, 50]);
     var ptOut = point([140, 150]);
 
-    t.true(inside(ptIn, poly), 'point inside simple polygon');
-    t.false(inside(ptOut, poly), 'point outside simple polygon');
+    t.true(booleanPointInPolygon(ptIn, poly), 'point inside simple polygon');
+    t.false(booleanPointInPolygon(ptOut, poly), 'point outside simple polygon');
 
     // test for a concave polygon
     var concavePoly = polygon([[[0, 0], [50, 50], [0, 100], [100, 100], [100, 0], [0, 0]]]);
     var ptConcaveIn = point([75, 75]);
     var ptConcaveOut = point([25, 50]);
 
-    t.true(inside(ptConcaveIn, concavePoly), 'point inside concave polygon');
-    t.false(inside(ptConcaveOut, concavePoly), 'point outside concave polygon');
+    t.true(booleanPointInPolygon(ptConcaveIn, concavePoly), 'point inside concave polygon');
+    t.false(booleanPointInPolygon(ptConcaveOut, concavePoly), 'point outside concave polygon');
 
     t.end();
 });
 
-test('poly with hole', function (t) {
+test('boolean-point-in-polygon -- poly with hole', function (t) {
     var ptInHole = point([-86.69208526611328, 36.20373274711739]);
     var ptInPoly = point([-86.72229766845702, 36.20258997094334]);
     var ptOutsidePoly = point([-86.75079345703125, 36.18527313913089]);
     var polyHole = JSON.parse(fs.readFileSync(__dirname + '/test/in/poly-with-hole.geojson'));
 
-    t.false(inside(ptInHole, polyHole));
-    t.true(inside(ptInPoly, polyHole));
-    t.false(inside(ptOutsidePoly, polyHole));
+    t.false(booleanPointInPolygon(ptInHole, polyHole));
+    t.true(booleanPointInPolygon(ptInPoly, polyHole));
+    t.false(booleanPointInPolygon(ptOutsidePoly, polyHole));
 
     t.end();
 });
 
-test('multipolygon with hole', function (t) {
+test('boolean-point-in-polygon -- multipolygon with hole', function (t) {
     var ptInHole = point([-86.69208526611328, 36.20373274711739]);
     var ptInPoly = point([-86.72229766845702, 36.20258997094334]);
     var ptInPoly2 = point([-86.75079345703125, 36.18527313913089]);
     var ptOutsidePoly = point([-86.75302505493164, 36.23015046460186]);
     var multiPolyHole = JSON.parse(fs.readFileSync(__dirname + '/test/in/multipoly-with-hole.geojson'));
 
-    t.false(inside(ptInHole, multiPolyHole));
-    t.true(inside(ptInPoly, multiPolyHole));
-    t.true(inside(ptInPoly2, multiPolyHole));
-    t.true(inside(ptInPoly, multiPolyHole));
-    t.false(inside(ptOutsidePoly, multiPolyHole));
+    t.false(booleanPointInPolygon(ptInHole, multiPolyHole));
+    t.true(booleanPointInPolygon(ptInPoly, multiPolyHole));
+    t.true(booleanPointInPolygon(ptInPoly2, multiPolyHole));
+    t.true(booleanPointInPolygon(ptInPoly, multiPolyHole));
+    t.false(booleanPointInPolygon(ptOutsidePoly, multiPolyHole));
 
     t.end();
 });
 
-test('Boundary test', function (t) {
+test('boolean-point-in-polygon -- Boundary test', function (t) {
     var poly1 = polygon([[
         [10, 10],
         [30, 20],
@@ -146,7 +146,7 @@ test('Boundary test', function (t) {
         var testTitle = 'Boundary ' + (ignoreBoundary ? 'ignored ' : '') + 'test number ';
         for (var i = 0; i < tests.length; i++) {
             var item = tests[i];
-            t.true(inside(item[1], item[0], {ignoreBoundary: ignoreBoundary}) == item[2], testTitle + i);
+            t.true(booleanPointInPolygon(item[1], item[0], {ignoreBoundary: ignoreBoundary}) == item[2], testTitle + i);
         }
     }
     runTest(t, false);
@@ -155,7 +155,7 @@ test('Boundary test', function (t) {
 });
 
 // https://github.com/Turfjs/turf-inside/issues/15
-test(t => {
+test('boolean-point-in-polygon -- issue #15', t => {
     var pt1 = point([-9.9964077, 53.8040989]);
     var poly = polygon([[
         [5.080336744095521, 67.89398938540765],
@@ -165,6 +165,6 @@ test(t => {
         [5.080336744095521, 67.89398938540765]
     ]]);
 
-    t.true(inside(pt1, poly));
+    t.true(booleanPointInPolygon(pt1, poly));
     t.end();
 });
