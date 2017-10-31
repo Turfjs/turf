@@ -1,8 +1,8 @@
-import {Feature, Point, AllGeoJSON} from '@turf/helpers';
+import {Feature, Point, FeatureCollection, GeometryObject} from '@turf/helpers';
 
 /**
  * http://turfjs.org/docs/#pointonfeature
  */
 export default function pointOnFeature(
-    geojson: AllGeoJSON
+    geojson: Feature<any> | FeatureCollection<any> | GeometryObject
 ): Feature<Point>;

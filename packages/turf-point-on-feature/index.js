@@ -38,7 +38,7 @@ function pointOnFeature(geojson) {
         var onLine = false;
         if (geom.type === 'Point') {
             if (cent.geometry.coordinates[0] === geom.coordinates[0] &&
-        cent.geometry.coordinates[1] === geom.coordinates[1]) {
+                cent.geometry.coordinates[1] === geom.coordinates[1]) {
                 onSurface = true;
             }
         } else if (geom.type === 'MultiPoint') {
@@ -89,12 +89,7 @@ function pointOnFeature(geojson) {
                 j++;
             }
         } else if (geom.type === 'Polygon' || geom.type === 'MultiPolygon') {
-            var f = {
-                type: 'Feature',
-                geometry: geom,
-                properties: {}
-            };
-            if (booleanPointInPolygon(cent, f)) {
+            if (booleanPointInPolygon(cent, geom)) {
                 onSurface = true;
             }
         }
