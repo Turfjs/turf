@@ -10,8 +10,7 @@
     "index.js",
     "index.d.ts",
     "main.js",
-    "simplepolygon.js",
-    "geojson-polygon-self-intersections.js"
+    "lib"
   ],
   "scripts": {
     "pretest": "rollup -c ../../rollup.config.js",
@@ -46,7 +45,7 @@
   "dependencies": {
     "@turf/area": "^4.7.3",
     "@turf/helpers": "5.x",
-    "@turf/inside": "5.x",
+    "@turf/boolean-point-in-polygon": "5.x",
     "@turf/meta": "5.x",
     "rbush": "^2.0.1"
   },

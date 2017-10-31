@@ -46,7 +46,7 @@
   "dependencies": {
     "@turf/clone": "5.x",
     "@turf/helpers": "5.x",
-    "@turf/inside": "5.x",
+    "@turf/boolean-point-in-polygon": "5.x",
     "@turf/meta": "5.x"
   },
   "@std/esm": {

@@ -7,7 +7,7 @@
  */
 export {default as isolines} from '@turf/isolines';
 export {default as convex} from '@turf/convex';
-export {default as within} from '@turf/within';
+export {default as pointsWithinPolygon} from '@turf/points-within-polygon';
 export {default as concave} from '@turf/concave';
 export {default as difference} from '@turf/difference';
 export {default as dissolve} from '@turf/dissolve';
@@ -31,7 +31,7 @@ export {default as explode} from '@turf/explode';
 export {default as bbox} from '@turf/bbox';
 export {default as tesselate} from '@turf/tesselate';
 export {default as bboxPolygon} from '@turf/bbox-polygon';
-export {default as inside} from '@turf/inside';
+export {default as booleanPointInPolygon} from '@turf/boolean-point-in-polygon';
 export {default as intersect} from '@turf/intersect';
 export {default as nearestPoint} from '@turf/nearest-point';
 export {default as nearestPointOnLine} from '@turf/nearest-point-on-line';

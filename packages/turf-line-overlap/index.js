@@ -1,11 +1,11 @@
-import equal from './lib/deep-equal';
 import rbush from 'geojson-rbush';
 import lineSegment from '@turf/line-segment';
 import nearestPointOnLine from '@turf/nearest-point-on-line';
 import booleanPointOnLine from '@turf/boolean-point-on-line';
 import { getCoords } from '@turf/invariant';
-import { featureCollection, isObject } from '@turf/helpers';
 import { featureEach, segmentEach } from '@turf/meta';
+import { featureCollection, isObject } from '@turf/helpers';
+import equal from './lib/deep-equal';
 
 /**
  * Takes any LineString or Polygon and returns the overlapping lines between both features.

@@ -11,15 +11,17 @@ const directory = path.join(__dirname, '..');
 let modules = [];
 for (const name of fs.readdirSync(directory)) {
     const pckgPath = path.join(directory, name, 'package.json');
-    const indexPath = path.join(directory, name, 'index.js');
+    const index = fs.readFileSync(path.join(directory, name, 'index.js'), 'utf8');
+    const test = fs.readFileSync(path.join(directory, name, 'index.js'), 'utf8');
 
     if (!fs.existsSync(pckgPath)) continue;
     const pckg = JSON.parse(fs.readFileSync(pckgPath));
     modules.push({
         name,
-        dir: path.join(directory, name),
         pckg,
-        index: fs.readFileSync(indexPath, 'utf8'),
+        index,
+        test,
+        dir: path.join(directory, name),
         dependencies: pckg.dependencies || {},
         devDependencies: pckg.devDependencies || {}
     });
@@ -178,26 +180,17 @@ test('turf -- missing modules', t => {
     t.end();
 });
 
-test('turf -- check for deprecated modules', t => {
-    for (const {name, dependencies, devDependencies} of modules) {
-        for (const dependency of [...Object.keys(dependencies), ...Object.keys(devDependencies)]) {
-            switch (dependency) {
-            case '@turf/idw':
-            case '@turf/line-distance':
-            case '@turf/point-on-line':
-            case '@turf/bezier':
-            case '@turf/within':
-            case '@turf/inside':
-            case '@turf/nearest':
-                throw new Error(`${name} module has deprecated dependency ${dependency}`);
-            }
-        }
-    }
-    t.end();
-});
-
-test('turf -- check for deprecated methods', t => {
-    const deprecatedMethods = [
+const deprecated = {
+    modules: [
+        '@turf/idw',
+        '@turf/line-distance',
+        '@turf/point-on-line',
+        '@turf/bezier',
+        '@turf/within',
+        '@turf/inside',
+        '@turf/nearest'
+    ],
+    methods: [
         'radians2degrees',
         'degrees2radians',
         'distanceToDegrees',
@@ -206,11 +199,25 @@ test('turf -- check for deprecated methods', t => {
         'bearingToAngle',
         'convertDistance'
     ]
-    for (const {name, index} of modules) {
+}
+
+test('turf -- check for deprecated modules', t => {
+    for (const {name, dependencies, devDependencies} of modules) {
+        for (const dependency of [...Object.keys(dependencies), ...Object.keys(devDependencies)]) {
+            if (deprecated.modules.indexOf(dependency) !== -1) {
+                throw new Error(`${name} module has deprecated dependency ${dependency}`);
+            }
+        }
+    }
+    t.end();
+});
+
+test('turf -- check for deprecated methods', t => {
+    for (const {name, index, test} of modules) {
         // Exclude @turf/helpers from this test
         if (name === 'turf-helpers') continue
-        for (const method of deprecatedMethods) {
-            if (index.match(method)) throw new Error(`${name} module has deprecated method ${method}`);
+        for (const method of deprecated.methods) {
+            if ((test + index).match(method)) throw new Error(`${name} repo has deprecated method ${method}`);
         }
     }
     t.end();

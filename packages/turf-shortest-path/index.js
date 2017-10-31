@@ -1,5 +1,5 @@
 import bbox from '@turf/bbox';
-import inside from '@turf/inside';
+import booleanPointInPolygon from '@turf/boolean-point-in-polygon';
 import distance from '@turf/distance';
 import scale from '@turf/transform-scale';
 import cleanCoords from '@turf/clean-coords';
@@ -183,7 +183,7 @@ function shortestPath(start, end, options) {
  */
 function isInside(pt, polygons) {
     for (var i = 0; i < polygons.features.length; i++) {
-        if (inside(pt, polygons.features[i])) {
+        if (booleanPointInPolygon(pt, polygons.features[i])) {
             return true;
         }
     }

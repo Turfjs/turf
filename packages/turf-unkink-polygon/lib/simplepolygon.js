@@ -1,7 +1,7 @@
 import isects from './geojson-polygon-self-intersections';
-import * as helpers from '@turf/helpers';
-import inside from '@turf/inside';
 import area from '@turf/area';
+import { featureCollection, polygon } from '@turf/helpers';
+import booleanPointInPolygon from '@turf/boolean-point-in-polygon';
 var rbush = require('rbush');
 
 /**
@@ -54,9 +54,9 @@ export default function (feature) {
     if (numSelfIsect == 0) {
         var outputFeatureArray = [];
         for (var i = 0; i < numRings; i++) {
-            outputFeatureArray.push(helpers.polygon([feature.geometry.coordinates[i]], {parent: -1, winding: windingOfRing(feature.geometry.coordinates[i])}));
+            outputFeatureArray.push(polygon([feature.geometry.coordinates[i]], {parent: -1, winding: windingOfRing(feature.geometry.coordinates[i])}));
         }
-        var output = helpers.featureCollection(outputFeatureArray);
+        var output = featureCollection(outputFeatureArray);
         determineParents();
         setNetWinding();
 
@@ -243,10 +243,10 @@ export default function (feature) {
         // Close output ring
         currentOutputRingCoords.push(isectList[nxtIsect].coord);
         // Push output ring to output
-        outputFeatureArray.push(helpers.polygon([currentOutputRingCoords], {index: currentOutputRing, parent: currentOutputRingParent, winding: currentOutputRingWinding, netWinding: undefined}));
+        outputFeatureArray.push(polygon([currentOutputRingCoords], {index: currentOutputRing, parent: currentOutputRingParent, winding: currentOutputRingWinding, netWinding: undefined}));
     }
 
-    var output = helpers.featureCollection(outputFeatureArray);
+    var output = featureCollection(outputFeatureArray);
 
     determineParents();
 
@@ -264,7 +264,7 @@ export default function (feature) {
                 var parentArea = Infinity;
                 for (var j = 0; j < output.features.length; j++) {
                     if (featuresWithoutParent[i] == j) continue;
-                    if (inside(helpers.point(output.features[featuresWithoutParent[i]].geometry.coordinates[0][0]), output.features[j], {ignoreBoundary: true})) {
+                    if (booleanPointInPolygon(output.features[featuresWithoutParent[i]].geometry.coordinates[0][0], output.features[j], {ignoreBoundary: true})) {
                         if (area(output.features[j]) < parentArea) {
                             parent = j;
                         }

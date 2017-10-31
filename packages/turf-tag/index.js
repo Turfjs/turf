@@ -1,4 +1,4 @@
-import inside from '@turf/inside';
+import booleanPointInPolygon from '@turf/boolean-point-in-polygon';
 import clone from '@turf/clone';
 import { featureEach } from '@turf/meta';
 
@@ -45,7 +45,7 @@ function tag(points, polygons, field, outField) {
         if (!pt.properties) pt.properties = {};
         featureEach(polygons, function (poly) {
             if (pt.properties[outField] === undefined) {
-                if (inside(pt, poly)) pt.properties[outField] = poly.properties[field];
+                if (booleanPointInPolygon(pt, poly)) pt.properties[outField] = poly.properties[field];
             }
         });
     });
