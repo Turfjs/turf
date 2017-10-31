@@ -573,29 +573,29 @@ export function isObject(input) {
 
 // Deprecated methods
 export function radians2degrees() {
-    throw new Error('Method deprecated in favor of helpers.radiansToDegrees');
+    throw new Error('method has been renamed to `radiansToDegrees`');
 }
 
 export function degrees2radians() {
-    throw new Error('Method deprecated in favor of helpers.degreesToRadians');
+    throw new Error('method has been renamed to `degreesToRadians`');
 }
 
 export function distanceToDegrees() {
-    throw new Error('Method deprecated in favor of helpers.lengthToDegrees');
+    throw new Error('method has been renamed to `lengthToDegrees`');
 }
 
 export function distanceToRadians() {
-    throw new Error('Method deprecated in favor of helpers.lengthToRadians');
+    throw new Error('method has been renamed to `lengthToRadians`');
 }
 
 export function radiansToDistance() {
-    throw new Error('Method deprecated in favor of helpers.radiansToLength');
+    throw new Error('method has been renamed to `radiansToLength`');
 }
 
 export function bearingToAngle() {
-    throw new Error('Method deprecated in favor of helpers.bearingToAzimuth');
+    throw new Error('method has been renamed to `bearingToAzimuth`');
 }
 
 export function convertDistance() {
-    throw new Error('Method deprecated in favor of helpers.convertLength');
+    throw new Error('method has been renamed to `convertLength`');
 }
