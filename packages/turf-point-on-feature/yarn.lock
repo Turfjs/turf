@@ -55,7 +55,7 @@
   version "5.0.0"
   resolved "https://registry.yarnpkg.com/@turf/invariant/-/invariant-5.0.0.tgz#da9b4d7b044cffa300d654b3e0444969fc19d850"
 
-"@turf/meta@5.x":
+"@turf/meta@*", "@turf/meta@5.x":
   version "5.0.2"
   resolved "https://registry.yarnpkg.com/@turf/meta/-/meta-5.0.2.tgz#712ff485cdaa6024d1f97d6fbed69d3f8e31e686"
   dependencies:
