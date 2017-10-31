@@ -15,7 +15,7 @@ import {
  *
  * Feature => Polygon
  */
-declare function lineStringToPolygon<T extends LineString | MultiLineString>(
+declare function lineToPolygon<T extends LineString | MultiLineString>(
     lines: Feature<T> | T,
     options?: {
         properties?: Properties,
@@ -29,7 +29,7 @@ declare function lineStringToPolygon<T extends LineString | MultiLineString>(
  *
  * FeatureCollection => MultiPolygon
  */
-declare function lineStringToPolygon<T extends LineString | MultiLineString>(
+declare function lineToPolygon<T extends LineString | MultiLineString>(
     lines: FeatureCollection<T> | GeometryCollection | FeatureGeometryCollection,
     options?: {
         properties?: Properties,
@@ -38,4 +38,4 @@ declare function lineStringToPolygon<T extends LineString | MultiLineString>(
     }
 ): Feature<MultiPolygon>
 
-export default lineStringToPolygon;
+export default lineToPolygon;

@@ -2,7 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import load from 'load-json-file';
 import Benchmark from 'benchmark';
-import lineStringToPolygon from './';
+import lineToPolygon from './';
 
 const directory = path.join(__dirname, 'test', 'in') + path.sep;
 let fixtures = fs.readdirSync(directory).map(filename => {
@@ -28,7 +28,7 @@ let fixtures = fs.readdirSync(directory).map(filename => {
  */
 const suite = new Benchmark.Suite('turf-linestring-to-polygon');
 for (const {name, geojson} of fixtures) {
-    suite.add(name, () => lineStringToPolygon(geojson));
+    suite.add(name, () => lineToPolygon(geojson));
 }
 
 suite
