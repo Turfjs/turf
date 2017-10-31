@@ -46,7 +46,7 @@
     "@std/esm": "*"
   },
   "dependencies": {
-    "@turf/inside": "5.x",
+    "@turf/boolean-point-in-polygon": "5.x",
     "@turf/line-intersect": "5.x",
     "@turf/meta": "5.x",
     "@turf/polygon-to-linestring": "5.x"

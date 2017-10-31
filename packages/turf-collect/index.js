@@ -1,5 +1,5 @@
 import turfbbox from '@turf/bbox';
-import inside from '@turf/inside';
+import booleanPointInPolygon from '@turf/boolean-point-in-polygon';
 var rbush = require('rbush');
 
 /**
@@ -55,7 +55,7 @@ function collect(polygons, points, inProperty, outProperty) {
         var potentialPoints = rtree.search({minX: bbox[0], minY: bbox[1], maxX: bbox[2], maxY: bbox[3]});
         var values = [];
         potentialPoints.forEach(function (pt) {
-            if (inside({'type': 'Point', 'coordinates': [pt.minX, pt.minY]}, poly)) {
+            if (booleanPointInPolygon([pt.minX, pt.minY], poly)) {
                 values.push(pt.property);
             }
         });

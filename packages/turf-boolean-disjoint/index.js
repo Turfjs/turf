@@ -1,4 +1,4 @@
-import inside from '@turf/inside';
+import booleanPointInPolygon from '@turf/boolean-point-in-polygon';
 import { flattenEach } from '@turf/meta';
 import lineIntersect from '@turf/line-intersect';
 import polyToLinestring from '@turf/polygon-to-linestring';
@@ -45,7 +45,7 @@ function disjoint(geom1, geom2) {
         case 'LineString':
             return !isPointOnLine(geom2, geom1);
         case 'Polygon':
-            return !inside(geom1, geom2);
+            return !booleanPointInPolygon(geom1, geom2);
         }
         /* istanbul ignore next */
         break;
@@ -63,7 +63,7 @@ function disjoint(geom1, geom2) {
     case 'Polygon':
         switch (geom2.type) {
         case 'Point':
-            return !inside(geom2, geom1);
+            return !booleanPointInPolygon(geom2, geom1);
         case 'LineString':
             return !isLineInPoly(geom1, geom2);
         case 'Polygon':
@@ -110,12 +110,12 @@ function isLineInPoly(polygon, lineString) {
  */
 function isPolyInPoly(feature1, feature2) {
     for (var i = 0; i < feature1.coordinates[0].length; i++) {
-        if (inside(feature1.coordinates[0][i], feature2)) {
+        if (booleanPointInPolygon(feature1.coordinates[0][i], feature2)) {
             return true;
         }
     }
     for (var i2 = 0; i2 < feature2.coordinates[0].length; i2++) {
-        if (inside(feature2.coordinates[0][i2], feature1)) {
+        if (booleanPointInPolygon(feature2.coordinates[0][i2], feature1)) {
             return true;
         }
     }

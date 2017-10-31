@@ -1,9 +1,9 @@
 import bbox from '@turf/bbox';
 import { coordEach } from '@turf/meta';
-import { multiLineString, featureCollection, isObject } from '@turf/helpers';
 import { collectionOf } from '@turf/invariant';
-import isoContours from './marchingsquares-isocontours';
-import gridToMatrix from './grid-to-matrix';
+import { multiLineString, featureCollection, isObject } from '@turf/helpers';
+import isoContours from './lib/marchingsquares-isocontours';
+import gridToMatrix from './lib/grid-to-matrix';
 
 /**
  * Takes a grid {@link FeatureCollection} of {@link Point} features with z-values and an array of

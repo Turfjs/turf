@@ -6,6 +6,16 @@
   version "0.12.1"
   resolved "https://registry.yarnpkg.com/@std/esm/-/esm-0.12.1.tgz#d07b7c5e2701beade1e7db74b95484f5d91c46bf"
 
+"@turf/inside@5.x":
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/@turf/inside/-/inside-5.0.0.tgz#31193c7f1429469bfaa16c6685f54234e59131a0"
+  dependencies:
+    "@turf/invariant" "^5.0.0"
+
+"@turf/invariant@^5.0.0":
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/@turf/invariant/-/invariant-5.0.0.tgz#da9b4d7b044cffa300d654b3e0444969fc19d850"
+
 balanced-match@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/balanced-match/-/balanced-match-1.0.0.tgz#89b4d199ab2bee49de164ea02b89ce462d71b767"

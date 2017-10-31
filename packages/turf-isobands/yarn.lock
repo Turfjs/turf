@@ -2,24 +2,139 @@
 # yarn lockfile v1
 
 
-"@std/esm@*":
-  version "0.12.1"
-  resolved "https://registry.yarnpkg.com/@std/esm/-/esm-0.12.1.tgz#d07b7c5e2701beade1e7db74b95484f5d91c46bf"
+"@mapbox/geojson-area@^0.2.2":
+  version "0.2.2"
+  resolved "https://registry.yarnpkg.com/@mapbox/geojson-area/-/geojson-area-0.2.2.tgz#18d7814aa36bf23fbbcc379f8e26a22927debf10"
+  dependencies:
+    wgs84 "0.0.0"
 
-"@turf/helpers@5.0.0", "@turf/helpers@5.x":
+"@std/esm@*":
+  version "0.12.5"
+  resolved "https://registry.yarnpkg.com/@std/esm/-/esm-0.12.5.tgz#b38a9bc70462df18a09b16f653141b9ab5557635"
+
+"@turf/area@^4.7.3":
+  version "4.7.3"
+  resolved "https://registry.yarnpkg.com/@turf/area/-/area-4.7.3.tgz#5cc45b5a524e98e1c171e7190709c669ca699305"
+  dependencies:
+    "@mapbox/geojson-area" "^0.2.2"
+    "@turf/meta" "^4.7.3"
+
+"@turf/bbox-polygon@^5.0.0":
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/@turf/bbox-polygon/-/bbox-polygon-5.0.0.tgz#3f89c1a268dc72ea9257e6fe8f94597f9fcea7f8"
+  dependencies:
+    "@turf/helpers" "^5.0.0"
+
+"@turf/bbox@5.x", "@turf/bbox@^5.0.0":
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/@turf/bbox/-/bbox-5.0.0.tgz#c179e533328120ca29b5dbd215a5f54e5c7940d3"
+  dependencies:
+    "@turf/helpers" "5.0.0"
+    "@turf/meta" "5.0.0"
+
+"@turf/bbox@^4.7.3":
+  version "4.7.3"
+  resolved "https://registry.yarnpkg.com/@turf/bbox/-/bbox-4.7.3.tgz#e3ad4f10a7e9b41b522880d33083198199059067"
+  dependencies:
+    "@turf/meta" "^4.7.3"
+
+"@turf/boolean-point-in-polygon@5.x":
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/@turf/boolean-point-in-polygon/-/boolean-point-in-polygon-5.0.0.tgz#adc998d5f1cec116c024281d62abd85fdc2c948a"
+  dependencies:
+    "@turf/invariant" "5.x"
+
+"@turf/distance@^4.7.3":
+  version "4.7.3"
+  resolved "https://registry.yarnpkg.com/@turf/distance/-/distance-4.7.3.tgz#b5ab48a09a642706d65c39b919433d5d2cc571b1"
+  dependencies:
+    "@turf/helpers" "^4.7.3"
+    "@turf/invariant" "^4.7.3"
+
+"@turf/envelope@*":
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/@turf/envelope/-/envelope-5.0.0.tgz#2ea1834239267e0ba100a12db5adb437bf41be9b"
+  dependencies:
+    "@turf/bbox" "^5.0.0"
+    "@turf/bbox-polygon" "^5.0.0"
+    "@turf/helpers" "^5.0.0"
+
+"@turf/explode@^4.7.3":
+  version "4.7.3"
+  resolved "https://registry.yarnpkg.com/@turf/explode/-/explode-4.7.3.tgz#f7e2efb25aea03410cce1e9816584ba94fc91846"
+  dependencies:
+    "@turf/helpers" "^4.7.3"
+    "@turf/meta" "^4.7.3"
+
+"@turf/helpers@5.0.0":
   version "5.0.0"
   resolved "https://registry.yarnpkg.com/@turf/helpers/-/helpers-5.0.0.tgz#732cb570e6aebca9ef7375e8e42fafa8e16e5d47"
 
-"@turf/invariant@5.0.0":
+"@turf/helpers@5.x", "@turf/helpers@^5.0.0":
+  version "5.0.1"
+  resolved "https://registry.yarnpkg.com/@turf/helpers/-/helpers-5.0.1.tgz#d950df25b10c9ed347f7811927ec14e72ccc58b2"
+
+"@turf/helpers@^4.7.3":
+  version "4.7.3"
+  resolved "https://registry.yarnpkg.com/@turf/helpers/-/helpers-4.7.3.tgz#bc312ac43cab3c532a483151c4c382c5649429e9"
+
+"@turf/inside@^4.7.3":
+  version "4.7.3"
+  resolved "https://registry.yarnpkg.com/@turf/inside/-/inside-4.7.3.tgz#e4a84969f2886891b343b11b83fda3095fba542c"
+  dependencies:
+    "@turf/invariant" "^4.7.3"
+
+"@turf/invariant@5.0.0", "@turf/invariant@5.x":
   version "5.0.0"
   resolved "https://registry.yarnpkg.com/@turf/invariant/-/invariant-5.0.0.tgz#da9b4d7b044cffa300d654b3e0444969fc19d850"
 
-"@turf/rhumb-destination@5.x":
+"@turf/invariant@^4.7.3":
+  version "4.7.3"
+  resolved "https://registry.yarnpkg.com/@turf/invariant/-/invariant-4.7.3.tgz#538f367d23c113fc849d70c9a524b8563874601d"
+
+"@turf/meta@5.0.0":
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/@turf/meta/-/meta-5.0.0.tgz#75b100e9854cd7b2fa63e68561e1298dac09d7b4"
+
+"@turf/meta@5.x":
+  version "5.0.2"
+  resolved "https://registry.yarnpkg.com/@turf/meta/-/meta-5.0.2.tgz#712ff485cdaa6024d1f97d6fbed69d3f8e31e686"
+  dependencies:
+    "@turf/helpers" "^5.0.0"
+
+"@turf/meta@^4.7.3":
+  version "4.7.4"
+  resolved "https://registry.yarnpkg.com/@turf/meta/-/meta-4.7.4.tgz#6de2f1e9890b8f64b669e4b47c09b20893063977"
+
+"@turf/point-grid@*":
+  version "4.7.3"
+  resolved "https://registry.yarnpkg.com/@turf/point-grid/-/point-grid-4.7.3.tgz#33bc3c921b521897e282c0b882e106508052ed7d"
+  dependencies:
+    "@turf/bbox" "^4.7.3"
+    "@turf/distance" "^4.7.3"
+    "@turf/helpers" "^4.7.3"
+    "@turf/inside" "^4.7.3"
+    "@turf/invariant" "^4.7.3"
+
+"@turf/random@*":
+  version "4.7.3"
+  resolved "https://registry.yarnpkg.com/@turf/random/-/random-4.7.3.tgz#0a8a3b84a1f15b8916d4dce43566beb2e2bda522"
+  dependencies:
+    geojson-random "^0.2.2"
+
+"@turf/rhumb-destination@*", "@turf/rhumb-destination@5.x":
   version "5.0.0"
   resolved "https://registry.yarnpkg.com/@turf/rhumb-destination/-/rhumb-destination-5.0.0.tgz#a776590ed71a27a3ba1e26081102c280c76eb314"
   dependencies:
     "@turf/helpers" "5.0.0"
     "@turf/invariant" "5.0.0"
+
+"@turf/truncate@*":
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/@turf/truncate/-/truncate-5.0.0.tgz#f11a2bd3b05f43600a985937cd1d7baf3f57db52"
+  dependencies:
+    "@turf/helpers" "5.x"
+    "@turf/meta" "5.x"
 
 balanced-match@^1.0.0:
   version "1.0.0"
@@ -108,6 +223,10 @@ function-bind@^1.0.2, function-bind@^1.1.1, function-bind@~1.1.0:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/function-bind/-/function-bind-1.1.1.tgz#a56899d3ea3c9bab874bb9773b7c5ede92f4895d"
 
+geojson-random@^0.2.2:
+  version "0.2.2"
+  resolved "https://registry.yarnpkg.com/geojson-random/-/geojson-random-0.2.2.tgz#ab4838f126adc5e16f8f94e655def820f9119dbc"
+
 glob@~7.1.2:
   version "7.1.2"
   resolved "https://registry.yarnpkg.com/glob/-/glob-7.1.2.tgz#c19c9df9a028702d678612384a6552404c636d15"
@@ -188,10 +307,10 @@ lodash@^4.17.4:
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.4.tgz#78203a4d1c328ae1d86dca6460e369b57f4055ae"
 
 make-dir@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/make-dir/-/make-dir-1.0.0.tgz#97a011751e91dd87cfadef58832ebb04936de978"
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/make-dir/-/make-dir-1.1.0.tgz#19b4369fe48c116f53c2af95ad102c0e39e85d51"
   dependencies:
-    pify "^2.3.0"
+    pify "^3.0.0"
 
 matrix-to-grid@*:
   version "4.0.0"
@@ -238,7 +357,7 @@ path-parse@^1.0.5:
   version "1.0.5"
   resolved "https://registry.yarnpkg.com/path-parse/-/path-parse-1.0.5.tgz#3c1adf871ea9cd6c9431b6ea2bd74a0ff055c4c1"
 
-pify@^2.0.0, pify@^2.3.0:
+pify@^2.0.0:
   version "2.3.0"
   resolved "https://registry.yarnpkg.com/pify/-/pify-2.3.0.tgz#ed141a6ac043a849ea588498e7dca8b15330e90c"
 
@@ -309,6 +428,10 @@ tape@*:
 through@~2.3.4, through@~2.3.8:
   version "2.3.8"
   resolved "https://registry.yarnpkg.com/through/-/through-2.3.8.tgz#0dd4c9ffaabc357960b1b724115d7e0e86a2e1f5"
+
+wgs84@0.0.0:
+  version "0.0.0"
+  resolved "https://registry.yarnpkg.com/wgs84/-/wgs84-0.0.0.tgz#34fdc555917b6e57cf2a282ed043710c049cdc76"
 
 wrappy@1:
   version "1.0.2"
