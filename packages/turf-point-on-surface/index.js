@@ -1,6 +1,6 @@
 import centroid from '@turf/center';
 import nearestPoint from '@turf/nearest-point';
-import inside from '@turf/inside';
+import booleanPointInPolygon from '@turf/boolean-point-in-polygon';
 import explode from '@turf/explode';
 import { featureCollection } from '@turf/helpers';
 
@@ -103,7 +103,7 @@ function pointOnSurface(fc) {
                 geometry: geom,
                 properties: {}
             };
-            if (inside(cent, f)) {
+            if (booleanPointInPolygon(cent, f)) {
                 onSurface = true;
             }
         }

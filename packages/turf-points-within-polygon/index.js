@@ -1,10 +1,10 @@
-import inside from '@turf/inside';
+import booleanPointInPolygon from '@turf/boolean-point-in-polygon';
 import { featureCollection } from '@turf/helpers';
 
 /**
  * Takes a set of {@link Point|points} and a set of {@link Polygon|polygons} and returns the points that fall within the polygons.
  *
- * @name within
+ * @name pointsWithinPolygon
  * @param {FeatureCollection<Point>} points input points
  * @param {FeatureCollection<Polygon>} polygons input polygons
  * @returns {FeatureCollection<Point>} points that land within at least one polygon
@@ -28,7 +28,7 @@ import { featureCollection } from '@turf/helpers';
  *     turf.point([-46.643, -23.557])
  * ]);
  *
- * var ptsWithin = turf.within(points, searchWithin);
+ * var ptsWithin = turf.pointsWithinPolygon(points, searchWithin);
  *
  * //addToMap
  * var addToMap = [points, searchWithin, ptsWithin]
@@ -37,11 +37,11 @@ import { featureCollection } from '@turf/helpers';
  *   currentFeature.properties['marker-color'] = '#000';
  * });
  */
-function within(points, polygons) {
+function pointsWithinPolygon(points, polygons) {
     var pointsWithin = featureCollection([]);
     for (var i = 0; i < polygons.features.length; i++) {
         for (var j = 0; j < points.features.length; j++) {
-            var isInside = inside(points.features[j], polygons.features[i]);
+            var isInside = booleanPointInPolygon(points.features[j], polygons.features[i]);
             if (isInside) {
                 pointsWithin.features.push(points.features[j]);
             }
@@ -50,4 +50,4 @@ function within(points, polygons) {
     return pointsWithin;
 }
 
-export default within;
+export default pointsWithinPolygon;

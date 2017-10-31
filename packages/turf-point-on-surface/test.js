@@ -1,6 +1,6 @@
 import fs from 'fs';
 import test from 'tape';
-import inside from '@turf/inside';
+import booleanPointInPolygon from '@turf/boolean-point-in-polygon';
 import centroid from './';
 
 test('point-on-surface -- closest vertex on polygons', function (t) {
@@ -25,7 +25,7 @@ test('point-on-surface -- centroid on polygon surface', function (t) {
     t.equal(cent.geometry.type, 'Point');
     t.equal(typeof cent.geometry.coordinates[0], 'number');
     t.equal(typeof cent.geometry.coordinates[1], 'number');
-    t.true(inside(cent, {
+    t.true(booleanPointInPolygon(cent, {
         type: 'Feature',
         properties: {},
         geometry: {
