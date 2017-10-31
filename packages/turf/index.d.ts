@@ -42,7 +42,7 @@ export {default as union} from '@turf/union';
 export {default as bearing} from '@turf/bearing';
 export {default as destination} from '@turf/destination';
 export {default as kinks} from '@turf/kinks';
-export {default as pointOnSurface} from '@turf/point-on-surface';
+export {default as pointOnFeature} from '@turf/point-on-feature';
 export {default as area} from '@turf/area';
 export {default as along} from '@turf/along';
 export {default as length} from '@turf/length';

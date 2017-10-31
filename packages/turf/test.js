@@ -190,7 +190,8 @@ const deprecated = {
         '@turf/inside',
         '@turf/nearest',
         '@turf/polygon-to-linestring',
-        '@turf/linestring-to-polygon'
+        '@turf/linestring-to-polygon',
+        '@turf/point-on-surface'
     ],
     methods: [
         'radians2degrees',

@@ -160,7 +160,7 @@
     "@turf/line-segment" "4.7.1"
     "@turf/rhumb-bearing" "4.7.1"
 
-"@turf/boolean-point-in-polygon@*":
+"@turf/boolean-point-in-polygon@*", "@turf/boolean-point-in-polygon@5.x":
   version "5.0.0"
   resolved "https://registry.yarnpkg.com/@turf/boolean-point-in-polygon/-/boolean-point-in-polygon-5.0.0.tgz#adc998d5f1cec116c024281d62abd85fdc2c948a"
   dependencies:
@@ -756,7 +756,7 @@
     "@turf/meta" "^4.7.3"
     "@turf/point-to-line-distance" "^4.7.3"
 
-"@turf/nearest-point@*":
+"@turf/nearest-point@*", "@turf/nearest-point@5.x":
   version "5.0.0"
   resolved "https://registry.yarnpkg.com/@turf/nearest-point/-/nearest-point-5.0.0.tgz#c3816ad0a4b2969f2d77f74dba7d918c81321c76"
   dependencies:
@@ -779,6 +779,16 @@
     "@turf/helpers" "^4.7.3"
     "@turf/inside" "^4.7.3"
     "@turf/invariant" "^4.7.3"
+
+"@turf/point-on-feature@*":
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/@turf/point-on-feature/-/point-on-feature-5.0.0.tgz#acea358bcceea75663d8ad1e77159c1bb2ab61fb"
+  dependencies:
+    "@turf/boolean-point-in-polygon" "5.x"
+    "@turf/center" "^4.7.3"
+    "@turf/explode" "^4.7.3"
+    "@turf/helpers" "5.x"
+    "@turf/nearest-point" "5.x"
 
 "@turf/point-on-line@5.0.0":
   version "5.0.0"
@@ -803,16 +813,6 @@
     "@turf/invariant" "^4.7.3"
     "@turf/line-intersect" "^4.7.3"
     "@turf/meta" "^4.7.3"
-
-"@turf/point-on-surface@*":
-  version "4.7.3"
-  resolved "https://registry.yarnpkg.com/@turf/point-on-surface/-/point-on-surface-4.7.3.tgz#25ec360bec7f9fa612d705808cf0310d72c2be5f"
-  dependencies:
-    "@turf/center" "^4.7.3"
-    "@turf/distance" "^4.7.3"
-    "@turf/explode" "^4.7.3"
-    "@turf/helpers" "^4.7.3"
-    "@turf/inside" "^4.7.3"
 
 "@turf/point-to-line-distance@*":
   version "5.0.0"
@@ -1200,8 +1200,8 @@ array-unique@^0.2.1:
   resolved "https://registry.yarnpkg.com/array-unique/-/array-unique-0.2.1.tgz#a1d97ccafcbc2625cc70fadceb36a50c58b01a53"
 
 asn1.js@^4.0.0:
-  version "4.10.0"
-  resolved "https://registry.yarnpkg.com/asn1.js/-/asn1.js-4.10.0.tgz#60bf436e1f11f313147ae644341da37f23babd66"
+  version "4.9.2"
+  resolved "https://registry.yarnpkg.com/asn1.js/-/asn1.js-4.9.2.tgz#8117ef4f7ed87cd8f89044b5bff97ac243a16c9a"
   dependencies:
     bn.js "^4.0.0"
     inherits "^2.0.1"

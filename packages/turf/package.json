@@ -159,7 +159,7 @@
     "@turf/nearest-point-to-line": "*",
     "@turf/planepoint": "*",
     "@turf/point-grid": "*",
-    "@turf/point-on-surface": "*",
+    "@turf/point-on-feature": "*",
     "@turf/point-to-line-distance": "*",
     "@turf/polygon-tangents": "*",
     "@turf/polygon-to-line": "*",
