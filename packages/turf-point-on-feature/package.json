@@ -1,7 +1,7 @@
 {
-  "name": "@turf/point-on-surface",
-  "version": "4.7.3",
-  "description": "turf point-on-surface module",
+  "name": "@turf/point-on-feature",
+  "version": "5.0.0",
+  "description": "turf point-on-feature module",
   "main": "main",
   "module": "index",
   "jsnext:main": "index",
