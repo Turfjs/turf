@@ -31,7 +31,7 @@ test('turf-nearest-point-to-line', t => {
         const units = (geojson.properties || {}).units;
 
         const nearest = nearestPointToLine(points, line, {units: units});
-        const distance = round(nearest.properties.dist, 13);
+        const distance = round(nearest.properties.dist, 6);
         nearest.properties.dist = distance;
         nearest.properties = Object.assign(nearest.properties, {
             'marker-color': '#F00',

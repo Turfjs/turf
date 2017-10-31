@@ -41,7 +41,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"dist": 78.0797634452158,
+				"dist": 78.079763,
 				"marker-color": "#F00",
 				"marker-size": "large",
 				"marker-symbol": "star"
@@ -277,7 +277,7 @@
 							25.989112
 						],
 						[
-							-37.246083,
+							-37.246084,
 							26.055856
 						],
 						[
