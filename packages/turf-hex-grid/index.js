@@ -109,20 +109,19 @@ function hexGrid(bbox, cellSide, options) {
             }
 
             if (triangles === true) {
-                for (var triangle of hexTriangles(
+                hexTriangles(
                     [center_x, center_y],
                     cellWidth / 2,
                     cellHeight / 2,
                     properties,
                     cosines,
-                    sines
-                )) {
+                    sines).forEach(function (triangle) {
                     if (mask) {
                         if (intersect(mask, triangle)) results.push(triangle);
                     } else {
                         results.push(triangle);
                     }
-                }
+                })
             } else {
                 var hex = hexagon(
                     [center_x, center_y],

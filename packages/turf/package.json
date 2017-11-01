@@ -17,7 +17,8 @@
     "pretest": "rollup -c ../../rollup.config.js",
     "test": "node test.js",
     "posttest": "node test.example.js",
-    "build": "browserify main.js -o turf.js"
+    "build": "browserify main.js -s turf -o turf.js",
+    "postbuild": "uglifyjs turf.js -m -c -o turf.min.js"
   },
   "repository": {
     "type": "git",
@@ -62,7 +63,8 @@
     "documentation": "*",
     "glob": "*",
     "rollup": "*",
-    "tape": "*"
+    "tape": "*",
+    "uglify-js": "*"
   },
   "dependencies": {
     "@turf/along": "*",
