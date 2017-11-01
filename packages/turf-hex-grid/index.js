@@ -121,7 +121,7 @@ function hexGrid(bbox, cellSide, options) {
                     } else {
                         results.push(triangle);
                     }
-                })
+                });
             } else {
                 var hex = hexagon(
                     [center_x, center_y],
