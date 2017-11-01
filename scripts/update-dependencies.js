@@ -58,6 +58,7 @@ function updateDependencies(pckg) {
             case '@turf/hex-grid':
             case '@turf/square-grid':
             case '@turf/triangle-grid':
+            case '@turf/boolean-point-on-line':
                 dependencies[name] = '5.x';
                 break;
             case 'geojson-rbush':

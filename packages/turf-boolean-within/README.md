@@ -17,8 +17,8 @@ Boolean-within returns the exact opposite result of the `@turf/boolean-contains`
 **Examples**
 
 ```javascript
-const line = turf.lineString([[1, 1], [1, 2], [1, 3], [1, 4]]);
-const point = turf.point([1, 2]);
+var line = turf.lineString([[1, 1], [1, 2], [1, 3], [1, 4]]);
+var point = turf.point([1, 2]);
 
 turf.booleanWithin(point, line);
 //=true
