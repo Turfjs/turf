@@ -9,8 +9,6 @@ export {default as isolines} from '@turf/isolines';
 export {default as convex} from '@turf/convex';
 export {default as pointsWithinPolygon} from '@turf/points-within-polygon';
 export {default as concave} from '@turf/concave';
-export {default as difference} from '@turf/difference';
-export {default as dissolve} from '@turf/dissolve';
 export {default as collect} from '@turf/collect';
 export {default as flip} from '@turf/flip';
 export {default as simplify} from '@turf/simplify';
@@ -21,7 +19,6 @@ export {default as envelope} from '@turf/envelope';
 export {default as square} from '@turf/square';
 export {default as circle} from '@turf/circle';
 export {default as midpoint} from '@turf/midpoint';
-export {default as buffer} from '@turf/buffer';
 export {default as center} from '@turf/center';
 export {default as centerOfMass} from '@turf/center-of-mass';
 export {default as centroid} from '@turf/centroid';
@@ -38,7 +35,6 @@ export {default as nearestPointOnLine} from '@turf/nearest-point-on-line';
 export {default as nearestPointToLine} from '@turf/nearest-point-to-line';
 export {default as planepoint} from '@turf/planepoint';
 export {default as tin} from '@turf/tin';
-export {default as union} from '@turf/union';
 export {default as bearing} from '@turf/bearing';
 export {default as destination} from '@turf/destination';
 export {default as kinks} from '@turf/kinks';
@@ -108,6 +104,12 @@ import * as helpers from '@turf/helpers';
 import * as invariant from '@turf/invariant';
 import * as meta from '@turf/meta';
 export {projection, random, clusters, helpers, invariant, meta};
+
+// JSTS Modules
+export {default as difference} from '@turf/difference';
+export {default as dissolve} from '@turf/dissolve';
+export {default as buffer} from '@turf/buffer';
+export {default as union} from '@turf/union';
 
 // Renamed modules (Backwards compatitble with v4.0)
 // https://github.com/Turfjs/turf/issues/860

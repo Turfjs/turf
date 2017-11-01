@@ -21,6 +21,8 @@ function updateDependencies(pckg) {
     const dependencies = {};
     new Map(entries(pckg.dependencies))
         .forEach((version, name) => {
+            // if (name.includes('@turf/')) dependencies[name] = '*';
+
             // Update dependencies to v5.x
             switch (name) {
             case '@turf/nearest-point-on-line':
@@ -47,15 +49,24 @@ function updateDependencies(pckg) {
             case '@turf/line-overlap':
             case '@turf/clone':
             case '@turf/nearest-point':
+            case '@turf/union':
+            case '@turf/buffer':
+            case '@turf/difference':
+            case '@turf/dissolve':
+            case '@turf/mask':
             case '@turf/truncate':
+            case '@turf/intersect':
+            case '@turf/point-grid':
+            case '@turf/hex-grid':
+            case '@turf/square-grid':
+            case '@turf/triangle-grid':
                 dependencies[name] = '5.x';
-                break;
-            case 'jsts':
-                dependencies[name] = '1.4.0';
                 break;
             case 'geojson-rbush':
                 dependencies[name] = '2.1.0';
                 break;
+            case 'jsts':
+            case '@turf/point-on-surface':
             case '@turf/line-distance':
             case '@turf/point-on-line':
             case '@turf/nearest':

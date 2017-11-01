@@ -1,6 +1,6 @@
 {
   "name": "@turf/buffer",
-  "version": "4.7.4",
+  "version": "5.0.0",
   "description": "turf buffer module",
   "main": "main",
   "module": "index",

@@ -15,8 +15,8 @@
   ],
   "scripts": {
     "pretest": "rollup -c ../../rollup.config.js",
-    "test": "node -r @std/esm test.js",
-    "posttest": "node -r @std/esm test.example.js",
+    "test": "node test.js",
+    "posttest": "node test.example.js",
     "build": "browserify main.js -o turf.js"
   },
   "repository": {
@@ -57,35 +57,11 @@
   },
   "homepage": "https://github.com/Turfjs/turf",
   "devDependencies": {
-    "@mapbox/geojson-area": "*",
-    "@std/esm": "*",
-    "babel-core": "*",
-    "babelify": "*",
+    "browserify": "*",
     "camelcase": "*",
-    "concaveman": "*",
-    "convex-hull": "*",
-    "deep-equal": "*",
-    "density-clustering": "*",
-    "earcut": "*",
-    "geojson-dissolve": "*",
-    "geojson-equality": "*",
-    "geojson-random": "*",
-    "geojson-rbush": "*",
-    "geojson-utils": "*",
-    "get-closest": "*",
+    "documentation": "*",
     "glob": "*",
-    "jsdoc": "*",
-    "jsdoctest": "*",
-    "lineclip": "*",
-    "polygonize": "*",
-    "rbush": "*",
     "rollup": "*",
-    "rollup-plugin-babel": "*",
-    "rollup-plugin-commonjs": "*",
-    "rollup-plugin-node-resolve": "*",
-    "simplepolygon": "*",
-    "simplify-js": "*",
-    "skmeans": "*",
     "tape": "*"
   },
   "dependencies": {
@@ -185,12 +161,5 @@
     "@turf/union": "*",
     "@turf/unkink-polygon": "*",
     "@turf/voronoi": "*"
-  },
-  "@std/esm": {
-    "esm": "js",
-    "cjs": true
-  },
-  "browserify": {
-    "transform": [["babelify", { "presets": ["env"] }]]
   }
 }

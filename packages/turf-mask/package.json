@@ -1,6 +1,6 @@
 {
   "name": "@turf/mask",
-  "version": "4.7.3",
+  "version": "5.0.0",
   "description": "turf mask module",
   "main": "main",
   "module": "index",
@@ -44,7 +44,7 @@
     "@turf/bbox": "5.x",
     "@turf/helpers": "5.x",
     "@turf/meta": "5.x",
-    "@turf/union": "^4.7.3",
+    "@turf/union": "5.x",
     "rbush": "^2.0.1"
   },
   "@std/esm": {

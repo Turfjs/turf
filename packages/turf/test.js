@@ -1,10 +1,10 @@
-import fs from 'fs';
-import path from 'path';
-import glob from 'glob';
-import test from 'tape';
-import documentation from 'documentation';
-import camelcase from 'camelcase';
-import * as turf from '.';
+const fs = require('fs');
+const path = require('path');
+const glob = require('glob');
+const test = require('tape');
+const camelcase = require('camelcase');
+const documentation = require('documentation');
+const turf = require('./');
 
 // Helpers
 const directory = path.join(__dirname, '..');

@@ -1,6 +1,6 @@
 {
   "name": "@turf/union",
-  "version": "4.7.3",
+  "version": "5.0.0",
   "description": "turf union module",
   "main": "main",
   "module": "index",

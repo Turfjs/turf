@@ -3,8 +3,8 @@
 
 
 "@std/esm@*":
-  version "0.12.4"
-  resolved "https://registry.yarnpkg.com/@std/esm/-/esm-0.12.4.tgz#01e06a392ba577205a691d97916490406c39ef26"
+  version "0.12.5"
+  resolved "https://registry.yarnpkg.com/@std/esm/-/esm-0.12.5.tgz#b38a9bc70462df18a09b16f653141b9ab5557635"
 
 "@turf/bbox@5.x":
   version "5.0.0"
@@ -64,10 +64,11 @@
     "@turf/meta" "^4.7.3"
 
 "@turf/truncate@*":
-  version "4.7.3"
-  resolved "https://registry.yarnpkg.com/@turf/truncate/-/truncate-4.7.3.tgz#827a8df8ff0c9fff9dcf1a4b3145cbdef80fb993"
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/@turf/truncate/-/truncate-5.0.0.tgz#f11a2bd3b05f43600a985937cd1d7baf3f57db52"
   dependencies:
-    "@turf/meta" "^4.7.3"
+    "@turf/helpers" "5.x"
+    "@turf/meta" "5.x"
 
 balanced-match@^1.0.0:
   version "1.0.0"
@@ -229,8 +230,8 @@ is-symbol@^1.0.1:
   resolved "https://registry.yarnpkg.com/is-symbol/-/is-symbol-1.0.1.tgz#3cc59f00025194b6ab2e38dbae6689256b660572"
 
 jsts-es@*:
-  version "1.5.2"
-  resolved "https://registry.yarnpkg.com/jsts-es/-/jsts-es-1.5.2.tgz#cd197bb1adbceb6efd4a44cc8ec24155e32e50a6"
+  version "1.5.4"
+  resolved "https://registry.yarnpkg.com/jsts-es/-/jsts-es-1.5.4.tgz#1089a8ffe2b404dbf8042b1bdca5f21f6061baf6"
 
 load-json-file@*:
   version "3.0.0"
