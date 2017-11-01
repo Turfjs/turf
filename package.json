@@ -65,8 +65,8 @@
     "load-json-file": "*",
     "meow": "*",
     "progress": "*",
-    "rollup-plugin-node-resolve": "*",
-    "rollup-plugin-uglify-es": "*",
+    "babel-plugin-external-helpers": "*",
+    "babel-preset-env": "*",
     "tape": "*",
     "typescript": "*"
   },

@@ -11,8 +11,8 @@ import polygonToLine from '@turf/polygon-to-line';
  * @param {Geometry|Feature<any>} feature2 GeoJSON Feature or Geometry
  * @returns {boolean} true/false
  * @example
- * const point = turf.point([2, 2]);
- * const line = turf.lineString([[1, 1], [1, 2], [1, 3], [1, 4]]);
+ * var point = turf.point([2, 2]);
+ * var line = turf.lineString([[1, 1], [1, 2], [1, 3], [1, 4]]);
  *
  * turf.booleanDisjoint(line, point);
  * //=true

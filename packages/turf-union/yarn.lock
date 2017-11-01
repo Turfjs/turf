@@ -3,8 +3,8 @@
 
 
 "@std/esm@*":
-  version "0.12.4"
-  resolved "https://registry.yarnpkg.com/@std/esm/-/esm-0.12.4.tgz#01e06a392ba577205a691d97916490406c39ef26"
+  version "0.12.5"
+  resolved "https://registry.yarnpkg.com/@std/esm/-/esm-0.12.5.tgz#b38a9bc70462df18a09b16f653141b9ab5557635"
 
 "@turf/helpers@*":
   version "5.0.1"
@@ -160,8 +160,8 @@ is-symbol@^1.0.1:
   resolved "https://registry.yarnpkg.com/is-symbol/-/is-symbol-1.0.1.tgz#3cc59f00025194b6ab2e38dbae6689256b660572"
 
 jsts-es@*:
-  version "1.5.2"
-  resolved "https://registry.yarnpkg.com/jsts-es/-/jsts-es-1.5.2.tgz#cd197bb1adbceb6efd4a44cc8ec24155e32e50a6"
+  version "1.5.3"
+  resolved "https://registry.yarnpkg.com/jsts-es/-/jsts-es-1.5.3.tgz#570fd77b5451ecaf0fc982d41dd28d9b6372b108"
 
 load-json-file@*:
   version "3.0.0"

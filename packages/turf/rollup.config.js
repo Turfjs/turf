@@ -1,15 +1,18 @@
+import babel from 'rollup-plugin-babel';
 import commonjs from 'rollup-plugin-commonjs';
 import nodeResolve from 'rollup-plugin-node-resolve';
 
 export default {
     input: 'index.js',
     output: {
-        format: 'cjs',
-        file: 'main.js',
         extend: true,
+        file: 'turf.js',
+        format: 'umd',
+        name: 'turf'
     },
     plugins: [
         nodeResolve({module: true, jsnext: true}),
-        commonjs({include: 'node_modules/**'}),
+        babel({exclude: 'node_modules/**'}),
+        commonjs({include: 'node_modules/**'})
     ]
 };

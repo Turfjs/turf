@@ -9,15 +9,15 @@
   "files": [
     "index.js",
     "index.d.ts",
+    "main.js",
     "turf.js",
-    "turf.js.map",
-    "turf.min.js.map",
     "turf.min.js"
   ],
   "scripts": {
-    "pretest": "rollup -c rollup.config.js",
-    "test": "node -r @std/esm test.js && node -r @std/esm test.example.js",
-    "build": "browserify main.js -s turf > turf.js && uglifyjs turf.js -c -m > turf.min.js"
+    "pretest": "rollup -c ../../rollup.config.js",
+    "test": "node -r @std/esm test.js",
+    "posttest": "node -r @std/esm test.example.js",
+    "build": "browserify main.js -o turf.js"
   },
   "repository": {
     "type": "git",
@@ -59,10 +59,8 @@
   "devDependencies": {
     "@mapbox/geojson-area": "*",
     "@std/esm": "*",
-    "babel-cli": "*",
-    "babel-preset-env": "*",
-    "benchmark": "*",
-    "browserify": "*",
+    "babel-core": "*",
+    "babelify": "*",
     "camelcase": "*",
     "concaveman": "*",
     "convex-hull": "*",
@@ -78,14 +76,13 @@
     "glob": "*",
     "jsdoc": "*",
     "jsdoctest": "*",
-    "jsts": "*",
     "lineclip": "*",
     "polygonize": "*",
     "rbush": "*",
     "rollup": "*",
+    "rollup-plugin-babel": "*",
     "rollup-plugin-commonjs": "*",
     "rollup-plugin-node-resolve": "*",
-    "rollup-plugin-uglify-es": "*",
     "simplepolygon": "*",
     "simplify-js": "*",
     "skmeans": "*",
@@ -106,6 +103,7 @@
     "@turf/boolean-equal": "*",
     "@turf/boolean-overlap": "*",
     "@turf/boolean-parallel": "*",
+    "@turf/boolean-point-in-polygon": "*",
     "@turf/boolean-point-on-line": "*",
     "@turf/boolean-within": "*",
     "@turf/buffer": "*",
@@ -133,7 +131,6 @@
     "@turf/great-circle": "*",
     "@turf/helpers": "*",
     "@turf/hex-grid": "*",
-    "@turf/boolean-point-in-polygon": "*",
     "@turf/interpolate": "*",
     "@turf/intersect": "*",
     "@turf/invariant": "*",
@@ -161,6 +158,7 @@
     "@turf/point-grid": "*",
     "@turf/point-on-feature": "*",
     "@turf/point-to-line-distance": "*",
+    "@turf/points-within-polygon": "*",
     "@turf/polygon-tangents": "*",
     "@turf/polygon-to-line": "*",
     "@turf/polygonize": "*",
@@ -186,11 +184,13 @@
     "@turf/truncate": "*",
     "@turf/union": "*",
     "@turf/unkink-polygon": "*",
-    "@turf/voronoi": "*",
-    "@turf/points-within-polygon": "*"
+    "@turf/voronoi": "*"
   },
   "@std/esm": {
     "esm": "js",
     "cjs": true
+  },
+  "browserify": {
+    "transform": [["babelify", { "presets": ["env"] }]]
   }
 }
