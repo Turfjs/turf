@@ -60,9 +60,9 @@
     "@turf/helpers": "5.x",
     "@turf/invariant": "5.x",
     "@turf/meta": "5.x",
-    "@turf/tin": "^4.7.3",
-    "topojson-client": "^3.0.0",
-    "topojson-server": "^3.0.0"
+    "@turf/tin": "*",
+    "topojson-client": "3.x",
+    "topojson-server": "3.x"
   },
   "@std/esm": {
     "esm": "js",

@@ -44,7 +44,7 @@
     "@std/esm": "*"
   },
   "dependencies": {
-    "@turf/clean-coords": "^4.7.3",
+    "@turf/clean-coords": "*",
     "@turf/clone": "5.x",
     "@turf/helpers": "5.x",
     "@turf/meta": "5.x",

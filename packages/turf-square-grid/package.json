@@ -1,6 +1,6 @@
 {
   "name": "@turf/square-grid",
-  "version": "4.7.3",
+  "version": "5.0.0",
   "description": "turf square-grid module",
   "main": "main",
   "module": "index",
@@ -43,8 +43,8 @@
     "write-json-file": "*"
   },
   "dependencies": {
-    "@turf/boolean-contains": "^4.7.3",
-    "@turf/boolean-overlap": "^4.7.3",
+    "@turf/boolean-contains": "*",
+    "@turf/boolean-overlap": "*",
     "@turf/distance": "5.x",
     "@turf/helpers": "5.x",
     "@turf/intersect": "5.x",

@@ -46,7 +46,7 @@
     "@std/esm": "*"
   },
   "dependencies": {
-    "@turf/centroid": "^4.7.3",
+    "@turf/centroid": "*",
     "@turf/clone": "5.x",
     "@turf/helpers": "5.x",
     "@turf/invariant": "5.x",

@@ -40,7 +40,7 @@
     "@std/esm": "*"
   },
   "dependencies": {
-    "@turf/area": "^4.7.3",
+    "@turf/area": "*",
     "@turf/helpers": "5.x",
     "@turf/invariant": "5.x",
     "@turf/meta": "5.x",

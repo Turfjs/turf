@@ -53,8 +53,8 @@
   },
   "dependencies": {
     "@turf/bbox": "5.x",
-    "@turf/center": "^4.7.3",
-    "@turf/centroid": "^4.7.3",
+    "@turf/center": "*",
+    "@turf/centroid": "*",
     "@turf/clone": "5.x",
     "@turf/helpers": "5.x",
     "@turf/invariant": "5.x",

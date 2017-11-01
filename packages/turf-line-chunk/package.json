@@ -51,7 +51,7 @@
   "dependencies": {
     "@turf/helpers": "5.x",
     "@turf/length": "5.x",
-    "@turf/line-slice-along": "^4.7.3",
+    "@turf/line-slice-along": "*",
     "@turf/meta": "5.x"
   },
   "@std/esm": {

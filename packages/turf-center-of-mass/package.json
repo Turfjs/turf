@@ -40,8 +40,8 @@
     "@std/esm": "*"
   },
   "dependencies": {
-    "@turf/centroid": "^4.7.3",
-    "@turf/convex": "^4.7.3",
+    "@turf/centroid": "*",
+    "@turf/convex": "*",
     "@turf/helpers": "5.x",
     "@turf/invariant": "5.x",
     "@turf/meta": "5.x"

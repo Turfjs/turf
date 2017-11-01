@@ -21,8 +21,6 @@ function updateDependencies(pckg) {
     const dependencies = {};
     new Map(entries(pckg.dependencies))
         .forEach((version, name) => {
-            // if (name.includes('@turf/')) dependencies[name] = '*';
-
             // Update dependencies to v5.x
             switch (name) {
             case '@turf/nearest-point-on-line':
@@ -65,6 +63,10 @@ function updateDependencies(pckg) {
             case 'geojson-rbush':
                 dependencies[name] = '2.1.0';
                 break;
+            case 'topojson-client':
+            case 'topojson-server':
+                dependencies[name] = '3.x';
+                break;
             case 'jsts':
             case '@turf/point-on-surface':
             case '@turf/line-distance':
@@ -72,7 +74,8 @@ function updateDependencies(pckg) {
             case '@turf/nearest':
                 throw new Error(`${pckg.name} module has invalid dependency ${name}`);
             default:
-                dependencies[name] = version;
+                if (name.match('@turf') && version !== '5.x') dependencies[name] = '*';
+                else dependencies[name] = version;
             }
         });
     return dependencies;

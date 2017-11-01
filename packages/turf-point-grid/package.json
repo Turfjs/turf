@@ -1,6 +1,6 @@
 {
   "name": "@turf/point-grid",
-  "version": "4.7.3",
+  "version": "5.0.0",
   "description": "turf point-grid module",
   "main": "main",
   "module": "index",
@@ -47,7 +47,7 @@
     "write-json-file": "*"
   },
   "dependencies": {
-    "@turf/boolean-within": "^4.7.3",
+    "@turf/boolean-within": "*",
     "@turf/distance": "5.x",
     "@turf/helpers": "5.x",
     "@turf/invariant": "5.x"

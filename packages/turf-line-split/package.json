@@ -45,7 +45,7 @@
     "@std/esm": "*"
   },
   "dependencies": {
-    "@turf/flatten": "^4.7.3",
+    "@turf/flatten": "*",
     "@turf/helpers": "5.x",
     "@turf/invariant": "5.x",
     "@turf/line-intersect": "5.x",
