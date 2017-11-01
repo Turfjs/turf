@@ -14,8 +14,8 @@ Boolean-disjoint returns (TRUE) if the intersection of the two geometries is an 
 **Examples**
 
 ```javascript
-const point = turf.point([2, 2]);
-const line = turf.lineString([[1, 1], [1, 2], [1, 3], [1, 4]]);
+var point = turf.point([2, 2]);
+var line = turf.lineString([[1, 1], [1, 2], [1, 3], [1, 4]]);
 
 turf.booleanDisjoint(line, point);
 //=true

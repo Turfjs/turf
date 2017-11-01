@@ -1,12 +1,13 @@
-import { getCoords } from '@turf/invariant';
+import { getCoords, getCoord } from '@turf/invariant';
+import { isObject } from '@turf/helpers';
 
 /**
  * Returns true if a point is on a line. Accepts a optional parameter to ignore the start and end vertices of the linestring.
  *
  * @name booleanPointOnLine
- * @param {Geometry|Feature<Point>} point GeoJSON Feature or Geometry
- * @param {Geometry|Feature<LineString>} linestring GeoJSON Feature or Geometry
- * @param {Object} [options] Optional parameters
+ * @param {Coord} pt GeoJSON Point
+ * @param {Feature<LineString>} line GeoJSON LineString
+ * @param {Object} [options={}] Optional parameters
  * @param {boolean} [options.ignoreEndVertices=false] whether to ignore the start and end vertices.
  * @returns {boolean} true/false
  * @example
@@ -15,12 +16,21 @@ import { getCoords } from '@turf/invariant';
  * var isPointOnLine = turf.booleanPointOnLine(pt, line);
  * //=true
  */
-function booleanPointOnLine(point, linestring, options) {
-    // Backwards compatible with v4.0
-    var ignoreEndVertices = (typeof options === 'object') ? options.ignoreEndVertices : options;
+function booleanPointOnLine(pt, line, options) {
+    // Optional parameters
+    options = options || {};
+    var ignoreEndVertices = options.ignoreEndVertices;
+    if (!isObject(options)) throw new Error('invalid options');
 
-    var pointCoords = getCoords(point);
-    var lineCoords = getCoords(linestring);
+    // Validate input
+    if (!pt) throw new Error('pt is required');
+    if (!line) throw new Error('line is required');
+
+    // Normalize inputs
+    var ptCoords = getCoord(pt);
+    var lineCoords = getCoords(line);
+
+    // Main
     for (var i = 0; i < lineCoords.length - 1; i++) {
         var ignoreBoundary = false;
         if (ignoreEndVertices) {
@@ -28,7 +38,7 @@ function booleanPointOnLine(point, linestring, options) {
             if (i === lineCoords.length - 2) ignoreBoundary = 'end';
             if (i === 0 && i + 1 === lineCoords.length - 1) ignoreBoundary = 'both';
         }
-        if (isPointOnLineSegment(lineCoords[i], lineCoords[i + 1], pointCoords, ignoreBoundary)) return true;
+        if (isPointOnLineSegment(lineCoords[i], lineCoords[i + 1], ptCoords, ignoreBoundary)) return true;
     }
     return false;
 }
@@ -38,39 +48,45 @@ function booleanPointOnLine(point, linestring, options) {
  * @private
  * @param {Array<number>} lineSegmentStart coord pair of start of line
  * @param {Array<number>} lineSegmentEnd coord pair of end of line
- * @param {Array<number>} point coord pair of point to check
+ * @param {Array<number>} pt coord pair of point to check
  * @param {boolean|string} excludeBoundary whether the point is allowed to fall on the line ends. If true which end to ignore.
  * @returns {boolean} true/false
  */
-function isPointOnLineSegment(lineSegmentStart, lineSegmentEnd, point, excludeBoundary) {
-    var dxc = point[0] - lineSegmentStart[0];
-    var dyc = point[1] - lineSegmentStart[1];
-    var dxl = lineSegmentEnd[0] - lineSegmentStart[0];
-    var dyl = lineSegmentEnd[1] - lineSegmentStart[1];
+function isPointOnLineSegment(lineSegmentStart, lineSegmentEnd, pt, excludeBoundary) {
+    var x = pt[0];
+    var y = pt[1];
+    var x1 = lineSegmentStart[0];
+    var y1 = lineSegmentStart[1];
+    var x2 = lineSegmentEnd[0];
+    var y2 = lineSegmentEnd[1];
+    var dxc = pt[0] - x1;
+    var dyc = pt[1] - y1;
+    var dxl = x2 - x1;
+    var dyl = y2 - y1;
     var cross = dxc * dyl - dyc * dxl;
     if (cross !== 0) {
         return false;
     }
     if (!excludeBoundary) {
         if (Math.abs(dxl) >= Math.abs(dyl)) {
-            return dxl > 0 ? lineSegmentStart[0] <= point[0] && point[0] <= lineSegmentEnd[0] : lineSegmentEnd[0] <= point[0] && point[0] <= lineSegmentStart[0];
+            return dxl > 0 ? x1 <= x && x <= x2 : x2 <= x && x <= x1;
         }
-        return dyl > 0 ? lineSegmentStart[1] <= point[1] && point[1] <= lineSegmentEnd[1] : lineSegmentEnd[1] <= point[1] && point[1] <= lineSegmentStart[1];
+        return dyl > 0 ? y1 <= y && y <= y2 : y2 <= y && y <= y1;
     } else if (excludeBoundary === 'start') {
         if (Math.abs(dxl) >= Math.abs(dyl)) {
-            return dxl > 0 ? lineSegmentStart[0] < point[0] && point[0] <= lineSegmentEnd[0] : lineSegmentEnd[0] <= point[0] && point[0] < lineSegmentStart[0];
+            return dxl > 0 ? x1 < x && x <= x2 : x2 <= x && x < x1;
         }
-        return dyl > 0 ? lineSegmentStart[1] < point[1] && point[1] <= lineSegmentEnd[1] : lineSegmentEnd[1] <= point[1] && point[1] < lineSegmentStart[1];
+        return dyl > 0 ? y1 < y && y <= y2 : y2 <= y && y < y1;
     } else if (excludeBoundary === 'end') {
         if (Math.abs(dxl) >= Math.abs(dyl)) {
-            return dxl > 0 ? lineSegmentStart[0] <= point[0] && point[0] < lineSegmentEnd[0] : lineSegmentEnd[0] < point[0] && point[0] <= lineSegmentStart[0];
+            return dxl > 0 ? x1 <= x && x < x2 : x2 < x && x <= x1;
         }
-        return dyl > 0 ? lineSegmentStart[1] <= point[1] && point[1] < lineSegmentEnd[1] : lineSegmentEnd[1] < point[1] && point[1] <= lineSegmentStart[1];
+        return dyl > 0 ? y1 <= y && y < y2 : y2 < y && y <= y1;
     } else if (excludeBoundary === 'both') {
         if (Math.abs(dxl) >= Math.abs(dyl)) {
-            return dxl > 0 ? lineSegmentStart[0] < point[0] && point[0] < lineSegmentEnd[0] : lineSegmentEnd[0] < point[0] && point[0] < lineSegmentStart[0];
+            return dxl > 0 ? x1 < x && x < x2 : x2 < x && x < x1;
         }
-        return dyl > 0 ? lineSegmentStart[1] < point[1] && point[1] < lineSegmentEnd[1] : lineSegmentEnd[1] < point[1] && point[1] < lineSegmentStart[1];
+        return dyl > 0 ? y1 < y && y < y2 : y2 < y && y < y1;
     }
 }
 
