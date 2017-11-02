@@ -14,10 +14,11 @@
     "turf.min.js"
   ],
   "scripts": {
+    "prepublish": "npm run build",
     "pretest": "rollup -c ../../rollup.config.js",
     "test": "node test.js",
     "posttest": "node test.example.js",
-    "build": "browserify main.js -s turf -o turf.js",
+    "build": "npm run pretest && browserify main.js -s turf -o turf.js",
     "postbuild": "uglifyjs turf.js -m -c -o turf.min.js"
   },
   "repository": {
