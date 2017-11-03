@@ -14,7 +14,6 @@
     "turf.min.js"
   ],
   "scripts": {
-    "prepublish": "npm run build",
     "pretest": "rollup -c ../../rollup.config.js",
     "test": "node test.js",
     "posttest": "node test.example.js",
