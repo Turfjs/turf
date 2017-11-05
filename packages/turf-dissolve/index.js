@@ -9,8 +9,8 @@ import { lineString, isObject } from '@turf/helpers';
 import { closestGreaterNumber } from './get-closest';
 
 /**
- * Dissolves a FeatureCollection of polygons, filtered by an optional property name:value.
- * Note that multipart features within the collection are not supported
+ * Dissolves a FeatureCollection of {@link polygon} features, filtered by an optional property name:value.
+ * Note that {@link mulitpolygon} features within the collection are not supported
  *
  * @name dissolve
  * @param {FeatureCollection<Polygon>} featureCollection input feature collection to be dissolved
