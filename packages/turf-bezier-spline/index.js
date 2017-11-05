@@ -9,7 +9,7 @@ import Spline from './lib/spline';
  *
  * The bezier spline implementation is by [Leszek Rybicki](http://leszek.rybicki.cc/).
  *
- * @name bezier
+ * @name bezierSpline
  * @param {Geometry|Feature<LineString>} line input LineString
  * @param {Object} [options={}] Optional parameters
  * @param {number} [options.resolution=10000] time in milliseconds between points
