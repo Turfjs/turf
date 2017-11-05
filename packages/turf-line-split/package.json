@@ -37,21 +37,22 @@
   },
   "homepage": "https://github.com/Turfjs/turf",
   "devDependencies": {
+    "@std/esm": "*",
     "benchmark": "*",
     "load-json-file": "*",
-    "tape": "*",
-    "write-json-file": "*",
     "rollup": "*",
-    "@std/esm": "*"
+    "tape": "*",
+    "write-json-file": "*"
   },
   "dependencies": {
-    "@turf/flatten": "*",
+    "@turf/bbox": "*",
     "@turf/helpers": "5.x",
     "@turf/invariant": "5.x",
     "@turf/line-intersect": "5.x",
     "@turf/line-segment": "5.x",
     "@turf/meta": "5.x",
     "@turf/nearest-point-on-line": "5.x",
+    "@turf/square": "*",
     "@turf/truncate": "5.x",
     "geojson-rbush": "2.1.0"
   },

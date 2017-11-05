@@ -9,7 +9,7 @@ import {
     MultiPolygon,
 } from '@turf/helpers';
 
-export type Splitter = Feature<Point|MultiPoint|LineString|MultiLineString|Polygon|MultiPolygon>
+export type Splitter = Feature<Point | MultiPoint | LineString | MultiLineString | Polygon | MultiPolygon>
 
 /**
  * http://turfjs.org/docs/#linesplit
