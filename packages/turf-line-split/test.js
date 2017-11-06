@@ -4,7 +4,7 @@ import path from 'path';
 import load from 'load-json-file';
 import write from 'write-json-file';
 import { featureEach } from '@turf/meta';
-import { point, lineString, featureCollection, round } from '@turf/helpers';
+import { point, lineString, multiPoint, featureCollection, round } from '@turf/helpers';
 import { getCoords } from '@turf/invariant';
 import lineSplit from '.';
 
@@ -13,13 +13,14 @@ const directories = {
     out: path.join(__dirname, 'test', 'out') + path.sep
 };
 
-const fixtures = fs.readdirSync(directories.in).map(filename => {
+let fixtures = fs.readdirSync(directories.in).map(filename => {
     return {
         filename,
         name: path.parse(filename).name,
         geojson: load.sync(directories.in + filename)
     };
 });
+// fixtures = fixtures.filter(name => name === 'issue-#1075')
 
 test('turf-line-split', t => {
     for (const {filename, name, geojson}  of fixtures) {
@@ -107,6 +108,13 @@ test('turf-line-split -- prevent input mutation', t => {
     t.end();
 });
 
+test('turf-line-split -- issue #1075', t => {
+    const line = lineString([[-87.168433, 37.946093], [-87.168510, 37.960085]]);
+    const splitter = multiPoint([[-87.168446, 37.947929], [-87.168445, 37.948301]]);
+    const split = lineSplit(line, splitter);
+    t.assert(split);
+    t.end();
+})
 
 /**
  * Colorize FeatureCollection
@@ -128,3 +136,4 @@ function colorize(geojson) {
     });
     return featureCollection(results);
 }
+
