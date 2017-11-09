@@ -3,8 +3,8 @@
 
 
 "@std/esm@*":
-  version "0.12.5"
-  resolved "https://registry.yarnpkg.com/@std/esm/-/esm-0.12.5.tgz#b38a9bc70462df18a09b16f653141b9ab5557635"
+  version "0.13.0"
+  resolved "https://registry.yarnpkg.com/@std/esm/-/esm-0.13.0.tgz#b2ca2f7d96f50eec14bd14f0b8afc3138b2a40d4"
 
 balanced-match@^1.0.0:
   version "1.0.0"
@@ -192,8 +192,8 @@ resumer@~0.0.0:
     through "~2.3.4"
 
 rollup@*:
-  version "0.50.0"
-  resolved "https://registry.yarnpkg.com/rollup/-/rollup-0.50.0.tgz#4c158f4e780e6cb33ff0dbfc184a52cc58cd5f3b"
+  version "0.51.2"
+  resolved "https://registry.yarnpkg.com/rollup/-/rollup-0.51.2.tgz#6dfc8525ea71d1f6e0cbc94e06f258f85c4eb32d"
 
 string.prototype.trim@~1.1.2:
   version "1.1.2"
