@@ -1,6 +1,6 @@
 {
   "name": "@turf/rewind",
-  "version": "4.7.3",
+  "version": "5.0.4",
   "description": "turf rewind module",
   "main": "main",
   "module": "index",
@@ -39,19 +39,19 @@
   },
   "homepage": "https://github.com/Turfjs/turf",
   "devDependencies": {
+    "@std/esm": "*",
     "benchmark": "*",
     "load-json-file": "*",
-    "tape": "*",
-    "write-json-file": "*",
     "rollup": "*",
-    "@std/esm": "*"
+    "tape": "*",
+    "write-json-file": "*"
   },
   "dependencies": {
-    "@turf/boolean-clockwise": "*",
-    "@turf/clone": "5.x",
-    "@turf/helpers": "5.x",
-    "@turf/invariant": "5.x",
-    "@turf/meta": "5.x"
+    "@turf/boolean-clockwise": "^5.0.4",
+    "@turf/clone": "^5.0.4",
+    "@turf/helpers": "^5.0.4",
+    "@turf/invariant": "^5.0.4",
+    "@turf/meta": "^5.0.4"
   },
   "@std/esm": {
     "esm": "js",

@@ -1,6 +1,6 @@
 {
   "name": "@turf/convex",
-  "version": "4.7.3",
+  "version": "5.0.4",
   "description": "turf convex module",
   "main": "main",
   "module": "index",
@@ -40,8 +40,8 @@
     "write-json-file": "*"
   },
   "dependencies": {
-    "@turf/helpers": "5.x",
-    "@turf/meta": "5.x",
+    "@turf/helpers": "^5.0.4",
+    "@turf/meta": "^5.0.4",
     "concaveman": "*"
   },
   "@std/esm": {

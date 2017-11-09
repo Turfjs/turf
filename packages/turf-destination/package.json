@@ -1,6 +1,6 @@
 {
   "name": "@turf/destination",
-  "version": "5.0.0",
+  "version": "5.0.4",
   "description": "turf destination module",
   "main": "main",
   "module": "index",
@@ -36,7 +36,7 @@
   "homepage": "https://github.com/Turfjs/turf",
   "devDependencies": {
     "@std/esm": "*",
-    "@turf/truncate": "*",
+    "@turf/truncate": "^5.0.4",
     "benchmark": "*",
     "glob": "*",
     "load-json-file": "*",
@@ -45,8 +45,8 @@
     "write-json-file": "*"
   },
   "dependencies": {
-    "@turf/helpers": "5.x",
-    "@turf/invariant": "5.x"
+    "@turf/helpers": "^5.0.4",
+    "@turf/invariant": "^5.0.4"
   },
   "@std/esm": {
     "esm": "js",

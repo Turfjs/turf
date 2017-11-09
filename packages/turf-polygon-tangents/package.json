@@ -1,6 +1,6 @@
 {
   "name": "@turf/polygon-tangents",
-  "version": "4.7.3",
+  "version": "5.0.4",
   "description": "turf polygon tangents module",
   "main": "main",
   "module": "index",
@@ -38,16 +38,16 @@
   },
   "homepage": "https://github.com/Turfjs/turf",
   "devDependencies": {
+    "@std/esm": "*",
     "benchmark": "*",
     "load-json-file": "*",
-    "tape": "*",
-    "write-json-file": "*",
     "rollup": "*",
-    "@std/esm": "*"
+    "tape": "*",
+    "write-json-file": "*"
   },
   "dependencies": {
-    "@turf/helpers": "5.x",
-    "@turf/invariant": "5.x"
+    "@turf/helpers": "^5.0.4",
+    "@turf/invariant": "^5.0.4"
   },
   "@std/esm": {
     "esm": "js",

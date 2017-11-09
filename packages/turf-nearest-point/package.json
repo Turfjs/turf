@@ -1,6 +1,6 @@
 {
   "name": "@turf/nearest-point",
-  "version": "5.0.0",
+  "version": "5.0.4",
   "description": "turf nearest-point module",
   "main": "main",
   "module": "index",
@@ -41,10 +41,10 @@
     "tape": "*"
   },
   "dependencies": {
-    "@turf/clone": "5.x",
-    "@turf/distance": "5.x",
-    "@turf/helpers": "5.x",
-    "@turf/meta": "5.x"
+    "@turf/clone": "^5.0.4",
+    "@turf/distance": "^5.0.4",
+    "@turf/helpers": "^5.0.4",
+    "@turf/meta": "^5.0.4"
   },
   "@std/esm": {
     "esm": "js",

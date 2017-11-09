@@ -1,6 +1,6 @@
 {
   "name": "@turf/center-of-mass",
-  "version": "4.7.3",
+  "version": "5.0.4",
   "description": "turf center-of-mass module",
   "main": "main",
   "module": "index",
@@ -31,20 +31,20 @@
   },
   "homepage": "https://github.com/Turfjs/turf",
   "devDependencies": {
+    "@std/esm": "*",
     "benchmark": "*",
     "glob": "*",
     "load-json-file": "*",
-    "tape": "*",
-    "write-json-file": "*",
     "rollup": "*",
-    "@std/esm": "*"
+    "tape": "*",
+    "write-json-file": "*"
   },
   "dependencies": {
-    "@turf/centroid": "*",
-    "@turf/convex": "*",
-    "@turf/helpers": "5.x",
-    "@turf/invariant": "5.x",
-    "@turf/meta": "5.x"
+    "@turf/centroid": "^5.0.4",
+    "@turf/convex": "^5.0.4",
+    "@turf/helpers": "^5.0.4",
+    "@turf/invariant": "^5.0.4",
+    "@turf/meta": "^5.0.4"
   },
   "@std/esm": {
     "esm": "js",

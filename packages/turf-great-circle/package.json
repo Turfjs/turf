@@ -1,6 +1,6 @@
 {
   "name": "@turf/great-circle",
-  "version": "4.7.3",
+  "version": "5.0.4",
   "description": "turf great-circle module",
   "main": "main",
   "module": "index",
@@ -40,17 +40,17 @@
   },
   "homepage": "https://github.com/Turfjs/turf",
   "devDependencies": {
-    "@turf/truncate": "*",
+    "@std/esm": "*",
+    "@turf/truncate": "^5.0.4",
     "benchmark": "*",
     "load-json-file": "*",
     "rollup": "*",
     "tape": "*",
-    "write-json-file": "*",
-    "@std/esm": "*"
+    "write-json-file": "*"
   },
   "dependencies": {
-    "@turf/helpers": "5.x",
-    "@turf/invariant": "5.x"
+    "@turf/helpers": "^5.0.4",
+    "@turf/invariant": "^5.0.4"
   },
   "@std/esm": {
     "esm": "js",

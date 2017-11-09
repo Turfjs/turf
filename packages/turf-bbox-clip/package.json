@@ -1,6 +1,6 @@
 {
   "name": "@turf/bbox-clip",
-  "version": "4.7.3",
+  "version": "5.0.4",
   "description": "turf bbox-clip module",
   "main": "main",
   "module": "index",
@@ -39,17 +39,17 @@
   },
   "homepage": "https://github.com/Turfjs/turf",
   "devDependencies": {
-    "@turf/bbox": "*",
+    "@std/esm": "*",
+    "@turf/bbox": "^5.0.4",
     "benchmark": "*",
     "load-json-file": "*",
-    "tape": "*",
-    "write-json-file": "*",
     "rollup": "*",
-    "@std/esm": "*"
+    "tape": "*",
+    "write-json-file": "*"
   },
   "dependencies": {
-    "@turf/helpers": "5.x",
-    "@turf/invariant": "5.x",
+    "@turf/helpers": "^5.0.4",
+    "@turf/invariant": "^5.0.4",
     "lineclip": "^1.1.5"
   },
   "@std/esm": {

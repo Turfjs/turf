@@ -1,6 +1,6 @@
 {
   "name": "@turf/clusters-kmeans",
-  "version": "4.7.3",
+  "version": "5.0.4",
   "description": "turf clusters-kmeans module",
   "main": "main",
   "module": "index",
@@ -40,24 +40,24 @@
   },
   "homepage": "https://github.com/Turfjs/turf",
   "devDependencies": {
-    "@turf/centroid": "*",
-    "@turf/clusters": "*",
-    "@turf/helpers": "*",
-    "@turf/random": "*",
+    "@std/esm": "*",
+    "@turf/centroid": "^5.0.4",
+    "@turf/clusters": "^5.0.4",
+    "@turf/helpers": "^5.0.4",
+    "@turf/random": "^5.0.4",
     "benchmark": "*",
     "chromatism": "*",
     "concaveman": "*",
     "load-json-file": "*",
     "matrix-to-grid": "*",
-    "tape": "*",
-    "write-json-file": "*",
     "rollup": "*",
-    "@std/esm": "*"
+    "tape": "*",
+    "write-json-file": "*"
   },
   "dependencies": {
-    "@turf/clone": "5.x",
-    "@turf/invariant": "5.x",
-    "@turf/meta": "5.x",
+    "@turf/clone": "^5.0.4",
+    "@turf/invariant": "^5.0.4",
+    "@turf/meta": "^5.0.4",
     "skmeans": "0.9.7"
   },
   "@std/esm": {

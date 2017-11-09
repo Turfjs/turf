@@ -1,6 +1,6 @@
 {
   "name": "@turf/intersect",
-  "version": "5.0.0",
+  "version": "5.0.4",
   "description": "turf intersect module",
   "main": "main",
   "module": "index",
@@ -40,10 +40,10 @@
     "write-json-file": "*"
   },
   "dependencies": {
-    "@turf/clean-coords": "*",
-    "@turf/helpers": "5.x",
-    "@turf/invariant": "5.x",
-    "@turf/truncate": "5.x",
+    "@turf/clean-coords": "^5.0.4",
+    "@turf/helpers": "^5.0.4",
+    "@turf/invariant": "^5.0.4",
+    "@turf/truncate": "^5.0.4",
     "jsts-es": "*"
   },
   "@std/esm": {

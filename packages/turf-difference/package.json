@@ -1,6 +1,6 @@
 {
   "name": "@turf/difference",
-  "version": "5.0.0",
+  "version": "5.0.4",
   "description": "turf difference module",
   "main": "main",
   "module": "index",
@@ -31,19 +31,19 @@
   },
   "homepage": "https://github.com/Turfjs/turf",
   "devDependencies": {
+    "@std/esm": "*",
     "benchmark": "*",
     "glob": "*",
     "load-json-file": "*",
     "rollup": "*",
     "tape": "*",
-    "write-json-file": "*",
-    "@std/esm": "*"
+    "write-json-file": "*"
   },
   "dependencies": {
-    "@turf/area": "*",
-    "@turf/helpers": "5.x",
-    "@turf/invariant": "5.x",
-    "@turf/meta": "5.x",
+    "@turf/area": "^5.0.4",
+    "@turf/helpers": "^5.0.4",
+    "@turf/invariant": "^5.0.4",
+    "@turf/meta": "^5.0.4",
     "jsts-es": "*"
   },
   "@std/esm": {

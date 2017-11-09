@@ -1,6 +1,6 @@
 {
   "name": "@turf/voronoi",
-  "version": "5.0.0",
+  "version": "5.0.4",
   "description": "turf voronoi module",
   "main": "main",
   "module": "index",
@@ -49,8 +49,8 @@
     "write-json-file": "*"
   },
   "dependencies": {
-    "@turf/helpers": "5.x",
-    "@turf/invariant": "5.x",
+    "@turf/helpers": "^5.0.4",
+    "@turf/invariant": "^5.0.4",
     "d3-voronoi": "1.1.2"
   },
   "@std/esm": {

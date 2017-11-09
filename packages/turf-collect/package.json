@@ -1,6 +1,6 @@
 {
   "name": "@turf/collect",
-  "version": "4.7.3",
+  "version": "5.0.4",
   "description": "turf collect module",
   "main": "main",
   "module": "index",
@@ -38,15 +38,15 @@
   },
   "homepage": "https://github.com/Turfjs/turf",
   "devDependencies": {
+    "@std/esm": "*",
     "benchmark": "*",
-    "tape": "*",
     "rollup": "*",
-    "@std/esm": "*"
+    "tape": "*"
   },
   "dependencies": {
-    "@turf/bbox": "5.x",
-    "@turf/helpers": "5.x",
-    "@turf/boolean-point-in-polygon": "5.x",
+    "@turf/bbox": "^5.0.4",
+    "@turf/boolean-point-in-polygon": "^5.0.4",
+    "@turf/helpers": "^5.0.4",
     "rbush": "^2.0.1"
   },
   "@std/esm": {

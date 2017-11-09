@@ -1,6 +1,6 @@
 {
   "name": "@turf/boolean-crosses",
-  "version": "4.7.3",
+  "version": "5.0.4",
   "description": "turf boolean-crosses module",
   "main": "main",
   "module": "index",
@@ -37,20 +37,20 @@
   },
   "homepage": "https://github.com/Turfjs/turf",
   "devDependencies": {
+    "@std/esm": "*",
     "benchmark": "*",
     "boolean-shapely": "*",
     "glob": "*",
     "load-json-file": "*",
-    "tape": "*",
     "rollup": "*",
-    "@std/esm": "*"
+    "tape": "*"
   },
   "dependencies": {
-    "@turf/helpers": "5.x",
-    "@turf/boolean-point-in-polygon": "5.x",
-    "@turf/invariant": "5.x",
-    "@turf/line-intersect": "5.x",
-    "@turf/polygon-to-line": "5.x"
+    "@turf/boolean-point-in-polygon": "^5.0.4",
+    "@turf/helpers": "^5.0.4",
+    "@turf/invariant": "^5.0.4",
+    "@turf/line-intersect": "^5.0.4",
+    "@turf/polygon-to-line": "^5.0.4"
   },
   "@std/esm": {
     "esm": "js",

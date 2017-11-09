@@ -1,6 +1,6 @@
 {
   "name": "@turf/points-within-polygon",
-  "version": "5.0.0",
+  "version": "5.0.4",
   "description": "turf points-within-polygon module",
   "main": "main",
   "module": "index",
@@ -34,14 +34,14 @@
   },
   "homepage": "https://github.com/Turfjs/turf",
   "devDependencies": {
+    "@std/esm": "*",
     "benchmark": "*",
-    "tape": "*",
     "rollup": "*",
-    "@std/esm": "*"
+    "tape": "*"
   },
   "dependencies": {
-    "@turf/helpers": "5.x",
-    "@turf/boolean-point-in-polygon": "5.x"
+    "@turf/boolean-point-in-polygon": "^5.0.4",
+    "@turf/helpers": "^5.0.4"
   },
   "@std/esm": {
     "esm": "js",
