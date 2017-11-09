@@ -20,8 +20,8 @@ any [Feature](http://geojson.org/geojson-spec.html#feature-objects) in [ obstacl
 **Examples**
 
 ```javascript
-var start = turf.point([-5, -6]);
-var end = turf.point([9, -6]);
+var start = [-5, -6];
+var end = [9, -6];
 var options = {
   obstacles: turf.polygon([[[0, -7], [5, -7], [5, -3], [0, -3], [0, -7]]])
 };

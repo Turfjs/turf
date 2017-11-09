@@ -4,8 +4,8 @@
 
 ## dissolve
 
-Dissolves a FeatureCollection of polygons, filtered by an optional property name:value.
-Note that multipart features within the collection are not supported
+Dissolves a FeatureCollection of [polygon](polygon) features, filtered by an optional property name:value.
+Note that [mulitpolygon](mulitpolygon) features within the collection are not supported
 
 **Parameters**
 

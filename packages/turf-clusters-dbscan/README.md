@@ -4,7 +4,7 @@
 
 ## clustersDbscan
 
-Takes a set of [points](http://geojson.org/geojson-spec.html#point) and partition them into clusters according to [DBSCAN's](https://en.wikipedia.org/wiki/DBSCAN) data clustering algorithm.
+Takes a set of [points](http://geojson.org/geojson-spec.html#point) and partition them into clusters according to [https://en.wikipedia.org/wiki/DBSCAN](DBSCAN's) data clustering algorithm.
 
 **Parameters**
 

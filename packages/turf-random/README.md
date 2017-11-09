@@ -4,7 +4,7 @@
 
 ## randomPosition
 
-Random Position
+Returns a random position within a [box](bounding).
 
 **Parameters**
 
@@ -21,7 +21,7 @@ Returns **[Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Refere
 
 ## randomPoint
 
-Random Point
+Returns a random [point](point).
 
 **Parameters**
 
@@ -40,7 +40,7 @@ Returns **[FeatureCollection](http://geojson.org/geojson-spec.html#feature-colle
 
 ## randomPolygon
 
-Random Polygon
+Returns a random [polygon](polygon).
 
 **Parameters**
 
@@ -61,7 +61,7 @@ Returns **[FeatureCollection](http://geojson.org/geojson-spec.html#feature-colle
 
 ## randomLineString
 
-Random LineString
+Returns a random [linestring](linestring).
 
 **Parameters**
 

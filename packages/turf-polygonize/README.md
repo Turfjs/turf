@@ -4,15 +4,11 @@
 
 ## polygonize
 
-Polygonizes [(Multi)LineString(s)](http://geojson.org/geojson-spec.html#linestring) into [Polygons](Polygons).
-
-Implementation of GEOSPolygonize function (`geos::operation::polygonize::Polygonizer`).
-
+Polygonizes [(Multi)LineString(s)](http://geojson.org/geojson-spec.html#linestring) into [Polygons](Polygons). Implementation of GEOSPolygonize function (`geos::operation::polygonize::Polygonizer`).
 Polygonizes a set of lines that represents edges in a planar graph. Edges must be correctly
 noded, i.e., they must only meet at their endpoints. (NOTE: while TurfJS has no specific function, an easy way to
 ensure this is to use the QGis library and call unaryUnion() on the set of input geometries and then pass the
-result to turf-polygonize)
-
+result to turf-polygonize).
 The implementation correctly handles:
 
 -   Dangles: edges which have one or both ends which are not incident on another edge endpoint.
@@ -22,6 +18,84 @@ The implementation correctly handles:
 
 -   `geojson` **([FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects) \| [Geometry](http://geojson.org/geojson-spec.html#geometry) \| [Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;([LineString](http://geojson.org/geojson-spec.html#linestring) \| [MultiLineString](http://geojson.org/geojson-spec.html#multilinestring))>)** Lines in order to polygonize
 
+**Examples**
+
+```javascript
+var lines = {
+ "type": "FeatureCollection",
+ "features": [
+   {
+     "type": "Feature",
+     "properties": {},
+     "geometry": {
+       "type": "LineString",
+       "coordinates": [
+         [
+           119.00390625,
+           -22.024545601240337
+         ],
+         [
+           120.58593749999999,
+           -28.613459424004414
+         ],
+         [
+           125.595703125,
+           -32.99023555965107
+         ],
+         [
+           133.330078125,
+           -32.99023555965107
+         ],
+         [
+           142.646484375,
+           -30.977609093348676
+         ],
+         [
+           142.294921875,
+           -24.126701958681668
+         ],
+         [
+           139.04296875,
+           -16.299051014581817
+         ],
+         [
+           128.84765625,
+           -15.199386048559994
+         ]
+       ]
+     }
+   },
+   {
+     "type": "Feature",
+     "properties": {},
+     "geometry": {
+       "type": "LineString",
+       "coordinates": [
+         [
+           142.646484375,
+           -30.977609093348676
+         ],
+         [
+           132.451171875,
+           -27.449790329784214
+         ],
+         [
+           128.671875,
+           -23.1605633090483
+         ],
+         [
+           119.00390625,
+           -22.024545601240337
+         ]
+       ]
+     }
+   }
+ ]
+}
+var outPolygon = turf.polygonize(lines)
+//addToMap
+var addToMap = [lines, outPolygon];
+```
 
 -   Throws **[Error](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error)** if GeoJSON is invalid.
 
