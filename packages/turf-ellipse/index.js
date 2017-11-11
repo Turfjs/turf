@@ -56,7 +56,7 @@ function ellipse(center, xRadius, yRadius, options) {
     }
     coordinates.push(coordinates[0]);
     return polygon([coordinates], properties);
-};
+}
 
 /**
  * Get Tan Degrees
@@ -68,6 +68,6 @@ function ellipse(center, xRadius, yRadius, options) {
 function getTanDeg(deg) {
     var rad = deg * Math.PI / 180;
     return Math.tan(rad);
-};
+}
 
 export default ellipse;
