@@ -1,26 +1,23 @@
-const path = require('path');
-const glob = require('glob');
-const load = require('load-json-file');
 const Benchmark = require('benchmark');
-const ellipse = require('./');
+const ellipse = require('.');
 
 /**
  * Benchmark Results
  *
- * <Place results here>
+ * turf-ellipse - 8 steps x 1,691,641 ops/sec ±1.88% (84 runs sampled)
+ * turf-ellipse - 64 steps x 179,814 ops/sec ±2.23% (85 runs sampled)
+ * turf-ellipse - 256 steps x 45,268 ops/sec ±2.33% (87 runs sampled)
+ *
  */
 const suite = new Benchmark.Suite('turf-ellipse');
-glob.sync(path.join(__dirname, 'test', 'in', '*.geojson')).forEach(filepath => {
-    const {name} = path.parse(filepath);
-    const geojson = load.sync(filepath);
-    const [feature1, feature2] = geojson.features;
-    console.time(name);
-    ellipse(feature1, feature2);
-    console.timeEnd(name);
-    suite.add(name, () => ellipse(feature1, feature2));
-});
+const center = [ -73.9975, 40.730833 ];
+const xAxis = 50;
+const yAxis = 10;
 
 suite
+    .add('turf-ellipse - 8 steps', () => ellipse(center, xAxis, yAxis, {steps: 8}))
+    .add('turf-ellipse - 64 steps', () => ellipse(center, xAxis, yAxis, {steps: 64}))
+    .add('turf-ellipse - 256 steps', () => ellipse(center, xAxis, yAxis, {steps: 256}))
     .on('cycle', e => console.log(String(e.target)))
     .on('complete', () => {})
     .run();
