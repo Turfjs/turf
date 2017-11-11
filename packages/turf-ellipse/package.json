@@ -39,11 +39,14 @@
     "tape": "*",
     "glob": "*",
     "rollup": "*",
-    "fs-extra": "*",
     "@std/esm": "*"
   },
   "dependencies": {
     "@turf/helpers": "^5.0.4",
     "@turf/invariant": "^5.0.4"
+  },
+  "@std/esm": {
+    "esm": "js",
+    "cjs": true
   }
 }
