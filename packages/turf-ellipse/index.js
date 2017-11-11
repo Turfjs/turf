@@ -25,6 +25,8 @@ module.exports = function (center, xAxis, yAxis, options) {
     options = options || {};
     let steps = options.steps || 64;
     let properties = options.properties;
+
+    // helper function
     const getTanDeg = function (deg) {
         const rad = deg * Math.PI / 180;
         return Math.tan(rad);
