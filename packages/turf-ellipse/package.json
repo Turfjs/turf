@@ -1,16 +1,18 @@
 {
   "name": "@turf/ellipse",
-  "version": "5.0.4",
+  "version": "5.0.0",
   "description": "turf ellipse module",
   "main": "index.js",
   "types": "index.d.ts",
   "files": [
     "index.js",
-    "index.d.ts"
+    "index.d.ts",
+    "main.js"
   ],
   "scripts": {
-    "test": "node test.js",
-    "bench": "node bench.js"
+    "pretest": "rollup -c ../../rollup.config.js",
+    "test": "node -r @std/esm test.js",
+    "bench": "node -r @std/esm bench.js"
   },
   "repository": {
     "type": "git",
@@ -30,11 +32,13 @@
   },
   "homepage": "https://github.com/Turfjs/turf",
   "devDependencies": {
-    "@mapbox/geojsonhint": "^2.0.1",
-    "benchmark": "^2.1.4",
-    "write-json-file": "^2.2.0",
-    "load-json-file": "^2.0.0",
-    "tape": "^4.6.3"
+    "@mapbox/geojsonhint": "*",
+    "benchmark": "*",
+    "write-json-file": "*",
+    "load-json-file": "*",
+    "tape": "*",
+    "glob": "*",
+    "@std/esm": "*"
   },
   "dependencies": {
     "@turf/helpers": "^5.0.4",
