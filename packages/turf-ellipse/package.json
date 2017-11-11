@@ -38,6 +38,8 @@
     "load-json-file": "*",
     "tape": "*",
     "glob": "*",
+    "rollup": "*",
+    "fs-extra": "*",
     "@std/esm": "*"
   },
   "dependencies": {
