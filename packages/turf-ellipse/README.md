@@ -9,8 +9,8 @@ Takes a [Point](http://geojson.org/geojson-spec.html#point) and calculates the e
 **Parameters**
 
 -   `center` **([Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;[Point](http://geojson.org/geojson-spec.html#point)> | [Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)>)** center point
--   `xAxis` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** x-axis of the ellipse
--   `yAxis` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** y-axis of the ellipse
+-   `xRadius` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** radius of the ellipse along the x-axis
+-   `yRadius` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** radius of the ellipse along the y-axis
 -   `options` **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)** Optional parameters (optional, default `{}`)
     -   `options.steps` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** number of steps (optional, default `64`)
     -   `options.units` **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** unit of measurement for axes (optional, default `'kilometers'`)
@@ -20,10 +20,10 @@ Takes a [Point](http://geojson.org/geojson-spec.html#point) and calculates the e
 
 ```javascript
 const center = [-75.9975, 40.730833];
-const xAxis = 0.5;
-const yAxis = 0.1;
+const xRadius = 0.5;
+const yRadius = 0.1;
 const options = {steps: 10, properties: {foo: 'bar'}};
-const ellipse = turf.ellipse(center, xAxis, yAxis, options);
+const ellipse = turf.ellipse(center, xRadius, yRadius, options);
 
 //addToMap
 const addToMap = [turf.point(center), ellipse]

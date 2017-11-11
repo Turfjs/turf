@@ -1,8 +1,8 @@
 {
   "type": "Feature",
   "properties": {
-    "xAxis": 5,
-    "yAxis": 1,
+    "xRadius": 5,
+    "yRadius": 1,
     "steps": 4
   },
   "geometry": {
