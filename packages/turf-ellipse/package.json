@@ -1,6 +1,6 @@
 {
   "name": "@turf/ellipse",
-  "version": "4.0.0",
+  "version": "5.0.4-alpha.596590d7",
   "description": "turf ellipse module",
   "main": "index.js",
   "types": "index.d.ts",
@@ -22,7 +22,7 @@
   ],
   "author": "Turf Authors",
   "contributors": [
-    "YOUR NAME <@GITHUB NAME>"
+    "Moacir P. de Sá Pereira <muziejus>"
   ],
   "license": "MIT",
   "bugs": {
@@ -37,7 +37,7 @@
     "tape": "^4.6.3"
   },
   "dependencies": {
-    "@turf/helpers": "^5.0.4",
-    "@turf/invariant": "^5.0.4"
+    "@turf/helpers": "^5.0.4-alpha.596590d7",
+    "@turf/invariant": "^5.0.4-alpha.596590d7"
   }
 }
