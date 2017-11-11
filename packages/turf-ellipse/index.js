@@ -11,7 +11,7 @@ const polygon = require('@turf/helpers').polygon;
  * @param {Object} [options.properties={}] properties
  * @returns {Feature<Polygon>} ellipse polygon
  * @example
- * const center = turf.point([-75.343, 39.984]);
+ * const center = turf.point([-75.9975, 40.730833]);
  * const xAxis = 0.5;
  * const yAxis = 0.1;
  * const options = {steps: 10, properties: {foo: 'bar'}};
