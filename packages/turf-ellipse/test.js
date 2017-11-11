@@ -14,7 +14,8 @@ test('turf-ellipse', t => {
         const xAxis = geojson.properties.xAxis;
         const yAxis = geojson.properties.yAxis;
         const steps = geojson.properties.steps;
-        const results = ellipse(geojson, xAxis, yAxis, {steps: steps});
+        const units = geojson.properties.units;
+        const results = ellipse(geojson, xAxis, yAxis, {steps: steps, units: units});
 
         const out = filepath.replace(path.join('test', 'in'), path.join('test', 'out'))
         if (process.env.REGEN) write.sync(out, results);

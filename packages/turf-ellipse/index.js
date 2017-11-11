@@ -1,4 +1,5 @@
 const polygon = require('@turf/helpers').polygon;
+const lengthToDegrees = require('@turf/helpers').lengthToDegrees;
 const getCoord = require('@turf/invariant').getCoord;
 
 /**
@@ -9,6 +10,7 @@ const getCoord = require('@turf/invariant').getCoord;
  * @param {number} yAxis y-axis of the ellipse
  * @param {Object} [options={}] Optional parameters
  * @param {number} [options.steps=64] number of steps
+ * @param {string} [options.units='kilometers'] unit of measurement for axes
  * @param {Object} [options.properties={}] properties
  * @returns {Feature<Polygon>} ellipse polygon
  * @example
@@ -25,6 +27,7 @@ module.exports = function (center, xAxis, yAxis, options) {
     // Optional params
     options = options || {};
     const steps = options.steps || 64;
+    const units = options.units || 'kilometers';
     const properties = options.properties || center.properties || {};
 
     // helper function
@@ -41,6 +44,8 @@ module.exports = function (center, xAxis, yAxis, options) {
     if (typeof steps !== 'number') throw new Error('steps must be a number');
 
     const centerCoords = getCoord(center);
+    xAxis = lengthToDegrees(xAxis, units);
+    yAxis = lengthToDegrees(yAxis, units);
 
     let coordinates = [];
     for (let i = 0; i < steps; i += 1) {
