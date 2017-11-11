@@ -23,8 +23,8 @@ const polygon = require('@turf/helpers').polygon;
 module.exports = function (center, xAxis, yAxis, options) {
     // Optional params
     options = options || {};
-    let steps = options.steps || 64;
-    let properties = options.properties;
+    const steps = options.steps || 64;
+    const properties = options.properties || center.properties || {};
 
     // helper function
     const getTanDeg = function (deg) {
@@ -38,11 +38,6 @@ module.exports = function (center, xAxis, yAxis, options) {
     if (!yAxis) throw new Error('yAxis is required');
     if (typeof options !== 'object') throw new Error('options must be an object');
     if (typeof steps !== 'number') throw new Error('steps must be a number');
-
-    // default params
-    steps = steps || 64;
-    properties = properties || center.properties || {};
-
 
     let coordinates = [];
     for (let i = 0; i < steps; i += 1) {
