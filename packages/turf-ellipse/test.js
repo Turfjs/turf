@@ -1,11 +1,10 @@
-const fs = require('fs-extra');
-const test = require('tape');
-const glob = require('glob');
-const path = require('path');
-const load = require('load-json-file');
-const write = require('write-json-file');
-const geojsonhint = require('@mapbox/geojsonhint');
-const ellipse = require('.');
+import test from 'tape';
+import glob from 'glob';
+import path from 'path';
+import load from 'load-json-file';
+import write from 'write-json-file';
+import geojsonhint from '@mapbox/geojsonhint';
+import ellipse from '.';
 
 test('turf-ellipse', t => {
     glob.sync(path.join(__dirname, 'test', 'in', '*.json')).forEach(filepath => {
