@@ -2,7 +2,7 @@ import {polygon, lengthToDegrees, isObject, isNumber} from '@turf/helpers';
 import {getCoord} from '@turf/invariant';
 
 /**
- * Takes a {@link Point} and calculates the ellipse polygon given two axes in degrees and steps for precision.
+ * Takes a {@link Point} and calculates the ellipse polygon given two radii expressed in variable units and steps for precision.
  *
  * @param {Feature<Point>|Array<number>} center center point
  * @param {number} xRadius radius of the ellipse along the x-axis
