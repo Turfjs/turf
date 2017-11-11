@@ -1,6 +1,5 @@
-const polygon = require('@turf/helpers').polygon;
-const lengthToDegrees = require('@turf/helpers').lengthToDegrees;
-const getCoord = require('@turf/invariant').getCoord;
+import {polygon, lengthToDegrees, isObject, isNumber} from '@turf/helpers';
+import {getCoord} from '@turf/invariant';
 
 /**
  * Takes a {@link Point} and calculates the ellipse polygon given two axes in degrees and steps for precision.
@@ -14,44 +13,37 @@ const getCoord = require('@turf/invariant').getCoord;
  * @param {Object} [options.properties={}] properties
  * @returns {Feature<Polygon>} ellipse polygon
  * @example
- * const center = [-75.9975, 40.730833];
- * const xRadius = 0.5;
- * const yRadius = 0.1;
- * const options = {steps: 10, properties: {foo: 'bar'}};
- * const ellipse = turf.ellipse(center, xRadius, yRadius, options);
+ * var center = [-75, 40];
+ * var xRadius = 5;
+ * var yRadius = 2;
+ * var ellipse = turf.ellipse(center, xRadius, yRadius);
  *
  * //addToMap
- * const addToMap = [turf.point(center), ellipse]
+ * var addToMap = [turf.point(center), ellipse]
  */
-module.exports = function (center, xRadius, yRadius, options) {
+function ellipse(center, xRadius, yRadius, options) {
     // Optional params
     options = options || {};
-    const steps = options.steps || 64;
-    const units = options.units || 'kilometers';
-    const properties = options.properties || center.properties || {};
-
-    // helper function
-    const getTanDeg = function (deg) {
-        const rad = deg * Math.PI / 180;
-        return Math.tan(rad);
-    };
+    var steps = options.steps || 64;
+    var units = options.units || 'kilometers';
+    var properties = options.properties || center.properties || {};
 
     // validation
     if (!center) throw new Error('center is required');
     if (!xRadius) throw new Error('xRadius is required');
     if (!yRadius) throw new Error('yRadius is required');
-    if (typeof options !== 'object') throw new Error('options must be an object');
-    if (typeof steps !== 'number') throw new Error('steps must be a number');
+    if (!isObject(options)) throw new Error('options must be an object');
+    if (!isNumber(steps)) throw new Error('steps must be a number');
 
-    const centerCoords = getCoord(center);
+    var centerCoords = getCoord(center);
     xRadius = lengthToDegrees(xRadius, units);
     yRadius = lengthToDegrees(yRadius, units);
 
-    let coordinates = [];
-    for (let i = 0; i < steps; i += 1) {
-        const angle = i * -360 / steps;
-        let x = ((xRadius * yRadius) / Math.sqrt(Math.pow(yRadius, 2) + (Math.pow(xRadius, 2) * Math.pow(getTanDeg(angle), 2))));
-        let y = ((xRadius * yRadius) / Math.sqrt(Math.pow(xRadius, 2) + (Math.pow(yRadius, 2) / Math.pow(getTanDeg(angle), 2))));
+    var coordinates = [];
+    for (var i = 0; i < steps; i += 1) {
+        var angle = i * -360 / steps;
+        var x = ((xRadius * yRadius) / Math.sqrt(Math.pow(yRadius, 2) + (Math.pow(xRadius, 2) * Math.pow(getTanDeg(angle), 2))));
+        var y = ((xRadius * yRadius) / Math.sqrt(Math.pow(xRadius, 2) + (Math.pow(yRadius, 2) / Math.pow(getTanDeg(angle), 2))));
         if (angle < -90 && angle >= -270) {
             x = -x;
         }
@@ -66,3 +58,16 @@ module.exports = function (center, xRadius, yRadius, options) {
     return polygon([coordinates], properties);
 };
 
+/**
+ * Get Tan Degrees
+ *
+ * @private
+ * @param {number} deg Degrees
+ * @returns {number} Tan Degrees
+ */
+function getTanDeg(deg) {
+    var rad = deg * Math.PI / 180;
+    return Math.tan(rad);
+};
+
+export default ellipse;
