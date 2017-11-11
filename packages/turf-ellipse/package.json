@@ -2,7 +2,9 @@
   "name": "@turf/ellipse",
   "version": "5.0.0",
   "description": "turf ellipse module",
-  "main": "index.js",
+  "main": "main",
+  "module": "index",
+  "jsnext:main": "index",
   "types": "index.d.ts",
   "files": [
     "index.js",
@@ -24,7 +26,7 @@
   ],
   "author": "Turf Authors",
   "contributors": [
-    "Moacir P. de Sá Pereira <muziejus>"
+    "Moacir P. de Sá Pereira <@muziejus>"
   ],
   "license": "MIT",
   "bugs": {
