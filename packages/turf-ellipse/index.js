@@ -1,9 +1,10 @@
 const polygon = require('@turf/helpers').polygon;
+const getCoord = require('@turf/invariant').getCoord;
 
 /**
  * Takes a {@link Point} and calculates the ellipse polygon given two axes in degrees and steps for precision.
  *
- * @param {Feature<Point>} center center point
+ * @param {Feature<Point>|Array<number>} center center point
  * @param {number} xAxis x-axis of the ellipse
  * @param {number} yAxis y-axis of the ellipse
  * @param {Object} [options={}] Optional parameters
@@ -11,14 +12,14 @@ const polygon = require('@turf/helpers').polygon;
  * @param {Object} [options.properties={}] properties
  * @returns {Feature<Polygon>} ellipse polygon
  * @example
- * const center = turf.point([-75.9975, 40.730833]);
+ * const center = [-75.9975, 40.730833];
  * const xAxis = 0.5;
  * const yAxis = 0.1;
  * const options = {steps: 10, properties: {foo: 'bar'}};
  * const ellipse = turf.ellipse(center, xAxis, yAxis, options);
  *
  * //addToMap
- * const addToMap = [center, ellipse]
+ * const addToMap = [turf.point(center), ellipse]
  */
 module.exports = function (center, xAxis, yAxis, options) {
     // Optional params
@@ -39,6 +40,8 @@ module.exports = function (center, xAxis, yAxis, options) {
     if (typeof options !== 'object') throw new Error('options must be an object');
     if (typeof steps !== 'number') throw new Error('steps must be a number');
 
+    const centerCoords = getCoord(center);
+
     let coordinates = [];
     for (let i = 0; i < steps; i += 1) {
         const angle = i * -360 / steps;
@@ -50,8 +53,8 @@ module.exports = function (center, xAxis, yAxis, options) {
         if (angle < -180 && angle >= -360) {
             y = -y;
         }
-        coordinates.push([x + center.geometry.coordinates[0],
-            y + center.geometry.coordinates[1]
+        coordinates.push([x + centerCoords[0],
+            y + centerCoords[1]
         ]);
     }
     coordinates.push(coordinates[0]);

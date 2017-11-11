@@ -36,6 +36,7 @@
     "tape": "^4.6.3"
   },
   "dependencies": {
-    "@turf/helpers": "^5.0.4"
+    "@turf/helpers": "^5.0.4",
+    "@turf/invariant": "^5.0.4"
   }
 }

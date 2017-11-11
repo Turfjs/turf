@@ -21,3 +21,15 @@ test('turf-ellipse', t => {
     });
     t.end();
 });
+
+test('turf-ellipse --with coordinates', t => {
+    const center = [ -73.9975, 40.730833 ];
+    const xAxis = 5;
+    const yAxis = 1;
+    const steps = 4;
+    const results = ellipse(center, xAxis, yAxis, {steps: steps});
+    const out = path.join(__dirname, 'test', 'out', 'nyc_bare.json');
+    if (process.env.REGEN) write.sync(out, results);
+    t.deepEqual(results, load.sync(out));
+    t.end();
+});
