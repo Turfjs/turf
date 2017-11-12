@@ -3,7 +3,7 @@ import { point } from '@turf/helpers';
 import { getCoords } from '@turf/invariant';
 
 /**
- * Takes a {@link FeatureCollection of {@link Point} and returns the mean center. Can be weighted.
+ * Takes a {@link FeatureCollection} of {@link Point} and returns the mean center. Can be weighted.
  *
  * @name meanCenter
  * @param {FeatureCollection<Point>} collection input FeatureCollection of points

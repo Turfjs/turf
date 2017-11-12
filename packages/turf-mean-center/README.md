@@ -4,7 +4,7 @@
 
 ## meanCenter
 
-Takes a [of {@link Point](http://geojson.org/geojson-spec.html#feature-collection-objects) and returns the mean center. Can be weighted.
+Takes a [FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects) of [Point](http://geojson.org/geojson-spec.html#point) and returns the mean center. Can be weighted.
 
 **Parameters**
 
