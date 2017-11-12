@@ -1,5 +1,6 @@
 import {polygon, lengthToDegrees, isObject, isNumber} from '@turf/helpers';
 import {getCoord} from '@turf/invariant';
+import { transformRotate } from '@turf/transform-rotate';
 
 /**
  * Takes a {@link Point} and calculates the ellipse polygon given two semi-axes expressed in variable units and steps for precision.
@@ -8,6 +9,8 @@ import {getCoord} from '@turf/invariant';
  * @param {number} xSemiAxis semi (major) axis of the ellipse along the x-axis
  * @param {number} ySemiAxis semi (minor) axis of the ellipse along the y-axis
  * @param {Object} [options={}] Optional parameters
+ * @param {number} [options.angle=0] angle of rotation (along the vertical axis), from North in decimal degrees, negative clockwise
+ * @param {Geometry|Feature<Point>|Array<number>} [options.pivot='origin'] point around which the rotation will be performed
  * @param {number} [options.steps=64] number of steps
  * @param {string} [options.units='kilometers'] unit of measurement for axes
  * @param {Object} [options.properties={}] properties
@@ -26,6 +29,8 @@ function ellipse(center, xSemiAxis, ySemiAxis, options) {
     options = options || {};
     var steps = options.steps || 64;
     var units = options.units || 'kilometers';
+    var angle = options.angle || 0;
+    var pivot = options.pivot || null;
     var properties = options.properties || center.properties || {};
 
     // validation
@@ -34,6 +39,7 @@ function ellipse(center, xSemiAxis, ySemiAxis, options) {
     if (!ySemiAxis) throw new Error('ySemiAxis is required');
     if (!isObject(options)) throw new Error('options must be an object');
     if (!isNumber(steps)) throw new Error('steps must be a number');
+    if (!isNumber(angle)) throw new Error('angle must be a number');
 
     var centerCoords = getCoord(center);
     xSemiAxis = lengthToDegrees(xSemiAxis, units);
@@ -55,7 +61,7 @@ function ellipse(center, xSemiAxis, ySemiAxis, options) {
         ]);
     }
     coordinates.push(coordinates[0]);
-    return polygon([coordinates], properties);
+    return transformRotate(polygon([coordinates], properties), angle, { pivot: pivot });
 
 /**
  * Get Tan Degrees
