@@ -36,6 +36,7 @@
   "devDependencies": {
     "@mapbox/geojsonhint": "*",
     "@std/esm": "*",
+    "@turf/random": "^5.0.0",
     "benchmark": "^2.1.4",
     "load-json-file": "^2.0.0",
     "rollup": "^0.51.5",
@@ -44,8 +45,8 @@
   },
   "dependencies": {
     "@turf/helpers": "5.0.0",
-    "@turf/meta": "5.0.0",
-    "@turf/invariant": "5.0.0"
+    "@turf/invariant": "5.0.0",
+    "@turf/meta": "5.0.0"
   },
   "@std/esm": {
     "esm": "js",
