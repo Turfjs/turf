@@ -5,8 +5,8 @@ import { Feature, Coord, Polygon, Units, Properties } from '@turf/helpers'
  */
 export default function (
     center: Coord,
-    xRadius: number,
-    yRadius: number,
+    xSemiAxis: number,
+    ySemiAxis: number,
     options?: {
         steps?: number;
         units?: Units;

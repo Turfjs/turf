@@ -10,11 +10,11 @@ test('turf-ellipse', t => {
     glob.sync(path.join(__dirname, 'test', 'in', '*.json')).forEach(filepath => {
         const {name} = path.parse(filepath);
         const geojson = load.sync(filepath);
-        const xRadius = geojson.properties.xRadius;
-        const yRadius = geojson.properties.yRadius;
+        const xSemiAxis = geojson.properties.xSemiAxis;
+        const ySemiAxis = geojson.properties.ySemiAxis;
         const steps = geojson.properties.steps;
         const units = geojson.properties.units;
-        const results = ellipse(geojson, xRadius, yRadius, {steps: steps, units: units});
+        const results = ellipse(geojson, xSemiAxis, ySemiAxis, {steps: steps, units: units});
 
         const out = filepath.replace(path.join('test', 'in'), path.join('test', 'out'))
         if (process.env.REGEN) write.sync(out, results);
@@ -25,10 +25,10 @@ test('turf-ellipse', t => {
 
 test('turf-ellipse -- with coordinates', t => {
     const center = [ -73.9975, 40.730833 ];
-    const xRadius = 5;
-    const yRadius = 1;
+    const xSemiAxis = 5;
+    const ySemiAxis = 1;
     const steps = 4;
-    const results = ellipse(center, xRadius, yRadius, {steps: steps});
+    const results = ellipse(center, xSemiAxis, ySemiAxis, {steps: steps});
     const out = path.join(__dirname, 'test', 'out', 'nyc_bare.json');
     if (process.env.REGEN) write.sync(out, results);
     t.deepEqual(results, load.sync(out));

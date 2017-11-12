@@ -11,13 +11,13 @@ const ellipse = require('.');
  */
 const suite = new Benchmark.Suite('turf-ellipse');
 const center = [ -73.9975, 40.730833 ];
-const xRadius = 50;
-const yRadius = 10;
+const xSemiAxis = 50;
+const ySemiAxis = 10;
 
 suite
-    .add('turf-ellipse - 8 steps', () => ellipse(center, xRadius, yRadius, {steps: 8}))
-    .add('turf-ellipse - 64 steps', () => ellipse(center, xRadius, yRadius, {steps: 64}))
-    .add('turf-ellipse - 256 steps', () => ellipse(center, xRadius, yRadius, {steps: 256}))
+    .add('turf-ellipse - 8 steps', () => ellipse(center, xSemiAxis, ySemiAxis, {steps: 8}))
+    .add('turf-ellipse - 64 steps', () => ellipse(center, xSemiAxis, ySemiAxis, {steps: 64}))
+    .add('turf-ellipse - 256 steps', () => ellipse(center, xSemiAxis, ySemiAxis, {steps: 256}))
     .on('cycle', e => console.log(String(e.target)))
     .on('complete', () => {})
     .run();
