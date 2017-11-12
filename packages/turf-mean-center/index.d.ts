@@ -1,9 +1,9 @@
-import { GeoJSON, Feature, Point } from '@turf/helpers'
+import { FeatureCollection, Point } from '@turf/helpers'
 
 /**
  * http://turfjs.org/docs/#meancenter
  */
 export default function (
-    geojson: GeoJSON,
+    collection: FeatureCollection<Point>,
     weight?: string
 ): Feature<Point>;
