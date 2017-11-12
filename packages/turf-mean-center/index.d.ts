@@ -1,4 +1,4 @@
-import { FeatureCollection, Point } from '@turf/helpers'
+import { Feature, FeatureCollection, Point } from '@turf/helpers'
 
 /**
  * http://turfjs.org/docs/#meancenter

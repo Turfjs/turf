@@ -23,9 +23,9 @@ import { getCoords } from '@turf/invariant';
  */
 function meanCenter(collection, weight) {
     var sumXs = 0;
-    var sumYs = 0; 
+    var sumYs = 0;
     var sumNs = 0;
-    featureEach(collection, function(point){
+    featureEach(collection, function (point) {
         var w = point.properties[weight] || 1;
         sumXs += getCoords(point)[0] * w;
         sumYs += getCoords(point)[1] * w;
