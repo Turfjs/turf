@@ -37,14 +37,15 @@
     "@mapbox/geojsonhint": "*",
     "@std/esm": "*",
     "benchmark": "^2.1.4",
-    "write-json-file": "^2.2.0",
-    "rollup": "*",
     "load-json-file": "^2.0.0",
-    "tape": "^4.6.3"
+    "rollup": "^0.51.5",
+    "tape": "^4.6.3",
+    "write-json-file": "^2.2.0"
   },
   "dependencies": {
     "@turf/helpers": "5.0.0",
-    "@turf/meta": "5.0.0"
+    "@turf/meta": "5.0.0",
+    "@turf/invariant": "5.0.0"
   },
   "@std/esm": {
     "esm": "js",

@@ -1,5 +1,6 @@
 import { featureEach } from '@turf/meta';
 import { point } from '@turf/helpers';
+import { getCoords } from '@turf/invariant';
 
 /**
  * Takes a {@link FeatureCollection of {@link Point} and returns the mean center. Can be weighted.
