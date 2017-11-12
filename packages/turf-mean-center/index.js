@@ -1,5 +1,5 @@
 import { featureEach } from '@turf/meta';
-import { point } from '@turf/helpers';
+import { point, isNumber } from '@turf/helpers';
 import { getCoords } from '@turf/invariant';
 
 /**
@@ -25,12 +25,14 @@ function meanCenter(collection, weight) {
     var sumXs = 0;
     var sumYs = 0;
     var sumNs = 0;
-    featureEach(collection, function (point) {
+    featureEach(collection, function (point, i) {
         var w = point.properties[weight] || 1;
+        if (!isNumber(w)) throw new Error('Weight for feature index ' + i + ' is not a number!');
         sumXs += getCoords(point)[0] * w;
         sumYs += getCoords(point)[1] * w;
         sumNs += w;
     });
+    if (sumNs === 0) throw new Error('Sum of weights is equal to zero!');
     return point([sumXs / sumNs, sumYs / sumNs]);
 }
 

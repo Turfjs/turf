@@ -24,3 +24,17 @@ test('turf-mean-center -- weighted', t => {
     t.deepEqual(results, load.sync(out));
     t.end();
 });
+
+test('turf-mean-center -- weighted with string in weights', t => {
+    const filepath = path.join(__dirname, 'test', 'in', 'four_points_string_weight.json');
+    const geojson = load.sync(filepath);
+    t.throws(() => meanCenter(geojson, 'weight'));
+    t.end();
+});
+
+test('turf-mean-center -- weighted with zero sum of weights', t => {
+    const filepath = path.join(__dirname, 'test', 'in', 'four_points_0_weight.json');
+    const geojson = load.sync(filepath);
+    t.throws(() => meanCenter(geojson, 'weight'));
+    t.end();
+});
