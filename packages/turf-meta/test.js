@@ -16,6 +16,8 @@ const pt = point([0, 0], {a: 1});
 const pt2 = point([1, 1]);
 const line = lineString([[0, 0], [1, 1]]);
 const poly = polygon([[[0, 0], [1, 1], [0, 1], [0, 0]]]);
+const polyWithHole = polygon([[[100.0, 0.0], [101.0, 0.0], [101.0, 1.0], [100.0, 1.0], [100.0, 0.0]],
+    [[100.2, 0.2], [100.8, 0.2], [100.8, 0.8], [100.2, 0.8], [100.2, 0.2]]]);
 const multiPt = multiPoint([[0, 0], [1, 1]]);
 const multiLine = multiLineString([[[0, 0], [1, 1]], [[3, 3], [4, 4]]]);
 const multiPoly = multiPolygon([[[[0, 0], [1, 1], [0, 1], [0, 0]]], [[[3, 3], [2, 2], [1, 2], [3, 3]]]]);
@@ -95,6 +97,24 @@ test('coordEach -- Polygon', t => {
         });
         t.deepEqual(output, [[0, 0], [1, 1], [0, 1], [0, 0]]);
         t.equal(lastIndex, 3);
+    });
+    t.end();
+});
+
+test('coordEach -- PolygonWithHole', t => {
+    featureAndCollection(polyWithHole.geometry).forEach(input => {
+        const output = [[]];
+        let lastIsHole, firstIsNotHole;
+        meta.coordEach(input, (coords, coordIndex, featureIndex, featureSubIndex) => {
+            if (featureSubIndex > output.length - 1) output.push([]);
+            output[featureSubIndex].push(coords);
+            if (coordIndex === 0) firstIsNotHole = featureSubIndex;
+            lastIsHole = featureSubIndex;
+        });
+        t.deepEqual(output, [[[100.0, 0.0], [101.0, 0.0], [101.0, 1.0], [100.0, 1.0], [100.0, 0.0]],
+            [[100.2, 0.2], [100.8, 0.2], [100.8, 0.8], [100.2, 0.8], [100.2, 0.2]]]);
+        t.equal(firstIsNotHole, 0);
+        t.equal(lastIsHole, 1);
     });
     t.end();
 });

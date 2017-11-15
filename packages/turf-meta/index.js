@@ -98,7 +98,7 @@ export function coordEach(geojson, callback, excludeWrapCoord) {
                         callback(coords[j][k], coordIndex, featureIndex, featureSubIndex);
                         coordIndex++;
                     }
-                    if (geomType === 'MultiLineString') featureSubIndex++;
+                    featureSubIndex++;
                 }
                 if (geomType === 'Polygon') featureSubIndex++;
                 break;
