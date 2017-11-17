@@ -388,7 +388,7 @@ Returns **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Refer
 ## convertArea
 
 Converts a area to the requested unit.
-Valid units: kilometers, kilometres, meters, metres, centimetres, millimeter, acre, mile, yard, foot, inch
+Valid units: kilometers, kilometres, meters, metres, centimetres, millimeters, acres, miles, yards, feet, inches
 
 **Parameters**
 
