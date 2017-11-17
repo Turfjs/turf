@@ -1,6 +1,6 @@
-import {polygon, lengthToDegrees, isObject, isNumber} from '@turf/helpers';
-import {getCoord} from '@turf/invariant';
-import { transformRotate } from '@turf/transform-rotate';
+import { polygon, lengthToDegrees, isObject, isNumber } from '@turf/helpers';
+import { getCoord } from '@turf/invariant';
+import transformRotate from '@turf/transform-rotate';
 
 /**
  * Takes a {@link Point} and calculates the ellipse polygon given two semi-axes expressed in variable units and steps for precision.
