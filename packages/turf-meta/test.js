@@ -101,24 +101,6 @@ test('coordEach -- Polygon', t => {
     t.end();
 });
 
-test('coordEach -- PolygonWithHole', t => {
-    featureAndCollection(polyWithHole.geometry).forEach(input => {
-        const output = [[]];
-        let lastIsHole, firstIsNotHole;
-        meta.coordEach(input, (coords, coordIndex, featureIndex, featureSubIndex) => {
-            if (featureSubIndex > output.length - 1) output.push([]);
-            output[featureSubIndex].push(coords);
-            if (coordIndex === 0) firstIsNotHole = featureSubIndex;
-            lastIsHole = featureSubIndex;
-        });
-        t.deepEqual(output, [[[100.0, 0.0], [101.0, 0.0], [101.0, 1.0], [100.0, 1.0], [100.0, 0.0]],
-            [[100.2, 0.2], [100.8, 0.2], [100.8, 0.8], [100.2, 0.8], [100.2, 0.2]]]);
-        t.equal(firstIsNotHole, 0);
-        t.equal(lastIsHole, 1);
-    });
-    t.end();
-});
-
 test('coordEach -- Polygon excludeWrapCoord', t => {
     featureAndCollection(poly.geometry).forEach(input => {
         const output = [];
@@ -136,16 +118,16 @@ test('coordEach -- MultiPolygon', t => {
     const coords = [];
     const coordIndexes = [];
     const featureIndexes = [];
-    const featureSubIndexes = [];
-    meta.coordEach(multiPoly, (coord, coordIndex, featureIndex, featureSubIndex) => {
+    const multiFeatureIndexes = [];
+    meta.coordEach(multiPoly, (coord, coordIndex, featureIndex, multiFeatureIndex) => {
         coords.push(coord);
         coordIndexes.push(coordIndex);
         featureIndexes.push(featureIndex);
-        featureSubIndexes.push(featureSubIndex);
+        multiFeatureIndexes.push(multiFeatureIndex);
     });
     t.deepEqual(coordIndexes, [0, 1, 2, 3, 4, 5, 6, 7]);
     t.deepEqual(featureIndexes, [0, 0, 0, 0, 0, 0, 0, 0]);
-    t.deepEqual(featureSubIndexes, [0, 0, 0, 0, 1, 1, 1, 1]);
+    t.deepEqual(multiFeatureIndexes, [0, 0, 0, 0, 1, 1, 1, 1]);
     t.equal(coords.length, 8);
     t.end();
 });
@@ -154,16 +136,16 @@ test('coordEach -- FeatureCollection', t => {
     const coords = [];
     const coordIndexes = [];
     const featureIndexes = [];
-    const featureSubIndexes = [];
-    meta.coordEach(fcMixed, (coord, coordIndex, featureIndex, featureSubIndex) => {
+    const multiFeatureIndexes = [];
+    meta.coordEach(fcMixed, (coord, coordIndex, featureIndex, multiFeatureIndex) => {
         coords.push(coord);
         coordIndexes.push(coordIndex);
         featureIndexes.push(featureIndex);
-        featureSubIndexes.push(featureSubIndex);
+        multiFeatureIndexes.push(multiFeatureIndex);
     });
     t.deepEqual(coordIndexes, [0, 1, 2, 3, 4, 5, 6]);
     t.deepEqual(featureIndexes, [0, 1, 1, 2, 2, 2, 2]);
-    t.deepEqual(featureSubIndexes, [0, 0, 0, 0, 0, 1, 1]);
+    t.deepEqual(multiFeatureIndexes, [0, 0, 0, 0, 0, 1, 1]);
     t.equal(coords.length, 7);
     t.end();
 });
@@ -315,14 +297,14 @@ test('flattenEach -- MultiPoint', t => {
 test('flattenEach -- Mixed FeatureCollection', t => {
     const features = [];
     const featureIndexes = [];
-    const featureSubIndexes = [];
-    meta.flattenEach(fcMixed, (feature, featureIndex, featureSubIndex) => {
+    const multiFeatureIndexes = [];
+    meta.flattenEach(fcMixed, (feature, featureIndex, multiFeatureIndex) => {
         features.push(feature);
         featureIndexes.push(featureIndex);
-        featureSubIndexes.push(featureSubIndex);
+        multiFeatureIndexes.push(multiFeatureIndex);
     });
     t.deepEqual(featureIndexes, [0, 1, 2, 2]);
-    t.deepEqual(featureSubIndexes, [0, 0, 0, 1]);
+    t.deepEqual(multiFeatureIndexes, [0, 0, 0, 1]);
     t.equal(features.length, 4);
     t.end();
 });
@@ -366,15 +348,15 @@ test('flattenReduce -- initialValue', t => {
 test('flattenReduce -- previous-feature', t => {
     const features = [];
     const featureIndexes = [];
-    const featureSubIndexes = [];
-    meta.flattenReduce(multiLine, (previous, current, featureIndex, featureSubIndex) => {
+    const multiFeatureIndexes = [];
+    meta.flattenReduce(multiLine, (previous, current, featureIndex, multiFeatureIndex) => {
         featureIndexes.push(featureIndex);
-        featureSubIndexes.push(featureSubIndex);
+        multiFeatureIndexes.push(multiFeatureIndex);
         features.push(current);
         return current;
     });
     t.deepEqual(featureIndexes, [0]);
-    t.deepEqual(featureSubIndexes, [1]);
+    t.deepEqual(multiFeatureIndexes, [1]);
     t.equal(features.length, 1);
     t.end();
 });
@@ -382,15 +364,15 @@ test('flattenReduce -- previous-feature', t => {
 test('flattenReduce -- previous-feature+initialValue', t => {
     const features = [];
     const featureIndexes = [];
-    const featureSubIndexes = [];
-    const sum = meta.flattenReduce(multiPt.geometry, (previous, current, featureIndex, featureSubIndex) => {
+    const multiFeatureIndexes = [];
+    const sum = meta.flattenReduce(multiPt.geometry, (previous, current, featureIndex, multiFeatureIndex) => {
         featureIndexes.push(featureIndex);
-        featureSubIndexes.push(featureSubIndex);
+        multiFeatureIndexes.push(multiFeatureIndex);
         features.push(current);
         return current;
     }, null);
     t.deepEqual(featureIndexes, [0, 0]);
-    t.deepEqual(featureSubIndexes, [0, 1]);
+    t.deepEqual(multiFeatureIndexes, [0, 1]);
     t.equal(features.length, 2);
     t.deepEqual(sum, features[features.length - 1]);
     t.end();
@@ -487,58 +469,64 @@ const geojsonSegments = featureCollection([
 
 test('segmentEach -- index & subIndex', t => {
     const featureIndexes = [];
-    const featureSubIndexes = [];
+    const multiFeatureIndexes = [];
+    const geometryIndexes = [];
     const segmentIndexes = [];
     let total = 0;
 
-    meta.segmentEach(geojsonSegments, (segment, featureIndex, featureSubIndex, segmentIndex) => {
+    meta.segmentEach(geojsonSegments, (segment, featureIndex, multiFeatureIndex, geometryIndex, segmentIndex) => {
         featureIndexes.push(featureIndex);
-        featureSubIndexes.push(featureSubIndex);
+        multiFeatureIndexes.push(multiFeatureIndex);
+        geometryIndexes.push(geometryIndex);
         segmentIndexes.push(segmentIndex);
         total++;
     });
     t.equal(total, 10, 'total');
     t.deepEqual(featureIndexes, [1, 1, 2, 2, 2, 2, 4, 4, 4, 4], 'segmentEach.featureIndex');
-    t.deepEqual(featureSubIndexes, [0, 0, 0, 0, 0, 0, 0, 0, 1, 1], 'segmentEach.featureSubIndex');
+    t.deepEqual(multiFeatureIndexes, [0, 0, 0, 0, 0, 0, 0, 0, 1, 1], 'segmentEach.multiFeatureIndex');
+    t.deepEqual(geometryIndexes, [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], 'segmentEach.geometryIndex');
     t.deepEqual(segmentIndexes, [0, 1, 0, 1, 2, 3, 0, 1, 0, 1], 'segmentEach.segmentIndex');
     t.end();
 });
 
 test('segmentReduce -- index & subIndex', t => {
     const featureIndexes = [];
-    const featureSubIndexes = [];
+    const multiFeatureIndexes = [];
+    const geometryIndexes = [];
     const segmentIndexes = [];
     let total = 0;
 
-    meta.segmentReduce(geojsonSegments, (previousValue, segment, featureIndex, featureSubIndex, segmentIndex) => {
+    meta.segmentReduce(geojsonSegments, (previousValue, segment, featureIndex, multiFeatureIndex, geometryIndex, segmentIndex) => {
         featureIndexes.push(featureIndex);
-        featureSubIndexes.push(featureSubIndex);
+        multiFeatureIndexes.push(multiFeatureIndex);
+        geometryIndexes.push(geometryIndex);
         segmentIndexes.push(segmentIndex);
         total++;
     });
     t.equal(total, 9, 'total');
-    t.deepEqual(segmentIndexes, [1, 0, 1, 2, 3, 0, 1, 0, 1], 'segmentEach.segmentIndex');
-    t.deepEqual(featureIndexes, [1, 2, 2, 2, 2, 4, 4, 4, 4], 'segmentEach.featureIndex');
-    t.deepEqual(featureSubIndexes, [0, 0, 0, 0, 0, 0, 0, 1, 1], 'segmentEach.featureSubIndex');
+    t.deepEqual(featureIndexes, [1, 2, 2, 2, 2, 4, 4, 4, 4], 'segmentReduce.featureIndex');
+    t.deepEqual(multiFeatureIndexes, [0, 0, 0, 0, 0, 0, 0, 1, 1], 'segmentReduce.multiFeatureIndex');
+    t.deepEqual(geometryIndexes, [0, 0, 0, 0, 0, 0, 0, 0, 0], 'segmentReduce.geometryIndex');
+    t.deepEqual(segmentIndexes, [1, 0, 1, 2, 3, 0, 1, 0, 1], 'segmentReduce.segmentIndex');
     t.end();
 });
 
 test('lineEach -- lineString', t => {
     const line = lineString([[0, 0], [2, 2], [4, 4]]);
     const featureIndexes = [];
-    const featureSubIndexes = [];
+    const multiFeatureIndexes = [];
     const lineIndexes = [];
     let total = 0;
 
-    meta.lineEach(line, (currentLine, featureIndex, featureSubIndex, lineIndex) => {
+    meta.lineEach(line, (currentLine, featureIndex, multiFeatureIndex, lineIndex) => {
         featureIndexes.push(featureIndex);
-        featureSubIndexes.push(featureSubIndex);
+        multiFeatureIndexes.push(multiFeatureIndex);
         lineIndexes.push(lineIndex);
         total++;
     });
     t.equal(total, 1, 'total');
     t.deepEqual(featureIndexes, [0], 'featureIndex');
-    t.deepEqual(featureSubIndexes, [0], 'featureSubIndex');
+    t.deepEqual(multiFeatureIndexes, [0], 'multiFeatureIndex');
     t.deepEqual(lineIndexes, [0], 'lineIndex');
     t.end();
 });
@@ -549,19 +537,19 @@ test('lineEach -- multiLineString', t => {
         [[1, 1], [3, 3], [5, 5]]
     ]);
     const featureIndexes = [];
-    const featureSubIndexes = [];
+    const multiFeatureIndexes = [];
     const lineIndexes = [];
     let total = 0;
 
-    meta.lineEach(multiLine, (currentLine, featureIndex, featureSubIndex, lineIndex) => {
+    meta.lineEach(multiLine, (currentLine, featureIndex, multiFeatureIndex, lineIndex) => {
         featureIndexes.push(featureIndex);
-        featureSubIndexes.push(featureSubIndex);
+        multiFeatureIndexes.push(multiFeatureIndex);
         lineIndexes.push(lineIndex);
         total++;
     });
     t.equal(total, 2, 'total');
     t.deepEqual(featureIndexes, [0, 0], 'featureIndex');
-    t.deepEqual(featureSubIndexes, [0, 1], 'featureSubIndex');
+    t.deepEqual(multiFeatureIndexes, [0, 1], 'multiFeatureIndex');
     t.deepEqual(lineIndexes, [0, 0], 'lineIndex');
     t.end();
 });
@@ -577,19 +565,19 @@ test('lineEach -- multiPolygon', t => {
         ]
     ]);
     const featureIndexes = [];
-    const featureSubIndexes = [];
+    const multiFeatureIndexes = [];
     const lineIndexes = [];
     let total = 0;
 
-    meta.lineEach(multiPoly, (currentLine, featureIndex, featureSubIndex, lineIndex) => {
+    meta.lineEach(multiPoly, (currentLine, featureIndex, multiFeatureIndex, lineIndex) => {
         featureIndexes.push(featureIndex);
-        featureSubIndexes.push(featureSubIndex);
+        multiFeatureIndexes.push(multiFeatureIndex);
         lineIndexes.push(lineIndex);
         total++;
     });
     t.equal(total, 3, 'total');
     t.deepEqual(featureIndexes, [0, 0, 0], 'featureIndex');
-    t.deepEqual(featureSubIndexes, [0, 0, 1], 'featureSubIndex');
+    t.deepEqual(multiFeatureIndexes, [0, 0, 1], 'multiFeatureIndex');
     t.deepEqual(lineIndexes, [0, 1, 0], 'lineIndex');
     t.end();
 });
@@ -610,19 +598,19 @@ test('lineEach -- featureCollection', t => {
         ]
     ]);
     const featureIndexes = [];
-    const featureSubIndexes = [];
+    const multiFeatureIndexes = [];
     const lineIndexes = [];
     let total = 0;
 
-    meta.lineEach(featureCollection([line, multiLine, multiPoly]), (currentLine, featureIndex, featureSubIndex, lineIndex) => {
+    meta.lineEach(featureCollection([line, multiLine, multiPoly]), (currentLine, featureIndex, multiFeatureIndex, lineIndex) => {
         featureIndexes.push(featureIndex);
-        featureSubIndexes.push(featureSubIndex);
+        multiFeatureIndexes.push(multiFeatureIndex);
         lineIndexes.push(lineIndex);
         total++;
     });
     t.equal(total, 6, 'total');
     t.deepEqual(featureIndexes, [0, 1, 1, 2, 2, 2], 'featureIndex');
-    t.deepEqual(featureSubIndexes, [0, 0, 1, 0, 0, 1], 'featureSubIndex');
+    t.deepEqual(multiFeatureIndexes, [0, 0, 1, 0, 0, 1], 'multiFeatureIndex');
     t.deepEqual(lineIndexes, [0, 0, 0, 0, 1, 0], 'lineIndex');
     t.end();
 });
@@ -713,5 +701,61 @@ test('lineEach -- return lineString', t => {
     meta.lineEach(line, (currentLine) => {
         t.deepEqual(line, currentLine, 'return itself');
     });
+    t.end();
+});
+
+
+test('meta.coordEach -- indexes -- PolygonWithHole', t => {
+    const coordIndexes = [];
+    const featureIndexes = [];
+    const multiFeatureIndexes = [];
+    const geometryIndexes = [];
+
+    meta.coordEach(polyWithHole, (coords, coordIndex, featureIndex, multiFeatureIndex, geometryIndex) => {
+        coordIndexes.push(coordIndex)
+        featureIndexes.push(featureIndex)
+        multiFeatureIndexes.push(multiFeatureIndex)
+        geometryIndexes.push(geometryIndex)
+    });
+    t.deepEqual(coordIndexes, [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]);
+    t.deepEqual(featureIndexes, [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]);
+    t.deepEqual(multiFeatureIndexes, [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]);
+    t.deepEqual(geometryIndexes, [0, 0, 0, 0, 0, 1, 1, 1, 1, 1]);
+    t.end();
+});
+
+test('meta.lineEach -- indexes -- PolygonWithHole', t => {
+    const featureIndexes = [];
+    const multiFeatureIndexes = [];
+    const geometryIndexes = [];
+
+    meta.lineEach(polyWithHole, (line, featureIndex, multiFeatureIndex, geometryIndex) => {
+        featureIndexes.push(featureIndex)
+        multiFeatureIndexes.push(multiFeatureIndex)
+        geometryIndexes.push(geometryIndex)
+    });
+    t.deepEqual(featureIndexes, [0, 0]);
+    t.deepEqual(multiFeatureIndexes, [0, 0]);
+    t.deepEqual(geometryIndexes, [0, 1]);
+    t.end();
+});
+
+test('meta.segmentEach -- indexes -- PolygonWithHole', t => {
+    const featureIndexes = [];
+    const multiFeatureIndexes = [];
+    const geometryIndexes = [];
+    const segmentIndexes = [];
+
+    meta.segmentEach(polyWithHole, (segment, featureIndex, multiFeatureIndex, geometryIndex, segmentIndex) => {
+        featureIndexes.push(featureIndex)
+        multiFeatureIndexes.push(multiFeatureIndex)
+        geometryIndexes.push(geometryIndex)
+        segmentIndexes.push(segmentIndex)
+    });
+
+    t.deepEqual(featureIndexes, [0, 0, 0, 0, 0, 0, 0, 0, 0]);
+    t.deepEqual(multiFeatureIndexes, [0, 0, 0, 0, 0, 0, 0, 0, 0]);
+    t.deepEqual(geometryIndexes, [0, 0, 0, 0, 1, 1, 1, 1, 1]);
+    t.deepEqual(segmentIndexes, [0, 1, 2, 3, 4, 5, 6, 7, 8]);
     t.end();
 });
