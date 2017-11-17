@@ -5,6 +5,7 @@ import load from 'load-json-file';
 import write from 'write-json-file';
 import { featureEach } from '@turf/meta';
 import { featureCollection } from '@turf/helpers';
+import kinks from '@turf/kinks';
 import unkinkPolygon from '.';
 
 const directories = {
@@ -18,8 +19,16 @@ const fixtures = fs.readdirSync(directories.in).map(filename => {
 
 test('unkink-polygon', t => {
     for (const {filename, geojson} of fixtures) {
-        const unkinked = colorize(unkinkPolygon(geojson));
+        const unkinked = unkinkPolygon(geojson);
 
+        // Detect if kinks exists
+        featureEach(unkinked, feature => {
+            // Throw Error when Issue #1094 is fixed
+            if (kinks(feature).features.length) t.skip(filename + ' has kinks')
+        })
+
+        // Style results
+        const results = colorize(unkinked);
         if (process.env.REGEN) write.sync(directories.out + filename, unkinked);
 
         const expected = load.sync(directories.out + filename);
