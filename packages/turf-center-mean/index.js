@@ -41,6 +41,7 @@ function centerMean(geojson, options) {
     geomEach(geojson, function (geom, featureIndex, properties) {
         var weightValue = properties[weight] || 1;
         if (!isNumber(weightValue)) throw new Error('weight value must be a number for feature index ' + featureIndex);
+        weightValue = Number(weightValue);
         if (weightValue < 0) throw new Error('weight value must be positive for feature index ' + featureIndex);
         coordEach(geom, function (coord) {
             sumXs += coord[0] * weightValue;
