@@ -35,13 +35,13 @@
   "homepage": "https://github.com/Turfjs/turf",
   "devDependencies": {
     "@mapbox/geojsonhint": "*",
+    "@std/esm": "*",
     "benchmark": "*",
-    "write-json-file": "*",
-    "load-json-file": "*",
-    "tape": "*",
     "glob": "*",
-    "rollup": "*",
-    "@std/esm": "*"
+    "load-json-file": "*",
+    "rollup": "^0.51.7",
+    "tape": "*",
+    "write-json-file": "*"
   },
   "dependencies": {
     "@turf/helpers": "^5.0.4",
