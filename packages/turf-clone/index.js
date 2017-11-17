@@ -70,12 +70,18 @@ function cloneProperties(properties) {
     Object.keys(properties).forEach(function (key) {
         var value = properties[key];
         if (typeof value === 'object') {
-            // handle Array
-            if (value.length) cloned[key] = value.map(function (item) {
-                return item;
-            });
-            // handle Object
-            cloned[key] = cloneProperties(value);
+            if (value === null) {
+                // handle null
+                cloned[key] = null;
+            } else if (value.length) {
+                // handle Array
+                cloned[key] = value.map(function (item) {
+                    return item;
+                });
+            } else {
+                // handle generic Object
+                cloned[key] = cloneProperties(value);
+            }
         } else cloned[key] = value;
     });
     return cloned;

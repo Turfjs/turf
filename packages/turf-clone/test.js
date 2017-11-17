@@ -133,6 +133,7 @@ test('turf-clone -- Preserve all properties -- Feature', t => {
         object: {property: 1},
         array: [0, 1, 2],
         number: 1,
+        nullity: null,
         boolean: true
     };
     const pt = point([0, 20], properties, bbox, id);
@@ -149,6 +150,7 @@ test('turf-clone -- Preserve all properties -- Feature', t => {
     t.equal(cloned.properties.object.property, 1);
     t.deepEqual(cloned.properties.array, [0, 1, 2]);
     t.equal(cloned.properties.number, 1);
+    t.equal(cloned.properties.nullity, null);
     t.equal(cloned.properties.boolean, true);
 
     // Mutate clone properties
