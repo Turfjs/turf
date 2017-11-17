@@ -4,6 +4,7 @@ import glob from 'glob';
 import path from 'path';
 import load from 'load-json-file';
 import write from 'write-json-file';
+import truncate from '@turf/truncate';
 import { featureEach, coordEach } from '@turf/meta';
 import { lineString, featureCollection } from '@turf/helpers';
 import center from '@turf/center';
@@ -14,14 +15,14 @@ test('turf-center-mean', t => {
         const geojson = load.sync(filepath);
         const options = geojson.options || {};
         options.properties = {'marker-symbol': 'star', 'marker-color': '#F00'};
-        const centered = centerMean(geojson, options);
+        const centered = truncate(centerMean(geojson, options));
 
         // Display Results
         const results = featureCollection([])
         featureEach(geojson, feature => results.features.push(feature))
         coordEach(geojson, coord => results.features.push(lineString([coord, centered.geometry.coordinates], {stroke: '#00F', 'stroke-width': 1})))
         // Add @turf/center to compare position
-        results.features.push(center(geojson, {'marker-symbol': 'circle', 'marker-color': '#00F'}))
+        results.features.push(truncate(center(geojson, {'marker-symbol': 'circle', 'marker-color': '#00F'})))
         results.features.push(centered)
 
         const out = filepath.replace(path.join('test', 'in'), path.join('test', 'out'))

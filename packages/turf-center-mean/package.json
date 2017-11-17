@@ -42,6 +42,7 @@
     "@std/esm": "*",
     "@turf/center": "*",
     "@turf/meta": "^5.0.4",
+    "@turf/truncate": "*",
     "benchmark": "*",
     "glob": "*",
     "load-json-file": "*",
