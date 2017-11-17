@@ -7,6 +7,6 @@ export default function (
     features: AllGeoJSON,
     options?: {
         properties?: Properties
-        weight?: number
+        weight?: string
     }
 ): Feature<Point>;
