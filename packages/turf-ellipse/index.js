@@ -47,7 +47,7 @@ function ellipse(center, xSemiAxis, ySemiAxis, options) {
 
     var coordinates = [];
     for (var i = 0; i < steps; i += 1) {
-        var angle = i * -360 / steps;
+        angle = i * -360 / steps;
         var x = ((xSemiAxis * ySemiAxis) / Math.sqrt(Math.pow(ySemiAxis, 2) + (Math.pow(xSemiAxis, 2) * Math.pow(getTanDeg(angle), 2))));
         var y = ((xSemiAxis * ySemiAxis) / Math.sqrt(Math.pow(xSemiAxis, 2) + (Math.pow(ySemiAxis, 2) / Math.pow(getTanDeg(angle), 2))));
         if (angle < -90 && angle >= -270) {
@@ -63,13 +63,13 @@ function ellipse(center, xSemiAxis, ySemiAxis, options) {
     coordinates.push(coordinates[0]);
     return transformRotate(polygon([coordinates], properties), angle, { pivot: pivot });
 
-/**
- * Get Tan Degrees
- *
- * @private
- * @param {number} deg Degrees
- * @returns {number} Tan Degrees
- */
+    /**
+     * Get Tan Degrees
+     *
+     * @private
+     * @param {number} deg Degrees
+     * @returns {number} Tan Degrees
+     */
     function getTanDeg(deg) {
         var rad = deg * Math.PI / 180;
         return Math.tan(rad);
