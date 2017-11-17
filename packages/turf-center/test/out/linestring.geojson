@@ -4,7 +4,8 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"marker-symbol": "circle"
+				"marker-symbol": "star",
+				"marker-color": "#F00"
 			},
 			"geometry": {
 				"type": "Point",
@@ -27,6 +28,46 @@
 					[
 						4.85994815826416,
 						45.749558161214516
+					]
+				]
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {
+				"stroke": "#00F",
+				"stroke-width": 1
+			},
+			"geometry": {
+				"type": "LineString",
+				"coordinates": [
+					[
+						4.86020565032959,
+						45.76884015325622
+					],
+					[
+						4.860076904296875,
+						45.75919915723537
+					]
+				]
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {
+				"stroke": "#00F",
+				"stroke-width": 1
+			},
+			"geometry": {
+				"type": "LineString",
+				"coordinates": [
+					[
+						4.85994815826416,
+						45.749558161214516
+					],
+					[
+						4.860076904296875,
+						45.75919915723537
 					]
 				]
 			}

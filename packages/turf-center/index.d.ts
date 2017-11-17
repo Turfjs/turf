@@ -5,5 +5,8 @@ import { AllGeoJSON, Feature, Point, Properties } from '@turf/helpers';
  */
 export default function (
     features: AllGeoJSON,
-    properties?: Properties
+    options?: {
+        properties?: Properties
+        weight?: number
+    }
 ): Feature<Point>;
