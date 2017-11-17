@@ -3,20 +3,6 @@
 	"features": [
 		{
 			"type": "Feature",
-			"properties": {
-				"marker-symbol": "star",
-				"marker-color": "#F00"
-			},
-			"geometry": {
-				"type": "Point",
-				"coordinates": [
-					1.5625,
-					0.9375
-				]
-			}
-		},
-		{
-			"type": "Feature",
 			"geometry": {
 				"type": "Point",
 				"coordinates": [
@@ -144,6 +130,34 @@
 						1.5625,
 						0.9375
 					]
+				]
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {
+				"marker-symbol": "circle",
+				"marker-color": "#00F"
+			},
+			"geometry": {
+				"type": "Point",
+				"coordinates": [
+					2.5,
+					2.5
+				]
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {
+				"marker-symbol": "star",
+				"marker-color": "#F00"
+			},
+			"geometry": {
+				"type": "Point",
+				"coordinates": [
+					1.5625,
+					0.9375
 				]
 			}
 		}

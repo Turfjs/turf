@@ -1,7 +1,7 @@
 {
-  "name": "@turf/center",
-  "version": "5.0.4",
-  "description": "turf center module",
+  "name": "@turf/center-mean",
+  "version": "5.0.0",
+  "description": "turf center-mean module",
   "main": "main",
   "module": "index",
   "jsnext:main": "index",
@@ -21,7 +21,8 @@
     "url": "git://github.com/Turfjs/turf.git"
   },
   "keywords": [
-    "centroid",
+    "center",
+    "mean",
     "geojson",
     "gis",
     "geospatial",
@@ -29,6 +30,9 @@
     "turf"
   ],
   "author": "Turf Authors",
+  "contributors": [
+    "Moacir P. de Sá Pereira <@muziejus>"
+  ],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/Turfjs/turf/issues"
@@ -36,8 +40,8 @@
   "homepage": "https://github.com/Turfjs/turf",
   "devDependencies": {
     "@std/esm": "*",
-    "@turf/bbox-polygon": "*",
-    "@turf/meta": "*",
+    "@turf/center": "*",
+    "@turf/meta": "^5.0.4",
     "benchmark": "*",
     "glob": "*",
     "load-json-file": "*",
@@ -47,7 +51,8 @@
   },
   "dependencies": {
     "@turf/bbox": "^5.0.4",
-    "@turf/helpers": "^5.0.4"
+    "@turf/helpers": "^5.0.4",
+    "@turf/meta": "^5.0.4"
   },
   "@std/esm": {
     "esm": "js",
