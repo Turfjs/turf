@@ -1,0 +1,55 @@
+{
+  "name": "@turf/ellipse",
+  "version": "5.0.0",
+  "description": "turf ellipse module",
+  "main": "main",
+  "module": "index",
+  "jsnext:main": "index",
+  "types": "index.d.ts",
+  "files": [
+    "index.js",
+    "index.d.ts",
+    "main.js"
+  ],
+  "scripts": {
+    "pretest": "rollup -c ../../rollup.config.js",
+    "test": "node -r @std/esm test.js",
+    "bench": "node -r @std/esm bench.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/Turfjs/turf.git"
+  },
+  "keywords": [
+    "turf",
+    "ellipse"
+  ],
+  "author": "Turf Authors",
+  "contributors": [
+    "Moacir P. de Sá Pereira <@muziejus>"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Turfjs/turf/issues"
+  },
+  "homepage": "https://github.com/Turfjs/turf",
+  "devDependencies": {
+    "@mapbox/geojsonhint": "*",
+    "@std/esm": "*",
+    "benchmark": "*",
+    "glob": "*",
+    "load-json-file": "*",
+    "rollup": "^0.51.7",
+    "tape": "*",
+    "write-json-file": "*"
+  },
+  "dependencies": {
+    "@turf/helpers": "^5.0.4",
+    "@turf/transform-rotate": "^5.0.4",
+    "@turf/invariant": "^5.0.4"
+  },
+  "@std/esm": {
+    "esm": "js",
+    "cjs": true
+  }
+}
