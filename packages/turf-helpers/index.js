@@ -522,7 +522,7 @@ export function convertLength(length, originalUnit, finalUnit) {
 
 /**
  * Converts a area to the requested unit.
- * Valid units: kilometers, kilometres, meters, metres, centimetres, millimeter, acre, mile, yard, foot, inch
+ * Valid units: kilometers, kilometres, meters, metres, centimetres, millimeters, acres, miles, yards, feet, inches
  * @param {number} area to be converted
  * @param {string} [originalUnit='meters'] of the distance
  * @param {string} [finalUnit='kilometers'] returned unit
