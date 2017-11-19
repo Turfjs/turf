@@ -4,26 +4,26 @@ import glob from 'glob';
 import path from 'path';
 import load from 'load-json-file';
 import write from 'write-json-file';
-import bboxPolygon from '@turf/bbox-polygon';
-import bbox from '@turf/bbox';
+import truncate from '@turf/truncate';
 import { featureEach, coordEach } from '@turf/meta';
 import { lineString, featureCollection } from '@turf/helpers';
-import center from '.';
+import center from '@turf/center';
+import centerMean from '.';
 
-test('turf-center', t => {
+test('turf-center-mean', t => {
     glob.sync(path.join(__dirname, 'test', 'in', '*.geojson')).forEach(filepath => {
         const geojson = load.sync(filepath);
         const options = geojson.options || {};
         options.properties = {'marker-symbol': 'star', 'marker-color': '#F00'};
-        const centered = center(geojson, options);
+        const centered = truncate(centerMean(geojson, options));
 
         // Display Results
-        const results = featureCollection([centered])
+        const results = featureCollection([])
         featureEach(geojson, feature => results.features.push(feature))
-        const extent = bboxPolygon(bbox(geojson))
-        extent.properties = {stroke: '#00F', 'stroke-width': 1, 'fill-opacity': 0}
-        coordEach(extent, coord => results.features.push(lineString([coord, centered.geometry.coordinates], {stroke: '#00F', 'stroke-width': 1})))
-        results.features.push(extent)
+        coordEach(geojson, coord => results.features.push(lineString([coord, centered.geometry.coordinates], {stroke: '#00F', 'stroke-width': 1})))
+        // Add @turf/center to compare position
+        results.features.push(truncate(center(geojson, {'marker-symbol': 'circle', 'marker-color': '#00F'})))
+        results.features.push(centered)
 
         const out = filepath.replace(path.join('test', 'in'), path.join('test', 'out'))
         if (process.env.REGEN) write.sync(out, results);
@@ -32,9 +32,9 @@ test('turf-center', t => {
     t.end();
 });
 
-test('turf-center -- properties', t => {
+test('turf-center-mean -- properties', t => {
     const line = lineString([[0, 0], [1, 1]]);
-    const pt = center(line, {properties: {foo: 'bar'}});
+    const pt = centerMean(line, {properties: {foo: 'bar'}});
     t.equal(pt.properties.foo, 'bar', 'translate properties');
     t.end();
 });

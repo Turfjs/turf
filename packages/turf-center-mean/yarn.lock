@@ -6,12 +6,6 @@
   version "0.13.0"
   resolved "https://registry.yarnpkg.com/@std/esm/-/esm-0.13.0.tgz#b2ca2f7d96f50eec14bd14f0b8afc3138b2a40d4"
 
-"@turf/bbox-polygon@*":
-  version "5.0.4"
-  resolved "https://registry.yarnpkg.com/@turf/bbox-polygon/-/bbox-polygon-5.0.4.tgz#dba2a442ac6aab447cf7925052b38175ed7efd70"
-  dependencies:
-    "@turf/helpers" "^5.0.4"
-
 "@turf/bbox@^5.0.4":
   version "5.0.4"
   resolved "https://registry.yarnpkg.com/@turf/bbox/-/bbox-5.0.4.tgz#5c3d288f9900661cbdc173cd46041c13829af311"
@@ -19,15 +13,29 @@
     "@turf/helpers" "^5.0.4"
     "@turf/meta" "^5.0.4"
 
+"@turf/center@*":
+  version "5.0.4"
+  resolved "https://registry.yarnpkg.com/@turf/center/-/center-5.0.4.tgz#32bf142564c1fd2b5ed6ddc24f452f48822020b1"
+  dependencies:
+    "@turf/bbox" "^5.0.4"
+    "@turf/helpers" "^5.0.4"
+
 "@turf/helpers@^5.0.4":
   version "5.0.4"
   resolved "https://registry.yarnpkg.com/@turf/helpers/-/helpers-5.0.4.tgz#e47a4e4f38dee3b47a3177a69de162d7a7a5837f"
 
-"@turf/meta@*", "@turf/meta@^5.0.4":
+"@turf/meta@^5.0.4":
   version "5.0.4"
   resolved "https://registry.yarnpkg.com/@turf/meta/-/meta-5.0.4.tgz#b41d08f19d2ecc934805b6d713a663abd9f83213"
   dependencies:
     "@turf/helpers" "^5.0.4"
+
+"@turf/truncate@*":
+  version "5.0.4"
+  resolved "https://registry.yarnpkg.com/@turf/truncate/-/truncate-5.0.4.tgz#84f85f39f33b9d258372ce54ad540b6ab05365d3"
+  dependencies:
+    "@turf/helpers" "^5.0.4"
+    "@turf/meta" "^5.0.4"
 
 balanced-match@^1.0.0:
   version "1.0.0"

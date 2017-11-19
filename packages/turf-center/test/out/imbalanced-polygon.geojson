@@ -4,7 +4,8 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"marker-symbol": "circle"
+				"marker-symbol": "star",
+				"marker-color": "#F00"
 			},
 			"geometry": {
 				"type": "Point",
@@ -99,6 +100,141 @@
 						],
 						[
 							4.854240417480469,
+							45.77258200374433
+						]
+					]
+				]
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {
+				"stroke": "#00F",
+				"stroke-width": 1
+			},
+			"geometry": {
+				"type": "LineString",
+				"coordinates": [
+					[
+						4.8445844650268555,
+						45.77258200374433
+					],
+					[
+						4.851944446563721,
+						45.778762648296855
+					]
+				]
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {
+				"stroke": "#00F",
+				"stroke-width": 1
+			},
+			"geometry": {
+				"type": "LineString",
+				"coordinates": [
+					[
+						4.859304428100585,
+						45.77258200374433
+					],
+					[
+						4.851944446563721,
+						45.778762648296855
+					]
+				]
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {
+				"stroke": "#00F",
+				"stroke-width": 1
+			},
+			"geometry": {
+				"type": "LineString",
+				"coordinates": [
+					[
+						4.859304428100585,
+						45.78494329284938
+					],
+					[
+						4.851944446563721,
+						45.778762648296855
+					]
+				]
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {
+				"stroke": "#00F",
+				"stroke-width": 1
+			},
+			"geometry": {
+				"type": "LineString",
+				"coordinates": [
+					[
+						4.8445844650268555,
+						45.78494329284938
+					],
+					[
+						4.851944446563721,
+						45.778762648296855
+					]
+				]
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {
+				"stroke": "#00F",
+				"stroke-width": 1
+			},
+			"geometry": {
+				"type": "LineString",
+				"coordinates": [
+					[
+						4.8445844650268555,
+						45.77258200374433
+					],
+					[
+						4.851944446563721,
+						45.778762648296855
+					]
+				]
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {
+				"stroke": "#00F",
+				"stroke-width": 1,
+				"fill-opacity": 0
+			},
+			"geometry": {
+				"type": "Polygon",
+				"coordinates": [
+					[
+						[
+							4.8445844650268555,
+							45.77258200374433
+						],
+						[
+							4.859304428100585,
+							45.77258200374433
+						],
+						[
+							4.859304428100585,
+							45.78494329284938
+						],
+						[
+							4.8445844650268555,
+							45.78494329284938
+						],
+						[
+							4.8445844650268555,
 							45.77258200374433
 						]
 					]

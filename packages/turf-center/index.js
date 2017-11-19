@@ -1,12 +1,14 @@
 import bbox from '@turf/bbox';
-import { point } from '@turf/helpers';
+import { point, isObject } from '@turf/helpers';
 
 /**
  * Takes a {@link Feature} or {@link FeatureCollection} and returns the absolute center point of all features.
  *
  * @name center
  * @param {GeoJSON} geojson GeoJSON to be centered
- * @param {Object} [properties={}] an Object that is used as the {@link Feature}'s properties
+ * @param {Object} [options={}] Optional parameters
+ * @param {Object} [options.properties={}] an Object that is used as the {@link Feature}'s properties
+ * @param {number} [options.weight] the property name used to weight the center
  * @returns {Feature<Point>} a Point feature at the absolute center point of all input features
  * @example
  * var features = turf.featureCollection([
@@ -22,7 +24,15 @@ import { point } from '@turf/helpers';
  * center.properties['marker-size'] = 'large';
  * center.properties['marker-color'] = '#000';
  */
-function center(geojson, properties) {
+function center(geojson, options) {
+    // Optional parameters
+    options = options || {};
+    if (!isObject(options)) throw new Error('options is invalid');
+    var properties = options.properties;
+
+    // Input validation
+    if (!geojson) throw new Error('geojson is required');
+
     var ext = bbox(geojson);
     var x = (ext[0] + ext[2]) / 2;
     var y = (ext[1] + ext[3]) / 2;

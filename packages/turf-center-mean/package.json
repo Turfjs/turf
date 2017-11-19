@@ -1,7 +1,7 @@
 {
-  "name": "@turf/mean-center",
+  "name": "@turf/center-mean",
   "version": "5.0.0",
-  "description": "turf mean-center module",
+  "description": "turf center-mean module",
   "main": "main",
   "module": "index",
   "jsnext:main": "index",
@@ -21,8 +21,13 @@
     "url": "git://github.com/Turfjs/turf.git"
   },
   "keywords": [
-    "turf",
-    "mean-center"
+    "center",
+    "mean",
+    "geojson",
+    "gis",
+    "geospatial",
+    "geo",
+    "turf"
   ],
   "author": "Turf Authors",
   "contributors": [
@@ -34,19 +39,21 @@
   },
   "homepage": "https://github.com/Turfjs/turf",
   "devDependencies": {
-    "@mapbox/geojsonhint": "*",
     "@std/esm": "*",
-    "@turf/random": "^5.0.0",
-    "benchmark": "^2.1.4",
-    "load-json-file": "^2.0.0",
-    "rollup": "^0.51.5",
-    "tape": "^4.6.3",
-    "write-json-file": "^2.2.0"
+    "@turf/center": "*",
+    "@turf/meta": "^5.0.4",
+    "@turf/truncate": "*",
+    "benchmark": "*",
+    "glob": "*",
+    "load-json-file": "*",
+    "rollup": "*",
+    "tape": "*",
+    "write-json-file": "*"
   },
   "dependencies": {
-    "@turf/helpers": "5.0.0",
-    "@turf/invariant": "5.0.0",
-    "@turf/meta": "5.0.0"
+    "@turf/bbox": "^5.0.4",
+    "@turf/helpers": "^5.0.4",
+    "@turf/meta": "^5.0.4"
   },
   "@std/esm": {
     "esm": "js",
