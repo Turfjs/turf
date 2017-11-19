@@ -42,25 +42,31 @@ fs.writeFileSync(path.join(folderPath, 'index.js'), `/**
  * @example
  * <SIMPLE EXAMPLE>
  */
-module.exports = function (feature1, feature2) {
+function ${camelcaseName}(feature1, feature2) {
     return true;
 };
+
+export default ${camelcaseName};
 `);
 
 // Create package.json
 fs.writeFileSync(path.join(folderPath, 'package.json'), `{
   "name": "@turf/${decamelizeName}",
-  "version": "4.0.0",
+  "version": "5.0.0",
   "description": "turf ${decamelizeName} module",
-  "main": "index.js",
+  "main": "main",
+  "module": "index",
+  "jsnext:main": "index",
   "types": "index.d.ts",
   "files": [
     "index.js",
-    "index.d.ts"
+    "index.d.ts",
+    "main.js"
   ],
   "scripts": {
-    "test": "node test.js",
-    "bench": "node bench.js"
+    "pretest": "rollup -c ../../rollup.config.js",
+    "test": "node -r @std/esm test.js",
+    "bench": "node -r @std/esm bench.js"
   },
   "repository": {
     "type": "git",
@@ -80,12 +86,19 @@ fs.writeFileSync(path.join(folderPath, 'package.json'), `{
   },
   "homepage": "https://github.com/Turfjs/turf",
   "devDependencies": {
+    "@std/esm": "*",
     "benchmark": "^2.1.4",
+    "rollup": "^0.51.7",
     "write-json-file": "^2.2.0",
     "load-json-file": "^2.0.0",
     "tape": "^4.6.3"
   },
-  "dependencies": {}
+  "dependencies": {
+  },
+  "@std/esm": {
+    "esm": "js",
+    "cjs": true
+  }
 }
 `);
 
@@ -94,16 +107,16 @@ const license = path.join(__dirname, '..', 'packages', 'turf', 'LICENSE');
 fs.copySync(license, path.join(folderPath, 'LICENSE'));
 
 // Create index.d.ts
-fs.writeFileSync(path.join(folderPath, 'index.d.ts'), `/// <reference types="geojson" />
-
-type Feature = GeoJSON.Feature<any> | GeoJSON.GeometryObject;
-
+fs.writeFileSync(path.join(folderPath, 'index.d.ts'), `import { Feature, GeometryObject } from '@turf/helpers'
+ 
 /**
  * http://turfjs.org/docs/#${name.toLocaleLowerCase().replace('-', '')}
  */
-declare function ${camelcaseName}(feature1: Feature, feature2: Feature): boolean;
-declare namespace ${camelcaseName} { }
-export = ${camelcaseName};
+
+export default function (
+    feature1: Feature<any> | GeometryObject,
+    feature2: Feature<any> | GeometryObject
+ ): boolean
 `);
 
 // Create bench.js
