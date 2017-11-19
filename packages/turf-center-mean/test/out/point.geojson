@@ -34,10 +34,7 @@
 		},
 		{
 			"type": "Feature",
-			"properties": {
-				"marker-symbol": "circle",
-				"marker-color": "#00F"
-			},
+			"properties": {},
 			"geometry": {
 				"type": "Point",
 				"coordinates": [
