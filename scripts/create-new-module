@@ -107,16 +107,16 @@ const license = path.join(__dirname, '..', 'packages', 'turf', 'LICENSE');
 fs.copySync(license, path.join(folderPath, 'LICENSE'));
 
 // Create index.d.ts
-fs.writeFileSync(path.join(folderPath, 'index.d.ts'), `/// <reference types="geojson" />
-
-type Feature = GeoJSON.Feature<any> | GeoJSON.GeometryObject;
-
+fs.writeFileSync(path.join(folderPath, 'index.d.ts'), `import { Feature, GeometryObject } from '@turf/helpers'
+ 
 /**
  * http://turfjs.org/docs/#${name.toLocaleLowerCase().replace('-', '')}
  */
-declare function ${camelcaseName}(feature1: Feature, feature2: Feature): boolean;
-declare namespace ${camelcaseName} { }
-export = ${camelcaseName};
+
+export default function (
+    feature1: Feature<any> | GeometryObject,
+    feature2: Feature<any> | GeometryObject
+ ): boolean
 `);
 
 // Create bench.js
