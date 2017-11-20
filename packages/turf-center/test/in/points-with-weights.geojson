@@ -1,5 +1,8 @@
 {
-  "type": "FeatureCollection", 
+  "type": "FeatureCollection",
+  "options": {
+    "weight": "weight"
+  },
   "features": [
     {
       "type": "Feature",
@@ -18,7 +21,7 @@
         "coordinates": [0, 5]
       },
       "properties": {
-        "weight": 10
+        "weight": 1
       }
     },
     {
@@ -28,7 +31,7 @@
         "coordinates": [5, 5]
       },
       "properties": {
-        "weight": -10
+        "weight": 2
       }
     },
     {
@@ -38,7 +41,7 @@
         "coordinates": [5, 0]
       },
       "properties": {
-        "weight": -10
+        "weight": 3
       }
     }
   ]
