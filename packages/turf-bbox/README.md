@@ -8,7 +8,7 @@ Takes a set of features, calculates the bbox of all input features, and returns 
 
 **Parameters**
 
--   `geojson` **([FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects) \| [Feature](http://geojson.org/geojson-spec.html#feature-objects) \| [Geometry](http://geojson.org/geojson-spec.html#geometry))** any GeoJSON object
+-   `geojson` **[GeoJSON](http://geojson.org/geojson-spec.html#geojson-objects)** any GeoJSON object
 
 **Examples**
 

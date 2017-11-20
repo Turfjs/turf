@@ -666,7 +666,7 @@ test('geomEach -- callback BBox & Id', t => {
     const properties = {foo: 'bar'};
     const bbox = [0, 0, 0, 0];
     const id = 'foo';
-    const pt = point([0, 0], properties, bbox, id);
+    const pt = point([0, 0], properties, {bbox, id});
 
     meta.geomEach(pt, (currentGeometry, featureIndex, currentProperties, currentBBox, currentId) => {
         t.equal(featureIndex, 0, 'featureIndex');
@@ -681,7 +681,7 @@ test('lineEach -- callback BBox & Id', t => {
     const properties = {foo: 'bar'};
     const bbox = [0, 0, 10, 10];
     const id = 'foo';
-    const line = lineString([[0, 0], [10, 10]], properties, bbox, id);
+    const line = lineString([[0, 0], [10, 10]], properties, {bbox, id});
 
     meta.lineEach(line, (currentLine, featureIndex) => {
         t.equal(featureIndex, 0, 'featureIndex');
@@ -696,7 +696,7 @@ test('lineEach -- return lineString', t => {
     const properties = {foo: 'bar'};
     const bbox = [0, 0, 10, 10];
     const id = 'foo';
-    const line = lineString([[0, 0], [10, 10]], properties, bbox, id);
+    const line = lineString([[0, 0], [10, 10]], properties, {bbox, id});
 
     meta.lineEach(line, (currentLine) => {
         t.deepEqual(line, currentLine, 'return itself');

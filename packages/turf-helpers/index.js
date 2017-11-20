@@ -70,8 +70,9 @@ export var areaFactors = {
  * @name feature
  * @param {Geometry} geometry input geometry
  * @param {Object} [properties={}] an Object of key-value pairs to add as properties
- * @param {Array<number>} [bbox] BBox [west, south, east, north]
- * @param {string|number} [id] Identifier
+ * @param {Object} [options={}] Optional Parameters
+ * @param {Array<number>} [options.bbox] BBox [west, south, east, north]
+ * @param {string|number} [options.id] Identifier
  * @returns {Feature} a GeoJSON Feature
  * @example
  * var geometry = {
@@ -83,15 +84,20 @@ export var areaFactors = {
  *
  * //=feature
  */
-export function feature(geometry, properties, bbox, id) {
+export function feature(geometry, properties, options) {
+    // Optional Parameters
+    options = options || {};
+    if (!isObject(options)) throw new Error('options is invalid');
+    var bbox = options.bbox;
+    var id = options.id;
+
+    // Validation
     if (geometry === undefined) throw new Error('geometry is required');
     if (properties && properties.constructor !== Object) throw new Error('properties must be an Object');
-    if (bbox) {
-        if (!Array.isArray(bbox)) throw new Error('bbox must be an Array');
-        if (bbox.length !== 4) throw new Error('bbox must be an Array of 4 numbers');
-    }
-    if (id && ['string', 'number'].indexOf(typeof id) === -1) throw new Error('id must be a number or a string');
+    if (bbox) validateBBox(bbox);
+    if (id) validateId(id);
 
+    // Main
     var feat = {type: 'Feature'};
     if (id) feat.id = id;
     if (bbox) feat.bbox = bbox;
@@ -107,7 +113,8 @@ export function feature(geometry, properties, bbox, id) {
  * @name geometry
  * @param {string} type Geometry Type
  * @param {Array<number>} coordinates Coordinates
- * @param {Array<number>} [bbox] BBox [west, south, east, north]
+ * @param {Object} [options={}] Optional Parameters
+ * @param {Array<number>} [options.bbox] BBox [west, south, east, north]
  * @returns {Geometry} a GeoJSON Geometry
  * @example
  * var type = 'Point';
@@ -117,13 +124,19 @@ export function feature(geometry, properties, bbox, id) {
  *
  * //=geometry
  */
-export function geometry(type, coordinates, bbox) {
+export function geometry(type, coordinates, options) {
+    // Optional Parameters
+    options = options || {};
+    if (!isObject(options)) throw new Error('options is invalid');
+    var bbox = options.bbox;
+
     // Validation
     if (!type) throw new Error('type is required');
     if (!coordinates) throw new Error('coordinates is required');
     if (!Array.isArray(coordinates)) throw new Error('coordinates must be an Array');
-    if (bbox && bbox.length !== 4) throw new Error('bbox must be an Array of 4 numbers');
+    if (bbox) validateBBox(bbox);
 
+    // Main
     var geom;
     switch (type) {
     case 'Point': geom = point(coordinates).geometry; break;
@@ -144,15 +157,16 @@ export function geometry(type, coordinates, bbox) {
  * @name point
  * @param {Array<number>} coordinates longitude, latitude position (each in decimal degrees)
  * @param {Object} [properties={}] an Object of key-value pairs to add as properties
- * @param {Array<number>} [bbox] BBox [west, south, east, north]
- * @param {string|number} [id] Identifier
+ * @param {Object} [options={}] Optional Parameters
+ * @param {Array<number>} [options.bbox] BBox [west, south, east, north]
+ * @param {string|number} [options.id] Identifier
  * @returns {Feature<Point>} a Point feature
  * @example
  * var point = turf.point([-75.343, 39.984]);
  *
  * //=point
  */
-export function point(coordinates, properties, bbox, id) {
+export function point(coordinates, properties, options) {
     if (!coordinates) throw new Error('No coordinates passed');
     if (!Array.isArray(coordinates)) throw new Error('Coordinates must be an Array');
     if (coordinates.length < 2) throw new Error('Coordinates must be at least 2 numbers long');
@@ -161,7 +175,7 @@ export function point(coordinates, properties, bbox, id) {
     return feature({
         type: 'Point',
         coordinates: coordinates
-    }, properties, bbox, id);
+    }, properties, options);
 }
 
 /**
@@ -170,8 +184,9 @@ export function point(coordinates, properties, bbox, id) {
  * @name polygon
  * @param {Array<Array<Array<number>>>} coordinates an array of LinearRings
  * @param {Object} [properties={}] an Object of key-value pairs to add as properties
- * @param {Array<number>} [bbox] BBox [west, south, east, north]
- * @param {string|number} [id] Identifier
+ * @param {Object} [options={}] Optional Parameters
+ * @param {Array<number>} [options.bbox] BBox [west, south, east, north]
+ * @param {string|number} [options.id] Identifier
  * @returns {Feature<Polygon>} a Polygon feature
  * @throws {Error} throw an error if a LinearRing of the polygon has too few positions
  * or if a LinearRing of the Polygon does not have matching Positions at the beginning & end.
@@ -186,7 +201,7 @@ export function point(coordinates, properties, bbox, id) {
  *
  * //=polygon
  */
-export function polygon(coordinates, properties, bbox, id) {
+export function polygon(coordinates, properties, options) {
     if (!coordinates) throw new Error('No coordinates passed');
 
     for (var i = 0; i < coordinates.length; i++) {
@@ -206,7 +221,7 @@ export function polygon(coordinates, properties, bbox, id) {
     return feature({
         type: 'Polygon',
         coordinates: coordinates
-    }, properties, bbox, id);
+    }, properties, options);
 }
 
 /**
@@ -216,8 +231,9 @@ export function polygon(coordinates, properties, bbox, id) {
  * @name lineString
  * @param {Array<Array<number>>} coordinates an array of Positions
  * @param {Object} [properties={}] an Object of key-value pairs to add as properties
- * @param {Array<number>} [bbox] BBox [west, south, east, north]
- * @param {string|number} [id] Identifier
+ * @param {Object} [options={}] Optional Parameters
+ * @param {Array<number>} [options.bbox] BBox [west, south, east, north]
+ * @param {string|number} [options.id] Identifier
  * @returns {Feature<LineString>} a LineString feature
  * @throws {Error} if no coordinates are passed
  * @example
@@ -238,7 +254,7 @@ export function polygon(coordinates, properties, bbox, id) {
  *
  * //=linestring2
  */
-export function lineString(coordinates, properties, bbox, id) {
+export function lineString(coordinates, properties, options) {
     if (!coordinates) throw new Error('No coordinates passed');
     if (coordinates.length < 2) throw new Error('Coordinates must be an array of two or more positions');
     // Check if first point of LineString contains two numbers
@@ -247,7 +263,7 @@ export function lineString(coordinates, properties, bbox, id) {
     return feature({
         type: 'LineString',
         coordinates: coordinates
-    }, properties, bbox, id);
+    }, properties, options);
 }
 
 /**
@@ -255,8 +271,9 @@ export function lineString(coordinates, properties, bbox, id) {
  *
  * @name featureCollection
  * @param {Feature[]} features input features
- * @param {Array<number>} [bbox] BBox [west, south, east, north]
- * @param {string|number} [id] Identifier
+ * @param {Object} [options={}] Optional Parameters
+ * @param {Array<number>} [options.bbox] BBox [west, south, east, north]
+ * @param {string|number} [options.id] Identifier
  * @returns {FeatureCollection} a FeatureCollection of input features
  * @example
  * var features = [
@@ -269,12 +286,20 @@ export function lineString(coordinates, properties, bbox, id) {
  *
  * //=collection
  */
-export function featureCollection(features, bbox, id) {
+export function featureCollection(features, options) {
+    // Optional Parameters
+    options = options || {};
+    if (!isObject(options)) throw new Error('options is invalid');
+    var bbox = options.bbox;
+    var id = options.id;
+
+    // Validation
     if (!features) throw new Error('No features passed');
     if (!Array.isArray(features)) throw new Error('features must be an Array');
-    if (bbox && bbox.length !== 4) throw new Error('bbox must be an Array of 4 numbers');
-    if (id && ['string', 'number'].indexOf(typeof id) === -1) throw new Error('id must be a number or a string');
+    if (bbox) validateBBox(bbox);
+    if (id) validateId(id);
 
+    // Main
     var fc = {type: 'FeatureCollection'};
     if (id) fc.id = id;
     if (bbox) fc.bbox = bbox;
@@ -289,8 +314,9 @@ export function featureCollection(features, bbox, id) {
  * @name multiLineString
  * @param {Array<Array<Array<number>>>} coordinates an array of LineStrings
  * @param {Object} [properties={}] an Object of key-value pairs to add as properties
- * @param {Array<number>} [bbox] BBox [west, south, east, north]
- * @param {string|number} [id] Identifier
+ * @param {Object} [options={}] Optional Parameters
+ * @param {Array<number>} [options.bbox] BBox [west, south, east, north]
+ * @param {string|number} [options.id] Identifier
  * @returns {Feature<MultiLineString>} a MultiLineString feature
  * @throws {Error} if no coordinates are passed
  * @example
@@ -298,13 +324,13 @@ export function featureCollection(features, bbox, id) {
  *
  * //=multiLine
  */
-export function multiLineString(coordinates, properties, bbox, id) {
+export function multiLineString(coordinates, properties, options) {
     if (!coordinates) throw new Error('No coordinates passed');
 
     return feature({
         type: 'MultiLineString',
         coordinates: coordinates
-    }, properties, bbox, id);
+    }, properties, options);
 }
 
 /**
@@ -314,8 +340,9 @@ export function multiLineString(coordinates, properties, bbox, id) {
  * @name multiPoint
  * @param {Array<Array<number>>} coordinates an array of Positions
  * @param {Object} [properties={}] an Object of key-value pairs to add as properties
- * @param {Array<number>} [bbox] BBox [west, south, east, north]
- * @param {string|number} [id] Identifier
+ * @param {Object} [options={}] Optional Parameters
+ * @param {Array<number>} [options.bbox] BBox [west, south, east, north]
+ * @param {string|number} [options.id] Identifier
  * @returns {Feature<MultiPoint>} a MultiPoint feature
  * @throws {Error} if no coordinates are passed
  * @example
@@ -323,13 +350,13 @@ export function multiLineString(coordinates, properties, bbox, id) {
  *
  * //=multiPt
  */
-export function multiPoint(coordinates, properties, bbox, id) {
+export function multiPoint(coordinates, properties, options) {
     if (!coordinates) throw new Error('No coordinates passed');
 
     return feature({
         type: 'MultiPoint',
         coordinates: coordinates
-    }, properties, bbox, id);
+    }, properties, options);
 }
 
 /**
@@ -339,8 +366,9 @@ export function multiPoint(coordinates, properties, bbox, id) {
  * @name multiPolygon
  * @param {Array<Array<Array<Array<number>>>>} coordinates an array of Polygons
  * @param {Object} [properties={}] an Object of key-value pairs to add as properties
- * @param {Array<number>} [bbox] BBox [west, south, east, north]
- * @param {string|number} [id] Identifier
+ * @param {Object} [options={}] Optional Parameters
+ * @param {Array<number>} [options.bbox] BBox [west, south, east, north]
+ * @param {string|number} [options.id] Identifier
  * @returns {Feature<MultiPolygon>} a multipolygon feature
  * @throws {Error} if no coordinates are passed
  * @example
@@ -349,13 +377,13 @@ export function multiPoint(coordinates, properties, bbox, id) {
  * //=multiPoly
  *
  */
-export function multiPolygon(coordinates, properties, bbox, id) {
+export function multiPolygon(coordinates, properties, options) {
     if (!coordinates) throw new Error('No coordinates passed');
 
     return feature({
         type: 'MultiPolygon',
         coordinates: coordinates
-    }, properties, bbox, id);
+    }, properties, options);
 }
 
 /**
@@ -365,8 +393,9 @@ export function multiPolygon(coordinates, properties, bbox, id) {
  * @name geometryCollection
  * @param {Array<Geometry>} geometries an array of GeoJSON Geometries
  * @param {Object} [properties={}] an Object of key-value pairs to add as properties
- * @param {Array<number>} [bbox] BBox [west, south, east, north]
- * @param {string|number} [id] Identifier
+ * @param {Object} [options={}] Optional Parameters
+ * @param {Array<number>} [options.bbox] BBox [west, south, east, north]
+ * @param {string|number} [options.id] Identifier
  * @returns {Feature<GeometryCollection>} a GeoJSON GeometryCollection Feature
  * @example
  * var pt = {
@@ -381,14 +410,14 @@ export function multiPolygon(coordinates, properties, bbox, id) {
  *
  * //=collection
  */
-export function geometryCollection(geometries, properties, bbox, id) {
+export function geometryCollection(geometries, properties, options) {
     if (!geometries) throw new Error('geometries is required');
     if (!Array.isArray(geometries)) throw new Error('geometries must be an Array');
 
     return feature({
         type: 'GeometryCollection',
         geometries: geometries
-    }, properties, bbox, id);
+    }, properties, options);
 }
 
 /**
@@ -569,6 +598,59 @@ export function isNumber(num) {
  */
 export function isObject(input) {
     return (!!input) && (input.constructor === Object);
+}
+
+/**
+ * Validate BBox
+ *
+ * @private
+ * @param {Array<number>} bbox BBox to validate
+ * @returns {void}
+ * @throws Error if BBox is not valid
+ * @example
+ * validateBBox([-180, -40, 110, 50])
+ * //=OK
+ * validateBBox([-180, -40])
+ * //=Error
+ * validateBBox('Foo')
+ * //=Error
+ * validateBBox(5)
+ * //=Error
+ * validateBBox(null)
+ * //=Error
+ * validateBBox(undefined)
+ * //=Error
+ */
+export function validateBBox(bbox) {
+    if (!bbox) throw new Error('bbox is required');
+    if (!Array.isArray(bbox)) throw new Error('bbox must be an Array');
+    if (bbox.length !== 4 && bbox.length !== 6) throw new Error('bbox must be an Array of 4 or 6 numbers');
+}
+
+/**
+ * Validate Id
+ *
+ * @private
+ * @param {string|number} id Id to validate
+ * @returns {void}
+ * @throws Error if Id is not valid
+ * @example
+ * validateId([-180, -40, 110, 50])
+ * //=Error
+ * validateId([-180, -40])
+ * //=Error
+ * validateId('Foo')
+ * //=OK
+ * validateId(5)
+ * //=OK
+ * validateId(null)
+ * //=Error
+ * validateId(undefined)
+ * //=Error
+ */
+export function validateId(id) {
+    if (!id) throw new Error('id is required');
+    if (['string', 'number'].indexOf(typeof id) === -1) throw new Error('id must be a number or a string');
 }
 
 // Deprecated methods
