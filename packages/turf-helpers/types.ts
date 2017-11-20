@@ -95,13 +95,13 @@ const geomCollection = helpers.geometryCollection([pt.geometry])
 geomCollection.geometry.geometries
 
 // bbox & id
-helpers.point(pt.geometry.coordinates, properties, bbox, 1)
-helpers.lineString(line.geometry.coordinates, properties, bbox, 1)
-helpers.polygon(poly.geometry.coordinates, properties, bbox, 1)
-helpers.multiPoint(multiPt.geometry.coordinates, properties, bbox, 1)
-helpers.multiLineString(multiLine.geometry.coordinates, properties, bbox, 1)
-helpers.multiPolygon(multiPoly.geometry.coordinates, properties, bbox, 1)
-helpers.geometryCollection([pt.geometry], properties, bbox, 1)
+helpers.point(pt.geometry.coordinates, properties, {bbox, id: 1})
+helpers.lineString(line.geometry.coordinates, properties, {bbox, id: 1})
+helpers.polygon(poly.geometry.coordinates, properties, {bbox, id: 1})
+helpers.multiPoint(multiPt.geometry.coordinates, properties, {bbox, id: 1})
+helpers.multiLineString(multiLine.geometry.coordinates, properties, {bbox, id: 1})
+helpers.multiPolygon(multiPoly.geometry.coordinates, properties, {bbox, id: 1})
+helpers.geometryCollection([pt.geometry], properties, {bbox, id: 1})
 
 // properties
 helpers.point(pt.geometry.coordinates, {foo: 'bar'})
