@@ -9,7 +9,9 @@ Takes a [Feature](http://geojson.org/geojson-spec.html#feature-objects) or [Feat
 **Parameters**
 
 -   `geojson` **[GeoJSON](http://geojson.org/geojson-spec.html#geojson-objects)** GeoJSON to be centered
--   `properties` **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)** an Object that is used as the [Feature](http://geojson.org/geojson-spec.html#feature-objects)'s properties (optional, default `{}`)
+-   `options` **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)** Optional parameters (optional, default `{}`)
+    -   `options.properties` **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)** an Object that is used as the [Feature](http://geojson.org/geojson-spec.html#feature-objects)'s properties (optional, default `{}`)
+    -   `options.weight` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)?** the property name used to weight the center
 
 **Examples**
 
