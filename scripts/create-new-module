@@ -52,17 +52,21 @@ export default ${camelcaseName};
 // Create package.json
 fs.writeFileSync(path.join(folderPath, 'package.json'), `{
   "name": "@turf/${decamelizeName}",
-  "version": "4.0.0",
+  "version": "5.0.0",
   "description": "turf ${decamelizeName} module",
-  "main": "index.js",
+  "main": "main",
+  "module": "index",
+  "jsnext:main": "index",
   "types": "index.d.ts",
   "files": [
     "index.js",
-    "index.d.ts"
+    "index.d.ts",
+    "main.js"
   ],
   "scripts": {
-    "test": "node test.js",
-    "bench": "node bench.js"
+    "pretest": "rollup -c ../../rollup.config.js",
+    "test": "node -r @std/esm test.js",
+    "bench": "node -r @std/esm bench.js"
   },
   "repository": {
     "type": "git",
@@ -82,12 +86,19 @@ fs.writeFileSync(path.join(folderPath, 'package.json'), `{
   },
   "homepage": "https://github.com/Turfjs/turf",
   "devDependencies": {
-    "benchmark": "^2.1.4",
-    "write-json-file": "^2.2.0",
-    "load-json-file": "^2.0.0",
-    "tape": "^4.6.3"
+    "@std/esm": "*",
+    "benchmark": "*",
+    "rollup": "*",
+    "write-json-file": "*",
+    "load-json-file": "*",
+    "tape": "*"
   },
-  "dependencies": {}
+  "dependencies": {
+  },
+  "@std/esm": {
+    "esm": "js",
+    "cjs": true
+  }
 }
 `);
 
