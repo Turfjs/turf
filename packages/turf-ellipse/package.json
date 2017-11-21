@@ -1,6 +1,6 @@
 {
   "name": "@turf/ellipse",
-  "version": "5.0.0",
+  "version": "5.0.1",
   "description": "turf ellipse module",
   "main": "main",
   "module": "index",
