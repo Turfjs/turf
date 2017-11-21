@@ -66,6 +66,7 @@ export var areaFactors = {
 
 /**
  * Wraps a GeoJSON {@link Geometry} in a GeoJSON {@link Feature}.
+ * TEST: TurfJS Documentation Bot
  *
  * @name feature
  * @param {Geometry} geometry input geometry
