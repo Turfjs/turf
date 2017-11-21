@@ -71,8 +71,8 @@ export var areaFactors = {
  * @param {Geometry} geometry input geometry
  * @param {Object} [properties={}] an Object of key-value pairs to add as properties
  * @param {Object} [options={}] Optional Parameters
- * @param {Array<number>} [options.bbox] BBox [west, south, east, north]
- * @param {string|number} [options.id] Identifier
+ * @param {Array<number>} [options.bbox] Bounding Box Array [west, south, east, north] associated with the Feature
+ * @param {string|number} [options.id] Identifier associated with the Feature
  * @returns {Feature} a GeoJSON Feature
  * @example
  * var geometry = {
@@ -114,7 +114,7 @@ export function feature(geometry, properties, options) {
  * @param {string} type Geometry Type
  * @param {Array<number>} coordinates Coordinates
  * @param {Object} [options={}] Optional Parameters
- * @param {Array<number>} [options.bbox] BBox [west, south, east, north]
+ * @param {Array<number>} [options.bbox] Bounding Box Array [west, south, east, north] associated with the Geometry
  * @returns {Geometry} a GeoJSON Geometry
  * @example
  * var type = 'Point';
@@ -158,8 +158,8 @@ export function geometry(type, coordinates, options) {
  * @param {Array<number>} coordinates longitude, latitude position (each in decimal degrees)
  * @param {Object} [properties={}] an Object of key-value pairs to add as properties
  * @param {Object} [options={}] Optional Parameters
- * @param {Array<number>} [options.bbox] BBox [west, south, east, north]
- * @param {string|number} [options.id] Identifier
+ * @param {Array<number>} [options.bbox] Bounding Box Array [west, south, east, north] associated with the Feature
+ * @param {string|number} [options.id] Identifier associated with the Feature
  * @returns {Feature<Point>} a Point feature
  * @example
  * var point = turf.point([-75.343, 39.984]);
@@ -181,11 +181,11 @@ export function point(coordinates, properties, options) {
 /**
  * Creates a {@link Point} {@link FeatureCollection} from an Array of Point coordinates.
  *
- * @name point
+ * @name points
  * @param {Array<Array<number>>} coordinates an array of Points
- * @param {Object} [properties={}] an Object of key-value pairs to add as properties
+ * @param {Object} [properties={}] Translate these properties to each Feature
  * @param {Object} [options={}] Optional Parameters
- * @param {Array<number>} [options.bbox] BBox [west, south, east, north] associated with the FeatureCollection
+ * @param {Array<number>} [options.bbox] Bounding Box Array [west, south, east, north] associated with the FeatureCollection
  * @param {string|number} [options.id] Identifier associated with the FeatureCollection
  * @returns {FeatureCollection<Point>} Point Feature
  * @example
@@ -213,8 +213,8 @@ export function points(coordinates, properties, options) {
  * @param {Array<Array<Array<number>>>} coordinates an array of LinearRings
  * @param {Object} [properties={}] an Object of key-value pairs to add as properties
  * @param {Object} [options={}] Optional Parameters
- * @param {Array<number>} [options.bbox] BBox [west, south, east, north]
- * @param {string|number} [options.id] Identifier
+ * @param {Array<number>} [options.bbox] Bounding Box Array [west, south, east, north] associated with the Feature
+ * @param {string|number} [options.id] Identifier associated with the Feature
  * @returns {Feature<Polygon>} Polygon Feature
  * @example
  * var polygon = turf.polygon([[[-5, 52], [-4, 56], [-2, 51], [-7, 54], [-5, 52]]], { name: 'poly1' });
@@ -251,8 +251,8 @@ export function polygon(coordinates, properties, options) {
  * @param {Array<Array<Array<Array<number>>>>} coordinates an array of Polygon coordinates
  * @param {Object} [properties={}] an Object of key-value pairs to add as properties
  * @param {Object} [options={}] Optional Parameters
- * @param {Array<number>} [options.bbox] BBox [west, south, east, north]
- * @param {string|number} [options.id] Identifier
+ * @param {Array<number>} [options.bbox] Bounding Box Array [west, south, east, north] associated with the Feature
+ * @param {string|number} [options.id] Identifier associated with the FeatureCollection
  * @returns {FeatureCollection<Polygon>} Polygon FeatureCollection
  * @example
  * var polygons = turf.polygons([
@@ -278,8 +278,8 @@ export function polygons(coordinates, properties, options) {
  * @param {Array<Array<number>>} coordinates an array of Positions
  * @param {Object} [properties={}] an Object of key-value pairs to add as properties
  * @param {Object} [options={}] Optional Parameters
- * @param {Array<number>} [options.bbox] BBox [west, south, east, north]
- * @param {string|number} [options.id] Identifier
+ * @param {Array<number>} [options.bbox] Bounding Box Array [west, south, east, north] associated with the Feature
+ * @param {string|number} [options.id] Identifier associated with the Feature
  * @returns {Feature<LineString>} LineString Feature
  * @example
  * var linestring1 = turf.lineString([[-24, 63], [-23, 60], [-25, 65], [-20, 69]], {name: 'line 1'});
@@ -307,8 +307,8 @@ export function lineString(coordinates, properties, options) {
  * @param {Array<Array<number>>} coordinates an array of LinearRings
  * @param {Object} [properties={}] an Object of key-value pairs to add as properties
  * @param {Object} [options={}] Optional Parameters
- * @param {Array<number>} [options.bbox] BBox [west, south, east, north]
- * @param {string|number} [options.id] Identifier
+ * @param {Array<number>} [options.bbox] Bounding Box Array [west, south, east, north] associated with the FeatureCollection
+ * @param {string|number} [options.id] Identifier associated with the FeatureCollection
  * @returns {FeatureCollection<LineString>} LineString FeatureCollection
  * @example
  * var linestrings = turf.lineStrings([
@@ -333,17 +333,19 @@ export function lineStrings(coordinates, properties, options) {
  * @name featureCollection
  * @param {Feature[]} features input features
  * @param {Object} [options={}] Optional Parameters
- * @param {Array<number>} [options.bbox] BBox [west, south, east, north]
- * @param {string|number} [options.id] Identifier
- * @returns {FeatureCollection} a FeatureCollection of input features
+ * @param {Array<number>} [options.bbox] Bounding Box Array [west, south, east, north] associated with the Feature
+ * @param {string|number} [options.id] Identifier associated with the Feature
+ * @returns {FeatureCollection} FeatureCollection of Features
  * @example
- * var features = [
- *  turf.point([-75.343, 39.984], {name: 'Location A'}),
- *  turf.point([-75.833, 39.284], {name: 'Location B'}),
- *  turf.point([-75.534, 39.123], {name: 'Location C'})
- * ];
+ * var locationA = turf.point([-75.343, 39.984], {name: 'Location A'});
+ * var locationB = turf.point([-75.833, 39.284], {name: 'Location B'});
+ * var locationC = turf.point([-75.534, 39.123], {name: 'Location C'});
  *
- * var collection = turf.featureCollection(features);
+ * var collection = turf.featureCollection([
+ *   locationA,
+ *   locationB,
+ *   locationC
+ * ]);
  *
  * //=collection
  */
@@ -376,8 +378,8 @@ export function featureCollection(features, options) {
  * @param {Array<Array<Array<number>>>} coordinates an array of LineStrings
  * @param {Object} [properties={}] an Object of key-value pairs to add as properties
  * @param {Object} [options={}] Optional Parameters
- * @param {Array<number>} [options.bbox] BBox [west, south, east, north]
- * @param {string|number} [options.id] Identifier
+ * @param {Array<number>} [options.bbox] Bounding Box Array [west, south, east, north] associated with the Feature
+ * @param {string|number} [options.id] Identifier associated with the Feature
  * @returns {Feature<MultiLineString>} a MultiLineString feature
  * @throws {Error} if no coordinates are passed
  * @example
@@ -402,8 +404,8 @@ export function multiLineString(coordinates, properties, options) {
  * @param {Array<Array<number>>} coordinates an array of Positions
  * @param {Object} [properties={}] an Object of key-value pairs to add as properties
  * @param {Object} [options={}] Optional Parameters
- * @param {Array<number>} [options.bbox] BBox [west, south, east, north]
- * @param {string|number} [options.id] Identifier
+ * @param {Array<number>} [options.bbox] Bounding Box Array [west, south, east, north] associated with the Feature
+ * @param {string|number} [options.id] Identifier associated with the Feature
  * @returns {Feature<MultiPoint>} a MultiPoint feature
  * @throws {Error} if no coordinates are passed
  * @example
@@ -428,8 +430,8 @@ export function multiPoint(coordinates, properties, options) {
  * @param {Array<Array<Array<Array<number>>>>} coordinates an array of Polygons
  * @param {Object} [properties={}] an Object of key-value pairs to add as properties
  * @param {Object} [options={}] Optional Parameters
- * @param {Array<number>} [options.bbox] BBox [west, south, east, north]
- * @param {string|number} [options.id] Identifier
+ * @param {Array<number>} [options.bbox] Bounding Box Array [west, south, east, north] associated with the Feature
+ * @param {string|number} [options.id] Identifier associated with the Feature
  * @returns {Feature<MultiPolygon>} a multipolygon feature
  * @throws {Error} if no coordinates are passed
  * @example
@@ -455,8 +457,8 @@ export function multiPolygon(coordinates, properties, options) {
  * @param {Array<Geometry>} geometries an array of GeoJSON Geometries
  * @param {Object} [properties={}] an Object of key-value pairs to add as properties
  * @param {Object} [options={}] Optional Parameters
- * @param {Array<number>} [options.bbox] BBox [west, south, east, north]
- * @param {string|number} [options.id] Identifier
+ * @param {Array<number>} [options.bbox] Bounding Box Array [west, south, east, north] associated with the Feature
+ * @param {string|number} [options.id] Identifier associated with the Feature
  * @returns {Feature<GeometryCollection>} a GeoJSON GeometryCollection Feature
  * @example
  * var pt = {
