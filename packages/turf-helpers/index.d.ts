@@ -78,14 +78,30 @@ export function geometry(type: Geometry | string, coordinates: any[], options?: 
 export function point(coordinates: Position, properties?: Properties, options?: FeatureOptions): Feature<Point>;
 
 /**
+ * http://turfjs.org/docs/#points
+ */
+export function points(coordinates: Position[], properties?: Properties, options?: FeatureOptions): FeatureCollection<Point>;
+
+/**
  * http://turfjs.org/docs/#polygon
  */
 export function polygon(coordinates: Position[][], properties?: Properties, options?: FeatureOptions): Feature<Polygon>;
 
 /**
+ * http://turfjs.org/docs/#polygons
+ */
+export function polygons(coordinates: Position[][][], properties?: Properties, options?: FeatureOptions): FeatureCollection<Polygon>;
+
+/**
  * http://turfjs.org/docs/#linestring
  */
 export function lineString(coordinates: Position[], properties?: Properties, options?: FeatureOptions): Feature<LineString>;
+
+/**
+ * http://turfjs.org/docs/#linestrings
+ */
+export function lineStrings(coordinates: Position[][], properties?: Properties, options?: FeatureOptions): FeatureCollection<LineString>;
+
 
 /**
  * http://turfjs.org/docs/#multilinestring
