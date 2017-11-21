@@ -152,7 +152,7 @@ export function geometry(type, coordinates, options) {
 }
 
 /**
- * Takes coordinates and properties (optional) and returns a new {@link Point} feature.
+ * Creates a {@link Point} {@link Feature} from a Position.
  *
  * @name point
  * @param {Array<number>} coordinates longitude, latitude position (each in decimal degrees)
@@ -167,10 +167,10 @@ export function geometry(type, coordinates, options) {
  * //=point
  */
 export function point(coordinates, properties, options) {
-    if (!coordinates) throw new Error('No coordinates passed');
-    if (!Array.isArray(coordinates)) throw new Error('Coordinates must be an Array');
-    if (coordinates.length < 2) throw new Error('Coordinates must be at least 2 numbers long');
-    if (!isNumber(coordinates[0]) || !isNumber(coordinates[1])) throw new Error('Coordinates must contain numbers');
+    if (!coordinates) throw new Error('coordinates is required');
+    if (!Array.isArray(coordinates)) throw new Error('coordinates must be an Array');
+    if (coordinates.length < 2) throw new Error('coordinates must be at least 2 numbers long');
+    if (!isNumber(coordinates[0]) || !isNumber(coordinates[1])) throw new Error('coordinates must contain numbers');
 
     return feature({
         type: 'Point',
@@ -179,7 +179,35 @@ export function point(coordinates, properties, options) {
 }
 
 /**
- * Takes an array of LinearRings and optionally an {@link Object} with properties and returns a {@link Polygon} feature.
+ * Creates a {@link Point} {@link FeatureCollection} from an Array of Point coordinates.
+ *
+ * @name point
+ * @param {Array<Array<number>>} coordinates an array of Points
+ * @param {Object} [properties={}] an Object of key-value pairs to add as properties
+ * @param {Object} [options={}] Optional Parameters
+ * @param {Array<number>} [options.bbox] BBox [west, south, east, north] associated with the FeatureCollection
+ * @param {string|number} [options.id] Identifier associated with the FeatureCollection
+ * @returns {FeatureCollection<Point>} Point Feature
+ * @example
+ * var points = turf.points([
+ *   [-75, 39],
+ *   [-80, 45],
+ *   [-78, 50]
+ * ]);
+ *
+ * //=points
+ */
+export function points(coordinates, properties, options) {
+    if (!coordinates) throw new Error('coordinates is required');
+    if (!Array.isArray(coordinates)) throw new Error('coordinates must be an Array');
+
+    return featureCollection(coordinates.map(function (coords) {
+        return point(coords, properties);
+    }), options);
+}
+
+/**
+ * Creates a {@link Polygon} {@link Feature} from an Array of LinearRings.
  *
  * @name polygon
  * @param {Array<Array<Array<number>>>} coordinates an array of LinearRings
@@ -187,22 +215,14 @@ export function point(coordinates, properties, options) {
  * @param {Object} [options={}] Optional Parameters
  * @param {Array<number>} [options.bbox] BBox [west, south, east, north]
  * @param {string|number} [options.id] Identifier
- * @returns {Feature<Polygon>} a Polygon feature
- * @throws {Error} throw an error if a LinearRing of the polygon has too few positions
- * or if a LinearRing of the Polygon does not have matching Positions at the beginning & end.
+ * @returns {Feature<Polygon>} Polygon Feature
  * @example
- * var polygon = turf.polygon([[
- *   [-2.275543, 53.464547],
- *   [-2.275543, 53.489271],
- *   [-2.215118, 53.489271],
- *   [-2.215118, 53.464547],
- *   [-2.275543, 53.464547]
- * ]], { name: 'poly1', population: 400});
+ * var polygon = turf.polygon([[[-5, 52], [-4, 56], [-2, 51], [-7, 54], [-5, 52]]], { name: 'poly1' });
  *
  * //=polygon
  */
 export function polygon(coordinates, properties, options) {
-    if (!coordinates) throw new Error('No coordinates passed');
+    if (!coordinates) throw new Error('coordinates is required');
 
     for (var i = 0; i < coordinates.length; i++) {
         var ring = coordinates[i];
@@ -211,7 +231,7 @@ export function polygon(coordinates, properties, options) {
         }
         for (var j = 0; j < ring[ring.length - 1].length; j++) {
             // Check if first point of Polygon contains two numbers
-            if (i === 0 && j === 0 && !isNumber(ring[0][0]) || !isNumber(ring[0][1])) throw new Error('Coordinates must contain numbers');
+            if (i === 0 && j === 0 && !isNumber(ring[0][0]) || !isNumber(ring[0][1])) throw new Error('coordinates must contain numbers');
             if (ring[ring.length - 1][j] !== ring[0][j]) {
                 throw new Error('First and last Position are not equivalent.');
             }
@@ -225,8 +245,34 @@ export function polygon(coordinates, properties, options) {
 }
 
 /**
- * Creates a {@link LineString} based on a
- * coordinate array. Properties can be added optionally.
+ * Creates a {@link Polygon} {@link FeatureCollection} from an Array of Polygon coordinates.
+ *
+ * @name polygons
+ * @param {Array<Array<Array<Array<number>>>>} coordinates an array of Polygon coordinates
+ * @param {Object} [properties={}] an Object of key-value pairs to add as properties
+ * @param {Object} [options={}] Optional Parameters
+ * @param {Array<number>} [options.bbox] BBox [west, south, east, north]
+ * @param {string|number} [options.id] Identifier
+ * @returns {FeatureCollection<Polygon>} Polygon FeatureCollection
+ * @example
+ * var polygons = turf.polygons([
+ *   [[[-5, 52], [-4, 56], [-2, 51], [-7, 54], [-5, 52]]],
+ *   [[[-15, 42], [-14, 46], [-12, 41], [-17, 44], [-15, 42]]],
+ * ]);
+ *
+ * //=polygons
+ */
+export function polygons(coordinates, properties, options) {
+    if (!coordinates) throw new Error('coordinates is required');
+    if (!Array.isArray(coordinates)) throw new Error('coordinates must be an Array');
+
+    return featureCollection(coordinates.map(function (coords) {
+        return polygon(coords, properties);
+    }), options);
+}
+
+/**
+ * Creates a {@link LineString} {@link Feature} from an Array of Positions.
  *
  * @name lineString
  * @param {Array<Array<number>>} coordinates an array of Positions
@@ -234,36 +280,51 @@ export function polygon(coordinates, properties, options) {
  * @param {Object} [options={}] Optional Parameters
  * @param {Array<number>} [options.bbox] BBox [west, south, east, north]
  * @param {string|number} [options.id] Identifier
- * @returns {Feature<LineString>} a LineString feature
- * @throws {Error} if no coordinates are passed
+ * @returns {Feature<LineString>} LineString Feature
  * @example
- * var linestring1 = turf.lineString([
- *   [-21.964416, 64.148203],
- *   [-21.956176, 64.141316],
- *   [-21.93901, 64.135924],
- *   [-21.927337, 64.136673]
- * ]);
- * var linestring2 = turf.lineString([
- *   [-21.929054, 64.127985],
- *   [-21.912918, 64.134726],
- *   [-21.916007, 64.141016],
- *   [-21.930084, 64.14446]
- * ], {name: 'line 1', distance: 145});
+ * var linestring1 = turf.lineString([[-24, 63], [-23, 60], [-25, 65], [-20, 69]], {name: 'line 1'});
+ * var linestring2 = turf.lineString([[-14, 43], [-13, 40], [-15, 45], [-10, 49]], {name: 'line 2'});
  *
  * //=linestring1
- *
  * //=linestring2
  */
 export function lineString(coordinates, properties, options) {
-    if (!coordinates) throw new Error('No coordinates passed');
-    if (coordinates.length < 2) throw new Error('Coordinates must be an array of two or more positions');
+    if (!coordinates) throw new Error('coordinates is required');
+    if (coordinates.length < 2) throw new Error('coordinates must be an array of two or more positions');
     // Check if first point of LineString contains two numbers
-    if (!isNumber(coordinates[0][1]) || !isNumber(coordinates[0][1])) throw new Error('Coordinates must contain numbers');
+    if (!isNumber(coordinates[0][1]) || !isNumber(coordinates[0][1])) throw new Error('coordinates must contain numbers');
 
     return feature({
         type: 'LineString',
         coordinates: coordinates
     }, properties, options);
+}
+
+/**
+ * Creates a {@link LineString} {@link FeatureCollection} from an Array of LineString coordinates.
+ *
+ * @name lineStrings
+ * @param {Array<Array<number>>} coordinates an array of LinearRings
+ * @param {Object} [properties={}] an Object of key-value pairs to add as properties
+ * @param {Object} [options={}] Optional Parameters
+ * @param {Array<number>} [options.bbox] BBox [west, south, east, north]
+ * @param {string|number} [options.id] Identifier
+ * @returns {FeatureCollection<LineString>} LineString FeatureCollection
+ * @example
+ * var linestrings = turf.lineStrings([
+ *   [[-24, 63], [-23, 60], [-25, 65], [-20, 69]],
+ *   [[-14, 43], [-13, 40], [-15, 45], [-10, 49]]
+ * ]);
+ *
+ * //=linestrings
+ */
+export function lineStrings(coordinates, properties, options) {
+    if (!coordinates) throw new Error('coordinates is required');
+    if (!Array.isArray(coordinates)) throw new Error('coordinates must be an Array');
+
+    return featureCollection(coordinates.map(function (coords) {
+        return lineString(coords, properties);
+    }), options);
 }
 
 /**
@@ -325,7 +386,7 @@ export function featureCollection(features, options) {
  * //=multiLine
  */
 export function multiLineString(coordinates, properties, options) {
-    if (!coordinates) throw new Error('No coordinates passed');
+    if (!coordinates) throw new Error('coordinates is required');
 
     return feature({
         type: 'MultiLineString',
@@ -351,7 +412,7 @@ export function multiLineString(coordinates, properties, options) {
  * //=multiPt
  */
 export function multiPoint(coordinates, properties, options) {
-    if (!coordinates) throw new Error('No coordinates passed');
+    if (!coordinates) throw new Error('coordinates is required');
 
     return feature({
         type: 'MultiPoint',
@@ -378,7 +439,7 @@ export function multiPoint(coordinates, properties, options) {
  *
  */
 export function multiPolygon(coordinates, properties, options) {
-    if (!coordinates) throw new Error('No coordinates passed');
+    if (!coordinates) throw new Error('coordinates is required');
 
     return feature({
         type: 'MultiPolygon',

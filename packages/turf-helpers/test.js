@@ -22,6 +22,7 @@ import {
     isNumber,
     earthRadius
 } from './';
+import * as turf from './'
 
 test('point', t => {
     const ptArray = point([5, 10], {name: 'test point'});
@@ -416,9 +417,9 @@ test('turf-helpers -- Handle Id & BBox properties', t => {
 });
 
 test('turf-helpers -- isNumber', t => {
-    t.throws(() => point(['foo', 'bar']), /Coordinates must contain numbers/, 'Coordinates must contain numbers');
-    t.throws(() => lineString([['foo', 'bar'], ['hello', 'world']]), /Coordinates must contain numbers/, 'Coordinates must contain numbers');
-    t.throws(() => polygon([[['foo', 'bar'], ['hello', 'world'], ['world', 'hello'], ['foo', 'bar']]]), /Coordinates must contain numbers/, 'Coordinates must contain numbers');
+    t.throws(() => point(['foo', 'bar']), /coordinates must contain numbers/, 'coordinates must contain numbers');
+    t.throws(() => lineString([['foo', 'bar'], ['hello', 'world']]), /coordinates must contain numbers/, 'coordinates must contain numbers');
+    t.throws(() => polygon([[['foo', 'bar'], ['hello', 'world'], ['world', 'hello'], ['foo', 'bar']]]), /coordinates must contain numbers/, 'coordinates must contain numbers');
 
     // true
     t.true(isNumber(123));
@@ -464,5 +465,42 @@ test('turf-helpers -- isObject', t => {
     t.false(isObject([1, 2, 3]));
     t.false(isObject([]));
     t.false(isObject(isNumber));
+    t.end();
+});
+
+test('turf-helpers -- points', t => {
+    const points = turf.points([
+        [-75, 39],
+        [-80, 45],
+        [-78, 50]
+    ], {foo: 'bar'}, {id: 'hello'});
+
+    t.equal(points.features.length, 3);
+    t.equal(points.id, 'hello');
+    t.equal(points.features[0].properties.foo, 'bar');
+    t.end();
+});
+
+test('turf-helpers -- lineStrings', t => {
+    var linestrings = turf.lineStrings([
+        [[-24, 63], [-23, 60], [-25, 65], [-20, 69]],
+        [[-14, 43], [-13, 40], [-15, 45], [-10, 49]]
+    ], {foo: 'bar'}, {id: 'hello'});
+
+    t.equal(linestrings.features.length, 2);
+    t.equal(linestrings.id, 'hello');
+    t.equal(linestrings.features[0].properties.foo, 'bar');
+    t.end();
+});
+
+test('turf-helpers -- polygons', t => {
+    var polygons = turf.polygons([
+        [[[-5, 52], [-4, 56], [-2, 51], [-7, 54], [-5, 52]]],
+        [[[-15, 42], [-14, 46], [-12, 41], [-17, 44], [-15, 42]]],
+    ], {foo: 'bar'}, {id: 'hello'});
+
+    t.equal(polygons.features.length, 2);
+    t.equal(polygons.id, 'hello');
+    t.equal(polygons.features[0].properties.foo, 'bar');
     t.end();
 });
