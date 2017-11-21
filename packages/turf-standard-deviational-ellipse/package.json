@@ -1,5 +1,6 @@
 {
-  "name": "@turf/standard-deviational-ellipse", "version": "5.0.0",
+  "name": "@turf/standard-deviational-ellipse",
+  "version": "5.0.0",
   "description": "turf standard-deviational-ellipse module",
   "main": "main",
   "module": "index",
@@ -43,11 +44,12 @@
     "tape": "*"
   },
   "dependencies": {
-    "@turf/meta": "5.0.0",
-    "@turf/helpers": "5.0.0",
-    "@turf/center-mean": "5.0.4",
-    "@turf/points-within-polygon": "5.0.0",
-    "@turf/ellipse": "5.0.4"
+    "@turf/center-mean": "^5.0.1",
+    "@turf/ellipse": "^5.0.1",
+    "@turf/helpers": "^5.0.4",
+    "@turf/meta": "^5.0.0",
+    "@turf/invariant": "^5.0.0",
+    "@turf/points-within-polygon": "^5.0.0"
   },
   "@std/esm": {
     "esm": "js",
