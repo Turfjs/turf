@@ -1,4 +1,17 @@
 language: node_js
 cache: yarn
 node_js:
-  - node
+- node
+after_success:
+- yarn docs
+- git config --global user.email "docs@turfjs.org"
+- git config --global user.name "TurfJS Documentation Bot"
+- git config credential.helper "store --file=.git/credentials"
+- echo "https://${GH_TOKEN}:@github.com" > .git/credentials
+- git checkout master
+- git add packages/turf-*/README.md
+- 'git commit --message "Updated Documentation (npm run docs)"'
+- git push
+env:
+  global:
+    secure: hYG08l+HLnfZsa6ENaI5XdjNiW3Ly347yxy7aMFZ99K3G9OyxryGQKlnk+CEbPgFWFk31rUBa5txCwRcKPwg350D4MpOSPeBF7Xb1NxMz3XdzYejGjQg1m6QMHRJgLG5tytX7Nk1Tvikonhq1hVWsMcB+HOY2A+XUjU9BXv932o=
