@@ -14,4 +14,4 @@ after_success:
 - git push
 env:
   global:
-    secure: hYG08l+HLnfZsa6ENaI5XdjNiW3Ly347yxy7aMFZ99K3G9OyxryGQKlnk+CEbPgFWFk31rUBa5txCwRcKPwg350D4MpOSPeBF7Xb1NxMz3XdzYejGjQg1m6QMHRJgLG5tytX7Nk1Tvikonhq1hVWsMcB+HOY2A+XUjU9BXv932o=
+    secure: CS8UZiakobNN+oxNcXwBDEpiDn4S7/rpWv+qhb65QrgBBuhwD8hbP35Prrs7MnvG+/yGAItReQExfezIwb1NCKeCO4Ft1NgLyw6ziJf5hGFUAgg1x7smzQU6IKvxGJ/KhHIzyYvD/BF4n2O/l+2+azcwDZwsmS5WWVm61v6R4Nc=
