@@ -2,7 +2,7 @@ import booleanPointInPolygon from '@turf/boolean-point-in-polygon';
 import { featureCollection } from '@turf/helpers';
 
 /**
- * Takes a set of {@link Point|points} and a set of {@link Polygon|polygons} or {@link MultiPolygon|multi polygons} and returns the points that fall within the polygons.
+ * Takes a set of {@link Points} and a set of {@link (Multi)Polygons} and returns the points that fall within the polygons.
  *
  * @name pointsWithinPolygon
  * @param {FeatureCollection<Point>} points input points
