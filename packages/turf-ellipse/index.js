@@ -1,4 +1,4 @@
-import { degreesToRadians, polygon, isObject, isNumber } from '@turf/helpers';
+import { polygon, isObject, isNumber } from '@turf/helpers';
 import rhumbDestination from '@turf/rhumb-destination';
 import transformRotate from '@turf/transform-rotate';
 import { getCoord } from '@turf/invariant';
