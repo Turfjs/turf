@@ -1,6 +1,5 @@
-import { polygon, lengthToDegrees, isObject, isNumber } from '@turf/helpers';
+import { degreesToRadians, polygon, lengthToDegrees, isObject, isNumber } from '@turf/helpers';
 import { getCoord } from '@turf/invariant';
-import transformRotate from '@turf/transform-rotate';
 
 /**
  * Takes a {@link Point} and calculates the ellipse polygon given two semi-axes expressed in variable units and steps for precision.
@@ -10,7 +9,6 @@ import transformRotate from '@turf/transform-rotate';
  * @param {number} ySemiAxis semi (minor) axis of the ellipse along the y-axis
  * @param {Object} [options={}] Optional parameters
  * @param {number} [options.angle=0] angle of rotation (along the vertical axis), from North in decimal degrees, negative clockwise
- * @param {Geometry|Feature<Point>|Array<number>} [options.pivot='origin'] point around which the rotation will be performed
  * @param {number} [options.steps=64] number of steps
  * @param {string} [options.units='kilometers'] unit of measurement for axes
  * @param {Object} [options.properties={}] properties
@@ -46,22 +44,26 @@ function ellipse(center, xSemiAxis, ySemiAxis, options) {
     ySemiAxis = lengthToDegrees(ySemiAxis, units);
 
     var coordinates = [];
+    var angleRad = degreesToRadians(angle);
     for (var i = 0; i < steps; i += 1) {
-        angle = i * -360 / steps;
-        var x = ((xSemiAxis * ySemiAxis) / Math.sqrt(Math.pow(ySemiAxis, 2) + (Math.pow(xSemiAxis, 2) * Math.pow(getTanDeg(angle), 2))));
-        var y = ((xSemiAxis * ySemiAxis) / Math.sqrt(Math.pow(xSemiAxis, 2) + (Math.pow(ySemiAxis, 2) / Math.pow(getTanDeg(angle), 2))));
-        if (angle < -90 && angle >= -270) {
+        var stepAngle = i * -360 / steps;
+        var x = ((xSemiAxis * ySemiAxis) / Math.sqrt(Math.pow(ySemiAxis, 2) + (Math.pow(xSemiAxis, 2) * Math.pow(getTanDeg(stepAngle), 2))));
+        var y = ((xSemiAxis * ySemiAxis) / Math.sqrt(Math.pow(xSemiAxis, 2) + (Math.pow(ySemiAxis, 2) / Math.pow(getTanDeg(stepAngle), 2))));
+        if (stepAngle < -90 && stepAngle >= -270) {
             x = -x;
         }
-        if (angle < -180 && angle >= -360) {
+        if (stepAngle < -180 && stepAngle >= -360) {
             y = -y;
         }
-        coordinates.push([x + centerCoords[0],
-            y + centerCoords[1]
+        var rotatedX = x * Math.cos(angleRad) + y * Math.sin(angleRad);
+        var rotatedY = y * Math.cos(angleRad) - x * Math.sin(angleRad);
+        coordinates.push([rotatedX + centerCoords[0],
+            rotatedY + centerCoords[1]
         ]);
     }
     coordinates.push(coordinates[0]);
-    return transformRotate(polygon([coordinates], properties), angle, { pivot: pivot });
+
+    return polygon([coordinates], properties);
 
     /**
      * Get Tan Degrees

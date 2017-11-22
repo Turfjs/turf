@@ -35,6 +35,20 @@ test('turf-ellipse -- with coordinates', t => {
     t.end();
 });
 
+
+test('turf-ellipse -- test rotation', t => {
+    const center = [ -73.9975, 40.730833 ];
+    const larger = 5;
+    const smaller = 2;
+    const steps = 4;
+    const angle = -90;
+    const rotate = ellipse(center, larger, smaller, {steps, angle}).geometry.coordinates;
+    const norotate = ellipse(center, smaller, larger, {steps}).geometry.coordinates;
+    t.deepEqual([rotate[0][0], rotate[0][1], rotate[0][2], rotate[0][3]], [norotate[0][1], norotate[0][2], norotate[0][3], norotate[0][4]]);
+    t.end();
+});
+
+
 test('turf-ellipse -- validate geojson', t => {
   const E = ellipse([0, 0], 10, 20);
   geojsonhint.hint(E).forEach(hint => t.fail(hint.message));
