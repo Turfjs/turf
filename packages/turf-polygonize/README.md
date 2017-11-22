@@ -4,7 +4,7 @@
 
 ## polygonize
 
-Polygonizes [(Multi)LineString(s)](http://geojson.org/geojson-spec.html#linestring) into [Polygons](Polygons). Implementation of GEOSPolygonize function (`geos::operation::polygonize::Polygonizer`).
+Polygonizes [(Multi)LineString(s)](http://geojson.org/geojson-spec.html#linestring) into [Polygons](http://geojson.org/geojson-spec.html#polygon). Implementation of GEOSPolygonize function (`geos::operation::polygonize::Polygonizer`).
 Polygonizes a set of lines that represents edges in a planar graph. Edges must be correctly
 noded, i.e., they must only meet at their endpoints. (NOTE: while TurfJS has no specific function, an easy way to
 ensure this is to use the QGis library and call unaryUnion() on the set of input geometries and then pass the

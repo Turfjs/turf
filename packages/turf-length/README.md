@@ -4,7 +4,7 @@
 
 ## length
 
-Takes a [GeoJSON](http://geojson.org/geojson-spec.html#geojson-objects) and measures its length in the specified units, [Point]((Multi)Point)'s distance are ignored.
+Takes a [GeoJSON](http://geojson.org/geojson-spec.html#geojson-objects) and measures its length in the specified units, [(Multi)Point](http://geojson.org/geojson-spec.html#point)'s distance are ignored.
 
 **Parameters**
 

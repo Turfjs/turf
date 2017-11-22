@@ -4,7 +4,7 @@
 
 ## pointsWithinPolygon
 
-Takes a set of [points](http://geojson.org/geojson-spec.html#point) and a set of [polygons](http://geojson.org/geojson-spec.html#polygon) or [multi polygons](http://geojson.org/geojson-spec.html#multipolygon) and returns the points that fall within the polygons.
+Takes a set of [Points](http://geojson.org/geojson-spec.html#point) and a set of [(Multi)Polygons](http://geojson.org/geojson-spec.html#polygon) and returns the points that fall within the polygons.
 
 **Parameters**
 
