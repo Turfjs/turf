@@ -31,7 +31,7 @@ function ellipse(center, xSemiAxis, ySemiAxis, options) {
     var steps = options.steps || 64;
     var units = options.units || 'kilometers';
     var angle = options.angle || 0;
-    var pivot = options.pivot;
+    var pivot = options.pivot || center;
     var properties = options.properties || center.properties || {};
 
     // validation
@@ -49,7 +49,6 @@ function ellipse(center, xSemiAxis, ySemiAxis, options) {
     ySemiAxis = getCoord(ySemiAxis)[1] - centerCoords[1];
 
     var coordinates = [];
-    var angleRad = degreesToRadians(angle);
     for (var i = 0; i < steps; i += 1) {
         var stepAngle = i * -360 / steps;
         var x = ((xSemiAxis * ySemiAxis) / Math.sqrt(Math.pow(ySemiAxis, 2) + (Math.pow(xSemiAxis, 2) * Math.pow(getTanDeg(stepAngle), 2))));
