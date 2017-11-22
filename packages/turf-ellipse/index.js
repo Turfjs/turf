@@ -1,4 +1,6 @@
-import { degreesToRadians, polygon, lengthToDegrees, isObject, isNumber } from '@turf/helpers';
+import { degreesToRadians, polygon, isObject, isNumber } from '@turf/helpers';
+import rhumbDestination from '@turf/rhumb-destination';
+import transformRotate from '@turf/transform-rotate';
 import { getCoord } from '@turf/invariant';
 
 /**
@@ -9,6 +11,7 @@ import { getCoord } from '@turf/invariant';
  * @param {number} ySemiAxis semi (minor) axis of the ellipse along the y-axis
  * @param {Object} [options={}] Optional parameters
  * @param {number} [options.angle=0] angle of rotation (along the vertical axis), from North in decimal degrees, negative clockwise
+ * @param {Geometry|Feature<Point>|Array<number>} [options.pivot='origin'] point around which the rotation will be performed
  * @param {number} [options.steps=64] number of steps
  * @param {string} [options.units='kilometers'] unit of measurement for axes
  * @param {Object} [options.properties={}] properties
@@ -28,6 +31,7 @@ function ellipse(center, xSemiAxis, ySemiAxis, options) {
     var steps = options.steps || 64;
     var units = options.units || 'kilometers';
     var angle = options.angle || 0;
+    var pivot = options.pivot;
     var properties = options.properties || center.properties || {};
 
     // validation
@@ -39,8 +43,10 @@ function ellipse(center, xSemiAxis, ySemiAxis, options) {
     if (!isNumber(angle)) throw new Error('angle must be a number');
 
     var centerCoords = getCoord(center);
-    xSemiAxis = lengthToDegrees(xSemiAxis, units);
-    ySemiAxis = lengthToDegrees(ySemiAxis, units);
+    xSemiAxis = rhumbDestination(center, xSemiAxis, 90, {units: units});
+    ySemiAxis = rhumbDestination(center, ySemiAxis, 0, {units: units});
+    xSemiAxis = getCoord(xSemiAxis)[0] - centerCoords[0];
+    ySemiAxis = getCoord(ySemiAxis)[1] - centerCoords[1];
 
     var coordinates = [];
     var angleRad = degreesToRadians(angle);
@@ -52,14 +58,10 @@ function ellipse(center, xSemiAxis, ySemiAxis, options) {
         if (stepAngle < -90 && stepAngle >= -270) x = -x;
         if (stepAngle < -180 && stepAngle >= -360) y = -y;
 
-        var rotatedX = x * Math.cos(angleRad) + y * Math.sin(angleRad);
-        var rotatedY = y * Math.cos(angleRad) - x * Math.sin(angleRad);
-
-        coordinates.push([rotatedX + centerCoords[0], rotatedY + centerCoords[1]]);
+        coordinates.push([x + centerCoords[0], y + centerCoords[1]]);
     }
     coordinates.push(coordinates[0]);
-
-    return polygon([coordinates], properties);
+    return transformRotate(polygon([coordinates], properties), angle, { pivot: pivot });
 }
 
 /**
