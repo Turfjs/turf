@@ -38,6 +38,7 @@
     "@std/esm": "*",
     "@turf/circle": "*",
     "@turf/truncate": "*",
+    "@turf/bbox-polygon": "*",
     "benchmark": "*",
     "glob": "*",
     "load-json-file": "*",

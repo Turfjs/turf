@@ -6,6 +6,7 @@ import write from 'write-json-file';
 import truncate from '@turf/truncate';
 import geojsonhint from '@mapbox/geojsonhint';
 import circle from '@turf/circle';
+import bboxPolygon from '@turf/bbox-polygon';
 import { featureCollection, lineString } from '@turf/helpers';
 import destination from '@turf/rhumb-destination';
 import ellipse from '.';
@@ -19,18 +20,28 @@ test('turf-ellipse', t => {
         angle = angle || 0;
         const options = {steps, angle, units};
         const maxAxis = Math.max(xSemiAxis, ySemiAxis);
+        let results;
 
-        const results = featureCollection([
-            truncate(colorize(ellipse(center, xSemiAxis, ySemiAxis, options), '#00F')),
-            truncate(colorize(ellipse(center, xSemiAxis, ySemiAxis, {steps, angle: angle + 90, units}), '#0F0')),
-            truncate(colorize(circle(center, maxAxis, options), '#F00')),
-            destination(center, maxAxis, angle, {units, properties: {'marker-symbol': 'star', 'marker-color': '#F0F'}}),
-            destination(center, maxAxis, angle + 90, {units, properties: {'marker-symbol': 'square', 'marker-color': '#F0F'}}),
-            lineString([center, destination(center, maxAxis, angle).geometry.coordinates], {stroke: '#F0F', 'stroke-width': 6}),
-            lineString([center, destination(center, maxAxis, angle + 90).geometry.coordinates], {stroke: '#F0F', 'stroke-width': 6}),
-            geojson,
-        ]);
-
+        if(units === "degrees"){
+            results = featureCollection([
+                truncate(colorize(bboxPolygon([center[0] - xSemiAxis, center[1] - xSemiAxis, center[0] + xSemiAxis, center[1] + xSemiAxis]), '#999')),
+                truncate(colorize(bboxPolygon([center[0] - ySemiAxis, center[1] - ySemiAxis, center[0] + ySemiAxis, center[1] + ySemiAxis]), '#666')),
+                truncate(colorize(ellipse(center, xSemiAxis, ySemiAxis, options), '#00F')),
+                truncate(colorize(ellipse(center, xSemiAxis, ySemiAxis, {steps, angle: angle + 90, units}), '#0F0')),
+                geojson
+            ]);
+        } else {
+            results = featureCollection([
+                truncate(colorize(ellipse(center, xSemiAxis, ySemiAxis, options), '#00F')),
+                truncate(colorize(ellipse(center, xSemiAxis, ySemiAxis, {steps, angle: angle + 90, units}), '#0F0')),
+                truncate(colorize(circle(center, maxAxis, options), '#F00')),
+                destination(center, maxAxis, angle, {units, properties: {'marker-symbol': 'star', 'marker-color': '#F0F'}}),
+                destination(center, maxAxis, angle + 90, {units, properties: {'marker-symbol': 'square', 'marker-color': '#F0F'}}),
+                lineString([center, destination(center, maxAxis, angle).geometry.coordinates], {stroke: '#F0F', 'stroke-width': 6}),
+                lineString([center, destination(center, maxAxis, angle + 90).geometry.coordinates], {stroke: '#F0F', 'stroke-width': 6}),
+                geojson,
+            ]);
+        }
         const out = filepath.replace(path.join('test', 'in'), path.join('test', 'out'));
         if (process.env.REGEN) write.sync(out, results);
         t.deepEqual(results, load.sync(out), name);
