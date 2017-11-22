@@ -40,12 +40,25 @@
   dependencies:
     "@turf/helpers" "^5.0.4"
 
+"@turf/meta@^5.0.4":
+  version "5.0.4"
+  resolved "https://registry.yarnpkg.com/@turf/meta/-/meta-5.0.4.tgz#b41d08f19d2ecc934805b6d713a663abd9f83213"
+  dependencies:
+    "@turf/helpers" "^5.0.4"
+
 "@turf/rhumb-destination@*":
   version "5.0.4"
   resolved "https://registry.yarnpkg.com/@turf/rhumb-destination/-/rhumb-destination-5.0.4.tgz#da453eb52d2099aa59c6f41160b636a5b136009c"
   dependencies:
     "@turf/helpers" "^5.0.4"
     "@turf/invariant" "^5.0.4"
+
+"@turf/truncate@*":
+  version "5.0.4"
+  resolved "https://registry.yarnpkg.com/@turf/truncate/-/truncate-5.0.4.tgz#84f85f39f33b9d258372ce54ad540b6ab05365d3"
+  dependencies:
+    "@turf/helpers" "^5.0.4"
+    "@turf/meta" "^5.0.4"
 
 "JSV@>= 4.0.x":
   version "4.0.2"

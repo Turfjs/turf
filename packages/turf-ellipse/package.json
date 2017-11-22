@@ -38,6 +38,7 @@
     "@std/esm": "*",
     "@turf/circle": "*",
     "@turf/rhumb-destination": "*",
+    "@turf/truncate": "*",
     "benchmark": "*",
     "glob": "*",
     "load-json-file": "*",

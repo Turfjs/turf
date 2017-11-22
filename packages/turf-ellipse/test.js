@@ -3,6 +3,7 @@ import glob from 'glob';
 import path from 'path';
 import load from 'load-json-file';
 import write from 'write-json-file';
+import truncate from '@turf/truncate';
 import geojsonhint from '@mapbox/geojsonhint';
 import circle from '@turf/circle';
 import { featureCollection, lineString } from '@turf/helpers';
@@ -20,9 +21,9 @@ test('turf-ellipse', t => {
         const maxAxis = Math.max(xSemiAxis, ySemiAxis);
 
         const results = featureCollection([
-            colorize(ellipse(center, xSemiAxis, ySemiAxis, options), '#00F'),
-            colorize(ellipse(center, xSemiAxis, ySemiAxis, {steps, angle: angle + 90, units}), '#0F0'),
-            colorize(circle(center, maxAxis, options), '#F00'),
+            truncate(colorize(ellipse(center, xSemiAxis, ySemiAxis, options), '#00F')),
+            truncate(colorize(ellipse(center, xSemiAxis, ySemiAxis, {steps, angle: angle + 90, units}), '#0F0')),
+            truncate(colorize(circle(center, maxAxis, options), '#F00')),
             destination(center, maxAxis, angle, {units, properties: {'marker-symbol': 'star', 'marker-color': '#F0F'}}),
             destination(center, maxAxis, angle + 90, {units, properties: {'marker-symbol': 'square', 'marker-color': '#F0F'}}),
             lineString([center, destination(center, maxAxis, angle).geometry.coordinates], {stroke: '#F0F', 'stroke-width': 6}),
