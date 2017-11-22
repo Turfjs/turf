@@ -40,6 +40,13 @@
   dependencies:
     "@turf/helpers" "^5.0.4"
 
+"@turf/rhumb-destination@*":
+  version "5.0.4"
+  resolved "https://registry.yarnpkg.com/@turf/rhumb-destination/-/rhumb-destination-5.0.4.tgz#da453eb52d2099aa59c6f41160b636a5b136009c"
+  dependencies:
+    "@turf/helpers" "^5.0.4"
+    "@turf/invariant" "^5.0.4"
+
 "JSV@>= 4.0.x":
   version "4.0.2"
   resolved "https://registry.yarnpkg.com/JSV/-/JSV-4.0.2.tgz#d077f6825571f82132f9dffaed587b4029feff57"

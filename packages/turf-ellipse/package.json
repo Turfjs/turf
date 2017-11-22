@@ -37,6 +37,7 @@
     "@mapbox/geojsonhint": "*",
     "@std/esm": "*",
     "@turf/circle": "*",
+    "@turf/rhumb-destination": "*",
     "benchmark": "*",
     "glob": "*",
     "load-json-file": "*",

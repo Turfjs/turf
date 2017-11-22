@@ -5,7 +5,8 @@ import load from 'load-json-file';
 import write from 'write-json-file';
 import geojsonhint from '@mapbox/geojsonhint';
 import circle from '@turf/circle';
-import { featureCollection } from '@turf/helpers';
+import { featureCollection, lineString } from '@turf/helpers';
+import destination from '@turf/rhumb-destination';
 import ellipse from '.';
 
 test('turf-ellipse', t => {
@@ -16,11 +17,16 @@ test('turf-ellipse', t => {
         let {xSemiAxis, ySemiAxis, steps, angle, units} = geojson.properties;
         angle = angle || 0;
         const options = {steps, angle, units};
+        const maxAxis = Math.max(xSemiAxis, ySemiAxis);
 
         const results = featureCollection([
             colorize(ellipse(center, xSemiAxis, ySemiAxis, options), '#00F'),
             colorize(ellipse(center, xSemiAxis, ySemiAxis, {steps, angle: angle + 90, units}), '#0F0'),
-            colorize(circle(center, Math.max(xSemiAxis, ySemiAxis), options), '#F00'),
+            colorize(circle(center, maxAxis, options), '#F00'),
+            destination(center, maxAxis, angle, {units, properties: {'marker-symbol': 'star', 'marker-color': '#F0F'}}),
+            destination(center, maxAxis, angle + 90, {units, properties: {'marker-symbol': 'square', 'marker-color': '#F0F'}}),
+            lineString([center, destination(center, maxAxis, angle).geometry.coordinates], {stroke: '#F0F', 'stroke-width': 6}),
+            lineString([center, destination(center, maxAxis, angle + 90).geometry.coordinates], {stroke: '#F0F', 'stroke-width': 6}),
             geojson,
         ]);
 

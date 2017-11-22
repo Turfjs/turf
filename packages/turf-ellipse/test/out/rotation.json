@@ -832,6 +832,74 @@
 		{
 			"type": "Feature",
 			"properties": {
+				"marker-symbol": "star",
+				"marker-color": "#F0F"
+			},
+			"geometry": {
+				"type": "Point",
+				"coordinates": [
+					-73.95553104024577,
+					40.76262877638244
+				]
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {
+				"marker-symbol": "square",
+				"marker-color": "#F0F"
+			},
+			"geometry": {
+				"type": "Point",
+				"coordinates": [
+					-73.95555109008865,
+					40.69903722361756
+				]
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {
+				"stroke": "#F0F",
+				"stroke-width": 6
+			},
+			"geometry": {
+				"type": "LineString",
+				"coordinates": [
+					[
+						-73.9975,
+						40.730833
+					],
+					[
+						-73.95553104024577,
+						40.76262877638244
+					]
+				]
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {
+				"stroke": "#F0F",
+				"stroke-width": 6
+			},
+			"geometry": {
+				"type": "LineString",
+				"coordinates": [
+					[
+						-73.9975,
+						40.730833
+					],
+					[
+						-73.95555109008865,
+						40.69903722361756
+					]
+				]
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {
 				"xSemiAxis": 5,
 				"ySemiAxis": 1,
 				"angle": 45
