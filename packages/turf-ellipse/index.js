@@ -48,34 +48,30 @@ function ellipse(center, xSemiAxis, ySemiAxis, options) {
         var stepAngle = i * -360 / steps;
         var x = ((xSemiAxis * ySemiAxis) / Math.sqrt(Math.pow(ySemiAxis, 2) + (Math.pow(xSemiAxis, 2) * Math.pow(getTanDeg(stepAngle), 2))));
         var y = ((xSemiAxis * ySemiAxis) / Math.sqrt(Math.pow(xSemiAxis, 2) + (Math.pow(ySemiAxis, 2) / Math.pow(getTanDeg(stepAngle), 2))));
-        if (stepAngle < -90 && stepAngle >= -270) {
-            x = -x;
-        }
-        if (stepAngle < -180 && stepAngle >= -360) {
-            y = -y;
-        }
+
+        if (stepAngle < -90 && stepAngle >= -270) x = -x;
+        if (stepAngle < -180 && stepAngle >= -360) y = -y;
+
         var rotatedX = x * Math.cos(angleRad) + y * Math.sin(angleRad);
         var rotatedY = y * Math.cos(angleRad) - x * Math.sin(angleRad);
-        coordinates.push([rotatedX + centerCoords[0],
-            rotatedY + centerCoords[1]
-        ]);
+
+        coordinates.push([rotatedX + centerCoords[0], rotatedY + centerCoords[1]]);
     }
     coordinates.push(coordinates[0]);
 
     return polygon([coordinates], properties);
+}
 
-    /**
-     * Get Tan Degrees
-     *
-     * @private
-     * @param {number} deg Degrees
-     * @returns {number} Tan Degrees
-     */
-    function getTanDeg(deg) {
-        var rad = deg * Math.PI / 180;
-        return Math.tan(rad);
-    }
-
+/**
+ * Get Tan Degrees
+ *
+ * @private
+ * @param {number} deg Degrees
+ * @returns {number} Tan Degrees
+ */
+function getTanDeg(deg) {
+    var rad = deg * Math.PI / 180;
+    return Math.tan(rad);
 }
 
 export default ellipse;
