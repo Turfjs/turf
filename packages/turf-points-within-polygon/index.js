@@ -1,32 +1,32 @@
-import booleanPointInPolygon from '@turf/boolean-point-in-polygon';
+import pointInPolygon from '@turf/boolean-point-in-polygon';
 import { featureCollection } from '@turf/helpers';
+import { geomEach, featureEach } from '@turf/meta';
 
 /**
- * Takes a set of {@link Points} and a set of {@link (Multi)Polygons} and returns the points that fall within the polygons.
+ * Finds {@link Points} that fall within {@link (Multi)Polygon(s)}.
  *
  * @name pointsWithinPolygon
- * @param {FeatureCollection<Point>} points input points
- * @param {FeatureCollection<Polygon|MultiPolygon>} polygons input polygons
+ * @param {Feauture|FeatureCollection<Point>} points Points as input search
+ * @param {FeatureCollection|Geoemtry|Feature<Polygon|MultiPolygon>} polygons Points must be within these (Multi)Polygon(s)
  * @returns {FeatureCollection<Point>} points that land within at least one polygon
  * @example
- * var searchWithin = turf.featureCollection([
- *     turf.polygon([[
- *         [-46.653,-23.543],
- *         [-46.634,-23.5346],
- *         [-46.613,-23.543],
- *         [-46.614,-23.559],
- *         [-46.631,-23.567],
- *         [-46.653,-23.560],
- *         [-46.653,-23.543]
- *     ]])
+ * var points = turf.points([
+ *     [-46.6318, -23.5523],
+ *     [-46.6246, -23.5325],
+ *     [-46.6062, -23.5513],
+ *     [-46.663, -23.554],
+ *     [-46.643, -23.557]
  * ]);
- * var points = turf.featureCollection([
- *     turf.point([-46.6318, -23.5523]),
- *     turf.point([-46.6246, -23.5325]),
- *     turf.point([-46.6062, -23.5513]),
- *     turf.point([-46.663, -23.554]),
- *     turf.point([-46.643, -23.557])
- * ]);
+ *
+ * var searchWithin = turf.polygon([[
+ *     [-46.653,-23.543],
+ *     [-46.634,-23.5346],
+ *     [-46.613,-23.543],
+ *     [-46.614,-23.559],
+ *     [-46.631,-23.567],
+ *     [-46.653,-23.560],
+ *     [-46.653,-23.543]
+ * ]]);
  *
  * var ptsWithin = turf.pointsWithinPolygon(points, searchWithin);
  *
@@ -38,16 +38,13 @@ import { featureCollection } from '@turf/helpers';
  * });
  */
 function pointsWithinPolygon(points, polygons) {
-    var pointsWithin = featureCollection([]);
-    for (var i = 0; i < polygons.features.length; i++) {
-        for (var j = 0; j < points.features.length; j++) {
-            var isInside = booleanPointInPolygon(points.features[j], polygons.features[i]);
-            if (isInside) {
-                pointsWithin.features.push(points.features[j]);
-            }
-        }
-    }
-    return pointsWithin;
+    var results = [];
+    geomEach(polygons, function (polygon) {
+        featureEach(points, function (point) {
+            if (pointInPolygon(point, polygon)) results.push(point);
+        });
+    });
+    return featureCollection(results);
 }
 
 export default pointsWithinPolygon;

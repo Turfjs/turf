@@ -1,5 +1,5 @@
 import test from 'tape';
-import { point } from '@turf/helpers';
+import { point, points } from '@turf/helpers';
 import { polygon } from '@turf/helpers';
 import { featureCollection } from '@turf/helpers';
 import pointsWithinPolygon from '.';
@@ -34,3 +34,26 @@ test('turf-points-within-polygon', t => {
     t.ok(counted, 'returns a featurecollection');
     t.equal(counted.features.length, 5, 'multiple points in multiple polygons');
 });
+
+test('turf-points-within-polygon -- support extra geometry', t => {
+    const pts = points([
+        [-46.6318, -23.5523],
+        [-46.6246, -23.5325],
+        [-46.6062, -23.5513],
+        [-46.663, -23.554],
+        [-46.643, -23.557]
+    ]);
+    const searchWithin = polygon([[
+        [-46.653,-23.543],
+        [-46.634,-23.5346],
+        [-46.613,-23.543],
+        [-46.614,-23.559],
+        [-46.631,-23.567],
+        [-46.653,-23.560],
+        [-46.653,-23.543]
+    ]]);
+    t.assert(pointsWithinPolygon(pts, searchWithin));
+    t.assert(pointsWithinPolygon(pts.features[0], searchWithin));
+    t.assert(pointsWithinPolygon(pts, searchWithin.geometry));
+    t.end()    
+})
