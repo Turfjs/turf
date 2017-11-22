@@ -34,14 +34,14 @@
   },
   "homepage": "https://github.com/Turfjs/turf",
   "devDependencies": {
-    "@mapbox/geojsonhint": "^2.0.1",
-    "@std/esm": "^0.16.0",
-    "benchmark": "^2.1.4",
-    "glob": "^7.1.2",
-    "load-json-file": "^4.0.0",
-    "rollup": "^0.51.8",
-    "tape": "^4.8.0",
-    "write-json-file": "^2.3.0"
+    "@mapbox/geojsonhint": "*",
+    "@std/esm": "*",
+    "benchmark": "*",
+    "glob": "*",
+    "load-json-file": "*",
+    "rollup": "*",
+    "tape": "*",
+    "write-json-file": "*"
   },
   "dependencies": {
     "@turf/helpers": "^5.0.4",
