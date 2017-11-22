@@ -32,17 +32,13 @@ import ellipse from '@turf/ellipse';
  * @param {Object} [options.properties={}] properties to pass to the resulting ellipse
  * @returns {Feature<Polygon>} an elliptical Polygon that includes approximately 1 SD of the dataset within it.
  * @example
- * var features = turf.featureCollection([
- *   turf.point([-97.522259, 35.4691], {weight: 10}),
- *   turf.point([-97.502754, 35.463455], {weight: 3}),
- *   turf.point([-97.508269, 35.463245], {weight: 5})
- * ]);
  *
- * var options = {weight: "weight"}
- * var sdEllipse = turf.standardDeviationalEllipse(features, options);
+ * var bbox = [-74, 40.72, -73.98, 40.74];
+ * var points = turf.randomPoint(400, {bbox: bbox});
+ * var sdEllipse = turf.standardDeviationalEllipse(points, options);
  * 
  * //addToMap
- * var addToMap = [features, sdEllipse];
+ * var addToMap = [points, sdEllipse];
  *
  */
 function standardDeviationalEllipse(points, options) {
