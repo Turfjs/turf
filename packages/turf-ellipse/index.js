@@ -28,7 +28,6 @@ function ellipse(center, xSemiAxis, ySemiAxis, options) {
     var steps = options.steps || 64;
     var units = options.units || 'kilometers';
     var angle = options.angle || 0;
-    var pivot = options.pivot || null;
     var properties = options.properties || center.properties || {};
 
     // validation
