@@ -36,6 +36,7 @@
   "devDependencies": {
     "@mapbox/geojsonhint": "*",
     "@std/esm": "*",
+    "@turf/circle": "*",
     "benchmark": "*",
     "glob": "*",
     "load-json-file": "*",
