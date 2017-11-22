@@ -3,7 +3,7 @@ import { segmentReduce } from '@turf/meta';
 import { isObject } from '@turf/helpers';
 
 /**
- * Takes a {@link GeoJSON} and measures its length in the specified units, {@link (Multi)Point|Point}'s distance are ignored.
+ * Takes a {@link GeoJSON} and measures its length in the specified units, {@link (Multi)Point}'s distance are ignored.
  *
  * @name length
  * @param {GeoJSON} geojson GeoJSON to measure

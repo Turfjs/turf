@@ -41,7 +41,8 @@
   },
   "dependencies": {
     "@turf/boolean-point-in-polygon": "^5.0.4",
-    "@turf/helpers": "^5.0.4"
+    "@turf/helpers": "^5.0.4",
+    "@turf/meta": "*"
   },
   "@std/esm": {
     "esm": "js",
