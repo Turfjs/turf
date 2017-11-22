@@ -2,8 +2,8 @@
   "type": "Feature",
   "properties": {
     "units": "degrees",
-    "xSemiAxis": 5,
-    "ySemiAxis": 1,
+    "xSemiAxis": 0.125,
+    "ySemiAxis": 0.025,
     "angle": 45
   },
   "geometry": {

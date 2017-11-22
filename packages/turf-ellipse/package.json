@@ -36,9 +36,10 @@
   "devDependencies": {
     "@mapbox/geojsonhint": "*",
     "@std/esm": "*",
-    "@turf/circle": "*",
-    "@turf/truncate": "*",
     "@turf/bbox-polygon": "*",
+    "@turf/circle": "*",
+    "@turf/destination": "*",
+    "@turf/truncate": "*",
     "benchmark": "*",
     "glob": "*",
     "load-json-file": "*",
@@ -48,9 +49,9 @@
   },
   "dependencies": {
     "@turf/helpers": "^5.0.4",
-    "@turf/transform-rotate": "^5.0.4",
+    "@turf/invariant": "^5.0.4",
     "@turf/rhumb-destination": "^5.0.4",
-    "@turf/invariant": "^5.0.4"
+    "@turf/transform-rotate": "^5.0.4"
   },
   "@std/esm": {
     "esm": "js",

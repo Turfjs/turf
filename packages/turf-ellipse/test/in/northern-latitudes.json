@@ -2,7 +2,8 @@
   "type": "Feature",
   "properties": {
     "xSemiAxis": 50,
-    "ySemiAxis": 10
+    "ySemiAxis": 10,
+    "steps": 128
   },
   "geometry": {
     "type": "Point",
