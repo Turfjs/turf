@@ -2,11 +2,11 @@ import booleanPointInPolygon from '@turf/boolean-point-in-polygon';
 import { featureCollection } from '@turf/helpers';
 
 /**
- * Takes a set of {@link Point|points} and a set of {@link Polygon|polygons} and returns the points that fall within the polygons.
+ * Takes a set of {@link Point|points} and a set of {@link Polygon|polygons} or {@link MultiPolygon|multi polygons} and returns the points that fall within the polygons.
  *
  * @name pointsWithinPolygon
  * @param {FeatureCollection<Point>} points input points
- * @param {FeatureCollection<Polygon>} polygons input polygons
+ * @param {FeatureCollection<Polygon|MultiPolygon>} polygons input polygons
  * @returns {FeatureCollection<Point>} points that land within at least one polygon
  * @example
  * var searchWithin = turf.featureCollection([
