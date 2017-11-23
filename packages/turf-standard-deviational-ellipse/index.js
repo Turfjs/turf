@@ -91,7 +91,7 @@ function standardDeviationalEllipse(points, options) {
       var weight = point.properties[weightTerm] || 1;
       var deviation = getDeviations(getCoords(point), getCoords(meanCenter)); 
       sigmaXsum += Math.pow((deviation.x * Math.cos(theta)) - (deviation.y * Math.sin(theta)), 2) * weight;
-      sigmaYsum += Math.pow((deviation.x * Math.sin(theta)) - (deviation.y * Math.cos(theta)), 2) * weight;
+      sigmaYsum += Math.pow((deviation.x * Math.sin(theta)) + (deviation.y * Math.cos(theta)), 2) * weight;
       weightsum += weight;
     });
 
