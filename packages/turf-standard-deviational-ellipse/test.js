@@ -18,15 +18,15 @@ test('turf-standard-deviational-ellipse', t => {
         const features = featureCollection(points);
         const weight = "weight";
         const properties = {
-          "stroke": "#00aa00", 
-          "stroke-width": 3,
-          "stroke-opacity": 1,
-          "fill-opacity": 0,
-          "fill": "#fff"
+            "stroke": "#00aa00", 
+            "stroke-width": 3,
+            "stroke-opacity": 1,
+            "fill-opacity": 0,
+            "fill": "#fff"
         };
         const results = featureCollection([
-          esriEllipse,
-          standardDeviationalEllipse(features, {weight, properties})
+            esriEllipse,
+            standardDeviationalEllipse(features, {weight, properties})
         ]);
 
         // Save to file
