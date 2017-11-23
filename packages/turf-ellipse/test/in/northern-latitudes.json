@@ -1,15 +1,15 @@
 {
   "type": "Feature",
   "properties": {
-    "xSemiAxis": 5,
-    "ySemiAxis": 1,
-    "steps": 4
+    "xSemiAxis": 50,
+    "ySemiAxis": 10,
+    "steps": 128
   },
   "geometry": {
     "type": "Point",
     "coordinates": [
-      -73.9975,
-      40.730833
+      -94,
+      74
     ]
   }
 }

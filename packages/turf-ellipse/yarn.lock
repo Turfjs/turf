@@ -16,6 +16,12 @@
   version "0.16.0"
   resolved "https://registry.yarnpkg.com/@std/esm/-/esm-0.16.0.tgz#2a7a33ecb7f1701cebd4c87df6d0d945ed51f730"
 
+"@turf/bbox-polygon@*":
+  version "5.0.4"
+  resolved "https://registry.yarnpkg.com/@turf/bbox-polygon/-/bbox-polygon-5.0.4.tgz#dba2a442ac6aab447cf7925052b38175ed7efd70"
+  dependencies:
+    "@turf/helpers" "^5.0.4"
+
 "@turf/centroid@^5.0.4":
   version "5.0.4"
   resolved "https://registry.yarnpkg.com/@turf/centroid/-/centroid-5.0.4.tgz#31fcef5c2ca94b234217c7bb779091473358c7ec"
@@ -23,9 +29,23 @@
     "@turf/helpers" "^5.0.4"
     "@turf/meta" "^5.0.4"
 
+"@turf/circle@*":
+  version "5.0.4"
+  resolved "https://registry.yarnpkg.com/@turf/circle/-/circle-5.0.4.tgz#cf9015fd2df178aa7dab0366a13efc5677af23ab"
+  dependencies:
+    "@turf/destination" "^5.0.4"
+    "@turf/helpers" "^5.0.4"
+
 "@turf/clone@^5.0.4":
   version "5.0.4"
   resolved "https://registry.yarnpkg.com/@turf/clone/-/clone-5.0.4.tgz#7b00fa995b06033e122e0630cadb884e97d15b00"
+
+"@turf/destination@*", "@turf/destination@^5.0.4":
+  version "5.0.4"
+  resolved "https://registry.yarnpkg.com/@turf/destination/-/destination-5.0.4.tgz#336cc1dd86bc5b647a3778f34d8d7d3ac6a7fb61"
+  dependencies:
+    "@turf/helpers" "^5.0.4"
+    "@turf/invariant" "^5.0.4"
 
 "@turf/helpers@^5.0.4":
   version "5.0.4"
@@ -76,6 +96,13 @@
     "@turf/rhumb-bearing" "^5.0.4"
     "@turf/rhumb-destination" "^5.0.4"
     "@turf/rhumb-distance" "^5.0.4"
+
+"@turf/truncate@*":
+  version "5.0.4"
+  resolved "https://registry.yarnpkg.com/@turf/truncate/-/truncate-5.0.4.tgz#84f85f39f33b9d258372ce54ad540b6ab05365d3"
+  dependencies:
+    "@turf/helpers" "^5.0.4"
+    "@turf/meta" "^5.0.4"
 
 "JSV@>= 4.0.x":
   version "4.0.2"
@@ -443,7 +470,7 @@ resumer@~0.0.0:
   dependencies:
     through "~2.3.4"
 
-rollup@^0.51.7:
+rollup@*:
   version "0.51.8"
   resolved "https://registry.yarnpkg.com/rollup/-/rollup-0.51.8.tgz#58bd0b642885f4770b5f93cc64f14e4233c2236d"
 
