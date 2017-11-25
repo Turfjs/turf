@@ -1,11 +1,11 @@
-import { FeatureCollection, Feature, Coord, Polygon, Properties, Point } from '@turf/helpers';
+import { FeatureCollection, Feature, Position, Polygon, Properties, Point } from '@turf/helpers';
 
 /**
  * http://turfjs.org/docs/#standarddeviational-ellipse
  */
 
 export interface SDEProps {
-    meanCenterCoordinates: Coord,
+    meanCenterCoordinates: Position,
     semiMajorAxis: number,
     semiMinorAxis: number,
     numberOfFeatures: number,
