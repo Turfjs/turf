@@ -1,7 +1,8 @@
 import centerMean from '@turf/center-mean';
 import distance from '@turf/distance';
 import { point, isObject, isNumber } from '@turf/helpers';
-import { featureEach, getCoords } from '@turf/meta';
+import { featureEach } from '@turf/meta';
+import { getCoord } from '@turf/invariant';
 
 /**
  * Takes a {@link FeatureCollection} of points and calculates the median center,
@@ -51,8 +52,8 @@ function centerMedian(features, options) {
             var weight = feature.properties[weightTerm] || 1;
             var distanceFromCandidate = weight * distance(feature, candidateMedian);
             var k = weight / distanceFromCandidate;
-            candidateXsum += getCoords(feature)[0] * k;
-            candidateYsum += getCoords(feature)[1] * k;
+            candidateXsum += getCoord(feature)[0] * k;
+            candidateYsum += getCoord(feature)[1] * k;
             kSum += k;
         });
         var candidateX = candidateXsum / kSum;
