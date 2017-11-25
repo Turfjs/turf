@@ -1,8 +1,24 @@
-import { FeatureCollection, Polygon, Properties, Point } from '@turf/helpers'
+import { FeatureCollection, Feature, Coord, Polygon, Properties, Point } from '@turf/helpers';
 
 /**
  * http://turfjs.org/docs/#standarddeviational-ellipse
  */
+
+export interface SDEProps {
+    meanCenterCoordinates: Coord,
+    semiMajorAxis: number,
+    semiMinorAxis: number,
+    numberOfFeatures: number,
+    angle: number,
+    percentageWithinEllipse: number
+}
+
+export interface StandardDeviationalEllipse extends Feature<Polygon> {
+    properties: {
+        standardDeviationalEllipse: SDEProps,
+        [key: string]: any
+    }
+}
 
 export default function (
     points: FeatureCollection<Point>,
@@ -11,4 +27,4 @@ export default function (
         weight?: string,
         steps?: number
     }
-): Feature<Polygon>
+): StandardDeviationalEllipse;
