@@ -1,11 +1,11 @@
-import { Feature, Polygon, Properties, Point } from '@turf/helpers'
- 
+import { FeatureCollection, Polygon, Properties, Point } from '@turf/helpers'
+
 /**
  * http://turfjs.org/docs/#standarddeviational-ellipse
  */
 
 export default function (
-    points: Feature<Point>,
+    points: FeatureCollection<Point>,
     options?: {
         properties?: Properties,
         weight?: string,

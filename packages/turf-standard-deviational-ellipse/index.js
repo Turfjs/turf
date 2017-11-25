@@ -25,7 +25,7 @@ import ellipse from '@turf/ellipse';
  * It mirrors the functionality of {@link http://desktop.arcgis.com/en/arcmap/10.3/tools/spatial-statistics-toolbox/directional-distribution.htm|Directional Distribution} in ArcGIS and the {@link http://arken.nmbu.no/~havatv/gis/qgisplugins/SDEllipse/|QGIS Standard Deviational Ellipse Plugin}.
  *
  * @name standardDeviationalEllipse
- * @param {Geometry|FeatureCollection<Point>} points GeoJSON points
+ * @param {FeatureCollection<Point>} points GeoJSON points
  * @param {Object} [options={}] Optional parameters
  * @param {string} [options.weight] the property name used to weight the center
  * @param {number} [options.steps=64] number of steps for the polygon
@@ -107,7 +107,7 @@ function standardDeviationalEllipse(points, options) {
         semiMinorAxis: sigmaY,
         numberOfFeatures: numberOfFeatures,
         angle: thetaDeg,
-        pctWithinEllipse: 100 * coordAll(pointsWithinEllipse).length / numberOfFeatures
+        percentageWithinEllipse: 100 * coordAll(pointsWithinEllipse).length / numberOfFeatures
     };
     theEllipse.properties.standardDeviationalEllipse = standardDeviationalEllipseProperties;
 
