@@ -42,6 +42,10 @@
     "tape": "*"
   },
   "dependencies": {
+    "@turf/center-mean": "^5.0.1",
+    "@turf/distance": "^5.0.4",
+    "@turf/helpers": "^5.0.4",
+    "@turf/meta": "^5.0.4"
   },
   "@std/esm": {
     "esm": "js",
