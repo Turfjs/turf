@@ -36,20 +36,21 @@
   },
   "homepage": "https://github.com/Turfjs/turf",
   "devDependencies": {
-    "@turf/random": "*",
     "@std/esm": "*",
+    "@turf/random": "*",
+    "@turf/truncate": "*",
     "benchmark": "*",
-    "rollup": "*",
-    "write-json-file": "*",
     "load-json-file": "*",
-    "tape": "*"
+    "rollup": "*",
+    "tape": "*",
+    "write-json-file": "*"
   },
   "dependencies": {
     "@turf/center-mean": "^5.0.1",
     "@turf/ellipse": "^5.0.1",
     "@turf/helpers": "^5.0.4",
-    "@turf/meta": "^5.0.0",
     "@turf/invariant": "^5.0.0",
+    "@turf/meta": "^5.0.0",
     "@turf/points-within-polygon": "^5.0.0"
   },
   "@std/esm": {

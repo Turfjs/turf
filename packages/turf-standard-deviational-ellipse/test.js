@@ -5,6 +5,7 @@ import load from 'load-json-file';
 import write from 'write-json-file';
 import { featureCollection } from '@turf/helpers';
 import { featureEach } from '@turf/meta';
+import truncate from '@turf/truncate';
 import standardDeviationalEllipse from '.';
 
 test('turf-standard-deviational-ellipse', t => {
@@ -12,22 +13,15 @@ test('turf-standard-deviational-ellipse', t => {
         // Define params
         const {name} = path.parse(filepath);
         const geojson = load.sync(filepath);
-        let points = [];
-        featureEach(geojson, point => points.push(point));
-        const esriEllipse = points.pop();
-        const features = featureCollection(points);
-        const weight = "weight";
-        const properties = {
-            "stroke": "#00aa00", 
-            "stroke-width": 3,
-            "stroke-opacity": 1,
-            "fill-opacity": 0,
-            "fill": "#fff"
-        };
+        const options = geojson.options;
+        // Optional: ESRI Polygon in GeoJSON test/in to compare results
+        const esriEllipse = geojson.esriEllipse;
+
+        // Colorized results
         const results = featureCollection([
-            esriEllipse,
-            standardDeviationalEllipse(features, {weight, properties})
+            colorize(standardDeviationalEllipse(geojson, options)),
         ]);
+        if (esriEllipse) results.features.unshift(colorize(esriEllipse, '#A00', '#A00', 0.5))
 
         // Save to file
         const out = filepath.replace(path.join('test', 'in'), path.join('test', 'out'));
@@ -36,3 +30,15 @@ test('turf-standard-deviational-ellipse', t => {
     });
     t.end();
 });
+
+function colorize (feature, stroke = '#0A0', fill = '#FFF', opacity = 0) {
+    const properties = {
+        fill,
+        stroke,
+        'stroke-width': 3,
+        'stroke-opacity': 1,
+        'fill-opacity': opacity
+    };
+    Object.assign(feature.properties, properties)
+    return feature
+}
