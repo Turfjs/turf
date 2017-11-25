@@ -42,9 +42,9 @@ function centerMedian(features, options) {
 
     // Calculate mean center & number of features:
     var meanCenter = centerMean(features, {weight: weightTerm});
+    var medianCandidates = [];
 
     function findMedian(candidateMedian, prevCandidate) {
-        var medianCandidates = [];
         var candidateXsum = 0;
         var candidateYsum = 0;
         var kSum = 0;
