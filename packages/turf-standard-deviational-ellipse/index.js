@@ -100,7 +100,6 @@ function standardDeviationalEllipse(points, options) {
     var sigmaY = Math.sqrt(2 * sigmaYsum / weightsum);
 
     var theEllipse = ellipse(meanCenter, sigmaX, sigmaY, {units: 'degrees', angle: thetaDeg, steps: steps, properties: properties});
-    // var eccentricity = (Math.sqrt(Math.pow(sigmaX, 2) - Math.pow(sigmaY, 2))) / sigmaX;
     var pointsWithinEllipse = pointsWithinPolygon(points, featureCollection([theEllipse]));
     var standardDeviationalEllipseProperties = {
         meanCenterCoordinates: getCoords(meanCenter),
@@ -108,7 +107,6 @@ function standardDeviationalEllipse(points, options) {
         semiMinorAxis: sigmaY,
         numberOfFeatures: numberOfFeatures,
         angle: thetaDeg,
-        // eccentricity: eccentricity,
         pctWithinEllipse: 100 * coordAll(pointsWithinEllipse).length / numberOfFeatures
     };
     theEllipse.properties.standardDeviationalEllipse = standardDeviationalEllipseProperties;
