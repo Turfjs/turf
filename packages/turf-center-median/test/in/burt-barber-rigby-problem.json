@@ -1,0 +1,125 @@
+{
+  "type": "FeatureCollection",
+  "properties": {
+    "weight": "weight"
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          20,
+          40
+        ]
+      },
+      "properties": {
+        "weight": "10"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          30,
+          60
+        ]
+      },
+      "properties": {
+        "weight": "20"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34,
+          52
+        ]
+      },
+      "properties": {
+        "weight": "10"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          40,
+          40
+        ]
+      },
+      "properties": {
+        "weight": "20"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          44,
+          52
+        ]
+      },
+      "properties": {
+        "weight": "10"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          48,
+          62
+        ]
+      },
+      "properties": {
+        "weight": "80"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          50,
+          10
+        ]
+      },
+      "properties": {
+        "weight": "10"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          60,
+          50
+        ]
+      },
+      "properties": {
+        "weight": "90"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          90,
+          90
+        ]
+      },
+      "properties": {
+        "weight": "100"
+      }
+    }
+  ]
+}
