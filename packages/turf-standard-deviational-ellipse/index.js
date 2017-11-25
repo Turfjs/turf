@@ -27,7 +27,7 @@ import ellipse from '@turf/ellipse';
  * @name standardDeviationalEllipse
  * @param {Geometry|FeatureCollection<Point>} points GeoJSON points
  * @param {Object} [options={}] Optional parameters
- * @param {number} [options.weight] the property name used to weight the center
+ * @param {string} [options.weight] the property name used to weight the center
  * @param {number} [options.steps=64] number of steps for the polygon
  * @param {Object} [options.properties={}] properties to pass to the resulting ellipse
  * @returns {Feature<Polygon>} an elliptical Polygon that includes approximately 1 SD of the dataset within it.
