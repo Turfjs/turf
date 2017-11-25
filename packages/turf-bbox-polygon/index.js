@@ -16,6 +16,9 @@ import { polygon, validateBBox } from '@turf/helpers';
  */
 function bboxPolygon(bbox) {
     validateBBox(bbox);
+    // Convert BBox positions to Numbers
+    // No performance loss for including Number()
+    // https://github.com/Turfjs/turf/issues/1119
     var west = Number(bbox[0]);
     var south = Number(bbox[1]);
     var east = Number(bbox[2]);

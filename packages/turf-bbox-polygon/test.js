@@ -20,6 +20,7 @@ test('bbox-polygon -- valid geojson', t => {
     t.end();
 });
 
+// https://github.com/Turfjs/turf/issues/1119
 test('bbox-polygon -- handling String input/output', t => {
     const poly = bboxPolygon(['0', '0', '10', '10'])
 
