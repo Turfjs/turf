@@ -1,4 +1,4 @@
-import { polygon } from '@turf/helpers';
+import { polygon, validateBBox } from '@turf/helpers';
 
 /**
  * Takes a bbox and returns an equivalent {@link Polygon|polygon}.
@@ -15,10 +15,18 @@ import { polygon } from '@turf/helpers';
  * var addToMap = [poly]
  */
 function bboxPolygon(bbox) {
-    var lowLeft = [bbox[0], bbox[1]];
-    var topLeft = [bbox[0], bbox[3]];
-    var topRight = [bbox[2], bbox[3]];
-    var lowRight = [bbox[2], bbox[1]];
+    validateBBox(bbox);
+    var west = Number(bbox[0]);
+    var south = Number(bbox[1]);
+    var east = Number(bbox[2]);
+    var north = Number(bbox[3]);
+
+    if (bbox.length === 6) throw new Error('@turf/bbox-polygon does not support BBox with 6 positions');
+
+    var lowLeft = [west, south];
+    var topLeft = [west, north];
+    var topRight = [east, north];
+    var lowRight = [east, south];
 
     return polygon([[
         lowLeft,
