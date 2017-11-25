@@ -779,7 +779,7 @@
 					"semiMinorAxis": 0.09578285311952658,
 					"numberOfFeatures": 473,
 					"angle": 29.23104797351537,
-					"pctWithinEllipse": 57.505285412262154
+					"percentageWithinEllipse": 57.505285412262154
 				}
 			},
 			"geometry": {
