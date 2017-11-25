@@ -26,7 +26,7 @@ Press, 2009, 150–151.
 **Examples**
 
 ```javascript
-var points;
+var points = turf.featureCollection([turf.point([0, 0], turf.point([1, 0]), turf.point([0, 1]), turf.point([5, 8])]);
 var medianCenter = turf.centerMedian(points);
 
 //addToMap

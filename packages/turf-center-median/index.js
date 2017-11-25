@@ -24,7 +24,7 @@ import { getCoord } from '@turf/invariant';
  * @param {number} [options.tolerance=0.001] the difference in distance between candidate medians at which point the algorighim stops iterating.
  * @returns {Feature<Point>} The median center of the collection
  * @example
- * var points;
+ * var points = turf.featureCollection([turf.point([0, 0], turf.point([1, 0]), turf.point([0, 1]), turf.point([5, 8])]);
  * var medianCenter = turf.centerMedian(points);
  *
  * //addToMap
