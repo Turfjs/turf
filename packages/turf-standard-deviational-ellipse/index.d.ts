@@ -5,9 +5,10 @@ import { Feature, Polygon, Properties, Point } from '@turf/helpers'
  */
 
 export default function (
-    points: Feature<Point>
-    options? :
-        properties?: Properties
-        weight?: string
+    points: Feature<Point>,
+    options?: {
+        properties?: Properties,
+        weight?: string,
         steps?: number
+    }
 ): Feature<Polygon>
