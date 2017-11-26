@@ -18,6 +18,28 @@ import { getCoord } from '@turf/invariant';
  * Statistics for Geographers_, 3rd ed., New York: The Guilford
  * Press, 2009, 150–151.
  *
+ * Turfjs has four different functions for calculating the center of a set of
+ * data. Each is useful depending on circumstance.
+ *
+ * `@turf/center` finds the simple center of a dataset, by finding the
+ * midpoint between the extents of the data. That is, it divides in half the
+ * farthest east and farthest west point as well as the farthest north and
+ * farthest south.
+ *
+ * `@turf/center-of-mass` imagines that the dataset is a sheet of paper.
+ * The center of mass is where the sheet would balance on a fingertip.
+ *
+ * `@turf/center-mean` takes the averages of all the coordinates and
+ * produces a value that respects that. Unlike `@turf/center`, it is
+ * sensitive to clusters and outliers. It lands in the statistical middle of a
+ * dataset, not the geographical. It can also be weighted, meaning certain
+ * points are more important than others.
+ *
+ * `@turf/center-median` takes the mean center and tries to find, iteratively,
+ * a new point that requires the least amount of travel from all the points in
+ * the dataset. It is not as sensitive to outliers as `@turf/center`, but it is
+ * attracted to clustered data. It, too, can be weighted.
+ *
  * @name centerMedian
  * @param {FeatureCollection<Any>} features GeoJSON Feature or Geometry
  * @param {Object} [options={}] Optional parameters

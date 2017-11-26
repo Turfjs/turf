@@ -16,12 +16,35 @@ James E. Burt, Gerald M. Barber, and David L. Rigby, _Elementary
 Statistics for Geographers_, 3rd ed., New York: The Guilford
 Press, 2009, 150–151.
 
+Turfjs has four different functions for calculating the center of a set of
+data. Each is useful depending on circumstance.
+
+`@turf/center` finds the simple center of a dataset, by finding the
+midpoint between the extents of the data. That is, it divides in half the
+farthest east and farthest west point as well as the farthest north and
+farthest south.
+
+`@turf/center-of-mass` imagines that the dataset is a sheet of paper.
+The center of mass is where the sheet would balance on a fingertip.
+
+`@turf/center-mean` takes the averages of all the coordinates and
+produces a value that respects that. Unlike `@turf/center`, it is
+sensitive to clusters and outliers. It lands in the statistical middle of a
+dataset, not the geographical. It can also be weighted, meaning certain
+points are more important than others.
+
+`@turf/center-median` takes the mean center and tries to find, iteratively,
+a new point that requires the least amount of travel from all the points in
+the dataset. It is not as sensitive to outliers as `@turf/center`, but it is
+attracted to clustered data. It, too, can be weighted.
+
 **Parameters**
 
 -   `features` **[FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects)&lt;Any>** GeoJSON Feature or Geometry
 -   `options` **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)** Optional parameters (optional, default `{}`)
     -   `options.weight` **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)?** the property name used to weight the center
     -   `options.tolerance` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** the difference in distance between candidate medians at which point the algorighim stops iterating. (optional, default `0.001`)
+    -   `options.counter` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** how many attempts to find the median, should the tolerance be insufficient. (optional, default `10`)
 
 **Examples**
 
