@@ -35,7 +35,9 @@
     {
       "type": "Feature",
       "properties": {
-        "weight": 0 
+        "weight": 3,
+        "marker-symbol": "star",
+        "marker-color": "#888"
       },
       "geometry": {
         "type": "Point",
@@ -48,7 +50,7 @@
     {
       "type": "Feature",
       "properties": {
-        "weight": -2
+        "weight": 0
       },
       "geometry": {
         "type": "Point",

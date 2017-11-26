@@ -32,7 +32,9 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"weight": 0
+				"weight": 3,
+				"marker-symbol": "star",
+				"marker-color": "#888"
 			},
 			"geometry": {
 				"type": "Point",
@@ -45,7 +47,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"weight": -2
+				"weight": 0
 			},
 			"geometry": {
 				"type": "Point",
@@ -69,8 +71,8 @@
 						45.760809294695534
 					],
 					[
-						4.833351,
-						45.760809
+						4.833457,
+						45.760797
 					]
 				]
 			}
@@ -89,8 +91,8 @@
 						45.760296567821456
 					],
 					[
-						4.833351,
-						45.760809
+						4.833457,
+						45.760797
 					]
 				]
 			}
@@ -109,8 +111,8 @@
 						45.76073818687033
 					],
 					[
-						4.833351,
-						45.760809
+						4.833457,
+						45.760797
 					]
 				]
 			}
@@ -129,15 +131,18 @@
 						45.76022171678877
 					],
 					[
-						4.833351,
-						45.760809
+						4.833457,
+						45.760797
 					]
 				]
 			}
 		},
 		{
 			"type": "Feature",
-			"properties": {},
+			"properties": {
+				"marker-symbol": "circle",
+				"marker-color": "#00F"
+			},
 			"geometry": {
 				"type": "Point",
 				"coordinates": [
@@ -155,8 +160,8 @@
 			"geometry": {
 				"type": "Point",
 				"coordinates": [
-					4.833351,
-					45.760809
+					4.833457,
+					45.760797
 				]
 			}
 		}

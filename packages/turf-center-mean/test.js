@@ -1,4 +1,3 @@
-import fs from 'fs';
 import test from 'tape';
 import glob from 'glob';
 import path from 'path';
@@ -18,14 +17,14 @@ test('turf-center-mean', t => {
         const centered = truncate(centerMean(geojson, options));
 
         // Display Results
-        const results = featureCollection([])
-        featureEach(geojson, feature => results.features.push(feature))
-        coordEach(geojson, coord => results.features.push(lineString([coord, centered.geometry.coordinates], {stroke: '#00F', 'stroke-width': 1})))
+        const results = featureCollection([]);
+        featureEach(geojson, feature => results.features.push(feature));
+        coordEach(geojson, coord => results.features.push(lineString([coord, centered.geometry.coordinates], {stroke: '#00F', 'stroke-width': 1})));
         // Add @turf/center to compare position
-        results.features.push(truncate(center(geojson, {'marker-symbol': 'circle', 'marker-color': '#00F'})))
-        results.features.push(centered)
+        results.features.push(truncate(center(geojson, {properties: {'marker-symbol': 'circle', 'marker-color': '#00F'}})));
+        results.features.push(centered);
 
-        const out = filepath.replace(path.join('test', 'in'), path.join('test', 'out'))
+        const out = filepath.replace(path.join('test', 'in'), path.join('test', 'out'));
         if (process.env.REGEN) write.sync(out, results);
         t.deepEqual(results, load.sync(out), path.parse(filepath).name);
     });
