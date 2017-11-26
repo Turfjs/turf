@@ -12,9 +12,10 @@ test('turf-center-median', t => {
         // Define params
         const {name} = path.parse(filepath);
         const geojson = load.sync(filepath);
+        const properties = geojson.properties || {}
         const options = {
-          weight: geojson.properties.weight,
-          tolerance: geojson.properties.tolerance
+          weight: properties.weight,
+          tolerance: properties.tolerance
         };
         let meanCenter = centerMean(geojson, options);
         meanCenter.properties['marker-color'] = '#a00';
