@@ -1,7 +1,6 @@
 {
   "type": "FeatureCollection",
   "properties": {
-    "weight": "weight"
   },
   "features": [
     {

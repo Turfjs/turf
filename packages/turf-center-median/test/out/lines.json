@@ -392,6 +392,34 @@
 					38.75011117282066
 				]
 			}
+		},
+		{
+			"type": "Feature",
+			"properties": {
+				"marker-color": "#00a",
+				"marker-symbol": "cross"
+			},
+			"geometry": {
+				"type": "Point",
+				"coordinates": [
+					-9.138961776645466,
+					38.76844724113967
+				]
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {
+				"marker-color": "#aaa",
+				"marker-symbol": "cross"
+			},
+			"geometry": {
+				"type": "Point",
+				"coordinates": [
+					-9.144828256314735,
+					38.75352882935139
+				]
+			}
 		}
 	]
 }

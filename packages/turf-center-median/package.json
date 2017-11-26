@@ -35,6 +35,8 @@
   "homepage": "https://github.com/Turfjs/turf",
   "devDependencies": {
     "@std/esm": "*",
+    "@turf/center": "^5.0.4",
+    "@turf/center-of-mass": "^5.0.4",
     "@turf/random": "^5.0.4",
     "benchmark": "*",
     "rollup": "*",

@@ -4,6 +4,8 @@ import path from 'path';
 import load from 'load-json-file';
 import write from 'write-json-file';
 import { featureCollection } from '@turf/helpers';
+import center from '@turf/center';
+import centerOfMass from '@turf/center-of-mass';
 import centerMean from '@turf/center-mean';
 import centerMedian from '.';
 
@@ -17,16 +19,16 @@ test('turf-center-median', t => {
           weight: properties.weight,
           tolerance: properties.tolerance
         };
-        let meanCenter = centerMean(geojson, options);
-        meanCenter.properties['marker-color'] = '#a00';
-        meanCenter.properties['marker-symbol'] = 'cross';
-        let medianCenter = centerMedian(geojson, options);
-        medianCenter.properties['marker-color'] = '#0a0';
-        medianCenter.properties['marker-symbol'] = 'cross';
+        const meanCenter = colorize(centerMean(geojson, options), '#a00');
+        const medianCenter = colorize(centerMedian(geojson, options), '#0a0');
+        const extentCenter = colorize(center(geojson), '#00a');
+        const massCenter = colorize(centerOfMass(geojson), '#aaa');
         const results = featureCollection([
           geojson,
           meanCenter,
-          medianCenter
+          medianCenter,
+          extentCenter,
+          massCenter
         ]);
         const out = filepath.replace(path.join('test', 'in'), path.join('test', 'out'));
         if (process.env.REGEN) write.sync(out, results);
@@ -36,3 +38,9 @@ test('turf-center-median', t => {
 
     t.end();
 });
+
+function colorize(point, color) {
+  point.properties['marker-color'] = color;
+  point.properties['marker-symbol'] = 'cross';
+  return point;
+}
