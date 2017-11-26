@@ -44,6 +44,7 @@
   },
   "dependencies": {
     "@turf/center-mean": "^5.0.1",
+    "@turf/centroid": "^5.0.4",
     "@turf/distance": "^5.0.4",
     "@turf/invariant": "^5.0.4",
     "@turf/helpers": "^5.0.4",
