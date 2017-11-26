@@ -1,7 +1,7 @@
 import centerMean from '@turf/center-mean';
 import distance from '@turf/distance';
 import centroid from '@turf/centroid';
-import { point, isObject, featureCollection } from '@turf/helpers';
+import { isNumber, point, isObject, featureCollection } from '@turf/helpers';
 import { featureEach } from '@turf/meta';
 import { getCoord } from '@turf/invariant';
 
@@ -19,13 +19,13 @@ import { getCoord } from '@turf/invariant';
  * Press, 2009, 150–151.
  *
  * @name centerMedian
- * @param {FeatureCollection<Point>} features GeoJSON Feature or Geometry
+ * @param {FeatureCollection<Any>} features GeoJSON Feature or Geometry
  * @param {Object} [options={}] Optional parameters
  * @param {string} [options.weight] the property name used to weight the center
  * @param {number} [options.tolerance=0.001] the difference in distance between candidate medians at which point the algorighim stops iterating.
  * @returns {Feature<Point>} The median center of the collection
  * @example
- * var points = turf.featureCollection([turf.point([0, 0], turf.point([1, 0]), turf.point([0, 1]), turf.point([5, 8])]);
+ * var points = turf.featureCollection([turf.points[[0, 0], [1, 0], [0, 1], [5, 8]]);
  * var medianCenter = turf.centerMedian(points);
  *
  * //addToMap
@@ -67,11 +67,15 @@ function findMedian(candidateMedian, previousCandidate, centroids) {
     var kSum = 0;
     featureEach(centroids, function (theCentroid) {
         var weight = theCentroid.properties.weight || 1;
-        var distanceFromCandidate = weight * distance(theCentroid, candidateMedian);
-        var k = weight / distanceFromCandidate;
-        candidateXsum += getCoord(theCentroid)[0] * k;
-        candidateYsum += getCoord(theCentroid)[1] * k;
-        kSum += k;
+        if (!isNumber(weight)) throw new Error('weight value must be a number');
+        weight = Number(weight);
+        if (weight > 0) {
+            var distanceFromCandidate = weight * distance(theCentroid, candidateMedian);
+            var k = weight / distanceFromCandidate;
+            candidateXsum += getCoord(theCentroid)[0] * k;
+            candidateYsum += getCoord(theCentroid)[1] * k;
+            kSum += k;
+        }
     });
     var candidateX = candidateXsum / kSum;
     var candidateY = candidateYsum / kSum;
