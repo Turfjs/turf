@@ -28,12 +28,13 @@ test('turf-center-median', t => {
             medianCenter.properties.medianCandidates[index] = [round(candidate[0], 6), round(candidate[1], 6)];
         });
         const results = featureCollection([
-            geojson,
+            ...geojson.features,
             colorize(meanCenter, '#a00'),
             colorize(medianCenter, '#0a0'),
             colorize(extentCenter, '#00a'),
             colorize(massCenter, '#aaa')
         ]);
+
         const out = filepath.replace(path.join('test', 'in'), path.join('test', 'out'));
         if (process.env.REGEN) write.sync(out, results);
         t.deepEqual(results, load.sync(out), name);
