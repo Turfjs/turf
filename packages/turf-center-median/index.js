@@ -71,16 +71,14 @@ function findMedian(candidateMedian, previousCandidate, centroids, counter) {
     var kSum = 0;
     var centroidCount = 0;
     featureEach(centroids, function (theCentroid) {
-        var weight = theCentroid.properties.weight;
-        if (weight === 0 || weight < 0) {
-          weight = 0;
-        } else {
-          if (!isNumber(weight)) weight = 1;
-          weight = weight;
-        }
+        var weightValue = theCentroid.properties.weight;
+        var weight = (weightValue === undefined || weightValue === null) ? 1 : weightValue;
+        weight = Number(weight);
+        if (!isNumber(weight)) throw new Error('weight value must be a number for feature index ' + featureIndex);
         if (weight > 0) {
             centroidCount += 1;
             var distanceFromCandidate = weight * distance(theCentroid, candidateMedian);
+            if (distanceFromCandidate === 0) distanceFromCandidate = 1;
             var k = weight / distanceFromCandidate;
             candidateXsum += getCoord(theCentroid)[0] * k;
             candidateYsum += getCoord(theCentroid)[1] * k;
