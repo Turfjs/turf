@@ -75,7 +75,7 @@ function findMedian(candidateMedian, previousCandidate, centroids, counter) {
         if (weight === 0 || weight < 0) {
           weight = 0;
         } else {
-          if (!isNumber(weight)) throw new Error('weight value must be a number');
+          if (!isNumber(weight)) weight = 1;
           weight = weight;
         }
         if (weight > 0) {
