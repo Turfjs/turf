@@ -3,11 +3,15 @@
 	"features": [
 		{
 			"type": "FeatureCollection",
-			"properties": {},
+			"properties": {
+				"weight": "weight"
+			},
 			"features": [
 				{
 					"type": "Feature",
-					"properties": {},
+					"properties": {
+						"weight": 0
+					},
 					"geometry": {
 						"type": "Point",
 						"coordinates": [
@@ -18,7 +22,9 @@
 				},
 				{
 					"type": "Feature",
-					"properties": {},
+					"properties": {
+						"weight": -10
+					},
 					"geometry": {
 						"type": "Point",
 						"coordinates": [
@@ -29,7 +35,9 @@
 				},
 				{
 					"type": "Feature",
-					"properties": {},
+					"properties": {
+						"weight": -30
+					},
 					"geometry": {
 						"type": "Point",
 						"coordinates": [
@@ -40,7 +48,9 @@
 				},
 				{
 					"type": "Feature",
-					"properties": {},
+					"properties": {
+						"weight": 1
+					},
 					"geometry": {
 						"type": "Point",
 						"coordinates": [
@@ -60,64 +70,23 @@
 			"geometry": {
 				"type": "Point",
 				"coordinates": [
-					1.5,
-					2.25
+					2.5,
+					4
 				]
 			}
 		},
 		{
 			"type": "Feature",
 			"properties": {
-				"medianCandidates": [
-					[
-						0.8039410323314737,
-						1.162109450689798
-					],
-					[
-						0.5076319464527703,
-						0.7646042017880964
-					],
-					[
-						0.4121307774680414,
-						0.6662322694443156
-					],
-					[
-						0.3869849612790188,
-						0.6384682353740866
-					],
-					[
-						0.3813972267459456,
-						0.6282724755331764
-					],
-					[
-						0.3809463447631895,
-						0.62356302734544
-					],
-					[
-						0.38164159604376585,
-						0.6209507746518521
-					],
-					[
-						0.38242663088029605,
-						0.6193211382550399
-					],
-					[
-						0.3830646129780518,
-						0.6182394976560595
-					],
-					[
-						0.38353727808410876,
-						0.6175005018735136
-					]
-				],
+				"medianCandidates": [],
 				"marker-color": "#0a0",
 				"marker-symbol": "cross"
 			},
 			"geometry": {
 				"type": "Point",
 				"coordinates": [
-					0.383875611844914,
-					0.616989183081166
+					5,
+					8
 				]
 			}
 		}
