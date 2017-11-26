@@ -40,7 +40,7 @@ attracted to clustered data. It, too, can be weighted.
 
 **Parameters**
 
--   `features` **[FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects)&lt;Any>** GeoJSON Feature or Geometry
+-   `features` **[FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects)&lt;any>** Any GeoJSON Feature Collection
 -   `options` **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)** Optional parameters (optional, default `{}`)
     -   `options.weight` **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)?** the property name used to weight the center
     -   `options.tolerance` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** the difference in distance between candidate medians at which point the algorighim stops iterating. (optional, default `0.001`)
@@ -49,7 +49,7 @@ attracted to clustered data. It, too, can be weighted.
 **Examples**
 
 ```javascript
-var points = turf.featureCollection([turf.points[[0, 0], [1, 0], [0, 1], [5, 8]]);
+var points = turf.points([[0, 0], [1, 0], [0, 1], [5, 8]]);
 var medianCenter = turf.centerMedian(points);
 
 //addToMap

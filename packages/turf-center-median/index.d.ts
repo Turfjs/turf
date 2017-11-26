@@ -14,7 +14,7 @@ export interface medianCenter extends Feature<Point> {
 }
 
 export default function (
-    features: FeatureCollection<Point>,
+    features: FeatureCollection<any>,
     options?: {
         weight?: string,
         tolerance?: number

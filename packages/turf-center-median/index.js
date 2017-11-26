@@ -40,7 +40,7 @@ import { featureEach } from '@turf/meta';
  * attracted to clustered data. It, too, can be weighted.
  *
  * @name centerMedian
- * @param {FeatureCollection<Point>} features Feature Collection of GeoJSON Points
+ * @param {FeatureCollection<any>} features Any GeoJSON Feature Collection
  * @param {Object} [options={}] Optional parameters
  * @param {string} [options.weight] the property name used to weight the center
  * @param {number} [options.tolerance=0.001] the difference in distance between candidate medians at which point the algorighim stops iterating.
