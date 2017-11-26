@@ -75,15 +75,15 @@ function centerMedian(features, options) {
         tolerance: options.tolerance,
         medianCandidates: []
     };
-    return findMedian(meanCenter, [0, 0], centroids, counter);
+    return findMedian(meanCenter.geometry.coordinates, [0, 0], centroids, counter);
 }
 
 /**
  * Recursive function to find new candidate medians.
  *
  * @private
- * @param {Feature<Point>} candidateMedian current candidate median
- * @param {Feature<Point>} previousCandidate the previous candidate median
+ * @param {Position} candidateMedian current candidate median
+ * @param {Position} previousCandidate the previous candidate median
  * @param {FeatureCollection<Point>} centroids the collection of centroids whose median we are determining
  * @param {number} counter how many attempts to try before quitting.
  * @returns {Feature<Point>} the median center of the dataset.
