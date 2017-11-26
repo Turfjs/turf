@@ -41,14 +41,14 @@ import { getCoord } from '@turf/invariant';
  * attracted to clustered data. It, too, can be weighted.
  *
  * @name centerMedian
- * @param {FeatureCollection<Any>} features GeoJSON Feature or Geometry
+ * @param {FeatureCollection<Point>} features Feature Collection of GeoJSON Points
  * @param {Object} [options={}] Optional parameters
  * @param {string} [options.weight] the property name used to weight the center
  * @param {number} [options.tolerance=0.001] the difference in distance between candidate medians at which point the algorighim stops iterating.
  * @param {number} [options.counter=10] how many attempts to find the median, should the tolerance be insufficient.
  * @returns {Feature<Point>} The median center of the collection
  * @example
- * var points = turf.featureCollection([turf.points[[0, 0], [1, 0], [0, 1], [5, 8]]);
+ * var points = turf.points([[0, 0], [1, 0], [0, 1], [5, 8]]);
  * var medianCenter = turf.centerMedian(points);
  *
  * //addToMap
@@ -66,9 +66,11 @@ function centerMedian(features, options) {
     var meanCenter = centerMean(features, {weight: options.weight});
 
     // Calculate center of every feature:
-    var centroids = [];
-    featureEach(features, function (feature) { centroids.push(centroid(feature, {weight: feature.properties[weightTerm]})); });
-    centroids = featureCollection(centroids);
+    var centroids = featureCollection([]);
+    featureEach(features, function (feature) {
+        centroids.features.push(centroid(feature, {weight: feature.properties[weightTerm]}));
+    });
+
     centroids.properties = {
         tolerance: options.tolerance,
         medianCandidates: []
@@ -80,8 +82,8 @@ function centerMedian(features, options) {
  * Recursive function to find new candidate medians.
  *
  * @private
- * @param {Feature<Position>} candidateMedian current candidate median
- * @param {Feature<Position>} previousCandidate the previous candidate median
+ * @param {Feature<Point>} candidateMedian current candidate median
+ * @param {Feature<Point>} previousCandidate the previous candidate median
  * @param {FeatureCollection<Point>} centroids the collection of centroids whose median we are determining
  * @param {number} counter how many attempts to try before quitting.
  * @returns {Feature<Point>} the median center of the dataset.

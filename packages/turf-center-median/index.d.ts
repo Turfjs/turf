@@ -1,11 +1,11 @@
-import { Feature, Point, Coord, FeatureCollection } from '@turf/helpers'
- 
+import { Feature, Point, Position, FeatureCollection } from '@turf/helpers'
+
 /**
  * http://turfjs.org/docs/#centermedian
  */
 
 export interface medianProps {
-    medianCandidates: Array<Coord>,
+    medianCandidates: Array<Position>,
     [key: string]: any
 }
 
