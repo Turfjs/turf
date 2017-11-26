@@ -36,7 +36,7 @@ function centerMedian(features, options) {
     // Optional params
     options = options || {};
     if (!isObject(options)) throw new Error('options is invalid');
-    var counter = options.counter || 10
+    var counter = options.counter || 10;
     if (!isNumber(counter)) throw new Error('counter must be a number');
     var weightTerm = options.weight;
 
@@ -74,7 +74,7 @@ function findMedian(candidateMedian, previousCandidate, centroids, counter) {
         var weightValue = theCentroid.properties.weight;
         var weight = (weightValue === undefined || weightValue === null) ? 1 : weightValue;
         weight = Number(weight);
-        if (!isNumber(weight)) throw new Error('weight value must be a number for feature index ' + featureIndex);
+        if (!isNumber(weight)) throw new Error('weight value must be a number');
         if (weight > 0) {
             centroidCount += 1;
             var distanceFromCandidate = weight * distance(theCentroid, candidateMedian);
