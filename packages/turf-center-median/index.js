@@ -3,7 +3,6 @@ import distance from '@turf/distance';
 import centroid from '@turf/centroid';
 import { isNumber, point, isObject, featureCollection } from '@turf/helpers';
 import { featureEach } from '@turf/meta';
-import { getCoord } from '@turf/invariant';
 
 /**
  * Takes a {@link FeatureCollection} of points and calculates the median center,
@@ -104,8 +103,8 @@ function findMedian(candidateMedian, previousCandidate, centroids, counter) {
             var distanceFromCandidate = weight * distance(theCentroid, candidateMedian);
             if (distanceFromCandidate === 0) distanceFromCandidate = 1;
             var k = weight / distanceFromCandidate;
-            candidateXsum += getCoord(theCentroid)[0] * k;
-            candidateYsum += getCoord(theCentroid)[1] * k;
+            candidateXsum += theCentroid.geometry.coordinates[0] * k;
+            candidateYsum += theCentroid.geometry.coordinates[1] * k;
             kSum += k;
         }
     });
