@@ -1,6 +1,7 @@
 import centerMean from '@turf/center-mean';
 import distance from '@turf/distance';
-import { point, isObject, isNumber } from '@turf/helpers';
+import centroid from '@turf/centroid';
+import { point, isObject, featureCollection } from '@turf/helpers';
 import { featureEach } from '@turf/meta';
 import { getCoord } from '@turf/invariant';
 
@@ -35,37 +36,52 @@ function centerMedian(features, options) {
     options = options || {};
     if (!isObject(options)) throw new Error('options is invalid');
     var weightTerm = options.weight;
-    var tolerance = options.tolerance || 0.001;
 
-    // Validation:
-    if (!isNumber(tolerance)) throw new Error('tolerance must be a number');
+    // Calculate mean center:
+    var meanCenter = centerMean(features, {weight: options.weight});
+    
+    // Calculate center of every feature:
+    var centroids = [];
+    featureEach(features, function (feature) { centroids.push(centroid(feature, {weight: feature.properties[weightTerm]})); });
+    centroids = featureCollection(centroids);
+    centroids.properties = {
+        tolerance: options.tolerance,
+        medianCandidates: []
+    };
+    return findMedian(meanCenter, [0, 0], centroids);
+}
 
-    // Calculate mean center & number of features:
-    var meanCenter = centerMean(features, {weight: weightTerm});
-    var medianCandidates = [];
-
-    function findMedian(candidateMedian, prevCandidate) {
-        var candidateXsum = 0;
-        var candidateYsum = 0;
-        var kSum = 0;
-        featureEach(features, function (feature) {
-            var weight = feature.properties[weightTerm] || 1;
-            var distanceFromCandidate = weight * distance(feature, candidateMedian);
-            var k = weight / distanceFromCandidate;
-            candidateXsum += getCoord(feature)[0] * k;
-            candidateYsum += getCoord(feature)[1] * k;
-            kSum += k;
-        });
-        var candidateX = candidateXsum / kSum;
-        var candidateY = candidateYsum / kSum;
-        if (Math.abs(candidateX - prevCandidate[0]) < tolerance && Math.abs(candidateY - prevCandidate[1]) < tolerance) {
-            return point([candidateX, candidateY], {medianCandidates: medianCandidates});
-        } else {
-            medianCandidates.push([candidateX, candidateY]);
-            return findMedian([candidateX, candidateY], candidateMedian);
-        }
+/**
+ * Recursive function to find new candidate medians.
+ *
+ * @private
+ * @param {Feature<Position>} candidateMedian current candidate median
+ * @param {Feature<Position>} previousCandidate the previous candidate median
+ * @param {FeatureCollection<Point>} centroids the collection of centroids whose median we are determining
+ * @returns {Feature<Point>} the median center of the dataset.
+ */
+function findMedian(candidateMedian, previousCandidate, centroids) {
+    var tolerance = centroids.properties.tolerance || 0.001;
+    var candidateXsum = 0;
+    var candidateYsum = 0;
+    var kSum = 0;
+    featureEach(centroids, function (theCentroid) {
+        var weight = theCentroid.properties.weight || 1;
+        var distanceFromCandidate = weight * distance(theCentroid, candidateMedian);
+        var k = weight / distanceFromCandidate;
+        candidateXsum += getCoord(theCentroid)[0] * k;
+        candidateYsum += getCoord(theCentroid)[1] * k;
+        kSum += k;
+    });
+    var candidateX = candidateXsum / kSum;
+    var candidateY = candidateYsum / kSum;
+    if (Math.abs(candidateX - previousCandidate[0]) < tolerance && Math.abs(candidateY - previousCandidate[1]) < tolerance) {
+        return point([candidateX, candidateY], {medianCandidates: centroids.properties.medianCandidates});
+    } else {
+        centroids.properties.medianCandidates.push([candidateX, candidateY]);
+        return findMedian([candidateX, candidateY], candidateMedian, centroids);
     }
-    return findMedian(meanCenter, [0, 0]);
 }
 
 export default centerMedian;
+
