@@ -18,7 +18,7 @@ Press, 2009, 150–151.
 
 **Parameters**
 
--   `features` **[FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects)&lt;[Point](http://geojson.org/geojson-spec.html#point)>** GeoJSON Feature or Geometry
+-   `features` **[FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects)&lt;Any>** GeoJSON Feature or Geometry
 -   `options` **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)** Optional parameters (optional, default `{}`)
     -   `options.weight` **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)?** the property name used to weight the center
     -   `options.tolerance` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** the difference in distance between candidate medians at which point the algorighim stops iterating. (optional, default `0.001`)
@@ -26,7 +26,7 @@ Press, 2009, 150–151.
 **Examples**
 
 ```javascript
-var points = turf.featureCollection([turf.point([0, 0], turf.point([1, 0]), turf.point([0, 1]), turf.point([5, 8])]);
+var points = turf.featureCollection([turf.points[[0, 0], [1, 0], [0, 1], [5, 8]]);
 var medianCenter = turf.centerMedian(points);
 
 //addToMap

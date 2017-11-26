@@ -39,7 +39,7 @@ function centerMedian(features, options) {
 
     // Calculate mean center:
     var meanCenter = centerMean(features, {weight: options.weight});
-    
+
     // Calculate center of every feature:
     var centroids = [];
     featureEach(features, function (feature) { centroids.push(centroid(feature, {weight: feature.properties[weightTerm]})); });
