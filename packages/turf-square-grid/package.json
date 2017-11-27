@@ -35,8 +35,8 @@
   "homepage": "https://github.com/Turfjs/turf",
   "devDependencies": {
     "@std/esm": "*",
-    "@turf/bbox-polygon": "^5.0.4",
-    "@turf/truncate": "^5.0.4",
+    "@turf/bbox-polygon": "*",
+    "@turf/truncate": "*",
     "benchmark": "*",
     "rollup": "*",
     "tape": "*",

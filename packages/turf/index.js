@@ -93,6 +93,8 @@ export {default as shortestPath} from '@turf/shortest-path';
 export {default as voronoi} from '@turf/voronoi';
 export {default as ellipse} from '@turf/ellipse';
 export {default as centerMean} from '@turf/center-mean';
+export {default as centerMedian} from '@turf/center-median';
+export {default as standardDeviationalEllipse} from '@turf/standard-deviational-ellipse';
 export * from '@turf/projection';
 export * from '@turf/random';
 export * from '@turf/clusters';

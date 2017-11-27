@@ -1,5 +1,5 @@
 import { getCoord } from '@turf/invariant';
-import { GreatCircle } from './arc';
+import { GreatCircle } from './lib/arc';
 
 /**
  * Calculate great circles routes as {@link LineString}

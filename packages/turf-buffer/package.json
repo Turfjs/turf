@@ -42,7 +42,7 @@
   "homepage": "https://github.com/Turfjs/turf",
   "devDependencies": {
     "@std/esm": "*",
-    "@turf/truncate": "^5.0.4",
+    "@turf/truncate": "*",
     "benchmark": "*",
     "load-json-file": "*",
     "rollup": "*",
@@ -56,7 +56,7 @@
     "@turf/meta": "^5.0.4",
     "@turf/projection": "^5.0.4",
     "d3-geo": "1.7.1",
-    "jsts-es": "*"
+    "turf-jsts": "*"
   },
   "@std/esm": {
     "esm": "js",

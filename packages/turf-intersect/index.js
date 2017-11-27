@@ -1,5 +1,5 @@
 // depend on jsts for now http://bjornharrtell.github.io/jsts/
-import { GeoJSONReader, GeoJSONWriter, OverlayOp } from 'jsts-es';
+import { GeoJSONReader, GeoJSONWriter, OverlayOp } from 'turf-jsts';
 import truncate from '@turf/truncate';
 import { getGeom } from '@turf/invariant';
 import { feature } from '@turf/helpers';

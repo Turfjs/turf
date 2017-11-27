@@ -1,7 +1,7 @@
-import { lineReduce } from '@turf/meta';
-import { getType } from '@turf/invariant';
-import { isObject, multiLineString, lineString } from '@turf/helpers';
 import clone from '@turf/clone';
+import { getType } from '@turf/invariant';
+import { lineReduce } from '@turf/meta';
+import { isObject, multiLineString, lineString } from '@turf/helpers';
 
 /**
  * Merges all connected (non-forking, non-junctioning) line strings into single lineStrings.

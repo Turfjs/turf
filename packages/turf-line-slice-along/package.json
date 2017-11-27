@@ -33,7 +33,7 @@
   "homepage": "https://github.com/Turfjs/turf",
   "devDependencies": {
     "@std/esm": "*",
-    "@turf/along": "^5.0.4",
+    "@turf/along": "*",
     "benchmark": "*",
     "load-json-file": "*",
     "rollup": "*",

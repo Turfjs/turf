@@ -38,8 +38,7 @@
   "homepage": "https://github.com/Turfjs/turf",
   "devDependencies": {
     "@std/esm": "*",
-    "@turf/helpers": "^5.0.4",
-    "@turf/meta": "^5.0.4",
+    "@turf/meta": "*",
     "benchmark": "*",
     "load-json-file": "*",
     "rollup": "*",
@@ -47,7 +46,8 @@
     "write-json-file": "*"
   },
   "dependencies": {
-    "polygonize": "^1.1.0"
+    "polygonize": "^1.1.0",
+    "@turf/helpers": "^5.0.4"
   },
   "@std/esm": {
     "esm": "js",

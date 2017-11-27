@@ -15,8 +15,8 @@
   ],
   "scripts": {
     "pretest": "rollup -c ../../rollup.config.js",
-    "test": "node test.js",
-    "posttest": "node test.example.js",
+    "test": "node -r @std/esm test.js",
+    "posttest": "node -r @std/esm test.example.js",
     "build": "npm run pretest && browserify main.js -s turf -o turf.js",
     "postbuild": "uglifyjs turf.js -m -c -o turf.min.js"
   },
@@ -87,6 +87,7 @@
     "@turf/buffer": "^5.0.4",
     "@turf/center": "^5.0.4",
     "@turf/center-mean": "*",
+    "@turf/center-median": "*",
     "@turf/center-of-mass": "^5.0.4",
     "@turf/centroid": "^5.0.4",
     "@turf/circle": "^5.0.4",
@@ -154,6 +155,7 @@
     "@turf/simplify": "^5.0.4",
     "@turf/square": "^5.0.4",
     "@turf/square-grid": "^5.0.4",
+    "@turf/standard-deviational-ellipse": "*",
     "@turf/tag": "^5.0.4",
     "@turf/tesselate": "^5.0.4",
     "@turf/tin": "^5.0.4",

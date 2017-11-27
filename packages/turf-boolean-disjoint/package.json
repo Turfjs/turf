@@ -38,7 +38,6 @@
   "homepage": "https://github.com/Turfjs/turf",
   "devDependencies": {
     "@std/esm": "*",
-    "@turf/helpers": "^5.0.4",
     "benchmark": "*",
     "boolean-shapely": "*",
     "load-json-file": "*",
@@ -49,7 +48,8 @@
     "@turf/boolean-point-in-polygon": "^5.0.4",
     "@turf/line-intersect": "^5.0.4",
     "@turf/meta": "^5.0.4",
-    "@turf/polygon-to-line": "^5.0.4"
+    "@turf/polygon-to-line": "^5.0.4",
+    "@turf/helpers": "^5.0.4"
   },
   "@std/esm": {
     "esm": "js",

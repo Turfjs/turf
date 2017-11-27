@@ -35,7 +35,7 @@ import ellipse from '@turf/ellipse';
  *
  * var bbox = [-74, 40.72, -73.98, 40.74];
  * var points = turf.randomPoint(400, {bbox: bbox});
- * var sdEllipse = turf.standardDeviationalEllipse(points, options);
+ * var sdEllipse = turf.standardDeviationalEllipse(points);
  *
  * //addToMap
  * var addToMap = [points, sdEllipse];

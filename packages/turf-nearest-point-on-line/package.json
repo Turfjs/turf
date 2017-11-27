@@ -28,9 +28,9 @@
   "homepage": "https://github.com/Turfjs/turf",
   "devDependencies": {
     "@std/esm": "*",
-    "@turf/along": "^5.0.4",
-    "@turf/length": "^5.0.4",
-    "@turf/truncate": "^5.0.4",
+    "@turf/along": "*",
+    "@turf/length": "*",
+    "@turf/truncate": "*",
     "benchmark": "*",
     "load-json-file": "*",
     "rollup": "*",

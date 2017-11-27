@@ -47,5 +47,6 @@
   "@std/esm": {
     "esm": "js",
     "cjs": true
-  }
+  },
+  "dependencies": {}
 }
