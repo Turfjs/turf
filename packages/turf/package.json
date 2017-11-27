@@ -16,7 +16,7 @@
     "turf.min.js"
   ],
   "scripts": {
-    "prepublish": "rollup -c rollup.config.js",
+    "build": "rollup -c rollup.config.js",
     "pretest": "rollup -c ../../rollup.config.js",
     "test": "node -r @std/esm test.js",
     "posttest": "node -r @std/esm test.example.js"
@@ -69,7 +69,8 @@
     "rollup-plugin-babel": "*",
     "rollup-plugin-node-resolve": "*",
     "rollup-plugin-uglify": "*",
-    "tape": "*"
+    "tape": "*",
+    "uglify-js": "*"
   },
   "dependencies": {
     "@turf/along": "^5.0.4",

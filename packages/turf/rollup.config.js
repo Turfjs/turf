@@ -6,20 +6,12 @@ export default [{
   input: 'index.js',
   extend: true,
   output: {
-    file: 'main.js',
-    format: 'cjs'
-  },
-  plugins: [node()]
-}, {
-  input: 'index.js',
-  extend: true,
-  output: {
     file: 'turf.js',
     format: 'umd',
     name: 'turf'
   },
   plugins: [node(), babel()]
-},  {
+}, {
   input: 'index.js',
   extend: true,
   output: {
