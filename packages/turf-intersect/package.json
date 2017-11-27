@@ -1,6 +1,6 @@
 {
   "name": "@turf/intersect",
-  "version": "5.0.5",
+  "version": "5.0.6",
   "description": "turf intersect module",
   "main": "main",
   "module": "index",
