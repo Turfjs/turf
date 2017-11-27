@@ -32,7 +32,6 @@
   "homepage": "https://github.com/Turfjs/turf",
   "devDependencies": {
     "@std/esm": "*",
-    "@turf/helpers": "*",
     "benchmark": "*",
     "glob": "*",
     "load-json-file": "*",
@@ -41,7 +40,8 @@
     "write-json-file": "*"
   },
   "dependencies": {
-    "turf-jsts": "*"
+    "turf-jsts": "*",
+    "@turf/helpers": "^5.0.4"
   },
   "@std/esm": {
     "esm": "js",

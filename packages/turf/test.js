@@ -46,6 +46,7 @@ test('turf -- invalid dependencies', t => {
             if (dependencies[invalidDependency]) t.fail(`${name} ${invalidDependency} should be defined as devDependencies`);
         }
         if (devDependencies['eslint'] || devDependencies['eslint-config-mourner']) t.fail(`${name} eslint is handled at the root level`);
+        if (devDependencies['@turf/helpers']) t.fail(`${name} @turf/helpers should be located in Dependencies instead of DevDependencies`);
         // if (devDependencies['mkdirp']) t.fail(`${name} tests should not have to create folders`);
     }
     t.skip('remove "mkdirp" from testing');

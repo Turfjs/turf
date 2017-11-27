@@ -41,7 +41,6 @@
   "homepage": "https://github.com/Turfjs/turf",
   "devDependencies": {
     "@std/esm": "*",
-    "@turf/helpers": "*",
     "benchmark": "*",
     "boolean-shapely": "*",
     "glob": "*",
@@ -52,7 +51,8 @@
   "dependencies": {
     "@turf/clean-coords": "^5.0.4",
     "@turf/invariant": "^5.0.4",
-    "geojson-equality": "0.1.6"
+    "geojson-equality": "0.1.6",
+    "@turf/helpers": "^5.0.4"
   },
   "@std/esm": {
     "esm": "js",

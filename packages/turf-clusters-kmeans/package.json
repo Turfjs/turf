@@ -43,7 +43,6 @@
     "@std/esm": "*",
     "@turf/centroid": "*",
     "@turf/clusters": "*",
-    "@turf/helpers": "*",
     "@turf/random": "*",
     "benchmark": "*",
     "chromatism": "*",
@@ -58,7 +57,8 @@
     "@turf/clone": "^5.0.4",
     "@turf/invariant": "^5.0.4",
     "@turf/meta": "^5.0.4",
-    "skmeans": "0.9.7"
+    "skmeans": "0.9.7",
+    "@turf/helpers": "^5.0.4"
   },
   "@std/esm": {
     "esm": "js",

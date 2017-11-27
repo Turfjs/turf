@@ -8,7 +8,7 @@ const glob = require('glob');
 // Update package.json
 glob.sync(path.join(__dirname, '..', 'packages', 'turf-*', 'package.json')).forEach(packagePath => {
     const pckg = load.sync(packagePath);
-    // pckg.dependencies = updateDependencies(pckg);
+    pckg.dependencies = updateDependencies(pckg);
     pckg.devDependencies = updateDevDependencies(pckg);
     write.sync(packagePath, pckg, {indent: 2});
 });
@@ -23,44 +23,6 @@ function updateDependencies(pckg) {
         .forEach((version, name) => {
             // Update dependencies to v5.x
             switch (name) {
-            case '@turf/nearest-point-on-line':
-            case '@turf/circle':
-            case '@turf/bbox':
-            case '@turf/linestring-to-polygon':
-            case '@turf/polygon-to-linestring':
-            case '@turf/point-to-line-distance':
-            case '@turf/rhumb-bearing':
-            case '@turf/rhumb-destination':
-            case '@turf/rhumb-distance':
-            case '@turf/bearing':
-            case '@turf/destination':
-            case '@turf/distance':
-            case '@turf/line-intersect':
-            case '@turf/line-segment':
-            case '@turf/helpers':
-            case '@turf/invariant':
-            case '@turf/bbox-polygon':
-            case '@turf/envelope':
-            case '@turf/inside':
-            case '@turf/polygonize':
-            case '@turf/meta':
-            case '@turf/line-overlap':
-            case '@turf/clone':
-            case '@turf/nearest-point':
-            case '@turf/union':
-            case '@turf/buffer':
-            case '@turf/difference':
-            case '@turf/dissolve':
-            case '@turf/mask':
-            case '@turf/truncate':
-            case '@turf/intersect':
-            case '@turf/point-grid':
-            case '@turf/hex-grid':
-            case '@turf/square-grid':
-            case '@turf/triangle-grid':
-            case '@turf/boolean-point-on-line':
-                dependencies[name] = '5.x';
-                break;
             case 'geojson-rbush':
                 dependencies[name] = '2.1.0';
                 break;
@@ -69,24 +31,27 @@ function updateDependencies(pckg) {
                 dependencies[name] = '3.x';
                 break;
             case 'jsts':
+            case 'jsts-es':
             case '@turf/point-on-surface':
             case '@turf/line-distance':
             case '@turf/point-on-line':
             case '@turf/nearest':
                 throw new Error(`${pckg.name} module has invalid dependency ${name}`);
             default:
-                if (name.match('@turf') && version !== '5.x') dependencies[name] = '*';
-                else dependencies[name] = version;
+                dependencies[name] = version;
             }
         });
+    // All modules will have helpers to handle the internal TypeScript definitions
+    if (pckg.name !== '@turf/helpers') dependencies['@turf/helpers'] = '^5.0.4';
     return dependencies;
 }
 
 function updateDevDependencies(pckg) {
     const devDependencies = {};
     const dev = new Map(entries(pckg.devDependencies));
-    dev.delete('rollup-plugin-uglify', '*');
-    dev.delete('uglify-js', '*');
+    dev.delete('rollup-plugin-uglify');
+    dev.delete('uglify-js');
+    dev.delete('@turf/helpers');
     dev.set('rollup', '*')
         .set('tape', '*')
         .set('@std/esm', '*')
