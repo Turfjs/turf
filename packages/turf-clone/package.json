@@ -14,7 +14,8 @@
   "scripts": {
     "pretest": "rollup -c ../../rollup.config.js",
     "test": "node -r @std/esm test.js",
-    "bench": "node -r @std/esm bench.js"
+    "bench": "node -r @std/esm bench.js",
+    "docs": "node ../../scripts/generate-readmes"
   },
   "repository": {
     "type": "git",
@@ -40,11 +41,11 @@
     "rollup": "*",
     "tape": "*"
   },
+  "dependencies": {
+    "@turf/helpers": "^5.0.4"
+  },
   "@std/esm": {
     "esm": "js",
     "cjs": true
-  },
-  "dependencies": {
-    "@turf/helpers": "^5.0.4"
   }
 }
