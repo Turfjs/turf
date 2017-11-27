@@ -20,10 +20,9 @@ export interface NearestNeighborStudyArea extends Feature<Polygon> {
 
 
 export default function (
-      dataset: FeatureCollection<Point>,
+      dataset: FeatureCollection<any>,
       options?: {
-          studyAreaPolygon?: Feature<Polygon>, 
-          studyAreaArea?: number,
+          studyArea?: Feature<Polygon>, 
           units: Units,
           properties?: Properties
       }

@@ -17,18 +17,28 @@ import { featureCollection } from '@turf/helpers';
  * the analysis attached as part of of the `nearestNeighborAnalysis` property
  * of the study area's `properties`.
  *
- * The calculations for this function are found in:
+ * **Remarks**
  *
- * Philip J. Clark and Francis C. Evans, “Distance to Nearest Neighbor as a
+ * * Though the analysis will work on any {@link FeatureCollection} type, it
+ * works best with {@link Point} collections.
+ *
+ * * This analysis is _very_ sensitive to the study area provided. If no
+ * {@link Feature<Polygon> is passed as the study area, the function draws a
+ * box around the data, which may distort the findings. This analysis works
+ * best with a bounded area of interest within with the data is either
+ * clustered, dispersed, or randomly distributed.
+ *
+ * **Bibliography**
+ *
+ * * Philip J. Clark and Francis C. Evans, “Distance to Nearest Neighbor as a
  * Measure of Spatial Relationships in Populations,” _Ecology_ 35, no. 4
  * (1954): 445–453, doi:[10.2307/1931034](http://doi.org/10.2307/1931034).
  *
  * @name nearestNeighborAnalysis
- * @param {FeatureCollection<Point>} dataset FeatureCollection of points to study
+ * @param {FeatureCollection<any>} dataset FeatureCollection (pref. of points) to study
  * @param {Object} [options={}] Optional parameters
- * @param {Feature<Polygon} [options.studyAreaPolygon] A polygon representing the study area 
- * @param {number} [options.studyAreaArea] The area of the study area
- * @param {string} [options.units='kilometers'] unit of measurement for for distances and, squared, area.
+ * @param {Feature<Polygon} [options.studyArea] A polygon representing the study area 
+ * @param {string} [options.units='kilometers'] unit of measurement for distances and, squared, area.
  * @param {Object} [options.properties={}] properties
  * @returns {Feature<Polygon>} A polygon of the study area or an approximation of one.
  * @example
@@ -39,8 +49,20 @@ import { featureCollection } from '@turf/helpers';
  * //addToMap
  * var addToMap = [dataset, nearestNeighborStudyArea];
  */
-function nearestNeighborAnalysis(feature1, feature2) {
-    return true;
+function nearestNeighborAnalysis(dataset, options) {
+    // Optional params
+    options = options || {};
+    studyArea = options.studyArea || bboxPolygon(bbox(dataset));
+    properties = options.properties || {};
+    units = options.units || 'kilometers';
+
+    var features = [];
+    featureEach(dataset, function(feature){
+      features.push(centroid(feature))
+    });
+
+    return studyArea
+
 };
 
 export default nearestNeighborAnalysis;
