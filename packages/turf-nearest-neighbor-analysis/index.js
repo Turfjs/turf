@@ -3,6 +3,7 @@ import bbox from '@turf/bbox';
 import bboxPolygon from '@turf/bbox-polygon';
 import centroid from '@turf/centroid';
 import distance from '@turf/distance';
+import geojsonType from '@turf/invariant';
 import nearestPoint from '@turf/nearest-point';
 import { featureEach } from '@turf/meta';
 import { featureCollection } from '@turf/helpers';
