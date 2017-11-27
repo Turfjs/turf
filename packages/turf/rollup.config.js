@@ -1,8 +1,10 @@
 import babel from 'rollup-plugin-babel'
 import node from 'rollup-plugin-node-resolve'
 import uglify from 'rollup-plugin-uglify'
+import { minify } from 'uglify-es'
 
-export default [{
+export default [
+{
   input: 'index.js',
   extend: true,
   output: {
@@ -11,7 +13,8 @@ export default [{
     name: 'turf'
   },
   plugins: [node(), babel()]
-}, {
+},
+{
   input: 'index.js',
   extend: true,
   output: {
@@ -19,5 +22,6 @@ export default [{
     format: 'umd',
     name: 'turf'
   },
-  plugins: [node(), babel(), uglify()]
-}]
+  plugins: [node(), babel(), uglify({}, minify)]
+}
+]
