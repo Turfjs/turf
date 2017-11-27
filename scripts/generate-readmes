@@ -6,7 +6,17 @@ const path = require('path');
 const load = require('load-json-file');
 const documentation = require('documentation');
 
-const packages = glob.sync(path.join(__dirname, '..', 'packages', 'turf-*', 'package.json'));
+/**
+ * When firing `npm run docs`:
+ *   - inside a module, only the docs of that module will be generated
+ *   - outside or at the root level it will generate docs for all modules
+ */
+const currentFolder = process.cwd().split(path.sep).pop();
+const packages = currentFolder.includes('turf-') ?
+    [path.join(process.cwd(), 'package.json')] :
+    glob.sync(path.join(__dirname, '..', 'packages', 'turf-*', 'package.json'));
+
+// Template for README Markdown
 const postfix = fs.readFileSync(path.join(__dirname, 'postfix.md'), 'utf8');
 
 const paths = {

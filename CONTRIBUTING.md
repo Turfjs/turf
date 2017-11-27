@@ -2,10 +2,10 @@
 
 ## How To Contribute
 
-- Most work happens in sub modules. These are modules prefixed with "turf-". 
+- Most work happens in sub modules. These are modules prefixed with "turf-".
 - If you would like to propose a new feature, open an issue in Turfjs/turf.
 - Always include tests. We use [tape](https://github.com/substack/tape).
-- Turf modules are small, containing a single exported function. 
+- Turf modules are small, containing a single exported function.
 - GeoJSON is the lingua franca of Turf. It should be used as the data structure for anything that can be represented as geography.
 - Avoid large dependencies at all costs.
 - Turf is used in a wide range of places. Make sure that your code can run in the browser (ie: don't make calls to external services, don't hit the filesystem, etc.).
@@ -44,7 +44,7 @@ turf-<MODULE NAME>
     └───out
         points.geojson
 ```
-To get started with a new module navigate to the root directory and run 
+To get started with a new module navigate to the root directory and run
 ```sh
 $ node ./scripts/create-new-module <MODULE NAME>
 ```
@@ -98,4 +98,43 @@ Publish a test release:
 
 ```bash
 $ lerna publish --canary
+```
+
+## Documentation
+
+To update TurfJS's Documentation (README.md) use the following `npm run docs`:
+  - **inside a module:** will only generate the docs of that module.
+  - **main folder:** will generate docs for all modules.
+
+### Documentation - Examples
+
+**Only builds docs for `@turf/center`**
+
+```bash
+$ cd ./turf/packages/turf-center
+$ npm run docs
+
+> @turf/center@5.0.4 docs /Users/mac/Github/turf/packages/turf-center
+> node ../../scripts/generate-readmes
+
+Building Docs: @turf/center
+```
+
+**Builds docs for all modules**
+
+```bash
+$ cd ./turf
+$ npm run docs
+> @5.0.0 docs /Users/mac/Github/turf
+> node ./scripts/generate-readmes
+
+Building Docs: @turf/along
+Building Docs: @turf/area
+Building Docs: @turf/bbox-clip
+Building Docs: @turf/bbox-polygon
+Building Docs: @turf/bbox
+Building Docs: @turf/bearing
+Building Docs: @turf/bezier-spline
+Building Docs: @turf/boolean-clockwise
+....
 ```
