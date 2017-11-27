@@ -1,6 +1,6 @@
 {
   "name": "@turf/dissolve",
-  "version": "5.0.4",
+  "version": "5.0.6",
   "description": "turf dissolve module",
   "main": "main",
   "module": "index",
@@ -50,7 +50,7 @@
     "@turf/invariant": "^5.0.4",
     "@turf/line-intersect": "^5.0.4",
     "@turf/meta": "^5.0.4",
-    "@turf/union": "^5.0.4",
+    "@turf/union": "*",
     "geojson-rbush": "2.1.0",
     "get-closest": "*"
   },

@@ -30,6 +30,19 @@ function updateDependencies(pckg) {
             case 'topojson-server':
                 dependencies[name] = '3.x';
                 break;
+            // JSTS based modules:
+            case '@turf/buffer':
+            case '@turf/intersect':
+            case '@turf/union':
+            case '@turf/difference':
+            case '@turf/dissolve':
+            case '@turf/hex-grid':
+            case '@turf/mask':
+            case '@turf/square-grid':
+            case '@turf/triangle-grid':
+            case '@turf/interpolate':
+                dependencies[name] = '*';
+                break;
             case 'jsts':
             case 'jsts-es':
             case '@turf/point-on-surface':

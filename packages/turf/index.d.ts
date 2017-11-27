@@ -29,7 +29,6 @@ export {default as bbox} from '@turf/bbox';
 export {default as tesselate} from '@turf/tesselate';
 export {default as bboxPolygon} from '@turf/bbox-polygon';
 export {default as booleanPointInPolygon} from '@turf/boolean-point-in-polygon';
-export {default as intersect} from '@turf/intersect';
 export {default as nearestPoint} from '@turf/nearest-point';
 export {default as nearestPointOnLine} from '@turf/nearest-point-on-line';
 export {default as nearestPointToLine} from '@turf/nearest-point-to-line';
@@ -45,13 +44,9 @@ export {default as length} from '@turf/length';
 export {default as lineSlice} from '@turf/line-slice';
 export {default as lineSliceAlong} from '@turf/line-slice-along';
 export {default as pointGrid} from '@turf/point-grid';
-export {default as squareGrid} from '@turf/square-grid';
-export {default as triangleGrid} from '@turf/triangle-grid';
-export {default as hexGrid} from '@turf/hex-grid';
 export {default as truncate} from '@turf/truncate';
 export {default as flatten} from '@turf/flatten';
 export {default as lineIntersect} from '@turf/line-intersect';
-export {default as mask} from '@turf/mask';
 export {default as lineChunk} from '@turf/line-chunk';
 export {default as unkinkPolygon} from '@turf/unkink-polygon';
 export {default as greatCircle} from '@turf/great-circle';
@@ -84,7 +79,6 @@ export {default as booleanEqual} from '@turf/boolean-equal';
 export {default as booleanWithin} from '@turf/boolean-within';
 export {default as clone} from '@turf/clone';
 export {default as cleanCoords} from '@turf/clean-coords';
-export {default as interpolate} from '@turf/interpolate';
 export {default as clustersDbscan} from '@turf/clusters-dbscan';
 export {default as clustersKmeans} from '@turf/clusters-kmeans';
 export {default as pointToLineDistance} from '@turf/point-to-line-distance';
@@ -111,9 +105,17 @@ export {projection, random, clusters, helpers, invariant, meta};
 
 // JSTS Modules
 export {default as difference} from '@turf/difference';
-export {default as dissolve} from '@turf/dissolve';
 export {default as buffer} from '@turf/buffer';
 export {default as union} from '@turf/union';
+export {default as intersect} from '@turf/intersect';
+
+// JSTS Sub-Models
+export {default as dissolve} from '@turf/dissolve';
+export {default as hexGrid} from '@turf/hex-grid';
+export {default as mask} from '@turf/mask';
+export {default as squareGrid} from '@turf/square-grid';
+export {default as triangleGrid} from '@turf/triangle-grid';
+export {default as interpolate} from '@turf/interpolate';
 
 // Renamed modules (Backwards compatitble with v4.0)
 // https://github.com/Turfjs/turf/issues/860

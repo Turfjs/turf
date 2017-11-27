@@ -1,6 +1,6 @@
 {
   "name": "@turf/square-grid",
-  "version": "5.0.4",
+  "version": "5.0.5",
   "description": "turf square-grid module",
   "main": "main",
   "module": "index",
@@ -48,7 +48,7 @@
     "@turf/boolean-overlap": "^5.0.4",
     "@turf/distance": "^5.0.4",
     "@turf/helpers": "^5.0.4",
-    "@turf/intersect": "^5.0.4",
+    "@turf/intersect": "*",
     "@turf/invariant": "^5.0.4"
   },
   "@std/esm": {
