@@ -6,7 +6,7 @@ import cleanCoords from '@turf/clean-coords';
 import bboxPolygon from '@turf/bbox-polygon';
 import { getCoord, getType, getGeom } from '@turf/invariant';
 import { point, isNumber, lineString, isObject, featureCollection, feature } from '@turf/helpers';
-import { Graph, astar } from './javascript-astar';
+import { Graph, astar } from './lib/javascript-astar';
 
 /**
  * Returns the shortest {@link LineString|path} from {@link Point|start} to {@link Point|end} without colliding with

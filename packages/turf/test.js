@@ -1,10 +1,10 @@
-const fs = require('fs');
-const path = require('path');
-const glob = require('glob');
-const test = require('tape');
-const camelcase = require('camelcase');
-const documentation = require('documentation');
-const turf = require('./');
+import fs from 'fs';
+import path from 'path';
+import glob from 'glob';
+import test from 'tape';
+import camelcase from 'camelcase';
+import documentation from 'documentation';
+import * as turf from './';
 
 // Helpers
 const directory = path.join(__dirname, '..');
@@ -52,9 +52,19 @@ test('turf -- invalid dependencies', t => {
     t.end();
 });
 
+test('turf -- * wildcard devDependencies', t => {
+    for (const {name, devDependencies} of modules) {
+        for (const dependency of Object.keys(devDependencies)) {
+            if (devDependencies[dependency] !== '*') t.fail(`${name} ${dependency} devDependencies must use *`);
+        }
+    }
+    t.end();
+});
+
 test('turf -- strict version dependencies', t => {
     for (const {name, dependencies} of modules) {
-        if (dependencies['jsts']) t.fail(name + ' jsts must use jsts-es');
+        if (dependencies['jsts']) t.fail(name + ' jsts must use turf-jsts');
+        if (dependencies['jsts-es']) t.fail(name + ' jsts-es must use turf-jsts');
     }
     t.end();
 });
@@ -76,6 +86,24 @@ test('turf -- check if files exists', t => {
             // ignore Rollup bundle
             if (file === 'main.js') continue;
             if (!fs.existsSync(path.join(dir, file))) t.fail(`${name} missing file ${file} in "files"`);
+        }
+    }
+    t.end();
+});
+
+test('turf -- external files must be in the lib folder', t => {
+    for (const {name, pckg} of modules) {
+        const {files} = pckg;
+        for (const file of files) {
+            switch (file) {
+            case 'main.js':
+            case 'index.js':
+            case 'index.d.ts':
+            case 'lib':
+                break;
+            default:
+                t.fail(`${name} external files must be in the lib folder`)
+            }
         }
     }
     t.end();
@@ -247,8 +275,8 @@ const turfModulesPath = path.join(__dirname, '..', 'turf-*', 'index.js');
 const turfTypescriptPath = path.join(__dirname, '..', 'turf-*', 'index.d.ts');
 
 // Test Strings
-const requireString = `const test = require('tape');
-const turf = require('./main');
+const requireString = `import test from 'tape';
+import * as turf from './';
 `;
 
 /**

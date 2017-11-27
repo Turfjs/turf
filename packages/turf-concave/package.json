@@ -10,9 +10,7 @@
     "index.js",
     "index.d.ts",
     "main.js",
-    "turf-dissolve.js",
-    "turf-line-dissolve.js",
-    "turf-polygon-dissolve.js"
+    "lib"
   ],
   "scripts": {
     "pretest": "rollup -c ../../rollup.config.js",

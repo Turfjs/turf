@@ -151,11 +151,21 @@
     d3-geo "1.7.1"
     jsts-es "*"
 
-"@turf/center-mean@*":
+"@turf/center-mean@*", "@turf/center-mean@^5.0.1":
   version "5.0.1"
   resolved "https://registry.yarnpkg.com/@turf/center-mean/-/center-mean-5.0.1.tgz#f205c825508b7ac0a759402f8eaa974afe041a9e"
   dependencies:
     "@turf/bbox" "^5.0.4"
+    "@turf/helpers" "^5.0.4"
+    "@turf/meta" "^5.0.4"
+
+"@turf/center-median@*":
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/@turf/center-median/-/center-median-5.0.0.tgz#90d1843fab550dd9c0fe381c95c4395e07479e2f"
+  dependencies:
+    "@turf/center-mean" "^5.0.1"
+    "@turf/centroid" "^5.0.4"
+    "@turf/distance" "^5.0.4"
     "@turf/helpers" "^5.0.4"
     "@turf/meta" "^5.0.4"
 
@@ -303,7 +313,7 @@
     "@turf/helpers" "^5.0.4"
     "@turf/invariant" "^5.0.4"
 
-"@turf/ellipse@*":
+"@turf/ellipse@*", "@turf/ellipse@^5.0.1":
   version "5.0.1"
   resolved "https://registry.yarnpkg.com/@turf/ellipse/-/ellipse-5.0.1.tgz#86c9bafdc73e8e61746e239ce37bd7bb9121ca50"
   dependencies:
@@ -538,7 +548,7 @@
     "@turf/union" "^5.0.4"
     rbush "^2.0.1"
 
-"@turf/meta@*", "@turf/meta@^5.0.4":
+"@turf/meta@*", "@turf/meta@^5.0.0", "@turf/meta@^5.0.4":
   version "5.0.4"
   resolved "https://registry.yarnpkg.com/@turf/meta/-/meta-5.0.4.tgz#b41d08f19d2ecc934805b6d713a663abd9f83213"
   dependencies:
@@ -618,7 +628,7 @@
     "@turf/rhumb-bearing" "^5.0.4"
     "@turf/rhumb-distance" "^5.0.4"
 
-"@turf/points-within-polygon@^5.0.4":
+"@turf/points-within-polygon@^5.0.0", "@turf/points-within-polygon@^5.0.4":
   version "5.0.4"
   resolved "https://registry.yarnpkg.com/@turf/points-within-polygon/-/points-within-polygon-5.0.4.tgz#866d36b5bd037054ec1f4ecaa9f74707577a0f1e"
   dependencies:
@@ -746,6 +756,17 @@
   resolved "https://registry.yarnpkg.com/@turf/square/-/square-5.0.4.tgz#c03bcc06597718c2fa02eeb3dd24f00397df6e1c"
   dependencies:
     "@turf/distance" "^5.0.4"
+
+"@turf/standard-deviational-ellipse@*":
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/@turf/standard-deviational-ellipse/-/standard-deviational-ellipse-5.0.0.tgz#ed8be089dc6ce38a635ffd8ed6cb6c11a72fc2e2"
+  dependencies:
+    "@turf/center-mean" "^5.0.1"
+    "@turf/ellipse" "^5.0.1"
+    "@turf/helpers" "^5.0.4"
+    "@turf/invariant" "^5.0.0"
+    "@turf/meta" "^5.0.0"
+    "@turf/points-within-polygon" "^5.0.0"
 
 "@turf/tag@^5.0.4":
   version "5.0.4"

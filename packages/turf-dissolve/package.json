@@ -10,7 +10,7 @@
     "index.js",
     "index.d.ts",
     "main.js",
-    "get-closest.js"
+    "lib"
   ],
   "scripts": {
     "pretest": "rollup -c ../../rollup.config.js",

@@ -1,7 +1,7 @@
 import clone from '@turf/clone';
 import { getType } from '@turf/invariant';
-import { flattenEach } from '@turf/meta';
 import { isObject } from '@turf/helpers';
+import { flattenEach } from '@turf/meta';
 import lineDissolve from './turf-line-dissolve';
 import polygonDissolve from './turf-polygon-dissolve';
 

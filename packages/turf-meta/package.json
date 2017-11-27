@@ -55,7 +55,7 @@
   "homepage": "https://github.com/Turfjs/turf",
   "devDependencies": {
     "@std/esm": "*",
-    "@turf/random": "^5.0.4",
+    "@turf/random": "*",
     "benchmark": "*",
     "rollup": "*",
     "tape": "*"

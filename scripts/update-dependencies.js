@@ -8,7 +8,7 @@ const glob = require('glob');
 // Update package.json
 glob.sync(path.join(__dirname, '..', 'packages', 'turf-*', 'package.json')).forEach(packagePath => {
     const pckg = load.sync(packagePath);
-    pckg.dependencies = updateDependencies(pckg);
+    // pckg.dependencies = updateDependencies(pckg);
     pckg.devDependencies = updateDevDependencies(pckg);
     write.sync(packagePath, pckg, {indent: 2});
 });

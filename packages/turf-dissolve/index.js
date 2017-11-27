@@ -6,7 +6,7 @@ import lineIntersect from '@turf/line-intersect';
 import { coordAll } from '@turf/meta';
 import { collectionOf } from '@turf/invariant';
 import { lineString, isObject } from '@turf/helpers';
-import { closestGreaterNumber } from './get-closest';
+import { closestGreaterNumber } from './lib/get-closest';
 
 /**
  * Dissolves a FeatureCollection of {@link polygon} features, filtered by an optional property name:value.
