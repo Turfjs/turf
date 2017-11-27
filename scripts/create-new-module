@@ -108,7 +108,7 @@ fs.copySync(license, path.join(folderPath, 'LICENSE'));
 
 // Create index.d.ts
 fs.writeFileSync(path.join(folderPath, 'index.d.ts'), `import { Feature, GeometryObject } from '@turf/helpers'
- 
+
 /**
  * http://turfjs.org/docs/#${name.toLocaleLowerCase().replace('-', '')}
  */
@@ -121,7 +121,7 @@ export default function (
 
 // Create bench.js
 fs.writeFileSync(path.join(folderPath, 'bench.js'), `import Benchmark from 'benchmark';
-import ${camecaseName} from '.';
+import ${camelcaseName} from '.';
 import glob from 'glob';
 import path from 'path';
 import load from 'load-json-file';
@@ -154,7 +154,7 @@ import glob from 'glob';
 import path from 'path';
 import load from 'load-json-file';
 import write from 'write-json-file';
-import ${camecaseName} from '.';
+import ${camelcaseName} from '.';
 
 test('turf-${decamelizeName}', t => {
   glob.sync(path.join(__dirname, 'test', 'in', '*.json')).forEach(filepath => {
