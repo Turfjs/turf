@@ -70,7 +70,7 @@
     "rollup-plugin-node-resolve": "*",
     "rollup-plugin-uglify": "*",
     "tape": "*",
-    "uglify-es": "*"
+    "uglify-js": "*"
   },
   "dependencies": {
     "@turf/along": "^5.0.4",
