@@ -28,8 +28,7 @@ import { convertArea, featureCollection } from '@turf/helpers';
  * - Though the analysis will work on any {@link FeatureCollection} type, it
  * works best with {@link Point} collections.
  *
- * - This analysis is _very_ sensitive to the study area provided. If no {@link
- * Feature<Polygon>} is passed as the study area, the function draws a box
+ * - This analysis is _very_ sensitive to the study area provided. If no {@link Feature<Polygon>} is passed as the study area, the function draws a box
  * around the data, which may distort the findings. This analysis works best
  * with a bounded area of interest within with the data is either clustered,
  * dispersed, or randomly distributed. For example, a city's subway stops may
@@ -46,7 +45,7 @@ import { convertArea, featureCollection } from '@turf/helpers';
  * @name nearestNeighborAnalysis
  * @param {FeatureCollection<any>} dataset FeatureCollection (pref. of points) to study
  * @param {Object} [options={}] Optional parameters
- * @param {Feature<Polygon} [options.studyArea] A polygon representing the study area
+ * @param {Feature<Polygon>} [options.studyArea] polygon representing the study area
  * @param {string} [options.units='kilometers'] unit of measurement for distances and, squared, area.
  * @param {Object} [options.properties={}] properties
  * @returns {Feature<Polygon>} A polygon of the study area or an approximation of one.
@@ -60,38 +59,38 @@ import { convertArea, featureCollection } from '@turf/helpers';
  */
 function nearestNeighborAnalysis(dataset, options) {
     // Optional params
-    options = options || {}; 
-    var studyArea = options.studyArea || bboxPolygon(bbox(dataset)); 
-    var properties = options.properties || {}; 
+    options = options || {};
+    var studyArea = options.studyArea || bboxPolygon(bbox(dataset));
+    var properties = options.properties || {};
     var units = options.units || 'kilometers';
 
     var features = [];
-    featureEach(dataset, function(feature){
-      features.push(centroid(feature))
+    featureEach(dataset, function (feature) {
+        features.push(centroid(feature));
     });
     var n = features.length;
     var observedMeanDistance = features.map(function (feature, index) {
         var otherFeatures = featureCollection(features.filter(function (f, i) {
-          return i !== index;
+            return i !== index;
         }));
         return distance(feature, nearestPoint(feature, otherFeatures), {units: units});
     }).reduce(function (sum, value) { return sum + value; }, 0) / n;
 
-    var populationDensity = n / convertArea(area(studyArea), "meters", units);
+    var populationDensity = n / convertArea(area(studyArea), 'meters', units);
     var expectedMeanDistance = 1 / (2 * Math.sqrt(populationDensity));
     var variance = 0.26136 / (Math.sqrt(n * populationDensity));
     studyArea.properties = properties;
     studyArea.properties.nearestNeighborAnalysis = {
         units: units,
-        arealUnits: units + "²",
+        arealUnits: units + '²',
         observedMeanDistance: observedMeanDistance,
         expectedMeanDistance: expectedMeanDistance,
-        nearestNeighborIndex: observedMeanDistance/expectedMeanDistance,
+        nearestNeighborIndex: observedMeanDistance / expectedMeanDistance,
         numberOfPoints: n,
         zScore: (observedMeanDistance - expectedMeanDistance) / variance
-    }
+    };
 
     return studyArea;
-};
+}
 
 export default nearestNeighborAnalysis;

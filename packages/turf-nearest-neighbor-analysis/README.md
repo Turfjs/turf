@@ -42,6 +42,7 @@ Measure of Spatial Relationships in Populations,” _Ecology_ 35, no. 4
 
 -   `dataset` **[FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects)&lt;any>** FeatureCollection (pref. of points) to study
 -   `options` **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)** Optional parameters (optional, default `{}`)
+    -   `options.studyArea` **[Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;[Polygon](http://geojson.org/geojson-spec.html#polygon)>?** polygon representing the study area
     -   `options.units` **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** unit of measurement for distances and, squared, area. (optional, default `'kilometers'`)
     -   `options.properties` **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)** properties (optional, default `{}`)
 
