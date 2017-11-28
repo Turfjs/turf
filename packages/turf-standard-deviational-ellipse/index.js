@@ -12,11 +12,8 @@ import ellipse from '@turf/ellipse';
  * an ellipse that contains about one standard deviation’s worth (~ 70%) of the
  * data.
  *
- * This module mirrors the functionality of {@link
- * http://desktop.arcgis.com/en/arcmap/10.3/tools/spatial-statistics-toolbox/directional-distribution.htm|Directional
- * Distribution} in ArcGIS and the {@link
- * http://arken.nmbu.no/~havatv/gis/qgisplugins/SDEllipse/|QGIS Standard
- * Deviational Ellipse Plugin}.
+ * This module mirrors the functionality of [Directional Distribution](http://desktop.arcgis.com/en/arcmap/10.3/tools/spatial-statistics-toolbox/directional-distribution.htm)
+ * in ArcGIS and the [QGIS Standard Deviational Ellipse Plugin](http://arken.nmbu.no/~havatv/gis/qgisplugins/SDEllipse/)
  *
  * **Bibliography**
  *
