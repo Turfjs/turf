@@ -10,7 +10,9 @@ aims to show the direction and the distribution of a dataset by drawing
 an ellipse that contains about one standard deviation’s worth (~ 70%) of the
 data.
 
-This module was created in consultation with the following articles:
+This module mirrors the functionality of [Distribution](http://desktop.arcgis.com/en/arcmap/10.3/tools/spatial-statistics-toolbox/directional-distribution.htm|Directional) in ArcGIS and the [Deviational Ellipse Plugin](<http://arken.nmbu.no/~havatv/gis/qgisplugins/SDEllipse/|QGIS Standard>).
+
+**Bibliography**
 
 • Robert S. Yuill, “The Standard Deviational Ellipse; An Updated Tool for
 Spatial Description,” _Geografiska Annaler_ 53, no. 1 (1971): 28–39,
@@ -19,8 +21,6 @@ doi:[10.2307/490885](https://doi.org/10.2307/490885).
 • Paul Hanly Furfey, “A Note on Lefever’s “Standard Deviational Ellipse,”
 _American Journal of Sociology_ 33, no. 1 (1927): 94—98,
 doi:[10.1086/214336](https://doi.org/10.1086/214336).
-
-It mirrors the functionality of [Directional Distribution](http://desktop.arcgis.com/en/arcmap/10.3/tools/spatial-statistics-toolbox/directional-distribution.htm) in ArcGIS and the [QGIS Standard Deviational Ellipse Plugin](http://arken.nmbu.no/~havatv/gis/qgisplugins/SDEllipse/).
 
 **Parameters**
 
@@ -35,7 +35,7 @@ It mirrors the functionality of [Directional Distribution](http://desktop.arcgis
 ```javascript
 var bbox = [-74, 40.72, -73.98, 40.74];
 var points = turf.randomPoint(400, {bbox: bbox});
-var sdEllipse = turf.standardDeviationalEllipse(points, options);
+var sdEllipse = turf.standardDeviationalEllipse(points);
 
 //addToMap
 var addToMap = [points, sdEllipse];

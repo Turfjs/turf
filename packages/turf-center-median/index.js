@@ -6,16 +6,8 @@ import { featureEach } from '@turf/meta';
 
 /**
  * Takes a {@link FeatureCollection} of points and calculates the median center,
- * algorithimically. It uses the algorithm described in:
- *
- * Harold W. Kuhn and Robert E. Kuenne, “An Efficient Algorithm for the
- * Numerical Solution of the Generalized Weber Problem in Spatial
- * Economics,” _Journal of Regional Science_ 4, no. 2 (1962): 21–33,
- * doi:{@link https://doi.org/10.1111/j.1467-9787.1962.tb00902.x}.
- *
- * James E. Burt, Gerald M. Barber, and David L. Rigby, _Elementary
- * Statistics for Geographers_, 3rd ed., New York: The Guilford
- * Press, 2009, 150–151.
+ * algorithimically. The median center is understood as the point that is
+ * requires the least total travel from all other points.
  *
  * Turfjs has four different functions for calculating the center of a set of
  * data. Each is useful depending on circumstance.
@@ -38,6 +30,17 @@ import { featureEach } from '@turf/meta';
  * a new point that requires the least amount of travel from all the points in
  * the dataset. It is not as sensitive to outliers as `@turf/center`, but it is
  * attracted to clustered data. It, too, can be weighted.
+ *
+ * **Bibliography**
+ *
+ * Harold W. Kuhn and Robert E. Kuenne, “An Efficient Algorithm for the
+ * Numerical Solution of the Generalized Weber Problem in Spatial
+ * Economics,” _Journal of Regional Science_ 4, no. 2 (1962): 21–33,
+ * doi:{@link https://doi.org/10.1111/j.1467-9787.1962.tb00902.x}.
+ *
+ * James E. Burt, Gerald M. Barber, and David L. Rigby, _Elementary
+ * Statistics for Geographers_, 3rd ed., New York: The Guilford
+ * Press, 2009, 150–151.
  *
  * @name centerMedian
  * @param {FeatureCollection<any>} features Any GeoJSON Feature Collection

@@ -12,7 +12,10 @@ import ellipse from '@turf/ellipse';
  * an ellipse that contains about one standard deviation’s worth (~ 70%) of the
  * data.
  *
- * This module was created in consultation with the following articles:
+ * This module mirrors the functionality of [Directional Distribution](http://desktop.arcgis.com/en/arcmap/10.3/tools/spatial-statistics-toolbox/directional-distribution.htm)
+ * in ArcGIS and the [QGIS Standard Deviational Ellipse Plugin](http://arken.nmbu.no/~havatv/gis/qgisplugins/SDEllipse/)
+ *
+ * **Bibliography**
  *
  * • Robert S. Yuill, “The Standard Deviational Ellipse; An Updated Tool for
  * Spatial Description,” _Geografiska Annaler_ 53, no. 1 (1971): 28–39,
@@ -22,7 +25,6 @@ import ellipse from '@turf/ellipse';
  * _American Journal of Sociology_ 33, no. 1 (1927): 94—98,
  * doi:{@link https://doi.org/10.1086/214336|10.1086/214336}.
  *
- * It mirrors the functionality of {@link http://desktop.arcgis.com/en/arcmap/10.3/tools/spatial-statistics-toolbox/directional-distribution.htm|Directional Distribution} in ArcGIS and the {@link http://arken.nmbu.no/~havatv/gis/qgisplugins/SDEllipse/|QGIS Standard Deviational Ellipse Plugin}.
  *
  * @name standardDeviationalEllipse
  * @param {FeatureCollection<Point>} points GeoJSON points
