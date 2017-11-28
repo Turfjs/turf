@@ -10,9 +10,29 @@ data is clustered, dispersed, or randomly distributed within the study area.
 
 It returns a [Feature&lt;Polygon>](Feature<Polygon>) of the study area, with the results of
 the analysis attached as part of of the `nearestNeighborAnalysis` property
-of the study area's `properties`.
+of the study area's `properties`. The attached
+[_z_-score](https://en.wikipedia.org/wiki/Standard_score) indicates how many
+standard deviations above or below the expected mean distance the data's
+observed mean distance is. The more negative, the more clustered. The more
+positive, the more evenly dispersed. A _z_-score between -2 and 2 indicates
+a seemingly random distribution. That is, within _p_ of less than 0.05, the
+distribution appears statistically significantly neither clustered nor
+dispersed.
 
-The calculations for this function are found in:
+**Remarks**
+
+-   Though the analysis will work on any [FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects) type, it
+    works best with [Point](http://geojson.org/geojson-spec.html#point) collections.
+
+-   This analysis is _very_ sensitive to the study area provided. If no [Feature&lt;Polygon>](Feature<Polygon>) is passed as the study area, the function draws a box
+    around the data, which may distort the findings. This analysis works best
+    with a bounded area of interest within with the data is either clustered,
+    dispersed, or randomly distributed. For example, a city's subway stops may
+    look extremely clustered if the study area is an entire state. On the other
+    hand, they may look rather evenly dispersed if the study area is limited to
+    the city's downtown.
+
+**Bibliography**
 
 Philip J. Clark and Francis C. Evans, “Distance to Nearest Neighbor as a
 Measure of Spatial Relationships in Populations,” _Ecology_ 35, no. 4
@@ -20,10 +40,9 @@ Measure of Spatial Relationships in Populations,” _Ecology_ 35, no. 4
 
 **Parameters**
 
--   `dataset` **[FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects)&lt;[Point](http://geojson.org/geojson-spec.html#point)>** FeatureCollection of points to study
+-   `dataset` **[FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects)&lt;any>** FeatureCollection (pref. of points) to study
 -   `options` **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)** Optional parameters (optional, default `{}`)
-    -   `options.studyAreaArea` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)?** The area of the study area
-    -   `options.units` **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** unit of measurement for for distances and, squared, area. (optional, default `'kilometers'`)
+    -   `options.units` **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** unit of measurement for distances and, squared, area. (optional, default `'kilometers'`)
     -   `options.properties` **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)** properties (optional, default `{}`)
 
 **Examples**
