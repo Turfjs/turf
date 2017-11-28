@@ -35,6 +35,7 @@
   "homepage": "https://github.com/Turfjs/turf",
   "devDependencies": {
     "@std/esm": "*",
+    "@turf/truncate": "^5.0.4",
     "benchmark": "*",
     "rollup": "*",
     "write-json-file": "*",
@@ -48,7 +49,6 @@
     "@turf/centroid": "^5.0.4",
     "@turf/distance": "^5.0.4",
     "@turf/helpers": "^5.0.4",
-    "@turf/invariant": "^5.0.4",
     "@turf/meta": "^5.0.4",
     "@turf/nearest-point": "^5.0.4"
   },
