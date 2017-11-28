@@ -5,6 +5,8 @@ import { FeatureCollection, Feature, Point, Polygon, Units, Properties } from '@
  */
 
 export interface NearestNeighborStatistics {
+    units: Units,
+    arealUnits: string,
     observedMeanDistance: number,
     expectedMeanDistance: number,
     numberOfPoints: number,
