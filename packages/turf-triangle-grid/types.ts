@@ -7,4 +7,6 @@ const bbox: BBox = [
     -84.9462890625,
     40.58058466412764
 ]
-const grid: FeatureCollection<Polygon> = triangleGrid(bbox, 50, {units: 'miles'})
+const grid = triangleGrid(bbox, 50, {units: 'miles', properties: {'foo': 'bar'}});
+grid.features[0].properties.foo
+// grid.features[0].properties.bar // [ts] Property 'bar' does not exist on type '{ 'foo': string; }'.

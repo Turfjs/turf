@@ -22,8 +22,9 @@ export type GeometryTypes = "Point" |
                             "Polygon" |
                             "MultiPoint" |
                             "MultiLineString" |
-                            "MultiPolygon" |
-                            "GeometryCollection";
+                            "MultiPolygon";
+
+export type CollectionTypes = "FeatureCollection" | "GeometryCollection";
 
 /**
  * Types
@@ -31,7 +32,7 @@ export type GeometryTypes = "Point" |
  * https://tools.ietf.org/html/rfc7946#section-1.4
  * The value values for the "type" property of GeoJSON Objects.
  */
-export type Types = "FeatureCollection" | "Feature" | GeometryTypes;
+export type Types = "Feature" | GeometryTypes | CollectionTypes;
 
 /**
  * Bounding box
@@ -42,8 +43,9 @@ export type Types = "FeatureCollection" | "Feature" | GeometryTypes;
  * with all axes of the most southwesterly point followed by all axes of the more northeasterly point.
  * The axes order of a bbox follows the axes order of geometries.
  */
-export type BBox = number[] // [number, number, number, number] | [number, number, number, number, number, number];
-
+export type BBox2d = [number, number, number, number];
+export type BBox3d = [number, number, number, number, number, number];
+export type BBox = BBox2d | BBox3d;
 
 /**
  * Id

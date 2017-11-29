@@ -6,7 +6,6 @@ import {
     Polygon,
     MultiPolygon,
     GeometryCollection,
-    FeatureGeometryCollection,
     Properties
 } from '@turf/helpers';
 
@@ -30,7 +29,7 @@ declare function lineToPolygon<T extends LineString | MultiLineString>(
  * FeatureCollection => MultiPolygon
  */
 declare function lineToPolygon<T extends LineString | MultiLineString>(
-    lines: FeatureCollection<T> | GeometryCollection | FeatureGeometryCollection,
+    lines: FeatureCollection<T> | GeometryCollection | Feature<GeometryCollection>,
     options?: {
         properties?: Properties,
         autoComplete?: boolean,

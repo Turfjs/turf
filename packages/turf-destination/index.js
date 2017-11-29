@@ -12,6 +12,7 @@ import { point, lengthToRadians, degreesToRadians, radiansToDegrees, isObject } 
  * @param {number} bearing ranging from -180 to 180
  * @param {Object} [options={}] Optional parameters
  * @param {string} [options.units='kilometers'] miles, kilometers, degrees, or radians
+ * @param {Object} [options.properties={}] Translate properties to Point
  * @returns {Feature<Point>} destination point
  * @example
  * var point = turf.point([-75.343, 39.984]);
@@ -31,6 +32,7 @@ function destination(origin, distance, bearing, options) {
     options = options || {};
     if (!isObject(options)) throw new Error('options is invalid');
     var units = options.units;
+    var properties = options.properties;
 
     // Handle input
     var coordinates1 = getCoord(origin);
@@ -44,8 +46,10 @@ function destination(origin, distance, bearing, options) {
         Math.cos(latitude1) * Math.sin(radians) * Math.cos(bearing_rad));
     var longitude2 = longitude1 + Math.atan2(Math.sin(bearing_rad) * Math.sin(radians) * Math.cos(latitude1),
         Math.cos(radians) - Math.sin(latitude1) * Math.sin(latitude2));
+    var lng = radiansToDegrees(longitude2)
+    var lat = radiansToDegrees(latitude2)
 
-    return point([radiansToDegrees(longitude2), radiansToDegrees(latitude2)]);
+    return point([lng, lat], properties);
 }
 
 export default destination;

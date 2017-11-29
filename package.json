@@ -73,5 +73,8 @@
   "@std/esm": {
     "esm": "js",
     "cjs": true
+  },
+  "dependencies": {
+    "simple-statistics": "^5.1.0"
   }
 }

@@ -2,14 +2,14 @@ import {
     Id, Properties, BBox, Position,
     Point, LineString, Polygon, MultiPoint, MultiLineString, MultiPolygon,
     GeometryObject, GeoJSONObject, GeometryCollection, Geometry,
-    GeometryTypes, Types, Geometries,
+    GeometryTypes, Types, CollectionTypes, Geometries,
     Feature, FeatureCollection
 } from './geojson'
 export {
     Id, Properties, BBox, Position,
     Point, LineString, Polygon, MultiPoint, MultiLineString, MultiPolygon,
     GeometryObject, GeoJSONObject, GeometryCollection, Geometry,
-    GeometryTypes, Types, Geometries,
+    GeometryTypes, Types, CollectionTypes, Geometries,
     Feature, FeatureCollection
 }
 
@@ -21,7 +21,7 @@ export type Units = 'miles' | 'nauticalmiles' | 'degrees' | 'radians' | 'inches'
 export type Grid = 'point' | 'square' | 'hex' | 'triangle';
 export type Corners = 'sw' | 'se' | 'nw' | 'ne' | 'center' | 'centroid';
 
-
+export type Lines = LineString | MultiLineString | Polygon | MultiPolygon;
 export type AllGeoJSON = Feature | FeatureCollection | Geometry | GeometryCollection;
 
 interface FeatureOptions {
@@ -58,108 +58,108 @@ export function geometry(type: string, coordinates: any[], options?: GeometryOpt
 /**
  * http://turfjs.org/docs/#point
  */
-export function point<G extends Point, P = Properties>(coordinates: Position, properties?: P, options?: FeatureOptions): Feature<G, P>;
+export function point<P = Properties>(coordinates: Position, properties?: P, options?: FeatureOptions): Feature<Point, P>;
 
 /**
  * http://turfjs.org/docs/#points
  */
-export function points<G extends Point, P = Properties>(coordinates: Position[], properties?: P, options?: FeatureOptions): FeatureCollection<G, P>;
+export function points<P = Properties>(coordinates: Position[], properties?: P, options?: FeatureOptions): FeatureCollection<Point, P>;
 
 /**
  * http://turfjs.org/docs/#polygon
  */
-export function polygon<G extends Polygon, P = Properties>(coordinates: Position[][], properties?: P, options?: FeatureOptions): Feature<G, P>;
+export function polygon<P = Properties>(coordinates: Position[][], properties?: P, options?: FeatureOptions): Feature<Polygon, P>;
 
 /**
  * http://turfjs.org/docs/#polygons
  */
-export function polygons<G extends Polygon, P = Properties>(coordinates: Position[][][], properties?: P, options?: FeatureOptions): FeatureCollection<G, P>;
+export function polygons<P = Properties>(coordinates: Position[][][], properties?: P, options?: FeatureOptions): FeatureCollection<Polygon, P>;
 
 /**
  * http://turfjs.org/docs/#linestring
  */
-export function lineString<G extends LineString, P = Properties>(coordinates: Position[], properties?: P, options?: FeatureOptions): Feature<G, P>;
+export function lineString<P = Properties>(coordinates: Position[], properties?: P, options?: FeatureOptions): Feature<LineString, P>;
 
 /**
  * http://turfjs.org/docs/#linestrings
  */
-export function lineStrings<G extends LineString, P = Properties>(coordinates: Position[][], properties?: P, options?: FeatureOptions): FeatureCollection<G, P>;
+export function lineStrings<P = Properties>(coordinates: Position[][], properties?: P, options?: FeatureOptions): FeatureCollection<LineString, P>;
 
 
 /**
  * http://turfjs.org/docs/#multilinestring
  */
-export function multiLineString<G extends MultiLineString, P = Properties>(coordinates: Position[][], properties?: P, options?: FeatureOptions): Feature<G, P>;
+export function multiLineString<P = Properties>(coordinates: Position[][], properties?: P, options?: FeatureOptions): Feature<MultiLineString, P>;
 
 /**
  * http://turfjs.org/docs/#multipoint
  */
-export function multiPoint<G extends MultiPoint, P = Properties>(coordinates: Position[], properties?: P, options?: FeatureOptions): Feature<G, P>;
+export function multiPoint<P = Properties>(coordinates: Position[], properties?: P, options?: FeatureOptions): Feature<MultiPoint, P>;
 
 /**
  * http://turfjs.org/docs/#multipolygon
  */
-export function multiPolygon<G extends MultiPolygon, P = Properties>(coordinates: Position[][][], properties?: P, options?: FeatureOptions): Feature<G, P>;
+export function multiPolygon<P = Properties>(coordinates: Position[][][], properties?: P, options?: FeatureOptions): Feature<MultiPolygon, P>;
 
 /**
  * http://turfjs.org/docs/#geometrycollection
  */
-export function geometryCollection<G = GeometryCollection, P = Properties>(geometries: Geometries[], properties?: P, options?: FeatureOptions): Feature<G, P>;
+export function geometryCollection<P = Properties>(geometries: Geometries[], properties?: P, options?: FeatureOptions): Feature<GeometryCollection, P>;
 
 /**
  * http://turfjs.org/docs/#radianstolength
  */
-export function radiansToLength(radians: number, units?: Units): number
+export function radiansToLength(radians: number, units?: Units): number;
 
 /**
  * http://turfjs.org/docs/#lengthtoradians
  */
-export function lengthToRadians(distance: number, units?: Units): number
+export function lengthToRadians(distance: number, units?: Units): number;
 
 /**
  * http://turfjs.org/docs/#lengthtodegrees
  */
-export function lengthToDegrees(distance: number, units?: Units): number
+export function lengthToDegrees(distance: number, units?: Units): number;
 
 /**
  * http://turfjs.org/docs/#bearingtoazimuth
  */
-export function bearingToAzimuth(bearing: number): number
+export function bearingToAzimuth(bearing: number): number;
 
 /**
  * http://turfjs.org/docs/#radianstodegrees
  */
-export function radiansToDegrees(radians: number): number
+export function radiansToDegrees(radians: number): number;
 
 /**
  * http://turfjs.org/docs/#degreestoradians
  */
-export function degreesToRadians(degrees: number): number
+export function degreesToRadians(degrees: number): number;
 
 /**
  * http://turfjs.org/docs/#round
  */
-export function round(num: number, precision?: number): number
+export function round(num: number, precision?: number): number;
 
 /**
  * http://turfjs.org/docs/#convertlength
  */
-export function convertLength(length: number, originalUnit: Units, finalUnit?: Units): number
+export function convertLength(length: number, originalUnit: Units, finalUnit?: Units): number;
 
 /**
  * http://turfjs.org/docs/#convertarea
  */
-export function convertArea(area: number, originalUnit?: Units, finalUnit?: Units): number
+export function convertArea(area: number, originalUnit?: Units, finalUnit?: Units): number;
 
 /**
  * http://turfjs.org/docs/#isnumber
  */
-export function isNumber(num: any): boolean
+export function isNumber(num: any): boolean;
 
 /**
  * http://turfjs.org/docs/#isobject
  */
-export function isObject(input: any): boolean
+export function isObject(input: any): boolean;
 
 /**
  * Earth Radius used with the Harvesine formula and approximates using a spherical (non-ellipsoid) Earth.
@@ -170,47 +170,47 @@ export const earthRadius: number;
  * Unit of measurement factors using a spherical (non-ellipsoid) earth radius.
  */
 export const factors: {
-    meters: number
-    millimeters: number
-    centimeters: number
-    kilometers: number
-    miles: number
-    nauticalmiles: number
-    inches: number
-    yards: number
-    feet: number
+    meters: number;
+    millimeters: number;
+    centimeters: number;
+    kilometers: number;
+    miles: number;
+    nauticalmiles: number;
+    inches: number;
+    yards: number;
+    feet: number;
 }
 
 /**
  * Units of measurement factors based on 1 meter.
  */
 export const unitsFactors: {
-    meters: number
-    millimeters: number
-    centimeters: number
-    kilometers: number
-    miles: number
-    nauticalmiles: number
-    inches: number
-    yards: number
-    feet: number
-    radians: number
-    degrees: number
+    meters: number;
+    millimeters: number;
+    centimeters: number;
+    kilometers: number;
+    miles: number;
+    nauticalmiles: number;
+    inches: number;
+    yards: number;
+    feet: number;
+    radians: number;
+    degrees: number;
 };
 
 /**
  * Area of measurement factors based on 1 square meter.
  */
 export const areaFactors: {
-    meters: number
-    millimeters: number
-    centimeters: number
-    kilometers: number
-    acres: number
-    miles: number
-    yards: number
-    feet: number
-    inches: number
+    meters: number;
+    millimeters: number;
+    centimeters: number;
+    kilometers: number;
+    acres: number;
+    miles: number;
+    yards: number;
+    feet: number;
+    inches: number;
 };
 
 /**
