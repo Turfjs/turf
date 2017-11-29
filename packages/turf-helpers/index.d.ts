@@ -1,45 +1,28 @@
-/// <reference types='geojson' />
-
-// GeoJSON Foreign Members
-export type Id = string | number;
-export type Properties = object;
-export type BBox = [number, number, number, number];
+import {
+    Id, Properties, BBox, Position,
+    Point, LineString, Polygon, MultiPoint, MultiLineString, MultiPolygon,
+    GeometryObject, GeoJSONObject, GeometryCollection, Geometry,
+    GeometryTypes, Types, Geometries,
+    Feature, FeatureCollection
+} from './geojson'
+export {
+    Id, Properties, BBox, Position,
+    Point, LineString, Polygon, MultiPoint, MultiLineString, MultiPolygon,
+    GeometryObject, GeoJSONObject, GeometryCollection, Geometry,
+    GeometryTypes, Types, Geometries,
+    Feature, FeatureCollection
+}
 
 // TurfJS Combined Types
 export type Coord = Feature<Point> | Point | Position;
 
 // TurfJS String Types
 export type Units = 'miles' | 'nauticalmiles' | 'degrees' | 'radians' | 'inches' | 'yards' | 'meters' | 'metres' | 'kilometers' | 'kilometres';
-export type Geometry = 'Point' | 'LineString' | 'Polygon' | 'MultiPoint' | 'MultiLineString' | 'MultiPolygon';
 export type Grid = 'point' | 'square' | 'hex' | 'triangle';
-export type Collection = 'FeatureCollection' | 'GeometryCollection';
-export type Types = 'Feature' | Geometry | Collection;
 export type Corners = 'sw' | 'se' | 'nw' | 'ne' | 'center' | 'centroid';
 
 
-// GeoJSON Geometry Types
-export type Position = GeoJSON.Position;
-export type Point = GeoJSON.Point;
-export type MultiPoint = GeoJSON.MultiPoint;
-export type MultiLineString = GeoJSON.MultiLineString;
-export type LineString = GeoJSON.LineString;
-export type Polygon = GeoJSON.Polygon;
-export type MultiPolygon = GeoJSON.MultiPolygon;
-export type Geometries = Point | MultiPoint | LineString | MultiLineString | Polygon | MultiPolygon;
-export type GeometryObject = GeoJSON.GeometryObject;
-export type GeometryCollection = GeoJSON.GeometryCollection;
-
-// GeoJSON Feature Objects
-export type FeatureCollection<T extends GeometryObject> = GeoJSON.FeatureCollection<T>;
-export type Feature<T extends GeometryObject> = GeoJSON.Feature<T>;
-export interface FeatureGeometryCollection extends Feature<any> {
-    geometry: GeometryCollection;
-}
-export interface ExtendedFeatureCollection<Feat extends Feature<any>> {
-    type: 'FeatureCollection';
-    features: Feat[];
-}
-export type AllGeoJSON = Feature<any> | FeatureCollection<any> | FeatureGeometryCollection | GeometryObject | GeometryCollection;
+export type AllGeoJSON = Feature | FeatureCollection | Geometry | GeometryCollection;
 
 interface FeatureOptions {
     id?: Id;
@@ -53,12 +36,12 @@ interface GeometryOptions {
 /**
  * http://turfjs.org/docs/#feature
  */
-export function feature<T extends GeometryObject>(geometry: T, properties?: Properties, options?: FeatureOptions): Feature<T>;
+export function feature<G extends Geometry | GeometryCollection, P = Properties>(geometry: G, properties?: P, options?: FeatureOptions): Feature<G, P>;
 
 /**
  * http://turfjs.org/docs/#featurecollection
  */
-export function featureCollection<Geom extends GeometryObject>(features: Feature<Geom>[], options?: FeatureOptions): FeatureCollection<Geom>;
+export function featureCollection<G extends Geometry, P = Properties>(features: Feature<G, P>[], options?: FeatureOptions): FeatureCollection<G, P>;
 export function featureCollection(features: Feature<any>[], options?: FeatureOptions): FeatureCollection<any>;
 
 /**
@@ -70,58 +53,58 @@ export function geometry(type: 'Polygon', coordinates: Position[][], options?: G
 export function geometry(type: 'MultiPoint', coordinates: Position[], options?: GeometryOptions): MultiPoint;
 export function geometry(type: 'MultiLineString', coordinates: Position[][], options?: GeometryOptions): MultiLineString;
 export function geometry(type: 'MultiPolygon', coordinates: Position[][][], options?: GeometryOptions): MultiPolygon;
-export function geometry(type: Geometry | string, coordinates: any[], options?: GeometryOptions): GeometryObject;
+export function geometry(type: string, coordinates: any[], options?: GeometryOptions): Geometry;
 
 /**
  * http://turfjs.org/docs/#point
  */
-export function point(coordinates: Position, properties?: Properties, options?: FeatureOptions): Feature<Point>;
+export function point<G extends Point, P = Properties>(coordinates: Position, properties?: P, options?: FeatureOptions): Feature<G, P>;
 
 /**
  * http://turfjs.org/docs/#points
  */
-export function points(coordinates: Position[], properties?: Properties, options?: FeatureOptions): FeatureCollection<Point>;
+export function points<G extends Point, P = Properties>(coordinates: Position[], properties?: P, options?: FeatureOptions): FeatureCollection<G, P>;
 
 /**
  * http://turfjs.org/docs/#polygon
  */
-export function polygon(coordinates: Position[][], properties?: Properties, options?: FeatureOptions): Feature<Polygon>;
+export function polygon<G extends Polygon, P = Properties>(coordinates: Position[][], properties?: P, options?: FeatureOptions): Feature<G, P>;
 
 /**
  * http://turfjs.org/docs/#polygons
  */
-export function polygons(coordinates: Position[][][], properties?: Properties, options?: FeatureOptions): FeatureCollection<Polygon>;
+export function polygons<G extends Polygon, P = Properties>(coordinates: Position[][][], properties?: P, options?: FeatureOptions): FeatureCollection<G, P>;
 
 /**
  * http://turfjs.org/docs/#linestring
  */
-export function lineString(coordinates: Position[], properties?: Properties, options?: FeatureOptions): Feature<LineString>;
+export function lineString<G extends LineString, P = Properties>(coordinates: Position[], properties?: P, options?: FeatureOptions): Feature<G, P>;
 
 /**
  * http://turfjs.org/docs/#linestrings
  */
-export function lineStrings(coordinates: Position[][], properties?: Properties, options?: FeatureOptions): FeatureCollection<LineString>;
+export function lineStrings<G extends LineString, P = Properties>(coordinates: Position[][], properties?: P, options?: FeatureOptions): FeatureCollection<G, P>;
 
 
 /**
  * http://turfjs.org/docs/#multilinestring
  */
-export function multiLineString(coordinates: Position[][], properties?: Properties, options?: FeatureOptions): Feature<MultiLineString>;
+export function multiLineString<G extends MultiLineString, P = Properties>(coordinates: Position[][], properties?: P, options?: FeatureOptions): Feature<G, P>;
 
 /**
  * http://turfjs.org/docs/#multipoint
  */
-export function multiPoint(coordinates: Position[], properties?: Properties, options?: FeatureOptions): Feature<MultiPoint>;
+export function multiPoint<G extends MultiPoint, P = Properties>(coordinates: Position[], properties?: P, options?: FeatureOptions): Feature<G, P>;
 
 /**
  * http://turfjs.org/docs/#multipolygon
  */
-export function multiPolygon(coordinates: Position[][][], properties?: Properties, options?: FeatureOptions): Feature<MultiPolygon>;
+export function multiPolygon<G extends MultiPolygon, P = Properties>(coordinates: Position[][][], properties?: P, options?: FeatureOptions): Feature<G, P>;
 
 /**
  * http://turfjs.org/docs/#geometrycollection
  */
-export function geometryCollection(geometries: GeometryObject[], properties?: Properties, options?: FeatureOptions): FeatureGeometryCollection;
+export function geometryCollection<G = GeometryCollection, P = Properties>(geometries: Geometries[], properties?: P, options?: FeatureOptions): Feature<G, P>;
 
 /**
  * http://turfjs.org/docs/#radianstolength
