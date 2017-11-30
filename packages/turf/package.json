@@ -9,6 +9,7 @@
   "jsnext:main": "index",
   "types": "index.d.ts",
   "unpkg": "turf.min.js",
+  "jsdelivr": "turf.min.js",
   "files": [
     "index.js",
     "index.d.ts",
