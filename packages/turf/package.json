@@ -6,6 +6,7 @@
   "module": "index",
   "jsnext:main": "index",
   "types": "index.d.ts",
+  "unpkg": "turf.min.js",
   "files": [
     "index.js",
     "index.d.ts",
