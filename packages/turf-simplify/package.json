@@ -1,6 +1,6 @@
 {
   "name": "@turf/simplify",
-  "version": "5.0.4",
+  "version": "5.0.5",
   "description": "turf simplify module",
   "main": "main",
   "module": "index",
