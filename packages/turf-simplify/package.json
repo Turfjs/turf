@@ -1,6 +1,6 @@
 {
   "name": "@turf/simplify",
-  "version": "5.0.4",
+  "version": "5.0.5",
   "description": "turf simplify module",
   "main": "main",
   "module": "index",
@@ -9,7 +9,8 @@
   "files": [
     "index.js",
     "index.d.ts",
-    "main.js"
+    "main.js",
+    "lib"
   ],
   "scripts": {
     "pretest": "rollup -c ../../rollup.config.js",
@@ -24,10 +25,14 @@
   "keywords": [
     "turf",
     "gis",
-    "simplify"
+    "simplify",
+    "Ramer-Douglas-Peucker",
+    "algorithm",
+    "peucker"
   ],
   "author": "Turf Authors",
   "contributors": [
+    "Vladimir Agafonkin <@mourner>",
     "Stefano Borghi <@stebogit>"
   ],
   "license": "MIT",
@@ -48,8 +53,7 @@
     "@turf/clean-coords": "^5.0.4",
     "@turf/clone": "^5.0.4",
     "@turf/helpers": "^5.0.4",
-    "@turf/meta": "^5.0.4",
-    "simplify-js": "^1.2.1"
+    "@turf/meta": "^5.0.4"
   },
   "@std/esm": {
     "esm": "js",
