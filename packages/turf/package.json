@@ -3,8 +3,6 @@
   "version": "5.0.4",
   "description": "a JavaScript library for performing geospatial operations with GeoJSON",
   "main": "main.js",
-  "unpkg": "turf.js",
-  "jsdelivr": "turf.js",
   "module": "index",
   "jsnext:main": "index",
   "types": "index.d.ts",
