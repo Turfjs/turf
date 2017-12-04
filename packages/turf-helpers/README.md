@@ -427,7 +427,7 @@ Converts an angle in radians to degrees
 
 Returns **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** degrees between 0 and 360 degrees
 
-## degreesToradians
+## degreesToRadians
 
 Converts an angle in degrees to radians
 
