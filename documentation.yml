@@ -1,0 +1,184 @@
+toc:
+  - name: Measurement
+  - along
+  - area
+  - bbox
+  - bboxClip
+  - bboxPolygon
+  - bearing
+  - center
+  - centerOfMass
+  - centroid
+  - destination
+  - distance
+  - envelope
+  - length
+  - midpoint
+  - pointOnFeature
+  - polygonTangents
+  - pointToLineDistance
+  - rhumbBearing
+  - rhumbDestination
+  - rhumbDistance
+  - square
+  - greatCircle
+  - name: Coordinate Mutation
+  - cleanCoords
+  - flip
+  - rewind
+  - round
+  - truncate
+  - name: Transformation
+  - bboxClip
+  - bezierSpline
+  - buffer
+  - circle
+  - clone
+  - concave
+  - convex
+  - difference
+  - dissolve
+  - intersect
+  - lineOffset
+  - simplify
+  - tesselate
+  - transformRotate
+  - transformTranslate
+  - transformScale
+  - union
+  - voronoi
+  - name: Feature Conversion
+  - combine
+  - explode
+  - flatten
+  - lineToPolygon
+  - polygonize
+  - polygonToLine
+  - name: Misc
+  - kinks
+  - lineArc
+  - lineChunk
+  - lineIntersect
+  - lineOverlap
+  - lineSegment
+  - lineSlice
+  - lineSliceAlong
+  - lineSplit
+  - mask
+  - nearestPointOnLine
+  - sector
+  - shortestPath
+  - unkinkPolygon
+  - name: Helper
+  - featureCollection
+  - feature
+  - geometryCollection
+  - lineString
+  - multiLineString
+  - multiPoint
+  - multiPolygon
+  - point
+  - polygon
+  - name: Random
+  - randomPosition
+  - randomPoint
+  - randomLineString
+  - randomPolygon
+  - name: Data
+  - sample
+  - name: Interpolation
+  - interpolate
+  - isobands
+  - isolines
+  - planepoint
+  - tin
+  - name: Joins
+  - pointsWithinPolygon
+  - tag
+  - name: Grids
+  - hexGrid
+  - pointGrid
+  - squareGrid
+  - triangleGrid
+  - name: Classification
+  - nearestPoint
+  - name: Aggregation
+  - collect
+  - clustersDbscan
+  - clustersKmeans
+  - name: Meta
+  - coordAll
+  - coordEach
+  - coordReduce
+  - featureEach
+  - featureReduce
+  - flattenEach
+  - flattenReduce
+  - getCoord
+  - getCoords
+  - getGeom
+  - getType
+  - geomEach
+  - geomReduce
+  - propEach
+  - propReduce
+  - segmentEach
+  - segmentReduce
+  - getCluster
+  - clusterEach
+  - clusterReduce
+  - name: Assertions
+  - collectionOf
+  - containsNumber
+  - geojsonType
+  - featureOf
+  - name: Booleans
+  - booleanClockwise
+  - booleanContains
+  - booleanCrosses
+  - booleanDisjoint
+  - booleanEqual
+  - booleanOverlap
+  - booleanParallel
+  - booleanPointInPolygon
+  - booleanPointOnLine
+  - booleanWithin
+  - name: Unit Conversion
+  - bearingToAzimuth
+  - convertArea
+  - convertLength
+  - degreesToRadians
+  - lengthToRadians
+  - lengthToDegrees
+  - radiansToLength
+  - radiansToDegrees
+  - toMercator
+  - toWgs84
+paths:
+    GeoJSON: 'http://geojson.org/geojson-spec.html#geojson-objects'
+    GeometryCollection: 'http://geojson.org/geojson-spec.html#geometrycollection'
+    Point: 'http://geojson.org/geojson-spec.html#point'
+    Points: 'http://geojson.org/geojson-spec.html#point'
+    (Multi)Point: 'http://geojson.org/geojson-spec.html#point'
+    (Multi)Points: 'http://geojson.org/geojson-spec.html#point'
+    (Multi)Point(s): 'http://geojson.org/geojson-spec.html#point'
+    MultiPoint: 'http://geojson.org/geojson-spec.html#multipoint'
+    MultiPoints: 'http://geojson.org/geojson-spec.html#multipoint'
+    LineString: 'http://geojson.org/geojson-spec.html#linestring'
+    LineStrings: 'http://geojson.org/geojson-spec.html#linestring'
+    (Multi)LineString: 'http://geojson.org/geojson-spec.html#linestring'
+    (Multi)LineStrings: 'http://geojson.org/geojson-spec.html#linestring'
+    (Multi)LineString(s): 'http://geojson.org/geojson-spec.html#linestring'
+    MultiLineString: 'http://geojson.org/geojson-spec.html#multilinestring'
+    MultiLineStrings: 'http://geojson.org/geojson-spec.html#multilinestring'
+    Polygon: 'http://geojson.org/geojson-spec.html#polygon'
+    Polygons: 'http://geojson.org/geojson-spec.html#polygon'
+    (Multi)Polygon: 'http://geojson.org/geojson-spec.html#polygon'
+    (Multi)Polygons: 'http://geojson.org/geojson-spec.html#polygon'
+    (Multi)Polygon(s): 'http://geojson.org/geojson-spec.html#polygon'
+    MultiPolygon: 'http://geojson.org/geojson-spec.html#multipolygon'
+    MultiPolygons: 'http://geojson.org/geojson-spec.html#multipolygon'
+    Geometry: 'http://geojson.org/geojson-spec.html#geometry'
+    Feature: 'http://geojson.org/geojson-spec.html#feature-objects'
+    Features: 'http://geojson.org/geojson-spec.html#feature-objects'
+    FeatureCollection: 'http://geojson.org/geojson-spec.html#feature-collection-objects'
