@@ -15,12 +15,6 @@ In particular, we're looking for corporate sponsors who use TurfJS in revenue-ge
 either by creating applications for clients, or through use in an app used by customers.
 Of course individuals are welcome to support us as well if TurfJS has helped you :) 
 
-
-## How TurfJS was started
-
-Initially developped by [Morgan Herlocker](https://twitter.com/morganherlocker) in 2013, this was an independant open source project with all development efforts as volunteers.
-Over the years many companies are promoting the use of TurfJS inside their Geospatial Web applications, to this date TurfJS remains community driven with all development as volunteers which means it is not sponsored by any one corporate companies.
-
 ## 2017 Achievements
 
   - Refactoring the codebase to support ES6 modules
