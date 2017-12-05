@@ -25,6 +25,7 @@ import {
     earthRadius,
     // Typescript types
     Point,
+    Geometries,
     LineString,
     Polygon,
     MultiPoint,
@@ -32,7 +33,6 @@ import {
     MultiPolygon,
     GeometryCollection
 } from './'
-import { Geometries } from './geojson';
 
 // Fixtures
 const bbox: BBox = [-180, -90, 180, 90]
