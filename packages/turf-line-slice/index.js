@@ -34,7 +34,7 @@ import nearestPointOnLine from '@turf/nearest-point-on-line';
 function lineSlice(startPt, stopPt, line) {
     // Validation
     var coords = getCoords(line);
-    if (getType(line) !== 'LineString') throw new Error('line must be a LineString')
+    if (getType(line) !== 'LineString') throw new Error('line must be a LineString');
 
     var startVertex = nearestPointOnLine(line, startPt);
     var stopVertex = nearestPointOnLine(line, stopPt);
