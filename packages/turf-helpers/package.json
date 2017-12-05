@@ -9,8 +9,8 @@
   "files": [
     "index.js",
     "index.d.ts",
-    "geojson.d.ts",
-    "main.js"
+    "main.js",
+    "lib"
   ],
   "scripts": {
     "pretest": "rollup -c ../../rollup.config.js",

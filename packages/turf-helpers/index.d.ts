@@ -4,7 +4,7 @@ import {
     GeometryObject, GeoJSONObject, GeometryCollection, Geometry,
     GeometryTypes, Types, CollectionTypes, Geometries,
     Feature, FeatureCollection
-} from './geojson'
+} from './lib/geojson'
 export {
     Id, Properties, BBox, Position,
     Point, LineString, Polygon, MultiPoint, MultiLineString, MultiPolygon,
