@@ -17,8 +17,8 @@ import { isObject } from '@turf/helpers';
  *     58.11088890802906,
  *     1508
  * ]);
- *
- * var truncated = turf.truncate(point, {precision: 3, coordinates: 2});
+ * var options = {precision: 3, coordinates: 2};
+ * var truncated = turf.truncate(point, options);
  * //=truncated.geometry.coordinates => [70.469, 58.111]
  *
  * //addToMap
