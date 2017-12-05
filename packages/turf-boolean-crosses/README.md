@@ -51,3 +51,8 @@ Or install the Turf module that includes it as a function:
 ```sh
 $ npm install @turf/turf
 ```
+
+
+### Diagrams
+
+![DE-9IM Crosses](images/DE-9IM Crosses.gif)
