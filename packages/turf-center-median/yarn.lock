@@ -6,89 +6,6 @@
   version "0.17.1"
   resolved "https://registry.yarnpkg.com/@std/esm/-/esm-0.17.1.tgz#0780223a5b9df5af10bdd404738b0dc955735407"
 
-"@turf/bbox@^5.0.4":
-  version "5.0.4"
-  resolved "https://registry.yarnpkg.com/@turf/bbox/-/bbox-5.0.4.tgz#5c3d288f9900661cbdc173cd46041c13829af311"
-  dependencies:
-    "@turf/helpers" "^5.0.4"
-    "@turf/meta" "^5.0.4"
-
-"@turf/center-mean@^5.0.1":
-  version "5.0.1"
-  resolved "https://registry.yarnpkg.com/@turf/center-mean/-/center-mean-5.0.1.tgz#f205c825508b7ac0a759402f8eaa974afe041a9e"
-  dependencies:
-    "@turf/bbox" "^5.0.4"
-    "@turf/helpers" "^5.0.4"
-    "@turf/meta" "^5.0.4"
-
-"@turf/center-of-mass@^5.0.4":
-  version "5.0.4"
-  resolved "https://registry.yarnpkg.com/@turf/center-of-mass/-/center-of-mass-5.0.4.tgz#225338b81b466d019be2ab167c21cdc0810cd1c6"
-  dependencies:
-    "@turf/centroid" "^5.0.4"
-    "@turf/convex" "^5.0.4"
-    "@turf/helpers" "^5.0.4"
-    "@turf/invariant" "^5.0.4"
-    "@turf/meta" "^5.0.4"
-
-"@turf/center@^5.0.4":
-  version "5.0.4"
-  resolved "https://registry.yarnpkg.com/@turf/center/-/center-5.0.4.tgz#32bf142564c1fd2b5ed6ddc24f452f48822020b1"
-  dependencies:
-    "@turf/bbox" "^5.0.4"
-    "@turf/helpers" "^5.0.4"
-
-"@turf/centroid@^5.0.4":
-  version "5.0.4"
-  resolved "https://registry.yarnpkg.com/@turf/centroid/-/centroid-5.0.4.tgz#31fcef5c2ca94b234217c7bb779091473358c7ec"
-  dependencies:
-    "@turf/helpers" "^5.0.4"
-    "@turf/meta" "^5.0.4"
-
-"@turf/convex@^5.0.4":
-  version "5.0.4"
-  resolved "https://registry.yarnpkg.com/@turf/convex/-/convex-5.0.4.tgz#1a2ab11a36f7973fad33f57f781a9437ef7b9cd6"
-  dependencies:
-    "@turf/helpers" "^5.0.4"
-    "@turf/meta" "^5.0.4"
-    concaveman "*"
-
-"@turf/distance@^5.0.4":
-  version "5.0.4"
-  resolved "https://registry.yarnpkg.com/@turf/distance/-/distance-5.0.4.tgz#0ef58ec9a08403bdaef7bf420cb2c9d04cc69257"
-  dependencies:
-    "@turf/helpers" "^5.0.4"
-    "@turf/invariant" "^5.0.4"
-
-"@turf/helpers@^5.0.4":
-  version "5.0.4"
-  resolved "https://registry.yarnpkg.com/@turf/helpers/-/helpers-5.0.4.tgz#e47a4e4f38dee3b47a3177a69de162d7a7a5837f"
-
-"@turf/invariant@^5.0.4":
-  version "5.0.4"
-  resolved "https://registry.yarnpkg.com/@turf/invariant/-/invariant-5.0.4.tgz#1cc305f4de7c0f1bfd9d7c420aac282051262b41"
-  dependencies:
-    "@turf/helpers" "^5.0.4"
-
-"@turf/meta@^5.0.4":
-  version "5.0.4"
-  resolved "https://registry.yarnpkg.com/@turf/meta/-/meta-5.0.4.tgz#b41d08f19d2ecc934805b6d713a663abd9f83213"
-  dependencies:
-    "@turf/helpers" "^5.0.4"
-
-"@turf/random@^5.0.4":
-  version "5.0.4"
-  resolved "https://registry.yarnpkg.com/@turf/random/-/random-5.0.4.tgz#28b9747f03d611d87ef55bc44dd79dc471aa4239"
-  dependencies:
-    "@turf/helpers" "^5.0.4"
-
-"@turf/truncate@^5.0.4":
-  version "5.0.4"
-  resolved "https://registry.yarnpkg.com/@turf/truncate/-/truncate-5.0.4.tgz#84f85f39f33b9d258372ce54ad540b6ab05365d3"
-  dependencies:
-    "@turf/helpers" "^5.0.4"
-    "@turf/meta" "^5.0.4"
-
 balanced-match@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/balanced-match/-/balanced-match-1.0.0.tgz#89b4d199ab2bee49de164ea02b89ce462d71b767"
@@ -110,16 +27,6 @@ brace-expansion@^1.1.7:
 concat-map@0.0.1:
   version "0.0.1"
   resolved "https://registry.yarnpkg.com/concat-map/-/concat-map-0.0.1.tgz#d8a96bd77fd68df7793a73036a3ba0d5405d477b"
-
-concaveman@*:
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/concaveman/-/concaveman-1.1.1.tgz#6c2482580b2523cef82fc2bec00a0415e6e68162"
-  dependencies:
-    monotone-convex-hull-2d "^1.0.1"
-    point-in-polygon "^1.0.1"
-    rbush "^2.0.1"
-    robust-orientation "^1.1.3"
-    tinyqueue "^1.1.0"
 
 deep-equal@~1.0.1:
   version "1.0.1"
@@ -281,12 +188,6 @@ minimist@~1.2.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/minimist/-/minimist-1.2.0.tgz#a35008b20f41383eec1fb914f4cd5df79a264284"
 
-monotone-convex-hull-2d@^1.0.1:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/monotone-convex-hull-2d/-/monotone-convex-hull-2d-1.0.1.tgz#47f5daeadf3c4afd37764baa1aa8787a40eee08c"
-  dependencies:
-    robust-orientation "^1.1.3"
-
 object-inspect@~1.3.0:
   version "1.3.0"
   resolved "https://registry.yarnpkg.com/object-inspect/-/object-inspect-1.3.0.tgz#5b1eb8e6742e2ee83342a637034d844928ba2f6d"
@@ -324,20 +225,6 @@ platform@^1.3.3:
   version "1.3.4"
   resolved "https://registry.yarnpkg.com/platform/-/platform-1.3.4.tgz#6f0fb17edaaa48f21442b3a975c063130f1c3ebd"
 
-point-in-polygon@^1.0.1:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/point-in-polygon/-/point-in-polygon-1.0.1.tgz#d59b64e8fee41c49458aac82b56718c5957b2af7"
-
-quickselect@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/quickselect/-/quickselect-1.0.0.tgz#02630818f9aae4ecab26f0103f98d061c17c58f3"
-
-rbush@^2.0.1:
-  version "2.0.1"
-  resolved "https://registry.yarnpkg.com/rbush/-/rbush-2.0.1.tgz#4cfaca28c3064bc0ee75431a1b79990e875eefa9"
-  dependencies:
-    quickselect "^1.0.0"
-
 resolve@~1.4.0:
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/resolve/-/resolve-1.4.0.tgz#a75be01c53da25d934a98ebd0e4c4a7312f92a86"
@@ -349,30 +236,6 @@ resumer@~0.0.0:
   resolved "https://registry.yarnpkg.com/resumer/-/resumer-0.0.0.tgz#f1e8f461e4064ba39e82af3cdc2a8c893d076759"
   dependencies:
     through "~2.3.4"
-
-robust-orientation@^1.1.3:
-  version "1.1.3"
-  resolved "https://registry.yarnpkg.com/robust-orientation/-/robust-orientation-1.1.3.tgz#daff5b00d3be4e60722f0e9c0156ef967f1c2049"
-  dependencies:
-    robust-scale "^1.0.2"
-    robust-subtract "^1.0.0"
-    robust-sum "^1.0.0"
-    two-product "^1.0.2"
-
-robust-scale@^1.0.2:
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/robust-scale/-/robust-scale-1.0.2.tgz#775132ed09542d028e58b2cc79c06290bcf78c32"
-  dependencies:
-    two-product "^1.0.2"
-    two-sum "^1.0.0"
-
-robust-subtract@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/robust-subtract/-/robust-subtract-1.0.0.tgz#e0b164e1ed8ba4e3a5dda45a12038348dbed3e9a"
-
-robust-sum@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/robust-sum/-/robust-sum-1.0.0.tgz#16646e525292b4d25d82757a286955e0bbfa53d9"
 
 rollup@*:
   version "0.52.0"
@@ -421,18 +284,6 @@ tape@*:
 through@~2.3.4, through@~2.3.8:
   version "2.3.8"
   resolved "https://registry.yarnpkg.com/through/-/through-2.3.8.tgz#0dd4c9ffaabc357960b1b724115d7e0e86a2e1f5"
-
-tinyqueue@^1.1.0:
-  version "1.2.3"
-  resolved "https://registry.yarnpkg.com/tinyqueue/-/tinyqueue-1.2.3.tgz#b6a61de23060584da29f82362e45df1ec7353f3d"
-
-two-product@^1.0.2:
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/two-product/-/two-product-1.0.2.tgz#67d95d4b257a921e2cb4bd7af9511f9088522eaa"
-
-two-sum@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/two-sum/-/two-sum-1.0.0.tgz#31d3f32239e4f731eca9df9155e2b297f008ab64"
 
 wrappy@1:
   version "1.0.2"

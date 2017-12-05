@@ -10,7 +10,8 @@ aims to show the direction and the distribution of a dataset by drawing
 an ellipse that contains about one standard deviation’s worth (~ 70%) of the
 data.
 
-This module mirrors the functionality of [Distribution](http://desktop.arcgis.com/en/arcmap/10.3/tools/spatial-statistics-toolbox/directional-distribution.htm|Directional) in ArcGIS and the [Deviational Ellipse Plugin](<http://arken.nmbu.no/~havatv/gis/qgisplugins/SDEllipse/|QGIS Standard>).
+This module mirrors the functionality of [Directional Distribution](http://desktop.arcgis.com/en/arcmap/10.3/tools/spatial-statistics-toolbox/directional-distribution.htm)
+in ArcGIS and the [QGIS Standard Deviational Ellipse Plugin](http://arken.nmbu.no/~havatv/gis/qgisplugins/SDEllipse/)
 
 **Bibliography**
 

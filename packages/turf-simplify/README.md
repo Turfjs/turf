@@ -5,7 +5,7 @@
 ## simplify
 
 Takes a [GeoJSON](http://geojson.org/geojson-spec.html#geojson-objects) object and returns a simplified version. Internally uses
-[simplify-js](http://mourner.github.io/simplify-js/) to perform simplification.
+[simplify-js](http://mourner.github.io/simplify-js/) to perform simplification using the Ramer-Douglas-Peucker algorithm.
 
 **Parameters**
 
