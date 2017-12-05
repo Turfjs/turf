@@ -181,3 +181,7 @@ paths:
     Feature: 'http://geojson.org/geojson-spec.html#feature-objects'
     Features: 'http://geojson.org/geojson-spec.html#feature-objects'
     FeatureCollection: 'http://geojson.org/geojson-spec.html#feature-collection-objects'
+    Object: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object'
+    Number: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number'
+    String: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String'
+    Array: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Arrray'
