@@ -48,9 +48,10 @@
     "write-json-file": "*"
   },
   "dependencies": {
+    "@turf/helpers": "^5.0.4",
+    "@turf/invariant": "*",
     "@turf/meta": "^5.0.4",
-    "@turf/point-to-line-distance": "^5.0.4",
-    "@turf/helpers": "^5.0.4"
+    "@turf/point-to-line-distance": "^5.0.4"
   },
   "@std/esm": {
     "esm": "js",

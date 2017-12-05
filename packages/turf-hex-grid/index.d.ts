@@ -3,13 +3,13 @@ import { Units, BBox, Polygon, MultiPolygon, Feature, FeatureCollection, Point, 
 /**
  * http://turfjs.org/docs/#hexgrid
  */
-export default function hexGrid(
+export default function hexGrid<P = Properties>(
     bbox: BBox,
     cellSide: number,
     options?: {
         units?: Units,
         triangles?: boolean,
-        properties?: Properties,
+        properties?: P,
         mask?: Feature<Polygon | MultiPolygon> | Polygon | MultiPolygon;
     }
-): FeatureCollection<Polygon>;
+): FeatureCollection<Polygon, P>;
