@@ -1,12 +1,12 @@
-import {point, polygon, featureCollection} from '@turf/helpers';
+import {point, polygon, featureCollection, Point, Feature, Polygon} from '@turf/helpers';
 import translate from './';
 
 const pt = point([0, 0]);
 const poly = polygon([[[0,29],[3.5,29],[2.5,32],[0,29]]]);
 
 // Does not mutate Geometry type
-const translatedPt: GeoJSON.Point = translate(pt.geometry, 100, 35);
-const translatedPoly: GeoJSON.Feature<GeoJSON.Polygon> = translate(poly, 100, 35);
+const translatedPt: Point = translate(pt.geometry, 100, 35);
+const translatedPoly: Feature<Polygon> = translate(poly, 100, 35);
 
 // Diferent Geometry inputs
 translate(pt.geometry, 100, 35);

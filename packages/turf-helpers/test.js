@@ -24,6 +24,23 @@ import {
 } from './';
 import * as turf from './'
 
+const foo = {
+    /**
+     * HELLO!
+     */
+    hello: 'world',
+    /**
+     * This is a fruit
+     */
+    apple: 3,
+    /**
+     * This is yellow
+     */
+    banana: 6
+}
+
+
+
 test('point', t => {
     const ptArray = point([5, 10], {name: 'test point'});
 
