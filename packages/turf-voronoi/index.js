@@ -3,6 +3,7 @@ import { collectionOf } from '@turf/invariant';
 import * as d3voronoi from 'd3-voronoi';
 
 /**
+ * @private
  * @param {Array<Array<number>>} coords representing a polygon
  * @returns {Feature<Polygon>} polygon
  */
