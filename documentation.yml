@@ -187,8 +187,4 @@ paths:
     GeoJSONText: 'https://tools.ietf.org/html/rfc7946#section-2'
     BBox: 'https://tools.ietf.org/html/rfc7946#section-5'
     BoundingBox: 'https://tools.ietf.org/html/rfc7946#section-5'
-    # Mozilla Objects
-    Object: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object'
-    Number: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number'
-    String: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String'
-    Array: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Arrray'
+    Coord: 'https://tools.ietf.org/html/rfc7946#section-3.1.1'

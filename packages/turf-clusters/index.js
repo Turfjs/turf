@@ -270,7 +270,7 @@ export function propertiesContainsFilter(properties, filter) {
  *
  * @private
  * @param {*} properties Properties
- * @param {string[]} keys Used to filter Properties
+ * @param {Array<string>} keys Used to filter Properties
  * @returns {*} filtered Properties
  * @example
  * filterProperties({foo: 'bar', cluster: 0}, ['cluster'])

@@ -7,8 +7,8 @@ import distance from '@turf/distance';
  * The midpoint is calculated geodesically, meaning the curvature of the earth is taken into account.
  *
  * @name midpoint
- * @param {Geometry|Feature<Point>|Array<number>} point1 first point
- * @param {Geometry|Feature<Point>|Array<number>} point2 second point
+ * @param {Coord} point1 first point
+ * @param {Coord} point2 second point
  * @returns {Feature<Point>} a point midway between `pt1` and `pt2`
  * @example
  * var point1 = turf.point([144.834823, -37.771257]);

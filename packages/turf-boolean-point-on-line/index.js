@@ -46,9 +46,9 @@ function booleanPointOnLine(pt, line, options) {
 // See http://stackoverflow.com/a/4833823/1979085
 /**
  * @private
- * @param {Array<number>} lineSegmentStart coord pair of start of line
- * @param {Array<number>} lineSegmentEnd coord pair of end of line
- * @param {Array<number>} pt coord pair of point to check
+ * @param {Position} lineSegmentStart coord pair of start of line
+ * @param {Position} lineSegmentEnd coord pair of end of line
+ * @param {Position} pt coord pair of point to check
  * @param {boolean|string} excludeBoundary whether the point is allowed to fall on the line ends. If true which end to ignore.
  * @returns {boolean} true/false
  */

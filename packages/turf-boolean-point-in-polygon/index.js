@@ -9,7 +9,7 @@ import { getCoord, getCoords } from '@turf/invariant';
  * be convex or concave. The function accounts for holes.
  *
  * @name booleanPointInPolygon
- * @param {Feature<Point>} point input point
+ * @param {Coord} point input point
  * @param {Feature<Polygon|MultiPolygon>} polygon input polygon or multipolygon
  * @param {Object} [options={}] Optional parameters
  * @param {boolean} [options.ignoreBoundary=false] True if polygon boundary should be ignored when determining if the point is inside the polygon otherwise false.
@@ -96,8 +96,8 @@ function inRing(pt, ring, ignoreBoundary) {
  * inBBox
  *
  * @private
- * @param {Array<number>} pt point [x,y]
- * @param {Array<number>} bbox BBox [west, south, east, north]
+ * @param {Position} pt point [x,y]
+ * @param {BBox} bbox BBox [west, south, east, north]
  * @returns {boolean} true/false if point is inside BBox
  */
 function inBBox(pt, bbox) {

@@ -23,8 +23,8 @@ import {
  * minimum distance between the point and any segment of the `LineString`.
  *
  * @name pointToLineDistance
- * @param {Geometry|Feature<Point>|Array<number>} pt Feature or Geometry
- * @param {Geometry|Feature<LineString>|Array<Array<number>>} line GeoJSON Feature or Geometry
+ * @param {Coord} pt Feature or Geometry
+ * @param {Feature<LineString>} line GeoJSON Feature or Geometry
  * @param {Object} [options={}] Optional parameters
  * @param {string} [options.units='kilometers'] can be degrees, radians, miles, or kilometers
  * @param {boolean} [options.mercator=false] if distance should be on Mercator or WGS84 projection

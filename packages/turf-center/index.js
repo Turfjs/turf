@@ -8,7 +8,6 @@ import { point, isObject } from '@turf/helpers';
  * @param {GeoJSON} geojson GeoJSON to be centered
  * @param {Object} [options={}] Optional parameters
  * @param {Object} [options.properties={}] an Object that is used as the {@link Feature}'s properties
- * @param {number} [options.weight] the property name used to weight the center
  * @returns {Feature<Point>} a Point feature at the absolute center point of all input features
  * @example
  * var features = turf.featureCollection([

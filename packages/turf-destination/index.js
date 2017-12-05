@@ -7,7 +7,7 @@ import { point, lengthToRadians, degreesToRadians, radiansToDegrees, isObject } 
  * Takes a {@link Point} and calculates the location of a destination point given a distance in degrees, radians, miles, or kilometers; and bearing in degrees. This uses the [Haversine formula](http://en.wikipedia.org/wiki/Haversine_formula) to account for global curvature.
  *
  * @name destination
- * @param {Geometry|Feature<Point>|Array<number>} origin starting point
+ * @param {Coord} origin starting point
  * @param {number} distance distance from the origin point
  * @param {number} bearing ranging from -180 to 180
  * @param {Object} [options={}] Optional parameters

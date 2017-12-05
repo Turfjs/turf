@@ -1,3 +1,4 @@
+import { getCoords, getType } from '@turf/invariant';
 import { lineString as linestring } from '@turf/helpers';
 import nearestPointOnLine from '@turf/nearest-point-on-line';
 
@@ -9,8 +10,8 @@ import nearestPointOnLine from '@turf/nearest-point-on-line';
  * This can be useful for extracting only the part of a route between waypoints.
  *
  * @name lineSlice
- * @param {Feature<Point>} startPt starting point
- * @param {Feature<Point>} stopPt stopping point
+ * @param {Coord} startPt starting point
+ * @param {Coord} stopPt stopping point
  * @param {Feature<LineString>|LineString} line line to slice
  * @returns {Feature<LineString>} sliced line
  * @example
@@ -31,14 +32,9 @@ import nearestPointOnLine from '@turf/nearest-point-on-line';
  * var addToMap = [start, stop, line]
  */
 function lineSlice(startPt, stopPt, line) {
-    var coords;
-    if (line.type === 'Feature') {
-        coords = line.geometry.coordinates;
-    } else if (line.type === 'LineString') {
-        coords = line.coordinates;
-    } else {
-        throw new Error('input must be a LineString Feature or Geometry');
-    }
+    // Validation
+    var coords = getCoords(line);
+    if (getType(line) !== 'LineString') throw new Error('line must be a LineString')
 
     var startVertex = nearestPointOnLine(line, startPt);
     var stopVertex = nearestPointOnLine(line, stopPt);

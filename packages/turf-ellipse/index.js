@@ -6,12 +6,12 @@ import { getCoord } from '@turf/invariant';
 /**
  * Takes a {@link Point} and calculates the ellipse polygon given two semi-axes expressed in variable units and steps for precision.
  *
- * @param {Feature<Point>|Array<number>} center center point
+ * @param {Coord} center center point
  * @param {number} xSemiAxis semi (major) axis of the ellipse along the x-axis
  * @param {number} ySemiAxis semi (minor) axis of the ellipse along the y-axis
  * @param {Object} [options={}] Optional parameters
  * @param {number} [options.angle=0] angle of rotation (along the vertical axis), from North in decimal degrees, negative clockwise
- * @param {Geometry|Feature<Point>|Array<number>} [options.pivot='origin'] point around which the rotation will be performed
+ * @param {Coord} [options.pivot='origin'] point around which the rotation will be performed
  * @param {number} [options.steps=64] number of steps
  * @param {string} [options.units='kilometers'] unit of measurement for axes
  * @param {Object} [options.properties={}] properties

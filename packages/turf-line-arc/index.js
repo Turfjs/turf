@@ -7,7 +7,7 @@ import { lineString, isObject } from '@turf/helpers';
  * 0 bearing is North of center point, positive clockwise.
  *
  * @name lineArc
- * @param {Feature<Point>} center center point
+ * @param {Coord} center center point
  * @param {number} radius radius of the circle
  * @param {number} bearing1 angle, in decimal degrees, of the first radius of the arc
  * @param {number} bearing2 angle, in decimal degrees, of the second radius of the arc
