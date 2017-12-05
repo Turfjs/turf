@@ -46,8 +46,8 @@ function destination(origin, distance, bearing, options) {
         Math.cos(latitude1) * Math.sin(radians) * Math.cos(bearing_rad));
     var longitude2 = longitude1 + Math.atan2(Math.sin(bearing_rad) * Math.sin(radians) * Math.cos(latitude1),
         Math.cos(radians) - Math.sin(latitude1) * Math.sin(latitude2));
-    var lng = radiansToDegrees(longitude2)
-    var lat = radiansToDegrees(latitude2)
+    var lng = radiansToDegrees(longitude2);
+    var lat = radiansToDegrees(latitude2);
 
     return point([lng, lat], properties);
 }

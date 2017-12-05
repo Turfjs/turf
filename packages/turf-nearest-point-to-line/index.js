@@ -53,9 +53,9 @@ function nearestPointToLine(points, line, options) {
      * Translate Properties to final Point, priorities:
      * 1. options.properties
      * 2. inherent Point properties
-     * 3. dist custom properties created by NearestPointToLine 
+     * 3. dist custom properties created by NearestPointToLine
      */
-    if (pt) pt.properties = Object.assign({dist: dist}, pt.properties, properties)
+    if (pt) pt.properties = Object.assign({dist: dist}, pt.properties, properties);
     return pt;
 }
 
