@@ -2,17 +2,17 @@
   "name": "@turf/turf",
   "version": "5.0.4",
   "description": "a JavaScript library for performing geospatial operations with GeoJSON",
-  "main": "main.js",
-  "module": "index",
-  "jsnext:main": "index",
+  "main": "turf.js",
+  "module": "turf.mjs",
+  "jsnext:main": "turf.mjs",
   "types": "index.d.ts",
   "unpkg": "turf.min.js",
   "jsdelivr": "turf.min.js",
   "files": [
     "index.js",
     "index.d.ts",
-    "main.js",
     "turf.js",
+    "turf.mjs",
     "turf.min.js"
   ],
   "scripts": {
@@ -70,6 +70,7 @@
     "rollup-plugin-node-resolve": "*",
     "rollup-plugin-uglify": "*",
     "tape": "*",
+    "turf-jsts": "*",
     "uglify-js": "*"
   },
   "dependencies": {

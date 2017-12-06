@@ -6,9 +6,16 @@ export default [{
     input: 'index.js',
     extend: true,
     output: {
+        file: 'turf.mjs',
+        format: 'es',
+    },
+    plugins: [node()]
+},{
+    input: 'index.js',
+    extend: true,
+    output: {
         file: 'turf.js',
-        format: 'umd',
-        name: 'turf'
+        format: 'cjs',
     },
     plugins: [node(), babel()]
 },

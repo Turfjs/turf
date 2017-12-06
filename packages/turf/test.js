@@ -277,7 +277,7 @@ const turfTypescriptPath = path.join(__dirname, '..', 'turf-*', 'index.d.ts');
 
 // Test Strings
 const requireString = `import test from 'tape';
-import * as turf from './';
+import * as turf from './main';
 `;
 
 /**
