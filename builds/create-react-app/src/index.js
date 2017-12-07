@@ -1,3 +1,3 @@
-import { point } from '@turf/turf';
+import { greatCircle } from '@turf/turf';
 
-point([0, 10]);
+greatCircle([0, 0], [100, 10]);
