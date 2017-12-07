@@ -6,8 +6,10 @@
   </head>
   <body>
   <script type='module'>
-    import greatCircle from "https://unpkg.com/@turf/great-circle?module"
+    import {point, greatCircle} from "https://unpkg.com/@turf/turf?module"
+
     console.log(greatCircle([0, 0], [100, 10]));
+    console.log(point([100, 0]));
   </script>
   </body>
 </html>
