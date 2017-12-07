@@ -19,8 +19,8 @@
     "@turf/meta" "^5.1.0"
 
 "@turf/bbox-clip@5.1.x":
-  version "5.1.0"
-  resolved "https://registry.yarnpkg.com/@turf/bbox-clip/-/bbox-clip-5.1.0.tgz#50f52062c75f0da23908829d5de5df25a4d7f62a"
+  version "5.1.1"
+  resolved "https://registry.yarnpkg.com/@turf/bbox-clip/-/bbox-clip-5.1.1.tgz#76aefc4e2e97a44685e521c81c5716a70a5931c9"
   dependencies:
     "@turf/helpers" "^5.1.0"
     "@turf/invariant" "^5.1.0"
@@ -91,17 +91,17 @@
     "@turf/polygon-to-line" "^5.1.0"
 
 "@turf/boolean-equal@5.1.x":
-  version "5.1.0"
-  resolved "https://registry.yarnpkg.com/@turf/boolean-equal/-/boolean-equal-5.1.0.tgz#8f2c33fb0082b97bc890d3428cb3d5fc2e23bd9a"
+  version "5.1.1"
+  resolved "https://registry.yarnpkg.com/@turf/boolean-equal/-/boolean-equal-5.1.1.tgz#87553538b555d16d07fa8657299f09c87ba7dde7"
   dependencies:
     "@turf/clean-coords" "^5.1.0"
     "@turf/helpers" "^5.1.0"
     "@turf/invariant" "^5.1.0"
     geojson-equality "0.1.6"
 
-"@turf/boolean-overlap@5.1.x", "@turf/boolean-overlap@^5.1.0":
-  version "5.1.0"
-  resolved "https://registry.yarnpkg.com/@turf/boolean-overlap/-/boolean-overlap-5.1.0.tgz#47ed0f5336b4315bfad58e57c99f34ab4e208af9"
+"@turf/boolean-overlap@5.1.x", "@turf/boolean-overlap@^5.1.1":
+  version "5.1.1"
+  resolved "https://registry.yarnpkg.com/@turf/boolean-overlap/-/boolean-overlap-5.1.1.tgz#87dfb4fe1ec9e76f737ae66c6e71ce803a1c115f"
   dependencies:
     "@turf/helpers" "^5.1.0"
     "@turf/invariant" "^5.1.0"
@@ -164,8 +164,8 @@
     "@turf/meta" "^5.1.0"
 
 "@turf/center-median@5.1.x":
-  version "5.1.0"
-  resolved "https://registry.yarnpkg.com/@turf/center-median/-/center-median-5.1.0.tgz#0d1cd4225783101a8827496e67fc68bbf477abb5"
+  version "5.1.1"
+  resolved "https://registry.yarnpkg.com/@turf/center-median/-/center-median-5.1.1.tgz#9ceee8b1b618457af3e374dd0e2f48b9003b9d51"
   dependencies:
     "@turf/center-mean" "^5.1.0"
     "@turf/centroid" "^5.1.0"
@@ -174,11 +174,11 @@
     "@turf/meta" "^5.1.0"
 
 "@turf/center-of-mass@5.1.x":
-  version "5.1.0"
-  resolved "https://registry.yarnpkg.com/@turf/center-of-mass/-/center-of-mass-5.1.0.tgz#e828c29aeea4d8e0e0b6e4b71a2c676aaaa9bc43"
+  version "5.1.1"
+  resolved "https://registry.yarnpkg.com/@turf/center-of-mass/-/center-of-mass-5.1.1.tgz#08f258ab31bd5871fadf3c130dde5129b4d6fe6b"
   dependencies:
     "@turf/centroid" "^5.1.0"
-    "@turf/convex" "^5.1.0"
+    "@turf/convex" "^5.1.1"
     "@turf/helpers" "^5.1.0"
     "@turf/invariant" "^5.1.0"
     "@turf/meta" "^5.1.0"
@@ -218,8 +218,8 @@
     "@turf/helpers" "^5.1.0"
 
 "@turf/clusters-dbscan@5.1.x":
-  version "5.1.0"
-  resolved "https://registry.yarnpkg.com/@turf/clusters-dbscan/-/clusters-dbscan-5.1.0.tgz#84dcaa73d2076e3b5542d5e0aab685c56cb83ca8"
+  version "5.1.1"
+  resolved "https://registry.yarnpkg.com/@turf/clusters-dbscan/-/clusters-dbscan-5.1.1.tgz#eef89571e35c39d61ec992bd48e8cc946951c3b1"
   dependencies:
     "@turf/clone" "^5.1.0"
     "@turf/distance" "^5.1.0"
@@ -229,8 +229,8 @@
     density-clustering "1.3.0"
 
 "@turf/clusters-kmeans@5.1.x":
-  version "5.1.0"
-  resolved "https://registry.yarnpkg.com/@turf/clusters-kmeans/-/clusters-kmeans-5.1.0.tgz#5c4c5b75e9ec950e024a679d8394e449dd630a61"
+  version "5.1.1"
+  resolved "https://registry.yarnpkg.com/@turf/clusters-kmeans/-/clusters-kmeans-5.1.1.tgz#c9f5bd29b75ce6c49284c2fc68ffb9e45b904e2a"
   dependencies:
     "@turf/clone" "^5.1.0"
     "@turf/helpers" "^5.1.0"
@@ -246,8 +246,8 @@
     "@turf/meta" "^5.1.0"
 
 "@turf/collect@5.1.x":
-  version "5.1.0"
-  resolved "https://registry.yarnpkg.com/@turf/collect/-/collect-5.1.0.tgz#29284eb5ce16b0db5fd42f2707a35abb904b332e"
+  version "5.1.1"
+  resolved "https://registry.yarnpkg.com/@turf/collect/-/collect-5.1.1.tgz#a6109acaf61a6aa07311664c268508f507efadb6"
   dependencies:
     "@turf/bbox" "^5.1.0"
     "@turf/boolean-point-in-polygon" "^5.1.0"
@@ -274,9 +274,9 @@
     topojson-client "3.x"
     topojson-server "3.x"
 
-"@turf/convex@5.1.x", "@turf/convex@^5.1.0":
-  version "5.1.0"
-  resolved "https://registry.yarnpkg.com/@turf/convex/-/convex-5.1.0.tgz#e3f21456212c4429d4a30a782be70fee7b84c90a"
+"@turf/convex@5.1.x", "@turf/convex@^5.1.1":
+  version "5.1.1"
+  resolved "https://registry.yarnpkg.com/@turf/convex/-/convex-5.1.1.tgz#7ac8a3be09230f3d119eaab317f69a0cf49685a1"
   dependencies:
     "@turf/helpers" "^5.1.0"
     "@turf/meta" "^5.1.0"
@@ -300,10 +300,10 @@
     turf-jsts "*"
 
 "@turf/dissolve@5.1.x":
-  version "5.1.0"
-  resolved "https://registry.yarnpkg.com/@turf/dissolve/-/dissolve-5.1.0.tgz#97bf6eb649aaa8204a58682a69e768f7c03e1ae2"
+  version "5.1.1"
+  resolved "https://registry.yarnpkg.com/@turf/dissolve/-/dissolve-5.1.1.tgz#bc4500a0970c99681fab1e51f9873c53f6101a30"
   dependencies:
-    "@turf/boolean-overlap" "^5.1.0"
+    "@turf/boolean-overlap" "^5.1.1"
     "@turf/clone" "^5.1.0"
     "@turf/helpers" "^5.1.0"
     "@turf/invariant" "^5.1.0"
@@ -320,9 +320,9 @@
     "@turf/helpers" "^5.1.0"
     "@turf/invariant" "^5.1.0"
 
-"@turf/ellipse@5.1.x", "@turf/ellipse@^5.1.0":
-  version "5.1.0"
-  resolved "https://registry.yarnpkg.com/@turf/ellipse/-/ellipse-5.1.0.tgz#357cc0474c6aaaf194656046db8720e77213f32d"
+"@turf/ellipse@5.1.x", "@turf/ellipse@^5.1.1":
+  version "5.1.1"
+  resolved "https://registry.yarnpkg.com/@turf/ellipse/-/ellipse-5.1.1.tgz#36ee63601daaa401ca6b0bc661e9786b26a01c8c"
   dependencies:
     "@turf/helpers" "^5.1.0"
     "@turf/invariant" "^5.1.0"
@@ -380,8 +380,8 @@
     "@turf/invariant" "^5.1.0"
 
 "@turf/interpolate@5.1.x":
-  version "5.1.0"
-  resolved "https://registry.yarnpkg.com/@turf/interpolate/-/interpolate-5.1.0.tgz#8b71605b790149f220df39ce2ac7b0a5ce6d4c16"
+  version "5.1.1"
+  resolved "https://registry.yarnpkg.com/@turf/interpolate/-/interpolate-5.1.1.tgz#a5c4865d6412637622bf2f116895559f0e949a88"
   dependencies:
     "@turf/bbox" "^5.1.0"
     "@turf/centroid" "^5.1.0"
@@ -392,7 +392,7 @@
     "@turf/invariant" "^5.1.0"
     "@turf/meta" "^5.1.0"
     "@turf/point-grid" "^5.1.0"
-    "@turf/square-grid" "^5.1.0"
+    "@turf/square-grid" "^5.1.1"
     "@turf/triangle-grid" "^5.1.0"
 
 "@turf/intersect@5.1.x", "@turf/intersect@^5.1.0":
@@ -542,8 +542,8 @@
     "@turf/invariant" "^5.1.0"
 
 "@turf/mask@5.1.x":
-  version "5.1.0"
-  resolved "https://registry.yarnpkg.com/@turf/mask/-/mask-5.1.0.tgz#c49cf231538b55ba957a6d2e7ae978376cb4a844"
+  version "5.1.1"
+  resolved "https://registry.yarnpkg.com/@turf/mask/-/mask-5.1.1.tgz#2c3758280e00a4d72c1cc04bd4415ecd42e669fd"
   dependencies:
     "@turf/bbox" "^5.1.0"
     "@turf/helpers" "^5.1.0"
@@ -750,12 +750,12 @@
     "@turf/helpers" "^5.1.0"
     "@turf/meta" "^5.1.0"
 
-"@turf/square-grid@5.1.x", "@turf/square-grid@^5.1.0":
-  version "5.1.0"
-  resolved "https://registry.yarnpkg.com/@turf/square-grid/-/square-grid-5.1.0.tgz#7def14373e5f2a79a7318e7d38c980fccd4f8508"
+"@turf/square-grid@5.1.x", "@turf/square-grid@^5.1.1":
+  version "5.1.1"
+  resolved "https://registry.yarnpkg.com/@turf/square-grid/-/square-grid-5.1.1.tgz#3e52cd7409d50d56c46c6d2096c8870c47d96475"
   dependencies:
     "@turf/boolean-contains" "^5.1.0"
-    "@turf/boolean-overlap" "^5.1.0"
+    "@turf/boolean-overlap" "^5.1.1"
     "@turf/distance" "^5.1.0"
     "@turf/helpers" "^5.1.0"
     "@turf/intersect" "^5.1.0"
@@ -769,11 +769,11 @@
     "@turf/helpers" "^5.1.0"
 
 "@turf/standard-deviational-ellipse@5.1.x":
-  version "5.1.0"
-  resolved "https://registry.yarnpkg.com/@turf/standard-deviational-ellipse/-/standard-deviational-ellipse-5.1.0.tgz#dde82e18d3c230e11dd70e2224ba3e4ce8b6b1a9"
+  version "5.1.1"
+  resolved "https://registry.yarnpkg.com/@turf/standard-deviational-ellipse/-/standard-deviational-ellipse-5.1.1.tgz#a8eb1792a20dc1b868b2934c5a6080613f9a2bbc"
   dependencies:
     "@turf/center-mean" "^5.1.0"
-    "@turf/ellipse" "^5.1.0"
+    "@turf/ellipse" "^5.1.1"
     "@turf/helpers" "^5.1.0"
     "@turf/invariant" "^5.1.0"
     "@turf/meta" "^5.1.0"
@@ -789,8 +789,8 @@
     "@turf/meta" "^5.1.0"
 
 "@turf/tesselate@5.1.x":
-  version "5.1.0"
-  resolved "https://registry.yarnpkg.com/@turf/tesselate/-/tesselate-5.1.0.tgz#13c635ed58b870d8d4f911631cbaa1530d50f528"
+  version "5.1.1"
+  resolved "https://registry.yarnpkg.com/@turf/tesselate/-/tesselate-5.1.1.tgz#bf5575a27ae0b8e38cfa7626c675538820c50b89"
   dependencies:
     "@turf/helpers" "^5.1.0"
     earcut "^2.0.0"
@@ -863,8 +863,8 @@
     turf-jsts "*"
 
 "@turf/unkink-polygon@5.1.x":
-  version "5.1.0"
-  resolved "https://registry.yarnpkg.com/@turf/unkink-polygon/-/unkink-polygon-5.1.0.tgz#323fcfb472e75c3811784a22e290d44a1573d6ef"
+  version "5.1.1"
+  resolved "https://registry.yarnpkg.com/@turf/unkink-polygon/-/unkink-polygon-5.1.1.tgz#889df0ca67ba5c3e04e9aedd6be93f02e6db6b0e"
   dependencies:
     "@turf/area" "^5.1.0"
     "@turf/boolean-point-in-polygon" "^5.1.0"
