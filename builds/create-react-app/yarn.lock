@@ -325,6 +325,13 @@
     "@turf/helpers" "^5.0.4"
     "@turf/meta" "^5.0.4"
 
+"@turf/great-circle@*":
+  version "5.0.5"
+  resolved "https://registry.yarnpkg.com/@turf/great-circle/-/great-circle-5.0.5.tgz#4eb3f759b2f8ffb678835ccd3716146380a4ec3f"
+  dependencies:
+    "@turf/helpers" "^5.0.4"
+    "@turf/invariant" "^5.0.4"
+
 "@turf/great-circle@^5.0.4":
   version "5.0.4"
   resolved "https://registry.yarnpkg.com/@turf/great-circle/-/great-circle-5.0.4.tgz#fbd4bc2a49e33bb0c646feb5d273e7529609454e"
@@ -806,7 +813,7 @@
     "@turf/helpers" "^5.0.4"
     "@turf/meta" "^5.0.4"
 
-"@turf/turf@^5.0.4":
+"@turf/turf@*":
   version "5.0.4"
   resolved "https://registry.yarnpkg.com/@turf/turf/-/turf-5.0.4.tgz#22185a5204a6eff3dda4c0cf4ec07e6249e9bf9f"
   dependencies:

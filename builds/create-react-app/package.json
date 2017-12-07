@@ -9,6 +9,7 @@
     "react-scripts": "*"
   },
   "dependencies": {
+    "@turf/great-circle": "*",
     "@turf/turf": "*"
   }
 }
