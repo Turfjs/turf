@@ -1,14 +1,14 @@
 {
   "name": "@turf/great-circle",
-  "version": "5.0.4",
+  "version": "5.0.6",
   "description": "turf great-circle module",
-  "main": "main",
-  "module": "index",
-  "jsnext:main": "index",
+  "main": "main.js",
+  "module": "main.mjs",
   "types": "index.d.ts",
   "files": [
     "index.js",
     "index.d.ts",
+    "main.mjs",
     "main.js",
     "lib"
   ],
