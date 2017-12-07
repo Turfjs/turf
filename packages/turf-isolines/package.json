@@ -2,15 +2,15 @@
   "name": "@turf/isolines",
   "version": "5.0.4",
   "description": "turf isolines module",
-  "main": "main",
-  "module": "index",
-  "jsnext:main": "index",
+  "main": "main.js",
+  "module": "main.mjs",
   "types": "index.d.ts",
   "files": [
     "index.js",
     "index.d.ts",
     "main.js",
-    "lib"
+    "lib",
+    "main.mjs"
   ],
   "scripts": {
     "pretest": "rollup -c ../../rollup.config.js",
@@ -51,7 +51,8 @@
     "matrix-to-grid": "*",
     "rollup": "*",
     "tape": "*",
-    "write-json-file": "*"
+    "write-json-file": "*",
+    "rollup-plugin-buble": "*"
   },
   "dependencies": {
     "@turf/bbox": "^5.0.4",

@@ -47,7 +47,8 @@
     "load-json-file": "*",
     "rollup": "*",
     "tape": "*",
-    "write-json-file": "*"
+    "write-json-file": "*",
+    "rollup-plugin-buble": "*"
   },
   "dependencies": {
     "@turf/helpers": "^5.0.4",

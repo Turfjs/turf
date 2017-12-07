@@ -4,10 +4,8 @@
   "description": "a JavaScript library for performing geospatial operations with GeoJSON",
   "main": "turf.js",
   "module": "turf.mjs",
-  "jsnext:main": "turf.mjs",
+  "browser": "turf.min.js",
   "types": "index.d.ts",
-  "unpkg": "turf.min.js",
-  "jsdelivr": "turf.min.js",
   "files": [
     "index.js",
     "index.d.ts",

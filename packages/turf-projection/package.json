@@ -2,14 +2,14 @@
   "name": "@turf/projection",
   "version": "5.0.4",
   "description": "turf projection module",
-  "main": "main",
-  "module": "index",
-  "jsnext:main": "index",
+  "main": "main.js",
+  "module": "main.mjs",
   "types": "index.d.ts",
   "files": [
     "index.js",
     "index.d.ts",
-    "main.js"
+    "main.js",
+    "main.mjs"
   ],
   "scripts": {
     "pretest": "rollup -c ../../rollup.config.js",
@@ -53,7 +53,8 @@
     "proj4": "*",
     "rollup": "*",
     "tape": "*",
-    "write-json-file": "*"
+    "write-json-file": "*",
+    "rollup-plugin-buble": "*"
   },
   "dependencies": {
     "@turf/clone": "^5.0.4",

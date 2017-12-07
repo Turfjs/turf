@@ -2,15 +2,15 @@
   "name": "@turf/simplify",
   "version": "5.0.5",
   "description": "turf simplify module",
-  "main": "main",
-  "module": "index",
-  "jsnext:main": "index",
+  "main": "main.js",
+  "module": "main.mjs",
   "types": "index.d.ts",
   "files": [
     "index.js",
     "index.d.ts",
     "main.js",
-    "lib"
+    "lib",
+    "main.mjs"
   ],
   "scripts": {
     "pretest": "rollup -c ../../rollup.config.js",
@@ -47,7 +47,8 @@
     "load-json-file": "*",
     "rollup": "*",
     "tape": "*",
-    "write-json-file": "*"
+    "write-json-file": "*",
+    "rollup-plugin-buble": "*"
   },
   "dependencies": {
     "@turf/clean-coords": "^5.0.4",

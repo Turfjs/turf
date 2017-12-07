@@ -1,16 +1,18 @@
 import buble from 'rollup-plugin-buble';
-import node from 'rollup-plugin-node-resolve';
-import uglify from 'rollup-plugin-uglify';
+import node from 'rollup-plugin-node-resolve'
+import uglify from 'rollup-plugin-uglify'
+
+const input = 'index.js'
 
 export default [{
-    input: 'index.js',
+    input,
     output: {
         file: 'turf.mjs',
         format: 'es',
     },
     plugins: [node()]
 },{
-    input: 'index.js',
+    input,
     output: {
         file: 'turf.js',
         format: 'cjs',
@@ -18,7 +20,7 @@ export default [{
     plugins: [node(), buble()]
 },
 {
-    input: 'index.js',
+    input,
     output: {
         file: 'turf.min.js',
         format: 'umd',

@@ -2,14 +2,14 @@
   "name": "@turf/line-to-polygon",
   "version": "5.0.4",
   "description": "turf line-to-polygon module",
-  "main": "main",
-  "module": "index",
-  "jsnext:main": "index",
+  "main": "main.js",
+  "module": "main.mjs",
   "types": "index.d.ts",
   "files": [
     "index.js",
     "index.d.ts",
-    "main.js"
+    "main.js",
+    "main.mjs"
   ],
   "scripts": {
     "pretest": "rollup -c ../../rollup.config.js",
@@ -43,7 +43,8 @@
     "load-json-file": "*",
     "rollup": "*",
     "tape": "*",
-    "write-json-file": "*"
+    "write-json-file": "*",
+    "rollup-plugin-buble": "*"
   },
   "dependencies": {
     "@turf/bbox": "^5.0.4",

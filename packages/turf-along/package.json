@@ -2,14 +2,14 @@
   "name": "@turf/along",
   "version": "5.0.4",
   "description": "turf along module",
-  "main": "main",
-  "module": "index",
-  "jsnext:main": "index",
+  "main": "main.js",
+  "module": "main.mjs",
   "types": "index.d.ts",
   "files": [
     "index.js",
     "index.d.ts",
-    "main.js"
+    "main.js",
+    "main.mjs"
   ],
   "scripts": {
     "pretest": "rollup -c ../../rollup.config.js",
@@ -39,7 +39,8 @@
     "benchmark": "*",
     "load-json-file": "*",
     "rollup": "*",
-    "tape": "*"
+    "tape": "*",
+    "rollup-plugin-buble": "*"
   },
   "dependencies": {
     "@turf/bearing": "^5.0.4",

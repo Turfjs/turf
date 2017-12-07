@@ -65,7 +65,9 @@ function updateDevDependencies(pckg) {
     dev.delete('rollup-plugin-uglify');
     dev.delete('uglify-js');
     dev.delete('@turf/helpers');
-    dev.set('rollup', '*')
+    dev
+        .set('rollup', '*')
+        .set('rollup-plugin-buble', '*')
         .set('tape', '*')
         .set('@std/esm', '*')
         .set('benchmark', '*').forEach((version, name) => {

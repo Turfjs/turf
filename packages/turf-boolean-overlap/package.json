@@ -2,14 +2,14 @@
   "name": "@turf/boolean-overlap",
   "version": "5.0.4",
   "description": "turf boolean-overlap module",
-  "main": "main",
-  "module": "index",
-  "jsnext:main": "index",
+  "main": "main.js",
+  "module": "main.mjs",
   "types": "index.d.ts",
   "files": [
     "index.js",
     "index.d.ts",
-    "main.js"
+    "main.js",
+    "main.mjs"
   ],
   "scripts": {
     "pretest": "rollup -c ../../rollup.config.js",
@@ -46,7 +46,8 @@
     "glob": "*",
     "load-json-file": "*",
     "rollup": "*",
-    "tape": "*"
+    "tape": "*",
+    "rollup-plugin-buble": "*"
   },
   "dependencies": {
     "@turf/invariant": "^5.0.4",

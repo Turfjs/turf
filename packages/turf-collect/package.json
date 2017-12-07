@@ -2,14 +2,14 @@
   "name": "@turf/collect",
   "version": "5.0.4",
   "description": "turf collect module",
-  "main": "main",
-  "module": "index",
-  "jsnext:main": "index",
+  "main": "main.js",
+  "module": "main.mjs",
   "types": "index.d.ts",
   "files": [
     "index.js",
     "index.d.ts",
-    "main.js"
+    "main.js",
+    "main.mjs"
   ],
   "scripts": {
     "pretest": "rollup -c ../../rollup.config.js",
@@ -42,7 +42,8 @@
     "@std/esm": "*",
     "benchmark": "*",
     "rollup": "*",
-    "tape": "*"
+    "tape": "*",
+    "rollup-plugin-buble": "*"
   },
   "dependencies": {
     "@turf/bbox": "^5.0.4",

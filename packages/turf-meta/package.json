@@ -2,14 +2,14 @@
   "name": "@turf/meta",
   "version": "5.0.4",
   "description": "turf meta module",
-  "main": "main",
-  "module": "index",
-  "jsnext:main": "index",
+  "main": "main.js",
+  "module": "main.mjs",
   "types": "index.d.ts",
   "files": [
     "index.js",
     "index.d.ts",
-    "main.js"
+    "main.js",
+    "main.mjs"
   ],
   "scripts": {
     "pretest": "rollup -c ../../rollup.config.js",
@@ -59,7 +59,8 @@
     "@turf/random": "*",
     "benchmark": "*",
     "rollup": "*",
-    "tape": "*"
+    "tape": "*",
+    "rollup-plugin-buble": "*"
   },
   "dependencies": {
     "@turf/helpers": "^5.0.4"
