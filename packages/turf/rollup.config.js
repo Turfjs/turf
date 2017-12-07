@@ -4,7 +4,6 @@ import uglify from 'rollup-plugin-uglify';
 
 export default [{
     input: 'index.js',
-    extend: true,
     output: {
         file: 'turf.mjs',
         format: 'es',
@@ -12,7 +11,6 @@ export default [{
     plugins: [node()]
 },{
     input: 'index.js',
-    extend: true,
     output: {
         file: 'turf.js',
         format: 'cjs',
@@ -21,7 +19,6 @@ export default [{
 },
 {
     input: 'index.js',
-    extend: true,
     output: {
         file: 'turf.min.js',
         format: 'umd',
