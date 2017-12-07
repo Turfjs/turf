@@ -1,6 +1,6 @@
 {
   "name": "@turf/area",
-  "version": "5.0.4",
+  "version": "5.1.0",
   "description": "turf area module",
   "main": "main.js",
   "module": "main.mjs",
@@ -38,13 +38,13 @@
     "benchmark": "*",
     "load-json-file": "*",
     "rollup": "*",
+    "rollup-plugin-buble": "*",
     "tape": "*",
-    "write-json-file": "*",
-    "rollup-plugin-buble": "*"
+    "write-json-file": "*"
   },
   "dependencies": {
-    "@turf/helpers": "^5.0.4",
-    "@turf/meta": "^5.0.4"
+    "@turf/helpers": "^5.1.0",
+    "@turf/meta": "^5.1.0"
   },
   "@std/esm": {
     "esm": "js",

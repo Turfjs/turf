@@ -1,6 +1,6 @@
 {
   "name": "@turf/line-offset",
-  "version": "5.0.4",
+  "version": "5.1.0",
   "description": "turf line-offset module",
   "main": "main.js",
   "module": "main.mjs",
@@ -41,18 +41,18 @@
   "homepage": "https://github.com/Turfjs/turf",
   "devDependencies": {
     "@std/esm": "*",
-    "@turf/truncate": "*",
+    "@turf/truncate": "^5.1.0",
     "benchmark": "*",
     "load-json-file": "*",
     "rollup": "*",
+    "rollup-plugin-buble": "*",
     "tape": "*",
-    "write-json-file": "*",
-    "rollup-plugin-buble": "*"
+    "write-json-file": "*"
   },
   "dependencies": {
-    "@turf/helpers": "^5.0.4",
-    "@turf/invariant": "^5.0.4",
-    "@turf/meta": "^5.0.4"
+    "@turf/helpers": "^5.1.0",
+    "@turf/invariant": "^5.1.0",
+    "@turf/meta": "^5.1.0"
   },
   "@std/esm": {
     "esm": "js",

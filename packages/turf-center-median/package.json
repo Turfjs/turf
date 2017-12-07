@@ -1,6 +1,6 @@
 {
   "name": "@turf/center-median",
-  "version": "5.0.0",
+  "version": "5.1.0",
   "description": "turf center-median module",
   "main": "main.js",
   "module": "main.mjs",
@@ -36,23 +36,23 @@
   "homepage": "https://github.com/Turfjs/turf",
   "devDependencies": {
     "@std/esm": "*",
-    "@turf/center": "*",
-    "@turf/center-of-mass": "*",
-    "@turf/random": "*",
-    "@turf/truncate": "*",
+    "@turf/center": "^5.1.0",
+    "@turf/center-of-mass": "^5.1.0",
+    "@turf/random": "^5.1.0",
+    "@turf/truncate": "^5.1.0",
     "benchmark": "*",
     "load-json-file": "*",
     "rollup": "*",
+    "rollup-plugin-buble": "*",
     "tape": "*",
-    "write-json-file": "*",
-    "rollup-plugin-buble": "*"
+    "write-json-file": "*"
   },
   "dependencies": {
-    "@turf/center-mean": "^5.0.1",
-    "@turf/centroid": "^5.0.4",
-    "@turf/distance": "^5.0.4",
-    "@turf/helpers": "^5.0.4",
-    "@turf/meta": "^5.0.4"
+    "@turf/center-mean": "^5.1.0",
+    "@turf/centroid": "^5.1.0",
+    "@turf/distance": "^5.1.0",
+    "@turf/helpers": "^5.1.0",
+    "@turf/meta": "^5.1.0"
   },
   "@std/esm": {
     "esm": "js",

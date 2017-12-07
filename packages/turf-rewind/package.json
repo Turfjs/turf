@@ -1,6 +1,6 @@
 {
   "name": "@turf/rewind",
-  "version": "5.0.4",
+  "version": "5.1.0",
   "description": "turf rewind module",
   "main": "main.js",
   "module": "main.mjs",
@@ -44,16 +44,16 @@
     "benchmark": "*",
     "load-json-file": "*",
     "rollup": "*",
+    "rollup-plugin-buble": "*",
     "tape": "*",
-    "write-json-file": "*",
-    "rollup-plugin-buble": "*"
+    "write-json-file": "*"
   },
   "dependencies": {
-    "@turf/boolean-clockwise": "^5.0.4",
-    "@turf/clone": "^5.0.4",
-    "@turf/helpers": "^5.0.4",
-    "@turf/invariant": "^5.0.4",
-    "@turf/meta": "^5.0.4"
+    "@turf/boolean-clockwise": "^5.1.0",
+    "@turf/clone": "^5.1.0",
+    "@turf/helpers": "^5.1.0",
+    "@turf/invariant": "^5.1.0",
+    "@turf/meta": "^5.1.0"
   },
   "@std/esm": {
     "esm": "js",

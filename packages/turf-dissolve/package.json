@@ -1,6 +1,6 @@
 {
   "name": "@turf/dissolve",
-  "version": "5.0.6",
+  "version": "5.1.0",
   "description": "turf dissolve module",
   "main": "main.js",
   "module": "main.mjs",
@@ -40,18 +40,18 @@
     "benchmark": "*",
     "load-json-file": "*",
     "rollup": "*",
+    "rollup-plugin-buble": "*",
     "tape": "*",
-    "write-json-file": "*",
-    "rollup-plugin-buble": "*"
+    "write-json-file": "*"
   },
   "dependencies": {
-    "@turf/boolean-overlap": "^5.0.4",
-    "@turf/clone": "^5.0.4",
-    "@turf/helpers": "^5.0.4",
-    "@turf/invariant": "^5.0.4",
-    "@turf/line-intersect": "^5.0.4",
-    "@turf/meta": "^5.0.4",
-    "@turf/union": "*",
+    "@turf/boolean-overlap": "^5.1.0",
+    "@turf/clone": "^5.1.0",
+    "@turf/helpers": "^5.1.0",
+    "@turf/invariant": "^5.1.0",
+    "@turf/line-intersect": "^5.1.0",
+    "@turf/meta": "^5.1.0",
+    "@turf/union": "^5.1.0",
     "geojson-rbush": "2.1.0",
     "get-closest": "*"
   },

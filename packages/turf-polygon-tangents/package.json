@@ -1,6 +1,6 @@
 {
   "name": "@turf/polygon-tangents",
-  "version": "5.0.4",
+  "version": "5.1.0",
   "description": "turf polygon tangents module",
   "main": "main.js",
   "module": "main.mjs",
@@ -43,13 +43,13 @@
     "benchmark": "*",
     "load-json-file": "*",
     "rollup": "*",
+    "rollup-plugin-buble": "*",
     "tape": "*",
-    "write-json-file": "*",
-    "rollup-plugin-buble": "*"
+    "write-json-file": "*"
   },
   "dependencies": {
-    "@turf/helpers": "^5.0.4",
-    "@turf/invariant": "^5.0.4"
+    "@turf/helpers": "^5.1.0",
+    "@turf/invariant": "^5.1.0"
   },
   "@std/esm": {
     "esm": "js",

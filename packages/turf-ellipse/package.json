@@ -1,6 +1,6 @@
 {
   "name": "@turf/ellipse",
-  "version": "5.0.1",
+  "version": "5.1.0",
   "description": "turf ellipse module",
   "main": "main.js",
   "module": "main.mjs",
@@ -37,23 +37,23 @@
   "devDependencies": {
     "@mapbox/geojsonhint": "*",
     "@std/esm": "*",
-    "@turf/bbox-polygon": "*",
-    "@turf/circle": "*",
-    "@turf/destination": "*",
-    "@turf/truncate": "*",
+    "@turf/bbox-polygon": "^5.1.0",
+    "@turf/circle": "^5.1.0",
+    "@turf/destination": "^5.1.0",
+    "@turf/truncate": "^5.1.0",
     "benchmark": "*",
     "glob": "*",
     "load-json-file": "*",
     "rollup": "*",
+    "rollup-plugin-buble": "*",
     "tape": "*",
-    "write-json-file": "*",
-    "rollup-plugin-buble": "*"
+    "write-json-file": "*"
   },
   "dependencies": {
-    "@turf/helpers": "^5.0.4",
-    "@turf/invariant": "^5.0.4",
-    "@turf/rhumb-destination": "^5.0.4",
-    "@turf/transform-rotate": "^5.0.4"
+    "@turf/helpers": "^5.1.0",
+    "@turf/invariant": "^5.1.0",
+    "@turf/rhumb-destination": "^5.1.0",
+    "@turf/transform-rotate": "^5.1.0"
   },
   "@std/esm": {
     "esm": "js",

@@ -1,6 +1,6 @@
 {
   "name": "@turf/boolean-parallel",
-  "version": "5.0.4",
+  "version": "5.1.0",
   "description": "turf boolean-parallel module",
   "main": "main.js",
   "module": "main.mjs",
@@ -41,15 +41,15 @@
     "benchmark": "*",
     "load-json-file": "*",
     "rollup": "*",
+    "rollup-plugin-buble": "*",
     "tape": "*",
-    "write-json-file": "*",
-    "rollup-plugin-buble": "*"
+    "write-json-file": "*"
   },
   "dependencies": {
-    "@turf/clean-coords": "^5.0.4",
-    "@turf/helpers": "^5.0.4",
-    "@turf/line-segment": "^5.0.4",
-    "@turf/rhumb-bearing": "^5.0.4"
+    "@turf/clean-coords": "^5.1.0",
+    "@turf/helpers": "^5.1.0",
+    "@turf/line-segment": "^5.1.0",
+    "@turf/rhumb-bearing": "^5.1.0"
   },
   "@std/esm": {
     "esm": "js",

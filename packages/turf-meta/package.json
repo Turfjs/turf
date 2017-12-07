@@ -1,6 +1,6 @@
 {
   "name": "@turf/meta",
-  "version": "5.0.4",
+  "version": "5.1.0",
   "description": "turf meta module",
   "main": "main.js",
   "module": "main.mjs",
@@ -56,14 +56,14 @@
   "homepage": "https://github.com/Turfjs/turf",
   "devDependencies": {
     "@std/esm": "*",
-    "@turf/random": "*",
+    "@turf/random": "^5.1.0",
     "benchmark": "*",
     "rollup": "*",
-    "tape": "*",
-    "rollup-plugin-buble": "*"
+    "rollup-plugin-buble": "*",
+    "tape": "*"
   },
   "dependencies": {
-    "@turf/helpers": "^5.0.4"
+    "@turf/helpers": "^5.1.0"
   },
   "@std/esm": {
     "esm": "js",

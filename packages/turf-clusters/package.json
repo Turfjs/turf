@@ -1,6 +1,6 @@
 {
   "name": "@turf/clusters",
-  "version": "5.0.4",
+  "version": "5.1.0",
   "description": "turf clusters module",
   "main": "main.js",
   "module": "main.mjs",
@@ -41,12 +41,12 @@
     "@std/esm": "*",
     "benchmark": "*",
     "rollup": "*",
-    "tape": "*",
-    "rollup-plugin-buble": "*"
+    "rollup-plugin-buble": "*",
+    "tape": "*"
   },
   "dependencies": {
-    "@turf/helpers": "^5.0.4",
-    "@turf/meta": "^5.0.4"
+    "@turf/helpers": "^5.1.0",
+    "@turf/meta": "^5.1.0"
   },
   "@std/esm": {
     "esm": "js",
