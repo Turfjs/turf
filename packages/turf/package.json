@@ -59,18 +59,14 @@
   },
   "homepage": "https://github.com/Turfjs/turf",
   "devDependencies": {
-    "babel-core": "*",
-    "babel-plugin-external-helpers": "*",
-    "babel-preset-env": "*",
     "camelcase": "*",
     "documentation": "*",
     "glob": "*",
     "rollup": "*",
-    "rollup-plugin-babel": "*",
+    "rollup-plugin-buble": "*",
     "rollup-plugin-node-resolve": "*",
     "rollup-plugin-uglify": "*",
     "tape": "*",
-    "turf-jsts": "*",
     "uglify-js": "*"
   },
   "dependencies": {
