@@ -1,6 +1,6 @@
 {
   "name": "@turf/interpolate",
-  "version": "5.1.0",
+  "version": "5.1.1",
   "description": "turf interpolate module",
   "main": "main.js",
   "module": "main.mjs",
@@ -56,7 +56,7 @@
     "@turf/invariant": "^5.1.0",
     "@turf/meta": "^5.1.0",
     "@turf/point-grid": "^5.1.0",
-    "@turf/square-grid": "^5.1.0",
+    "@turf/square-grid": "^5.1.1",
     "@turf/triangle-grid": "^5.1.0"
   },
   "@std/esm": {

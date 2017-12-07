@@ -1,6 +1,6 @@
 {
   "name": "@turf/center-median",
-  "version": "5.1.0",
+  "version": "5.1.1",
   "description": "turf center-median module",
   "main": "main.js",
   "module": "main.mjs",
@@ -37,7 +37,7 @@
   "devDependencies": {
     "@std/esm": "*",
     "@turf/center": "^5.1.0",
-    "@turf/center-of-mass": "^5.1.0",
+    "@turf/center-of-mass": "^5.1.1",
     "@turf/random": "^5.1.0",
     "@turf/truncate": "^5.1.0",
     "benchmark": "*",
