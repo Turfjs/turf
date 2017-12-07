@@ -56,6 +56,7 @@ test('turf -- invalid dependencies', t => {
 test('turf -- * wildcard devDependencies', t => {
     for (const {name, devDependencies} of modules) {
         for (const dependency of Object.keys(devDependencies)) {
+            if (dependency.includes('@turf')) continue
             if (devDependencies[dependency] !== '*') t.fail(`${name} ${dependency} devDependencies must use *`);
         }
     }
