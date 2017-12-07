@@ -1,5 +1,5 @@
-import typescriptExport from './rollup-plugins/typescript-export';
-import validES5 from './rollup-plugins/valid-es5';
+import typescript from './rollup-plugins/typescript-export';
+import buble from 'rollup-plugin-buble';
 
 export default [{
     input: 'index.js',
@@ -13,5 +13,5 @@ export default [{
         file: 'main.js',
         format: 'cjs'
     },
-    plugins: [typescriptExport(), validES5()]
+    plugins: [typescript(), buble()]
 }]

@@ -1,15 +1,16 @@
 {
   "name": "@turf/polygonize",
-  "version": "5.0.4",
+  "version": "5.0.6",
   "description": "turf polygonize module",
-  "main": "main",
-  "module": "index",
-  "jsnext:main": "index",
+  "main": "main.js",
+  "module": "main.mjs",
   "types": "index.d.ts",
   "files": [
     "index.js",
     "index.d.ts",
-    "main.js"
+    "main.js",
+    "main.mjs",
+    "lib"
   ],
   "scripts": {
     "pretest": "rollup -c ../../rollup.config.js",
@@ -43,11 +44,11 @@
     "benchmark": "*",
     "load-json-file": "*",
     "rollup": "*",
+    "rollup-plugin-buble": "*",
     "tape": "*",
     "write-json-file": "*"
   },
   "dependencies": {
-    "polygonize": "^1.1.0",
     "@turf/helpers": "^5.0.4"
   },
   "@std/esm": {

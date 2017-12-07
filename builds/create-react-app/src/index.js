@@ -1,3 +1,5 @@
-import greatCircle from '@turf/great-circle';
+import polygonize from '@turf/polygonize';
 
-greatCircle([0, 0], [100, 10]);
+// import greatCircle from '@turf/great-circle';
+
+// greatCircle([0, 0], [100, 10]);

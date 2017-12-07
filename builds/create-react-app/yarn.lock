@@ -2,6 +2,27 @@
 # yarn lockfile v1
 
 
+"@turf/bbox-polygon@^5.0.4":
+  version "5.0.4"
+  resolved "https://registry.yarnpkg.com/@turf/bbox-polygon/-/bbox-polygon-5.0.4.tgz#dba2a442ac6aab447cf7925052b38175ed7efd70"
+  dependencies:
+    "@turf/helpers" "^5.0.4"
+
+"@turf/bbox@^5.0.4":
+  version "5.0.4"
+  resolved "https://registry.yarnpkg.com/@turf/bbox/-/bbox-5.0.4.tgz#5c3d288f9900661cbdc173cd46041c13829af311"
+  dependencies:
+    "@turf/helpers" "^5.0.4"
+    "@turf/meta" "^5.0.4"
+
+"@turf/envelope@*":
+  version "5.0.4"
+  resolved "https://registry.yarnpkg.com/@turf/envelope/-/envelope-5.0.4.tgz#d7fe7e2de90f180e97aa5cde33a6ba52935c03d2"
+  dependencies:
+    "@turf/bbox" "^5.0.4"
+    "@turf/bbox-polygon" "^5.0.4"
+    "@turf/helpers" "^5.0.4"
+
 "@turf/great-circle@*":
   version "5.0.6"
   resolved "https://registry.yarnpkg.com/@turf/great-circle/-/great-circle-5.0.6.tgz#d216b2fba4860e6ddaefdaa760392654215da49e"
@@ -9,15 +30,34 @@
     "@turf/helpers" "^5.0.4"
     "@turf/invariant" "^5.0.4"
 
-"@turf/helpers@^5.0.4":
+"@turf/helpers@*", "@turf/helpers@^5.0.4":
   version "5.0.4"
   resolved "https://registry.yarnpkg.com/@turf/helpers/-/helpers-5.0.4.tgz#e47a4e4f38dee3b47a3177a69de162d7a7a5837f"
 
-"@turf/invariant@^5.0.4":
+"@turf/inside@*":
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/@turf/inside/-/inside-5.0.0.tgz#31193c7f1429469bfaa16c6685f54234e59131a0"
+  dependencies:
+    "@turf/invariant" "^5.0.0"
+
+"@turf/invariant@*", "@turf/invariant@^5.0.0", "@turf/invariant@^5.0.4":
   version "5.0.4"
   resolved "https://registry.yarnpkg.com/@turf/invariant/-/invariant-5.0.4.tgz#1cc305f4de7c0f1bfd9d7c420aac282051262b41"
   dependencies:
     "@turf/helpers" "^5.0.4"
+
+"@turf/meta@*", "@turf/meta@^5.0.4":
+  version "5.0.4"
+  resolved "https://registry.yarnpkg.com/@turf/meta/-/meta-5.0.4.tgz#b41d08f19d2ecc934805b6d713a663abd9f83213"
+  dependencies:
+    "@turf/helpers" "^5.0.4"
+
+"@turf/polygonize@*":
+  version "5.0.5"
+  resolved "https://registry.yarnpkg.com/@turf/polygonize/-/polygonize-5.0.5.tgz#8f51923d9ed10adee6d115a008ce0dd1cb8c01c6"
+  dependencies:
+    "@turf/helpers" "^5.0.4"
+    polygonize "^1.1.0"
 
 abab@^1.0.3:
   version "1.0.4"
@@ -4640,6 +4680,16 @@ pkg-dir@^2.0.0:
 pluralize@^7.0.0:
   version "7.0.0"
   resolved "https://registry.yarnpkg.com/pluralize/-/pluralize-7.0.0.tgz#298b89df8b93b0221dbf421ad2b1b1ea23fc6777"
+
+polygonize@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/polygonize/-/polygonize-1.1.0.tgz#a342e18f57351307c6c46f8c58997664333cc2da"
+  dependencies:
+    "@turf/envelope" "*"
+    "@turf/helpers" "*"
+    "@turf/inside" "*"
+    "@turf/invariant" "*"
+    "@turf/meta" "*"
 
 portfinder@^1.0.9:
   version "1.0.13"
