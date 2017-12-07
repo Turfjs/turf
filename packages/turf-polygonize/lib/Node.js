@@ -1,5 +1,8 @@
 import {orientationIndex} from './util';
 
+/**
+ * @namespace
+ */
 class Node {
     static buildId(coordinates) {
         return coordinates.join(',');
@@ -26,6 +29,7 @@ class Node {
     /**
      * Outer edges are stored CCW order.
      *
+     * @memberof Node
      * @param {Edge} edge - Edge to add as an outerEdge.
      */
     addOuterEdge(edge) {
@@ -34,6 +38,7 @@ class Node {
     }
 
     /**
+     * @memberof Node
      * @private
      * Sorts outer edges in CCW way.
      */
@@ -76,6 +81,7 @@ class Node {
      *
      * They are sorted if they aren't in the CCW order.
      *
+     * @memberof Node
      * @returns {Edge[]} - List of outer edges sorted in a CCW order.
      */
     getOuterEdges() {
