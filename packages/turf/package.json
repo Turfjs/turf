@@ -14,8 +14,7 @@
     "turf.min.js"
   ],
   "scripts": {
-    "build": "rollup -c rollup.config.js",
-    "pretest": "rollup -c ../../rollup.config.js",
+    "pretest": "rollup -c rollup.config.js",
     "test": "node -r @std/esm test.js",
     "posttest": "node -r @std/esm test.example.js"
   },
@@ -65,6 +64,7 @@
     "rollup-plugin-node-resolve": "*",
     "rollup-plugin-uglify": "*",
     "tape": "*",
+    "turf-jsts": "*",
     "uglify-js": "*"
   },
   "dependencies": {
@@ -117,7 +117,7 @@
     "@turf/intersect": "*",
     "@turf/invariant": "^5.0.4",
     "@turf/isobands": "^5.0.4",
-    "@turf/isolines": "^5.0.4",
+    "@turf/isolines": "*",
     "@turf/kinks": "^5.0.4",
     "@turf/length": "^5.0.4",
     "@turf/line-arc": "^5.0.4",

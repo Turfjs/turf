@@ -49,7 +49,10 @@
     "write-json-file": "*"
   },
   "dependencies": {
-    "@turf/helpers": "^5.0.4"
+    "@turf/boolean-point-in-polygon": "*",
+    "@turf/envelope": "*",
+    "@turf/helpers": "*",
+    "@turf/invariant": "*"
   },
   "@std/esm": {
     "esm": "js",

@@ -3,8 +3,51 @@
 
 
 "@std/esm@*":
-  version "0.17.1"
-  resolved "https://registry.yarnpkg.com/@std/esm/-/esm-0.17.1.tgz#0780223a5b9df5af10bdd404738b0dc955735407"
+  version "0.18.0"
+  resolved "https://registry.yarnpkg.com/@std/esm/-/esm-0.18.0.tgz#e212b565c765f93b29ec522a493a192ce7ae2ba6"
+
+"@turf/bbox@^5.0.4":
+  version "5.0.4"
+  resolved "https://registry.yarnpkg.com/@turf/bbox/-/bbox-5.0.4.tgz#5c3d288f9900661cbdc173cd46041c13829af311"
+  dependencies:
+    "@turf/helpers" "^5.0.4"
+    "@turf/meta" "^5.0.4"
+
+"@turf/center@^5.0.4":
+  version "5.0.4"
+  resolved "https://registry.yarnpkg.com/@turf/center/-/center-5.0.4.tgz#32bf142564c1fd2b5ed6ddc24f452f48822020b1"
+  dependencies:
+    "@turf/bbox" "^5.0.4"
+    "@turf/helpers" "^5.0.4"
+
+"@turf/clone@^5.0.4":
+  version "5.0.4"
+  resolved "https://registry.yarnpkg.com/@turf/clone/-/clone-5.0.4.tgz#7b00fa995b06033e122e0630cadb884e97d15b00"
+
+"@turf/helpers@^5.0.4":
+  version "5.0.4"
+  resolved "https://registry.yarnpkg.com/@turf/helpers/-/helpers-5.0.4.tgz#e47a4e4f38dee3b47a3177a69de162d7a7a5837f"
+
+"@turf/meta@^5.0.4":
+  version "5.0.4"
+  resolved "https://registry.yarnpkg.com/@turf/meta/-/meta-5.0.4.tgz#b41d08f19d2ecc934805b6d713a663abd9f83213"
+  dependencies:
+    "@turf/helpers" "^5.0.4"
+
+"@turf/projection@^5.0.4":
+  version "5.0.4"
+  resolved "https://registry.yarnpkg.com/@turf/projection/-/projection-5.0.4.tgz#d72e91a61973cbb6fa46a6dae8c11406f3e245d2"
+  dependencies:
+    "@turf/clone" "^5.0.4"
+    "@turf/helpers" "^5.0.4"
+    "@turf/meta" "^5.0.4"
+
+"@turf/truncate@*":
+  version "5.0.4"
+  resolved "https://registry.yarnpkg.com/@turf/truncate/-/truncate-5.0.4.tgz#84f85f39f33b9d258372ce54ad540b6ab05365d3"
+  dependencies:
+    "@turf/helpers" "^5.0.4"
+    "@turf/meta" "^5.0.4"
 
 acorn-jsx@^3.0.1:
   version "3.0.1"
@@ -557,8 +600,8 @@ rollup-pluginutils@^2.0.1:
     micromatch "^2.3.11"
 
 rollup@*:
-  version "0.52.0"
-  resolved "https://registry.yarnpkg.com/rollup/-/rollup-0.52.0.tgz#cdb6927f53bf7b7fb09af3a936b9c8ee49b161e2"
+  version "0.52.1"
+  resolved "https://registry.yarnpkg.com/rollup/-/rollup-0.52.1.tgz#610e8e1be432f18fcfbfa865408a1cd7618cd707"
 
 signal-exit@^3.0.2:
   version "3.0.2"
@@ -611,8 +654,8 @@ through@~2.3.4, through@~2.3.8:
   resolved "https://registry.yarnpkg.com/through/-/through-2.3.8.tgz#0dd4c9ffaabc357960b1b724115d7e0e86a2e1f5"
 
 turf-jsts@*:
-  version "0.1.1"
-  resolved "https://registry.yarnpkg.com/turf-jsts/-/turf-jsts-0.1.1.tgz#577a104166dac7d3c78a51813fc94f76a3655bc3"
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/turf-jsts/-/turf-jsts-1.2.0.tgz#127c4e4332a59ecee917fca31d493996e8254be0"
 
 vlq@^0.2.1, vlq@^0.2.2:
   version "0.2.3"

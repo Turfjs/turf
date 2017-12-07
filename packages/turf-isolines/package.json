@@ -1,6 +1,6 @@
 {
   "name": "@turf/isolines",
-  "version": "5.0.4",
+  "version": "5.0.5",
   "description": "turf isolines module",
   "main": "main.js",
   "module": "main.mjs",
