@@ -68,6 +68,7 @@
     "meow": "*",
     "progress": "*",
     "rollup-plugin-buble": "*",
+    "rollup-plugin-commonjs": "*",
     "tape": "*",
     "typescript": "*",
     "yamljs": "*"
