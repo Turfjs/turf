@@ -9,7 +9,6 @@
     "react-scripts": "*"
   },
   "dependencies": {
-    "@turf/great-circle": "*",
-    "@turf/polygonize": "*"
+    "@turf/turf": "*"
   }
 }
