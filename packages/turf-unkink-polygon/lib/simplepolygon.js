@@ -2,7 +2,7 @@ import isects from './geojson-polygon-self-intersections';
 import area from '@turf/area';
 import { featureCollection, polygon } from '@turf/helpers';
 import booleanPointInPolygon from '@turf/boolean-point-in-polygon';
-var rbush = require('rbush');
+import rbush from 'rbush';
 
 /**
  * Takes a complex (i.e. self-intersecting) geojson polygon, and breaks it down into its composite simple, non-self-intersecting one-ring polygons.

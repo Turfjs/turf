@@ -1,7 +1,7 @@
 import clone from '@turf/clone';
 import { collectionOf } from '@turf/invariant';
 import { coordAll, featureEach } from '@turf/meta';
-var skmeans = require('skmeans');
+import skmeans from 'skmeans';
 
 /**
  * Takes a set of {@link Point|points} and partition them into clusters using the k-mean .

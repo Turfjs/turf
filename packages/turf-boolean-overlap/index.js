@@ -2,7 +2,7 @@ import { coordAll, segmentEach } from '@turf/meta';
 import { getType } from '@turf/invariant';
 import lineOverlap from '@turf/line-overlap';
 import lineIntersect from '@turf/line-intersect';
-var GeojsonEquality = require('geojson-equality');
+import GeojsonEquality from 'geojson-equality';
 
 /**
  * Compares two geometries of the same dimension and returns true if their intersection set results in a geometry

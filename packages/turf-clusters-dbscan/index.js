@@ -3,7 +3,7 @@ import distance from '@turf/distance';
 import { coordAll } from '@turf/meta';
 import { convertLength } from '@turf/helpers';
 import { collectionOf } from '@turf/invariant';
-var clustering = require('density-clustering');
+import clustering from 'density-clustering';
 
 /**
  * Takes a set of {@link Point|points} and partition them into clusters according to {@link DBSCAN's|https://en.wikipedia.org/wiki/DBSCAN} data clustering algorithm.

@@ -266,6 +266,13 @@ test('turf -- update to newer Typescript definitions', t => {
     t.end();
 });
 
+test('turf -- require() not allowed in favor of import', t => {
+    for (const {name, index, test} of modules) {
+        if ((index).includes('= require(')) throw new Error(`${name} module cannot use require(), use ES import instead`);
+    }
+    t.end();
+});
+
 /**
  * =========================
  * Builds => test.example.js
