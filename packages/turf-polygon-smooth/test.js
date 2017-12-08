@@ -17,11 +17,10 @@ const fixtures = fs.readdirSync(directories.in).map(filename => {
         geojson: load.sync(directories.in + filename)
     };
 });
-process.env.REGEN = true
+
 test('turf-polygon-smooth', t => {
     for (const {name, filename, geojson} of fixtures) {
         const results = polygonSmooth(geojson, {iterations: 3});
-        results.features = results.features.concat(geojson);
 
         if (process.env.REGEN) write.sync(directories.out + filename, results);
         t.deepEqual(load.sync(directories.out + filename), results, name);

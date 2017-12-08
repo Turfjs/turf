@@ -15,11 +15,13 @@ let fixtures = fs.readdirSync(directory).map(filename => {
 
 /**
  * Benchmark Results
- *
- * close x 142,605 ops/sec ±1.84% (94 runs sampled)
- * polygon x 157,104 ops/sec ±3.32% (84 runs sampled)
+ * close x 88,608 ops/sec ±6.03% (69 runs sampled)
+ * geometry x 106,576 ops/sec ±6.95% (68 runs sampled)
+ * multipolygon x 88,405 ops/sec ±5.40% (72 runs sampled)
+ * polygon x 132,584 ops/sec ±6.75% (79 runs sampled)
+ * withHole x 122,725 ops/sec ±2.69% (86 runs sampled)
  */
-const suite = new Benchmark.Suite('turf-polygon-polygonSmooth');
+const suite = new Benchmark.Suite('turf-polygon-smooth');
 for (const {name, geojson} of fixtures) {
     suite.add(name, () => polygonSmooth(geojson, {iterations: 3}));
 }
