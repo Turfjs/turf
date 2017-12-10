@@ -27,7 +27,7 @@ packages.forEach(packagePath => {
     const indexPath = path.join(directory, 'index.js');
     const pckg = load.sync(packagePath);
     const name = pckg.name;
-    const images = glob.sync(path.join(directory, 'images', '*')).filter(isImage);
+    const diagrams = glob.sync(path.join(directory, 'diagrams', '*')).filter(isImage);
 
     // Build Documentation
     documentation.build(indexPath, {shallow: true}).then(res => {
@@ -37,7 +37,7 @@ packages.forEach(packagePath => {
         // Format Markdown
         documentation.formats.md(res, {paths}).then(markdown => {
             markdown = `# ${name}\n\n${markdown}${postfix.replace(/{module}/, name)}`;
-            if (images.length) markdown += '\n\n### Diagrams\n\n' + imagesToMarkdown(images);
+            if (diagrams.length) markdown += '\n\n### Diagrams\n\n' + diagramToMarkdown(diagrams);
             fs.writeFileSync(path.join(directory, 'README.md'), markdown);
         }).catch(error => console.warning(error));
     }).catch(error => console.warning(error));
@@ -47,10 +47,10 @@ function isImage(image) {
     return ['.gif', '.jpg', '.png'].indexOf(path.parse(image).ext) !== -1;
 }
 
-function imagesToMarkdown(images) {
-    return images.map(image => {
+function diagramToMarkdown(diagrams) {
+    return diagrams.map(image => {
         const {name, base} = path.parse(image);
-        return `![${name}](images/${base})`;
+        return `![${name}](diagrams/${base})`;
     }).join('\n');
 }
 
