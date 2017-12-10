@@ -6,48 +6,49 @@
   version "0.18.0"
   resolved "https://registry.yarnpkg.com/@std/esm/-/esm-0.18.0.tgz#e212b565c765f93b29ec522a493a192ce7ae2ba6"
 
-"@turf/bbox-polygon@^5.0.4":
-  version "5.0.4"
-  resolved "https://registry.yarnpkg.com/@turf/bbox-polygon/-/bbox-polygon-5.0.4.tgz#dba2a442ac6aab447cf7925052b38175ed7efd70"
+"@turf/bbox-polygon@^5.1.0":
+  version "5.1.0"
+  resolved "https://registry.yarnpkg.com/@turf/bbox-polygon/-/bbox-polygon-5.1.0.tgz#d0bbcb57e1d0e2bb9ca151b0c0f311eb43c23e50"
   dependencies:
-    "@turf/helpers" "^5.0.4"
+    "@turf/helpers" "^5.1.0"
 
-"@turf/bbox@^5.0.4":
-  version "5.0.4"
-  resolved "https://registry.yarnpkg.com/@turf/bbox/-/bbox-5.0.4.tgz#5c3d288f9900661cbdc173cd46041c13829af311"
+"@turf/bbox@^5.1.0":
+  version "5.1.0"
+  resolved "https://registry.yarnpkg.com/@turf/bbox/-/bbox-5.1.0.tgz#659d0b6a72353137bed2e1d46b9774718b4d86c7"
   dependencies:
-    "@turf/helpers" "^5.0.4"
-    "@turf/meta" "^5.0.4"
+    "@turf/helpers" "^5.1.0"
+    "@turf/meta" "^5.1.0"
 
-"@turf/boolean-point-in-polygon@*":
-  version "5.0.4"
-  resolved "https://registry.yarnpkg.com/@turf/boolean-point-in-polygon/-/boolean-point-in-polygon-5.0.4.tgz#70702d8a67368512d1de8c69cb71f8c7ee3747ba"
+"@turf/boolean-point-in-polygon@^5.1.0":
+  version "5.1.0"
+  resolved "https://registry.yarnpkg.com/@turf/boolean-point-in-polygon/-/boolean-point-in-polygon-5.1.0.tgz#53c7f9ac23fd25d5f60357b667f6e7f9fd7235c6"
   dependencies:
-    "@turf/invariant" "^5.0.4"
+    "@turf/helpers" "^5.1.0"
+    "@turf/invariant" "^5.1.0"
 
-"@turf/envelope@*":
-  version "5.0.4"
-  resolved "https://registry.yarnpkg.com/@turf/envelope/-/envelope-5.0.4.tgz#d7fe7e2de90f180e97aa5cde33a6ba52935c03d2"
+"@turf/envelope@^5.1.0":
+  version "5.1.0"
+  resolved "https://registry.yarnpkg.com/@turf/envelope/-/envelope-5.1.0.tgz#93b9c6e2cf96d0eec34a4989a37db3bfa61017d0"
   dependencies:
-    "@turf/bbox" "^5.0.4"
-    "@turf/bbox-polygon" "^5.0.4"
-    "@turf/helpers" "^5.0.4"
+    "@turf/bbox" "^5.1.0"
+    "@turf/bbox-polygon" "^5.1.0"
+    "@turf/helpers" "^5.1.0"
 
-"@turf/helpers@*", "@turf/helpers@^5.0.4":
-  version "5.0.4"
-  resolved "https://registry.yarnpkg.com/@turf/helpers/-/helpers-5.0.4.tgz#e47a4e4f38dee3b47a3177a69de162d7a7a5837f"
+"@turf/helpers@^5.1.0":
+  version "5.1.0"
+  resolved "https://registry.yarnpkg.com/@turf/helpers/-/helpers-5.1.0.tgz#e308698654dbf770b4af1395df84e43c492614bd"
 
-"@turf/invariant@*", "@turf/invariant@^5.0.4":
-  version "5.0.4"
-  resolved "https://registry.yarnpkg.com/@turf/invariant/-/invariant-5.0.4.tgz#1cc305f4de7c0f1bfd9d7c420aac282051262b41"
+"@turf/invariant@^5.1.0":
+  version "5.1.0"
+  resolved "https://registry.yarnpkg.com/@turf/invariant/-/invariant-5.1.0.tgz#3ab76ccc3ec46c3e479022a6b277b99f3f22b2cb"
   dependencies:
-    "@turf/helpers" "^5.0.4"
+    "@turf/helpers" "^5.1.0"
 
-"@turf/meta@*", "@turf/meta@^5.0.4":
-  version "5.0.4"
-  resolved "https://registry.yarnpkg.com/@turf/meta/-/meta-5.0.4.tgz#b41d08f19d2ecc934805b6d713a663abd9f83213"
+"@turf/meta@^5.1.0", "@turf/meta@^5.1.1":
+  version "5.1.1"
+  resolved "https://registry.yarnpkg.com/@turf/meta/-/meta-5.1.1.tgz#0526442338e831d48a6dcc9a03b2c7d691b667fb"
   dependencies:
-    "@turf/helpers" "^5.0.4"
+    "@turf/helpers" "^5.1.0"
 
 acorn-jsx@^3.0.1:
   version "3.0.1"
@@ -65,7 +66,7 @@ acorn@^3.0.4:
   version "3.3.0"
   resolved "https://registry.yarnpkg.com/acorn/-/acorn-3.3.0.tgz#45e37fb39e8da3f25baee3ff5369e2bb5f22017a"
 
-acorn@^5.1.2:
+acorn@^5.1.2, acorn@^5.2.1:
   version "5.2.1"
   resolved "https://registry.yarnpkg.com/acorn/-/acorn-5.2.1.tgz#317ac7821826c22c702d66189ab8359675f135d7"
 
@@ -115,6 +116,12 @@ braces@^1.8.2:
     preserve "^0.2.0"
     repeat-element "^1.1.2"
 
+browser-resolve@^1.11.0:
+  version "1.11.2"
+  resolved "https://registry.yarnpkg.com/browser-resolve/-/browser-resolve-1.11.2.tgz#8ff09b0a2c421718a1051c260b32e48f442938ce"
+  dependencies:
+    resolve "1.1.7"
+
 buble@^0.18.0:
   version "0.18.0"
   resolved "https://registry.yarnpkg.com/buble/-/buble-0.18.0.tgz#63b338b8248c474b46fd3e3546560ae08d8abe91"
@@ -127,6 +134,10 @@ buble@^0.18.0:
     minimist "^1.2.0"
     os-homedir "^1.0.1"
     vlq "^0.2.2"
+
+builtin-modules@^1.1.0:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/builtin-modules/-/builtin-modules-1.1.1.tgz#270f076c5a72c02f5b65a47df94c5fe3a278892f"
 
 chalk@^2.1.0:
   version "2.3.0"
@@ -145,6 +156,10 @@ color-convert@^1.9.0:
 color-name@^1.1.1:
   version "1.1.3"
   resolved "https://registry.yarnpkg.com/color-name/-/color-name-1.1.3.tgz#a7d0558bd89c42f795dd42328f740831ca53bc25"
+
+commander@~2.12.1:
+  version "2.12.2"
+  resolved "https://registry.yarnpkg.com/commander/-/commander-2.12.2.tgz#0f5946c427ed9ec0d91a46bb9def53e54650e555"
 
 concat-map@0.0.1:
   version "0.0.1"
@@ -200,6 +215,10 @@ escape-string-regexp@^1.0.5:
 estree-walker@^0.3.0:
   version "0.3.1"
   resolved "https://registry.yarnpkg.com/estree-walker/-/estree-walker-0.3.1.tgz#e6b1a51cf7292524e7237c312e5fe6660c1ce1aa"
+
+estree-walker@^0.5.0:
+  version "0.5.1"
+  resolved "https://registry.yarnpkg.com/estree-walker/-/estree-walker-0.5.1.tgz#64fc375053abc6f57d73e9bd2f004644ad3c5854"
 
 expand-brackets@^0.1.4:
   version "0.1.5"
@@ -357,6 +376,10 @@ is-glob@^2.0.0, is-glob@^2.0.1:
   resolved "https://registry.yarnpkg.com/is-glob/-/is-glob-2.0.1.tgz#d096f926a3ded5600f3fdfd91198cb0888c2d863"
   dependencies:
     is-extglob "^1.0.0"
+
+is-module@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/is-module/-/is-module-1.0.0.tgz#3258fb69f78c14d5b815d664336b4cffb6441591"
 
 is-number@^2.1.0:
   version "2.1.0"
@@ -563,6 +586,16 @@ repeat-string@^1.5.2:
   version "1.6.1"
   resolved "https://registry.yarnpkg.com/repeat-string/-/repeat-string-1.6.1.tgz#8dcae470e1c88abc2d600fff4a776286da75e637"
 
+resolve@1.1.7:
+  version "1.1.7"
+  resolved "https://registry.yarnpkg.com/resolve/-/resolve-1.1.7.tgz#203114d82ad2c5ed9e8e0411b3932875e889e97b"
+
+resolve@^1.1.6, resolve@^1.4.0:
+  version "1.5.0"
+  resolved "https://registry.yarnpkg.com/resolve/-/resolve-1.5.0.tgz#1f09acce796c9a762579f31b2c1cc4c3cddf9f36"
+  dependencies:
+    path-parse "^1.0.5"
+
 resolve@~1.4.0:
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/resolve/-/resolve-1.4.0.tgz#a75be01c53da25d934a98ebd0e4c4a7312f92a86"
@@ -581,6 +614,31 @@ rollup-plugin-buble@*:
   dependencies:
     buble "^0.18.0"
     rollup-pluginutils "^2.0.1"
+
+rollup-plugin-commonjs@*:
+  version "8.2.6"
+  resolved "https://registry.yarnpkg.com/rollup-plugin-commonjs/-/rollup-plugin-commonjs-8.2.6.tgz#27e5b9069ff94005bb01e01bb46a1e4873784677"
+  dependencies:
+    acorn "^5.2.1"
+    estree-walker "^0.5.0"
+    magic-string "^0.22.4"
+    resolve "^1.4.0"
+    rollup-pluginutils "^2.0.1"
+
+rollup-plugin-node-resolve@*:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/rollup-plugin-node-resolve/-/rollup-plugin-node-resolve-3.0.0.tgz#8b897c4c3030d5001277b0514b25d2ca09683ee0"
+  dependencies:
+    browser-resolve "^1.11.0"
+    builtin-modules "^1.1.0"
+    is-module "^1.0.0"
+    resolve "^1.1.6"
+
+rollup-plugin-uglify@*:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/rollup-plugin-uglify/-/rollup-plugin-uglify-2.0.1.tgz#67b37ad1efdafbd83af4c36b40c189ee4866c969"
+  dependencies:
+    uglify-js "^3.0.9"
 
 rollup-pluginutils@^2.0.1:
   version "2.0.1"
@@ -602,6 +660,10 @@ sort-keys@^2.0.0:
   resolved "https://registry.yarnpkg.com/sort-keys/-/sort-keys-2.0.0.tgz#658535584861ec97d730d6cf41822e1f56684128"
   dependencies:
     is-plain-obj "^1.0.0"
+
+source-map@~0.6.1:
+  version "0.6.1"
+  resolved "https://registry.yarnpkg.com/source-map/-/source-map-0.6.1.tgz#74722af32e9614e9c287a8d0bbde48b5e2f1a263"
 
 string.prototype.trim@~1.1.2:
   version "1.1.2"
@@ -642,6 +704,13 @@ tape@*:
 through@~2.3.4, through@~2.3.8:
   version "2.3.8"
   resolved "https://registry.yarnpkg.com/through/-/through-2.3.8.tgz#0dd4c9ffaabc357960b1b724115d7e0e86a2e1f5"
+
+uglify-js@^3.0.9:
+  version "3.2.1"
+  resolved "https://registry.yarnpkg.com/uglify-js/-/uglify-js-3.2.1.tgz#d6427fd45a25fefc5d196689c0c772a6915e10fe"
+  dependencies:
+    commander "~2.12.1"
+    source-map "~0.6.1"
 
 vlq@^0.2.1, vlq@^0.2.2:
   version "0.2.3"

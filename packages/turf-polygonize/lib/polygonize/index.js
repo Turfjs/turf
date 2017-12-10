@@ -1,4 +1,6 @@
-import polygonize from './lib/polygonize';
+import Graph from './Graph';
+import EdgeRing from './EdgeRing';
+import {featureCollection} from '@turf/helpers';
 
 /**
  * Polygonizes {@link LineString|(Multi)LineString(s)} into {@link Polygons}.
@@ -18,4 +20,36 @@ import polygonize from './lib/polygonize';
  * @returns {FeatureCollection<Polygon>} Polygons created
  * @throws {Error} if geoJson is invalid.
  */
+function polygonize(geoJson) {
+  const graph = Graph.fromGeoJson(geoJson);
+
+  // 1. Remove dangle node
+  graph.deleteDangles();
+
+  // 2. Remove cut-edges (bridge edges)
+  graph.deleteCutEdges();
+
+  // 3. Get all holes and shells
+  const holes = [],
+    shells = [];
+
+  graph.getEdgeRings()
+    .filter(edgeRing => edgeRing.isValid())
+    .forEach(edgeRing => {
+      if (edgeRing.isHole())
+        holes.push(edgeRing);
+      else
+        shells.push(edgeRing);
+    });
+
+  // 4. Assign Holes to Shells
+  holes.forEach(hole => {
+    if (EdgeRing.findEdgeRingContaining(hole, shells))
+      shells.push(hole);
+  });
+
+  // 5. EdgeRings to Polygons
+  return featureCollection(shells.map(shell => shell.toPolygon()));
+}
+
 export default polygonize;
