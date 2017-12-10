@@ -25,6 +25,7 @@ glob.sync(path.join(__dirname, '..', 'packages', 'turf-*', 'package.json')).forE
         scripts: {
             'pretest': 'rollup -c ../../rollup.config.js',
             'test': 'node -r @std/esm test.js',
+            'posttest': 'node -r @std/esm ../../scripts/validate-es5-dependencies.js',
             'bench': 'node -r @std/esm bench.js',
             'docs': 'node ../../scripts/generate-readmes',
         },
