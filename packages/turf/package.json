@@ -65,8 +65,7 @@
     "rollup-plugin-node-resolve": "*",
     "rollup-plugin-uglify": "*",
     "tape": "*",
-    "turf-jsts": "*",
-    "uglify-js": "*"
+    "turf-jsts": "*"
   },
   "dependencies": {
     "@turf/along": "5.1.x",

@@ -1,6 +1,6 @@
 {
   "name": "@turf/polygonize",
-  "version": "5.1.0",
+  "version": "5.1.1",
   "description": "turf polygonize module",
   "main": "main.js",
   "module": "main.mjs",
@@ -15,6 +15,7 @@
   "scripts": {
     "pretest": "rollup -c ../../rollup.config.js",
     "test": "node -r @std/esm test.js",
+    "posttest": "node -r @std/esm ../../scripts/validate-es5-syntax.js",
     "bench": "node -r @std/esm bench.js",
     "docs": "node ../../scripts/generate-readmes"
   },
@@ -40,11 +41,9 @@
   "homepage": "https://github.com/Turfjs/turf",
   "devDependencies": {
     "@std/esm": "*",
-    "@turf/meta": "^5.1.0",
     "benchmark": "*",
     "load-json-file": "*",
     "rollup": "*",
-    "rollup-plugin-buble": "*",
     "tape": "*",
     "write-json-file": "*"
   },
@@ -52,7 +51,8 @@
     "@turf/boolean-point-in-polygon": "^5.1.0",
     "@turf/envelope": "^5.1.0",
     "@turf/helpers": "^5.1.0",
-    "@turf/invariant": "^5.1.0"
+    "@turf/invariant": "^5.1.0",
+    "@turf/meta": "^5.1.0"
   },
   "@std/esm": {
     "esm": "js",
