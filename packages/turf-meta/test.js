@@ -8,7 +8,10 @@ import {
     multiPolygon,
     multiLineString,
     geometryCollection,
-    featureCollection
+    featureCollection,
+    points,
+    lineStrings,
+    polygons
 } from '@turf/helpers';
 import * as meta from './';
 
@@ -765,20 +768,34 @@ test('meta.coordEach -- indexes -- Multi-Polygon with hole', t => {
     const multiFeatureIndexes = [];
     const geometryIndexes = [];
     const coordIndexes = [];
+
+    // MultiPolygon with hole
+    // ======================
+    // FeatureIndex => 0
     const multiPolyWithHole = multiPolygon([
-        // MultiPolygon - FeatureIndex => 0
-        // Polygon - MultiFeature Index => 0
+        // Polygon 1
+        // ---------
+        // MultiFeature Index => 0
         [
-            // Outer Ring - Geometry Index => 0
+            // Outer Ring
+            // ----------
+            // Geometry Index => 0
             // Coord Index => [0, 1, 2, 3, 4] (Major Release Change v6.x)
             [[102.0, 2.0], [103.0, 2.0], [103.0, 3.0], [102.0, 3.0], [102.0, 2.0]]
         ],
-        // Polygon with Hole - MultiFeature Index => 1
+        // Polygon 2 with Hole
+        // -------------------
+        // MultiFeature Index => 1
         [
-            // Outer Ring - Geometry Index => 0
+            // Outer Ring
+            // ----------
+            // Geometry Index => 0
             // Coord Index => [0, 1, 2, 3, 4] (Major Release Change v6.x)
             [[100.0, 0.0], [101.0, 0.0], [101.0, 1.0], [100.0, 1.0], [100.0, 0.0]],
-            // Inner Ring - Geometry Index => 1
+
+            // Inner Ring
+            // ----------
+            // Geometry Index => 1
             // Coord Index => [0, 1, 2, 3, 4] (Major Release Change v6.x)
             [[100.2, 0.2], [100.8, 0.2], [100.8, 0.8], [100.2, 0.8], [100.2, 0.2]]
         ]
@@ -795,5 +812,83 @@ test('meta.coordEach -- indexes -- Multi-Polygon with hole', t => {
     t.deepEqual(multiFeatureIndexes, [0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]);
     t.deepEqual(geometryIndexes,     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1]);
     t.deepEqual(coordIndexes,        [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]);
+    // Major Release Change v6.x
+    // t.deepEqual(coordIndexes,        [0, 1, 2, 3, 4, 0, 1, 2, 3, 4, 0, 1, 2, 3, 4]);
+    t.end();
+});
+
+test('meta.coordEach -- indexes -- Polygon with hole', t => {
+    const featureIndexes = [];
+    const multiFeatureIndexes = [];
+    const geometryIndexes = [];
+    const coordIndexes = [];
+
+    // Polygon with Hole
+    // =================
+    // Feature Index => 0
+    const polyWithHole = polygon([
+        // Outer Ring
+        // ----------
+        // Geometry Index => 0
+        // Coord Index => [0, 1, 2, 3, 4] (Major Release Change v6.x)
+        [[100.0, 0.0], [101.0, 0.0], [101.0, 1.0], [100.0, 1.0], [100.0, 0.0]],
+
+        // Inner Ring
+        // ----------
+        // Geometry Index => 1
+        // Coord Index => [0, 1, 2, 3, 4] (Major Release Change v6.x)
+        [[100.2, 0.2], [100.8, 0.2], [100.8, 0.8], [100.2, 0.8], [100.2, 0.2]]
+    ]);
+
+    meta.coordEach(polyWithHole, (coord, coordIndex, featureIndex, multiFeatureIndex, geometryIndex) => {
+        featureIndexes.push(featureIndex);
+        multiFeatureIndexes.push(multiFeatureIndex);
+        geometryIndexes.push(geometryIndex);
+        coordIndexes.push(coordIndex);
+    });
+
+    t.deepEqual(featureIndexes,      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]);
+    t.deepEqual(multiFeatureIndexes, [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]);
+    t.deepEqual(geometryIndexes,     [0, 0, 0, 0, 0, 1, 1, 1, 1, 1]);
+    t.deepEqual(coordIndexes,        [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]);
+    // Major Release Change v6.x
+    // t.deepEqual(coordIndexes,        [0, 1, 2, 3, 4, 0, 1, 2, 3, 4]);
+    t.end();
+});
+
+test('meta.coordEach -- indexes -- FeatureCollection of LineString', t => {
+    const featureIndexes = [];
+    const multiFeatureIndexes = [];
+    const geometryIndexes = [];
+    const coordIndexes = [];
+
+    // FeatureCollection of LineStrings
+    const line = lineStrings([
+        // LineString 1
+        // Feature Index => 0
+        // Geometry Index => 0
+        // Coord Index => [0, 1, 2, 3, 4] (Major Release Change v6.x)
+        [[100.0, 0.0], [101.0, 0.0], [101.0, 1.0], [100.0, 1.0], [100.0, 0.0]],
+
+        // LineString 2
+        // Feature Index => 1
+        // Geometry Index => 0
+        // Coord Index => [0, 1, 2, 3, 4] (Major Release Change v6.x)
+        [[100.2, 0.2], [100.8, 0.2], [100.8, 0.8], [100.2, 0.8], [100.2, 0.2]]
+    ]);
+
+    meta.coordEach(line, (coord, coordIndex, featureIndex, multiFeatureIndex, geometryIndex) => {
+        featureIndexes.push(featureIndex);
+        multiFeatureIndexes.push(multiFeatureIndex);
+        geometryIndexes.push(geometryIndex);
+        coordIndexes.push(coordIndex);
+    });
+
+    t.deepEqual(featureIndexes,      [0, 0, 0, 0, 0, 1, 1, 1, 1, 1]);
+    t.deepEqual(multiFeatureIndexes, [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]);
+    t.deepEqual(geometryIndexes,     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]);
+    t.deepEqual(coordIndexes,        [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]);
+    // Major Release Change v6.x
+    // t.deepEqual(coordIndexes,        [0, 1, 2, 3, 4, 0, 1, 2, 3, 4]);
     t.end();
 });
