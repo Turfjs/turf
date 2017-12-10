@@ -1,6 +1,6 @@
 {
   "name": "@turf/triangle-grid",
-  "version": "5.1.0",
+  "version": "5.1.4",
   "description": "turf triangle-grid module",
   "main": "main.js",
   "module": "main.es.js",
@@ -38,8 +38,8 @@
   "homepage": "https://github.com/Turfjs/turf",
   "devDependencies": {
     "@std/esm": "*",
-    "@turf/bbox-polygon": "*",
-    "@turf/truncate": "*",
+    "@turf/bbox-polygon": "^5.1.4",
+    "@turf/truncate": "^5.1.4",
     "benchmark": "*",
     "load-json-file": "*",
     "rollup": "*",
@@ -47,10 +47,10 @@
     "write-json-file": "*"
   },
   "dependencies": {
-    "@turf/distance": "^5.1.0",
-    "@turf/helpers": "^5.1.0",
-    "@turf/intersect": "^5.1.0",
-    "@turf/invariant": "^5.1.0"
+    "@turf/distance": "^5.1.4",
+    "@turf/helpers": "^5.1.4",
+    "@turf/intersect": "^5.1.4",
+    "@turf/invariant": "^5.1.4"
   },
   "@std/esm": {
     "esm": "js",

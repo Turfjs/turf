@@ -1,6 +1,6 @@
 {
   "name": "@turf/tag",
-  "version": "5.1.0",
+  "version": "5.1.4",
   "description": "turf tag module",
   "main": "main.js",
   "module": "main.es.js",
@@ -46,10 +46,10 @@
     "tape": "*"
   },
   "dependencies": {
-    "@turf/boolean-point-in-polygon": "^5.1.0",
-    "@turf/clone": "^5.1.0",
-    "@turf/helpers": "^5.1.0",
-    "@turf/meta": "^5.1.0"
+    "@turf/boolean-point-in-polygon": "^5.1.4",
+    "@turf/clone": "^5.1.4",
+    "@turf/helpers": "^5.1.4",
+    "@turf/meta": "^5.1.4"
   },
   "@std/esm": {
     "esm": "js",

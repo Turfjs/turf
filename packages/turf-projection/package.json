@@ -1,6 +1,6 @@
 {
   "name": "@turf/projection",
-  "version": "5.1.0",
+  "version": "5.1.4",
   "description": "turf projection module",
   "main": "main.js",
   "module": "main.es.js",
@@ -48,7 +48,7 @@
   "homepage": "https://github.com/Turfjs/turf",
   "devDependencies": {
     "@std/esm": "*",
-    "@turf/truncate": "*",
+    "@turf/truncate": "^5.1.4",
     "benchmark": "*",
     "load-json-file": "*",
     "proj4": "*",
@@ -57,9 +57,9 @@
     "write-json-file": "*"
   },
   "dependencies": {
-    "@turf/clone": "^5.1.0",
-    "@turf/helpers": "^5.1.0",
-    "@turf/meta": "^5.1.0"
+    "@turf/clone": "^5.1.4",
+    "@turf/helpers": "^5.1.4",
+    "@turf/meta": "^5.1.4"
   },
   "@std/esm": {
     "esm": "js",

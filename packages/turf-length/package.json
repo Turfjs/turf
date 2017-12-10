@@ -1,6 +1,6 @@
 {
   "name": "@turf/length",
-  "version": "5.1.0",
+  "version": "5.1.4",
   "description": "turf length module",
   "main": "main.js",
   "module": "main.es.js",
@@ -49,9 +49,9 @@
     "write-json-file": "*"
   },
   "dependencies": {
-    "@turf/distance": "^5.1.0",
-    "@turf/helpers": "^5.1.0",
-    "@turf/meta": "^5.1.0"
+    "@turf/distance": "^5.1.4",
+    "@turf/helpers": "^5.1.4",
+    "@turf/meta": "^5.1.4"
   },
   "@std/esm": {
     "esm": "js",

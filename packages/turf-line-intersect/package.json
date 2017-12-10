@@ -1,6 +1,6 @@
 {
   "name": "@turf/line-intersect",
-  "version": "5.1.0",
+  "version": "5.1.4",
   "description": "turf line-intersect module",
   "main": "main.js",
   "module": "main.es.js",
@@ -41,7 +41,7 @@
   "homepage": "https://github.com/Turfjs/turf",
   "devDependencies": {
     "@std/esm": "*",
-    "@turf/truncate": "*",
+    "@turf/truncate": "^5.1.4",
     "benchmark": "*",
     "load-json-file": "*",
     "rollup": "*",
@@ -49,10 +49,10 @@
     "write-json-file": "*"
   },
   "dependencies": {
-    "@turf/helpers": "^5.1.0",
-    "@turf/invariant": "^5.1.0",
-    "@turf/line-segment": "^5.1.0",
-    "@turf/meta": "^5.1.0",
+    "@turf/helpers": "^5.1.4",
+    "@turf/invariant": "^5.1.4",
+    "@turf/line-segment": "^5.1.4",
+    "@turf/meta": "^5.1.4",
     "geojson-rbush": "2.1.0"
   },
   "@std/esm": {
