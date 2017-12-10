@@ -10,7 +10,7 @@ import {
     geometryCollection,
     featureCollection
 } from '@turf/helpers';
-import * as meta from './index';
+import * as meta from './';
 
 const pt = point([0, 0], {a: 1});
 const pt2 = point([1, 1]);
@@ -747,15 +747,53 @@ test('meta.segmentEach -- indexes -- PolygonWithHole', t => {
     const segmentIndexes = [];
 
     meta.segmentEach(polyWithHole, (segment, featureIndex, multiFeatureIndex, geometryIndex, segmentIndex) => {
-        featureIndexes.push(featureIndex)
-        multiFeatureIndexes.push(multiFeatureIndex)
-        geometryIndexes.push(geometryIndex)
-        segmentIndexes.push(segmentIndex)
+        featureIndexes.push(featureIndex);
+        multiFeatureIndexes.push(multiFeatureIndex);
+        geometryIndexes.push(geometryIndex);
+        segmentIndexes.push(segmentIndex);
     });
 
     t.deepEqual(featureIndexes, [0, 0, 0, 0, 0, 0, 0, 0, 0]);
     t.deepEqual(multiFeatureIndexes, [0, 0, 0, 0, 0, 0, 0, 0, 0]);
     t.deepEqual(geometryIndexes, [0, 0, 0, 0, 1, 1, 1, 1, 1]);
     t.deepEqual(segmentIndexes, [0, 1, 2, 3, 4, 5, 6, 7, 8]);
+    t.end();
+});
+
+test('meta.coordEach -- indexes -- Multi-Polygon with hole', t => {
+    const featureIndexes = [];
+    const multiFeatureIndexes = [];
+    const geometryIndexes = [];
+    const coordIndexes = [];
+    const multiPolyWithHole = multiPolygon([
+        // MultiPolygon - FeatureIndex => 0
+        // Polygon - MultiFeature Index => 0
+        [
+            // Outer Ring - Geometry Index => 0
+            // Coord Index => [0, 1, 2, 3, 4] (Major Release Change v6.x)
+            [[102.0, 2.0], [103.0, 2.0], [103.0, 3.0], [102.0, 3.0], [102.0, 2.0]]
+        ],
+        // Polygon with Hole - MultiFeature Index => 1
+        [
+            // Outer Ring - Geometry Index => 0
+            // Coord Index => [0, 1, 2, 3, 4] (Major Release Change v6.x)
+            [[100.0, 0.0], [101.0, 0.0], [101.0, 1.0], [100.0, 1.0], [100.0, 0.0]],
+            // Inner Ring - Geometry Index => 1
+            // Coord Index => [0, 1, 2, 3, 4] (Major Release Change v6.x)
+            [[100.2, 0.2], [100.8, 0.2], [100.8, 0.8], [100.2, 0.8], [100.2, 0.2]]
+        ]
+    ]);
+
+    meta.coordEach(multiPolyWithHole, (coord, coordIndex, featureIndex, multiFeatureIndex, geometryIndex) => {
+        featureIndexes.push(featureIndex);
+        multiFeatureIndexes.push(multiFeatureIndex);
+        geometryIndexes.push(geometryIndex);
+        coordIndexes.push(coordIndex);
+    });
+
+    t.deepEqual(featureIndexes,      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]);
+    t.deepEqual(multiFeatureIndexes, [0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]);
+    t.deepEqual(geometryIndexes,     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1]);
+    t.deepEqual(coordIndexes,        [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]);
     t.end();
 });
