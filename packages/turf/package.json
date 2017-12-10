@@ -3,14 +3,14 @@
   "version": "5.1.3",
   "description": "a JavaScript library for performing geospatial operations with GeoJSON",
   "main": "turf.js",
-  "module": "turf.mjs",
+  "module": "turf.es.js",
   "browser": "turf.min.js",
   "types": "index.d.ts",
   "files": [
     "index.js",
     "index.d.ts",
     "turf.js",
-    "turf.mjs",
+    "turf.es.js",
     "turf.min.js"
   ],
   "scripts": {

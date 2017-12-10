@@ -12,14 +12,15 @@ glob.sync(path.join(__dirname, '..', 'packages', 'turf-*', 'package.json')).forE
     files.add('index.js');
     files.add('index.d.ts');
     files.add('main.js');
-    files.add('main.mjs');
+    files.add('main.es.js');
+    files.delete('main.mjs');
 
     const newPckg = {
         name: pckg.name,
         version: pckg.version,
         description: pckg.description,
         main: 'main.js',
-        module: 'main.mjs',
+        module: 'main.es.js',
         types: 'index.d.ts',
         files: [...files],
         scripts: {
