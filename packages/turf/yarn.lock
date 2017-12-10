@@ -658,13 +658,14 @@
     "@turf/invariant" "^5.1.0"
 
 "@turf/polygonize@5.1.x":
-  version "5.1.0"
-  resolved "https://registry.yarnpkg.com/@turf/polygonize/-/polygonize-5.1.0.tgz#0129d8acbbbed6777d8630087ad5f82a1680137d"
+  version "5.1.2"
+  resolved "https://registry.yarnpkg.com/@turf/polygonize/-/polygonize-5.1.2.tgz#24eb74268c1e2bc360e0d0a6b56e8bb1a97c207f"
   dependencies:
     "@turf/boolean-point-in-polygon" "^5.1.0"
     "@turf/envelope" "^5.1.0"
     "@turf/helpers" "^5.1.0"
     "@turf/invariant" "^5.1.0"
+    "@turf/meta" "^5.1.0"
 
 "@turf/projection@5.1.x", "@turf/projection@^5.1.0":
   version "5.1.0"
@@ -2065,8 +2066,8 @@ copy-descriptor@^0.1.0:
   resolved "https://registry.yarnpkg.com/copy-descriptor/-/copy-descriptor-0.1.1.tgz#676f6eb3c39997c2ee1ac3a924fd6124748f578d"
 
 core-js@^2.4.0, core-js@^2.5.0:
-  version "2.5.1"
-  resolved "https://registry.yarnpkg.com/core-js/-/core-js-2.5.1.tgz#ae6874dc66937789b80754ff5428df66819ca50b"
+  version "2.5.2"
+  resolved "https://registry.yarnpkg.com/core-js/-/core-js-2.5.2.tgz#bc4648656e7dc9dc80d7d3c7bbc172d96e744e63"
 
 core-util-is@1.0.2, core-util-is@~1.0.0:
   version "1.0.2"
