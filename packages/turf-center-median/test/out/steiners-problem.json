@@ -1,0 +1,147 @@
+{
+	"type": "FeatureCollection",
+	"features": [
+		{
+			"type": "Feature",
+			"properties": {},
+			"geometry": {
+				"type": "Point",
+				"coordinates": [
+					0,
+					0
+				]
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {},
+			"geometry": {
+				"type": "Point",
+				"coordinates": [
+					1,
+					0
+				]
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {},
+			"geometry": {
+				"type": "Point",
+				"coordinates": [
+					0,
+					1
+				]
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {},
+			"geometry": {
+				"type": "Point",
+				"coordinates": [
+					5,
+					8
+				]
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {
+				"marker-color": "#a00",
+				"marker-symbol": "cross"
+			},
+			"geometry": {
+				"type": "Point",
+				"coordinates": [
+					1.5,
+					2.25
+				]
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {
+				"medianCandidates": [
+					[
+						0.803941,
+						1.162109
+					],
+					[
+						0.507632,
+						0.764604
+					],
+					[
+						0.412131,
+						0.666232
+					],
+					[
+						0.386985,
+						0.638468
+					],
+					[
+						0.381397,
+						0.628272
+					],
+					[
+						0.380946,
+						0.623563
+					],
+					[
+						0.381642,
+						0.620951
+					],
+					[
+						0.382427,
+						0.619321
+					],
+					[
+						0.383065,
+						0.618239
+					],
+					[
+						0.383537,
+						0.617501
+					]
+				],
+				"marker-color": "#0a0",
+				"marker-symbol": "cross"
+			},
+			"geometry": {
+				"type": "Point",
+				"coordinates": [
+					0.383876,
+					0.616989
+				]
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {
+				"marker-color": "#00a",
+				"marker-symbol": "cross"
+			},
+			"geometry": {
+				"type": "Point",
+				"coordinates": [
+					2.5,
+					4
+				]
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {
+				"marker-color": "#aaa",
+				"marker-symbol": "cross"
+			},
+			"geometry": {
+				"type": "Point",
+				"coordinates": [
+					1.871795,
+					2.794872
+				]
+			}
+		}
+	]
+}

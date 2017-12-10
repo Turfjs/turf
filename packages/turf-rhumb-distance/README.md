@@ -4,13 +4,13 @@
 
 ## rhumbDistance
 
-Calculates the distance along a rhumb line between two [points](http://geojson.org/geojson-spec.html#point) in degrees, radians,
+Calculates the distance along a rhumb line between two [points](https://tools.ietf.org/html/rfc7946#section-3.1.2) in degrees, radians,
 miles, or kilometers.
 
 **Parameters**
 
--   `from` **Coord** origin point
--   `to` **Coord** destination point
+-   `from` **[Coord](https://tools.ietf.org/html/rfc7946#section-3.1.1)** origin point
+-   `to` **[Coord](https://tools.ietf.org/html/rfc7946#section-3.1.1)** destination point
 -   `options` **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)?** Optional parameters
     -   `options.units` **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** can be degrees, radians, miles, or kilometers (optional, default `"kilometers"`)
 

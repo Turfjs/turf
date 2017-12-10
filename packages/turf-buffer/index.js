@@ -1,6 +1,6 @@
 import center from '@turf/center';
 import turfBbox from '@turf/bbox';
-import { BufferOp, GeoJSONReader, GeoJSONWriter } from 'jsts-es';
+import { BufferOp, GeoJSONReader, GeoJSONWriter } from 'turf-jsts';
 import { toWgs84, toMercator } from '@turf/projection';
 import { geomEach, featureEach } from '@turf/meta';
 import { geoTransverseMercator } from 'd3-geo';
@@ -18,7 +18,7 @@ import { feature, featureCollection, radiansToLength, lengthToRadians, earthRadi
  * @name buffer
  * @param {FeatureCollection|Geometry|Feature<any>} geojson input to be buffered
  * @param {number} radius distance to draw the buffer (negative values are allowed)
- * @param {Object} [options] Optional parameters
+ * @param {Object} [options={}] Optional parameters
  * @param {string} [options.units="kilometers"] any of the options supported by turf units
  * @param {number} [options.steps=64] number of steps
  * @returns {FeatureCollection|Feature<Polygon|MultiPolygon>|undefined} buffered features

@@ -148,8 +148,8 @@ function isPointOnLineSegment(LineSegmentStart, LineSegmentEnd, Point) {
  * compareCoords
  *
  * @private
- * @param {Array<number>} pair1 point [x,y]
- * @param {Array<number>} pair2 point [x,y]
+ * @param {Position} pair1 point [x,y]
+ * @param {Position} pair2 point [x,y]
  * @returns {boolean} true/false if coord pairs match
  */
 function compareCoords(pair1, pair2) {

@@ -4,11 +4,11 @@
 
 ## length
 
-Takes a [GeoJSON](http://geojson.org/geojson-spec.html#geojson-objects) and measures its length in the specified units, [Point]((Multi)Point)'s distance are ignored.
+Takes a [GeoJSON](https://tools.ietf.org/html/rfc7946#section-3) and measures its length in the specified units, [(Multi)Point](https://tools.ietf.org/html/rfc7946#section-3.1.2)'s distance are ignored.
 
 **Parameters**
 
--   `geojson` **[GeoJSON](http://geojson.org/geojson-spec.html#geojson-objects)** GeoJSON to measure
+-   `geojson` **[GeoJSON](https://tools.ietf.org/html/rfc7946#section-3)** GeoJSON to measure
 -   `options` **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)** Optional parameters (optional, default `{}`)
     -   `options.units` **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** can be degrees, radians, miles, or kilometers (optional, default `kilometers`)
 

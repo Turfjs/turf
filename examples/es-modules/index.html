@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>ES Modules</title>
+  </head>
+  <body>
+  <script type='module'>
+    import {point, greatCircle} from "https://unpkg.com/@turf/turf?module"
+
+    console.log(greatCircle([0, 0], [100, 10]));
+    console.log(point([100, 0]));
+  </script>
+  </body>
+</html>

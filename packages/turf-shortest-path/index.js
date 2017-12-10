@@ -6,7 +6,7 @@ import cleanCoords from '@turf/clean-coords';
 import bboxPolygon from '@turf/bbox-polygon';
 import { getCoord, getType, getGeom } from '@turf/invariant';
 import { point, isNumber, lineString, isObject, featureCollection, feature } from '@turf/helpers';
-import { Graph, astar } from './javascript-astar';
+import { Graph, astar } from './lib/javascript-astar';
 
 /**
  * Returns the shortest {@link LineString|path} from {@link Point|start} to {@link Point|end} without colliding with
@@ -22,8 +22,8 @@ import { Graph, astar } from './javascript-astar';
  * @param {number} [options.resolution=100] distance between matrix points on which the path will be calculated
  * @returns {Feature<LineString>} shortest path between start and end
  * @example
- * var start = turf.point([-5, -6]);
- * var end = turf.point([9, -6]);
+ * var start = [-5, -6];
+ * var end = [9, -6];
  * var options = {
  *   obstacles: turf.polygon([[[0, -7], [5, -7], [5, -3], [0, -3], [0, -7]]])
  * };

@@ -1,0 +1,14 @@
+{
+  "type": "Feature",
+  "properties": {
+    "xSemiAxis": 5,
+    "ySemiAxis": 1
+  },
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      -73.9975,
+      40.730833
+    ]
+  }
+}

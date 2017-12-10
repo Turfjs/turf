@@ -52,7 +52,7 @@ test('simplify -- removes ID & BBox from properties', t => {
     const properties = {foo: 'bar'};
     const id = 12345;
     const bbox = [0, 0, 2, 2];
-    const poly = polygon([[[0, 0], [2, 2], [2, 0], [0, 0]]], properties, bbox, id);
+    const poly = polygon([[[0, 0], [2, 2], [2, 0], [0, 0]]], properties, {bbox, id});
     const simple = simplify(poly, {tolerance: 0.1});
 
     t.equal(simple.id, id);

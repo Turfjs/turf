@@ -1,6 +1,6 @@
 import turfbbox from '@turf/bbox';
 import booleanPointInPolygon from '@turf/boolean-point-in-polygon';
-var rbush = require('rbush');
+import rbush from 'rbush';
 
 /**
  * Merges a specified property from a FeatureCollection of points into a

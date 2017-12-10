@@ -113,8 +113,8 @@ function cleanLine(line) {
  * Compares two points and returns if they are equals
  *
  * @private
- * @param {Array<number>} pt1 point
- * @param {Array<number>} pt2 point
+ * @param {Position} pt1 point
+ * @param {Position} pt2 point
  * @returns {boolean} true if they are equals
  */
 function equals(pt1, pt2) {
@@ -126,9 +126,9 @@ function equals(pt1, pt2) {
  * Borrowed from `@turf/boolean-point-on-line` to speed up the evaluation (instead of using the module as dependency)
  *
  * @private
- * @param {Array<number>} start coord pair of start of line
- * @param {Array<number>} end coord pair of end of line
- * @param {Array<number>} point coord pair of point to check
+ * @param {Position} start coord pair of start of line
+ * @param {Position} end coord pair of end of line
+ * @param {Position} point coord pair of point to check
  * @returns {boolean} true/false
  */
 function isPointOnLineSegment(start, end, point) {

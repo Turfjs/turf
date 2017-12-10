@@ -1,3 +1,5 @@
+import { isObject } from '@turf/helpers';
+import { getType } from '@turf/invariant';
 import pointToLineDistance from '@turf/point-to-line-distance';
 import { featureEach, geomEach } from '@turf/meta';
 
@@ -9,7 +11,8 @@ import { featureEach, geomEach } from '@turf/meta';
  * @param {FeatureCollection|GeometryCollection<Point>} points Point Collection
  * @param {Feature|Geometry<LineString>} line Line Feature
  * @param {Object} [options] Optional parameters
- * @param {string} [options.units=kilometers] unit of the output distance property, can be degrees, radians, miles, or kilometer
+ * @param {string} [options.units='kilometers'] unit of the output distance property, can be degrees, radians, miles, or kilometers
+ * @param {Object} [options.properties={}] Translate Properties to Point
  * @returns {Feature<Point>} the closest point
  * @example
  * var pt1 = turf.point([0, 0]);
@@ -23,17 +26,18 @@ import { featureEach, geomEach } from '@turf/meta';
  * var addToMap = [nearest, line];
  */
 function nearestPointToLine(points, line, options) {
-    // Backwards compatible with v4.0
-    var units = (typeof options === 'object') ? options.units : options;
+    options = options || {};
+    if (!isObject(options)) throw new Error('options is invalid');
+    var units = options.units;
+    var properties = options.properties || {};
 
     // validation
     if (!points) throw new Error('points is required');
-    points = handleCollection(points);
+    points = normalize(points);
     if (!points.features.length) throw new Error('points must contain features');
 
     if (!line) throw new Error('line is required');
-    var type = line.geometry ? line.geometry.type : line.type;
-    if (type !== 'LineString') throw new Error('line must be a LineString');
+    if (getType(line) !== 'LineString') throw new Error('line must be a LineString');
 
     var dist = Infinity;
     var pt = null;
@@ -45,7 +49,13 @@ function nearestPointToLine(points, line, options) {
             pt = point;
         }
     });
-    pt.properties.dist = dist;
+    /**
+     * Translate Properties to final Point, priorities:
+     * 1. options.properties
+     * 2. inherent Point properties
+     * 3. dist custom properties created by NearestPointToLine
+     */
+    if (pt) pt.properties = Object.assign({dist: dist}, pt.properties, properties);
     return pt;
 }
 
@@ -56,7 +66,7 @@ function nearestPointToLine(points, line, options) {
  * @param {FeatureCollection|GeometryCollection<Point>} points Points
  * @returns {FeatureCollection<Point>} points
  */
-function handleCollection(points) {
+function normalize(points) {
     var features = [];
     var type = points.geometry ? points.geometry.type : points.type;
     switch (type) {

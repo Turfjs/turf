@@ -5,7 +5,7 @@ import { point, featureCollection } from '@turf/helpers';
  * Finds the tangents of a {@link Polygon|(Multi)Polygon} from a {@link Point}.
  *
  * @name polygonTangents
- * @param {Feature<Point>} pt to calculate the tangent points from
+ * @param {Coord} pt to calculate the tangent points from
  * @param {Feature<Polygon|MultiPolygon>} polygon to get tangents from
  * @returns {FeatureCollection<Point>} Feature Collection containing the two tangent points
  * @example

@@ -10,7 +10,8 @@ import {
     GeometryCollection,
     Point,
     LineString,
-    Polygon
+    Polygon,
+    GeometryTypes
 } from '@turf/helpers'
 import {
     getCoord,
@@ -46,7 +47,7 @@ invariant.getGeom(pt.geometry)
 /**
  * invariant.getType
  */
-const type: Geometry = invariant.getType(pt)
+const type: GeometryTypes = invariant.getType(pt)
 if (getType(gc) === 'GeometryCollection') console;
 if (getType(line) === 'LineString') console;
 if (getType(poly) === 'Polygon') console;

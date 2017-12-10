@@ -1,45 +1,54 @@
 #!/usr/bin/env node
-var fs = require("fs");
-var path = require("path");
 
-var license = fs.readFileSync("./LICENSE", "utf8");
-fs.readdirSync("./packages").forEach(scopePackage);
-fs.readdirSync("./packages").forEach(writeLicense);
+const load = require('load-json-file');
+const write = require('write-json-file');
+const path = require('path');
+const glob = require('glob');
 
-function scopeName(name) {
-  if (name.match(/^turf/)) {
-    return "@" + name.replace(/-/, "/");
-  } else {
-    return name;
-  }
-}
+// Update package.json
+glob.sync(path.join(__dirname, '..', 'packages', 'turf-*', 'package.json')).forEach(packagePath => {
+    const pckg = load.sync(packagePath);
+    const files = new Set(pckg.files);
+    files.add('index.js');
+    files.add('index.d.ts');
+    files.add('main.js');
+    files.add('main.es.js');
+    files.delete('main.mjs');
 
-function objMap(obj, map) {
-  var newObj = {};
-  for (var k in obj) {
-    var res = map([ k, obj[k] ]);
-    newObj[res[(0)]] = res[(1)];
-  }
-  return newObj;
-}
-
-function prefixDependency(kv) {
-  return [ scopeName(kv[(0)]), kv[(1)] ];
-}
-
-function scopePackage(directory) {
-  var pkgPath = path.join("./packages/", directory, "/package.json");
-  var pkg = JSON.parse(fs.readFileSync(pkgPath));
-  pkg.homepage = "https://github.com/Turfjs/turf";
-  pkg.bugs = { url: "https://github.com/Turfjs/turf/issues" };
-  pkg.license = "MIT";
-  pkg.author = "Turf Authors";
-  pkg.repository = { type: "git", url: "git://github.com/Turfjs/turf.git" };
-  fs.writeFileSync(pkgPath, JSON.stringify(pkg, null, 2));
-}
-
-function writeLicense(directory) {
-  var licensePath = path.join("./packages/", directory, "/LICENSE");
-  fs.writeFileSync(licensePath, license);
-}
-
+    const newPckg = {
+        name: pckg.name,
+        version: pckg.version,
+        description: pckg.description,
+        main: 'main.js',
+        module: 'main.es.js',
+        types: 'index.d.ts',
+        files: [...files],
+        scripts: {
+            'pretest': 'rollup -c ../../rollup.config.js',
+            'test': 'node -r @std/esm test.js',
+            'posttest': 'node -r @std/esm ../../scripts/validate-es5-dependencies.js',
+            'bench': 'node -r @std/esm bench.js',
+            'docs': 'node ../../scripts/generate-readmes',
+        },
+        repository: {
+            type: 'git',
+            url: 'git://github.com/Turfjs/turf.git'
+        },
+        keywords: pckg.keywords,
+        author: pckg.author,
+        contributors: pckg.contributors,
+        license: 'MIT',
+        bugs: {
+            url: 'https://github.com/Turfjs/turf/issues'
+        },
+        homepage: 'https://github.com/Turfjs/turf',
+        devDependencies: pckg.devDependencies,
+        dependencies: pckg.dependencies,
+        '@std/esm': {
+            esm: 'js',
+            cjs: true
+        }
+    };
+    // Update package.json
+    write.sync(packagePath, newPckg, {indent: 2});
+});

@@ -4,4 +4,4 @@ import center from './'
 const line = lineString([[0, 0], [10, 10]]);
 
 center(line)
-center(line, {foo: 'bar'})
+center(line, {properties: {foo: 'bar'}})

@@ -9,9 +9,9 @@ import { isObject, degreesToRadians, radiansToDegrees } from '@turf/helpers';
  * i.e. the angle measured in degrees from the north line (0 degrees)
  *
  * @name bearing
- * @param {Geometry|Feature<Point>|Array<number>} start starting Point
- * @param {Geometry|Feature<Point>|Array<number>} end ending Point
- * @param {Object} [options] Optional parameters
+ * @param {Coord} start starting Point
+ * @param {Coord} end ending Point
+ * @param {Object} [options={}] Optional parameters
  * @param {boolean} [options.final=false] calculates the final bearing if true
  * @returns {number} bearing in decimal degrees, between -180 and 180 degrees (positive clockwise)
  * @example
@@ -51,9 +51,10 @@ function bearing(start, end, options) {
 
 /**
  * Calculates Final Bearing
+ *
  * @private
- * @param {Feature<Point>} start starting Point
- * @param {Feature<Point>} end ending Point
+ * @param {Coord} start starting Point
+ * @param {Coord} end ending Point
  * @returns {number} bearing
  */
 function calculateFinalBearing(start, end) {

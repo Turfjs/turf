@@ -36,6 +36,12 @@ Download the [minified file](https://npmcdn.com/@turf/turf/turf.min.js), and inc
 <script src="turf.min.js" charset="utf-8"></script>
 ```
 
+You can also include it directly from a CDN:
+
+```html
+<script src="https://cdn.jsdelivr.net/npm/@turf/turf@5/turf.min.js"></script>
+```
+
 You can create light-weight turf builds with only the functions you need using the [turfjs-builder UI](https://turfjs-builder.herokuapp.com/) or using browserify as described below.
 
 ### Browserify

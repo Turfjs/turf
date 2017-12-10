@@ -11,7 +11,6 @@ import {
     Feature,
     FeatureCollection,
     Units,
-    FeatureGeometryCollection
 } from '@turf/helpers';
 
 interface Options {
@@ -26,7 +25,7 @@ declare function buffer<Geom extends Point | LineString | Polygon>(feature: Feat
 declare function buffer<Geom extends MultiPoint | MultiLineString | MultiPolygon>(feature: Feature<Geom>|Geom, radius?: number, options?: Options): Feature<MultiPolygon>;
 declare function buffer<Geom extends Point | LineString | Polygon>(feature: FeatureCollection<Geom>, radius?: number, options?: Options): FeatureCollection<Polygon>;
 declare function buffer<Geom extends MultiPoint | MultiLineString | MultiPolygon>(feature: FeatureCollection<Geom>, radius?: number, options?: Options): FeatureCollection<MultiPolygon>;
-declare function buffer(feature: FeatureCollection<any> | FeatureGeometryCollection | GeometryCollection, radius?: number, options?: Options): FeatureCollection<Polygon | MultiPolygon>;
+declare function buffer(feature: FeatureCollection<any> | Feature<GeometryCollection> | GeometryCollection, radius?: number, options?: Options): FeatureCollection<Polygon | MultiPolygon>;
 declare function buffer(feature: Feature<any> | GeometryObject, radius?: number, options?: Options): Feature<Polygon | MultiPolygon>;
 
 export default buffer;

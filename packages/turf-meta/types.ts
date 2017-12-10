@@ -35,40 +35,10 @@ const multiLine = helpers.multiLineString([[[0, 0], [1, 1], [0, 1], [0, 0]], [[2
 const geomCollection = helpers.geometryCollection([pt.geometry, line.geometry])
 const features = helpers.featureCollection([pt, line])
 
-interface CustomProps {
-    foo: string
-    bar: number
-}
-
-// Custom fixtures
-interface CustomLineString extends Feature<LineString> {
-    properties: {
-        foo: string
-        bar: string
-    }
-}
-
-interface CustomLineStrings {
-    type: 'FeatureCollection';
-    features: CustomLineString[]
-}
-
-interface CustomPoint extends Feature<Point> {
-    properties: {
-        foo: string
-        bar: number
-    }
-}
-
-interface CustomPoints {
-    type: 'FeatureCollection';
-    features: CustomPoint[]
-}
-
 const customPoint = point([10, 20], {foo: 'abc', bar: 123})
-const customPoints: CustomPoints = featureCollection([customPoint, point([0, 0])])
+const customPoints = featureCollection([customPoint])
 const customLineString = lineString([[0, 0], [10, 20]], {foo: 'abc', bar: 123})
-const customLineStrings: CustomLineStrings = featureCollection([customLineString, point([0, 0])])
+const customLineStrings = featureCollection([customLineString])
 
 /**
  * meta.coordEach
@@ -100,7 +70,7 @@ propReduce(poly, (previous, prop) => 1 + 1, 0)
 meta.propReduce(poly, (previous, prop) => 1 + 1, 0)
 meta.propReduce(features, (previous, prop) => prop)
 meta.propReduce(poly, (previous, prop, index) => prop)
-meta.propReduce<number, CustomProps>(poly, (previous, prop) => 1 + 1)
+meta.propReduce(poly, (previous, prop) => 1 + 1)
 meta.propReduce(geomCollection, (previous, prop) => prop)
 
 /**
@@ -110,7 +80,7 @@ const propEachValue: void = meta.propEach(poly, prop => prop)
 propEach(features, prop => prop)
 meta.propEach(features, prop => prop)
 meta.propEach(poly, (prop, index) => prop)
-meta.propEach<CustomProps>(poly, prop => prop.bar)
+meta.propEach<{bar: string}>(poly, prop => prop.bar)
 meta.propEach(geomCollection, prop => prop)
 
 /**

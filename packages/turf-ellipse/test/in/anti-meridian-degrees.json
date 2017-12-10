@@ -1,0 +1,15 @@
+{
+  "type": "Feature",
+  "properties": {
+    "units": "degrees",
+    "xSemiAxis": 50,
+    "ySemiAxis": 10
+  },
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      -180,
+      -17
+    ]
+  }
+}

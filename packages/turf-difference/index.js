@@ -1,4 +1,4 @@
-import { GeoJSONReader, GeoJSONWriter, OverlayOp } from 'jsts-es';
+import { GeoJSONReader, GeoJSONWriter, OverlayOp } from 'turf-jsts';
 import area from '@turf/area';
 import { feature } from '@turf/helpers';
 import { getGeom } from '@turf/invariant';

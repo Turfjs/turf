@@ -1,21 +1,23 @@
 {
   "name": "@turf/line-offset",
-  "version": "4.7.3",
+  "version": "5.1.5",
   "description": "turf line-offset module",
-  "main": "main",
-  "module": "index",
-  "jsnext:main": "index",
+  "main": "main.js",
+  "module": "main.es.js",
   "types": "index.d.ts",
   "files": [
     "index.js",
     "index.d.ts",
     "main.js",
-    "lib"
+    "lib",
+    "main.es.js"
   ],
   "scripts": {
     "pretest": "rollup -c ../../rollup.config.js",
     "test": "node -r @std/esm test.js",
-    "bench": "node -r @std/esm bench.js"
+    "posttest": "node -r @std/esm ../../scripts/validate-es5-dependencies.js",
+    "bench": "node -r @std/esm bench.js",
+    "docs": "node ../../scripts/generate-readmes"
   },
   "repository": {
     "type": "git",
@@ -39,18 +41,18 @@
   },
   "homepage": "https://github.com/Turfjs/turf",
   "devDependencies": {
-    "@turf/truncate": "*",
+    "@std/esm": "*",
+    "@turf/truncate": "^5.1.5",
     "benchmark": "*",
     "load-json-file": "*",
-    "tape": "*",
-    "write-json-file": "*",
     "rollup": "*",
-    "@std/esm": "*"
+    "tape": "*",
+    "write-json-file": "*"
   },
   "dependencies": {
-    "@turf/helpers": "5.x",
-    "@turf/invariant": "5.x",
-    "@turf/meta": "5.x"
+    "@turf/helpers": "^5.1.5",
+    "@turf/invariant": "^5.1.5",
+    "@turf/meta": "^5.1.5"
   },
   "@std/esm": {
     "esm": "js",
