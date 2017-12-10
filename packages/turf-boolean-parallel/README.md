@@ -8,8 +8,8 @@ Boolean-Parallel returns True if each segment of `line1` is parallel to the corr
 
 **Parameters**
 
--   `line1` **([Geometry](http://geojson.org/geojson-spec.html#geometry) \| [Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;[LineString](http://geojson.org/geojson-spec.html#linestring)>)** GeoJSON Feature or Geometry
--   `line2` **([Geometry](http://geojson.org/geojson-spec.html#geometry) \| [Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;[LineString](http://geojson.org/geojson-spec.html#linestring)>)** GeoJSON Feature or Geometry
+-   `line1` **([Geometry](https://tools.ietf.org/html/rfc7946#section-3.1) \| [Feature](https://tools.ietf.org/html/rfc7946#section-3.2)&lt;[LineString](https://tools.ietf.org/html/rfc7946#section-3.1.4)>)** GeoJSON Feature or Geometry
+-   `line2` **([Geometry](https://tools.ietf.org/html/rfc7946#section-3.1) \| [Feature](https://tools.ietf.org/html/rfc7946#section-3.2)&lt;[LineString](https://tools.ietf.org/html/rfc7946#section-3.1.4)>)** GeoJSON Feature or Geometry
 
 **Examples**
 

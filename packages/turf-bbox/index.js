@@ -5,7 +5,7 @@ import { coordEach } from '@turf/meta';
  *
  * @name bbox
  * @param {GeoJSON} geojson any GeoJSON object
- * @returns {Array<number>} bbox extent in [minX, minY, maxX, maxY] order
+ * @returns {BBox} bbox extent in [minX, minY, maxX, maxY] order
  * @example
  * var line = turf.lineString([[-74, 40], [-78, 42], [-82, 35]]);
  * var bbox = turf.bbox(line);

@@ -8,8 +8,8 @@ Returns true if a point is on a line. Accepts a optional parameter to ignore the
 
 **Parameters**
 
--   `pt` **Coord** GeoJSON Point
--   `line` **[Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;[LineString](http://geojson.org/geojson-spec.html#linestring)>** GeoJSON LineString
+-   `pt` **[Coord](https://tools.ietf.org/html/rfc7946#section-3.1.1)** GeoJSON Point
+-   `line` **[Feature](https://tools.ietf.org/html/rfc7946#section-3.2)&lt;[LineString](https://tools.ietf.org/html/rfc7946#section-3.1.4)>** GeoJSON LineString
 -   `options` **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)** Optional parameters (optional, default `{}`)
     -   `options.ignoreEndVertices` **[boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** whether to ignore the start and end vertices. (optional, default `false`)
 

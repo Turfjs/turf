@@ -4,7 +4,7 @@ import measureDistance from '@turf/distance';
 import { point, isNumber, isObject } from '@turf/helpers';
 
 /**
- * Takes a {@link LineString|line} and returns a {@link Point|point} at a specified distance along the line.
+ * Takes a {@link LineString} and returns a {@link Point} at a specified distance along the line.
  *
  * @name along
  * @param {Feature<LineString>} line input line

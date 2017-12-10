@@ -1,12 +1,12 @@
-import { polygon, point, featureCollection, geometryCollection } from '@turf/helpers';
+import { polygon, point, featureCollection, geometryCollection, Feature, Polygon, FeatureCollection } from '@turf/helpers';
 import rotate from './'
 
 const pt = point([15, 15]);
 const poly = polygon([[[0,29],[3.5,29],[2.5,32],[0,29]]]);
 
 // Does not mutate Geometry type
-const rotatedPoly: GeoJSON.Feature<GeoJSON.Polygon> = rotate(poly, 100, {pivot: pt});
-const rotatedFCPoly: GeoJSON.FeatureCollection<GeoJSON.Polygon> = rotate(featureCollection([poly]), 100, {pivot: pt});
+const rotatedPoly: Feature<Polygon> = rotate(poly, 100, {pivot: pt});
+const rotatedFCPoly: FeatureCollection<Polygon> = rotate(featureCollection([poly]), 100, {pivot: pt});
 
 // Different Geometry Inputs
 rotate(poly, 100, {pivot: pt});

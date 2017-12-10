@@ -1,12 +1,12 @@
-import { lineString, polygon, featureCollection } from '@turf/helpers';
+import { lineString, polygon, featureCollection, LineString, Feature, Polygon } from '@turf/helpers';
 import scale from './';
 
 const line = lineString([[0, 0],[10, 29]]);
 const poly = polygon([[[0,29],[3.5,29],[2.5,32],[0,29]]]);
 
 // Does not mutate Geometry type
-const scaledPt: GeoJSON.LineString = scale(line.geometry, 1.5);
-const scaledPoly: GeoJSON.Feature<GeoJSON.Polygon> = scale(poly, 1.5);
+const scaledPt: LineString = scale(line.geometry, 1.5);
+const scaledPoly: Feature<Polygon> = scale(poly, 1.5);
 
 // Diferent Geometry inputs
 scale(line.geometry, 1.5);

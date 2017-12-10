@@ -1,24 +1,22 @@
-import babel from 'rollup-plugin-babel';
-import node from 'rollup-plugin-node-resolve';
-import uglify from 'rollup-plugin-uglify';
+import node from 'rollup-plugin-node-resolve'
+import commonjs from 'rollup-plugin-commonjs'
+import uglify from 'rollup-plugin-uglify'
+import pckg from './package.json'
+
+const input = 'index.js'
 
 export default [{
-    input: 'index.js',
-    extend: true,
-    output: {
-        file: 'turf.js',
-        format: 'umd',
-        name: 'turf'
-    },
-    plugins: [node(), babel()]
+    input,
+    output: [
+        {file: pckg.main, format: 'umd', name: 'turf'},
+        {file: pckg.module, format: 'es'},
+    ],
+    plugins: [commonjs(), node()]
 },
 {
-    input: 'index.js',
-    extend: true,
-    output: {
-        file: 'turf.min.js',
-        format: 'umd',
-        name: 'turf'
-    },
-    plugins: [node(), babel(), uglify()]
+    input,
+    output: [
+        {file: pckg.browser, format: 'umd', name: 'turf'}
+    ],
+    plugins: [commonjs(), node(), uglify()]
 }];

@@ -9,8 +9,8 @@ import { getCoord, getGeom } from '@turf/invariant';
  * if their values are not provided as properties.
  *
  * @name planepoint
- * @param {Geometry|Feature<Point>|Array<number>} point the Point for which a z-value will be calculated
- * @param {Geometry|Feature<Polygon>} triangle a Polygon feature with three vertices
+ * @param {Coord} point the Point for which a z-value will be calculated
+ * @param {Feature<Polygon>} triangle a Polygon feature with three vertices
  * @returns {number} the z-value for `interpolatedPoint`
  * @example
  * var point = turf.point([-75.3221, 39.529]);

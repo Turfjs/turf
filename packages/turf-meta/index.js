@@ -107,12 +107,13 @@ export function coordEach(geojson, callback, excludeWrapCoord) {
                 break;
             case 'MultiPolygon':
                 for (j = 0; j < coords.length; j++) {
+                    if (geomType === 'MultiPolygon') geometryIndex = 0;
                     for (k = 0; k < coords[j].length; k++) {
                         for (l = 0; l < coords[j][k].length - wrapShrink; l++) {
                             callback(coords[j][k][l], coordIndex, featureIndex, multiFeatureIndex, geometryIndex);
                             coordIndex++;
                         }
-                        if (geomType === 'Polygon') geometryIndex++;
+                        geometryIndex++;
                     }
                     multiFeatureIndex++;
                 }
@@ -586,7 +587,7 @@ export function flattenEach(geojson, callback) {
         case 'Point':
         case 'LineString':
         case 'Polygon':
-            callback(feature(geometry, properties, {bbox, id}), featureIndex, 0);
+            callback(feature(geometry, properties, {bbox: bbox, id: id}), featureIndex, 0);
             return;
         }
 

@@ -6,7 +6,6 @@ import {
     LineString,
     MultiLineString,
     GeometryCollection,
-    FeatureGeometryCollection,
     Properties
 } from '@turf/helpers';
 
@@ -15,23 +14,23 @@ import {
  *
  * Feature => LineString
  */
-declare function polygonToLine<T extends Polygon | MultiPolygon>(
-    polygon: Feature<T> | T,
+declare function polygonToLine<G extends Polygon | MultiPolygon, P = Properties>(
+    polygon: Feature<G> | G,
     options?: {
-        properties?: Properties
+        properties?: P
     }
-): Feature<LineString>;
+): Feature<LineString, P>;
 
 /**
  * http://turfjs.org/docs/#polygontoline
  *
  * FeatureCollection => MultiLineString
  */
-declare function polygonToLine<T extends Polygon | MultiPolygon>(
-    polygon: FeatureCollection<T> | GeometryCollection | FeatureGeometryCollection,
+declare function polygonToLine<G extends Polygon | MultiPolygon, P = Properties>(
+    polygon: FeatureCollection<G> | GeometryCollection | Feature<GeometryCollection>,
     options?: {
-        properties?: Properties
+        properties?: P
     }
-): Feature<MultiLineString>;
+): Feature<MultiLineString, P>;
 
 export default polygonToLine;

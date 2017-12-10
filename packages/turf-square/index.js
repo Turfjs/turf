@@ -5,18 +5,14 @@ import distance from '@turf/distance';
  * would contain the input.
  *
  * @name square
- * @param {Array<number>} bbox extent in [west, south, east, north] order
- * @returns {Array<number>} a square surrounding `bbox`
+ * @param {BBox} bbox extent in [west, south, east, north] order
+ * @returns {BBox} a square surrounding `bbox`
  * @example
- * var bbox = [-20,-20,-15,0];
+ * var bbox = [-20, -20, -15, 0];
  * var squared = turf.square(bbox);
- * var features = turf.featureCollection([
- *   turf.bboxPolygon(bbox),
- *   turf.bboxPolygon(squared)
- * ]);
  *
  * //addToMap
- * var addToMap = [features]
+ * var addToMap = [turf.bboxPolygon(bbox), turf.bboxPolygon(squared)]
  */
 function square(bbox) {
     var west = bbox[0];

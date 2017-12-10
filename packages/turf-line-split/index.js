@@ -5,7 +5,7 @@ import truncate from '@turf/truncate';
 import lineSegment from '@turf/line-segment';
 import lineIntersect from '@turf/line-intersect';
 import nearestPointOnLine from '@turf/nearest-point-on-line';
-import { getCoords, getType } from '@turf/invariant';
+import { getCoords, getCoord, getType } from '@turf/invariant';
 import { featureEach, featureReduce, flattenEach} from '@turf/meta';
 import { lineString, featureCollection } from '@turf/helpers';
 
@@ -14,7 +14,7 @@ import { lineString, featureCollection } from '@turf/helpers';
  *
  * @name lineSplit
  * @param {Feature<LineString>} line LineString Feature to split
- * @param {Feature} splitter Feature used to split line
+ * @param {Feature<any>} splitter Feature used to split line
  * @returns {FeatureCollection<LineString>} Split LineStrings
  * @example
  * var line = turf.lineString([[120, -25], [145, -25]]);
@@ -118,8 +118,8 @@ function splitLineWithPoint(line, splitter) {
     // handle endpoints
     var startPoint = getCoords(line)[0];
     var endPoint = getCoords(line)[line.geometry.coordinates.length - 1];
-    if (pointsEquals(startPoint, getCoords(splitter)) ||
-        pointsEquals(endPoint, getCoords(splitter))) return featureCollection([line]);
+    if (pointsEquals(startPoint, getCoord(splitter)) ||
+        pointsEquals(endPoint, getCoord(splitter))) return featureCollection([line]);
 
     // Create spatial index
     var tree = rbush();
@@ -139,7 +139,7 @@ function splitLineWithPoint(line, splitter) {
     var initialValue = [startPoint];
     var lastCoords = featureReduce(segments, function (previous, current, index) {
         var currentCoords = getCoords(current)[1];
-        var splitterCoords = getCoords(splitter);
+        var splitterCoords = getCoord(splitter);
 
         // Location where segment intersects with line
         if (index === closestSegment.id) {

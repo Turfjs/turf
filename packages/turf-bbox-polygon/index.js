@@ -4,7 +4,7 @@ import { polygon, validateBBox } from '@turf/helpers';
  * Takes a bbox and returns an equivalent {@link Polygon|polygon}.
  *
  * @name bboxPolygon
- * @param {Array<number>} bbox extent in [minX, minY, maxX, maxY] order
+ * @param {BBox} bbox extent in [minX, minY, maxX, maxY] order
  * @returns {Feature<Polygon>} a Polygon representation of the bounding box
  * @example
  * var bbox = [0, 0, 10, 10];

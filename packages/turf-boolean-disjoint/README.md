@@ -8,8 +8,8 @@ Boolean-disjoint returns (TRUE) if the intersection of the two geometries is an 
 
 **Parameters**
 
--   `feature1` **([Geometry](http://geojson.org/geojson-spec.html#geometry) \| [Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;any>)** GeoJSON Feature or Geometry
--   `feature2` **([Geometry](http://geojson.org/geojson-spec.html#geometry) \| [Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;any>)** GeoJSON Feature or Geometry
+-   `feature1` **([Geometry](https://tools.ietf.org/html/rfc7946#section-3.1) \| [Feature](https://tools.ietf.org/html/rfc7946#section-3.2)&lt;any>)** GeoJSON Feature or Geometry
+-   `feature2` **([Geometry](https://tools.ietf.org/html/rfc7946#section-3.1) \| [Feature](https://tools.ietf.org/html/rfc7946#section-3.2)&lt;any>)** GeoJSON Feature or Geometry
 
 **Examples**
 

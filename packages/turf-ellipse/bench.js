@@ -1,5 +1,5 @@
-const Benchmark = require('benchmark');
-const ellipse = require('.');
+import Benchmark from 'benchmark';
+import ellipse from '.';
 
 /**
  * Benchmark Results

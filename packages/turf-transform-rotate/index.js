@@ -15,7 +15,7 @@ import { isObject } from '@turf/helpers';
  * @param {GeoJSON} geojson object to be rotated
  * @param {number} angle of rotation (along the vertical axis), from North in decimal degrees, negative clockwise
  * @param {Object} [options={}] Optional parameters
- * @param {Geometry|Feature<Point>|Array<number>} [options.pivot='centroid'] point around which the rotation will be performed
+ * @param {Coord} [options.pivot='centroid'] point around which the rotation will be performed
  * @param {boolean} [options.mutate=false] allows GeoJSON input to be mutated (significant performance increase if true)
  * @returns {GeoJSON} the rotated GeoJSON feature
  * @example

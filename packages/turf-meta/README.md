@@ -22,7 +22,7 @@ Iterate over coordinates in any GeoJSON object, similar to Array.forEach()
 
 **Parameters**
 
--   `geojson` **([FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects) \| [Feature](http://geojson.org/geojson-spec.html#feature-objects) \| [Geometry](http://geojson.org/geojson-spec.html#geometry))** any GeoJSON object
+-   `geojson` **([FeatureCollection](https://tools.ietf.org/html/rfc7946#section-3.3) \| [Feature](https://tools.ietf.org/html/rfc7946#section-3.2) \| [Geometry](https://tools.ietf.org/html/rfc7946#section-3.1))** any GeoJSON object
 -   `callback` **[Function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function)** a method that takes (currentCoord, coordIndex, featureIndex, multiFeatureIndex)
 -   `excludeWrapCoord` **[boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** whether or not to include the final coordinate of LinearRings that wraps the ring in its iteration. (optional, default `false`)
 
@@ -49,7 +49,7 @@ Reduce coordinates in any GeoJSON object, similar to Array.reduce()
 
 **Parameters**
 
--   `geojson` **([FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects) \| [Geometry](http://geojson.org/geojson-spec.html#geometry) \| [Feature](http://geojson.org/geojson-spec.html#feature-objects))** any GeoJSON object
+-   `geojson` **([FeatureCollection](https://tools.ietf.org/html/rfc7946#section-3.3) \| [Geometry](https://tools.ietf.org/html/rfc7946#section-3.1) \| [Feature](https://tools.ietf.org/html/rfc7946#section-3.2))** any GeoJSON object
 -   `callback` **[Function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function)** a method that takes (previousValue, currentCoord, coordIndex)
 -   `initialValue` **any?** Value to use as the first argument to the first call of the callback.
 -   `excludeWrapCoord` **[boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** whether or not to include the final coordinate of LinearRings that wraps the ring in its iteration. (optional, default `false`)
@@ -111,7 +111,7 @@ Iterate over properties in any GeoJSON object, similar to Array.forEach()
 
 **Parameters**
 
--   `geojson` **([FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects) \| [Feature](http://geojson.org/geojson-spec.html#feature-objects))** any GeoJSON object
+-   `geojson` **([FeatureCollection](https://tools.ietf.org/html/rfc7946#section-3.3) \| [Feature](https://tools.ietf.org/html/rfc7946#section-3.2))** any GeoJSON object
 -   `callback` **[Function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function)** a method that takes (currentProperties, featureIndex)
 
 **Examples**
@@ -147,7 +147,7 @@ the reduction, so an array of all properties is unnecessary.
 
 **Parameters**
 
--   `geojson` **([FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects) \| [Feature](http://geojson.org/geojson-spec.html#feature-objects))** any GeoJSON object
+-   `geojson` **([FeatureCollection](https://tools.ietf.org/html/rfc7946#section-3.3) \| [Feature](https://tools.ietf.org/html/rfc7946#section-3.2))** any GeoJSON object
 -   `callback` **[Function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function)** a method that takes (previousValue, currentProperties, featureIndex)
 -   `initialValue` **any?** Value to use as the first argument to the first call of the callback.
 
@@ -202,7 +202,7 @@ Array.forEach.
 
 **Parameters**
 
--   `geojson` **([FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects) \| [Feature](http://geojson.org/geojson-spec.html#feature-objects) \| [Geometry](http://geojson.org/geojson-spec.html#geometry))** any GeoJSON object
+-   `geojson` **([FeatureCollection](https://tools.ietf.org/html/rfc7946#section-3.3) \| [Feature](https://tools.ietf.org/html/rfc7946#section-3.2) \| [Geometry](https://tools.ietf.org/html/rfc7946#section-3.1))** any GeoJSON object
 -   `callback` **[Function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function)** a method that takes (currentFeature, featureIndex)
 
 **Examples**
@@ -227,7 +227,7 @@ Type: [Function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Referen
 
 **Parameters**
 
--   `currentFeature` **[Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;any>** The current Feature being processed.
+-   `currentFeature` **[Feature](https://tools.ietf.org/html/rfc7946#section-3.2)&lt;any>** The current Feature being processed.
 -   `featureIndex` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** The current index of the Feature being processed.
 
 ## featureReduceCallback
@@ -253,7 +253,7 @@ Type: [Function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Referen
 
 -   `previousValue` **any** The accumulated value previously returned in the last invocation
     of the callback, or initialValue, if supplied.
--   `currentFeature` **[Feature](http://geojson.org/geojson-spec.html#feature-objects)** The current Feature being processed.
+-   `currentFeature` **[Feature](https://tools.ietf.org/html/rfc7946#section-3.2)** The current Feature being processed.
 -   `featureIndex` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** The current index of the Feature being processed.
 
 ## featureReduce
@@ -262,7 +262,7 @@ Reduce features in any GeoJSON object, similar to Array.reduce().
 
 **Parameters**
 
--   `geojson` **([FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects) \| [Feature](http://geojson.org/geojson-spec.html#feature-objects) \| [Geometry](http://geojson.org/geojson-spec.html#geometry))** any GeoJSON object
+-   `geojson` **([FeatureCollection](https://tools.ietf.org/html/rfc7946#section-3.3) \| [Feature](https://tools.ietf.org/html/rfc7946#section-3.2) \| [Geometry](https://tools.ietf.org/html/rfc7946#section-3.1))** any GeoJSON object
 -   `callback` **[Function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function)** a method that takes (previousValue, currentFeature, featureIndex)
 -   `initialValue` **any?** Value to use as the first argument to the first call of the callback.
 
@@ -290,7 +290,7 @@ Get all coordinates from any GeoJSON object.
 
 **Parameters**
 
--   `geojson` **([FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects) \| [Feature](http://geojson.org/geojson-spec.html#feature-objects) \| [Geometry](http://geojson.org/geojson-spec.html#geometry))** any GeoJSON object
+-   `geojson` **([FeatureCollection](https://tools.ietf.org/html/rfc7946#section-3.3) \| [Feature](https://tools.ietf.org/html/rfc7946#section-3.2) \| [Geometry](https://tools.ietf.org/html/rfc7946#section-3.1))** any GeoJSON object
 
 **Examples**
 
@@ -314,7 +314,7 @@ Type: [Function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Referen
 
 **Parameters**
 
--   `currentGeometry` **[Geometry](http://geojson.org/geojson-spec.html#geometry)** The current Geometry being processed.
+-   `currentGeometry` **[Geometry](https://tools.ietf.org/html/rfc7946#section-3.1)** The current Geometry being processed.
 -   `featureIndex` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** The current index of the Feature being processed.
 -   `featureProperties` **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)** The current Feature Properties being processed.
 -   `featureBBox` **[Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)>** The current Feature BBox being processed.
@@ -326,7 +326,7 @@ Iterate over each geometry in any GeoJSON object, similar to Array.forEach()
 
 **Parameters**
 
--   `geojson` **([FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects) \| [Feature](http://geojson.org/geojson-spec.html#feature-objects) \| [Geometry](http://geojson.org/geojson-spec.html#geometry))** any GeoJSON object
+-   `geojson` **([FeatureCollection](https://tools.ietf.org/html/rfc7946#section-3.3) \| [Feature](https://tools.ietf.org/html/rfc7946#section-3.2) \| [Geometry](https://tools.ietf.org/html/rfc7946#section-3.1))** any GeoJSON object
 -   `callback` **[Function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function)** a method that takes (currentGeometry, featureIndex, featureProperties, featureBBox, featureId)
 
 **Examples**
@@ -369,7 +369,7 @@ Type: [Function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Referen
 
 -   `previousValue` **any** The accumulated value previously returned in the last invocation
     of the callback, or initialValue, if supplied.
--   `currentGeometry` **[Geometry](http://geojson.org/geojson-spec.html#geometry)** The current Geometry being processed.
+-   `currentGeometry` **[Geometry](https://tools.ietf.org/html/rfc7946#section-3.1)** The current Geometry being processed.
 -   `featureIndex` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** The current index of the Feature being processed.
 -   `featureProperties` **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)** The current Feature Properties being processed.
 -   `featureBBox` **[Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)>** The current Feature BBox being processed.
@@ -381,7 +381,7 @@ Reduce geometry in any GeoJSON object, similar to Array.reduce().
 
 **Parameters**
 
--   `geojson` **([FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects) \| [Feature](http://geojson.org/geojson-spec.html#feature-objects) \| [Geometry](http://geojson.org/geojson-spec.html#geometry))** any GeoJSON object
+-   `geojson` **([FeatureCollection](https://tools.ietf.org/html/rfc7946#section-3.3) \| [Feature](https://tools.ietf.org/html/rfc7946#section-3.2) \| [Geometry](https://tools.ietf.org/html/rfc7946#section-3.1))** any GeoJSON object
 -   `callback` **[Function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function)** a method that takes (previousValue, currentGeometry, featureIndex, featureProperties, featureBBox, featureId)
 -   `initialValue` **any?** Value to use as the first argument to the first call of the callback.
 
@@ -414,7 +414,7 @@ Type: [Function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Referen
 
 **Parameters**
 
--   `currentFeature` **[Feature](http://geojson.org/geojson-spec.html#feature-objects)** The current flattened feature being processed.
+-   `currentFeature` **[Feature](https://tools.ietf.org/html/rfc7946#section-3.2)** The current flattened feature being processed.
 -   `featureIndex` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** The current index of the Feature being processed.
 -   `multiFeatureIndex` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** The current index of the Multi-Feature being processed.
 
@@ -425,7 +425,7 @@ Array.forEach.
 
 **Parameters**
 
--   `geojson` **([FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects) \| [Feature](http://geojson.org/geojson-spec.html#feature-objects) \| [Geometry](http://geojson.org/geojson-spec.html#geometry))** any GeoJSON object
+-   `geojson` **([FeatureCollection](https://tools.ietf.org/html/rfc7946#section-3.3) \| [Feature](https://tools.ietf.org/html/rfc7946#section-3.2) \| [Geometry](https://tools.ietf.org/html/rfc7946#section-3.1))** any GeoJSON object
 -   `callback` **[Function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function)** a method that takes (currentFeature, featureIndex, multiFeatureIndex)
 
 **Examples**
@@ -466,7 +466,7 @@ Type: [Function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Referen
 
 -   `previousValue` **any** The accumulated value previously returned in the last invocation
     of the callback, or initialValue, if supplied.
--   `currentFeature` **[Feature](http://geojson.org/geojson-spec.html#feature-objects)** The current Feature being processed.
+-   `currentFeature` **[Feature](https://tools.ietf.org/html/rfc7946#section-3.2)** The current Feature being processed.
 -   `featureIndex` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** The current index of the Feature being processed.
 -   `multiFeatureIndex` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** The current index of the Multi-Feature being processed.
 
@@ -476,7 +476,7 @@ Reduce flattened features in any GeoJSON object, similar to Array.reduce().
 
 **Parameters**
 
--   `geojson` **([FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects) \| [Feature](http://geojson.org/geojson-spec.html#feature-objects) \| [Geometry](http://geojson.org/geojson-spec.html#geometry))** any GeoJSON object
+-   `geojson` **([FeatureCollection](https://tools.ietf.org/html/rfc7946#section-3.3) \| [Feature](https://tools.ietf.org/html/rfc7946#section-3.2) \| [Geometry](https://tools.ietf.org/html/rfc7946#section-3.1))** any GeoJSON object
 -   `callback` **[Function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function)** a method that takes (previousValue, currentFeature, featureIndex, multiFeatureIndex)
 -   `initialValue` **any?** Value to use as the first argument to the first call of the callback.
 
@@ -507,7 +507,7 @@ Type: [Function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Referen
 
 **Parameters**
 
--   `currentSegment` **[Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;[LineString](http://geojson.org/geojson-spec.html#linestring)>** The current Segment being processed.
+-   `currentSegment` **[Feature](https://tools.ietf.org/html/rfc7946#section-3.2)&lt;[LineString](https://tools.ietf.org/html/rfc7946#section-3.1.4)>** The current Segment being processed.
 -   `featureIndex` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** The current index of the Feature being processed.
 -   `multiFeatureIndex` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** The current index of the Multi-Feature being processed.
 -   `geometryIndex` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** The current index of the Geometry being processed.
@@ -522,7 +522,7 @@ Iterate over 2-vertex line segment in any GeoJSON object, similar to Array.forEa
 
 **Parameters**
 
--   `geojson` **([FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects) \| [Feature](http://geojson.org/geojson-spec.html#feature-objects) \| [Geometry](http://geojson.org/geojson-spec.html#geometry))** any GeoJSON
+-   `geojson` **([FeatureCollection](https://tools.ietf.org/html/rfc7946#section-3.3) \| [Feature](https://tools.ietf.org/html/rfc7946#section-3.2) \| [Geometry](https://tools.ietf.org/html/rfc7946#section-3.1))** any GeoJSON
 -   `callback` **[Function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function)** a method that takes (currentSegment, featureIndex, multiFeatureIndex, geometryIndex, segmentIndex)
 
 **Examples**
@@ -571,7 +571,7 @@ Type: [Function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Referen
 
 -   `previousValue` **any** The accumulated value previously returned in the last invocation
     of the callback, or initialValue, if supplied.
--   `currentSegment` **[Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;[LineString](http://geojson.org/geojson-spec.html#linestring)>** The current Segment being processed.
+-   `currentSegment` **[Feature](https://tools.ietf.org/html/rfc7946#section-3.2)&lt;[LineString](https://tools.ietf.org/html/rfc7946#section-3.1.4)>** The current Segment being processed.
 -   `featureIndex` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** The current index of the Feature being processed.
 -   `multiFeatureIndex` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** The current index of the Multi-Feature being processed.
 -   `geometryIndex` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** The current index of the Geometry being processed.
@@ -584,7 +584,7 @@ Reduce 2-vertex line segment in any GeoJSON object, similar to Array.reduce()
 
 **Parameters**
 
--   `geojson` **([FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects) \| [Feature](http://geojson.org/geojson-spec.html#feature-objects) \| [Geometry](http://geojson.org/geojson-spec.html#geometry))** any GeoJSON
+-   `geojson` **([FeatureCollection](https://tools.ietf.org/html/rfc7946#section-3.3) \| [Feature](https://tools.ietf.org/html/rfc7946#section-3.2) \| [Geometry](https://tools.ietf.org/html/rfc7946#section-3.1))** any GeoJSON
 -   `callback` **[Function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function)** a method that takes (previousValue, currentSegment, currentIndex)
 -   `initialValue` **any?** Value to use as the first argument to the first call of the callback.
 
@@ -622,7 +622,7 @@ Type: [Function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Referen
 
 **Parameters**
 
--   `currentLine` **[Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;[LineString](http://geojson.org/geojson-spec.html#linestring)>** The current LineString|LinearRing being processed
+-   `currentLine` **[Feature](https://tools.ietf.org/html/rfc7946#section-3.2)&lt;[LineString](https://tools.ietf.org/html/rfc7946#section-3.1.4)>** The current LineString|LinearRing being processed
 -   `featureIndex` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** The current index of the Feature being processed
 -   `multiFeatureIndex` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** The current index of the Multi-Feature being processed
 -   `geometryIndex` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** The current index of the Geometry being processed
@@ -634,7 +634,7 @@ similar to Array.forEach.
 
 **Parameters**
 
--   `geojson` **([Geometry](http://geojson.org/geojson-spec.html#geometry) \| [Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;([LineString](http://geojson.org/geojson-spec.html#linestring) \| [Polygon](http://geojson.org/geojson-spec.html#polygon) \| [MultiLineString](http://geojson.org/geojson-spec.html#multilinestring) \| [MultiPolygon](http://geojson.org/geojson-spec.html#multipolygon))>)** object
+-   `geojson` **([Geometry](https://tools.ietf.org/html/rfc7946#section-3.1) \| [Feature](https://tools.ietf.org/html/rfc7946#section-3.2)&lt;([LineString](https://tools.ietf.org/html/rfc7946#section-3.1.4) \| [Polygon](https://tools.ietf.org/html/rfc7946#section-3.1.6) \| [MultiLineString](https://tools.ietf.org/html/rfc7946#section-3.1.5) \| [MultiPolygon](https://tools.ietf.org/html/rfc7946#section-3.1.7))>)** object
 -   `callback` **[Function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function)** a method that takes (currentLine, featureIndex, multiFeatureIndex, geometryIndex)
 
 **Examples**
@@ -676,7 +676,7 @@ Type: [Function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Referen
 
 -   `previousValue` **any** The accumulated value previously returned in the last invocation
     of the callback, or initialValue, if supplied.
--   `currentLine` **[Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;[LineString](http://geojson.org/geojson-spec.html#linestring)>** The current LineString|LinearRing being processed.
+-   `currentLine` **[Feature](https://tools.ietf.org/html/rfc7946#section-3.2)&lt;[LineString](https://tools.ietf.org/html/rfc7946#section-3.1.4)>** The current LineString|LinearRing being processed.
 -   `featureIndex` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** The current index of the Feature being processed
 -   `multiFeatureIndex` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** The current index of the Multi-Feature being processed
 -   `geometryIndex` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** The current index of the Geometry being processed
@@ -687,7 +687,7 @@ Reduce features in any GeoJSON object, similar to Array.reduce().
 
 **Parameters**
 
--   `geojson` **([Geometry](http://geojson.org/geojson-spec.html#geometry) \| [Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;([LineString](http://geojson.org/geojson-spec.html#linestring) \| [Polygon](http://geojson.org/geojson-spec.html#polygon) \| [MultiLineString](http://geojson.org/geojson-spec.html#multilinestring) \| [MultiPolygon](http://geojson.org/geojson-spec.html#multipolygon))>)** object
+-   `geojson` **([Geometry](https://tools.ietf.org/html/rfc7946#section-3.1) \| [Feature](https://tools.ietf.org/html/rfc7946#section-3.2)&lt;([LineString](https://tools.ietf.org/html/rfc7946#section-3.1.4) \| [Polygon](https://tools.ietf.org/html/rfc7946#section-3.1.6) \| [MultiLineString](https://tools.ietf.org/html/rfc7946#section-3.1.5) \| [MultiPolygon](https://tools.ietf.org/html/rfc7946#section-3.1.7))>)** object
 -   `callback` **[Function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function)** a method that takes (previousValue, currentLine, featureIndex, multiFeatureIndex, geometryIndex)
 -   `initialValue` **any?** Value to use as the first argument to the first call of the callback.
 
