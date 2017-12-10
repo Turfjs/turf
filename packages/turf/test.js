@@ -87,7 +87,7 @@ test('turf -- check if files exists', t => {
         for (const file of files) {
             // ignore Rollup bundle
             if (file === 'main.js') continue;
-            if (file === 'main.mjs') continue;
+            if (file === 'main.es.js') continue;
             if (!fs.existsSync(path.join(dir, file))) t.fail(`${name} missing file ${file} in "files"`);
         }
     }
@@ -100,7 +100,7 @@ test('turf -- external files must be in the lib folder', t => {
         for (const file of files) {
             switch (file) {
             case 'main.js':
-            case 'main.mjs':
+            case 'main.es.js':
             case 'index.js':
             case 'index.d.ts':
             case 'lib':
@@ -144,7 +144,7 @@ test('turf -- pre-defined attributes in package.json', t => {
     for (const {name, pckg} of modules) {
         if (pckg.author !== 'Turf Authors') t.fail(name + ' (author) should be "Turf Authors"');
         if (pckg.main !== 'main.js') t.fail(`${name} (main) must be "main.js" in package.json`);
-        if (pckg.module !== 'main.mjs') t.fail(`${name} (module) must be "main.mjs" in package.json`);
+        if (pckg.module !== 'main.es.js') t.fail(`${name} (module) must be "main.es.js" in package.json`);
         if (pckg['jsnext:main']) t.fail(`${name} (jsnext:main) is no longer required in favor of using (module) in package.json`);
         if (pckg.types !== 'index.d.ts') t.fail(`${name} (types) must be "index.d.ts" in package.json`);
         if (!pckg.bugs || pckg.bugs.url !== 'https://github.com/Turfjs/turf/issues') t.fail(`${name} (bugs.url) must be "https://github.com/Turfjs/turf/issues" in package.json`);

@@ -50,12 +50,14 @@ function updateDependencies(pckg) {
 function updateDevDependencies(pckg) {
     const devDependencies = {};
     const dev = new Map(entries(pckg.devDependencies));
-    dev.delete('rollup-plugin-uglify');
     dev.delete('uglify-js');
     dev.delete('@turf/helpers');
+    dev.delete('rollup-plugin-node-resolve');
+    dev.delete('rollup-plugin-uglify');
+    dev.delete('rollup-plugin-commonjs');
+    dev.delete('rollup-plugin-buble');
     dev
         .set('rollup', '*')
-        .set('rollup-plugin-buble', '*')
         .set('tape', '*')
         .set('@std/esm', '*')
         .set('benchmark', '*').forEach((version, name) => {
