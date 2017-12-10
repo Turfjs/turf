@@ -12,11 +12,18 @@ import { featureCollection, feature, point } from '@turf/helpers';
  * * Given a {@link Point}, the point will the same as the input
  *
  * @name pointOnFeature
- * @param {Feature|FeatureCollection} geojson any Feature or FeatureCollection
+ * @param {GeoJSON} geojson any Feature or FeatureCollection
  * @returns {Feature<Point>} a point on the surface of `input`
  * @example
- * // create a random polygon
- * var polygon = turf.randomPolygon();
+ * var polygon = turf.polygon([[
+ *   [116, -36],
+ *   [131, -32],
+ *   [146, -43],
+ *   [155, -25],
+ *   [133, -9],
+ *   [111, -22],
+ *   [116, -36]
+ * ]]);
  *
  * var pointOnPolygon = turf.pointOnFeature(polygon);
  *
@@ -111,6 +118,7 @@ function pointOnFeature(geojson) {
 /**
  * Normalizes any GeoJSON to a FeatureCollection
  *
+ * @private
  * @name normalize
  * @param {GeoJSON} geojson Any GeoJSON
  * @returns {FeatureCollection} FeatureCollection

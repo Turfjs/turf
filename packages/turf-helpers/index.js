@@ -585,7 +585,7 @@ export function radiansToDegrees(radians) {
 /**
  * Converts an angle in degrees to radians
  *
- * @name degreesToradians
+ * @name degreesToRadians
  * @param {number} degrees angle between 0 and 360 degrees
  * @returns {number} angle in radians
  */

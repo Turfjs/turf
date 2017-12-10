@@ -3,26 +3,26 @@ import {
   LineString,
   Feature,
   FeatureCollection,
-  FeatureGeometryCollection,
   GeometryCollection,
+  Properties,
   Coord,
   Point
 } from '@turf/helpers'
+import { geometryCollection } from '../turf/index';
 
-export interface NearestPointToLine extends Feature<Point> {
-  properties: {
-    dist: number
-    [key: string]: any
-  }
+export interface NearestPointToLineProperties {
+  dist: number
+  [key: string]: any
 }
 
 /**
  * http://turfjs.org/docs/#nearestpointtoline
  */
-export default function nearestPointToLine(
-    points: FeatureCollection<Point> | FeatureGeometryCollection | GeometryCollection,
+export default function nearestPointToLine<P = NearestPointToLineProperties> (
+    points: FeatureCollection<Point> | Feature<GeometryCollection> | GeometryCollection,
     line: Feature<LineString> | LineString,
     options?: {
-      units?: Units
+      units?: Units,
+      properties?: P
     }
-): NearestPointToLine;
+): Feature<Point, P>;

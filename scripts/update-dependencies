@@ -8,7 +8,7 @@ const glob = require('glob');
 // Update package.json
 glob.sync(path.join(__dirname, '..', 'packages', 'turf-*', 'package.json')).forEach(packagePath => {
     const pckg = load.sync(packagePath);
-    pckg.dependencies = updateDependencies(pckg);
+    // pckg.dependencies = updateDependencies(pckg);
     pckg.devDependencies = updateDevDependencies(pckg);
     write.sync(packagePath, pckg, {indent: 2});
 });
@@ -21,32 +21,20 @@ function updateDependencies(pckg) {
     const dependencies = {};
     new Map(entries(pckg.dependencies))
         .forEach((version, name) => {
-            // Update dependencies to v5.x
+            // Update dependencies to Major releases
             switch (name) {
             case 'geojson-rbush':
-                dependencies[name] = '2.1.0';
+                dependencies[name] = '2.x';
                 break;
             case 'topojson-client':
             case 'topojson-server':
                 dependencies[name] = '3.x';
                 break;
-            // JSTS based modules:
-            case '@turf/buffer':
-            case '@turf/intersect':
-            case '@turf/union':
-            case '@turf/difference':
-            case '@turf/dissolve':
-            case '@turf/hex-grid':
-            case '@turf/mask':
-            case '@turf/square-grid':
-            case '@turf/triangle-grid':
-            case '@turf/interpolate':
-                dependencies[name] = '*';
-                break;
             case 'jsts':
             case 'jsts-es':
             case '@turf/point-on-surface':
             case '@turf/line-distance':
+            case '@turf/inside':
             case '@turf/point-on-line':
             case '@turf/nearest':
                 throw new Error(`${pckg.name} module has invalid dependency ${name}`);
@@ -62,10 +50,14 @@ function updateDependencies(pckg) {
 function updateDevDependencies(pckg) {
     const devDependencies = {};
     const dev = new Map(entries(pckg.devDependencies));
-    dev.delete('rollup-plugin-uglify');
     dev.delete('uglify-js');
     dev.delete('@turf/helpers');
-    dev.set('rollup', '*')
+    dev.delete('rollup-plugin-node-resolve');
+    dev.delete('rollup-plugin-uglify');
+    dev.delete('rollup-plugin-commonjs');
+    dev.delete('rollup-plugin-buble');
+    dev
+        .set('rollup', '*')
         .set('tape', '*')
         .set('@std/esm', '*')
         .set('benchmark', '*').forEach((version, name) => {

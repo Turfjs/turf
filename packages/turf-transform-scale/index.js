@@ -17,7 +17,7 @@ import { getCoord, getCoords, getType} from '@turf/invariant';
  * @param {GeoJSON} geojson GeoJSON to be scaled
  * @param {number} factor of scaling, positive or negative values greater than 0
  * @param {Object} [options={}] Optional parameters
- * @param {string|Geometry|Feature<Point>|Array<number>} [options.origin='centroid'] Point from which the scaling will occur (string options: sw/se/nw/ne/center/centroid)
+ * @param {string|Coord} [options.origin='centroid'] Point from which the scaling will occur (string options: sw/se/nw/ne/center/centroid)
  * @param {boolean} [options.mutate=false] allows GeoJSON input to be mutated (significant performance increase if true)
  * @returns {GeoJSON} scaled GeoJSON
  * @example
@@ -60,7 +60,7 @@ function transformScale(geojson, factor, options) {
  * @private
  * @param {Feature|Geometry} feature GeoJSON Feature/Geometry
  * @param {number} factor of scaling, positive or negative values greater than 0
- * @param {string|Geometry|Feature<Point>|Array<number>} [origin="centroid"] Point from which the scaling will occur (string options: sw/se/nw/ne/center/centroid)
+ * @param {string|Coord} [origin="centroid"] Point from which the scaling will occur (string options: sw/se/nw/ne/center/centroid)
  * @returns {Feature|Geometry} scaled GeoJSON Feature/Geometry
  */
 function scale(feature, factor, origin) {
@@ -90,14 +90,14 @@ function scale(feature, factor, origin) {
  *
  * @private
  * @param {GeoJSON} geojson GeoJSON
- * @param {string|Geometry|Feature<Point>|Array<number>} origin sw/se/nw/ne/center/centroid
+ * @param {string|Coord} origin sw/se/nw/ne/center/centroid
  * @returns {Feature<Point>} Point origin
  */
 function defineOrigin(geojson, origin) {
     // Default params
     if (origin === undefined || origin === null) origin = 'centroid';
 
-    // Input Geometry|Feature<Point>|Array<number>
+    // Input Coord
     if (Array.isArray(origin) || typeof origin === 'object') return getCoord(origin);
 
     // Define BBox

@@ -53,6 +53,8 @@
     "@types/geojson": "*",
     "@types/node": "*",
     "@types/tape": "*",
+    "babel-plugin-external-helpers": "*",
+    "babel-preset-env": "*",
     "camelcase": "*",
     "d3-queue": "*",
     "decamelize": "*",
@@ -65,10 +67,14 @@
     "load-json-file": "*",
     "meow": "*",
     "progress": "*",
-    "babel-plugin-external-helpers": "*",
-    "babel-preset-env": "*",
+    "rollup": "*",
+    "rollup-plugin-buble": "*",
+    "rollup-plugin-commonjs": "*",
+    "rollup-plugin-node-resolve": "*",
+    "rollup-plugin-uglify": "*",
     "tape": "*",
-    "typescript": "*"
+    "typescript": "*",
+    "yamljs": "*"
   },
   "@std/esm": {
     "esm": "js",

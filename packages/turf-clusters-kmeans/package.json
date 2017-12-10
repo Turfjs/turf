@@ -1,19 +1,20 @@
 {
   "name": "@turf/clusters-kmeans",
-  "version": "5.0.4",
+  "version": "5.1.5",
   "description": "turf clusters-kmeans module",
-  "main": "main",
-  "module": "index",
-  "jsnext:main": "index",
+  "main": "main.js",
+  "module": "main.es.js",
   "types": "index.d.ts",
   "files": [
     "index.js",
     "index.d.ts",
-    "main.js"
+    "main.js",
+    "main.es.js"
   ],
   "scripts": {
     "pretest": "rollup -c ../../rollup.config.js",
     "test": "node -r @std/esm test.js",
+    "posttest": "node -r @std/esm ../../scripts/validate-es5-dependencies.js",
     "bench": "node -r @std/esm bench.js",
     "docs": "node ../../scripts/generate-readmes"
   },
@@ -42,9 +43,9 @@
   "homepage": "https://github.com/Turfjs/turf",
   "devDependencies": {
     "@std/esm": "*",
-    "@turf/centroid": "*",
-    "@turf/clusters": "*",
-    "@turf/random": "*",
+    "@turf/centroid": "^5.1.5",
+    "@turf/clusters": "^5.1.5",
+    "@turf/random": "^5.1.5",
     "benchmark": "*",
     "chromatism": "*",
     "concaveman": "*",
@@ -55,11 +56,11 @@
     "write-json-file": "*"
   },
   "dependencies": {
-    "@turf/clone": "^5.0.4",
-    "@turf/invariant": "^5.0.4",
-    "@turf/meta": "^5.0.4",
-    "skmeans": "0.9.7",
-    "@turf/helpers": "^5.0.4"
+    "@turf/clone": "^5.1.5",
+    "@turf/helpers": "^5.1.5",
+    "@turf/invariant": "^5.1.5",
+    "@turf/meta": "^5.1.5",
+    "skmeans": "0.9.7"
   },
   "@std/esm": {
     "esm": "js",

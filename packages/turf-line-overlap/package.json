@@ -1,20 +1,21 @@
 {
   "name": "@turf/line-overlap",
-  "version": "5.0.4",
+  "version": "5.1.5",
   "description": "turf line-overlap module",
-  "main": "main",
-  "module": "index",
-  "jsnext:main": "index",
+  "main": "main.js",
+  "module": "main.es.js",
   "types": "index.d.ts",
   "files": [
     "index.js",
     "index.d.ts",
     "main.js",
-    "lib"
+    "lib",
+    "main.es.js"
   ],
   "scripts": {
     "pretest": "rollup -c ../../rollup.config.js",
     "test": "node -r @std/esm test.js",
+    "posttest": "node -r @std/esm ../../scripts/validate-es5-dependencies.js",
     "bench": "node -r @std/esm bench.js",
     "docs": "node ../../scripts/generate-readmes"
   },
@@ -47,12 +48,12 @@
     "write-json-file": "*"
   },
   "dependencies": {
-    "@turf/boolean-point-on-line": "^5.0.4",
-    "@turf/helpers": "^5.0.4",
-    "@turf/invariant": "^5.0.4",
-    "@turf/line-segment": "^5.0.4",
-    "@turf/meta": "^5.0.4",
-    "@turf/nearest-point-on-line": "^5.0.4",
+    "@turf/boolean-point-on-line": "^5.1.5",
+    "@turf/helpers": "^5.1.5",
+    "@turf/invariant": "^5.1.5",
+    "@turf/line-segment": "^5.1.5",
+    "@turf/meta": "^5.1.5",
+    "@turf/nearest-point-on-line": "^5.1.5",
     "geojson-rbush": "2.1.0"
   },
   "@std/esm": {

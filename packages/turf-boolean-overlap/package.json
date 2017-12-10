@@ -1,19 +1,20 @@
 {
   "name": "@turf/boolean-overlap",
-  "version": "5.0.4",
+  "version": "5.1.5",
   "description": "turf boolean-overlap module",
-  "main": "main",
-  "module": "index",
-  "jsnext:main": "index",
+  "main": "main.js",
+  "module": "main.es.js",
   "types": "index.d.ts",
   "files": [
     "index.js",
     "index.d.ts",
-    "main.js"
+    "main.js",
+    "main.es.js"
   ],
   "scripts": {
     "pretest": "rollup -c ../../rollup.config.js",
     "test": "node -r @std/esm test.js",
+    "posttest": "node -r @std/esm ../../scripts/validate-es5-dependencies.js",
     "bench": "node -r @std/esm bench.js",
     "docs": "node ../../scripts/generate-readmes"
   },
@@ -49,12 +50,12 @@
     "tape": "*"
   },
   "dependencies": {
-    "@turf/invariant": "^5.0.4",
-    "@turf/line-intersect": "^5.0.4",
-    "@turf/line-overlap": "^5.0.4",
-    "@turf/meta": "^5.0.4",
-    "geojson-equality": "0.1.6",
-    "@turf/helpers": "^5.0.4"
+    "@turf/helpers": "^5.1.5",
+    "@turf/invariant": "^5.1.5",
+    "@turf/line-intersect": "^5.1.5",
+    "@turf/line-overlap": "^5.1.5",
+    "@turf/meta": "^5.1.5",
+    "geojson-equality": "0.1.6"
   },
   "@std/esm": {
     "esm": "js",

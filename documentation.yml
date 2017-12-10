@@ -1,0 +1,190 @@
+toc:
+  - name: Measurement
+  - along
+  - area
+  - bbox
+  - bboxPolygon
+  - bearing
+  - center
+  - centerOfMass
+  - centroid
+  - destination
+  - distance
+  - envelope
+  - length
+  - midpoint
+  - pointOnFeature
+  - polygonTangents
+  - pointToLineDistance
+  - rhumbBearing
+  - rhumbDestination
+  - rhumbDistance
+  - square
+  - greatCircle
+  - name: Coordinate Mutation
+  - cleanCoords
+  - flip
+  - rewind
+  - round
+  - truncate
+  - name: Transformation
+  - bboxClip
+  - bezierSpline
+  - buffer
+  - circle
+  - clone
+  - concave
+  - convex
+  - difference
+  - dissolve
+  - intersect
+  - lineOffset
+  - simplify
+  - tesselate
+  - transformRotate
+  - transformTranslate
+  - transformScale
+  - union
+  - voronoi
+  - name: Feature Conversion
+  - combine
+  - explode
+  - flatten
+  - lineToPolygon
+  - polygonize
+  - polygonToLine
+  - name: Misc
+  - kinks
+  - lineArc
+  - lineChunk
+  - lineIntersect
+  - lineOverlap
+  - lineSegment
+  - lineSlice
+  - lineSliceAlong
+  - lineSplit
+  - mask
+  - nearestPointOnLine
+  - sector
+  - shortestPath
+  - unkinkPolygon
+  - name: Helper
+  - featureCollection
+  - feature
+  - geometryCollection
+  - lineString
+  - multiLineString
+  - multiPoint
+  - multiPolygon
+  - point
+  - polygon
+  - name: Random
+  - randomPosition
+  - randomPoint
+  - randomLineString
+  - randomPolygon
+  - name: Data
+  - sample
+  - name: Interpolation
+  - interpolate
+  - isobands
+  - isolines
+  - planepoint
+  - tin
+  - name: Joins
+  - pointsWithinPolygon
+  - tag
+  - name: Grids
+  - hexGrid
+  - pointGrid
+  - squareGrid
+  - triangleGrid
+  - name: Classification
+  - nearestPoint
+  - name: Aggregation
+  - collect
+  - clustersDbscan
+  - clustersKmeans
+  - name: Meta
+  - coordAll
+  - coordEach
+  - coordReduce
+  - featureEach
+  - featureReduce
+  - flattenEach
+  - flattenReduce
+  - getCoord
+  - getCoords
+  - getGeom
+  - getType
+  - geomEach
+  - geomReduce
+  - propEach
+  - propReduce
+  - segmentEach
+  - segmentReduce
+  - getCluster
+  - clusterEach
+  - clusterReduce
+  - name: Assertions
+  - collectionOf
+  - containsNumber
+  - geojsonType
+  - featureOf
+  - name: Booleans
+  - booleanClockwise
+  - booleanContains
+  - booleanCrosses
+  - booleanDisjoint
+  - booleanEqual
+  - booleanOverlap
+  - booleanParallel
+  - booleanPointInPolygon
+  - booleanPointOnLine
+  - booleanWithin
+  - name: Unit Conversion
+  - bearingToAzimuth
+  - convertArea
+  - convertLength
+  - degreesToRadians
+  - lengthToRadians
+  - lengthToDegrees
+  - radiansToLength
+  - radiansToDegrees
+  - toMercator
+  - toWgs84
+paths:
+    GeoJSON: 'https://tools.ietf.org/html/rfc7946#section-3'
+    GeometryCollection: 'https://tools.ietf.org/html/rfc7946#section-3.1.8'
+    Point: 'https://tools.ietf.org/html/rfc7946#section-3.1.2'
+    Points: 'https://tools.ietf.org/html/rfc7946#section-3.1.2'
+    (Multi)Point: 'https://tools.ietf.org/html/rfc7946#section-3.1.2'
+    (Multi)Points: 'https://tools.ietf.org/html/rfc7946#section-3.1.2'
+    (Multi)Point(s): 'https://tools.ietf.org/html/rfc7946#section-3.1.2'
+    MultiPoint: 'https://tools.ietf.org/html/rfc7946#section-3.1.3'
+    MultiPoints: 'https://tools.ietf.org/html/rfc7946#section-3.1.3'
+    LineString: 'https://tools.ietf.org/html/rfc7946#section-3.1.4'
+    LineStrings: 'https://tools.ietf.org/html/rfc7946#section-3.1.4'
+    (Multi)LineString: 'https://tools.ietf.org/html/rfc7946#section-3.1.4'
+    (Multi)LineStrings: 'https://tools.ietf.org/html/rfc7946#section-3.1.4'
+    (Multi)LineString(s): 'https://tools.ietf.org/html/rfc7946#section-3.1.4'
+    MultiLineString: 'https://tools.ietf.org/html/rfc7946#section-3.1.5'
+    MultiLineStrings: 'https://tools.ietf.org/html/rfc7946#section-3.1.5'
+    Polygon: 'https://tools.ietf.org/html/rfc7946#section-3.1.6'
+    Polygons: 'https://tools.ietf.org/html/rfc7946#section-3.1.6'
+    (Multi)Polygon: 'https://tools.ietf.org/html/rfc7946#section-3.1.6'
+    (Multi)Polygons: 'https://tools.ietf.org/html/rfc7946#section-3.1.6'
+    (Multi)Polygon(s): 'https://tools.ietf.org/html/rfc7946#section-3.1.6'
+    MultiPolygon: 'https://tools.ietf.org/html/rfc7946#section-3.1.7'
+    MultiPolygons: 'https://tools.ietf.org/html/rfc7946#section-3.1.7'
+    Geometry: 'https://tools.ietf.org/html/rfc7946#section-3.1'
+    Feature: 'https://tools.ietf.org/html/rfc7946#section-3.2'
+    Features: 'https://tools.ietf.org/html/rfc7946#section-3.3'
+    FeatureCollection: 'https://tools.ietf.org/html/rfc7946#section-3.3'
+    Positon: 'https://tools.ietf.org/html/rfc7946#section-3.1.1'
+    GeometryObject: 'https://tools.ietf.org/html/rfc7946#section-3.1'
+    GeoJSONObject: 'https://tools.ietf.org/html/rfc7946#section-3'
+    GeoJSONText: 'https://tools.ietf.org/html/rfc7946#section-2'
+    BBox: 'https://tools.ietf.org/html/rfc7946#section-5'
+    BoundingBox: 'https://tools.ietf.org/html/rfc7946#section-5'
+    Coord: 'https://tools.ietf.org/html/rfc7946#section-3.1.1'

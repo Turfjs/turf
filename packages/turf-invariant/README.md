@@ -8,7 +8,7 @@ Unwrap a coordinate from a Point Feature, Geometry or a single coordinate.
 
 **Parameters**
 
--   `obj` **([Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)> | [Geometry](http://geojson.org/geojson-spec.html#geometry)&lt;[Point](http://geojson.org/geojson-spec.html#point)> | [Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;[Point](http://geojson.org/geojson-spec.html#point)>)** Object
+-   `obj` **([Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)> | [Geometry](https://tools.ietf.org/html/rfc7946#section-3.1)&lt;[Point](https://tools.ietf.org/html/rfc7946#section-3.1.2)> | [Feature](https://tools.ietf.org/html/rfc7946#section-3.2)&lt;[Point](https://tools.ietf.org/html/rfc7946#section-3.1.2)>)** Object
 
 **Examples**
 
@@ -27,7 +27,7 @@ Unwrap coordinates from a Feature, Geometry Object or an Array of numbers
 
 **Parameters**
 
--   `obj` **([Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)> | [Geometry](http://geojson.org/geojson-spec.html#geometry) \| [Feature](http://geojson.org/geojson-spec.html#feature-objects))** Object
+-   `obj` **([Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)> | [Geometry](https://tools.ietf.org/html/rfc7946#section-3.1) \| [Feature](https://tools.ietf.org/html/rfc7946#section-3.2))** Object
 
 **Examples**
 
@@ -56,7 +56,7 @@ Enforce expectations about types of GeoJSON objects for Turf.
 
 **Parameters**
 
--   `value` **[GeoJSON](http://geojson.org/geojson-spec.html#geojson-objects)** any GeoJSON object
+-   `value` **[GeoJSON](https://tools.ietf.org/html/rfc7946#section-3)** any GeoJSON object
 -   `type` **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** expected GeoJSON type
 -   `name` **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** name of calling function
 
@@ -65,12 +65,12 @@ Enforce expectations about types of GeoJSON objects for Turf.
 
 ## featureOf
 
-Enforce expectations about types of [Feature](http://geojson.org/geojson-spec.html#feature-objects) inputs for Turf.
+Enforce expectations about types of [Feature](https://tools.ietf.org/html/rfc7946#section-3.2) inputs for Turf.
 Internally this uses [geojsonType](#geojsontype) to judge geometry types.
 
 **Parameters**
 
--   `feature` **[Feature](http://geojson.org/geojson-spec.html#feature-objects)** a feature with an expected geometry type
+-   `feature` **[Feature](https://tools.ietf.org/html/rfc7946#section-3.2)** a feature with an expected geometry type
 -   `type` **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** expected GeoJSON type
 -   `name` **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** name of calling function
 
@@ -79,12 +79,12 @@ Internally this uses [geojsonType](#geojsontype) to judge geometry types.
 
 ## collectionOf
 
-Enforce expectations about types of [FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects) inputs for Turf.
+Enforce expectations about types of [FeatureCollection](https://tools.ietf.org/html/rfc7946#section-3.3) inputs for Turf.
 Internally this uses [geojsonType](#geojsontype) to judge geometry types.
 
 **Parameters**
 
--   `featureCollection` **[FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects)** a FeatureCollection for which features will be judged
+-   `featureCollection` **[FeatureCollection](https://tools.ietf.org/html/rfc7946#section-3.3)** a FeatureCollection for which features will be judged
 -   `type` **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** expected GeoJSON type
 -   `name` **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** name of calling function
 
@@ -97,7 +97,7 @@ Get Geometry from Feature or Geometry Object
 
 **Parameters**
 
--   `geojson` **([Feature](http://geojson.org/geojson-spec.html#feature-objects) \| [Geometry](http://geojson.org/geojson-spec.html#geometry))** GeoJSON Feature or Geometry Object
+-   `geojson` **([Feature](https://tools.ietf.org/html/rfc7946#section-3.2) \| [Geometry](https://tools.ietf.org/html/rfc7946#section-3.1))** GeoJSON Feature or Geometry Object
 
 **Examples**
 
@@ -116,7 +116,7 @@ var geom = turf.getGeom(point)
 
 -   Throws **[Error](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error)** if geojson is not a Feature or Geometry Object
 
-Returns **([Geometry](http://geojson.org/geojson-spec.html#geometry) | null)** GeoJSON Geometry Object
+Returns **([Geometry](https://tools.ietf.org/html/rfc7946#section-3.1) | null)** GeoJSON Geometry Object
 
 ## getGeomType
 
@@ -130,7 +130,7 @@ Get GeoJSON object's type, Geometry type is prioritize.
 
 **Parameters**
 
--   `geojson` **[GeoJSON](http://geojson.org/geojson-spec.html#geojson-objects)** GeoJSON object
+-   `geojson` **[GeoJSON](https://tools.ietf.org/html/rfc7946#section-3)** GeoJSON object
 -   `name` **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)?** name of the variable to display in error message
 
 **Examples**

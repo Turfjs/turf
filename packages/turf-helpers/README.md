@@ -20,11 +20,11 @@ Area of measurement factors based on 1 square meter.
 
 ## feature
 
-Wraps a GeoJSON [Geometry](http://geojson.org/geojson-spec.html#geometry) in a GeoJSON [Feature](http://geojson.org/geojson-spec.html#feature-objects).
+Wraps a GeoJSON [Geometry](https://tools.ietf.org/html/rfc7946#section-3.1) in a GeoJSON [Feature](https://tools.ietf.org/html/rfc7946#section-3.2).
 
 **Parameters**
 
--   `geometry` **[Geometry](http://geojson.org/geojson-spec.html#geometry)** input geometry
+-   `geometry` **[Geometry](https://tools.ietf.org/html/rfc7946#section-3.1)** input geometry
 -   `properties` **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)** an Object of key-value pairs to add as properties (optional, default `{}`)
 -   `options` **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)** Optional Parameters (optional, default `{}`)
     -   `options.bbox` **[Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)>?** Bounding Box Array [west, south, east, north] associated with the Feature
@@ -43,11 +43,11 @@ var feature = turf.feature(geometry);
 //=feature
 ```
 
-Returns **[Feature](http://geojson.org/geojson-spec.html#feature-objects)** a GeoJSON Feature
+Returns **[Feature](https://tools.ietf.org/html/rfc7946#section-3.2)** a GeoJSON Feature
 
 ## geometry
 
-Creates a GeoJSON [Geometry](http://geojson.org/geojson-spec.html#geometry) from a Geometry string type & coordinates.
+Creates a GeoJSON [Geometry](https://tools.ietf.org/html/rfc7946#section-3.1) from a Geometry string type & coordinates.
 For GeometryCollection type use `helpers.geometryCollection`
 
 **Parameters**
@@ -68,11 +68,11 @@ var geometry = turf.geometry(type, coordinates);
 //=geometry
 ```
 
-Returns **[Geometry](http://geojson.org/geojson-spec.html#geometry)** a GeoJSON Geometry
+Returns **[Geometry](https://tools.ietf.org/html/rfc7946#section-3.1)** a GeoJSON Geometry
 
 ## point
 
-Creates a [Point](http://geojson.org/geojson-spec.html#point) [Feature](http://geojson.org/geojson-spec.html#feature-objects) from a Position.
+Creates a [Point](https://tools.ietf.org/html/rfc7946#section-3.1.2) [Feature](https://tools.ietf.org/html/rfc7946#section-3.2) from a Position.
 
 **Parameters**
 
@@ -90,11 +90,11 @@ var point = turf.point([-75.343, 39.984]);
 //=point
 ```
 
-Returns **[Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;[Point](http://geojson.org/geojson-spec.html#point)>** a Point feature
+Returns **[Feature](https://tools.ietf.org/html/rfc7946#section-3.2)&lt;[Point](https://tools.ietf.org/html/rfc7946#section-3.1.2)>** a Point feature
 
 ## points
 
-Creates a [Point](http://geojson.org/geojson-spec.html#point) [FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects) from an Array of Point coordinates.
+Creates a [Point](https://tools.ietf.org/html/rfc7946#section-3.1.2) [FeatureCollection](https://tools.ietf.org/html/rfc7946#section-3.3) from an Array of Point coordinates.
 
 **Parameters**
 
@@ -116,11 +116,11 @@ var points = turf.points([
 //=points
 ```
 
-Returns **[FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects)&lt;[Point](http://geojson.org/geojson-spec.html#point)>** Point Feature
+Returns **[FeatureCollection](https://tools.ietf.org/html/rfc7946#section-3.3)&lt;[Point](https://tools.ietf.org/html/rfc7946#section-3.1.2)>** Point Feature
 
 ## polygon
 
-Creates a [Polygon](http://geojson.org/geojson-spec.html#polygon) [Feature](http://geojson.org/geojson-spec.html#feature-objects) from an Array of LinearRings.
+Creates a [Polygon](https://tools.ietf.org/html/rfc7946#section-3.1.6) [Feature](https://tools.ietf.org/html/rfc7946#section-3.2) from an Array of LinearRings.
 
 **Parameters**
 
@@ -138,11 +138,11 @@ var polygon = turf.polygon([[[-5, 52], [-4, 56], [-2, 51], [-7, 54], [-5, 52]]],
 //=polygon
 ```
 
-Returns **[Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;[Polygon](http://geojson.org/geojson-spec.html#polygon)>** Polygon Feature
+Returns **[Feature](https://tools.ietf.org/html/rfc7946#section-3.2)&lt;[Polygon](https://tools.ietf.org/html/rfc7946#section-3.1.6)>** Polygon Feature
 
 ## polygons
 
-Creates a [Polygon](http://geojson.org/geojson-spec.html#polygon) [FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects) from an Array of Polygon coordinates.
+Creates a [Polygon](https://tools.ietf.org/html/rfc7946#section-3.1.6) [FeatureCollection](https://tools.ietf.org/html/rfc7946#section-3.3) from an Array of Polygon coordinates.
 
 **Parameters**
 
@@ -163,11 +163,11 @@ var polygons = turf.polygons([
 //=polygons
 ```
 
-Returns **[FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects)&lt;[Polygon](http://geojson.org/geojson-spec.html#polygon)>** Polygon FeatureCollection
+Returns **[FeatureCollection](https://tools.ietf.org/html/rfc7946#section-3.3)&lt;[Polygon](https://tools.ietf.org/html/rfc7946#section-3.1.6)>** Polygon FeatureCollection
 
 ## lineString
 
-Creates a [LineString](http://geojson.org/geojson-spec.html#linestring) [Feature](http://geojson.org/geojson-spec.html#feature-objects) from an Array of Positions.
+Creates a [LineString](https://tools.ietf.org/html/rfc7946#section-3.1.4) [Feature](https://tools.ietf.org/html/rfc7946#section-3.2) from an Array of Positions.
 
 **Parameters**
 
@@ -187,11 +187,11 @@ var linestring2 = turf.lineString([[-14, 43], [-13, 40], [-15, 45], [-10, 49]], 
 //=linestring2
 ```
 
-Returns **[Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;[LineString](http://geojson.org/geojson-spec.html#linestring)>** LineString Feature
+Returns **[Feature](https://tools.ietf.org/html/rfc7946#section-3.2)&lt;[LineString](https://tools.ietf.org/html/rfc7946#section-3.1.4)>** LineString Feature
 
 ## lineStrings
 
-Creates a [LineString](http://geojson.org/geojson-spec.html#linestring) [FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects) from an Array of LineString coordinates.
+Creates a [LineString](https://tools.ietf.org/html/rfc7946#section-3.1.4) [FeatureCollection](https://tools.ietf.org/html/rfc7946#section-3.3) from an Array of LineString coordinates.
 
 **Parameters**
 
@@ -212,15 +212,15 @@ var linestrings = turf.lineStrings([
 //=linestrings
 ```
 
-Returns **[FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects)&lt;[LineString](http://geojson.org/geojson-spec.html#linestring)>** LineString FeatureCollection
+Returns **[FeatureCollection](https://tools.ietf.org/html/rfc7946#section-3.3)&lt;[LineString](https://tools.ietf.org/html/rfc7946#section-3.1.4)>** LineString FeatureCollection
 
 ## featureCollection
 
-Takes one or more [Features](http://geojson.org/geojson-spec.html#feature-objects) and creates a [FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects).
+Takes one or more [Features](https://tools.ietf.org/html/rfc7946#section-3.2) and creates a [FeatureCollection](https://tools.ietf.org/html/rfc7946#section-3.3).
 
 **Parameters**
 
--   `features` **[Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[Feature](http://geojson.org/geojson-spec.html#feature-objects)>** input features
+-   `features` **[Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[Feature](https://tools.ietf.org/html/rfc7946#section-3.2)>** input features
 -   `options` **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)** Optional Parameters (optional, default `{}`)
     -   `options.bbox` **[Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)>?** Bounding Box Array [west, south, east, north] associated with the Feature
     -   `options.id` **([string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) \| [number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number))?** Identifier associated with the Feature
@@ -241,7 +241,7 @@ var collection = turf.featureCollection([
 //=collection
 ```
 
-Returns **[FeatureCollection](http://geojson.org/geojson-spec.html#feature-collection-objects)** FeatureCollection of Features
+Returns **[FeatureCollection](https://tools.ietf.org/html/rfc7946#section-3.3)** FeatureCollection of Features
 
 ## multiLineString
 
@@ -266,7 +266,7 @@ var multiLine = turf.multiLineString([[[0,0],[10,10]]]);
 
 -   Throws **[Error](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error)** if no coordinates are passed
 
-Returns **[Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;[MultiLineString](http://geojson.org/geojson-spec.html#multilinestring)>** a MultiLineString feature
+Returns **[Feature](https://tools.ietf.org/html/rfc7946#section-3.2)&lt;[MultiLineString](https://tools.ietf.org/html/rfc7946#section-3.1.5)>** a MultiLineString feature
 
 ## multiPoint
 
@@ -291,7 +291,7 @@ var multiPt = turf.multiPoint([[0,0],[10,10]]);
 
 -   Throws **[Error](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error)** if no coordinates are passed
 
-Returns **[Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;[MultiPoint](http://geojson.org/geojson-spec.html#multipoint)>** a MultiPoint feature
+Returns **[Feature](https://tools.ietf.org/html/rfc7946#section-3.2)&lt;[MultiPoint](https://tools.ietf.org/html/rfc7946#section-3.1.3)>** a MultiPoint feature
 
 ## multiPolygon
 
@@ -316,7 +316,7 @@ var multiPoly = turf.multiPolygon([[[[0,0],[0,10],[10,10],[10,0],[0,0]]]]);
 
 -   Throws **[Error](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error)** if no coordinates are passed
 
-Returns **[Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;[MultiPolygon](http://geojson.org/geojson-spec.html#multipolygon)>** a multipolygon feature
+Returns **[Feature](https://tools.ietf.org/html/rfc7946#section-3.2)&lt;[MultiPolygon](https://tools.ietf.org/html/rfc7946#section-3.1.7)>** a multipolygon feature
 
 ## geometryCollection
 
@@ -325,7 +325,7 @@ coordinate array. Properties can be added optionally.
 
 **Parameters**
 
--   `geometries` **[Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[Geometry](http://geojson.org/geojson-spec.html#geometry)>** an array of GeoJSON Geometries
+-   `geometries` **[Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[Geometry](https://tools.ietf.org/html/rfc7946#section-3.1)>** an array of GeoJSON Geometries
 -   `properties` **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)** an Object of key-value pairs to add as properties (optional, default `{}`)
 -   `options` **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)** Optional Parameters (optional, default `{}`)
     -   `options.bbox` **[Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)>?** Bounding Box Array [west, south, east, north] associated with the Feature
@@ -347,7 +347,7 @@ var collection = turf.geometryCollection([pt, line]);
 //=collection
 ```
 
-Returns **[Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;[GeometryCollection](http://geojson.org/geojson-spec.html#geometrycollection)>** a GeoJSON GeometryCollection Feature
+Returns **[Feature](https://tools.ietf.org/html/rfc7946#section-3.2)&lt;[GeometryCollection](https://tools.ietf.org/html/rfc7946#section-3.1.8)>** a GeoJSON GeometryCollection Feature
 
 ## round
 
@@ -427,7 +427,7 @@ Converts an angle in radians to degrees
 
 Returns **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** degrees between 0 and 360 degrees
 
-## degreesToradians
+## degreesToRadians
 
 Converts an angle in degrees to radians
 

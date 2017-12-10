@@ -5,6 +5,7 @@ const glob = require('glob');
 const path = require('path');
 const load = require('load-json-file');
 const documentation = require('documentation');
+const yaml = require('yamljs');
 
 /**
  * When firing `npm run docs`:
@@ -19,40 +20,14 @@ const packages = currentFolder.includes('turf-') ?
 // Template for README Markdown
 const postfix = fs.readFileSync(path.join(__dirname, 'postfix.md'), 'utf8');
 
-const paths = {
-    GeoJSON: 'http://geojson.org/geojson-spec.html#geojson-objects',
-    GeometryCollection: 'http://geojson.org/geojson-spec.html#geometrycollection',
-    Point: 'http://geojson.org/geojson-spec.html#point',
-    Points: 'http://geojson.org/geojson-spec.html#point',
-    '(Multi)Point': 'http://geojson.org/geojson-spec.html#point',
-    '(Multi)Points': 'http://geojson.org/geojson-spec.html#point',
-    '(Multi)Point(s)': 'http://geojson.org/geojson-spec.html#point',
-    MultiPoint: 'http://geojson.org/geojson-spec.html#multipoint',
-    MultiPoints: 'http://geojson.org/geojson-spec.html#multipoint',
-    LineString: 'http://geojson.org/geojson-spec.html#linestring',
-    LineStrings: 'http://geojson.org/geojson-spec.html#linestring',
-    '(Multi)LineString': 'http://geojson.org/geojson-spec.html#linestring',
-    '(Multi)LineStrings': 'http://geojson.org/geojson-spec.html#linestring',
-    '(Multi)LineString(s)': 'http://geojson.org/geojson-spec.html#linestring',
-    MultiLineString: 'http://geojson.org/geojson-spec.html#multilinestring',
-    MultiLineStrings: 'http://geojson.org/geojson-spec.html#multilinestring',
-    Polygon: 'http://geojson.org/geojson-spec.html#polygon',
-    Polygons: 'http://geojson.org/geojson-spec.html#polygon',
-    '(Multi)Polygon': 'http://geojson.org/geojson-spec.html#polygon',
-    '(Multi)Polygons': 'http://geojson.org/geojson-spec.html#polygon',
-    '(Multi)Polygon(s)': 'http://geojson.org/geojson-spec.html#polygon',
-    MultiPolygon: 'http://geojson.org/geojson-spec.html#multipolygon',
-    MultiPolygons: 'http://geojson.org/geojson-spec.html#multipolygon',
-    Geometry: 'http://geojson.org/geojson-spec.html#geometry',
-    Feature: 'http://geojson.org/geojson-spec.html#feature-objects',
-    FeatureCollection: 'http://geojson.org/geojson-spec.html#feature-collection-objects'
-};
+const paths = yaml.parse(fs.readFileSync(path.join(__dirname, '..', 'documentation.yml'), 'utf8')).paths;
 
 packages.forEach(packagePath => {
     const directory = path.parse(packagePath).dir;
     const indexPath = path.join(directory, 'index.js');
     const pckg = load.sync(packagePath);
     const name = pckg.name;
+    const diagrams = glob.sync(path.join(directory, 'diagrams', '*')).filter(isImage);
 
     // Build Documentation
     documentation.build(indexPath, {shallow: true}).then(res => {
@@ -62,7 +37,20 @@ packages.forEach(packagePath => {
         // Format Markdown
         documentation.formats.md(res, {paths}).then(markdown => {
             markdown = `# ${name}\n\n${markdown}${postfix.replace(/{module}/, name)}`;
+            if (diagrams.length) markdown += '\n\n### Diagrams\n\n' + diagramToMarkdown(diagrams);
             fs.writeFileSync(path.join(directory, 'README.md'), markdown);
         }).catch(error => console.warning(error));
     }).catch(error => console.warning(error));
 });
+
+function isImage(image) {
+    return ['.gif', '.jpg', '.png'].indexOf(path.parse(image).ext) !== -1;
+}
+
+function diagramToMarkdown(diagrams) {
+    return diagrams.map(image => {
+        const {name, base} = path.parse(image);
+        return `![${name}](diagrams/${base})`;
+    }).join('\n');
+}
+

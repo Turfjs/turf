@@ -1,20 +1,21 @@
 {
   "name": "@turf/shortest-path",
-  "version": "5.0.4",
+  "version": "5.1.5",
   "description": "turf shortest-path module",
-  "main": "main",
-  "module": "index",
-  "jsnext:main": "index",
+  "main": "main.js",
+  "module": "main.es.js",
   "types": "index.d.ts",
   "files": [
     "index.js",
     "index.d.ts",
     "main.js",
-    "lib"
+    "lib",
+    "main.es.js"
   ],
   "scripts": {
     "pretest": "rollup -c ../../rollup.config.js",
     "test": "node -r @std/esm test.js",
+    "posttest": "node -r @std/esm ../../scripts/validate-es5-dependencies.js",
     "bench": "node -r @std/esm bench.js",
     "docs": "node ../../scripts/generate-readmes"
   },
@@ -39,7 +40,7 @@
   "homepage": "https://github.com/Turfjs/turf",
   "devDependencies": {
     "@std/esm": "*",
-    "@turf/truncate": "*",
+    "@turf/truncate": "^5.1.5",
     "benchmark": "*",
     "load-json-file": "*",
     "rollup": "*",
@@ -47,15 +48,15 @@
     "write-json-file": "*"
   },
   "dependencies": {
-    "@turf/bbox": "^5.0.4",
-    "@turf/bbox-polygon": "^5.0.4",
-    "@turf/boolean-point-in-polygon": "^5.0.4",
-    "@turf/clean-coords": "^5.0.4",
-    "@turf/distance": "^5.0.4",
-    "@turf/helpers": "^5.0.4",
-    "@turf/invariant": "^5.0.4",
-    "@turf/meta": "^5.0.4",
-    "@turf/transform-scale": "^5.0.4"
+    "@turf/bbox": "^5.1.5",
+    "@turf/bbox-polygon": "^5.1.5",
+    "@turf/boolean-point-in-polygon": "^5.1.5",
+    "@turf/clean-coords": "^5.1.5",
+    "@turf/distance": "^5.1.5",
+    "@turf/helpers": "^5.1.5",
+    "@turf/invariant": "^5.1.5",
+    "@turf/meta": "^5.1.5",
+    "@turf/transform-scale": "^5.1.5"
   },
   "@std/esm": {
     "esm": "js",

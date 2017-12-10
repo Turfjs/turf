@@ -4,15 +4,15 @@
 
 ## distance
 
-Calculates the distance between two [points](http://geojson.org/geojson-spec.html#point) in degrees, radians,
+Calculates the distance between two [points](https://tools.ietf.org/html/rfc7946#section-3.1.2) in degrees, radians,
 miles, or kilometers. This uses the
 [Haversine formula](http://en.wikipedia.org/wiki/Haversine_formula)
 to account for global curvature.
 
 **Parameters**
 
--   `from` **Coord** origin point
--   `to` **Coord** destination point
+-   `from` **[Coord](https://tools.ietf.org/html/rfc7946#section-3.1.1)** origin point
+-   `to` **[Coord](https://tools.ietf.org/html/rfc7946#section-3.1.1)** destination point
 -   `options` **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)** Optional parameters (optional, default `{}`)
     -   `options.units` **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** can be degrees, radians, miles, or kilometers (optional, default `'kilometers'`)
 

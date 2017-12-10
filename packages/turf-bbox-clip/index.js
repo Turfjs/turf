@@ -1,4 +1,4 @@
-var lineclip = require('lineclip');
+import lineclip from 'lineclip';
 import { getCoords } from '@turf/invariant';
 import { lineString, multiLineString, polygon, multiPolygon } from '@turf/helpers';
 
@@ -8,7 +8,7 @@ import { lineString, multiLineString, polygon, multiPolygon } from '@turf/helper
  *
  * @name bboxClip
  * @param {Feature<LineString|MultiLineString|Polygon|MultiPolygon>} feature feature to clip to the bbox
- * @param {Array<number>} bbox extent in [minX, minY, maxX, maxY] order
+ * @param {BBox} bbox extent in [minX, minY, maxX, maxY] order
  * @returns {Feature<LineString|MultiLineString|Polygon|MultiPolygon>} clipped Feature
  * @example
  * var bbox = [0, 0, 10, 10];

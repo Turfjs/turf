@@ -1,8 +1,8 @@
-import { point, lineString } from '@turf/helpers'
+import { point, lineString, Properties } from '@turf/helpers'
 import rhumbBearing from './'
 
-const point1 = point([-75.343, 39.984], {"marker-color": "#F00"})
-const point2 = point([-75.534, 39.123], {"marker-color": "#00F"})
+const point1 = point<Properties>([-75.343, 39.984], {"marker-color": "#F00"})
+const point2 = point<Properties>([-75.534, 39.123], {"marker-color": "#00F"})
 const bearing = rhumbBearing(point1, point2)
 
 //addToMap

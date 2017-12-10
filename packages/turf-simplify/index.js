@@ -1,12 +1,12 @@
-var simplifyJS = require('simplify-js');
 import cleanCoords from '@turf/clean-coords';
 import clone from '@turf/clone';
 import { geomEach } from '@turf/meta';
 import { isObject } from '@turf/helpers';
+import simplifyJS from './lib/simplify';
 
 /**
  * Takes a {@link GeoJSON} object and returns a simplified version. Internally uses
- * [simplify-js](http://mourner.github.io/simplify-js/) to perform simplification.
+ * [simplify-js](http://mourner.github.io/simplify-js/) to perform simplification using the Ramer-Douglas-Peucker algorithm.
  *
  * @name simplify
  * @param {GeoJSON} geojson object to be simplified
@@ -48,9 +48,9 @@ function simplify(geojson, options) {
     // Optional parameters
     options = options || {};
     if (!isObject(options)) throw new Error('options is invalid');
-    var tolerance = options.tolerance;
-    var highQuality = options.highQuality;
-    var mutate = options.mutate;
+    var tolerance = options.tolerance !== undefined ? options.tolerance : 1;
+    var highQuality = options.highQuality || false;
+    var mutate = options.mutate || false;
 
     if (!geojson) throw new Error('geojson is required');
     if (tolerance && tolerance < 0) throw new Error('invalid tolerance');

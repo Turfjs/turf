@@ -12,8 +12,8 @@ Boolean-Crosses returns t (TRUE) for only multipoint/polygon, multipoint/linestr
 
 **Parameters**
 
--   `feature1` **([Geometry](http://geojson.org/geojson-spec.html#geometry) \| [Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;any>)** GeoJSON Feature or Geometry
--   `feature2` **([Geometry](http://geojson.org/geojson-spec.html#geometry) \| [Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;any>)** GeoJSON Feature or Geometry
+-   `feature1` **([Geometry](https://tools.ietf.org/html/rfc7946#section-3.1) \| [Feature](https://tools.ietf.org/html/rfc7946#section-3.2)&lt;any>)** GeoJSON Feature or Geometry
+-   `feature2` **([Geometry](https://tools.ietf.org/html/rfc7946#section-3.1) \| [Feature](https://tools.ietf.org/html/rfc7946#section-3.2)&lt;any>)** GeoJSON Feature or Geometry
 
 **Examples**
 
@@ -51,3 +51,8 @@ Or install the Turf module that includes it as a function:
 ```sh
 $ npm install @turf/turf
 ```
+
+
+### Diagrams
+
+![DE-9IM-crosses](diagrams/DE-9IM-crosses.gif)

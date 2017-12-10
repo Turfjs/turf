@@ -4,13 +4,13 @@
 
 ## booleanPointInPolygon
 
-Takes a [Point](http://geojson.org/geojson-spec.html#point) and a [Polygon](http://geojson.org/geojson-spec.html#polygon) or [MultiPolygon](http://geojson.org/geojson-spec.html#multipolygon) and determines if the point resides inside the polygon. The polygon can
+Takes a [Point](https://tools.ietf.org/html/rfc7946#section-3.1.2) and a [Polygon](https://tools.ietf.org/html/rfc7946#section-3.1.6) or [MultiPolygon](https://tools.ietf.org/html/rfc7946#section-3.1.7) and determines if the point resides inside the polygon. The polygon can
 be convex or concave. The function accounts for holes.
 
 **Parameters**
 
--   `point` **[Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;[Point](http://geojson.org/geojson-spec.html#point)>** input point
--   `polygon` **[Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;([Polygon](http://geojson.org/geojson-spec.html#polygon) \| [MultiPolygon](http://geojson.org/geojson-spec.html#multipolygon))>** input polygon or multipolygon
+-   `point` **[Coord](https://tools.ietf.org/html/rfc7946#section-3.1.1)** input point
+-   `polygon` **[Feature](https://tools.ietf.org/html/rfc7946#section-3.2)&lt;([Polygon](https://tools.ietf.org/html/rfc7946#section-3.1.6) \| [MultiPolygon](https://tools.ietf.org/html/rfc7946#section-3.1.7))>** input polygon or multipolygon
 -   `options` **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)** Optional parameters (optional, default `{}`)
     -   `options.ignoreBoundary` **[boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** True if polygon boundary should be ignored when determining if the point is inside the polygon otherwise false. (optional, default `false`)
 
