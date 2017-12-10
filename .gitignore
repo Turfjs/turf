@@ -1,5 +1,6 @@
 dist
 main.js
+main.es.js
 main.mjs
 main.min.js
 *.min.js
