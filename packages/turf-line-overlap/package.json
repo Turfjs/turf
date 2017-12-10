@@ -3,14 +3,14 @@
   "version": "5.1.0",
   "description": "turf line-overlap module",
   "main": "main.js",
-  "module": "main.mjs",
+  "module": "main.es.js",
   "types": "index.d.ts",
   "files": [
     "index.js",
     "index.d.ts",
     "main.js",
     "lib",
-    "main.mjs"
+    "main.es.js"
   ],
   "scripts": {
     "pretest": "rollup -c ../../rollup.config.js",
