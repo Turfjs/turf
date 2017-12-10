@@ -41,13 +41,12 @@
   "homepage": "https://github.com/Turfjs/turf",
   "devDependencies": {
     "@std/esm": "*",
-    "@turf/center": "^5.1.0",
-    "@turf/truncate": "^5.1.0",
+    "@turf/center": "*",
+    "@turf/truncate": "*",
     "benchmark": "*",
     "glob": "*",
     "load-json-file": "*",
     "rollup": "*",
-    "rollup-plugin-buble": "*",
     "tape": "*",
     "write-json-file": "*"
   },

@@ -38,11 +38,10 @@
   "devDependencies": {
     "@mapbox/geojsonhint": "*",
     "@std/esm": "*",
-    "@turf/truncate": "^5.1.0",
+    "@turf/truncate": "*",
     "benchmark": "*",
     "load-json-file": "*",
     "rollup": "*",
-    "rollup-plugin-buble": "*",
     "tape": "*",
     "write-json-file": "*"
   },

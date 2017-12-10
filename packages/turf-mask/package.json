@@ -38,7 +38,6 @@
     "load-json-file": "*",
     "mkdirp": "*",
     "rollup": "*",
-    "rollup-plugin-buble": "*",
     "tape": "*",
     "write-json-file": "*"
   },

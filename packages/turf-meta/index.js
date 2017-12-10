@@ -586,7 +586,7 @@ export function flattenEach(geojson, callback) {
         case 'Point':
         case 'LineString':
         case 'Polygon':
-            callback(feature(geometry, properties, {bbox, id}), featureIndex, 0);
+            callback(feature(geometry, properties, {bbox: bbox, id: id}), featureIndex, 0);
             return;
         }
 

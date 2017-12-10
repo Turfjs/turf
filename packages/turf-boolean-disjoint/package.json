@@ -43,7 +43,6 @@
     "boolean-shapely": "*",
     "load-json-file": "*",
     "rollup": "*",
-    "rollup-plugin-buble": "*",
     "tape": "*"
   },
   "dependencies": {

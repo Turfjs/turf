@@ -36,7 +36,6 @@
     "benchmark": "*",
     "glob": "*",
     "rollup": "*",
-    "rollup-plugin-buble": "*",
     "tape": "*"
   },
   "dependencies": {

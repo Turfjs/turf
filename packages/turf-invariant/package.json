@@ -40,7 +40,6 @@
     "@std/esm": "*",
     "benchmark": "*",
     "rollup": "*",
-    "rollup-plugin-buble": "*",
     "tape": "*"
   },
   "dependencies": {

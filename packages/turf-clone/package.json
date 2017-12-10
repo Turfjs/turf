@@ -36,10 +36,9 @@
   "homepage": "https://github.com/Turfjs/turf",
   "devDependencies": {
     "@std/esm": "*",
-    "@turf/meta": "^5.1.0",
+    "@turf/meta": "*",
     "benchmark": "*",
     "rollup": "*",
-    "rollup-plugin-buble": "*",
     "tape": "*"
   },
   "dependencies": {

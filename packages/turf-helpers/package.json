@@ -44,7 +44,6 @@
     "@std/esm": "*",
     "benchmark": "*",
     "rollup": "*",
-    "rollup-plugin-buble": "*",
     "tape": "*"
   },
   "@std/esm": {

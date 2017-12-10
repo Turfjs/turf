@@ -44,7 +44,6 @@
     "benchmark": "*",
     "load-json-file": "*",
     "rollup": "*",
-    "rollup-plugin-buble": "*",
     "tape": "*",
     "write-json-file": "*"
   },

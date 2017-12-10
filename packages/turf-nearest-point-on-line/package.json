@@ -29,13 +29,12 @@
   "homepage": "https://github.com/Turfjs/turf",
   "devDependencies": {
     "@std/esm": "*",
-    "@turf/along": "^5.1.0",
-    "@turf/length": "^5.1.0",
-    "@turf/truncate": "^5.1.0",
+    "@turf/along": "*",
+    "@turf/length": "*",
+    "@turf/truncate": "*",
     "benchmark": "*",
     "load-json-file": "*",
     "rollup": "*",
-    "rollup-plugin-buble": "*",
     "tape": "*",
     "write-json-file": "*"
   },

@@ -144,8 +144,8 @@
     "@turf/invariant" "^5.1.0"
 
 "@turf/buffer@5.1.x":
-  version "5.1.0"
-  resolved "https://registry.yarnpkg.com/@turf/buffer/-/buffer-5.1.0.tgz#29c4ee57eb788a0af223284b838d849b22dc1cda"
+  version "5.1.1"
+  resolved "https://registry.yarnpkg.com/@turf/buffer/-/buffer-5.1.1.tgz#26076f98c8bd73d4835fe9918fbfae774ba477e7"
   dependencies:
     "@turf/bbox" "^5.1.0"
     "@turf/center" "^5.1.0"
@@ -290,8 +290,8 @@
     "@turf/invariant" "^5.1.0"
 
 "@turf/difference@5.1.x":
-  version "5.1.0"
-  resolved "https://registry.yarnpkg.com/@turf/difference/-/difference-5.1.0.tgz#7fab53aa8953679fd2e84920014b5ca6324299a5"
+  version "5.1.1"
+  resolved "https://registry.yarnpkg.com/@turf/difference/-/difference-5.1.1.tgz#e0d347ac874e8f3a8ff916a323a3c983bd354c78"
   dependencies:
     "@turf/area" "^5.1.0"
     "@turf/helpers" "^5.1.0"
@@ -396,8 +396,8 @@
     "@turf/triangle-grid" "^5.1.0"
 
 "@turf/intersect@5.1.x", "@turf/intersect@^5.1.0":
-  version "5.1.0"
-  resolved "https://registry.yarnpkg.com/@turf/intersect/-/intersect-5.1.0.tgz#3a080015a0a45ab0a89c1b0707ed59acc8147ac1"
+  version "5.1.1"
+  resolved "https://registry.yarnpkg.com/@turf/intersect/-/intersect-5.1.1.tgz#133567b672eb98cba632de2f3ab591760c41d865"
   dependencies:
     "@turf/clean-coords" "^5.1.0"
     "@turf/helpers" "^5.1.0"
@@ -552,8 +552,8 @@
     rbush "^2.0.1"
 
 "@turf/meta@*", "@turf/meta@5.1.x", "@turf/meta@^5.1.0":
-  version "5.1.0"
-  resolved "https://registry.yarnpkg.com/@turf/meta/-/meta-5.1.0.tgz#a52b2aa959f7ce7c90f00ee6e999c0f22a87138c"
+  version "5.1.1"
+  resolved "https://registry.yarnpkg.com/@turf/meta/-/meta-5.1.1.tgz#0526442338e831d48a6dcc9a03b2c7d691b667fb"
   dependencies:
     "@turf/helpers" "^5.1.0"
 
@@ -856,8 +856,8 @@
     "@turf/meta" "^5.1.0"
 
 "@turf/union@5.1.x", "@turf/union@^5.1.0":
-  version "5.1.0"
-  resolved "https://registry.yarnpkg.com/@turf/union/-/union-5.1.0.tgz#5004f57f165ab0620fbe644ca5aa24b012820138"
+  version "5.1.1"
+  resolved "https://registry.yarnpkg.com/@turf/union/-/union-5.1.1.tgz#5dd0c7ff250b01b705a0d4f39e1b737d05e92a06"
   dependencies:
     "@turf/helpers" "^5.1.0"
     turf-jsts "*"
@@ -3417,11 +3417,11 @@ minimist@^1.1.0, minimist@^1.2.0, minimist@~1.2.0:
   resolved "https://registry.yarnpkg.com/minimist/-/minimist-1.2.0.tgz#a35008b20f41383eec1fb914f4cd5df79a264284"
 
 mixin-deep@^1.2.0:
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/mixin-deep/-/mixin-deep-1.2.0.tgz#d02b8c6f8b6d4b8f5982d3fd009c4919851c3fe2"
+  version "1.3.0"
+  resolved "https://registry.yarnpkg.com/mixin-deep/-/mixin-deep-1.3.0.tgz#47a8732ba97799457c8c1eca28f95132d7e8150a"
   dependencies:
     for-in "^1.0.2"
-    is-extendable "^0.1.1"
+    is-extendable "^1.0.1"
 
 "mkdirp@>=0.5 0", mkdirp@^0.5.0, mkdirp@^0.5.1:
   version "0.5.1"
@@ -4636,8 +4636,8 @@ tunnel-agent@^0.6.0:
     safe-buffer "^5.0.1"
 
 turf-jsts@*:
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/turf-jsts/-/turf-jsts-1.2.0.tgz#127c4e4332a59ecee917fca31d493996e8254be0"
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/turf-jsts/-/turf-jsts-1.2.1.tgz#4f7ac5f1163cd71bfb919efb4e25857cd3c9412a"
 
 tweetnacl@^0.14.3, tweetnacl@~0.14.0:
   version "0.14.5"
@@ -4655,7 +4655,7 @@ typedarray@^0.0.6, typedarray@~0.0.5:
   version "0.0.6"
   resolved "https://registry.yarnpkg.com/typedarray/-/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
 
-uglify-js@*, uglify-js@^3.0.9:
+uglify-js@^3.0.9:
   version "3.2.1"
   resolved "https://registry.yarnpkg.com/uglify-js/-/uglify-js-3.2.1.tgz#d6427fd45a25fefc5d196689c0c772a6915e10fe"
   dependencies:
