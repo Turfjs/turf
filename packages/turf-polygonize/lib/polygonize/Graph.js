@@ -33,7 +33,8 @@ function validateGeoJson(geoJson) {
  * This graph is directed (both directions are created)
  */
 class Graph {
-    /** Creates a graph from a GeoJSON.
+    /**
+     * Creates a graph from a GeoJSON.
      *
      * @param {FeatureCollection<LineString>} geoJson - it must comply with the restrictions detailed in the index
      * @returns {Graph} - The newly created graph

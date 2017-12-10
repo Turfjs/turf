@@ -1,4 +1,5 @@
 import booleanPointInPolygon from '@turf/boolean-point-in-polygon';
+import {point} from '@turf/helpers';
 
 /**
  * Returns the direction of the point q relative to the vector p1 -> p2.
@@ -14,7 +15,7 @@ import booleanPointInPolygon from '@turf/boolean-point-in-polygon';
  *    -1 if q is cw (right) from p1->p2,
  *     0 if q is colinear with p1->p2
  */
-export function orientationIndex(p1, p2, q) {
+function orientationIndex(p1, p2, q) {
     const dx1 = p2[0] - p1[0],
         dy1 = p2[1] - p1[1],
         dx2 = q[0] - p2[0],
@@ -32,7 +33,7 @@ export function orientationIndex(p1, p2, q) {
  * @param {Feature<Polygon>} env2 - Envelope
  * @returns {boolean} - True if the envelopes are equal
  */
-export function envelopeIsEqual(env1, env2) {
+function envelopeIsEqual(env1, env2) {
     const envX1 = env1.geometry.coordinates.map(c => c[0]),
         envY1 = env1.geometry.coordinates.map(c => c[1]),
         envX2 = env2.geometry.coordinates.map(c => c[0]),
@@ -55,8 +56,8 @@ export function envelopeIsEqual(env1, env2) {
  * @param {Feature<Polygon>} env - Envelope
  * @returns {boolean} - True if env is contained in self
  */
-export function envelopeContains(self, env) {
-    return env.geometry.coordinates[0].every(c => booleanPointInPolygon(c, self));
+function envelopeContains(self, env) {
+    return env.geometry.coordinates[0].every(c => booleanPointInPolygon(point(c), self));
 }
 
 /**
@@ -66,6 +67,13 @@ export function envelopeContains(self, env) {
  * @param {number[]} coord2 - Second coordinate
  * @returns {boolean} - True if coordinates are equal
  */
-export function coordinatesEqual(coord1, coord2) {
+function coordinatesEqual(coord1, coord2) {
     return coord1[0] === coord2[0] && coord1[1] === coord2[1];
 }
+
+export {
+    orientationIndex,
+    envelopeIsEqual,
+    envelopeContains,
+    coordinatesEqual
+};

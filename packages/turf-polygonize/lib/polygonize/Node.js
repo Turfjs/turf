@@ -1,7 +1,7 @@
 import {orientationIndex} from './util';
 
 /**
- * @namespace
+ * Node
  */
 class Node {
     static buildId(coordinates) {
@@ -38,9 +38,10 @@ class Node {
     }
 
     /**
+     * Sorts outer edges in CCW way.
+     *
      * @memberof Node
      * @private
-     * Sorts outer edges in CCW way.
      */
     sortOuterEdges() {
         if (!this.outerEdgesSorted) {

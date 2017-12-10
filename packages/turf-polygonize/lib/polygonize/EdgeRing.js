@@ -1,7 +1,7 @@
+import {orientationIndex, envelopeIsEqual, envelopeContains, coordinatesEqual} from './util';
+import {multiPoint, polygon, point} from '@turf/helpers';
 import envelope from '@turf/envelope';
 import booleanPointInPolygon from '@turf/boolean-point-in-polygon';
-import {multiPoint, polygon, point} from '@turf/helpers';
-import {orientationIndex, envelopeIsEqual, envelopeContains, coordinatesEqual} from './util';
 
 /**
  * Ring of edges which form a polygon.
@@ -20,6 +20,7 @@ class EdgeRing {
     /**
      * Add an edge to the ring, inserting it in the last position.
      *
+     * @memberof EdgeRing
      * @param {Edge} edge - Edge to be inserted
      */
     push(edge) {
@@ -32,6 +33,7 @@ class EdgeRing {
     /**
      * Get Edge.
      *
+     * @memberof EdgeRing
      * @param {number} i - Index
      * @returns {Edge} - Edge in the i position
      */
@@ -42,6 +44,7 @@ class EdgeRing {
     /**
      * Getter of length property.
      *
+     * @memberof EdgeRing
      * @returns {number} - Length of the edge ring.
      */
     get length() {
@@ -51,6 +54,7 @@ class EdgeRing {
     /**
      * Similar to Array.prototype.forEach for the list of Edges in the EdgeRing.
      *
+     * @memberof EdgeRing
      * @param {Function} f - The same function to be passed to Array.prototype.forEach
      */
     forEach(f) {
@@ -60,6 +64,7 @@ class EdgeRing {
     /**
      * Similar to Array.prototype.map for the list of Edges in the EdgeRing.
      *
+     * @memberof EdgeRing
      * @param {Function} f - The same function to be passed to Array.prototype.map
      * @returns {Array} - The mapped values in the function
      */
@@ -70,6 +75,7 @@ class EdgeRing {
     /**
      * Similar to Array.prototype.some for the list of Edges in the EdgeRing.
      *
+     * @memberof EdgeRing
      * @param {Function} f - The same function to be passed to Array.prototype.some
      * @returns {boolean} - True if an Edge check the condition
      */
@@ -84,6 +90,7 @@ class EdgeRing {
      * equal (in 2D)
      * geos::geom::LinearRing::validateConstruction
      *
+     * @memberof EdgeRing
      * @returns {boolean} - Validity of the EdgeRing
      */
     isValid() {
@@ -97,6 +104,7 @@ class EdgeRing {
      * A ring is a hole if it is oriented counter-clockwise.
      * Similar implementation of geos::algorithm::CGAlgorithms::isCCW
      *
+     * @memberof EdgeRing
      * @returns {boolean} - true: if it is a hole
      */
     isHole() {
@@ -119,6 +127,7 @@ class EdgeRing {
     /**
      * Creates a MultiPoint representing the EdgeRing (discarts edges directions).
      *
+     * @memberof EdgeRing
      * @returns {Feature<MultiPoint>} - Multipoint representation of the EdgeRing
      */
     toMultiPoint() {
@@ -128,6 +137,7 @@ class EdgeRing {
     /**
      * Creates a Polygon representing the EdgeRing.
      *
+     * @memberof EdgeRing
      * @returns {Feature<Polygon>} - Polygon representation of the Edge Ring
      */
     toPolygon() {
@@ -141,6 +151,7 @@ class EdgeRing {
     /**
      * Calculates the envelope of the EdgeRing.
      *
+     * @memberof EdgeRing
      * @returns {Feature<Polygon>} - envelope
      */
     getEnvelope() {
