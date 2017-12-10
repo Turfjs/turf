@@ -1,6 +1,6 @@
 {
   "name": "@turf/line-to-polygon",
-  "version": "5.1.4",
+  "version": "5.1.5",
   "description": "turf line-to-polygon module",
   "main": "main.js",
   "module": "main.es.js",
@@ -47,9 +47,9 @@
     "write-json-file": "*"
   },
   "dependencies": {
-    "@turf/bbox": "^5.1.4",
-    "@turf/helpers": "^5.1.4",
-    "@turf/invariant": "^5.1.4"
+    "@turf/bbox": "^5.1.5",
+    "@turf/helpers": "^5.1.5",
+    "@turf/invariant": "^5.1.5"
   },
   "@std/esm": {
     "esm": "js",

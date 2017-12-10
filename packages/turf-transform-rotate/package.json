@@ -1,6 +1,6 @@
 {
   "name": "@turf/transform-rotate",
-  "version": "5.1.4",
+  "version": "5.1.5",
   "description": "turf transform-rotate module",
   "main": "main.js",
   "module": "main.es.js",
@@ -40,7 +40,7 @@
   "homepage": "https://github.com/Turfjs/turf",
   "devDependencies": {
     "@std/esm": "*",
-    "@turf/truncate": "^5.1.4",
+    "@turf/truncate": "^5.1.5",
     "benchmark": "*",
     "load-json-file": "*",
     "rollup": "*",
@@ -48,14 +48,14 @@
     "write-json-file": "*"
   },
   "dependencies": {
-    "@turf/centroid": "^5.1.4",
-    "@turf/clone": "^5.1.4",
-    "@turf/helpers": "^5.1.4",
-    "@turf/invariant": "^5.1.4",
-    "@turf/meta": "^5.1.4",
-    "@turf/rhumb-bearing": "^5.1.4",
-    "@turf/rhumb-destination": "^5.1.4",
-    "@turf/rhumb-distance": "^5.1.4"
+    "@turf/centroid": "^5.1.5",
+    "@turf/clone": "^5.1.5",
+    "@turf/helpers": "^5.1.5",
+    "@turf/invariant": "^5.1.5",
+    "@turf/meta": "^5.1.5",
+    "@turf/rhumb-bearing": "^5.1.5",
+    "@turf/rhumb-destination": "^5.1.5",
+    "@turf/rhumb-distance": "^5.1.5"
   },
   "@std/esm": {
     "esm": "js",

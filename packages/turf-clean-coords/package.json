@@ -1,6 +1,6 @@
 {
   "name": "@turf/clean-coords",
-  "version": "5.1.4",
+  "version": "5.1.5",
   "description": "turf clean-coords module",
   "main": "main.js",
   "module": "main.es.js",
@@ -38,7 +38,7 @@
   "homepage": "https://github.com/Turfjs/turf",
   "devDependencies": {
     "@std/esm": "*",
-    "@turf/truncate": "^5.1.4",
+    "@turf/truncate": "^5.1.5",
     "benchmark": "*",
     "load-json-file": "*",
     "rollup": "*",
@@ -46,8 +46,8 @@
     "write-json-file": "*"
   },
   "dependencies": {
-    "@turf/helpers": "^5.1.4",
-    "@turf/invariant": "^5.1.4"
+    "@turf/helpers": "^5.1.5",
+    "@turf/invariant": "^5.1.5"
   },
   "@std/esm": {
     "esm": "js",

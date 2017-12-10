@@ -1,6 +1,6 @@
 {
   "name": "@turf/point-grid",
-  "version": "5.1.4",
+  "version": "5.1.5",
   "description": "turf point-grid module",
   "main": "main.js",
   "module": "main.es.js",
@@ -40,8 +40,8 @@
   "homepage": "https://github.com/Turfjs/turf",
   "devDependencies": {
     "@std/esm": "*",
-    "@turf/bbox-polygon": "^5.1.4",
-    "@turf/truncate": "^5.1.4",
+    "@turf/bbox-polygon": "^5.1.5",
+    "@turf/truncate": "^5.1.5",
     "benchmark": "*",
     "load-json-file": "*",
     "rollup": "*",
@@ -49,10 +49,10 @@
     "write-json-file": "*"
   },
   "dependencies": {
-    "@turf/boolean-within": "^5.1.4",
-    "@turf/distance": "^5.1.4",
-    "@turf/helpers": "^5.1.4",
-    "@turf/invariant": "^5.1.4"
+    "@turf/boolean-within": "^5.1.5",
+    "@turf/distance": "^5.1.5",
+    "@turf/helpers": "^5.1.5",
+    "@turf/invariant": "^5.1.5"
   },
   "@std/esm": {
     "esm": "js",
