@@ -2,18 +2,18 @@ import { coordEach, geomEach } from '@turf/meta';
 import { featureCollection, polygon, multiPolygon } from '@turf/helpers';
 
 /**
- * Smooths a {@link Polygon}. Based on [Chaikin's algorithm](http://graphics.cs.ucdavis.edu/education/CAGDNotes/Chaikins-Algorithm/Chaikins-Algorithm.html).
+ * Smooths a {@link Polygon} or {@link MultiPolygon}. Based on [Chaikin's algorithm](http://graphics.cs.ucdavis.edu/education/CAGDNotes/Chaikins-Algorithm/Chaikins-Algorithm.html).
  * Warning: may create degenerate polygons.
  *
  * @name polygonSmooth
- * @param {FeatureCollection<Polygon>} inputPolys to smooth
+ * @param {FeatureCollection<Polygon|MultiPolygon>} inputPolys to smooth
  * @param {Object} [options={}] Optional parameters
  * @param {string} [options.iterations=1] THe number of times to smooth the polygon. A higher value means a smoother polygon.
  * @returns {FeatureCollection<Polygon>} FeatureCollection containing the smoothed polygon/poylgons
  * @example
  * var polygon = turf.polygon([[[11, 0], [22, 4], [31, 0], [31, 11], [21, 15], [11, 11], [11, 0]]]);
  *
- * var smoothed = turf.polygonSmooth(polygon)
+ * var smoothed = turf.polygonSmooth(polygon, {iterations: 3})
  *
  * //addToMap
  * var addToMap = [smoothed, polygon];

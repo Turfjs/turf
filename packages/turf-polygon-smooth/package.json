@@ -2,19 +2,21 @@
   "name": "@turf/polygon-smooth",
   "version": "5.0.0",
   "description": "turf polygon smooth module",
-  "main": "main",
-  "module": "index",
-  "jsnext:main": "index",
+  "main": "main.js",
+  "module": "main.es.js",
   "types": "index.d.ts",
   "files": [
     "index.js",
     "index.d.ts",
-    "main.js"
+    "main.js",
+    "main.es.js"
   ],
   "scripts": {
     "pretest": "rollup -c ../../rollup.config.js",
     "test": "node -r @std/esm test.js",
-    "bench": "node -r @std/esm bench.js"
+    "posttest": "node -r @std/esm ../../scripts/validate-es5-dependencies.js",
+    "bench": "node -r @std/esm bench.js",
+    "docs": "node ../../scripts/generate-readmes"
   },
   "repository": {
     "type": "git",
@@ -44,7 +46,7 @@
   },
   "dependencies": {
     "@turf/helpers": "^5.0.1",
-    "@turf/meta": "^5.1.0"
+    "@turf/meta": "^5.1.6"
   },
   "@std/esm": {
     "esm": "js",

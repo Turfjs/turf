@@ -1,8 +1,8 @@
-import { Feature, FeatureCollection, Polygon } from '@turf/helpers'
+import { Feature, FeatureCollection, Polygon, MultiPolygon } from '@turf/helpers'
 
 /**
  * http://turfjs.org/docs/#polygonSmooth
  */
-export default function <T extends Polygon >(
+export default function <T extends Polygon | MultiPolygon>(
     polygon: Feature<T> | T
-): FeatureCollection<Polygon>;
+): FeatureCollection<Polygon | MultiPolygon>;
