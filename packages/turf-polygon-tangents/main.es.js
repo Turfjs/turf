@@ -1,5 +1,5 @@
 import { getCoords, getType } from '@turf/invariant';
-import { point, featureCollection } from '@turf/helpers';
+import { featureCollection, point } from '@turf/helpers';
 import calcBbox from '@turf/bbox';
 import explode from '@turf/explode';
 import nearestPoint from '@turf/nearest-point';
@@ -35,6 +35,7 @@ function polygonTangents(pt, polygon) {
     // If the point lies inside the polygon bbox then we need to be a bit trickier
     // otherwise points lying inside reflex angles on concave polys can have issues
     if (pointCoords[0] > bbox[0] && pointCoords[0] < bbox[2] && pointCoords[1] > bbox[1] && pointCoords[1] < bbox[3]) {
+        console.log('Df');
         nearest = nearestPoint(pt, explode(polygon));
         nearestPtIndex = nearest.properties.featureIndex;
     }
