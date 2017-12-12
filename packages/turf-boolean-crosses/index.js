@@ -1,7 +1,7 @@
 import { point } from '@turf/helpers';
-import inside from '@turf/inside';
+import booleanPointInPolygon from '@turf/boolean-point-in-polygon';
 import lineIntersect from '@turf/line-intersect';
-import polyToLinestring from '@turf/polygon-to-linestring';
+import polygonToLine from '@turf/polygon-to-line';
 import { getGeom, getType } from '@turf/invariant';
 
 /**
@@ -104,15 +104,11 @@ function doLineStringsCross(lineString1, lineString2) {
 }
 
 function doLineStringAndPolygonCross(lineString, polygon) {
-    var doLinesIntersect = lineIntersect(lineString, polyToLinestring(polygon));
+    var doLinesIntersect = lineIntersect(lineString, polygonToLine(polygon));
     if (doLinesIntersect.features.length > 0) {
         return true;
     }
     return false;
-}
-
-function isPointInPoly(polygon, point) {
-    return inside(point, polygon);
 }
 
 function doesMultiPointCrossPoly(multiPoint, polygon) {
@@ -121,7 +117,7 @@ function doesMultiPointCrossPoly(multiPoint, polygon) {
     var pointLength = multiPoint.coordinates[0].length;
     var i = 0;
     while (i < pointLength && foundIntPoint && foundExtPoint) {
-        if (isPointInPoly(polygon, point(multiPoint.coordinates[0][i]), true)) {
+        if (booleanPointInPolygon(point(multiPoint.coordinates[0][i]), polygon)) {
             foundIntPoint = true;
         } else {
             foundExtPoint = true;

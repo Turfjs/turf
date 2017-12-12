@@ -1,10 +1,10 @@
 import center from '@turf/center';
 import turfBbox from '@turf/bbox';
-import { BufferOp, GeoJSONReader, GeoJSONWriter } from 'jsts-es';
+import { BufferOp, GeoJSONReader, GeoJSONWriter } from 'turf-jsts';
 import { toWgs84, toMercator } from '@turf/projection';
 import { geomEach, featureEach } from '@turf/meta';
 import { geoTransverseMercator } from 'd3-geo';
-import { feature, featureCollection, radiansToDistance, distanceToRadians, earthRadius } from '@turf/helpers';
+import { feature, featureCollection, radiansToLength, lengthToRadians, earthRadius } from '@turf/helpers';
 
 /**
  * Calculates a buffer for input features for a given radius. Units supported are miles, kilometers, and degrees.
@@ -18,7 +18,7 @@ import { feature, featureCollection, radiansToDistance, distanceToRadians, earth
  * @name buffer
  * @param {FeatureCollection|Geometry|Feature<any>} geojson input to be buffered
  * @param {number} radius distance to draw the buffer (negative values are allowed)
- * @param {Object} [options] Optional parameters
+ * @param {Object} [options={}] Optional parameters
  * @param {string} [options.units="kilometers"] any of the options supported by turf units
  * @param {number} [options.steps=64] number of steps
  * @returns {FeatureCollection|Feature<Polygon|MultiPolygon>|undefined} buffered features
@@ -111,7 +111,7 @@ function bufferFeature(geojson, radius, units, steps) {
     // JSTS buffer operation
     var reader = new GeoJSONReader();
     var geom = reader.read(projected);
-    var distance = radiansToDistance(distanceToRadians(radius, units), 'meters');
+    var distance = radiansToLength(lengthToRadians(radius, units), 'meters');
     var buffered = BufferOp.bufferOp(geom, distance);
     var writer = new GeoJSONWriter();
     buffered = writer.write(buffered);

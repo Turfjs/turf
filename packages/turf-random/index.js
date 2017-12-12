@@ -8,8 +8,9 @@ import {
 } from '@turf/helpers';
 
 /**
- * Random Position
+ * Returns a random position within a {@link bounding box}.
  *
+ * @name randomPosition
  * @param {Array<number>} [bbox=[-180, -90, 180, 90]] a bounding box inside of which positions are placed.
  * @returns {Array<number>} Position [longitude, latitude]
  * @example
@@ -24,8 +25,9 @@ export function randomPosition(bbox) {
 }
 
 /**
- * Random Point
+ * Returns a random {@link point}.
  *
+ * @name randomPoint
  * @param {number} [count=1] how many geometries will be generated
  * @param {Object} [options={}] Optional parameters
  * @param {Array<number>} [options.bbox=[-180, -90, 180, 90]] a bounding box inside of which geometries are placed.
@@ -49,8 +51,9 @@ export function randomPoint(count, options) {
 }
 
 /**
- * Random Polygon
+ * Returns a random {@link polygon}.
  *
+ * @name randomPolygon
  * @param {number} [count=1] how many geometries will be generated
  * @param {Object} [options={}] Optional parameters
  * @param {Array<number>} [options.bbox=[-180, -90, 180, 90]] a bounding box inside of which geometries are placed.
@@ -106,8 +109,9 @@ export function randomPolygon(count, options) {
 }
 
 /**
- * Random LineString
+ * Returns a random {@link linestring}.
  *
+ * @name randomLineString
  * @param {number} [count=1] how many geometries will be generated
  * @param {Object} [options={}] Optional parameters
  * @param {Array<number>} [options.bbox=[-180, -90, 180, 90]] a bounding box inside of which geometries are placed.

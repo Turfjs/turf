@@ -1,4 +1,4 @@
-var GeojsonEquality = require('geojson-equality');
+import GeojsonEquality from 'geojson-equality';
 import cleanCoords from '@turf/clean-coords';
 import { getType } from '@turf/invariant';
 

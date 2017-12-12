@@ -31,7 +31,7 @@ test('turf-nearest-point-to-line', t => {
         const units = (geojson.properties || {}).units;
 
         const nearest = nearestPointToLine(points, line, {units: units});
-        const distance = round(nearest.properties.dist, 13);
+        const distance = round(nearest.properties.dist, 6);
         nearest.properties.dist = distance;
         nearest.properties = Object.assign(nearest.properties, {
             'marker-color': '#F00',
@@ -55,7 +55,8 @@ test('turf-nearest-point-to-line -- throws', t => {
     t.throws(() => nearestPointToLine(null, line), /points is required/, 'missing points');
     t.throws(() => nearestPointToLine(points, null), /line is required/, 'missing line');
 
-    t.throws(() => nearestPointToLine(points, line, 'invalid'), /units is invalid/, 'invalid units');
+    t.throws(() => nearestPointToLine(points, line, {units: 'invalid'}), /units is invalid/, 'invalid units');
+    t.throws(() => nearestPointToLine(points, line, 'invalid'), /options is invalid/, 'options is invalid');
     t.throws(() => nearestPointToLine(points, points), /line must be a LineString/, 'invalid line');
     t.throws(() => nearestPointToLine(line, line), /points must be a Point Collection/, 'invalid points');
 

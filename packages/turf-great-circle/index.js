@@ -1,12 +1,12 @@
 import { getCoord } from '@turf/invariant';
-import { GreatCircle } from './arc';
+import { GreatCircle } from './lib/arc';
 
 /**
  * Calculate great circles routes as {@link LineString}
  *
  * @name greatCircle
- * @param {Geometry|Feature<Point>|Array<number>} start source point feature
- * @param {Geometry|Feature<Point>|Array<number>} end destination point feature
+ * @param {Coord} start source point feature
+ * @param {Coord} end destination point feature
  * @param {Object} [options={}] Optional parameters
  * @param {Object} [options.properties={}] line feature properties
  * @param {number} [options.npoints=100] number of points

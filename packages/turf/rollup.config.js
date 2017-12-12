@@ -1,28 +1,22 @@
-import uglify from 'rollup-plugin-uglify-es';
-import nodeResolve from 'rollup-plugin-node-resolve';
-import commonjs from 'rollup-plugin-commonjs';
+import node from 'rollup-plugin-node-resolve'
+import commonjs from 'rollup-plugin-commonjs'
+import uglify from 'rollup-plugin-uglify'
+import pckg from './package.json'
 
-function assign(options) {
-    const file = options.file;
-    const format = options.format || 'umd';
-    const plugins = [
-        commonjs({ include: 'node_modules/**' }),
-        nodeResolve({ module: true, jsnext: true })
-    ].concat(options.plugins || []);
-    return {
-        input: 'index.js',
-        output: {
-            file: file,
-            format: format,
-            extend: true,
-            sourcemap: true,
-            name: 'turf'
-        },
-        plugins: plugins,
-    };
-}
+const input = 'index.js'
 
-export default [
-    assign({format: 'cjs', file: 'turf.js'}),
-    assign({format: 'umd', file: 'turf.min.js', plugins: [uglify()]}),
-];
+export default [{
+    input,
+    output: [
+        {file: pckg.main, format: 'umd', name: 'turf'},
+        {file: pckg.module, format: 'es'},
+    ],
+    plugins: [commonjs(), node()]
+},
+{
+    input,
+    output: [
+        {file: pckg.browser, format: 'umd', name: 'turf'}
+    ],
+    plugins: [commonjs(), node(), uglify()]
+}];

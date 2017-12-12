@@ -1,5 +1,5 @@
 import { getCoord } from '@turf/invariant';
-import { isObject } from '@turf/helpers';
+import { isObject, degreesToRadians, radiansToDegrees } from '@turf/helpers';
 
 //http://en.wikipedia.org/wiki/Haversine_formula
 //http://www.movable-type.co.uk/scripts/latlong.html
@@ -9,9 +9,9 @@ import { isObject } from '@turf/helpers';
  * i.e. the angle measured in degrees from the north line (0 degrees)
  *
  * @name bearing
- * @param {Geometry|Feature<Point>|Array<number>} start starting Point
- * @param {Geometry|Feature<Point>|Array<number>} end ending Point
- * @param {Object} [options] Optional parameters
+ * @param {Coord} start starting Point
+ * @param {Coord} end ending Point
+ * @param {Object} [options={}] Optional parameters
  * @param {boolean} [options.final=false] calculates the final bearing if true
  * @returns {number} bearing in decimal degrees, between -180 and 180 degrees (positive clockwise)
  * @example
@@ -35,29 +35,26 @@ function bearing(start, end, options) {
     // Reverse calculation
     if (final === true) return calculateFinalBearing(start, end);
 
-    var degrees2radians = Math.PI / 180;
-    var radians2degrees = 180 / Math.PI;
     var coordinates1 = getCoord(start);
     var coordinates2 = getCoord(end);
 
-    var lon1 = degrees2radians * coordinates1[0];
-    var lon2 = degrees2radians * coordinates2[0];
-    var lat1 = degrees2radians * coordinates1[1];
-    var lat2 = degrees2radians * coordinates2[1];
+    var lon1 = degreesToRadians(coordinates1[0]);
+    var lon2 = degreesToRadians(coordinates2[0]);
+    var lat1 = degreesToRadians(coordinates1[1]);
+    var lat2 = degreesToRadians(coordinates2[1]);
     var a = Math.sin(lon2 - lon1) * Math.cos(lat2);
     var b = Math.cos(lat1) * Math.sin(lat2) -
         Math.sin(lat1) * Math.cos(lat2) * Math.cos(lon2 - lon1);
 
-    var bear = radians2degrees * Math.atan2(a, b);
-
-    return bear;
+    return radiansToDegrees(Math.atan2(a, b));
 }
 
 /**
  * Calculates Final Bearing
+ *
  * @private
- * @param {Feature<Point>} start starting Point
- * @param {Feature<Point>} end ending Point
+ * @param {Coord} start starting Point
+ * @param {Coord} end ending Point
  * @returns {number} bearing
  */
 function calculateFinalBearing(start, end) {

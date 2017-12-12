@@ -4,13 +4,13 @@
 
 ## rhumbBearing
 
-Takes two [points](http://geojson.org/geojson-spec.html#point) and finds the bearing angle between them along a Rhumb line
+Takes two [points](https://tools.ietf.org/html/rfc7946#section-3.1.2) and finds the bearing angle between them along a Rhumb line
 i.e. the angle measured in degrees start the north line (0 degrees)
 
 **Parameters**
 
--   `start` **(([Geometry](http://geojson.org/geojson-spec.html#geometry) \| [Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;[Point](http://geojson.org/geojson-spec.html#point)>) | Position)** starting Point
--   `end` **(([Geometry](http://geojson.org/geojson-spec.html#geometry) \| [Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;[Point](http://geojson.org/geojson-spec.html#point)>) | Position)** ending Point
+-   `start` **[Coord](https://tools.ietf.org/html/rfc7946#section-3.1.1)** starting Point
+-   `end` **[Coord](https://tools.ietf.org/html/rfc7946#section-3.1.1)** ending Point
 -   `options` **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)?** Optional parameters
     -   `options.final` **[boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** calculates the final bearing if true (optional, default `false`)
 

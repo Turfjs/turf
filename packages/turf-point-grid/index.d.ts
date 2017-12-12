@@ -3,12 +3,12 @@ import { Units, BBox, Polygon, MultiPolygon, Feature, FeatureCollection, Point, 
 /**
  * http://turfjs.org/docs/#pointgrid
  */
-export default function pointGrid(
+export default function pointGrid<P = Properties>(
     bbox: BBox,
     cellSide: number,
     options?: {
         units?: Units,
-        properties?: Properties,
+        properties?: P,
         mask?: Feature<Polygon | MultiPolygon> | Polygon | MultiPolygon;
     }
-): FeatureCollection<Point>;
+): FeatureCollection<Point, P>;

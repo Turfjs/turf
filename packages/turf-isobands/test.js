@@ -10,8 +10,8 @@ import { getCoords } from '@turf/invariant';
 import { lineString } from '@turf/helpers';
 import { featureEach } from '@turf/meta';
 import { randomPolygon }  from '@turf/random';
-import isobands from './index';
-import matrixToGrid from './matrix-to-grid';
+import matrixToGrid from './lib/matrix-to-grid';
+import isobands from './';
 
 const directories = {
     in: path.join(__dirname, 'test', 'in') + path.sep,

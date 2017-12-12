@@ -1,11 +1,11 @@
-import equal from './deep-equal';
 import rbush from 'geojson-rbush';
 import lineSegment from '@turf/line-segment';
-import pointOnLine from '@turf/point-on-line';
+import nearestPointOnLine from '@turf/nearest-point-on-line';
 import booleanPointOnLine from '@turf/boolean-point-on-line';
 import { getCoords } from '@turf/invariant';
-import { featureCollection, isObject } from '@turf/helpers';
 import { featureEach, segmentEach } from '@turf/meta';
+import { featureCollection, isObject } from '@turf/helpers';
+import equal from './lib/deep-equal';
 
 /**
  * Takes any LineString or Polygon and returns the overlapping lines between both features.
@@ -61,16 +61,16 @@ function lineOverlap(line1, line2, options) {
                 } else if (
                     (tolerance === 0) ?
                         booleanPointOnLine(coordsSegment[0], match) && booleanPointOnLine(coordsSegment[1], match) :
-                        pointOnLine(match, coordsSegment[0]).properties.dist <= tolerance &&
-                        pointOnLine(match, coordsSegment[1]).properties.dist <= tolerance) {
+                        nearestPointOnLine(match, coordsSegment[0]).properties.dist <= tolerance &&
+                        nearestPointOnLine(match, coordsSegment[1]).properties.dist <= tolerance) {
                     doesOverlaps = true;
                     if (overlapSegment) overlapSegment = concatSegment(overlapSegment, segment);
                     else overlapSegment = segment;
                 } else if (
                     (tolerance === 0) ?
                         booleanPointOnLine(coordsMatch[0], segment) && booleanPointOnLine(coordsMatch[1], segment) :
-                        pointOnLine(segment, coordsMatch[0]).properties.dist <= tolerance &&
-                        pointOnLine(segment, coordsMatch[1]).properties.dist <= tolerance) {
+                        nearestPointOnLine(segment, coordsMatch[0]).properties.dist <= tolerance &&
+                        nearestPointOnLine(segment, coordsMatch[1]).properties.dist <= tolerance) {
                     // Do not define (doesOverlap = true) since more matches can occur within the same segment
                     // doesOverlaps = true;
                     if (overlapSegment) overlapSegment = concatSegment(overlapSegment, match);

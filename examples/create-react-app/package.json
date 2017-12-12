@@ -1,0 +1,14 @@
+{
+  "private": true,
+  "name": "create-react-app",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "react-scripts build"
+  },
+  "devDependencies": {
+    "react-scripts": "*"
+  },
+  "dependencies": {
+    "@turf/turf": "*"
+  }
+}

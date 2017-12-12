@@ -1,9 +1,9 @@
 import bbox from '@turf/bbox';
 import { coordEach } from '@turf/meta';
-import { multiLineString, featureCollection, isObject } from '@turf/helpers';
 import { collectionOf } from '@turf/invariant';
-import isoContours from './marchingsquares-isocontours';
-import gridToMatrix from './grid-to-matrix';
+import { multiLineString, featureCollection, isObject } from '@turf/helpers';
+import isoContours from './lib/marchingsquares-isocontours';
+import gridToMatrix from './lib/grid-to-matrix';
 
 /**
  * Takes a grid {@link FeatureCollection} of {@link Point} features with z-values and an array of
@@ -23,15 +23,16 @@ import gridToMatrix from './grid-to-matrix';
  * var extent = [0, 30, 20, 50];
  * var cellWidth = 100;
  * var pointGrid = turf.pointGrid(extent, cellWidth, {units: 'miles'});
+ *
  * for (var i = 0; i < pointGrid.features.length; i++) {
  *     pointGrid.features[i].properties.temperature = Math.random() * 10;
  * }
  * var breaks = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
  *
- * var isolines = turf.isolines(pointGrid, breaks, {zProperty: 'temperature'});
+ * var lines = turf.isolines(pointGrid, breaks, {zProperty: 'temperature'});
  *
  * //addToMap
- * var addToMap = [isolines];
+ * var addToMap = [lines];
  */
 function isolines(pointGrid, breaks, options) {
     // Optional parameters
@@ -50,8 +51,8 @@ function isolines(pointGrid, breaks, options) {
 
     // Isoline methods
     var matrix = gridToMatrix(pointGrid, {zProperty: zProperty, flip: true});
-    var isolines = createIsoLines(matrix, breaks, zProperty, commonProperties, breaksProperties);
-    var scaledIsolines = rescaleIsolines(isolines, matrix, pointGrid);
+    var createdIsoLines = createIsoLines(matrix, breaks, zProperty, commonProperties, breaksProperties);
+    var scaledIsolines = rescaleIsolines(createdIsoLines, matrix, pointGrid);
 
     return featureCollection(scaledIsolines);
 }
@@ -72,7 +73,7 @@ function isolines(pointGrid, breaks, options) {
  * @returns {Array<MultiLineString>} isolines
  */
 function createIsoLines(matrix, breaks, zProperty, commonProperties, breaksProperties) {
-    var isolines = [];
+    var results = [];
     for (var i = 1; i < breaks.length; i++) {
         var threshold = +breaks[i]; // make sure it's a number
 
@@ -84,21 +85,21 @@ function createIsoLines(matrix, breaks, zProperty, commonProperties, breaksPrope
         properties[zProperty] = threshold;
         var isoline = multiLineString(isoContours(matrix, threshold), properties);
 
-        isolines.push(isoline);
+        results.push(isoline);
     }
-    return isolines;
+    return results;
 }
 
 /**
  * Translates and scales isolines
  *
  * @private
- * @param {Array<MultiLineString>} isolines to be rescaled
+ * @param {Array<MultiLineString>} createdIsoLines to be rescaled
  * @param {Array<Array<number>>} matrix Grid Data
  * @param {Object} points Points by Latitude
  * @returns {Array<MultiLineString>} isolines
  */
-function rescaleIsolines(isolines, matrix, points) {
+function rescaleIsolines(createdIsoLines, matrix, points) {
 
     // get dimensions (on the map) of the original grid
     var gridBbox = bbox(points); // [ minX, minY, maxX, maxY ]
@@ -122,11 +123,11 @@ function rescaleIsolines(isolines, matrix, points) {
         point[1] = point[1] * scaleY + y0;
     };
 
-    // resize and shift each point/line of the isolines
-    isolines.forEach(function (isoline) {
+    // resize and shift each point/line of the createdIsoLines
+    createdIsoLines.forEach(function (isoline) {
         coordEach(isoline, resize);
     });
-    return isolines;
+    return createdIsoLines;
 }
 
 export default isolines;

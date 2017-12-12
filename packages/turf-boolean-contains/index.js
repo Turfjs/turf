@@ -1,4 +1,4 @@
-import inside from '@turf/inside';
+import booleanPointInPolygon from '@turf/boolean-point-in-polygon';
 import calcBbox from '@turf/bbox';
 import isPointOnLine from '@turf/boolean-point-on-line';
 import { getGeom, getCoords, getType } from '@turf/invariant';
@@ -59,7 +59,7 @@ function booleanContains(feature1, feature2) {
     case 'Polygon':
         switch (type2) {
         case 'Point':
-            return inside(geom2, geom1, {ignoreBoundary: true});
+            return booleanPointInPolygon(geom2, geom1, {ignoreBoundary: true});
         case 'LineString':
             return isLineInPoly(geom1, geom2);
         case 'Polygon':
@@ -121,7 +121,7 @@ function isMultiPointOnLine(lineString, multiPoint) {
 
 function isMultiPointInPoly(polygon, multiPoint) {
     for (var i = 0; i < multiPoint.coordinates.length; i++) {
-        if (!inside(multiPoint.coordinates[i], polygon, {ignoreBoundary: true})) {
+        if (!booleanPointInPolygon(multiPoint.coordinates[i], polygon, {ignoreBoundary: true})) {
             return false;
         }
     }
@@ -152,7 +152,7 @@ function isLineInPoly(polygon, linestring) {
     }
     for (i; i < linestring.coordinates.length - 1; i++) {
         var midPoint = getMidpoint(linestring.coordinates[i], linestring.coordinates[i + 1]);
-        if (inside({type: 'Point', coordinates: midPoint}, polygon, { ignoreBoundary: true })) {
+        if (booleanPointInPolygon({type: 'Point', coordinates: midPoint}, polygon, { ignoreBoundary: true })) {
             output = true;
             break;
         }
@@ -176,7 +176,7 @@ function isPolyInPoly(feature1, feature2) {
         return false;
     }
     for (var i = 0; i < feature2.coordinates[0].length; i++) {
-        if (!inside(feature2.coordinates[0][i], feature1)) {
+        if (!booleanPointInPolygon(feature2.coordinates[0][i], feature1)) {
             return false;
         }
     }
@@ -195,8 +195,8 @@ function doBBoxOverlap(bbox1, bbox2) {
  * compareCoords
  *
  * @private
- * @param {Array<number>} pair1 point [x,y]
- * @param {Array<number>} pair2 point [x,y]
+ * @param {Position} pair1 point [x,y]
+ * @param {Position} pair2 point [x,y]
  * @returns {boolean} true/false if coord pairs match
  */
 function compareCoords(pair1, pair2) {

@@ -2,21 +2,26 @@ import fs from 'fs';
 import path from 'path';
 import glob from 'glob';
 import test from 'tape';
-import documentation from 'documentation';
 import camelcase from 'camelcase';
-import * as turf from '.';
+import documentation from 'documentation';
+import * as turf from './';
 
 // Helpers
 const directory = path.join(__dirname, '..');
 let modules = [];
 for (const name of fs.readdirSync(directory)) {
     const pckgPath = path.join(directory, name, 'package.json');
+    const index = fs.readFileSync(path.join(directory, name, 'index.js'), 'utf8');
+    const test = fs.readFileSync(path.join(directory, name, 'index.js'), 'utf8');
+
     if (!fs.existsSync(pckgPath)) continue;
     const pckg = JSON.parse(fs.readFileSync(pckgPath));
     modules.push({
         name,
-        dir: path.join(directory, name),
         pckg,
+        index,
+        test,
+        dir: path.join(directory, name),
         dependencies: pckg.dependencies || {},
         devDependencies: pckg.devDependencies || {}
     });
@@ -26,7 +31,7 @@ modules = modules.filter(({name}) => name !== 'turf');
 
 test('turf -- required files', t => {
     for (const {name, dir} of modules) {
-        for (const filename of ['test.js', 'bench.js', 'index.js', 'index.d.ts', 'LICENSE', 'README.md', 'yarn.lock']) {
+        for (const filename of ['test.js', 'index.js', 'index.d.ts', 'LICENSE', 'README.md']) {
             if (!fs.existsSync(path.join(dir, filename))) t.fail(`${name} ${filename} is required`);
         }
         // if (!fs.existsSync(path.join(dir, 'types.ts'))) t.fail(`${name} types.ts is required`);
@@ -41,16 +46,27 @@ test('turf -- invalid dependencies', t => {
             if (dependencies[invalidDependency]) t.fail(`${name} ${invalidDependency} should be defined as devDependencies`);
         }
         if (devDependencies['eslint'] || devDependencies['eslint-config-mourner']) t.fail(`${name} eslint is handled at the root level`);
+        if (devDependencies['@turf/helpers']) t.fail(`${name} @turf/helpers should be located in Dependencies instead of DevDependencies`);
         // if (devDependencies['mkdirp']) t.fail(`${name} tests should not have to create folders`);
     }
     t.skip('remove "mkdirp" from testing');
     t.end();
 });
 
+test('turf -- * wildcard devDependencies', t => {
+    for (const {name, devDependencies} of modules) {
+        for (const dependency of Object.keys(devDependencies)) {
+            if (dependency.includes('@turf')) continue
+            if (devDependencies[dependency] !== '*') t.fail(`${name} ${dependency} devDependencies must use *`);
+        }
+    }
+    t.end();
+});
+
 test('turf -- strict version dependencies', t => {
     for (const {name, dependencies} of modules) {
-        if (dependencies['jsts'] && dependencies['jsts'] !== '1.4.0') t.fail(name + ' jsts must use v1.4.0');
-        if (dependencies['geojson-rbush'] && dependencies['geojson-rbush'] !== '2.1.0') t.fail(name + ' geojson-rbush must use v2.1.0');
+        if (dependencies['jsts']) t.fail(name + ' jsts must use turf-jsts');
+        if (dependencies['jsts-es']) t.fail(name + ' jsts-es must use turf-jsts');
     }
     t.end();
 });
@@ -71,7 +87,27 @@ test('turf -- check if files exists', t => {
         for (const file of files) {
             // ignore Rollup bundle
             if (file === 'main.js') continue;
+            if (file === 'main.es.js') continue;
             if (!fs.existsSync(path.join(dir, file))) t.fail(`${name} missing file ${file} in "files"`);
+        }
+    }
+    t.end();
+});
+
+test('turf -- external files must be in the lib folder', t => {
+    for (const {name, pckg} of modules) {
+        const {files} = pckg;
+        for (const file of files) {
+            switch (file) {
+            case 'main.js':
+            case 'main.es.js':
+            case 'index.js':
+            case 'index.d.ts':
+            case 'lib':
+                break;
+            default:
+                t.fail(`${name} external files must be in the lib folder`)
+            }
         }
     }
     t.end();
@@ -107,9 +143,9 @@ test('turf -- scoped package name', t => {
 test('turf -- pre-defined attributes in package.json', t => {
     for (const {name, pckg} of modules) {
         if (pckg.author !== 'Turf Authors') t.fail(name + ' (author) should be "Turf Authors"');
-        if (pckg.main !== 'main') t.fail(`${name} (main) must be "main" in package.json`);
-        if (pckg.module !== 'index') t.fail(`${name} (module) must be "index" in package.json`);
-        if (pckg['jsnext:main'] !== 'index') t.fail(`${name} (jsnext:main) must be "index" in package.json`);
+        if (pckg.main !== 'main.js') t.fail(`${name} (main) must be "main.js" in package.json`);
+        if (pckg.module !== 'main.es.js') t.fail(`${name} (module) must be "main.es.js" in package.json`);
+        if (pckg['jsnext:main']) t.fail(`${name} (jsnext:main) is no longer required in favor of using (module) in package.json`);
         if (pckg.types !== 'index.d.ts') t.fail(`${name} (types) must be "index.d.ts" in package.json`);
         if (!pckg.bugs || pckg.bugs.url !== 'https://github.com/Turfjs/turf/issues') t.fail(`${name} (bugs.url) must be "https://github.com/Turfjs/turf/issues" in package.json`);
         if (pckg.homepage !== 'https://github.com/Turfjs/turf') t.fail(`${name} (homepage) must be "https://github.com/Turfjs/turf" in package.json`);
@@ -150,6 +186,92 @@ test('turf -- parsing dependencies from index.js', t => {
     t.end();
 });
 
+// Test for missing modules
+test('turf -- missing modules', t => {
+    const files = {
+        typescript: fs.readFileSync(path.join(__dirname, 'index.d.ts')),
+        modules: fs.readFileSync(path.join(__dirname, 'index.js'))
+    };
+
+    modules.forEach(({name}) => {
+        name = camelcase(name.replace('turf-', ''));
+        // name exception with linestring => lineString
+        name = name.replace('linestring', 'lineString').replace('Linestring', 'LineString');
+
+        if (!files.typescript.includes(name)) t.skip(name + ' is missing from index.d.ts');
+        if (!files.modules.includes(name)) t.skip(name + ' is missing from index.js');
+
+        switch (typeof turf[name]) {
+        case 'function': break;
+        case 'object': break;
+        case 'undefined':
+            t.skip(name + ' is missing from index.js');
+        }
+    });
+    t.end();
+});
+
+const deprecated = {
+    modules: [
+        '@turf/idw',
+        '@turf/line-distance',
+        '@turf/point-on-line',
+        '@turf/bezier',
+        '@turf/within',
+        '@turf/inside',
+        '@turf/nearest',
+        '@turf/polygon-to-linestring',
+        '@turf/linestring-to-polygon',
+        '@turf/point-on-surface'
+    ],
+    methods: [
+        'radians2degrees',
+        'degrees2radians',
+        'distanceToDegrees',
+        'distanceToRadians',
+        'radiansToDistance',
+        'bearingToAngle',
+        'convertDistance'
+    ]
+}
+
+test('turf -- check for deprecated modules', t => {
+    for (const {name, dependencies, devDependencies} of modules) {
+        for (const dependency of [...Object.keys(dependencies), ...Object.keys(devDependencies)]) {
+            if (deprecated.modules.indexOf(dependency) !== -1) {
+                throw new Error(`${name} module has deprecated dependency ${dependency}`);
+            }
+        }
+    }
+    t.end();
+});
+
+test('turf -- check for deprecated methods', t => {
+    for (const {name, index, test} of modules) {
+        // Exclude @turf/helpers from this test
+        if (name === 'turf-helpers') continue
+        for (const method of deprecated.methods) {
+            if ((test + index).match(method)) throw new Error(`${name} repo has deprecated method ${method}`);
+        }
+    }
+    t.end();
+});
+
+// TurfJS v5.0 Typescript definition uses @turf/helpers
+test('turf -- update to newer Typescript definitions', t => {
+    glob.sync(turfTypescriptPath).forEach(filepath => {
+        const typescript = fs.readFileSync(filepath, 'utf8');
+        if (typescript.includes('reference types="geojson"')) t.skip(filepath + ' update Typescript definition v5.0');
+    });
+    t.end();
+});
+
+test('turf -- require() not allowed in favor of import', t => {
+    for (const {name, index, test} of modules) {
+        if ((index).includes('= require(')) throw new Error(`${name} module cannot use require(), use ES import instead`);
+    }
+    t.end();
+});
 
 /**
  * =========================
@@ -164,8 +286,8 @@ const turfModulesPath = path.join(__dirname, '..', 'turf-*', 'index.js');
 const turfTypescriptPath = path.join(__dirname, '..', 'turf-*', 'index.d.ts');
 
 // Test Strings
-const requireString = `const test = require('tape');
-const turf = require('.');
+const requireString = `import test from 'tape';
+import * as turf from './turf';
 `;
 
 /**
@@ -186,6 +308,17 @@ test('turf-example-${turfName}', t => {
     t.end();
 });
 `;
+    // Specific moduels will exclude testing @example
+    switch (turfName) {
+    case 'isolines':
+    case 'isobands':
+        return `
+        test('turf-example-${turfName}', t => {
+            t.skip('${turfName}');
+            t.end();
+        });
+        `;
+    }
     return `
 test('turf-example-${turfName}', t => {
     const ${testFunctionName} = () => {
@@ -197,40 +330,6 @@ test('turf-example-${turfName}', t => {
 });
 `;
 }
-
-// Test for missing modules
-test('turf -- missing modules', t => {
-    const files = {
-        typescript: fs.readFileSync(path.join(__dirname, 'index.d.ts')),
-        modules: fs.readFileSync(path.join(__dirname, 'index.js'))
-    };
-
-    modules.forEach(({name}) => {
-        name = camelcase(name.replace('turf-', ''));
-        // name exception with linestring => lineString
-        name = name.replace('linestring', 'lineString').replace('Linestring', 'LineString');
-
-        if (!files.typescript.includes(name)) t.fail(name + ' is missing from index.d.ts');
-        if (!files.modules.includes(name)) t.fail(name + ' is missing from index.js');
-
-        switch (typeof turf[name]) {
-        case 'function': break;
-        case 'object': break;
-        case 'undefined':
-            t.fail(name + ' is missing from index.js');
-        }
-    });
-    t.end();
-});
-
-// TurfJS v5.0 Typescript definition uses @turf/helpers
-test('turf -- update to newer Typescript definitions', t => {
-    glob.sync(turfTypescriptPath).forEach(filepath => {
-        const typescript = fs.readFileSync(filepath, 'utf8');
-        if (typescript.includes('reference types="geojson"')) t.skip(filepath + ' update Typescript definition v5.0');
-    });
-    t.end();
-});
 
 // Iterate over each module and retrieve @example to build tests from them
 glob(turfModulesPath, (err, files) => {

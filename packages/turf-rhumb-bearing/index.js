@@ -1,14 +1,14 @@
 // https://en.wikipedia.org/wiki/Rhumb_line
 import {getCoord} from '@turf/invariant';
-import {radians2degrees, degrees2radians, isObject} from '@turf/helpers';
+import {radiansToDegrees, degreesToRadians, isObject} from '@turf/helpers';
 
 /**
  * Takes two {@link Point|points} and finds the bearing angle between them along a Rhumb line
  * i.e. the angle measured in degrees start the north line (0 degrees)
  *
  * @name rhumbBearing
- * @param {(Geometry|Feature<Point>)|Position} start starting Point
- * @param {(Geometry|Feature<Point>)|Position} end ending Point
+ * @param {Coord} start starting Point
+ * @param {Coord} end ending Point
  * @param {Object} [options] Optional parameters
  * @param {boolean} [options.final=false] calculates the final bearing if true
  * @returns {number} bearing from north in decimal degrees, between -180 and 180 degrees (positive clockwise)
@@ -61,9 +61,9 @@ function calculateRhumbBearing(from, to) {
     // Δλ => deltaLambda
     // Δψ => deltaPsi
     // θ => theta
-    var phi1 = degrees2radians(from[1]);
-    var phi2 = degrees2radians(to[1]);
-    var deltaLambda = degrees2radians((to[0] - from[0]));
+    var phi1 = degreesToRadians(from[1]);
+    var phi2 = degreesToRadians(to[1]);
+    var deltaLambda = degreesToRadians((to[0] - from[0]));
     // if deltaLambdaon over 180° take shorter rhumb line across the anti-meridian:
     if (deltaLambda > Math.PI) deltaLambda -= 2 * Math.PI;
     if (deltaLambda < -Math.PI) deltaLambda += 2 * Math.PI;
@@ -72,7 +72,7 @@ function calculateRhumbBearing(from, to) {
 
     var theta = Math.atan2(deltaLambda, deltaPsi);
 
-    return (radians2degrees(theta) + 360) % 360;
+    return (radiansToDegrees(theta) + 360) % 360;
 }
 
 export default rhumbBearing;

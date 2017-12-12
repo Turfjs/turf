@@ -97,7 +97,7 @@ test('turf-clone -- Preserve Foreign Members -- Feature', t => {
     const properties = {foo: 'bar'};
     const bbox = [0, 20, 0, 20];
     const id = 12345;
-    const pt = point([0, 20], properties, bbox, id);
+    const pt = point([0, 20], properties, {bbox, id});
     pt.custom = 'foreign members';
 
     const cloned = clone(pt);
@@ -112,7 +112,7 @@ test('turf-clone -- Preserve Foreign Members -- FeatureCollection', t => {
     const properties = {foo: 'bar'};
     const bbox = [0, 20, 0, 20];
     const id = 12345;
-    const fc = featureCollection([point([0, 20])], bbox, id);
+    const fc = featureCollection([point([0, 20])], {bbox, id});
     fc.custom = 'foreign members';
     fc.properties = properties;
 
@@ -133,9 +133,10 @@ test('turf-clone -- Preserve all properties -- Feature', t => {
         object: {property: 1},
         array: [0, 1, 2],
         number: 1,
+        nullity: null,
         boolean: true
     };
-    const pt = point([0, 20], properties, bbox, id);
+    const pt = point([0, 20], properties, {bbox, id});
     pt.hello = 'world'; // Foreign member
 
     // Clone and mutate
@@ -149,6 +150,7 @@ test('turf-clone -- Preserve all properties -- Feature', t => {
     t.equal(cloned.properties.object.property, 1);
     t.deepEqual(cloned.properties.array, [0, 1, 2]);
     t.equal(cloned.properties.number, 1);
+    t.equal(cloned.properties.nullity, null);
     t.equal(cloned.properties.boolean, true);
 
     // Mutate clone properties
@@ -174,7 +176,9 @@ test('turf-clone -- Preserve all properties -- Feature', t => {
 });
 
 test('turf-clone -- Preserve all properties -- FeatureCollection', t => {
-    const fc = featureCollection([point([0, 20])], [0, 20, 0, 20], 12345);
+    const bbox = [0, 20, 0, 20];
+    const id = 12345;
+    const fc = featureCollection([point([0, 20])], {bbox, id});
     fc.hello = 'world'; // Foreign member
 
     // Clone and mutate

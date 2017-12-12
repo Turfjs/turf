@@ -1,0 +1,439 @@
+{
+	"type": "FeatureCollection",
+	"features": [
+		{
+			"type": "Feature",
+			"geometry": {
+				"type": "Point",
+				"coordinates": [
+					28,
+					54
+				]
+			},
+			"properties": {
+				"name": "Minsk",
+				"populationProportion": "0.012"
+			}
+		},
+		{
+			"type": "Feature",
+			"geometry": {
+				"type": "Point",
+				"coordinates": [
+					24,
+					50
+				]
+			},
+			"properties": {
+				"name": "Lvov",
+				"populationProportion": "0.010"
+			}
+		},
+		{
+			"type": "Feature",
+			"geometry": {
+				"type": "Point",
+				"coordinates": [
+					28,
+					47
+				]
+			},
+			"properties": {
+				"name": "Kishinev",
+				"populationProportion": "0.005"
+			}
+		},
+		{
+			"type": "Feature",
+			"geometry": {
+				"type": "Point",
+				"coordinates": [
+					31,
+					46
+				]
+			},
+			"properties": {
+				"name": "Odessa",
+				"populationProportion": "0.014"
+			}
+		},
+		{
+			"type": "Feature",
+			"geometry": {
+				"type": "Point",
+				"coordinates": [
+					32,
+					47
+				]
+			},
+			"properties": {
+				"name": "Nikolaev",
+				"populationProportion": "0.005"
+			}
+		},
+		{
+			"type": "Feature",
+			"geometry": {
+				"type": "Point",
+				"coordinates": [
+					33,
+					47
+				]
+			},
+			"properties": {
+				"name": "Kherson",
+				"populationProportion": "0.004"
+			}
+		},
+		{
+			"type": "Feature",
+			"geometry": {
+				"type": "Point",
+				"coordinates": [
+					34,
+					45
+				]
+			},
+			"properties": {
+				"name": "Sevastopol",
+				"populationProportion": "0.004"
+			}
+		},
+		{
+			"type": "Feature",
+			"geometry": {
+				"type": "Point",
+				"coordinates": [
+					34,
+					45
+				]
+			},
+			"properties": {
+				"name": "Simferopol",
+				"populationProportion": "0.004"
+			}
+		},
+		{
+			"type": "Feature",
+			"geometry": {
+				"type": "Point",
+				"coordinates": [
+					34,
+					46
+				]
+			},
+			"properties": {
+				"name": "Krivoi Rog",
+				"populationProportion": "0.009"
+			}
+		},
+		{
+			"type": "Feature",
+			"geometry": {
+				"type": "Point",
+				"coordinates": [
+					35,
+					48
+				]
+			},
+			"properties": {
+				"name": "Dneprodzerhinsk",
+				"populationProportion": "0.004"
+			}
+		},
+		{
+			"type": "Feature",
+			"geometry": {
+				"type": "Point",
+				"coordinates": [
+					35,
+					48
+				]
+			},
+			"properties": {
+				"name": "Dnepropetrovsk",
+				"populationProportion": "0.015"
+			}
+		},
+		{
+			"type": "Feature",
+			"geometry": {
+				"type": "Point",
+				"coordinates": [
+					36,
+					48
+				]
+			},
+			"properties": {
+				"name": "Zaporozhe",
+				"populationProportion": "0.010"
+			}
+		},
+		{
+			"type": "Feature",
+			"geometry": {
+				"type": "Point",
+				"coordinates": [
+					38,
+					47
+				]
+			},
+			"properties": {
+				"name": "Zhdanov",
+				"populationProportion": "0.007"
+			}
+		},
+		{
+			"type": "Feature",
+			"geometry": {
+				"type": "Point",
+				"coordinates": [
+					37,
+					48
+				]
+			},
+			"properties": {
+				"name": "Stalino",
+				"populationProportion": "0.016"
+			}
+		},
+		{
+			"type": "Feature",
+			"geometry": {
+				"type": "Point",
+				"coordinates": [
+					38,
+					48
+				]
+			},
+			"properties": {
+				"name": "Makeyevka",
+				"populationProportion": "0.008"
+			}
+		},
+		{
+			"type": "Feature",
+			"geometry": {
+				"type": "Point",
+				"coordinates": [
+					38,
+					48
+				]
+			},
+			"properties": {
+				"name": "Gorlovka",
+				"populationProportion": "0.007"
+			}
+		},
+		{
+			"type": "Feature",
+			"geometry": {
+				"type": "Point",
+				"coordinates": [
+					39,
+					47
+				]
+			},
+			"properties": {
+				"name": "Taganrog",
+				"populationProportion": "0.005"
+			}
+		},
+		{
+			"type": "Feature",
+			"geometry": {
+				"type": "Point",
+				"coordinates": [
+					29,
+					45
+				]
+			},
+			"properties": {
+				"name": "Krasnodar",
+				"populationProportion": "0.007"
+			}
+		},
+		{
+			"type": "Feature",
+			"geometry": {
+				"type": "Point",
+				"coordinates": [
+					40,
+					47
+				]
+			},
+			"properties": {
+				"name": "Rostov",
+				"populationProportion": "0.014"
+			}
+		},
+		{
+			"type": "Feature",
+			"geometry": {
+				"type": "Point",
+				"coordinates": [
+					40,
+					48
+				]
+			},
+			"properties": {
+				"name": "Shakhty",
+				"populationProportion": "0.004"
+			}
+		},
+		{
+			"type": "Feature",
+			"geometry": {
+				"type": "Point",
+				"coordinates": [
+					39,
+					49
+				]
+			},
+			"properties": {
+				"name": "Kadiyevka",
+				"populationProportion": "0.004"
+			}
+		},
+		{
+			"type": "Feature",
+			"geometry": {
+				"type": "Point",
+				"coordinates": [
+					37,
+					51
+				]
+			},
+			"properties": {
+				"name": "Kharkhov",
+				"populationProportion": "0.021"
+			}
+		},
+		{
+			"type": "Feature",
+			"geometry": {
+				"type": "Point",
+				"coordinates": [
+					31,
+					50
+				]
+			},
+			"properties": {
+				"name": "Kiev",
+				"populationProportion": "0.026"
+			}
+		},
+		{
+			"type": "Feature",
+			"geometry": {
+				"type": "Point",
+				"coordinates": [
+					31,
+					52
+				]
+			},
+			"properties": {
+				"name": "Gomel",
+				"populationProportion": "0.004"
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {
+				"marker-color": "#a00",
+				"marker-symbol": "cross"
+			},
+			"geometry": {
+				"type": "Point",
+				"coordinates": [
+					34.03653,
+					48.438356
+				]
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {
+				"medianCandidates": [
+					[
+						34.720621,
+						47.820867
+					],
+					[
+						34.986039,
+						47.805917
+					],
+					[
+						35.071027,
+						47.84065
+					],
+					[
+						35.094461,
+						47.860744
+					],
+					[
+						35.09865,
+						47.870221
+					],
+					[
+						35.097737,
+						47.875045
+					],
+					[
+						35.095936,
+						47.877877
+					],
+					[
+						35.094323,
+						47.879729
+					],
+					[
+						35.093079,
+						47.881012
+					],
+					[
+						35.092161,
+						47.881925
+					]
+				],
+				"marker-color": "#0a0",
+				"marker-symbol": "cross"
+			},
+			"geometry": {
+				"type": "Point",
+				"coordinates": [
+					35.091493,
+					47.882584
+				]
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {
+				"marker-color": "#00a",
+				"marker-symbol": "cross"
+			},
+			"geometry": {
+				"type": "Point",
+				"coordinates": [
+					32,
+					49.5
+				]
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {
+				"marker-color": "#aaa",
+				"marker-symbol": "cross"
+			},
+			"geometry": {
+				"type": "Point",
+				"coordinates": [
+					31.773481,
+					49.020258
+				]
+			}
+		}
+	]
+}

@@ -9,7 +9,7 @@ import {polygon, featureCollection, isObject, isNumber} from '@turf/helpers';
  * described in [Hexagonal Grids](http://www.redblobgames.com/grids/hexagons/).
  *
  * @name hexGrid
- * @param {Array<number>} bbox extent in [minX, minY, maxX, maxY] order
+ * @param {BBox} bbox extent in [minX, minY, maxX, maxY] order
  * @param {number} cellSide length of the side of the the hexagons or triangles, in units. It will also coincide with the
  * radius of the circumcircle of the hexagons.
  * @param {Object} [options={}] Optional parameters
@@ -109,20 +109,19 @@ function hexGrid(bbox, cellSide, options) {
             }
 
             if (triangles === true) {
-                for (var triangle of hexTriangles(
+                hexTriangles(
                     [center_x, center_y],
                     cellWidth / 2,
                     cellHeight / 2,
                     properties,
                     cosines,
-                    sines
-                )) {
+                    sines).forEach(function (triangle) {
                     if (mask) {
                         if (intersect(mask, triangle)) results.push(triangle);
                     } else {
                         results.push(triangle);
                     }
-                }
+                });
             } else {
                 var hex = hexagon(
                     [center_x, center_y],

@@ -11,14 +11,14 @@ Boolean-within returns the exact opposite result of the `@turf/boolean-contains`
 
 **Parameters**
 
--   `feature1` **([Geometry](http://geojson.org/geojson-spec.html#geometry) \| [Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;any>)** GeoJSON Feature or Geometry
--   `feature2` **([Geometry](http://geojson.org/geojson-spec.html#geometry) \| [Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;any>)** GeoJSON Feature or Geometry
+-   `feature1` **([Geometry](https://tools.ietf.org/html/rfc7946#section-3.1) \| [Feature](https://tools.ietf.org/html/rfc7946#section-3.2)&lt;any>)** GeoJSON Feature or Geometry
+-   `feature2` **([Geometry](https://tools.ietf.org/html/rfc7946#section-3.1) \| [Feature](https://tools.ietf.org/html/rfc7946#section-3.2)&lt;any>)** GeoJSON Feature or Geometry
 
 **Examples**
 
 ```javascript
-const line = turf.lineString([[1, 1], [1, 2], [1, 3], [1, 4]]);
-const point = turf.point([1, 2]);
+var line = turf.lineString([[1, 1], [1, 2], [1, 3], [1, 4]]);
+var point = turf.point([1, 2]);
 
 turf.booleanWithin(point, line);
 //=true

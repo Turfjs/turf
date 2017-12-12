@@ -1,8 +1,8 @@
 import tin from '@turf/tin';
-import dissolve from './turf-dissolve';
 import distance from '@turf/distance';
-import { feature, featureCollection, isObject, isNumber } from '@turf/helpers';
 import { featureEach } from '@turf/meta';
+import { feature, featureCollection, isObject, isNumber } from '@turf/helpers';
+import dissolve from './lib/turf-dissolve';
 
 /**
  * Takes a set of {@link Point|points} and returns a concave hull Polygon or MultiPolygon.

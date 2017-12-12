@@ -9,19 +9,37 @@ import {
     multiPoint,
     multiPolygon,
     geometryCollection,
-    radiansToDistance,
-    distanceToRadians,
-    distanceToDegrees,
-    radians2degrees,
-    degrees2radians,
-    bearingToAngle,
-    convertDistance,
+    radiansToLength,
+    lengthToRadians,
+    lengthToDegrees,
+    radiansToDegrees,
+    degreesToRadians,
+    bearingToAzimuth,
+    convertLength,
     convertArea,
     round,
     isObject,
     isNumber,
     earthRadius
 } from './';
+import * as turf from './'
+
+const foo = {
+    /**
+     * HELLO!
+     */
+    hello: 'world',
+    /**
+     * This is a fruit
+     */
+    apple: 3,
+    /**
+     * This is yellow
+     */
+    banana: 6
+}
+
+
 
 test('point', t => {
     const ptArray = point([5, 10], {name: 'test point'});
@@ -308,50 +326,50 @@ test('geometrycollection', t => {
     t.end();
 });
 
-test('radiansToDistance', t => {
-    t.equal(radiansToDistance(1, 'radians'), 1);
-    t.equal(radiansToDistance(1, 'kilometers'), earthRadius / 1000);
-    t.equal(radiansToDistance(1, 'miles'), earthRadius / 1609.344);
-    t.throws(() => radiansToDistance(1, 'foo'), 'invalid units');
+test('radiansToLength', t => {
+    t.equal(radiansToLength(1, 'radians'), 1);
+    t.equal(radiansToLength(1, 'kilometers'), earthRadius / 1000);
+    t.equal(radiansToLength(1, 'miles'), earthRadius / 1609.344);
+    t.throws(() => radiansToLength(1, 'foo'), 'invalid units');
     t.end();
 });
 
-test('distanceToRadians', t => {
-    t.equal(distanceToRadians(1, 'radians'), 1);
-    t.equal(distanceToRadians(earthRadius / 1000, 'kilometers'), 1);
-    t.equal(distanceToRadians(earthRadius / 1609.344, 'miles'), 1);
-    t.throws(() => distanceToRadians(1, 'foo'), 'invalid units');
+test('lengthToRadians', t => {
+    t.equal(lengthToRadians(1, 'radians'), 1);
+    t.equal(lengthToRadians(earthRadius / 1000, 'kilometers'), 1);
+    t.equal(lengthToRadians(earthRadius / 1609.344, 'miles'), 1);
+    t.throws(() => lengthToRadians(1, 'foo'), 'invalid units');
     t.end();
 });
 
-test('distanceToDegrees', t => {
-    t.equal(distanceToDegrees(1, 'radians'), 57.29577951308232);
-    t.equal(distanceToDegrees(100, 'kilometers'), 0.899320363724538);
-    t.equal(distanceToDegrees(10, 'miles'), 0.1447315831437903);
-    t.throws(() => distanceToRadians(1, 'foo'), 'invalid units');
+test('lengthToDegrees', t => {
+    t.equal(lengthToDegrees(1, 'radians'), 57.29577951308232);
+    t.equal(lengthToDegrees(100, 'kilometers'), 0.899320363724538);
+    t.equal(lengthToDegrees(10, 'miles'), 0.1447315831437903);
+    t.throws(() => lengthToRadians(1, 'foo'), 'invalid units');
     t.end();
 });
 
-test('radians2degrees', t => {
-    t.equal(round(radians2degrees(Math.PI / 3), 6), 60, 'radiance conversion PI/3');
-    t.equal(radians2degrees(3.5 * Math.PI), 270, 'radiance conversion 3.5PI');
-    t.equal(radians2degrees(-Math.PI), -180, 'radiance conversion -PI');
+test('radiansToDegrees', t => {
+    t.equal(round(radiansToDegrees(Math.PI / 3), 6), 60, 'radiance conversion PI/3');
+    t.equal(radiansToDegrees(3.5 * Math.PI), 270, 'radiance conversion 3.5PI');
+    t.equal(radiansToDegrees(-Math.PI), -180, 'radiance conversion -PI');
     t.end();
 });
 
-test('radians2degrees', t => {
-    t.equal(degrees2radians(60), Math.PI / 3, 'degrees conversion 60');
-    t.equal(degrees2radians(270), 1.5 * Math.PI, 'degrees conversion 270');
-    t.equal(degrees2radians(-180), -Math.PI, 'degrees conversion -180');
+test('radiansToDegrees', t => {
+    t.equal(degreesToRadians(60), Math.PI / 3, 'degrees conversion 60');
+    t.equal(degreesToRadians(270), 1.5 * Math.PI, 'degrees conversion 270');
+    t.equal(degreesToRadians(-180), -Math.PI, 'degrees conversion -180');
     t.end();
 });
 
-test('bearingToAngle', t => {
-    t.equal(bearingToAngle(40), 40);
-    t.equal(bearingToAngle(-105), 255);
-    t.equal(bearingToAngle(410), 50);
-    t.equal(bearingToAngle(-200), 160);
-    t.equal(bearingToAngle(-395), 325);
+test('bearingToAzimuth', t => {
+    t.equal(bearingToAzimuth(40), 40);
+    t.equal(bearingToAzimuth(-105), 255);
+    t.equal(bearingToAzimuth(410), 50);
+    t.equal(bearingToAzimuth(-200), 160);
+    t.equal(bearingToAzimuth(-395), 325);
     t.end();
 });
 
@@ -364,13 +382,13 @@ test('round', t => {
     t.end();
 });
 
-test('convertDistance', t => {
-    t.equal(convertDistance(1000, 'meters'), 1);
-    t.equal(convertDistance(1, 'kilometers', 'miles'), 0.621371192237334);
-    t.equal(convertDistance(1, 'miles', 'kilometers'), 1.609344);
-    t.equal(convertDistance(1, 'nauticalmiles'), 1.852);
-    t.equal(convertDistance(1, 'meters', 'centimeters'), 100.00000000000001);
-    t.throws(() => convertDistance(1, 'foo'), 'invalid units');
+test('convertLength', t => {
+    t.equal(convertLength(1000, 'meters'), 1);
+    t.equal(convertLength(1, 'kilometers', 'miles'), 0.621371192237334);
+    t.equal(convertLength(1, 'miles', 'kilometers'), 1.609344);
+    t.equal(convertLength(1, 'nauticalmiles'), 1.852);
+    t.equal(convertLength(1, 'meters', 'centimeters'), 100.00000000000001);
+    t.throws(() => convertLength(1, 'foo'), 'invalid units');
     t.end();
 });
 
@@ -383,8 +401,8 @@ test('convertArea', t => {
     t.equal(convertArea(100, null, 'yards'), 119.59900459999999);
     t.equal(convertArea(100, 'metres', 'feet'), 1076.3910417);
     t.equal(convertArea(100000, 'feet', null), 0.009290303999749462);
-    t.throws(() => convertDistance(1, 'foo'), 'invalid original units');
-    t.throws(() => convertDistance(1, 'meters', 'foo'), 'invalid final units');
+    t.throws(() => convertLength(1, 'foo'), 'invalid original units');
+    t.throws(() => convertLength(1, 'meters', 'foo'), 'invalid final units');
 
     t.end();
 });
@@ -402,23 +420,23 @@ test('null geometries', t => {
 test('turf-helpers -- Handle Id & BBox properties', t => {
     const id = 12345;
     const bbox = [10, 30, 10, 30];
-    const pt = point([10, 30], {}, bbox, id);
-    const fc = featureCollection([pt], bbox, id);
+    const pt = point([10, 30], {}, {bbox, id});
+    const fc = featureCollection([pt], {bbox, id});
     t.equal(pt.id, id, 'feature id');
     t.equal(pt.bbox, bbox, 'feature bbox');
     t.equal(fc.id, id, 'featureCollection id');
     t.equal(fc.bbox, bbox, 'featureCollection bbox');
-    t.throws(() => point([10, 30], {}, [0], id), 'throws invalid bbox');
-    t.throws(() => point([10, 30], {}, bbox, {invalid: 'id'}), 'throws invalid id');
-    t.throws(() => featureCollection([pt], [0], id), 'throws invalid bbox');
-    t.throws(() => featureCollection([pt], [0], {invalid: 'id'}), 'throws invalid id');
+    t.throws(() => point([10, 30], {}, {bbox: [0], id}), 'throws invalid bbox');
+    t.throws(() => point([10, 30], {}, {bbox, id: {invalid: 'id'}}), 'throws invalid id');
+    t.throws(() => featureCollection([pt], {bbox: [0], id}), 'throws invalid bbox');
+    t.throws(() => featureCollection([pt], {bbox: [0], id: {invalid: 'id'}}), 'throws invalid id');
     t.end();
 });
 
 test('turf-helpers -- isNumber', t => {
-    t.throws(() => point(['foo', 'bar']), /Coordinates must contain numbers/, 'Coordinates must contain numbers');
-    t.throws(() => lineString([['foo', 'bar'], ['hello', 'world']]), /Coordinates must contain numbers/, 'Coordinates must contain numbers');
-    t.throws(() => polygon([[['foo', 'bar'], ['hello', 'world'], ['world', 'hello'], ['foo', 'bar']]]), /Coordinates must contain numbers/, 'Coordinates must contain numbers');
+    t.throws(() => point(['foo', 'bar']), /coordinates must contain numbers/, 'coordinates must contain numbers');
+    t.throws(() => lineString([['foo', 'bar'], ['hello', 'world']]), /coordinates must contain numbers/, 'coordinates must contain numbers');
+    t.throws(() => polygon([[['foo', 'bar'], ['hello', 'world'], ['world', 'hello'], ['foo', 'bar']]]), /coordinates must contain numbers/, 'coordinates must contain numbers');
 
     // true
     t.true(isNumber(123));
@@ -464,5 +482,42 @@ test('turf-helpers -- isObject', t => {
     t.false(isObject([1, 2, 3]));
     t.false(isObject([]));
     t.false(isObject(isNumber));
+    t.end();
+});
+
+test('turf-helpers -- points', t => {
+    const points = turf.points([
+        [-75, 39],
+        [-80, 45],
+        [-78, 50]
+    ], {foo: 'bar'}, {id: 'hello'});
+
+    t.equal(points.features.length, 3);
+    t.equal(points.id, 'hello');
+    t.equal(points.features[0].properties.foo, 'bar');
+    t.end();
+});
+
+test('turf-helpers -- lineStrings', t => {
+    var linestrings = turf.lineStrings([
+        [[-24, 63], [-23, 60], [-25, 65], [-20, 69]],
+        [[-14, 43], [-13, 40], [-15, 45], [-10, 49]]
+    ], {foo: 'bar'}, {id: 'hello'});
+
+    t.equal(linestrings.features.length, 2);
+    t.equal(linestrings.id, 'hello');
+    t.equal(linestrings.features[0].properties.foo, 'bar');
+    t.end();
+});
+
+test('turf-helpers -- polygons', t => {
+    var polygons = turf.polygons([
+        [[[-5, 52], [-4, 56], [-2, 51], [-7, 54], [-5, 52]]],
+        [[[-15, 42], [-14, 46], [-12, 41], [-17, 44], [-15, 42]]],
+    ], {foo: 'bar'}, {id: 'hello'});
+
+    t.equal(polygons.features.length, 2);
+    t.equal(polygons.id, 'hello');
+    t.equal(polygons.features[0].properties.foo, 'bar');
     t.end();
 });

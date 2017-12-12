@@ -4,13 +4,13 @@
 
 ## pointToLineDistance
 
-Returns the minimum distance between a [Point](http://geojson.org/geojson-spec.html#point) and a [LineString](http://geojson.org/geojson-spec.html#linestring), being the distance from a line the
+Returns the minimum distance between a [Point](https://tools.ietf.org/html/rfc7946#section-3.1.2) and a [LineString](https://tools.ietf.org/html/rfc7946#section-3.1.4), being the distance from a line the
 minimum distance between the point and any segment of the `LineString`.
 
 **Parameters**
 
--   `pt` **([Geometry](http://geojson.org/geojson-spec.html#geometry) \| [Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;[Point](http://geojson.org/geojson-spec.html#point)> | [Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)>)** Feature or Geometry
--   `line` **([Geometry](http://geojson.org/geojson-spec.html#geometry) \| [Feature](http://geojson.org/geojson-spec.html#feature-objects)&lt;[LineString](http://geojson.org/geojson-spec.html#linestring)> | [Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)>>)** GeoJSON Feature or Geometry
+-   `pt` **[Coord](https://tools.ietf.org/html/rfc7946#section-3.1.1)** Feature or Geometry
+-   `line` **[Feature](https://tools.ietf.org/html/rfc7946#section-3.2)&lt;[LineString](https://tools.ietf.org/html/rfc7946#section-3.1.4)>** GeoJSON Feature or Geometry
 -   `options` **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)** Optional parameters (optional, default `{}`)
     -   `options.units` **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** can be degrees, radians, miles, or kilometers (optional, default `'kilometers'`)
     -   `options.mercator` **[boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** if distance should be on Mercator or WGS84 projection (optional, default `false`)

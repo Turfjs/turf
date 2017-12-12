@@ -1,11 +1,12 @@
 import rbush from 'geojson-rbush';
-import flatten from '@turf/flatten';
+import square from '@turf/square';
+import bbox from '@turf/bbox';
 import truncate from '@turf/truncate';
 import lineSegment from '@turf/line-segment';
-import pointOnLine from '@turf/point-on-line';
 import lineIntersect from '@turf/line-intersect';
-import { getCoords, getType } from '@turf/invariant';
-import { featureEach, featureReduce} from '@turf/meta';
+import nearestPointOnLine from '@turf/nearest-point-on-line';
+import { getCoords, getCoord, getType } from '@turf/invariant';
+import { featureEach, featureReduce, flattenEach} from '@turf/meta';
 import { lineString, featureCollection } from '@turf/helpers';
 
 /**
@@ -13,7 +14,7 @@ import { lineString, featureCollection } from '@turf/helpers';
  *
  * @name lineSplit
  * @param {Feature<LineString>} line LineString Feature to split
- * @param {Feature} splitter Feature used to split line
+ * @param {Feature<any>} splitter Feature used to split line
  * @returns {FeatureCollection<LineString>} Split LineStrings
  * @example
  * var line = turf.lineString([[120, -25], [145, -25]]);
@@ -43,7 +44,7 @@ function lineSplit(line, splitter) {
     case 'Point':
         return splitLineWithPoint(line, truncatedSplitter);
     case 'MultiPoint':
-        return splitLineWithPoints(line, flatten(truncatedSplitter));
+        return splitLineWithPoints(line, truncatedSplitter);
     case 'LineString':
     case 'MultiLineString':
     case 'Polygon':
@@ -64,7 +65,7 @@ function splitLineWithPoints(line, splitter) {
     var results = [];
     var tree = rbush();
 
-    featureEach(splitter, function (point) {
+    flattenEach(splitter, function (point) {
         // Add index/id to features (needed for filter)
         results.forEach(function (feature, index) {
             feature.id = index;
@@ -72,25 +73,32 @@ function splitLineWithPoints(line, splitter) {
         // First Point - doesn't need to handle any previous line results
         if (!results.length) {
             results = splitLineWithPoint(line, point).features;
+
+            // Add Square BBox to each feature for GeoJSON-RBush
+            results.forEach(function (feature) {
+                if (!feature.bbox) feature.bbox = square(bbox(feature));
+            });
             tree.load(featureCollection(results));
         // Split with remaining points - lines might needed to be split multiple times
         } else {
             // Find all lines that are within the splitter's bbox
             var search = tree.search(point);
 
-            // RBush might return multiple lines - only process the closest line to splitter
-            var closestLine = findClosestFeature(point, search);
+            if (search.features.length) {
+                // RBush might return multiple lines - only process the closest line to splitter
+                var closestLine = findClosestFeature(point, search);
 
-            // Remove closest line from results since this will be split into two lines
-            // This removes any duplicates inside the results & index
-            results = results.filter(function (feature) { return feature.id !== closestLine.id; });
-            tree.remove(closestLine);
+                // Remove closest line from results since this will be split into two lines
+                // This removes any duplicates inside the results & index
+                results = results.filter(function (feature) { return feature.id !== closestLine.id; });
+                tree.remove(closestLine);
 
-            // Append the two newly split lines into the results
-            featureEach(splitLineWithPoint(closestLine, point), function (line) {
-                results.push(line);
-                tree.insert(line);
-            });
+                // Append the two newly split lines into the results
+                featureEach(splitLineWithPoint(closestLine, point), function (line) {
+                    results.push(line);
+                    tree.insert(line);
+                });
+            }
         }
     });
     return featureCollection(results);
@@ -110,8 +118,8 @@ function splitLineWithPoint(line, splitter) {
     // handle endpoints
     var startPoint = getCoords(line)[0];
     var endPoint = getCoords(line)[line.geometry.coordinates.length - 1];
-    if (pointsEquals(startPoint, getCoords(splitter)) ||
-        pointsEquals(endPoint, getCoords(splitter))) return featureCollection([line]);
+    if (pointsEquals(startPoint, getCoord(splitter)) ||
+        pointsEquals(endPoint, getCoord(splitter))) return featureCollection([line]);
 
     // Create spatial index
     var tree = rbush();
@@ -131,7 +139,7 @@ function splitLineWithPoint(line, splitter) {
     var initialValue = [startPoint];
     var lastCoords = featureReduce(segments, function (previous, current, index) {
         var currentCoords = getCoords(current)[1];
-        var splitterCoords = getCoords(splitter);
+        var splitterCoords = getCoord(splitter);
 
         // Location where segment intersects with line
         if (index === closestSegment.id) {
@@ -164,14 +172,14 @@ function splitLineWithPoint(line, splitter) {
  * @returns {Feature<LineString>} closest LineString
  */
 function findClosestFeature(point, lines) {
-    if (!lines.features) throw new Error('<lines> must contain features');
+    if (!lines.features.length) throw new Error('lines must contain features');
     // Filter to one segment that is the closest to the line
     if (lines.features.length === 1) return lines.features[0];
 
     var closestFeature;
     var closestDistance = Infinity;
     featureEach(lines, function (segment) {
-        var pt = pointOnLine(segment, point);
+        var pt = nearestPointOnLine(segment, point);
         var dist = pt.properties.dist;
         if (dist < closestDistance) {
             closestFeature = segment;

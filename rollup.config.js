@@ -1,12 +1,10 @@
-import typescriptExport from './rollup-plugins/typescript-export';
-import validES5 from './rollup-plugins/valid-es5';
+import typescript from './rollup-plugins/typescript-export';
 
 export default {
     input: 'index.js',
-    output: {
-        extend: true,
-        file: 'main.js',
-        format: 'cjs'
-    },
-    plugins: [typescriptExport(), validES5()]
-};
+    output: [
+        {file: 'main.js', format: 'cjs'},
+        {file: 'main.es.js', format: 'es'}
+    ],
+    plugins: [typescript()]
+}

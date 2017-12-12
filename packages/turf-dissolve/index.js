@@ -6,11 +6,11 @@ import lineIntersect from '@turf/line-intersect';
 import { coordAll } from '@turf/meta';
 import { collectionOf } from '@turf/invariant';
 import { lineString, isObject } from '@turf/helpers';
-import { closestGreaterNumber } from './get-closest';
+import { closestGreaterNumber } from './lib/get-closest';
 
 /**
- * Dissolves a FeatureCollection of polygons, filtered by an optional property name:value.
- * Note that multipart features within the collection are not supported
+ * Dissolves a FeatureCollection of {@link polygon} features, filtered by an optional property name:value.
+ * Note that {@link mulitpolygon} features within the collection are not supported
  *
  * @name dissolve
  * @param {FeatureCollection<Polygon>} featureCollection input feature collection to be dissolved
@@ -55,7 +55,7 @@ function dissolve(featureCollection, options) {
 
         var featureChanged = false;
 
-        for (var potentialMatchingFeature of tree.search(polygon).features) {
+        tree.search(polygon).features.forEach(function (potentialMatchingFeature) {
             polygon = features[i];
 
             var matchFeaturePosition = potentialMatchingFeature.properties.origIndexPosition;
@@ -71,15 +71,15 @@ function dissolve(featureCollection, options) {
                 }
             }
 
-            if (matchFeaturePosition === +i) continue;
+            if (matchFeaturePosition === +i) return;
 
             var matchFeature = features[matchFeaturePosition];
-            if (!matchFeature || !polygon) continue;
+            if (!matchFeature || !polygon) return;
 
             if (propertyName !== undefined &&
-                matchFeature.properties[propertyName] !== polygon.properties[propertyName]) continue;
+                matchFeature.properties[propertyName] !== polygon.properties[propertyName]) return;
 
-            if (!overlap(polygon, matchFeature) || !ringsIntersect(polygon, matchFeature)) continue;
+            if (!overlap(polygon, matchFeature) || !ringsIntersect(polygon, matchFeature)) return;
 
             features[i] = turfUnion(polygon, matchFeature);
 
@@ -95,7 +95,7 @@ function dissolve(featureCollection, options) {
                 return a.properties.origIndexPosition === b.properties.origIndexPosition;
             });
             featureChanged = true;
-        }
+        });
 
         if (featureChanged) {
             if (!polygon) continue;

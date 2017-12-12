@@ -1,7 +1,7 @@
-import intersection from './intersection';
 import { flattenEach } from '@turf/meta';
 import { getCoords, getType } from '@turf/invariant';
-import { isObject, lineString, multiLineString, distanceToDegrees } from '@turf/helpers';
+import { isObject, lineString, multiLineString, lengthToDegrees } from '@turf/helpers';
+import intersection from './lib/intersection';
 
 /**
  * Takes a {@link LineString|line} and returns a {@link LineString|line} at offset by the specified distance.
@@ -59,7 +59,7 @@ function lineOffset(geojson, distance, options) {
  */
 function lineOffsetFeature(line, distance, units) {
     var segments = [];
-    var offsetDegrees = distanceToDegrees(distance, units);
+    var offsetDegrees = lengthToDegrees(distance, units);
     var coords = getCoords(line);
     var finalCoords = [];
     coords.forEach(function (currentCoords, index) {

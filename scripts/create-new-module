@@ -42,25 +42,33 @@ fs.writeFileSync(path.join(folderPath, 'index.js'), `/**
  * @example
  * <SIMPLE EXAMPLE>
  */
-module.exports = function (feature1, feature2) {
+function ${camelcaseName}(feature1, feature2) {
     return true;
 };
+
+export default ${camelcaseName};
 `);
 
 // Create package.json
 fs.writeFileSync(path.join(folderPath, 'package.json'), `{
   "name": "@turf/${decamelizeName}",
-  "version": "4.0.0",
+  "version": "5.0.0",
   "description": "turf ${decamelizeName} module",
-  "main": "index.js",
+  "main": "main.js",
+  "module": "main.es.js",
   "types": "index.d.ts",
   "files": [
     "index.js",
-    "index.d.ts"
+    "index.d.ts",
+    "main.js",
+    "main.es.js"
   ],
   "scripts": {
-    "test": "node test.js",
-    "bench": "node bench.js"
+    "pretest": "rollup -c ../../rollup.config.js",
+    "test": "node -r @std/esm test.js",
+    "posttest": "node -r @std/esm ../../scripts/validate-es5-dependencies.js",
+    "bench": "node -r @std/esm bench.js",
+    "docs": "node ../../scripts/generate-readmes"
   },
   "repository": {
     "type": "git",
@@ -80,12 +88,20 @@ fs.writeFileSync(path.join(folderPath, 'package.json'), `{
   },
   "homepage": "https://github.com/Turfjs/turf",
   "devDependencies": {
-    "benchmark": "^2.1.4",
-    "write-json-file": "^2.2.0",
-    "load-json-file": "^2.0.0",
-    "tape": "^4.6.3"
+    "@std/esm": "*",
+    "benchmark": "*",
+    "rollup": "*",
+    "write-json-file": "*",
+    "load-json-file": "*",
+    "tape": "*"
   },
-  "dependencies": {}
+  "dependencies": {
+    "@turf/helpers": "*"
+  },
+  "@std/esm": {
+    "esm": "js",
+    "cjs": true
+  }
 }
 `);
 
@@ -94,24 +110,24 @@ const license = path.join(__dirname, '..', 'packages', 'turf', 'LICENSE');
 fs.copySync(license, path.join(folderPath, 'LICENSE'));
 
 // Create index.d.ts
-fs.writeFileSync(path.join(folderPath, 'index.d.ts'), `/// <reference types="geojson" />
-
-type Feature = GeoJSON.Feature<any> | GeoJSON.GeometryObject;
+fs.writeFileSync(path.join(folderPath, 'index.d.ts'), `import { Feature, GeometryObject } from '@turf/helpers'
 
 /**
  * http://turfjs.org/docs/#${name.toLocaleLowerCase().replace('-', '')}
  */
-declare function ${camelcaseName}(feature1: Feature, feature2: Feature): boolean;
-declare namespace ${camelcaseName} { }
-export = ${camelcaseName};
+
+export default function (
+    feature1: Feature<any> | GeometryObject,
+    feature2: Feature<any> | GeometryObject
+ ): boolean
 `);
 
 // Create bench.js
-fs.writeFileSync(path.join(folderPath, 'bench.js'), `const path = require('path');
-const glob = require('glob');
-const load = require('load-json-file');
-const Benchmark = require('benchmark');
-const ${camelcaseName} = require('./');
+fs.writeFileSync(path.join(folderPath, 'bench.js'), `import Benchmark from 'benchmark';
+import ${camelcaseName} from '.';
+import glob from 'glob';
+import path from 'path';
+import load from 'load-json-file';
 
 /**
  * Benchmark Results
@@ -136,35 +152,26 @@ suite
 `);
 
 // Create test.js
-fs.writeFileSync(path.join(folderPath, 'test.js'), `const fs = require('fs');
-const test = require('tape');
-const path = require('path');
-const load = require('load-json-file');
-const write = require('write-json-file');
-const ${camelcaseName} = require('./');
-
-const directories = {
-    in: path.join(__dirname, 'test', 'in') + path.sep,
-    out: path.join(__dirname, 'test', 'out') + path.sep
-};
-
-const fixtures = fs.readdirSync(directories.in).map(filename => {
-    return {
-        filename,
-        name: path.parse(filename).name,
-        geojson: load.sync(directories.in + filename)
-    };
-});
+fs.writeFileSync(path.join(folderPath, 'test.js'), `import test from 'tape';
+import glob from 'glob';
+import path from 'path';
+import load from 'load-json-file';
+import write from 'write-json-file';
+import ${camelcaseName} from '.';
 
 test('turf-${decamelizeName}', t => {
-    for (const {filename, name, geojson}  of fixtures) {
-        const [feature1, feature2] = geojson.features;
-        const results = ${camelcaseName}(feature1, feature2);
+  glob.sync(path.join(__dirname, 'test', 'in', '*.json')).forEach(filepath => {
+    // Define params
+    const {name} = path.parse(filepath);
+    const geojson = load.sync(filepath);
+    // etc.
 
-        if (process.env.REGEN) write.sync(directories.out + filename, results);
-        t.deepEqual(results, load.sync(directories.out + filename), name);
-    }
-    t.end();
+    const results = [];
+    const out = filepath.replace(path.join('test', 'in'), path.join('test', 'out'));
+    if (process.env.REGEN) write.sync(out, results);
+    t.deepEqual(results, load.sync(out), name);
+  });
+  t.end();
 });
 `);
 
