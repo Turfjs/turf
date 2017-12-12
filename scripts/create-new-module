@@ -93,7 +93,9 @@ fs.writeFileSync(path.join(folderPath, 'package.json'), `{
     "load-json-file": "*",
     "tape": "*"
   },
-  "dependencies": {},
+  "dependencies": {
+    "@turf/helpers": "*"
+  },
   "@std/esm": {
     "esm": "js",
     "cjs": true
