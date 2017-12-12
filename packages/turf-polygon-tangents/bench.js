@@ -15,12 +15,14 @@ let fixtures = fs.readdirSync(directory).map(filename => {
 
 /**
  * Benchmark Results
- *
- * concave x 2,575,215 ops/sec ±0.87% (93 runs sampled)
- * high x 2,564,720 ops/sec ±0.90% (91 runs sampled)
- * multipolygon x 1,457,482 ops/sec ±1.18% (86 runs sampled)
- * polygonWithHole x 2,555,744 ops/sec ±9.96% (72 runs sampled)
- * square x 3,078,300 ops/sec ±1.04% (90 runs sampled)
+ * concave x 562,308 ops/sec ±1.87% (86 runs sampled)
+ * high x 478,965 ops/sec ±5.76% (70 runs sampled)
+ * issue#1032 x 7,041 ops/sec ±2.71% (81 runs sampled)
+ * issue#1050 x 388,455 ops/sec ±2.34% (79 runs sampled)
+ * issue#785 x 51,146 ops/sec ±3.87% (77 runs sampled)
+ * multipolygon x 143,371 ops/sec ±3.17% (80 runs sampled)
+ * polygonWithHole x 215,547 ops/sec ±2.13% (83 runs sampled)
+ * square x 518,853 ops/sec ±2.68% (81 runs sampled)
  */
 const suite = new Benchmark.Suite('turf-polygon-tangents');
 for (const {name, geojson} of fixtures) {
