@@ -3,6 +3,7 @@ import { getCoord } from '@turf/invariant';
 /**
  * Finds the angle between 3 points.
  *
+ * @name angle
  * @param {Coord} startPoint Start Point Coordinates
  * @param {Coord} midPoint Mid Point Coordinates
  * @param {Coord} endPoint End Point Coordinates
@@ -11,7 +12,7 @@ import { getCoord } from '@turf/invariant';
  * turf.angle([5, 5], [5, 6], [3, 4])
  * //=45
  */
-export default function (startPoint, midPoint, endPoint) {
+export default function angle(startPoint, midPoint, endPoint) {
     // Rename to shorter variables
     var A = getCoord(startPoint);
     var B = getCoord(midPoint);
