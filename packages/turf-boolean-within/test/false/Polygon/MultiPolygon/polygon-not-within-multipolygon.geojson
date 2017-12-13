@@ -1,0 +1,24 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {},
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[-12, -12], [-12, -19], [-19, -19], [-19, -12], [-12, -12]]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {},
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [[[1, 1], [1, 10], [10, 10], [10, 1], [1, 1]]],
+          [[[-1, -1], [-1, -10], [-10, -10], [-10, -1], [-1, -1]]]
+        ]
+      }
+    }
+  ]
+}
