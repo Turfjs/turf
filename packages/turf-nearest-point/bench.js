@@ -1,10 +1,10 @@
 import fs from 'fs';
 import path from 'path';
 import Benchmark from 'benchmark';
-import { point } from '@turf/helpers';
+import load from 'load-json-file';
 import nearestPoint from './';
 
-var pts = JSON.parse(fs.readFileSync(path.join(__dirname, 'test', 'in', 'points.json')));
+var pts = load.sync(path.join(__dirname, 'test', 'in', 'points.json'));
 
 /**
  * Benchmark Results
@@ -13,7 +13,7 @@ var pts = JSON.parse(fs.readFileSync(path.join(__dirname, 'test', 'in', 'points.
  */
 var suite = new Benchmark.Suite('turf-nearest-point');
 suite
-    .add('turf-nearest-point', () => nearestPoint(point(pts.properties.targetPoint), pts))
+    .add('turf-nearest-point', () => nearestPoint(pts.properties.targetPoint, pts))
     .on('cycle', e => console.log(String(e.target)))
     .on('complete', () => {})
     .run();
