@@ -95,11 +95,11 @@ export function feature(geometry, properties, options) {
     if (geometry === undefined) throw new Error('geometry is required');
     if (properties && properties.constructor !== Object) throw new Error('properties must be an Object');
     if (bbox) validateBBox(bbox);
-    if (id) validateId(id);
+    if (id !== 0 && id) validateId(id);
 
     // Main
     var feat = {type: 'Feature'};
-    if (id) feat.id = id;
+    if (id === 0 || id) feat.id = id;
     if (bbox) feat.bbox = bbox;
     feat.properties = properties || {};
     feat.geometry = geometry;
