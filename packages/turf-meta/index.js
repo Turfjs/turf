@@ -18,6 +18,7 @@ import { feature, lineString } from '@turf/helpers';
  * @param {FeatureCollection|Feature|Geometry} geojson any GeoJSON object
  * @param {Function} callback a method that takes (currentCoord, coordIndex, featureIndex, multiFeatureIndex)
  * @param {boolean} [excludeWrapCoord=false] whether or not to include the final coordinate of LinearRings that wraps the ring in its iteration.
+ * @returns {void}
  * @example
  * var features = turf.featureCollection([
  *   turf.point([26, 37], {"foo": "bar"}),
@@ -80,14 +81,14 @@ export function coordEach(geojson, callback, excludeWrapCoord) {
             case null:
                 break;
             case 'Point':
-                callback(coords, coordIndex, featureIndex, multiFeatureIndex, geometryIndex);
+                if (callback(coords, coordIndex, featureIndex, multiFeatureIndex, geometryIndex) === false) return false;
                 coordIndex++;
                 multiFeatureIndex++;
                 break;
             case 'LineString':
             case 'MultiPoint':
                 for (j = 0; j < coords.length; j++) {
-                    callback(coords[j], coordIndex, featureIndex, multiFeatureIndex, geometryIndex);
+                    if (callback(coords[j], coordIndex, featureIndex, multiFeatureIndex, geometryIndex) === false) return false;
                     coordIndex++;
                     if (geomType === 'MultiPoint') multiFeatureIndex++;
                 }
@@ -97,7 +98,7 @@ export function coordEach(geojson, callback, excludeWrapCoord) {
             case 'MultiLineString':
                 for (j = 0; j < coords.length; j++) {
                     for (k = 0; k < coords[j].length - wrapShrink; k++) {
-                        callback(coords[j][k], coordIndex, featureIndex, multiFeatureIndex, geometryIndex);
+                        if (callback(coords[j][k], coordIndex, featureIndex, multiFeatureIndex, geometryIndex) === false) return false;
                         coordIndex++;
                     }
                     if (geomType === 'MultiLineString') multiFeatureIndex++;
@@ -110,7 +111,7 @@ export function coordEach(geojson, callback, excludeWrapCoord) {
                     if (geomType === 'MultiPolygon') geometryIndex = 0;
                     for (k = 0; k < coords[j].length; k++) {
                         for (l = 0; l < coords[j][k].length - wrapShrink; l++) {
-                            callback(coords[j][k][l], coordIndex, featureIndex, multiFeatureIndex, geometryIndex);
+                            if (callback(coords[j][k][l], coordIndex, featureIndex, multiFeatureIndex, geometryIndex) === false) return false;
                             coordIndex++;
                         }
                         geometryIndex++;
@@ -120,7 +121,7 @@ export function coordEach(geojson, callback, excludeWrapCoord) {
                 break;
             case 'GeometryCollection':
                 for (j = 0; j < geometry.geometries.length; j++)
-                    coordEach(geometry.geometries[j], callback, excludeWrapCoord);
+                    if (coordEach(geometry.geometries[j], callback, excludeWrapCoord) === false) return false;
                 break;
             default:
                 throw new Error('Unknown Geometry Type');
@@ -202,6 +203,7 @@ export function coordReduce(geojson, callback, initialValue, excludeWrapCoord) {
  * @name propEach
  * @param {FeatureCollection|Feature} geojson any GeoJSON object
  * @param {Function} callback a method that takes (currentProperties, featureIndex)
+ * @returns {void}
  * @example
  * var features = turf.featureCollection([
  *     turf.point([26, 37], {foo: 'bar'}),
@@ -218,7 +220,7 @@ export function propEach(geojson, callback) {
     switch (geojson.type) {
     case 'FeatureCollection':
         for (i = 0; i < geojson.features.length; i++) {
-            callback(geojson.features[i].properties, i);
+            if (callback(geojson.features[i].properties, i) === false) break;
         }
         break;
     case 'Feature':
@@ -296,6 +298,7 @@ export function propReduce(geojson, callback, initialValue) {
  * @name featureEach
  * @param {FeatureCollection|Feature|Geometry} geojson any GeoJSON object
  * @param {Function} callback a method that takes (currentFeature, featureIndex)
+ * @returns {void}
  * @example
  * var features = turf.featureCollection([
  *   turf.point([26, 37], {foo: 'bar'}),
@@ -312,7 +315,7 @@ export function featureEach(geojson, callback) {
         callback(geojson, 0);
     } else if (geojson.type === 'FeatureCollection') {
         for (var i = 0; i < geojson.features.length; i++) {
-            callback(geojson.features[i], i);
+            if (callback(geojson.features[i], i) === false) break;
         }
     }
 }
@@ -408,6 +411,7 @@ export function coordAll(geojson) {
  * @name geomEach
  * @param {FeatureCollection|Feature|Geometry} geojson any GeoJSON object
  * @param {Function} callback a method that takes (currentGeometry, featureIndex, featureProperties, featureBBox, featureId)
+ * @returns {void}
  * @example
  * var features = turf.featureCollection([
  *     turf.point([26, 37], {foo: 'bar'}),
@@ -465,7 +469,7 @@ export function geomEach(geojson, callback) {
 
             // Handle null Geometry
             if (geometry === null) {
-                callback(null, featureIndex, featureProperties, featureBBox, featureId);
+                if (callback(null, featureIndex, featureProperties, featureBBox, featureId) === false) return false;
                 continue;
             }
             switch (geometry.type) {
@@ -475,12 +479,12 @@ export function geomEach(geojson, callback) {
             case 'Polygon':
             case 'MultiLineString':
             case 'MultiPolygon': {
-                callback(geometry, featureIndex, featureProperties, featureBBox, featureId);
+                if (callback(geometry, featureIndex, featureProperties, featureBBox, featureId) === false) return false;
                 break;
             }
             case 'GeometryCollection': {
                 for (j = 0; j < geometry.geometries.length; j++) {
-                    callback(geometry.geometries[j], featureIndex, featureProperties, featureBBox, featureId);
+                    if (callback(geometry.geometries[j], featureIndex, featureProperties, featureBBox, featureId) === false) return false;
                 }
                 break;
             }
@@ -587,7 +591,7 @@ export function flattenEach(geojson, callback) {
         case 'Point':
         case 'LineString':
         case 'Polygon':
-            callback(feature(geometry, properties, {bbox: bbox, id: id}), featureIndex, 0);
+            if (callback(feature(geometry, properties, {bbox: bbox, id: id}), featureIndex, 0) === false) return false;
             return;
         }
 
@@ -606,14 +610,14 @@ export function flattenEach(geojson, callback) {
             break;
         }
 
-        geometry.coordinates.forEach(function (coordinate, multiFeatureIndex) {
+        for (var multiFeatureIndex = 0; multiFeatureIndex < geometry.coordinates.length; multiFeatureIndex++) {
+            var coordinate = geometry.coordinates[multiFeatureIndex];
             var geom = {
                 type: geomType,
                 coordinates: coordinate
             };
-            callback(feature(geom, properties), featureIndex, multiFeatureIndex);
-        });
-
+            if (callback(feature(geom, properties), featureIndex, multiFeatureIndex) === false) return false;
+        }
     });
 }
 
@@ -718,12 +722,19 @@ export function segmentEach(geojson, callback) {
         if (type === 'Point' || type === 'MultiPoint') return;
 
         // Generate 2-vertex line segments
-        coordReduce(feature, function (previousCoords, currentCoord, coordIndex, featureIndexCoord, mutliPartIndexCoord, geometryIndex) {
-            var currentSegment = lineString([previousCoords, currentCoord], feature.properties);
-            callback(currentSegment, featureIndex, multiFeatureIndex, geometryIndex, segmentIndex);
-            segmentIndex++;
-            return currentCoord;
+        var stop;
+        var previousCoord;
+        coordEach(feature, function (currentCoord, coordIndex, featureIndexCoord, mutliPartIndexCoord, geometryIndex) {
+            if (previousCoord) {
+                var currentSegment = lineString([previousCoord, currentCoord], feature.properties);
+                if (callback(currentSegment, featureIndex, multiFeatureIndex, geometryIndex, segmentIndex) === false) {
+                    stop = true;
+                    return false;
+                }
+                segmentIndex++;
+            } else previousCoord = currentCoord;
         });
+        if (stop === true) return false;
     });
 }
 
@@ -831,11 +842,11 @@ export function lineEach(geojson, callback) {
         var coords = feature.geometry.coordinates;
         switch (type) {
         case 'LineString':
-            callback(feature, featureIndex, multiFeatureIndex, 0, 0);
+            if (callback(feature, featureIndex, multiFeatureIndex, 0, 0) === false) return false;
             break;
         case 'Polygon':
             for (var geometryIndex = 0; geometryIndex < coords.length; geometryIndex++) {
-                callback(lineString(coords[geometryIndex], feature.properties), featureIndex, multiFeatureIndex, geometryIndex);
+                if (callback(lineString(coords[geometryIndex], feature.properties), featureIndex, multiFeatureIndex, geometryIndex) === false) return false;
             }
             break;
         }

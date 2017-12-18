@@ -892,3 +892,34 @@ test('meta.coordEach -- indexes -- FeatureCollection of LineString', t => {
     // t.deepEqual(coordIndexes,        [0, 1, 2, 3, 4, 0, 1, 2, 3, 4]);
     t.end();
 });
+
+
+test('meta -- breaking of iterations', t => {
+    const lines = lineStrings([
+        [[10, 10], [50, 30], [30, 40]],
+        [[-10, -10], [-50, -30], [-30, -40]]
+    ]);
+    const multiLine = multiLineString([
+        [[10, 10], [50, 30], [30, 40]],
+        [[-10, -10], [-50, -30], [-30, -40]]
+    ]);
+
+    // Each Iterators
+    for (const func of [meta.coordEach, meta.featureEach, meta.flattenEach, meta.geomEach, meta.lineEach, meta.propEach, meta.segmentEach]) {
+        let count = 0;
+        let multiCount = 0;
+        func(lines, () => {
+            count += 1;
+            return false;
+        });
+        func(multiLine, () => {
+            multiCount += 1;
+            return false;
+        });
+
+        // Meta Each function should only a value of 1 after returning `false`
+        t.equal(count, 1, func.name);
+        t.equal(multiCount, 1, func.name);
+    }
+    t.end();
+});
