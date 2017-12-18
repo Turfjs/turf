@@ -421,8 +421,10 @@ test('turf-helpers -- Handle Id & BBox properties', t => {
     const id = 12345;
     const bbox = [10, 30, 10, 30];
     const pt = point([10, 30], {}, {bbox, id});
+    const ptId0 = point([10, 30], {}, {bbox, id: 0});
     const fc = featureCollection([pt], {bbox, id});
     t.equal(pt.id, id, 'feature id');
+    t.equal(ptId0.id, 0, 'feature id = 0'); // issue #1180
     t.equal(pt.bbox, bbox, 'feature bbox');
     t.equal(fc.id, id, 'featureCollection id');
     t.equal(fc.bbox, bbox, 'featureCollection bbox');
