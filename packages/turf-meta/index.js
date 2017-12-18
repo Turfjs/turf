@@ -16,7 +16,7 @@ import { feature, lineString } from '@turf/helpers';
  *
  * @name coordEach
  * @param {FeatureCollection|Feature|Geometry} geojson any GeoJSON object
- * @param {Function} callback a method that takes (currentCoord, coordIndex, featureIndex, multiFeatureIndex)
+ * @param {Function} callback a method that takes (currentCoord, coordIndex, featureIndex, multiFeatureIndex). You can stop the loop from within the callback function by explicitly returning false.
  * @param {boolean} [excludeWrapCoord=false] whether or not to include the final coordinate of LinearRings that wraps the ring in its iteration.
  * @returns {void}
  * @example
@@ -202,7 +202,7 @@ export function coordReduce(geojson, callback, initialValue, excludeWrapCoord) {
  *
  * @name propEach
  * @param {FeatureCollection|Feature} geojson any GeoJSON object
- * @param {Function} callback a method that takes (currentProperties, featureIndex)
+ * @param {Function} callback a method that takes (currentProperties, featureIndex). You can stop the loop from within the callback function by explicitly returning false.
  * @returns {void}
  * @example
  * var features = turf.featureCollection([
@@ -297,7 +297,7 @@ export function propReduce(geojson, callback, initialValue) {
  *
  * @name featureEach
  * @param {FeatureCollection|Feature|Geometry} geojson any GeoJSON object
- * @param {Function} callback a method that takes (currentFeature, featureIndex)
+ * @param {Function} callback a method that takes (currentFeature, featureIndex). You can stop the loop from within the callback function by explicitly returning false.
  * @returns {void}
  * @example
  * var features = turf.featureCollection([
@@ -410,7 +410,7 @@ export function coordAll(geojson) {
  *
  * @name geomEach
  * @param {FeatureCollection|Feature|Geometry} geojson any GeoJSON object
- * @param {Function} callback a method that takes (currentGeometry, featureIndex, featureProperties, featureBBox, featureId)
+ * @param {Function} callback a method that takes (currentGeometry, featureIndex, featureProperties, featureBBox, featureId). You can stop the loop from within the callback function by explicitly returning false.
  * @returns {void}
  * @example
  * var features = turf.featureCollection([
@@ -569,7 +569,7 @@ export function geomReduce(geojson, callback, initialValue) {
  *
  * @name flattenEach
  * @param {FeatureCollection|Feature|Geometry} geojson any GeoJSON object
- * @param {Function} callback a method that takes (currentFeature, featureIndex, multiFeatureIndex)
+ * @param {Function} callback a method that takes (currentFeature, featureIndex, multiFeatureIndex). You can stop the loop from within the callback function by explicitly returning false.
  * @example
  * var features = turf.featureCollection([
  *     turf.point([26, 37], {foo: 'bar'}),
@@ -811,7 +811,7 @@ export function segmentReduce(geojson, callback, initialValue) {
  *
  * @name lineEach
  * @param {Geometry|Feature<LineString|Polygon|MultiLineString|MultiPolygon>} geojson object
- * @param {Function} callback a method that takes (currentLine, featureIndex, multiFeatureIndex, geometryIndex)
+ * @param {Function} callback a method that takes (currentLine, featureIndex, multiFeatureIndex, geometryIndex). You can stop the loop from within the callback function by explicitly returning false.
  * @example
  * var multiLine = turf.multiLineString([
  *   [[26, 37], [35, 45]],
