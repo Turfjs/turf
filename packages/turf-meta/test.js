@@ -905,7 +905,8 @@ test('meta -- breaking of iterations', t => {
     ]);
 
     // Each Iterators
-    for (const func of [meta.coordEach, meta.featureEach, meta.flattenEach, meta.geomEach, meta.lineEach, meta.propEach, meta.segmentEach]) {
+    // meta.segmentEach has been purposely excluded from this list
+    for (const func of [meta.coordEach, meta.featureEach, meta.flattenEach, meta.geomEach, meta.lineEach, meta.propEach]) {
         let count = 0;
         let multiCount = 0;
         func(lines, () => {
