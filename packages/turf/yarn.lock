@@ -11,6 +11,13 @@
     "@turf/distance" "^5.1.5"
     "@turf/helpers" "^5.1.5"
 
+"@turf/angle@5.x":
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/@turf/angle/-/angle-5.0.0.tgz#52baeb6388c7a10a565d3df00edea434980e38fd"
+  dependencies:
+    "@turf/helpers" "*"
+    "@turf/invariant" "*"
+
 "@turf/area@5.1.x", "@turf/area@^5.1.5":
   version "5.1.5"
   resolved "https://registry.yarnpkg.com/@turf/area/-/area-5.1.5.tgz#efd899bfd260cdbd1541b2a3c155f8a5d2eefa1d"
@@ -405,7 +412,7 @@
     "@turf/truncate" "^5.1.5"
     turf-jsts "*"
 
-"@turf/invariant@5.1.x", "@turf/invariant@^5.1.5":
+"@turf/invariant@*", "@turf/invariant@5.1.x", "@turf/invariant@^5.1.5":
   version "5.1.5"
   resolved "https://registry.yarnpkg.com/@turf/invariant/-/invariant-5.1.5.tgz#f59f4fefa09224b15dce1651f903c868d57a24e1"
   dependencies:
