@@ -42,11 +42,9 @@ fs.writeFileSync(path.join(folderPath, 'index.js'), `/**
  * @example
  * <SIMPLE EXAMPLE>
  */
-function ${camelcaseName}(feature1, feature2) {
+export default function ${camelcaseName}(feature1, feature2) {
     return true;
 };
-
-export default ${camelcaseName};
 `);
 
 // Create package.json
