@@ -6,7 +6,7 @@ import { featureCollection, polygon, multiPolygon } from '@turf/helpers';
  * Warning: may create degenerate polygons.
  *
  * @name polygonSmooth
- * @param {FeatureCollection<Polygon|MultiPolygon>} inputPolys to smooth
+ * @param {FeatureCollection|Feature<Polygon|MultiPolygon>} inputPolys (Multi)Polygon(s) to smooth
  * @param {Object} [options={}] Optional parameters
  * @param {string} [options.iterations=1] THe number of times to smooth the polygon. A higher value means a smoother polygon.
  * @returns {FeatureCollection<Polygon>} FeatureCollection containing the smoothed polygon/poylgons
@@ -25,21 +25,36 @@ function polygonSmooth(inputPolys, options) {
     if (!inputPolys) throw new Error('inputPolys is required');
 
     geomEach(inputPolys, function (geom, geomIndex, properties) {
-        var type = geom.type === 'Polygon' ? 'Polygon' : 'MultiPolygon';
-        var outCoords = type === 'Polygon' ? [] : [[]];
+        var outCoords;
+        var poly;
+        var tempOutput;
 
-        for (var i = 0; i < iterations; i++) {
-            var tempOutput  = type === 'Polygon' ? [[]] : [[[]]];
-            var poly = geom;
-            if (i > 0) {
-                poly = type === 'Polygon' ? polygon(outCoords).geometry : multiPolygon(outCoords).geometry;
+        switch (geom.type) {
+        case 'Polygon':
+            outCoords = [[]];
+            for (var i = 0; i < iterations; i++) {
+                tempOutput = [[]];
+                poly = geom;
+                if (i > 0) poly = polygon(outCoords).geometry;
+                processPolygon(poly, tempOutput);
+                outCoords = tempOutput.slice(0);
             }
-            if (type === 'Polygon') processPolygon(poly, tempOutput);
-            else processMultiPolygon(poly, tempOutput);
-            outCoords = tempOutput.slice(0);
+            outPolys.push(polygon(outCoords, properties));
+            break;
+        case 'MultiPolygon':
+            outCoords = [[[]]];
+            for (var y = 0; y < iterations; y++) {
+                tempOutput = [[[]]];
+                poly = geom;
+                if (y > 0) poly = multiPolygon(outCoords).geometry;
+                processMultiPolygon(poly, tempOutput);
+                outCoords = tempOutput.slice(0);
+            }
+            outPolys.push(multiPolygon(outCoords, properties));
+            break;
+        default:
+            throw new Error('geometry is invalid, must be Polygon or MultiPolygon');
         }
-        if (type === 'Polygon') outPolys.push(polygon(outCoords, properties));
-        else outPolys.push(multiPolygon(outCoords, properties));
     });
     return featureCollection(outPolys);
 }
@@ -52,6 +67,7 @@ function polygonSmooth(inputPolys, options) {
 function processPolygon(poly, tempOutput) {
     var prevGeomIndex = 0;
     var subtractCoordIndex = 0;
+
     coordEach(poly, function (currentCoord, coordIndex, featureIndex, multiFeatureIndex, geometryIndex) {
         if (geometryIndex > prevGeomIndex) {
             prevGeomIndex = geometryIndex;
@@ -81,6 +97,7 @@ function processMultiPolygon(poly, tempOutput) {
     var prevGeomIndex = 0;
     var subtractCoordIndex = 0;
     var prevMultiIndex = 0;
+
     coordEach(poly, function (currentCoord, coordIndex, featureIndex, multiFeatureIndex, geometryIndex) {
         if (multiFeatureIndex > prevMultiIndex) {
             prevMultiIndex = multiFeatureIndex;
