@@ -33,16 +33,17 @@ function nearestPoint(targetPoint, points) {
 
     var nearest;
     var minDist = Infinity;
+    var bestFeatureIndex = 0;
     featureEach(points, function (pt, featureIndex) {
         var distanceToPoint = distance(targetPoint, pt);
         if (distanceToPoint < minDist) {
-            nearest = clone(pt);
-            nearest.properties.featureIndex = featureIndex;
-            nearest.properties.distanceToPoint = distanceToPoint;
+            bestFeatureIndex = featureIndex;
             minDist = distanceToPoint;
         }
-
     });
+    nearest = clone(points.features[bestFeatureIndex]);
+    nearest.properties.featureIndex = bestFeatureIndex;
+    nearest.properties.distanceToPoint = minDist;
     return nearest;
 }
 
