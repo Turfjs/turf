@@ -4,21 +4,21 @@
 
 ## polygonSmooth
 
-Smooths a [Polygon](https://tools.ietf.org/html/rfc7946#section-3.1.6). Based on [Chaikin's algorithm](http://graphics.cs.ucdavis.edu/education/CAGDNotes/Chaikins-Algorithm/Chaikins-Algorithm.html).
+Smooths a [Polygon](https://tools.ietf.org/html/rfc7946#section-3.1.6) or [MultiPolygon](https://tools.ietf.org/html/rfc7946#section-3.1.7). Based on [Chaikin's algorithm](http://graphics.cs.ucdavis.edu/education/CAGDNotes/Chaikins-Algorithm/Chaikins-Algorithm.html).
 Warning: may create degenerate polygons.
 
 **Parameters**
 
--   `inputPolys` **[FeatureCollection](https://tools.ietf.org/html/rfc7946#section-3.3)&lt;[Polygon](https://tools.ietf.org/html/rfc7946#section-3.1.6)>** to smooth
--   `options` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** Optional parameters (optional, default `{}`)
-    -   `options.iterations` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** THe number of times to smooth the polygon. A higher value means a smoother polygon. (optional, default `1`)
+-   `geojson` **([FeatureCollection](https://tools.ietf.org/html/rfc7946#section-3.3) \| [Feature](https://tools.ietf.org/html/rfc7946#section-3.2)&lt;([Polygon](https://tools.ietf.org/html/rfc7946#section-3.1.6) \| [MultiPolygon](https://tools.ietf.org/html/rfc7946#section-3.1.7))>)** (Multi)Polygon(s) to smooth
+-   `options` **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)** Optional parameters (optional, default `{}`)
+    -   `options.iterations` **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** THe number of times to smooth the polygon. A higher value means a smoother polygon. (optional, default `1`)
 
 **Examples**
 
 ```javascript
 var polygon = turf.polygon([[[11, 0], [22, 4], [31, 0], [31, 11], [21, 15], [11, 11], [11, 0]]]);
 
-var smoothed = turf.polygonSmooth(polygon)
+var smoothed = turf.polygonSmooth(polygon, {iterations: 3})
 
 //addToMap
 var addToMap = [smoothed, polygon];
