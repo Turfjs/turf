@@ -1,0 +1,61 @@
+{
+  "name": "@turf/nearest-neighbor-analysis",
+  "version": "5.0.0",
+  "description": "turf nearest-neighbor-analysis module",
+  "main": "main.js",
+  "module": "main.es.js",
+  "types": "index.d.ts",
+  "files": [
+    "index.js",
+    "index.d.ts",
+    "main.js",
+    "main.es.js"
+  ],
+  "scripts": {
+    "pretest": "rollup -c ../../rollup.config.js",
+    "test": "node -r @std/esm test.js",
+    "posttest": "node -r @std/esm ../../scripts/validate-es5-dependencies.js",
+    "bench": "node -r @std/esm bench.js",
+    "docs": "node ../../scripts/generate-readmes"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/Turfjs/turf.git"
+  },
+  "keywords": [
+    "turf",
+    "nearest-neighbor"
+  ],
+  "author": "Turf Authors",
+  "contributors": [
+    "Moacir P. de Sá Pereira <@muziejus>"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Turfjs/turf/issues"
+  },
+  "homepage": "https://github.com/Turfjs/turf",
+  "devDependencies": {
+    "@std/esm": "*",
+    "@turf/truncate": "*",
+    "benchmark": "*",
+    "rollup": "*",
+    "write-json-file": "*",
+    "load-json-file": "*",
+    "tape": "*"
+  },
+  "dependencies": {
+    "@turf/area": "^5.0.4",
+    "@turf/bbox": "^5.0.4",
+    "@turf/bbox-polygon": "^5.0.4",
+    "@turf/centroid": "^5.0.4",
+    "@turf/distance": "^5.0.4",
+    "@turf/helpers": "^5.0.4",
+    "@turf/meta": "^5.0.4",
+    "@turf/nearest-point": "^5.0.4"
+  },
+  "@std/esm": {
+    "esm": "js",
+    "cjs": true
+  }
+}

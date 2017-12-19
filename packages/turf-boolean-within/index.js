@@ -34,6 +34,7 @@ function booleanWithin(feature1, feature2) {
         case 'LineString':
             return booleanPointOnLine(geom1, geom2, {ignoreEndVertices: true});
         case 'Polygon':
+        case 'MultiPolygon':
             return booleanPointInPolygon(geom1, geom2, {ignoreBoundary: true});
         default:
             throw new Error('feature2 ' + type2 + ' geometry not supported');
@@ -45,6 +46,7 @@ function booleanWithin(feature1, feature2) {
         case 'LineString':
             return isMultiPointOnLine(geom1, geom2);
         case 'Polygon':
+        case 'MultiPolygon':
             return isMultiPointInPoly(geom1, geom2);
         default:
             throw new Error('feature2 ' + type2 + ' geometry not supported');
@@ -54,6 +56,7 @@ function booleanWithin(feature1, feature2) {
         case 'LineString':
             return isLineOnLine(geom1, geom2);
         case 'Polygon':
+        case 'MultiPolygon':
             return isLineInPoly(geom1, geom2);
         default:
             throw new Error('feature2 ' + type2 + ' geometry not supported');
@@ -61,6 +64,7 @@ function booleanWithin(feature1, feature2) {
     case 'Polygon':
         switch (type2) {
         case 'Polygon':
+        case 'MultiPolygon':
             return isPolyInPoly(geom1, geom2);
         default:
             throw new Error('feature2 ' + type2 + ' geometry not supported');

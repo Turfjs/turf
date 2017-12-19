@@ -1,5 +1,8 @@
 import { getCoords, getType } from '@turf/invariant';
 import { point, featureCollection } from '@turf/helpers';
+import calcBbox from '@turf/bbox';
+import explode from '@turf/explode';
+import nearestPoint from '@turf/nearest-point';
 
 /**
  * Finds the tangents of a {@link Polygon|(Multi)Polygon} from a {@link Point}.
@@ -25,23 +28,51 @@ function polygonTangents(pt, polygon) {
     var ltan;
     var enext;
     var eprev;
+    var bbox = calcBbox(polygon);
+    var nearestPtIndex = 0;
+    var nearest = null;
 
+    // If the point lies inside the polygon bbox then we need to be a bit trickier
+    // otherwise points lying inside reflex angles on concave polys can have issues
+    if (pointCoords[0] > bbox[0] && pointCoords[0] < bbox[2] && pointCoords[1] > bbox[1] && pointCoords[1] < bbox[3]) {
+        nearest = nearestPoint(pt, explode(polygon));
+        nearestPtIndex = nearest.properties.featureIndex;
+    }
     var type = getType(polygon);
     switch (type) {
     case 'Polygon':
-        rtan = polyCoords[0][0];
+        rtan = polyCoords[0][nearestPtIndex];
         ltan = polyCoords[0][0];
+        if (nearest !== null) {
+            if (nearest.geometry.coordinates[1] < pointCoords[1]) ltan = polyCoords[0][nearestPtIndex];
+        }
         eprev = isLeft(polyCoords[0][0], polyCoords[0][polyCoords[0].length - 1], pointCoords);
-        var out = processPolygon(polyCoords[0], pointCoords, eprev, enext, rtan, ltan);
+        var out = processPolygon(polyCoords[0], pointCoords, eprev, enext, rtan, ltan, polygon);
         rtan = out[0];
         ltan = out[1];
         break;
     case 'MultiPolygon':
-        rtan = polyCoords[0][0][0];
-        ltan = polyCoords[0][0][0];
+        var closestFeature = 0;
+        var closestVertex = 0;
+        var verticesCounted = 0;
+        for (var i = 0; i < polyCoords[0].length; i++) {
+            closestFeature = i;
+            var verticeFound = false;
+            for (var i2 = 0; i2 < polyCoords[0][i].length; i2++) {
+                closestVertex = i2;
+                if (verticesCounted === nearestPtIndex) {
+                    verticeFound = true;
+                    break;
+                }
+                verticesCounted++;
+            }
+            if (verticeFound) break;
+        }
+        rtan = polyCoords[0][closestFeature][closestVertex];
+        ltan = polyCoords[0][closestFeature][closestVertex];
         eprev = isLeft(polyCoords[0][0][0], polyCoords[0][0][polyCoords[0][0].length - 1], pointCoords);
         polyCoords.forEach(function (ring) {
-            var out = processPolygon(ring[0], pointCoords, eprev, enext, rtan, ltan);
+            var out = processPolygon(ring[0], pointCoords, eprev, enext, rtan, ltan, polygon);
             rtan = out[0];
             ltan = out[1];
         });
