@@ -140,6 +140,7 @@
     "@turf/point-on-feature": "5.1.x",
     "@turf/point-to-line-distance": "5.1.x",
     "@turf/points-within-polygon": "5.1.x",
+    "@turf/polygon-smooth": "5.x",
     "@turf/polygon-tangents": "5.1.x",
     "@turf/polygon-to-line": "5.1.x",
     "@turf/polygonize": "5.1.x",

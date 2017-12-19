@@ -1,6 +1,6 @@
 {
   "name": "@turf/polygon-smooth",
-  "version": "5.0.0",
+  "version": "5.0.1",
   "description": "turf polygon smooth module",
   "main": "main.js",
   "module": "main.es.js",
@@ -46,8 +46,8 @@
     "write-json-file": "*"
   },
   "dependencies": {
-    "@turf/helpers": "^5.0.1",
-    "@turf/meta": "^5.1.6"
+    "@turf/helpers": "*",
+    "@turf/meta": "*"
   },
   "@std/esm": {
     "esm": "js",
