@@ -1,29 +1,25 @@
 import fs from 'fs';
 import test from 'tape';
 import path from 'path';
+import glob from 'glob';
 import load from 'load-json-file';
 import write from 'write-json-file';
 import polygonSmooth from '.';
 
-const directories = {
-    in: path.join(__dirname, 'test', 'in') + path.sep,
-    out: path.join(__dirname, 'test', 'out') + path.sep
-};
-
-const fixtures = fs.readdirSync(directories.in).map(filename => {
-    return {
-        filename,
-        name: path.parse(filename).name,
-        geojson: load.sync(directories.in + filename)
-    };
-});
-
 test('turf-polygon-smooth', t => {
-    for (const {name, filename, geojson} of fixtures) {
-        const results = polygonSmooth(geojson, {iterations: 3});
+    glob.sync(path.join(__dirname, 'test', 'in', '*.json')).forEach(filepath => {
+        // Inputs
+        const geojson = load.sync(filepath);
+        const options = geojson.options || {};
+        const iterations = options.iterations || 3;
 
-        if (process.env.REGEN) write.sync(directories.out + filename, results);
-        t.deepEqual(load.sync(directories.out + filename), results, name);
-    }
+        // Results
+        const results = polygonSmooth(geojson, {iterations});
+
+        // Save Results
+        const out = filepath.replace(path.join('test', 'in'), path.join('test', 'out'))
+        if (process.env.REGEN) write.sync(out, results);
+        t.deepEqual(results, load.sync(out), path.parse(filepath).name);
+    });
     t.end();
 });
