@@ -48,8 +48,12 @@
     "write-json-file": "*"
   },
   "dependencies": {
+    "@turf/bbox": "^5.1.5",
+    "@turf/boolean-within": "^5.1.5",
+    "@turf/explode": "^5.1.5",
     "@turf/helpers": "^5.1.5",
-    "@turf/invariant": "^5.1.5"
+    "@turf/invariant": "^5.1.5",
+    "@turf/nearest-point": "^5.1.5"
   },
   "@std/esm": {
     "esm": "js",

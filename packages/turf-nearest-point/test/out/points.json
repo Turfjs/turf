@@ -259,27 +259,6 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"stroke": "#F00",
-				"stroke-width": 3,
-				"distanceToPoint": 7.479219230179186
-			},
-			"geometry": {
-				"type": "LineString",
-				"coordinates": [
-					[
-						-75.33,
-						39.44
-					],
-					[
-						-75.4,
-						39.4
-					]
-				]
-			}
-		},
-		{
-			"type": "Feature",
-			"properties": {
 				"marker-color": "#00F",
 				"marker-symbol": "circle"
 			},

@@ -10,6 +10,8 @@ test('turf-boolean-within', t => {
     // True Fixtures
     glob.sync(path.join(__dirname, 'test', 'true', '**', '*.geojson')).forEach(filepath => {
         const name = path.parse(filepath).name;
+        if (name.includes('skip')) return t.skip(name);
+
         const geojson = load.sync(filepath);
         const feature1 = geojson.features[0];
         const feature2 = geojson.features[1];
@@ -22,6 +24,8 @@ test('turf-boolean-within', t => {
     // False Fixtures
     glob.sync(path.join(__dirname, 'test', 'false', '**', '*.geojson')).forEach(filepath => {
         const name = path.parse(filepath).name;
+        if (name.includes('skip')) return t.skip(name);
+
         const geojson = load.sync(filepath);
         const feature1 = geojson.features[0];
         const feature2 = geojson.features[1];

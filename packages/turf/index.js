@@ -89,6 +89,7 @@ export {default as ellipse} from '@turf/ellipse';
 export {default as centerMean} from '@turf/center-mean';
 export {default as centerMedian} from '@turf/center-median';
 export {default as standardDeviationalEllipse} from '@turf/standard-deviational-ellipse';
+export {default as angle} from '@turf/angle';
 export * from '@turf/projection';
 export * from '@turf/random';
 export * from '@turf/clusters';

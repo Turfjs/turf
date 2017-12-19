@@ -68,6 +68,7 @@
   },
   "dependencies": {
     "@turf/along": "5.1.x",
+    "@turf/angle": "5.x",
     "@turf/area": "5.1.x",
     "@turf/bbox": "5.1.x",
     "@turf/bbox-clip": "5.1.x",

@@ -21,7 +21,6 @@ const fixtures = fs.readdirSync(directories.in).map(filename => {
 
 test('turf-polygon-tangents', t => {
     for (const {name, filename, geojson} of fixtures) {
-        if (name === 'issue#785') continue;
         const [poly, pt] = geojson.features;
         const results = polygonTangents(pt, poly);
         results.features = results.features.concat(geojson.features);
