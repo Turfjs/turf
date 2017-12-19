@@ -38,8 +38,11 @@
   "devDependencies": {
     "@std/esm": "*",
     "benchmark": "*",
+    "glob": "*",
+    "load-json-file": "*",
     "rollup": "*",
-    "tape": "*"
+    "tape": "*",
+    "write-json-file": "*"
   },
   "dependencies": {
     "@turf/helpers": "*",
