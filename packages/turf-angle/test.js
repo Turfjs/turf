@@ -6,7 +6,7 @@ import write from 'write-json-file';
 import { round } from '@turf/helpers';
 import angle from './';
 
-test('turf-voronoi', t => {
+test('turf-angle', t => {
     glob.sync(path.join(__dirname, 'test', 'in', '*.json')).forEach(filepath => {
         // Input
         const {name} = path.parse(filepath);
