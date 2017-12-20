@@ -39,15 +39,16 @@ import { geomEach, featureEach } from '@turf/meta';
  */
 function pointsWithinPolygon(points, polygons) {
     var results = [];
-    geomEach(polygons, function (polygon) {
-        featureEach(points, function (point) {
-            if (pointInPolygon(point, polygon)) results.push(point);
+    featureEach(points, function (point) {
+        var contained = false;
+        geomEach(polygons, function (polygon) {
+            if (pointInPolygon(point, polygon)) contained = true;
         });
+        if (contained) {
+            results.push(point);
+        }
     });
-    var unique = results.filter(function (point, pos, arr) {
-        return arr.indexOf(point) === pos;
-    });
-    return featureCollection(unique);
+    return featureCollection(results);
 }
 
 export default pointsWithinPolygon;
