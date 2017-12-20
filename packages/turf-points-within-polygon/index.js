@@ -44,7 +44,10 @@ function pointsWithinPolygon(points, polygons) {
             if (pointInPolygon(point, polygon)) results.push(point);
         });
     });
-    return featureCollection(results);
+    var unique = results.filter(function (point, pos, arr) {
+        return arr.indexOf(point) === pos;
+    });
+    return featureCollection(unique);
 }
 
 export default pointsWithinPolygon;
