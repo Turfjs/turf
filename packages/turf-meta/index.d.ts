@@ -105,7 +105,7 @@ export function geomReduce<Reducer extends any, G extends Geometries, P = Proper
 /**
  * http://turfjs.org/docs/#geomeach
  */
-export function geomEach<G extends Geometries, P = Properties>(
+export function geomEach<G extends (Geometries | null), P = Properties>(
     geojson: Feature<G, P> | FeatureCollection<G, P> | G | GeometryCollection | Feature<GeometryCollection, P>,
     callback: (currentGeometry: G,
                featureIndex: number,
