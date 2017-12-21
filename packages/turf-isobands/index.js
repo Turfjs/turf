@@ -4,6 +4,7 @@ import booleanPointInPolygon from '@turf/boolean-point-in-polygon';
 import explode from '@turf/explode';
 import { collectionOf } from '@turf/invariant';
 import { polygon, multiPolygon, featureCollection, isObject } from '@turf/helpers';
+import objectAssign from 'object-assign';
 import gridToMatrix from './lib/grid-to-matrix';
 import isoBands from './lib/marchingsquares-isobands';
 
@@ -45,7 +46,7 @@ function isobands(pointGrid, breaks, options) {
             throw new Error('Each mappedProperty is required to be an Object');
         }
         // collect all properties
-        var contourProperties = Object.assign(
+        var contourProperties = objectAssign(
             {},
             commonProperties,
             breaksProperties[index]

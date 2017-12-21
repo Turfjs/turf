@@ -2,6 +2,7 @@ import bbox from '@turf/bbox';
 import { coordEach } from '@turf/meta';
 import { collectionOf } from '@turf/invariant';
 import { multiLineString, featureCollection, isObject } from '@turf/helpers';
+import objectAssign from 'object-assign';
 import isoContours from './lib/marchingsquares-isocontours';
 import gridToMatrix from './lib/grid-to-matrix';
 
@@ -77,7 +78,7 @@ function createIsoLines(matrix, breaks, zProperty, commonProperties, breaksPrope
     for (var i = 1; i < breaks.length; i++) {
         var threshold = +breaks[i]; // make sure it's a number
 
-        var properties = Object.assign(
+        var properties = objectAssign(
             {},
             commonProperties,
             breaksProperties[i]
