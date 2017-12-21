@@ -9,7 +9,7 @@ import { isObject } from '@turf/helpers';
  * @param {Coord} midPoint Mid Point Coordinates
  * @param {Coord} endPoint End Point Coordinates
  * @param {Object} [options={}] Optional parameters
- * @param {boolean} [options.exterior=false] Returns the exterior angle instead (360 - angle)
+ * @param {boolean} [options.explementary=false] Returns the explementary angle instead (360 - angle)
  * @returns {number} Interior or Exterior angle between the 3 points.
  * @example
  * turf.angle([5, 5], [5, 6], [3, 4]);
@@ -19,7 +19,7 @@ function angle(startPoint, midPoint, endPoint, options) {
     // Optional Parameters
     options = options || {};
     if (!isObject(options)) throw new Error('options is invalid');
-    var exterior = options.exterior;
+    var explementary = options.explementary;
 
     // Rename to shorter variables
     var A = getCoord(startPoint);
@@ -33,8 +33,8 @@ function angle(startPoint, midPoint, endPoint, options) {
     var AC = Math.sqrt(Math.pow(C[0] - A[0], 2) + Math.pow(C[1] - A[1], 2));
     var angle = Math.acos((BC * BC + AB * AB - AC * AC) / (2 * BC * AB)) * (180 / pi);
 
-    // Exterior angle
-    if (exterior === true) return 360 - angle;
+    // Explementary angle
+    if (explementary === true) return 360 - angle;
     return angle;
 }
 

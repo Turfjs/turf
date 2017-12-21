@@ -16,7 +16,7 @@ test('turf-angle', t => {
         // Results
         const results = {
             interiorAngle: angle(start, mid, end),
-            exteriorAngle: angle(start, mid, end, {exterior: true}),
+            explementaryAngle: angle(start, mid, end, {explementary: true}),
         };
 
         // Save results
