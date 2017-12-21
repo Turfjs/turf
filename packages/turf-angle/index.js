@@ -29,13 +29,13 @@ function angle(startPoint, midPoint, endPoint, options) {
     var O = midPoint;
     var B = endPoint;
 
-    var azimuthOA = bearingToAzimuth((mercator !== true) ? bearing(O, A) : rhumbBearing(O, A));
-    var azimuthOB = bearingToAzimuth((mercator !== true) ? bearing(O, B) : rhumbBearing(O, B));
-    var angleO = Math.abs(azimuthOA - azimuthOB);
+    var azimuthAO = bearingToAzimuth((mercator !== true) ? bearing(A, O) : rhumbBearing(A, O));
+    var azimuthBO = bearingToAzimuth((mercator !== true) ? bearing(B, O) : rhumbBearing(B, O));
+    var angleAO = Math.abs(azimuthAO - azimuthBO);
 
     // Explementary angle
-    if (explementary === true) return 360 - angleO;
-    return angleO;
+    if (explementary === true) return 360 - angleAO;
+    return angleAO;
 }
 
 export default angle;
