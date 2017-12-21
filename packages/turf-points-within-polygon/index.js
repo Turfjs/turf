@@ -7,7 +7,7 @@ import { geomEach, featureEach } from '@turf/meta';
  *
  * @name pointsWithinPolygon
  * @param {Feauture|FeatureCollection<Point>} points Points as input search
- * @param {FeatureCollection|Geoemtry|Feature<Polygon|MultiPolygon>} polygons Points must be within these (Multi)Polygon(s)
+ * @param {FeatureCollection|Geometry|Feature<Polygon|MultiPolygon>} polygons Points must be within these (Multi)Polygon(s)
  * @returns {FeatureCollection<Point>} points that land within at least one polygon
  * @example
  * var points = turf.points([
@@ -39,10 +39,14 @@ import { geomEach, featureEach } from '@turf/meta';
  */
 function pointsWithinPolygon(points, polygons) {
     var results = [];
-    geomEach(polygons, function (polygon) {
-        featureEach(points, function (point) {
-            if (pointInPolygon(point, polygon)) results.push(point);
+    featureEach(points, function (point) {
+        var contained = false;
+        geomEach(polygons, function (polygon) {
+            if (pointInPolygon(point, polygon)) contained = true;
         });
+        if (contained) {
+            results.push(point);
+        }
     });
     return featureCollection(results);
 }

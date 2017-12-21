@@ -9,7 +9,7 @@ Finds [Points](https://tools.ietf.org/html/rfc7946#section-3.1.2) that fall with
 **Parameters**
 
 -   `points` **(Feauture | [FeatureCollection](https://tools.ietf.org/html/rfc7946#section-3.3)&lt;[Point](https://tools.ietf.org/html/rfc7946#section-3.1.2)>)** Points as input search
--   `polygons` **([FeatureCollection](https://tools.ietf.org/html/rfc7946#section-3.3) | Geoemtry | [Feature](https://tools.ietf.org/html/rfc7946#section-3.2)&lt;([Polygon](https://tools.ietf.org/html/rfc7946#section-3.1.6) \| [MultiPolygon](https://tools.ietf.org/html/rfc7946#section-3.1.7))>)** Points must be within these (Multi)Polygon(s)
+-   `polygons` **([FeatureCollection](https://tools.ietf.org/html/rfc7946#section-3.3) \| [Geometry](https://tools.ietf.org/html/rfc7946#section-3.1) \| [Feature](https://tools.ietf.org/html/rfc7946#section-3.2)&lt;([Polygon](https://tools.ietf.org/html/rfc7946#section-3.1.6) \| [MultiPolygon](https://tools.ietf.org/html/rfc7946#section-3.1.7))>)** Points must be within these (Multi)Polygon(s)
 
 **Examples**
 
