@@ -12,7 +12,8 @@ Finds the inner angle between 3 points.
 -   `midPoint` **[Coord](https://tools.ietf.org/html/rfc7946#section-3.1.1)** Mid Point Coordinates
 -   `endPoint` **[Coord](https://tools.ietf.org/html/rfc7946#section-3.1.1)** End Point Coordinates
 -   `options` **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)** Optional parameters (optional, default `{}`)
-    -   `options.exterior` **[boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** Returns the exterior angle instead (360 - angle) (optional, default `false`)
+    -   `options.explementary` **[boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** Returns the explementary angle instead (360 - angle) (optional, default `false`)
+    -   `options.mercator` **[boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** if distance should be on Mercator or WGS84 projection (optional, default `false`)
 
 **Examples**
 

@@ -9,5 +9,6 @@ export default function (
     endPoint: Coord,
     options?: {
         explementary?: boolean
+        mercator?: boolean
     }
  ): number
