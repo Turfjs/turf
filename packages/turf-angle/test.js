@@ -3,9 +3,10 @@ import path from 'path';
 import glob from 'glob';
 import load from 'load-json-file';
 import write from 'write-json-file';
+import truncate from '@turf/truncate';
 import { round, lineString, featureCollection } from '@turf/helpers';
 import bearing from '@turf/bearing';
-import distance from '@turf/rhumb-distance';
+import distance from '@turf/distance';
 import sector from '@turf/sector';
 import angle from './';
 
@@ -34,8 +35,8 @@ test('turf-angle', t => {
             'fill-opacity': 0.3
         }
         const results = featureCollection([
-            sector(mid, distance(mid, start) / 3, bearing(mid, start), bearing(mid, end), {properties: angleProperties}),
-            sector(mid, distance(mid, start) / 2, bearing(mid, end), bearing(mid, start), {properties: angleExplementaryProperties}),
+            truncate(sector(mid, distance(mid, start) / 3, bearing(mid, start), bearing(mid, end), {properties: angleProperties})),
+            truncate(sector(mid, distance(mid, start) / 2, bearing(mid, end), bearing(mid, start), {properties: angleExplementaryProperties})),
             lineString([start.geometry.coordinates, mid.geometry.coordinates, end.geometry.coordinates], {'stroke-width': 4, stroke: '#222'}),
             start,
             mid,

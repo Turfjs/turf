@@ -3,7 +3,7 @@ import rhumbBearing from '@turf/rhumb-bearing';
 import { isObject, bearingToAzimuth } from '@turf/helpers';
 
 /**
- * Finds the inner angle between 3 points.
+ * Finds the Interior or Explementary angle between 3 points.
  *
  * @name angle
  * @param {Coord} startPoint Start Point Coordinates
@@ -12,7 +12,7 @@ import { isObject, bearingToAzimuth } from '@turf/helpers';
  * @param {Object} [options={}] Optional parameters
  * @param {boolean} [options.explementary=false] Returns the explementary angle instead (360 - angle)
  * @param {boolean} [options.mercator=false] if distance should be on Mercator or WGS84 projection
- * @returns {number} Interior or Exterior angle between the 3 points.
+ * @returns {number} Interior or Explementary angle between the 3 points.
  * @example
  * turf.angle([5, 5], [5, 6], [3, 4]);
  * //=45

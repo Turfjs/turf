@@ -38,8 +38,8 @@
   "devDependencies": {
     "@std/esm": "*",
     "@turf/distance": "*",
-    "@turf/rhumb-distance": "*",
     "@turf/sector": "*",
+    "@turf/truncate": "*",
     "benchmark": "*",
     "glob": "*",
     "load-json-file": "*",
