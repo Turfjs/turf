@@ -2,6 +2,7 @@ import { isObject } from '@turf/helpers';
 import { getType } from '@turf/invariant';
 import pointToLineDistance from '@turf/point-to-line-distance';
 import { featureEach, geomEach } from '@turf/meta';
+import objectAssign from 'object-assign';
 
 /**
  * Returns the closest {@link Point|point}, of a {@link FeatureCollection|collection} of points, to a {@link LineString|line}.
@@ -55,7 +56,7 @@ function nearestPointToLine(points, line, options) {
      * 2. inherent Point properties
      * 3. dist custom properties created by NearestPointToLine
      */
-    if (pt) pt.properties = Object.assign({dist: dist}, pt.properties, properties);
+    if (pt) pt.properties = objectAssign({dist: dist}, pt.properties, properties);
     return pt;
 }
 

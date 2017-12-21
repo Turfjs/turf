@@ -63,7 +63,8 @@
     "@turf/explode": "^5.1.5",
     "@turf/helpers": "^5.1.5",
     "@turf/invariant": "^5.1.5",
-    "@turf/meta": "^5.1.5"
+    "@turf/meta": "^5.1.5",
+    "object-assign": "*"
   },
   "@std/esm": {
     "esm": "js",
