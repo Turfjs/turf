@@ -15,8 +15,10 @@ test('turf-angle', t => {
 
         // Results
         const results = {
-            interiorAngle: angle(start, mid, end),
-            explementaryAngle: angle(start, mid, end, {explementary: true}),
+            interiorAngle: round(angle(start, mid, end), 6),
+            explementaryAngle: round(angle(start, mid, end, {explementary: true}), 6),
+            interiorMercatorAngle: round(angle(start, mid, end, {mercator: true}), 6),
+            explementaryMercatorAngle: round(angle(start, mid, end, {explementary: true, mercator: true}), 6),
         };
 
         // Save results

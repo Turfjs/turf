@@ -1,4 +1,6 @@
 {
-	"interiorAngle": 90,
-	"explementaryAngle": 270
+	"interiorAngle": 88.687473,
+	"explementaryAngle": 271.312527,
+	"interiorMercatorAngle": 90,
+	"explementaryMercatorAngle": 270
 }

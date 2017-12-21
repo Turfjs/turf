@@ -45,8 +45,10 @@
     "write-json-file": "*"
   },
   "dependencies": {
+    "@turf/bearing": "*",
     "@turf/helpers": "*",
-    "@turf/invariant": "*"
+    "@turf/invariant": "*",
+    "@turf/rhumb-bearing": "*"
   },
   "@std/esm": {
     "esm": "js",
