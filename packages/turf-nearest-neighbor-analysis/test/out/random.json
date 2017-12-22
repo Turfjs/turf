@@ -1666,11 +1666,11 @@
 				"nearestNeighborAnalysis": {
 					"units": "kilometers",
 					"arealUnits": "kilometers²",
-					"observedMeanDistance": 1.6516270145942435,
+					"observedMeanDistance": 1.6516270145942438,
 					"expectedMeanDistance": 1.5887228554425286,
-					"nearestNeighborIndex": 1.039594167690244,
+					"nearestNeighborIndex": 1.0395941676902443,
 					"numberOfPoints": 150,
-					"zScore": 0.9277003714348996
+					"zScore": 0.9277003714349029
 				}
 			},
 			"geometry": {

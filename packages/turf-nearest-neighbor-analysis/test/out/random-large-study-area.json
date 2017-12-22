@@ -1660,7 +1660,7 @@
 				"nearestNeighborAnalysis": {
 					"units": "kilometers",
 					"arealUnits": "kilometers²",
-					"observedMeanDistance": 1.6516270145942435,
+					"observedMeanDistance": 1.6516270145942438,
 					"expectedMeanDistance": 25.489958462294293,
 					"nearestNeighborIndex": 0.06479520227690416,
 					"numberOfPoints": 150,

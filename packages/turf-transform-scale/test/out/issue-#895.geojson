@@ -2304,6 +2304,12 @@
 		},
 		{
 			"type": "Feature",
+			"bbox": [
+				-122.93,
+				45.385,
+				-122.294,
+				45.772
+			],
 			"properties": {
 				"stroke": "#F00",
 				"stroke-width": 6,
