@@ -46,13 +46,6 @@ const points = featureCollection([
     point([3, 6], {foo: 'bar'})
 ]);
 
-test('clusters-kmeans -- prevent input mutation', t => {
-    const before = JSON.parse(JSON.stringify(points));
-    clustersKmeans(points);
-    t.deepEqual(before, points);
-    t.end();
-});
-
 test('clusters-kmeans -- throws', t => {
     const poly = polygon([[[0, 0], [10, 10], [0, 10], [0, 0]]]);
     t.throws(() => clustersKmeans(poly, {numberOfClusters: 1}), /Input must contain Points/);
@@ -99,3 +92,20 @@ function styleResult(clustered) {
     });
     return featureCollection(features);
 }
+
+test('clusters-kmeans -- allow input mutation', t => {
+    const oldPoints = featureCollection([
+        point([0, 0], {foo: 'bar'}),
+        point([2, 4], {foo: 'bar'}),
+        point([3, 6], {foo: 'bar'})
+    ]);
+    // No mutation
+    const newPoints = clustersKmeans(points, {numberOfClusters: 3});
+    t.equal(newPoints.features[1].properties.cluster, 1, 'cluster is 1');
+    t.equal(oldPoints.features[1].properties.cluster, undefined, 'cluster is undefined');
+
+    // Allow mutation
+    clustersKmeans(oldPoints, {numberOfClusters: 2, mutate: true});
+    t.equal(oldPoints.features[1].properties.cluster, 1, 'cluster is 1');
+    t.end()
+})

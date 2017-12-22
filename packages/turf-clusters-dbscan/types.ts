@@ -26,3 +26,8 @@ const units = 'miles';
 clustersDbscan(points, maxDistance);
 clustersDbscan(points, maxDistance, {units});
 clustersDbscan(points, maxDistance, {units, minPoints});
+
+// Custom Properties
+clustered.features[0].properties.cluster
+clustered.features[0].properties.dbscan
+clustered.features[0].properties.foo

@@ -20,3 +20,8 @@ centroid = [-110, 85]
 clustersKmeans(points)
 clustersKmeans(points, {numberOfClusters})
 clustersKmeans(points, {numberOfClusters, mutate: true})
+
+// Custom Properties
+clustered.features[0].properties.centroid
+clustered.features[0].properties.cluster
+clustered.features[0].properties.foo

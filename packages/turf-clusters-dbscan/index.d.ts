@@ -1,17 +1,9 @@
-import { Units, FeatureCollection, Point, Feature } from '@turf/helpers';
+import { Units, FeatureCollection, Properties, Point, Feature } from '@turf/helpers';
 
 export type Dbscan = 'core' | 'edge' | 'noise'
-export interface DbscanProps {
+export interface DbscanProps extends Properties {
     dbscan?: Dbscan;
     cluster?: number;
-    [key: string]: any;
-}
-export interface DbscanPoint extends Feature<Point> {
-    properties: DbscanProps
-}
-export interface DbscanPoints {
-    type: 'FeatureCollection'
-    features: DbscanPoint[];
 }
 
 /**
@@ -22,7 +14,8 @@ export default function (
     maxDistance: number,
     options?: {
         units?: Units,
-        minPoints?: number
+        minPoints?: number,
+        mutate?: boolean
     }
-): DbscanPoints;
+): FeatureCollection<Point, DbscanProps>;
 

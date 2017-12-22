@@ -66,3 +66,25 @@ const totalReduce = clusterReduce(geojson, 'cluster', function (previousValue) {
 const valuesReduce = clusterReduce(geojson, 'cluster', function (previousValue, cluster, clusterValue) {
     return previousValue.concat(clusterValue);
 }, []);
+
+/**
+ * Custom Properties
+ */
+const customPoints = featureCollection([
+    point([0, 0], {cluster: 0}),
+    point([2, 4], {cluster: 1}),
+    point([3, 6], {cluster: 1})
+]);
+
+getCluster(customPoints, {cluster: 1}).features[0].properties.cluster
+// getCluster(customPoints, {cluster: 1}).features[0].properties.foo // [ts] Property 'foo' does not exist on type '{ cluster: number; }'.
+
+clusterEach(customPoints, 'cluster', cluster => {
+    cluster.features[0].properties.cluster
+    // cluster.features[0].properties.foo // [ts] Property 'foo' does not exist on type '{ cluster: number; }'.
+})
+
+clusterReduce(customPoints, 'cluster', (previousValue, cluster) => {
+    cluster.features[0].properties.cluster
+    // cluster.features[0].properties.foo // [ts] Property 'foo' does not exist on type '{ cluster: number; }'.
+})

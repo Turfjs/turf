@@ -1,16 +1,8 @@
-import { Point, Feature, FeatureCollection } from '@turf/helpers';
+import { Point, Feature, FeatureCollection, Properties } from '@turf/helpers';
 
-export interface KmeansProps {
+export interface KmeansProps extends Properties {
     cluster?: number;
     centroid?: [number, number];
-    [key: string]: any;
-}
-export interface KmeansPoint extends Feature<Point> {
-    properties: KmeansProps
-}
-export interface KmeansPoints {
-    type: 'FeatureCollection'
-    features: KmeansPoint[];
 }
 
 /**
@@ -22,4 +14,4 @@ export default function (
         numberOfClusters?: number,
         mutate?: boolean
     }
-): KmeansPoints;
+): FeatureCollection<Point, KmeansProps>;
