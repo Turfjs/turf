@@ -16,6 +16,7 @@ between (clockwise) bearing1 and bearing2; 0 bearing is North of center point, p
 -   `options` **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)** Optional parameters (optional, default `{}`)
     -   `options.units` **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** miles, kilometers, degrees, or radians (optional, default `'kilometers'`)
     -   `options.steps` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** number of steps (optional, default `64`)
+    -   `options.properties` **Properties** Translate properties to Feature Polygon (optional, default `{}`)
 
 **Examples**
 

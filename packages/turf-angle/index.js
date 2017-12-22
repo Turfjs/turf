@@ -1,16 +1,19 @@
-import { getCoord } from '@turf/invariant';
-import { isObject } from '@turf/helpers';
+import bearing from '@turf/bearing';
+import rhumbBearing from '@turf/rhumb-bearing';
+import { isObject, bearingToAzimuth } from '@turf/helpers';
 
 /**
- * Finds the inner angle between 3 points.
+ * Finds the angle formed by two adjacent segments defined by 3 points. The result will be the (positive clockwise)
+ * angle with origin on the `startPoint-midPoint` segment, or its explementary angle if required.
  *
  * @name angle
  * @param {Coord} startPoint Start Point Coordinates
  * @param {Coord} midPoint Mid Point Coordinates
  * @param {Coord} endPoint End Point Coordinates
  * @param {Object} [options={}] Optional parameters
- * @param {boolean} [options.exterior=false] Returns the exterior angle instead (360 - angle)
- * @returns {number} Interior or Exterior angle between the 3 points.
+ * @param {boolean} [options.explementary=false] Returns the explementary angle instead (360 - angle)
+ * @param {boolean} [options.mercator=false] if calculations should be performed over Mercator or WGS84 projection
+ * @returns {number} Angle between the provided points, or its explementary.
  * @example
  * turf.angle([5, 5], [5, 6], [3, 4]);
  * //=45
@@ -19,23 +22,25 @@ function angle(startPoint, midPoint, endPoint, options) {
     // Optional Parameters
     options = options || {};
     if (!isObject(options)) throw new Error('options is invalid');
-    var exterior = options.exterior;
+
+    // Validation
+    if (!startPoint) throw new Error('startPoint is required');
+    if (!midPoint) throw new Error('midPoint is required');
+    if (!endPoint) throw new Error('endPoint is required');
 
     // Rename to shorter variables
-    var A = getCoord(startPoint);
-    var B = getCoord(midPoint);
-    var C = getCoord(endPoint);
+    var A = startPoint;
+    var O = midPoint;
+    var B = endPoint;
 
-    // A first point C second point B center point
-    var pi = Math.PI;
-    var AB = Math.sqrt(Math.pow(B[0] - A[0], 2) + Math.pow(B[1] - A[1], 2));
-    var BC = Math.sqrt(Math.pow(B[0] - C[0], 2) + Math.pow(B[1] - C[1], 2));
-    var AC = Math.sqrt(Math.pow(C[0] - A[0], 2) + Math.pow(C[1] - A[1], 2));
-    var angle = Math.acos((BC * BC + AB * AB - AC * AC) / (2 * BC * AB)) * (180 / pi);
+    // Main
+    var azimuthAO = bearingToAzimuth((options.mercator !== true) ? bearing(A, O) : rhumbBearing(A, O));
+    var azimuthBO = bearingToAzimuth((options.mercator !== true) ? bearing(B, O) : rhumbBearing(B, O));
+    var angleAO = Math.abs(azimuthAO - azimuthBO);
 
-    // Exterior angle
-    if (exterior === true) return 360 - angle;
-    return angle;
+    // Explementary angle
+    if (options.explementary === true) return 360 - angleAO;
+    return angleAO;
 }
 
 export default angle;

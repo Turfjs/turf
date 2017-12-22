@@ -3,10 +3,14 @@ import path from 'path';
 import glob from 'glob';
 import load from 'load-json-file';
 import write from 'write-json-file';
-import { round } from '@turf/helpers';
+import sector from '@turf/sector';
+import bearing from '@turf/bearing';
+import truncate from '@turf/truncate';
+import distance from '@turf/distance';
+import { point, round, lineString, featureCollection } from '@turf/helpers';
 import angle from './';
 
-test('turf-voronoi', t => {
+test('turf-angle', t => {
     glob.sync(path.join(__dirname, 'test', 'in', '*.json')).forEach(filepath => {
         // Input
         const {name} = path.parse(filepath);
@@ -14,21 +18,43 @@ test('turf-voronoi', t => {
         const [start, mid, end] = geojson.features;
 
         // Results
-        const results = {
-            interiorAngle: angle(start, mid, end),
-            exteriorAngle: angle(start, mid, end, {exterior: true}),
+        const angleProperties = {
+            interiorAngle: round(angle(start, mid, end), 6),
+            interiorMercatorAngle: round(angle(start, mid, end, {mercator: true}), 6),
+            explementary: false,
+            fill: '#F00',
+            stroke: '#F00',
+            'fill-opacity': 0.3
         };
+        const angleExplementaryProperties = {
+            explementaryAngle: round(angle(start, mid, end, {explementary: true}), 6),
+            explementaryMercatorAngle: round(angle(start, mid, end, {explementary: true, mercator: true}), 6),
+            explementary: true,
+            fill: '#00F',
+            stroke: '#00F',
+            'fill-opacity': 0.3
+        };
+        const results = featureCollection([
+            truncate(sector(mid, distance(mid, start) / 3, bearing(mid, start), bearing(mid, end), {properties: angleProperties})),
+            truncate(sector(mid, distance(mid, start) / 2, bearing(mid, end), bearing(mid, start), {properties: angleExplementaryProperties})),
+            lineString([start.geometry.coordinates, mid.geometry.coordinates, end.geometry.coordinates], {'stroke-width': 4, stroke: '#222'}),
+            start,
+            mid,
+            end,
+        ]);
 
         // Save results
-        const out = filepath.replace(path.join('test', 'in'), path.join('test', 'out'));
-        if (process.env.REGEN) write.sync(out, results);
-        t.deepEqual(results, load.sync(out), name);
+        const expected = filepath.replace(path.join('test', 'in'), path.join('test', 'out'));
+        if (process.env.REGEN) write.sync(expected, results);
+        t.deepEqual(results, load.sync(expected), name);
     });
     t.end();
 });
 
 test('turf-angle -- simple', t => {
     t.equal(round(angle([5, 5], [5, 6], [3, 4])), 45, '45 degrees');
+    t.equal(round(angle([3, 4], [5, 6], [5, 5])), 45, '45 degrees -- inverse');
+    t.equal(round(angle([3, 4], [5, 6], [5, 5], {explementary: true})), 360 - 45, 'explementary angle');
     t.end();
 });
 
@@ -39,5 +65,17 @@ test('turf-angle -- issues', t => {
     const a = angle(start, mid, end);
 
     t.false(isNaN(a), 'result is not NaN');
+    t.end();
+});
+
+test('turf-angle -- throws', t => {
+    const pt1 = point([-10, -30]);
+    const pt2 = point([-11, -33]);
+    const pt3 = point([-12, -36]);
+    t.throws(() => angle(null, pt2, pt3), /startPoint is required/, 'startPoint is required');
+    t.throws(() => angle(pt1, undefined, pt3), /midPoint is required/, 'midPoint is required');
+    t.throws(() => angle(pt1, pt2), /endPoint is required/, 'endPoint is required');
+    t.throws(() => angle(pt1, pt2, pt3, 'string'), /options is invalid/, 'invalid options');
+
     t.end();
 });

@@ -16,6 +16,7 @@ import { getCoords } from '@turf/invariant';
  * @param {Object} [options={}] Optional parameters
  * @param {string} [options.units='kilometers'] miles, kilometers, degrees, or radians
  * @param {number} [options.steps=64] number of steps
+ * @param {Properties} [options.properties={}] Translate properties to Feature Polygon
  * @returns {Feature<Polygon>} sector polygon
  * @example
  * var center = turf.point([-75, 40]);
@@ -32,6 +33,7 @@ function sector(center, radius, bearing1, bearing2, options) {
     // Optional parameters
     options = options || {};
     if (!isObject(options)) throw new Error('options is invalid');
+    var properties = options.properties;
 
     // validation
     if (!center) throw new Error('center is required');
@@ -51,7 +53,7 @@ function sector(center, radius, bearing1, bearing2, options) {
     });
     sliceCoords[0].push(coords);
 
-    return polygon(sliceCoords);
+    return polygon(sliceCoords, properties);
 }
 
 /**

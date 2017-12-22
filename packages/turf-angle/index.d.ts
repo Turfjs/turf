@@ -8,6 +8,7 @@ export default function (
     midPoint: Coord,
     endPoint: Coord,
     options?: {
-        exterior?: boolean
+        explementary?: boolean
+        mercator?: boolean
     }
  ): number

@@ -37,6 +37,9 @@
   "homepage": "https://github.com/Turfjs/turf",
   "devDependencies": {
     "@std/esm": "*",
+    "@turf/distance": "*",
+    "@turf/sector": "*",
+    "@turf/truncate": "*",
     "benchmark": "*",
     "glob": "*",
     "load-json-file": "*",
@@ -45,8 +48,10 @@
     "write-json-file": "*"
   },
   "dependencies": {
+    "@turf/bearing": "*",
     "@turf/helpers": "*",
-    "@turf/invariant": "*"
+    "@turf/invariant": "*",
+    "@turf/rhumb-bearing": "*"
   },
   "@std/esm": {
     "esm": "js",
