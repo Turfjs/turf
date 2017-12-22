@@ -20,15 +20,15 @@ const fixtures = fs.readdirSync(directories.in).map(filename => {
 });
 
 test('intersect', t => {
-    for (const {name, geojson, filename} of fixtures) {
-        if (name === 'issue-1132-line') t.skip(name);
-        
+    fixtures.forEach(({name, geojson, filename}) => {
+        if (name === 'issue-1132-line') return t.skip(name);
+
         const features = geojson.features;
         let result = intersect(features[0], features[1]);
         if (!result) result = feature(null);
 
         if (process.env.REGEN) write.sync(directories.out + filename, result);
         t.deepEqual(result, load.sync(directories.out + filename), name);
-    }
+    })
     t.end();
 });
