@@ -1,10 +1,13 @@
-import { polygon, validateBBox } from '@turf/helpers';
+import { polygon, validateBBox, isObject } from '@turf/helpers';
 
 /**
  * Takes a bbox and returns an equivalent {@link Polygon|polygon}.
  *
  * @name bboxPolygon
  * @param {BBox} bbox extent in [minX, minY, maxX, maxY] order
+ * @param {Object} [options={}] Optional parameters
+ * @param {Properties} [options.properties={}] Translate properties to Polygon
+ * @param {string|number} [options.id={}] Translate Id to Polygon
  * @returns {Feature<Polygon>} a Polygon representation of the bounding box
  * @example
  * var bbox = [0, 0, 10, 10];
@@ -14,7 +17,14 @@ import { polygon, validateBBox } from '@turf/helpers';
  * //addToMap
  * var addToMap = [poly]
  */
-function bboxPolygon(bbox) {
+function bboxPolygon(bbox, options) {
+    // Optional parameters
+    options = options || {};
+    var properties = options.properties;
+    var id = options.id;
+
+    // Validation
+    if (!isObject(options)) throw new Error('options is invalid');
     validateBBox(bbox);
     // Convert BBox positions to Numbers
     // No performance loss for including Number()
@@ -37,7 +47,7 @@ function bboxPolygon(bbox) {
         topRight,
         topLeft,
         lowLeft
-    ]]);
+    ]], properties, {bbox: bbox, id: id});
 }
 
 export default bboxPolygon;

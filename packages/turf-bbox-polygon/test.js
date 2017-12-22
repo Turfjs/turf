@@ -37,3 +37,15 @@ test('bbox-polygon -- Error handling', t => {
     t.throws(() => bboxPolygon(['foo', 'bar']), 'invalid bbox');
     t.end();
 })
+
+test('bbox-polygon -- Translate BBox (Issue #1179)', t => {
+    const id = 123
+    const properties = {foo: 'bar'}
+    const bbox = [0, 0, 10, 10]
+    const poly = bboxPolygon(bbox, {properties, id})
+
+    t.deepEqual(poly.properties, properties, 'Properties is translated')
+    t.deepEqual(poly.bbox, bbox, 'BBox is translated')
+    t.equal(poly.id, id, 'Id is translated')
+    t.end();
+});

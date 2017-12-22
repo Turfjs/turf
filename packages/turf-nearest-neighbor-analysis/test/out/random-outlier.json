@@ -1664,6 +1664,12 @@
 		},
 		{
 			"type": "Feature",
+			"bbox": [
+				-15,
+				38.10372140158265,
+				-8.900609997813907,
+				45
+			],
 			"properties": {
 				"fill-opacity": 0,
 				"stroke-width": 5,
