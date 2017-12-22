@@ -53,13 +53,13 @@ const points = featureCollection([
 
 test('clusters-dbscan -- throws', t => {
     const poly = polygon([[[0, 0], [10, 10], [0, 10], [0, 0]]]);
-    t.throws(() => clustersDbscan(poly, 1), /Input must contain Points/);
+    t.throws(() => clustersDbscan(poly, 1), /points must consist of a FeatureCollection of only Points/);
     t.throws(() => clustersDbscan(points), /maxDistance is required/);
-    t.throws(() => clustersDbscan(points, -4), /Invalid maxDistance/);
-    t.throws(() => clustersDbscan(points, 'foo'), /Invalid maxDistance/);
+    t.throws(() => clustersDbscan(points, -4), /maxDistance is invalid/);
+    t.throws(() => clustersDbscan(points, 'foo'), /maxDistance is invalid/);
     t.throws(() => clustersDbscan(points, 1, {units: 'nanometers'}), /units is invalid/);
-    t.throws(() => clustersDbscan(points, 1, {units: null, minPoints: 0}), /Invalid minPoints/);
-    t.throws(() => clustersDbscan(points, 1, {units: 'miles', minPoints: 'baz'}), /Invalid minPoints/);
+    t.throws(() => clustersDbscan(points, 1, {units: null, minPoints: 0}), /minPoints is invalid/);
+    t.throws(() => clustersDbscan(points, 1, {units: 'miles', minPoints: 'baz'}), /minPoints is invalid/);
     t.end();
 });
 
@@ -124,3 +124,20 @@ function styleResult(clustered) {
     });
     return featureCollection(features);
 }
+
+test('clusters-dbscan -- allow input mutation', t => {
+    const oldPoints = featureCollection([
+        point([0, 0], {foo: 'bar'}),
+        point([2, 4], {foo: 'bar'}),
+        point([3, 6], {foo: 'bar'})
+    ]);
+    // No mutation
+    const newPoints = clustersDbscan(points, 2, {minPoints: 1});
+    t.equal(newPoints.features[1].properties.cluster, 1, 'cluster is 1')
+    t.equal(oldPoints.features[1].properties.cluster, undefined, 'cluster is undefined')
+
+    // Allow mutation
+    clustersDbscan(oldPoints, 2, {minPoints: 1, mutate: true});
+    t.equal(oldPoints.features[1].properties.cluster, 1, 'cluster is 1')
+    t.end()
+})

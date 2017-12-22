@@ -29,7 +29,6 @@ function clustersKmeans(points, options) {
     options = options || {};
     if (typeof options !== 'object') throw new Error('options is invalid');
     var numberOfClusters = options.numberOfClusters;
-    var mutate = options.mutate;
 
     // Input validation
     collectionOf(points, 'Point', 'Input must contain Points');
@@ -43,7 +42,7 @@ function clustersKmeans(points, options) {
     if (numberOfClusters > count) numberOfClusters = count;
 
     // Clone points to prevent any mutations (enabled by default)
-    if (mutate === false || mutate === undefined) points = clone(points, true);
+    if (options.mutate !== true) points = clone(points, true);
 
     // collect points coordinates
     var data = coordAll(points);
