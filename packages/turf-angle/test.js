@@ -72,9 +72,9 @@ test('turf-angle -- throws', t => {
     const pt1 = point([-10, -30]);
     const pt2 = point([-11, -33]);
     const pt3 = point([-12, -36]);
-    t.throws(() => angle(null, pt2, pt3), /obj is required/, 'missing startPoint');
-    t.throws(() => angle(pt1, undefined, pt3), /obj is required/, 'missing midPoint');
-    t.throws(() => angle(pt1, pt2), /obj is required/, 'missing endPoint');
+    t.throws(() => angle(null, pt2, pt3), /startPoint is required/, 'startPoint is required');
+    t.throws(() => angle(pt1, undefined, pt3), /midPoint is required/, 'midPoint is required');
+    t.throws(() => angle(pt1, pt2), /endPoint is required/, 'endPoint is required');
     t.throws(() => angle(pt1, pt2, pt3, 'string'), /options is invalid/, 'invalid options');
 
     t.end();

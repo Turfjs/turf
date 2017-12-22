@@ -23,11 +23,17 @@ function angle(startPoint, midPoint, endPoint, options) {
     options = options || {};
     if (!isObject(options)) throw new Error('options is invalid');
 
+    // Validation
+    if (!startPoint) throw new Error('startPoint is required');
+    if (!midPoint) throw new Error('midPoint is required');
+    if (!endPoint) throw new Error('endPoint is required');
+
     // Rename to shorter variables
     var A = startPoint;
     var O = midPoint;
     var B = endPoint;
 
+    // Main
     var azimuthAO = bearingToAzimuth((options.mercator !== true) ? bearing(A, O) : rhumbBearing(A, O));
     var azimuthBO = bearingToAzimuth((options.mercator !== true) ? bearing(B, O) : rhumbBearing(B, O));
     var angleAO = Math.abs(azimuthAO - azimuthBO);
