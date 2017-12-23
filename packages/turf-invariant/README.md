@@ -8,7 +8,7 @@ Unwrap a coordinate from a Point Feature, Geometry or a single coordinate.
 
 **Parameters**
 
--   `obj` **([Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)> | [Geometry](https://tools.ietf.org/html/rfc7946#section-3.1)&lt;[Point](https://tools.ietf.org/html/rfc7946#section-3.1.2)> | [Feature](https://tools.ietf.org/html/rfc7946#section-3.2)&lt;[Point](https://tools.ietf.org/html/rfc7946#section-3.1.2)>)** Object
+-   `coord` **([Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)> | [Geometry](https://tools.ietf.org/html/rfc7946#section-3.1)&lt;[Point](https://tools.ietf.org/html/rfc7946#section-3.1.2)> | [Feature](https://tools.ietf.org/html/rfc7946#section-3.2)&lt;[Point](https://tools.ietf.org/html/rfc7946#section-3.1.2)>)** GeoJSON Point or an Array of numbers
 
 **Examples**
 
@@ -27,7 +27,7 @@ Unwrap coordinates from a Feature, Geometry Object or an Array of numbers
 
 **Parameters**
 
--   `obj` **([Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)> | [Geometry](https://tools.ietf.org/html/rfc7946#section-3.1) \| [Feature](https://tools.ietf.org/html/rfc7946#section-3.2))** Object
+-   `obj` **([Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;any> | [Geometry](https://tools.ietf.org/html/rfc7946#section-3.1) \| [Feature](https://tools.ietf.org/html/rfc7946#section-3.2))** Object
 
 **Examples**
 

@@ -6,14 +6,16 @@ import {
     GeometryTypes,
     CollectionTypes,
     Types,
+    Point,
     AllGeoJSON,
-    Geometries
+    Geometries,
+    Position
 } from '@turf/helpers'
 
 /**
  * http://turfjs.org/docs/#getcoords
  */
-export function getCoord(obj: Feature<any> | GeometryObject | any[]): number[];
+export function getCoord<P extends Position>(coord: Feature<Point> | Point | P): P;
 
 /**
  * http://turfjs.org/docs/#getcoords
