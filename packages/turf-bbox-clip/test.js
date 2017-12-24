@@ -54,6 +54,6 @@ function colorize(feature, color, width) {
 }
 
 test('turf-bbox-clip -- null geometries', t => {
-    t.throws(() => bboxClip(feature(null), [-180, -90, 180, 90]), /No valid coordinates/);
+    t.throws(() => bboxClip(feature(null), [-180, -90, 180, 90]), 'coords must be GeoJSON Feature, Geometry Object or an Array');
     t.end();
 });

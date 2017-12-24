@@ -7,6 +7,11 @@ import {
     CollectionTypes,
     Types,
     Point,
+    LineString,
+    Polygon,
+    MultiPoint,
+    MultiLineString,
+    MultiPolygon,
     AllGeoJSON,
     Geometries,
     Position
@@ -20,7 +25,10 @@ export function getCoord<P extends Position>(coord: Feature<Point> | Point | P):
 /**
  * http://turfjs.org/docs/#getcoords
  */
-export function getCoords(obj: Feature<any> | GeometryObject | any[]): any[];
+export function getCoords<G extends Point>(obj: Feature<G> | G | Position): Position;
+export function getCoords<G extends LineString | MultiPoint>(obj: Feature<G> | G | Position[]): Position[];
+export function getCoords<G extends Polygon | MultiLineString>(obj: Feature<G> | G | Position[][]): Position[][];
+export function getCoords<G extends MultiPolygon>(obj: Feature<G> | G | Position[][][]): Position[][][];
 
 /**
  * http://turfjs.org/docs/#geojsontype
