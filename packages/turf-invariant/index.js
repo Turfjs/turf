@@ -16,45 +16,36 @@ export function getCoord(coord) {
     if (!coord) throw new Error('coord is required');
     if (coord.type === 'Feature' && coord.geometry !== null && coord.geometry.type === 'Point') return coord.geometry.coordinates;
     if (coord.type === 'Point') return coord.coordinates;
-    if (coord.length >= 2 && coord[0].length === undefined && coord[1].length === undefined) return coord;
+    if (Array.isArray(coord) && coord.length >= 2 && coord[0].length === undefined && coord[1].length === undefined) return coord;
 
     throw new Error('coord must be GeoJSON Point or an Array of numbers');
 }
 
 /**
- * Unwrap coordinates from a Feature, Geometry Object or an Array of numbers
+ * Unwrap coordinates from a Feature, Geometry Object or an Array
  *
  * @name getCoords
- * @param {Array<any>|Geometry|Feature} obj Object
- * @returns {Array<number>} coordinates
+ * @param {Array<any>|Geometry|Feature} coords Feature, Geometry Object or an Array
+ * @returns {Array<any>} coordinates
  * @example
  * var poly = turf.polygon([[[119.32, -8.7], [119.55, -8.69], [119.51, -8.54], [119.32, -8.7]]]);
  *
- * var coord = turf.getCoords(poly);
+ * var coords = turf.getCoords(poly);
  * //= [[[119.32, -8.7], [119.55, -8.69], [119.51, -8.54], [119.32, -8.7]]]
  */
-export function getCoords(obj) {
-    if (!obj) throw new Error('obj is required');
-    var coordinates;
-
-    // Array of numbers
-    if (obj.length) {
-        coordinates = obj;
-
-    // Geometry Object
-    } else if (obj.coordinates) {
-        coordinates = obj.coordinates;
+export function getCoords(coords) {
+    if (!coords) throw new Error('coords is required');
 
     // Feature
-    } else if (obj.geometry && obj.geometry.coordinates) {
-        coordinates = obj.geometry.coordinates;
-    }
-    // Checks if coordinates contains a number
-    if (coordinates) {
-        containsNumber(coordinates);
-        return coordinates;
-    }
-    throw new Error('No valid coordinates');
+    if (coords.type === 'Feature' && coords.geometry !== null) return coords.geometry.coordinates;
+
+    // Geometry
+    if (coords.coordinates) return coords.coordinates;
+
+    // Array of numbers
+    if (Array.isArray(coords)) return coords;
+
+    throw new Error('coords must be GeoJSON Feature, Geometry Object or an Array');
 }
 
 /**

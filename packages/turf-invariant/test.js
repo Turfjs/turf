@@ -169,8 +169,8 @@ test('invariant -- getCoords', t => {
 
     t.throws(() => invariant.getCoords(false));
     t.throws(() => invariant.getCoords(null));
-    t.throws(() => invariant.getCoords(['A', 'B', 'C']));
-    t.throws(() => invariant.getCoords([1, 'foo', 'bar']));
+    t.throws(() => containsNumber(invariant.getCoords(['A', 'B', 'C'])));
+    t.throws(() => containsNumber(invariant.getCoords([1, 'foo', 'bar'])));
 
     t.deepEqual(invariant.getCoords({
         type: 'LineString',
@@ -219,7 +219,7 @@ test('null geometries', t => {
         geometry: null
     };
     t.throws(() => invariant.getGeom(null), /geojson is required/, 'getGeom => geojson is required');
-    t.throws(() => invariant.getCoords(nullFeature), /No valid coordinates/, 'getCoords => No valid coordinates');
+    t.throws(() => invariant.getCoords(nullFeature), /coords must be GeoJSON Feature, Geometry Object or an Array/, 'getCoords => coords must be GeoJSON Feature, Geometry Object or an Array');
     t.throws(() => invariant.getCoord(nullFeature), /coord must be GeoJSON Point or an Array of numbers/, 'getCoord => coord must be GeoJSON Point or an Array of numbers');
 
     t.equal(invariant.getGeom(nullFeature), null, 'getGeom => null');

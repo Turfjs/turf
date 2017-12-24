@@ -48,3 +48,16 @@ invariant.getCoord(pt.geometry)
 invariant.getCoord(pt.geometry.coordinates)
 let coordZ: [number, number, number] = [10, 30, 2000]
 coordZ = invariant.getCoord(coordZ)
+
+/**
+ * getCoords
+ */
+invariant.getCoords(pt.geometry)[0].toFixed()
+invariant.getCoords(pt.geometry.coordinates)[0].toFixed()
+invariant.getCoords(pt)[0].toFixed()
+invariant.getCoords(line.geometry)[0][0].toFixed()
+invariant.getCoords(line.geometry.coordinates)[0][0].toFixed()
+invariant.getCoords(line)[0][0].toFixed()
+invariant.getCoords(poly)[0][0][0].toFixed()
+invariant.getCoords(poly.geometry)[0][0][0].toFixed()
+invariant.getCoords(poly.geometry.coordinates)[0][0][0].toFixed()
