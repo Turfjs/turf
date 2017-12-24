@@ -1,6 +1,6 @@
 import test from 'tape';
 import { point, lineString, polygon, featureCollection, geometryCollection } from '@turf/helpers';
-import * as invariant from './index';
+import * as invariant from '.';
 
 test('invariant -- containsNumber', t => {
     t.equals(invariant.containsNumber([1, 1]), true);
@@ -144,11 +144,12 @@ test('invariant -- getCoord', t => {
         coordinates: [[1, 2], [3, 4]]
     }));
 
-    t.throws(() => invariant.getCoord(false));
-    t.throws(() => invariant.getCoord(null));
-    t.throws(() => invariant.getCoord(lineString([[1, 2], [3, 4]])));
-    t.throws(() => invariant.getCoord(['A', 'B', 'C']));
-    t.throws(() => invariant.getCoord([1, 'foo', 'bar']));
+    t.throws(() => invariant.getCoord(false), 'false should throw Error');
+    t.throws(() => invariant.getCoord(null), 'null should throw Error');
+    t.throws(() => invariant.getCoord(lineString([[1, 2], [3, 4]])), 'LineString is not a Point');
+    t.throws(() => invariant.getCoord([10]), 'Single number Array should throw Error');
+    t.throws(() => invariant.getCoord(['A', 'B']), 'Array of String should throw Error');
+    t.throws(() => invariant.getCoord([1, 'foo']), 'Mixed Array should throw Error');
 
     t.deepEqual(invariant.getCoord({
         type: 'Point',
@@ -219,7 +220,7 @@ test('null geometries', t => {
     };
     t.throws(() => invariant.getGeom(null), /geojson is required/, 'getGeom => geojson is required');
     t.throws(() => invariant.getCoords(nullFeature), /No valid coordinates/, 'getCoords => No valid coordinates');
-    t.throws(() => invariant.getCoord(nullFeature), /No valid coordinates/, 'getCoord => No valid coordinates');
+    t.throws(() => invariant.getCoord(nullFeature), /coord must be GeoJSON Point or an Array of numbers/, 'getCoord => coord must be GeoJSON Point or an Array of numbers');
 
     t.equal(invariant.getGeom(nullFeature), null, 'getGeom => null');
     t.end();

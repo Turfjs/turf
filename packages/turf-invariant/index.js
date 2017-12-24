@@ -4,7 +4,7 @@ import { isNumber } from '@turf/helpers';
  * Unwrap a coordinate from a Point Feature, Geometry or a single coordinate.
  *
  * @name getCoord
- * @param {Array<number>|Geometry<Point>|Feature<Point>} obj Object
+ * @param {Array<number>|Geometry<Point>|Feature<Point>} coord GeoJSON Point or an Array of numbers
  * @returns {Array<number>} coordinates
  * @example
  * var pt = turf.point([10, 10]);
@@ -12,24 +12,20 @@ import { isNumber } from '@turf/helpers';
  * var coord = turf.getCoord(pt);
  * //= [10, 10]
  */
-export function getCoord(obj) {
-    if (!obj) throw new Error('obj is required');
+export function getCoord(coord) {
+    if (!coord) throw new Error('coord is required');
+    if (coord.type === 'Feature' && coord.geometry !== null && coord.geometry.type === 'Point') return coord.geometry.coordinates;
+    if (coord.type === 'Point') return coord.coordinates;
+    if (coord.length >= 2 && coord[0].length === undefined && coord[1].length === undefined) return coord;
 
-    var coordinates = getCoords(obj);
-
-    // getCoord() must contain at least two numbers (Point)
-    if (coordinates.length > 1 && isNumber(coordinates[0]) && isNumber(coordinates[1])) {
-        return coordinates;
-    } else {
-        throw new Error('Coordinate is not a valid Point');
-    }
+    throw new Error('coord must be GeoJSON Point or an Array of numbers');
 }
 
 /**
  * Unwrap coordinates from a Feature, Geometry Object or an Array of numbers
  *
  * @name getCoords
- * @param {Array<number>|Geometry|Feature} obj Object
+ * @param {Array<any>|Geometry|Feature} obj Object
  * @returns {Array<number>} coordinates
  * @example
  * var poly = turf.polygon([[[119.32, -8.7], [119.55, -8.69], [119.51, -8.54], [119.32, -8.7]]]);

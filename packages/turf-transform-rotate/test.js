@@ -41,7 +41,7 @@ test('rotate -- throws', t => {
 
     t.throws(() => rotate(null, 100), /geojson is required/, 'missing geojson');
     t.throws(() => rotate(line, null), /angle is required/, 'missing angle');
-    t.throws(() => rotate(line, 56, {pivot: 'notApoint'}), /coordinates must only contain numbers/, 'invalid pivot');
+    t.throws(() => rotate(line, 56, {pivot: 'notApoint'}), /coord must be GeoJSON Point or an Array of numbers/, 'coord must be GeoJSON Point or an Array of numbers');
     t.end();
 });
 
