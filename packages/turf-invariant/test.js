@@ -1,5 +1,5 @@
 import test from 'tape';
-import { point, lineString, polygon, featureCollection, geometryCollection } from '@turf/helpers';
+import { point, lineString, polygon, featureCollection, geometryCollection, multiLineString } from '@turf/helpers';
 import * as invariant from '.';
 
 test('invariant -- containsNumber', t => {
@@ -225,3 +225,25 @@ test('null geometries', t => {
     t.equal(invariant.getGeom(nullFeature), null, 'getGeom => null');
     t.end();
 });
+
+/**
+ * Fixtures for:
+ * - firstCoord
+ * - lastCoord
+ * - firstSegment
+ * - lastSegment
+ */
+const multiLine = multiLineString([
+    [[10, 10], [50, 30], [30, 40]],
+    [[-10, -10], [-50, -30], [-30, -40]]
+]);
+
+test('invariant -- firstCoord', t => {
+    t.deepEqual(invariant.firstCoord(multiLine), [10, 10])
+    t.end()
+})
+
+test('invariant -- lastCoord', t => {
+    t.deepEqual(invariant.lastCoord(multiLine), [-30, -40])
+    t.end()
+})
