@@ -722,12 +722,18 @@ export function segmentEach(geojson, callback) {
         if (type === 'Point' || type === 'MultiPoint') return;
 
         // Generate 2-vertex line segments
-        coordReduce(feature, function (previousCoords, currentCoord, coordIndex, featureIndexCoord, mutliPartIndexCoord, geometryIndex) {
+        var previousCoords;
+        if (coordEach(feature, function (currentCoord, coordIndex, featureIndexCoord, mutliPartIndexCoord, geometryIndex) {
+            // Simulating a meta.coordReduce() since `reduce` operations cannot be stopped by returning `false`
+            if (previousCoords === undefined) {
+                previousCoords = currentCoord;
+                return;
+            }
             var currentSegment = lineString([previousCoords, currentCoord], feature.properties);
-            callback(currentSegment, featureIndex, multiFeatureIndex, geometryIndex, segmentIndex);
+            if (callback(currentSegment, featureIndex, multiFeatureIndex, geometryIndex, segmentIndex) === false) return false;
             segmentIndex++;
-            return currentCoord;
-        });
+            previousCoords = currentCoord;
+        }) === false) return false;
     });
 }
 

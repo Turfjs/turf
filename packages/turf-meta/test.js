@@ -906,20 +906,23 @@ test('meta -- breaking of iterations', t => {
 
     // Each Iterators
     // meta.segmentEach has been purposely excluded from this list
-    for (const func of [meta.coordEach, meta.featureEach, meta.flattenEach, meta.geomEach, meta.lineEach, meta.propEach]) {
+    for (const func of [meta.coordEach, meta.featureEach, meta.flattenEach, meta.geomEach, meta.lineEach, meta.propEach, meta.segmentEach]) {
+        // Meta Each function should only a value of 1 after returning `false`
+
+        // FeatureCollection
         let count = 0;
-        let multiCount = 0;
         func(lines, () => {
             count += 1;
             return false;
         });
+        t.equal(count, 1, func.name);
+
+        // Multi Geometry
+        let multiCount = 0;
         func(multiLine, () => {
             multiCount += 1;
             return false;
         });
-
-        // Meta Each function should only a value of 1 after returning `false`
-        t.equal(count, 1, func.name);
         t.equal(multiCount, 1, func.name);
     }
     t.end();
