@@ -1,5 +1,5 @@
 import test from 'tape';
-import { point, lineString, polygon, featureCollection, geometryCollection, multiLineString } from '@turf/helpers';
+import { point, lineString, polygon, featureCollection, geometryCollection, multiLineString, feature } from '@turf/helpers';
 import * as invariant from '.';
 
 test('invariant -- containsNumber', t => {
@@ -233,17 +233,31 @@ test('null geometries', t => {
  * - firstSegment
  * - lastSegment
  */
-const multiLine = multiLineString([
-    [[10, 10], [50, 30], [30, 40]],
-    [[-10, -10], [-50, -30], [-30, -40]]
-]);
 
-test('invariant -- firstCoord', t => {
-    t.deepEqual(invariant.firstCoord(multiLine), [10, 10])
-    t.end()
-})
+test('invariant -- first & last', t => {
+    const nullFeature = feature(null);
+    const pt = point([10, 10]);
+    const line = lineString([[10, 10], [50, 30], [30, 40]]);
+    const poly = polygon([
+        [[10, 10], [50, 30], [30, 40], [10, 10]],
+        [[-10, -10], [-50, -30], [-30, -40], [-10, -10]]
+    ]);
+    const multiLine = multiLineString([
+        [[10, 10], [50, 30], [30, 40]],
+        [[-10, -10], [-50, -30], [-30, -40]]
+    ]);
+    // firstCoord
+    t.deepEqual(invariant.firstCoord(nullFeature), null, 'firstCoord -- nullFeature')
+    t.deepEqual(invariant.firstCoord(pt), [10, 10], 'firstCoord -- pt')
+    t.deepEqual(invariant.firstCoord(line), [10, 10], 'firstCoord -- line')
+    t.deepEqual(invariant.firstCoord(poly), [10, 10], 'firstCoord -- poly')
+    t.deepEqual(invariant.firstCoord(multiLine), [10, 10], 'firstCoord -- multiLine')
 
-test('invariant -- lastCoord', t => {
-    t.deepEqual(invariant.lastCoord(multiLine), [-30, -40])
+    // lastCoord
+    t.deepEqual(invariant.firstCoord(nullFeature), null, 'firstCoord -- nullFeature')
+    t.deepEqual(invariant.lastCoord(pt), [10, 10], 'lastCoord -- pt')
+    t.deepEqual(invariant.lastCoord(line), [30, 40], 'lastCoord -- line')
+    t.deepEqual(invariant.lastCoord(poly), [-10, -10], 'lastCoord -- poly')
+    t.deepEqual(invariant.lastCoord(multiLine), [-30, -40], 'lastCoord -- multiLine')
     t.end()
 })
