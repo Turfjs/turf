@@ -50,3 +50,8 @@ Or install the Turf module that includes it as a function:
 ```sh
 $ npm install @turf/turf
 ```
+
+
+### Diagrams
+
+![esri-contains](diagrams/esri-contains.gif)
