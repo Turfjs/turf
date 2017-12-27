@@ -10,6 +10,7 @@ import * as turf from './';
 const directory = path.join(__dirname, '..');
 let modules = [];
 for (const name of fs.readdirSync(directory)) {
+    if (!name.includes('turf')) continue;
     const pckgPath = path.join(directory, name, 'package.json');
     const index = fs.readFileSync(path.join(directory, name, 'index.js'), 'utf8');
     const test = fs.readFileSync(path.join(directory, name, 'index.js'), 'utf8');
