@@ -1,5 +1,5 @@
 import test from 'tape';
-import { point, lineString, polygon, featureCollection, geometryCollection, multiLineString, feature } from '@turf/helpers';
+import { point, lineString, polygon, featureCollection, geometryCollection, multiLineString, feature, lineStrings } from '@turf/helpers';
 import * as invariant from '.';
 
 test('invariant -- containsNumber', t => {
@@ -246,6 +246,10 @@ test('invariant -- first & last', t => {
         [[10, 10], [50, 30], [30, 40]],
         [[-10, -10], [-50, -30], [-30, -40]]
     ]);
+    const lines = lineStrings([
+        [[10, 10], [50, 30], [30, 40], [10, 10]],
+        [[-10, -10], [-50, -30], [-30, -40], [-10, -10]]
+    ]);
     // firstCoord
     t.deepEqual(invariant.firstCoord(nullFeature), null, 'firstCoord -- nullFeature')
     t.deepEqual(invariant.firstCoord(pt), [10, 10], 'firstCoord -- pt')
@@ -254,7 +258,7 @@ test('invariant -- first & last', t => {
     t.deepEqual(invariant.firstCoord(multiLine), [10, 10], 'firstCoord -- multiLine')
 
     // lastCoord
-    t.deepEqual(invariant.firstCoord(nullFeature), null, 'firstCoord -- nullFeature')
+    t.deepEqual(invariant.lastCoord(nullFeature), null, 'lastCoord -- nullFeature')
     t.deepEqual(invariant.lastCoord(pt), [10, 10], 'lastCoord -- pt')
     t.deepEqual(invariant.lastCoord(line), [30, 40], 'lastCoord -- line')
     t.deepEqual(invariant.lastCoord(poly), [-10, -10], 'lastCoord -- poly')

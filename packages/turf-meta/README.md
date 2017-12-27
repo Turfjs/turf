@@ -43,6 +43,8 @@ turf.coordEach(features, function (currentCoord, coordIndex, featureIndex, multi
 });
 ```
 
+Returns **void** 
+
 ## coordReduce
 
 Reduce coordinates in any GeoJSON object, similar to Array.reduce()
@@ -128,6 +130,8 @@ turf.propEach(features, function (currentProperties, featureIndex) {
 });
 ```
 
+Returns **void** 
+
 ## propEachCallback
 
 Callback for propEach
@@ -137,6 +141,32 @@ Type: [Function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Referen
 **Parameters**
 
 -   `currentProperties` **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)** The current Properties being processed.
+-   `featureIndex` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** The current index of the Feature being processed.
+
+## propReduceCallback
+
+Callback for propReduce
+
+The first time the callback function is called, the values provided as arguments depend
+on whether the reduce method has an initialValue argument.
+
+If an initialValue is provided to the reduce method:
+
+-   The previousValue argument is initialValue.
+-   The currentValue argument is the value of the first element present in the array.
+
+If an initialValue is not provided:
+
+-   The previousValue argument is the value of the first element present in the array.
+-   The currentValue argument is the value of the second element present in the array.
+
+Type: [Function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function)
+
+**Parameters**
+
+-   `previousValue` **any** The accumulated value previously returned in the last invocation
+    of the callback, or initialValue, if supplied.
+-   `currentProperties` **any** The current Properties being processed.
 -   `featureIndex` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** The current index of the Feature being processed.
 
 ## propReduce
@@ -169,30 +199,15 @@ turf.propReduce(features, function (previousValue, currentProperties, featureInd
 
 Returns **any** The value that results from the reduction.
 
-## propReduceCallback
+## featureEachCallback
 
-Callback for propReduce
-
-The first time the callback function is called, the values provided as arguments depend
-on whether the reduce method has an initialValue argument.
-
-If an initialValue is provided to the reduce method:
-
--   The previousValue argument is initialValue.
--   The currentValue argument is the value of the first element present in the array.
-
-If an initialValue is not provided:
-
--   The previousValue argument is the value of the first element present in the array.
--   The currentValue argument is the value of the second element present in the array.
+Callback for featureEach
 
 Type: [Function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function)
 
 **Parameters**
 
--   `previousValue` **any** The accumulated value previously returned in the last invocation
-    of the callback, or initialValue, if supplied.
--   `currentProperties` **any** The current Properties being processed.
+-   `currentFeature` **[Feature](https://tools.ietf.org/html/rfc7946#section-3.2)&lt;any>** The current Feature being processed.
 -   `featureIndex` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** The current index of the Feature being processed.
 
 ## featureEach
@@ -219,16 +234,7 @@ turf.featureEach(features, function (currentFeature, featureIndex) {
 });
 ```
 
-## featureEachCallback
-
-Callback for featureEach
-
-Type: [Function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function)
-
-**Parameters**
-
--   `currentFeature` **[Feature](https://tools.ietf.org/html/rfc7946#section-3.2)&lt;any>** The current Feature being processed.
--   `featureIndex` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** The current index of the Feature being processed.
+Returns **void** 
 
 ## featureReduceCallback
 
@@ -345,6 +351,8 @@ turf.geomEach(features, function (currentGeometry, featureIndex, featureProperti
   //=featureId
 });
 ```
+
+Returns **void** 
 
 ## geomReduceCallback
 
@@ -710,6 +718,48 @@ turf.lineReduce(multiPoly, function (previousValue, currentLine, featureIndex, m
 ```
 
 Returns **any** The value that results from the reduction.
+
+## findSegment
+
+Finds a particular 2-vertex LineString Segment from a GeoJSON using `@turf/meta` indexes.
+
+Negative indexes are permitted.
+Point & MultiPoint will always return null.
+
+**Parameters**
+
+-   `geojson` **([FeatureCollection](https://tools.ietf.org/html/rfc7946#section-3.3) \| [Feature](https://tools.ietf.org/html/rfc7946#section-3.2) \| [Geometry](https://tools.ietf.org/html/rfc7946#section-3.1))** Any GeoJSON Feature or Geometry
+-   `options` **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)** Optional parameters (optional, default `{}`)
+    -   `options.featureIndex` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** Feature Index (optional, default `0`)
+    -   `options.multiFeatureIndex` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** Multi-Feature Index (optional, default `0`)
+    -   `options.geometryIndex` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** Geometry Index (optional, default `0`)
+    -   `options.segmentIndex` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** Segment Index (optional, default `0`)
+    -   `options.properties` **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)** Translate Properties to output LineString (optional, default `{}`)
+    -   `options.bbox` **[BBox](https://tools.ietf.org/html/rfc7946#section-5)** Translate BBox to output LineString (optional, default `{}`)
+    -   `options.id` **([number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number) \| [string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String))** Translate Id to output LineString (optional, default `{}`)
+
+**Examples**
+
+```javascript
+var multiLine = multiLineString([
+    [[10, 10], [50, 30], [30, 40]],
+    [[-10, -10], [-50, -30], [-30, -40]]
+]);
+
+// First Segment (defaults are 0)
+meta.findSegment(multiLine);
+// => Feature<LineString<[[10, 10], [50, 30]]>>
+
+// First Segment of 2nd Multi Feature
+meta.findSegment(multiLine, {multiFeatureIndex: 1});
+// => Feature<LineString<[[-10, -10], [-50, -30]]>>
+
+// Last Segment of Last Multi Feature
+meta.findSegment(multiLine, {multiFeatureIndex: -1, segmentIndex: -1});
+// => Feature<LineString<[[-50, -30], [-30, -40]]>>
+```
+
+Returns **[Feature](https://tools.ietf.org/html/rfc7946#section-3.2)&lt;[LineString](https://tools.ietf.org/html/rfc7946#section-3.1.4)>** 2-vertex GeoJSON Feature LineString
 
 <!-- This file is automatically generated. Please don't edit it directly:
 if you find an error, edit the source file (likely index.js), and re-run

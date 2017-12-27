@@ -185,3 +185,20 @@ export function lineEach<P = Properties>(
                multiFeatureIndex?: number,
                geometryIndex?: number) => void
 ): void;
+
+
+/**
+ * http://turfjs.org/docs/#findsegment
+ */
+export function findSegment<G extends LineString | MultiLineString | Polygon | MultiPolygon, P = Properties>(
+    geojson: Feature<G, P> | FeatureCollection<G, P> | G,
+    options?: {
+        featureIndex?: number,
+        multiFeatureIndex?: number,
+        geometryIndex?: number,
+        segmentIndex?: number,
+        properties?: P,
+        bbox?: BBox,
+        id?: Id
+    }
+): Feature<LineString, P>;
