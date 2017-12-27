@@ -169,7 +169,7 @@ export function getGeomType() {
  * Get GeoJSON object's type, Geometry type is prioritize.
  *
  * @param {GeoJSON} geojson GeoJSON object
- * @param {string} [name] name of the variable to display in error message
+ * @param {string} [name="geojson"] name of the variable to display in error message
  * @returns {string} GeoJSON type
  * @example
  * var point = {
@@ -189,5 +189,66 @@ export function getType(geojson, name) {
     if (geojson.geometry && geojson.geometry.type) return geojson.geometry.type;
     // GeoJSON Geometry & FeatureCollection
     if (geojson.type) return geojson.type;
+    throw new Error((name || 'geojson') + ' is invalid');
+}
+
+/**
+ * Retrieve the first Coordinate of the GeoJSON as an Array<number>
+ *
+ * @param {Feature|Geometry} geojson Any GeoJSON Feature or Geometry
+ * @param {string} [name="geojson"] name of the variable to display in error message
+ * @returns {Array<number>} GeoJSON Position
+ */
+export function firstCoord(geojson, name) {
+    if (!geojson) throw new Error('geojson is required');
+    if (geojson.geometry === null) return null;
+
+    var type = getType(geojson);
+    var coords = getCoords(geojson);
+
+    switch (type) {
+    case 'Point':
+        return coords;
+    case 'LineString':
+    case 'MultiPoint':
+        return coords[0];
+    case 'Polygon':
+    case 'MultiLineString':
+        return coords[0][0];
+    case 'MultiPolygon':
+        return coords[0][0][0];
+    }
+    throw new Error((name || 'geojson') + ' is invalid');
+}
+
+/**
+ * Retrieve the last Coordinate of the GeoJSON as an Array<number>
+ *
+ * @param {Feature|Geometry} geojson Any GeoJSON Feautre or Geometry
+ * @param {string} [name="geojson"] name of the variable to display in error message
+ * @returns {Array<number>} GeoJSON Position
+ */
+export function lastCoord(geojson, name) {
+    if (!geojson) throw new Error('geojson is required');
+    if (geojson.geometry === null) return null;
+
+    var type = getType(geojson);
+    var coords = getCoords(geojson);
+
+    switch (type) {
+    case 'Point':
+        return coords;
+    case 'LineString':
+    case 'MultiPoint':
+        return coords[coords.length - 1];
+    case 'Polygon':
+    case 'MultiLineString':
+        var lastRing = coords[coords.length - 1];
+        return lastRing[lastRing.length - 1];
+    case 'MultiPolygon':
+        var lastPoly = coords[coords.length - 1];
+        var lastPolyRing = lastPoly[lastPoly.length - 1];
+        return lastPolyRing[lastPolyRing.length - 1];
+    }
     throw new Error((name || 'geojson') + ' is invalid');
 }

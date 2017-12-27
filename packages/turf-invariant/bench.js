@@ -2,31 +2,43 @@ import Benchmark from 'benchmark';
 import * as helpers from '@turf/helpers';
 import * as invariant from './';
 
-const point = helpers.point([-75, 40]);
-const linestring = helpers.lineString([[-75, 40], [-70, 50]]);
-const polygon = helpers.polygon([[[-75, 40], [-80, 50], [-70, 50], [-75, 40]]]);
-const featureCollection = helpers.featureCollection([point, point]);
+const pt = helpers.point([-75, 40]);
+const line = helpers.lineString([[-75, 40], [-70, 50]]);
+const poly = helpers.polygon([[[-75, 40], [-80, 50], [-70, 50], [-75, 40]]]);
+const fc = helpers.points([
+    [-75, 40],
+    [20, 50]
+]);
 
 const suite = new Benchmark.Suite('turf-invariant');
 
 /**
  * Benchmark Results
  *
- * getCoord x 49,812,538 ops/sec ±1.00% (87 runs sampled)
- * getCoords.linestring x 61,998,817 ops/sec ±2.05% (83 runs sampled)
- * getCoords.polygon x 65,227,674 ops/sec ±1.30% (86 runs sampled)
- *
- * // BEFORE
- * getCoord x 14,586,933 ops/sec ±0.92% (88 runs sampled)
- * getCoords.linestring x 1,407,538 ops/sec ±0.90% (90 runs sampled)
- * getCoords.polygon x 1,270,899 ops/sec ±2.46% (84 runs sampled)
- * collectionOf x 25,912,969 ops/sec ±1.52% (88 runs sampled)
+ * getCoord -- pt x 60,659,161 ops/sec ±1.34% (89 runs sampled)
+ * getCoords -- line x 63,252,327 ops/sec ±1.19% (81 runs sampled)
+ * getCoords -- poly x 62,053,169 ops/sec ±1.49% (85 runs sampled)
+ * collectionOf -- fc x 24,204,462 ops/sec ±2.00% (81 runs sampled)
+ * getType -- pt x 59,544,117 ops/sec ±1.14% (87 runs sampled)
+ * firstCoord -- pt x 35,617,486 ops/sec ±4.23% (84 runs sampled)
+ * firstCoord -- line x 36,603,206 ops/sec ±1.27% (89 runs sampled)
+ * firstCoord -- poly x 32,458,532 ops/sec ±1.29% (89 runs sampled)
+ * lastCoord -- pt x 30,825,645 ops/sec ±1.68% (85 runs sampled)
+ * lastCoord -- line x 30,191,980 ops/sec ±1.22% (87 runs sampled)
+ * lastCoord -- poly x 26,787,025 ops/sec ±1.65% (86 runs sampled)
  */
 suite
-    // .add('getCoord', () => { invariant.getCoord(point); })
-    .add('getCoords.linestring', () => { invariant.getCoords(linestring); })
-    .add('getCoords.polygon', () => { invariant.getCoords(polygon); })
-    // .add('collectionOf', () => { invariant.collectionOf(featureCollection, 'Point', 'bench'); })
+    .add('getCoord -- pt', () => invariant.getCoord(pt))
+    .add('getCoords -- line', () => invariant.getCoords(line))
+    .add('getCoords -- poly', () => invariant.getCoords(poly))
+    .add('collectionOf -- fc', () => invariant.collectionOf(fc, 'Point', 'bench'))
+    .add('getType -- pt', () => invariant.getType(pt))
+    .add('firstCoord -- pt', () => invariant.firstCoord(pt))
+    .add('firstCoord -- line', () => invariant.firstCoord(line))
+    .add('firstCoord -- poly', () => invariant.firstCoord(poly))
+    .add('lastCoord -- pt', () => invariant.lastCoord(pt))
+    .add('lastCoord -- line', () => invariant.lastCoord(line))
+    .add('lastCoord -- poly', () => invariant.lastCoord(poly))
     .on('cycle', e => console.log(String(e.target)))
     .on('complete', () => {})
     .run();

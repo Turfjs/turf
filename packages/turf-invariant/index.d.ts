@@ -64,3 +64,13 @@ export function getGeom(geojson: Feature<any>): GeometryObject | GeometryCollect
 export function getType(geojson: Feature<Geometries> | Geometries): GeometryTypes;
 export function getType(geojson: FeatureCollection<any> | Feature<GeometryCollection> | GeometryCollection): CollectionTypes;
 export function getType(geojson: AllGeoJSON): Types;
+
+/**
+ * http://turfjs.org/docs/#firstcoord
+ */
+export function firstCoord(geojson: Feature<any>|GeometryObject, name?: string): Position;
+
+/**
+ * http://turfjs.org/docs/#lastcoord
+ */
+export function lastCoord(geojson: Feature<any>|GeometryObject, name?: string): Position;
