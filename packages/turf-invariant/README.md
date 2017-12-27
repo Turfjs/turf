@@ -168,7 +168,6 @@ Retrieve the last Coordinate of the GeoJSON as an Array<number>
 **Parameters**
 
 -   `geojson` **([Feature](https://tools.ietf.org/html/rfc7946#section-3.2) \| [Geometry](https://tools.ietf.org/html/rfc7946#section-3.1))** Any GeoJSON Feautre or Geometry
--   `name` **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** name of the variable to display in error message (optional, default `"geojson"`)
 
 Returns **[Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)>** GeoJSON Position
 

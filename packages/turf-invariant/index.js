@@ -1,4 +1,4 @@
-import { isNumber } from '@turf/helpers';
+import { isNumber, lineString, isObject } from '@turf/helpers';
 
 /**
  * Unwrap a coordinate from a Point Feature, Geometry or a single coordinate.
@@ -225,10 +225,9 @@ export function firstCoord(geojson, name) {
  * Retrieve the last Coordinate of the GeoJSON as an Array<number>
  *
  * @param {Feature|Geometry} geojson Any GeoJSON Feautre or Geometry
- * @param {string} [name="geojson"] name of the variable to display in error message
  * @returns {Array<number>} GeoJSON Position
  */
-export function lastCoord(geojson, name) {
+export function lastCoord(geojson) {
     if (!geojson) throw new Error('geojson is required');
     if (geojson.geometry === null) return null;
 
@@ -250,5 +249,6 @@ export function lastCoord(geojson, name) {
         var lastPolyRing = lastPoly[lastPoly.length - 1];
         return lastPolyRing[lastPolyRing.length - 1];
     }
-    throw new Error((name || 'geojson') + ' is invalid');
+    throw new Error('geojson is invalid');
 }
+

@@ -1,12 +1,12 @@
-import random from '@turf/random';
 import Benchmark from 'benchmark';
-import meta from './';
+import * as random from '@turf/random';
+import * as meta from './';
 
 const fixtures = {
-    point: random('points'),
-    points: random('points', 1000),
-    polygon: random('polygon'),
-    polygons: random('polygons', 1000)
+    point: random.randomPoint(),
+    points: random.randomPoint(1000),
+    polygon: random.randomPolygon(),
+    polygons: random.randomPolygon(1000)
 };
 
 const suite = new Benchmark.Suite('turf-meta');
@@ -65,6 +65,8 @@ const suite = new Benchmark.Suite('turf-meta');
  * featureEach   - polygons x 110,212 ops/sec ±7.42% (71 runs sampled)
  * featureReduce - polygons x 63,244 ops/sec ±3.74% (81 runs sampled)
  * coordAll      - polygons x 1,662 ops/sec ±19.73% (44 runs sampled)
+ * findSegment   - polygon x 2,558,258 ops/sec ±0.80% (84 runs sampled)
+ * findSegment   - polygons x 2,512,410 ops/sec ±0.72% (93 runs sampled)
  */
 Object.keys(fixtures).forEach(name => {
     const geojson = fixtures[name];
@@ -81,7 +83,8 @@ Object.keys(fixtures).forEach(name => {
         .add('geomReduce    - ' + name, () => meta.geomReduce(geojson, () => {}))
         .add('featureEach   - ' + name, () => meta.featureEach(geojson, () => {}))
         .add('featureReduce - ' + name, () => meta.featureReduce(geojson, () => {}))
-        .add('coordAll      - ' + name, () => meta.coordAll(geojson));
+        .add('coordAll      - ' + name, () => meta.coordAll(geojson))
+        .add('findSegment   - ' + name, () => meta.findSegment(geojson));
 });
 
 suite

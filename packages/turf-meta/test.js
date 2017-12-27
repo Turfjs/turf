@@ -927,3 +927,37 @@ test('meta -- breaking of iterations', t => {
     }
     t.end();
 });
+
+test('meta -- findSegment', t => {
+    const nullFeature = feature(null);
+    const pt = point([10, 10]);
+    const line = lineString([[10, 10], [50, 30], [30, 40]]);
+    const poly = polygon([
+        [[10, 10], [50, 30], [30, 40], [10, 10]],
+        [[-10, -10], [-50, -30], [-30, -40], [-10, -10]]
+    ]);
+    const multiLine = multiLineString([
+        [[10, 10], [50, 30], [30, 40]],
+        [[-10, -10], [-50, -30], [-30, -40]]
+    ]);
+    const lines = lineStrings([
+        [[10, 10], [50, 30], [30, 40], [10, 10]],
+        [[-10, -10], [-50, -30], [-30, -40], [-10, -10]]
+    ]);
+    // firstSegment
+    t.deepEqual(meta.findSegment(nullFeature), null, 'findSegment (default) -- nullFeature')
+    t.deepEqual(meta.findSegment(pt), null, 'findSegment (default) -- pt')
+    t.deepEqual(meta.findSegment(line), lineString([[10, 10], [50, 30]]), 'findSegment (default) -- line')
+    t.deepEqual(meta.findSegment(poly), lineString([[10, 10], [50, 30]]), 'findSegment (default) -- poly')
+    t.deepEqual(meta.findSegment(multiLine), lineString([[10, 10], [50, 30]]), 'findSegment (default) -- multiLine')
+    t.deepEqual(meta.findSegment(lines), lineString([[10, 10], [50, 30]]), 'findSegment (default) -- multiLine')
+
+    // lastSegment
+    t.deepEqual(meta.findSegment(nullFeature), null, 'findSegment (last) -- nullFeature')
+    t.deepEqual(meta.findSegment(pt), null, 'findSegment (last) -- pt')
+    t.deepEqual(meta.findSegment(line, {segmentIndex: -1}), lineString([[50, 30], [30, 40]]), 'findSegment (last) -- line')
+    t.deepEqual(meta.findSegment(poly, {segmentIndex: -1, geometryIndex: -1}), lineString([[-30, -40], [-10, -10]]), 'findSegment (last) -- poly')
+    t.deepEqual(meta.findSegment(multiLine, {segmentIndex: -1, multiFeatureIndex: -1}), lineString([[-50, -30], [-30, -40]]), 'findSegment (last) -- multiLine')
+    t.deepEqual(meta.findSegment(lines, {segmentIndex: -1, featureIndex: -1}), lineString([[-30, -40], [-10, -10]]), 'findSegment (last) -- multiLine')
+    t.end()
+})

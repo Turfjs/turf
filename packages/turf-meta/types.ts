@@ -211,3 +211,10 @@ meta.lineReduce(poly, (previousValue, currentLine, featureIndex, featureSubIndex
 meta.lineReduce(poly, (previousValue, currentLine, featureIndex, featureSubIndex) => 1 + 1, 1)
 meta.lineReduce(multiPoly, (previousValue, currentLine, featureIndex, featureSubIndex, lineIndex) => currentLine)
 meta.lineReduce(multiPoly, (previousValue, currentLine, featureIndex, featureSubIndex, lineIndex) => 1 + 1, 1)
+
+/**
+ * findSegment
+ */
+meta.findSegment(line)
+meta.findSegment(line.geometry)
+meta.findSegment(line, {segmentIndex: -1})
