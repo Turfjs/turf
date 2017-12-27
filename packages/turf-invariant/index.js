@@ -1,4 +1,4 @@
-import { isNumber, lineString, isObject } from '@turf/helpers';
+import { isNumber } from '@turf/helpers';
 
 /**
  * Unwrap a coordinate from a Point Feature, Geometry or a single coordinate.
