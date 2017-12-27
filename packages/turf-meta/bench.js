@@ -67,6 +67,10 @@ const suite = new Benchmark.Suite('turf-meta');
  * coordAll      - polygons x 1,662 ops/sec ±19.73% (44 runs sampled)
  * findSegment   - polygon x 2,558,258 ops/sec ±0.80% (84 runs sampled)
  * findSegment   - polygons x 2,512,410 ops/sec ±0.72% (93 runs sampled)
+ * findPoint     - point x 2,339,238 ops/sec ±0.86% (85 runs sampled)
+ * findPoint     - points x 2,298,279 ops/sec ±1.13% (88 runs sampled)
+ * findPoint     - polygon x 2,216,808 ops/sec ±1.63% (86 runs sampled)
+ * findPoint     - polygons x 2,160,583 ops/sec ±1.06% (87 runs sampled)
  */
 Object.keys(fixtures).forEach(name => {
     const geojson = fixtures[name];
@@ -84,7 +88,8 @@ Object.keys(fixtures).forEach(name => {
         .add('featureEach   - ' + name, () => meta.featureEach(geojson, () => {}))
         .add('featureReduce - ' + name, () => meta.featureReduce(geojson, () => {}))
         .add('coordAll      - ' + name, () => meta.coordAll(geojson))
-        .add('findSegment   - ' + name, () => meta.findSegment(geojson));
+        .add('findSegment   - ' + name, () => meta.findSegment(geojson))
+        .add('findPoint     - ' + name, () => meta.findPoint(geojson));
 });
 
 suite

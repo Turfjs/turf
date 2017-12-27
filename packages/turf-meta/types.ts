@@ -218,3 +218,13 @@ meta.lineReduce(multiPoly, (previousValue, currentLine, featureIndex, featureSub
 meta.findSegment(line)
 meta.findSegment(line.geometry)
 meta.findSegment(line, {segmentIndex: -1})
+
+/**
+ * findPoint
+ */
+meta.findPoint(line)
+meta.findPoint(line.geometry)
+meta.findPoint(line, {coordIndex: -1})
+meta.findPoint(customLineString).properties.foo
+meta.findPoint(customLineString).properties.bar
+// meta.findPoint(customLineString).properties.hello // [ts] Property 'hello' does not exist on type '{ foo: string; bar: number; }'.
