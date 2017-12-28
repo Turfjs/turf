@@ -202,3 +202,19 @@ export function findSegment<G extends LineString | MultiLineString | Polygon | M
         id?: Id
     }
 ): Feature<LineString, P>;
+
+/**
+ * http://turfjs.org/docs/#findpoint
+ */
+export function findPoint<G extends GeometryObject, P = Properties>(
+    geojson: Feature<G, P> | FeatureCollection<G, P> | G,
+    options?: {
+        featureIndex?: number,
+        multiFeatureIndex?: number,
+        geometryIndex?: number,
+        coordIndex?: number,
+        properties?: P,
+        bbox?: BBox,
+        id?: Id
+    }
+): Feature<Point, P>;

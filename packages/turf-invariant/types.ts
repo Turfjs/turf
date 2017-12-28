@@ -61,19 +61,3 @@ invariant.getCoords(line)[0][0].toFixed()
 invariant.getCoords(poly)[0][0][0].toFixed()
 invariant.getCoords(poly.geometry)[0][0][0].toFixed()
 invariant.getCoords(poly.geometry.coordinates)[0][0][0].toFixed()
-
-/**
- * firstCoord
- */
-invariant.firstCoord(pt)
-invariant.firstCoord(pt.geometry)
-invariant.firstCoord(line)
-invariant.firstCoord(line.geometry)
-
-/**
- * lastCoord
- */
-invariant.lastCoord(pt)
-invariant.lastCoord(pt.geometry)
-invariant.lastCoord(line)
-invariant.lastCoord(line.geometry)

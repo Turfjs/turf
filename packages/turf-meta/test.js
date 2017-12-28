@@ -950,7 +950,7 @@ test('meta -- findSegment', t => {
     t.deepEqual(meta.findSegment(line), lineString([[10, 10], [50, 30]]), 'findSegment (default) -- line')
     t.deepEqual(meta.findSegment(poly), lineString([[10, 10], [50, 30]]), 'findSegment (default) -- poly')
     t.deepEqual(meta.findSegment(multiLine), lineString([[10, 10], [50, 30]]), 'findSegment (default) -- multiLine')
-    t.deepEqual(meta.findSegment(lines), lineString([[10, 10], [50, 30]]), 'findSegment (default) -- multiLine')
+    t.deepEqual(meta.findSegment(lines), lineString([[10, 10], [50, 30]]), 'findSegment (default) -- lines')
 
     // lastSegment
     t.deepEqual(meta.findSegment(nullFeature), null, 'findSegment (last) -- nullFeature')
@@ -958,6 +958,40 @@ test('meta -- findSegment', t => {
     t.deepEqual(meta.findSegment(line, {segmentIndex: -1}), lineString([[50, 30], [30, 40]]), 'findSegment (last) -- line')
     t.deepEqual(meta.findSegment(poly, {segmentIndex: -1, geometryIndex: -1}), lineString([[-30, -40], [-10, -10]]), 'findSegment (last) -- poly')
     t.deepEqual(meta.findSegment(multiLine, {segmentIndex: -1, multiFeatureIndex: -1}), lineString([[-50, -30], [-30, -40]]), 'findSegment (last) -- multiLine')
-    t.deepEqual(meta.findSegment(lines, {segmentIndex: -1, featureIndex: -1}), lineString([[-30, -40], [-10, -10]]), 'findSegment (last) -- multiLine')
+    t.deepEqual(meta.findSegment(lines, {segmentIndex: -1, featureIndex: -1}), lineString([[-30, -40], [-10, -10]]), 'findSegment (last) -- lines')
+    t.end()
+})
+
+test('meta -- findPoint', t => {
+    const nullFeature = feature(null);
+    const pt = point([10, 10]);
+    const line = lineString([[10, 10], [50, 30], [30, 40]]);
+    const poly = polygon([
+        [[10, 10], [50, 30], [30, 40], [10, 10]],
+        [[-10, -10], [-50, -30], [-30, -40], [-10, -10]]
+    ]);
+    const multiLine = multiLineString([
+        [[10, 10], [50, 30], [30, 40]],
+        [[-10, -10], [-50, -30], [-30, -40]]
+    ]);
+    const lines = lineStrings([
+        [[10, 10], [50, 30], [30, 40], [10, 10]],
+        [[-10, -10], [-50, -30], [-30, -40], [-10, -10]]
+    ]);
+    // firstPoint
+    t.deepEqual(meta.findPoint(nullFeature), null, 'findPoint (default) -- nullFeature')
+    t.deepEqual(meta.findPoint(pt), point([10, 10]), 'findPoint (default) -- pt')
+    t.deepEqual(meta.findPoint(line), point([10, 10]), 'findPoint (default) -- line')
+    t.deepEqual(meta.findPoint(poly), point([10, 10]), 'findPoint (default) -- poly')
+    t.deepEqual(meta.findPoint(multiLine), point([10, 10]), 'findPoint (default) -- multiLine')
+    t.deepEqual(meta.findPoint(lines), point([10, 10]), 'findPoint (default) -- lines')
+
+    // lastPoint
+    t.deepEqual(meta.findPoint(nullFeature), null, 'findPoint (last) -- nullFeature')
+    t.deepEqual(meta.findPoint(pt), point([10, 10]), 'findPoint (last) -- pt')
+    t.deepEqual(meta.findPoint(line, {coordIndex: -1}), point([30, 40]), 'findPoint (last) -- line')
+    t.deepEqual(meta.findPoint(poly, {coordIndex: -1, geometryIndex: -1}), point([-10, -10]), 'findPoint (last) -- poly')
+    t.deepEqual(meta.findPoint(multiLine, {coordIndex: -1, multiFeatureIndex: -1}), point([-30, -40]), 'findPoint (last) -- multiLine')
+    t.deepEqual(meta.findPoint(lines, {coordIndex: -1, featureIndex: -1}), point([-10, -10]), 'findPoint (last) -- lines')
     t.end()
 })
