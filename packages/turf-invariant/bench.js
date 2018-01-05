@@ -1,6 +1,6 @@
-import Benchmark from 'benchmark';
-import * as helpers from '@turf/helpers';
-import * as invariant from './';
+const Benchmark = require('benchmark');
+const helpers = require('@turf/helpers');
+const invariant = require('./');
 
 const pt = helpers.point([-75, 40]);
 const line = helpers.lineString([[-75, 40], [-70, 50]]);

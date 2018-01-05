@@ -1,5 +1,5 @@
-import test from 'tape';
-import {
+const test = require('tape');
+const {
     point,
     polygon,
     lineString,
@@ -20,26 +20,11 @@ import {
     round,
     isObject,
     isNumber,
-    earthRadius
-} from './';
-import * as turf from './'
-
-const foo = {
-    /**
-     * HELLO!
-     */
-    hello: 'world',
-    /**
-     * This is a fruit
-     */
-    apple: 3,
-    /**
-     * This is yellow
-     */
-    banana: 6
-}
-
-
+    earthRadius,
+    points,
+    lineStrings,
+    polygons,
+} = require('./');
 
 test('point', t => {
     const ptArray = point([5, 10], {name: 'test point'});
@@ -488,38 +473,38 @@ test('turf-helpers -- isObject', t => {
 });
 
 test('turf-helpers -- points', t => {
-    const points = turf.points([
+    const pts = points([
         [-75, 39],
         [-80, 45],
         [-78, 50]
     ], {foo: 'bar'}, {id: 'hello'});
 
-    t.equal(points.features.length, 3);
-    t.equal(points.id, 'hello');
-    t.equal(points.features[0].properties.foo, 'bar');
+    t.equal(pts.features.length, 3);
+    t.equal(pts.id, 'hello');
+    t.equal(pts.features[0].properties.foo, 'bar');
     t.end();
 });
 
 test('turf-helpers -- lineStrings', t => {
-    var linestrings = turf.lineStrings([
+    var lines = lineStrings([
         [[-24, 63], [-23, 60], [-25, 65], [-20, 69]],
         [[-14, 43], [-13, 40], [-15, 45], [-10, 49]]
     ], {foo: 'bar'}, {id: 'hello'});
 
-    t.equal(linestrings.features.length, 2);
-    t.equal(linestrings.id, 'hello');
-    t.equal(linestrings.features[0].properties.foo, 'bar');
+    t.equal(lines.features.length, 2);
+    t.equal(lines.id, 'hello');
+    t.equal(lines.features[0].properties.foo, 'bar');
     t.end();
 });
 
 test('turf-helpers -- polygons', t => {
-    var polygons = turf.polygons([
+    var polys = polygons([
         [[[-5, 52], [-4, 56], [-2, 51], [-7, 54], [-5, 52]]],
         [[[-15, 42], [-14, 46], [-12, 41], [-17, 44], [-15, 42]]],
     ], {foo: 'bar'}, {id: 'hello'});
 
-    t.equal(polygons.features.length, 2);
-    t.equal(polygons.id, 'hello');
-    t.equal(polygons.features[0].properties.foo, 'bar');
+    t.equal(polys.features.length, 2);
+    t.equal(polys.id, 'hello');
+    t.equal(polys.features[0].properties.foo, 'bar');
     t.end();
 });

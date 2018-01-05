@@ -1,21 +1,20 @@
 {
   "name": "@turf/meta",
-  "version": "5.2.0",
+  "version": "6.0.0-beta.1",
   "description": "turf meta module",
-  "main": "main.js",
-  "module": "main.es.js",
+  "main": "index.js",
+  "module": "index.mjs",
   "types": "index.d.ts",
   "files": [
     "index.js",
-    "index.d.ts",
-    "main.js",
-    "main.es.js"
+    "index.mjs",
+    "index.d.ts"
   ],
   "scripts": {
-    "pretest": "rollup -c ../../rollup.config.js",
-    "test": "node -r @std/esm test.js",
-    "posttest": "node -r @std/esm ../../scripts/validate-es5-dependencies.js",
-    "bench": "node -r @std/esm bench.js",
+    "pretest": "rollup -f cjs -i index.mjs -o index.js",
+    "test": "node test.js",
+    "posttest": "node ../../scripts/validate-es5-dependencies.js",
+    "bench": "node bench.js",
     "docs": "node ../../scripts/generate-readmes"
   },
   "repository": {

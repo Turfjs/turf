@@ -1,6 +1,6 @@
-import test from 'tape';
-import { point, lineString, polygon, featureCollection, geometryCollection, multiLineString, feature, lineStrings } from '@turf/helpers';
-import * as invariant from '.';
+const test = require('tape');
+const { point, lineString, polygon, featureCollection, geometryCollection, multiLineString, feature, lineStrings } = require('@turf/helpers');
+const invariant = require('./');
 
 test('invariant -- containsNumber', t => {
     t.equals(invariant.containsNumber([1, 1]), true);

@@ -1,10 +1,9 @@
 import typescript from './rollup-plugins/typescript-export';
 
 export default {
-    input: 'index.js',
+    input: 'index.mjs',
     output: [
-        {file: 'main.js', format: 'cjs'},
-        {file: 'main.es.js', format: 'es'}
+        {file: 'index.js', format: 'cjs'}
     ],
     plugins: [typescript()]
 }
