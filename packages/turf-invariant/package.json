@@ -1,9 +1,8 @@
 {
   "name": "@turf/invariant",
-  "version": "6.0.0-beta.1",
+  "version": "6.0.0-beta.2",
   "description": "turf invariant module",
-  "main": "index.js",
-  "module": "index.mjs",
+  "main": "index",
   "types": "index.d.ts",
   "files": [
     "index.js",
@@ -43,7 +42,7 @@
     "tape": "*"
   },
   "dependencies": {
-    "@turf/helpers": "^5.1.5"
+    "@turf/helpers": "6.0.0-beta.2"
   },
   "@std/esm": {
     "esm": "js",
