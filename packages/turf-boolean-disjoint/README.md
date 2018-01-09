@@ -47,3 +47,8 @@ Or install the Turf module that includes it as a function:
 ```sh
 $ npm install @turf/turf
 ```
+
+
+### Diagrams
+
+![esri-disjoint](diagrams/esri-disjoint.gif)

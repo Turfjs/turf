@@ -55,4 +55,4 @@ $ npm install @turf/turf
 
 ### Diagrams
 
-![DE-9IM-crosses](diagrams/DE-9IM-crosses.gif)
+![esri-crosses](diagrams/esri-crosses.gif)

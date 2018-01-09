@@ -24,15 +24,16 @@ value breaks and generates [isolines](http://en.wikipedia.org/wiki/Isoline).
 var extent = [0, 30, 20, 50];
 var cellWidth = 100;
 var pointGrid = turf.pointGrid(extent, cellWidth, {units: 'miles'});
+
 for (var i = 0; i < pointGrid.features.length; i++) {
     pointGrid.features[i].properties.temperature = Math.random() * 10;
 }
 var breaks = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
-var isolines = turf.isolines(pointGrid, breaks, {zProperty: 'temperature'});
+var lines = turf.isolines(pointGrid, breaks, {zProperty: 'temperature'});
 
 //addToMap
-var addToMap = [isolines];
+var addToMap = [lines];
 ```
 
 Returns **[FeatureCollection](https://tools.ietf.org/html/rfc7946#section-3.3)&lt;[MultiLineString](https://tools.ietf.org/html/rfc7946#section-3.1.5)>** a FeatureCollection of [MultiLineString](https://tools.ietf.org/html/rfc7946#section-3.1.5) features representing isolines

@@ -9,6 +9,9 @@ Takes a bbox and returns an equivalent [polygon](https://tools.ietf.org/html/rfc
 **Parameters**
 
 -   `bbox` **[BBox](https://tools.ietf.org/html/rfc7946#section-5)** extent in [minX, minY, maxX, maxY] order
+-   `options` **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)** Optional parameters (optional, default `{}`)
+    -   `options.properties` **Properties** Translate properties to Polygon (optional, default `{}`)
+    -   `options.id` **([string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) \| [number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number))** Translate Id to Polygon (optional, default `{}`)
 
 **Examples**
 

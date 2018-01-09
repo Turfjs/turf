@@ -11,7 +11,8 @@ Takes a set of [points](https://tools.ietf.org/html/rfc7946#section-3.1.2) and p
 -   `points` **[FeatureCollection](https://tools.ietf.org/html/rfc7946#section-3.3)&lt;[Point](https://tools.ietf.org/html/rfc7946#section-3.1.2)>** to be clustered
 -   `maxDistance` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** Maximum Distance between any point of the cluster to generate the clusters (kilometers only)
 -   `options` **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)** Optional parameters (optional, default `{}`)
-    -   `options.units` **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** in which `maxDistance` is expressed, can be degrees, radians, miles, or kilometers (optional, default `kilometers`)
+    -   `options.units` **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** in which `maxDistance` is expressed, can be degrees, radians, miles, or kilometers (optional, default `"kilometers"`)
+    -   `options.mutate` **[boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** Allows GeoJSON input to be mutated (optional, default `false`)
     -   `options.minPoints` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** Minimum number of points to generate a single cluster,
         points which do not meet this requirement will be classified as an 'edge' or 'noise'. (optional, default `3`)
 
