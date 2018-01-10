@@ -7,7 +7,8 @@ import {
     Point,
     LineString,
     Polygon,
-    GeometryTypes
+    GeometryTypes,
+    Position
 } from '@turf/helpers'
 
 /**
@@ -61,3 +62,5 @@ invariant.getCoords(line)[0][0].toFixed()
 invariant.getCoords(poly)[0][0][0].toFixed()
 invariant.getCoords(poly.geometry)[0][0][0].toFixed()
 invariant.getCoords(poly.geometry.coordinates)[0][0][0].toFixed()
+const lineCoords: Position[] = [[10, 30], [40, 40]]
+invariant.getCoords(lineCoords)[0][0].toFixed()
