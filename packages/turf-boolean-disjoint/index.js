@@ -119,6 +119,10 @@ function isPolyInPoly(feature1, feature2) {
             return true;
         }
     }
+    var doLinesIntersect = lineIntersect(polygonToLine(feature1), polygonToLine(feature2));
+    if (doLinesIntersect.features.length > 0) {
+        return true;
+    }
     return false;
 }
 
