@@ -42,7 +42,10 @@
     "write-json-file": "*"
   },
   "dependencies": {
+    "@turf/combine": "^5.1.5",
     "@turf/helpers": "^5.1.5",
+    "@turf/invariant": "^6.0.0-beta.3",
+    "martinez-polygon-clipping": "^0.3.2",
     "turf-jsts": "*"
   },
   "@std/esm": {

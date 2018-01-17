@@ -1,10 +1,13 @@
-import { GeoJSONReader, GeoJSONWriter, UnionOp } from 'turf-jsts';
+import martinez from 'martinez-polygon-clipping';
+import { getGeom } from '@turf/invariant';
+import { multiPolygon, polygon } from '@turf/helpers';
 
 /**
  * Takes two or more {@link Polygon|polygons} and returns a combined polygon. If the input polygons are not contiguous, this function returns a {@link MultiPolygon} feature.
  *
  * @name union
- * @param {...Feature<Polygon>} A polygon to combine
+ * @param {Feature<Polygon|MultiPolygon>} polygon1 input Polygon feature
+ * @param {Feature<Polygon|MultiPolygon>} polygon2 Polygon feature to difference from polygon1
  * @returns {Feature<(Polygon|MultiPolygon)>} a combined {@link Polygon} or {@link MultiPolygon} feature
  * @example
  * var poly1 = turf.polygon([[
@@ -27,22 +30,15 @@ import { GeoJSONReader, GeoJSONWriter, UnionOp } from 'turf-jsts';
  * //addToMap
  * var addToMap = [poly1, poly2, union];
  */
-function union() {
-    var reader = new GeoJSONReader();
-    var result = reader.read(JSON.stringify(arguments[0].geometry));
+function union(polygon1, polygon2) {
+    var geom1 = getGeom(polygon1);
+    var geom2 = getGeom(polygon2);
+    var properties = polygon1.properties || {};
 
-    for (var i = 1; i < arguments.length; i++) {
-        result = UnionOp.union(result, reader.read(JSON.stringify(arguments[i].geometry)));
-    }
-
-    var writer = new GeoJSONWriter();
-    result = writer.write(result);
-
-    return {
-        type: 'Feature',
-        geometry: result,
-        properties: arguments[0].properties
-    };
+    var unioned = martinez.union(geom1.coordinates, geom2.coordinates);
+    if (unioned.length === 0) return null;
+    if (unioned.length === 1) return polygon(unioned[0], properties);
+    else return multiPolygon(unioned, properties);
 }
 
 export default union;
