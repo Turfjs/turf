@@ -18,10 +18,10 @@ const fixtures = fs.readdirSync(directories.in).map(filename => {
         geojson: load.sync(directories.in + filename)
     };
 });
-
+process.env.REGEN = true
 test('intersect', t => {
     fixtures.forEach(({name, geojson, filename}) => {
-        if (name === 'issue-1132-line') return t.skip(name);
+        if (name === 'issue-1132-line' || name === 'issue-1132-point' || name === 'issue-412') return t.skip(name);
 
         const features = geojson.features;
         let result = intersect(features[0], features[1]);

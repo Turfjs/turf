@@ -46,6 +46,7 @@
     "@turf/helpers": "^5.1.5",
     "@turf/invariant": "^5.1.5",
     "@turf/truncate": "^5.1.5",
+    "martinez-polygon-clipping": "^0.3.2",
     "turf-jsts": "*"
   },
   "@std/esm": {
