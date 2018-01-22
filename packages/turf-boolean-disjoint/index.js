@@ -91,6 +91,11 @@ function isLineOnLine(lineString1, lineString2) {
 }
 
 function isLineInPoly(polygon, lineString) {
+    for (var i = 0; i < lineString.coordinates.length; i++) {
+        if (booleanPointInPolygon(lineString.coordinates[i], polygon)) {
+            return true;
+        }
+    }
     var doLinesIntersect = lineIntersect(lineString, polygonToLine(polygon));
     if (doLinesIntersect.features.length > 0) {
         return true;
