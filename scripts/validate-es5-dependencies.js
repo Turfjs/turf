@@ -1,7 +1,7 @@
-import node from 'rollup-plugin-node-resolve';
-import uglify from 'rollup-plugin-uglify';
-import commonjs from 'rollup-plugin-commonjs';
-import {rollup} from 'rollup';
+const node = require('rollup-plugin-node-resolve');
+const uglify = require('rollup-plugin-uglify');
+const commonjs = require('rollup-plugin-commonjs');
+const {rollup} = require('rollup');
 
 const input = 'index.js';
 const plugins = [commonjs(), node(), uglify()];

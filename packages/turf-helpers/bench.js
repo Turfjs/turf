@@ -1,5 +1,5 @@
-import Benchmark from 'benchmark';
-import { point, lineString, polygon, multiPoint, multiLineString, multiPolygon, featureCollection, geometryCollection, round } from './';
+const Benchmark = require('benchmark');
+const { point, lineString, polygon, multiPoint, multiLineString, multiPolygon, featureCollection, geometryCollection, round } = require('./');
 
 /**
  * Benchmark Results
