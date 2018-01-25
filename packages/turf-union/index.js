@@ -1,9 +1,9 @@
 import martinez from 'martinez-polygon-clipping';
-import { getGeom } from '@turf/invariant';
+import { getCoords } from '@turf/invariant';
 import { multiPolygon, polygon } from '@turf/helpers';
 
 /**
- * Takes two or more {@link Polygon|polygons} and returns a combined polygon. If the input polygons are not contiguous, this function returns a {@link MultiPolygon} feature.
+ * Takes two or more {@link (multi)polygon(s)} and returns a combined polygon. If the input polygons are not contiguous, this function returns a {@link MultiPolygon} feature.
  *
  * @name union
  * @param {Feature<Polygon|MultiPolygon>} polygon1 input Polygon feature
@@ -31,11 +31,15 @@ import { multiPolygon, polygon } from '@turf/helpers';
  * var addToMap = [poly1, poly2, union];
  */
 function union(polygon1, polygon2) {
-    var geom1 = getGeom(polygon1);
-    var geom2 = getGeom(polygon2);
+    // Validation
+    if (!polygon1) throw new Error('polygon1 is required');
+    if (!polygon2) throw new Error('polygon2 is required');
+
+    var coords1 = getCoords(polygon1);
+    var coords2 = getCoords(polygon2);
     var properties = polygon1.properties || {};
 
-    var unioned = martinez.union(geom1.coordinates, geom2.coordinates);
+    var unioned = martinez.union(coords1, coords2);
     if (unioned.length === 0) return null;
     if (unioned.length === 1) return polygon(unioned[0], properties);
     else return multiPolygon(unioned, properties);
