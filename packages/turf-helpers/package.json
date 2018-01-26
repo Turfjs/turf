@@ -42,6 +42,6 @@
   "devDependencies": {
     "benchmark": "*",
     "tape": "*",
-    "typescript": "*"
+    "rollup": "*"
   }
 }
