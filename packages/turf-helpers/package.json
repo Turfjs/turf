@@ -1,22 +1,20 @@
 {
   "name": "@turf/helpers",
-  "version": "5.1.5",
+  "version": "6.0.0-beta.4",
   "description": "turf helpers module",
-  "main": "main.js",
-  "module": "main.es.js",
+  "main": "index",
+  "module": "index.mjs",
   "types": "index.d.ts",
   "files": [
     "index.js",
+    "index.mjs",
     "index.d.ts",
-    "main.js",
-    "lib",
-    "main.es.js"
+    "lib"
   ],
   "scripts": {
-    "pretest": "rollup -c ../../rollup.config.js",
-    "test": "node -r @std/esm test.js",
-    "posttest": "node -r @std/esm ../../scripts/validate-es5-dependencies.js",
-    "bench": "node -r @std/esm bench.js",
+    "pretest": "rollup -f cjs -o index.js index.mjs",
+    "test": "node test.js",
+    "bench": "node bench.js",
     "docs": "node ../../scripts/generate-readmes"
   },
   "repository": {
@@ -42,13 +40,8 @@
   },
   "homepage": "https://github.com/Turfjs/turf",
   "devDependencies": {
-    "@std/esm": "*",
     "benchmark": "*",
-    "rollup": "*",
-    "tape": "*"
-  },
-  "@std/esm": {
-    "esm": "js",
-    "cjs": true
+    "tape": "*",
+    "rollup": "*"
   }
 }
