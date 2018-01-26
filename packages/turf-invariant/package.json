@@ -1,6 +1,6 @@
 {
   "name": "@turf/invariant",
-  "version": "6.0.0-beta.4",
+  "version": "6.0.0",
   "description": "turf invariant module",
   "main": "index",
   "module": "index.mjs",
@@ -41,6 +41,6 @@
     "tape": "*"
   },
   "dependencies": {
-    "@turf/helpers": "6.0.0-beta.4"
+    "@turf/helpers": "6.x"
   }
 }
