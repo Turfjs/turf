@@ -1,10 +1,10 @@
-import path from 'path';
-import test from 'tape';
-import glob from 'glob';
-import load from 'load-json-file';
-import write from 'write-json-file';
-import { featureCollection, polygon } from '@turf/helpers';
-import difference from '.';
+const path = require('path');
+const test = require('tape');
+const glob = require('glob');
+const load = require('load-json-file');
+const write = require('write-json-file');
+const { featureCollection, polygon } = require('@turf/helpers');
+const difference = require('./');
 
 const directories = {
     in: path.join(__dirname, 'test', 'in') + path.sep,
