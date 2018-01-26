@@ -40,10 +40,9 @@
   },
   "dependencies": {
     "@turf/area": "5.x",
-    "@turf/helpers": "5.x",
-    "@turf/invariant": "5.x",
-    "@turf/meta": "5.x",
-    "martinez-polygon-clipping": "*",
-    "turf-jsts": "*"
+    "@turf/helpers": "6.x",
+    "@turf/invariant": "6.x",
+    "@turf/meta": "6.x",
+    "martinez-polygon-clipping": "*"
   }
 }
