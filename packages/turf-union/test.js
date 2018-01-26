@@ -1,10 +1,10 @@
-import path from 'path';
-import fs from 'fs';
-import test from 'tape';
-import load from 'load-json-file';
-import write from 'write-json-file';
-import combine from '@turf/combine';
-import union from '.';
+const fs = require('fs');
+const path = require('path');
+const test = require('tape');
+const load = require('load-json-file');
+const write = require('write-json-file');
+const combine = require('@turf/combine');
+const union = require('./');
 
 const directories = {
     in: path.join(__dirname, 'test', 'in') + path.sep,
