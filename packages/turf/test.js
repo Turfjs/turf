@@ -1,10 +1,10 @@
-import fs from 'fs';
-import path from 'path';
-import glob from 'glob';
-import test from 'tape';
-import camelcase from 'camelcase';
-import documentation from 'documentation';
-import * as turf from './';
+const fs = require('fs');
+const path = require('path');
+const glob = require('glob');
+const test = require('tape');
+const camelcase = require('camelcase');
+const documentation = require('documentation');
+const turf = require('./');
 
 // Helpers
 const directory = path.join(__dirname, '..');
@@ -103,6 +103,7 @@ test('turf -- external files must be in the lib folder', t => {
             case 'main.js':
             case 'main.es.js':
             case 'index.js':
+            case 'index.mjs':
             case 'index.d.ts':
             case 'lib':
                 break;
@@ -144,8 +145,8 @@ test('turf -- scoped package name', t => {
 test('turf -- pre-defined attributes in package.json', t => {
     for (const {name, pckg} of modules) {
         if (pckg.author !== 'Turf Authors') t.fail(name + ' (author) should be "Turf Authors"');
-        if (pckg.main !== 'main.js') t.fail(`${name} (main) must be "main.js" in package.json`);
-        if (pckg.module !== 'main.es.js') t.fail(`${name} (module) must be "main.es.js" in package.json`);
+        if (pckg.main !== 'main.js') t.skip(`${name} (main) must be "main.js" in package.json`);
+        if (pckg.module !== 'main.es.js') t.skip(`${name} (module) must be "main.es.js" in package.json`);
         if (pckg['jsnext:main']) t.fail(`${name} (jsnext:main) is no longer required in favor of using (module) in package.json`);
         if (pckg.types !== 'index.d.ts') t.fail(`${name} (types) must be "index.d.ts" in package.json`);
         if (!pckg.bugs || pckg.bugs.url !== 'https://github.com/Turfjs/turf/issues') t.fail(`${name} (bugs.url) must be "https://github.com/Turfjs/turf/issues" in package.json`);
@@ -267,12 +268,12 @@ test('turf -- update to newer Typescript definitions', t => {
     t.end();
 });
 
-test('turf -- require() not allowed in favor of import', t => {
-    for (const {name, index, test} of modules) {
-        if ((index).includes('= require(')) throw new Error(`${name} module cannot use require(), use ES import instead`);
-    }
-    t.end();
-});
+// test('turf -- require() not allowed in favor of import', t => {
+//     for (const {name, index, test} of modules) {
+//         if ((index).includes('= require(')) throw new Error(`${name} module cannot use require(), use ES import instead`);
+//     }
+//     t.end();
+// });
 
 /**
  * =========================
@@ -287,8 +288,8 @@ const turfModulesPath = path.join(__dirname, '..', 'turf-*', 'index.js');
 const turfTypescriptPath = path.join(__dirname, '..', 'turf-*', 'index.d.ts');
 
 // Test Strings
-const requireString = `import test from 'tape';
-import * as turf from './turf';
+const requireString = `const test = require('tape');
+const turf = require('./turf');
 `;
 
 /**
