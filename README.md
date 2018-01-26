@@ -62,7 +62,11 @@ TypeScript is supported internally within each module, no installs required.
 
 ### Other languages
 
-Ports of Turf.js are underway [in Swift](https://github.com/mapbox/turf-swift/) (for iOS and macOS) and [in Java](https://github.com/mapbox/mapbox-java/tree/master/mapbox/libjava-services/src/main/java/com/mapbox/services/api/utils/turf/) (for Android and Java SE).
+Ports of Turf.js are available in:
+
+- [Java](https://github.com/mapbox/mapbox-java/blob/master/docs/turf-port.md) (Android, Java SE)
+- [Swift](https://github.com/mapbox/turf-swift/) (iOS, macOS, tvOS, watchOS, Linux)
+> Turf for Swift is **experimental** and its public API is subject to change. Please use with care.
 
 - - -
 
