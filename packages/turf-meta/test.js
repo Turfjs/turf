@@ -1,5 +1,5 @@
-import test from 'tape';
-import {
+const test = require('tape');
+const {
     point,
     lineString,
     feature,
@@ -12,8 +12,8 @@ import {
     points,
     lineStrings,
     polygons
-} from '@turf/helpers';
-import * as meta from './';
+} = require('@turf/helpers');
+const meta = require('./');
 
 const pt = point([0, 0], {a: 1});
 const pt2 = point([1, 1]);

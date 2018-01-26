@@ -1,6 +1,6 @@
-import Benchmark from 'benchmark';
-import * as random from '@turf/random';
-import * as meta from './';
+const Benchmark = require('benchmark');
+const random = require('@turf/random');
+const meta = require('./');
 
 const fixtures = {
     point: random.randomPoint(),
