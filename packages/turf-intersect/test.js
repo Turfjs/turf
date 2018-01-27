@@ -1,34 +1,38 @@
-import path from 'path';
-import fs from 'fs';
-import test from 'tape';
-import load from 'load-json-file';
-import write from 'write-json-file';
-import { feature } from '@turf/helpers';
-import intersect from '.';
+const path = require('path');
+const glob = require('glob');
+const test = require('tape');
+const load = require('load-json-file');
+const write = require('write-json-file');
+const { featureCollection } = require('@turf/helpers');
+const intersect = require('./');
 
 const directories = {
     in: path.join(__dirname, 'test', 'in') + path.sep,
     out: path.join(__dirname, 'test', 'out') + path.sep
 };
 
-const fixtures = fs.readdirSync(directories.in).map(filename => {
-    return {
-        filename,
-        name: path.parse(filename).name,
-        geojson: load.sync(directories.in + filename)
-    };
-});
+test('turf-intersect', t => {
+    glob.sync(directories.in + '*.geojson').forEach(filepath => {
+        const { name, base } = path.parse(filepath);
+        const [polygon1, polygon2] = load.sync(filepath).features;
 
-test('intersect', t => {
-    fixtures.forEach(({name, geojson, filename}) => {
-        if (name === 'issue-1132-line') return t.skip(name);
+        if (name.includes('skip')) return t.skip(name);
 
-        const features = geojson.features;
-        let result = intersect(features[0], features[1]);
-        if (!result) result = feature(null);
+        // Red Polygon1
+        polygon1.properties = Object.assign(polygon1.properties || {}, {'fill-opacity': 0.5, fill: '#F00'});
+        // Blue Polygon2
+        polygon2.properties = Object.assign(polygon2.properties || {}, {'fill-opacity': 0.5, fill: '#00F'});
 
-        if (process.env.REGEN) write.sync(directories.out + filename, result);
-        t.deepEqual(result, load.sync(directories.out + filename), name);
-    })
+        const results = featureCollection([polygon1, polygon2]);
+        const result = intersect(polygon1, polygon2);
+        if (result) {
+            // Green Polygon
+            result.properties = {'fill-opacity': 1, fill: '#0F0'};
+            results.features.push(result);
+        }
+
+        if (process.env.REGEN) write.sync(directories.out + base, results);
+        t.deepEqual(results, load.sync(directories.out + base), name);
+    });
     t.end();
 });
