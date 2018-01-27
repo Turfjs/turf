@@ -4,66 +4,11 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"fill-opacity": 1
-			},
-			"geometry": {
-				"type": "Polygon",
-				"coordinates": [
-					[
-						[
-							121,
-							-31
-						],
-						[
-							144,
-							-31
-						],
-						[
-							144,
-							-15
-						],
-						[
-							121,
-							-15
-						],
-						[
-							121,
-							-31
-						]
-					],
-					[
-						[
-							126,
-							-28
-						],
-						[
-							140,
-							-28
-						],
-						[
-							140,
-							-20
-						],
-						[
-							126,
-							-20
-						],
-						[
-							126,
-							-28
-						]
-					]
-				]
-			}
-		},
-		{
-			"type": "Feature",
-			"properties": {
 				"stroke": "#F00",
 				"stroke-width": 6,
 				"stroke-opacity": 1,
 				"fill": "#F00",
-				"fill-opacity": 0.1
+				"fill-opacity": 0.5
 			},
 			"geometry": {
 				"type": "Polygon",
@@ -100,11 +45,67 @@
 				"stroke-width": 6,
 				"stroke-opacity": 1,
 				"fill": "#00F",
-				"fill-opacity": 0.1
+				"fill-opacity": 0.5
 			},
 			"geometry": {
 				"type": "Polygon",
 				"coordinates": [
+					[
+						[
+							126,
+							-28
+						],
+						[
+							140,
+							-28
+						],
+						[
+							140,
+							-20
+						],
+						[
+							126,
+							-20
+						],
+						[
+							126,
+							-28
+						]
+					]
+				]
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {
+				"fill-opacity": 1,
+				"fill": "#0F0"
+			},
+			"geometry": {
+				"type": "Polygon",
+				"coordinates": [
+					[
+						[
+							121,
+							-31
+						],
+						[
+							144,
+							-31
+						],
+						[
+							144,
+							-15
+						],
+						[
+							121,
+							-15
+						],
+						[
+							121,
+							-31
+						]
+					],
 					[
 						[
 							126,

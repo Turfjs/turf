@@ -52,7 +52,7 @@ function difference(polygon1, polygon2) {
     var differenced = martinez.diff(geom1.coordinates, geom2.coordinates);
     if (differenced.length === 0) return null;
     if (differenced.length === 1) return polygon(differenced[0], properties);
-    else return multiPolygon(differenced, properties);
+    return multiPolygon(differenced, properties);
 }
 
 /**
