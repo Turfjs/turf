@@ -1,22 +1,24 @@
 {
   "name": "@turf/turf",
-  "version": "5.1.6",
+  "version": "6.0.0",
   "description": "a JavaScript library for performing geospatial operations with GeoJSON",
-  "main": "turf.js",
-  "module": "turf.es.js",
+  "main": "turf",
+  "module": "turf.mjs",
   "browser": "turf.min.js",
   "types": "index.d.ts",
   "files": [
     "index.js",
+    "index.mjs",
     "index.d.ts",
     "turf.js",
-    "turf.es.js",
+    "turf.mjs",
     "turf.min.js"
   ],
   "scripts": {
-    "pretest": "rollup -c rollup.config.js",
-    "test": "node -r @std/esm test.js",
-    "posttest": "node -r @std/esm test.example.js"
+    "prepare": "rollup -c rollup.config.js",
+    "pretest": "rollup -f cjs -o index.js index.mjs",
+    "test": "node test.js",
+    "posttest": "node test.example.js"
   },
   "repository": {
     "type": "git",

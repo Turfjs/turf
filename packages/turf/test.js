@@ -289,7 +289,7 @@ const turfTypescriptPath = path.join(__dirname, '..', 'turf-*', 'index.d.ts');
 
 // Test Strings
 const requireString = `const test = require('tape');
-const turf = require('./turf');
+const turf = require('./index');
 `;
 
 /**
