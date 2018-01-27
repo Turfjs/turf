@@ -4,11 +4,12 @@
 
 ## union
 
-Takes two or more [polygons](https://tools.ietf.org/html/rfc7946#section-3.1.6) and returns a combined polygon. If the input polygons are not contiguous, this function returns a [MultiPolygon](https://tools.ietf.org/html/rfc7946#section-3.1.7) feature.
+Takes two or more [(Multi)Polygon(s)](https://tools.ietf.org/html/rfc7946#section-3.1.6) and returns a combined polygon. If the input polygons are not contiguous, this function returns a [MultiPolygon](https://tools.ietf.org/html/rfc7946#section-3.1.7) feature.
 
 **Parameters**
 
--   `A` **...[Feature](https://tools.ietf.org/html/rfc7946#section-3.2)&lt;[Polygon](https://tools.ietf.org/html/rfc7946#section-3.1.6)>** polygon to combine
+-   `polygon1` **[Feature](https://tools.ietf.org/html/rfc7946#section-3.2)&lt;([Polygon](https://tools.ietf.org/html/rfc7946#section-3.1.6) \| [MultiPolygon](https://tools.ietf.org/html/rfc7946#section-3.1.7))>** input Polygon feature
+-   `polygon2` **[Feature](https://tools.ietf.org/html/rfc7946#section-3.2)&lt;([Polygon](https://tools.ietf.org/html/rfc7946#section-3.1.6) \| [MultiPolygon](https://tools.ietf.org/html/rfc7946#section-3.1.7))>** Polygon feature to difference from polygon1
 
 **Examples**
 
