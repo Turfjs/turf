@@ -1,8 +1,8 @@
-import martinez from 'martinez-polygon-clipping'
-import truncate from '@turf/truncate';
+import martinez from 'martinez-polygon-clipping';
+// import truncate from '@turf/truncate';
 import { getGeom } from '@turf/invariant';
 import { multiPolygon, polygon } from '@turf/helpers';
-import cleanCoords from '@turf/clean-coords';
+// import cleanCoords from '@turf/clean-coords';
 
 /**
  * Takes two {@link Polygon|polygons} and finds their intersection. If they share a border, returns the border; if they don't intersect, returns undefined.
@@ -40,6 +40,10 @@ function intersect(poly1, poly2) {
     var geom1 = getGeom(poly1);
     var geom2 = getGeom(poly2);
     var properties = poly1.properties || {};
+
+    if (geom1.type !== 'Polygon') throw new Error('poly1 must be a Polygon');
+    if (geom2.type !== 'Polygon') throw new Error('poly2 must be a Polygon');
+
     // Return null if geometry is too narrow in coordinate precision
     // fixes topology errors with JSTS
     // https://github.com/Turfjs/turf/issues/463
@@ -49,8 +53,13 @@ function intersect(poly1, poly2) {
 
     var intersection = martinez.intersection(geom1.coordinates, geom2.coordinates);
     if (intersection === null || intersection.length === 0) return null;
-    if (intersection.length === 1) return polygon(intersection[0], properties);
-    else return multiPolygon(intersection, properties);
+    if (intersection.length === 1) {
+        var start = intersection[0][0][0];
+        var end = intersection[0][0][intersection[0][0].length - 1];
+        if (start[0] === end[0] && start[1] === end[1]) return polygon(intersection[0], properties);
+        return null;
+    }
+    return multiPolygon(intersection, properties);
 }
 
 export default intersect;
