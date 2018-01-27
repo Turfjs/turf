@@ -1,6 +1,6 @@
-import { GeoJSONReader, GeoJSONWriter, OverlayOp } from 'turf-jsts';
+import martinez from 'martinez-polygon-clipping';
 import area from '@turf/area';
-import { feature } from '@turf/helpers';
+import { feature, multiPolygon, polygon } from '@turf/helpers';
 import { getGeom } from '@turf/invariant';
 import { flattenEach } from '@turf/meta';
 
@@ -43,22 +43,16 @@ function difference(polygon1, polygon2) {
     var geom2 = getGeom(polygon2);
     var properties = polygon1.properties || {};
 
-    // Issue #721 - JSTS can't handle empty polygons
+    // Issue #721 - JSTS/Martinez can't handle empty polygons
     geom1 = removeEmptyPolygon(geom1);
     geom2 = removeEmptyPolygon(geom2);
     if (!geom1) return null;
     if (!geom2) return feature(geom1, properties);
 
-    // JSTS difference operation
-    var reader = new GeoJSONReader();
-    var a = reader.read(geom1);
-    var b = reader.read(geom2);
-    var differenced = OverlayOp.difference(a, b);
-    if (differenced.isEmpty()) return null;
-    var writer = new GeoJSONWriter();
-    var geom = writer.write(differenced);
-
-    return feature(geom, properties);
+    var differenced = martinez.diff(geom1.coordinates, geom2.coordinates);
+    if (differenced.length === 0) return null;
+    if (differenced.length === 1) return polygon(differenced[0], properties);
+    else return multiPolygon(differenced, properties);
 }
 
 /**
