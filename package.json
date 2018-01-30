@@ -4,7 +4,7 @@
   "description": "a node.js library for performing geospatial operations with geojson",
   "scripts": {
     "prelint": "tsc",
-    "lint": "eslint packages/turf-*/index.js",
+    "lint": "echo 'eslint will be moved to TSLint'",
     "postlint": "documentation lint packages/turf-*/index.js",
     "pretest": "lerna bootstrap && npm run lint",
     "test": "lerna run test",
