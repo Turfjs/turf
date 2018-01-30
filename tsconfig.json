@@ -4,9 +4,9 @@
 		"target": "es5",
 		"pretty": true,
 		"moduleResolution": "node",
-		"noImplicitAny": true,
-		"noUnusedLocals": true,
-		"noUnusedParameters": true
+		"noImplicitAny": false,
+		"noUnusedLocals": false,
+		"noUnusedParameters": false
     },
     "exclude": [
         "node_modules",
