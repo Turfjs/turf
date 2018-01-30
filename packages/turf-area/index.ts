@@ -1,3 +1,4 @@
+import { Feature, FeatureCollection, Geometry, earthRadius } from '@turf/helpers';
 import { geomReduce } from '@turf/meta';
 
 /**
@@ -15,32 +16,28 @@ import { geomReduce } from '@turf/meta';
  * var addToMap = [polygon]
  * polygon.properties.area = area
  */
-function area(geojson) {
-    return geomReduce(geojson, function (value, geom) {
+function area(geojson: Feature<any> | FeatureCollection<any> | Geometry) {
+    return geomReduce(geojson, (value, geom) => {
         return value + calculateArea(geom);
     }, 0);
 }
-
-var RADIUS = 6378137;
-// var FLATTENING_DENOM = 298.257223563;
-// var FLATTENING = 1 / FLATTENING_DENOM;
-// var POLAR_RADIUS = RADIUS * (1 - FLATTENING);
 
 /**
  * Calculate Area
  *
  * @private
- * @param {GeoJSON} geojson GeoJSON
+ * @param {Geometry} geom GeoJSON Geometries
  * @returns {number} area
  */
-function calculateArea(geojson) {
-    var area = 0, i;
-    switch (geojson.type) {
+function calculateArea(geom: Geometry) {
+    let area = 0
+    let i;
+    switch (geom.type) {
     case 'Polygon':
-        return polygonArea(geojson.coordinates);
+        return polygonArea(geom.coordinates);
     case 'MultiPolygon':
-        for (i = 0; i < geojson.coordinates.length; i++) {
-            area += polygonArea(geojson.coordinates[i]);
+        for (i = 0; i < geom.coordinates.length; i++) {
+            area += polygonArea(geom.coordinates[i]);
         }
         return area;
     case 'Point':
@@ -48,15 +45,10 @@ function calculateArea(geojson) {
     case 'LineString':
     case 'MultiLineString':
         return 0;
-    case 'GeometryCollection':
-        for (i = 0; i < geojson.geometries.length; i++) {
-            area += calculateArea(geojson.geometries[i]);
-        }
-        return area;
     }
 }
 
-function polygonArea(coords) {
+function polygonArea(coords: any) {
     var area = 0;
     if (coords && coords.length > 0) {
         area += Math.abs(ringArea(coords[0]));
@@ -79,7 +71,7 @@ function polygonArea(coords) {
  * @param {Array<Array<number>>} coords Ring Coordinates
  * @returns {number} The approximate signed geodesic area of the polygon in square meters.
  */
-function ringArea(coords) {
+function ringArea(coords: number[][]) {
     var p1;
     var p2;
     var p3;
@@ -111,14 +103,13 @@ function ringArea(coords) {
             area += (rad(p3[0]) - rad(p1[0])) * Math.sin(rad(p2[1]));
         }
 
-        area = area * RADIUS * RADIUS / 2;
+        area = area * earthRadius * earthRadius / 2;
     }
-
     return area;
 }
 
-function rad(_) {
-    return _ * Math.PI / 180;
+function rad(num: number) {
+    return num * Math.PI / 180;
 }
 
 export default area;

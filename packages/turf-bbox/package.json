@@ -34,17 +34,12 @@
   },
   "homepage": "https://github.com/Turfjs/turf",
   "devDependencies": {
-    "@std/esm": "*",
     "benchmark": "*",
     "rollup": "*",
     "tape": "*"
   },
   "dependencies": {
-    "@turf/helpers": "^5.1.5",
-    "@turf/meta": "^5.1.5"
-  },
-  "@std/esm": {
-    "esm": "js",
-    "cjs": true
+    "@turf/helpers": "6.x",
+    "@turf/meta": "6.x"
   }
 }

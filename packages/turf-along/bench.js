@@ -1,8 +1,8 @@
-import fs from 'fs';
-import Benchmark from 'benchmark';
-import along from './';
+const fs = require('fs');
+const Benchmark = require('benchmark');
+const along = require('./');
 
-var line = {
+const line = {
   type: "Feature",
   properties: {},
   geometry: {
@@ -36,9 +36,9 @@ var line = {
   }
 };
 
-var route = JSON.parse(fs.readFileSync(__dirname + '/test/fixtures/route.geojson'));
+const route = JSON.parse(fs.readFileSync(__dirname + '/test/fixtures/route.geojson'));
 
-var suite = new Benchmark.Suite('turf-along');
+const suite = new Benchmark.Suite('turf-along');
 suite
   .add('turf-along',function () {
     along(line, 1, 'miles');
