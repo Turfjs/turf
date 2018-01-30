@@ -1,5 +1,8 @@
-import { Feature, FeatureCollection, Geometry, earthRadius } from '@turf/helpers';
+import { Feature, FeatureCollection, Geometry } from '@turf/helpers';
 import { geomReduce } from '@turf/meta';
+
+// Note: change RADIUS => earthRadius
+const RADIUS = 6378137;
 
 /**
  * Takes one or more features and returns their area in square meters.
@@ -103,7 +106,7 @@ function ringArea(coords: number[][]) {
             area += (rad(p3[0]) - rad(p1[0])) * Math.sin(rad(p2[1]));
         }
 
-        area = area * earthRadius * earthRadius / 2;
+        area = area * RADIUS * RADIUS / 2;
     }
     return area;
 }
