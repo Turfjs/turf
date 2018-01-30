@@ -71,6 +71,7 @@
     "rollup-plugin-buble": "*",
     "rollup-plugin-commonjs": "*",
     "rollup-plugin-node-resolve": "*",
+    "rollup-plugin-typescript2": "^0.10.0",
     "rollup-plugin-uglify": "*",
     "tape": "*",
     "typescript": "*",

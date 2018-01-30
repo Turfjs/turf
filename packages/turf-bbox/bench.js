@@ -1,7 +1,7 @@
-import load from 'load-json-file';
-import Benchmark from 'benchmark';
-import { lineString } from '@turf/helpers';
-import bbox from './';
+const load = require('load-json-file');
+const Benchmark = require('benchmark');
+const { lineString } = require('@turf/helpers');
+const bbox = require('./');
 
 const line = lineString([[-74, 40], [-78, 42], [-82, 35]]);
 
