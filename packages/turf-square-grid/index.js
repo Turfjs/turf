@@ -1,4 +1,3 @@
-import distance from '@turf/distance';
 import intersect from '@turf/intersect';
 import {getType} from '@turf/invariant';
 import {polygon, featureCollection, isObject, isNumber} from '@turf/helpers';
@@ -48,14 +47,22 @@ function squareGrid(bbox, cellSide, options) {
     var east = bbox[2];
     var north = bbox[3];
 
-    var xFraction = cellSide / (distance([west, south], [east, south], options));
-    var cellWidth = xFraction * (east - west);
-    var yFraction = cellSide / (distance([west, south], [west, north], options));
-    var cellHeight = yFraction * (north - south);
+    // var xFraction = cellSide / (distance([west, south], [east, south], options));
+    // var cellWidth = xFraction * (east - west);
+    // var yFraction = cellSide / (distance([west, south], [west, north], options));
+    // var cellHeight = yFraction * (north - south);
 
     // rows & columns
     var bboxWidth = (east - west);
     var bboxHeight = (north - south);
+
+    var units = options.units || 'degrees';
+    var degreesFactors = factors[units] / factors['degrees'];
+
+    var degreesCellSide = cellSide / degreesFactors;
+    var cellWidth = degreesCellSide;
+    var cellHeight = degreesCellSide;
+
     var columns = Math.floor(bboxWidth / cellWidth);
     var rows = Math.floor(bboxHeight / cellHeight);
 
