@@ -10,7 +10,8 @@
     "index.ts"
   ],
   "scripts": {
-    "pretest": "rollup -c ../../rollup.config.typescript.js",
+    "prepare": "rollup -c ../../rollup.config.typescript.js",
+    "pretest": "tsc",
     "test": "node test.js",
     "bench": "node bench.js",
     "docs": "node ../../scripts/generate-readmes"

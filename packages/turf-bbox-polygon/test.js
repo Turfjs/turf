@@ -1,5 +1,5 @@
-import test from 'tape';
-import bboxPolygon from '.';
+const test = require('tape');
+const bboxPolygon = require('.').default;
 
 test('bbox-polygon', t => {
     const poly = bboxPolygon([0, 0, 10, 10]);

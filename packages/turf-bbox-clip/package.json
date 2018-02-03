@@ -43,6 +43,7 @@
     "benchmark": "*",
     "load-json-file": "*",
     "rollup": "*",
+    "rollup-plugin-typescript": "*",
     "tape": "*",
     "typescript": "*",
     "write-json-file": "*"
