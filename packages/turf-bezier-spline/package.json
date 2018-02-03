@@ -3,15 +3,12 @@
   "version": "5.1.5",
   "description": "turf bezier-spline module",
   "main": "index",
-  "module": "index.mjs",
   "files": [
     "index.js",
-    "index.mjs",
     "index.ts",
     "lib"
   ],
   "scripts": {
-    "prepare": "rollup -c ../../rollup.config.typescript.js",
     "pretest": "tsc",
     "test": "node test.js",
     "bench": "node bench.js",
@@ -35,21 +32,14 @@
   },
   "homepage": "https://github.com/Turfjs/turf",
   "devDependencies": {
-    "@std/esm": "*",
     "benchmark": "*",
     "load-json-file": "*",
-    "rollup": "*",
-    "rollup-plugin-typescript": "*",
-    "typescript": "*",
     "tape": "*",
+    "typescript": "*",
     "write-json-file": "*"
   },
   "dependencies": {
     "@turf/helpers": "6.x",
     "@turf/invariant": "6.x"
-  },
-  "@std/esm": {
-    "esm": "js",
-    "cjs": true
   }
 }

@@ -3,15 +3,12 @@
   "version": "6.0.0",
   "description": "turf bbox-clip module",
   "main": "index",
-  "module": "index.mjs",
   "files": [
     "index.js",
-    "index.mjs",
     "index.ts",
     "lib"
   ],
   "scripts": {
-    "prepare": "rollup -c ../../rollup.config.typescript.js",
     "pretest": "tsc",
     "test": "node test.js",
     "bench": "node bench.js",
@@ -43,8 +40,6 @@
     "@turf/bbox": "*",
     "benchmark": "*",
     "load-json-file": "*",
-    "rollup": "*",
-    "rollup-plugin-typescript": "*",
     "tape": "*",
     "typescript": "*",
     "write-json-file": "*"

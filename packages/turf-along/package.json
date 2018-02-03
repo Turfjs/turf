@@ -3,14 +3,11 @@
   "version": "6.0.0",
   "description": "turf along module",
   "main": "index",
-  "module": "index.mjs",
   "files": [
     "index.js",
-    "index.mjs",
     "index.ts"
   ],
   "scripts": {
-    "prepare": "rollup -c ../../rollup.config.typescript.js",
     "pretest": "tsc",
     "test": "node test.js",
     "bench": "node bench.js",
@@ -36,7 +33,7 @@
   "devDependencies": {
     "benchmark": "*",
     "load-json-file": "*",
-    "rollup": "*",
+    "typescript": "*",
     "tape": "*"
   },
   "dependencies": {
