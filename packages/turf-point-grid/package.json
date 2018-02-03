@@ -1,4 +1,5 @@
 {
+  
   "name": "@turf/point-grid",
   "version": "5.1.5",
   "description": "turf point-grid module",
@@ -51,8 +52,8 @@
   "dependencies": {
     "@turf/boolean-within": "^5.1.5",
     "@turf/distance": "^5.1.5",
-    "@turf/helpers": "^5.1.5",
-    "@turf/invariant": "^5.1.5"
+    "@turf/helpers": "6.x",
+    "@turf/invariant": "6.x"
   },
   "@std/esm": {
     "esm": "js",

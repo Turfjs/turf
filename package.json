@@ -5,10 +5,10 @@
   ],
   "scripts": {
     "prelint": "tsc",
-    "lint": "eslint packages/turf-*/index.js",
+    "lint": "echo 'eslint will be moved to TSLint'",
     "postlint": "documentation lint packages/turf-*/index.js",
-    "pretest": "lerna bootstrap && npm run lint",
-    "test": "lerna run test",
+    "pretest": "lerna bootstrap --use-workspaces && npm run lint",
+    "test": "lerna run test --use-workspaces",
     "docs": "node ./scripts/generate-readmes"
   },
   "devDependencies": {
@@ -21,7 +21,7 @@
     "eslint": "*",
     "eslint-config-mourner": "*",
     "fs-extra": "*",
-    "lerna": "^2.5.1",
+    "lerna": "2.8.0",
     "load-json-file": "*",
     "meow": "*",
     "progress": "*",
@@ -29,6 +29,7 @@
     "rollup-plugin-buble": "*",
     "rollup-plugin-commonjs": "*",
     "rollup-plugin-node-resolve": "*",
+    "rollup-plugin-typescript2": "*",
     "rollup-plugin-uglify": "*",
     "tape": "*",
     "typescript": "*",

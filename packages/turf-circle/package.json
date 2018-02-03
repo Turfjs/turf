@@ -48,7 +48,7 @@
   },
   "dependencies": {
     "@turf/destination": "^5.1.5",
-    "@turf/helpers": "^5.1.5"
+    "@turf/helpers": "6.x"
   },
   "@std/esm": {
     "esm": "js",

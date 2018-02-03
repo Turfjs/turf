@@ -1,3 +1,4 @@
+
 {
   "name": "@turf/kinks",
   "version": "5.1.5",
@@ -35,7 +36,7 @@
   "homepage": "https://github.com/Turfjs/turf",
   "devDependencies": {
     "@std/esm": "*",
-    "@turf/meta": "^5.1.5",
+    "@turf/meta": "6.x",
     "benchmark": "*",
     "load-json-file": "*",
     "rollup": "*",
@@ -43,7 +44,7 @@
     "write-json-file": "*"
   },
   "dependencies": {
-    "@turf/helpers": "^5.1.5"
+    "@turf/helpers": "6.x"
   },
   "@std/esm": {
     "esm": "js",

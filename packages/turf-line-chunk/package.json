@@ -51,10 +51,10 @@
     "write-json-file": "*"
   },
   "dependencies": {
-    "@turf/helpers": "^5.1.5",
+    "@turf/helpers": "6.x",
     "@turf/length": "^5.1.5",
     "@turf/line-slice-along": "^5.1.5",
-    "@turf/meta": "^5.1.5"
+    "@turf/meta": "6.x"
   },
   "@std/esm": {
     "esm": "js",
