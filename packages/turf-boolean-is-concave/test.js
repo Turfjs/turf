@@ -1,9 +1,9 @@
-import glob from 'glob';
-import path from 'path';
-import test from 'tape';
-import load from 'load-json-file';
-import { polygon, point } from '@turf/helpers';
-import isConcave from '.';
+const glob = require('glob');
+const path = require('path');
+const test = require('tape');
+const load = require('load-json-file');
+const { polygon, point } = require('@turf/helpers');
+const isConcave = require('./');
 
 test('isConcave#fixtures', t => {
     // True Fixtures

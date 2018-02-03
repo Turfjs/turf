@@ -1,3 +1,4 @@
+import { Feature, Polygon } from '@turf/helpers';
 import { getCoords } from '@turf/invariant';
 
 /**
@@ -12,12 +13,11 @@ import { getCoords } from '@turf/invariant';
  * turf.booleanIsConcave(convexPolygon)
  * //=false
  */
-function booleanIsConcave(polygon) {
+function booleanIsConcave(polygon: Feature<Polygon> | Polygon) {
     // validation
     if (!polygon) throw new Error('polygon is required');
-    var type = (polygon.geometry) ? polygon.geometry.type : polygon.type;
+    var type = (polygon.type === 'Feature') ? polygon.geometry.type : polygon.type;
     if (type !== 'Polygon') throw new Error('geometry must be a Polygon');
-
 
     // Taken from https://stackoverflow.com/a/1881201 & https://stackoverflow.com/a/25304159
     var coords = getCoords(polygon);
