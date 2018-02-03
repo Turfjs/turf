@@ -4,16 +4,16 @@ import { getCoords } from '@turf/invariant';
 /**
  * Takes a polygon and return true or false as to whether it is concave or not.
  *
- * @name booleanIsConcave
+ * @name booleanConcave
  * @param {Feature<Polygon>} polygon to be evaluated
  * @returns {boolean} true/false
  * @example
  * var convexPolygon = turf.polygon([[[0,0],[0,1],[1,1],[1,0],[0,0]]]);
  *
- * turf.booleanIsConcave(convexPolygon)
+ * turf.booleanConcave(convexPolygon)
  * //=false
  */
-function booleanIsConcave(polygon: Feature<Polygon> | Polygon) {
+function booleanConcave(polygon: Feature<Polygon> | Polygon) {
     // validation
     if (!polygon) throw new Error('polygon is required');
     var type = (polygon.type === 'Feature') ? polygon.geometry.type : polygon.type;
@@ -37,4 +37,4 @@ function booleanIsConcave(polygon: Feature<Polygon> | Polygon) {
     return false;
 }
 
-export default booleanIsConcave;
+export default booleanConcave;
