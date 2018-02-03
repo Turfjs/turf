@@ -1,14 +1,15 @@
 {
-    "compilerOptions": {
-        "module": "es6",
-        "noImplicitAny": true,
-        "moduleResolution": "node"
+	"compilerOptions": {
+		"module": "commonjs",
+		"target": "es5",
+		"pretty": true,
+		"moduleResolution": "node",
+		"noImplicitAny": false,
+		"noUnusedLocals": false,
+		"noUnusedParameters": false
     },
     "exclude": [
         "node_modules",
         "packages/*/node_modules"
-    ],
-    "filesGlob": [
-        "types.ts"
     ]
 }

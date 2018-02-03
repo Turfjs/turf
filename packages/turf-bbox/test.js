@@ -1,13 +1,13 @@
-import test from 'tape';
-import {
+const test = require('tape');
+const {
     point,
     polygon,
     feature,
     lineString,
     multiPolygon,
     multiLineString,
-    featureCollection} from '@turf/helpers'
-import bbox from '.';
+    featureCollection } = require('@turf/helpers')
+const bbox = require('./');
 
 // Fixtures
 const pt  = point([102.0, 0.5]);

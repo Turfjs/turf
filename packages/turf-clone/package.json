@@ -37,13 +37,13 @@
   "homepage": "https://github.com/Turfjs/turf",
   "devDependencies": {
     "@std/esm": "*",
-    "@turf/meta": "^5.1.5",
+    "@turf/meta": "6.x",
     "benchmark": "*",
     "rollup": "*",
     "tape": "*"
   },
   "dependencies": {
-    "@turf/helpers": "^5.1.5"
+    "@turf/helpers": "6.x"
   },
   "@std/esm": {
     "esm": "js",

@@ -1,6 +1,6 @@
 import bearing from '@turf/bearing';
 import rhumbBearing from '@turf/rhumb-bearing';
-import { isObject, bearingToAzimuth } from '@turf/helpers';
+import { isObject, bearingToAzimuth, Coord } from '@turf/helpers';
 
 /**
  * Finds the angle formed by two adjacent segments defined by 3 points. The result will be the (positive clockwise)
@@ -18,9 +18,11 @@ import { isObject, bearingToAzimuth } from '@turf/helpers';
  * turf.angle([5, 5], [5, 6], [3, 4]);
  * //=45
  */
-function angle(startPoint, midPoint, endPoint, options) {
+function angle(startPoint: Coord, midPoint: Coord, endPoint: Coord, options: {
+    explementary?: boolean
+    mercator?: boolean
+} = {}): number {
     // Optional Parameters
-    options = options || {};
     if (!isObject(options)) throw new Error('options is invalid');
 
     // Validation
@@ -29,14 +31,14 @@ function angle(startPoint, midPoint, endPoint, options) {
     if (!endPoint) throw new Error('endPoint is required');
 
     // Rename to shorter variables
-    var A = startPoint;
-    var O = midPoint;
-    var B = endPoint;
+    const A = startPoint;
+    const O = midPoint;
+    const B = endPoint;
 
     // Main
-    var azimuthAO = bearingToAzimuth((options.mercator !== true) ? bearing(A, O) : rhumbBearing(A, O));
-    var azimuthBO = bearingToAzimuth((options.mercator !== true) ? bearing(B, O) : rhumbBearing(B, O));
-    var angleAO = Math.abs(azimuthAO - azimuthBO);
+    const azimuthAO = bearingToAzimuth((options.mercator !== true) ? bearing(A, O) : rhumbBearing(A, O));
+    const azimuthBO = bearingToAzimuth((options.mercator !== true) ? bearing(B, O) : rhumbBearing(B, O));
+    const angleAO = Math.abs(azimuthAO - azimuthBO);
 
     // Explementary angle
     if (options.explementary === true) return 360 - angleAO;

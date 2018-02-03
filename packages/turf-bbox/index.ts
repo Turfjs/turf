@@ -1,3 +1,4 @@
+import { AllGeoJSON } from '@turf/helpers';
 import { coordEach } from '@turf/meta';
 
 /**
@@ -14,9 +15,9 @@ import { coordEach } from '@turf/meta';
  * //addToMap
  * var addToMap = [line, bboxPolygon]
  */
-function bbox(geojson) {
-    var BBox = [Infinity, Infinity, -Infinity, -Infinity];
-    coordEach(geojson, function (coord) {
+function bbox(geojson: AllGeoJSON) {
+    const BBox = [Infinity, Infinity, -Infinity, -Infinity];
+    coordEach(geojson, coord => {
         if (BBox[0] > coord[0]) BBox[0] = coord[0];
         if (BBox[1] > coord[1]) BBox[1] = coord[1];
         if (BBox[2] < coord[0]) BBox[2] = coord[0];
