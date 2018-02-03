@@ -7,7 +7,8 @@
   "files": [
     "index.js",
     "index.mjs",
-    "index.ts"
+    "index.ts",
+    "lib"
   ],
   "scripts": {
     "prepare": "rollup -c ../../rollup.config.typescript.js",
