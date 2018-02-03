@@ -48,9 +48,9 @@
   "dependencies": {
     "@turf/bearing": "^5.1.5",
     "@turf/distance": "^5.1.5",
-    "@turf/helpers": "^5.1.5",
-    "@turf/invariant": "^5.1.5",
-    "@turf/meta": "^5.1.5",
+    "@turf/helpers": "6.x",
+    "@turf/invariant": "6.x",
+    "@turf/meta": "6.x",
     "@turf/projection": "^5.1.5",
     "@turf/rhumb-bearing": "^5.1.5",
     "@turf/rhumb-distance": "^5.1.5"
