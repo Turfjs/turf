@@ -1,5 +1,5 @@
 import { getCoord } from '@turf/invariant';
-import { isObject, degreesToRadians, radiansToDegrees } from '@turf/helpers';
+import { degreesToRadians, radiansToDegrees, Coord } from '@turf/helpers';
 
 //http://en.wikipedia.org/wiki/Haversine_formula
 //http://www.movable-type.co.uk/scripts/latlong.html
@@ -26,14 +26,11 @@ import { isObject, degreesToRadians, radiansToDegrees } from '@turf/helpers';
  * point2.properties['marker-color'] = '#0f0'
  * point1.properties.bearing = bearing
  */
-function bearing(start, end, options) {
-    // Optional parameters
-    options = options || {};
-    if (!isObject(options)) throw new Error('options is invalid');
-    var final = options.final;
-
+function bearing(start: Coord, end: Coord, options: {
+    final?: boolean
+} = {}): number {
     // Reverse calculation
-    if (final === true) return calculateFinalBearing(start, end);
+    if (options.final === true) return calculateFinalBearing(start, end);
 
     var coordinates1 = getCoord(start);
     var coordinates2 = getCoord(end);
@@ -57,7 +54,7 @@ function bearing(start, end, options) {
  * @param {Coord} end ending Point
  * @returns {number} bearing
  */
-function calculateFinalBearing(start, end) {
+function calculateFinalBearing(start: Coord, end: Coord) {
     // Swap start & end
     var bear = bearing(end, start);
     bear = (bear + 180) % 360;

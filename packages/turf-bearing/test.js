@@ -1,9 +1,9 @@
-import path from 'path';
-import test from 'tape';
-import write from 'write-json-file';
-import destination from '@turf/destination';
-import { point, lineString, featureCollection } from '@turf/helpers';
-import bearing from '.';
+const path = require('path');
+const test = require('tape');
+const write = require('write-json-file');
+const destination = require('@turf/destination').default;
+const { point, lineString, featureCollection } = require('@turf/helpers');
+const bearing = require('.').default;
 
 const out = path.join(__dirname, 'test', 'out') + path.sep;
 
