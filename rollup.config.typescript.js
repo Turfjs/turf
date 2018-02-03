@@ -1,4 +1,5 @@
-import typescript from 'rollup-plugin-typescript2';
+import tsc from 'typescript';
+import typescript from 'rollup-plugin-typescript';
 
 export default {
     input: 'index.ts',
@@ -6,5 +7,5 @@ export default {
         {file: 'index.js', format: 'cjs'},
         {file: 'index.mjs', format: 'es'}
     ],
-    plugins: [typescript()]
+    plugins: [typescript({typescript: tsc})]
 };

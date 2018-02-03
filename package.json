@@ -25,12 +25,8 @@
     "load-json-file": "*",
     "meow": "*",
     "progress": "*",
-    "rollup": "*",
-    "rollup-plugin-buble": "*",
-    "rollup-plugin-commonjs": "*",
-    "rollup-plugin-node-resolve": "*",
+    "rollup": "0.50.0",
     "rollup-plugin-typescript2": "*",
-    "rollup-plugin-uglify": "*",
     "tape": "*",
     "typescript": "*",
     "yamljs": "*"
