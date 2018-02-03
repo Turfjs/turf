@@ -2,7 +2,7 @@ const path = require('path');
 const glob = require('glob');
 const Benchmark = require('benchmark');
 const load = require('load-json-file');
-const isConcave = require('./');
+const concave = require('./');
 
 /**
  * Benchmark Results
@@ -17,7 +17,7 @@ glob.sync(path.join(__dirname, 'test', '**', '*.geojson')).forEach(filepath => {
     const {name} = path.parse(filepath);
     const geojson = load.sync(filepath);
     const [feature] = geojson.features;
-    suite.add(name, () => isConcave(feature));
+    suite.add(name, () => concave(feature));
 });
 
 suite

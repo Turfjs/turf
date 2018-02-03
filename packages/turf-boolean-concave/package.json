@@ -1,7 +1,7 @@
 {
-  "name": "@turf/boolean-is-concave",
+  "name": "@turf/boolean-concave",
   "version": "6.0.0",
-  "description": "turf boolean-is-concave module",
+  "description": "turf boolean-concave module",
   "main": "index",
   "module": "index.mjs",
   "files": [
