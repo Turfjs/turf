@@ -1,60 +1,19 @@
 {
   "private": true,
-  "version": "5.0.0",
-  "description": "a node.js library for performing geospatial operations with geojson",
+  "workspaces": [
+    "packages/*"
+  ],
   "scripts": {
     "prelint": "tsc",
     "lint": "eslint packages/turf-*/index.js",
     "postlint": "documentation lint packages/turf-*/index.js",
     "pretest": "lerna bootstrap && npm run lint",
     "test": "lerna run test",
-    "docs": "node ./scripts/generate-readmes",
-    "5to6": "jscodeshift -t node_modules/5to6-codemod/transforms/cjs.js packages/turf-*/bench.js"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/turfjs/turf.git"
-  },
-  "keywords": [
-    "gis",
-    "geo",
-    "geojs",
-    "geospatial",
-    "geography",
-    "geometry",
-    "map",
-    "contour",
-    "centroid",
-    "tin",
-    "extent",
-    "geojson",
-    "grid",
-    "polygon",
-    "line",
-    "point",
-    "area",
-    "analysis",
-    "statistics",
-    "stats",
-    "midpoint",
-    "plane",
-    "quantile",
-    "jenks",
-    "sample"
-  ],
-  "author": "morganherlocker",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/Turfjs/turf/issues"
+    "docs": "node ./scripts/generate-readmes"
   },
   "devDependencies": {
-    "5to6-codemod": "*",
-    "@std/esm": "*",
     "@types/geojson": "*",
     "@types/node": "*",
-    "@types/tape": "*",
-    "babel-plugin-external-helpers": "*",
-    "babel-preset-env": "*",
     "camelcase": "*",
     "d3-queue": "*",
     "decamelize": "*",
@@ -62,8 +21,7 @@
     "eslint": "*",
     "eslint-config-mourner": "*",
     "fs-extra": "*",
-    "jscodeshift": "*",
-    "lerna": "*",
+    "lerna": "^2.5.1",
     "load-json-file": "*",
     "meow": "*",
     "progress": "*",
@@ -75,9 +33,5 @@
     "tape": "*",
     "typescript": "*",
     "yamljs": "*"
-  },
-  "@std/esm": {
-    "esm": "js",
-    "cjs": true
   }
 }
