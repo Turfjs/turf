@@ -2,21 +2,18 @@
   "name": "@turf/bezier-spline",
   "version": "5.1.5",
   "description": "turf bezier-spline module",
-  "main": "main.js",
-  "module": "main.es.js",
-  "types": "index.d.ts",
+  "main": "index",
+  "module": "index.mjs",
   "files": [
     "index.js",
-    "index.d.ts",
-    "main.js",
-    "lib",
-    "main.es.js"
+    "index.mjs",
+    "index.ts"
   ],
   "scripts": {
-    "pretest": "rollup -c ../../rollup.config.js",
-    "test": "node -r @std/esm test.js",
-    "posttest": "node -r @std/esm ../../scripts/validate-es5-dependencies.js",
-    "bench": "node -r @std/esm bench.js",
+    "prepare": "rollup -c ../../rollup.config.typescript.js",
+    "pretest": "tsc",
+    "test": "node test.js",
+    "bench": "node bench.js",
     "docs": "node ../../scripts/generate-readmes"
   },
   "repository": {
@@ -41,6 +38,8 @@
     "benchmark": "*",
     "load-json-file": "*",
     "rollup": "*",
+    "rollup-plugin-typescript": "*",
+    "typescript": "*",
     "tape": "*",
     "write-json-file": "*"
   },
