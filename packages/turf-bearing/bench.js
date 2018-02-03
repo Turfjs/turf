@@ -1,5 +1,5 @@
 const Benchmark = require('benchmark');
-const bearing = require('./');
+const bearing = require('./').default;
 
 var start = [-75.4, 39.4];
 var end = [-75.534, 39.123];
