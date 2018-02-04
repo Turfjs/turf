@@ -16,7 +16,7 @@ import { getCoords } from '@turf/invariant';
  * turf.booleanClockwise(counterClockwiseRing)
  * //=false
  */
-function booleanClockwise(line: Feature<LineString> | LineString | Position[]): boolean {
+export default function booleanClockwise(line: Feature<LineString> | LineString | Position[]): boolean {
     const ring = getCoords(line);
     let sum = 0;
     let i = 1;
@@ -31,5 +31,3 @@ function booleanClockwise(line: Feature<LineString> | LineString | Position[]): 
     }
     return sum > 0;
 }
-
-export default booleanClockwise;

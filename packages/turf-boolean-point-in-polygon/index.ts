@@ -1,9 +1,10 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-var invariant_1 = require("@turf/invariant");
+import { Feature, Coord, Polygon, MultiPolygon } from '@turf/helpers';
+import { getCoord, getCoords, getGeom } from '@turf/invariant';
+
 // http://en.wikipedia.org/wiki/Even%E2%80%93odd_rule
 // modified from: https://github.com/substack/point-in-polygon/blob/master/index.js
 // which was modified from http://www.ecse.rpi.edu/Homepages/wrf/Research/Short_Notes/pnpoly.html
+
 /**
  * Takes a {@link Point} and a {@link Polygon} or {@link MultiPolygon} and determines if the point resides inside the polygon. The polygon can
  * be convex or concave. The function accounts for holes.
@@ -27,24 +28,27 @@ var invariant_1 = require("@turf/invariant");
  * turf.booleanPointInPolygon(pt, poly);
  * //= true
  */
-function booleanPointInPolygon(point, polygon, options) {
-    if (options === void 0) { options = {}; }
+export default function booleanPointInPolygon(
+    point: Coord,
+    polygon: Feature<Polygon | MultiPolygon> | Polygon | MultiPolygon,
+    options: {ignoreBoundary?: boolean} = {}
+): boolean {
     // validation
-    if (!point)
-        throw new Error('point is required');
-    if (!polygon)
-        throw new Error('polygon is required');
-    var pt = invariant_1.getCoord(point);
-    var geom = invariant_1.getGeom(polygon);
-    var polys = geom.coordinates;
-    var type = geom.type;
-    var bbox = polygon.bbox;
+    if (!point) throw new Error('point is required');
+    if (!polygon) throw new Error('polygon is required');
+
+    const pt = getCoord(point);
+    const geom = getGeom(polygon);
+    let polys: any[] = geom.coordinates;
+    const type = geom.type;
+    const bbox = polygon.bbox;
+
     // Quick elimination if point is not inside bbox
-    if (bbox && inBBox(pt, bbox) === false)
-        return false;
+    if (bbox && inBBox(pt, bbox) === false) return false;
+
     // normalize to multipolygon
-    if (type === 'Polygon')
-        polys = [polys];
+    if (type === 'Polygon') polys = [polys];
+
     for (var i = 0, insidePoly = false; i < polys.length && !insidePoly; i++) {
         // check if it is in the outer ring first
         if (inRing(pt, polys[i][0], options.ignoreBoundary)) {
@@ -57,13 +61,12 @@ function booleanPointInPolygon(point, polygon, options) {
                 }
                 k++;
             }
-            if (!inHole)
-                insidePoly = true;
+            if (!inHole) insidePoly = true;
         }
     }
     return insidePoly;
 }
-exports.default = booleanPointInPolygon;
+
 /**
  * inRing
  *
@@ -75,22 +78,21 @@ exports.default = booleanPointInPolygon;
  */
 function inRing(pt, ring, ignoreBoundary) {
     var isInside = false;
-    if (ring[0][0] === ring[ring.length - 1][0] && ring[0][1] === ring[ring.length - 1][1])
-        ring = ring.slice(0, ring.length - 1);
+    if (ring[0][0] === ring[ring.length - 1][0] && ring[0][1] === ring[ring.length - 1][1]) ring = ring.slice(0, ring.length - 1);
+
     for (var i = 0, j = ring.length - 1; i < ring.length; j = i++) {
         var xi = ring[i][0], yi = ring[i][1];
         var xj = ring[j][0], yj = ring[j][1];
         var onBoundary = (pt[1] * (xi - xj) + yi * (xj - pt[0]) + yj * (pt[0] - xi) === 0) &&
             ((xi - pt[0]) * (xj - pt[0]) <= 0) && ((yi - pt[1]) * (yj - pt[1]) <= 0);
-        if (onBoundary)
-            return !ignoreBoundary;
+        if (onBoundary) return !ignoreBoundary;
         var intersect = ((yi > pt[1]) !== (yj > pt[1])) &&
-            (pt[0] < (xj - xi) * (pt[1] - yi) / (yj - yi) + xi);
-        if (intersect)
-            isInside = !isInside;
+        (pt[0] < (xj - xi) * (pt[1] - yi) / (yj - yi) + xi);
+        if (intersect) isInside = !isInside;
     }
     return isInside;
 }
+
 /**
  * inBBox
  *
@@ -101,7 +103,7 @@ function inRing(pt, ring, ignoreBoundary) {
  */
 function inBBox(pt, bbox) {
     return bbox[0] <= pt[0] &&
-        bbox[1] <= pt[1] &&
-        bbox[2] >= pt[0] &&
-        bbox[3] >= pt[1];
+           bbox[1] <= pt[1] &&
+           bbox[2] >= pt[0] &&
+           bbox[3] >= pt[1];
 }
