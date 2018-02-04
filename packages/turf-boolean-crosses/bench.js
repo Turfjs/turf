@@ -2,7 +2,7 @@ const path = require('path');
 const glob = require('glob');
 const Benchmark = require('benchmark');
 const load = require('load-json-file');
-const crosses = require('./');
+const crosses = require('./').default;
 
 /**
  * Benchmark Results

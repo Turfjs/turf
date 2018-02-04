@@ -1,6 +1,9 @@
 import turfBBox from '@turf/bbox';
-import { getCoords, getType } from '@turf/invariant';
-import { polygon, multiPolygon, lineString, isObject } from '@turf/helpers';
+import { getCoords, getType, getGeom } from '@turf/invariant';
+import {
+    polygon, multiPolygon, lineString, isObject,
+    Feature, FeatureCollection, MultiLineString, LineString, Polygon, MultiPolygon, Properties
+} from '@turf/helpers';
 
 /**
  * Converts (Multi)LineString(s) to Polygon(s).
@@ -20,33 +23,33 @@ import { polygon, multiPolygon, lineString, isObject } from '@turf/helpers';
  * //addToMap
  * var addToMap = [polygon];
  */
-function lineToPolygon(lines, options) {
+function lineToPolygon<G extends LineString|MultiLineString>(
+    lines: Feature<G> | FeatureCollection<G> | G,
+    options: {
+        properties?: Properties,
+        autoComplete?: boolean,
+        orderCoords?: boolean,
+    } = {}
+) {
     // Optional parameters
-    options = options || {};
-    if (!isObject(options)) throw new Error('options is invalid');
     var properties = options.properties;
     var autoComplete = options.autoComplete;
     var orderCoords = options.orderCoords;
 
-    // validation
-    if (!lines) throw new Error('lines is required');
-
     // default params
     autoComplete = (autoComplete !== undefined) ? autoComplete : true;
     orderCoords = (orderCoords !== undefined) ? orderCoords : true;
-    var type = getType(lines);
 
-    switch (type) {
-    case 'FeatureCollection':
-    case 'GeometryCollection':
-        var coords = [];
-        var features = (lines.features) ? lines.features : lines.geometries;
-        features.forEach(function (line) {
-            coords.push(getCoords(lineStringToPolygon(line, {}, autoComplete, orderCoords)));
-        });
-        return multiPolygon(coords, properties);
+    switch (lines.type) {
+        case 'FeatureCollection':
+            var coords = [];
+            lines.features.forEach(function (line) {
+                coords.push(getCoords(lineStringToPolygon(line, {}, autoComplete, orderCoords)));
+            });
+            return multiPolygon(coords, properties);
+        default:
+            return lineStringToPolygon(lines, properties, autoComplete, orderCoords);
     }
-    return lineStringToPolygon(lines, properties, autoComplete, orderCoords);
 }
 
 /**
@@ -59,10 +62,11 @@ function lineToPolygon(lines, options) {
  * @param {boolean} [orderCoords=true] sorts linestrings to place outer ring at the first position of the coordinates
  * @returns {Feature<Polygon>} line converted to Polygon
  */
-function lineStringToPolygon(line, properties, autoComplete, orderCoords) {
-    properties = properties || line.properties || {};
-    var coords = getCoords(line);
-    var type = getType(line);
+function lineStringToPolygon<G extends LineString | MultiLineString>(line: Feature<G> | G, properties: Properties, autoComplete: boolean, orderCoords: boolean) {
+    properties = properties ? properties : (line.type === 'Feature') ? line.properties : {}
+    var geom = getGeom(line);
+    var coords: any = geom.coordinates;
+    var type = geom.type;
 
     if (!coords.length) throw new Error('line must contain coordinates');
 
