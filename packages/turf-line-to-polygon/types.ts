@@ -10,7 +10,6 @@ import {
     FeatureCollection
 } from '@turf/helpers'
 import lineToPolygon from './'
-import { padLeft } from './'
 
 // Fixtures
 const coords = [[125, -30], [145, -30], [145, -20], [125, -20], [125, -30]];
