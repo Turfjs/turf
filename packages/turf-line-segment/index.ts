@@ -1,6 +1,9 @@
-import { lineString, featureCollection } from '@turf/helpers';
 import { getCoords } from '@turf/invariant';
 import { flattenEach } from '@turf/meta';
+import {
+    lineString, featureCollection,
+    Feature, FeatureCollection, LineString, MultiLineString, Polygon, MultiPolygon, BBox
+} from '@turf/helpers';
 
 /**
  * Creates a {@link FeatureCollection} of 2-vertex {@link LineString} segments from a {@link LineString|(Multi)LineString} or {@link Polygon|(Multi)Polygon}.
@@ -15,10 +18,12 @@ import { flattenEach } from '@turf/meta';
  * //addToMap
  * var addToMap = [polygon, segments]
  */
-function lineSegment(geojson) {
+function lineSegment<G extends LineString | MultiLineString | Polygon | MultiPolygon>(
+    geojson: Feature<G> | FeatureCollection<G> | G
+): FeatureCollection<LineString> {
     if (!geojson) throw new Error('geojson is required');
 
-    var results = [];
+    var results: Feature<LineString>[] = [];
     flattenEach(geojson, function (feature) {
         lineSegmentFeature(feature, results);
     });
@@ -79,7 +84,7 @@ function createSegments(coords, properties) {
  * @param {Array<number>} coords2 Point coordinate
  * @returns {BBox} [west, south, east, north]
  */
-function bbox(coords1, coords2) {
+function bbox(coords1: number[], coords2: number[]): BBox {
     var x1 = coords1[0];
     var y1 = coords1[1];
     var x2 = coords2[0];
