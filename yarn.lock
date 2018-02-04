@@ -84,6 +84,16 @@
   dependencies:
     "@turf/helpers" "^5.1.5"
 
+"@turf/line-intersect@5.1.x", "@turf/line-intersect@^5.1.5":
+  version "5.1.5"
+  resolved "https://registry.yarnpkg.com/@turf/line-intersect/-/line-intersect-5.1.5.tgz#0e29071ae403295e491723bc49f5cfac8d11ddf3"
+  dependencies:
+    "@turf/helpers" "^5.1.5"
+    "@turf/invariant" "^5.1.5"
+    "@turf/line-segment" "^5.1.5"
+    "@turf/meta" "^5.1.5"
+    geojson-rbush "2.1.0"
+
 "@turf/meta@^5.1.5":
   version "5.2.0"
   resolved "https://registry.yarnpkg.com/@turf/meta/-/meta-5.2.0.tgz#3b1ad485ee0c3b0b1775132a32c384d53e4ba53d"
@@ -2438,6 +2448,14 @@ geojson-rbush@2.1.0:
   dependencies:
     "@turf/helpers" "*"
     "@turf/meta" "*"
+    rbush "*"
+
+geojson-rbush@3.x:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/geojson-rbush/-/geojson-rbush-3.0.0.tgz#48a2b031a6953f0bb73e9f9899580fdb8d4be81b"
+  dependencies:
+    "@turf/helpers" "6.x"
+    "@turf/meta" "6.x"
     rbush "*"
 
 geojsonhint@^1.0.0:

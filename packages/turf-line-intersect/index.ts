@@ -2,7 +2,10 @@ import rbush from 'geojson-rbush';
 import lineSegment from '@turf/line-segment';
 import { getCoords } from '@turf/invariant';
 import { featureEach } from '@turf/meta';
-import { point, featureCollection, feature } from '@turf/helpers';
+import {
+    point, featureCollection, feature,
+    Feature, FeatureCollection, LineString, MultiLineString, Polygon, MultiPolygon, Point
+} from '@turf/helpers';
 
 /**
  * Takes any LineString or Polygon GeoJSON and returns the intersecting point(s).
@@ -19,7 +22,10 @@ import { point, featureCollection, feature } from '@turf/helpers';
  * //addToMap
  * var addToMap = [line1, line2, intersects]
  */
-function lineIntersect(line1, line2) {
+function lineIntersect<G1 extends LineString|MultiLineString|Polygon|MultiPolygon, G2 extends LineString|MultiLineString|Polygon|MultiPolygon>(
+    line1: FeatureCollection<G1> | Feature<G1> | G1,
+    line2: FeatureCollection<G2> | Feature<G2> | G2,
+): FeatureCollection<Point> {
     var unique = {};
     var results = [];
 

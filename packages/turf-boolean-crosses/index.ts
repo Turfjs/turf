@@ -1,8 +1,8 @@
-import { point } from '@turf/helpers';
-import booleanPointInPolygon from '@turf/boolean-point-in-polygon';
 import lineIntersect from '@turf/line-intersect';
 import polygonToLine from '@turf/polygon-to-line';
+import booleanPointInPolygon from '@turf/boolean-point-in-polygon';
 import { getGeom, getType } from '@turf/invariant';
+import { point, Feature, Geometry } from '@turf/helpers';
 
 /**
  * Boolean-Crosses returns True if the intersection results in a geometry whose dimension is one less than
@@ -22,7 +22,7 @@ import { getGeom, getType } from '@turf/invariant';
  * var cross = turf.booleanCrosses(line1, line2);
  * //=true
  */
-function booleanCrosses(feature1, feature2) {
+function booleanCrosses(feature1: Feature<any> | Geometry, feature2: Feature<any> | Geometry): boolean {
     var type1 = getType(feature1);
     var type2 = getType(feature2);
     var geom1 = getGeom(feature1);

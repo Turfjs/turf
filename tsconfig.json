@@ -6,7 +6,8 @@
 		"moduleResolution": "node",
 		"noImplicitAny": false,
 		"noUnusedLocals": false,
-		"noUnusedParameters": false
+		"noUnusedParameters": false,
+		"esModuleInterop": true
     },
     "exclude": [
         "node_modules",
