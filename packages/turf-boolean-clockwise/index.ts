@@ -1,10 +1,11 @@
+import { Feature, LineString, Position } from '@turf/helpers';
 import { getCoords } from '@turf/invariant';
 
 /**
  * Takes a ring and return true or false whether or not the ring is clockwise or counter-clockwise.
  *
  * @name booleanClockwise
- * @param {Feature<LineString>} line to be evaluated
+ * @param {Feature<LineString>|LineString|Array<Array<number>>} line to be evaluated
  * @returns {boolean} true/false
  * @example
  * var clockwiseRing = turf.lineString([[0,0],[1,1],[1,0],[0,0]]);
@@ -15,16 +16,13 @@ import { getCoords } from '@turf/invariant';
  * turf.booleanClockwise(counterClockwiseRing)
  * //=false
  */
-function booleanClockwise(line) {
-    // validation
-    if (!line) throw new Error('line is required');
-    var type = (line.geometry) ? line.geometry.type : line.type;
-    if (!Array.isArray(line) && type !== 'LineString') throw new Error('geometry must be a LineString');
+function booleanClockwise(line: Feature<LineString> | LineString | Position[]): boolean {
+    const ring = getCoords(line);
+    let sum = 0;
+    let i = 1;
+    let prev
+    let cur;
 
-    var ring = getCoords(line);
-    var sum = 0;
-    var i = 1;
-    var prev, cur;
     while (i < ring.length) {
         prev = cur || ring[0];
         cur = ring[i];
