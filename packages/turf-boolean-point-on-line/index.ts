@@ -1,5 +1,5 @@
 import { getCoords, getCoord } from '@turf/invariant';
-import { isObject } from '@turf/helpers';
+import { Coord, LineString, Feature } from '@turf/helpers';
 
 /**
  * Returns true if a point is on a line. Accepts a optional parameter to ignore the start and end vertices of the linestring.
@@ -16,24 +16,17 @@ import { isObject } from '@turf/helpers';
  * var isPointOnLine = turf.booleanPointOnLine(pt, line);
  * //=true
  */
-function booleanPointOnLine(pt, line, options) {
-    // Optional parameters
-    options = options || {};
-    var ignoreEndVertices = options.ignoreEndVertices;
-    if (!isObject(options)) throw new Error('invalid options');
-
-    // Validate input
-    if (!pt) throw new Error('pt is required');
-    if (!line) throw new Error('line is required');
-
+function booleanPointOnLine(pt: Coord, line: Feature<LineString> | LineString, options: {
+    ignoreEndVertices?: boolean
+} = {}): boolean {
     // Normalize inputs
     var ptCoords = getCoord(pt);
     var lineCoords = getCoords(line);
 
     // Main
     for (var i = 0; i < lineCoords.length - 1; i++) {
-        var ignoreBoundary = false;
-        if (ignoreEndVertices) {
+        let ignoreBoundary: boolean|string = false;
+        if (options.ignoreEndVertices) {
             if (i === 0) ignoreBoundary = 'start';
             if (i === lineCoords.length - 2) ignoreBoundary = 'end';
             if (i === 0 && i + 1 === lineCoords.length - 1) ignoreBoundary = 'both';
