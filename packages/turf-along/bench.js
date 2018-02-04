@@ -1,6 +1,6 @@
 const fs = require('fs');
 const Benchmark = require('benchmark');
-const along = require('./');
+const along = require('./').default;
 
 const line = {
   type: "Feature",

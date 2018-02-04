@@ -3,14 +3,12 @@
   "version": "6.0.0",
   "description": "turf angle module",
   "main": "index",
-  "module": "index.mjs",
   "files": [
     "index.js",
-    "index.mjs",
     "index.ts"
   ],
   "scripts": {
-    "pretest": "rollup -c ../../rollup.config.typescript.js",
+    "pretest": "tsc",
     "test": "node test.js",
     "bench": "node bench.js",
     "docs": "node ../../scripts/generate-readmes"
@@ -39,7 +37,7 @@
     "benchmark": "*",
     "glob": "*",
     "load-json-file": "*",
-    "rollup": "*",
+    "typescript": "*",
     "tape": "*",
     "write-json-file": "*"
   },

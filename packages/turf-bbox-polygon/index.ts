@@ -1,4 +1,7 @@
-import { polygon, validateBBox, isObject } from '@turf/helpers';
+import {
+    polygon, validateBBox, isObject,
+    BBox, Properties, Id, Feature, Polygon
+} from '@turf/helpers';
 
 /**
  * Takes a bbox and returns an equivalent {@link Polygon|polygon}.
@@ -17,15 +20,10 @@ import { polygon, validateBBox, isObject } from '@turf/helpers';
  * //addToMap
  * var addToMap = [poly]
  */
-function bboxPolygon(bbox, options) {
-    // Optional parameters
-    options = options || {};
-    var properties = options.properties;
-    var id = options.id;
-
-    // Validation
-    if (!isObject(options)) throw new Error('options is invalid');
-    validateBBox(bbox);
+export default function bboxPolygon<P = Properties>(bbox: BBox, options: {
+    properties?: P,
+    id?: Id
+} = {}): Feature<Polygon, P> {
     // Convert BBox positions to Numbers
     // No performance loss for including Number()
     // https://github.com/Turfjs/turf/issues/1119
@@ -47,7 +45,5 @@ function bboxPolygon(bbox, options) {
         topRight,
         topLeft,
         lowLeft
-    ]], properties, {bbox: bbox, id: id});
+    ]], options.properties, {bbox, id: options.id});
 }
-
-export default bboxPolygon;

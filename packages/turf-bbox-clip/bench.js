@@ -1,9 +1,9 @@
-import fs from 'fs';
-import path from 'path';
-import load from 'load-json-file';
-import bbox from '@turf/bbox';
-import Benchmark from 'benchmark';
-import bboxClip from './';
+const fs = require('fs');
+const path = require('path');
+const load = require('load-json-file');
+const Benchmark = require('benchmark');
+const bbox = require('@turf/bbox').default;
+const bboxClip = require('./').default;
 
 const directory = path.join(__dirname, 'test', 'in') + path.sep;
 const fixtures = fs.readdirSync(directory).map(filename => {

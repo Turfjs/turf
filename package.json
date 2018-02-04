@@ -26,11 +26,7 @@
     "meow": "*",
     "progress": "*",
     "rollup": "*",
-    "rollup-plugin-buble": "*",
-    "rollup-plugin-commonjs": "*",
-    "rollup-plugin-node-resolve": "*",
-    "rollup-plugin-typescript2": "*",
-    "rollup-plugin-uglify": "*",
+    "rollup-plugin-typescript": "*",
     "tape": "*",
     "typescript": "*",
     "yamljs": "*"

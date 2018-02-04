@@ -2,7 +2,7 @@ const path = require('path');
 const test = require('tape');
 const load = require('load-json-file');
 const { featureCollection } = require('@turf/helpers');
-const along = require('./');
+const along = require('./').default;
 
 const line = load.sync(path.join(__dirname, 'test', 'fixtures', 'dc-line.geojson'));
 

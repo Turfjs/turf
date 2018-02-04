@@ -1,6 +1,9 @@
-import { lineString, isObject, isNumber } from '@turf/helpers';
 import { getGeom } from '@turf/invariant';
 import Spline from './lib/spline';
+import {
+    lineString, isObject, isNumber,
+    Feature, LineString, Properties,
+} from '@turf/helpers';
 
 /**
  * Takes a {@link LineString|line} and returns a curved version
@@ -12,6 +15,7 @@ import Spline from './lib/spline';
  * @name bezierSpline
  * @param {Feature<LineString>} line input LineString
  * @param {Object} [options={}] Optional parameters
+ * @param {Object} [options.properties={}] Translate properties to output
  * @param {number} [options.resolution=10000] time in milliseconds between points
  * @param {number} [options.sharpness=0.85] a measure of how curvy the path should be between splines
  * @returns {Feature<LineString>} curved line
@@ -31,35 +35,32 @@ import Spline from './lib/spline';
  * var addToMap = [line, curved]
  * curved.properties = { stroke: '#0F0' };
  */
-function bezier(line, options) {
+function bezier<P = Properties>(line: Feature<LineString> | LineString, options: {
+    properties?: P,
+    resolution?: number,
+    sharpness?: number,
+} = {}): Feature<LineString, P>{
     // Optional params
-    options = options || {};
-    if (!isObject(options)) throw new Error('options is invalid');
-    var resolution = options.resolution || 10000;
-    var sharpness = options.sharpness || 0.85;
+    const resolution = options.resolution || 10000;
+    const sharpness = options.sharpness || 0.85;
 
-    // validation
-    if (!line) throw new Error('line is required');
-    if (!isNumber(resolution)) throw new Error('resolution must be an number');
-    if (!isNumber(sharpness)) throw new Error('sharpness must be an number');
-
-    var coords = [];
-    var spline = new Spline({
-        points: getGeom(line).coordinates.map(function (pt) {
-            return {x: pt[0], y: pt[1]};
-        }),
+    const coords = [];
+    const points = getGeom(line).coordinates.map(pt => {
+        return {x: pt[0], y: pt[1]};
+    })
+    const spline = new Spline({
+        points,
+        sharpness,
         duration: resolution,
-        sharpness: sharpness
     });
 
-    for (var i = 0; i < spline.duration; i += 10) {
-        var pos = spline.pos(i);
+    for (let i = 0; i < spline.duration; i += 10) {
+        const pos = spline.pos(i);
         if (Math.floor(i / 100) % 2 === 0) {
             coords.push([pos.x, pos.y]);
         }
     }
-
-    return lineString(coords, line.properties);
+    return lineString(coords, options.properties);
 }
 
 export default bezier;

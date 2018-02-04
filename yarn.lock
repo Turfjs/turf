@@ -39,6 +39,14 @@
     "@turf/helpers" "^5.1.5"
     "@turf/meta" "^5.1.5"
 
+"@turf/bbox-clip@5.1.x":
+  version "5.1.5"
+  resolved "https://registry.yarnpkg.com/@turf/bbox-clip/-/bbox-clip-5.1.5.tgz#3364b5328dff9f3cf41d9e02edaff374d150cc84"
+  dependencies:
+    "@turf/helpers" "^5.1.5"
+    "@turf/invariant" "^5.1.5"
+    lineclip "^1.1.5"
+
 "@turf/bbox@5.1.x", "@turf/bbox@^5.0.4", "@turf/bbox@^5.1.5":
   version "5.1.5"
   resolved "https://registry.yarnpkg.com/@turf/bbox/-/bbox-5.1.5.tgz#3051df514ad4c50f4a4f9b8a2d15fd8b6840eda3"
@@ -56,7 +64,7 @@
     "@turf/meta" "^5.1.5"
     turf-jsts "*"
 
-"@turf/helpers@5.1.x", "@turf/helpers@5.x", "@turf/helpers@^5.0.4", "@turf/helpers@^5.1.5":
+"@turf/helpers@5.x", "@turf/helpers@^5.1.5":
   version "5.1.5"
   resolved "https://registry.yarnpkg.com/@turf/helpers/-/helpers-5.1.5.tgz#153405227ab933d004a5bb9641a9ed999fcbe0cf"
 
@@ -70,25 +78,13 @@
     "@turf/truncate" "^5.1.5"
     turf-jsts "*"
 
-"@turf/invariant@5.1.x":
-  version "5.1.5"
-  resolved "https://registry.yarnpkg.com/@turf/invariant/-/invariant-5.1.5.tgz#f59f4fefa09224b15dce1651f903c868d57a24e1"
-  dependencies:
-    "@turf/helpers" "^5.1.5"
-
 "@turf/invariant@^5.1.5":
   version "5.2.0"
   resolved "https://registry.yarnpkg.com/@turf/invariant/-/invariant-5.2.0.tgz#f0150ff7290b38577b73d088b7932c1ee0aa90a7"
   dependencies:
     "@turf/helpers" "^5.1.5"
 
-"@turf/meta@5.1.x":
-  version "5.1.6"
-  resolved "https://registry.yarnpkg.com/@turf/meta/-/meta-5.1.6.tgz#c20a863eded0869fb28548dee889341bccb46a46"
-  dependencies:
-    "@turf/helpers" "^5.1.5"
-
-"@turf/meta@^5.0.4", "@turf/meta@^5.1.5":
+"@turf/meta@^5.1.5":
   version "5.2.0"
   resolved "https://registry.yarnpkg.com/@turf/meta/-/meta-5.2.0.tgz#3b1ad485ee0c3b0b1775132a32c384d53e4ba53d"
   dependencies:
@@ -1458,6 +1454,10 @@ compare-func@^1.3.1:
     array-ify "^1.0.0"
     dot-prop "^3.0.0"
 
+compare-versions@2.0.1:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/compare-versions/-/compare-versions-2.0.1.tgz#1edc1f93687fd97a325c59f55e45a07db106aca6"
+
 component-emitter@^1.2.1:
   version "1.2.1"
   resolved "https://registry.yarnpkg.com/component-emitter/-/component-emitter-1.2.1.tgz#137918d6d78283f7df7a6b7c5a63e140e69425e6"
@@ -2110,6 +2110,10 @@ esrecurse@^4.1.0:
 estraverse@^4.0.0, estraverse@^4.1.0, estraverse@^4.1.1:
   version "4.2.0"
   resolved "https://registry.yarnpkg.com/estraverse/-/estraverse-4.2.0.tgz#0dee3fed31fcd469618ce7342099fc1afa0bdb13"
+
+estree-walker@^0.2.1:
+  version "0.2.1"
+  resolved "https://registry.yarnpkg.com/estree-walker/-/estree-walker-0.2.1.tgz#bdafe8095383d8414d5dc2ecf4c9173b6db9412e"
 
 estree-walker@^0.3.0:
   version "0.3.1"
@@ -2773,8 +2777,8 @@ html-void-elements@^1.0.0:
   resolved "https://registry.yarnpkg.com/html-void-elements/-/html-void-elements-1.0.2.tgz#9d22e0ca32acc95b3f45b8d5b4f6fbdc05affd55"
 
 http-parser-js@>=0.4.0:
-  version "0.4.9"
-  resolved "https://registry.yarnpkg.com/http-parser-js/-/http-parser-js-0.4.9.tgz#ea1a04fb64adff0242e9974f297dd4c3cad271e1"
+  version "0.4.10"
+  resolved "https://registry.yarnpkg.com/http-parser-js/-/http-parser-js-0.4.10.tgz#92c9c1374c35085f75db359ec56cc257cbb93fa4"
 
 http-signature@~1.1.0:
   version "1.1.1"
@@ -4746,11 +4750,28 @@ rollup-plugin-typescript2@*:
     rollup-pluginutils "^2.0.1"
     tslib "^1.9.0"
 
+rollup-plugin-typescript@*:
+  version "0.8.1"
+  resolved "https://registry.yarnpkg.com/rollup-plugin-typescript/-/rollup-plugin-typescript-0.8.1.tgz#2ff7eecc21cf6bb2b43fc27e5b688952ce71924a"
+  dependencies:
+    compare-versions "2.0.1"
+    object-assign "^4.0.1"
+    rollup-pluginutils "^1.3.1"
+    tippex "^2.1.1"
+    typescript "^1.8.9"
+
 rollup-plugin-uglify@*:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/rollup-plugin-uglify/-/rollup-plugin-uglify-3.0.0.tgz#a34eca24617709c6bf1778e9653baafa06099b86"
   dependencies:
     uglify-es "^3.3.7"
+
+rollup-pluginutils@^1.3.1:
+  version "1.5.2"
+  resolved "https://registry.yarnpkg.com/rollup-pluginutils/-/rollup-pluginutils-1.5.2.tgz#1e156e778f94b7255bfa1b3d0178be8f5c552408"
+  dependencies:
+    estree-walker "^0.2.1"
+    minimatch "^3.0.2"
 
 rollup-pluginutils@^2.0.1:
   version "2.0.1"
@@ -5253,6 +5274,10 @@ tinyqueue@^1.1.0, tinyqueue@^1.2.0:
   version "1.2.3"
   resolved "https://registry.yarnpkg.com/tinyqueue/-/tinyqueue-1.2.3.tgz#b6a61de23060584da29f82362e45df1ec7353f3d"
 
+tippex@^2.1.1:
+  version "2.3.1"
+  resolved "https://registry.yarnpkg.com/tippex/-/tippex-2.3.1.tgz#a2fd5b7087d7cbfb20c9806a6c16108c2c0fafda"
+
 tmp@^0.0.33:
   version "0.0.33"
   resolved "https://registry.yarnpkg.com/tmp/-/tmp-0.0.33.tgz#6d34335889768d21b2bcda0aa277ced3b1bfadf9"
@@ -5386,6 +5411,10 @@ typedarray@^0.0.6, typedarray@~0.0.5:
 typescript@*:
   version "2.7.1"
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-2.7.1.tgz#bb3682c2c791ac90e7c6210b26478a8da085c359"
+
+typescript@^1.8.9:
+  version "1.8.10"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-1.8.10.tgz#b475d6e0dff0bf50f296e5ca6ef9fbb5c7320f1e"
 
 uglify-es@^3.3.7:
   version "3.3.9"

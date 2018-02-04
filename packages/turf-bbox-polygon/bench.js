@@ -1,6 +1,6 @@
-import fs from 'fs';
-import Benchmark from 'benchmark';
-import bboxpolygon from './';
+const fs = require('fs');
+const Benchmark = require('benchmark');
+const bboxpolygon = require('./').default;
 
 /**
  * Benchmark Results
