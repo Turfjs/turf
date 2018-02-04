@@ -2,7 +2,7 @@ const path = require('path');
 const glob = require('glob');
 const Benchmark = require('benchmark');
 const load = require('load-json-file');
-const concave = require('./');
+const concave = require('./').default;
 
 /**
  * Benchmark Results
