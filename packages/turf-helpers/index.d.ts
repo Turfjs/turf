@@ -17,7 +17,7 @@ export {
 export type Coord = Feature<Point> | Point | Position;
 
 // TurfJS String Types
-export type Units = 'miles' | 'nauticalmiles' | 'degrees' | 'radians' | 'inches' | 'yards' | 'meters' | 'metres' | 'kilometers' | 'kilometres';
+export type Units = 'meters' | 'millimeters' | 'centimeters' | 'kilometers' | 'miles' | 'nauticalmiles' | 'inches' | 'yards' | 'feet' | 'radians' | 'degrees'
 export type Grid = 'point' | 'square' | 'hex' | 'triangle';
 export type Corners = 'sw' | 'se' | 'nw' | 'ne' | 'center' | 'centroid';
 
