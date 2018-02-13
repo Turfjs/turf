@@ -1,5 +1,5 @@
 import { polygon, multiPolygon, Feature, FeatureCollection, LineString } from '@turf/helpers';
-import polygonToLine from './';
+import { polygonToLine, multiPolygonToLine } from './';
 
 const poly = polygon([[[125, -30], [145, -30], [145, -20], [125, -20], [125, -30]]]);
 const multiPoly = multiPolygon([
@@ -8,4 +8,4 @@ const multiPoly = multiPolygon([
 ]);
 
 const feature = polygonToLine(poly);
-const collection = polygonToLine(multiPoly);
+const collection = multiPolygonToLine(multiPoly);

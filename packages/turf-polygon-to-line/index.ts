@@ -20,31 +20,56 @@ import {
  * //addToMap
  * var addToMap = [line];
  */
-function polygonToLine<P = Properties>(
-    poly: Feature<Polygon | MultiPolygon, P>,
+export default function <G extends Polygon | MultiPolygon, P = Properties>(
+    poly: Feature<G, P> | G,
     options: { properties?: P } = {}
 ) {
-    // Optional parameters
-    const properties = options.properties || poly.properties;
-
-    // Main
-    switch (poly.geometry.type) {
-        case 'Polygon':
-            return coordsToLine(poly.geometry.coordinates, properties);
-        case 'MultiPolygon':
-            const lines: Feature<LineString|MultiLineString>[] = [];
-            poly.geometry.coordinates.forEach(function (coord) {
-                lines.push(coordsToLine(coord, properties));
-            });
-            return featureCollection(lines);
-        default:
-            throw new Error('invalid poly')
+    const geom: any = getGeom(poly);
+    switch (geom.type) {
+        case 'Polygon': return polygonToLine(geom, options)
+        case 'MultiPolygon': return multiPolygonToLine(geom, options)
+        default: throw new Error('invalid poly')
     }
 }
 
+/**
+ * @private
+ */
+export function polygonToLine<G extends Polygon, P = Properties>(
+    poly: Feature<G, P> | G,
+    options: { properties?: P } = {}
+) {
+    const geom = getGeom(poly);
+    const type = geom.type;
+    const coords: any[] = geom.coordinates;
+    const properties: Properties = options.properties ? options.properties : poly.type === 'Feature' ? poly.properties : {};
+
+    return coordsToLine(coords, properties);
+}
+
+/**
+ * @private
+ */
+export function multiPolygonToLine<G extends MultiPolygon, P = Properties>(
+    multiPoly: Feature<G, P> | G,
+    options: { properties?: P } = {}
+) {
+    const geom = getGeom(multiPoly);
+    const type = geom.type;
+    const coords: any[] = geom.coordinates;
+    const properties: Properties = options.properties ? options.properties : multiPoly.type === 'Feature' ? multiPoly.properties : {};
+
+    const lines: Feature<LineString | MultiLineString>[] = [];
+    coords.forEach(function (coord) {
+        lines.push(coordsToLine(coord, properties));
+    });
+    return featureCollection(lines);
+}
+
+/**
+ * @private
+ */
 function coordsToLine(coords: number[][][], properties: Properties) {
     if (coords.length > 1) return multiLineString(coords, properties);
     return lineString(coords[0], properties);
 }
-
-export default polygonToLine;

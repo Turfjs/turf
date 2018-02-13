@@ -1,8 +1,8 @@
 import lineIntersect from '@turf/line-intersect';
-import polygonToLine from '@turf/polygon-to-line';
+import { polygonToLine } from '@turf/polygon-to-line';
 import booleanPointInPolygon from '@turf/boolean-point-in-polygon';
 import { getGeom, getType } from '@turf/invariant';
-import { point, Feature, Geometry } from '@turf/helpers';
+import { point, Feature, Geometry, MultiPolygon, Polygon } from '@turf/helpers';
 
 /**
  * Boolean-Crosses returns True if the intersection results in a geometry whose dimension is one less than
@@ -103,7 +103,7 @@ function doLineStringsCross(lineString1, lineString2) {
     return false;
 }
 
-function doLineStringAndPolygonCross(lineString, polygon) {
+function doLineStringAndPolygonCross(lineString, polygon: Polygon) {
     var doLinesIntersect = lineIntersect(lineString, polygonToLine(polygon));
     if (doLinesIntersect.features.length > 0) {
         return true;
