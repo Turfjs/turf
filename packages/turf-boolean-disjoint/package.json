@@ -49,7 +49,7 @@
   "dependencies": {
     "@turf/boolean-point-in-polygon": "^5.1.5",
     "@turf/helpers": "6.x",
-    "@turf/line-intersect": "^5.1.5",
+    "@turf/line-intersect": "6.x",
     "@turf/meta": "6.x",
     "@turf/polygon-to-line": "^5.1.5"
   },
