@@ -2469,8 +2469,8 @@ geojson-rbush@2.1.0:
     rbush "*"
 
 geojson-rbush@3.x:
-  version "3.1.0"
-  resolved "https://registry.yarnpkg.com/geojson-rbush/-/geojson-rbush-3.1.0.tgz#f08c71e0700d64daf7d18e9709c3cc68d0d3afc8"
+  version "3.1.1"
+  resolved "https://registry.yarnpkg.com/geojson-rbush/-/geojson-rbush-3.1.1.tgz#dd40bdd26e92813d888d7b489e8d2980695a49b4"
   dependencies:
     "@turf/bbox" "*"
     "@turf/helpers" "6.x"
@@ -4789,8 +4789,8 @@ rollup-plugin-commonjs@*:
     rollup-pluginutils "^2.0.1"
 
 rollup-plugin-node-resolve@*:
-  version "3.0.2"
-  resolved "https://registry.yarnpkg.com/rollup-plugin-node-resolve/-/rollup-plugin-node-resolve-3.0.2.tgz#38babc12fd404cc2ba1ff68648fe43fa3ffee6b0"
+  version "3.0.3"
+  resolved "https://registry.yarnpkg.com/rollup-plugin-node-resolve/-/rollup-plugin-node-resolve-3.0.3.tgz#8f57b253edd00e5b0ad0aed7b7e9cf5982e98fa4"
   dependencies:
     builtin-modules "^1.1.0"
     is-module "^1.0.0"

@@ -1,6 +1,6 @@
 {
   "name": "@turf/line-segment",
-  "version": "5.1.5",
+  "version": "6.0.0",
   "description": "turf line-segment module",
   "main": "index",
   "files": [
@@ -29,10 +29,9 @@
   },
   "homepage": "https://github.com/Turfjs/turf",
   "devDependencies": {
-    "@std/esm": "*",
     "benchmark": "*",
     "load-json-file": "*",
-    "rollup": "*",
+    "typescript": "*",
     "tape": "*",
     "write-json-file": "*"
   },
@@ -40,9 +39,5 @@
     "@turf/helpers": "6.x",
     "@turf/invariant": "6.x",
     "@turf/meta": "6.x"
-  },
-  "@std/esm": {
-    "esm": "js",
-    "cjs": true
   }
 }
