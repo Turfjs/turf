@@ -84,15 +84,13 @@
   dependencies:
     "@turf/helpers" "^5.1.5"
 
-"@turf/line-intersect@5.1.x":
+"@turf/line-segment@^5.1.5":
   version "5.1.5"
-  resolved "https://registry.yarnpkg.com/@turf/line-intersect/-/line-intersect-5.1.5.tgz#0e29071ae403295e491723bc49f5cfac8d11ddf3"
+  resolved "https://registry.yarnpkg.com/@turf/line-segment/-/line-segment-5.1.5.tgz#3207aaee546ab24c3d8dc3cc63f91c770b8013e5"
   dependencies:
     "@turf/helpers" "^5.1.5"
     "@turf/invariant" "^5.1.5"
-    "@turf/line-segment" "^5.1.5"
     "@turf/meta" "^5.1.5"
-    geojson-rbush "2.1.0"
 
 "@turf/meta@^5.1.5":
   version "5.2.0"
@@ -2459,14 +2457,6 @@ geojson-fixtures@*:
   resolved "https://registry.yarnpkg.com/geojson-fixtures/-/geojson-fixtures-1.0.0.tgz#7d2cf22b176cecf4b98efc1d65f3c5d3ee1b0ae8"
   dependencies:
     geojsonhint "^1.0.0"
-
-geojson-rbush@2.1.0:
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/geojson-rbush/-/geojson-rbush-2.1.0.tgz#3bd73be391fc10b0ae693d9b8acea2aae0b83a8d"
-  dependencies:
-    "@turf/helpers" "*"
-    "@turf/meta" "*"
-    rbush "*"
 
 geojson-rbush@3.x:
   version "3.1.1"
