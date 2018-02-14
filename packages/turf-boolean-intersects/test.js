@@ -1,9 +1,9 @@
-import glob from 'glob';
-import path from 'path';
-import test from 'tape';
-import load from 'load-json-file';
-import shapely from 'boolean-shapely';
-import intersects from '.';
+const glob = require('glob');
+const path = require('path');
+const test = require('tape');
+const load = require('load-json-file');
+const shapely = require('boolean-shapely');
+const intersects = require('./');
 
 test('turf-boolean-intersects', t => {
     // True Fixtures
