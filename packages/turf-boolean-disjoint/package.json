@@ -51,7 +51,7 @@
     "@turf/helpers": "6.x",
     "@turf/line-intersect": "6.x",
     "@turf/meta": "6.x",
-    "@turf/polygon-to-line": "^5.1.5"
+    "@turf/polygon-to-line": "6.x"
   },
   "@std/esm": {
     "esm": "js",
