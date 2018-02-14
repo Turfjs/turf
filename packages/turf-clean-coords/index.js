@@ -87,25 +87,32 @@ function cleanCoords(geojson, options) {
  * @returns {Array<number>} Cleaned coordinates
  */
 function cleanLine(line) {
+
     var points = getCoords(line);
     // handle "clean" segment
     if (points.length === 2 && !equals(points[0], points[1])) return points;
 
-    var prevPoint, point, nextPoint;
     var newPoints = [];
     var secondToLast = points.length - 1;
+    var newPointsLength = newPoints.length;
 
     newPoints.push(points[0]);
     for (var i = 1; i < secondToLast; i++) {
-        prevPoint = points[i - 1];
-        point = points[i];
-        nextPoint = points[i + 1];
-
-        if (!isPointOnLineSegment(prevPoint, nextPoint, point)) {
-            newPoints.push(point);
+        var prevAddedPoint = newPoints[newPoints.length - 1];
+        if ((points[i][0] === prevAddedPoint[0]) && (points[i][1] === prevAddedPoint[1])) continue;
+        else {
+            newPoints.push(points[i]);
+            newPointsLength = newPoints.length;
+            if (newPointsLength > 2) {
+                if (isPointOnLineSegment(newPoints[newPointsLength - 3], newPoints[newPointsLength - 1], newPoints[newPointsLength - 2])) newPoints.splice(newPoints.length - 2, 1);
+            }
         }
     }
-    newPoints.push(nextPoint);
+    newPoints.push(points[points.length - 1]);
+
+    newPointsLength = newPoints.length;
+    if (isPointOnLineSegment(newPoints[newPointsLength - 3], newPoints[newPointsLength - 1], newPoints[newPointsLength - 2])) newPoints.splice(newPoints.length - 2, 1);
+
     return newPoints;
 }
 
