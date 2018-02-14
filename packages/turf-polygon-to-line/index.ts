@@ -23,8 +23,9 @@ import {
 export default function <G extends Polygon | MultiPolygon, P = Properties>(
     poly: Feature<G, P> | G,
     options: { properties?: P } = {}
-) {
+): Feature<LineString | MultiLineString, P> | FeatureCollection<LineString | MultiLineString, P> {
     const geom: any = getGeom(poly);
+    if (!options.properties && poly.type === 'Feature') { options.properties = poly.properties }
     switch (geom.type) {
         case 'Polygon': return polygonToLine(geom, options)
         case 'MultiPolygon': return multiPolygonToLine(geom, options)
@@ -37,12 +38,12 @@ export default function <G extends Polygon | MultiPolygon, P = Properties>(
  */
 export function polygonToLine<G extends Polygon, P = Properties>(
     poly: Feature<G, P> | G,
-    options: { properties?: P } = {}
-) {
+    options: { properties?: any } = {}
+): Feature<LineString | MultiLineString, P> {
     const geom = getGeom(poly);
     const type = geom.type;
     const coords: any[] = geom.coordinates;
-    const properties: Properties = options.properties ? options.properties : poly.type === 'Feature' ? poly.properties : {};
+    const properties: any = options.properties ? options.properties : poly.type === 'Feature' ? poly.properties : {};
 
     return coordsToLine(coords, properties);
 }
@@ -53,13 +54,13 @@ export function polygonToLine<G extends Polygon, P = Properties>(
 export function multiPolygonToLine<G extends MultiPolygon, P = Properties>(
     multiPoly: Feature<G, P> | G,
     options: { properties?: P } = {}
-) {
+): FeatureCollection<LineString | MultiLineString, P> {
     const geom = getGeom(multiPoly);
     const type = geom.type;
     const coords: any[] = geom.coordinates;
-    const properties: Properties = options.properties ? options.properties : multiPoly.type === 'Feature' ? multiPoly.properties : {};
+    const properties: any = options.properties ? options.properties : multiPoly.type === 'Feature' ? multiPoly.properties : {};
 
-    const lines: Feature<LineString | MultiLineString>[] = [];
+    const lines: Feature<LineString | MultiLineString, P>[] = [];
     coords.forEach(function (coord) {
         lines.push(coordsToLine(coord, properties));
     });
@@ -69,7 +70,7 @@ export function multiPolygonToLine<G extends MultiPolygon, P = Properties>(
 /**
  * @private
  */
-function coordsToLine(coords: number[][][], properties: Properties) {
+export function coordsToLine<P = Properties>(coords: number[][][], properties: P): Feature<LineString | MultiLineString, P> {
     if (coords.length > 1) return multiLineString(coords, properties);
     return lineString(coords[0], properties);
 }

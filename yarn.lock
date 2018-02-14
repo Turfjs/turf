@@ -13,8 +13,8 @@
     vfile-reporter "3.0.0"
 
 "@std/esm@*":
-  version "0.21.6"
-  resolved "https://registry.yarnpkg.com/@std/esm/-/esm-0.21.6.tgz#d890ec357feb5d7f2c72325bbfe4afca7f372d04"
+  version "0.21.7"
+  resolved "https://registry.yarnpkg.com/@std/esm/-/esm-0.21.7.tgz#492d7931aed03e91a133deac4d9062fbfce5fd6b"
 
 "@turf/along@5.1.x", "@turf/along@^5.1.5":
   version "5.1.5"
@@ -84,7 +84,7 @@
   dependencies:
     "@turf/helpers" "^5.1.5"
 
-"@turf/line-intersect@5.1.x", "@turf/line-intersect@^5.1.5":
+"@turf/line-intersect@5.1.x":
   version "5.1.5"
   resolved "https://registry.yarnpkg.com/@turf/line-intersect/-/line-intersect-5.1.5.tgz#0e29071ae403295e491723bc49f5cfac8d11ddf3"
   dependencies:
@@ -112,8 +112,8 @@
   resolved "https://registry.yarnpkg.com/@types/geojson/-/geojson-7946.0.1.tgz#1fc41280e42f08f0d568401a556bc97c34f5262e"
 
 "@types/node@*":
-  version "9.4.5"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-9.4.5.tgz#d2a90c634208173d1b1a0a6ba9f1df3de62edcf5"
+  version "9.4.6"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-9.4.6.tgz#d8176d864ee48753d053783e4e463aec86b8d82e"
 
 JSONStream@^1.0.3, JSONStream@^1.0.4:
   version "1.3.2"
@@ -1462,9 +1462,13 @@ command-join@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/command-join/-/command-join-2.0.0.tgz#52e8b984f4872d952ff1bdc8b98397d27c7144cf"
 
-commander@2, commander@~2.14.1:
+commander@2:
   version "2.14.1"
   resolved "https://registry.yarnpkg.com/commander/-/commander-2.14.1.tgz#2235123e37af8ca3c65df45b026dbd357b01b9aa"
+
+commander@~2.13.0:
+  version "2.13.0"
+  resolved "https://registry.yarnpkg.com/commander/-/commander-2.13.0.tgz#6964bca67685df7c1f1430c584f07d7597885b9c"
 
 compare-func@^1.3.1:
   version "1.3.2"
@@ -1541,11 +1545,11 @@ conventional-changelog-atom@^0.2.2:
     q "^1.4.1"
 
 conventional-changelog-cli@^1.3.2:
-  version "1.3.12"
-  resolved "https://registry.yarnpkg.com/conventional-changelog-cli/-/conventional-changelog-cli-1.3.12.tgz#2941cbf8d7c96777b4bc89683f29114992b8715a"
+  version "1.3.13"
+  resolved "https://registry.yarnpkg.com/conventional-changelog-cli/-/conventional-changelog-cli-1.3.13.tgz#8cb5855bc3c684aa8f5dc96e848d1fa5a82eee1e"
   dependencies:
     add-stream "^1.0.0"
-    conventional-changelog "^1.1.14"
+    conventional-changelog "^1.1.15"
     lodash "^4.1.0"
     meow "^3.7.0"
     tempfile "^1.1.1"
@@ -1611,9 +1615,9 @@ conventional-changelog-jshint@^0.3.2:
     compare-func "^1.3.1"
     q "^1.4.1"
 
-conventional-changelog-preset-loader@^1.1.3:
-  version "1.1.2"
-  resolved "https://registry.yarnpkg.com/conventional-changelog-preset-loader/-/conventional-changelog-preset-loader-1.1.2.tgz#dfb5877884ef852b648bdef6e69e53e1bda188df"
+conventional-changelog-preset-loader@^1.1.4:
+  version "1.1.4"
+  resolved "https://registry.yarnpkg.com/conventional-changelog-preset-loader/-/conventional-changelog-preset-loader-1.1.4.tgz#5096165f2742a18dc0e33ff2ab9ee08dc9d77f08"
 
 conventional-changelog-writer@^3.0.2:
   version "3.0.2"
@@ -1630,9 +1634,9 @@ conventional-changelog-writer@^3.0.2:
     split "^1.0.0"
     through2 "^2.0.0"
 
-conventional-changelog@^1.1.14:
-  version "1.1.14"
-  resolved "https://registry.yarnpkg.com/conventional-changelog/-/conventional-changelog-1.1.14.tgz#ef86f70e104186b19e297ba9f71813f919e38f19"
+conventional-changelog@^1.1.15:
+  version "1.1.15"
+  resolved "https://registry.yarnpkg.com/conventional-changelog/-/conventional-changelog-1.1.15.tgz#a5c3d281efb40f61c7d21eeffb19e6f6a8429df0"
   dependencies:
     conventional-changelog-angular "^1.6.4"
     conventional-changelog-atom "^0.2.2"
@@ -1644,7 +1648,7 @@ conventional-changelog@^1.1.14:
     conventional-changelog-jquery "^0.1.0"
     conventional-changelog-jscs "^0.1.0"
     conventional-changelog-jshint "^0.3.2"
-    conventional-changelog-preset-loader "^1.1.3"
+    conventional-changelog-preset-loader "^1.1.4"
 
 conventional-commits-filter@^1.1.1, conventional-commits-filter@^1.1.3:
   version "1.1.3"
@@ -3208,8 +3212,8 @@ is-whitespace-character@^1.0.0:
   resolved "https://registry.yarnpkg.com/is-whitespace-character/-/is-whitespace-character-1.0.1.tgz#9ae0176f3282b65457a1992cdb084f8a5f833e3b"
 
 is-windows@^1.0.1:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/is-windows/-/is-windows-1.0.1.tgz#310db70f742d259a16a369202b51af84233310d9"
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/is-windows/-/is-windows-1.0.2.tgz#d1850eb9791ecd18e6182ce12a30f396634bb19d"
 
 is-word-character@^1.0.0:
   version "1.0.1"
@@ -5461,10 +5465,10 @@ typescript@^1.8.9:
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-1.8.10.tgz#b475d6e0dff0bf50f296e5ca6ef9fbb5c7320f1e"
 
 uglify-es@^3.3.7:
-  version "3.3.10"
-  resolved "https://registry.yarnpkg.com/uglify-es/-/uglify-es-3.3.10.tgz#8b0b7992cebe20edc26de1bf325cef797b8f3fa5"
+  version "3.3.9"
+  resolved "https://registry.yarnpkg.com/uglify-es/-/uglify-es-3.3.9.tgz#0c1c4f0700bed8dbc124cdb304d2592ca203e677"
   dependencies:
-    commander "~2.14.1"
+    commander "~2.13.0"
     source-map "~0.6.1"
 
 uglify-js@^2.6:
