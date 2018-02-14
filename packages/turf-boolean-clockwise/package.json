@@ -5,8 +5,7 @@
   "main": "index",
   "files": [
     "index.js",
-    "index.ts",
-    "lib"
+    "index.ts"
   ],
   "scripts": {
     "pretest": "tsc",
