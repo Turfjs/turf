@@ -104,7 +104,8 @@ function doLineStringsCross(lineString1, lineString2) {
 }
 
 function doLineStringAndPolygonCross(lineString, polygon: Polygon) {
-    var doLinesIntersect = lineIntersect(lineString, polygonToLine(polygon));
+    const line: any = polygonToLine(polygon);
+    const doLinesIntersect = lineIntersect(lineString, line);
     if (doLinesIntersect.features.length > 0) {
         return true;
     }
