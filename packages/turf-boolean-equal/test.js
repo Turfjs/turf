@@ -1,10 +1,10 @@
-const glob = requir('glob');
-const path = requir('path');
-const test = requir('tape');
-const load = requir('load-json-file');
-const shapely = requir('boolean-shapely');
-const { point, lineString, polygon } = requir('@turf/helpers');
-const equal = requir('./').default;
+const glob = require('glob');
+const path = require('path');
+const test = require('tape');
+const load = require('load-json-file');
+const shapely = require('boolean-shapely');
+const { point, lineString, polygon } = require('@turf/helpers');
+const equal = require('./').default;
 
 test('turf-boolean-equal', t => {
     // True Fixtures
