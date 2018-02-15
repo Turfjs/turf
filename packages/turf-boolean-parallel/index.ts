@@ -1,7 +1,7 @@
 import cleanCoords from '@turf/clean-coords';
 import lineSegment from '@turf/line-segment';
 import rhumbBearing from '@turf/rhumb-bearing';
-import { bearingToAzimuth } from '@turf/helpers';
+import { bearingToAzimuth, Feature, LineString } from '@turf/helpers';
 
 /**
  * Boolean-Parallel returns True if each segment of `line1` is parallel to the correspondent segment of `line2`
@@ -17,7 +17,7 @@ import { bearingToAzimuth } from '@turf/helpers';
  * turf.booleanParallel(line1, line2);
  * //=true
  */
-function booleanParallel(line1, line2) {
+function booleanParallel(line1: Feature<LineString> | LineString, line2: Feature<LineString> | LineString): boolean {
     // validation
     if (!line1) throw new Error('line1 is required');
     if (!line2) throw new Error('line2 is required');
