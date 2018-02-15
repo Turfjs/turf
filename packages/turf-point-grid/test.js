@@ -62,3 +62,17 @@ test('point-grid -- throw', t => {
     t.throws(() => pointGrid(bbox, 1, {mask: point([0, 10])}), /options.mask must be a \(Multi\)Polygon/, 'invalid options.mask');
     t.end();
 });
+
+test('point-grid -- #1177', t => {
+    const bbox = [0, 0, 1, 1];
+    const mask = bboxPoly([0.2, 0.2, 0.8, 0.8]);
+    let options = {mask: mask};
+    t.doesNotThrow(() => pointGrid(bbox, 1, options));
+    t.equal(options.units, 'kilometers');
+
+    let options2 = {mask: mask, units: 'miles'};
+    t.doesNotThrow(() => pointGrid(bbox, 1, options2));
+    t.equal(options2.units, 'miles');
+
+    t.end();
+});

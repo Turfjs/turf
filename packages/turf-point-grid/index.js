@@ -27,6 +27,7 @@ import {point, featureCollection, isObject, isNumber} from '@turf/helpers';
 function pointGrid(bbox, cellSide, options) {
     // Optional parameters
     options = options || {};
+    if (options.mask && !options.units) options.units = 'kilometers';
     if (!isObject(options)) throw new Error('options is invalid');
     // var units = options.units;
     var mask = options.mask;
