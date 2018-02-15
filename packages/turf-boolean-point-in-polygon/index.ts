@@ -27,9 +27,13 @@ import { Coord, Feature, Polygon, MultiPolygon, Properties } from '@turf/helpers
  * turf.booleanPointInPolygon(pt, poly);
  * //= true
  */
-function booleanPointInPolygon<G extends Polygon | MultiPolygon, P = Properties>(point: Coord, polygon: Feature<G> | G, options: {
-    ignoreBoundary?: boolean
-} = {}) {
+export default function booleanPointInPolygon<G extends Polygon | MultiPolygon, P = Properties>(
+    point: Coord,
+    polygon: Feature<G> | G,
+    options: {
+        ignoreBoundary?: boolean
+    } = {}
+) {
     // validation
     if (!point) throw new Error('point is required');
     if (!polygon) throw new Error('polygon is required');
@@ -64,7 +68,7 @@ function booleanPointInPolygon<G extends Polygon | MultiPolygon, P = Properties>
     }
     return insidePoly;
 }
-exports.default = booleanPointInPolygon;
+
 /**
  * inRing
  *
