@@ -2,6 +2,7 @@ import calcBbox from '@turf/bbox';
 import booleanPointOnLine from '@turf/boolean-point-on-line';
 import booleanPointInPolygon from '@turf/boolean-point-in-polygon';
 import { getGeom, getType } from '@turf/invariant';
+import { Feature, Geometry } from '@turf/helpers';
 
 /**
  * Boolean-within returns true if the first geometry is completely within the second geometry.
@@ -20,7 +21,7 @@ import { getGeom, getType } from '@turf/invariant';
  * turf.booleanWithin(point, line);
  * //=true
  */
-function booleanWithin(feature1, feature2) {
+function booleanWithin(feature1: Feature<any> | Geometry, feature2: Feature<any> | Geometry): boolean {
     var type1 = getType(feature1);
     var type2 = getType(feature2);
     var geom1 = getGeom(feature1);
