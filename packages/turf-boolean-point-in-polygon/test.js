@@ -2,7 +2,7 @@ const fs = require('fs');
 const test = require('tape');
 const { point } = require('@turf/helpers');
 const { polygon } = require('@turf/helpers');
-const booleanPointInPolygon = require('.').default;
+const booleanPointInPolygon = require('./').default;
 
 test('boolean-point-in-polygon -- featureCollection', function (t) {
     // test for a simple polygon

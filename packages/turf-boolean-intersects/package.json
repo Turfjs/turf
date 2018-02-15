@@ -1,0 +1,48 @@
+{
+  "name": "@turf/boolean-intersects",
+  "version": "6.0.0",
+  "description": "turf boolean-intersects module",
+  "main": "index",
+  "files": [
+    "index.js",
+    "index.ts"
+  ],
+  "scripts": {
+    "pretest": "tsc",
+    "test": "node test.js",
+    "bench": "node bench.js",
+    "docs": "node ../../scripts/generate-readmes"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/Turfjs/turf.git"
+  },
+  "keywords": [
+    "turf",
+    "intersects",
+    "boolean",
+    "de-9im"
+  ],
+  "author": "Turf Authors",
+  "contributors": [
+    "Rowan Winsemius <@rowanwins>",
+    "Denis Carriere <@DenisCarriere>"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Turfjs/turf/issues"
+  },
+  "homepage": "https://github.com/Turfjs/turf",
+  "devDependencies": {
+    "benchmark": "*",
+    "boolean-shapely": "*",
+    "load-json-file": "*",
+    "typescript": "*",
+    "tape": "*"
+  },
+  "dependencies": {
+    "@turf/boolean-disjoint": "^5.1.6",
+    "@turf/helpers": "6.x",
+    "@turf/meta": "6.x"
+  }
+}
