@@ -1,8 +1,8 @@
-import test from 'tape';
-import { point } from '@turf/helpers';
-import { polygon } from '@turf/helpers';
-import fs from 'fs';
-import booleanPointInPolygon from '.';
+const fs = require('fs');
+const test = require('tape');
+const { point } = require('@turf/helpers');
+const { polygon } = require('@turf/helpers');
+const booleanPointInPolygon = require('./').default;
 
 test('boolean-point-in-polygon -- featureCollection', function (t) {
     // test for a simple polygon

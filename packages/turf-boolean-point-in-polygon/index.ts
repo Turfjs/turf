@@ -1,4 +1,5 @@
-import { getCoord, getCoords } from '@turf/invariant';
+import { getCoord, getCoords, getGeom } from '@turf/invariant';
+import { Coord, Feature, Polygon, MultiPolygon, Properties } from '@turf/helpers';
 
 // http://en.wikipedia.org/wiki/Even%E2%80%93odd_rule
 // modified from: https://github.com/substack/point-in-polygon/blob/master/index.js
@@ -27,20 +28,18 @@ import { getCoord, getCoords } from '@turf/invariant';
  * turf.booleanPointInPolygon(pt, poly);
  * //= true
  */
-function booleanPointInPolygon(point, polygon, options) {
-    // Optional parameters
-    options = options || {};
-    if (typeof options !== 'object') throw new Error('options is invalid');
-    var ignoreBoundary = options.ignoreBoundary;
-
+function booleanPointInPolygon<G extends Polygon | MultiPolygon, P = Properties>(point: Coord, polygon: Feature<G> | G, options: {
+    ignoreBoundary?: boolean
+} = {}) {
     // validation
     if (!point) throw new Error('point is required');
     if (!polygon) throw new Error('polygon is required');
 
-    var pt = getCoord(point);
-    var polys = getCoords(polygon);
-    var type = (polygon.geometry) ? polygon.geometry.type : polygon.type;
-    var bbox = polygon.bbox;
+    const pt = getCoord(point);
+    const geom = getGeom(polygon);
+    const type = geom.type;
+    const bbox = polygon.bbox;
+    let polys: any[] = geom.coordinates;
 
     // Quick elimination if point is not inside bbox
     if (bbox && inBBox(pt, bbox) === false) return false;
@@ -50,12 +49,12 @@ function booleanPointInPolygon(point, polygon, options) {
 
     for (var i = 0, insidePoly = false; i < polys.length && !insidePoly; i++) {
         // check if it is in the outer ring first
-        if (inRing(pt, polys[i][0], ignoreBoundary)) {
+        if (inRing(pt, polys[i][0], options.ignoreBoundary)) {
             var inHole = false;
             var k = 1;
             // check for the point in any of the holes
             while (k < polys[i].length && !inHole) {
-                if (inRing(pt, polys[i][k], !ignoreBoundary)) {
+                if (inRing(pt, polys[i][k], !options.ignoreBoundary)) {
                     inHole = true;
                 }
                 k++;
