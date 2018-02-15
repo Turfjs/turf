@@ -18,7 +18,7 @@ import { Feature, Geometry } from '@turf/helpers';
  * turf.booleanDisjoint(line, point);
  * //=true
  */
-function booleanDisjoint(feature1: Feature<Geometry> | Geometry, feature2: Feature<Geometry> | Geometry): boolean {
+function booleanDisjoint(feature1: Feature<any> | Geometry, feature2: Feature<any> | Geometry): boolean {
     var boolean;
     flattenEach(feature1, function (flatten1) {
         flattenEach(feature2, function (flatten2) {
