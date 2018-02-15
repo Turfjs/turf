@@ -2,6 +2,7 @@ import booleanPointInPolygon from '@turf/boolean-point-in-polygon';
 import { flattenEach } from '@turf/meta';
 import lineIntersect from '@turf/line-intersect';
 import polygonToLine from '@turf/polygon-to-line';
+import { Feature, Geometry } from '@turf/helpers';
 
 /**
  * Boolean-disjoint returns (TRUE) if the intersection of the two geometries is an empty set.
@@ -17,7 +18,7 @@ import polygonToLine from '@turf/polygon-to-line';
  * turf.booleanDisjoint(line, point);
  * //=true
  */
-function booleanDisjoint(feature1, feature2) {
+function booleanDisjoint(feature1: Feature<Geometry> | Geometry, feature2: Feature<Geometry> | Geometry): boolean {
     var boolean;
     flattenEach(feature1, function (flatten1) {
         flattenEach(feature2, function (flatten2) {
