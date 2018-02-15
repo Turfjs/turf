@@ -39,6 +39,7 @@ toc:
   - dissolve
   - intersect
   - lineOffset
+  - polygonSmooth
   - simplify
   - tesselate
   - transformRotate
@@ -133,6 +134,7 @@ toc:
   - featureOf
   - name: Booleans
   - booleanClockwise
+  - booleanConcave
   - booleanContains
   - booleanCrosses
   - booleanDisjoint
