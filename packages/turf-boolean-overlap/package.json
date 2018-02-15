@@ -52,7 +52,7 @@
   "dependencies": {
     "@turf/helpers": "6.x",
     "@turf/invariant": "6.x",
-    "@turf/line-intersect": "^5.1.5",
+    "@turf/line-intersect": "6.x",
     "@turf/line-overlap": "^5.1.5",
     "@turf/meta": "6.x",
     "geojson-equality": "0.1.6"

@@ -25,7 +25,7 @@ const fc = helpers.featureCollection([pt, line, poly])
  */
 // invariant.getGeom(fc) // Argument of type 'FeatureCollection<any>' is not assignable to parameter of type
 invariant.getGeom(gc)
-const gcGeom: GeometryCollection  = invariant.getGeom(gc)
+// const gcGeom: GeometryCollection  = invariant.getGeom(gc) // => NOT SUPPORTED
 const pointGeom: Point = invariant.getGeom(pt)
 const lineGeom: LineString = invariant.getGeom(line)
 const polyGeom: Polygon = invariant.getGeom(poly)

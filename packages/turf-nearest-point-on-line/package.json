@@ -45,7 +45,7 @@
     "@turf/distance": "^5.1.5",
     "@turf/helpers": "6.x",
     "@turf/invariant": "6.x",
-    "@turf/line-intersect": "^5.1.5",
+    "@turf/line-intersect": "6.x",
     "@turf/meta": "6.x"
   },
   "@std/esm": {

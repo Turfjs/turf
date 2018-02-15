@@ -1,11 +1,11 @@
-import glob from 'glob';
-import path from 'path';
-import test from 'tape';
-import load from 'load-json-file';
-import { point } from '@turf/helpers';
-import booleanJSTS from 'boolean-jsts';
-import shapely from 'boolean-shapely';
-import contains from '.';
+const glob = require('glob');
+const path = require('path');
+const test = require('tape');
+const load = require('load-json-file');
+const { point } = require('@turf/helpers');
+const booleanJSTS = require('boolean-jsts');
+const shapely = require('boolean-shapely');
+const contains = require('./').default;
 
 test('turf-boolean-contains', t => {
     // True Fixtures
