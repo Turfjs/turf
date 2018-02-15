@@ -1,5 +1,6 @@
 import { flattenEach } from '@turf/meta';
 import booleanDisjoint from '@turf/boolean-disjoint';
+import { Feature, Geometry } from '@turf/helpers';
 
 /**
  * Boolean-intersects returns (TRUE) two geometries intersect.
@@ -15,7 +16,7 @@ import booleanDisjoint from '@turf/boolean-disjoint';
  * turf.booleanIntersects(line, point);
  * //=true
  */
-function booleanIntersects(feature1, feature2) {
+function booleanIntersects(feature1: Feature<any> | Geometry, feature2: Feature<any> | Geometry) {
     var boolean;
     flattenEach(feature1, function (flatten1) {
         flattenEach(feature2, function (flatten2) {

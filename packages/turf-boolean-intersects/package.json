@@ -5,8 +5,7 @@
   "main": "index",
   "files": [
     "index.js",
-    "index.ts",
-    "lib"
+    "index.ts"
   ],
   "scripts": {
     "pretest": "tsc",
@@ -35,11 +34,10 @@
   },
   "homepage": "https://github.com/Turfjs/turf",
   "devDependencies": {
-    "@std/esm": "*",
     "benchmark": "*",
     "boolean-shapely": "*",
     "load-json-file": "*",
-    "rollup": "*",
+    "typescript": "*",
     "tape": "*"
   },
   "dependencies": {
