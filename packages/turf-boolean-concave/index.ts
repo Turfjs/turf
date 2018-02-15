@@ -13,7 +13,7 @@ import { getCoords } from '@turf/invariant';
  * turf.booleanConcave(convexPolygon)
  * //=false
  */
-function booleanConcave(polygon: Feature<Polygon> | Polygon) {
+export default function booleanConcave(polygon: Feature<Polygon> | Polygon) {
     // validation
     if (!polygon) throw new Error('polygon is required');
     var type = (polygon.type === 'Feature') ? polygon.geometry.type : polygon.type;
@@ -36,5 +36,3 @@ function booleanConcave(polygon: Feature<Polygon> | Polygon) {
     }
     return false;
 }
-
-export default booleanConcave;

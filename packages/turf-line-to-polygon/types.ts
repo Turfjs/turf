@@ -18,6 +18,6 @@ const multiLine = multiLineString([coords, coords]);
 const fc = featureCollection([line, multiLine]);
 
 // Assert results with types
-const poly1: Feature<Polygon> = lineToPolygon(line);
-const poly2: Feature<Polygon> = lineToPolygon(multiLine);
-const poly3: Feature<MultiPolygon> = lineToPolygon(fc);
+const poly1 = lineToPolygon(line); // Feature<Polygon>
+const poly2 = lineToPolygon(multiLine); // Feature<Polygon>
+const poly3 = lineToPolygon(fc); // Feature<MultiPolygon>

@@ -9,11 +9,11 @@ import gridToMatrix from './lib/grid-to-matrix';
 import isoBands from './lib/marchingsquares-isobands';
 
 /**
- * Takes a grid {@link FeatureCollection} of {@link Point} features with z-values and an array of
+ * Takes a square or rectangular grid {@link FeatureCollection} of {@link Point} features with z-values and an array of
  * value breaks and generates filled contour isobands.
  *
  * @name isobands
- * @param {FeatureCollection<Point>} pointGrid input points
+ * @param {FeatureCollection<Point>} pointGrid input points - must be square or rectangular
  * @param {Array<number>} breaks where to draw contours
  * @param {Object} [options={}] options on output
  * @param {string} [options.zProperty='elevation'] the property name in `points` from which z-values will be pulled
