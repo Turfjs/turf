@@ -30,10 +30,9 @@ test('turf-point-to-line-distance', t => {
         const line = geojson.features[1];
         const properties = geojson.properties || {};
         const units = properties.units || 'kilometers';
-        const mercator = properties.mercator;
-
         // main method
-        const options = {units: units, mercator: mercator};
+        const options = {units: units};
+        options.method = 'geodesic';
         const distance = pointToLineDistance(point, line, options);
 
         // Store results
@@ -67,5 +66,16 @@ test('turf-point-to-line-distance -- Geometry', t => {
     const line = lineString([[1, 1], [-1, 1]]);
 
     t.assert(pointToLineDistance(pt.geometry, line.geometry));
+    t.end();
+});
+
+
+test('turf-point-to-line-distance -- Check planar and geodesic results are different', t => {
+    const pt = point([0, 0]);
+    const line = lineString([[10, 10], [-1, 1]]);
+
+    const geoOut = pointToLineDistance(pt.geometry, line.geometry, {method: 'geodesic'});
+    const planarOut = pointToLineDistance(pt.geometry, line.geometry, {method: 'planar'});
+    t.notEqual(geoOut, planarOut);
     t.end();
 });
