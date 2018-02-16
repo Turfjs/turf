@@ -2,7 +2,7 @@
 
 ## How To Contribute
 
-- Most work happens in sub modules. These are modules prefixed with "turf-".
+- Most work happens in sub modules. These are found in the `packages` directory prefixed with "turf-".
 - If you would like to propose a new feature, open an issue in Turfjs/turf.
 - Always include tests. We use [tape](https://github.com/substack/tape).
 - Turf modules are small, containing a single exported function.
@@ -138,3 +138,8 @@ Building Docs: @turf/bezier-spline
 Building Docs: @turf/boolean-clockwise
 ....
 ```
+
+## Other Dependencies
+- Turf uses [Yarn](https://yarnpkg.com) and [lerna](https://yarnpkg.com/en/) during the testing, packaging and publishing process.
+  - Lerna will be automatically installed when you run `npm install` in the root directory.
+  - Yarn will need to be installed on your computer, installers are available via the yarn website.
