@@ -1,9 +1,9 @@
-import glob from 'glob';
-import path from 'path';
-import test from 'tape';
-import load from 'load-json-file';
-import shapely from 'boolean-shapely';
-import disjoint from '.';
+const glob = require('glob');
+const path = require('path');
+const test = require('tape');
+const load = require('load-json-file');
+const shapely = require('boolean-shapely');
+const disjoint = require('./').default;
 
 test('turf-boolean-disjoint', t => {
     // True Fixtures

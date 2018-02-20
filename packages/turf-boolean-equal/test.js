@@ -1,10 +1,10 @@
-import glob from 'glob';
-import path from 'path';
-import test from 'tape';
-import load from 'load-json-file';
-import shapely from 'boolean-shapely';
-import { point, lineString, polygon } from '@turf/helpers';
-import equal from '.';
+const glob = require('glob');
+const path = require('path');
+const test = require('tape');
+const load = require('load-json-file');
+const shapely = require('boolean-shapely');
+const { point, lineString, polygon } = require('@turf/helpers');
+const equal = require('./').default;
 
 test('turf-boolean-equal', t => {
     // True Fixtures

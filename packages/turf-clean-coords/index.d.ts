@@ -1,11 +1,25 @@
-import { Feature, GeometryObject } from '@turf/helpers'
+import { Feature, Geometry, Properties } from '@turf/helpers'
 
 /**
  * http://turfjs.org/docs/#cleancoords
  */
-export default function <T extends GeometryObject | Feature<any>>(
-    feature: T,
+export default function <G extends Geometry, P = Properties>(
+    feature: Feature<G, P>,
     options?: {
       mutate?: boolean
     }
-): T;
+): Feature<G, P>;
+
+export default function <G extends Geometry>(
+  feature: G,
+  options?: {
+    mutate?: boolean
+  }
+): G;
+
+export default function <G extends Geometry>(
+  feature: Feature<G> | G,
+  options?: {
+    mutate?: boolean
+  }
+): Feature<G> | G;
