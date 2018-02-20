@@ -292,7 +292,7 @@ export function lineString(coordinates, properties, options) {
     if (!coordinates) throw new Error('coordinates is required');
     if (coordinates.length < 2) throw new Error('coordinates must be an array of two or more positions');
     // Check if first point of LineString contains two numbers
-    if (!isNumber(coordinates[0][1]) || !isNumber(coordinates[0][1])) throw new Error('coordinates must contain numbers');
+    if (!isNumber(coordinates[0][1]) || !isNumber(coordinates[1][1])) throw new Error('coordinates must contain numbers');
 
     return feature({
         type: 'LineString',

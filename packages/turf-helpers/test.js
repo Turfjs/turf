@@ -56,6 +56,8 @@ test('lineString', t => {
 
     t.throws(() => lineString(), 'error on no coordinates');
     t.throws(() => lineString([[5, 10]]), 'coordinates must be an array of two or more positions');
+    t.throws(() => lineString([['xyz', 10]]), 'coordinates must contain numbers');
+    t.throws(() => lineString([[5, 'xyz']]), 'coordinates must contain numbers');
     t.end();
 });
 
