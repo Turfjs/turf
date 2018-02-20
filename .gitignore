@@ -4,7 +4,6 @@ main.js
 main.es.js
 main.mjs
 main.min.js
-index.js
 index.mjs
 *.min.js
 *.es5.js
