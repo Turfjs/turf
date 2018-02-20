@@ -38,7 +38,7 @@
   "homepage": "https://github.com/Turfjs/turf",
   "devDependencies": {
     "@std/esm": "*",
-    "@turf/meta": "^5.1.5",
+    "@turf/meta": "6.x",
     "@turf/truncate": "^5.1.5",
     "benchmark": "*",
     "rollup": "*",
@@ -48,7 +48,7 @@
     "@turf/boolean-point-in-polygon": "^5.1.5",
     "@turf/center": "^5.1.5",
     "@turf/explode": "^5.1.5",
-    "@turf/helpers": "^5.1.5",
+    "@turf/helpers": "6.x",
     "@turf/nearest-point": "^5.1.5"
   },
   "@std/esm": {

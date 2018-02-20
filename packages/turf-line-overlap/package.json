@@ -49,12 +49,12 @@
   },
   "dependencies": {
     "@turf/boolean-point-on-line": "^5.1.5",
-    "@turf/helpers": "^5.1.5",
-    "@turf/invariant": "^5.1.5",
+    "@turf/helpers": "6.x",
+    "@turf/invariant": "6.x",
     "@turf/line-segment": "^5.1.5",
-    "@turf/meta": "^5.1.5",
+    "@turf/meta": "6.x",
     "@turf/nearest-point-on-line": "^5.1.5",
-    "geojson-rbush": "2.1.0"
+    "geojson-rbush": "3.x"
   },
   "@std/esm": {
     "esm": "js",

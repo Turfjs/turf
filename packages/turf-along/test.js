@@ -1,8 +1,8 @@
-import path from 'path';
-import test from 'tape';
-import load from 'load-json-file';
-import { featureCollection } from '@turf/helpers';
-import along from '.';
+const path = require('path');
+const test = require('tape');
+const load = require('load-json-file');
+const { featureCollection } = require('@turf/helpers');
+const along = require('./').default;
 
 const line = load.sync(path.join(__dirname, 'test', 'fixtures', 'dc-line.geojson'));
 

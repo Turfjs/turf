@@ -50,8 +50,8 @@
     "@turf/bbox-polygon": "^5.0.4",
     "@turf/centroid": "^5.0.4",
     "@turf/distance": "^5.0.4",
-    "@turf/helpers": "^5.0.4",
-    "@turf/meta": "^5.0.4",
+    "@turf/helpers": "6.x",
+    "@turf/meta": "6.x",
     "@turf/nearest-point": "^5.0.4"
   },
   "@std/esm": {

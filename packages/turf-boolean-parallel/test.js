@@ -1,9 +1,9 @@
-import glob from 'glob';
-import path from 'path';
-import test from 'tape';
-import load from 'load-json-file';
-import { lineString, polygon } from '@turf/helpers';
-import booleanParallel from '.';
+const glob = require('glob');
+const path = require('path');
+const test = require('tape');
+const load = require('load-json-file');
+const { lineString, polygon } = require('@turf/helpers');
+const booleanParallel = require('.').default;
 
 test('turf-boolean-parallel', t => {
     // True Fixtures

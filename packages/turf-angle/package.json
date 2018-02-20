@@ -1,21 +1,16 @@
 {
   "name": "@turf/angle",
-  "version": "5.0.0",
+  "version": "6.0.0",
   "description": "turf angle module",
-  "main": "main.js",
-  "module": "main.es.js",
-  "types": "index.d.ts",
+  "main": "index",
   "files": [
     "index.js",
-    "index.d.ts",
-    "main.js",
-    "main.es.js"
+    "index.ts"
   ],
   "scripts": {
-    "pretest": "rollup -c ../../rollup.config.js",
-    "test": "node -r @std/esm test.js",
-    "posttest": "node -r @std/esm ../../scripts/validate-es5-dependencies.js",
-    "bench": "node -r @std/esm bench.js",
+    "pretest": "tsc",
+    "test": "node test.js",
+    "bench": "node bench.js",
     "docs": "node ../../scripts/generate-readmes"
   },
   "repository": {
@@ -36,25 +31,20 @@
   },
   "homepage": "https://github.com/Turfjs/turf",
   "devDependencies": {
-    "@std/esm": "*",
     "@turf/distance": "*",
     "@turf/sector": "*",
     "@turf/truncate": "*",
     "benchmark": "*",
     "glob": "*",
     "load-json-file": "*",
-    "rollup": "*",
+    "typescript": "*",
     "tape": "*",
     "write-json-file": "*"
   },
   "dependencies": {
-    "@turf/bearing": "*",
-    "@turf/helpers": "*",
-    "@turf/invariant": "*",
-    "@turf/rhumb-bearing": "*"
-  },
-  "@std/esm": {
-    "esm": "js",
-    "cjs": true
+    "@turf/bearing": "5.x",
+    "@turf/helpers": "6.x",
+    "@turf/invariant": "6.x",
+    "@turf/rhumb-bearing": "5.x"
   }
 }

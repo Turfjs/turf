@@ -1,10 +1,10 @@
-import glob from 'glob';
-import path from 'path';
-import test from 'tape';
-import load from 'load-json-file';
-import shapely from 'boolean-shapely';
-import booleanJSTS from 'boolean-jsts';
-import within from '.';
+const glob = require('glob');
+const path = require('path');
+const test = require('tape');
+const load = require('load-json-file');
+const shapely = require('boolean-shapely');
+const booleanJSTS = require('boolean-jsts');
+const within = require('./').default;
 
 test('turf-boolean-within', t => {
     // True Fixtures

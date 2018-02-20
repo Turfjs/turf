@@ -48,8 +48,8 @@
   "dependencies": {
     "@turf/area": "^5.1.5",
     "@turf/boolean-point-in-polygon": "^5.1.5",
-    "@turf/helpers": "^5.1.5",
-    "@turf/meta": "^5.1.5",
+    "@turf/helpers": "6.x",
+    "@turf/meta": "6.x",
     "rbush": "^2.0.1"
   },
   "@std/esm": {
