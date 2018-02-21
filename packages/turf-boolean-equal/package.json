@@ -1,6 +1,6 @@
 {
   "name": "@turf/boolean-equal",
-  "version": "5.1.5",
+  "version": "6.0.0",
   "description": "turf boolean-equal module",
   "main": "index",
   "files": [
@@ -45,7 +45,7 @@
     "tape": "*"
   },
   "dependencies": {
-    "@turf/clean-coords": "^5.1.5",
+    "@turf/clean-coords": "6.0.0",
     "@turf/helpers": "6.x",
     "@turf/invariant": "6.x",
     "geojson-equality": "0.1.6"
