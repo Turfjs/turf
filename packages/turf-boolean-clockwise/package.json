@@ -8,6 +8,7 @@
     "index.ts"
   ],
   "scripts": {
+    "prepare": "tsc",
     "pretest": "tsc",
     "test": "node test.js",
     "bench": "node bench.js",
