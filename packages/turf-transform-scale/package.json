@@ -54,7 +54,7 @@
     "write-json-file": "*"
   },
   "dependencies": {
-    "@turf/bbox": "^5.1.5",
+    "@turf/bbox": "6.x",
     "@turf/center": "^5.1.5",
     "@turf/centroid": "^5.1.5",
     "@turf/clone": "^5.1.5",

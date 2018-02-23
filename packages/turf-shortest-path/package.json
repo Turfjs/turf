@@ -48,11 +48,11 @@
     "write-json-file": "*"
   },
   "dependencies": {
-    "@turf/bbox": "^5.1.5",
+    "@turf/bbox": "6.x",
     "@turf/bbox-polygon": "^5.1.5",
     "@turf/boolean-point-in-polygon": "^5.1.5",
     "@turf/clean-coords": "^5.1.5",
-    "@turf/distance": "^5.1.5",
+    "@turf/distance": "6.x",
     "@turf/helpers": "6.x",
     "@turf/invariant": "6.x",
     "@turf/meta": "6.x",
