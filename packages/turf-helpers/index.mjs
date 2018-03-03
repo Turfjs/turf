@@ -101,7 +101,7 @@ export function feature(geometry, properties, options) {
     var feat = {type: 'Feature'};
     if (id === 0 || id) feat.id = id;
     if (bbox) feat.bbox = bbox;
-    feat.properties = properties || {};
+    feat.properties = properties === {} || properties === undefined ? {} : JSON.parse(JSON.stringify(properties));
     feat.geometry = geometry;
     return feat;
 }

@@ -197,9 +197,23 @@ test('feature', t => {
         ]
     };
 
-    t.equal(feature(pt).type, 'Feature');
-    t.equal(feature(line).type, 'Feature');
-    t.equal(feature(polygon).type, 'Feature');
+    const properties = {
+      foo: 'bar'
+    }
+
+    const ptAsFeature = feature(pt, properties);
+    const lineAsFeature = feature(line, properties);
+    t.equal(ptAsFeature.type, 'Feature');
+    t.equal(lineAsFeature.type, 'Feature');
+    t.equal(feature(polygon, properties).type, 'Feature');
+
+    properties.foo = 'barbar';
+    lineAsFeature.properties.foo = 'barbarbar';
+
+    t.equal(properties.foo, 'barbar')
+    t.equal(ptAsFeature.properties.foo, 'bar')
+    t.equal(lineAsFeature.properties.foo, 'barbarbar')
+
     t.deepEqual(feature(pt),
         {
             type: 'Feature',
@@ -212,6 +226,7 @@ test('feature', t => {
                 ]
             }
         });
+
 
     t.end();
 });
