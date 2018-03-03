@@ -756,10 +756,10 @@ test('meta.segmentEach -- indexes -- PolygonWithHole', t => {
         segmentIndexes.push(segmentIndex);
     });
 
-    t.deepEqual(featureIndexes, [0, 0, 0, 0, 0, 0, 0, 0, 0]);
-    t.deepEqual(multiFeatureIndexes, [0, 0, 0, 0, 0, 0, 0, 0, 0]);
-    t.deepEqual(geometryIndexes, [0, 0, 0, 0, 1, 1, 1, 1, 1]);
-    t.deepEqual(segmentIndexes, [0, 1, 2, 3, 4, 5, 6, 7, 8]);
+    t.deepEqual(featureIndexes, [0, 0, 0, 0, 0, 0, 0, 0]);
+    t.deepEqual(multiFeatureIndexes, [0, 0, 0, 0, 0, 0, 0, 0]);
+    t.deepEqual(geometryIndexes, [0, 0, 0, 0, 1, 1, 1, 1]);
+    t.deepEqual(segmentIndexes, [0, 1, 2, 3, 0, 1, 2, 3]);
     t.end();
 });
 
