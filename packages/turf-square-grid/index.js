@@ -1,5 +1,5 @@
 import distance from '@turf/distance';
-import intersect from '@turf/intersect';
+import intersect from '@turf/boolean-intersects';
 import {getType} from '@turf/invariant';
 import {polygon, featureCollection, isObject, isNumber} from '@turf/helpers';
 
