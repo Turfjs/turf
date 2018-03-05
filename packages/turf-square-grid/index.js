@@ -1,6 +1,6 @@
 import intersect from '@turf/intersect';
 import {getType} from '@turf/invariant';
-import {polygon, featureCollection, isObject, isNumber} from '@turf/helpers';
+import {polygon, featureCollection, isObject, isNumber, factors} from '@turf/helpers';
 
 /**
  * Creates a square grid from a bounding box, {@link Feature} or {@link FeatureCollection}.
