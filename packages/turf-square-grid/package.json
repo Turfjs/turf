@@ -37,7 +37,7 @@
   "homepage": "https://github.com/Turfjs/turf",
   "devDependencies": {
     "@std/esm": "*",
-    "@turf/bbox-polygon": "^5.1.5",
+    "@turf/bbox-polygon": "6.x",
     "@turf/truncate": "^5.1.5",
     "benchmark": "*",
     "rollup": "*",
@@ -47,7 +47,7 @@
   "dependencies": {
     "@turf/boolean-contains": "^5.1.5",
     "@turf/boolean-overlap": "^5.1.5",
-    "@turf/distance": "^5.1.5",
+    "@turf/distance": "6.x",
     "@turf/helpers": "6.x",
     "@turf/intersect": "^5.1.5",
     "@turf/invariant": "6.x"

@@ -1,11 +1,11 @@
-import fs from 'fs';
-import test from 'tape';
-import path from 'path';
-import load from 'load-json-file';
-import write from 'write-json-file';
-import { featureEach } from '@turf/meta';
-import { featureCollection, lineString } from '@turf/helpers';
-import lineOverlap from './';
+const fs = require('fs');
+const test = require('tape');
+const path = require('path');
+const load = require('load-json-file');
+const write = require('write-json-file');
+const { featureEach } = require('@turf/meta');
+const { featureCollection, lineString } = require('@turf/helpers');
+const lineOverlap = require('./').default;
 
 const directories = {
     in: path.join(__dirname, 'test', 'in') + path.sep,

@@ -49,3 +49,11 @@ test('bbox-polygon -- Translate BBox (Issue #1179)', t => {
     t.equal(poly.id, id, 'Id is translated')
     t.end();
 });
+
+test('bbox-polygon -- assert bbox', t => {
+    const bbox = [0, 0, 10, 10]
+    const poly = bboxPolygon(bbox)
+
+    t.deepEqual(poly.bbox, bbox)
+    t.end();
+});

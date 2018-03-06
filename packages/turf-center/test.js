@@ -1,14 +1,14 @@
-import fs from 'fs';
-import test from 'tape';
-import glob from 'glob';
-import path from 'path';
-import load from 'load-json-file';
-import write from 'write-json-file';
-import bboxPolygon from '@turf/bbox-polygon';
-import bbox from '@turf/bbox';
-import { featureEach, coordEach } from '@turf/meta';
-import { lineString, featureCollection } from '@turf/helpers';
-import center from '.';
+const fs = require('fs');
+const test = require('tape');
+const glob = require('glob');
+const path = require('path');
+const load = require('load-json-file');
+const write = require('write-json-file');
+const bboxPolygon = require('@turf/bbox-polygon').default;
+const bbox = require('@turf/bbox').default;
+const { featureEach, coordEach } = require('@turf/meta');
+const { lineString, featureCollection } = require('@turf/helpers');
+const center = require('./').default;
 
 test('turf-center', t => {
     glob.sync(path.join(__dirname, 'test', 'in', '*.geojson')).forEach(filepath => {
