@@ -169,12 +169,6 @@
 		},
 		{
 			"type": "Feature",
-			"bbox": [
-				0,
-				0,
-				5,
-				5
-			],
 			"properties": {
 				"stroke": "#00F",
 				"stroke-width": 1,
