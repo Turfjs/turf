@@ -38,7 +38,7 @@
   "devDependencies": {
     "@mapbox/geojsonhint": "*",
     "@std/esm": "*",
-    "@turf/bbox-polygon": "^5.1.5",
+    "@turf/bbox-polygon": "6.x",
     "@turf/circle": "^5.1.5",
     "@turf/destination": "6.x",
     "@turf/truncate": "^5.1.5",
