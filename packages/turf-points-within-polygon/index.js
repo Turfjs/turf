@@ -6,7 +6,7 @@ import { geomEach, featureEach } from '@turf/meta';
  * Finds {@link Points} that fall within {@link (Multi)Polygon(s)}.
  *
  * @name pointsWithinPolygon
- * @param {Feauture|FeatureCollection<Point>} points Points as input search
+ * @param {Feature|FeatureCollection<Point>} points Points as input search
  * @param {FeatureCollection|Geometry|Feature<Polygon|MultiPolygon>} polygons Points must be within these (Multi)Polygon(s)
  * @returns {FeatureCollection<Point>} points that land within at least one polygon
  * @example
