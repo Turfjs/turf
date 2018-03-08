@@ -1,0 +1,56 @@
+{
+  "name": "@turf/boolean-is-valid",
+  "version": "5.1.5",
+  "description": "turf boolean-is-valid module",
+  "main": "index",
+  "files": [
+    "index.js",
+    "index.ts"
+  ],
+  "scripts": {
+    "pretest": "tsc",
+    "test": "node test.js",
+    "bench": "node bench.js",
+    "docs": "node ../../scripts/generate-readmes"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/Turfjs/turf.git"
+  },
+  "keywords": [
+    "turf",
+    "valid",
+    "boolean",
+    "ogc"
+  ],
+  "author": "Turf Authors",
+  "contributors": [
+    "Rowan Winsemius <@rowanwins>",
+    "Denis Carriere <@DenisCarriere>"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Turfjs/turf/issues"
+  },
+  "homepage": "https://github.com/Turfjs/turf",
+  "devDependencies": {
+    "benchmark": "*",
+    "boolean-jsts": "*",
+    "boolean-shapely": "*",
+    "glob": "*",
+    "load-json-file": "*",
+    "typescript": "*",
+    "tape": "*"
+  },
+  "dependencies": {
+    "@turf/bbox": "^5.1.5",
+    "@turf/boolean-crosses": "^5.1.5",
+    "@turf/boolean-overlap": "^5.1.5",
+    "@turf/boolean-point-in-polygon": "^5.1.5",
+    "@turf/boolean-point-on-line": "^5.1.5",
+    "@turf/helpers": "6.x",
+    "@turf/invariant": "6.x",
+    "@turf/line-intersect": "^6.0.0",
+    "geojson-polygon-self-intersections": "^1.2.0"
+  }
+}
