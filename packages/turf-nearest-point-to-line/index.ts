@@ -1,4 +1,4 @@
-import { isObject } from '@turf/helpers';
+import { Properties, Feature, FeatureCollection, GeometryCollection, Point, LineString, Units } from '@turf/helpers';
 import { getType } from '@turf/invariant';
 import pointToLineDistance from '@turf/point-to-line-distance';
 import { featureEach, geomEach } from '@turf/meta';
@@ -26,16 +26,20 @@ import objectAssign from 'object-assign';
  * //addToMap
  * var addToMap = [nearest, line];
  */
-function nearestPointToLine(points, line, options) {
-    options = options || {};
-    if (!isObject(options)) throw new Error('options is invalid');
+function nearestPointToLine<P = {dist: number, [key: string]: any}>(
+    points: FeatureCollection<Point> | Feature<GeometryCollection> | GeometryCollection,
+    line: Feature<LineString> | LineString,
+    options: {
+        units?: Units,
+        properties?: Properties
+    } = {}
+): Feature<Point, P> {
     var units = options.units;
     var properties = options.properties || {};
 
     // validation
-    if (!points) throw new Error('points is required');
-    points = normalize(points);
-    if (!points.features.length) throw new Error('points must contain features');
+    const pts = normalize(points);
+    if (!pts.features.length) throw new Error('points must contain features');
 
     if (!line) throw new Error('line is required');
     if (getType(line) !== 'LineString') throw new Error('line must be a LineString');
@@ -43,7 +47,7 @@ function nearestPointToLine(points, line, options) {
     var dist = Infinity;
     var pt = null;
 
-    featureEach(points, function (point) {
+    featureEach(pts, function (point) {
         var d = pointToLineDistance(point, line, { units: units });
         if (d < dist) {
             dist = d;
@@ -64,10 +68,10 @@ function nearestPointToLine(points, line, options) {
  * Convert Collection to FeatureCollection
  *
  * @private
- * @param {FeatureCollection|GeometryCollection<Point>} points Points
+ * @param {FeatureCollection|GeometryCollection} points Points
  * @returns {FeatureCollection<Point>} points
  */
-function normalize(points) {
+function normalize(points: any): FeatureCollection<Point> {
     var features = [];
     var type = points.geometry ? points.geometry.type : points.type;
     switch (type) {
