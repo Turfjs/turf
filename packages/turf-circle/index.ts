@@ -1,5 +1,5 @@
 import destination from '@turf/destination';
-import { polygon } from '@turf/helpers';
+import { polygon, Coord, Units, Point, Properties, Feature, Polygon } from '@turf/helpers';
 
 /**
  * Takes a {@link Point} and calculates the circle polygon given a radius in degrees, radians, miles, or kilometers; and steps for precision.
@@ -21,24 +21,18 @@ import { polygon } from '@turf/helpers';
  * //addToMap
  * var addToMap = [turf.point(center), circle]
  */
-function circle(center, radius, options) {
-    // Optional params
-    options = options || {};
-    var steps = options.steps || 64;
-    var properties = options.properties;
-
-    // validation
-    if (!center) throw new Error('center is required');
-    if (!radius) throw new Error('radius is required');
-    if (typeof options !== 'object') throw new Error('options must be an object');
-    if (typeof steps !== 'number') throw new Error('steps must be a number');
-
+function circle<P = Properties>(center: number[] | Point | Feature<Point, P>, radius: number, options: {
+    steps?: number,
+    units?: Units,
+    properties?: P
+} = {}): Feature<Polygon, P> {
     // default params
-    steps = steps || 64;
-    properties = properties || center.properties || {};
+    const steps = options.steps || 64;
+    const properties: any = options.properties ? options.properties : (!Array.isArray(center) && center.type === 'Feature' && center.properties) ? center.properties : {};
 
-    var coordinates = [];
-    for (var i = 0; i < steps; i++) {
+    // main
+    const coordinates = [];
+    for (let i = 0; i < steps; i++) {
         coordinates.push(destination(center, radius, i * -360 / steps, options).geometry.coordinates);
     }
     coordinates.push(coordinates[0]);
