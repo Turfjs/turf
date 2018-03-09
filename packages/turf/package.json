@@ -139,7 +139,7 @@
     "@turf/nearest-point-on-line": "5.1.x",
     "@turf/nearest-point-to-line": "5.1.x",
     "@turf/planepoint": "5.1.x",
-    "@turf/point-grid": "5.1.x",
+    "@turf/point-grid": "6.x",
     "@turf/point-on-feature": "5.1.x",
     "@turf/point-to-line-distance": "5.1.x",
     "@turf/points-within-polygon": "5.1.x",
