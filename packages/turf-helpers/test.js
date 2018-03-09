@@ -196,23 +196,6 @@ test('feature', t => {
             ]
         ]
     };
-
-    t.equal(feature(pt).type, 'Feature');
-    t.equal(feature(line).type, 'Feature');
-    t.equal(feature(polygon).type, 'Feature');
-    t.deepEqual(feature(pt),
-        {
-            type: 'Feature',
-            properties: {},
-            geometry: {
-                type: 'Point',
-                coordinates: [
-                    67.5,
-                    32.84267363195431
-                ]
-            }
-        });
-
     t.end();
 });
 
@@ -491,5 +474,36 @@ test('turf-helpers -- polygons', t => {
     t.equal(polygons.features.length, 2);
     t.equal(polygons.id, 'hello');
     t.equal(polygons.features[0].properties.foo, 'bar');
+    t.end();
+});
+
+test('turf-helpers -- Issue #1284 - Prevent mutating Properties', t => {
+    // https://github.com/Turfjs/turf/issues/1284
+    const coord = [110, 45];
+    const properties = {foo: 'bar'}
+
+    // Create initial Feature
+    const pt = feature(coord, properties);
+    t.deepEqual(pt.properties, {foo: 'bar'})
+    t.deepEqual(properties, {foo: 'bar'})
+
+    // Mutate Original Properties
+    properties.foo = 'barbar';
+
+    // Initial Point's Properties ~should~ be mutated
+    // https://github.com/Turfjs/turf/commit/39c6c9ec29986cc540960b3e2680e9e0a65168a1#r28018260
+    t.deepEqual(pt.properties, {foo: 'barbar'})
+    t.deepEqual(properties, {foo: 'barbar'})
+
+    // Include this test case if initial point should ~not~ have it's properties mutated
+    t.skip(pt.properties, {foo: 'bar'})
+
+    // Create Mutated Point
+    const ptMutate = feature(coord, properties);
+    t.deepEqual(ptMutate.properties, {foo: 'barbar'})
+    t.deepEqual(properties, {foo: 'barbar'})
+
+    // New Features should contain empty properties {}
+    t.deepEqual(feature(coord).properties, {});
     t.end();
 });
