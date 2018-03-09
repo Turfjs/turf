@@ -1,7 +1,6 @@
-import distance from '@turf/distance';
 import intersect from '@turf/intersect';
 import {getType} from '@turf/invariant';
-import {polygon, featureCollection, isObject, isNumber} from '@turf/helpers';
+import {polygon, featureCollection, isObject, isNumber, factors} from '@turf/helpers';
 
 /**
  * Creates a square grid from a bounding box, {@link Feature} or {@link FeatureCollection}.
@@ -10,7 +9,7 @@ import {polygon, featureCollection, isObject, isNumber} from '@turf/helpers';
  * @param {Array<number>} bbox extent in [minX, minY, maxX, maxY] order
  * @param {number} cellSide of each cell, in units
  * @param {Object} [options={}] Optional parameters
- * @param {string} [options.units='kilometers'] used in calculating cellSide, can be degrees, radians, miles, or kilometers
+ * @param {string} [options.units='degrees'] used in calculating cellSide, can be degrees, radians, miles, or kilometers
  * @param {Feature<Polygon|MultiPolygon>} [options.mask] if passed a Polygon or MultiPolygon, the grid Points will be created only inside it
  * @param {Object} [options.properties={}] passed to each point of the grid
  * @returns {FeatureCollection<Polygon>} grid a grid of polygons
@@ -48,14 +47,26 @@ function squareGrid(bbox, cellSide, options) {
     var east = bbox[2];
     var north = bbox[3];
 
-    var xFraction = cellSide / (distance([west, south], [east, south], options));
-    var cellWidth = xFraction * (east - west);
-    var yFraction = cellSide / (distance([west, south], [west, north], options));
-    var cellHeight = yFraction * (north - south);
+    // var xFraction = cellSide / (distance([west, south], [east, south], options));
+    // var cellWidth = xFraction * (east - west);
+    // var yFraction = cellSide / (distance([west, south], [west, north], options));
+    // var cellHeight = yFraction * (north - south);
 
     // rows & columns
     var bboxWidth = (east - west);
     var bboxHeight = (north - south);
+
+    var units = options.units;
+    if (units && typeof units !== 'string') throw new Error('units must be a string');
+    var factor = factors[units || 'degrees'];
+    if (!factor) throw new Error(units + ' units is invalid');
+
+    var degreesFactors = factor / factors['degrees'];
+
+    var degreesCellSide = cellSide / degreesFactors;
+    var cellWidth = degreesCellSide;
+    var cellHeight = degreesCellSide;
+
     var columns = Math.floor(bboxWidth / cellWidth);
     var rows = Math.floor(bboxHeight / cellHeight);
 
