@@ -8,7 +8,11 @@ import {
     feature,
     lineString,
     convertLength,
-    isObject
+    Feature,
+    Point,
+    LineString,
+    Coord,
+    Units
 } from '@turf/helpers';
 
 /**
@@ -16,7 +20,7 @@ import {
  * minimum distance between the point and any segment of the `LineString`.
  *
  * @name pointToLineDistance
- * @param {Coord} pt Feature or Geometry
+ * @param {Feature<Point>|Array<number>} pt Feature or Geometry
  * @param {Feature<LineString>} line GeoJSON Feature or Geometry
  * @param {Object} [options={}] Optional parameters
  * @param {string} [options.units='kilometers'] can be anything supported by turf/convertLength, eg degrees, radians, miles, or kilometers
@@ -29,13 +33,13 @@ import {
  * var distance = turf.pointToLineDistance(pt, line, {units: 'miles'});
  * //=69.11854715938406
  */
-function pointToLineDistance(pt, line, options) {
+function pointToLineDistance(pt: Coord, line: Feature<LineString> | LineString, options: {
+    units?: Units,
+    method?: 'geodesic' | 'planar',
+} = {}): number {
     // Optional parameters
-    options = options || {};
-    if (!isObject(options)) throw new Error('options is invalid');
-
     if (!options.method) options.method = 'geodesic';
-    if (!options.unit) options.unit = 'kilometers';
+    if (!options.units) options.units = 'kilometers';
 
     // validation
     if (!pt) throw new Error('pt is required');

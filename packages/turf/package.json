@@ -93,7 +93,7 @@
     "@turf/center-median": "5.1.x",
     "@turf/center-of-mass": "5.1.x",
     "@turf/centroid": "5.1.x",
-    "@turf/circle": "5.1.x",
+    "@turf/circle": "6.x",
     "@turf/clean-coords": "5.1.x",
     "@turf/clone": "5.1.x",
     "@turf/clusters": "5.1.x",

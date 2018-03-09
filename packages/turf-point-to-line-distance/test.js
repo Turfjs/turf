@@ -1,11 +1,11 @@
-import fs from 'fs';
-import test from 'tape';
-import path from 'path';
-import load from 'load-json-file';
-import write from 'write-json-file';
-import circle from '@turf/circle';
-import { point, lineString, round } from '@turf/helpers';
-import pointToLineDistance from '.';
+const fs = require('fs');
+const test = require('tape');
+const path = require('path');
+const load = require('load-json-file');
+const write = require('write-json-file');
+const circle = require('@turf/circle').default;
+const { point, lineString, round } = require('@turf/helpers');
+const pointToLineDistance = require('.').default;
 
 const directories = {
     in: path.join(__dirname, 'test', 'in') + path.sep,
@@ -53,7 +53,6 @@ test('turf-point-to-line-distance -- throws', t => {
 
     t.throws(() => pointToLineDistance(null, line), /pt is required/, 'missing point');
     t.throws(() => pointToLineDistance(pt, null), /line is required/, 'missing line');
-    t.throws(() => pointToLineDistance(pt, line, 'invalid'), /options is invalid/, 'invalid options');
     t.throws(() => pointToLineDistance(pt, line, {units: 'invalid'}), /units is invalid/, 'invalid units');
     t.throws(() => pointToLineDistance(line, line), /Invalid input to point: must be a Point, given LineString/, 'invalid line');
     t.throws(() => pointToLineDistance(pt, pt), /Invalid input to line: must be a LineString, given Point/, 'invalid point');

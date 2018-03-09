@@ -2,20 +2,16 @@
   "name": "@turf/point-to-line-distance",
   "version": "5.1.5",
   "description": "turf point-to-line-distance module",
-  "main": "main.js",
-  "module": "main.es.js",
-  "types": "index.d.ts",
+  "main": "index",
   "files": [
     "index.js",
-    "index.d.ts",
-    "main.js",
-    "main.es.js"
+    "index.ts"
   ],
   "scripts": {
-    "pretest": "rollup -c ../../rollup.config.js",
-    "test": "node -r @std/esm test.js",
-    "posttest": "node -r @std/esm ../../scripts/validate-es5-dependencies.js",
-    "bench": "node -r @std/esm bench.js",
+    "prepare": "tsc",
+    "pretest": "tsc",
+    "test": "node test.js",
+    "bench": "node bench.js",
     "docs": "node ../../scripts/generate-readmes"
   },
   "repository": {
@@ -37,11 +33,10 @@
   },
   "homepage": "https://github.com/Turfjs/turf",
   "devDependencies": {
-    "@std/esm": "*",
-    "@turf/circle": "^5.1.5",
+    "@turf/circle": "*",
     "benchmark": "*",
     "load-json-file": "*",
-    "rollup": "*",
+    "typescript": "*",
     "tape": "*",
     "write-json-file": "*"
   },
@@ -54,9 +49,5 @@
     "@turf/projection": "^5.1.5",
     "@turf/rhumb-bearing": "^5.1.5",
     "@turf/rhumb-distance": "^5.1.5"
-  },
-  "@std/esm": {
-    "esm": "js",
-    "cjs": true
   }
 }
