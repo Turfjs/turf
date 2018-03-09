@@ -42,7 +42,7 @@
   "devDependencies": {
     "@std/esm": "*",
     "@turf/envelope": "^5.1.5",
-    "@turf/point-grid": "^5.1.5",
+    "@turf/point-grid": "6.x",
     "@turf/random": "^5.1.5",
     "@turf/rhumb-destination": "^5.1.5",
     "@turf/truncate": "^5.1.5",
