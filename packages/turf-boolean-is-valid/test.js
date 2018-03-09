@@ -5,7 +5,7 @@ const load = require('load-json-file');
 // const shapely = require('boolean-shapely');
 const isValid = require('./').default;
 
-test('turf-boolean-is-valid', t => {
+test('turf-boolean-valid', t => {
     // True Fixtures
     glob.sync(path.join(__dirname, 'test', 'true', '**', '*.geojson')).forEach(filepath => {
 
@@ -32,3 +32,8 @@ test('turf-boolean-is-valid', t => {
     });
     t.end();
 });
+
+test('turf-boolean-valid -- obvious fails', t => {
+    t.false(isValid({foo: "bar"}));
+    t.end();
+})

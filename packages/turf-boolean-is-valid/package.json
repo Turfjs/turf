@@ -1,7 +1,7 @@
 {
-  "name": "@turf/boolean-is-valid",
+  "name": "@turf/boolean-valid",
   "version": "6.0.0",
-  "description": "turf boolean-is-valid module",
+  "description": "turf boolean-valid module",
   "main": "index",
   "files": [
     "index.js",

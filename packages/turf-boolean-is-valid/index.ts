@@ -7,18 +7,22 @@ import lineIntersect from '@turf/line-intersect';
 import isPointOnLine from '@turf/boolean-point-on-line';
 
 /**
- * booleanIsValid checks if the geometry is a valid according to the OGC Simple Feature Specification.
+ * booleanValid checks if the geometry is a valid according to the OGC Simple Feature Specification.
  *
- * @name booleanIsValid
+ * @name booleanValid
  * @param {Geometry|Feature<any>} feature GeoJSON Feature or Geometry
  * @returns {boolean} true/false
  * @example
  * var line = turf.lineString([[1, 1], [1, 2], [1, 3], [1, 4]]);
  *
- * turf.booleanIsValid(line, point);
- * //=true
+ * turf.booleanValid(line); // => true
+ * turf.booleanValid({foo: "bar"}); // => false
  */
-export default function booleanIsValid(feature: Feature<any> | Geometry) {
+export default function booleanValid(feature: Feature<any> | Geometry) {
+    // Automatic False
+    if (!feature.type) return false;
+
+    // Parse GeoJSON
     const geom = getGeom(feature);
     const type = getType(feature);
     const coords: any = getCoords(feature);
@@ -70,6 +74,7 @@ export default function booleanIsValid(feature: Feature<any> | Geometry) {
             }
         }
         return true
+    default: return false;
     }
 }
 
