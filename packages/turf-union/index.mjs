@@ -3,7 +3,7 @@ import { getCoords } from '@turf/invariant';
 import { multiPolygon, polygon } from '@turf/helpers';
 
 /**
- * Takes two or more {@link (Multi)Polygon(s)} and returns a combined polygon. If the input polygons are not contiguous, this function returns a {@link MultiPolygon} feature.
+ * Takes two {@link (Multi)Polygon(s)} and returns a combined polygon. If the input polygons are not contiguous, this function returns a {@link MultiPolygon} feature.
  *
  * @name union
  * @param {Feature<Polygon|MultiPolygon>} polygon1 input Polygon feature

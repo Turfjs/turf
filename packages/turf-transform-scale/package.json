@@ -44,7 +44,7 @@
   "homepage": "https://github.com/Turfjs/turf",
   "devDependencies": {
     "@std/esm": "*",
-    "@turf/bbox-polygon": "^5.1.5",
+    "@turf/bbox-polygon": "6.x",
     "@turf/hex-grid": "^5.1.5",
     "@turf/truncate": "^5.1.5",
     "benchmark": "*",
@@ -54,7 +54,7 @@
     "write-json-file": "*"
   },
   "dependencies": {
-    "@turf/bbox": "^5.1.5",
+    "@turf/bbox": "6.x",
     "@turf/center": "^5.1.5",
     "@turf/centroid": "^5.1.5",
     "@turf/clone": "^5.1.5",

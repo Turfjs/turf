@@ -1,7 +1,7 @@
 
 {
   "name": "@turf/boolean-point-in-polygon",
-  "version": "5.1.5",
+  "version": "6.0.0",
   "description": "turf boolean-point-in-polygon module",
   "main": "index",
   "files": [
@@ -9,6 +9,7 @@
     "index.ts"
   ],
   "scripts": {
+    "prepare": "tsc",
     "pretest": "tsc",
     "test": "node test.js",
     "bench": "node bench.js",

@@ -43,7 +43,7 @@
   },
   "dependencies": {
     "@turf/circle": "^5.1.5",
-    "@turf/destination": "^5.1.5",
+    "@turf/destination": "6.x",
     "@turf/helpers": "6.x"
   },
   "@std/esm": {

@@ -43,7 +43,7 @@
     "write-json-file": "*"
   },
   "dependencies": {
-    "@turf/bbox": "^5.1.5",
+    "@turf/bbox": "6.x",
     "@turf/helpers": "6.x",
     "@turf/meta": "6.x",
     "@turf/union": "^5.1.5",

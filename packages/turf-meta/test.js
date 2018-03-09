@@ -756,10 +756,10 @@ test('meta.segmentEach -- indexes -- PolygonWithHole', t => {
         segmentIndexes.push(segmentIndex);
     });
 
-    t.deepEqual(featureIndexes, [0, 0, 0, 0, 0, 0, 0, 0, 0]);
-    t.deepEqual(multiFeatureIndexes, [0, 0, 0, 0, 0, 0, 0, 0, 0]);
-    t.deepEqual(geometryIndexes, [0, 0, 0, 0, 1, 1, 1, 1, 1]);
-    t.deepEqual(segmentIndexes, [0, 1, 2, 3, 4, 5, 6, 7, 8]);
+    t.deepEqual(featureIndexes, [0, 0, 0, 0, 0, 0, 0, 0]);
+    t.deepEqual(multiFeatureIndexes, [0, 0, 0, 0, 0, 0, 0, 0]);
+    t.deepEqual(geometryIndexes, [0, 0, 0, 0, 1, 1, 1, 1]);
+    t.deepEqual(segmentIndexes, [0, 1, 2, 3, 0, 1, 2, 3]);
     t.end();
 });
 
@@ -995,3 +995,26 @@ test('meta -- findPoint', t => {
     t.deepEqual(meta.findPoint(lines, {coordIndex: -1, featureIndex: -1}), point([-10, -10]), 'findPoint (last) -- lines')
     t.end()
 })
+
+test('meta -- segmentEach -- Issue #1273', t => {
+    // https://github.com/Turfjs/turf/issues/1273
+    const poly = polygon([
+        // Outer Ring
+        // Segment = 0
+        // Geometries = 0,1,2
+        [[10, 10], [50, 30], [30, 40], [10, 10]],
+        // Inner Ring
+        // Segment => 1
+        // Geometries => 0,1,2
+        [[-10, -10], [-50, -30], [-30, -40], [-10, -10]]
+    ]);
+    const segmentIndexes = [];
+    const geometryIndexes = [];
+    meta.segmentEach(poly, (line, featureIndex, multiFeatureIndex, segmentIndex, geometryIndex) => {
+        segmentIndexes.push(segmentIndex);
+        geometryIndexes.push(geometryIndex);
+    });
+    t.deepEqual(segmentIndexes, [0, 0, 0, 1, 1, 1]);
+    t.deepEqual(geometryIndexes, [0, 1, 2, 0, 1, 2]);
+    t.end();
+});
