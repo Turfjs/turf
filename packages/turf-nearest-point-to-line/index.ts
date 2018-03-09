@@ -2,7 +2,7 @@ import { Properties, Feature, FeatureCollection, GeometryCollection, Point, Line
 import { getType } from '@turf/invariant';
 import pointToLineDistance from '@turf/point-to-line-distance';
 import { featureEach, geomEach } from '@turf/meta';
-import objectAssign from 'object-assign';
+import * as objectAssign from 'object-assign';
 
 /**
  * Returns the closest {@link Point|point}, of a {@link FeatureCollection|collection} of points, to a {@link LineString|line}.

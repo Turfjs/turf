@@ -1,12 +1,12 @@
-import fs from 'fs';
-import test from 'tape';
-import path from 'path';
-import load from 'load-json-file';
-import write from 'write-json-file';
-import circle from '@turf/circle';
-import truncate from '@turf/truncate';
-import { geometryCollection, featureCollection, point, lineString, round } from '@turf/helpers';
-import nearestPointToLine from '.';
+const fs = require('fs');
+const test = require('tape');
+const path = require('path');
+const load = require('load-json-file');
+const write = require('write-json-file');
+const circle = require('@turf/circle').default;
+const truncate = require('@turf/truncate').default;
+const { geometryCollection, featureCollection, point, lineString, round } = require('@turf/helpers');
+const nearestPointToLine = require('./').default;
 
 const directories = {
     in: path.join(__dirname, 'test', 'in') + path.sep,
@@ -52,11 +52,12 @@ test('turf-nearest-point-to-line -- throws', t => {
     const points = featureCollection([point([0, 0]), point([0, 1])]);
     const line = lineString([[1, 1], [-1, 1]]);
 
-    t.throws(() => nearestPointToLine(null, line), /points is required/, 'missing points');
-    t.throws(() => nearestPointToLine(points, null), /line is required/, 'missing line');
+    // Handled by Typescript
+    // t.throws(() => nearestPointToLine(null, line), /points is required/, 'missing points');
+    // t.throws(() => nearestPointToLine(points, null), /line is required/, 'missing line');
+    // t.throws(() => nearestPointToLine(points, line, 'invalid'), /options is invalid/, 'options is invalid');
 
     t.throws(() => nearestPointToLine(points, line, {units: 'invalid'}), /units is invalid/, 'invalid units');
-    t.throws(() => nearestPointToLine(points, line, 'invalid'), /options is invalid/, 'options is invalid');
     t.throws(() => nearestPointToLine(points, points), /line must be a LineString/, 'invalid line');
     t.throws(() => nearestPointToLine(line, line), /points must be a Point Collection/, 'invalid points');
 
