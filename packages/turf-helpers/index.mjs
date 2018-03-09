@@ -102,6 +102,11 @@ export function feature(geometry, properties, options) {
     if (id === 0 || id) feat.id = id;
     if (bbox) feat.bbox = bbox;
     feat.properties = properties || {};
+
+    // Feature Properties ~should~ be able to be mutated
+    // Performance loss of 90x would occur if we prevent properties from being mutated
+    // https://github.com/Turfjs/turf/commit/39c6c9ec29986cc540960b3e2680e9e0a65168a1#r28018260
+    // feat.properties = properties === {} || properties === undefined ? {} : JSON.parse(JSON.stringify(properties));
     feat.geometry = geometry;
     return feat;
 }

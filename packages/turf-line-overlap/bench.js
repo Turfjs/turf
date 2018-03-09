@@ -1,8 +1,8 @@
-import fs from 'fs';
-import path from 'path';
-import load from 'load-json-file';
-import Benchmark from 'benchmark';
-import lineOverlap from './';
+const fs = require('fs');
+const path = require('path');
+const load = require('load-json-file');
+const Benchmark = require('benchmark');
+const lineOverlap = require('./').default;
 
 const directory = path.join(__dirname, 'test', 'in') + path.sep;
 const fixtures = fs.readdirSync(directory).map(filename => {

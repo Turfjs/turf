@@ -21,6 +21,7 @@ const {
  */
 const suite = new Benchmark.Suite('turf-helpers');
 suite
+    .add('point + properties', () => point([5, 10], {foo: 'bar'}))
     .add('point', () => point([5, 10]))
     .add('round', () => round(120.123))
     .add('lineString', () => lineString([[5, 10], [20, 40]]))

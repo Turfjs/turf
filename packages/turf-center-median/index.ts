@@ -1,7 +1,10 @@
 import centerMean from '@turf/center-mean';
 import distance from '@turf/distance';
 import centroid from '@turf/centroid';
-import { isNumber, point, isObject, featureCollection } from '@turf/helpers';
+import {
+    isNumber, point, isObject, featureCollection,
+    FeatureCollection, Feature, Point
+} from '@turf/helpers';
 import { featureEach } from '@turf/meta';
 
 /**
@@ -56,7 +59,13 @@ import { featureEach } from '@turf/meta';
  * //addToMap
  * var addToMap = [points, medianCenter]
  */
-function centerMedian(features, options) {
+function centerMedian(
+    features: FeatureCollection<any>,
+    options: { weight?: string, tolerance?: number, counter?: number} = {}
+): Feature<Point, {
+    medianCandidates: Array<Position>,
+    [key: string]: any
+}> {
     // Optional params
     options = options || {};
     if (!isObject(options)) throw new Error('options is invalid');
@@ -68,7 +77,7 @@ function centerMedian(features, options) {
     var meanCenter = centerMean(features, {weight: options.weight});
 
     // Calculate center of every feature:
-    var centroids = featureCollection([]);
+    var centroids: any = featureCollection([]);
     featureEach(features, function (feature) {
         centroids.features.push(centroid(feature, {weight: feature.properties[weightTerm]}));
     });
@@ -96,7 +105,7 @@ function findMedian(candidateMedian, previousCandidate, centroids, counter) {
     var candidateYsum = 0;
     var kSum = 0;
     var centroidCount = 0;
-    featureEach(centroids, function (theCentroid) {
+    featureEach(centroids, function (theCentroid: any) {
         var weightValue = theCentroid.properties.weight;
         var weight = (weightValue === undefined || weightValue === null) ? 1 : weightValue;
         weight = Number(weight);

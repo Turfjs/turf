@@ -723,10 +723,17 @@ export function segmentEach(geojson, callback) {
 
         // Generate 2-vertex line segments
         var previousCoords;
-        if (coordEach(feature, function (currentCoord, coordIndex, featureIndexCoord, mutliPartIndexCoord, geometryIndex) {
+        var previousFeatureIndex = 0;
+        var previousMultiIndex = 0;
+        var prevGeomIndex = 0;
+        if (coordEach(feature, function (currentCoord, coordIndex, featureIndexCoord, multiPartIndexCoord, geometryIndex) {
             // Simulating a meta.coordReduce() since `reduce` operations cannot be stopped by returning `false`
-            if (previousCoords === undefined) {
+            if (previousCoords === undefined || featureIndex > previousFeatureIndex || multiPartIndexCoord > previousMultiIndex || geometryIndex > prevGeomIndex) {
                 previousCoords = currentCoord;
+                previousFeatureIndex = featureIndex;
+                previousMultiIndex = multiPartIndexCoord;
+                prevGeomIndex = geometryIndex;
+                segmentIndex = 0;
                 return;
             }
             var currentSegment = lineString([previousCoords, currentCoord], feature.properties);

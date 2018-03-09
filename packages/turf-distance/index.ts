@@ -1,14 +1,15 @@
 import { getCoord } from '@turf/invariant';
-import { radiansToLength, isObject, degreesToRadians } from '@turf/helpers';
+import {
+    radiansToLength, isObject, degreesToRadians,
+    Coord, Units
+} from '@turf/helpers';
 
 //http://en.wikipedia.org/wiki/Haversine_formula
 //http://www.movable-type.co.uk/scripts/latlong.html
 
 /**
- * Calculates the distance between two {@link Point|points} in degrees, radians,
- * miles, or kilometers. This uses the
- * [Haversine formula](http://en.wikipedia.org/wiki/Haversine_formula)
- * to account for global curvature.
+ * Calculates the distance between two {@link Point|points} in degrees, radians, miles, or kilometers.
+ * This uses the [Haversine formula](http://en.wikipedia.org/wiki/Haversine_formula) to account for global curvature.
  *
  * @name distance
  * @param {Coord} from origin point
@@ -28,12 +29,9 @@ import { radiansToLength, isObject, degreesToRadians } from '@turf/helpers';
  * from.properties.distance = distance;
  * to.properties.distance = distance;
  */
-function distance(from, to, options) {
-    // Optional parameters
-    options = options || {};
-    if (!isObject(options)) throw new Error('options is invalid');
-    var units = options.units;
-
+function distance(from: Coord, to: Coord, options: {
+    units?: Units,
+} = {}) {
     var coordinates1 = getCoord(from);
     var coordinates2 = getCoord(to);
     var dLat = degreesToRadians((coordinates2[1] - coordinates1[1]));
@@ -44,7 +42,7 @@ function distance(from, to, options) {
     var a = Math.pow(Math.sin(dLat / 2), 2) +
           Math.pow(Math.sin(dLon / 2), 2) * Math.cos(lat1) * Math.cos(lat2);
 
-    return radiansToLength(2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a)), units);
+    return radiansToLength(2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a)), options.units);
 }
 
 export default distance;
