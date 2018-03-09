@@ -38,7 +38,7 @@
   "devDependencies": {
     "@std/esm": "*",
     "@turf/bbox-polygon": "6.x",
-    "@turf/truncate": "^5.1.5",
+    "@turf/truncate": "6.x",
     "benchmark": "*",
     "rollup": "*",
     "tape": "*",

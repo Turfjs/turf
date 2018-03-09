@@ -40,7 +40,7 @@
   "devDependencies": {
     "@std/esm": "*",
     "@turf/random": "^5.1.5",
-    "@turf/truncate": "^5.1.5",
+    "@turf/truncate": "6.x",
     "benchmark": "*",
     "load-json-file": "*",
     "rollup": "*",

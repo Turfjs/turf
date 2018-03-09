@@ -167,7 +167,7 @@
     "@turf/transform-scale": "5.1.x",
     "@turf/transform-translate": "5.1.x",
     "@turf/triangle-grid": "5.1.x",
-    "@turf/truncate": "5.1.x",
+    "@turf/truncate": "6.x",
     "@turf/union": "5.1.x",
     "@turf/unkink-polygon": "5.1.x",
     "@turf/voronoi": "5.1.x"
