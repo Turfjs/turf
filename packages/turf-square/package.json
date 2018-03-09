@@ -41,8 +41,8 @@
     "tape": "*"
   },
   "dependencies": {
-    "@turf/distance": "^5.1.5",
-    "@turf/helpers": "^5.1.5"
+    "@turf/distance": "6.x",
+    "@turf/helpers": "6.x"
   },
   "@std/esm": {
     "esm": "js",

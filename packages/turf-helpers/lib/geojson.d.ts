@@ -234,5 +234,6 @@ export interface Feature<G = Geometry | GeometryCollection, P = Properties> exte
  * It is possible for this array to be empty.
  */
 export interface FeatureCollection<G = Geometry | GeometryCollection, P = Properties> extends GeoJSONObject {
+    type: "FeatureCollection";
     features: Array<Feature<G, P>>;
 }

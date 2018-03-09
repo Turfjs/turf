@@ -1,8 +1,10 @@
+.rpt2_cache
 dist
 main.js
 main.es.js
 main.mjs
 main.min.js
+index.mjs
 *.min.js
 *.es5.js
 .esm-cache

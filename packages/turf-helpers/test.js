@@ -1,45 +1,13 @@
-import test from 'tape';
-import {
-    point,
-    polygon,
-    lineString,
-    feature,
-    featureCollection,
-    multiLineString,
-    multiPoint,
-    multiPolygon,
-    geometryCollection,
-    radiansToLength,
-    lengthToRadians,
-    lengthToDegrees,
-    radiansToDegrees,
-    degreesToRadians,
-    bearingToAzimuth,
-    convertLength,
-    convertArea,
-    round,
-    isObject,
-    isNumber,
-    earthRadius
-} from './';
-import * as turf from './'
-
-const foo = {
-    /**
-     * HELLO!
-     */
-    hello: 'world',
-    /**
-     * This is a fruit
-     */
-    apple: 3,
-    /**
-     * This is yellow
-     */
-    banana: 6
-}
-
-
+const test = require('tape');
+const {
+    point, polygon, lineString,
+    feature, featureCollection, geometryCollection,
+    multiLineString, multiPoint, multiPolygon,
+    radiansToLength, lengthToRadians, lengthToDegrees, radiansToDegrees, degreesToRadians,
+    bearingToAzimuth, convertLength, convertArea,
+    round, isObject, isNumber, earthRadius
+} = require('./');
+const turf = require('./');
 
 test('point', t => {
     const ptArray = point([5, 10], {name: 'test point'});
@@ -88,6 +56,8 @@ test('lineString', t => {
 
     t.throws(() => lineString(), 'error on no coordinates');
     t.throws(() => lineString([[5, 10]]), 'coordinates must be an array of two or more positions');
+    t.throws(() => lineString([['xyz', 10]]), 'coordinates must contain numbers');
+    t.throws(() => lineString([[5, 'xyz']]), 'coordinates must contain numbers');
     t.end();
 });
 

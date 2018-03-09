@@ -38,9 +38,9 @@
   "devDependencies": {
     "@mapbox/geojsonhint": "*",
     "@std/esm": "*",
-    "@turf/bbox-polygon": "^5.1.5",
+    "@turf/bbox-polygon": "6.x",
     "@turf/circle": "^5.1.5",
-    "@turf/destination": "^5.1.5",
+    "@turf/destination": "6.x",
     "@turf/truncate": "^5.1.5",
     "benchmark": "*",
     "glob": "*",
@@ -50,8 +50,8 @@
     "write-json-file": "*"
   },
   "dependencies": {
-    "@turf/helpers": "^5.1.5",
-    "@turf/invariant": "^5.1.5",
+    "@turf/helpers": "6.x",
+    "@turf/invariant": "6.x",
     "@turf/rhumb-destination": "^5.1.5",
     "@turf/transform-rotate": "^5.1.5"
   },

@@ -67,3 +67,12 @@ test('turf-line-slice-along -- route2', function (t) {
     t.deepEqual(sliced.geometry.coordinates[sliced.geometry.coordinates.length - 1], end_point.geometry.coordinates);
     t.end();
 });
+
+test('turf-line-slice -- start longer than line length', function (t) {
+    var start = 500000;
+    var stop = 800000;
+    var options = {units: 'miles'};
+
+    t.throws(() => lineSliceAlong(line1, start, stop, options), 'Start position is beyond line');
+    t.end();
+});

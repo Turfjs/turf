@@ -1,9 +1,9 @@
-import glob from 'glob';
-import path from 'path';
-import test from 'tape';
-import load from 'load-json-file';
-import { point, lineString } from '@turf/helpers';
-import isClockwise from '.';
+const glob = require('glob');
+const path = require('path');
+const test = require('tape');
+const load = require('load-json-file');
+const { point, lineString } = require('@turf/helpers');
+const isClockwise = require('./').default;
 
 test('isClockwise#fixtures', t => {
     // True Fixtures
@@ -42,9 +42,9 @@ test('isClockwise -- Geometry types', t => {
     t.end();
 });
 
-test('isClockwise -- throws', t => {
-    const pt = point([-10, -33]);
-    t.throws(() => isClockwise(pt), 'feature geometry not supported');
+// test('isClockwise -- throws', t => {
+//     const pt = point([-10, -33]);
+//     t.throws(() => isClockwise(pt), 'feature geometry not supported');
 
-    t.end();
-});
+//     t.end();
+// });

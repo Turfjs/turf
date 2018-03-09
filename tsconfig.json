@@ -1,14 +1,11 @@
 {
-    "compilerOptions": {
-        "module": "es6",
-        "noImplicitAny": true,
-        "moduleResolution": "node"
+	"compilerOptions": {
+		"module": "commonjs",
+		"target": "es5",
+		"moduleResolution": "node",
     },
     "exclude": [
         "node_modules",
         "packages/*/node_modules"
-    ],
-    "filesGlob": [
-        "types.ts"
     ]
 }

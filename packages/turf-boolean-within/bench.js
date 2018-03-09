@@ -1,8 +1,8 @@
-import path from 'path';
-import glob from 'glob';
-import load from 'load-json-file';
-import within from './';
-import Benchmark from 'benchmark';
+const path = require('path');
+const glob = require('glob');
+const load = require('load-json-file');
+const Benchmark = require('benchmark');
+const within = require('./').default;
 
 /**
  * Benchmark Results

@@ -38,7 +38,7 @@ function lineSliceAlong(line, startDist, stopDist, options) {
     if (line.type === 'Feature') coords = line.geometry.coordinates;
     else if (line.type === 'LineString') coords = line.coordinates;
     else throw new Error('input must be a LineString Feature or Geometry');
-
+    var origCoordsLength = coords.length
     var travelled = 0;
     var overshot, direction, interpolated;
     for (var i = 0; i < coords.length; i++) {
@@ -76,6 +76,8 @@ function lineSliceAlong(line, startDist, stopDist, options) {
 
         travelled += distance(coords[i], coords[i + 1], options);
     }
+
+    if (travelled < startDist && coords.length === origCoordsLength) throw new Error('Start position is beyond line');
     return lineString(coords[coords.length - 1]);
 }
 

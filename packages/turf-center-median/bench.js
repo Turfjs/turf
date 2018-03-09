@@ -1,6 +1,6 @@
-import Benchmark from 'benchmark';
-import centerMedian from '.';
-import { randomPoint } from '@turf/random';
+const Benchmark = require('benchmark');
+const { randomPoint } = require('@turf/random');
+const centerMedian = require('.').default;
 
 /**
  * Benchmark Results

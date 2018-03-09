@@ -1,5 +1,5 @@
-import test from 'tape';
-import bboxPolygon from '.';
+const test = require('tape');
+const bboxPolygon = require('./').default;
 
 test('bbox-polygon', t => {
     const poly = bboxPolygon([0, 0, 10, 10]);
@@ -47,5 +47,13 @@ test('bbox-polygon -- Translate BBox (Issue #1179)', t => {
     t.deepEqual(poly.properties, properties, 'Properties is translated')
     t.deepEqual(poly.bbox, bbox, 'BBox is translated')
     t.equal(poly.id, id, 'Id is translated')
+    t.end();
+});
+
+test('bbox-polygon -- assert bbox', t => {
+    const bbox = [0, 0, 10, 10]
+    const poly = bboxPolygon(bbox)
+
+    t.deepEqual(poly.bbox, bbox)
     t.end();
 });

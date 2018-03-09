@@ -1,8 +1,8 @@
-import path from 'path';
-import glob from 'glob';
-import Benchmark from 'benchmark';
-import load from 'load-json-file';
-import crosses from './';
+const path = require('path');
+const glob = require('glob');
+const Benchmark = require('benchmark');
+const load = require('load-json-file');
+const crosses = require('./').default;
 
 /**
  * Benchmark Results

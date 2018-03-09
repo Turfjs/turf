@@ -1,8 +1,8 @@
-import Benchmark from 'benchmark';
-import path from 'path';
-import fs from 'fs';
-import load from 'load-json-file';
-import bezierSpline from './';
+const fs = require('fs');
+const path = require('path');
+const load = require('load-json-file');
+const Benchmark = require('benchmark');
+const bezierSpline = require('./').default;
 
 const directory = path.join(__dirname, 'test', 'in') + path.sep;
 const fixtures = fs.readdirSync(directory).map(filename => {

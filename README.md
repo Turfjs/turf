@@ -4,13 +4,16 @@
 [![Version Badge][npm-img]][npm-url]
 [![Travis CI](https://travis-ci.org/Turfjs/turf.svg?branch=master)](https://travis-ci.org/Turfjs/turf)
 [![Gitter chat][gitter-img]][gitter-url]
-[![Coverage Status](https://coveralls.io/repos/github/Turfjs/turf/badge.svg)](https://coveralls.io/github/Turfjs/turf)
+[![Backers on Open Collective][oc-backer-badge]](#backers) 
+[![Sponsors on Open Collective][oc-sponsor-badge]](#sponsors) [![Coverage Status](https://coveralls.io/repos/github/Turfjs/turf/badge.svg)](https://coveralls.io/github/Turfjs/turf)
 [![Greenkeeper badge](https://badges.greenkeeper.io/Turfjs/turf.svg)](https://greenkeeper.io/)
 
 [npm-img]: https://img.shields.io/npm/v/@turf/turf.svg
 [npm-url]: https://www.npmjs.com/package/@turf/turf
 [gitter-img]: https://badges.gitter.im/Turfjs/turf.svg
 [gitter-url]: https://gitter.im/Turfjs/turf
+[oc-backer-badge]: https://opencollective.com/turf/backers/badge.svg
+[oc-sponsor-badge]: https://opencollective.com/turf/sponsors/badge.svg
 
 ***A modular geospatial engine written in JavaScript***
 
@@ -62,7 +65,11 @@ TypeScript is supported internally within each module, no installs required.
 
 ### Other languages
 
-Ports of Turf.js are underway [in Swift](https://github.com/mapbox/turf-swift/) (for iOS and macOS) and [in Java](https://github.com/mapbox/mapbox-java/tree/master/mapbox/libjava-services/src/main/java/com/mapbox/services/api/utils/turf/) (for Android and Java SE).
+Ports of Turf.js are available in:
+
+- [Java](https://github.com/mapbox/mapbox-java/blob/master/docs/turf-port.md) (Android, Java SE)
+- [Swift](https://github.com/mapbox/turf-swift/) (iOS, macOS, tvOS, watchOS, Linux)
+> Turf for Swift is **experimental** and its public API is subject to change. Please use with care.
 
 - - -
 
@@ -94,3 +101,33 @@ var point2 = {
   properties: {}
 };
 ```
+
+## Contributors
+
+This project exists thanks to all the people who contribute. [[Contribute](CONTRIBUTING.md)].
+<a href="graphs/contributors"><img src="https://opencollective.com/turf/contributors.svg?width=890&button=false" /></a>
+
+
+## Backers
+
+Thank you to all our backers! 🙏 [[Become a backer](https://opencollective.com/turf#backer)]
+
+<a href="https://opencollective.com/turf#backers" target="_blank"><img src="https://opencollective.com/turf/backers.svg?width=890"></a>
+
+
+## Sponsors
+
+Support this project by becoming a sponsor. Your logo will show up here with a link to your website. [[Become a sponsor](https://opencollective.com/turf#sponsor)]
+
+<a href="https://opencollective.com/turf/sponsor/0/website" target="_blank"><img src="https://opencollective.com/turf/sponsor/0/avatar.svg"></a>
+<a href="https://opencollective.com/turf/sponsor/1/website" target="_blank"><img src="https://opencollective.com/turf/sponsor/1/avatar.svg"></a>
+<a href="https://opencollective.com/turf/sponsor/2/website" target="_blank"><img src="https://opencollective.com/turf/sponsor/2/avatar.svg"></a>
+<a href="https://opencollective.com/turf/sponsor/3/website" target="_blank"><img src="https://opencollective.com/turf/sponsor/3/avatar.svg"></a>
+<a href="https://opencollective.com/turf/sponsor/4/website" target="_blank"><img src="https://opencollective.com/turf/sponsor/4/avatar.svg"></a>
+<a href="https://opencollective.com/turf/sponsor/5/website" target="_blank"><img src="https://opencollective.com/turf/sponsor/5/avatar.svg"></a>
+<a href="https://opencollective.com/turf/sponsor/6/website" target="_blank"><img src="https://opencollective.com/turf/sponsor/6/avatar.svg"></a>
+<a href="https://opencollective.com/turf/sponsor/7/website" target="_blank"><img src="https://opencollective.com/turf/sponsor/7/avatar.svg"></a>
+<a href="https://opencollective.com/turf/sponsor/8/website" target="_blank"><img src="https://opencollective.com/turf/sponsor/8/avatar.svg"></a>
+<a href="https://opencollective.com/turf/sponsor/9/website" target="_blank"><img src="https://opencollective.com/turf/sponsor/9/avatar.svg"></a>
+
+

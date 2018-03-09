@@ -1,10 +1,10 @@
-import path from 'path';
-import test from 'tape';
-import glob from 'glob';
-import load from 'load-json-file';
-import write from 'write-json-file';
-import { featureCollection, polygon } from '@turf/helpers';
-import difference from '.';
+const path = require('path');
+const test = require('tape');
+const glob = require('glob');
+const load = require('load-json-file');
+const write = require('write-json-file');
+const { featureCollection, polygon } = require('@turf/helpers');
+const difference = require('./');
 
 const directories = {
     in: path.join(__dirname, 'test', 'in') + path.sep,
@@ -13,18 +13,23 @@ const directories = {
 
 test('turf-difference', t => {
     glob.sync(directories.in + '*.geojson').forEach(filepath => {
-        const name = path.parse(filepath).name;
-        const base = path.parse(filepath).base;
-        const features = load.sync(filepath).features;
-        const polygon1 = features[0];
-        const polygon2 = features[1];
+        const { name, base } = path.parse(filepath);
+        const [polygon1, polygon2] = load.sync(filepath).features;
+
+        if (name.includes('skip')) return t.skip(name);
+
+        // Red Polygon1
+        polygon1.properties = Object.assign(polygon1.properties || {}, {'fill-opacity': 0.5, fill: '#F00'});
+        // Blue Polygon2
+        polygon2.properties = Object.assign(polygon2.properties || {}, {'fill-opacity': 0.5, fill: '#00F'});
 
         const results = featureCollection([polygon1, polygon2]);
 
-        const diff = difference(polygon1, polygon2);
-        if (diff) {
-            diff.properties = {'fill-opacity': 1};
-            results.features.unshift(diff);
+        const result = difference(polygon1, polygon2);
+        if (result) {
+            // Green Polygon
+            result.properties = {'fill-opacity': 1, fill: '#0F0'};
+            results.features.push(result);
         }
 
         if (process.env.REGEN) write.sync(directories.out + base, results);

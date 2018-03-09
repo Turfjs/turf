@@ -44,7 +44,7 @@
   "homepage": "https://github.com/Turfjs/turf",
   "devDependencies": {
     "@std/esm": "*",
-    "@turf/distance": "^5.1.5",
+    "@turf/distance": "6.x",
     "benchmark": "*",
     "load-json-file": "*",
     "rollup": "*",
@@ -52,8 +52,8 @@
     "write-json-file": "*"
   },
   "dependencies": {
-    "@turf/helpers": "^5.1.5",
-    "@turf/invariant": "^5.1.5"
+    "@turf/helpers": "6.x",
+    "@turf/invariant": "6.x"
   },
   "@std/esm": {
     "esm": "js",

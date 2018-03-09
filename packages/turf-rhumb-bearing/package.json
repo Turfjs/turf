@@ -42,15 +42,15 @@
   "homepage": "https://github.com/Turfjs/turf",
   "devDependencies": {
     "@std/esm": "*",
-    "@turf/destination": "^5.1.5",
+    "@turf/destination": "6.x",
     "benchmark": "*",
     "rollup": "*",
     "tape": "*",
     "write-json-file": "*"
   },
   "dependencies": {
-    "@turf/helpers": "^5.1.5",
-    "@turf/invariant": "^5.1.5"
+    "@turf/helpers": "6.x",
+    "@turf/invariant": "6.x"
   },
   "@std/esm": {
     "esm": "js",

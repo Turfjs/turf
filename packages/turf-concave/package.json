@@ -56,10 +56,10 @@
   },
   "dependencies": {
     "@turf/clone": "^5.1.5",
-    "@turf/distance": "^5.1.5",
-    "@turf/helpers": "^5.1.5",
-    "@turf/invariant": "^5.1.5",
-    "@turf/meta": "^5.1.5",
+    "@turf/distance": "6.x",
+    "@turf/helpers": "6.x",
+    "@turf/invariant": "6.x",
+    "@turf/meta": "6.x",
     "@turf/tin": "^5.1.5",
     "topojson-client": "3.x",
     "topojson-server": "3.x"

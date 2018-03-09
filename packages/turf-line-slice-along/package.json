@@ -42,10 +42,10 @@
     "tape": "*"
   },
   "dependencies": {
-    "@turf/bearing": "^5.1.5",
-    "@turf/destination": "^5.1.5",
-    "@turf/distance": "^5.1.5",
-    "@turf/helpers": "^5.1.5"
+    "@turf/bearing": "6.x",
+    "@turf/destination": "6.x",
+    "@turf/distance": "6.x",
+    "@turf/helpers": "6.x"
   },
   "@std/esm": {
     "esm": "js",

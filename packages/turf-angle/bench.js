@@ -1,6 +1,6 @@
-import path from 'path';
-import Benchmark from 'benchmark';
-import angle from '.';
+const path = require('path');
+const Benchmark = require('benchmark');
+const angle = require('./').default;
 
 /**
  * Benchmark Results

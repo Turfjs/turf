@@ -53,7 +53,8 @@ export function containsNumber(coordinates: any[]): boolean;
 /**
  * http://turfjs.org/docs/#getgeom
  */
-export function getGeom<T extends Geometries>(geojson: T | Feature<T>): T;
+export function getGeom<G extends Geometries>(geojson: G | Feature<G>): G;
+export function getGeom<G extends any>(geojson: G | Feature<G>): GeometryObject;
 export function getGeom(geojson: GeometryObject | Feature<Geometries>): GeometryObject;
 export function getGeom(geojson: Feature<GeometryCollection> | GeometryCollection): GeometryCollection;
 export function getGeom(geojson: Feature<any>): GeometryObject | GeometryCollection;
