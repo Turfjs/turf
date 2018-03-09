@@ -1,6 +1,6 @@
-import { segmentEach } from '@turf/helpers';
+import { segmentEach } from '@turf/meta';
 import { getGeom, getCoords, getType } from '@turf/invariant';
-import { polygon, lineString } from '@turf/helpers';
+import { polygon, lineString, Feature, Geometry } from '@turf/helpers';
 import booleanDisjoint from '@turf/boolean-disjoint';
 import booleanCrosses from '@turf/boolean-crosses';
 import lineIntersect from '@turf/line-intersect';
@@ -21,7 +21,7 @@ import isPointOnLine from '@turf/boolean-point-on-line';
 export default function booleanIsValid(feature: Feature<any> | Geometry) {
     const geom = getGeom(feature);
     const type = getType(feature);
-    const coords = getCoords(feature);
+    const coords: any = getCoords(feature);
 
     switch (type) {
     case 'Point':
@@ -45,18 +45,18 @@ export default function booleanIsValid(feature: Feature<any> | Geometry) {
         return true;
     case 'Polygon':
         for (var i = 0; i < geom.coordinates.length; i++) {
-            if (geom.coordinates[i].length < 4) return false
-            if (!checkRingsClose(geom.coordinates[i])) return false
-            if (checkRingsForSpikesPunctures(geom.coordinates[i])) return false
+            if (coords[i].length < 4) return false
+            if (!checkRingsClose(coords[i])) return false
+            if (checkRingsForSpikesPunctures(coords[i])) return false
             if (i > 0) {
-                if (lineIntersect(polygon([geom.coordinates[0]]), polygon([geom.coordinates[i]])).features.length > 1) return false
-            } 
+                if (lineIntersect(polygon([coords[0]]), polygon([coords[i]])).features.length > 1) return false
+            }
         }
         return true
     case 'MultiPolygon':
         for (var i = 0; i < geom.coordinates.length; i++) {
-            var poly = geom.coordinates[i];
-            
+            var poly: any = geom.coordinates[i];
+
             for (var ii = 0; ii < poly.length; ii++) {
                 if (poly[ii].length < 4) return false
                 if (!checkRingsClose(poly[ii])) return false
@@ -66,7 +66,7 @@ export default function booleanIsValid(feature: Feature<any> | Geometry) {
                 }
                 if (ii > 0) {
                     if (lineIntersect(polygon([poly[0]]), polygon([poly[ii]])).features.length > 1) return false
-                } 
+                }
             }
         }
         return true

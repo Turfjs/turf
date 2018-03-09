@@ -2607,6 +2607,12 @@ geojson-fixtures@*:
   dependencies:
     geojsonhint "^1.0.0"
 
+geojson-polygon-self-intersections@1.2.x:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/geojson-polygon-self-intersections/-/geojson-polygon-self-intersections-1.2.0.tgz#451c49e89e0103588c6252363c598d73716b1746"
+  dependencies:
+    rbush "^2.0.1"
+
 geojson-rbush@2.1.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/geojson-rbush/-/geojson-rbush-2.1.0.tgz#3bd73be391fc10b0ae693d9b8acea2aae0b83a8d"

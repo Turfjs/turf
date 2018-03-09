@@ -1,6 +1,6 @@
 {
   "name": "@turf/boolean-is-valid",
-  "version": "5.1.5",
+  "version": "6.0.0",
   "description": "turf boolean-is-valid module",
   "main": "index",
   "files": [
@@ -43,14 +43,14 @@
     "tape": "*"
   },
   "dependencies": {
-    "@turf/bbox": "^5.1.5",
-    "@turf/boolean-crosses": "^5.1.5",
-    "@turf/boolean-overlap": "^5.1.5",
-    "@turf/boolean-point-in-polygon": "^5.1.5",
-    "@turf/boolean-point-on-line": "^5.1.5",
+    "@turf/bbox": "6.x",
+    "@turf/boolean-crosses": "6.x",
+    "@turf/boolean-overlap": "6.x",
+    "@turf/boolean-point-in-polygon": "6.x",
+    "@turf/boolean-point-on-line": "6.x",
     "@turf/helpers": "6.x",
     "@turf/invariant": "6.x",
-    "@turf/line-intersect": "^6.0.0",
-    "geojson-polygon-self-intersections": "^1.2.0"
+    "@turf/line-intersect": "6.x",
+    "geojson-polygon-self-intersections": "1.2.x"
   }
 }
