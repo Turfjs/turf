@@ -1,5 +1,5 @@
 import { coordEach } from '@turf/meta';
-import { isObject, isNumber } from '@turf/helpers';
+import { AllGeoJSON, Position, isNumber } from '@turf/helpers';
 import clone from '@turf/clone';
 
 /**
@@ -9,7 +9,7 @@ import clone from '@turf/clone';
  * @param {GeoJSON|Position} geojson WGS84 GeoJSON object
  * @param {Object} [options] Optional parameters
  * @param {boolean} [options.mutate=false] allows GeoJSON input to be mutated (significant performance increase if true)
- * @returns {GeoJSON} true/false
+ * @returns {GeoJSON} Projected GeoJSON
  * @example
  * var pt = turf.point([-71,41]);
  * var converted = turf.toMercator(pt);
@@ -17,7 +17,7 @@ import clone from '@turf/clone';
  * //addToMap
  * var addToMap = [pt, converted];
  */
-export function toMercator(geojson, options) {
+export function toMercator<G = AllGeoJSON | Position>(geojson: G, options: {mutate?: boolean} = {}): G {
     return convert(geojson, 'mercator', options);
 }
 
@@ -28,7 +28,7 @@ export function toMercator(geojson, options) {
  * @param {GeoJSON|Position} geojson Mercator GeoJSON object
  * @param {Object} [options] Optional parameters
  * @param {boolean} [options.mutate=false] allows GeoJSON input to be mutated (significant performance increase if true)
- * @returns {GeoJSON} true/false
+ * @returns {GeoJSON} Projected GeoJSON
  * @example
  * var pt = turf.point([-7903683.846322424, 5012341.663847514]);
  * var converted = turf.toWgs84(pt);
@@ -36,7 +36,7 @@ export function toMercator(geojson, options) {
  * //addToMap
  * var addToMap = [pt, converted];
  */
-export function toWgs84(geojson, options) {
+export function toWgs84<G = AllGeoJSON | Position>(geojson: G, options: {mutate?: boolean} = {}): G {
     return convert(geojson, 'wgs84', options);
 }
 
@@ -49,12 +49,11 @@ export function toWgs84(geojson, options) {
  * @param {string} projection defines the projection system to convert the coordinates to
  * @param {Object} [options] Optional parameters
  * @param {boolean} [options.mutate=false] allows GeoJSON input to be mutated (significant performance increase if true)
- * @returns {GeoJSON} true/false
+ * @returns {GeoJSON} Converted GeoJSON
  */
-function convert(geojson, projection, options) {
+function convert(geojson: any, projection: string, options: {mutate?: boolean} = {}): any {
     // Optional parameters
     options = options || {};
-    if (!isObject(options)) throw new Error('options is invalid');
     var mutate = options.mutate;
 
     // Validation

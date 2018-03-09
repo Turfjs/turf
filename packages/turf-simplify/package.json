@@ -52,7 +52,7 @@
   },
   "dependencies": {
     "@turf/clean-coords": "^5.1.5",
-    "@turf/clone": "^5.1.5",
+    "@turf/clone": "6.x",
     "@turf/helpers": "6.x",
     "@turf/meta": "6.x"
   },

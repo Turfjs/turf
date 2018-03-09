@@ -46,7 +46,7 @@
     "@turf/helpers": "6.x",
     "@turf/invariant": "6.x",
     "@turf/meta": "6.x",
-    "@turf/projection": "^5.1.5",
+    "@turf/projection": "6.x",
     "@turf/rhumb-bearing": "^5.1.5",
     "@turf/rhumb-distance": "^5.1.5"
   }
