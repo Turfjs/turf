@@ -45,11 +45,9 @@
     "write-json-file": "*"
   },
   "dependencies": {
-    "@turf/boolean-contains": "^5.1.5",
-    "@turf/boolean-overlap": "^5.1.5",
+    "@turf/boolean-intersects": "6.x",
     "@turf/distance": "6.x",
     "@turf/helpers": "6.x",
-    "@turf/intersect": "^5.1.5",
     "@turf/invariant": "6.x"
   },
   "@std/esm": {
