@@ -1,5 +1,8 @@
 // https://en.wikipedia.org/wiki/Rhumb_line
-import { earthRadius, point, convertLength, degreesToRadians, isObject } from '@turf/helpers';
+import {
+    earthRadius, point, convertLength, degreesToRadians,
+    Units, Feature, Point, Coord, Properties,
+} from '@turf/helpers';
 import { getCoord } from '@turf/invariant';
 
 /**
@@ -26,27 +29,21 @@ import { getCoord } from '@turf/invariant';
  * var addToMap = [pt, destination]
  * destination.properties['marker-color'] = '#00F';
  */
-function rhumbDestination(origin, distance, bearing, options) {
-    // Optional parameters
-    options = options || {};
-    if (!isObject(options)) throw new Error('options is invalid');
-    var units = options.units;
-    var properties = options.properties;
-
+function rhumbDestination<P = Properties>(origin: Coord, distance: number, bearing: number, options: {
+    units?: Units,
+    properties?: P,
+} = {}): Feature<Point, P> {
     // validation
-    if (!origin) throw new Error('origin is required');
-    if (distance === undefined || distance === null) throw new Error('distance is required');
-    if (bearing === undefined || bearing === null) throw new Error('bearing is required');
     if (!(distance >= 0)) throw new Error('distance must be greater than 0');
 
-    var distanceInMeters = convertLength(distance, units, 'meters');
+    var distanceInMeters = convertLength(distance, options.units, 'meters');
     var coords = getCoord(origin);
     var destination = calculateRhumbDestination(coords, distanceInMeters, bearing);
 
     // compensate the crossing of the 180th meridian (https://macwright.org/2016/09/26/the-180th-meridian.html)
     // solution from https://github.com/mapbox/mapbox-gl-js/issues/3250#issuecomment-294887678
     destination[0] += (destination[0] - coords[0] > 180) ? -360 : (coords[0] - destination[0] > 180) ? 360 : 0;
-    return point(destination, properties);
+    return point(destination, options.properties);
 }
 
 /**
@@ -61,7 +58,7 @@ function rhumbDestination(origin, distance, bearing, options) {
  * @param   {number} [radius=6371e3] - (Mean) radius of earth (defaults to radius in metres).
  * @returns {Array<number>} Destination point.
  */
-function calculateRhumbDestination(origin, distance, bearing, radius) {
+function calculateRhumbDestination(origin: number[], distance: number, bearing: number, radius?: number) {
     // φ => phi
     // λ => lambda
     // ψ => psi
