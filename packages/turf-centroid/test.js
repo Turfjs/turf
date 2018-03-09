@@ -1,11 +1,11 @@
-import path from 'path';
-import test from 'tape';
-import glob from 'glob';
-import load from 'load-json-file';
-import write from 'write-json-file';
-import { featureEach } from '@turf/meta';
-import { featureCollection, lineString } from '@turf/helpers';
-import centroid from '.';
+const path = require('path');
+const test = require('tape');
+const glob = require('glob');
+const load = require('load-json-file');
+const write = require('write-json-file');
+const { featureEach } = require('@turf/meta');
+const { featureCollection, lineString } = require('@turf/helpers');
+const centroid = require('.').default;
 
 const directories = {
     in: path.join(__dirname, 'test', 'in') + path.sep,

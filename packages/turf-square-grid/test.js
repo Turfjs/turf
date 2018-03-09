@@ -6,7 +6,7 @@ import write from 'write-json-file';
 import bboxPoly from '@turf/bbox-polygon';
 import truncate from '@turf/truncate';
 import squareGrid from '.';
-
+process.env.REGEN = true
 const directories = {
     in: path.join(__dirname, 'test', 'in') + path.sep,
     out: path.join(__dirname, 'test', 'out') + path.sep

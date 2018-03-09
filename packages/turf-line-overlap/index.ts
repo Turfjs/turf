@@ -4,8 +4,11 @@ import nearestPointOnLine from '@turf/nearest-point-on-line';
 import booleanPointOnLine from '@turf/boolean-point-on-line';
 import { getCoords } from '@turf/invariant';
 import { featureEach, segmentEach } from '@turf/meta';
-import { featureCollection, isObject } from '@turf/helpers';
-import equal from './lib/deep-equal';
+import {
+    featureCollection, isObject,
+    FeatureCollection, Feature, LineString, MultiLineString, Polygon, MultiPolygon,
+} from '@turf/helpers';
+import * as equal from 'deep-equal';
 
 /**
  * Takes any LineString or Polygon and returns the overlapping lines between both features.
@@ -25,7 +28,11 @@ import equal from './lib/deep-equal';
  * //addToMap
  * var addToMap = [line1, line2, overlapping]
  */
-function lineOverlap(line1, line2, options) {
+function lineOverlap<G1 extends LineString|MultiLineString|Polygon|MultiPolygon, G2 extends LineString|MultiLineString|Polygon|MultiPolygon>(
+    line1: Feature<G1> | G1,
+    line2: Feature<G2> | G2,
+    options: {tolerance?: number}={}
+): FeatureCollection<LineString> {
     // Optional parameters
     options = options || {};
     if (!isObject(options)) throw new Error('options is invalid');
@@ -36,7 +43,10 @@ function lineOverlap(line1, line2, options) {
 
     // Create Spatial Index
     var tree = rbush();
-    tree.load(lineSegment(line1));
+
+    // To-Do -- HACK way to support typescript
+    const line: any = lineSegment(line1);
+    tree.load(line);
     var overlapSegment;
 
     // Line Intersection
@@ -49,7 +59,7 @@ function lineOverlap(line1, line2, options) {
         featureEach(tree.search(segment), function (match) {
             if (doesOverlaps === false) {
                 var coordsSegment = getCoords(segment).sort();
-                var coordsMatch = getCoords(match).sort();
+                var coordsMatch: any = getCoords(match).sort();
 
                 // Segment overlaps feature
                 if (equal(coordsSegment, coordsMatch)) {

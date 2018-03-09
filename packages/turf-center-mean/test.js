@@ -1,13 +1,13 @@
-import test from 'tape';
-import glob from 'glob';
-import path from 'path';
-import load from 'load-json-file';
-import write from 'write-json-file';
-import truncate from '@turf/truncate';
-import { featureEach, coordEach } from '@turf/meta';
-import { lineString, featureCollection } from '@turf/helpers';
-import center from '@turf/center';
-import centerMean from '.';
+const test = require('tape');
+const glob = require('glob');
+const path = require('path');
+const load = require('load-json-file');
+const write = require('write-json-file');
+const truncate = require('@turf/truncate').default;
+const { featureEach, coordEach } = require('@turf/meta');
+const { lineString, featureCollection } = require('@turf/helpers');
+const center = require('@turf/center').default;
+const centerMean = require('./').default;
 
 test('turf-center-mean', t => {
     glob.sync(path.join(__dirname, 'test', 'in', '*.geojson')).forEach(filepath => {

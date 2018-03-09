@@ -46,8 +46,8 @@
     "write-json-file": "*"
   },
   "dependencies": {
-    "@turf/bearing": "^5.1.5",
-    "@turf/distance": "^5.1.5",
+    "@turf/bearing": "6.x",
+    "@turf/distance": "6.x",
     "@turf/helpers": "6.x",
     "@turf/invariant": "6.x",
     "@turf/meta": "6.x",

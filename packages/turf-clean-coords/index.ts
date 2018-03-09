@@ -1,5 +1,7 @@
-import { feature } from '@turf/helpers';
+import { feature, AllGeoJSON } from '@turf/helpers';
 import { getCoords, getType } from '@turf/invariant';
+
+// To-Do => Improve Typescript GeoJSON handling
 
 /**
  * Removes redundant coordinates from any GeoJSON Geometry.
@@ -19,7 +21,9 @@ import { getCoords, getType } from '@turf/invariant';
  * turf.cleanCoords(multiPoint).geometry.coordinates;
  * //= [[0, 0], [2, 2]]
  */
-function cleanCoords(geojson, options) {
+function cleanCoords(geojson: any, options: {
+    mutate?: boolean,
+} = {}) {
     // Backwards compatible with v4.0
     var mutate = (typeof options === 'object') ? options.mutate : options;
     if (!geojson) throw new Error('geojson is required');
@@ -39,7 +43,7 @@ function cleanCoords(geojson, options) {
         });
         break;
     case 'MultiPolygon':
-        getCoords(geojson).forEach(function (polygons) {
+        getCoords(geojson).forEach(function (polygons: any) {
             var polyPoints = [];
             polygons.forEach(function (ring) {
                 polyPoints.push(cleanLine(ring));
@@ -51,7 +55,7 @@ function cleanCoords(geojson, options) {
         return geojson;
     case 'MultiPoint':
         var existing = {};
-        getCoords(geojson).forEach(function (coord) {
+        getCoords(geojson).forEach(function (coord: any) {
             var key = coord.join('-');
             if (!existing.hasOwnProperty(key)) {
                 newCoords.push(coord);
@@ -75,7 +79,7 @@ function cleanCoords(geojson, options) {
             geojson.geometry.coordinates = newCoords;
             return geojson;
         }
-        return feature({type: type, coordinates: newCoords}, geojson.properties, geojson.bbox, geojson.id);
+        return feature({type: type, coordinates: newCoords}, geojson.properties, {bbox: geojson.bbox, id: geojson.id});
     }
 }
 

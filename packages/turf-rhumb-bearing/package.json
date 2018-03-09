@@ -42,7 +42,7 @@
   "homepage": "https://github.com/Turfjs/turf",
   "devDependencies": {
     "@std/esm": "*",
-    "@turf/destination": "^5.1.5",
+    "@turf/destination": "6.x",
     "benchmark": "*",
     "rollup": "*",
     "tape": "*",

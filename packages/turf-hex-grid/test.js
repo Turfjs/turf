@@ -27,6 +27,7 @@ test('hex-grid', t => {
 
         const result = truncate(hexGrid(bbox, cellSide, options));
         const poly = bboxPoly(bbox);
+        t.assert(poly.bbox);
         poly.properties = {
             stroke: '#F00',
             'stroke-width': 6,
