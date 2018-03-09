@@ -1,12 +1,12 @@
-import fs from 'fs';
-import test from 'tape';
-import path from 'path';
-import load from 'load-json-file';
-import write from 'write-json-file';
-import truncate from '@turf/truncate';
-import { featureCollection } from '@turf/helpers';
-import geojsonhint from '@mapbox/geojsonhint';
-import circle from '.';
+const fs = require('fs');
+const test = require('tape');
+const path = require('path');
+const load = require('load-json-file');
+const write = require('write-json-file');
+const truncate = require('@turf/truncate').default;
+const { featureCollection } = require('@turf/helpers');
+const geojsonhint = require('@mapbox/geojsonhint');
+const circle = require('./').default;
 
 const directories = {
     in: path.join(__dirname, 'test', 'in') + path.sep,

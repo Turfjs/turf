@@ -42,7 +42,7 @@
     "write-json-file": "*"
   },
   "dependencies": {
-    "@turf/circle": "^5.1.5",
+    "@turf/circle": "6.x",
     "@turf/destination": "6.x",
     "@turf/helpers": "6.x"
   },

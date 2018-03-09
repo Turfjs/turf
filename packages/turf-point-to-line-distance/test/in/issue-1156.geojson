@@ -1,0 +1,44 @@
+{
+  "type": "FeatureCollection",
+  "properties": {
+    "units": "meters",
+    "mercator": true
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {},
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          11.028348, 41 
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {},
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            10.983200073242188,
+            40.97075154073346
+          ],
+          [
+            11.02834701538086,
+            40.98372150040732
+          ],
+          [
+            11.02508544921875,
+            41.00716631272605
+          ],
+          [
+            10.994186401367188,
+            41.01947819666632
+          ]
+        ]
+      }
+    }
+  ]
+}
