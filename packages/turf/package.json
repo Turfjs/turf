@@ -116,7 +116,7 @@
     "@turf/helpers": "6.x",
     "@turf/hex-grid": "5.1.x",
     "@turf/interpolate": "5.1.x",
-    "@turf/intersect": "5.1.x",
+    "@turf/intersect": "6.x",
     "@turf/invariant": "6.x",
     "@turf/isobands": "5.1.x",
     "@turf/isolines": "5.1.x",
