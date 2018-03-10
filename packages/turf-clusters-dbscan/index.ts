@@ -1,9 +1,15 @@
 import clone from '@turf/clone';
 import distance from '@turf/distance';
 import { coordAll } from '@turf/meta';
-import { convertLength } from '@turf/helpers';
+import { convertLength, Properties, Units, FeatureCollection, Feature, Point } from '@turf/helpers';
 import { collectionOf } from '@turf/invariant';
-import clustering from 'density-clustering';
+import * as clustering from 'density-clustering';
+
+export type Dbscan = 'core' | 'edge' | 'noise'
+export interface DbscanProps extends Properties {
+    dbscan?: Dbscan;
+    cluster?: number;
+}
 
 /**
  * Takes a set of {@link Point|points} and partition them into clusters according to {@link DBSCAN's|https://en.wikipedia.org/wiki/DBSCAN} data clustering algorithm.
@@ -28,27 +34,26 @@ import clustering from 'density-clustering';
  * //addToMap
  * var addToMap = [clustered];
  */
-function clustersDbscan(points, maxDistance, options) {
-    // Optional parameters
-    options = options || {};
-    if (typeof options !== 'object') throw new Error('options is invalid');
-    var minPoints = options.minPoints;
-
-    // Input validation
-    collectionOf(points, 'Point', 'points must consist of a FeatureCollection of only Points');
-    if (maxDistance === null || maxDistance === undefined) throw new Error('maxDistance is required');
-    if (!(Math.sign(maxDistance) > 0)) throw new Error('maxDistance is invalid');
-    if (!(minPoints === undefined || minPoints === null || Math.sign(minPoints) > 0)) throw new Error('options.minPoints is invalid');
+function clustersDbscan(points: FeatureCollection<Point>, maxDistance: number, options: {
+    units?: Units,
+    minPoints?: number,
+    mutate?: boolean
+} = {}): FeatureCollection<Point, DbscanProps> {
+    // Input validation being handled by Typescript
+    // collectionOf(points, 'Point', 'points must consist of a FeatureCollection of only Points');
+    // if (maxDistance === null || maxDistance === undefined) throw new Error('maxDistance is required');
+    // if (!(Math.sign(maxDistance) > 0)) throw new Error('maxDistance is invalid');
+    // if (!(minPoints === undefined || minPoints === null || Math.sign(minPoints) > 0)) throw new Error('options.minPoints is invalid');
 
     // Clone points to prevent any mutations
-    if (options.mutate !== true) points = clone(points, true);
+    if (options.mutate !== true) points = clone(points);
 
     // Defaults
-    minPoints = minPoints || 3;
+    options.minPoints = options.minPoints || 3;
 
     // create clustered ids
     var dbscan = new clustering.DBSCAN();
-    var clusteredIds = dbscan.run(coordAll(points), convertLength(maxDistance, options.units), minPoints, distance);
+    var clusteredIds = dbscan.run(coordAll(points), convertLength(maxDistance, options.units), options.minPoints, distance);
 
     // Tag points to Clusters ID
     var clusterId = -1;
