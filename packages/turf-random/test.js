@@ -1,10 +1,10 @@
-import test from 'tape';
-import {
+const test = require('tape');
+const {
     randomPoint,
     randomLineString,
     randomPolygon,
     randomPosition
-} from '.';
+} = require('./');
 
 test('random(points)', t => {
     var points = randomPoint();

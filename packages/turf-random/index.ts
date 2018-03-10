@@ -1,10 +1,6 @@
 import {
-    point,
-    lineString,
-    polygon,
-    featureCollection,
-    isObject,
-    isNumber
+    point, lineString, polygon, featureCollection, isObject, isNumber,
+    BBox, Position, Feature, FeatureCollection, Point, LineString, Polygon,
 } from '@turf/helpers';
 
 /**
@@ -15,11 +11,10 @@ import {
  * @returns {Array<number>} Position [longitude, latitude]
  * @example
  * var position = turf.randomPosition([-180, -90, 180, 90])
- * //=position
+ * // => position
  */
-export function randomPosition(bbox) {
-    if (isObject(bbox)) bbox = bbox.bbox;
-    if (bbox && !Array.isArray(bbox)) throw new Error('bbox is invalid');
+export function randomPosition(bbox?: BBox | {bbox: BBox}): Position {
+    if (bbox && !Array.isArray(bbox) && bbox.bbox) return coordInBBox(bbox.bbox);
     if (bbox) return coordInBBox(bbox);
     else return [lon(), lat()];
 }
@@ -34,18 +29,13 @@ export function randomPosition(bbox) {
  * @returns {FeatureCollection<Point>} GeoJSON FeatureCollection of points
  * @example
  * var points = turf.randomPoint(25, {bbox: [-180, -90, 180, 90]})
- * //=points
+ * // => points
  */
-export function randomPoint(count, options) {
-    // Optional parameters
-    options = options || {};
-    if (!isObject(options)) throw new Error('options is invalid');
-    var bbox = options.bbox;
+export function randomPoint(count?: number, options: {bbox?: BBox} = {}): FeatureCollection<Point> {
     if (count === undefined || count === null) count = 1;
-
     var features = [];
     for (var i = 0; i < count; i++) {
-        features.push(point(randomPosition(bbox)));
+        features.push(point(randomPosition(options.bbox)));
     }
     return featureCollection(features);
 }
@@ -59,36 +49,35 @@ export function randomPoint(count, options) {
  * @param {Array<number>} [options.bbox=[-180, -90, 180, 90]] a bounding box inside of which geometries are placed.
  * @param {number} [options.num_vertices=10] is how many coordinates each LineString will contain.
  * @param {number} [options.max_radial_length=10] is the maximum number of decimal degrees latitude or longitude that a vertex can reach out of the center of the Polygon.
- * @returns {FeatureCollection<Point>} GeoJSON FeatureCollection of points
+ * @returns {FeatureCollection<Polygon>} GeoJSON FeatureCollection of polygons
  * @example
  * var polygons = turf.randomPolygon(25, {bbox: [-180, -90, 180, 90]})
- * //=polygons
+ * // => polygons
  */
-export function randomPolygon(count, options) {
-    // Optional parameters
-    options = options || {};
-    if (!isObject(options)) throw new Error('options is invalid');
-    var bbox = options.bbox;
-    var num_vertices = options.num_vertices;
-    var max_radial_length = options.max_radial_length;
+export function randomPolygon(count?: number, options: {
+    bbox?: BBox,
+    num_vertices?: number,
+    max_radial_length?: number
+} = {}): FeatureCollection<Polygon> {
+    // Default param
     if (count === undefined || count === null) count = 1;
 
     // Validation
-    if (!isNumber(num_vertices)) num_vertices = 10;
-    if (!isNumber(max_radial_length)) max_radial_length = 10;
+    if (!isNumber(options.num_vertices)) options.num_vertices = 10;
+    if (!isNumber(options.max_radial_length)) options.max_radial_length = 10;
 
     var features = [];
     for (var i = 0; i < count; i++) {
         var vertices = [],
             circle_offsets = Array.apply(null,
-                new Array(num_vertices + 1)).map(Math.random);
+                new Array(options.num_vertices + 1)).map(Math.random);
 
         circle_offsets.forEach(sumOffsets);
         circle_offsets.forEach(scaleOffsets);
         vertices[vertices.length - 1] = vertices[0]; // close the ring
 
         // center the polygon around something
-        vertices = vertices.map(vertexToCoordinate(randomPosition(bbox)));
+        vertices = vertices.map(vertexToCoordinate(randomPosition(options.bbox)));
         features.push(polygon([vertices]));
     }
 
@@ -100,8 +89,8 @@ export function randomPolygon(count, options) {
         cur = cur * 2 * Math.PI / circle_offsets[circle_offsets.length - 1];
         var radial_scaler = Math.random();
         vertices.push([
-            radial_scaler * max_radial_length * Math.sin(cur),
-            radial_scaler * max_radial_length * Math.cos(cur)
+            radial_scaler * options.max_radial_length * Math.sin(cur),
+            radial_scaler * options.max_radial_length * Math.cos(cur)
         ]);
     }
 
@@ -118,12 +107,17 @@ export function randomPolygon(count, options) {
  * @param {number} [options.num_vertices=10] is how many coordinates each LineString will contain.
  * @param {number} [options.max_length=0.0001] is the maximum number of decimal degrees that a vertex can be from its predecessor
  * @param {number} [options.max_rotation=Math.PI / 8] is the maximum number of radians that a line segment can turn from the previous segment.
- * @returns {FeatureCollection<Point>} GeoJSON FeatureCollection of points
+ * @returns {FeatureCollection<LineString>} GeoJSON FeatureCollection of linestrings
  * @example
  * var lineStrings = turf.randomLineString(25, {bbox: [-180, -90, 180, 90]})
- * //=lineStrings
+ * // => lineStrings
  */
-export function randomLineString(count, options) {
+export function randomLineString(count?: number, options: {
+    bbox?: BBox,
+    num_vertices?: number,
+    max_length?: number,
+    max_rotation?: number,
+} = {}): FeatureCollection<LineString> {
     // Optional parameters
     options = options || {};
     if (!isObject(options)) throw new Error('options is invalid');
