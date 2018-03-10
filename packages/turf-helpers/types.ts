@@ -157,5 +157,6 @@ const geomCollection = geometryCollection([pt.geometry, line.geometry])
 const p1 = geomCollection.geometry.geometries[0]
 const l1 = geomCollection.geometry.geometries[0]
 
-const mixedGeomCollection = featureCollection([pt, geomCollection])
+const mixedGeomCollection = featureCollection<Point | GeometryCollection>([pt, geomCollection])
+const fc = featureCollection<Point | LineString>([pt, line])
 const featureGeomCollection = feature(geomCollection.geometry)

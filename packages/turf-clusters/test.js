@@ -1,6 +1,6 @@
-import test from 'tape';
-import { point, featureCollection } from '@turf/helpers';
-import {
+const test = require('tape');
+const { point, featureCollection } = require('@turf/helpers');
+const {
     getCluster,
     clusterEach,
     clusterReduce,
@@ -9,7 +9,7 @@ import {
     applyFilter,
     filterProperties,
     propertiesContainsFilter
-} from './index';
+} = require('./');
 
 const properties = {foo: 'bar', cluster: 0};
 const geojson = featureCollection([

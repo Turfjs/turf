@@ -1,11 +1,11 @@
 import * as clusters from './'
-import { featureCollection, point } from '@turf/helpers'
+import { featureCollection, point, Point} from '@turf/helpers'
 import { getCluster, clusterEach, clusterReduce } from './'
 
 /**
  * Fixtures
  */
-const geojson = featureCollection([
+const geojson = featureCollection<Point, {cluster?: number, 0?: string, bar?: string}>([
     point([0, 0], {cluster: 0}),
     point([2, 4], {cluster: 1}),
     point([3, 6], {cluster: 1}),

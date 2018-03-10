@@ -44,8 +44,8 @@
   "homepage": "https://github.com/Turfjs/turf",
   "devDependencies": {
     "@std/esm": "*",
-    "@turf/centroid": "6.x",
-    "@turf/clusters": "^5.1.5",
+    "@turf/centroid": "*",
+    "@turf/clusters": "*",
     "benchmark": "*",
     "chromatism": "*",
     "concaveman": "*",

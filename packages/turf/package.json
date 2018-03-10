@@ -96,7 +96,7 @@
     "@turf/circle": "6.x",
     "@turf/clean-coords": "5.1.x",
     "@turf/clone": "6.x",
-    "@turf/clusters": "5.1.x",
+    "@turf/clusters": "6.x",
     "@turf/clusters-dbscan": "5.1.x",
     "@turf/clusters-kmeans": "5.1.x",
     "@turf/collect": "5.1.x",

@@ -1,5 +1,5 @@
 import { featureEach } from '@turf/meta';
-import { featureCollection } from '@turf/helpers';
+import { featureCollection, Feature, FeatureCollection, Properties, Geometry } from '@turf/helpers';
 
 /**
  * Get Cluster
@@ -30,15 +30,18 @@ import { featureCollection } from '@turf/helpers';
  * turf.getCluster(clustered, {'marker-symbol': 'square'}).length;
  * //= 1
  */
-export function getCluster(geojson, filter) {
+export function getCluster<G extends any, P = any>(
+    geojson: FeatureCollection<G, P>,
+    filter: any
+): FeatureCollection<G, P> {
     // Validation
     if (!geojson) throw new Error('geojson is required');
     if (geojson.type !== 'FeatureCollection') throw new Error('geojson must be a FeatureCollection');
     if (filter === undefined || filter === null) throw new Error('filter is required');
 
     // Filter Features
-    var features = [];
-    featureEach(geojson, function (feature) {
+    var features: Feature<G, P>[] = [];
+    featureEach<G, P>(geojson, function (feature) {
         if (applyFilter(feature.properties, filter)) features.push(feature);
     });
     return featureCollection(features);
@@ -93,7 +96,11 @@ export function getCluster(geojson, filter) {
  *     values.push(clusterValue);
  * });
  */
-export function clusterEach(geojson, property, callback) {
+export function clusterEach<G = any, P = any>(
+    geojson: FeatureCollection<G, P>,
+    property: number | string,
+    callback: (cluster?: FeatureCollection<G, P>, clusterValue?: any, currentIndex?: number) => void
+): void {
     // Validation
     if (!geojson) throw new Error('geojson is required');
     if (geojson.type !== 'FeatureCollection') throw new Error('geojson must be a FeatureCollection');
@@ -177,7 +184,12 @@ export function clusterEach(geojson, property, callback) {
  *     return previousValue.concat(clusterValue);
  * }, []);
  */
-export function clusterReduce(geojson, property, callback, initialValue) {
+export function clusterReduce<G = any, P = any>(
+    geojson: FeatureCollection<G, P>,
+    property: number | string,
+    callback: (previousValue?: any, cluster?: FeatureCollection<G, P>, clusterValue?: any, currentIndex?: number) => void,
+    initialValue?: any
+): void {
     var previousValue = initialValue;
     clusterEach(geojson, property, function (cluster, clusterValue, currentIndex) {
         if (currentIndex === 0 && initialValue === undefined) previousValue = cluster;
@@ -203,12 +215,12 @@ export function clusterReduce(geojson, property, callback, initialValue) {
  * createBins(geojson, 'cluster');
  * //= { '0': [ 0 ], '1': [ 1, 3 ] }
  */
-export function createBins(geojson, property) {
+export function createBins(geojson: FeatureCollection<any>, property: string | number) {
     var bins = {};
 
     featureEach(geojson, function (feature, i) {
         var properties = feature.properties || {};
-        if (properties.hasOwnProperty(property)) {
+        if (properties.hasOwnProperty(String(property))) {
             var value = properties[property];
             if (bins.hasOwnProperty(value)) bins[value].push(i);
             else bins[value] = [i];
@@ -225,7 +237,7 @@ export function createBins(geojson, property) {
  * @param {*} filter Filter
  * @returns {boolean} applied Filter to properties
  */
-export function applyFilter(properties, filter) {
+export function applyFilter(properties: any, filter: any) {
     if (properties === undefined) return false;
     var filterType = typeof filter;
 
@@ -256,7 +268,7 @@ export function applyFilter(properties, filter) {
  * propertiesContainsFilter({foo: 'bar', cluster: 0}, {cluster: 1})
  * //= false
  */
-export function propertiesContainsFilter(properties, filter) {
+export function propertiesContainsFilter(properties: any, filter: any): boolean {
     var keys = Object.keys(filter);
     for (var i = 0; i < keys.length; i++) {
         var key = keys[i];
@@ -276,7 +288,7 @@ export function propertiesContainsFilter(properties, filter) {
  * filterProperties({foo: 'bar', cluster: 0}, ['cluster'])
  * //= {cluster: 0}
  */
-export function filterProperties(properties, keys) {
+export function filterProperties(properties: any, keys: string[]): any {
     if (!keys) return {};
     if (!keys.length) return {};
 
