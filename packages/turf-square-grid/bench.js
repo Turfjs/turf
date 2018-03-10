@@ -1,5 +1,5 @@
-import Benchmark from 'benchmark';
-import squareGrid from './';
+const Benchmark = require('benchmark');
+const squareGrid = require('./').default;
 
 var bbox = [-95, 30, -85, 40];
 
