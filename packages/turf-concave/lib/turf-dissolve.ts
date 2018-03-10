@@ -4,6 +4,7 @@ import { isObject } from '@turf/helpers';
 import { flattenEach } from '@turf/meta';
 import lineDissolve from './turf-line-dissolve';
 import polygonDissolve from './turf-polygon-dissolve';
+import { Feature, FeatureCollection, LineString, MultiLineString, Polygon, MultiPolygon } from '@turf/helpers';
 
 /**
  * Transform function: attempts to dissolve geojson objects where possible
@@ -15,7 +16,9 @@ import polygonDissolve from './turf-polygon-dissolve';
  * @param {boolean} [options.mutate=false] Prevent input mutation
  * @returns {Feature<MultiLineString|MultiPolygon>} Dissolved Features
  */
-function dissolve(geojson, options) {
+function dissolve(geojson: FeatureCollection<LineString|MultiLineString|Polygon|MultiPolygon>, options: {
+    mutate?: boolean,
+} = {}): Feature<LineString|MultiLineString|MultiPolygon> {
     // Optional parameters
     options = options || {};
     if (!isObject(options)) throw new Error('options is invalid');
@@ -33,11 +36,14 @@ function dissolve(geojson, options) {
     var type = getHomogenousType(geojson);
     if (!type) throw new Error('geojson must be homogenous');
 
+    // Data => Typescript hack
+    const data: any = geojson
+
     switch (type) {
     case 'LineString':
-        return lineDissolve(geojson, options);
+        return lineDissolve(data, options);
     case 'Polygon':
-        return polygonDissolve(geojson, options);
+        return polygonDissolve(data, options);
     default:
         throw new Error(type + ' is not supported');
     }
