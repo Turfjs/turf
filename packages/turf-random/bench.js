@@ -1,5 +1,5 @@
-import random from './';
-import Benchmark from 'benchmark';
+const random = require('./');
+const Benchmark = require('benchmark');
 
 var suite = new Benchmark.Suite('turf-random');
 suite

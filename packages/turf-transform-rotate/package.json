@@ -48,7 +48,7 @@
     "write-json-file": "*"
   },
   "dependencies": {
-    "@turf/centroid": "^5.1.5",
+    "@turf/centroid": "6.x",
     "@turf/clone": "6.x",
     "@turf/helpers": "6.x",
     "@turf/invariant": "6.x",

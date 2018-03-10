@@ -1,6 +1,6 @@
 import concaveman from 'concaveman';
 import { coordEach } from '@turf/meta';
-import { polygon, isObject } from '@turf/helpers';
+import { polygon, Feature, Polygon, AllGeoJSON, Properties } from '@turf/helpers';
 
 /**
  * Takes a {@link Feature} or a {@link FeatureCollection} and returns a convex hull {@link Polygon}.
@@ -13,6 +13,7 @@ import { polygon, isObject } from '@turf/helpers';
  * @param {GeoJSON} geojson input Feature or FeatureCollection
  * @param {Object} [options={}] Optional parameters
  * @param {number} [options.concavity=Infinity] 1 - thin shape. Infinity - convex hull.
+ * @param {Object} [options.properties={}] Translate Properties to Feature
  * @returns {Feature<Polygon>} a convex hull
  * @example
  * var points = turf.featureCollection([
@@ -29,11 +30,14 @@ import { polygon, isObject } from '@turf/helpers';
  * //addToMap
  * var addToMap = [points, hull]
  */
-function convex(geojson, options) {
-    // Optional parameters
-    options = options || {};
-    if (!isObject(options)) throw new Error('options is invalid');
-    var concavity = options.concavity || Infinity;
+function convex<P = Properties>(geojson: AllGeoJSON, options: {
+    concavity?: number,
+    properties?: P,
+} = {}): Feature<Polygon, P> {
+    // Default parameters
+    options.concavity = options.concavity || Infinity;
+
+    // Container
     var points = [];
 
     // Convert all points to flat 2D coordinate Array
@@ -42,7 +46,7 @@ function convex(geojson, options) {
     });
     if (!points.length) return null;
 
-    var convexHull = concaveman(points, concavity);
+    var convexHull = concaveman(points, options.concavity);
 
     // Convex hull should have at least 3 different vertices in order to create a valid polygon
     if (convexHull.length > 3) {

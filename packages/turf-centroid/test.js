@@ -28,7 +28,7 @@ test('centroid', t => {
         const name = fixture.name;
         const geojson = fixture.geojson;
         const out = fixture.out;
-        const centered = centroid(geojson, {'marker-symbol': 'circle'});
+        const centered = centroid(geojson, {properties: {'marker-symbol': 'circle'}});
         const result = featureCollection([centered]);
         featureEach(geojson, feature => result.features.push(feature));
 
@@ -40,7 +40,7 @@ test('centroid', t => {
 
 test('centroid -- properties', t => {
     const line = lineString([[0, 0], [1, 1]]);
-    const pt = centroid(line, {foo: 'bar'});
+    const pt = centroid(line, {properties: {foo: 'bar'}});
     t.equal(pt.properties.foo, 'bar', 'translate properties');
     t.end();
 });

@@ -79,7 +79,7 @@ function centerMedian(
     // Calculate center of every feature:
     var centroids: any = featureCollection([]);
     featureEach(features, function (feature) {
-        centroids.features.push(centroid(feature, {weight: feature.properties[weightTerm]}));
+        centroids.features.push(centroid(feature, {properties: {weight: feature.properties[weightTerm]}}));
     });
 
     centroids.properties = {
