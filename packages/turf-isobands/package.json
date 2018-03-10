@@ -45,7 +45,7 @@
     "@std/esm": "*",
     "@turf/envelope": "^5.1.5",
     "@turf/point-grid": "6.x",
-    "@turf/random": "^5.1.5",
+    "@turf/random": "6.x",
     "@turf/rhumb-destination": "6.x",
     "@turf/truncate": "6.x",
     "benchmark": "*",

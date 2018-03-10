@@ -31,7 +31,9 @@ export function randomPosition(bbox?: BBox | {bbox: BBox}): Position {
  * var points = turf.randomPoint(25, {bbox: [-180, -90, 180, 90]})
  * // => points
  */
-export function randomPoint(count?: number, options: {bbox?: BBox} = {}): FeatureCollection<Point> {
+export function randomPoint(count?: number, options: {
+    bbox?: BBox
+} = {}): FeatureCollection<Point, any> {
     if (count === undefined || count === null) count = 1;
     var features = [];
     for (var i = 0; i < count; i++) {
@@ -58,7 +60,7 @@ export function randomPolygon(count?: number, options: {
     bbox?: BBox,
     num_vertices?: number,
     max_radial_length?: number
-} = {}): FeatureCollection<Polygon> {
+} = {}): FeatureCollection<Polygon, any> {
     // Default param
     if (count === undefined || count === null) count = 1;
 
@@ -117,7 +119,7 @@ export function randomLineString(count?: number, options: {
     num_vertices?: number,
     max_length?: number,
     max_rotation?: number,
-} = {}): FeatureCollection<LineString> {
+} = {}): FeatureCollection<LineString, any> {
     // Optional parameters
     options = options || {};
     if (!isObject(options)) throw new Error('options is invalid');

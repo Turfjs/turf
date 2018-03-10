@@ -148,7 +148,7 @@
     "@turf/polygon-to-line": "6.x",
     "@turf/polygonize": "5.1.x",
     "@turf/projection": "6.x",
-    "@turf/random": "5.1.x",
+    "@turf/random": "6.x",
     "@turf/rewind": "5.1.x",
     "@turf/rhumb-bearing": "6.x",
     "@turf/rhumb-destination": "6.x",

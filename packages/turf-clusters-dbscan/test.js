@@ -109,11 +109,11 @@ function styleResult(clustered) {
         const color = chromatism.brightness(-25, colours[clusterId]).hex;
 
         // Add Centroid
-        features.push(centroid(cluster, {
+        features.push(centroid(cluster, {properties: {
             'marker-color': colours[clusterId],
             'marker-symbol': 'star-stroked',
             'marker-size': 'large'
-        }));
+        }}));
 
         // Add concave polygon
         features.push(polygon([concaveman(coordAll(cluster))], {
