@@ -1,7 +1,10 @@
 import distance from '@turf/distance';
 import intersect from '@turf/intersect';
-import {getType} from '@turf/invariant';
-import {polygon, featureCollection, isObject, isNumber} from '@turf/helpers';
+import { getType } from '@turf/invariant';
+import {
+    polygon, featureCollection, isObject, isNumber,
+    Feature, FeatureCollection, Units, Properties, Polygon, MultiPolygon, BBox
+} from '@turf/helpers';
 
 /**
  * Takes a bounding box and the diameter of the cell and returns a {@link FeatureCollection} of flat-topped
@@ -15,7 +18,7 @@ import {polygon, featureCollection, isObject, isNumber} from '@turf/helpers';
  * @param {Object} [options={}] Optional parameters
  * @param {string} [options.units='kilometers'] used in calculating cell size, can be degrees, radians, miles, or kilometers
  * @param {Object} [options.properties={}] passed to each hexagon or triangle of the grid
- * @param {Feature<Polygon|MultiPolygon>} [options.mask] if passed a Polygon or MultiPolygon, the grid Points will be created only inside it
+ * @param {Feature<Polygon>} [options.mask] if passed a Polygon or MultiPolygon, the grid Points will be created only inside it
  * @param {boolean} [options.triangles=false] whether to return as triangles instead of hexagons
  * @returns {FeatureCollection<Polygon>} a hexagonal grid
  * @example
@@ -28,22 +31,19 @@ import {polygon, featureCollection, isObject, isNumber} from '@turf/helpers';
  * //addToMap
  * var addToMap = [hexgrid];
  */
-function hexGrid(bbox, cellSide, options) {
-    // Optional parameters
-    options = options || {};
-    if (!isObject(options)) throw new Error('options is invalid');
-    // var units = options.units;
-    var properties = options.properties || {};
-    var triangles = options.triangles;
-    var mask = options.mask;
-
-    // validation
-    if (cellSide === null || cellSide === undefined) throw new Error('cellSide is required');
-    if (!isNumber(cellSide)) throw new Error('cellSide is invalid');
-    if (!bbox) throw new Error('bbox is required');
-    if (!Array.isArray(bbox)) throw new Error('bbox must be array');
-    if (bbox.length !== 4) throw new Error('bbox must contain 4 numbers');
-    if (mask && ['Polygon', 'MultiPolygon'].indexOf(getType(mask)) === -1) throw new Error('options.mask must be a (Multi)Polygon');
+function hexGrid<P = Properties>(bbox: BBox, cellSide: number, options: {
+    units?: Units,
+    triangles?: boolean,
+    properties?: P,
+    mask?: Feature<Polygon> | Polygon;
+} = {}): FeatureCollection<Polygon, P> {
+    // Validation is done by Typescript
+    // if (cellSide === null || cellSide === undefined) throw new Error('cellSide is required');
+    // if (!isNumber(cellSide)) throw new Error('cellSide is invalid');
+    // if (!bbox) throw new Error('bbox is required');
+    // if (!Array.isArray(bbox)) throw new Error('bbox must be array');
+    // if (bbox.length !== 4) throw new Error('bbox must contain 4 numbers');
+    // if (mask && ['Polygon', 'MultiPolygon'].indexOf(getType(mask)) === -1) throw new Error('options.mask must be a (Multi)Polygon');
 
     var west = bbox[0];
     var south = bbox[1];
@@ -108,16 +108,16 @@ function hexGrid(bbox, cellSide, options) {
                 center_y -= hex_height / 2;
             }
 
-            if (triangles === true) {
+            if (options.triangles === true) {
                 hexTriangles(
                     [center_x, center_y],
                     cellWidth / 2,
                     cellHeight / 2,
-                    properties,
+                    options.properties,
                     cosines,
                     sines).forEach(function (triangle) {
-                    if (mask) {
-                        if (intersect(mask, triangle)) results.push(triangle);
+                    if (options.mask) {
+                        if (intersect(options.mask, triangle)) results.push(triangle);
                     } else {
                         results.push(triangle);
                     }
@@ -127,12 +127,12 @@ function hexGrid(bbox, cellSide, options) {
                     [center_x, center_y],
                     cellWidth / 2,
                     cellHeight / 2,
-                    properties,
+                    options.properties,
                     cosines,
                     sines
                 );
-                if (mask) {
-                    if (intersect(mask, hex)) results.push(hex);
+                if (options.mask) {
+                    if (intersect(options.mask, hex)) results.push(hex);
                 } else {
                     results.push(hex);
                 }

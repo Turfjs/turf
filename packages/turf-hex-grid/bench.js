@@ -1,5 +1,5 @@
-import Benchmark from 'benchmark';
-import grid from '.';
+const Benchmark = require('benchmark');
+const grid = require('./').default;
 
 var bbox = [
     -96.6357421875,
