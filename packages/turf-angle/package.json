@@ -46,6 +46,6 @@
     "@turf/bearing": "6.x",
     "@turf/helpers": "6.x",
     "@turf/invariant": "6.x",
-    "@turf/rhumb-bearing": "5.x"
+    "@turf/rhumb-bearing": "6.x"
   }
 }

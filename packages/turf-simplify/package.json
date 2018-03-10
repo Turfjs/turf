@@ -43,7 +43,7 @@
   "homepage": "https://github.com/Turfjs/turf",
   "devDependencies": {
     "@std/esm": "*",
-    "@turf/truncate": "^5.1.5",
+    "@turf/truncate": "6.x",
     "benchmark": "*",
     "load-json-file": "*",
     "rollup": "*",
@@ -52,7 +52,7 @@
   },
   "dependencies": {
     "@turf/clean-coords": "^5.1.5",
-    "@turf/clone": "^5.1.5",
+    "@turf/clone": "6.x",
     "@turf/helpers": "6.x",
     "@turf/meta": "6.x"
   },

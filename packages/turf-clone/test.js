@@ -1,13 +1,13 @@
-import test from 'tape';
-import {
+const test = require('tape');
+const {
     point,
     lineString,
     polygon,
     featureCollection,
     geometryCollection,
- } from '@turf/helpers';
-import { coordEach } from '@turf/meta';
-import clone from '.';
+ } = require('@turf/helpers');
+const { coordEach } = require('@turf/meta');
+const clone = require('./').default;
 
 
 test('turf-clone', t => {

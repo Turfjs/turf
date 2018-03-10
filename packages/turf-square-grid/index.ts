@@ -1,7 +1,10 @@
 import distance from '@turf/distance';
 import intersect from '@turf/boolean-intersects';
 import {getType} from '@turf/invariant';
-import {polygon, featureCollection, isObject, isNumber} from '@turf/helpers';
+import {
+    polygon, featureCollection, isNumber,
+    BBox, Units, Feature, Properties, Polygon, MultiPolygon, FeatureCollection
+} from '@turf/helpers';
 
 /**
  * Creates a square grid from a bounding box, {@link Feature} or {@link FeatureCollection}.
@@ -24,24 +27,21 @@ import {polygon, featureCollection, isObject, isNumber} from '@turf/helpers';
  * //addToMap
  * var addToMap = [squareGrid]
  */
-function squareGrid(bbox, cellSide, options) {
-    // Optional parameters
-    options = options || {};
-    if (!isObject(options)) throw new Error('options is invalid');
-    // var units = options.units;
-    var properties = options.properties;
-    var mask = options.mask;
-
+function squareGrid<P = Properties>(bbox: BBox, cellSide: number, options: {
+    units?: Units,
+    properties?: P,
+    mask?: Feature<Polygon | MultiPolygon> | Polygon | MultiPolygon
+} = {}): FeatureCollection<Polygon, P> {
     // Containers
     var results = [];
 
-    // Input Validation
-    if (cellSide === null || cellSide === undefined) throw new Error('cellSide is required');
-    if (!isNumber(cellSide)) throw new Error('cellSide is invalid');
-    if (!bbox) throw new Error('bbox is required');
-    if (!Array.isArray(bbox)) throw new Error('bbox must be array');
-    if (bbox.length !== 4) throw new Error('bbox must contain 4 numbers');
-    if (mask && ['Polygon', 'MultiPolygon'].indexOf(getType(mask)) === -1) throw new Error('options.mask must be a (Multi)Polygon');
+    // Input Validation is being handled by Typescript
+    // if (cellSide === null || cellSide === undefined) throw new Error('cellSide is required');
+    // if (!isNumber(cellSide)) throw new Error('cellSide is invalid');
+    // if (!bbox) throw new Error('bbox is required');
+    // if (!Array.isArray(bbox)) throw new Error('bbox must be array');
+    // if (bbox.length !== 4) throw new Error('bbox must contain 4 numbers');
+    // if (options.mask && ['Polygon', 'MultiPolygon'].indexOf(getType(options.mask)) === -1) throw new Error('options.mask must be a (Multi)Polygon');
 
     var west = bbox[0];
     var south = bbox[1];
@@ -74,9 +74,9 @@ function squareGrid(bbox, cellSide, options) {
                 [currentX + cellWidth, currentY + cellHeight],
                 [currentX + cellWidth, currentY],
                 [currentX, currentY]
-            ]], properties);
-            if (mask) {
-                if (intersect(mask, cellPoly)) results.push(cellPoly);
+            ]], options.properties);
+            if (options.mask) {
+                if (intersect(options.mask, cellPoly)) results.push(cellPoly);
             } else {
                 results.push(cellPoly);
             }

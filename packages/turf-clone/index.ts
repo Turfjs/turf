@@ -1,3 +1,5 @@
+import { AllGeoJSON, Feature } from "@turf/helpers";
+
 /**
  * Returns a cloned copy of the passed GeoJSON Object, including possible 'Foreign Members'.
  * ~3-5x faster than the common JSON.parse + JSON.stringify combo method.
@@ -10,7 +12,7 @@
  *
  * var lineCloned = turf.clone(line);
  */
-function clone(geojson) {
+function clone(geojson: AllGeoJSON) {
     if (!geojson) throw new Error('geojson is required');
 
     switch (geojson.type) {
@@ -38,8 +40,8 @@ function clone(geojson) {
  * @param {Feature<any>} geojson GeoJSON Feature
  * @returns {Feature<any>} cloned Feature
  */
-function cloneFeature(geojson) {
-    var cloned = {type: 'Feature'};
+function cloneFeature(geojson: any) {
+    var cloned: any = {type: 'Feature'};
     // Preserve Foreign Members
     Object.keys(geojson).forEach(function (key) {
         switch (key) {
@@ -94,8 +96,8 @@ function cloneProperties(properties) {
  * @param {FeatureCollection<any>} geojson GeoJSON Feature Collection
  * @returns {FeatureCollection<any>} cloned Feature Collection
  */
-function cloneFeatureCollection(geojson) {
-    var cloned = {type: 'FeatureCollection'};
+function cloneFeatureCollection(geojson: any) {
+    var cloned: any = {type: 'FeatureCollection'};
 
     // Preserve Foreign Members
     Object.keys(geojson).forEach(function (key) {
@@ -121,8 +123,8 @@ function cloneFeatureCollection(geojson) {
  * @param {Geometry<any>} geometry GeoJSON Geometry
  * @returns {Geometry<any>} cloned Geometry
  */
-function cloneGeometry(geometry) {
-    var geom = {type: geometry.type};
+function cloneGeometry(geometry: any) {
+    var geom: any = {type: geometry.type};
     if (geometry.bbox) geom.bbox = geometry.bbox;
 
     if (geometry.type === 'GeometryCollection') {

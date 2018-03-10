@@ -41,7 +41,7 @@
     "@turf/bbox-polygon": "6.x",
     "@turf/circle": "6.x",
     "@turf/destination": "6.x",
-    "@turf/truncate": "^5.1.5",
+    "@turf/truncate": "6.x",
     "benchmark": "*",
     "glob": "*",
     "load-json-file": "*",
@@ -52,7 +52,7 @@
   "dependencies": {
     "@turf/helpers": "6.x",
     "@turf/invariant": "6.x",
-    "@turf/rhumb-destination": "^5.1.5",
+    "@turf/rhumb-destination": "6.x",
     "@turf/transform-rotate": "^5.1.5"
   },
   "@std/esm": {

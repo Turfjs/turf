@@ -1,5 +1,5 @@
 // https://en.wikipedia.org/wiki/Rhumb_line
-import { convertLength, earthRadius, isObject } from '@turf/helpers';
+import { convertLength, earthRadius, Coord, Feature, Point, Units } from '@turf/helpers';
 import { getCoord } from '@turf/invariant';
 
 /**
@@ -24,16 +24,9 @@ import { getCoord } from '@turf/invariant';
  * from.properties.distance = distance;
  * to.properties.distance = distance;
  */
-function rhumbDistance(from, to, options) {
-    // Optional parameters
-    options = options || {};
-    if (!isObject(options)) throw new Error('options is invalid');
-    var units = options.units;
-
-    // validation
-    if (!from) throw new Error('from point is required');
-    if (!to) throw new Error('to point is required');
-
+function rhumbDistance(from: Coord, to: Coord, options: {
+    units?: Units,
+} = {}): number {
     var origin = getCoord(from);
     var destination = getCoord(to);
 
@@ -41,7 +34,7 @@ function rhumbDistance(from, to, options) {
     // solution from https://github.com/mapbox/mapbox-gl-js/issues/3250#issuecomment-294887678
     destination[0] += (destination[0] - origin[0] > 180) ? -360 : (origin[0] - destination[0] > 180) ? 360 : 0;
     var distanceInMeters = calculateRhumbDistance(origin, destination);
-    var distance = convertLength(distanceInMeters, 'meters', units);
+    var distance = convertLength(distanceInMeters, 'meters', options.units);
     return distance;
 }
 
@@ -60,7 +53,7 @@ function rhumbDistance(from, to, options) {
  *     var p2 = new LatLon(50.964, 1.853);
  *     var d = p1.distanceTo(p2); // 40.31 km
  */
-function calculateRhumbDistance(origin, destination, radius) {
+function calculateRhumbDistance(origin: number[], destination: number[], radius?: number) {
     // φ => phi
     // λ => lambda
     // ψ => psi
