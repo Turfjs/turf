@@ -52,11 +52,12 @@ test('triangle-grid', t => {
 
 test('square-grid -- throw', t => {
     const bbox = [0, 0, 1, 1];
-    t.throws(() => triangleGrid(null, 0), /bbox is required/, 'missing bbox');
-    t.throws(() => triangleGrid('string', 0), /bbox must be array/, 'invalid bbox');
-    t.throws(() => triangleGrid([0, 2], 0), /bbox must contain 4 numbers/, 'invalid bbox');
-    t.throws(() => triangleGrid(bbox, null), /cellSide is required/, 'missing cellSide');
-    t.throws(() => triangleGrid(bbox, 'string'), /cellSide is invalid/, 'invalid cellSide');
-    t.throws(() => triangleGrid(bbox, 1, 'string'), /options is invalid/, 'invalid options');
+    // Types is managed by Typescript
+    // t.throws(() => triangleGrid(null, 0), /bbox is required/, 'missing bbox');
+    // t.throws(() => triangleGrid('string', 0), /bbox must be array/, 'invalid bbox');
+    // t.throws(() => triangleGrid([0, 2], 0), /bbox must contain 4 numbers/, 'invalid bbox');
+    // t.throws(() => triangleGrid(bbox, null), /cellSide is required/, 'missing cellSide');
+    // t.throws(() => triangleGrid(bbox, 'string'), /cellSide is invalid/, 'invalid cellSide');
+    // t.throws(() => triangleGrid(bbox, 1, 'string'), /options is invalid/, 'invalid options');
     t.end();
 });
