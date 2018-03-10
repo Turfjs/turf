@@ -1,16 +1,16 @@
-import path from 'path';
-import test from 'tape';
-import glob from 'glob';
-import load from 'load-json-file';
-import write from 'write-json-file';
-import { featureEach } from '@turf/meta';
-import {
+const path = require('path');
+const test = require('tape');
+const glob = require('glob');
+const load = require('load-json-file');
+const write = require('write-json-file');
+const { featureEach } = require('@turf/meta');
+const {
     point,
     lineString,
     polygon,
     featureCollection,
- } from '@turf/helpers';
-import centerOfMass from '.';
+ } = require('@turf/helpers');
+const centerOfMass = require('./').default;
 
 const directories = {
     in: path.join(__dirname, 'test', 'in') + path.sep,
@@ -60,7 +60,7 @@ test('center of mass -- no area', t => {
 
 test('center of mass -- properties', t => {
     const line = lineString([[0, 0], [1, 1]]);
-    const pt = centerOfMass(line, {foo: 'bar'});
+    const pt = centerOfMass(line, {properties: {foo: 'bar'}});
     t.equal(pt.properties.foo, 'bar', 'translate properties');
     t.end();
 });

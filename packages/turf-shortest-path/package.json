@@ -50,7 +50,7 @@
   "dependencies": {
     "@turf/bbox": "6.x",
     "@turf/bbox-polygon": "6.x",
-    "@turf/boolean-point-in-polygon": "^5.1.5",
+    "@turf/boolean-point-in-polygon": "6.x",
     "@turf/clean-coords": "^5.1.5",
     "@turf/distance": "6.x",
     "@turf/helpers": "6.x",

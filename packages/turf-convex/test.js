@@ -1,10 +1,10 @@
-import test from 'tape';
-import glob from 'glob';
-import path from 'path';
-import write from 'write-json-file';
-import load from 'load-json-file';
-import { featureCollection } from '@turf/helpers';
-import convex from '.';
+const test = require('tape');
+const glob = require('glob');
+const path = require('path');
+const write = require('write-json-file');
+const load = require('load-json-file');
+const { featureCollection } = require('@turf/helpers');
+const convex = require('./').default;
 
 const directories = {
     in: path.join(__dirname, 'test', 'in') + path.sep,

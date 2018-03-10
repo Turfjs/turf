@@ -45,8 +45,8 @@
     "tape": "*"
   },
   "dependencies": {
-    "@turf/boolean-point-in-polygon": "^5.1.5",
-    "@turf/center": "^5.1.5",
+    "@turf/boolean-point-in-polygon": "6.x",
+    "@turf/center": "6.x",
     "@turf/explode": "^5.1.5",
     "@turf/helpers": "6.x",
     "@turf/nearest-point": "^5.1.5"

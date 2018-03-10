@@ -39,7 +39,7 @@
     "write-json-file": "*"
   },
   "dependencies": {
-    "@turf/area": "5.x",
+    "@turf/area": "6.x",
     "@turf/helpers": "6.x",
     "@turf/invariant": "6.x",
     "@turf/meta": "6.x",

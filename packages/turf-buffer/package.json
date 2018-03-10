@@ -53,7 +53,7 @@
   },
   "dependencies": {
     "@turf/bbox": "6.x",
-    "@turf/center": "^5.1.5",
+    "@turf/center": "6.x",
     "@turf/helpers": "6.x",
     "@turf/meta": "6.x",
     "@turf/projection": "6.x",

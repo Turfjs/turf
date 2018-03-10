@@ -48,7 +48,7 @@
     "write-json-file": "*"
   },
   "dependencies": {
-    "@turf/center-mean": "^5.1.5",
+    "@turf/center-mean": "6.x",
     "@turf/ellipse": "^5.1.5",
     "@turf/helpers": "6.x",
     "@turf/invariant": "6.x",

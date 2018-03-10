@@ -1,6 +1,6 @@
 import convex from '@turf/convex';
 import centroid from '@turf/centroid';
-import { point } from '@turf/helpers';
+import { point, Properties, AllGeoJSON, Feature, Point } from '@turf/helpers';
 import { getType } from '@turf/invariant';
 import { coordEach } from '@turf/meta';
 
@@ -9,7 +9,8 @@ import { coordEach } from '@turf/meta';
  *
  * @name centerOfMass
  * @param {GeoJSON} geojson GeoJSON to be centered
- * @param {Object} [properties={}] an Object that is used as the {@link Feature}'s properties
+ * @param {Object} [options={}] Optional Parameters
+ * @param {Object} [options.properties={}] Translate Properties to Feature
  * @returns {Feature<Point>} the center of mass
  * @example
  * var polygon = turf.polygon([[[-81, 41], [-88, 36], [-84, 31], [-80, 33], [-77, 39], [-81, 41]]]);
@@ -19,7 +20,9 @@ import { coordEach } from '@turf/meta';
  * //addToMap
  * var addToMap = [polygon, center]
  */
-function centerOfMass(geojson, properties) {
+function centerOfMass<P = Properties>(geojson: any, options: {
+    properties?: P,
+} = {}): Feature<Point, P> {
     switch (getType(geojson)) {
     case 'Point':
         return geojson;
@@ -31,7 +34,7 @@ function centerOfMass(geojson, properties) {
 
         // First, we neutralize the feature (set it around coordinates [0,0]) to prevent rounding errors
         // We take any point to translate all the points around 0
-        var centre = centroid(geojson, properties);
+        var centre = centroid(geojson, {properties: options.properties});
         var translation = centre.geometry.coordinates;
         var sx = 0;
         var sy = 0;
@@ -79,15 +82,15 @@ function centerOfMass(geojson, properties) {
             return point([
                 translation[0] + areaFactor * sx,
                 translation[1] + areaFactor * sy
-            ], properties);
+            ], options.properties);
         }
     default:
         // Not a polygon: Compute the convex hull and work with that
         var hull = convex(geojson);
 
-        if (hull) return centerOfMass(hull, properties);
+        if (hull) return centerOfMass(hull, {properties: options.properties});
         // Hull is empty: fallback on the centroid
-        else return centroid(geojson, properties);
+        else return centroid(geojson, {properties: options.properties});
     }
 }
 

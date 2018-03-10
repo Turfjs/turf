@@ -47,7 +47,7 @@
   },
   "dependencies": {
     "@turf/bbox": "6.x",
-    "@turf/boolean-point-in-polygon": "^5.1.5",
+    "@turf/boolean-point-in-polygon": "6.x",
     "@turf/helpers": "6.x",
     "rbush": "^2.0.1"
   },
