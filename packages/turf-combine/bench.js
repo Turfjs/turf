@@ -1,7 +1,7 @@
-import fs from 'fs';
-import Benchmark from 'benchmark';
-import { point, polygon, lineString, featureCollection } from '@turf/helpers';
-import combine from './';
+const fs = require('fs');
+const Benchmark = require('benchmark');
+const { point, polygon, lineString, featureCollection } = require('@turf/helpers');
+const combine = require('./').default;
 
 // MultiPoint
 var pt1 = point(50, 51)

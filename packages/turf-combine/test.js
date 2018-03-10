@@ -1,31 +1,25 @@
-import test from 'tape';
-import { point } from '@turf/helpers';
-import { multiPoint as multipoint } from '@turf/helpers';
-import { lineString as linestring } from '@turf/helpers';
-import { multiLineString as multilinestring } from '@turf/helpers';
-import { polygon } from '@turf/helpers';
-import { multiPolygon as multipolygon } from '@turf/helpers';
-import { featureCollection as featurecollection } from '@turf/helpers';
-import combine from '.';
+const test = require('tape');
+const { point, multiPoint, polygon, multiPolygon, lineString, multiLineString, featureCollection, feature } = require('@turf/helpers');
+const combine = require('./').default;
 
 test('combine -- points', t => {
     // MultiPoint
     const pt1 = point([50, 51]);
     const pt2 = point([100, 101]);
 
-    const multiPt = combine(featurecollection([pt1, pt2]));
+    const multiPt = combine(featureCollection([pt1, pt2]));
 
     t.ok(multiPt, 'should combine two Points into a MultiPoint');
     t.deepEqual(multiPt.features[0].geometry.coordinates, [[50, 51], [100, 101]]);
     t.end();
 });
 
-test('combine -- mixed multipoint & point', function (t) {
+test('combine -- mixed multiPoint & point', function (t) {
     // MultiPoint
     const pt1 = point([50, 51]);
-    const pt2 = multipoint([[100, 101], [101, 102]]);
+    const pt2 = multiPoint([[100, 101], [101, 102]]);
 
-    const multiPt = combine(featurecollection([pt1, pt2]));
+    const multiPt = combine(featureCollection([pt1, pt2]));
 
     t.ok(multiPt, 'should combine Points + MultiPoint into a MultiPoint');
     t.deepEqual(multiPt.features[0].geometry.coordinates, [[50, 51], [100, 101], [101, 102]]);
@@ -34,18 +28,18 @@ test('combine -- mixed multipoint & point', function (t) {
 
 test('combine -- linestrings', function (t) {
     // MultiLineString
-    const l1 = linestring([
+    const l1 = lineString([
         [102.0,
             -10.0],
         [130.0,
             4.0]]);
-    const l2 = linestring([
+    const l2 = lineString([
         [40.0,
             -20.0],
         [150.0,
             18.0]]);
 
-    const multiLine = combine(featurecollection([l1, l2]));
+    const multiLine = combine(featureCollection([l1, l2]));
 
     t.ok(multiLine, 'should combine two LineStrings into a MultiLineString');
     t.equal(multiLine.features[0].geometry.type, 'MultiLineString');
@@ -53,13 +47,13 @@ test('combine -- linestrings', function (t) {
     t.end();
 });
 
-test('combine -- mixed multilinestring & linestring', function (t) {
+test('combine -- mixed multiLineString & linestring', function (t) {
     // MultiLineString
-    const l1 = linestring([
+    const l1 = lineString([
         [102.0, -10.0],
         [130.0, 4.0]
     ]);
-    const l2 = multilinestring([
+    const l2 = multiLineString([
         [
             [40.0, -20.0],
             [150.0, 18.0]
@@ -70,7 +64,7 @@ test('combine -- mixed multilinestring & linestring', function (t) {
         ]
     ]);
 
-    const multiLine = combine(featurecollection([l1, l2]));
+    const multiLine = combine(featureCollection([l1, l2]));
 
     t.ok(multiLine, 'should combine LineString + MultiLineString into a MultiLineString');
     t.equal(multiLine.features[0].geometry.type, 'MultiLineString');
@@ -98,7 +92,7 @@ test('combine -- polygons', function (t) {
             [30.0, 0.0]
         ]
     ]);
-    const multiPoly = combine(featurecollection([p1, p2]));
+    const multiPoly = combine(featureCollection([p1, p2]));
 
     t.ok(multiPoly, 'should combine two Polygons into a MultiPolygon');
     t.equal(multiPoly.features[0].geometry.type, 'MultiPolygon');
@@ -121,7 +115,7 @@ test('combine -- polygons', function (t) {
             [20.0, 0.0]
         ]
     ]);
-    const p2 = multipolygon([
+    const p2 = multiPolygon([
         [[
             [30.0, 0.0],
             [102.0, 0.0],
@@ -143,7 +137,7 @@ test('combine -- polygons', function (t) {
             ]
         ]
     ]);
-    const multiPoly = combine(featurecollection([p1, p2]));
+    const multiPoly = combine(featureCollection([p1, p2]));
 
     t.ok(multiPoly, 'should combine two Polygon + MultiPolygon into a MultiPolygon');
     t.equal(multiPoly.features[0].geometry.type, 'MultiPolygon');
@@ -169,7 +163,7 @@ test('combine -- heterogenous', function (t) {
             [20.0, 0.0]
         ]
     ]);
-    const p2 = multipolygon([
+    const p2 = multiPolygon([
         [[
             [30.0, 0.0],
             [102.0, 0.0],
@@ -192,7 +186,7 @@ test('combine -- heterogenous', function (t) {
         ]
     ]);
     const pt1 = point([50, 51]);
-    const multiPoly = combine(featurecollection([p1, p2, pt1]));
+    const multiPoly = combine(featureCollection([p1, p2, pt1]));
 
     t.ok(multiPoly, 'should combine two Polygon + MultiPolygon into a MultiPolygon');
     t.equal(multiPoly.features[0].geometry.type, 'MultiPoint');
