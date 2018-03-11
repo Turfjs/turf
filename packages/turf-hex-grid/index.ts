@@ -44,6 +44,8 @@ function hexGrid<P = Properties>(bbox: BBox, cellSide: number, options: {
     // if (!Array.isArray(bbox)) throw new Error('bbox must be array');
     // if (bbox.length !== 4) throw new Error('bbox must contain 4 numbers');
     // if (mask && ['Polygon', 'MultiPolygon'].indexOf(getType(mask)) === -1) throw new Error('options.mask must be a (Multi)Polygon');
+    if (!options.properties) { options.properties = {}; }
+    var clonedProperties = JSON.stringify(options.properties)
 
     var west = bbox[0];
     var south = bbox[1];
@@ -113,7 +115,7 @@ function hexGrid<P = Properties>(bbox: BBox, cellSide: number, options: {
                     [center_x, center_y],
                     cellWidth / 2,
                     cellHeight / 2,
-                    options.properties,
+                    JSON.parse(clonedProperties),
                     cosines,
                     sines).forEach(function (triangle) {
                     if (options.mask) {
@@ -127,7 +129,7 @@ function hexGrid<P = Properties>(bbox: BBox, cellSide: number, options: {
                     [center_x, center_y],
                     cellWidth / 2,
                     cellHeight / 2,
-                    options.properties,
+                    JSON.parse(clonedProperties),
                     cosines,
                     sines
                 );

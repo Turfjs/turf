@@ -8,6 +8,14 @@ var bbox = [
     40.58058466412764
 ];
 
+/**
+ * Benchmark Results
+ *
+ * turf-hex-grid -- 10 cells x 67,086 ops/sec ±12.27% (80 runs sampled)
+ * turf-hex-grid -- 1570 cells x 571 ops/sec ±1.52% (83 runs sampled)
+ * turf-hex-grid -- 163778 cells x 1.13 ops/sec ±11.65% (7 runs sampled)
+*/
+
 var lowres = grid(bbox, 100, {units: 'miles'}).features.length;
 var midres = grid(bbox, 10, {units: 'miles'}).features.length;
 var highres = grid(bbox, 1, {units: 'miles'}).features.length;
