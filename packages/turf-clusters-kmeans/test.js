@@ -1,15 +1,15 @@
-import fs from 'fs';
-import test from 'tape';
-import path from 'path';
-import load from 'load-json-file';
-import write from 'write-json-file';
-import centroid from '@turf/centroid';
-import * as chromatism from 'chromatism';
-import concaveman from 'concaveman';
-import { point, polygon, featureCollection } from '@turf/helpers';
-import { clusterReduce, clusterEach } from '@turf/clusters';
-import { coordAll, featureEach } from '@turf/meta';
-import clustersKmeans from '.';
+const fs = require('fs');
+const test = require('tape');
+const path = require('path');
+const load = require('load-json-file');
+const write = require('write-json-file');
+const centroid = require('@turf/centroid').default;
+const chromatism = require('chromatism');
+const concaveman = require('concaveman');
+const { point, polygon, featureCollection } = require('@turf/helpers');
+const { clusterReduce, clusterEach } = require('@turf/clusters');
+const { coordAll, featureEach } = require('@turf/meta');
+const clustersKmeans = require('./').default;
 
 const directories = {
     in: path.join(__dirname, 'test', 'in') + path.sep,
@@ -48,7 +48,9 @@ const points = featureCollection([
 
 test('clusters-kmeans -- throws', t => {
     const poly = polygon([[[0, 0], [10, 10], [0, 10], [0, 0]]]);
-    t.throws(() => clustersKmeans(poly, {numberOfClusters: 1}), /Input must contain Points/);
+
+    // Types handled by Typescript
+    // t.throws(() => clustersKmeans(poly, {numberOfClusters: 1}), /Input must contain Points/);
     // t.throws(() => clustersKmeans(points, 5), /numberOfClusters can't be greater than the number of points/);
     t.end();
 });

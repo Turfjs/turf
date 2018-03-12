@@ -15,7 +15,7 @@ import lineToPolygon from './'
 const coords = [[125, -30], [145, -30], [145, -20], [125, -20], [125, -30]];
 const line = lineString(coords);
 const multiLine = multiLineString([coords, coords]);
-const fc = featureCollection([line, multiLine]);
+const fc = featureCollection<LineString|MultiLineString>([line, multiLine]);
 
 // Assert results with types
 const poly1 = lineToPolygon(line); // Feature<Polygon>

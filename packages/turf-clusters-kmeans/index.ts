@@ -1,7 +1,12 @@
 import clone from '@turf/clone';
-import { collectionOf } from '@turf/invariant';
 import { coordAll, featureEach } from '@turf/meta';
-import skmeans from 'skmeans';
+import { FeatureCollection, Feature, Point, Properties } from '@turf/helpers';
+import * as skmeans from 'skmeans';
+
+export interface KmeansProps extends Properties {
+    cluster?: number;
+    centroid?: [number, number];
+}
 
 /**
  * Takes a set of {@link Point|points} and partition them into clusters using the k-mean .
@@ -24,34 +29,29 @@ import skmeans from 'skmeans';
  * //addToMap
  * var addToMap = [clustered];
  */
-function clustersKmeans(points, options) {
-    // Optional parameters
-    options = options || {};
-    if (typeof options !== 'object') throw new Error('options is invalid');
-    var numberOfClusters = options.numberOfClusters;
-
-    // Input validation
-    collectionOf(points, 'Point', 'Input must contain Points');
-
+function clustersKmeans(points: FeatureCollection<Point>, options: {
+    numberOfClusters?: number,
+    mutate?: boolean
+} = {}): FeatureCollection<Point, KmeansProps> {
     // Default Params
     var count = points.features.length;
-    numberOfClusters = numberOfClusters || Math.round(Math.sqrt(count / 2));
+    options.numberOfClusters = options.numberOfClusters || Math.round(Math.sqrt(count / 2));
 
     // numberOfClusters can't be greater than the number of points
     // fallbacks to count
-    if (numberOfClusters > count) numberOfClusters = count;
+    if (options.numberOfClusters > count) options.numberOfClusters = count;
 
     // Clone points to prevent any mutations (enabled by default)
-    if (options.mutate !== true) points = clone(points, true);
+    if (options.mutate !== true) points = clone(points);
 
     // collect points coordinates
     var data = coordAll(points);
 
     // create seed to avoid skmeans to drift
-    var initialCentroids = data.slice(0, numberOfClusters);
+    var initialCentroids = data.slice(0, options.numberOfClusters);
 
     // create skmeans clusters
-    var skmeansResult = skmeans(data, numberOfClusters, initialCentroids);
+    var skmeansResult = skmeans(data, options.numberOfClusters, initialCentroids);
 
     // store centroids {clusterId: [number, number]}
     var centroids = {};

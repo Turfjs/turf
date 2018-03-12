@@ -2,6 +2,7 @@ import clone from '@turf/clone';
 import { getType } from '@turf/invariant';
 import { lineReduce } from '@turf/meta';
 import { isObject, multiLineString, lineString } from '@turf/helpers';
+import { Feature, FeatureCollection, LineString, MultiLineString } from '@turf/helpers';
 
 /**
  * Merges all connected (non-forking, non-junctioning) line strings into single lineStrings.
@@ -12,7 +13,9 @@ import { isObject, multiLineString, lineString } from '@turf/helpers';
  * @param {boolean} [options.mutate=false] Prevent input mutation
  * @returns {Feature<LineString|MultiLineString>} Dissolved lines
  */
-function lineDissolve(geojson, options) {
+function lineDissolve(geojson: FeatureCollection<LineString|MultiLineString>, options: {
+    mutate?: boolean,
+} = {}): Feature<LineString|MultiLineString> {
     // Optional parameters
     options = options || {};
     if (!isObject(options)) throw new Error('options is invalid');

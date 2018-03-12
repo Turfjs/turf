@@ -77,7 +77,7 @@ export function featureReduce<Reducer extends any, G extends Geometries, P = Pro
 /**
  * http://turfjs.org/docs/#featureeach
  */
-export function featureEach<G extends Geometries, P = Properties>(
+export function featureEach<G extends any, P = Properties>(
     geojson: Feature<G, P> | FeatureCollection<G, P> | Feature<GeometryCollection, P>,
     callback: (currentFeature: Feature<G, P>,
                featureIndex: number) => void

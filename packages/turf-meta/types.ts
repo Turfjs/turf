@@ -33,7 +33,7 @@ const poly = helpers.polygon([[[0, 0], [1, 1], [0, 1], [0, 0]]])
 const multiPoly = helpers.multiPolygon([[[[0, 0], [1, 1], [0, 1], [0, 0]]]])
 const multiLine = helpers.multiLineString([[[0, 0], [1, 1], [0, 1], [0, 0]], [[2, 2], [3, 3]]])
 const geomCollection = helpers.geometryCollection([pt.geometry, line.geometry])
-const features = helpers.featureCollection([pt, line])
+const features = helpers.featureCollection<Point|LineString>([pt, line])
 
 const customPoint = point([10, 20], {foo: 'abc', bar: 123})
 const customPoints = featureCollection([customPoint])
@@ -155,12 +155,13 @@ meta.flattenEach(geomCollection, (feature, index, props) => feature)
 /**
  * meta.segmentReduce
  */
+const lines = helpers.featureCollection<LineString>([line])
 const segmentReduceValue: number = meta.segmentReduce(poly, () => 1 + 1)
 segmentReduce(poly, previousValue => previousValue)
 meta.segmentReduce(poly, previousValue => previousValue)
 meta.segmentReduce(poly, (previousValue, currentSegment) => currentSegment)
 meta.segmentReduce(poly, (previousValue, currentSegment) => 1 + 1, 0)
-meta.segmentReduce(features, (previousValue, currentSegment) => currentSegment)
+meta.segmentReduce(lines, (previousValue, currentSegment) => currentSegment)
 meta.segmentReduce(poly, (previousValue, currentSegment, currentIndex) => currentSegment)
 meta.segmentReduce(geomCollection, (previousValue, currentSegment, currentIndex) => currentSegment)
 meta.segmentReduce(geomCollection, (previousValue, currentSegment, currentIndex, currentSubIndex) => currentSegment)

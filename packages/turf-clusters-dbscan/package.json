@@ -1,21 +1,17 @@
 {
   "name": "@turf/clusters-dbscan",
-  "version": "5.1.5",
+  "version": "6.0.0",
   "description": "turf clusters-dbscan module",
-  "main": "main.js",
-  "module": "main.es.js",
-  "types": "index.d.ts",
+  "main": "index",
   "files": [
     "index.js",
-    "index.d.ts",
-    "main.js",
-    "main.es.js"
+    "index.ts"
   ],
   "scripts": {
-    "pretest": "rollup -c ../../rollup.config.js",
-    "test": "node -r @std/esm test.js",
-    "posttest": "node -r @std/esm ../../scripts/validate-es5-dependencies.js",
-    "bench": "node -r @std/esm bench.js",
+    "prepare": "tsc",
+    "pretest": "tsc",
+    "test": "node test.js",
+    "bench": "node bench.js",
     "docs": "node ../../scripts/generate-readmes"
   },
   "repository": {
@@ -43,14 +39,13 @@
   },
   "homepage": "https://github.com/Turfjs/turf",
   "devDependencies": {
-    "@std/esm": "*",
-    "@turf/centroid": "6.x",
-    "@turf/clusters": "^5.1.5",
+    "@turf/centroid": "*",
+    "@turf/clusters": "*",
     "benchmark": "*",
     "chromatism": "*",
     "concaveman": "*",
     "load-json-file": "*",
-    "rollup": "*",
+    "typescript": "*",
     "tape": "*",
     "write-json-file": "*"
   },
@@ -61,9 +56,5 @@
     "@turf/invariant": "6.x",
     "@turf/meta": "6.x",
     "density-clustering": "1.3.0"
-  },
-  "@std/esm": {
-    "esm": "js",
-    "cjs": true
   }
 }

@@ -1,5 +1,6 @@
 import { feature, featureCollection } from '@turf/helpers';
 import { featureEach } from '@turf/meta';
+import { Point, LineString, Polygon, MultiPoint, MultiLineString, MultiPolygon, Feature, FeatureCollection } from '@turf/helpers'
 
 /**
  * Combines a {@link FeatureCollection} of {@link Point}, {@link LineString}, or {@link Polygon} features
@@ -19,7 +20,7 @@ import { featureEach } from '@turf/meta';
  * //addToMap
  * var addToMap = [combined]
  */
-function combine(fc) {
+function combine(fc: FeatureCollection<Point|LineString|Polygon>) {
     var groups = {
         MultiPoint: {coordinates: [], properties: []},
         MultiLineString: {coordinates: [], properties: []},

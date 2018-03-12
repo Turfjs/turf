@@ -1,6 +1,6 @@
-import Benchmark from 'benchmark';
-import { featureCollection, point } from '@turf/helpers';
-import {
+const Benchmark = require('benchmark');
+const { featureCollection, point } = require('@turf/helpers');
+const {
     getCluster,
     clusterEach,
     clusterReduce,
@@ -8,7 +8,7 @@ import {
     filterProperties,
     applyFilter,
     createBins
-} from './';
+} = require('./');
 
 const geojson = featureCollection([
     point([0, 0], {cluster: 0}),

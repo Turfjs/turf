@@ -18,7 +18,7 @@ const pt = helpers.point([0, 0])
 const line = helpers.lineString([[0, 0], [1, 1]])
 const poly = helpers.polygon([[[0, 0], [1, 1], [2, 2], [0, 0]]])
 const gc = helpers.geometryCollection([pt.geometry, line.geometry, poly.geometry])
-const fc = helpers.featureCollection([pt, line, poly])
+const fc = helpers.featureCollection<Point|LineString|Polygon>([pt, line, poly])
 
 /**
  * invariant.getGeom

@@ -1,7 +1,8 @@
 import tin from '@turf/tin';
 import distance from '@turf/distance';
 import { featureEach } from '@turf/meta';
-import { feature, featureCollection, isObject, isNumber } from '@turf/helpers';
+import { feature, featureCollection, isObject, isNumber, polygon } from '@turf/helpers';
+import { Point, Feature, FeatureCollection, MultiPolygon, Polygon, Units} from '@turf/helpers'
 import dissolve from './lib/turf-dissolve';
 
 /**
@@ -30,7 +31,10 @@ import dissolve from './lib/turf-dissolve';
  * //addToMap
  * var addToMap = [points, hull]
  */
-function concave(points, options) {
+function concave(points: FeatureCollection<Point>, options: {
+    maxEdge?: number,
+    units?: Units
+} = {}): Feature<Polygon | MultiPolygon> {
     // Optional parameters
     options = options || {};
     if (!isObject(options)) throw new Error('options is invalid');
@@ -58,7 +62,7 @@ function concave(points, options) {
     if (tinPolys.features.length < 1) return null;
 
     // merge the adjacent triangles
-    var dissolved = dissolve(tinPolys, options);
+    var dissolved: any = dissolve(tinPolys);
 
     // geojson-dissolve always returns a MultiPolygon
     if (dissolved.coordinates.length === 1) {
@@ -75,7 +79,7 @@ function concave(points, options) {
  * @param {FeatureCollection<Point>} points to be cleaned
  * @returns {FeatureCollection<Point>} cleaned set of points
  */
-function removeDuplicates(points) {
+function removeDuplicates(points: FeatureCollection<Point>) {
     var cleaned = [];
     var existing = {};
 

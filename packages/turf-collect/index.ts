@@ -1,6 +1,7 @@
 import turfbbox from '@turf/bbox';
 import booleanPointInPolygon from '@turf/boolean-point-in-polygon';
 import rbush from 'rbush';
+import { FeatureCollection, Polygon, Feature, Point } from '@turf/helpers';
 
 /**
  * Merges a specified property from a FeatureCollection of points into a
@@ -32,7 +33,12 @@ import rbush from 'rbush';
  * //addToMap
  * var addToMap = [pointFC, collected]
  */
-function collect(polygons, points, inProperty, outProperty) {
+function collect(
+    polygons: FeatureCollection<Polygon>,
+    points: FeatureCollection<Point>,
+    inProperty: string,
+    outProperty: string
+): FeatureCollection<Polygon> {
     var rtree = rbush(6);
 
     var treeItems = points.features.map(function (item) {
