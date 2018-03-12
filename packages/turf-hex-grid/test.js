@@ -58,6 +58,18 @@ test('grid tiles count', t => {
     t.end();
 });
 
+test('Property mutation', t => {
+    const bbox1 = require(directories.in + 'bbox1.json').bbox;
+    const grid = hexGrid(bbox1, 50, {units: 'miles', properties: {foo: 'bar'}})
+    t.equal(grid.features[0].properties.foo, 'bar');
+    t.equal(grid.features[1].properties.foo, 'bar');
+    
+    grid.features[0].properties.foo = 'baz'
+    t.equal(grid.features[0].properties.foo, 'baz');
+    t.equal(grid.features[1].properties.foo, 'bar');
+    t.end();
+});
+
 
 test('longitude (13141439571036224) - issue #758', t => {
     const bbox = [-179, -90, 179, 90];
