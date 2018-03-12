@@ -55,7 +55,7 @@
     "@turf/meta": "6.x",
     "@turf/nearest-point-on-line": "^5.1.5",
     "@turf/square": "^5.1.5",
-    "@turf/truncate": "^5.1.5",
+    "@turf/truncate": "6.x",
     "geojson-rbush": "3.x"
   },
   "@std/esm": {

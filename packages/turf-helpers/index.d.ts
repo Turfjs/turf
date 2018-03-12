@@ -36,13 +36,12 @@ interface GeometryOptions {
 /**
  * http://turfjs.org/docs/#feature
  */
-export function feature<G extends Geometry | GeometryCollection, P = Properties>(geometry: G, properties?: P, options?: FeatureOptions): Feature<G, P>;
+export function feature<G = any, P = any>(geometry: G, properties?: P, options?: { id?: Id, bbox?: BBox }): Feature<G, P>;
 
 /**
  * http://turfjs.org/docs/#featurecollection
  */
-export function featureCollection<G extends Geometry, P = Properties>(features: Feature<G, P>[], options?: FeatureOptions): FeatureCollection<G, P>;
-export function featureCollection(features: Feature<any>[], options?: FeatureOptions): FeatureCollection<any>;
+export function featureCollection<G = any, P = any>(features: Feature<G, P>[], options?: { id?: Id, bbox?: BBox }): FeatureCollection<G, P>;
 
 /**
  * http://turfjs.org/docs/#geometry

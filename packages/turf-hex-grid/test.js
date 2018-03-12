@@ -1,11 +1,11 @@
-import fs from 'fs';
-import test from 'tape';
-import path from 'path';
-import load from 'load-json-file';
-import write from 'write-json-file';
-import truncate from '@turf/truncate';
-import bboxPoly from '@turf/bbox-polygon';
-import hexGrid from '.';
+const fs = require('fs');
+const test = require('tape');
+const path = require('path');
+const load = require('load-json-file');
+const write = require('write-json-file');
+const truncate = require('@turf/truncate').default;
+const bboxPoly = require('@turf/bbox-polygon').default;
+const hexGrid = require('./').default;
 
 const directories = {
     in: path.join(__dirname, 'test', 'in') + path.sep,
@@ -58,6 +58,18 @@ test('grid tiles count', t => {
     t.end();
 });
 
+test('Property mutation', t => {
+    const bbox1 = require(directories.in + 'bbox1.json').bbox;
+    const grid = hexGrid(bbox1, 50, {units: 'miles', properties: {foo: 'bar'}})
+    t.equal(grid.features[0].properties.foo, 'bar');
+    t.equal(grid.features[1].properties.foo, 'bar');
+    
+    grid.features[0].properties.foo = 'baz'
+    t.equal(grid.features[0].properties.foo, 'baz');
+    t.equal(grid.features[1].properties.foo, 'bar');
+    t.end();
+});
+
 
 test('longitude (13141439571036224) - issue #758', t => {
     const bbox = [-179, -90, 179, 90];
@@ -77,15 +89,15 @@ test('longitude (13141439571036224) - issue #758', t => {
     t.end();
 });
 
-
 test('hex-grid -- throw', t => {
     const bbox = [0, 0, 1, 1];
-    t.throws(() => hexGrid(null, 0), /bbox is required/, 'missing bbox');
-    t.throws(() => hexGrid('string', 0), /bbox must be array/, 'invalid bbox');
-    t.throws(() => hexGrid([0, 2], 1), /bbox must contain 4 numbers/, 'invalid bbox');
-    t.throws(() => hexGrid(bbox, null), /cellSide is required/, 'missing cellSide');
-    t.throws(() => hexGrid(bbox, 'string'), /cellSide is invalid/, 'invalid cellSide');
-    t.throws(() => hexGrid(bbox, 1, 'string'), /options is invalid/, 'invalid options');
+    // Types handled by Typescript
+    // t.throws(() => hexGrid(null, 0), /bbox is required/, 'missing bbox');
+    // t.throws(() => hexGrid('string', 0), /bbox must be array/, 'invalid bbox');
+    // t.throws(() => hexGrid([0, 2], 1), /bbox must contain 4 numbers/, 'invalid bbox');
+    // t.throws(() => hexGrid(bbox, null), /cellSide is required/, 'missing cellSide');
+    // t.throws(() => hexGrid(bbox, 'string'), /cellSide is invalid/, 'invalid cellSide');
+    // t.throws(() => hexGrid(bbox, 1, 'string'), /options is invalid/, 'invalid options');
     t.end();
 });
 

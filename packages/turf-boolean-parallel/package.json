@@ -44,6 +44,6 @@
     "@turf/clean-coords": "6.x",
     "@turf/helpers": "6.x",
     "@turf/line-segment": "6.x",
-    "@turf/rhumb-bearing": "*"
+    "@turf/rhumb-bearing": "6.x"
   }
 }

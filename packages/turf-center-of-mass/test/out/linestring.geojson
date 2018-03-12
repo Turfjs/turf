@@ -3,9 +3,7 @@
 	"features": [
 		{
 			"type": "Feature",
-			"properties": {
-				"marker-symbol": "circle"
-			},
+			"properties": {},
 			"geometry": {
 				"type": "Point",
 				"coordinates": [

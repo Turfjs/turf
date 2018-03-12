@@ -40,7 +40,7 @@
   "homepage": "https://github.com/Turfjs/turf",
   "devDependencies": {
     "@std/esm": "*",
-    "@turf/truncate": "^5.1.5",
+    "@turf/truncate": "6.x",
     "benchmark": "*",
     "load-json-file": "*",
     "rollup": "*",
@@ -48,14 +48,14 @@
     "write-json-file": "*"
   },
   "dependencies": {
-    "@turf/centroid": "^5.1.5",
-    "@turf/clone": "^5.1.5",
+    "@turf/centroid": "6.x",
+    "@turf/clone": "6.x",
     "@turf/helpers": "6.x",
     "@turf/invariant": "6.x",
     "@turf/meta": "6.x",
-    "@turf/rhumb-bearing": "^5.1.5",
-    "@turf/rhumb-destination": "^5.1.5",
-    "@turf/rhumb-distance": "^5.1.5"
+    "@turf/rhumb-bearing": "6.x",
+    "@turf/rhumb-destination": "6.x",
+    "@turf/rhumb-distance": "6.x"
   },
   "@std/esm": {
     "esm": "js",

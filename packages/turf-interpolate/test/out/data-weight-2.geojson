@@ -5,8 +5,8 @@
 			"type": "Feature",
 			"properties": {
 				"value": 8,
-				"stroke": "#ebf5ff",
-				"fill": "#ebf5ff",
+				"stroke": "#e5f3ff",
+				"fill": "#e5f3ff",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -41,8 +41,8 @@
 			"type": "Feature",
 			"properties": {
 				"value": 8,
-				"stroke": "#ebf5ff",
-				"fill": "#ebf5ff",
+				"stroke": "#e5f3ff",
+				"fill": "#e5f3ff",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -112,7 +112,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"value": 15,
+				"value": 14,
 				"stroke": "#b8ddff",
 				"fill": "#b8ddff",
 				"fill-opacity": 0.85
@@ -148,9 +148,9 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"value": 22,
-				"stroke": "#85c4ff",
-				"fill": "#85c4ff",
+				"value": 21,
+				"stroke": "#80c2ff",
+				"fill": "#80c2ff",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -184,9 +184,9 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"value": 32,
-				"stroke": "#38a0ff",
-				"fill": "#38a0ff",
+				"value": 31,
+				"stroke": "#2e9bff",
+				"fill": "#2e9bff",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -221,8 +221,8 @@
 			"type": "Feature",
 			"properties": {
 				"value": 8,
-				"stroke": "#ebf5ff",
-				"fill": "#ebf5ff",
+				"stroke": "#e5f3ff",
+				"fill": "#e5f3ff",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -293,8 +293,8 @@
 			"type": "Feature",
 			"properties": {
 				"value": 6,
-				"stroke": "#fafdff",
-				"fill": "#fafdff",
+				"stroke": "#f5faff",
+				"fill": "#f5faff",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -329,8 +329,8 @@
 			"type": "Feature",
 			"properties": {
 				"value": 13,
-				"stroke": "#c7e4ff",
-				"fill": "#c7e4ff",
+				"stroke": "#bddfff",
+				"fill": "#bddfff",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -364,7 +364,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"value": 21,
+				"value": 20,
 				"stroke": "#8ac7ff",
 				"fill": "#8ac7ff",
 				"fill-opacity": 0.85
@@ -400,9 +400,9 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"value": 39,
-				"stroke": "#0587ff",
-				"fill": "#0587ff",
+				"value": 36,
+				"stroke": "#0a8aff",
+				"fill": "#0a8aff",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -437,8 +437,8 @@
 			"type": "Feature",
 			"properties": {
 				"value": 10,
-				"stroke": "#dbeeff",
-				"fill": "#dbeeff",
+				"stroke": "#d6ebff",
+				"fill": "#d6ebff",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -472,9 +472,9 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"value": 8,
-				"stroke": "#ebf5ff",
-				"fill": "#ebf5ff",
+				"value": 7,
+				"stroke": "#f0f8ff",
+				"fill": "#f0f8ff",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -508,9 +508,9 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"value": 10,
-				"stroke": "#dbeeff",
-				"fill": "#dbeeff",
+				"value": 9,
+				"stroke": "#e0f0ff",
+				"fill": "#e0f0ff",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -580,9 +580,9 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"value": 18,
-				"stroke": "#9ed1ff",
-				"fill": "#9ed1ff",
+				"value": 16,
+				"stroke": "#a8d6ff",
+				"fill": "#a8d6ff",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -616,9 +616,9 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"value": 55,
-				"stroke": "#004d94",
-				"fill": "#004d94",
+				"value": 49,
+				"stroke": "#00529e",
+				"fill": "#00529e",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -653,8 +653,8 @@
 			"type": "Feature",
 			"properties": {
 				"value": 12,
-				"stroke": "#cce7ff",
-				"fill": "#cce7ff",
+				"stroke": "#c7e4ff",
+				"fill": "#c7e4ff",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -689,8 +689,8 @@
 			"type": "Feature",
 			"properties": {
 				"value": 12,
-				"stroke": "#cce7ff",
-				"fill": "#cce7ff",
+				"stroke": "#c7e4ff",
+				"fill": "#c7e4ff",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -725,8 +725,8 @@
 			"type": "Feature",
 			"properties": {
 				"value": 13,
-				"stroke": "#c7e4ff",
-				"fill": "#c7e4ff",
+				"stroke": "#bddfff",
+				"fill": "#bddfff",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -760,7 +760,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"value": 15,
+				"value": 14,
 				"stroke": "#b8ddff",
 				"fill": "#b8ddff",
 				"fill-opacity": 0.85
@@ -796,9 +796,9 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"value": 28,
-				"stroke": "#57aeff",
-				"fill": "#57aeff",
+				"value": 24,
+				"stroke": "#66b6ff",
+				"fill": "#66b6ff",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -832,7 +832,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"value": 75,
+				"value": 69,
 				"stroke": "#000000",
 				"fill": "#000000",
 				"fill-opacity": 0.85
@@ -869,8 +869,8 @@
 			"type": "Feature",
 			"properties": {
 				"value": 14,
-				"stroke": "#bddfff",
-				"fill": "#bddfff",
+				"stroke": "#b8ddff",
+				"fill": "#b8ddff",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -905,8 +905,8 @@
 			"type": "Feature",
 			"properties": {
 				"value": 13,
-				"stroke": "#c7e4ff",
-				"fill": "#c7e4ff",
+				"stroke": "#bddfff",
+				"fill": "#bddfff",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -940,9 +940,9 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"value": 11,
-				"stroke": "#d1e9ff",
-				"fill": "#d1e9ff",
+				"value": 12,
+				"stroke": "#c7e4ff",
+				"fill": "#c7e4ff",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -977,8 +977,8 @@
 			"type": "Feature",
 			"properties": {
 				"value": 12,
-				"stroke": "#cce7ff",
-				"fill": "#cce7ff",
+				"stroke": "#c7e4ff",
+				"fill": "#c7e4ff",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -1012,9 +1012,9 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"value": 27,
-				"stroke": "#61b3ff",
-				"fill": "#61b3ff",
+				"value": 26,
+				"stroke": "#57aeff",
+				"fill": "#57aeff",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -1048,9 +1048,9 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"value": 62,
-				"stroke": "#003361",
-				"fill": "#003361",
+				"value": 61,
+				"stroke": "#00203d",
+				"fill": "#00203d",
 				"fill-opacity": 0.85
 			},
 			"geometry": {

@@ -40,9 +40,9 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"value": 18,
-				"stroke": "#d6ebff",
-				"fill": "#d6ebff",
+				"value": 17,
+				"stroke": "#e0f0ff",
+				"fill": "#e0f0ff",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -293,8 +293,8 @@
 			"type": "Feature",
 			"properties": {
 				"value": 21,
-				"stroke": "#add8ff",
-				"fill": "#add8ff",
+				"stroke": "#a8d6ff",
+				"fill": "#a8d6ff",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -329,8 +329,8 @@
 			"type": "Feature",
 			"properties": {
 				"value": 21,
-				"stroke": "#add8ff",
-				"fill": "#add8ff",
+				"stroke": "#a8d6ff",
+				"fill": "#a8d6ff",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -473,8 +473,8 @@
 			"type": "Feature",
 			"properties": {
 				"value": 24,
-				"stroke": "#85c4ff",
-				"fill": "#85c4ff",
+				"stroke": "#80c2ff",
+				"fill": "#80c2ff",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -509,8 +509,8 @@
 			"type": "Feature",
 			"properties": {
 				"value": 24,
-				"stroke": "#85c4ff",
-				"fill": "#85c4ff",
+				"stroke": "#80c2ff",
+				"fill": "#80c2ff",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -545,8 +545,8 @@
 			"type": "Feature",
 			"properties": {
 				"value": 25,
-				"stroke": "#75bdff",
-				"fill": "#75bdff",
+				"stroke": "#70bbff",
+				"fill": "#70bbff",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -581,8 +581,8 @@
 			"type": "Feature",
 			"properties": {
 				"value": 25,
-				"stroke": "#75bdff",
-				"fill": "#75bdff",
+				"stroke": "#70bbff",
+				"fill": "#70bbff",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -617,8 +617,8 @@
 			"type": "Feature",
 			"properties": {
 				"value": 26,
-				"stroke": "#66b6ff",
-				"fill": "#66b6ff",
+				"stroke": "#61b3ff",
+				"fill": "#61b3ff",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -653,8 +653,8 @@
 			"type": "Feature",
 			"properties": {
 				"value": 27,
-				"stroke": "#5cb1ff",
-				"fill": "#5cb1ff",
+				"stroke": "#57aeff",
+				"fill": "#57aeff",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -689,8 +689,8 @@
 			"type": "Feature",
 			"properties": {
 				"value": 27,
-				"stroke": "#5cb1ff",
-				"fill": "#5cb1ff",
+				"stroke": "#57aeff",
+				"fill": "#57aeff",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -725,8 +725,8 @@
 			"type": "Feature",
 			"properties": {
 				"value": 28,
-				"stroke": "#4daaff",
-				"fill": "#4daaff",
+				"stroke": "#47a7ff",
+				"fill": "#47a7ff",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -761,8 +761,8 @@
 			"type": "Feature",
 			"properties": {
 				"value": 17,
-				"stroke": "#e5f3ff",
-				"fill": "#e5f3ff",
+				"stroke": "#e0f0ff",
+				"fill": "#e0f0ff",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -1049,8 +1049,8 @@
 			"type": "Feature",
 			"properties": {
 				"value": 21,
-				"stroke": "#add8ff",
-				"fill": "#add8ff",
+				"stroke": "#a8d6ff",
+				"fill": "#a8d6ff",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -1085,8 +1085,8 @@
 			"type": "Feature",
 			"properties": {
 				"value": 21,
-				"stroke": "#add8ff",
-				"fill": "#add8ff",
+				"stroke": "#a8d6ff",
+				"fill": "#a8d6ff",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -1229,8 +1229,8 @@
 			"type": "Feature",
 			"properties": {
 				"value": 24,
-				"stroke": "#85c4ff",
-				"fill": "#85c4ff",
+				"stroke": "#80c2ff",
+				"fill": "#80c2ff",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -1265,8 +1265,8 @@
 			"type": "Feature",
 			"properties": {
 				"value": 24,
-				"stroke": "#85c4ff",
-				"fill": "#85c4ff",
+				"stroke": "#80c2ff",
+				"fill": "#80c2ff",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -1301,8 +1301,8 @@
 			"type": "Feature",
 			"properties": {
 				"value": 25,
-				"stroke": "#75bdff",
-				"fill": "#75bdff",
+				"stroke": "#70bbff",
+				"fill": "#70bbff",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -1337,8 +1337,8 @@
 			"type": "Feature",
 			"properties": {
 				"value": 26,
-				"stroke": "#66b6ff",
-				"fill": "#66b6ff",
+				"stroke": "#61b3ff",
+				"fill": "#61b3ff",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -1373,8 +1373,8 @@
 			"type": "Feature",
 			"properties": {
 				"value": 26,
-				"stroke": "#66b6ff",
-				"fill": "#66b6ff",
+				"stroke": "#61b3ff",
+				"fill": "#61b3ff",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -1409,8 +1409,8 @@
 			"type": "Feature",
 			"properties": {
 				"value": 27,
-				"stroke": "#5cb1ff",
-				"fill": "#5cb1ff",
+				"stroke": "#57aeff",
+				"fill": "#57aeff",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -1444,9 +1444,9 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"value": 28,
-				"stroke": "#4daaff",
-				"fill": "#4daaff",
+				"value": 27,
+				"stroke": "#57aeff",
+				"fill": "#57aeff",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -1481,8 +1481,8 @@
 			"type": "Feature",
 			"properties": {
 				"value": 28,
-				"stroke": "#4daaff",
-				"fill": "#4daaff",
+				"stroke": "#47a7ff",
+				"fill": "#47a7ff",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -1841,8 +1841,8 @@
 			"type": "Feature",
 			"properties": {
 				"value": 21,
-				"stroke": "#add8ff",
-				"fill": "#add8ff",
+				"stroke": "#a8d6ff",
+				"fill": "#a8d6ff",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -1877,8 +1877,8 @@
 			"type": "Feature",
 			"properties": {
 				"value": 21,
-				"stroke": "#add8ff",
-				"fill": "#add8ff",
+				"stroke": "#a8d6ff",
+				"fill": "#a8d6ff",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -1985,8 +1985,8 @@
 			"type": "Feature",
 			"properties": {
 				"value": 24,
-				"stroke": "#85c4ff",
-				"fill": "#85c4ff",
+				"stroke": "#80c2ff",
+				"fill": "#80c2ff",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -2021,8 +2021,8 @@
 			"type": "Feature",
 			"properties": {
 				"value": 24,
-				"stroke": "#85c4ff",
-				"fill": "#85c4ff",
+				"stroke": "#80c2ff",
+				"fill": "#80c2ff",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -2057,8 +2057,8 @@
 			"type": "Feature",
 			"properties": {
 				"value": 25,
-				"stroke": "#75bdff",
-				"fill": "#75bdff",
+				"stroke": "#70bbff",
+				"fill": "#70bbff",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -2093,8 +2093,8 @@
 			"type": "Feature",
 			"properties": {
 				"value": 26,
-				"stroke": "#66b6ff",
-				"fill": "#66b6ff",
+				"stroke": "#61b3ff",
+				"fill": "#61b3ff",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -2129,8 +2129,8 @@
 			"type": "Feature",
 			"properties": {
 				"value": 27,
-				"stroke": "#5cb1ff",
-				"fill": "#5cb1ff",
+				"stroke": "#57aeff",
+				"fill": "#57aeff",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -2165,8 +2165,8 @@
 			"type": "Feature",
 			"properties": {
 				"value": 27,
-				"stroke": "#5cb1ff",
-				"fill": "#5cb1ff",
+				"stroke": "#57aeff",
+				"fill": "#57aeff",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -2201,8 +2201,8 @@
 			"type": "Feature",
 			"properties": {
 				"value": 28,
-				"stroke": "#4daaff",
-				"fill": "#4daaff",
+				"stroke": "#47a7ff",
+				"fill": "#47a7ff",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -2236,9 +2236,9 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"value": 29,
-				"stroke": "#3da2ff",
-				"fill": "#3da2ff",
+				"value": 28,
+				"stroke": "#47a7ff",
+				"fill": "#47a7ff",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -2633,8 +2633,8 @@
 			"type": "Feature",
 			"properties": {
 				"value": 21,
-				"stroke": "#add8ff",
-				"fill": "#add8ff",
+				"stroke": "#a8d6ff",
+				"fill": "#a8d6ff",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -2740,9 +2740,9 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"value": 24,
-				"stroke": "#85c4ff",
-				"fill": "#85c4ff",
+				"value": 23,
+				"stroke": "#8fc9ff",
+				"fill": "#8fc9ff",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -2777,8 +2777,8 @@
 			"type": "Feature",
 			"properties": {
 				"value": 24,
-				"stroke": "#85c4ff",
-				"fill": "#85c4ff",
+				"stroke": "#80c2ff",
+				"fill": "#80c2ff",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -2813,8 +2813,8 @@
 			"type": "Feature",
 			"properties": {
 				"value": 25,
-				"stroke": "#75bdff",
-				"fill": "#75bdff",
+				"stroke": "#70bbff",
+				"fill": "#70bbff",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -2849,8 +2849,8 @@
 			"type": "Feature",
 			"properties": {
 				"value": 26,
-				"stroke": "#66b6ff",
-				"fill": "#66b6ff",
+				"stroke": "#61b3ff",
+				"fill": "#61b3ff",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -2885,8 +2885,8 @@
 			"type": "Feature",
 			"properties": {
 				"value": 27,
-				"stroke": "#5cb1ff",
-				"fill": "#5cb1ff",
+				"stroke": "#57aeff",
+				"fill": "#57aeff",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -2921,8 +2921,8 @@
 			"type": "Feature",
 			"properties": {
 				"value": 28,
-				"stroke": "#4daaff",
-				"fill": "#4daaff",
+				"stroke": "#47a7ff",
+				"fill": "#47a7ff",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -2956,9 +2956,9 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"value": 29,
-				"stroke": "#3da2ff",
-				"fill": "#3da2ff",
+				"value": 28,
+				"stroke": "#47a7ff",
+				"fill": "#47a7ff",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -2993,8 +2993,8 @@
 			"type": "Feature",
 			"properties": {
 				"value": 29,
-				"stroke": "#3da2ff",
-				"fill": "#3da2ff",
+				"stroke": "#38a0ff",
+				"fill": "#38a0ff",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -3389,8 +3389,8 @@
 			"type": "Feature",
 			"properties": {
 				"value": 21,
-				"stroke": "#add8ff",
-				"fill": "#add8ff",
+				"stroke": "#a8d6ff",
+				"fill": "#a8d6ff",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -3533,8 +3533,8 @@
 			"type": "Feature",
 			"properties": {
 				"value": 24,
-				"stroke": "#85c4ff",
-				"fill": "#85c4ff",
+				"stroke": "#80c2ff",
+				"fill": "#80c2ff",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -3569,8 +3569,8 @@
 			"type": "Feature",
 			"properties": {
 				"value": 25,
-				"stroke": "#75bdff",
-				"fill": "#75bdff",
+				"stroke": "#70bbff",
+				"fill": "#70bbff",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -3605,8 +3605,8 @@
 			"type": "Feature",
 			"properties": {
 				"value": 26,
-				"stroke": "#66b6ff",
-				"fill": "#66b6ff",
+				"stroke": "#61b3ff",
+				"fill": "#61b3ff",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -3641,8 +3641,8 @@
 			"type": "Feature",
 			"properties": {
 				"value": 27,
-				"stroke": "#5cb1ff",
-				"fill": "#5cb1ff",
+				"stroke": "#57aeff",
+				"fill": "#57aeff",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -3677,8 +3677,8 @@
 			"type": "Feature",
 			"properties": {
 				"value": 28,
-				"stroke": "#4daaff",
-				"fill": "#4daaff",
+				"stroke": "#47a7ff",
+				"fill": "#47a7ff",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -3713,8 +3713,8 @@
 			"type": "Feature",
 			"properties": {
 				"value": 29,
-				"stroke": "#3da2ff",
-				"fill": "#3da2ff",
+				"stroke": "#38a0ff",
+				"fill": "#38a0ff",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -3749,8 +3749,8 @@
 			"type": "Feature",
 			"properties": {
 				"value": 30,
-				"stroke": "#2e9bff",
-				"fill": "#2e9bff",
+				"stroke": "#2999ff",
+				"fill": "#2999ff",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -3965,8 +3965,8 @@
 			"type": "Feature",
 			"properties": {
 				"value": 17,
-				"stroke": "#e5f3ff",
-				"fill": "#e5f3ff",
+				"stroke": "#e0f0ff",
+				"fill": "#e0f0ff",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -4108,9 +4108,9 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"value": 20,
-				"stroke": "#b8ddff",
-				"fill": "#b8ddff",
+				"value": 19,
+				"stroke": "#c7e4ff",
+				"fill": "#c7e4ff",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -4145,8 +4145,8 @@
 			"type": "Feature",
 			"properties": {
 				"value": 21,
-				"stroke": "#add8ff",
-				"fill": "#add8ff",
+				"stroke": "#a8d6ff",
+				"fill": "#a8d6ff",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -4180,9 +4180,9 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"value": 22,
-				"stroke": "#9ed1ff",
-				"fill": "#9ed1ff",
+				"value": 21,
+				"stroke": "#a8d6ff",
+				"fill": "#a8d6ff",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -4289,8 +4289,8 @@
 			"type": "Feature",
 			"properties": {
 				"value": 24,
-				"stroke": "#85c4ff",
-				"fill": "#85c4ff",
+				"stroke": "#80c2ff",
+				"fill": "#80c2ff",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -4325,8 +4325,8 @@
 			"type": "Feature",
 			"properties": {
 				"value": 25,
-				"stroke": "#75bdff",
-				"fill": "#75bdff",
+				"stroke": "#70bbff",
+				"fill": "#70bbff",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -4361,8 +4361,8 @@
 			"type": "Feature",
 			"properties": {
 				"value": 27,
-				"stroke": "#5cb1ff",
-				"fill": "#5cb1ff",
+				"stroke": "#57aeff",
+				"fill": "#57aeff",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -4397,8 +4397,8 @@
 			"type": "Feature",
 			"properties": {
 				"value": 28,
-				"stroke": "#4daaff",
-				"fill": "#4daaff",
+				"stroke": "#47a7ff",
+				"fill": "#47a7ff",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -4433,8 +4433,8 @@
 			"type": "Feature",
 			"properties": {
 				"value": 29,
-				"stroke": "#3da2ff",
-				"fill": "#3da2ff",
+				"stroke": "#38a0ff",
+				"fill": "#38a0ff",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -4469,8 +4469,8 @@
 			"type": "Feature",
 			"properties": {
 				"value": 30,
-				"stroke": "#2e9bff",
-				"fill": "#2e9bff",
+				"stroke": "#2999ff",
+				"fill": "#2999ff",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -4505,8 +4505,8 @@
 			"type": "Feature",
 			"properties": {
 				"value": 31,
-				"stroke": "#2496ff",
-				"fill": "#2496ff",
+				"stroke": "#1f94ff",
+				"fill": "#1f94ff",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -4721,8 +4721,8 @@
 			"type": "Feature",
 			"properties": {
 				"value": 17,
-				"stroke": "#e5f3ff",
-				"fill": "#e5f3ff",
+				"stroke": "#e0f0ff",
+				"fill": "#e0f0ff",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -4864,6 +4864,42 @@
 		{
 			"type": "Feature",
 			"properties": {
+				"value": 19,
+				"stroke": "#c7e4ff",
+				"fill": "#c7e4ff",
+				"fill-opacity": 0.85
+			},
+			"geometry": {
+				"type": "Polygon",
+				"coordinates": [
+					[
+						[
+							9.154702,
+							45.481291
+						],
+						[
+							9.154702,
+							45.485788
+						],
+						[
+							9.16111,
+							45.485788
+						],
+						[
+							9.16111,
+							45.481291
+						],
+						[
+							9.154702,
+							45.481291
+						]
+					]
+				]
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {
 				"value": 20,
 				"stroke": "#b8ddff",
 				"fill": "#b8ddff",
@@ -4875,42 +4911,6 @@
 					[
 						[
 							9.154702,
-							45.481291
-						],
-						[
-							9.154702,
-							45.485788
-						],
-						[
-							9.16111,
-							45.485788
-						],
-						[
-							9.16111,
-							45.481291
-						],
-						[
-							9.154702,
-							45.481291
-						]
-					]
-				]
-			}
-		},
-		{
-			"type": "Feature",
-			"properties": {
-				"value": 21,
-				"stroke": "#add8ff",
-				"fill": "#add8ff",
-				"fill-opacity": 0.85
-			},
-			"geometry": {
-				"type": "Polygon",
-				"coordinates": [
-					[
-						[
-							9.154702,
 							45.485788
 						],
 						[
@@ -4937,8 +4937,8 @@
 			"type": "Feature",
 			"properties": {
 				"value": 21,
-				"stroke": "#add8ff",
-				"fill": "#add8ff",
+				"stroke": "#a8d6ff",
+				"fill": "#a8d6ff",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -5045,8 +5045,8 @@
 			"type": "Feature",
 			"properties": {
 				"value": 24,
-				"stroke": "#85c4ff",
-				"fill": "#85c4ff",
+				"stroke": "#80c2ff",
+				"fill": "#80c2ff",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -5080,9 +5080,9 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"value": 26,
-				"stroke": "#66b6ff",
-				"fill": "#66b6ff",
+				"value": 25,
+				"stroke": "#70bbff",
+				"fill": "#70bbff",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -5117,8 +5117,8 @@
 			"type": "Feature",
 			"properties": {
 				"value": 27,
-				"stroke": "#5cb1ff",
-				"fill": "#5cb1ff",
+				"stroke": "#57aeff",
+				"fill": "#57aeff",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -5153,8 +5153,8 @@
 			"type": "Feature",
 			"properties": {
 				"value": 28,
-				"stroke": "#4daaff",
-				"fill": "#4daaff",
+				"stroke": "#47a7ff",
+				"fill": "#47a7ff",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -5189,8 +5189,8 @@
 			"type": "Feature",
 			"properties": {
 				"value": 30,
-				"stroke": "#2e9bff",
-				"fill": "#2e9bff",
+				"stroke": "#2999ff",
+				"fill": "#2999ff",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -5225,8 +5225,8 @@
 			"type": "Feature",
 			"properties": {
 				"value": 31,
-				"stroke": "#2496ff",
-				"fill": "#2496ff",
+				"stroke": "#1f94ff",
+				"fill": "#1f94ff",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -5261,8 +5261,8 @@
 			"type": "Feature",
 			"properties": {
 				"value": 32,
-				"stroke": "#148fff",
-				"fill": "#148fff",
+				"stroke": "#0f8cff",
+				"fill": "#0f8cff",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -5513,8 +5513,8 @@
 			"type": "Feature",
 			"properties": {
 				"value": 17,
-				"stroke": "#e5f3ff",
-				"fill": "#e5f3ff",
+				"stroke": "#e0f0ff",
+				"fill": "#e0f0ff",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -5548,9 +5548,9 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"value": 18,
-				"stroke": "#d6ebff",
-				"fill": "#d6ebff",
+				"value": 17,
+				"stroke": "#e0f0ff",
+				"fill": "#e0f0ff",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -5656,9 +5656,9 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"value": 21,
-				"stroke": "#add8ff",
-				"fill": "#add8ff",
+				"value": 20,
+				"stroke": "#b8ddff",
+				"fill": "#b8ddff",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -5693,8 +5693,8 @@
 			"type": "Feature",
 			"properties": {
 				"value": 21,
-				"stroke": "#add8ff",
-				"fill": "#add8ff",
+				"stroke": "#a8d6ff",
+				"fill": "#a8d6ff",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -5729,8 +5729,8 @@
 			"type": "Feature",
 			"properties": {
 				"value": 21,
-				"stroke": "#add8ff",
-				"fill": "#add8ff",
+				"stroke": "#a8d6ff",
+				"fill": "#a8d6ff",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -5801,8 +5801,8 @@
 			"type": "Feature",
 			"properties": {
 				"value": 24,
-				"stroke": "#85c4ff",
-				"fill": "#85c4ff",
+				"stroke": "#80c2ff",
+				"fill": "#80c2ff",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -5836,9 +5836,9 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"value": 26,
-				"stroke": "#66b6ff",
-				"fill": "#66b6ff",
+				"value": 25,
+				"stroke": "#70bbff",
+				"fill": "#70bbff",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -5873,8 +5873,8 @@
 			"type": "Feature",
 			"properties": {
 				"value": 27,
-				"stroke": "#5cb1ff",
-				"fill": "#5cb1ff",
+				"stroke": "#57aeff",
+				"fill": "#57aeff",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -5909,8 +5909,8 @@
 			"type": "Feature",
 			"properties": {
 				"value": 29,
-				"stroke": "#3da2ff",
-				"fill": "#3da2ff",
+				"stroke": "#38a0ff",
+				"fill": "#38a0ff",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -5945,8 +5945,8 @@
 			"type": "Feature",
 			"properties": {
 				"value": 31,
-				"stroke": "#2496ff",
-				"fill": "#2496ff",
+				"stroke": "#1f94ff",
+				"fill": "#1f94ff",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -5981,8 +5981,8 @@
 			"type": "Feature",
 			"properties": {
 				"value": 32,
-				"stroke": "#148fff",
-				"fill": "#148fff",
+				"stroke": "#0f8cff",
+				"fill": "#0f8cff",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -6016,9 +6016,9 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"value": 34,
-				"stroke": "#0082fa",
-				"fill": "#0082fa",
+				"value": 33,
+				"stroke": "#0085ff",
+				"fill": "#0085ff",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -6160,9 +6160,9 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"value": 20,
-				"stroke": "#b8ddff",
-				"fill": "#b8ddff",
+				"value": 19,
+				"stroke": "#c7e4ff",
+				"fill": "#c7e4ff",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -6340,9 +6340,9 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"value": 20,
-				"stroke": "#b8ddff",
-				"fill": "#b8ddff",
+				"value": 19,
+				"stroke": "#c7e4ff",
+				"fill": "#c7e4ff",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -6413,8 +6413,8 @@
 			"type": "Feature",
 			"properties": {
 				"value": 21,
-				"stroke": "#add8ff",
-				"fill": "#add8ff",
+				"stroke": "#a8d6ff",
+				"fill": "#a8d6ff",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -6449,8 +6449,8 @@
 			"type": "Feature",
 			"properties": {
 				"value": 21,
-				"stroke": "#add8ff",
-				"fill": "#add8ff",
+				"stroke": "#a8d6ff",
+				"fill": "#a8d6ff",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -6521,8 +6521,8 @@
 			"type": "Feature",
 			"properties": {
 				"value": 21,
-				"stroke": "#add8ff",
-				"fill": "#add8ff",
+				"stroke": "#a8d6ff",
+				"fill": "#a8d6ff",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -6556,9 +6556,9 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"value": 24,
-				"stroke": "#85c4ff",
-				"fill": "#85c4ff",
+				"value": 23,
+				"stroke": "#8fc9ff",
+				"fill": "#8fc9ff",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -6593,8 +6593,8 @@
 			"type": "Feature",
 			"properties": {
 				"value": 26,
-				"stroke": "#66b6ff",
-				"fill": "#66b6ff",
+				"stroke": "#61b3ff",
+				"fill": "#61b3ff",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -6629,8 +6629,8 @@
 			"type": "Feature",
 			"properties": {
 				"value": 28,
-				"stroke": "#4daaff",
-				"fill": "#4daaff",
+				"stroke": "#47a7ff",
+				"fill": "#47a7ff",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -6665,8 +6665,8 @@
 			"type": "Feature",
 			"properties": {
 				"value": 30,
-				"stroke": "#2e9bff",
-				"fill": "#2e9bff",
+				"stroke": "#2999ff",
+				"fill": "#2999ff",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -6701,8 +6701,8 @@
 			"type": "Feature",
 			"properties": {
 				"value": 32,
-				"stroke": "#148fff",
-				"fill": "#148fff",
+				"stroke": "#0f8cff",
+				"fill": "#0f8cff",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -6737,8 +6737,8 @@
 			"type": "Feature",
 			"properties": {
 				"value": 34,
-				"stroke": "#0082fa",
-				"fill": "#0082fa",
+				"stroke": "#007df0",
+				"fill": "#007df0",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -6772,9 +6772,9 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"value": 36,
-				"stroke": "#0072db",
-				"fill": "#0072db",
+				"value": 35,
+				"stroke": "#0075e0",
+				"fill": "#0075e0",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -7133,8 +7133,8 @@
 			"type": "Feature",
 			"properties": {
 				"value": 21,
-				"stroke": "#add8ff",
-				"fill": "#add8ff",
+				"stroke": "#a8d6ff",
+				"fill": "#a8d6ff",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -7169,8 +7169,8 @@
 			"type": "Feature",
 			"properties": {
 				"value": 21,
-				"stroke": "#add8ff",
-				"fill": "#add8ff",
+				"stroke": "#a8d6ff",
+				"fill": "#a8d6ff",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -7205,8 +7205,8 @@
 			"type": "Feature",
 			"properties": {
 				"value": 21,
-				"stroke": "#add8ff",
-				"fill": "#add8ff",
+				"stroke": "#a8d6ff",
+				"fill": "#a8d6ff",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -7312,9 +7312,9 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"value": 24,
-				"stroke": "#85c4ff",
-				"fill": "#85c4ff",
+				"value": 23,
+				"stroke": "#8fc9ff",
+				"fill": "#8fc9ff",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -7349,8 +7349,8 @@
 			"type": "Feature",
 			"properties": {
 				"value": 26,
-				"stroke": "#66b6ff",
-				"fill": "#66b6ff",
+				"stroke": "#61b3ff",
+				"fill": "#61b3ff",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -7384,9 +7384,9 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"value": 29,
-				"stroke": "#3da2ff",
-				"fill": "#3da2ff",
+				"value": 28,
+				"stroke": "#47a7ff",
+				"fill": "#47a7ff",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -7421,8 +7421,8 @@
 			"type": "Feature",
 			"properties": {
 				"value": 31,
-				"stroke": "#2496ff",
-				"fill": "#2496ff",
+				"stroke": "#1f94ff",
+				"fill": "#1f94ff",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -7456,9 +7456,9 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"value": 34,
-				"stroke": "#0082fa",
-				"fill": "#0082fa",
+				"value": 33,
+				"stroke": "#0085ff",
+				"fill": "#0085ff",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -7493,8 +7493,8 @@
 			"type": "Feature",
 			"properties": {
 				"value": 36,
-				"stroke": "#0072db",
-				"fill": "#0072db",
+				"stroke": "#0070d6",
+				"fill": "#0070d6",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -7529,8 +7529,8 @@
 			"type": "Feature",
 			"properties": {
 				"value": 38,
-				"stroke": "#0065c2",
-				"fill": "#0065c2",
+				"stroke": "#0060b8",
+				"fill": "#0060b8",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -7565,8 +7565,8 @@
 			"type": "Feature",
 			"properties": {
 				"value": 21,
-				"stroke": "#add8ff",
-				"fill": "#add8ff",
+				"stroke": "#a8d6ff",
+				"fill": "#a8d6ff",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -7853,8 +7853,8 @@
 			"type": "Feature",
 			"properties": {
 				"value": 21,
-				"stroke": "#add8ff",
-				"fill": "#add8ff",
+				"stroke": "#a8d6ff",
+				"fill": "#a8d6ff",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -7889,8 +7889,8 @@
 			"type": "Feature",
 			"properties": {
 				"value": 21,
-				"stroke": "#add8ff",
-				"fill": "#add8ff",
+				"stroke": "#a8d6ff",
+				"fill": "#a8d6ff",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -7925,8 +7925,8 @@
 			"type": "Feature",
 			"properties": {
 				"value": 21,
-				"stroke": "#add8ff",
-				"fill": "#add8ff",
+				"stroke": "#a8d6ff",
+				"fill": "#a8d6ff",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -7961,8 +7961,8 @@
 			"type": "Feature",
 			"properties": {
 				"value": 21,
-				"stroke": "#add8ff",
-				"fill": "#add8ff",
+				"stroke": "#a8d6ff",
+				"fill": "#a8d6ff",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -7988,6 +7988,42 @@
 						[
 							9.180336,
 							45.490285
+						]
+					]
+				]
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {
+				"value": 21,
+				"stroke": "#a8d6ff",
+				"fill": "#a8d6ff",
+				"fill-opacity": 0.85
+			},
+			"geometry": {
+				"type": "Polygon",
+				"coordinates": [
+					[
+						[
+							9.180336,
+							45.494781
+						],
+						[
+							9.180336,
+							45.499278
+						],
+						[
+							9.186744,
+							45.499278
+						],
+						[
+							9.186744,
+							45.494781
+						],
+						[
+							9.180336,
+							45.494781
 						]
 					]
 				]
@@ -8007,42 +8043,6 @@
 					[
 						[
 							9.180336,
-							45.494781
-						],
-						[
-							9.180336,
-							45.499278
-						],
-						[
-							9.186744,
-							45.499278
-						],
-						[
-							9.186744,
-							45.494781
-						],
-						[
-							9.180336,
-							45.494781
-						]
-					]
-				]
-			}
-		},
-		{
-			"type": "Feature",
-			"properties": {
-				"value": 23,
-				"stroke": "#8fc9ff",
-				"fill": "#8fc9ff",
-				"fill-opacity": 0.85
-			},
-			"geometry": {
-				"type": "Polygon",
-				"coordinates": [
-					[
-						[
-							9.180336,
 							45.499278
 						],
 						[
@@ -8068,9 +8068,9 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"value": 25,
-				"stroke": "#75bdff",
-				"fill": "#75bdff",
+				"value": 24,
+				"stroke": "#80c2ff",
+				"fill": "#80c2ff",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -8105,8 +8105,8 @@
 			"type": "Feature",
 			"properties": {
 				"value": 27,
-				"stroke": "#5cb1ff",
-				"fill": "#5cb1ff",
+				"stroke": "#57aeff",
+				"fill": "#57aeff",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -8141,8 +8141,8 @@
 			"type": "Feature",
 			"properties": {
 				"value": 29,
-				"stroke": "#3da2ff",
-				"fill": "#3da2ff",
+				"stroke": "#38a0ff",
+				"fill": "#38a0ff",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -8177,8 +8177,8 @@
 			"type": "Feature",
 			"properties": {
 				"value": 32,
-				"stroke": "#148fff",
-				"fill": "#148fff",
+				"stroke": "#0f8cff",
+				"fill": "#0f8cff",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -8213,8 +8213,8 @@
 			"type": "Feature",
 			"properties": {
 				"value": 35,
-				"stroke": "#007aeb",
-				"fill": "#007aeb",
+				"stroke": "#0075e0",
+				"fill": "#0075e0",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -8248,9 +8248,9 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"value": 39,
-				"stroke": "#005db3",
-				"fill": "#005db3",
+				"value": 38,
+				"stroke": "#0060b8",
+				"fill": "#0060b8",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -8285,8 +8285,8 @@
 			"type": "Feature",
 			"properties": {
 				"value": 42,
-				"stroke": "#00488a",
-				"fill": "#00488a",
+				"stroke": "#004280",
+				"fill": "#004280",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -8321,8 +8321,8 @@
 			"type": "Feature",
 			"properties": {
 				"value": 21,
-				"stroke": "#add8ff",
-				"fill": "#add8ff",
+				"stroke": "#a8d6ff",
+				"fill": "#a8d6ff",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -8357,8 +8357,8 @@
 			"type": "Feature",
 			"properties": {
 				"value": 21,
-				"stroke": "#add8ff",
-				"fill": "#add8ff",
+				"stroke": "#a8d6ff",
+				"fill": "#a8d6ff",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -8393,8 +8393,8 @@
 			"type": "Feature",
 			"properties": {
 				"value": 21,
-				"stroke": "#add8ff",
-				"fill": "#add8ff",
+				"stroke": "#a8d6ff",
+				"fill": "#a8d6ff",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -8429,8 +8429,8 @@
 			"type": "Feature",
 			"properties": {
 				"value": 21,
-				"stroke": "#add8ff",
-				"fill": "#add8ff",
+				"stroke": "#a8d6ff",
+				"fill": "#a8d6ff",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -8465,8 +8465,8 @@
 			"type": "Feature",
 			"properties": {
 				"value": 21,
-				"stroke": "#add8ff",
-				"fill": "#add8ff",
+				"stroke": "#a8d6ff",
+				"fill": "#a8d6ff",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -8501,8 +8501,8 @@
 			"type": "Feature",
 			"properties": {
 				"value": 21,
-				"stroke": "#add8ff",
-				"fill": "#add8ff",
+				"stroke": "#a8d6ff",
+				"fill": "#a8d6ff",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -8537,8 +8537,8 @@
 			"type": "Feature",
 			"properties": {
 				"value": 21,
-				"stroke": "#add8ff",
-				"fill": "#add8ff",
+				"stroke": "#a8d6ff",
+				"fill": "#a8d6ff",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -8573,8 +8573,8 @@
 			"type": "Feature",
 			"properties": {
 				"value": 21,
-				"stroke": "#add8ff",
-				"fill": "#add8ff",
+				"stroke": "#a8d6ff",
+				"fill": "#a8d6ff",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -8609,8 +8609,8 @@
 			"type": "Feature",
 			"properties": {
 				"value": 21,
-				"stroke": "#add8ff",
-				"fill": "#add8ff",
+				"stroke": "#a8d6ff",
+				"fill": "#a8d6ff",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -8645,8 +8645,8 @@
 			"type": "Feature",
 			"properties": {
 				"value": 21,
-				"stroke": "#add8ff",
-				"fill": "#add8ff",
+				"stroke": "#a8d6ff",
+				"fill": "#a8d6ff",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -8789,8 +8789,8 @@
 			"type": "Feature",
 			"properties": {
 				"value": 24,
-				"stroke": "#85c4ff",
-				"fill": "#85c4ff",
+				"stroke": "#80c2ff",
+				"fill": "#80c2ff",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -8825,8 +8825,8 @@
 			"type": "Feature",
 			"properties": {
 				"value": 25,
-				"stroke": "#75bdff",
-				"fill": "#75bdff",
+				"stroke": "#70bbff",
+				"fill": "#70bbff",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -8860,9 +8860,9 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"value": 28,
-				"stroke": "#4daaff",
-				"fill": "#4daaff",
+				"value": 27,
+				"stroke": "#57aeff",
+				"fill": "#57aeff",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -8897,8 +8897,8 @@
 			"type": "Feature",
 			"properties": {
 				"value": 30,
-				"stroke": "#2e9bff",
-				"fill": "#2e9bff",
+				"stroke": "#2999ff",
+				"fill": "#2999ff",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -8933,8 +8933,8 @@
 			"type": "Feature",
 			"properties": {
 				"value": 33,
-				"stroke": "#0587ff",
-				"fill": "#0587ff",
+				"stroke": "#0085ff",
+				"fill": "#0085ff",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -8968,9 +8968,9 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"value": 37,
-				"stroke": "#006dd1",
-				"fill": "#006dd1",
+				"value": 36,
+				"stroke": "#0070d6",
+				"fill": "#0070d6",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -9005,8 +9005,8 @@
 			"type": "Feature",
 			"properties": {
 				"value": 41,
-				"stroke": "#005099",
-				"fill": "#005099",
+				"stroke": "#004a8f",
+				"fill": "#004a8f",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -9040,7 +9040,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"value": 48,
+				"value": 47,
 				"stroke": "#001d38",
 				"fill": "#001d38",
 				"fill-opacity": 0.85
@@ -9077,8 +9077,8 @@
 			"type": "Feature",
 			"properties": {
 				"value": 21,
-				"stroke": "#add8ff",
-				"fill": "#add8ff",
+				"stroke": "#a8d6ff",
+				"fill": "#a8d6ff",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -9113,8 +9113,8 @@
 			"type": "Feature",
 			"properties": {
 				"value": 21,
-				"stroke": "#add8ff",
-				"fill": "#add8ff",
+				"stroke": "#a8d6ff",
+				"fill": "#a8d6ff",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -9149,8 +9149,8 @@
 			"type": "Feature",
 			"properties": {
 				"value": 21,
-				"stroke": "#add8ff",
-				"fill": "#add8ff",
+				"stroke": "#a8d6ff",
+				"fill": "#a8d6ff",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -9185,8 +9185,8 @@
 			"type": "Feature",
 			"properties": {
 				"value": 21,
-				"stroke": "#add8ff",
-				"fill": "#add8ff",
+				"stroke": "#a8d6ff",
+				"fill": "#a8d6ff",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -9221,8 +9221,8 @@
 			"type": "Feature",
 			"properties": {
 				"value": 21,
-				"stroke": "#add8ff",
-				"fill": "#add8ff",
+				"stroke": "#a8d6ff",
+				"fill": "#a8d6ff",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -9257,8 +9257,8 @@
 			"type": "Feature",
 			"properties": {
 				"value": 21,
-				"stroke": "#add8ff",
-				"fill": "#add8ff",
+				"stroke": "#a8d6ff",
+				"fill": "#a8d6ff",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -9293,8 +9293,8 @@
 			"type": "Feature",
 			"properties": {
 				"value": 21,
-				"stroke": "#add8ff",
-				"fill": "#add8ff",
+				"stroke": "#a8d6ff",
+				"fill": "#a8d6ff",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -9329,8 +9329,8 @@
 			"type": "Feature",
 			"properties": {
 				"value": 21,
-				"stroke": "#add8ff",
-				"fill": "#add8ff",
+				"stroke": "#a8d6ff",
+				"fill": "#a8d6ff",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -9365,8 +9365,8 @@
 			"type": "Feature",
 			"properties": {
 				"value": 21,
-				"stroke": "#add8ff",
-				"fill": "#add8ff",
+				"stroke": "#a8d6ff",
+				"fill": "#a8d6ff",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -9544,9 +9544,9 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"value": 25,
-				"stroke": "#75bdff",
-				"fill": "#75bdff",
+				"value": 24,
+				"stroke": "#80c2ff",
+				"fill": "#80c2ff",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -9581,8 +9581,8 @@
 			"type": "Feature",
 			"properties": {
 				"value": 26,
-				"stroke": "#66b6ff",
-				"fill": "#66b6ff",
+				"stroke": "#61b3ff",
+				"fill": "#61b3ff",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -9617,8 +9617,8 @@
 			"type": "Feature",
 			"properties": {
 				"value": 28,
-				"stroke": "#4daaff",
-				"fill": "#4daaff",
+				"stroke": "#47a7ff",
+				"fill": "#47a7ff",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -9653,8 +9653,8 @@
 			"type": "Feature",
 			"properties": {
 				"value": 30,
-				"stroke": "#2e9bff",
-				"fill": "#2e9bff",
+				"stroke": "#2999ff",
+				"fill": "#2999ff",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -9689,8 +9689,8 @@
 			"type": "Feature",
 			"properties": {
 				"value": 33,
-				"stroke": "#0587ff",
-				"fill": "#0587ff",
+				"stroke": "#0085ff",
+				"fill": "#0085ff",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -9725,8 +9725,8 @@
 			"type": "Feature",
 			"properties": {
 				"value": 37,
-				"stroke": "#006dd1",
-				"fill": "#006dd1",
+				"stroke": "#0068c7",
+				"fill": "#0068c7",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -9761,8 +9761,8 @@
 			"type": "Feature",
 			"properties": {
 				"value": 42,
-				"stroke": "#00488a",
-				"fill": "#00488a",
+				"stroke": "#004280",
+				"fill": "#004280",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -9796,7 +9796,7 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"value": 52,
+				"value": 51,
 				"stroke": "#000000",
 				"fill": "#000000",
 				"fill-opacity": 0.85
@@ -9833,8 +9833,8 @@
 			"type": "Feature",
 			"properties": {
 				"value": 21,
-				"stroke": "#add8ff",
-				"fill": "#add8ff",
+				"stroke": "#a8d6ff",
+				"fill": "#a8d6ff",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -9869,8 +9869,8 @@
 			"type": "Feature",
 			"properties": {
 				"value": 21,
-				"stroke": "#add8ff",
-				"fill": "#add8ff",
+				"stroke": "#a8d6ff",
+				"fill": "#a8d6ff",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -9905,8 +9905,8 @@
 			"type": "Feature",
 			"properties": {
 				"value": 21,
-				"stroke": "#add8ff",
-				"fill": "#add8ff",
+				"stroke": "#a8d6ff",
+				"fill": "#a8d6ff",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -9941,8 +9941,8 @@
 			"type": "Feature",
 			"properties": {
 				"value": 21,
-				"stroke": "#add8ff",
-				"fill": "#add8ff",
+				"stroke": "#a8d6ff",
+				"fill": "#a8d6ff",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -9977,8 +9977,8 @@
 			"type": "Feature",
 			"properties": {
 				"value": 21,
-				"stroke": "#add8ff",
-				"fill": "#add8ff",
+				"stroke": "#a8d6ff",
+				"fill": "#a8d6ff",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -10013,8 +10013,8 @@
 			"type": "Feature",
 			"properties": {
 				"value": 21,
-				"stroke": "#add8ff",
-				"fill": "#add8ff",
+				"stroke": "#a8d6ff",
+				"fill": "#a8d6ff",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -10049,8 +10049,8 @@
 			"type": "Feature",
 			"properties": {
 				"value": 21,
-				"stroke": "#add8ff",
-				"fill": "#add8ff",
+				"stroke": "#a8d6ff",
+				"fill": "#a8d6ff",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -10085,8 +10085,8 @@
 			"type": "Feature",
 			"properties": {
 				"value": 21,
-				"stroke": "#add8ff",
-				"fill": "#add8ff",
+				"stroke": "#a8d6ff",
+				"fill": "#a8d6ff",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -10265,8 +10265,8 @@
 			"type": "Feature",
 			"properties": {
 				"value": 24,
-				"stroke": "#85c4ff",
-				"fill": "#85c4ff",
+				"stroke": "#80c2ff",
+				"fill": "#80c2ff",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -10301,8 +10301,8 @@
 			"type": "Feature",
 			"properties": {
 				"value": 25,
-				"stroke": "#75bdff",
-				"fill": "#75bdff",
+				"stroke": "#70bbff",
+				"fill": "#70bbff",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -10337,8 +10337,8 @@
 			"type": "Feature",
 			"properties": {
 				"value": 26,
-				"stroke": "#66b6ff",
-				"fill": "#66b6ff",
+				"stroke": "#61b3ff",
+				"fill": "#61b3ff",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -10373,8 +10373,8 @@
 			"type": "Feature",
 			"properties": {
 				"value": 28,
-				"stroke": "#4daaff",
-				"fill": "#4daaff",
+				"stroke": "#47a7ff",
+				"fill": "#47a7ff",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -10409,8 +10409,8 @@
 			"type": "Feature",
 			"properties": {
 				"value": 30,
-				"stroke": "#2e9bff",
-				"fill": "#2e9bff",
+				"stroke": "#2999ff",
+				"fill": "#2999ff",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -10445,8 +10445,8 @@
 			"type": "Feature",
 			"properties": {
 				"value": 33,
-				"stroke": "#0587ff",
-				"fill": "#0587ff",
+				"stroke": "#0085ff",
+				"fill": "#0085ff",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -10480,9 +10480,9 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"value": 37,
-				"stroke": "#006dd1",
-				"fill": "#006dd1",
+				"value": 36,
+				"stroke": "#0070d6",
+				"fill": "#0070d6",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -10517,8 +10517,8 @@
 			"type": "Feature",
 			"properties": {
 				"value": 41,
-				"stroke": "#005099",
-				"fill": "#005099",
+				"stroke": "#004a8f",
+				"fill": "#004a8f",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -10553,8 +10553,8 @@
 			"type": "Feature",
 			"properties": {
 				"value": 46,
-				"stroke": "#002b52",
-				"fill": "#002b52",
+				"stroke": "#002547",
+				"fill": "#002547",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -10588,9 +10588,9 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"value": 22,
-				"stroke": "#9ed1ff",
-				"fill": "#9ed1ff",
+				"value": 21,
+				"stroke": "#a8d6ff",
+				"fill": "#a8d6ff",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -10625,8 +10625,8 @@
 			"type": "Feature",
 			"properties": {
 				"value": 21,
-				"stroke": "#add8ff",
-				"fill": "#add8ff",
+				"stroke": "#a8d6ff",
+				"fill": "#a8d6ff",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -10661,8 +10661,8 @@
 			"type": "Feature",
 			"properties": {
 				"value": 21,
-				"stroke": "#add8ff",
-				"fill": "#add8ff",
+				"stroke": "#a8d6ff",
+				"fill": "#a8d6ff",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -10697,8 +10697,8 @@
 			"type": "Feature",
 			"properties": {
 				"value": 21,
-				"stroke": "#add8ff",
-				"fill": "#add8ff",
+				"stroke": "#a8d6ff",
+				"fill": "#a8d6ff",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -10733,8 +10733,8 @@
 			"type": "Feature",
 			"properties": {
 				"value": 21,
-				"stroke": "#add8ff",
-				"fill": "#add8ff",
+				"stroke": "#a8d6ff",
+				"fill": "#a8d6ff",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -10769,8 +10769,8 @@
 			"type": "Feature",
 			"properties": {
 				"value": 21,
-				"stroke": "#add8ff",
-				"fill": "#add8ff",
+				"stroke": "#a8d6ff",
+				"fill": "#a8d6ff",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -10804,9 +10804,9 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"value": 22,
-				"stroke": "#9ed1ff",
-				"fill": "#9ed1ff",
+				"value": 21,
+				"stroke": "#a8d6ff",
+				"fill": "#a8d6ff",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -11020,9 +11020,9 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"value": 24,
-				"stroke": "#85c4ff",
-				"fill": "#85c4ff",
+				"value": 23,
+				"stroke": "#8fc9ff",
+				"fill": "#8fc9ff",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -11057,8 +11057,8 @@
 			"type": "Feature",
 			"properties": {
 				"value": 25,
-				"stroke": "#75bdff",
-				"fill": "#75bdff",
+				"stroke": "#70bbff",
+				"fill": "#70bbff",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -11093,8 +11093,8 @@
 			"type": "Feature",
 			"properties": {
 				"value": 26,
-				"stroke": "#66b6ff",
-				"fill": "#66b6ff",
+				"stroke": "#61b3ff",
+				"fill": "#61b3ff",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -11129,8 +11129,8 @@
 			"type": "Feature",
 			"properties": {
 				"value": 28,
-				"stroke": "#4daaff",
-				"fill": "#4daaff",
+				"stroke": "#47a7ff",
+				"fill": "#47a7ff",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -11165,8 +11165,8 @@
 			"type": "Feature",
 			"properties": {
 				"value": 30,
-				"stroke": "#2e9bff",
-				"fill": "#2e9bff",
+				"stroke": "#2999ff",
+				"fill": "#2999ff",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -11201,8 +11201,8 @@
 			"type": "Feature",
 			"properties": {
 				"value": 32,
-				"stroke": "#148fff",
-				"fill": "#148fff",
+				"stroke": "#0f8cff",
+				"fill": "#0f8cff",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -11237,8 +11237,8 @@
 			"type": "Feature",
 			"properties": {
 				"value": 35,
-				"stroke": "#007aeb",
-				"fill": "#007aeb",
+				"stroke": "#0075e0",
+				"fill": "#0075e0",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -11273,8 +11273,8 @@
 			"type": "Feature",
 			"properties": {
 				"value": 38,
-				"stroke": "#0065c2",
-				"fill": "#0065c2",
+				"stroke": "#0060b8",
+				"fill": "#0060b8",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -11309,8 +11309,8 @@
 			"type": "Feature",
 			"properties": {
 				"value": 41,
-				"stroke": "#005099",
-				"fill": "#005099",
+				"stroke": "#004a8f",
+				"fill": "#004a8f",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -11813,8 +11813,8 @@
 			"type": "Feature",
 			"properties": {
 				"value": 24,
-				"stroke": "#85c4ff",
-				"fill": "#85c4ff",
+				"stroke": "#80c2ff",
+				"fill": "#80c2ff",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -11849,8 +11849,8 @@
 			"type": "Feature",
 			"properties": {
 				"value": 26,
-				"stroke": "#66b6ff",
-				"fill": "#66b6ff",
+				"stroke": "#61b3ff",
+				"fill": "#61b3ff",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -11884,9 +11884,9 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"value": 28,
-				"stroke": "#4daaff",
-				"fill": "#4daaff",
+				"value": 27,
+				"stroke": "#57aeff",
+				"fill": "#57aeff",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -11920,9 +11920,9 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"value": 30,
-				"stroke": "#2e9bff",
-				"fill": "#2e9bff",
+				"value": 29,
+				"stroke": "#38a0ff",
+				"fill": "#38a0ff",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -11956,9 +11956,9 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"value": 32,
-				"stroke": "#148fff",
-				"fill": "#148fff",
+				"value": 31,
+				"stroke": "#1f94ff",
+				"fill": "#1f94ff",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -11993,8 +11993,8 @@
 			"type": "Feature",
 			"properties": {
 				"value": 34,
-				"stroke": "#0082fa",
-				"fill": "#0082fa",
+				"stroke": "#007df0",
+				"fill": "#007df0",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -12029,8 +12029,8 @@
 			"type": "Feature",
 			"properties": {
 				"value": 36,
-				"stroke": "#0072db",
-				"fill": "#0072db",
+				"stroke": "#0070d6",
+				"fill": "#0070d6",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -12065,8 +12065,8 @@
 			"type": "Feature",
 			"properties": {
 				"value": 38,
-				"stroke": "#0065c2",
-				"fill": "#0065c2",
+				"stroke": "#0060b8",
+				"fill": "#0060b8",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -12389,8 +12389,8 @@
 			"type": "Feature",
 			"properties": {
 				"value": 21,
-				"stroke": "#add8ff",
-				"fill": "#add8ff",
+				"stroke": "#a8d6ff",
+				"fill": "#a8d6ff",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -12425,8 +12425,8 @@
 			"type": "Feature",
 			"properties": {
 				"value": 21,
-				"stroke": "#add8ff",
-				"fill": "#add8ff",
+				"stroke": "#a8d6ff",
+				"fill": "#a8d6ff",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -12461,8 +12461,8 @@
 			"type": "Feature",
 			"properties": {
 				"value": 21,
-				"stroke": "#add8ff",
-				"fill": "#add8ff",
+				"stroke": "#a8d6ff",
+				"fill": "#a8d6ff",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -12497,8 +12497,8 @@
 			"type": "Feature",
 			"properties": {
 				"value": 21,
-				"stroke": "#add8ff",
-				"fill": "#add8ff",
+				"stroke": "#a8d6ff",
+				"fill": "#a8d6ff",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -12569,8 +12569,8 @@
 			"type": "Feature",
 			"properties": {
 				"value": 24,
-				"stroke": "#85c4ff",
-				"fill": "#85c4ff",
+				"stroke": "#80c2ff",
+				"fill": "#80c2ff",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -12605,8 +12605,8 @@
 			"type": "Feature",
 			"properties": {
 				"value": 25,
-				"stroke": "#75bdff",
-				"fill": "#75bdff",
+				"stroke": "#70bbff",
+				"fill": "#70bbff",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -12641,8 +12641,8 @@
 			"type": "Feature",
 			"properties": {
 				"value": 27,
-				"stroke": "#5cb1ff",
-				"fill": "#5cb1ff",
+				"stroke": "#57aeff",
+				"fill": "#57aeff",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -12677,8 +12677,8 @@
 			"type": "Feature",
 			"properties": {
 				"value": 29,
-				"stroke": "#3da2ff",
-				"fill": "#3da2ff",
+				"stroke": "#38a0ff",
+				"fill": "#38a0ff",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -12713,8 +12713,8 @@
 			"type": "Feature",
 			"properties": {
 				"value": 31,
-				"stroke": "#2496ff",
-				"fill": "#2496ff",
+				"stroke": "#1f94ff",
+				"fill": "#1f94ff",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -12749,8 +12749,8 @@
 			"type": "Feature",
 			"properties": {
 				"value": 32,
-				"stroke": "#148fff",
-				"fill": "#148fff",
+				"stroke": "#0f8cff",
+				"fill": "#0f8cff",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -12785,8 +12785,8 @@
 			"type": "Feature",
 			"properties": {
 				"value": 34,
-				"stroke": "#0082fa",
-				"fill": "#0082fa",
+				"stroke": "#007df0",
+				"fill": "#007df0",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -12821,8 +12821,8 @@
 			"type": "Feature",
 			"properties": {
 				"value": 36,
-				"stroke": "#0072db",
-				"fill": "#0072db",
+				"stroke": "#0070d6",
+				"fill": "#0070d6",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -13145,8 +13145,8 @@
 			"type": "Feature",
 			"properties": {
 				"value": 21,
-				"stroke": "#add8ff",
-				"fill": "#add8ff",
+				"stroke": "#a8d6ff",
+				"fill": "#a8d6ff",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -13181,8 +13181,8 @@
 			"type": "Feature",
 			"properties": {
 				"value": 21,
-				"stroke": "#add8ff",
-				"fill": "#add8ff",
+				"stroke": "#a8d6ff",
+				"fill": "#a8d6ff",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -13252,9 +13252,9 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"value": 17,
-				"stroke": "#e5f3ff",
-				"fill": "#e5f3ff",
+				"value": 18,
+				"stroke": "#d6ebff",
+				"fill": "#d6ebff",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -13288,9 +13288,9 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"value": 21,
-				"stroke": "#add8ff",
-				"fill": "#add8ff",
+				"value": 20,
+				"stroke": "#b8ddff",
+				"fill": "#b8ddff",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -13361,8 +13361,8 @@
 			"type": "Feature",
 			"properties": {
 				"value": 25,
-				"stroke": "#75bdff",
-				"fill": "#75bdff",
+				"stroke": "#70bbff",
+				"fill": "#70bbff",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -13397,8 +13397,8 @@
 			"type": "Feature",
 			"properties": {
 				"value": 27,
-				"stroke": "#5cb1ff",
-				"fill": "#5cb1ff",
+				"stroke": "#57aeff",
+				"fill": "#57aeff",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -13433,8 +13433,8 @@
 			"type": "Feature",
 			"properties": {
 				"value": 28,
-				"stroke": "#4daaff",
-				"fill": "#4daaff",
+				"stroke": "#47a7ff",
+				"fill": "#47a7ff",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -13469,8 +13469,8 @@
 			"type": "Feature",
 			"properties": {
 				"value": 30,
-				"stroke": "#2e9bff",
-				"fill": "#2e9bff",
+				"stroke": "#2999ff",
+				"fill": "#2999ff",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -13505,8 +13505,8 @@
 			"type": "Feature",
 			"properties": {
 				"value": 31,
-				"stroke": "#2496ff",
-				"fill": "#2496ff",
+				"stroke": "#1f94ff",
+				"fill": "#1f94ff",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -13541,8 +13541,8 @@
 			"type": "Feature",
 			"properties": {
 				"value": 33,
-				"stroke": "#0587ff",
-				"fill": "#0587ff",
+				"stroke": "#0085ff",
+				"fill": "#0085ff",
 				"fill-opacity": 0.85
 			},
 			"geometry": {
@@ -13577,8 +13577,8 @@
 			"type": "Feature",
 			"properties": {
 				"value": 34,
-				"stroke": "#0082fa",
-				"fill": "#0082fa",
+				"stroke": "#007df0",
+				"fill": "#007df0",
 				"fill-opacity": 0.85
 			},
 			"geometry": {

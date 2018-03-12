@@ -7,7 +7,8 @@ import { point, AllGeoJSON, Feature, Point, Properties } from '@turf/helpers';
  *
  * @name centroid
  * @param {GeoJSON} geojson GeoJSON to be centered
- * @param {Object} [properties={}] an Object that is used as the {@link Feature}'s properties
+ * @param {Object} [options={}] Optional Parameters
+ * @param {Object} [options.properties={}] an Object that is used as the {@link Feature}'s properties
  * @returns {Feature<Point>} the centroid of the input features
  * @example
  * var polygon = turf.polygon([[[-81, 41], [-88, 36], [-84, 31], [-80, 33], [-77, 39], [-81, 41]]]);
@@ -17,7 +18,9 @@ import { point, AllGeoJSON, Feature, Point, Properties } from '@turf/helpers';
  * //addToMap
  * var addToMap = [polygon, centroid]
  */
-function centroid(geojson: AllGeoJSON, properties?: Properties) {
+function centroid<P = Properties>(geojson: AllGeoJSON, options: {
+    properties?: P
+} = {}): Feature<Point, P> {
     let xSum = 0;
     let ySum = 0;
     let len = 0;
@@ -26,7 +29,7 @@ function centroid(geojson: AllGeoJSON, properties?: Properties) {
         ySum += coord[1];
         len++;
     });
-    return point([xSum / len, ySum / len], properties);
+    return point([xSum / len, ySum / len], options.properties);
 }
 
 export default centroid;

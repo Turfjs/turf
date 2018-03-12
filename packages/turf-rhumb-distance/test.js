@@ -1,11 +1,11 @@
-import fs from 'fs';
-import path from 'path';
-import test from 'tape';
-import load from 'load-json-file';
-import write from 'write-json-file';
-import distance from '@turf/distance';
-import { point, round } from '@turf/helpers';
-import rhumbDistance from '.';
+const fs = require('fs');
+const path = require('path');
+const test = require('tape');
+const load = require('load-json-file');
+const write = require('write-json-file');
+const distance = require('@turf/distance').default;
+const { point, round } = require('@turf/helpers');
+const rhumbDistance = require('./').default;
 
 const directories = {
     in: path.join(__dirname, 'test', 'in') + path.sep,

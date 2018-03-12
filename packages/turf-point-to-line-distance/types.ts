@@ -7,4 +7,4 @@ const distance: number = pointToLineDistance(pt, line, {units: 'miles'})
 
 pointToLineDistance(pt, line)
 pointToLineDistance(pt, line, {units: 'miles'})
-pointToLineDistance(pt, line, {units: 'miles', mercator: true})
+pointToLineDistance(pt, line, {units: 'miles', method: 'planar'})

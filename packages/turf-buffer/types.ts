@@ -1,7 +1,8 @@
 import {
   point, lineString, polygon,
   multiPoint, multiLineString, multiPolygon,
-  featureCollection, geometryCollection
+  featureCollection, geometryCollection,
+  Point, LineString
 } from '@turf/helpers'
 import buffer from './'
 
@@ -26,14 +27,14 @@ buffer(multiLine, 5);
 buffer(multiPoly, 5);
 
 // Collections
-const fc = featureCollection([pt, line]);
+const fc = featureCollection<Point|LineString>([pt, line]);
 const gc = geometryCollection([pt.geometry, line.geometry]);
 
 buffer(fc, 5);
 buffer(gc, 5);
 
 // Mixed Collections
-const fcMixed = featureCollection([pt, line, multiPt, multiLine]);
+const fcMixed = featureCollection<any>([pt, line, multiPt, multiLine]);
 const gcMixed = geometryCollection([pt.geometry, line.geometry, multiPt.geometry, multiLine.geometry]);
 
 buffer(fcMixed, 5);

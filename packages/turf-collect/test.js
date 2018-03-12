@@ -1,6 +1,6 @@
-import test from 'tape';
-import { featureCollection, point, polygon } from '@turf/helpers';
-import collect from '.';
+const test = require('tape');
+const { featureCollection, point, polygon } = require('@turf/helpers');
+const collect = require('./').default;
 
 test('turf collect module', t => {
     const poly1 = polygon([[[0, 0], [10, 0], [10, 10], [0, 10], [0, 0]]]);

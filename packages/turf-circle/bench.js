@@ -1,5 +1,5 @@
-import Benchmark from 'benchmark';
-import circle from './';
+const Benchmark = require('benchmark');
+const circle = require('./').default;
 
 const center = [-75.0, 39.0];
 const radius = 5;

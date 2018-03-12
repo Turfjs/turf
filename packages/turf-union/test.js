@@ -3,8 +3,8 @@ const path = require('path');
 const test = require('tape');
 const load = require('load-json-file');
 const write = require('write-json-file');
-const combine = require('@turf/combine');
-const union = require('./');
+const combine = require('@turf/combine').default;
+const union = require('./').default;
 
 const directories = {
     in: path.join(__dirname, 'test', 'in') + path.sep,

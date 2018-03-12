@@ -1,15 +1,15 @@
-import fs from 'fs';
-import test from 'tape';
-import path from 'path';
-import load from 'load-json-file';
-import write from 'write-json-file';
-import centroid from '@turf/centroid';
-import * as chromatism from 'chromatism';
-import concaveman from 'concaveman';
-import { point, polygon, featureCollection } from '@turf/helpers';
-import { clusterReduce, clusterEach } from '@turf/clusters';
-import { coordAll, featureEach } from '@turf/meta';
-import clustersDbscan from '.';
+const fs = require('fs');
+const test = require('tape');
+const path = require('path');
+const load = require('load-json-file');
+const write = require('write-json-file');
+const centroid = require('@turf/centroid').default;
+const chromatism = require('chromatism');
+const concaveman = require('concaveman');
+const { point, polygon, featureCollection } = require('@turf/helpers');
+const { clusterReduce, clusterEach } = require('@turf/clusters');
+const { coordAll, featureEach } = require('@turf/meta');
+const clustersDbscan = require('./').default;
 
 const directories = {
     in: path.join(__dirname, 'test', 'in') + path.sep,
@@ -53,13 +53,14 @@ const points = featureCollection([
 
 test('clusters-dbscan -- throws', t => {
     const poly = polygon([[[0, 0], [10, 10], [0, 10], [0, 0]]]);
-    t.throws(() => clustersDbscan(poly, 1), /points must consist of a FeatureCollection of only Points/);
-    t.throws(() => clustersDbscan(points), /maxDistance is required/);
-    t.throws(() => clustersDbscan(points, -4), /maxDistance is invalid/);
-    t.throws(() => clustersDbscan(points, 'foo'), /maxDistance is invalid/);
-    t.throws(() => clustersDbscan(points, 1, {units: 'nanometers'}), /units is invalid/);
-    t.throws(() => clustersDbscan(points, 1, {units: null, minPoints: 0}), /minPoints is invalid/);
-    t.throws(() => clustersDbscan(points, 1, {units: 'miles', minPoints: 'baz'}), /minPoints is invalid/);
+    // Types being handled by Typescript
+    // t.throws(() => clustersDbscan(poly, 1), /points must consist of a FeatureCollection of only Points/);
+    // t.throws(() => clustersDbscan(points), /maxDistance is required/);
+    // t.throws(() => clustersDbscan(points, -4), /maxDistance is invalid/);
+    // t.throws(() => clustersDbscan(points, 'foo'), /maxDistance is invalid/);
+    // t.throws(() => clustersDbscan(points, 1, {units: 'nanometers'}), /units is invalid/);
+    // t.throws(() => clustersDbscan(points, 1, {units: null, minPoints: 0}), /minPoints is invalid/);
+    // t.throws(() => clustersDbscan(points, 1, {units: 'miles', minPoints: 'baz'}), /minPoints is invalid/);
     t.end();
 });
 
@@ -109,11 +110,11 @@ function styleResult(clustered) {
         const color = chromatism.brightness(-25, colours[clusterId]).hex;
 
         // Add Centroid
-        features.push(centroid(cluster, {
+        features.push(centroid(cluster, {properties: {
             'marker-color': colours[clusterId],
             'marker-symbol': 'star-stroked',
             'marker-size': 'large'
-        }));
+        }}));
 
         // Add concave polygon
         features.push(polygon([concaveman(coordAll(cluster))], {

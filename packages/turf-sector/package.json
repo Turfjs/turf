@@ -34,7 +34,7 @@
   "homepage": "https://github.com/Turfjs/turf",
   "devDependencies": {
     "@std/esm": "*",
-    "@turf/truncate": "^5.1.5",
+    "@turf/truncate": "6.x",
     "benchmark": "*",
     "load-json-file": "*",
     "rollup": "*",
@@ -42,7 +42,7 @@
     "write-json-file": "*"
   },
   "dependencies": {
-    "@turf/circle": "^5.1.5",
+    "@turf/circle": "6.x",
     "@turf/helpers": "6.x",
     "@turf/invariant": "6.x",
     "@turf/line-arc": "^5.1.5",

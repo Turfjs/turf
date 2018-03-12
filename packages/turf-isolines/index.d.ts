@@ -4,7 +4,7 @@ import { Point, MultiLineString, FeatureCollection, Properties } from '@turf/hel
  * http://turfjs.org/docs/#isolines
  */
 export default function isolines(
-    points: FeatureCollection<Point>,
+    points: FeatureCollection<Point, any>,
     breaks: number[],
     options?: {
         zProperty?: string,

@@ -1,11 +1,11 @@
-import fs from 'fs';
-import test from 'tape';
-import path from 'path';
-import load from 'load-json-file';
-import write from 'write-json-file';
-import bboxPoly from '@turf/bbox-polygon';
-import truncate from '@turf/truncate';
-import triangleGrid from '.';
+const fs = require('fs');
+const test = require('tape');
+const path = require('path');
+const load = require('load-json-file');
+const write = require('write-json-file');
+const bboxPoly = require('@turf/bbox-polygon').default;
+const truncate = require('@turf/truncate').default;
+const triangleGrid = require('./').default;
 
 const directories = {
     in: path.join(__dirname, 'test', 'in') + path.sep,
@@ -52,11 +52,12 @@ test('triangle-grid', t => {
 
 test('square-grid -- throw', t => {
     const bbox = [0, 0, 1, 1];
-    t.throws(() => triangleGrid(null, 0), /bbox is required/, 'missing bbox');
-    t.throws(() => triangleGrid('string', 0), /bbox must be array/, 'invalid bbox');
-    t.throws(() => triangleGrid([0, 2], 0), /bbox must contain 4 numbers/, 'invalid bbox');
-    t.throws(() => triangleGrid(bbox, null), /cellSide is required/, 'missing cellSide');
-    t.throws(() => triangleGrid(bbox, 'string'), /cellSide is invalid/, 'invalid cellSide');
-    t.throws(() => triangleGrid(bbox, 1, 'string'), /options is invalid/, 'invalid options');
+    // Types is managed by Typescript
+    // t.throws(() => triangleGrid(null, 0), /bbox is required/, 'missing bbox');
+    // t.throws(() => triangleGrid('string', 0), /bbox must be array/, 'invalid bbox');
+    // t.throws(() => triangleGrid([0, 2], 0), /bbox must contain 4 numbers/, 'invalid bbox');
+    // t.throws(() => triangleGrid(bbox, null), /cellSide is required/, 'missing cellSide');
+    // t.throws(() => triangleGrid(bbox, 'string'), /cellSide is invalid/, 'invalid cellSide');
+    // t.throws(() => triangleGrid(bbox, 1, 'string'), /options is invalid/, 'invalid options');
     t.end();
 });
