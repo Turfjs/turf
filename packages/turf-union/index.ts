@@ -1,6 +1,7 @@
-import martinez from 'martinez-polygon-clipping';
-import { getCoords } from '@turf/invariant';
+import * as martinez from 'martinez-polygon-clipping';
+import { getGeom } from '@turf/invariant';
 import { multiPolygon, polygon } from '@turf/helpers';
+import { Feature, Polygon, MultiPolygon, Properties } from '@turf/helpers';
 
 /**
  * Takes two {@link (Multi)Polygon(s)} and returns a combined polygon. If the input polygons are not contiguous, this function returns a {@link MultiPolygon} feature.
@@ -8,6 +9,8 @@ import { multiPolygon, polygon } from '@turf/helpers';
  * @name union
  * @param {Feature<Polygon|MultiPolygon>} polygon1 input Polygon feature
  * @param {Feature<Polygon|MultiPolygon>} polygon2 Polygon feature to difference from polygon1
+ * @param {Object} [options={}] Optional Parameters
+ * @param {Object} [options.properties={}] Translate Properties to output Feature
  * @returns {Feature<(Polygon|MultiPolygon)>} a combined {@link Polygon} or {@link MultiPolygon} feature
  * @example
  * var poly1 = turf.polygon([[
@@ -30,19 +33,18 @@ import { multiPolygon, polygon } from '@turf/helpers';
  * //addToMap
  * var addToMap = [poly1, poly2, union];
  */
-function union(polygon1, polygon2) {
-    // Validation
-    if (!polygon1) throw new Error('polygon1 is required');
-    if (!polygon2) throw new Error('polygon2 is required');
+function union<P = Properties>(
+    polygon1: Feature<Polygon | MultiPolygon> | Polygon | MultiPolygon,
+    polygon2: Feature<Polygon | MultiPolygon> | Polygon | MultiPolygon,
+    options: {properties?: P} = {}
+): Feature<Polygon | MultiPolygon, P> {
+    const coords1 = getGeom(polygon1).coordinates;
+    const coords2 = getGeom(polygon2).coordinates;
 
-    var coords1 = getCoords(polygon1);
-    var coords2 = getCoords(polygon2);
-    var properties = polygon1.properties || {};
-
-    var unioned = martinez.union(coords1, coords2);
+    const unioned: any = martinez.union(coords1, coords2);
     if (unioned.length === 0) return null;
-    if (unioned.length === 1) return polygon(unioned[0], properties);
-    else return multiPolygon(unioned, properties);
+    if (unioned.length === 1) return polygon(unioned[0], options.properties);
+    else return multiPolygon(unioned, options.properties);
 }
 
 export default union;
