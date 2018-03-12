@@ -55,7 +55,7 @@
     "@turf/helpers": "6.x",
     "@turf/invariant": "6.x",
     "@turf/meta": "6.x",
-    "@turf/tin": "^5.1.5",
+    "@turf/tin": "6.x",
     "topojson-client": "3.x",
     "topojson-server": "3.x"
   }
