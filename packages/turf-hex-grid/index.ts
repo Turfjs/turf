@@ -37,74 +37,64 @@ function hexGrid<P = Properties>(bbox: BBox, cellSide: number, options: {
     properties?: P,
     mask?: Feature<Polygon> | Polygon;
 } = {}): FeatureCollection<Polygon, P> {
-    // Validation is done by Typescript
-    // if (cellSide === null || cellSide === undefined) throw new Error('cellSide is required');
-    // if (!isNumber(cellSide)) throw new Error('cellSide is invalid');
-    // if (!bbox) throw new Error('bbox is required');
-    // if (!Array.isArray(bbox)) throw new Error('bbox must be array');
-    // if (bbox.length !== 4) throw new Error('bbox must contain 4 numbers');
-    // if (mask && ['Polygon', 'MultiPolygon'].indexOf(getType(mask)) === -1) throw new Error('options.mask must be a (Multi)Polygon');
-    if (!options.properties) { options.properties = {}; }
-    var clonedProperties = JSON.stringify(options.properties)
+    // Issue => https://github.com/Turfjs/turf/issues/1284
+    const clonedProperties = JSON.stringify(options.properties || {})
 
-    var west = bbox[0];
-    var south = bbox[1];
-    var east = bbox[2];
-    var north = bbox[3];
-    var centerY = (south + north) / 2;
-    var centerX = (west + east) / 2;
+    const [west, south, east, north] = bbox;
+    const centerY = (south + north) / 2;
+    const centerX = (west + east) / 2;
 
     // https://github.com/Turfjs/turf/issues/758
-    var xFraction = cellSide * 2 / (distance([west, centerY], [east, centerY], options));
-    var cellWidth = xFraction * (east - west);
-    var yFraction = cellSide * 2 / (distance([centerX, south], [centerX, north], options));
-    var cellHeight = yFraction * (north - south);
-    var radius = cellWidth / 2;
+    const xFraction = cellSide * 2 / (distance([west, centerY], [east, centerY], options));
+    const cellWidth = xFraction * (east - west);
+    const yFraction = cellSide * 2 / (distance([centerX, south], [centerX, north], options));
+    const cellHeight = yFraction * (north - south);
+    const radius = cellWidth / 2;
 
-    var hex_width = radius * 2;
-    var hex_height = Math.sqrt(3) / 2 * cellHeight;
+    const hex_width = radius * 2;
+    const hex_height = Math.sqrt(3) / 2 * cellHeight;
 
-    var box_width = east - west;
-    var box_height = north - south;
+    const box_width = east - west;
+    const box_height = north - south;
 
-    var x_interval = 3 / 4 * hex_width;
-    var y_interval = hex_height;
+    const x_interval = 3 / 4 * hex_width;
+    const y_interval = hex_height;
 
     // adjust box_width so all hexagons will be inside the bbox
-    var x_span = (box_width - hex_width) / (hex_width - radius / 2);
-    var x_count = Math.floor(x_span);
+    const x_span = (box_width - hex_width) / (hex_width - radius / 2);
+    const x_count = Math.floor(x_span);
 
-    var x_adjust = ((x_count * x_interval - radius / 2) - box_width) / 2 - radius / 2 + x_interval / 2;
+    const x_adjust = ((x_count * x_interval - radius / 2) - box_width) / 2 - radius / 2 + x_interval / 2;
 
     // adjust box_height so all hexagons will be inside the bbox
-    var y_count = Math.floor((box_height - hex_height) / hex_height);
+    const y_count = Math.floor((box_height - hex_height) / hex_height);
 
-    var y_adjust = (box_height - y_count * hex_height) / 2;
+    let y_adjust = (box_height - y_count * hex_height) / 2;
 
-    var hasOffsetY = y_count * hex_height - box_height > hex_height / 2;
+    const hasOffsetY = y_count * hex_height - box_height > hex_height / 2;
     if (hasOffsetY) {
         y_adjust -= hex_height / 4;
     }
 
     // Precompute cosines and sines of angles used in hexagon creation for performance gain
-    var cosines = [];
-    var sines = [];
-    for (var i = 0; i < 6; i++) {
-        var angle = 2 * Math.PI / 6 * i;
+    const cosines = [];
+    const sines = [];
+    for (let i = 0; i < 6; i++) {
+        const angle = 2 * Math.PI / 6 * i;
         cosines.push(Math.cos(angle));
         sines.push(Math.sin(angle));
     }
 
-    var results = [];
-    for (var x = 0; x <= x_count; x++) {
-        for (var y = 0; y <= y_count; y++) {
+    const results = [];
+    for (let x = 0; x <= x_count; x++) {
+        for (let y = 0; y <= y_count; y++) {
 
-            var isOdd = x % 2 === 1;
+            const isOdd = x % 2 === 1;
             if (y === 0 && isOdd) continue;
             if (y === 0 && hasOffsetY) continue;
 
-            var center_x = x * x_interval + west - x_adjust;
-            var center_y = y * y_interval + south + y_adjust;
+            const center_x = x * x_interval + west - x_adjust;
+            let center_y = y * y_interval + south + y_adjust;
 
             if (isOdd) {
                 center_y -= hex_height / 2;
@@ -125,7 +115,7 @@ function hexGrid<P = Properties>(bbox: BBox, cellSide: number, options: {
                     }
                 });
             } else {
-                var hex = hexagon(
+                const hex = hexagon(
                     [center_x, center_y],
                     cellWidth / 2,
                     cellHeight / 2,
@@ -158,10 +148,10 @@ function hexGrid<P = Properties>(bbox: BBox, cellSide: number, options: {
  * @returns {Feature<Polygon>} hexagon
  */
 function hexagon(center, rx, ry, properties, cosines, sines) {
-    var vertices = [];
-    for (var i = 0; i < 6; i++) {
-        var x = center[0] + rx * cosines[i];
-        var y = center[1] + ry * sines[i];
+    const vertices = [];
+    for (let i = 0; i < 6; i++) {
+        const x = center[0] + rx * cosines[i];
+        const y = center[1] + ry * sines[i];
         vertices.push([x, y]);
     }
     //first and last vertex must be the same
@@ -182,9 +172,9 @@ function hexagon(center, rx, ry, properties, cosines, sines) {
  * @returns {Array<Feature<Polygon>>} triangles
  */
 function hexTriangles(center, rx, ry, properties, cosines, sines) {
-    var triangles = [];
-    for (var i = 0; i < 6; i++) {
-        var vertices = [];
+    const triangles = [];
+    for (let i = 0; i < 6; i++) {
+        const vertices = [];
         vertices.push(center);
         vertices.push([
             center[0] + rx * cosines[i],
