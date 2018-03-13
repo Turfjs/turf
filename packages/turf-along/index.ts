@@ -1,7 +1,7 @@
 import bearing from '@turf/bearing';
 import destination from '@turf/destination';
 import measureDistance from '@turf/distance';
-import { point, isNumber, isObject, Feature, LineString, Units, Point } from '@turf/helpers';
+import { point, Feature, LineString, Units, Point } from '@turf/helpers';
 
 /**
  * Takes a {@link LineString} and returns a {@link Point} at a specified distance along the line.
@@ -21,19 +21,11 @@ import { point, isNumber, isObject, Feature, LineString, Units, Point } from '@t
  * //addToMap
  * var addToMap = [along, line]
  */
-function along(line: Feature<LineString>| LineString, distance: number, options: {
+export default function along(line: Feature<LineString> | LineString, distance: number, options: {
     units?: Units
 } = {}): Feature<Point> {
-    // Optional parameters
-    if (!isObject(options)) throw new Error('options is invalid');
-
-    // Validation
-    let coords;
-    if (line.type === 'Feature') coords = line.geometry.coordinates;
-    else if (line.type === 'LineString') coords = line.coordinates;
-    else throw new Error('input must be a LineString Feature or Geometry');
-    if (!isNumber(distance)) throw new Error('distance must be a number');
-
+    // Get Coords
+    let coords = line.type === "Feature" ? line.geometry.coordinates : line.coordinates;
     let travelled = 0;
     for (let i = 0; i < coords.length; i++) {
         if (distance >= travelled && i === coords.length - 1) break;
@@ -51,5 +43,3 @@ function along(line: Feature<LineString>| LineString, distance: number, options:
     }
     return point(coords[coords.length - 1]);
 }
-
-export default along;
