@@ -52,7 +52,7 @@
   },
   "dependencies": {
     "@turf/helpers": "6.x",
-    "@turf/length": "^5.1.5",
+    "@turf/length": "6.x",
     "@turf/line-slice-along": "^5.1.5",
     "@turf/meta": "6.x"
   },

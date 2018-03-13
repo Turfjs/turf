@@ -121,7 +121,7 @@
     "@turf/isobands": "5.1.x",
     "@turf/isolines": "5.1.x",
     "@turf/kinks": "5.1.x",
-    "@turf/length": "5.1.x",
+    "@turf/length": "6.x",
     "@turf/line-arc": "5.1.x",
     "@turf/line-chunk": "5.1.x",
     "@turf/line-intersect": "6.x",
