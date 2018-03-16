@@ -6,11 +6,11 @@ import { multiPolygon, polygon, Feature, Polygon, MultiPolygon, Properties } fro
  * Takes two {@link Polygon|polygons} and finds their intersection. If they share a border, returns the border; if they don't intersect, returns undefined.
  *
  * @name intersect
- * @param {Feature<Polygon>} poly1 the first polygon
- * @param {Feature<Polygon>} poly2 the second polygon
+ * @param {Feature<Polygon>} poly1 the first polygon or multipolygon
+ * @param {Feature<Polygon>} poly2 the second polygon or multipolygon
  * @param {Object} [options={}] Optional Parameters
  * @param {Object} [options.properties={}] Translate GeoJSON Properties to Feature
- * @returns {Feature|null} returns a feature representing the point(s) they share (in case of a {@link Point}  or {@link MultiPoint}), the borders they share (in case of a {@link LineString} or a {@link MultiLineString}), the area they share (in case of {@link Polygon} or {@link MultiPolygon}). If they do not share any point, returns `null`.
+ * @returns {Feature|null} returns a feature representing the area they share (either a {@link Polygon} or {@link MultiPolygon}). If they do not share any area, returns `null`.
  * @example
  * var poly1 = turf.polygon([[
  *   [-122.801742, 45.48565],
@@ -37,8 +37,8 @@ import { multiPolygon, polygon, Feature, Polygon, MultiPolygon, Properties } fro
  * var addToMap = [poly1, poly2, intersection];
  */
 function intersect<P = Properties>(
-    poly1: Feature<Polygon> | Polygon,
-    poly2: Feature<Polygon> | Polygon,
+    poly1: Feature<Polygon | MultiPolygon> | Polygon | MultiPolygon,
+    poly2: Feature<Polygon | MultiPolygon> | Polygon | MultiPolygon,
     options: {
         properties?: P,
     } = {}
@@ -46,19 +46,49 @@ function intersect<P = Properties>(
     const geom1 = getGeom(poly1);
     const geom2 = getGeom(poly2);
 
-    if (geom1.type !== 'Polygon') throw new Error('poly1 must be a Polygon');
-    if (geom2.type !== 'Polygon') throw new Error('poly2 must be a Polygon');
+    if (geom1.type === 'Polygon' && geom2.type === 'Polygon') {
+      const intersection: any = martinez.intersection(geom1.coordinates, geom2.coordinates);
 
-    const intersection: any = martinez.intersection(geom1.coordinates, geom2.coordinates);
+      if (intersection === null || intersection.length === 0) return null;
+      if (intersection.length === 1) {
+          const start = intersection[0][0][0];
+          const end = intersection[0][0][intersection[0][0].length - 1];
+          if (start[0] === end[0] && start[1] === end[1]) return polygon(intersection[0], options.properties);
+          return null;
+      }
+      return multiPolygon(intersection, options.properties);
 
-    if (intersection === null || intersection.length === 0) return null;
-    if (intersection.length === 1) {
-        const start = intersection[0][0][0];
-        const end = intersection[0][0][intersection[0][0].length - 1];
-        if (start[0] === end[0] && start[1] === end[1]) return polygon(intersection[0], options.properties);
-        return null;
+    } else if (geom1.type === 'MultiPolygon') {
+      let resultCoords = [];
+
+      // iterate through the polygon and run intersect with each part, adding to the resultCoords.
+      for (let i = 0; i < geom1.coordinates.length; i++) {
+        const subGeom = getGeom(polygon(geom1.coordinates[i]));
+        const subIntersection = intersect(subGeom, geom2);
+
+        if (subIntersection) {
+          const subIntGeom = getGeom(subIntersection);
+
+          if (subIntGeom.type === 'Polygon') resultCoords.push(subIntGeom.coordinates);
+          else if (subIntGeom.type === 'MultiPolygon') resultCoords = resultCoords.concat(subIntGeom.coordinates);
+          else throw new Error('intersection is invalid');
+        }
+      }
+
+      // Make a polygon with the result
+      if (resultCoords.length === 0) return null;
+      if (resultCoords.length === 1) return polygon(resultCoords[0], options.properties);
+      else return multiPolygon(resultCoords, options.properties);
+
+    } else if (geom2.type === 'MultiPolygon') {
+      // geom1 is a polygon and geom2 a multiPolygon,
+      // put the multiPolygon first and fallback to the previous case.
+      return intersect(geom2, geom1);
+
+    } else {
+      // handle invalid geometry types
+      throw new Error('poly1 and poly2 must be either polygons or multiPolygons');
     }
-    return multiPolygon(intersection, options.properties);
 }
 
 export default intersect;
