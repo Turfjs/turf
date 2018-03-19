@@ -3,11 +3,11 @@ import { getGeom } from '@turf/invariant';
 import { multiPolygon, polygon, Feature, Polygon, MultiPolygon, Properties } from '@turf/helpers';
 
 /**
- * Takes two {@link Polygon|polygons} and finds their intersection. If they share a border, returns the border; if they don't intersect, returns undefined.
+ * Takes two {@link Polygon|polygon} or {@link MultiPolygon|multi-polygon} geometries and finds their polygonal intersection. If they don't intersect, returns null.
  *
  * @name intersect
- * @param {Feature<Polygon>} poly1 the first polygon or multipolygon
- * @param {Feature<Polygon>} poly2 the second polygon or multipolygon
+ * @param {Feature<Polygon | MultiPolygon>} poly1 the first polygon or multipolygon
+ * @param {Feature<Polygon | MultiPolygon>} poly2 the second polygon or multipolygon
  * @param {Object} [options={}] Optional Parameters
  * @param {Object} [options.properties={}] Translate GeoJSON Properties to Feature
  * @returns {Feature|null} returns a feature representing the area they share (either a {@link Polygon} or {@link MultiPolygon}). If they do not share any area, returns `null`.
