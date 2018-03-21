@@ -3,6 +3,7 @@
   "version": "5.1.5",
   "description": "turf nearest-point-to-line module",
   "main": "index",
+  "types": "index.d.ts",
   "files": [
     "index.js",
     "index.ts"
@@ -41,7 +42,9 @@
     "load-json-file": "*",
     "typescript": "*",
     "tape": "*",
-    "write-json-file": "*"
+    "write-json-file": "*",
+    "tslint": "*",
+    "@types/tape": "*"
   },
   "dependencies": {
     "@turf/helpers": "6.x",

@@ -3,6 +3,7 @@
   "version": "6.0.0",
   "description": "turf along module",
   "main": "index",
+  "types": "index.d.ts",
   "files": [
     "index.js",
     "index.ts"
@@ -35,7 +36,9 @@
     "benchmark": "*",
     "load-json-file": "*",
     "typescript": "*",
-    "tape": "*"
+    "tape": "*",
+    "tslint": "*",
+    "@types/tape": "*"
   },
   "dependencies": {
     "@turf/bearing": "6.x",

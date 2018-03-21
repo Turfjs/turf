@@ -3,6 +3,7 @@
   "version": "6.1.0",
   "description": "turf intersect module",
   "main": "index",
+  "types": "index.d.ts",
   "files": [
     "index.js",
     "index.ts"
@@ -33,9 +34,11 @@
     "benchmark": "*",
     "glob": "*",
     "load-json-file": "*",
-    "rollup": "*",
     "tape": "*",
-    "write-json-file": "*"
+    "write-json-file": "*",
+    "typescript": "*",
+    "tslint": "*",
+    "@types/tape": "*"
   },
   "dependencies": {
     "@turf/helpers": "6.x",

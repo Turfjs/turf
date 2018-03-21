@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 
+const fs = require('fs');
 const load = require('load-json-file');
 const write = require('write-json-file');
 const path = require('path');
@@ -16,7 +17,7 @@ glob.sync(path.join(__dirname, '..', 'packages', 'turf-*', 'index.ts')).forEach(
         version: pckg.version,
         description: pckg.description,
         main: 'index',
-        // types: 'index.d.ts',
+        types: 'index.d.ts',
         files: updateFiles(pckg.files),
         scripts: {
             'prepare': 'tsc',
@@ -32,14 +33,16 @@ glob.sync(path.join(__dirname, '..', 'packages', 'turf-*', 'index.ts')).forEach(
         license: pckg.license,
         bugs: pckg.bugs,
         homepage: pckg.homepage,
-        devDependencies: pckg.devDependencies,
-        // devDependencies: updateDevDependencies(pckg),
+        devDependencies: updateDevDependencies(pckg),
         dependencies: pckg.dependencies
     };
     write.sync(pckgPath, formatedPckg, {indent: 2});
 
     // Remove extra files
     // To-Do
+
+    // Add .gitignore
+    fs.writeFileSync(path.join(dir, '.gitignore'), 'index.js');
 });
 
 function entries(obj) {

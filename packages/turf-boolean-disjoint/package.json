@@ -3,6 +3,7 @@
   "version": "6.0.0",
   "description": "turf boolean-disjoint module",
   "main": "index",
+  "types": "index.d.ts",
   "files": [
     "index.js",
     "index.ts"
@@ -39,7 +40,9 @@
     "boolean-shapely": "*",
     "load-json-file": "*",
     "typescript": "*",
-    "tape": "*"
+    "tape": "*",
+    "tslint": "*",
+    "@types/tape": "*"
   },
   "dependencies": {
     "@turf/boolean-point-in-polygon": "6.x",

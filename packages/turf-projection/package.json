@@ -3,6 +3,7 @@
   "version": "6.0.0",
   "description": "turf projection module",
   "main": "index",
+  "types": "index.d.ts",
   "files": [
     "index.js",
     "index.ts"
@@ -49,7 +50,9 @@
     "proj4": "*",
     "typescript": "*",
     "tape": "*",
-    "write-json-file": "*"
+    "write-json-file": "*",
+    "tslint": "*",
+    "@types/tape": "*"
   },
   "dependencies": {
     "@turf/clone": "6.x",

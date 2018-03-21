@@ -3,6 +3,7 @@
   "version": "6.0.0",
   "description": "turf boolean-parallel module",
   "main": "index",
+  "types": "index.d.ts",
   "files": [
     "index.js",
     "index.ts"
@@ -38,7 +39,9 @@
     "load-json-file": "*",
     "typescript": "*",
     "tape": "*",
-    "write-json-file": "*"
+    "write-json-file": "*",
+    "tslint": "*",
+    "@types/tape": "*"
   },
   "dependencies": {
     "@turf/clean-coords": "6.x",

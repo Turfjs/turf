@@ -3,6 +3,7 @@
   "version": "6.0.0",
   "description": "turf boolean-concave module",
   "main": "index",
+  "types": "index.d.ts",
   "files": [
     "index.js",
     "index.ts"
@@ -39,7 +40,9 @@
     "glob": "*",
     "load-json-file": "*",
     "typescript": "*",
-    "tape": "*"
+    "tape": "*",
+    "tslint": "*",
+    "@types/tape": "*"
   },
   "dependencies": {
     "@turf/helpers": "6.x",
