@@ -20,15 +20,15 @@ Area of measurement factors based on 1 square meter.
 
 ## feature
 
-Wraps a GeoJSON [Geometry](https://tools.ietf.org/html/rfc7946#section-3.1) in a GeoJSON [Feature](https://tools.ietf.org/html/rfc7946#section-3.2).
+Wraps a GeoJSON [Geometry][1] in a GeoJSON [Feature][2].
 
 **Parameters**
 
--   `geometry` **[Geometry](https://tools.ietf.org/html/rfc7946#section-3.1)** input geometry
--   `properties` **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)** an Object of key-value pairs to add as properties (optional, default `{}`)
--   `options` **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)** Optional Parameters (optional, default `{}`)
-    -   `options.bbox` **[Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)>?** Bounding Box Array [west, south, east, north] associated with the Feature
-    -   `options.id` **([string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) \| [number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number))?** Identifier associated with the Feature
+-   `geometry` **[Geometry][3]** input geometry
+-   `properties` **[Object][4]** an Object of key-value pairs to add as properties (optional, default `{}`)
+-   `options` **[Object][4]** Optional Parameters (optional, default `{}`)
+    -   `options.bbox` **[Array][5]&lt;[number][6]>?** Bounding Box Array [west, south, east, north] associated with the Feature
+    -   `options.id` **([string][7] \| [number][6])?** Identifier associated with the Feature
 
 **Examples**
 
@@ -43,19 +43,19 @@ var feature = turf.feature(geometry);
 //=feature
 ```
 
-Returns **[Feature](https://tools.ietf.org/html/rfc7946#section-3.2)** a GeoJSON Feature
+Returns **[Feature][8]** a GeoJSON Feature
 
 ## geometry
 
-Creates a GeoJSON [Geometry](https://tools.ietf.org/html/rfc7946#section-3.1) from a Geometry string type & coordinates.
+Creates a GeoJSON [Geometry][1] from a Geometry string type & coordinates.
 For GeometryCollection type use `helpers.geometryCollection`
 
 **Parameters**
 
--   `type` **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** Geometry Type
--   `coordinates` **[Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)>** Coordinates
--   `options` **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)** Optional Parameters (optional, default `{}`)
-    -   `options.bbox` **[Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)>?** Bounding Box Array [west, south, east, north] associated with the Geometry
+-   `type` **[string][7]** Geometry Type
+-   `coordinates` **[Array][5]&lt;[number][6]>** Coordinates
+-   `options` **[Object][4]** Optional Parameters (optional, default `{}`)
+    -   `options.bbox` **[Array][5]&lt;[number][6]>?** Bounding Box Array [west, south, east, north] associated with the Geometry
 
 **Examples**
 
@@ -68,19 +68,19 @@ var geometry = turf.geometry(type, coordinates);
 //=geometry
 ```
 
-Returns **[Geometry](https://tools.ietf.org/html/rfc7946#section-3.1)** a GeoJSON Geometry
+Returns **[Geometry][3]** a GeoJSON Geometry
 
 ## point
 
-Creates a [Point](https://tools.ietf.org/html/rfc7946#section-3.1.2) [Feature](https://tools.ietf.org/html/rfc7946#section-3.2) from a Position.
+Creates a [Point][9] [Feature][2] from a Position.
 
 **Parameters**
 
--   `coordinates` **[Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)>** longitude, latitude position (each in decimal degrees)
--   `properties` **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)** an Object of key-value pairs to add as properties (optional, default `{}`)
--   `options` **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)** Optional Parameters (optional, default `{}`)
-    -   `options.bbox` **[Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)>?** Bounding Box Array [west, south, east, north] associated with the Feature
-    -   `options.id` **([string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) \| [number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number))?** Identifier associated with the Feature
+-   `coordinates` **[Array][5]&lt;[number][6]>** longitude, latitude position (each in decimal degrees)
+-   `properties` **[Object][4]** an Object of key-value pairs to add as properties (optional, default `{}`)
+-   `options` **[Object][4]** Optional Parameters (optional, default `{}`)
+    -   `options.bbox` **[Array][5]&lt;[number][6]>?** Bounding Box Array [west, south, east, north] associated with the Feature
+    -   `options.id` **([string][7] \| [number][6])?** Identifier associated with the Feature
 
 **Examples**
 
@@ -90,19 +90,19 @@ var point = turf.point([-75.343, 39.984]);
 //=point
 ```
 
-Returns **[Feature](https://tools.ietf.org/html/rfc7946#section-3.2)&lt;[Point](https://tools.ietf.org/html/rfc7946#section-3.1.2)>** a Point feature
+Returns **[Feature][8]&lt;[Point][10]>** a Point feature
 
 ## points
 
-Creates a [Point](https://tools.ietf.org/html/rfc7946#section-3.1.2) [FeatureCollection](https://tools.ietf.org/html/rfc7946#section-3.3) from an Array of Point coordinates.
+Creates a [Point][9] [FeatureCollection][11] from an Array of Point coordinates.
 
 **Parameters**
 
--   `coordinates` **[Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)>>** an array of Points
--   `properties` **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)** Translate these properties to each Feature (optional, default `{}`)
--   `options` **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)** Optional Parameters (optional, default `{}`)
-    -   `options.bbox` **[Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)>?** Bounding Box Array [west, south, east, north] associated with the FeatureCollection
-    -   `options.id` **([string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) \| [number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number))?** Identifier associated with the FeatureCollection
+-   `coordinates` **[Array][5]&lt;[Array][5]&lt;[number][6]>>** an array of Points
+-   `properties` **[Object][4]** Translate these properties to each Feature (optional, default `{}`)
+-   `options` **[Object][4]** Optional Parameters (optional, default `{}`)
+    -   `options.bbox` **[Array][5]&lt;[number][6]>?** Bounding Box Array [west, south, east, north] associated with the FeatureCollection
+    -   `options.id` **([string][7] \| [number][6])?** Identifier associated with the FeatureCollection
 
 **Examples**
 
@@ -116,19 +116,19 @@ var points = turf.points([
 //=points
 ```
 
-Returns **[FeatureCollection](https://tools.ietf.org/html/rfc7946#section-3.3)&lt;[Point](https://tools.ietf.org/html/rfc7946#section-3.1.2)>** Point Feature
+Returns **[FeatureCollection][12]&lt;[Point][10]>** Point Feature
 
 ## polygon
 
-Creates a [Polygon](https://tools.ietf.org/html/rfc7946#section-3.1.6) [Feature](https://tools.ietf.org/html/rfc7946#section-3.2) from an Array of LinearRings.
+Creates a [Polygon][13] [Feature][2] from an Array of LinearRings.
 
 **Parameters**
 
--   `coordinates` **[Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)>>>** an array of LinearRings
--   `properties` **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)** an Object of key-value pairs to add as properties (optional, default `{}`)
--   `options` **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)** Optional Parameters (optional, default `{}`)
-    -   `options.bbox` **[Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)>?** Bounding Box Array [west, south, east, north] associated with the Feature
-    -   `options.id` **([string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) \| [number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number))?** Identifier associated with the Feature
+-   `coordinates` **[Array][5]&lt;[Array][5]&lt;[Array][5]&lt;[number][6]>>>** an array of LinearRings
+-   `properties` **[Object][4]** an Object of key-value pairs to add as properties (optional, default `{}`)
+-   `options` **[Object][4]** Optional Parameters (optional, default `{}`)
+    -   `options.bbox` **[Array][5]&lt;[number][6]>?** Bounding Box Array [west, south, east, north] associated with the Feature
+    -   `options.id` **([string][7] \| [number][6])?** Identifier associated with the Feature
 
 **Examples**
 
@@ -138,19 +138,19 @@ var polygon = turf.polygon([[[-5, 52], [-4, 56], [-2, 51], [-7, 54], [-5, 52]]],
 //=polygon
 ```
 
-Returns **[Feature](https://tools.ietf.org/html/rfc7946#section-3.2)&lt;[Polygon](https://tools.ietf.org/html/rfc7946#section-3.1.6)>** Polygon Feature
+Returns **[Feature][8]&lt;[Polygon][14]>** Polygon Feature
 
 ## polygons
 
-Creates a [Polygon](https://tools.ietf.org/html/rfc7946#section-3.1.6) [FeatureCollection](https://tools.ietf.org/html/rfc7946#section-3.3) from an Array of Polygon coordinates.
+Creates a [Polygon][13] [FeatureCollection][11] from an Array of Polygon coordinates.
 
 **Parameters**
 
--   `coordinates` **[Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)>>>>** an array of Polygon coordinates
--   `properties` **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)** an Object of key-value pairs to add as properties (optional, default `{}`)
--   `options` **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)** Optional Parameters (optional, default `{}`)
-    -   `options.bbox` **[Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)>?** Bounding Box Array [west, south, east, north] associated with the Feature
-    -   `options.id` **([string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) \| [number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number))?** Identifier associated with the FeatureCollection
+-   `coordinates` **[Array][5]&lt;[Array][5]&lt;[Array][5]&lt;[Array][5]&lt;[number][6]>>>>** an array of Polygon coordinates
+-   `properties` **[Object][4]** an Object of key-value pairs to add as properties (optional, default `{}`)
+-   `options` **[Object][4]** Optional Parameters (optional, default `{}`)
+    -   `options.bbox` **[Array][5]&lt;[number][6]>?** Bounding Box Array [west, south, east, north] associated with the Feature
+    -   `options.id` **([string][7] \| [number][6])?** Identifier associated with the FeatureCollection
 
 **Examples**
 
@@ -163,19 +163,19 @@ var polygons = turf.polygons([
 //=polygons
 ```
 
-Returns **[FeatureCollection](https://tools.ietf.org/html/rfc7946#section-3.3)&lt;[Polygon](https://tools.ietf.org/html/rfc7946#section-3.1.6)>** Polygon FeatureCollection
+Returns **[FeatureCollection][12]&lt;[Polygon][14]>** Polygon FeatureCollection
 
 ## lineString
 
-Creates a [LineString](https://tools.ietf.org/html/rfc7946#section-3.1.4) [Feature](https://tools.ietf.org/html/rfc7946#section-3.2) from an Array of Positions.
+Creates a [LineString][15] [Feature][2] from an Array of Positions.
 
 **Parameters**
 
--   `coordinates` **[Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)>>** an array of Positions
--   `properties` **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)** an Object of key-value pairs to add as properties (optional, default `{}`)
--   `options` **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)** Optional Parameters (optional, default `{}`)
-    -   `options.bbox` **[Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)>?** Bounding Box Array [west, south, east, north] associated with the Feature
-    -   `options.id` **([string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) \| [number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number))?** Identifier associated with the Feature
+-   `coordinates` **[Array][5]&lt;[Array][5]&lt;[number][6]>>** an array of Positions
+-   `properties` **[Object][4]** an Object of key-value pairs to add as properties (optional, default `{}`)
+-   `options` **[Object][4]** Optional Parameters (optional, default `{}`)
+    -   `options.bbox` **[Array][5]&lt;[number][6]>?** Bounding Box Array [west, south, east, north] associated with the Feature
+    -   `options.id` **([string][7] \| [number][6])?** Identifier associated with the Feature
 
 **Examples**
 
@@ -187,19 +187,19 @@ var linestring2 = turf.lineString([[-14, 43], [-13, 40], [-15, 45], [-10, 49]], 
 //=linestring2
 ```
 
-Returns **[Feature](https://tools.ietf.org/html/rfc7946#section-3.2)&lt;[LineString](https://tools.ietf.org/html/rfc7946#section-3.1.4)>** LineString Feature
+Returns **[Feature][8]&lt;[LineString][16]>** LineString Feature
 
 ## lineStrings
 
-Creates a [LineString](https://tools.ietf.org/html/rfc7946#section-3.1.4) [FeatureCollection](https://tools.ietf.org/html/rfc7946#section-3.3) from an Array of LineString coordinates.
+Creates a [LineString][15] [FeatureCollection][11] from an Array of LineString coordinates.
 
 **Parameters**
 
--   `coordinates` **[Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)>>** an array of LinearRings
--   `properties` **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)** an Object of key-value pairs to add as properties (optional, default `{}`)
--   `options` **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)** Optional Parameters (optional, default `{}`)
-    -   `options.bbox` **[Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)>?** Bounding Box Array [west, south, east, north] associated with the FeatureCollection
-    -   `options.id` **([string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) \| [number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number))?** Identifier associated with the FeatureCollection
+-   `coordinates` **[Array][5]&lt;[Array][5]&lt;[Array][5]&lt;[number][6]>>>** an array of LinearRings
+-   `properties` **[Object][4]** an Object of key-value pairs to add as properties (optional, default `{}`)
+-   `options` **[Object][4]** Optional Parameters (optional, default `{}`)
+    -   `options.bbox` **[Array][5]&lt;[number][6]>?** Bounding Box Array [west, south, east, north] associated with the FeatureCollection
+    -   `options.id` **([string][7] \| [number][6])?** Identifier associated with the FeatureCollection
 
 **Examples**
 
@@ -212,18 +212,18 @@ var linestrings = turf.lineStrings([
 //=linestrings
 ```
 
-Returns **[FeatureCollection](https://tools.ietf.org/html/rfc7946#section-3.3)&lt;[LineString](https://tools.ietf.org/html/rfc7946#section-3.1.4)>** LineString FeatureCollection
+Returns **[FeatureCollection][12]&lt;[LineString][16]>** LineString FeatureCollection
 
 ## featureCollection
 
-Takes one or more [Features](https://tools.ietf.org/html/rfc7946#section-3.2) and creates a [FeatureCollection](https://tools.ietf.org/html/rfc7946#section-3.3).
+Takes one or more [Features][2] and creates a [FeatureCollection][11].
 
 **Parameters**
 
--   `features` **[Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[Feature](https://tools.ietf.org/html/rfc7946#section-3.2)>** input features
--   `options` **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)** Optional Parameters (optional, default `{}`)
-    -   `options.bbox` **[Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)>?** Bounding Box Array [west, south, east, north] associated with the Feature
-    -   `options.id` **([string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) \| [number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number))?** Identifier associated with the Feature
+-   `features` **[Array][5]&lt;[Feature][8]>** input features
+-   `options` **[Object][4]** Optional Parameters (optional, default `{}`)
+    -   `options.bbox` **[Array][5]&lt;[number][6]>?** Bounding Box Array [west, south, east, north] associated with the Feature
+    -   `options.id` **([string][7] \| [number][6])?** Identifier associated with the Feature
 
 **Examples**
 
@@ -241,20 +241,20 @@ var collection = turf.featureCollection([
 //=collection
 ```
 
-Returns **[FeatureCollection](https://tools.ietf.org/html/rfc7946#section-3.3)** FeatureCollection of Features
+Returns **[FeatureCollection][12]** FeatureCollection of Features
 
 ## multiLineString
 
-Creates a [Feature&lt;MultiLineString>](Feature<MultiLineString>) based on a
+Creates a [Feature&lt;MultiLineString>][17] based on a
 coordinate array. Properties can be added optionally.
 
 **Parameters**
 
--   `coordinates` **[Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)>>>** an array of LineStrings
--   `properties` **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)** an Object of key-value pairs to add as properties (optional, default `{}`)
--   `options` **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)** Optional Parameters (optional, default `{}`)
-    -   `options.bbox` **[Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)>?** Bounding Box Array [west, south, east, north] associated with the Feature
-    -   `options.id` **([string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) \| [number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number))?** Identifier associated with the Feature
+-   `coordinates` **[Array][5]&lt;[Array][5]&lt;[Array][5]&lt;[number][6]>>>** an array of LineStrings
+-   `properties` **[Object][4]** an Object of key-value pairs to add as properties (optional, default `{}`)
+-   `options` **[Object][4]** Optional Parameters (optional, default `{}`)
+    -   `options.bbox` **[Array][5]&lt;[number][6]>?** Bounding Box Array [west, south, east, north] associated with the Feature
+    -   `options.id` **([string][7] \| [number][6])?** Identifier associated with the Feature
 
 **Examples**
 
@@ -264,22 +264,22 @@ var multiLine = turf.multiLineString([[[0,0],[10,10]]]);
 //=multiLine
 ```
 
--   Throws **[Error](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error)** if no coordinates are passed
+-   Throws **[Error][18]** if no coordinates are passed
 
-Returns **[Feature](https://tools.ietf.org/html/rfc7946#section-3.2)&lt;[MultiLineString](https://tools.ietf.org/html/rfc7946#section-3.1.5)>** a MultiLineString feature
+Returns **[Feature][8]&lt;[MultiLineString][19]>** a MultiLineString feature
 
 ## multiPoint
 
-Creates a [Feature&lt;MultiPoint>](Feature<MultiPoint>) based on a
+Creates a [Feature&lt;MultiPoint>][20] based on a
 coordinate array. Properties can be added optionally.
 
 **Parameters**
 
--   `coordinates` **[Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)>>** an array of Positions
--   `properties` **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)** an Object of key-value pairs to add as properties (optional, default `{}`)
--   `options` **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)** Optional Parameters (optional, default `{}`)
-    -   `options.bbox` **[Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)>?** Bounding Box Array [west, south, east, north] associated with the Feature
-    -   `options.id` **([string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) \| [number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number))?** Identifier associated with the Feature
+-   `coordinates` **[Array][5]&lt;[Array][5]&lt;[number][6]>>** an array of Positions
+-   `properties` **[Object][4]** an Object of key-value pairs to add as properties (optional, default `{}`)
+-   `options` **[Object][4]** Optional Parameters (optional, default `{}`)
+    -   `options.bbox` **[Array][5]&lt;[number][6]>?** Bounding Box Array [west, south, east, north] associated with the Feature
+    -   `options.id` **([string][7] \| [number][6])?** Identifier associated with the Feature
 
 **Examples**
 
@@ -289,22 +289,22 @@ var multiPt = turf.multiPoint([[0,0],[10,10]]);
 //=multiPt
 ```
 
--   Throws **[Error](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error)** if no coordinates are passed
+-   Throws **[Error][18]** if no coordinates are passed
 
-Returns **[Feature](https://tools.ietf.org/html/rfc7946#section-3.2)&lt;[MultiPoint](https://tools.ietf.org/html/rfc7946#section-3.1.3)>** a MultiPoint feature
+Returns **[Feature][8]&lt;[MultiPoint][21]>** a MultiPoint feature
 
 ## multiPolygon
 
-Creates a [Feature&lt;MultiPolygon>](Feature<MultiPolygon>) based on a
+Creates a [Feature&lt;MultiPolygon>][22] based on a
 coordinate array. Properties can be added optionally.
 
 **Parameters**
 
--   `coordinates` **[Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)>>>>** an array of Polygons
--   `properties` **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)** an Object of key-value pairs to add as properties (optional, default `{}`)
--   `options` **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)** Optional Parameters (optional, default `{}`)
-    -   `options.bbox` **[Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)>?** Bounding Box Array [west, south, east, north] associated with the Feature
-    -   `options.id` **([string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) \| [number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number))?** Identifier associated with the Feature
+-   `coordinates` **[Array][5]&lt;[Array][5]&lt;[Array][5]&lt;[Array][5]&lt;[number][6]>>>>** an array of Polygons
+-   `properties` **[Object][4]** an Object of key-value pairs to add as properties (optional, default `{}`)
+-   `options` **[Object][4]** Optional Parameters (optional, default `{}`)
+    -   `options.bbox` **[Array][5]&lt;[number][6]>?** Bounding Box Array [west, south, east, north] associated with the Feature
+    -   `options.id` **([string][7] \| [number][6])?** Identifier associated with the Feature
 
 **Examples**
 
@@ -314,22 +314,22 @@ var multiPoly = turf.multiPolygon([[[[0,0],[0,10],[10,10],[10,0],[0,0]]]]);
 //=multiPoly
 ```
 
--   Throws **[Error](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error)** if no coordinates are passed
+-   Throws **[Error][18]** if no coordinates are passed
 
-Returns **[Feature](https://tools.ietf.org/html/rfc7946#section-3.2)&lt;[MultiPolygon](https://tools.ietf.org/html/rfc7946#section-3.1.7)>** a multipolygon feature
+Returns **[Feature][8]&lt;[MultiPolygon][23]>** a multipolygon feature
 
 ## geometryCollection
 
-Creates a [Feature&lt;GeometryCollection>](Feature<GeometryCollection>) based on a
+Creates a [Feature&lt;GeometryCollection>][24] based on a
 coordinate array. Properties can be added optionally.
 
 **Parameters**
 
--   `geometries` **[Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[Geometry](https://tools.ietf.org/html/rfc7946#section-3.1)>** an array of GeoJSON Geometries
--   `properties` **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)** an Object of key-value pairs to add as properties (optional, default `{}`)
--   `options` **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)** Optional Parameters (optional, default `{}`)
-    -   `options.bbox` **[Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)>?** Bounding Box Array [west, south, east, north] associated with the Feature
-    -   `options.id` **([string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) \| [number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number))?** Identifier associated with the Feature
+-   `geometries` **[Array][5]&lt;[Geometry][3]>** an array of GeoJSON Geometries
+-   `properties` **[Object][4]** an Object of key-value pairs to add as properties (optional, default `{}`)
+-   `options` **[Object][4]** Optional Parameters (optional, default `{}`)
+    -   `options.bbox` **[Array][5]&lt;[number][6]>?** Bounding Box Array [west, south, east, north] associated with the Feature
+    -   `options.id` **([string][7] \| [number][6])?** Identifier associated with the Feature
 
 **Examples**
 
@@ -347,7 +347,7 @@ var collection = turf.geometryCollection([pt, line]);
 //=collection
 ```
 
-Returns **[Feature](https://tools.ietf.org/html/rfc7946#section-3.2)&lt;[GeometryCollection](https://tools.ietf.org/html/rfc7946#section-3.1.8)>** a GeoJSON GeometryCollection Feature
+Returns **[Feature][8]&lt;[GeometryCollection][25]>** a GeoJSON GeometryCollection Feature
 
 ## round
 
@@ -355,8 +355,8 @@ Round number to precision
 
 **Parameters**
 
--   `num` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** Number
--   `precision` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** Precision (optional, default `0`)
+-   `num` **[number][6]** Number
+-   `precision` **[number][6]** Precision (optional, default `0`)
 
 **Examples**
 
@@ -368,7 +368,7 @@ turf.round(120.4321, 2)
 //=120.43
 ```
 
-Returns **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** rounded number
+Returns **[number][6]** rounded number
 
 ## radiansToLength
 
@@ -377,10 +377,10 @@ Valid units: miles, nauticalmiles, inches, yards, meters, metres, kilometers, ce
 
 **Parameters**
 
--   `radians` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** in radians across the sphere
--   `units` **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** can be degrees, radians, miles, or kilometers inches, yards, metres, meters, kilometres, kilometers. (optional, default `'kilometers'`)
+-   `radians` **[number][6]** in radians across the sphere
+-   `units` **[string][7]** can be degrees, radians, miles, or kilometers inches, yards, metres, meters, kilometres, kilometers. (optional, default `'kilometers'`)
 
-Returns **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** distance
+Returns **[number][6]** distance
 
 ## lengthToRadians
 
@@ -389,10 +389,10 @@ Valid units: miles, nauticalmiles, inches, yards, meters, metres, kilometers, ce
 
 **Parameters**
 
--   `distance` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** in real units
--   `units` **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** can be degrees, radians, miles, or kilometers inches, yards, metres, meters, kilometres, kilometers. (optional, default `'kilometers'`)
+-   `distance` **[number][6]** in real units
+-   `units` **[string][7]** can be degrees, radians, miles, or kilometers inches, yards, metres, meters, kilometres, kilometers. (optional, default `'kilometers'`)
 
-Returns **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** radians
+Returns **[number][6]** radians
 
 ## lengthToDegrees
 
@@ -401,10 +401,10 @@ Valid units: miles, nauticalmiles, inches, yards, meters, metres, centimeters, k
 
 **Parameters**
 
--   `distance` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** in real units
--   `units` **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** can be degrees, radians, miles, or kilometers inches, yards, metres, meters, kilometres, kilometers. (optional, default `'kilometers'`)
+-   `distance` **[number][6]** in real units
+-   `units` **[string][7]** can be degrees, radians, miles, or kilometers inches, yards, metres, meters, kilometres, kilometers. (optional, default `'kilometers'`)
 
-Returns **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** degrees
+Returns **[number][6]** degrees
 
 ## bearingToAzimuth
 
@@ -413,9 +413,9 @@ and returns an angle between 0-360 degrees (positive clockwise), 0 being the nor
 
 **Parameters**
 
--   `bearing` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** angle, between -180 and +180 degrees
+-   `bearing` **[number][6]** angle, between -180 and +180 degrees
 
-Returns **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** angle between 0 and 360 degrees
+Returns **[number][6]** angle between 0 and 360 degrees
 
 ## radiansToDegrees
 
@@ -423,9 +423,9 @@ Converts an angle in radians to degrees
 
 **Parameters**
 
--   `radians` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** angle in radians
+-   `radians` **[number][6]** angle in radians
 
-Returns **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** degrees between 0 and 360 degrees
+Returns **[number][6]** degrees between 0 and 360 degrees
 
 ## degreesToRadians
 
@@ -433,9 +433,9 @@ Converts an angle in degrees to radians
 
 **Parameters**
 
--   `degrees` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** angle between 0 and 360 degrees
+-   `degrees` **[number][6]** angle between 0 and 360 degrees
 
-Returns **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** angle in radians
+Returns **[number][6]** angle in radians
 
 ## convertLength
 
@@ -444,11 +444,11 @@ Valid units: miles, nauticalmiles, inches, yards, meters, metres, kilometers, ce
 
 **Parameters**
 
--   `length` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** to be converted
--   `originalUnit` **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** of the length
--   `finalUnit` **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** returned unit (optional, default `'kilometers'`)
+-   `length` **[number][6]** to be converted
+-   `originalUnit` **[string][7]** of the length
+-   `finalUnit` **[string][7]** returned unit (optional, default `'kilometers'`)
 
-Returns **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** the converted length
+Returns **[number][6]** the converted length
 
 ## convertArea
 
@@ -457,11 +457,11 @@ Valid units: kilometers, kilometres, meters, metres, centimetres, millimeters, a
 
 **Parameters**
 
--   `area` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** to be converted
--   `originalUnit` **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** of the distance (optional, default `'meters'`)
--   `finalUnit` **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** returned unit (optional, default `'kilometers'`)
+-   `area` **[number][6]** to be converted
+-   `originalUnit` **[string][7]** of the distance (optional, default `'meters'`)
+-   `finalUnit` **[string][7]** returned unit (optional, default `'kilometers'`)
 
-Returns **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** the converted distance
+Returns **[number][6]** the converted distance
 
 ## isNumber
 
@@ -480,7 +480,7 @@ turf.isNumber('foo')
 //=false
 ```
 
-Returns **[boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** true/false
+Returns **[boolean][26]** true/false
 
 ## isObject
 
@@ -499,7 +499,59 @@ turf.isObject('foo')
 //=false
 ```
 
-Returns **[boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** true/false
+Returns **[boolean][26]** true/false
+
+[1]: https://tools.ietf.org/html/rfc7946#section-3.1
+
+[2]: https://tools.ietf.org/html/rfc7946#section-3.2
+
+[3]: https://tools.ietf.org/html/rfc7946#section-3.1
+
+[4]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object
+
+[5]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array
+
+[6]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number
+
+[7]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String
+
+[8]: https://tools.ietf.org/html/rfc7946#section-3.2
+
+[9]: https://tools.ietf.org/html/rfc7946#section-3.1.2
+
+[10]: https://tools.ietf.org/html/rfc7946#section-3.1.2
+
+[11]: https://tools.ietf.org/html/rfc7946#section-3.3
+
+[12]: https://tools.ietf.org/html/rfc7946#section-3.3
+
+[13]: https://tools.ietf.org/html/rfc7946#section-3.1.6
+
+[14]: https://tools.ietf.org/html/rfc7946#section-3.1.6
+
+[15]: https://tools.ietf.org/html/rfc7946#section-3.1.4
+
+[16]: https://tools.ietf.org/html/rfc7946#section-3.1.4
+
+[17]: Feature<MultiLineString>
+
+[18]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Error
+
+[19]: https://tools.ietf.org/html/rfc7946#section-3.1.5
+
+[20]: Feature<MultiPoint>
+
+[21]: https://tools.ietf.org/html/rfc7946#section-3.1.3
+
+[22]: Feature<MultiPolygon>
+
+[23]: https://tools.ietf.org/html/rfc7946#section-3.1.7
+
+[24]: Feature<GeometryCollection>
+
+[25]: https://tools.ietf.org/html/rfc7946#section-3.1.8
+
+[26]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean
 
 <!-- This file is automatically generated. Please don't edit it directly:
 if you find an error, edit the source file (likely index.js), and re-run
