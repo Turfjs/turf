@@ -7,6 +7,7 @@
   "files": [
     "index.js",
     "index.ts",
+    "index.d.ts",
     "lib"
   ],
   "scripts": {

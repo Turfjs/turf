@@ -49,8 +49,14 @@ function entries(obj) {
     return Object.keys(obj || {}).map(key => [key, obj[key]]);
 }
 
+/**
+ * @param {Array<string>} files Files
+ * @returns {Array<string>} Files
+ */
 function updateFiles(files) {
-    return files;
+    const newFiles = ['index.js', 'index.ts', 'index.d.ts'];
+    if (files.includes('lib')) newFiles.push('lib');
+    return newFiles;
 }
 
 function updateDevDependencies(pckg) {
