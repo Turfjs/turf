@@ -1,13 +1,15 @@
-//http://en.wikipedia.org/wiki/Haversine_formula
-//http://www.movable-type.co.uk/scripts/latlong.html
-import { getCoord } from '@turf/invariant';
+// http://en.wikipedia.org/wiki/Haversine_formula
+// http://www.movable-type.co.uk/scripts/latlong.html
 import {
-    point, lengthToRadians, degreesToRadians, radiansToDegrees,
-    Coord, Units, Properties, Feature, Point
-} from '@turf/helpers';
+    Coord, degreesToRadians, Feature, lengthToRadians,
+    point, Point, Properties, radiansToDegrees, Units,
+} from "@turf/helpers";
+import { getCoord } from "@turf/invariant";
 
 /**
- * Takes a {@link Point} and calculates the location of a destination point given a distance in degrees, radians, miles, or kilometers; and bearing in degrees. This uses the [Haversine formula](http://en.wikipedia.org/wiki/Haversine_formula) to account for global curvature.
+ * Takes a {@link Point} and calculates the location of a destination point given a distance in
+ * degrees, radians, miles, or kilometers; and bearing in degrees.
+ * This uses the [Haversine formula](http://en.wikipedia.org/wiki/Haversine_formula) to account for global curvature.
  *
  * @name destination
  * @param {Coord} origin starting point
@@ -30,31 +32,29 @@ import {
  * destination.properties['marker-color'] = '#f00';
  * point.properties['marker-color'] = '#0f0';
  */
-function destination<P = Properties>(
-    origin,
-    distance,
-    bearing,
+export default function destination<P = Properties>(
+    origin: Coord,
+    distance: number,
+    bearing: number,
     options: {
         units?: Units,
-        properties?: P
-    } = {}
+        properties?: P,
+    } = {},
 ): Feature<Point, P> {
     // Handle input
     const coordinates1 = getCoord(origin);
     const longitude1 = degreesToRadians(coordinates1[0]);
     const latitude1 = degreesToRadians(coordinates1[1]);
-    const bearing_rad = degreesToRadians(bearing);
+    const bearingRad = degreesToRadians(bearing);
     const radians = lengthToRadians(distance, options.units);
 
     // Main
     const latitude2 = Math.asin(Math.sin(latitude1) * Math.cos(radians) +
-        Math.cos(latitude1) * Math.sin(radians) * Math.cos(bearing_rad));
-    const longitude2 = longitude1 + Math.atan2(Math.sin(bearing_rad) * Math.sin(radians) * Math.cos(latitude1),
+        Math.cos(latitude1) * Math.sin(radians) * Math.cos(bearingRad));
+    const longitude2 = longitude1 + Math.atan2(Math.sin(bearingRad) * Math.sin(radians) * Math.cos(latitude1),
         Math.cos(radians) - Math.sin(latitude1) * Math.sin(latitude2));
     const lng = radiansToDegrees(longitude2);
     const lat = radiansToDegrees(latitude2);
 
     return point([lng, lat], options.properties);
 }
-
-export default destination;
