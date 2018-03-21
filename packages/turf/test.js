@@ -90,6 +90,7 @@ test('turf -- check if files exists', t => {
             // ignore Rollup bundle
             if (file === 'main.js') continue;
             if (file === 'main.es.js') continue;
+            if (file === 'index.d.ts') continue;
             if (!fs.existsSync(path.join(dir, file))) t.fail(`${name} missing file ${file} in "files"`);
         }
     }

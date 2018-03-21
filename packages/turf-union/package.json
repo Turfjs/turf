@@ -3,11 +3,14 @@
   "version": "6.0.1",
   "description": "turf union module",
   "main": "index",
+  "types": "index.d.ts",
   "files": [
     "index.js",
-    "index.ts"
+    "index.ts",
+    "index.d.ts"
   ],
   "scripts": {
+    "prepare": "tsc",
     "pretest": "tsc",
     "test": "node test.js",
     "bench": "node bench.js",
@@ -34,7 +37,9 @@
     "typescript": "*",
     "tape": "*",
     "write-json-file": "*",
-    "@turf/combine": "*"
+    "@turf/combine": "*",
+    "tslint": "*",
+    "@types/tape": "*"
   },
   "dependencies": {
     "@turf/helpers": "6.x",

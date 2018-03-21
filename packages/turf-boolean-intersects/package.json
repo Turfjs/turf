@@ -3,9 +3,11 @@
   "version": "6.0.0",
   "description": "turf boolean-intersects module",
   "main": "index",
+  "types": "index.d.ts",
   "files": [
     "index.js",
-    "index.ts"
+    "index.ts",
+    "index.d.ts"
   ],
   "scripts": {
     "prepare": "tsc",
@@ -39,7 +41,9 @@
     "boolean-shapely": "*",
     "load-json-file": "*",
     "typescript": "*",
-    "tape": "*"
+    "tape": "*",
+    "tslint": "*",
+    "@types/tape": "*"
   },
   "dependencies": {
     "@turf/boolean-disjoint": "6.x",

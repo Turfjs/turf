@@ -3,11 +3,14 @@
   "version": "6.0.1",
   "description": "turf line-overlap module",
   "main": "index",
+  "types": "index.d.ts",
   "files": [
     "index.js",
-    "index.ts"
+    "index.ts",
+    "index.d.ts"
   ],
   "scripts": {
+    "prepare": "tsc",
     "pretest": "tsc",
     "test": "node test.js",
     "bench": "node bench.js",
@@ -38,7 +41,9 @@
     "load-json-file": "*",
     "typescript": "*",
     "tape": "*",
-    "write-json-file": "*"
+    "write-json-file": "*",
+    "tslint": "*",
+    "@types/tape": "*"
   },
   "dependencies": {
     "@turf/boolean-point-on-line": "6.x",

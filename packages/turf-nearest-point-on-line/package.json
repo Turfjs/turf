@@ -3,9 +3,11 @@
   "version": "6.0.1",
   "description": "turf nearest-point-on-line module",
   "main": "index",
+  "types": "index.d.ts",
   "files": [
     "index.js",
-    "index.ts"
+    "index.ts",
+    "index.d.ts"
   ],
   "scripts": {
     "prepare": "tsc",
@@ -30,9 +32,11 @@
     "@turf/truncate": "*",
     "benchmark": "*",
     "load-json-file": "*",
-    "rollup": "*",
     "tape": "*",
-    "write-json-file": "*"
+    "write-json-file": "*",
+    "typescript": "*",
+    "tslint": "*",
+    "@types/tape": "*"
   },
   "dependencies": {
     "@turf/bearing": "6.x",

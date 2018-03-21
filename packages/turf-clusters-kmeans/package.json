@@ -3,9 +3,11 @@
   "version": "6.0.0",
   "description": "turf clusters-kmeans module",
   "main": "index",
+  "types": "index.d.ts",
   "files": [
     "index.js",
-    "index.ts"
+    "index.ts",
+    "index.d.ts"
   ],
   "scripts": {
     "prepare": "tsc",
@@ -38,7 +40,6 @@
   },
   "homepage": "https://github.com/Turfjs/turf",
   "devDependencies": {
-    "@std/esm": "*",
     "@turf/centroid": "*",
     "@turf/clusters": "*",
     "@turf/random": "*",
@@ -47,9 +48,11 @@
     "concaveman": "*",
     "load-json-file": "*",
     "matrix-to-grid": "*",
-    "rollup": "*",
     "tape": "*",
-    "write-json-file": "*"
+    "write-json-file": "*",
+    "typescript": "*",
+    "tslint": "*",
+    "@types/tape": "*"
   },
   "dependencies": {
     "@turf/clone": "6.x",

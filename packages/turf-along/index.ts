@@ -1,7 +1,8 @@
-import bearing from '@turf/bearing';
-import destination from '@turf/destination';
-import measureDistance from '@turf/distance';
-import { point, Feature, LineString, Units, Point } from '@turf/helpers';
+import bearing from "@turf/bearing";
+import destination from "@turf/destination";
+import measureDistance from "@turf/distance";
+import { Feature, LineString, point, Point, Units } from "@turf/helpers";
+import { getGeom } from "@turf/invariant";
 
 /**
  * Takes a {@link LineString} and returns a {@link Point} at a specified distance along the line.
@@ -21,18 +22,21 @@ import { point, Feature, LineString, Units, Point } from '@turf/helpers';
  * //addToMap
  * var addToMap = [along, line]
  */
-export default function along(line: Feature<LineString> | LineString, distance: number, options: {
-    units?: Units
-} = {}): Feature<Point> {
+export default function along(
+    line: Feature<LineString> | LineString,
+    distance: number,
+    options: {units?: Units} = {},
+): Feature<Point> {
     // Get Coords
-    let coords = line.type === "Feature" ? line.geometry.coordinates : line.coordinates;
+    const geom = getGeom(line);
+    const coords = geom.coordinates;
     let travelled = 0;
     for (let i = 0; i < coords.length; i++) {
-        if (distance >= travelled && i === coords.length - 1) break;
-        else if (travelled >= distance) {
+        if (distance >= travelled && i === coords.length - 1) { break;
+        } else if (travelled >= distance) {
             const overshot = distance - travelled;
-            if (!overshot) return point(coords[i]);
-            else {
+            if (!overshot) { return point(coords[i]);
+            } else {
                 const direction = bearing(coords[i], coords[i - 1]) - 180;
                 const interpolated = destination(coords[i], overshot, direction, options);
                 return interpolated;

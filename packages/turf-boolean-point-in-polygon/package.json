@@ -1,12 +1,13 @@
-
 {
   "name": "@turf/boolean-point-in-polygon",
   "version": "6.0.0",
   "description": "turf boolean-point-in-polygon module",
   "main": "index",
+  "types": "index.d.ts",
   "files": [
     "index.js",
-    "index.ts"
+    "index.ts",
+    "index.d.ts"
   ],
   "scripts": {
     "prepare": "tsc",
@@ -36,7 +37,9 @@
   "devDependencies": {
     "benchmark": "*",
     "typescript": "*",
-    "tape": "*"
+    "tape": "*",
+    "tslint": "*",
+    "@types/tape": "*"
   },
   "dependencies": {
     "@turf/helpers": "6.x",

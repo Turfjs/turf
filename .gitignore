@@ -21,6 +21,7 @@ lib-cov
 .idea/*
 types.js
 .DS_Store
+types.d.ts
 
 pids
 logs

@@ -3,9 +3,11 @@
   "version": "6.0.0",
   "description": "turf boolean-overlap module",
   "main": "index",
+  "types": "index.d.ts",
   "files": [
     "index.js",
-    "index.ts"
+    "index.ts",
+    "index.d.ts"
   ],
   "scripts": {
     "prepare": "tsc",
@@ -42,7 +44,9 @@
     "glob": "*",
     "load-json-file": "*",
     "typescript": "*",
-    "tape": "*"
+    "tape": "*",
+    "tslint": "*",
+    "@types/tape": "*"
   },
   "dependencies": {
     "@turf/helpers": "6.x",

@@ -1,14 +1,16 @@
-
 {
   "name": "@turf/truncate",
   "version": "6.0.0",
   "description": "turf truncate module",
   "main": "index",
+  "types": "index.d.ts",
   "files": [
     "index.js",
-    "index.ts"
+    "index.ts",
+    "index.d.ts"
   ],
   "scripts": {
+    "prepare": "tsc",
     "pretest": "tsc",
     "test": "node test.js",
     "bench": "node bench.js",
@@ -38,7 +40,9 @@
     "load-json-file": "*",
     "typescript": "*",
     "tape": "*",
-    "write-json-file": "*"
+    "write-json-file": "*",
+    "tslint": "*",
+    "@types/tape": "*"
   },
   "dependencies": {
     "@turf/helpers": "6.x",

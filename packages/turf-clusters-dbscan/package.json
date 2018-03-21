@@ -3,9 +3,11 @@
   "version": "6.0.0",
   "description": "turf clusters-dbscan module",
   "main": "index",
+  "types": "index.d.ts",
   "files": [
     "index.js",
-    "index.ts"
+    "index.ts",
+    "index.d.ts"
   ],
   "scripts": {
     "prepare": "tsc",
@@ -47,7 +49,9 @@
     "load-json-file": "*",
     "typescript": "*",
     "tape": "*",
-    "write-json-file": "*"
+    "write-json-file": "*",
+    "tslint": "*",
+    "@types/tape": "*"
   },
   "dependencies": {
     "@turf/clone": "6.x",
