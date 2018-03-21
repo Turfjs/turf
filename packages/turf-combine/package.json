@@ -40,9 +40,5 @@
   "dependencies": {
     "@turf/helpers": "6.x",
     "@turf/meta": "6.x"
-  },
-  "@std/esm": {
-    "esm": "js",
-    "cjs": true
   }
 }

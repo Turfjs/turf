@@ -1,0 +1,67 @@
+#!/usr/bin/env node
+
+const load = require('load-json-file');
+const write = require('write-json-file');
+const path = require('path');
+const glob = require('glob');
+
+// Update Typescript Repos
+glob.sync(path.join(__dirname, '..', 'packages', 'turf-*', 'index.ts')).forEach(filepath => {
+    const {dir} = path.parse(filepath);
+    const pckgPath = path.join(dir, 'package.json');
+    const pckg = load.sync(pckgPath);
+
+    const formatedPckg = {
+        name: pckg.name,
+        version: pckg.version,
+        description: pckg.description,
+        main: 'index',
+        // types: 'index.d.ts',
+        files: updateFiles(pckg.files),
+        scripts: {
+            'prepare': 'tsc',
+            'pretest': 'tsc',
+            'test': 'node test.js',
+            'bench': 'node bench.js',
+            'docs': 'node ../../scripts/generate-readmes'
+        },
+        repository: pckg.repository,
+        keywords: pckg.keywords,
+        author: pckg.author,
+        contributors: pckg.contributors,
+        license: pckg.license,
+        bugs: pckg.bugs,
+        homepage: pckg.homepage,
+        devDependencies: pckg.devDependencies,
+        // devDependencies: updateDevDependencies(pckg),
+        dependencies: pckg.dependencies
+    };
+    write.sync(pckgPath, formatedPckg, {indent: 2});
+
+    // Remove extra files
+    // To-Do
+});
+
+function entries(obj) {
+    return Object.keys(obj || {}).map(key => [key, obj[key]]);
+}
+
+function updateFiles(files) {
+    return files;
+}
+
+function updateDevDependencies(pckg) {
+    const devDependencies = {};
+    const dev = new Map(entries(pckg.devDependencies));
+    dev.delete('rollup');
+    dev.delete('@std/esm');
+    dev
+        .set('typescript', '*')
+        .set('tslint', '*')
+        .set('tape', '*')
+        .set('@types/tape', '*')
+        .set('benchmark', '*').forEach((version, name) => {
+            devDependencies[name] = '*';
+        });
+    return devDependencies;
+}
