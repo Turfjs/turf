@@ -1,6 +1,4 @@
 import { Feature, LineString, Position } from "@turf/helpers";
-import { getCoords } from "@turf/invariant";
-
 /**
  * Takes a ring and return true or false whether or not the ring is clockwise or counter-clockwise.
  *
@@ -16,18 +14,4 @@ import { getCoords } from "@turf/invariant";
  * turf.booleanClockwise(counterClockwiseRing)
  * //=false
  */
-export default function booleanClockwise(line: Feature<LineString> | LineString | Position[]): boolean {
-    const ring = getCoords(line);
-    let sum = 0;
-    let i = 1;
-    let prev;
-    let cur;
-
-    while (i < ring.length) {
-        prev = cur || ring[0];
-        cur = ring[i];
-        sum += ((cur[0] - prev[0]) * (cur[1] + prev[1]));
-        i++;
-    }
-    return sum > 0;
-}
+export default function booleanClockwise(line: Feature<LineString> | LineString | Position[]): boolean;

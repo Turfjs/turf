@@ -143,7 +143,7 @@ export function round(num: number, precision?: number): number;
 /**
  * http://turfjs.org/docs/#convertlength
  */
-export function convertLength(length: number, originalUnit: Units, finalUnit?: Units): number;
+export function convertLength(length: number, originalUnit?: Units, finalUnit?: Units): number;
 
 /**
  * http://turfjs.org/docs/#convertarea

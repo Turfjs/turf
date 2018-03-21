@@ -1,5 +1,5 @@
-import { Feature, FeatureCollection, Geometry } from '@turf/helpers';
-import { geomReduce } from '@turf/meta';
+import { Feature, FeatureCollection, Geometry } from "@turf/helpers";
+import { geomReduce } from "@turf/meta";
 
 // Note: change RADIUS => earthRadius
 const RADIUS = 6378137;
@@ -19,7 +19,7 @@ const RADIUS = 6378137;
  * var addToMap = [polygon]
  * polygon.properties.area = area
  */
-function area(geojson: Feature<any> | FeatureCollection<any> | Geometry) {
+export default function area(geojson: Feature<any> | FeatureCollection<any> | Geometry) {
     return geomReduce(geojson, (value, geom) => {
         return value + calculateArea(geom);
     }, 0);
@@ -32,34 +32,35 @@ function area(geojson: Feature<any> | FeatureCollection<any> | Geometry) {
  * @param {Geometry} geom GeoJSON Geometries
  * @returns {number} area
  */
-function calculateArea(geom: Geometry) {
-    let area = 0
+function calculateArea(geom: Geometry): number {
+    let total = 0;
     let i;
     switch (geom.type) {
-    case 'Polygon':
+    case "Polygon":
         return polygonArea(geom.coordinates);
-    case 'MultiPolygon':
+    case "MultiPolygon":
         for (i = 0; i < geom.coordinates.length; i++) {
-            area += polygonArea(geom.coordinates[i]);
+            total += polygonArea(geom.coordinates[i]);
         }
-        return area;
-    case 'Point':
-    case 'MultiPoint':
-    case 'LineString':
-    case 'MultiLineString':
+        return total;
+    case "Point":
+    case "MultiPoint":
+    case "LineString":
+    case "MultiLineString":
         return 0;
     }
+    return 0;
 }
 
 function polygonArea(coords: any) {
-    var area = 0;
+    let total = 0;
     if (coords && coords.length > 0) {
-        area += Math.abs(ringArea(coords[0]));
-        for (var i = 1; i < coords.length; i++) {
-            area -= Math.abs(ringArea(coords[i]));
+        total += Math.abs(ringArea(coords[0]));
+        for (let i = 1; i < coords.length; i++) {
+            total -= Math.abs(ringArea(coords[i]));
         }
     }
-    return area;
+    return total;
 }
 
 /**
@@ -68,22 +69,23 @@ function polygonArea(coords: any) {
  * Note that this area will be positive if ring is oriented clockwise, otherwise it will be negative.
  *
  * Reference:
- * Robert. G. Chamberlain and William H. Duquette, "Some Algorithms for Polygons on a Sphere", JPL Publication 07-03, Jet Propulsion
+ * Robert. G. Chamberlain and William H. Duquette, "Some Algorithms for Polygons on a Sphere",
+ * JPL Publication 07-03, Jet Propulsion
  * Laboratory, Pasadena, CA, June 2007 http://trs-new.jpl.nasa.gov/dspace/handle/2014/40409
  *
  * @param {Array<Array<number>>} coords Ring Coordinates
  * @returns {number} The approximate signed geodesic area of the polygon in square meters.
  */
 function ringArea(coords: number[][]) {
-    var p1;
-    var p2;
-    var p3;
-    var lowerIndex;
-    var middleIndex;
-    var upperIndex;
-    var i;
-    var area = 0;
-    var coordsLength = coords.length;
+    let p1;
+    let p2;
+    let p3;
+    let lowerIndex;
+    let middleIndex;
+    let upperIndex;
+    let i;
+    let total = 0;
+    const coordsLength = coords.length;
 
     if (coordsLength > 2) {
         for (i = 0; i < coordsLength; i++) {
@@ -103,16 +105,14 @@ function ringArea(coords: number[][]) {
             p1 = coords[lowerIndex];
             p2 = coords[middleIndex];
             p3 = coords[upperIndex];
-            area += (rad(p3[0]) - rad(p1[0])) * Math.sin(rad(p2[1]));
+            total += (rad(p3[0]) - rad(p1[0])) * Math.sin(rad(p2[1]));
         }
 
-        area = area * RADIUS * RADIUS / 2;
+        total = total * RADIUS * RADIUS / 2;
     }
-    return area;
+    return total;
 }
 
 function rad(num: number) {
     return num * Math.PI / 180;
 }
-
-export default area;
