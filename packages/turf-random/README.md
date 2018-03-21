@@ -4,82 +4,104 @@
 
 ## randomPosition
 
-Returns a random position within a [box](bounding).
+Returns a random position within a [box][1].
 
 **Parameters**
 
--   `bbox` **[Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)>** a bounding box inside of which positions are placed. (optional, default `[-180,-90,180,90]`)
+-   `bbox` **[Array][2]&lt;[number][3]>** a bounding box inside of which positions are placed. (optional, default `[-180,-90,180,90]`)
 
 **Examples**
 
 ```javascript
 var position = turf.randomPosition([-180, -90, 180, 90])
-//=position
+// => position
 ```
 
-Returns **[Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)>** Position [longitude, latitude]
+Returns **[Array][2]&lt;[number][3]>** Position [longitude, latitude]
 
 ## randomPoint
 
-Returns a random [point](point).
+Returns a random [point][4].
 
 **Parameters**
 
--   `count` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** how many geometries will be generated (optional, default `1`)
--   `options` **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)** Optional parameters (optional, default `{}`)
-    -   `options.bbox` **[Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)>** a bounding box inside of which geometries are placed. (optional, default `[-180,-90,180,90]`)
+-   `count` **[number][3]** how many geometries will be generated (optional, default `1`)
+-   `options` **[Object][5]** Optional parameters (optional, default `{}`)
+    -   `options.bbox` **[Array][2]&lt;[number][3]>** a bounding box inside of which geometries are placed. (optional, default `[-180,-90,180,90]`)
 
 **Examples**
 
 ```javascript
 var points = turf.randomPoint(25, {bbox: [-180, -90, 180, 90]})
-//=points
+// => points
 ```
 
-Returns **[FeatureCollection](https://tools.ietf.org/html/rfc7946#section-3.3)&lt;[Point](https://tools.ietf.org/html/rfc7946#section-3.1.2)>** GeoJSON FeatureCollection of points
+Returns **[FeatureCollection][6]&lt;[Point][7]>** GeoJSON FeatureCollection of points
 
 ## randomPolygon
 
-Returns a random [polygon](polygon).
+Returns a random [polygon][8].
 
 **Parameters**
 
--   `count` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** how many geometries will be generated (optional, default `1`)
--   `options` **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)** Optional parameters (optional, default `{}`)
-    -   `options.bbox` **[Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)>** a bounding box inside of which geometries are placed. (optional, default `[-180,-90,180,90]`)
-    -   `options.num_vertices` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** is how many coordinates each LineString will contain. (optional, default `10`)
-    -   `options.max_radial_length` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** is the maximum number of decimal degrees latitude or longitude that a vertex can reach out of the center of the Polygon. (optional, default `10`)
+-   `count` **[number][3]** how many geometries will be generated (optional, default `1`)
+-   `options` **[Object][5]** Optional parameters (optional, default `{}`)
+    -   `options.bbox` **[Array][2]&lt;[number][3]>** a bounding box inside of which geometries are placed. (optional, default `[-180,-90,180,90]`)
+    -   `options.num_vertices` **[number][3]** is how many coordinates each LineString will contain. (optional, default `10`)
+    -   `options.max_radial_length` **[number][3]** is the maximum number of decimal degrees latitude or longitude that a vertex can reach out of the center of the Polygon. (optional, default `10`)
 
 **Examples**
 
 ```javascript
 var polygons = turf.randomPolygon(25, {bbox: [-180, -90, 180, 90]})
-//=polygons
+// => polygons
 ```
 
-Returns **[FeatureCollection](https://tools.ietf.org/html/rfc7946#section-3.3)&lt;[Point](https://tools.ietf.org/html/rfc7946#section-3.1.2)>** GeoJSON FeatureCollection of points
+Returns **[FeatureCollection][6]&lt;[Polygon][9]>** GeoJSON FeatureCollection of polygons
 
 ## randomLineString
 
-Returns a random [linestring](linestring).
+Returns a random [linestring][10].
 
 **Parameters**
 
--   `count` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** how many geometries will be generated (optional, default `1`)
--   `options` **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)** Optional parameters (optional, default `{}`)
-    -   `options.bbox` **[Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)>** a bounding box inside of which geometries are placed. (optional, default `[-180,-90,180,90]`)
-    -   `options.num_vertices` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** is how many coordinates each LineString will contain. (optional, default `10`)
-    -   `options.max_length` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** is the maximum number of decimal degrees that a vertex can be from its predecessor (optional, default `0.0001`)
-    -   `options.max_rotation` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** is the maximum number of radians that a line segment can turn from the previous segment. (optional, default `Math.PI/8`)
+-   `count` **[number][3]** how many geometries will be generated (optional, default `1`)
+-   `options` **[Object][5]** Optional parameters (optional, default `{}`)
+    -   `options.bbox` **[Array][2]&lt;[number][3]>** a bounding box inside of which geometries are placed. (optional, default `[-180,-90,180,90]`)
+    -   `options.num_vertices` **[number][3]** is how many coordinates each LineString will contain. (optional, default `10`)
+    -   `options.max_length` **[number][3]** is the maximum number of decimal degrees that a vertex can be from its predecessor (optional, default `0.0001`)
+    -   `options.max_rotation` **[number][3]** is the maximum number of radians that a line segment can turn from the previous segment. (optional, default `Math.PI/8`)
 
 **Examples**
 
 ```javascript
 var lineStrings = turf.randomLineString(25, {bbox: [-180, -90, 180, 90]})
-//=lineStrings
+// => lineStrings
 ```
 
-Returns **[FeatureCollection](https://tools.ietf.org/html/rfc7946#section-3.3)&lt;[Point](https://tools.ietf.org/html/rfc7946#section-3.1.2)>** GeoJSON FeatureCollection of points
+Returns **[FeatureCollection][6]&lt;[LineString][11]>** GeoJSON FeatureCollection of linestrings
+
+[1]: bounding
+
+[2]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array
+
+[3]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number
+
+[4]: point
+
+[5]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object
+
+[6]: https://tools.ietf.org/html/rfc7946#section-3.3
+
+[7]: https://tools.ietf.org/html/rfc7946#section-3.1.2
+
+[8]: polygon
+
+[9]: https://tools.ietf.org/html/rfc7946#section-3.1.6
+
+[10]: linestring
+
+[11]: https://tools.ietf.org/html/rfc7946#section-3.1.4
 
 <!-- This file is automatically generated. Please don't edit it directly:
 if you find an error, edit the source file (likely index.js), and re-run

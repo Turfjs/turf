@@ -8,7 +8,7 @@ Unwrap a coordinate from a Point Feature, Geometry or a single coordinate.
 
 **Parameters**
 
--   `coord` **([Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)> | [Geometry](https://tools.ietf.org/html/rfc7946#section-3.1)&lt;[Point](https://tools.ietf.org/html/rfc7946#section-3.1.2)> | [Feature](https://tools.ietf.org/html/rfc7946#section-3.2)&lt;[Point](https://tools.ietf.org/html/rfc7946#section-3.1.2)>)** GeoJSON Point or an Array of numbers
+-   `coord` **([Array][1]&lt;[number][2]> | [Geometry][3]&lt;[Point][4]> | [Feature][5]&lt;[Point][4]>)** GeoJSON Point or an Array of numbers
 
 **Examples**
 
@@ -19,7 +19,7 @@ var coord = turf.getCoord(pt);
 //= [10, 10]
 ```
 
-Returns **[Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)>** coordinates
+Returns **[Array][1]&lt;[number][2]>** coordinates
 
 ## getCoords
 
@@ -27,7 +27,7 @@ Unwrap coordinates from a Feature, Geometry Object or an Array
 
 **Parameters**
 
--   `coords` **([Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;any> | [Geometry](https://tools.ietf.org/html/rfc7946#section-3.1) \| [Feature](https://tools.ietf.org/html/rfc7946#section-3.2))** Feature, Geometry Object or an Array
+-   `coords` **([Array][1]&lt;any> | [Geometry][3] \| [Feature][5])** Feature, Geometry Object or an Array
 
 **Examples**
 
@@ -38,7 +38,7 @@ var coords = turf.getCoords(poly);
 //= [[[119.32, -8.7], [119.55, -8.69], [119.51, -8.54], [119.32, -8.7]]]
 ```
 
-Returns **[Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;any>** coordinates
+Returns **[Array][1]&lt;any>** coordinates
 
 ## containsNumber
 
@@ -46,9 +46,9 @@ Checks if coordinates contains a number
 
 **Parameters**
 
--   `coordinates` **[Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;any>** GeoJSON Coordinates
+-   `coordinates` **[Array][1]&lt;any>** GeoJSON Coordinates
 
-Returns **[boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** true if Array contains a number
+Returns **[boolean][6]** true if Array contains a number
 
 ## geojsonType
 
@@ -56,40 +56,40 @@ Enforce expectations about types of GeoJSON objects for Turf.
 
 **Parameters**
 
--   `value` **[GeoJSON](https://tools.ietf.org/html/rfc7946#section-3)** any GeoJSON object
--   `type` **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** expected GeoJSON type
--   `name` **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** name of calling function
+-   `value` **[GeoJSON][7]** any GeoJSON object
+-   `type` **[string][8]** expected GeoJSON type
+-   `name` **[string][8]** name of calling function
 
 
--   Throws **[Error](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error)** if value is not the expected type.
+-   Throws **[Error][9]** if value is not the expected type.
 
 ## featureOf
 
-Enforce expectations about types of [Feature](https://tools.ietf.org/html/rfc7946#section-3.2) inputs for Turf.
-Internally this uses [geojsonType](#geojsontype) to judge geometry types.
+Enforce expectations about types of [Feature][10] inputs for Turf.
+Internally this uses [geojsonType][11] to judge geometry types.
 
 **Parameters**
 
--   `feature` **[Feature](https://tools.ietf.org/html/rfc7946#section-3.2)** a feature with an expected geometry type
--   `type` **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** expected GeoJSON type
--   `name` **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** name of calling function
+-   `feature` **[Feature][5]** a feature with an expected geometry type
+-   `type` **[string][8]** expected GeoJSON type
+-   `name` **[string][8]** name of calling function
 
 
--   Throws **[Error](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error)** error if value is not the expected type.
+-   Throws **[Error][9]** error if value is not the expected type.
 
 ## collectionOf
 
-Enforce expectations about types of [FeatureCollection](https://tools.ietf.org/html/rfc7946#section-3.3) inputs for Turf.
-Internally this uses [geojsonType](#geojsontype) to judge geometry types.
+Enforce expectations about types of [FeatureCollection][12] inputs for Turf.
+Internally this uses [geojsonType][11] to judge geometry types.
 
 **Parameters**
 
--   `featureCollection` **[FeatureCollection](https://tools.ietf.org/html/rfc7946#section-3.3)** a FeatureCollection for which features will be judged
--   `type` **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** expected GeoJSON type
--   `name` **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** name of calling function
+-   `featureCollection` **[FeatureCollection][13]** a FeatureCollection for which features will be judged
+-   `type` **[string][8]** expected GeoJSON type
+-   `name` **[string][8]** name of calling function
 
 
--   Throws **[Error](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error)** if value is not the expected type.
+-   Throws **[Error][9]** if value is not the expected type.
 
 ## getGeom
 
@@ -97,7 +97,7 @@ Get Geometry from Feature or Geometry Object
 
 **Parameters**
 
--   `geojson` **([Feature](https://tools.ietf.org/html/rfc7946#section-3.2) \| [Geometry](https://tools.ietf.org/html/rfc7946#section-3.1))** GeoJSON Feature or Geometry Object
+-   `geojson` **([Feature][5] \| [Geometry][3])** GeoJSON Feature or Geometry Object
 
 **Examples**
 
@@ -114,15 +114,15 @@ var geom = turf.getGeom(point)
 //={"type": "Point", "coordinates": [110, 40]}
 ```
 
--   Throws **[Error](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error)** if geojson is not a Feature or Geometry Object
+-   Throws **[Error][9]** if geojson is not a Feature or Geometry Object
 
-Returns **([Geometry](https://tools.ietf.org/html/rfc7946#section-3.1) | null)** GeoJSON Geometry Object
+Returns **([Geometry][3] | null)** GeoJSON Geometry Object
 
 ## getGeomType
 
 Get Geometry Type from Feature or Geometry Object
 
--   Throws **[Error](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error)** **DEPRECATED** in v5.0.0 in favor of getType
+-   Throws **[Error][9]** **DEPRECATED** in v5.0.0 in favor of getType
 
 ## getType
 
@@ -130,8 +130,8 @@ Get GeoJSON object's type, Geometry type is prioritize.
 
 **Parameters**
 
--   `geojson` **[GeoJSON](https://tools.ietf.org/html/rfc7946#section-3)** GeoJSON object
--   `name` **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** name of the variable to display in error message (optional, default `"geojson"`)
+-   `geojson` **[GeoJSON][7]** GeoJSON object
+-   `name` **[string][8]** name of the variable to display in error message (optional, default `"geojson"`)
 
 **Examples**
 
@@ -148,7 +148,33 @@ var geom = turf.getType(point)
 //="Point"
 ```
 
-Returns **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** GeoJSON type
+Returns **[string][8]** GeoJSON type
+
+[1]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array
+
+[2]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number
+
+[3]: https://tools.ietf.org/html/rfc7946#section-3.1
+
+[4]: https://tools.ietf.org/html/rfc7946#section-3.1.2
+
+[5]: https://tools.ietf.org/html/rfc7946#section-3.2
+
+[6]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean
+
+[7]: https://tools.ietf.org/html/rfc7946#section-3
+
+[8]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String
+
+[9]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Error
+
+[10]: https://tools.ietf.org/html/rfc7946#section-3.2
+
+[11]: #geojsontype
+
+[12]: https://tools.ietf.org/html/rfc7946#section-3.3
+
+[13]: https://tools.ietf.org/html/rfc7946#section-3.3
 
 <!-- This file is automatically generated. Please don't edit it directly:
 if you find an error, edit the source file (likely index.js), and re-run

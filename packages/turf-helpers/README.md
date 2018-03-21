@@ -195,7 +195,7 @@ Creates a [LineString][15] [FeatureCollection][11] from an Array of LineString c
 
 **Parameters**
 
--   `coordinates` **[Array][5]&lt;[Array][5]&lt;[Array][5]&lt;[number][6]>>>** an array of LinearRings
+-   `coordinates` **[Array][5]&lt;[Array][5]&lt;[number][6]>>** an array of LinearRings
 -   `properties` **[Object][4]** an Object of key-value pairs to add as properties (optional, default `{}`)
 -   `options` **[Object][4]** Optional Parameters (optional, default `{}`)
     -   `options.bbox` **[Array][5]&lt;[number][6]>?** Bounding Box Array [west, south, east, north] associated with the FeatureCollection

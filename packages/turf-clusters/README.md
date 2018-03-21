@@ -8,7 +8,7 @@ Get Cluster
 
 **Parameters**
 
--   `geojson` **[FeatureCollection](https://tools.ietf.org/html/rfc7946#section-3.3)** GeoJSON Features
+-   `geojson` **[FeatureCollection][1]** GeoJSON Features
 -   `filter` **any** Filter used on GeoJSON properties to get Cluster
 
 **Examples**
@@ -36,19 +36,19 @@ turf.getCluster(clustered, {'marker-symbol': 'square'}).length;
 //= 1
 ```
 
-Returns **[FeatureCollection](https://tools.ietf.org/html/rfc7946#section-3.3)** Single Cluster filtered by GeoJSON Properties
+Returns **[FeatureCollection][1]** Single Cluster filtered by GeoJSON Properties
 
 ## clusterEachCallback
 
 Callback for clusterEach
 
-Type: [Function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function)
+Type: [Function][2]
 
 **Parameters**
 
--   `cluster` **[FeatureCollection](https://tools.ietf.org/html/rfc7946#section-3.3)?** The current cluster being processed.
+-   `cluster` **[FeatureCollection][1]?** The current cluster being processed.
 -   `clusterValue` **any?** Value used to create cluster being processed.
--   `currentIndex` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)?** The index of the current element being processed in the array.Starts at index 0
+-   `currentIndex` **[number][3]?** The index of the current element being processed in the array.Starts at index 0
 
 Returns **void** 
 
@@ -58,9 +58,9 @@ clusterEach
 
 **Parameters**
 
--   `geojson` **[FeatureCollection](https://tools.ietf.org/html/rfc7946#section-3.3)** GeoJSON Features
--   `property` **([string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) \| [number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number))** GeoJSON property key/value used to create clusters
--   `callback` **[Function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function)** a method that takes (cluster, clusterValue, currentIndex)
+-   `geojson` **[FeatureCollection][1]** GeoJSON Features
+-   `property` **([string][4] \| [number][3])** GeoJSON property key/value used to create clusters
+-   `callback` **[Function][2]** a method that takes (cluster, clusterValue, currentIndex)
 
 **Examples**
 
@@ -115,15 +115,15 @@ If an initialValue is not provided:
 -   The previousValue argument is the value of the first element present in the array.
 -   The currentValue argument is the value of the second element present in the array.
 
-Type: [Function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function)
+Type: [Function][2]
 
 **Parameters**
 
 -   `previousValue` **any?** The accumulated value previously returned in the last invocation
     of the callback, or initialValue, if supplied.
--   `cluster` **[FeatureCollection](https://tools.ietf.org/html/rfc7946#section-3.3)?** The current cluster being processed.
+-   `cluster` **[FeatureCollection][1]?** The current cluster being processed.
 -   `clusterValue` **any?** Value used to create cluster being processed.
--   `currentIndex` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)?** The index of the current element being processed in the
+-   `currentIndex` **[number][3]?** The index of the current element being processed in the
     array. Starts at index 0, if an initialValue is provided, and at index 1 otherwise.
 
 ## clusterReduce
@@ -132,9 +132,9 @@ Reduce clusters in GeoJSON Features, similar to Array.reduce()
 
 **Parameters**
 
--   `geojson` **[FeatureCollection](https://tools.ietf.org/html/rfc7946#section-3.3)** GeoJSON Features
--   `property` **([string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) \| [number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number))** GeoJSON property key/value used to create clusters
--   `callback` **[Function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function)** a method that takes (previousValue, cluster, clusterValue, currentIndex)
+-   `geojson` **[FeatureCollection][1]** GeoJSON Features
+-   `property` **([string][4] \| [number][3])** GeoJSON property key/value used to create clusters
+-   `callback` **[Function][2]** a method that takes (previousValue, cluster, clusterValue, currentIndex)
 -   `initialValue` **any?** Value to use as the first argument to the first call of the callback.
 
 **Examples**
@@ -173,6 +173,14 @@ var values = turf.clusterReduce(clustered, 'cluster', function (previousValue, c
 ```
 
 Returns **any** The value that results from the reduction.
+
+[1]: https://tools.ietf.org/html/rfc7946#section-3.3
+
+[2]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/function
+
+[3]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number
+
+[4]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String
 
 <!-- This file is automatically generated. Please don't edit it directly:
 if you find an error, edit the source file (likely index.js), and re-run
