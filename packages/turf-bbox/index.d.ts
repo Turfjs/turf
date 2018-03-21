@@ -1,4 +1,4 @@
-import { AllGeoJSON } from "@turf/helpers";
+import { BBox } from "@turf/helpers";
 /**
  * Takes a set of features, calculates the bbox of all input features, and returns a bounding box.
  *
@@ -13,5 +13,4 @@ import { AllGeoJSON } from "@turf/helpers";
  * //addToMap
  * var addToMap = [line, bboxPolygon]
  */
-declare function bbox(geojson: AllGeoJSON): number[];
-export default bbox;
+export default function bbox(geojson: any): BBox;

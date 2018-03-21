@@ -1,8 +1,9 @@
-import { getCoords, getCoord } from '@turf/invariant';
-import { Coord, LineString, Feature } from '@turf/helpers';
+import { Coord, Feature, LineString } from "@turf/helpers";
+import { getCoord, getCoords } from "@turf/invariant";
 
 /**
- * Returns true if a point is on a line. Accepts a optional parameter to ignore the start and end vertices of the linestring.
+ * Returns true if a point is on a line. Accepts a optional parameter to ignore the
+ * start and end vertices of the linestring.
  *
  * @name booleanPointOnLine
  * @param {Coord} pt GeoJSON Point
@@ -17,21 +18,21 @@ import { Coord, LineString, Feature } from '@turf/helpers';
  * //=true
  */
 function booleanPointOnLine(pt: Coord, line: Feature<LineString> | LineString, options: {
-    ignoreEndVertices?: boolean
+    ignoreEndVertices?: boolean,
 } = {}): boolean {
     // Normalize inputs
-    var ptCoords = getCoord(pt);
-    var lineCoords = getCoords(line);
+    const ptCoords = getCoord(pt);
+    const lineCoords = getCoords(line);
 
     // Main
-    for (var i = 0; i < lineCoords.length - 1; i++) {
+    for (let i = 0; i < lineCoords.length - 1; i++) {
         let ignoreBoundary: boolean|string = false;
         if (options.ignoreEndVertices) {
-            if (i === 0) ignoreBoundary = 'start';
-            if (i === lineCoords.length - 2) ignoreBoundary = 'end';
-            if (i === 0 && i + 1 === lineCoords.length - 1) ignoreBoundary = 'both';
+            if (i === 0) { ignoreBoundary = "start"; }
+            if (i === lineCoords.length - 2) { ignoreBoundary = "end"; }
+            if (i === 0 && i + 1 === lineCoords.length - 1) { ignoreBoundary = "both"; }
         }
-        if (isPointOnLineSegment(lineCoords[i], lineCoords[i + 1], ptCoords, ignoreBoundary)) return true;
+        if (isPointOnLineSegment(lineCoords[i], lineCoords[i + 1], ptCoords, ignoreBoundary)) { return true; }
     }
     return false;
 }
@@ -42,21 +43,27 @@ function booleanPointOnLine(pt: Coord, line: Feature<LineString> | LineString, o
  * @param {Position} lineSegmentStart coord pair of start of line
  * @param {Position} lineSegmentEnd coord pair of end of line
  * @param {Position} pt coord pair of point to check
- * @param {boolean|string} excludeBoundary whether the point is allowed to fall on the line ends. If true which end to ignore.
+ * @param {boolean|string} excludeBoundary whether the point is allowed to fall on the line ends.
+ * If true which end to ignore.
  * @returns {boolean} true/false
  */
-function isPointOnLineSegment(lineSegmentStart, lineSegmentEnd, pt, excludeBoundary) {
-    var x = pt[0];
-    var y = pt[1];
-    var x1 = lineSegmentStart[0];
-    var y1 = lineSegmentStart[1];
-    var x2 = lineSegmentEnd[0];
-    var y2 = lineSegmentEnd[1];
-    var dxc = pt[0] - x1;
-    var dyc = pt[1] - y1;
-    var dxl = x2 - x1;
-    var dyl = y2 - y1;
-    var cross = dxc * dyl - dyc * dxl;
+function isPointOnLineSegment(
+    lineSegmentStart: number[],
+    lineSegmentEnd: number[],
+    pt: number[],
+    excludeBoundary: string|boolean,
+): boolean {
+    const x = pt[0];
+    const y = pt[1];
+    const x1 = lineSegmentStart[0];
+    const y1 = lineSegmentStart[1];
+    const x2 = lineSegmentEnd[0];
+    const y2 = lineSegmentEnd[1];
+    const dxc = pt[0] - x1;
+    const dyc = pt[1] - y1;
+    const dxl = x2 - x1;
+    const dyl = y2 - y1;
+    const cross = dxc * dyl - dyc * dxl;
     if (cross !== 0) {
         return false;
     }
@@ -65,22 +72,23 @@ function isPointOnLineSegment(lineSegmentStart, lineSegmentEnd, pt, excludeBound
             return dxl > 0 ? x1 <= x && x <= x2 : x2 <= x && x <= x1;
         }
         return dyl > 0 ? y1 <= y && y <= y2 : y2 <= y && y <= y1;
-    } else if (excludeBoundary === 'start') {
+    } else if (excludeBoundary === "start") {
         if (Math.abs(dxl) >= Math.abs(dyl)) {
             return dxl > 0 ? x1 < x && x <= x2 : x2 <= x && x < x1;
         }
         return dyl > 0 ? y1 < y && y <= y2 : y2 <= y && y < y1;
-    } else if (excludeBoundary === 'end') {
+    } else if (excludeBoundary === "end") {
         if (Math.abs(dxl) >= Math.abs(dyl)) {
             return dxl > 0 ? x1 <= x && x < x2 : x2 < x && x <= x1;
         }
         return dyl > 0 ? y1 <= y && y < y2 : y2 < y && y <= y1;
-    } else if (excludeBoundary === 'both') {
+    } else if (excludeBoundary === "both") {
         if (Math.abs(dxl) >= Math.abs(dyl)) {
             return dxl > 0 ? x1 < x && x < x2 : x2 < x && x < x1;
         }
         return dyl > 0 ? y1 < y && y < y2 : y2 < y && y < y1;
     }
+    return false;
 }
 
 export default booleanPointOnLine;
