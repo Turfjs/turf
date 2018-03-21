@@ -309,7 +309,7 @@ export function lineString(coordinates, properties, options) {
  * Creates a {@link LineString} {@link FeatureCollection} from an Array of LineString coordinates.
  *
  * @name lineStrings
- * @param {Array<Array<number>>} coordinates an array of LinearRings
+ * @param {Array<Array<Array<number>>>} coordinates an array of LinearRings
  * @param {Object} [properties={}] an Object of key-value pairs to add as properties
  * @param {Object} [options={}] Optional Parameters
  * @param {Array<number>} [options.bbox] Bounding Box Array [west, south, east, north] associated with the FeatureCollection
