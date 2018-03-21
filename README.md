@@ -79,7 +79,7 @@ Turf uses <a href='http://geojson.org/'>GeoJSON</a> for all geographic data. Tur
 
 > **NOTE:** Turf expects data in (longitude, latitude) order per the GeoJSON standard.
 
-Most Turf functions work with GeoJSON features. These are are pieces of data that represent a collection of properties (ie: population, elevation, zipcode, etc.) along with a geometry. GeoJSON has several geometry types such as:
+Most Turf functions work with GeoJSON features. These are pieces of data that represent a collection of properties (ie: population, elevation, zipcode, etc.) along with a geometry. GeoJSON has several geometry types such as:
 
 * Point
 * LineString
