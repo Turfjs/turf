@@ -25,8 +25,7 @@ import { Coord, Feature, Point, Properties, Units } from "@turf/helpers";
  * destination.properties['marker-color'] = '#f00';
  * point.properties['marker-color'] = '#0f0';
  */
-declare function destination<P = Properties>(origin: Coord, distance: number, bearing: number, options?: {
+export default function destination<P = Properties>(origin: Coord, distance: number, bearing: number, options?: {
     units?: Units;
     properties?: P;
 }): Feature<Point, P>;
-export default destination;
