@@ -194,8 +194,6 @@ export default function quadratAnalysis(pointFeatureSet, options) {
  * @property {number} 5
  * @property {number} 2
  * @property {number} 1
- * @property {number} 0.1
- * 
  */
 var K_TABLE = {
   20: 1.07275,
@@ -203,8 +201,7 @@ var K_TABLE = {
   10: 1.22385,
   5: 1.35810,
   2: 1.51743,
-  1: 1.62762,
-  0.1: 1.94947
+  1: 1.62762  
 };
 
 /**
