@@ -1,10 +1,10 @@
-import clone from '@turf/clone';
-import { getType } from '@turf/invariant';
-import { isObject } from '@turf/helpers';
-import { flattenEach } from '@turf/meta';
-import lineDissolve from './turf-line-dissolve';
-import polygonDissolve from './turf-polygon-dissolve';
-import { Feature, FeatureCollection, LineString, MultiLineString, Polygon, MultiPolygon } from '@turf/helpers';
+import clone from "@turf/clone";
+import { isObject } from "@turf/helpers";
+import { Feature, FeatureCollection, LineString, MultiLineString, MultiPolygon, Polygon } from "@turf/helpers";
+import { getType } from "@turf/invariant";
+import { flattenEach } from "@turf/meta";
+import lineDissolve from "./turf-line-dissolve";
+import polygonDissolve from "./turf-polygon-dissolve";
 
 /**
  * Transform function: attempts to dissolve geojson objects where possible
@@ -18,34 +18,34 @@ import { Feature, FeatureCollection, LineString, MultiLineString, Polygon, Multi
  */
 function dissolve(geojson: FeatureCollection<LineString|MultiLineString|Polygon|MultiPolygon>, options: {
     mutate?: boolean,
-} = {}): Feature<LineString|MultiLineString|MultiPolygon> {
+} = {}): Feature<LineString|MultiLineString|Polygon|MultiPolygon> | null {
     // Optional parameters
     options = options || {};
-    if (!isObject(options)) throw new Error('options is invalid');
-    var mutate = options.mutate;
+    if (!isObject(options)) { throw new Error("options is invalid"); }
+    const mutate = options.mutate;
 
     // Validation
-    if (getType(geojson) !== 'FeatureCollection') throw new Error('geojson must be a FeatureCollection');
-    if (!geojson.features.length) throw new Error('geojson is empty');
+    if (getType(geojson) !== "FeatureCollection") { throw new Error("geojson must be a FeatureCollection"); }
+    if (!geojson.features.length) { throw new Error("geojson is empty"); }
 
     // Clone geojson to avoid side effects
     // Topojson modifies in place, so we need to deep clone first
-    if (mutate === false || mutate === undefined) geojson = clone(geojson);
+    if (mutate === false || mutate === undefined) { geojson = clone(geojson); }
 
     // Assert homogenity
-    var type = getHomogenousType(geojson);
-    if (!type) throw new Error('geojson must be homogenous');
+    const type = getHomogenousType(geojson);
+    if (!type) { throw new Error("geojson must be homogenous"); }
 
     // Data => Typescript hack
-    const data: any = geojson
+    const data: any = geojson;
 
     switch (type) {
-    case 'LineString':
+    case "LineString":
         return lineDissolve(data, options);
-    case 'Polygon':
+    case "Polygon":
         return polygonDissolve(data, options);
     default:
-        throw new Error(type + ' is not supported');
+        throw new Error(type + " is not supported");
     }
 }
 
@@ -56,13 +56,13 @@ function dissolve(geojson: FeatureCollection<LineString|MultiLineString|Polygon|
  * @param {GeoJSON} geojson GeoJSON
  * @returns {string|null} Homogenous type or null if multiple types
  */
-function getHomogenousType(geojson) {
-    var types = {};
-    flattenEach(geojson, function (feature) {
+function getHomogenousType(geojson: any) {
+    const types: {[key: string]: boolean} = {};
+    flattenEach(geojson, (feature) => {
         types[feature.geometry.type] = true;
     });
-    var keys = Object.keys(types);
-    if (keys.length === 1) return keys[0];
+    const keys = Object.keys(types);
+    if (keys.length === 1) { return keys[0]; }
     return null;
 }
 
