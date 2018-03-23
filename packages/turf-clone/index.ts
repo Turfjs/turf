@@ -1,4 +1,4 @@
-import { AllGeoJSON, Feature } from "@turf/helpers";
+import { AllGeoJSON, Feature, FeatureCollection, Properties } from "@turf/helpers";
 
 /**
  * Returns a cloned copy of the passed GeoJSON Object, including possible 'Foreign Members'.
@@ -13,23 +13,23 @@ import { AllGeoJSON, Feature } from "@turf/helpers";
  * var lineCloned = turf.clone(line);
  */
 function clone(geojson: AllGeoJSON) {
-    if (!geojson) throw new Error('geojson is required');
+    if (!geojson) { throw new Error("geojson is required"); }
 
     switch (geojson.type) {
-    case 'Feature':
+    case "Feature":
         return cloneFeature(geojson);
-    case 'FeatureCollection':
+    case "FeatureCollection":
         return cloneFeatureCollection(geojson);
-    case 'Point':
-    case 'LineString':
-    case 'Polygon':
-    case 'MultiPoint':
-    case 'MultiLineString':
-    case 'MultiPolygon':
-    case 'GeometryCollection':
+    case "Point":
+    case "LineString":
+    case "Polygon":
+    case "MultiPoint":
+    case "MultiLineString":
+    case "MultiPolygon":
+    case "GeometryCollection":
         return cloneGeometry(geojson);
     default:
-        throw new Error('unknown GeoJSON type');
+        throw new Error("unknown GeoJSON type");
     }
 }
 
@@ -41,13 +41,13 @@ function clone(geojson: AllGeoJSON) {
  * @returns {Feature<any>} cloned Feature
  */
 function cloneFeature(geojson: any) {
-    var cloned: any = {type: 'Feature'};
+    const cloned: any = {type: "Feature"};
     // Preserve Foreign Members
-    Object.keys(geojson).forEach(function (key) {
+    Object.keys(geojson).forEach((key) => {
         switch (key) {
-        case 'type':
-        case 'properties':
-        case 'geometry':
+        case "type":
+        case "properties":
+        case "geometry":
             return;
         default:
             cloned[key] = geojson[key];
@@ -66,25 +66,25 @@ function cloneFeature(geojson: any) {
  * @param {Object} properties GeoJSON Properties
  * @returns {Object} cloned Properties
  */
-function cloneProperties(properties) {
-    var cloned = {};
-    if (!properties) return cloned;
-    Object.keys(properties).forEach(function (key) {
-        var value = properties[key];
-        if (typeof value === 'object') {
+function cloneProperties(properties: Properties) {
+    const cloned: {[key: string]: any} = {};
+    if (!properties) { return cloned; }
+    Object.keys(properties).forEach((key) => {
+        const value = properties[key];
+        if (typeof value === "object") {
             if (value === null) {
                 // handle null
                 cloned[key] = null;
-            } else if (value.length) {
+            } else if (Array.isArray(value)) {
                 // handle Array
-                cloned[key] = value.map(function (item) {
+                cloned[key] = value.map((item) => {
                     return item;
                 });
             } else {
                 // handle generic Object
                 cloned[key] = cloneProperties(value);
             }
-        } else cloned[key] = value;
+        } else { cloned[key] = value; }
     });
     return cloned;
 }
@@ -97,20 +97,20 @@ function cloneProperties(properties) {
  * @returns {FeatureCollection<any>} cloned Feature Collection
  */
 function cloneFeatureCollection(geojson: any) {
-    var cloned: any = {type: 'FeatureCollection'};
+    const cloned: any = {type: "FeatureCollection"};
 
     // Preserve Foreign Members
-    Object.keys(geojson).forEach(function (key) {
+    Object.keys(geojson).forEach((key) => {
         switch (key) {
-        case 'type':
-        case 'features':
+        case "type":
+        case "features":
             return;
         default:
             cloned[key] = geojson[key];
         }
     });
     // Add features
-    cloned.features = geojson.features.map(function (feature) {
+    cloned.features = geojson.features.map((feature: Feature<any>) => {
         return cloneFeature(feature);
     });
     return cloned;
@@ -124,12 +124,12 @@ function cloneFeatureCollection(geojson: any) {
  * @returns {Geometry<any>} cloned Geometry
  */
 function cloneGeometry(geometry: any) {
-    var geom: any = {type: geometry.type};
-    if (geometry.bbox) geom.bbox = geometry.bbox;
+    const geom: any = {type: geometry.type};
+    if (geometry.bbox) { geom.bbox = geometry.bbox; }
 
-    if (geometry.type === 'GeometryCollection') {
-        geom.geometries = geometry.geometries.map(function (geom) {
-            return cloneGeometry(geom);
+    if (geometry.type === "GeometryCollection") {
+        geom.geometries = geometry.geometries.map((g: any) => {
+            return cloneGeometry(g);
         });
         return geom;
     }
@@ -144,9 +144,10 @@ function cloneGeometry(geometry: any) {
  * @param {Coordinates} coords Coordinates
  * @returns {Coordinates} all coordinates sliced
  */
-function deepSlice(coords) {
-    if (typeof coords[0] !== 'object') { return coords.slice(); }
-    return coords.map(function (coord) {
+function deepSlice<C = any[]>(coords: C): C {
+    const cloned: any = coords;
+    if (typeof cloned[0] !== "object") { return cloned.slice(); }
+    return cloned.map((coord: any) => {
         return deepSlice(coord);
     });
 }
