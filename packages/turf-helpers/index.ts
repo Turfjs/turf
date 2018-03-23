@@ -1,67 +1,95 @@
+import {
+    BBox, CollectionTypes, Feature, FeatureCollection,
+    GeoJSONObject, Geometries, Geometry, GeometryCollection, GeometryObject, GeometryTypes,
+    Id, LineString, MultiLineString, MultiPoint,
+    MultiPolygon, Point, Polygon, Position,
+    Properties, Types,
+} from "./lib/geojson";
+export {
+    Id, Properties, BBox, Position,
+    Point, LineString, Polygon, MultiPoint, MultiLineString, MultiPolygon,
+    GeometryObject, GeoJSONObject, GeometryCollection, Geometry,
+    GeometryTypes, Types, CollectionTypes, Geometries,
+    Feature, FeatureCollection,
+};
+
+// TurfJS Combined Types
+export type Coord = Feature<Point> | Point | Position;
+
+// TurfJS String Types
+export type Units = "meters" | "millimeters" | "centimeters" |
+                    "kilometers" | "acres" | "miles" | "nauticalmiles" |
+                    "inches" | "yards" | "feet" | "radians" | "degrees";
+export type Grid = "point" | "square" | "hex" | "triangle";
+export type Corners = "sw" | "se" | "nw" | "ne" | "center" | "centroid";
+
+export type Lines = LineString | MultiLineString | Polygon | MultiPolygon;
+export type AllGeoJSON = Feature | FeatureCollection | Geometry | GeometryCollection;
+
 /**
  * Earth Radius used with the Harvesine formula and approximates using a spherical (non-ellipsoid) Earth.
  */
-export var earthRadius = 6371008.8;
+export let earthRadius = 6371008.8;
 
 /**
  * Unit of measurement factors using a spherical (non-ellipsoid) earth radius.
  */
-export var factors = {
-    meters: earthRadius,
-    metres: earthRadius,
-    millimeters: earthRadius * 1000,
-    millimetres: earthRadius * 1000,
+export let factors = {
     centimeters: earthRadius * 100,
     centimetres: earthRadius * 100,
+    degrees: earthRadius / 111325,
+    feet: earthRadius * 3.28084,
+    inches: earthRadius * 39.370,
     kilometers: earthRadius / 1000,
     kilometres: earthRadius / 1000,
+    meters: earthRadius,
+    metres: earthRadius,
     miles: earthRadius / 1609.344,
+    millimeters: earthRadius * 1000,
+    millimetres: earthRadius * 1000,
     nauticalmiles: earthRadius / 1852,
-    inches: earthRadius * 39.370,
-    yards: earthRadius / 1.0936,
-    feet: earthRadius * 3.28084,
     radians: 1,
-    degrees: earthRadius / 111325,
+    yards: earthRadius / 1.0936,
 };
 
 /**
  * Units of measurement factors based on 1 meter.
  */
-export var unitsFactors = {
-    meters: 1,
-    metres: 1,
-    millimeters: 1000,
-    millimetres: 1000,
+export let unitsFactors = {
     centimeters: 100,
     centimetres: 100,
+    degrees: 1 / 111325,
+    feet: 3.28084,
+    inches: 39.370,
     kilometers: 1 / 1000,
     kilometres: 1 / 1000,
+    meters: 1,
+    metres: 1,
     miles: 1 / 1609.344,
+    millimeters: 1000,
+    millimetres: 1000,
     nauticalmiles: 1 / 1852,
-    inches: 39.370,
-    yards: 1 / 1.0936,
-    feet: 3.28084,
     radians: 1 / earthRadius,
-    degrees: 1 / 111325,
+    yards: 1 / 1.0936,
 };
 
 /**
  * Area of measurement factors based on 1 square meter.
  */
-export var areaFactors = {
-    meters: 1,
-    metres: 1,
-    millimeters: 1000000,
-    millimetres: 1000000,
+export let areaFactors = {
+    acres: 0.000247105,
     centimeters: 10000,
     centimetres: 10000,
+    feet: 10.763910417,
+    inches: 1550.003100006,
     kilometers: 0.000001,
     kilometres: 0.000001,
-    acres: 0.000247105,
+    meters: 1,
+    metres: 1,
     miles: 3.86e-7,
+    millimeters: 1000000,
+    millimetres: 1000000,
     yards: 1.195990046,
-    feet: 10.763910417,
-    inches: 1550.003100006
 };
 
 /**
@@ -84,30 +112,33 @@ export var areaFactors = {
  *
  * //=feature
  */
-export function feature(geometry, properties, options) {
+export function feature(geom: Geometry, properties: any, options: {
+    bbox?: BBox,
+    id?: Id,
+} = {}) {
     // Optional Parameters
     options = options || {};
-    if (!isObject(options)) throw new Error('options is invalid');
-    var bbox = options.bbox;
-    var id = options.id;
+    if (!isObject(options)) { throw new Error("options is invalid"); }
+    const bbox = options.bbox;
+    const id = options.id;
 
     // Validation
-    if (geometry === undefined) throw new Error('geometry is required');
-    if (properties && properties.constructor !== Object) throw new Error('properties must be an Object');
-    if (bbox) validateBBox(bbox);
-    if (id !== 0 && id) validateId(id);
+    if (geom === undefined) { throw new Error("geom is required"); }
+    if (properties && properties.constructor !== Object) { throw new Error("properties must be an Object"); }
+    if (bbox) { validateBBox(bbox); }
+    if (id !== 0 && id) { validateId(id); }
 
     // Main
-    var feat = {type: 'Feature'};
-    if (id === 0 || id) feat.id = id;
-    if (bbox) feat.bbox = bbox;
+    const feat = {type: "Feature"};
+    if (id === 0 || id) { feat.id = id; }
+    if (bbox) { feat.bbox = bbox; }
     feat.properties = properties || {};
 
     // Feature Properties ~should~ be able to be mutated
     // Performance loss of 90x would occur if we prevent properties from being mutated
     // https://github.com/Turfjs/turf/commit/39c6c9ec29986cc540960b3e2680e9e0a65168a1#r28018260
     // feat.properties = properties === {} || properties === undefined ? {} : JSON.parse(JSON.stringify(properties));
-    feat.geometry = geometry;
+    feat.geometry = geom;
     return feat;
 }
 
@@ -132,27 +163,27 @@ export function feature(geometry, properties, options) {
 export function geometry(type, coordinates, options) {
     // Optional Parameters
     options = options || {};
-    if (!isObject(options)) throw new Error('options is invalid');
-    var bbox = options.bbox;
+    if (!isObject(options)) { throw new Error("options is invalid"); }
+    const bbox = options.bbox;
 
     // Validation
-    if (!type) throw new Error('type is required');
-    if (!coordinates) throw new Error('coordinates is required');
-    if (!Array.isArray(coordinates)) throw new Error('coordinates must be an Array');
-    if (bbox) validateBBox(bbox);
+    if (!type) { throw new Error("type is required"); }
+    if (!coordinates) { throw new Error("coordinates is required"); }
+    if (!Array.isArray(coordinates)) { throw new Error("coordinates must be an Array"); }
+    if (bbox) { validateBBox(bbox); }
 
     // Main
-    var geom;
+    let geom;
     switch (type) {
-    case 'Point': geom = point(coordinates).geometry; break;
-    case 'LineString': geom = lineString(coordinates).geometry; break;
-    case 'Polygon': geom = polygon(coordinates).geometry; break;
-    case 'MultiPoint': geom = multiPoint(coordinates).geometry; break;
-    case 'MultiLineString': geom = multiLineString(coordinates).geometry; break;
-    case 'MultiPolygon': geom = multiPolygon(coordinates).geometry; break;
-    default: throw new Error(type + ' is invalid');
+    case "Point": geom = point(coordinates).geometry; break;
+    case "LineString": geom = lineString(coordinates).geometry; break;
+    case "Polygon": geom = polygon(coordinates).geometry; break;
+    case "MultiPoint": geom = multiPoint(coordinates).geometry; break;
+    case "MultiLineString": geom = multiLineString(coordinates).geometry; break;
+    case "MultiPolygon": geom = multiPolygon(coordinates).geometry; break;
+    default: throw new Error(type + " is invalid");
     }
-    if (bbox) geom.bbox = bbox;
+    if (bbox) { geom.bbox = bbox; }
     return geom;
 }
 
@@ -172,14 +203,14 @@ export function geometry(type, coordinates, options) {
  * //=point
  */
 export function point(coordinates, properties, options) {
-    if (!coordinates) throw new Error('coordinates is required');
-    if (!Array.isArray(coordinates)) throw new Error('coordinates must be an Array');
-    if (coordinates.length < 2) throw new Error('coordinates must be at least 2 numbers long');
-    if (!isNumber(coordinates[0]) || !isNumber(coordinates[1])) throw new Error('coordinates must contain numbers');
+    if (!coordinates) { throw new Error("coordinates is required"); }
+    if (!Array.isArray(coordinates)) { throw new Error("coordinates must be an Array"); }
+    if (coordinates.length < 2) { throw new Error("coordinates must be at least 2 numbers long"); }
+    if (!isNumber(coordinates[0]) || !isNumber(coordinates[1])) { throw new Error("coordinates must contain numbers"); }
 
     return feature({
-        type: 'Point',
-        coordinates: coordinates
+        type: "Point",
+        coordinates,
     }, properties, options);
 }
 
@@ -203,10 +234,10 @@ export function point(coordinates, properties, options) {
  * //=points
  */
 export function points(coordinates, properties, options) {
-    if (!coordinates) throw new Error('coordinates is required');
-    if (!Array.isArray(coordinates)) throw new Error('coordinates must be an Array');
+    if (!coordinates) { throw new Error("coordinates is required"); }
+    if (!Array.isArray(coordinates)) { throw new Error("coordinates must be an Array"); }
 
-    return featureCollection(coordinates.map(function (coords) {
+    return featureCollection(coordinates.map(function(coords) {
         return point(coords, properties);
     }), options);
 }
@@ -227,25 +258,25 @@ export function points(coordinates, properties, options) {
  * //=polygon
  */
 export function polygon(coordinates, properties, options) {
-    if (!coordinates) throw new Error('coordinates is required');
+    if (!coordinates) { throw new Error("coordinates is required"); }
 
-    for (var i = 0; i < coordinates.length; i++) {
-        var ring = coordinates[i];
+    for (let i = 0; i < coordinates.length; i++) {
+        const ring = coordinates[i];
         if (ring.length < 4) {
-            throw new Error('Each LinearRing of a Polygon must have 4 or more Positions.');
+            throw new Error("Each LinearRing of a Polygon must have 4 or more Positions.");
         }
-        for (var j = 0; j < ring[ring.length - 1].length; j++) {
+        for (let j = 0; j < ring[ring.length - 1].length; j++) {
             // Check if first point of Polygon contains two numbers
-            if (i === 0 && j === 0 && !isNumber(ring[0][0]) || !isNumber(ring[0][1])) throw new Error('coordinates must contain numbers');
+            if (i === 0 && j === 0 && !isNumber(ring[0][0]) || !isNumber(ring[0][1])) { throw new Error("coordinates must contain numbers"); }
             if (ring[ring.length - 1][j] !== ring[0][j]) {
-                throw new Error('First and last Position are not equivalent.');
+                throw new Error("First and last Position are not equivalent.");
             }
         }
     }
 
     return feature({
-        type: 'Polygon',
-        coordinates: coordinates
+        type: "Polygon",
+        coordinates,
     }, properties, options);
 }
 
@@ -268,10 +299,10 @@ export function polygon(coordinates, properties, options) {
  * //=polygons
  */
 export function polygons(coordinates, properties, options) {
-    if (!coordinates) throw new Error('coordinates is required');
-    if (!Array.isArray(coordinates)) throw new Error('coordinates must be an Array');
+    if (!coordinates) { throw new Error("coordinates is required"); }
+    if (!Array.isArray(coordinates)) { throw new Error("coordinates must be an Array"); }
 
-    return featureCollection(coordinates.map(function (coords) {
+    return featureCollection(coordinates.map(function(coords) {
         return polygon(coords, properties);
     }), options);
 }
@@ -294,14 +325,14 @@ export function polygons(coordinates, properties, options) {
  * //=linestring2
  */
 export function lineString(coordinates, properties, options) {
-    if (!coordinates) throw new Error('coordinates is required');
-    if (coordinates.length < 2) throw new Error('coordinates must be an array of two or more positions');
+    if (!coordinates) { throw new Error("coordinates is required"); }
+    if (coordinates.length < 2) { throw new Error("coordinates must be an array of two or more positions"); }
     // Check if first point of LineString contains two numbers
-    if (!isNumber(coordinates[0][1]) || !isNumber(coordinates[1][1])) throw new Error('coordinates must contain numbers');
+    if (!isNumber(coordinates[0][1]) || !isNumber(coordinates[1][1])) { throw new Error("coordinates must contain numbers"); }
 
     return feature({
-        type: 'LineString',
-        coordinates: coordinates
+        type: "LineString",
+        coordinates,
     }, properties, options);
 }
 
@@ -324,10 +355,10 @@ export function lineString(coordinates, properties, options) {
  * //=linestrings
  */
 export function lineStrings(coordinates, properties, options) {
-    if (!coordinates) throw new Error('coordinates is required');
-    if (!Array.isArray(coordinates)) throw new Error('coordinates must be an Array');
+    if (!coordinates) { throw new Error("coordinates is required"); }
+    if (!Array.isArray(coordinates)) { throw new Error("coordinates must be an Array"); }
 
-    return featureCollection(coordinates.map(function (coords) {
+    return featureCollection(coordinates.map(function(coords) {
         return lineString(coords, properties);
     }), options);
 }
@@ -357,20 +388,20 @@ export function lineStrings(coordinates, properties, options) {
 export function featureCollection(features, options) {
     // Optional Parameters
     options = options || {};
-    if (!isObject(options)) throw new Error('options is invalid');
-    var bbox = options.bbox;
-    var id = options.id;
+    if (!isObject(options)) { throw new Error("options is invalid"); }
+    const bbox = options.bbox;
+    const id = options.id;
 
     // Validation
-    if (!features) throw new Error('No features passed');
-    if (!Array.isArray(features)) throw new Error('features must be an Array');
-    if (bbox) validateBBox(bbox);
-    if (id) validateId(id);
+    if (!features) { throw new Error("No features passed"); }
+    if (!Array.isArray(features)) { throw new Error("features must be an Array"); }
+    if (bbox) { validateBBox(bbox); }
+    if (id) { validateId(id); }
 
     // Main
-    var fc = {type: 'FeatureCollection'};
-    if (id) fc.id = id;
-    if (bbox) fc.bbox = bbox;
+    const fc = {type: "FeatureCollection"};
+    if (id) { fc.id = id; }
+    if (bbox) { fc.bbox = bbox; }
     fc.features = features;
     return fc;
 }
@@ -393,11 +424,11 @@ export function featureCollection(features, options) {
  * //=multiLine
  */
 export function multiLineString(coordinates, properties, options) {
-    if (!coordinates) throw new Error('coordinates is required');
+    if (!coordinates) { throw new Error("coordinates is required"); }
 
     return feature({
-        type: 'MultiLineString',
-        coordinates: coordinates
+        type: "MultiLineString",
+        coordinates,
     }, properties, options);
 }
 
@@ -419,11 +450,11 @@ export function multiLineString(coordinates, properties, options) {
  * //=multiPt
  */
 export function multiPoint(coordinates, properties, options) {
-    if (!coordinates) throw new Error('coordinates is required');
+    if (!coordinates) { throw new Error("coordinates is required"); }
 
     return feature({
-        type: 'MultiPoint',
-        coordinates: coordinates
+        type: "MultiPoint",
+        coordinates,
     }, properties, options);
 }
 
@@ -446,11 +477,11 @@ export function multiPoint(coordinates, properties, options) {
  *
  */
 export function multiPolygon(coordinates, properties, options) {
-    if (!coordinates) throw new Error('coordinates is required');
+    if (!coordinates) { throw new Error("coordinates is required"); }
 
     return feature({
-        type: 'MultiPolygon',
-        coordinates: coordinates
+        type: "MultiPolygon",
+        coordinates,
     }, properties, options);
 }
 
@@ -479,12 +510,12 @@ export function multiPolygon(coordinates, properties, options) {
  * //=collection
  */
 export function geometryCollection(geometries, properties, options) {
-    if (!geometries) throw new Error('geometries is required');
-    if (!Array.isArray(geometries)) throw new Error('geometries must be an Array');
+    if (!geometries) { throw new Error("geometries is required"); }
+    if (!Array.isArray(geometries)) { throw new Error("geometries must be an Array"); }
 
     return feature({
-        type: 'GeometryCollection',
-        geometries: geometries
+        type: "GeometryCollection",
+        geometries,
     }, properties, options);
 }
 
@@ -502,9 +533,9 @@ export function geometryCollection(geometries, properties, options) {
  * //=120.43
  */
 export function round(num, precision) {
-    if (num === undefined || num === null || isNaN(num)) throw new Error('num is required');
-    if (precision && !(precision >= 0)) throw new Error('precision must be a positive number');
-    var multiplier = Math.pow(10, precision || 0);
+    if (num === undefined || num === null || isNaN(num)) { throw new Error("num is required"); }
+    if (precision && !(precision >= 0)) { throw new Error("precision must be a positive number"); }
+    const multiplier = Math.pow(10, precision || 0);
     return Math.round(num * multiplier) / multiplier;
 }
 
@@ -518,11 +549,11 @@ export function round(num, precision) {
  * @returns {number} distance
  */
 export function radiansToLength(radians, units) {
-    if (radians === undefined || radians === null) throw new Error('radians is required');
+    if (radians === undefined || radians === null) { throw new Error("radians is required"); }
 
-    if (units && typeof units !== 'string') throw new Error('units must be a string');
-    var factor = factors[units || 'kilometers'];
-    if (!factor) throw new Error(units + ' units is invalid');
+    if (units && typeof units !== "string") { throw new Error("units must be a string"); }
+    const factor = factors[units || "kilometers"];
+    if (!factor) { throw new Error(units + " units is invalid"); }
     return radians * factor;
 }
 
@@ -536,11 +567,11 @@ export function radiansToLength(radians, units) {
  * @returns {number} radians
  */
 export function lengthToRadians(distance, units) {
-    if (distance === undefined || distance === null) throw new Error('distance is required');
+    if (distance === undefined || distance === null) { throw new Error("distance is required"); }
 
-    if (units && typeof units !== 'string') throw new Error('units must be a string');
-    var factor = factors[units || 'kilometers'];
-    if (!factor) throw new Error(units + ' units is invalid');
+    if (units && typeof units !== "string") { throw new Error("units must be a string"); }
+    const factor = factors[units || "kilometers"];
+    if (!factor) { throw new Error(units + " units is invalid"); }
     return distance / factor;
 }
 
@@ -566,10 +597,10 @@ export function lengthToDegrees(distance, units) {
  * @returns {number} angle between 0 and 360 degrees
  */
 export function bearingToAzimuth(bearing) {
-    if (bearing === null || bearing === undefined) throw new Error('bearing is required');
+    if (bearing === null || bearing === undefined) { throw new Error("bearing is required"); }
 
-    var angle = bearing % 360;
-    if (angle < 0) angle += 360;
+    let angle = bearing % 360;
+    if (angle < 0) { angle += 360; }
     return angle;
 }
 
@@ -581,9 +612,9 @@ export function bearingToAzimuth(bearing) {
  * @returns {number} degrees between 0 and 360 degrees
  */
 export function radiansToDegrees(radians) {
-    if (radians === null || radians === undefined) throw new Error('radians is required');
+    if (radians === null || radians === undefined) { throw new Error("radians is required"); }
 
-    var degrees = radians % (2 * Math.PI);
+    const degrees = radians % (2 * Math.PI);
     return degrees * 180 / Math.PI;
 }
 
@@ -595,9 +626,9 @@ export function radiansToDegrees(radians) {
  * @returns {number} angle in radians
  */
 export function degreesToRadians(degrees) {
-    if (degrees === null || degrees === undefined) throw new Error('degrees is required');
+    if (degrees === null || degrees === undefined) { throw new Error("degrees is required"); }
 
-    var radians = degrees % 360;
+    const radians = degrees % 360;
     return radians * Math.PI / 180;
 }
 
@@ -611,10 +642,10 @@ export function degreesToRadians(degrees) {
  * @returns {number} the converted length
  */
 export function convertLength(length, originalUnit, finalUnit) {
-    if (length === null || length === undefined) throw new Error('length is required');
-    if (!(length >= 0)) throw new Error('length must be a positive number');
+    if (length === null || length === undefined) { throw new Error("length is required"); }
+    if (!(length >= 0)) { throw new Error("length must be a positive number"); }
 
-    return radiansToLength(lengthToRadians(length, originalUnit), finalUnit || 'kilometers');
+    return radiansToLength(lengthToRadians(length, originalUnit), finalUnit || "kilometers");
 }
 
 /**
@@ -626,14 +657,14 @@ export function convertLength(length, originalUnit, finalUnit) {
  * @returns {number} the converted distance
  */
 export function convertArea(area, originalUnit, finalUnit) {
-    if (area === null || area === undefined) throw new Error('area is required');
-    if (!(area >= 0)) throw new Error('area must be a positive number');
+    if (area === null || area === undefined) { throw new Error("area is required"); }
+    if (!(area >= 0)) { throw new Error("area must be a positive number"); }
 
-    var startFactor = areaFactors[originalUnit || 'meters'];
-    if (!startFactor) throw new Error('invalid original units');
+    const startFactor = areaFactors[originalUnit || "meters"];
+    if (!startFactor) { throw new Error("invalid original units"); }
 
-    var finalFactor = areaFactors[finalUnit || 'kilometers'];
-    if (!finalFactor) throw new Error('invalid final units');
+    const finalFactor = areaFactors[finalUnit || "kilometers"];
+    if (!finalFactor) { throw new Error("invalid final units"); }
 
     return (area / startFactor) * finalFactor;
 }
@@ -690,11 +721,11 @@ export function isObject(input) {
  * //=Error
  */
 export function validateBBox(bbox) {
-    if (!bbox) throw new Error('bbox is required');
-    if (!Array.isArray(bbox)) throw new Error('bbox must be an Array');
-    if (bbox.length !== 4 && bbox.length !== 6) throw new Error('bbox must be an Array of 4 or 6 numbers');
-    bbox.forEach(function (num) {
-        if (!isNumber(num)) throw new Error('bbox must only contain numbers');
+    if (!bbox) { throw new Error("bbox is required"); }
+    if (!Array.isArray(bbox)) { throw new Error("bbox must be an Array"); }
+    if (bbox.length !== 4 && bbox.length !== 6) { throw new Error("bbox must be an Array of 4 or 6 numbers"); }
+    bbox.forEach(function(num) {
+        if (!isNumber(num)) { throw new Error("bbox must only contain numbers"); }
     });
 }
 
@@ -720,35 +751,35 @@ export function validateBBox(bbox) {
  * //=Error
  */
 export function validateId(id) {
-    if (!id) throw new Error('id is required');
-    if (['string', 'number'].indexOf(typeof id) === -1) throw new Error('id must be a number or a string');
+    if (!id) { throw new Error("id is required"); }
+    if (["string", "number"].indexOf(typeof id) === -1) { throw new Error("id must be a number or a string"); }
 }
 
 // Deprecated methods
 export function radians2degrees() {
-    throw new Error('method has been renamed to `radiansToDegrees`');
+    throw new Error("method has been renamed to `radiansToDegrees`");
 }
 
 export function degrees2radians() {
-    throw new Error('method has been renamed to `degreesToRadians`');
+    throw new Error("method has been renamed to `degreesToRadians`");
 }
 
 export function distanceToDegrees() {
-    throw new Error('method has been renamed to `lengthToDegrees`');
+    throw new Error("method has been renamed to `lengthToDegrees`");
 }
 
 export function distanceToRadians() {
-    throw new Error('method has been renamed to `lengthToRadians`');
+    throw new Error("method has been renamed to `lengthToRadians`");
 }
 
 export function radiansToDistance() {
-    throw new Error('method has been renamed to `radiansToLength`');
+    throw new Error("method has been renamed to `radiansToLength`");
 }
 
 export function bearingToAngle() {
-    throw new Error('method has been renamed to `bearingToAzimuth`');
+    throw new Error("method has been renamed to `bearingToAzimuth`");
 }
 
 export function convertDistance() {
-    throw new Error('method has been renamed to `convertLength`');
+    throw new Error("method has been renamed to `convertLength`");
 }
