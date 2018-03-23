@@ -1,20 +1,17 @@
-import test from 'tape';
-import glob from 'glob';
-import path from 'path';
-import load from 'load-json-file';
-import write from 'write-json-file';
-import quadratAnalysis from '.';
-
-import bbox from '@turf/bbox';
-import { randomPoint } from '@turf/random';
-
-import bboxPolygon from '@turf/bbox-polygon';
-import squareGrid from '@turf/square-grid';
-import centroid from '@turf/centroid';
-import { featureCollection } from '@turf/helpers';
+const test = require('tape');
+const glob = require('glob');
+const path = require('path');
+const load = require('load-json-file');
+const write = require('write-json-file');
+const bbox = require('@turf/bbox').default;
+const centroid = require('@turf/centroid').default;
+const squareGrid = require('@turf/square-grid').default;
+const bboxPolygon = require('@turf/bbox-polygon').default;
+const { randomPoint } = require('@turf/random');
+const { featureCollection } = require('@turf/helpers');
+const quadratAnalysis = require('./').default;
 
 test('turf-quadrat-analysis geojson file', t => {
-
   const futianBboxPath = path.join(__dirname, 'test', 'in', 'futian_bbox.json');
   const futianPointPath = path.join(__dirname, 'test', 'in', 'futian_random_point.json');
   const shenzhenBboxPath = path.join(__dirname, 'test', 'in', 'shenzhen_bbox.json');
@@ -51,7 +48,7 @@ test('turf-quadrat-analysis random point', t => {
     studyBbox: smallBbox,
     confidenceLevel: 20
   });
-  
+
   t.ok(result1.isRandom, 'random pattern ok');
   t.ok(result1.maxAbsoluteDifference < result1.criticalValue, 'random pattern maxAbsoluteDifference < criticalValue');
 
@@ -78,7 +75,7 @@ test('turf-quadrat-analysis random point', t => {
     studyBbox: smallBbox,
     confidenceLevel: 20
   });
-  
+
   t.ok(!result3.isRandom, 'uniform pattern ok');
   t.ok(result3.maxAbsoluteDifference > result3.criticalValue, 'uniform pattern maxAbsoluteDifference > criticalValue');
 
@@ -89,12 +86,14 @@ test('turf-quadrat-analysis random point', t => {
   const smallGridPath = path.join(__dirname, 'test', 'out', 'smallGrid.json');
 
   // console.log(result1, result2, result3);
-  write.sync(randomPointSetPath, randomPointSet);
-  write.sync(uniformPointSetPath, uniformPointSet);
-  write.sync(smallBboxPath, bboxPolygon(smallBbox));
-  write.sync(bigBboxPath, bboxPolygon(bigBbox));
-  write.sync(smallGridPath, smallGrid);
 
+  if (process.env.REGEN) {
+    write.sync(randomPointSetPath, randomPointSet);
+    write.sync(uniformPointSetPath, uniformPointSet);
+    write.sync(smallBboxPath, bboxPolygon(smallBbox));
+    write.sync(bigBboxPath, bboxPolygon(bigBbox));
+    write.sync(smallGridPath, smallGrid);
+  }
 
   t.end();
 

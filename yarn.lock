@@ -187,6 +187,12 @@
     "@turf/line-intersect" "^5.1.5"
     "@turf/meta" "^5.1.5"
 
+"@turf/random@^5.1.5":
+  version "5.1.5"
+  resolved "https://registry.yarnpkg.com/@turf/random/-/random-5.1.5.tgz#b32efc934560ae8ba57e8ebb51f241c39fba2e7b"
+  dependencies:
+    "@turf/helpers" "^5.1.5"
+
 "@turf/rhumb-destination@5.x":
   version "5.1.5"
   resolved "https://registry.yarnpkg.com/@turf/rhumb-destination/-/rhumb-destination-5.1.5.tgz#b1b2aeb921547f2ac0c1a994b6a130f92463c742"
@@ -2263,6 +2269,10 @@ eslint@*:
     strip-json-comments "~2.0.1"
     table "^4.0.1"
     text-table "~0.2.0"
+
+esm@*:
+  version "3.0.8"
+  resolved "https://registry.yarnpkg.com/esm/-/esm-3.0.8.tgz#a5a9a475682468fe451b85e3d6a0b02011acb5ae"
 
 espree@^3.5.2:
   version "3.5.3"
