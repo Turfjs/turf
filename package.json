@@ -26,8 +26,8 @@
     "load-json-file": "*",
     "meow": "*",
     "progress": "*",
-    "rollup": "*",
-    "rollup-plugin-typescript": "*",
+    "rollup": "*",    
+    "rollup-plugin-typescript": "*",    
     "tape": "*",
     "typescript": "*",
     "yamljs": "*"
