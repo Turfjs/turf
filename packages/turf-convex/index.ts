@@ -30,7 +30,7 @@ import concaveman from "concaveman";
  * //addToMap
  * var addToMap = [points, hull]
  */
-function convex<P = Properties>(geojson: AllGeoJSON, options: {
+export default function convex<P = Properties>(geojson: AllGeoJSON, options: {
     concavity?: number,
     properties?: P,
 } = {}): Feature<Polygon, P> | null {
@@ -54,5 +54,3 @@ function convex<P = Properties>(geojson: AllGeoJSON, options: {
     }
     return null;
 }
-
-export default convex;
