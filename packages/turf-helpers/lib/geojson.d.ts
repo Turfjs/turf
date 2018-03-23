@@ -22,7 +22,8 @@ export type GeometryTypes = "Point" |
                             "Polygon" |
                             "MultiPoint" |
                             "MultiLineString" |
-                            "MultiPolygon";
+                            "MultiPolygon" |
+                            "GeometryCollection";
 
 export type CollectionTypes = "FeatureCollection" | "GeometryCollection";
 
@@ -198,9 +199,9 @@ export interface MultiPolygon extends GeometryObject {
  * The value of "geometries" is an array.  Each element of this array is a GeoJSON Geometry object.
  * It is possible for this array to be empty.
  */
-export interface GeometryCollection extends GeoJSONObject {
+export interface GeometryCollection extends GeometryObject {
     type: "GeometryCollection";
-    geometries: Geometries[];
+    geometries: Array<Point | LineString | Polygon | MultiPoint | MultiLineString | MultiPolygon>;
 }
 
 /**
@@ -212,7 +213,7 @@ export interface GeometryCollection extends GeoJSONObject {
  */
 export interface Feature<G = Geometry | GeometryCollection, P = Properties> extends GeoJSONObject {
     type: "Feature";
-    geometry: G | null;
+    geometry: G;
     /**
      * A value that uniquely identifies this feature in a
      * https://tools.ietf.org/html/rfc7946#section-3.2.
@@ -221,7 +222,7 @@ export interface Feature<G = Geometry | GeometryCollection, P = Properties> exte
     /**
      * Properties associated with this feature.
      */
-    properties: P | null;
+    properties: P;
 }
 
 /**

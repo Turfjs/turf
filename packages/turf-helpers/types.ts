@@ -74,12 +74,14 @@ blank.features.push(poly);
 // Collection with only Points
 const points = featureCollection<Point>([]);
 points.features.push(pt);
-// points.features.push(line) // Argument of type 'Feature<LineString>' is not assignable to parameter of type 'Feature<Point>'.
+// points.features.push(line)
+// Argument of type 'Feature<LineString>' is not assignable to parameter of type 'Feature<Point>'.
 
 // Collection with only LineStrings
 const lines = featureCollection([line]);
 lines.features.push(line);
-// lines.features.push(pt) // Argument of type 'Feature<Point>' is not assignable to parameter of type 'Feature<LineString>'.
+// lines.features.push(pt)
+// Argument of type 'Feature<Point>' is not assignable to parameter of type 'Feature<LineString>'.
 
 // Collection with only Polygons
 const polygons = featureCollection<Polygon>([]);
@@ -142,12 +144,12 @@ isObject([]);
 isObject(isNumber);
 
 // Geometry
-const ptGeom: Point = geometry("Point", pt.geometry.coordinates);
-const lineGeom: LineString = geometry("LineString", line.geometry.coordinates);
-const polyGeom: Polygon = geometry("Polygon", poly.geometry.coordinates);
-const multiPtGeom: MultiPoint = geometry("MultiPoint", multiPt.geometry.coordinates);
-const multiLineGeom: MultiLineString = geometry("MultiLineString", multiLine.geometry.coordinates);
-const multiPolyGeom: MultiPolygon = geometry("MultiPolygon", multiPoly.geometry.coordinates);
+const ptGeom = geometry("Point", pt.geometry.coordinates);
+const lineGeom = geometry("LineString", line.geometry.coordinates);
+const polyGeom = geometry("Polygon", poly.geometry.coordinates);
+const multiPtGeom = geometry("MultiPoint", multiPt.geometry.coordinates);
+const multiLineGeom = geometry("MultiLineString", multiLine.geometry.coordinates);
+const multiPolyGeom = geometry("MultiPolygon", multiPoly.geometry.coordinates);
 
 // Custom Properties
 const customPt = point([10, 50], {foo: "bar"});
