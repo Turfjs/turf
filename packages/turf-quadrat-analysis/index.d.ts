@@ -17,6 +17,6 @@ export default function (
     pointFeatureSet: FeatureCollection<Point>,
     options?: {
         studyBbox?: [number, number, number, number]
-        confidenceLevel?: number
+        confidenceLevel?: 20 | 15 | 10 | 5 | 2 | 1
     }
  ): QuadratAnalysisResult

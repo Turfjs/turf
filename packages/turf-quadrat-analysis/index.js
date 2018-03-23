@@ -89,7 +89,7 @@ export default function quadratAnalysis(pointFeatureSet, options) {
   var studyBbox = options.studyBbox || bbox(pointFeatureSet);
   var confidenceLevel = options.confidenceLevel || 20;
   var points = pointFeatureSet.features;
-
+  
   // create square-grid
   var numOfPoints = points.length;
   var sizeOfArea = area(bboxPolygon(studyBbox));
@@ -120,6 +120,7 @@ export default function quadratAnalysis(pointFeatureSet, options) {
       }
     }
   }
+  
 
   // the most amount of features in quadrat
   var maxCnt = 0;
@@ -128,7 +129,7 @@ export default function quadratAnalysis(pointFeatureSet, options) {
     if (cnt > maxCnt) {
       maxCnt = cnt;
     }
-  }
+  }  
 
   var expectedDistribution = [];
   var numOfQuadrat = Object.keys(quadratIdDict).length;

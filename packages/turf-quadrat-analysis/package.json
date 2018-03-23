@@ -47,8 +47,10 @@
     "@turf/area": "^6.0.0",
     "@turf/bbox": "^6.0.0",
     "@turf/bbox-polygon": "^6.0.0",
+    "@turf/centroid": "^6.0.0",
     "@turf/helpers": "^6.0.1",
     "@turf/invariant": "^6.0.1",
+    "@turf/point-grid": "^6.0.0",
     "@turf/random": "^5.1.5",
     "@turf/square-grid": "^6.0.0"
   },
