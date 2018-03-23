@@ -1,0 +1,61 @@
+{
+  "name": "@turf/quadrat-analysis",
+  "version": "5.0.0",
+  "description": "turf quadrat-analysis module",
+  "main": "main.js",
+  "module": "main.es.js",
+  "types": "index.d.ts",
+  "files": [
+    "index.js",
+    "index.d.ts",
+    "main.js",
+    "main.es.js"
+  ],
+  "scripts": {
+    "pretest": "rollup -c ../../rollup.config.js",
+    "test": "node -r esm test.js",
+    "posttest": "node -r esm ../../scripts/validate-es5-dependencies.js",
+    "bench": "node -r esm bench.js",
+    "docs": "node ../../scripts/generate-readmes"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/Turfjs/turf.git"
+  },
+  "keywords": [
+    "turf",
+    "quadrat-analysis"
+  ],
+  "author": "Turf Authors",
+  "contributors": [
+    "Haoming Zhuang <@zhuang-hao-ming>"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Turfjs/turf/issues"
+  },
+  "homepage": "https://github.com/Turfjs/turf",
+  "devDependencies": {
+    "benchmark": "*",
+    "esm": "*",
+    "load-json-file": "*",
+    "rollup": "*",
+    "tape": "*",
+    "write-json-file": "*"
+  },
+  "dependencies": {
+    "@turf/area": "^6.0.0",
+    "@turf/bbox": "^6.0.0",
+    "@turf/bbox-polygon": "^6.0.0",
+    "@turf/centroid": "^6.0.0",
+    "@turf/helpers": "^6.0.1",
+    "@turf/invariant": "^6.0.1",
+    "@turf/point-grid": "^6.0.0",
+    "@turf/random": "^5.1.5",
+    "@turf/square-grid": "^6.0.0"
+  },
+  "esm": {
+    "mode": "auto",
+    "cjs": true
+  }
+}
