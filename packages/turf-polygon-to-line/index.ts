@@ -1,11 +1,12 @@
-import { getCoords, getGeom } from '@turf/invariant';
+import { featureCollection, lineString, multiLineString } from "@turf/helpers";
 import {
-    lineString, multiLineString, featureCollection,
-    Feature, FeatureCollection, Polygon, MultiPolygon, LineString, MultiLineString, Properties
-} from '@turf/helpers';
+    Feature, FeatureCollection, LineString, MultiLineString, MultiPolygon, Polygon, Properties,
+} from "@turf/helpers";
+import { getCoords, getGeom } from "@turf/invariant";
 
 /**
- * Converts a {@link Polygon} to {@link LineString|(Multi)LineString} or {@link MultiPolygon} to a {@link FeatureCollection} of {@link LineString|(Multi)LineString}.
+ * Converts a {@link Polygon} to {@link LineString|(Multi)LineString} or {@link MultiPolygon} to a
+ * {@link FeatureCollection} of {@link LineString|(Multi)LineString}.
  *
  * @name polygonToLine
  * @param {Feature<Polygon|MultiPolygon>} poly Feature to convert
@@ -22,14 +23,14 @@ import {
  */
 export default function <G extends Polygon | MultiPolygon, P = Properties>(
     poly: Feature<G, P> | G,
-    options: { properties?: P } = {}
+    options: { properties?: any } = {},
 ): Feature<LineString | MultiLineString, P> | FeatureCollection<LineString | MultiLineString, P> {
     const geom: any = getGeom(poly);
-    if (!options.properties && poly.type === 'Feature') { options.properties = poly.properties }
+    if (!options.properties && poly.type === "Feature") { options.properties = poly.properties; }
     switch (geom.type) {
-        case 'Polygon': return polygonToLine(geom, options)
-        case 'MultiPolygon': return multiPolygonToLine(geom, options)
-        default: throw new Error('invalid poly')
+        case "Polygon": return polygonToLine(geom, options);
+        case "MultiPolygon": return multiPolygonToLine(geom, options);
+        default: throw new Error("invalid poly");
     }
 }
 
@@ -38,12 +39,12 @@ export default function <G extends Polygon | MultiPolygon, P = Properties>(
  */
 export function polygonToLine<G extends Polygon, P = Properties>(
     poly: Feature<G, P> | G,
-    options: { properties?: any } = {}
+    options: { properties?: any } = {},
 ): Feature<LineString | MultiLineString, P> {
     const geom = getGeom(poly);
     const type = geom.type;
     const coords: any[] = geom.coordinates;
-    const properties: any = options.properties ? options.properties : poly.type === 'Feature' ? poly.properties : {};
+    const properties: any = options.properties ? options.properties : poly.type === "Feature" ? poly.properties : {};
 
     return coordsToLine(coords, properties);
 }
@@ -53,15 +54,16 @@ export function polygonToLine<G extends Polygon, P = Properties>(
  */
 export function multiPolygonToLine<G extends MultiPolygon, P = Properties>(
     multiPoly: Feature<G, P> | G,
-    options: { properties?: P } = {}
+    options: { properties?: P } = {},
 ): FeatureCollection<LineString | MultiLineString, P> {
     const geom = getGeom(multiPoly);
     const type = geom.type;
     const coords: any[] = geom.coordinates;
-    const properties: any = options.properties ? options.properties : multiPoly.type === 'Feature' ? multiPoly.properties : {};
+    const properties: any = options.properties ? options.properties :
+        multiPoly.type === "Feature" ? multiPoly.properties : {};
 
-    const lines: Feature<LineString | MultiLineString, P>[] = [];
-    coords.forEach(function (coord) {
+    const lines: Array<Feature<LineString | MultiLineString, P>> = [];
+    coords.forEach((coord) => {
         lines.push(coordsToLine(coord, properties));
     });
     return featureCollection(lines);
@@ -70,7 +72,10 @@ export function multiPolygonToLine<G extends MultiPolygon, P = Properties>(
 /**
  * @private
  */
-export function coordsToLine<P = Properties>(coords: number[][][], properties: P): Feature<LineString | MultiLineString, P> {
-    if (coords.length > 1) return multiLineString(coords, properties);
+export function coordsToLine<P = Properties>(
+    coords: number[][][],
+    properties: P,
+): Feature<LineString | MultiLineString, P> {
+    if (coords.length > 1) { return multiLineString(coords, properties); }
     return lineString(coords[0], properties);
 }

@@ -1,10 +1,10 @@
-import distance from '@turf/distance';
-import intersect from '@turf/boolean-intersects';
-import {getType} from '@turf/invariant';
+import intersect from "@turf/boolean-intersects";
+import distance from "@turf/distance";
 import {
-    polygon, featureCollection, isNumber,
-    BBox, Units, Feature, Properties, Polygon, MultiPolygon, FeatureCollection
-} from '@turf/helpers';
+    BBox, Feature, featureCollection,
+    FeatureCollection, isNumber, MultiPolygon, polygon, Polygon, Properties, Units,
+} from "@turf/helpers";
+import {getType} from "@turf/invariant";
 
 /**
  * Creates a square grid from a bounding box, {@link Feature} or {@link FeatureCollection}.
@@ -13,8 +13,10 @@ import {
  * @param {Array<number>} bbox extent in [minX, minY, maxX, maxY] order
  * @param {number} cellSide of each cell, in units
  * @param {Object} [options={}] Optional parameters
- * @param {string} [options.units='kilometers'] used in calculating cellSide, can be degrees, radians, miles, or kilometers
- * @param {Feature<Polygon|MultiPolygon>} [options.mask] if passed a Polygon or MultiPolygon, the grid Points will be created only inside it
+ * @param {string} [options.units='kilometers'] used in calculating cellSide, can be degrees,
+ * radians, miles, or kilometers
+ * @param {Feature<Polygon|MultiPolygon>} [options.mask] if passed a Polygon or MultiPolygon,
+ * the grid Points will be created only inside it
  * @param {Object} [options.properties={}] passed to each point of the grid
  * @returns {FeatureCollection<Polygon>} grid a grid of polygons
  * @example
@@ -30,53 +32,44 @@ import {
 function squareGrid<P = Properties>(bbox: BBox, cellSide: number, options: {
     units?: Units,
     properties?: P,
-    mask?: Feature<Polygon | MultiPolygon> | Polygon | MultiPolygon
+    mask?: Feature<Polygon | MultiPolygon> | Polygon | MultiPolygon,
 } = {}): FeatureCollection<Polygon, P> {
     // Containers
-    var results = [];
+    const results = [];
+    const west = bbox[0];
+    const south = bbox[1];
+    const east = bbox[2];
+    const north = bbox[3];
 
-    // Input Validation is being handled by Typescript
-    // if (cellSide === null || cellSide === undefined) throw new Error('cellSide is required');
-    // if (!isNumber(cellSide)) throw new Error('cellSide is invalid');
-    // if (!bbox) throw new Error('bbox is required');
-    // if (!Array.isArray(bbox)) throw new Error('bbox must be array');
-    // if (bbox.length !== 4) throw new Error('bbox must contain 4 numbers');
-    // if (options.mask && ['Polygon', 'MultiPolygon'].indexOf(getType(options.mask)) === -1) throw new Error('options.mask must be a (Multi)Polygon');
-
-    var west = bbox[0];
-    var south = bbox[1];
-    var east = bbox[2];
-    var north = bbox[3];
-
-    var xFraction = cellSide / (distance([west, south], [east, south], options));
-    var cellWidth = xFraction * (east - west);
-    var yFraction = cellSide / (distance([west, south], [west, north], options));
-    var cellHeight = yFraction * (north - south);
+    const xFraction = cellSide / (distance([west, south], [east, south], options));
+    const cellWidth = xFraction * (east - west);
+    const yFraction = cellSide / (distance([west, south], [west, north], options));
+    const cellHeight = yFraction * (north - south);
 
     // rows & columns
-    var bboxWidth = (east - west);
-    var bboxHeight = (north - south);
-    var columns = Math.floor(bboxWidth / cellWidth);
-    var rows = Math.floor(bboxHeight / cellHeight);
+    const bboxWidth = (east - west);
+    const bboxHeight = (north - south);
+    const columns = Math.floor(bboxWidth / cellWidth);
+    const rows = Math.floor(bboxHeight / cellHeight);
 
     // adjust origin of the grid
-    var deltaX = (bboxWidth - columns * cellWidth) / 2;
-    var deltaY = (bboxHeight - rows * cellHeight) / 2;
+    const deltaX = (bboxWidth - columns * cellWidth) / 2;
+    const deltaY = (bboxHeight - rows * cellHeight) / 2;
 
     // iterate over columns & rows
-    var currentX = west + deltaX;
-    for (var column = 0; column < columns; column++) {
-        var currentY = south + deltaY;
-        for (var row = 0; row < rows; row++) {
-            var cellPoly = polygon([[
+    let currentX = west + deltaX;
+    for (let column = 0; column < columns; column++) {
+        let currentY = south + deltaY;
+        for (let row = 0; row < rows; row++) {
+            const cellPoly = polygon([[
                 [currentX, currentY],
                 [currentX, currentY + cellHeight],
                 [currentX + cellWidth, currentY + cellHeight],
                 [currentX + cellWidth, currentY],
-                [currentX, currentY]
+                [currentX, currentY],
             ]], options.properties);
             if (options.mask) {
-                if (intersect(options.mask, cellPoly)) results.push(cellPoly);
+                if (intersect(options.mask, cellPoly)) { results.push(cellPoly); }
             } else {
                 results.push(cellPoly);
             }

@@ -140,7 +140,7 @@ Building Docs: @turf/boolean-clockwise
 ```
 
 ## Other Dependencies
-- Turf uses [Yarn](https://yarnpkg.com) and [lerna](https://yarnpkg.com/en/) during the testing, packaging and publishing process.
+- Turf uses [Yarn](https://yarnpkg.com) and [lerna](https://lernajs.io/) during the testing, packaging and publishing process.
   - Lerna will be automatically installed when you run `npm install` in the root directory.
   - Yarn will need to be installed on your computer, installers are available via the yarn website.
 

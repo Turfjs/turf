@@ -1,7 +1,7 @@
 {
-  "name": "@turf/line-intersect",
-  "version": "6.0.1",
-  "description": "turf line-intersect module",
+  "name": "@turf/quadrat-analysis",
+  "version": "6.0.0",
+  "description": "turf quadrat-analysis module",
   "main": "index",
   "types": "index.d.ts",
   "files": [
@@ -22,15 +22,11 @@
   },
   "keywords": [
     "turf",
-    "geojson",
-    "gis",
-    "line",
-    "intersect"
+    "quadrat-analysis"
   ],
   "author": "Turf Authors",
   "contributors": [
-    "Denis Carriere <@DenisCarriere>",
-    "Daniel Pulido <@dpmcmlxxvi>"
+    "Haoming Zhuang <@zhuang-hao-ming>"
   ],
   "license": "MIT",
   "bugs": {
@@ -38,20 +34,24 @@
   },
   "homepage": "https://github.com/Turfjs/turf",
   "devDependencies": {
-    "@turf/truncate": "*",
+    "@types/tape": "*",
+    "@turf/nearest-neighbor-analysis": "*",
     "benchmark": "*",
     "load-json-file": "*",
     "typescript": "*",
-    "tape": "*",
-    "write-json-file": "*",
     "tslint": "*",
-    "@types/tape": "*"
+    "tape": "*",
+    "write-json-file": "*"
   },
   "dependencies": {
+    "@turf/area": "6.x",
+    "@turf/bbox": "6.x",
+    "@turf/bbox-polygon": "6.x",
+    "@turf/centroid": "6.x",
     "@turf/helpers": "6.x",
     "@turf/invariant": "6.x",
-    "@turf/line-segment": "6.x",
-    "@turf/meta": "6.x",
-    "geojson-rbush": "3.x"
+    "@turf/point-grid": "6.x",
+    "@turf/random": "5.x",
+    "@turf/square-grid": "6.x"
   }
 }
