@@ -1,18 +1,18 @@
-import Benchmark from 'benchmark';
-import quadratAnalysis from '.';
-import glob from 'glob';
-import path from 'path';
-import load from 'load-json-file';
+const glob = require('glob');
+const path = require('path');
+const load = require('load-json-file');
+const Benchmark = require('benchmark');
+const { randomPoint } = require('@turf/random');
+const bbox = require('@turf/bbox').default;
+const nearestNeighborAnalysis = require('@turf/nearest-neighbor-analysis').default;
+const quadratAnalysis = require('.').default;
 
-import bbox from '@turf/bbox';
-import { randomPoint } from '@turf/random';
-import nearestNeighborAnalysis from '../turf-nearest-neighbor-analysis';
 /**
  * Benchmark Results
  * quadrat: 1383.768ms
  * nearest: 12259.498ms
  * quadrat x 0.76 ops/sec ±1.24% (6 runs sampled)
- * nearest x 0.08 ops/sec ±0.97% (5 runs sampled)   
+ * nearest x 0.08 ops/sec ±0.97% (5 runs sampled)
  */
 const suite = new Benchmark.Suite('turf-quadrat-analysis');
 
