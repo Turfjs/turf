@@ -13,35 +13,35 @@ import squareGrid from '@turf/square-grid';
 import centroid from '@turf/centroid';
 import { featureCollection } from '@turf/helpers';
 
-// test('turf-quadrat-analysis geojson file', t => {
+test('turf-quadrat-analysis geojson file', t => {
 
-//   const futianBboxPath = path.join(__dirname, 'test', 'in', 'futian_bbox.json');
-//   const futianPointPath = path.join(__dirname, 'test', 'in', 'futian_random_point.json');
-//   const shenzhenBboxPath = path.join(__dirname, 'test', 'in', 'shenzhen_bbox.json');
+  const futianBboxPath = path.join(__dirname, 'test', 'in', 'futian_bbox.json');
+  const futianPointPath = path.join(__dirname, 'test', 'in', 'futian_random_point.json');
+  const shenzhenBboxPath = path.join(__dirname, 'test', 'in', 'shenzhen_bbox.json');
 
-//   const futianBbox = load.sync(futianBboxPath);
-//   const futianPoint = load.sync(futianPointPath);
-//   const shenzhenBbox = load.sync(shenzhenBboxPath);
+  const futianBbox = load.sync(futianBboxPath);
+  const futianPoint = load.sync(futianPointPath);
+  const shenzhenBbox = load.sync(shenzhenBboxPath);
 
-//   const resultFutian = quadratAnalysis(futianPoint, {
-//     studyBbox: bbox(futianBbox),
-//     confidenceLevel: 20
-//   });
+  const resultFutian = quadratAnalysis(futianPoint, {
+    studyBbox: bbox(futianBbox),
+    confidenceLevel: 20
+  });
 
-//   const resultShenzhen = quadratAnalysis(futianPoint, {
-//     studyBbox: bbox(shenzhenBbox),
-//     confidenceLevel: 20
-//   });
+  const resultShenzhen = quadratAnalysis(futianPoint, {
+    studyBbox: bbox(shenzhenBbox),
+    confidenceLevel: 20
+  });
 
-//   t.ok(resultFutian.isRandom, 'ramdom pattern ok');
-//   t.ok(resultFutian.maxAbsoluteDifference < resultFutian.criticalValue, 'random pattern maxAbsoluteDifference < criticalValue');
+  t.ok(resultFutian.isRandom, 'ramdom pattern ok');
+  t.ok(resultFutian.maxAbsoluteDifference < resultFutian.criticalValue, 'random pattern maxAbsoluteDifference < criticalValue');
 
-//   t.ok(!resultShenzhen.isRandom, 'cluster pattern ok');
-//   t.ok(resultShenzhen.maxAbsoluteDifference > resultShenzhen.criticalValue, 'cluster pattern maxAbsoluteDifference > criticalValue')
+  t.ok(!resultShenzhen.isRandom, 'cluster pattern ok');
+  t.ok(resultShenzhen.maxAbsoluteDifference > resultShenzhen.criticalValue, 'cluster pattern maxAbsoluteDifference > criticalValue')
 
-//   t.end();
+  t.end();
 
-// });
+});
 
 test('turf-quadrat-analysis random point', t => {
   // random
@@ -61,7 +61,7 @@ test('turf-quadrat-analysis random point', t => {
     studyBbox: bigBbox,
     confidenceLevel: 20
   });
-    
+
   t.ok(!result2.isRandom, 'cluster pattern ok');
   t.ok(result2.maxAbsoluteDifference > result2.criticalValue, 'cluster pattern maxAbsoluteDifference > criticalValue');
 
@@ -78,7 +78,7 @@ test('turf-quadrat-analysis random point', t => {
     studyBbox: smallBbox,
     confidenceLevel: 20
   });
-  console.log(result3);
+  
   t.ok(!result3.isRandom, 'uniform pattern ok');
   t.ok(result3.maxAbsoluteDifference > result3.criticalValue, 'uniform pattern maxAbsoluteDifference > criticalValue');
 
@@ -88,8 +88,7 @@ test('turf-quadrat-analysis random point', t => {
   const bigBboxPath = path.join(__dirname, 'test', 'out', 'bigBox.json');
   const smallGridPath = path.join(__dirname, 'test', 'out', 'smallGrid.json');
 
-
-
+  // console.log(result1, result2, result3);
   write.sync(randomPointSetPath, randomPointSet);
   write.sync(uniformPointSetPath, uniformPointSet);
   write.sync(smallBboxPath, bboxPolygon(smallBbox));
