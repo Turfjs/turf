@@ -27,12 +27,22 @@ export type Lines = LineString | MultiLineString | Polygon | MultiPolygon;
 export type AllGeoJSON = Feature | FeatureCollection | Geometry | GeometryCollection;
 
 /**
+ * @module helpers
+ */
+
+/**
  * Earth Radius used with the Harvesine formula and approximates using a spherical (non-ellipsoid) Earth.
+ *
+ * @memberof helpers
+ * @type {number}
  */
 export let earthRadius = 6371008.8;
 
 /**
  * Unit of measurement factors using a spherical (non-ellipsoid) earth radius.
+ *
+ * @memberof helpers
+ * @type {Object}
  */
 export let factors: {[key: string]: number} = {
     centimeters: earthRadius * 100,
@@ -54,6 +64,9 @@ export let factors: {[key: string]: number} = {
 
 /**
  * Units of measurement factors based on 1 meter.
+ *
+ * @memberof helpers
+ * @type {Object}
  */
 export let unitsFactors: {[key: string]: number} = {
     centimeters: 100,
@@ -75,6 +88,9 @@ export let unitsFactors: {[key: string]: number} = {
 
 /**
  * Area of measurement factors based on 1 square meter.
+ *
+ * @memberof helpers
+ * @type {Object}
  */
 export let areaFactors: any = {
     acres: 0.000247105,

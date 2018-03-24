@@ -7,23 +7,38 @@ export declare type Corners = "sw" | "se" | "nw" | "ne" | "center" | "centroid";
 export declare type Lines = LineString | MultiLineString | Polygon | MultiPolygon;
 export declare type AllGeoJSON = Feature | FeatureCollection | Geometry | GeometryCollection;
 /**
+ * @module helpers
+ */
+/**
  * Earth Radius used with the Harvesine formula and approximates using a spherical (non-ellipsoid) Earth.
+ *
+ * @memberof helpers
+ * @type {number}
  */
 export declare let earthRadius: number;
 /**
  * Unit of measurement factors using a spherical (non-ellipsoid) earth radius.
+ *
+ * @memberof helpers
+ * @type {Object}
  */
 export declare let factors: {
     [key: string]: number;
 };
 /**
  * Units of measurement factors based on 1 meter.
+ *
+ * @memberof helpers
+ * @type {Object}
  */
 export declare let unitsFactors: {
     [key: string]: number;
 };
 /**
  * Area of measurement factors based on 1 square meter.
+ *
+ * @memberof helpers
+ * @type {Object}
  */
 export declare let areaFactors: any;
 /**
