@@ -1,6 +1,6 @@
 {
   "name": "@turf/concave",
-  "version": "6.0.0",
+  "version": "6.0.2",
   "description": "turf concave module",
   "main": "index",
   "types": "index.d.ts",
@@ -45,13 +45,14 @@
   },
   "homepage": "https://github.com/Turfjs/turf",
   "devDependencies": {
+    "@types/tape": "*",
+    "@types/topojson": "*",
     "benchmark": "*",
     "load-json-file": "*",
-    "typescript": "*",
     "tape": "*",
-    "write-json-file": "*",
     "tslint": "*",
-    "@types/tape": "*"
+    "typescript": "*",
+    "write-json-file": "*"
   },
   "dependencies": {
     "@turf/clone": "6.x",
@@ -60,7 +61,6 @@
     "@turf/invariant": "6.x",
     "@turf/meta": "6.x",
     "@turf/tin": "6.x",
-    "topojson-client": "3.x",
-    "topojson-server": "3.x"
+    "topojson": "3.x"
   }
 }

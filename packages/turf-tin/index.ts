@@ -1,7 +1,18 @@
-//http://en.wikipedia.org/wiki/Delaunay_triangulation
-//https://github.com/ironwallaby/delaunay
-import { polygon, featureCollection } from '@turf/helpers';
-import { Feature, Point, FeatureCollection, Polygon } from '@turf/helpers';
+// http://en.wikipedia.org/wiki/Delaunay_triangulation
+// https://github.com/ironwallaby/delaunay
+import { featureCollection, polygon } from "@turf/helpers";
+import { Feature, FeatureCollection, Point, Polygon } from "@turf/helpers";
+
+export interface Pt {
+    x: number;
+    y: number;
+    z?: number;
+    __sentinel?: boolean;
+}
+export interface Vertice {
+    x: number;
+    y: number;
+}
 
 /**
  * Takes a set of {@link Point|points} and creates a
@@ -35,16 +46,16 @@ import { Feature, Point, FeatureCollection, Polygon } from '@turf/helpers';
  *   properties.fill = '#' + properties.a + properties.b + properties.c;
  * }
  */
-function tin(
+export default function tin(
     points: FeatureCollection<Point, any>,
-    z?: string
+    z?: string,
 ): FeatureCollection<Polygon> {
-    //break down points
-    var isPointZ = false;
-    return featureCollection(triangulate(points.features.map(function (p) {
-        var point: {x: number, y: number, z?: number} = {
+    // break down points
+    let isPointZ = false;
+    return featureCollection(triangulate(points.features.map((p) => {
+        const point: Pt = {
             x: p.geometry.coordinates[0],
-            y: p.geometry.coordinates[1]
+            y: p.geometry.coordinates[1],
         };
         if (z) {
             point.z = p.properties[z];
@@ -53,12 +64,12 @@ function tin(
             point.z = p.geometry.coordinates[2];
         }
         return point;
-    })).map(function (triangle) {
+    })).map((triangle: any) => {
 
-        var a = [triangle.a.x, triangle.a.y];
-        var b = [triangle.b.x, triangle.b.y];
-        var c = [triangle.c.x, triangle.c.y];
-        var properties = {};
+        const a = [triangle.a.x, triangle.a.y];
+        const b = [triangle.b.x, triangle.b.y];
+        const c = [triangle.c.x, triangle.c.y];
+        let properties = {};
 
         // Add z coordinates to triangle points if user passed
         // them in that way otherwise add it as a property.
@@ -70,7 +81,7 @@ function tin(
             properties = {
                 a: triangle.a.z,
                 b: triangle.b.z,
-                c: triangle.c.z
+                c: triangle.c.z,
             };
         }
 
@@ -79,36 +90,50 @@ function tin(
     }));
 }
 
-function Triangle(a, b, c) {
-    this.a = a;
-    this.b = b;
-    this.c = c;
+class Triangle {
+    public a: Pt;
+    public b: Pt;
+    public c: Pt;
+    public x: number;
+    public y: number;
+    public r: number;
 
-    var A = b.x - a.x,
-        B = b.y - a.y,
-        C = c.x - a.x,
-        D = c.y - a.y,
-        E = A * (a.x + b.x) + B * (a.y + b.y),
-        F = C * (a.x + c.x) + D * (a.y + c.y),
-        G = 2 * (A * (c.y - b.y) - B * (c.x - b.x)),
-        dx, dy;
+    constructor(a: Pt, b: Pt, c: Pt) {
+        this.a = a;
+        this.b = b;
+        this.c = c;
 
-    // If the points of the triangle are collinear, then just find the
-    // extremes and use the midpoint as the center of the circumcircle.
-    this.x = (D * E - B * F) / G;
-    this.y = (A * F - C * E) / G;
-    dx = this.x - a.x;
-    dy = this.y - a.y;
-    this.r = dx * dx + dy * dy;
+        const A = b.x - a.x;
+        const B = b.y - a.y;
+        const C = c.x - a.x;
+        const D = c.y - a.y;
+        const E = A * (a.x + b.x) + B * (a.y + b.y);
+        const F = C * (a.x + c.x) + D * (a.y + c.y);
+        const G = 2 * (A * (c.y - b.y) - B * (c.x - b.x));
+        let dx;
+        let dy;
+
+        // If the points of the triangle are collinear, then just find the
+        // extremes and use the midpoint as the center of the circumcircle.
+        this.x = (D * E - B * F) / G;
+        this.y = (A * F - C * E) / G;
+        dx = this.x - a.x;
+        dy = this.y - a.y;
+        this.r = dx * dx + dy * dy;
+    }
 }
 
-function byX(a, b) {
+function byX(a: Pt, b: Pt) {
     return b.x - a.x;
 }
 
-function dedup(edges) {
-    var j = edges.length,
-        a, b, i, m, n;
+function dedup(edges: number[]) {
+    let j = edges.length;
+    let a;
+    let b;
+    let i;
+    let m;
+    let n;
 
     outer:
     while (j) {
@@ -128,68 +153,71 @@ function dedup(edges) {
     }
 }
 
-function triangulate(vertices) {
+function triangulate(vertices: Vertice[]) {
     // Bail if there aren't enough vertices to form any triangles.
-    if (vertices.length < 3)
+    if (vertices.length < 3) {
         return [];
+    }
 
     // Ensure the vertex array is in order of descending X coordinate
     // (which is needed to ensure a subquadratic runtime), and then find
     // the bounding box around the points.
     vertices.sort(byX);
 
-    var i = vertices.length - 1,
-        xmin = vertices[i].x,
-        xmax = vertices[0].x,
-        ymin = vertices[i].y,
-        ymax = ymin,
-        epsilon = 1e-12;
+    let i = vertices.length - 1;
+    const xmin = vertices[i].x;
+    const xmax = vertices[0].x;
+    let ymin = vertices[i].y;
+    let ymax = ymin;
+    const epsilon = 1e-12;
 
-    var a,
-        b,
-        c,
-        A,
-        B,
-        G;
+    let a;
+    let b;
+    let c;
+    let A;
+    let B;
+    let G;
 
     while (i--) {
-        if (vertices[i].y < ymin)
+        if (vertices[i].y < ymin) {
             ymin = vertices[i].y;
-        if (vertices[i].y > ymax)
+        }
+        if (vertices[i].y > ymax) {
             ymax = vertices[i].y;
+        }
     }
 
-    //Find a supertriangle, which is a triangle that surrounds all the
-    //vertices. This is used like something of a sentinel value to remove
-    //cases in the main algorithm, and is removed before we return any
+    // Find a supertriangle, which is a triangle that surrounds all the
+    // vertices. This is used like something of a sentinel value to remove
+    // cases in the main algorithm, and is removed before we return any
     // results.
 
     // Once found, put it in the "open" list. (The "open" list is for
     // triangles who may still need to be considered; the "closed" list is
     // for triangles which do not.)
-    var dx = xmax - xmin,
-        dy = ymax - ymin,
-        dmax = (dx > dy) ? dx : dy,
-        xmid = (xmax + xmin) * 0.5,
-        ymid = (ymax + ymin) * 0.5,
-        open = [
+    let dx = xmax - xmin;
+    let dy = ymax - ymin;
+    const dmax = (dx > dy) ? dx : dy;
+    const xmid = (xmax + xmin) * 0.5;
+    const ymid = (ymax + ymin) * 0.5;
+    const open = [
             new Triangle({
+                __sentinel: true,
                 x: xmid - 20 * dmax,
                 y: ymid - dmax,
-                __sentinel: true
             }, {
+                __sentinel: true,
                 x: xmid,
                 y: ymid + 20 * dmax,
-                __sentinel: true
             }, {
+                __sentinel: true,
                 x: xmid + 20 * dmax,
                 y: ymid - dmax,
-                __sentinel: true
-            }
-            )],
-        closed = [],
-        edges = [],
-        j;
+            },
+            )];
+    const closed = [];
+    const edges: any = [];
+    let j;
 
     // Incrementally add each vertex to the mesh.
     i = vertices.length;
@@ -212,14 +240,15 @@ function triangulate(vertices) {
 
             // If not, skip this triangle.
             dy = vertices[i].y - open[j].y;
-            if (dx * dx + dy * dy > open[j].r)
+            if (dx * dx + dy * dy > open[j].r) {
                 continue;
+            }
 
             // Remove the triangle and add it's edges to the edge list.
             edges.push(
                 open[j].a, open[j].b,
                 open[j].b, open[j].c,
-                open[j].c, open[j].a
+                open[j].c, open[j].a,
             );
             open.splice(j, 1);
         }
@@ -249,13 +278,13 @@ function triangulate(vertices) {
     Array.prototype.push.apply(closed, open);
 
     i = closed.length;
-    while (i--)
+    while (i--) {
         if (closed[i].a.__sentinel ||
             closed[i].b.__sentinel ||
-            closed[i].c.__sentinel)
+            closed[i].c.__sentinel) {
             closed.splice(i, 1);
+    }
+        }
 
     return closed;
 }
-
-export default tin;

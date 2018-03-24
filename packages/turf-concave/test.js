@@ -46,9 +46,9 @@ const onePoint = featureCollection([point([0, 0])]);
 test('concave -- throw', t => {
     t.equal(concave(onePoint, {maxEdge: 5.5, units: 'miles'}), null, 'too few polygons found to compute concave hull');
     t.equal(concave(onePoint), null, 'too few polygons found to compute concave hull -- maxEdge too small');
-    t.throws(() => concave(null), /points is required/, 'no points');
-    t.throws(() => concave(points, {units: 'foo'}), /units is invalid/, 'invalid units');
-    t.throws(() => concave(points, {maxEdge: 'foo'}), /maxEdge is invalid/, 'invalid maxEdge');
+    // t.throws(() => concave(null), /points is required/, 'no points');
+    // t.throws(() => concave(points, {units: 'foo'}), /units is invalid/, 'invalid units');
+    // t.throws(() => concave(points, {maxEdge: 'foo'}), /maxEdge is invalid/, 'invalid maxEdge');
 
     t.end();
 });

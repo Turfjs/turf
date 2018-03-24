@@ -6,6 +6,7 @@
     },
     "exclude": [
         "node_modules",
-        "packages/*/node_modules"
+        "packages/*/node_modules",
+        "packages/turf-convex/index.ts"
     ]
 }
