@@ -613,11 +613,15 @@ export function degreesToRadians(degrees: number): number {
  * Valid units: miles, nauticalmiles, inches, yards, meters, metres, kilometers, centimeters, feet
  *
  * @param {number} length to be converted
- * @param {Units} originalUnit of the length
+ * @param {Units} [originalUnit="kilometers"] of the length
  * @param {Units} [finalUnit="kilometers"] returned unit
  * @returns {number} the converted length
  */
-export function convertLength(length: number, originalUnit: Units, finalUnit: Units = "kilometers"): number {
+export function convertLength(
+    length: number,
+    originalUnit: Units = "kilometers",
+    finalUnit: Units = "kilometers",
+): number {
     if (!(length >= 0)) { throw new Error("length must be a positive number"); }
     return radiansToLength(lengthToRadians(length, originalUnit), finalUnit);
 }

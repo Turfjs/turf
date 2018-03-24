@@ -44,9 +44,9 @@ test('turf-rhumb-destintation -- throws error', t => {
     t.assert(rhumbDestination(pt, 100, 0).geometry.coordinates[0], '0 bearing is valid');
     // t.throws(() => rhumbDestination(pt, 100, 45, 'blah'), 'unknown option given to units');
     t.throws(() => rhumbDestination(pt, -200, 75), 'invalid distance');
-    t.throws(() => rhumbDestination(pt, null, 75), 'missing distance');
-    t.throws(() => rhumbDestination(pt, 'foo', 75), 'invalid distance - units param switched to distance');
-    t.throws(() => rhumbDestination('foo', 200, 75, {units: 'miles'}), 'invalid point');
+    // t.throws(() => rhumbDestination(pt, null, 75), 'missing distance');
+    // t.throws(() => rhumbDestination(pt, 'foo', 75), 'invalid distance - units param switched to distance');
+    // t.throws(() => rhumbDestination('foo', 200, 75, {units: 'miles'}), 'invalid point');
     t.end();
 });
 

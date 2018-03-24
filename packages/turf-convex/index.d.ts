@@ -27,8 +27,7 @@ import { AllGeoJSON, Feature, Polygon, Properties } from "@turf/helpers";
  * //addToMap
  * var addToMap = [points, hull]
  */
-declare function convex<P = Properties>(geojson: AllGeoJSON, options?: {
+export default function convex<P = Properties>(geojson: AllGeoJSON, options?: {
     concavity?: number;
     properties?: P;
 }): Feature<Polygon, P> | null;
-export default convex;

@@ -398,11 +398,11 @@ export declare function degreesToRadians(degrees: number): number;
  * Valid units: miles, nauticalmiles, inches, yards, meters, metres, kilometers, centimeters, feet
  *
  * @param {number} length to be converted
- * @param {Units} originalUnit of the length
+ * @param {Units} [originalUnit="kilometers"] of the length
  * @param {Units} [finalUnit="kilometers"] returned unit
  * @returns {number} the converted length
  */
-export declare function convertLength(length: number, originalUnit: Units, finalUnit?: Units): number;
+export declare function convertLength(length: number, originalUnit?: Units, finalUnit?: Units): number;
 /**
  * Converts a area to the requested unit.
  * Valid units: kilometers, kilometres, meters, metres, centimetres, millimeters, acres, miles, yards, feet, inches
