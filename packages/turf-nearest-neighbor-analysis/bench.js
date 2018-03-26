@@ -1,8 +1,9 @@
-import Benchmark from 'benchmark';
-import nearestNeighborAnalysis from '.';
-import glob from 'glob';
-import path from 'path';
-import load from 'load-json-file';
+const Benchmark = require('benchmark');
+const glob = require('glob');
+const path = require('path');
+const load = require('load-json-file');
+const nearestNeighborAnalysis = require('.').default;
+
 
 /**
  * Benchmark Results
