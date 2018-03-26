@@ -9,19 +9,19 @@ import { convertArea, featureCollection } from '@turf/helpers';
 import { FeatureCollection, Feature, Point, Polygon, Units, Properties } from '@turf/helpers';
 
 export interface NearestNeighborStatistics {
-    units: Units,
-    arealUnits: string,
-    observedMeanDistance: number,
-    expectedMeanDistance: number,
-    numberOfPoints: number,
-    zScore: number
+    units: Units;
+    arealUnits: string;
+    observedMeanDistance: number;
+    expectedMeanDistance: number;
+    numberOfPoints: number;
+    zScore: number;
 }
- 
+
 export interface NearestNeighborStudyArea extends Feature<Polygon> {
     properties: {
-        nearestNeighborAnalysis: NearestNeighborStatistics,
-        [key: string]: any
-    }
+        nearestNeighborAnalysis: NearestNeighborStatistics;
+        [key: string]: any;
+    };
 }
 
 /**
@@ -45,7 +45,8 @@ export interface NearestNeighborStudyArea extends Feature<Polygon> {
  * - Though the analysis will work on any {@link FeatureCollection} type, it
  * works best with {@link Point} collections.
  *
- * - This analysis is _very_ sensitive to the study area provided. If no {@link Feature<Polygon>} is passed as the study area, the function draws a box
+ * - This analysis is _very_ sensitive to the study area provided.
+ * If no {@link Feature<Polygon>} is passed as the study area, the function draws a box
  * around the data, which may distort the findings. This analysis works best
  * with a bounded area of interest within with the data is either clustered,
  * dispersed, or randomly distributed. For example, a city's subway stops may
@@ -85,17 +86,17 @@ function nearestNeighborAnalysis(dataset: FeatureCollection<any>, options?: {
     const properties = options.properties || {};
     const units = options.units || 'kilometers';
 
-    const features: Feature<Point>[] = [];
-    featureEach(dataset, function (feature) {
+    const features: Array<Feature<Point>> = [];
+    featureEach(dataset, (feature) => {
         features.push(centroid(feature));
     });
     const n = features.length;
-    const observedMeanDistance = features.map(function (feature, index) {
-        const otherFeatures = featureCollection<Point>(features.filter(function (f, i) {
+    const observedMeanDistance = features.map((feature, index) => {
+        const otherFeatures = featureCollection<Point>(features.filter((f, i) => {
             return i !== index;
         }));
-        return distance(feature, nearestPoint(feature, otherFeatures), {units: units});
-    }).reduce(function (sum, value) { return sum + value; }, 0) / n;
+        return distance(feature, nearestPoint(feature, otherFeatures), {units});
+    }).reduce((sum, value) => { return sum + value; }, 0) / n;
 
     const populationDensity = n / convertArea(area(studyArea), 'meters', units);
     const expectedMeanDistance = 1 / (2 * Math.sqrt(populationDensity));
@@ -107,10 +108,10 @@ function nearestNeighborAnalysis(dataset: FeatureCollection<any>, options?: {
         expectedMeanDistance: expectedMeanDistance,
         nearestNeighborIndex: observedMeanDistance / expectedMeanDistance,
         numberOfPoints: n,
-        zScore: (observedMeanDistance - expectedMeanDistance) / variance
+        zScore: (observedMeanDistance - expectedMeanDistance) / variance,
     };
     studyArea.properties = properties;
-    
+
     return studyArea as NearestNeighborStudyArea;
 }
 

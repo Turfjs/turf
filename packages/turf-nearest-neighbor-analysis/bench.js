@@ -4,7 +4,6 @@ const path = require('path');
 const load = require('load-json-file');
 const nearestNeighborAnalysis = require('.').default;
 
-
 /**
  * Benchmark Results
  *

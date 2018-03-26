@@ -14,7 +14,7 @@ const nearestNeighborAnalysis = require('.').default;
 test('turf-nearest-neighbor', t => {
   glob.sync(path.join(__dirname, 'test', 'in', '*.json')).forEach(filepath => {
     // Define params
-    const {name} = path.parse(filepath);    
+    const {name} = path.parse(filepath);
     const geojson = load.sync(filepath);
     const options = geojson.options;
     const results = featureCollection([]);
@@ -22,11 +22,11 @@ test('turf-nearest-neighbor', t => {
     if (geojson.features[0].geometry.type === "Polygon") {
       featureEach(geojson, feature => results.features.push(truncate(centroid(feature, {properties: {"marker-color": "#0a0"}}))));
     }
-    results.features.push(truncate(nearestNeighborAnalysis(geojson, options)));    
-    const out = filepath.replace('in', 'out');    
-    if (process.env.REGEN) write.sync(out, results);    
+    results.features.push(truncate(nearestNeighborAnalysis(geojson, options)));
+    const out = filepath.replace('in', 'out');
+    if (process.env.REGEN) write.sync(out, results);
     t.deepEqual(results, load.sync(out), name);
-    
+
   });
   t.end();
 });

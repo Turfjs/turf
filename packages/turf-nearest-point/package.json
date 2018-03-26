@@ -7,12 +7,12 @@
   "files": [
     "index.js",
     "index.ts",
-    "index.d.ts"    
+    "index.d.ts"
   ],
   "scripts": {
     "prepare": "tsc",
     "pretest": "tsc",
-    "test": "node test.js",    
+    "test": "node test.js",
     "bench": "node bench.js",
     "docs": "node ../../scripts/generate-readmes"
   },
