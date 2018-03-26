@@ -1,7 +1,11 @@
-import clone from '@turf/clone';
-import distance from '@turf/distance';
-import { featureEach } from '@turf/meta';
-
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+}
+Object.defineProperty(exports, "__esModule", { value: true });
+var clone_1 = __importDefault(require("@turf/clone"));
+var distance_1 = __importDefault(require("@turf/distance"));
+var meta_1 = require("@turf/meta");
 /**
  * Takes a reference {@link Point|point} and a FeatureCollection of Features
  * with Point geometries and returns the
@@ -28,23 +32,23 @@ import { featureEach } from '@turf/meta';
  */
 function nearestPoint(targetPoint, points) {
     // Input validation
-    if (!targetPoint) throw new Error('targetPoint is required');
-    if (!points) throw new Error('points is required');
-
+    if (!targetPoint)
+        throw new Error('targetPoint is required');
+    if (!points)
+        throw new Error('points is required');
     var nearest;
     var minDist = Infinity;
     var bestFeatureIndex = 0;
-    featureEach(points, function (pt, featureIndex) {
-        var distanceToPoint = distance(targetPoint, pt);
+    meta_1.featureEach(points, function (pt, featureIndex) {
+        var distanceToPoint = distance_1.default(targetPoint, pt);
         if (distanceToPoint < minDist) {
             bestFeatureIndex = featureIndex;
             minDist = distanceToPoint;
         }
     });
-    nearest = clone(points.features[bestFeatureIndex]);
+    nearest = clone_1.default(points.features[bestFeatureIndex]);
     nearest.properties.featureIndex = bestFeatureIndex;
     nearest.properties.distanceToPoint = minDist;
     return nearest;
 }
-
-export default nearestPoint;
+exports.default = nearestPoint;
