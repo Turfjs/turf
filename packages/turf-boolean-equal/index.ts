@@ -1,6 +1,6 @@
 import * as GeojsonEquality from 'geojson-equality';
 import cleanCoords from '@turf/clean-coords';
-import { getType } from '@turf/invariant';
+import { getGeom } from '@turf/invariant';
 import { Feature, Geometry } from '@turf/helpers';
 
 /**
@@ -21,15 +21,12 @@ import { Feature, Geometry } from '@turf/helpers';
  * turf.booleanEqual(pt2, pt3);
  * //= false
  */
-function booleanEqual<G1 extends Geometry, G2 extends Geometry>(feature1: Feature<G1> | G1, feature2: Feature<G2> | G2): boolean {
-    // validation
-    if (!feature1) throw new Error('feature1 is required');
-    if (!feature2) throw new Error('feature2 is required');
-    var type1 = getType(feature1);
-    var type2 = getType(feature2);
+function booleanEqual(feature1: Feature<any> | Geometry, feature2: Feature<any> | Geometry): boolean {
+    const type1 = getGeom(feature1).type;
+    const type2 = getGeom(feature2).type;
     if (type1 !== type2) return false;
 
-    var equality = new GeojsonEquality({precision: 6});
+    const equality = new GeojsonEquality({precision: 6});
     return equality.compare(cleanCoords(feature1), cleanCoords(feature2));
 }
 
