@@ -1,11 +1,12 @@
-import fs from 'fs';
-import test from 'tape';
-import glob from 'glob';
-import path from 'path';
-import load from 'load-json-file';
-import write from 'write-json-file';
-import {featureCollection, point} from '@turf/helpers';
-import nearestPoint from './';
+const fs = require('fs');
+const test = require('tape');
+const glob = require('glob');
+const path = require('path');
+const load = require('load-json-file');
+const write = require('write-json-file');
+const {featureCollection, point} = require('@turf/helpers');
+const nearestPoint = require('./').default;
+
 
 const directories = {
     in: path.join(__dirname, 'test', 'in') + path.sep,

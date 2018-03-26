@@ -1,4 +1,8 @@
+import clone from '@turf/clone';
+import distance from '@turf/distance';
+import { featureEach } from '@turf/meta';
 import { Coord, Feature, FeatureCollection, Point } from '@turf/helpers';
+
 export interface NearestPoint extends Feature<Point> {
     properties: {
         featureIndex: number;
@@ -6,6 +10,7 @@ export interface NearestPoint extends Feature<Point> {
         [key: string]: any;
     };
 }
+
 /**
  * Takes a reference {@link Point|point} and a FeatureCollection of Features
  * with Point geometries and returns the
@@ -30,5 +35,25 @@ export interface NearestPoint extends Feature<Point> {
  * var addToMap = [targetPoint, points, nearest];
  * nearest.properties['marker-color'] = '#F00';
  */
-declare function nearestPoint(targetPoint: Coord, points: FeatureCollection<Point>): NearestPoint;
+function nearestPoint(targetPoint: Coord, points: FeatureCollection<Point>): NearestPoint {
+    // Input validation
+    if (!targetPoint) throw new Error('targetPoint is required');
+    if (!points) throw new Error('points is required');
+
+    let nearest: NearestPoint;
+    let minDist: number = Infinity;
+    let bestFeatureIndex: number = 0;
+    featureEach(points,  (pt, featureIndex) => {
+        const distanceToPoint = distance(targetPoint, pt);
+        if (distanceToPoint < minDist) {
+            bestFeatureIndex = featureIndex;
+            minDist = distanceToPoint;
+        }
+    });
+    nearest = clone(points.features[bestFeatureIndex]);
+    nearest.properties.featureIndex = bestFeatureIndex;
+    nearest.properties.distanceToPoint = minDist;
+    return nearest;
+}
+
 export default nearestPoint;
