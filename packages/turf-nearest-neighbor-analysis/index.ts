@@ -6,6 +6,23 @@ import distance from '@turf/distance';
 import nearestPoint from '@turf/nearest-point';
 import { featureEach } from '@turf/meta';
 import { convertArea, featureCollection } from '@turf/helpers';
+import { FeatureCollection, Feature, Point, Polygon, Units, Properties } from '@turf/helpers';
+
+export interface NearestNeighborStatistics {
+    units: Units;
+    arealUnits: string;
+    observedMeanDistance: number;
+    expectedMeanDistance: number;
+    numberOfPoints: number;
+    zScore: number;
+}
+
+export interface NearestNeighborStudyArea extends Feature<Polygon> {
+    properties: {
+        nearestNeighborAnalysis: NearestNeighborStatistics;
+        [key: string]: any;
+    };
+}
 
 /**
  * Nearest Neighbor Analysis calculates an index based the average distances
@@ -28,7 +45,8 @@ import { convertArea, featureCollection } from '@turf/helpers';
  * - Though the analysis will work on any {@link FeatureCollection} type, it
  * works best with {@link Point} collections.
  *
- * - This analysis is _very_ sensitive to the study area provided. If no {@link Feature<Polygon>} is passed as the study area, the function draws a box
+ * - This analysis is _very_ sensitive to the study area provided.
+ * If no {@link Feature<Polygon>} is passed as the study area, the function draws a box
  * around the data, which may distort the findings. This analysis works best
  * with a bounded area of interest within with the data is either clustered,
  * dispersed, or randomly distributed. For example, a city's subway stops may
@@ -57,40 +75,44 @@ import { convertArea, featureCollection } from '@turf/helpers';
  * //addToMap
  * var addToMap = [dataset, nearestNeighborStudyArea];
  */
-function nearestNeighborAnalysis(dataset, options) {
+function nearestNeighborAnalysis(dataset: FeatureCollection<any>, options?: {
+    studyArea?: Feature<Polygon>;
+    units?: Units;
+    properties?: Properties;
+}): NearestNeighborStudyArea {
     // Optional params
     options = options || {};
-    var studyArea = options.studyArea || bboxPolygon(bbox(dataset));
-    var properties = options.properties || {};
-    var units = options.units || 'kilometers';
+    const studyArea = options.studyArea || bboxPolygon(bbox(dataset));
+    const properties = options.properties || {};
+    const units = options.units || 'kilometers';
 
-    var features = [];
-    featureEach(dataset, function (feature) {
+    const features: Array<Feature<Point>> = [];
+    featureEach(dataset, (feature) => {
         features.push(centroid(feature));
     });
-    var n = features.length;
-    var observedMeanDistance = features.map(function (feature, index) {
-        var otherFeatures = featureCollection(features.filter(function (f, i) {
+    const n = features.length;
+    const observedMeanDistance = features.map((feature, index) => {
+        const otherFeatures = featureCollection<Point>(features.filter((f, i) => {
             return i !== index;
         }));
-        return distance(feature, nearestPoint(feature, otherFeatures), {units: units});
-    }).reduce(function (sum, value) { return sum + value; }, 0) / n;
+        return distance(feature, nearestPoint(feature, otherFeatures), {units});
+    }).reduce((sum, value) => { return sum + value; }, 0) / n;
 
-    var populationDensity = n / convertArea(area(studyArea), 'meters', units);
-    var expectedMeanDistance = 1 / (2 * Math.sqrt(populationDensity));
-    var variance = 0.26136 / (Math.sqrt(n * populationDensity));
-    studyArea.properties = properties;
-    studyArea.properties.nearestNeighborAnalysis = {
+    const populationDensity = n / convertArea(area(studyArea), 'meters', units);
+    const expectedMeanDistance = 1 / (2 * Math.sqrt(populationDensity));
+    const variance = 0.26136 / (Math.sqrt(n * populationDensity));
+    properties.nearestNeighborAnalysis = {
         units: units,
         arealUnits: units + '²',
         observedMeanDistance: observedMeanDistance,
         expectedMeanDistance: expectedMeanDistance,
         nearestNeighborIndex: observedMeanDistance / expectedMeanDistance,
         numberOfPoints: n,
-        zScore: (observedMeanDistance - expectedMeanDistance) / variance
+        zScore: (observedMeanDistance - expectedMeanDistance) / variance,
     };
+    studyArea.properties = properties;
 
-    return studyArea;
+    return studyArea as NearestNeighborStudyArea;
 }
 
 export default nearestNeighborAnalysis;
