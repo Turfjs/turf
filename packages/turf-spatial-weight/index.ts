@@ -1,8 +1,6 @@
-import { FeatureCollection, Feature } from '@turf/helpers';
-import { Point } from 'geojson';
+import { Point, FeatureCollection, Feature } from '@turf/helpers';
 import { featureEach } from '@turf/meta';
 import centroid from '@turf/centroid';
-
 import { getCoord } from '@turf/invariant';
 
 /**

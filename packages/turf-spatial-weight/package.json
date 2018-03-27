@@ -41,6 +41,9 @@
     "tape": "*"
   },
   "dependencies": {
-    "@turf/helpers": "6.x"
+    "@turf/helpers": "6.x",
+    "@turf/invariant": "6.x",
+    "@turf/centroid": "6.x",
+    "@turf/meta": "6.x"
   }
 }

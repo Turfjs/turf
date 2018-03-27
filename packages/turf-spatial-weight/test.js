@@ -84,7 +84,7 @@ test('turf-spatial-weight', t => {
   });
   t.equal(result[0][1], 0.5, 'standardization 2');
 
-  console.log(result[0])
+  
 
   // test default
   result = spatialWeight(columbusJson);

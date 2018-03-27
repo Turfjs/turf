@@ -1,5 +1,4 @@
-import { FeatureCollection, Feature } from '@turf/helpers';
-import { Point } from 'geojson';
+import { Point, FeatureCollection, Feature } from '@turf/helpers';
 /**
  * calcualte the Minkowski p-norm distance between two features.
  * @param feature1 point feature
