@@ -36,7 +36,10 @@ export function pNormDistance(feature1: Feature<Point>, feature2: Feature<Point>
  * @param {boolean} [options.standardization] row standardization.
  * @returns {Array<Array<number>>} spatial weight matrix.
  * @example
- * <SIMPLE EXAMPLE>
+ * 
+ * var bbox = [-65, 40, -63, 42];
+ * var dataset = turf.randomPoint(100, { bbox: bbox });
+ * var result = turf.spatialWeight(dataset);
  */
 export default function spatialWeight(fc: FeatureCollection<any>, options?: {
   threshold?: number;
