@@ -27,7 +27,9 @@ calcualte the Minkowski p-norm distance between two features.
 **Examples**
 
 ```javascript
-<SIMPLE EXAMPLE>
+var bbox = [-65, 40, -63, 42];
+var dataset = turf.randomPoint(100, { bbox: bbox });
+var result = turf.spatialWeight(dataset);
 ```
 
 Returns **[Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number)>>** spatial weight matrix.
