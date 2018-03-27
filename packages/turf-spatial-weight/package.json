@@ -1,0 +1,46 @@
+{
+  "name": "@turf/spatial-weight",
+  "version": "6.0.0",
+  "description": "turf spatial-weight module",
+  "main": "index",  
+  "types": "index.d.ts",
+  "files": [
+    "index.js",
+    "index.ts",
+    "index.d.ts"
+  ],
+  "scripts": {
+    "prepare": "tsc",
+    "pretest": "tsc",
+    "test": "node test.js",
+    "bench": "node bench.js",
+    "docs": "node ../../scripts/generate-readmes"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/Turfjs/turf.git"
+  },
+  "keywords": [
+    "turf",
+    "spatial-weight"
+  ],
+  "author": "Turf Authors",
+  "contributors": [
+    "Haoming Zhuang <@zhuang-hao-ming>"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Turfjs/turf/issues"
+  },
+  "homepage": "https://github.com/Turfjs/turf",
+  "devDependencies": {    
+    "benchmark": "*",
+    "rollup": "*",
+    "write-json-file": "*",
+    "load-json-file": "*",
+    "tape": "*"
+  },
+  "dependencies": {
+    "@turf/helpers": "6.x"
+  }
+}
