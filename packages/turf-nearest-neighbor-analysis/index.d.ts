@@ -34,7 +34,8 @@ export interface NearestNeighborStudyArea extends Feature<Polygon> {
  * - Though the analysis will work on any {@link FeatureCollection} type, it
  * works best with {@link Point} collections.
  *
- * - This analysis is _very_ sensitive to the study area provided. If no {@link Feature<Polygon>} is passed as the study area, the function draws a box
+ * - This analysis is _very_ sensitive to the study area provided.
+ * If no {@link Feature<Polygon>} is passed as the study area, the function draws a box
  * around the data, which may distort the findings. This analysis works best
  * with a bounded area of interest within with the data is either clustered,
  * dispersed, or randomly distributed. For example, a city's subway stops may
