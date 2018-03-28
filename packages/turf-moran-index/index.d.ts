@@ -1,6 +1,5 @@
 import { FeatureCollection } from '@turf/helpers';
 /**
- *
  * Moran's I measures patterns of attribute values associated with features.
  * The method reveal whether similar values tend to occur near each other,
  * or whether high or low values are interspersed.
@@ -24,14 +23,14 @@ import { FeatureCollection } from '@turf/helpers';
  * 3. Andy Mitchell, The ESRI Guide to GIS Analysis Volume 2: Spatial Measurements & Statistics.
  *
  * @param {FeatureCollection<any>} fc
- * @param {Object} option
- * @param {string} option.inputField the property name
- * @param {number} [option.threshold] the distance threshold
- * @param {number} [option.p] the Minkowski p-norm distance parameter
- * @param {boolean} [option.binary] whether transfrom the distance to binary
- * @param {number} [option.alpha] the distance decay parameter
- * @param {boolean} [option.standardization] wheter row standardization the distance
- * @returns {moranI, expectMoranI, stdNorm, zNorm}
+ * @param {Object} options
+ * @param {string} options.inputField the property name
+ * @param {number} [options.threshold] the distance threshold
+ * @param {number} [options.p] the Minkowski p-norm distance parameter
+ * @param {boolean} [options.binary] whether transfrom the distance to binary
+ * @param {number} [options.alpha] the distance decay parameter
+ * @param {boolean} [options.standardization] wheter row standardization the distance
+ * @returns
  * @example
  *
  * const result = moranIndex(pointJson, {
