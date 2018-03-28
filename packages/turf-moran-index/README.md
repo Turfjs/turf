@@ -8,7 +8,9 @@ get mean of a list
 
 **Parameters**
 
--   `y`  
+-   `y` **[Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number)>** 
+
+Returns **[number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number)** 
 
 ## variance
 
@@ -16,7 +18,9 @@ get variance of a list
 
 **Parameters**
 
--   `y`  
+-   `y` **[Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number)>** 
+
+Returns **[number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number)** 
 
 ## moranIndex
 
@@ -36,9 +40,11 @@ the z-score can be calculated based on a normal or random assumption.
 
 **Bibliography\***
 
-[Moran's I](https://en.wikipedia.org/wiki/Moran%27s_I)
-[pysal](http://pysal.readthedocs.io/en/latest/index.html)
-Andy Mitchell, The ESRI Guide to GIS Analysis Volume 2: Spatial Measurements & Statistics.
+1.  [Moran's I](https://en.wikipedia.org/wiki/Moran%27s_I)
+
+2.  [pysal](http://pysal.readthedocs.io/en/latest/index.html)
+
+3.  Andy Mitchell, The ESRI Guide to GIS Analysis Volume 2: Spatial Measurements & Statistics.
 
 **Parameters**
 
@@ -46,11 +52,11 @@ Andy Mitchell, The ESRI Guide to GIS Analysis Volume 2: Spatial Measurements & S
 -   `options`  
 -   `option` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** 
     -   `option.inputField` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** the property name
-    -   `option.threshold` **[number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number)?** the distance threshold [distance-weight](distance-weight)
-    -   `option.p` **[number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number)?** the Minkowski p-norm distance parameter [distance-weight](distance-weight)
-    -   `option.binary` **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)?** whether transfrom the distance to binary [distance-weight](distance-weight)
-    -   `option.alpha` **[number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number)?** the distance decay parameter [distance-weight](distance-weight)
-    -   `option.standardization` **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)?** wheter row standardization the distance [distance-weight](distance-weight)
+    -   `option.threshold` **[number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number)?** the distance threshold
+    -   `option.p` **[number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number)?** the Minkowski p-norm distance parameter
+    -   `option.binary` **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)?** whether transfrom the distance to binary
+    -   `option.alpha` **[number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number)?** the distance decay parameter
+    -   `option.standardization` **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)?** wheter row standardization the distance
 
 **Examples**
 
