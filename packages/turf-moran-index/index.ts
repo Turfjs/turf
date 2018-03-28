@@ -4,7 +4,8 @@ import { featureEach } from '@turf/meta';
 
 /**
  * get mean of a list
- * @param y
+ * @param {number[]} y
+ * @returns {number}
  */
 function mean(y: number[]): number {
     let sum = 0;
@@ -15,7 +16,8 @@ function mean(y: number[]): number {
 }
 /**
  * get variance of a list
- * @param y
+ * @param {number[]} y
+ * @returns {number}
  */
 function variance(y: number[]): number {
     const yMean = mean(y);
@@ -44,18 +46,20 @@ function variance(y: number[]): number {
  *
  * **Bibliography***
  *
- * [Moran's I](https://en.wikipedia.org/wiki/Moran%27s_I)
- * [pysal](http://pysal.readthedocs.io/en/latest/index.html)
- * Andy Mitchell, The ESRI Guide to GIS Analysis Volume 2: Spatial Measurements & Statistics.
+ * 1. [Moran's I](https://en.wikipedia.org/wiki/Moran%27s_I)
+ * 
+ * 2. [pysal](http://pysal.readthedocs.io/en/latest/index.html)
+ * 
+ * 3. Andy Mitchell, The ESRI Guide to GIS Analysis Volume 2: Spatial Measurements & Statistics.
  *
  * @param {FeatureCollection<any>} fc
  * @param {Object} option
  * @param {string} option.inputField the property name
- * @param {number} [option.threshold] the distance threshold {@link distance-weight}
- * @param {number} [option.p] the Minkowski p-norm distance parameter {@link distance-weight}
- * @param {boolean} [option.binary] whether transfrom the distance to binary {@link distance-weight}
- * @param {number} [option.alpha] the distance decay parameter {@link distance-weight}
- * @param {boolean} [option.standardization] wheter row standardization the distance {@link distance-weight}
+ * @param {number} [option.threshold] the distance threshold
+ * @param {number} [option.p] the Minkowski p-norm distance parameter
+ * @param {boolean} [option.binary] whether transfrom the distance to binary
+ * @param {number} [option.alpha] the distance decay parameter
+ * @param {boolean} [option.standardization] wheter row standardization the distance
  * @returns {moranI, expectMoranI, stdNorm, zNorm}
  * @example
  *
