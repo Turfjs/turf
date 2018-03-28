@@ -19,7 +19,21 @@ test('turf-moran-index', t => {
     expectMoranI: -0.020833333333333332,
     stdNorm: 0.022208244679327364,
     zNorm: 7.991964823383264,
-  }, 'clustered pattern');
+  }, 'point clustered pattern');
+
+  const columbusPath = path.join(__dirname, 'test', 'in', 'columbus.json');
+  const columbusJson = load.sync(columbusPath);
+
+  const result1 = moranIndex(columbusJson, {
+    inputField: 'CRIME',
+  });
+
+  t.deepEqual(result1, {
+    moranI: 0.1485081274747776,
+    expectMoranI: -0.020833333333333332,
+    stdNorm: 0.02374513825431575,
+    zNorm: 7.131626651082253
+  }, 'polygon clustered pattern');
 
   t.end();
 });
