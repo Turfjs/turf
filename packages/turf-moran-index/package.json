@@ -2,7 +2,7 @@
   "name": "@turf/moran-index",
   "version": "6.0.0",
   "description": "turf moran-index module",
-  "main": "index",  
+  "main": "index",
   "types": "index.d.ts",
   "files": [
     "index.js",
@@ -33,7 +33,7 @@
     "url": "https://github.com/Turfjs/turf/issues"
   },
   "homepage": "https://github.com/Turfjs/turf",
-  "devDependencies": {    
+  "devDependencies": {
     "benchmark": "*",
     "rollup": "*",
     "write-json-file": "*",

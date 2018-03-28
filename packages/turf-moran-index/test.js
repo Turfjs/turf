@@ -19,13 +19,7 @@ test('turf-moran-index', t => {
     expectMoranI: -0.020833333333333332,
     stdNorm: 0.022208244679327364,
     zNorm: 7.991964823383264,
-  });
-
-
-
-
-
-  // console.log(result[0]);
+  }, 'clustered pattern');
 
   t.end();
 });

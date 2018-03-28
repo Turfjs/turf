@@ -1,5 +1,5 @@
 const Benchmark = require('benchmark');
-const moranIndex = require('.');
+const moranIndex = require('.').default;
 const glob = require('glob');
 const path = require('path');
 const load = require('load-json-file');
@@ -7,7 +7,8 @@ const load = require('load-json-file');
 /**
  * Benchmark Results
  *
- * <Place results here>
+ * point: 3.434ms
+ * point x 4,672 ops/sec ±1.38% (94 runs sampled)
  */
 const suite = new Benchmark.Suite('turf-moran-index');
 
