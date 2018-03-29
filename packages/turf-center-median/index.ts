@@ -31,7 +31,7 @@ import { featureEach } from '@turf/meta';
  *
  * `@turf/center-median` takes the mean center and tries to find, iteratively,
  * a new point that requires the least amount of travel from all the points in
- * the dataset. It is not as sensitive to outliers as `@turf/center`, but it is
+ * the dataset. It is not as sensitive to outliers as `@turf/center-mean`, but it is
  * attracted to clustered data. It, too, can be weighted.
  *
  * **Bibliography**
