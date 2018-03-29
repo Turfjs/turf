@@ -29,18 +29,20 @@ import { featureEach } from '@turf/meta';
  *
  * @param {FeatureCollection<any>} fc
  * @param {Object} options
- * @param {string} options.inputField the property name
- * @param {number} [options.threshold] the distance threshold
- * @param {number} [options.p] the Minkowski p-norm distance parameter
- * @param {boolean} [options.binary] whether transfrom the distance to binary
- * @param {number} [options.alpha] the distance decay parameter
- * @param {boolean} [options.standardization] wheter row standardization the distance
- * @returns
+ * @param {string} options.inputField the property name, must contain numeric values
+ * @param {number} [options.threshold=100000] the distance threshold
+ * @param {number} [options.p=2] the Minkowski p-norm distance parameter
+ * @param {boolean} [options.binary=false] whether transfrom the distance to binary
+ * @param {number} [options.alpha=-1] the distance decay parameter
+ * @param {boolean} [options.standardization=true] wheter row standardization the distance
+ * @returns {MoranIndex}
  * @example
  *
+ * const pointJson = load.sync('./test/in/point.json');
  * const result = moranIndex(pointJson, {
  *   inputField: 'CRIME',
  * });
+ * console.log(result.moranIndex);
  *
  */
 
@@ -52,8 +54,8 @@ export default function moranIndex(fc: FeatureCollection<any>, options: {
     alpha?: number;
     standardization?: boolean;
 }): {
-        moranI: number;
-        expectMoranI: number;
+        moranIndex: number;
+        expectedMoranIndex: number;
         stdNorm: number;
         zNorm: number;
     } {
@@ -100,17 +102,17 @@ export default function moranIndex(fc: FeatureCollection<any>, options: {
     }
     s1 = 0.5 * s1;
 
-    const moranI = weightSum / s0 / yVar;
-    const expectMoranI = -1 / (n - 1);
+    const moranIndex = weightSum / s0 / yVar;
+    const expectedMoranIndex = -1 / (n - 1);
     const vNum = (n * n) * s1 - n * s2 + 3 * (s0 * s0);
     const vDen = (n - 1) * (n + 1) * (s0 * s0);
-    const vNorm = vNum / vDen - (expectMoranI * expectMoranI);
+    const vNorm = vNum / vDen - (expectedMoranIndex * expectedMoranIndex);
     const stdNorm = Math.sqrt(vNorm);
-    const zNorm = (moranI - expectMoranI) / stdNorm;
+    const zNorm = (moranIndex - expectedMoranIndex) / stdNorm;
 
     return {
-        moranI,
-        expectMoranI,
+        moranIndex,
+        expectedMoranIndex,
         stdNorm,
         zNorm,
     };
@@ -144,3 +146,12 @@ function variance(y: number[]): number {
     }
     return sum / y.length;
 }
+
+
+/**
+ * @typedef {Object} MoranIndex
+ * @property {number} moranIndex the moran's Index of the observed feature set
+ * @property {number} expectedMoranIndex the moran's Index of the random distribution
+ * @property {number} stdNorm the standard devitaion of the random distribution
+ * @property {number} zNorm the z-score of the observe samples with regard to the random distribution
+ */

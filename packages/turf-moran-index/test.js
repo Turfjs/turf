@@ -15,8 +15,8 @@ test('turf-moran-index', t => {
   });
 
   t.deepEqual(result, {
-    moranI: 0.15665417693293948,
-    expectMoranI: -0.020833333333333332,
+    moranIndex: 0.15665417693293948,
+    expectedMoranIndex: -0.020833333333333332,
     stdNorm: 0.022208244679327364,
     zNorm: 7.991964823383264,
   }, 'point clustered pattern');
@@ -29,8 +29,8 @@ test('turf-moran-index', t => {
   });
 
   t.deepEqual(result1, {
-    moranI: 0.1485081274747776,
-    expectMoranI: -0.020833333333333332,
+    moranIndex: 0.1485081274747776,
+    expectedMoranIndex: -0.020833333333333332,
     stdNorm: 0.02374513825431575,
     zNorm: 7.131626651082253
   }, 'polygon clustered pattern');
