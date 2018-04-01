@@ -9,37 +9,41 @@ import destination from '@turf/destination';
 /**
  * get euclidean distance between two points.
  * @name euclideanDistance
- * @param coords 
+ * @param coords
  */
 function euclideanDistance(coords: number[][]) {
-    let [x0, y0]: number[] = coords[0];
-    let [x1, y1]: number[] = coords[1];
-    let dx: number = x1 - x0;
-    let dy: number = y1 - y0;
+    const [x0, y0]: number[] = coords[0];
+    const [x1, y1]: number[] = coords[1];
+    const dx: number = x1 - x0;
+    const dy: number = y1 - y0;
     return Math.sqrt(Math.pow(dx, 2) + Math.pow(dy, 2));
 }
 
 /**
  * get the length of a LineString, both in projected or geographical coordinate system.
  * @name getLengthOfLineString
- * @param {Feature<LineString>} line 
- * @param {boolean} isPlanar 
+ * @param {Feature<LineString>} line
+ * @param {boolean} isPlanar
  */
 function getLengthOfLineString(line: Feature<LineString>, isPlanar: boolean) {
     if (isPlanar) {
         return segmentReduce<number>(line, (previousValue?: number, segment?: Feature<LineString>): number => {
-            let coords = segment.geometry.coordinates;// the signatrue of segmentReduce has problem ?
+            const coords = segment.geometry.coordinates; // the signatrue of segmentReduce has problem ?
             return previousValue + euclideanDistance(coords);
         }, 0);
     } else {
         return length(line, {
-            units: 'meters'
+            units: 'meters',
         });
     }
 }
 
-
-// bearing to xy(from due earth counterclockwise 0-180)
+/**
+ * bearing to xy(from due earth counterclockwise 0-180)
+ * convert between two forms
+ * @name bearingToCartesian
+ * @param angle 
+ */
 function bearingToCartesian(angle: number): number {
     let result = 90 - angle;
     if (result > 180) {
@@ -50,27 +54,27 @@ function bearingToCartesian(angle: number): number {
 
 /**
  * @name getCosAndSin
- * @param {number[][]} coordinates
- * @returns {[number, number]}
+ * @param {Array<Array<number>>} coordinates
+ * @returns {Array<number>} [cos, sin]
  */
 function getCosAndSin(coordinates: number[][], isPlanar: boolean): [number, number] {
-    let beginPoint: number[] = coordinates[0];
-    let endPoint: number[] = coordinates[coordinates.length - 1]
+    const beginPoint: number[] = coordinates[0];
+    const endPoint: number[] = coordinates[coordinates.length - 1];
     if (isPlanar) {
-        let [x0, y0]: number[] = beginPoint;
-        let [x1, y1]: number[] = endPoint;
-        let dx: number = x1 - x0;
-        let dy: number = y1 - y0;
-        let h = Math.sqrt(Math.pow(dx, 2) + Math.pow(dy, 2));
+        const [x0, y0]: number[] = beginPoint;
+        const [x1, y1]: number[] = endPoint;
+        const dx: number = x1 - x0;
+        const dy: number = y1 - y0;
+        const h = Math.sqrt(Math.pow(dx, 2) + Math.pow(dy, 2));
         if (h < 0.000000001) {
             return [NaN, NaN];
         }
-        let sin1 = dy / h;
-        let cos1 = dx / h;
+        const sin1 = dy / h;
+        const cos1 = dx / h;
         return [sin1, cos1];
     } else {
-        let angle = bearingToCartesian(bearing(beginPoint, endPoint));
-        let radian = angle * Math.PI / 180;
+        const angle = bearingToCartesian(bearing(beginPoint, endPoint));
+        const radian = angle * Math.PI / 180;
         return [Math.sin(radian), Math.cos(radian)];
     }
 
@@ -104,39 +108,38 @@ function getCircularVariance(sin1: number, cos1: number, len: number) {
 
 function getMeanLineString(centroidOfLine: number[], angle: number, lenOfLine: number, isPlanar: boolean) {
     if (isPlanar) {
-        let [averageX, averageY]: number[] = centroidOfLine;
-        let begin_x: number;
-        let begin_y: number;
-        let end_x: number;
-        let end_y: number;
-        let r: number = angle * Math.PI / 180;
-        let sin: number = Math.sin(r);
-        let cos: number = Math.cos(r);
-        begin_x = averageX - lenOfLine / 2 * cos;
-        begin_y = averageY - lenOfLine / 2 * sin;
-        end_x = averageX + lenOfLine / 2 * cos;
-        end_y = averageY + lenOfLine / 2 * sin;
+        const [averageX, averageY]: number[] = centroidOfLine;
+        let beginX: number;
+        let beginY: number;
+        let endX: number;
+        let endY: number;
+        const r: number = angle * Math.PI / 180;
+        const sin: number = Math.sin(r);
+        const cos: number = Math.cos(r);
+        beginX = averageX - lenOfLine / 2 * cos;
+        beginY = averageY - lenOfLine / 2 * sin;
+        endX = averageX + lenOfLine / 2 * cos;
+        endY = averageY + lenOfLine / 2 * sin;
         return [
-            [begin_x, begin_y],
-            [end_x, end_y],
-        ]
+            [beginX, beginY],
+            [endX, endY],
+        ];
     } else {
-        let end = destination(point(centroidOfLine), lenOfLine / 2, angle, { units: 'meters' });
-        let begin = destination(point(centroidOfLine), -lenOfLine / 2, angle, { units: 'meters' });
+        const end = destination(point(centroidOfLine), lenOfLine / 2, angle, { units: 'meters' });
+        const begin = destination(point(centroidOfLine), -lenOfLine / 2, angle, { units: 'meters' });
         return [
             getCoord(begin), getCoord(end)
-        ]
+        ];
     }
 
 }
 
-
 /**
- * @name directionalMean
+ * 
  * This module calculate the average angle of a set of lines, measuring the trend of it.
  * It can be used in both project coordinate system and geography coordinate system.
  * It can handle segments of line or the whole line.
- * 
+ * @name directionalMean
  * @param {FeatureCollection<LineString>} lines
  * @param {object} [options={}]
  * @param {boolean} [options.planar=true] whether the spatial reference system is projected or geographical.
@@ -147,25 +150,25 @@ function getMeanLineString(centroidOfLine: number[], angle: number, lenOfLine: n
  * let gpsResult1 = directionalMean(gpsGeojson, {
  *   planar: false
  *  });
- * 
+ *
  */
 export default function directionalMean(lines: FeatureCollection<LineString>, options: {
     planar?: boolean;
     segment?: boolean;
 } = {}): DirectionalMeanLine {
 
-    let isPlanar: boolean = !!options.planar; // you can't use options.planar || true here.
-    let isSegment: boolean = options.segment || false;
+    const isPlanar: boolean = !!options.planar; // you can't use options.planar || true here.
+    const isSegment: boolean = options.segment || false;
     let sigmaSin: number = 0;
     let sigmaCos: number = 0;
     let countOfLines: number = 0;
     let sumOfLen: number = 0;
-    let centroidList: Array<Feature<Point>> = [];
+    const centroidList: Array<Feature<Point>> = [];
 
     if (isSegment) {
         segmentEach(lines, (currentSegment: any) => { // todo fix turf-meta's declaration file
-            let [sin1, cos1]: [number, number] = getCosAndSin(currentSegment.geometry.coordinates, isPlanar);
-            let lenOfLine = getLengthOfLineString(currentSegment, isPlanar);
+            const [sin1, cos1]: [number, number] = getCosAndSin(currentSegment.geometry.coordinates, isPlanar);
+            const lenOfLine = getLengthOfLineString(currentSegment, isPlanar);
             if (isNaN(sin1) || isNaN(cos1)) {
                 return;
             } else {
@@ -181,10 +184,10 @@ export default function directionalMean(lines: FeatureCollection<LineString>, op
         // planar and non-segment
         featureEach(lines, (currentFeature: Feature<LineString>, featureIndex: number) => {
             if (currentFeature.geometry.type !== 'LineString') {
-                throw new Error('shold to support MultiLineString?')
+                throw new Error('shold to support MultiLineString?');
             }
-            let [sin1, cos1]: [number, number] = getCosAndSin(currentFeature.geometry.coordinates, isPlanar);
-            let lenOfLine = getLengthOfLineString(currentFeature, isPlanar);
+            const [sin1, cos1]: [number, number] = getCosAndSin(currentFeature.geometry.coordinates, isPlanar);
+            const lenOfLine = getLengthOfLineString(currentFeature, isPlanar);
             if (isNaN(sin1) || isNaN(cos1)) {
                 return;
             } else {
@@ -197,13 +200,12 @@ export default function directionalMean(lines: FeatureCollection<LineString>, op
         });
     }
 
-
-    let cartesianAngle: number = getAngleBySinAndCos(sigmaSin, sigmaCos);
-    let bearingAngle: number = bearingToCartesian(cartesianAngle);
-    let circularVariance = getCircularVariance(sigmaSin, sigmaCos, countOfLines);
-    let averageLength = sumOfLen / countOfLines;
-    let centroidOfLines = centroid(featureCollection(centroidList));
-    let [averageX, averageY]: number[] = getCoord(centroidOfLines);
+    const cartesianAngle: number = getAngleBySinAndCos(sigmaSin, sigmaCos);
+    const bearingAngle: number = bearingToCartesian(cartesianAngle);
+    const circularVariance = getCircularVariance(sigmaSin, sigmaCos, countOfLines);
+    const averageLength = sumOfLen / countOfLines;
+    const centroidOfLines = centroid(featureCollection(centroidList));
+    const [averageX, averageY]: number[] = getCoord(centroidOfLines);
     let meanLinestring;
     if (isPlanar) {
         meanLinestring = getMeanLineString([averageX, averageY], cartesianAngle, averageLength, isPlanar);
@@ -219,12 +221,8 @@ export default function directionalMean(lines: FeatureCollection<LineString>, op
         averageY,
         averageLength,
         countOfLines,
-    })
-
-
+    });
 }
-
-
 
 /**
  * @type {interface} DirectionalMeanLine

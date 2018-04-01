@@ -10,27 +10,43 @@ var length_1 = __importDefault(require("@turf/length"));
 var centroid_1 = __importDefault(require("@turf/centroid"));
 var invariant_1 = require("@turf/invariant");
 var destination_1 = __importDefault(require("@turf/destination"));
-function euclidianDistance(coords) {
+/**
+ * get euclidean distance between two points.
+ * @name euclideanDistance
+ * @param coords
+ */
+function euclideanDistance(coords) {
     var _a = coords[0], x0 = _a[0], y0 = _a[1];
     var _b = coords[1], x1 = _b[0], y1 = _b[1];
     var dx = x1 - x0;
     var dy = y1 - y0;
     return Math.sqrt(Math.pow(dx, 2) + Math.pow(dy, 2));
 }
+/**
+ * get the length of a LineString, both in projected or geographical coordinate system.
+ * @name getLengthOfLineString
+ * @param {Feature<LineString>} line
+ * @param {boolean} isPlanar
+ */
 function getLengthOfLineString(line, isPlanar) {
     if (isPlanar) {
         return meta_1.segmentReduce(line, function (previousValue, segment) {
             var coords = segment.geometry.coordinates; // the signatrue of segmentReduce has problem ?
-            return previousValue + euclidianDistance(coords);
+            return previousValue + euclideanDistance(coords);
         }, 0);
     }
     else {
         return length_1.default(line, {
-            units: 'meters'
+            units: 'meters',
         });
     }
 }
-// bearing to xy(from due earth counterclockwise 0-180)
+/**
+ * bearing to xy(from due earth counterclockwise 0-180)
+ * convert between two forms
+ * @name bearingToCartesian
+ * @param angle
+ */
 function bearingToCartesian(angle) {
     var result = 90 - angle;
     if (result > 180) {
@@ -40,8 +56,8 @@ function bearingToCartesian(angle) {
 }
 /**
  * @name getCosAndSin
- * @param {number[][]} coordinates
- * @returns {[number, number]}
+ * @param {Array<Array<number>>} coordinates
+ * @returns {Array<number>} [cos, sin]
  */
 function getCosAndSin(coordinates, isPlanar) {
     var beginPoint = coordinates[0];
@@ -94,20 +110,20 @@ function getCircularVariance(sin1, cos1, len) {
 function getMeanLineString(centroidOfLine, angle, lenOfLine, isPlanar) {
     if (isPlanar) {
         var averageX = centroidOfLine[0], averageY = centroidOfLine[1];
-        var begin_x = void 0;
-        var begin_y = void 0;
-        var end_x = void 0;
-        var end_y = void 0;
+        var beginX = void 0;
+        var beginY = void 0;
+        var endX = void 0;
+        var endY = void 0;
         var r = angle * Math.PI / 180;
         var sin = Math.sin(r);
         var cos = Math.cos(r);
-        begin_x = averageX - lenOfLine / 2 * cos;
-        begin_y = averageY - lenOfLine / 2 * sin;
-        end_x = averageX + lenOfLine / 2 * cos;
-        end_y = averageY + lenOfLine / 2 * sin;
+        beginX = averageX - lenOfLine / 2 * cos;
+        beginY = averageY - lenOfLine / 2 * sin;
+        endX = averageX + lenOfLine / 2 * cos;
+        endY = averageY + lenOfLine / 2 * sin;
         return [
-            [begin_x, begin_y],
-            [end_x, end_y],
+            [beginX, beginY],
+            [endX, endY],
         ];
     }
     else {
@@ -119,8 +135,21 @@ function getMeanLineString(centroidOfLine, angle, lenOfLine, isPlanar) {
     }
 }
 /**
- * @name directionalMean
+ *
  * This module calculate the average angle of a set of lines, measuring the trend of it.
+ * It can be used in both project coordinate system and geography coordinate system.
+ * It can handle segments of line or the whole line.
+ * @name directionalMean
+ * @param {FeatureCollection<LineString>} lines
+ * @param {object} [options={}]
+ * @param {boolean} [options.planar=true] whether the spatial reference system is projected or geographical.
+ * @param {boolean} [options.segment=false] whether treat a LineString as a whole or a set of segments.
+ * @returns {DirectionalMeanLine}
+ * @example
+ * const outGpsJsonPath1 = path.join(__dirname, 'test', 'out', 'bus_route_gps1.json');
+ * let gpsResult1 = directionalMean(gpsGeojson, {
+ *   planar: false
+ *  });
  *
  */
 function directionalMean(lines, options) {
