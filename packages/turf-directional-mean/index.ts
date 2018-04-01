@@ -224,17 +224,9 @@ export default function directionalMean(lines: FeatureCollection<LineString>, op
     });
 }
 
-/**
- * @type {interface} DirectionalMeanLine
- * @property {number} cartesianAngle the mean angle of all lines. (measure from due earth counterclockwise).
- * @property {number} bearingAngle the mean angle of all lines. (bearing).
- * @property {number} circularVariance the extent to which features all point in the same direction.
- *  the value ranges 0-1, the bigger the value, the more variation in directions between lines.
- * @property {number} averageX the centroid of all lines.
- * @property {number} averageY the centroid of all line.
- * @property {number} averageLength the average length of line.
- * @property {number} countOfLines the count of features.
- */
+
+
+
 export interface DirectionalMeanLine extends Feature<LineString> {
     properties: {
         cartesianAngle: number;
@@ -247,3 +239,15 @@ export interface DirectionalMeanLine extends Feature<LineString> {
         [key: string]: any;
     };
 }
+
+/**
+ * @typedef {Object} DirectionalMeanLine
+ * @property {number} cartesianAngle the mean angle of all lines. (measure from due earth counterclockwise).
+ * @property {number} bearingAngle the mean angle of all lines. (bearing).
+ * @property {number} circularVariance the extent to which features all point in the same direction.
+ *  the value ranges 0-1, the bigger the value, the more variation in directions between lines.
+ * @property {number} averageX the centroid of all lines.
+ * @property {number} averageY the centroid of all line.
+ * @property {number} averageLength the average length of line.
+ * @property {number} countOfLines the count of features.
+ */
