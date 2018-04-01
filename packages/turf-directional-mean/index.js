@@ -12,6 +12,7 @@ var invariant_1 = require("@turf/invariant");
 var destination_1 = __importDefault(require("@turf/destination"));
 /**
  * get euclidean distance between two points.
+ * @private
  * @name euclideanDistance
  * @param coords
  */
@@ -24,6 +25,7 @@ function euclideanDistance(coords) {
 }
 /**
  * get the length of a LineString, both in projected or geographical coordinate system.
+ * @private
  * @name getLengthOfLineString
  * @param {Feature<LineString>} line
  * @param {boolean} isPlanar
@@ -44,6 +46,7 @@ function getLengthOfLineString(line, isPlanar) {
 /**
  * bearing to xy(from due earth counterclockwise 0-180)
  * convert between two forms
+ * @private
  * @name bearingToCartesian
  * @param angle
  */
@@ -55,6 +58,7 @@ function bearingToCartesian(angle) {
     return result;
 }
 /**
+ * @private
  * @name getCosAndSin
  * @param {Array<Array<number>>} coordinates
  * @returns {Array<number>} [cos, sin]
