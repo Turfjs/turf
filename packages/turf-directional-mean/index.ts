@@ -1,10 +1,11 @@
-import { FeatureCollection, LineString, Geometry, Feature, Point, featureCollection, Coord, point, geometry, lineString } from '@turf/helpers';
-import { featureEach, segmentEach, segmentReduce } from '@turf/meta';
-import bearing from '@turf/bearing';
-import length from '@turf/length';
-import centroid from '@turf/centroid';
-import { getCoord } from '@turf/invariant';
-import destination from '@turf/destination';
+import bearing from "@turf/bearing";
+import centroid from "@turf/centroid";
+import destination from "@turf/destination";
+import { featureCollection, geometry, lineString, point } from "@turf/helpers";
+import { Coord, Feature, FeatureCollection, Geometry, LineString, Point } from "@turf/helpers";
+import { getCoord } from "@turf/invariant";
+import length from "@turf/length";
+import { featureEach, segmentEach, segmentReduce } from "@turf/meta";
 
 /**
  * get euclidean distance between two points.
@@ -35,7 +36,7 @@ function getLengthOfLineString(line: Feature<LineString>, isPlanar: boolean) {
         }, 0);
     } else {
         return length(line, {
-            units: 'meters',
+            units: "meters",
         });
     }
 }
@@ -45,7 +46,7 @@ function getLengthOfLineString(line: Feature<LineString>, isPlanar: boolean) {
  * convert between two forms
  * @private
  * @name bearingToCartesian
- * @param angle 
+ * @param angle
  */
 function bearingToCartesian(angle: number): number {
     let result = 90 - angle;
@@ -104,8 +105,8 @@ function getAngleBySinAndCos(sin1: number, cos1: number): number {
 }
 
 function getCircularVariance(sin1: number, cos1: number, len: number) {
-    if (len == 0) {
-        throw new Error('the size of the features set must be greater than 0');
+    if (len === 0) {
+        throw new Error("the size of the features set must be greater than 0");
     }
     return 1 - (Math.sqrt(Math.pow(sin1, 2) + Math.pow(cos1, 2)) / len);
 }
@@ -129,17 +130,17 @@ function getMeanLineString(centroidOfLine: number[], angle: number, lenOfLine: n
             [endX, endY],
         ];
     } else {
-        const end = destination(point(centroidOfLine), lenOfLine / 2, angle, { units: 'meters' });
-        const begin = destination(point(centroidOfLine), -lenOfLine / 2, angle, { units: 'meters' });
+        const end = destination(point(centroidOfLine), lenOfLine / 2, angle, { units: "meters" });
+        const begin = destination(point(centroidOfLine), -lenOfLine / 2, angle, { units: "meters" });
         return [
-            getCoord(begin), getCoord(end)
+            getCoord(begin), getCoord(end),
         ];
     }
 
 }
 
 /**
- * 
+ *
  * This module calculate the average angle of a set of lines, measuring the trend of it.
  * It can be used in both project coordinate system and geography coordinate system.
  * It can handle segments of line or the whole line.
@@ -187,8 +188,8 @@ export default function directionalMean(lines: FeatureCollection<LineString>, op
     } else {
         // planar and non-segment
         featureEach(lines, (currentFeature: Feature<LineString>, featureIndex: number) => {
-            if (currentFeature.geometry.type !== 'LineString') {
-                throw new Error('shold to support MultiLineString?');
+            if (currentFeature.geometry.type !== "LineString") {
+                throw new Error("shold to support MultiLineString?");
             }
             const [sin1, cos1]: [number, number] = getCosAndSin(currentFeature.geometry.coordinates, isPlanar);
             const lenOfLine = getLengthOfLineString(currentFeature, isPlanar);
@@ -218,18 +219,15 @@ export default function directionalMean(lines: FeatureCollection<LineString>, op
     }
 
     return lineString(meanLinestring, {
-        cartesianAngle,
-        bearingAngle,
-        circularVariance,
+        averageLength,
         averageX,
         averageY,
-        averageLength,
+        bearingAngle,
+        cartesianAngle,
+        circularVariance,
         countOfLines,
     });
 }
-
-
-
 
 export interface DirectionalMeanLine extends Feature<LineString> {
     properties: {
