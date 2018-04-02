@@ -1,7 +1,4 @@
-import distance from "@turf/distance";
-import { Feature, FeatureCollection, GeometryCollection, LineString, MultiLineString, Units } from "@turf/helpers";
-import { segmentReduce } from "@turf/meta";
-
+import { Feature, FeatureCollection, GeometryCollection, Units } from "@turf/helpers";
 /**
  * Takes a {@link GeoJSON} and measures its length in the specified units, {@link (Multi)Point}'s distance are ignored.
  *
@@ -18,12 +15,6 @@ import { segmentReduce } from "@turf/meta";
  * var addToMap = [line];
  * line.properties.distance = length;
  */
-export default function length(geojson: Feature<any> | FeatureCollection<any> | GeometryCollection, options: {
-    units?: Units,
-} = {}): number {
-    // Calculate distance from 2-vertex line segments
-    return segmentReduce(geojson, (previousValue, segment) => {
-        const coords = segment!.geometry.coordinates;
-        return previousValue! + distance(coords[0], coords[1], options);
-    }, 0);
-}
+export default function length(geojson: Feature<any> | FeatureCollection<any> | GeometryCollection, options?: {
+    units?: Units;
+}): number;
