@@ -18,8 +18,8 @@ calcualte the Minkowski p-norm distance between two features.
 
 -   `fc` **[FeatureCollection](https://tools.ietf.org/html/rfc7946#section-3.3)&lt;any>** FeatureCollection.
 -   `options` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)?** option object.
-    -   `options.threshold` **[number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number)** If the distance between neighbor and target features is greater than threshold,
-         the weight of that neighbor is 0. (optional, default `10000`)
+    -   `options.threshold` **[number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number)** If the distance between neighbor and
+        target features is greater than threshold, the weight of that neighbor is 0. (optional, default `10000`)
     -   `options.p` **[number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number)** Minkowski p-norm distance parameter.
         1: Manhattan distance. 2: Euclidean distance. 1=&lt;p&lt;=infinity. (optional, default `2`)
     -   `options.binary` **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** If true, weight=1 if d &lt;= threshold otherwise weight=0.

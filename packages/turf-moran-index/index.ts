@@ -1,8 +1,6 @@
-import { FeatureCollection, Feature } from '@turf/helpers';
-import spatialWeight from '@turf/distance-weight';
-import { featureEach } from '@turf/meta';
-
-
+import spatialWeight from "@turf/distance-weight";
+import { Feature, FeatureCollection } from "@turf/helpers";
+import { featureEach } from "@turf/meta";
 
 /**
  * Moran's I measures patterns of attribute values associated with features.
@@ -22,11 +20,12 @@ import { featureEach } from '@turf/meta';
  * **Bibliography***
  *
  * 1. [Moran's I](https://en.wikipedia.org/wiki/Moran%27s_I)
- * 
+ *
  * 2. [pysal](http://pysal.readthedocs.io/en/latest/index.html)
- * 
+ *
  * 3. Andy Mitchell, The ESRI Guide to GIS Analysis Volume 2: Spatial Measurements & Statistics.
  *
+ * @name moranIndex
  * @param {FeatureCollection<any>} fc
  * @param {Object} options
  * @param {string} options.inputField the property name, must contain numeric values
@@ -38,15 +37,15 @@ import { featureEach } from '@turf/meta';
  * @returns {MoranIndex}
  * @example
  *
- * const pointJson = load.sync('./test/in/point.json');
- * const result = moranIndex(pointJson, {
+ * const bbox = [-65, 40, -63, 42];
+ * const dataset = turf.randomPoint(100, { bbox: bbox });
+ *
+ * const result = moranIndex(pts, {
  *   inputField: 'CRIME',
  * });
- * console.log(result.moranIndex);
- *
  */
 
-export default function moranIndex(fc: FeatureCollection<any>, options: {
+export default function(fc: FeatureCollection<any>, options: {
     inputField: string,
     threshold?: number;
     p?: number;
@@ -68,11 +67,11 @@ export default function moranIndex(fc: FeatureCollection<any>, options: {
     const standardization = options.standardization || true;
 
     const weight = spatialWeight(fc, {
-        threshold,
-        p,
-        binary,
         alpha,
+        binary,
+        p,
         standardization,
+        threshold,
     });
 
     const y: number[] = [];
@@ -111,8 +110,8 @@ export default function moranIndex(fc: FeatureCollection<any>, options: {
     const zNorm = (moranIndex - expectedMoranIndex) / stdNorm;
 
     return {
-        moranIndex,
         expectedMoranIndex,
+        moranIndex,
         stdNorm,
         zNorm,
     };
@@ -123,7 +122,7 @@ export default function moranIndex(fc: FeatureCollection<any>, options: {
  * get mean of a list
  * @param {number[]} y
  * @returns {number}
- * 
+ *
  */
 function mean(y: number[]): number {
     let sum = 0;
@@ -136,7 +135,7 @@ function mean(y: number[]): number {
  * get variance of a list
  * @param {number[]} y
  * @returns {number}
- * 
+ *
  */
 function variance(y: number[]): number {
     const yMean = mean(y);
@@ -146,7 +145,6 @@ function variance(y: number[]): number {
     }
     return sum / y.length;
 }
-
 
 /**
  * @typedef {Object} MoranIndex

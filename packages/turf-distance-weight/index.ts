@@ -1,7 +1,7 @@
-import { Point, FeatureCollection, Feature } from '@turf/helpers';
-import { featureEach } from '@turf/meta';
-import centroid from '@turf/centroid';
-import { getCoord } from '@turf/invariant';
+import centroid from "@turf/centroid";
+import { Feature, FeatureCollection, Point } from "@turf/helpers";
+import { getCoord } from "@turf/invariant";
+import { featureEach } from "@turf/meta";
 
 /**
  * calcualte the Minkowski p-norm distance between two features.
@@ -26,8 +26,8 @@ export function pNormDistance(feature1: Feature<Point>, feature2: Feature<Point>
  * @name distanceWeight
  * @param {FeatureCollection<any>} fc FeatureCollection.
  * @param {Object} [options] option object.
- * @param {number} [options.threshold=10000] If the distance between neighbor and target features is greater than threshold,
- *  the weight of that neighbor is 0.
+ * @param {number} [options.threshold=10000] If the distance between neighbor and
+ * target features is greater than threshold, the weight of that neighbor is 0.
  * @param {number} [options.p=2] Minkowski p-norm distance parameter.
  * 1: Manhattan distance. 2: Euclidean distance. 1=<p<=infinity.
  * @param {boolean} [options.binary=false] If true, weight=1 if d <= threshold otherwise weight=0.
@@ -48,7 +48,7 @@ export default function distanceWeight(fc: FeatureCollection<any>, options?: {
   binary?: boolean;
   alpha?: number;
   standardization?: boolean;
-}): Array<Array<number>> {
+}): number[][] {
 
   options = options || {};
   const threshold = options.threshold || 10000;
@@ -63,7 +63,7 @@ export default function distanceWeight(fc: FeatureCollection<any>, options?: {
   });
 
   // computing the distance between the features
-  const weights: Array<Array<number>> = [];
+  const weights: number[][] = [];
   for (let i = 0; i < features.length; i++) {
     weights[i] = [];
   }

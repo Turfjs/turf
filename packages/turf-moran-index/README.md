@@ -40,11 +40,12 @@ the z-score can be calculated based on a normal or random assumption.
 **Examples**
 
 ```javascript
-const pointJson = load.sync('./test/in/point.json');
-const result = moranIndex(pointJson, {
+const bbox = [-65, 40, -63, 42];
+const dataset = turf.randomPoint(100, { bbox: bbox });
+
+const result = moranIndex(pts, {
   inputField: 'CRIME',
 });
-console.log(result.moranIndex);
 ```
 
 Returns **[MoranIndex](#moranindex)** 

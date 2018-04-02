@@ -1,4 +1,4 @@
-import { Point, FeatureCollection, Feature } from '@turf/helpers';
+import { Feature, FeatureCollection, Point } from "@turf/helpers";
 /**
  * calcualte the Minkowski p-norm distance between two features.
  * @param feature1 point feature
@@ -12,8 +12,8 @@ export declare function pNormDistance(feature1: Feature<Point>, feature2: Featur
  * @name distanceWeight
  * @param {FeatureCollection<any>} fc FeatureCollection.
  * @param {Object} [options] option object.
- * @param {number} [options.threshold=10000] If the distance between neighbor and target features is greater than threshold,
- *  the weight of that neighbor is 0.
+ * @param {number} [options.threshold=10000] If the distance between neighbor and
+ * target features is greater than threshold, the weight of that neighbor is 0.
  * @param {number} [options.p=2] Minkowski p-norm distance parameter.
  * 1: Manhattan distance. 2: Euclidean distance. 1=<p<=infinity.
  * @param {boolean} [options.binary=false] If true, weight=1 if d <= threshold otherwise weight=0.
@@ -34,4 +34,4 @@ export default function distanceWeight(fc: FeatureCollection<any>, options?: {
     binary?: boolean;
     alpha?: number;
     standardization?: boolean;
-}): Array<Array<number>>;
+}): number[][];
