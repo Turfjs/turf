@@ -1,4 +1,4 @@
-import { FeatureCollection, LineString, Feature } from '@turf/helpers';
+import { Feature, FeatureCollection, LineString } from "@turf/helpers";
 /**
  *
  * This module calculate the average angle of a set of lines, measuring the trend of it.
