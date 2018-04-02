@@ -40,7 +40,7 @@ import { featureEach } from "@turf/meta";
  * const bbox = [-65, 40, -63, 42];
  * const dataset = turf.randomPoint(100, { bbox: bbox });
  *
- * const result = moranIndex(pts, {
+ * const result = turf.moranIndex(dataset, {
  *   inputField: 'CRIME',
  * });
  */

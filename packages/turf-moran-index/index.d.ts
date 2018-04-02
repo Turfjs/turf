@@ -37,7 +37,7 @@ import { FeatureCollection } from "@turf/helpers";
  * const bbox = [-65, 40, -63, 42];
  * const dataset = turf.randomPoint(100, { bbox: bbox });
  *
- * const result = moranIndex(pts, {
+ * const result = turf.moranIndex(pts, {
  *   inputField: 'CRIME',
  * });
  */
