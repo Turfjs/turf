@@ -21,9 +21,9 @@ import { Feature, FeatureCollection, LineString, MultiLineString, GeometryCollec
 export default function length(geojson: Feature<any> | FeatureCollection<any> | GeometryCollection, options: {
     units?: Units
 } = {}): number {
-    // Calculate distance from 2-vertex line segements
-    return segmentReduce(geojson, function (previousValue, segment) {
-        var coords = segment.geometry.coordinates;
-        return previousValue + distance(coords[0], coords[1], options);
+    // Calculate distance from 2-vertex line segments
+    return segmentReduce(geojson, (previousValue, segment) => {
+        const coords = segment!.geometry.coordinates;
+        return previousValue! + distance(coords[0], coords[1], options);
     }, 0);
 }
