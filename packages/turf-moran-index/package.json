@@ -6,7 +6,6 @@
   "types": "index.d.ts",
   "files": [
     "index.js",
-    "index.ts",
     "index.d.ts"
   ],
   "scripts": {
@@ -35,10 +34,12 @@
   "homepage": "https://github.com/Turfjs/turf",
   "devDependencies": {
     "benchmark": "*",
-    "rollup": "*",
     "write-json-file": "*",
     "load-json-file": "*",
-    "tape": "*"
+    "tape": "*",
+    "typescript": "*",
+    "tslint": "*",
+    "@types/tape": "*"
   },
   "dependencies": {
     "@turf/helpers": "6.x",

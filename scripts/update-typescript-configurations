@@ -45,7 +45,8 @@ glob.sync(path.join(__dirname, '..', 'packages', 'turf-*', 'index.ts')).forEach(
     fs.writeFileSync(path.join(dir, '.gitignore'), 'index.js');
 
     // Add Typescript configs
-    fs.writeFileSync(path.join(dir, 'tsconfig.json'), `{
+    if (false) {
+        fs.writeFileSync(path.join(dir, 'tsconfig.json'), `{
     "compilerOptions": {
         /* Basic Options */
         "target": "es5",                          /* Specify ECMAScript target version: 'ES3' (default), 'ES5', 'ES2015', 'ES2016', 'ES2017','ES2018' or 'ESNEXT'. */
@@ -60,7 +61,7 @@ glob.sync(path.join(__dirname, '..', 'packages', 'turf-*', 'index.ts')).forEach(
     }
 }`);
 
-    fs.writeFileSync(path.join(dir, 'tslint.json'), `{
+        fs.writeFileSync(path.join(dir, 'tslint.json'), `{
     "defaultSeverity": "error",
     "extends": [
         "tslint:recommended"
@@ -69,6 +70,7 @@ glob.sync(path.join(__dirname, '..', 'packages', 'turf-*', 'index.ts')).forEach(
     "rules": {},
     "rulesDirectory": []
 }`);
+    }
 });
 
 function entries(obj) {
@@ -80,7 +82,7 @@ function entries(obj) {
  * @returns {Array<string>} Files
  */
 function updateFiles(files) {
-    const newFiles = ['index.js', 'index.ts', 'index.d.ts'];
+    const newFiles = ['index.js', 'index.d.ts'];
     if (files.includes('lib')) newFiles.push('lib');
     return newFiles;
 }
