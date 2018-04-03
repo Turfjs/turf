@@ -1,4 +1,4 @@
-import { FeatureCollection } from '@turf/helpers';
+import { FeatureCollection } from "@turf/helpers";
 /**
  * Moran's I measures patterns of attribute values associated with features.
  * The method reveal whether similar values tend to occur near each other,
@@ -22,6 +22,7 @@ import { FeatureCollection } from '@turf/helpers';
  *
  * 3. Andy Mitchell, The ESRI Guide to GIS Analysis Volume 2: Spatial Measurements & Statistics.
  *
+ * @name moranIndex
  * @param {FeatureCollection<any>} fc
  * @param {Object} options
  * @param {string} options.inputField the property name, must contain numeric values
@@ -33,14 +34,14 @@ import { FeatureCollection } from '@turf/helpers';
  * @returns {MoranIndex}
  * @example
  *
- * const pointJson = load.sync('./test/in/point.json');
- * const result = moranIndex(pointJson, {
+ * const bbox = [-65, 40, -63, 42];
+ * const dataset = turf.randomPoint(100, { bbox: bbox });
+ *
+ * const result = turf.moranIndex(pts, {
  *   inputField: 'CRIME',
  * });
- * console.log(result.moranIndex);
- *
  */
-export default function moranIndex(fc: FeatureCollection<any>, options: {
+export default function (fc: FeatureCollection<any>, options: {
     inputField: string;
     threshold?: number;
     p?: number;
