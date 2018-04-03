@@ -1,4 +1,27 @@
-import { FeatureCollection, LineString, Feature } from '@turf/helpers';
+import { Feature, FeatureCollection, LineString } from "@turf/helpers";
+export interface DirectionalMeanLine extends Feature<LineString> {
+    properties: {
+        cartesianAngle: number;
+        bearingAngle: number;
+        circularVariance: number;
+        averageX: number;
+        averageY: number;
+        averageLength: number;
+        countOfLines: number;
+        [key: string]: any;
+    };
+}
+/**
+ * @typedef {Object} DirectionalMeanLine
+ * @property {number} cartesianAngle the mean angle of all lines. (measure from due earth counterclockwise).
+ * @property {number} bearingAngle the mean angle of all lines. (bearing).
+ * @property {number} circularVariance the extent to which features all point in the same direction.
+ *  the value ranges 0-1, the bigger the value, the more variation in directions between lines.
+ * @property {number} averageX the centroid of all lines.
+ * @property {number} averageY the centroid of all line.
+ * @property {number} averageLength the average length of line.
+ * @property {number} countOfLines the count of features.
+ */
 /**
  *
  * This module calculate the average angle of a set of lines, measuring the trend of it.
@@ -21,15 +44,3 @@ export default function directionalMean(lines: FeatureCollection<LineString>, op
     planar?: boolean;
     segment?: boolean;
 }): DirectionalMeanLine;
-export interface DirectionalMeanLine extends Feature<LineString> {
-    properties: {
-        cartesianAngle: number;
-        bearingAngle: number;
-        circularVariance: number;
-        averageX: number;
-        averageY: number;
-        averageLength: number;
-        countOfLines: number;
-        [key: string]: any;
-    };
-}
