@@ -7,6 +7,122 @@ import { getCoord } from "@turf/invariant";
 import length from "@turf/length";
 import { featureEach, segmentEach, segmentReduce } from "@turf/meta";
 
+export interface DirectionalMeanLine extends Feature<LineString> {
+    properties: {
+        cartesianAngle: number;
+        bearingAngle: number;
+        circularVariance: number;
+        averageX: number;
+        averageY: number;
+        averageLength: number;
+        countOfLines: number;
+        [key: string]: any;
+    };
+}
+
+/**
+ * @typedef {Object} DirectionalMeanLine
+ * @property {number} cartesianAngle the mean angle of all lines. (measure from due earth counterclockwise).
+ * @property {number} bearingAngle the mean angle of all lines. (bearing).
+ * @property {number} circularVariance the extent to which features all point in the same direction.
+ *  the value ranges 0-1, the bigger the value, the more variation in directions between lines.
+ * @property {number} averageX the centroid of all lines.
+ * @property {number} averageY the centroid of all line.
+ * @property {number} averageLength the average length of line.
+ * @property {number} countOfLines the count of features.
+ */
+
+/**
+ * This module calculate the average angle of a set of lines, measuring the trend of it.
+ * It can be used in both project coordinate system and geography coordinate system.
+ * It can handle segments of line or the whole line.
+ * @name directionalMean
+ * @param {FeatureCollection<LineString>} lines
+ * @param {object} [options={}]
+ * @param {boolean} [options.planar=true] whether the spatial reference system is projected or geographical.
+ * @param {boolean} [options.segment=false] whether treat a LineString as a whole or a set of segments.
+ * @returns {DirectionalMeanLine} Directional Mean Line
+ * @example
+ *
+ * var lines = turf.lineStrings([
+ *   [[110, 45], [120, 50]],
+ *   [[100, 50], [115, 55]],
+ * ])
+ * var directionalMeanLine = turf.directionalMean(lines);
+ * // => directionalMeanLine
+ */
+export default function directionalMean(lines: FeatureCollection<LineString>, options: {
+    planar?: boolean;
+    segment?: boolean;
+} = {}): DirectionalMeanLine {
+
+    const isPlanar: boolean = !!options.planar; // you can't use options.planar || true here.
+    const isSegment: boolean = options.segment || false;
+    let sigmaSin: number = 0;
+    let sigmaCos: number = 0;
+    let countOfLines: number = 0;
+    let sumOfLen: number = 0;
+    const centroidList: Array<Feature<Point>> = [];
+
+    if (isSegment) {
+        segmentEach(lines, (currentSegment: any) => { // todo fix turf-meta's declaration file
+            const [sin1, cos1]: [number, number] = getCosAndSin(currentSegment.geometry.coordinates, isPlanar);
+            const lenOfLine = getLengthOfLineString(currentSegment, isPlanar);
+            if (isNaN(sin1) || isNaN(cos1)) {
+                return;
+            } else {
+                sigmaSin += sin1;
+                sigmaCos += cos1;
+                countOfLines += 1;
+                sumOfLen += lenOfLine;
+                centroidList.push(centroid(currentSegment));
+            }
+        });
+        // planar and segment
+    } else {
+        // planar and non-segment
+        featureEach(lines, (currentFeature: Feature<LineString>, featureIndex: number) => {
+            if (currentFeature.geometry.type !== "LineString") {
+                throw new Error("shold to support MultiLineString?");
+            }
+            const [sin1, cos1]: [number, number] = getCosAndSin(currentFeature.geometry.coordinates, isPlanar);
+            const lenOfLine = getLengthOfLineString(currentFeature, isPlanar);
+            if (isNaN(sin1) || isNaN(cos1)) {
+                return;
+            } else {
+                sigmaSin += sin1;
+                sigmaCos += cos1;
+                countOfLines += 1;
+                sumOfLen += lenOfLine;
+                centroidList.push(centroid(currentFeature));
+            }
+        });
+    }
+
+    const cartesianAngle: number = getAngleBySinAndCos(sigmaSin, sigmaCos);
+    const bearingAngle: number = bearingToCartesian(cartesianAngle);
+    const circularVariance = getCircularVariance(sigmaSin, sigmaCos, countOfLines);
+    const averageLength = sumOfLen / countOfLines;
+    const centroidOfLines = centroid(featureCollection(centroidList));
+    const [averageX, averageY]: number[] = getCoord(centroidOfLines);
+    let meanLinestring;
+    if (isPlanar) {
+        meanLinestring = getMeanLineString([averageX, averageY], cartesianAngle, averageLength, isPlanar);
+    } else {
+        meanLinestring = getMeanLineString([averageX, averageY], bearingAngle, averageLength, isPlanar);
+    }
+
+    return lineString(meanLinestring, {
+        averageLength,
+        averageX,
+        averageY,
+        bearingAngle,
+        cartesianAngle,
+        circularVariance,
+        countOfLines,
+    });
+}
+
 /**
  * get euclidean distance between two points.
  * @private
@@ -136,120 +252,4 @@ function getMeanLineString(centroidOfLine: number[], angle: number, lenOfLine: n
             getCoord(begin), getCoord(end),
         ];
     }
-
 }
-
-/**
- *
- * This module calculate the average angle of a set of lines, measuring the trend of it.
- * It can be used in both project coordinate system and geography coordinate system.
- * It can handle segments of line or the whole line.
- * @name directionalMean
- * @param {FeatureCollection<LineString>} lines
- * @param {object} [options={}]
- * @param {boolean} [options.planar=true] whether the spatial reference system is projected or geographical.
- * @param {boolean} [options.segment=false] whether treat a LineString as a whole or a set of segments.
- * @returns {DirectionalMeanLine}
- * @example
- * const outGpsJsonPath1 = path.join(__dirname, 'test', 'out', 'bus_route_gps1.json');
- * let gpsResult1 = directionalMean(gpsGeojson, {
- *   planar: false
- *  });
- *
- */
-export default function directionalMean(lines: FeatureCollection<LineString>, options: {
-    planar?: boolean;
-    segment?: boolean;
-} = {}): DirectionalMeanLine {
-
-    const isPlanar: boolean = !!options.planar; // you can't use options.planar || true here.
-    const isSegment: boolean = options.segment || false;
-    let sigmaSin: number = 0;
-    let sigmaCos: number = 0;
-    let countOfLines: number = 0;
-    let sumOfLen: number = 0;
-    const centroidList: Array<Feature<Point>> = [];
-
-    if (isSegment) {
-        segmentEach(lines, (currentSegment: any) => { // todo fix turf-meta's declaration file
-            const [sin1, cos1]: [number, number] = getCosAndSin(currentSegment.geometry.coordinates, isPlanar);
-            const lenOfLine = getLengthOfLineString(currentSegment, isPlanar);
-            if (isNaN(sin1) || isNaN(cos1)) {
-                return;
-            } else {
-                sigmaSin += sin1;
-                sigmaCos += cos1;
-                countOfLines += 1;
-                sumOfLen += lenOfLine;
-                centroidList.push(centroid(currentSegment));
-            }
-        });
-        // planar and segment
-    } else {
-        // planar and non-segment
-        featureEach(lines, (currentFeature: Feature<LineString>, featureIndex: number) => {
-            if (currentFeature.geometry.type !== "LineString") {
-                throw new Error("shold to support MultiLineString?");
-            }
-            const [sin1, cos1]: [number, number] = getCosAndSin(currentFeature.geometry.coordinates, isPlanar);
-            const lenOfLine = getLengthOfLineString(currentFeature, isPlanar);
-            if (isNaN(sin1) || isNaN(cos1)) {
-                return;
-            } else {
-                sigmaSin += sin1;
-                sigmaCos += cos1;
-                countOfLines += 1;
-                sumOfLen += lenOfLine;
-                centroidList.push(centroid(currentFeature));
-            }
-        });
-    }
-
-    const cartesianAngle: number = getAngleBySinAndCos(sigmaSin, sigmaCos);
-    const bearingAngle: number = bearingToCartesian(cartesianAngle);
-    const circularVariance = getCircularVariance(sigmaSin, sigmaCos, countOfLines);
-    const averageLength = sumOfLen / countOfLines;
-    const centroidOfLines = centroid(featureCollection(centroidList));
-    const [averageX, averageY]: number[] = getCoord(centroidOfLines);
-    let meanLinestring;
-    if (isPlanar) {
-        meanLinestring = getMeanLineString([averageX, averageY], cartesianAngle, averageLength, isPlanar);
-    } else {
-        meanLinestring = getMeanLineString([averageX, averageY], bearingAngle, averageLength, isPlanar);
-    }
-
-    return lineString(meanLinestring, {
-        averageLength,
-        averageX,
-        averageY,
-        bearingAngle,
-        cartesianAngle,
-        circularVariance,
-        countOfLines,
-    });
-}
-
-export interface DirectionalMeanLine extends Feature<LineString> {
-    properties: {
-        cartesianAngle: number;
-        bearingAngle: number;
-        circularVariance: number;
-        averageX: number;
-        averageY: number;
-        averageLength: number;
-        countOfLines: number;
-        [key: string]: any;
-    };
-}
-
-/**
- * @typedef {Object} DirectionalMeanLine
- * @property {number} cartesianAngle the mean angle of all lines. (measure from due earth counterclockwise).
- * @property {number} bearingAngle the mean angle of all lines. (bearing).
- * @property {number} circularVariance the extent to which features all point in the same direction.
- *  the value ranges 0-1, the bigger the value, the more variation in directions between lines.
- * @property {number} averageX the centroid of all lines.
- * @property {number} averageY the centroid of all line.
- * @property {number} averageLength the average length of line.
- * @property {number} countOfLines the count of features.
- */
