@@ -35,7 +35,8 @@
   "homepage": "https://github.com/Turfjs/turf",
   "devDependencies": {
     "benchmark": "*",
-    "rollup": "*",
+    "typescript": "*",
+    "tslint": "*",
     "write-json-file": "*",
     "load-json-file": "*",
     "tape": "*"
