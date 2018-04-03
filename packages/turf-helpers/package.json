@@ -1,12 +1,11 @@
 {
   "name": "@turf/helpers",
-  "version": "6.1.1",
+  "version": "6.1.2",
   "description": "turf helpers module",
   "main": "index",
   "types": "index.d.ts",
   "files": [
     "index.js",
-    "index.ts",
     "index.d.ts",
     "lib"
   ],
