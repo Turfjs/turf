@@ -2,11 +2,10 @@
   "name": "@turf/distance-weight",
   "version": "6.0.0",
   "description": "turf distance-weight module",
-  "main": "index",  
+  "main": "index",
   "types": "index.d.ts",
   "files": [
     "index.js",
-    "index.ts",
     "index.d.ts"
   ],
   "scripts": {
@@ -33,12 +32,14 @@
     "url": "https://github.com/Turfjs/turf/issues"
   },
   "homepage": "https://github.com/Turfjs/turf",
-  "devDependencies": {    
+  "devDependencies": {
     "benchmark": "*",
-    "rollup": "*",
     "write-json-file": "*",
     "load-json-file": "*",
-    "tape": "*"
+    "tape": "*",
+    "typescript": "*",
+    "tslint": "*",
+    "@types/tape": "*"
   },
   "dependencies": {
     "@turf/helpers": "6.x",

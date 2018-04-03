@@ -2,18 +2,17 @@
   "name": "@turf/nearest-neighbor-analysis",
   "version": "6.0.0",
   "description": "turf nearest-neighbor-analysis module",
-  "main": "index",  
+  "main": "index",
   "types": "index.d.ts",
   "files": [
     "index.js",
-    "index.ts",
     "index.d.ts"
   ],
   "scripts": {
     "prepare": "tsc",
     "pretest": "tsc",
     "test": "node test.js",
-    "bench": "node -r @std/esm bench.js",
+    "bench": "node bench.js",
     "docs": "node ../../scripts/generate-readmes"
   },
   "repository": {
@@ -34,13 +33,14 @@
   },
   "homepage": "https://github.com/Turfjs/turf",
   "devDependencies": {
-    "@std/esm": "*",
     "@turf/truncate": "*",
     "benchmark": "*",
-    "rollup": "*",
     "write-json-file": "*",
     "load-json-file": "*",
-    "tape": "*"
+    "tape": "*",
+    "typescript": "*",
+    "tslint": "*",
+    "@types/tape": "*"
   },
   "dependencies": {
     "@turf/area": "6.x",
@@ -51,9 +51,5 @@
     "@turf/helpers": "6.x",
     "@turf/meta": "6.x",
     "@turf/nearest-point": "6.x"
-  },
-  "@std/esm": {
-    "esm": "js",
-    "cjs": true
   }
 }

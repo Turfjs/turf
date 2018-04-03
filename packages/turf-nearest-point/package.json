@@ -2,11 +2,10 @@
   "name": "@turf/nearest-point",
   "version": "6.0.0",
   "description": "turf nearest-point module",
-  "main": "index",  
+  "main": "index",
   "types": "index.d.ts",
   "files": [
     "index.js",
-    "index.ts",
     "index.d.ts"
   ],
   "scripts": {
@@ -35,15 +34,16 @@
   },
   "homepage": "https://github.com/Turfjs/turf",
   "devDependencies": {
-    "@std/esm": "*",
     "benchmark": "*",
-    "rollup": "*",
-    "tape": "*"
+    "tape": "*",
+    "typescript": "*",
+    "tslint": "*",
+    "@types/tape": "*"
   },
   "dependencies": {
     "@turf/clone": "6.x",
     "@turf/distance": "6.x",
     "@turf/helpers": "6.x",
     "@turf/meta": "6.x"
-  }  
+  }
 }
