@@ -102,3 +102,9 @@ function updateDevDependencies(pckg) {
         });
     return devDependencies;
 }
+
+function updateVersion(version) {
+    let [major, minor, patch] = version.split('.');
+    patch = Number(patch) + 1;
+    return `${major}.${minor}.${patch}`;
+}
