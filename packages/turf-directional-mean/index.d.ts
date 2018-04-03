@@ -34,11 +34,13 @@ export interface DirectionalMeanLine extends Feature<LineString> {
  * @param {boolean} [options.segment=false] whether treat a LineString as a whole or a set of segments.
  * @returns {DirectionalMeanLine}
  * @example
- * const outGpsJsonPath1 = path.join(__dirname, 'test', 'out', 'bus_route_gps1.json');
- * let gpsResult1 = directionalMean(gpsGeojson, {
- *   planar: false
- *  });
  *
+ * var lines = turf.lineStrings([
+ *   [[110, 45], [120, 50]],
+ *   [[100, 50], [115, 55]],
+ * ])
+ * var result = turf.directionalMean(lines);
+ * // => result
  */
 export default function directionalMean(lines: FeatureCollection<LineString>, options?: {
     planar?: boolean;
