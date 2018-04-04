@@ -1,6 +1,6 @@
 {
   "name": "@turf/point-to-line-distance",
-  "version": "5.1.5",
+  "version": "5.1.6",
   "description": "turf point-to-line-distance module",
   "main": "index",
   "types": "index.d.ts",

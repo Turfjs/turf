@@ -1,6 +1,6 @@
 {
   "name": "@turf/boolean-disjoint",
-  "version": "6.0.1",
+  "version": "6.0.2",
   "description": "turf boolean-disjoint module",
   "main": "index",
   "types": "index.d.ts",

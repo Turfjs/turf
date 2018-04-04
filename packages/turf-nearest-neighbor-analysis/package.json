@@ -1,6 +1,6 @@
 {
   "name": "@turf/nearest-neighbor-analysis",
-  "version": "6.0.0",
+  "version": "6.0.1",
   "description": "turf nearest-neighbor-analysis module",
   "main": "index",
   "types": "index.d.ts",

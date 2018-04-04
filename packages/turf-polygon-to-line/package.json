@@ -1,6 +1,6 @@
 {
   "name": "@turf/polygon-to-line",
-  "version": "6.0.2",
+  "version": "6.0.3",
   "description": "turf polygon-to-line module",
   "main": "index",
   "types": "index.d.ts",

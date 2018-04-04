@@ -14,7 +14,7 @@ glob.sync(path.join(__dirname, '..', 'packages', 'turf-*', 'index.ts')).forEach(
 
     const formatedPckg = {
         name: pckg.name,
-        version: pckg.version,
+        version: updateVersion(pckg.version),
         description: pckg.description,
         main: 'index',
         types: 'index.d.ts',
