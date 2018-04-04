@@ -49,7 +49,7 @@ test('turf-boolean-equal -- geometries', t => {
 
 
 test('turf-boolean-equal -- throws', t => {
-    t.throws(() => equal(null, line1), /feature1 is required/, 'missing feature1');
-    t.throws(() => equal(line1, null), /feature2 is required/, 'missing feature2');
+    // t.throws(() => equal(null, line1), /feature1 is required/, 'missing feature1');
+    // t.throws(() => equal(line1, null), /feature2 is required/, 'missing feature2');
     t.end();
 });
