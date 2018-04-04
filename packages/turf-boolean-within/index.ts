@@ -22,10 +22,10 @@ import { Feature, Geometry } from '@turf/helpers';
  * //=true
  */
 function booleanWithin(feature1: Feature<any> | Geometry, feature2: Feature<any> | Geometry): boolean {
-    var type1 = getType(feature1);
-    var type2 = getType(feature2);
     var geom1 = getGeom(feature1);
     var geom2 = getGeom(feature2);
+    var type1 = geom1.type;
+    var type2 = geom2.type;
 
     switch (type1) {
     case 'Point':

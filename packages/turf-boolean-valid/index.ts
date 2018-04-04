@@ -24,8 +24,8 @@ export default function booleanValid(feature: Feature<any> | Geometry) {
 
     // Parse GeoJSON
     const geom = getGeom(feature);
-    const type = getType(feature);
-    const coords: any = getCoords(feature);
+    const type = geom.type;
+    const coords = geom.coordinates;
 
     switch (type) {
     case 'Point':
