@@ -5,7 +5,7 @@ import { getGeom, getType } from '@turf/invariant';
 import { Feature, Geometry, LineString } from '@turf/helpers';
 
 /**
- * Boolean-touches true if none of the points common to both geometries 
+ * Boolean-touches true if none of the points common to both geometries
  * intersect the interiors of both geometries.
  * @name booleanTouches
  * @param {Geometry|Feature<any>} feature1 GeoJSON Feature or Geometry
@@ -19,10 +19,10 @@ import { Feature, Geometry, LineString } from '@turf/helpers';
  * //=true
  */
 function booleanTouches(feature1: Feature<any> | Geometry, feature2: Feature<any> | Geometry): boolean {
-    var type1 = getType(feature1);
-    var type2 = getType(feature2);
     var geom1 = getGeom(feature1);
     var geom2 = getGeom(feature2);
+    var type1 = geom1.type;
+    var type2 = geom2.type;
 
     switch (type1) {
     case 'Point':
@@ -132,7 +132,7 @@ function booleanTouches(feature1: Feature<any> | Geometry, feature2: Feature<any
           for (var i = 0; i < geom1.coordinates.length; i++) {
             if (!foundTouchingPoint) {
               if (booleanPointOnLine({type: 'Point', coordinates: geom1.coordinates[i]}, {type:'LineString', coordinates: geom2.coordinates[0]})) foundTouchingPoint = true;
-            } 
+            }
             if (booleanPointInPolygon({type: 'Point', coordinates: geom1.coordinates[i]}, geom2, {ignoreBoundary: true})) return false;
           }
           return foundTouchingPoint;
@@ -142,7 +142,7 @@ function booleanTouches(feature1: Feature<any> | Geometry, feature2: Feature<any
               for (var ii = 0; ii < geom2.coordinates.length; ii++) {
                 if (!foundTouchingPoint) {
                   if (booleanPointOnLine({type: 'Point', coordinates: geom1.coordinates[i]}, {type:'LineString', coordinates: geom2.coordinates[ii][0]})) foundTouchingPoint = true;
-                } 
+                }
             }
             if (booleanPointInPolygon({type: 'Point', coordinates: geom1.coordinates[i]}, geom2, {ignoreBoundary: true})) return false;
           }
@@ -196,7 +196,7 @@ function booleanTouches(feature1: Feature<any> | Geometry, feature2: Feature<any
             for (var ii = 0; ii < geom1.coordinates.length; ii++) {
                 if (!foundTouchingPoint) {
                   if (booleanPointOnLine({type: 'Point', coordinates: geom1.coordinates[i][ii]}, {type:'LineString', coordinates: geom2.coordinates[0]})) foundTouchingPoint = true;
-                } 
+                }
                 if (booleanPointInPolygon({type: 'Point', coordinates: geom1.coordinates[i][ii]}, geom2, {ignoreBoundary: true})) return false;
               }
           }
@@ -208,7 +208,7 @@ function booleanTouches(feature1: Feature<any> | Geometry, feature2: Feature<any
                   for (var iii = 0; iii < geom1.coordinates[ii].length; iii++) {
                       if (!foundTouchingPoint) {
                           if (booleanPointOnLine({type: 'Point', coordinates: geom1.coordinates[ii][iii]}, {type:'LineString', coordinates: geom2.coordinates[0][i]})) foundTouchingPoint = true;
-                      } 
+                      }
                       if (booleanPointInPolygon({type: 'Point', coordinates: geom1.coordinates[ii][iii]}, {type:'Polygon', coordinates: [geom2.coordinates[0][i]]}, {ignoreBoundary: true})) return false;
                   }
               }
@@ -238,7 +238,7 @@ function booleanTouches(feature1: Feature<any> | Geometry, feature2: Feature<any
           for (var i = 0; i < geom2.coordinates.length; i++) {
             if (!foundTouchingPoint) {
                 if (booleanPointOnLine({type: 'Point', coordinates: geom2.coordinates[i]}, {type:'LineString', coordinates: geom1.coordinates[0]})) foundTouchingPoint = true;
-            } 
+            }
             if (booleanPointInPolygon({type: 'Point', coordinates: geom2.coordinates[i]}, geom1, {ignoreBoundary: true})) return false;
           }
           return foundTouchingPoint
@@ -248,7 +248,7 @@ function booleanTouches(feature1: Feature<any> | Geometry, feature2: Feature<any
             for (var ii = 0; ii < geom2.coordinates[i].length; ii++) {
                 if (!foundTouchingPoint) {
                   if (booleanPointOnLine({type: 'Point', coordinates: geom2.coordinates[i][ii]}, {type:'LineString', coordinates: geom1.coordinates[0]})) foundTouchingPoint = true;
-                } 
+                }
                 if (booleanPointInPolygon({type: 'Point', coordinates: geom2.coordinates[i][ii]}, geom1, {ignoreBoundary: true})) return false;
               }
           }
@@ -289,7 +289,7 @@ function booleanTouches(feature1: Feature<any> | Geometry, feature2: Feature<any
             for (var ii = 0; ii < geom2.coordinates.length; ii++) {
               if (!foundTouchingPoint) {
                 if (booleanPointOnLine({type: 'Point', coordinates: geom2.coordinates[ii]}, {type:'LineString', coordinates: geom1.coordinates[0][i]})) foundTouchingPoint = true;
-              } 
+              }
               if (booleanPointInPolygon({type: 'Point', coordinates: geom2.coordinates[ii]}, {type:'Polygon', coordinates: geom1.coordinates[0][i]}, {ignoreBoundary: true})) return false;
             }
           }
@@ -300,7 +300,7 @@ function booleanTouches(feature1: Feature<any> | Geometry, feature2: Feature<any
             for (var ii = 0; ii < geom2.coordinates.length; ii++) {
               if (!foundTouchingPoint) {
                 if (booleanPointOnLine({type: 'Point', coordinates: geom2.coordinates[ii]}, {type:'LineString', coordinates: geom1.coordinates[0][i]})) foundTouchingPoint = true;
-              } 
+              }
               if (booleanPointInPolygon({type: 'Point', coordinates: geom2.coordinates[ii]}, {type:'Polygon', coordinates: geom1.coordinates[0][i]}, {ignoreBoundary: true})) return false;
             }
           }
@@ -312,7 +312,7 @@ function booleanTouches(feature1: Feature<any> | Geometry, feature2: Feature<any
               for (var iii = 0; iii < geom2.coordinates[ii].length; iii++) {
                   if (!foundTouchingPoint) {
                     if (booleanPointOnLine({type: 'Point', coordinates: geom2.coordinates[ii][iii]}, {type:'LineString', coordinates: geom1.coordinates[i][0]})) foundTouchingPoint = true;
-                  } 
+                  }
                   if (booleanPointInPolygon({type: 'Point', coordinates: geom2.coordinates[ii][iii]}, {type:'Polygon', coordinates: [geom1.coordinates[i][0]]}, {ignoreBoundary: true})) return false;
                 }
             }
