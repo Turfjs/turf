@@ -1,12 +1,11 @@
 {
   "name": "@turf/line-overlap",
-  "version": "6.0.1",
+  "version": "6.0.2",
   "description": "turf line-overlap module",
   "main": "index",
   "types": "index.d.ts",
   "files": [
     "index.js",
-    "index.ts",
     "index.d.ts"
   ],
   "scripts": {

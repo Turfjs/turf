@@ -1,12 +1,11 @@
 {
   "name": "@turf/concave",
-  "version": "6.0.2",
+  "version": "6.0.3",
   "description": "turf concave module",
   "main": "index",
   "types": "index.d.ts",
   "files": [
     "index.js",
-    "index.ts",
     "index.d.ts",
     "lib"
   ],
