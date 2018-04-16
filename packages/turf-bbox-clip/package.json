@@ -1,13 +1,14 @@
 {
   "name": "@turf/bbox-clip",
-  "version": "6.0.1",
+  "version": "6.0.3",
   "description": "turf bbox-clip module",
   "main": "index",
   "types": "index.d.ts",
   "files": [
     "index.js",
     "index.d.ts",
-    "lib"
+    "lib/lineclip.js",
+    "lib/lineclip.d.ts"
   ],
   "scripts": {
     "prepare": "tsc",
