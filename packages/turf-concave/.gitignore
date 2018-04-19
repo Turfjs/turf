@@ -1,1 +1,4 @@
 index.js
+lib/turf-dissolve.js
+lib/turf-line-dissolve.js
+lib/turf-polygon-dissolve.js
