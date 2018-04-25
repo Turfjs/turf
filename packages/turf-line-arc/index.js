@@ -31,7 +31,6 @@ function lineArc(center, radius, bearing1, bearing2, options) {
     options = options || {};
     if (!isObject(options)) throw new Error('options is invalid');
     var steps = options.steps;
-    var units = options.units;
 
     // validation
     if (!center) throw new Error('center is required');
@@ -59,12 +58,12 @@ function lineArc(center, radius, bearing1, bearing2, options) {
     var i = 0;
 
     while (alfa < arcEndDegree) {
-        coordinates.push(destination(center, radius, alfa, units).geometry.coordinates);
+        coordinates.push(destination(center, radius, alfa, options).geometry.coordinates);
         i++;
         alfa = arcStartDegree + i * 360 / steps;
     }
     if (alfa > arcEndDegree) {
-        coordinates.push(destination(center, radius, arcEndDegree, units).geometry.coordinates);
+        coordinates.push(destination(center, radius, arcEndDegree, options).geometry.coordinates);
     }
     return lineString(coordinates, properties);
 }
