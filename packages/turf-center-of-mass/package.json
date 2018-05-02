@@ -1,12 +1,11 @@
 {
   "name": "@turf/center-of-mass",
-  "version": "6.0.0",
+  "version": "6.0.1",
   "description": "turf center-of-mass module",
   "main": "index",
   "types": "index.d.ts",
   "files": [
     "index.js",
-    "index.ts",
     "index.d.ts"
   ],
   "scripts": {

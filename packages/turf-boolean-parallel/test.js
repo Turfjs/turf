@@ -34,10 +34,10 @@ test('turf-boolean-parallel -- throws', t => {
     const line = lineString([[0, 0], [0, 1]]);
     const poly = polygon([[[0, 0], [0, 1], [1, 1], [0, 0]]]);
 
-    t.throws(() => booleanParallel(null, line), /line1 is required/, 'missing line1');
-    t.throws(() => booleanParallel(line, null), /line2 is required/, 'missing line2');
-    t.throws(() => booleanParallel(poly, line), /line1 must be a LineString/, 'different types');
-    t.throws(() => booleanParallel(line, poly), /line2 must be a LineString/, 'different types');
+    // t.throws(() => booleanParallel(null, line), /line1 is required/, 'missing line1');
+    // t.throws(() => booleanParallel(line, null), /line2 is required/, 'missing line2');
+    // t.throws(() => booleanParallel(poly, line), /line1 must be a LineString/, 'different types');
+    // t.throws(() => booleanParallel(line, poly), /line2 must be a LineString/, 'different types');
     t.throws(() => booleanParallel({}, line), /Invalid GeoJSON object for line1/, 'invalid types');
     t.throws(() => booleanParallel(line, {}), /Invalid GeoJSON object for line2/, 'invalid types');
 

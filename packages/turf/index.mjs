@@ -91,6 +91,8 @@ export {default as centerMedian} from '@turf/center-median';
 export {default as standardDeviationalEllipse} from '@turf/standard-deviational-ellipse';
 export {default as angle} from '@turf/angle';
 export {default as polygonSmooth} from '@turf/polygon-smooth';
+export {default as moranIndex} from '@turf/moran-index';
+export {default as distanceWeight} from '@turf/distance-weight';
 export * from '@turf/projection';
 export * from '@turf/random';
 export * from '@turf/clusters';

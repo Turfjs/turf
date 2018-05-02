@@ -1,14 +1,18 @@
 {
   "name": "@turf/concave",
-  "version": "6.0.2",
+  "version": "6.0.5",
   "description": "turf concave module",
   "main": "index",
   "types": "index.d.ts",
   "files": [
     "index.js",
-    "index.ts",
     "index.d.ts",
-    "lib"
+    "lib/turf-dissolve.js",
+    "lib/turf-dissolve.d.ts",
+    "lib/turf-line-dissolve.js",
+    "lib/turf-line-dissolve.d.ts",
+    "lib/turf-polygon-dissolve.js",
+    "lib/turf-polygon-dissolve.d.ts"
   ],
   "scripts": {
     "prepare": "tsc",

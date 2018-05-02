@@ -25,10 +25,10 @@ import { getCoords, getGeom, getType } from "@turf/invariant";
 export default function booleanContains(feature1: Feature<any> | Geometry, feature2: Feature<any> | Geometry) {
     const geom1 = getGeom(feature1);
     const geom2 = getGeom(feature2);
-    const type1 = getType(feature1);
-    const type2 = getType(feature2);
-    const coords1 = getCoords(feature1);
-    const coords2 = getCoords(feature2);
+    const type1 = geom1.type;
+    const type2 = geom2.type;
+    const coords1 = geom1.coordinates;
+    const coords2 = geom2.coordinates;
 
     switch (type1) {
     case "Point":
