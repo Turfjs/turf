@@ -43,13 +43,14 @@
   "homepage": "https://github.com/Turfjs/turf",
   "devDependencies": {
     "@turf/truncate": "*",
+    "@types/node": "*",
+    "@types/tape": "*",
     "benchmark": "*",
     "load-json-file": "*",
-    "typescript": "*",
     "tape": "*",
-    "write-json-file": "*",
     "tslint": "*",
-    "@types/tape": "*"
+    "typescript": "*",
+    "write-json-file": "*"
   },
   "dependencies": {
     "@turf/helpers": "6.x",
