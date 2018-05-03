@@ -43,7 +43,6 @@ test('turf-rhumb-destintation -- throws error', t => {
     t.assert(rhumbDestination(pt, 0, 45).geometry.coordinates[0], '0 distance is valid');
     t.assert(rhumbDestination(pt, 100, 0).geometry.coordinates[0], '0 bearing is valid');
     // t.throws(() => rhumbDestination(pt, 100, 45, 'blah'), 'unknown option given to units');
-    t.throws(() => rhumbDestination(pt, -200, 75), 'invalid distance');
     // t.throws(() => rhumbDestination(pt, null, 75), 'missing distance');
     // t.throws(() => rhumbDestination(pt, 'foo', 75), 'invalid distance - units param switched to distance');
     // t.throws(() => rhumbDestination('foo', 200, 75, {units: 'miles'}), 'invalid point');
@@ -55,5 +54,12 @@ test('turf-rhumb-destintation -- add properties', t => {
     const pt = point([12, -54], properties);
 
     t.deepEqual(rhumbDestination(pt, 0, 45, {properties}).properties, properties, 'add properties');
+    t.end();
+});
+
+test('turf-rhumb-destintation -- allows negative distance', t => {
+    const pt = point([12, -54]);
+    const out = rhumbDestination(pt, -100, 45);
+    t.deepEqual(out.geometry.coordinates, [10.90974456038191, -54.63591552764877])
     t.end();
 });

@@ -33,10 +33,10 @@ function rhumbDestination<P = Properties>(origin: Coord, distance: number, beari
     units?: Units,
     properties?: P,
 } = {}): Feature<Point, P> {
-    // validation
-    if (!(distance >= 0)) { throw new Error("distance must be greater than 0"); }
-
-    const distanceInMeters = convertLength(distance, options.units, "meters");
+    
+    const wasNegativeDistance = distance < 0;
+    let distanceInMeters = convertLength(Math.abs(distance), options.units, "meters");
+    if (wasNegativeDistance) distanceInMeters = -Math.abs(distanceInMeters);
     const coords = getCoord(origin);
     const destination = calculateRhumbDestination(coords, distanceInMeters, bearing);
 
