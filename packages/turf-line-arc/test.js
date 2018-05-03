@@ -1,11 +1,11 @@
-import fs from 'fs';
-import test from 'tape';
-import path from 'path';
-import load from 'load-json-file';
-import write from 'write-json-file';
-import truncate from '@turf/truncate';
-import { featureCollection } from '@turf/helpers';
-import lineArc from './index';
+const fs = require('fs');
+const test = require('tape');
+const path = require('path');
+const load = require('load-json-file');
+const write = require('write-json-file');
+const truncate = require('@turf/truncate').default;
+const { featureCollection } = require('@turf/helpers');
+const lineArc = require('./index').default;
 
 const directories = {
     in: path.join(__dirname, 'test', 'in') + path.sep,
