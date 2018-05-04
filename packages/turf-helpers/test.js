@@ -417,6 +417,8 @@ test('turf-helpers -- isNumber', t => {
     t.false(isNumber([1, 2, 3]));
     t.false(isNumber([]));
     t.false(isNumber(isNumber));
+    t.false(isNumber(''));
+    t.false(isNumber('  '));
     t.end();
 });
 
