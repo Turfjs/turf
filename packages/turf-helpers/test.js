@@ -404,6 +404,8 @@ test('turf-helpers -- isNumber', t => {
     t.true(isNumber(1e10000));
     t.true(isNumber(Infinity));
     t.true(isNumber(-Infinity));
+    t.true(isNumber(0));
+    t.true(isNumber('0'));
 
     // false
     t.false(isNumber(+'ciao'));
@@ -418,7 +420,7 @@ test('turf-helpers -- isNumber', t => {
     t.false(isNumber([]));
     t.false(isNumber(isNumber));
     t.false(isNumber(''));
-    t.false(isNumber('  '));
+    t.false(isNumber('  ')); 
     t.end();
 });
 
