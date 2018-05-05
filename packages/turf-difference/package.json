@@ -1,13 +1,11 @@
 {
   "name": "@turf/difference",
-  "version": "6.0.0",
+  "version": "6.0.1",
   "description": "turf difference module",
   "main": "index",
-  "module": "index.mjs",
   "types": "index.d.ts",
   "files": [
     "index.js",
-    "index.mjs",
     "index.d.ts"
   ],
   "scripts": {
