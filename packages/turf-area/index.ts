@@ -76,41 +76,50 @@ function polygonArea(coords: any) {
  * @param {Array<Array<number>>} coords Ring Coordinates
  * @returns {number} The approximate signed geodesic area of the polygon in square meters.
  */
+
+const FACTOR = RADIUS * RADIUS / 2;
+
 function ringArea(coords: number[][]) {
-    let p1;
-    let p2;
-    let p3;
-    let lowerIndex;
-    let middleIndex;
-    let upperIndex;
-    let i;
-    let total = 0;
-    const coordsLength = coords.length;
+    // it's a ring - ignore the last one
+    const coordsLength = coords.length - 1;
 
-    if (coordsLength > 2) {
-        for (i = 0; i < coordsLength; i++) {
-            if (i === coordsLength - 2) { // i = N-2
-                lowerIndex = coordsLength - 2;
-                middleIndex = coordsLength - 1;
-                upperIndex = 0;
-            } else if (i === coordsLength - 1) { // i = N-1
-                lowerIndex = coordsLength - 1;
-                middleIndex = 0;
-                upperIndex = 1;
-            } else { // i = 0 to N-3
-                lowerIndex = i;
-                middleIndex = i + 1;
-                upperIndex = i + 2;
-            }
-            p1 = coords[lowerIndex];
-            p2 = coords[middleIndex];
-            p3 = coords[upperIndex];
-            total += (rad(p3[0]) - rad(p1[0])) * Math.sin(rad(p2[1]));
-        }
-
-        total = total * RADIUS * RADIUS / 2;
+    if (coordsLength < 3) {
+        return 0;
     }
-    return total;
+
+    let total = 0;
+
+    const f_x = rad(coords[0][0]), f_y = rad(coords[0][1]);
+    const s_x = rad(coords[1][0]), s_y = rad(coords[1][1]);
+
+    let l_x = f_x, l_y = f_y;
+    let m_x = s_x, m_y = s_y;
+
+    let u_x = 0, u_y = 0;
+
+    for (let i = 2; i < coordsLength; i++) {
+        u_x = rad(coords[i][0]); u_y = rad(coords[i][1]);
+
+        total += (u_x - l_x) * Math.sin(m_y);
+
+        l_x = m_x; l_y = m_y;
+        m_x = u_x; m_y = u_y;
+    }
+
+    // handle 2 extra triangles (since we started from i = 2)
+
+    u_x = f_x; u_y = f_y;
+
+    total += (u_x - l_x) * Math.sin(m_y);
+
+    l_x = m_x; l_y = m_y;
+    m_x = u_x; m_y = u_y;
+
+    u_x = s_x; u_y = s_y;
+
+    total += (u_x - l_x) * Math.sin(m_y);
+
+    return total * FACTOR;
 }
 
 function rad(num: number) {
