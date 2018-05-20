@@ -1,16 +1,16 @@
 {
   "name": "@turf/boolean-touches",
-  "version": "6.0.0",
+  "version": "6.0.1",
   "description": "turf boolean-touches module",
   "main": "index",
   "types": "index.d.ts",
   "files": [
     "index.js",
-    "index.ts",
     "index.d.ts"
   ],
   "scripts": {
     "prepare": "tsc",
+    "pretest": "tsc",
     "test": "node test.js",
     "bench": "node bench.js",
     "docs": "node ../../scripts/generate-readmes"

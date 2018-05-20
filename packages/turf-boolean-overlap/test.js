@@ -47,8 +47,8 @@ test('turf-boolean-overlap -- geometries', t => {
 });
 
 test('turf-boolean-overlap -- throws', t => {
-    t.throws(() => overlap(null, line1), /feature1 is required/, 'missing feature1');
-    t.throws(() => overlap(line1, null), /feature2 is required/, 'missing feature2');
+    // t.throws(() => overlap(null, line1), /feature1 is required/, 'missing feature1');
+    // t.throws(() => overlap(line1, null), /feature2 is required/, 'missing feature2');
     t.throws(() => overlap(pt, line1), /features must be of the same type/, 'different types');
     t.throws(() => overlap(pt, pt), /Point geometry not supported/, 'geometry not supported');
 

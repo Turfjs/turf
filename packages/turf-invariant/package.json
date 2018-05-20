@@ -1,17 +1,16 @@
 {
   "name": "@turf/invariant",
-  "version": "6.0.1",
+  "version": "6.1.2",
   "description": "turf invariant module",
   "main": "index",
-  "module": "index.mjs",
   "types": "index.d.ts",
   "files": [
     "index.js",
-    "index.mjs",
     "index.d.ts"
   ],
   "scripts": {
-    "pretest": "rollup -f cjs -o index.js index.mjs",
+    "prepare": "tsc",
+    "pretest": "tsc",
     "test": "node test.js",
     "bench": "node bench.js",
     "docs": "node ../../scripts/generate-readmes"
@@ -37,7 +36,8 @@
   "homepage": "https://github.com/Turfjs/turf",
   "devDependencies": {
     "benchmark": "*",
-    "rollup": "*",
+    "typescript": "*",
+    "tslint": "*",
     "tape": "*"
   },
   "dependencies": {

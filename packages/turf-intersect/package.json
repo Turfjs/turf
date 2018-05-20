@@ -1,12 +1,11 @@
 {
   "name": "@turf/intersect",
-  "version": "6.1.0",
+  "version": "6.1.2",
   "description": "turf intersect module",
   "main": "index",
   "types": "index.d.ts",
   "files": [
     "index.js",
-    "index.ts",
     "index.d.ts"
   ],
   "scripts": {

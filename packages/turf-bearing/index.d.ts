@@ -21,7 +21,6 @@ import { Coord } from "@turf/helpers";
  * point2.properties['marker-color'] = '#0f0'
  * point1.properties.bearing = bearing
  */
-declare function bearing(start: Coord, end: Coord, options?: {
+export default function bearing(start: Coord, end: Coord, options?: {
     final?: boolean;
 }): number;
-export default bearing;

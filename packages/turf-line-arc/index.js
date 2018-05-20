@@ -1,7 +1,11 @@
-import destination from '@turf/destination';
-import circle from '@turf/circle';
-import { lineString, isObject } from '@turf/helpers';
-
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+var circle_1 = __importDefault(require("@turf/circle"));
+var destination_1 = __importDefault(require("@turf/destination"));
+var helpers_1 = require("@turf/helpers");
 /**
  * Creates a circular arc, of a circle of the given radius and center point, between bearing1 and bearing2;
  * 0 bearing is North of center point, positive clockwise.
@@ -27,49 +31,32 @@ import { lineString, isObject } from '@turf/helpers';
  * var addToMap = [center, arc]
  */
 function lineArc(center, radius, bearing1, bearing2, options) {
-    // Optional parameters
-    options = options || {};
-    if (!isObject(options)) throw new Error('options is invalid');
-    var steps = options.steps;
-    var units = options.units;
-
-    // validation
-    if (!center) throw new Error('center is required');
-    if (!radius) throw new Error('radius is required');
-    if (bearing1 === undefined || bearing1 === null) throw new Error('bearing1 is required');
-    if (bearing2 === undefined || bearing2 === null) throw new Error('bearing2 is required');
-    if (typeof options !== 'object') throw new Error('options must be an object');
-
+    if (options === void 0) { options = {}; }
     // default params
-    steps = steps || 64;
-
+    var steps = options.steps || 64;
     var angle1 = convertAngleTo360(bearing1);
     var angle2 = convertAngleTo360(bearing2);
-    var properties = center.properties;
-
+    var properties = (!Array.isArray(center) && center.type === "Feature") ? center.properties : {};
     // handle angle parameters
     if (angle1 === angle2) {
-        return lineString(circle(center, radius, options).geometry.coordinates[0], properties);
+        return helpers_1.lineString(circle_1.default(center, radius, options).geometry.coordinates[0], properties);
     }
     var arcStartDegree = angle1;
     var arcEndDegree = (angle1 < angle2) ? angle2 : angle2 + 360;
-
     var alfa = arcStartDegree;
     var coordinates = [];
     var i = 0;
-
     while (alfa < arcEndDegree) {
-        coordinates.push(destination(center, radius, alfa, units).geometry.coordinates);
+        coordinates.push(destination_1.default(center, radius, alfa, options).geometry.coordinates);
         i++;
         alfa = arcStartDegree + i * 360 / steps;
     }
     if (alfa > arcEndDegree) {
-        coordinates.push(destination(center, radius, arcEndDegree, units).geometry.coordinates);
+        coordinates.push(destination_1.default(center, radius, arcEndDegree, options).geometry.coordinates);
     }
-    return lineString(coordinates, properties);
+    return helpers_1.lineString(coordinates, properties);
 }
-
-
+exports.default = lineArc;
 /**
  * Takes any angle in  degrees
  * and returns a valid angle between 0-360 degrees
@@ -85,5 +72,3 @@ function convertAngleTo360(alfa) {
     }
     return beta;
 }
-
-export default lineArc;

@@ -1,21 +1,18 @@
 {
   "name": "@turf/line-arc",
-  "version": "5.1.5",
+  "version": "6.0.0",
   "description": "turf line-arc module",
-  "main": "main.js",
-  "module": "main.es.js",
+  "main": "index",
   "types": "index.d.ts",
   "files": [
     "index.js",
-    "index.d.ts",
-    "main.js",
-    "main.es.js"
+    "index.d.ts"
   ],
   "scripts": {
-    "pretest": "rollup -c ../../rollup.config.js",
-    "test": "node -r @std/esm test.js",
-    "posttest": "node -r @std/esm ../../scripts/validate-es5-dependencies.js",
-    "bench": "node -r @std/esm bench.js",
+    "prepare": "tsc",
+    "pretest": "tsc",
+    "test": "node test.js",
+    "bench": "node bench.js",
     "docs": "node ../../scripts/generate-readmes"
   },
   "repository": {
@@ -33,11 +30,10 @@
   },
   "homepage": "https://github.com/Turfjs/turf",
   "devDependencies": {
-    "@std/esm": "*",
-    "@turf/truncate": "6.x",
+    "@turf/truncate": "*",
     "benchmark": "*",
     "load-json-file": "*",
-    "rollup": "*",
+    "typescript": "*",
     "tape": "*",
     "write-json-file": "*"
   },
@@ -45,9 +41,5 @@
     "@turf/circle": "6.x",
     "@turf/destination": "6.x",
     "@turf/helpers": "6.x"
-  },
-  "@std/esm": {
-    "esm": "js",
-    "cjs": true
   }
 }
