@@ -26,10 +26,10 @@ var cellWidth = 50;
 var cellHeight = 20;
 var options = {units: 'miles'};
 
-var squareGrid = turf.rectangleGrid(bbox, cellWidth, cellHeight, options);
+var rectangleGrid = turf.rectangleGrid(bbox, cellWidth, cellHeight, options);
 
 //addToMap
-var addToMap = [squareGrid]
+var addToMap = [rectangleGrid]
 ```
 
 Returns **[FeatureCollection](https://tools.ietf.org/html/rfc7946#section-3.3)&lt;[Polygon](https://tools.ietf.org/html/rfc7946#section-3.1.6)>** a grid of polygons

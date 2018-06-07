@@ -21,10 +21,10 @@ var helpers_1 = require("@turf/helpers");
  * var cellHeight = 20;
  * var options = {units: 'miles'};
  *
- * var squareGrid = turf.rectangleGrid(bbox, cellWidth, cellHeight, options);
+ * var rectangleGrid = turf.rectangleGrid(bbox, cellWidth, cellHeight, options);
  *
  * //addToMap
- * var addToMap = [squareGrid]
+ * var addToMap = [rectangleGrid]
  */
 export default function rectangleGrid(bbox, cellWidth, cellHeight, options) {
     if (options === void 0) { options = {}; }
