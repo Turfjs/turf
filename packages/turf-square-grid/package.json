@@ -43,6 +43,7 @@
     "@types/tape": "*"
   },
   "dependencies": {
-    "@turf/rectangle-grid": "6.x"
+    "@turf/rectangle-grid": "6.x",
+    "@turf/helpers": "6.x"
   }
 }
