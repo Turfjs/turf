@@ -1,6 +1,6 @@
 import { Feature, multiPolygon, MultiPolygon, polygon, Polygon, Properties } from "@turf/helpers";
 import { getGeom } from "@turf/invariant";
-import martinez from "martinez-polygon-clipping";
+import * as martinez from "martinez-polygon-clipping";
 
 /**
  * Takes two {@link Polygon|polygon} or {@link MultiPolygon|multi-polygon} geometries and
