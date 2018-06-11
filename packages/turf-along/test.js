@@ -3,6 +3,8 @@ const test = require('tape');
 const load = require('load-json-file');
 const write = require('write-json-file');
 const { featureCollection } = require('@turf/helpers');
+const isPointOnLine = require('@turf/boolean-point-on-line').default;
+
 const along = require('./').default;
 
 const line = load.sync(path.join(__dirname, 'test', 'fixtures', 'dc-line.geojson'));
@@ -25,6 +27,10 @@ test('turf-along', t => {
         t.equal(f.geometry.type, 'Point');
     });
     t.equal(fc.features.length, 8);
+  
+    t.equal(isPointOnLine(fc.features[5].geometry.coordinates, line), true);
+    t.equal(isPointOnLine(fc.features[6].geometry.coordinates, line), true);
+    t.equal(isPointOnLine(fc.features[7].geometry.coordinates, line), true);
     
     if (process.env.REGEN) write.sync(path.join(__dirname, 'test', 'fixtures', 'dc-points.geojson'), fc);
     t.deepEqual(fc, load.sync(path.join(__dirname, 'test', 'fixtures', 'dc-points.geojson')));
@@ -37,6 +43,8 @@ const longLine = load.sync(path.join(__dirname, 'test', 'fixtures', 'long-line.g
 test('turf-along-long', t => {
   const pt1 = along(longLine.features[0], 200, {units: 'miles'});
   t.deepEqual(pt1, longLine.features[1]);
+
+  // t.equal(isPointOnLine(pt1, longLine.features[0]), true);
 
   t.end();
 });
