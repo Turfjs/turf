@@ -658,7 +658,7 @@ export function convertArea(area: number, originalUnit: Units = "meters", finalU
  * //=false
  */
 export function isNumber(num: any): boolean {
-    return !isNaN(num) && num !== null && !Array.isArray(num) && !/^\s*$/.test(num);
+    return !isNaN(num) && num !== null && !Array.isArray(num);
 }
 
 /**
