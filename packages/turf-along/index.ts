@@ -40,7 +40,7 @@ export default function along(
             } else {
                 const direction = bearing(coords[i], coords[i - 1]) - 180;
                 const interpolated = destination(coords[i], overshot, direction, options);
-                return interpolated
+                return interpolated;
             }
         } else {
             travelled += measureDistance(coords[i], coords[i + 1], options);
