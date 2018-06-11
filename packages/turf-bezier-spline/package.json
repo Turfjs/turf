@@ -1,6 +1,6 @@
 {
   "name": "@turf/bezier-spline",
-  "version": "6.0.8",
+  "version": "6.0.3",
   "description": "turf bezier-spline module",
   "main": "index",
   "types": "index.d.ts",
