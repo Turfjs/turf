@@ -65,6 +65,13 @@ test('center of mass -- point', t => {
     t.end();
 });
 
+test('center of mass -- point geom', t => {
+    const geomPoint = {type: 'Point', coordinates: [0, 0]};
+    const pt = centerOfMass(geomPoint);
+    t.deepEqual(pt, point([0, 0]), 'point geom returns pt');
+    t.end();
+});
+
 test('center of mass -- properties', t => {
     const line = lineString([[0, 0], [1, 1]]);
     const pt = centerOfMass(line, {properties: {foo: 'bar'}});
