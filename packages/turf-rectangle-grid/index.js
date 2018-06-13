@@ -1,3 +1,5 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 var boolean_intersects_1 = require("@turf/boolean-intersects");
 var distance_1 = require("@turf/distance");
 var helpers_1 = require("@turf/helpers");
@@ -9,7 +11,7 @@ var helpers_1 = require("@turf/helpers");
  * @param {number} cellWidth of each cell, in units
  * @param {number} cellHeight of each cell, in units
  * @param {Object} [options={}] Optional parameters
- * @param {string} [options.units='kilometers'] units ("degrees", "radians", "miles", "kilometers") that the given cellWidth 
+ * @param {string} [options.units='kilometers'] units ("degrees", "radians", "miles", "kilometers") that the given cellWidth
  * and cellHeight are expressed in. Converted at the southern border.
  * @param {Feature<Polygon|MultiPolygon>} [options.mask] if passed a Polygon or MultiPolygon,
  * the grid Points will be created only inside it
@@ -26,7 +28,7 @@ var helpers_1 = require("@turf/helpers");
  * //addToMap
  * var addToMap = [rectangleGrid]
  */
-export default function rectangleGrid(bbox, cellWidth, cellHeight, options) {
+function rectangleGrid(bbox, cellWidth, cellHeight, options) {
     if (options === void 0) { options = {}; }
     // Containers
     var results = [];
@@ -62,7 +64,8 @@ export default function rectangleGrid(bbox, cellWidth, cellHeight, options) {
                 if (boolean_intersects_1.default(options.mask, cellPoly)) {
                     results.push(cellPoly);
                 }
-            } else {
+            }
+            else {
                 results.push(cellPoly);
             }
             currentY += cellHeightDeg;
@@ -71,4 +74,4 @@ export default function rectangleGrid(bbox, cellWidth, cellHeight, options) {
     }
     return helpers_1.featureCollection(results);
 }
-
+exports.default = rectangleGrid;
