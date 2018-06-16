@@ -1,7 +1,7 @@
 import convex from '@turf/convex';
 import centroid from '@turf/centroid';
 import { point, Properties, AllGeoJSON, Feature, Point } from '@turf/helpers';
-import { getType } from '@turf/invariant';
+import { getType, getCoord } from '@turf/invariant';
 import { coordEach } from '@turf/meta';
 
 /**
@@ -25,7 +25,7 @@ function centerOfMass<P = Properties>(geojson: any, options: {
 } = {}): Feature<Point, P> {
     switch (getType(geojson)) {
     case 'Point':
-        return geojson;
+        return point(getCoord(geojson), options.properties);
     case 'Polygon':
         var coords = [];
         coordEach(geojson, function (coord) {
