@@ -79,6 +79,13 @@
     "@turf/helpers" "^5.1.5"
     "@turf/invariant" "^5.1.5"
 
+"@turf/circle@^5.1.5":
+  version "5.1.5"
+  resolved "https://registry.yarnpkg.com/@turf/circle/-/circle-5.1.5.tgz#9b1577835508ab52fb1c10b2a5065cba2b87b6a5"
+  dependencies:
+    "@turf/destination" "^5.1.5"
+    "@turf/helpers" "^5.1.5"
+
 "@turf/clean-coords@6.0.0":
   version "6.0.0"
   resolved "https://registry.yarnpkg.com/@turf/clean-coords/-/clean-coords-6.0.0.tgz#edac2b00dcbfd61c42dd035bfd5f21075c887565"
@@ -150,6 +157,14 @@
   version "5.2.0"
   resolved "https://registry.yarnpkg.com/@turf/invariant/-/invariant-5.2.0.tgz#f0150ff7290b38577b73d088b7932c1ee0aa90a7"
   dependencies:
+    "@turf/helpers" "^5.1.5"
+
+"@turf/line-arc@5.1.x", "@turf/line-arc@^5.1.5":
+  version "5.1.5"
+  resolved "https://registry.yarnpkg.com/@turf/line-arc/-/line-arc-5.1.5.tgz#0078a7447835a12ae414a211f9a64d1186150e15"
+  dependencies:
+    "@turf/circle" "^5.1.5"
+    "@turf/destination" "^5.1.5"
     "@turf/helpers" "^5.1.5"
 
 "@turf/line-intersect@^5.1.5":
@@ -508,10 +523,6 @@ asynckit@^0.4.0:
 atob@^2.0.0:
   version "2.0.3"
   resolved "https://registry.yarnpkg.com/atob/-/atob-2.0.3.tgz#19c7a760473774468f20b2d2d03372ad7d4cbf5d"
-
-avl@^1.4.1:
-  version "1.4.1"
-  resolved "https://registry.yarnpkg.com/avl/-/avl-1.4.1.tgz#c7ad7b26c7b81fb9919f4561c9601ff4c3e38ad7"
 
 aws-sign2@~0.6.0:
   version "0.6.0"
@@ -3802,10 +3813,10 @@ markdown-table@^1.1.0:
   resolved "https://registry.yarnpkg.com/markdown-table/-/markdown-table-1.1.1.tgz#4b3dd3a133d1518b8ef0dbc709bf2a1b4824bc8c"
 
 martinez-polygon-clipping@*:
-  version "0.3.3"
-  resolved "https://registry.yarnpkg.com/martinez-polygon-clipping/-/martinez-polygon-clipping-0.3.3.tgz#a7b9429c9d13cb118a86c97a5e1af5a62aedb6d9"
+  version "0.4.3"
+  resolved "https://registry.yarnpkg.com/martinez-polygon-clipping/-/martinez-polygon-clipping-0.4.3.tgz#a3971ddf1da147104b5d0fbbf68f728bb62885c1"
   dependencies:
-    avl "^1.4.1"
+    splaytree "^0.1.4"
     tinyqueue "^1.2.0"
 
 matrix-to-grid@*:
@@ -5279,6 +5290,10 @@ spdx-expression-parse@~1.0.0:
 spdx-license-ids@^1.0.2:
   version "1.2.2"
   resolved "https://registry.yarnpkg.com/spdx-license-ids/-/spdx-license-ids-1.2.2.tgz#c9df7a3424594ade6bd11900d596696dc06bac57"
+
+splaytree@^0.1.4:
+  version "0.1.4"
+  resolved "https://registry.yarnpkg.com/splaytree/-/splaytree-0.1.4.tgz#fc35475248edcc29d4938c9b67e43c6b7e55a659"
 
 split-string@^3.0.1, split-string@^3.0.2:
   version "3.1.0"
