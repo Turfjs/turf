@@ -1,7 +1,7 @@
 {
-  "name": "@turf/square-grid",
+  "name": "@turf/rectangle-grid",
   "version": "6.0.2",
-  "description": "turf square-grid module",
+  "description": "turf rectangle-grid module",
   "main": "index",
   "types": "index.d.ts",
   "files": [
@@ -23,10 +23,13 @@
     "turf",
     "grid",
     "regular",
-    "cartesian",
-    "grid"
+    "cartesian"
   ],
   "author": "Turf Authors",
+  "contributors": [
+    "Steve Bennett <@stevage>",
+    "Adam Michaleski <@adam3039>"
+  ],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/Turfjs/turf/issues"
@@ -35,15 +38,17 @@
   "devDependencies": {
     "@turf/bbox-polygon": "*",
     "@turf/truncate": "*",
+    "@std/esm": "*",
     "benchmark": "*",
-    "tape": "*",
+    "rollup": "*",
     "write-json-file": "*",
-    "typescript": "*",
-    "tslint": "*",
-    "@types/tape": "*"
+    "load-json-file": "*",
+    "tape": "*"
   },
   "dependencies": {
-    "@turf/rectangle-grid": "6.x",
-    "@turf/helpers": "6.x"
+    "@turf/distance": "6.x",
+    "@turf/helpers": "6.x",
+    "@turf/invariant": "6.x",
+    "@turf/boolean-intersects": "6.x"
   }
 }
