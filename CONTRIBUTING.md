@@ -1,5 +1,9 @@
 ### :bug: [How to report a bug](http://polite.technology/reportabug.html)
 
+## Please note
+
+The high-level structure of Turf is undergoing discussion at [#1428](https://github.com/Turfjs/turf/issues/1428). Currently (June 2018), there is a partial conversion to Typescript, and the contribution documentation does not completely reflect the current status. 
+
 ## How To Contribute
 
 - Most work happens in sub modules. These are found in the `packages` directory prefixed with "turf-".
