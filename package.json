@@ -1,26 +1,37 @@
 {
-  "private": true,
-  "workspaces": [
-    "packages/*"
+  "name": "turf",
+  "version": "7.0.0",
+  "description": "A JavaScript library for performing geospatial operations with GeoJSON",
+  "main": "turf",
+  "module": "turf.mjs",
+  "browser": "turf.min.js",
+  "types": "index.d.ts",
+  "files": [
+    "index.js",
+    "index.mjs",
+    "index.d.ts",
+    "turf.js",
+    "turf.mjs",
+    "turf.min.js"
   ],
   "scripts": {
-    "prelint": "tsc",
-    "lint": "echo 'eslint will be moved to TSLint'",
-    "postlint": "documentation lint packages/turf-*/index.js",
-    "pretest": "lerna bootstrap --use-workspaces && npm run lint",
-    "test": "lerna run test --use-workspaces",
-    "docs": "node ./scripts/generate-readmes",
+    "benchmark-module": "node -r esm scripts/benchmarkModule.js",
+    "lint": "eslint src/*/index.js",
+    "test": "tape src/*/test.js",
+    "test-module": "node -r esm scripts/testModule.js",
     "postinstall": "opencollective postinstall"
   },
   "devDependencies": {
     "@types/geojson": "*",
     "@types/node": "*",
+    "benchmark": "^2.1.4",
     "camelcase": "*",
     "d3-queue": "*",
     "decamelize": "*",
     "documentation": "*",
     "eslint": "*",
     "eslint-config-mourner": "*",
+    "esm": "^3.0.55",
     "fs-extra": "*",
     "lerna": "2.8.0",
     "load-json-file": "*",
@@ -30,6 +41,7 @@
     "rollup-plugin-typescript": "*",
     "tape": "*",
     "typescript": "*",
+    "write-json-file": "*",
     "yamljs": "*"
   },
   "dependencies": {
