@@ -3,14 +3,10 @@ const test = require('tape');
 const glob = require('glob');
 const load = require('load-json-file');
 const write = require('write-json-file');
-
-const invariant = require('../invariant');
-const helpers = require('../helpers');
-const featureCollection = helpers.featureCollection;
-const lineString = helpers.lineString;
-
-import { truncate } from '../truncate';
-const destination = require('./').default
+const { getCoords } = require('../invariant');
+const { lineString, featureCollection, round } = require('../helpers');
+const truncate = require('../truncate').default;
+const destination = require('./').default;
 
 const directories = {
     in: path.join(__dirname, 'test', 'in') + path.sep,

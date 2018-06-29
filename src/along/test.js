@@ -1,9 +1,7 @@
 const path = require('path');
 const test = require('tape');
 const load = require('load-json-file');
-const helpers = require('../helpers');
-const featureCollection = helpers.featureCollection
-
+const { featureCollection } = require('../helpers');
 const along = require('./').default;
 
 const line = load.sync(path.join(__dirname, 'test', 'fixtures', 'dc-line.geojson'));

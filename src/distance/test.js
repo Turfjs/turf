@@ -3,10 +3,8 @@ const path = require('path');
 const test = require('tape');
 const load = require('load-json-file');
 const write = require('write-json-file');
-
-const helpers = require('../helpers')
-const point = helpers.point
-const distance = require('./');
+const { point } = require('../helpers');
+const distance = require('./').default;
 
 const directories = {
     in: path.join(__dirname, 'test', 'in') + path.sep,
