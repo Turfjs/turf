@@ -1,6 +1,6 @@
-import bearing from "@turf/bearing";
-import destination from "@turf/destination";
-import measureDistance from "@turf/distance";
+import bearing from "@turf/rhumb-bearing";
+import destination from "@turf/rhumb-destination";
+import measureDistance from "@turf/rhumb-distance";
 import { Feature, LineString, point, Point, Units } from "@turf/helpers";
 import { getGeom } from "@turf/invariant";
 
@@ -32,7 +32,8 @@ export default function along(
     const coords = geom.coordinates;
     let travelled = 0;
     for (let i = 0; i < coords.length; i++) {
-        if (distance >= travelled && i === coords.length - 1) { break;
+        if (distance >= travelled && i === coords.length - 1) { 
+          break;
         } else if (travelled >= distance) {
             const overshot = distance - travelled;
             if (!overshot) { return point(coords[i]);
