@@ -1,3 +1,102 @@
+# 5.2.0
+
+## 🚀 New Modules
+
+### [`@turf/angle`][angle]
+
+Finds the Interior or Explementary angle between 3 points.
+
+(PR https://github.com/Turfjs/turf/pull/1192 & https://github.com/Turfjs/turf/pull/1173 - Authors @DenisCarriere & @stebogit)
+
+## Obtuse Angle
+
+- **Red**: Interior Angle
+- **Blue**: Explementary Angle
+
+![image](https://user-images.githubusercontent.com/550895/34275070-a6565d26-e669-11e7-88ee-d6c44c5cc517.png)
+
+## Acute Angle
+
+- **Red**: Interior Angle
+- **Blue**: Explementary Angle
+
+![image](https://user-images.githubusercontent.com/550895/34275145-f30b2930-e669-11e7-97ce-d6cbbacabfed.png)
+
+
+# 5.1.0
+
+## 🚀 New Modules
+
+### [`@turf/center-median`][center-median]
+
+Takes a FeatureCollection of points and calculates the median center, algorithimically. The median center is understood as the point that is requires the least total travel from all other points.
+
+(PR https://github.com/Turfjs/turf/pull/1122 - Author @muziejus)
+
+
+### [`@turf/center-mean`][center-mean]
+
+Takes a Feature or FeatureCollection and returns the mean center. Can be weighted.
+
+(PR https://github.com/Turfjs/turf/pull/1089 - Author @muziejus)
+
+![artboard 1](https://user-images.githubusercontent.com/827683/33585310-9596d15e-d931-11e7-901e-18f40a2b8cd7.png)
+
+
+### [`@turf/standard-deviational-ellipse`][standard-deviational-ellipse]
+
+Takes a FeatureCollection and returns a standard deviational ellipse, also known as a “directional distribution.” The standard deviational ellipse aims to show the direction and the distribution of a dataset by drawing an ellipse that contains about one standard deviation’s worth (~ 70%) of the data.
+
+This module mirrors the functionality of Directional Distribution in ArcGIS and the QGIS Standard Deviational Ellipse Plugin
+
+(PR https://github.com/Turfjs/turf/pull/1120 - Author @muziejus)
+
+<img width="348" alt="screen shot 2017-11-24 at 23 41 13" src="https://user-images.githubusercontent.com/827683/33227583-c21d068c-d173-11e7-8a62-698930fe42c1.png">
+
+### [`@turf/ellipse`][ellipse]
+
+Takes a Point and calculates the ellipse polygon given two semi-axes expressed in variable units and steps for precision.
+
+(PR https://github.com/Turfjs/turf/pull/1087 - Author @muziejus)
+
+![ellipse](https://user-images.githubusercontent.com/12717225/32702074-d8ea0708-c795-11e7-9d0a-5d8fa3e03987.png)
+
+## 📖 Documentation
+
+- TurfJS's website has a fresh new look! 🚀 http://turfjs.org (Author @rowanwins PR https://github.com/Turfjs/turf-www/pull/127)
+  - This uses nuxt to generate the pages as static html which should be better for search engines
+  - The docs are now all on a single page
+  - Built sizes are much better than the current
+  - The map moves to a module when its description comes into view, I think this functions reasonably nicely.
+
+## 🏅 New Features/Enhancements
+
+- Add points/lineStrings/polygons to [@turf/helpers][helpers] (https://github.com/Turfjs/turf/pull/1108)
+- Internalize `@types/geojson` (https://github.com/Turfjs/turf/pull/1138)
+- Add extra geometry support to [@turf/points-within-polygon][points-within-polygon] (https://github.com/Turfjs/turf/pull/1117)
+- ES Modules now work in the latest version of Chrome!
+
+```html
+<script type='module'>
+  import {point} from "https://unpkg.com/@turf/helpers?module"
+
+  console.log(point([100, 0]));
+</script>
+```
+
+## 🐛 Bug Fixes
+
+- Prevent Window Freeze when using [@turf/simplify][simplify] (https://github.com/Turfjs/turf/pull/1145)
+- Take care of zero handling for weight in [@turf/center-mean][center-mean] (https://github.com/Turfjs/turf/pull/1127)
+- Add input validation to [@turf/bbox-polygon][bbox-polygon] (https://github.com/Turfjs/turf/pull/1121)
+- Use rhumb lines to calculate [@turf/ellipse][ellipse] axes, except when units are "degrees" (https://github.com/Turfjs/turf/pull/1115)
+- [coordEach][meta] indexing bug (https://github.com/Turfjs/turf/issues/1092)
+- Add null handling for property cloning on @turf/clone. Fixes issue #1095 (https://github.com/Turfjs/turf/pull/1096)
+
+Twitter: https://twitter.com/DenisCarriere/status/938895355541778432
+CC: @Turfjs/ownership
+
+
 # 5.0.0 🎉
 
 ## ⭐️ Major Updates
@@ -544,6 +643,7 @@ turf.bbox(poly) // [minx, miny, maxx, maxy]
 
 
 [along]: https://github.com/Turfjs/turf/tree/master/packages/turf-along
+[angle]: https://github.com/Turfjs/turf/tree/master/packages/turf-angle
 [area]: https://github.com/Turfjs/turf/tree/master/packages/turf-area
 [bbox]: https://github.com/Turfjs/turf/tree/master/packages/turf-bbox
 [bbox-clip]: https://github.com/Turfjs/turf/tree/master/packages/turf-bbox-clip
