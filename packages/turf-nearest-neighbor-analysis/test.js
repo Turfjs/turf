@@ -23,7 +23,7 @@ test('turf-nearest-neighbor', t => {
       featureEach(geojson, feature => results.features.push(truncate(centroid(feature, {properties: {"marker-color": "#0a0"}}))));
     }
     results.features.push(truncate(nearestNeighborAnalysis(geojson, options)));
-    const out = filepath.replace('in', 'out');
+    const out = filepath.replace(/\/in\/([^/]+)$/, '/out/$1');
     if (process.env.REGEN) write.sync(out, results);
     t.deepEqual(results, load.sync(out), name);
 
