@@ -3,11 +3,11 @@ const test = require('tape');
 const path = require('path');
 const load = require('load-json-file');
 const write = require('write-json-file');
-const along = require('@turf/along').default;
-const distance = require('@turf/distance').default;
-const truncate = require('@turf/truncate').default;
-const length = require('@turf/length').default;
-const { lineString, multiLineString, point, featureCollection, round } = require('@turf/helpers');
+const along = require('../along').default;
+const distance = require('../distance').default;
+const truncate = require('../truncate').default;
+const length = require('../length').default;
+const { lineString, multiLineString, point, featureCollection, round } = require('../helpers');
 const nearestPointOnLine = require('./').default;
 
 const directories = {

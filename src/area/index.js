@@ -1,5 +1,5 @@
-import { earthRadius } from '@turf/helpers';
-import { geomReduce } from '@turf/meta';
+import { earthRadius } from '../helpers';
+import { geomReduce } from '../meta';
 
 /**
  * Takes one or more features and returns their area in square meters.

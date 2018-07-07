@@ -1,4 +1,4 @@
-import { degreesToRadians, radiansToDegrees, isObject } from '../helpers';
+import { degreesToRadians, radiansToDegrees, isObject, checkIfOptionsExist } from '../helpers';
 import { getCoord } from '../invariant';
 
 // http://en.wikipedia.org/wiki/Haversine_formula
@@ -28,8 +28,7 @@ import { getCoord } from '../invariant';
  */
 export default function bearing(start, end, options) {
 
-    options = options || {};
-    if (!isObject(options)) throw new Error('options is invalid');
+    options = checkIfOptionsExist(options)
 
     // Reverse calculation
     if (options.final === true) { return calculateFinalBearing(start, end); }

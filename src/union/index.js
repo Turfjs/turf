@@ -1,4 +1,4 @@
-import martinez from 'martinez-polygon-clipping';
+import * as martinez from 'martinez-polygon-clipping';
 import { getGeom } from '../invariant';
 import { multiPolygon, polygon } from '../helpers';
 

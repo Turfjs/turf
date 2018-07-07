@@ -1,4 +1,4 @@
-import { Feature, FeatureCollection, Geometry } from "@turf/helpers";
+import { Feature, FeatureCollection, Geometry } from "../helpers";
 /**
  * Takes one or more features and returns their area in square meters.
  *

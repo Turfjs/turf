@@ -1,5 +1,5 @@
 import { getCoord } from '../invariant';
-import { radiansToLength, degreesToRadians, validateOptions } from '../helpers';
+import { radiansToLength, degreesToRadians, checkIfOptionsExist } from '../helpers';
 
 //http://en.wikipedia.org/wiki/Haversine_formula
 //http://www.movable-type.co.uk/scripts/latlong.html
@@ -27,7 +27,7 @@ import { radiansToLength, degreesToRadians, validateOptions } from '../helpers';
  * to.properties.distance = distance;
  */
 function distance(from, to, options) {
-    options = validateOptions();
+    options = checkIfOptionsExist(options);
     var coordinates1 = getCoord(from);
     var coordinates2 = getCoord(to);
     var dLat = degreesToRadians((coordinates2[1] - coordinates1[1]));

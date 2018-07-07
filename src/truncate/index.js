@@ -1,4 +1,5 @@
 import { coordEach } from '../meta';
+import { checkIfOptionsExist } from '../helpers'
 
 /**
  * Takes a GeoJSON Feature or FeatureCollection and truncates the precision of the geometry.
@@ -23,7 +24,9 @@ import { coordEach } from '../meta';
  * //addToMap
  * var addToMap = [truncated];
  */
-function truncate(geojson options) {
+function truncate(geojson, options) {
+
+    options = checkIfOptionsExist(options);
     // Optional parameters
     var precision = options.precision;
     var coordinates = options.coordinates;

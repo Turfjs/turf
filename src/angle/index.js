@@ -1,5 +1,5 @@
 import bearing from "../bearing";
-import { bearingToAzimuth, Coord, isObject } from "../helpers";
+import { bearingToAzimuth, checkIfOptionsExist } from "../helpers";
 import rhumbBearing from "../rhumb-bearing";
 
 /**
@@ -18,9 +18,8 @@ import rhumbBearing from "../rhumb-bearing";
  * turf.angle([5, 5], [5, 6], [3, 4]);
  * //=45
  */
-function angle(startPoint, midPoint, endPoint, options){
-    // Optional Parameters
-    if (!isObject(options)) { throw new Error("options is invalid"); }
+function angle(startPoint, midPoint, endPoint, options) {
+     options = checkIfOptionsExist(options);
 
     // Validation
     if (!startPoint) { throw new Error("startPoint is required"); }

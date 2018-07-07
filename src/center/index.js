@@ -1,5 +1,5 @@
 import bbox from '../bbox';
-import { point } from '../helpers';
+import { point, checkIfOptionsExist } from '../helpers';
 
 /**
  * Takes a {@link Feature} or {@link FeatureCollection} and returns the absolute center point of all features.
@@ -26,6 +26,8 @@ import { point } from '../helpers';
  * center.properties['marker-color'] = '#000';
  */
 function center(geojson, options) {
+    options = checkIfOptionsExist(options);
+
     const ext = bbox(geojson);
     const x = (ext[0] + ext[2]) / 2;
     const y = (ext[1] + ext[3]) / 2;

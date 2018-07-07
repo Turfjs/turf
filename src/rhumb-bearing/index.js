@@ -1,5 +1,5 @@
 // https://en.wikipedia.org/wiki/Rhumb_line
-import { Coord, degreesToRadians, radiansToDegrees } from "../helpers";
+import { degreesToRadians, radiansToDegrees, checkIfOptionsExist } from "../helpers";
 import { getCoord } from "../invariant";
 
 /**
@@ -24,6 +24,7 @@ import { getCoord } from "../invariant";
  * point2.properties.bearing = bearing;
  */
 function rhumbBearing(start, end, options) {
+    options = checkIfOptionsExist(options)
     let bear360;
     if (options.final) { bear360 = calculateRhumbBearing(getCoord(end), getCoord(start));
     } else { bear360 = calculateRhumbBearing(getCoord(start), getCoord(end)); }

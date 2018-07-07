@@ -101,7 +101,7 @@ export let areaFactors = {
  * //=feature
  */
 export function feature(geometry, properties, options) {
-    options = validateOptions(options);
+    options = checkIfOptionsExist(options);
     const feat = {type: 'Feature'};
     if (options.id === 0 || options.id) { feat.id = options.id; }
     if (options.bbox) { feat.bbox = options.bbox; }
@@ -152,7 +152,7 @@ export function geometry(type, coordinates) {
  * //=point
  */
 export function point(coordinates, properties, options) {
-    options = validateOptions(options);
+    options = checkIfOptionsExist(options);
     const geom = {
         type: 'Point',
         coordinates,
@@ -181,7 +181,7 @@ export function point(coordinates, properties, options) {
  * //=points
  */
 export function points(coordinates, properties, options) {
-    options = validateOptions(options);
+    options = checkIfOptionsExist(options);
     return featureCollection(coordinates.map((coords) => {
         return point(coords, properties);
     }), options);
@@ -203,7 +203,7 @@ export function points(coordinates, properties, options) {
  * //=polygon
  */
 export function polygon(coordinates, properties, options) {
-    options = validateOptions(options);
+    options = checkIfOptionsExist(options);
     for (const ring of coordinates) {
         if (ring.length < 4) {
             throw new Error('Each LinearRing of a Polygon must have 4 or more Positions.');
@@ -241,7 +241,7 @@ export function polygon(coordinates, properties, options) {
  * //=polygons
  */
 export function polygons(coordinates, properties, options) {
-    options = validateOptions(options);
+    options = checkIfOptionsExist(options);
     return featureCollection(coordinates.map((coords) => {
         return polygon(coords, properties);
     }), options);
@@ -265,8 +265,8 @@ export function polygons(coordinates, properties, options) {
  * //=linestring2
  */
 export function lineString(coordinates, properties, options) {
-    options = validateOptions(options);
-   if (coordinates.length < 2) { throw new Error('coordinates must be an array of two or more positions'); }
+    options = checkIfOptionsExist(options);
+    if (coordinates.length < 2) { throw new Error('coordinates must be an array of two or more positions'); }
     const geom = {
         type: 'LineString',
         coordinates,
@@ -294,7 +294,7 @@ export function lineString(coordinates, properties, options) {
  * //=linestrings
  */
 export function lineStrings(coordinates, properties, options) {
-    options = validateOptions(options);
+    options = checkIfOptionsExist(options);
     return featureCollection(coordinates.map((coords) => {
         return lineString(coords, properties);
     }), options);
@@ -323,7 +323,7 @@ export function lineStrings(coordinates, properties, options) {
  * //=collection
  */
 export function featureCollection(features, options) {
-    options = validateOptions(options);
+    options = checkIfOptionsExist(options);
     const fc = {type: 'FeatureCollection'};
     if (options.id) { fc.id = options.id; }
     if (options.bbox) { fc.bbox = options.bbox; }
@@ -349,7 +349,7 @@ export function featureCollection(features, options) {
  * //=multiLine
  */
 export function multiLineString(coordinates, properties, options) {
-    options = validateOptions(options);
+    options = checkIfOptionsExist(options);
     const geom = {
         type: 'MultiLineString',
         coordinates,
@@ -375,7 +375,7 @@ export function multiLineString(coordinates, properties, options) {
  * //=multiPt
  */
 export function multiPoint(coordinates, properties, options) {
-    options = validateOptions(options);
+    options = checkIfOptionsExist(options);
     const geom = {
         type: 'MultiPoint',
         coordinates,
@@ -402,7 +402,7 @@ export function multiPoint(coordinates, properties, options) {
  *
  */
 export function multiPolygon(coordinates, properties, options) {
-    options = validateOptions(options);
+    options = checkIfOptionsExist(options);
     const geom = {
         type: 'MultiPolygon',
         coordinates,
@@ -429,7 +429,7 @@ export function multiPolygon(coordinates, properties, options) {
  * // => collection
  */
 export function geometryCollection(geometries, properties, options) {
-    options = validateOptions(options);
+    options = checkIfOptionsExist(options);
     const geom = {
         type: 'GeometryCollection',
         geometries,
@@ -676,10 +676,10 @@ export function validateId(id) {
     if (['string', 'number'].indexOf(typeof id) === -1) { throw new Error('id must be a number or a string'); }
 }
 
-export function validateOptions(options) {
+export function checkIfOptionsExist(options) {
     options = options || {};
     if (!isObject(options)) throw new Error('options is invalid');
-    return options
+    return options;
 }
 
 // Deprecated methods

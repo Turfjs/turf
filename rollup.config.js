@@ -1,10 +1,22 @@
-import typescript from './rollup-plugins/typescript-export';
+import node from 'rollup-plugin-node-resolve'
+import commonjs from 'rollup-plugin-commonjs'
+import uglify from 'rollup-plugin-uglify'
 
-export default {
-    input: 'index.js',
+const pckg = require('./package')
+const input = 'index.mjs'
+
+export default [{
+    input,
     output: [
-        {file: 'main.js', format: 'cjs'},
-        {file: 'main.es.js', format: 'es'}
+        {file: pckg.main + '.js', format: 'umd', name: 'turf'},
+        {file: pckg.module, format: 'es'},
     ],
-    plugins: [typescript()]
-}
+    plugins: [commonjs(), node()]
+},
+{
+    input,
+    output: [
+        {file: pckg.browser, format: 'umd', name: 'turf'}
+    ],
+    plugins: [commonjs(), node(), uglify()]
+}];

@@ -1,4 +1,4 @@
-import { polygon } from '../helpers';
+import { polygon, checkIfOptionsExist } from '../helpers';
 
 /**
  * Takes a bbox and returns an equivalent {@link Polygon|polygon}.
@@ -18,6 +18,8 @@ import { polygon } from '../helpers';
  * var addToMap = [poly]
  */
 export default function bboxPolygon(bbox, options) {
+    options = checkIfOptionsExist(options);
+
     // Convert BBox positions to Numbers
     // No performance loss for including Number()
     // https://github.com/Turfjs/turf/issues/1119

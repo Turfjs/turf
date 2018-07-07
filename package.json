@@ -2,23 +2,15 @@
   "name": "turf",
   "version": "7.0.0",
   "description": "A JavaScript library for performing geospatial operations with GeoJSON",
-  "main": "turf",
-  "module": "turf.mjs",
-  "browser": "turf.min.js",
+  "main": "xxx",
+  "module": "src/index.js",
   "types": "index.d.ts",
-  "files": [
-    "index.js",
-    "index.mjs",
-    "index.d.ts",
-    "turf.js",
-    "turf.mjs",
-    "turf.min.js"
-  ],
   "scripts": {
     "benchmark-module": "node -r esm scripts/benchmarkModule.js",
     "lint": "eslint src/*/index.js",
     "test": "tape src/*/test.js",
     "test-module": "node -r esm scripts/testModule.js",
+    "test-module:regen": "cross-env REGEN=true node -r esm scripts/testModule.js",
     "postinstall": "opencollective postinstall"
   },
   "devDependencies": {
@@ -45,7 +37,11 @@
     "yamljs": "*"
   },
   "dependencies": {
-    "opencollective": "^1.0.3"
+    "geojson-equality": "^0.2.0",
+    "geojson-rbush": "^3.1.1",
+    "martinez-polygon-clipping": "^0.4.3",
+    "opencollective": "^1.0.3",
+    "rbush": "^2.0.2"
   },
   "collective": {
     "type": "opencollective",

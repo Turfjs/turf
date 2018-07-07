@@ -1,5 +1,5 @@
-import { feature, Feature, featureCollection, point } from '../helpers';
-import { getCoords, getGeom } from '../invariant';
+import { feature, featureCollection, point } from '../helpers';
+import { getCoords } from '../invariant';
 import lineSegment from '../line-segment';
 import { featureEach } from '../meta';
 import rbush from 'geojson-rbush';

@@ -1,7 +1,7 @@
 import bearing from '../bearing';
 import destination from '../destination';
 import measureDistance from '../distance';
-import { point } from '../helpers';
+import { point, checkIfOptionsExist } from '../helpers';
 import { getGeom } from '../invariant';
 
 /**
@@ -23,6 +23,8 @@ import { getGeom } from '../invariant';
  * var addToMap = [along, line]
  */
 export default function along(line, distance, options) {
+    options = checkIfOptionsExist()
+
     const geom = getGeom(line);
     const coords = geom.coordinates;
     let travelled = 0;
