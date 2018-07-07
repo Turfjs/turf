@@ -1,4 +1,4 @@
-import { lineString, validateOptions } from '../helpers';
+import { lineString, checkIfOptionsExist } from '../helpers';
 import { getGeom } from '../invariant';
 import Spline from './lib/spline';
 
@@ -33,7 +33,7 @@ import Spline from './lib/spline';
  * curved.properties = { stroke: '#0F0' };
  */
 function bezier(line, options) {
-    options = validateOptions()
+    options = checkIfOptionsExist(options);
     // Optional params
     const resolution = options.resolution || 10000;
     const sharpness = options.sharpness || 0.85;

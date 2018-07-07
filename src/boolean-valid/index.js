@@ -1,6 +1,6 @@
 import { segmentEach } from '../meta';
 import { getGeom, getCoords, getType } from '../invariant';
-import { polygon, lineString, Feature, Geometry } from '../helpers';
+import { polygon, lineString } from '../helpers';
 import booleanDisjoint from '../boolean-disjoint';
 import booleanCrosses from '../boolean-crosses';
 import lineIntersect from '../line-intersect';
@@ -59,7 +59,7 @@ export default function booleanValid(feature) {
         return true
     case 'MultiPolygon':
         for (var i = 0; i < geom.coordinates.length; i++) {
-            var poly: any = geom.coordinates[i];
+            var poly = geom.coordinates[i];
 
             for (var ii = 0; ii < poly.length; ii++) {
                 if (poly[ii].length < 4) return false

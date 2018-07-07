@@ -1,5 +1,5 @@
 // https://en.wikipedia.org/wiki/Rhumb_line
-import { convertLength, Coord, earthRadius, Feature, Point, Units } from "../helpers";
+import { convertLength, earthRadius, checkIfOptionsExist } from "../helpers";
 import { getCoord } from "../invariant";
 
 /**
@@ -25,6 +25,7 @@ import { getCoord } from "../invariant";
  * to.properties.distance = distance;
  */
 function rhumbDistance(from, to, options) {
+    options = checkIfOptionsExist(options);
     const origin = getCoord(from);
     const destination = getCoord(to);
 

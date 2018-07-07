@@ -5,7 +5,8 @@ import booleanPointOnLine from '../boolean-point-on-line';
 import { getCoords } from '../invariant';
 import { featureEach, segmentEach } from '../meta';
 import {featureCollection, isObject} from '../helpers';
-import * as equal from 'deep-equal';
+import * as deepEqual from 'deep-equal';
+const equal = deepEqual.default;
 
 /**
  * Takes any LineString or Polygon and returns the overlapping lines between both features.

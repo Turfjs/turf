@@ -1,4 +1,5 @@
 const test = require('tape');
+const fs = require('fs');
 const glob = require('glob');
 const path = require('path');
 const load = require('load-json-file');
@@ -9,9 +10,24 @@ const { lineString, featureCollection } = require('../helpers');
 const center = require('../center').default;
 const centerMean = require('./').default;
 
+const directories = {
+    in: path.join(__dirname, 'test', 'in') + path.sep,
+    out: path.join(__dirname, 'test', 'out') + path.sep
+};
+
+var fixtures = fs.readdirSync(directories.in).map(filename => {
+    return {
+        filename,
+        name: path.parse(filename).name,
+        geojson: load.sync(directories.in + filename)
+    };
+});
+
 test('turf-center-mean', t => {
-    glob.sync(path.join(__dirname, 'test', 'in', '*.geojson')).forEach(filepath => {
-        const geojson = load.sync(filepath);
+    fixtures.forEach(fixture => {
+        const filename = fixture.filename;
+        const name = fixture.name;
+        const geojson = fixture.geojson;
         const options = geojson.options || {};
         options.properties = {'marker-symbol': 'star', 'marker-color': '#F00'};
         const centered = truncate(centerMean(geojson, options));
@@ -24,9 +40,8 @@ test('turf-center-mean', t => {
         results.features.push(truncate(center(geojson, {properties: {'marker-symbol': 'circle', 'marker-color': '#00F'}})));
         results.features.push(centered);
 
-        const out = filepath.replace(path.join('test', 'in'), path.join('test', 'out'));
-        if (process.env.REGEN) write.sync(out, results);
-        t.deepEqual(results, load.sync(out), path.parse(filepath).name);
+        if (process.env.REGEN) write.sync(directories.out + filename, results);
+        t.deepEqual(results, load.sync(directories.out + filename), name);
     });
     t.end();
 });

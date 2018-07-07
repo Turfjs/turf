@@ -1,5 +1,5 @@
 import { geomEach, coordEach } from '../meta';
-import { point } from '../helpers';
+import { point, checkIfOptionsExist, isNumber } from '../helpers';
 
 /**
  * Takes a {@link Feature} or {@link FeatureCollection} and returns the mean center. Can be weighted.
@@ -24,12 +24,18 @@ import { point } from '../helpers';
  * mean.properties['marker-color'] = '#000';
  */
 function centerMean(geojson, options) {
+    options = checkIfOptionsExist(options);
+
+    var weightTerm = options.weight;
     let sumXs = 0;
     let sumYs = 0;
     let sumNs = 0;
     geomEach(geojson, function (geom, featureIndex, properties) {
-        let weight = properties[options.weight];
-        weight = (weight === undefined || weight === null) ? 1 {
+        var weight = properties[weightTerm];
+        weight = (weight === undefined || weight === null) ? 1 : weight;
+        if (!isNumber(weight)) throw new Error('weight value must be a number for feature index ' + featureIndex);
+        weight = Number(weight);
+        if (weight > 0) {
             coordEach(geom, function (coord) {
                 sumXs += coord[0] * weight;
                 sumYs += coord[1] * weight;
@@ -37,7 +43,7 @@ function centerMean(geojson, options) {
             });
         }
     });
-    return point([sumXs / sumNs, sumYs / sumNs], options.properties, options);
+    return point([sumXs / sumNs, sumYs / sumNs], options.properties);
 }
 
 export default centerMean;

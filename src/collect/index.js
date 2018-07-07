@@ -1,7 +1,6 @@
 import turfbbox from '../bbox';
 import booleanPointInPolygon from '../boolean-point-in-polygon';
 import rbush from 'rbush';
-import { FeatureCollection, Polygon, Feature, Point } from '../helpers';
 
 /**
  * Merges a specified property from a FeatureCollection of points into a

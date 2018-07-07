@@ -1,5 +1,5 @@
 import { getCoord, getCoords } from '../invariant';
-
+import { checkIfOptionsExist } from '../helpers';
 /**
  * Returns true if a point is on a line. Accepts a optional parameter to ignore the
  * start and end vertices of the linestring.
@@ -17,6 +17,8 @@ import { getCoord, getCoords } from '../invariant';
  * //=true
  */
 function booleanPointOnLine(pt, line, options) {
+
+    options = checkIfOptionsExist(options);
     // Normalize inputs
     const ptCoords = getCoord(pt);
     const lineCoords = getCoords(line);

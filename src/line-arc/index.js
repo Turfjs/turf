@@ -1,6 +1,6 @@
 import circle from "../circle";
 import destination from "../destination";
-import { isObject, lineString } from "../helpers";
+import { isObject, lineString, checkIfOptionsExist } from "../helpers";
 
 /**
  * Creates a circular arc, of a circle of the given radius and center point, between bearing1 and bearing2;
@@ -27,6 +27,7 @@ import { isObject, lineString } from "../helpers";
  * var addToMap = [center, arc]
  */
 export default function lineArc(center, radius, bearing1, bearing2, options) {
+    options = checkIfOptionsExist(options);
     // default params
     const steps = options.steps || 64;
 

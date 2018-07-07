@@ -1,6 +1,6 @@
 import convex from '../convex';
 import centroid from '../centroid';
-import { point } from '../helpers';
+import { point, checkIfOptionsExist } from '../helpers';
 import { getType, getCoord } from '../invariant';
 import { coordEach } from '../meta';
 
@@ -21,6 +21,7 @@ import { coordEach } from '../meta';
  * var addToMap = [polygon, center]
  */
 function centerOfMass(geojson, options) {
+    options = checkIfOptionsExist(options);
     switch (getType(geojson)) {
     case 'Point':
         return point(getCoord(geojson), options.properties);
@@ -29,7 +30,7 @@ function centerOfMass(geojson, options) {
         coordEach(geojson, function (coord) {
             coords.push(coord);
         });
-
+ 
         // First, we neutralize the feature (set it around coordinates [0,0]) to prevent rounding errors
         // We take any point to translate all the points around 0
         var centre = centroid(geojson, {properties: options.properties});

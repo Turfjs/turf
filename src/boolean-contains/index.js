@@ -169,7 +169,7 @@ export function isLineInPoly(polygon, linestring) {
  * @param {Geometry|Feature<Polygon>} feature2 Polygon2
  * @returns {boolean} true/false
  */
-export function isPolyInPoly(feature, feature2) {
+export function isPolyInPoly(feature1, feature2) {
     // Handle Nulls
     if (feature1.type === "Feature" && feature1.geometry === null) { return false; }
     if (feature2.type === "Feature" && feature2.geometry === null) { return false; }

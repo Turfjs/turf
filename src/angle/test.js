@@ -1,5 +1,6 @@
 const test = require('tape');
 const path = require('path');
+const fs = require('fs');
 const glob = require('glob');
 const load = require('load-json-file');
 const write = require('write-json-file');
@@ -10,11 +11,23 @@ const distance = require('../distance').default;
 const { point, round, lineString, featureCollection } = require('../helpers');
 const angle = require('./').default;
 
+const directories = {
+    in: path.join(__dirname, 'test', 'in') + path.sep,
+    out: path.join(__dirname, 'test', 'out') + path.sep
+};
+
+const fixtures = fs.readdirSync(directories.in).map(filename => {
+    return {
+        filename,
+        name: path.parse(filename).name,
+        geojson: load.sync(directories.in + filename)
+    };
+});
+
 test('turf-angle', t => {
-    glob.sync(path.join(__dirname, 'test', 'in', '*.json')).forEach(filepath => {
-        // Input
-        const {name} = path.parse(filepath);
-        const geojson = load.sync(filepath);
+    for (const fixture of fixtures) {
+        const name = fixture.name;
+        const geojson = fixture.geojson;
         const [start, mid, end] = geojson.features;
 
         // Results
@@ -44,10 +57,9 @@ test('turf-angle', t => {
         ]);
 
         // Save results
-        const expected = filepath.replace(path.join('test', 'in'), path.join('test', 'out'));
-        if (process.env.REGEN) write.sync(expected, results);
-        t.deepEqual(results, load.sync(expected), name);
-    });
+        if (process.env.REGEN) write.sync(directories.out + name + '.json', results);
+        t.equal(results, load.sync(directories.out + name + '.json'), name);
+    }
     t.end();
 });
 

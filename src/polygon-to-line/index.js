@@ -1,4 +1,4 @@
-import { featureCollection, lineString, multiLineString } from "../helpers";
+import { featureCollection, lineString, multiLineString, checkIfOptionsExist } from "../helpers";
 import { getCoords, getGeom } from "../invariant";
 
 /**
@@ -19,6 +19,7 @@ import { getCoords, getGeom } from "../invariant";
  * var addToMap = [line];
  */
 export default function (poly, options) {
+    options = checkIfOptionsExist(options);
     const geom = getGeom(poly);
     if (!options.properties && poly.type === "Feature") { options.properties = poly.properties; }
     switch (geom.type) {
@@ -32,6 +33,7 @@ export default function (poly, options) {
  * @private
  */
 export function polygonToLine(poly, options) {
+    options = checkIfOptionsExist(options);
     const geom = getGeom(poly);
     const type = geom.type;
     const coords = geom.coordinates;
@@ -44,6 +46,7 @@ export function polygonToLine(poly, options) {
  * @private
  */
 export function multiPolygonToLine(multiPoly, options) {
+    options = checkIfOptionsExist(options);
     const geom = getGeom(multiPoly);
     const type = geom.type;
     const coords = geom.coordinates;

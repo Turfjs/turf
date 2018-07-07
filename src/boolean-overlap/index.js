@@ -29,7 +29,7 @@ export default function booleanOverlap(feature1, feature2) {
     const geom2 = getGeom(feature2);
     const type1 = geom1.type;
     const type2 = geom2.type;
-    // if (type1 !== type2) throw new Error('features must be of the same type');
+
     if (type1 === 'Point') throw new Error('Point geometry not supported');
     // features must be not equal
     const equality = new GeoEquality({precision: 6});

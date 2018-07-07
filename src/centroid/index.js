@@ -1,5 +1,5 @@
 import { coordEach } from '../meta';
-import { point } from '../helpers';
+import { point, checkIfOptionsExist } from '../helpers';
 
 /**
  * Takes one or more features and calculates the centroid using the mean of all vertices.
@@ -19,6 +19,7 @@ import { point } from '../helpers';
  * var addToMap = [polygon, centroid]
  */
 function centroid(geojson, options) {
+    options = checkIfOptionsExist(options);
     let xSum = 0;
     let ySum = 0;
     let len = 0;

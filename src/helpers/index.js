@@ -19,7 +19,7 @@ export let earthRadius = 6371008.8;
 export let factors = {
     centimeters: earthRadius * 100,
     centimetres: earthRadius * 100,
-    degrees: earthRadius / 111325,
+    degrees: 180 / Math.PI, // See https://github.com/Turfjs/turf/issues/1406
     feet: earthRadius * 3.28084,
     inches: earthRadius * 39.370,
     kilometers: earthRadius / 1000,
@@ -40,23 +40,23 @@ export let factors = {
  * @memberof helpers
  * @type {Object}
  */
-export let unitsFactors = {
-    centimeters: 100,
-    centimetres: 100,
-    degrees: 1 / 111325,
-    feet: 3.28084,
-    inches: 39.370,
-    kilometers: 1 / 1000,
-    kilometres: 1 / 1000,
-    meters: 1,
-    metres: 1,
-    miles: 1 / 1609.344,
-    millimeters: 1000,
-    millimetres: 1000,
-    nauticalmiles: 1 / 1852,
-    radians: 1 / earthRadius,
-    yards: 1 / 1.0936,
-};
+// export let unitsFactors = {
+//     centimeters: 100,
+//     centimetres: 100,
+//     degrees: 1 / 111325,
+//     feet: 3.28084,
+//     inches: 39.370,
+//     kilometers: 1 / 1000,
+//     kilometres: 1 / 1000,
+//     meters: 1,
+//     metres: 1,
+//     miles: 1 / 1609.344,
+//     millimeters: 1000,
+//     millimetres: 1000,
+//     nauticalmiles: 1 / 1852,
+//     radians: 1 / earthRadius,
+//     yards: 1 / 1.0936,
+// };
 
 /**
  * Area of measurement factors based on 1 square meter.

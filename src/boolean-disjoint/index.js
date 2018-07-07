@@ -83,7 +83,7 @@ function isPointOnLine(lineString, pt) {
     return false;
 }
 
-function isLineOnLine(lineString1, lineString) {
+function isLineOnLine(lineString1, lineString2) {
     const doLinesIntersect = lineIntersect(lineString1, lineString2);
     if (doLinesIntersect.features.length > 0) {
         return true;

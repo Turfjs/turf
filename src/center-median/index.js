@@ -1,7 +1,7 @@
 import centerMean from '../center-mean';
 import distance from '../distance';
 import centroid from '../centroid';
-import { isNumber, point, isObject, featureCollection } from '../helpers';
+import { isNumber, point, isObject, featureCollection, checkIfOptionsExist } from '../helpers';
 import { featureEach } from '../meta';
 
 /**
@@ -56,8 +56,8 @@ import { featureEach } from '../meta';
 function centerMedian(features, options) {
 
     // Optional params
-    options = options || {};
-    if (!isObject(options)) throw new Error('options is invalid');
+    options = checkIfOptionsExist(options);
+
     var counter = options.counter || 10;
     if (!isNumber(counter)) throw new Error('counter must be a number');
     var weightTerm = options.weight;

@@ -1,4 +1,4 @@
-import { polygon } from "../helpers";
+import { polygon, checkIfOptionsExist } from "../helpers";
 import { coordEach } from "../meta";
 import concaveman from "concaveman";
 
@@ -31,6 +31,8 @@ import concaveman from "concaveman";
  * var addToMap = [points, hull]
  */
 export default function convex(geojson, options) {
+    options = checkIfOptionsExist(options);
+
     // Default parameters
     options.concavity = options.concavity || Infinity;
 

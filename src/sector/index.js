@@ -1,7 +1,7 @@
 import circle from '../circle';
 import lineArc from '../line-arc';
 import { coordEach } from '../meta';
-import { polygon, isObject } from '../helpers';
+import { polygon, checkIfOptionsExist } from '../helpers';
 import { getCoords } from '../invariant';
 
 /**
@@ -30,8 +30,7 @@ import { getCoords } from '../invariant';
  */
 function sector(center, radius, bearing1, bearing2, options) {
     // Optional parameters
-    options = options || {};
-    if (!isObject(options)) throw new Error('options is invalid');
+    options = checkIfOptionsExist(options);
 
     // validation
     if (!center) throw new Error('center is required');
@@ -51,7 +50,7 @@ function sector(center, radius, bearing1, bearing2, options) {
     });
     sliceCoords[0].push(coords);
 
-    return polygon(sliceCoords);
+    return polygon(sliceCoords, options.properties);
 }
 
 /**

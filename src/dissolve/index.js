@@ -1,6 +1,7 @@
 import rbush from 'geojson-rbush';
 import clone from '../clone';
-import overlap from '../boolean-overlap';
+import intersect from '../boolean-intersects';
+import touch from '../boolean-touches';
 import turfUnion from '../union';
 import lineIntersect from '../line-intersect';
 import { coordAll } from '../meta';
@@ -79,7 +80,7 @@ function dissolve(featureCollection, options) {
             if (propertyName !== undefined &&
                 matchFeature.properties[propertyName] !== polygon.properties[propertyName]) return;
 
-            if (!overlap(polygon, matchFeature) || !ringsIntersect(polygon, matchFeature)) return;
+            if (!intersect(polygon, matchFeature) && !touch(polygon, matchFeature)) return;
 
             features[i] = turfUnion(polygon, matchFeature);
 

@@ -1,8 +1,5 @@
 // https://en.wikipedia.org/wiki/Rhumb_line
-import {
-    convertLength, Coord, degreesToRadians, earthRadius,
-    Feature, point, Point, Properties, Units,
-} from "../helpers";
+import { convertLength, degreesToRadians, earthRadius, point, checkIfOptionsExist } from "../helpers";
 import { getCoord } from "../invariant";
 
 /**
@@ -29,8 +26,8 @@ import { getCoord } from "../invariant";
  * var addToMap = [pt, destination]
  * destination.properties['marker-color'] = '#00F';
  */
-function rhumbDestination(origin, distance, bearing, options){
-    
+function rhumbDestination(origin, distance, bearing, options) {
+    options = checkIfOptionsExist(options);
     const wasNegativeDistance = distance < 0;
     let distanceInMeters = convertLength(Math.abs(distance), options.units, "meters");
     if (wasNegativeDistance) distanceInMeters = -Math.abs(distanceInMeters);

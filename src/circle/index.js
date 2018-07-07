@@ -1,5 +1,5 @@
 import destination from '../destination';
-import { polygon } from '../helpers';
+import { polygon, checkIfOptionsExist } from '../helpers';
 
 /**
  * Takes a {@link Point} and calculates the circle polygon given a radius in degrees, radians, miles, or kilometers; and steps for precision.
@@ -21,6 +21,7 @@ import { polygon } from '../helpers';
  * var addToMap = [turf.point(center), circle]
  */
 function circle(center, radius, options) {
+    options = checkIfOptionsExist(options);
     // default params
     const steps = options.steps || 64;
     const properties = options.properties ? options.properties : (!Array.isArray(center) && center.type === 'Feature' && center.properties) ? center.properties : {};

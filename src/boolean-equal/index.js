@@ -1,6 +1,7 @@
 import * as GeojsonEquality from 'geojson-equality';
 import cleanCoords from '../clean-coords';
 import { getGeom } from '../invariant';
+const GeoEquality = GeojsonEquality.default;
 
 /**
  * Determine whether two geometries of the same type have identical X,Y coordinate values.
@@ -25,7 +26,7 @@ function booleanEqual(feature1, feature2) {
     const type2 = getGeom(feature2).type;
     if (type1 !== type2) return false;
 
-    const equality = new GeojsonEquality({precision: 6});
+    const equality = new GeoEquality({precision: 6});
     return equality.compare(cleanCoords(feature1), cleanCoords(feature2));
 }
 

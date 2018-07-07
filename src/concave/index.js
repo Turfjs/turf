@@ -1,8 +1,8 @@
 import distance from "../distance";
-import { feature, featureCollection, isNumber, isObject, polygon } from "../helpers";
+import { feature, featureCollection, isNumber, isObject, polygon, checkIfOptionsExist } from "../helpers";
 import { featureEach } from "../meta";
 import tin from "../tin";
-import dissolve from "./lib/turf-dissolve";
+import dissolve from "../dissolve";
 
 /**
  * Takes a set of {@link Point|points} and returns a concave hull Polygon or MultiPolygon.
@@ -32,6 +32,8 @@ import dissolve from "./lib/turf-dissolve";
  * var addToMap = [points, hull]
  */
 function concave(points, options) {
+    options = checkIfOptionsExist(options);
+
     const maxEdge = options.maxEdge || Infinity;
 
     const cleaned = removeDuplicates(points);
@@ -53,7 +55,7 @@ function concave(points, options) {
 
     // merge the adjacent triangles
     const dissolved = dissolve(tinPolys);
-
+    console.log(JSON.stringify(dissolved))
     // geojson-dissolve always returns a MultiPolygon
     if (dissolved.coordinates.length === 1) {
         dissolved.coordinates = dissolved.coordinates[0];

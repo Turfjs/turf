@@ -1,6 +1,6 @@
-import bearing from '../bearing';
-import destination from '../destination';
-import measureDistance from '../distance';
+import rhumbBearing from '../rhumb-bearing';
+import rhumbDestination from '../rhumb-destination';
+import rhumbDistance from '../rhumb-distance';
 import { point, checkIfOptionsExist } from '../helpers';
 import { getGeom } from '../invariant';
 
@@ -23,7 +23,7 @@ import { getGeom } from '../invariant';
  * var addToMap = [along, line]
  */
 export default function along(line, distance, options) {
-    options = checkIfOptionsExist()
+    options = checkIfOptionsExist(options);
 
     const geom = getGeom(line);
     const coords = geom.coordinates;
@@ -36,12 +36,12 @@ export default function along(line, distance, options) {
             if (!overshot) {
                 return point(coords[i]);
             } else {
-                const direction = bearing(coords[i], coords[i - 1]) - 180;
-                const interpolated = destination(coords[i], overshot, direction, options);
+                const direction = rhumbBearing(coords[i], coords[i - 1]) - 180;
+                const interpolated = rhumbDestination(coords[i], overshot, direction, options);
                 return interpolated;
             }
         } else {
-            travelled += measureDistance(coords[i], coords[i + 1], options);
+            travelled += rhumbDistance(coords[i], coords[i + 1], options);
         }
     }
     return point(coords[coords.length - 1]);

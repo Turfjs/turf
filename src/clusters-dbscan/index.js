@@ -1,7 +1,7 @@
 import clone from '../clone';
 import distance from '../distance';
 import { coordAll } from '../meta';
-import { convertLength } from '../helpers';
+import { convertLength, checkIfOptionsExist } from '../helpers';
 import { collectionOf } from '../invariant';
 import clustering from 'density-clustering';
 
@@ -28,9 +28,8 @@ import clustering from 'density-clustering';
  * var addToMap = [clustered];
  */
 export function clustersDbscan(points, maxDistance, options) {
-    // Optional parameters
-    options = options || {};
-    if (typeof options !== 'object') throw new Error('options is invalid');
+
+    options = checkIfOptionsExist(options);
     var minPoints = options.minPoints;
     var units = options.units;
 
@@ -40,8 +39,10 @@ export function clustersDbscan(points, maxDistance, options) {
     if (!(Math.sign(maxDistance) > 0)) throw new Error('Invalid maxDistance');
     if (!(minPoints === undefined || minPoints === null || Math.sign(minPoints) > 0)) throw new Error('Invalid minPoints');
 
-    // Clone points to prevent any mutations
-    points = clone(points, true);
+    if (!options.mutate) {
+        // Clone points to prevent any mutations
+        points = clone(points, true);
+    }
 
     // Defaults
     minPoints = minPoints || 3;
@@ -75,3 +76,4 @@ export function clustersDbscan(points, maxDistance, options) {
     return points;
 }
 
+export default clustersDbscan;

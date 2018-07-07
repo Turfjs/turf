@@ -14,10 +14,14 @@
     "postinstall": "opencollective postinstall"
   },
   "devDependencies": {
+    "@mapbox/geojsonhint": "^2.1.0",
     "@types/geojson": "*",
     "@types/node": "*",
     "benchmark": "^2.1.4",
+    "boolean-jsts": "0.0.1",
+    "boolean-shapely": "^0.1.2",
     "camelcase": "*",
+    "chromatism": "^3.0.0",
     "d3-queue": "*",
     "decamelize": "*",
     "documentation": "*",
@@ -37,11 +41,14 @@
     "yamljs": "*"
   },
   "dependencies": {
+    "concaveman": "^1.1.1",
+    "density-clustering": "^1.3.0",
     "geojson-equality": "^0.2.0",
     "geojson-rbush": "^3.1.1",
     "martinez-polygon-clipping": "^0.4.3",
     "opencollective": "^1.0.3",
-    "rbush": "^2.0.2"
+    "rbush": "^2.0.2",
+    "skmeans": "^0.9.7"
   },
   "collective": {
     "type": "opencollective",

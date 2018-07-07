@@ -1,4 +1,4 @@
-import { feature, AllGeoJSON } from '../helpers';
+import { feature, checkIfOptionsExist } from '../helpers';
 import { getCoords, getType } from '../invariant';
 
 // To-Do => Improve Typescript GeoJSON handling
@@ -22,6 +22,7 @@ import { getCoords, getType } from '../invariant';
  * //= [[0, 0], [2, 2]]
  */
 function cleanCoords(geojson, options) {
+    options = checkIfOptionsExist(options);
     // Backwards compatible with v4.0
      var mutate = (typeof options === 'object') ? options.mutate : options;
     if (!geojson) throw new Error('geojson is required');

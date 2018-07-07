@@ -1,5 +1,5 @@
 import { getCoord, getGeom } from '../invariant';
-
+import { checkIfOptionsExist } from '../helpers';
 // http://en.wikipedia.org/wiki/Even%E2%80%93odd_rule
 // modified from: https://github.com/substack/point-in-polygon/blob/master/index.js
 // which was modified from http://www.ecse.rpi.edu/Homepages/wrf/Research/Short_Notes/pnpoly.html
@@ -28,6 +28,7 @@ import { getCoord, getGeom } from '../invariant';
  * //= true
  */
 export default function booleanPointInPolygon(point, polygon, options) {
+    options = checkIfOptionsExist(options);
     // validation
     if (!point) { throw new Error('point is required'); }
     if (!polygon) { throw new Error('polygon is required'); }
