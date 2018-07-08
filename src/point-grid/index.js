@@ -1,10 +1,6 @@
 import within from '../boolean-within';
 import distance from '../distance';
-import {getType} from '../invariant';
-import {
-    point, featureCollection, isObject, isNumber,
-    BBox, Feature, Polygon, MultiPolygon, FeatureCollection, Point, Properties, Units
-} from '../helpers';
+import {point, featureCollection, checkIfOptionsExist} from '../helpers';
 
 /**
  * Creates a {@link Point} grid from a bounding box, {@link FeatureCollection} or {@link Feature}.
@@ -28,6 +24,7 @@ import {
  * var addToMap = [grid];
  */
 function pointGrid(bbox, cellSide, options) {
+    options = checkIfOptionsExist(options);
     // Default parameters
     if (options.mask && !options.units) options.units = 'kilometers';
 

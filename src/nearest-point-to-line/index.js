@@ -1,4 +1,4 @@
-import { Feature, FeatureCollection, GeometryCollection, LineString, Point, Properties, Units } from '../helpers';
+import { checkIfOptionsExist } from '../helpers';
 import { getType } from '../invariant';
 import { featureEach, geomEach } from '../meta';
 import pointToLineDistance from '../point-to-line-distance';
@@ -28,6 +28,7 @@ import objectAssign from 'object-assign';
  * var addToMap = [nearest, line];
  */
 function nearestPointToLine(points, line, options) {
+    options = checkIfOptionsExist(options)
     const units = options.units;
     const properties = options.properties || {};
 

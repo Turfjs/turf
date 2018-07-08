@@ -105,5 +105,4 @@ function processMultiPolygon(poly, tempOutput) {
     });
 }
 
-module.exports = polygonSmooth;
-module.exports.default = polygonSmooth;
+export default polygonSmooth;

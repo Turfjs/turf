@@ -6,7 +6,6 @@ import distance from '../distance';
 import nearestPoint from '../nearest-point';
 import { featureEach } from '../meta';
 import { convertArea, featureCollection } from '../helpers';
-import { FeatureCollection, Feature, Point, Polygon, Units, Properties } from '../helpers';
 
 /**
  * Nearest Neighbor Analysis calculates an index based the average distances

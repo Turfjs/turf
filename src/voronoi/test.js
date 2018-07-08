@@ -6,15 +6,23 @@ import load from 'load-json-file';
 import write from 'write-json-file';
 import voronoi from '.';
 
+const directories = {
+    in: path.join(__dirname, 'test', 'in') + path.sep,
+    out: path.join(__dirname, 'test', 'out') + path.sep
+};
+
+const fixtures = fs.readdirSync(directories.in).map(filename => {
+    return {filename, geojson: load.sync(directories.in + filename)};
+});
+
 test('turf-voronoi', t => {
-    glob.sync(path.join(__dirname, 'test', 'in', '*.json')).forEach(filepath => {
-        const {name} = path.parse(filepath);
-        const geojson = load.sync(filepath);
+    for (const {filename, geojson} of fixtures) {
         const results = voronoi(geojson, {bbox: geojson.bbox});
 
-        const out = filepath.replace(path.join('test', 'in'), path.join('test', 'out'))
-        if (process.env.REGEN) write.sync(out, results);
-        t.deepEqual(results, load.sync(out), name);
-    });
+        if (process.env.REGEN) write.sync(directories.out + filename, results);
+
+        const expected = load.sync(directories.out + filename);
+        t.deepEquals(results, expected, path.parse(filename).name);
+    };
     t.end();
 });

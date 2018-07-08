@@ -29,6 +29,7 @@
     "eslint-config-mourner": "*",
     "esm": "^3.0.55",
     "fs-extra": "*",
+    "geojson-fixtures": "^1.0.0",
     "lerna": "2.8.0",
     "load-json-file": "*",
     "meow": "*",
@@ -42,11 +43,14 @@
   },
   "dependencies": {
     "concaveman": "^1.1.1",
+    "d3-voronoi": "^1.1.2",
     "density-clustering": "^1.3.0",
+    "earcut": "^2.1.3",
     "geojson-equality": "^0.2.0",
     "geojson-rbush": "^3.1.1",
     "martinez-polygon-clipping": "^0.4.3",
     "opencollective": "^1.0.3",
+    "proj4": "^2.4.4",
     "rbush": "^2.0.2",
     "skmeans": "^0.9.7"
   },

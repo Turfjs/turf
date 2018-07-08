@@ -25,7 +25,7 @@ test('turf-destination', t => {
         const dist = (properties.dist !== undefined) ? properties.dist : 100;
 
         const dest = truncate(destination(geojson, dist, bearing));
-        const result = featureCollection([geojson, dest, lineString([invariant.getCoords(geojson), invariant.getCoords(dest)])]);
+        const result = featureCollection([geojson, dest, lineString([getCoords(geojson), getCoords(dest)])]);
 
         if (process.env.REGEN) write.sync(directories.out + base, result);
         t.deepEqual(result, load.sync(directories.out + base), name);

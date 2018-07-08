@@ -1,4 +1,4 @@
-import martinez from 'martinez-polygon-clipping';
+import * as martinez from 'martinez-polygon-clipping';
 import area from '@turf/area';
 import { feature, multiPolygon, polygon } from '@turf/helpers';
 import { getGeom } from '@turf/invariant';

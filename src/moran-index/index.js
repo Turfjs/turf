@@ -1,5 +1,4 @@
 import spatialWeight from "../distance-weight";
-import { Feature, FeatureCollection } from "../helpers";
 import { featureEach } from "../meta";
 
 /**

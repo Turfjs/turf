@@ -33,7 +33,7 @@ function hexGrid(bbox, cellSide, options) {
     options = options || {};
     if (!isObject(options)) throw new Error('options is invalid');
     // var units = options.units;
-    var properties = options.properties || {};
+    const clonedProperties = JSON.stringify(options.properties || {})
     var triangles = options.triangles;
     var mask = options.mask;
 
@@ -113,7 +113,7 @@ function hexGrid(bbox, cellSide, options) {
                     [center_x, center_y],
                     cellWidth / 2,
                     cellHeight / 2,
-                    properties,
+                    JSON.parse(clonedProperties),
                     cosines,
                     sines).forEach(function (triangle) {
                     if (mask) {
@@ -127,7 +127,7 @@ function hexGrid(bbox, cellSide, options) {
                     [center_x, center_y],
                     cellWidth / 2,
                     cellHeight / 2,
-                    properties,
+                    JSON.parse(clonedProperties),
                     cosines,
                     sines
                 );

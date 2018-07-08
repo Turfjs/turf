@@ -1,7 +1,7 @@
 import cleanCoords from '../clean-coords';
 import clone from '../clone';
 import { geomEach } from '../meta';
-import { isObject } from '../helpers';
+import { checkIfOptionsExist } from '../helpers';
 import simplifyJS from './lib/simplify';
 
 /**
@@ -46,8 +46,7 @@ import simplifyJS from './lib/simplify';
  */
 function simplify(geojson, options) {
     // Optional parameters
-    options = options || {};
-    if (!isObject(options)) throw new Error('options is invalid');
+    options = checkIfOptionsExist(options);
     var tolerance = options.tolerance !== undefined ? options.tolerance : 1;
     var highQuality = options.highQuality || false;
     var mutate = options.mutate || false;

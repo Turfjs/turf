@@ -33,7 +33,7 @@ import getPlanarDistance from '../rhumb-distance';
  */
 function pointToLineDistance(pt, line, options) {
 
-    options = checkIfOptionsExist();
+    options = checkIfOptionsExist(options);
 
     // Optional parameters
     if (!options.method) { options.method = 'geodesic'; }

@@ -1,6 +1,6 @@
 // http://en.wikipedia.org/wiki/Haversine_formula
 // http://www.movable-type.co.uk/scripts/latlong.html
-import { degreesToRadians, radiansToDegrees, lengthToRadians, point } from '../helpers';
+import { degreesToRadians, radiansToDegrees, lengthToRadians, point, checkIfOptionsExist } from '../helpers';
 import { getCoord } from '../invariant';
 
 /**
@@ -30,6 +30,8 @@ import { getCoord } from '../invariant';
  * point.properties['marker-color'] = '#0f0';
  */
 export default function destination(origin, distance, bearing, options) {
+
+    options = checkIfOptionsExist(options);
     // Handle input
     const coordinates1 = getCoord(origin);
     const longitude1 = degreesToRadians(coordinates1[0]);

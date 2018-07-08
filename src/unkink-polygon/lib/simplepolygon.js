@@ -1,7 +1,7 @@
 import isects from './geojson-polygon-self-intersections';
-import area from '@turf/area';
-import { featureCollection, polygon } from '@turf/helpers';
-import booleanPointInPolygon from '@turf/boolean-point-in-polygon';
+import area from '../../area';
+import { featureCollection, polygon } from '../../helpers';
+import booleanPointInPolygon from '../../boolean-point-in-polygon';
 import rbush from 'rbush';
 
 /**

@@ -1,4 +1,4 @@
-import { multiPolygon, polygon } from '../helpers';
+import { multiPolygon, polygon, checkIfOptionsExist } from '../helpers';
 import { getGeom } from '../invariant';
 import * as martinez from 'martinez-polygon-clipping';
 
@@ -39,6 +39,8 @@ import * as martinez from 'martinez-polygon-clipping';
  * var addToMap = [poly1, poly2, intersection];
  */
 export default function intersect(poly1, poly2, options) {
+    options = checkIfOptionsExist(options);
+
     const geom1 = getGeom(poly1);
     const geom2 = getGeom(poly2);
 

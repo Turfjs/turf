@@ -1,7 +1,6 @@
 import clone from '../clone';
 import distance from '../distance';
 import { featureEach } from '../meta';
-import { Coord, Feature, FeatureCollection, Point } from '../helpers';
 
 /**
  * Takes a reference {@link Point|point} and a FeatureCollection of Features

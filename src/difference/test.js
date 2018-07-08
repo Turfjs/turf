@@ -4,7 +4,7 @@ const glob = require('glob');
 const load = require('load-json-file');
 const write = require('write-json-file');
 const { featureCollection, polygon } = require('../helpers');
-const difference = require('./');
+const difference = require('./').default;
 
 const directories = {
     in: path.join(__dirname, 'test', 'in') + path.sep,
