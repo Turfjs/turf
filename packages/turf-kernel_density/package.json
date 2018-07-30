@@ -42,15 +42,15 @@
     "rollup": "*",
     "write-json-file": "*",
     "load-json-file": "*",
-    "tape": "*"
+    "tape": "*",
+    "glob": "^7.1.2"
   },
   "dependencies": {
     "@turf/centroid": "*",
     "@turf/clone": "*",
     "@turf/distance": "*",
     "@turf/helpers": "*",
-    "@turf/meta": "*",
-    "glob": "^7.1.2"
+    "@turf/meta": "*"
   },
   "@std/esm": {
     "esm": "js",

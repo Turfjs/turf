@@ -1,3 +1,4 @@
+/*jshint esversion: 6 */
 import Benchmark from 'benchmark';
 import kernelDensity from '.';
 import glob from 'glob';

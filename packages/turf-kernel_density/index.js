@@ -1,15 +1,23 @@
 /*jshint esversion: 6 */
+import clone from "@turf/clone";
+import distance from "@turf/distance";
 import centroid from "@turf/centroid";
+import pointsWithinPolygonp from "@turf/points-within-polygon";
+import buffer from "@turf/buffer";
 import {
     Feature,
     FeatureCollection,
-    Point
+    Point,
+    radiansToLength,
+    degreesToRadians
 } from "@turf/helpers";
 import {
     getCoord
 } from "@turf/invariant";
 import {
-    featureEach
+    featureEach,
+    featureReduce,
+    propReduce
 } from "@turf/meta";
 /**
  * Takes a set of {@link Point|points} and assigns its [Kernel Density]( https://pro.arcgis.com/en/pro-app/tool-reference/spatial-analyst/how-kernel-density-works.htm) value to each of them.

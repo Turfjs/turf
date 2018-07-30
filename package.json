@@ -15,6 +15,7 @@
   "devDependencies": {
     "@types/geojson": "*",
     "@types/node": "*",
+    "babel-cli": "^6.26.0",
     "camelcase": "*",
     "d3-queue": "*",
     "decamelize": "*",
@@ -33,6 +34,7 @@
     "yamljs": "*"
   },
   "dependencies": {
+    "express": "^4.16.3",
     "opencollective": "^1.0.3"
   },
   "collective": {
