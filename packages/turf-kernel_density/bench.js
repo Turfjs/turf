@@ -14,11 +14,11 @@ const suite = new Benchmark.Suite('turf-kernel_density');
 glob.sync(path.join(__dirname, 'test', 'in', '*.geojson')).forEach(filepath => {
     const {name} = path.parse(filepath);
     const geojson = load.sync(filepath);
-    const [feature1, feature2] = geojson.features;
+    const features = geojson.features;
     console.time(name);
-    kernelDensity(feature1, feature2);
+    kernelDensity(features);
     console.timeEnd(name);
-    suite.add(name, () => kernelDensity(feature1, feature2));
+    suite.add(name, () => kernelDensity(features));
 });
 
 suite
