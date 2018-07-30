@@ -5,6 +5,6 @@ import { FeatureCollection, Point } from '@turf/helpers';
  */
 
 export default function (
-    points: FeatureCollection<Point> ,
+    points: FeatureCollection<Point>,
     weight: Number
- ): FeatureCollection<Point>
+): FeatureCollection<Point>
