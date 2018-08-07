@@ -48,7 +48,7 @@ export default function lineArc(center: Coord, radius: number, bearing1: number,
     const coordinates = [];
     let i = 0;
 
-    while (alfa < arcEndDegree) {
+    while (alfa <= arcEndDegree) {
         coordinates.push(destination(center, radius, alfa, options).geometry.coordinates);
         i++;
         alfa = arcStartDegree + i * 360 / steps;
