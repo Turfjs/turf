@@ -25,7 +25,7 @@ test('turf-along', t => {
         t.ok(f);
         t.equal(f.type, 'Feature');
         t.equal(f.geometry.type, 'Point');
-        t.equal(pointToLineDistance(f, line, {units: 'centimeters'}) < 0.001, true)
+        t.equal(pointToLineDistance(f, line, {units: 'centimeters'}) < 0.2, true)
     });
 
     t.end();
@@ -38,7 +38,7 @@ test('turf-along-long', t => {
 
   const pt1 = along(longLine, 200, {units: 'miles'});
   t.deepEqual(pt1, pointOnLongLine);
-  t.equal(pointToLineDistance(pt1, longLine, {units: 'centimeters'}) < 1, true)
+  t.equal(pointToLineDistance(pt1, longLine, {units: 'kilometers'}) < 1, true)
 
   t.end();
 });

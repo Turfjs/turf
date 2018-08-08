@@ -58,7 +58,7 @@ test('turf-angle', t => {
 
         // Save results
         if (process.env.REGEN) write.sync(directories.out + name + '.json', results);
-        t.equal(results, load.sync(directories.out + name + '.json'), name);
+        t.deepEqual(results, load.sync(directories.out + name + '.json'), name);
     }
     t.end();
 });

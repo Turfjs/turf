@@ -98,7 +98,9 @@ function intersectSegments(a, b) {
 function isParallel(a, b) {
     var r = ab(a);
     var s = ab(b);
-    return (crossProduct(r, s) === 0);
+    var cp = Math.abs(crossProduct(r, s));
+    // return (crossProduct(r, s) === 0);
+    return (cp < 0.0000001);
 }
 
 /**

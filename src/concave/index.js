@@ -1,12 +1,14 @@
-import distance from "../distance";
-import { feature, featureCollection, isNumber, isObject, polygon, checkIfOptionsExist } from "../helpers";
-import { featureEach } from "../meta";
-import tin from "../tin";
-import dissolve from "../dissolve";
+import distance from '../distance';
+import { featureCollection, checkIfOptionsExist } from '../helpers';
+import { featureEach } from '../meta';
+import tin from '../tin';
+import dissolve from '../dissolve';
 
 /**
  * Takes a set of {@link Point|points} and returns a concave hull Polygon or MultiPolygon.
  * Internally, this uses [turf-tin](https://github.com/Turfjs/turf-tin) to generate geometries.
+ * We also recommend checking out [concaveman](https://github.com/mapbox/concaveman) for a more performant
+ * solution although it does not offer a maxEdge setting.
  *
  * @name concave
  * @param {FeatureCollection<Point>} points input points
@@ -54,14 +56,7 @@ function concave(points, options) {
     if (tinPolys.features.length < 1) { return null; }
 
     // merge the adjacent triangles
-    const dissolved = dissolve(tinPolys);
-    console.log(JSON.stringify(dissolved))
-    // geojson-dissolve always returns a MultiPolygon
-    if (dissolved.coordinates.length === 1) {
-        dissolved.coordinates = dissolved.coordinates[0];
-        dissolved.type = "Polygon";
-    }
-    return feature(dissolved);
+    return dissolve(tinPolys);
 }
 
 /**

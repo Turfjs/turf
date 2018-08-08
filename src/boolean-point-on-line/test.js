@@ -3,6 +3,7 @@ const path = require('path');
 const test = require('tape');
 const load = require('load-json-file');
 const pointOnLine = require('./').default;
+const { point, lineString } = require('../helpers');
 
 test('turf-boolean-point-on-line', t => {
     // True Fixtures

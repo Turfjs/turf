@@ -1,6 +1,6 @@
-import bearing from '../bearing';
-import distance from '../distance';
-import destination from '../destination';
+import bearing from '../rhumb-bearing';
+import distance from '../rhumb-distance';
+import destination from '../rhumb-destination';
 import { lineString, isObject } from '../helpers';
 
 /**
@@ -42,7 +42,7 @@ function lineSliceAlong(line, startDist, stopDist, options) {
     var travelled = 0;
     var overshot, direction, interpolated;
     for (var i = 0; i < coords.length; i++) {
-        if (startDist >= travelled && i === coords.length - 1) break;
+        if (startDist >= travelled && i === coords.length - 1) throw new Error('Start distance is beyond length of line');
         else if (travelled > startDist && slice.length === 0) {
             overshot = startDist - travelled;
             if (!overshot) {

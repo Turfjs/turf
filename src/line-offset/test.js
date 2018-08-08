@@ -29,7 +29,7 @@ test('turf-line-offset', t => {
         const distance = properties.distance || 50;
         const units = properties.units;
 
-        const output = truncate(lineOffset(geojson, distance, {units: units}), {precision: 4});
+        const output = lineOffset(geojson, distance, {units: units});
         output.properties.stroke = '#00F';
         const results = featureCollection([output, geojson]);
 

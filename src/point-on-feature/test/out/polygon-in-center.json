@@ -76,6 +76,20 @@
 					52.515283
 				]
 			}
+		},
+		{
+			"type": "Feature",
+			"properties": {
+				"marker-color": "#F00",
+				"marker-style": "star"
+			},
+			"geometry": {
+				"type": "Point",
+				"coordinates": [
+					13.42186,
+					52.515283
+				]
+			}
 		}
 	]
 }

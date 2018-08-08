@@ -9,10 +9,22 @@ import { featureEach } from '../meta';
 import { featureCollection } from '../helpers';
 import pointOnFeature from '.';
 
+const directories = {
+    in: path.join(__dirname, 'test', 'in') + path.sep,
+    out: path.join(__dirname, 'test', 'out') + path.sep
+};
+
+let fixtures = fs.readdirSync(directories.in).map(filename => {
+    return {
+        filename,
+        name: path.parse(filename).name,
+        geojson: load.sync(directories.in + filename)
+    };
+});
+
 test('turf-point-on-feature', t => {
-    glob.sync(path.join(__dirname, 'test', 'in', '*.json')).forEach(filepath => {
-        const {name} = path.parse(filepath);
-        const geojson = load.sync(filepath);
+    for (const {name, geojson} of fixtures) {
+
         const ptOnFeature = pointOnFeature(geojson);
 
         // Style Results
@@ -23,9 +35,8 @@ test('turf-point-on-feature', t => {
         results.features.push(truncate(ptOnFeature));
 
         // Save Tests
-        const out = filepath.replace(path.join('test', 'in'), path.join('test', 'out'))
-        if (process.env.REGEN) write.sync(out, results);
-        t.deepEqual(results, load.sync(out), name);
-    });
+        if (process.env.REGEN) write.sync(directories.out + name + '.json', results);
+        t.deepEqual(results, load.sync(directories.out + name + '.json'), name);
+    };
     t.end();
 });

@@ -564,7 +564,6 @@ export function degreesToRadians(degrees) {
  */
 export function convertLength(length, originalUnit, finalUnit) {
     if (length === null || length === undefined) throw new Error('length is required');
-    if (!(length >= 0)) { throw new Error('length must be a positive number'); }
 
     return radiansToLength(lengthToRadians(length, originalUnit), finalUnit || 'kilometers');
 }

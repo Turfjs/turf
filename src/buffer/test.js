@@ -32,8 +32,7 @@ test('turf-buffer', t => {
         const units = properties.units || 'miles';
         const steps = properties.steps;
 
-        const buffered = truncate(buffer(geojson, radius, {units: units, steps: steps}));
-
+        const buffered = buffer(geojson, radius, {units: units, steps: steps});
         // Add Results to FeatureCollection
         const results = featureCollection([]);
         featureEach(buffered, feature => results.features.push(colorize(feature, '#F00')));

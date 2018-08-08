@@ -2,7 +2,9 @@
   "type": "Feature",
   "properties": {
     "stroke": "#F00",
-    "stroke-width": 6
+    "stroke-width": 6,
+    "distance": 10,
+    "units": "kilometers"
   },
   "geometry": {
     "type": "LineString",

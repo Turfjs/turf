@@ -13,8 +13,13 @@ import { featureCollection } from '../helpers';
 
 import ellipse from '.';
 
+const directories = {
+    in: path.join(__dirname, 'test', 'in') + path.sep,
+    out: path.join(__dirname, 'test', 'out') + path.sep
+};
+
 test('turf-ellipse', t => {
-    glob.sync(path.join(__dirname, 'test', 'in', '*.json')).forEach(filepath => {
+    glob.sync(directories.in + '*.geojson').forEach(filepath => {
         // Define params
         const {name} = path.parse(filepath);
         const geojson = load.sync(filepath);
@@ -70,9 +75,8 @@ test('turf-ellipse', t => {
         ]);
 
         // Save to file
-        const out = filepath.replace(path.join('test', 'in'), path.join('test', 'out'));
-        if (process.env.REGEN) write.sync(out, results);
-        t.deepEqual(results, load.sync(out), name);
+        if (process.env.REGEN) write.sync(directories.out + base, result);
+        t.deepEqual(result, load.sync(directories.out + base), name);
     });
     t.end();
 });

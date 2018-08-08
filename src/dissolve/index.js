@@ -1,20 +1,14 @@
-import rbush from 'geojson-rbush';
-import clone from '../clone';
-import intersect from '../boolean-intersects';
-import touch from '../boolean-touches';
-import turfUnion from '../union';
-import lineIntersect from '../line-intersect';
-import { coordAll } from '../meta';
+import { featureCollection, isObject } from '../helpers';
 import { collectionOf } from '../invariant';
-import { lineString, isObject } from '../helpers';
-import { closestGreaterNumber } from './lib/get-closest';
+import { featureEach } from '../meta';
+import union from '../union';
 
 /**
  * Dissolves a FeatureCollection of {@link polygon} features, filtered by an optional property name:value.
  * Note that {@link mulitpolygon} features within the collection are not supported
  *
  * @name dissolve
- * @param {FeatureCollection<Polygon>} featureCollection input feature collection to be dissolved
+ * @param {FeatureCollection<Polygon>} fc input feature collection to be dissolved
  * @param {Object} [options={}] Optional parameters
  * @param {string} [options.propertyName] features with equals 'propertyName' in `properties` will be merged
  * @returns {FeatureCollection<Polygon>} a FeatureCollection containing the dissolved polygons
@@ -30,95 +24,34 @@ import { closestGreaterNumber } from './lib/get-closest';
  * //addToMap
  * var addToMap = [features, dissolved]
  */
-function dissolve(featureCollection, options) {
+function dissolve(fc, options) {
     // Optional parameters
     options = options || {};
     if (!isObject(options)) throw new Error('options is invalid');
     var propertyName = options.propertyName;
 
     // Input validation
-    collectionOf(featureCollection, 'Polygon', 'dissolve');
+    collectionOf(fc, 'Polygon', 'dissolve');
 
     // Main
-    var fc = clone(featureCollection);
-    var features = fc.features;
-
-    var originalIndexOfItemsRemoved = [];
-
-    features.forEach(function (f, i) {
-        f.properties.origIndexPosition = i;
-    });
-    var tree = rbush();
-    tree.load(fc);
-
-    for (var i in features) {
-        var polygon = features[i];
-
-        var featureChanged = false;
-
-        tree.search(polygon).features.forEach(function (potentialMatchingFeature) {
-            polygon = features[i];
-
-            var matchFeaturePosition = potentialMatchingFeature.properties.origIndexPosition;
-
-            if (originalIndexOfItemsRemoved.length > 0 && matchFeaturePosition !== 0) {
-                if (matchFeaturePosition > originalIndexOfItemsRemoved[originalIndexOfItemsRemoved.length - 1]) {
-                    matchFeaturePosition = matchFeaturePosition - (originalIndexOfItemsRemoved.length);
-                } else {
-                    var closestNumber = closestGreaterNumber(matchFeaturePosition, originalIndexOfItemsRemoved);
-                    if (closestNumber !== 0) {
-                        matchFeaturePosition = matchFeaturePosition - closestNumber;
-                    }
-                }
+    const outFeatures = [];
+    if (options.propertyName === null) {
+        return union(fc);
+    } else {
+        let uniquePropertyVals = {};
+        featureEach(fc, function (feature) {
+            if (!uniquePropertyVals.hasOwnProperty(feature.properties[propertyName])) {
+                uniquePropertyVals[feature.properties[propertyName]] = [];
             }
-
-            if (matchFeaturePosition === +i) return;
-
-            var matchFeature = features[matchFeaturePosition];
-            if (!matchFeature || !polygon) return;
-
-            if (propertyName !== undefined &&
-                matchFeature.properties[propertyName] !== polygon.properties[propertyName]) return;
-
-            if (!intersect(polygon, matchFeature) && !touch(polygon, matchFeature)) return;
-
-            features[i] = turfUnion(polygon, matchFeature);
-
-            originalIndexOfItemsRemoved.push(potentialMatchingFeature.properties.origIndexPosition);
-            originalIndexOfItemsRemoved.sort(function (a, b) {
-                return a - b;
-            });
-
-            tree.remove(potentialMatchingFeature);
-            features.splice(matchFeaturePosition, 1);
-            polygon.properties.origIndexPosition = i;
-            tree.remove(polygon, function (a, b) {
-                return a.properties.origIndexPosition === b.properties.origIndexPosition;
-            });
-            featureChanged = true;
+            uniquePropertyVals[feature.properties[propertyName]].push(feature);
         });
-
-        if (featureChanged) {
-            if (!polygon) continue;
-            polygon.properties.origIndexPosition = i;
-            tree.insert(polygon);
-            i--;
+        var vals = Object.keys(uniquePropertyVals);
+        for (var i = 0; i < vals.length; i++) {
+            outFeatures.push(union(featureCollection(uniquePropertyVals[vals[i]])));
         }
     }
 
-    features.forEach(function (f) {
-        delete f.properties.origIndexPosition;
-        delete f.bbox;
-    });
-
-    return fc;
-}
-
-function ringsIntersect(poly1, poly2) {
-    var line1 = lineString(coordAll(poly1));
-    var line2 = lineString(coordAll(poly2));
-    var points = lineIntersect(line1, line2).features;
-    return points.length > 0;
+    return featureCollection(outFeatures);
 }
 
 export default dissolve;

@@ -41,8 +41,7 @@ test('turf-difference', t => {
 test('turf-difference - support Geometry Objects', t => {
     const poly1 = polygon([[[121, -31], [144, -31], [144, -15], [121, -15], [121, -31]]]);
     const poly2 = polygon([[[126, -28], [140, -28], [140, -20], [126, -20], [126, -28]]]);
-
-    t.assert(difference(poly1.geometry, poly2.geometry), 'geometry object support');
+    t.isNot(difference(poly1.geometry, poly2.geometry), null, 'geometry object support');
     t.end();
 });
 

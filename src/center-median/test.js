@@ -1,5 +1,5 @@
 const test = require('tape');
-const glob = require('glob');
+const fs = require('fs');
 const path = require('path');
 const load = require('load-json-file');
 const write = require('write-json-file');
@@ -10,11 +10,24 @@ const centerOfMass = require('../center-of-mass').default;
 const { featureCollection, round } = require('../helpers');
 const centerMedian = require('./').default;
 
+const directories = {
+    in: path.join(__dirname, 'test', 'in') + path.sep,
+    out: path.join(__dirname, 'test', 'out') + path.sep
+};
+
+const fixtures = fs.readdirSync(directories.in).map(filename => {
+    return {
+        filename,
+        name: path.parse(filename).name,
+        geojson: load.sync(directories.in + filename)
+    };
+});
+
 test('turf-center-median', t => {
-    glob.sync(path.join(__dirname, 'test', 'in', '*.json')).forEach(filepath => {
+    for (const fixture of fixtures) {
         // Define params
-        const {name} = path.parse(filepath);
-        const geojson = load.sync(filepath);
+        const name = fixture.name;
+        const geojson = fixture.geojson;
         const options = geojson.properties;
 
         // Calculate Centers
@@ -35,10 +48,9 @@ test('turf-center-median', t => {
             colorize(massCenter, '#aaa')
         ]);
 
-        const out = filepath.replace(path.join('test', 'in'), path.join('test', 'out'));
-        if (process.env.REGEN) write.sync(out, results);
-        t.deepEqual(results, load.sync(out), name);
-    });
+        if (process.env.REGEN) write.sync(directories.out + name + '.json', results);
+        t.deepEqual(results, load.sync(directories.out + name + '.json'), name);
+    }
     t.end();
 });
 

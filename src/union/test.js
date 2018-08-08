@@ -21,14 +21,7 @@ const fixtures = fs.readdirSync(directories.in).map(filename => {
 
 test('union', function (t) {
     for (const {name, geojson, filename} of fixtures) {
-        let result = null;
-        if (geojson.features.length > 2) {
-            var last = geojson.features.pop();
-            var multipoly = combine(geojson);
-            result = union(last, multipoly.features[0]);
-        } else {
-            result = union(geojson.features[0], geojson.features[1]);
-        }
+        let result = union(geojson);
         if (process.env.REGEN) write.sync(directories.out + filename, result);
         t.deepEqual(result, load.sync(directories.out + filename), name);
     }

@@ -1,6 +1,6 @@
 import rbush from 'rbush';
 import union from '../union';
-import { polygon, featureCollection } from '../helpers';
+import { polygon, multiPolygon, featureCollection } from '../helpers';
 import turfBBox from '../bbox';
 import { flattenEach } from '../meta';
 
@@ -30,8 +30,8 @@ function mask(polygon, mask) {
     var polygonInners = separated[1];
 
     // Union Outers & Inners
-    polygonOuters = unionPolygons(polygonOuters);
-    polygonInners = unionPolygons(polygonInners);
+    polygonOuters = multiPolygon(union(polygonOuters));
+    polygonInners = multiPolygon(union(polygonInners));
 
     // Create masked area
     var masked = buildMask(maskPolygon, polygonOuters, polygonInners);
@@ -55,9 +55,12 @@ function buildMask(maskPolygon, polygonOuters, polygonInners) {
         coordinates.push(feature.geometry.coordinates[0]);
     });
 
-    flattenEach(polygonInners, function (feature) {
-        coordinates.push(feature.geometry.coordinates[0]);
-    });
+    if (polygonInners.geometry.coordinates !== null) {
+        flattenEach(polygonInners, function (feature) {
+            coordinates.push(feature.geometry.coordinates[0]);
+        });
+    }
+
     return polygon(coordinates);
 }
 

@@ -79,7 +79,7 @@ function simplifyGeom(geometry, tolerance, highQuality) {
     if (type === 'Point' || type === 'MultiPoint') return geometry;
 
     // Remove any extra coordinates
-    cleanCoords(geometry, true);
+    cleanCoords(geometry, {mutate: true});
 
     var coordinates = geometry.coordinates;
     switch (type) {

@@ -180,6 +180,20 @@
 					38.039439
 				]
 			}
+		},
+		{
+			"type": "Feature",
+			"properties": {
+				"marker-color": "#F00",
+				"marker-style": "star"
+			},
+			"geometry": {
+				"type": "Point",
+				"coordinates": [
+					-79.090576,
+					38.039439
+				]
+			}
 		}
 	]
 }

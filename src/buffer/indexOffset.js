@@ -1,12 +1,13 @@
 import clone from '../clone';
-import { BufferOp, GeoJSONReader, GeoJSONWriter } from 'turf-jsts';
+// import turfBbox from '../bbox';
+// import { BufferOp, GeoJSONReader, GeoJSONWriter } from 'turf-jsts';
+// import { toWgs84, toMercator } from '../projection';
+import Offset from 'polygon-offset';
+import * as martinez from 'martinez-polygon-clipping';
 import centerOfMass from '../center-of-mass';
-import { geomEach, coordEach, featureEach } from '../meta';
-import { featureCollection,
-    radiansToLength,
-    lengthToRadians,
-    feature,
-    degreesToRadians, radiansToDegrees, checkIfOptionsExist } from '../helpers';
+import { geomEach, coordEach, featureEach, flattenEach } from '../meta';
+// import { geoTransverseMercator } from 'd3-geo';
+import { lengthToDegrees, featureCollection, radiansToLength,lengthToRadians, polygon, multiPolygon, degreesToRadians, radiansToDegrees } from '../helpers';
 
 /**
  * Calculates a buffer for input features for a given radius. Units supported are miles, kilometers, and degrees.
@@ -22,6 +23,7 @@ import { featureCollection,
  * @param {number} radius distance to draw the buffer (negative values are allowed)
  * @param {Object} [options={}] Optional parameters
  * @param {string} [options.units="kilometers"] any of the options supported by turf units
+ * @param {number} [options.steps=64] number of steps
  * @returns {FeatureCollection|Feature<Polygon|MultiPolygon>|undefined} buffered features
  * @example
  * var point = turf.point([-90.548630, 14.616599]);
@@ -33,37 +35,36 @@ import { featureCollection,
 function buffer(geojson, radius, options) {
 
     // Optional params
-    options = checkIfOptionsExist(options);
+    options = options || {};
     var units = options.units || 'kilometers';
-    // var steps = options.steps || 64;
+    var steps = options.steps || 64;
 
     // validation
     if (!geojson) throw new Error('geojson is required');
     if (typeof options !== 'object') throw new Error('options must be an object');
-    // if (typeof steps !== 'number') throw new Error('steps must be an number');
+    if (typeof steps !== 'number') throw new Error('steps must be an number');
 
     // Allow negative buffers ("erosion") or zero-sized buffers ("repair geometry")
     if (radius === undefined) throw new Error('radius is required');
-    // if (steps <= 0) throw new Error('steps must be greater than 0');
+    if (steps <= 0) throw new Error('steps must be greater than 0');
 
     var distance = radiansToLength(lengthToRadians(radius, units), 'meters');
+
     var results = [];
 
     switch (geojson.type) {
     case 'GeometryCollection':
         geomEach(geojson, function (geometry) {
-            var buffered = bufferFeature(geometry, distance);
-            if (buffered) results.push(buffered);
+            results.push(bufferFeature(geometry, distance, steps));
         });
         return featureCollection(results);
     case 'FeatureCollection':
         featureEach(geojson, function (feature) {
-            var buffered = bufferFeature(feature, distance);
-            if (buffered) results.push(buffered);
+            results.push(bufferFeature(feature, distance, steps));
         });
         return featureCollection(results);
     }
-    return bufferFeature(geojson, distance);
+    return bufferFeature(geojson, distance, steps);
 }
 
 /**
@@ -75,7 +76,7 @@ function buffer(geojson, radius, options) {
  * @param {number} [steps=64] number of steps
  * @returns {Feature<Polygon|MultiPolygon>} buffered feature
  */
-function bufferFeature(geojson, radius) {
+function bufferFeature(geojson, radius, steps) {
     var properties = geojson.properties || {};
     var geometry = (geojson.type === 'Feature') ? clone(geojson.geometry) : clone(geojson);
 
@@ -83,31 +84,44 @@ function bufferFeature(geojson, radius) {
     var utmZone = checkUtmZone(centroid.geometry);
     reprojectFeature(geometry, utmZone, true);
 
-    var reader = new GeoJSONReader();
-    var geom = reader.read(geometry);
-    var buffered = BufferOp.bufferOp(geom, radius);
-    var writer = new GeoJSONWriter();
-    buffered = writer.write(buffered);
+    var offset = new Offset();
+    var result = null;
+    if (geometry.type === 'LineString') {
+        result = offset.data(geometry.coordinates).arcSegments(steps).offsetLine(radius);
+    } else if (geometry.type === 'MultiLineString') {
+        result = offset.data(geometry.coordinates).arcSegments(steps).offsetLines(radius);
+    } else if (geometry.type === 'Point') {
+        result = offset.data(geometry.coordinates).arcSegments(steps).offset(radius);
+    } else if (geometry.type === 'MultiPoint') {
+        result = [];
+        flattenEach(geometry, function (p) {
+            if (result.length === 0) result.push(offset.data(p.geometry.coordinates).arcSegments(steps).offset(radius));
+            else result = martinez.union(offset.data(p.geometry.coordinates).arcSegments(steps).offset(radius), result);
+        });
+    } else if (geometry.type === 'Polygon') {
+        result = offset.data(geometry.coordinates).arcSegments(steps).offset(radius);
+    } else if (geometry.type === 'MultiPolygon') {
+        result = [];
+        flattenEach(geometry, function (p) {
+            if (result.length === 0) result.push(offset.data(p.geometry.coordinates).arcSegments(steps).offset(radius));
+            else result = martinez.union(result, offset.data(p.geometry.coordinates).arcSegments(steps).offset(radius));
+        });
+    }
 
-    if (coordsIsNaN(buffered.coordinates)) return undefined;
-    reprojectFeature(buffered, utmZone, false);
+    result = JSON.parse(JSON.stringify(result))
+    if (geometry.type === 'MultiPoint' || geometry.type === 'MultiPolygon') {
+        let out = multiPolygon(result, properties);
+        reprojectFeature(out, utmZone, false);
+        return out;
+    }
 
-    return (buffered.geometry) ? buffered : feature(buffered, properties);
+    let out = polygon(result, properties);
+    reprojectFeature(out, utmZone, false);
+    return out;
+
 }
 
 export default buffer;
-
-/**
- * Coordinates isNaN
- *
- * @private
- * @param {Array<any>} coords GeoJSON Coordinates
- * @returns {boolean} if NaN exists
- */
-function coordsIsNaN(coords) {
-    if (Array.isArray(coords[0])) return coordsIsNaN(coords[0]);
-    return isNaN(coords[0]);
-}
 
 function reprojectFeature(feature, utmZone, toUtm) {
     coordEach(feature, function (coord, coordIndex) { //eslint-disable-line
@@ -227,17 +241,17 @@ function convertUtmToLatLon(y, x, zone) {
 
     var β = [null, // note β is one-based array (6th order Krüger expressions)
         1 / 2 * n - 2 / 3 * n2 + 37 / 96 * n3 -    1 / 360 * n4 -   81 / 512 * n5 +    96199 / 604800 * n6,
-        1 / 48 * n2 +  1 / 15 * n3 - 437 / 1440 * n4 +   46 / 105 * n5 - 1118711 / 3870720 * n6,
-        17 / 480 * n3 -   37 / 840 * n4 - 209 / 4480 * n5 +      5569 / 90720 * n6,
-        4397 / 161280 * n4 -   11 / 504 * n5 -  830251 / 7257600 * n6,
-        4583 / 161280 * n5 -  108847 / 3991680 * n6,
-        20648693 / 638668800 * n6];
+               1 / 48 * n2 +  1 / 15 * n3 - 437 / 1440 * n4 +   46 / 105 * n5 - 1118711 / 3870720 * n6,
+                        17 / 480 * n3 -   37 / 840 * n4 - 209 / 4480 * n5 +      5569 / 90720 * n6,
+                                 4397 / 161280 * n4 -   11 / 504 * n5 -  830251 / 7257600 * n6,
+                                               4583 / 161280 * n5 -  108847 / 3991680 * n6,
+                                                             20648693 / 638668800 * n6 ];
 
     var ξʹ = ξ;
     for (var j = 1; j <= 6; j++) ξʹ -= β[j] * Math.sin(2 * j * ξ) * Math.cosh(2 * j * η);
 
     var ηʹ = η;
-    for (var j = 1; j <= 6; j++) ηʹ -= β[j] * Math.cos(2 * j * ξ) * Math.sinh(2 * j * η);  //eslint-disable-line
+    for (var j = 1; j <= 6; j++) ηʹ -= β[j] * Math.cos(2 * j * ξ) * Math.sinh(2 * j * η);
 
     var sinhηʹ = Math.sinh(ηʹ);
     var sinξʹ = Math.sin(ξʹ), cosξʹ = Math.cos(ξʹ);
@@ -248,8 +262,8 @@ function convertUtmToLatLon(y, x, zone) {
     do {
         var σi = Math.sinh(e * Math.atanh(e * τi / Math.sqrt(1 + τi * τi)));
         var τiʹ = τi * Math.sqrt(1 + σi * σi) - σi * Math.sqrt(1 + τi * τi);
-        var δτi = (τʹ - τiʹ) / Math.sqrt(1 + τiʹ * τiʹ) *
-        (1 + (1 - e * e) * τi * τi) / ((1 - e * e) * Math.sqrt(1 + τi * τi));
+        var δτi = (τʹ - τiʹ) / Math.sqrt(1 + τiʹ * τiʹ)
+            * (1 + (1 - e * e) * τi * τi) / ((1 - e * e) * Math.sqrt(1 + τi * τi));
         τi += δτi;
     } while (Math.abs(δτi) > 1e-12); // using IEEE 754 δτi -> 0 after 2-3 iterations
     // note relatively large convergence test as δτi toggles on ±1.12e-16 for eg 31 N 400000 5000000
@@ -258,6 +272,28 @@ function convertUtmToLatLon(y, x, zone) {
     var φ = Math.atan(τ);
 
     var λ = Math.atan2(sinhηʹ, cosξʹ);
+
+    // ---- convergence: Karney 2011 Eq 26, 27
+
+    var p = 1;
+    for (var j = 1; j <= 6; j++) p -= 2 * j * β[j] * Math.cos(2 * j * ξ) * Math.cosh(2 * j * η);
+    var q = 0;
+    for (var j = 1; j <= 6; j++) q += 2 * j * β[j] * Math.sin(2 * j * ξ) * Math.sinh(2 * j * η);
+
+    var γʹ = Math.atan(Math.tan(ξʹ) * Math.tanh(ηʹ));
+    var γʺ = Math.atan2(q, p);
+
+    var γ = γʹ + γʺ;
+
+    // ---- scale: Karney 2011 Eq 28
+
+    var sinφ = Math.sin(φ);
+    var kʹ = Math.sqrt(1 - e * e * sinφ * sinφ) * Math.sqrt(1 + τ * τ) * Math.sqrt(sinhηʹ * sinhηʹ + cosξʹ * cosξʹ);
+    var kʺ = A / a / Math.sqrt(p * p + q * q);
+
+    var k = k0 * kʹ * kʺ;
+
+    // ------------
 
     var λ0 = degreesToRadians((z - 1) * 6 - 180 + 3); // longitude of central meridian
     λ += λ0; // move λ from zonal to global coordinates

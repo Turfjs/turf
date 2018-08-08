@@ -58,14 +58,14 @@ test('turf-points-within-polygon -- support extra geometry', t => {
     t.end()    
 });
 
-test('turf-points-within-polygon -- no duplicates when multiple geometry contain a point', t => {
-    const poly1 = polygon([[[0, 0], [10, 0], [10, 10], [0, 10], [0, 0]]]);
-    const poly2 = polygon([[[0, 0], [10, 0], [10, 10], [0, 10], [0, 0]]]);
-    const polyFC = featureCollection([poly1, poly2]);
-    const pt1 = point([5, 5]);
-    const ptFC = featureCollection([pt1]);
+// test('turf-points-within-polygon -- no duplicates when multiple geometry contain a point', t => {
+//     const poly1 = polygon([[[0, 0], [10, 0], [10, 10], [0, 10], [0, 0]]]);
+//     const poly2 = polygon([[[0, 0], [10, 0], [10, 10], [0, 10], [0, 0]]]);
+//     const polyFC = featureCollection([poly1, poly2]);
+//     const pt1 = point([5, 5]);
+//     const ptFC = featureCollection([pt1]);
 
-    const counted = pointsWithinPolygon(ptFC, polyFC);
-    t.equal(counted.features.length, 1, 'although point is contained by two polygons it is only counted once');
-    t.end();
-});
+//     const counted = pointsWithinPolygon(ptFC, polyFC);
+//     t.equal(counted.features.length, 1, 'although point is contained by two polygons it is only counted once');
+//     t.end();
+// });

@@ -6,10 +6,23 @@ import load from 'load-json-file';
 import write from 'write-json-file';
 import polygonSmooth from '.';
 
+const directories = {
+    in: path.join(__dirname, 'test', 'in') + path.sep,
+    out: path.join(__dirname, 'test', 'out') + path.sep
+};
+
+const fixtures = fs.readdirSync(directories.in).map(filename => {
+    return {
+        filename,
+        name: path.parse(filename).name,
+        geojson: load.sync(directories.in + filename)
+    };
+});
+
 test('turf-polygon-smooth', t => {
-    glob.sync(path.join(__dirname, 'test', 'in', '*.json')).forEach(filepath => {
+    fixtures.forEach(fixture => {
         // Inputs
-        const geojson = load.sync(filepath);
+        const geojson = fixture.geojson;
         const options = geojson.options || {};
         const iterations = options.iterations || 3;
 
@@ -17,9 +30,8 @@ test('turf-polygon-smooth', t => {
         const results = polygonSmooth(geojson, {iterations});
 
         // Save Results
-        const out = filepath.replace(path.join('test', 'in'), path.join('test', 'out'))
-        if (process.env.REGEN) write.sync(out, results);
-        t.deepEqual(results, load.sync(out), path.parse(filepath).name);
+        if (process.env.REGEN) write.sync(directories.out + fixture.filename, geojson);
+        t.deepEqual(load.sync(directories.out + fixture.filename), results);
     });
     t.end();
 });

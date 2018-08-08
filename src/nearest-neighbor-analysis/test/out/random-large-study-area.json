@@ -1661,10 +1661,10 @@
 					"units": "kilometers",
 					"arealUnits": "kilometers²",
 					"observedMeanDistance": 1.6516270145942438,
-					"expectedMeanDistance": 25.489958462294293,
-					"nearestNeighborIndex": 0.06479520227690416,
+					"expectedMeanDistance": 25.461470908340697,
+					"nearestNeighborIndex": 0.06486769835646855,
 					"numberOfPoints": 150,
-					"zScore": -21.912061518827862
+					"zScore": -21.910362919163752
 				}
 			},
 			"geometry": {

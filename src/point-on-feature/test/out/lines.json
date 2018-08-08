@@ -134,6 +134,20 @@
 					-15.570128
 				]
 			}
+		},
+		{
+			"type": "Feature",
+			"properties": {
+				"marker-color": "#F00",
+				"marker-style": "star"
+			},
+			"geometry": {
+				"type": "Point",
+				"coordinates": [
+					26.323242,
+					-15.570128
+				]
+			}
 		}
 	]
 }

@@ -1,12 +1,13 @@
 import * as polyClipping from 'polygon-clipping';
-import { multiPolygon } from '../helpers';
-import { geomEach } from '../meta';
+import { getGeom } from '../invariant';
+import { multiPolygon, polygon } from '../helpers';
 
 /**
  * Takes two or more {@link Polygon|polygons} and returns a combined polygon. If the input polygons are not contiguous, this function returns a {@link MultiPolygon} feature.
  *
  * @name union
- * @param {Feature<Polygon|MultiPolygon>} fc a FeatureCollection containting polygons or multipolygons to union
+ * @param {Feature<Polygon|MultiPolygon>} polygon1 input Polygon feature
+ * @param {Feature<Polygon|MultiPolygon>} polygon2 Polygon feature to difference from polygon1
  * @returns {Feature<(Polygon|MultiPolygon)>} a combined {@link Polygon} or {@link MultiPolygon} feature
  * @example
  * var poly1 = turf.polygon([[
@@ -29,16 +30,14 @@ import { geomEach } from '../meta';
  * //addToMap
  * var addToMap = [poly1, poly2, union];
  */
-function union(fc) {
+function union(polygon1, polygon2) {
+    var geom1 = getGeom(polygon1);
+    var geom2 = getGeom(polygon2);
+    var properties = polygon1.properties || {};
 
-    const args = [];
-    geomEach(fc, function (geom) {
-        args.push(geom.coordinates);
-    });
-
-    var unioned = polyClipping.union(args);
+    var unioned = polyClipping.union(geom1.coordinates, geom2.coordinates);
     if (unioned.length === 0) return null;
-    else return multiPolygon(unioned);
+    else return multiPolygon(unioned, properties);
 }
 
 export default union;
