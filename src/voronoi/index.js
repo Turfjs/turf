@@ -23,6 +23,7 @@ function coordsToPolygon(coords) {
  * @param {FeatureCollection<Point>} points to find the Voronoi polygons around.
  * @param {Object} [options={}] Optional parameters
  * @param {number[]} [options.bbox=[-180, -85, 180, -85]] clipping rectangle, in [minX, minY, maxX, MaxY] order.
+ * @pararm {Boolean} [options.addPropertiesToPolygons=false] add properties to the polygons from the points
  * @returns {FeatureCollection<Polygon>} a set of polygons, one per input point.
  * @example
  * var options = {
@@ -46,7 +47,7 @@ function voronoi(points, options) {
     collectionOf(points, 'Point', 'points');
 
     // Main
-    return featureCollection(
+    var fc = featureCollection(
         d3voronoi.voronoi()
             .x(function (feature) { return feature.geometry.coordinates[0]; })
             .y(function (feature) { return feature.geometry.coordinates[1]; })
@@ -54,6 +55,12 @@ function voronoi(points, options) {
             .polygons(points.features)
             .map(coordsToPolygon)
     );
+    if (options.addPropertiesToPolygons) {
+        fc.features.forEach(function (polygon, i) {
+            polygon.properties = JSON.parse(JSON.stringify(points.features[i].properties));
+        });
+    }
+    return fc;
 }
 
 export default voronoi;

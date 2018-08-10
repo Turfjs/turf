@@ -33,9 +33,11 @@ function union(fc) {
 
     const args = [];
     geomEach(fc, function (geom) {
-        args.push(geom.coordinates);
+        if (geom.type === 'Polygon') args.push(geom.coordinates);
+        else geom.coordinates.forEach(function (contour) {
+            args.push(contour);
+        });
     });
-
     var unioned = polyClipping.union(args);
     if (unioned.length === 0) return null;
     else return multiPolygon(unioned);
