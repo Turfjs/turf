@@ -1,9 +1,9 @@
 import node from 'rollup-plugin-node-resolve'
 import commonjs from 'rollup-plugin-commonjs'
-import uglify from 'rollup-plugin-uglify'
+import {uglify} from 'rollup-plugin-uglify'
 
 const pckg = require('./package')
-const input = 'index.mjs'
+const input = 'src/index.js'
 
 export default [{
     input,
@@ -12,11 +12,11 @@ export default [{
         {file: pckg.module, format: 'es'},
     ],
     plugins: [commonjs(), node()]
-},
+}/*,
 {
     input,
     output: [
         {file: pckg.browser, format: 'umd', name: 'turf'}
     ],
     plugins: [commonjs(), node(), uglify()]
-}];
+}*/];

@@ -1,6 +1,6 @@
 import * as polyClipping from 'polygon-clipping';
-import { multiPolygon } from '@turf/helpers';
-import { getGeom } from '@turf/invariant';
+import {  multiPolygon } from '../helpers';
+import { getGeom } from '../invariant';
 
 /**
  * Finds the difference between two {@link Polygon|polygons} by clipping the second polygon from the first.
