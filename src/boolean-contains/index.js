@@ -131,10 +131,10 @@ export function isMultiPointInPoly(polygon, multiPoint) {
 export function isLineOnLine(lineString1, lineString2) {
     let haveFoundInteriorPoint = false;
     for (const coords of lineString2.coordinates) {
-        if (isPointOnLine({type: "Point", coordinates: coords}, lineString1, { ignoreEndVertices: true })) {
+        if (isPointOnLine({type: 'Point', coordinates: coords}, lineString1, { ignoreEndVertices: true })) {
             haveFoundInteriorPoint = true;
         }
-        if (!isPointOnLine({type: "Point", coordinates: coords}, lineString1, {ignoreEndVertices: false })) {
+        if (!isPointOnLine({type: 'Point', coordinates: coords}, lineString1, {ignoreEndVertices: false })) {
             return false;
         }
     }
@@ -142,22 +142,35 @@ export function isLineOnLine(lineString1, lineString2) {
 }
 
 export function isLineInPoly(polygon, linestring) {
-    let output = false;
     let i = 0;
+
+    let pointInside = false;
+    let pointOutside = false;
 
     const polyBbox = calcBbox(polygon);
     const lineBbox = calcBbox(linestring);
     if (!doBBoxOverlap(polyBbox, lineBbox)) {
         return false;
     }
-    for (i; i < linestring.coordinates.length - 1; i++) {
-        const midPoint = getMidpoint(linestring.coordinates[i], linestring.coordinates[i + 1]);
-        if (booleanPointInPolygon({type: "Point", coordinates: midPoint}, polygon, { ignoreBoundary: true })) {
-            output = true;
+    for (i; i < linestring.coordinates.length; i++) {
+        if (!booleanPointInPolygon({type: 'Point', coordinates: linestring.coordinates[i]}, polygon, { ignoreBoundary: false })) {
+            pointOutside = true;
             break;
         }
+        if (!pointInside) {
+            if (booleanPointInPolygon({type: 'Point', coordinates: linestring.coordinates[i]}, polygon, { ignoreBoundary: true })) {
+                pointInside = true;
+            }
+            if (!pointInside && i < linestring.coordinates.length - 1) {
+                const midPoint = getMidpoint(linestring.coordinates[i], linestring.coordinates[i + 1]);
+                if (booleanPointInPolygon({type: "Point", coordinates: midPoint}, polygon, { ignoreBoundary: true })) {
+                    pointInside = true;
+                }
+            }
+        }
     }
-    return output;
+    if (pointOutside) return false;
+    return pointInside;
 }
 
 /**

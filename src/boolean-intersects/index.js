@@ -2,7 +2,7 @@ import booleanDisjoint from '../boolean-disjoint';
 import { flattenEach } from '../meta';
 
 /**
- * Boolean-intersects returns (TRUE) two geometries intersect.
+ * Boolean-intersects returns (TRUE) two geometries spatially intersect, by that we mean that one does not completely contain another.
  *
  * @name booleanIntersects
  * @param {Geometry|Feature<any>} feature1 GeoJSON Feature or Geometry
