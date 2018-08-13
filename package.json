@@ -13,7 +13,9 @@
   "types": "index.d.ts",
   "scripts": {
     "benchmark-module": "node -r esm scripts/benchmarkModule.js",
+    "build": "rollup -c",
     "lint": "eslint src/*/index.js",
+    "prepublish": "npm run build",
     "test": "tape -r esm src/*/test.js",
     "test-module": "node -r esm scripts/testModule.js",
     "test-module:regen": "cross-env REGEN=true node -r esm scripts/testModule.js",
