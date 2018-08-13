@@ -1,5 +1,5 @@
 const test = require('tape');
-const glob = require('glob');
+const fs = require('fs');
 const path = require('path');
 const load = require('load-json-file');
 const write = require('write-json-file');
@@ -10,12 +10,22 @@ const { featureCollection } = require('../helpers');
 const nearestNeighborAnalysis = require('.').default;
 
 
+const directories = {
+    in: path.join(__dirname, 'test', 'in') + path.sep,
+    out: path.join(__dirname, 'test', 'out') + path.sep
+};
+
+let fixtures = fs.readdirSync(directories.in).map(filename => {
+    return {
+        filename,
+        name: path.parse(filename).name,
+        geojson: load.sync(directories.in + filename)
+    };
+});
 
 test('turf-nearest-neighbor', t => {
-  glob.sync(path.join(__dirname, 'test', 'in', '*.json')).forEach(filepath => {
+  for (const {filename, name, geojson}  of fixtures) {
     // Define params
-    const {name} = path.parse(filepath);
-    const geojson = load.sync(filepath);
     const options = geojson.options;
     const results = featureCollection([]);
     featureEach(geojson, feature => results.features.push(truncate(feature)));
@@ -23,10 +33,10 @@ test('turf-nearest-neighbor', t => {
       featureEach(geojson, feature => results.features.push(truncate(centroid(feature, {properties: {"marker-color": "#0a0"}}))));
     }
     results.features.push(truncate(nearestNeighborAnalysis(geojson, options)));
-    const out = filepath.replace('in', 'out');
-    if (process.env.REGEN) write.sync(out, results);
-    t.deepEqual(results, load.sync(out), name);
 
-  });
+    if (process.env.REGEN) write.sync(directories.out + filename, results);
+    t.deepEquals(results, load.sync(directories.out + filename), name);
+
+  };
   t.end();
 });
