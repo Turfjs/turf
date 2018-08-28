@@ -1,7 +1,7 @@
 import lineIntersect from '../line-intersect';
 import { polygonToLine } from '../polygon-to-line';
 import booleanPointInPolygon from '../boolean-point-in-polygon';
-import { getGeom, getType } from '../invariant';
+import { getGeom } from '../invariant';
 import { point } from '../helpers';
 
 /**
@@ -86,21 +86,19 @@ function doMultiPointAndLineStringCross(multiPoint, lineString) {
 }
 
 function doLineStringsCross(lineString1, lineString2) {
-    var doLinesIntersect = lineIntersect(lineString1, lineString2);
-    if (doLinesIntersect.features.length > 0) {
-        for (var i = 0; i < lineString1.coordinates.length - 1; i++) {
-            for (var i2 = 0; i2 < lineString2.coordinates.length - 1; i2++) {
-                var incEndVertices = true;
-                if (i2 === 0 || i2 === lineString2.coordinates.length - 2) {
-                    incEndVertices = false;
-                }
-                if (isPointOnLineSegment(lineString1.coordinates[i], lineString1.coordinates[i + 1], lineString2.coordinates[i2], incEndVertices)) {
-                    return true;
-                }
-            }
-        }
-    }
-    return false;
+    const intersections = lineIntersect(lineString1, lineString2);
+
+    const endpoints = [
+        lineString1.coordinates[0], lineString1.coordinates[lineString1.coordinates.length - 1],
+        lineString2.coordinates[0], lineString2.coordinates[lineString2.coordinates.length - 1]
+    ];
+
+    // A line that touches another line should not cross
+    const hasAnIntersectionWithoutEndpoints = intersections.features.some(function (feature) {
+        return !endpoints.some(compareCoords.bind(this, feature.geometry.coordinates));
+    });
+
+    return hasAnIntersectionWithoutEndpoints;
 }
 
 function doLineStringAndPolygonCross(lineString, polygon) {
@@ -161,6 +159,18 @@ function isPointOnLineSegment(lineSegmentStart, lineSegmentEnd, pt, incEnd) {
         }
         return dyl > 0 ? lineSegmentStart[1] < pt[1] && pt[1] < lineSegmentEnd[1] : lineSegmentEnd[1] < pt[1] && pt[1] < lineSegmentStart[1];
     }
+}
+
+/**
+ * compareCoords
+ *
+ * @private
+ * @param {Position} pair1 point [x,y]
+ * @param {Position} pair2 point [x,y]
+ * @returns {boolean} true/false if coord pairs match
+ */
+export function compareCoords(pair1, pair2) {
+    return pair1[0] === pair2[0] && pair1[1] === pair2[1];
 }
 
 export default booleanCrosses;
