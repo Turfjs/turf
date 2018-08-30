@@ -89,6 +89,17 @@ it will create a new folder inside `packages` with a simple boilerplate for your
   [geojson.io](http://geojson.io) to see, visually, if the module is behaving
   appropriately.
 
+## Running tests
+To run tests for a specified module
+```bash
+$ npm run test-module "module-name"
+```
+
+To debug tests for a specified module:
+```bash
+$ node --inspect-brk -r esm scripts/testModule.js "module-name"
+```
+and attach with your favorite debugger.
 
 ## Publishing
 
