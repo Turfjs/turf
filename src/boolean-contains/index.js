@@ -209,8 +209,15 @@ export function isPolyInPoly(feature1, feature2) {
     }
 
     // Check for boundary intersections
-    if (booleanCrosses(extractPolygonBorderAsLineString(feature1), extractPolygonBorderAsLineString(feature2)))
-        return false;
+    const feature1PolygonBorder = extractPolygonBorderAsLineString(feature1);
+    const feature2PolygonBorder = extractPolygonBorderAsLineString(feature2);
+    if (booleanCrosses(feature1PolygonBorder, feature2PolygonBorder)) {
+        // If borders overlap perfectly, then we say polygon a "contains" b, although this is a hotly debated topic.
+        if (isLineOnLine(feature1PolygonBorder.geometry, feature2PolygonBorder.geometry))
+            return true;
+        else
+            return false;
+    }
 
     return true;
 }
