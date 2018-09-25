@@ -341,12 +341,12 @@ test('convertLength', t => {
     t.equal(convertLength(1, 'miles', 'kilometers'), 1.609344);
     t.equal(convertLength(1, 'nauticalmiles'), 1.852);
     t.equal(convertLength(1, 'meters', 'centimeters'), 100.00000000000001);
-    // t.throws(() => convertLength(1, 'foo'), 'invalid units');
+    t.throws(() => convertLength(1, 'foo'), 'invalid units');
     t.end();
 });
 
 test('convertArea', t => {
-    t.equal(convertArea(1000), 0.001);
+    t.equal(convertArea(1000), 0.001); 
     t.equal(convertArea(1, 'kilometres', 'miles'), 0.386);
     t.equal(convertArea(1, 'miles', 'kilometers'), 2.5906735751295336);
     t.equal(convertArea(1, 'meters', 'centimetres'), 10000);
@@ -354,8 +354,8 @@ test('convertArea', t => {
     t.equal(convertArea(100, undefined, 'yards'), 119.59900459999999);
     t.equal(convertArea(100, 'metres', 'feet'), 1076.3910417);
     t.equal(convertArea(100000, 'feet', undefined), 0.009290303999749462);
-    // t.throws(() => convertLength(1, 'foo'), 'invalid original units');
-    // t.throws(() => convertLength(1, 'meters', 'foo'), 'invalid final units');
+    t.throws(() => convertLength(1, 'foo'), 'invalid original units');
+    t.throws(() => convertLength(1, 'meters', 'foo'), 'invalid final units');
 
     t.end();
 });

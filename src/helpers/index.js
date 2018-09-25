@@ -35,30 +35,6 @@ export let factors = {
 };
 
 /**
- * Units of measurement factors based on 1 meter.
- *
- * @memberof helpers
- * @type {Object}
- */
-// export let unitsFactors = {
-//     centimeters: 100,
-//     centimetres: 100,
-//     degrees: 1 / 111325,
-//     feet: 3.28084,
-//     inches: 39.370,
-//     kilometers: 1 / 1000,
-//     kilometres: 1 / 1000,
-//     meters: 1,
-//     metres: 1,
-//     miles: 1 / 1609.344,
-//     millimeters: 1000,
-//     millimetres: 1000,
-//     nauticalmiles: 1 / 1852,
-//     radians: 1 / earthRadius,
-//     yards: 1 / 1.0936,
-// };
-
-/**
  * Area of measurement factors based on 1 square meter.
  *
  * @memberof helpers

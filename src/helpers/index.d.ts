@@ -26,15 +26,6 @@ export declare let factors: {
     [key: string]: number;
 };
 /**
- * Units of measurement factors based on 1 meter.
- *
- * @memberof helpers
- * @type {Object}
- */
-export declare let unitsFactors: {
-    [key: string]: number;
-};
-/**
  * Area of measurement factors based on 1 square meter.
  *
  * @memberof helpers
