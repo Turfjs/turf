@@ -250,13 +250,5 @@ function extractPolygonBorderAsLineString(feature) {
     const coords = getGeom(feature).coordinates;
     const outerRing = coords[0];
 
-    // All polygons should have the same first/last point, but this is not required by GeoJSON, so add it if it is missing.
-    const firstPoint = outerRing[0];
-    const lastPoint = outerRing[outerRing.length - 1];
-
-    if (!compareCoords(firstPoint, lastPoint)) {
-        outerRing.push(firstPoint);
-    }
-
     return lineString(outerRing);
 }
