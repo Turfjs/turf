@@ -1,7 +1,8 @@
 import calcBbox from "../bbox";
 import booleanPointInPolygon from "../boolean-point-in-polygon";
+import booleanCrosses from "../boolean-crosses";
 import isPointOnLine from "../boolean-point-on-line";
-import { point } from "../helpers";
+import { point, lineString } from "../helpers";
 import { getCoords, getGeom, getType } from "../invariant";
 
 /**
@@ -170,6 +171,11 @@ export function isLineInPoly(polygon, linestring) {
         }
     }
     if (pointOutside) return false;
+
+
+    if (booleanCrosses(extractPolygonBorderAsLineString(polygon), linestring))
+        return false;
+
     return pointInside;
 }
 
@@ -201,6 +207,18 @@ export function isPolyInPoly(feature1, feature2) {
             }
         }
     }
+
+    // Check for boundary intersections
+    const feature1PolygonBorder = extractPolygonBorderAsLineString(feature1);
+    const feature2PolygonBorder = extractPolygonBorderAsLineString(feature2);
+    if (booleanCrosses(feature1PolygonBorder, feature2PolygonBorder)) {
+        // If borders overlap perfectly, then we say polygon a "contains" b, although this is a hotly debated topic.
+        if (isLineOnLine(feature1PolygonBorder.geometry, feature2PolygonBorder.geometry))
+            return true;
+        else
+            return false;
+    }
+
     return true;
 }
 
@@ -226,4 +244,11 @@ export function compareCoords(pair1, pair2) {
 
 export function getMidpoint(pair1, pair2) {
     return [(pair1[0] + pair2[0]) / 2, (pair1[1] + pair2[1]) / 2];
+}
+
+function extractPolygonBorderAsLineString(feature) {
+    const coords = getGeom(feature).coordinates;
+    const outerRing = coords[0];
+
+    return lineString(outerRing);
 }
