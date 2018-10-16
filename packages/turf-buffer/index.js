@@ -112,7 +112,7 @@ function bufferFeature(geojson, radius, units, steps) {
     var reader = new GeoJSONReader();
     var geom = reader.read(projected);
     var distance = radiansToLength(lengthToRadians(radius, units), 'meters');
-    var buffered = BufferOp.bufferOp(geom, distance);
+    var buffered = BufferOp.bufferOp(geom, distance, steps);
     var writer = new GeoJSONWriter();
     buffered = writer.write(buffered);
 
