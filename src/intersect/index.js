@@ -1,6 +1,6 @@
 import { multiPolygon, polygon, checkIfOptionsExist } from '../helpers';
 import { getGeom } from '../invariant';
-import * as polyClipping from 'polygon-clipping';
+import polygonClipping from 'polygon-clipping';
 
 /**
  * Takes two {@link Polygon|polygon} or {@link MultiPolygon|multi-polygon} geometries and
@@ -40,12 +40,12 @@ import * as polyClipping from 'polygon-clipping';
  */
 export default function intersect(poly1, poly2, options) {
     options = checkIfOptionsExist(options);
-    var properties = options.properties || {};
+    const properties = options.properties || {};
 
     const geom1 = getGeom(poly1);
     const geom2 = getGeom(poly2);
 
-    const intersection = polyClipping.intersection(geom1.coordinates, geom2.coordinates);
+    const intersection = polygonClipping.intersection(geom1.coordinates, geom2.coordinates);
     if (intersection.length === 0) return null;
     return multiPolygon(intersection, properties);
 }

@@ -1,4 +1,4 @@
-import rectangleGrid from "../rectangle-grid";
+import rectangleGrid from '../rectangle-grid';
 
 /**
  * Creates a square grid from a bounding box, {@link Feature} or {@link FeatureCollection}.

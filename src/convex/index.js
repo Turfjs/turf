@@ -1,6 +1,6 @@
-import { polygon, checkIfOptionsExist } from "../helpers";
-import { coordEach } from "../meta";
-import concaveman from "concaveman";
+import { polygon, checkIfOptionsExist } from '../helpers';
+import { coordEach } from '../meta';
+import concaveman from 'concaveman';
 
 /**
  * Takes a {@link Feature} or a {@link FeatureCollection} and returns a convex hull {@link Polygon}.

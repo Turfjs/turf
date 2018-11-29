@@ -15,7 +15,7 @@ test('turf-boolean-equal', t => {
         const feature2 = geojson.features[1];
         const result = equal(feature1, feature2);
 
-        if (process.env.SHAPELY) shapely.contains(feature1, feature2).then(result => t.true(result, '[true] shapely - ' + name));
+        if (process.env.SHAPELY) shapely.equals(feature1, feature2).then(result => t.true(result, '[true] shapely - ' + name));
         t.true(result, '[true] ' + name);
     });
     // False Fixtures
@@ -26,7 +26,7 @@ test('turf-boolean-equal', t => {
         const feature2 = geojson.features[1];
         const result = equal(feature1, feature2);
 
-        if (process.env.SHAPELY) shapely.contains(feature1, feature2).then(result => t.false(result, '[false] shapely - ' + name));
+        if (process.env.SHAPELY) shapely.equals(feature1, feature2).then(result => t.false(result, '[false] shapely - ' + name));
         t.false(result, '[false] ' + name);
     });
     t.end();

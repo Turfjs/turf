@@ -3,7 +3,7 @@ import distance from '../distance';
 import { coordAll } from '../meta';
 import { convertLength, checkIfOptionsExist } from '../helpers';
 import { collectionOf } from '../invariant';
-import clustering from 'density-clustering';
+import DBSCAN from './lib/dbscan';
 
 /**
  * Takes a set of {@link Point|points} and partition them into clusters according to {@link DBSCAN's|https://en.wikipedia.org/wiki/DBSCAN} data clustering algorithm.
@@ -48,7 +48,7 @@ export function clustersDbscan(points, maxDistance, options) {
     minPoints = minPoints || 3;
 
     // create clustered ids
-    var dbscan = new clustering.DBSCAN();
+    var dbscan = new DBSCAN();
     var clusteredIds = dbscan.run(coordAll(points), convertLength(maxDistance, units), minPoints, distance);
 
     // Tag points to Clusters ID

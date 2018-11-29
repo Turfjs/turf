@@ -28,7 +28,7 @@ function dissolve(fc, options) {
     // Optional parameters
     options = options || {};
     if (!isObject(options)) throw new Error('options is invalid');
-    var propertyName = options.propertyName;
+    const propertyName = options.propertyName;
 
     // Input validation
     collectionOf(fc, 'Polygon', 'dissolve');
@@ -38,15 +38,15 @@ function dissolve(fc, options) {
     if (options.propertyName === null) {
         return union(fc);
     } else {
-        let uniquePropertyVals = {};
+        const uniquePropertyVals = {};
         featureEach(fc, function (feature) {
             if (!uniquePropertyVals.hasOwnProperty(feature.properties[propertyName])) {
                 uniquePropertyVals[feature.properties[propertyName]] = [];
             }
             uniquePropertyVals[feature.properties[propertyName]].push(feature);
         });
-        var vals = Object.keys(uniquePropertyVals);
-        for (var i = 0; i < vals.length; i++) {
+        const vals = Object.keys(uniquePropertyVals);
+        for (let i = 0; i < vals.length; i++) {
             outFeatures.push(union(featureCollection(uniquePropertyVals[vals[i]])));
         }
     }

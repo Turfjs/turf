@@ -1,4 +1,4 @@
-import { getCoords } from "../invariant";
+import { getCoords } from '../invariant';
 
 /**
  * Takes a ring and return true or false whether or not the ring is clockwise or counter-clockwise.

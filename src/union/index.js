@@ -1,4 +1,4 @@
-import * as polyClipping from 'polygon-clipping';
+import polygonClipping from 'polygon-clipping';
 import { multiPolygon } from '../helpers';
 import { geomEach } from '../meta';
 
@@ -30,7 +30,6 @@ import { geomEach } from '../meta';
  * var addToMap = [poly1, poly2, union];
  */
 function union(fc) {
-
     const args = [];
     geomEach(fc, function (geom) {
         if (geom.type === 'Polygon') args.push(geom.coordinates);
@@ -38,7 +37,7 @@ function union(fc) {
             args.push(contour);
         });
     });
-    var unioned = polyClipping.union(args);
+    const unioned = polygonClipping.union(args);
     if (unioned.length === 0) return null;
     else return multiPolygon(unioned);
 }

@@ -1,5 +1,5 @@
 import { coordEach } from '../meta';
-import { checkIfOptionsExist } from '../helpers'
+import { checkIfOptionsExist } from '../helpers';
 
 /**
  * Takes a GeoJSON Feature or FeatureCollection and truncates the precision of the geometry.

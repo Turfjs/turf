@@ -17,7 +17,7 @@ import { point, featureCollection } from '../helpers';
  * var addToMap = [polygon, explode]
  */
 function explode(geojson) {
-    var points = [];
+    const points = [];
     if (geojson.type === 'FeatureCollection') {
         featureEach(geojson, function (feature) {
             coordEach(feature, function (coord) {

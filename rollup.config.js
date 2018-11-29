@@ -9,14 +9,17 @@ export default [{
     input,
     output: [
         {file: pckg.main, format: 'umd', name: 'turf'},
-        {file: pckg.module, format: 'es'},
+        {file: 'dist/turf.es.js', format: 'es'}
     ],
-    plugins: [commonjs(), node()]
-  },
-  {
-    input,
-    output: [
-        {file: pckg.browser, format: 'umd', name: 'turf'}
-    ],
-    plugins: [commonjs(), node(), butternut()]
-}];
+    plugins: [node(), commonjs({
+      include: 'node_modules/**'
+    })]
+  }
+  // {
+  //   input,
+  //   output: [
+  //       {file: pckg.browser, format: 'umd', name: 'turf'}
+  //   ],
+  //   plugins: [node(), commonjs(), butternut()]
+  //   }
+];

@@ -1,7 +1,6 @@
-import intersect from "../boolean-intersects";
-import distance from "../distance";
-import {isNumber, polygon, featureCollection} from "../helpers";
-import {getType} from "../invariant";
+import intersect from '../boolean-intersects';
+import distance from '../distance';
+import { polygon, featureCollection } from '../helpers';
 
 /**
  * Creates a grid of rectangles from a bounding box, {@link Feature} or {@link FeatureCollection}.
@@ -11,7 +10,7 @@ import {getType} from "../invariant";
  * @param {number} cellWidth of each cell, in units
  * @param {number} cellHeight of each cell, in units
  * @param {Object} [options={}] Optional parameters
- * @param {string} [options.units='kilometers'] units ("degrees", "radians", "miles", "kilometers") that the given cellWidth 
+ * @param {string} [options.units='kilometers'] units ("degrees", "radians", "miles", "kilometers") that the given cellWidth
  * and cellHeight are expressed in. Converted at the southern border.
  * @param {Feature<Polygon|MultiPolygon>} [options.mask] if passed a Polygon or MultiPolygon,
  * the grid Points will be created only inside it

@@ -1,7 +1,7 @@
 import cleanCoords from '../clean-coords';
 import lineSegment from '../line-segment';
 import rhumbBearing from '../rhumb-bearing';
-import { bearingToAzimuth } from '@turf/helpers';
+import { bearingToAzimuth } from '../helpers';
 
 /**
  * Boolean-Parallel returns True if each segment of `line1` is parallel to the correspondent segment of `line2`
@@ -21,18 +21,18 @@ function booleanParallel(line1, line2) {
     // validation
     if (!line1) throw new Error('line1 is required');
     if (!line2) throw new Error('line2 is required');
-    var type1 = getType(line1, 'line1');
+    const type1 = getType(line1, 'line1');
     if (type1 !== 'LineString') throw new Error('line1 must be a LineString');
-    var type2 = getType(line2, 'line2');
+    const type2 = getType(line2, 'line2');
     if (type2 !== 'LineString') throw new Error('line2 must be a LineString');
 
-    var segments1 = lineSegment(cleanCoords(line1)).features;
-    var segments2 = lineSegment(cleanCoords(line2)).features;
+    const segments1 = lineSegment(cleanCoords(line1)).features;
+    const segments2 = lineSegment(cleanCoords(line2)).features;
 
-    for (var i = 0; i < segments1.length; i++) {
-        var segment1 = segments1[i].geometry.coordinates;
+    for (let i = 0; i < segments1.length; i++) {
+        const segment1 = segments1[i].geometry.coordinates;
         if (!segments2[i]) break;
-        var segment2 = segments2[i].geometry.coordinates;
+        const segment2 = segments2[i].geometry.coordinates;
         if (!isParallel(segment1, segment2)) return false;
     }
     return true;
@@ -48,8 +48,8 @@ function booleanParallel(line1, line2) {
  * @returns {boolean} if slopes are equal
  */
 function isParallel(segment1, segment2) {
-    var slope1 = bearingToAzimuth(rhumbBearing(segment1[0], segment1[1]));
-    var slope2 = bearingToAzimuth(rhumbBearing(segment2[0], segment2[1]));
+    const slope1 = bearingToAzimuth(rhumbBearing(segment1[0], segment1[1]));
+    const slope2 = bearingToAzimuth(rhumbBearing(segment2[0], segment2[1]));
     return slope1 === slope2;
 }
 
@@ -65,7 +65,7 @@ function isParallel(segment1, segment2) {
 function getType(geojson, name) {
     if (geojson.geometry && geojson.geometry.type) return geojson.geometry.type;
     if (geojson.type) return geojson.type; // if GeoJSON geometry
-    throw new Error('Invalid GeoJSON object for ' + name);
+    throw new Error(`Invalid GeoJSON object for ${name}`);
 }
 
 export default booleanParallel;

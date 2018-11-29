@@ -1,5 +1,5 @@
-import * as polyClipping from 'polygon-clipping';
-import {  multiPolygon } from '../helpers';
+import polygonClipping from 'polygon-clipping';
+import { multiPolygon } from '../helpers';
 import { getGeom } from '../invariant';
 
 /**
@@ -37,10 +37,10 @@ import { getGeom } from '../invariant';
  * var addToMap = [polygon1, polygon2, difference];
  */
 function difference(polygon1, polygon2) {
-    var geom1 = getGeom(polygon1);
-    var geom2 = getGeom(polygon2);
-    var properties = polygon1.properties || {};
-    var differenced = polyClipping.difference(geom1.coordinates, geom2.coordinates);
+    const geom1 = getGeom(polygon1);
+    const geom2 = getGeom(polygon2);
+    const properties = polygon1.properties || {};
+    const differenced = polygonClipping.difference(geom1.coordinates, geom2.coordinates);
     if (differenced.length === 0) return null;
     return multiPolygon(differenced, properties);
 }

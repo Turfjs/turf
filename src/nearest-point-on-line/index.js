@@ -3,7 +3,7 @@ import distance from '../distance';
 import destination from '../destination';
 import lineIntersects from '../line-intersect';
 import { flattenEach } from '../meta';
-import { point, lineString, isObject} from '../helpers';
+import { point, lineString } from '../helpers';
 import { getCoords } from '../invariant';
 
 

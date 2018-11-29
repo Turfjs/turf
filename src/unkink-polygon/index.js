@@ -18,7 +18,7 @@ import simplepolygon from './lib/simplepolygon';
  * var addToMap = [poly, result]
  */
 function unkinkPolygon(geojson) {
-    var features = [];
+    const features = [];
     flattenEach(geojson, function (feature) {
         if (feature.geometry.type !== 'Polygon') return;
         featureEach(simplepolygon(feature), function (poly) {

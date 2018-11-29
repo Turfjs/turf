@@ -2,8 +2,8 @@ import { coordAll, segmentEach } from '../meta';
 import { getGeom } from '../invariant';
 import lineOverlap from '../line-overlap';
 import lineIntersect from '../line-intersect';
-import * as GeojsonEquality from 'geojson-equality';
-const GeoEquality = GeojsonEquality.default;
+import booleanEqual from '../boolean-equal';
+
 
 /**
  * Compares two geometries of the same dimension and returns true if their intersection set results in a geometry
@@ -31,9 +31,9 @@ export default function booleanOverlap(feature1, feature2) {
     const type2 = geom2.type;
 
     if (type1 === 'Point') throw new Error('Point geometry not supported');
+
     // features must be not equal
-    const equality = new GeoEquality({precision: 6});
-    if (equality.compare(feature1, feature2)) return false;
+    if (booleanEqual(feature1, feature2)) return false;
 
     let overlap = 0;
 

@@ -1,5 +1,3 @@
-"use strict";
-exports.__esModule = true;
 /**
  * BezierSpline
  * https://github.com/leszekr/bezier-spline-js
@@ -129,7 +127,7 @@ var Spline = /** @class */ (function () {
     };
     return Spline;
 }());
-exports["default"] = Spline;
+export default Spline;
 function bezier(t, p1, c1, c2, p2) {
     var b = B(t);
     var pos = {

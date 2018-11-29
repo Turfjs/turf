@@ -2,7 +2,6 @@ import { checkIfOptionsExist } from '../helpers';
 import { getType } from '../invariant';
 import { featureEach, geomEach } from '../meta';
 import pointToLineDistance from '../point-to-line-distance';
-import objectAssign from 'object-assign';
 
 /**
  * Returns the closest {@link Point|point}, of a {@link FeatureCollection|collection} of points,
@@ -28,7 +27,7 @@ import objectAssign from 'object-assign';
  * var addToMap = [nearest, line];
  */
 function nearestPointToLine(points, line, options) {
-    options = checkIfOptionsExist(options)
+    options = checkIfOptionsExist(options);
     const units = options.units;
     const properties = options.properties || {};
 
@@ -55,7 +54,14 @@ function nearestPointToLine(points, line, options) {
      * 2. inherent Point properties
      * 3. dist custom properties created by NearestPointToLine
      */
-    if (pt) { pt.properties = objectAssign({dist}, pt.properties, properties); }
+
+    if (pt) {
+        pt.properties = properties;
+        for (const prop in pt.properties) {
+            pt.properties = pt.properties[prop];
+        }
+        pt.properties.dist = dist;
+    }
     return pt;
 }
 
