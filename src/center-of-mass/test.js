@@ -78,3 +78,10 @@ test('center of mass -- properties', t => {
     t.equal(pt.properties.foo, 'bar', 'translate properties');
     t.end();
 });
+
+test('center of mass -- polygon properties', t => {
+    const poly = polygon([[[0, 0], [0, 1], [1, 1], [1, 0],[0, 0]]]);
+    const pt = centerOfMass(poly, {properties: {foo: 'bar'}});
+    t.equal(pt.properties.foo, 'bar', 'translate properties');
+    t.end();
+});

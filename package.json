@@ -35,7 +35,7 @@
     "documentation": "*",
     "eslint": "*",
     "eslint-config-mourner": "*",
-    "esm": "^3.0.55",
+    "esm": "^3.0.84",
     "fs-extra": "*",
     "geojson-fixtures": "^1.0.0",
     "load-json-file": "*",

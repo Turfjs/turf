@@ -25,22 +25,21 @@ function centerOfMass(geojson, options) {
     switch (getType(geojson)) {
     case 'Point':
         return point(getCoord(geojson), options.properties);
-    case 'Polygon':
-        var coords = [];
+    case 'Polygon': {
+        const coords = [];
         coordEach(geojson, function (coord) {
             coords.push(coord);
         });
- 
         // First, we neutralize the feature (set it around coordinates [0,0]) to prevent rounding errors
         // We take any point to translate all the points around 0
-        var centre = centroid(geojson, {properties: options.properties});
-        var translation = centre.geometry.coordinates;
-        var sx = 0;
-        var sy = 0;
-        var sArea = 0;
-        var i, pi, pj, xi, xj, yi, yj, a;
+        const centre = centroid(geojson, {properties: options.properties});
+        const translation = centre.geometry.coordinates;
+        let sx = 0;
+        let sy = 0;
+        let sArea = 0;
+        let i, pi, pj, xi, xj, yi, yj, a;
 
-        var neutralizedPoints = coords.map(function (point) {
+        const neutralizedPoints = coords.map(function (point) {
             return [
                 point[0] - translation[0],
                 point[1] - translation[1]
@@ -74,8 +73,8 @@ function centerOfMass(geojson, options) {
             return centre;
         } else {
             // Compute the signed area, and factorize 1/6A
-            var area = sArea * 0.5;
-            var areaFactor = 1 / (6 * area);
+            const area = sArea * 0.5;
+            const areaFactor = 1 / (6 * area);
 
             // Compute the final coordinates, adding back the values that have been neutralized
             return point([
@@ -83,13 +82,14 @@ function centerOfMass(geojson, options) {
                 translation[1] + areaFactor * sy
             ], options.properties);
         }
-    default:
+    }
+    default: {
         // Not a polygon: Compute the convex hull and work with that
-        var hull = convex(geojson);
-
+        const hull = convex(geojson);
         if (hull) return centerOfMass(hull, {properties: options.properties});
         // Hull is empty: fallback on the centroid
         else return centroid(geojson, {properties: options.properties});
+    }
     }
 }
 
