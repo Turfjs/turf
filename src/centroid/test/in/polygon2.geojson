@@ -1,0 +1,8 @@
+{
+ "type": "Feature",
+  "properties": {},
+  "geometry": {
+    "type": "Polygon",
+    "coordinates": [[[-1, -1], [1, -1], [1, 1], [-1, 1], [-1, -1]]]
+  }
+}

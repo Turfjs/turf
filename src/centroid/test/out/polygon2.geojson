@@ -1,0 +1,49 @@
+{
+	"type": "FeatureCollection",
+	"features": [
+		{
+			"type": "Feature",
+			"properties": {
+				"marker-symbol": "circle"
+			},
+			"geometry": {
+				"type": "Point",
+				"coordinates": [
+					0,
+					0
+				]
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {},
+			"geometry": {
+				"type": "Polygon",
+				"coordinates": [
+					[
+						[
+							-1,
+							-1
+						],
+						[
+							1,
+							-1
+						],
+						[
+							1,
+							1
+						],
+						[
+							-1,
+							1
+						],
+						[
+							-1,
+							-1
+						]
+					]
+				]
+			}
+		}
+	]
+}
