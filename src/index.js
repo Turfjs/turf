@@ -6,7 +6,7 @@
  * @summary Geospatial analysis for JavaScript
  */
 export {default as isolines} from './isolines';
-// export {default as convex} from './convex';  // HARD!!!
+export {default as convex} from './convex';
 export {default as pointsWithinPolygon} from './points-within-polygon';
 export {default as concave} from './concave';
 // export {default as collect} from './collect';  // RBUSH
@@ -20,7 +20,7 @@ export {default as square} from './square';
 export {default as circle} from './circle';
 export {default as midpoint} from './midpoint';
 export {default as center} from './center';
-// export {default as centerOfMass} from './center-of-mass'; // Relies on convex
+export {default as centerOfMass} from './center-of-mass';
 export {default as centroid} from './centroid';
 export {default as combine} from './combine';
 export {default as distance} from './distance';

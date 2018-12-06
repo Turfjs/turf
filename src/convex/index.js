@@ -1,18 +1,17 @@
 import { polygon, checkIfOptionsExist } from '../helpers';
 import { coordEach } from '../meta';
-import concaveman from 'concaveman';
+import { convexHull } from './lib/convexHull';
 
 /**
  * Takes a {@link Feature} or a {@link FeatureCollection} and returns a convex hull {@link Polygon}.
  *
  * Internally this uses
- * the [convex-hull](https://github.com/mikolalysenko/convex-hull) module that implements a
+ * the [convexhull-js](https://github.com/indy256/convexhull-js) module that implements a
  * [monotone chain hull](http://en.wikibooks.org/wiki/Algorithm_Implementation/Geometry/Convex_hull/Monotone_chain).
  *
  * @name convex
  * @param {GeoJSON} geojson input Feature or FeatureCollection
  * @param {Object} [options={}] Optional parameters
- * @param {number} [options.concavity=Infinity] 1 - thin shape. Infinity - convex hull.
  * @param {Object} [options.properties={}] Translate Properties to Feature
  * @returns {Feature<Polygon>} a convex hull
  * @example
@@ -34,7 +33,7 @@ export default function convex(geojson, options) {
     options = checkIfOptionsExist(options);
 
     // Default parameters
-    options.concavity = options.concavity || Infinity;
+    options.properties = options.properties || {};
 
     // Container
     const points = [];
@@ -45,11 +44,13 @@ export default function convex(geojson, options) {
     });
     if (!points.length) { return null; }
 
-    const convexHull = concaveman(points, options.concavity);
+    const outHull = convexHull(points);
 
     // Convex hull should have at least 3 different vertices in order to create a valid polygon
-    if (convexHull.length > 3) {
-        return polygon([convexHull]);
+    if (outHull.length > 3) {
+        outHull.push(outHull[0]);
+        return polygon([outHull], options.properties);
     }
     return null;
 }
+
