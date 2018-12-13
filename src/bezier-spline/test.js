@@ -3,7 +3,7 @@ const test = require('tape');
 const path = require('path');
 const load = require('load-json-file');
 const write = require('write-json-file');
-const { featureCollection } = require('@turf/helpers');
+const { featureCollection } = require('../helpers');
 const bezierSpline = require('./').default;
 
 const directories = {

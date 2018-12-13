@@ -57,7 +57,6 @@
     "d3-voronoi": "^1.1.2",
     "opencollective": "^1.0.3",
     "polygon-clipping": "^0.9.2",
-    "rbush": "^2.0.2",
     "skmeans": "^0.9.7",
     "turf-jsts": "^1.2.3"
   },

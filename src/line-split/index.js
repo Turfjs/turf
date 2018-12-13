@@ -1,4 +1,4 @@
-import rbush from 'geojson-rbush';
+import rbush from '../spatial-index';
 import square from '../square';
 import bbox from '../bbox';
 import truncate from '../truncate';

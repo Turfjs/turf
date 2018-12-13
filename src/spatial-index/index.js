@@ -1,4 +1,4 @@
-import rbush from 'rbush';
+import rbush from './lib/rbush';
 import bbox from '../bbox';
 import { featureCollection} from '../helpers';
 import { featureEach } from '../meta';

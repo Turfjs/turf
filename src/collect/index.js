@@ -1,6 +1,7 @@
-import turfbbox from '../bbox';
+import bboxPolygon from '../bbox-polygon';
+import bbox from '../bbox';
 import booleanPointInPolygon from '../boolean-point-in-polygon';
-import rbush from 'rbush';
+import spatialIndex from '../spatial-index';
 
 /**
  * Merges a specified property from a FeatureCollection of points into a
@@ -33,30 +34,20 @@ import rbush from 'rbush';
  * var addToMap = [pointFC, collected]
  */
 function collect(polygons, points, inProperty, outProperty) {
-    var rtree = rbush(6);
+    const rtree = spatialIndex(6);
 
-    var treeItems = points.features.map(function (item) {
-        return {
-            minX: item.geometry.coordinates[0],
-            minY: item.geometry.coordinates[1],
-            maxX: item.geometry.coordinates[0],
-            maxY: item.geometry.coordinates[1],
-            property: item.properties[inProperty]
-        };
-    });
-
-    rtree.load(treeItems);
+    rtree.load(points.features);
     polygons.features.forEach(function (poly) {
 
         if (!poly.properties) {
             poly.properties = {};
         }
-        var bbox = turfbbox(poly);
-        var potentialPoints = rtree.search({minX: bbox[0], minY: bbox[1], maxX: bbox[2], maxY: bbox[3]});
-        var values = [];
-        potentialPoints.forEach(function (pt) {
-            if (booleanPointInPolygon([pt.minX, pt.minY], poly)) {
-                values.push(pt.property);
+        const searchBbox = bboxPolygon(bbox(poly));
+        const potentialPoints = rtree.search(searchBbox);
+        const values = [];
+        potentialPoints.features.forEach(function (pt) {
+            if (booleanPointInPolygon(pt.geometry.coordinates, poly)) {
+                values.push(pt.properties[inProperty]);
             }
         });
 

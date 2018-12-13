@@ -1,4 +1,4 @@
-import rbush from 'geojson-rbush';
+import rbush from '../spatial-index';
 import lineSegment from '../line-segment';
 import nearestPointOnLine from '../nearest-point-on-line';
 import booleanPointOnLine from '../boolean-point-on-line';
