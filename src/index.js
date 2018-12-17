@@ -63,12 +63,12 @@ export {default as rhumbDistance} from './rhumb-distance';
 export {default as rhumbDestination} from './rhumb-destination';
 export {default as polygonTangents} from './polygon-tangents';
 export {default as rewind} from './rewind';
-// export {default as isobands} from './isobands'; NEEDS LOTS OF WORK
+// export {default as isobands} from './isobands'; // NEEDS LOTS OF WORK
 export {default as transformRotate} from './transform-rotate';
 export {default as transformScale} from './transform-scale';
 export {default as transformTranslate} from './transform-translate';
 export {default as lineOffset} from './line-offset';
-// export {default as polygonize} from './polygonize';
+// export {default as polygonize} from './polygonize'; // NEEDS LOTS OF WORK
 export {default as booleanDisjoint} from './boolean-disjoint';
 export {default as booleanContains} from './boolean-contains';
 export {default as booleanCrosses} from './boolean-crosses';

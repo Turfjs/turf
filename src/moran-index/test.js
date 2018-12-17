@@ -1,39 +1,36 @@
 const test = require('tape');
-const glob = require('glob');
+const fs = require('fs');
 const path = require('path');
 const load = require('load-json-file');
 const write = require('write-json-file');
+const { featureCollection } = require('../helpers');
+const { featureEach } = require('../meta');
+
 const moranIndex = require('.').default;
 
-test('turf-moran-index', t => {
+const directories = {
+    in: path.join(__dirname, 'test', 'in') + path.sep,
+    out: path.join(__dirname, 'test', 'out') + path.sep
+};
 
-  const pointPath = path.join(__dirname, 'test', 'in', 'point.json');
-  const pointJson = load.sync(pointPath);
+let fixtures = fs.readdirSync(directories.in).map(filename => {
+    return {
+        filename,
+        name: path.parse(filename).name,
+        geojson: load.sync(directories.in + filename)
+    };
+});
 
-  const result = moranIndex(pointJson, {
-    inputField: 'CRIME',
-  });
+test('moran-index', t => {
+  for (const {filename, name, geojson}  of fixtures) {
 
-  t.deepEqual(result, {
-    moranIndex: 0.15665417693293948,
-    expectedMoranIndex: -0.020833333333333332,
-    stdNorm: 0.022208244679327364,
-    zNorm: 7.991964823383264,
-  }, 'point clustered pattern');
+    const results = moranIndex(geojson, {
+      inputField: 'CRIME',
+    });
 
-  const columbusPath = path.join(__dirname, 'test', 'in', 'columbus.json');
-  const columbusJson = load.sync(columbusPath);
+    if (process.env.REGEN) write.sync(directories.out + filename, results);
+    t.deepEquals(results, load.sync(directories.out + filename), name);
 
-  const result1 = moranIndex(columbusJson, {
-    inputField: 'CRIME',
-  });
-
-  t.deepEqual(result1, {
-    moranIndex: 0.1485081274747776,
-    expectedMoranIndex: -0.020833333333333332,
-    stdNorm: 0.02374513825431575,
-    zNorm: 7.131626651082253
-  }, 'polygon clustered pattern');
-
+  };
   t.end();
 });

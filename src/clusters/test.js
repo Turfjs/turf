@@ -1,5 +1,5 @@
 const test = require('tape');
-const { point, featureCollection } = require('@turf/helpers');
+const { point, featureCollection } = require('../helpers');
 const {
     getCluster,
     clusterEach,

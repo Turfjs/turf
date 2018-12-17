@@ -2,7 +2,7 @@ import isects from './geojson-polygon-self-intersections';
 import area from '../../area';
 import { featureCollection, polygon } from '../../helpers';
 import booleanPointInPolygon from '../../boolean-point-in-polygon';
-import rbush from 'rbush';
+import rbush from '../../spatial-index';
 
 /**
  * Takes a complex (i.e. self-intersecting) geojson polygon, and breaks it down into its composite simple, non-self-intersecting one-ring polygons.
