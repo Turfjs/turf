@@ -35,7 +35,7 @@ function dissolve(fc, options) {
 
     // Main
     const outFeatures = [];
-    if (options.propertyName === null) {
+    if (!options.propertyName) {
         return union(fc);
     } else {
         const uniquePropertyVals = {};

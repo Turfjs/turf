@@ -1,4 +1,4 @@
-import polygonClipping from 'polygon-clipping';
+import polygonClipping from 'polygon-clipping/dist/polygon-clipping.esm.js';
 import { multiPolygon } from '../helpers';
 import { geomEach } from '../meta';
 
@@ -32,12 +32,10 @@ import { geomEach } from '../meta';
 function union(fc) {
     const args = [];
     geomEach(fc, function (geom) {
-        if (geom.type === 'Polygon') args.push(geom.coordinates);
-        else geom.coordinates.forEach(function (contour) {
-            args.push(contour);
-        });
+        if (geom.type === 'MultiPolygon') args.push(geom.coordinates);
+        if (geom.type === 'Polygon') args.push([geom.coordinates]);
     });
-    const unioned = polygonClipping.union(args);
+    const unioned = polygonClipping.union(...args);
     if (unioned.length === 0) return null;
     else return multiPolygon(unioned);
 }

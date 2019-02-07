@@ -8,7 +8,7 @@
  * @memberof helpers
  * @type {number}
  */
-export let earthRadius = 6371008.8;
+export const earthRadius = 6371008.8;
 
 /**
  * Unit of measurement factors using a spherical (non-ellipsoid) earth radius.
@@ -16,7 +16,7 @@ export let earthRadius = 6371008.8;
  * @memberof helpers
  * @type {Object}
  */
-export let factors = {
+export const factors = {
     centimeters: earthRadius * 100,
     centimetres: earthRadius * 100,
     degrees: 180 / Math.PI, // See https://github.com/Turfjs/turf/issues/1406
@@ -40,7 +40,7 @@ export let factors = {
  * @memberof helpers
  * @type {Object}
  */
-export let areaFactors = {
+export const areaFactors = {
     acres: 0.000247105,
     centimeters: 10000,
     centimetres: 10000,
