@@ -46,10 +46,10 @@ function lineArc(center, radius, bearing1, bearing2, options) {
     var alfa = arcStartDegree;
     var coordinates = [];
     var i = 0;
-    while (alfa < arcEndDegree) {
+    while (alfa <= arcEndDegree) {
         coordinates.push(destination_1.default(center, radius, alfa, options).geometry.coordinates);
         i++;
-        alfa = arcStartDegree + i * 360 / steps;
+        alfa = arcStartDegree + i * (Math.abs(arcEndDegree - arcStartDegree)) / steps;
     }
     if (alfa > arcEndDegree) {
         coordinates.push(destination_1.default(center, radius, arcEndDegree, options).geometry.coordinates);
