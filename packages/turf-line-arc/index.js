@@ -51,7 +51,7 @@ function lineArc(center, radius, bearing1, bearing2, options) {
         i++;
         alfa = arcStartDegree + i * 360 / steps;
     }
-    if (alfa > arcEndDegree) {
+    if (alfa >= arcEndDegree) {
         coordinates.push(destination_1.default(center, radius, arcEndDegree, options).geometry.coordinates);
     }
     return helpers_1.lineString(coordinates, properties);
