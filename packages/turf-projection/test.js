@@ -2,12 +2,10 @@ const fs = require('fs');
 const test = require('tape');
 const path = require('path');
 const load = require('load-json-file');
-const proj4 = require('proj4');
 const write = require('write-json-file');
 const clone = require('@turf/clone').default;
 const { point } = require('@turf/helpers');
 const truncate = require('@turf/truncate').default;
-const { coordEach } = require('@turf/meta');
 const { toMercator, toWgs84 } = require('.');
 
 const directories = {
@@ -25,17 +23,10 @@ const fromWgs84 = fs.readdirSync(directories.wgs84).map(filename => {
 });
 
 test('to-mercator', t => {
-    for (const {filename, name, geojson}  of fromWgs84) {
-        var expected = clone(geojson);
-        coordEach(expected, function (coord) {
-            var newCoord = proj4('WGS84', 'EPSG:900913', coord);
-            coord[0] = newCoord[0];
-            coord[1] = newCoord[1];
-        });
+    for (const {filename, geojson}  of fromWgs84) {
         const results = truncate(toMercator(geojson));
 
         if (process.env.REGEN) write.sync(directories.out + 'mercator-' + filename, results);
-        t.deepEqual(results, truncate(expected), name);
         t.deepEqual(results, load.sync(directories.out + 'mercator-' + filename));
     }
     t.end();
@@ -50,23 +41,23 @@ const fromMercator = fs.readdirSync(directories.mercator).map(filename => {
 });
 
 test('to-wgs84', t => {
-    for (const {filename, name, geojson}  of fromMercator) {
-        var expected = clone(geojson);
-        coordEach(expected, function (coord) {
-            var newCoord = proj4('EPSG:900913', 'WGS84', coord);
-            coord[0] = newCoord[0];
-            coord[1] = newCoord[1];
-        });
+    for (const {filename, geojson}  of fromMercator) {
         const results = truncate(toWgs84(geojson));
 
         if (process.env.REGEN) write.sync(directories.out + 'wgs84-' + filename, results);
-        t.deepEqual(results, truncate(expected), name);
         t.deepEqual(results, load.sync(directories.out + 'wgs84-' + filename));
     }
     t.end();
 });
 
-
+test('projection -- Round Trips', t => {
+    for (const {geojson}  of fromWgs84) {
+        const source = truncate(geojson);
+        const results = truncate(toWgs84(toMercator(source)));
+        t.deepEqual(source, results);
+    }
+    t.end();
+});
 
 test('projection -- throws', t => {
     t.throws(() => toMercator(null), /geojson is required/, 'throws missing geojson');

@@ -68,7 +68,7 @@ function convert(geojson: any, projection: string, options: {mutate?: boolean} =
         if (mutate !== true) geojson = clone(geojson);
 
         coordEach(geojson, function (coord) {
-            var newCoord = (projection === 'mercator') ? convertToMercator(coord) : convertToWgs84(coord);
+            var newCoord = (projection === 'mercator') ? convertToMercator(coord, {wrapLongitude: false}) : convertToWgs84(coord);
             coord[0] = newCoord[0];
             coord[1] = newCoord[1];
         });
@@ -82,9 +82,14 @@ function convert(geojson: any, projection: string, options: {mutate?: boolean} =
  *
  * @private
  * @param {Array<number>} lonLat WGS84 point
+ * @param {Object} [options] Optional parameters
+ * @param {boolean} [options.wrapLongitude=true] wrap logitude passing the meridian to a coordinated between -180 and 180
  * @returns {Array<number>} Mercator [x, y] point
  */
-function convertToMercator(lonLat) {
+function convertToMercator(lonLat, options: {wrapLongitude?: boolean} = {wrapLongitude: true}) {
+    options = options || {wrapLongitude: true};
+    var wrapLongitude = options.wrapLongitude;
+
     var D2R = Math.PI / 180,
         // 900913 properties
         A = 6378137.0,
@@ -92,15 +97,17 @@ function convertToMercator(lonLat) {
 
     // compensate longitudes passing the 180th meridian
     // from https://github.com/proj4js/proj4js/blob/master/lib/common/adjust_lon.js
-    var adjusted = (Math.abs(lonLat[0]) <= 180) ? lonLat[0] : (lonLat[0] - (sign(lonLat[0]) * 360));
+    var adjusted = (!wrapLongitude || Math.abs(lonLat[0]) <= 180) ? lonLat[0] : (lonLat[0] - (sign(lonLat[0]) * 360));
     var xy = [
         A * adjusted * D2R,
         A * Math.log(Math.tan((Math.PI * 0.25) + (0.5 * lonLat[1] * D2R)))
     ];
 
     // if xy value is beyond maxextent (e.g. poles), return maxextent
-    if (xy[0] > MAXEXTENT) xy[0] = MAXEXTENT;
-    if (xy[0] < -MAXEXTENT) xy[0] = -MAXEXTENT;
+    if (wrapLongitude) {
+        if (xy[0] > MAXEXTENT) xy[0] = MAXEXTENT;
+        if (xy[0] < -MAXEXTENT) xy[0] = -MAXEXTENT;
+    }
     if (xy[1] > MAXEXTENT) xy[1] = MAXEXTENT;
     if (xy[1] < -MAXEXTENT) xy[1] = -MAXEXTENT;
 

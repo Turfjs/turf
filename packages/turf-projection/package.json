@@ -47,7 +47,6 @@
     "@turf/truncate": "*",
     "benchmark": "*",
     "load-json-file": "*",
-    "proj4": "*",
     "typescript": "*",
     "tape": "*",
     "write-json-file": "*",
