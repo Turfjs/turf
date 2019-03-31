@@ -58,7 +58,7 @@
   "dependencies": {
     "d3-voronoi": "^1.1.2",
     "opencollective": "^1.0.3",
-    "polygon-clipping": "^0.12.2",
+    "polygon-clipping": "^0.14.0",
     "skmeans": "^0.9.7",
     "turf-jsts": "^1.2.3"
   },

@@ -134,7 +134,8 @@ test('turf-clone -- Preserve all properties -- Feature', t => {
         array: [0, 1, 2],
         number: 1,
         nullity: null,
-        boolean: true
+        boolean: true,
+        length: 1
     };
     const pt = point([0, 20], properties, {bbox, id});
     pt.hello = 'world'; // Foreign member
@@ -152,6 +153,7 @@ test('turf-clone -- Preserve all properties -- Feature', t => {
     t.equal(cloned.properties.number, 1);
     t.equal(cloned.properties.nullity, null);
     t.equal(cloned.properties.boolean, true);
+    t.equal(cloned.properties.length, 1);
 
     // Mutate clone properties
     cloned['hello'] = 'universe';

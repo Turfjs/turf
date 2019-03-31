@@ -106,4 +106,5 @@ function intersects(line1, line2) {
     return null;
 }
 
+
 export default lineIntersect;
