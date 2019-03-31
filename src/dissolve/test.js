@@ -21,7 +21,6 @@ const fixtures = fs.readdirSync(directories.in).map(filename => {
 
 test('turf-dissolve', t => {
     for (const {filename, name, geojson}  of fixtures) {
-        console.log(filename)
         const propertyName = geojson.propertyName;
         const results = dissolve(geojson, {propertyName});
 

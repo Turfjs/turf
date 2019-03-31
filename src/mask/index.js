@@ -19,9 +19,9 @@ import { polygon, featureCollection } from '../helpers';
  */
 function mask(polygon, mask) {
     // Define mask
-    var maskPolygon = createMask(mask);
+    const maskPolygon = createMask(mask);
 
-    var polygonOuters = null;
+    let polygonOuters = null;
     if (polygon.type === 'FeatureCollection') polygonOuters = union(polygon);
     else polygonOuters = union(featureCollection([polygon]));
 
@@ -40,8 +40,8 @@ function mask(polygon, mask) {
  * @returns {Feature<Polygon>} mask coordinate
  */
 function createMask(mask) {
-    var world = [[[180, 90], [-180, 90], [-180, -90], [180, -90], [180, 90]]];
-    var coordinates = mask && mask.geometry.coordinates || world;
+    const world = [[[180, 90], [-180, 90], [-180, -90], [180, -90], [180, 90]]];
+    const coordinates = mask && mask.geometry.coordinates || world;
     return polygon(coordinates);
 }
 
