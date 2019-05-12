@@ -1,5 +1,5 @@
 // Find self-intersections in geojson polygon (possibly with interior rings)
-import rbush from '../../spatial-index';
+import rbush from '../../spatial-index/lib/rbush';
 
 export default function (feature, filterFn, useSpatialIndex) {
     if (feature.geometry.type !== 'Polygon') throw new Error('The input feature must be a Polygon');

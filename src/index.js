@@ -48,7 +48,7 @@ export {default as truncate} from './truncate';
 export {default as flatten} from './flatten';
 export {default as lineIntersect} from './line-intersect';
 export {default as lineChunk} from './line-chunk';
-// export {default as unkinkPolygon} from './unkink-polygon';  //RBUSH
+export {default as unkinkPolygon} from './unkink-polygon';
 export {default as greatCircle} from './great-circle';
 export {default as lineSegment} from './line-segment';
 export {default as lineSplit} from './line-split';

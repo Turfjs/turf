@@ -2,7 +2,7 @@ import isects from './geojson-polygon-self-intersections';
 import area from '../../area';
 import { featureCollection, polygon } from '../../helpers';
 import booleanPointInPolygon from '../../boolean-point-in-polygon';
-import rbush from '../../spatial-index';
+import rbush from '../../spatial-index/lib/rbush';
 
 /**
  * Takes a complex (i.e. self-intersecting) geojson polygon, and breaks it down into its composite simple, non-self-intersecting one-ring polygons.
@@ -74,9 +74,9 @@ export default function (feature) {
         pseudoVtxListByRingAndEdge.push([]);
         for (var j = 0; j < feature.geometry.coordinates[i].length - 1; j++) {
             // Each edge will feature one ring-pseudo-vertex in its array, on the last position. i.e. edge j features the ring-pseudo-vertex of the ring vertex j+1, which has ringAndEdgeIn = [i,j], on the last position.
-            pseudoVtxListByRingAndEdge[i].push([new PseudoVtx(feature.geometry.coordinates[i][(j + 1).modulo(feature.geometry.coordinates[i].length - 1)], 1, [i, j], [i, (j + 1).modulo(feature.geometry.coordinates[i].length - 1)], undefined)]);
+            pseudoVtxListByRingAndEdge[i].push([new PseudoVtx(feature.geometry.coordinates[i][calculateModulo((j + 1), feature.geometry.coordinates[i].length - 1)], 1, [i, j], [i, calculateModulo((j + 1), feature.geometry.coordinates[i].length - 1)], undefined)]);
             // The first numvertices elements in isectList correspond to the ring-vertex-intersections
-            isectList.push(new Isect(feature.geometry.coordinates[i][j], [i, (j - 1).modulo(feature.geometry.coordinates[i].length - 1)], [i, j], undefined, undefined, false, true));
+            isectList.push(new Isect(feature.geometry.coordinates[i][j], [i, calculateModulo((j - 1), feature.geometry.coordinates[i].length - 1)], [i, j], undefined, undefined, false, true));
         }
     }
     // Adding intersection-pseudo-vertices to pseudoVtxListByRingAndEdge and self-intersections to isectList
@@ -110,7 +110,7 @@ export default function (feature) {
             for (var k = 0; k < pseudoVtxListByRingAndEdge[i][j].length; k++) {
                 var coordToFind;
                 if (k == pseudoVtxListByRingAndEdge[i][j].length - 1) { // If it's the last pseudoVertex on that edge, then the next pseudoVertex is the first one on the next edge of that ring.
-                    coordToFind = pseudoVtxListByRingAndEdge[i][(j + 1).modulo(feature.geometry.coordinates[i].length - 1)][0].coord;
+                    coordToFind = pseudoVtxListByRingAndEdge[i][calculateModulo((j + 1), feature.geometry.coordinates[i].length - 1)][0].coord;
                 } else {
                     coordToFind = pseudoVtxListByRingAndEdge[i][j][k + 1].coord;
                 }
@@ -337,7 +337,7 @@ function windingOfRing(ring) {
     // Compute the winding number based on the vertex with the smallest x-value, it precessor and successor. An extremal vertex of a simple, non-self-intersecting ring is always convex, so the only reason it is not is because the winding number we use to compute it is wrong
     var leftVtx = 0;
     for (var i = 0; i < ring.length - 1; i++) { if (ring[i][0] < ring[leftVtx][0]) leftVtx = i; }
-    if (isConvex([ring[(leftVtx - 1).modulo(ring.length - 1)], ring[leftVtx], ring[(leftVtx + 1).modulo(ring.length - 1)]], true)) {
+    if (isConvex([ring[calculateModulo((leftVtx - 1), ring.length - 1)], ring[leftVtx], ring[calculateModulo((leftVtx + 1), ring.length - 1)]], true)) {
         var winding = 1;
     } else {
         var winding = -1;
@@ -370,8 +370,8 @@ function equalArrays(array1, array2) {
 }
 
 // Fix Javascript modulo for negative number. From http://stackoverflow.com/questions/4467539/javascript-modulo-not-behaving
-Number.prototype.modulo = function (n) {
-    return ((this % n) + n) % n;
+function calculateModulo (n1, n2) {
+    return ((n1 % n2) + n2) % n2;
 };
 
 // Function to get array with only unique elements. From http://stackoverflow.com/questions/1960473/unique-values-in-an-array
