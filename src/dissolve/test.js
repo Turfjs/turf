@@ -3,6 +3,7 @@ import test from 'tape';
 import path from 'path';
 import load from 'load-json-file';
 import write from 'write-json-file';
+import glob from 'glob'
 import {polygon, point, featureCollection} from '../helpers';
 import dissolve from './';
 
@@ -11,22 +12,17 @@ const directories = {
     out: path.join(__dirname, 'test', 'out') + path.sep
 };
 
-const fixtures = fs.readdirSync(directories.in).map(filename => {
-    return {
-        filename,
-        name: path.parse(filename).name,
-        geojson: load.sync(directories.in + filename)
-    };        
-});
-
 test('turf-dissolve', t => {
-    for (const {filename, name, geojson}  of fixtures) {
+    glob.sync(directories.in + '*.geojson').forEach(filepath => {
+        const { name, base } = path.parse(filepath);
+        const geojson = load.sync(filepath);
+
         const propertyName = geojson.propertyName;
         const results = dissolve(geojson, {propertyName});
 
-        if (process.env.REGEN) write.sync(directories.out + filename, results);
-        t.deepEquals(results, load.sync(directories.out + filename), name);
-    }
+        if (process.env.REGEN) write.sync(directories.out + base, results);
+        t.deepEqual(results, load.sync(directories.out + base), name);
+    })
     t.end();
 });
 
