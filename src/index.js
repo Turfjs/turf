@@ -68,7 +68,7 @@ export {default as transformRotate} from './transform-rotate';
 export {default as transformScale} from './transform-scale';
 export {default as transformTranslate} from './transform-translate';
 export {default as lineOffset} from './line-offset';
-// export {default as polygonize} from './polygonize'; // NEEDS LOTS OF WORK
+export {default as polygonize} from './polygonize';
 export {default as booleanDisjoint} from './boolean-disjoint';
 export {default as booleanContains} from './boolean-contains';
 export {default as booleanCrosses} from './boolean-crosses';
