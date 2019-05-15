@@ -29,34 +29,12 @@ import {
  * //addToMap
  * var addToMap = [turf.point(center), circle]
  */
-function circle<P = Properties>(
+export default function circle<P = Properties>(
   center: number[] | Point | Feature<Point, P>,
   radius: number,
   options: {
     steps?: number;
     units?: Units;
     properties?: P;
-  } = {}
-): Feature<Polygon, P> {
-  // default params
-  const steps = options.steps || 64;
-  const properties: any = options.properties
-    ? options.properties
-    : !Array.isArray(center) && center.type === "Feature" && center.properties
-    ? center.properties
-    : {};
-
-  // main
-  const coordinates = [];
-  for (let i = 0; i < steps; i++) {
-    coordinates.push(
-      destination(center, radius, (i * -360) / steps, options).geometry
-        .coordinates
-    );
   }
-  coordinates.push(coordinates[0]);
-
-  return polygon([coordinates], properties);
-}
-
-export default circle;
+): Feature<Polygon, P>;
