@@ -23,7 +23,7 @@ import { Units, Point, Properties, Feature, Polygon } from "@turf/helpers";
 export default function circle<P = Properties>(
   center: number[] | Point | Feature<Point, P>,
   radius: number,
-  options: {
+  options?: {
     steps?: number;
     units?: Units;
     properties?: P;
