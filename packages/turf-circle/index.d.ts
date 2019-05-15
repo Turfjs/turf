@@ -1,13 +1,4 @@
-import destination from "@turf/destination";
-import {
-  polygon,
-  Coord,
-  Units,
-  Point,
-  Properties,
-  Feature,
-  Polygon
-} from "@turf/helpers";
+import { Units, Point, Properties, Feature, Polygon } from "@turf/helpers";
 
 /**
  * Takes a {@link Point} and calculates the circle polygon given a radius in degrees, radians, miles, or kilometers; and steps for precision.
